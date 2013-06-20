@@ -33,7 +33,7 @@ turn(Turn) == M :- turn(Turn, M).
 prepare_make_ut(Dist) == ['Dans ', D, ' préparez vous à faire demi tour'] :- distance(Dist) == D.
 make_ut(Dist) == ['Dans ', D, ' faites demi-tour '] :- distance(Dist) == D.
 make_ut == ['Faites demi-tour '].
-make_ut_wp == ['Faites demi-tour '].
+make_ut_wp == ['Lorsque cela est possible, s'il vous plaît faire un demi-tour '].
 
 prepare_roundabout(Dist) == ['Préparez vous à entrer dans le rond-point dans ', D] :- distance(Dist) == D.
 roundabout(Dist, _Angle, Exit) == ['Dans ', D, ' entrez dans le rond-point et prenez la ', E, 'sortie'] :- distance(Dist) == D, nth(Exit, E).
@@ -46,8 +46,8 @@ and_arrive_destination == ['et arrivez à destination '].
 
 then == ['puis '].
 reached_destination == ['vous êtes arrivé à destination '].
-and_arrive_intermediate == ['and arrive at your via point '].
-reached_intermediate == ['you have reached your via point'].
+and_arrive_intermediate == ['et arriver à votre point intermédiaire '].
+reached_intermediate == ['Vous avez atteint votre point intermédiaire'].
 bear_right == ['serrez à droite '].
 bear_left == ['serrez à gauche '].
 
