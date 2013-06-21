@@ -25,7 +25,6 @@ prep2turn('right_sl', ['tourner légèrement à droite ']).
 prep2turn('right_keep', ['serrer à droite ']).
 prep2turn('left_keep', ['serrer à gauche ']).
 
-
 prepare_turn(Turn, Dist) == ['Dans ', D, ' préparez vous à ', M] :- distance(Dist) == D, prep2turn(Turn, M).
 turn(Turn, Dist) == ['Dans ', D, M] :- distance(Dist) == D, turn(Turn, M).
 turn(Turn) == M :- turn(Turn, M).
@@ -46,8 +45,8 @@ and_arrive_destination == ['et arrivez à destination '].
 
 then == ['puis '].
 reached_destination == ['vous êtes arrivé à destination '].
-and_arrive_intermediate == ['et arriver à votre point intermédiaire '].
-reached_intermediate == ['Vous avez atteint votre point intermédiaire'].
+and_arrive_intermediate == ['et arrivez à l'étape '].
+reached_intermediate == ['vous êtes arrivé à l'étape'].
 bear_right == ['serrez à droite '].
 bear_left == ['serrez à gauche '].
 
