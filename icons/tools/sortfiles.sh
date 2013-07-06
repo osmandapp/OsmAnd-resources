@@ -41,6 +41,7 @@ mycp highway bus_stop mm_transport_bus_stop.png
 mycp public_transport platform mm_transport_bus_stop.png
 
 mycp amenity fuel mm_transport_fuel.png
+mycp amenity taxi mm_transport_taxi_rank.png
 mycp amenity bicycle_rental mm_transport_rental_bicycle.png
 mycp amenity car_rental mm_transport_rental_car.png
 mycp amenity car_sharing mm_transport_car_share.png
@@ -83,6 +84,7 @@ mycp amenity drinking_water mm_food_drinkingtap.png
 
 ## Education
 mycp amenity school mm_education_school.png
+mycp amenity university mm_education_university.png
 mycp amenity college mm_education_college.png
 mycp amenity library mm_amenity_library.png
 mycp amenity kindergarten mm_education_nursery2.png
@@ -110,6 +112,12 @@ mycp amenity dentist mm_health_dentist.png
 ## Entertainment/Other
 mycp amenity cinema mm_tourist_cinema.png
 mycp amenity theatre mm_tourist_theatre.png
+mycp amenity casino mm_tourist_casino.png
+mycp geocache not_found mm_poi_point_of_interest.png
+mycp geocache found mm_poi_point_of_interest.png
+mycp office government mm_amenity_public_building.png
+
+mycp amenity arts_centre mm_tourist_art_gallery2.png
 
 mycp amenity embassy mm_poi_embassy.png
 #! mycp amenity grave_yard MISSING(USESSHADER):grave_yard
@@ -213,8 +221,10 @@ mycp shop bicycle mm_shopping_bicycle.png
 mycp shop car mm_shopping_car.png
 mycp shop car_repair mm_shopping_car_repair.png
 mycp shop convenience mm_shopping_convenience.png
+mycp shop computer mm_shopping_computer.png
 mycp shop department_store mm_shopping_department_store.png
 mycp shop electronics mm_shopping_hifi.png
+mycp shop jewelry mm_shopping_jewelry2.png
 mycp shop general mm_shopping_convenience.png
 mycp shop general mm_shopping_convenience.png
 mycp shop outdoor mm_shopping_tackle.png
@@ -226,6 +236,7 @@ mycp shop alcohol mm_shopping_alcohol.png
 mycp shop kiosk mm_shopping_kiosk.png
 mycp shop musical_instrument mm_shopping_music.png
 mycp shop optician mm_health_opticians.png
+mycp shop pet mm_shopping_pet2.png
 mycp shop video mm_shopping_video_rental.png
 mycp shop confectionery mm_shopping_confectionery.png
 mycp shop laundry mm_shopping_laundrette.png
