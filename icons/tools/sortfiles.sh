@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cp() {
-	echo "tag = $1 value = $2 file = $3"
+	echo "cp ../png/drawable-hdpi/$3 ../../rendering_styles/style-icons/mm_$1_$2.png"
 }
 
 ## Shaders !

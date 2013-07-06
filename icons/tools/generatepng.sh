@@ -41,7 +41,7 @@ generatePngs() {
           ${BASEFOLDER}/tools/recolourtopng.sh ${FILE} $COLOR $COLOR '#ffffff'  ${SIZES[j]} ${OUTF}${FILENAME}
           
         fi
-        convert ${OUTF}${FILENAME}.png \( +clone -background "#ffffff" -shadow 8000x2-0+0 \) +swap -background none -layers merge +repage -trim ${OUTF}${FILENAME}_glow.png
+        # convert ${OUTF}${FILENAME}.png \( +clone -background "#ffffff" -shadow 8000x2-0+0 \) +swap -background none -layers merge +repage -trim ${OUTF}${FILENAME}_glow.png
       done
 
     done
@@ -63,5 +63,5 @@ generatePngs 'power' '#777777' #'#8e7409'
 generatePngs 'shopping' '#777777' #'#AC39AC'
 generatePngs 'sport'  '#777777' #'#39AC39'
 generatePngs 'tourist' '#777777' #'#734A08'
-generatePngs 'transport' '#777777' #'#0092DA'
+generatePngs 'transport' '#0092DA' #'#0092DA'
 generatePngs 'water' '#777777' #'#0092DA'
