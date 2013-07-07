@@ -1,18 +1,20 @@
 #!/bin/bash
 
-mycp() {
- 	echo "${3}  style-icons/mm_${1}_${2}.png"
- 	cp ../png/drawable-hdpi/${3} ../../rendering_styles/style-icons/drawable-hdpi/mm_${1}_${2}.png
- 	cp ../png/drawable-xhdpi/${3} ../../rendering_styles/style-icons/drawable-xhdpi/mm_${1}_${2}.png
- 	cp ../png/drawable-mdpi/${3} ../../rendering_styles/style-icons/drawable-mdpi/mm_${1}_${2}.png
-}
-
 mygroup() {
  	echo "${2}  style-icons/mm_${1}.png"
- 	cp ../png/drawable-hdpi/${2} ../../rendering_styles/style-icons/drawable-hdpi/mm_${1}.png
- 	cp ../png/drawable-xhdpi/${2} ../../rendering_styles/style-icons/drawable-xhdpi/mm_${1}.png
- 	cp ../png/drawable-mdpi/${2} ../../rendering_styles/style-icons/drawable-mdpi/mm_${1}.png
+ 	cp ../png/mdpi/${2} ../../rendering_styles/style-icons/drawable-mdpi/mm_${1}.png
+ 	cp ../png/hdpi/${2} ../../rendering_styles/style-icons/drawable-hdpi/mm_${1}.png
+ 	cp ../png/xhdpi/${2} ../../rendering_styles/style-icons/drawable-xhdpi/mm_${1}.png
+ 	cp ../png/xhdpi/${2} ../../rendering_styles/style-icons/drawable-mdpi/mx_${1}.png
+ 	cp ../png/x2-hdpi/${2} ../../rendering_styles/style-icons/drawable-hdpi/mx_${1}.png
+ 	cp ../png/x2-xhdpi/${2} ../../rendering_styles/style-icons/drawable-xhdpi/mx_${1}.png
 }
+
+
+mycp() {
+	mygroup ${1}_${2} $3
+}
+
 
 
 ## Shaders !

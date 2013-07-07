@@ -7,8 +7,8 @@ popd  > /dev/null
 BASEFOLDER=`dirname $BASEFOLDER`
 
 #SIZES=(64 48 32 24 20 16 12)
-SIZES=(32 24 16)
-FOLDERS=(drawable-xhdpi drawable-hdpi drawable-mdpi)
+SIZES=(64 48 32 24 16)
+FOLDERS=(x2-xhdpi x2-hdpi xhdpi hdpi mdpi)
 
 SVGFOLDER=${BASEFOLDER}/svg/
 OUTPUTFOLDER=${BASEFOLDER}/png/
