@@ -7,6 +7,14 @@ mycp() {
  	cp ../png/drawable-mdpi/${3} ../../rendering_styles/style-icons/drawable-mdpi/mm_${1}_${2}.png
 }
 
+mygroup() {
+ 	echo "${2}  style-icons/mm_${1}.png"
+ 	cp ../png/drawable-hdpi/${2} ../../rendering_styles/style-icons/drawable-hdpi/mm_${1}.png
+ 	cp ../png/drawable-xhdpi/${2} ../../rendering_styles/style-icons/drawable-xhdpi/mm_${1}.png
+ 	cp ../png/drawable-mdpi/${2} ../../rendering_styles/style-icons/drawable-mdpi/mm_${1}.png
+}
+
+
 ## Shaders !
 # mycp landuse forest KEEPSHADERS!
 # mycp natural beach KEEPSHADERS!
@@ -39,7 +47,9 @@ mycp highway ford mm_transport_ford.png
 mycp amenity bus_station mm_transport_bus_station.png
 mycp highway bus_stop mm_transport_bus_stop.png
 mycp public_transport platform mm_transport_bus_stop.png
+mygroup public_transport mm_transport_bus_stop.png
 
+mygroup fuel mm_transport_fuel.png
 mycp amenity fuel mm_transport_fuel.png
 mycp amenity taxi mm_transport_taxi_rank.png
 mycp amenity bicycle_rental mm_transport_rental_bicycle.png
@@ -47,6 +57,7 @@ mycp amenity car_rental mm_transport_rental_car.png
 mycp amenity car_sharing mm_transport_car_share.png
 
 mycp amenity parking mm_transport_parking.png
+mygroup parking mm_transport_parking.png
 mycp amenity bicycle_parking mm_transport_parking_bicycle.png
 mycp railway station mm_transport_train_station.png
 #! mycp railway halt mm_transport_train_station2.png # ?? completely different
@@ -73,6 +84,7 @@ mycp building entrance mm_barrier_entrance.png #? big
 
 
 ## Sustenance
+mygroup restaurants mm_food_restaurant.png
 mycp amenity restaurant mm_food_restaurant.png
 mycp amenity ice_cream mm_food_ice_cream.png
 mycp amenity cafe mm_food_cafe.png
@@ -101,6 +113,7 @@ mycp man_made windmill mm_tourist_windmill.png
 ## Emergency
 mycp amenity fire_station mm_amenity_firestation3.png
 mycp emergency phone mm_transport_emergency_phone.png
+mygroup emergency mm_health_hospital.png
 
 ## Health 
 mycp amenity pharmacy mm_health_pharmacy.png
@@ -110,6 +123,7 @@ mycp amenity doctors mm_health_doctors.png
 mycp amenity dentist mm_health_dentist.png
 
 ## Entertainment/Other
+mygroup entertainment mm_tourist_cinema.png
 mycp amenity cinema mm_tourist_cinema.png
 mycp amenity theatre mm_tourist_theatre.png
 mycp amenity casino mm_tourist_casino.png
@@ -162,6 +176,8 @@ mycp leisure bird_hide mm_poi_tower_lookout.png
 
 
 ## Historic
+mygroup for_tourists mm_tourist_view_point.png 
+mygroup sightseeing mm_tourist_castle2.png
 mycp historic castle mm_tourist_castle2.png
 mycp historic monument mm_tourist_monument.png
 mycp historic memorial mm_tourist_memorial.png
@@ -184,15 +200,14 @@ mycp tourism alpine_hut mm_accommodation_alpinehut.png
 mycp tourism chalet mm_accommodation_chalet.png
 mycp tourism guest_house mm_accommodation_bed_and_breakfast.png
 mycp tourism hostel mm_accommodation_hostel.png
+mygroup accomodation mm_accommodation_hotel.png
 mycp tourism hotel mm_accommodation_hotel.png
 mycp tourism motel mm_accommodation_motel.png
 mycp tourism museum mm_tourist_museum.png
 mycp tourism information mm_tourist_information.png
-mycp tourism viewpoint mm_tourist_view_point.png # ?view_point
+mycp tourism viewpoint mm_tourist_view_point.png 
 mycp tourism theme_park mm_tourist_theme_park.png
 mycp tourism zoo mm_tourist_zoo.png
-#! mycp geocache found MISSING:geocache(found)
-#! mycp geocache notfound MISSING:geocache(notfound)
 
 ## Sport 
 mycp leisure stadium mm_sport_stadium.png
@@ -219,7 +234,9 @@ mycp shop doityourself mm_shopping_diy.png
 mycp shop boutique mm_shopping_clothes.png
 mycp shop bicycle mm_shopping_bicycle.png
 mycp shop car mm_shopping_car.png
+mygroup car_aid mm_shopping_car.png
 mycp shop car_repair mm_shopping_car_repair.png
+mygroup food_shop mm_shopping_convenience.png
 mycp shop convenience mm_shopping_convenience.png
 mycp shop computer mm_shopping_computer.png
 mycp shop department_store mm_shopping_department_store.png
