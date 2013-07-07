@@ -135,6 +135,7 @@ mycp amenity doctors mm_health_doctors.png
 mycp amenity dentist mm_health_dentist.png
 
 ## Entertainment/Other
+# mygroup custom_id mm_icons8 #TODO
 mygroup user_defined mm_icons8_user.png
 mygroup osmwiki mm_icons8_wikipedia.png
 mygroup other mm_amenity_post_office.png
