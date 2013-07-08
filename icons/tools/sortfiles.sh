@@ -19,29 +19,31 @@ mycp() {
 
 ## Shaders !
 mygroup landuse mm_landuse_coniferous.png
-# mycp landuse forest KEEPSHADERS!
-# mycp natural beach KEEPSHADERS!
-# mycp natural wetland KEEPSHADERS!
-# mycp natural marsh KEEPSHADERS!
-# mycp natural mud KEEPSHADERS!
-# mycp natural scrub KEEPSHADERS!
-# mycp landuse orchard KEEPSHADERS!
-# mycp landuse vineyard KEEPSHADERS!
-# mycp landuse cemetery KEEPSHADERS!
-#? mycp amenity grave_yard KEEPSHADERS!
-# mycp natural glacier KEEPSHADERS!
-# mycp natural glacier KEEPSHADERS!
-# mycp leisure nature_reserve KEEPSHADERS!
-#? mycp tourism zoo KEEPSHADERS! 
-# mycp landuse quarry KEEPSHADERS!
-# mycp military danger_area KEEPSHADERS!
+# mycp landuse forest  KEEP SHADERS!
+# mycp natural beach  KEEP SHADERS!
+# mycp natural wetland  KEEP SHADERS!
+# mycp natural marsh  KEEP SHADERS!
+# mycp natural mud  KEEP SHADERS!
+# mycp natural scrub  KEEP SHADERS!
+# mycp landuse orchard  KEEP SHADERS!
+# mycp landuse vineyard  KEEP SHADERS!
+# mycp landuse cemetery  KEEP SHADERS!
+#? mycp amenity grave_yard  KEEP SHADERS!
+# mycp natural glacier  KEEP SHADERS!
+# mycp natural glacier_night  KEEP SHADERS!
+# mycp leisure nature_reserve  KEEP SHADERS!
+#? mycp tourism zoo  KEEP SHADERS!
+# mycp landuse quarry  KEEP SHADERS!
+# mycp military danger_area  KEEP SHADERS!
 
-## place
+
+## Place-dots
 mygroup administrative mm_poi_boundary_administrative.png
-#! mycp place city SHOULDKEEPCURRENT:city_night
-#! mycp place city SHOULDKEEPCURRENT:city
-#! mycp place town SHOULDKEEPCURRENT:town_night
-#! mycp place town SHOULDKEEPCURRENT:town
+#! mycp place city  SHOULD KEEP CURRENT: city_night  (functional icon, not picture)
+#! mycp place city  SHOULD KEEP CURRENT: city  (functional icon, not picture)
+#! mycp place town  SHOULD KEEP CURRENT: town_night  (functional icon, not picture)
+#! mycp place town  SHOULD KEEP CURRENT: town  (functional icon, not picture)
+
 
 ## Transportation 
 mycp highway traffic_signals mm_transport_traffic_lights.png
@@ -52,7 +54,6 @@ mycp amenity bus_station mm_transport_bus_station.png
 mycp highway bus_stop mm_transport_bus_stop.png
 mycp public_transport platform mm_transport_bus_stop.png
 mygroup public_transport mm_transport_bus_stop.png
-
 
 mygroup fuel mm_transport_fuel.png
 mycp amenity fuel mm_transport_fuel.png
@@ -66,11 +67,11 @@ mygroup parking mm_transport_parking.png
 mygroup transportation mm_transport_taxi_rank.png
 mycp amenity bicycle_parking mm_transport_parking_bicycle.png
 mycp railway station mm_transport_train_station.png
-#! mycp railway halt mm_transport_train_station2.png # ?? completely different
+#! mycp railway halt mm_transport_train_station2.png #completely different?
 mycp railway tram_stop mm_transport_tram_stop.png
-#! mycp railway level_crossing MISSING:railway/level_crossing
+#! mycp railway level_crossing  MISSING: railway/level_crossing
 mycp railway subway_entrance mm_transport_subway.png
-#! mycp aerialway station MISSING:transport/aerialway_station
+#! mycp aerialway station  MISSING: aerialway/station: station_small
 mycp aeroway helipad mm_transport_helicopter_pad.png
 mycp aeroway aerodrome mm_transport_aerodrome.png
 mycp aeroway airport mm_transport_airport.png
@@ -87,7 +88,7 @@ mycp barrier kissing_gate mm_barrier_kissing_gate.png
 mycp barrier toll_booth mm_barrier_toll_booth.png
 mycp barrier border_control mm_barrier_lift_gate.png
 mycp barrier entrance mm_barrier_entrance.png
-mycp building entrance mm_barrier_entrance.png #? big
+mycp building entrance mm_barrier_entrance.png #in-building feature, render only from zoom 18 (could do the same for aeroway/gate)
 
 
 ## Sustenance
@@ -102,6 +103,7 @@ mycp amenity bar mm_food_bar.png
 mycp amenity biergarten mm_food_biergarten.png
 mycp amenity drinking_water mm_food_drinkingtap.png
 
+
 ## Education
 mygroup education mm_education_university.png
 mycp amenity school mm_education_school.png
@@ -110,8 +112,9 @@ mycp amenity college mm_education_college.png
 mycp amenity library mm_amenity_library.png
 mycp amenity kindergarten mm_education_nursery2.png
 
+
 ## Man_made
-#! mycp power tower SHOULDKEEPCURRENT:power_tower
+#! mycp power tower SHOULD KEEP CURRENT: power_tower  (functional icon, not picture)
 mygroup man_made mm_power_station_wind.png
 mygroup military mm_poi_military_bunker.png
 mycp power generator mm_power_station_wind.png
@@ -126,6 +129,7 @@ mycp amenity fire_station mm_amenity_firestation3.png
 mycp emergency phone mm_transport_emergency_phone.png
 mygroup emergency mm_transport_emergency_phone.png
 
+
 ## Health 
 mygroup healthcare mm_health_pharmacy.png
 mycp amenity pharmacy mm_health_pharmacy.png
@@ -133,6 +137,7 @@ mycp amenity hospital mm_health_hospital.png
 mycp amenity veterinary mm_health_veterinary.png
 mycp amenity doctors mm_health_doctors.png
 mycp amenity dentist mm_health_dentist.png
+
 
 ## Entertainment/Other
 # mygroup custom_id mm_icons8 #TODO
@@ -149,11 +154,13 @@ mycp amenity casino mm_tourist_casino.png
 mycp geocache not_found mm_poi_point_of_interest.png
 mycp geocache found mm_poi_point_of_interest.png
 mycp office government mm_amenity_public_building.png
-
 mycp amenity arts_centre mm_tourist_art_gallery2.png
+
+
+## Amenities
 mycp amenity bench mm_amenity_bench.png
 mycp amenity embassy mm_poi_embassy.png
-#! mycp amenity grave_yard MISSING(USESSHADER):grave_yard
+#! mycp amenity grave_yard  MISSING (USES SHADER): grave_yard
 mycp amenity police mm_amenity_police2.png
 mycp amenity post_box mm_amenity_post_box.png
 mycp amenity post_office mm_amenity_post_office.png
@@ -167,6 +174,7 @@ mycp amenity marketplace mm_shopping_marketplace.png
 mycp amenity townhall mm_amenity_town_hall2.png
 mycp amenity courthouse mm_amenity_court.png
 
+
 ## Finance
 mycp amenity atm mm_money_atm.png
 mycp amenity bureau_de_change mm_money_currency_exchange.png
@@ -175,25 +183,27 @@ mycp amenity vending_machine mm_shopping_vending_machine.png
 mygroup finance mm_money_bank2.png
 
 
-## Leisure/Natural
-#! mycp natural peak MISSING:IMPORTANTfornightviewtohaveORANGEpeak_nightversion!!(Usedayversionwithcolor#FF6600)
-#! mycp natural volcano MISSING:volcano(could use mm_poi_peak.png withcolor# D40000)
-#! mycp natural spring MISSING:spring
-#! mycp natural tree MISSING:tree
-#! mycp natural tree MISSING:tree
+## Natural
+#! mycp natural peak  MISSING: Important for night view to have ORANGE peak_night version! (Use day version with color #FF6600)
+#! mycp natural volcano  MISSING: Could use mm_poi_peak.png with color #D40000
+#! mycp natural spring  MISSING: spring
+#! mycp natural tree  MISSING: tree
+#! mycp natural tree  MISSING: tree
 mygroup natural mm_poi_peak2.png
 mycp natural cave_entrance mm_poi_cave.png
 mycp natural peak mm_poi_peak2.png
 
+
+## Leisure
 mygroup leisure mm_amenity_playground.png
 mycp leisure marina mm_transport_marina.png
 mycp leisure slipway mm_transport_slipway.png
 mycp leisure playground mm_amenity_playground.png
-#! mycp leisure fishing mm_sport_leisure_centre.png #?
+#! mycp leisure fishing mm_sport_leisure_centre.png #no good icon for leisure=fishing. Could use shop=seafood icon, but in leisure-green.
 mycp leisure water_park mm_sport_swimming_outdoor.png
 mycp leisure sports_centre mm_sport_leisure_centre.png
 mycp leisure bird_hide mm_poi_tower_lookout.png
-#! mycp waterway lock_gate MISSING:lock_gate
+#! mycp waterway lock_gate  MISSING: lock_gate
 
 
 ## Historic
@@ -212,6 +222,7 @@ mycp historic wayside_cross mm_tourist_wayside_cross.png
 mycp historic wayside_shrine mm_tourist_wayside_shrine.png
 mycp historic boundary_stone mm_poi_boundary_administrative.png
 mycp historic mine mm_poi_mine_abandoned.png
+
 
 ## Tourism/acommodation
 mygroup tourism mm_tourist_museum.png
@@ -232,6 +243,7 @@ mycp tourism viewpoint mm_tourist_view_point.png
 mycp tourism theme_park mm_tourist_theme_park.png
 mycp tourism zoo mm_tourist_zoo.png
 
+
 ## Sport 
 mygroup sport mm_sport_swimming_outdoor.png
 mycp leisure stadium mm_sport_stadium.png
@@ -250,7 +262,7 @@ mycp sport diving mm_sport_diving.png
 #! mycp sport scuba_diving MISSING:sport/scuba_diving
 
 
-## SHOPS
+## Shops
 mygroup car_aid mm_shopping_car.png
 mygroup food_shop mm_shopping_convenience.png
 mygroup shop mm_shopping_department_store.png
