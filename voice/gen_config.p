@@ -11,7 +11,11 @@ write_fsave([]).
 write_fsave([string(Ogg, X) |L]) :- cut(Ogg, Name), write('\n(fsave "'), write(X), write('" "'), 
 			write(Name), write('")'), write_fsave(L).
 
+write_wget([]).
+write_wget([string(Ogg, X) |L]) :- cut(Ogg, Name), write('\n(fsave "'), write(X), write('" "'), 
+			write(Name), write('")'), write_fsave(L).
+
 gen(File) :- consult(File), findall(string(Fn, T), string(Fn, T), Result),
-		 write_header, 
-		 fest_language(FL), write('\n(language_'), write(FL), write(')\n'),
-		 write_fsave(Result).
+		  write_header, fest_language(FL), write('\n(language_'), write(FL), write(')\n'), write_fsave(Result)
+		 %write_wget(Result)
+		 .
