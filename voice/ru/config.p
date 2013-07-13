@@ -33,8 +33,8 @@ string('exit.ogg', 'съезд ').
 string('roundabout.ogg', 'круг ').
 string('go_ahead.ogg', 'Продолжайте движение прямо ').
 string('go_ahead_m.ogg', 'Продолжайте движение ').
-string('and_arrive_destination.ogg', 'и вы прибу!дете в пункт назначения ').
-string('and_arrive_intermediate.ogg', 'и вы прибу!дете в промежуточный пункт ').
+string('and_arrive_destination.ogg', 'и вы прибу''дете в пункт назначения ').
+string('and_arrive_intermediate.ogg', 'и вы прибу''дете в промежуточный пункт ').
 string('reached_intermediate.ogg', 'вы прибыли в промежуточный пункт').
 string('reached_destination.ogg','вы прибыли в пункт назначения ').
 string('route_is.ogg', 'Маршрут составляет ').
@@ -66,7 +66,7 @@ string('exceed_limit.ogg', 'Вы превысили допустимую ско�
 
 string('metrov.ogg', 'метров ').
 string('kilometr.ogg', 'километр ').
-string('kilometra.ogg', 'kilometra ').
+string('kilometra.ogg', 'километра ').
 string('kilometrov.ogg', 'километров ').
 string('around_1_kilometer.ogg', 'около одного километра ').
 string('around.ogg', 'около ').
@@ -131,8 +131,6 @@ nth(14, '14th.ogg').
 nth(15, '15th.ogg').
 
 
-
-
 distance(Dist) -- [ X, 'metrov.ogg'] :- Dist < 100, D is round(Dist/10.0)*10, dist(D, X).
 distance(Dist) -- [ X, 'metrov.ogg'] :- Dist < 1000, D is round(2*Dist/100.0)*50, dist(D, X).
 distance(Dist) -- ['around_1_kilometer.ogg'] :- Dist < 1500.
@@ -166,74 +164,20 @@ resolve_impl([],[]).
 resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L, Tail, List); List = Tail).
 
 %%% distance measure
-string('1.ogg', '1').
-string('2.ogg', '2').
-string('3.ogg', '3').
-string('4.ogg', '4').
-string('5.ogg', '5').
-string('6.ogg', '6').
-string('7.ogg', '7').
-string('8.ogg', '8').
-string('9.ogg', '9').
-string('11.ogg', '11').
-string('12.ogg', '12').
-string('13.ogg', '13').
-string('14.ogg', '14').
-string('15.ogg', '15').
-string('16.ogg', '16').
-string('17.ogg', '17').
-string('18.ogg', '18').
-string('19.ogg', '19').
-string('10.ogg', '10').
-string('20.ogg', '20').
-string('30.ogg', '30').
-string('40.ogg', '40').
-string('50.ogg', '50').
-string('60.ogg', '60').
-string('70.ogg', '70').
-string('80.ogg', '80').
-string('90.ogg', '90').
-string('100.ogg', '100').
-string('200.ogg', '200').
-string('300.ogg', '300').
-string('400.ogg', '400').
-string('500.ogg', '500').
-string('600.ogg', '600').
-string('700.ogg', '700').
-string('800.ogg', '800').
-string('900.ogg', '900').
-string('1000.ogg', '1000').
-string('2000.ogg', '2000').
-string('3000.ogg', '3000').
-string('4000.ogg', '4000').
-string('5000.ogg', '5000').
-string('6000.ogg', '6000').
-string('7000.ogg', '7000').
-string('8000.ogg', '8000').
-string('9000.ogg', '9000').
+interval(St, St, End, _Step) :- St =< End.
+interval(T, St, End, Step) :- interval(Init, St, End, Step), T is Init + Step, (T =< End -> true; !, fail).
+
+interval(X, St, End) :- interval(X, St, End, 1).
+
+string(Ogg, A) :- interval(X, 1, 19), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
+string(Ogg, A) :- interval(X, 20, 90, 10), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
+string(Ogg, A) :- interval(X, 100, 900, 100), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
+string(Ogg, A) :- interval(X, 1000, 9000, 1000), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
 
 dist(X, Y) :- tts, !, num_atom(X, Y).
 
 dist(0, []) :- !.
-dist(1, ['1.ogg']) :- !.
-dist(2, ['2.ogg']) :- !.
-dist(3, ['3.ogg']) :- !.
-dist(4, ['4.ogg']) :- !.
-dist(5, ['5.ogg']) :- !.
-dist(6, ['6.ogg']) :- !.
-dist(7, ['7.ogg']) :- !.
-dist(8, ['8.ogg']) :- !.
-dist(9, ['9.ogg']) :- !.
-dist(10, ['10.ogg']) :- !.
-dist(11, ['11.ogg']) :- !.
-dist(12, ['12.ogg']) :- !.
-dist(13, ['13.ogg']) :- !.
-dist(14, ['14.ogg']) :- !.
-dist(15, ['15.ogg']) :- !.
-dist(16, ['16.ogg']) :- !.
-dist(17, ['17.ogg']) :- !.
-dist(18, ['18.ogg']) :- !.
-dist(19, ['19.ogg']) :- !.
+dist(X, [Ogg]) :- X < 20, !, num_atom(X, A), atom_concat(A, '.ogg', Ogg).
 dist(D, ['20.ogg'|L]) :-  D < 30, Ts is D - 20, !, dist(Ts, L).
 dist(D, ['30.ogg'|L]) :-  D < 40, Ts is D - 30, !, dist(Ts, L).
 dist(D, ['40.ogg'|L]) :-  D < 50, Ts is D - 40, !, dist(Ts, L).
