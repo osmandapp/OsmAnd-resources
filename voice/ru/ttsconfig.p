@@ -139,7 +139,7 @@ plural_km(D, 'kilometr.ogg') :- 1 is D mod 10.
 plural_km(D, 'kilometra.ogg') :- Mod is D mod 10, Mod < 5,  Mod > 1.
 plural_km(_D, 'kilometrov.ogg').
 
-distance(Dist) -- [ X, 'kilometr.ogg'] :- D is round(Dist/1000.0), dist(D, X).
+distance(Dist) -- [ X, Km] :- D is round(Dist/1000.0), dist(D, X), plural_km(D, Km).
 
 
 on_street -- ['on.ogg', X] :- next_street(X).
