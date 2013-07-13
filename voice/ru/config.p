@@ -26,15 +26,15 @@ string('left_keep.ogg', 'держитесь левее ').
 string('attention.ogg', 'Внимание ').
 string('make_uturn.ogg', 'Выполните разворот ').
 string('after.ogg', 'Через ').
-string('prepare_after.ogg', 'Приготовьте через ').
+string('prepare_after.ogg', 'Приготовьтесь через ').
 string('then.ogg', 'затем ').
 string('make.ogg', 'Выполните ').
 string('exit.ogg', 'съезд ').
 string('roundabout.ogg', 'круг ').
 string('go_ahead.ogg', 'Продолжайте движение прямо ').
 string('go_ahead_m.ogg', 'Продолжайте движение ').
-string('and_arrive_destination.ogg', 'и вы прибу''дете в пункт назначения ').
-string('and_arrive_intermediate.ogg', 'и вы прибу''дете в промежуточный пункт ').
+string('and_arrive_destination.ogg', 'и вы прибудете в пункт назначения ').
+string('and_arrive_intermediate.ogg', 'и вы прибудете в промежуточный пункт ').
 string('reached_intermediate.ogg', 'вы прибыли в промежуточный пункт').
 string('reached_destination.ogg','вы прибыли в пункт назначения ').
 string('route_is.ogg', 'Маршрут составляет ').
@@ -86,7 +86,7 @@ prepare_turn(Turn, Dist) -- ['prepare_after.ogg', D, ' ', M] :- distance(Dist) -
 turn(Turn, Dist) -- ['after.ogg', D, M] :- distance(Dist) -- D, turn(Turn, M).
 turn(Turn) -- M :- turn(Turn, M).
 
-prepare_make_ut(Dist) -- ['after.ogg', D, ' make_uturn.ogg'] :- distance(Dist) -- D.
+prepare_make_ut(Dist) -- ['after.ogg', D, 'make_uturn.ogg'] :- distance(Dist) -- D.
 make_ut(Dist) --  ['after.ogg', D, 'make_uturn.ogg'] :- distance(Dist) -- D.
 make_ut -- ['make_uturn.ogg'].
 make_ut_wp -- ['make_uturn.ogg'].
@@ -171,13 +171,14 @@ interval(X, St, End) :- interval(X, St, End, 1).
 
 string(Ogg, A) :- interval(X, 1, 19), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
 string(Ogg, A) :- interval(X, 20, 90, 10), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
-string(Ogg, A) :- interval(X, 100, 900, 100), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
+string(Ogg, A) :- interval(X, 100, 900, 50), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
 string(Ogg, A) :- interval(X, 1000, 9000, 1000), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
 
 dist(X, Y) :- tts, !, num_atom(X, Y).
 
 dist(0, []) :- !.
 dist(X, [Ogg]) :- X < 20, !, num_atom(X, A), atom_concat(A, '.ogg', Ogg).
+dist(X, [Ogg]) :- X < 1000, 0 is X mod 50, !, num_atom(X, A), atom_concat(A, '.ogg', Ogg).
 dist(D, ['20.ogg'|L]) :-  D < 30, Ts is D - 20, !, dist(Ts, L).
 dist(D, ['30.ogg'|L]) :-  D < 40, Ts is D - 30, !, dist(Ts, L).
 dist(D, ['40.ogg'|L]) :-  D < 50, Ts is D - 40, !, dist(Ts, L).
