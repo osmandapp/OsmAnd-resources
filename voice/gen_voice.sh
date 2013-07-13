@@ -38,7 +38,7 @@ for t in `ls *.wav` ; do
 done
 
 touch .nomedia
-echo "Voice Data $2 ($1)" | zip $1.voice.zip _config.p -c 
-zip $1.voice.zip *.ogg .nomedia 
+echo "Voice Data $2 ($1)" | zip ${1}_0.voice.zip _config.p -c 
+zip ${1}_0.voice.zip *.ogg .nomedia 
 rm -f *.wav *.mp3
 rm -f *.ogg *.p
