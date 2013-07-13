@@ -132,14 +132,15 @@ nth(15, '15th.ogg').
 
 distance(Dist) -- [ X, 'metrov.ogg'] :- Dist < 100, D is round(Dist/10.0)*10, dist(D, X).
 distance(Dist) -- [ X, 'metrov.ogg'] :- Dist < 1000, D is round(2*Dist/100.0)*50, dist(D, X).
-distance(Dist) -- ['around_1_kilometer.ogg'] :- Dist < 1500.
-distance(Dist) -- ['around.ogg', X, Km] :- Dist < 10000, D is round(Dist/1000.0), dist(D, X), plural_km(D, Km).
+% distance(Dist) -- ['around_1_kilometer.ogg'] :- Dist < 1500.
+% distance(Dist) -- ['around.ogg', X, Km] :- Dist < 10000, D is round(Dist/1000.0), dist(D, X), plural_km(D, Km).
+distance(Dist) -- [ X, Km] :- D is round(Dist/1000.0), dist(D, X), plural_km(D, Km).
 
 plural_km(D, 'kilometr.ogg') :- 1 is D mod 10.
 plural_km(D, 'kilometra.ogg') :- Mod is D mod 10, Mod < 5,  Mod > 1.
 plural_km(_D, 'kilometrov.ogg').
 
-distance(Dist) -- [ X, Km] :- D is round(Dist/1000.0), dist(D, X), plural_km(D, Km).
+
 
 
 on_street -- ['on.ogg', X] :- next_street(X).
