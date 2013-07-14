@@ -19,22 +19,24 @@ mycp() {
 
 ## Shaders !
 mygroup landuse mm_landuse_coniferous.png
-# mycp landuse forest  KEEP SHADERS!
-# mycp natural beach  KEEP SHADERS!
-# mycp natural wetland  KEEP SHADERS!
-# mycp natural marsh  KEEP SHADERS!
+mycp landuse grass mm_landuse_grass.png
+mycp landuse forest  mm_landuse_coniferous.png # KEEP SHADERS!
+mycp natural beach  mm_tourist_beach.png # KEEP SHADERS!
+mycp landuse cemetery mm_place_of_worship_christian3.png  # KEEP SHADERS!
+mycp amenity grave_yard mm_place_of_worship_christian3.png #  KEEP SHADERS!
+mycp natural scrub mm_landuse_scrub.png # KEEP SHADERS!
+mycp natural swamp mm_landuse_swamp.png # KEEP SHADERS!
+mycp tourism zoo mm_tourist_zoo.png # KEEP SHADERS!
+mycp military danger_area mm_poi_mine.png # KEEP SHADERS!
+mycp natural glacier mm_poi_peak2.png  # KEEP SHADERS! ? not really good icon
+# mycp natural wetland  # KEEP SHADERS!
+# mycp natural marsh  # KEEP SHADERS! ?
 # mycp natural mud  KEEP SHADERS!
 # mycp natural scrub  KEEP SHADERS!
 # mycp landuse orchard  KEEP SHADERS!
 # mycp landuse vineyard  KEEP SHADERS!
-# mycp landuse cemetery  KEEP SHADERS!
-#? mycp amenity grave_yard  KEEP SHADERS!
-# mycp natural glacier  KEEP SHADERS!
-# mycp natural glacier_night  KEEP SHADERS!
 # mycp leisure nature_reserve  KEEP SHADERS!
-#? mycp tourism zoo  KEEP SHADERS!
 # mycp landuse quarry  KEEP SHADERS!
-# mycp military danger_area  KEEP SHADERS!
 
 
 ## Place-dots
@@ -67,11 +69,13 @@ mygroup parking mm_transport_parking.png
 mygroup transportation mm_transport_taxi_rank.png
 mycp amenity bicycle_parking mm_transport_parking_bicycle.png
 mycp railway station mm_transport_train_station.png
+mycp railway platform mm_transport_train_station2.png
 #! mycp railway halt mm_transport_train_station2.png #completely different?
 mycp railway tram_stop mm_transport_tram_stop.png
 #! mycp railway level_crossing  MISSING: railway/level_crossing
 mycp railway subway_entrance mm_transport_subway.png
 #! mycp aerialway station  MISSING: aerialway/station: station_small
+mycp railway subway mm_transport_subway.png
 mycp aeroway helipad mm_transport_helicopter_pad.png
 mycp aeroway aerodrome mm_transport_aerodrome.png
 mycp aeroway airport mm_transport_airport.png
@@ -83,6 +87,7 @@ mycp highway gate mm_barrier_gate.png
 mycp barrier gate mm_barrier_gate.png
 mycp barrier lift_gate mm_barrier_lift_gate.png
 mycp barrier sally_port mm_barrier_bollard.png
+mycp barrier bollard mm_barrier_bollard.png
 mycp barrier block mm_barrier_blocks.png
 mycp barrier kissing_gate mm_barrier_kissing_gate.png
 mycp barrier toll_booth mm_barrier_toll_booth.png
@@ -98,6 +103,7 @@ mycp amenity restaurant mm_food_restaurant.png
 mycp amenity ice_cream mm_food_ice_cream.png
 mycp amenity cafe mm_food_cafe.png
 mycp amenity fast_food mm_food_fastfood.png
+mycp amenity food_court mm_food_fastfood.png
 mycp amenity pub mm_food_pub.png
 mycp amenity bar mm_food_bar.png
 mycp amenity biergarten mm_food_biergarten.png
@@ -148,19 +154,22 @@ mygroup office mm_amenity_public_building2.png
 mygroup geocache mm_poi_point_of_interest.png
 mygroup entertainment mm_tourist_cinema.png
 mygroup null mm_icons8_worldwide_location.png
+mygroup name_finder mm_icons8_web_search.png
 mycp amenity cinema mm_tourist_cinema.png
 mycp amenity theatre mm_tourist_theatre.png
 mycp amenity casino mm_tourist_casino.png
 mycp geocache not_found mm_poi_point_of_interest.png
 mycp geocache found mm_poi_point_of_interest.png
 mycp office government mm_amenity_public_building.png
+mycp amenity public_building mm_amenity_public_building.png
+mycp amenity arts_centre mm_tourist_art_gallery2.png
 mycp amenity arts_centre mm_tourist_art_gallery2.png
 
 
 ## Amenities
 mycp amenity bench mm_amenity_bench.png
 mycp amenity embassy mm_poi_embassy.png
-#! mycp amenity grave_yard  MISSING (USES SHADER): grave_yard
+#! mycp amenity grave_yard  USES SHADER: grave_yard
 mycp amenity police mm_amenity_police2.png
 mycp amenity post_box mm_amenity_post_box.png
 mycp amenity post_office mm_amenity_post_office.png
@@ -197,6 +206,7 @@ mycp natural peak mm_poi_peak2.png
 ## Leisure
 mygroup leisure mm_amenity_playground.png
 mycp leisure marina mm_transport_marina.png
+mycp leisure ice_rink mm_sport_iceskating.png
 mycp leisure slipway mm_transport_slipway.png
 mycp leisure playground mm_amenity_playground.png
 #! mycp leisure fishing mm_sport_leisure_centre.png #no good icon for leisure=fishing. Could use shop=seafood icon, but in leisure-green.
@@ -249,6 +259,7 @@ mygroup sport mm_sport_swimming_outdoor.png
 mycp leisure stadium mm_sport_stadium.png
 mycp sport horse_racing mm_sport_horse_racing.png
 mycp sport soccer mm_sport_soccer.png
+mycp sport skating mm_sport_iceskating.png
 mycp sport archery mm_sport_archery.png
 mycp sport baseball mm_sport_baseball.png
 mycp sport stadium mm_sport_stadium.png
@@ -259,6 +270,8 @@ mycp sport golf mm_sport_golf.png
 mycp sport swimming mm_sport_swimming_outdoor.png
 mycp sport skiing mm_sport_skiing_downhill.png
 mycp sport diving mm_sport_diving.png
+mycp sport billiard mm_sport_snooker.png
+mycp sport gymnastics mm_sport_gymnasium.png
 #! mycp sport scuba_diving MISSING:sport/scuba_diving
 
 
