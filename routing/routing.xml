@@ -65,6 +65,9 @@
 			<select value="-1" t="highway" v="track">
 				<if param="avoid_unpaved"/>
 			</select>
+			<select value="-1" t="surface" v="unpaved">
+				<if param="avoid_unpaved"/>
+			</select>
 			<select value="-1" t="access" v="no"/>
 			<select value="-1" t="motorcycle" v="no"/>
 			<select value="-1" t="motorcar" v="no"/>
@@ -512,7 +515,9 @@
 		<obstacle tag="barrier" value="cycle_barrier" penalty="10"/>
 
 		<avoid tag="surface" value="gravel" decreasedPriority="0.2"/>
-		<avoid tag="surface" value="unpaved" decreasedPriority="0.2"/>
+		<avoid tag="surface" value="unpaved" decreasedPriority="0.2">
+			<specialization input="avoid_unpaved" decreasedPriority="0"/>
+		</avoid>
 		<avoid tag="surface" value="grass" decreasedPriority="0.6"/>
 		<avoid tag="tracktype" value="grade4" decreasedPriority="0.3"/>
 		<avoid tag="tracktype" value="grade5" decreasedPriority="0.6"/>
