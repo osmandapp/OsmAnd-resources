@@ -1,24 +1,28 @@
 #!/bin/bash
 CONFIG_FILE=$(readlink -m $1/config.p)
+ENGINE=$3
 if [ -z $ENGINE ]; then
 ENGINE="google"
 fi
 
-GOAL="gen('$CONFIG_FILE','$ENGINE')"
+GOAL="gen('g_config.p','$ENGINE')"
 mkdir -p work
 echo "%%% !!! THIS IS GENERATED FILE !!! Modify ttsconfig.p" > $CONFIG_FILE 
 sed "s/version(101)/version(0)/g" $1/ttsconfig.p >> $CONFIG_FILE 
 
 cp $CONFIG_FILE work/_config.p
+cp $CONFIG_FILE work/g_config.p
 cd work
 # clear previous files
 # rm -f *.wav *.mp3 $1.zip
 
 if [ $ENGINE = "google" ]; then
+	echo "google_gen." >> g_config.p
 	prolog -s ../gen_config.p -q -t "$GOAL" > google.$1.sh
 	chmod +x google.$1.sh
 	./google.$1.sh
 else
+	echo "google_gen:-fail." >> g_config.p
 	prolog -s ../gen_config.p -q -t "$GOAL" > fest.$1
 	festival -b fest.$1
 fi

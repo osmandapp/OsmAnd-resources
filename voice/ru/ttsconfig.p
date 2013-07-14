@@ -1,3 +1,5 @@
+% :- .
+% :- 
 % for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog
@@ -24,7 +26,7 @@ string('left_keep.ogg', 'держитесь левее ').
 
 string('attention.ogg', 'Внимание ').
 string('make_uturn.ogg', 'Выполните разворот ').
-string('after.ogg', 'Через ').
+string('after.ogg', 'через').
 string('prepare_after.ogg', 'Приготовьтесь через ').
 string('then.ogg', 'затем ').
 string('make.ogg', 'Выполните ').
@@ -41,7 +43,8 @@ string('route_calculate.ogg', 'маршрут пересчитывается, р
 string('location_lost.ogg', 'ДЖИПИИЭС потерян сигнал ').
 
 string('1th.ogg', 'первый ').
-string('2th.ogg', 'второй ').
+string('2th.ogg', 'вто_рой ') :- google_gen, voice .
+string('2th.ogg', 'второй ') :- not(google_gen).
 string('3th.ogg', 'третий ').
 string('4th.ogg', 'четвертый ').
 string('5th.ogg', 'пятый ').
