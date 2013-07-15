@@ -13,8 +13,8 @@ turn('left_sl', ['leicht links abbiegen']).
 turn('right', ['rechts abbiegen ']).
 turn('right_sh', ['scharf rechts abbiegen ']).
 turn('right_sl', ['leicht rechts abbiegen ']).
-turn('right_keep', ['rechts halten ']).
 turn('left_keep', ['links halten ']).
+turn('right_keep', ['rechts halten ']).
 
 prepare_turn(Turn, Dist) == ['Nach ', D, M] :- distance(Dist, dativ) == D, turn(Turn, M).
 turn(Turn, Dist) == ['Nach ', D, M] :- distance(Dist, dativ) == D, turn(Turn, M).
@@ -24,7 +24,6 @@ prepare_make_ut(Dist) == ['Vorbereiten zum Wenden nach ', D] :- distance(Dist, d
 make_ut(Dist) == ['Nach ', D, ' wenden '] :- distance(Dist, dativ) == D.
 make_ut == ['Bitte wenden '].
 make_ut_wp == ['Wenn möglich, bitte wenden '].
-
 
 prepare_roundabout(Dist) == ['Einbiegen in Kreisverkehr nach ', D] :- distance(Dist, dativ) == D.
 roundabout(Dist, _Angle, Exit) == ['Nach ', D, ' in den Kreisverkehr einfahren, dann nehmen Sie die ', E, 'Ausfahrt'] :- distance(Dist, dativ) == D, nth(Exit, E).
@@ -46,6 +45,11 @@ route_new_calc(Dist) == ['Die berechnete Strecke ist ', D, ' lang'] :- distance(
 route_recalc(Dist) == ['Strecke neu berechnet, Entfernung ', D] :- distance(Dist, nominativ) == D.
 
 location_lost == ['G P S  Signal verloren '].
+
+on_street == ['auf ', X] :- next_street(X).
+off_route == ['Sie weichen von der Route ab '].
+attention == ['Achtung '].
+speed_alarm == ['Sie überschreiten die Höchstgeschwindigkeit '].
 
 
 %% 

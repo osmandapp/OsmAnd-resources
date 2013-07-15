@@ -13,8 +13,8 @@ turn('left_sl', ['turn slightly left ']).
 turn('right', ['turn right ']).
 turn('right_sh', ['turn sharply right ']).
 turn('right_sl', ['turn slightly right ']).
-turn('right_keep', ['keep right']).
 turn('left_keep', ['keep left']).
+turn('right_keep', ['keep right']).
 
 prepare_turn(Turn, Dist) == ['Prepare to ', M, ' after ', D] :- distance(Dist) == D, turn(Turn, M).
 turn(Turn, Dist) == ['After ', D, M] :- distance(Dist) == D, turn(Turn, M).
@@ -37,7 +37,7 @@ and_arrive_destination == ['and arrive at your destination '].
 then == ['then '].
 reached_destination == ['you have reached your destination '].
 and_arrive_intermediate == ['and arrive at your waypoint '].
-reached_intermediate == ['you have reached your waypoint'].
+reached_intermediate == ['you have reached your waypoint '].
 bear_right == ['keep right '].
 bear_left == ['keep left '].
 
@@ -45,6 +45,11 @@ route_new_calc(Dist) == ['The trip is ', D] :- distance(Dist) == D.
 route_recalc(Dist) == ['Route recalculated, distance ', D] :- distance(Dist) == D.
 
 location_lost == ['g p s signal lost '].
+
+on_street == ['on ', X] :- next_street(X).
+off_route == ['you have deviated from the route '].
+attention == ['attention '].
+speed_alarm == ['you are exceeding the speed limit '].
 
 
 %% 
