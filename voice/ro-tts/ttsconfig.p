@@ -13,8 +13,10 @@ turn('left_sl', ['virați ușor la stânga ']).
 turn('right', ['virați la dreapta ']).
 turn('right_sh', ['virați brusc la dreapta ']).
 turn('right_sl', ['virați ușor la dreapta ']).
-turn('right_keep', ['încadrați-vă pe partea dreaptă']).
 turn('left_keep', ['încadrați-vă pe partea stângă']).
+turn('right_keep', ['încadrați-vă pe partea dreaptă']).
+bear_left == [' rămâneți pe partea stângă '].
+bear_right == [' rămâneți pe partea dreaptă '].
 
 prep2turn('left', ['virați la stânga ']).
 prep2turn('left_sh', ['virați brusc la stânga ']).
@@ -22,9 +24,8 @@ pewp2turn('left_sl', ['virați ușor la stânga ']).
 prep2turn('right', ['virați la dreapta ']).
 prep2turn('right_sh', ['virați brusc la dreapta ']).
 prep2turn('right_sl', ['virați ușor la dreapta ']).
-prep2turn('right_keep', ['vă încadrați pe partea dreaptă']).
 prep2turn('left_keep', ['vă încadrați pe partea stângă']).
-
+prep2turn('right_keep', ['vă încadrați pe partea dreaptă']).
 
 prepare_turn(Turn, Dist) == ['Pregătiți-vă să ', M, ' peste ', D] :- distance(Dist) == D, prep2turn(Turn, M).
 turn(Turn, Dist) == ['peste ', D, M] :- distance(Dist) == D, turn(Turn, M).
@@ -42,19 +43,21 @@ roundabout(_Angle, Exit) == ['Luați-o pe ', E, 'ieșire'] :- nth(Exit, E).
 go_ahead == ['Mergeți înainte '].
 go_ahead(Dist) == ['Urmăriți drumul principal ', D]:- distance(Dist) == D.
 
-and_arrive_destination == ['și ajungeți la destinație '].
-
 then == [' apoi '].
+and_arrive_destination == ['și ajungeți la destinație '].
 reached_destination == ['Ați ajuns la destinație '].
 and_arrive_intermediate == ['și ajungeți la punctul intermediar '].
 reached_intermediate == ['Ați ajuns la punctul intermediar '].
-bear_right == [' rămâneți pe partea dreaptă '].
-bear_left == [' rămâneți pe partea stângă '].
 
 route_new_calc(Dist) == ['Lungimea traseului este de ', D] :- distance(Dist) == D.
 route_recalc(Dist) == ['Traseu recalculat, distanța ', D] :- distance(Dist) == D.
 
 location_lost == ['semnal gipies pierdut '].
+
+% on_street == ['on ', X] :- next_street(X).
+% off_route == ['you have deviated from the route '].
+% attention == ['attention '].
+% speed_alarm == ['you are exceeding the speed limit '].
 
 
 %% 

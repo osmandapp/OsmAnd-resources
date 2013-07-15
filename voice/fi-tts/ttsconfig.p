@@ -13,8 +13,10 @@ turn('left_sl', ['käänny loivasti vasemmalle ']).
 turn('right', ['käänny oikealle ']).
 turn('right_sh', ['käänny jyrkästi oikealle ']).
 turn('right_sl', ['käänny loivasti oikealle ']).
-turn('right_keep', ['pidä oikea ']).
 turn('left_keep', ['pidä vasen ']).
+turn('right_keep', ['pidä oikea ']).
+bear_left == ['pidä vasen '].
+bear_right == ['pidä oikea '].
 
 prepturn('left', ['kääntymään vasemmalle ']).
 prepturn('left_sh', ['kääntymään jyrkästi vasemmalle ']).
@@ -41,19 +43,21 @@ roundabout(_Angle, Exit) == ['Nyt, ota ', E, ' liittymä'] :- nth(Exit, E).
 go_ahead == ['Jatka suoraan '].
 go_ahead(Dist) == ['Jatka suoraan ', D]:- distance(Dist, metria) == D.
 
+then == ['sitten '].
 and_arrive_destination == ['ja olet perillä '].
+reached_destination == ['olet perillä '].
 and_arrive_intermediate == ['and arrive at your via point '].
 reached_intermediate == ['you have reached your via point'].
-
-then == ['sitten '].
-reached_destination == ['olet perillä '].
-bear_right == ['pidä oikea '].
-bear_left == ['pidä vasen '].
 
 route_new_calc(Dist) == ['Matkan pituus on ', D] :- distance(Dist, metria) == D.
 route_recalc(Dist) == ['Reitin uudelleenlaskenta ', D] :- distance(Dist, metria) == D.	
 
 location_lost == ['g p s signal lost '].
+
+on_street == ['on ', X] :- next_street(X).
+off_route == ['you have deviated from the route '].
+attention == ['attention '].
+speed_alarm == ['you are exceeding the speed limit '].
 
 
 %% 

@@ -15,6 +15,8 @@ turn('right_sh', ['scharf rechts abbiegen ']).
 turn('right_sl', ['leicht rechts abbiegen ']).
 turn('left_keep', ['links halten ']).
 turn('right_keep', ['rechts halten ']).
+bear_left == ['links halten '].
+bear_right == ['rechts halten '].
 
 prepare_turn(Turn, Dist) == ['Nach ', D, M] :- distance(Dist, dativ) == D, turn(Turn, M).
 turn(Turn, Dist) == ['Nach ', D, M] :- distance(Dist, dativ) == D, turn(Turn, M).
@@ -32,14 +34,11 @@ roundabout(_Angle, Exit) == ['nehmen Sie die ', E, 'Ausfahrt'] :- nth(Exit, E).
 go_ahead == ['Weiter geradeaus '].
 go_ahead(Dist) == ['Dem Strasenverlauf', D,'folgen']:- distance(Dist, nominativ) == D.
 
-and_arrive_destination == ['dann haben Sie Ihr Ziel erreicht '].
-
 then == ['dann '].
+and_arrive_destination == ['dann haben Sie Ihr Ziel erreicht '].
 reached_destination == ['Ziel erreicht '].
 and_arrive_intermediate == ['Zwischenziel erreicht '].
 reached_intermediate == ['Zwischenziel erreicht'].
-bear_right == ['rechts halten '].
-bear_left == ['links halten '].
 
 route_new_calc(Dist) == ['Die berechnete Strecke ist ', D, ' lang'] :- distance(Dist, nominativ) == D.
 route_recalc(Dist) == ['Strecke neu berechnet, Entfernung ', D] :- distance(Dist, nominativ) == D.

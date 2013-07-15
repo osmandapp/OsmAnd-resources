@@ -13,8 +13,10 @@ turn('left_sl', ['плавно поверните налево ']).
 turn('right', ['поверните направо ']).
 turn('right_sh', ['резко поверните направо ']).
 turn('right_sl', ['плавно поверните направо ']).
-turn('right_keep', ['держитесь правее ']).
 turn('left_keep', ['держитесь левее ']).
+turn('right_keep', ['держитесь правее ']).
+bear_left == ['держитесь левее '].
+bear_right == ['держитесь правее '].
 
 prepare_turn(Turn, Dist) == ['Приготовьтесь через ', D, ' ', M] :- distance(Dist) == D, turn(Turn, M).
 turn(Turn, Dist) == ['Через ', D, M] :- distance(Dist) == D, turn(Turn, M).
@@ -32,19 +34,21 @@ roundabout(_Angle, Exit) == ['Выполните ', E, ' съезд'] :- nth(Exi
 go_ahead == ['Продолжайте движение прямо '].
 go_ahead(Dist) == ['Продолжайте движение ', D]:- distance(Dist) == D.
 
+then == ['затем '].
 and_arrive_destination == ['и вы прибудете в пункт назначения '].
+reached_destination == ['вы прибыли в пункт назначения '].
 and_arrive_intermediate == ['и вы прибудете в промежуточный пункт '].
 reached_intermediate == ['вы прибыли в промежуточный пункт'].
-reached_destination == ['вы прибыли в пункт назначения '].
-
-then == ['затем '].
-bear_right == ['держитесь правее '].
-bear_left == ['держитесь левее '].
 
 route_new_calc(Dist) == ['Маршрут составляет ', D] :- distance(Dist) == D.
 route_recalc(Dist) == ['маршрут пересчитывается, расстояние ', D] :- distance(Dist) == D.
 
 location_lost == ['g p s потеря сигнала '].
+
+on_street == ['на', X] :- next_street(X).
+off_route == ['Вы отклонились от маршрута'].
+attention == ['Внимание'].
+speed_alarm == ['Вы превысили допустимую скорость'].
 
 
 %% 
@@ -78,11 +82,6 @@ plural_km(D, ' километра ') :- Mod is D mod 10, Mod < 5,  Mod > 1.
 plural_km(_D, ' километров ').
 
 distance(Dist) == [ X, ' километров '] :- D is round(Dist/1000.0), num_atom(D, X).
-
-on_street == ['на', X] :- next_street(X).
-off_route == ['Вы отклонились от маршрута'].
-attention == ['Внимание'].
-speed_alarm == ['Вы превысили допустимую скорость'].
 
 
 %% resolve command main method

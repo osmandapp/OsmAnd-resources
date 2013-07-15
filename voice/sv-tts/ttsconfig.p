@@ -13,8 +13,10 @@ turn('left_sl', ['sväng svagt vänster ']).
 turn('right', ['sväng höger ']).
 turn('right_sh', ['sväng skarpt höger ']).
 turn('right_sl', ['sväng lätt höger ']).
-turn('right_keep', ['håll åt höger ']).
 turn('left_keep', ['håll åt vänster ']).
+turn('right_keep', ['håll åt höger ']).
+bear_left == ['håll åt vänster '].
+bear_right == ['håll åt höger '].
 
 prepare_turn(Turn, Dist) == [D, ' kvar, sedan ', M] :- distance(Dist) == D, turn(Turn, M).
 turn(Turn, Dist) == ['Om ', D, ', ', M] :- distance(Dist) == D, turn(Turn, M).
@@ -32,19 +34,21 @@ roundabout(_Angle, Exit) == ['ta den ', E, 'utfarten'] :- nth(Exit, E).
 go_ahead == ['Kör rakt fram '].
 go_ahead(Dist) == ['Följ den här vägen ', D]:- distance(Dist) == D.
 
+then == ['sedan '].
 and_arrive_destination == ['och du är framme '].
+reached_destination == ['du är framme '].
 and_arrive_intermediate == ['and arrive at your via point '].
 reached_intermediate == ['you have reached your via point'].
-
-then == ['sedan '].
-reached_destination == ['du är framme '].
-bear_right == ['håll åt höger '].
-bear_left == ['håll åt vänster '].
 
 route_new_calc(Dist) == ['Resan är ', D] :- distance(Dist) == D.
 route_recalc(Dist) == ['Ny väg beräknad, resan är ', D] :- distance(Dist) == D.
 
 location_lost == ['GPS-signalen borttappad '].
+
+% on_street == ['on ', X] :- next_street(X).
+% off_route == ['you have deviated from the route '].
+% attention == ['attention '].
+% speed_alarm == ['you are exceeding the speed limit '].
 
 
 %% 

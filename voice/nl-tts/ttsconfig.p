@@ -13,8 +13,10 @@ turn('left_sl', ['links afbuigen  ']).
 turn('right', ['rechts afslaan ']).
 turn('right_sh', ['scherpe bocht naar rechts ']).
 turn('right_sl', ['rechts afbuigen ']).
-turn('right_keep', ['rechts aanhouden ']).
 turn('left_keep', ['links aanhouden ']).
+turn('right_keep', ['rechts aanhouden ']).
+bear_left == ['links aanhouden '].
+bear_right == ['rechts aanhouden '].
 
 prepare_turn(Turn, Dist) == ['Houdt rekening met ', M, ' na ', D] :- distance(Dist) == D, turn(Turn, M).
 turn(Turn, Dist) == ['Na ', D, M] :- distance(Dist) == D, turn(Turn, M).
@@ -32,20 +34,21 @@ roundabout(_Angle, Exit) == ['Neem de ', E, 'afslag'] :- nth(Exit, E).
 go_ahead == ['Deze weg blijven volgen '].
 go_ahead(Dist) == ['De weg ', D,' volgen']:- distance(Dist) == D.
 
+then == ['dan '].
 and_arrive_destination == ['dan heb je je bestemming bereikt '].
-
+reached_destination == ['je hebt je Bestemming bereikt '].
 and_arrive_intermediate == ['en dan heb je je routepunt bereikt '].
 reached_intermediate == ['je hebt je routepunt bereikt'].
-
-then == ['dan '].
-reached_destination == ['je hebt je Bestemming bereikt '].
-bear_right == ['rechts aanhouden '].
-bear_left == ['links aanhouden '].
 
 route_new_calc(Dist) == ['De berekende afstand is ', D, ' lang'] :- distance(Dist) == D.
 route_recalc(Dist) == ['Afstand is opnieuw berekend, de nieuwe afstand is', D] :- distance(Dist) == D.
 
 location_lost == ['G P S  Signaal verloren '].
+
+% on_street == ['on ', X] :- next_street(X).
+% off_route == ['you have deviated from the route '].
+% attention == ['attention '].
+% speed_alarm == ['you are exceeding the speed limit '].
 
 
 %% 

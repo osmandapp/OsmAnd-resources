@@ -13,8 +13,10 @@ turn('left_sl', [' हलके से बाये ']).
 turn('right', [' दायने ']).
 turn('right_sh', [' तेजी से दायने ']).
 turn('right_sl', [' हलके से दायने ']).
-turn('right_keep', ['दायने रहे ']).
 turn('left_keep', ['बाये रहे  ']).
+turn('right_keep', ['दायने रहे ']).
+bear_left == ['बाये रहे '].
+bear_right == ['दायने रहे '].
 
 prepare_turn(Turn, Dist) == [D, ' के बाद ', M, ' मुडने के लिये तयार रहे'] :- distance(Dist) == D, turn(Turn, M).
 turn(Turn, Dist) == [D, ' के बाद ', M, ' मुडिये'] :- distance(Dist) == D, turn(Turn, M).
@@ -32,19 +34,21 @@ roundabout(_Angle, Exit) == ['बाहर जाने का ', E, 'मार�
 go_ahead == [' सीधे आगे जाये '].
 go_ahead(Dist) == [D, ' तक रास्ते का पालन करे ']:- distance(Dist) == D.
 
+then == ['और फिर '].
 and_arrive_destination == [' और अपनी मंजिल पर पहोचे '].
+reached_destination == ['आप अपनी मंजिल पर पहोच चुके है '].
 and_arrive_intermediate == ['and arrive at your via point '].
 reached_intermediate == ['you have reached your via point'].
-
-then == ['और फिर '].
-reached_destination == ['आप अपनी मंजिल पर पहोच चुके है '].
-bear_right == ['दायने रहे '].
-bear_left == ['बाये रहे '].
 
 route_new_calc(Dist) == ['अंतर ', D, ' है'] :- distance(Dist) == D.
 route_recalc(Dist) == ['मार्ग पुनर्गणना, अंतर ', D] :- distance(Dist) == D.
 
 location_lost == ['जी पी एस सिग्नल नही '].
+
+% on_street == ['on ', X] :- next_street(X).
+% off_route == ['you have deviated from the route '].
+% attention == ['attention '].
+% speed_alarm == ['you are exceeding the speed limit '].
 
 
 %% 

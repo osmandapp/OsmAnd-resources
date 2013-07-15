@@ -13,8 +13,10 @@ turn('left_sl', ['稍向左轉 ']).
 turn('right', ['右轉 ']).
 turn('right_sh', ['向右急轉 ']).
 turn('right_sl', ['稍向右轉 ']).
-turn('right_keep', ['靠右 ']).
 turn('left_keep', ['靠左 ']).
+turn('right_keep', ['靠右 ']).
+bear_left == ['靠左 '].
+bear_right == ['靠右 '].
 
 prepare_turn(Turn, Dist) == ['請準備 ', D, ' 後 ', M] :- distance(Dist) == D, turn(Turn, M).
 turn(Turn, Dist) == [D, ' 後 ',M] :- distance(Dist) == D, turn(Turn, M).
@@ -32,19 +34,21 @@ roundabout(_Angle, Exit) == ['在 ', E, ' 出口離開'] :- nth(Exit, E).
 go_ahead == ['直直往前開 '].
 go_ahead(Dist) == ['沿著馬路往前 ', D]:- distance(Dist) == D.
 
+then == ['然後 '].
 and_arrive_destination == ['然後可達終點 '].
+reached_destination == ['抵達終點 '].
 and_arrive_intermediate == ['and arrive at your via point '].
 reached_intermediate == ['you have reached your via point'].
-
-then == ['然後 '].
-reached_destination == ['抵達終點 '].
-bear_right == ['靠右 '].
-bear_left == ['靠左 '].
 
 route_new_calc(Dist) == ['路程有 ', D, ' 遠'] :- distance(Dist) == D.
 route_recalc(Dist) == ['重新計算路程, 距離有 ', D] :- distance(Dist) == D.
 
 location_lost == ['接收不到 g p s 信號 '].
+
+% on_street == ['on ', X] :- next_street(X).
+% off_route == ['you have deviated from the route '].
+% attention == ['attention '].
+% speed_alarm == ['you are exceeding the speed limit '].
 
 
 %% 

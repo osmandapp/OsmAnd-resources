@@ -1,4 +1,4 @@
-:- op('==', xfy, 500).
+﻿:- op('==', xfy, 500).
 version(101).
 language(pt).
 
@@ -13,8 +13,10 @@ turn_imp('left_sl', ['virar ligeiramente à esquerda ']).
 turn_imp('right', ['virar à direita ']).
 turn_imp('right_sh', ['virar acentuadamente à direita ']).
 turn_imp('right_sl', ['virar ligeiramente à direita ']).
-turn_imp('right_keep', ['manter-se à direita']).
 turn_imp('left_keep', ['manter-se à esquerda']).
+turn_imp('right_keep', ['manter-se à direita']).
+bear_left == ['mantenha-se à esquerda '].
+bear_right == ['mantenha-se à direita '].
 
 %% Second form
 turn('left', ['vire à esquerda ']).
@@ -23,8 +25,8 @@ turn('left_sl', ['vire ligeiramente à esquerda ']).
 turn('right', ['vire à direita ']).
 turn('right_sh', ['vire acentuadamente à direita ']).
 turn('right_sl', ['vire ligeiramente à direita ']).
-turn('right_keep', ['mantenha-se à direita']).
 turn('left_keep', ['mantenha-se à esquerda']).
+turn('right_keep', ['mantenha-se à direita']).
 
 prepare_turn(Turn, Dist) == ['Prepare-se para ', M, ' após ', D] :- distance(Dist) == D, turn_imp(Turn, M).
 turn(Turn, Dist) == ['Após ', D, M] :- distance(Dist) == D, turn(Turn, M).
@@ -42,19 +44,21 @@ roundabout(_Angle, Exit) == ['pegue a ', E, 'saída'] :- nth(Exit, E).
 go_ahead == ['Siga em frente '].
 go_ahead(Dist) == ['Siga o caminho por ', D]:- distance(Dist) == D.
 
-and_arrive_destination == ['e chegou ao seu destino '].
-
 then == ['então '].
+and_arrive_destination == ['e chegou ao seu destino '].
 reached_destination == ['você chegou ao seu destino '].
 and_arrive_intermediate == ['e chegou ao seu ponto de passagem '].
 reached_intermediate == ['você chegou ao seu ponto de passagem'].
-bear_right == ['mantenha-se à direita '].
-bear_left == ['mantenha-se à esquerda '].
 
 route_new_calc(Dist) == ['A rota possui ', D] :- distance(Dist) == D.
 route_recalc(Dist) == ['Rota recalculada. Distância é de ', D] :- distance(Dist) == D.
 
 location_lost == ['sem sinal g p s '].
+
+% on_street == ['on ', X] :- next_street(X).
+% off_route == ['you have deviated from the route '].
+% attention == ['attention '].
+% speed_alarm == ['you are exceeding the speed limit '].
 
 
 %%

@@ -13,8 +13,10 @@ turn('left_sl', ['zavij rahlo levo']).
 turn('right', ['zavij desno ']).
 turn('right_sh', ['zavij ostro desno ']).
 turn('right_sl', ['zavij rahlo desno ']).
-turn('right_keep', ['drži se desno ']).
 turn('left_keep', ['drži se levo ']).
+turn('right_keep', ['drži se desno ']).
+bear_left == ['drži se levo '].
+bear_right == ['drži se desno '].
 
 prepare_turn(Turn, Dist) == ['Čez ', D, M] :- distance(Dist) == D, turn(Turn, M).
 turn(Turn, Dist) == ['Čez ', D, M] :- distance(Dist) == D, turn(Turn, M).
@@ -25,7 +27,6 @@ make_ut(Dist) == ['Čez ', D, ' obrni nazaj '] :- distance(Dist) == D.
 make_ut == ['Obrni nazaj '].
 make_ut_wp == ['Čim bo mogoče obrni nazaj '].
 
-
 prepare_roundabout(Dist) == ['Pripravite se na krožišče čez ', D] :- distance(Dist) == D.
 roundabout(Dist, _Angle, Exit) == ['Čez ', D, ' zapeljite v krožišče, nato pa uporabite ', E, ' izvoz '] :- distance(Dist) == D, nth(Exit, E).
 roundabout(_Angle, Exit) == ['Uporabite ', E, ' izvoz '] :- nth(Exit, E).
@@ -33,19 +34,21 @@ roundabout(_Angle, Exit) == ['Uporabite ', E, ' izvoz '] :- nth(Exit, E).
 go_ahead == ['Pojdi naravnost naprej '].
 go_ahead(Dist) == ['Nadaljuj po cesti še ', D]:- distance(Dist) == D.
 
-and_arrive_destination == ['in prispete na cilj '].
-
 then == ['nato '].
+and_arrive_destination == ['in prispete na cilj '].
 reached_destination == ['prispeli ste na cilj '].
 and_arrive_intermediate == ['in prispete na vmesni cilj '].
 reached_intermediate == ['Prispeli ste na vmesni cilj'].
-bear_right == ['drži se desno '].
-bear_left == ['drži se levo '].
 
 route_new_calc(Dist) == ['Pot bo dolga ', D] :- distance(Dist) == D.
 route_recalc(Dist) == ['Izračunana je nova pot dolžine ', D] :- distance(Dist) == D.
 
 location_lost == ['Ni več G P S  signala '].
+
+% on_street == ['on ', X] :- next_street(X).
+% off_route == ['you have deviated from the route '].
+% attention == ['attention '].
+% speed_alarm == ['you are exceeding the speed limit '].
 
 
 %% 

@@ -13,8 +13,10 @@ turn('left_sl', ['tournez légèrement à gauche ']).
 turn('right', ['tournez à droite ']).
 turn('right_sh', ['tournez immédiatement à droite ']).
 turn('right_sl', ['tournez légèrement à droite ']).
-turn('right_keep', ['serrez à droite ']).
 turn('left_keep', ['serrez à gauche ']).
+turn('right_keep', ['serrez à droite ']).
+bear_left == ['serrez à gauche '].
+bear_right == ['serrez à droite '].
 
 prep2turn('left', ['tourner à gauche ']).
 prep2turn('left_sh', ['tourner immédiatement à gauche ']).
@@ -41,19 +43,21 @@ roundabout(_Angle, Exit) == ['prenez la ', E, 'sortie'] :- nth(Exit, E).
 go_ahead == ['Continuez tout droit '].
 go_ahead(Dist) == ['Continuez pendant ', D]:- distance(Dist) == D.
 
-and_arrive_destination == ['et arrivez à destination '].
-
 then == ['puis '].
+and_arrive_destination == ['et arrivez à destination '].
 reached_destination == ['vous êtes arrivé à destination '].
 and_arrive_intermediate == ['et arrivez à l'étape '].
 reached_intermediate == ['vous êtes arrivé à l'étape'].
-bear_right == ['serrez à droite '].
-bear_left == ['serrez à gauche '].
 
 route_new_calc(Dist) == ['L itinéraire fait  ', D] :- distance(Dist) == D.
 route_recalc(Dist) == ['recalcul de l itinéraire, l itinéraire fait ', D] :- distance(Dist) == D.
 
 location_lost == ['signal g p s perdu '].
+
+% on_street == ['on ', X] :- next_street(X).
+% off_route == ['you have deviated from the route '].
+% attention == ['attention '].
+% speed_alarm == ['you are exceeding the speed limit '].
 
 
 %% 

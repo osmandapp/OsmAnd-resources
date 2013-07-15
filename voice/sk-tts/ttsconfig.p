@@ -13,8 +13,10 @@ turn('left_sl', ['zahnite mierne doľava']).
 turn('right', ['zahnite doprava']).
 turn('right_sh', ['zahnite prudko doprava']).
 turn('right_sl', ['zahnite mierne doprava']).
-turn('right_keep', ['držte sa vpravo']).
 turn('left_keep', ['držte sa vľavo']).
+turn('right_keep', ['držte sa vpravo']).
+bear_left == ['držte sa vľavo'].
+bear_right == ['držte sa vpravo'].
 
 pturn('left', ['doľava']).
 pturn('left_sh', ['prudko doľava']).
@@ -39,14 +41,11 @@ roundabout(_Angle, Exit) == ['choďte cez ', E, 'výjazd'] :- nth(Exit, E).
 go_ahead == ['pokračujte rovno'].
 go_ahead(Dist) == ['pokračujte ', D]:- distance(Dist) == D.
 
+then == ['potom '].
 and_arrive_destination == ['a dorazíte do cieľa'].
+reached_destination == ['dorazili ste do cieľa'].
 and_arrive_intermediate == ['a dorazíte cez Váš prechodný bod '].
 reached_intermediate == ['dorazili ste k Vášmu prechodnému bodu'].
-
-then == ['potom '].
-reached_destination == ['dorazili ste do cieľa'].
-bear_right == ['držte sa vpravo'].
-bear_left == ['držte sa vľavo'].
 
 route_new_calc(Dist) == ['Cesta je dlhá ', D] :- distance(Dist) == D.	
 route_recalc(Dist) == ['Cesta prepočítaná, vzdialenosť ', D] :- distance(Dist) == D.
@@ -57,6 +56,7 @@ on_street == ['do ulice ', X] :- next_street(X).
 off_route == ['odchýlili ste sa od trasy'].
 attention == ['pozor'].
 speed_alarm == ['prekročili ste maximálnu povolenú rýchlosť'].
+
 
 %% 
 nth(1, 'prvý ').

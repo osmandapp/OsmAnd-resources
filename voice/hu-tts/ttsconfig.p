@@ -13,8 +13,10 @@ turn('left_sl', ['fordulj enyhén balra ']).
 turn('right', ['fordulj jobbra ']).
 turn('right_sh', ['fordulj élesen jobbra ']).
 turn('right_sl', ['fordulj enyhén jobbra ']).
-turn('right_keep', ['tarts jobbra ']).
 turn('left_keep', ['tarts balra ']).
+turn('right_keep', ['tarts jobbra ']).
+bear_left == ['tarts balra '].
+bear_right == ['tarts jobbra '].
 
 prepare_turn(Turn, Dist) == [D, ' múlva ', M] :- distance(Dist, nom) == D, turn(Turn, M).
 turn(Turn, Dist) == [D, 'múlva ', M] :- distance(Dist, nom) == D, turn(Turn, M).
@@ -32,19 +34,21 @@ roundabout(_Angle, Exit) == ['hajts ki ', E, 'kijáraton'] :- nth(Exit, E).
 go_ahead == ['Haladj tovább egyenesen '].
 go_ahead(Dist) == ['Menj tovább ', D] :- distance(Dist, acc) == D.
 
+then == ['majd '].
 and_arrive_destination == ['és megérkezel az uticélhoz.'].
+reached_destination == ['megérkeztél az uticélhoz.'].
 and_arrive_intermediate == ['és megérkezel a köztes célponthoz.'].
 reached_intermediate == ['megérkeztél a köztes célponthoz.'].
-
-then == ['majd '].
-reached_destination == ['megérkeztél az uticélhoz.'].
-bear_right == ['tarts jobbra '].
-bear_left == ['tarts balra '].
 
 route_new_calc(Dist) == ['Az útvonal ', D] :- distance(Dist, nom) == D.
 route_recalc(Dist) == ['útvonal újratervezése, az útvonal ', D] :- distance(Dist, nom) == D.
 
 location_lost == ['nem található dzsípíesz pozíció '].
+
+% on_street == ['on ', X] :- next_street(X).
+% off_route == ['you have deviated from the route '].
+% attention == ['attention '].
+% speed_alarm == ['you are exceeding the speed limit '].
 
 
 %% 

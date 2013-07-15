@@ -16,6 +16,8 @@ turn('right_sh', ['gira fuerte a la derecha ']).
 turn('right_sl', ['gira levemente a la derecha ']).
 turn('right_keep', ['mantente a la derecha']).
 turn('left_keep', ['mantente a la izquierda']).
+bear_left == ['mantente a la izquierda'].
+bear_right == ['mantente a la derecha'].
 
 turn_inf('left', ['girar a la izquierda ']).
 turn_inf('left_sh', ['girar fuerte a la izquierda ']).
@@ -39,28 +41,27 @@ prepare_roundabout(Dist) == [ 'Prepárate para entrar en la rotonda tras ', D] :
 roundabout(Dist, _Angle, Exit) == ['Tras ', D, ' entra en la rotonda y toma la ', E, ' salida' ] :- distance(Dist) == D, nth(Exit, E).
 roundabout(_Angle, Exit) == ['toma la ', E, ' salida' ] :- nth(Exit, E).
 
-
 go_ahead == ['Continúa recto'].
 go_ahead(Dist) == ['Sigue la vía durante ', D]:- distance(Dist) == D.
 
-
-and_arrive_destination == ['y llegarás a tu destino'].
-
 then == ['. Luego '].
-
+and_arrive_destination == ['y llegarás a tu destino'].
 reached_destination == ['has llegado a tu destino'].
-
-bear_right == ['mantente a la derecha'].
-bear_left == ['mantente a la izquierda'].
+% and_arrive_intermediate == ['and arrive at your waypoint '].
+% reached_intermediate == ['you have reached your waypoint '].
 
 route_new_calc(Dist) == ['El camino es ', D] :- distance(Dist) == D.
 route_recalc(Dist) == ['Ruta recalculada, distancia ', D] :- distance(Dist) == D.
 
 location_lost == ['señal g p s perdida '].
 
+% on_street == ['on ', X] :- next_street(X).
+% off_route == ['you have deviated from the route '].
+% attention == ['attention '].
+% speed_alarm == ['you are exceeding the speed limit '].
+
 
 %%
-
 nth(1, 'primera').
 nth(2, 'segunda').
 nth(3, 'tercera').
@@ -81,7 +82,6 @@ nth(17, 'decimoséptima').
 
 
 %%% distance measure
-
 distance(Dist) == [ X, ' metros'] :- Dist < 100, D is round(Dist/10.0)*10, num_atom(D, X).
 distance(Dist) == [ X, ' metros'] :- Dist < 1000, D is round(2*Dist/100.0)*50, num_atom(D, X).
 distance(Dist) == ['cerca de un kilómetro '] :- Dist < 1500.

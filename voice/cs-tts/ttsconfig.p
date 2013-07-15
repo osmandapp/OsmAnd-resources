@@ -19,8 +19,10 @@ turn('left_sl', ['odbočte mírně vlevo']).
 turn('right', ['odbočte vpravo']).
 turn('right_sh', ['odbočte ostře vpravo']).
 turn('right_sl', ['odbočte mírně vpravo']).
-turn('right_keep', ['držte se vpravo']).
 turn('left_keep', ['držte se vlevo']).
+turn('right_keep', ['držte se vpravo']).
+bear_left == ['držte se vlevo'].
+bear_right == ['držte se vpravo'].
 
 pturn('left', ['vlevo']).
 pturn('left_sh', ['ostře vlevo']).
@@ -38,7 +40,6 @@ make_ut(Dist) == ['po', D, 'se otočte zpět'] :- distance(Dist,locative) == D.
 make_ut == ['otočte se zpět'].
 make_ut_wp == ['vraťte se jakmile to bude možné'].
 
-
 prepare_roundabout(Dist) == ['po', D, 'přijedete na kruhový objezd'] :- distance(Dist,locative) == D.
 roundabout(Dist, _Angle, Exit) == ['po', D, 'vjeďte na kruhový objezd', 'a zvolte', E, 'výjezd'] :- distance(Dist,locative) == D, nth(Exit, nominative, E).
 roundabout(_Angle, Exit) == ['vyjeďte', E, 'výjezdem'] :- nth(Exit, instrumental, E).
@@ -47,17 +48,21 @@ roundabout(_Angle, Exit) == ['vyjeďte', E, 'výjezdem'] :- nth(Exit, instrument
 go_ahead == ['pokračujte rovně'].
 go_ahead(Dist) == ['pokračujte', D]:- distance(Dist,workaround) == D.
 
-and_arrive_destination == ['a dorazíte do cíle'].
-
 then == ['pak'].
+and_arrive_destination == ['a dorazíte do cíle'].
 reached_destination == ['dorazili jste do cíle'].
-bear_right == ['držte se vpravo'].
-bear_left == ['držte se vlevo'].
+% and_arrive_intermediate == ['and arrive at your waypoint '].
+% reached_intermediate == ['you have reached your waypoint '].
 
 route_new_calc(Dist) == ['cesta je dlouhá', D] :- distance(Dist,accusative) == D.
 route_recalc(Dist) == ['přepočítávám. cesta je dlouhá', D] :- distance(Dist,accusative) == D.
 
 location_lost == ['ztráta signálu'].
+
+% on_street == ['on ', X] :- next_street(X).
+% off_route == ['you have deviated from the route '].
+% attention == ['attention '].
+% speed_alarm == ['you are exceeding the speed limit '].
 
 
 %% 

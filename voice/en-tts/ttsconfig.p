@@ -15,6 +15,8 @@ turn('right_sh', ['turn sharply right ']).
 turn('right_sl', ['turn slightly right ']).
 turn('left_keep', ['keep left']).
 turn('right_keep', ['keep right']).
+bear_left == ['keep left '].
+bear_right == ['keep right '].
 
 prepare_turn(Turn, Dist) == ['Prepare to ', M, ' after ', D] :- distance(Dist) == D, turn(Turn, M).
 turn(Turn, Dist) == ['After ', D, M] :- distance(Dist) == D, turn(Turn, M).
@@ -32,14 +34,11 @@ roundabout(_Angle, Exit) == ['take the ', E, 'exit'] :- nth(Exit, E).
 go_ahead == ['Go straight ahead '].
 go_ahead(Dist) == ['Follow the course of the road for ', D]:- distance(Dist) == D.
 
-and_arrive_destination == ['and arrive at your destination '].
-
 then == ['then '].
+and_arrive_destination == ['and arrive at your destination '].
 reached_destination == ['you have reached your destination '].
 and_arrive_intermediate == ['and arrive at your waypoint '].
 reached_intermediate == ['you have reached your waypoint '].
-bear_right == ['keep right '].
-bear_left == ['keep left '].
 
 route_new_calc(Dist) == ['The trip is ', D] :- distance(Dist) == D.
 route_recalc(Dist) == ['Route recalculated, distance ', D] :- distance(Dist) == D.

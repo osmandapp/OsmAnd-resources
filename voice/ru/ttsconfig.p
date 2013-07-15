@@ -1,4 +1,4 @@
-% :- .
+﻿% :- .
 % :- 
 % for turbo-prolog
 :- op('--', xfy, 500).
@@ -21,8 +21,8 @@ string('left_sl.ogg', 'плавно поверните налево  ').
 string('right.ogg', 'поверните направо ').
 string('right_sh.ogg', 'резко поверните направо ').
 string('right_sl.ogg', 'плавно поверните направо  ').
-string('right_keep.ogg', 'держитесь правее ').
 string('left_keep.ogg', 'держитесь левее ').
+string('right_keep.ogg', 'держитесь правее ').
 
 string('attention.ogg', 'Внимание ').
 string('make_uturn.ogg', 'Выполните разворот ').
@@ -83,6 +83,8 @@ turn('right_sh', ['right_sh.ogg']).
 turn('right_sl', ['right_sl.ogg']).
 turn('right_keep', ['right_keep.ogg']).
 turn('left_keep', ['left_keep.ogg']).
+bear_left -- ['left_keep.ogg'].
+bear_right -- ['right_keep.ogg'].
 
 prepare_turn(Turn, Dist) -- ['prepare_after.ogg', D, ' ', M] :- distance(Dist) -- D, turn(Turn, M).
 turn(Turn, Dist) -- ['after.ogg', D, M] :- distance(Dist) -- D, turn(Turn, M).
@@ -100,19 +102,21 @@ roundabout(_Angle, Exit) -- ['make.ogg', E, 'exit.ogg'] :- nth(Exit, E).
 go_ahead -- ['go_ahead.ogg'].
 go_ahead(Dist) -- ['go_ahead_m.ogg', D]:- distance(Dist) -- D.
 
+then -- ['then.ogg'].
 and_arrive_destination -- ['and_arrive_destination.ogg'].
+reached_destination -- ['reached_destination.ogg'].
 and_arrive_intermediate -- ['and_arrive_intermediate.ogg'].
 reached_intermediate -- ['reached_intermediate.ogg'].
-reached_destination -- ['reached_destination.ogg'].
-
-then -- ['then.ogg'].
-bear_right -- ['right_keep.ogg'].
-bear_left -- ['left_keep.ogg'].
 
 route_new_calc(Dist) -- ['route_is.ogg', D] :- distance(Dist) -- D.
 route_recalc(Dist) -- ['route_calculate.ogg', D] :- distance(Dist) -- D.
 
 location_lost -- ['location_lost.ogg'].
+
+on_street -- ['on.ogg', X] :- next_street(X).
+off_route -- ['off_road.ogg'].
+attention -- ['attention.ogg'].
+speed_alarm -- ['exceed_limit.ogg'].
 
 
 %% 
@@ -142,14 +146,6 @@ distance(Dist) -- [ X, Km] :- D is round(Dist/1000.0), dist(D, X), plural_km(D, 
 plural_km(D, 'kilometr.ogg') :- 1 is D mod 10.
 plural_km(D, 'kilometra.ogg') :- Mod is D mod 10, Mod < 5,  Mod > 1.
 plural_km(_D, 'kilometrov.ogg').
-
-
-
-
-on_street -- ['on.ogg', X] :- next_street(X).
-off_route -- ['off_road.ogg'].
-attention -- ['attention.ogg'].
-speed_alarm -- ['exceed_limit.ogg'].
 
 
 %% resolve command main method

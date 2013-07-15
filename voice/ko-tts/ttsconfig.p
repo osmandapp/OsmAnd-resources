@@ -13,8 +13,10 @@ turn('left_sl', ['좌회전']).
 turn('right', ['우회전']).
 turn('right_sh', ['크게 우회전']).
 turn('right_sl', ['우회전']).
-turn('right_keep', ['오른쪽에서 계속 가세요 ']).
 turn('left_keep', ['왼쪽에서 계속 가세요 ']).
+turn('right_keep', ['오른쪽에서 계속 가세요 ']).
+bear_left == ['왼쪽에서 계속 가세요 '].
+bear_right == ['오른쪽에서 계속 가세요 '].
 
 prepare_turn(Turn, Dist) == [D, ' 앞에서 ', M, '을 준비하세요 '] :- 	distance(Dist) == D, turn(Turn, M).
 turn(Turn, Dist) == [D, ' 앞에서 ', M, '하세요 '] :- 	distance(Dist) == D, turn(Turn, M).
@@ -32,20 +34,21 @@ roundabout(_Angle, Exit) == [E, ' 출구로 나가세요 '] :- nth(Exit, E).
 go_ahead == ['직진을 계속하세요 '].
 go_ahead(Dist) == [D, ' 직진하세요 ']:- distance(Dist) == D.
 
+then == [', 다음은 '].
 and_arrive_destination == [' 다음은 목적지에 도착합니다 ']. % Miss and?
+reached_destination == ['목적지에 도착하였습니다 '].
 and_arrive_intermediate == ['and arrive at your via point '].
 reached_intermediate == ['you have reached your via point'].
-
-then == [', 다음은 '].
-reached_destination == ['목적지에 도착하였습니다 '].
-bear_right == ['오른쪽에서 계속 가세요 '].
-bear_left == ['왼쪽에서 계속 가세요 '].
 
 route_new_calc(Dist) == ['총 거리는 ', D, ' 입니다 '] :- distance(Dist) == D.
 route_recalc(Dist) == ['경로가 재탐색되었습니다. 거리는  ', D, ' 입니다 '] :- distance(Dist) == D.
 
-
 location_lost == ['g p s 신호가 없습니다 '].
+
+% on_street == ['on ', X] :- next_street(X).
+% off_route == ['you have deviated from the route '].
+% attention == ['attention '].
+% speed_alarm == ['you are exceeding the speed limit '].
 
 
 %% 

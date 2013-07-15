@@ -13,8 +13,10 @@ turn('left_sl', ['pagriezties pa kreisi ']).
 turn('right', ['griezties pa labi ']).
 turn('right_sh', ['strauji pagriezties pa labi ']).
 turn('right_sl', ['pagriezties pa labi ']).
-turn('right_keep', ['turēties pa labi ']).
 turn('left_keep', ['turēties pa kreisi ']).
+turn('right_keep', ['turēties pa labi ']).
+bear_left == ['turēties pa kreisi '].
+bear_right == ['turēties pa labi '].
 
 prepare_turn(Turn, Dist) == ['Pēc ', D, ' gatavoties pa', M] :- distance(Dist) == D, turn(Turn, M).
 turn(Turn, Dist) == ['Pēc ', D, M] :- distance(Dist) == D, turn(Turn, M).
@@ -32,19 +34,21 @@ roundabout(_Angle, Exit) == ['izbrauciet ', E, 'izbrauktuvē'] :- nth(Exit, E).
 go_ahead == ['Dodaties taisni uz priekšu '].
 go_ahead(Dist) == ['Brauciet pa ceļu ', D]:- distance2(Dist) == D.
 
+then == ['tad '].
 and_arrive_destination == ['un ierodaties galapunktā '].
+reached_destination == ['jūs esiet nokļuvis galapunktā '].
 and_arrive_intermediate == ['and arrive at your via point '].
 reached_intermediate == ['you have reached your via point'].
-
-then == ['tad '].
-reached_destination == ['jūs esiet nokļuvis galapunktā '].
-bear_right == ['turēties pa labi '].
-bear_left == ['turēties pa kreisi '].
 
 route_new_calc(Dist) == ['Brauciens ir ', D] :- distance2(Dist) == D.
 route_recalc(Dist) == ['Maršruts ir pārēķināts, attālums ir ', D] :- distance2(Dist) == D.
 
 location_lost == ['pazudis g p s signāls '].
+
+% on_street == ['on ', X] :- next_street(X).
+% off_route == ['you have deviated from the route '].
+% attention == ['attention '].
+% speed_alarm == ['you are exceeding the speed limit '].
 
 
 %% 

@@ -1,4 +1,4 @@
-:- op('==', xfy, 500).
+﻿:- op('==', xfy, 500).
 version(101).
 language(el).
 
@@ -13,8 +13,10 @@ turn('left_sl', ['στρίψτε λοξά αριστερά ']).
 turn('right', ['στρίψτε δεξιά ']).
 turn('right_sh', ['στρίψτε κλειστά δεξιά ']).
 turn('right_sl', ['στρίψτε λοξά δεξιά ']).
-turn('right_keep', ['μείνετε δεξιά']).
 turn('left_keep', ['μείνετε αριστερά']).
+turn('right_keep', ['μείνετε δεξιά']).
+bear_left == ['μείνετε αριστερά '].
+bear_right == ['μείνετε δεξιά '].
 
 prepare_turn(Turn, Dist) == ['Προετοιμαστείτε να ', M, ' μετά από ', D] :- distance(Dist) == D, turn(Turn, M).
 turn(Turn, Dist) == ['Μετά από ', D, M] :- distance(Dist) == D, turn(Turn, M).
@@ -32,19 +34,21 @@ roundabout(_Angle, Exit) == ['βγείτε στην ', E, 'έξοδο'] :- nth(E
 go_ahead == ['Προχωρείστε ευθεία '].
 go_ahead(Dist) == ['Ακολουθήστε τον δρόμο για ', D]:- distance(Dist) == D.
 
-and_arrive_destination == ['και φτάσατε στον προορισμό σας '].
-
 then == ['και '].
+and_arrive_destination == ['και φτάσατε στον προορισμό σας '].
 reached_destination == ['φτάσατε στον προορισμό σας '].
 and_arrive_intermediate == ['και φτάσατε στο ενδιάμεσο σημείο '].
 reached_intermediate == ['φτάσατε στο ενδιάμεσο σημείο'].
-bear_right == ['μείνετε δεξιά '].
-bear_left == ['μείνετε αριστερά '].
 
 route_new_calc(Dist) == ['Το ταξίδι είναι ', D] :- distance(Dist) == D.
 route_recalc(Dist) == ['Επαναϋπολογισμός διαδρομής, απόσταση ', D] :- distance(Dist) == D.
 
 location_lost == ['Το σήμα gps χάθηκε '].
+
+% on_street == ['on ', X] :- next_street(X).
+% off_route == ['you have deviated from the route '].
+% attention == ['attention '].
+% speed_alarm == ['you are exceeding the speed limit '].
 
 
 %% 
