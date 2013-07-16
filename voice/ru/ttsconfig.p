@@ -26,6 +26,7 @@ string('right_keep.ogg', 'держитесь правее ').
 
 string('attention.ogg', 'Внимание ').
 string('make_uturn.ogg', 'Выполните разворот ').
+string('make_uturn_wp.ogg', 'Выполните разворот ').
 string('after.ogg', 'через').
 string('prepare_after.ogg', 'Приготовьтесь через ').
 string('then.ogg', 'затем ').
@@ -80,8 +81,8 @@ turn('left_sl', ['left_sl.ogg']).
 turn('right', ['right.ogg']).
 turn('right_sh', ['right_sh.ogg']).
 turn('right_sl', ['right_sl.ogg']).
-turn('right_keep', ['right_keep.ogg']).
 turn('left_keep', ['left_keep.ogg']).
+turn('right_keep', ['right_keep.ogg']).
 bear_left -- ['left_keep.ogg'].
 bear_right -- ['right_keep.ogg'].
 
@@ -92,7 +93,7 @@ turn(Turn) -- M :- turn(Turn, M).
 prepare_make_ut(Dist) -- ['after.ogg', D, 'make_uturn.ogg'] :- distance(Dist) -- D.
 make_ut(Dist) --  ['after.ogg', D, 'make_uturn.ogg'] :- distance(Dist) -- D.
 make_ut -- ['make_uturn.ogg'].
-make_ut_wp -- ['make_uturn.ogg'].
+make_ut_wp -- ['make_uturn_wp.ogg'].
 
 prepare_roundabout(Dist) -- ['prepare_after.ogg', D, 'roundabout.ogg'] :- distance(Dist) -- D.
 roundabout(Dist, _Angle, Exit) -- ['after.ogg', D, 'roundabout.ogg', 'make.ogg', E, 'exit.ogg'] :- distance(Dist) -- D, nth(Exit, E).
@@ -136,17 +137,6 @@ nth(14, '14th.ogg').
 nth(15, '15th.ogg').
 
 
-distance(Dist) -- [ X, 'metrov.ogg'] :- Dist < 100, D is round(Dist/10.0)*10, dist(D, X).
-distance(Dist) -- [ X, 'metrov.ogg'] :- Dist < 1000, D is round(2*Dist/100.0)*50, dist(D, X).
-% distance(Dist) -- ['around_1_kilometer.ogg'] :- Dist < 1500.
-% distance(Dist) -- ['around.ogg', X, Km] :- Dist < 10000, D is round(Dist/1000.0), dist(D, X), plural_km(D, Km).
-distance(Dist) -- [ X, Km] :- D is round(Dist/1000.0), dist(D, X), plural_km(D, Km).
-
-plural_km(D, 'kilometr.ogg') :- 1 is D mod 10.
-plural_km(D, 'kilometra.ogg') :- Mod is D mod 10, Mod < 5,  Mod > 1.
-plural_km(_D, 'kilometrov.ogg').
-
-
 %% resolve command main method
 %% if you are familar with Prolog you can input specific to the whole mechanism,
 %% by adding exception cases.
@@ -161,7 +151,18 @@ resolve(X, Y) :- resolve_impl(X,Z), flatten(Z, Y).
 resolve_impl([],[]).
 resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L, Tail, List); List = Tail).
 
+
 %%% distance measure
+distance(Dist) -- [ X, 'metrov.ogg']           :- Dist < 100,   D is round(Dist/10.0)*10, dist(D, X).
+distance(Dist) -- [ X, 'metrov.ogg']           :- Dist < 1000,  D is round(2*Dist/100.0)*50, dist(D, X).
+% distance(Dist) -- ['around_1_kilometer.ogg']   :- Dist < 1500.
+% distance(Dist) -- ['around.ogg', X, Km]        :- Dist < 10000, D is round(Dist/1000.0), dist(D, X), plural_km(D, Km).
+distance(Dist) -- [ X, Km]                     :-               D is round(Dist/1000.0), dist(D, X), plural_km(D, Km).
+
+plural_km(D, 'kilometr.ogg') :- 1 is D mod 10.
+plural_km(D, 'kilometra.ogg') :- Mod is D mod 10, Mod < 5,  Mod > 1.
+plural_km(_D, 'kilometrov.ogg').
+
 interval(St, St, End, _Step) :- St =< End.
 interval(T, St, End, Step) :- interval(Init, St, End, Step), T is Init + Step, (T =< End -> true; !, fail).
 
