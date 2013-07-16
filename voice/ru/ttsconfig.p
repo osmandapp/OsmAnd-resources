@@ -44,7 +44,6 @@ string('route_calculate.ogg', 'маршрут пересчитывается, р
 string('location_lost.ogg', 'ДЖИПИИЭС потерян сигнал ').
 string('on.ogg', 'на ').
 string('off_road.ogg', 'Вы отклонились от маршрута ').
-string('attention.ogg', 'Внимание ').
 string('exceed_limit.ogg', 'Вы превысили допустимую скорость ').
 
 string('1th.ogg', 'первый ').
