@@ -41,6 +41,10 @@ string('reached_destination.ogg','вы прибыли в пункт назнач
 string('route_is.ogg', 'Маршрут составляет ').
 string('route_calculate.ogg', 'маршрут пересчитывается, расстояние ').
 string('location_lost.ogg', 'ДЖИПИИЭС потерян сигнал ').
+string('on.ogg', 'на ').
+string('off_road.ogg', 'Вы отклонились от маршрута ').
+string('attention.ogg', 'Внимание ').
+string('exceed_limit.ogg', 'Вы превысили допустимую скорость ').
 
 string('1th.ogg', 'первый ').
 string('2th.ogg', 'вто_рой ') :- google_gen, voice .
@@ -60,11 +64,6 @@ string('14th.ogg', 'четырнадцатый ').
 string('15th.ogg', 'пятнадцатый ').
 string('16th.ogg', 'шестнадцатый ').
 string('17th.ogg', 'семнадцатый ').
-
-string('on.ogg', 'на ').
-string('off_road.ogg', 'Вы отклонились от маршрута ').
-string('attention.ogg', 'Внимание ').
-string('exceed_limit.ogg', 'Вы превысили допустимую скорость ').
 
 string('metrov.ogg', 'метров ').
 string('kilometr.ogg', 'километр ').
