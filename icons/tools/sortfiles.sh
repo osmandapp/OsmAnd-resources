@@ -193,6 +193,7 @@ mygroup finance mm_money_bank2.png
 
 
 ## Natural
+
 #! mycp natural peak  MISSING: Important for night view to have ORANGE peak_night version! (Use day version with color #FF6600)
 #! mycp natural volcano  MISSING: Could use mm_poi_peak.png with color #D40000
 #! mycp natural spring  MISSING: spring
@@ -200,7 +201,9 @@ mygroup finance mm_money_bank2.png
 #! mycp natural tree  MISSING: tree
 mygroup natural mm_poi_peak2.png
 mycp natural cave_entrance mm_poi_cave.png
-mycp natural peak mm_poi_peak2.png
+mycp natural peak mm_functional-icons_peak2.png
+mycp natural peak_night mm_functional-icons_peak2_night.png
+#mycp natural peak mm_poi_peak2.png
 
 
 ## Leisure

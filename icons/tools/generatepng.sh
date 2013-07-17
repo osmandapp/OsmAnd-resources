@@ -47,6 +47,8 @@ generatePngs() {
     done
 }
 
+generatePngs 'functional-icons' '#777777'
+
 generatePngs 'icons8' '#777777' neg
 
 generatePngs 'accommodation' '#777777' #'#0092DA'
