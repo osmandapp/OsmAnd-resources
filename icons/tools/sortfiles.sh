@@ -20,14 +20,14 @@ mycp() {
 ## Shaders !
 mygroup landuse mm_landuse_coniferous.png
 mycp landuse grass mm_landuse_grass.png
-mycp landuse forest  mm_landuse_coniferous.png # KEEP SHADERS!
-mycp natural beach  mm_tourist_beach.png # KEEP SHADERS!
+mycp landuse forest mm_landuse_coniferous.png  # KEEP SHADERS!
+mycp natural beach mm_tourist_beach.png  # KEEP SHADERS!
 mycp landuse cemetery mm_place_of_worship_christian3.png  # KEEP SHADERS!
-mycp amenity grave_yard mm_place_of_worship_christian3.png #  KEEP SHADERS!
-mycp natural scrub mm_landuse_scrub.png # KEEP SHADERS!
-mycp natural swamp mm_landuse_swamp.png # KEEP SHADERS!
-mycp tourism zoo mm_tourist_zoo.png # KEEP SHADERS!
-mycp military danger_area mm_poi_mine.png # KEEP SHADERS!
+mycp amenity grave_yard mm_place_of_worship_christian3.png  #  KEEP SHADERS!
+mycp natural scrub mm_landuse_scrub.png  # KEEP SHADERS!
+mycp natural swamp mm_landuse_swamp.png  # KEEP SHADERS!
+mycp tourism zoo mm_tourist_zoo.png  # KEEP SHADERS!
+mycp military danger_area mm_poi_mine.png  # KEEP SHADERS!
 mycp natural glacier mm_poi_peak2.png  # KEEP SHADERS! ? not really good icon
 # mycp natural wetland  # KEEP SHADERS!
 # mycp natural marsh  # KEEP SHADERS! ?
@@ -41,10 +41,10 @@ mycp natural glacier mm_poi_peak2.png  # KEEP SHADERS! ? not really good icon
 
 ## Place-dots
 mygroup administrative mm_poi_boundary_administrative.png
-#! mycp place city  SHOULD KEEP CURRENT: city_night  (functional icon, not picture)
-#! mycp place city  SHOULD KEEP CURRENT: city  (functional icon, not picture)
-#! mycp place town  SHOULD KEEP CURRENT: town_night  (functional icon, not picture)
-#! mycp place town  SHOULD KEEP CURRENT: town  (functional icon, not picture)
+mycp place city_night mm_functional-icons_city_night.png
+mycp place city mm_functional-icons_city.png
+mycp place town_night mm_functional-icons_town_night.png
+mycp place town mm_functional-icons_town.png
 
 
 ## Transportation 
@@ -70,11 +70,11 @@ mygroup transportation mm_transport_taxi_rank.png
 mycp amenity bicycle_parking mm_transport_parking_bicycle.png
 mycp railway station mm_transport_train_station.png
 mycp railway platform mm_transport_train_station2.png
-#! mycp railway halt mm_transport_train_station2.png #completely different?
+mycp railway halt mm_functional-icons_halt.png
 mycp railway tram_stop mm_transport_tram_stop.png
-#! mycp railway level_crossing  MISSING: railway/level_crossing
+mycp railway level_crossing mm_functional-icons_level_crossing.png
 mycp railway subway_entrance mm_transport_subway.png
-#! mycp aerialway station  MISSING: aerialway/station: station_small
+mycp aerialway station mm_functional-icons_station_small.png
 mycp railway subway mm_transport_subway.png
 mycp aeroway helipad mm_transport_helicopter_pad.png
 mycp aeroway aerodrome mm_transport_aerodrome.png
@@ -120,7 +120,7 @@ mycp amenity kindergarten mm_education_nursery2.png
 
 
 ## Man_made
-#! mycp power tower SHOULD KEEP CURRENT: power_tower  (functional icon, not picture)
+mycp power tower mm_functional-icons_power_tower.png
 mygroup man_made mm_power_station_wind.png
 mygroup military mm_poi_military_bunker.png
 mycp power generator mm_power_station_wind.png
@@ -193,17 +193,13 @@ mygroup finance mm_money_bank2.png
 
 
 ## Natural
-
-#! mycp natural peak  MISSING: Important for night view to have ORANGE peak_night version! (Use day version with color #FF6600)
-#! mycp natural volcano  MISSING: Could use mm_poi_peak.png with color #D40000
-#! mycp natural spring  MISSING: spring
-#! mycp natural tree  MISSING: tree
-#! mycp natural tree  MISSING: tree
 mygroup natural mm_poi_peak2.png
+mycp natural peak mm_functional-icons_peak.png  #needs black icon!
+mycp natural peak_night mm_functional-icons_peak_night.png  #Important for night view to have ORANGE peak_night version! (=day version with color #FF6600)
+mycp natural volcano mm_functional-icons_volcano.png  #Is mm_poi_peak.png with color #D40000
 mycp natural cave_entrance mm_poi_cave.png
-mycp natural peak mm_functional-icons_peak2.png
-mycp natural peak_night mm_functional-icons_peak2_night.png
-#mycp natural peak mm_poi_peak2.png
+mycp natural spring mm_functional-icons_spring.png
+#! mycp natural tree  MISSING: tree
 
 
 ## Leisure
@@ -212,11 +208,11 @@ mycp leisure marina mm_transport_marina.png
 mycp leisure ice_rink mm_sport_iceskating.png
 mycp leisure slipway mm_transport_slipway.png
 mycp leisure playground mm_amenity_playground.png
-#! mycp leisure fishing mm_sport_leisure_centre.png #no good icon for leisure=fishing. Could use shop=seafood icon, but in leisure-green.
+#! mycp leisure fishing mm_sport_leisure_centre.png  #no good icon for leisure=fishing. Could use shop=seafood icon, but in leisure-green.
 mycp leisure water_park mm_sport_swimming_outdoor.png
 mycp leisure sports_centre mm_sport_leisure_centre.png
 mycp leisure bird_hide mm_poi_tower_lookout.png
-#! mycp waterway lock_gate  MISSING: lock_gate
+mycp waterway lock_gate mm_functional-icons_lock_gate.png
 
 
 ## Historic
