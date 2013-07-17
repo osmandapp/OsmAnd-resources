@@ -1,9 +1,10 @@
+%%% !!! THIS IS GENERATED FILE !!! Modify ttsconfig.p
 ﻿% for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog
 :- op(500, xfy,'--').
 
-version(101).
+version(0).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 

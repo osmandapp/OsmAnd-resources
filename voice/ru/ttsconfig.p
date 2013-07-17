@@ -10,7 +10,7 @@ tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
 language(ru).
-fest_language(russian).
+fest_language(msu_ru_nsh_clunits).
 
 % before each announcement (beep)
 preamble - [].

@@ -1,6 +1,4 @@
-﻿% :- .
-% :- 
-% for turbo-prolog
+﻿% for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog
 :- op(500, xfy,'--').
@@ -9,8 +7,8 @@ version(101).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
-language(en).
-fest_language(English).
+language('en').
+fest_language('cmu_us_awb_arctic_clunits').
 
 % before each announcement (beep)
 preamble - [].
@@ -21,7 +19,7 @@ string('left_sl.ogg', 'turn slightly left ').
 string('right.ogg', 'turn right ').
 string('right_sh.ogg', 'turn sharply right ').
 string('right_sl.ogg', 'turn slightly right ').
-string('left_keep.ogg', 'keep left'').
+string('left_keep.ogg', 'keep left').
 string('right_keep.ogg', 'keep right').
 
 string('attention.ogg', 'attention ').
@@ -158,31 +156,31 @@ resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L,
 
 
 %%% distance measure
-distance(Dist) == D :- measure('km-m'), distance_km(Dist) == D.
-distance(Dist) == D :- measure('mi-f'), distance_mi_f(Dist) == D.
-distance(Dist) == D :- measure('mi-y'), distance_mi_y(Dist) == D.
+distance(Dist) -- D :- measure('km-m'), distance_km(Dist) -- D.
+distance(Dist) -- D :- measure('mi-f'), distance_mi_f(Dist) -- D.
+distance(Dist) -- D :- measure('mi-y'), distance_mi_y(Dist) -- D.
 
 %%% distance measure km/m
-distance_km(Dist) == [ X, 'meters.ogg']                  :- Dist < 100,   D is round(Dist/10.0)*10,           num_atom(D, X).
-distance_km(Dist) == [ X, 'meters.ogg']                  :- Dist < 1000,  D is round(2*Dist/100.0)*50,        num_atom(D, X).
-distance_km(Dist) == ['around_1_kilometer.ogg']          :- Dist < 1500.
-distance_km(Dist) == ['around.ogg', X, 'kilometers.ogg'] :- Dist < 10000, D is round(Dist/1000.0),            num_atom(D, X).
-distance_km(Dist) == [ X, 'kilometers.ogg']              :-               D is round(Dist/1000.0),            num_atom(D, X).
+distance_km(Dist) -- [ X, 'meters.ogg']                  :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
+distance_km(Dist) -- [ X, 'meters.ogg']                  :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
+distance_km(Dist) -- ['around_1_kilometer.ogg']          :- Dist < 1500.
+distance_km(Dist) -- ['around.ogg', X, 'kilometers.ogg'] :- Dist < 10000, D is round(Dist/1000.0),            dist(D, X).
+distance_km(Dist) -- [ X, 'kilometers.ogg']              :-               D is round(Dist/1000.0),            dist(D, X).
 
 %%% distance measure mi/f
-distance_mi_f(Dist) == [ X, 'feet.ogg']                  :- Dist < 160,   D is round(2*Dist/100.0/0.3048)*50, num_atom(D, X).
-distance_mi_f(Dist) == [ X, 'tenth_of_a_mile.ogg']       :- Dist < 241,   D is round(Dist/161.0),             num_atom(D, X).
-distance_mi_f(Dist) == [ X, 'tenths_of_a_mile.ogg']      :- Dist < 1529,  D is round(Dist/161.0),             num_atom(D, X).
-distance_mi_f(Dist) == ['around_1_mile.ogg']             :- Dist < 2414.
-distance_mi_f(Dist) == ['around.ogg', X, 'miles.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            num_atom(D, X).
-distance_mi_f(Dist) == [ X, 'miles.ogg']                 :-               D is round(Dist/1609.0),            num_atom(D, X).
+distance_mi_f(Dist) -- [ X, 'feet.ogg']                  :- Dist < 160,   D is round(2*Dist/100.0/0.3048)*50, dist(D, X).
+distance_mi_f(Dist) -- [ X, 'tenth_of_a_mile.ogg']       :- Dist < 241,   D is round(Dist/161.0),             dist(D, X).
+distance_mi_f(Dist) -- [ X, 'tenths_of_a_mile.ogg']      :- Dist < 1529,  D is round(Dist/161.0),             dist(D, X).
+distance_mi_f(Dist) -- ['around_1_mile.ogg']             :- Dist < 2414.
+distance_mi_f(Dist) -- ['around.ogg', X, 'miles.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
+distance_mi_f(Dist) -- [ X, 'miles.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
 
 %%% distance measure mi/y
-distance_mi_y(Dist) == [ X, 'yards.ogg']                 :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    num_atom(D, X).
-distance_mi_y(Dist) == [ X, 'yards.ogg']                 :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, num_atom(D, X).
-distance_mi_y(Dist) == ['around_1_mile.ogg']             :- Dist < 2414.
-distance_mi_y(Dist) == ['around.ogg', X, 'miles.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            num_atom(D, X).
-distance_mi_y(Dist) == [ X, 'miles.ogg']                 :-               D is round(Dist/1609.0),            num_atom(D, X).
+distance_mi_y(Dist) -- [ X, 'yards.ogg']                 :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
+distance_mi_y(Dist) -- [ X, 'yards.ogg']                 :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
+distance_mi_y(Dist) -- ['around_1_mile.ogg']             :- Dist < 2414.
+distance_mi_y(Dist) -- ['around.ogg', X, 'miles.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
+distance_mi_y(Dist) -- [ X, 'miles.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
 
 
 interval(St, St, End, _Step) :- St =< End.

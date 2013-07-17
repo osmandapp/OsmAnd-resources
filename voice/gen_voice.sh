@@ -1,5 +1,10 @@
 #!/bin/bash
 CONFIG_FILE=$(readlink -m $1/config.p)
+TARGET_FILE=$4
+if [ -z $TARGET_FILE ]; then
+TARGET_FILE="$1"
+fi
+
 ENGINE=$3
 if [ -z $ENGINE ]; then
 ENGINE="google"
@@ -42,7 +47,7 @@ for t in `ls *.wav` ; do
 done
 
 touch .nomedia
-echo "Voice Data $2 ($1)" | zip ${1}_0.voice.zip _config.p -c 
-zip ${1}_0.voice.zip *.ogg .nomedia 
+echo "Voice Data $2 ($TARGET_FILE)" | zip ${TARGET_FILE}_0.voice.zip _config.p -c 
+zip ${TARGET_FILE}_0.voice.zip *.ogg .nomedia 
 rm -f *.wav *.mp3
 rm -f *.ogg *.p
