@@ -37,7 +37,7 @@ go_ahead(Dist) == ['Dem Strasenverlauf', D,'folgen']:- distance(Dist, nominativ)
 then == ['dann '].
 and_arrive_destination == ['dann haben Sie Ihr Ziel erreicht '].
 reached_destination == ['Ziel erreicht '].
-and_arrive_intermediate == ['Zwischenziel erreicht '].
+and_arrive_intermediate == ['dann Zwischenziel erreicht '].
 reached_intermediate == ['Zwischenziel erreicht'].
 
 route_new_calc(Dist) == ['Die berechnete Strecke ist ', D, ' lang'] :- distance(Dist, nominativ) == D.

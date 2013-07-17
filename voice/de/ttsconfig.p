@@ -41,7 +41,7 @@ string('go_ahead_m1.ogg', 'Dem Strasenverlauf ').
 string('go_ahead_m2.ogg', 'folgen ').
 string('and_arrive_destination.ogg', 'dann haben Sie Ihr Ziel erreicht ').
 string('reached_destination.ogg','Ziel erreicht ').
-string('and_arrive_intermediate.ogg', 'Zwischenziel erreicht ').
+string('and_arrive_intermediate.ogg', 'dann Zwischenziel erreicht ').
 string('reached_intermediate.ogg', 'Zwischenziel erreicht ').
 string('route_is1.ogg', 'Die berechnete Strecke ist ').
 string('route_is2.ogg', 'lang ').
