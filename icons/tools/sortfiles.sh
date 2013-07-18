@@ -54,6 +54,7 @@ mycp highway ford mm_transport_ford.png
 
 mycp amenity bus_station mm_transport_bus_station.png
 mycp highway bus_stop mm_transport_bus_stop.png
+mycp highway bus_stop mm_transport_bus_stop_small.png
 mycp public_transport platform mm_transport_bus_stop.png
 mygroup public_transport mm_transport_bus_stop.png
 
@@ -74,7 +75,7 @@ mycp railway halt mm_functional-icons_halt.png
 mycp railway tram_stop mm_transport_tram_stop.png
 mycp railway level_crossing mm_functional-icons_level_crossing.png
 mycp railway subway_entrance mm_transport_subway.png
-mycp aerialway station mm_functional-icons_station_small.png
+mycp railway station mm_functional-icons_station_small.png
 mycp railway subway mm_transport_subway.png
 mycp aeroway helipad mm_transport_helicopter_pad.png
 mycp aeroway aerodrome mm_transport_aerodrome.png
