@@ -18,25 +18,33 @@ mycp() {
 
 
 ## Shaders !
+# mycp landuse	forest	        # Keep shaders with background color, cannot be replaced by icons!
+# mycp natural	beach	        # Keep shaders with background color, cannot be replaced by icons!
+# mycp natural	wetland	        # Keep shaders with background color, cannot be replaced by icons!
+# mycp natural	marsh	        # Keep shaders with background color, cannot be replaced by icons!
+# mycp natural	mud	        # Keep shaders with background color, cannot be replaced by icons!
+# mycp natural	scrub	        # Keep shaders with background color, cannot be replaced by icons!
+# mycp landuse	orchard	        # Keep shaders with background color, cannot be replaced by icons!
+# mycp landuse	vineyard        # Keep shaders with background color, cannot be replaced by icons!
+# mycp landuse	cemetery        # Keep shaders with background color, cannot be replaced by icons!
+# mycp amenity	grave_yard      # Keep shaders with background color, cannot be replaced by icons!
+# mycp natural	glacier	        # Keep shaders with background color, cannot be replaced by icons!
+# mycp leisure	nature_reserve  # Keep shaders with background color, cannot be replaced by icons!
+# mycp tourism	zoo             # Keep shaders with background color, cannot be replaced by icons!
+# mycp landuse	quarry          # Keep shaders with background color, cannot be replaced by icons!
+# mycp military	danger_area     # Keep shaders with background color, cannot be replaced by icons!
+
 mygroup landuse mm_landuse_coniferous.png
 mycp landuse grass mm_landuse_grass.png
-mycp landuse forest mm_landuse_coniferous.png  # KEEP SHADERS!
-mycp natural beach mm_tourist_beach.png  # KEEP SHADERS!
-mycp landuse cemetery mm_place_of_worship_christian3.png  # KEEP SHADERS!
-mycp amenity grave_yard mm_place_of_worship_christian3.png  #  KEEP SHADERS!
-mycp natural scrub mm_landuse_scrub.png  # KEEP SHADERS!
-mycp natural swamp mm_landuse_swamp.png  # KEEP SHADERS!
-mycp tourism zoo mm_tourist_zoo.png  # KEEP SHADERS!
-mycp military danger_area mm_poi_mine.png  # KEEP SHADERS!
-mycp natural glacier mm_poi_peak2.png  # KEEP SHADERS! ? not really good icon
-# mycp natural wetland  # KEEP SHADERS!
-# mycp natural marsh  # KEEP SHADERS! ?
-# mycp natural mud  KEEP SHADERS!
-# mycp natural scrub  KEEP SHADERS!
-# mycp landuse orchard  KEEP SHADERS!
-# mycp landuse vineyard  KEEP SHADERS!
-# mycp leisure nature_reserve  KEEP SHADERS!
-# mycp landuse quarry  KEEP SHADERS!
+mycp landuse forest mm_landuse_coniferous.png               # Keep shaders with background color, cannot be replaced by icons!
+mycp natural beach mm_tourist_beach.png                     # Keep shaders with background color, cannot be replaced by icons!
+mycp landuse cemetery mm_place_of_worship_christian3.png    # Keep shaders with background color, cannot be replaced by icons!
+mycp amenity grave_yard mm_place_of_worship_christian3.png  # Keep shaders with background color, cannot be replaced by icons!
+mycp natural scrub mm_landuse_scrub.png                     # Keep shaders with background color, cannot be replaced by icons!
+mycp natural swamp mm_landuse_swamp.png                     # Keep shaders with background color, cannot be replaced by icons!
+mycp tourism zoo mm_tourist_zoo.png                         # Keep shaders with background color, cannot be replaced by icons!
+mycp military danger_area mm_poi_mine.png                   # Keep shaders with background color, cannot be replaced by icons!
+mycp natural glacier mm_poi_peak2.png                       # Keep shaders with background color, cannot be replaced by icons!
 
 
 ## Place-dots
