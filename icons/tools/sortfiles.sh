@@ -178,7 +178,7 @@ mycp amenity arts_centre mm_tourist_art_gallery2.png
 ## Amenities
 mycp amenity bench mm_amenity_bench.png
 mycp amenity embassy mm_poi_embassy.png
-#! mycp amenity grave_yard  USES SHADER: grave_yard
+#! mycp amenity grave_yard mm_place_of_worship_christian3.png  #already defined as icon in the shader section 
 mycp amenity police mm_amenity_police2.png
 mycp amenity post_box mm_amenity_post_box.png
 mycp amenity post_office mm_amenity_post_office.png
@@ -217,7 +217,7 @@ mycp leisure marina mm_transport_marina.png
 mycp leisure ice_rink mm_sport_iceskating.png
 mycp leisure slipway mm_transport_slipway.png
 mycp leisure playground mm_amenity_playground.png
-#! mycp leisure fishing mm_sport_leisure_centre.png  #no good icon for leisure=fishing. Could use shop=seafood icon, but in leisure-green.
+mycp leisure fishing mm_sport_fishing.png  #used shop=fish turned by 45 degrees for now
 mycp leisure water_park mm_sport_swimming_outdoor.png
 mycp leisure sports_centre mm_sport_leisure_centre.png
 mycp leisure bird_hide mm_poi_tower_lookout.png
