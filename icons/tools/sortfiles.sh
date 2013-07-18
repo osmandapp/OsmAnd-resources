@@ -204,11 +204,11 @@ mygroup finance mm_money_bank2.png
 ## Natural
 mygroup natural mm_poi_peak2.png
 mycp natural peak mm_functional-icons_peak.png  #needs black icon!  #scale 0.5
-mycp natural peak_night mm_functional-icons_peak_night.png  #Important for night orienteering to have ORANGE peak_night version! (=day version with color #FF6600)   #scale 0.5
+mycp natural peak_night mm_functional-icons_peak_night.png  #Important for night orienteering to have ORANGE peak_night version! (=day version with color #FF6600)  #scale 0.5
 mycp natural volcano mm_functional-icons_volcano.png  #Is mm_poi_peak.png with color #D40000  #scale 0.5
 mycp natural cave_entrance mm_poi_cave.png
 mycp natural spring mm_functional-icons_spring.png  #scale 0.375
-#! mycp natural tree  MISSING: tree
+mycp natural tree mm_functional-icons_tree.png  #scale 0.25
 
 
 ## Leisure
