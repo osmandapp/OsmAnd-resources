@@ -280,7 +280,7 @@ mycp sport skiing mm_sport_skiing_downhill.png
 mycp sport diving mm_sport_diving.png
 mycp sport billiard mm_sport_snooker.png
 mycp sport gymnastics mm_sport_gymnasium.png
-#! mycp sport scuba_diving MISSING:sport/scuba_diving
+mycp sport scuba_diving mm_sport_scuba_diving  #taken from NPS public library
 
 
 ## Shops
