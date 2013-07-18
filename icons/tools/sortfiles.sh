@@ -41,10 +41,10 @@ mycp natural glacier mm_poi_peak2.png  # KEEP SHADERS! ? not really good icon
 
 ## Place-dots
 mygroup administrative mm_poi_boundary_administrative.png
-mycp place city_night mm_functional-icons_city_night.png
-mycp place city mm_functional-icons_city.png
-mycp place town_night mm_functional-icons_town_night.png
-mycp place town mm_functional-icons_town.png
+mycp place city_night mm_functional-icons_city_night.png  #scale 0.5
+mycp place city mm_functional-icons_city.png  #scale 50%
+mycp place town_night mm_functional-icons_town_night.png  #scale 0.25
+mycp place town mm_functional-icons_town.png  #scale 25%
 
 
 ## Transportation 
@@ -71,11 +71,11 @@ mygroup transportation mm_transport_taxi_rank.png
 mycp amenity bicycle_parking mm_transport_parking_bicycle.png
 mycp railway station mm_transport_train_station.png
 mycp railway platform mm_transport_train_station2.png
-mycp railway halt mm_functional-icons_halt.png
+mycp railway halt mm_functional-icons_halt.png  #scale 0.25
 mycp railway tram_stop mm_transport_tram_stop.png
-mycp railway level_crossing mm_functional-icons_level_crossing.png
+mycp railway level_crossing mm_functional-icons_level_crossing.png  #scale 0.5
 mycp railway subway_entrance mm_transport_subway.png
-mycp railway station mm_functional-icons_station_small.png
+mycp railway station mm_functional-icons_station_small.png  #scale 0.375
 mycp railway subway mm_transport_subway.png
 mycp aeroway helipad mm_transport_helicopter_pad.png
 mycp aeroway aerodrome mm_transport_aerodrome.png
@@ -121,7 +121,7 @@ mycp amenity kindergarten mm_education_nursery2.png
 
 
 ## Man_made
-mycp power tower mm_functional-icons_power_tower.png
+mycp power tower mm_functional-icons_power_tower.png  #scale 0.5
 mygroup man_made mm_power_station_wind.png
 mygroup military mm_poi_military_bunker.png
 mycp power generator mm_power_station_wind.png
@@ -195,11 +195,11 @@ mygroup finance mm_money_bank2.png
 
 ## Natural
 mygroup natural mm_poi_peak2.png
-mycp natural peak mm_functional-icons_peak.png  #needs black icon!
-mycp natural peak_night mm_functional-icons_peak_night.png  #Important for night view to have ORANGE peak_night version! (=day version with color #FF6600)
-mycp natural volcano mm_functional-icons_volcano.png  #Is mm_poi_peak.png with color #D40000
+mycp natural peak mm_functional-icons_peak.png  #needs black icon!  #scale 0.5
+mycp natural peak_night mm_functional-icons_peak_night.png  #Important for night orienteering to have ORANGE peak_night version! (=day version with color #FF6600)   #scale 0.5
+mycp natural volcano mm_functional-icons_volcano.png  #Is mm_poi_peak.png with color #D40000  #scale 0.5
 mycp natural cave_entrance mm_poi_cave.png
-mycp natural spring mm_functional-icons_spring.png
+mycp natural spring mm_functional-icons_spring.png  #scale 0.375
 #! mycp natural tree  MISSING: tree
 
 
@@ -213,7 +213,7 @@ mycp leisure playground mm_amenity_playground.png
 mycp leisure water_park mm_sport_swimming_outdoor.png
 mycp leisure sports_centre mm_sport_leisure_centre.png
 mycp leisure bird_hide mm_poi_tower_lookout.png
-mycp waterway lock_gate mm_functional-icons_lock_gate.png
+mycp waterway lock_gate mm_functional-icons_lock_gate.png  #scale 0.5
 
 
 ## Historic
