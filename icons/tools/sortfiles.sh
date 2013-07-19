@@ -62,7 +62,7 @@ mycp highway ford mm_transport_ford.png
 
 mycp amenity bus_station mm_transport_bus_station.png
 mycp highway bus_stop mm_transport_bus_stop.png
-mycp highway bus_stop mm_transport_bus_stop_small.png
+mycp highway bus_stop mm_functional-icons_bus_stop_small.png
 mycp public_transport platform mm_transport_bus_stop.png
 mygroup public_transport mm_transport_bus_stop.png
 
