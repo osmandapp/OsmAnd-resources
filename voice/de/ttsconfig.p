@@ -32,6 +32,7 @@ string('make_uturn_wp.ogg', 'Wenn möglich, bitte wenden ').
 string('after.ogg', 'nach ').
 string('prepare.ogg', ' ').
 string('then.ogg', 'dann ').
+string('and.ogg', 'und ').
 string('take.ogg', 'nehmen Sie die ').
 string('exit.ogg', 'Ausfahrt ').
 string('prepare_roundabout.ogg', 'Einbiegen in Kreisverkehr ').
@@ -100,7 +101,7 @@ make_ut -- ['make_uturn2.ogg'].
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
 prepare_roundabout(Dist) -- ['prepare_roundabout.ogg', 'after.ogg', D] :- distance(Dist, dativ) -- D.
-roundabout(Dist, _Angle, Exit) -- ['after.ogg', D, 'roundabout.ogg', 'then.ogg', 'take.ogg', E, 'exit.ogg'] :- distance(Dist, dativ) -- D, nth(Exit, E).
+roundabout(Dist, _Angle, Exit) -- ['after.ogg', D, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg'] :- distance(Dist, dativ) -- D, nth(Exit, E).
 roundabout(_Angle, Exit) -- ['take.ogg', E, 'exit.ogg'] :- nth(Exit, E).
 
 go_ahead -- ['go_ahead.ogg'].

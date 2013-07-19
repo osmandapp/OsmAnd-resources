@@ -38,6 +38,7 @@ string('make_uturn_wp.ogg', 'cuando sea posible, da la vuelta').
 string('after.ogg', 'tras ').
 string('prepare.ogg', 'prepárate para').
 string('then.ogg', '. Luego').
+string('and.ogg', 'y').
 string('take.ogg', 'toma la').
 string('exit.ogg', 'salida').
 string('prepare_roundabout.ogg', 'Prepárate para entrar en la rotonda tras').
@@ -59,10 +60,10 @@ string('1st.ogg', 'primera').
 string('2nd.ogg', 'segunda').
 string('3rd.ogg', 'tercera').
 string('4th.ogg', 'cuarta').
-string('5th.ogg', 'quinta'').
+string('5th.ogg', 'quinta').
 string('6th.ogg', 'sexta').
 string('7th.ogg', 'séptima').
-string('8th.ogg', 'octava'').
+string('8th.ogg', 'octava').
 string('9th.ogg', 'novena').
 string('10th.ogg', 'décima').
 string('11th.ogg', 'undécima').
@@ -84,7 +85,7 @@ string('tenths_of_a_mile.ogg', 'décimas de milla').
 string('around_1_mile.ogg', 'cerca de una milla').
 string('miles.ogg', 'millas').
 
-string('yards.ogg', 'yardaa').
+string('yards.ogg', 'yardas').
 
 
 %% TURNS 
@@ -118,7 +119,7 @@ make_ut -- ['make_uturn.ogg'].
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
 prepare_roundabout(Dist) -- ['prepare_roundabout.ogg', D] :- distance(Dist) -- D.
-roundabout(Dist, _Angle, Exit) -- ['after.ogg', D, 'roundabout.ogg', 'then.ogg', 'take.ogg', E, 'exit.ogg'] :- distance(Dist) -- D, nth(Exit, E).
+roundabout(Dist, _Angle, Exit) -- ['after.ogg', D, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg'] :- distance(Dist) -- D, nth(Exit, E).
 roundabout(_Angle, Exit) -- ['take.ogg', E, 'exit.ogg'] :- nth(Exit, E).
 
 go_ahead -- ['go_ahead.ogg'].

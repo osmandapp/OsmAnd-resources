@@ -7,75 +7,77 @@ version(101).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
-language('en').
-fest_language('cmu_us_awb_arctic_clunits').
+language('it').
+fest_language('Italian').
 
 % before each announcement (beep)
 preamble - [].
 
-string('left.ogg', 'turn left ').
-string('left_sh.ogg', 'turn sharply left ').
-string('left_sl.ogg', 'turn slightly left ').
-string('right.ogg', 'turn right ').
-string('right_sh.ogg', 'turn sharply right ').
-string('right_sl.ogg', 'turn slightly right ').
-string('left_keep.ogg', 'keep left').
-string('right_keep.ogg', 'keep right').
+string('left.ogg', 'girare a sinistra').
+string('left_sh.ogg', 'subito a sinistra').
+string('left_sl.ogg', 'girare leggermente a sinistra').
+string('right.ogg', 'girare a destra').
+string('right_sh.ogg', 'subito a destra').
+string('right_sl.ogg', 'girate leggermente a destra').
+string('left_keep.ogg', 'tenersi sulla sinistra).
+string('right_keep.ogg', 'tenersi sulla destra').
 
-string('attention.ogg', 'attention ').
-string('make_uturn.ogg', 'Make a U turn ').
-string('make_uturn_wp.ogg', 'When possible, please make a U turn ').
-string('after.ogg', 'after ').
-string('prepare.ogg', 'Prepare to ').
-string('then.ogg', 'then ').
-string('and.ogg', 'and ').
-string('take.ogg', 'take the ').
-string('exit.ogg', 'exit ').
-string('prepare_roundabout.ogg', 'Prepare to enter a roundabout ').
-string('roundabout.ogg', 'enter the roundabout, ').
-string('go_ahead.ogg', 'Go straight ahead ').
-string('go_ahead_m.ogg', 'Follow the course of the road for ').
-string('and_arrive_destination.ogg', 'and arrive at your destination ').
-string('reached_destination.ogg','you have reached your destination ').
-string('and_arrive_intermediate.ogg', 'and arrive at your waypoint ').
-string('reached_intermediate.ogg', 'you have reached your waypoint ').
-string('route_is.ogg', 'The trip is ').
-string('route_calculate.ogg', 'Route recalculated, distance ').
-string('location_lost.ogg', 'g p s signal lost ').
-string('on.ogg', 'on ').
-string('off_route.ogg', 'you have deviated from the route ').
-string('exceed_limit.ogg', 'you are exceeding the speed limit ').
+string('attention.ogg', 'attenzione').
+string('prepare_uturn.ogg', 'Prepararsi ad una inversione ad u tra').
+string('make_uturn.ogg', 'inversione ad u').
+string('make_uturn_wp.ogg', 'Quando possibile, inversione a u').
+string('after.ogg', 'tra').
+string('after1.ogg', 'dopo').
+string('prepare.ogg', 'prepararsi a').
+string('then.ogg', ', poi').
+string('and.ogg', 'e').
+string('take.ogg', 'prendete la').
+string('exit.ogg', 'uscita').
+string('prepare_roundabout.ogg', 'entrerete in una rotonda').
+string('roundabout.ogg', 'entrate nella rotonda').
+string('go_ahead.ogg', 'Sempre dritto').
+string('go_ahead_m.ogg', 'Sempre dritto per').
+string('and_arrive_destination.ogg', 'e arrivate a destinazione').
+string('reached_destination.ogg','arrivato a destinazione').
+string('and_arrive_intermediate.ogg', 'e arrivate a punto intermedio').
+string('reached_intermediate.ogg', 'arrivato a punto intermedio').
+string('route_is.ogg', 'Il viaggio è lungo').
+string('route_calculate.ogg', 'Ricalcolo percorso , lunghezza').
+string('location_lost.ogg', 'Segnale G P S perso').
+string('on.ogg', 'in').
+string('off_route.ogg', 'avete deviato dalla rotta').
+string('exceed_limit.ogg', 'si supera il limite di velocità').
 
-string('1st.ogg', 'first ').
-string('2nd.ogg', 'second ').
-string('3rd.ogg', 'third ').
-string('4th.ogg', 'fourth ').
-string('5th.ogg', 'fifth ').
-string('6th.ogg', 'sixth ').
-string('7th.ogg', 'seventh ').
-string('8th.ogg', 'eighth').
-string('9th.ogg', 'nineth ').
-string('10th.ogg', 'tenth ').
-string('11th.ogg', 'eleventh ').
-string('12th.ogg', 'twelfth ').
-string('13th.ogg', 'thirteenth ').
-string('14th.ogg', 'fourteenth ').
-string('15th.ogg', 'fifteenth ').
-string('16th.ogg', 'sixteenth ').
-string('17th.ogg', 'seventeenth ').
+string('1st.ogg', 'prima uscita').
+string('2nd.ogg', 'seconda uscita').
+string('3rd.ogg', 'terza uscita').
+string('4th.ogg', 'quarta uscita').
+string('5th.ogg', 'quinta uscita').
+string('6th.ogg', 'sesta uscita').
+string('7th.ogg', 'settima uscita').
+string('8th.ogg', 'ottava uscita').
+string('9th.ogg', 'nona uscita').
+string('10th.ogg', 'decima uscita').
+string('11th.ogg', 'undicesima uscita').
+string('12th.ogg', 'dodicesima uscita').
+string('13th.ogg', 'tredicesima uscita').
+string('14th.ogg', 'quattordicesima uscita').
+string('15th.ogg', 'quindicesima uscita').
+string('16th.ogg', 'sedicesima uscita').
+string('17th.ogg', 'diciassettesima uscita').
 
-string('meters.ogg', 'meters ').
-string('around_1_kilometer.ogg', 'about 1 kilometer ').
-string('around.ogg', 'about ').
-string('kilometers.ogg', 'kilometers ').
+string('meters.ogg', 'metri').
+string('around_1_kilometer.ogg', 'circa un chilometro').
+string('around.ogg', 'circa').
+string('kilometers.ogg', 'chilometri').
 
-string('feet.ogg', 'feet ').
-string('tenth_of_a_mile.ogg', 'tenth of a mile').
-string('tenths_of_a_mile.ogg', 'tenths of a mile').
-string('around_1_mile.ogg', 'about 1 mile ').
-string('miles.ogg', 'miles ').
+string('feet.ogg', 'pies').
+string('tenth_of_a_mile.ogg', 'decimo di miglio').
+string('tenths_of_a_mile.ogg', 'decimi di miglio').
+string('around_1_mile.ogg', 'circa 1 miglio').
+string('miles.ogg', 'miglia').
 
-string('yards.ogg', 'yards ').
+string('yards.ogg', 'iarde').
 
 
 %% TURNS 
@@ -91,15 +93,15 @@ bear_left -- ['left_keep.ogg'].
 bear_right -- ['right_keep.ogg'].
 
 prepare_turn(Turn, Dist) -- ['prepare.ogg', M, 'after.ogg', D, ' '] :- distance(Dist) -- D, turn(Turn, M).
-turn(Turn, Dist) -- ['after.ogg', D, M] :- distance(Dist) -- D, turn(Turn, M).
+turn(Turn, Dist) -- ['after1.ogg', D, M] :- distance(Dist) -- D, turn(Turn, M).
 turn(Turn) -- M :- turn(Turn, M).
 
-prepare_make_ut(Dist) -- ['prepare.ogg', 'make_uturn.ogg', 'after.ogg', D] :- distance(Dist) -- D.
+prepare_make_ut(Dist) -- ['prepare_uturn.ogg', D] :- distance(Dist) -- D.
 make_ut(Dist) --  ['after.ogg', D, 'make_uturn.ogg'] :- distance(Dist) -- D.
 make_ut -- ['make_uturn.ogg'].
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
-prepare_roundabout(Dist) -- ['prepare_roundabout.ogg', 'after.ogg', D] :- distance(Dist) -- D.
+prepare_roundabout(Dist) -- ['after.ogg', D, 'prepare_roundabout.ogg'] :- distance(Dist) -- D.
 roundabout(Dist, _Angle, Exit) -- ['after.ogg', D, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg'] :- distance(Dist) -- D, nth(Exit, E).
 roundabout(_Angle, Exit) -- ['take.ogg', E, 'exit.ogg'] :- nth(Exit, E).
 
