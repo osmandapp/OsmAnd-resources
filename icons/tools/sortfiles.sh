@@ -49,10 +49,10 @@ mycp natural glacier mm_poi_peak2.png                       # Keep shaders with 
 
 ## Place-dots
 mygroup administrative mm_poi_boundary_administrative.png
-mycp place city_night mm_functional-icons_city_night.png  #scale 0.5
-mycp place city mm_functional-icons_city.png  #scale 50%
+mycp place city_night mm_functional-icons_city_night.png  #scale 0.375
+mycp place city mm_functional-icons_city.png  #scale 0.375
 mycp place town_night mm_functional-icons_town_night.png  #scale 0.25
-mycp place town mm_functional-icons_town.png  #scale 25%
+mycp place town mm_functional-icons_town.png  #scale .25
 
 
 ## Transportation 
