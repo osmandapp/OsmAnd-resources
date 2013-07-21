@@ -46,8 +46,8 @@ go_ahead(Dist) == ['Continuez pendant ', D]:- distance(Dist) == D.
 then == ['puis '].
 and_arrive_destination == ['et arrivez à destination '].
 reached_destination == ['vous êtes arrivé à destination '].
-and_arrive_intermediate == ['et arrivez à l'étape '].
-reached_intermediate == ['vous êtes arrivé à l'étape'].
+and_arrive_intermediate == ['et arrivez à l étape ']. % !!! no apostrophe
+reached_intermediate == ['vous êtes arrivé à l étape'].
 
 route_new_calc(Dist) == ['L itinéraire fait  ', D] :- distance(Dist) == D.
 route_recalc(Dist) == ['recalcul de l itinéraire, l itinéraire fait ', D] :- distance(Dist) == D.
