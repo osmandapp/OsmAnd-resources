@@ -8,7 +8,6 @@ recolour() {
     fill="$2"
     stroke="$3"
     background="$4"
-
 sed_script=$(cat << EOF
     s/fill:#111111/fill:${fill};/g
     s/fill:#111;/fill:${fill};/g
@@ -20,8 +19,8 @@ sed_script=$(cat << EOF
     s/stroke:white/stroke:${background};/g
     s/fill:#ffffff/fill:${background};/g
     s/stroke:#ffffff/stroke:${background};/g
-EOF)
-
+EOF
+)
     sed "$sed_script" $filename
 }
 
