@@ -62,7 +62,7 @@ mycp highway ford mm_transport_ford.png
 
 mycp amenity bus_station mm_transport_bus_station.png
 mycp highway bus_stop mm_transport_bus_stop.png
-mycp highway bus_stop mm_functional-icons_bus_stop_small.png
+mycp highway bus_stop_small mm_functional-icons_bus_stop_small.png
 mycp public_transport platform mm_transport_bus_stop.png
 mygroup public_transport mm_transport_bus_stop.png
 
@@ -83,8 +83,7 @@ mycp railway halt mm_functional-icons_halt.png  #scale 0.25
 mycp railway tram_stop mm_transport_tram_stop.png
 mycp railway level_crossing mm_functional-icons_level_crossing.png  #scale 0.5
 mycp railway subway_entrance mm_transport_subway.png
-mycp railway station mm_functional-icons_station_small.png  #scale 0.375
-mycp railway subway mm_transport_subway.png
+mycp railway station_small mm_functional-icons_station_small.png  #scale 0.375
 mycp aeroway helipad mm_transport_helicopter_pad.png
 mycp aeroway aerodrome mm_transport_aerodrome.png
 mycp aeroway airport mm_transport_airport.png
@@ -92,7 +91,6 @@ mycp aeroway airport mm_transport_airport.png
 
 ## Barrier
 mygroup barrier mm_barrier_bollard.png
-mycp highway gate mm_barrier_gate.png
 mycp barrier gate mm_barrier_gate.png
 mycp barrier lift_gate mm_barrier_lift_gate.png
 mycp barrier sally_port mm_barrier_bollard.png
@@ -102,7 +100,7 @@ mycp barrier kissing_gate mm_barrier_kissing_gate.png
 mycp barrier toll_booth mm_barrier_toll_booth.png
 mycp barrier border_control mm_barrier_lift_gate.png
 mycp barrier entrance mm_barrier_entrance.png
-mycp building entrance mm_barrier_entrance.png #in-building feature, render only from zoom 18 (could do the same for aeroway/gate)
+mycp aeroway gate mm_transport_airport_gate.png
 
 
 ## Sustenance
@@ -172,7 +170,6 @@ mycp geocache found mm_poi_point_of_interest.png
 mycp office government mm_amenity_public_building.png
 mycp amenity public_building mm_amenity_public_building.png
 mycp amenity arts_centre mm_tourist_art_gallery2.png
-mycp amenity arts_centre mm_tourist_art_gallery2.png
 
 
 ## Amenities
@@ -191,6 +188,7 @@ mycp amenity fountain mm_amenity_fountain2.png
 mycp amenity marketplace mm_shopping_marketplace.png
 mycp amenity townhall mm_amenity_town_hall2.png
 mycp amenity courthouse mm_amenity_court.png
+mycp amenity nightclub mm_tourist_night_club.png
 
 
 ## Finance
