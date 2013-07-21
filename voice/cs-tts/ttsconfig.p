@@ -51,18 +51,18 @@ go_ahead(Dist) == ['pokračujte', D]:- distance(Dist,workaround) == D.
 then == ['pak'].
 and_arrive_destination == ['a dorazíte do cíle'].
 reached_destination == ['dorazili jste do cíle'].
-% and_arrive_intermediate == ['and arrive at your waypoint '].
-% reached_intermediate == ['you have reached your waypoint '].
+and_arrive_intermediate == ['a dorazíte do mezicíle '].
+reached_intermediate == ['dorazili jste do mezicíle '].
 
 route_new_calc(Dist) == ['cesta je dlouhá', D] :- distance(Dist,accusative) == D.
 route_recalc(Dist) == ['přepočítávám. cesta je dlouhá', D] :- distance(Dist,accusative) == D.
 
 location_lost == ['ztráta signálu'].
 
-% on_street == ['on ', X] :- next_street(X).
-% off_route == ['you have deviated from the route '].
-% attention == ['attention '].
-% speed_alarm == ['you are exceeding the speed limit '].
+on_street == ['na ', X] :- next_street(X).
+off_route == ['odchylujete se z trasy '].
+attention == ['pozor '].
+speed_alarm == ['překračujete povolenou rychlost '].
 
 
 %% 
