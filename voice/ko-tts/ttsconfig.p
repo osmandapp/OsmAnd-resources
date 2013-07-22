@@ -37,18 +37,18 @@ go_ahead(Dist) == [D, ' 직진하세요 ']:- distance(Dist) == D.
 then == [', 다음은 '].
 and_arrive_destination == [' 다음은 목적지에 도착합니다 ']. % Miss and?
 reached_destination == ['목적지에 도착하였습니다 '].
-and_arrive_intermediate == ['and arrive at your via point '].
-reached_intermediate == ['you have reached your via point'].
+and_arrive_intermediate == ['당신을 통해 지점에 도착 '].
+reached_intermediate == ['당신은 당신을 통해 지점에 도달했습니다'].
 
 route_new_calc(Dist) == ['총 거리는 ', D, ' 입니다 '] :- distance(Dist) == D.
 route_recalc(Dist) == ['경로가 재탐색되었습니다. 거리는  ', D, ' 입니다 '] :- distance(Dist) == D.
 
 location_lost == ['g p s 신호가 없습니다 '].
 
-% on_street == ['on ', X] :- next_street(X).
-% off_route == ['you have deviated from the route '].
-% attention == ['attention '].
-% speed_alarm == ['you are exceeding the speed limit '].
+on_street == ['에 ', X] :- next_street(X).
+off_route == ['당신은 경로에서 이탈했다 '].
+attention == ['주의 '].
+speed_alarm == ['당신은 속도 제한을 초과하는 '].
 
 
 %% 

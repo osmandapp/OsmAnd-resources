@@ -47,18 +47,18 @@ go_ahead(Dist) == ['Sigue la vía durante ', D]:- distance(Dist) == D.
 then == ['. Luego '].
 and_arrive_destination == ['y llegarás a tu destino'].
 reached_destination == ['has llegado a tu destino'].
-% and_arrive_intermediate == ['and arrive at your waypoint '].
-% reached_intermediate == ['you have reached your waypoint '].
+and_arrive_intermediate == ['y llegarás a tu punto intermedio '].
+reached_intermediate == ['has llegado a tu punto intermedio '].
 
 route_new_calc(Dist) == ['El camino es ', D] :- distance(Dist) == D.
 route_recalc(Dist) == ['Ruta recalculada, distancia ', D] :- distance(Dist) == D.
 
 location_lost == ['señal g p s perdida '].
 
-% on_street == ['on ', X] :- next_street(X).
-% off_route == ['you have deviated from the route '].
-% attention == ['attention '].
-% speed_alarm == ['you are exceeding the speed limit '].
+on_street == ['en ', X] :- next_street(X).
+off_route == ['has desviado de la ruta '].
+attention == ['atención '].
+speed_alarm == ['que se exceda el límite de velocidad '].
 
 
 %%

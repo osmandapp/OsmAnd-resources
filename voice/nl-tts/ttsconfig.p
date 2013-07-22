@@ -45,10 +45,10 @@ route_recalc(Dist) == ['Afstand is opnieuw berekend, de nieuwe afstand is', D] :
 
 location_lost == ['G P S  Signaal verloren '].
 
-% on_street == ['on ', X] :- next_street(X).
-% off_route == ['you have deviated from the route '].
-% attention == ['attention '].
-% speed_alarm == ['you are exceeding the speed limit '].
+on_street == ['naar ', X] :- next_street(X).
+off_route == ['u bent afgeweken van de route '].
+attention == ['aandacht '].
+speed_alarm == ['u overschrijding van de maximumsnelheid '].
 
 
 %% 

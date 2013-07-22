@@ -45,10 +45,10 @@ route_recalc(Dist) == ['Ricalcolo percorso , lunghezza ', D] :- distance(Dist) =
 
 location_lost == ['Segnale G P S perso '].
 
-% on_street == ['on ', X] :- next_street(X).
-% off_route == ['you have deviated from the route '].
-% attention == ['attention '].
-% speed_alarm == ['you are exceeding the speed limit '].
+on_street == ['in ', X] :- next_street(X).
+off_route == ['avete deviato dalla rotta '].
+attention == ['attenzione '].
+speed_alarm == ['si supera il limite di velocità '].
 
 
 %% 

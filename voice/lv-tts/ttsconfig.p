@@ -37,18 +37,18 @@ go_ahead(Dist) == ['Brauciet pa ceļu ', D]:- distance2(Dist) == D.
 then == ['tad '].
 and_arrive_destination == ['un ierodaties galapunktā '].
 reached_destination == ['jūs esiet nokļuvis galapunktā '].
-and_arrive_intermediate == ['and arrive at your via point '].
-reached_intermediate == ['you have reached your via point'].
+and_arrive_intermediate == ['un nonākt pie jūsu pieturu '].
+reached_intermediate == ['jūs esat sasniedzis savu, izmantojot punktu '].
 
 route_new_calc(Dist) == ['Brauciens ir ', D] :- distance2(Dist) == D.
 route_recalc(Dist) == ['Maršruts ir pārēķināts, attālums ir ', D] :- distance2(Dist) == D.
 
 location_lost == ['pazudis g p s signāls '].
 
-% on_street == ['on ', X] :- next_street(X).
-% off_route == ['you have deviated from the route '].
-% attention == ['attention '].
-% speed_alarm == ['you are exceeding the speed limit '].
+on_street == ['uz ', X] :- next_street(X).
+off_route == ['jūs esat novirzījušies no maršruta '].
+attention == ['uzmanība '].
+speed_alarm == ['Jums ir ātruma pārsniegšanu '].
 
 
 %% 

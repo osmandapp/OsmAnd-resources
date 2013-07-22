@@ -37,18 +37,18 @@ go_ahead(Dist) == [D, ' तक रास्ते का पालन करे 
 then == ['और फिर '].
 and_arrive_destination == [' और अपनी मंजिल पर पहोचे '].
 reached_destination == ['आप अपनी मंजिल पर पहोच चुके है '].
-and_arrive_intermediate == ['and arrive at your via point '].
-reached_intermediate == ['you have reached your via point'].
+and_arrive_intermediate == ['और आपके माध्यम बिंदु  '].
+reached_intermediate == ['आप अपने माध्यम बिंदु पर पहुंच गया है '].
 
 route_new_calc(Dist) == ['अंतर ', D, ' है'] :- distance(Dist) == D.
 route_recalc(Dist) == ['मार्ग पुनर्गणना, अंतर ', D] :- distance(Dist) == D.
 
 location_lost == ['जी पी एस सिग्नल नही '].
 
-% on_street == ['on ', X] :- next_street(X).
-% off_route == ['you have deviated from the route '].
-% attention == ['attention '].
-% speed_alarm == ['you are exceeding the speed limit '].
+on_street == ['पर ', X] :- next_street(X).
+off_route == ['आप मार्ग से भटक गए हैं '].
+attention == ['ध्यान '].
+speed_alarm == ['आप गति सीमा से अधिक कर रहे हैं '].
 
 
 %% 

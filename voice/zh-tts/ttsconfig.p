@@ -37,18 +37,18 @@ go_ahead(Dist) == ['沿著馬路往前 ', D]:- distance(Dist) == D.
 then == ['然後 '].
 and_arrive_destination == ['然後可達終點 '].
 reached_destination == ['抵達終點 '].
-and_arrive_intermediate == ['and arrive at your via point '].
-reached_intermediate == ['you have reached your via point'].
+and_arrive_intermediate == ['並通過點到達 '].
+reached_intermediate == ['你已經達到你通過點 '].
 
 route_new_calc(Dist) == ['路程有 ', D, ' 遠'] :- distance(Dist) == D.
 route_recalc(Dist) == ['重新計算路程, 距離有 ', D] :- distance(Dist) == D.
 
 location_lost == ['接收不到 g p s 信號 '].
 
-% on_street == ['on ', X] :- next_street(X).
-% off_route == ['you have deviated from the route '].
-% attention == ['attention '].
-% speed_alarm == ['you are exceeding the speed limit '].
+on_street == ['到 ', X] :- next_street(X).
+off_route == ['你已經偏離路線 '].
+attention == ['注意 '].
+speed_alarm == ['你超速 '].
 
 
 %% 

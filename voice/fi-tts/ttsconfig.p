@@ -54,10 +54,10 @@ route_recalc(Dist) == ['Reitin uudelleenlaskenta ', D] :- distance(Dist, metria)
 
 location_lost == ['g p s signal lost '].
 
-on_street == ['on ', X] :- next_street(X).
-off_route == ['you have deviated from the route '].
-attention == ['attention '].
-speed_alarm == ['you are exceeding the speed limit '].
+on_street == ['to ', X] :- next_street(X).
+off_route == ['olet poikennut reitiltä '].
+attention == ['huomio '].
+speed_alarm == ['olet nopeusrajoituksen ylittämisestä '].
 
 
 %% 

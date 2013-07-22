@@ -54,10 +54,10 @@ route_recalc(Dist) == ['recalcul de l itinéraire, l itinéraire fait ', D] :- d
 
 location_lost == ['signal g p s perdu '].
 
-% on_street == ['on ', X] :- next_street(X).
-% off_route == ['you have deviated from the route '].
-% attention == ['attention '].
-% speed_alarm == ['you are exceeding the speed limit '].
+on_street == ['à ', X] :- next_street(X).
+off_route == ['vous avez dévié de l'itinéraire '].
+attention == ['attention '].
+speed_alarm == ['vous dépassez la limite de vitesse '].
 
 
 %% 

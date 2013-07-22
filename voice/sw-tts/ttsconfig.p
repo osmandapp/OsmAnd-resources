@@ -7,43 +7,50 @@ preamble - [].
 
 
 %% TURNS 
-turn('kushoto', ['geuka upande wa kushoto ']).
-turn('kushoto_sh', ['geuka sana upande wa kushoto ']).
-turn('kushoto_sl', ['geuka kiasi upande wa kushoto ']).
-turn('kulia', ['geuka upande wa kulia ']).
-turn('kulia_sh', ['geuka sana upande wa kulia ']).
-turn('kulia_sl', ['geuka kiasi upande wa kulia ']).
+turn('left', ['geuka upande wa kushoto ']).
+turn('left_sh', ['geuka sana upande wa kushoto ']).
+turn('left_sl', ['geuka kiasi upande wa kushoto ']).
+turn('right', ['geuka upande wa kulia ']).
+turn('right_sh', ['geuka sana upande wa kulia ']).
+turn('right_sl', ['geuka kiasi upande wa kulia ']).
+turn('left_keep', ['kaa upande wa kushoto ']).
+turn('right_keep', ['kaa upande wa kulia ']).
+bear_left == ['kaa upande wa kushoto '].
+bear_right == ['kaa upande wa kulia '].
 
-prepare_turn(Turn, Dist) == ['tayarisha ku ', M, ' baada ya ', D] :- 
-  		distance(Dist) == D, turn(Turn, M).
-turn(Turn, Dist) == ['Baada ya ', D, M] :- 
-			distance(Dist) == D, turn(Turn, M).
+
+prepare_turn(Turn, Dist) == ['tayarisha ku ', M, ' baada ya ', D] :- distance(Dist) == D, turn(Turn, M).
+turn(Turn, Dist) == ['Baada ya ', D, M] :- distance(Dist) == D, turn(Turn, M).
 turn(Turn) == M :- turn(Turn, M).
 
-
-prepare_make_ut(Dist) == ['Tayarisha kugeuka nyuma baada ya ', D] :- 
-		distance(Dist) == D.
-
-prepare_roundabout(Dist) == ['Tayarisha kuingia mzunguko baada ya ', D] :- 
-		distance(Dist) == D.
-
-make_ut(Dist) == ['Baada ya ', D, ' geuka nyuma '] :- 
-			distance(Dist) == D.
+prepare_make_ut(Dist) == ['Tayarisha kugeuka nyuma baada ya ', D] :- distance(Dist) == D.
+make_ut(Dist) == ['Baada ya ', D, ' geuka nyuma '] :- distance(Dist) == D.
 make_ut == ['Tafandali geuka kwa u turn '].
+make_ut_wp == ['wakati inawezekana, tafadhali kufanya u-kugeuka '].
 
+prepare_roundabout(Dist) == ['Tayarisha kuingia mzunguko baada ya ', D] :- distance(Dist) == D.
 roundabout(Dist, _Angle, Exit) == ['Baada ya ', D, ' ingia mzunguko, na uchukue upande wa ', E, 'kutoka'] :- distance(Dist) == D, nth(Exit, E).
 roundabout(_Angle, Exit) == ['chukua upande wa ', E, 'kutoka'] :- nth(Exit, E).
 
-and_arrive_destination == ['na ufike kifiko ']. % Miss and?
-then == ['then '].
-reached_destination == ['umefika '].
-bear_right == ['kaa upande wa kulia '].
-bear_left == ['kaa upande wa kushoto '].
-route_recalc(_Dist) == []. % ['inakadiri tena njia '].  %nothing to said possibly beep?	
-route_new_calc(Dist) == ['Safani ni urefu wa ', D] :- distance(Dist) == D. % nothing to said possibly beep?
-
 go_ahead(Dist) == ['Endesha kwa ', D]:- distance(Dist) == D.
 go_ahead == ['Endelea moja kwa moja mbele '].
+
+then == ['then '].
+and_arrive_destination == ['na ufike kifiko '].
+reached_destination == ['umefika '].
+and_arrive_intermediate == ['na kufika katika yako kupitia-uhakika '].
+reached_intermediate == ['wewe na kufikiwa yako kupitia-uhakika '].
+
+route_recalc(Dist) == ['njia ya re-mahesabu. umbali ', D]:- distance(Dist) == D. % ['inakadiri tena njia '].
+route_new_calc(Dist) == ['Safani ni urefu wa ', D] :- distance(Dist) == D.
+
+location_lost == ['g p s ishara waliopotea '].
+
+on_street == ['kwenye ', X] :- next_street(X).
+off_route == ['una jitenga na njia '].
+attention == ['makini '].
+speed_alarm == ['wewe ni mno kikomo kasi '].
+
 
 %% 
 nth(1, 'kwanza ').
@@ -66,46 +73,12 @@ nth(17, 'kumi na saba ').
 
 
 %%% distance measure
-distance(Dist) == T :- Dist < 1000, dist(Dist, F), append(F, ' mita',T).
-dist(D, ['10 ']) :-  D < 15, !.
-dist(D, ['20 ']) :-  D < 25, !.
-dist(D, ['30 ']) :-  D < 35, !.
-dist(D, ['40 ']) :-  D < 45, !.
-dist(D, ['50 ']) :-  D < 55, !.
-dist(D, ['60 ']) :-  D < 65, !.
-dist(D, ['70 ']) :-  D < 75, !.
-dist(D, ['80 ']) :-  D < 85, !.
-dist(D, ['90 ']) :-  D < 95, !.
-dist(D, ['100 ']) :-  D < 125, !.
-dist(D, ['150 ']) :-  D < 175, !.
-dist(D, ['200 ']) :-  D < 225, !.
-dist(D, ['250 ']) :-  D < 275, !.
-dist(D, ['300 ']) :-  D < 325, !.
-dist(D, ['350 ']) :-  D < 375, !.
-dist(D, ['400 ']) :-  D < 425, !.
-dist(D, ['450 ']) :-  D < 475, !.
-dist(D, ['500 ']) :-  D < 525, !.
-dist(D, ['550 ']) :-  D < 575, !.
-dist(D, ['600 ']) :-  D < 625, !.
-dist(D, ['650 ']) :-  D < 675, !.
-dist(D, ['700 ']) :-  D < 725, !.
-dist(D, ['750 ']) :-  D < 775, !.
-dist(D, ['800 ']) :-  D < 825, !.
-dist(D, ['850 ']) :-  D < 875, !.
-dist(D, ['900 ']) :-  D < 925, !.
-dist(D, ['950 ']) :-  D < 975, !.
-dist(D, ['1000 ']) :-  !.
+distance(Dist) ==     ['mita', X]                  :- Dist < 100,   D is round(Dist/10.0)*10,    num_atom(D, X).
+distance(Dist) ==     ['mita', X]                  :- Dist < 1000,  D is round(2*Dist/100.0)*50, num_atom(D, X).
+distance(Dist) ==     ['umbali wa kilomita moja '] :- Dist < 1500.
+distance(Dist) ==     ['kuhusu kilomita ', X]      :- Dist < 10000, D is round(Dist/1000.0),     num_atom(D, X).
+distance(Dist) ==     ['kilometa ', X]             :-               D is round(Dist/1000.0),     num_atom(D, X).
 
-distance(Dist) == ['kama kilomita moja '] :- Dist < 1500.
-distance(Dist) == ['kama kilomita mbili '] :- Dist < 2500.
-distance(Dist) == ['kama kilomita tatu '] :- Dist < 3500.
-distance(Dist) == ['kama kilomita nne '] :- Dist < 4500.
-distance(Dist) == ['kama kilomita tano '] :- Dist < 5500.
-distance(Dist) == ['kama kilomita sita '] :- Dist < 6500.
-distance(Dist) == ['kama kilomita saba '] :- Dist < 7500.
-distance(Dist) == ['kama kilomita nane '] :- Dist < 8500.
-distance(Dist) == ['kama kilomita tisa '] :- Dist < 9500.
-distance(Dist) == ['kama ', X, ' kilomita '] :- D is Dist/1000, dist(D, X).
 
 %% resolve command main method
 %% if you are familar with Prolog you can input specific to the whole mechanism,

@@ -45,10 +45,10 @@ route_recalc(Dist) == ['Επαναϋπολογισμός διαδρομής, α�
 
 location_lost == ['Το σήμα gps χάθηκε '].
 
-% on_street == ['on ', X] :- next_street(X).
-% off_route == ['you have deviated from the route '].
-% attention == ['attention '].
-% speed_alarm == ['you are exceeding the speed limit '].
+on_street == ['μετά ', X] :- next_street(X).
+off_route == ['έχετε παρεκκλίνει από τη διαδρομή '].
+attention == ['προσοχή '].
+speed_alarm == ['που υπερβαίνουν το όριο ταχύτητας '].
 
 
 %% 

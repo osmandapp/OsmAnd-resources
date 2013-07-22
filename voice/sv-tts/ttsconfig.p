@@ -37,18 +37,18 @@ go_ahead(Dist) == ['Följ den här vägen ', D]:- distance(Dist) == D.
 then == ['sedan '].
 and_arrive_destination == ['och du är framme '].
 reached_destination == ['du är framme '].
-and_arrive_intermediate == ['and arrive at your via point '].
-reached_intermediate == ['you have reached your via point'].
+and_arrive_intermediate == ['och anländer till din via-punkt '].
+reached_intermediate == ['du har nått din via-punkt '].
 
 route_new_calc(Dist) == ['Resan är ', D] :- distance(Dist) == D.
 route_recalc(Dist) == ['Ny väg beräknad, resan är ', D] :- distance(Dist) == D.
 
 location_lost == ['GPS-signalen borttappad '].
 
-% on_street == ['on ', X] :- next_street(X).
-% off_route == ['you have deviated from the route '].
-% attention == ['attention '].
-% speed_alarm == ['you are exceeding the speed limit '].
+on_street == ['på ', X] :- next_street(X).
+off_route == ['du har avvikit från rutten '].
+attention == ['uppmärksamhet '].
+speed_alarm == ['du överskrider hastighetsgränsen '].
 
 
 %% 
