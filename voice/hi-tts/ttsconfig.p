@@ -1,4 +1,4 @@
-﻿:- op('==', xfy, 500).
+﻿:- op('--', xfy, 500).
 version(101).
 language(hi).
 
@@ -15,40 +15,40 @@ turn('right_sh', [' तेजी से दायने ']).
 turn('right_sl', [' हलके से दायने ']).
 turn('left_keep', ['बाये रहे  ']).
 turn('right_keep', ['दायने रहे ']).
-bear_left == ['बाये रहे '].
-bear_right == ['दायने रहे '].
+bear_left -- ['बाये रहे '].
+bear_right -- ['दायने रहे '].
 
-prepare_turn(Turn, Dist) == [D, ' के बाद ', M, ' मुडने के लिये तयार रहे'] :- distance(Dist) == D, turn(Turn, M).
-turn(Turn, Dist) == [D, ' के बाद ', M, ' मुडिये'] :- distance(Dist) == D, turn(Turn, M).
-turn(Turn) == [M, ' मुडिये'] :- turn(Turn, M).
+prepare_turn(Turn, Dist) -- [D, ' के बाद ', M, ' मुडने के लिये तयार रहे'] :- distance(Dist) -- D, turn(Turn, M).
+turn(Turn, Dist) -- [D, ' के बाद ', M, ' मुडिये'] :- distance(Dist) -- D, turn(Turn, M).
+turn(Turn) -- [M, ' मुडिये'] :- turn(Turn, M).
 
-prepare_make_ut(Dist) == [D, 'के बाद वापस मुडने के लिये तयार रहे '] :- distance(Dist) == D.
-make_ut(Dist) == [D, ' के बाद वापस मुडिये '] :- distance(Dist) == D.
-make_ut == [' वापस मुडिये '].
-make_ut_wp == [' जब संभव हो तब वापस मुडिये '].
+prepare_make_ut(Dist) -- [D, 'के बाद वापस मुडने के लिये तयार रहे '] :- distance(Dist) -- D.
+make_ut(Dist) -- [D, ' के बाद वापस मुडिये '] :- distance(Dist) -- D.
+make_ut -- [' वापस मुडिये '].
+make_ut_wp -- [' जब संभव हो तब वापस मुडिये '].
 
-prepare_roundabout(Dist) == [D, 'के बाद वापस मुडने के लिये तयार रहे '] :- distance(Dist) == D.
-roundabout(Dist, _Angle, Exit) == [D, ' के बाद वापस मुडिये और बाहर जाने का ', E, 'मार्ग चुने '] :- distance(Dist) == D, nth(Exit, E).
-roundabout(_Angle, Exit) == ['बाहर जाने का ', E, 'मार्ग चुने '] :- nth(Exit, E).
+prepare_roundabout(Dist) -- [D, 'के बाद वापस मुडने के लिये तयार रहे '] :- distance(Dist) -- D.
+roundabout(Dist, _Angle, Exit) -- [D, ' के बाद वापस मुडिये और बाहर जाने का ', E, 'मार्ग चुने '] :- distance(Dist) -- D, nth(Exit, E).
+roundabout(_Angle, Exit) -- ['बाहर जाने का ', E, 'मार्ग चुने '] :- nth(Exit, E).
 
-go_ahead == [' सीधे आगे जाये '].
-go_ahead(Dist) == [D, ' तक रास्ते का पालन करे ']:- distance(Dist) == D.
+go_ahead -- [' सीधे आगे जाये '].
+go_ahead(Dist) -- [D, ' तक रास्ते का पालन करे ']:- distance(Dist) -- D.
 
-then == ['और फिर '].
-and_arrive_destination == [' और अपनी मंजिल पर पहोचे '].
-reached_destination == ['आप अपनी मंजिल पर पहोच चुके है '].
-and_arrive_intermediate == ['and arrive at your via point '].
-reached_intermediate == ['you have reached your via point'].
+then -- ['और फिर '].
+and_arrive_destination -- [' और अपनी मंजिल पर पहोचे '].
+reached_destination -- ['आप अपनी मंजिल पर पहोच चुके है '].
+and_arrive_intermediate -- ['and arrive at your via point '].
+reached_intermediate -- ['you have reached your via point'].
 
-route_new_calc(Dist) == ['अंतर ', D, ' है'] :- distance(Dist) == D.
-route_recalc(Dist) == ['मार्ग पुनर्गणना, अंतर ', D] :- distance(Dist) == D.
+route_new_calc(Dist) -- ['अंतर ', D, ' है'] :- distance(Dist) -- D.
+route_recalc(Dist) -- ['मार्ग पुनर्गणना, अंतर ', D] :- distance(Dist) -- D.
 
-location_lost == ['जी पी एस सिग्नल नही '].
+location_lost -- ['जी पी एस सिग्नल नही '].
 
-% on_street == ['on ', X] :- next_street(X).
-% off_route == ['you have deviated from the route '].
-% attention == ['attention '].
-% speed_alarm == ['you are exceeding the speed limit '].
+% on_street -- ['on ', X] :- next_street(X).
+% off_route -- ['you have deviated from the route '].
+% attention -- ['attention '].
+% speed_alarm -- ['you are exceeding the speed limit '].
 
 
 %% 
@@ -72,11 +72,11 @@ nth(17, 'सतरहवा ').
 
 
 %%% distance measure
-distance(Dist) == [ X, ' मीटर '] :- Dist < 100, D is round(Dist/10.0)*10, num_atom(D, X).
-distance(Dist) == [ X, ' मीटर '] :- Dist < 1000, D is round(2*Dist/100.0)*50, num_atom(D, X).
-distance(Dist) == ['साधारण 1 किलोमीटर '] :- Dist < 1500.
-distance(Dist) == ['साधारण ', X, ' किलोमीटर '] :- Dist < 10000, D is round(Dist/1000.0), num_atom(D, X).
-distance(Dist) == [ X, ' किलोमीटर '] :- D is round(Dist/1000.0), num_atom(D, X).
+distance(Dist) -- [ X, ' मीटर '] :- Dist < 100, D is round(Dist/10.0)*10, num_atom(D, X).
+distance(Dist) -- [ X, ' मीटर '] :- Dist < 1000, D is round(2*Dist/100.0)*50, num_atom(D, X).
+distance(Dist) -- ['साधारण 1 किलोमीटर '] :- Dist < 1500.
+distance(Dist) -- ['साधारण ', X, ' किलोमीटर '] :- Dist < 10000, D is round(Dist/1000.0), num_atom(D, X).
+distance(Dist) -- [ X, ' किलोमीटर '] :- D is round(Dist/1000.0), num_atom(D, X).
 
 
 %% resolve command main method
@@ -89,4 +89,7 @@ flatten(X, Acc, [X|Acc]).
 
 resolve(X, Y) :- resolve_impl(X,Z), flatten(Z, Y).
 resolve_impl([],[]).
-resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X == L) -> append(L, Tail, List); List = Tail).
+resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L, Tail, List); List = Tail).
+% handling alternatives
+[X|_Y] -- T :- (X -- T),!.
+[_X|Y] -- T :- (Y -- T).

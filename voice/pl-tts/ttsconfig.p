@@ -1,9 +1,6 @@
-﻿:- op('==', xfy, 500).
+﻿:- op('--', xfy, 500).
 version(101).
 language(pl).
-
-% before each announcement (beep)
-preamble - [].
 
 
 %% TURNS 
@@ -15,40 +12,40 @@ turn('right_sh', ['skręć ostro w prawo ']).
 turn('right_sl', ['skręć lekko w prawo ']).
 turn('left_keep', ['trzymaj się lewej strony']).
 turn('right_keep', ['trzymaj się prawej strony']).
-bear_left == ['trzymaj się lewej strony '].
-bear_right == ['trzymaj się prawej strony '].
+bear_left -- ['trzymaj się lewej strony '].
+bear_right -- ['trzymaj się prawej strony '].
 
-prepare_turn(Turn, Dist) == ['Za ', D, M] :- distance(Dist) == D, turn(Turn, M).
-turn(Turn, Dist) == ['Za ', D, M] :- distance(Dist) == D, turn(Turn, M).
-turn(Turn) == M :- turn(Turn, M).
+prepare_turn(Turn, Dist) -- ['Za ', D, M] :- distance(Dist) -- D, turn(Turn, M).
+turn(Turn, Dist) -- ['Za ', D, M] :- distance(Dist) -- D, turn(Turn, M).
+turn(Turn) -- M :- turn(Turn, M).
 
-prepare_make_ut(Dist) == ['Za ', D, ' zawróć'] :- distance(Dist) == D.
-make_ut(Dist) ==  ['Za ', D, ' zawróć'] :- distance(Dist) == D.
-make_ut == ['Zawróć '].
-make_ut_wp == ['Jeśli to możliwe, zawróć '].
+prepare_make_ut(Dist) -- ['Za ', D, ' zawróć'] :- distance(Dist) -- D.
+make_ut(Dist) --  ['Za ', D, ' zawróć'] :- distance(Dist) -- D.
+make_ut -- ['Zawróć '].
+make_ut_wp -- ['Jeśli to możliwe, zawróć '].
 
-prepare_roundabout(Dist) == ['Za ', D, ' wjedź na rondo'] :- distance(Dist) == D.
-roundabout(Dist, _Angle, Exit) == ['Za ', D, ' wjedź na rondo i wybierz ', E, 'zjazd'] :- distance(Dist) == D, nth(Exit, E).
-roundabout(_Angle, Exit) == [ 'Wybierz ', E, ' zjazd'] :- nth(Exit, E).
+prepare_roundabout(Dist) -- ['Za ', D, ' wjedź na rondo'] :- distance(Dist) -- D.
+roundabout(Dist, _Angle, Exit) -- ['Za ', D, ' wjedź na rondo i wybierz ', E, 'zjazd'] :- distance(Dist) -- D, nth(Exit, E).
+roundabout(_Angle, Exit) -- [ 'Wybierz ', E, ' zjazd'] :- nth(Exit, E).
 
-go_ahead == ['Jedź prosto '].
-go_ahead(Dist) == ['Jedź prosto przez ', D]:- distance(Dist) == D.
+go_ahead -- ['Jedź prosto '].
+go_ahead(Dist) -- ['Jedź prosto przez ', D]:- distance(Dist) -- D.
 
-then == [', następnie '].
-and_arrive_destination == [', następnie dojedź do celu '].
-reached_destination == ['cel podróży został osiągnięty '].
-and_arrive_intermediate == [', następnie dojedź do punktu pośredniego '].
-reached_intermediate == ['punkt pośredni został osiągnięty'].
+then -- [', następnie '].
+and_arrive_destination -- [', następnie dojedź do celu '].
+reached_destination -- ['cel podróży został osiągnięty '].
+and_arrive_intermediate -- [', następnie dojedź do punktu pośredniego '].
+reached_intermediate -- ['punkt pośredni został osiągnięty'].
 
-route_new_calc(Dist) == ['Długość trasy to ', D] :- distance(Dist) == D.
-route_recalc(Dist) == ['Nowa trasa wyznaczona, jej długość to ', D] :- distance(Dist) == D.
+route_new_calc(Dist) -- ['Długość trasy to ', D] :- distance(Dist) -- D.
+route_recalc(Dist) -- ['Nowa trasa wyznaczona, jej długość to ', D] :- distance(Dist) -- D.
 
-location_lost == ['Utracono sygnał GPS '].
+location_lost -- ['Utracono sygnał GPS '].
 
-on_street == ['na', X] :- next_street(X).
-off_route == ['Znajdujesz się poza trasą'].
-attention == ['Uwaga'].
-speed_alarm == ['Przekraczasz dozwoloną prędkość'].
+on_street -- ['na', X] :- next_street(X).
+off_route -- ['Znajdujesz się poza trasą'].
+attention -- ['Uwaga'].
+speed_alarm -- ['Przekraczasz dozwoloną prędkość'].
 
 
 %% 
@@ -72,12 +69,12 @@ nth(17, 'siedemnasty ').
 
 
 %%% distance measure
-distance(Dist) == [ X, ' metrów'] :- Dist < 100, D is round(Dist/10.0)*10, num_atom(D, X).
-distance(Dist) == [ X, ' metrów'] :- Dist < 1000, D is round(2*Dist/100.0)*50, num_atom(D, X).
-distance(Dist) == ['około jeden kilometr '] :- Dist < 1500.
-distance(Dist) == ['około ', X, ' kilometry '] :- Dist < 4500, D is round(Dist/1000.0), num_atom(D, X).
-distance(Dist) == ['około ', X, ' kilometrów '] :- Dist < 10000, D is round(Dist/1000.0), num_atom(D, X).
-distance(Dist) == [ X, ' kilometrów '] :- D is round(Dist/1000.0), num_atom(D, X).
+distance(Dist) -- [ X, ' metrów'] :- Dist < 100, D is round(Dist/10.0)*10, num_atom(D, X).
+distance(Dist) -- [ X, ' metrów'] :- Dist < 1000, D is round(2*Dist/100.0)*50, num_atom(D, X).
+distance(Dist) -- ['około jeden kilometr '] :- Dist < 1500.
+distance(Dist) -- ['około ', X, ' kilometry '] :- Dist < 4500, D is round(Dist/1000.0), num_atom(D, X).
+distance(Dist) -- ['około ', X, ' kilometrów '] :- Dist < 10000, D is round(Dist/1000.0), num_atom(D, X).
+distance(Dist) -- [ X, ' kilometrów '] :- D is round(Dist/1000.0), num_atom(D, X).
 
 
 %% resolve command main method
@@ -90,4 +87,8 @@ flatten(X, Acc, [X|Acc]).
 
 resolve(X, Y) :- resolve_impl(X,Z), flatten(Z, Y).
 resolve_impl([],[]).
-resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X == L) -> append(L, Tail, List); List = Tail).
+resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L, Tail, List); List = Tail).
+
+% handling alternatives
+[X|_Y] -- T :- (X -- T),!.
+[_X|Y] -- T :- (Y -- T).

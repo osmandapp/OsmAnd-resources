@@ -1,10 +1,6 @@
-﻿:- op('==', xfy, 500).
+﻿:- op('--', xfy, 500).
 version(101).
 language(sl).
-
-% before each announcement (beep)
-preamble - [].
-
 
 %% TURNS 
 turn('left', ['zavij levo ']).
@@ -15,40 +11,40 @@ turn('right_sh', ['zavij ostro desno ']).
 turn('right_sl', ['zavij rahlo desno ']).
 turn('left_keep', ['drži se levo ']).
 turn('right_keep', ['drži se desno ']).
-bear_left == ['drži se levo '].
-bear_right == ['drži se desno '].
+bear_left -- ['drži se levo '].
+bear_right -- ['drži se desno '].
 
-prepare_turn(Turn, Dist) == ['Čez ', D, M] :- distance(Dist) == D, turn(Turn, M).
-turn(Turn, Dist) == ['Čez ', D, M] :- distance(Dist) == D, turn(Turn, M).
-turn(Turn) == M :- turn(Turn, M).
+prepare_turn(Turn, Dist) -- ['Čez ', D, M] :- distance(Dist) -- D, turn(Turn, M).
+turn(Turn, Dist) -- ['Čez ', D, M] :- distance(Dist) -- D, turn(Turn, M).
+turn(Turn) -- M :- turn(Turn, M).
 
-prepare_make_ut(Dist) == ['Pripravi se na obrat nazaj čez ', D] :- distance(Dist) == D.
-make_ut(Dist) == ['Čez ', D, ' obrni nazaj '] :- distance(Dist) == D.
-make_ut == ['Obrni nazaj '].
-make_ut_wp == ['Čim bo mogoče obrni nazaj '].
+prepare_make_ut(Dist) -- ['Pripravi se na obrat nazaj čez ', D] :- distance(Dist) -- D.
+make_ut(Dist) -- ['Čez ', D, ' obrni nazaj '] :- distance(Dist) -- D.
+make_ut -- ['Obrni nazaj '].
+make_ut_wp -- ['Čim bo mogoče obrni nazaj '].
 
-prepare_roundabout(Dist) == ['Pripravite se na krožišče čez ', D] :- distance(Dist) == D.
-roundabout(Dist, _Angle, Exit) == ['Čez ', D, ' zapeljite v krožišče, nato pa uporabite ', E, ' izvoz '] :- distance(Dist) == D, nth(Exit, E).
-roundabout(_Angle, Exit) == ['Uporabite ', E, ' izvoz '] :- nth(Exit, E).
+prepare_roundabout(Dist) -- ['Pripravite se na krožišče čez ', D] :- distance(Dist) -- D.
+roundabout(Dist, _Angle, Exit) -- ['Čez ', D, ' zapeljite v krožišče, nato pa uporabite ', E, ' izvoz '] :- distance(Dist) -- D, nth(Exit, E).
+roundabout(_Angle, Exit) -- ['Uporabite ', E, ' izvoz '] :- nth(Exit, E).
 
-go_ahead == ['Pojdi naravnost naprej '].
-go_ahead(Dist) == ['Nadaljuj po cesti še ', D]:- distance(Dist) == D.
+go_ahead -- ['Pojdi naravnost naprej '].
+go_ahead(Dist) -- ['Nadaljuj po cesti še ', D]:- distance(Dist) -- D.
 
-then == ['nato '].
-and_arrive_destination == ['in prispete na cilj '].
-reached_destination == ['prispeli ste na cilj '].
-and_arrive_intermediate == ['in prispete na vmesni cilj '].
-reached_intermediate == ['Prispeli ste na vmesni cilj'].
+then -- ['nato '].
+and_arrive_destination -- ['in prispete na cilj '].
+reached_destination -- ['prispeli ste na cilj '].
+and_arrive_intermediate -- ['in prispete na vmesni cilj '].
+reached_intermediate -- ['Prispeli ste na vmesni cilj'].
 
-route_new_calc(Dist) == ['Pot bo dolga ', D] :- distance(Dist) == D.
-route_recalc(Dist) == ['Izračunana je nova pot dolžine ', D] :- distance(Dist) == D.
+route_new_calc(Dist) -- ['Pot bo dolga ', D] :- distance(Dist) -- D.
+route_recalc(Dist) -- ['Izračunana je nova pot dolžine ', D] :- distance(Dist) -- D.
 
-location_lost == ['Ni več G P S  signala '].
+location_lost -- ['Ni več G P S  signala '].
 
-% on_street == ['on ', X] :- next_street(X).
-% off_route == ['you have deviated from the route '].
-% attention == ['attention '].
-% speed_alarm == ['you are exceeding the speed limit '].
+% on_street -- ['on ', X] :- next_street(X).
+% off_route -- ['you have deviated from the route '].
+% attention -- ['attention '].
+% speed_alarm -- ['you are exceeding the speed limit '].
 
 
 %% 
@@ -72,13 +68,13 @@ nth(17, 'sedemnajsti ').
 
 
 %%% distance measure
-distance(Dist) == [ X, ' metrov']               :- Dist < 100,   D is round(Dist/10.0)*10,           num_atom(D, X).
-distance(Dist) == [ X, ' metrov']               :- Dist < 1000,  D is round(2*Dist/100.0)*50,        num_atom(D, X).
-distance(Dist) == ['približno 1 kilometer ']        :- Dist < 1500.
-distance(Dist) == ['približno 2 kilometra ']        :- Dist < 2500.
-distance(Dist) == ['približno ', X, ' kilometre '] :- Dist < 4500, D is round(Dist/1000.0),            num_atom(D, X).
-distance(Dist) == ['približno ', X, ' kilometrov '] :- Dist < 10000, D is round(Dist/1000.0),            num_atom(D, X).
-distance(Dist) == [ X, ' kilometrov ']          :-               D is round(Dist/1000.0),            num_atom(D, X).
+distance(Dist) -- [ X, ' metrov']               :- Dist < 100,   D is round(Dist/10.0)*10,           num_atom(D, X).
+distance(Dist) -- [ X, ' metrov']               :- Dist < 1000,  D is round(2*Dist/100.0)*50,        num_atom(D, X).
+distance(Dist) -- ['približno 1 kilometer ']        :- Dist < 1500.
+distance(Dist) -- ['približno 2 kilometra ']        :- Dist < 2500.
+distance(Dist) -- ['približno ', X, ' kilometre '] :- Dist < 4500, D is round(Dist/1000.0),            num_atom(D, X).
+distance(Dist) -- ['približno ', X, ' kilometrov '] :- Dist < 10000, D is round(Dist/1000.0),            num_atom(D, X).
+distance(Dist) -- [ X, ' kilometrov ']          :-               D is round(Dist/1000.0),            num_atom(D, X).
 %% TODO: general slovenian 4 plural forms: 101&1001 kilometer, 102&1002 kilometra, 103&104 kilometre...
 
 
@@ -92,4 +88,8 @@ flatten(X, Acc, [X|Acc]).
 
 resolve(X, Y) :- resolve_impl(X,Z), flatten(Z, Y).
 resolve_impl([],[]).
-resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X == L) -> append(L, Tail, List); List = Tail).
+resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L, Tail, List); List = Tail).
+
+% handling alternatives
+[X|_Y] -- T :- (X -- T),!.
+[_X|Y] -- T :- (Y -- T).

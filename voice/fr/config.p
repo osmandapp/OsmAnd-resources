@@ -1,9 +1,5 @@
-:- op('==', xfy, 500).
+:- op('--', xfy, 500).
 version(0).
-
-
-% before each announcement (beep)
-preamble - [].
 
 
 %% TURNS
@@ -16,37 +12,37 @@ turn('right_sl', ['tournez_lentement.ogg', 'a_droite.ogg']).
 turn('right_keep', ['serrez.ogg','a_droite.ogg']).
 turn('left_keep', ['serrez.ogg','a_gauche.ogg']).
 
-prepare_turn(Turn, Dist) == ['dans.ogg', delay_450, D, 'preparez_vous_a.ogg',  delay_450, M] :-
-distance(Dist) == D, turn(Turn, M).
-turn(Turn, Dist) == ['dans.ogg', delay_250, D, delay_250, M] :-
-distance(Dist) == D, turn(Turn, M).
-turn(Turn) == M :- turn(Turn, M).
+prepare_turn(Turn, Dist) -- ['dans.ogg', delay_450, D, 'preparez_vous_a.ogg',  delay_450, M] :-
+distance(Dist) -- D, turn(Turn, M).
+turn(Turn, Dist) -- ['dans.ogg', delay_250, D, delay_250, M] :-
+distance(Dist) -- D, turn(Turn, M).
+turn(Turn) -- M :- turn(Turn, M).
 
 
-prepare_make_ut(Dist) == ['dans.ogg', delay_300, D, 'preparez_vous_a.ogg',  delay_300,'faire_demi_tour.ogg'] :-
-distance(Dist) == D.
+prepare_make_ut(Dist) -- ['dans.ogg', delay_300, D, 'preparez_vous_a.ogg',  delay_300,'faire_demi_tour.ogg'] :-
+distance(Dist) -- D.
 
-prepare_roundabout(Dist) == ['dans.ogg', delay_300, D,'preparez_vous_a.ogg','entrez_dans_rondpoint.ogg'] :-
-distance(Dist) == D.
+prepare_roundabout(Dist) -- ['dans.ogg', delay_300, D,'preparez_vous_a.ogg','entrez_dans_rondpoint.ogg'] :-
+distance(Dist) -- D.
 
-make_ut(Dist) == ['dans.ogg', delay_300, D, 'preparez_vous_a.ogg',  delay_300,'faites_demi_tour.ogg'] :-
-distance(Dist) == D.
-make_ut == ['faites_demi_tour.ogg'].
+make_ut(Dist) -- ['dans.ogg', delay_300, D, 'preparez_vous_a.ogg',  delay_300,'faites_demi_tour.ogg'] :-
+distance(Dist) -- D.
+make_ut -- ['faites_demi_tour.ogg'].
 
-roundabout(Dist, _Angle, Exit) == ['dans.ogg', delay_300, D, delay_300, 'entrez_dans_rondpoint.ogg', delay_250, 'et.ogg','prenez_la.ogg',
-delay_250, E, 'sortie.ogg'] :- distance(Dist) == D, nth(Exit, E).
-roundabout(_Angle, Exit) == ['prenez_la.ogg', delay_250, E, 'sortie.ogg'] :- nth(Exit, E).
+roundabout(Dist, _Angle, Exit) -- ['dans.ogg', delay_300, D, delay_300, 'entrez_dans_rondpoint.ogg', delay_250, 'et.ogg','prenez_la.ogg',
+delay_250, E, 'sortie.ogg'] :- distance(Dist) -- D, nth(Exit, E).
+roundabout(_Angle, Exit) -- ['prenez_la.ogg', delay_250, E, 'sortie.ogg'] :- nth(Exit, E).
 
-and_arrive_destination == ['arrivez_a_destination.ogg']. % Miss and?
-then == ['puis.ogg', delay_350].
-reached_destination == ['vous_etes_arrives.ogg'].
-bear_right == ['serrez.ogg','a_droite.ogg'].
-bear_left == ['serrez.ogg','a_gauche.ogg'].
-route_recalc(_Dist) == []. % ['recalcul_itineraire.ogg']. %nothing to said possibly beep?
-route_new_calc(Dist) == ['le_trajet_fait.ogg', delay_150, D] :- distance(Dist) == D. % nothing to said possibly beep?
+and_arrive_destination -- ['arrivez_a_destination.ogg']. % Miss and?
+then -- ['puis.ogg', delay_350].
+reached_destination -- ['vous_etes_arrives.ogg'].
+bear_right -- ['serrez.ogg','a_droite.ogg'].
+bear_left -- ['serrez.ogg','a_gauche.ogg'].
+route_recalc(_Dist) -- []. % ['recalcul_itineraire.ogg']. %nothing to said possibly beep?
+route_new_calc(Dist) -- ['le_trajet_fait.ogg', delay_150, D] :- distance(Dist) -- D. % nothing to said possibly beep?
 
-go_ahead(Dist) == ['continuez_pendant.ogg', delay_250, D]:- distance(Dist) == D.
-go_ahead == ['continuez_tout_droit.ogg'].
+go_ahead(Dist) -- ['continuez_pendant.ogg', delay_250, D]:- distance(Dist) -- D.
+go_ahead -- ['continuez_tout_droit.ogg'].
 
 %%
 nth(1, '1ere.ogg').
@@ -69,7 +65,7 @@ nth(17, '17eme.ogg').
 
 
 %%% distance measure
-distance(Dist) == T :- Dist < 1000, dist(Dist, F), append(F, 'metres.ogg',T).
+distance(Dist) -- T :- Dist < 1000, dist(Dist, F), append(F, 'metres.ogg',T).
 dist(D, ['10-fr.ogg']) :- D < 20, !.
 dist(D, ['20-fr.ogg']) :- D < 30, !.
 dist(D, ['30-fr.ogg']) :- D < 40, !.
@@ -99,16 +95,16 @@ dist(D, ['900-fr.ogg']) :- D < 950, !.
 dist(D, ['900-fr.ogg', '50-fr.ogg']) :- !.
 
 
-distance(Dist) == ['plus_de.ogg', '1-fr.ogg', 'kilometre.ogg'] :- Dist < 1500.
-distance(Dist) == ['plus_de.ogg', '2-fr.ogg', 'kilometre.ogg'] :- Dist < 3000.
-distance(Dist) == ['plus_de.ogg', '3-fr.ogg', 'kilometre.ogg'] :- Dist < 4000.
-distance(Dist) == ['plus_de.ogg', '4-fr.ogg', 'kilometre.ogg'] :- Dist < 5000.
-distance(Dist) == ['plus_de.ogg', '5-fr.ogg', 'kilometre.ogg'] :- Dist < 6000.
-distance(Dist) == ['plus_de.ogg', '6-fr.ogg', 'kilometre.ogg'] :- Dist < 7000.
-distance(Dist) == ['plus_de.ogg', '7-fr.ogg', 'kilometre.ogg'] :- Dist < 8000.
-distance(Dist) == ['plus_de.ogg', '8-fr.ogg', 'kilometre.ogg'] :- Dist < 9000.
-distance(Dist) == ['plus_de.ogg', '9-fr.ogg', 'kilometre.ogg'] :- Dist < 10000.
-distance(Dist) == ['plus_de.ogg', X, 'kilometre.ogg'] :- D is Dist/1000, dist(D, X).
+distance(Dist) -- ['plus_de.ogg', '1-fr.ogg', 'kilometre.ogg'] :- Dist < 1500.
+distance(Dist) -- ['plus_de.ogg', '2-fr.ogg', 'kilometre.ogg'] :- Dist < 3000.
+distance(Dist) -- ['plus_de.ogg', '3-fr.ogg', 'kilometre.ogg'] :- Dist < 4000.
+distance(Dist) -- ['plus_de.ogg', '4-fr.ogg', 'kilometre.ogg'] :- Dist < 5000.
+distance(Dist) -- ['plus_de.ogg', '5-fr.ogg', 'kilometre.ogg'] :- Dist < 6000.
+distance(Dist) -- ['plus_de.ogg', '6-fr.ogg', 'kilometre.ogg'] :- Dist < 7000.
+distance(Dist) -- ['plus_de.ogg', '7-fr.ogg', 'kilometre.ogg'] :- Dist < 8000.
+distance(Dist) -- ['plus_de.ogg', '8-fr.ogg', 'kilometre.ogg'] :- Dist < 9000.
+distance(Dist) -- ['plus_de.ogg', '9-fr.ogg', 'kilometre.ogg'] :- Dist < 10000.
+distance(Dist) -- ['plus_de.ogg', X, 'kilometre.ogg'] :- D is Dist/1000, dist(D, X).
 
 
 
@@ -123,5 +119,9 @@ flatten(X, Acc, [X|Acc]).
 
 resolve(X, Y) :- resolve_impl(X,Z), flatten(Z, Y).
 resolve_impl([],[]).
-resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X == L) -> append(L, Tail, List); List = Tail).
+resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L, Tail, List); List = Tail).
+
+% handling alternatives
+[X|_Y] -- T :- (X -- T),!.
+[_X|Y] -- T :- (Y -- T).
 

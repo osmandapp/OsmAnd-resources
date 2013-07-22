@@ -1,9 +1,5 @@
-:- op('==', xfy, 500).
+:- op('--', xfy, 500).
 version(0).
-
-
-% before each announcement (beep)
-preamble - [].
 
 
 %% TURNS 
@@ -25,37 +21,37 @@ pturn('right_sl', ['pm_doprava.ogg']).
 pturn('right_keep', ['drz_vpravo.ogg']).
 pturn('left_keep', ['drz_vlavo.ogg']).
 
-prepare_turn(Turn, Dist) == ['o', D, 'budete_odbacat.ogg', M] :-
-			distance(Dist) == D, pturn(Turn, M).
-turn(Turn, Dist) == ['o.ogg', D, M] :- 
-			distance(Dist) == D, turn(Turn, M).
-turn(Turn) == M :- turn(Turn, M).
+prepare_turn(Turn, Dist) -- ['o', D, 'budete_odbacat.ogg', M] :-
+			distance(Dist) -- D, pturn(Turn, M).
+turn(Turn, Dist) -- ['o.ogg', D, M] :- 
+			distance(Dist) -- D, turn(Turn, M).
+turn(Turn) -- M :- turn(Turn, M).
 
 
-prepare_make_ut(Dist) == ['o.ogg', D, 'sa_otacat.ogg'] :- 
-		distance(Dist) == D.
+prepare_make_ut(Dist) -- ['o.ogg', D, 'sa_otacat.ogg'] :- 
+		distance(Dist) -- D.
 
-prepare_roundabout(Dist) == ['o.ogg', D, 'vojde_kruh.ogg'] :- 
-		distance(Dist) == D.
+prepare_roundabout(Dist) -- ['o.ogg', D, 'vojde_kruh.ogg'] :- 
+		distance(Dist) -- D.
 
-make_ut(Dist) == ['o.ogg', D, 'sa_otocte.ogg'] :- 
-			distance(Dist) == D.
-make_ut == ['otocte_sa.ogg'].
+make_ut(Dist) -- ['o.ogg', D, 'sa_otocte.ogg'] :- 
+			distance(Dist) -- D.
+make_ut -- ['otocte_sa.ogg'].
 
-roundabout(Dist, _Angle, Exit) == ['o.ogg', D, 'vojdi_kruh.ogg', 'a_zvolte.ogg', E, 'vyjazd.ogg'] :- 
-			distance(Dist) == D, nth(Exit, E).
-roundabout(_Angle, Exit) == ['pojdete_cez.ogg', E, 'vyjazd.ogg'] :- nth(Exit, E).
+roundabout(Dist, _Angle, Exit) -- ['o.ogg', D, 'vojdi_kruh.ogg', 'a_zvolte.ogg', E, 'vyjazd.ogg'] :- 
+			distance(Dist) -- D, nth(Exit, E).
+roundabout(_Angle, Exit) -- ['pojdete_cez.ogg', E, 'vyjazd.ogg'] :- nth(Exit, E).
 
-and_arrive_destination == ['a_do_ciela.ogg']. % Miss and?
-then == ['potom.ogg'].
-reached_destination == ['doraz_ciel.ogg'].
-bear_right == ['drz_vpravo.ogg'].
-bear_left == ['drz_vlavo.ogg'].
-route_recalc(_Dist) == ['prepocet.ogg']. % nothing to said possibly beep?	
-route_new_calc(Dist) == ['cesta_je_dlha.ogg', D] :- distance(Dist) == D. % nothing to said possibly beep?
+and_arrive_destination -- ['a_do_ciela.ogg']. % Miss and?
+then -- ['potom.ogg'].
+reached_destination -- ['doraz_ciel.ogg'].
+bear_right -- ['drz_vpravo.ogg'].
+bear_left -- ['drz_vlavo.ogg'].
+route_recalc(_Dist) -- ['prepocet.ogg']. % nothing to said possibly beep?	
+route_new_calc(Dist) -- ['cesta_je_dlha.ogg', D] :- distance(Dist) -- D. % nothing to said possibly beep?
 
-go_ahead(Dist) == ['pokracujte.ogg', D]:- distance(Dist) == D.
-go_ahead == ['pokracujte_rovno.ogg'].
+go_ahead(Dist) -- ['pokracujte.ogg', D]:- distance(Dist) -- D.
+go_ahead -- ['pokracujte_rovno.ogg'].
 
 %% 
 nth(1, '1st.ogg').
@@ -78,7 +74,7 @@ nth(17, '17th.ogg').
 
 
 %%% distance measure
-distance(Dist) == T :- Dist < 1000, dist(Dist, F), append(F, 'metrov.ogg',T).
+distance(Dist) -- T :- Dist < 1000, dist(Dist, F), append(F, 'metrov.ogg',T).
 dist(D, ['10.ogg']) :-  D < 20, !.
 dist(D, ['20.ogg']) :-  D < 30, !.
 dist(D, ['30.ogg']) :-  D < 40, !.
@@ -108,16 +104,16 @@ dist(D, ['900.ogg']) :-  D < 950, !.
 dist(D, ['900.ogg', '50.ogg']) :-  !.
 
 
-distance(Dist) == ['viac_ako.ogg', '1.ogg', 'kilometer.ogg'] :- Dist < 1500.
-distance(Dist) == ['viac_ako.ogg', '2.ogg', 'kilometre.ogg'] :- Dist < 3000.
-distance(Dist) == ['viac_ako.ogg', '3.ogg', 'kilometre.ogg'] :- Dist < 4000.
-distance(Dist) == ['viac_ako.ogg', '4.ogg', 'kilometre.ogg'] :- Dist < 5000.
-distance(Dist) == ['viac_ako.ogg', '5.ogg', 'kilometrov.ogg'] :- Dist < 6000.
-distance(Dist) == ['viac_ako.ogg', '6.ogg', 'kilometrov.ogg'] :- Dist < 7000.
-distance(Dist) == ['viac_ako.ogg', '7.ogg', 'kilometrov.ogg'] :- Dist < 8000.
-distance(Dist) == ['viac_ako.ogg', '8.ogg', 'kilometrov.ogg'] :- Dist < 9000.
-distance(Dist) == ['viac_ako.ogg', '9.ogg', 'kilometrov.ogg'] :- Dist < 10000.
-distance(Dist) == ['viac_ako.ogg', X, 'kilometrov.ogg'] :- D is Dist/1000, dist(D, X).
+distance(Dist) -- ['viac_ako.ogg', '1.ogg', 'kilometer.ogg'] :- Dist < 1500.
+distance(Dist) -- ['viac_ako.ogg', '2.ogg', 'kilometre.ogg'] :- Dist < 3000.
+distance(Dist) -- ['viac_ako.ogg', '3.ogg', 'kilometre.ogg'] :- Dist < 4000.
+distance(Dist) -- ['viac_ako.ogg', '4.ogg', 'kilometre.ogg'] :- Dist < 5000.
+distance(Dist) -- ['viac_ako.ogg', '5.ogg', 'kilometrov.ogg'] :- Dist < 6000.
+distance(Dist) -- ['viac_ako.ogg', '6.ogg', 'kilometrov.ogg'] :- Dist < 7000.
+distance(Dist) -- ['viac_ako.ogg', '7.ogg', 'kilometrov.ogg'] :- Dist < 8000.
+distance(Dist) -- ['viac_ako.ogg', '8.ogg', 'kilometrov.ogg'] :- Dist < 9000.
+distance(Dist) -- ['viac_ako.ogg', '9.ogg', 'kilometrov.ogg'] :- Dist < 10000.
+distance(Dist) -- ['viac_ako.ogg', X, 'kilometrov.ogg'] :- D is Dist/1000, dist(D, X).
 
 
 
@@ -132,4 +128,8 @@ flatten(X, Acc, [X|Acc]).
 
 resolve(X, Y) :- resolve_impl(X,Z), flatten(Z, Y).
 resolve_impl([],[]).
-resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X == L) -> append(L, Tail, List); List = Tail).
+resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L, Tail, List); List = Tail).
+
+% handling alternatives
+[X|_Y] -- T :- (X -- T),!.
+[_X|Y] -- T :- (Y -- T).

@@ -1,10 +1,6 @@
-﻿:- op('==', xfy, 500).
+﻿:- op('--', xfy, 500).
 version(101).
 language(ru).
-
-% before each announcement (beep)
-preamble - [].
-
 
 %% TURNS 
 turn('left', ['поверните налево ']).
@@ -15,40 +11,40 @@ turn('right_sh', ['резко поверните направо ']).
 turn('right_sl', ['плавно поверните направо ']).
 turn('left_keep', ['держитесь левее ']).
 turn('right_keep', ['держитесь правее ']).
-bear_left == ['держитесь левее '].
-bear_right == ['держитесь правее '].
+bear_left -- ['держитесь левее '].
+bear_right -- ['держитесь правее '].
 
-prepare_turn(Turn, Dist) == ['Приготовьтесь через ', D, ' ', M] :- distance(Dist) == D, turn(Turn, M).
-turn(Turn, Dist) == ['Через ', D, M] :- distance(Dist) == D, turn(Turn, M).
-turn(Turn) == M :- turn(Turn, M).
+prepare_turn(Turn, Dist) -- ['Приготовьтесь через ', D, ' ', M] :- distance(Dist) -- D, turn(Turn, M).
+turn(Turn, Dist) -- ['Через ', D, M] :- distance(Dist) -- D, turn(Turn, M).
+turn(Turn) -- M :- turn(Turn, M).
 
-prepare_make_ut(Dist) == ['Через ', D, ' выполните разворот'] :- distance(Dist) == D.
-make_ut(Dist) ==  ['Через ', D, ' выполните разворот'] :- distance(Dist) == D.
-make_ut == ['Выполните разворот '].
-make_ut_wp == ['Выполните разворот '].
+prepare_make_ut(Dist) -- ['Через ', D, ' выполните разворот'] :- distance(Dist) -- D.
+make_ut(Dist) --  ['Через ', D, ' выполните разворот'] :- distance(Dist) -- D.
+make_ut -- ['Выполните разворот '].
+make_ut_wp -- ['Выполните разворот '].
 
-prepare_roundabout(Dist) == ['Приготовьте через ', D, ' круг'] :- distance(Dist) == D.
-roundabout(Dist, _Angle, Exit) == ['Через ', D, ' круг, выполните ', E, 'съезд'] :- distance(Dist) == D, nth(Exit, E).
-roundabout(_Angle, Exit) == ['Выполните ', E, ' съезд'] :- nth(Exit, E).
+prepare_roundabout(Dist) -- ['Приготовьте через ', D, ' круг'] :- distance(Dist) -- D.
+roundabout(Dist, _Angle, Exit) -- ['Через ', D, ' круг, выполните ', E, 'съезд'] :- distance(Dist) -- D, nth(Exit, E).
+roundabout(_Angle, Exit) -- ['Выполните ', E, ' съезд'] :- nth(Exit, E).
 
-go_ahead == ['Продолжайте движение прямо '].
-go_ahead(Dist) == ['Продолжайте движение ', D]:- distance(Dist) == D.
+go_ahead -- ['Продолжайте движение прямо '].
+go_ahead(Dist) -- ['Продолжайте движение ', D]:- distance(Dist) -- D.
 
-then == ['затем '].
-and_arrive_destination == ['и вы прибудете в пункт назначения '].
-reached_destination == ['вы прибыли в пункт назначения '].
-and_arrive_intermediate == ['и вы прибудете в промежуточный пункт '].
-reached_intermediate == ['вы прибыли в промежуточный пункт'].
+then -- ['затем '].
+and_arrive_destination -- ['и вы прибудете в пункт назначения '].
+reached_destination -- ['вы прибыли в пункт назначения '].
+and_arrive_intermediate -- ['и вы прибудете в промежуточный пункт '].
+reached_intermediate -- ['вы прибыли в промежуточный пункт'].
 
-route_new_calc(Dist) == ['Маршрут составляет ', D] :- distance(Dist) == D.
-route_recalc(Dist) == ['маршрут пересчитывается, расстояние ', D] :- distance(Dist) == D.
+route_new_calc(Dist) -- ['Маршрут составляет ', D] :- distance(Dist) -- D.
+route_recalc(Dist) -- ['маршрут пересчитывается, расстояние ', D] :- distance(Dist) -- D.
 
-location_lost == ['g p s потеря сигнала '].
+location_lost -- ['g p s потеря сигнала '].
 
-on_street == ['на', X] :- next_street(X).
-off_route == ['Вы отклонились от маршрута'].
-attention == ['Внимание'].
-speed_alarm == ['Вы превысили допустимую скорость'].
+on_street -- ['на', X] :- next_street(X).
+off_route -- ['Вы отклонились от маршрута'].
+attention -- ['Внимание'].
+speed_alarm -- ['Вы превысили допустимую скорость'].
 
 
 %% 
@@ -72,16 +68,16 @@ nth(17, 'семнадцатый ').
 
 
 %%% distance measure
-distance(Dist) == [ X, ' метров'] :- Dist < 100, D is round(Dist/10.0)*10, num_atom(D, X).
-distance(Dist) == [ X, ' метров'] :- Dist < 1000, D is round(2*Dist/100.0)*50, num_atom(D, X).
-distance(Dist) == ['около одного километра '] :- Dist < 1500.
-distance(Dist) == ['около ', X, Km] :- Dist < 10000, D is round(Dist/1000.0), num_atom(D, X), plural_km(D, Km).
+distance(Dist) -- [ X, ' метров'] :- Dist < 100, D is round(Dist/10.0)*10, num_atom(D, X).
+distance(Dist) -- [ X, ' метров'] :- Dist < 1000, D is round(2*Dist/100.0)*50, num_atom(D, X).
+distance(Dist) -- ['около одного километра '] :- Dist < 1500.
+distance(Dist) -- ['около ', X, Km] :- Dist < 10000, D is round(Dist/1000.0), num_atom(D, X), plural_km(D, Km).
 
 plural_km(D, ' километр ') :- 1 is D mod 10.
 plural_km(D, ' километра ') :- Mod is D mod 10, Mod < 5,  Mod > 1.
 plural_km(_D, ' километров ').
 
-distance(Dist) == [ X, ' километров '] :- D is round(Dist/1000.0), num_atom(D, X).
+distance(Dist) -- [ X, ' километров '] :- D is round(Dist/1000.0), num_atom(D, X).
 
 
 %% resolve command main method
@@ -94,4 +90,7 @@ flatten(X, Acc, [X|Acc]).
 
 resolve(X, Y) :- resolve_impl(X,Z), flatten(Z, Y).
 resolve_impl([],[]).
-resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X == L) -> append(L, Tail, List); List = Tail).
+resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L, Tail, List); List = Tail).
+% handling alternatives
+[X|_Y] -- T :- (X -- T),!.
+[_X|Y] -- T :- (Y -- T).

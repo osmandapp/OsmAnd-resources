@@ -87,39 +87,40 @@ turn('right_sh', ['right_sh.ogg']).
 turn('right_sl', ['right_sl.ogg']).
 turn('left_keep', ['left_keep.ogg']).
 turn('right_keep', ['right_keep.ogg']).
-bear_left -- ['left_keep.ogg'].
-bear_right -- ['right_keep.ogg'].
+%% It is needed it reflects not a turn but 
+bear_left(_Street) -- ['left_keep.ogg'].
+bear_right(_Street) -- ['right_keep.ogg'].
 
-prepare_turn(Turn, Dist) -- ['prepare.ogg', M, 'after.ogg', D, ' '] :- distance(Dist) -- D, turn(Turn, M).
-turn(Turn, Dist) -- ['after.ogg', D, M] :- distance(Dist) -- D, turn(Turn, M).
-turn(Turn) -- M :- turn(Turn, M).
+prepare_turn(Turn, Dist, _Street) -- ['prepare.ogg', M, 'after.ogg', D, ' '] :- distance(Dist) -- D, turn(Turn, M).
+turn(Turn, Dist, _Street) -- ['after.ogg', D, M] :- distance(Dist) -- D, turn(Turn, M).
+turn(Turn, _Street) -- M :- turn(Turn, M).
 
-prepare_make_ut(Dist) -- ['prepare.ogg', 'make_uturn.ogg', 'after.ogg', D] :- distance(Dist) -- D.
-make_ut(Dist) --  ['after.ogg', D, 'make_uturn.ogg'] :- distance(Dist) -- D.
-make_ut -- ['make_uturn.ogg'].
+prepare_make_ut(Dist, _Street) -- ['prepare.ogg', 'make_uturn.ogg', 'after.ogg', D] :- distance(Dist) -- D.
+make_ut(Dist, _Street) --  ['after.ogg', D, 'make_uturn.ogg'] :- distance(Dist) -- D.
+make_ut(_Street) -- ['make_uturn.ogg'].
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
-prepare_roundabout(Dist) -- ['prepare_roundabout.ogg', 'after.ogg', D] :- distance(Dist) -- D.
-roundabout(Dist, _Angle, Exit) -- ['after.ogg', D, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg'] :- distance(Dist) -- D, nth(Exit, E).
-roundabout(_Angle, Exit) -- ['take.ogg', E, 'exit.ogg'] :- nth(Exit, E).
+prepare_roundabout(Dist, _Exit, _Street) -- ['prepare_roundabout.ogg', 'after.ogg', D] :- distance(Dist) -- D.
+roundabout(Dist, _Angle, Exit, _Street) -- ['after.ogg', D, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg'] :- distance(Dist) -- D, nth(Exit, E).
+roundabout(_Angle, Exit, _Street) -- ['take.ogg', E, 'exit.ogg'] :- nth(Exit, E).
 
-go_ahead -- ['go_ahead.ogg'].
-go_ahead(Dist) -- ['go_ahead_m.ogg', D]:- distance(Dist) -- D.
+go_ahead(Dist, _Street) -- ['go_ahead_m.ogg', D]:- distance(Dist) -- D.
 
 then -- ['then.ogg'].
-and_arrive_destination -- ['and_arrive_destination.ogg'].
-reached_destination -- ['reached_destination.ogg'].
-and_arrive_intermediate -- ['and_arrive_intermediate.ogg'].
-reached_intermediate -- ['reached_intermediate.ogg'].
+and_arrive_destination(_) -- ['and_arrive_destination.ogg'].
+reached_destination(_) -- ['reached_destination.ogg'].
+and_arrive_intermediate(_) -- ['and_arrive_intermediate.ogg'].
+reached_intermediate(_) -- ['reached_intermediate.ogg'].
 
-route_new_calc(Dist) -- ['route_is.ogg', D] :- distance(Dist) -- D.
-route_recalc(Dist) -- ['route_calculate.ogg', D] :- distance(Dist) -- D.
+and_arrive_waypoint(X) -- ['and_arrive_waypoint.ogg', X].
+reached_waypoint(X) -- ['reached_waypoint.ogg', X].
+
+route_new_calc(Dist, Time) -- ['route_is.ogg', D] :- distance(Dist) -- D.
+route_recalc(Dist, Time) -- ['route_calculate.ogg', D] :- distance(Dist) -- D.
 
 location_lost -- ['location_lost.ogg'].
-
-on_street -- ['on.ogg', X] :- next_street(X).
-off_route -- ['off_route.ogg'].
-attention -- ['attention.ogg'].
+off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
+attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
 
 
@@ -141,15 +142,20 @@ nth(14, '14th.ogg').
 nth(15, '15th.ogg').
 
 
-%% resolve command main method
+
+
+%% command main method
 %% if you are familar with Prolog you can input specific to the whole mechanism,
 %% by adding exception cases.
+
 flatten(X, Y) :- flatten(X, [], Y), !.
 flatten([], Acc, Acc).
 flatten([X|Y], Acc, Res):- flatten(Y, Acc, R), flatten(X, R, Res).
 flatten(X, Acc, [X|Acc]) :- version(J), J < 100, !.
 flatten(X, Acc, [Y|Acc]) :- string(X, Y), !.
 flatten(X, Acc, [X|Acc]).
+
+
 
 resolve(X, Y) :- resolve_impl(X,Z), flatten(Z, Y).
 resolve_impl([],[]).
@@ -217,3 +223,7 @@ dist(D, ['700.ogg'|L]) :-  D < 800, Ts is D - 700, !, dist(Ts, L).
 dist(D, ['800.ogg'|L]) :-  D < 900, Ts is D - 800, !, dist(Ts, L).
 dist(D, ['900.ogg'|L]) :-  D < 1000, Ts is D - 900, !, dist(Ts, L).
 dist(D, ['1000.ogg'|L]):- Ts is D - 1000, !, dist(Ts, L).
+
+% handling alternatives
+[X|_Y] -- T :- (X -- T),!.
+[_X|Y] -- T :- (Y -- T).

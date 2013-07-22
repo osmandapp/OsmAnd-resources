@@ -1,10 +1,8 @@
-:- op('==', xfy, 500).
+:- op('--', xfy, 500).
 version(0).
 
 %Provided by VnMedia VnrMedia@gmail.com
 %Speaked by Shai Ben-yaakov
-% before each announcement (beep)
-preamble - [].
 
 
 %% TURNS 
@@ -17,47 +15,47 @@ turn('right_sl', ['turn_slight_right-e.ogg']).
 turn('right_keep', ['keep_right-e.ogg']).
 turn('left_keep', ['keep_left-e.ogg']).
 
-prepare_turn(Turn, Dist) == ['Prepare_to-a.ogg', D, M] :- 
-			distance(Dist) == D, turn(Turn, M).
-turn(Turn, Dist) == ['after.ogg', D, M] :- 
-			distance(Dist) == D, turn(Turn, M).
-turn(Turn) == M :- turn(Turn, M).
+prepare_turn(Turn, Dist) -- ['Prepare_to-a.ogg', D, M] :- 
+			distance(Dist) -- D, turn(Turn, M).
+turn(Turn, Dist) -- ['after.ogg', D, M] :- 
+			distance(Dist) -- D, turn(Turn, M).
+turn(Turn) -- M :- turn(Turn, M).
 
 
-prepare_make_ut(Dist) == ['Prepare_to-a.ogg', D,'turn_back-e.ogg'] :- 
-		distance(Dist) == D.
+prepare_make_ut(Dist) -- ['Prepare_to-a.ogg', D,'turn_back-e.ogg'] :- 
+		distance(Dist) -- D.
 
-prepare_roundabout(Dist) == ['prepare_to-enter.ogg', 'after.ogg', D] :- 
-		distance(Dist) == D.
+prepare_roundabout(Dist) -- ['prepare_to-enter.ogg', 'after.ogg', D] :- 
+		distance(Dist) -- D.
 
-make_ut(Dist) == ['after.ogg', D, 'turn_back-e.ogg'] :- 
-			distance(Dist) == D.
-make_ut == ['turn_back-e.ogg'].
+make_ut(Dist) -- ['after.ogg', D, 'turn_back-e.ogg'] :- 
+			distance(Dist) -- D.
+make_ut -- ['turn_back-e.ogg'].
 
-make_ut_wp == ['when_possible_please_make_a_u_turn.ogg'].
-
-
+make_ut_wp -- ['when_possible_please_make_a_u_turn.ogg'].
 
 
-roundabout(Dist, _Angle, Exit) == ['after.ogg', D, 'enter_the_roundabout-e.ogg', 'and_take.ogg', 'exit-e.ogg', E] :- distance(Dist) == D, nth(Exit, E).
-roundabout(_Angle, Exit) == ['taking.ogg', 'exit-e.ogg', E] :- nth(Exit, E).
 
-and_arrive_destination == ['arrive_at_your_destination-e.ogg']. % Miss and?
-reached_destination == ['you_have_reached_your_destination.ogg'].
-and_arrive_intermediate == ['arrive_at_viapoint-e.ogg'].
-reached_intermediate == ['you_have_reached_a_viapoint.ogg'].
 
-then == ['then.ogg'].
+roundabout(Dist, _Angle, Exit) -- ['after.ogg', D, 'enter_the_roundabout-e.ogg', 'and_take.ogg', 'exit-e.ogg', E] :- distance(Dist) -- D, nth(Exit, E).
+roundabout(_Angle, Exit) -- ['taking.ogg', 'exit-e.ogg', E] :- nth(Exit, E).
 
-bear_right == ['keep_right-e.ogg'].
-bear_left == ['keep_left-e.ogg'].
-route_recalc(Dist) == ['recalc.ogg', D]:- distance(Dist) == D.   %nothing to said possibly beep?	
-route_new_calc(Dist) == ['the_trip_is_about.ogg', D] :- distance(Dist) == D. % nothing to said possibly beep?
+and_arrive_destination -- ['arrive_at_your_destination-e.ogg']. % Miss and?
+reached_destination -- ['you_have_reached_your_destination.ogg'].
+and_arrive_intermediate -- ['arrive_at_viapoint-e.ogg'].
+reached_intermediate -- ['you_have_reached_a_viapoint.ogg'].
 
-location_lost == ['gps_signal_lost.ogg'].
+then -- ['then.ogg'].
 
-go_ahead(Dist) == ['Follow-the-road-for.ogg',  D]:- distance(Dist) == D.
-go_ahead == ['continue_straight-e.ogg'].
+bear_right -- ['keep_right-e.ogg'].
+bear_left -- ['keep_left-e.ogg'].
+route_recalc(Dist) -- ['recalc.ogg', D]:- distance(Dist) -- D.   %nothing to said possibly beep?	
+route_new_calc(Dist) -- ['the_trip_is_about.ogg', D] :- distance(Dist) -- D. % nothing to said possibly beep?
+
+location_lost -- ['gps_signal_lost.ogg'].
+
+go_ahead(Dist) -- ['Follow-the-road-for.ogg',  D]:- distance(Dist) -- D.
+go_ahead -- ['continue_straight-e.ogg'].
 
 %% 
 nth(1, '1st.ogg').
@@ -80,7 +78,7 @@ nth(17, '17th.ogg').
 
 
 %%% distance measure
-distance(Dist) == T :- Dist < 1000, dist(Dist, F), append(F, 'meters-e.ogg',T).
+distance(Dist) -- T :- Dist < 1000, dist(Dist, F), append(F, 'meters-e.ogg',T).
 dist(D, ['20.ogg']) :-  D < 30, !.
 dist(D, ['30.ogg']) :-  D < 40, !.
 dist(D, ['40.ogg']) :-  D < 50, !.
@@ -118,28 +116,28 @@ dist(D, ['900.ogg']) :-  D < 910, !.
 dist(D, ['900.ogg','and_10.ogg']) :-  D < 920, !. 
 dist(D, ['900.ogg', S]) :-  D < 1000, T is D - 900, dist(T, [S]), !.
 
-distance(Dist) == ['more_than.ogg', '1.ogg', 'kilometer-e.ogg'] :- Dist < 1500.
-distance(Dist) == ['more_than.ogg', '2.ogg', 'kilometers-e.ogg'] :- Dist < 3000.
-distance(Dist) == ['more_than.ogg', '3.ogg', 'kilometers-e.ogg'] :- Dist < 4000.
-distance(Dist) == ['more_than.ogg', '4.ogg', 'kilometers-e.ogg'] :- Dist < 5000.
-distance(Dist) == ['more_than.ogg', '5.ogg', 'kilometers-e.ogg'] :- Dist < 6000.
-distance(Dist) == ['more_than.ogg', '6.ogg', 'kilometers-e.ogg'] :- Dist < 7000.
-distance(Dist) == ['more_than.ogg', '7.ogg', 'kilometers-e.ogg'] :- Dist < 8000.
-distance(Dist) == ['more_than.ogg', '8.ogg', 'kilometers-e.ogg'] :- Dist < 9000.
-distance(Dist) == ['more_than.ogg', '9.ogg', 'kilometers-e.ogg'] :- Dist < 10000.
-distance(Dist) == ['more_than.ogg', '10.ogg', 'kilometers-e.ogg'] :- Dist < 11000.
-distance(Dist) == ['more_than.ogg', '11.ogg', 'kilometers-e.ogg'] :- Dist < 12000.
-distance(Dist) == ['more_than.ogg', '12.ogg', 'kilometers-e.ogg'] :- Dist < 13000.
-distance(Dist) == ['more_than.ogg', '13.ogg', 'kilometers-e.ogg'] :- Dist < 14000.
-distance(Dist) == ['more_than.ogg', '14.ogg', 'kilometers-e.ogg'] :- Dist < 15000.
-distance(Dist) == ['more_than.ogg', '15.ogg', 'kilometers-e.ogg'] :- Dist < 16000.
-distance(Dist) == ['more_than.ogg', '16.ogg', 'kilometers-e.ogg'] :- Dist < 17000.
-distance(Dist) == ['more_than.ogg', '17.ogg', 'kilometers-e.ogg'] :- Dist < 18000.
-distance(Dist) == ['more_than.ogg', '18.ogg', 'kilometers-e.ogg'] :- Dist < 19000.
-distance(Dist) == ['more_than.ogg', '19.ogg', 'kilometers-e.ogg'] 
+distance(Dist) -- ['more_than.ogg', '1.ogg', 'kilometer-e.ogg'] :- Dist < 1500.
+distance(Dist) -- ['more_than.ogg', '2.ogg', 'kilometers-e.ogg'] :- Dist < 3000.
+distance(Dist) -- ['more_than.ogg', '3.ogg', 'kilometers-e.ogg'] :- Dist < 4000.
+distance(Dist) -- ['more_than.ogg', '4.ogg', 'kilometers-e.ogg'] :- Dist < 5000.
+distance(Dist) -- ['more_than.ogg', '5.ogg', 'kilometers-e.ogg'] :- Dist < 6000.
+distance(Dist) -- ['more_than.ogg', '6.ogg', 'kilometers-e.ogg'] :- Dist < 7000.
+distance(Dist) -- ['more_than.ogg', '7.ogg', 'kilometers-e.ogg'] :- Dist < 8000.
+distance(Dist) -- ['more_than.ogg', '8.ogg', 'kilometers-e.ogg'] :- Dist < 9000.
+distance(Dist) -- ['more_than.ogg', '9.ogg', 'kilometers-e.ogg'] :- Dist < 10000.
+distance(Dist) -- ['more_than.ogg', '10.ogg', 'kilometers-e.ogg'] :- Dist < 11000.
+distance(Dist) -- ['more_than.ogg', '11.ogg', 'kilometers-e.ogg'] :- Dist < 12000.
+distance(Dist) -- ['more_than.ogg', '12.ogg', 'kilometers-e.ogg'] :- Dist < 13000.
+distance(Dist) -- ['more_than.ogg', '13.ogg', 'kilometers-e.ogg'] :- Dist < 14000.
+distance(Dist) -- ['more_than.ogg', '14.ogg', 'kilometers-e.ogg'] :- Dist < 15000.
+distance(Dist) -- ['more_than.ogg', '15.ogg', 'kilometers-e.ogg'] :- Dist < 16000.
+distance(Dist) -- ['more_than.ogg', '16.ogg', 'kilometers-e.ogg'] :- Dist < 17000.
+distance(Dist) -- ['more_than.ogg', '17.ogg', 'kilometers-e.ogg'] :- Dist < 18000.
+distance(Dist) -- ['more_than.ogg', '18.ogg', 'kilometers-e.ogg'] :- Dist < 19000.
+distance(Dist) -- ['more_than.ogg', '19.ogg', 'kilometers-e.ogg'] 
 :- Dist < 20000.
 
-distance(Dist) == ['more_than.ogg', X, 'kilometers-e.ogg'] :- D is Dist/1000, dist(D, X).
+distance(Dist) -- ['more_than.ogg', X, 'kilometers-e.ogg'] :- D is Dist/1000, dist(D, X).
 
 
 
@@ -154,4 +152,8 @@ flatten(X, Acc, [X|Acc]).
 
 resolve(X, Y) :- resolve_impl(X,Z), flatten(Z, Y).
 resolve_impl([],[]).
-resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X == L) -> append(L, Tail, List); List = Tail).
+resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L, Tail, List); List = Tail).
+
+% handling alternatives
+[X|_Y] -- T :- (X -- T),!.
+[_X|Y] -- T :- (Y -- T).

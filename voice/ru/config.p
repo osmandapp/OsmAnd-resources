@@ -13,9 +13,6 @@ voice :- version(X), X < 99.
 language(ru).
 fest_language(msu_ru_nsh_clunits).
 
-% before each announcement (beep)
-preamble - [].
-
 string('left.ogg', 'поверните налево ').
 string('left_sh.ogg', 'резко поверните налево ').
 string('left_sl.ogg', 'плавно поверните налево  ').
@@ -151,6 +148,9 @@ resolve(X, Y) :- resolve_impl(X,Z), flatten(Z, Y).
 resolve_impl([],[]).
 resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L, Tail, List); List = Tail).
 
+% handling alternatives
+[X|_Y] -- T :- (X -- T),!.
+[_X|Y] -- T :- (Y -- T).
 
 %%% distance measure
 distance(Dist) -- [ X, 'metrov.ogg']           :- Dist < 100,   D is round(Dist/10.0)*10, dist(D, X).

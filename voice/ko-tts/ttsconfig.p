@@ -2,9 +2,6 @@
 version(101).
 language(ko).
 
-% before each announcement (beep)
-preamble - [].
-
 
 %% TURNS 
 turn('left', ['좌회전']).
@@ -90,3 +87,7 @@ flatten(X, Acc, [X|Acc]).
 resolve(X, Y) :- resolve_impl(X,Z), flatten(Z, Y).
 resolve_impl([],[]).
 resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X == L) -> append(L, Tail, List); List = Tail).
+
+% handling alternatives
+[X|_Y] -- T :- (X -- T),!.
+[_X|Y] -- T :- (Y -- T).
