@@ -45,10 +45,10 @@ route_recalc(Dist) == ['Nowa trasa wyznaczona, jej długość to ', D] :- distan
 
 location_lost == ['Utracono sygnał GPS '].
 
-on_street == ['na', X] :- next_street(X).
-off_route == ['Znajdujesz się poza trasą'].
-attention == ['Uwaga'].
-speed_alarm == ['Przekraczasz dozwoloną prędkość'].
+on_street == ['na ', X] :- next_street(X).
+off_route == ['Znajdujesz się poza trasą '].
+attention == ['Uwaga '].
+speed_alarm == ['Przekraczasz dozwoloną prędkość '].
 
 
 %% 
