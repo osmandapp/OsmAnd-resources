@@ -227,7 +227,6 @@ mycp geocache found poi_point_of_interest.png
 
 ## Other amenities
 mycp amenity bench amenity_bench.png
-mycp amenity embassy poi_embassy.png
 mygroup other amenity_post_office.png
 mygroup office amenity_public_building2.png
 #! mycp amenity grave_yard place_of_worship_christian3.png  #already defined as icon in the shader section 
@@ -240,6 +239,12 @@ mycp amenity toilets amenity_toilets.png
 mycp amenity place_of_worship place_of_worship_unknown.png
 mycp amenity fountain amenity_fountain2.png
 
+mygroup finance money_bank2.png
+mycp amenity atm money_atm.png
+mycp amenity bank money_bank2.png
+mycp amenity bureau_de_change money_currency_exchange.png
+
+mycp amenity embassy poi_embassy.png
 mycp amenity townhall amenity_town_hall2.png
 mycp amenity courthouse amenity_court.png
 mycp office government amenity_public_building.png
@@ -247,11 +252,6 @@ mycp amenity public_building amenity_public_building.png
 mycp amenity community_centre amenity_public_building.png
 mycp amenity social_centre amenity_public_building.png
 mycp amenity library amenity_library.png
-
-mygroup finance money_bank2.png
-mycp amenity atm money_atm.png
-mycp amenity bank money_bank2.png
-mycp amenity bureau_de_change money_currency_exchange.png
 
 
 ## Education
