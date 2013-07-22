@@ -66,33 +66,36 @@ mycp place town functional-icons_town.png  #scale .25
 
 
 ## Emergency + Health
+mygroup emergency transport_emergency_phone.png
 mycp emergency phone transport_emergency_phone.png
 mycp amenity dentist health_dentist.pngmycp amenity police amenity_police2.png
 mycp amenity fire_station amenity_firestation3.png
+
 mygroup healthcare health_pharmacy.png
 mycp amenity pharmacy health_pharmacy.png
 mycp amenity hospital health_hospital.png
 mycp amenity veterinary health_veterinary.png
 mycp amenity doctors health_doctors.png
-mygroup emergency transport_emergency_phone.png
 
 
 ## Traffic + Transportation
+mygroup transportation transport_taxi_rank.png
 mycp highway traffic_signals transport_traffic_lights.png
 mycp highway mini_roundabout transport_miniroundabout_anticlockwise.png
 mycp highway ford transport_ford.png
+
 mygroup fuel transport_fuel.png
 mycp amenity fuel transport_fuel.png
+
 mygroup parking transport_parking.png
 mycp amenity parking transport_parking.png
 mycp amenity bicycle_parking transport_parking_bicycle.png
 
+mygroup public_transport transport_bus_stop.png
 mycp amenity bus_station transport_bus_station.png
 mycp highway bus_stop transport_bus_stop.png
 mycp highway bus_stop_small functional-icons_bus_stop_small.png
 mycp public_transport platform transport_bus_stop.png
-mygroup public_transport transport_bus_stop.png
-mygroup transportation transport_taxi_rank.png
 mycp amenity taxi transport_taxi_rank.png
 
 mycp amenity bicycle_rental transport_rental_bicycle.png
@@ -136,22 +139,23 @@ mycp building entrance mm_barrier_entrance.png
 
 
 ## Accommodation
+mygroup accomodation accommodation_hotel.png
 mycp tourism camp_site accommodation_camping.png
 mycp tourism caravan_site accommodation_caravan_park.png
 mycp tourism alpine_hut accommodation_alpinehut.png
 mycp tourism chalet accommodation_chalet.png
 mycp tourism guest_house accommodation_bed_and_breakfast.png
 mycp tourism hostel accommodation_hostel.png
-mygroup accomodation accommodation_hotel.png
 mycp tourism hotel accommodation_hotel.png
 mycp tourism motel accommodation_motel.png
 mycp amenity shelter accommodation_shelter2.png
 
 
 ## Tourism
-mycp tourism picnic_site tourist_picnic.png
+mygroup sightseeing tourist_castle2.png
 mygroup tourism tourist_museum.png
 mygroup for_tourists tourist_view_point.png
+mycp tourism picnic_site tourist_picnic.png
 mycp tourism museum tourist_museum.png
 mycp tourism information tourist_information.png
 mycp tourism viewpoint tourist_view_point.png
@@ -160,13 +164,7 @@ mycp tourism zoo tourist_zoo.png
 
 
 ## Entertainment
-# mygroup custom_id icons8 #TODO
-mygroup user_defined icons8_user.png
-mygroup osmwiki icons8_wikipedia.png
-mygroup name_finder icons8_web_search.png
-mygroup null icons8_worldwide_location.png
 mygroup entertainment tourist_cinema.png
-mygroup geocache poi_point_of_interest.png
 mycp amenity arts_centre tourist_art_gallery2.png
 mycp amenity casino tourist_casino.png
 mycp amenity cinema tourist_cinema.png
@@ -176,7 +174,6 @@ mycp amenity stripclub tourist_night_club.png
 
 
 ## Historic
-mygroup sightseeing tourist_castle2.png
 mygroup historic tourist_archaeological2.png
 mycp historic castle tourist_castle2.png
 mycp historic monument tourist_monument.png
@@ -221,14 +218,15 @@ mycp leisure sports_centre sport_leisure_centre.png
 mycp leisure ice_rink sport_iceskating.png
 mycp leisure bird_hide poi_tower_lookout.png
 mycp leisure fishing sport_fishing.png  #used shop=fish turned by 45 degrees for now
+
+mygroup geocache poi_point_of_interest.png
 mycp geocache not_found poi_point_of_interest.png
 mycp geocache found poi_point_of_interest.png
 
 
 ## Other amenities
-mycp amenity bench amenity_bench.png
 mygroup other amenity_post_office.png
-mygroup office amenity_public_building2.png
+mycp amenity bench amenity_bench.png
 #! mycp amenity grave_yard place_of_worship_christian3.png  #already defined as icon in the shader section 
 mycp amenity post_box amenity_post_box.png
 mycp amenity post_office amenity_post_office.png
@@ -244,6 +242,7 @@ mycp amenity atm money_atm.png
 mycp amenity bank money_bank2.png
 mycp amenity bureau_de_change money_currency_exchange.png
 
+mygroup office amenity_public_building2.png
 mycp amenity embassy poi_embassy.png
 mycp amenity townhall amenity_town_hall2.png
 mycp amenity courthouse amenity_court.png
@@ -264,13 +263,13 @@ mycp amenity university education_university.png
 
 ## Man made
 mygroup man_made power_station_wind.png
-mygroup military poi_military_bunker.png
 mycp power tower functional-icons_power_tower.png  #scale 0.5
 mycp power generator power_station_wind.png
 mycp man_made lighthouse transport_lighthouse.png
 mycp man_made water_tower water_tower.png
 mycp man_made mineshaft poi_mine.png
 mycp man_made windmill tourist_windmill.png
+mygroup military poi_military_bunker.png
 
 
 ## Sustenance
@@ -332,3 +331,10 @@ mycp shop gift shopping_gift.png
 mycp shop hearing_aids shopping_hearing_aids.png
 mycp shop toys shopping_toys.png
 mycp amenity vending_machine shopping_vending_machine.png
+
+
+# mygroup custom_id icons8 #TODO
+mygroup user_defined icons8_user.png
+mygroup osmwiki icons8_wikipedia.png
+mygroup name_finder icons8_web_search.png
+mygroup null icons8_worldwide_location.png
