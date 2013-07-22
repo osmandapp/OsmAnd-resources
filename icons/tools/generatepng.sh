@@ -55,7 +55,7 @@ generatePngs 'barrier' '#777777' '#777777'
 
 generatePngs 'accommodation' '#0092DA' '#777777'
 generatePngs 'amenity' '#777777' '#734A08'
-generatePngs 'education' '#39AC39' '#777777'
+generatePngs 'education' '#777777' '#39AC39'
 generatePngs 'food' '#777777' '#734A08'
 generatePngs 'health' '#DA0092' '#777777'
 generatePngs 'landuse' '#777777' '#999999'
