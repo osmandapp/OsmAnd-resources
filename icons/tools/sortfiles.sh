@@ -129,9 +129,10 @@ mycp amenity pharmacy health_pharmacy.png
 mycp amenity hospital health_hospital.png
 mycp amenity veterinary health_veterinary.png
 mycp amenity doctors health_doctors.png
-mycp amenity dentist health_dentist.png
-mycp emergency phone transport_emergency_phone.png
 mygroup emergency transport_emergency_phone.png
+mycp emergency phone transport_emergency_phone.png
+mycp amenity dentist health_dentist.pngmycp amenity police amenity_police2.png
+mycp amenity fire_station amenity_firestation3.png
 
 
 ## Accommodation
@@ -230,8 +231,6 @@ mycp amenity embassy poi_embassy.png
 mygroup other amenity_post_office.png
 mygroup office amenity_public_building2.png
 #! mycp amenity grave_yard place_of_worship_christian3.png  #already defined as icon in the shader section 
-mycp amenity police amenity_police2.png
-mycp amenity fire_station amenity_firestation3.png
 mycp amenity post_box amenity_post_box.png
 mycp amenity post_office amenity_post_office.png
 mycp amenity prison amenity_prison.png
