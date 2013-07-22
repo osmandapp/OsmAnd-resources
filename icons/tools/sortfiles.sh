@@ -65,6 +65,18 @@ mycp place town_night functional-icons_town_night.png  #scale 0.25
 mycp place town functional-icons_town.png  #scale .25
 
 
+## Emergency + Health
+mycp emergency phone transport_emergency_phone.png
+mycp amenity dentist health_dentist.pngmycp amenity police amenity_police2.png
+mycp amenity fire_station amenity_firestation3.png
+mygroup healthcare health_pharmacy.png
+mycp amenity pharmacy health_pharmacy.png
+mycp amenity hospital health_hospital.png
+mycp amenity veterinary health_veterinary.png
+mycp amenity doctors health_doctors.png
+mygroup emergency transport_emergency_phone.png
+
+
 ## Traffic + Transportation
 mycp highway traffic_signals transport_traffic_lights.png
 mycp highway mini_roundabout transport_miniroundabout_anticlockwise.png
@@ -121,18 +133,6 @@ mycp barrier toll_booth barrier_toll_booth.png
 mycp barrier border_control barrier_lift_gate.png
 mycp barrier entrance barrier_entrance.png
 mycp building entrance mm_barrier_entrance.png
-
-
-## Health + Emergency
-mygroup healthcare health_pharmacy.png
-mycp amenity pharmacy health_pharmacy.png
-mycp amenity hospital health_hospital.png
-mycp amenity veterinary health_veterinary.png
-mycp amenity doctors health_doctors.png
-mygroup emergency transport_emergency_phone.png
-mycp emergency phone transport_emergency_phone.png
-mycp amenity dentist health_dentist.pngmycp amenity police amenity_police2.png
-mycp amenity fire_station amenity_firestation3.png
 
 
 ## Accommodation
