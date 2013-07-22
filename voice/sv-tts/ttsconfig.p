@@ -33,6 +33,7 @@ roundabout(_Angle, Exit) -- ['ta den ', E, 'utfarten'] :- nth(Exit, E).
 go_ahead -- ['Kör rakt fram '].
 go_ahead(Dist) -- ['Följ den här vägen ', D]:- distance(Dist) -- D.
 
+
 then -- ['sedan '].
 and_arrive_destination -- ['och du är framme '].
 reached_destination -- ['du är framme '].
@@ -44,10 +45,11 @@ route_recalc(Dist) -- ['Ny väg beräknad, resan är ', D] :- distance(Dist) -- 
 
 location_lost -- ['GPS-signalen borttappad '].
 
+
 % on_street -- ['on ', X] :- next_street(X).
-% off_route -- ['you have deviated from the route '].
-% attention -- ['attention '].
-% speed_alarm -- ['you are exceeding the speed limit '].
+% off_route -- ['du har avvikit från rutten '].
+% attention --  ['uppmärksamhet '].
+% speed_alarm -- ['du överskrider hastighetsgränsen '].
 
 
 %% 
