@@ -330,6 +330,7 @@
 			leftTurn="0" rightTurn="0" followSpeedLimitations="false" onewayAware="true">
 		<!-- <attribute name="relaxNodesIfStartDistSmallCoeff" value="2.5"/>  -->
 		<!-- New ROUTING API -->
+		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_motorway" name="Avoid motorways" description="Avoid motorways" type="boolean"/>		
 		
 		<way attribute="access">
@@ -339,6 +340,9 @@
 				<select value="-1" t="highway" v="trunk"/>
 				<select value="-1" t="highway" v="trunk_link"/>
 			</if>
+			<select value="-1" t="route" v="ferry">
+				<if param="avoid_ferries"/>
+			</select>
 			<!-- <select value="-1" t="access" v="no"/> -->
 			<select value="-1" t="bicycle" v="no"/>
 			
@@ -366,7 +370,7 @@
 			<select value="1" t="highway" v="services"/>
 			<select value="1" t="highway" v="bridleway"/>
 			<select value="1" t="highway" v="steps"/>
-			
+			<select value="1" t="route" v="ferry"/>
 			<select value="-1"/>
 		</way>
 		
@@ -398,6 +402,7 @@
 			<select value="13" t="highway" v="services"/>
 			<select value="8" t="highway" v="bridleway"/>
 			<select value="3" t="highway" v="steps"/>
+			<select value="5" t="route" v="ferry"/>
 			<select value="16"/>
 		</way>
 
@@ -439,6 +444,7 @@
 			<select value="1" t="highway" v="services"/>
 			<select value="0.8" t="highway" v="bridleway"/>
 			<select value="0.5" t="highway" v="steps"/>
+			<select value="1" t="route" v="ferry"/>
 			
 		</way>
 		
@@ -504,6 +510,9 @@
 		<road tag="highway" value="services" speed="13" priority="1" />
 		<road tag="highway" value="bridleway" speed="8" priority="0.8" />
 		<road tag="highway" value="steps" speed="3" priority="0.5" />
+		<road tag="route" value="ferry" speed="5" priority="1.0" >
+			<specialization input="avoid_ferries" speed="0"/> 
+		</road>
 
 		<obstacle tag="highway" value="traffic_signals" penalty="25" routingPenalty="10"/>
 		<obstacle tag="highway" value="stop" penalty="15" routingPenalty="1"/>
@@ -524,6 +533,7 @@
 		<avoid tag="access" value="private" decreasedPriority="0.1"/>
 		<avoid tag="barrier" value="debris" decreasedPriority="0.1"/>
 		<avoid tag="barrier" value="block" decreasedPriority="0.1"/>
+
 		<avoid tag="bicycle" value="no"/>
 	</routingProfile>
 
@@ -532,6 +542,7 @@
 
 		<attribute name="heuristicCoefficient" value="1.2" />
 		<!-- NEW ROUTING API -->
+		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_motorway" name="Avoid motorways" description="Avoid motorways" type="boolean"/>		
 		
 		<way attribute="access">
@@ -541,6 +552,9 @@
 				<select value="-1" t="highway" v="trunk"/>
 				<select value="-1" t="highway" v="trunk_link"/>
 			</if>
+			<select value="-1" t="route" v="ferry">
+				<if param="avoid_ferries"/>
+			</select>
 			<select value="-1" t="foot" v="no"/>
 			<select value="-1" t="pedestrian" v="no"/>
 			
@@ -568,7 +582,7 @@
 			<select value="1" t="highway" v="services"/>
 			<select value="1" t="highway" v="bridleway"/>
 			<select value="1" t="highway" v="steps"/>
-			
+			<select value="1" t="route" v="ferry"/>
 			<select value="-1"/>
 		</way>
 		
@@ -591,6 +605,7 @@
 			<select value="1.2" t="highway" v="footway"/>
 			<select value="0.8" t="highway" v="bridleway"/>
 			<select value="1.2" t="highway" v="steps"/>
+			<select value="1" t="route" v="ferry"/>
 			
 			<select value="1"/>
 		</way>
@@ -643,6 +658,9 @@
 		<road tag="highway" value="services" speed="5" priority="1" />
 		<road tag="highway" value="bridleway" speed="5" priority="0.8" />
 		<road tag="highway" value="steps" speed="4" priority="1.2" />
+		<road tag="route" value="ferry" speed="5" priority="1.0" >
+			<specialization input="avoid_ferries" speed="0"/> 
+		</road>
 
 		<obstacle tag="highway" value="ford" penalty="15"/>
 		<obstacle tag="ford" value="" penalty="15"/>
