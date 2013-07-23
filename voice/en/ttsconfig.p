@@ -92,8 +92,8 @@ bear_left(_Street) -- ['left_keep.ogg'].
 bear_right(_Street) -- ['right_keep.ogg'].
 
 prepare_turn(Turn, Dist, _Street) -- ['prepare.ogg', M, 'after.ogg', D, ' '] :- distance(Dist) -- D, turn(Turn, M).
-turn(Turn, Dist, _Street) -- ['after.ogg', D, M] :- distance(Dist) -- D, turn(Turn, M).
-turn(Turn, _Street) -- M :- turn(Turn, M).
+turn(Turn, Dist, Street) -- ['after.ogg', D, M, Street] :- distance(Dist) -- D, turn(Turn, M).
+turn(Turn, Street) -- [M, Street] :- turn(Turn, M).
 
 prepare_make_ut(Dist, _Street) -- ['prepare.ogg', 'make_uturn.ogg', 'after.ogg', D] :- distance(Dist) -- D.
 make_ut(Dist, _Street) --  ['after.ogg', D, 'make_uturn.ogg'] :- distance(Dist) -- D.
@@ -154,6 +154,10 @@ flatten([X|Y], Acc, Res):- flatten(Y, Acc, R), flatten(X, R, Res).
 flatten(X, Acc, [X|Acc]) :- version(J), J < 100, !.
 flatten(X, Acc, [Y|Acc]) :- string(X, Y), !.
 flatten(X, Acc, [X|Acc]).
+
+% handling alternatives
+(([X|_Y]) -- ['100.ogg']) :- print(X).%:- (X -- T),!.
+(([_X|Y]) -- T) :- (Y -- T).
 
 
 
@@ -223,7 +227,3 @@ dist(D, ['700.ogg'|L]) :-  D < 800, Ts is D - 700, !, dist(Ts, L).
 dist(D, ['800.ogg'|L]) :-  D < 900, Ts is D - 800, !, dist(Ts, L).
 dist(D, ['900.ogg'|L]) :-  D < 1000, Ts is D - 900, !, dist(Ts, L).
 dist(D, ['1000.ogg'|L]):- Ts is D - 1000, !, dist(Ts, L).
-
-% handling alternatives
-[X|_Y] -- T :- (X -- T),!.
-[_X|Y] -- T :- (Y -- T).
