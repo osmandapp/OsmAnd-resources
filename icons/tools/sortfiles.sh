@@ -66,16 +66,17 @@ mycp place town functional-icons_town.png  #scale .25
 
 
 ## Emergency + Health
-mygroup emergency transport_emergency_phone.png
-mycp emergency phone transport_emergency_phone.png
-mycp amenity dentist health_dentist.pngmycp amenity police amenity_police2.png
-mycp amenity fire_station amenity_firestation3.png
+mygroup emergency emergency_emergency_phone.png
+mycp emergency phone emergency_emergency_phone.png
+mycp amenity police emergency_police2.png
+mycp amenity fire_station emergency_firestation3.png
 
 mygroup healthcare health_pharmacy.png
 mycp amenity pharmacy health_pharmacy.png
 mycp amenity hospital health_hospital.png
 mycp amenity veterinary health_veterinary.png
 mycp amenity doctors health_doctors.png
+mycp amenity dentist health_dentist.png
 
 
 ## Traffic + Transportation
@@ -104,6 +105,7 @@ mycp amenity car_sharing transport_car_share.png
 
 mycp leisure marina transport_marina.png
 mycp leisure slipway transport_slipway.png
+mycp man_made lighthouse transport_lighthouse.png
 mycp waterway lock_gate functional-icons_lock_gate.png  #scale 0.5
 
 mycp railway station transport_train_station.png
@@ -135,7 +137,7 @@ mycp barrier kissing_gate barrier_kissing_gate.png
 mycp barrier toll_booth barrier_toll_booth.png
 mycp barrier border_control barrier_lift_gate.png
 mycp barrier entrance barrier_entrance.png
-mycp building entrance mm_barrier_entrance.png
+mycp building entrance barrier_entrance.png
 
 
 ## Accommodation
@@ -211,13 +213,13 @@ mycp sport gymnastics sport_gymnasium.png
 
 
 ## Leisure
-mygroup leisure amenity_playground.png
-mycp leisure playground amenity_playground.png
+mygroup leisure sport_playground.png
+mycp leisure playground sport_playground.png
 mycp leisure water_park sport_swimming_outdoor.png
 mycp leisure sports_centre sport_leisure_centre.png
 mycp leisure ice_rink sport_iceskating.png
-mycp leisure bird_hide poi_tower_lookout.png
 mycp leisure fishing sport_fishing.png  #used shop=fish turned by 45 degrees for now
+mycp leisure bird_hide poi_tower_lookout.png
 
 mygroup geocache poi_point_of_interest.png
 mycp geocache not_found poi_point_of_interest.png
@@ -227,15 +229,15 @@ mycp geocache found poi_point_of_interest.png
 ## Other amenities
 mygroup other amenity_post_office.png
 mycp amenity bench amenity_bench.png
-#! mycp amenity grave_yard place_of_worship_christian3.png  #already defined as icon in the shader section 
 mycp amenity post_box amenity_post_box.png
 mycp amenity post_office amenity_post_office.png
 mycp amenity prison amenity_prison.png
 mycp amenity recycling amenity_recycling.png
 mycp amenity telephone amenity_telephone.png
 mycp amenity toilets amenity_toilets.png
-mycp amenity place_of_worship place_of_worship_unknown.png
 mycp amenity fountain amenity_fountain2.png
+mycp amenity place_of_worship place_of_worship_unknown.png
+#! mycp amenity grave_yard place_of_worship_christian3.png  #already defined as icon in the shader section 
 
 mygroup finance money_bank2.png
 mycp amenity atm money_atm.png
@@ -243,7 +245,7 @@ mycp amenity bank money_bank2.png
 mycp amenity bureau_de_change money_currency_exchange.png
 
 mygroup office amenity_public_building2.png
-mycp amenity embassy poi_embassy.png
+mycp amenity embassy amenity_embassy.png
 mycp amenity townhall amenity_town_hall2.png
 mycp amenity courthouse amenity_court.png
 mycp office government amenity_public_building.png
@@ -265,10 +267,9 @@ mycp amenity university education_university.png
 mygroup man_made power_station_wind.png
 mycp power tower functional-icons_power_tower.png  #scale 0.5
 mycp power generator power_station_wind.png
-mycp man_made lighthouse transport_lighthouse.png
-mycp man_made water_tower water_tower.png
+mycp man_made water_tower poi_water_tower.png
 mycp man_made mineshaft poi_mine.png
-mycp man_made windmill tourist_windmill.png
+mycp man_made windmill poi_windmill.png
 mygroup military poi_military_bunker.png
 
 
@@ -315,7 +316,7 @@ mycp shop supermarket shopping_supermarket.png
 mycp shop alcohol shopping_alcohol.png
 mycp shop kiosk shopping_kiosk.png
 mycp shop musical_instrument shopping_music.png
-mycp shop optician health_opticians.png
+mycp shop optician shopping_opticians.png
 mycp shop pet shopping_pet2.png
 mycp shop video shopping_video_rental.png
 mycp shop confectionery shopping_confectionery.png
