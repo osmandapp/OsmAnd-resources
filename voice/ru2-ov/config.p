@@ -1,3 +1,4 @@
+% for turbo-prolog
 :- op('--', xfy, 500).
 version(0).
 
@@ -13,26 +14,24 @@ turn('left_keep', ['keep_left-e.ogg']).
 
 off_route(['off_route.ogg']).
 
-prepare_turn(Turn, Dist) -- ['Prepare_to.ogg', 'after-m.ogg', delay_300, D, delay_300, M] :- 
-			distance(Dist) -- D, turn(Turn, M).
-turn(Turn, Dist) -- ['after-m.ogg', delay_300, D, delay_300, M] :- 
-			distance(Dist) -- D, turn(Turn, M).
+prepare_turn(Turn, Dist) -- ['Prepare_to.ogg', 'after-m.ogg', D, M] :-  distance(Dist) -- D, turn(Turn, M).
+turn(Turn, Dist) -- ['after-m.ogg', D, M] :-  distance(Dist) -- D, turn(Turn, M).
 turn(Turn) -- M :- turn(Turn, M).
 
 
-prepare_make_ut(Dist) -- ['Prepare_to.ogg', 'after-m.ogg', delay_300, D, delay_300,'turn_back-e.ogg'] :- 
+prepare_make_ut(Dist) -- ['Prepare_to.ogg', 'after-m.ogg',  D, 'turn_back-e.ogg'] :- 
 		distance(Dist) -- D.
 
-prepare_roundabout(Dist) -- ['Prepare_to.ogg', 'after-m.ogg', delay_300, D, delay_300, 'cross_the_roundabout-e.ogg'] :- 
+prepare_roundabout(Dist) -- ['Prepare_to.ogg', 'after-m.ogg',  D,  'cross_the_roundabout-e.ogg'] :- 
 		distance(Dist) -- D.
 
-make_ut(Dist) -- ['after-m.ogg', delay_300, D, delay_300, 'turn_back-e.ogg'] :- 
+make_ut(Dist) -- ['after-m.ogg',  D,  'turn_back-e.ogg'] :- 
 			distance(Dist) -- D.
 make_ut -- ['turn_back-e.ogg'].
 
-roundabout(Dist, _Angle, Exit) -- ['after-m.ogg', delay_300, D, delay_300, 'enter_the_roundabout-e.ogg', delay_250, 'and_take_the.ogg', 
-		delay_250, E, 'exit-e.ogg'] :- distance(Dist) -- D, nth(Exit, E).
-roundabout(_Angle, Exit) -- ['taking_the.ogg', delay_250,  E, 'exit-e.ogg'] :- nth(Exit, E).
+roundabout(Dist, _Angle, Exit) -- ['after-m.ogg',  D,  'enter_the_roundabout-e.ogg',  'and_take_the.ogg', 
+		 E, 'exit-e.ogg'] :- distance(Dist) -- D, nth(Exit, E).
+roundabout(_Angle, Exit) -- ['taking_the.ogg',   E, 'exit-e.ogg'] :- nth(Exit, E).
 
 and_arrive_destination -- ['arrive_at_your_destination-e.ogg']. % Miss and?
 then -- ['then.ogg', delay_350].
@@ -47,7 +46,7 @@ route_new_calc(Dist) -- ['the_trip_is_more_than.ogg', delay_150, D] :- distance(
 
 % location_lost -- ['no_file.ogg'].
 
-go_ahead(Dist) -- ['Drive-n.ogg', delay_250,  D]:- distance(Dist) -- D.
+go_ahead(Dist) -- ['Drive-n.ogg',   D]:- distance(Dist) -- D.
 go_ahead -- ['continue_straight-e.ogg'].
 
 %% 

@@ -1,3 +1,4 @@
+% for turbo-prolog
 :- op('--', xfy, 500).
 version(0).
 
@@ -11,8 +12,7 @@ turn('right_sh', ['turn_sharp_right-e.ogg']).
 turn('right_sl', ['turn_slightly_right-e.ogg']).
 turn('right_keep', ['keep_right-e.ogg']).
 turn('left_keep', ['keep_left-e.ogg']).
-prepare_turn(Turn, Dist) -- ['prepare_to.ogg', 'after-n.ogg', D, M] :- 
-			distance(Dist) -- D, turn(Turn, M).
+prepare_turn(Turn, Dist) -- ['prepare_to.ogg', 'after-n.ogg', D, M] :- distance(Dist) -- D, turn(Turn, M).
 turn(Turn, Dist) -- ['after-n.ogg', D, M] :- 
 			distance(Dist) -- D, turn(Turn, M).
 turn(Turn) -- M :- turn(Turn, M).
@@ -32,13 +32,13 @@ roundabout(Dist, _Angle, Exit) -- ['after-n.ogg',D, 'enter_the_roundabout-e.ogg'
 			distance(Dist) -- D, nth(Exit, E).
 roundabout(_Angle, Exit) -- ['take_the.ogg', E, 'exit-e.ogg'] :- nth(Exit, E).
 
-and_arrive_destination -- ['then.ogg', delay_150, 'arrive_at_your_destination-e.ogg'].
+and_arrive_destination -- ['then.ogg',  'arrive_at_your_destination-e.ogg'].
 
 reached_destination -- ['you_have_reached_your_destination.ogg'].
 and_arrive_intermediate -- ['arrive_at_viapoint-e.ogg'].
 reached_intermediate -- ['you_have_reached_a_viapoint.ogg'].
 
-then -- ['then.ogg', delay_150].
+then -- ['then.ogg'].
 bear_right -- ['keep_right-e.ogg'].
 location_lost -- ['gps_signal_lost.ogg'].
 bear_left -- ['keep_left-e.ogg'].

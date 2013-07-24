@@ -117,7 +117,7 @@ prepare_roundabout(Dist, _Exit, _Street) -- ['prepare_roundabout.ogg', 'after.og
 roundabout(Dist, _Angle, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), onto_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), onto_street(Street, Sgen).
 
-go_ahead(Dist, Street) -- ['follow.ogg' | Sgen, 'for.ogg', D] :- distance(Dist) -- D, street(Street, Sgen).
+go_ahead(Dist, Street) -- ['follow.ogg', Sgen, 'for.ogg', D] :- distance(Dist) -- D, street(Street, Sgen).
 
 then -- [', then.ogg'].
 name(D, [D]) :- tts.
