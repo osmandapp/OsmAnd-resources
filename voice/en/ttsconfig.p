@@ -112,13 +112,13 @@ make_ut(Dist, Street) --  ['after.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(
 make_ut(Street) -- ['make_uturn.ogg'|Sgen] :- on_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
-prepare_roundabout(Dist, _Exit, Street) -- ['prepare_roundabout.ogg', 'after.ogg', D] :- distance(Dist) -- D.
+prepare_roundabout(Dist, _Exit, _Street) -- ['prepare_roundabout.ogg', 'after.ogg', D] :- distance(Dist) -- D.
 roundabout(Dist, _Angle, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), onto_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg'| Sgen] :- nth(Exit, E), onto_street(Street, Sgen).
 
 go_ahead(Dist, Street) -- ['follow.ogg', 'go_ahead_m.ogg'| Sgen, 'for.ogg', D ]:- distance(Dist) -- D, street(Street, Sgen).
 
-then -- ['then.ogg'].
+then -- [', then.ogg'].
 name(D, [D]) :- tts.
 name(_D, []) :- not(tts).
 and_arrive_destination(D) -- ['and_arrive_destination.ogg'|Ds] :- name(D, Ds).
