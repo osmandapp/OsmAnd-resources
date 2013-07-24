@@ -204,8 +204,8 @@ mycp sport canoe sport_canoe.png
 mycp sport tennis sport_tennis.png
 mycp sport shooting sport_shooting.png
 mycp sport golf sport_golf.png
-mycp sport swimming sport_swimming_outdoor.png
 mycp sport skiing sport_skiing_downhill.png
+mycp sport swimming sport_swimming_outdoor.png
 mycp sport diving sport_diving.png
 mycp sport scuba_diving sport_scuba_diving.png  #derived from NPS public library
 mycp sport billiard sport_snooker.png
@@ -273,7 +273,7 @@ mycp man_made windmill poi_windmill.png
 mygroup military poi_military_bunker.png
 
 
-## Sustenance
+## Food and Drink
 mygroup restaurants food_restaurant.png
 mygroup sustenance food_fastfood.png
 mycp amenity restaurant food_restaurant.png
@@ -291,47 +291,47 @@ mycp amenity drinking_water food_drinkingtap.png
 mygroup car_aid shopping_car.png
 mygroup food_shop shopping_convenience.png
 mygroup shop shopping_department_store.png
-mycp amenity marketplace shopping_marketplace.png
+mycp shop alcohol shopping_alcohol.png
 mycp shop bakery shopping_bakery.png
-mycp shop butcher shopping_butcher2.png
-mycp shop clothes shopping_clothes.png
-mycp shop fashion shopping_clothes.png
-mycp shop boutique shopping_clothes.png
 mycp shop bicycle shopping_bicycle.png
+mycp shop boutique shopping_clothes.png
+mycp shop butcher shopping_butcher2.png
 mycp shop car shopping_car.png
 mycp shop car_repair shopping_car_repair.png
-mycp shop doityourself shopping_diy.png
-mycp shop convenience shopping_convenience.png
-mycp shop department_store shopping_department_store.png
-mycp shop electronics shopping_hifi.png
+mycp shop clothes shopping_clothes.png
 mycp shop computer shopping_computer.png
-mycp shop mobile_phone shopping_mobile_phone.png
-mycp shop jewelry shopping_jewelry2.png
-mycp shop outdoor shopping_tackle.png
+mycp shop confectionery shopping_confectionery.png
+mycp shop convenience shopping_convenience.png
+mycp shop copyshop shopping_copyshop.png
+mycp shop department_store shopping_department_store.png
+mycp shop doityourself shopping_diy.png
+mycp shop electronics shopping_hifi.png
+mycp shop fashion shopping_clothes.png
 mycp shop florist shopping_florist.png
-mycp shop hairdresser shopping_hairdresser.png
-mycp shop mall shopping_department_store.png
+mycp shop garden_centre shopping_garden_centre.png
 mycp shop general shopping_convenience.png
-mycp shop supermarket shopping_supermarket.png
-mycp shop alcohol shopping_alcohol.png
+mycp shop gift shopping_gift.png
+mycp shop greengrocer shopping_greengrocer.png
+mycp shop hairdresser shopping_hairdresser.png
+mycp shop hardware shopping_diy.png
+mycp shop hearing_aids shopping_hearing_aids.png
+mycp shop jewelry shopping_jewelry2.png
 mycp shop kiosk shopping_kiosk.png
+mycp shop laundry shopping_laundrette.png
+mycp shop mall shopping_department_store.png
+mycp amenity marketplace shopping_marketplace.png
+mycp shop mobile_phone shopping_mobile_phone.png
+mycp shop motorcycle shopping_motorcycle.png
 mycp shop musical_instrument shopping_music.png
 mycp shop optician shopping_opticians.png
+mycp shop outdoor shopping_tackle.png
 mycp shop pet shopping_pet2.png
-mycp shop video shopping_video_rental.png
-mycp shop confectionery shopping_confectionery.png
-mycp shop laundry shopping_laundrette.png
-mycp shop tobacco shopping_tobacco.png
-mycp shop motorcycle shopping_motorcycle.png
-mycp shop hardware shopping_diy.png
-mycp shop copyshop shopping_copyshop.png
-mycp shop greengrocer shopping_greengrocer.png
 mycp shop seafood shopping_fish.png
-mycp shop garden_centre shopping_garden_centre.png
-mycp shop gift shopping_gift.png
-mycp shop hearing_aids shopping_hearing_aids.png
+mycp shop supermarket shopping_supermarket.png
+mycp shop tobacco shopping_tobacco.png
 mycp shop toys shopping_toys.png
 mycp amenity vending_machine shopping_vending_machine.png
+mycp shop video shopping_video_rental.png
 
 
 # mygroup custom_id icons8 #TODO
