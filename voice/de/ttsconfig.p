@@ -188,9 +188,9 @@ resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L,
 
 
 %%% distance measure
-distance(Dist) -- D :- measure('km-m'), distance_km(Dist) -- D.
-distance(Dist) -- D :- measure('mi-f'), distance_mi_f(Dist) -- D.
-distance(Dist) -- D :- measure('mi-y'), distance_mi_y(Dist) -- D.
+distance(Dist, Y) -- D :- measure('km-m'), distance_km(Dist, Y) -- D.
+distance(Dist, Y) -- D :- measure('mi-f'), distance_mi_f(Dist, Y) -- D.
+distance(Dist, Y) -- D :- measure('mi-y'), distance_mi_y(Dist, Y) -- D.
 
 %%% distance measure km/m
 distance_km(Dist, nominativ) -- [ X, 'meters_nominativ.ogg']                  :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
