@@ -101,8 +101,8 @@ turn('right_sh', ['right_sh.ogg']).
 turn('right_sl', ['right_sl.ogg']).
 turn('left_keep', ['left_keep.ogg']).
 turn('right_keep', ['right_keep.ogg']).
-bear_left -- ['left_keep.ogg'].
-bear_right -- ['right_keep.ogg'].
+bear_left(_Street) -- ['left_keep.ogg'].
+bear_right(_Street) -- ['right_keep.ogg'].
 
 street('', []).
 street(Street, [' ', Street]) :- tts.
