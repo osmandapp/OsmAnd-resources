@@ -42,8 +42,8 @@ string('reached_waypoint.ogg', 'you have reached your waypoint ').
 string('route_is.ogg', 'The trip is ').
 string('route_calculate.ogg', 'Route recalculated, distance ').
 string('location_lost.ogg', 'g p s signal lost ').
-string('on.ogg', 'on ').
-string('off_route.ogg', 'you have deviated from the route ').
+string('on.ogg', 'onto ').
+string('off_route.ogg', 'you have deviated from the route for').
 string('exceed_limit.ogg', 'you are exceeding the speed limit ').
 
 string('1st.ogg', 'first ').
