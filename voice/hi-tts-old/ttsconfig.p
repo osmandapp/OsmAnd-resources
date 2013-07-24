@@ -1,9 +1,10 @@
-﻿:- op('--', xfy, 500).
+﻿% for turbo-prolog
+:- op('--', xfy, 500).
+% for swi-prolog
+:- op(500, xfy,'--').
 version(101).
 language(hi).
 
-% before each announcement (beep)
-preamble - [].
 
 
 %% TURNS 

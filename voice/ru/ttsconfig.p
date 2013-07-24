@@ -1,5 +1,4 @@
-﻿% :- .
-% :- 
+﻿% :- 
 % for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog

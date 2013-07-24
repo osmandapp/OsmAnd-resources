@@ -4,12 +4,14 @@
 % maybe use "zahněte" instead of "odbočte"
 % optimize "pak držte se vlevo"  -> "pak se držte vlevo"
 
+% for turbo-prolog
 :- op('--', xfy, 500).
+% for swi-prolog
+:- op(500, xfy,'--').
 version(101).
 language(cs).
 
 % before each announcement (beep)
-preamble - [].
 
 
 %% TURNS 

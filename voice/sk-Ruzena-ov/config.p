@@ -1,4 +1,7 @@
+% for turbo-prolog
 :- op('--', xfy, 500).
+% for swi-prolog
+:- op(500, xfy,'--').
 version(0).
 
 

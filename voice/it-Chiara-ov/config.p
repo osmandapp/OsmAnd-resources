@@ -1,4 +1,7 @@
+% for turbo-prolog
 :- op('--', xfy, 500).
+% for swi-prolog
+:- op(500, xfy,'--').
 version(0).
 % provided by GaudiumSoft Lukasz Lubojanski - firma@gaudiumsoft.pl.
 % based on OsmAnd original _config.p file.

@@ -1,4 +1,7 @@
-﻿:- op('==', xfy, 500).
+﻿% for turbo-prolog
+:- op('--', xfy, 500).
+% for swi-prolog
+:- op(500, xfy,'--').
 version(101).
 language(ko).
 
@@ -12,40 +15,40 @@ turn('right_sh', ['크게 우회전']).
 turn('right_sl', ['우회전']).
 turn('left_keep', ['왼쪽에서 계속 가세요 ']).
 turn('right_keep', ['오른쪽에서 계속 가세요 ']).
-bear_left == ['왼쪽에서 계속 가세요 '].
-bear_right == ['오른쪽에서 계속 가세요 '].
+bear_left -- ['왼쪽에서 계속 가세요 '].
+bear_right -- ['오른쪽에서 계속 가세요 '].
 
-prepare_turn(Turn, Dist) == [D, ' 앞에서 ', M, '을 준비하세요 '] :- 	distance(Dist) == D, turn(Turn, M).
-turn(Turn, Dist) == [D, ' 앞에서 ', M, '하세요 '] :- 	distance(Dist) == D, turn(Turn, M).
-turn(Turn) == [M, '하세요 '] :- turn(Turn, M).
+prepare_turn(Turn, Dist) -- [D, ' 앞에서 ', M, '을 준비하세요 '] :- 	distance(Dist) -- D, turn(Turn, M).
+turn(Turn, Dist) -- [D, ' 앞에서 ', M, '하세요 '] :- 	distance(Dist) -- D, turn(Turn, M).
+turn(Turn) -- [M, '하세요 '] :- turn(Turn, M).
 
-prepare_make_ut(Dist) == [D, ' 앞에서 U턴을 준비하세요 '] :- distance(Dist) == D.
-make_ut(Dist) == [D, ' 앞에서 U턴하세요 '] :- distance(Dist) == D.
-make_ut == ['지금 U턴하세요 '].
-make_ut_wp == ['가능한 경우에, U턴하세요 '].
+prepare_make_ut(Dist) -- [D, ' 앞에서 U턴을 준비하세요 '] :- distance(Dist) -- D.
+make_ut(Dist) -- [D, ' 앞에서 U턴하세요 '] :- distance(Dist) -- D.
+make_ut -- ['지금 U턴하세요 '].
+make_ut_wp -- ['가능한 경우에, U턴하세요 '].
 
-prepare_roundabout(Dist) == [D, ' 앞에서 로타리 진입을 준비하세요 '] :- 	distance(Dist) == D.
-roundabout(Dist, _Angle, Exit) == [D, ' 앞에서 로타리에 진입하시고 ', E, ' 출구로 나가세요 '] :- distance(Dist) == D, nth(Exit, E).
-roundabout(_Angle, Exit) == [E, ' 출구로 나가세요 '] :- nth(Exit, E).
+prepare_roundabout(Dist) -- [D, ' 앞에서 로타리 진입을 준비하세요 '] :- 	distance(Dist) -- D.
+roundabout(Dist, _Angle, Exit) -- [D, ' 앞에서 로타리에 진입하시고 ', E, ' 출구로 나가세요 '] :- distance(Dist) -- D, nth(Exit, E).
+roundabout(_Angle, Exit) -- [E, ' 출구로 나가세요 '] :- nth(Exit, E).
 
-go_ahead == ['직진을 계속하세요 '].
-go_ahead(Dist) == [D, ' 직진하세요 ']:- distance(Dist) == D.
+go_ahead -- ['직진을 계속하세요 '].
+go_ahead(Dist) -- [D, ' 직진하세요 ']:- distance(Dist) -- D.
 
-then == [', 다음은 '].
-and_arrive_destination == [' 다음은 목적지에 도착합니다 ']. % Miss and?
-reached_destination == ['목적지에 도착하였습니다 '].
-and_arrive_intermediate == ['당신을 통해 지점에 도착 '].
-reached_intermediate == ['당신은 당신을 통해 지점에 도달했습니다'].
+then -- [', 다음은 '].
+and_arrive_destination -- [' 다음은 목적지에 도착합니다 ']. % Miss and?
+reached_destination -- ['목적지에 도착하였습니다 '].
+and_arrive_intermediate -- ['당신을 통해 지점에 도착 '].
+reached_intermediate -- ['당신은 당신을 통해 지점에 도달했습니다'].
 
-route_new_calc(Dist) == ['총 거리는 ', D, ' 입니다 '] :- distance(Dist) == D.
-route_recalc(Dist) == ['경로가 재탐색되었습니다. 거리는  ', D, ' 입니다 '] :- distance(Dist) == D.
+route_new_calc(Dist) -- ['총 거리는 ', D, ' 입니다 '] :- distance(Dist) -- D.
+route_recalc(Dist) -- ['경로가 재탐색되었습니다. 거리는  ', D, ' 입니다 '] :- distance(Dist) -- D.
 
-location_lost == ['g p s 신호가 없습니다 '].
+location_lost -- ['g p s 신호가 없습니다 '].
 
-on_street == ['에 ', X] :- next_street(X).
-off_route == ['당신은 경로에서 이탈했다 '].
-attention == ['주의 '].
-speed_alarm == ['당신은 속도 제한을 초과하는 '].
+on_street -- ['에 ', X] :- next_street(X).
+off_route -- ['당신은 경로에서 이탈했다 '].
+attention -- ['주의 '].
+speed_alarm -- ['당신은 속도 제한을 초과하는 '].
 
 
 %% 
@@ -69,11 +72,11 @@ nth(17, '열일곱번째 ').
 
 
 %%% distance measure
-distance(Dist) == [ X, ' 미터 '] :- Dist < 100, D is round(Dist/10.0)*10, num_atom(D, X).
-distance(Dist) == [ X, ' 미터 '] :- Dist < 1000, D is round(2*Dist/100.0)*50, num_atom(D, X).
-distance(Dist) == ['약, 1 킬로미터 '] :- Dist < 1500.
-distance(Dist) == ['약, ', X, ' 킬로미터 '] :- Dist < 10000, D is round(Dist/1000.0), num_atom(D, X).
-distance(Dist) == [ X, ' 킬로미터 '] :- D is round(Dist/1000.0), num_atom(D, X).
+distance(Dist) -- [ X, ' 미터 '] :- Dist < 100, D is round(Dist/10.0)*10, num_atom(D, X).
+distance(Dist) -- [ X, ' 미터 '] :- Dist < 1000, D is round(2*Dist/100.0)*50, num_atom(D, X).
+distance(Dist) -- ['약, 1 킬로미터 '] :- Dist < 1500.
+distance(Dist) -- ['약, ', X, ' 킬로미터 '] :- Dist < 10000, D is round(Dist/1000.0), num_atom(D, X).
+distance(Dist) -- [ X, ' 킬로미터 '] :- D is round(Dist/1000.0), num_atom(D, X).
 
 
 %% resolve command main method
@@ -86,7 +89,7 @@ flatten(X, Acc, [X|Acc]).
 
 resolve(X, Y) :- resolve_impl(X,Z), flatten(Z, Y).
 resolve_impl([],[]).
-resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X == L) -> append(L, Tail, List); List = Tail).
+resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L, Tail, List); List = Tail).
 
 % handling alternatives
 [X|_Y] -- T :- (X -- T),!.
