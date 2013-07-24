@@ -72,7 +72,7 @@ string('around.ogg', 'circa').
 string('kilometers.ogg', 'chilometri').
 
 string('feet.ogg', 'pies').
-string('tenth_of_a_mile.ogg', 'un decimo di miglio').
+string('1_tenth_of_a_mile.ogg', 'un decimo di miglio').
 string('tenths_of_a_mile.ogg', 'decimi di miglio').
 string('around_1_mile.ogg', 'circa 1 miglio').
 string('miles.ogg', 'miglia').
@@ -185,7 +185,7 @@ distance_km(Dist) -- [ X, 'kilometers.ogg']              :-               D is r
 
 %%% distance measure mi/f
 distance_mi_f(Dist) -- [ X, 'feet.ogg']                  :- Dist < 160,   D is round(2*Dist/100.0/0.3048)*50, dist(D, X).
-distance_mi_f(Dist) -- ['tenth_of_a_mile.ogg']           :- Dist < 241.
+distance_mi_f(Dist) -- ['1_tenth_of_a_mile.ogg']         :- Dist < 241.
 distance_mi_f(Dist) -- [ X, 'tenths_of_a_mile.ogg']      :- Dist < 1529,  D is round(Dist/161.0),             dist(D, X).
 distance_mi_f(Dist) -- ['around_1_mile.ogg']             :- Dist < 2414.
 distance_mi_f(Dist) -- ['around.ogg', X, 'miles.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).

@@ -1,4 +1,4 @@
-% for turbo-prolog
+﻿% for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog
 :- op(500, xfy,'--').
@@ -70,7 +70,7 @@ string('around.ogg', 'om ').
 string('kilometers.ogg', 'kilometer ').
 
 string('feet.ogg', 'fod ').
-string('tenth_of_a_mile.ogg', 'tiendedel af en mil ').
+string('1_tenth_of_a_mile.ogg', 'en tiendedel af en mil ').
 string('tenths_of_a_mile.ogg', 'tiendedele af en mil ').
 string('around_1_mile.ogg', 'omkring 1 mil ').
 string('miles.ogg', 'mil ').
@@ -182,7 +182,7 @@ distance_km(Dist) -- [ X, 'kilometers.ogg'] :- D is round(Dist/1000.0), dist(D, 
 
 %%% distance measure mi/f
 distance_mi_f(Dist) -- [ X, 'feet.ogg'] :- Dist < 160, D is round(2*Dist/100.0/0.3048)*50, dist(D, X).
-distance_mi_f(Dist) -- [ X, 'tenth_of_a_mile.ogg'] :- Dist < 241, D is round(Dist/161.0), dist(D, X).
+distance_mi_f(Dist) -- ['1_tenth_of_a_mile.ogg'] :- Dist < 241.
 distance_mi_f(Dist) -- [ X, 'tenths_of_a_mile.ogg'] :- Dist < 1529, D is round(Dist/161.0), dist(D, X).
 distance_mi_f(Dist) -- ['around_1_mile.ogg'] :- Dist < 2414.
 distance_mi_f(Dist) -- ['around.ogg', X, 'miles.ogg'] :- Dist < 16093, D is round(Dist/1609.0), dist(D, X).

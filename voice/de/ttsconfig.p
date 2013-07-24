@@ -79,8 +79,8 @@ string('kilometers_dativ.ogg', 'Kilometern ').
 
 string('feet_nominativ.ogg', 'fus ').
 string('feet_dativ.ogg', 'fus ').
-string('tenth_of_a_mile_nominativ.ogg', 'eine zehntel meile ').
-string('tenth_of_a_mile_dativ.ogg', 'einer zehntel meile ').
+string('1_tenth_of_a_mile_nominativ.ogg', 'eine zehntel meile ').
+string('1_tenth_of_a_mile_dativ.ogg', 'einer zehntel meile ').
 string('tenths_of_a_mile_nominativ.ogg', 'zehntel meilen ').
 string('tenths_of_a_mile_dativ.ogg', 'zehntel meilen ').
 string('around_1_mile_nominativ.ogg', 'zirka eine meile ').
@@ -207,8 +207,8 @@ distance_km(Dist, dativ) --     [ X, 'kilometers_dativ.ogg']                  :-
 %%% distance measure mi/f
 distance_mi_f(Dist, nominativ) -- [ X, 'feet_nominativ.ogg']                  :- Dist < 160,   D is round(2*Dist/100.0/0.3048)*50, dist(D, X).
 distance_mi_f(Dist, dativ) --     [ X, 'feet_dativ.ogg']                      :- Dist < 160,   D is round(2*Dist/100.0/0.3048)*50, dist(D, X).
-distance_mi_f(Dist, nominativ) -- ['tenth_of_a_mile_nominativ.ogg']           :- Dist < 241.
-distance_mi_f(Dist, dativ) --     ['tenth_of_a_mile_dativ.ogg']               :- Dist < 241.
+distance_mi_f(Dist, nominativ) -- ['1_tenth_of_a_mile_nominativ.ogg']         :- Dist < 241.
+distance_mi_f(Dist, dativ) --     ['1_tenth_of_a_mile_dativ.ogg']             :- Dist < 241.
 distance_mi_f(Dist, nominativ) -- [ X, 'tenths_of_a_mile_nominativ.ogg']      :- Dist < 1529,  D is round(Dist/161.0),             dist(D, X).
 distance_mi_f(Dist, dativ) --     [ X, 'tenths_of_a_mile_dativ.ogg']          :- Dist < 1529,  D is round(Dist/161.0),             dist(D, X).
 distance_mi_f(Dist, nominativ) -- ['around_1_mile_nominativ.ogg']             :- Dist < 2414.
