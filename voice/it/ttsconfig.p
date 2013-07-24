@@ -17,7 +17,7 @@ string('left_sl.ogg', 'girare leggermente a sinistra').
 string('right.ogg', 'girare a destra').
 string('right_sh.ogg', 'subito a destra').
 string('right_sl.ogg', 'girate leggermente a destra').
-string('left_keep.ogg', 'tenersi sulla sinistra).
+string('left_keep.ogg', 'tenersi sulla sinistra').
 string('right_keep.ogg', 'tenersi sulla destra').
 
 string('attention.ogg', 'attenzione').
