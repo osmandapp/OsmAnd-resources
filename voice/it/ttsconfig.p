@@ -129,7 +129,7 @@ location_lost -- ['location_lost.ogg'].
 
 on_street -- ['on.ogg', X] :- next_street(X).
 off_route(_Dist) -- ['off_route.ogg'].
-attention -- ['attention.ogg'].
+attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
 
 
