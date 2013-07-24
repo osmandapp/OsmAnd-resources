@@ -104,13 +104,13 @@ onto_street('', []).
 onto_street(Street, ['onto.ogg', Street]) :- tts.
 onto_street(_Street, []) :- not(tts).
 
-prepare_turn(Turn, Dist, Street) -- ['prepare.ogg', M, 'after.ogg', D, ' ' | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
+prepare_turn(Turn, Dist, Street) -- ['prepare.ogg', M, 'after.ogg', D | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
 turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
 turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), onto_street(Street, Sgen).
 
 prepare_make_ut(Dist, Street) -- ['prepare.ogg', 'make_uturn.ogg', 'after.ogg', D | Sgen] :- distance(Dist) -- D, on_street(Street, Sgen).
 make_ut(Dist, Street) --  ['after.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist) -- D, on_street(Street, Sgen).
-make_ut(Street) -- ['make_uturn.ogg'|Sgen] :- on_street(Street, Sgen).
+make_ut(Street) -- ['make_uturn.ogg' | Sgen] :- on_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
 prepare_roundabout(Dist, _Exit, _Street) -- ['prepare_roundabout.ogg', 'after.ogg', D] :- distance(Dist) -- D.
