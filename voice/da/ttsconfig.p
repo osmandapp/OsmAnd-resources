@@ -53,15 +53,15 @@ string('4th.ogg', 'fjerde ').
 string('5th.ogg', 'femte ').
 string('6th.ogg', 'sjette ').
 string('7th.ogg', 'syvende ').
-string('8th.ogg', 'ottende
+string('8th.ogg', 'ottende' ).
 string('9th.ogg', 'niende ').
 string('10th.ogg', 'tiende ').
 string('11th.ogg', 'ellevte ').
 string('12th.ogg', 'tolvte ').
-string('13th.ogg', trettende ').
-string('14th.ogg', fjortende ').
-string('15th.ogg', femtende ').
-string('16th.ogg', sekstende ').
+string('13th.ogg', 'trettende ').
+string('14th.ogg', 'fjortende ').
+string('15th.ogg', 'femtende ').
+string('16th.ogg', 'sekstende ').
 string('17th.ogg', 'syttende ').
 
 string('meters.ogg', 'meter ').
@@ -78,7 +78,7 @@ string('miles.ogg', 'mil ').
 string('yards.ogg', 'yards ').
 
 
-%% TURNS 
+%% TURNS
 turn('left', ['left.ogg']).
 turn('left_sh', ['left_sh.ogg']).
 turn('left_sl', ['left_sl.ogg']).
@@ -87,7 +87,7 @@ turn('right_sh', ['right_sh.ogg']).
 turn('right_sl', ['right_sl.ogg']).
 turn('left_keep', ['left_keep.ogg']).
 turn('right_keep', ['right_keep.ogg']).
-%% It is needed it reflects not a turn but 
+%% It is needed it reflects not a turn but
 bear_left(_Street) -- ['left_keep.ogg'].
 bear_right(_Street) -- ['right_keep.ogg'].
 
@@ -100,7 +100,7 @@ turn(Turn, Dist, _Street) -- ['after.ogg', D, M] :- distance(Dist) -- D, turn(Tu
 turn(Turn, _Street) -- M :- turn(Turn, M).
 
 prepare_make_ut(Dist, _Street) -- ['prepare.ogg', 'make_uturn.ogg', 'after.ogg', D] :- distance(Dist) -- D.
-make_ut(Dist, _Street) --  ['after.ogg', D, 'make_uturn.ogg'] :- distance(Dist) -- D.
+make_ut(Dist, _Street) -- ['after.ogg', D, 'make_uturn.ogg'] :- distance(Dist) -- D.
 make_ut(_Street) -- ['make_uturn.ogg'].
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
@@ -129,7 +129,7 @@ attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
 
 
-%% 
+%%
 nth(1, '1st.ogg').
 nth(2, '2nd.ogg').
 nth(3, '3rd.ogg').
@@ -174,26 +174,26 @@ distance(Dist) -- D :- measure('mi-f'), distance_mi_f(Dist) -- D.
 distance(Dist) -- D :- measure('mi-y'), distance_mi_y(Dist) -- D.
 
 %%% distance measure km/m
-distance_km(Dist) -- [ X, 'meters.ogg']                  :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
-distance_km(Dist) -- [ X, 'meters.ogg']                  :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
-distance_km(Dist) -- ['around_1_kilometer.ogg']          :- Dist < 1500.
-distance_km(Dist) -- ['around.ogg', X, 'kilometers.ogg'] :- Dist < 10000, D is round(Dist/1000.0),            dist(D, X).
-distance_km(Dist) -- [ X, 'kilometers.ogg']              :-               D is round(Dist/1000.0),            dist(D, X).
+distance_km(Dist) -- [ X, 'meters.ogg'] :- Dist < 100, D is round(Dist/10.0)*10, dist(D, X).
+distance_km(Dist) -- [ X, 'meters.ogg'] :- Dist < 1000, D is round(2*Dist/100.0)*50, dist(D, X).
+distance_km(Dist) -- ['around_1_kilometer.ogg'] :- Dist < 1500.
+distance_km(Dist) -- ['around.ogg', X, 'kilometers.ogg'] :- Dist < 10000, D is round(Dist/1000.0), dist(D, X).
+distance_km(Dist) -- [ X, 'kilometers.ogg'] :- D is round(Dist/1000.0), dist(D, X).
 
 %%% distance measure mi/f
-distance_mi_f(Dist) -- [ X, 'feet.ogg']                  :- Dist < 160,   D is round(2*Dist/100.0/0.3048)*50, dist(D, X).
-distance_mi_f(Dist) -- [ X, 'tenth_of_a_mile.ogg']       :- Dist < 241,   D is round(Dist/161.0),             dist(D, X).
-distance_mi_f(Dist) -- [ X, 'tenths_of_a_mile.ogg']      :- Dist < 1529,  D is round(Dist/161.0),             dist(D, X).
-distance_mi_f(Dist) -- ['around_1_mile.ogg']             :- Dist < 2414.
-distance_mi_f(Dist) -- ['around.ogg', X, 'miles.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
-distance_mi_f(Dist) -- [ X, 'miles.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
+distance_mi_f(Dist) -- [ X, 'feet.ogg'] :- Dist < 160, D is round(2*Dist/100.0/0.3048)*50, dist(D, X).
+distance_mi_f(Dist) -- [ X, 'tenth_of_a_mile.ogg'] :- Dist < 241, D is round(Dist/161.0), dist(D, X).
+distance_mi_f(Dist) -- [ X, 'tenths_of_a_mile.ogg'] :- Dist < 1529, D is round(Dist/161.0), dist(D, X).
+distance_mi_f(Dist) -- ['around_1_mile.ogg'] :- Dist < 2414.
+distance_mi_f(Dist) -- ['around.ogg', X, 'miles.ogg'] :- Dist < 16093, D is round(Dist/1609.0), dist(D, X).
+distance_mi_f(Dist) -- [ X, 'miles.ogg'] :- D is round(Dist/1609.0), dist(D, X).
 
 %%% distance measure mi/y
-distance_mi_y(Dist) -- [ X, 'yards.ogg']                 :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
-distance_mi_y(Dist) -- [ X, 'yards.ogg']                 :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
-distance_mi_y(Dist) -- ['around_1_mile.ogg']             :- Dist < 2414.
-distance_mi_y(Dist) -- ['around.ogg', X, 'miles.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
-distance_mi_y(Dist) -- [ X, 'miles.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
+distance_mi_y(Dist) -- [ X, 'yards.ogg'] :- Dist < 241, D is round(Dist/10.0/0.9144)*10, dist(D, X).
+distance_mi_y(Dist) -- [ X, 'yards.ogg'] :- Dist < 1300, D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
+distance_mi_y(Dist) -- ['around_1_mile.ogg'] :- Dist < 2414.
+distance_mi_y(Dist) -- ['around.ogg', X, 'miles.ogg'] :- Dist < 16093, D is round(Dist/1609.0), dist(D, X).
+distance_mi_y(Dist) -- [ X, 'miles.ogg'] :- D is round(Dist/1609.0), dist(D, X).
 
 
 interval(St, St, End, _Step) :- St =< End.
@@ -211,21 +211,21 @@ dist(X, Y) :- tts, !, num_atom(X, Y).
 dist(0, []) :- !.
 dist(X, [Ogg]) :- X < 20, !, num_atom(X, A), atom_concat(A, '.ogg', Ogg).
 dist(X, [Ogg]) :- X < 1000, 0 is X mod 50, !, num_atom(X, A), atom_concat(A, '.ogg', Ogg).
-dist(D, ['20.ogg'|L]) :-  D < 30, Ts is D - 20, !, dist(Ts, L).
-dist(D, ['30.ogg'|L]) :-  D < 40, Ts is D - 30, !, dist(Ts, L).
-dist(D, ['40.ogg'|L]) :-  D < 50, Ts is D - 40, !, dist(Ts, L).
-dist(D, ['50.ogg'|L]) :-  D < 60, Ts is D - 50, !, dist(Ts, L).
-dist(D, ['60.ogg'|L]) :-  D < 70, Ts is D - 60, !, dist(Ts, L).
-dist(D, ['70.ogg'|L]) :-  D < 80, Ts is D - 70, !, dist(Ts, L).
-dist(D, ['80.ogg'|L]) :-  D < 90, Ts is D - 80, !, dist(Ts, L).
-dist(D, ['90.ogg'|L]) :-  D < 100, Ts is D - 90, !, dist(Ts, L).
-dist(D, ['100.ogg'|L]) :-  D < 200, Ts is D - 100, !, dist(Ts, L).
-dist(D, ['200.ogg'|L]) :-  D < 300, Ts is D - 200, !, dist(Ts, L).
-dist(D, ['300.ogg'|L]) :-  D < 400, Ts is D - 300, !, dist(Ts, L).
-dist(D, ['400.ogg'|L]) :-  D < 500, Ts is D - 400, !, dist(Ts, L).
-dist(D, ['500.ogg'|L]) :-  D < 600, Ts is D - 500, !, dist(Ts, L).
-dist(D, ['600.ogg'|L]) :-  D < 700, Ts is D - 600, !, dist(Ts, L).
-dist(D, ['700.ogg'|L]) :-  D < 800, Ts is D - 700, !, dist(Ts, L).
-dist(D, ['800.ogg'|L]) :-  D < 900, Ts is D - 800, !, dist(Ts, L).
-dist(D, ['900.ogg'|L]) :-  D < 1000, Ts is D - 900, !, dist(Ts, L).
+dist(D, ['20.ogg'|L]) :- D < 30, Ts is D - 20, !, dist(Ts, L).
+dist(D, ['30.ogg'|L]) :- D < 40, Ts is D - 30, !, dist(Ts, L).
+dist(D, ['40.ogg'|L]) :- D < 50, Ts is D - 40, !, dist(Ts, L).
+dist(D, ['50.ogg'|L]) :- D < 60, Ts is D - 50, !, dist(Ts, L).
+dist(D, ['60.ogg'|L]) :- D < 70, Ts is D - 60, !, dist(Ts, L).
+dist(D, ['70.ogg'|L]) :- D < 80, Ts is D - 70, !, dist(Ts, L).
+dist(D, ['80.ogg'|L]) :- D < 90, Ts is D - 80, !, dist(Ts, L).
+dist(D, ['90.ogg'|L]) :- D < 100, Ts is D - 90, !, dist(Ts, L).
+dist(D, ['100.ogg'|L]) :- D < 200, Ts is D - 100, !, dist(Ts, L).
+dist(D, ['200.ogg'|L]) :- D < 300, Ts is D - 200, !, dist(Ts, L).
+dist(D, ['300.ogg'|L]) :- D < 400, Ts is D - 300, !, dist(Ts, L).
+dist(D, ['400.ogg'|L]) :- D < 500, Ts is D - 400, !, dist(Ts, L).
+dist(D, ['500.ogg'|L]) :- D < 600, Ts is D - 500, !, dist(Ts, L).
+dist(D, ['600.ogg'|L]) :- D < 700, Ts is D - 600, !, dist(Ts, L).
+dist(D, ['700.ogg'|L]) :- D < 800, Ts is D - 700, !, dist(Ts, L).
+dist(D, ['800.ogg'|L]) :- D < 900, Ts is D - 800, !, dist(Ts, L).
+dist(D, ['900.ogg'|L]) :- D < 1000, Ts is D - 900, !, dist(Ts, L).
 dist(D, ['1000.ogg'|L]):- Ts is D - 1000, !, dist(Ts, L).
