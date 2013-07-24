@@ -12,8 +12,6 @@ language('de').
 % http://www.tcts.fpms.ac.be/synthesis/mbrola/dba/de7/de7.zip
 fest_language('cmu_us_awb_arctic_clunits').
 
-% before each announcement (beep)
-preamble - [].
 
 string('left.ogg', 'links abbiegen ').
 string('left_sh.ogg', 'scharf links abbiegen ').
@@ -91,36 +89,42 @@ turn('right_keep', ['right_keep.ogg']).
 bear_left -- ['left_keep.ogg'].
 bear_right -- ['right_keep.ogg'].
 
-prepare_turn(Turn, Dist) -- ['prepare.ogg', 'after.ogg', D, ' ', M] :- distance(Dist, dativ) -- D, turn(Turn, M).
-turn(Turn, Dist) -- ['after.ogg', D, M] :- distance(Dist, dativ) -- D, turn(Turn, M).
-turn(Turn) -- M :- turn(Turn, M).
+on_street('', []).
+on_street(Street, ['on.ogg', Street]) :- tts.
+on_street(_Street, []) :- not(tts).
 
-prepare_make_ut(Dist) -- ['prepare_make_uturn.ogg', 'after.ogg', D] :- distance(Dist, dativ) -- D.
-make_ut(Dist) --  ['after.ogg', D, 'make_uturn1.ogg'] :- distance(Dist, dativ) -- D.
-make_ut -- ['make_uturn2.ogg'].
+prepare_turn(Turn, Dist, Street) -- ['prepare.ogg', 'after.ogg', D, M, | Sgen] :- distance(Dist, dativ) -- D, turn(Turn, M), on_street(Street, Sgen).
+turn(Turn, Dist, Street) -- ['after.ogg', D, M, ' '| Sgen] :- distance(Dist, dativ) -- D, turn(Turn, M), on_street(Street, Sgen).
+turn(Turn, Street) -- [M, ' '| Sgen] :- turn(Turn, M), on_street(Street, Sgen).
+
+prepare_make_ut(Dist, Street) -- ['prepare_make_uturn.ogg', 'after.ogg', D | Sgen] :- distance(Dist, dativ) -- D, on_street(Street, Sgen).
+make_ut(Dist, Street) --  ['after.ogg', D, 'make_uturn1.ogg', ' '| Sgen] :- distance(Dist, dativ) -- D, on_street(Street, Sgen).
+make_ut(Street) -- ['make_uturn2.ogg', ' '|Sgen] :- on_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
-prepare_roundabout(Dist) -- ['prepare_roundabout.ogg', 'after.ogg', D] :- distance(Dist, dativ) -- D.
-roundabout(Dist, _Angle, Exit) -- ['after.ogg', D, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg'] :- distance(Dist, dativ) -- D, nth(Exit, E).
-roundabout(_Angle, Exit) -- ['take.ogg', E, 'exit.ogg'] :- nth(Exit, E).
+prepare_roundabout(Dist, _Exit, Street) -- ['prepare_roundabout.ogg', 'after.ogg', D ' '| Sgen] :- distance(Dist, dativ) -- D, on_street(Street, Sgen).
+roundabout(Dist, _Angle, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg', ' '| Sgen] :- distance(Dist, dativ) -- D, nth(Exit, E), on_street(Street, Sgen).
+roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg', ' '| Sgen] :- nth(Exit, E), on_street(Street, Sgen).
 
 go_ahead -- ['go_ahead.ogg'].
-go_ahead(Dist) -- ['go_ahead_m1.ogg', D, 'go_ahead_m2.ogg']:- distance(Dist, nominativ) -- D.
+go_ahead(Dist, Street) -- ['go_ahead_m1.ogg', ' '| Sgen, D, 'go_ahead_m2.ogg']:- distance(Dist, nominativ) -- D, on_street(Street, Sgen).
 
 then -- ['then.ogg'].
-and_arrive_destination -- ['and_arrive_destination.ogg'].
-reached_destination -- ['reached_destination.ogg'].
-and_arrive_intermediate -- ['and_arrive_intermediate.ogg'].
-reached_intermediate -- ['reached_intermediate.ogg'].
+name(D, [D]) :- tts.
+name(_D, []) :- not(tts).
+and_arrive_destination(D) -- ['and_arrive_destination.ogg'|Ds] :- name(D, Ds).
+reached_destination(D) -- ['reached_destination.ogg'|Ds] :- name(D, Ds).
+and_arrive_intermediate(D) -- ['and_arrive_intermediate.ogg'|Ds] :- name(D, Ds).
+reached_intermediate(D) -- ['reached_intermediate.ogg'|Ds] :- name(D, Ds).
+and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
+reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
 
-route_new_calc(Dist) -- ['route_is1.ogg', D, 'route_is2.ogg'] :- distance(Dist, nominativ) -- D.
-route_recalc(Dist) -- ['route_calculate.ogg', D] :- distance(Dist, nominativ) -- D.
+route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'route_is2.ogg'] :- distance(Dist, nominativ) -- D.
+route_recalc(Dist, Time) -- ['route_calculate.ogg', D] :- distance(Dist, nominativ) -- D.
 
 location_lost -- ['location_lost.ogg'].
-
-on_street -- ['on.ogg', X] :- next_street(X).
-off_route -- ['off_route.ogg'].
-attention -- ['attention.ogg'].
+off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist, nominativ) -- D.
+attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
 
 

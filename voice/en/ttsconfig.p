@@ -77,9 +77,6 @@ string('miles.ogg', 'miles ').
 
 string('yards.ogg', 'yards ').
 
-on_street('', []).
-on_street(Street, ['on.ogg', Street]) :- tts.
-on_street(_Street, []) :- not(tts).
 
 %% TURNS 
 turn('left', ['left.ogg']).
@@ -93,6 +90,10 @@ turn('right_keep', ['right_keep.ogg']).
 %% there is no good analogue in english to keep left of A31?
 bear_left(_Street) -- ['left_keep.ogg'].
 bear_right(_Street) -- ['right_keep.ogg'].
+
+on_street('', []).
+on_street(Street, ['on.ogg', Street]) :- tts.
+on_street(_Street, []) :- not(tts).
 
 prepare_turn(Turn, Dist, Street) -- ['prepare.ogg', M, 'after.ogg', D, ' '| Sgen] :- distance(Dist) -- D, turn(Turn, M), on_street(Street, Sgen).
 turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), on_street(Street, Sgen).
