@@ -2,7 +2,8 @@
 version(101).
 language(sl).
 
-%% TURNS 
+
+%% TURNS
 turn('left', ['zavij levo ']).
 turn('left_sh', ['zavij ostro levo ']).
 turn('left_sl', ['zavij rahlo levo']).
@@ -41,10 +42,10 @@ route_recalc(Dist) -- ['Izračunana je nova pot dolžine ', D] :- distance(Dist)
 
 location_lost -- ['Ni več G P S  signala '].
 
-% on_street -- ['on ', X] :- next_street(X).
-% off_route -- ['you have deviated from the route '].
-% attention -- ['attention '].
-% speed_alarm -- ['you are exceeding the speed limit '].
+on_street -- ['na ', X] :- next_street(X).
+off_route -- ['ste oddaljil od poti '].
+attention -- ['pozornost '].
+speed_alarm -- ['ste prekoračitev hitrosti '].
 
 
 %% 

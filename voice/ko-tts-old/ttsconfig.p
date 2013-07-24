@@ -20,7 +20,7 @@ turn(Turn, Dist) == [D, ' 앞에서 ', M, '하세요 '] :- 	distance(Dist) == D,
 turn(Turn) == [M, '하세요 '] :- turn(Turn, M).
 
 prepare_make_ut(Dist) == [D, ' 앞에서 U턴을 준비하세요 '] :- distance(Dist) == D.
-make_ut(Dist) == [D, ' 앞에서 U턴하세요 '] :- 	distance(Dist) == D.
+make_ut(Dist) == [D, ' 앞에서 U턴하세요 '] :- distance(Dist) == D.
 make_ut == ['지금 U턴하세요 '].
 make_ut_wp == ['가능한 경우에, U턴하세요 '].
 

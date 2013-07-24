@@ -2,6 +2,7 @@
 version(101).
 language(pt).
 
+
 %% TURNS
 turn_imp('left', ['virar à esquerda ']).
 turn_imp('left_sh', ['virar acentuadamente à esquerda ']).
@@ -51,10 +52,10 @@ route_recalc(Dist) -- ['Rota recalculada. Distância é de ', D] :- distance(Dis
 
 location_lost -- ['sem sinal g p s '].
 
-% on_street -- ['on ', X] :- next_street(X).
-% off_route -- ['you have deviated from the route '].
-% attention -- ['attention '].
-% speed_alarm -- ['you are exceeding the speed limit '].
+on_street -- ['para ', X] :- next_street(X).
+off_route -- ['você se desviou da rota '].
+attention -- ['atenção '].
+speed_alarm -- ['você estiver excedendo o limite de velocidade '].
 
 
 %%

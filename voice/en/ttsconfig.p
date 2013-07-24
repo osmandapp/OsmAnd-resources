@@ -146,8 +146,6 @@ nth(14, '14th.ogg').
 nth(15, '15th.ogg').
 
 
-
-
 %% command main method
 %% if you are familar with Prolog you can input specific to the whole mechanism,
 %% by adding exception cases.
@@ -163,9 +161,11 @@ resolve(X, Y) :- resolve_impl(X,Z), flatten(Z, Y).
 resolve_impl([],[]).
 resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ('--'(X, L) -> append(L, Tail, List); List = Tail).
 
+
 % handling alternatives
 [X|_Y] -- T :- (X -- T),!.
 [_X|Y] -- T :- (Y -- T).
+
 
 %%% distance measure
 distance(Dist) -- D :- measure('km-m'), distance_km(Dist) -- D.
@@ -228,4 +228,3 @@ dist(D, ['700.ogg'|L]) :-  D < 800, Ts is D - 700, !, dist(Ts, L).
 dist(D, ['800.ogg'|L]) :-  D < 900, Ts is D - 800, !, dist(Ts, L).
 dist(D, ['900.ogg'|L]) :-  D < 1000, Ts is D - 900, !, dist(Ts, L).
 dist(D, ['1000.ogg'|L]):- Ts is D - 1000, !, dist(Ts, L).
-

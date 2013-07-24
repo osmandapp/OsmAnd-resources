@@ -3,8 +3,6 @@ version(101).
 language(sv).
 
 
-
-
 %% TURNS 
 turn('left', ['sväng vänster ']).
 turn('left_sh', ['sväng skarpt vänster ']).
@@ -33,7 +31,6 @@ roundabout(_Angle, Exit) -- ['ta den ', E, 'utfarten'] :- nth(Exit, E).
 go_ahead -- ['Kör rakt fram '].
 go_ahead(Dist) -- ['Följ den här vägen ', D]:- distance(Dist) -- D.
 
-
 then -- ['sedan '].
 and_arrive_destination -- ['och du är framme '].
 reached_destination -- ['du är framme '].
@@ -45,11 +42,10 @@ route_recalc(Dist) -- ['Ny väg beräknad, resan är ', D] :- distance(Dist) -- 
 
 location_lost -- ['GPS-signalen borttappad '].
 
-
-% on_street -- ['on ', X] :- next_street(X).
-% off_route -- ['du har avvikit från rutten '].
-% attention --  ['uppmärksamhet '].
-% speed_alarm -- ['du överskrider hastighetsgränsen '].
+on_street -- ['on ', X] :- next_street(X).
+off_route -- ['du har avvikit från rutten '].
+attention --  ['uppmärksamhet '].
+speed_alarm -- ['du överskrider hastighetsgränsen '].
 
 
 %% 

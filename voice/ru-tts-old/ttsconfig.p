@@ -2,6 +2,7 @@
 version(101).
 language(ru).
 
+
 %% TURNS 
 turn('left', ['поверните налево ']).
 turn('left_sh', ['резко поверните налево ']).

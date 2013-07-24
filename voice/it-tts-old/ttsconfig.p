@@ -34,18 +34,18 @@ go_ahead(Dist) -- ['Sempre dritto per ',  D]:- distance(Dist) -- D.
 then -- [', poi '].
 and_arrive_destination -- ['e arrivate a destinazione'].
 reached_destination -- ['arrivato a destinazione'].
-and_arrive_intermediate -- ['and arrive at your via point '].
-reached_intermediate -- ['you have reached your via point'].
+and_arrive_intermediate -- ['e arrivate a punto intermedio '].
+reached_intermediate -- ['arrivato a punto intermedio'].
 
 route_new_calc(_Dist) -- ['Il viaggio è lungo ', D] :- distance(Dist) -- D.
 route_recalc(Dist) -- ['Ricalcolo percorso , lunghezza ', D] :- distance(Dist) -- D.
 
 location_lost -- ['Segnale G P S perso '].
 
-% on_street -- ['on ', X] :- next_street(X).
-% off_route -- ['you have deviated from the route '].
-% attention -- ['attention '].
-% speed_alarm -- ['you are exceeding the speed limit '].
+on_street -- ['in ', X] :- next_street(X).
+off_route -- ['avete deviato dalla rotta '].
+attention -- ['attenzione '].
+speed_alarm -- ['si supera il limite di velocità '].
 
 
 %% 

@@ -18,7 +18,6 @@ turn('right_keep', ['kaa upande wa kulia ']).
 bear_left == ['kaa upande wa kushoto '].
 bear_right == ['kaa upande wa kulia '].
 
-
 prepare_turn(Turn, Dist) == ['tayarisha ku ', M, ' baada ya ', D] :- distance(Dist) == D, turn(Turn, M).
 turn(Turn, Dist) == ['Baada ya ', D, M] :- distance(Dist) == D, turn(Turn, M).
 turn(Turn) == M :- turn(Turn, M).

@@ -13,6 +13,7 @@ fest_language('Spanish').
 % before each announcement (beep)
 preamble - [].
 
+
 string('left.ogg', 'gira a la izquierda').
 string('left_sh.ogg', 'gira fuerte a la izquierda').
 string('left_sl.ogg', 'gira levemente a la izquierda').

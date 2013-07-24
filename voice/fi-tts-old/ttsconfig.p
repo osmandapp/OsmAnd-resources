@@ -46,18 +46,18 @@ go_ahead(Dist) -- ['Jatka suoraan ', D]:- distance(Dist, metria) -- D.
 then -- ['sitten '].
 and_arrive_destination -- ['ja olet perillä '].
 reached_destination -- ['olet perillä '].
-and_arrive_intermediate -- ['and arrive at your via point '].
-reached_intermediate -- ['you have reached your via point'].
+and_arrive_intermediate -- ['ja saapuvat etappi'].
+reached_intermediate -- ['olet saavuttanut välietapin'].
 
 route_new_calc(Dist) -- ['Matkan pituus on ', D] :- distance(Dist, metria) -- D.
 route_recalc(Dist) -- ['Reitin uudelleenlaskenta ', D] :- distance(Dist, metria) -- D.	
 
 location_lost -- ['g p s signal lost '].
 
-on_street -- ['on ', X] :- next_street(X).
-off_route -- ['you have deviated from the route '].
-attention -- ['attention '].
-speed_alarm -- ['you are exceeding the speed limit '].
+on_street -- ['to ', X] :- next_street(X).
+off_route -- ['olet poikennut reitiltä '].
+attention -- ['huomio '].
+speed_alarm -- ['olet nopeusrajoituksen ylittämisestä '].
 
 
 %% 
