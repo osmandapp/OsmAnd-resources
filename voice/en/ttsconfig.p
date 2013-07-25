@@ -32,9 +32,7 @@ string('exit.ogg', 'exit ').
 string('prepare_roundabout.ogg', 'Prepare to enter a roundabout ').
 string('roundabout.ogg', 'enter the roundabout, ').
 string('go_ahead.ogg', 'Go straight ahead ').
-string('follow.ogg', 'Follow ').
-string('go_ahead_m.ogg', 'the course of the road ').
-string('for.ogg', 'for ').
+string('follow.ogg', 'Follow the course of the road for').
 string('and_arrive_destination.ogg', 'and arrive at your destination ').
 string('reached_destination.ogg','you have reached your destination ').
 string('and_arrive_intermediate.ogg', 'and arrive at your waypoint ').
@@ -44,8 +42,9 @@ string('reached_waypoint.ogg', 'you have reached your GPX waypoint ').
 string('route_is.ogg', 'The trip is ').
 string('route_calculate.ogg', 'Route recalculated, distance ').
 string('location_lost.ogg', 'g p s signal lost ').
-string('on.ogg', 'on ').
 string('onto.ogg', 'onto ').
+string('on.ogg', 'on ').
+string('to.ogg', 'to ').
 string('off_route.ogg', 'you have been off the route for').
 string('exceed_limit.ogg', 'you are exceeding the speed limit ').
 
@@ -94,15 +93,15 @@ turn('right_keep', ['right_keep.ogg']).
 bear_left(_Street) -- ['left_keep.ogg'].
 bear_right(_Street) -- ['right_keep.ogg'].
 
-street('', ['go_ahead_m.ogg']).
-street(Street, ['', Street]) :- tts.
-street(_Street, ['go_ahead_m.ogg']) :- not(tts).
-on_street('', []).
-on_street(Street, ['on.ogg', Street]) :- tts.
-on_street(_Street, []) :- not(tts).
 onto_street('', []).
 onto_street(Street, ['onto.ogg', Street]) :- tts.
 onto_street(_Street, []) :- not(tts).
+on_street('', []).
+on_street(Street, ['on.ogg', Street]) :- tts.
+on_street(_Street, []) :- not(tts).
+to_street('', []).
+to_street(Street, ['to.ogg', Street]) :- tts.
+to_street(_Street, []) :- not(tts).
 
 prepare_turn(Turn, Dist, Street) -- ['prepare.ogg', M, 'after.ogg', D | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
 turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
@@ -117,7 +116,7 @@ prepare_roundabout(Dist, _Exit, _Street) -- ['prepare_roundabout.ogg', 'after.og
 roundabout(Dist, _Angle, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), onto_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), onto_street(Street, Sgen).
 
-go_ahead(Dist, Street) -- ['follow.ogg', Sgen, 'for.ogg', D] :- distance(Dist) -- D, street(Street, Sgen).
+go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen] :- distance(Dist) -- D, to_street(Street, Sgen).
 
 then -- ['then.ogg'].
 name(D, [D]) :- tts.
