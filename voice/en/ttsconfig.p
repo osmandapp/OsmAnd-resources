@@ -20,7 +20,7 @@ string('right_sl.ogg', 'turn slightly right ').
 string('left_keep.ogg', 'keep left').
 string('right_keep.ogg', 'keep right').
 
-string('attention.ogg', 'attention ').
+string('attention.ogg', 'attention, ').
 string('make_uturn.ogg', 'Make a U turn ').
 string('make_uturn_wp.ogg', 'When possible, please make a U turn ').
 string('after.ogg', 'after ').

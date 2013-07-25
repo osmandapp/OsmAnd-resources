@@ -22,7 +22,7 @@ string('right_sl.ogg', 'leicht rechts abbiegen ').
 string('left_keep.ogg', 'links halten ').
 string('right_keep.ogg', 'rechts halten ').
 
-string('attention.ogg', 'Achtung ').
+string('attention.ogg', 'Achtung, ').
 string('prepare_make_uturn.ogg', 'Vorbereiten zum Wenden ').
 string('make_uturn1.ogg', 'wenden ').
 string('make_uturn2.ogg', 'Bitte wenden ').

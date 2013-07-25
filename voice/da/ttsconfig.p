@@ -20,7 +20,7 @@ string('right_sl.ogg', 'drej lidt til højre ').
 string('left_keep.ogg', 'hold til venstre ').
 string('right_keep.ogg', 'hold til højre ').
 
-string('attention.ogg', 'Advarsel ').
+string('attention.ogg', 'Advarsel, ').
 string('make_uturn.ogg', 'Foretag U vending ').
 string('make_uturn_wp.ogg', 'Når muligt foretag U vending ').
 string('after.ogg', 'efter ').

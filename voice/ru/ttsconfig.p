@@ -20,7 +20,7 @@ string('right_sl.ogg', 'плавно поверните направо  ').
 string('left_keep.ogg', 'держитесь левее ').
 string('right_keep.ogg', 'держитесь правее ').
 
-string('attention.ogg', 'Внимание ').
+string('attention.ogg', 'Внимание, ').
 string('make_uturn.ogg', 'Выполните разворот ').
 string('make_uturn_wp.ogg', 'Выполните разворот ').
 string('after.ogg', 'через').

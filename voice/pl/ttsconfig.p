@@ -20,7 +20,7 @@ string('right_sl.ogg', 'skręć lekko w prawo ').
 string('left_keep.ogg', 'trzymaj się lewej strony').
 string('right_keep.ogg', 'trzymaj się prawej strony').
 
-string('attention.ogg', 'uwaga ').
+string('attention.ogg', 'uwaga, ').
 string('make_uturn.ogg', 'Zawróć ').
 string('make_uturn_wp.ogg', 'Jeśli to możliwe, zawróć ').
 string('after.ogg', 'za ').

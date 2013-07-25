@@ -29,7 +29,7 @@ string('right_sl_inf.ogg', 'girar levemente a la derecha').
 string('left_keep_inf.ogg', 'mantente a la izquierda').
 string('right_keep_inf.ogg', 'mantente a la derecha').
 
-string('attention.ogg', 'atención').
+string('attention.ogg', 'atención, ').
 string('prepare_uturn.ogg', 'Prepárate para dar la vuelta tras').
 string('make_uturn.ogg', 'da la vuelta').
 string('make_uturn_wp.ogg', 'cuando sea posible, da la vuelta').

@@ -20,7 +20,7 @@ string('right_sl.ogg', 'girate leggermente a destra').
 string('left_keep.ogg', 'tenersi sulla sinistra').
 string('right_keep.ogg', 'tenersi sulla destra').
 
-string('attention.ogg', 'attenzione').
+string('attention.ogg', 'attenzione, ').
 string('prepare_uturn.ogg', 'Prepararsi ad una inversione ad u tra').
 string('make_uturn.ogg', 'inversione ad u').
 string('make_uturn_wp.ogg', 'Quando possibile, inversione a u').
