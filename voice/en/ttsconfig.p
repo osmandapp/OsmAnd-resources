@@ -25,7 +25,7 @@ string('make_uturn.ogg', 'Make a U turn ').
 string('make_uturn_wp.ogg', 'When possible, please make a U turn ').
 string('after.ogg', 'after ').
 string('prepare.ogg', 'Prepare to ').
-string('then.ogg', 'then ').
+string('then.ogg', ', then ').
 string('and.ogg', 'and ').
 string('take.ogg', 'take the ').
 string('exit.ogg', 'exit ').
@@ -56,7 +56,7 @@ string('4th.ogg', 'fourth ').
 string('5th.ogg', 'fifth ').
 string('6th.ogg', 'sixth ').
 string('7th.ogg', 'seventh ').
-string('8th.ogg', 'eighth').
+string('8th.ogg', 'eighth ').
 string('9th.ogg', 'nineth ').
 string('10th.ogg', 'tenth ').
 string('11th.ogg', 'eleventh ').
@@ -119,7 +119,7 @@ roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Ex
 
 go_ahead(Dist, Street) -- ['follow.ogg', Sgen, 'for.ogg', D] :- distance(Dist) -- D, street(Street, Sgen).
 
-then -- [', then.ogg'].
+then -- ['then.ogg'].
 name(D, [D]) :- tts.
 name(_D, []) :- not(tts).
 and_arrive_destination(D) -- ['and_arrive_destination.ogg'|Ds] :- name(D, Ds).
