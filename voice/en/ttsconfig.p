@@ -42,8 +42,7 @@ string('and_arrive_intermediate.ogg', 'and arrive at your waypoint ').
 string('reached_intermediate.ogg', 'you have reached your waypoint ').
 string('and_arrive_waypoint.ogg', 'and arrive at your GPX waypoint ').
 string('reached_waypoint.ogg', 'you have reached your GPX waypoint ').
-string('route_is.ogg', 'The trip is ').
-string('route_calculate.ogg', 'Route recalculated, distance ').
+
 string('location_lost.ogg', 'g p s signal lost ').
 string('onto.ogg', 'onto ').
 string('on.ogg', 'on ').
@@ -82,6 +81,13 @@ string('miles.ogg', 'miles ').
 
 string('yards.ogg', 'yards ').
 
+string('route_is.ogg', 'The trip is ').
+string('route_calculate.ogg', 'Route recalculated').
+string('distance.ogg', 'distance ').
+string('time.ogg', 'time is  ').
+string('hours.ogg', 'hours ').
+string('less_a_minute.ogg', 'less than a minute  ').
+string('minutes.ogg', 'minutes').
 
 %% TURNS 
 turn('left', ['left.ogg']).
@@ -131,8 +137,13 @@ reached_intermediate(D) -- ['reached_intermediate.ogg'|Ds] :- name(D, Ds).
 and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
 
-route_new_calc(Dist, Time) -- ['route_is.ogg', D] :- distance(Dist) -- D.
-route_recalc(Dist, Time) -- ['route_calculate.ogg', D] :- distance(Dist) -- D.
+route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg'] :- distance(Dist) -- D, time(Time).
+route_recalc(Dist, Time) -- ['route_calculate.ogg'] :- appMode('car').
+route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time --Time.
+
+string('route_calculate.ogg', 'Route recalculated').
+string('distance.ogg', ' distance ').
+string('time.ogg', ' time is  ').
 
 location_lost -- ['location_lost.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
@@ -177,6 +188,12 @@ resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ('--'(X, L) -> append(
 % handling alternatives
 [X|_Y] -- T :- (X -- T),!.
 [_X|Y] -- T :- (Y -- T).
+
+% time measure
+hours(S, []) :- S < 60.
+hours(S, [H, 'hours.ogg']) :- H is S div 60.
+time(Sec) -- ['less_a_minute.ogg'] :- Sec < 60.
+time(Sec) -- [H, St, 'minutes.ogg'] :- S is round(Sec/60.0), hours(S, H), St is S mod 60.
 
 
 %%% distance measure

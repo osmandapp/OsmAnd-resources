@@ -43,7 +43,7 @@ string('location_lost.ogg', 'ДЖИПИИЭС потерян сигнал ').
 string('on.ogg', 'на ').
 string('onto.ogg', 'на ').
 string('to.ogg', 'по ').
-string('off_road.ogg', 'Вы отклонились от маршрута на ').
+string('off_route.ogg', 'Вы отклонились от маршрута на ').
 string('exceed_limit.ogg', 'Вы превысили допустимую скорость ').
 
 string('1th.ogg', 'первый ').
@@ -118,7 +118,7 @@ prepare_roundabout(Dist, _Exit, Street) -- ['prepare_after.ogg', D, 'roundabout.
 roundabout(Dist, _Angle, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', 'make.ogg', E, 'exit.ogg'| Sgen] :- distance(Dist) -- D, nth(Exit, E), onto_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), onto_street(Street, Sgen).
 
-go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen] :- distance(Dist) -- D, to_street(Street, Sgen).
+go_ahead(Dist, Street) -- ['go_ahead_m.ogg', D | Sgen] :- distance(Dist) -- D, to_street(Street, Sgen).
 
 then -- ['then.ogg'].
 name(D, [D]) :- tts.
