@@ -26,7 +26,7 @@ string('make_uturn_wp.ogg', 'Выполните разворот ').
 string('after.ogg', 'через').
 string('prepare_after.ogg', 'Приготовьтесь через ').
 string('then.ogg', 'затем ').
-string('make.ogg', 'Выполните ').
+string('take.ogg', 'Выполните ').
 string('exit.ogg', 'съезд ').
 string('roundabout.ogg', 'круг ').
 string('go_ahead.ogg', 'Продолжайте движение прямо ').
@@ -35,11 +35,15 @@ string('and_arrive_destination.ogg', 'и вы прибудете в пункт �
 string('and_arrive_intermediate.ogg', 'и вы прибудете в промежуточный пункт ').
 string('reached_intermediate.ogg', 'вы прибыли в промежуточный пункт').
 string('reached_destination.ogg','вы прибыли в пункт назначения ').
+string('and_arrive_waypoint.ogg', 'и вы прибудете к GPX точке').
+string('reached_waypoint.ogg', 'вы прибыли к GPX точке ').
 string('route_is.ogg', 'Маршрут составляет ').
 string('route_calculate.ogg', 'маршрут пересчитывается, расстояние ').
 string('location_lost.ogg', 'ДЖИПИИЭС потерян сигнал ').
 string('on.ogg', 'на ').
-string('off_road.ogg', 'Вы отклонились от маршрута ').
+string('onto.ogg', 'на ').
+string('to.ogg', 'по ').
+string('off_road.ogg', 'Вы отклонились от маршрута на ').
 string('exceed_limit.ogg', 'Вы превысили допустимую скорость ').
 
 string('1th.ogg', 'первый ').
@@ -67,6 +71,26 @@ string('kilometra.ogg', 'километра ').
 string('kilometrov.ogg', 'километров ').
 string('around_1_kilometer.ogg', 'около одного километра ').
 string('around.ogg', 'около ').
+string('footov.ogg', 'футов ').
+string('1mile.ogg', 'миля ').
+string('2mili.ogg', 'мили ').
+string('5mil.ogg', 'миль ').
+string('yardov.ogg', 'ярдов ').
+string('around_1_mile.ogg', 'около одной мили ').
+string('1_tenth_of_a_mile.ogg', 'одно десятая мили ').
+string('tenths_of_a_mile.ogg', ' десятых мили ').
+
+
+
+onto_street('', []).
+onto_street(Street, ['onto.ogg', Street]) :- tts.
+onto_street(_Street, []) :- not(tts).
+on_street('', []).
+on_street(Street, ['on.ogg', Street]) :- tts.
+on_street(_Street, []) :- not(tts).
+to_street('', []).
+to_street(Street, ['to.ogg', Street]) :- tts.
+to_street(_Street, []) :- not(tts).
 
 
 %% TURNS 
@@ -81,36 +105,37 @@ turn('right_keep', ['right_keep.ogg']).
 bear_left(_Street) -- ['left_keep.ogg'].
 bear_right(_Street) -- ['right_keep.ogg'].
 
-prepare_turn(Turn, Dist) -- ['prepare_after.ogg', D, ' ', M] :- distance(Dist) -- D, turn(Turn, M).
-turn(Turn, Dist) -- ['after.ogg', D, M] :- distance(Dist) -- D, turn(Turn, M).
-turn(Turn) -- M :- turn(Turn, M).
+prepare_turn(Turn, Dist, Street) -- ['prepare_after.ogg', D, ' ', M | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
+turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
+turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), onto_street(Street, Sgen).
 
-prepare_make_ut(Dist) -- ['after.ogg', D, 'make_uturn.ogg'] :- distance(Dist) -- D.
-make_ut(Dist) --  ['after.ogg', D, 'make_uturn.ogg'] :- distance(Dist) -- D.
-make_ut -- ['make_uturn.ogg'].
+prepare_make_ut(Dist, Street) -- ['after.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist) -- D, on_street(Street, Sgen).
+make_ut(Dist, Street) --  ['after.ogg', D, 'make_uturn.ogg'| Sgen] :- distance(Dist) -- D, on_street(Street, Sgen).
+make_ut(Street) -- ['make_uturn.ogg'| Sgen] :- on_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
-prepare_roundabout(Dist) -- ['prepare_after.ogg', D, 'roundabout.ogg'] :- distance(Dist) -- D.
-roundabout(Dist, _Angle, Exit) -- ['after.ogg', D, 'roundabout.ogg', 'make.ogg', E, 'exit.ogg'] :- distance(Dist) -- D, nth(Exit, E).
-roundabout(_Angle, Exit) -- ['make.ogg', E, 'exit.ogg'] :- nth(Exit, E).
+prepare_roundabout(Dist, _Exit, Street) -- ['prepare_after.ogg', D, 'roundabout.ogg'] :- distance(Dist) -- D.
+roundabout(Dist, _Angle, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', 'make.ogg', E, 'exit.ogg'| Sgen] :- distance(Dist) -- D, nth(Exit, E), onto_street(Street, Sgen).
+roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), onto_street(Street, Sgen).
 
-go_ahead -- ['go_ahead.ogg'].
-go_ahead(Dist) -- ['go_ahead_m.ogg', D]:- distance(Dist) -- D.
+go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen] :- distance(Dist) -- D, to_street(Street, Sgen).
 
 then -- ['then.ogg'].
-and_arrive_destination -- ['and_arrive_destination.ogg'].
-reached_destination -- ['reached_destination.ogg'].
-and_arrive_intermediate -- ['and_arrive_intermediate.ogg'].
-reached_intermediate -- ['reached_intermediate.ogg'].
+name(D, [D]) :- tts.
+name(_D, []) :- not(tts).
+and_arrive_destination(D) -- ['and_arrive_destination.ogg'|Ds] :- name(D, Ds).
+reached_destination(D) -- ['reached_destination.ogg'|Ds] :- name(D, Ds).
+and_arrive_intermediate(D) -- ['and_arrive_intermediate.ogg'|Ds] :- name(D, Ds).
+reached_intermediate(D) -- ['reached_intermediate.ogg'|Ds] :- name(D, Ds).
+and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
+reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
 
-route_new_calc(Dist) -- ['route_is.ogg', D] :- distance(Dist) -- D.
-route_recalc(Dist) -- ['route_calculate.ogg', D] :- distance(Dist) -- D.
+route_new_calc(Dist, Time) -- ['route_is.ogg', D] :- distance(Dist) -- D.
+route_recalc(Dist, Time) -- ['route_calculate.ogg', D] :- distance(Dist) -- D.
 
 location_lost -- ['location_lost.ogg'].
-
-on_street -- ['on.ogg', X] :- next_street(X).
-off_route -- ['off_road.ogg'].
-attention -- ['attention.ogg'].
+off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
+attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
 
 
@@ -151,15 +176,42 @@ resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L,
 [_X|Y] -- T :- (Y -- T).
 
 %%% distance measure
-distance(Dist) -- [ X, 'metrov.ogg']           :- Dist < 100,   D is round(Dist/10.0)*10, dist(D, X).
-distance(Dist) -- [ X, 'metrov.ogg']           :- Dist < 1000,  D is round(2*Dist/100.0)*50, dist(D, X).
-% distance(Dist) -- ['around_1_kilometer.ogg']   :- Dist < 1500.
-% distance(Dist) -- ['around.ogg', X, Km]        :- Dist < 10000, D is round(Dist/1000.0), dist(D, X), plural_km(D, Km).
-distance(Dist) -- [ X, Km]                     :-               D is round(Dist/1000.0), dist(D, X), plural_km(D, Km).
+distance(Dist) -- D :- measure('km-m'), distance_km(Dist) -- D.
+distance(Dist) -- D :- measure('mi-f'), distance_mi_f(Dist) -- D.
+distance(Dist) -- D :- measure('mi-y'), distance_mi_y(Dist) -- D.
+
+%%% distance measure km/m
+distance_km(Dist) -- [ X, 'metrov.ogg']                  :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
+distance_km(Dist) -- [ X, 'metrov.ogg']                  :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
+distance_km(Dist) -- ['around_1_kilometer.ogg']          :- Dist < 1500.
+distance_km(Dist) -- ['around.ogg', X, Km] :- Dist < 10000, D is round(Dist/1000.0),            dist(D, X), plural_km(D, Km).
+distance_km(Dist) -- [ X, Km]              :-               D is round(Dist/1000.0),            dist(D, X), plural_km(D, Km).
+
+
+%%% distance measure mi/f
+distance_mi_f(Dist) -- [ X, 'footov.ogg']                  :- Dist < 160,   D is round(2*Dist/100.0/0.3048)*50, dist(D, X).
+distance_mi_f(Dist) -- ['1_tenth_of_a_mile.ogg']         :- Dist < 241.
+distance_mi_f(Dist) -- [ X, 'tenths_of_a_mile.ogg']      :- Dist < 1529,  D is round(Dist/161.0),             dist(D, X).
+distance_mi_f(Dist) -- ['around_1_mile.ogg']             :- Dist < 2414.
+distance_mi_f(Dist) -- ['around.ogg', X, M]    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X), plural_mi(D, M).
+distance_mi_f(Dist) -- [ X, M]                 :-               D is round(Dist/1609.0),            dist(D, X), plural_mi(D, M).
+
+%%% distance measure mi/y
+distance_mi_y(Dist) -- [ X, 'yardov.ogg']                 :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
+distance_mi_y(Dist) -- [ X, 'yardov.ogg']                 :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
+distance_mi_y(Dist) -- ['around_1_mile.ogg']             :- Dist < 2414.
+distance_mi_y(Dist) -- ['around.ogg', X, M]    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X), plural_mi(D, M).
+distance_mi_y(Dist) -- [ X, M]                 :-               D is round(Dist/1609.0),            dist(D, X), plural_mi(D, M).
+
 
 plural_km(D, 'kilometr.ogg') :- 1 is D mod 10.
 plural_km(D, 'kilometra.ogg') :- Mod is D mod 10, Mod < 5,  Mod > 1.
 plural_km(_D, 'kilometrov.ogg').
+
+
+plural_mi(D, '1mile.ogg') :- 1 is D mod 10.
+plural_mi(D, '2mili.ogg') :- Mod is D mod 10, Mod < 5,  Mod > 1.
+plural_mi(_D, '5mil.ogg').
 
 interval(St, St, End, _Step) :- St =< End.
 interval(T, St, End, Step) :- interval(Init, St, End, Step), T is Init + Step, (T =< End -> true; !, fail).
