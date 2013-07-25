@@ -3,8 +3,15 @@
 % for swi-prolog
 :- op(500, xfy,'--').
 
-% FEATURES 
-% - Version 1.5 - Basic turns, mile support, waypoint names, attention, onto_street
+% IMPLEMENTED FEATURES 
+% - Version 1.5 - 
+% Basic turns (all), location_lost, reached destination points
+% mile support
+% waypoint names,
+% attention, exceed_limit, 
+% off_route
+% onto_street
+% time implementation for route prescription
 
 version(102).
 tts :- version(X), X > 99.

@@ -8,6 +8,17 @@ version(102).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
+
+% IMPLEMENTED FEATURES 
+% - Version 1.5 - 
+% Basic turns (all), location_lost, reached destination points
+% mile support
+% waypoint names,
+% attention, exceed_limit, 
+% off_route
+% onto_street
+% time implementation for route prescription
+
 language(ru).
 fest_language(msu_ru_nsh_clunits).
 
