@@ -42,7 +42,7 @@ string('exit.ogg', 'salida').
 string('prepare_roundabout.ogg', 'Prepárate para entrar en la rotonda tras').
 string('roundabout.ogg', 'entra en la rotonda').
 string('go_ahead.ogg', 'Continúa recto').
-string('go_ahead_m.ogg', 'Sigue la vía durante').
+string('follow.ogg', 'Sigue la vía durante').
 string('and_arrive_destination.ogg', 'y llegarás a tu destino').
 string('reached_destination.ogg','has llegado a tu destino').
 string('and_arrive_intermediate.ogg', 'y llegarás a tu punto intermedio').
@@ -53,6 +53,7 @@ string('route_is.ogg', 'El camino es').
 string('route_calculate.ogg', 'Ruta recalculada, distancia').
 string('location_lost.ogg', 'señal g p s perdida').
 string('onto.ogg', 'en').
+string('to.ogg', 'a').
 string('off_route.ogg', 'has desviado de la ruta').
 string('exceed_limit.ogg', 'que se exceda el límite de velocidad').
 
@@ -112,6 +113,9 @@ turn_inf('right_keep', ['right_keep_inf.ogg']).
 onto_street('', []).
 onto_street(Street, ['onto.ogg', Street]) :- tts.
 onto_street(_Street, []) :- not(tts).
+to_street('', []).
+to_street(Street, ['to.ogg', Street]) :- tts.
+to_street(_Street, []) :- not(tts).
 
 prepare_turn(Turn, Dist, _Street) -- ['prepare.ogg', M, 'after.ogg', D, ' '] :- distance(Dist) -- D, turn_inf(Turn, M).
 turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
@@ -127,7 +131,7 @@ roundabout(Dist, _Angle, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', 'an
 roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), onto_street(Street, Sgen).
 
 go_ahead -- ['go_ahead.ogg'].
-go_ahead(Dist, _Street) -- ['go_ahead_m.ogg', D]:- distance(Dist) -- D.
+go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen]:- distance(Dist) -- D, to_street(Street, Sgen).
 
 then -- ['then.ogg'].
 name(D, [D]) :- tts.
