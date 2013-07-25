@@ -51,7 +51,7 @@ string('route_calculate.ogg', 'Strecke neu berechnet, Entfernung ').
 string('location_lost.ogg', 'G P S  Signal verloren ').
 string('on.ogg', 'auf ').
 string('onto.ogg', 'Richtung ').
-string('off_route.ogg', 'Sie weichen von der Route ab ').
+string('off_route.ogg', 'Sie weichen von der Route ab seit ').
 string('exceed_limit.ogg', 'Sie überschreiten die Höchstgeschwindigkeit ').
 
 string('1st.ogg', 'erste ').
@@ -147,7 +147,7 @@ route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'route_is2.ogg'] :- distance(
 route_recalc(Dist, Time) -- ['route_calculate.ogg', D] :- distance(Dist, nominativ) -- D.
 
 location_lost -- ['location_lost.ogg'].
-off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist, nominativ) -- D.
+off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist, dativ) -- D.
 attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
 
