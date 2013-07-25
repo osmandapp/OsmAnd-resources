@@ -3,7 +3,10 @@
 % for swi-prolog
 :- op(500, xfy,'--').
 
-version(101).
+% FEATURES 
+% - Version 1.5 - Basic turns, mile support, waypoint names, attention, onto_street
+
+version(102).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 

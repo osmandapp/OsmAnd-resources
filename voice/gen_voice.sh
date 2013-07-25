@@ -13,7 +13,7 @@ fi
 GOAL="gen('g_config.p','$ENGINE')"
 mkdir -p work
 echo "%%% !!! THIS IS GENERATED FILE !!! Modify ttsconfig.p" > $CONFIG_FILE 
-sed "s/version(101)/version(0)/g" $1/ttsconfig.p >> $CONFIG_FILE 
+sed "s/version(102)/version(0)/g" $1/ttsconfig.p >> $CONFIG_FILE 
 
 cp $CONFIG_FILE work/_config.p
 cp $CONFIG_FILE work/g_config.p

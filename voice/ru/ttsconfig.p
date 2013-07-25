@@ -4,7 +4,7 @@
 % for swi-prolog
 :- op(500, xfy,'--').
 
-version(101).
+version(102).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
