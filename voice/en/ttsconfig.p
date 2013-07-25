@@ -189,11 +189,13 @@ resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ('--'(X, L) -> append(
 [X|_Y] -- T :- (X -- T),!.
 [_X|Y] -- T :- (Y -- T).
 
+pnumber(X, Y) :- tts, !, num_atom(X, Y).
+pnumber(X, Ogg) :- num_atom(X, A), atom_concat(A, '.ogg', Ogg)
 % time measure
 hours(S, []) :- S < 60.
-hours(S, [H, 'hours.ogg']) :- H is S div 60.
+hours(S, [Ogg, 'hours.ogg']) :- H is S div 60, pnumber(H, Ogg).
 time(Sec) -- ['less_a_minute.ogg'] :- Sec < 60.
-time(Sec) -- [H, St, 'minutes.ogg'] :- S is round(Sec/60.0), hours(S, H), St is S mod 60.
+time(Sec) -- [H, Ogg, 'minutes.ogg'] :- S is round(Sec/60.0), hours(S, H), St is S mod 60, pnumber(St, Ogg).
 
 
 %%% distance measure
@@ -237,7 +239,7 @@ string(Ogg, A) :- voice_generation, interval(X, 1000, 9000, 1000), atom_number(A
 dist(X, Y) :- tts, !, num_atom(X, Y).
 
 dist(0, []) :- !.
-dist(X, [Ogg]) :- X < 20, !, num_atom(X, A), atom_concat(A, '.ogg', Ogg).
+dist(X, [Ogg]) :- X < 20, !, pnumber(X, Ogg).
 dist(X, [Ogg]) :- X < 1000, 0 is X mod 50, !, num_atom(X, A), atom_concat(A, '.ogg', Ogg).
 dist(D, ['20.ogg'|L]) :-  D < 30, Ts is D - 20, !, dist(Ts, L).
 dist(D, ['30.ogg'|L]) :-  D < 40, Ts is D - 30, !, dist(Ts, L).
