@@ -48,23 +48,23 @@ string('onto.ogg', 'in').
 string('off_route.ogg', 'avete deviato dalla rotta').
 string('exceed_limit.ogg', 'si supera il limite di velocità').
 
-string('1st.ogg', 'prima uscita').
-string('2nd.ogg', 'seconda uscita').
-string('3rd.ogg', 'terza uscita').
-string('4th.ogg', 'quarta uscita').
-string('5th.ogg', 'quinta uscita').
-string('6th.ogg', 'sesta uscita').
-string('7th.ogg', 'settima uscita').
-string('8th.ogg', 'ottava uscita').
-string('9th.ogg', 'nona uscita').
-string('10th.ogg', 'decima uscita').
-string('11th.ogg', 'undicesima uscita').
-string('12th.ogg', 'dodicesima uscita').
-string('13th.ogg', 'tredicesima uscita').
-string('14th.ogg', 'quattordicesima uscita').
-string('15th.ogg', 'quindicesima uscita').
-string('16th.ogg', 'sedicesima uscita').
-string('17th.ogg', 'diciassettesima uscita').
+string('1st.ogg', 'prima').
+string('2nd.ogg', 'seconda').
+string('3rd.ogg', 'terza').
+string('4th.ogg', 'quarta').
+string('5th.ogg', 'quinta').
+string('6th.ogg', 'sesta').
+string('7th.ogg', 'settima').
+string('8th.ogg', 'ottava').
+string('9th.ogg', 'nona').
+string('10th.ogg', 'decima').
+string('11th.ogg', 'undicesima').
+string('12th.ogg', 'dodicesima').
+string('13th.ogg', 'tredicesima').
+string('14th.ogg', 'quattordicesima').
+string('15th.ogg', 'quindicesima').
+string('16th.ogg', 'sedicesima').
+string('17th.ogg', 'diciassettesima').
 
 string('meters.ogg', 'metri').
 string('around_1_kilometer.ogg', 'circa un chilometro').
@@ -97,7 +97,7 @@ onto_street(Street, ['onto.ogg', Street]) :- tts.
 onto_street(_Street, []) :- not(tts).
 
 prepare_turn(Turn, Dist, _Street) -- ['prepare.ogg', M, 'after.ogg', D, ' '] :- distance(Dist) -- D, turn(Turn, M).
-turn(Turn, Dist, Street) -- ['after1.ogg', D, M] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
+turn(Turn, Dist, Street) -- ['after1.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
 turn(Turn, Street) -- [M | Sgen]  :- turn(Turn, M), onto_street(Street, Sgen).
 
 prepare_make_ut(Dist, Street) -- ['prepare_uturn.ogg', D | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
