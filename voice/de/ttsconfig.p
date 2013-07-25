@@ -42,8 +42,8 @@ string('and_arrive_destination.ogg', 'dann haben Sie Ihr Ziel erreicht ').
 string('reached_destination.ogg','Ziel erreicht ').
 string('and_arrive_intermediate.ogg', 'dann Zwischenziel erreicht ').
 string('reached_intermediate.ogg', 'Zwischenziel erreicht ').
-string('and_arrive_waypoint.ogg', 'dann Wegpunkt erreicht ').
-string('reached_waypoint.ogg', 'Wegpunkt erreicht ').
+string('and_arrive_waypoint.ogg', 'dann Wehgpunkt erreicht ').
+string('reached_waypoint.ogg', 'Wehgpunkt erreicht ').
 string('route_is1.ogg', 'Die berechnete Strecke ist ').
 string('route_is2.ogg', 'lang ').
 string('route_calculate.ogg', 'Strecke neu berechnet, Entfernung ').
