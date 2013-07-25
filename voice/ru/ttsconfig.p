@@ -37,8 +37,6 @@ string('reached_intermediate.ogg', 'вы прибыли в промежуточ�
 string('reached_destination.ogg','вы прибыли в пункт назначения ').
 string('and_arrive_waypoint.ogg', 'и вы прибудете к GPX точке').
 string('reached_waypoint.ogg', 'вы прибыли к GPX точке ').
-string('route_is.ogg', 'Маршрут составляет ').
-string('route_calculate.ogg', 'маршрут пересчитывается, расстояние ').
 string('location_lost.ogg', 'ДЖИПИИЭС потерян сигнал ').
 string('on.ogg', 'на ').
 string('onto.ogg', 'на ').
@@ -81,6 +79,18 @@ string('1_tenth_of_a_mile.ogg', 'одно десятая мили ').
 string('tenths_of_a_mile.ogg', ' десятых мили ').
 
 
+string('route_is.ogg', 'Маршрут составляет ').
+string('route_calculate.ogg', 'Маршрут пересчитывается').
+string('distance.ogg', 'расстояние ').
+string('time.ogg', 'время ').
+
+string('less_a_minute.ogg', 'менее минуты  ').
+string('hour.ogg', 'час ').
+string('hours_a.ogg', 'часа ').
+string('hours_ov.ogg', 'часов ').
+string('minute.ogg', 'минута ').
+string('minute_y.ogg', 'минуты ').
+string('minutes.ogg', 'минут ').
 
 onto_street('', []).
 onto_street(Street, ['onto.ogg', Street]) :- tts.
@@ -130,8 +140,11 @@ reached_intermediate(D) -- ['reached_intermediate.ogg'|Ds] :- name(D, Ds).
 and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
 
-route_new_calc(Dist, Time) -- ['route_is.ogg', D] :- distance(Dist) -- D.
-route_recalc(Dist, Time) -- ['route_calculate.ogg', D] :- distance(Dist) -- D.
+
+route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+route_recalc(Dist, Time) -- ['route_calculate.ogg'] :- appMode('car').
+route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+
 
 location_lost -- ['location_lost.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
@@ -174,6 +187,21 @@ resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L,
 % handling alternatives
 [X|_Y] -- T :- (X -- T),!.
 [_X|Y] -- T :- (Y -- T).
+
+% time measure
+hours(S, []) :- S < 60.
+hours(S, [H, Hs]) :- H is S div 60, plural_hs(H, Hs).
+time(Sec) -- ['less_a_minute.ogg'] :- Sec < 60.
+time(Sec) -- [H, St, Mn] :- S is round(Sec/60.0), hours(S, H), St is S mod 60, plural_mn(St, Mn).
+
+plural_hs(D, 'hour.ogg') :- 1 is D mod 10.
+plural_hs(D, 'hours_a.ogg') :- Mod is D mod 10, Mod < 5,  Mod > 1.
+plural_hs(_D, 'hours_ov.ogg').
+
+plural_mn(D, 'minute.ogg') :- 1 is D mod 10.
+plural_mn(D, 'minute_y.ogg') :- Mod is D mod 10, Mod < 5,  Mod > 1.
+plural_mn(_D, 'minutes.ogg').
+
 
 %%% distance measure
 distance(Dist) -- D :- measure('km-m'), distance_km(Dist) -- D.
