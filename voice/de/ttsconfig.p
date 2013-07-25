@@ -38,12 +38,13 @@ string('roundabout.ogg', 'in den Kreisverkehr einfahren, ').
 string('go_ahead.ogg', 'Weiter geradeaus ').
 string('go_ahead_m1.ogg', 'Dem Strasenverlauf ').
 string('go_ahead_m2.ogg', 'folgen ').
-string('and_arrive_destination.ogg', 'dann haben Sie Ihr Ziel erreicht ').
-string('reached_destination.ogg','Ziel erreicht ').
-string('and_arrive_intermediate.ogg', 'dann Zwischenziel erreicht ').
-string('reached_intermediate.ogg', 'Zwischenziel erreicht ').
-string('and_arrive_waypoint.ogg', 'dann Wehgpunkt erreicht ').
-string('reached_waypoint.ogg', 'Wehgpunkt erreicht ').
+string('and_arrive_destination.ogg', 'dann haben Sie Ihr Ziel ').
+string('reached_destination.ogg','Ziel ').
+string('and_arrive_intermediate.ogg', 'dann Zwischenziel ').
+string('reached_intermediate.ogg', 'Zwischenziel ').
+string('and_arrive_waypoint.ogg', 'dann Wehgpunkt ').
+string('reached_waypoint.ogg', 'Wehgpunkt ').
+string('reached.ogg', 'erreicht ').
 string('route_is1.ogg', 'Die berechnete Strecke ist ').
 string('route_is2.ogg', 'lang ').
 string('route_calculate.ogg', 'Strecke neu berechnet, Entfernung ').
@@ -135,12 +136,12 @@ go_ahead(Dist, Street) -- ['go_ahead_m1.ogg', Sgen, D, 'go_ahead_m2.ogg']:- dist
 then -- ['then.ogg'].
 name(D, [D]) :- tts.
 name(_D, []) :- not(tts).
-and_arrive_destination(D) -- ['and_arrive_destination.ogg'|Ds] :- name(D, Ds).
-reached_destination(D) -- ['reached_destination.ogg'|Ds] :- name(D, Ds).
-and_arrive_intermediate(D) -- ['and_arrive_intermediate.ogg'|Ds] :- name(D, Ds).
-reached_intermediate(D) -- ['reached_intermediate.ogg'|Ds] :- name(D, Ds).
-and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
-reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
+and_arrive_destination(D) -- ['and_arrive_destination.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
+reached_destination(D) -- ['reached_destination.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
+and_arrive_intermediate(D) -- ['and_arrive_intermediate.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
+reached_intermediate(D) -- ['reached_intermediate.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
+and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
+reached_waypoint(D) -- ['reached_waypoint.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
 
 route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'route_is2.ogg'] :- distance(Dist, nominativ) -- D.
 route_recalc(Dist, Time) -- ['route_calculate.ogg', D] :- distance(Dist, nominativ) -- D.
