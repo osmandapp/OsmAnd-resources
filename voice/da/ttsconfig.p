@@ -32,7 +32,7 @@ string('exit.ogg', 'afkørsel ').
 string('prepare_roundabout.ogg', 'Forbered at køre ind i rundkørslen ').
 string('roundabout.ogg', 'kør ind i rundkørslen, ').
 string('go_ahead.ogg', 'Fortsæt ligeud ').
-string('go_ahead_m.ogg', 'Følg vejen for ').
+string('follow.ogg', 'Følg vejen for ').
 string('and_arrive_destination.ogg', 'og ankommer til destinationen ').
 string('reached_destination.ogg','destination er nået').
 string('and_arrive_intermediate.ogg', 'og ankommer til rutepunkt ').
@@ -42,7 +42,7 @@ string('reached_waypoint.ogg', 'rutepunkt er nået ').
 string('route_is.ogg', 'Ruten er ').
 string('route_calculate.ogg', 'Ruten genberegnes, afstand ').
 string('location_lost.ogg', 'g p s signal mistet ').
-string('on.ogg', 'på ').
+string('onto.ogg', 'på ').
 string('off_route.ogg', 'afvigelse fra ruten ').
 string('exceed_limit.ogg', 'Overskridelse af hastighedsgrænsen ').
 
@@ -91,9 +91,9 @@ turn('right_keep', ['right_keep.ogg']).
 bear_left(_Street) -- ['left_keep.ogg'].
 bear_right(_Street) -- ['right_keep.ogg'].
 
-on_street('', []).
-on_street(Street, ['on.ogg', Street]) :- tts.
-on_street(_Street, []) :- not(tts).
+onto_street('', []).
+onto_street(Street, ['onto.ogg', Street]) :- tts.
+onto_street(_Street, []) :- not(tts).
 
 prepare_turn(Turn, Dist, _Street) -- ['prepare.ogg', M, 'after.ogg', D, ' '] :- distance(Dist) -- D, turn(Turn, M).
 turn(Turn, Dist, _Street) -- ['after.ogg', D, M] :- distance(Dist) -- D, turn(Turn, M).
@@ -108,7 +108,7 @@ prepare_roundabout(Dist, _Exit, _Street) -- ['prepare_roundabout.ogg', 'after.og
 roundabout(Dist, _Angle, Exit, _Street) -- ['after.ogg', D, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg'] :- distance(Dist) -- D, nth(Exit, E).
 roundabout(_Angle, Exit, _Street) -- ['take.ogg', E, 'exit.ogg'] :- nth(Exit, E).
 
-go_ahead(Dist, _Street) -- ['go_ahead_m.ogg', D]:- distance(Dist) -- D.
+go_ahead(Dist, _Street) -- ['follow.ogg', D]:- distance(Dist) -- D.
 
 then -- ['then.ogg'].
 name(D, [D]) :- tts.
