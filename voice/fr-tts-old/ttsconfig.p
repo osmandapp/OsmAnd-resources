@@ -5,7 +5,7 @@
 version(102).
 language(fr).
 
-
+%%%%% NO !!! no apostrophe  %%%%%%%%%%
 
 %% TURNS 
 turn('left', ['tournez à gauche ']).
@@ -56,7 +56,7 @@ route_recalc(Dist) -- ['recalcul de l itinéraire, l itinéraire fait ', D] :- d
 location_lost -- ['signal g p s perdu '].
 
 on_street -- ['à ', X] :- next_street(X).
-off_route -- ['vous avez dévié de l'itinéraire '].
+off_route -- ['vous avez dévié de l itinéraire ']. % NO !!! no apostrophe 
 attention -- ['attention '].
 speed_alarm -- ['vous dépassez la limite de vitesse '].
 
