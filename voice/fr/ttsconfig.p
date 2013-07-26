@@ -97,7 +97,7 @@ string('reached_waypoint.ogg', 'vous êtes arrivé à l étape GPX ').
 % OTHER PROMPTS
 string('attention.ogg', 'attention , ').
 string('location_lost.ogg', 'signal g p s perdu ').
-string('off_route.ogg', 'vous avez dévié de l'itinéraire  depuis').
+string('off_route.ogg', 'vous avez dévié de l itinéraire  depuis').
 string('exceed_limit.ogg', 'vous dépassez la limite de vitesse ').
 
 % STREET NAME GRAMMAR
@@ -120,7 +120,7 @@ string('yards.ogg', 'yards ').
 % TIME SUPPORT
 string('time.ogg', 'Il est ').
 string('hours.ogg', 'heures ').
-string('less_a_minute.ogg', 'moins d'une minute ').
+string('less_a_minute.ogg', 'moins d une minute ').
 string('minutes.ogg', 'minutes').
 
 
