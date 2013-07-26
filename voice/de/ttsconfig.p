@@ -228,6 +228,15 @@ resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L,
 [_X|Y] -- T :- (Y -- T).
 
 
+pnumber(X, Y) :- tts, !, num_atom(X, Y).
+pnumber(X, Ogg) :- num_atom(X, A), atom_concat(A, '.ogg', Ogg).
+% time measure
+hours(S, []) :- S < 60.
+hours(S, [Ogg, 'hours.ogg']) :- H is S div 60, pnumber(H, Ogg).
+time(Sec) -- ['less_a_minute.ogg'] :- Sec < 60.
+time(Sec) -- [H, Ogg, 'minutes.ogg'] :- S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60, pnumber(St, Ogg).
+
+
 %%% distance measure
 distance(Dist, Y) -- D :- measure('km-m'), distance_km(Dist, Y) -- D.
 distance(Dist, Y) -- D :- measure('mi-f'), distance_mi_f(Dist, Y) -- D.
