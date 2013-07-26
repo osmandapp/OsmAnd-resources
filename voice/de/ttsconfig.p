@@ -54,7 +54,7 @@ string('and.ogg', 'und ').
 string('take.ogg', 'nehmen Sie die ').
 string('exit.ogg', 'Ausfahrt ').
 
-& ROUNDABOUTS
+% ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Einbiegen in Kreisverkehr ').
 string('roundabout.ogg', 'in den Kreisverkehr einfahren, ').
 

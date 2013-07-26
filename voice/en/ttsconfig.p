@@ -48,7 +48,7 @@ string('prepare.ogg', 'Prepare to ').
 string('then.ogg', ', then ').
 string('and.ogg', 'and ').
 
-& ROUNDABOUTS
+% ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Prepare to enter a roundabout ').
 string('roundabout.ogg', 'enter the roundabout, ').
 string('take.ogg', 'take the ').

@@ -54,7 +54,7 @@ string('and.ogg', 'und ').
 string('take.ogg', 'Neem de  ').
 string('exit.ogg', 'afslag ').
 
-& ROUNDABOUTS
+% ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Houdt rekening met een rotonde na ').
 string('roundabout.ogg', ' de rotonde oprijden en neem dan de ').
 string('go_ahead.ogg', 'Deze weg blijven volgen ').
