@@ -181,7 +181,7 @@ and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg', Ds, 'reached.ogg'] :- name
 reached_waypoint(D) -- ['reached_waypoint.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
 
 route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'route_is2.ogg', 'time.ogg', T] :- distance(Dist, nominativ) -- D, time(Time) -- T.
-route_recalc(Dist, Time) -- ['route_calculate.ogg'] :- appMode('car').
+route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist, nominative) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].

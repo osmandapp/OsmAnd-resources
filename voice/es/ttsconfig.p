@@ -178,8 +178,8 @@ reached_intermediate(D) -- ['reached_intermediate.ogg'|Ds] :- name(D, Ds).
 and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
 
-route_new_calc(Dist, Time) -- ['route_is.ogg', D] :- distance(Dist) -- D.
-route_recalc(Dist, Time) -- ['route_calculate.ogg', D] :- distance(Dist) -- D.
+route_new_calc(Dist, _Time) -- ['route_is.ogg', D] :- distance(Dist) -- D.
+route_recalc(Dist, _Time) -- ['route_calculate.ogg', D] :- distance(Dist) -- D.
 
 location_lost -- ['location_lost.ogg'].
 

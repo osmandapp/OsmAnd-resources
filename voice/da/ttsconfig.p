@@ -165,8 +165,8 @@ reached_intermediate(_) -- ['reached_intermediate.ogg'].
 and_arrive_waypoint(X) -- ['and_arrive_waypoint.ogg', X].
 reached_waypoint(X) -- ['reached_waypoint.ogg', X].
 
-route_new_calc(Dist, Time) -- ['route_is.ogg', D] :- distance(Dist) -- D.
-route_recalc(Dist, Time) -- ['route_calculate.ogg', D] :- distance(Dist) -- D.
+route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
