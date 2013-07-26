@@ -8,20 +8,31 @@ version(102).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
-
-% IMPLEMENTED FEATURES 
-% - Version 1.5 - 
-% Basic turns (all), location_lost, reached destination points
-% mile support
-% waypoint names,
-% attention, exceed_limit, 
-% off_route
-% onto_street
-% time implementation for route prescription
-
 language(ru).
 fest_language(msu_ru_nsh_clunits).
 
+% IMPLEMENTED (X) or MISSING ( ) FEATURES:
+% (X) new Version 1.5 format
+% (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
+% (X) arrival
+% (X) other prompts: attention(without Type implementation), location lost, off_route, exceed speed limit
+% (X) special grammar: onto_street / on_street / to_street
+% (N/A) special grammar: nominative/dativ for distance measure
+% (N/A) special grammar: imperative/infinitive distincion for turns
+% (X) distance measure: meters / feet / yard support
+% (X) Street name announcement (deliberitely not in prepare_roundabout)
+% (X) Name announcement for destination / intermediate / GPX waypoint arrival
+% (X) Time announcement for new route
+% (X) word order checked
+
+
+% ROUTE CALCULATED
+string('route_is.ogg', 'Маршрут составляет ').
+string('route_calculate.ogg', 'Маршрут пересчитывается').
+string('distance.ogg', 'расстояние ').
+string('time.ogg', 'время ').
+
+% LEFT/RIGHT
 string('left.ogg', 'поверните налево ').
 string('left_sh.ogg', 'резко поверните налево ').
 string('left_sl.ogg', 'плавно поверните налево  ').
@@ -31,29 +42,17 @@ string('right_sl.ogg', 'плавно поверните направо  ').
 string('left_keep.ogg', 'держитесь левее ').
 string('right_keep.ogg', 'держитесь правее ').
 
-string('attention.ogg', 'Внимание, ').
+% U-TURNS
 string('make_uturn.ogg', 'Выполните разворот ').
 string('make_uturn_wp.ogg', 'Выполните разворот ').
 string('after.ogg', 'через').
 string('prepare_after.ogg', 'Приготовьтесь через ').
+
+% ROUNDABOUTS
+string('roundabout.ogg', 'круг ').
 string('then.ogg', 'затем ').
 string('take.ogg', 'Выполните ').
 string('exit.ogg', 'съезд ').
-string('roundabout.ogg', 'круг ').
-string('go_ahead.ogg', 'Продолжайте движение прямо ').
-string('go_ahead_m.ogg', 'Продолжайте движение ').
-string('and_arrive_destination.ogg', 'и вы прибудете в пункт назначения ').
-string('and_arrive_intermediate.ogg', 'и вы прибудете в промежуточный пункт ').
-string('reached_intermediate.ogg', 'вы прибыли в промежуточный пункт').
-string('reached_destination.ogg','вы прибыли в пункт назначения ').
-string('and_arrive_waypoint.ogg', 'и вы прибудете к GPX точке').
-string('reached_waypoint.ogg', 'вы прибыли к GPX точке ').
-string('location_lost.ogg', 'ДЖИПИИЭС потерян сигнал ').
-string('on.ogg', 'на ').
-string('onto.ogg', 'на ').
-string('to.ogg', 'по ').
-string('off_route.ogg', 'Вы отклонились от маршрута на ').
-string('exceed_limit.ogg', 'Вы превысили допустимую скорость ').
 
 string('1th.ogg', 'первый ').
 string('2th.ogg', 'вто_рой ') :- google_gen, voice .
@@ -74,27 +73,48 @@ string('15th.ogg', 'пятнадцатый ').
 string('16th.ogg', 'шестнадцатый ').
 string('17th.ogg', 'семнадцатый ').
 
+% STRAIGHT/FOLLOW
+string('go_ahead.ogg', 'Продолжайте движение прямо ').
+string('go_ahead_m.ogg', 'Продолжайте движение ').
+
+% ARRIVE
+string('and_arrive_destination.ogg', 'и вы прибудете в пункт назначения ').
+string('and_arrive_intermediate.ogg', 'и вы прибудете в промежуточный пункт ').
+string('reached_intermediate.ogg', 'вы прибыли в промежуточный пункт').
+string('reached_destination.ogg','вы прибыли в пункт назначения ').
+string('and_arrive_waypoint.ogg', 'и вы прибудете к GPX точке').
+string('reached_waypoint.ogg', 'вы прибыли к GPX точке ').
+
+% OTHER PROMPTS
+string('attention.ogg', 'Внимание, ').
+string('location_lost.ogg', 'ДЖИПИИЭС потерян сигнал ').
+string('off_route.ogg', 'Вы отклонились от маршрута на ').
+string('exceed_limit.ogg', 'Вы превысили допустимую скорость ').
+
+% STREET NAME GRAMMAR
+string('on.ogg', 'на ').
+string('onto.ogg', 'на ').
+string('to.ogg', 'по ').
+
+% DISTANCE UNIT SUPPORT
 string('metrov.ogg', 'метров ').
 string('kilometr.ogg', 'километр ').
 string('kilometra.ogg', 'километра ').
 string('kilometrov.ogg', 'километров ').
 string('around_1_kilometer.ogg', 'около одного километра ').
 string('around.ogg', 'около ').
+
 string('footov.ogg', 'футов ').
-string('1mile.ogg', 'миля ').
-string('2mili.ogg', 'мили ').
-string('5mil.ogg', 'миль ').
-string('yardov.ogg', 'ярдов ').
 string('around_1_mile.ogg', 'около одной мили ').
 string('1_tenth_of_a_mile.ogg', 'одно десятая мили ').
 string('tenths_of_a_mile.ogg', ' десятых мили ').
+string('1mile.ogg', 'миля ').
+string('2mili.ogg', 'мили ').
+string('5mil.ogg', 'миль ').
 
+string('yardov.ogg', 'ярдов ').
 
-string('route_is.ogg', 'Маршрут составляет ').
-string('route_calculate.ogg', 'Маршрут пересчитывается').
-string('distance.ogg', 'расстояние ').
-string('time.ogg', 'время ').
-
+% TIME SUPPORT
 string('less_a_minute.ogg', 'менее минуты  ').
 string('hour.ogg', 'час ').
 string('hours_a.ogg', 'часа ').
@@ -103,18 +123,8 @@ string('minute.ogg', 'минута ').
 string('minute_y.ogg', 'минуты ').
 string('minutes.ogg', 'минут ').
 
-onto_street('', []).
-onto_street(Street, ['onto.ogg', Street]) :- tts.
-onto_street(_Street, []) :- not(tts).
-on_street('', []).
-on_street(Street, ['on.ogg', Street]) :- tts.
-on_street(_Street, []) :- not(tts).
-to_street('', []).
-to_street(Street, ['to.ogg', Street]) :- tts.
-to_street(_Street, []) :- not(tts).
 
-
-%% TURNS 
+%% COMMAND BUILDING / WORD ORDER
 turn('left', ['left.ogg']).
 turn('left_sh', ['left_sh.ogg']).
 turn('left_sl', ['left_sl.ogg']).
@@ -125,6 +135,16 @@ turn('left_keep', ['left_keep.ogg']).
 turn('right_keep', ['right_keep.ogg']).
 bear_left(_Street) -- ['left_keep.ogg'].
 bear_right(_Street) -- ['right_keep.ogg'].
+
+onto_street('', []).
+onto_street(Street, ['onto.ogg', Street]) :- tts.
+onto_street(_Street, []) :- not(tts).
+on_street('', []).
+on_street(Street, ['on.ogg', Street]) :- tts.
+on_street(_Street, []) :- not(tts).
+to_street('', []).
+to_street(Street, ['to.ogg', Street]) :- tts.
+to_street(_Street, []) :- not(tts).
 
 prepare_turn(Turn, Dist, Street) -- ['prepare_after.ogg', D, ' ', M | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
 turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).

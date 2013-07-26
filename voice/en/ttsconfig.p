@@ -3,6 +3,13 @@
 % for swi-prolog
 :- op(500, xfy,'--').
 
+version(102).
+tts :- version(X), X > 99.
+voice :- version(X), X < 99.
+
+language('en').
+fest_language('cmu_us_awb_arctic_clunits').
+
 % IMPLEMENTED (X) or MISSING ( ) FEATURES:
 % (X) new Version 1.5 format
 % (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
@@ -16,13 +23,6 @@
 % (X) Name announcement for destination / intermediate / GPX waypoint arrival
 % (X) Time announcement for new route
 % (X) word order checked
-
-version(102).
-tts :- version(X), X > 99.
-voice :- version(X), X < 99.
-
-language('en').
-fest_language('cmu_us_awb_arctic_clunits').
 
 
 % ROUTE CALCULATED
