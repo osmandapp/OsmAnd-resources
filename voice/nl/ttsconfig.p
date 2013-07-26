@@ -18,7 +18,7 @@ fest_language('cmu_us_awb_arctic_clunits').
 % (X) arrival
 % (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
 % ( ) special grammar: onto_street / on_street / to_street
-% ( ) special grammar: nominative/dativ for distance measure
+% (N/A) special grammar: nominative/dativ for distance measure
 % (N/A) special grammar: imperative/infinitive distincion for turns
 % (X) distance measure: meters / feet / yard support
 % (X) Street name announcement (suppress in prepare_roundabout)
@@ -140,7 +140,8 @@ make_ut(Street) -- ['make_uturn2.ogg' | Sgen] :- onto_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
 prepare_roundabout(Dist, _Exit, _Street) -- ['prepare_roundabout.ogg', D] :- distance(Dist) -- D.
-roundabout(Dist, _Angle, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), onto_street(Street, Sgen).
+roundabout(Dist, _Angle, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', E, 'exit.ogg' | Sgen] :- 
+distance(Dist) -- D, nth(Exit, E), onto_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), onto_street(Street, Sgen).
 
 go_ahead -- ['go_ahead.ogg'].
@@ -204,9 +205,9 @@ resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L,
 
 
 %%% distance measure
-distance(Dist, Y) -- D :- measure('km-m'), distance_km(Dist, Y) -- D.
-distance(Dist, Y) -- D :- measure('mi-f'), distance_mi_f(Dist, Y) -- D.
-distance(Dist, Y) -- D :- measure('mi-y'), distance_mi_y(Dist, Y) -- D.
+distance(Dist) -- D :- measure('km-m'), distance_km(Dist) -- D.
+distance(Dist) -- D :- measure('mi-f'), distance_mi_f(Dist) -- D.
+distance(Dist) -- D :- measure('mi-y'), distance_mi_y(Dist) -- D.
 
 %%% distance measure km/m
 distance_km(Dist) -- [ X, 'meters.ogg']                  :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).

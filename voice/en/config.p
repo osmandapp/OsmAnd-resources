@@ -120,7 +120,7 @@ roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Ex
 
 go_ahead(Dist, Street) -- ['follow.ogg', Sgen, 'for.ogg', D] :- distance(Dist) -- D, street(Street, Sgen).
 
-then -- [', then.ogg'].
+then -- ['then.ogg'].
 name(D, [D]) :- tts.
 name(_D, []) :- not(tts).
 and_arrive_destination(D) -- ['and_arrive_destination.ogg'|Ds] :- name(D, Ds).
