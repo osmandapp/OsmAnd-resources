@@ -1,4 +1,4 @@
-﻿% for turbo-prolog
+% for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog
 :- op(500, xfy,'--').
@@ -15,19 +15,20 @@ language('da').
 % (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
 % (X) arrival
 % (X) other prompts: attention(without Type implementation), location lost, off_route, exceed speed limit
-% (N/A) special grammar: onto_street / on_street / to_street
+% (X) special grammar: onto_street / on_street / to_street
 % (N/A) special grammar: nominative/dativ for distance measure
 % (N/A) special grammar: imperative/infinitive distincion for turns
 % (X) distance measure: meters / feet / yard support
-% ( ) Street name announcement (deliberitely not in prepare_roundabout)
-% ( ) Name announcement for destination / intermediate / GPX waypoint arrival
-% ( ) Time announcement for new route
+% (X) Street name announcement (deliberitely not in prepare_roundabout)
+% (X) Name announcement for destination / intermediate / GPX waypoint arrival
+% (X) Time announcement for new route
 % (X) word order checked
 
 
 % ROUTE CALCULATED
 string('route_is.ogg', 'Ruten er ').
-string('route_calculate.ogg', 'Ruten genberegnes, afstand ').
+string('route_calculate.ogg', 'Ruten genberegnes ').
+string('distance.ogg', 'afstand ').
 
 % LEFT/RIGHT
 string('left.ogg', 'drej til venstre ').
@@ -90,7 +91,9 @@ string('off_route.ogg', 'afvigelse fra ruten ').
 string('exceed_limit.ogg', 'Overskridelse af hastighedsgrænsen ').
 
 % STREET NAME GRAMMAR
-string('onto.ogg', 'på ').
+string('onto.ogg', 'ind på ').
+string('on.ogg', 'på ').
+string('to.ogg', 'til ').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'meter ').
@@ -107,6 +110,10 @@ string('miles.ogg', 'mil ').
 string('yards.ogg', 'yards ').
 
 % TIME SUPPORT
+string('time.ogg', 'tiden er  ').
+string('hours.ogg', 'timer ').
+string('less_a_minute.ogg', 'mindre end et minut  ').
+string('minutes.ogg', 'minutter').
 
 
 %% COMMAND BUILDING / WORD ORDER
@@ -125,6 +132,12 @@ bear_right(_Street) -- ['right_keep.ogg'].
 onto_street('', []).
 onto_street(Street, ['onto.ogg', Street]) :- tts.
 onto_street(_Street, []) :- not(tts).
+on_street('', []).
+on_street(Street, ['on.ogg', Street]) :- tts.
+on_street(_Street, []) :- not(tts).
+to_street('', []).
+to_street(Street, ['to.ogg', Street]) :- tts.
+to_street(_Street, []) :- not(tts).
 
 prepare_turn(Turn, Dist, _Street) -- ['prepare.ogg', M, 'after.ogg', D, ' '] :- distance(Dist) -- D, turn(Turn, M).
 turn(Turn, Dist, _Street) -- ['after.ogg', D, M] :- distance(Dist) -- D, turn(Turn, M).
@@ -153,6 +166,11 @@ reached_waypoint(X) -- ['reached_waypoint.ogg', X].
 
 route_new_calc(Dist, Time) -- ['route_is.ogg', D] :- distance(Dist) -- D.
 route_recalc(Dist, Time) -- ['route_calculate.ogg', D] :- distance(Dist) -- D.
+route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+
+string('route_calculate.ogg', 'Route recalculated').
+string('distance.ogg', ' distance ').
+string('time.ogg', ' time is  ').
 
 location_lost -- ['location_lost.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
@@ -197,6 +215,15 @@ resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L,
 % handling alternatives
 [X|_Y] -- T :- (X -- T),!.
 [_X|Y] -- T :- (Y -- T).
+
+
+pnumber(X, Y) :- tts, !, num_atom(X, Y).
+pnumber(X, Ogg) :- num_atom(X, A), atom_concat(A, '.ogg', Ogg).
+% time measure
+hours(S, []) :- S < 60.
+hours(S, [Ogg, 'hours.ogg']) :- H is S div 60, pnumber(H, Ogg).
+time(Sec) -- ['less_a_minute.ogg'] :- Sec < 60.
+time(Sec) -- [H, Ogg, 'minutes.ogg'] :- S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60, pnumber(St, Ogg).
 
 
 %%% distance measure
