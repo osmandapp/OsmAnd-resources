@@ -16,21 +16,22 @@ fest_language('cmu_us_awb_arctic_clunits').
 % (X) new Version 1.5 format
 % (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
 % (X) arrival
-% (X) other prompts: attention(without Type implementation), location lost, off_route, exceed speed limit
+% (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
 % (X) special grammar: onto_street / on_street / to_street
 % (X) special grammar: nominative/dativ for distance measure
 % (N/A) special grammar: imperative/infinitive distincion for turns
 % (X) distance measure: meters / feet / yard support
-% (X) Street name announcement (deliberitely not in prepare_roundabout)
+% (X) Street name announcement (suppress in prepare_roundabout)
 % (X) Name announcement for destination / intermediate / GPX waypoint arrival
-% ( ) Time announcement for new route
+% (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
 % (X) word order checked
 
 
 % ROUTE CALCULATED
 string('route_is1.ogg', 'Die berechnete Strecke ist ').
 string('route_is2.ogg', 'lang ').
-string('route_calculate.ogg', 'Strecke neu berechnet, Entfernung ').
+string('route_calculate.ogg', 'Route neu berechnet ').
+string('distance.ogg', ', Entfernung ').
 
 % LEFT/RIGHT
 string('left.ogg', 'links abbiegen ').
@@ -125,10 +126,10 @@ string('yards_nominativ.ogg', 'yards ').
 string('yards_dativ.ogg', 'yards ').
 
 % TIME SUPPORT
-%string('time.ogg', 'time is  ').
-%string('hours.ogg', 'hours ').
-%string('less_a_minute.ogg', 'less than a minute  ').
-%string('minutes.ogg', 'minutes').
+string('time.ogg', ', Zeit  ').
+string('hours.ogg', 'Stunden ').
+string('less_a_minute.ogg', 'unter einer Minute ').
+string('minutes.ogg', 'Minuten').
 
 
 %% COMMAND BUILDING / WORD ORDER
@@ -179,8 +180,9 @@ reached_intermediate(D) -- ['reached_intermediate.ogg', Ds, 'reached.ogg'] :- na
 and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
 
-route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'route_is2.ogg'] :- distance(Dist, nominativ) -- D.
-route_recalc(Dist, Time) -- ['route_calculate.ogg', D] :- distance(Dist, nominativ) -- D.
+route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'route_is2.ogg', 'time.ogg', T] :- distance(Dist, nominativ) -- D, time(Time) -- T.
+route_recalc(Dist, Time) -- ['route_calculate.ogg'] :- appMode('car').
+route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist, nominative) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist, dativ) -- D.

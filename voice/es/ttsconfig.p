@@ -14,14 +14,14 @@ fest_language('Spanish').
 % (X) new Version 1.5 format
 % (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
 % (X) arrival
-% (X) other prompts: attention(without Type implementation), location lost, off_route, exceed speed limit
+% (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
 % ( ) special grammar: onto_street / on_street / to_street
 % (N/A) special grammar: nominative/dativ for distance measure
 % (X) special grammar: imperative/infinitive distincion for turns
 % (X) distance measure: meters / feet / yard support
-% (X) Street name announcement (deliberitely not in prepare_roundabout)
+% (X) Street name announcement (suppress in prepare_roundabout)
 % (X) Name announcement for destination / intermediate / GPX waypoint arrival
-% ( ) Time announcement for new route
+% ( ) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
 % ( ) word order checked
 
 
