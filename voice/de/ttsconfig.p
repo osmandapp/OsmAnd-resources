@@ -3,6 +3,20 @@
 % for swi-prolog
 :- op(500, xfy,'--').
 
+% IMPLEMENTED (X) or MISSING ( ) FEATURES:
+% (X) new Version 1.5 format
+% (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
+% (X) arrival
+% (X) other prompts: attention(without Type implementation), location lost, off_route, exceed speed limit
+% (X) special grammar: onto_street / on_street / to_street
+% (X) special grammar: nominative/dativ for distance measure
+% (N/A) special grammar: imperative/infinitive distincion for turns
+% (X) distance measure: meters / feet / yard support
+% (X) Street name announcement (deliberitely not in prepare_roundabout)
+% (X) Name announcement for destination / intermediate / GPX waypoint arrival
+% ( ) Time announcement for new route
+% (X) word order checked
+
 version(102).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
@@ -13,6 +27,12 @@ language('de').
 fest_language('cmu_us_awb_arctic_clunits').
 
 
+% ROUTE CALCULATED
+string('route_is1.ogg', 'Die berechnete Strecke ist ').
+string('route_is2.ogg', 'lang ').
+string('route_calculate.ogg', 'Strecke neu berechnet, Entfernung ').
+
+% LEFT/RIGHT
 string('left.ogg', 'links abbiegen ').
 string('left_sh.ogg', 'scharf links abbiegen ').
 string('left_sl.ogg', 'leicht links abbiegen ').
@@ -22,7 +42,7 @@ string('right_sl.ogg', 'leicht rechts abbiegen ').
 string('left_keep.ogg', 'links halten ').
 string('right_keep.ogg', 'rechts halten ').
 
-string('attention.ogg', 'Achtung, ').
+% U-TURNS
 string('prepare_make_uturn.ogg', 'Vorbereiten zum Wenden ').
 string('make_uturn1.ogg', 'wenden ').
 string('make_uturn2.ogg', 'Bitte wenden ').
@@ -33,27 +53,10 @@ string('then.ogg', 'dann ').
 string('and.ogg', 'und ').
 string('take.ogg', 'nehmen Sie die ').
 string('exit.ogg', 'Ausfahrt ').
+
+& ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Einbiegen in Kreisverkehr ').
 string('roundabout.ogg', 'in den Kreisverkehr einfahren, ').
-string('go_ahead.ogg', 'Weiter geradeaus ').
-string('follow1.ogg', 'Dem Strasenverlauf ').
-string('follow2.ogg', 'folgen ').
-string('and_arrive_destination.ogg', 'dann haben Sie Ihr Ziel ').
-string('reached_destination.ogg','Ziel ').
-string('and_arrive_intermediate.ogg', 'dann Zwischenziel ').
-string('reached_intermediate.ogg', 'Zwischenziel ').
-string('and_arrive_waypoint.ogg', 'dann Wehgpunkt ').
-string('reached_waypoint.ogg', 'Wehgpunkt ').
-string('reached.ogg', 'erreicht ').
-string('route_is1.ogg', 'Die berechnete Strecke ist ').
-string('route_is2.ogg', 'lang ').
-string('route_calculate.ogg', 'Strecke neu berechnet, Entfernung ').
-string('location_lost.ogg', 'G P S  Signal verloren ').
-string('onto.ogg', 'Richtung ').
-string('on.ogg', 'auf ').
-string('to.ogg', 'bis ').
-string('off_route.ogg', 'Sie weichen von der Route ab seit ').
-string('exceed_limit.ogg', 'Sie überschreiten die Höchstgeschwindigkeit ').
 
 string('1st.ogg', 'erste ').
 string('2nd.ogg', 'zweite ').
@@ -73,6 +76,32 @@ string('15th.ogg', 'fünfzehnte ').
 string('16th.ogg', 'sechzehnte ').
 string('17th.ogg', 'siebzehnte ').
 
+% STRAIGHT/FOLLOW
+string('go_ahead.ogg', 'Weiter geradeaus ').
+string('follow1.ogg', 'Dem Strasenverlauf ').
+string('follow2.ogg', 'folgen ').
+
+% ARRIVE
+string('and_arrive_destination.ogg', 'dann haben Sie Ihr Ziel ').
+string('reached_destination.ogg','Ziel ').
+string('and_arrive_intermediate.ogg', 'dann Zwischenziel ').
+string('reached_intermediate.ogg', 'Zwischenziel ').
+string('and_arrive_waypoint.ogg', 'dann Wehgpunkt ').
+string('reached_waypoint.ogg', 'Wehgpunkt ').
+string('reached.ogg', 'erreicht ').
+
+% OTHER PROMPTS
+string('attention.ogg', 'Achtung, ').
+string('location_lost.ogg', 'G P S  Signal verloren ').
+string('off_route.ogg', 'Sie weichen von der Route ab seit ').
+string('exceed_limit.ogg', 'Sie überschreiten die Höchstgeschwindigkeit ').
+
+% STREET NAME GRAMMAR
+string('onto.ogg', 'Richtung ').
+string('on.ogg', 'auf ').
+string('to.ogg', 'bis ').
+
+% DISTANCE UNIT SUPPORT
 string('meters_nominativ.ogg', 'meter ').
 string('meters_dativ.ogg', 'metern ').
 string('around_1_kilometer_nominativ.ogg', 'zirka einen Kilometer ').
@@ -95,8 +124,14 @@ string('miles_dativ.ogg', 'meilen ').
 string('yards_nominativ.ogg', 'yards ').
 string('yards_dativ.ogg', 'yards ').
 
+% TIME SUPPORT
+%string('time.ogg', 'time is  ').
+%string('hours.ogg', 'hours ').
+%string('less_a_minute.ogg', 'less than a minute  ').
+%string('minutes.ogg', 'minutes').
 
-%% TURNS 
+
+%% COMMAND BUILDING / WORD ORDER
 turn('left', ['left.ogg']).
 turn('left_sh', ['left_sh.ogg']).
 turn('left_sl', ['left_sl.ogg']).

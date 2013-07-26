@@ -3,15 +3,19 @@
 % for swi-prolog
 :- op(500, xfy,'--').
 
-% IMPLEMENTED FEATURES 
-% - Version 1.5 - 
-% Basic turns (all), location_lost, reached destination points
-% mile support
-% waypoint names,
-% attention, exceed_limit, 
-% off_route
-% onto_street
-% time implementation for route prescription
+% IMPLEMENTED (X) or MISSING ( ) FEATURES:
+% (X) new Version 1.5 format
+% (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
+% (X) arrival
+% (X) other prompts: attention(without Type implementation), location lost, off_route, exceed speed limit
+% (X) special grammar: onto_street / on_street / to_street
+% (N/A) special grammar: nominative/dativ for distance measure
+% (N/A) special grammar: imperative/infinitive distincion for turns
+% (X) distance measure: meters / feet / yard support
+% (X) Street name announcement (deliberitely not in prepare_roundabout)
+% (X) Name announcement for destination / intermediate / GPX waypoint arrival
+% (X) Time announcement for new route
+% (X) word order checked
 
 version(102).
 tts :- version(X), X > 99.
@@ -21,6 +25,12 @@ language('en').
 fest_language('cmu_us_awb_arctic_clunits').
 
 
+% ROUTE CALCULATED
+string('route_is.ogg', 'The trip is ').
+string('route_calculate.ogg', 'Route recalculated').
+string('distance.ogg', 'distance ').
+
+% LEFT/RIGHT
 string('left.ogg', 'turn left ').
 string('left_sh.ogg', 'turn sharply left ').
 string('left_sl.ogg', 'turn slightly left ').
@@ -30,32 +40,19 @@ string('right_sl.ogg', 'turn slightly right ').
 string('left_keep.ogg', 'keep left').
 string('right_keep.ogg', 'keep right').
 
-string('attention.ogg', 'attention, ').
+% U-TURNS
 string('make_uturn.ogg', 'Make a U turn ').
 string('make_uturn_wp.ogg', 'When possible, please make a U turn ').
 string('after.ogg', 'after ').
 string('prepare.ogg', 'Prepare to ').
 string('then.ogg', ', then ').
 string('and.ogg', 'and ').
-string('take.ogg', 'take the ').
-string('exit.ogg', 'exit ').
+
+& ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Prepare to enter a roundabout ').
 string('roundabout.ogg', 'enter the roundabout, ').
-string('go_ahead.ogg', 'Go straight ahead ').
-string('follow.ogg', 'Follow the course of the road for').
-string('and_arrive_destination.ogg', 'and arrive at your destination ').
-string('reached_destination.ogg','you have reached your destination ').
-string('and_arrive_intermediate.ogg', 'and arrive at your waypoint ').
-string('reached_intermediate.ogg', 'you have reached your waypoint ').
-string('and_arrive_waypoint.ogg', 'and arrive at your GPX waypoint ').
-string('reached_waypoint.ogg', 'you have reached your GPX waypoint ').
-
-string('location_lost.ogg', 'g p s signal lost ').
-string('onto.ogg', 'onto ').
-string('on.ogg', 'on ').
-string('to.ogg', 'to ').
-string('off_route.ogg', 'you have been off the route for').
-string('exceed_limit.ogg', 'you are exceeding the speed limit ').
+string('take.ogg', 'take the ').
+string('exit.ogg', 'exit ').
 
 string('1st.ogg', 'first ').
 string('2nd.ogg', 'second ').
@@ -75,6 +72,30 @@ string('15th.ogg', 'fifteenth ').
 string('16th.ogg', 'sixteenth ').
 string('17th.ogg', 'seventeenth ').
 
+% STRAIGHT/FOLLOW
+string('go_ahead.ogg', 'Go straight ahead ').
+string('follow.ogg', 'Follow the course of the road for').
+
+% ARRIVE
+string('and_arrive_destination.ogg', 'and arrive at your destination ').
+string('reached_destination.ogg','you have reached your destination ').
+string('and_arrive_intermediate.ogg', 'and arrive at your waypoint ').
+string('reached_intermediate.ogg', 'you have reached your waypoint ').
+string('and_arrive_waypoint.ogg', 'and arrive at your GPX waypoint ').
+string('reached_waypoint.ogg', 'you have reached your GPX waypoint ').
+
+% OTHER PROMPTS
+string('attention.ogg', 'attention, ').
+string('location_lost.ogg', 'g p s signal lost ').
+string('off_route.ogg', 'you have been off the route for').
+string('exceed_limit.ogg', 'you are exceeding the speed limit ').
+
+% STREET NAME GRAMMAR
+string('onto.ogg', 'onto ').
+string('on.ogg', 'on ').
+string('to.ogg', 'to ').
+
+% DISTANCE UNIT SUPPORT
 string('meters.ogg', 'meters ').
 string('around_1_kilometer.ogg', 'about 1 kilometer ').
 string('around.ogg', 'about ').
@@ -88,15 +109,14 @@ string('miles.ogg', 'miles ').
 
 string('yards.ogg', 'yards ').
 
-string('route_is.ogg', 'The trip is ').
-string('route_calculate.ogg', 'Route recalculated').
-string('distance.ogg', 'distance ').
+% TIME SUPPORT
 string('time.ogg', 'time is  ').
 string('hours.ogg', 'hours ').
 string('less_a_minute.ogg', 'less than a minute  ').
 string('minutes.ogg', 'minutes').
 
-%% TURNS 
+
+%% COMMAND BUILDING / WORD ORDER
 turn('left', ['left.ogg']).
 turn('left_sh', ['left_sh.ogg']).
 turn('left_sl', ['left_sl.ogg']).
@@ -195,6 +215,7 @@ resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ('--'(X, L) -> append(
 % handling alternatives
 [X|_Y] -- T :- (X -- T),!.
 [_X|Y] -- T :- (Y -- T).
+
 
 pnumber(X, Y) :- tts, !, num_atom(X, Y).
 pnumber(X, Ogg) :- num_atom(X, A), atom_concat(A, '.ogg', Ogg).

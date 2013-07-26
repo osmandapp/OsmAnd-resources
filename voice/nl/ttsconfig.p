@@ -3,6 +3,20 @@
 % for swi-prolog
 :- op(500, xfy,'--').
 
+% IMPLEMENTED (X) or MISSING ( ) FEATURES:
+% (X) new Version 1.5 format
+% (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
+% (X) arrival
+% (X) other prompts: attention(without Type implementation), location lost, off_route, exceed speed limit
+% ( ) special grammar: onto_street / on_street / to_street
+% ( ) special grammar: nominative/dativ for distance measure
+% (N/A) special grammar: imperative/infinitive distincion for turns
+% (X) distance measure: meters / feet / yard support
+% (X) Street name announcement (deliberitely not in prepare_roundabout)
+% (X) Name announcement for destination / intermediate / GPX waypoint arrival
+% ( ) Time announcement for new route
+% ( ) word order checked
+
 version(102).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
@@ -13,6 +27,12 @@ language('nl').
 fest_language('cmu_us_awb_arctic_clunits').
 
 
+% ROUTE CALCULATED
+string('route_is1.ogg', 'De berekende afstand is ').
+string('route_is2.ogg', 'lang ').
+string('route_calculate.ogg', 'Afstand is opnieuw berekend, de nieuwe afstand is ').
+
+% LEFT/RIGHT
 string('left.ogg', 'links afslaan ').
 string('left_sh.ogg', 'scherpe bocht naar links ').
 string('left_sl.ogg', 'links afbuigen  ').
@@ -22,7 +42,7 @@ string('right_sl.ogg', 'rechts afbuigen ').
 string('left_keep.ogg', 'links aanhouden ').
 string('right_keep.ogg', 'rechts aanhouden ').
 
-string('attention.ogg', 'aandacht , ').
+% U-TURNS
 string('prepare_make_uturn.ogg', 'Graag omkeren na ').
 string('make_uturn1.ogg', 'omkeren ').
 string('make_uturn2.ogg', 'Graag nu omkeren ').
@@ -33,25 +53,11 @@ string('then.ogg', 'dan ').
 string('and.ogg', 'und ').
 string('take.ogg', 'Neem de  ').
 string('exit.ogg', 'afslag ').
+
+& ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Houdt rekening met een rotonde na ').
 string('roundabout.ogg', ' de rotonde oprijden en neem dan de ').
 string('go_ahead.ogg', 'Deze weg blijven volgen ').
-string('follow1.ogg', 'De weg  ').
-string('follow2.ogg', 'volgen ').
-string('and_arrive_destination.ogg', 'dan heb je je bestemming ').
-string('reached_destination.ogg','je hebt je Bestemming ').
-string('and_arrive_intermediate.ogg', 'en dan heb je je routepunt ').
-string('reached_intermediate.ogg', 'je hebt je routepunt ').
-string('and_arrive_waypoint.ogg', 'en dan heb je je GPX routepunt ').
-string('reached_waypoint.ogg', 'je hebt je GPX routepunt ').
-string('reached.ogg', 'bereikt  ').
-string('route_is1.ogg', 'De berekende afstand is ').
-string('route_is2.ogg', 'lang ').
-string('route_calculate.ogg', 'Afstand is opnieuw berekend, de nieuwe afstand is ').
-string('location_lost.ogg', 'G P S  Signaal verloren ').
-string('onto.ogg', 'naar  ').
-string('off_route.ogg', 'u bent afgeweken van de route vanaf ').
-string('exceed_limit.ogg', 'u overschrijding van de maximumsnelheid ').
 
 string('1st.ogg', 'eerste ').
 string('2nd.ogg', 'tweede ').
@@ -71,6 +77,29 @@ string('15th.ogg', 'vijftiende ').
 string('16th.ogg', 'zestiende ').
 string('17th.ogg', 'zeventiende ').
 
+% STRAIGHT/FOLLOW
+string('follow1.ogg', 'De weg  ').
+string('follow2.ogg', 'volgen ').
+
+% ARRIVE
+string('and_arrive_destination.ogg', 'dan heb je je bestemming ').
+string('reached_destination.ogg','je hebt je Bestemming ').
+string('and_arrive_intermediate.ogg', 'en dan heb je je routepunt ').
+string('reached_intermediate.ogg', 'je hebt je routepunt ').
+string('and_arrive_waypoint.ogg', 'en dan heb je je GPX routepunt ').
+string('reached_waypoint.ogg', 'je hebt je GPX routepunt ').
+string('reached.ogg', 'bereikt  ').
+
+% OTHER PROMPTS
+string('attention.ogg', 'aandacht , ').
+string('location_lost.ogg', 'G P S  Signaal verloren ').
+string('off_route.ogg', 'u bent afgeweken van de route vanaf ').
+string('exceed_limit.ogg', 'u overschrijding van de maximumsnelheid ').
+
+% STREET NAME GRAMMAR
+string('onto.ogg', 'naar  ').
+
+% DISTANCE UNIT SUPPORT
 string('meters.ogg', 'meter ').
 string('around_1_kilometer.ogg', 'ongeveer een kilometer  ').
 string('around.ogg', 'ongeveer ').
@@ -85,7 +114,7 @@ string('miles.ogg', 'mijlen ').
 string('yards.ogg', 'yards ').
 
 
-%% TURNS 
+%% COMMAND BUILDING / WORD ORDER
 turn('left', ['left.ogg']).
 turn('left_sh', ['left_sh.ogg']).
 turn('left_sl', ['left_sl.ogg']).
