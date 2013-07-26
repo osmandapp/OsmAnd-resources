@@ -10,7 +10,26 @@ voice :- version(X), X < 99.
 language('da').
 % fest_language('cmu_us_awb_arctic_clunits').
 
+% IMPLEMENTED (X) or MISSING ( ) FEATURES:
+% (X) new Version 1.5 format
+% (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
+% (X) arrival
+% (X) other prompts: attention(without Type implementation), location lost, off_route, exceed speed limit
+% (N/A) special grammar: onto_street / on_street / to_street
+% (N/A) special grammar: nominative/dativ for distance measure
+% (N/A) special grammar: imperative/infinitive distincion for turns
+% (X) distance measure: meters / feet / yard support
+% ( ) Street name announcement (deliberitely not in prepare_roundabout)
+% ( ) Name announcement for destination / intermediate / GPX waypoint arrival
+% ( ) Time announcement for new route
+% (X) word order checked
 
+
+% ROUTE CALCULATED
+string('route_is.ogg', 'Ruten er ').
+string('route_calculate.ogg', 'Ruten genberegnes, afstand ').
+
+% LEFT/RIGHT
 string('left.ogg', 'drej til venstre ').
 string('left_sh.ogg', 'drej skarpt til venstre ').
 string('left_sl.ogg', 'drej lidt til venstre ').
@@ -20,31 +39,19 @@ string('right_sl.ogg', 'drej lidt til højre ').
 string('left_keep.ogg', 'hold til venstre ').
 string('right_keep.ogg', 'hold til højre ').
 
-string('attention.ogg', 'Advarsel, ').
+% U-TURNS
 string('make_uturn.ogg', 'Foretag U vending ').
 string('make_uturn_wp.ogg', 'Når muligt foretag U vending ').
 string('after.ogg', 'efter ').
 string('prepare.ogg', 'Forbered til ').
 string('then.ogg', 'derefter ').
 string('and.ogg', 'og ').
-string('take.ogg', 'tag ').
-string('exit.ogg', 'afkørsel ').
+
+% ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Forbered at køre ind i rundkørslen ').
 string('roundabout.ogg', 'kør ind i rundkørslen, ').
-string('go_ahead.ogg', 'Fortsæt ligeud ').
-string('follow.ogg', 'Følg vejen for ').
-string('and_arrive_destination.ogg', 'og ankommer til destinationen ').
-string('reached_destination.ogg','destination er nået').
-string('and_arrive_intermediate.ogg', 'og ankommer til rutepunkt ').
-string('reached_intermediate.ogg', 'rutepunkt er nået ').
-string('and_arrive_waypoint.ogg', 'og ankommer til rutepunkt ').
-string('reached_waypoint.ogg', 'rutepunkt er nået ').
-string('route_is.ogg', 'Ruten er ').
-string('route_calculate.ogg', 'Ruten genberegnes, afstand ').
-string('location_lost.ogg', 'g p s signal mistet ').
-string('onto.ogg', 'på ').
-string('off_route.ogg', 'afvigelse fra ruten ').
-string('exceed_limit.ogg', 'Overskridelse af hastighedsgrænsen ').
+string('take.ogg', 'tag ').
+string('exit.ogg', 'afkørsel ').
 
 string('1st.ogg', 'første ').
 string('2nd.ogg', 'anden ').
@@ -64,6 +71,28 @@ string('15th.ogg', 'femtende ').
 string('16th.ogg', 'sekstende ').
 string('17th.ogg', 'syttende ').
 
+% STRAIGHT/FOLLOW
+string('go_ahead.ogg', 'Fortsæt ligeud ').
+string('follow.ogg', 'Følg vejen for ').
+
+% ARRIVE
+string('and_arrive_destination.ogg', 'og ankommer til destinationen ').
+string('reached_destination.ogg','destination er nået').
+string('and_arrive_intermediate.ogg', 'og ankommer til rutepunkt ').
+string('reached_intermediate.ogg', 'rutepunkt er nået ').
+string('and_arrive_waypoint.ogg', 'og ankommer til rutepunkt ').
+string('reached_waypoint.ogg', 'rutepunkt er nået ').
+
+% OTHER PROMPTS
+string('attention.ogg', 'Advarsel, ').
+string('location_lost.ogg', 'g p s signal mistet ').
+string('off_route.ogg', 'afvigelse fra ruten ').
+string('exceed_limit.ogg', 'Overskridelse af hastighedsgrænsen ').
+
+% STREET NAME GRAMMAR
+string('onto.ogg', 'på ').
+
+% DISTANCE UNIT SUPPORT
 string('meters.ogg', 'meter ').
 string('around_1_kilometer.ogg', 'omkring 1 kilometer ').
 string('around.ogg', 'om ').
@@ -77,8 +106,10 @@ string('miles.ogg', 'mil ').
 
 string('yards.ogg', 'yards ').
 
+% TIME SUPPORT
 
-%% TURNS
+
+%% COMMAND BUILDING / WORD ORDER
 turn('left', ['left.ogg']).
 turn('left_sh', ['left_sh.ogg']).
 turn('left_sl', ['left_sl.ogg']).

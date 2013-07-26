@@ -49,14 +49,14 @@ string('make_uturn2.ogg', 'Bitte wenden ').
 string('make_uturn_wp.ogg', 'Wenn möglich, bitte wenden ').
 string('after.ogg', 'nach ').
 string('prepare.ogg', ' ').
-string('then.ogg', 'dann ').
-string('and.ogg', 'und ').
-string('take.ogg', 'nehmen Sie die ').
-string('exit.ogg', 'Ausfahrt ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Einbiegen in Kreisverkehr ').
 string('roundabout.ogg', 'in den Kreisverkehr einfahren, ').
+string('then.ogg', 'dann ').
+string('and.ogg', 'und ').
+string('take.ogg', 'nehmen Sie die ').
+string('exit.ogg', 'Ausfahrt ').
 
 string('1st.ogg', 'erste ').
 string('2nd.ogg', 'zweite ').

@@ -10,7 +10,26 @@ voice :- version(X), X < 99.
 language('es').
 fest_language('Spanish').
 
+% IMPLEMENTED (X) or MISSING ( ) FEATURES:
+% (X) new Version 1.5 format
+% (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
+% (X) arrival
+% (X) other prompts: attention(without Type implementation), location lost, off_route, exceed speed limit
+% ( ) special grammar: onto_street / on_street / to_street
+% (N/A) special grammar: nominative/dativ for distance measure
+% (X) special grammar: imperative/infinitive distincion for turns
+% (X) distance measure: meters / feet / yard support
+% (X) Street name announcement (deliberitely not in prepare_roundabout)
+% (X) Name announcement for destination / intermediate / GPX waypoint arrival
+% ( ) Time announcement for new route
+% ( ) word order checked
 
+
+% ROUTE CALCULATED
+string('route_is.ogg', 'El camino es').
+string('route_calculate.ogg', 'Ruta recalculada, distancia').
+
+% LEFT/RIGHT
 string('left.ogg', 'gira a la izquierda').
 string('left_sh.ogg', 'gira fuerte a la izquierda').
 string('left_sl.ogg', 'gira levemente a la izquierda').
@@ -29,33 +48,20 @@ string('right_sl_inf.ogg', 'girar levemente a la derecha').
 string('left_keep_inf.ogg', 'mantente a la izquierda').
 string('right_keep_inf.ogg', 'mantente a la derecha').
 
-string('attention.ogg', 'atención, ').
+% U-TURNS
 string('prepare_uturn.ogg', 'Prepárate para dar la vuelta tras').
 string('make_uturn.ogg', 'da la vuelta').
 string('make_uturn_wp.ogg', 'cuando sea posible, da la vuelta').
 string('after.ogg', 'tras ').
 string('prepare.ogg', 'prepárate para').
+
+% ROUNDABOUTS
+string('prepare_roundabout.ogg', 'Prepárate para entrar en la rotonda tras').
+string('roundabout.ogg', 'entra en la rotonda').
 string('then.ogg', '. Luego').
 string('and.ogg', 'y').
 string('take.ogg', 'toma la').
 string('exit.ogg', 'salida').
-string('prepare_roundabout.ogg', 'Prepárate para entrar en la rotonda tras').
-string('roundabout.ogg', 'entra en la rotonda').
-string('go_ahead.ogg', 'Continúa recto').
-string('follow.ogg', 'Sigue la vía durante').
-string('and_arrive_destination.ogg', 'y llegarás a tu destino').
-string('reached_destination.ogg','has llegado a tu destino').
-string('and_arrive_intermediate.ogg', 'y llegarás a tu punto intermedio').
-string('reached_intermediate.ogg', 'has llegado a tu punto intermedio').
-string('and_arrive_waypoint.ogg', 'y llegarás a tu punto intermedio').
-string('reached_waypoint.ogg', 'has llegado a tu punto intermedio').
-string('route_is.ogg', 'El camino es').
-string('route_calculate.ogg', 'Ruta recalculada, distancia').
-string('location_lost.ogg', 'señal g p s perdida').
-string('onto.ogg', 'en').
-string('to.ogg', 'a').
-string('off_route.ogg', 'has desviado de la ruta').
-string('exceed_limit.ogg', 'que se exceda el límite de velocidad').
 
 string('1st.ogg', 'primera').
 string('2nd.ogg', 'segunda').
@@ -75,6 +81,29 @@ string('15th.ogg', 'decimoquinta').
 string('16th.ogg', 'decimosexta').
 string('17th.ogg', 'decimoséptima').
 
+% STRAIGHT/FOLLOW
+string('go_ahead.ogg', 'Continúa recto').
+string('follow.ogg', 'Sigue la vía durante').
+
+% ARRIVE
+string('and_arrive_destination.ogg', 'y llegarás a tu destino').
+string('reached_destination.ogg','has llegado a tu destino').
+string('and_arrive_intermediate.ogg', 'y llegarás a tu punto intermedio').
+string('reached_intermediate.ogg', 'has llegado a tu punto intermedio').
+string('and_arrive_waypoint.ogg', 'y llegarás a tu punto intermedio').
+string('reached_waypoint.ogg', 'has llegado a tu punto intermedio').
+
+% OTHER PROMPTS
+string('attention.ogg', 'atención, ').
+string('location_lost.ogg', 'señal g p s perdida').
+string('off_route.ogg', 'has desviado de la ruta').
+string('exceed_limit.ogg', 'que se exceda el límite de velocidad').
+
+% STREET NAME GRAMMAR
+string('onto.ogg', 'en').
+string('to.ogg', 'a').
+
+% DISTANCE UNIT SUPPORT
 string('meters.ogg', 'metros').
 string('around_1_kilometer.ogg', 'cerca de un kilómetro').
 string('around.ogg', 'cerca de').
@@ -88,8 +117,14 @@ string('miles.ogg', 'millas').
 
 string('yards.ogg', 'yardas').
 
+% TIME SUPPORT
+%string('time.ogg', 'time is  ').
+%string('hours.ogg', 'hours ').
+%string('less_a_minute.ogg', 'less than a minute  ').
+%string('minutes.ogg', 'minutes').
 
-%% TURNS 
+
+%% COMMAND BUILDING / WORD ORDER
 turn('left', ['left.ogg']).
 turn('left_sh', ['left_sh.ogg']).
 turn('left_sl', ['left_sl.ogg']).
