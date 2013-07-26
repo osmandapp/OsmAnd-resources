@@ -1,4 +1,4 @@
-% for turbo-prolog
+﻿% for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog
 :- op(500, xfy,'--').
@@ -29,6 +29,8 @@ language('da').
 string('route_is.ogg', 'Ruten er ').
 string('route_calculate.ogg', 'Ruten genberegnes ').
 string('distance.ogg', 'afstand ').
+string('time.ogg', 'tijd ').
+
 
 % LEFT/RIGHT
 string('left.ogg', 'drej til venstre ').
@@ -167,10 +169,6 @@ reached_waypoint(X) -- ['reached_waypoint.ogg', X].
 route_new_calc(Dist, Time) -- ['route_is.ogg', D] :- distance(Dist) -- D.
 route_recalc(Dist, Time) -- ['route_calculate.ogg', D] :- distance(Dist) -- D.
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
-
-string('route_calculate.ogg', 'Route recalculated').
-string('distance.ogg', ' distance ').
-string('time.ogg', ' time is  ').
 
 location_lost -- ['location_lost.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.

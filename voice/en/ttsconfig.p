@@ -29,6 +29,8 @@ fest_language('cmu_us_awb_arctic_clunits').
 string('route_is.ogg', 'The trip is ').
 string('route_calculate.ogg', 'Route recalculated').
 string('distance.ogg', 'distance ').
+string('time.ogg', ' time is  ').
+
 
 % LEFT/RIGHT
 string('left.ogg', 'turn left ').
@@ -167,10 +169,6 @@ reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
 route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 route_recalc(Dist, Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
-
-string('route_calculate.ogg', 'Route recalculated').
-string('distance.ogg', ' distance ').
-string('time.ogg', ' time is  ').
 
 location_lost -- ['location_lost.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
