@@ -30,7 +30,6 @@ fest_language(msu_ru_nsh_clunits).
 string('route_is.ogg', 'Маршрут составляет ').
 string('route_calculate.ogg', 'Маршрут пересчитывается').
 string('distance.ogg', 'расстояние ').
-string('time.ogg', 'время ').
 
 % LEFT/RIGHT
 string('left.ogg', 'поверните налево ').
@@ -115,6 +114,7 @@ string('5mil.ogg', 'миль ').
 string('yardov.ogg', 'ярдов ').
 
 % TIME SUPPORT
+string('time.ogg', 'время ').
 string('less_a_minute.ogg', 'менее минуты  ').
 string('hour.ogg', 'час ').
 string('hours_a.ogg', 'часа ').

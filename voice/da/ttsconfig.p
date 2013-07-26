@@ -29,7 +29,6 @@ language('da').
 string('route_is.ogg', 'Ruten er ').
 string('route_calculate.ogg', 'Ruten genberegnes ').
 string('distance.ogg', 'afstand ').
-string('time.ogg', 'tijd ').
 
 
 % LEFT/RIGHT
