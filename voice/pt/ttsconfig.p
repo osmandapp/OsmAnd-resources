@@ -94,9 +94,9 @@ string('follow.ogg', 'Siga o caminho por ').
 string('and_arrive_destination.ogg', 'e chegou ao seu destino ').
 string('reached_destination.ogg','você chegou ao seu destino ').
 string('and_arrive_intermediate.ogg', 'e chegou ao seu ponto de passagem ').
-string('reached_intermediate.ogg', 'você chegou ao seu ponto de passagem').
+string('reached_intermediate.ogg', 'você chegou ao seu ponto de passagem ').
 string('and_arrive_waypoint.ogg', 'e chegou ao seu ponto de GPX ').
-string('reached_waypoint.ogg', 'você chegou ao seu ponto de GPX').
+string('reached_waypoint.ogg', 'você chegou ao seu ponto de GPX ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'atenção, ').
@@ -159,7 +159,7 @@ turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), onto_street(Street, Sgen).
 
 prepare_make_ut(Dist, Street) -- ['prepare_uturn.ogg', D | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
 make_ut(Dist, Street) --  ['after.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
-make_ut(Street) -- ['make_uturn.ogg' | Sgen] :- on_street(Street, Sgen).
+make_ut(Street) -- ['make_uturn.ogg' | Sgen] :- onto_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
 prepare_roundabout(Dist, _Exit, _Street) -- ['prepare_roundabout.ogg', D] :- distance(Dist) -- D.
