@@ -48,8 +48,8 @@ string('left_sl.ogg', 'vire ligeiramente à esquerda ').
 string('right.ogg', 'vire à direita ').
 string('right_sh.ogg', 'vire acentuadamente à direita ').
 string('right_sl.ogg', 'vire ligeiramente à direita ').
-string('left_keep.ogg', 'mantenha-se à esquerda'').
-string('right_keep.ogg', 'mantenha-se à direita').
+string('left_keep.ogg', 'mantenha-se à esquerda ').
+string('right_keep.ogg', 'mantenha-se à direita ').
 string('left_bear.ogg', 'mantenha-se à esquerda ').
 string('right_bear.ogg', 'mantenha-se à direita ').
 
