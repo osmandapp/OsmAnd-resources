@@ -112,7 +112,7 @@ string('yards.ogg', 'iarde').
 % TIME SUPPORT
 string('time.ogg', 'tempo necessario ').
 string('1_hour.ogg', 'un ora ').
-string('hours.ogg', ore ').
+string('hours.ogg', 'ore ').
 string('less_a_minute.ogg', 'meno di un minuto ').
 string('minutes.ogg', 'minuti ').
 
