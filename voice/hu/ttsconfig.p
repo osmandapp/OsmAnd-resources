@@ -53,7 +53,7 @@ string('roundabout.ogg', 'múlva a körforgalomból ').
 string('roundabout2.ogg', 'kijáraton hajts ki').
 string('then.ogg', 'majd ').
 string('and.ogg', ' ').
-string('take.ogg', 'hajts ki  ').
+string('take.ogg', 'hajts ki ').
 string('exit.ogg', 'kijáraton ').
 
 string('1st.ogg', 'az első ').
@@ -76,21 +76,21 @@ string('17th.ogg', 'a tizenhetedik ').
 
 % STRAIGHT/FOLLOW
 string('go_ahead.ogg', 'Haladj tovább egyenesen ').
-string('follow1.ogg', 'Menj tovább  ').
+string('follow1.ogg', 'Menj tovább ').
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'és megérkezel az uticélhoz. ').
-string('reached_destination.ogg','megérkeztél az uticélhoz. ').
+string('reached_destination.ogg','megérkeztél az uticélhoz ').
 string('and_arrive_intermediate.ogg', 'és megérkezel a köztes célponthoz. ').
-string('reached_intermediate.ogg', 'megérkeztél a köztes célponthoz. ').
-string('and_arrive_waypoint.ogg', 'és megérkezel a köztes célponthoz G P X. ').
-string('reached_waypoint.ogg', 'megérkeztél a köztes célponthoz G P X. ').
+string('reached_intermediate.ogg', 'megérkeztél a köztes célponthoz ').
+string('and_arrive_waypoint.ogg', 'és megérkezel a köztes célponthoz G P X ').
+string('reached_waypoint.ogg', 'megérkeztél a köztes célponthoz G P X ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'figyelem, ').
-string('location_lost.ogg', 'nem található dzsípíesz pozíció  ').
+string('location_lost.ogg', 'nem található dzsípíesz pozíció ').
 string('off_route.ogg', 'Ön letért a tervezett útvonalról ').
-string('exceed_limit.ogg', 'akkor meghaladja a megengedett sebességet  ').
+string('exceed_limit.ogg', 'akkor meghaladja a megengedett sebességet ').
 
 % STREET NAME GRAMMAR
 string('onto.ogg', 'a ').
