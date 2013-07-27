@@ -113,6 +113,13 @@ string('miles.ogg', 'mijlen ').
 
 string('yards.ogg', 'yards ').
 
+% TIME SUPPORT
+%string('time.ogg', 'time is  ').
+%string('1_hour.ogg', 'one hour ').
+%string('hours.ogg', 'hours ').
+%string('less_a_minute.ogg', 'less than a minute  ').
+%string('minutes.ogg', 'minutes').
+
 
 %% COMMAND BUILDING / WORD ORDER
 turn('left', ['left.ogg']).

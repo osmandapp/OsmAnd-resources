@@ -123,6 +123,7 @@ string('yards.ogg', 'jardas ').
 
 % TIME SUPPORT
 string('time.ogg', 'tempo é ').
+string('1_hour.ogg', 'uma hora ').
 string('hours.ogg', 'horas ').
 string('less_a_minute.ogg', 'menos de um minuto ').
 string('minutes.ogg', 'minutos ').
@@ -232,6 +233,7 @@ pnumber(X, Y) :- tts, !, num_atom(X, Y).
 pnumber(X, Ogg) :- num_atom(X, A), atom_concat(A, '.ogg', Ogg).
 % time measure
 hours(S, []) :- S < 60.
+hours(S, ['1_hour.ogg']) :- S < 120, H is S div 60, pnumber(H, Ogg).
 hours(S, [Ogg, 'hours.ogg']) :- H is S div 60, pnumber(H, Ogg).
 time(Sec) -- ['less_a_minute.ogg'] :- Sec < 60.
 time(Sec) -- [H, Ogg, 'minutes.ogg'] :- S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60, pnumber(St, Ogg).

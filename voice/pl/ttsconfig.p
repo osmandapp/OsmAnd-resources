@@ -108,6 +108,10 @@ string('yards.ogg', 'jardów ').
 
 % TIME SUPPORT
 %string('time.ogg', 'time is  ').
+
+% TIME SUPPORT
+%string('time.ogg', 'time is  ').
+%string('1_hour.ogg', 'one hour ').
 %string('hours.ogg', 'hours ').
 %string('less_a_minute.ogg', 'less than a minute  ').
 %string('minutes.ogg', 'minutes').
