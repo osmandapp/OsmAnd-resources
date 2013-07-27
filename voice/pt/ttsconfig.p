@@ -64,7 +64,7 @@ string('and.ogg', 'e ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Prepare-se para entrar na rotatória após ').
-string('roundabout.ogg', ' entre na rotatória e pegue a ').
+string('roundabout.ogg', 'entre na rotatória e pegue a ').
 string('take.ogg', 'pegue a ').
 string('exit.ogg', 'saída ').
 
@@ -92,7 +92,7 @@ string('follow.ogg', 'Siga o caminho por ').
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'e chegou ao seu destino ').
-string('reached_destination.ogg','você chegou ao seu destino ').
+string('reached_destination.ogg', 'você chegou ao seu destino ').
 string('and_arrive_intermediate.ogg', 'e chegou ao seu ponto de passagem ').
 string('reached_intermediate.ogg', 'você chegou ao seu ponto de passagem ').
 string('and_arrive_waypoint.ogg', 'e chegou ao seu ponto de GPX ').
