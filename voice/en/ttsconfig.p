@@ -110,11 +110,11 @@ string('miles.ogg', 'miles ').
 string('yards.ogg', 'yards ').
 
 % TIME SUPPORT
-string('time.ogg', 'time is  ').
+string('time.ogg', 'time is ').
 string('1_hour.ogg', 'one hour ').
 string('hours.ogg', 'hours ').
-string('less_a_minute.ogg', 'less than a minute  ').
-string('minutes.ogg', 'minutes').
+string('less_a_minute.ogg', 'less than a minute ').
+string('minutes.ogg', 'minutes ').
 
 
 %% COMMAND BUILDING / WORD ORDER
@@ -166,7 +166,7 @@ and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
 
 route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
-route_recalc(Dist, Time) -- ['route_calculate.ogg'] :- appMode('car').
+route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].

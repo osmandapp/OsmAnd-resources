@@ -23,7 +23,7 @@ fest_language('cmu_us_awb_arctic_clunits').
 % (X) distance measure: meters / feet / yard support
 % (X) Street name announcement (suppress in prepare_roundabout)
 % (X) Name announcement for destination / intermediate / GPX waypoint arrival
-% ( ) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
+% (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
 % ( ) word order checked
 
 
@@ -114,11 +114,11 @@ string('miles.ogg', 'mijlen ').
 string('yards.ogg', 'yards ').
 
 % TIME SUPPORT
-%string('time.ogg', 'time is  ').
-%string('1_hour.ogg', 'one hour ').
-%string('hours.ogg', 'hours ').
-%string('less_a_minute.ogg', 'less than a minute  ').
-%string('minutes.ogg', 'minutes').
+string('time.ogg', 'tijd tot bestemming ').
+string('1_hour.ogg', 'een uur ').
+string('hours.ogg', 'uur ').
+string('less_a_minute.ogg', 'minder dan een minuut ').
+string('minutes.ogg', 'minuten ').
 
 
 %% COMMAND BUILDING / WORD ORDER
@@ -164,8 +164,9 @@ reached_intermediate(D) -- ['reached_intermediate.ogg', Ds, 'reached.ogg'] :- na
 and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
 
-route_new_calc(Dist, _Time) -- ['route_is1.ogg', D, 'route_is2.ogg'] :- distance(Dist) -- D.
-route_recalc(Dist, _Time) -- ['route_calculate.ogg', D] :- distance(Dist) -- D.
+route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'route_is2.ogg', 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
+route_recalc(Dist, Time) -- ['route_calculate.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
@@ -209,6 +210,16 @@ resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L,
 % handling alternatives
 [X|_Y] -- T :- (X -- T),!.
 [_X|Y] -- T :- (Y -- T).
+
+
+pnumber(X, Y) :- tts, !, num_atom(X, Y).
+pnumber(X, Ogg) :- num_atom(X, A), atom_concat(A, '.ogg', Ogg).
+% time measure
+hours(S, []) :- S < 60.
+hours(S, ['1_hour.ogg']) :- S < 120, H is S div 60, pnumber(H, Ogg).
+hours(S, [Ogg, 'hours.ogg']) :- H is S div 60, pnumber(H, Ogg).
+time(Sec) -- ['less_a_minute.ogg'] :- Sec < 60.
+time(Sec) -- [H, Ogg, 'minutes.ogg'] :- S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60, pnumber(St, Ogg).
 
 
 %%% distance measure
