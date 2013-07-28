@@ -8,7 +8,7 @@ tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
 language('pt').
-fest_language('cmu_us_awb_arctic_clunits').
+% fest_language('').
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES:
 % (X) new Version 1.5 format
