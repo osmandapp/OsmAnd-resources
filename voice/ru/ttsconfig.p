@@ -224,8 +224,9 @@ pnumber(X, Ogg) :- num_atom(X, A), atom_concat(A, '.ogg', Ogg).
 % time measure
 hours(S, []) :- S < 60.
 hours(S, [Ogg, Hs]) :- H is S div 60, plural_hs(H, Hs), pnumber(H, Ogg).
-time(Sec) -- ['less_a_minute.ogg'] :- Sec < 60.
-time(Sec) -- [H, Ogg, Mn] :- S is round(Sec/300.0)*5, hours(S, H), St is S mod 60, plural_mn(St, Mn), pnumber(St, Ogg).
+time(Sec) -- ['less_a_minute.ogg'] :- Sec < 30.
+time(Sec) -- [H, Ogg, Mn] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, plural_mn(St, Mn), pnumber(St, Ogg).
+time(Sec) -- [H, Ogg, Mn] :- not(tts), S is round(Sec/300.0)*5, hours(S, H), St is S mod 60, plural_mn(St, Mn), pnumber(St, Ogg).
 
 plural_hs(D, 'hour.ogg') :- 1 is D mod 10.
 plural_hs(D, 'hours_a.ogg') :- Mod is D mod 10, Mod < 5,  Mod > 1.

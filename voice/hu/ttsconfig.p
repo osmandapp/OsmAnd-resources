@@ -123,6 +123,7 @@ string('time.ogg', ', szükséges idő ').
 string('1_hour.ogg', 'egy óra ').
 string('hours.ogg', 'óra ').
 string('less_a_minute.ogg', 'kevesebb, mint egy perc alatt ').
+string('1_minute.ogg', 'egy perc ').
 string('minutes.ogg', 'perc ').
 
 
@@ -222,8 +223,10 @@ pnumber(X, Ogg) :- num_atom(X, A), atom_concat(A, '.ogg', Ogg).
 hours(S, []) :- S < 60.
 hours(S, ['1_hour.ogg']) :- S < 120, H is S div 60, pnumber(H, Ogg).
 hours(S, [Ogg, 'hours.ogg']) :- H is S div 60, pnumber(H, Ogg).
-time(Sec) -- ['less_a_minute.ogg'] :- Sec < 60.
-time(Sec) -- [H, Ogg, 'minutes.ogg'] :- S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60, pnumber(St, Ogg).
+time(Sec) -- ['less_a_minute.ogg'] :- Sec < 30.
+time(Sec) -- [H, '1_minute.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, St = 1, pnumber(St, Ogg).
+time(Sec) -- [H, Ogg, 'minutes.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, pnumber(St, Ogg).
+time(Sec) -- [H, Ogg, 'minutes.ogg'] :- not(tts), S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60, pnumber(St, Ogg).
 
 
 %%% distance measure
