@@ -50,7 +50,7 @@ string('make_uturn_wp.ogg', 'Indien mogelijk, graag nu omkeren ').
 string('after.ogg', 'Na ').
 string('prepare.ogg', 'Houdt rekening met  ').
 string('then.ogg', 'dan ').
-string('and.ogg', 'und ').
+string('and.ogg', 'en ').
 string('take.ogg', 'Neem de  ').
 string('exit.ogg', 'afslag ').
 
@@ -91,10 +91,10 @@ string('reached_waypoint.ogg', 'je hebt je GPX routepunt ').
 string('reached.ogg', 'bereikt  ').
 
 % OTHER PROMPTS
-string('attention.ogg', 'aandacht , ').
+string('attention.ogg', 'let op , ').
 string('location_lost.ogg', 'G P S  Signaal verloren ').
-string('off_route.ogg', 'u bent afgeweken van de route vanaf ').
-string('exceed_limit.ogg', 'u overschrijding van de maximumsnelheid ').
+string('off_route.ogg', 'je bent afgeweken van de route vanaf ').
+string('exceed_limit.ogg', 'je overschrijdt de maximumsnelheid ').
 
 % STREET NAME GRAMMAR
 string('onto.ogg', 'naar  ').
@@ -114,7 +114,7 @@ string('miles.ogg', 'mijlen ').
 string('yards.ogg', 'yards ').
 
 % TIME SUPPORT
-string('time.ogg', 'tijd tot bestemming ').
+string('time.ogg', ', tijd tot bestemming ').
 string('1_hour.ogg', 'een uur ').
 string('hours.ogg', 'uur ').
 string('less_a_minute.ogg', 'minder dan een minuut ').
