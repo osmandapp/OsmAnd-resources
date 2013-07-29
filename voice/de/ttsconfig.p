@@ -84,7 +84,7 @@ string('follow2.ogg', 'folgen ').
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'dann haben Sie Ihr Ziel ').
-string('reached_destination.ogg','Ziel ').
+string('reached_destination.ogg', 'Ziel ').
 string('and_arrive_intermediate.ogg', 'dann Zwischenziel ').
 string('reached_intermediate.ogg', 'Zwischenziel ').
 string('and_arrive_waypoint.ogg', 'dann Wehgpunkt ').
@@ -98,7 +98,7 @@ string('off_route.ogg', 'Sie weichen von der Route ab seit ').
 string('exceed_limit.ogg', 'Sie überschreiten die Höchstgeschwindigkeit ').
 
 % STREET NAME GRAMMAR
-string('onto.ogg', 'Richtung ').
+string('onto.ogg', 'Richtung ').  % "auf" may appear better, but is sometimes ambiguous ("halten auf") and grammatically requests definite article "den/die/das"
 string('on.ogg', 'auf ').
 string('to.ogg', 'bis ').
 
