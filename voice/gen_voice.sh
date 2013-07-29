@@ -1,4 +1,22 @@
 #!/bin/bash
+
+if [ $# -eq 0 ]
+  then
+    echo ""
+    echo "  No arguments supplied"
+    echo "  You need to supply at least 1 argument being the folder of the language, e.g. en, fr or nl"
+    echo "  With only 1 argument given the script will generate defaults for the other arguments."
+    echo "  It is best to supply all 4 arguments"
+    echo ""
+    echo "  $ gen_voice <language folder> <language> <voice generator> <prefix for zip file>"
+    echo ""
+    echo "  examples:"
+    echo "     ./gen_voice.sh de German google de"
+    echo "     ./gen_voice.sh en English fest en-m"
+    echo "     ./gen_voice.sh en English google en"
+    echo ""
+fi
+
 CONFIG_FILE=$(readlink -m $1/config.p)
 TARGET_FILE=$4
 if [ -z $TARGET_FILE ]; then
