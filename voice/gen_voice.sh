@@ -51,3 +51,7 @@ echo "Voice Data $2 ($TARGET_FILE)" | zip ${TARGET_FILE}_0.voice.zip _config.p -
 zip ${TARGET_FILE}_0.voice.zip *.ogg .nomedia 
 rm -f *.wav *.mp3
 rm -f *.ogg *.p
+
+echo ""
+echo "### You can find your zipped voice file ${TARGET_FILE}_0.voice.zip in the folder work ###"
+echo ""
