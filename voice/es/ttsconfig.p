@@ -26,7 +26,7 @@ language('es').
 
 
 % ROUTE CALCULATED
-string('route_is.ogg', 'El camino es').
+string('route_is.ogg', 'La ruta tiene').
 string('route_calculate.ogg', 'Ruta recalculada, distancia').
 
 % LEFT/RIGHT
@@ -45,13 +45,13 @@ string('left_sl_inf.ogg', 'girar levemente a la izquierda').
 string('right_inf.ogg', 'girar a la derecha').
 string('right_sh_inf.ogg', 'girar fuerte a la derecha').
 string('right_sl_inf.ogg', 'girar levemente a la derecha').
-string('left_keep_inf.ogg', 'mantente a la izquierda').
-string('right_keep_inf.ogg', 'mantente a la derecha').
+string('left_keep_inf.ogg', 'mantener a la izquierda').
+string('right_keep_inf.ogg', 'mantener a la derecha').
 
 % U-TURNS
 string('prepare_uturn.ogg', 'Prepárate para dar la vuelta tras').
 string('make_uturn.ogg', 'da la vuelta').
-string('make_uturn_wp.ogg', 'cuando sea posible, da la vuelta').
+string('make_uturn_wp.ogg', 'cuando puedas, da la vuelta').
 string('after.ogg', 'tras ').
 string('prepare.ogg', 'prepárate para').
 
@@ -96,8 +96,8 @@ string('reached_waypoint.ogg', 'has llegado a tu punto intermedio').
 % OTHER PROMPTS
 string('attention.ogg', 'atención, ').
 string('location_lost.ogg', 'señal g p s perdida').
-string('off_route.ogg', 'has desviado de la ruta').
-string('exceed_limit.ogg', 'que se exceda el límite de velocidad').
+string('off_route.ogg', 'te has desviado de la ruta').
+string('exceed_limit.ogg', 'límite de velocidad excedido').
 
 % STREET NAME GRAMMAR
 string('onto.ogg', 'en').
@@ -110,7 +110,7 @@ string('around.ogg', 'cerca de').
 string('kilometers.ogg', 'kilómetros').
 
 string('feet.ogg', 'pies').
-string('1_tenth_of_a_mile.ogg', 'un décimo de milla').
+string('1_tenth_of_a_mile.ogg', 'una décima de milla').
 string('tenths_of_a_mile.ogg', 'décimas de milla').
 string('around_1_mile.ogg', 'cerca de una milla').
 string('miles.ogg', 'millas').
