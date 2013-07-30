@@ -8,14 +8,14 @@ tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
 language('el').
-fest_language('').
+% fest_language('').
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES:
 % (X) new Version 1.5 format
 % (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
 % (X) arrival
 % (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
-% (N/A) special grammar: onto_street / on_street / to_street
+% ( ) special grammar: onto_street / on_street / to_street
 % (N/A) special grammar: nominative/dativ for distance measure
 % (N/A) special grammar: imperative/infinitive distincion for turns
 % (X) distance measure: meters / feet / yard support
