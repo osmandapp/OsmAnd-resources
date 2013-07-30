@@ -118,7 +118,7 @@ string('time.ogg', ', tijd tot bestemming ').
 string('1_hour.ogg', 'een uur ').
 string('hours.ogg', 'uur ').
 string('less_a_minute.ogg', 'minder dan een minuut ').
-string('1_minute.ogg', 'eine Minute ').
+string('1_minute.ogg', 'een minuut ').
 string('minutes.ogg', 'minuten ').
 
 
@@ -165,7 +165,8 @@ reached_intermediate(D) -- ['reached_intermediate.ogg', Ds, 'reached.ogg'] :- na
 and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
 
-route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'route_is2.ogg', 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+% route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'route_is2.ogg', 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
