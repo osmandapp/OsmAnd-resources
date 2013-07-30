@@ -41,19 +41,21 @@ string('left_keep.ogg', 'links aanhouden ').
 string('right_keep.ogg', 'rechts aanhouden ').
 
 % U-TURNS
-string('prepare_make_uturn.ogg', 'Graag omkeren na ').
+string('prepare_make_uturn.ogg', 'Keer om na ').
 string('make_uturn1.ogg', 'omkeren ').
-string('make_uturn2.ogg', 'Graag nu omkeren ').
-string('make_uturn_wp.ogg', 'Indien mogelijk, graag nu omkeren ').
+string('make_uturn2.ogg', 'keer nu om ').
+string('make_uturn_wp.ogg', 'Indien mogelijk, nu omkeren ').
 string('after.ogg', 'Na ').
-string('prepare.ogg', 'Houdt rekening met  ').
+string('prepare.ogg', 'Verder op  ').
+% Verder op should officially be spelled as verderop but is not pronounced correctly 
+% by tts voices spelled that way. Please leave it like this.
 string('then.ogg', 'dan ').
 string('and.ogg', 'en ').
 string('take.ogg', 'Neem de  ').
 string('exit.ogg', 'afslag ').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Houdt rekening met een rotonde na ').
+string('prepare_roundabout.ogg', 'Neem de rotonde na ').
 string('roundabout.ogg', ' de rotonde oprijden en neem dan de ').
 string('go_ahead.ogg', 'Deze weg blijven volgen ').
 
