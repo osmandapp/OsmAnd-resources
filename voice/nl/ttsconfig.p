@@ -48,7 +48,7 @@ string('make_uturn_wp.ogg', 'Indien mogelijk, nu omkeren ').
 string('after.ogg', 'Na ').
 string('prepare.ogg', 'Verder op  ').
 % Verder op should officially be spelled as verderop but is not pronounced correctly 
-% by tts voices spelled that way. Please leave it like this.
+% by tts voices when spelled that way. Please leave it like this.
 string('then.ogg', 'dan ').
 string('and.ogg', 'en ').
 string('take.ogg', 'Neem de  ').
