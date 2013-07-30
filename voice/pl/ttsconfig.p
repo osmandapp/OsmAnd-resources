@@ -107,9 +107,6 @@ string('miles.ogg', 'mil ').
 string('yards.ogg', 'jardów ').
 
 % TIME SUPPORT
-%string('time.ogg', 'time is  ').
-
-% TIME SUPPORT
 string('time.ogg', 'czas potrzebny ').
 string('1_hour.ogg', 'jeden godzina ').
 string('hours.ogg', 'godzina ').
