@@ -26,6 +26,8 @@ language('fr').
 % ( ) word order checked
 
 
+%%%%% NO !!! no apostrophe  %%%%%%%%%%
+
 % ROUTE CALCULATED
 string('route_is.ogg', 'L itinéraire fait  ').
 string('route_calculate.ogg', 'recalcul de l itinéraire').
