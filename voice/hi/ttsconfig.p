@@ -47,7 +47,7 @@ string('make_uturn2.ogg', ' वापस मुडिये ').
 string('make_uturn_wp.ogg', ' जब संभव हो तब वापस मुडिये ').
 string('after.ogg', ' के बाद ').
 string('mudiye.ogg', ' मुडिये').
-string('prepare.ogg', ' मुडने के लिये तयार रहे'').
+string('prepare.ogg', ' मुडने के लिये तयार रहे').
 string('then.ogg', 'और फिर ').
 string('and.ogg', 'और ').
 

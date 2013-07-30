@@ -54,7 +54,7 @@ route_recalc(Dist) -- ['Traseu recalculat, distanța ', D] :- distance(Dist) -- 
 
 location_lost -- ['semnal gipies pierdut '].
 
-on_street -- ['pe , X] :- next_street(X).
+on_street -- ['pe ', X] :- next_street(X).
 off_route -- ['ați deviat de la traseu '].
 attention -- ['atenție '].
 speed_alarm -- ['ce se depășește limita de viteză '].
