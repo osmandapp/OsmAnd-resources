@@ -57,7 +57,7 @@ string('roundabout.ogg', ' 앞에서 로타리에 진입하시고 ').
 string('then.ogg', ', 다음은 ').
 string('and.ogg', '과 ').
 string('take.ogg', ' 출구로 나가세요 ').
-string('exit.ogg', ' ').
+%string('exit.ogg', ' ').
 
 string('1st.ogg', '첫번째 ').
 string('2nd.ogg', '두번째 ').

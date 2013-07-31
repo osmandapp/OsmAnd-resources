@@ -81,14 +81,14 @@ string('follow.ogg', 'Endesha kwa ').
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'na ufike kifiko ').
-string('reached_destination.ogg','umefika ').
+string('reached_destination.ogg', 'umefika ').
 string('and_arrive_intermediate.ogg', 'na kufika katika yako kupitia-uhakika ').
 string('reached_intermediate.ogg', 'wewe na kufikiwa yako kupitia-uhakika ').
 string('and_arrive_waypoint.ogg', 'na kufika katika yako kupitia-uhakika  GPX').
 string('reached_waypoint.ogg', 'wewe na kufikiwa yako kupitia-uhakika  GPX').
 
 % OTHER PROMPTS
-string('attention.ogg', 'makini , ').
+string('attention.ogg', 'makini, ').
 string('location_lost.ogg', 'g p s ishara waliopotea ').
 string('off_route.ogg', 'una jitenga na njia ').
 string('exceed_limit.ogg', 'wewe ni mno kikomo kasi ').
@@ -238,26 +238,26 @@ distance(Dist) -- D :- measure('mi-f'), distance_mi_f(Dist) -- D.
 distance(Dist) -- D :- measure('mi-y'), distance_mi_y(Dist) -- D.
 
 %%% distance measure km/m
-distance_km(Dist) -- [ 'meters.ogg', X]                  :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
-distance_km(Dist) -- [ 'meters.ogg', X]                  :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
+distance_km(Dist) -- ['meters.ogg', X]                   :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
+distance_km(Dist) -- ['meters.ogg', X]                   :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
 distance_km(Dist) -- ['around_1_kilometer.ogg']          :- Dist < 1500.
 distance_km(Dist) -- ['around.ogg', 'kilometers1.ogg', X] :- Dist < 10000, D is round(Dist/1000.0),            dist(D, X).
-distance_km(Dist) -- [ 'kilometers2.ogg', X]             :-               D is round(Dist/1000.0),            dist(D, X).
+distance_km(Dist) -- ['kilometers2.ogg', X]              :-               D is round(Dist/1000.0),            dist(D, X).
 
 %%% distance measure mi/f
-distance_mi_f(Dist) -- [ 'feet.ogg', X]                  :- Dist < 160,   D is round(2*Dist/100.0/0.3048)*50, dist(D, X).
+distance_mi_f(Dist) -- ['feet.ogg', X]                   :- Dist < 160,   D is round(2*Dist/100.0/0.3048)*50, dist(D, X).
 distance_mi_f(Dist) -- ['1_tenth_of_a_mile.ogg']         :- Dist < 241.
-distance_mi_f(Dist) -- [ 'tenths_of_a_mile.ogg, 'X]      :- Dist < 1529,  D is round(Dist/161.0),             dist(D, X).
+distance_mi_f(Dist) -- ['tenths_of_a_mile.ogg, 'X]       :- Dist < 1529,  D is round(Dist/161.0),             dist(D, X).
 distance_mi_f(Dist) -- ['around_1_mile.ogg']             :- Dist < 2414.
 distance_mi_f(Dist) -- ['around.ogg', 'miles.ogg', X]    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
-distance_mi_f(Dist) -- [ 'miles.ogg', X]                 :-               D is round(Dist/1609.0),            dist(D, X).
+distance_mi_f(Dist) -- ['miles.ogg', X]                  :-               D is round(Dist/1609.0),            dist(D, X).
 
 %%% distance measure mi/y
-distance_mi_y(Dist) -- [ 'yards.ogg', X]                 :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
-distance_mi_y(Dist) -- [ 'yards.ogg', X]                 :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
+distance_mi_y(Dist) -- ['yards.ogg', X]                  :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
+distance_mi_y(Dist) -- ['yards.ogg', X]                  :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
 distance_mi_y(Dist) -- ['around_1_mile.ogg']             :- Dist < 2414.
 distance_mi_y(Dist) -- ['around.ogg', 'miles.ogg', X]    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
-distance_mi_y(Dist) -- [ 'miles.ogg', X]                 :-               D is round(Dist/1609.0),            dist(D, X).
+distance_mi_y(Dist) -- ['miles.ogg', X]                  :-               D is round(Dist/1609.0),            dist(D, X).
 
 
 interval(St, St, End, _Step) :- St =< End.
