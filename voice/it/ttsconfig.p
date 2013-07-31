@@ -170,8 +170,6 @@ route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
-
-on_street -- ['on.ogg', X] :- next_street(X).
 off_route(_Dist) -- ['off_route.ogg'].
 attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
