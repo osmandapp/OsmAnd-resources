@@ -1,4 +1,4 @@
-﻿% for turbo-prolog
+% for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog
 :- op(500, xfy,'--').
@@ -112,11 +112,11 @@ string('miles.ogg', 'mil ').
 string('yards.ogg', 'yards ').
 
 % TIME SUPPORT
-string('time.ogg', 'tiden er  ').
+string('time.ogg', 'tiden er ').
 string('1_hour.ogg', 'en time ').
 string('hours.ogg', 'timer ').
-string('less_a_minute.ogg', 'mindre end et minut  ').
-string('1_minute.ogg', 'en minutter ').
+string('less_a_minute.ogg', 'mindre end et minut ').
+string('1_minute.ogg', 'et minut ').
 string('minutes.ogg', 'minutter').
 
 
