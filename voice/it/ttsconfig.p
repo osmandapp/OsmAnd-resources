@@ -1,4 +1,4 @@
-Ôªø% for turbo-prolog
+% for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog
 :- op(500, xfy,'--').
@@ -26,14 +26,14 @@ language('it').
 
 
 % ROUTE CALCULATED
-string('route_is.ogg', 'Il viaggio √® lungo').
+string('route_is.ogg', 'Il viaggio Ë lungo').
 string('route_calculate.ogg', 'Ricalcolo percorso ').
 string('distance.ogg', ', lunghezza').
 
 % LEFT/RIGHT
 string('prepare.ogg', 'prepararsi a').
 string('after.ogg', 'tra').
-string('after1.ogg', 'dopo').
+string('after1.ogg', 'fra').
 
 string('left.ogg', 'girare a sinistra').
 string('left_sh.ogg', 'subito a sinistra').
@@ -45,9 +45,9 @@ string('left_keep.ogg', 'tenersi sulla sinistra').
 string('right_keep.ogg', 'tenersi sulla destra').
 
 % U-TURNS
-string('prepare_make_uturn.ogg', 'Prepararsi ad una inversione ad u tra').
-string('make_uturn.ogg', 'inversione ad u').
-string('make_uturn_wp.ogg', 'Quando possibile, inversione a u').
+string('prepare_make_uturn.ogg', 'Prepararsi ad una inversione a u tra').
+string('make_uturn.ogg', 'inversione a u').
+string('make_uturn_wp.ogg', 'Quando possibile fate inversione a u').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'entrerete in una rotonda').
@@ -76,8 +76,8 @@ string('16th.ogg', 'sedicesima').
 string('17th.ogg', 'diciassettesima').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Sempre dritto').
-string('follow.ogg', 'Sempre dritto per').
+string('go_ahead.ogg', 'Continuate dritto').
+string('follow.ogg', 'Proseguite per').
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'e arrivate a destinazione').
@@ -91,11 +91,11 @@ string('reached_waypoint.ogg', 'arrivato a punto intermedio').
 string('attention.ogg', 'attenzione, ').
 string('location_lost.ogg', 'Segnale G P S perso').
 string('off_route.ogg', 'avete deviato dalla rotta').
-string('exceed_limit.ogg', 'si supera il limite di velocit√†').
+string('exceed_limit.ogg', 'superato il limite di velocit‡').
 
 % STREET NAME GRAMMAR
 string('onto.ogg', 'in').
-string('to.ogg', 'a').
+string('to.ogg', 'su').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'metri').
@@ -116,7 +116,7 @@ string('time.ogg', 'tempo necessario ').
 string('1_hour.ogg', 'un ora ').
 string('hours.ogg', 'ore ').
 string('less_a_minute.ogg', 'meno di un minuto ').
-string('1_minute.ogg', 'uno minuti ').
+string('1_minute.ogg', 'un minuto ').
 string('minutes.ogg', 'minuti ').
 
 
@@ -170,6 +170,7 @@ route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
+
 off_route(_Dist) -- ['off_route.ogg'].
 attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
