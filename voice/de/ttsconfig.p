@@ -99,7 +99,7 @@ string('off_route.ogg', 'Sie weichen von der Route ab seit ').
 string('exceed_limit.ogg', 'Sie überschreiten die Höchstgeschwindigkeit ').
 
 % STREET NAME GRAMMAR
-string('onto.ogg', 'Richtung ').  % "auf" may appear better, but is sometimes ambiguous ("halten auf") and grammatically requests definite article "den/die/das"
+string('onto.ogg', 'auf ').  % possibly "Richtung", better grammar, but is aloa misleading is some cases
 string('on.ogg', 'auf ').
 string('to.ogg', 'bis ').
 
