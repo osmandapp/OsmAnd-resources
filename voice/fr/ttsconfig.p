@@ -34,6 +34,9 @@ string('route_calculate.ogg', 'recalcul de l itinéraire').
 string('distance.ogg', ', l itinéraire fait ').
 
 % LEFT/RIGHT
+string('prepare.ogg', 'préparez vous à ').
+string('after.ogg', 'dans ').
+
 string('left.ogg', 'tournez à gauche ').
 string('left_sh.ogg', 'tournez immédiatement à gauche ').
 string('left_sl.ogg', 'tournez légèrement à gauche ').
@@ -53,17 +56,15 @@ string('pr2right_keep.ogg', 'serrer à droite ').
 string('pr2left_keep.ogg', 'serrer à gauche ').
 
 % U-TURNS
+string('prepare_make_uturn.ogg', 'préparez vous à faire demi tour').
 string('make_uturn.ogg', ' faites demi-tour ').
 string('make_uturn_wp.ogg', 'Dès que possible, faites demi-tour ').
-string('after.ogg', 'dans ').
-string('prepare.ogg', 'préparez vous à ').
-string('prepare_uturn.ogg', 'préparez vous à faire demi tour').
-string('then.ogg', ', puis ').
-string('and.ogg', 'et ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Préparez vous à entrer dans le rond-point dans ').
 string('roundabout.ogg', ' entrez dans le rond-point et prenez la ').
+string('then.ogg', ', puis ').
+string('and.ogg', 'et ').
 string('take.ogg', 'prenez la ').
 string('exit.ogg', 'sortie ').
 
@@ -158,7 +159,7 @@ prepare_turn(Turn, Dist, Street) -- ['after.ogg', D, 'prepare.ogg', M | Sgen] :-
 turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
 turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), onto_street(Street, Sgen).
 
-prepare_make_ut(Dist, Street) -- ['after.ogg', D, 'prepare_uturn.ogg' | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
+prepare_make_ut(Dist, Street) -- ['after.ogg', D, 'prepare_make_uturn.ogg' | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
 make_ut(Dist, Street) --  ['after.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
 make_ut(Street) -- ['make_uturn.ogg' | Sgen] :- onto_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].

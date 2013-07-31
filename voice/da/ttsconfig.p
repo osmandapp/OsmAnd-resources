@@ -32,6 +32,9 @@ string('distance.ogg', 'afstand ').
 
 
 % LEFT/RIGHT
+string('prepare.ogg', 'Forbered til ').
+string('after.ogg', 'efter ').
+
 string('left.ogg', 'drej til venstre ').
 string('left_sh.ogg', 'drej skarpt til venstre ').
 string('left_sl.ogg', 'drej lidt til venstre ').
@@ -44,14 +47,12 @@ string('right_keep.ogg', 'hold til højre ').
 % U-TURNS
 string('make_uturn.ogg', 'Foretag U vending ').
 string('make_uturn_wp.ogg', 'Når muligt foretag U vending ').
-string('after.ogg', 'efter ').
-string('prepare.ogg', 'Forbered til ').
-string('then.ogg', 'derefter ').
-string('and.ogg', 'og ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Forbered at køre ind i rundkørslen ').
 string('roundabout.ogg', 'kør ind i rundkørslen, ').
+string('then.ogg', 'derefter ').
+string('and.ogg', 'og ').
 string('take.ogg', 'tag ').
 string('exit.ogg', 'afkørsel ').
 

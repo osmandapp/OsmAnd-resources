@@ -30,6 +30,9 @@ string('route_is1.ogg', 'Az útvonal  ').
 string('route_calculate.ogg', 'útvonal újratervezése, az útvonal ').
 
 % LEFT/RIGHT
+string('prepare.ogg', ' ').
+string('after.ogg', 'múlva ').
+
 string('left.ogg', 'fordulj balra ').
 string('left_sh.ogg', 'fordulj élesen balra ').
 string('left_sl.ogg', 'fordulj enyhén balra ').
@@ -44,8 +47,6 @@ string('prepare_make_uturn.ogg', 'múlva készülj fel a visszafordulásra ').
 string('make_uturn1.ogg', 'múlva fordulj vissza ').
 string('make_uturn2.ogg', 'Fordulj vissza ').
 string('make_uturn_wp.ogg', 'Fordulj vissza ').
-string('after.ogg', 'múlva ').
-string('prepare.ogg', ' ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'múlva hajts be a körforgalomba ').

@@ -32,6 +32,9 @@ string('route_calculate.ogg', 'Маршрут пересчитывается').
 string('distance.ogg', 'расстояние ').
 
 % LEFT/RIGHT
+string('prepare_after.ogg', 'Приготовьтесь через ').
+string('after.ogg', 'через').
+
 string('left.ogg', 'поверните налево ').
 string('left_sh.ogg', 'резко поверните налево ').
 string('left_sl.ogg', 'плавно поверните налево  ').
@@ -44,8 +47,6 @@ string('right_keep.ogg', 'держитесь правее ').
 % U-TURNS
 string('make_uturn.ogg', 'Выполните разворот ').
 string('make_uturn_wp.ogg', 'Выполните разворот ').
-string('after.ogg', 'через').
-string('prepare_after.ogg', 'Приготовьтесь через ').
 
 % ROUNDABOUTS
 string('roundabout.ogg', 'круг ').

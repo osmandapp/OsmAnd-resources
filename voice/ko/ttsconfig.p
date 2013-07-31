@@ -32,6 +32,10 @@ string('distance.ogg', '거리는 ').
 string('is.ogg', '입니다 ').
 
 % LEFT/RIGHT
+string('prepare.ogg', '을 준비하세요 ').
+string('after.ogg', '앞에서 ').
+string('have.ogg', '하세요 ').
+
 string('left.ogg', '좌회전').
 string('left_sh.ogg', '크게 좌회전').
 string('left_sl.ogg', '좌회전').
@@ -42,19 +46,16 @@ string('left_keep.ogg', '왼쪽에서 계속 가세요 ').
 string('right_keep.ogg', '오른쪽에서 계속 가세요 ').
 
 % U-TURNS
-string('make_uturn_prep.ogg', ' 앞에서 U턴을 준비하세요 ').
+string('prepare_make_uturn.ogg', ' 앞에서 U턴을 준비하세요 ').
 string('make_uturn1.ogg', ' 앞에서 U턴하세요 ').
 string('make_uturn2.ogg', '지금 U턴하세요 ').
 string('make_uturn_wp.ogg', '가능한 경우에, U턴하세요 ').
-string('after.ogg', '앞에서 ').
-string('prepare.ogg', '을 준비하세요 ').
-string('then.ogg', ', 다음은 ').
-string('and.ogg', '과 ').
-string('have.ogg', '하세요 ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', ' 앞에서 로타리 진입을 준비하세요 ').
 string('roundabout.ogg', ' 앞에서 로타리에 진입하시고 ').
+string('then.ogg', ', 다음은 ').
+string('and.ogg', '과 ').
 string('take.ogg', ' 출구로 나가세요 ').
 string('exit.ogg', ' ').
 
@@ -148,7 +149,7 @@ prepare_turn(Turn, Dist, Street) -- [D, 'after.ogg', M, 'prepare.ogg' | Sgen] :-
 turn(Turn, Dist, Street) -- [D, 'after.ogg', M, 'after.ogg' | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
 turn(Turn, Street) -- [M, 'have.ogg' | Sgen] :- turn(Turn, M), onto_street(Street, Sgen).
 
-prepare_make_ut(Dist, Street) -- [D, 'make_uturn_prep.ogg' | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
+prepare_make_ut(Dist, Street) -- [D, 'prepare_make_uturn.ogg' | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
 make_ut(Dist, Street) --  [D, 'make_uturn1.ogg' | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
 make_ut(Street) -- ['make_uturn2.ogg' | Sgen] :- onto_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].

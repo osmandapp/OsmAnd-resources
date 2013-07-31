@@ -31,6 +31,11 @@ string('route_is2.ogg', 'lang ').
 string('route_calculate.ogg', 'Afstand is opnieuw berekend, de nieuwe afstand is ').
 
 % LEFT/RIGHT
+string('prepare.ogg', 'Verder op  ').
+% Verder op should officially be spelled as verderop but is not pronounced correctly
+% by tts voices when spelled that way. Please leave it like this.
+string('after.ogg', 'Na ').
+
 string('left.ogg', 'links afslaan ').
 string('left_sh.ogg', 'scherpe bocht naar links ').
 string('left_sl.ogg', 'links afbuigen  ').
@@ -45,19 +50,14 @@ string('prepare_make_uturn.ogg', 'Keer om na ').
 string('make_uturn1.ogg', 'omkeren ').
 string('make_uturn2.ogg', 'keer nu om ').
 string('make_uturn_wp.ogg', 'Indien mogelijk, nu omkeren ').
-string('after.ogg', 'Na ').
-string('prepare.ogg', 'Verder op  ').
-% Verder op should officially be spelled as verderop but is not pronounced correctly 
-% by tts voices when spelled that way. Please leave it like this.
-string('then.ogg', 'dan ').
-string('and.ogg', 'en ').
-string('take.ogg', 'Neem de  ').
-string('exit.ogg', 'afslag ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Neem de rotonde na ').
 string('roundabout.ogg', ' de rotonde oprijden en neem dan de ').
-string('go_ahead.ogg', 'Deze weg blijven volgen ').
+string('then.ogg', 'dan ').
+string('and.ogg', 'en ').
+string('take.ogg', 'Neem de  ').
+string('exit.ogg', 'afslag ').
 
 string('1st.ogg', 'eerste ').
 string('2nd.ogg', 'tweede ').
@@ -78,6 +78,7 @@ string('16th.ogg', 'zestiende ').
 string('17th.ogg', 'zeventiende ').
 
 % STRAIGHT/FOLLOW
+string('go_ahead.ogg', 'Deze weg blijven volgen ').
 string('follow1.ogg', 'De weg  ').
 string('follow2.ogg', 'volgen ').
 

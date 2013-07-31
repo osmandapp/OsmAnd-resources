@@ -27,9 +27,13 @@ language('es').
 
 % ROUTE CALCULATED
 string('route_is.ogg', 'La ruta tiene').
-string('route_calculate.ogg', 'Ruta recalculada, distancia').
+string('route_calculate.ogg', 'Ruta recalculada ').
+string('distance.ogg', ', distancia').
 
 % LEFT/RIGHT
+string('prepare.ogg', 'prepárate para').
+string('after.ogg', 'tras ').
+
 string('left.ogg', 'gira a la izquierda').
 string('left_sh.ogg', 'gira fuerte a la izquierda').
 string('left_sl.ogg', 'gira levemente a la izquierda').
@@ -49,11 +53,9 @@ string('left_keep_inf.ogg', 'mantener a la izquierda').
 string('right_keep_inf.ogg', 'mantener a la derecha').
 
 % U-TURNS
-string('prepare_uturn.ogg', 'Prepárate para dar la vuelta tras').
+string('prepare_make_uturn.ogg', 'Prepárate para dar la vuelta tras').
 string('make_uturn.ogg', 'da la vuelta').
 string('make_uturn_wp.ogg', 'cuando puedas, da la vuelta').
-string('after.ogg', 'tras ').
-string('prepare.ogg', 'prepárate para').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Prepárate para entrar en la rotonda tras').
@@ -158,7 +160,7 @@ prepare_turn(Turn, Dist, _Street) -- ['prepare.ogg', M, 'after.ogg', D, ' '] :- 
 turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
 turn(Turn, Street) -- [M | Sgen]  :- turn(Turn, M), onto_street(Street, Sgen).
 
-prepare_make_ut(Dist, Street) -- ['prepare_uturn.ogg', D | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
+prepare_make_ut(Dist, Street) -- ['prepare_make_uturn.ogg', D | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
 make_ut(Dist, Street) --  ['after.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
 make_ut(Street) -- ['make_uturn.ogg' | Sgen] :- onto_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
@@ -182,7 +184,7 @@ reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
 
 route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
-route_recalc(Dist, Time) -- ['route_calculate.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
 

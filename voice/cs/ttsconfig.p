@@ -31,6 +31,9 @@ string('route_is.ogg', 'cesta je dlouhá ').
 string('route_calculate.ogg', 'přepočítávám. cesta je dlouhá ').
 
 % LEFT/RIGHT
+string('prepare.ogg', 'budete odbočovat ').
+string('after.ogg', 'po ').
+
 string('left.ogg', 'odbočte vlevo ').
 string('left_sh.ogg', 'odbočte ostře vlevo ').
 string('left_sl.ogg', 'odbočte mírně vlevo ').
@@ -48,12 +51,10 @@ string('right_sh_p.ogg', 'ostře vpravo ').
 string('right_sl_p.ogg', 'mírně vpravo ').
 
 % U-TURNS
-string('make_uturn_prep.ogg', 'se budete otáčet zpět ').
+string('prepare_make_uturn.ogg', 'se budete otáčet zpět ').
 string('make_uturn.ogg', 'se otočte zpět ').
 string('make_uturn2.ogg', 'otočte se zpět ').
 string('make_uturn_wp.ogg', 'vraťte se jakmile to bude možné ').
-string('after.ogg', 'po ').
-string('prepare.ogg', 'budete odbočovat ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'přijedete na kruhový objezd ').
@@ -189,7 +190,7 @@ prepare_turn(Turn, Dist, Street) -- ['after.ogg', D, 'prepare.ogg', M | Sgen] :-
 turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist, locative) -- D, turn(Turn, M), on_street(Street, Sgen).
 turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), on_street(Street, Sgen).
 
-prepare_make_ut(Dist, Street) -- ['after.ogg', D, 'make_uturn_prep.ogg' | Sgen] :- distance(Dist, locative) -- D, on_street(Street, Sgen).
+prepare_make_ut(Dist, Street) -- ['after.ogg', D, 'prepare_make_uturn.ogg' | Sgen] :- distance(Dist, locative) -- D, on_street(Street, Sgen).
 make_ut(Dist, Street) --  ['after.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist, locative) -- D, on_street(Street, Sgen).
 make_ut(Street) -- ['make_uturn2.ogg'|Sgen] :- on_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].

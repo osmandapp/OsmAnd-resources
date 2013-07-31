@@ -34,6 +34,9 @@ string('route_calculate.ogg', 'Route neu berechnet ').
 string('distance.ogg', ', Entfernung ').
 
 % LEFT/RIGHT
+string('prepare.ogg', ' ').
+string('after.ogg', 'nach ').
+
 string('left.ogg', 'links abbiegen ').
 string('left_sh.ogg', 'scharf links abbiegen ').
 string('left_sl.ogg', 'leicht links abbiegen ').
@@ -48,8 +51,6 @@ string('prepare_make_uturn.ogg', 'Vorbereiten zum Wenden ').
 string('make_uturn1.ogg', 'wenden ').
 string('make_uturn2.ogg', 'Bitte wenden ').
 string('make_uturn_wp.ogg', 'Wenn möglich, bitte wenden ').
-string('after.ogg', 'nach ').
-string('prepare.ogg', ' ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Einbiegen in Kreisverkehr ').

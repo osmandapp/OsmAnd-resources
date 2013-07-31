@@ -31,6 +31,11 @@ string('route_calculate.ogg', 'Reitin uudelleenlaskenta ').
 string('distance.ogg', ', etäisyys ').
 
 % LEFT/RIGHT
+string('prepare.ogg', 'Valmistaudu ').
+string('after.ogg', 'nach ').
+string('get.ogg', 'päästä  ').
+string('now.ogg', 'nyt,  ').
+
 string('left.ogg', 'käänny vasemmalle ').
 string('left_sh.ogg', 'käänny jyrkästi vasemmalle ').
 string('left_sl.ogg', 'käänny loivasti vasemmalle ').
@@ -54,10 +59,6 @@ string('prepare_make_uturn.ogg', 'Valmistaudu kääntymään takaisin ').
 string('make_uturn1.ogg', 'Käänny takaisin ').
 string('make_uturn2.ogg', 'Nyt, käänny takaisin ').
 string('make_uturn_wp.ogg', 'Nyt, käänny takaisin ').
-string('after.ogg', 'nach ').
-string('prepare.ogg', 'Valmistaudu ').
-string('get.ogg', 'päästä  ').
-string('now.ogg', 'nyt,  ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Valmistaudu ajamaan liikenneympyrään ').

@@ -31,6 +31,9 @@ string('route_calculate.ogg', 'Route recalculated').
 string('distance.ogg', 'distance ').
 
 % LEFT/RIGHT
+string('prepare.ogg', 'Prepare to ').
+string('after.ogg', 'after ').
+
 string('left.ogg', 'turn left ').
 string('left_sh.ogg', 'turn sharply left ').
 string('left_sl.ogg', 'turn slightly left ').
@@ -43,14 +46,12 @@ string('right_keep.ogg', 'keep right').
 % U-TURNS
 string('make_uturn.ogg', 'Make a U turn ').
 string('make_uturn_wp.ogg', 'When possible, please make a U turn ').
-string('after.ogg', 'after ').
-string('prepare.ogg', 'Prepare to ').
-string('then.ogg', ', then ').
-string('and.ogg', 'and ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Prepare to enter a roundabout ').
 string('roundabout.ogg', 'enter the roundabout, ').
+string('then.ogg', ', then ').
+string('and.ogg', 'and ').
 string('take.ogg', 'take the ').
 string('exit.ogg', 'exit ').
 

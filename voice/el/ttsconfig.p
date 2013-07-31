@@ -31,6 +31,9 @@ string('route_calculate.ogg', 'Επαναϋπολογισμός διαδρομή
 string('distance.ogg', ', απόσταση ').
 
 % LEFT/RIGHT
+string('prepare.ogg', 'Προετοιμαστείτε να ').
+string('after.ogg', 'μετά από ').
+
 string('left.ogg', 'στρίψτε αριστερά ').
 string('left_sh.ogg', 'στρίψτε κλειστά αριστερά ').
 string('left_sl.ogg', 'στρίψτε λοξά αριστερά ').
@@ -41,17 +44,15 @@ string('left_keep.ogg', 'μείνετε αριστερά ').
 string('right_keep.ogg', 'μείνετε δεξιά ').
 
 % U-TURNS
-string('make_uturn_prep.ogg', 'Προετοιμαστείτε να κάνετε αναστροφή μετά από ').
+string('prepare_make_uturn.ogg', 'Προετοιμαστείτε να κάνετε αναστροφή μετά από ').
 string('make_uturn.ogg', 'κάντε αναστροφή ').
 string('make_uturn_wp.ogg', 'Όταν είναι δυνατόν, κάντε αναστροφή ').
-string('after.ogg', 'μετά από ').
-string('prepare.ogg', 'Προετοιμαστείτε να ').
-string('then.ogg', ', και ').
-string('and.ogg', 'και ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Προετοιμαστείτε να μπείτε σε κυκλικό κόμβο μετά από ').
 string('roundabout.ogg', 'μπείτε στον κυκλικό κόμβο, και βγείτε στην ').
+string('then.ogg', ', και ').
+string('and.ogg', 'και ').
 string('take.ogg', 'βγείτε στην ').
 string('exit.ogg', 'έξοδο ').
 
@@ -145,7 +146,7 @@ prepare_turn(Turn, Dist, Street) -- ['prepare.ogg', M, 'after.ogg', D | Sgen] :-
 turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
 turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), onto_street(Street, Sgen).
 
-prepare_make_ut(Dist, Street) -- ['make_uturn_prep.ogg', D | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
+prepare_make_ut(Dist, Street) -- ['prepare_make_uturn.ogg', D | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
 make_ut(Dist, Street) --  ['after.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
 make_ut(Street) -- ['make_uturn.ogg' | Sgen] :- onto_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].

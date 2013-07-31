@@ -30,6 +30,9 @@ string('route_is.ogg', 'Długość trasy to ').
 string('route_calculate.ogg', 'Nowa trasa wyznaczona, jej długość to ').
 
 % LEFT/RIGHT
+string('prepare.ogg', ' ').
+string('after.ogg', 'za ').
+
 string('left.ogg', 'skręć w lewo ').
 string('left_sh.ogg', 'skręć ostro w lewo ').
 string('left_sl.ogg', 'skręć lekko w lewo ').
@@ -42,8 +45,6 @@ string('right_keep.ogg', 'trzymaj się prawej strony').
 % U-TURNS
 string('make_uturn.ogg', 'Zawróć ').
 string('make_uturn_wp.ogg', 'Jeśli to możliwe, zawróć ').
-string('after.ogg', 'za ').
-string('prepare.ogg', ' ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Przygotuj się do wjazdu na rondo ').

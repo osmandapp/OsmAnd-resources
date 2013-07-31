@@ -31,6 +31,10 @@ string('route_is2.ogg', ' है').
 string('route_calculate.ogg', 'मार्ग पुनर्गणना, अंतर ').
 
 % LEFT/RIGHT
+string('prepare.ogg', ' मुडने के लिये तयार रहे').
+string('after.ogg', ' के बाद ').
+string('mudiye.ogg', ' मुडिये').
+
 string('left.ogg', ' बाये ').
 string('left_sh.ogg', ' तेजी से बाये ').
 string('left_sl.ogg', ' हलके से बाये ').
@@ -41,19 +45,16 @@ string('left_keep.ogg', 'बाये रहे  ').
 string('right_keep.ogg', 'दायने रहे ').
 
 % U-TURNS
-string('make_uturn_prep.ogg', 'के बाद वापस मुडने के लिये तयार रहे ').
+string('prepare_make_uturn.ogg', 'के बाद वापस मुडने के लिये तयार रहे ').
 string('make_uturn.ogg', ' के बाद वापस मुडिये ').
 string('make_uturn2.ogg', ' वापस मुडिये ').
 string('make_uturn_wp.ogg', ' जब संभव हो तब वापस मुडिये ').
-string('after.ogg', ' के बाद ').
-string('mudiye.ogg', ' मुडिये').
-string('prepare.ogg', ' मुडने के लिये तयार रहे').
-string('then.ogg', 'और फिर ').
-string('and.ogg', 'और ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'के बाद वापस मुडने के लिये तयार रहे ').
 string('roundabout.ogg', ' के बाद वापस मुडिये और बाहर जाने का ').
+string('then.ogg', 'और फिर ').
+string('and.ogg', 'और ').
 string('take.ogg', 'बाहर जाने का ').
 string('exit.ogg', 'मार्ग चुने ').
 
@@ -147,7 +148,7 @@ prepare_turn(Turn, Dist, Street) -- [D, 'after.ogg', M, 'prepare.ogg' | Sgen] :-
 turn(Turn, Dist, Street) -- [D, 'after.ogg', M, 'mudiye.ogg'| Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
 turn(Turn, Street) -- [M, 'mudiye.ogg' | Sgen] :- turn(Turn, M), onto_street(Street, Sgen).
 
-prepare_make_ut(Dist, Street) -- [D, 'make_uturn_prep.ogg' | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
+prepare_make_ut(Dist, Street) -- [D, 'prepare_make_uturn.ogg' | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
 make_ut(Dist, Street) --  [D, 'make_uturn.ogg' | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
 make_ut(Street) -- ['make_uturn2.ogg' | Sgen] :- onto_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].

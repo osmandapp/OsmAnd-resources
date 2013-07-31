@@ -31,6 +31,9 @@ string('route_calculate.ogg', 'Maršruts ir pārēķināts ').
 string('distance.ogg', ', attālums ir ').
 
 % LEFT/RIGHT
+string('prepare.ogg', 'gatavoties pa ').
+string('after.ogg', 'Pēc ').
+
 string('left.ogg', 'griezties pa kreisi ').
 string('left_sh.ogg', 'strauji pagriezties pa kreisi ').
 string('left_sl.ogg', 'pagriezties pa kreisi ').
@@ -44,8 +47,6 @@ string('right_keep.ogg', 'turēties pa labi ').
 string('prepare_make_uturn.ogg', 'Gatavojaties apgriezties pēc ').
 string('make_uturn.ogg', ' apgriežaties ').
 string('make_uturn_wp.ogg', 'Apgriežaties pie pirmās iespējas ').
-string('after.ogg', 'Pēc ').
-string('prepare.ogg', 'gatavoties pa ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Sagatvojaties lokveida kustībai pēc ').
