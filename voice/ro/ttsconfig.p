@@ -145,14 +145,14 @@ turn('right_keep', ['right_keep.ogg']).
 bear_left(_Street) -- ['left_bear.ogg'].
 bear_right(_Street) -- ['right_bear.ogg'].
 
-turn_inf('left', ['left_inf.ogg']).
-turn_inf('left_sh', ['left_sh_inf.ogg']).
-turn_inf('left_sl', ['left_sl_inf.ogg']).
-turn_inf('right', ['right_inf.ogg']).
-turn_inf('right_sh', ['right_sh_inf.ogg']).
-turn_inf('right_sl', ['right_sl_inf.ogg']).
-turn_inf('left_keep', ['left_keep_inf.ogg']).
-turn_inf('right_keep', ['right_keep_inf.ogg']).
+prep2turn('left', ['left_prep.ogg']).
+prep2turn('left_sh', ['left_sh_prep.ogg']).
+prep2turn('left_sl', ['left_sl_prep.ogg']).
+prep2turn('right', ['right_prep.ogg']).
+prep2turn('right_sh', ['right_sh_prep.ogg']).
+prep2turn('right_sl', ['right_sl_prep.ogg']).
+prep2turn('left_keep', ['left_keep_prep.ogg']).
+prep2turn('right_keep', ['right_keep_prep.ogg']).
 
 onto_street('', []).
 onto_street(Street, ['onto.ogg', Street]) :- tts.
@@ -161,7 +161,7 @@ onto_street(_Street, []) :- not(tts).
 %to_street(Street, ['to.ogg', Street]) :- tts.
 %to_street(_Street, []) :- not(tts).
 
-prepare_turn(Turn, Dist, _Street) -- ['prepare.ogg', M, 'after.ogg', D, ' '] :- distance(Dist) -- D, turn_inf(Turn, M).
+prepare_turn(Turn, Dist, _Street) -- ['prepare.ogg', M, 'after.ogg', D, ' '] :- distance(Dist) -- D, prep2turn(Turn, M).
 turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
 turn(Turn, Street) -- [M | Sgen]  :- turn(Turn, M), onto_street(Street, Sgen).
 
