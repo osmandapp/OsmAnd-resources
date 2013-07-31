@@ -28,7 +28,8 @@ language('hi').
 % ROUTE CALCULATED
 string('route_is.ogg', 'अंतर ').
 string('route_is2.ogg', ' है').
-string('route_calculate.ogg', 'मार्ग पुनर्गणना, अंतर ').
+string('route_calculate.ogg', 'मार्ग पुनर्गणना,').
+string('distance.ogg', ', अंतर ').
 
 % LEFT/RIGHT
 string('prepare.ogg', ' मुडने के लिये तयार रहे').

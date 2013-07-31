@@ -28,7 +28,8 @@ language('nl').
 % ROUTE CALCULATED
 string('route_is1.ogg', 'De berekende afstand is ').
 string('route_is2.ogg', 'lang ').
-string('route_calculate.ogg', 'Afstand is opnieuw berekend, de nieuwe afstand is ').
+string('route_calculate.ogg', 'Afstand is opnieuw berekend ').
+string('distance.ogg', ', de nieuwe afstand is ').
 
 % LEFT/RIGHT
 string('prepare.ogg', 'Verder op  ').
@@ -169,7 +170,7 @@ reached_waypoint(D) -- ['reached_waypoint.ogg', Ds, 'reached.ogg'] :- name(D, Ds
 % route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'route_is2.ogg', 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
-route_recalc(Dist, Time) -- ['route_calculate.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.

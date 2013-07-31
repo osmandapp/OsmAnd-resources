@@ -27,7 +27,8 @@ language('pl').
 
 % ROUTE CALCULATED
 string('route_is.ogg', 'Długość trasy to ').
-string('route_calculate.ogg', 'Nowa trasa wyznaczona, jej długość to ').
+string('route_calculate.ogg', 'Nowa trasa wyznaczona').
+string('distance.ogg', ', jej długość to ').
 
 % LEFT/RIGHT
 string('prepare.ogg', ' ').
@@ -159,7 +160,7 @@ reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
 
 route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
-route_recalc(Dist, Time) -- ['route_calculate.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
