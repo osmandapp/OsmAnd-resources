@@ -42,6 +42,7 @@ string('right_sh.ogg', 'στρίψτε κλειστά δεξιά ').
 string('right_sl.ogg', 'στρίψτε λοξά δεξιά ').
 string('left_keep.ogg', 'μείνετε αριστερά ').
 string('right_keep.ogg', 'μείνετε δεξιά ').
+% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
 string('prepare_make_uturn.ogg', 'Προετοιμαστείτε να κάνετε αναστροφή μετά από ').

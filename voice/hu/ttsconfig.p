@@ -41,6 +41,7 @@ string('right_sh.ogg', 'fordulj élesen jobbra ').
 string('right_sl.ogg', 'fordulj enyhén jobbra ').
 string('left_keep.ogg', 'tarts balra ').
 string('right_keep.ogg', 'tarts jobbra ').
+% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
 string('prepare_make_uturn.ogg', 'múlva készülj fel a visszafordulásra ').

@@ -43,6 +43,7 @@ string('right_sh.ogg', 'odbočte ostře vpravo ').
 string('right_sl.ogg', 'odbočte mírně vpravo ').
 string('left_keep.ogg', 'držte se vlevo ').
 string('right_keep.ogg', 'držte se vpravo').
+% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 string('left_p.ogg', 'vlevo ').
 string('left_sh_p.ogg', 'ostře vlevo ').

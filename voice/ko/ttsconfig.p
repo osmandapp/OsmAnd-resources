@@ -44,6 +44,7 @@ string('right_sh.ogg', '크게 우회전').
 string('right_sl.ogg', '우회전').
 string('left_keep.ogg', '왼쪽에서 계속 가세요 ').
 string('right_keep.ogg', '오른쪽에서 계속 가세요 ').
+% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
 string('prepare_make_uturn.ogg', ' 앞에서 U턴을 준비하세요 ').

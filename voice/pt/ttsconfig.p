@@ -34,6 +34,18 @@ string('distance.ogg', ' Distância é de ').
 string('prepare.ogg', 'Prepare-se para ').
 string('after.ogg', 'após ').
 
+string('left.ogg', 'vire à esquerda ').
+string('left_sh.ogg', 'vire acentuadamente à esquerda ').
+string('left_sl.ogg', 'vire ligeiramente à esquerda ').
+string('right.ogg', 'vire à direita ').
+string('right_sh.ogg', 'vire acentuadamente à direita ').
+string('right_sl.ogg', 'vire ligeiramente à direita ').
+string('left_keep.ogg', 'mantenha-se à esquerda ').
+string('right_keep.ogg', 'mantenha-se à direita ').
+% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
+string('left_bear.ogg', 'mantenha-se à esquerda ').
+string('right_bear.ogg', 'mantenha-se à direita ').
+
 string('left_imp.ogg', 'virar à esquerda ').
 string('left_sh_imp.ogg', 'virar acentuadamente à esquerda ').
 string('left_sl_imp.ogg', 'virar ligeiramente à esquerda ').
@@ -44,17 +56,6 @@ string('left_keep_imp.ogg', 'manter-se à esquerda').
 string('right_keep_imp.ogg', 'manter-se à direita').
 string('left_bear_imp.ogg', 'mantenha-se à esquerda ').
 string('right_bear_imp.ogg', 'mantenha-se à direita ').
-
-string('left.ogg', 'vire à esquerda ').
-string('left_sh.ogg', 'vire acentuadamente à esquerda ').
-string('left_sl.ogg', 'vire ligeiramente à esquerda ').
-string('right.ogg', 'vire à direita ').
-string('right_sh.ogg', 'vire acentuadamente à direita ').
-string('right_sl.ogg', 'vire ligeiramente à direita ').
-string('left_keep.ogg', 'mantenha-se à esquerda ').
-string('right_keep.ogg', 'mantenha-se à direita ').
-string('left_bear.ogg', 'mantenha-se à esquerda ').
-string('right_bear.ogg', 'mantenha-se à direita ').
 
 % U-TURNS
 string('prepare_make_uturn.ogg', 'Prepare-se para retornar após ').

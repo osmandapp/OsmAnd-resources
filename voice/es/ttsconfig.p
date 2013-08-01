@@ -42,6 +42,7 @@ string('right_sh.ogg', 'gira fuerte a la derecha').
 string('right_sl.ogg', 'gira levemente a la derecha').
 string('left_keep.ogg', 'mantente a la izquierda').
 string('right_keep.ogg', 'mantente a la derecha').
+% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 string('left_inf.ogg', 'girar a la izquierda').
 string('left_sh_inf.ogg', 'girar fuerte a la izquierda').

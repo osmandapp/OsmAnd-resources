@@ -44,6 +44,7 @@ string('right_sh.ogg', 'käänny jyrkästi oikealle ').
 string('right_sl.ogg', 'käänny loivasti oikealle ').
 string('left_keep.ogg', 'pidä vasen ').
 string('right_keep.ogg', 'pidä oikea ').
+% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 string('left_prep.ogg', 'kääntymään vasemmalle ').
 string('left_sh_prep.ogg', 'kääntymään jyrkästi vasemmalle ').

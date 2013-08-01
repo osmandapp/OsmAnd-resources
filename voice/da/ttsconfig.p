@@ -1,4 +1,4 @@
-% for turbo-prolog
+﻿% for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog
 :- op(500, xfy,'--').
@@ -30,7 +30,6 @@ string('route_is.ogg', 'Ruten er ').
 string('route_calculate.ogg', 'Ruten genberegnes ').
 string('distance.ogg', 'afstand ').
 
-
 % LEFT/RIGHT
 string('prepare.ogg', 'Forbered til ').
 string('after.ogg', 'efter ').
@@ -43,6 +42,7 @@ string('right_sh.ogg', 'drej skarpt til højre ').
 string('right_sl.ogg', 'drej lidt til højre ').
 string('left_keep.ogg', 'hold til venstre ').
 string('right_keep.ogg', 'hold til højre ').
+% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
 string('make_uturn.ogg', 'Foretag U vending ').

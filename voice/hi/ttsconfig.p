@@ -44,6 +44,7 @@ string('right_sh.ogg', ' तेजी से दायने ').
 string('right_sl.ogg', ' हलके से दायने ').
 string('left_keep.ogg', 'बाये रहे  ').
 string('right_keep.ogg', 'दायने रहे ').
+% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
 string('prepare_make_uturn.ogg', 'के बाद वापस मुडने के लिये तयार रहे ').

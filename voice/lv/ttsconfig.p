@@ -42,6 +42,7 @@ string('right_sh.ogg', 'strauji pagriezties pa labi ').
 string('right_sl.ogg', 'pagriezties pa labi ').
 string('left_keep.ogg', 'turēties pa kreisi ').
 string('right_keep.ogg', 'turēties pa labi ').
+% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
 string('prepare_make_uturn.ogg', 'Gatavojaties apgriezties pēc ').

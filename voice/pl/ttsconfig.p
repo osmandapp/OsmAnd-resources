@@ -42,6 +42,7 @@ string('right_sh.ogg', 'skręć ostro w prawo ').
 string('right_sl.ogg', 'skręć lekko w prawo ').
 string('left_keep.ogg', 'trzymaj się lewej strony').
 string('right_keep.ogg', 'trzymaj się prawej strony').
+% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
 string('make_uturn.ogg', 'Zawróć ').

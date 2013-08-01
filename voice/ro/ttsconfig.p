@@ -42,6 +42,7 @@ string('right_sh.ogg', 'virați brusc la dreapta ').
 string('right_sl.ogg', 'virați ușor la dreapta ').
 string('left_keep.ogg', 'încadrați-vă pe partea stângă').
 string('right_keep.ogg', 'încadrați-vă pe partea dreaptă').
+% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 string('left_bear.ogg', ' rămâneți pe partea stângă ').
 string('right_bear.ogg', ' rămâneți pe partea dreaptă ').
 
