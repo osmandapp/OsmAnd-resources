@@ -19,9 +19,15 @@ write_wget([string(Ogg, X) |L], FL) :- cut_mp3(Ogg, Name),
 			write(X),  write('"\n'), write_wget(L, FL).
 
 
-write_ispeech([],_).
-write_ispeech([string(Ogg, X) |L], FL) :- cut_mp3(Ogg, Name), 
-			write(Ogg),write(','),write(X), write('\n'), write_ispeech(L, FL).
+write_ispeech_csv([],_).
+write_ispeech_csv([string(Ogg, X) |L], FL) :- 
+			write(Ogg),write(','),write(X), write('\n'), write_ispeech_csv(L, FL).
+
+write_ispeech_c([],_).
+write_ispeech_c([string(Ogg, X) |L], FL) :- 
+			write('https://www.ispeech.org/static/save?apikey=&action=convert&voice=rurussianfemale&speed=0&pitch=100&startpadding=0&endpadding=0&format=ogg&frequency=16000&text='), 
+			write(X), write('&filename='),write(Ogg),
+			write('\n'), write_ispeech_c(L, FL).
 
 gen(File, fest) :- assert(voice_generation), assert(fest),consult(File), findall(string(Fn, T), string(Fn, T), Result),
 		 write_header, fest_language(FL), write('\n(voice_'), write(FL), write(')\n'), write_fsave(Result).
@@ -29,4 +35,4 @@ gen(File, fest) :- assert(voice_generation), assert(fest),consult(File), findall
 gen(File, google) :- assert(voice_generation), assert(google_gen),!, consult(File), findall(string(Fn, T), string(Fn, T), Result),
  		language(FL), write_wget(Result, FL) .
 
-gen(File, ispeech) :- assert(voice_generation), assert(ispeech),!, consult(File), findall(string(Fn, T), string(Fn, T), Result), language(FL), write('Filename,Text\n'),  write_ispeech(Result, FL) .
+gen(File, ispeech) :- assert(voice_generation), assert(ispeech),!, consult(File), findall(string(Fn, T), string(Fn, T), Result), language(FL), write('Filename,Text\n'),  write_ispeech_c(Result, FL) .

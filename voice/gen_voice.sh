@@ -47,7 +47,7 @@ if [ $ENGINE = "google" ]; then
 elif [ $ENGINE = "ispeech" ]; then
     echo "google_gen." >> g_config.p
     prolog -s ../gen_config.p -q -t "$GOAL" > ispeech_$1.csv
-    #./google.$1.sh
+    cp ../$1/voice/* .
 else
 	echo "google_gen:-fail." >> g_config.p
 	prolog -s ../gen_config.p -q -t "$GOAL" > fest.$1
