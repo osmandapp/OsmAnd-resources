@@ -44,6 +44,10 @@ if [ $ENGINE = "google" ]; then
 	prolog -s ../gen_config.p -q -t "$GOAL" > google.$1.sh
 	chmod +x google.$1.sh
 	#./google.$1.sh
+elif [ $ENGINE = "ispeech" ]; then
+    echo "google_gen." >> g_config.p
+    prolog -s ../gen_config.p -q -t "$GOAL" > ispeech_$1.csv
+    #./google.$1.sh
 else
 	echo "google_gen:-fail." >> g_config.p
 	prolog -s ../gen_config.p -q -t "$GOAL" > fest.$1

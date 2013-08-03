@@ -18,7 +18,15 @@ write_wget([string(Ogg, X) |L], FL) :- cut_mp3(Ogg, Name),
 			write('" "http://translate.google.com/translate_tts?ie=UTF-8&tl='), write(FL), write('&q='), 
 			write(X),  write('"\n'), write_wget(L, FL).
 
+
+write_ispeech([],_).
+write_ispeech([string(Ogg, X) |L], FL) :- cut_mp3(Ogg, Name), 
+			write(Ogg),write(','),write(X), write('\n'), write_ispeech(L, FL).
+
 gen(File, fest) :- assert(voice_generation), assert(fest),consult(File), findall(string(Fn, T), string(Fn, T), Result),
 		 write_header, fest_language(FL), write('\n(voice_'), write(FL), write(')\n'), write_fsave(Result).
+
 gen(File, google) :- assert(voice_generation), assert(google_gen),!, consult(File), findall(string(Fn, T), string(Fn, T), Result),
  		language(FL), write_wget(Result, FL) .
+
+gen(File, ispeech) :- assert(voice_generation), assert(ispeech),!, consult(File), findall(string(Fn, T), string(Fn, T), Result), language(FL), write('Filename,Text\n'),  write_ispeech(Result, FL) .
