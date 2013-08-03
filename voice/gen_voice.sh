@@ -61,6 +61,7 @@ done
 
 ### for t in `ls *.wav` ; do oggenc $t ; done
 
+# for t in `ls *.ogg` ; do 
 for t in `ls *.wav` ; do 
 	Og=${t::-4}
 	sox $t r${Og}.ogg reverse
