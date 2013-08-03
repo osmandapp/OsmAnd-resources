@@ -128,6 +128,8 @@ string('less_a_minute.ogg', 'menos de un minuto ').
 string('1_minute.ogg', 'un minuto ').
 string('minutes.ogg', 'minutos ').
 
+% SPECIAL NUMBERS
+string('20_and.ogg', 'veinti').
 
 %% COMMAND BUILDING / WORD ORDER
 turn('left', ['left.ogg']).
@@ -288,14 +290,22 @@ dist(X, Y) :- tts, !, num_atom(X, Y).
 dist(0, []) :- !.
 dist(X, [Ogg]) :- X < 20, !, pnumber(X, Ogg).
 dist(X, [Ogg]) :- X < 1000, 0 is X mod 50, !, num_atom(X, A), atom_concat(A, '.ogg', Ogg).
-dist(D, ['20.ogg'|L]) :-  D < 30, Ts is D - 20, !, dist(Ts, L).
-dist(D, ['30.ogg'|L]) :-  D < 40, Ts is D - 30, !, dist(Ts, L).
-dist(D, ['40.ogg'|L]) :-  D < 50, Ts is D - 40, !, dist(Ts, L).
-dist(D, ['50.ogg'|L]) :-  D < 60, Ts is D - 50, !, dist(Ts, L).
-dist(D, ['60.ogg'|L]) :-  D < 70, Ts is D - 60, !, dist(Ts, L).
-dist(D, ['70.ogg'|L]) :-  D < 80, Ts is D - 70, !, dist(Ts, L).
-dist(D, ['80.ogg'|L]) :-  D < 90, Ts is D - 80, !, dist(Ts, L).
-dist(D, ['90.ogg'|L]) :-  D < 100, Ts is D - 90, !, dist(Ts, L).
+dist(D, ['20.ogg']) :- !.
+dist(D, ['20_and.ogg'|L]) :- D < 30, Ts is D - 20, !, dist(Ts, L).
+dist(D, ['30.ogg']) :- !.
+dist(D, ['30.ogg', 'and.ogg'|L]) :- D < 40, Ts is D - 30, !, dist(Ts, L).
+dist(D, ['40.ogg']) :- !.
+dist(D, ['40.ogg', 'and.ogg'|L]) :- D < 50, Ts is D - 40, !, dist(Ts, L).
+dist(D, ['50.ogg']) :- !.
+dist(D, ['50.ogg', 'and.ogg'|L]) :- D < 60, Ts is D - 50, !, dist(Ts, L).
+dist(D, ['60.ogg']) :- !.
+dist(D, ['60.ogg', 'and.ogg'|L]) :- D < 70, Ts is D - 60, !, dist(Ts, L).
+dist(D, ['70.ogg']) :- !.
+dist(D, ['70.ogg', 'and.ogg'|L]) :- D < 80, Ts is D - 70, !, dist(Ts, L).
+dist(D, ['80.ogg']) :- !.
+dist(D, ['80.ogg', 'and.ogg'|L]) :- D < 90, Ts is D - 80, !, dist(Ts, L).
+dist(D, ['90.ogg']) :- !.
+dist(D, ['90.ogg', 'and.ogg'|L]) :- D < 100, Ts is D - 90, !, dist(Ts, L).
 dist(D, ['100.ogg'|L]) :-  D < 200, Ts is D - 100, !, dist(Ts, L).
 dist(D, ['200.ogg'|L]) :-  D < 300, Ts is D - 200, !, dist(Ts, L).
 dist(D, ['300.ogg'|L]) :-  D < 400, Ts is D - 300, !, dist(Ts, L).
