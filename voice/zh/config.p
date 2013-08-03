@@ -8,8 +8,8 @@ version(0).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
-language('nl').
-% fest_language('').
+language('zh').
+% fest_language(' ').
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES:
 % (X) new Version 1.5 format
@@ -27,103 +27,101 @@ language('nl').
 
 
 % ROUTE CALCULATED
-string('route_is1.ogg', 'De berekende afstand is ').
-string('route_is2.ogg', 'lang ').
-string('route_calculate.ogg', 'Afstand is opnieuw berekend ').
-string('distance.ogg', ', de nieuwe afstand is ').
+string('route_is1.ogg', '行程').
+string('route_is2.ogg', ' 遠').
+string('route_calculate.ogg', '路线重新计算').
+string('distance.ogg', ', 距离').
 
 % LEFT/RIGHT
-string('prepare.ogg', 'Verder op  ').
-% Verder op should officially be spelled as verderop but is not pronounced correctly
-% by tts voices when spelled that way. Please leave it like this.
-string('after.ogg', 'Na ').
+string('prepare.ogg', '請準備 ').
+string('after.ogg', ' 後 ').
 
-string('left.ogg', 'links afslaan ').
-string('left_sh.ogg', 'scherpe bocht naar links ').
-string('left_sl.ogg', 'links afbuigen  ').
-string('right.ogg', 'rechts afslaan ').
-string('right_sh.ogg', 'scherpe bocht naar rechts ').
-string('right_sl.ogg', 'rechts afbuigen ').
-string('left_keep.ogg', 'links aanhouden ').
-string('right_keep.ogg', 'rechts aanhouden ').
+string('left.ogg', '左轉 ').
+string('left_sh.ogg', '向左急轉 ').
+string('left_sl.ogg', '稍向左轉 ').
+string('right.ogg', '右轉 ').
+string('right_sh.ogg', '向右急轉 ').
+string('right_sl.ogg', '稍向右轉 ').
+string('left_keep.ogg', '靠左 ').
+string('right_keep.ogg', '靠右 ').
 % if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
-string('prepare_make_uturn.ogg', 'Keer om na ').
-string('make_uturn1.ogg', 'omkeren ').
-string('make_uturn2.ogg', 'keer nu om ').
-string('make_uturn_wp.ogg', 'Indien mogelijk, nu omkeren ').
+string('prepare_make_uturn.ogg', ' 後迴轉 ').
+string('make_uturn1.ogg', ' 後請迴轉').
+string('make_uturn2.ogg', '請迴轉 ').
+string('make_uturn_wp.ogg', '可能的話, 請迴轉 ').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Neem de rotonde na ').
-string('roundabout.ogg', ' de rotonde oprijden en neem dan de ').
-string('then.ogg', 'dan ').
-string('and.ogg', 'en ').
-string('take.ogg', 'Neem de  ').
-string('exit.ogg', 'afslag ').
+string('prepare_roundabout.ogg', ' 後進入圓環 ').
+string('roundabout.ogg', ' 後進入圓環, 然後在 ').
+string('then.ogg', ', 然後 ').
+string('and.ogg', '和 ').
+string('take.ogg', '在 ').
+string('exit.ogg', ' 出口離開').
 
-string('1st.ogg', 'eerste ').
-string('2nd.ogg', 'tweede ').
-string('3rd.ogg', 'derde ').
-string('4th.ogg', 'vierde ').
-string('5th.ogg', 'vijfde ').
-string('6th.ogg', 'zesde ').
-string('7th.ogg', 'zevende ').
-string('8th.ogg', 'achtste ').
-string('9th.ogg', 'negende  ').
-string('10th.ogg', 'tiende ').
-string('11th.ogg', 'elfde ').
-string('12th.ogg', 'twaalfde ').
-string('13th.ogg', 'dertiende ').
-string('14th.ogg', 'viertiende ').
-string('15th.ogg', 'vijftiende ').
-string('16th.ogg', 'zestiende ').
-string('17th.ogg', 'zeventiende ').
+string('1st.ogg', '第一個 ').
+string('2nd.ogg', '第二個 ').
+string('3rd.ogg', '第三個 ').
+string('4th.ogg', '第四個 ').
+string('5th.ogg', '第五個 ').
+string('6th.ogg', '第六個 ').
+string('7th.ogg', '第七個 ').
+string('8th.ogg', '第八個 ').
+string('9th.ogg', '第九個 ').
+string('10th.ogg', '第十個 ').
+string('11th.ogg', '第十一個 ').
+string('12th.ogg', '第十二個 ').
+string('13th.ogg', '第十三個 ').
+string('14th.ogg', '第十四個 ').
+string('15th.ogg', '第十五個 ').
+string('16th.ogg', '第十六個 ').
+string('17th.ogg', '第十七個 ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Deze weg blijven volgen ').
-string('follow1.ogg', 'De weg  ').
-string('follow2.ogg', 'volgen ').
+string('go_ahead.ogg', '直直往前開 ').
+string('follow.ogg', '沿著馬路往前 ').
 
 % ARRIVE
-string('and_arrive_destination.ogg', 'dan heb je je bestemming ').
-string('reached_destination.ogg','je hebt je Bestemming ').
-string('and_arrive_intermediate.ogg', 'en dan heb je je routepunt ').
-string('reached_intermediate.ogg', 'je hebt je routepunt ').
-string('and_arrive_waypoint.ogg', 'en dan heb je je GPX routepunt ').
-string('reached_waypoint.ogg', 'je hebt je GPX routepunt ').
-string('reached.ogg', 'bereikt  ').
+string('and_arrive_destination.ogg', '然後可達終點 ').
+string('reached_destination.ogg','抵達終點 ').
+string('and_arrive_intermediate.ogg', '並通過點到達 ').
+string('reached_intermediate.ogg', '你已經達到你通過點 ').
+string('and_arrive_waypoint.ogg', '並通過點到達  GPX').
+string('reached_waypoint.ogg', '你已經達到你通過點  GPX').
 
 % OTHER PROMPTS
-string('attention.ogg', 'let op , ').
-string('location_lost.ogg', 'G P S  Signaal verloren ').
-string('off_route.ogg', 'je bent afgeweken van de route vanaf ').
-string('exceed_limit.ogg', 'je overschrijdt de maximumsnelheid ').
+string('attention.ogg', '注意, ').
+string('location_lost.ogg', '接收不到 g p s 信號 ').
+string('off_route.ogg', '你已經偏離路線 ').
+string('exceed_limit.ogg', '你超速 ').
 
 % STREET NAME GRAMMAR
-string('onto.ogg', 'naar  ').
+string('onto.ogg', '到 ').
+%string('on.ogg', 'on ').
+%string('to.ogg', 'to ').
 
 % DISTANCE UNIT SUPPORT
-string('meters.ogg', 'meter ').
-string('around_1_kilometer.ogg', 'ongeveer een kilometer  ').
-string('around.ogg', 'ongeveer ').
-string('kilometers.ogg', 'Kilometer ').
+string('meters.ogg', ' 公尺').
+string('around_1_kilometer.ogg', '約 1 公里 ').
+string('around.ogg', '約 ').
+string('kilometers.ogg', ' 公里 ').
 
-string('feet.ogg', 'voet ').
-string('1_tenth_of_a_mile.ogg', 'een tiende mijl ').
-string('tenths_of_a_mile.ogg', 'tiende mijl ').
-string('around_1_mile.ogg', 'ongeveer een mijl ').
-string('miles.ogg', 'mijlen ').
+string('feet.ogg', '尺 ').
+string('1_tenth_of_a_mile.ogg', '一英里的十分之一').
+string('tenths_of_a_mile.ogg', '零点一英里').
+string('around_1_mile.ogg', '大约一英里（1.6公里）').
+string('miles.ogg', '英里').
 
 string('yards.ogg', 'yards ').
 
 % TIME SUPPORT
-string('time.ogg', ', tijd tot bestemming ').
-string('1_hour.ogg', 'een uur ').
-string('hours.ogg', 'uur ').
-string('less_a_minute.ogg', 'minder dan een minuut ').
-string('1_minute.ogg', 'een minuut ').
-string('minutes.ogg', 'minuten ').
+string('time.ogg', '所需时间').
+string('1_hour.ogg', '一小时').
+string('hours.ogg', '小时').
+string('less_a_minute.ogg', '不到一分钟').
+string('1_minute.ogg', '1分钟').
+string('minutes.ogg', '分钟').
 
 
 %% COMMAND BUILDING / WORD ORDER
@@ -141,36 +139,39 @@ bear_right(_Street) -- ['right_keep.ogg'].
 onto_street('', []).
 onto_street(Street, ['onto.ogg', Street]) :- tts.
 onto_street(_Street, []) :- not(tts).
+%on_street('', []).
+%on_street(Street, ['on.ogg', Street]) :- tts.
+%on_street(_Street, []) :- not(tts).
+%to_street('', []).
+%to_street(Street, ['to.ogg', Street]) :- tts.
+%to_street(_Street, []) :- not(tts).
 
-prepare_turn(Turn, Dist, Street) -- ['prepare.ogg', M, 'after.ogg', D | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
-turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
+prepare_turn(Turn, Dist, Street) -- ['prepare.ogg', D, 'after.ogg',  M | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
+turn(Turn, Dist, Street) -- [D, 'after.ogg', M | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
 turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), onto_street(Street, Sgen).
 
-prepare_make_ut(Dist, Street) -- ['prepare_make_uturn.ogg', D | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
-make_ut(Dist, Street) --  ['after.ogg', D, 'make_uturn1.ogg' | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
+prepare_make_ut(Dist, Street) -- ['prepare.ogg', D, 'prepare_make_uturn.ogg' | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
+make_ut(Dist, Street) --  [D, 'make_uturn1.ogg' | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
 make_ut(Street) -- ['make_uturn2.ogg' | Sgen] :- onto_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
-prepare_roundabout(Dist, _Exit, _Street) -- ['prepare_roundabout.ogg', D] :- distance(Dist) -- D.
-roundabout(Dist, _Angle, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', E, 'exit.ogg' | Sgen] :- 
-distance(Dist) -- D, nth(Exit, E), onto_street(Street, Sgen).
+prepare_roundabout(Dist, _Exit, _Street) -- ['prepare.ogg', D, 'prepare_roundabout.ogg'] :- distance(Dist) -- D.
+roundabout(Dist, _Angle, Exit, Street) -- [D, 'roundabout.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), onto_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), onto_street(Street, Sgen).
 
-go_ahead -- ['go_ahead.ogg'].
-go_ahead(Dist, Street) -- ['follow1.ogg', D, 'follow2.ogg'| Sgen]:- distance(Dist) -- D, onto_street(Street, Sgen).
+go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
 
 then -- ['then.ogg'].
 name(D, [D]) :- tts.
 name(_D, []) :- not(tts).
-and_arrive_destination(D) -- ['and_arrive_destination.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
-reached_destination(D) -- ['reached_destination.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
-and_arrive_intermediate(D) -- ['and_arrive_intermediate.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
-reached_intermediate(D) -- ['reached_intermediate.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
-and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
-reached_waypoint(D) -- ['reached_waypoint.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
+and_arrive_destination(D) -- ['and_arrive_destination.ogg'|Ds] :- name(D, Ds).
+reached_destination(D) -- ['reached_destination.ogg'|Ds] :- name(D, Ds).
+and_arrive_intermediate(D) -- ['and_arrive_intermediate.ogg'|Ds] :- name(D, Ds).
+reached_intermediate(D) -- ['reached_intermediate.ogg'|Ds] :- name(D, Ds).
+and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
+reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
 
-% route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'route_is2.ogg', 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
-route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'route_is2.ogg', 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
@@ -200,9 +201,10 @@ nth(16, '16th.ogg').
 nth(17, '17th.ogg').
 
 
-%% resolve command main method
+%% command main method
 %% if you are familar with Prolog you can input specific to the whole mechanism,
 %% by adding exception cases.
+
 flatten(X, Y) :- flatten(X, [], Y), !.
 flatten([], Acc, Acc).
 flatten([X|Y], Acc, Res):- flatten(Y, Acc, R), flatten(X, R, Res).
@@ -212,7 +214,7 @@ flatten(X, Acc, [X|Acc]).
 
 resolve(X, Y) :- resolve_impl(X,Z), flatten(Z, Y).
 resolve_impl([],[]).
-resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L, Tail, List); List = Tail).
+resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ('--'(X, L) -> append(L, Tail, List); List = Tail).
 
 
 % handling alternatives

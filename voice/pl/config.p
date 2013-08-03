@@ -9,7 +9,7 @@ tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
 language('pl').
-fest_language('cmu_us_awb_arctic_clunits').
+% fest_language('').
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES:
 % (X) new Version 1.5 format
@@ -22,15 +22,19 @@ fest_language('cmu_us_awb_arctic_clunits').
 % (X) distance measure: meters / feet / yard support
 % (X) Street name announcement (suppress in prepare_roundabout)
 % (X) Name announcement for destination / intermediate / GPX waypoint arrival
-% ( ) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
+% (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
 % (X) word order checked
 
 
 % ROUTE CALCULATED
 string('route_is.ogg', 'Długość trasy to ').
-string('route_calculate.ogg', 'Nowa trasa wyznaczona, jej długość to ').
+string('route_calculate.ogg', 'Nowa trasa wyznaczona').
+string('distance.ogg', ', jej długość to ').
 
 % LEFT/RIGHT
+string('prepare.ogg', ' ').
+string('after.ogg', 'za ').
+
 string('left.ogg', 'skręć w lewo ').
 string('left_sh.ogg', 'skręć ostro w lewo ').
 string('left_sl.ogg', 'skręć lekko w lewo ').
@@ -39,12 +43,11 @@ string('right_sh.ogg', 'skręć ostro w prawo ').
 string('right_sl.ogg', 'skręć lekko w prawo ').
 string('left_keep.ogg', 'trzymaj się lewej strony').
 string('right_keep.ogg', 'trzymaj się prawej strony').
+% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
 string('make_uturn.ogg', 'Zawróć ').
 string('make_uturn_wp.ogg', 'Jeśli to możliwe, zawróć ').
-string('after.ogg', 'za ').
-string('prepare.ogg', ' ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Przygotuj się do wjazdu na rondo ').
@@ -108,10 +111,12 @@ string('miles.ogg', 'mil ').
 string('yards.ogg', 'jardów ').
 
 % TIME SUPPORT
-%string('time.ogg', 'time is  ').
-%string('hours.ogg', 'hours ').
-%string('less_a_minute.ogg', 'less than a minute  ').
-%string('minutes.ogg', 'minutes').
+string('time.ogg', 'czas potrzebny ').
+string('1_hour.ogg', 'jeden godzina ').
+string('hours.ogg', 'godzina ').
+string('less_a_minute.ogg', 'mniej niż minuta ').
+string('1_minute.ogg', 'jeden minuta ').
+string('minutes.ogg', 'minuta ').
 
 
 %% COMMAND BUILDING / WORD ORDER
@@ -155,8 +160,9 @@ reached_intermediate(D) -- ['reached_intermediate.ogg'|Ds] :- name(D, Ds).
 and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
 
-route_new_calc(Dist, _Time) -- ['route_is.ogg', D] :- distance(Dist) -- D.
-route_recalc(Dist, _Time) -- ['route_calculate.ogg', D] :- distance(Dist) -- D.
+route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
+route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
@@ -180,6 +186,8 @@ nth(12, '12th.ogg').
 nth(13, '13th.ogg').
 nth(14, '14th.ogg').
 nth(15, '15th.ogg').
+nth(16, '16th.ogg').
+nth(17, '17th.ogg').
 
 
 %% command main method
@@ -201,6 +209,18 @@ resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ('--'(X, L) -> append(
 % handling alternatives
 [X|_Y] -- T :- (X -- T),!.
 [_X|Y] -- T :- (Y -- T).
+
+
+pnumber(X, Y) :- tts, !, num_atom(X, Y).
+pnumber(X, Ogg) :- num_atom(X, A), atom_concat(A, '.ogg', Ogg).
+% time measure
+hours(S, []) :- S < 60.
+hours(S, ['1_hour.ogg']) :- S < 120, H is S div 60, pnumber(H, Ogg).
+hours(S, [Ogg, 'hours.ogg']) :- H is S div 60, pnumber(H, Ogg).
+time(Sec) -- ['less_a_minute.ogg'] :- Sec < 30.
+time(Sec) -- [H, '1_minute.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, St = 1, pnumber(St, Ogg).
+time(Sec) -- [H, Ogg, 'minutes.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, pnumber(St, Ogg).
+time(Sec) -- [H, Ogg, 'minutes.ogg'] :- not(tts), S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60, pnumber(St, Ogg).
 
 
 %%% distance measure
@@ -237,14 +257,14 @@ interval(T, St, End, Step) :- interval(Init, St, End, Step), T is Init + Step, (
 interval(X, St, End) :- interval(X, St, End, 1).
 
 string(Ogg, A) :- voice_generation, interval(X, 1, 19), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
-string(Ogg, A) :- voice_generation, interval(X, 20, 90, 10), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
+string(Ogg, A) :- voice_generation, interval(X, 20, 95, 5), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
 string(Ogg, A) :- voice_generation, interval(X, 100, 900, 50), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
 string(Ogg, A) :- voice_generation, interval(X, 1000, 9000, 1000), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
 
 dist(X, Y) :- tts, !, num_atom(X, Y).
 
 dist(0, []) :- !.
-dist(X, [Ogg]) :- X < 20, !, num_atom(X, A), atom_concat(A, '.ogg', Ogg).
+dist(X, [Ogg]) :- X < 20, !, pnumber(X, Ogg).
 dist(X, [Ogg]) :- X < 1000, 0 is X mod 50, !, num_atom(X, A), atom_concat(A, '.ogg', Ogg).
 dist(D, ['20.ogg'|L]) :-  D < 30, Ts is D - 20, !, dist(Ts, L).
 dist(D, ['30.ogg'|L]) :-  D < 40, Ts is D - 30, !, dist(Ts, L).

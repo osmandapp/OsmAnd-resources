@@ -9,7 +9,7 @@ tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
 language('da').
-% fest_language('cmu_us_awb_arctic_clunits').
+% fest_language('').
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES:
 % (X) new Version 1.5 format
@@ -31,8 +31,10 @@ string('route_is.ogg', 'Ruten er ').
 string('route_calculate.ogg', 'Ruten genberegnes ').
 string('distance.ogg', 'afstand ').
 
-
 % LEFT/RIGHT
+string('prepare.ogg', 'Forbered til ').
+string('after.ogg', 'efter ').
+
 string('left.ogg', 'drej til venstre ').
 string('left_sh.ogg', 'drej skarpt til venstre ').
 string('left_sl.ogg', 'drej lidt til venstre ').
@@ -41,18 +43,17 @@ string('right_sh.ogg', 'drej skarpt til højre ').
 string('right_sl.ogg', 'drej lidt til højre ').
 string('left_keep.ogg', 'hold til venstre ').
 string('right_keep.ogg', 'hold til højre ').
+% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
 string('make_uturn.ogg', 'Foretag U vending ').
 string('make_uturn_wp.ogg', 'Når muligt foretag U vending ').
-string('after.ogg', 'efter ').
-string('prepare.ogg', 'Forbered til ').
-string('then.ogg', 'derefter ').
-string('and.ogg', 'og ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Forbered at køre ind i rundkørslen ').
 string('roundabout.ogg', 'kør ind i rundkørslen, ').
+string('then.ogg', 'derefter ').
+string('and.ogg', 'og ').
 string('take.ogg', 'tag ').
 string('exit.ogg', 'afkørsel ').
 
@@ -112,9 +113,11 @@ string('miles.ogg', 'mil ').
 string('yards.ogg', 'yards ').
 
 % TIME SUPPORT
-string('time.ogg', 'tiden er  ').
+string('time.ogg', 'tiden er ').
+string('1_hour.ogg', 'en time ').
 string('hours.ogg', 'timer ').
-string('less_a_minute.ogg', 'mindre end et minut  ').
+string('less_a_minute.ogg', 'mindre end et minut ').
+string('1_minute.ogg', 'et minut ').
 string('minutes.ogg', 'minutter').
 
 
@@ -192,6 +195,8 @@ nth(12, '12th.ogg').
 nth(13, '13th.ogg').
 nth(14, '14th.ogg').
 nth(15, '15th.ogg').
+nth(16, '16th.ogg').
+nth(17, '17th.ogg').
 
 
 %% command main method
@@ -219,9 +224,12 @@ pnumber(X, Y) :- tts, !, num_atom(X, Y).
 pnumber(X, Ogg) :- num_atom(X, A), atom_concat(A, '.ogg', Ogg).
 % time measure
 hours(S, []) :- S < 60.
+hours(S, ['1_hour.ogg']) :- S < 120, H is S div 60, pnumber(H, Ogg).
 hours(S, [Ogg, 'hours.ogg']) :- H is S div 60, pnumber(H, Ogg).
-time(Sec) -- ['less_a_minute.ogg'] :- Sec < 60.
-time(Sec) -- [H, Ogg, 'minutes.ogg'] :- S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60, pnumber(St, Ogg).
+time(Sec) -- ['less_a_minute.ogg'] :- Sec < 30.
+time(Sec) -- [H, '1_minute.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, St = 1, pnumber(St, Ogg).
+time(Sec) -- [H, Ogg, 'minutes.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, pnumber(St, Ogg).
+time(Sec) -- [H, Ogg, 'minutes.ogg'] :- not(tts), S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60, pnumber(St, Ogg).
 
 
 %%% distance measure
@@ -258,14 +266,14 @@ interval(T, St, End, Step) :- interval(Init, St, End, Step), T is Init + Step, (
 interval(X, St, End) :- interval(X, St, End, 1).
 
 string(Ogg, A) :- voice_generation, interval(X, 1, 19), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
-string(Ogg, A) :- voice_generation, interval(X, 20, 90, 10), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
+string(Ogg, A) :- voice_generation, interval(X, 20, 95, 5), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
 string(Ogg, A) :- voice_generation, interval(X, 100, 900, 50), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
 string(Ogg, A) :- voice_generation, interval(X, 1000, 9000, 1000), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
 
 dist(X, Y) :- tts, !, num_atom(X, Y).
 
 dist(0, []) :- !.
-dist(X, [Ogg]) :- X < 20, !, num_atom(X, A), atom_concat(A, '.ogg', Ogg).
+dist(X, [Ogg]) :- X < 20, !, pnumber(X, Ogg).
 dist(X, [Ogg]) :- X < 1000, 0 is X mod 50, !, num_atom(X, A), atom_concat(A, '.ogg', Ogg).
 dist(D, ['20.ogg'|L]) :- D < 30, Ts is D - 20, !, dist(Ts, L).
 dist(D, ['30.ogg'|L]) :- D < 40, Ts is D - 30, !, dist(Ts, L).

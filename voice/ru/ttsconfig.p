@@ -88,7 +88,7 @@ string('reached_waypoint.ogg', 'вы прибыли к GPX точке ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'Внимание, ').
-string('location_lost.ogg', 'ДЖИПИИЭС потерян сигнал ').
+string('location_lost.ogg', 'потерян сигнал ДЖИПИИЭС').
 string('off_route.ogg', 'Вы отклонились от маршрута на ').
 string('exceed_limit.ogg', 'Вы превысили допустимую скорость ').
 
@@ -232,12 +232,12 @@ time(Sec) -- ['less_a_minute.ogg'] :- Sec < 30.
 time(Sec) -- [H, Ogg, Mn] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, plural_mn(St, Mn), pnumber(St, Ogg).
 time(Sec) -- [H, Ogg, Mn] :- not(tts), S is round(Sec/300.0)*5, hours(S, H), St is S mod 60, plural_mn(St, Mn), pnumber(St, Ogg).
 
-plural_hs(D, 'hour.ogg') :- 1 is D mod 10.
-plural_hs(D, 'hours_a.ogg') :- Mod is D mod 10, Mod < 5,  Mod > 1.
+plural_hs(D, 'hour.ogg') :- 1 is D mod 10, R100 is D mod 100,(R100 > 20; R100 < 10).
+plural_hs(D, 'hours_a.ogg') :- Mod is D mod 10, Mod < 5,  Mod > 1, R100 is D mod 100,(R100 > 20; R100 < 10).
 plural_hs(_D, 'hours_ov.ogg').
 
-plural_mn(D, 'minute.ogg') :- 1 is D mod 10.
-plural_mn(D, 'minute_y.ogg') :- Mod is D mod 10, Mod < 5,  Mod > 1.
+plural_mn(D, 'minute.ogg') :- 1 is D mod 10, R100 is D mod 100,(R100 > 20; R100 < 10).
+plural_mn(D, 'minute_y.ogg') :- Mod is D mod 10, Mod < 5,  Mod > 1, R100 is D mod 100,(R100 > 20; R100 < 10).
 plural_mn(_D, 'minutes.ogg').
 
 
@@ -270,13 +270,13 @@ distance_mi_y(Dist) -- ['around.ogg', X, M]    :- Dist < 16093, D is round(Dist/
 distance_mi_y(Dist) -- [ X, M]                 :-               D is round(Dist/1609.0),            dist(D, X), plural_mi(D, M).
 
 
-plural_km(D, 'kilometr.ogg') :- 1 is D mod 10.
-plural_km(D, 'kilometra.ogg') :- Mod is D mod 10, Mod < 5,  Mod > 1.
+plural_km(D, 'kilometr.ogg') :- 1 is D mod 10, R100 is D mod 100,(R100 > 20; R100 < 10).
+plural_km(D, 'kilometra.ogg') :- Mod is D mod 10, Mod < 5,  Mod > 1, R100 is D mod 100, (R100 > 20; R100 < 10).
 plural_km(_D, 'kilometrov.ogg').
 
 
-plural_mi(D, '1mile.ogg') :- 1 is D mod 10.
-plural_mi(D, '2mili.ogg') :- Mod is D mod 10, Mod < 5,  Mod > 1.
+plural_mi(D, '1mile.ogg') :- 1 is D mod 10, R100 is D mod 100,(R100 > 20; R100 < 10).
+plural_mi(D, '2mili.ogg') :- Mod is D mod 10, Mod < 5,  Mod > 1, R100 is D mod 100,(R100 > 20; R100 < 10).
 plural_mi(_D, '5mil.ogg').
 
 interval(St, St, End, _Step) :- St =< End.

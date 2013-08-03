@@ -43,11 +43,11 @@ if [ $ENGINE = "google" ]; then
 	echo "google_gen." >> g_config.p
 	prolog -s ../gen_config.p -q -t "$GOAL" > google.$1.sh
 	chmod +x google.$1.sh
-	./google.$1.sh
+	#./google.$1.sh
 else
 	echo "google_gen:-fail." >> g_config.p
 	prolog -s ../gen_config.p -q -t "$GOAL" > fest.$1
-	festival -b fest.$1
+	#festival -b fest.$1
 fi
 
 for t in `ls *.mp3`; do 

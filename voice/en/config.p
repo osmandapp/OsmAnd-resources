@@ -32,6 +32,9 @@ string('route_calculate.ogg', 'Route recalculated').
 string('distance.ogg', 'distance ').
 
 % LEFT/RIGHT
+string('prepare.ogg', 'Prepare to ').
+string('after.ogg', 'after ').
+
 string('left.ogg', 'turn left ').
 string('left_sh.ogg', 'turn sharply left ').
 string('left_sl.ogg', 'turn slightly left ').
@@ -40,18 +43,17 @@ string('right_sh.ogg', 'turn sharply right ').
 string('right_sl.ogg', 'turn slightly right ').
 string('left_keep.ogg', 'keep left').
 string('right_keep.ogg', 'keep right').
+% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
 string('make_uturn.ogg', 'Make a U turn ').
 string('make_uturn_wp.ogg', 'When possible, please make a U turn ').
-string('after.ogg', 'after ').
-string('prepare.ogg', 'Prepare to ').
-string('then.ogg', ', then ').
-string('and.ogg', 'and ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Prepare to enter a roundabout ').
 string('roundabout.ogg', 'enter the roundabout, ').
+string('then.ogg', ', then ').
+string('and.ogg', 'and ').
 string('take.ogg', 'take the ').
 string('exit.ogg', 'exit ').
 
@@ -111,10 +113,12 @@ string('miles.ogg', 'miles ').
 string('yards.ogg', 'yards ').
 
 % TIME SUPPORT
-string('time.ogg', 'time is  ').
+string('time.ogg', 'time is ').
+string('1_hour.ogg', 'one hour ').
 string('hours.ogg', 'hours ').
-string('less_a_minute.ogg', 'less than a minute  ').
-string('minutes.ogg', 'minutes').
+string('less_a_minute.ogg', 'less than a minute ').
+string('1_minute.ogg', 'one minute ').
+string('minutes.ogg', 'minutes ').
 
 
 %% COMMAND BUILDING / WORD ORDER
@@ -166,7 +170,7 @@ and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
 
 route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
-route_recalc(Dist, Time) -- ['route_calculate.ogg'] :- appMode('car').
+route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
@@ -191,6 +195,8 @@ nth(12, '12th.ogg').
 nth(13, '13th.ogg').
 nth(14, '14th.ogg').
 nth(15, '15th.ogg').
+nth(16, '16th.ogg').
+nth(17, '17th.ogg').
 
 
 %% command main method
@@ -218,9 +224,12 @@ pnumber(X, Y) :- tts, !, num_atom(X, Y).
 pnumber(X, Ogg) :- num_atom(X, A), atom_concat(A, '.ogg', Ogg).
 % time measure
 hours(S, []) :- S < 60.
+hours(S, ['1_hour.ogg']) :- S < 120, H is S div 60, pnumber(H, Ogg).
 hours(S, [Ogg, 'hours.ogg']) :- H is S div 60, pnumber(H, Ogg).
-time(Sec) -- ['less_a_minute.ogg'] :- Sec < 60.
-time(Sec) -- [H, Ogg, 'minutes.ogg'] :- S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60, pnumber(St, Ogg).
+time(Sec) -- ['less_a_minute.ogg'] :- Sec < 30.
+time(Sec) -- [H, '1_minute.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, St = 1, pnumber(St, Ogg).
+time(Sec) -- [H, Ogg, 'minutes.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, pnumber(St, Ogg).
+time(Sec) -- [H, Ogg, 'minutes.ogg'] :- not(tts), S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60, pnumber(St, Ogg).
 
 
 %%% distance measure

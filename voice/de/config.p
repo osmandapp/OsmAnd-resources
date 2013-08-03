@@ -11,7 +11,7 @@ voice :- version(X), X < 99.
 language('de').
 % http://www.tcts.fpms.ac.be/synthesis/mbrola/dba/de6/de6.zip
 % http://www.tcts.fpms.ac.be/synthesis/mbrola/dba/de7/de7.zip
-fest_language('cmu_us_awb_arctic_clunits').
+% fest_language('').
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES:
 % (X) new Version 1.5 format
@@ -35,6 +35,9 @@ string('route_calculate.ogg', 'Route neu berechnet ').
 string('distance.ogg', ', Entfernung ').
 
 % LEFT/RIGHT
+string('prepare.ogg', ' ').
+string('after.ogg', 'nach ').
+
 string('left.ogg', 'links abbiegen ').
 string('left_sh.ogg', 'scharf links abbiegen ').
 string('left_sl.ogg', 'leicht links abbiegen ').
@@ -43,14 +46,13 @@ string('right_sh.ogg', 'scharf rechts abbiegen ').
 string('right_sl.ogg', 'leicht rechts abbiegen ').
 string('left_keep.ogg', 'links halten ').
 string('right_keep.ogg', 'rechts halten ').
+% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
 string('prepare_make_uturn.ogg', 'Vorbereiten zum Wenden ').
 string('make_uturn1.ogg', 'wenden ').
 string('make_uturn2.ogg', 'Bitte wenden ').
 string('make_uturn_wp.ogg', 'Wenn möglich, bitte wenden ').
-string('after.ogg', 'nach ').
-string('prepare.ogg', ' ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Einbiegen in Kreisverkehr ').
@@ -85,7 +87,7 @@ string('follow2.ogg', 'folgen ').
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'dann haben Sie Ihr Ziel ').
-string('reached_destination.ogg','Ziel ').
+string('reached_destination.ogg', 'Ziel ').
 string('and_arrive_intermediate.ogg', 'dann Zwischenziel ').
 string('reached_intermediate.ogg', 'Zwischenziel ').
 string('and_arrive_waypoint.ogg', 'dann Wehgpunkt ').
@@ -99,7 +101,7 @@ string('off_route.ogg', 'Sie weichen von der Route ab seit ').
 string('exceed_limit.ogg', 'Sie überschreiten die Höchstgeschwindigkeit ').
 
 % STREET NAME GRAMMAR
-string('onto.ogg', 'Richtung ').
+string('onto.ogg', 'auf ').  % possibly "Richtung", better grammar, but is also misleading is some cases
 string('on.ogg', 'auf ').
 string('to.ogg', 'bis ').
 
@@ -128,8 +130,10 @@ string('yards_dativ.ogg', 'yards ').
 
 % TIME SUPPORT
 string('time.ogg', ', Zeit  ').
+string('1_hour.ogg', 'eine Stunde ').
 string('hours.ogg', 'Stunden ').
 string('less_a_minute.ogg', 'unter einer Minute ').
+string('1_minute.ogg', 'eine Minute ').
 string('minutes.ogg', 'Minuten').
 
 
@@ -207,6 +211,8 @@ nth(12, '12th.ogg').
 nth(13, '13th.ogg').
 nth(14, '14th.ogg').
 nth(15, '15th.ogg').
+nth(16, '16th.ogg').
+nth(17, '17th.ogg').
 
 
 %% resolve command main method
@@ -233,9 +239,12 @@ pnumber(X, Y) :- tts, !, num_atom(X, Y).
 pnumber(X, Ogg) :- num_atom(X, A), atom_concat(A, '.ogg', Ogg).
 % time measure
 hours(S, []) :- S < 60.
+hours(S, ['1_hour.ogg']) :- S < 120, H is S div 60, pnumber(H, Ogg).
 hours(S, [Ogg, 'hours.ogg']) :- H is S div 60, pnumber(H, Ogg).
-time(Sec) -- ['less_a_minute.ogg'] :- Sec < 60.
-time(Sec) -- [H, Ogg, 'minutes.ogg'] :- S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60, pnumber(St, Ogg).
+time(Sec) -- ['less_a_minute.ogg'] :- Sec < 30.
+time(Sec) -- [H, '1_minute.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, St = 1, pnumber(St, Ogg).
+time(Sec) -- [H, Ogg, 'minutes.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, pnumber(St, Ogg).
+time(Sec) -- [H, Ogg, 'minutes.ogg'] :- not(tts), S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60, pnumber(St, Ogg).
 
 
 %%% distance measure
@@ -288,14 +297,14 @@ interval(T, St, End, Step) :- interval(Init, St, End, Step), T is Init + Step, (
 interval(X, St, End) :- interval(X, St, End, 1).
 
 string(Ogg, A) :- voice_generation, interval(X, 1, 19), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
-string(Ogg, A) :- voice_generation, interval(X, 20, 90, 10), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
+string(Ogg, A) :- voice_generation, interval(X, 20, 95, 5), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
 string(Ogg, A) :- voice_generation, interval(X, 100, 900, 50), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
 string(Ogg, A) :- voice_generation, interval(X, 1000, 9000, 1000), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
 
 dist(X, Y) :- tts, !, num_atom(X, Y).
 
 dist(0, []) :- !.
-dist(X, [Ogg]) :- X < 20, !, num_atom(X, A), atom_concat(A, '.ogg', Ogg).
+dist(X, [Ogg]) :- X < 20, !, pnumber(X, Ogg).
 dist(X, [Ogg]) :- X < 1000, 0 is X mod 50, !, num_atom(X, A), atom_concat(A, '.ogg', Ogg).
 dist(D, ['20.ogg'|L]) :-  D < 30, Ts is D - 20, !, dist(Ts, L).
 dist(D, ['30.ogg'|L]) :-  D < 40, Ts is D - 30, !, dist(Ts, L).
