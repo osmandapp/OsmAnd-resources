@@ -106,20 +106,20 @@ string('around.ogg', 'περίπου ').
 string('kilometers.ogg', 'χιλιόμετρα ').
 
 string('feet.ogg', 'πόδια ').
-string('1_tenth_of_a_mile.ogg', 'το ένα δέκατο του ενός μιλίου').
+string('1_tenth_of_a_mile.ogg', 'ένα δέκατο του μιλίου').
 string('tenths_of_a_mile.ogg', 'δέκατα του μιλίου').
 string('around_1_mile.ogg', 'περίπου ένα μίλι ').
 string('miles.ogg', 'μίλια ').
 
-string('yards.ogg', 'ναυπηγεία ').
+string('yards.ogg', 'γιάρδες ').
 
 % TIME SUPPORT
 string('time.ogg', 'χρόνος που απαιτείται ').
-string('1_hour.ogg', 'ενός ώρες ').
+string('1_hour.ogg', 'μία ώρα ').
 string('hours.ogg', 'ώρες ').
 string('less_a_minute.ogg', 'λιγότερο από ένα λεπτό ').
 string('1_minute.ogg', 'ένα λεπτό ').
-string('minutes.ogg', 'πρακτικά ').
+string('minutes.ogg', 'λεπτά ').
 
 
 %% COMMAND BUILDING / WORD ORDER
