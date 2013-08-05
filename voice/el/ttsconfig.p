@@ -91,10 +91,10 @@ string('reached_waypoint.ogg', 'φτάσατε στο ενδιάμεσο σημ�
 string('attention.ogg', 'προσοχή , ').
 string('location_lost.ogg', 'Το σήμα gps χάθηκε ').
 string('off_route.ogg', 'έχετε παρεκκλίνει από τη διαδρομή ').
-string('exceed_limit.ogg', 'που υπερβαίνουν το όριο ταχύτητας ').
+string('exceed_limit.ogg', 'έχετε υπερβεί το όριο ταχύτητας ').
 
 % STREET NAME GRAMMAR
-string('onto.ogg', 'μετά  ').
+string('onto.ogg', 'στην  ').
 %string('on.ogg', 'on ').
 %string('to.ogg', 'to ').
 
