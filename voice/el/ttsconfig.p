@@ -84,8 +84,8 @@ string('and_arrive_destination.ogg', 'και φτάσατε στον προορ�
 string('reached_destination.ogg','φτάσατε στον προορισμό σας ').
 string('and_arrive_intermediate.ogg', 'και φτάσατε στο ενδιάμεσο σημείο ').
 string('reached_intermediate.ogg', 'φτάσατε στο ενδιάμεσο σημείο ').
-string('and_arrive_waypoint.ogg', 'και φτάσατε στο ενδιάμεσο σημείο GPX').
-string('reached_waypoint.ogg', 'φτάσατε στο ενδιάμεσο σημείο GPX').
+string('and_arrive_waypoint.ogg', 'και φτάσατε στο σημείο GPX').
+string('reached_waypoint.ogg', 'φτάσατε στο σημείο GPX').
 
 % OTHER PROMPTS
 string('attention.ogg', 'προσοχή , ').
