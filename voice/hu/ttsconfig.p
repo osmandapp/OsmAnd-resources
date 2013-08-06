@@ -27,7 +27,7 @@ language('hu').
 
 % ROUTE CALCULATED
 string('route_is1.ogg', 'Az útvonal  ').
-string('route_calculate.ogg', 'útvonal újratervezése, az útvonal ').
+string('route_calculate.ogg', 'Újratervezés, az útvonal ').
 
 % LEFT/RIGHT
 string('prepare.ogg', ' ').
@@ -44,17 +44,17 @@ string('right_keep.ogg', 'tarts jobbra ').
 % if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
-string('prepare_make_uturn.ogg', 'múlva készülj fel a visszafordulásra ').
+string('prepare_make_uturn.ogg', 'Készülj fel a visszafordulásra ').
 string('make_uturn1.ogg', 'múlva fordulj vissza ').
 string('make_uturn2.ogg', 'Fordulj vissza ').
-string('make_uturn_wp.ogg', 'Fordulj vissza ').
+string('make_uturn_wp.ogg', 'Fordulj vissza, amint lehet ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'múlva hajts be a körforgalomba ').
 string('roundabout.ogg', 'múlva a körforgalomból ').
 string('roundabout2.ogg', 'kijáraton hajts ki').
 string('then.ogg', 'majd ').
-string('and.ogg', ' ').
+string('and.ogg', ' és').
 string('take.ogg', 'hajts ki ').
 string('exit.ogg', 'kijáraton ').
 
@@ -85,23 +85,28 @@ string('and_arrive_destination.ogg', 'és megérkezel az uticélhoz. ').
 string('reached_destination.ogg','megérkeztél az uticélhoz ').
 string('and_arrive_intermediate.ogg', 'és megérkezel a köztes célponthoz. ').
 string('reached_intermediate.ogg', 'megérkeztél a köztes célponthoz ').
-string('and_arrive_waypoint.ogg', 'és megérkezel a köztes célponthoz G P X ').
-string('reached_waypoint.ogg', 'megérkeztél a köztes célponthoz G P X ').
+string('and_arrive_waypoint.ogg', 'és megérkezel a köztes GPX útponthoz ').
+string('reached_waypoint.ogg', 'megérkeztél a köztes GPX útponthoz ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'figyelem, ').
 string('location_lost.ogg', 'nem található dzsípíesz pozíció ').
-string('off_route.ogg', 'Ön letért a tervezett útvonalról ').
-string('exceed_limit.ogg', 'akkor meghaladja a megengedett sebességet ').
+string('off_route.ogg', 'Letértél a tervezett útvonalról ').
+string('exceed_limit.ogg', 'Túllépted a sebességhatárt ').
 
 % STREET NAME GRAMMAR
-string('onto.ogg', 'a ').
+string('onto_pre.ogg', ', ').
+string('onto_post.ogg', 'felé ').
+string('on.ogg', ', ezen: ').
+string('to.ogg', ', eddig: ').
 
 % DISTANCE UNIT SUPPORT
 string('meters_nom.ogg', 'méter ').
 string('meters_acc.ogg', 'métert ').
-string('around_1_kilometer_nom.ogg', 'körülbelül 1 kilométer ').
-string('around_1_kilometer_acc.ogg', 'körülbelül 1 kilométert ').
+string('1_kilometer_nom.ogg', '1 kilométer ').
+string('1_kilometer_acc.ogg', '1 kilométert ').
+string('1_5_kilometer_nom.ogg', 'másfél kilométer ').
+string('1_5_kilometer_acc.ogg', 'másfél kilométert ').
 string('around.ogg', 'mintegy ').
 string('kilometers_nom.ogg', 'kilométer ').
 string('kilometers_acc.ogg', 'kilométert ').
@@ -109,22 +114,22 @@ string('kilometers_acc.ogg', 'kilométert ').
 string('feet_nom.ogg', 'felhajtás ').
 string('feet_acc.ogg', 'felhajtás ').
 string('1_tenth_of_a_mile_nom.ogg', 'egytized mérföld ').
-string('1_tenth_of_a_mile_acc.ogg', 'egytized mérföld ').
-string('tenths_of_a_mile_nom.ogg', 'tizede egy mérföld ').
-string('tenths_of_a_mile_acc.ogg', 'tizede egy mérföld ').
+string('1_tenth_of_a_mile_acc.ogg', 'egytized mérföldet ').
+string('tenths_of_a_mile_nom.ogg', 'tized mérföld ').
+string('tenths_of_a_mile_acc.ogg', 'tized mérföldet ').
 string('around_1_mile_nom.ogg', 'körülbelül egy mérföld ').
-string('around_1_mile_acc.ogg', 'körülbelül egy mérföld ').
+string('around_1_mile_acc.ogg', 'körülbelül egy mérföldet ').
 string('miles_nom.ogg', 'mérföld ').
-string('miles_acc.ogg', 'mérföld ').
+string('miles_acc.ogg', 'mérföldet ').
 
 string('yards_nom.ogg', 'yard ').
-string('yards_acc.ogg', 'yard ').
+string('yards_acc.ogg', 'yardot ').
 
 % TIME SUPPORT
-string('time.ogg', ', szükséges idő ').
+string('time.ogg', ', a menetidő ').
 string('1_hour.ogg', 'egy óra ').
 string('hours.ogg', 'óra ').
-string('less_a_minute.ogg', 'kevesebb, mint egy perc alatt ').
+string('less_a_minute.ogg', 'kevesebb, mint egy perc ').
 string('1_minute.ogg', 'egy perc ').
 string('minutes.ogg', 'perc ').
 
@@ -142,16 +147,22 @@ bear_left(_Street) -- ['left_keep.ogg'].
 bear_right(_Street) -- ['right_keep.ogg'].
 
 onto_street('', []).
-onto_street(Street, ['onto.ogg', Street]) :- tts.
+onto_street(Street, ['onto_pre.ogg', Street, 'onto_post.ogg']) :- tts.
 onto_street(_Street, []) :- not(tts).
+on_street('', []).
+on_street(Street, ['on.ogg', Street]) :- tts.
+on_street(_Street, []) :- not(tts).
+to_street('', []).
+to_street(Street, ['to.ogg', Street]) :- tts.
+to_street(_Street, []) :- not(tts).
 
 prepare_turn(Turn, Dist, Street) -- [D, 'after.ogg', M | Sgen] :- distance(Dist, nom) -- D, turn(Turn, M), onto_street(Street, Sgen).
 turn(Turn, Dist, Street) -- [D, 'after.ogg', M | Sgen] :- distance(Dist, nom) -- D, turn(Turn, M), onto_street(Street, Sgen).
 turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), onto_street(Street, Sgen).
 
-prepare_make_ut(Dist, Street) -- ['prepare_make_uturn.ogg' | Sgen] :- distance(Dist, nom) -- D, onto_street(Street, Sgen).
-make_ut(Dist, Street) --  [D, 'make_uturn1.ogg' | Sgen] :- distance(Dist, nom) -- D, onto_street(Street, Sgen).
-make_ut(Street) -- ['make_uturn2.ogg' | Sgen] :- onto_street(Street, Sgen).
+prepare_make_ut(Dist, Street) -- ['prepare_make_uturn.ogg', D, 'after.ogg' | Sgen] :- distance(Dist, nom) -- D, on_street(Street, Sgen).
+make_ut(Dist, Street) --  [D, 'make_uturn1.ogg' | Sgen] :- distance(Dist, nom) -- D, on_street(Street, Sgen).
+make_ut(Street) -- ['make_uturn2.ogg' | Sgen] :- on_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
 prepare_roundabout(Dist, _Exit, _Street) -- [D, 'prepare_roundabout.ogg'] :- distance(Dist, nom) -- D.
@@ -159,7 +170,7 @@ roundabout(Dist, _Angle, Exit, Street) -- [D, 'roundabout.ogg', E, 'roundabout2.
 roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), onto_street(Street, Sgen).
 
 go_ahead -- ['go_ahead.ogg'].
-go_ahead(Dist, Street) -- ['follow1.ogg', D | Sgen]:- distance(Dist, acc) -- D, onto_street(Street, Sgen).
+go_ahead(Dist, Street) -- ['follow1.ogg', D | Sgen]:- distance(Dist, acc) -- D, to_street(Street, Sgen).
 
 then -- ['then.ogg'].
 name(D, [D]) :- tts.
@@ -176,7 +187,7 @@ route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', D, 'time.ogg', T] :- distance(Dist, nom) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
-off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist, nom) -- D.
+off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist, acc) -- D.
 attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
 
@@ -243,8 +254,10 @@ distance_km(Dist, nom) -- [ X, 'meters_nom.ogg']                  :- Dist < 100,
 distance_km(Dist, acc) -- [ X, 'meters_acc.ogg']                  :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
 distance_km(Dist, nom) -- [ X, 'meters_nom.ogg']                  :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
 distance_km(Dist, acc) -- [ X, 'meters_acc.ogg']                  :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
-distance_km(Dist, nom) -- ['around_1_kilometer_nom.ogg']          :- Dist < 1500.
-distance_km(Dist, acc) -- ['around_1_kilometer_acc.ogg']          :- Dist < 1500.
+distance_km(Dist, nom) -- ['1_kilometer_nom.ogg']                 :- Dist < 1200.
+distance_km(Dist, acc) -- ['1_kilometer_acc.ogg']                 :- Dist < 1200.
+distance_km(Dist, nom) -- ['1_5_kilometer_nom.ogg']               :- Dist < 1650.
+distance_km(Dist, acc) -- ['1_5_kilometer_acc.ogg']               :- Dist < 1650.
 distance_km(Dist, nom) -- ['around.ogg', X, 'kilometers_nom.ogg'] :- Dist < 10000, D is round(Dist/1000.0),            dist(D, X).
 distance_km(Dist, acc) -- ['around.ogg', X, 'kilometers_acc.ogg'] :- Dist < 10000, D is round(Dist/1000.0),            dist(D, X).
 distance_km(Dist, nom) -- [ X, 'kilometers_nom.ogg']              :-               D is round(Dist/1000.0),            dist(D, X).
