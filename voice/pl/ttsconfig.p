@@ -112,10 +112,10 @@ string('yards.ogg', 'jardów ').
 % TIME SUPPORT
 string('time.ogg', 'czas potrzebny ').
 string('1_hour.ogg', 'jeden godzina ').
-string('hours.ogg', 'godzina ').
+string('hours.ogg', 'godziny ').
 string('less_a_minute.ogg', 'mniej niż minuta ').
-string('1_minute.ogg', 'jeden minuta ').
-string('minutes.ogg', 'minuta ').
+string('1_minute.ogg', 'jedna minuta ').
+string('minutes.ogg', 'minut ').
 
 
 %% COMMAND BUILDING / WORD ORDER
