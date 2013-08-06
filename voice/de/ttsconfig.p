@@ -113,8 +113,8 @@ string('around.ogg', 'zirka ').
 string('kilometers_nominativ.ogg', 'Kilometer ').
 string('kilometers_dativ.ogg', 'Kilometern ').
 
-string('feet_nominativ.ogg', 'fus ').
-string('feet_dativ.ogg', 'fus ').
+string('feet_nominativ.ogg', 'fuss ').
+string('feet_dativ.ogg', 'fuss ').
 string('1_tenth_of_a_mile_nominativ.ogg', 'eine zehntel meile ').
 string('1_tenth_of_a_mile_dativ.ogg', 'einer zehntel meile ').
 string('tenths_of_a_mile_nominativ.ogg', 'zehntel meilen ').
