@@ -36,20 +36,21 @@ fi
 
 
 # VOICE package ready
-# ./gen_voice.sh cs Czech $ENGINE cs
-# ./gen_voice.sh da Danish $ENGINE da
-# ./gen_voice.sh de German $ENGINE de
-# ./gen_voice.sh el Greek $ENGINE el
-# ./gen_voice.sh en English $ENGINE en
-# ./gen_voice.sh es Spanish $ENGINE es
-# ./gen_voice.sh fi Finnish $ENGINE fi
-# ./gen_voice.sh fr French $ENGINE fr
-# ./gen_voice.sh hu Hungarian $ENGINE hu
-# ./gen_voice.sh it Italian $ENGINE it
-# ./gen_voice.sh ko Korean $ENGINE ko
-# ./gen_voice.sh nl Dutch $ENGINE nl
-# ./gen_voice.sh pl Polish $ENGINE pl
-# ./gen_voice.sh pt Portuguese $ENGINE pt
-# ./gen_voice.sh ru Russian $ENGINE ru
-# ./gen_voice.sh sv Swedish $ENGINE sv
-# ./gen_voice.sh zh Chinese $ENGINE zh
+ENGINE=ispeech
+./gen_voice.sh cs Czech $ENGINE cs
+./gen_voice.sh da Danish $ENGINE da
+./gen_voice.sh de German $ENGINE de
+./gen_voice.sh el Greek $ENGINE el
+./gen_voice.sh en English $ENGINE en
+./gen_voice.sh es Spanish $ENGINE es
+./gen_voice.sh fi Finnish $ENGINE fi
+./gen_voice.sh fr French $ENGINE fr
+./gen_voice.sh hu Hungarian $ENGINE hu
+./gen_voice.sh it Italian $ENGINE it
+./gen_voice.sh ko Korean $ENGINE ko
+./gen_voice.sh nl Dutch $ENGINE nl
+./gen_voice.sh pl Polish $ENGINE pl
+./gen_voice.sh pt Portuguese $ENGINE pt
+./gen_voice.sh ru Russian $ENGINE ru
+./gen_voice.sh sv Swedish $ENGINE sv
+./gen_voice.sh zh Chinese $ENGINE zh
