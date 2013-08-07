@@ -62,8 +62,8 @@ for t in `ls *.mp3`; do
 done
 
 ### for t in `ls *.wav` ; do oggenc $t ; done
-
-# for t in `ls *.ogg` ; do 
+# function updateFile { Og=${1::-4} && sox $t r${Og}.ogg reverse && sox r${Og}.ogg ${Og}.ogg silence 1 0.1 0.01% reverse && rm r${Og}.ogg }
+# for t in `ls *.ogg` ; do Og=${t::-4} && sox $t r${Og}.ogg reverse && sox r${Og}.ogg ${Og}.ogg silence 1 0.1 0.01% reverse && rm r${Og}.ogg; done
 for t in `ls *.wav` ; do 
 	Og=${t::-4}
 	sox $t r${Og}.ogg reverse
