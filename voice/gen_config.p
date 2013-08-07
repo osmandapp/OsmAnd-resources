@@ -35,4 +35,4 @@ gen(File, fest) :- assert(voice_generation), assert(fest),consult(File), findall
 gen(File, google) :- assert(voice_generation), assert(google_gen),!, consult(File), findall(string(Fn, T), string(Fn, T), Result),
  		language(FL), write_wget(Result, FL) .
 
-gen(File, ispeech) :- assert(voice_generation), assert(ispeech),!, consult(File), findall(string(Fn, T), string(Fn, T), Result), language(FL), write('Filename,Text\n'),  write_ispeech_c(Result, FL) .
+gen(File, ispeech) :- assert(voice_generation), assert(ispeech),!, consult(File), findall(string(Fn, T), string(Fn, T), Result), language(FL), write('Filename,Text\n'),  write_ispeech_csv(Result, FL) .
