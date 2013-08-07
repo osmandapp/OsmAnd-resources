@@ -49,7 +49,7 @@ elif [ $ENGINE = "ispeech" ]; then
     prolog -s ../gen_config.p -q -t "$GOAL" > ispeech_$1.csv    
     cp ../$1/voice/* .
     # copy back to track differences
-    cp ispeech_$1.csv  ../$1/
+    mv ispeech_$1.csv  ../$1/
 else
 	echo "google_gen:-fail." >> g_config.p
 	prolog -s ../gen_config.p -q -t "$GOAL" > fest.$1
