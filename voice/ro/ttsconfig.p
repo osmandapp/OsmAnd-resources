@@ -100,10 +100,10 @@ string('and_arrive_waypoint.ogg', 'și ajungeți la punctul intermediar GPX').
 string('reached_waypoint.ogg', 'Ați ajuns la punctul intermediar GPX').
 
 % OTHER PROMPTS
-string('attention.ogg', 'atención, ').
+string('attention.ogg', 'atenţie, ').
 string('location_lost.ogg', 'semnal gipies pierdut ').
-string('off_route.ogg', 'te has desviado de la ruta').
-string('exceed_limit.ogg', 'límite de velocidad excedido').
+string('off_route.ogg', 'aţi deviat de la rută').
+string('exceed_limit.ogg', 'limita de viteză depăşită').
 
 % STREET NAME GRAMMAR
 string('onto.ogg', 'pe ').
