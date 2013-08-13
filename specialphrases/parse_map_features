@@ -16,12 +16,12 @@ unless (@ARGV) {
 }
 
 while (<>) {
-    if (/\|                             # first match pipe
-        \s*?(?:{{{)?                    # match space and optinally {{{
-        (?<key>[^:{]+):desc(?:=|\|)\s*? # match key
-        (?<template>{{Template[^}]*}})?   # try to match template
-        (?<start_desc>[^']*)            # match text that comes before a emphasized text
-        .*?(?<desc>'''[^']+''')?(?<rest>[^']*?)   # match emphasized text , including stuff after a comma and slash (should be removed in post process)
+    if (/\|                                # first match pipe
+        \s*?(?:{{{)?                       # match space and optinally {{{
+        (?<key>[^:{]+):desc(?:=|\|)\s*?    # match key
+        (?<template>{{Template[^}]*}})?    # try to match template
+        (?<start_desc>[^']*)               # match text that comes before a emphasized text
+        .*?(?<desc>'''[^']+''')?(?:[^']*?) # match emphasized text , including stuff after a comma and slash (should be removed in post process)
         /xms and not /do not use this tag/ims) {
         # say "--$+{start_desc}--";
         if (defined $+{template}) {
@@ -31,10 +31,10 @@ while (<>) {
         }
         next if $+{start_desc} =~ /(?:siehe|see)/ixms;
         my $key = $+{key};
-        if ($+{desc} =~ /\A'''(.*)'''/) {
+        if ($+{desc} =~ /\A'''(.*)'''/xms) {
             my $output = "$key,$1";
             say $output;
-            if ($1 =~ /([\/,])/) {
+            if ($1 =~ /([\/,])/xms) {
                 say {*STDERR} "$output includes $1. Be sure to resolve this.";
             }
         }
