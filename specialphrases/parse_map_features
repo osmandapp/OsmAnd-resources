@@ -1,0 +1,42 @@
+#!/usr/bin/env perl
+# @author Robin Schneider <ypid23@aol.de>
+# @licence GPLv3+ <http://www.gnu.org/licenses/gpl.html>
+use strict;
+use warnings;
+use autodie;
+# use feature qw(say);
+use 5.010;
+use utf8;
+use open qw(:std :utf8);
+binmode STDOUT, ':encoding(UTF-8)';
+
+unless (@ARGV) {
+    say "Please give me a file with the relevant copy of the map features wiki source or pipe it into this script.";
+    exit 1;
+}
+
+while (<>) {
+    if (/\|                                # first match pipe
+        \s*?(?:{{{)?                       # match space and optinally {{{
+        (?<key>[^:{]+):desc(?:=|\|)\s*?    # match key
+        (?<template>{{Template[^}]*}})?    # try to match template
+        (?<start_desc>[^']*)               # match text that comes before a emphasized text
+        .*?(?<desc>'''[^']+''')?(?:[^']*?) # match emphasized text , including stuff after a comma and slash (should be removed in post process)
+        /xms and not /do not use this tag/ims) {
+        # say "--$+{start_desc}--";
+        if (defined $+{template}) {
+            say {*STDERR} "$+{key} uses $+{template}. Please resolve this manually.";
+            say "$+{key},$+{template}";
+            next;
+        }
+        next if $+{start_desc} =~ /(?:siehe|see)/ixms;
+        my $key = $+{key};
+        if ($+{desc} =~ /\A'''(.*)'''/xms) {
+            my $output = "$key,$1";
+            say $output;
+            if ($1 =~ /([\/,])/xms) {
+                say {*STDERR} "$output includes $1. Be sure to resolve this.";
+            }
+        }
+    }
+}
