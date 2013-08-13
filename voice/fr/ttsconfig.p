@@ -96,13 +96,13 @@ string('and_arrive_destination.ogg', 'et arrivez à destination ').
 string('reached_destination.ogg','vous êtes arrivé à destination ').
 string('and_arrive_intermediate.ogg', 'et arrivez à l étape '). % !!! no apostrophe
 string('reached_intermediate.ogg', 'vous êtes arrivé à l étape').
-string('and_arrive_waypoint.ogg', 'et arrivez à l étape GPX ').
-string('reached_waypoint.ogg', 'vous êtes arrivé à l étape GPX ').
+string('and_arrive_waypoint.ogg', 'et arrivez à l étape G P X ').
+string('reached_waypoint.ogg', 'vous êtes arrivé à l étape G P X ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'attention , ').
-string('location_lost.ogg', 'signal g p s perdu ').
-string('off_route.ogg', 'vous avez dévié de l itinéraire  depuis').
+string('location_lost.ogg', 'signal G P S perdu ').
+string('off_route.ogg', 'vous avez dévié de l itinéraire depuis').
 string('exceed_limit.ogg', 'vous dépassez la limite de vitesse ').
 
 % STREET NAME GRAMMAR
@@ -124,10 +124,10 @@ string('yards.ogg', 'yards ').
 
 % TIME SUPPORT
 string('time.ogg', 'Il est ').
-string('1_hour.ogg', 'un heure ').
+string('1_hour.ogg', 'une heure ').
 string('hours.ogg', 'heures ').
 string('less_a_minute.ogg', 'moins d une minute ').
-string('1_minute.ogg', 'une minutes ').
+string('1_minute.ogg', 'une minute ').
 string('minutes.ogg', 'minutes').
 
 
