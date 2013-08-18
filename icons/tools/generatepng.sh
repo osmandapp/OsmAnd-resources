@@ -20,6 +20,20 @@ for (( i = 0 ; i < ${#FOLDERS[@]} ; i++ )) do
   mkdir -p ${OUTPUTFOLDER}/${FOLDERS[i]}
 done
 
+generateElements() {
+  TYPE=$1
+  for FILE in $SVGFOLDER$1/*.svg; do
+      FILENAME=${FILE##/*/}
+      if [[ $FILENAME == _* ]]; then
+        continue;
+      fi
+      FILENAME=${FILENAME%.*}
+      rsvg -f png ${FILE} -x 1 -y 1 ${OUTPUTFOLDER}mdpi/${FILENAME}.png
+      rsvg -f png ${FILE} -x 1.5 -y 1.5 ${OUTPUTFOLDER}hdpi/${FILENAME}.png
+      rsvg -f png ${FILE} -x 2 -y 2 ${OUTPUTFOLDER}xhdpi/${FILENAME}.png        
+  done
+}
+
 generatePngs() {
   TYPE=$1
   COLOR=$2
@@ -49,33 +63,34 @@ generatePngs() {
     done
 }
 
-generatePngs 'functional-icons' '#777777' '#777777'
-generatePngs 'water' '#0092DA' '#777777'
+generateElements 'shaders'
+# generatePngs 'functional-icons' '#777777' '#777777'
+# generatePngs 'water' '#0092DA' '#777777'
 
-generatePngs 'emergency' '#DA0092' '#777777'
-generatePngs 'health' '#DA0092' '#777777'
+# generatePngs 'emergency' '#DA0092' '#777777'
+# generatePngs 'health' '#DA0092' '#777777'
 
-generatePngs 'transport' '#0092DA' '#777777'
+# generatePngs 'transport' '#0092DA' '#777777'
 
-generatePngs 'barrier' '#777777' '#777777'
+# generatePngs 'barrier' '#777777' '#777777'
 
-generatePngs 'accommodation' '#0092DA' '#777777'
+# generatePngs 'accommodation' '#0092DA' '#777777'
 
-generatePngs 'tourist' '#734A08' '#777777'
+# generatePngs 'tourist' '#734A08' '#777777'
 
-generatePngs 'sport'  '#39AC39' '#777777'
+# generatePngs 'sport'  '#39AC39' '#777777'
 
-generatePngs 'amenity' '#777777' '#734A08'
-generatePngs 'place_of_worship' '#777777' '#777777'
-generatePngs 'money' '#777777' '#777777'
-generatePngs 'education' '#777777' '#39AC39'
-generatePngs 'poi' '#777777' '#777777' 
-generatePngs 'power' '#777777' '#8e7409'
+# generatePngs 'amenity' '#777777' '#734A08'
+# generatePngs 'place_of_worship' '#777777' '#777777'
+# generatePngs 'money' '#777777' '#777777'
+# generatePngs 'education' '#777777' '#39AC39'
+# generatePngs 'poi' '#777777' '#777777' 
+# generatePngs 'power' '#777777' '#8e7409'
 
-generatePngs 'food' '#777777' '#734A08'
+# generatePngs 'food' '#777777' '#734A08'
 
-generatePngs 'shopping' '#777777' '#AC39AC'
+# generatePngs 'shopping' '#777777' '#AC39AC'
 
-generatePngs 'landuse' '#777777' '#999999'
+# generatePngs 'landuse' '#777777' '#999999'
 
-generatePngs 'icons8' '#777777' '#777777' neg
+# generatePngs 'icons8' '#777777' '#777777' neg

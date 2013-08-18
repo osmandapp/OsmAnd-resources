@@ -17,22 +17,10 @@ mycp() {
 
 
 
-## Shaders !
-# mycp landuse	forest	        # Keep shaders with background color, cannot be replaced by icons!
-# mycp natural	beach	        # Keep shaders with background color, cannot be replaced by icons!
-# mycp natural	wetland	        # Keep shaders with background color, cannot be replaced by icons!
-# mycp natural	marsh	        # Keep shaders with background color, cannot be replaced by icons!
-# mycp natural	mud	        # Keep shaders with background color, cannot be replaced by icons!
-# mycp natural	scrub	        # Keep shaders with background color, cannot be replaced by icons!
-# mycp landuse	orchard	        # Keep shaders with background color, cannot be replaced by icons!
-# mycp landuse	vineyard        # Keep shaders with background color, cannot be replaced by icons!
-# mycp landuse	cemetery        # Keep shaders with background color, cannot be replaced by icons!
-# mycp amenity	grave_yard      # Keep shaders with background color, cannot be replaced by icons!
-# mycp natural	glacier	        # Keep shaders with background color, cannot be replaced by icons!
-# mycp leisure	nature_reserve  # Keep shaders with background color, cannot be replaced by icons!
-# mycp tourism	zoo             # Keep shaders with background color, cannot be replaced by icons!
-# mycp landuse	quarry          # Keep shaders with background color, cannot be replaced by icons!
-# mycp military	danger_area     # Keep shaders with background color, cannot be replaced by icons!
+## Shaders ! # copy all shaders untouched
+cp ../png/mdpi/h_* ../../rendering_styles/style-icons/drawable-mdpi/
+cp ../png/hdpi/h_* ../../rendering_styles/style-icons/drawable-hdpi/
+cp ../png/xhdpi/h_* ../../rendering_styles/style-icons/drawable-xhdpi/
 
 mygroup landuse landuse_coniferous.png
 mycp landuse grass landuse_grass.png
