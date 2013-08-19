@@ -38,15 +38,15 @@ string('after1.ogg', 'fra').
 string('left.ogg', 'girare a sinistra').
 string('left_sh.ogg', 'subito a sinistra').
 string('left_sl.ogg', 'girare leggermente a sinistra').
-string('right.ogg', 'girare a destra').
-string('right_sh.ogg', 'subito a destra').
-string('right_sl.ogg', 'girate leggermente a destra').
+string('right.ogg', 'girare a dèstra').
+string('right_sh.ogg', 'subito a dèstra').
+string('right_sl.ogg', 'girate leggermente a dèstra').
 string('left_keep.ogg', 'tenersi sulla sinistra').
-string('right_keep.ogg', 'tenersi sulla destra').
+string('right_keep.ogg', 'tenersi sulla dèstra').
 % if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
-string('prepare_make_uturn.ogg', 'Prepararsi ad una inversione a u tra').
+string('prepare_make_uturn.ogg', 'Prepararsi ad una inversione ad u tra').
 string('make_uturn.ogg', 'inversione a u').
 string('make_uturn_wp.ogg', 'Quando possibile fate inversione a u').
 
@@ -84,9 +84,9 @@ string('follow.ogg', 'Proseguite per').
 string('and_arrive_destination.ogg', 'e arrivate a destinazione').
 string('reached_destination.ogg','arrivato a destinazione').
 string('and_arrive_intermediate.ogg', 'e arrivate a punto intermedio').
-string('reached_intermediate.ogg', 'arrivato a punto intermedio').
-string('and_arrive_waypoint.ogg', 'e arrivate a punto intermedio').
-string('reached_waypoint.ogg', 'arrivato a punto intermedio').
+string('reached_intermediate.ogg', 'arrivato al punto intermedio').
+string('and_arrive_waypoint.ogg', 'e arrivate al punto intermedio').
+string('reached_waypoint.ogg', 'arrivato al punto intermedio').
 
 % OTHER PROMPTS
 string('attention.ogg', 'attenzione, ').
@@ -104,7 +104,7 @@ string('around_1_kilometer.ogg', 'circa un chilometro').
 string('around.ogg', 'circa').
 string('kilometers.ogg', 'chilometri').
 
-string('feet.ogg', 'pies').
+string('feet.ogg', 'piede').
 string('1_tenth_of_a_mile.ogg', 'un decimo di miglio').
 string('tenths_of_a_mile.ogg', 'decimi di miglio').
 string('around_1_mile.ogg', 'circa 1 miglio').
