@@ -1,4 +1,4 @@
-<renderingStyle name="High detail topo render + public transport" depends="default" defaultColor="#f1eae4" version="1">
+<renderingStyle name="Topo map assimilation + public transport experiment" depends="default" defaultColor="#f1eae4" version="1">
 
 <!--
 High detail topo render + public transport by Adam Szalapata 2013-04-12, based on touring-view(more_contrast_and_details) by Hardy Mueller and Christof Knuesel.
@@ -15,8 +15,8 @@ High detail topo render + public transport by Adam Szalapata 2013-04-12, based o
 - forests have a little less saturated tint
 - other route and gpx color adjusted to this style for better visibility
 
-Experimantal: Public transport renderer insted of Alpine hiking renderer:
-- in Alpine hiking mode railways, subway, tram and light rail lines are highlighted (more saturated colors and bigger stroke width)
+Experimantal: Public transport renderer option:
+- railways, subway, tram and light rail lines are highlighted (more saturated colors and bigger stroke width)
 - roads have less saturated colors for better visibility of public transport lines
 
 Contact: sniata@o2.pl
@@ -79,20 +79,22 @@ Contact: sniata@o2.pl
 	-->
 
 	
-	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
-		type="boolean" possibleValues=""/>
+	<!-- renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
+		type="boolean" possibleValues=""/ -->
 	<renderingProperty attr="osmcTraces" name="OSMC traces view" description="Render paths according to OSMC traces"
+		type="boolean" possibleValues=""/>
+	<renderingProperty attr="publicTransport" name="Public transport experimental view" description="Try accentuate public transport over roads"
 		type="boolean" possibleValues=""/>
 
 	<!-- other road casing than in default -->
 	<renderingAttribute name="shadowRendering">
 	<!-- 0 - no shadow, 1 - one step, 2 - blur shadow, 3 - solid shadow -->
 		<!-- next line corrects for shadowColor appearing very dark with solid shadow in day view, bridges would not stand out -->
-		<filter minzoom="15" nightMode="false" alpineHiking="true" attrIntValue="3" shadowColor="#aaaaaa"/>
+		<filter minzoom="15" nightMode="false" publicTransport="true" attrIntValue="3" shadowColor="#aaaaaa"/>
 		<filter minzoom="15" nightMode="false" attrIntValue="2" shadowColor="#888888"/>
 		<filter minzoom="15" attrIntValue="3" shadowColor="#888888"/>
 		<!-- next line avoids melting close-together highways into one another - disadvantage is separator lines between segments and at intersections --> 
-		<filter minzoom="9" maxzoom="14" alpineHiking="true" attrIntValue="3" shadowColor="#bebebe"/>
+		<filter minzoom="9" maxzoom="14" publicTransport="true" attrIntValue="3" shadowColor="#bebebe"/>
 		<filter minzoom="9" maxzoom="14" attrIntValue="3" shadowColor="#9e9e9e"/>
 		<!-- appearance equivalents: one-step #464646 equals solid #767676 -->
 		<!-- filter minzoom="9" maxzoom="13" attrIntValue="3" shadowColor="#767676"/ -->
@@ -172,8 +174,8 @@ Contact: sniata@o2.pl
 	    <group>
 			<filter appMode="car" tag="highway" value="motorway" nightMode="true" color="#c14a37"/>
 			<filter appMode="car" tag="highway" value="motorway_link" nightMode="true" color="#c14a37"/>
-			<filter tag="highway" value="motorway" alpineHiking="true"  color="#ffdcac"/>
-			<filter tag="highway" value="motorway_link" alpineHiking="true"  color="#ffdcac"/>
+			<filter tag="highway" value="motorway" publicTransport="true"  color="#ffdcac"/>
+			<filter tag="highway" value="motorway_link" publicTransport="true"  color="#ffdcac"/>
 			<filter tag="highway" value="motorway" color="#c15b3e"/>
 			<filter tag="highway" value="motorway_link" color="#c15b3e"/>
 			<groupFilter shadowRadius="1" cap="ROUND">
@@ -229,8 +231,8 @@ Contact: sniata@o2.pl
 	    <group>
 			<filter appMode="car" tag="highway" value="trunk" nightMode="true" color="#df7e22"/>
 			<filter appMode="car" tag="highway" value="trunk_link" nightMode="true" color="#df7e22"/>
-			<filter tag="highway" value="trunk" alpineHiking="true"  color="#ffdcac"/>
-			<filter tag="highway" value="trunk_link" alpineHiking="true"  color="#ffdcac"/>
+			<filter tag="highway" value="trunk" publicTransport="true"  color="#ffdcac"/>
+			<filter tag="highway" value="trunk_link" publicTransport="true"  color="#ffdcac"/>
 			<filter tag="highway" value="trunk" color="#df7e22"/>
 			<filter tag="highway" value="trunk_link" color="#df7e22"/>
 			<groupFilter shadowRadius="1" cap="ROUND">
@@ -286,8 +288,8 @@ Contact: sniata@o2.pl
 		<group>
 			<filter appMode="car" tag="highway" value="primary" nightMode="true" color="#dfb926"/>
 			<filter appMode="car" tag="highway" value="primary_link" nightMode="true" color="#dfb926"/>
-			<filter tag="highway" value="primary" alpineHiking="true"  color="#fff5c3"/>
-			<filter tag="highway" value="primary_link" alpineHiking="true"  color="#fff5c3"/>
+			<filter tag="highway" value="primary" publicTransport="true"  color="#fff5c3"/>
+			<filter tag="highway" value="primary_link" publicTransport="true"  color="#fff5c3"/>
 			<filter tag="highway" value="primary" color="#dfb926"/>
 			<filter tag="highway" value="primary_link" color="#dfb926"/>
 			<groupFilter shadowRadius="1" cap="ROUND">
@@ -343,8 +345,8 @@ Contact: sniata@o2.pl
 		<group>
 			<filter appMode="car" tag="highway" value="secondary" nightMode="true" color="#ffdd20"/>
 			<filter appMode="car" tag="highway" value="secondary_link" nightMode="true" color="#ffdd20"/>
-			<filter tag="highway" value="secondary" alpineHiking="true"  color="#ffffe5"/>
-			<filter tag="highway" value="secondary_link" alpineHiking="true"  color="#ffffe5"/>
+			<filter tag="highway" value="secondary" publicTransport="true"  color="#ffffe5"/>
+			<filter tag="highway" value="secondary_link" publicTransport="true"  color="#ffffe5"/>
 			<filter tag="highway" value="secondary" color="#ffdd20"/>
 			<filter tag="highway" value="secondary_link" color="#ffdd20"/>
 			<groupFilter shadowRadius="1" cap="ROUND">
@@ -400,8 +402,8 @@ Contact: sniata@o2.pl
 		<group>
 			<filter appMode="car" tag="highway" value="tertiary" nightMode="true" color="#ffff85"/>
 			<filter appMode="car" tag="highway" value="tertiary_link" nightMode="true" color="#ffff85"/>
-			<filter tag="highway" value="tertiary" alpineHiking="true"  color="#ffffe5"/>
-			<filter tag="highway" value="tertiary_link" alpineHiking="true"  color="#ffffe5"/>
+			<filter tag="highway" value="tertiary" publicTransport="true"  color="#ffffe5"/>
+			<filter tag="highway" value="tertiary_link" publicTransport="true"  color="#ffffe5"/>
 			<filter tag="highway" value="tertiary" color="#ffff85"/>
 			<filter tag="highway" value="tertiary_link" color="#ffff85"/>
 			<groupFilter  shadowRadius="1" cap="ROUND">
@@ -655,33 +657,33 @@ Contact: sniata@o2.pl
 		</group>
 		
 		<group>
-		<filter tag="railway" minzoom="7" value="rail" alpineHiking="true" nightMode="true" color="#505050" strokeWidth="1"/>
-		<filter tag="railway" minzoom="7" value="rail" alpineHiking="true" color="#505050" strokeWidth="1"/>
-		<groupFilter minzoom="9" alpineHiking="true" strokeWidth="2"/>
-		<groupFilter minzoom="13" alpineHiking="true" strokeWidth="4"/>
-		<groupFilter minzoom="15" alpineHiking="true" strokeWidth="6"/>
-		<groupFilter minzoom="17" alpineHiking="true" strokeWidth="8"/>
+		<filter tag="railway" minzoom="7" value="rail" publicTransport="true" nightMode="true" color="#505050" strokeWidth="1"/>
+		<filter tag="railway" minzoom="7" value="rail" publicTransport="true" color="#505050" strokeWidth="1"/>
+		<groupFilter minzoom="9" publicTransport="true" strokeWidth="2"/>
+		<groupFilter minzoom="13" publicTransport="true" strokeWidth="4"/>
+		<groupFilter minzoom="15" publicTransport="true" strokeWidth="6"/>
+		<groupFilter minzoom="17" publicTransport="true" strokeWidth="8"/>
 		</group>
 		
 		<group>
-		<filter tag="railway" minzoom="13" value="light_rail" alpineHiking="true" nightMode="true" color="#dd4115" strokeWidth="4"/>
-		<filter tag="railway" minzoom="13" value="light_rail" alpineHiking="true" color="#dd4115" strokeWidth="4"/>
-		<groupFilter minzoom="15" alpineHiking="true" strokeWidth="6"/>
-		<groupFilter minzoom="17" alpineHiking="true" strokeWidth="8"/>
+		<filter tag="railway" minzoom="13" value="light_rail" publicTransport="true" nightMode="true" color="#dd4115" strokeWidth="4"/>
+		<filter tag="railway" minzoom="13" value="light_rail" publicTransport="true" color="#dd4115" strokeWidth="4"/>
+		<groupFilter minzoom="15" publicTransport="true" strokeWidth="6"/>
+		<groupFilter minzoom="17" publicTransport="true" strokeWidth="8"/>
 		</group>
 		
 		<group>
-		<filter tag="railway" minzoom="13" value="subway" alpineHiking="true" nightMode="true" color="#15359c" strokeWidth="4"/>
-		<filter tag="railway" minzoom="13" value="subway" alpineHiking="true" color="#15359c" strokeWidth="4"/>
-		<groupFilter minzoom="15" alpineHiking="true" strokeWidth="6"/>
-		<groupFilter minzoom="17" alpineHiking="true" strokeWidth="8"/>
+		<filter tag="railway" minzoom="13" value="subway" publicTransport="true" nightMode="true" color="#15359c" strokeWidth="4"/>
+		<filter tag="railway" minzoom="13" value="subway" publicTransport="true" color="#15359c" strokeWidth="4"/>
+		<groupFilter minzoom="15" publicTransport="true" strokeWidth="6"/>
+		<groupFilter minzoom="17" publicTransport="true" strokeWidth="8"/>
 		</group>
 		
 		<group>
-		<filter tag="railway" minzoom="13" value="tram" alpineHiking="true" nightMode="true" color="#169820" strokeWidth="4"/>
-		<filter tag="railway" minzoom="13" value="tram" alpineHiking="true" color="#169820" strokeWidth="4"/>
-		<groupFilter minzoom="15" alpineHiking="true" strokeWidth="6"/>
-		<groupFilter minzoom="17" alpineHiking="true" strokeWidth="8"/>
+		<filter tag="railway" minzoom="13" value="tram" publicTransport="true" nightMode="true" color="#169820" strokeWidth="4"/>
+		<filter tag="railway" minzoom="13" value="tram" publicTransport="true" color="#169820" strokeWidth="4"/>
+		<groupFilter minzoom="15" publicTransport="true" strokeWidth="6"/>
+		<groupFilter minzoom="17" publicTransport="true" strokeWidth="8"/>
 		</group>
 		
 		<group>
@@ -707,8 +709,8 @@ Contact: sniata@o2.pl
 		<filter tag="railway" minzoom="7" value="disused" nightMode="true" color="#999999" strokeWidth="1" pathEffect="1_6"/>
 		<filter tag="railway" minzoom="7" value="disused" color="#999999" strokeWidth="1" pathEffect="1_6"/>
 		
-		<filter tag="highway" minzoom="12" maxzoom="14" value="footway" alpineHiking="false" color="#ba8088" strokeWidth="0.5" pathEffect="2_2"/>
-		<filter tag="highway" minzoom="15" value="footway" alpineHiking="false" color="#ba8088" strokeWidth="1" pathEffect="2_2"/>
+		<filter tag="highway" minzoom="12" maxzoom="14" value="footway" publicTransport="true" color="#ba8088" strokeWidth="0.5" pathEffect="2_2"/>
+		<filter tag="highway" minzoom="15" value="footway" publicTransport="true" color="#ba8088" strokeWidth="1" pathEffect="2_2"/>
 		
 		<group>
 		<filter tag="highway" value="cycleway" nightMode="true" color="#9595c4" strokeWidth="1" pathEffect="2_2"/>
@@ -717,10 +719,6 @@ Contact: sniata@o2.pl
 		</group>
 		
 		<filter tag="route" value="ferry" minzoom="8" color="#9999FF" strokeWidth="1" pathEffect="6_3"/>
-		
-		<filter minzoom="9" color="#b9c7e1" tag="waterway" value="river"/>
-		<filter minzoom="9" color="#b9c7e1" tag="waterway" value="canal"/>
-		<filter minzoom="9" color="#b9c7e1" tag="waterway" value="stream"/>
 		
 	<filter tag="osmc_symbol_red" value="" color="#31FF0000" osmcTraces="true">
 		<filter minzoom="12" maxzoom="13" strokeWidth="8"  pathEffect="8_6"   />
