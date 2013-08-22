@@ -106,7 +106,7 @@ string('off_route.ogg', 'vous avez dévié de l itinéraire depuis').
 string('exceed_limit.ogg', 'vous dépassez la limite de vitesse ').
 
 % STREET NAME GRAMMAR
-string('onto.ogg', 'à ').
+string('onto.ogg', 'sur ').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'mètres ').
