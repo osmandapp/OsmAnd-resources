@@ -123,7 +123,7 @@ string('miles.ogg', 'miles ').
 string('yards.ogg', 'yards ').
 
 % TIME SUPPORT
-string('time.ogg', 'Il est ').
+string('time.ogg', 'durée du trajet ').
 string('1_hour.ogg', 'une heure ').
 string('hours.ogg', 'heures ').
 string('less_a_minute.ogg', 'moins d une minute ').
