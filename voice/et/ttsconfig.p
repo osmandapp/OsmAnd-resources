@@ -213,21 +213,21 @@ turn('right_keep', ['right_keep.ogg']).
 turn_infinitive(Turn, [S]) :- atom_concat(Turn, '.ogg', Ogg), decline_string(Ogg, 'inf', S).
 
 bear_left -- ['left_keep.ogg'].
-bear_left('') -- ['left_keep.ogg'].
+bear_left('') -- ['left_keep.ogg'] :- !.
 bear_left(Street) -- ['bear.ogg', On_Street, 'left_bear.ogg'] :- tts, decline_street(Street, '-l', On_Street).
 bear_left(_Street) -- ['left_keep.ogg'] :- not(tts).
 bear_right -- ['right_keep.ogg'].
-bear_right('') -- ['right_keep.ogg'].
+bear_right('') -- ['right_keep.ogg'] :- !.
 bear_right(Street) -- ['bear.ogg', On_Street, 'right_bear.ogg'] :- tts, decline_street(Street, '-l', On_Street).
 bear_right(_Street) -- ['right_keep.ogg'] :- not(tts).
 
-onto_street('', []).
+onto_street('', []) :- !.
 onto_street(Street, Onto_Street) :- tts, decline_street(Street, '-le', Onto_Street).
 onto_street(_Street, []) :- not(tts).
-on_street('', []).
+on_street('', []) :- !.
 on_street(Street, On_Street) :- tts, decline_street(Street, '-l', On_Street).
 on_street(_Street, []) :- not(tts).
-to_street('', []).
+to_street('', []) :- !.
 to_street(Street, To_Street) :- tts, decline_street(Street, '-ni', To_Street).
 to_street(_Street, []) :- not(tts).
 
@@ -259,7 +259,7 @@ and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
 
 route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'long.ogg', 'time.ogg', T] :- distance(Dist, 'nom') -- D, time(Time) -- T.
-route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
+route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car'), !.
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, ', ' , 'time.ogg', T] :- distance(Dist, 'nom') -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
