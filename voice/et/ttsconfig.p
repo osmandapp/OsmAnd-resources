@@ -313,8 +313,10 @@ decline_street(Street, Case, [Type, Street]) :- ends_with_number(Street), !, dec
 decline_street(Street, Case, [Type, Street]) :- decline_string('street.ogg', Case, Type). % Catch all
 
 parse_tee(Street, Name) :- atom_take_end(Street, ' tee', Name).
-parse_maantee(Street, Name) :- atom_take_end(Street, ' mnt', Name).
-parse_puiestee(Street, Name) :- atom_take_end(Street, ' pst', Name).
+parse_maantee(Street, Name) :- atom_take_end(Street, ' mnt', Name), !.
+parse_maantee(Street, Name) :- atom_take_end(Street, ' maantee', Name).
+parse_puiestee(Street, Name) :- atom_take_end(Street, ' pst', Name), !.
+parse_puiestee(Street, Name) :- atom_take_end(Street, ' puiestee', Name).
 ends_with_vowel(Name) :- atom_chars(Name, NameList), last(NameList, Last), member(Last, ['a', 'e', 'i', 'o', 'u', 'õ', 'ä', 'ö', 'ü', 'y']).
 ends_with_number(Name) :- atom_chars(Name, NameList), last(NameList, Last), num_atom(_, Last).
 
