@@ -113,7 +113,6 @@ string('exceed_limit.ogg', 'Ületate piir-kiirust.').
 %
 % nominative - nimetav (X)
 % genitive - omastav (of X) - ending varies, but is always a vowel
-% elative - seestütlev (from X) - ending "-st" - used in bearing left or right of some street
 % allative - alaleütlev (onto X) - ending "-le"
 % adessive - alalütlev (on X) - ending "-l"
 % terminative - rajav (until X, to X) - ending "-ni"
@@ -126,22 +125,18 @@ string('exceed_limit.ogg', 'Ületate piir-kiirust.').
 % if the name of a road ends in a number, but is not wholly numeric, it is "maantee",
 % other named roads are under "tänav" (street).
 % Those ending with a vowel are assumed to be in genitive case, this affects the word order.
-string('from_road.ogg', 'teest ').
 string('onto_road.ogg', 'teele ').
 string('on_road.ogg', 'teel ').
 string('to_road.ogg', 'teeni ').
 
-string('from_main_road.ogg', 'maanteest ').
 string('onto_main_road.ogg', 'maanteele ').
 string('on_main_road.ogg', 'maanteel ').
 string('to_main_road.ogg', 'maanteeni ').
 
-string('from_alley.ogg', 'puiesteest ').
 string('onto_alley.ogg', 'puiesteele ').
 string('on_alley.ogg', 'puiesteel ').
 string('to_alley.ogg', 'puiesteeni ').
 
-string('from_street.ogg', 'tänavast ').
 string('onto_street.ogg', 'tänavale ').
 string('on_street.ogg', 'tänaval ').
 string('to_street.ogg', 'tänavani ').
@@ -226,11 +221,11 @@ turn_infinitive('right_keep', ['right_keep_inf.ogg']).
 
 bear_left -- ['left_keep.ogg'].
 bear_left('') -- ['left_keep.ogg'].
-bear_left(Street) -- ['bear.ogg', Of_Street, 'left_bear.ogg'] :- tts, decline_street(Street, '-st', Of_Street).
+bear_left(Street) -- ['bear.ogg', On_Street, 'left_bear.ogg'] :- tts, decline_street(Street, '-l', On_Street).
 bear_left(_Street) -- ['left_keep.ogg'] :- not(tts).
 bear_right -- ['right_keep.ogg'].
 bear_right('') -- ['right_keep.ogg'].
-bear_right(Street) -- ['bear.ogg', Of_Street, 'right_bear.ogg'] :- tts, decline_street(Street, '-st', Of_Street).
+bear_right(Street) -- ['bear.ogg', On_Street, 'right_bear.ogg'] :- tts, decline_street(Street, '-l', On_Street).
 bear_right(_Street) -- ['right_keep.ogg'] :- not(tts).
 
 onto_street('', []).
@@ -304,7 +299,6 @@ nth(17, '17th.ogg').
 
 decline_string(StringName, 'nom', StringName).
 decline_string(StringName, 'gen', Declined) :- atom_concat('of_', StringName, Declined).
-decline_string(StringName, '-st', Declined) :- atom_concat('from_', StringName, Declined).
 decline_string(StringName, '-le', Declined) :- atom_concat('onto_', StringName, Declined).
 decline_string(StringName, '-l', Declined) :- atom_concat('on_', StringName, Declined).
 decline_string(StringName, '-ni', Declined) :- atom_concat('to_', StringName, Declined).
