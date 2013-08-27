@@ -101,9 +101,9 @@ string('and_arrive_waypoint.ogg', 'ja jõuate tee-tähiseni ').   % NB! Is "GPX"
 string('reached_waypoint.ogg', 'Tee-tähis ').                   % NB! And here?
 
 % OTHER PROMPTS
-string('attention.ogg', 'Tähelepanu: ').
+string('attention.ogg', 'Tähelepanu! ').
 string('location_lost.ogg', 'Geepe-essi levi pole. ').
-string('you_are.ogg', 'olete ').
+string('you_are.ogg', 'Olete ').
 string('off_route.ogg', 'plaanitud teest kõrvale kaldunud ').
 string('exceed_limit.ogg', 'Ületate piir-kiirust.').
 
