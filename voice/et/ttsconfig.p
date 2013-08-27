@@ -44,14 +44,14 @@ string('right_sl.ogg', 'keerake pisut paremale ').
 string('left_keep.ogg', 'hoidke vasakule ').
 string('right_keep.ogg', 'hoidke paremale ').
 % "-ma"-infinitive ([prepare] to turn):
-string('left_inf.ogg', 'keerama vasakule ').
-string('left_sh_inf.ogg', 'keerama järsult vasakule ').
-string('left_sl_inf.ogg', 'keerama pisut vasakule ').
-string('right_inf.ogg', 'keerama paremale ').
-string('right_sh_inf.ogg', 'keerama järsult paremale ').
-string('right_sl_inf.ogg', 'keerama pisut paremale ').
-string('left_keep_inf.ogg', 'hoidma vasakule ').
-string('right_keep_inf.ogg', 'hoidma paremale ').
+string('inf_left.ogg', 'keerama vasakule ').
+string('inf_left_sh.ogg', 'keerama järsult vasakule ').
+string('inf_left_sl.ogg', 'keerama pisut vasakule ').
+string('inf_right.ogg', 'keerama paremale ').
+string('inf_right_sh.ogg', 'keerama järsult paremale ').
+string('inf_right_sl.ogg', 'keerama pisut paremale ').
+string('inf_left_keep.ogg', 'hoidma vasakule ').
+string('inf_right_keep.ogg', 'hoidma paremale ').
 % "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 string('bear.ogg', 'hoidke ').
 string('left_bear.ogg', 'vasakule ').
@@ -101,9 +101,9 @@ string('and_arrive_waypoint.ogg', 'ja jõuate tee-tähiseni ').   % NB! Is "GPX"
 string('reached_waypoint.ogg', 'Tee-tähis ').                   % NB! And here?
 
 % OTHER PROMPTS
-string('attention.ogg', 'Tähelepanu: ').
+string('attention.ogg', 'Tähelepanu! ').
 string('location_lost.ogg', 'Geepe-essi levi pole. ').
-string('you_are.ogg', 'olete ').
+string('you_are.ogg', 'Olete ').
 string('off_route.ogg', 'plaanitud teest kõrvale kaldunud ').
 string('exceed_limit.ogg', 'Ületate piir-kiirust.').
 
@@ -113,7 +113,6 @@ string('exceed_limit.ogg', 'Ületate piir-kiirust.').
 %
 % nominative - nimetav (X)
 % genitive - omastav (of X) - ending varies, but is always a vowel
-% elative - seestütlev (from X) - ending "-st" - used in bearing left or right of some street
 % allative - alaleütlev (onto X) - ending "-le"
 % adessive - alalütlev (on X) - ending "-l"
 % terminative - rajav (until X, to X) - ending "-ni"
@@ -122,25 +121,27 @@ string('exceed_limit.ogg', 'Ületate piir-kiirust.').
 % "tee" means "road" (thus, no additions there),
 % "pst" at the end of a street name means "puiestee" (alley),
 % "mnt" means "maantee" (main road),
-% a numbered road, if its number has at least 3 digits, is "tee", otherwise "maantee",
+% a numbered road, if its number has at least 4 digits, is "tee" and the numbers are spelt out separately,
+% otherwise "maantee" (smaller roads have big numbers in Estonia),
 % if the name of a road ends in a number, but is not wholly numeric, it is "maantee",
 % other named roads are under "tänav" (street).
-string('from_road.ogg', 'teest ').
+% Those ending with a vowel are assumed to be in genitive case, this affects the word order.
 string('onto_road.ogg', 'teele ').
 string('on_road.ogg', 'teel ').
 string('to_road.ogg', 'teeni ').
 
-string('from_main_road.ogg', 'maanteest ').
 string('onto_main_road.ogg', 'maanteele ').
 string('on_main_road.ogg', 'maanteel ').
 string('to_main_road.ogg', 'maanteeni ').
 
-string('from_alley.ogg', 'puiesteest ').
 string('onto_alley.ogg', 'puiesteele ').
 string('on_alley.ogg', 'puiesteel ').
 string('to_alley.ogg', 'puiesteeni ').
 
-string('from_street.ogg', 'tänavast ').
+string('onto_alley2.ogg', 'alleele ').
+string('on_alley2.ogg', 'alleel ').
+string('to_alley2.ogg', 'alleeni ').
+
 string('onto_street.ogg', 'tänavale ').
 string('on_street.ogg', 'tänaval ').
 string('to_street.ogg', 'tänavani ').
@@ -214,31 +215,24 @@ turn('right_sl', ['right_sl.ogg']).
 turn('left_keep', ['left_keep.ogg']).
 turn('right_keep', ['right_keep.ogg']).
 
-turn_infinitive('left', ['left_inf.ogg']).
-turn_infinitive('left_sh', ['left_sh_inf.ogg']).
-turn_infinitive('left_sl', ['left_sl_inf.ogg']).
-turn_infinitive('right', ['right_inf.ogg']).
-turn_infinitive('right_sh', ['right_sh_inf.ogg']).
-turn_infinitive('right_sl', ['right_sl_inf.ogg']).
-turn_infinitive('left_keep', ['left_keep_inf.ogg']).
-turn_infinitive('right_keep', ['right_keep_inf.ogg']).
+turn_infinitive(Turn, [S]) :- atom_concat(Turn, '.ogg', Ogg), decline_string(Ogg, 'inf', S).
 
 bear_left -- ['left_keep.ogg'].
-bear_left('') -- ['left_keep.ogg'].
-bear_left(Street) -- ['bear.ogg', Of_Street, 'left_bear.ogg'] :- tts, decline_street(Street, '-st', Of_Street).
+bear_left('') -- ['left_keep.ogg'] :- !.
+bear_left(Street) -- ['bear.ogg', On_Street, 'left_bear.ogg'] :- tts, decline_street(Street, '-l', On_Street).
 bear_left(_Street) -- ['left_keep.ogg'] :- not(tts).
 bear_right -- ['right_keep.ogg'].
-bear_right('') -- ['right_keep.ogg'].
-bear_right(Street) -- ['bear.ogg', Of_Street, 'right_bear.ogg'] :- tts, decline_street(Street, '-st', Of_Street).
+bear_right('') -- ['right_keep.ogg'] :- !.
+bear_right(Street) -- ['bear.ogg', On_Street, 'right_bear.ogg'] :- tts, decline_street(Street, '-l', On_Street).
 bear_right(_Street) -- ['right_keep.ogg'] :- not(tts).
 
-onto_street('', []).
+onto_street('', []) :- !.
 onto_street(Street, Onto_Street) :- tts, decline_street(Street, '-le', Onto_Street).
 onto_street(_Street, []) :- not(tts).
-on_street('', []).
+on_street('', []) :- !.
 on_street(Street, On_Street) :- tts, decline_street(Street, '-l', On_Street).
 on_street(_Street, []) :- not(tts).
-to_street('', []).
+to_street('', []) :- !.
 to_street(Street, To_Street) :- tts, decline_street(Street, '-ni', To_Street).
 to_street(_Street, []) :- not(tts).
 
@@ -270,7 +264,7 @@ and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
 
 route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'long.ogg', 'time.ogg', T] :- distance(Dist, 'nom') -- D, time(Time) -- T.
-route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
+route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car'), !.
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, ', ' , 'time.ogg', T] :- distance(Dist, 'nom') -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
@@ -303,23 +297,27 @@ nth(17, '17th.ogg').
 
 decline_string(StringName, 'nom', StringName).
 decline_string(StringName, 'gen', Declined) :- atom_concat('of_', StringName, Declined).
-decline_string(StringName, '-st', Declined) :- atom_concat('from_', StringName, Declined).
 decline_string(StringName, '-le', Declined) :- atom_concat('onto_', StringName, Declined).
 decline_string(StringName, '-l', Declined) :- atom_concat('on_', StringName, Declined).
 decline_string(StringName, '-ni', Declined) :- atom_concat('to_', StringName, Declined).
+decline_string(StringName, 'inf', Declined) :- atom_concat('inf_', StringName, Declined).
 
-decline_street(Street, Case, [Name, Type]) :- parse_tee(Street, Name), decline_string('road.ogg', Case, Type).
-decline_street(Street, Case, [Name, Type]) :- parse_maantee(Street, Name), decline_string('main_road.ogg', Case, Type).
-decline_street(Street, Case, [Name, Type]) :- parse_puiestee(Street, Name), decline_string('alley.ogg', Case, Type).
-decline_street(Street, Case, [Street, Type]) :- ends_with_vowel(Street), decline_string('street.ogg', Case, Type).
-decline_street(Street, Case, [Type, Street]) :- num_atom(Num, Street), Num =< 999, decline_string('main_road.ogg', Case, Type).
-decline_street(Street, Case, [Type, Nums]) :- num_atom(_, Street), atom_chars(Street, Nums), decline_string('road.ogg', Case, Type).
-decline_street(Street, Case, [Type, Street]) :- ends_with_number(Street), decline_string('main_road.ogg', Case, Type).
+decline_street(Street, Case, [Name, Type]) :- parse_tee(Street, Name), !, decline_string('road.ogg', Case, Type).
+decline_street(Street, Case, [Name, Type]) :- parse_maantee(Street, Name), !, decline_string('main_road.ogg', Case, Type).
+decline_street(Street, Case, [Name, Type]) :- parse_puiestee(Street, Name), !, decline_string('alley.ogg', Case, Type).
+decline_street(Street, Case, [Name, Type]) :- parse_allee(Street, Name), !, decline_string('alley2.ogg', Case, Type).
+decline_street(Street, Case, [Street, Type]) :- ends_with_vowel(Street), !, decline_string('street.ogg', Case, Type).
+decline_street(Street, Case, [Type, Street]) :- num_atom(Num, Street), Num =< 999, !, decline_string('main_road.ogg', Case, Type).
+decline_street(Street, Case, [Type, Nums]) :- num_atom(_, Street), !, atom_chars(Street, Nums), decline_string('road.ogg', Case, Type).
+decline_street(Street, Case, [Type, Street]) :- ends_with_number(Street), !, decline_string('main_road.ogg', Case, Type).
 decline_street(Street, Case, [Type, Street]) :- decline_string('street.ogg', Case, Type). % Catch all
 
 parse_tee(Street, Name) :- atom_take_end(Street, ' tee', Name).
-parse_maantee(Street, Name) :- atom_take_end(Street, ' mnt', Name).
-parse_puiestee(Street, Name) :- atom_take_end(Street, ' pst', Name).
+parse_maantee(Street, Name) :- atom_take_end(Street, ' mnt', Name), !.
+parse_maantee(Street, Name) :- atom_take_end(Street, ' maantee', Name).
+parse_puiestee(Street, Name) :- atom_take_end(Street, ' pst', Name), !.
+parse_puiestee(Street, Name) :- atom_take_end(Street, ' puiestee', Name).
+parse_allee(Street, Name) :- atom_take_end(Street, ' allee', Name).
 ends_with_vowel(Name) :- atom_chars(Name, NameList), last(NameList, Last), member(Last, ['a', 'e', 'i', 'o', 'u', 'õ', 'ä', 'ö', 'ü', 'y']).
 ends_with_number(Name) :- atom_chars(Name, NameList), last(NameList, Last), num_atom(_, Last).
 
@@ -329,7 +327,7 @@ ends_with_number(Name) :- atom_chars(Name, NameList), last(NameList, Last), num_
 
 last([], _) :- fail.
 last([A], A).
-last([A | B], C) :- last(B, C).
+last([_ | B], C) :- last(B, C).
 
 atom_take_end(Atom, End, Result) :- atom_chars(Atom, AtomL), atom_chars(End, EndL), append(ResultL, EndL, AtomL), atom_chars(Result, ResultL).
 
@@ -353,13 +351,18 @@ resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ('--'(X, L) -> append(
 pnumber(X, Y) :- tts, !, num_atom(X, Y).
 pnumber(X, Ogg) :- num_atom(X, A), atom_concat(A, '.ogg', Ogg).
 % time measure
-hours(S, []) :- S < 60.
-hours(S, ['1_hour.ogg']) :- S < 120, H is S div 60, pnumber(H, Ogg).
+hours(S, []) :- S < 60, !.
+hours(S, ['1_hour.ogg']) :- S < 120, !.
 hours(S, [Ogg, 'hours.ogg']) :- H is S div 60, pnumber(H, Ogg).
-time(Sec) -- ['less_a_minute.ogg'] :- Sec < 30.
-time(Sec) -- [H, '1_minute.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, St = 1, pnumber(St, Ogg).
-time(Sec) -- [H, Ogg, 'minutes.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, pnumber(St, Ogg).
-time(Sec) -- [H, Ogg, 'minutes.ogg'] :- not(tts), S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60, pnumber(St, Ogg).
+time(Sec) -- ['less_a_minute.ogg'] :- Sec < 30, !.
+time(Sec) -- [H] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, St = 0, !.
+time(Sec) -- ['1_minute.ogg'] :- tts, S is round(Sec/60.0), S < 60, St is S mod 60, St = 1, !.
+time(Sec) -- [H, 'and.ogg', '1_minute.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, St = 1, !.
+time(Sec) -- [Ogg, 'minutes.ogg'] :- tts, S is round(Sec/60.0), S < 60, !, St is S mod 60, pnumber(St, Ogg).
+time(Sec) -- [H, 'and.ogg', Ogg, 'minutes.ogg'] :- tts, !, S is round(Sec/60.0), hours(S, H), St is S mod 60, pnumber(St, Ogg).
+
+time(Sec) -- [Ogg, 'minutes.ogg'] :- not(tts), S is round(Sec/300.0) * 5, S < 60, !, St is S mod 60, pnumber(St, Ogg).
+time(Sec) -- [H, 'and.ogg', Ogg, 'minutes.ogg'] :- not(tts), !, S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60, pnumber(St, Ogg).
 
 
 %%% distance measure
@@ -370,26 +373,26 @@ distance(Dist, Case) -- D :- measure('mi-f'), distance_mi_f(Dist, Case) -- D.
 distance(Dist, Case) -- D :- measure('mi-y'), distance_mi_y(Dist, Case) -- D.
 
 %%% distance measure km/m
-distance_km(Dist, Case) -- [ X, Unit]                   :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, Case, X), decline_string('meters.ogg', Case, Unit).
-distance_km(Dist, Case) -- [ X, Unit]                   :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, Case, X), decline_string('meters.ogg', Case, Unit).
-distance_km(Dist, Case) -- [Unit]                       :- Dist < 1500,                                         decline_string('around_1_kilometer.ogg', Case, Unit).
-distance_km(Dist, Case) -- ['around.ogg', X, Unit]      :- Dist < 10000, D is round(Dist/1000.0),            dist(D, Case, X), decline_string('kilometers.ogg', Case, Unit).
-distance_km(Dist, Case) -- [ X, Unit]                   :-               D is round(Dist/1000.0),            dist(D, Case, X), decline_string('kilometers.ogg', Case, Unit).
+distance_km(Dist, Case) -- [ X, Unit]                   :- Dist < 100,   !, D is round(Dist/10.0)*10,           dist(D, Case, X), decline_string('meters.ogg', Case, Unit).
+distance_km(Dist, Case) -- [ X, Unit]                   :- Dist < 1000,  !, D is round(2*Dist/100.0)*50,        dist(D, Case, X), decline_string('meters.ogg', Case, Unit).
+distance_km(Dist, Case) -- [Unit]                       :- Dist < 1500,  !,                                        decline_string('around_1_kilometer.ogg', Case, Unit).
+distance_km(Dist, Case) -- ['around.ogg', X, Unit]      :- Dist < 10000, !, D is round(Dist/1000.0),            dist(D, Case, X), decline_string('kilometers.ogg', Case, Unit).
+distance_km(Dist, Case) -- [ X, Unit]                   :-               !, D is round(Dist/1000.0),            dist(D, Case, X), decline_string('kilometers.ogg', Case, Unit).
 
 %%% distance measure mi/f
-distance_mi_f(Dist, Case) -- [ X, Unit]                 :- Dist < 160,   D is round(2*Dist/100.0/0.3048)*50, dist(D, Case, X), decline_string('feet.ogg', Case, Unit).
-distance_mi_f(Dist, Case) -- [Unit]                     :- Dist < 241,                                          decline_string('1_tenth_of_a_mile.ogg', Case, Unit).
-distance_mi_f(Dist, Case) -- [ X, Unit]                 :- Dist < 1529,  D is round(Dist/161.0),             dist(D, Case, X), decline_string('tenths_of_a_mile.ogg', Case, Unit).
-distance_mi_f(Dist, Case) -- [Unit]                     :- Dist < 2414,                                         decline_string('around_1_mile.ogg', Case, Unit).
-distance_mi_f(Dist, Case) -- ['around.ogg', X, Unit]    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, Case, X), decline_string('miles.ogg', Case, Unit).
-distance_mi_f(Dist, Case) -- [ X, Unit]                 :-               D is round(Dist/1609.0),            dist(D, Case, X), decline_string('miles.ogg', Case, Unit).
+distance_mi_f(Dist, Case) -- [ X, Unit]                 :- Dist < 160,   !, D is round(2*Dist/100.0/0.3048)*50, dist(D, Case, X), decline_string('feet.ogg', Case, Unit).
+distance_mi_f(Dist, Case) -- [Unit]                     :- Dist < 241,   !,                                        decline_string('1_tenth_of_a_mile.ogg', Case, Unit).
+distance_mi_f(Dist, Case) -- [ X, Unit]                 :- Dist < 1529,  !, D is round(Dist/161.0),             dist(D, Case, X), decline_string('tenths_of_a_mile.ogg', Case, Unit).
+distance_mi_f(Dist, Case) -- [Unit]                     :- Dist < 2414,  !,                                        decline_string('around_1_mile.ogg', Case, Unit).
+distance_mi_f(Dist, Case) -- ['around.ogg', X, Unit]    :- Dist < 16093, !, D is round(Dist/1609.0),            dist(D, Case, X), decline_string('miles.ogg', Case, Unit).
+distance_mi_f(Dist, Case) -- [ X, Unit]                 :-               !, D is round(Dist/1609.0),            dist(D, Case, X), decline_string('miles.ogg', Case, Unit).
 
 %%% distance measure mi/y
-distance_mi_y(Dist, Case) -- [ X, Unit]                 :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    dist(D, Case, X), decline_string('yards.ogg', Case, Unit).
-distance_mi_y(Dist, Case) -- [ X, Unit]                 :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, Case, X), decline_string('yards.ogg', Case, Unit).
-distance_mi_y(Dist, Case) -- [Unit]                     :- Dist < 2414,                                         decline_string('around_1_mile.ogg', Case, Unit).
-distance_mi_y(Dist, Case) -- ['around.ogg', X, Unit]    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, Case, X), decline_string('miles.ogg', Case, Unit).
-distance_mi_y(Dist, Case) -- [ X, Unit]                 :-               D is round(Dist/1609.0),            dist(D, Case, X), decline_string('miles.ogg', Case, Unit).
+distance_mi_y(Dist, Case) -- [ X, Unit]                 :- Dist < 241,   !, D is round(Dist/10.0/0.9144)*10,    dist(D, Case, X), decline_string('yards.ogg', Case, Unit).
+distance_mi_y(Dist, Case) -- [ X, Unit]                 :- Dist < 1300,  !, D is round(2*Dist/100.0/0.9144)*50, dist(D, Case, X), decline_string('yards.ogg', Case, Unit).
+distance_mi_y(Dist, Case) -- [Unit]                     :- Dist < 2414,  !,                                        decline_string('around_1_mile.ogg', Case, Unit).
+distance_mi_y(Dist, Case) -- ['around.ogg', X, Unit]    :- Dist < 16093, !, D is round(Dist/1609.0),            dist(D, Case, X), decline_string('miles.ogg', Case, Unit).
+distance_mi_y(Dist, Case) -- [ X, Unit]                 :-               !, D is round(Dist/1609.0),            dist(D, Case, X), decline_string('miles.ogg', Case, Unit).
 
 
 interval(St, St, End, _Step) :- St =< End.
