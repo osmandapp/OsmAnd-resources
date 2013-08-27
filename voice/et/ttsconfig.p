@@ -324,7 +324,7 @@ ends_with_number(Name) :- atom_chars(Name, NameList), last(NameList, Last), num_
 
 last([], _) :- fail.
 last([A], A).
-last([A | B], C) :- last(B, C).
+last([_ | B], C) :- last(B, C).
 
 atom_take_end(Atom, End, Result) :- atom_chars(Atom, AtomL), atom_chars(End, EndL), append(ResultL, EndL, AtomL), atom_chars(Result, ResultL).
 
