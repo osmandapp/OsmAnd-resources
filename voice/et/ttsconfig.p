@@ -303,13 +303,13 @@ decline_string(StringName, '-le', Declined) :- atom_concat('onto_', StringName, 
 decline_string(StringName, '-l', Declined) :- atom_concat('on_', StringName, Declined).
 decline_string(StringName, '-ni', Declined) :- atom_concat('to_', StringName, Declined).
 
-decline_street(Street, Case, [Name, Type]) :- parse_tee(Street, Name), decline_string('road.ogg', Case, Type).
-decline_street(Street, Case, [Name, Type]) :- parse_maantee(Street, Name), decline_string('main_road.ogg', Case, Type).
-decline_street(Street, Case, [Name, Type]) :- parse_puiestee(Street, Name), decline_string('alley.ogg', Case, Type).
-decline_street(Street, Case, [Street, Type]) :- ends_with_vowel(Street), decline_string('street.ogg', Case, Type).
-decline_street(Street, Case, [Type, Street]) :- num_atom(Num, Street), Num =< 999, decline_string('main_road.ogg', Case, Type).
-decline_street(Street, Case, [Type, Nums]) :- num_atom(_, Street), atom_chars(Street, Nums), decline_string('road.ogg', Case, Type).
-decline_street(Street, Case, [Type, Street]) :- ends_with_number(Street), decline_string('main_road.ogg', Case, Type).
+decline_street(Street, Case, [Name, Type]) :- parse_tee(Street, Name), !, decline_string('road.ogg', Case, Type).
+decline_street(Street, Case, [Name, Type]) :- parse_maantee(Street, Name), !, decline_string('main_road.ogg', Case, Type).
+decline_street(Street, Case, [Name, Type]) :- parse_puiestee(Street, Name), !, decline_string('alley.ogg', Case, Type).
+decline_street(Street, Case, [Street, Type]) :- ends_with_vowel(Street), !, decline_string('street.ogg', Case, Type).
+decline_street(Street, Case, [Type, Street]) :- num_atom(Num, Street), Num =< 999, !, decline_string('main_road.ogg', Case, Type).
+decline_street(Street, Case, [Type, Nums]) :- num_atom(_, Street), !, atom_chars(Street, Nums), decline_string('road.ogg', Case, Type).
+decline_street(Street, Case, [Type, Street]) :- ends_with_number(Street), !, decline_string('main_road.ogg', Case, Type).
 decline_street(Street, Case, [Type, Street]) :- decline_string('street.ogg', Case, Type). % Catch all
 
 parse_tee(Street, Name) :- atom_take_end(Street, ' tee', Name).
