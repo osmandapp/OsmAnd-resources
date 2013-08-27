@@ -121,7 +121,8 @@ string('exceed_limit.ogg', 'Ületate piir-kiirust.').
 % "tee" means "road" (thus, no additions there),
 % "pst" at the end of a street name means "puiestee" (alley),
 % "mnt" means "maantee" (main road),
-% a numbered road, if its number has at least 4 digits, is "tee", otherwise "maantee" (smaller roads have big numbers in Estonia),
+% a numbered road, if its number has at least 4 digits, is "tee" and the numbers are spelt out separately,
+% otherwise "maantee" (smaller roads have big numbers in Estonia),
 % if the name of a road ends in a number, but is not wholly numeric, it is "maantee",
 % other named roads are under "tänav" (street).
 % Those ending with a vowel are assumed to be in genitive case, this affects the word order.
