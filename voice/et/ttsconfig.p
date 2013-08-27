@@ -44,14 +44,14 @@ string('right_sl.ogg', 'keerake pisut paremale ').
 string('left_keep.ogg', 'hoidke vasakule ').
 string('right_keep.ogg', 'hoidke paremale ').
 % "-ma"-infinitive ([prepare] to turn):
-string('left_inf.ogg', 'keerama vasakule ').
-string('left_sh_inf.ogg', 'keerama järsult vasakule ').
-string('left_sl_inf.ogg', 'keerama pisut vasakule ').
-string('right_inf.ogg', 'keerama paremale ').
-string('right_sh_inf.ogg', 'keerama järsult paremale ').
-string('right_sl_inf.ogg', 'keerama pisut paremale ').
-string('left_keep_inf.ogg', 'hoidma vasakule ').
-string('right_keep_inf.ogg', 'hoidma paremale ').
+string('inf_left.ogg', 'keerama vasakule ').
+string('inf_left_sh.ogg', 'keerama järsult vasakule ').
+string('inf_left_sl.ogg', 'keerama pisut vasakule ').
+string('inf_right.ogg', 'keerama paremale ').
+string('inf_right_sh.ogg', 'keerama järsult paremale ').
+string('inf_right_sl.ogg', 'keerama pisut paremale ').
+string('inf_left_keep.ogg', 'hoidma vasakule ').
+string('inf_right_keep.ogg', 'hoidma paremale ').
 % "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 string('bear.ogg', 'hoidke ').
 string('left_bear.ogg', 'vasakule ').
@@ -210,14 +210,7 @@ turn('right_sl', ['right_sl.ogg']).
 turn('left_keep', ['left_keep.ogg']).
 turn('right_keep', ['right_keep.ogg']).
 
-turn_infinitive('left', ['left_inf.ogg']).
-turn_infinitive('left_sh', ['left_sh_inf.ogg']).
-turn_infinitive('left_sl', ['left_sl_inf.ogg']).
-turn_infinitive('right', ['right_inf.ogg']).
-turn_infinitive('right_sh', ['right_sh_inf.ogg']).
-turn_infinitive('right_sl', ['right_sl_inf.ogg']).
-turn_infinitive('left_keep', ['left_keep_inf.ogg']).
-turn_infinitive('right_keep', ['right_keep_inf.ogg']).
+turn_infinitive(Turn, [S]) :- atom_concat(Turn, '.ogg', Ogg), decline_string(Ogg, 'inf', S).
 
 bear_left -- ['left_keep.ogg'].
 bear_left('') -- ['left_keep.ogg'].
@@ -302,6 +295,7 @@ decline_string(StringName, 'gen', Declined) :- atom_concat('of_', StringName, De
 decline_string(StringName, '-le', Declined) :- atom_concat('onto_', StringName, Declined).
 decline_string(StringName, '-l', Declined) :- atom_concat('on_', StringName, Declined).
 decline_string(StringName, '-ni', Declined) :- atom_concat('to_', StringName, Declined).
+decline_string(StringName, 'inf', Declined) :- atom_concat('inf_', StringName, Declined).
 
 decline_street(Street, Case, [Name, Type]) :- parse_tee(Street, Name), !, decline_string('road.ogg', Case, Type).
 decline_street(Street, Case, [Name, Type]) :- parse_maantee(Street, Name), !, decline_string('main_road.ogg', Case, Type).
