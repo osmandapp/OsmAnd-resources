@@ -138,6 +138,10 @@ string('onto_alley.ogg', 'puiesteele ').
 string('on_alley.ogg', 'puiesteel ').
 string('to_alley.ogg', 'puiesteeni ').
 
+string('onto_alley2.ogg', 'alleele ').
+string('on_alley2.ogg', 'alleel ').
+string('to_alley2.ogg', 'alleeni ').
+
 string('onto_street.ogg', 'tänavale ').
 string('on_street.ogg', 'tänaval ').
 string('to_street.ogg', 'tänavani ').
@@ -301,6 +305,7 @@ decline_string(StringName, 'inf', Declined) :- atom_concat('inf_', StringName, D
 decline_street(Street, Case, [Name, Type]) :- parse_tee(Street, Name), !, decline_string('road.ogg', Case, Type).
 decline_street(Street, Case, [Name, Type]) :- parse_maantee(Street, Name), !, decline_string('main_road.ogg', Case, Type).
 decline_street(Street, Case, [Name, Type]) :- parse_puiestee(Street, Name), !, decline_string('alley.ogg', Case, Type).
+decline_street(Street, Case, [Name, Type]) :- parse_allee(Street, Name), !, decline_string('alley2.ogg', Case, Type).
 decline_street(Street, Case, [Street, Type]) :- ends_with_vowel(Street), !, decline_string('street.ogg', Case, Type).
 decline_street(Street, Case, [Type, Street]) :- num_atom(Num, Street), Num =< 999, !, decline_string('main_road.ogg', Case, Type).
 decline_street(Street, Case, [Type, Nums]) :- num_atom(_, Street), !, atom_chars(Street, Nums), decline_string('road.ogg', Case, Type).
@@ -312,6 +317,7 @@ parse_maantee(Street, Name) :- atom_take_end(Street, ' mnt', Name), !.
 parse_maantee(Street, Name) :- atom_take_end(Street, ' maantee', Name).
 parse_puiestee(Street, Name) :- atom_take_end(Street, ' pst', Name), !.
 parse_puiestee(Street, Name) :- atom_take_end(Street, ' puiestee', Name).
+parse_allee(Street, Name) :- atom_take_end(Street, ' allee', Name).
 ends_with_vowel(Name) :- atom_chars(Name, NameList), last(NameList, Last), member(Last, ['a', 'e', 'i', 'o', 'u', 'õ', 'ä', 'ö', 'ü', 'y']).
 ends_with_number(Name) :- atom_chars(Name, NameList), last(NameList, Last), num_atom(_, Last).
 
