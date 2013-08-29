@@ -2,7 +2,11 @@
 <renderingStyle name="cycle-map.render" depends="default" defaultColor="#f1eae4" version="1">
 
 
-<!-- HvdW, 20130609, cyclemap
+<!-- HvdW, 20130728, minor changes 
+    - Add rendering property NumberInPath. Cycle network number perpendicular on route or "textonpath". some like it one way, some the other.
+	- minor changes in strokewidth and text size
+	
+	HvdW, 20130609, cyclemap
 	- Copy the "showCycleRoutes" stuff from the "Touring-view_(more-contrast-and-details).render" file
 	  (thanks to Hardy Mueller and Christof Knuesel)
 	- cycle routes are no longer a renderingproperty but an integral part of the map
@@ -10,7 +14,10 @@
 	- slightly larger fonts for the cycleways
 -->
 
+	<renderingProperty attr="NumberInPath" name="Show network number inside cycleway" description="Show network number inside cycleway instead of perpendicular over cycleway" 
+			type="boolean" possibleValues=""/>
 
+	
 	<!-- Use hmRendered for more map detail and better visibility of small roads -->
 	<renderingConstant name="hmRendered" value="true"/>
 
@@ -33,11 +40,13 @@
 
 	<text>
 		<group>
-			<filter appMode="bicycle" tag="lcn_network" value="lcn" nameTag="lcn_ref" textColor="#0000ff" textOrder="22"/>
-			<filter appMode="bicycle" tag="rcn_network" value="rcn" nameTag="rcn_ref" textColor="#ff00ff" textOrder="21"/>
-			<filter appMode="bicycle" tag="ncn_network" value="ncn" nameTag="ncn_ref" textColor="#ff4000" textOrder="20"/>
-
-			<!-- <groupFilter appMode="bicycle" textOnPath="true" > -->
+			<filter appMode="bicycle" tag="lcn_network" value="lcn" nameTag="lcn_ref" textMinDistance="150" textColor="#0000ff" textOrder="9"/>
+			<filter appMode="bicycle" tag="rcn_network" value="rcn" nameTag="rcn_ref" textMinDistance="150" textColor="#ff00ff" textOrder="8"/>
+			<filter appMode="bicycle" tag="ncn_network" value="ncn" nameTag="ncn_ref" textMinDistance="150" textColor="#ff4000" textOrder="7"/>
+			<filter appMode="bicycle" tag="lcn_network" value="lcn_ref" nameTag="lcn_ref" textColor="#0000ff" textOrder="9"/>
+			<filter appMode="bicycle" tag="rcn_network" value="rcn_ref" nameTag="rcn_ref" textColor="#ff00ff" textOrder="8"/>
+			<filter appMode="bicycle" tag="ncn_network" value="ncn_ref" nameTag="ncn_ref" textColor="#ff4000" textOrder="7"/>
+			<groupFilter NumberInPath="true" appMode="bicycle" textOnPath="true" />
 			<groupFilter appMode="bicycle">
 				<filter minzoom="10" maxzoom="11" textHaloRadius="1" textSize="16"/>
 				<filter minzoom="12" maxzoom="13" textHaloRadius="1" textSize="16"/>
@@ -52,12 +61,6 @@
 
 
 	<point>
-		<!-- zoom level for cycling -->
-		<!-- <filter minzoom="14" icon="amenity_drinking_water" tag="amenity" value="drinking_water" iconOrder="90"/>
-		<filter minzoom="14" icon="amenity_place_of_worship" tag="amenity" value="place_of_worship" iconOrder="90"/>
-		<filter minzoom="14" icon="amenity_parking" tag="amenity" value="bicycle_parking" iconOrder="90"/>
-		<filter minzoom="14" icon="shop_bicycle" tag="shop" value="bicycle" iconOrder="90"/>
-		<filter minzoom="14" icon="amenity_bicycle_rental" tag="amenity" value="bicycle_rental" iconOrder="90"/> -->
 	</point>
 
 
@@ -120,8 +123,8 @@
 				<filter minzoom="10" maxzoom="10" strokeWidth="4"/>
 				<filter minzoom="11" maxzoom="11" strokeWidth="5"/>
 				<filter minzoom="12" maxzoom="12" strokeWidth="7"/>
-				<filter minzoom="13" maxzoom="13" strokeWidth="9"/>
-				<filter minzoom="14" maxzoom="14" strokeWidth="10"/>
+				<filter minzoom="13" maxzoom="13" strokeWidth="8"/>
+				<filter minzoom="14" maxzoom="14" strokeWidth="9"/>
 				<filter minzoom="15" maxzoom="15" strokeWidth="12"/>
 				<filter minzoom="16" maxzoom="16" strokeWidth="15"/>
 				<filter minzoom="17" maxzoom="17" strokeWidth="19"/>
