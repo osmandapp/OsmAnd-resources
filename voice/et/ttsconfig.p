@@ -64,7 +64,9 @@ string('make_uturn_wp.ogg', 'Kui võimalik, keerake tagasi ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Valmistuge sõitma ring-ristmikule ').
+string('prepare_walk_roundabout.ogg', 'Valmistuge kõndima ring-ristmikule ').
 string('roundabout.ogg', 'sõitke ring-ristmikule ').
+string('walk_roundabout.ogg', 'kõndige ring-ristmikule ').
 string('then.ogg', ', siis ').
 string('and.ogg', 'ja ').
 string('take.ogg', 'valige ').
@@ -247,7 +249,9 @@ make_ut(Dist, Street) --  [After, 'make_uturn.ogg' | Sgen] :- after(Dist) -- Aft
 make_ut(Street) -- ['make_uturn.ogg' | Sgen] :- on_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
+prepare_roundabout(Dist, Exit, Street) -- ['prepare_walk_roundabout.ogg', After, 'then.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- appMode('pedestrian'), !, after(Dist) -- After, nth(Exit, E), onto_street(Street, Sgen).
 prepare_roundabout(Dist, Exit, Street) -- ['prepare_roundabout.ogg', After, 'then.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- after(Dist) -- After, nth(Exit, E), onto_street(Street, Sgen).
+roundabout(Dist, _Angle, Exit, Street) -- [After, 'walk_roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- appMode('pedestrian'), !, after(Dist) -- After, nth(Exit, E), onto_street(Street, Sgen).
 roundabout(Dist, _Angle, Exit, Street) -- [After, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- after(Dist) -- After, nth(Exit, E), onto_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), onto_street(Street, Sgen).
 
