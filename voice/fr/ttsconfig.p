@@ -29,7 +29,7 @@ language('fr').
 %%%%% NO !!! no apostrophe  %%%%%%%%%%
 
 % ROUTE CALCULATED
-string('route_is.ogg', 'L itinéraire fait  ').
+string('route_is.ogg', 'l itinéraire fait  ').
 string('route_calculate.ogg', 'recalcul de l itinéraire').
 string('distance.ogg', ', l itinéraire fait ').
 
@@ -108,7 +108,7 @@ string('exceed_limit.ogg', 'vous dépassez la limite de vitesse ').
 % STREET NAME GRAMMAR
 string('onto.ogg', 'sur ').
 string('on.ogg', 'sur ').
-string('to.ogg', 'à ').
+string('to.ogg', 'vers ').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'mètres ').
