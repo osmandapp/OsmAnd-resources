@@ -16,7 +16,7 @@ language('fr').
 % (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
 % (X) arrival
 % (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
-% (N/A) special grammar: onto_street / on_street / to_street
+% (X) special grammar: onto_street / on_street / to_street
 % (N/A) special grammar: nominative/dativ for distance measure
 % (N/A) special grammar: imperative/infinitive distincion for turns
 % (X) special grammar: future
@@ -30,7 +30,7 @@ language('fr').
 %%%%% NO !!! no apostrophe  %%%%%%%%%%
 
 % ROUTE CALCULATED
-string('route_is.ogg', 'L itinéraire fait  ').
+string('route_is.ogg', 'l itinéraire fait  ').
 string('route_calculate.ogg', 'recalcul de l itinéraire').
 string('distance.ogg', ', l itinéraire fait ').
 
@@ -97,17 +97,19 @@ string('and_arrive_destination.ogg', 'et arrivez à destination ').
 string('reached_destination.ogg','vous êtes arrivé à destination ').
 string('and_arrive_intermediate.ogg', 'et arrivez à l étape '). % !!! no apostrophe
 string('reached_intermediate.ogg', 'vous êtes arrivé à l étape').
-string('and_arrive_waypoint.ogg', 'et arrivez à l étape GPX ').
-string('reached_waypoint.ogg', 'vous êtes arrivé à l étape GPX ').
+string('and_arrive_waypoint.ogg', 'et arrivez à l étape G P X ').
+string('reached_waypoint.ogg', 'vous êtes arrivé à l étape G P X ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'attention , ').
-string('location_lost.ogg', 'signal g p s perdu ').
-string('off_route.ogg', 'vous avez dévié de l itinéraire  depuis').
+string('location_lost.ogg', 'signal G P S perdu ').
+string('off_route.ogg', 'vous avez dévié de l itinéraire depuis').
 string('exceed_limit.ogg', 'vous dépassez la limite de vitesse ').
 
 % STREET NAME GRAMMAR
-string('onto.ogg', 'à ').
+string('onto.ogg', 'sur ').
+string('on.ogg', 'sur ').
+string('to.ogg', 'vers ').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'mètres ').
@@ -124,11 +126,11 @@ string('miles.ogg', 'miles ').
 string('yards.ogg', 'yards ').
 
 % TIME SUPPORT
-string('time.ogg', 'Il est ').
-string('1_hour.ogg', 'un heure ').
+string('time.ogg', 'durée du trajet ').
+string('1_hour.ogg', 'une heure ').
 string('hours.ogg', 'heures ').
 string('less_a_minute.ogg', 'moins d une minute ').
-string('1_minute.ogg', 'une minutes ').
+string('1_minute.ogg', 'une minute ').
 string('minutes.ogg', 'minutes').
 
 
@@ -156,6 +158,12 @@ prep2turn('left_keep', ['pr2left_keep.ogg']).
 onto_street('', []).
 onto_street(Street, ['onto.ogg', Street]) :- tts.
 onto_street(_Street, []) :- not(tts).
+on_street('', []).
+on_street(Street, ['on.ogg', Street]) :- tts.
+on_street(_Street, []) :- not(tts).
+to_street('', []).
+to_street(Street, ['to.ogg', Street]) :- tts.
+to_street(_Street, []) :- not(tts).
 
 prepare_turn(Turn, Dist, Street) -- ['after.ogg', D, 'prepare.ogg', M | Sgen] :- distance(Dist) -- D, prep2turn(Turn, M), onto_street(Street, Sgen).
 turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
@@ -171,7 +179,7 @@ roundabout(Dist, _Angle, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', E, 
 roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), onto_street(Street, Sgen).
 
 go_ahead -- ['go_ahead.ogg'].
-go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
+go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen] :- distance(Dist) -- D, to_street(Street, Sgen).
 
 then -- ['then.ogg'].
 
