@@ -129,7 +129,7 @@ string('yards.ogg', 'iarzi').
 string('time.ogg', 'timpul necesar').
 string('1_hour.ogg', 'o oră').
 string('hours.ogg', 'ore').
-string('less_a_minute.ogg', 'Les puțin de un minut').
+string('less_a_minute.ogg', 'Mai puțin de un minut').
 string('1_minute.ogg', 'un minut').
 string('minutes.ogg', 'minute').
 
