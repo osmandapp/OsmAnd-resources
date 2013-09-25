@@ -113,26 +113,26 @@ string('onto.ogg', 'to ').
 
 % DISTANCE UNIT SUPPORT
 string('meters_metrin.ogg', 'metrin ').
-string('meters_metriä.ogg', 'metriä ').
+string('meters_metri.ogg', 'metriä ').
 string('around_1_kilometer_metrin.ogg', 'noin 1 kilometrin ').
-string('around_1_kilometer_metriä.ogg', 'noin 1 kilometri ').
+string('around_1_kilometer_metri.ogg', 'noin 1 kilometri ').
 string('around.ogg', 'noin').  % Note: do not put space after word "noin" because for some reason the SVOX Finnish Satu Voice announces the number wrong if there is a space
 string('kilometers_metrin.ogg', 'kilometerin ').
-string('kilometers_metriä.ogg', 'kilometriä ').
+string('kilometers_metri.ogg', 'kilometriä ').
 
 string('feet_metrin.ogg', 'jalkaa ').
-string('feet_metriä.ogg', 'jalkaa ').
+string('feet_metri.ogg', 'jalkaa ').
 string('1_tenth_of_a_mile_metrin.ogg', 'kymmenesosa mailin ').
-string('1_tenth_of_a_mile_metriä.ogg', 'kymmenesosa mailin ').
+string('1_tenth_of_a_mile_metri.ogg', 'kymmenesosa mailin ').
 string('tenths_of_a_mile_metrin.ogg', 'kymmenesosaa mailin ').
-string('tenths_of_a_mile_metriä.ogg', 'kymmenesosaa mailin ').
+string('tenths_of_a_mile_metri.ogg', 'kymmenesosaa mailin ').
 string('around_1_mile_metrin.ogg', 'noin yhden mailin ').
-string('around_1_mile_metriä.ogg', 'noin yhden mailin ').
+string('around_1_mile_metri.ogg', 'noin yhden mailin ').
 string('miles_metrin.ogg', 'mailin ').
-string('miles_metriä.ogg', 'mailin ').
+string('miles_metri.ogg', 'mailin ').
 
 string('yards_metrin.ogg', 'yards ').
-string('yards_metriä.ogg', 'yards ').
+string('yards_metri.ogg', 'yards ').
 
 % TIME SUPPORT
 string('time.ogg', ', aikaa ').
