@@ -36,9 +36,10 @@ string('after.ogg', 'nach ').
 string('get.ogg', 'päästä  ').
 string('now.ogg', 'nyt,  ').
 
-string('left.ogg', 'käänny vasemmalle ').
-string('left_sh.ogg', 'käänny jyrkästi vasemmalle ').
-string('left_sl.ogg', 'käänny loivasti vasemmalle ').
+   % Vasempaan/vasemmalle and oikeaan/oikealle are interchangeable in normal speech but the Finnish military standard in directions is VASEMPAAN and OIKEALLE. We should also do this as it makes it much easier to distinguish in noise.
+string('left.ogg', 'käänny vasempaan ').
+string('left_sh.ogg', 'käänny jyrkästi vasempaan ').
+string('left_sl.ogg', 'käänny loivasti vasempaan ').
 string('right.ogg', 'käänny oikealle ').
 string('right_sh.ogg', 'käänny jyrkästi oikealle ').
 string('right_sl.ogg', 'käänny loivasti oikealle ').
@@ -46,14 +47,14 @@ string('left_keep.ogg', 'pidä vasen ').
 string('right_keep.ogg', 'pidä oikea ').
 % if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
-string('left_prep.ogg', 'kääntymään vasemmalle ').
-string('left_sh_prep.ogg', 'kääntymään jyrkästi vasemmalle ').
-string('left_sl_prep.ogg', 'kääntymään loivasti vasemmalle ').
+string('left_prep.ogg', 'kääntymään vasempaan ').
+string('left_sh_prep.ogg', 'kääntymään jyrkästi vasempaan ').
+string('left_sl_prep.ogg', 'kääntymään loivasti vasempaan ').
 string('right_prep.ogg', 'kääntymään oikealle ').
 string('right_sh_prep.ogg', 'kääntymään jyrkästi oikealle ').
 string('right_sl_prep.ogg', 'kääntymään loivasti oikealle ').
-string('left_keep_prep.ogg', 'pidä oikea ').
-string('right_keep_prep.ogg', 'pidä vasen ').
+string('left_keep_prep.ogg', 'pitämään vasen ').
+string('right_keep_prep.ogg', 'pitämään oikea ').
 
 % U-TURNS
 string('prepare_make_uturn.ogg', 'Valmistaudu kääntymään takaisin ').
@@ -97,8 +98,8 @@ string('and_arrive_destination.ogg', 'ja olet perillä ').
 string('reached_destination.ogg', 'olet perillä ').
 string('and_arrive_intermediate.ogg', 'ja saavut välietappiin').
 string('reached_intermediate.ogg', 'olet välietapissa').
-string('and_arrive_waypoint.ogg', 'ja saavut G P X etappiin').
-string('reached_waypoint.ogg', 'olet G P X etapissa').
+string('and_arrive_waypoint.ogg', 'ja saavut reittipisteeseen').
+string('reached_waypoint.ogg', 'olet reittipisteessä').
 
 % OTHER PROMPTS
 string('attention.ogg', 'huomio, ').
