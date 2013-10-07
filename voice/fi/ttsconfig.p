@@ -60,7 +60,7 @@ string('right_keep_prep.ogg', 'pitämään oikea ').
 string('prepare_make_uturn.ogg', 'Valmistaudu kääntymään takaisin ').
 string('make_uturn1.ogg', 'Käänny takaisin ').
 string('make_uturn2.ogg', 'Nyt, käänny takaisin ').
-string('make_uturn_wp.ogg', 'Nyt, käänny takaisin ').
+string('make_uturn_wp.ogg', 'Käänny takaisin, kun mahdollista ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Valmistaudu ajamaan liikenneympyrään ').
@@ -91,7 +91,7 @@ string('17th.ogg', 'seitsemästoista ').
 
 % STRAIGHT/FOLLOW
 string('go_ahead.ogg', 'Jatka suoraan ').
-string('follow.ogg', 'Jatka suoraan ').
+string('follow.ogg', 'Seuraa tietä ').
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'ja olet perillä ').
@@ -103,12 +103,16 @@ string('reached_waypoint.ogg', 'olet reittipisteessä').
 
 % OTHER PROMPTS
 string('attention.ogg', 'huomio, ').
-string('location_lost.ogg', 'G P S signaali kadonnut').
+string('location_lost.ogg', 'satelliittisignaali kadonnut').
 string('off_route.ogg', 'olet poikennut reitiltä ').
 string('exceed_limit.ogg', 'ylitit nopeusrajoituksen ').
 
 % STREET NAME GRAMMAR
-string('onto.ogg', 'to ').
+% In Finnish, street names would have to be inflected:
+% Turn onto Pihakatu -> Käänny PihakaDULLE 
+% Along Pihakatu -> PihakatuA pitkin
+% and there are no prepositions, so just saying the street name is the best that can be done easily
+string('onto.ogg', ' ').
 %string('on.ogg', 'auf ').
 %string('to.ogg', 'bis ').
 
@@ -123,17 +127,17 @@ string('kilometers_metri.ogg', 'kilometriä ').
 
 string('feet_metrin.ogg', 'jalkaa ').
 string('feet_metri.ogg', 'jalkaa ').
-string('1_tenth_of_a_mile_metrin.ogg', 'kymmenesosa mailin ').
-string('1_tenth_of_a_mile_metri.ogg', 'kymmenesosa mailin ').
-string('tenths_of_a_mile_metrin.ogg', 'kymmenesosaa mailin ').
-string('tenths_of_a_mile_metri.ogg', 'kymmenesosaa mailin ').
+string('1_tenth_of_a_mile_metrin.ogg', 'mailin kymmenyksen ').
+string('1_tenth_of_a_mile_metri.ogg', 'mailin kymmenys ').
+string('tenths_of_a_mile_metrin.ogg', 'mailin kymmenyksen ').
+string('tenths_of_a_mile_metri.ogg', 'mailin kymmenystä ').
 string('around_1_mile_metrin.ogg', 'noin yhden mailin ').
-string('around_1_mile_metri.ogg', 'noin yhden mailin ').
+string('around_1_mile_metri.ogg', 'noin yksi maili ').
 string('miles_metrin.ogg', 'mailin ').
-string('miles_metri.ogg', 'mailin ').
+string('miles_metri.ogg', 'maili ').
 
-string('yards_metrin.ogg', 'yards ').
-string('yards_metri.ogg', 'yards ').
+string('yards_metrin.ogg', 'jaardin ').
+string('yards_metri.ogg', 'jaardi ').
 
 % TIME SUPPORT
 string('time.ogg', ', aikaa ').
@@ -194,12 +198,12 @@ go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen]:- distance(Dist, metria) -- D
 then -- ['then.ogg'].
 name(D, [D]) :- tts.
 name(_D, []) :- not(tts).
-and_arrive_destination(D) -- ['and_arrive_destination.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
-reached_destination(D) -- ['reached_destination.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
-and_arrive_intermediate(D) -- ['and_arrive_intermediate.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
-reached_intermediate(D) -- ['reached_intermediate.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
-and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
-reached_waypoint(D) -- ['reached_waypoint.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
+and_arrive_destination(D) -- ['and_arrive_destination.ogg'|Ds] :- name(D, Ds).
+reached_destination(D) -- ['reached_destination.ogg'|Ds] :- name(D, Ds).
+and_arrive_intermediate(D) -- ['and_arrive_intermediate.ogg'|Ds] :- name(D, Ds).
+reached_intermediate(D) -- ['reached_intermediate.ogg'|Ds] :- name(D, Ds).
+and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
+reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
 
 route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg', T] :- distance(Dist, metria) -- D, time(Time) -- T.
 route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
@@ -270,41 +274,41 @@ distance(Dist, Y) -- D :- measure('mi-y'), distance_mi_y(Dist, Y) -- D.
 
 %%% distance measure km/m
 distance_km(Dist, metrin) -- [ X, 'meters_metrin.ogg']                  :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
-distance_km(Dist, metria) -- [ X, 'meters_metria.ogg']                  :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
+distance_km(Dist, metria) -- [ X, 'meters_metri.ogg']                  :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
 distance_km(Dist, metrin) -- [ X, 'meters_metrin.ogg']                  :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
-distance_km(Dist, metria) -- [ X, 'meters_metria.ogg']                  :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
+distance_km(Dist, metria) -- [ X, 'meters_metri.ogg']                  :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
 distance_km(Dist, metrin) -- ['around_1_kilometer_metrin.ogg']          :- Dist < 1500.
-distance_km(Dist, metria) -- ['around_1_kilometer_metria.ogg']          :- Dist < 1500.
+distance_km(Dist, metria) -- ['around_1_kilometer_metri.ogg']          :- Dist < 1500.
 distance_km(Dist, metrin) -- ['around.ogg', X, 'kilometers_metrin.ogg'] :- Dist < 10000, D is round(Dist/1000.0),            dist(D, X).
-distance_km(Dist, metria) -- ['around.ogg', X, 'kilometers_metria.ogg'] :- Dist < 10000, D is round(Dist/1000.0),            dist(D, X).
+distance_km(Dist, metria) -- ['around.ogg', X, 'kilometers_metri.ogg'] :- Dist < 10000, D is round(Dist/1000.0),            dist(D, X).
 distance_km(Dist, metrin) -- [ X, 'kilometers_metrin.ogg']              :-               D is round(Dist/1000.0),            dist(D, X).
-distance_km(Dist, metria) -- [ X, 'kilometers_metria.ogg']              :-               D is round(Dist/1000.0),            dist(D, X).
+distance_km(Dist, metria) -- [ X, 'kilometers_metri.ogg']              :-               D is round(Dist/1000.0),            dist(D, X).
 
 %%% distance measure mi/f
 distance_mi_f(Dist, metrin) -- [ X, 'feet_metrin.ogg']                  :- Dist < 160,   D is round(2*Dist/100.0/0.3048)*50, dist(D, X).
-distance_mi_f(Dist, metria) -- [ X, 'feet_metria.ogg']                  :- Dist < 160,   D is round(2*Dist/100.0/0.3048)*50, dist(D, X).
+distance_mi_f(Dist, metria) -- [ X, 'feet_metri.ogg']                  :- Dist < 160,   D is round(2*Dist/100.0/0.3048)*50, dist(D, X).
 distance_mi_f(Dist, metrin) -- ['1_tenth_of_a_mile_metrin.ogg']         :- Dist < 241.
-distance_mi_f(Dist, metria) -- ['1_tenth_of_a_mile_metria.ogg']         :- Dist < 241.
+distance_mi_f(Dist, metria) -- ['1_tenth_of_a_mile_metri.ogg']         :- Dist < 241.
 distance_mi_f(Dist, metrin) -- [ X, 'tenths_of_a_mile_metrin.ogg']      :- Dist < 1529,  D is round(Dist/161.0),             dist(D, X).
-distance_mi_f(Dist, metria) -- [ X, 'tenths_of_a_mile_metria.ogg']      :- Dist < 1529,  D is round(Dist/161.0),             dist(D, X).
+distance_mi_f(Dist, metria) -- [ X, 'tenths_of_a_mile_metri.ogg']      :- Dist < 1529,  D is round(Dist/161.0),             dist(D, X).
 distance_mi_f(Dist, metrin) -- ['around_1_mile_metrin.ogg']             :- Dist < 2414.
-distance_mi_f(Dist, metria) -- ['around_1_mile_metria.ogg']             :- Dist < 2414.
+distance_mi_f(Dist, metria) -- ['around_1_mile_metri.ogg']             :- Dist < 2414.
 distance_mi_f(Dist, metrin) -- ['around.ogg', X, 'miles_metrin.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
-distance_mi_f(Dist, metria) -- ['around.ogg', X, 'miles_metria.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
+distance_mi_f(Dist, metria) -- ['around.ogg', X, 'miles_metri.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
 distance_mi_f(Dist, metrin) -- [ X, 'miles_metrin.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
-distance_mi_f(Dist, metria) -- [ X, 'miles_metria.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
+distance_mi_f(Dist, metria) -- [ X, 'miles_metri.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
 
 %%% distance measure mi/y
 distance_mi_y(Dist, metrin) -- [ X, 'yards_metrin.ogg']                 :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
-distance_mi_y(Dist, metria) -- [ X, 'yards_metria.ogg']                 :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
+distance_mi_y(Dist, metria) -- [ X, 'yards_metri.ogg']                 :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
 distance_mi_y(Dist, metrin) -- [ X, 'yards_metrin.ogg']                 :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
-distance_mi_y(Dist, metria) -- [ X, 'yards_metria.ogg']                 :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
+distance_mi_y(Dist, metria) -- [ X, 'yards_metri.ogg']                 :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
 distance_mi_y(Dist, metrin) -- ['around_1_mile_metrin.ogg']             :- Dist < 2414.
-distance_mi_y(Dist, metria) -- ['around_1_mile_metria.ogg']             :- Dist < 2414.
+distance_mi_y(Dist, metria) -- ['around_1_mile_metri.ogg']             :- Dist < 2414.
 distance_mi_y(Dist, metrin) -- ['around.ogg', X, 'miles_metrin.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
-distance_mi_y(Dist, metria) -- ['around.ogg', X, 'miles_metria.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
+distance_mi_y(Dist, metria) -- ['around.ogg', X, 'miles_metri.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
 distance_mi_y(Dist, metrin) -- [ X, 'miles_metrin.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
-distance_mi_y(Dist, metria) -- [ X, 'miles_metria.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
+distance_mi_y(Dist, metria) -- [ X, 'miles_metri.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
 
 
 interval(St, St, End, _Step) :- St =< End.
