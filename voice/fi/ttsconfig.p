@@ -95,16 +95,16 @@ string('follow.ogg', 'Jatka suoraan ').
 % ARRIVE
 string('and_arrive_destination.ogg', 'ja olet perillä ').
 string('reached_destination.ogg', 'olet perillä ').
-string('and_arrive_intermediate.ogg', 'ja saapuvat etappi').
-string('reached_intermediate.ogg', 'olet saavuttanut välietapin').
-string('and_arrive_waypoint.ogg', 'ja saapuvat etappi GPX').
-string('reached_waypoint.ogg', 'olet saavuttanut välietapin GPX').
+string('and_arrive_intermediate.ogg', 'ja saavut välietappiin').
+string('reached_intermediate.ogg', 'olet välietapissa').
+string('and_arrive_waypoint.ogg', 'ja saavut G P X etappiin').
+string('reached_waypoint.ogg', 'olet G P X etapissa').
 
 % OTHER PROMPTS
 string('attention.ogg', 'huomio, ').
 string('location_lost.ogg', 'G P S signaali kadonnut').
 string('off_route.ogg', 'olet poikennut reitiltä ').
-string('exceed_limit.ogg', 'olet nopeusrajoituksen ylittämisestä ').
+string('exceed_limit.ogg', 'ylitit nopeusrajoituksen ').
 
 % STREET NAME GRAMMAR
 string('onto.ogg', 'to ').
@@ -117,7 +117,7 @@ string('meters_metri.ogg', 'metriä ').
 string('around_1_kilometer_metrin.ogg', 'noin 1 kilometrin ').
 string('around_1_kilometer_metri.ogg', 'noin 1 kilometri ').
 string('around.ogg', 'noin').  % Note: do not put space after word "noin" because for some reason the SVOX Finnish Satu Voice announces the number wrong if there is a space
-string('kilometers_metrin.ogg', 'kilometerin ').
+string('kilometers_metrin.ogg', 'kilometrin ').
 string('kilometers_metri.ogg', 'kilometriä ').
 
 string('feet_metrin.ogg', 'jalkaa ').
@@ -137,8 +137,8 @@ string('yards_metri.ogg', 'yards ').
 % TIME SUPPORT
 string('time.ogg', ', aikaa ').
 string('1_hour.ogg', 'yksi tunti ').
-string('hours.ogg', 'untia ').
-string('less_a_minute.ogg', 'les kuin minuutti ').
+string('hours.ogg', 'tuntia ').
+string('less_a_minute.ogg', 'alle minuutti ').
 string('1_minute.ogg', 'minuutti ').
 string('minutes.ogg', 'minuuttia ').
 
