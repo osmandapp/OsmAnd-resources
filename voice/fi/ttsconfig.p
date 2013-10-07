@@ -36,9 +36,10 @@ string('after.ogg', 'nach ').
 string('get.ogg', 'päästä  ').
 string('now.ogg', 'nyt,  ').
 
-string('left.ogg', 'käänny vasemmalle ').
-string('left_sh.ogg', 'käänny jyrkästi vasemmalle ').
-string('left_sl.ogg', 'käänny loivasti vasemmalle ').
+   % Vasempaan/vasemmalle and oikeaan/oikealle are interchangeable in normal speech but the Finnish military standard in directions is VASEMPAAN and OIKEALLE. We should also do this as it makes it much easier to distinguish in noise.
+string('left.ogg', 'käänny vasempaan ').
+string('left_sh.ogg', 'käänny jyrkästi vasempaan ').
+string('left_sl.ogg', 'käänny loivasti vasempaan ').
 string('right.ogg', 'käänny oikealle ').
 string('right_sh.ogg', 'käänny jyrkästi oikealle ').
 string('right_sl.ogg', 'käänny loivasti oikealle ').
@@ -46,14 +47,14 @@ string('left_keep.ogg', 'pidä vasen ').
 string('right_keep.ogg', 'pidä oikea ').
 % if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
-string('left_prep.ogg', 'kääntymään vasemmalle ').
-string('left_sh_prep.ogg', 'kääntymään jyrkästi vasemmalle ').
-string('left_sl_prep.ogg', 'kääntymään loivasti vasemmalle ').
+string('left_prep.ogg', 'kääntymään vasempaan ').
+string('left_sh_prep.ogg', 'kääntymään jyrkästi vasempaan ').
+string('left_sl_prep.ogg', 'kääntymään loivasti vasempaan ').
 string('right_prep.ogg', 'kääntymään oikealle ').
 string('right_sh_prep.ogg', 'kääntymään jyrkästi oikealle ').
 string('right_sl_prep.ogg', 'kääntymään loivasti oikealle ').
-string('left_keep_prep.ogg', 'pidä oikea ').
-string('right_keep_prep.ogg', 'pidä vasen ').
+string('left_keep_prep.ogg', 'pitämään vasen ').
+string('right_keep_prep.ogg', 'pitämään oikea ').
 
 % U-TURNS
 string('prepare_make_uturn.ogg', 'Valmistaudu kääntymään takaisin ').
@@ -95,16 +96,16 @@ string('follow.ogg', 'Jatka suoraan ').
 % ARRIVE
 string('and_arrive_destination.ogg', 'ja olet perillä ').
 string('reached_destination.ogg', 'olet perillä ').
-string('and_arrive_intermediate.ogg', 'ja saapuvat etappi').
-string('reached_intermediate.ogg', 'olet saavuttanut välietapin').
-string('and_arrive_waypoint.ogg', 'ja saapuvat etappi GPX').
-string('reached_waypoint.ogg', 'olet saavuttanut välietapin GPX').
+string('and_arrive_intermediate.ogg', 'ja saavut välietappiin').
+string('reached_intermediate.ogg', 'olet välietapissa').
+string('and_arrive_waypoint.ogg', 'ja saavut reittipisteeseen').
+string('reached_waypoint.ogg', 'olet reittipisteessä').
 
 % OTHER PROMPTS
 string('attention.ogg', 'huomio, ').
 string('location_lost.ogg', 'G P S signaali kadonnut').
 string('off_route.ogg', 'olet poikennut reitiltä ').
-string('exceed_limit.ogg', 'olet nopeusrajoituksen ylittämisestä ').
+string('exceed_limit.ogg', 'ylitit nopeusrajoituksen ').
 
 % STREET NAME GRAMMAR
 string('onto.ogg', 'to ').
@@ -117,7 +118,7 @@ string('meters_metri.ogg', 'metriä ').
 string('around_1_kilometer_metrin.ogg', 'noin 1 kilometrin ').
 string('around_1_kilometer_metri.ogg', 'noin 1 kilometri ').
 string('around.ogg', 'noin').  % Note: do not put space after word "noin" because for some reason the SVOX Finnish Satu Voice announces the number wrong if there is a space
-string('kilometers_metrin.ogg', 'kilometerin ').
+string('kilometers_metrin.ogg', 'kilometrin ').
 string('kilometers_metri.ogg', 'kilometriä ').
 
 string('feet_metrin.ogg', 'jalkaa ').
@@ -137,8 +138,8 @@ string('yards_metri.ogg', 'yards ').
 % TIME SUPPORT
 string('time.ogg', ', aikaa ').
 string('1_hour.ogg', 'yksi tunti ').
-string('hours.ogg', 'untia ').
-string('less_a_minute.ogg', 'les kuin minuutti ').
+string('hours.ogg', 'tuntia ').
+string('less_a_minute.ogg', 'alle minuutti ').
 string('1_minute.ogg', 'minuutti ').
 string('minutes.ogg', 'minuuttia ').
 
