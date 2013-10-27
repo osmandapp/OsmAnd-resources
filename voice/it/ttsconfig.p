@@ -40,9 +40,9 @@ string('left_keep.ogg', 'tenersi sulla sinistra').
 string('right_keep.ogg', 'tenersi sulla destra').
 
 % U-TURNS
-string('prepare_uturn.ogg', 'Prepararsi a una inversione ad u tra').
+string('prepare_uturn.ogg', 'Prepararsi a una inversione a u tra').
 string('make_uturn.ogg', 'inversione ad u').
-string('make_uturn_wp.ogg', 'Quando possibile, inversione a u').
+string('make_uturn_wp.ogg', 'Quando possibile, fate inversione a u').
 string('after.ogg', 'tra').
 string('after1.ogg', 'dopo').
 string('prepare.ogg', 'prepararsi a').
