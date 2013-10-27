@@ -90,6 +90,7 @@ string('reached_waypoint.ogg', 'Prispeli ste na vmesni cilj GPX').
 % OTHER PROMPTS
 string('attention.ogg', 'pozornost, ').
 string('location_lost.ogg', 'Ni več G P S  signala ').
+string('location_recovered.ogg', 'g p s signal restored ').
 string('off_route.ogg', 'ste oddaljil od poti ').
 string('exceed_limit.ogg', 'ste prekoračitev hitrosti ').
 
@@ -176,6 +177,7 @@ route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
+location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
 attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].

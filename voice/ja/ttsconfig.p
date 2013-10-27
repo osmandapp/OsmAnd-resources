@@ -91,6 +91,7 @@ string('waypoint_ni_tsukimashita.ogg', 'waypoint ni tsukimashita ').
 % OTHER PROMPTS
 string('ki_wo_tsukete.ogg', 'Ki wo tsukete, ').
 string('kengai_desu.ogg', 'kengai_desu ').
+string('location_recovered.ogg', 'g p s signal restored ').
 string('mae_kara_michi_ga_chigaimasu.ogg', 'mae kara michi ga chigaimasu').
 string('speed_over_desu.ogg', 'Speed over desu ').
 
@@ -174,6 +175,7 @@ route_recalc(_Dist, _Time) -- ['michi_wo_koushin_shimashita.ogg'] :- appMode('ca
 route_recalc(Dist, Time) -- ['michi_wo_koushin_shimashita.ogg', 'kyouri_ha.ogg', D, 'jikan_ha.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['kengai_desu.ogg'].
+location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- [D, 'mae_kara_michi_ga_chigaimasu.ogg'] :- distance(Dist) -- D.
 attention(_Type) -- ['ki_wo_tsukete.ogg'].
 speed_alarm -- ['speed_over_desu.ogg'].

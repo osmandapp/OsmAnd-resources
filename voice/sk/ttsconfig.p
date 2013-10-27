@@ -101,6 +101,7 @@ string('reached_waypoint.ogg', 'dorazili ste k Vášmu prechodnému bodu GPX').
 % OTHER PROMPTS
 string('attention.ogg', 'pozor, ').
 string('location_lost.ogg', 'strata satelytného signálu ').
+string('location_recovered.ogg', 'g p s signal restored ').
 string('off_route.ogg', 'odchýlili ste sa od trasy').
 string('exceed_limit.ogg', 'prekročili ste maximálnu povolenú rýchlosť').
 
@@ -194,6 +195,7 @@ route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
+location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
 attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].

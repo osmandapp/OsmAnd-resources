@@ -91,6 +91,7 @@ string('reached_waypoint.ogg', 'wewe na kufikiwa yako kupitia-uhakika GPX').
 % OTHER PROMPTS
 string('attention.ogg', 'makini, ').
 string('location_lost.ogg', 'g p s ishara waliopotea ').
+string('location_recovered.ogg', 'g p s signal restored ').
 string('off_route.ogg', 'una jitenga na njia ').
 string('exceed_limit.ogg', 'wewe ni mno kikomo kasi ').
 
@@ -175,6 +176,7 @@ route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
+location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
 attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].

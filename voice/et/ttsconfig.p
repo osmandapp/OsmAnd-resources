@@ -105,6 +105,7 @@ string('reached_waypoint.ogg', 'Tee-tähis ').                   % NB! And here?
 % OTHER PROMPTS
 string('attention.ogg', 'Tähelepanu! ').
 string('location_lost.ogg', 'Geepe-essi levi pole. ').
+string('location_recovered.ogg', 'g p s signal restored ').
 string('you_are.ogg', 'Olete ').
 string('off_route.ogg', 'plaanitud teest kõrvale kaldunud ').
 string('exceed_limit.ogg', 'Ületate piir-kiirust.').
@@ -272,6 +273,7 @@ route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car'), !.
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, ', ' , 'time.ogg', T] :- distance(Dist, 'nom') -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
+location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['you_are.ogg', D, 'off_route.ogg'] :- distance(Dist, 'nom') -- D.
 attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].

@@ -93,6 +93,7 @@ string('reached_waypoint.ogg', 'आप अपने माध्यम बिं
 % OTHER PROMPTS
 string('attention.ogg', 'ध्यान ').
 string('location_lost.ogg', 'जी पी एस सिग्नल नही ').
+string('location_recovered.ogg', 'g p s signal restored ').
 string('off_route.ogg', 'आप मार्ग से भटक गए हैं ').
 string('exceed_limit.ogg', 'आप गति सीमा से अधिक कर रहे हैं ').
 
@@ -176,6 +177,7 @@ route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
+location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
 attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].

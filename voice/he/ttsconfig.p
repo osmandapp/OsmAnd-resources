@@ -90,6 +90,7 @@ string('reached_waypoint.ogg', 'you_have_reached_a_viapoint (GPX waypoint) ').
 % OTHER PROMPTS
 string('attention.ogg', 'attention, ').
 string('location_lost.ogg', 'gps_signal_lost.ogg ').
+string('location_recovered.ogg', 'g p s signal restored ').
 string('off_route.ogg', 'you have been off the route for').
 string('exceed_limit.ogg', 'you are exceeding the speed limit ').
 
@@ -173,6 +174,7 @@ route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
+location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
 attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
