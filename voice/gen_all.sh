@@ -53,3 +53,4 @@ fi
 ./gen_voice.sh ru Russian ispeech ru
 ./gen_voice.sh sv Swedish ispeech sv
 ./gen_voice.sh zh Chinese ispeech zh
+./gen_voice.sh ja Japanese ispeech ja
