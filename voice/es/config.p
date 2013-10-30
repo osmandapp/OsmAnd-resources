@@ -36,20 +36,20 @@ string('prepare.ogg', 'prepárate para').
 string('after.ogg', 'después de ').
 
 string('left.ogg', 'gira a la izquierda').
-string('left_sh.ogg', 'gira cerrado a la izquierda').
+string('left_sh.ogg', 'gira fuerte a la izquierda').
 string('left_sl.ogg', 'gira levemente a la izquierda').
 string('right.ogg', 'gira a la derecha').
-string('right_sh.ogg', 'gira cerrado a la derecha').
+string('right_sh.ogg', 'gira fuerte a la derecha').
 string('right_sl.ogg', 'gira levemente a la derecha').
 string('left_keep.ogg', 'mantente a la izquierda').
 string('right_keep.ogg', 'mantente a la derecha').
 % if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 string('left_inf.ogg', 'girar a la izquierda').
-string('left_sh_inf.ogg', 'girar cerrado a la izquierda').
+string('left_sh_inf.ogg', 'girar fuerte a la izquierda').
 string('left_sl_inf.ogg', 'girar levemente a la izquierda').
 string('right_inf.ogg', 'girar a la derecha').
-string('right_sh_inf.ogg', 'girar cerrado a la derecha').
+string('right_sh_inf.ogg', 'girar fuerte a la derecha').
 string('right_sl_inf.ogg', 'girar levemente a la derecha').
 string('left_keep_inf.ogg', 'mantenerte a la izquierda').
 string('right_keep_inf.ogg', 'mantenerte a la derecha').
@@ -100,6 +100,7 @@ string('reached_waypoint.ogg', 'has llegado a tu punto intermedio').
 % OTHER PROMPTS
 string('attention.ogg', 'atención, ').
 string('location_lost.ogg', 'señal g p s perdida').
+string('location_recovered.ogg', 'señal g p s encontrada ').
 string('off_route.ogg', 'te has desviado de la ruta').
 string('exceed_limit.ogg', 'límite de velocidad excedido').
 
@@ -191,6 +192,7 @@ route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
+location_recovered -- ['location_recovered.ogg'].
 off_route(_Dist) -- ['off_route.ogg'].
 attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
