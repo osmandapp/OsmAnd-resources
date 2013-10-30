@@ -119,7 +119,7 @@ string('reached_waypoint.ogg', 'dorazili jste do GPX mezicíle ').
 % OTHER PROMPTS
 string('attention.ogg', 'pozor, ').
 string('location_lost.ogg', 'ztráta signálu ').
-string('location_recovered.ogg', 'g p s signal restored ').
+string('location_recovered.ogg', 'signál zpět').
 string('off_route.ogg', 'odchylujete se z trasy ').
 string('exceed_limit.ogg', 'překračujete povolenou rychlost ').
 
