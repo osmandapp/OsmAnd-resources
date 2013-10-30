@@ -90,6 +90,7 @@ string('reached_waypoint.ogg', 'you have reached your GPX waypoint ').
 % OTHER PROMPTS
 string('attention.ogg', 'attention, ').
 string('location_lost.ogg', 'g p s signal lost ').
+string('location_recovered.ogg', 'g p s signal restored ').
 string('off_route.ogg', 'you have been off the route for').
 string('exceed_limit.ogg', 'you are exceeding the speed limit ').
 
@@ -130,7 +131,6 @@ turn('right_sh', ['right_sh.ogg']).
 turn('right_sl', ['right_sl.ogg']).
 turn('left_keep', ['left_keep.ogg']).
 turn('right_keep', ['right_keep.ogg']).
-%% there is no good analogue in english to keep left of A31?
 bear_left(_Street) -- ['left_keep.ogg'].
 bear_right(_Street) -- ['right_keep.ogg'].
 
@@ -174,6 +174,7 @@ route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
+location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
 attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
