@@ -90,7 +90,7 @@ string('reached_waypoint.ogg', 'φτάσατε στο σημείο GPX').
 % OTHER PROMPTS
 string('attention.ogg', 'προσοχή , ').
 string('location_lost.ogg', 'Το σήμα gps χάθηκε ').
-string('location_recovered.ogg', 'g p s signal restored ').
+string('location_recovered.ogg', 'gps σήμα ανακτηθεί ').
 string('off_route.ogg', 'έχετε παρεκκλίνει από τη διαδρομή ').
 string('exceed_limit.ogg', 'έχετε υπερβεί το όριο ταχύτητας ').
 
