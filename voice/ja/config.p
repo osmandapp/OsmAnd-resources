@@ -92,7 +92,7 @@ string('waypoint_ni_tsukimashita.ogg', 'waypoint ni tsukimashita ').
 % OTHER PROMPTS
 string('ki_wo_tsukete.ogg', 'Ki wo tsukete, ').
 string('kengai_desu.ogg', 'kengai_desu ').
-string('location_recovered.ogg', 'g p s signal restored ').
+string('location_recovered.ogg', 'GPS信号が回復').
 string('mae_kara_michi_ga_chigaimasu.ogg', 'mae kara michi ga chigaimasu').
 string('speed_over_desu.ogg', 'Speed over desu ').
 
