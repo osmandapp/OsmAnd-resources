@@ -90,6 +90,7 @@ string('reached_waypoint.ogg', 'rutepunkt er nået ').
 % OTHER PROMPTS
 string('attention.ogg', 'Advarsel, ').
 string('location_lost.ogg', 'g p s signal mistet ').
+string('location_recovered.ogg', 'gps signal inddrives ').
 string('off_route.ogg', 'afvigelse fra ruten ').
 string('exceed_limit.ogg', 'Overskridelse af hastighedsgrænsen ').
 
@@ -99,7 +100,7 @@ string('on.ogg', 'på ').
 string('to.ogg', 'til ').
 
 % DISTANCE UNIT SUPPORT
-string('meters.ogg', 'meter, ').
+string('meters.ogg', 'meter ').
 string('around_1_kilometer.ogg', 'omkring 1 kilometer ').
 string('around.ogg', 'om ').
 string('kilometers.ogg', 'kilometer ').
@@ -174,6 +175,7 @@ route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
+location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
 attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].

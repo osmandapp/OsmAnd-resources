@@ -31,7 +31,7 @@ string('route_calculate.ogg', 'Ruten genberegnes ').
 string('distance.ogg', 'afstand ').
 
 % LEFT/RIGHT
-string('prepare.ogg', 'Forbered til ').
+string('prepare.ogg', 'Forbered ').
 string('after.ogg', 'efter ').
 
 string('left.ogg', 'drej til venstre ').
@@ -76,7 +76,7 @@ string('17th.ogg', 'syttende ').
 
 % STRAIGHT/FOLLOW
 string('go_ahead.ogg', 'Fortsæt ligeud ').
-string('follow.ogg', 'Følg vejen for ').
+string('follow.ogg', 'Følg vejen ').
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'og ankommer til destinationen ').
@@ -89,7 +89,7 @@ string('reached_waypoint.ogg', 'rutepunkt er nået ').
 % OTHER PROMPTS
 string('attention.ogg', 'Advarsel, ').
 string('location_lost.ogg', 'g p s signal mistet ').
-string('location_recovered.ogg', 'g p s signal restored ').
+string('location_recovered.ogg', 'gps signal inddrives ').
 string('off_route.ogg', 'afvigelse fra ruten ').
 string('exceed_limit.ogg', 'Overskridelse af hastighedsgrænsen ').
 
