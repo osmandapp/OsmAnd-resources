@@ -94,6 +94,7 @@ string('reached_waypoint.ogg', '당신은 당신을 통해 지점에 도달했�
 % OTHER PROMPTS
 string('attention.ogg', '주의, ').
 string('location_lost.ogg', 'g p s 신호가 없습니다 ').
+string('location_recovered.ogg', 'g p s 신호는 복구').
 string('off_route.ogg', '당신은 경로에서 이탈했다 ').
 string('exceed_limit.ogg', '당신은 속도 제한을 초과하는 ').
 
@@ -177,6 +178,7 @@ route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'is.ogg', 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
+location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
 attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
