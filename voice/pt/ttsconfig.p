@@ -103,7 +103,7 @@ string('reached_waypoint.ogg', 'você chegou ao seu ponto de GPX ').
 % OTHER PROMPTS
 string('attention.ogg', 'atenção, ').
 string('location_lost.ogg', 'sem sinal g p s ').
-string('location_recovered.ogg', 'g p s signal restored ').
+string('location_recovered.ogg', 'sinal gps recuperado ').
 string('off_route.ogg', 'você se desviou da rota para ').
 string('exceed_limit.ogg', 'você estiver excedendo o limite de velocidade ').
 
