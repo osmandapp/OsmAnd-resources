@@ -96,7 +96,8 @@ string('reached.ogg', 'bereikt  ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'let op , ').
-string('location_lost.ogg', 'G P S  Signaal verloren ').
+string('location_lost.ogg', 'G P S  signaal verloren ').
+string('location_recovered.ogg', 'g p s signaal hersteld ').
 string('off_route.ogg', 'je bent afgeweken van de route vanaf ').
 string('exceed_limit.ogg', 'je overschrijdt de maximumsnelheid ').
 
@@ -175,6 +176,7 @@ route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
+location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
 attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
