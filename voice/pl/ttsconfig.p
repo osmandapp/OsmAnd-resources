@@ -89,6 +89,8 @@ string('reached_waypoint.ogg', 'punkt trasy został osiągnięty ').
 % OTHER PROMPTS
 string('attention.ogg', 'uwaga, ').
 string('location_lost.ogg', 'Utracono sygnał GPS ').
+string('location_recovered.ogg', 'gps sygnał odzyskane').
+
 string('off_route.ogg', 'znajdujesz się poza trasą ').
 string('exceed_limit.ogg', 'przekraczasz dozwoloną prędkość ').
 
@@ -164,6 +166,7 @@ route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
+location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
 attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
