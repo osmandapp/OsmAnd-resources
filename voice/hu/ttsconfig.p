@@ -91,7 +91,7 @@ string('reached_waypoint.ogg', 'megérkeztél a köztes GPX útponthoz ').
 % OTHER PROMPTS
 string('attention.ogg', 'figyelem, ').
 string('location_lost.ogg', 'nem található dzsípíesz pozíció ').
-string('location_recovered.ogg', 'g p s signal restored ').
+string('location_recovered.ogg', 'pozíció jel vissza').
 string('off_route.ogg', 'Letértél a tervezett útvonalról ').
 string('exceed_limit.ogg', 'Túllépted a sebességhatárt ').
 
