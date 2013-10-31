@@ -89,7 +89,7 @@ string('reached_waypoint.ogg', 'вы прибыли к GPX точке ').
 % OTHER PROMPTS
 string('attention.ogg', 'Внимание, ').
 string('location_lost.ogg', 'потерян сигнал ДЖИПИИЭС').
-string('location_recovered.ogg', 'g p s signal restored ').
+string('location_recovered.ogg', 'ДЖИПИИЭС сигнал восстановлен ').
 string('off_route.ogg', 'Вы отклонились от маршрута на ').
 string('exceed_limit.ogg', 'Вы превысили допустимую скорость ').
 

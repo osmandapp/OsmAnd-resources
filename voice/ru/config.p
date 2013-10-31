@@ -90,6 +90,7 @@ string('reached_waypoint.ogg', 'вы прибыли к GPX точке ').
 % OTHER PROMPTS
 string('attention.ogg', 'Внимание, ').
 string('location_lost.ogg', 'потерян сигнал ДЖИПИИЭС').
+string('location_recovered.ogg', 'ДЖИПИИЭС сигнал восстановлен ').
 string('off_route.ogg', 'Вы отклонились от маршрута на ').
 string('exceed_limit.ogg', 'Вы превысили допустимую скорость ').
 
@@ -181,6 +182,7 @@ route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg
 
 
 location_lost -- ['location_lost.ogg'].
+location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
 attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
