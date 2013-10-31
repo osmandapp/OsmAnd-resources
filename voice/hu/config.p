@@ -92,6 +92,7 @@ string('reached_waypoint.ogg', 'megérkeztél a köztes GPX útponthoz ').
 % OTHER PROMPTS
 string('attention.ogg', 'figyelem, ').
 string('location_lost.ogg', 'nem található dzsípíesz pozíció ').
+string('location_recovered.ogg', 'pozíció jel vissza').
 string('off_route.ogg', 'Letértél a tervezett útvonalról ').
 string('exceed_limit.ogg', 'Túllépted a sebességhatárt ').
 
@@ -188,6 +189,7 @@ route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', D, 'time.ogg', T] :- distance(Dist, nom) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
+location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist, acc) -- D.
 attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
