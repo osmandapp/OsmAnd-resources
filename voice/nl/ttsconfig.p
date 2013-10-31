@@ -95,8 +95,8 @@ string('reached.ogg', 'bereikt  ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'let op , ').
-string('location_lost.ogg', 'G P S  Signaal verloren ').
-string('location_recovered.ogg', 'g p s signal restored ').
+string('location_lost.ogg', 'G P S  signaal verloren ').
+string('location_recovered.ogg', 'g p s signaal hersteld ').
 string('off_route.ogg', 'je bent afgeweken van de route vanaf ').
 string('exceed_limit.ogg', 'je overschrijdt de maximumsnelheid ').
 
