@@ -105,7 +105,7 @@ string('reached_waypoint.ogg', 'Tee-tähis ').                   % NB! And here?
 % OTHER PROMPTS
 string('attention.ogg', 'Tähelepanu! ').
 string('location_lost.ogg', 'Geepe-essi levi pole. ').
-string('location_recovered.ogg', 'g p s signal restored ').
+string('location_recovered.ogg', 'Geepe-essi levi taastus. ').
 string('you_are.ogg', 'Olete ').
 string('off_route.ogg', 'plaanitud teest kõrvale kaldunud ').
 string('exceed_limit.ogg', 'Ületate piir-kiirust.').
