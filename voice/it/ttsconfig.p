@@ -26,7 +26,7 @@ language('it').
 
 
 % ROUTE CALCULATED
-string('route_is.ogg', 'Il viaggio Ë lungo').
+string('route_is.ogg', 'Il viaggio √® lungo').
 string('route_calculate.ogg', 'Ricalcolo percorso ').
 string('distance.ogg', ', lunghezza').
 
@@ -38,11 +38,11 @@ string('after1.ogg', 'fra').
 string('left.ogg', 'girare a sinistra').
 string('left_sh.ogg', 'subito a sinistra').
 string('left_sl.ogg', 'girare leggermente a sinistra').
-string('right.ogg', 'girare a dËstra').
-string('right_sh.ogg', 'subito a dËstra').
-string('right_sl.ogg', 'girate leggermente a dËstra').
+string('right.ogg', 'girare a d√®stra').
+string('right_sh.ogg', 'subito a d√®stra').
+string('right_sl.ogg', 'girate leggermente a d√®stra').
 string('left_keep.ogg', 'tenersi sulla sinistra').
-string('right_keep.ogg', 'tenersi sulla dËstra').
+string('right_keep.ogg', 'tenersi sulla d√®stra').
 % if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
@@ -90,9 +90,10 @@ string('reached_waypoint.ogg', 'arrivato al punto intermedio').
 
 % OTHER PROMPTS
 string('attention.ogg', 'attenzione, ').
-string('location_lost.ogg', 'Segnale G P S perso').
+string('location_lost.ogg', 'Segnale GPS perso').
+string('location_recovered.ogg', 'Segnale GPS restaurato').
 string('off_route.ogg', 'avete deviato dalla rotta').
-string('exceed_limit.ogg', 'superato il limite di velocit‡').
+string('exceed_limit.ogg', 'superato il limite di velocit√†').
 
 % STREET NAME GRAMMAR
 string('onto.ogg', 'in').
@@ -171,6 +172,7 @@ route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
+location_recovered -- ['location_recovered.ogg'].
 
 off_route(_Dist) -- ['off_route.ogg'].
 attention(_Type) -- ['attention.ogg'].
