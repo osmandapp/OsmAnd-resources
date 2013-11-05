@@ -89,7 +89,7 @@ string('reached_waypoint.ogg', 'punkt trasy został osiągnięty ').
 % OTHER PROMPTS
 string('attention.ogg', 'uwaga, ').
 string('location_lost.ogg', 'Utracono sygnał GPS ').
-string('location_recovered.ogg', 'gps sygnał odzyskane').
+string('location_recovered.ogg', 'Odzyskano sygnał GPS').
 
 string('off_route.ogg', 'znajdujesz się poza trasą ').
 string('exceed_limit.ogg', 'przekraczasz dozwoloną prędkość ').

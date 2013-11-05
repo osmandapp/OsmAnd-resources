@@ -34,7 +34,7 @@ echo "%%% !!! THIS IS GENERATED FILE !!! Modify ttsconfig.p" > $CONFIG_FILE
 sed "s/version(102)/version(0)/g" $1/ttsconfig.p >> $CONFIG_FILE 
 
 cp $CONFIG_FILE work/_config.p
-cp $CONFIG_FILE work/g_config.p
+sed "s/\"/'/g" $CONFIG_FILE > work/g_config.p
 cd work
 # clear previous files
 # rm -f *.wav *.mp3 $1.zip

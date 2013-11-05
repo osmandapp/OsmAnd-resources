@@ -93,7 +93,7 @@ string('reached_waypoint.ogg', '你已經達到你通過點  GPX').
 % OTHER PROMPTS
 string('attention.ogg', '注意, ').
 string('location_lost.ogg', '接收不到 g p s 信號 ').
-string('location_recovered.ogg', 'g p s signal restored ').
+string('location_recovered.ogg', 'g p s 信號恢復 ').
 string('off_route.ogg', '你已經偏離路線 ').
 string('exceed_limit.ogg', '你超速 ').
 
