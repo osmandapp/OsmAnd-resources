@@ -139,12 +139,15 @@ cut_part_street(voice(['', '', Dest], _), Dest).
 cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
 
 onto_street('', []).
+onto_street(voice(['','',''],_), []).
 onto_street(Street, ['onto.ogg', SName]) :- tts, cut_part_street(Street, SName).
 onto_street(_Street, []) :- not(tts).
 on_street('', []).
+on_street(voice(['','',''],_), []).
 on_street(Street, ['on.ogg', SName]) :- tts, cut_part_street(Street, SName).
 on_street(_Street, []) :- not(tts).
 to_street('', []).
+to_street(voice(['','',''],_), []).
 to_street(Street, ['to.ogg', SName]) :- tts, cut_part_street(Street, SName).
 to_street(_Street, []) :- not(tts).
 
