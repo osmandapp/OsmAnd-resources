@@ -3,7 +3,7 @@
 % for swi-prolog
 :- op(500, xfy,'--').
 
-version(102).
+version(103).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
@@ -133,14 +133,22 @@ turn('right_keep', ['right_keep.ogg']).
 bear_left(_Street) -- ['left_keep.ogg'].
 bear_right(_Street) -- ['right_keep.ogg'].
 
+% cut_part_street( voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _)
+cut_part_street(voice(['', '', Dest], _), Dest).
+% cut_part_street(voice(['', Name, _], _), Name). % not necessary
+cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
+
 onto_street('', []).
-onto_street(Street, ['onto.ogg', Street]) :- tts.
+onto_street(voice(['','',''],_), []).
+onto_street(Street, ['onto.ogg', SName]) :- tts, cut_part_street(Street, SName).
 onto_street(_Street, []) :- not(tts).
 on_street('', []).
-on_street(Street, ['on.ogg', Street]) :- tts.
+on_street(voice(['','',''],_), []).
+on_street(Street, ['on.ogg', SName]) :- tts, cut_part_street(Street, SName).
 on_street(_Street, []) :- not(tts).
 to_street('', []).
-to_street(Street, ['to.ogg', Street]) :- tts.
+to_street(voice(['','',''],_), []).
+to_street(Street, ['to.ogg', SName]) :- tts, cut_part_street(Street, SName).
 to_street(_Street, []) :- not(tts).
 
 prepare_turn(Turn, Dist, Street) -- ['prepare.ogg', M, 'after.ogg', D | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
