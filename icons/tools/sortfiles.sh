@@ -78,6 +78,8 @@ mycp amenity fuel transport_fuel.png
 
 mygroup parking transport_parking.png
 mycp amenity parking transport_parking.png
+mycp amenity parking_private transport_parking_private2.png
+mycp amenity parking_paid transport_parking_car_paid.png
 mycp amenity bicycle_parking transport_parking_bicycle.png
 
 mygroup public_transport transport_bus_stop.png
