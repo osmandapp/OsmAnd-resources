@@ -91,13 +91,13 @@ string('reached_waypoint.ogg', 'arrivato al punto intermedio').
 % OTHER PROMPTS
 string('attention.ogg', 'attenzione, ').
 string('location_lost.ogg', 'Segnale GPS perso').
-string('location_recovered.ogg', 'Segnale GPS restaurato').
-string('off_route.ogg', 'avete deviato dalla rotta').
+string('location_recovered.ogg', 'Segnale GPS ripristinato').
+string('off_route.ogg', 'avete deviato dal percorso').
 string('exceed_limit.ogg', 'superato il limite di velocità').
 
 % STREET NAME GRAMMAR
 string('onto.ogg', 'in').
-string('to.ogg', 'su').
+string('to.ogg', 'fino a').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'metri').
