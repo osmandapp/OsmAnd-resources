@@ -93,7 +93,7 @@ string('attention.ogg', 'attenzione, ').
 string('location_lost.ogg', 'Segnale g p s perso').
 string('location_recovered.ogg', 'segnale g p s ripristinato ').
 string('off_route.ogg', 'avete deviato dal percorso').
-string('exceed_limit.ogg', 'limite di velocitè superato').
+string('exceed_limit.ogg', 'limite di velocità superato').
 
 % STREET NAME GRAMMAR
 string('onto.ogg', 'sulla ').
