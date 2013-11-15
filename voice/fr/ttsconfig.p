@@ -154,6 +154,11 @@ prep2turn('right_sl', ['pr2right_sl.ogg']).
 prep2turn('right_keep', ['pr2right_keep.ogg']).
 prep2turn('left_keep', ['pr2left_keep.ogg']).
 
+% cut_part_street(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
+cut_part_street(voice(['', '', Dest], _), Dest).
+% cut_part_street(voice(['', Name, _], _), Name). % not necessary
+cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
+
 turn_street('', []).
 turn_street(voice(['','',''],_), []).
 turn_street(Street, ['to.ogg', SName]) :- tts, Street = voice(['', '', D], _), cut_part_street(Street, SName).
