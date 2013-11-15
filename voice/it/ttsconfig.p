@@ -1,4 +1,4 @@
-% for turbo-prolog
+﻿% for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog
 :- op(500, xfy,'--').
@@ -16,7 +16,7 @@ fest_language('Italian').
 % (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
 % (X) arrival
 % (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
-% (X) special grammar: onto_street / on_street / to_street
+% (X) special grammar: onto / on / to Street fur turn and follow commands
 % (N/A) special grammar: nominative/dativ for distance measure
 % (X) special grammar: imperative/infinitive distincion for turns
 % (X) distance measure: meters / feet / yard support
@@ -34,7 +34,6 @@ string('distance.ogg', 'distanza ').
 % LEFT/RIGHT
 string('prepare.ogg', 'Prepararsi a ').
 string('after.ogg', 'fra ').
-
 
 string('left.ogg', 'girare a sinistra').
 string('left_sh.ogg', 'girate stretto a sinistra').
@@ -111,9 +110,7 @@ string('1_tenth_of_a_mile.ogg', 'un decimo di miglio').
 string('tenths_of_a_mile.ogg', 'decimi di miglio').
 string('around_1_mile.ogg', 'circa 1 miglio').
 string('miles.ogg', 'miglia').
-
 string('yards.ogg', 'iarde').
-
 
 % TIME SUPPORT
 string('time.ogg', 'il tempo è ').
@@ -140,33 +137,34 @@ cut_part_street(voice(['', '', Dest], _), Dest).
 % cut_part_street(voice(['', Name, _], _), Name). % not necessary
 cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
 
-onto_street('', []).
-onto_street(voice(['','',''],_), []).
-onto_street(Street, ['onto.ogg', SName]) :- tts, cut_part_street(Street, SName).
-onto_street(_Street, []) :- not(tts).
-on_street('', []).
-on_street(voice(['','',''],_), []).
-on_street(Street, ['on.ogg', SName]) :- tts, cut_part_street(Street, SName).
-on_street(_Street, []) :- not(tts).
-to_street('', []).
-to_street(voice(['','',''],_), []).
-to_street(Street, ['to.ogg', SName]) :- tts, cut_part_street(Street, SName).
-to_street(_Street, []) :- not(tts).
+turn_street('', []).
+turn_street(voice(['','',''],_), []).
+turn_street(Street, ['to.ogg', SName]) :- tts, Street = voice(['', '', D], _), cut_part_street(Street, SName).
+turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), cut_part_street(Street, SName).
+turn_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), cut_part_street(Street, SName).
+turn_street(_Street, []) :- not(tts).
 
-prepare_turn(Turn, Dist, Street) -- ['prepare.ogg', M, 'after.ogg', D | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
-turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
-turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), onto_street(Street, Sgen).
+follow_street('', []).
+follow_street(voice(['','',''],_), []).
+follow_street(Street, ['to.ogg', SName]) :- tts, Street = voice(['', '', D], _), cut_part_street(Street, SName).
+follow_street(Street, ['to.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), cut_part_street(Street, SName).
+follow_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), cut_part_street(Street, SName).
+follow_street(_Street, []) :- not(tts).
 
-prepare_make_ut(Dist, Street) -- ['prepare.ogg', 'make_uturn.ogg', 'after.ogg', D | Sgen] :- distance(Dist) -- D, on_street(Street, Sgen).
-make_ut(Dist, Street) --  ['after.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist) -- D, on_street(Street, Sgen).
-make_ut(Street) -- ['make_uturn.ogg' | Sgen] :- on_street(Street, Sgen).
+prepare_turn(Turn, Dist, Street) -- ['prepare.ogg', M, 'after.ogg', D | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
+turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
+turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
+
+prepare_make_ut(Dist, Street) -- ['prepare.ogg', 'make_uturn.ogg', 'after.ogg', D | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
+make_ut(Dist, Street) --  ['after.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
+make_ut(Street) -- ['make_uturn.ogg' | Sgen] :- turn_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
 prepare_roundabout(Dist, _Exit, _Street) -- ['prepare_roundabout.ogg', 'after.ogg', D] :- distance(Dist) -- D.
-roundabout(Dist, _Angle, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), onto_street(Street, Sgen).
-roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), onto_street(Street, Sgen).
+roundabout(Dist, _Angle, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
+roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 
-go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen] :- distance(Dist) -- D, to_street(Street, Sgen).
+go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen] :- distance(Dist) -- D, follow_street(Street, Sgen).
 
 then -- ['then.ogg'].
 name(D, [D]) :- tts.
