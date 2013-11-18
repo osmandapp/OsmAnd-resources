@@ -105,7 +105,7 @@ string('onto.ogg', 'auf ').  % possibly "Richtung", better grammar, but is also 
 string('on.ogg', 'auf ').
 string('to.ogg', 'bis ').
 string('with.ogg', 'mit ').
-string('to2.ogg', 'zu ').
+string('to2.ogg', 'Richtung '). % "zu " gives wrong results in many cases
 
 % DISTANCE UNIT SUPPORT
 string('meters_nominativ.ogg', 'meter ').

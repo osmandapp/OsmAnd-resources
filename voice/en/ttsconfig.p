@@ -97,6 +97,7 @@ string('exceed_limit.ogg', 'you are exceeding the speed limit ').
 string('onto.ogg', 'onto ').
 string('on.ogg', 'on ').
 string('to.ogg', 'to ').
+string('to2.ogg', 'towards ').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'meters ').
@@ -140,7 +141,7 @@ cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), 
 
 turn_street('', []).
 turn_street(voice(['','',''],_), []).
-turn_street(Street, ['to.ogg', SName]) :- tts, Street = voice(['', '', D], _), cut_part_street(Street, SName).
+turn_street(Street, ['to2.ogg', SName]) :- tts, Street = voice(['', '', D], _), cut_part_street(Street, SName).
 turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), cut_part_street(Street, SName).
 turn_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), cut_part_street(Street, SName).
 turn_street(_Street, []) :- not(tts).
