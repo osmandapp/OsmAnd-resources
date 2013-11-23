@@ -464,14 +464,31 @@
 
 
 		<way attribute="priority">
-			<select value="0.3" t="surface" v="gravel"/>
-			<select value="0.3" t="surface" v="unpaved"/>
-			<select value="0.6" t="surface" v="grass"/>
-			<select value="0.3" t="tracktype" v="grade4"/>
-			<select value="0.6" t="tracktype" v="grade5"/>
+                        <if param="avoid_unpaved">
+                                <select value="0.4" t="tracktype" v="grade2"/>
+                                <select value="0.1" t="tracktype" v="grade3"/>
+                                <select value="0.1" t="tracktype" v="grade4"/>
+                                <select value="0.1" t="tracktype" v="grade5"/>
+                                <select value="0.1" t="surface" v="unpaved"/>
+                                <select value="0.4" t="surface" v="compacted"/>
+                                <select value="0.1" t="surface" v="dirt"/>
+                                <select value="0.1" t="surface" v="earth"/>
+                                <select value="0.1" t="surface" v="gravel"/>
+                                <select value="0.4" t="surface" v="fine-gravel"/>
+                                <select value="0.1" t="surface" v="grass"/>
+                                <select value="0.1" t="surface" v="ground"/>
+                                <select value="0.1" t="surface" v="mud"/>
+                                <select value="0.1" t="surface" v="pebblestone"/>
+                                <select value="0.1" t="surface" v="sand"/>
+                                <select value="0.1" t="surface" v="wood"/>
+                        </if>
+                       	<select value="0.8" t="surface" v="gravel"/>
+			<select value="0.8" t="surface" v="unpaved"/>
+			<select value="0.8" t="surface" v="grass"/>
+			<select value="0.8" t="tracktype" v="grade4"/>
+			<select value="0.8" t="tracktype" v="grade5"/>
 			<select value="0.1" t="access" v="private"/>
 			<select value="0.1" t="barrier" v="debris"/>
-			<select value="0.1" t="barrier" v="block"/>
 
 
 			<select value="1.5" t="highway" v="cycleway"/>
@@ -570,6 +587,7 @@
 		<road tag="route" value="ferry" speed="5" priority="1.0" >
 			<specialization input="avoid_ferries" speed="0"/>
 		</road>
+		
 
 		<obstacle tag="highway" value="traffic_signals" penalty="30" routingPenalty="10"/>
 		<obstacle tag="highway" value="stop" penalty="15" routingPenalty="1"/>
@@ -579,17 +597,58 @@
 		<obstacle tag="railway" value="crossing" penalty="5"/>
 		<obstacle tag="railway" value="level_crossing" penalty="5"/>
 		<obstacle tag="barrier" value="cycle_barrier" penalty="10"/>
-
-		<avoid tag="surface" value="gravel" decreasedPriority="0.2"/>
-		<avoid tag="surface" value="unpaved" decreasedPriority="0.2">
-			<specialization input="avoid_unpaved" decreasedPriority="0"/>
+		
+		
+		<avoid tag="tracktype" value="grade2" decreasedPriority="1"/>
+			<specialization input="avoid_unpaved" decreasedPriority="0.4"/>
 		</avoid>
-		<avoid tag="surface" value="grass" decreasedPriority="0.6"/>
-		<avoid tag="tracktype" value="grade4" decreasedPriority="0.3"/>
-		<avoid tag="tracktype" value="grade5" decreasedPriority="0.6"/>
+		<avoid tag="tracktype" value="grade3" decreasedPriority="1"/>
+			<specialization input="avoid_unpaved" decreasedPriority="0.1"/>
+		</avoid>
+		<avoid tag="tracktype" value="grade4" decreasedPriority="0.8"/>
+			<specialization input="avoid_unpaved" decreasedPriority="0.1"/>
+		</avoid>
+		<avoid tag="tracktype" value="grade5" decreasedPriority="0.8"/>
+			<specialization input="avoid_unpaved" decreasedPriority="0.1"/>
+		</avoid>
+		<avoid tag="surface" value="compacted" decreasedPriority="1"/>
+			<specialization input="avoid_unpaved" decreasedPriority="0.4"/>
+		</avoid>
+		<avoid tag="surface" value="dirt" decreasedPriority="0.8"/>
+			<specialization input="avoid_unpaved" decreasedPriority="0.1"/>
+		</avoid>
+		<avoid tag="surface" value="earth" decreasedPriority="0.8"/>
+			<specialization input="avoid_unpaved" decreasedPriority="0.1"/>
+		</avoid>
+		<avoid tag="surface" value="gravel" decreasedPriority="0.8"/>
+			<specialization input="avoid_unpaved" decreasedPriority="0.1"/>
+		</avoid>
+		<avoid tag="surface" value="fine-gravel" decreasedPriority="1"/>
+			<specialization input="avoid_unpaved" decreasedPriority="0.4"/>
+		</avoid>
+		<avoid tag="surface" value="grass" decreasedPriority="0.8"/>
+			<specialization input="avoid_unpaved" decreasedPriority="0.1"/>
+		</avoid>
+		<avoid tag="surface" value="ground" decreasedPriority="0.8"/>
+			<specialization input="avoid_unpaved" decreasedPriority="0.1"/>
+		</avoid>
+		<avoid tag="surface" value="mud" decreasedPriority="0.8"/>
+			<specialization input="avoid_unpaved" decreasedPriority="0.1"/>
+		</avoid>
+		<avoid tag="surface" value="pebblestone" decreasedPriority="0.8"/>
+			<specialization input="avoid_unpaved" decreasedPriority="0.1"/>
+		</avoid>
+		<avoid tag="surface" value="sand" decreasedPriority="0.8"/>
+			<specialization input="avoid_unpaved" decreasedPriority="0.1"/>
+		</avoid>
+		<avoid tag="surface" value="wood" decreasedPriority="0.8"/>
+			<specialization input="avoid_unpaved" decreasedPriority="0.1"/>
+		</avoid>
+		<avoid tag="surface" value="unpaved" decreasedPriority="0.8">
+			<specialization input="avoid_unpaved" decreasedPriority="0.1"/>
+		</avoid>
 		<avoid tag="access" value="private" decreasedPriority="0.1"/>
 		<avoid tag="barrier" value="debris" decreasedPriority="0.1"/>
-		<avoid tag="barrier" value="block" decreasedPriority="0.1"/>
 
 		<avoid tag="bicycle" value="no"/>
 	</routingProfile>
