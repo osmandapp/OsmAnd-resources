@@ -1,5 +1,7 @@
-option java_package = "net.osmand.obf";
+option java_package = "net.osmand.binary";
+option java_outer_classname = "OsmandOdb";
 package OsmAnd.OBF;
+
 
 //
 //  STORAGE LAYER: Storing primitives.
@@ -382,6 +384,8 @@ message OsmAndPoiIndex {
     
     // encoded as fixed32 length delimited
     optional OsmAndPoiNameIndex nameIndex = 4;
+
+    optional OsmAndSubtypesTable subtypesTable = 5;
     
 	// encoded as fixed32 length delimited
 	repeated OsmAndPoiBox boxes = 6; // children 
@@ -413,11 +417,28 @@ message OsmAndPoiNameIndexDataAtom {
    optional fixed32 shiftTo = 14;
 }
 
-
 message OsmAndCategoryTable {
+	// general id of poi type is calculated  ((subcategory_order << 7) | category_order)
     required string category = 1;
     repeated string subcategories = 3;
 }
+
+message OsmAndSubtypesTable {
+	
+    repeated string textSubtypes = 3;
+    // id calculated on same principe as in category table
+    // ((subtypeValue << 7) | subtypes_order+textSubtypes.size)
+    repeated OsmAndPoiSubtype subtypes = 5;
+}
+
+message OsmAndPoiSubtype {
+	required string name = 1;
+	optional string tagname = 2; // same to name if not present
+	required uint32 subtypeValuesSize = 5;
+	repeated string subtypeValue = 7; 
+}
+
+
 
 message OsmAndPoiBox {
    required uint32 zoom = 1; // delta encoded to parent
@@ -438,6 +459,8 @@ message OsmAndPoiBox {
 message OsmAndPoiCategories {
    // sorted categories
    repeated uint32 categories = 3;
+
+   repeated uint32 subcategories = 5;
 }
 
 message OsmAndPoiBoxData {
@@ -453,17 +476,19 @@ message OsmAndPoiBoxDataAtom {
   required sint32 dy = 3; // delta encoded to OsmAndPoiBox on 24 zoom
 
   repeated uint32 categories = 4;
+  repeated uint32 subcategories = 5; // v1.7
 
   optional string name = 6;
   optional string nameEn = 7;
   optional uint64 id = 8;  
-  
+
+  // deprecated from v1.7
   optional string openingHours = 10;
   optional string site = 11;
   optional string phone = 12;
   optional string note = 13;
 
-  repeated uint32 textCategories = 14;
+  repeated uint32 textCategories = 14; // v1.7
   repeated string textValues = 15;
 }
 
