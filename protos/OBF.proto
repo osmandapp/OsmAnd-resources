@@ -424,18 +424,20 @@ message OsmAndCategoryTable {
 }
 
 message OsmAndSubtypesTable {
-	
-    repeated string textSubtypes = 3;
-    // id calculated on same principe as in category table
-    // ((subtypeValue << 7) | subtypes_order+textSubtypes.size)
-    repeated OsmAndPoiSubtype subtypes = 5;
+
+    // id calculated
+    // 1. if subtypes_order <= 31 : ( (subtypeValue << 5) | subtypes_order) << 1
+    // 2. if subtypes_order > 31  : ( (subtypeValue << 16) | subtypes_order) << 1 + 1    
+    repeated OsmAndPoiSubtype subtypes = 4;
 }
 
 message OsmAndPoiSubtype {
 	required string name = 1;
 	optional string tagname = 2; // same to name if not present
-	required uint32 subtypeValuesSize = 5;
-	repeated string subtypeValue = 7; 
+	required bool isText = 3;
+	optional uint32 frequency = 5;
+	optional uint32 subtypeValuesSize = 6;
+	repeated string subtypeValue = 8; 
 }
 
 
