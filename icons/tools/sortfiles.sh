@@ -72,12 +72,16 @@ mygroup transportation transport_taxi_rank.png
 mycp highway traffic_signals transport_traffic_lights.png
 mycp highway mini_roundabout transport_miniroundabout_anticlockwise.png
 mycp highway ford transport_ford.png
+mycp highway crossing transport_zebra_crossing.png
+mycp traffic_calming bump transport_speedbump.png
 
 mygroup fuel transport_fuel.png
 mycp amenity fuel transport_fuel.png
 
 mygroup parking transport_parking.png
 mycp amenity parking transport_parking.png
+mycp amenity parking_private transport_parking_private2.png
+mycp amenity parking_paid transport_parking_car_paid.png
 mycp amenity bicycle_parking transport_parking_bicycle.png
 
 mygroup public_transport transport_bus_stop.png
@@ -179,7 +183,7 @@ mycp historic boundary_stone poi_boundary_administrative.png
 mycp historic mine poi_mine_abandoned.png
 
 
-## Sport 
+## Sport
 mygroup sport sport_swimming_outdoor.png
 mycp leisure stadium sport_stadium.png
 mycp sport horse_racing sport_horse_racing.png
@@ -225,7 +229,11 @@ mycp amenity telephone amenity_telephone.png
 mycp amenity toilets amenity_toilets.png
 mycp amenity fountain amenity_fountain2.png
 mycp amenity place_of_worship place_of_worship_unknown.png
-#! mycp amenity grave_yard place_of_worship_christian3.png  #already defined as icon in the shader section 
+mycp religion christian place_of_worship_christian3.png
+mycp religion jewish place_of_worship_jewish3.png
+mycp religion muslim place_of_worship_islamic3.png
+mycp religion sikh place_of_worship_sikh3.png
+#! mycp amenity grave_yard place_of_worship_christian3.png  #already defined as icon in the shader section
 
 mygroup finance money_bank2.png
 mycp amenity atm money_atm.png
@@ -255,6 +263,7 @@ mycp amenity university education_university.png
 mygroup man_made power_station_wind.png
 mycp power tower functional-icons_power_tower.png  #scale 0.5
 mycp power generator power_station_wind.png
+mycp tower_type communication poi_tower_communications.png
 mycp man_made water_tower poi_water_tower.png
 mycp man_made mineshaft poi_mine.png
 mycp man_made windmill poi_windmill.png
