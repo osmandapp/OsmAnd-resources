@@ -284,6 +284,10 @@ mycp amenity ice_cream food_ice_cream.png
 mycp amenity drinking_water food_drinkingtap.png
 
 
+## Seamarks
+mygroup seamark icons8_sail_boat.png
+
+
 ## Shops
 mygroup car_aid shopping_car.png
 mygroup food_shop shopping_convenience.png

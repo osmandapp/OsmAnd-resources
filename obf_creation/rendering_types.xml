@@ -78,8 +78,10 @@
 	<type tag="contact:phone" target_tag="phone" additional="text" only_poi="true"/>
 	<type tag="website" additional="text" only_poi="true"/>
 
-	<type tag="height" minzoom="15" additional="true" only_poi="true"/>
-	<type tag="min_height" minzoom="15" additional="true" only_poi="true"/>
+	<type tag="maxheight" minzoom="15" additional="text" only_poi="true"/>
+	<type tag="maxweight" minzoom="15" additional="text" only_poi="true"/>
+	<type tag="height" minzoom="15" additional="text" only_poi="true"/>
+	<type tag="min_height" minzoom="15" additional="text" only_poi="true"/>
 	<type tag="building:min_level" minzoom="15" additional="true" only_poi="true"/>
 	<type tag="building:levels:aboveground" minzoom="15" additional="true" only_poi="true"/>
 	<type tag="levels" minzoom="15" additional="true" only_poi="true"/>
@@ -882,38 +884,43 @@
 	</category>
 
 	<!-- example of definition openseamaps needs to be enabled later -->
-	<!--
-	<category name="seamarks">
-		**** main entities ***
-		<type tag="seamark:buoy_lateral" value="" minzoom="12" />
-		<type tag="seamark:dyke" value="" minzoom="12" />
-		<type tag="seamark:type" value="dyke" target_tag="seamark:dyke" target_value="" 
-			minzoom="12" />
-		<type tag="seamark:topmark" value="" minzoom="12" />
-		<type tag="seamark:light" value="" minzoom="12" />
-		.... 
-		** to add other  main entities around 100?**
-		! This should be automated and preprocess !
-		<type tag="seamark:type" value="buoy_lateral" target_tag="seamark:buoy_lateral" target_value="" 
-			minzoom="12" />
-        .......
-         
-		*** additional tags
-		<type tag="seamark:category" value="" minzoom="12" additional="true"/>
-		<type tag="seamark:color" value="" minzoom="12" additional="true"/>
-		<type tag="seamark:shape" value="" minzoom="12" additional="true"/>
+	<!-- preprocess rules
+		1. seamark:type=VAR -> seamark:VAR=''
+			Example : seamark:type=dyke -> seamark:dyke='' (main entity)
+		2. seamark:VAR:* -> + seamark:VAR=''
+			Example : seamark:light:colour=red -> add pair seamark:light=''
+			         + tag  seamark:attached='$seamark:type'
+		3. seamark:*:VAR -> seamark:VAR
+		   Example : seamark:buoy_lateral:category -> seamark:category (additional)
+	 -->	
+	 <!-- TODO define in additional file? --> 
+	<type tag="seamark:category" minzoom="12" additional="true"/>
+	<type tag="seamark:character"  minzoom="12" additional="text"/>
+	<type tag="seamark:colour"  minzoom="12" additional="true"/>
+	<type tag="seamark:height"  minzoom="12" additional="text"/>
+	<type tag="seamark:clearance_height" minzoom="12" additional="text"/>
+	<type tag="seamark:name"  minzoom="12" additional="text"/>	
+	<type tag="seamark:period"  minzoom="12" additional="true"/>
+	<type tag="seamark:range"  minzoom="12" additional="true"/>
+	<type tag="seamark:reference"  minzoom="12" additional="text"/>
+	<type tag="seamark:shape"  minzoom="12" additional="true"/>
+	<type tag="seamark:sequence"  minzoom="12" additional="text"/>
 
-		! This should be automated and preprocess !
-		<type tag="seamark:buoy_lateral:category" target_tag="seamark:category" minzoom="12" additional="true"/>
-		<type tag="seamark:buoy_lateral:shape" target_tag="seamark:shape" minzoom="12" additional="true"/>
-		<type tag="seamark:buoy_lateral:color" target_tag="seamark:color" minzoom="12" additional="true"/>
-		! 
-
-		*** shows that this is not main entity but attached to another object 
-		*** possible values are buoy_lateral, dyke....
-		<type tag="seamark:attached" value="" minzoom="12" additional="true"/>		
+	<type tag="seamark:attached" minzoom="12" additional="true"/>	
+	
+	<category name="seamarks" poi_tag="seamark" poi_category="seamark" >
+		<type tag="seamark" value="anchorage" minzoom="12" />
+		<type tag="seamark" value="buoy_lateral" minzoom="12" />
+		<type tag="seamark" value="bridge" minzoom="12" />
+		<type tag="seamark" value="dyke"  minzoom="12" />
+		<type tag="seamark" value="fog_signal" minzoom="12" />
+		<type tag="seamark" value="harbour"  minzoom="12" />
+		<type tag="seamark" value="landmark" minzoom="12" />
+		<type tag="seamark" value="light"  minzoom="12" />
+		<type tag="seamark" value="light_major"  minzoom="12" />
+		<type tag="seamark" value="light_minor"  minzoom="12" />
+		<type tag="seamark" value="topmark" minzoom="12" />
 	</category>
-	-->
 	
 	
 	<category name="routing">
