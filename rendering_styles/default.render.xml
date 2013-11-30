@@ -26,7 +26,7 @@
 	<renderingAttribute name="defaultColor">
 		<!-- next line should should make background transparent for underlays to be visible, but this curretnly does not work as desired -->
 		<filter noPolygons="true" attrColorValue="#00555555"/>
-		<filter nightMode="true" attrColorValue="#003333"/>
+		<filter nightMode="true" attrColorValue="#002a2a"/>
 		<filter attrColorValue="#f1eae4"/>
 	</renderingAttribute>
 	
@@ -130,14 +130,14 @@
 	-->
 
 	<!--
-	NIGHT VIEW CONCEPT: Main colors for night renderer, by Hardy Mueller, 2011-07-04:
+	NIGHT VIEW CONCEPT: Main colors for night renderer, by Hardy Mueller, 2011-07-04, reworked to more grey/green pattern 2013-11-30:
 		Areas:
-		- default: 003333
-		- forest: 000034
-		- other open (non-forest) nature: 004333 (vegetation shaders replaced by 114433)
-		- water: 330099
-		- built-up areas: 66004B
-		- buildings: 560000
+		- default:   002a2a      (old 003333)
+		- forest:    001a1a      (old 000034)
+		- other open (non-forest) nature: 004333 (vegetation shaders replaced by 334433)
+		- water:     330099
+		- built-up areas: 3b3b3b (old 66004B)
+		- buildings: 685454      (old 560000)
 		Roads:
 		- road brightness levels aligned with road priority
 		- 'white' roads: 9F9F9F to darken high density areas sufficiently
@@ -1121,16 +1121,16 @@
 	    <group noPolygons="false">
 		<!-- Polygon railway -->
 		<filter minzoom="11" tag="railway" value="station" color="#d4aaaa">
-			<filter nightMode="true" color="#560000"/>
+			<filter nightMode="true" color="#685454"/>
 		</filter>
 		<filter minzoom="11" tag="public_transport" value="station" color="#d4aaaa">
-			<filter nightMode="true" color="#560000"/>
+			<filter nightMode="true" color="#685454"/>
 		</filter>
 		<filter minzoom="15" tag="public_transport" value="platform" color="#bababa">
-			<filter nightMode="true" color="#560000"/>
+			<filter nightMode="true" color="#685454"/>
 		</filter>
 		<filter minzoom="15" tag="railway" value="platform" color="#bababa">
-			<filter nightMode="true" color="#560000"/>
+			<filter nightMode="true" color="#685454"/>
 		</filter>
 
 
@@ -1153,7 +1153,7 @@
 			<groupFilter color="#80cccccc"/>
 		</group>
 		<filter minzoom="14" tag="aeroway" value="terminal" color="#cc99ff">
-			<filter nightMode="true" color="#560000"/>
+			<filter nightMode="true" color="#685454"/>
 		</filter>
 		<filter minzoom="13" tag="aeroway" value="apron" color="#e9d1ff">
 			<filter nightMode="true" color="#bababa"/>
@@ -1177,18 +1177,18 @@
 
 
 		<group>
-		 	<filter nightMode="true" tag="natural" value="land" color="#003333"/>
+			<filter nightMode="true" tag="natural" value="land" color="#002a2a"/>
 			<filter tag="natural" value="land" color="#f1eae4"/>
 	 	</group>
 
 
-		<!-- Forest, night color 000034 -->
+		<!-- Forest, night color 001a1a -->
 		<group>
 			<filter minzoom="6" color="#aed1a0" tag="natural" value="wood"/>
 			<filter minzoom="6" color="#aed1a0" tag="landuse" value="wood"/>
 			<filter minzoom="6" maxzoom="12" color="#9DD57C" tag="landuse" value="forest"/>
 			<filter minzoom="13" shader="forest" tag="landuse" value="forest"/>
-			<groupFilter nightMode="true" color="#000034" shader=""/>
+			<groupFilter nightMode="true" color="#001a1a" shader=""/>
 		</group>
 
 
@@ -1224,7 +1224,7 @@
 		</group>
 
 
-		<!-- Built-up areas, night color 66004B -->
+		<!-- Built-up areas, night color 3b3b3b -->
 		<group>
 			<filter test="$hmRendered" minzoom="10" color="#dfd1d6" tag="landuse" value="industrial"/>
 			<filter minzoom="11" color="#dfd1d6" tag="landuse" value="industrial"/>
@@ -1253,11 +1253,11 @@
 			<filter minzoom="13" color="#a0ccff99" tag="tourism" value="camp_site"/>
 			<filter minzoom="13" color="#a0ccff99" tag="tourism" value="caravan_site"/>
 			<filter minzoom="13" color="#a0ccff99" tag="tourism" value="picnic_site"/>
-			<groupFilter nightMode="true" color="#66004B"/>
+			<groupFilter nightMode="true" color="#3b3b3b"/>
 		</group>
 
 
-		<!-- Buildings, night color 560000 -->
+		<!-- Buildings, night color 685454 -->
 		<group>
 			<filter minzoom="16" color="#bca9a9" tag="building" value=""/>
 			<filter minzoom="16" color="#dddddd" tag="building" value="garages"/>
@@ -1268,7 +1268,7 @@
 			<filter minzoom="14" color="#dfd1d6" tag="landuse" value="garages"/>
 			<filter minzoom="12" color="#ff8f8f" tag="military" value="barracks"/>
 			<!-- use semi-ransparent shader to better show area details: filter minzoom="10" color="#a0ffa0c0" color_2="#ffa0c0" strokeWidth_2=":2" tag="landuse" value="military"/ -->
-			<groupFilter nightMode="true" color="#560000"/>
+			<groupFilter nightMode="true" color="#685454"/>
 		</group>
 
 
@@ -1284,7 +1284,7 @@
 			<filter minzoom="12" shader="vineyard" color="#abdf96" tag="landuse" value="vineyard"/>
 			<filter minzoom="12" shader="grave_yard" color="#aacbaf" tag="landuse" value="cemetery"/>
 			<filter minzoom="12" shader="grave_yard" color="#aacbaf" tag="amenity" value="grave_yard"/>
-			<groupFilter nightMode="true" shader="" color="#114433"/>
+			<groupFilter nightMode="true" shader="" color="#334433"/>
 		</group>
 		<filter nightMode="true" minzoom="5" shader="glacier" color="#100000" color_2="#497CAF" strokeWidth_2=":2" tag="natural" value="glacier"/>
 		<filter minzoom="5" shader="glacier" color="#100000" color_2="#99ccff" strokeWidth_2=":2" tag="natural" value="glacier"/>
@@ -1784,7 +1784,7 @@
 			<filter noPolygons="false" tag="man_made" value="cutline" minzoom="15" color="#f1eae4">
 				<filter minzoom="15" maxzoom="15" strokeWidth="2:2"/>
 				<filter minzoom="16" strokeWidth="3:2"/>
-         		<groupFilter nightMode="true" color="#003333"/>
+			<groupFilter nightMode="true" color="#004333"/>
 			</filter>
   		</group>
   		<group>
@@ -1792,7 +1792,7 @@
 				<filter minzoom="15" maxzoom="15" strokeWidth="2:2"/>
          		<filter minzoom="16" maxzoom="17" strokeWidth="4:2"/>         		
          		<filter minzoom="18" strokeWidth="6:2"/>
-         		<groupFilter nightMode="true" color="#003333"/>
+			<groupFilter nightMode="true" color="#001a1a"/>
 			</filter>
   		</group>
 
