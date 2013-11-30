@@ -41,7 +41,7 @@
 
 	<renderingAttribute name="shadowRendering">
 	<!-- 0 - no shadow, 1 - one step, 2 - blur shadow, 3 - solid shadow -->
-		<!-- next line corrects for shadowColor appearing very dark with solid shadow in day view, bridges would not stand out -->
+		<!-- next line ensures bridges stand out ok -->
 		<filter minzoom="14" nightMode="false" attrIntValue="3" shadowColor="#969696"/>
 		<filter minzoom="14" attrIntValue="3" shadowColor="#464646"/>
 		<filter minzoom="9" maxzoom="13" attrIntValue="3" shadowColor="#969696"/>
@@ -191,6 +191,9 @@
 			<filter layer="1" tag="railway" value="" order="88"/>
 			<filter appMode="car" layer="1" tag="railway" value="" order="71"/>
 			<filter appMode="car" tag="railway" value="" order="36"/>
+			<filter appMode="car" layer="-1" tag="public_transport" value="platform" order="10"/>
+			<filter appMode="car" layer="-1" tag="public_transport" value="station" order="10"/>
+			<filter appMode="car" layer="-1" tag="railway" value="platform" order="10"/>
 			<filter tag="railway" value="" order="58"/>
 			<filter appMode="car" tag="public_transport" value="" order="36"/>
 			<filter tag="public_transport" value="" order="58"/>
@@ -443,6 +446,7 @@
 			<filter tag="highway" value="footway" textOrder="15"/>
 			<filter tag="highway" value="steps" textOrder="15"/>
 			<filter tag="highway" value="bridleway" textOrder="15"/>
+			<filter tag="highway" value="raceway" textOrder="9"/>
 			<groupFilter nameTag="">
 				<filter minzoom="14" maxzoom="14" textSize="12"/>
 				<filter minzoom="15" maxzoom="15" textSize="13"/>
@@ -543,14 +547,19 @@
 
 		<!-- landuse -->
 		<group textSize="12" textColor="#000000" textHaloRadius="1" textWrapWidth="20" textOrder="200">
-			<filter minzoom="15" tag="landuse" value="garages"/>
-			<filter minzoom="15" tag="landuse" value="industrial"/>
+			<filter minzoom="14" tag="landuse" value="allotments"/>
+			<filter minzoom="14" tag="landuse" value="cemetery"/>
 			<filter minzoom="15" tag="landuse" value="commercial"/>
+			<filter minzoom="15" tag="landuse" value="construction"/>
+			<filter minzoom="15" tag="landuse" value="industrial"/>
+			<filter minzoom="15" tag="landuse" value="garages"/>
+			<filter minzoom="13" tag="landuse" value="railway"/>
+			<filter minzoom="13" tag="landuse" value="residential"/>
 			<groupFilter>
 				<groupFilter nightMode="true" textColor="#ffffff"/>
 			</groupFilter>
 		</group>
-		<filter minzoom="12" textSize="12" textColor="#990d2a" textHaloRadius="1" textWrapWidth="20" tag="landuse" value="military" textOrder="10"/>
+		<filter minzoom="13" textSize="12" textColor="#990d2a" textHaloRadius="1" textWrapWidth="20" tag="landuse" value="military" textOrder="10"/>
 
 		<!-- National Forest, Wilderness, National Park: (http://wiki.openstreetmap.org/wiki/US_Forest_Service_Data)
 		all have boundary=national_park: National forests with landuse=forest, Wilderness with leisure=nature_reserve, NatPark just boundary=national_park (protected_areas need not be rendered for this) -->
@@ -874,6 +883,7 @@
 		<filter minzoom="17" icon="highway_traffic_signals" tag="highway" value="traffic_signals"/>
 		<filter minzoom="15" icon="highway_mini_roundabout" tag="highway" value="mini_roundabout"/>
 		<filter minzoom="13" icon="highway_ford" tag="highway" value="ford"/>
+		<filter minzoom="17" icon="railway_level_crossing" tag="highway" value="crossing"/>
 		<filter minzoom="14" icon="amenity_fuel" tag="amenity" value="fuel"/>
 		<filter minzoom="15" icon="amenity_parking" tag="amenity" value="parking"/>
 		<filter minzoom="16" icon="amenity_bicycle_parking" tag="amenity" value="bicycle_parking"/>
@@ -1104,6 +1114,8 @@
 				<filter test="$hmRendered" minzoom="13" color="#ECECEC" color_2="#bababa" strokeWidth_2=":1"/>
 			</groupFilter>
 		</group>
+
+		<filter minzoom="14" tag="highway" value="raceway" color="#ffc5cf"/>
 
 	    <!-- for 'no polygons' -->
 	    <group noPolygons="false">
@@ -1626,7 +1638,6 @@
 			<filter tag="waterway" value="stream" minzoom="12" strokeWidth="2">
 				<filter layer="-1" strokeWidth="3" strokeWidth_2="1" pathEffect_2="4_2"/>
 			</filter>
-			<filter tag="waterway" value="dam" minzoom="13" strokeWidth="2"/>
 
 			<group>
 				<filter tag="waterway" value="river"/>
@@ -1664,6 +1675,7 @@
 			</groupFilter>
 		</group>
 
+		<filter tag="waterway" value="dam" minzoom="13" color="#aaaaaa" strokeWidth="2"/>
 		<filter tag="waterway" value="weir" minzoom="15" color="#aaaaaa" strokeWidth="2"/>
 
 		<!-- Railways -->
@@ -1719,6 +1731,7 @@
 			<groupFilter  color="#888888" strokeWidth="4" strokeWidth_2="2" color_2="#bababa" minzoom="16">
 				<filter minzoom="18" strokeWidth="6" strokeWidth_2="4"/>
 			</groupFilter>
+			<groupFilter layer="-1" color="#44888888" color_2="#bababa" pathEffect="20_3" pathEffect_2="20_3"/>
 		</group>
 
 		<filter tag="aerialway" value="cable_car" minzoom="12" color="#bababa" strokeWidth="2"/>
@@ -1770,7 +1783,7 @@
 		<group>
 			<filter noPolygons="false" tag="man_made" value="cutline" minzoom="15" color="#f1eae4">
 				<filter minzoom="15" maxzoom="15" strokeWidth="2:2"/>
-         		<filter minzoom="16" strokeWidth="3:2"/>
+				<filter minzoom="16" strokeWidth="3:2"/>
          		<groupFilter nightMode="true" color="#003333"/>
 			</filter>
   		</group>
