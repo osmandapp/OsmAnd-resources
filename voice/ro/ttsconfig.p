@@ -102,7 +102,7 @@ string('reached_waypoint.ogg', 'Ați ajuns la punctul intermediar GPX').
 % OTHER PROMPTS
 string('attention.ogg', 'atenţie, ').
 string('location_lost.ogg', 'semnal gipies pierdut ').
-string('location_recovered.ogg', 'g p s signal restored ').
+string('location_recovered.ogg', 'semnal gipies recuperat ').
 string('off_route.ogg', 'aţi deviat de la rută').
 string('exceed_limit.ogg', 'limita de viteză depăşită').
 
