@@ -1,4 +1,4 @@
-﻿% 
+% 
 % for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog
@@ -27,8 +27,8 @@ language('be').
 
 
 % ROUTE CALCULATED
-string('route_is.ogg', 'Даўжыня маршруту ').
-string('route_calculate.ogg', 'Разлічваем новы шлях.').
+string('route_is.ogg', 'Працягласьць маршруту ').
+string('route_calculate.ogg', 'Шукаем новы маршрут.').
 string('distance.ogg', 'працягласьць ').
 
 % LEFT/RIGHT
@@ -36,23 +36,24 @@ string('prepare_after.ogg', 'Падрыхтуйцеся, праз ').
 string('after.ogg', 'Праз ').
 
 string('left.ogg', 'павярніце налева.').
-string('left_sh.ogg', 'павярніце налева й трохі назад.').
-string('left_sl.ogg', 'павярніце трохі ўлева.').
+string('left_sh.ogg', 'павярніце крута налева.').
+string('left_sl.ogg', 'павярніце наўскос улева.').
 string('right.ogg', 'павярніце направа.').
-string('right_sh.ogg', 'павярніце направа й трохі назад.').
-string('right_sl.ogg', 'павярніце трохі ўправа.').
-string('left_keep.ogg', 'трымайцеся лявей.').
-string('right_keep.ogg', 'трымайцеся правей.').
+string('right_sh.ogg', 'павярніце крута направа.').
+string('right_sl.ogg', 'павярніце наўскос управа.').
+string('left_keep.ogg', 'трымайцеся левага боку.').
+string('right_keep.ogg', 'трымайцеся правага боку.').
 % if needed, "left/right_bear.ogg" can be defined here also. " (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
 string('make_uturn.ogg', 'Развярніцеся.').
+string('make_uturn_2.ogg', 'Развярніцеся ').
 string('make_uturn_wp.ogg', 'Развярніцеся дзе будзе магчымасьць.').
 
 % ROUNDABOUTS
-string('roundabout.ogg', 'круг ').
+string('roundabout.ogg', 'на коле ').
 string('then.ogg', 'потым ').
-string('take.ogg', 'павярніце ў ').
+string('take.ogg', 'выбирайце ').
 string('exit.ogg', 'выезд.').
 
 string('1st.ogg', 'першы ').
@@ -78,20 +79,22 @@ string('go_ahead.ogg', 'Рухайцеся наўпрост.').
 string('go_ahead_m.ogg', 'Рухайцеся наўпрост ').
 
 % ARRIVE
-string('and_arrive_destination.ogg', ' і вы ў месцы прызначэньня.').
-string('and_arrive_intermediate.ogg', ' і вы ў кропцы шляху.').
-string('reached_intermediate.ogg', 'Вы ў кропцы шляху.').
-string('reached_destination.ogg','Вы ў месцы прызначэньня.').
-string('and_arrive_waypoint.ogg', ' і вы каля пазначанай кропкі.').
-string('reached_waypoint.ogg', 'Вы каля пазначанай кропкі.').
+string('and_arrive_destination.ogg', 'і вы дабраліся.').
+string('and_arrive_intermediate.ogg', 'і вы ў выбраным Вамі пункце.').
+string('reached_intermediate.ogg', 'Вы ў выбраным Вамі пункце.').
+string('reached_destination.ogg','Вы дабраліся.').
+string('and_arrive_waypoint.ogg', 'і вы на правільным маршруце.').
+string('reached_waypoint.ogg', 'Вы на правільным маршруце.').
 
 % OTHER PROMPTS
 string('attention.ogg', 'Увага !').
 string('new.ogg', 'Наперадзе - штучная няроўнасьць !').
-string('location_lost.ogg', 'Згубіўся сыгнал GPS.').
+string('location_lost.ogg', 'Страціўся сыгнал GPS.').
 string('location_recovered.ogg', 'Сыгнал GPS аднавіўся.').
 string('off_route.ogg', 'Вы адхіліліся ад маршруту на ').
+string('off_route_0.ogg', 'Вы адхіліліся ад маршруту.').
 string('exceed_limit.ogg', 'Вы перавысілі хуткасьць !').
+string('new.ogg', 'Наперадзе - штучная няроўнасьць !').
 
 % STREET NAME GRAMMAR
 string('on.ogg', 'на ').
@@ -100,16 +103,16 @@ string('to.ogg', 'по ').
 
 % DISTANCE UNIT SUPPORT
 string('metrau.ogg', 'мэтраў').
-string('kilametar.ogg', ' кілямэтр ').
-string('kilametry.ogg', ' кілямэтры ').
-string('kilametrau.ogg', ' кілямэтраў ').
-string('around_1_kilometer.ogg', 'недзе адзін кілямэтр ').
+string('kilametar.ogg', 'кілямэтар ').
+string('kilametry.ogg', 'кілямэтры ').
+string('kilametrau.ogg', 'кілямэтраў ').
+string('around_1_kilometer.ogg', 'недзе адзін кілямэтар ').
 string('around.ogg', 'каля ').
 
 string('futau.ogg', 'футаў').
-string('around_1_mile.ogg', 'каля адной мілі ').
+string('around_1_mile.ogg', 'недзе адну мілю ').
 string('1_tenth_of_a_mile.ogg', 'каля адной дзясятай мілі ').
-string('tenths_of_a_mile.ogg', ' дзясятых мілі ').
+string('tenths_of_a_mile.ogg', 'дзясятых мілі ').
 string('milu.ogg', 'мілю').
 string('mili.ogg', 'мілі').
 string('milau.ogg', 'міляў').
@@ -118,7 +121,7 @@ string('yardau.ogg', 'ярдаў').
 
 % TIME SUPPORT
 string('time.ogg', 'Час ').
-string('less_a_minute.ogg', 'менш за хвіліну  ').
+string('less_a_minute.ogg', 'менш за хвіліну.').
 string('hour.ogg', 'гадзіна ').
 string('hours_y.ogg', 'гадзіны ').
 string('hours_au.ogg', 'гадзінаў ').
@@ -225,12 +228,17 @@ resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L,
 
 pnumber(X, Y) :- tts, !, num_atom(X, Y).
 pnumber(X, Ogg) :- num_atom(X, A), atom_concat(A, '.ogg', Ogg).
+
+pnumberf(X, Y) :- tts, !, num_atom(X, Y).
+pnumberf(X, '1-z.ogg') :- X == 1.
+pnumberf(X, '2-z.ogg') :- X == 2.
+pnumberf(X, Ogg) :- num_atom(X, A), atom_concat(A, '.ogg', Ogg).
 % time measure
 hours(S, []) :- S < 60.
-hours(S, [Ogg, Hs]) :- H is S div 60, plural_hs(H, Hs), pnumber(H, Ogg).
+hours(S, [Ogg, Hs]) :- H is S div 60, plural_hs(H, Hs), pnumberf(H, Ogg).
 time(Sec) -- ['less_a_minute.ogg'] :- Sec < 30.
-time(Sec) -- [H, Ogg, Mn] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, plural_mn(St, Mn), pnumber(St, Ogg).
-time(Sec) -- [H, Ogg, Mn] :- not(tts), S is round(Sec/300.0)*5, hours(S, H), St is S mod 60, plural_mn(St, Mn), pnumber(St, Ogg).
+time(Sec) -- [H, Ogg, Mn] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, plural_mn(St, Mn), pnumberf(St, Ogg).
+time(Sec) -- [H, Ogg, Mn] :- not(tts), S is round(Sec/300.0)*5, hours(S, H), St is S mod 60, plural_mn(St, Mn), pnumberf(St, Ogg).
 
 plural_hs(D, 'hour.ogg') :- 1 is D mod 10, R100 is D mod 100,(R100 > 20; R100 < 10).
 plural_hs(D, 'hours_y.ogg') :- Mod is D mod 10, Mod < 5,  Mod > 1, R100 is D mod 100,(R100 > 20; R100 < 10).
@@ -288,7 +296,9 @@ string(Ogg, A) :- voice_generation, interval(X, 1000, 9000, 1000), atom_number(A
 dist(X, Y) :- tts, !, num_atom(X, Y).
 
 dist(0, []) :- !.
-dist(X, [Ogg]) :- X < 20, !, pnumber(X, Ogg).
+dist(X, [Ogg]) :- X < 20, measure('mi-f'), !, pnumberf(X, Ogg).
+dist(X, [Ogg]) :- X < 20, measure('mi-y'), !, pnumberf(X, Ogg).
+dist(X, [Ogg]) :- X < 20, measure('km-m'), !, pnumber(X, Ogg).
 dist(X, [Ogg]) :- X < 1000, 0 is X mod 50, !, num_atom(X, A), atom_concat(A, '.ogg', Ogg).
 dist(D, ['20.ogg'|L]) :-  D < 30, Ts is D - 20, !, dist(Ts, L).
 dist(D, ['30.ogg'|L]) :-  D < 40, Ts is D - 30, !, dist(Ts, L).
