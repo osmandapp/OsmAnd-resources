@@ -26,9 +26,9 @@ language('pt').
 
 
 % ROUTE CALCULATED
-string('route_is.ogg', 'A rota possui ').
+string('route_is.ogg', 'A rota tem ').
 string('route_calculate.ogg', 'Rota recalculada. ').
-string('distance.ogg', ' Distância é de ').
+string('distance.ogg', ' Distância de ').
 
 % LEFT/RIGHT
 string('prepare.ogg', 'Prepare-se para ').
@@ -36,10 +36,10 @@ string('after.ogg', 'após ').
 
 string('left.ogg', 'vire à esquerda ').
 string('left_sh.ogg', 'vire acentuadamente à esquerda ').
-string('left_sl.ogg', 'vire ligeiramente à esquerda ').
+string('left_sl.ogg', 'vire levemente à esquerda ').
 string('right.ogg', 'vire à direita ').
 string('right_sh.ogg', 'vire acentuadamente à direita ').
-string('right_sl.ogg', 'vire ligeiramente à direita ').
+string('right_sl.ogg', 'vire levemente à direita ').
 string('left_keep.ogg', 'mantenha-se à esquerda ').
 string('right_keep.ogg', 'mantenha-se à direita ').
 % if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
@@ -48,23 +48,23 @@ string('right_bear.ogg', 'mantenha-se à direita ').
 
 string('left_imp.ogg', 'virar à esquerda ').
 string('left_sh_imp.ogg', 'virar acentuadamente à esquerda ').
-string('left_sl_imp.ogg', 'virar ligeiramente à esquerda ').
+string('left_sl_imp.ogg', 'virar levemente à esquerda ').
 string('right_imp.ogg', 'virar à direita ').
 string('right_sh_imp.ogg', 'virar acentuadamente à direita ').
-string('right_sl_imp.ogg', 'virar ligeiramente à direita ').
+string('right_sl_imp.ogg', 'virar levemente à direita ').
 string('left_keep_imp.ogg', 'manter-se à esquerda').
 string('right_keep_imp.ogg', 'manter-se à direita').
 string('left_bear_imp.ogg', 'mantenha-se à esquerda ').
 string('right_bear_imp.ogg', 'mantenha-se à direita ').
 
 % U-TURNS
-string('prepare_make_uturn.ogg', 'Prepare-se para retornar após ').
+string('prepare_make_uturn.ogg', 'Prepare-se para retornar em ').
 string('make_uturn.ogg', 'faça um retorno ').
-string('make_uturn_wp.ogg', 'Retorne assim que possível ').
+string('make_uturn_wp.ogg', 'Retorne quando possível ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Prepare-se para entrar na rotatória após ').
-string('roundabout.ogg', 'entre na rotatória e pegue a ').
+string('roundabout.ogg', 'entre na rotatória e ').
 string('then.ogg', 'então ').
 string('and.ogg', 'e ').
 string('take.ogg', 'pegue a ').
@@ -93,39 +93,39 @@ string('go_ahead.ogg', 'Siga em frente ').
 string('follow.ogg', 'Siga o caminho por ').
 
 % ARRIVE
-string('and_arrive_destination.ogg', 'e chegou ao seu destino ').
-string('reached_destination.ogg', 'você chegou ao seu destino ').
-string('and_arrive_intermediate.ogg', 'e chegou ao seu ponto de passagem ').
-string('reached_intermediate.ogg', 'você chegou ao seu ponto de passagem ').
-string('and_arrive_waypoint.ogg', 'e chegou ao seu ponto de GPX ').
-string('reached_waypoint.ogg', 'você chegou ao seu ponto de GPX ').
+string('and_arrive_destination.ogg', 'e chegue ao destino ').
+string('reached_destination.ogg', 'chegou ao destino ').
+string('and_arrive_intermediate.ogg', 'e chegue ao ponto intermediário ').
+string('reached_intermediate.ogg', 'chegou ao ponto intermediário ').
+string('and_arrive_waypoint.ogg', 'e chegue ao ponto de GPX ').
+string('reached_waypoint.ogg', 'chegou ao ponto de GPX ').
 
 % OTHER PROMPTS
-string('attention.ogg', 'atenção, ').
+string('attention.ogg', 'atenção! ').
 string('location_lost.ogg', 'sem sinal g p s ').
 string('location_recovered.ogg', 'sinal gps recuperado ').
-string('off_route.ogg', 'você se desviou da rota para ').
-string('exceed_limit.ogg', 'você estiver excedendo o limite de velocidade ').
+string('off_route.ogg', 'desviou-se da rota por ').
+string('exceed_limit.ogg', 'excedendo o limite de velocidade ').
 
 % STREET NAME GRAMMAR
-string('onto.ogg', 'para ').
+string('onto.ogg', 'em ').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'metros ').
-string('around_1_kilometer.ogg', 'aproximadamente um quilômetro ').
-string('around.ogg', 'aproximadamente ').
+string('around_1_kilometer.ogg', 'cerca de um quilômetro ').
+string('around.ogg', 'cerca de ').
 string('kilometers.ogg', 'quilômetros ').
 
 string('feet.ogg', 'pés ').
-string('1_tenth_of_a_mile.ogg', 'one tenth of a mile ').
-string('tenths_of_a_mile.ogg', 'um décimo de uma milha ').
-string('around_1_mile.ogg', 'cerca de 1 milha ').
+string('1_tenth_of_a_mile.ogg', 'um décimo de milha ').
+string('tenths_of_a_mile.ogg', 'décimos de milha ').
+string('around_1_mile.ogg', 'cerca de uma milha ').
 string('miles.ogg', 'milhas ').
 
 string('yards.ogg', 'jardas ').
 
 % TIME SUPPORT
-string('time.ogg', 'tempo é ').
+string('time.ogg', 'tempo estimado de ').
 string('1_hour.ogg', 'uma hora ').
 string('hours.ogg', 'horas ').
 string('less_a_minute.ogg', 'menos de um minuto ').
