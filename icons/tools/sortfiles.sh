@@ -239,6 +239,7 @@ mygroup finance money_bank2.png
 mycp amenity atm money_atm.png
 mycp amenity bank money_bank2.png
 mycp amenity bureau_de_change money_currency_exchange.png
+mycp bitcoin yes money_bitcoin.png
 
 mygroup office amenity_public_building2.png
 mycp amenity embassy amenity_embassy.png
