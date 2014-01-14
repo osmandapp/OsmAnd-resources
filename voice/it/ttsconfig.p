@@ -36,25 +36,25 @@ string('prepare.ogg', 'Prepararsi a ').
 string('after.ogg', 'fra ').
 
 string('left.ogg', 'girare a sinistra').
-string('left_sh.ogg', 'girate stretto a sinistra').
+string('left_sh.ogg', 'girare stretto a sinistra').
 string('left_sl.ogg', 'girare leggermente a sinistra').
 string('right.ogg', 'girare a destra').
-string('right_sh.ogg', 'girate stretto a destra').
-string('right_sl.ogg', 'girate leggermente a destra').
+string('right_sh.ogg', 'girare stretto a destra').
+string('right_sl.ogg', 'girare leggermente a destra').
 string('left_keep.ogg', 'tenersi sulla sinistra').
 string('right_keep.ogg', 'tenersi sulla destra').
 % if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
-string('make_uturn.ogg', 'Fate inversione a u').
-string('make_uturn_wp.ogg', 'Quando possibile, fate inversione a u').
+string('make_uturn.ogg', 'Fare inversione a u').
+string('make_uturn_wp.ogg', 'Quando possibile, fare inversione a u').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Preparatevi a entrare in una rotnda').
-string('roundabout.ogg', 'entrate nella rotonda, ').
+string('prepare_roundabout.ogg', 'Prepararsi a entrare in una rotnda').
+string('roundabout.ogg', 'entrare nella rotonda, ').
 string('then.ogg', ', poi').
 string('and.ogg', 'e').
-string('take.ogg', 'prendete la').
+string('take.ogg', 'prendere la').
 string('exit.ogg', 'uscita').
 
 string('1st.ogg', 'prima').
@@ -76,15 +76,15 @@ string('16th.ogg', 'sedicesima').
 string('17th.ogg', 'diciassettesima').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Proseguite diritti').
-string('follow.ogg', 'Seguite la strada per').
+string('go_ahead.ogg', 'Proseguire diritti').
+string('follow.ogg', 'Seguire la strada per').
 
 % ARRIVE
-string('and_arrive_destination.ogg', 'e arriverete a destinazione').
-string('reached_destination.ogg','arrivati alla destinazione').
-string('and_arrive_intermediate.ogg', 'e arriverete al punto intermedio').
+string('and_arrive_destination.ogg', 'e arriveremo a destinazione').
+string('reached_destination.ogg','arrivati a destinazione').
+string('and_arrive_intermediate.ogg', 'e arriveremo al punto intermedio').
 string('reached_intermediate.ogg', 'arrivati al punto intermedio').
-string('and_arrive_waypoint.ogg', 'e arriverete al vostro punto GPX intermedio').
+string('and_arrive_waypoint.ogg', 'e arriveremo al vostro punto GPX intermedio').
 string('reached_waypoint.ogg', 'arrivati al vostro punto GPX intermedio').
 
 % OTHER PROMPTS
@@ -108,7 +108,7 @@ string('kilometers.ogg', 'chilometri').
 string('feet.ogg', 'piedi').
 string('1_tenth_of_a_mile.ogg', 'un decimo di miglio').
 string('tenths_of_a_mile.ogg', 'decimi di miglio').
-string('around_1_mile.ogg', 'circa 1 miglio').
+string('around_1_mile.ogg', 'circa un miglio').
 string('miles.ogg', 'miglia').
 string('yards.ogg', 'iarde').
 
