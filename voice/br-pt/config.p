@@ -8,7 +8,7 @@ version(0).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
-language('pt').
+language('br-pt').
 % fest_language('').
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES:
