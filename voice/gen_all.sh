@@ -54,6 +54,6 @@ fi
 ./gen_voice.sh sv Swedish ispeech sv
 ./gen_voice.sh zh Chinese ispeech zh
 ./gen_voice.sh ja Japanese ispeech ja
-./gen_voice.sh br-pt Brazilian ispeech br-pt
+./gen_voice.sh pt-br Brazilian ispeech pt-br
 
 #./gen_voice.sh be Belarussian ispeech be
