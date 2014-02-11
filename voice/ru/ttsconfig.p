@@ -94,9 +94,9 @@ string('off_route.ogg', 'Вы отклонились от маршрута на 
 string('exceed_limit.ogg', 'Вы превысили допустимую скорость ').
 
 % STREET NAME GRAMMAR
-string('on.ogg', 'на ').
+string('on.ogg', 'по ').
 string('onto.ogg', 'на ').
-string('to.ogg', 'по ').
+string('to.ogg', 'до ').
 
 % DISTANCE UNIT SUPPORT
 string('metrov.ogg', 'метров ').
