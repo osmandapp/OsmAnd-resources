@@ -26,100 +26,100 @@ fest_language('cmu_us_awb_arctic_clunits').
 
 
 % ROUTE CALCULATED
-string('route_is.ogg', 'The trip is ').
+string('route_is.ogg', 'The trip is').
 string('route_calculate.ogg', 'Route recalculated').
-string('distance.ogg', 'distance ').
+string('distance.ogg', 'distance').
 
 % LEFT/RIGHT
-string('prepare.ogg', 'Prepare to ').
-string('after.ogg', 'after ').
+string('prepare.ogg', 'Prepare to').
+string('after.ogg', 'after').
 
-string('left.ogg', 'turn left ').
-string('left_sh.ogg', 'turn sharply left ').
-string('left_sl.ogg', 'turn slightly left ').
-string('right.ogg', 'turn right ').
-string('right_sh.ogg', 'turn sharply right ').
-string('right_sl.ogg', 'turn slightly right ').
+string('left.ogg', 'turn left').
+string('left_sh.ogg', 'turn sharply left').
+string('left_sl.ogg', 'turn slightly left').
+string('right.ogg', 'turn right').
+string('right_sh.ogg', 'turn sharply right').
+string('right_sl.ogg', 'turn slightly right').
 string('left_keep.ogg', 'keep left').
 string('right_keep.ogg', 'keep right').
 % if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
-string('make_uturn.ogg', 'Make a U turn ').
-string('make_uturn_wp.ogg', 'When possible, please make a U turn ').
+string('make_uturn.ogg', 'Make a U turn').
+string('make_uturn_wp.ogg', 'When possible, please make a U turn').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Prepare to enter a roundabout ').
-string('roundabout.ogg', 'enter the roundabout, ').
-string('then.ogg', ', then ').
-string('and.ogg', 'and ').
-string('take.ogg', 'take the ').
-string('exit.ogg', 'exit ').
+string('prepare_roundabout.ogg', 'Prepare to enter a roundabout').
+string('roundabout.ogg', 'enter the roundabout,').
+string('then.ogg', ', then').
+string('and.ogg', 'and').
+string('take.ogg', 'take the').
+string('exit.ogg', 'exit').
 
-string('1st.ogg', 'first ').
-string('2nd.ogg', 'second ').
-string('3rd.ogg', 'third ').
-string('4th.ogg', 'fourth ').
-string('5th.ogg', 'fifth ').
-string('6th.ogg', 'sixth ').
-string('7th.ogg', 'seventh ').
-string('8th.ogg', 'eighth ').
-string('9th.ogg', 'nineth ').
-string('10th.ogg', 'tenth ').
-string('11th.ogg', 'eleventh ').
-string('12th.ogg', 'twelfth ').
-string('13th.ogg', 'thirteenth ').
-string('14th.ogg', 'fourteenth ').
-string('15th.ogg', 'fifteenth ').
-string('16th.ogg', 'sixteenth ').
-string('17th.ogg', 'seventeenth ').
+string('1st.ogg', 'first').
+string('2nd.ogg', 'second').
+string('3rd.ogg', 'third').
+string('4th.ogg', 'fourth').
+string('5th.ogg', 'fifth').
+string('6th.ogg', 'sixth').
+string('7th.ogg', 'seventh').
+string('8th.ogg', 'eighth').
+string('9th.ogg', 'nineth').
+string('10th.ogg', 'tenth').
+string('11th.ogg', 'eleventh').
+string('12th.ogg', 'twelfth').
+string('13th.ogg', 'thirteenth').
+string('14th.ogg', 'fourteenth').
+string('15th.ogg', 'fifteenth').
+string('16th.ogg', 'sixteenth').
+string('17th.ogg', 'seventeenth').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Go straight ahead ').
+string('go_ahead.ogg', 'Go straight ahead').
 string('follow.ogg', 'Follow the course of the road for').
 
 % ARRIVE
-string('and_arrive_destination.ogg', 'and arrive at your destination ').
-string('reached_destination.ogg','you have reached your destination ').
-string('and_arrive_intermediate.ogg', 'and arrive at your waypoint ').
-string('reached_intermediate.ogg', 'you have reached your waypoint ').
-string('and_arrive_waypoint.ogg', 'and arrive at your GPX waypoint ').
-string('reached_waypoint.ogg', 'you have reached your GPX waypoint ').
+string('and_arrive_destination.ogg', 'and arrive at your destination').
+string('reached_destination.ogg','you have reached your destination').
+string('and_arrive_intermediate.ogg', 'and arrive at your waypoint').
+string('reached_intermediate.ogg', 'you have reached your waypoint').
+string('and_arrive_waypoint.ogg', 'and arrive at your GPX waypoint').
+string('reached_waypoint.ogg', 'you have reached your GPX waypoint').
 
 % OTHER PROMPTS
-string('attention.ogg', 'attention, ').
-string('location_lost.ogg', 'g p s signal lost ').
-string('location_recovered.ogg', 'g p s signal restored ').
+string('attention.ogg', 'attention,').
+string('location_lost.ogg', 'g p s signal lost').
+string('location_recovered.ogg', 'g p s signal restored').
 string('off_route.ogg', 'you have been off the route for').
-string('exceed_limit.ogg', 'you are exceeding the speed limit ').
+string('exceed_limit.ogg', 'you are exceeding the speed limit').
 
 % STREET NAME GRAMMAR
-string('onto.ogg', 'onto ').
-string('on.ogg', 'on ').
-string('to.ogg', 'to ').
-string('to2.ogg', 'towards ').
+string('onto.ogg', 'onto').
+string('on.ogg', 'on').
+string('to.ogg', 'too').
+string('to2.ogg', 'towards').
 
 % DISTANCE UNIT SUPPORT
-string('meters.ogg', 'meters ').
-string('around_1_kilometer.ogg', 'about 1 kilometer ').
-string('around.ogg', 'about ').
-string('kilometers.ogg', 'kilometers ').
+string('meters.ogg', 'meters').
+string('around_1_kilometer.ogg', 'about 1 kilometer').
+string('around.ogg', 'about').
+string('kilometers.ogg', 'kilometers').
 
-string('feet.ogg', 'feet ').
+string('feet.ogg', 'feet').
 string('1_tenth_of_a_mile.ogg', 'one tenth of a mile').
 string('tenths_of_a_mile.ogg', 'tenths of a mile').
-string('around_1_mile.ogg', 'about 1 mile ').
-string('miles.ogg', 'miles ').
+string('around_1_mile.ogg', 'about 1 mile').
+string('miles.ogg', 'miles').
 
-string('yards.ogg', 'yards ').
+string('yards.ogg', 'yards').
 
 % TIME SUPPORT
-string('time.ogg', 'time is ').
-string('1_hour.ogg', 'one hour ').
-string('hours.ogg', 'hours ').
-string('less_a_minute.ogg', 'less than a minute ').
-string('1_minute.ogg', 'one minute ').
-string('minutes.ogg', 'minutes ').
+string('time.ogg', 'time is').
+string('1_hour.ogg', 'one hour').
+string('hours.ogg', 'hours').
+string('less_a_minute.ogg', 'less than a minute').
+string('1_minute.ogg', 'one minute').
+string('minutes.ogg', 'minutes').
 
 
 %% COMMAND BUILDING / WORD ORDER
