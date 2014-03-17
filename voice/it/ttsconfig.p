@@ -50,7 +50,7 @@ string('make_uturn.ogg', 'Fare inversione a u').
 string('make_uturn_wp.ogg', 'Quando possibile, fare inversione a u').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Prepararsi a entrare in una rotnda').
+string('prepare_roundabout.ogg', 'Prepararsi a entrare in una rotonda').
 string('roundabout.ogg', 'entrare nella rotonda, ').
 string('then.ogg', ', poi').
 string('and.ogg', 'e').
