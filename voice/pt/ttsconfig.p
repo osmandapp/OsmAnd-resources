@@ -63,11 +63,11 @@ string('make_uturn.ogg', 'faça um retorno ').
 string('make_uturn_wp.ogg', 'Retorne quando possível ').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Prepare-se para entrar na rotatória após ').
-string('roundabout.ogg', 'entre na rotatória e ').
+string('prepare_roundabout.ogg', 'Prepare-se para a rotunda após ').
+string('roundabout.ogg', 'entre na rotunda ').
 string('then.ogg', 'então ').
 string('and.ogg', 'e ').
-string('take.ogg', 'pegue a ').
+string('take.ogg', 'saia na ').
 string('exit.ogg', 'saída ').
 
 string('1st.ogg', 'primeira ').
@@ -93,28 +93,31 @@ string('go_ahead.ogg', 'Siga em frente ').
 string('follow.ogg', 'Siga o caminho por ').
 
 % ARRIVE
-string('and_arrive_destination.ogg', 'e chegue ao destino ').
+string('and_arrive_destination.ogg', 'e chega ao destino ').
 string('reached_destination.ogg', 'chegou ao destino ').
-string('and_arrive_intermediate.ogg', 'e chegue ao ponto intermediário ').
-string('reached_intermediate.ogg', 'chegou ao ponto intermediário ').
-string('and_arrive_waypoint.ogg', 'e chegue ao ponto de GPX ').
-string('reached_waypoint.ogg', 'chegou ao ponto de GPX ').
+string('and_arrive_intermediate.ogg', 'e chega ao ponto intermédio ').
+string('reached_intermediate.ogg', 'chegou ao ponto intermédio ').
+string('and_arrive_waypoint.ogg', 'e chega ao ponto GPX ').
+string('reached_waypoint.ogg', 'chegou ao ponto GPX ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'atenção! ').
-string('location_lost.ogg', 'sem sinal g p s ').
+string('location_lost.ogg', 'sem sinal gps ').
 string('location_recovered.ogg', 'sinal gps recuperado ').
 string('off_route.ogg', 'desviou-se da rota por ').
-string('exceed_limit.ogg', 'excedendo o limite de velocidade ').
+string('exceed_limit.ogg', 'a exceder o limite de velocidade ').
 
 % STREET NAME GRAMMAR
-string('onto.ogg', 'em ').
+string('onto.ogg', 'em direção a ').
+string('on.ogg', 'na ').
+string('to.ogg', 'para ').
+string('to2.ogg', 'em direção a ').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'metros ').
-string('around_1_kilometer.ogg', 'cerca de um quilômetro ').
+string('around_1_kilometer.ogg', 'cerca de um quilómetro ').
 string('around.ogg', 'cerca de ').
-string('kilometers.ogg', 'quilômetros ').
+string('kilometers.ogg', 'quilómetros ').
 
 string('feet.ogg', 'pés ').
 string('1_tenth_of_a_mile.ogg', 'um décimo de milha ').
