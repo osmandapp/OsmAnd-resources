@@ -109,7 +109,7 @@ string('feet.ogg', 'stopa ').
 string('1_tenth_of_a_mile.ogg', 'jedna desetina milje ').
 string('tenths_of_a_mile.ogg', 'desetine milje ').
 string('around_1_mile.ogg', 'približno jedna milja ').
-string('miles.ogg', milja ').
+string('miles.ogg', 'milja ').
 
 string('yards.ogg', 'jarda ').
 
