@@ -7,7 +7,7 @@ version(103).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
-language('hr').
+language('hr'). 
 %fest_language('cmu_us_awb_arctic_clunits').
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES:
@@ -42,8 +42,8 @@ string('right_sh.ogg', 'skrenite oštro udesno ').
 string('right_sl.ogg', 'skrenite blago udesno ').
 string('left_keep.ogg', 'držite se lijeve strane').
 string('right_keep.ogg', 'držite se desne strane').
-% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
- 
+% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn. 
+%
 % U-TURNS
 string('make_uturn.ogg', 'Napravite polukružno skretanje ').
 string('make_uturn_wp.ogg', 'Kada je moguće, molim napravite polukružno skretanje ').
@@ -110,7 +110,6 @@ string('1_tenth_of_a_mile.ogg', 'jedna desetina milje ').
 string('tenths_of_a_mile.ogg', 'desetine milje ').
 string('around_1_mile.ogg', 'približno jedna milja ').
 string('miles.ogg', 'milja ').
-
 string('yards.ogg', 'jarda ').
 
 % TIME SUPPORT
