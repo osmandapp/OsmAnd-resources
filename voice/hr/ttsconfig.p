@@ -26,8 +26,8 @@ language('hr').
 
 
 % ROUTE CALCULATED
-string('route_is.ogg', 'The trip is ').
-string('route_calculate.ogg', 'Route recalculated').
+string('route_is.ogg', 'ruta je ').
+string('route_calculate.ogg', 'ruta preračunata').
 string('distance.ogg', 'udaljenost ').
 
 % LEFT/RIGHT
