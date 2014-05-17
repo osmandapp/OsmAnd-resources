@@ -94,6 +94,7 @@ mycp amenity taxi transport_taxi_rank.png
 mycp amenity bicycle_rental transport_rental_bicycle.png
 mycp amenity car_rental transport_rental_car.png
 mycp amenity car_sharing transport_car_share.png
+mycp amenity boat_sharing transport_boat_share.png
 
 mycp leisure marina transport_marina.png
 mycp leisure slipway transport_slipway.png
