@@ -284,7 +284,7 @@ mycp amenity bar food_bar.png
 mycp amenity biergarten food_biergarten.png
 mycp amenity ice_cream food_ice_cream.png
 mycp amenity drinking_water food_drinkingtap.png
-mycp amenity water_well food_water_well.png
+mycp man_made water_well food_water_well.png
 
 ## Seamarks
 mygroup seamark icons8_sail_boat.png
