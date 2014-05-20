@@ -95,7 +95,7 @@ string('off_route.ogg', 'avete deviato dal percorso').
 string('exceed_limit.ogg', 'limite di velocità superato').
 
 % STREET NAME GRAMMAR
-string('onto.ogg', 'sulla ').
+string('onto.ogg', 'su ').
 string('on.ogg', 'su ').
 string('to.ogg', 'a ').
 
