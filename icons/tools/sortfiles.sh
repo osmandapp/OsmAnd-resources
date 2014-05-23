@@ -77,6 +77,7 @@ mycp traffic_calming bump transport_speedbump.png
 
 mygroup fuel transport_fuel.png
 mycp amenity fuel transport_fuel.png
+mycp amenity fuel_lpg transport_fuel_lpg.png
 
 mygroup parking transport_parking.png
 mycp amenity parking transport_parking.png
