@@ -30,11 +30,11 @@ language('de').
 % ROUTE CALCULATED
 string('route_is1.ogg', 'Die berechnete Strecke ist ').
 string('route_is2.ogg', 'lang ').
-string('route_calculate.ogg', 'Route neu berechnet ').
-string('distance.ogg', ', Entfernung ').
+string('route_calculate.ogg', 'Route wurde neu berechnet ').
+string('distance.ogg', ', Die Entfernung beträgt ').
 
 % LEFT/RIGHT
-string('prepare.ogg', ' ').
+string('prepare.ogg', 'vorbereiten zum ').
 string('after.ogg', 'nach ').
 
 string('left.ogg', 'links abbiegen ').
@@ -48,13 +48,13 @@ string('right_keep.ogg', 'rechts halten ').
 % if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
-string('prepare_make_uturn.ogg', 'Vorbereiten zum Wenden ').
+string('prepare_make_uturn.ogg', 'In Kürze bitte Wenden ').
 string('make_uturn1.ogg', 'wenden ').
 string('make_uturn2.ogg', 'Bitte wenden ').
 string('make_uturn_wp.ogg', 'Wenn möglich, bitte wenden ').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Einbiegen in Kreisverkehr ').
+string('prepare_roundabout.ogg', 'Vorbereiten zum Einbiegen in Kreisverkehr ').
 string('roundabout.ogg', 'in den Kreisverkehr einfahren, ').
 string('then.ogg', 'dann ').
 string('and.ogg', 'und ').
@@ -87,24 +87,24 @@ string('follow2.ogg', 'folgen ').
 % ARRIVE
 string('and_arrive_destination.ogg', 'dann haben Sie Ihr Ziel ').
 string('reached_destination.ogg', 'Ziel ').
-string('and_arrive_intermediate.ogg', 'dann Zwischenziel ').
+string('and_arrive_intermediate.ogg', 'dann haben Sie Ihr Zwischenziel ').
 string('reached_intermediate.ogg', 'Zwischenziel ').
-string('and_arrive_waypoint.ogg', 'dann Wehgpunkt ').
-string('reached_waypoint.ogg', 'Wehgpunkt ').
+string('and_arrive_waypoint.ogg', 'dann haben Sie den Wegpunkt ').
+string('reached_waypoint.ogg', 'Wegpunkt ').
 string('reached.ogg', 'erreicht ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'Achtung, ').
-string('location_lost.ogg', 'G P S  Signal verloren ').
-string('location_recovered.ogg', 'G P S Signal gefunden ').
-string('off_route.ogg', 'Sie weichen von der Route ab seit ').
+string('location_lost.ogg', 'GPS Signal verloren ').   % maybe change to "tschie pie es" because of pronounciation
+string('location_recovered.ogg', 'GPS Signal gefunden ').  % maybe change to "tschie pie es" because of pronounciation
+string('off_route.ogg', 'Sie weichen von der Route ab seit ').  % possibly "Sie verlassen die Route seit "
 string('exceed_limit.ogg', 'Sie überschreiten die Höchstgeschwindigkeit ').
 
 % STREET NAME GRAMMAR
 string('onto.ogg', 'auf ').  % possibly "Richtung", better grammar, but is also misleading is some cases
 string('on.ogg', 'auf ').
 string('to.ogg', 'bis ').
-string('with.ogg', 'mit ').
+string('with.ogg', 'mit ').  % bad results in some cases; wrong grammar
 string('to2.ogg', 'Richtung '). % "zu " gives wrong results in many cases
 
 % DISTANCE UNIT SUPPORT
