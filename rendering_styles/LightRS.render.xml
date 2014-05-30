@@ -50,8 +50,8 @@
 	<renderingConstant name="tertiaryRoadNightColor" value="#48ffd2"/>
 	<renderingConstant name="residentialRoadDayColor" value="#6d6d6d"/>
 	<renderingConstant name="residentialRoadNightColor" value="#c3c3c3"/>
-	<renderingConstant name="serviceRoadDayColor" value="#6d6d6d"/>
-	<renderingConstant name="serviceRoadNightColor" value="#c3c3c3"/>
+	<renderingConstant name="serviceRoadDayColor" value="#888888"/>
+	<renderingConstant name="serviceRoadNightColor" value="#7a7a7a"/>
 	
 	<renderingConstant name="nonMotoVehicleRoadDayColor" value="#0028d2"/> <!--bd5007-->
 	<renderingConstant name="nonMotoVehicleRoadNightColor" value="#a04406"/>
@@ -59,10 +59,10 @@
 	<renderingConstant name="bridgeNightColor" value="#ffffff"/>
 	<renderingConstant name="railwayDayColor" value="#777777"/>
 	<renderingConstant name="railwayNightColor" value="#777777"/>
-	<renderingConstant name="contourDayColorNon100m" value="#15ac7c7c"/>
-	<renderingConstant name="contourDayColor100m" value="#15cc9c9c"/>
-	<renderingConstant name="contourNightColorNon100m" value="#228f5a5a"/>
-	<renderingConstant name="contourNightColor100m" value="#268f5a5a"/>
+	<renderingConstant name="contourDayColorNon100m" value="#30ac7c7c"/>
+	<renderingConstant name="contourDayColor100m" value="#40cc9c9c"/>
+	<renderingConstant name="contourNightColorNon100m" value="#408f5a5a"/>
+	<renderingConstant name="contourNightColor100m" value="#608f5a5a"/>
 
 	<renderingConstant name="waterDayColor" value="#41cad3"/>
 	<renderingConstant name="waterNightColor" value="#236793"/>
@@ -72,6 +72,22 @@
 		<filter cycle="true" tag="" value="" order="5" objectType="3"/>
 		<filter area="true" tag="" value="" order="5" objectType="3"/>
 		<filter tag="" value="" order="11" objectType="2"/>
+		<filter area="true" tag="landuse" value="military" order="8" objectType="3"/>
+		<filter cycle="true" tag="landuse" value="military" order="8" objectType="3"/>
+		<filter area="true" tag="military" value="danger_area" order="8" objectType="3"/>
+		<filter cycle="true" tag="military" value="danger_area" order="8" objectType="3"/>
+
+		<group>
+			<filter tag="railway" value="platform"/>
+			<filter tag="railway" value="station"/>
+			<filter tag="public_transport" value="station"/>
+			<filter tag="public_transport" value="platform"/>
+			<groupFilter>
+				<filter point="false" area="false" objectType="2" order="58"/>
+				<filter area="true" point="false" objectType="3" order="5"/>
+				<filter point="true" objectType="1" order="128"/>
+			</groupFilter>
+		</group>
 
 		<group objectType="2" area="false" point="false">
 			 <filter layer="1" tag="highway" value="motorway" order="87"/>
@@ -230,9 +246,18 @@
 					<filter minzoom="14" tag="natural" value="wood"/>
 					<filter minzoom="14" tag="natural" value="wetland"/>
 					<filter minzoom="14" tag="natural" value="marsh"/>
+					<filter minzoom="14" tag="landuse" value="allotments"/>
 					<filter minzoom="15" textWrapWidth="15" tag="natural" value="park" textOrder="10"/>
 					<groupFilter nightMode="true" textColor="#c3e8c3" textHaloColor="#000000"/>
 				</group>
+				<group>
+					<filter minzoom="17" textSize="12" textColor="#990d2a" textHaloRadius="1" textWrapWidth="20" tag="landuse" value="military" textOrder="10"/>
+					<filter minzoom="15" textSize="12" textColor="#990d2a" textHaloRadius="1" textWrapWidth="20" tag="military" value="danger_area" textOrder="10"/>
+					<groupFilter nightMode="true" textHaloColor="#cccccc"/>
+				</group>
+
+				<filter nightMode="true" minzoom="16" tag="amenity" value="place_of_worship" textSize="13" textColor="#ffd1d1" textHaloColor="#000000"/>
+				<filter minzoom="16" tag="amenity" value="place_of_worship" textSize="13" textColor="#330000" textHaloColor="#ffffff"/>
 
 			</group>
 
@@ -280,6 +305,35 @@
 				<groupFilter nightMode="true" textColor="#ffffff" textHaloColor="#333333"/>
 				<groupFilter nightMode="true" tag="place" value="locality" textColor="#dddddd" textHaloColor="#333333"/>
 			</group>
+
+			<filter minzoom="17" textSize="12" textColor="#0066ff" textHaloRadius="1" textDy="7" textWrapWidth="25" tag="amenity" value="fuel"/>
+			<filter minzoom="17" textSize="12" textColor="#0066ff" textHaloRadius="1" textDy="7" textWrapWidth="30" tag="amenity" value="parking"/>
+			<filter minzoom="16" textSize="12" textColor="#0066ff" textHaloRadius="1" textDy="7" textWrapWidth="25" tag="amenity" value="bus_station"/>
+
+			<group textColor="#6666ff" textDy="7" textWrapWidth="25">
+				<filter minzoom="14" maxzoom="14" textSize="12" textHaloRadius="1" textBold="true" tag="railway" value="station" textOrder="5"/>
+					<filter minzoom="15" textSize="13" textHaloRadius="1" textBold="true" tag="railway" value="station" textOrder="5"/>
+				<filter minzoom="14" maxzoom="14" textSize="12" textHaloRadius="1" textBold="true" tag="public_transport" value="station"/>
+					<filter minzoom="15" textSize="13" textHaloRadius="1" textBold="true" tag="public_transport" value="station"/>
+				<filter minzoom="14" textSize="12" textHaloRadius="1" tag="railway" value="halt" textOrder="10"/>
+				<filter minzoom="15" textSize="12" textHaloRadius="1" tag="railway" value="tram_stop"/>
+				<filter minzoom="14" maxzoom="14" textSize="12" textHaloRadius="1" textBold="true" tag="public_transport" value="platform"/>
+					<filter minzoom="15" textSize="13" textHaloRadius="1" textBold="true" tag="public_transport" value="platform"/>
+				<filter minzoom="14" maxzoom="14" textSize="12" textHaloRadius="1" textBold="true" tag="railway" value="platform"/>
+					<filter minzoom="15" textSize="13" textHaloRadius="1" textBold="true" tag="railway" value="platform"/>
+				<filter minzoom="14" textSize="12" tag="aerialway" value="station"/>
+				<groupFilter nightMode="true" textHaloColor="#cccccc"/>
+			</group>
+
+			<group>
+				<filter tag="aeroway" value="aerodrome" minzoom="11" textSize="12" textBold="true" textColor="#6692da" textWrapWidth="25" textHaloRadius="1" textDy="7">
+					<filter nightMode="true" textColor="#eeeeff" textHaloColor="#222266"/>
+				</filter>
+				<filter tag="aeroway" value="airport" minzoom="11" textSize="12" textBold="true" textColor="#6692da" textWrapWidth="25" textHaloRadius="1" textDy="7">
+					<filter nightMode="true" textColor="#eeeeff" textHaloColor="#222266"/>
+				</filter>
+			</group>
+
 			<group>
 				<filter minzoom="16" maxzoom="17" tag="building" value="" textSize="13" textDy="-15" textWrapWidth="20" textMinDistance="40" textOrder="101"/>
 				<filter minzoom="18" tag="building" value="" textSize="15" textDy="7" textWrapWidth="20" textOrder="101"/>
@@ -310,6 +364,67 @@
 		</group>
 	</text>
 
+	<point>
+
+		<filter minzoom="16" icon="highway_traffic_signals" tag="highway" value="traffic_signals"/>
+		<filter minzoom="15" icon="highway_mini_roundabout" tag="highway" value="mini_roundabout"/>
+		<filter minzoom="15" icon="highway_ford" tag="highway" value="ford"/>
+		<filter minzoom="17" icon="highway_crossing" tag="highway" value="crossing"/>
+		<filter minzoom="14" icon="amenity_fuel" tag="amenity" value="fuel"/>
+		<filter minzoom="14" icon="amenity_fuel_lpg" tag="amenity" value="fuel" additional="fuel:lpg=yes"/>
+
+		<filter tag="amenity" value="parking">
+			<filter additional="access=private" icon="amenity_parking_private" minzoom="15"/>
+			<filter additional="access=no" icon="amenity_parking_private" minzoom="15"/>
+			<filter additional="fee=yes" icon="amenity_parking_paid" minzoom="15"/>
+			<filter icon="amenity_parking" minzoom="15"/>
+		</filter>
+
+		<filter minzoom="16" icon="amenity_bicycle_parking" tag="amenity" value="bicycle_parking"/>
+		<filter minzoom="14" icon="amenity_bus_station" tag="amenity" value="bus_station"/>
+		<filter minzoom="16" maxzoom="16" icon="highway_bus_stop_small" tag="highway" value="bus_stop"/>
+		<filter minzoom="17" icon="highway_bus_stop" tag="highway" value="bus_stop"/>
+		<filter minzoom="17" icon="highway_bus_stop" tag="platform" value="public_transport"/>
+		<filter minzoom="16" icon="railway_level_crossing" tag="railway" value="level_crossing"/>
+		<filter tag="traffic_calming" value="bump" icon="traffic_calming_bump" minzoom="16"/>
+
+		<filter minzoom="17" icon="barrier_gate" tag="highway" value="gate"/>
+		<filter minzoom="17" icon="barrier_gate" tag="barrier" value="gate"/>
+		<filter minzoom="16" icon="barrier_lift_gate" tag="barrier" value="lift_gate"/>
+		<filter minzoom="16" icon="barrier_sally_port" tag="barrier" value="sally_port"/>
+		<filter minzoom="16" icon="barrier_bollard" tag="barrier" value="bollard"/>
+		<filter minzoom="17" icon="barrier_block" tag="barrier" value="block"/>
+		<filter minzoom="17" icon="barrier_kissing_gate" tag="barrier" value="kissing_gate"/>
+		<filter minzoom="14" icon="barrier_toll_booth" tag="barrier" value="toll_booth"/>
+		<filter minzoom="14" icon="barrier_border_control" tag="barrier" value="border_control"/>
+		<filter minzoom="16" icon="barrier_entrance" tag="barrier" value="entrance"/>
+		<filter minzoom="18" icon="barrier_entrance" tag="building" value="entrance"/>
+
+		<filter minzoom="12" maxzoom="12" icon="railway_halt" tag="railway" value="station"/>
+			<filter minzoom="13" maxzoom="14" icon="railway_station_small" tag="railway" value="station"/>
+			<filter minzoom="15" icon="railway_station" tag="railway" value="station"/>
+		<filter minzoom="13" maxzoom="14" icon="railway_halt" tag="railway" value="halt"/>
+			<filter minzoom="15" icon="railway_station_small" tag="railway" value="halt"/>
+		<filter minzoom="14" maxzoom="14" icon="railway_halt" tag="railway" value="tram_stop"/>
+			<filter minzoom="15" icon="railway_station_small" tag="railway" value="tram_stop"/>
+		<filter minzoom="15" icon="railway_level_crossing" tag="railway" value="level_crossing"/>
+		<filter minzoom="16" icon="railway_subway_entrance" tag="railway" value="subway_entrance"/>
+
+		<filter minzoom="10" icon="aeroway_aerodrome" tag="aeroway" value="aerodrome"/>
+		<filter minzoom="9" icon="aeroway_airport" tag="aeroway" value="airport"/>
+
+		<filter icon="amenity_place_of_worship" tag="amenity" value="place_of_worship" minzoom="16">
+			<filter additional="religion=christian" icon="religion_christian"/>
+			<filter additional="religion=jewish" icon="religion_jewish"/>
+			<filter additional="religion=muslim" icon="religion_muslim"/>
+			<filter additional="religion=sikh" icon="religion_sikh"/>
+		</filter>
+
+		<filter minzoom="16" icon="shop_convenience" tag="shop" value="convenience"/>
+		<filter minzoom="15" icon="shop_supermarket" tag="shop" value="supermarket"/>
+		<filter minzoom="15" icon="shop_department_store" tag="shop" value="department_store"/>
+
+	</point>
 
 	<polygon>
 		<group hideBuildings="false">
@@ -336,18 +451,25 @@
 			</group>
 			<group>
 				<filter nightMode="true" minzoom="12" color="#576b5b" tag="landuse" value="cemetery"/>
-				<filter minzoom="12" shader="grave_yard" tag="landuse" value="cemetery"/>
+				<filter minzoom="12" color="#b5ccb2" tag="landuse" value="cemetery"/>
 				<filter nightMode="true" minzoom="12" color="#576b5b" tag="amenity" value="grave_yard"/>
 				<filter minzoom="12" shader="grave_yard" tag="amenity" value="grave_yard"/>
 				<filter nightMode="true" tag="natural" value="beach" minzoom="11" color="#98954c"/>
 				<filter minzoom="11" shader="beach" color="#100000" tag="natural" value="beach"/>
+				<filter nightMode="true" minzoom="10" color="#315f29" color_2="#587338" strokeWidth_2=":1" tag="landuse" value="allotments"/>
+				<filter minzoom="10" color="#c7f086" color_2="#8fbda0" strokeWidth_2=":1" tag="landuse" value="allotments"/>
 			</group>
 			<group>
 				<filter minzoom="8" color="#b0b6fdb6" color_2="#9DB487" strokeWidth_2=":1" tag="natural" value="park"/>
 				<filter minzoom="8" color="#b0b6fdb6" color_2="#9DB487" strokeWidth_2=":1" tag="leisure" value="park"/>
 				<groupFilter nightMode="true" color="#417541" color_2="#617052"/>
 			</group>
-			
+
+			<filter nightMode="true" minzoom="10" shader="danger_night" color="#100000" color_2="#84ffa0c0" strokeWidth_2=":2" tag="landuse" value="military"/>
+			<filter minzoom="10" shader="danger" color="#100000" color_2="#c8ffa0c0" strokeWidth_2=":2" tag="landuse" value="military"/>
+			<filter nightMode="true" minzoom="7" shader="danger_night" color="#100000" color_2="#ffa0c0" strokeWidth_2=":2" tag="military" value="danger_area"/>
+			<filter minzoom="7" shader="danger" color="#100000" color_2="#ffa0c0" strokeWidth_2=":2" tag="military" value="danger_area"/>
+
 			<group hideWater="false">
 				<group>
 					<filter minzoom="10" tag="waterway" value="riverbank" />
@@ -399,7 +521,6 @@
 				</filter>
 			</groupFilter>
 		</group>
-
 
 		<group>
 			<filter tag="highway" value="motorway" maxzoom="15" color="$motorwayRoadDayColor"/>
@@ -572,6 +693,7 @@
 				<filter minzoom="19" strokeWidth_0="22:2"/>
 				<groupFilter nightMode="true" color_0="$bridgeNightColor"/>
 			</groupFilter>
+			<groupFilter nightMode="true" minzoom="13" maxzoom="13" color="#7a7a7a"/>
 			<groupFilter hideBuildings="false" minzoom="16" shadowRadius=":1.7" shadowColor="#ffffff"/>
 			<groupFilter nightMode="true" hideBuildings="false" minzoom="16" shadowRadius=":1.7" shadowColor="#555555"/>
 		</group>
@@ -828,12 +950,12 @@
 				<groupFilter nightMode="true" color="$railwayNightColor"/>
 			</filter>
 			<filter layer="-1" tag="railway" value="subway" disable="true"/>
-			<filter tag="railway" value="subway" minzoom="13" color="#177067" strokeWidth="2"/>
+			<filter tag="railway" value="subway" minzoom="13" color="$railwayDayColor" strokeWidth="2"/>
 			<filter layer="-1" tag="railway" value="light_rail" disable="true"/>
-			<filter tag="railway" value="light_rail" minzoom="13" color="#146159" strokeWidth="1:1"/>
+			<filter tag="railway" value="light_rail" minzoom="13" color="$railwayDayColor" strokeWidth="1:1"/>
 			<filter layer="-1" tag="railway" value="narrow_gauge" disable="true"/>
-			<filter tag="railway" value="narrow_gauge" minzoom="13" color="#146159" strokeWidth="2"/>
-			<filter tag="railway" value="monorail" minzoom="15" color="#14796e" strokeWidth="3" pathEffect="2_3"/>
+			<filter tag="railway" value="narrow_gauge" minzoom="13" color="$railwayDayColor" strokeWidth="2"/>
+			<filter tag="railway" value="monorail" minzoom="15" color="$railwayDayColor" strokeWidth="3" pathEffect="2_3"/>
 			<filter layer="-1" tag="railway" value="funicular" minzoom="15" color="#146159" strokeWidth="5" pathEffect="5_3" color_2="#cccccc" strokeWidth_2="3"/>
 			<filter tag="railway" value="funicular" minzoom="15" color="#146159" strokeWidth="2"/>
 		</group>
