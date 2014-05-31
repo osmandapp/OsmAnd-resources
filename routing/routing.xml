@@ -441,14 +441,43 @@
 		</way>
 
 		<way attribute="speed" type="speed">
-			<!-- there are no speedlimits for bikes -->
+			<!-- object tags -->
+			<!-- pure cycling path has highest priority -->
+			<select value="18" t="highway" v="cycleway"/>
+			<!-- busier roads are worse for cycling -->
+			<select value="15" t="highway" v="tertiary"/>
+			<select value="15" t="highway" v="tertiary_link"/>
+			<select value="14" t="highway" v="secondary"/>
+			<select value="14" t="highway" v="secondary_link"/>
+			<select value="13" t="highway" v="primary"/>
+			<select value="13" t="highway" v="primary_link"/>
+			<select value="13" t="highway" v="living_street"/>
+			<select value="13" t="highway" v="unclassified"/>
+			<select value="12" t="highway" v="track"/>
+			<select value="12" t="highway" v="path"/>
+			<!-- driveways, parking_aisles, and alleys are not very suitable for biking -->
+			<select value="10" t="highway" v="service"/>
+			<select value="10" t="highway" v="services"/>
+			<!-- no cycling on sidewalks -->
+			<select value="6" t="highway" v="pedestrian"/>
+			<select value="6" t="highway" v="footway"/>
+			<select value="6" t="highway" v="byway"/>
+			<select value="6" t="highway" v="bridleway"/>
+			<select value="5" t="highway" v="platform"/>
 			<select value="5" t="route" v="ferry"/>
+			<select value="3" t="highway" v="steps"/>
+			<!-- cycling on motorways is a very bad idea -->
+            <select value="1" t="highway" v="motorway"/>
+			<select value="1" t="highway" v="motorway_link"/>
+			<select value="1" t="highway" v="trunk"/>
+			<select value="1" t="highway" v="trunk_link"/>
 
 			<select value="16"/>
 		</way>
 
 
 		<way attribute="priority">
+            <!-- Additional tags -->
 			<if param="avoid_unpaved">
 				<select value="0.4" t="tracktype" v="grade2"/>
 				<select value="0.1" t="tracktype" v="grade3"/>
@@ -468,7 +497,6 @@
 				<select value="0.1" t="surface" v="wood"/>
 			</if>
             
-            <!-- Additional tags -->
 			<select value="0.05" t="access" v="private"/>
 			<select value="0.05" t="access" v="destination"/>
 			<select value="0.1" t="barrier" v="debris"/>
@@ -480,37 +508,10 @@
 			<select value="0.8" t="tracktype" v="grade5"/>
 
 			<!-- bicycle=yes overrides low pedetrian setting when biking is allowed -->
-			<select value="1.0" t="bicycle" v="yes"/>
+			<select value="2.0" t="bicycle" v="yes"/>
 			<!-- bicycle lane has higher priority than just a designated road -->
 			<select value="1.1" t="bicycle" v="designated"/>
 			<select value="1.3" t="cycleway" v="lane"/>
-
-			<!-- object tags -->
-			<!-- cycling on motorways is a very bad idea -->
-			<select value="0.1" t="highway" v="motorway"/>
-			<select value="0.1" t="highway" v="motorway_link"/>
-			<select value="0.1" t="highway" v="trunk"/>
-			<select value="0.1" t="highway" v="trunk_link"/>
-			<!-- no cycling on sidewalks unles allowed by bicycle=yes -->
-			<select value="0.5" t="highway" v="steps"/>
-			<select value="0.6" t="highway" v="bridleway"/>
-			<select value="0.6" t="highway" v="pedestrian"/>
-			<select value="0.6" t="highway" v="footway"/>
-			<select value="0.6" t="highway" v="path"/>
-			<select value="0.6" t="highway" v="platform"/>
-			<!-- driveways, parking_aisles, and alleys are not very suitable for biking -->
-			<select value="0.8" t="highway" v="service"/>
-			<select value="0.8" t="highway" v="services"/>
-			<!-- busier roads are worse for cycling -->
-			<select value="0.85" t="highway" v="primary"/>
-			<select value="0.85" t="highway" v="primary_link"/>
-			<select value="0.9" t="highway" v="secondary"/>
-			<select value="0.9" t="highway" v="secondary_link"/>
-			<select value="0.95" t="highway" v="tertiary"/>
-			<select value="0.95" t="highway" v="tertiary_link"/>
-			<select value="1.0" t="route" v="ferry"/>
-			<!-- pure cycling path has highest priority -->
-			<select value="1.4" t="highway" v="cycleway"/>
 
 			<select value="1.0"/>
 		</way>
@@ -530,6 +531,16 @@
 
 		<point attribute="obstacle">
 			<select value="-1" t="bicycle" v="no"/>
+			<select value="5" t="barrier" v="cycle_barrier"/>
+			<select value="5" t="barrier"/>
+			<select value="15" t="highway" v="traffic_signals"/>
+			<select value="5" t="highway" v="stop"/>
+			<select value="5" t="highway" v="give_way"/>
+			<select value="5" t="highway" v="ford" />
+			<select value="5" t="ford" />
+
+			<select value="5" t="railway" v="crossing" />
+			<select value="5" t="railway" v="level_crossing"/> 
 		</point>
 
 
