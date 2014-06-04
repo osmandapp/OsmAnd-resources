@@ -56,6 +56,7 @@ mycp place town functional-icons_town.png  #scale .25
 ## Emergency + Health
 mygroup emergency emergency_emergency_phone.png
 mycp emergency phone emergency_emergency_phone.png
+mycp emergency fire_hydrant emergency_fire_hydrant.png
 mycp amenity police emergency_police2.png
 mycp amenity fire_station emergency_firestation3.png
 
@@ -74,6 +75,7 @@ mycp highway mini_roundabout transport_miniroundabout_anticlockwise.png
 mycp highway ford transport_ford.png
 mycp highway crossing transport_zebra_crossing.png
 mycp traffic_calming bump transport_speedbump.png
+mycp highway milestone functional-icons_milestone.png
 
 mygroup fuel transport_fuel.png
 mycp amenity fuel transport_fuel.png
