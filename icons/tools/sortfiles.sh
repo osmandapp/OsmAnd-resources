@@ -56,6 +56,7 @@ mycp place town functional-icons_town.png  #scale .25
 ## Emergency + Health
 mygroup emergency emergency_emergency_phone.png
 mycp emergency phone emergency_emergency_phone.png
+mycp emergency fire_hydrant emergency_fire_hydrant.png
 mycp amenity police emergency_police2.png
 mycp amenity fire_station emergency_firestation3.png
 
