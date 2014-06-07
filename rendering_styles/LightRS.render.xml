@@ -53,6 +53,8 @@
 	<renderingConstant name="residentialRoadNightColor" value="#c3c3c3"/>
 	<renderingConstant name="serviceRoadDayColor" value="#888888"/>
 	<renderingConstant name="serviceRoadNightColor" value="#7a7a7a"/>
+	<renderingConstant name="trackDayColor" value="#555555"/>
+	<renderingConstant name="trackNightColor" value="#777777"/>
 	
 	<renderingConstant name="nonMotoVehicleRoadDayColor" value="#0028d2"/> <!--bd5007-->
 	<renderingConstant name="nonMotoVehicleRoadNightColor" value="#a04406"/>
@@ -87,6 +89,19 @@
 				<filter point="false" area="false" objectType="2" order="58"/>
 				<filter area="true" point="false" objectType="3" order="5"/>
 				<filter point="true" objectType="1" order="128"/>
+			</groupFilter>
+		</group>
+
+		<group>
+			<filter tag="highway" value="tertiary"/>
+			<filter tag="highway" value="pedestrian"/>
+			<filter tag="highway" value="service"/>
+			<filter tag="highway" value="road"/>
+			<filter tag="highway" value="unclassified"/>
+			<filter tag="highway" value="residential"/>
+			<filter tag="highway" value="footway"/>
+			<groupFilter>
+				<filter area="true" point="false" objectType="3" order="5"/>
 			</groupFilter>
 		</group>
 
@@ -178,6 +193,7 @@
 				<group textBold="true" textHaloRadius="1">
 					<filter tag="highway" value="tertiary" nameTag="" textOrder="8"/>
 					<filter tag="highway" value="tertiary_link" nameTag="" textOrder="9"/>
+					<filter tag="area:highway" value="tertiary" textOrder="9"/>
 					<groupFilter textOnPath="true" nameTag="">
 						<filter moreDetails="true" minzoom="14" maxzoom="14" textSize="12"/>
 						<filter minzoom="15" maxzoom="15" textSize="13"/>
@@ -193,10 +209,14 @@
 					<filter tag="highway" value="road" textOrder="9"/>
 					<filter tag="highway" value="unclassified" textOrder="9"/>
 					<filter tag="highway" value="residential" textOrder="9"/>
+					<filter tag="area:highway" value="unclassified" textOrder="9"/>
+					<filter tag="area:highway" value="residential" textOrder="9"/>
 
 					<filter tag="highway" value="service" textOrder="10"/>
 					<filter tag="highway" value="living_street" textOrder="10"/>
 					<filter tag="highway" value="pedestrian" textOrder="11"/>
+					<filter tag="area:highway" value="pedestrian" textOrder="9"/>
+					<filter tag="area:highway" value="service" textOrder="9"/>
 
 					<filter tag="highway" value="services" textOrder="10"/>
 					<groupFilter textOnPath="true" nameTag="">
@@ -222,6 +242,8 @@
 					<filter tag="railway" value="light_rail" textOrder="15"/>
 					<filter tag="railway" value="monorail" textOrder="16"/>
 					<filter tag="railway" value="funicular" textOrder="16"/>
+					<filter tag="area:highway" value="track" textOrder="9"/>
+					<filter tag="area:highway" value="footway" textOrder="15"/>
 					<groupFilter nameTag="">
 						<filter minzoom="14" maxzoom="14" textSize="12"/>
 						<filter minzoom="15" maxzoom="15" textSize="13"/>
@@ -526,6 +548,65 @@
 				</group>
 			</group>
 		</group>
+
+		<!-- Polygonal highways -->
+		<group>
+			<filter tag="highway" value="tertiaty"/>
+			<filter tag="area:highway" value="tertiary"/>
+			<groupFilter>
+				<filter minzoom="15" color="#ffa352"/>
+			</groupFilter>
+			<groupFilter nightMode="true" color="#36d1ab"/>
+		</group>
+
+		<group>
+			<filter tag="highway" value="road"/>
+			<filter tag="highway" value="unclassified"/>
+			<filter tag="highway" value="residential"/>
+			<filter tag="area:highway" value="unclassified"/>
+			<filter tag="area:highway" value="residential"/>
+			<groupFilter>
+				<filter minzoom="16" color="#7d7d7d"/>
+			</groupFilter>
+			<groupFilter nightMode="true" color="#aeaeae"/>
+		</group>
+
+		<group>
+			<filter tag="highway" value="service"/>
+			<filter tag="area:highway" value="service"/>
+			<groupFilter>
+				<filter minzoom="16" color="#a4a4a4"/>
+			</groupFilter>
+			<groupFilter nightMode="true" color="#696969"/>
+		</group>
+
+		<group hideNonVehicleHighways="false">
+			<filter tag="highway" value="pedestrian"/>
+			<filter tag="area:highway" value="pedestrian"/>
+			<groupFilter>
+				<filter minzoom="16" color="#4364ef"/>
+			</groupFilter>
+			<groupFilter nightMode="true" color="#833908"/>
+		</group>
+
+		<group hideNonVehicleHighways="false">
+			<filter tag="highway" value="footway"/>
+			<filter tag="area:highway" value="footway"/>
+			<groupFilter>
+				<filter minzoom="16" color="#4364ef"/>
+			</groupFilter>
+			<groupFilter nightMode="true" color="#833908"/>
+		</group>
+
+		<group>
+			<filter tag="highway" value="track"/>
+			<filter tag="area:highway" value="track"/>
+			<groupFilter>
+				<filter minzoom="16" color="#6b6b6b"/>
+			</groupFilter>
+			<groupFilter nightMode="true" color="#5f5f5f"/>
+		</group>
+
 	</polygon>
 
 	<line>
@@ -797,8 +878,8 @@
 				<filter minzoom="17" maxzoom="17" strokeWidth="3" pathEffect="11_5.5"/>
 				<filter minzoom="18" strokeWidth="5" pathEffect="15_7.5"/>
 			</filter>
-			<groupFilter hideWoodScrubs="false" color="#111111"/>
-			<groupFilter nightMode="true" color="#777777" shadowRadius="0"/>
+			<groupFilter hideWoodScrubs="false" color="$trackDayColor"/>
+			<groupFilter nightMode="true" color="$trackNightColor" shadowRadius="0"/>
 			<groupFilter layer="1" minzoom="15">
 				<filter nightMode="true" color__1="#dddddd" strokeWidth__1="10" pathEffect__1="" color_0="#333333" strokeWidth_0="6"/>
 				<filter color__1="#333333" strokeWidth__1="10" pathEffect__1="" color_0="#ffffff" pathEffect_0="" strokeWidth_0="6"/>
