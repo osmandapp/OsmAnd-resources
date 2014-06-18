@@ -26,22 +26,22 @@ fest_language('cmu_us_awb_arctic_clunits').
 
 
 % ROUTE CALCULATED
-string('route_is.ogg', 'The trip is ').
-string('route_calculate.ogg', 'Route recalculated').
-string('distance.ogg', 'distance ').
+string('route_is.ogg', 'سفر ').
+string('route_calculate.ogg', 'محاسبه مسیر').
+string('distance.ogg', 'مسافت').
 
 % LEFT/RIGHT
-string('prepare.ogg', 'Prepare to ').
-string('after.ogg', 'after ').
+string('prepare.ogg', 'آماده ').
+string('after.ogg', 'بعد از ').
 
-string('left.ogg', 'turn left ').
+string('left.ogg', 'سمت چپ ').
 string('left_sh.ogg', 'turn sharply left ').
 string('left_sl.ogg', 'turn slightly left ').
-string('right.ogg', 'turn right ').
+string('right.ogg', 'سمت راست ').
 string('right_sh.ogg', 'turn sharply right ').
 string('right_sl.ogg', 'turn slightly right ').
-string('left_keep.ogg', 'keep left').
-string('right_keep.ogg', 'keep right').
+string('left_keep.ogg', 'ادامه حرکت از سمت چپ').
+string('right_keep.ogg', 'ادامه حرکت از سمت راست').
 % if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
@@ -56,23 +56,23 @@ string('and.ogg', 'and ').
 string('take.ogg', 'take the ').
 string('exit.ogg', 'exit ').
 
-string('1st.ogg', 'first ').
-string('2nd.ogg', 'second ').
-string('3rd.ogg', 'third ').
-string('4th.ogg', 'fourth ').
-string('5th.ogg', 'fifth ').
-string('6th.ogg', 'sixth ').
-string('7th.ogg', 'seventh ').
-string('8th.ogg', 'eighth ').
-string('9th.ogg', 'nineth ').
-string('10th.ogg', 'tenth ').
-string('11th.ogg', 'eleventh ').
-string('12th.ogg', 'twelfth ').
-string('13th.ogg', 'thirteenth ').
-string('14th.ogg', 'fourteenth ').
-string('15th.ogg', 'fifteenth ').
-string('16th.ogg', 'sixteenth ').
-string('17th.ogg', 'seventeenth ').
+string('1st.ogg', 'اول ').
+string('2nd.ogg', 'دوم ').
+string('3rd.ogg', 'سوم ').
+string('4th.ogg', 'چهارم ').
+string('5th.ogg', 'پنجم ').
+string('6th.ogg', 'ششم ').
+string('7th.ogg', 'هفتم ').
+string('8th.ogg', 'هشتم ').
+string('9th.ogg', 'نهم ').
+string('10th.ogg', 'دهم ').
+string('11th.ogg', 'یازدهم ').
+string('12th.ogg', 'دوازدهم ').
+string('13th.ogg', 'سیزدهم ').
+string('14th.ogg', 'چهاردهم ').
+string('15th.ogg', 'پانزدهم ').
+string('16th.ogg', 'شانزدهم ').
+string('17th.ogg', 'هفدهم ').
 
 % STRAIGHT/FOLLOW
 string('go_ahead.ogg', 'Go straight ahead ').
@@ -87,40 +87,39 @@ string('and_arrive_waypoint.ogg', 'and arrive at your GPX waypoint ').
 string('reached_waypoint.ogg', 'you have reached your GPX waypoint ').
 
 % OTHER PROMPTS
-string('attention.ogg', 'attention, ').
-string('location_lost.ogg', 'g p s signal lost ').
-string('location_recovered.ogg', 'g p s signal restored ').
+string('attention.ogg', 'توجه, ').
+string('location_lost.ogg', 'قطع سیگنال جی پی اس ').
+string('location_recovered.ogg', 'اتصال به ماهواره جی پی اس ').
 string('off_route.ogg', 'you have been off the route for').
-string('exceed_limit.ogg', 'you are exceeding the speed limit ').
+string('exceed_limit.ogg', 'سرعت شما بیش از حد مجاز است').
 
 % STREET NAME GRAMMAR
-string('onto.ogg', 'onto ').
-string('on.ogg', 'on ').
-string('to.ogg', 'to ').
-string('to2.ogg', 'towards ').
+string('onto.ogg', 'روی ').
+string('on.ogg', 'در ').
+string('to.ogg', 'به ').
+string('to2.ogg', 'سمت ').
 
 % DISTANCE UNIT SUPPORT
-string('meters.ogg', 'meters ').
-string('around_1_kilometer.ogg', 'about 1 kilometer ').
-string('around.ogg', 'about ').
-string('kilometers.ogg', 'kilometers ').
+string('meters.ogg', 'متر ').
+string('around_1_kilometer.ogg', 'حدود یک کیلومتر ').
+string('around.ogg', 'بعد از ').
+string('kilometers.ogg', 'کیلومتر ').
 
-string('feet.ogg', 'feet ').
-string('1_tenth_of_a_mile.ogg', 'one tenth of a mile').
-string('tenths_of_a_mile.ogg', 'tenths of a mile').
-string('around_1_mile.ogg', 'about 1 mile ').
-string('miles.ogg', 'miles ').
+string('feet.ogg', 'فوت ').
+string('1_tenth_of_a_mile.ogg', 'یک دهم فوت').
+string('tenths_of_a_mile.ogg', 'ده مایل').
+string('around_1_mile.ogg', 'حدود یک مایل ').
+string('miles.ogg', 'مایل ').
 
-string('yards.ogg', 'yards ').
+string('yards.ogg', 'یارد ').
 
 % TIME SUPPORT
-string('time.ogg', 'time is ').
-string('1_hour.ogg', 'one hour ').
-string('hours.ogg', 'hours ').
-string('less_a_minute.ogg', 'less than a minute ').
-string('1_minute.ogg', 'one minute ').
-string('minutes.ogg', 'minutes ').
-
+string('time.ogg', 'زمان ').
+string('1_hour.ogg', 'یک ساعت ').
+string('hours.ogg', 'ساعت ').
+string('less_a_minute.ogg', 'کمتر از یک دقیقه ').
+string('1_minute.ogg', 'یک دقیقه ').
+string('minutes.ogg', 'دقیقه
 
 %% COMMAND BUILDING / WORD ORDER
 turn('left', ['left.ogg']).
