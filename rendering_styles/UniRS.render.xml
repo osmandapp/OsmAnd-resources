@@ -86,7 +86,7 @@
 
 		<group objectType="2" area="false" point="false">
 			<filter appMode="car" layer="-1" tag="public_transport" value="station" order="10"/>
-	
+
 			<filter tag="power" value="line" order="50"/>
 			<filter tag="power" value="minor_line" order="50"/>
 
@@ -1014,6 +1014,10 @@
 		<filter minzoom="14" tag="aeroway" value="terminal" color="#bca9a9" strokeWidth_2="1.3" color_2="#964ae5">
 			<filter nightMode="true" color="#685454" strokeWidth_2="1.3" color_2="#c98df7"/>
 		</filter>
+		
+		<filter appMode="car" layer="-1" tag="public_transport" value="platform" disable="true"/>
+		<filter appMode="car" layer="-1" tag="railway" value="platform" disable="true"/>
+
 	</polygon>
 
 
@@ -1395,42 +1399,40 @@
 		</group>
 
 		<group>
-			<!-- Tracks redesigned -->
-			<filter tag="highway" value="track" color="#996600" pathEffect="4_2">
-				<filter appMode="pedestrian" minzoom="14" strokeWidth="1"/>
-				<filter appMode="pedestrian" minzoom="15" strokeWidth="1"/>
-				<filter minzoom="12" maxzoom="12" strokeWidth="0.6" pathEffect="0"/>
-				<filter minzoom="13" maxzoom="13" strokeWidth="0.8" pathEffect="0"/>
-				<filter minzoom="14" strokeWidth="1.4"/>
-			</filter>
-			<groupFilter showSurfaceGrade="true" minzoom="14">
-				<filter additional="tracktype=grade1" color__1="$surfaceGradeGoodColor"/>
-				<filter additional="tracktype=grade2" color__1="$surfaceGradeIntermediateColor"/>
-				<filter additional="tracktype=grade3" color__1="$surfaceGradeBadColor"/>
-				<filter additional="tracktype=grade4" color__1="$surfaceGradeVery_badColor"/>
-				<filter additional="tracktype=grade5" color__1="$surfaceGradeHorribleColor"/>
-			</groupFilter>
-			<groupFilter minzoom="13" maxzoom="13" strokeWidth_0="4" strokeWidth__1="4"/>
-			<groupFilter minzoom="14" maxzoom="14" strokeWidth_0="5" strokeWidth__1="5"/>
-			<groupFilter minzoom="15" maxzoom="15" strokeWidth_0="6" strokeWidth__1="6"/>
-			<groupFilter minzoom="16" maxzoom="16" strokeWidth_0="7" strokeWidth__1="7"/>
-			<groupFilter minzoom="17" maxzoom="17" strokeWidth_0="8" strokeWidth__1="8"/>
-			<groupFilter minzoom="18" strokeWidth_0="10" strokeWidth__1="10"/>
-			<groupFilter nightMode="true">
-				<filter lessDetails="false" minzoom="12" maxzoom="12" strokeWidth="1"/>
-				<filter lessDetails="false" minzoom="13" maxzoom="13" strokeWidth="1.5"/>
-				<filter minzoom="14" strokeWidth="1.5"/>
-			</groupFilter>
+			<group>
+				<filter tag="highway" value="track" color="#996600" pathEffect="4_2">
+					<filter appMode="pedestrian" minzoom="14" strokeWidth="1"/>
+					<filter appMode="pedestrian" minzoom="15" strokeWidth="1"/>
+					<filter lessDetails="false" minzoom="12" maxzoom="12" strokeWidth="0.6" pathEffect=""/>
+					<filter minzoom="13" maxzoom="13" strokeWidth="0.8" pathEffect=""/>
+					<filter minzoom="14" strokeWidth="1.4"/>
+				</filter>
+				<groupFilter showSurfaceGrade="true" minzoom="14">
+					<filter additional="tracktype=grade1" color__1="$surfaceGradeGoodColor"/>
+					<filter additional="tracktype=grade2" color__1="$surfaceGradeIntermediateColor"/>
+					<filter additional="tracktype=grade3" color__1="$surfaceGradeBadColor"/>
+					<filter additional="tracktype=grade4" color__1="$surfaceGradeVery_badColor"/>
+					<filter additional="tracktype=grade5" color__1="$surfaceGradeHorribleColor"/>
+				</groupFilter>
+				<groupFilter minzoom="13" maxzoom="13" strokeWidth_0="4" strokeWidth__1="4"/>
+				<groupFilter minzoom="14" maxzoom="14" strokeWidth_0="5" strokeWidth__1="5"/>
+				<groupFilter minzoom="15" maxzoom="15" strokeWidth_0="6" strokeWidth__1="6"/>
+				<groupFilter minzoom="16" maxzoom="16" strokeWidth_0="7" strokeWidth__1="7"/>
+				<groupFilter minzoom="17" maxzoom="17" strokeWidth_0="8" strokeWidth__1="8"/>
+				<groupFilter minzoom="18" strokeWidth_0="10" strokeWidth__1="10"/>
+			</group>
 
-			<!-- Footways redesigned -->
-			<filter tag="highway" value="footway" color="#0033ff" pathEffect="3.5_1.5">
+			<filter tag="highway" value="footway" color="#0033ff">
 				<filter appMode="car" disable="true"/>
-				<filter minzoom="13" strokeWidth="1"/>
+				<filter appMode="pedestrian" lessDetails="false" minzoom="13" maxzoom="13" strokeWidth="0.7"/>
+				<filter appMode="bicycle" lessDetails="false" minzoom="13" maxzoom="13" strokeWidth="0.7"/>
+				<filter appMode="pedestrian" minzoom="14" maxzoom="14" strokeWidth="0.7"/>
+				<filter appMode="bicycle" minzoom="14" maxzoom="14" strokeWidth="0.7"/>
+				<filter lessDetails="false" minzoom="14" maxzoom="14" strokeWidth="0.7" pathEffect="3.5_1.5"/>
+				<filter minzoom="15" strokeWidth="1" pathEffect="3.5_1.5"/>
 				<groupFilter nightMode="true" color="#c79f00"/>
-				<groupFilter nightMode="true" appMode="car" color="#13c79f00"/>
 			</filter>
 
-			<!-- Cycleways redesigned -->
 			<group>
 				<filter tag="highway" value="cycleway" color="#a85bff" pathEffect="12_4"/>
 				<filter tag="highway" value="path" additional="bicycle=designated" color="#a85bff" pathEffect="12_4"/>
@@ -1445,12 +1447,13 @@
 				</groupFilter>
 			</group>
 
-			<!-- Paths redesigned (color, size, style) -->
 			<group>
 				<filter tag="highway" value="path" color="#00896e" pathEffect="1.5_1.5">
 					<filter appMode="car" disable="true"/>
-					<filter minzoom="12" maxzoom="12" strokeWidth="1"/>
-					<filter minzoom="13" strokeWidth="1.5"/>
+					<filter lessDetails="false" minzoom="12" maxzoom="12" strokeWidth="1"/>
+					<filter lessDetails="false" minzoom="13" maxzoom="13" strokeWidth="1.3"/>
+					<filter lessDetails="false" minzoom="14" maxzoom="14" strokeWidth="1.5"/>
+					<filter minzoom="15" strokeWidth="1.5"/>
 					<groupFilter>
 						<filter additional="sac_scale=hiking" color="#fa5073" pathEffect=""/>
 						<filter additional="sac_scale=mountain_hiking" color="#fa5073" pathEffect="10_3"/>
@@ -1460,28 +1463,28 @@
 						<filter additional="sac_scale=difficult_alpine_hiking" color="#fa5073" pathEffect="2_3"/>
 						<filter nightMode="true" color="#75ffd8"/>
 					</groupFilter>
-					<groupFilter nightMode="true" appMode="car" color="#1800896e"/>
 					<groupFilter nightMode="true" color="#006d57"/>
 				</filter>
 			</group>
 
-			<!-- Steps redesigned (color, size, style)	-->
 			<filter tag="highway" value="steps" color="#0000ff" pathEffect="1_2">
-				<filter appMode="pedestrian" minzoom="14" maxzoom="15" strokeWidth="5"/>
-				<filter appMode="pedestrian" minzoom="16" maxzoom="17" strokeWidth="6"/>
-				<filter appMode="pedestrian" minzoom="18" strokeWidth="8"/>
 				<filter appMode="car" disable="true"/>
-				<filter minzoom="14" maxzoom="15" strokeWidth="4"/>
+				<filter lessDetails="false" appMode="pedestrian" minzoom="14" maxzoom="14" strokeWidth="3.5" pathEffect="0.7_1.4"/>
+				<filter appMode="pedestrian" minzoom="15" maxzoom="15" strokeWidth="4"/>
+				<filter appMode="pedestrian" minzoom="16" maxzoom="17" strokeWidth="5"/>
+				<filter appMode="pedestrian" minzoom="18" strokeWidth="8"/>
+				<filter lessDetails="false" minzoom="14" maxzoom="14" strokeWidth="3.5" pathEffect="0.7_1.4"/>
+				<filter minzoom="15" maxzoom="15" strokeWidth="4"/>
 				<filter minzoom="16" maxzoom="17" strokeWidth="5"/>
 				<filter minzoom="18" strokeWidth="7"/>
 				<groupFilter nightMode="true" color="#c79f00"/>
-				<groupFilter nightMode="true" appMode="car" color="#13c79f00"/>
 			</filter>
 
 			<filter tag="highway" value="bridleway" color="#339900" pathEffect="4_2">
 				<filter appMode="car" disable="true"/>
-				<filter minzoom="12" maxzoom="12" strokeWidth="0.7"/>
-				<filter minzoom="13" strokeWidth="1.5"/>
+				<filter lessDetails="false" minzoom="12" maxzoom="12" strokeWidth="0.7"/>
+				<filter lessDetails="false" minzoom="13" maxzoom="13" strokeWidth="1.5"/>
+				<filter minzoom="14" strokeWidth="1.5"/>
 			</filter>
 
 			<!-- Surface grade section for highway=track,footway,cycleway,path,bridleway -->
@@ -1617,12 +1620,6 @@
 			<!-- Adding shadows to highway=track,footway,cycleway,path in 'noPolygons' mode for better visibility -->
 			<groupFilter noPolygons="true" shadowRadius=":1" shadowColor="#999999"/>
 
-			<!-- lessDetails option also suppresses 'low level' highways at low zooms -->
-			<groupFilter lessDetails="true" tag="highway" value="track" minzoom="12" maxzoom="12" disable="true"/>
-			<groupFilter lessDetails="true" tag="highway" value="footway" minzoom="12" maxzoom="14" disable="true"/>
-			<groupFilter lessDetails="true" tag="highway" value="path" minzoom="12" maxzoom="13" disable="true"/>
-			<groupFilter lessDetails="true" tag="highway" value="steps" minzoom="14" maxzoom="14" disable="true"/>
-			<groupFilter lessDetails="true" tag="highway" value="bridleway" minzoom="12" maxzoom="13" disable="true"/>
 			<groupFilter appMode="bicycle" additional="bicycle=no" color_0="$null" color__1="$null"/>
 		</group>
 
@@ -1848,7 +1845,6 @@
 			<groupFilter nightMode="true" color="#cccccc"/>
 		</group>
 
-		<!-- Added support of natural=tree_row tag -->
 		<group>
 			<filter noPolygons="false" tag="natural" value="tree_row" minzoom="12" color="#8fd075" cap="ROUND">
 				<filter lessDetails="false" minzoom="12" maxzoom="12" strokeWidth="1"/>
