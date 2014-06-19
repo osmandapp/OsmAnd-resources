@@ -2,18 +2,16 @@
 <!-- xmd5a (xmd5a@yandex.ru) http://forum.openstreetmap.org/viewtopic.php?id=23125 -->
 <renderingStyle name="LightRS" depends="" defaultColor="#ffffff" version="1">
 	<renderingProperty attr="contourLines" name="Show contour lines" description="Select minimum zoom level to display in map if available. Separate contour file may be needed." type="string" possibleValues="--,16,15,14,13,12,11"/>
+	<!-- This should not be here, but it's referenced from 2 rules, and due to this validation of this style fails -->
+	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
+		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
 	<renderingProperty attr="noPolygons" name="Hide polygons (exc.buildings)" description="Make all areal land features on map transparent" type="boolean" possibleValues=""/>
 	<renderingProperty attr="hideBuildings" name=" Hide buildings" description="Hide buildings" type="boolean" possibleValues=""/>
 	<renderingProperty attr="hideNonVehicleHighways" name=" Hide non-vehicle highways" description="Hide non-vehicle highways" type="boolean" possibleValues=""/>
 	<renderingProperty attr="hideText" name=" Hide text" description="Hide text" type="boolean" possibleValues=""/>
 	<renderingProperty attr="hideWoodScrubs" name=" Hide wood and scrubs" description="Hide wood and scrubs" type="boolean" possibleValues=""/>
-	<renderingProperty attr="hideWater" name=" Hide water" description="Hide water" type="boolean" possibleValues=""/>
 	<renderingProperty attr="hideAccess" name=" Hide access type" description="Hide access type" type="boolean" possibleValues=""/>
 	<renderingProperty attr="moreDetails" name=" More details" description="More details" type="boolean" possibleValues=""/>
-
-	<!-- This should not be here, but it's referenced from 2 rules, and due to this validation of this style fails -->
-	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
-		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
 
 	<renderingAttribute name="defaultColor">
 		<filter noPolygons="true" attrColorValue="#00ffffff"/>
@@ -386,7 +384,7 @@
 				<groupFilter textColor="#000000" textHaloRadius="1"/>
 				<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="1" textHaloColor="#555555"/>
 			</group>
-			<group hideWater="false" textColor="#2375aa" textHaloColor="#ddf1fd" textHaloRadius="1">
+			<group textColor="#2375aa" textHaloColor="#ddf1fd" textHaloRadius="1">
 				<filter minzoom="3" textSize="12" textWrapWidth="20" tag="place" value="ocean" textOrder="3"/>
 				<filter minzoom="5" textSize="12" textWrapWidth="20" tag="place" value="sea" textOrder="5"/>
 				<filter minzoom="6" textSize="12" textWrapWidth="20" tag="natural" value="water" textOrder="10"/>
@@ -549,7 +547,7 @@
 			<filter nightMode="true" minzoom="15" color="#0f3c79" tag="amenity" value="parking"/>
 			<filter minzoom="15" color="#f6eeb7" tag="amenity" value="parking"/>
 
-			<group hideWater="false">
+			<group>
 				<group>
 					<filter minzoom="10" tag="waterway" value="riverbank" />
 					<filter minzoom="10" tag="waterway" value="canal"/>
@@ -944,14 +942,24 @@
 			</filter>
 			<groupFilter hideWoodScrubs="false" color="$trackDayColor"/>
 			<groupFilter nightMode="true" color="$trackNightColor" shadowRadius="0"/>
-			<groupFilter layer="1" minzoom="15">
-				<filter nightMode="true" color__1="#dddddd" strokeWidth__1="10" pathEffect__1="" color_0="#333333" strokeWidth_0="6"/>
-				<filter color__1="#333333" strokeWidth__1="10" pathEffect__1="" color_0="#ffffff" pathEffect_0="" strokeWidth_0="6"/>
-			</groupFilter>
-			<groupFilter layer="-1" minzoom="15">
-				<filter nightMode="true" color__1="#ffffff" strokeWidth__1="10" pathEffect__1="6_4" color_0="#333333" strokeWidth_0="6" pathEffect_0=""/>
-				<filter color__1="#333333" strokeWidth__1="10" pathEffect__1="6_4" color_0="#ffffff" strokeWidth_0="6" pathEffect_0=""/>
-			</groupFilter>
+				<groupFilter layer="1" minzoom="15">
+					<filter color__1="#333333" color_0="#ffffff">
+						<filter minzoom="15" maxzoom="15" strokeWidth__1="4:4" strokeWidth_0="4:0.8"/>
+						<filter minzoom="16" maxzoom="16" strokeWidth__1="4:5" strokeWidth_0="4:1"/>
+						<filter minzoom="17" maxzoom="17" strokeWidth__1="4:7.5" strokeWidth_0="4:3"/>
+						<filter minzoom="18" strokeWidth__1="4:9" strokeWidth_0="4:5"/>
+						<groupFilter nightMode="true" color__1="#dddddd" color_0="#333333"/>
+					</filter>
+				</groupFilter>
+				<groupFilter layer="-1" minzoom="15" pathEffect__1="6_4">
+					<filter color__1="#333333" color_0="#ffffff">
+						<filter minzoom="15" maxzoom="15" strokeWidth__1="4:4" strokeWidth_0="4:0.8"/>
+						<filter minzoom="16" maxzoom="16" strokeWidth__1="4:5" strokeWidth_0="4:1"/>
+						<filter minzoom="17" maxzoom="17" strokeWidth__1="4:7.5" strokeWidth_0="4:3"/>
+						<filter minzoom="18" strokeWidth__1="4:9" strokeWidth_0="4:5"/>
+						<groupFilter nightMode="true" color__1="#dddddd" color_0="#333333"/>
+					</filter>
+				</groupFilter>
 			<groupFilter hideAccess="false" additional="access=no" disable="true"/>
 			<groupFilter hideAccess="false" additional="access=private" disable="true"/>
 		</group>
@@ -1015,18 +1023,26 @@
 				</filter>
 
 				<filter tag="highway" value="steps" pathEffect="1_2">
-					<filter minzoom="15" maxzoom="15" strokeWidth="4"/>
-					<filter minzoom="16" maxzoom="16" strokeWidth="6"/>
-					<filter minzoom="17" maxzoom="17" strokeWidth="9"/>
-					<filter minzoom="18" strokeWidth="14"/>
+					<filter minzoom="15" maxzoom="15" strokeWidth="3"/>
+					<filter minzoom="16" maxzoom="16" strokeWidth="5"/>
+					<filter minzoom="17" maxzoom="17" strokeWidth="7.5"/>
+					<filter minzoom="18" strokeWidth="9"/>
 				</filter>
 				<groupFilter layer="1" minzoom="16">
-					<filter nightMode="true" color__1="#dddddd" strokeWidth__1="10" pathEffect__1="" color_0="#333333" strokeWidth_0="6"/>
-					<filter color__1="#333333" strokeWidth__1="10" pathEffect__1="" color_0="#ffffff" pathEffect_0="" strokeWidth_0="6"/>
+					<filter color__1="#333333" color_0="#ffffff">
+						<filter minzoom="16" maxzoom="16" strokeWidth__1="4:5" strokeWidth_0="4:1"/>
+						<filter minzoom="17" maxzoom="17" strokeWidth__1="4:7.5" strokeWidth_0="4:3"/>
+						<filter minzoom="18" strokeWidth__1="4:9" strokeWidth_0="4:5"/>
+						<groupFilter nightMode="true" color__1="#dddddd" color_0="#333333"/>
+					</filter>
 				</groupFilter>
-				<groupFilter layer="-1" minzoom="16">
-					<filter nightMode="true" color__1="#ffffff" strokeWidth__1="10" pathEffect__1="6_4" color_0="#333333" strokeWidth_0="6" pathEffect_0=""/>
-					<filter color__1="#333333" strokeWidth__1="10" pathEffect__1="6_4" color_0="#ffffff" strokeWidth_0="6" pathEffect_0=""/>
+				<groupFilter layer="-1" minzoom="16" pathEffect__1="6_4">
+					<filter color__1="#333333" color_0="#ffffff">
+						<filter minzoom="16" maxzoom="16" strokeWidth__1="4:5" strokeWidth_0="4:1"/>
+						<filter minzoom="17" maxzoom="17" strokeWidth__1="4:7.5" strokeWidth_0="4:3"/>
+						<filter minzoom="18" strokeWidth__1="4:9" strokeWidth_0="4:5"/>
+						<groupFilter nightMode="true" color__1="#dddddd" color_0="#333333"/>
+					</filter>
 				</groupFilter>
 				<groupFilter color="$nonMotoVehicleRoadDayColor"/>
 				<groupFilter nightMode="true" color="$nonMotoVehicleRoadNightColor"/>
@@ -1072,7 +1088,7 @@
 			<groupFilter nightMode="true" color="#28c95c0c" color_0="#40c95c0c"/>
 		</group>
 
-		<group hideWater="false">
+		<group>
 			<filter tag="waterway" value="stream">
 				<filter layer="-1" disable="true"/>
 				<filter minzoom="12" maxzoom="12" strokeWidth="1"/>
