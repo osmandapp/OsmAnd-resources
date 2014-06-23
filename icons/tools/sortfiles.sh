@@ -52,6 +52,15 @@ mycp place city functional-icons_city.png  #scale 0.375
 mycp place town_night functional-icons_town_night.png  #scale 0.25
 mycp place town functional-icons_town.png  #scale .25
 
+## Barrier dots
+mycp barrier small_black_1 functional-icons_point_black_1.png  #scale 0.25
+mycp barrier small_black_2 functional-icons_point_black_2.png  #scale 0.25
+mycp barrier small_black_3 functional-icons_point_black_3.png  #scale 0.25
+mycp barrier small_black_4 functional-icons_point_black_4.png  #scale 0.25
+mycp barrier small_white_1 functional-icons_point_white_1.png  #scale 0.25
+mycp barrier small_white_2 functional-icons_point_white_2.png  #scale 0.25
+mycp barrier small_white_3 functional-icons_point_white_3.png  #scale 0.25
+mycp barrier small_white_4 functional-icons_point_white_4.png  #scale 0.25
 
 ## Emergency + Health
 mygroup emergency emergency_emergency_phone.png
