@@ -34,7 +34,7 @@ string('route_calculate.ogg', 'Route wurde neu berechnet ').
 string('distance.ogg', ', Die Entfernung beträgt ').
 
 % LEFT/RIGHT
-string('prepare.ogg', 'vorbereiten zum ').
+string('prepare.ogg', 'Demnächst ').  % Demnächst sounds better then Vorbereiten zum
 string('after.ogg', 'nach ').
 
 string('left.ogg', 'links abbiegen ').
