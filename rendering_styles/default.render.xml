@@ -91,6 +91,11 @@
 	<renderingConstant name="primaryRoadColor" value="#ffaa80"/>
 	<renderingConstant name="secondaryRoadColor" value="#ffd080"/>
 	<renderingConstant name="tertiaryRoadColor" value="#ffff80"/>
+	<renderingConstant name="constructionRoadColor" value="#79a8fd"/>
+	<renderingConstant name="constructionRoadColor2" value="#ffffff"/>
+	<renderingConstant name="proposedRoadColor" value="#16333333"/>
+	<renderingConstant name="proposedRoadColor2" value="#44ffffff"/>
+	<renderingConstant name="proposedRoadColorNight" value="#22999999"/>
 
 	<!-- Forest -->
 	<renderingConstant name="woodColorDay" value="#aed1a0"/>
@@ -129,6 +134,10 @@
 	<renderingConstant name="parkingColorDay" value="#f6eeb7"/>
 	<renderingConstant name="bicycleParkingColorDay" value="#f6eeb7"/>
 	<renderingConstant name="builtUpAreasColorNight" value="#3b3b3b"/>
+	<renderingConstant name="landuseConstructionColorDay" value="#cac090"/>
+	<renderingConstant name="landuseConstructionColorDayStroke" value="#666666"/>
+	<renderingConstant name="landuseConstructionColorNight" value="#3c3c1b"/>
+	<renderingConstant name="landuseConstructionColorNightStroke" value="#aaaaaa"/>
 
 		<!-- transparent to see conjunctions -->
 		<!-- <renderingConstant name="motorwayRoadColor" value="#55809bff"/>
@@ -1406,7 +1415,6 @@
 			<filter minzoom="12" color="#dfd1d6" tag="landuse" value="railway"/>
 			<filter minzoom="12" color="#9d9d6c" tag="landuse" value="landfill"/>
 			<filter minzoom="12" color="#efc8c8" tag="landuse" value="commercial"/>
-			<filter minzoom="12" color="#ffffff" color_2="#ff6600" strokeWidth_2=":2" tag="landuse" value="construction"/>
 			<filter minzoom="10" color="#CDCDCD" tag="landuse" value="residential"/>
 			<filter minzoom="15" color="#f0f0d8" color_2="#d4a89e" strokeWidth_2=":1" tag="amenity" value="kindergarten"/>
 			<filter minzoom="15" color="#f0f0d8" color_2="#d4a89e" strokeWidth_2=":1" tag="amenity" value="school"/>
@@ -1433,6 +1441,10 @@
 			<groupFilter nightMode="true" color="$builtUpAreasColorNight"/>
 		</group>
 
+		<filter tag="landuse" value="construction">
+			<filter minzoom="12" color="$landuseConstructionColorDay" color_2="$landuseConstructionColorDayStroke" strokeWidth_2="0.5" pathEffect_2="8_4"/>
+			<groupFilter nightMode="true" color="$landuseConstructionColorNight" color_2="$landuseConstructionColorNightStroke"/>
+		</filter>
 
 		<!-- Buildings, night color 685454 -->
 		<group>
@@ -1769,13 +1781,14 @@
 
 		<filter tag="highway" value="ford" minzoom="14" color="#000000" strokeWidth="2"/>
 
-		<filter tag="highway" value="construction" minzoom="13" maxzoom="13" color="#79a8fd" strokeWidth="6" cap="ROUND" color_2="#ffffff" strokeWidth_2="4" pathEffect_2="5_14"/>
-		<filter tag="highway" value="construction" minzoom="14" color="#79a8fd" strokeWidth="8" cap="ROUND" color_2="#ffffff" strokeWidth_2="6" pathEffect_2="6_19"/>
-		<group>
-			<filter tag="highway" value="proposed" minzoom="13" maxzoom="13" color="#16333333" strokeWidth="5" cap="ROUND" color_2="#44ffffff" strokeWidth_2="4" pathEffect_2="5_14"/>
-			<filter tag="highway" value="proposed" minzoom="14" color="#16333333" strokeWidth="8" cap="ROUND" color_2="#44ffffff" strokeWidth_2="6" pathEffect_2="6_19"/>
-			<groupFilter nightMode="true" color="#22999999"/>
-		</group>
+		<filter tag="highway" value="construction" minzoom="13" maxzoom="13" color="$constructionRoadColor" strokeWidth="6" cap="ROUND" color_2="" strokeWidth_2="4" pathEffect_2="5_14"/>
+		<filter tag="highway" value="construction" minzoom="14" color="$constructionRoadColor" strokeWidth="8" cap="ROUND" color_2="#ffffff" strokeWidth_2="6" pathEffect_2="6_19"/>
+		<filter tag="highway" value="proposed">
+			<filter minzoom="13" maxzoom="13" strokeWidth="5" strokeWidth_2="4" pathEffect_2="5_14"/>
+			<filter minzoom="14" strokeWidth="8" strokeWidth_2="6" pathEffect_2="6_19"/>
+			<groupFilter color="$proposedRoadColor" color_2="$proposedRoadColor2" cap="ROUND"/>
+			<groupFilter nightMode="true" color="$proposedRoadColorNight"/>
+		</filter>
 
 		<group>
 			<filter contourLines="11" tag="contour" value="elevation" minzoom="11" color="#2Aff7c00" strokeWidth=":1"/>
