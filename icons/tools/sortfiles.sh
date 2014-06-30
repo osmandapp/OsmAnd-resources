@@ -61,6 +61,10 @@ mycp barrier small_white_1 functional-icons_point_white_1.png  #scale 0.25
 mycp barrier small_white_2 functional-icons_point_white_2.png  #scale 0.25
 mycp barrier small_white_3 functional-icons_point_white_3.png  #scale 0.25
 mycp barrier small_white_4 functional-icons_point_white_4.png  #scale 0.25
+mycp barrier small_red_1 functional-icons_point_red_1.png  #scale 0.25
+mycp barrier small_red_2 functional-icons_point_red_2.png  #scale 0.25
+mycp barrier small_red_3 functional-icons_point_red_3.png  #scale 0.25
+mycp barrier small_red_4 functional-icons_point_red_4.png  #scale 0.25
 
 ## Emergency + Health
 mygroup emergency emergency_emergency_phone.png
@@ -120,6 +124,7 @@ mycp railway halt functional-icons_halt.png  #scale 0.25
 mycp railway tram_stop transport_tram_stop.png
 mycp railway level_crossing functional-icons_level_crossing.png  #scale 0.5
 mycp railway subway_entrance transport_subway.png
+mycp railway subway_entrance_2 functional-icons_subway_entrance.png
 
 mycp aerialway station_small functional-icons_halt.png  #scale 0.25
 mycp aerialway station functional-icons_station_small.png  #scale 0.375
