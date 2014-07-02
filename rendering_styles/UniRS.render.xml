@@ -15,7 +15,10 @@
 		<filter lessDetails="false" attrIntValue="30"/>
 	</renderingAttribute>
 	<renderingAttribute name="gpxColor">
-		<filter attrColorValue="#99f40977"/>
+		<filter attrColorValue="#bbff6600"/>
+	</renderingAttribute>
+	<renderingAttribute name="routeColor">
+		<filter nightMode="true" attrColorValue="#ccaa0088"/>
 	</renderingAttribute>
 
 	<renderingConstant name="null" value="#00000000"/>
@@ -61,6 +64,17 @@
 	<renderingConstant name="contourDayColor100m" value="#33ea7300"/>
 	<renderingConstant name="contourNightColorNon100m" value="#2a94775c"/>
 	<renderingConstant name="contourNightColor100m" value="#2a94775c"/>
+
+	<!-- Forest -->
+	<renderingConstant name="woodColorDay" value="#8fd075"/>
+	<renderingConstant name="forestColorDay" value="#8dc56c"/>
+	<renderingConstant name="woodColorNight" value="#134025"/>
+
+	<renderingConstant name="leisureTrackColorDay" value="#6674dcba"/>
+	<renderingConstant name="leisureTrackColorNight" value="#33599682"/>
+	<renderingConstant name="leisureTrackColorDayStroke" value="#74dcba"/>
+	<renderingConstant name="leisureTrackColorNightStroke" value="#599682"/>
+	<renderingConstant name="parkingColorNight" value="#41536c"/>
 
 	<order>
 
@@ -234,7 +248,7 @@
 			<groupFilter nightMode="true" textHaloColor="#333333"/>
 		</group>
 
-		<group textColor="#000000" textWrapWidth="20" textHaloRadius="1">
+		<group textColor="#000000" textWrapWidth="20" textHaloRadius="2">
 			<filter minzoom="4" textSize="14" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="state"/>
 			<filter minzoom="4" textSize="14" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="region"/>
 			<filter minzoom="4" maxzoom="5" textSize="14" textDy="1" tag="osmand_place_basemap" value="city" textOrder="4" nameTag=""/>
@@ -243,17 +257,17 @@
 			<filter minzoom="6" textSize="20" textBold="true" textDy="1" tag="place" value="city" textOrder="4" nameTag=""/>
 			<filter minzoom="8" textSize="16" textBold="true" textDy="1" tag="place" value="town" textOrder="5" nameTag=""/>
 			<filter minzoom="11" textSize="15" tag="place" value="village" textOrder="10" nameTag=""/>
-			<groupFilter nightMode="true" textColor="#ffffff" textHaloColor="#777777"/>
+			<groupFilter nightMode="true" textColor="#ffffff" textHaloColor="#77777777"/>
 		</group>
-		<group textColor="#000000" textWrapWidth="20" textHaloRadius="1">
+		<group textColor="#000000" textWrapWidth="20" textHaloRadius="2">
 			<filter minzoom="11" textSize="13" tag="place" value="hamlet" textOrder="12"/>
 			<filter minzoom="13" textSize="13" tag="place" value="isolated_dwelling" textOrder="13"/>
 			<filter minzoom="11" textSize="15" tag="place" value="suburb" textOrder="12"/>
 			<filter minzoom="13" textSize="13" tag="place" value="neighbourhood" textOrder="13"/>
 			<filter minzoom="11" textSize="13" tag="place" value="locality" textColor="#868686" textOrder="15"/>
 			<filter minzoom="11" textSize="14" tag="place" value="island" textOrder="10"/>
-			<groupFilter nightMode="true" textColor="#ffffff" textHaloColor="#777777"/>
-			<groupFilter nightMode="true" tag="place" value="locality" textColor="#aaaaaa" textHaloColor="#444444"/>
+			<groupFilter nightMode="true" textColor="#ffffff" textHaloColor="#77777777"/>
+			<groupFilter nightMode="true" tag="place" value="locality" textColor="#aaaaaa" textHaloColor="#77444444"/>
 		</group>
 
 		<!-- Outline added to water fonts. Also textColor changed to be more contrast. -->
@@ -278,7 +292,6 @@
 			<groupFilter nightMode="true" textColor="#90e4ff" textHaloColor="#003153"/>
 		</group>
 
-		<!-- Outline added to building names and housenumber fonts. Also color changed to be more contrast -->
 		<group>
 			<filter minzoom="16" maxzoom="17" tag="building" value="" textSize="13" textDy="-15" textWrapWidth="20" textMinDistance="40" textOrder="101"/>
 			<filter minzoom="18" tag="building" value="" textSize="15" textDy="7" textWrapWidth="20" textOrder="101"/>
@@ -308,6 +321,12 @@
 		<filter minzoom="18" textSize="12" textColor="#444444" textHaloRadius="1" textDy="-1" tag="man_made" value="cutline" textOnPath="true"/>
 		<filter minzoom="16" maxzoom="17" textSize="10" textColor="#444444" textHaloRadius="1" textDy="-2" tag="natural" value="tree_row" textOnPath="true"/>
 		<filter minzoom="18" textSize="12" textColor="#444444" textHaloRadius="1" textDy="-1" tag="natural" value="tree_row" textOnPath="true"/>
+		<filter minzoom="14" textSize="12" textColor="#444444" textHaloRadius="1" textDy="7" tag="man_made" value="tower" additional="tower:type=communication"/>
+
+		<group>
+			<filter minzoom="16" textSize="13" textColor="#0000ff" textDy="7" textHaloColor="#ffffff" textHaloRadius="1" textBold="true" tag="railway" value="subway_entrance" textOrder="1"/>
+			<groupFilter nightMode="true" textHaloColor="#cccccc"/>
+		</group>
 
 		<group textSize="12" textColor="#993399" textHaloRadius="1" textDy="7" textWrapWidth="15">
 			<filter minzoom="16" tag="shop" value="car_parts"/>
@@ -316,7 +335,6 @@
 
 		<!-- Outline added to some amenities fonts, colors changed -->
 		<group textSize="12" textColor="#493a00" textHaloRadius="1" textHaloColor="#fff8db" textDy="7" textWrapWidth="20">
-<!--			<filter minzoom="15" tag="amenity" value="place_of_worship"/>-->
 			<filter minzoom="17" tag="amenity" value="embassy"/>
 			<filter minzoom="16" tag="amenity" value="townhall"/>
 			<filter minzoom="17" tag="office" value="government"/>
@@ -472,7 +490,7 @@
 
 		<filter minzoom="13" maxzoom="14" tag="highway" value="ford" disable="true"/>
 
-		<filter minzoom="16" icon="highway_mini_roundabout" tag="noexit" value="yes" iconVisibleSize="0"/> <!-- delete on next osmand release -->
+		<filter minzoom="16" icon="highway_mini_roundabout" tag="noexit" value="yes" iconVisibleSize="16"/> <!-- delete on next osmand release -->
 		<filter minzoom="16" icon="highway_crossing" tag="highway" value="crossing" iconVisibleSize="3"/> <!-- delete on next osmand release -->
 
 		<filter tag="traffic_calming" value="bump" icon="traffic_calming_bump" minzoom="17"/> <!-- delete on next osmand release -->
@@ -489,8 +507,8 @@
 			<filter minzoom="15" maxzoom="16" disable="true"/>
 		</filter>
 
-		<filter tag="amenity" value="fuel" additional="fuel:lpg=yes" icon="amenity_fuel_lpg" minzoom="14"/> <!-- delete on next osmand release -->
-		<filter tag="man_made" value="tower" additional="tower:type=communication" icon="tower_type_communication" minzoom="14"/>
+		<filter tag="amenity" value="fuel" additional="fuel:lpg=yes" icon="amenity_fuel_lpg" minzoom="14" iconVisibleSize="6"/> <!-- delete on next osmand release -->
+		<filter minzoom="14" tag="man_made" value="tower" additional="tower:type=communication" icon="tower_type_communication" iconVisibleSize="7" iconOrder="60"/>
 		<filter minzoom="14" icon="amenity_drinking_water" tag="natural" value="spring"/>
 		<filter minzoom="15" icon="man_made_water_well" tag="man_made" value="water_well"/>  <!-- delete on next osmand release -->
 
@@ -505,10 +523,9 @@
 			<filter icon="barrier_gate" tag="highway" value="gate"/>
 			<filter icon="barrier_gate" tag="barrier" value="gate"/>
 			<filter icon="barrier_lift_gate" tag="barrier" value="lift_gate"/>
+			<filter icon="barrier_lift_gate" tag="barrier" value="swing_gate"/>
 			<filter icon="barrier_lift_gate" tag="barrier" value="chain"/>
 			<filter icon="barrier_sally_port" tag="barrier" value="sally_port"/>
-			<filter icon="barrier_bollard" tag="barrier" value="bollard"/>
-			<filter icon="barrier_block" tag="barrier" value="block"/>
 			<filter icon="barrier_kissing_gate" tag="barrier" value="kissing_gate"/>
 			<filter nightMode="true" minzoom="14" maxzoom="14" icon="barrier_small_white_4" tag="barrier" value="toll_booth"/>
 			<filter minzoom="14" maxzoom="14" icon="barrier_small_black_4" tag="barrier" value="toll_booth"/>
@@ -525,8 +542,18 @@
 			<groupFilter appMode="pedestrian" minzoom="14" maxzoom="15" icon=""/>
 		</group>
 
+		<group iconOrder="87" minzoom="15">
+			<filter icon="barrier_bollard" tag="barrier" value="bollard"/>
+			<filter icon="barrier_block" tag="barrier" value="block"/>
+			<groupFilter minzoom="15" maxzoom="15" icon="barrier_small_red_3" iconVisibleSize="0"/>
+			<groupFilter minzoom="16" maxzoom="16" icon="barrier_small_red_2" iconVisibleSize="0"/>
+			<groupFilter appMode="default" minzoom="14" maxzoom="15" icon=""/>
+			<groupFilter appMode="pedestrian" minzoom="14" maxzoom="15" icon=""/>
+		</group>
+
 		<!-- Always show railway=level_crossing icon, not only in car mode -->
 		<filter minzoom="16" icon="railway_level_crossing" tag="railway" value="level_crossing"/>
+		<filter minzoom="15" icon="railway_subway_entrance_2" tag="railway" value="subway_entrance" iconVisibleSize="6" iconOrder="65" shield="white_shield"/>
 
 		<!-- Added support of fixme, note, description, inscription tags -->
 	<!--    <group showNotes="true">
@@ -693,7 +720,7 @@
 					<filter minzoom="16" tag="building" value="cathedral"/>
 					<filter minzoom="16" tag="building" value="chapel"/>
 					<filter minzoom="16" tag="building" value="mosque"/>
-					<groupFilter strokeWidth_2="2" color="#b6a0b5" color_2="#920029"/>
+					<groupFilter strokeWidth_2="1.3" color="#b6a0b5" color_2="#920029"/>
 					<groupFilter nightMode="true" color="#795877" color_2="#6dffd6"/>
 				</group>
 
@@ -723,9 +750,11 @@
 			<!-- Changed look of many landuses and amenities especially in night mode. Added 'access' support -->
 			<group noPolygons="false">
 				<filter nightMode="true" tag="landuse" value="construction" color="#3c3c1b" color_2="#aaaaaa" strokeWidth_2="0.5" pathEffect_2="12_5"/>
-				<filter nightMode="true" minzoom="15" color="#41536c" tag="amenity" value="parking"/>
-				<filter nightMode="true" appMode="car" tag="amenity" value="bicycle_parking" disable="true"/>
-				<filter nightMode="true" minzoom="15" color="#41536c" tag="amenity" value="bicycle_parking"/>
+				<filter nightMode="true" minzoom="15" color="#41536c" tag="amenity" value="parking"/> <!-- delete on next osmand release -->
+<!--				<filter nightMode="true" minzoom="15" color="$parkingColorNight" tag="amenity" value="parking"/>--> <!-- uncomment on next osmand release -->
+				<filter nightMode="true" minzoom="15" color="#41536c" tag="amenity" value="bicycle_parking"/> <!-- delete on next osmand release -->
+<!--				<filter nightMode="true" appMode="car" tag="amenity" value="bicycle_parking" disable="true"/>--> <!-- uncomment on next osmand release -->
+				<filter nightMode="true" minzoom="15" color="$parkingColorNight" tag="amenity" value="bicycle_parking"/>
 				<filter nightMode="true" minzoom="11" color="#19283d" tag="landuse" value="industrial"/>
 				<filter nightMode="true" minzoom="11" color="#19283d" tag="amenity" value="prison"/>
 				<filter nightMode="true" minzoom="12" color="#19283d" tag="landuse" value="railway"/>
@@ -755,8 +784,8 @@
 				<filter nightMode="true" minzoom="6" color="#232d01" tag="landuse" value="farm"/>
 
 				<filter nightMode="true" minzoom="6" color="#004333" tag="landuse" value="greenfield"/>
-				<filter nightMode="true" minzoom="6" color="#134025" tag="natural" value="wood"/>
-				<filter nightMode="true" minzoom="6" color="#134025" tag="landuse" value="forest"/>
+				<filter nightMode="true" minzoom="6" color="#134025" tag="natural" value="wood"/> <!-- delete on next osmand release -->
+				<filter nightMode="true" minzoom="6" color="#134025" tag="landuse" value="forest"/> <!-- delete on next osmand release -->
 				<filter nightMode="true" minzoom="10" color="#304a5e" tag="natural" value="wetland"/>
 				<filter nightMode="true" minzoom="10" color="#304a5e" tag="natural" value="marsh"/>
 
@@ -765,8 +794,10 @@
 				<filter tag="amenity" value="library" disable="true"/>
 				<filter tag="amenity" value="cinema" disable="true"/>
 				<filter appMode="car" tag="amenity" value="bicycle_parking" disable="true"/>
-				<filter minzoom="15" color="#f6eeb7" tag="amenity" value="bicycle_parking"/>
-				<filter minzoom="15" color="#f6eeb7" tag="amenity" value="parking"/>
+				<filter minzoom="15" color="#f6eeb7" tag="amenity" value="bicycle_parking"/> <!-- delete on next osmand release -->
+				<filter minzoom="15" color="#f6eeb7" tag="amenity" value="parking"/> <!-- delete on next osmand release -->
+<!--				<filter minzoom="15" color="$parkingColorDay" tag="amenity" value="bicycle_parking"/>  uncomment on next osmand release
+				<filter minzoom="15" color="$parkingColorDay" tag="amenity" value="parking"/>-->  <!-- uncomment on next osmand release -->
 				<filter minzoom="11" color="#dfd1d6" tag="landuse" value="industrial"/>
 				<filter minzoom="11" color="#dfd1d6" tag="amenity" value="prison"/>
 				<filter minzoom="12" color="#dfd1d6" tag="landuse" value="railway"/>
@@ -795,7 +826,7 @@
 				<filter minzoom="6" color="#f6e3c7" tag="landuse" value="farmland"/>
 				<filter minzoom="6" color="#ddbf92" tag="landuse" value="farmyard"/>
 				<filter minzoom="6" color="#9d9d6c" tag="landuse" value="greenfield"/>
-				<group>
+				<group> <!-- delete on next osmand release -->
 					<filter minzoom="6" color="#8fd075" tag="natural" value="wood"/>
 					<filter minzoom="6" maxzoom="12" color="#8dc56c" tag="landuse" value="forest"/>
 					<filter minzoom="13" shader="forest" tag="landuse" value="forest"/>
@@ -803,7 +834,8 @@
 				<!-- Changed look of leisure=track -->
 				<group>
 					<filter tag="leisure" value="track"/>
-					<groupFilter color="#6674dcba" color_2="#74dcba" shadowRadius="5" shadowColor="#ff0000">
+					<groupFilter color="#6674dcba" color_2="#74dcba" shadowRadius="5" shadowColor="#ff0000"> <!-- delete on next osmand release -->
+<!--					<groupFilter color="$leisureTrackColorDay" color_2="$leisureTrackColorDayStroke" shadowRadius="5" shadowColor="#ff0000">-->  <!-- uncomment on next osmand release -->
 						<filter minzoom="12" maxzoom="12" strokeWidth_2=":1"/>
 						<filter minzoom="13" maxzoom="13" strokeWidth_2=":2"/>
 						<filter minzoom="14" maxzoom="14" strokeWidth_2=":3"/>
@@ -812,7 +844,8 @@
 						<filter minzoom="17" maxzoom="17" strokeWidth_2=":10"/>
 						<filter minzoom="18" strokeWidth_2=":13"/>
 					</groupFilter>
-					<groupFilter nightMode="true" color="#33599682" color_2="#599682"/>
+					<groupFilter nightMode="true" color="#33599682" color_2="#599682"/> <!-- delete on next osmand release -->
+					<groupFilter nightMode="true" color="$leisureTrackColorNight" color_2="$leisureTrackColorNightStroke"/>  <!-- uncomment on next osmand release -->
 				</group>
 
 
@@ -882,7 +915,7 @@
 		<group noPolygons="false">
 
 			<group>
-				<filter minzoom="13" color="#f2caea" color_2="#920029" strokeWidth_2="2" tag="tourism" value="attraction"/>
+				<filter minzoom="13" color="#f2caea" color_2="#920029" strokeWidth_2="1.3" tag="tourism" value="attraction"/>
 				<groupFilter nightMode="true" color="#834522" color_2="#6dffd6"/>
 			</group>
 
@@ -900,7 +933,7 @@
 			<filter nightMode="true" minzoom="15" tag="amenity" value="place_of_worship" color="#834522"/>
 
 			<!-- Added support of disused,abandoned,ruins tags to polygonal place_of_worship amenity -->
-			<filter minzoom="15" tag="amenity" value="place_of_worship" color="#f2caea" color_2="#920029" strokeWidth_2="2">
+			<filter minzoom="15" tag="amenity" value="place_of_worship" color="#f2caea" color_2="#920029" strokeWidth_2="1.3">
 				<filter additional="disused=yes" color_2="#920029" pathEffect_2="9_3"/>
 				<filter additional="abandoned=yes" color_2="#920029" pathEffect_2="9_3"/>
 				<filter additional="ruins=yes" color_2="#920029" pathEffect_2="9_3"/>
@@ -922,7 +955,7 @@
 				<filter minzoom="4" tag="natural" value="lake"/>
 				<filter minzoom="4" tag="natural" value="bay"/>
 				<filter minzoom="7" tag="landuse" value="reservoir"/>
-				<filter minzoom="7" tag="landuse" value="water"/>	
+				<filter minzoom="7" tag="landuse" value="water"/>
 				<filter minzoom="10" tag="landuse" value="basin"/>
 				<filter minzoom="15" tag="leisure" value="swimming_pool" color_2="#7479ec" strokeWidth_2="1"/>
 				<groupFilter color="#41cad3">
@@ -1009,8 +1042,9 @@
 		<filter minzoom="13" tag="aeroway" value="apron" color="#e0c4fb">
 			<filter nightMode="true" color="#4c3a5d"/>
 		</filter>
-		<filter minzoom="14" tag="aeroway" value="terminal" color="#bca9a9" strokeWidth_2="1.3" color_2="#964ae5">
-			<filter nightMode="true" color="#685454" strokeWidth_2="1.3" color_2="#c98df7"/>
+
+		<filter minzoom="14" tag="aeroway" value="terminal" color="#cc99ff" strokeWidth_2="0.3" color_2="#000000">
+			<filter nightMode="true" color="#a65ae1" color_2="#999999"/>
 		</filter>
 		
 		<filter appMode="car" layer="-1" tag="public_transport" value="platform" disable="true"/>
@@ -1831,18 +1865,16 @@
 			<groupFilter nightMode="true" color="#cccccc"/>
 		</group>
 
-		<group>
-			<filter noPolygons="false" tag="natural" value="tree_row" minzoom="12" color="#8fd075" cap="ROUND">
-				<filter lessDetails="false" minzoom="12" maxzoom="12" strokeWidth="1"/>
-				<filter lessDetails="false" minzoom="13" maxzoom="13" strokeWidth="1.5"/>
-				<filter minzoom="14" maxzoom="14" strokeWidth="2"/>
-				<filter minzoom="15" maxzoom="15" strokeWidth="4"/>
-				<filter minzoom="16" maxzoom="17" strokeWidth="6"/>
-				<filter minzoom="18" maxzoom="18" strokeWidth="8"/>
-				<filter minzoom="19" strokeWidth="13"/>
-				<groupFilter nightMode="true" color="#183f28"/>
-			</filter>
-		</group>
+		<filter noPolygons="false" tag="natural" value="tree_row" minzoom="12" color="$woodColorDay" cap="ROUND">
+			<filter lessDetails="false" minzoom="12" maxzoom="12" strokeWidth="1"/>
+			<filter lessDetails="false" minzoom="13" maxzoom="13" strokeWidth="1.5"/>
+			<filter minzoom="14" maxzoom="14" strokeWidth="2"/>
+			<filter minzoom="15" maxzoom="15" strokeWidth="4"/>
+			<filter minzoom="16" maxzoom="17" strokeWidth="6"/>
+			<filter minzoom="18" maxzoom="18" strokeWidth="8"/>
+			<filter minzoom="19" strokeWidth="13"/>
+			<groupFilter nightMode="true" color="$woodColorNight"/>
+		</filter>
 
 		<filter tag="aeroway" value="runway" color="#bbbbcc">
 			<filter layer="1" minzoom="13" maxzoom="13" color="#000000" strokeWidth="9" color_2="#bbbbcc" strokeWidth_2="7" cap_2="SQUARE"/>
