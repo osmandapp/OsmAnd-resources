@@ -29,7 +29,7 @@
 		<filter nightMode="true" attrColorValue="#002a2a"/>
 		<filter attrColorValue="#f1eae4"/>
 	</renderingAttribute>
-	
+
 	<renderingAttribute name="showRoadMapsAttribute">
 		<!--
 		<filter showRoadMaps="Always - never show regular maps" attrIntValue="1"/>
@@ -133,15 +133,35 @@
 
 	<!-- Text -->
 	<renderingConstant name="highwayTextHaloRadiusDay" value="0"/> <!-- 2 -->
-	<renderingConstant name="highwayTextResidentialHaloColorDay" value="#88eeeeee"/>
+	<renderingConstant name="highwayTextResidentialHaloColorDay" value="#aaeeeeee"/>
 	<renderingConstant name="highwayTextServiceHaloColorDay" value="#88eeeeee"/>
 	<renderingConstant name="highwayTextTrackHaloColorDay" value="#88eeeeee"/>
 
 	<renderingConstant name="placeTextHaloRadiusDay" value="0"/> <!-- 2 -->
 	<renderingConstant name="placeTextHaloColorDay" value="#77eeeeee"/>
 	<renderingConstant name="buildingTextHaloRadiusDay" value="0"/> <!-- 1 -->
-	<renderingConstant name="buildingTextHaloColorDay" value="#55ffffff"/>
+	<renderingConstant name="buildingTextHaloColorDay" value="#66ffffff"/>
 	
+	<renderingConstant name="waterTextHaloRadiusDay" value="0"/> <!-- 1 -->
+	<renderingConstant name="waterTextColorDay" value="#6699cc"/> <!-- #5a88b7 -->
+	<renderingConstant name="waterTextHaloColorDay" value="#bbffffff"/>
+
+	<renderingConstant name="landuseManmadeTextHaloRadiusDay" value="1"/>
+	<renderingConstant name="landuseManmadeTextColorDay" value="#000000"/>
+	<renderingConstant name="landuseManmadeTextHaloColorDay" value="#ffffff"/> <!-- #bbffffff -->
+
+	<renderingConstant name="poiTextHaloRadiusDay" value="1"/>
+	<renderingConstant name="woodTextColorDay" value="#000000"/>
+	<renderingConstant name="parkTextColorDay" value="#004300"/>
+	<renderingConstant name="woodTextHaloColorDay" value="#ccffffff"/>
+	<renderingConstant name="otherAmenitiesTextColorDay" value="#444444"/>
+	<renderingConstant name="otherAmenitiesTextHaloColorDay" value="#ccffffff"/>
+	<renderingConstant name="foodTextColorDay" value="#444444"/>
+	<renderingConstant name="foodTextHaloColorDay" value="#aaffffff"/>
+	<renderingConstant name="shopsTextColorDay" value="#680067"/> <!-- #993399 -->
+	<renderingConstant name="shopsTextHaloColorDay" value="#ddf9e8f9"/>
+	<renderingConstant name="sportTextColorDay" value="#004d33"/>
+	<renderingConstant name="sportTextHaloColorDay" value="#ccecfff9"/>
 
 		<!-- transparent to see conjunctions -->
 		<!-- <renderingConstant name="motorwayRoadColor" value="#55809bff"/>
@@ -512,23 +532,23 @@
 				<filter tag="highway" value="residential" textOrder="9"/>
 				<groupFilter nightMode="true" textBold="true" textColor="#ffffff" textHaloRadius="2" textHaloColor="#88666666"/>
 			</group>
-			<group textHaloRadius="$highwayTextHaloRadiusDay" textHaloColor="$highwayTextTrackHaloColorDay">
+			<group textHaloRadius="$highwayTextHaloRadiusDay" textHaloColor="$highwayTextResidentialHaloColorDay">
 				<filter tag="highway" value="service" textOrder="10"/>
 				<filter tag="highway" value="living_street" textOrder="10"/>
 				<filter tag="highway" value="pedestrian" textOrder="11"/>
 				<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="2" textHaloColor="#77777777"/>
 			</group>
-			<group>
+			<group textHaloRadius="$highwayTextHaloRadiusDay" textHaloColor="$highwayTextResidentialHaloColorDay">
 				<filter tag="highway" value="services" textOrder="10"/>
 				<filter tag="highway" value="ford" textOrder="10"/>
-				<groupFilter nightMode="true" textHaloRadius="1" textHaloColor="#bbbbbb"/>
+				<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="2" textHaloColor="#77777777"/>
 			</group>
 			<group>
 				<filter tag="highway" value="construction" textHaloRadius="1" textHaloColor="#99bdff" textOrder="9"/>
  				<groupFilter nightMode="true" textHaloRadius="1" textHaloColor="#99bdff"/>
 			</group>
 			<group>
-				<filter tag="highway" value="proposed" textOrder="9"/>
+				<filter tag="highway" value="proposed" textHaloRadius="$highwayTextHaloRadiusDay" textHaloColor="$highwayTextResidentialHaloColorDay" textOrder="9"/>
 				<groupFilter nightMode="true" textHaloRadius="1" textHaloColor="#aa777777"/>
 			</group>
 			<groupFilter textOnPath="true" nameTag="" >
@@ -618,10 +638,10 @@
 			<filter contourLines="16" minzoom="16" textSize="12" tag="contour" value=""/>
 			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="1" textHaloColor="#77777777"/>
 		</group>
-		<group>
-			<filter minzoom="13" textSize="12" textColor="#000000" textWrapWidth="15" tag="natural" value="wood" textOrder="10"/>
-			<filter minzoom="15" textSize="12" textColor="#09dd09" textWrapWidth="15" tag="natural" value="park" textOrder="10"/>
-			<filter minzoom="15" textSize="12" textColor="#004300" textWrapWidth="15" tag="leisure" value="park" textOrder="10"/>
+		<group textSize="12" textWrapWidth="15" textHaloRadius="$poiTextHaloRadiusDay" textHaloColor="$woodTextHaloColorDay">
+			<filter minzoom="13" textColor="$woodTextColorDay" tag="natural" value="wood" textOrder="10"/>
+			<filter minzoom="15" textColor="$parkTextColorDay" tag="natural" value="park" textOrder="10"/>
+			<filter minzoom="15" textColor="$parkTextColorDay" tag="leisure" value="park" textOrder="10"/>
 			<groupFilter nightMode="true" textColor="#9fe39f" textHaloRadius="2" textHaloColor="#88444444"/>
 		</group>
 		<group>
@@ -639,7 +659,7 @@
 		</group>
 
 		<!-- Water -->
-		<group textColor="#6699cc">
+		<group textColor="$waterTextColorDay" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$waterTextHaloColorDay">
 			<filter minzoom="3" textSize="12" textWrapWidth="20" tag="place" value="ocean" textOrder="3"/>
 			<filter minzoom="5" textSize="12" textWrapWidth="20" tag="place" value="sea" textOrder="5"/>
 			<filter minzoom="6" textSize="12" textWrapWidth="20" tag="natural" value="water" textOrder="10"/>
@@ -660,7 +680,7 @@
 		</group>
 
 		<!-- landuse -->
-		<group textSize="12" textColor="#000000" textHaloRadius="1" textWrapWidth="20" textOrder="200">
+		<group textSize="12" textColor="$landuseManmadeTextColorDay" textHaloRadius="$landuseManmadeTextHaloRadiusDay" textHaloColor="$landuseManmadeTextHaloColorDay" textWrapWidth="20" textOrder="200">
 			<filter minzoom="14" tag="landuse" value="allotments"/>
 			<filter minzoom="14" tag="landuse" value="cemetery"/>
 			<filter minzoom="15" tag="landuse" value="commercial"/>
@@ -821,7 +841,7 @@
 		</group>
 
 		<!-- Other Amenities -->
-		<group textSize="12" textColor="#42412a" textHaloRadius="1" textDy="7" textWrapWidth="20">
+		<group textSize="12" textColor="$otherAmenitiesTextColorDay" textHaloColor="$otherAmenitiesTextHaloColorDay" textHaloRadius="$poiTextHaloRadiusDay" textDy="7" textWrapWidth="20">
 			<filter minzoom="17" tag="amenity" value="prison"/>
 			<filter minzoom="16" tag="amenity" value="place_of_worship"/>
 
@@ -862,7 +882,7 @@
 		</group>
 
 		<!-- Food and Drink -->
-		<group textSize="12" textColor="#444444" textHaloRadius="1" textDy="7" textWrapWidth="20">
+		<group textSize="12" textColor="$foodTextColorDay" textHaloColor="$foodTextHaloColorDay" textHaloRadius="$poiTextHaloRadiusDay" textDy="7" textWrapWidth="20">
 			<filter minzoom="17" tag="amenity" value="restaurant"/>
 			<filter minzoom="17" tag="amenity" value="cafe"/>
 			<filter minzoom="17" tag="amenity" value="fast_food"/>
@@ -875,7 +895,7 @@
 		</group>
 
 		<!-- Shops -->
-		<group textSize="12" textColor="#993399" textHaloRadius="1" textDy="7" textWrapWidth="15">
+		<group textSize="12" textColor="$shopsTextColorDay" textHaloColor="$shopsTextHaloColorDay" textHaloRadius="$poiTextHaloRadiusDay" textDy="7" textWrapWidth="15">
 			<filter minzoom="17" tag="shop" value="alcohol"/>
 			<filter minzoom="17" tag="shop" value="bakery"/>
 			<filter minzoom="17" tag="shop" value="bicycle"/>
@@ -920,7 +940,7 @@
 		</group>
 
 		<!-- Sport + Leisure -->
-		<group textSize="12" textColor="#004d33" textHaloRadius="1" textDy="7" textWrapWidth="20">
+		<group textSize="12" textColor="$sportTextColorDay" textHaloColor="$sportTextHaloColorDay" textHaloRadius="$poiTextHaloRadiusDay" textDy="7">
 			<filter minzoom="16" tag="sport" value="horse_racing"/>
 			<filter minzoom="16" tag="sport" value="soccer"/>
 			<filter minzoom="16" tag="sport" value="skating"/>
