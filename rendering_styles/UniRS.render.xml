@@ -7,18 +7,20 @@
 <!--	<renderingProperty attr="showNotes" name=" Fixme, note, description" description="Show fixme, note, description, inscription" type="boolean" possibleValues=""/> -->
 	<renderingProperty attr="lessIntrusiveShopsFood" name=" Less intrusive shops+food" description="Suppress display of most shops and food (+drink) POIs until zoom level 19" type="boolean" possibleValues=""/>
 	<renderingProperty attr="lessIntrusiveBanksHealthPost" name="Less intr banks+health+post" description="Suppress display of most banks, atm, health and post amenities (except hospitals) until zoom level 19" type="boolean" possibleValues=""/>
-	<renderingProperty attr="lessDetails" name=" Less details" description="Suppress display of some details on low and middle zoom levels" type="boolean" possibleValues=""/>
+	<renderingProperty attr="lessDetailed" name=" Less detailed" description="Suppress display of some details" type="boolean" possibleValues=""/>
 	<renderingProperty attr="noBuildings" name=" Hide buildings" description="Hide buildings" type="boolean" possibleValues=""/>
+	<renderingProperty attr="buildings15zoom" name=" Buildings on 15 zoom" description="Buildings on 15 zoom" type="boolean" possibleValues=""/>
 	<renderingAttribute name="polygonMinSizeToDisplay">
 	<!-- Minimum polygon size in pixels -->
-	<!-- Show more small-sized polygons when lessDetails mode is not active -->
-		<filter lessDetails="false" attrIntValue="30"/>
+	<!-- Show more small-sized polygons when lessDetailed mode is not active -->
+		<filter buildings15zoom="true" attrIntValue="10"/>
+		<filter lessDetailed="false" attrIntValue="40"/>
 	</renderingAttribute>
 	<renderingAttribute name="gpxColor">
 		<filter attrColorValue="#bbff6600"/>
 	</renderingAttribute>
 	<renderingAttribute name="routeColor">
-		<filter nightMode="true" attrColorValue="#ccaa0088"/>
+		<filter nightMode="true" attrColorValue="#ccf033ca"/>
 	</renderingAttribute>
 
 	<renderingConstant name="null" value="#00000000"/>
@@ -153,7 +155,7 @@
 				<filter tag="highway" value="tertiary" nameTag="" textHaloColor="$tertiaryRoadColor" textOrder="8"/>
 				<filter tag="highway" value="tertiary_link" nameTag="" textHaloColor="$tertiaryRoadColor" textOrder="9"/>
 				<groupFilter textOnPath="true" nameTag="">
-					<filter lessDetails="false" minzoom="14" maxzoom="14" textSize="12"/>
+					<filter lessDetailed="false" minzoom="14" maxzoom="14" textSize="12"/>
 					<filter minzoom="15" maxzoom="15" textSize="13"/>
 					<filter minzoom="16" maxzoom="16" textSize="14"/>
 					<filter minzoom="17" maxzoom="17" textSize="16"/>
@@ -178,7 +180,7 @@
 				<filter tag="highway" value="construction" textOrder="9"/>
 				<filter tag="highway" value="proposed" textOrder="9"/>
 				<groupFilter textOnPath="true" nameTag="">
-					<filter lessDetails="false" minzoom="14" maxzoom="14" textSize="12"/>
+					<filter lessDetailed="false" minzoom="14" maxzoom="14" textSize="12"/>
 					<filter minzoom="15" maxzoom="15" textSize="13"/>
 					<filter minzoom="16" maxzoom="16" textSize="14"/>
 					<filter minzoom="17" maxzoom="17" textSize="16"/>
@@ -293,8 +295,8 @@
 		</group>
 
 		<group>
-			<filter minzoom="16" maxzoom="17" tag="building" value="" textSize="13" textDy="-15" textWrapWidth="20" textMinDistance="40" textOrder="101"/>
-			<filter minzoom="18" tag="building" value="" textSize="15" textDy="7" textWrapWidth="20" textOrder="101"/>
+			<filter minzoom="16" maxzoom="17" tag="building" value="" textSize="13" textDy="-10" textWrapWidth="20" textMinDistance="40" textOrder="101"/>
+			<filter minzoom="18" tag="building" value="" textSize="15" textDy="5" textWrapWidth="20" textOrder="101"/>
 			<filter minzoom="18" tag="addr:housenumber" value="" textSize="15" textDy="-15" textWrapWidth="20" textOrder="102"/>
 			<groupFilter textColor="#000000" textHaloRadius="1"/>
 			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="1" textHaloColor="#555555"/>
@@ -309,7 +311,6 @@
 			<filter minzoom="14" tag="landuse" value="allotments"/>
 			<filter minzoom="14" tag="landuse" value="cemetery"/>
 			<filter minzoom="15" tag="landuse" value="construction"/>
-			<!-- landuse=residential and landuse=railway texts added (were absent) -->
 			<filter minzoom="13" tag="landuse" value="residential"/>
 			<filter minzoom="13" tag="landuse" value="railway"/>
 			<filter minzoom="15" tag="power" value="station"/>
@@ -512,7 +513,7 @@
 		<filter minzoom="14" icon="amenity_drinking_water" tag="natural" value="spring"/>
 		<filter minzoom="15" icon="man_made_water_well" tag="man_made" value="water_well"/>  <!-- delete on next osmand release -->
 
-		<filter minzoom="16" icon="amenity_place_of_worship" tag="amenity" value="place_of_worship" iconVisibleSize="5" iconOrder="70">  <!-- delete section on next osmand release -->
+		<filter minzoom="16" icon="amenity_place_of_worship" tag="amenity" value="place_of_worship" iconVisibleSize="7" iconOrder="70">  <!-- delete section on next osmand release -->
 			<filter additional="religion=christian" icon="religion_christian"/>
 			<filter additional="religion=jewish" icon="religion_jewish"/>
 			<filter additional="religion=muslim" icon="religion_muslim"/>
@@ -662,53 +663,53 @@
 					<groupFilter nightMode="true" color="#132c4e"/>
 				</group>
 
-				<group>   <!-- Added various colors to buildings (grouped) -->
+				<group minzoom="16">   <!-- Added various colors to buildings (grouped) -->
 					<group>
-						<filter minzoom="16" tag="building" value="garages"/>
-						<filter minzoom="16" tag="building" value="garage"/>
-						<filter minzoom="16" tag="building" value="industrial"/>
-						<filter minzoom="16" tag="building" value="transportation"/>
-						<filter minzoom="16" tag="building" value="train_station"/>
-						<filter minzoom="16" tag="building" value="warehouse"/>
-						<filter minzoom="16" tag="building" value="hangar"/>
-						<filter minzoom="16" tag="building" value="factory"/>
-						<filter minzoom="16" tag="building" value="manufacture"/>
-						<filter minzoom="16" tag="building" value="farm_auxiliary"/>
-						<filter minzoom="16" tag="building" value="shed"/>
-						<filter minzoom="16" tag="building" value="barn"/>
-						<filter minzoom="16" tag="building" value="greenhouse"/>
+						<filter tag="building" value="garages"/>
+						<filter tag="building" value="garage"/>
+						<filter tag="building" value="industrial"/>
+						<filter tag="building" value="transportation"/>
+						<filter tag="building" value="train_station"/>
+						<filter tag="building" value="warehouse"/>
+						<filter tag="building" value="hangar"/>
+						<filter tag="building" value="factory"/>
+						<filter tag="building" value="manufacture"/>
+						<filter tag="building" value="farm_auxiliary"/>
+						<filter tag="building" value="shed"/>
+						<filter tag="building" value="barn"/>
+						<filter tag="building" value="greenhouse"/>
 						<groupFilter color="#b2afbc"/>
 						<groupFilter nightMode="true" color="#514c62"/>
 					</group>
 					<group>
-						<filter minzoom="16" tag="building" value="apartments"/>
-						<filter minzoom="16" tag="building" value="house"/>
-						<filter minzoom="16" tag="building" value="hut"/>
-						<filter minzoom="16" tag="building" value="cabin"/>
-						<filter minzoom="16" tag="building" value="detached"/>
-						<filter minzoom="16" tag="building" value="dormitory"/>
-						<filter minzoom="16" tag="building" value="residential"/>
-						<filter minzoom="16" tag="building" value="farm"/>
+						<filter tag="building" value="apartments"/>
+						<filter tag="building" value="house"/>
+						<filter tag="building" value="hut"/>
+						<filter tag="building" value="cabin"/>
+						<filter tag="building" value="detached"/>
+						<filter tag="building" value="dormitory"/>
+						<filter tag="building" value="residential"/>
+						<filter tag="building" value="farm"/>
 						<groupFilter color="#b5b39e"/>
 						<groupFilter nightMode="true" color="#5f5e49"/>
 					</group>
 					<group>
-						<filter minzoom="16" tag="building" value="hospital"/>
-						<filter minzoom="16" tag="building" value="civic"/>
-						<filter minzoom="16" tag="building" value="public"/>
-						<filter minzoom="16" tag="building" value="school"/>
-						<filter minzoom="16" tag="building" value="kindergarten"/>
-						<filter minzoom="16" tag="building" value="university"/>
-						<filter minzoom="16" tag="building" value="college"/>
+						<filter tag="building" value="hospital"/>
+						<filter tag="building" value="civic"/>
+						<filter tag="building" value="public"/>
+						<filter tag="building" value="school"/>
+						<filter tag="building" value="kindergarten"/>
+						<filter tag="building" value="university"/>
+						<filter tag="building" value="college"/>
 						<groupFilter color="#9ebbb9"/>
 						<groupFilter nightMode="true" color="#4c6766"/>
 					</group>
 					<group>
-						<filter minzoom="16" tag="building" value="commercial"/>
-						<filter minzoom="16" tag="building" value="retail"/>
-						<filter minzoom="16" tag="building" value="shop"/>
-						<filter minzoom="16" tag="building" value="supermarket"/>
-						<filter minzoom="16" tag="building" value="hotel"/>
+						<filter tag="building" value="commercial"/>
+						<filter tag="building" value="retail"/>
+						<filter tag="building" value="shop"/>
+						<filter tag="building" value="supermarket"/>
+						<filter tag="building" value="hotel"/>
 						<groupFilter color="#d4aeae"/>
 						<groupFilter nightMode="true" color="#7e5d5d"/>
 					</group>
@@ -716,29 +717,33 @@
 					<groupFilter nightMode="true" strokeWidth_2="0.3" color_2="#aaaaaa"/>
 				</group>
 
-				<group>
-					<filter minzoom="16" tag="building" value="church"/>
-					<filter minzoom="16" tag="building" value="cathedral"/>
-					<filter minzoom="16" tag="building" value="chapel"/>
-					<filter minzoom="16" tag="building" value="mosque"/>
+				<group minzoom="16">
+					<filter tag="building" value="church"/>
+					<filter tag="building" value="cathedral"/>
+					<filter tag="building" value="chapel"/>
+					<filter tag="building" value="mosque"/>
 					<groupFilter strokeWidth_2="1.3" color="#b6a0b5" color_2="#920029"/>
 					<groupFilter nightMode="true" color="#795877" color_2="#6dffd6"/>
 				</group>
 
-				<group>
-					<filter minzoom="16" tag="building" value="collapsed"/>
-					<filter minzoom="16" tag="building" value="damaged"/>
+				<group minzoom="16">
+					<filter tag="building" value="collapsed"/>
+					<filter tag="building" value="damaged"/>
 					<groupFilter color="#bca9a9" color_2="#000000" strokeWidth_2="1" pathEffect_2="9_3"/>
 					<groupFilter nightMode="true" color="#685454" color_2="#999999" strokeWidth_2="1" pathEffect_2="9_3"/>
 				</group>
 
 				<group>
-					<filter minzoom="12" tag="building" value="construction" color="#cac090" color_2="#666666" strokeWidth_2="0.5" pathEffect_2="8_4"/>
+					<filter minzoom="16" tag="building" value="construction" color="#cac090" color_2="#666666" strokeWidth_2="0.5" pathEffect_2="8_4"/>
 					<groupFilter nightMode="true" color="#3c3c1b" color_2="#aaaaaa" strokeWidth_2="0.5" pathEffect_2="8_4"/>
 				</group>
 
-				<!--  Using 'noBuildings' option -->
 				<groupFilter noBuildings="true" disable="true"/>
+
+				<group lessDetailed="false">
+					<filter buildings15zoom="true" nightMode="true" minzoom="15" maxzoom="15" tag="building" value="" color="#685454"/>
+					<filter buildings15zoom="true" minzoom="15" maxzoom="15" tag="building" value="" color="#bca9a9"/>
+				</group>
 
 				<!-- Added support of abandoned and ruins tags -->
 				<groupFilter minzoom="16" additional="abandoned=yes" color_2="#000000" strokeWidth_2="1" pathEffect_2="9_3"/>
@@ -748,9 +753,10 @@
 
 			</group>  <!-- /Buildings -->
 
+
 			<!-- Changed look of many landuses and amenities especially in night mode. Added 'access' support -->
 			<group noPolygons="false">
-				<filter nightMode="true" tag="landuse" value="construction" color="#3c3c1b" color_2="#aaaaaa" strokeWidth_2="0.5" pathEffect_2="12_5"/>
+				<filter nightMode="true" tag="landuse" value="construction" color="#3c3c1b" color_2="#aaaaaa" strokeWidth_2="0.5" pathEffect_2="12_5"/>  <!-- delete on next osmand release -->
 				<filter nightMode="true" minzoom="15" color="#41536c" tag="amenity" value="parking"/> <!-- delete on next osmand release -->
 <!--				<filter nightMode="true" minzoom="15" color="$parkingColorNight" tag="amenity" value="parking"/>--> <!-- uncomment on next osmand release -->
 				<filter nightMode="true" minzoom="15" color="#41536c" tag="amenity" value="bicycle_parking"/> <!-- delete on next osmand release -->
@@ -791,7 +797,7 @@
 				<filter nightMode="true" minzoom="10" color="#304a5e" tag="natural" value="marsh"/>
 
 
-				<filter minzoom="12" tag="landuse" value="construction" color="#cac090" color_2="#666666" strokeWidth_2="0.5" pathEffect_2="8_4"/>
+				<filter minzoom="12" tag="landuse" value="construction" color="#cac090" color_2="#666666" strokeWidth_2="0.5" pathEffect_2="8_4"/> <!-- delete on next osmand release -->
 				<filter tag="amenity" value="library" disable="true"/>
 				<filter tag="amenity" value="cinema" disable="true"/>
 				<filter appMode="car" tag="amenity" value="bicycle_parking" disable="true"/>
@@ -817,8 +823,8 @@
 
 				<filter minzoom="12" color="#8ad3af" color_2="#888888" strokeWidth_2=":1" tag="leisure" value="pitch"/>
 				<filter minzoom="12" color="#b0b6fdb6" tag="leisure" value="recreation_ground"/>
-				<filter minzoom="12" color="#b0b6fdb6" tag="leisure" value="resort"/>
-				<filter minzoom="12" color="#b0b6fdb6" tag="amenity" value="sanatorium"/>
+				<filter minzoom="12" color="#b0b6fdb6" tag="leisure" value="resort"/> <!-- delete on next osmand release -->
+				<filter minzoom="12" color="#b0b6fdb6" tag="amenity" value="sanatorium"/> <!-- delete on next osmand release -->
 				<filter minzoom="15" color="#ccfff1" tag="leisure" value="playground"/>
 				<filter minzoom="12" color="#cfeca8" tag="leisure" value="garden"/>
 				<filter minzoom="12" color="#cfeca8" tag="leisure" value="common"/>
@@ -911,8 +917,7 @@
 			</groupFilter>
 
 		</group>   <!-- /Buildings and landuse+amenities -->
-
-
+		
 		<group noPolygons="false">
 
 			<group>
@@ -1178,7 +1183,7 @@
 				<groupFilter shadowRadius=":1" shadowColor="#444444" cap="ROUND">
 					<filter minzoom="11" maxzoom="11" strokeWidth="3" shadowColor="#777777"/>
 					<filter minzoom="12" maxzoom="12" strokeWidth="4" shadowColor="#777777"/>
-					<filter lessDetails="true" minzoom="13" maxzoom="13" strokeWidth="4" shadowColor="#777777"/>
+					<filter lessDetailed="true" minzoom="13" maxzoom="13" strokeWidth="4" shadowColor="#777777"/>
 					<filter minzoom="13" maxzoom="13" strokeWidth="5" shadowColor="#777777"/>
 					<filter minzoom="14" maxzoom="14" strokeWidth="2:4"/>
 					<filter minzoom="15" maxzoom="15" strokeWidth="3.5:5"/>
@@ -1212,12 +1217,12 @@
 				<filter tag="highway" value="unclassified"/>
 				<filter tag="highway" value="residential"/>
 				<groupFilter color="#ffffff" shadowRadius=":1.5" shadowColor="#555555" cap="ROUND">
-					<filter lessDetails="true" minzoom="12" maxzoom="12" disable="true"/>
-					<filter tag="highway" value="living_street" lessDetails="true" minzoom="13" maxzoom="13" disable="true"/>
+					<filter lessDetailed="true" minzoom="12" maxzoom="12" disable="true"/>
+					<filter tag="highway" value="living_street" lessDetailed="true" minzoom="13" maxzoom="13" disable="true"/>
 					<filter minzoom="12" maxzoom="12" strokeWidth="1.5" shadowRadius="0"/>
 					<filter minzoom="13" maxzoom="13" strokeWidth="2.5" shadowRadius="0"/>
 					<filter color_0="#000000">
-						<filter lessDetails="true" minzoom="14" maxzoom="14" strokeWidth="4" shadowRadius=":1"/>
+						<filter lessDetailed="true" minzoom="14" maxzoom="14" strokeWidth="4" shadowRadius=":1"/>
 						<filter minzoom="14" maxzoom="14" strokeWidth="4"/>
 						<filter minzoom="15" maxzoom="15" strokeWidth="7"/>
 						<filter minzoom="16" maxzoom="16" strokeWidth="9"/>
@@ -1287,10 +1292,10 @@
 						<filter additional="service=parking_aisle" color="#eeeeee" shadowColor="#999999"/>
 						<filter additional="service=alley" color="#eeeeee" shadowColor="#999999"/>
 					</groupFilter>
-					<groupFilter lessDetails="true" minzoom="13" maxzoom="13" disable="true"/>
-					<groupFilter lessDetails="true" additional="service=driveway" minzoom="14" maxzoom="14" disable="true"/>
-					<groupFilter lessDetails="true" additional="service=parking_aisle" minzoom="14" maxzoom="14" disable="true"/>
-					<groupFilter lessDetails="true" additional="service=alley" minzoom="14" maxzoom="14" disable="true"/>
+					<groupFilter lessDetailed="true" minzoom="13" maxzoom="13" disable="true"/>
+					<groupFilter lessDetailed="true" additional="service=driveway" minzoom="14" maxzoom="14" disable="true"/>
+					<groupFilter lessDetailed="true" additional="service=parking_aisle" minzoom="14" maxzoom="14" disable="true"/>
+					<groupFilter lessDetailed="true" additional="service=alley" minzoom="14" maxzoom="14" disable="true"/>
 					<groupFilter additional="service=driveway" minzoom="13" maxzoom="13" disable="true"/>
 					<groupFilter additional="service=parking_aisle" minzoom="13" maxzoom="13" disable="true"/>
 					<groupFilter additional="service=alley" minzoom="13" maxzoom="13" disable="true"/>
@@ -1418,7 +1423,7 @@
 					<filter minzoom="18" pathEffect_3="6_15"/>
 				</filter>
 			</groupFilter>
-			<groupFilter minzoom="14" lessDetails="false" maxzoom="14" strokeWidth_2="2.5" strokeWidth_3="2.5"/>
+			<groupFilter minzoom="14" lessDetailed="false" maxzoom="14" strokeWidth_2="2.5" strokeWidth_3="2.5"/>
 			<groupFilter minzoom="15" maxzoom="15" strokeWidth_2="4" strokeWidth_3="4"/>
 			<groupFilter minzoom="16" maxzoom="16" strokeWidth_2="5" strokeWidth_3="5"/>
 			<groupFilter minzoom="17" maxzoom="17" strokeWidth_2="7" strokeWidth_3="7"/>
@@ -1428,10 +1433,10 @@
 			<groupFilter appMode="bicycle" additional="bicycle=no" color_2="$null" color_3="$null"/>
 		</group>
 
-		<filter tag="highway" value="construction" minzoom="12" maxzoom="13" color="#79a8fd" strokeWidth="6" cap="ROUND" color_2="#ffffff" strokeWidth_2="4" pathEffect_2="5_14"/>
-		<filter tag="highway" value="construction" minzoom="14" color="#79a8fd" strokeWidth="8" cap="ROUND" color_2="#ffffff" strokeWidth_2="6" pathEffect_2="6_19"/>
-		<group>
-			<filter lessDetails="true" tag="highway" value="proposed" minzoom="12" maxzoom="13" disable="true"/>
+		<filter tag="highway" value="construction" minzoom="12" maxzoom="13" color="#79a8fd" strokeWidth="6" cap="ROUND" color_2="#ffffff" strokeWidth_2="4" pathEffect_2="5_14"/> <!-- delete on next osmand release -->
+		<filter tag="highway" value="construction" minzoom="14" color="#79a8fd" strokeWidth="8" cap="ROUND" color_2="#ffffff" strokeWidth_2="6" pathEffect_2="6_19"/> <!-- delete on next osmand release -->
+		<group> <!-- delete on next osmand release -->
+			<filter lessDetailed="true" tag="highway" value="proposed" minzoom="12" maxzoom="13" disable="true"/>
 			<filter tag="highway" value="proposed" minzoom="12" maxzoom="13" color="#16333333" strokeWidth="6" cap="ROUND" color_2="#44ffffff" strokeWidth_2="4" pathEffect_2="5_14"/>
 			<filter tag="highway" value="proposed" minzoom="14" color="#16333333" strokeWidth="8" cap="ROUND" color_2="#44ffffff" strokeWidth_2="6" pathEffect_2="6_19"/>
 			<groupFilter nightMode="true" color="#22999999"/>
@@ -1442,7 +1447,7 @@
 				<filter tag="highway" value="track" color="#996600" pathEffect="4_2">
 					<filter appMode="pedestrian" minzoom="14" strokeWidth="1"/>
 					<filter appMode="pedestrian" minzoom="15" strokeWidth="1"/>
-					<filter lessDetails="false" minzoom="12" maxzoom="12" strokeWidth="0.6" pathEffect=""/>
+					<filter lessDetailed="false" minzoom="12" maxzoom="12" strokeWidth="0.6" pathEffect=""/>
 					<filter minzoom="13" maxzoom="13" strokeWidth="0.8" pathEffect=""/>
 					<filter minzoom="14" strokeWidth="1.4"/>
 				</filter>
@@ -1463,11 +1468,11 @@
 
 			<filter tag="highway" value="footway" color="#0033ff">
 				<filter appMode="car" disable="true"/>
-				<filter appMode="pedestrian" lessDetails="false" minzoom="13" maxzoom="13" strokeWidth="0.7"/>
-				<filter appMode="bicycle" lessDetails="false" minzoom="13" maxzoom="13" strokeWidth="0.7"/>
+				<filter appMode="pedestrian" lessDetailed="false" minzoom="13" maxzoom="13" strokeWidth="0.7"/>
+				<filter appMode="bicycle" lessDetailed="false" minzoom="13" maxzoom="13" strokeWidth="0.7"/>
 				<filter appMode="pedestrian" minzoom="14" maxzoom="14" strokeWidth="0.7"/>
 				<filter appMode="bicycle" minzoom="14" maxzoom="14" strokeWidth="0.7"/>
-				<filter lessDetails="false" minzoom="14" maxzoom="14" strokeWidth="0.7" pathEffect="3.5_1.5"/>
+				<filter lessDetailed="false" minzoom="14" maxzoom="14" strokeWidth="0.7" pathEffect="3.5_1.5"/>
 				<filter minzoom="15" strokeWidth="1" pathEffect="3.5_1.5"/>
 				<groupFilter nightMode="true" color="#c79f00"/>
 			</filter>
@@ -1479,7 +1484,7 @@
 					<filter appMode="bicycle" minzoom="12" maxzoom="13" strokeWidth="3"/>
 					<filter appMode="bicycle" minzoom="14" strokeWidth="4"/>
 					<filter appMode="car" color="#35a85bff" strokeWidth="1.5"/>
-					<filter lessDetails="true" minzoom="12" maxzoom="12" disable="true"/>
+					<filter lessDetailed="true" minzoom="12" maxzoom="12" disable="true"/>
 					<filter minzoom="12" maxzoom="12" strokeWidth="1"/>
 					<filter minzoom="13" maxzoom="13" strokeWidth="1.5"/>
 					<filter minzoom="14" strokeWidth="1.5"/>
@@ -1489,9 +1494,9 @@
 			<group>
 				<filter tag="highway" value="path" color="#00896e" pathEffect="1.5_1.5">
 					<filter appMode="car" disable="true"/>
-					<filter lessDetails="false" minzoom="12" maxzoom="12" strokeWidth="1"/>
-					<filter lessDetails="false" minzoom="13" maxzoom="13" strokeWidth="1.3"/>
-					<filter lessDetails="false" minzoom="14" maxzoom="14" strokeWidth="1.5"/>
+					<filter lessDetailed="false" minzoom="12" maxzoom="12" strokeWidth="1"/>
+					<filter lessDetailed="false" minzoom="13" maxzoom="13" strokeWidth="1.3"/>
+					<filter lessDetailed="false" minzoom="14" maxzoom="14" strokeWidth="1.5"/>
 					<filter minzoom="15" strokeWidth="1.5"/>
 					<groupFilter>
 						<filter additional="sac_scale=hiking" color="#fa5073" pathEffect=""/>
@@ -1508,11 +1513,11 @@
 
 			<filter tag="highway" value="steps" color="#0000ff" pathEffect="1_2">
 				<filter appMode="car" disable="true"/>
-				<filter lessDetails="false" appMode="pedestrian" minzoom="14" maxzoom="14" strokeWidth="3.5" pathEffect="0.7_1.4"/>
+				<filter lessDetailed="false" appMode="pedestrian" minzoom="14" maxzoom="14" strokeWidth="3.5" pathEffect="0.7_1.4"/>
 				<filter appMode="pedestrian" minzoom="15" maxzoom="15" strokeWidth="4"/>
 				<filter appMode="pedestrian" minzoom="16" maxzoom="17" strokeWidth="5"/>
 				<filter appMode="pedestrian" minzoom="18" strokeWidth="8"/>
-				<filter lessDetails="false" minzoom="14" maxzoom="14" strokeWidth="3.5" pathEffect="0.7_1.4"/>
+				<filter lessDetailed="false" minzoom="14" maxzoom="14" strokeWidth="3.5" pathEffect="0.7_1.4"/>
 				<filter minzoom="15" maxzoom="15" strokeWidth="4"/>
 				<filter minzoom="16" maxzoom="17" strokeWidth="5"/>
 				<filter minzoom="18" strokeWidth="7"/>
@@ -1521,8 +1526,8 @@
 
 			<filter tag="highway" value="bridleway" color="#339900" pathEffect="4_2">
 				<filter appMode="car" disable="true"/>
-				<filter lessDetails="false" minzoom="12" maxzoom="12" strokeWidth="0.7"/>
-				<filter lessDetails="false" minzoom="13" maxzoom="13" strokeWidth="1.5"/>
+				<filter lessDetailed="false" minzoom="12" maxzoom="12" strokeWidth="0.7"/>
+				<filter lessDetailed="false" minzoom="13" maxzoom="13" strokeWidth="1.5"/>
 				<filter minzoom="14" strokeWidth="1.5"/>
 			</filter>
 
@@ -1629,7 +1634,7 @@
 					<filter minzoom="18" pathEffect_0="6_15"/>
 				</filter>
 			</groupFilter>
-			<groupFilter lessDetails="false" minzoom="14" maxzoom="14" strokeWidth_0="5" strokeWidth__1="5"/>
+			<groupFilter lessDetailed="false" minzoom="14" maxzoom="14" strokeWidth_0="5" strokeWidth__1="5"/>
 			<groupFilter minzoom="15" maxzoom="15" strokeWidth_0="6" strokeWidth__1="6"/>
 			<groupFilter minzoom="16" maxzoom="16" strokeWidth_0="7" strokeWidth__1="7"/>
 			<groupFilter minzoom="17" maxzoom="17" strokeWidth_0="8" strokeWidth__1="8"/>
@@ -1671,7 +1676,7 @@
 				<filter appMode="bicycle" minzoom="14" strokeWidth="4"/>
 				<filter appMode="car" minzoom="13" maxzoom="16" disable="true"/>
 				<filter appMode="car" color="#15a85bff" strokeWidth="1.5"/>
-				<filter lessDetails="true" minzoom="12" maxzoom="12" disable="true"/>
+				<filter lessDetailed="true" minzoom="12" maxzoom="12" disable="true"/>
 				<filter minzoom="12" maxzoom="12" strokeWidth="1"/>
 				<filter minzoom="13" maxzoom="13" strokeWidth="1.5"/>
 				<filter minzoom="14" strokeWidth="1.5"/>
@@ -1759,7 +1764,7 @@
 			<groupFilter color="#41cad3" color_2="#ffffff">
 				<filter nightMode="true" color="#330099" color_2="#7340D9"/>
 			</groupFilter>
-			<groupFilter lessDetails="true" minzoom="13" maxzoom="15" layer="-1" disable="true"/>
+			<groupFilter lessDetailed="true" minzoom="13" maxzoom="15" layer="-1" disable="true"/>
 			<groupFilter layer="-1" color="#41cad3" color_2="#aaffffff">
 				<filter nightMode="true" color="#444a48aa" color_2="#447340D9"/>
 			</groupFilter>
@@ -1829,8 +1834,8 @@
 		<!-- Added support of man_made=cutline tag -->
 		<group>
 			<filter noPolygons="false" tag="man_made" value="cutline" minzoom="12" color="#c4dcbb">
-				<filter lessDetails="false" minzoom="12" maxzoom="12" strokeWidth="1"/>
-				<filter lessDetails="false" minzoom="13" maxzoom="13" strokeWidth="1.5"/>
+				<filter lessDetailed="false" minzoom="12" maxzoom="12" strokeWidth="1"/>
+				<filter lessDetailed="false" minzoom="13" maxzoom="13" strokeWidth="1.5"/>
 				<filter minzoom="14" maxzoom="14" strokeWidth="2.5"/>
 				<filter minzoom="15" maxzoom="15" strokeWidth="5"/>
 				<filter minzoom="16" maxzoom="17" strokeWidth="7"/>
@@ -1867,8 +1872,8 @@
 		</group>
 
 		<filter noPolygons="false" tag="natural" value="tree_row" minzoom="12" color="$woodColorDay" cap="ROUND">
-			<filter lessDetails="false" minzoom="12" maxzoom="12" strokeWidth="1"/>
-			<filter lessDetails="false" minzoom="13" maxzoom="13" strokeWidth="1.5"/>
+			<filter lessDetailed="false" minzoom="12" maxzoom="12" strokeWidth="1"/>
+			<filter lessDetailed="false" minzoom="13" maxzoom="13" strokeWidth="1.5"/>
 			<filter minzoom="14" maxzoom="14" strokeWidth="2"/>
 			<filter minzoom="15" maxzoom="15" strokeWidth="4"/>
 			<filter minzoom="16" maxzoom="17" strokeWidth="6"/>

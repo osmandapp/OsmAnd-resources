@@ -17,6 +17,8 @@
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
 	<renderingProperty attr="noPolygons" name="Hide polygons" description="Make all areal land features on map transparent"
 		type="boolean" possibleValues=""/>
+	<renderingProperty attr="cycleRoutes" name="Show cycle routes" description="Show cycle routes (*cn_networks) in bicycle mode"
+		type="boolean" possibleValues=""/>
 	<renderingProperty attr="noAdminboundaries" name="Hide boundaries" description="Suppress display of admin levels 5-9"
 		type="boolean" possibleValues=""/>
 	<!--
@@ -29,7 +31,7 @@
 		<filter nightMode="true" attrColorValue="#002a2a"/>
 		<filter attrColorValue="#f1eae4"/>
 	</renderingAttribute>
-	
+
 	<renderingAttribute name="showRoadMapsAttribute">
 		<!--
 		<filter showRoadMaps="Always - never show regular maps" attrIntValue="1"/>
@@ -63,7 +65,7 @@
 
 	<renderingAttribute name="polygonMinSizeToDisplay">
 	<!-- Minimum polygon size in pixels -->
-		<filter attrIntValue="100"/>
+		<filter attrIntValue="75"/>
 	</renderingAttribute>
 	
 	<renderingAttribute name="roadDensityZoomTile">
@@ -91,6 +93,11 @@
 	<renderingConstant name="primaryRoadColor" value="#ffaa80"/>
 	<renderingConstant name="secondaryRoadColor" value="#ffd080"/>
 	<renderingConstant name="tertiaryRoadColor" value="#ffff80"/>
+	<renderingConstant name="constructionRoadColor" value="#79a8fd"/>
+	<renderingConstant name="constructionRoadColor2" value="#ffffff"/>
+	<renderingConstant name="proposedRoadColor" value="#16333333"/>
+	<renderingConstant name="proposedRoadColor2" value="#44ffffff"/>
+	<renderingConstant name="proposedRoadColorNight" value="#22999999"/>
 
 	<!-- Forest -->
 	<renderingConstant name="woodColorDay" value="#aed1a0"/>
@@ -130,18 +137,51 @@
 	<renderingConstant name="parkingColorDay" value="#f6eeb7"/>
 	<renderingConstant name="bicycleParkingColorDay" value="#f6eeb7"/>
 	<renderingConstant name="builtUpAreasColorNight" value="#3b3b3b"/>
+	<renderingConstant name="landuseConstructionColorDay" value="#cac090"/>
+	<renderingConstant name="landuseConstructionColorDayStroke" value="#666666"/>
+	<renderingConstant name="landuseConstructionColorNight" value="#3c3c1b"/>
+	<renderingConstant name="landuseConstructionColorNightStroke" value="#aaaaaa"/>
 
 	<!-- Text -->
-	<renderingConstant name="highwayTextHaloRadiusDay" value="0"/> <!-- 2 -->
-	<renderingConstant name="highwayTextResidentialHaloColorDay" value="#88eeeeee"/>
-	<renderingConstant name="highwayTextServiceHaloColorDay" value="#88eeeeee"/>
-	<renderingConstant name="highwayTextTrackHaloColorDay" value="#88eeeeee"/>
+	<renderingConstant name="highwayResidentialTextHaloRadiusDay" value="1"/>
+	<renderingConstant name="highwayResidentialTextHaloColorDay" value="#ffffff"/>
+	<renderingConstant name="highwayServiceTextHaloColorDay" value="#ffffff"/>
+	<renderingConstant name="highwayTrackTextHaloRadiusDay" value="0"/>
+	<renderingConstant name="highwayTrackTextHaloColorDay" value="#ffffff"/>
 
-	<renderingConstant name="placeTextHaloRadiusDay" value="0"/> <!-- 2 -->
+	<renderingConstant name="placeTextHaloRadiusDay" value="0"/>
 	<renderingConstant name="placeTextHaloColorDay" value="#77eeeeee"/>
-	<renderingConstant name="buildingTextHaloRadiusDay" value="0"/> <!-- 1 -->
-	<renderingConstant name="buildingTextHaloColorDay" value="#55ffffff"/>
+	<renderingConstant name="buildingTextHaloRadiusDay" value="1"/>
+	<renderingConstant name="buildingTextHaloColorDay" value="#66ffffff"/>
 	
+	<renderingConstant name="waterTextHaloRadiusDay" value="0"/>
+	<renderingConstant name="waterTextColorDay" value="#6699cc"/>
+	<renderingConstant name="waterTextHaloColorDay" value="#bbffffff"/>
+
+	<renderingConstant name="landuseManmadeTextHaloRadiusDay" value="1"/>
+	<renderingConstant name="landuseManmadeTextColorDay" value="#000000"/>
+	<renderingConstant name="landuseManmadeTextHaloColorDay" value="#ffffff"/>
+
+	<renderingConstant name="textHaloRadiusDay" value="1"/>
+	<renderingConstant name="textHaloRadiusNight" value="2"/>
+
+	<renderingConstant name="woodTextColorDay" value="#000000"/>
+	<renderingConstant name="parkTextColorDay" value="#004300"/>
+	<renderingConstant name="woodTextHaloColorDay" value="#ffffff"/>
+	<renderingConstant name="forestTextColorDay" value="#729972"/>
+	<renderingConstant name="railroadTextColorDay" value="#6666ff"/>
+
+	<renderingConstant name="accomodationTextColorDay" value="#0066ff"/>
+	<renderingConstant name="tourismTextColorDay" value="#734a08"/>
+	<renderingConstant name="historicTextColorDay" value="#734a08"/>
+	<renderingConstant name="otherAmenitiesTextColorDay" value="#444444"/>
+	<renderingConstant name="otherAmenitiesTextHaloColorDay" value="#ffffff"/>
+	<renderingConstant name="foodTextColorDay" value="#444444"/>
+	<renderingConstant name="foodTextHaloColorDay" value="#ffffff"/>
+	<renderingConstant name="shopsTextColorDay" value="#680067"/>
+	<renderingConstant name="shopsTextHaloColorDay" value="#ffffff"/>
+	<renderingConstant name="sportTextColorDay" value="#004d33"/>
+	<renderingConstant name="sportTextHaloColorDay" value="#ffffff"/>
 
 		<!-- transparent to see conjunctions -->
 		<!-- <renderingConstant name="motorwayRoadColor" value="#55809bff"/>
@@ -506,29 +546,29 @@
 		</group>
 
 		<group textColor="#000000">
-			<group textHaloRadius="$highwayTextHaloRadiusDay" textHaloColor="$highwayTextResidentialHaloColorDay">
+			<group textHaloRadius="$highwayResidentialTextHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay">
 				<filter tag="highway" value="road" textOrder="9"/>
 				<filter tag="highway" value="unclassified" textOrder="9"/>
 				<filter tag="highway" value="residential" textOrder="9"/>
-				<groupFilter nightMode="true" textBold="true" textColor="#ffffff" textHaloRadius="2" textHaloColor="#88666666"/>
+				<groupFilter nightMode="true" textBold="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#88666666"/>
 			</group>
-			<group textHaloRadius="$highwayTextHaloRadiusDay" textHaloColor="$highwayTextTrackHaloColorDay">
+			<group textHaloRadius="$highwayResidentialTextHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay">
 				<filter tag="highway" value="service" textOrder="10"/>
 				<filter tag="highway" value="living_street" textOrder="10"/>
 				<filter tag="highway" value="pedestrian" textOrder="11"/>
-				<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="2" textHaloColor="#77777777"/>
+				<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 			</group>
-			<group>
+			<group textHaloRadius="$highwayResidentialTextHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay">
 				<filter tag="highway" value="services" textOrder="10"/>
 				<filter tag="highway" value="ford" textOrder="10"/>
-				<groupFilter nightMode="true" textHaloRadius="1" textHaloColor="#bbbbbb"/>
+				<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 			</group>
 			<group>
 				<filter tag="highway" value="construction" textHaloRadius="1" textHaloColor="#99bdff" textOrder="9"/>
  				<groupFilter nightMode="true" textHaloRadius="1" textHaloColor="#99bdff"/>
 			</group>
 			<group>
-				<filter tag="highway" value="proposed" textOrder="9"/>
+				<filter tag="highway" value="proposed" textHaloRadius="$highwayResidentialTextHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" textOrder="9"/>
 				<groupFilter nightMode="true" textHaloRadius="1" textHaloColor="#aa777777"/>
 			</group>
 			<groupFilter textOnPath="true" nameTag="" >
@@ -542,7 +582,7 @@
 
 
 
-		<group textColor="#000000" textHaloRadius="$highwayTextHaloRadiusDay" textHaloColor="$highwayTextTrackHaloColorDay">
+		<group textColor="#000000" textHaloRadius="$highwayTrackTextHaloRadiusDay" textHaloColor="$highwayTrackTextHaloColorDay">
 			<filter tag="highway" value="track" textOrder="9"/>
 			<filter tag="highway" value="path" textOrder="9"/>
 			<filter tag="highway" value="byway" textOrder="9"/>
@@ -558,16 +598,16 @@
 				<filter minzoom="17" maxzoom="17" textSize="16"/>
 				<filter minzoom="18" textSize="18"/>
 				<groupFilter textOnPath="true" textDy="-7"/>
-				<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="2" textHaloColor="#77777777"/>
+				<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 			</groupFilter>
 		</group>
 		<!-- Motorway junction -->
-		<group tag="highway" value="motorway_junction" textColor="#00008b" textHaloRadius="1" textWrapWidth="16" textMinDistance="10" textOrder="6">
+		<group tag="highway" value="motorway_junction" textColor="#00008b" textHaloRadius="$textHaloRadiusDay" textWrapWidth="16" textMinDistance="10" textOrder="6">
 			<filter appMode="car" minzoom="13" maxzoom="13" textSize="12" nameTag="ref"/>
 			<filter appMode="car" minzoom="14" textSize="13" nameTag="" nameTag2="ref"/>
 			<filter minzoom="14" textSize="12" nameTag="" nameTag2="ref"/>
 			<!-- Leave night halo white here, provides more contrast -->
-			<groupFilter nightMode="true" textColor="#dcdcff" textHaloRadius="2" textHaloColor="#77050547"/>
+			<groupFilter nightMode="true" textColor="#dcdcff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77050547"/>
 		</group>
 
 		<!-- Location names -->
@@ -596,7 +636,7 @@
 			<filter minzoom="6" textSize="20" textBold="true" textDy="1" tag="place" value="city" textOrder="4" nameTag=""/>
 			<filter minzoom="8" textSize="16" textBold="true" textDy="1" tag="place" value="town" textOrder="5" nameTag=""/>
 			<filter minzoom="11" textSize="14" textBold="true" textDy="1" tag="place" value="village" textOrder="10" nameTag=""/>
-			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="2" textHaloColor="#77777777"/>
+			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 		</group>
 		<group textColor="#777777" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay">
 			<filter minzoom="12" textSize="13" tag="place" value="hamlet" textOrder="12"/>
@@ -605,7 +645,7 @@
  			<filter minzoom="13" textSize="13" tag="place" value="neighbourhood" textOrder="13"/>
 			<filter minzoom="13" textSize="13" tag="place" value="locality" textOrder="15"/>
 			<filter minzoom="11" textSize="14" tag="place" value="island" textOrder="10"/>
-			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="2" textHaloColor="#77777777"/>
+			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 		</group>
 
 		<!-- Natural -->
@@ -618,28 +658,28 @@
 			<filter contourLines="16" minzoom="16" textSize="12" tag="contour" value=""/>
 			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="1" textHaloColor="#77777777"/>
 		</group>
-		<group>
-			<filter minzoom="13" textSize="12" textColor="#000000" textWrapWidth="15" tag="natural" value="wood" textOrder="10"/>
-			<filter minzoom="15" textSize="12" textColor="#09dd09" textWrapWidth="15" tag="natural" value="park" textOrder="10"/>
-			<filter minzoom="15" textSize="12" textColor="#004300" textWrapWidth="15" tag="leisure" value="park" textOrder="10"/>
-			<groupFilter nightMode="true" textColor="#9fe39f" textHaloRadius="2" textHaloColor="#88444444"/>
+		<group textSize="12" textWrapWidth="15" textHaloRadius="$textHaloRadiusDay" textHaloColor="$woodTextHaloColorDay">
+			<filter minzoom="13" textColor="$woodTextColorDay" tag="natural" value="wood" textOrder="10"/>
+			<filter minzoom="15" textColor="$parkTextColorDay" tag="natural" value="park" textOrder="10"/>
+			<filter minzoom="15" textColor="$parkTextColorDay" tag="leisure" value="park" textOrder="10"/>
+			<groupFilter nightMode="true" textColor="#9fe39f" textHaloRadius="$textHaloRadiusNight" textHaloColor="#88444444"/>
 		</group>
 		<group>
-			<filter minzoom="14" textSize="12" textColor="#6699cc" textWrapWidth="20" textHaloRadius="1" tag="natural" value="beach" textOrder="10"/>
-			<groupFilter nightMode="true" textHaloRadius="2" textColor="#ffe7c2" textHaloColor="#88644e2c"/>
+			<filter minzoom="14" textSize="12" textColor="#6699cc" textWrapWidth="20" textHaloRadius="$textHaloRadiusDay" tag="natural" value="beach" textOrder="10"/>
+			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffe7c2" textHaloColor="#88644e2c"/>
 		</group>
 
 		<group textColor="#654321" textDy="7" textWrapWidth="25">
-			<filter minzoom="12" maxzoom="13" textSize="12" textHaloRadius="1" tag="natural" value="peak" nameTag="ele" textOrder="10"/>
-			<filter minzoom="14" maxzoom="14" textSize="12" textHaloRadius="1" tag="natural" value="peak" nameTag="" nameTag2="ele" textOrder="10"/>
-			<filter minzoom="15" maxzoom="16" textSize="13" textHaloRadius="1" tag="natural" value="peak" nameTag="" nameTag2="ele" textOrder="15"/>
-			<filter minzoom="17" textSize="16" textHaloRadius="1" tag="natural" value="peak" nameTag="" nameTag2="ele" textOrder="15"/>
+			<filter minzoom="12" maxzoom="13" textSize="12" textHaloRadius="$textHaloRadiusDay" tag="natural" value="peak" nameTag="ele" textOrder="10"/>
+			<filter minzoom="14" maxzoom="14" textSize="12" textHaloRadius="$textHaloRadiusDay" tag="natural" value="peak" nameTag="" nameTag2="ele" textOrder="10"/>
+			<filter minzoom="15" maxzoom="16" textSize="13" textHaloRadius="$textHaloRadiusDay" tag="natural" value="peak" nameTag="" nameTag2="ele" textOrder="15"/>
+			<filter minzoom="17" textSize="16" textHaloRadius="$textHaloRadiusDay" tag="natural" value="peak" nameTag="" nameTag2="ele" textOrder="15"/>
 			<filter minzoom="16" textSize="12" tag="natural" value="cave_entrance" textOrder="15"/>
-			<groupFilter nightMode="true" textHaloRadius="2" textColor="#ffcc9b" textHaloColor="#774d2803"/>
+			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffcc9b" textHaloColor="#774d2803"/>
 		</group>
 
 		<!-- Water -->
-		<group textColor="#6699cc">
+		<group textColor="$waterTextColorDay" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$waterTextHaloColorDay">
 			<filter minzoom="3" textSize="12" textWrapWidth="20" tag="place" value="ocean" textOrder="3"/>
 			<filter minzoom="5" textSize="12" textWrapWidth="20" tag="place" value="sea" textOrder="5"/>
 			<filter minzoom="6" textSize="12" textWrapWidth="20" tag="natural" value="water" textOrder="10"/>
@@ -656,11 +696,11 @@
 
 			<filter minzoom="13" textSize="12" textWrapWidth="20" tag="landuse" value="water"/>
 			<filter minzoom="13" textSize="12" textWrapWidth="20" tag="landuse" value="reservoir"/>
-			<groupFilter nightMode="true" textHaloRadius="2" textColor="#95e7ff" textHaloColor="#994563a7"/>
+			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#95e7ff" textHaloColor="#994563a7"/>
 		</group>
 
 		<!-- landuse -->
-		<group textSize="12" textColor="#000000" textHaloRadius="1" textWrapWidth="20" textOrder="200">
+		<group textSize="12" textColor="$landuseManmadeTextColorDay" textHaloRadius="$landuseManmadeTextHaloRadiusDay" textHaloColor="$landuseManmadeTextHaloColorDay" textWrapWidth="20" textOrder="200">
 			<filter minzoom="14" tag="landuse" value="allotments"/>
 			<filter minzoom="14" tag="landuse" value="cemetery"/>
 			<filter minzoom="15" tag="landuse" value="commercial"/>
@@ -673,21 +713,21 @@
 			<groupFilter nightMode="true" textColor="#ffffff" textHaloColor="#77777777"/>
 		</group>
 		<group>
-			<filter minzoom="13" textSize="12" textColor="#990d2a" textHaloRadius="1" textWrapWidth="20" tag="landuse" value="military" textOrder="10"/>
-			<groupFilter nightMode="true" textColor="#ffd3dc" textHaloRadius="2" textHaloColor="#77724456"/>
+			<filter minzoom="13" textSize="12" textColor="#990d2a" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20" tag="landuse" value="military" textOrder="10"/>
+			<groupFilter nightMode="true" textColor="#ffd3dc" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77724456"/>
 		</group>
 
 		<!-- National Forest, Wilderness, National Park: (http://wiki.openstreetmap.org/wiki/US_Forest_Service_Data)
 		all have boundary=national_park: National forests with landuse=forest, Wilderness with leisure=nature_reserve, NatPark just boundary=national_park (protected_areas need not be rendered for this) -->
-		<group textSize="12" textColor="#729972" textWrapWidth="20" textHaloRadius="1">
+		<group textSize="12" textColor="$forestTextColorDay" textWrapWidth="20" textHaloRadius="$textHaloRadiusDay">
 			<filter minzoom="9" tag="landuse" value="forest" textOrder="10"/>
 			<filter minzoom="9" tag="leisure" value="nature_reserve" textOrder="10"/>
 			<filter minzoom="9" tag="boundary" value="national_park" textOrder="11"/>
-			<groupFilter nightMode="true" textColor="#9fe39f" textHaloRadius="2" textHaloColor="#88444444"/>
+			<groupFilter nightMode="true" textColor="#9fe39f" textHaloRadius="$textHaloRadiusNight" textHaloColor="#88444444"/>
 		</group>
 
 		<!-- Emergency and Health -->
-		<group textSize="12" textColor="#da0092" textHaloRadius="1" textDy="7" textWrapWidth="25">
+		<group textSize="12" textColor="#da0092" textHaloRadius="$textHaloRadiusDay" textDy="7" textWrapWidth="25">
 			<filter minzoom="17" tag="amenity" value="police"/>
 			<filter minzoom="16" tag="amenity" value="fire_station"/>
 
@@ -696,26 +736,26 @@
 			<filter minzoom="16" tag="amenity" value="veterinary"/>
 			<filter minzoom="16" tag="amenity" value="doctors"/>
 			<filter minzoom="16" tag="amenity" value="dentist"/>
-			<groupFilter nightMode="true" textColor="#ffd4f0" textHaloColor="#66b16396"/>
+			<groupFilter nightMode="true" textColor="#ffd4f0" textHaloRadius="$textHaloRadiusNight" textHaloColor="#66b16396"/>
 		</group>
 
 		<!-- Traffic, transportation and orientation -->
-		<group textSize="12" textColor="#0066ff" textHaloRadius="1" textDy="7">
+		<group textSize="12" textColor="#0066ff" textHaloRadius="$textHaloRadiusDay" textDy="7">
 			<filter minzoom="17" textWrapWidth="25" tag="amenity" value="fuel"/>
 			<filter minzoom="17" textWrapWidth="30" tag="amenity" value="parking"/>
 			<filter minzoom="16" textWrapWidth="25" tag="amenity" value="bus_station"/>
 			<filter minzoom="15" textWrapWidth="20" tag="man_made" value="lighthouse"/>
-			<groupFilter nightMode="true" textHaloRadius="2" textColor="#b9d5ff" textHaloColor="#88355777"/>
+			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#b9d5ff" textHaloColor="#88355777"/>
 		</group>
 
-		<filter nightMode="true" minzoom="3" textSize="14" textColor="#ffcdfe" textHaloRadius="2" textHaloColor="#663e203e" textWrapWidth="35" tag="ferry_route" value="ferry" nameTag="ferry_route_ref"/>
+		<filter nightMode="true" minzoom="3" textSize="14" textColor="#ffcdfe" textHaloRadius="$textHaloRadiusNight" textHaloColor="#663e203e" textWrapWidth="35" tag="ferry_route" value="ferry" nameTag="ferry_route_ref"/>
 		<filter minzoom="3" textSize="14" textColor="#9d6c9d" textWrapWidth="35" tag="ferry_route" value="ferry" nameTag="ferry_route_ref"/>
 		
-		<filter nightMode="true" minzoom="14" textSize="12" textColor="#d4e5ff" textHaloRadius="2" textHaloColor="#66002357" textWrapWidth="30" tag="leisure" value="marina"/>
+		<filter nightMode="true" minzoom="14" textSize="12" textColor="#d4e5ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#66002357" textWrapWidth="30" tag="leisure" value="marina"/>
 		<filter minzoom="14" textSize="12" textColor="#0000ff" textWrapWidth="30" tag="leisure" value="marina"/>
 
 		<!-- Cycling: texts for the cycle networks -->
-		<group appMode="bicycle">
+		<group appMode="bicycle" cycleRoutes="true">
 			<filter tag="lcn_network" value="lcn" nameTag="lcn_ref" textMinDistance="150" textColor="#0000ff" textOrder="9"/>
 			<filter tag="rcn_network" value="rcn" nameTag="rcn_ref" textMinDistance="150" textColor="#ff00ff" textOrder="8"/>
 			<filter tag="ncn_network" value="ncn" nameTag="ncn_ref" textMinDistance="150" textColor="#ff4000" textOrder="7"/>
@@ -737,40 +777,40 @@
 		</group>
 
 		<!-- Railroad -->
-		<group textColor="#6666ff" textDy="7" textWrapWidth="25">
-			<filter minzoom="14" maxzoom="14" textSize="12" textHaloRadius="1" textBold="true" tag="railway" value="station" textOrder="5"/>
-				<filter minzoom="15" textSize="13" textHaloRadius="1" textBold="true" tag="railway" value="station" textOrder="5"/>
-			<filter minzoom="14" maxzoom="14" textSize="12" textHaloRadius="1" textBold="true" tag="public_transport" value="station"/>
-				<filter minzoom="15" textSize="13" textHaloRadius="1" textBold="true" tag="public_transport" value="station"/>
-			<filter minzoom="14" textSize="12" textHaloRadius="1" tag="railway" value="halt" textOrder="10"/>
-			<filter minzoom="15" textSize="12" textHaloRadius="1" tag="railway" value="tram_stop"/>
-			<filter minzoom="14" maxzoom="14" textSize="12" textHaloRadius="1" textBold="true" tag="public_transport" value="platform"/>
-				<filter minzoom="15" textSize="13" textHaloRadius="1" textBold="true" tag="public_transport" value="platform"/>
-			<filter minzoom="14" maxzoom="14" textSize="12" textHaloRadius="1" textBold="true" tag="railway" value="platform"/>
-				<filter minzoom="15" textSize="13" textHaloRadius="1" textBold="true" tag="railway" value="platform"/>
+		<group textColor="$railroadTextColorDay" textDy="7" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay">
+			<filter minzoom="14" maxzoom="14" textSize="12" textBold="true" tag="railway" value="station" textOrder="5"/>
+				<filter minzoom="15" textSize="13" textBold="true" tag="railway" value="station" textOrder="5"/>
+			<filter minzoom="14" maxzoom="14" textSize="12" textBold="true" tag="public_transport" value="station"/>
+				<filter minzoom="15" textSize="13" textBold="true" tag="public_transport" value="station"/>
+			<filter minzoom="14" textSize="12" tag="railway" value="halt" textOrder="10"/>
+			<filter minzoom="15" textSize="12" tag="railway" value="tram_stop"/>
+			<filter minzoom="14" maxzoom="14" textSize="12" textBold="true" tag="public_transport" value="platform"/>
+				<filter minzoom="15" textSize="13" textBold="true" tag="public_transport" value="platform"/>
+			<filter minzoom="14" maxzoom="14" textSize="12" textBold="true" tag="railway" value="platform"/>
+				<filter minzoom="15" textSize="13" textBold="true" tag="railway" value="platform"/>
 
 			<filter minzoom="14" textSize="12" tag="aerialway" value="station"/>
-			<groupFilter nightMode="true" textHaloRadius="2" textColor="#d4d4ff" textHaloColor="#994563a7"/>
+			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#d4d4ff" textHaloColor="#994563a7"/>
 		</group>
 		<group>
-			<filter minzoom="17" textSize="13" textColor="#0000ff" textDy="7" textHaloColor="#ffffff" textHaloRadius="1" textBold="true" tag="railway" value="subway_entrance" textOrder="1"/>
-			<groupFilter nightMode="true" textHaloRadius="2" textColor="#bbe4ff" textHaloColor="#bb4563a7"/>
+			<filter minzoom="17" textSize="13" textColor="#0000ff" textDy="7" textHaloColor="#ffffff" textHaloRadius="$textHaloRadiusDay" textBold="true" tag="railway" value="subway_entrance" textOrder="1"/>
+			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#bbe4ff" textHaloColor="#bb4563a7"/>
 		</group>
 
 		<!-- Aeroway -->
 		<group>
-			<filter minzoom="11" textSize="12" textColor="#6692da" textWrapWidth="25" textHaloRadius="1" textDy="7" tag="aeroway" value="aerodrome"/>
-			<filter minzoom="10" textSize="12" textColor="#6692da" textWrapWidth="25" textHaloRadius="1" textBold="true" textDy="7" tag="aeroway" value="airport"/>
+			<filter minzoom="11" textSize="12" textColor="#6692da" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textDy="7" tag="aeroway" value="aerodrome"/>
+			<filter minzoom="10" textSize="12" textColor="#6692da" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textBold="true" textDy="7" tag="aeroway" value="airport"/>
 			<filter minzoom="14" textSize="12" textColor="#333333" textOnPath="true" textMinDistance="50" tag="aeroway" value="runway" nameTag="ref"/>
 			<filter minzoom="15" textSize="12" textColor="#333333" textOnPath="true" textMinDistance="50" tag="aeroway" value="taxiway" nameTag="ref"/>
 			<filter minzoom="17" textSize="12" textColor="#444444" textWrapWidth="10" tag="aeroway" value="gate" nameTag="ref"/>
-			<groupFilter nightMode="true" textColor="#9fd1ff" textHaloRadius="2" textHaloColor="#99444444"/>
+			<groupFilter nightMode="true" textColor="#9fd1ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#99444444"/>
 			<!-- Leave night halo white here, provides more contrast on the mostly grey backgrounds -->
 			<!-- groupFilter nightMode="true" textHaloColor="#cccccc"/ -->
 		</group>
 
 		<!-- Accommodation -->
-		<group textSize="12" textColor="#0066ff" textHaloRadius="1" textDy="7" textWrapWidth="25">
+		<group textSize="12" textColor="$accomodationTextColorDay" textHaloRadius="$textHaloRadiusDay" textDy="7" textWrapWidth="25">
 			<filter minzoom="16" tag="tourism" value="camp_site"/>
 			<filter minzoom="16" tag="tourism" value="caravan_site"/>
 			<filter minzoom="16" tag="tourism" value="alpine_hut"/>
@@ -783,11 +823,11 @@
 			<filter minzoom="16" tag="leisure" value="resort"/>
 			<filter minzoom="16" tag="amenity" value="sanatorium"/>
 			<filter minzoom="16" tag="amenity" value="social_facility"/>
-			<groupFilter nightMode="true" textHaloRadius="2" textColor="#bbe4ff" textHaloColor="#55234ca7"/>
+			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#bbe4ff" textHaloColor="#55234ca7"/>
 		</group>
 
 		<!-- Tourism and Entertainment -->
-		<group textSize="12" textColor="#734a08" textHaloRadius="1" textDy="7" textWrapWidth="20">
+		<group textSize="12" textColor="$tourismTextColorDay" textHaloRadius="$textHaloRadiusDay" textDy="7" textWrapWidth="20">
 			<filter minzoom="17" tag="tourism" value="picnic_site"/>
 			<filter minzoom="17" tag="tourism" value="museum"/>
 			<filter minzoom="17" tag="tourism" value="information"/>
@@ -804,11 +844,11 @@
 			<filter minzoom="17" tag="amenity" value="studio"/>
 			<filter minzoom="17" tag="amenity" value="sauna"/>
 			<filter minzoom="17" tag="amenity" value="brothel"/>
-			<groupFilter nightMode="true" textHaloRadius="2" textColor="#ffe7c2" textHaloColor="#88644e2c"/>
+			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffe7c2" textHaloColor="#88644e2c"/>
 		</group>
 
 		<!-- Historic -->
-		<group textSize="12" textColor="#734a08" textHaloRadius="1" textDy="7" textWrapWidth="20">
+		<group textSize="12" textColor="$historicTextColorDay" textHaloRadius="$textHaloRadiusDay" textDy="7" textWrapWidth="20">
 			<filter minzoom="16" tag="historic" value="castle"/>
 			<filter minzoom="16" tag="historic" value="monument"/>
 			<filter minzoom="17" tag="historic" value="memorial"/>
@@ -817,11 +857,11 @@
 			<filter minzoom="16" tag="historic" value="ruins"/>
 			<filter minzoom="16" tag="historic" value="archaeological_site"/>
 			<filter minzoom="16" tag="historic" value="wreck"/>
-			<groupFilter nightMode="true" textHaloRadius="2" textColor="#ffe7c2" textHaloColor="#88644e2c"/>
+			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffe7c2" textHaloColor="#88644e2c"/>
 		</group>
 
 		<!-- Other Amenities -->
-		<group textSize="12" textColor="#42412a" textHaloRadius="1" textDy="7" textWrapWidth="20">
+		<group textSize="12" textColor="$otherAmenitiesTextColorDay" textHaloColor="$otherAmenitiesTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textDy="7" textWrapWidth="20">
 			<filter minzoom="17" tag="amenity" value="prison"/>
 			<filter minzoom="16" tag="amenity" value="place_of_worship"/>
 
@@ -841,28 +881,28 @@
 			<filter minzoom="16" tag="amenity" value="school"/>
 			<filter minzoom="15" tag="amenity" value="college"/>
 			<filter minzoom="15" textBold="true" tag="amenity" value="university"/>
-			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="2" textHaloColor="#7774734f"/>
+			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#7774734f"/>
 		</group>
 
 		<!-- Man made -->
-		<group>
-			<filter minzoom="16" textSize="12" textColor="#444444" textHaloRadius="1" textDy="7" textWrapWidth="20" tag="man_made" value="windmill"/>
-			<filter minzoom="13" textSize="12" textColor="#ffa0c0" textHaloRadius="1" textBold="true" textWrapWidth="20" tag="military" value="danger_area"/>
-			<groupFilter nightMode="true" textColor="#ffd3dc" textHaloRadius="2" textHaloColor="#55724456"/>
+		<group textHaloRadius="$textHaloRadiusDay">
+			<filter minzoom="16" textSize="12" textColor="#444444" textDy="7" textWrapWidth="20" tag="man_made" value="windmill"/>
+			<filter minzoom="13" textSize="12" textColor="#ffa0c0" textBold="true" textWrapWidth="20" tag="military" value="danger_area"/>
+			<groupFilter nightMode="true" textColor="#ffd3dc" textHaloRadius="$textHaloRadiusNight" textHaloColor="#55724456"/>
 		</group>
 
 		<!-- Buildings -->
 		<group textHaloRadius="$buildingTextHaloRadiusDay" textHaloColor="$buildingTextHaloColorDay">
-			<filter minzoom="16" maxzoom="17" textSize="13" textColor="#444444" textDy="7" textWrapWidth="20" textMinDistance="40" tag="building" value="" textOrder="101"/>
-			<filter minzoom="18" textSize="15" textColor="#444444" textDy="7" textWrapWidth="20" tag="building" value="" textOrder="101"/>
+			<filter minzoom="16" maxzoom="17" textSize="13" textColor="#444444" textDy="-10" textWrapWidth="20" textMinDistance="40" tag="building" value="" textOrder="101"/>
+			<filter minzoom="18" textSize="15" textColor="#444444" textDy="5" textWrapWidth="20" tag="building" value="" textOrder="101"/>
 			<filter minzoom="18" textSize="15" textColor="#444444" textDy="7" textWrapWidth="20" tag="addr:housenumber" value="" textOrder="102"/>
 			<filter minzoom="18" maxzoom="18" textSize="13" textColor="#444444" textDy="7" textWrapWidth="20" tag="addr:flats" value="" textOrder="103" nameTag="ref"/>
 			<filter minzoom="19" textSize="15" textColor="#444444" textDy="7" textWrapWidth="20" tag="addr:flats" value="" textOrder="103" nameTag="ref" nameTag2="addr:flats"/>
-			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="2" textHaloColor="#77666666"/>
+			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77666666"/>
 		</group>
 
 		<!-- Food and Drink -->
-		<group textSize="12" textColor="#444444" textHaloRadius="1" textDy="7" textWrapWidth="20">
+		<group textSize="12" textColor="$foodTextColorDay" textHaloColor="$foodTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textDy="7" textWrapWidth="20">
 			<filter minzoom="17" tag="amenity" value="restaurant"/>
 			<filter minzoom="17" tag="amenity" value="cafe"/>
 			<filter minzoom="17" tag="amenity" value="fast_food"/>
@@ -871,11 +911,11 @@
 			<filter minzoom="17" tag="amenity" value="bar"/>
 			<filter minzoom="17" tag="amenity" value="biergarten"/>
 			<filter minzoom="17" tag="amenity" value="ice_cream"/>
-			<groupFilter nightMode="true" textHaloRadius="2" textColor="#ffffff" textHaloColor="#55777777"/>
+			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffffff" textHaloColor="#55777777"/>
 		</group>
 
 		<!-- Shops -->
-		<group textSize="12" textColor="#993399" textHaloRadius="1" textDy="7" textWrapWidth="15">
+		<group textSize="12" textColor="$shopsTextColorDay" textHaloColor="$shopsTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textDy="7" textWrapWidth="15">
 			<filter minzoom="17" tag="shop" value="alcohol"/>
 			<filter minzoom="17" tag="shop" value="bakery"/>
 			<filter minzoom="17" tag="shop" value="bicycle"/>
@@ -883,6 +923,7 @@
 			<filter minzoom="17" tag="shop" value="butcher"/>
 			<filter minzoom="17" tag="shop" value="car"/>
 			<filter minzoom="17" tag="shop" value="car_repair"/>
+			<filter minzoom="16" tag="shop" value="car_parts"/>
 			<filter minzoom="17" tag="shop" value="clothes"/>
 			<filter minzoom="17" tag="shop" value="computer"/>
 			<filter minzoom="17" tag="shop" value="confectionery"/>
@@ -916,11 +957,11 @@
 			<filter minzoom="17" tag="shop" value="toys"/>
 			<filter minzoom="17" tag="shop" value="vending_machine"/>
 			<filter minzoom="17" tag="shop" value="video"/>
-			<groupFilter nightMode="true" textHaloRadius="2" textColor="#ffe0ff" textHaloColor="#556f3f6e"/>
+			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffe0ff" textHaloColor="#556f3f6e"/>
 		</group>
 
 		<!-- Sport + Leisure -->
-		<group textSize="12" textColor="#004d33" textHaloRadius="1" textDy="7" textWrapWidth="20">
+		<group textSize="12" textColor="$sportTextColorDay" textHaloColor="$sportTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textDy="7">
 			<filter minzoom="16" tag="sport" value="horse_racing"/>
 			<filter minzoom="16" tag="sport" value="soccer"/>
 			<filter minzoom="16" tag="sport" value="skating"/>
@@ -944,7 +985,7 @@
 			<filter minzoom="17" tag="leisure" value="fishing"/>
 			<filter minzoom="17" tag="leisure" value="bird_hide"/>
 			<filter minzoom="15" tag="leisure" value=""/>
-			<groupFilter nightMode="true" textHaloRadius="2" textColor="#9effa9" textHaloColor="#33013b27"/>
+			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#9effa9" textHaloColor="#33013b27"/>
 		</group>
 
 		<!-- type not supported -->
@@ -1463,7 +1504,6 @@
 			<filter minzoom="12" color="#dfd1d6" tag="landuse" value="railway"/>
 			<filter minzoom="12" color="#9d9d6c" tag="landuse" value="landfill"/>
 			<filter minzoom="12" color="#efc8c8" tag="landuse" value="commercial"/>
-			<filter minzoom="12" color="#ffffff" color_2="#ff6600" strokeWidth_2=":2" tag="landuse" value="construction"/>
 			<filter minzoom="10" color="#CDCDCD" tag="landuse" value="residential"/>
 			<filter minzoom="15" color="#f0f0d8" color_2="#d4a89e" strokeWidth_2=":1" tag="amenity" value="kindergarten"/>
 			<filter minzoom="15" color="#f0f0d8" color_2="#d4a89e" strokeWidth_2=":1" tag="amenity" value="school"/>
@@ -1490,6 +1530,10 @@
 			<groupFilter nightMode="true" color="$builtUpAreasColorNight"/>
 		</group>
 
+		<filter tag="landuse" value="construction">
+			<filter minzoom="12" color="$landuseConstructionColorDay" color_2="$landuseConstructionColorDayStroke" strokeWidth_2="0.5" pathEffect_2="8_4"/>
+			<groupFilter nightMode="true" color="$landuseConstructionColorNight" color_2="$landuseConstructionColorNightStroke"/>
+		</filter>
 
 		<!-- Buildings, night color 685454 -->
 		<group>
@@ -1828,13 +1872,14 @@
 
 		<filter tag="highway" value="ford" minzoom="14" color="#000000" strokeWidth="2"/>
 
-		<filter tag="highway" value="construction" minzoom="13" maxzoom="13" color="#79a8fd" strokeWidth="6" cap="ROUND" color_2="#ffffff" strokeWidth_2="4" pathEffect_2="5_14"/>
-		<filter tag="highway" value="construction" minzoom="14" color="#79a8fd" strokeWidth="8" cap="ROUND" color_2="#ffffff" strokeWidth_2="6" pathEffect_2="6_19"/>
-		<group>
-			<filter tag="highway" value="proposed" minzoom="13" maxzoom="13" color="#16333333" strokeWidth="5" cap="ROUND" color_2="#44ffffff" strokeWidth_2="4" pathEffect_2="5_14"/>
-			<filter tag="highway" value="proposed" minzoom="14" color="#16333333" strokeWidth="8" cap="ROUND" color_2="#44ffffff" strokeWidth_2="6" pathEffect_2="6_19"/>
-			<groupFilter nightMode="true" color="#22999999"/>
-		</group>
+		<filter tag="highway" value="construction" minzoom="13" maxzoom="13" color="$constructionRoadColor" strokeWidth="6" cap="ROUND" color_2="" strokeWidth_2="4" pathEffect_2="5_14"/>
+		<filter tag="highway" value="construction" minzoom="14" color="$constructionRoadColor" strokeWidth="8" cap="ROUND" color_2="#ffffff" strokeWidth_2="6" pathEffect_2="6_19"/>
+		<filter tag="highway" value="proposed">
+			<filter minzoom="13" maxzoom="13" strokeWidth="5" strokeWidth_2="4" pathEffect_2="5_14"/>
+			<filter minzoom="14" strokeWidth="8" strokeWidth_2="6" pathEffect_2="6_19"/>
+			<groupFilter color="$proposedRoadColor" color_2="$proposedRoadColor2" cap="ROUND"/>
+			<groupFilter nightMode="true" color="$proposedRoadColorNight"/>
+		</filter>
 
 		<group>
 			<filter contourLines="11" tag="contour" value="elevation" minzoom="11" color="#2Aff7c00" strokeWidth=":1"/>
@@ -2054,7 +2099,7 @@
 		<filter tag="leisure" value="marina" minzoom="13" maxzoom="15" color="#0000ff" strokeWidth="1" pathEffect="6_2"/>
 			<filter tag="leisure" value="marina" minzoom="16" color="#0000ff" strokeWidth="2" pathEffect="6_2"/>
 
-		<group appMode="bicycle">
+		<group appMode="bicycle" cycleRoutes="true">
 			<filter tag="lcn_network" value="lcn" color="#400000ff"/>
 			<filter tag="rcn_network" value="rcn" color="#40ff00ff"/>
 			<filter tag="ncn_network" value="ncn" color="#40ff4000"/>
