@@ -233,6 +233,7 @@ hours(S, []) :- S < 60.
 hours(S, [Ogg, Hs]) :- H is S div 60, plural_hs(H, Hs), pnumber(H, Ogg).
 time(Sec) -- ['less_a_minute.ogg'] :- Sec < 30.
 time(Sec) -- [H, Ogg, Mn] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, plural_mn(St, Mn), pnumber(St, Ogg).
+time(Sec) -- [Ogg, Mn] :- not(tts), Sec < 300, St is Sec/60, plural_mn(St, Mn), pnumber(St, Ogg).
 time(Sec) -- [H, Ogg, Mn] :- not(tts), S is round(Sec/300.0)*5, hours(S, H), St is S mod 60, plural_mn(St, Mn), pnumber(St, Ogg).
 
 plural_hs(D, 'hour.ogg') :- 1 is D mod 10, R100 is D mod 100,(R100 > 20; R100 < 10).
