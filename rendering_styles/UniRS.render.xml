@@ -30,7 +30,31 @@
 	<renderingConstant name="primaryRoadColor" value="#FFAA80"/>
 	<renderingConstant name="secondaryRoadColor" value="#ffd080"/>
 	<renderingConstant name="tertiaryRoadColor" value="#ffff80"/>
-	
+
+	<renderingConstant name="textHaloRadiusDay" value="1"/>
+	<renderingConstant name="textHaloRadiusNight" value="2"/> <!-- delete on next osmand release -->
+
+	<renderingConstant name="highwayTrackTextHaloRadiusDay" value="1"/>
+
+	<renderingConstant name="placeCityVillageTextColorDay" value="#000000"/>
+	<renderingConstant name="placeSuburbLocalityTextColorDay" value="#000000"/>
+	<renderingConstant name="placeTextHaloRadiusDay" value="1"/>
+	<renderingConstant name="placeTextHaloColorDay" value="#ffffff"/>
+
+	<renderingConstant name="placeHamletMinZoom" value="11"/>
+	<renderingConstant name="placeSuburbMinZoom" value="11"/>
+	<renderingConstant name="placeNeighbourhoodMinZoom" value="13"/>
+	<renderingConstant name="placeLocalityMinZoom" value="12"/>
+
+	<renderingConstant name="towerCommunicationMinZoom" value="14"/>
+
+	<renderingConstant name="buildingTextHaloRadiusDay" value="1"/>
+	<renderingConstant name="buildingTextHaloColorDay" value="#bbffffff"/>
+
+	<renderingConstant name="waterTextHaloRadiusDay" value="1"/>
+	<renderingConstant name="waterTextColorDay" value="#2375aa"/>
+	<renderingConstant name="waterTextHaloColorDay" value="#bbddf1fd"/>
+
 	<renderingConstant name="accessPrivateColor" value="#feb3b3"/>
 	<renderingConstant name="accessPrivateNightAreaColor" value="#41536c"/>
 	<renderingConstant name="accessDestinationColor" value="#8db8d3"/>
@@ -124,8 +148,9 @@
 			<groupFilter textSize="10" minzoom="16" textColor="#000000" textHaloRadius="1" textDy="7"/>
 		</group> -->
 
+<!-- START legacy code (delete on next osmand release) -->
 		<group textHaloRadius="1">
-			<group> <!-- delete group on next osmand release -->
+			<group>
 				<filter tag="highway" value="motorway" nameTag="" textHaloColor="$motorwayRoadColor" textOrder="6"/>
 				<filter tag="highway" value="motorway_link" nameTag="" textHaloColor="$motorwayRoadColor" textOrder="7"/>
 				<filter tag="highway" value="trunk" nameTag="" textHaloColor="$trunkRoadColor" textOrder="6"/>
@@ -144,7 +169,7 @@
 				</groupFilter>
 			</group>
 
-			<group> <!-- delete group on next osmand release -->
+			<group>
 				<filter tag="highway" value="tertiary" nameTag="" textHaloColor="$tertiaryRoadColor" textOrder="8"/>
 				<filter tag="highway" value="tertiary_link" nameTag="" textHaloColor="$tertiaryRoadColor" textOrder="9"/>
 				<groupFilter textOnPath="true" nameTag="">
@@ -259,7 +284,7 @@
 			<filter minzoom="13" textSize="13" tag="place" value="isolated_dwelling" textOrder="13"/>
 			<filter minzoom="11" textSize="15" tag="place" value="suburb" textOrder="12"/>
 			<filter minzoom="13" textSize="13" tag="place" value="neighbourhood" textOrder="13"/>
-			<filter minzoom="11" textSize="13" tag="place" value="locality" textColor="#868686" textOrder="15"/>
+<!--			<filter minzoom="11" textSize="13" tag="place" value="locality" textColor="#868686" textOrder="15"/>-->
 			<filter minzoom="11" textSize="14" tag="place" value="island" textOrder="10"/>
 			<groupFilter nightMode="true" textColor="#ffffff" textHaloColor="#77777777"/>
 			<groupFilter nightMode="true" tag="place" value="locality" textColor="#aaaaaa" textHaloColor="#77444444"/>
@@ -298,6 +323,9 @@
 		<filter minzoom="19" tag="addr:flats" value="" textSize="10" textColor="#2f4154" textHaloRadius="1" textDy="7" textWrapWidth="20" textOrder="103" nameTag="ref" nameTag2="addr:flats"/>
 		<filter nightMode="true" minzoom="18" maxzoom="18" tag="addr:flats" value="" textSize="10" textColor="#cae4ff" textHaloColor="#777777" textDy="7" textWrapWidth="20" textOrder="103" nameTag="ref"/>
 		<filter nightMode="true" minzoom="19" textSize="10" tag="addr:flats" value="" textColor="#cae4ff" textHaloColor="#777777" textDy="7" textWrapWidth="20" textOrder="103" nameTag="ref" nameTag2="addr:flats"/>
+
+
+
 
 		<!-- Outline added to some landuses fonts. Added support of some landuse names. -->
 		<group textSize="12" textColor="#444444" textHaloRadius="1" textDy="7" textWrapWidth="20">
@@ -398,10 +426,15 @@
 			<filter minzoom="14" textSize="12" textColor="#6699cc" textWrapWidth="20" tag="natural" value="beach" textOrder="10"/>
 			<groupFilter nightMode="true" textHaloColor="#cccccc"/>
 		</group>
+		
+<!-- end legacy code -->
+
+		<group textColor="#000000" textWrapWidth="20" textHaloRadius="$textHaloRadiusDay">
+			<filter minzoom="$placeLocalityMinZoom" textSize="11" tag="place" value="locality" textColor="$placeSuburbLocalityTextColorDay" textOrder="15"/>
+			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
+		</group>
 
 		<filter minzoom="12" maxzoom="14" tag="landuse" value="military" disable="true"/>
-		<filter minzoom="15" maxzoom="15" tag="amenity" value="college" disable="true"/>
-		<filter minzoom="15" maxzoom="15" tag="amenity" value="university" disable="true"/>
 
 		<!-- Less intrusive shops and foods section -->
 		<group lessIntrusiveShopsFood="true" minzoom="15" maxzoom="18" disable="true">

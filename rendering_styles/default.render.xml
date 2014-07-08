@@ -143,14 +143,23 @@
 	<renderingConstant name="landuseConstructionColorNightStroke" value="#aaaaaa"/>
 
 	<!-- Text -->
-	<renderingConstant name="highwayResidentialTextHaloRadiusDay" value="1"/>
 	<renderingConstant name="highwayResidentialTextHaloColorDay" value="#ffffff"/>
 	<renderingConstant name="highwayServiceTextHaloColorDay" value="#ffffff"/>
 	<renderingConstant name="highwayTrackTextHaloRadiusDay" value="0"/>
 	<renderingConstant name="highwayTrackTextHaloColorDay" value="#ffffff"/>
 
+	<renderingConstant name="placeCityVillageTextColorDay" value="#000000"/>
+	<renderingConstant name="placeSuburbLocalityTextColorDay" value="#777777"/>
 	<renderingConstant name="placeTextHaloRadiusDay" value="0"/>
 	<renderingConstant name="placeTextHaloColorDay" value="#77eeeeee"/>
+
+	<renderingConstant name="placeHamletMinZoom" value="12"/>
+	<renderingConstant name="placeSuburbMinZoom" value="12"/>
+	<renderingConstant name="placeNeighbourhoodMinZoom" value="13"/>
+	<renderingConstant name="placeLocalityMinZoom" value="13"/>
+
+	<renderingConstant name="towerCommunicationMinZoom" value="15"/>
+
 	<renderingConstant name="buildingTextHaloRadiusDay" value="1"/>
 	<renderingConstant name="buildingTextHaloColorDay" value="#66ffffff"/>
 	
@@ -546,7 +555,7 @@
 		</group>
 
 		<group textColor="#000000">
-			<group textHaloRadius="$highwayResidentialTextHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay">
+			<group textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay">
 				<filter tag="highway" value="road" textOrder="9"/>
 				<filter tag="highway" value="unclassified" textOrder="9"/>
 				<filter tag="highway" value="residential" textOrder="9"/>
@@ -554,7 +563,7 @@
 				<filter tag="area:highway" value="residential" textOrder="9"/>
 				<groupFilter nightMode="true" textBold="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#88666666"/>
 			</group>
-			<group textHaloRadius="$highwayResidentialTextHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay">
+			<group textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay">
 				<filter tag="highway" value="service" textOrder="10"/>
 				<filter tag="highway" value="living_street" textOrder="10"/>
 				<filter tag="highway" value="pedestrian" textOrder="11"/>
@@ -562,7 +571,7 @@
 				<filter tag="area:highway" value="pedestrian" textOrder="11"/>
 				<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 			</group>
-			<group textHaloRadius="$highwayResidentialTextHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay">
+			<group textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay">
 				<filter tag="highway" value="services" textOrder="10"/>
 				<filter tag="highway" value="ford" textOrder="10"/>
 				<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
@@ -572,7 +581,7 @@
  				<groupFilter nightMode="true" textHaloRadius="1" textHaloColor="#99bdff"/>
 			</group>
 			<group>
-				<filter tag="highway" value="proposed" textHaloRadius="$highwayResidentialTextHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" textOrder="9"/>
+				<filter tag="highway" value="proposed" textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" textOrder="9"/>
 				<groupFilter nightMode="true" textHaloRadius="1" textHaloColor="#aa777777"/>
 			</group>
 			<groupFilter textOnPath="true" nameTag="" >
@@ -635,7 +644,7 @@
 
 		<!-- county not really useful here: filter minzoom="9" textSize="13" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="county" nameTag=""/ -->
 
-		<group textColor="#000000" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay">
+		<group textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay">
 			<filter minzoom="4" maxzoom="5" textSize="14" textDy="1" tag="osmand_place_basemap" value="city" textOrder="4" nameTag=""/>
 			<filter minzoom="6" maxzoom="7" textSize="20" textBold="true" textDy="1" tag="osmand_place_basemap" value="city" textOrder="3" nameTag=""/>
 			<filter minzoom="8" maxzoom="12" textSize="20" textBold="true" textDy="1" tag="osmand_place_basemap" value="city" textOrder="4" nameTag=""/>
@@ -644,12 +653,12 @@
 			<filter minzoom="11" textSize="14" textBold="true" textDy="1" tag="place" value="village" textOrder="10" nameTag=""/>
 			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 		</group>
-		<group textColor="#777777" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay">
-			<filter minzoom="12" textSize="13" tag="place" value="hamlet" textOrder="12"/>
+		<group textColor="$placeSuburbLocalityTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay">
+			<filter minzoom="$placeHamletMinZoom" textSize="13" tag="place" value="hamlet" textOrder="12"/>
 			<filter minzoom="13" textSize="13" tag="place" value="isolated_dwelling" textOrder="13"/>
- 			<filter minzoom="12" textSize="14" tag="place" value="suburb" textOrder="12"/>
- 			<filter minzoom="13" textSize="13" tag="place" value="neighbourhood" textOrder="13"/>
-			<filter minzoom="13" textSize="13" tag="place" value="locality" textOrder="15"/>
+ 			<filter minzoom="$placeSuburbMinZoom" textSize="14" tag="place" value="suburb" textOrder="12"/>
+ 			<filter minzoom="$placeNeighbourhoodMinZoom" textSize="13" tag="place" value="neighbourhood" textOrder="13"/>
+			<filter minzoom="$placeLocalityMinZoom" textSize="13" tag="place" value="locality" textOrder="15"/>
 			<filter minzoom="11" textSize="14" tag="place" value="island" textOrder="10"/>
 			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 		</group>
@@ -716,6 +725,8 @@
 			<filter minzoom="13" tag="landuse" value="railway"/>
 			<filter minzoom="13" tag="landuse" value="residential"/>
 			<filter minzoom="13" tag="landuse" value="quarry"/>
+			<filter minzoom="15" tag="power" value="station"/>
+			<filter minzoom="15" tag="power" value="substation"/>
 			<groupFilter nightMode="true" textColor="#ffffff" textHaloColor="#77777777"/>
 		</group>
 		<group>
@@ -809,10 +820,14 @@
 			<filter minzoom="10" textSize="12" textColor="#6692da" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textBold="true" textDy="7" tag="aeroway" value="airport"/>
 			<filter minzoom="14" textSize="12" textColor="#333333" textOnPath="true" textMinDistance="50" tag="aeroway" value="runway" nameTag="ref"/>
 			<filter minzoom="15" textSize="12" textColor="#333333" textOnPath="true" textMinDistance="50" tag="aeroway" value="taxiway" nameTag="ref"/>
-			<filter minzoom="17" textSize="12" textColor="#444444" textWrapWidth="10" tag="aeroway" value="gate" nameTag="ref"/>
-			<groupFilter nightMode="true" textColor="#9fd1ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#99444444"/>
+			<filter minzoom="17" textSize="12" textColor="#333366" textHaloRadius="$textHaloRadiusDay" textHaloColor="#99a5e3fd" textWrapWidth="10" textDy="7" tag="aeroway" value="gate" nameTag="ref"/>
+			<groupFilter nightMode="true" textColor="#c7e4ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#99444444"/>
 			<!-- Leave night halo white here, provides more contrast on the mostly grey backgrounds -->
 			<!-- groupFilter nightMode="true" textHaloColor="#cccccc"/ -->
+		</group>
+		<group>
+			<filter tag="aeroway" value="terminal" minzoom="15" textSize="12" textColor="#333333" textWrapWidth="25" textHaloRadius="1" textDy="7"/>
+			<groupFilter nightMode="true" textColor="#c7e4ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#881f4568"/>
 		</group>
 
 		<!-- Accommodation -->
@@ -885,8 +900,8 @@
 
 			<filter minzoom="16" tag="amenity" value="kindergarten"/>
 			<filter minzoom="16" tag="amenity" value="school"/>
-			<filter minzoom="15" tag="amenity" value="college"/>
-			<filter minzoom="15" textBold="true" tag="amenity" value="university"/>
+			<filter minzoom="16" tag="amenity" value="college"/>
+			<filter minzoom="16" textBold="true" tag="amenity" value="university"/>
 			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#7774734f"/>
 		</group>
 
@@ -895,6 +910,10 @@
 			<filter minzoom="16" textSize="12" textColor="#444444" textDy="7" textWrapWidth="20" tag="man_made" value="windmill"/>
 			<filter minzoom="13" textSize="12" textColor="#ffa0c0" textBold="true" textWrapWidth="20" tag="military" value="danger_area"/>
 			<groupFilter nightMode="true" textColor="#ffd3dc" textHaloRadius="$textHaloRadiusNight" textHaloColor="#55724456"/>
+		</group>
+		<group textHaloRadius="$textHaloRadiusDay">
+			<filter minzoom="16" textSize="11" textColor="#444444" textDy="9" tag="man_made" value="tower" additional="tower:type=communication"/>
+			<groupFilter nightMode="true" textColor="#eeeeee" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 		</group>
 
 		<!-- Buildings -->
@@ -1158,7 +1177,7 @@
 		<filter minzoom="15" icon="aeroway_helipad" tag="aeroway" value="helipad"/>
 		<filter minzoom="10" icon="aeroway_aerodrome" tag="aeroway" value="aerodrome" iconOrder="71"/>
 		<filter minzoom="9" icon="aeroway_airport" tag="aeroway" value="airport" iconOrder="70"/>
-		<filter minzoom="18" icon="aeroway_gate" tag="aeroway" value="gate" iconVisibleSize="7"/>
+		<filter minzoom="17" icon="aeroway_gate" tag="aeroway" value="gate" iconVisibleSize="7"/>
 
 		<!-- Barriers -->
 		<group iconOrder="87" minzoom="16">
@@ -1307,7 +1326,7 @@
 		<group iconOrder="60">
 			<filter minzoom="16" icon="man_made_water_tower" tag="man_made" value="water_tower"/>
 			<filter minzoom="16" icon="man_made_windmill" tag="man_made" value="windmill"/>
-			<filter minzoom="15" icon="tower_type_communication" tag="man_made" value="tower" additional="tower:type=communication" iconVisibleSize="7"/>
+			<filter minzoom="$towerCommunicationMinZoom" icon="tower_type_communication" tag="man_made" value="tower" additional="tower:type=communication" iconVisibleSize="7"/>
 		</group>
 
 		<!-- Food and Drink -->
@@ -1442,8 +1461,8 @@
 			<filter minzoom="12" tag="aeroway" value="airport"/>
 			<groupFilter nightMode="true" color="#80a0a0a9"/>
 		</group>
-		<filter minzoom="14" tag="aeroway" value="terminal" color="#cc99ff">
-			<filter nightMode="true" color="#685454"/>
+		<filter minzoom="14" tag="aeroway" value="terminal" color="#cc99ff" color_2="#66444444" strokeWidth_2="0.3" >
+			<filter nightMode="true" color="#7951a2" color_2="#a0a0a0" strokeWidth_2="0.3"/>
 		</filter>
 		<filter minzoom="13" tag="aeroway" value="apron" color="#e9d1ff">
 			<filter nightMode="true" color="#887c88"/>
