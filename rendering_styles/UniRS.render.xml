@@ -30,6 +30,10 @@
 	<renderingConstant name="primaryRoadColor" value="#FFAA80"/>
 	<renderingConstant name="secondaryRoadColor" value="#ffd080"/>
 	<renderingConstant name="tertiaryRoadColor" value="#ffff80"/>
+	<renderingConstant name="pedestrianRoadModeColorDay" value="#ceffe6"/><!--cefff2-->
+	<renderingConstant name="pedestrianRoadModeColorNight" value="#487d77"/>
+	<renderingConstant name="pedestrianRoadColorStrokeDay" value="#00de98"/>
+	<renderingConstant name="pedestrianRoadColorStrokeNight" value="#00b063"/>
 
 	<renderingConstant name="textHaloRadiusDay" value="1"/>
 	<renderingConstant name="textHaloRadiusNight" value="2"/>
@@ -164,6 +168,25 @@
 		</group>
 
 		<filter minzoom="12" maxzoom="14" tag="landuse" value="military" disable="true"/>
+		
+		<group textColor="#000000" textDy="-2">
+			<group textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffffff">
+				<filter tag="highway" value="pedestrian" textOrder="11"/>
+				<filter tag="area:highway" value="pedestrian" textOrder="11"/>
+				<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
+				<groupFilter appMode="pedestrian" textHaloColor="$pedestrianRoadModeColorDay">
+					<filter nightMode="true" textHaloColor="$pedestrianRoadModeColorNight"/>
+				</groupFilter>
+			</group>
+			<groupFilter textOnPath="true" nameTag="" >
+				<filter minzoom="14" maxzoom="14" textSize="12"/>
+				<filter minzoom="15" maxzoom="15" textSize="13"/>
+				<filter minzoom="16" maxzoom="16" textSize="14"/>
+				<filter minzoom="17" maxzoom="17" textSize="16"/>
+				<filter minzoom="18" textSize="18"/>
+			</groupFilter>
+		</group>
+		<filter appMode="pedestrian" tag="highway" value="pedestrian" textHaloColor="$pedestrianRoadModeColorDay"/>
 
 		<!-- Less intrusive shops and foods section -->
 <!--		<group lessIntrusiveShopsFood="true" minzoom="15" maxzoom="18" disable="true">
@@ -255,6 +278,7 @@
 			<filter additional="access=no" icon="amenity_parking_private" minzoom="17"/>
 			<filter additional="fee=yes" icon="amenity_parking_paid" minzoom="17"/>
 			<filter minzoom="15" maxzoom="16" disable="true"/>
+			<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
 		</filter>
 
 		<filter minzoom="14" icon="amenity_drinking_water" tag="natural" value="spring"/>
@@ -287,6 +311,8 @@
 		<group iconOrder="87" minzoom="16">
 			<filter icon="barrier_bollard" tag="barrier" value="bollard"/>
 			<filter icon="barrier_block" tag="barrier" value="block"/>
+			<groupFilter nightMode="false" minzoom="18" shield="white_gray_square_shield"/>
+			<groupFilter nightMode="true" minzoom="18" shield="gray_gray_square_shield"/>
 			<groupFilter minzoom="15" maxzoom="15" icon="barrier_small_red_3" iconVisibleSize="0"/>
 			<groupFilter minzoom="16" maxzoom="17" icon="barrier_small_red_2" iconVisibleSize="0"/>
 			<groupFilter appMode="default" minzoom="14" maxzoom="15" icon=""/>
@@ -736,15 +762,16 @@
 		</group>
 		
 		<group>
+			<filter tag="highway" value="pedestrian"/>
 			<filter tag="area:highway" value="pedestrian"/>
-			<groupFilter>
+			<groupFilter color_2="$pedestrianRoadColorStrokeDay">
 				<filter appMode="car" color="#f0e0d8" color_2="$null" shadowRadius=":0"/>
-				<filter appMode="pedestrian" minzoom="16" color="#d1fcdd" color_2="#10ae00" strokeWidth_2=":1"/>
-				<filter minzoom="16" color="#ececec" color_2="#10ae00" strokeWidth_2=":1"/>
+				<filter appMode="pedestrian" minzoom="16" color="$pedestrianRoadModeColorDay" strokeWidth_2=":1"/>
+				<filter minzoom="16" color="#ececec" strokeWidth_2=":1"/>
 			</groupFilter>
-			<groupFilter nightMode="true" color="#999999"/>
+			<groupFilter nightMode="true" color="#999999" color_2="$pedestrianRoadColorStrokeNight"/>
 			<groupFilter nightMode="true" appMode="car" color="#25999999"/>
-			<groupFilter nightMode="true" appMode="pedestrian" color="#839789"/>
+			<groupFilter nightMode="true" appMode="pedestrian" color="$pedestrianRoadModeColorNight"/>
 		</group>
 
 		<group>
@@ -757,15 +784,16 @@
 		</group>
 
 		<group>
+			<filter tag="highway" value="footway"/>
 			<filter tag="area:highway" value="footway"/>
 			<groupFilter>
 				<filter appMode="car" color="#F7D4D4" color_2="$null" shadowRadius=":0"/>
-				<filter appMode="pedestrian" minzoom="16" color="#d1fcdd" color_2="#0033ff" strokeWidth_2="0.2"/>
+				<filter appMode="pedestrian" minzoom="16" color="$pedestrianRoadModeColorDay" color_2="#0033ff" strokeWidth_2="0.2"/>
 				<filter minzoom="16" color="#ececec" color_2="#0033ff" strokeWidth_2="0.2"/>
 			</groupFilter>
 			<groupFilter nightMode="true" color="#999999" color_2="#c79f00"/>
 			<groupFilter nightMode="true" appMode="car" color="#25999999"/>
-			<groupFilter nightMode="true" appMode="pedestrian" color="#839789"/>
+			<groupFilter nightMode="true" appMode="pedestrian" color="$pedestrianRoadModeColorNight"/>
 		</group>
 
 		<group>
@@ -1048,14 +1076,15 @@
 					<groupFilter additional="access=no" color_3="$null"/>
 					<groupFilter additional="access=private" color_3="$null"/>
 				</groupFilter>
-				<groupFilter appMode="car" tag="highway" value="pedestrian" color="#f0e0d8" shadowRadius="2" shadowColor="#444444"/>
-				<groupFilter appMode="pedestrian" tag="highway" value="pedestrian" color="#d1fcdd"/>
-				<groupFilter appMode="car" nightMode="true" tag="highway" value="pedestrian" color="#25999999"/>
-				<groupFilter appMode="pedestrian" nightMode="true" tag="highway" value="pedestrian" color="#839789"/>
-				<groupFilter tag="highway" value="pedestrian" shadowColor="#10ae00"/>
-				<groupFilter nightMode="true" tag="highway" value="pedestrian" shadowColor="#10ae00"/>
-				<groupFilter appMode="bicycle" minzoom="13" maxzoom="13" strokeWidth="1" shadowRadius=":1" shadowColor="#888888"/>
+				<groupFilter tag="highway" value="pedestrian" shadowColor="$pedestrianRoadColorStrokeDay">
+					<groupFilter appMode="car" color="#f0e0d8" shadowRadius="0" shadowColor="#444444"/>
+					<groupFilter appMode="car" nightMode="true" color="#25999999" shadowRadius="0"/>
+					<groupFilter appMode="pedestrian" color="$pedestrianRoadModeColorDay" shadowRadius=":1"/>
+					<groupFilter appMode="pedestrian" nightMode="true" color="$pedestrianRoadModeColorNight"/>
+					<groupFilter nightMode="true" shadowColor="$pedestrianRoadColorStrokeNight"/>
+				</groupFilter>
 				<groupFilter appMode="car" minzoom="13" maxzoom="13" strokeWidth="1" shadowRadius=":1" shadowColor="#888888"/>
+				<groupFilter appMode="bicycle" minzoom="13" maxzoom="13" strokeWidth="1" shadowRadius=":1" shadowColor="#888888"/>
 				<groupFilter appMode="bicycle">
 					<filter nightMode="true" additional="bicycle=no" color="#33666666" color_0="#33777777"/>
 					<filter additional="bicycle=no" color="#33ffffff" color_0="#33888888"/>
