@@ -1,14 +1,14 @@
 %%% !!! THIS IS GENERATED FILE !!! Modify ttsconfig.p
-﻿% for turbo-prolog
+% for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog
 :- op(500, xfy,'--').
 
-version(0).
+version(103).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
-language('fa').
+language('en').
 fest_language('cmu_us_awb_arctic_clunits').
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES:
@@ -16,7 +16,7 @@ fest_language('cmu_us_awb_arctic_clunits').
 % (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
 % (X) arrival
 % (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
-% (X) special grammar: onto_street / on_street / to_street
+% (X) special grammar: onto / on / to Street fur turn and follow commands
 % (N/A) special grammar: nominative/dativ for distance measure
 % (N/A) special grammar: imperative/infinitive distincion for turns
 % (X) distance measure: meters / feet / yard support
@@ -27,88 +27,89 @@ fest_language('cmu_us_awb_arctic_clunits').
 
 
 % ROUTE CALCULATED
-string('route_is.ogg', 'مسافرت ').
+string('route_is.ogg', 'سفر ').
 string('route_calculate.ogg', 'محاسبه مسیر').
-string('distance.ogg', 'مسافت ').
+string('distance.ogg', 'مسافت').
 
 % LEFT/RIGHT
-string('prepare.ogg', 'آماده شدن برای ').
+string('prepare.ogg', 'آماده ').
 string('after.ogg', 'بعد از ').
 
-string('left.ogg', 'گردش به چپ ').
-string('left_sh.ogg', 'گردش کامل به چپ ').
-string('left_sl.ogg', 'کمی گردش به چپ ').
-string('right.ogg', 'گردش به راست ').
-string('right_sh.ogg', 'گردش کامل به سمت راست ').
-string('right_sl.ogg', 'کمی گردش به سمت راست ').
-string('left_keep.ogg', 'ادامه مسیر در سمت چپ').
-string('right_keep.ogg', 'ادامه مسیر در سمت راست').
+string('left.ogg', 'سمت چپ ').
+string('left_sh.ogg', 'turn sharply left ').
+string('left_sl.ogg', 'turn slightly left ').
+string('right.ogg', 'سمت راست ').
+string('right_sh.ogg', 'turn sharply right ').
+string('right_sl.ogg', 'turn slightly right ').
+string('left_keep.ogg', 'ادامه حرکت از سمت چپ').
+string('right_keep.ogg', 'ادامه حرکت از سمت راست').
 % if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
-string('make_uturn.ogg', 'دور برگردان ').
-string('make_uturn_wp.ogg', 'در صورت امکان از اولین دور برگردان دور بزنید ').
+string('make_uturn.ogg', 'Make a U turn ').
+string('make_uturn_wp.ogg', 'When possible, please make a U turn ').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'نزدیک شدن به میدان ').
-string('roundabout.ogg', 'ورود به میدان, ').
-string('then.ogg', ', سپس ').
-string('and.ogg', 'و ').
-string('take.ogg', 'را ').
-string('exit.ogg', 'خروج ').
+string('prepare_roundabout.ogg', 'Prepare to enter a roundabout ').
+string('roundabout.ogg', 'enter the roundabout, ').
+string('then.ogg', ', then ').
+string('and.ogg', 'and ').
+string('take.ogg', 'take the ').
+string('exit.ogg', 'exit ').
 
-string('1st.ogg', 'اولین ').
-string('2nd.ogg', 'دومین ').
-string('3rd.ogg', 'سومین ').
-string('4th.ogg', 'چهارمین ').
-string('5th.ogg', 'پنجمین ').
-string('6th.ogg', 'ششمین ').
-string('7th.ogg', 'هفتمین ').
-string('8th.ogg', 'هشتمین ').
-string('9th.ogg', 'نهمین ').
-string('10th.ogg', 'دهمین ').
-string('11th.ogg', 'یازدهمین ').
-string('12th.ogg', 'دوازدهمین ').
-string('13th.ogg', 'سیزدهمین ').
-string('14th.ogg', 'چهاردهمین ').
-string('15th.ogg', 'پانزدهمین ').
-string('16th.ogg', 'شانزدهمین ').
-string('17th.ogg', 'هفدهمین ').
+string('1st.ogg', 'اول ').
+string('2nd.ogg', 'دوم ').
+string('3rd.ogg', 'سوم ').
+string('4th.ogg', 'چهارم ').
+string('5th.ogg', 'پنجم ').
+string('6th.ogg', 'ششم ').
+string('7th.ogg', 'هفتم ').
+string('8th.ogg', 'هشتم ').
+string('9th.ogg', 'نهم ').
+string('10th.ogg', 'دهم ').
+string('11th.ogg', 'یازدهم ').
+string('12th.ogg', 'دوازدهم ').
+string('13th.ogg', 'سیزدهم ').
+string('14th.ogg', 'چهاردهم ').
+string('15th.ogg', 'پانزدهم ').
+string('16th.ogg', 'شانزدهم ').
+string('17th.ogg', 'هفدهم ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'مستقیم حرکت کنید ').
-string('follow.ogg', 'جاده را دنبال کنید').
+string('go_ahead.ogg', 'Go straight ahead ').
+string('follow.ogg', 'Follow the course of the road for').
 
 % ARRIVE
-string('and_arrive_destination.ogg', 'و به مقصد رسیدید ').
-string('reached_destination.ogg','شما به مقصد رسیدید ').
-string('and_arrive_intermediate.ogg', 'و به ایستگاه بین راهی رسیدید ').
-string('reached_intermediate.ogg', 'شما به ایستگاه بین راهی رسیدید ').
-string('and_arrive_waypoint.ogg', 'وارد ایستگاه بین راهی فایل جی پی ایکس شدید ').
-string('reached_waypoint.ogg', 'شما به ایستگاه بین راهی فایل جی پی ایکس رسیدید ').
+string('and_arrive_destination.ogg', 'and arrive at your destination ').
+string('reached_destination.ogg','you have reached your destination ').
+string('and_arrive_intermediate.ogg', 'and arrive at your waypoint ').
+string('reached_intermediate.ogg', 'you have reached your waypoint ').
+string('and_arrive_waypoint.ogg', 'and arrive at your GPX waypoint ').
+string('reached_waypoint.ogg', 'you have reached your GPX waypoint ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'توجه, ').
 string('location_lost.ogg', 'قطع سیگنال جی پی اس ').
-string('location_recovered.ogg', 'اتصال سیگنال جی پی اس ').
-string('off_route.ogg', 'شما از مسیر خارج شدید').
-string('exceed_limit.ogg', 'سرعت شما بیش از حد مجاز می باشد ').
+string('location_recovered.ogg', 'اتصال به ماهواره جی پی اس ').
+string('off_route.ogg', 'you have been off the route for').
+string('exceed_limit.ogg', 'سرعت شما بیش از حد مجاز است').
 
 % STREET NAME GRAMMAR
-string('onto.ogg', 'بر روی ').
-string('on.ogg', 'بر ').
+string('onto.ogg', 'روی ').
+string('on.ogg', 'در ').
 string('to.ogg', 'به ').
+string('to2.ogg', 'سمت ').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'متر ').
-string('around_1_kilometer.ogg', 'حدود 1 کیلومتر ').
-string('around.ogg', 'حدود ').
+string('around_1_kilometer.ogg', 'حدود یک کیلومتر ').
+string('around.ogg', 'بعد از ').
 string('kilometers.ogg', 'کیلومتر ').
 
 string('feet.ogg', 'فوت ').
-string('1_tenth_of_a_mile.ogg', 'یک دهم مایل').
-string('tenths_of_a_mile.ogg', 'دهم مایل').
-string('around_1_mile.ogg', 'حدود 1 مایل ').
+string('1_tenth_of_a_mile.ogg', 'یک دهم فوت').
+string('tenths_of_a_mile.ogg', 'ده مایل').
+string('around_1_mile.ogg', 'حدود یک مایل ').
 string('miles.ogg', 'مایل ').
 
 string('yards.ogg', 'یارد ').
@@ -119,8 +120,7 @@ string('1_hour.ogg', 'یک ساعت ').
 string('hours.ogg', 'ساعت ').
 string('less_a_minute.ogg', 'کمتر از یک دقیقه ').
 string('1_minute.ogg', 'یک دقیقه ').
-string('minutes.ogg', 'دقیقه ').
-
+string('minutes.ogg', 'دقیقه').
 
 %% COMMAND BUILDING / WORD ORDER
 turn('left', ['left.ogg']).
@@ -134,30 +134,39 @@ turn('right_keep', ['right_keep.ogg']).
 bear_left(_Street) -- ['left_keep.ogg'].
 bear_right(_Street) -- ['right_keep.ogg'].
 
-onto_street('', []).
-onto_street(Street, ['onto.ogg', Street]) :- tts.
-onto_street(_Street, []) :- not(tts).
-on_street('', []).
-on_street(Street, ['on.ogg', Street]) :- tts.
-on_street(_Street, []) :- not(tts).
-to_street('', []).
-to_street(Street, ['to.ogg', Street]) :- tts.
-to_street(_Street, []) :- not(tts).
+% cut_part_street(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
+cut_part_street(voice(['', '', Dest], _), Dest).
+% cut_part_street(voice(['', Name, _], _), Name). % not necessary
+cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
 
-prepare_turn(Turn, Dist, Street) -- ['prepare.ogg', M, 'after.ogg', D | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
-turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
-turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), onto_street(Street, Sgen).
+turn_street('', []).
+turn_street(voice(['','',''],_), []).
+turn_street(Street, ['to2.ogg', SName]) :- tts, Street = voice(['', '', D], _), cut_part_street(Street, SName).
+turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), cut_part_street(Street, SName).
+turn_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), cut_part_street(Street, SName).
+turn_street(_Street, []) :- not(tts).
 
-prepare_make_ut(Dist, Street) -- ['prepare.ogg', 'make_uturn.ogg', 'after.ogg', D | Sgen] :- distance(Dist) -- D, on_street(Street, Sgen).
-make_ut(Dist, Street) --  ['after.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist) -- D, on_street(Street, Sgen).
-make_ut(Street) -- ['make_uturn.ogg' | Sgen] :- on_street(Street, Sgen).
+follow_street('', []).
+follow_street(voice(['','',''],_), []).
+follow_street(Street, ['to.ogg', SName]) :- tts, Street = voice(['', '', D], _), cut_part_street(Street, SName).
+follow_street(Street, ['to.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), cut_part_street(Street, SName).
+follow_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), cut_part_street(Street, SName).
+follow_street(_Street, []) :- not(tts).
+
+prepare_turn(Turn, Dist, Street) -- ['prepare.ogg', M, 'after.ogg', D | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
+turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
+turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
+
+prepare_make_ut(Dist, Street) -- ['prepare.ogg', 'make_uturn.ogg', 'after.ogg', D | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
+make_ut(Dist, Street) --  ['after.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
+make_ut(Street) -- ['make_uturn.ogg' | Sgen] :- turn_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
 prepare_roundabout(Dist, _Exit, _Street) -- ['prepare_roundabout.ogg', 'after.ogg', D] :- distance(Dist) -- D.
-roundabout(Dist, _Angle, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), onto_street(Street, Sgen).
-roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), onto_street(Street, Sgen).
+roundabout(Dist, _Angle, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
+roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 
-go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen] :- distance(Dist) -- D, to_street(Street, Sgen).
+go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen] :- distance(Dist) -- D, follow_street(Street, Sgen).
 
 then -- ['then.ogg'].
 name(D, [D]) :- tts.

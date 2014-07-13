@@ -42,6 +42,7 @@ fi
 ./gen_voice.sh el Greek ispeech el
 ./gen_voice.sh en English ispeech en
 ./gen_voice.sh es Spanish ispeech es
+#./gen_voice.sh fa Persian ispeech fa
 ./gen_voice.sh fi Finnish ispeech fi
 ./gen_voice.sh fr French ispeech fr
 ./gen_voice.sh hu Hungarian ispeech hu
