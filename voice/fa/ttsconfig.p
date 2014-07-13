@@ -119,7 +119,7 @@ string('1_hour.ogg', 'یک ساعت ').
 string('hours.ogg', 'ساعت ').
 string('less_a_minute.ogg', 'کمتر از یک دقیقه ').
 string('1_minute.ogg', 'یک دقیقه ').
-string('minutes.ogg', 'دقیقه
+string('minutes.ogg', 'دقیقه').
 
 %% COMMAND BUILDING / WORD ORDER
 turn('left', ['left.ogg']).
