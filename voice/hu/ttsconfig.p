@@ -26,8 +26,9 @@ language('hu').
 
 
 % ROUTE CALCULATED
-string('route_is1.ogg', 'Az útvonal  ').
-string('route_calculate.ogg', 'Újratervezés, az útvonal ').
+string('route_is.ogg', 'Az útvonal  ').
+string('route_calculate.ogg', 'Újratervezés ').
+string('distance.ogg', 'a távolság').
 
 % LEFT/RIGHT
 string('prepare.ogg', ' ').
@@ -90,14 +91,14 @@ string('reached_waypoint.ogg', 'megérkeztél a köztes GPX útponthoz ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'figyelem, ').
-string('location_lost.ogg', 'nem található dzsípíesz pozíció ').
-string('location_recovered.ogg', 'pozíció jel vissza').
+string('location_lost.ogg', 'nem található dzsípíesz jel ').
+string('location_recovered.ogg', 'pozíció meghatározva').
 string('off_route.ogg', 'Letértél a tervezett útvonalról ').
 string('exceed_limit.ogg', 'Túllépted a sebességhatárt ').
 
 % STREET NAME GRAMMAR
 string('onto_pre.ogg', ', ').
-string('onto_post.ogg', 'felé ').
+string('onto_post.ogg', 'irányába ').
 string('on.ogg', ', ezen: ').
 string('to.ogg', ', eddig: ').
 
@@ -108,12 +109,12 @@ string('1_kilometer_nom.ogg', '1 kilométer ').
 string('1_kilometer_acc.ogg', '1 kilométert ').
 string('1_5_kilometer_nom.ogg', 'másfél kilométer ').
 string('1_5_kilometer_acc.ogg', 'másfél kilométert ').
-string('around.ogg', 'mintegy ').
+string('around.ogg', '  ').
 string('kilometers_nom.ogg', 'kilométer ').
 string('kilometers_acc.ogg', 'kilométert ').
 
-string('feet_nom.ogg', 'felhajtás ').
-string('feet_acc.ogg', 'felhajtás ').
+string('feet_nom.ogg', 'láb ').
+string('feet_acc.ogg', 'lábnyit ').
 string('1_tenth_of_a_mile_nom.ogg', 'egytized mérföld ').
 string('1_tenth_of_a_mile_acc.ogg', 'egytized mérföldet ').
 string('tenths_of_a_mile_nom.ogg', 'tized mérföld ').
@@ -183,9 +184,9 @@ reached_intermediate(D) -- ['reached_intermediate.ogg', Ds] :- name(D, Ds).
 and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg', Ds] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg', Ds] :- name(D, Ds).
 
-route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'time.ogg', T] :- distance(Dist, nom) -- D, time(Time) -- T.
+route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg', T] :- distance(Dist, nom) -- D, time(Time) -- T.
 route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
-route_recalc(Dist, Time) -- ['route_calculate.ogg', D, 'time.ogg', T] :- distance(Dist, nom) -- D, time(Time) -- T.
+route_recalc(Dist, Time) -- ['route_calculate.ogg', ', ', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist, nom) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
 location_recovered -- ['location_recovered.ogg'].
