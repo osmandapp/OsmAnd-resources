@@ -27,77 +27,77 @@ fest_language('cmu_us_awb_arctic_clunits').
 
 
 % ROUTE CALCULATED
-string('route_is.ogg', 'سفر ').
-string('route_calculate.ogg', 'محاسبه مسیر').
+string('route_is.ogg', 'مسافت مسیر ').
+string('route_calculate.ogg', 'مسیر جدید محاسبه شد').
 string('distance.ogg', 'مسافت').
 
 % LEFT/RIGHT
-string('prepare.ogg', 'آماده ').
+string('prepare.ogg', 'آماده باشید ').
 string('after.ogg', 'بعد از ').
 
-string('left.ogg', 'سمت چپ ').
-string('left_sh.ogg', 'turn sharply left ').
-string('left_sl.ogg', 'turn slightly left ').
-string('right.ogg', 'سمت راست ').
-string('right_sh.ogg', 'turn sharply right ').
-string('right_sl.ogg', 'turn slightly right ').
-string('left_keep.ogg', 'ادامه حرکت از سمت چپ').
-string('right_keep.ogg', 'ادامه حرکت از سمت راست').
+string('left.ogg', 'از سمت چپ برانید ').
+string('left_sh.ogg', 'سریعا به چپ بپیچید ').
+string('left_sl.ogg', 'به آرامی به چپ بپیچید ').
+string('right.ogg', 'از سمت راست یرانید ').
+string('right_sh.ogg', 'سریعا به راست بپیچید ').
+string('right_sl.ogg', 'به آرامی به راست بپیچید ').
+string('left_keep.ogg', 'مسیر سمت چپ را دنبال کنید').
+string('right_keep.ogg', 'مسیر سمت راست را دنبال کنید').
 % if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
-string('make_uturn.ogg', 'Make a U turn ').
-string('make_uturn_wp.ogg', 'When possible, please make a U turn ').
+string('make_uturn.ogg', 'حالا دور بزنید ').
+string('make_uturn_wp.ogg', 'در اولین زمان ممکن دور بزنید ').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Prepare to enter a roundabout ').
-string('roundabout.ogg', 'enter the roundabout, ').
-string('then.ogg', ', then ').
-string('and.ogg', 'and ').
-string('take.ogg', 'take the ').
-string('exit.ogg', 'exit ').
+string('prepare_roundabout.ogg', 'به میدان نزدیک میشوید بعد از ').
+string('roundabout.ogg', 'وارد میدان شوید بعد از, ').
+string('then.ogg', ', سپس ').
+string('and.ogg', 'و ').
+string('take.ogg', 'وارد شوید به ').
+string('exit.ogg', 'خروج ').
 
-string('1st.ogg', 'اول ').
-string('2nd.ogg', 'دوم ').
-string('3rd.ogg', 'سوم ').
-string('4th.ogg', 'چهارم ').
-string('5th.ogg', 'پنجم ').
-string('6th.ogg', 'ششم ').
-string('7th.ogg', 'هفتم ').
-string('8th.ogg', 'هشتم ').
-string('9th.ogg', 'نهم ').
-string('10th.ogg', 'دهم ').
-string('11th.ogg', 'یازدهم ').
-string('12th.ogg', 'دوازدهم ').
-string('13th.ogg', 'سیزدهم ').
-string('14th.ogg', 'چهاردهم ').
-string('15th.ogg', 'پانزدهم ').
-string('16th.ogg', 'شانزدهم ').
-string('17th.ogg', 'هفدهم ').
+string('1st.ogg', 'اولین ').
+string('2nd.ogg', 'دومین ').
+string('3rd.ogg', 'سومین ').
+string('4th.ogg', 'چهارمین ').
+string('5th.ogg', 'پنجمین ').
+string('6th.ogg', 'ششمین ').
+string('7th.ogg', 'هفتمین ').
+string('8th.ogg', 'هشتمین ').
+string('9th.ogg', 'نهمین ').
+string('10th.ogg', 'دهمین ').
+string('11th.ogg', 'یازدهمین ').
+string('12th.ogg', 'دوازدهمین ').
+string('13th.ogg', 'سیزدهمین ').
+string('14th.ogg', 'چهاردهمین ').
+string('15th.ogg', 'پانزدهمین ').
+string('16th.ogg', 'شانزدهمین ').
+string('17th.ogg', 'هفدهمین ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Go straight ahead ').
-string('follow.ogg', 'Follow the course of the road for').
+string('go_ahead.ogg', 'مستقیم حرکت کنید ').
+string('follow.ogg', 'این جاده را دنبال نمایید برای').
 
 % ARRIVE
-string('and_arrive_destination.ogg', 'and arrive at your destination ').
-string('reached_destination.ogg','you have reached your destination ').
-string('and_arrive_intermediate.ogg', 'and arrive at your waypoint ').
-string('reached_intermediate.ogg', 'you have reached your waypoint ').
-string('and_arrive_waypoint.ogg', 'and arrive at your GPX waypoint ').
-string('reached_waypoint.ogg', 'you have reached your GPX waypoint ').
+string('and_arrive_destination.ogg', 'و شما به مقصد خود خواهید رسید ').
+string('reached_destination.ogg','به مقصد رسیدید ').
+string('and_arrive_intermediate.ogg', 'به ایستگاه بین راهی که مشخص کرده بودید خواهید رسید ').
+string('reached_intermediate.ogg', 'به ایستگاه بین راهی مشخص شده رسیدید ').
+string('and_arrive_waypoint.ogg', 'به ایستگاه جی پی ایکسی که تعیین کرده بودید خواهید رسید ').
+string('reached_waypoint.ogg', 'به ایستگاه بین راهی فایل جی پی ایکس رسیدید ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'توجه, ').
 string('location_lost.ogg', 'قطع سیگنال جی پی اس ').
 string('location_recovered.ogg', 'اتصال به ماهواره جی پی اس ').
-string('off_route.ogg', 'you have been off the route for').
+string('off_route.ogg', 'از مسیر تعیین شده خارج شدید').
 string('exceed_limit.ogg', 'سرعت شما بیش از حد مجاز است').
 
 % STREET NAME GRAMMAR
-string('onto.ogg', 'روی ').
+string('onto.ogg', 'به سمت ').
 string('on.ogg', 'در ').
-string('to.ogg', 'به ').
+string('to.ogg', 'درون ').
 string('to2.ogg', 'سمت ').
 
 % DISTANCE UNIT SUPPORT
