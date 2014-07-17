@@ -34,29 +34,29 @@ string('distance.ogg', 'a távolság').
 string('prepare.ogg', ' ').
 string('after.ogg', 'múlva ').
 
-string('left.ogg', 'fordulj balra ').
-string('left_sh.ogg', 'fordulj élesen balra ').
-string('left_sl.ogg', 'fordulj enyhén balra ').
-string('right.ogg', 'fordulj jobbra ').
-string('right_sh.ogg', 'fordulj élesen jobbra ').
-string('right_sl.ogg', 'fordulj enyhén jobbra ').
-string('left_keep.ogg', 'tarts balra ').
-string('right_keep.ogg', 'tarts jobbra ').
+string('left.ogg', 'forduljon balra ').
+string('left_sh.ogg', 'forduljon élesen balra ').
+string('left_sl.ogg', 'forduljon enyhén balra ').
+string('right.ogg', 'forduljon jobbra ').
+string('right_sh.ogg', 'forduljon élesen jobbra ').
+string('right_sl.ogg', 'forduljon enyhén jobbra ').
+string('left_keep.ogg', 'tartson balra ').
+string('right_keep.ogg', 'tartson jobbra ').
 % if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
-string('prepare_make_uturn.ogg', 'Készülj fel a visszafordulásra ').
-string('make_uturn1.ogg', 'múlva fordulj vissza ').
-string('make_uturn2.ogg', 'Fordulj vissza ').
-string('make_uturn_wp.ogg', 'Fordulj vissza, amint lehet ').
+string('prepare_make_uturn.ogg', 'Készüljön fel a visszafordulásra ').
+string('make_uturn1.ogg', 'múlva forduljon vissza ').
+string('make_uturn2.ogg', 'Forduljon vissza ').
+string('make_uturn_wp.ogg', 'Forduljon vissza, amint lehet ').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'múlva hajts be a körforgalomba ').
+string('prepare_roundabout.ogg', 'múlva hajtson be a körforgalomba ').
 string('roundabout.ogg', 'múlva a körforgalomból ').
-string('roundabout2.ogg', 'kijáraton hajts ki').
+string('roundabout2.ogg', 'kijáraton hajtson ki').
 string('then.ogg', 'majd ').
 string('and.ogg', ' és').
-string('take.ogg', 'hajts ki ').
+string('take.ogg', 'hajtson ki ').
 string('exit.ogg', 'kijáraton ').
 
 string('1st.ogg', 'az első ').
@@ -78,23 +78,23 @@ string('16th.ogg', 'a tizenhatodik ').
 string('17th.ogg', 'a tizenhetedik ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Haladj tovább egyenesen ').
-string('follow1.ogg', 'Menj tovább ').
+string('go_ahead.ogg', 'Haladjon tovább egyenesen ').
+string('follow1.ogg', 'Menjen tovább ').
 
 % ARRIVE
-string('and_arrive_destination.ogg', 'és megérkezel az uticélhoz. ').
-string('reached_destination.ogg','megérkeztél az uticélhoz ').
-string('and_arrive_intermediate.ogg', 'és megérkezel a köztes célponthoz. ').
-string('reached_intermediate.ogg', 'megérkeztél a köztes célponthoz ').
-string('and_arrive_waypoint.ogg', 'és megérkezel a köztes GPX útponthoz ').
-string('reached_waypoint.ogg', 'megérkeztél a köztes GPX útponthoz ').
+string('and_arrive_destination.ogg', 'és megérkezik az uticélhoz. ').
+string('reached_destination.ogg','megérkezett az uticélhoz ').
+string('and_arrive_intermediate.ogg', 'és megérkezik a köztes célponthoz. ').
+string('reached_intermediate.ogg', 'megérkezett a köztes célponthoz ').
+string('and_arrive_waypoint.ogg', 'és megérkezik a köztes GPX útponthoz ').
+string('reached_waypoint.ogg', 'megérkezett a köztes GPX útponthoz ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'figyelem, ').
 string('location_lost.ogg', 'nem található dzsípíesz jel ').
 string('location_recovered.ogg', 'pozíció meghatározva').
-string('off_route.ogg', 'Letértél a tervezett útvonalról ').
-string('exceed_limit.ogg', 'Túllépted a sebességhatárt ').
+string('off_route.ogg', 'Letért a tervezett útvonalról ').
+string('exceed_limit.ogg', 'Túllépte a sebességhatárt ').
 
 % STREET NAME GRAMMAR
 string('onto_pre.ogg', ', ').

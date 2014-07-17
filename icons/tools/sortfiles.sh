@@ -90,6 +90,7 @@ mycp highway traffic_signals transport_traffic_lights.png
 mycp highway mini_roundabout transport_miniroundabout_anticlockwise.png
 mycp highway ford transport_ford.png
 mycp highway crossing transport_zebra_crossing.png
+mycp highway crossing2 transport_zebra_crossing2.png
 mycp traffic_calming bump transport_speedbump.png
 mycp highway milestone functional-icons_milestone.png
 
