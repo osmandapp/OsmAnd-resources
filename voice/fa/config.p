@@ -4,11 +4,11 @@
 % for swi-prolog
 :- op(500, xfy,'--').
 
-version(103).
+version(0).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
-language('en').
+language('fa').
 fest_language('cmu_us_awb_arctic_clunits').
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES:
@@ -16,7 +16,7 @@ fest_language('cmu_us_awb_arctic_clunits').
 % (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
 % (X) arrival
 % (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
-% (X) special grammar: onto / on / to Street fur turn and follow commands
+% (X) special grammar: onto_street / on_street / to_street
 % (N/A) special grammar: nominative/dativ for distance measure
 % (N/A) special grammar: imperative/infinitive distincion for turns
 % (X) distance measure: meters / feet / yard support
