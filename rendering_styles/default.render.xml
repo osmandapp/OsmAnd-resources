@@ -181,7 +181,11 @@
 	<renderingConstant name="parkTextColorDay" value="#004300"/>
 	<renderingConstant name="woodTextHaloColorDay" value="#ffffff"/>
 	<renderingConstant name="forestTextColorDay" value="#729972"/>
-	<renderingConstant name="railroadTextColorDay" value="#6666ff"/>
+	<renderingConstant name="railwayPOITextColorDay" value="#6666ff"/>
+	<renderingConstant name="railwayTextColorDay" value="#000000"/>
+	<renderingConstant name="railwayTextHaloColorDay" value="#77ffffff"/>
+	<renderingConstant name="aerialwayTextColorDay" value="#000000"/>
+	<renderingConstant name="aerialwayTextHaloColorDay" value="#77ffffff"/>
 
 	<renderingConstant name="accomodationTextColorDay" value="#0066ff"/>
 	<renderingConstant name="tourismTextColorDay" value="#734a08"/>
@@ -405,7 +409,7 @@
 			
 			<filter tag="natural" value="coastline_broken" order="35"/>
 			<filter tag="natural" value="coastline_line" order="35"/>
-			<filter tag="ferry_route" value="ferry" order="35"/>
+			<filter tag="route" value="ferry" order="35"/>
 			
 			<filter tag="aeroway" value="" order="32"/>
 			<filter tag="contour" value="" order="15"/>
@@ -622,6 +626,46 @@
 			<groupFilter nightMode="true" textColor="#dcdcff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77050547"/>
 		</group>
 
+		<group textColor="$railwayTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$railwayTextHaloColorDay">
+			<filter tag="railway" value="rail" textOrder="9"/>
+			<filter tag="railway" value="tram" textOrder="9"/>
+			<filter tag="railway" value="subway" textOrder="9"/>
+			<filter tag="railway" value="light_rail" textOrder="9"/>
+			<filter tag="railway" value="abandoned" textOrder="9"/>
+			<filter tag="railway" value="disused" textOrder="9"/>
+			<filter tag="railway" value="preserved" textOrder="9"/>
+			<filter tag="railway" value="narrow_gauge" textOrder="9"/>
+			<filter tag="railway" value="construction" textOrder="9"/>
+			<filter tag="railway" value="monorail" textOrder="9"/>
+			<filter tag="railway" value="funicular" textOrder="9"/>
+			<groupFilter nameTag="">
+				<filter minzoom="14" maxzoom="14" textSize="12"/>
+				<filter minzoom="15" maxzoom="15" textSize="13"/>
+				<filter minzoom="16" maxzoom="16" textSize="14"/>
+				<filter minzoom="17" maxzoom="17" textSize="16"/>
+				<filter minzoom="18" textSize="18"/>
+				<groupFilter textOnPath="true" textDy="-7"/>
+				<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
+			</groupFilter>
+		</group>
+
+		<group textColor="$aerialwayTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$aerialwayTextHaloColorDay">
+			<filter tag="aerialway" value="cable_car" textOrder="10"/>
+			<filter tag="aerialway" value="gondola" textOrder="10"/>
+			<filter tag="aerialway" value="chair_lift" textOrder="10"/>
+			<filter tag="aerialway" value="mixed_lift" textOrder="10"/>
+			<filter tag="aerialway" value="drag_lift" textOrder="10"/>
+			<groupFilter nameTag="">
+				<filter minzoom="14" maxzoom="14" textSize="12"/>
+				<filter minzoom="15" maxzoom="15" textSize="13"/>
+				<filter minzoom="16" maxzoom="16" textSize="14"/>
+				<filter minzoom="17" maxzoom="17" textSize="16"/>
+				<filter minzoom="18" textSize="18"/>
+				<groupFilter textOnPath="true" textDy="-7"/>
+				<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
+			</groupFilter>
+		</group>
+
 		<!-- Location names -->
 		<filter minzoom="3" textSize="14" textColor="#9d6c9d" textWrapWidth="35" tag="natural" value="coastline"/>
 		<filter minzoom="3" textSize="14" textColor="#9d6c9d" textWrapWidth="35" tag="natural" value="land"/>
@@ -762,9 +806,9 @@
 			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#b9d5ff" textHaloColor="#88355777"/>
 		</group>
 
-		<filter nightMode="true" minzoom="3" textSize="14" textColor="#ffcdfe" textHaloRadius="$textHaloRadiusNight" textHaloColor="#663e203e" textWrapWidth="35" tag="ferry_route" value="ferry" nameTag="ferry_route_ref"/>
-		<filter minzoom="3" textSize="14" textColor="#9d6c9d" textWrapWidth="35" tag="ferry_route" value="ferry" nameTag="ferry_route_ref"/>
-		
+		<filter nightMode="true" minzoom="3" textSize="14" textColor="#ffcdfe" textHaloRadius="$textHaloRadiusNight" textHaloColor="#663e203e" textWrapWidth="35" tag="route" value="ferry" nameTag2="ref"/>
+		<filter minzoom="3" textSize="14" textColor="#9d6c9d" textWrapWidth="35" tag="route" value="ferry" nameTag2="ref"/>
+
 		<filter nightMode="true" minzoom="14" textSize="12" textColor="#d4e5ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#66002357" textWrapWidth="30" tag="leisure" value="marina"/>
 		<filter minzoom="14" textSize="12" textColor="#0000ff" textWrapWidth="30" tag="leisure" value="marina"/>
 
@@ -791,7 +835,7 @@
 		</group>
 
 		<!-- Railroad -->
-		<group textColor="$railroadTextColorDay" textDy="7" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay">
+		<group textColor="$railwayPOITextColorDay" textDy="7" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay">
 			<filter minzoom="14" maxzoom="14" textSize="12" textBold="true" tag="railway" value="station" textOrder="5"/>
 				<filter minzoom="15" textSize="13" textBold="true" tag="railway" value="station" textOrder="5"/>
 			<filter minzoom="14" maxzoom="14" textSize="12" textBold="true" tag="public_transport" value="station"/>
@@ -800,8 +844,6 @@
 			<filter minzoom="15" textSize="12" tag="railway" value="tram_stop"/>
 			<filter minzoom="14" maxzoom="14" textSize="12" textBold="true" tag="public_transport" value="platform"/>
 				<filter minzoom="15" textSize="13" textBold="true" tag="public_transport" value="platform"/>
-			<filter minzoom="14" maxzoom="14" textSize="12" textBold="true" tag="railway" value="platform"/>
-				<filter minzoom="15" textSize="13" textBold="true" tag="railway" value="platform"/>
 
 			<filter minzoom="14" textSize="12" tag="aerialway" value="station"/>
 			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#d4d4ff" textHaloColor="#994563a7"/>
@@ -2005,7 +2047,7 @@
 			</groupFilter>
 		</group>
 
-		<filter tag="ferry_route" value="ferry" minzoom="8" color="#7777FF" strokeWidth="2" pathEffect="6_3"/>
+		<filter tag="route" value="ferry" minzoom="8" color="#7777FF" strokeWidth="2" pathEffect="6_3"/>
 
 		<!-- Barriers -->
 		<filter minzoom="16" color="#333333" strokeWidth="1" tag="highway" value="gate"/>
