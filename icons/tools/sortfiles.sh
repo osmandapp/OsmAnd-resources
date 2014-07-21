@@ -296,6 +296,7 @@ mycp power station_gas power_station_gas.png
 mycp power station_nuclear power_station_nuclear.png
 mycp power station_solar power_station_solar.png
 mycp power station_wind power_station_wind.png
+mycp power station_water2 power_station_water2.png
 mycp tower_type communication poi_tower_communications.png
 mycp man_made water_tower poi_water_tower.png
 mycp man_made mineshaft poi_mine.png
