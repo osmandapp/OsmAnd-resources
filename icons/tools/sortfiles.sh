@@ -42,6 +42,7 @@ mycp natural peak_night functional-icons_peak_night.png  #For night orienteering
 mycp natural volcano functional-icons_volcano.png  #Is poi_peak.png with color #D40000  #scale 0.5
 mycp natural cave_entrance poi_cave.png
 mycp natural spring functional-icons_spring.png  #scale 0.375
+mycp natural spring2 water_spring.png  #scale 0.375
 mycp natural tree functional-icons_tree.png  #scale 0.25
 
 
