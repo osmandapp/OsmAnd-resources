@@ -325,6 +325,7 @@ mycp shop boutique shopping_clothes.png
 mycp shop butcher shopping_butcher2.png
 mycp shop car shopping_car.png
 mycp shop car_repair shopping_car_repair.png
+mycp shop car_parts shopping_car_parts.png
 mycp shop clothes shopping_clothes.png
 mycp shop computer shopping_computer.png
 mycp shop confectionery shopping_confectionery.png
