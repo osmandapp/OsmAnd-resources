@@ -89,6 +89,7 @@ mycp amenity dentist health_dentist.png
 mygroup transportation transport_taxi_rank.png
 mycp highway traffic_signals transport_traffic_lights.png
 mycp highway mini_roundabout transport_miniroundabout_anticlockwise.png
+mycp highway noexit functional-icons_noexit.png
 mycp highway ford transport_ford.png
 mycp highway crossing transport_zebra_crossing.png
 mycp highway crossing2 transport_zebra_crossing2.png
