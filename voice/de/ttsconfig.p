@@ -104,7 +104,7 @@ string('exceed_limit.ogg', 'Sie überschreiten die Höchstgeschwindigkeit ').
 string('onto.ogg', 'auf ').  % possibly "Richtung", better grammar, but is also misleading is some cases
 string('on.ogg', 'auf ').
 string('to.ogg', 'bis ').
-string('with.ogg', 'mit ').  % bad results in some cases; wrong grammar
+string('with.ogg', 'über ').  % "mit" gives bad results in some cases; wrong grammar
 string('to2.ogg', 'Richtung '). % "zu " gives wrong results in many cases
 
 % DISTANCE UNIT SUPPORT
