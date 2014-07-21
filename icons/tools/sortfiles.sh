@@ -289,9 +289,13 @@ mycp amenity university education_university.png
 ## Man made
 mygroup man_made power_station_wind.png
 mycp power tower functional-icons_power_tower.png  #scale 0.5
-mycp power generator power_station_wind.png
 mycp power station power_station.png
 mycp power transformer2 power_transformer2.png
+mycp power station_coal power_station_coal.png
+mycp power station_gas power_station_gas.png
+mycp power station_nuclear power_station_nuclear.png
+mycp power station_solar power_station_solar.png
+mycp power station_wind power_station_wind.png
 mycp tower_type communication poi_tower_communications.png
 mycp man_made water_tower poi_water_tower.png
 mycp man_made mineshaft poi_mine.png
