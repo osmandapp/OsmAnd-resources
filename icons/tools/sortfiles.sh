@@ -42,6 +42,7 @@ mycp natural peak_night functional-icons_peak_night.png  #For night orienteering
 mycp natural volcano functional-icons_volcano.png  #Is poi_peak.png with color #D40000  #scale 0.5
 mycp natural cave_entrance poi_cave.png
 mycp natural spring functional-icons_spring.png  #scale 0.375
+mycp natural spring2 water_spring.png  #scale 0.375
 mycp natural tree functional-icons_tree.png  #scale 0.25
 
 
@@ -88,6 +89,7 @@ mycp amenity dentist health_dentist.png
 mygroup transportation transport_taxi_rank.png
 mycp highway traffic_signals transport_traffic_lights.png
 mycp highway mini_roundabout transport_miniroundabout_anticlockwise.png
+mycp highway noexit functional-icons_noexit.png
 mycp highway ford transport_ford.png
 mycp highway crossing transport_zebra_crossing.png
 mycp highway crossing2 transport_zebra_crossing2.png
@@ -288,7 +290,14 @@ mycp amenity university education_university.png
 ## Man made
 mygroup man_made power_station_wind.png
 mycp power tower functional-icons_power_tower.png  #scale 0.5
-mycp power generator power_station_wind.png
+mycp power station power_station.png
+mycp power transformer2 power_transformer2.png
+mycp power station_coal power_station_coal.png
+mycp power station_gas power_station_gas.png
+mycp power station_nuclear power_station_nuclear.png
+mycp power station_solar power_station_solar.png
+mycp power station_wind power_station_wind.png
+mycp power station_water2 power_station_water2.png
 mycp tower_type communication poi_tower_communications.png
 mycp man_made water_tower poi_water_tower.png
 mycp man_made mineshaft poi_mine.png
@@ -325,6 +334,7 @@ mycp shop boutique shopping_clothes.png
 mycp shop butcher shopping_butcher2.png
 mycp shop car shopping_car.png
 mycp shop car_repair shopping_car_repair.png
+mycp shop car_parts shopping_car_parts.png
 mycp shop clothes shopping_clothes.png
 mycp shop computer shopping_computer.png
 mycp shop confectionery shopping_confectionery.png
