@@ -170,6 +170,7 @@
 
 	<renderingConstant name="subwayLineDefaultColorDay" value="#7b0000"/>
 	<renderingConstant name="subwayLineDefaultColorNight" value="#7b0000"/>
+
 	<renderingConstant name="subwayRedColorDay" value="#ff0000"/>
 	<renderingConstant name="subwayRedColorNight" value="#ff0000"/>
 	<renderingConstant name="subwayBrownColorDay" value="#ba7007"/>
@@ -190,6 +191,15 @@
 	<renderingConstant name="subwayPurpleColorNight" value="#cd5efb"/>
 	<renderingConstant name="subwayGrayColorDay" value="#808080"/>
 	<renderingConstant name="subwayGrayColorNight" value="#c6c6c6"/>
+
+	<renderingConstant name="subwayTextBrownColorDay" value="#7e4a00"/>
+	<renderingConstant name="subwayTextOrangeColorDay" value="#b75200"/>
+	<renderingConstant name="subwayTextYellowColorDay" value="#756b00"/>
+	<renderingConstant name="subwayTextGreenColorDay" value="#006020"/>
+	<renderingConstant name="subwayTextLightgreenColorDay" value="#377500"/>
+	<renderingConstant name="subwayTextLightblueColorDay" value="#008dc1"/>
+	<renderingConstant name="subwayTextGrayColorDay" value="#595959"/>
+
 	<renderingConstant name="railwayRailLowZoomColorDay" value="#999999"/>
 	<renderingConstant name="railwayRailLowZoomLightColorDay" value="#b3b3b3"/>
 	<renderingConstant name="railwayRailLowZoomColorNight" value="#999999"/>
@@ -901,14 +911,8 @@
 		</group>
 
 		<!-- Railroad -->
-		<filter subwayMode="true" tag="railway" value="station" textColor="#0000ff" textDy="7" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textBold="true" textOrder="1"> <!--  additional="station=subway" there are many subway stations without this tag, so do not check for it -->
-			<filter minzoom="12" maxzoom="12" textSize="10"/>
-			<filter minzoom="13" maxzoom="13" textSize="11"/>
-			<filter minzoom="14" maxzoom="14" textSize="13"/>
-			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#d4d4ff" textHaloColor="#994563a7"/>
-		</filter>
 		<group textColor="$railwayPOITextColorDay" textDy="7" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay">
-			<filter minzoom="14" maxzoom="14" textSize="12" textBold="true" tag="railway" value="station" textOrder="5"/>
+			<filter subwayMode="false" minzoom="14" maxzoom="14" textSize="12" textBold="true" tag="railway" value="station" textOrder="5"/>
 				<filter minzoom="15" textSize="13" textBold="true" tag="railway" value="station" textOrder="5"/>
 			<filter minzoom="14" maxzoom="14" textSize="12" textBold="true" tag="public_transport" value="station"/>
 				<filter minzoom="15" textSize="13" textBold="true" tag="public_transport" value="station"/>
@@ -920,6 +924,34 @@
 			<filter minzoom="14" textSize="12" tag="aerialway" value="station"/>
 			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#d4d4ff" textHaloColor="#994563a7"/>
 		</group>
+		<filter subwayMode="true" tag="railway" value="station" textColor="$subwayLineDefaultColorDay" textDy="7" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textBold="true" textOrder="1"> <!--  additional="station=subway" there are many subway stations without this tag, so do not check for it -->
+			<filter nightMode="true">
+				<filter additional="colour=red" textColor="#ffffff"/>
+				<filter additional="colour=brown" textColor="$subwayBrownColorDay"/>
+				<filter additional="colour=orange" textColor="$subwayOrangeColorDay"/>
+				<filter additional="colour=yellow" textColor="$subwayYellowColorDay"/>
+				<filter additional="colour=lightgreen" textColor="$subwayLightgreenColorDay"/>
+				<filter additional="colour=green" textColor="$subwayGreenColorDay"/>
+				<filter additional="colour=lightblue" textColor="$subwayLightblueColorDay"/>
+				<filter additional="colour=blue" textColor="$subwayBlueColorDay"/>
+				<filter additional="colour=purple" textColor="$subwayPurpleColorDay"/>
+				<filter additional="colour=gray" textColor="$subwayGrayColorDay"/>
+				<groupFilter textHaloRadius="$textHaloRadiusNight"/>
+			</filter>
+			<filter additional="colour=red" textColor="$subwayRedColorDay"/>
+			<filter additional="colour=brown" textColor="$subwayTextBrownColorDay"/>
+			<filter additional="colour=orange" textColor="$subwayTextOrangeColorDay"/>
+			<filter additional="colour=yellow" textColor="$subwayTextYellowColorDay"/>
+			<filter additional="colour=lightgreen" textColor="$subwayTextLightgreenColorDay"/>
+			<filter additional="colour=green" textColor="$subwayTextGreenColorDay"/>
+			<filter additional="colour=lightblue" textColor="$subwayTextLightblueColorDay"/>
+			<filter additional="colour=blue" textColor="$subwayBlueColorDay"/>
+			<filter additional="colour=purple" textColor="$subwayPurpleColorDay"/>
+			<filter additional="colour=gray" textColor="$subwayTextGrayColorDay"/>
+			<groupFilter minzoom="12" maxzoom="12" textSize="12"/>
+			<groupFilter minzoom="13" maxzoom="13" textSize="13"/>
+			<groupFilter minzoom="14" maxzoom="14" textSize="14"/>
+		</filter>
 		<group>
 			<filter minzoom="17" textSize="13" textColor="#0000ff" textDy="7" textHaloColor="#ffffff" textHaloRadius="$textHaloRadiusDay" textBold="true" tag="railway" value="subway_entrance" textOrder="1"/>
 			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#bbe4ff" textHaloColor="#bb4563a7"/>
@@ -1356,7 +1388,7 @@
 				<filter minzoom="15" icon="aerialway_station" tag="aerialway" value="station" iconVisibleSize="2"/>
 		</group>
 
-		<filter minzoom="15" tag="railway" value="subway_entrance" shield="white_red_round_shield" iconVisibleSize="16" icon="railway_subway_entrance_2" iconOrder="55">
+		<filter minzoom="15" tag="railway" value="subway_entrance" shield="white_red_round_shield" iconVisibleSize="0" icon="railway_subway_entrance_2" iconOrder="55">
 			<filter additional="colour=red" icon="railway_subway_entrance_red"/>
 			<filter additional="colour=brown" icon="railway_subway_entrance_brown"/>
 			<filter additional="colour=orange" icon="railway_subway_entrance_orange"/>

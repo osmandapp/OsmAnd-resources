@@ -141,6 +141,7 @@ mycp railway subway_entrance_lightgreen functional-icons_subway_entrance_lightgr
 mycp railway subway_entrance_green functional-icons_subway_entrance_green.png
 mycp railway subway_entrance_lightblue functional-icons_subway_entrance_lightblue.png
 mycp railway subway_entrance_blue functional-icons_subway_entrance_blue.png
+mycp railway subway_entrance_purple functional-icons_subway_entrance_purple.png
 mycp railway subway_entrance_gray functional-icons_subway_entrance_gray.png
 
 mycp aerialway station_small functional-icons_halt.png  #scale 0.25
