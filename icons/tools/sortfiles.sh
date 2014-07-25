@@ -131,7 +131,17 @@ mycp railway halt functional-icons_halt.png  #scale 0.25
 mycp railway tram_stop transport_tram_stop.png
 mycp railway level_crossing functional-icons_level_crossing.png  #scale 0.5
 mycp railway subway_entrance transport_subway.png
+
 mycp railway subway_entrance_2 functional-icons_subway_entrance.png
+mycp railway subway_entrance_red functional-icons_subway_entrance_red.png
+mycp railway subway_entrance_brown functional-icons_subway_entrance_brown.png
+mycp railway subway_entrance_orange functional-icons_subway_entrance_orange.png
+mycp railway subway_entrance_yellow functional-icons_subway_entrance_yellow.png
+mycp railway subway_entrance_lightgreen functional-icons_subway_entrance_lightgreen.png
+mycp railway subway_entrance_green functional-icons_subway_entrance_green.png
+mycp railway subway_entrance_lightblue functional-icons_subway_entrance_lightblue.png
+mycp railway subway_entrance_blue functional-icons_subway_entrance_blue.png
+mycp railway subway_entrance_gray functional-icons_subway_entrance_gray.png
 
 mycp aerialway station_small functional-icons_halt.png  #scale 0.25
 mycp aerialway station functional-icons_station_small.png  #scale 0.375
