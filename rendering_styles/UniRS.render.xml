@@ -30,11 +30,34 @@
 	<renderingConstant name="primaryRoadColor" value="#FFAA80"/>
 	<renderingConstant name="secondaryRoadColor" value="#ffd080"/>
 	<renderingConstant name="tertiaryRoadColor" value="#ffff80"/>
+	<renderingConstant name="residentialRoadColor" value="#ffffff"/>
+	<renderingConstant name="residentialRoadColorNight" value="#9f9f9f"/>
 	<renderingConstant name="pedestrianRoadModeColorDay" value="#ceffe6"/>
 	<renderingConstant name="pedestrianRoadModeColorNight" value="#487d77"/>
 	<renderingConstant name="pedestrianRoadColorStrokeDay" value="#00de98"/>
 	<renderingConstant name="pedestrianRoadColorStrokeNight" value="#00b063"/>
-	
+
+	<renderingConstant name="motorwayRoadDesaturatedColorDay" value="#bcc6ec"/>
+	<renderingConstant name="motorwayRoadDesaturatedColorNight" value="#3f4764"/>
+	<renderingConstant name="trunkRoadDesaturatedColorDay" value="#ffc7d0"/>
+	<renderingConstant name="trunkRoadDesaturatedColorNight" value="#966c72"/>
+	<renderingConstant name="primaryRoadDesaturatedColorDay" value="#ffd9c7"/>
+	<renderingConstant name="primaryRoadDesaturatedColorNight" value="#866f64"/>
+	<renderingConstant name="secondaryRoadDesaturatedColorDay" value="#ffe7bc"/>
+	<renderingConstant name="secondaryRoadDesaturatedColorNight" value="#766b59"/>
+	<renderingConstant name="tertiaryRoadDesaturatedColorDay" value="#feffc1"/>
+	<renderingConstant name="tertiaryRoadDesaturatedColorNight" value="#5c5c4a"/>
+	<renderingConstant name="residentialRoadDesaturatedColorNight" value="#505050"/>
+	<renderingConstant name="serviceRoadDesaturatedColorNight" value="#555555"/>
+	<renderingConstant name="constructionRoadDesaturatedColorDay" value="#98a4ba"/>
+	<renderingConstant name="constructionRoadDesaturatedColorNight" value="#505e79"/>
+	<renderingConstant name="constructionRoadDesaturatedColor2Night" value="#888888"/>
+
+	<renderingConstant name="railwayRailLowZoomColorDay" value="#999999"/>
+	<renderingConstant name="railwayRailLowZoomLightColorDay" value="#b3b3b3"/>
+	<renderingConstant name="railwayRailLowZoomColorNight" value="#999999"/>
+	<renderingConstant name="railwayRailLowZoomDarkColorNight" value="#484848"/>
+
 	<renderingConstant name="bicycleNoColorStrokeDay" value="#aaaaaa"/>
 	<renderingConstant name="bicycleNoColorStrokeNight" value="#aaaaaa"/>
 	<renderingConstant name="bicycleNoMotorwayColorDay" value="#d9e1ff"/>
@@ -120,9 +143,13 @@
 	<!-- Forest -->
 	<renderingConstant name="woodColorDay" value="#8fd075"/>
 	<renderingConstant name="forestColorDay" value="#8dc56c"/>
+	<renderingConstant name="woodColorDesaturatedDay" value="#b4d0a9"/>
+	<renderingConstant name="forestColorDesaturatedDay" value="#aac599"/>
 	<renderingConstant name="woodColorNight" value="#134025"/>
 	<renderingConstant name="waterwayColorDay" value="#41cad3"/>
 	<renderingConstant name="waterwayColorNight" value="#330099"/>
+	<renderingConstant name="waterwayDesaturatedColorDay" value="#b5d0d0"/>
+	<renderingConstant name="waterwayDesaturatedColorNight" value="#184d6f"/>
 	<renderingConstant name="waterwayTunnelColorNight" value="#444a48aa"/>
 	<renderingConstant name="waterwayTunnelDashColorDay" value="#aaffffff"/>
 	<renderingConstant name="waterwayTunnelDashColorNight" value="#447340d9"/>
@@ -463,7 +490,9 @@
 				<filter minzoom="6" color="#ddbf92" tag="landuse" value="farmyard"/>
 				<filter minzoom="6" color="#9d9d6c" tag="landuse" value="greenfield"/>
 				<group>
+					<filter minzoom="6" subwayMode="true" color="$woodColorDesaturatedDay" tag="natural" value="wood"/>
 					<filter minzoom="6" color="$woodColorDay" tag="natural" value="wood"/>
+					<filter minzoom="6" subwayMode="true" color="$forestColorDesaturatedDay" maxzoom="12" tag="landuse" value="forest"/>
 					<filter minzoom="6" maxzoom="12" color="$forestColorDay" tag="landuse" value="forest"/>
 					<filter minzoom="13" shader="forest" tag="landuse" value="forest"/>
 				</group>
@@ -561,7 +590,8 @@
 		<group noPolygons="false">
 
 			<group>
-				<filter minzoom="13" color="#f2caea" color_2="#920029" strokeWidth_2="1.3" tag="tourism" value="attraction"/>
+				<filter minzoom="13" color="#f2caea" color_2="#920029" tag="tourism" value="attraction"/>
+				<groupFilter subwayMode="false" strokeWidth_2="1.3"/>
 				<groupFilter nightMode="true" color="#834522" color_2="#6dffd6"/>
 			</group>
 
@@ -587,9 +617,10 @@
 				<filter tag="waterway" value="canal"/>
 				<filter tag="waterway" value="dock"/>
 				<filter tag="waterway" value="mill_pond"/>
-				<groupFilter minzoom="10" color="#41cad3">
-					<filter nightMode="true" color="#330099"/>
-				</groupFilter>
+				<groupFilter color="$waterwayColorDay"/>
+				<groupFilter subwayMode="true" color="$waterwayDesaturatedColorDay"/>
+				<groupFilter nightMode="true" color="$waterwayColorNight"/>
+				<groupFilter nightMode="true" subwayMode="true" color="$waterwayDesaturatedColorNight"/>
 			</group>
 			<group>
 				<filter minzoom="1" tag="natural" value="coastline" color_2="#2Aff7c00" strokeWidth_2="1"/>
@@ -600,9 +631,10 @@
 				<filter minzoom="7" tag="landuse" value="water"/>
 				<filter minzoom="10" tag="landuse" value="basin"/>
 				<filter minzoom="15" tag="leisure" value="swimming_pool" color_2="#7479ec" strokeWidth_2="1"/>
-				<groupFilter color="#41cad3">
-					<filter nightMode="true" color="#330099"/>
-				</groupFilter>
+				<groupFilter color="$waterwayColorDay"/>
+				<groupFilter subwayMode="true" color="$waterwayDesaturatedColorDay"/>
+				<groupFilter nightMode="true" color="$waterwayColorNight"/>
+				<groupFilter nightMode="true" subwayMode="true" color="$waterwayDesaturatedColorNight"/>
 			</group>
 
 		</group>
@@ -624,7 +656,7 @@
 		<group>
 			<filter tag="highway" value="footway"/>
 			<groupFilter>
-				<filter appMode="car" color="#F7D4D4" color_2="$null" shadowRadius=":0"/>
+				<filter appMode="car" color="f7d4d4" color_2="$null" shadowRadius=":0"/>
 				<filter appMode="pedestrian" minzoom="16" color="$pedestrianRoadModeColorDay" color_2="#0033ff" strokeWidth_2="0.2"/>
 				<filter minzoom="16" color="#ececec" color_2="#0033ff" strokeWidth_2="0.2"/>
 			</groupFilter>
@@ -689,11 +721,21 @@
 		<filter tag="power" value="minor_line" minzoom="15" color="#bababa" strokeWidth="0.5"/>
 
 		<group>
-			<filter tag="highway" value="motorway" maxzoom="13" color="$motorwayRoadColor"/>
-			<filter tag="highway" value="motorway_link" maxzoom="13" color="$motorwayRoadColor"/>
-			<filter tag="highway" value="trunk" maxzoom="13" color="$trunkRoadColor"/>
-			<filter tag="highway" value="trunk_link" maxzoom="13" color="$trunkRoadColor"/>
-			<groupFilter shadowRadius=":1.5" shadowColor="#555555" cap="ROUND">
+			<group>
+				<filter tag="highway" value="motorway" maxzoom="13"/>
+				<filter tag="highway" value="motorway_link" maxzoom="13"/>
+				<groupFilter color="$motorwayRoadColor"/>
+				<groupFilter subwayMode="true" color="$motorwayRoadDesaturatedColorDay"/>
+				<groupFilter nightMode="true" subwayMode="true" color="$motorwayRoadDesaturatedColorNight"/>
+			</group>
+			<group>
+				<filter tag="highway" value="trunk" maxzoom="13" color="$trunkRoadColor"/>
+				<filter tag="highway" value="trunk_link" maxzoom="13" color="$trunkRoadColor"/>
+				<groupFilter color="$trunkRoadColor"/>
+				<groupFilter subwayMode="true" color="$trunkRoadDesaturatedColorDay"/>
+				<groupFilter nightMode="true" subwayMode="true" color="$trunkRoadDesaturatedColorNight"/>
+			</group>
+			<groupFilter shadowRadius=":1" cap="ROUND">
 				<filter minzoom="6" maxzoom="6" strokeWidth="2"/>
 				<filter minzoom="7" maxzoom="8" strokeWidth="3"/>
 				<filter minzoom="9" maxzoom="9" strokeWidth="5"/>
@@ -702,12 +744,13 @@
 				<filter minzoom="12" maxzoom="12" strokeWidth="8"/>
 				<filter minzoom="13" maxzoom="13" strokeWidth="9"/>
 			</groupFilter>
+			<groupFilter nightMode="true" subwayMode="true" shadowRadius="0"/>
 		</group>
 
 		<group>
-			<filter tag="highway" value="primary" maxzoom="13" color="$primaryRoadColor"/>
-			<filter tag="highway" value="primary_link" maxzoom="13" color="$primaryRoadColor"/>
-			<groupFilter shadowRadius=":1.5" shadowColor="#555555" cap="ROUND">
+			<filter tag="highway" value="primary" maxzoom="13"/>
+			<filter tag="highway" value="primary_link" maxzoom="13"/>
+			<groupFilter shadowRadius=":1.5" cap="ROUND">
 				<filter minzoom="6" maxzoom="6" strokeWidth="1"/>
 				<filter minzoom="7" maxzoom="8" strokeWidth="2"/>
 				<filter minzoom="9" maxzoom="9" strokeWidth="4"/>
@@ -716,18 +759,24 @@
 				<filter minzoom="12" maxzoom="12" strokeWidth="7"/>
 				<filter minzoom="13" maxzoom="13" strokeWidth="8"/>
 			</groupFilter>
+			<groupFilter color="$primaryRoadColor"/>
+			<groupFilter subwayMode="true" color="$primaryRoadDesaturatedColorDay"/>
+			<groupFilter nightMode="true" subwayMode="true" color="$primaryRoadDesaturatedColorNight" shadowRadius="0"/>
 		</group>
 
 		<group>
-			<filter tag="highway" value="secondary" maxzoom="13" color="$secondaryRoadColor"/>
-			<filter tag="highway" value="secondary_link" maxzoom="13" color="$secondaryRoadColor"/>
-			<groupFilter shadowRadius=":1.5" shadowColor="#555555" cap="ROUND">
+			<filter tag="highway" value="secondary" maxzoom="13"/>
+			<filter tag="highway" value="secondary_link" maxzoom="13"/>
+			<groupFilter shadowRadius=":1.5" cap="ROUND">
 				<filter minzoom="9" maxzoom="9" strokeWidth="2"/>
 				<filter minzoom="10" maxzoom="10" strokeWidth="4"/>
 				<filter minzoom="11" maxzoom="11" strokeWidth="5"/>
 				<filter minzoom="12" maxzoom="12" strokeWidth="6"/>
 				<filter minzoom="13" maxzoom="13" strokeWidth="7"/>
 			</groupFilter>
+			<groupFilter color="$secondaryRoadColor"/>
+			<groupFilter subwayMode="true" color="$secondaryRoadDesaturatedColorDay"/>
+			<groupFilter nightMode="true" subwayMode="true" color="$secondaryRoadDesaturatedColorNight" shadowRadius="0"/>
 		</group>
 
 		<group>
@@ -739,7 +788,7 @@
 			<filter tag="highway" value="primary_link" color="$primaryRoadColor"/>
 			<filter tag="highway" value="secondary" color="$secondaryRoadColor"/>
 			<filter tag="highway" value="secondary_link" color="$secondaryRoadColor"/>
-			<groupFilter shadowRadius=":1.5" cap="ROUND">  <!-- shadowColor="#555555"-->
+			<groupFilter shadowRadius=":1" cap="ROUND">
 				<filter>
 					<filter minzoom="14" maxzoom="14" strokeWidth="5:5"/>
 					<filter minzoom="15" maxzoom="15" strokeWidth="6:6"/>
@@ -759,7 +808,6 @@
 					<filter minzoom="19" strokeWidth_0="15:12"/>
 					<groupFilter nightMode="true" color_0="#ffffff"/>
 				</groupFilter>
-			</groupFilter>
 			<groupFilter appMode="bicycle">
 				<filter nightMode="true" tag="highway" value="motorway" additional="bicycle=no" color="$bicycleNoMotorwayColorNight" shadowColor="$bicycleNoColorStrokeNight"/>
 				<filter tag="highway" value="motorway" additional="bicycle=no" color="$bicycleNoMotorwayColorDay" shadowColor="$bicycleNoColorStrokeDay"/>
@@ -781,7 +829,7 @@
 				<filter nightMode="true" tag="highway" value="secondary_link" additional="bicycle=no" color="$bicycleNoSecondaryColorNight" shadowColor="$bicycleNoColorStrokeNight"/>
 				<filter tag="highway" value="secondary_link" additional="bicycle=no" color="$bicycleNoSecondaryColorDay" shadowColor="$bicycleNoColorStrokeDay"/>
 			</groupFilter>
-<!--			<groupFilter nightMode="true" shadowColor="$null"/>-->
+			</groupFilter>
 		</group>
 
 		<!-- Tweaked width and outline of roads for better visibility -->
@@ -802,6 +850,7 @@
 					<filter minzoom="19" strokeWidth="12:9"/>
 				</groupFilter>
 				<groupFilter nightMode="true" shadowColor="$null"/>
+				<groupFilter nightMode="true" subwayMode="true" shadowColor="#01000000"/>
 				<groupFilter additional="access=no" color_3="$null"/>
 				<groupFilter additional="access=private" color_3="$null"/>
 				<groupFilter layer="-1" pathEffect="4_4" cap="BUTT"/>
@@ -848,7 +897,8 @@
 							<groupFilter nightMode="true" color_0="#ffffff"/>
 						</groupFilter>
 					</filter>
-					<groupFilter nightMode="true" color="#999999" shadowRadius="0"/>
+					<groupFilter nightMode="true" color="$residentialRoadColorNight" shadowRadius="0"/>
+					<groupFilter nightMode="true" subwayMode="true" maxzoom="13" color="$residentialRoadDesaturatedColorNight" shadowRadius="0"/>
 					<groupFilter additional="access=no" color_3="$null"/>
 					<groupFilter additional="access=private" color_3="$null"/>
 					<groupFilter layer="1" nightMode="true" shadowColor="#666666" shadowRadius="3"/>
@@ -891,6 +941,7 @@
 						</groupFilter>
 					</filter>
 					<groupFilter nightMode="true" color="#999999" shadowColor="$null"/>
+					<groupFilter nightMode="true" maxzoom="13" subwayMode="true" color="$serviceRoadDesaturatedColorNight" shadowColor="$null" shadowRadius="0"/>
 					<groupFilter>
 						<filter nightMode="true" additional="service=driveway" color="#7c7c7c" shadowColor="$null"/>
 						<filter nightMode="true" additional="service=parking_aisle" color="#7c7c7c" shadowColor="$null"/>
@@ -917,7 +968,7 @@
 					<groupFilter nightMode="true" shadowColor="$pedestrianRoadColorStrokeNight"/>
 				</groupFilter>
 				<groupFilter appMode="car" minzoom="13" maxzoom="13" strokeWidth="1" shadowRadius=":1" shadowColor="#888888"/>
-				<groupFilter appMode="bicycle" minzoom="13" maxzoom="13" strokeWidth="1" shadowRadius=":1" shadowColor="#888888"/>
+<!--				<groupFilter appMode="bicycle" minzoom="13" maxzoom="13" strokeWidth="1" shadowRadius=":1" shadowColor="#888888"/>-->
 				<groupFilter appMode="bicycle">
 					<filter nightMode="true" additional="bicycle=no" color="#33666666" color_0="#33777777"/>
 					<filter additional="bicycle=no" color="#33ffffff" color_0="#33888888"/>
@@ -1092,8 +1143,8 @@
 				<filter tag="highway" value="cycleway" color="#a85bff" pathEffect="12_4"/>
 				<filter appMode="bicycle" tag="highway" value="path" additional="bicycle=designated" color="#a85bff" pathEffect="12_4"/>
 				<groupFilter>
-					<filter appMode="bicycle" minzoom="12" maxzoom="13" strokeWidth="3"/>
-					<filter appMode="bicycle" minzoom="14" strokeWidth="4"/>
+					<filter appMode="bicycle" subwayMode="false" minzoom="12" maxzoom="13" strokeWidth="3"/>
+					<filter appMode="bicycle" subwayMode="false" minzoom="14" strokeWidth="4"/>
 					<filter appMode="car" color="#35a85bff" strokeWidth="1.5"/>
 					<filter lessDetailed="true" minzoom="12" maxzoom="12" disable="true"/>
 					<filter minzoom="12" maxzoom="12" strokeWidth="1"/>
@@ -1325,9 +1376,10 @@
 			<filter tag="waterway" value="drain"/>
 			<groupFilter appMode="car" additional="tunnel=yes" disable="true"/>
 			<groupFilter appMode="car" additional="tunnel=culvert" disable="true"/>
-			<groupFilter color="$waterwayColorDay">
-				<filter nightMode="true" color="$waterwayColorNight"/>
-			</groupFilter>
+			<groupFilter color="$waterwayColorDay"/>
+			<groupFilter subwayMode="true" color="$waterwayDesaturatedColorDay"/>
+			<groupFilter nightMode="true" color="$waterwayColorNight"/>
+			<groupFilter nightMode="true" subwayMode="true" color="$waterwayDesaturatedColorNight"/>
 			<groupFilter lessDetailed="true" minzoom="13" maxzoom="15" layer="-1" disable="true"/>
 			<groupFilter layer="-1" color="$waterwayColorDay" color_2="$waterwayTunnelDashColorDay">
 				<filter nightMode="true" color="$waterwayTunnelColorNight" color_2="$waterwayTunnelDashColorNight"/>
@@ -1335,7 +1387,7 @@
 		</group>
 
 		<!-- Railways -->
-		<filter tag="railway" value="rail" color="#999999">
+<!--		<filter tag="railway" value="rail" color="#999999">
 			<filter appMode="car" layer="-1" minzoom="9" maxzoom="13" disable="true"/>
 			<filter appMode="bicycle" layer="-1" minzoom="9" maxzoom="13" disable="true"/>
 			<filter layer="-1" minzoom="9" maxzoom="13" strokeWidth="1:1" pathEffect="5_2"/>
@@ -1350,7 +1402,26 @@
 			<filter minzoom="14" strokeWidth="1:2" color_2="#ffffff" strokeWidth_2="1" pathEffect_2="0_11_8_1"/>
 			<groupFilter nightMode="true" layer="-1" color="#555555"/>
 			<groupFilter nightMode="true" color="#555555" color_2="#cccccc"/>
+		</filter>-->
+
+		<filter tag="railway" value="rail" color="$railwayRailLowZoomColorDay">
+			<filter appMode="car" layer="-1" minzoom="9" maxzoom="13" disable="true"/>
+			<filter appMode="bicycle" layer="-1" minzoom="9" maxzoom="13" disable="true"/>
+			<filter layer="-1" minzoom="9" maxzoom="13" strokeWidth="1:1" pathEffect="5_2"/>
+			<filter appMode="car" layer="-1" minzoom="14" strokeWidth="1:2" color="#25999999" color_2="#25ffffff" strokeWidth_2="1:2" pathEffect_2="4_4"/>
+			<filter appMode="bicycle" layer="-1" minzoom="14" strokeWidth="1:2" color="#25999999" color_2="#25ffffff" strokeWidth_2="1:2" pathEffect_2="4_4"/>
+			<filter layer="-1" minzoom="14" strokeWidth="1:2" color_2="#ffffff" strokeWidth_2="1:2" pathEffect_2="4_4"/>
+			<filter layer="1" minzoom="14" color="#000000" strokeWidth="5" color_2="#ffffff" strokeWidth_2="4" color_3="#999999" strokeWidth_3="1" pathEffect_3="12_8_1_0"/>
+			<filter minzoom="7" maxzoom="7" strokeWidth="1"/>
+			<filter minzoom="8" maxzoom="8" strokeWidth="1.5"/>
+			<filter minzoom="9" maxzoom="12" strokeWidth="1:1"/>
+			<filter minzoom="13" maxzoom="13" strokeWidth="1:2" color_2="#ffffff" strokeWidth_2="1" pathEffect_2="8_12"/>
+			<filter minzoom="14" strokeWidth="1:2" color_2="#ffffff" strokeWidth_2="1" pathEffect_2="0_11_8_1"/>
+			<groupFilter subwayMode="true" color="$railwayRailLowZoomLightColorDay"/>
+			<groupFilter nightMode="true" color="$railwayRailLowZoomColorNight"/>
+			<groupFilter nightMode="true" subwayMode="true" color="$railwayRailLowZoomDarkColorNight"/>
 		</filter>
+
 		<filter tag="railway" value="tram" color="#444444">
 			<filter appMode="car" layer="-1" minzoom="13" maxzoom="14" disable="true"/>
 			<filter appMode="bicycle" layer="-1" minzoom="13" maxzoom="14" disable="true"/>
@@ -1362,12 +1433,12 @@
 			<filter minzoom="15" strokeWidth="1:1"/>
 		</filter>
 
-		<filter appMode="car" minzoom="13" maxzoom="15" tag="railway" value="subway" disable="true"/>
+		<filter appMode="car" subwayMode="false" minzoom="13" maxzoom="15" tag="railway" value="subway" disable="true"/>
 		<filter appMode="car" minzoom="13" maxzoom="15" tag="railway" value="light_rail" disable="true"/>
-		<filter appMode="bicycle" minzoom="13" maxzoom="15" tag="railway" value="subway" disable="true"/>
+		<filter appMode="bicycle" subwayMode="false" minzoom="13" maxzoom="15" tag="railway" value="subway" disable="true"/>
 		<filter appMode="bicycle" minzoom="13" maxzoom="15" tag="railway" value="light_rail" disable="true"/>
 
-		<group layer="-1" minzoom="13" pathEffect="5_3">
+		<group layer="-1" subwayMode="false" minzoom="13" pathEffect="5_3">
 			<filter appMode="car" tag="railway" value="subway" disable="true"/>
 			<filter appMode="car" tag="railway" value="light_rail" disable="true"/>
 			<filter appMode="car" tag="railway" value="construction" disable="true"/>

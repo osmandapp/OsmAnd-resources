@@ -109,7 +109,7 @@
 	<renderingConstant name="motorwayRoadDesaturatedColorDay" value="#bcc6ec"/>
 	<renderingConstant name="motorwayRoadDesaturatedColorNight" value="#3f4764"/>
 	<renderingConstant name="trunkRoadDesaturatedColorDay" value="#ffc7d0"/>
-	<renderingConstant name="trunkRoadDesaturatedColorNight" value="#96555f"/>
+	<renderingConstant name="trunkRoadDesaturatedColorNight" value="#966c72"/>
 	<renderingConstant name="primaryRoadDesaturatedColorDay" value="#ffd9c7"/>
 	<renderingConstant name="primaryRoadDesaturatedColorNight" value="#866f64"/>
 	<renderingConstant name="secondaryRoadDesaturatedColorDay" value="#ffe7bc"/>
@@ -2361,10 +2361,16 @@
 		</filter>
 
 		<group>
-			<filter subwayMode="true" layer="-1" tag="railway" value="subway" minzoom="11" color="#555555"/>
-			<filter subwayMode="true" tag="railway" value="subway" minzoom="11" color="#555555"/>
-			<filter layer="-1" tag="railway" value="subway" minzoom="13" color="#999999" strokeWidth="2" pathEffect="5_3"/>
-			<filter tag="railway" value="subway" minzoom="13" color="#999999" strokeWidth="2"/>
+			<filter tag="railway" value="subway">
+				<filter subwayMode="true" minzoom="11"> <!-- color for subway lines without "colour" (color) tag in subwayMode-->
+					<groupFilter color="#333333"/>
+					<groupFilter nightMode="true" color="#efefef"/>
+				</filter>
+				<filter minzoom="13">
+					<filter layer="-1" pathEffect="5_3"/>
+					<groupFilter color="#999999" strokeWidth="2"/>
+				</filter>
+			</filter>
 			<groupFilter subwayMode="true" pathEffect="" cap="ROUND">
 				<filter nightMode="true" additional="colour=red" color="$subwayRedColorNight"/>
 				<filter additional="colour=red" color="$subwayRedColorDay"/>
