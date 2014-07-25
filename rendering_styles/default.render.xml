@@ -202,9 +202,10 @@
 	<renderingConstant name="highwayTrackTextHaloColorDay" value="#ffffff"/>
 
 	<renderingConstant name="placeCityVillageTextColorDay" value="#000000"/>
-	<renderingConstant name="placeSuburbLocalityTextColorDay" value="#777777"/>
-	<renderingConstant name="placeTextHaloRadiusDay" value="0"/>
-	<renderingConstant name="placeTextHaloColorDay" value="#77eeeeee"/>
+	<renderingConstant name="placeSuburbLocalityTextColorDay" value="#222222"/>
+	<renderingConstant name="placeTextHaloRadiusDay" value="1"/>
+	<renderingConstant name="placeBoldTextHaloRadiusDay" value="0"/>
+	<renderingConstant name="placeTextHaloColorDay" value="#ccffffff"/>
 
 	<renderingConstant name="placeHamletMinZoom" value="12"/>
 	<renderingConstant name="placeSuburbMinZoom" value="12"/>
@@ -215,12 +216,12 @@
 	<renderingConstant name="barriersMinZoom" value="16"/>
 
 	<renderingConstant name="buildingTextHaloRadiusDay" value="1"/>
-	<renderingConstant name="buildingTextHaloColorDay" value="#66ffffff"/>
+	<renderingConstant name="buildingTextHaloColorDay" value="#aaffffff"/>
 	
-	<renderingConstant name="waterTextHaloRadiusDay" value="0"/>
-	<renderingConstant name="waterTextColorDay" value="#6699cc"/>
+	<renderingConstant name="waterTextHaloRadiusDay" value="1"/>
+	<renderingConstant name="waterTextColorDay" value="#2375aa"/>
 	<renderingConstant name="waterTextColorNight" value="#95e7ff"/>
-	<renderingConstant name="waterTextHaloColorDay" value="#bbffffff"/>
+	<renderingConstant name="waterTextHaloColorDay" value="#99ddf1fd"/>
 	<renderingConstant name="waterTextDesaturatedColorNight" value="#7e92a6"/>
 
 	<renderingConstant name="landuseManmadeTextHaloRadiusDay" value="1"/>
@@ -744,13 +745,17 @@
 
 		<!-- county not really useful here: filter minzoom="9" textSize="13" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="county" nameTag=""/ -->
 
-		<group textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay">
+		<group textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay" textBold="true">
 			<filter minzoom="4" maxzoom="5" textSize="14" textDy="1" tag="osmand_place_basemap" value="city" textOrder="4" nameTag=""/>
-			<filter minzoom="6" maxzoom="7" textSize="20" textBold="true" textDy="1" tag="osmand_place_basemap" value="city" textOrder="3" nameTag=""/>
-			<filter minzoom="8" maxzoom="12" textSize="20" textBold="true" textDy="1" tag="osmand_place_basemap" value="city" textOrder="4" nameTag=""/>
-			<filter minzoom="6" textSize="20" textBold="true" textDy="1" tag="place" value="city" textOrder="4" nameTag=""/>
-			<filter minzoom="8" textSize="16" textBold="true" textDy="1" tag="place" value="town" textOrder="5" nameTag=""/>
-			<filter minzoom="11" textSize="14" textBold="true" textDy="1" tag="place" value="village" textOrder="10" nameTag=""/>
+			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
+		</group>
+
+		<group textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeBoldTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay" textBold="true">
+			<filter minzoom="6" maxzoom="7" textSize="20" textDy="1" tag="osmand_place_basemap" value="city" textOrder="3" nameTag=""/>
+			<filter minzoom="8" maxzoom="12" textSize="20" textDy="1" tag="osmand_place_basemap" value="city" textOrder="4" nameTag=""/>
+			<filter minzoom="6" textSize="20" textDy="1" tag="place" value="city" textOrder="4" nameTag=""/>
+			<filter minzoom="8" textSize="16" textDy="1" tag="place" value="town" textOrder="5" nameTag=""/>
+			<filter minzoom="11" textSize="14" textDy="1" tag="place" value="village" textOrder="10" nameTag=""/>
 			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 		</group>
 		<group textColor="$placeSuburbLocalityTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay">
