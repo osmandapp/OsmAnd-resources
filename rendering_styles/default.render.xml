@@ -19,6 +19,8 @@
 		type="boolean" possibleValues=""/>
 	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show cycle routes (*cn_networks) in bicycle mode"
 		type="boolean" possibleValues=""/>
+	<renderingProperty attr="dualColoredMotorwaysTrunks" name="Show motorways/trunks in dual colors" description="Show motorways and trunks in road atlas dual colors"
+		type="boolean" possibleValues=""/>
 	<renderingProperty attr="subwayMode" name="Subway mode" description="Subway rendering mode"
 		type="boolean" possibleValues=""/>
 	<renderingProperty attr="noAdminboundaries" name="Hide boundaries" description="Suppress display of admin levels 5-9"
@@ -120,6 +122,15 @@
 	<renderingConstant name="constructionRoadDesaturatedColorDay" value="#98a4ba"/>
 	<renderingConstant name="constructionRoadDesaturatedColorNight" value="#505e79"/>
 	<renderingConstant name="constructionRoadDesaturatedColor2Night" value="#888888"/>
+
+	<renderingConstant name="dualColoredmotorwayRoadColor" value="#f7fe2e"/>
+	<renderingConstant name="dualColoredmotorwayRoadColor_0" value="#fe2e2e"/>
+	<renderingConstant name="dualColoredmotorwayRoadNightColor" value="#c6cc26"/>
+	<renderingConstant name="dualColoredmotorwayRoadNightColor_0" value="#cc2626"/>
+	<renderingConstant name="dualColoredtrunkRoadColor" value="#dcdcdc"/>
+	<renderingConstant name="dualColoredtrunkRoadColor_0" value="#fe2e2e"/>
+	<renderingConstant name="dualColoredtrunkRoadNightColor" value="#cccccc"/>
+	<renderingConstant name="dualColoredtrunkRoadNightColor_0" value="#cc2626"/>
 
 	<!-- Forest -->
 	<renderingConstant name="woodColorDay" value="#aed1a0"/>
@@ -1974,7 +1985,7 @@
 		<filter minzoom="1" tag="natural" value="coastline_broken" color="#111111" strokeWidth=":1"/>
 		<filter minzoom="5" tag="natural" value="coastline_line" color="#cc999999" strokeWidth=":1"/>
 
-		<group>
+		<group dualColoredMotorwaysTrunks="false">
 			<group>
 				<filter tag="highway" value="motorway" maxzoom="13"/>
 				<filter tag="highway" value="motorway_link" maxzoom="13"/>
@@ -1999,6 +2010,41 @@
 				<filter minzoom="13" maxzoom="13" strokeWidth="9"/>
 			</groupFilter>
 			<groupFilter nightMode="true" subwayMode="true" shadowRadius="0"/>
+		</group>
+
+		<group dualColoredMotorwaysTrunks="true">
+			<filter tag="highway" value="motorway" nightMode="true" color="$dualColoredmotorwayRoadNightColor" color_0="$dualColoredmotorwayRoadNightColor_0"/>
+			<filter tag="highway" value="motorway_link" nightMode="true" color="$dualColoredmotorwayRoadNightColor" color_0="$dualColoredmotorwayRoadNightColor_0"/>
+			<filter tag="highway" value="trunk" nightMode="true" color="$dualColoredtrunkRoadNightColor" color_0="$dualColoredtrunkRoadNightColor_0"/>
+			<filter tag="highway" value="trunk_link" nightMode="true" color="$dualColoredtrunkRoadNightColor" color_0="$dualColoredtrunkRoadNightColor_0"/>
+			<filter tag="highway" value="motorway" color="$dualColoredmotorwayRoadColor" color_0="$dualColoredmotorwayRoadColor_0"/>
+			<filter tag="highway" value="motorway_link" color="$dualColoredmotorwayRoadColor" color_0="$dualColoredmotorwayRoadColor_0"/>
+			<filter tag="highway" value="trunk" color="$dualColoredtrunkRoadColor" color_0="$dualColoredtrunkRoadColor_0"/>
+			<filter tag="highway" value="trunk_link" color="$dualColoredtrunkRoadColor" color_0="$dualColoredtrunkRoadColor_0"/>
+			<groupFilter cap="ROUND">
+				<filter minzoom="5" maxzoom="8" strokeWidth="1" strokeWidth_0="4"/>
+				<filter minzoom="9" maxzoom="9" strokeWidth="2" strokeWidth_0="5"/>
+				<filter minzoom="10" maxzoom="10" strokeWidth="2.3" strokeWidth_0="6"/>
+				<filter minzoom="11" maxzoom="11" strokeWidth="2.7" strokeWidth_0="7"/>
+				<filter minzoom="12" maxzoom="12" strokeWidth="3" strokeWidth_0="8"/>
+				<filter minzoom="13" maxzoom="13" strokeWidth="3.3" strokeWidth_0="9"/>
+				<filter minzoom="14" maxzoom="14" strokeWidth="4" strokeWidth_0="10"/>
+				<filter minzoom="15" maxzoom="15" strokeWidth="5" strokeWidth_0="12"/>
+				<filter minzoom="16" strokeWidth="6.7" strokeWidth_0="14"/>
+				<!-- Tunnels and Bridges -->
+				<groupFilter layer="-1" minzoom="14" pathEffect="6_6" cap="BUTT" pathEffect_0="6_6" color__1="#000000" pathEffect__1="6_6">
+					<filter minzoom="14" maxzoom="14" strokeWidth__1="12"/>
+					<filter minzoom="15" maxzoom="15" strokeWidth__1="14"/>
+					<filter minzoom="16" strokeWidth__1="16"/>
+					<groupFilter nightMode="true" color__1="#ffffff"/>
+				</groupFilter>
+				<groupFilter layer="1" color__1="#000000" cap_0="BUTT" cap="SQUARE">
+					<filter minzoom="14" maxzoom="14" strokeWidth__1="12"/>
+					<filter minzoom="15" maxzoom="15" strokeWidth__1="14"/>
+					<filter minzoom="16" strokeWidth__1="26"/>
+					<groupFilter nightMode="true" color__1="#ffffff"/>
+				</groupFilter>
+			</groupFilter>
 		</group>
 
 		<group>
