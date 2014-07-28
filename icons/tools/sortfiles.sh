@@ -50,6 +50,8 @@ mycp natural tree functional-icons_tree.png  #scale 0.25
 mygroup administrative poi_boundary_administrative.png
 mycp place city_night functional-icons_city_night.png  #scale 0.375
 mycp place city functional-icons_city.png  #scale 0.375
+mycp place capital_night functional-icons_capital_night.png  #scale 0.375
+mycp place capital functional-icons_capital.png  #scale 0.375
 mycp place town_night functional-icons_town_night.png  #scale 0.25
 mycp place town functional-icons_town.png  #scale .25
 
