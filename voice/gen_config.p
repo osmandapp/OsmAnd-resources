@@ -7,6 +7,7 @@ write_header :-
 
 cut(Ogg, WName) :- atom_length(Ogg, L), Lt is L - 4, sub_atom(Ogg, 0, Lt, _, Name), atom_concat(Name, '.wav', WName).
 cut_mp3(Ogg, WName) :- atom_length(Ogg, L), Lt is L - 4, sub_atom(Ogg, 0, Lt, _, Name), atom_concat(Name, '.mp3', WName).
+cut_ogg(Ogg, WName) :- atom_length(Ogg, L), Lt is L - 4, sub_atom(Ogg, 0, Lt, _, Name), atom_concat(Name, '.ogg', WName).
 
 write_fsave([]).
 write_fsave([string(Ogg, X) |L]) :- cut(Ogg, Name), write('\n(fsave "'), write(X), write('" "'), 
@@ -17,6 +18,13 @@ write_wget([string(Ogg, X) |L], FL) :- cut_mp3(Ogg, Name),
 			write('wget -q -U Mozilla -O "'), write(Name),
 			write('" "http://translate.google.com/translate_tts?ie=UTF-8&tl='), write(FL), write('&q='), 
 			write(X),  write('"\n'), write_wget(L, FL).
+
+write_wget_govorec([],_).
+%write_wget_govorec([string(Ogg, X) |L], FL) :- cut(Ogg, Name), 
+write_wget_govorec([string(Ogg, X) |L], FL) :- cut_ogg(Ogg, Name), 
+			write('wget -q -U Mozilla -O "'), write(Ogg),
+			write('" "http://govorec2.ijs.si/?f=speak&v=SAPI%2FGovRenato&o=ogg&t='), 
+			write(X),  write('"\n'), write_wget_govorec(L, FL).
 
 format_comma_l([], []).
 format_comma_l([','|Y], [' '|Ys]) :- format_comma_l(Y, Ys).
@@ -38,6 +46,9 @@ gen(File, fest) :- assert(voice_generation), assert(fest),consult(File), findall
 
 gen(File, google) :- assert(voice_generation), assert(google_gen),!, consult(File), findall(string(Fn, T), string(Fn, T), Result),
  		language(FL), write_wget(Result, FL) .
+
+gen(File, govorec) :- assert(voice_generation), assert(google_gen),!, consult(File), findall(string(Fn, T), string(Fn, T), Result),
+ 		language(FL), write_wget_govorec(Result, FL) .
 
 gen(File, ispeech) :- 
 	assert(voice_generation), assert(ispeech),!, consult(File), findall(string(Fn, T), string(Fn, T), Result), language(FL), 	 
