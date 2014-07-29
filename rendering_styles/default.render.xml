@@ -19,6 +19,8 @@
 		type="boolean" possibleValues=""/>
 	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show cycle routes (*cn_networks) in bicycle mode"
 		type="boolean" possibleValues=""/>
+	<renderingProperty attr="coloredBuildings" name="Colored buildings" description="Colored buildings by type"
+		type="boolean" possibleValues=""/>
 	<renderingProperty attr="subwayMode" name="Subway mode" description="Subway rendering mode"
 		type="boolean" possibleValues=""/>
 	<renderingProperty attr="noAdminboundaries" name="Hide boundaries" description="Suppress display of admin levels 5-9"
@@ -1952,25 +1954,77 @@
 
 		<!-- Buildings, night color 685454 -->
 		<group>
-			<group>
-				<filter minzoom="16" color="#bca9a9" tag="building" value="" strokeWidth_2="0.3" color_2="#000000"/>
-				<groupFilter nightMode="true" color="#685454" color_2="#999999"/>
-			</group>
-			<group>
-				<filter minzoom="13" color="#bbbbbb" tag="power" value="plant"/>
-				<filter minzoom="13" color="#bbbbbb" tag="power" value="generator"/>
-				<filter minzoom="13" color="#bbbbbb" tag="power" value="substation"/>
-				<filter minzoom="13" color="#33cc99" tag="leisure" value="stadium"/>
-				<filter minzoom="13" color="#33cc99" tag="leisure" value="sports_centre"/>
-				<filter minzoom="14" color="#dfd1d6" tag="landuse" value="garages"/>
-				<filter minzoom="12" color="#ff8f8f" tag="military" value="barracks"/>
-				<!-- use semi-ransparent shader to better show area details: filter minzoom="10" color="#a0ffa0c0" color_2="#ffa0c0" strokeWidth_2=":2" tag="landuse" value="military"/ -->
-				<groupFilter nightMode="true" color="#563434"/>
+			<group minzoom="16" color_2="#000000" strokeWidth_2="0.3">
+				<group coloredBuildings="true">
+					<group>
+						<filter tag="building" value="garages"/>
+						<filter tag="building" value="garage"/>
+						<filter tag="building" value="industrial"/>
+						<filter tag="building" value="transportation"/>
+						<filter tag="building" value="train_station"/>
+						<filter tag="building" value="warehouse"/>
+						<filter tag="building" value="hangar"/>
+						<filter tag="building" value="factory"/>
+						<filter tag="building" value="manufacture"/>
+						<filter tag="building" value="farm_auxiliary"/>
+						<filter tag="building" value="shed"/>
+						<filter tag="building" value="barn"/>
+						<filter tag="building" value="greenhouse"/>
+						<groupFilter color="#b2afb9"/>
+						<groupFilter nightMode="true" color="#514c59"/>
+					</group>
+					<group>
+						<filter tag="building" value="apartments"/>
+						<filter tag="building" value="house"/>
+						<filter tag="building" value="hut"/>
+						<filter tag="building" value="cabin"/>
+						<filter tag="building" value="detached"/>
+						<filter tag="building" value="dormitory"/>
+						<filter tag="building" value="residential"/>
+						<filter tag="building" value="farm"/>
+						<groupFilter color="#b8b39e"/>
+						<groupFilter nightMode="true" color="#685e49"/>
+					</group>
+					<group>
+						<filter tag="building" value="hospital"/>
+						<filter tag="building" value="civic"/>
+						<filter tag="building" value="public"/>
+						<filter tag="building" value="school"/>
+						<filter tag="building" value="kindergarten"/>
+						<filter tag="building" value="university"/>
+						<filter tag="building" value="college"/>
+						<groupFilter color="#a4b0b7"/>
+						<groupFilter nightMode="true" color="#56636b"/>
+					</group>
+					<group>
+						<filter tag="building" value="commercial"/>
+						<filter tag="building" value="retail"/>
+						<filter tag="building" value="shop"/>
+						<filter tag="building" value="supermarket"/>
+						<filter tag="building" value="hotel"/>
+						<groupFilter color="#d1aeae"/>
+						<groupFilter nightMode="true" color="#885d5d"/>
+					</group>
+				</group>
+				<filter nightMode="true" tag="building" value="" color="#685454" color_2="#999999"/>
+				<filter tag="building" value="" color="#bca9a9"/>
 			</group>
 			<groupFilter minzoom="16" additional="abandoned=yes" color_2="#000000" strokeWidth_2="0.5" pathEffect_2="9_3"/>
 			<groupFilter minzoom="16" additional="ruins=yes" color_2="#000000" strokeWidth_2="0.5" pathEffect_2="9_3"/>
 			<groupFilter minzoom="16" nightMode="true" additional="abandoned=yes" color_2="#999999" strokeWidth_2="0.5" pathEffect_2="9_3"/>
 			<groupFilter minzoom="16" nightMode="true" additional="ruins=yes" color_2="#999999" strokeWidth_2="0.5" pathEffect_2="9_3"/>
+		</group>
+		
+		<group>
+			<filter minzoom="13" color="#bbbbbb" tag="power" value="plant"/>
+			<filter minzoom="13" color="#bbbbbb" tag="power" value="generator"/>
+			<filter minzoom="13" color="#bbbbbb" tag="power" value="substation"/>
+			<filter minzoom="13" color="#33cc99" tag="leisure" value="stadium"/>
+			<filter minzoom="13" color="#33cc99" tag="leisure" value="sports_centre"/>
+			<filter minzoom="14" color="#dfd1d6" tag="landuse" value="garages"/>
+			<filter minzoom="12" color="#ff8f8f" tag="military" value="barracks"/>
+			<!-- use semi-ransparent shader to better show area details: filter minzoom="10" color="#a0ffa0c0" color_2="#ffa0c0" strokeWidth_2=":2" tag="landuse" value="military"/ -->
+			<groupFilter nightMode="true" color="#362d2d"/>
 		</group>
 
 		<filter nightMode="true" minzoom="13" tag="man_made" value="pier" color="#757596"/>
