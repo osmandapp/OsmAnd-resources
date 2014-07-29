@@ -44,6 +44,12 @@ if [ $ENGINE = "google" ]; then
 	prolog -s ../gen_config.p -q -t "$GOAL" > google.$1.sh
 	chmod +x google.$1.sh
 	#./google.$1.sh
+elif [ $ENGINE = "govorec" ]; then
+	#  Use Slovenian TTS engine eGovorec: http://dis.ijs.si/e-govorec/
+	echo "google_gen." >> g_config.p
+	prolog -s ../gen_config.p -q -t "$GOAL" > govorec.$1.sh
+	chmod +x govorec.$1.sh
+	#./govorec.$1.sh
 elif [ $ENGINE = "ispeech_diff" ]; then
     echo "google_gen." >> g_config.p
     prolog -s ../gen_config.p -q -t "$GOAL" > ispeech_$1.sh
