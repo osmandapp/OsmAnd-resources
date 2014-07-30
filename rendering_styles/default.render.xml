@@ -792,14 +792,22 @@
 		<!-- county not really useful here: filter minzoom="9" textSize="13" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="county" nameTag=""/ -->
 
 		<group textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay" textBold="true">
-			<filter minzoom="4" maxzoom="5" textSize="14" textDy="1" tag="osmand_place_basemap" value="city" textOrder="4" nameTag=""/>
+			<filter minzoom="4" maxzoom="5" textSize="14" textDy="1" tag="osmand_place_basemap" value="city" textOrder="4" nameTag="">
+				<filter additional="capital=yes" textOrder="3"/>
+			</filter>
 			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 		</group>
 
 		<group textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeBoldTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay" textBold="true">
-			<filter minzoom="6" maxzoom="7" textSize="20" textDy="1" tag="osmand_place_basemap" value="city" textOrder="3" nameTag=""/>
-			<filter minzoom="8" maxzoom="12" textSize="20" textDy="1" tag="osmand_place_basemap" value="city" textOrder="4" nameTag=""/>
-			<filter minzoom="6" textSize="20" textDy="1" tag="place" value="city" textOrder="4" nameTag=""/>
+			<filter minzoom="6" maxzoom="7" textSize="20" textDy="1" tag="osmand_place_basemap" value="city" textOrder="3" nameTag="">
+				<filter additional="capital=yes" textOrder="2"/>
+			</filter>
+			<filter minzoom="8" maxzoom="12" textSize="20" textDy="1" tag="osmand_place_basemap" value="city" textOrder="4" nameTag="">
+				<filter additional="capital=yes" textOrder="3"/>
+			</filter>
+			<filter minzoom="6" textSize="20" textDy="1" tag="place" value="city" textOrder="4" nameTag="">
+				<filter additional="capital=yes" textOrder="3"/>
+			</filter>
 			<filter minzoom="8" textSize="16" textDy="1" tag="place" value="town" textOrder="5" nameTag=""/>
 			<filter minzoom="11" textSize="14" textDy="1" tag="place" value="village" textOrder="10" nameTag=""/>
 			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
@@ -1347,11 +1355,17 @@
 		<filter minzoom="16" icon="natural_tree" tag="natural" value="tree" iconVisibleSize="7"/>
 
 		<!-- Location dots -->
-			<filter nightMode="true" minzoom="6" icon="place_city_night" tag="place" value="city"/>
-		<filter minzoom="6" icon="place_city" tag="place" value="city"/>
-			<filter nightMode="true" minzoom="4" maxzoom="5" icon="place_city_night" tag="osmand_place_basemap" value="city"/>
-		<filter minzoom="4" maxzoom="5" icon="place_city" tag="osmand_place_basemap" value="city"/>
-			<filter nightMode="true" minzoom="7" icon="place_town_night" tag="place" value="town"/>
+		<group>
+			<filter tag="place" value="city" minzoom="6" maxzoom="11" icon="place_city"/>
+			<filter tag="osmand_place_basemap" value="city" minzoom="4" maxzoom="5" icon="place_city"/>
+			<groupFilter>
+				<filter additional="capital=yes" icon="place_capital" iconVisibleSize="0" iconOrder="99">
+					<filter nightMode="true" icon="place_capital_night" iconVisibleSize="0" iconOrder="99"/>
+				</filter>
+				<filter nightMode="true" icon="place_city_night"/>
+			</groupFilter>
+		</group>
+		<filter nightMode="true" minzoom="7" icon="place_town_night" tag="place" value="town"/>
 		<filter minzoom="7" icon="place_town" tag="place" value="town"/>
 
 		<!-- Emergency + Health  -->
