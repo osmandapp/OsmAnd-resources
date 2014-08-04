@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# ./gen_diff.sh en KEY English
 echo '#!/bin/bash' > script_diff.sh
 git diff $1/ispeech_$1.csv | grep '^\+[^\+]' | while read i; do
 	file=`echo ${i:1} | cut -d',' -f 1`
