@@ -23,6 +23,7 @@ fest_language('cmu_us_awb_arctic_clunits').
 % (X) Name announcement for destination / intermediate / GPX waypoint arrival
 % (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
 % (X) word order checked
+% (X) Announcement of favorites, waypoints and pois along the route
 
 
 % ROUTE CALCULATED
