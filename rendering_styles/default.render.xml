@@ -338,57 +338,91 @@
 	<!-- Order should be between 0 and 255 (integer) -->
 	<!-- output ! objectType point = 1, line = 2, polygon = 3 and order -->
 	<order>
-		
-		<!-- point has order 128 -->
-		<filter tag="" value="" point="true" order="128" objectType="1"/>
+	<!-- Point -->
+		<group objectType="1" area="false" point="true" order="128">
+			<!-- point has order 128 -->
+			<filter tag="" value=""/>
+			<filter tag="railway" value=""/>
+			<filter tag="place" value=""/>
+			<filter tag="public_transport" value=""/>
+			<filter tag="highway" value="ford"/>
+<!--			<filter tag="highway" value=""/>-->
+			<filter tag="traffic_calming" value=""/>
+			<filter tag="noexit" value=""/>
+			<filter tag="flood_prone" value=""/>
+			<filter tag="barrier" value=""/>
+			<filter tag="aeroway" value=""/>
+			<filter tag="aerialway" value=""/>
+			<filter tag="amenity" value=""/>
+			<filter tag="emergency" value=""/>
+			<filter tag="man_made" value=""/>
+			<filter tag="natural" value=""/>
+			<filter tag="waterway" value=""/>
+			<filter tag="shop" value=""/>
+			<filter tag="tourism" value=""/>
+			<filter tag="historic" value=""/>
+			<filter tag="leisure" value=""/>
+			<filter tag="sport" value=""/>
+			<filter tag="geocache" value=""/>
+			<filter tag="office" value=""/>
+			<filter tag="power" value=""/>
+		</group>
 
-		<!-- default polygon -->
-		<filter area="true" layer="-1" tag="" value="" order="3" objectType="3"/>
+	<!-- Polygon -->
+		<group objectType="3" area="true" point="false">
+			<group layer="-1" order="3">
+				<filter tag="" value=""/>
+				<filter tag="natural" value="coastline"/>
+				<filter tag="natural" value="land"/>
+				<filter tag="place" value="island"/>
+			</group>
+			<filter cycle="true" tag="leisure" value="nature_reserve" order="9"/>
+			<filter cycle="true" tag="landuse" value="military" order="8"/>
+			<filter cycle="true" tag="military" value="danger_area" order="8"/>
+			<filter tag="leisure" value="nature_reserve" order="9"/>
+			<filter tag="landuse" value="military" order="8"/>
+			<filter tag="military" value="danger_area" order="8"/>
+			<filter tag="railway" value="" order="4"/>
+			<filter tag="public_transport" value="" order="5"/>
+			<group order="5">
+				<filter tag="highway" value="tertiary"/>
+				<filter tag="highway" value="pedestrian"/>
+				<filter tag="highway" value="service"/>
+				<filter tag="highway" value="road"/>
+				<filter tag="highway" value="unclassified"/>
+				<filter tag="highway" value="residential"/>
+				<filter tag="highway" value="track"/>
+				<filter tag="highway" value="footway"/>
+			</group>
+		</group>
+		<group objectType="3" point="false">
+			<group order="5">
+				<filter tag="natural" value="water"/>
+				<filter tag="waterway" value="riverbank"/>
+				<filter tag="aeroway" value="aerodrome"/>
+				<filter tag="aeroway" value="apron"/>
+				<filter tag="aeroway" value="terminal"/>
+			</group>
+		</group>
 		<filter cycle="true" tag="" value="" order="5" objectType="3"/>
-		<filter area="true" tag="" value="" order="5" objectType="3"/>
-		<filter area="true" layer="-1" tag="natural" value="coastline" order="3" objectType="3"/>
-		<filter area="true" layer="-1" tag="natural" value="land" order="3" objectType="3"/>
-		<filter area="true" layer="-1" tag="place" value="island" order="3" objectType="3"/>
-		<filter area="true" tag="leisure" value="nature_reserve" order="9" objectType="3"/>
-		<filter cycle="true" tag="leisure" value="nature_reserve" order="9" objectType="3"/>
-		<filter area="true" tag="landuse" value="military" order="8" objectType="3"/>
-		<filter cycle="true" tag="landuse" value="military" order="8" objectType="3"/>
-		<filter area="true" tag="military" value="danger_area" order="8" objectType="3"/>
-		<filter cycle="true" tag="military" value="danger_area" order="8" objectType="3"/>
 
-		<!-- default line -->
-		<filter layer="-1" tag="" value="" order="10" objectType="2"/>
-		<filter tag="" value="" order="11" objectType="2"/>
-
-		<filter tag="railway" value="subway_entrance" objectType="1" order="1"/>
-
-		<group>
-			<filter tag="railway" value="platform"/>
-			<filter tag="railway" value="station"/>
-			<filter tag="public_transport" value="station"/>
-			<filter tag="public_transport" value="platform"/>
-			<groupFilter>
-				<filter point="false" area="false" objectType="2" order="58"/>
-				<filter area="true" point="false" objectType="3" order="5"/>
-				<filter point="true" objectType="1" order="128"/>
-			</groupFilter>
-		</group>
-
-		<group>
-			<filter tag="highway" value="tertiary"/>
-			<filter tag="highway" value="pedestrian"/>
-			<filter tag="highway" value="service"/>
-			<filter tag="highway" value="road"/>
-			<filter tag="highway" value="unclassified"/>
-			<filter tag="highway" value="residential"/>
-			<filter tag="highway" value="track"/>
-			<filter tag="highway" value="footway"/>
-			<groupFilter>
-				<filter area="true" point="false" objectType="3" order="5"/>
-			</groupFilter>
-		</group>
-
-		<group objectType="2" area="false" point="false">
+	<!-- Line -->
+		<group objectType="2" area="false">
+			<!-- default line -->
+			<filter layer="-1" tag="" value="" order="10"/>
+			<filter tag="" value="" order="11"/>
+			<group appMode="car">
+				<filter layer="1" tag="railway" value="" order="71"/>
+				<filter tag="railway" value="" order="36"/>
+				<group layer="-1">
+					<filter tag="public_transport" value="platform" order="10"/>
+					<filter tag="public_transport" value="station" order="10"/>
+					<filter tag="railway" value="platform" order="10"/>
+				</group>
+				<filter tag="public_transport" value="" order="36"/>
+			</group>
+			<filter tag="railway" value="" order="58"/>
+			<filter tag="public_transport" value="" order="58"/>
 			<!-- Over buildings -->
 			<filter tag="aerialway" value="" order="96"/>
 			<filter tag="power" value="line" order="96"/>
@@ -396,14 +430,6 @@
 
 			<filter subwayMode="true" tag="railway" value="subway" order="90"/>
 			<filter layer="1" tag="railway" value="" order="88"/>
-			<filter appMode="car" layer="1" tag="railway" value="" order="71"/>
-			<filter appMode="car" tag="railway" value="" order="36"/>
-			<filter appMode="car" layer="-1" tag="public_transport" value="platform" order="10"/>
-			<filter appMode="car" layer="-1" tag="public_transport" value="station" order="10"/>
-			<filter appMode="car" layer="-1" tag="railway" value="platform" order="10"/>
-			<filter tag="railway" value="" order="58"/>
-			<filter appMode="car" tag="public_transport" value="" order="36"/>
-			<filter tag="public_transport" value="" order="58"/>
 			
 			<filter layer="1" tag="waterway" value="" order="68"/>
 			<filter tag="waterway" value="" order="18"/>
@@ -500,10 +526,10 @@
 			
 			<filter tag="aeroway" value="" order="32"/>
 			<filter tag="contour" value="" order="15"/>
-		</group>
 
-		<filter tag="barrier" value="" order="20" objectType="2" point="false"/>
-		<filter tag="fenced" value="yes" order="20" objectType="2" point="false"/>
+			<filter tag="barrier" value="" order="20"/>
+			<filter tag="fenced" value="yes" order="20"/>
+		</group>
 
 		<group appMode="bicycle">
 			<filter tag="lcn_network" value="lcn" order="112"/>
@@ -520,12 +546,14 @@
 		</group>
 
 		<group objectType="3" point="false" order="5">
+<!--			<group order="5">
+				<filter tag="natural" value="water"/>
+				<filter tag="waterway" value="riverbank"/>
+				<filter tag="aeroway" value="aerodrome"/>
+				<filter tag="aeroway" value="apron"/>
+				<filter tag="aeroway" value="terminal"/>
+			</group>-->
 			<!-- this is used not for order, but to distinguish area & line keep order=5-->
-			<filter tag="natural" value="water" />
-			<filter tag="waterway" value="riverbank" />
-			<filter tag="aeroway" value="aerodrome"/>
-			<filter tag="aeroway" value="apron"/>
-			<filter tag="aeroway" value="terminal"/>
 
 
 			<!-- old schema now objects are sorted by size -->	
@@ -855,23 +883,24 @@
 		</group>
 
 		<!-- Water -->
-		<group textColor="$waterTextColorDay" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$waterTextHaloColorDay">
-			<filter minzoom="3" textSize="12" textWrapWidth="20" tag="place" value="ocean" textOrder="3"/>
-			<filter minzoom="5" textSize="12" textWrapWidth="20" tag="place" value="sea" textOrder="5"/>
-			<filter minzoom="6" textSize="12" textWrapWidth="17" tag="natural" value="water" textOrder="10"/>
-			<filter minzoom="6" textSize="12" textWrapWidth="20" tag="natural" value="lake" textOrder="10"/>
-			<filter minzoom="13" textSize="12" textOnPath="true" tag="waterway" value="stream" textOrder="15"/>
-			<filter minzoom="11" textSize="12" textOnPath="true" textMinDistance="80" tag="waterway" value="river" textOrder="10"/>
-			<filter minzoom="13" textSize="12" textOnPath="true" textMinDistance="80" tag="waterway" value="canal" textOrder="10"/>
-			<filter minzoom="15" textSize="12" textOnPath="true" tag="waterway" value="ditch" textOrder="15"/>
-			<filter minzoom="15" textSize="12" textOnPath="true" tag="waterway" value="drain" textOrder="15"/>
-			<filter minzoom="15" textSize="12" textDy="7" textWrapWidth="30" tag="waterway" value="lock_gate" textOrder="15"/>
-			<!-- not a conventional tag: filter minzoom="15" textSize="12" textDy="7" textWrapWidth="30" tag="waterway" value="lock" textOrder="15"/ -->
-			<filter minzoom="15" textSize="12" textWrapWidth="20" tag="waterway" value="dam" textOrder="15"/>
-			<filter minzoom="16" textSize="12" textDy="7" textWrapWidth="20" tag="natural" value="spring" textOrder="15"/>
+		<group textColor="$waterTextColorDay" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$waterTextHaloColorDay" textSize="12">
+			<filter minzoom="3" textWrapWidth="20" tag="place" value="ocean" textOrder="3"/>
+			<filter minzoom="5" textWrapWidth="20" tag="place" value="sea" textOrder="5"/>
+			<filter minzoom="6" textWrapWidth="17" tag="natural" value="water" textOrder="10"/>
+			<filter minzoom="6" textWrapWidth="20" tag="natural" value="lake" textOrder="10"/>
+			<filter minzoom="13" textOnPath="true" tag="waterway" value="stream" textOrder="15"/>
+			<filter minzoom="11" textOnPath="true" textMinDistance="80" tag="waterway" value="river" textOrder="10"/>
+			<filter minzoom="13" textOnPath="true" textMinDistance="80" tag="waterway" value="canal" textOrder="10"/>
+			<filter minzoom="15" textOnPath="true" tag="waterway" value="ditch" textOrder="15"/>
+			<filter minzoom="15" textOnPath="true" tag="waterway" value="drain" textOrder="15"/>
+			<filter minzoom="15" textDy="7" textWrapWidth="30" tag="waterway" value="lock_gate" textOrder="15"/>
+			<!-- not a conventional tag: filter minzoom="15" textDy="7" textWrapWidth="30" tag="waterway" value="lock" textOrder="15"/ -->
+			<filter minzoom="15" textWrapWidth="20" tag="waterway" value="dam" textOrder="15"/>
+			<filter minzoom="16" textDy="7" textWrapWidth="20" tag="natural" value="spring" textOrder="15"/>
 
-			<filter minzoom="13" textSize="12" textWrapWidth="20" tag="landuse" value="water"/>
-			<filter minzoom="13" textSize="12" textWrapWidth="20" tag="landuse" value="reservoir"/>
+			<filter minzoom="13" textWrapWidth="20" tag="landuse" value="water"/>
+			<filter minzoom="13" textWrapWidth="20" tag="landuse" value="reservoir"/>
+			<filter minzoom="17" textWrapWidth="20" tag="leisure" value="swimming_pool"/>
 			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="$waterTextColorNight" textHaloColor="#994563a7"/>
 			<groupFilter nightMode="true" subwayMode="true" textHaloRadius="$textHaloRadiusNight" textColor="$waterTextDesaturatedColorNight" textHaloColor="#aa303849"/>
 		</group>
@@ -987,7 +1016,7 @@
 				<groupFilter minzoom="14" maxzoom="14" textSize="14"/>
 			</filter>
 			<filter minzoom="17" tag="railway" value="subway_entrance" textSize="13"/>
-			<groupFilter textColor="$subwayLineDefaultColorDay" textDy="7" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textBold="true" textOrder="15"/>
+			<groupFilter textColor="$subwayLineDefaultColorDay" textDy="7" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textBold="true" textOrder="1"/>
 			<groupFilter additional="color_red=" textColor="$subwayRedColorDay"/>
 			<groupFilter additional="color_brown=" textColor="$subwayTextBrownColorDay"/>
 			<groupFilter additional="color_orange=" textColor="$subwayTextOrangeColorDay"/>
@@ -1218,7 +1247,6 @@
 			<filter minzoom="16" tag="leisure" value="ice_rink"/>
 			<filter minzoom="17" tag="leisure" value="fishing"/>
 			<filter minzoom="17" tag="leisure" value="bird_hide"/>
-			<filter minzoom="15" tag="leisure" value=""/>
 			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#9effa9" textHaloColor="#33013b27"/>
 		</group>
 
@@ -1963,8 +1991,8 @@
 			<!-- Tourism -->
 			<filter minzoom="13" color="#f2caea" tag="tourism" value="attraction"/>
 			<filter minzoom="15" color="#f2caea" tag="amenity" value="place_of_worship"/>
-			<filter minzoom="12" maxzoom="15" color="#f2caea" color_2="#734a08" strokeWidth_2=":1" pathEffect_2="9_3" tag="tourism" value="theme_park"/>
-				<filter minzoom="16" color="#f2caea" color_2="#734a08" strokeWidth_2=":2" pathEffect_2="9_3" tag="tourism" value="theme_park"/>
+			<filter minzoom="12" maxzoom="15" color="#66f2caea" color_2="#734a08" strokeWidth_2=":1" pathEffect_2="9_3" tag="tourism" value="theme_park"/>
+				<filter minzoom="16" color="#66f2caea" color_2="#734a08" strokeWidth_2=":2" pathEffect_2="9_3" tag="tourism" value="theme_park"/>
 			<filter minzoom="13" color="#a0ccff99" tag="tourism" value="camp_site"/>
 			<filter minzoom="13" color="#a0ccff99" tag="tourism" value="caravan_site"/>
 			<filter minzoom="13" color="#a0ccff99" tag="tourism" value="picnic_site"/>
@@ -2231,7 +2259,7 @@
 				<filter color_0="#000000">
 					<filter test="$hmRendered" minzoom="14" maxzoom="14" strokeWidth="5"/>
 					<filter minzoom="14" maxzoom="14" strokeWidth="1:2" shadowColor="#44666666" shadowRadius=":1"/>
-					<filter minzoom="15" maxzoom="15" strokeWidth="3:4"/>
+					<filter minzoom="15" maxzoom="15" strokeWidth="2:3"/>
 					<filter minzoom="16" maxzoom="16" strokeWidth="5:4"/>
 					<filter minzoom="17" maxzoom="17" strokeWidth="7:5"/>
 					<filter minzoom="18" maxzoom="18" strokeWidth="10:8"/>
@@ -2241,11 +2269,11 @@
 					<groupFilter layer="1" shadowRadius=":0" cap="SQUARE" cap_0="BUTT">
 						<filter test="$hmRendered" minzoom="14" maxzoom="14" strokeWidth_0="5:4"/>
 						<filter minzoom="14" maxzoom="14" strokeWidth_0="1:4"/>
-						<filter minzoom="15" maxzoom="15" strokeWidth_0="3:6"/>
-						<filter minzoom="16" maxzoom="16" strokeWidth_0="5:6"/>
-						<filter minzoom="17" maxzoom="17" strokeWidth_0="7:7"/>
-						<filter minzoom="18" maxzoom="18" strokeWidth_0="10:10"/>
-						<filter minzoom="19" strokeWidth_0="12:11"/>
+						<filter minzoom="15" maxzoom="15" strokeWidth_0="3:4.5"/>
+						<filter minzoom="16" maxzoom="16" strokeWidth_0="5:7"/>
+						<filter minzoom="17" maxzoom="17" strokeWidth_0="7:8"/>
+						<filter minzoom="18" maxzoom="18" strokeWidth_0="10:11.5"/>
+						<filter minzoom="19" strokeWidth_0="12:13"/>
 						<groupFilter nightMode="true" color_0="#ffffff"/>
 					</groupFilter>
 				</filter>
@@ -2457,7 +2485,13 @@
 			<groupFilter nightMode="true" color="#999999"/>
 		</group>
 
-		<filter minzoom="16" color="#aed1a0" strokeWidth="3" tag="barrier" value="hedge"/>
+		<group minzoom="16">
+			<filter tag="barrier" value="hedge"/>
+			<filter tag="natural" value="hedge"/>
+			<groupFilter color="#aed1a0" strokeWidth="3"/>
+			<groupFilter nightMode="true" color="#285926" strokeWidth="3"/>
+		</group>
+
 		<filter minzoom="16" color="#768c8c" strokeWidth="3" tag="barrier" value="ditch"/>
 		<filter minzoom="14" maxzoom="14" color="#888888" strokeWidth="4" tag="barrier" value="city_wall"/>
 			<filter minzoom="15" maxzoom="15" color="#888888" strokeWidth="6" tag="barrier" value="city_wall"/>
@@ -2465,7 +2499,6 @@
 		<filter minzoom="14" maxzoom="14" color="#888888" strokeWidth="4" tag="historic" value="city_walls"/>
 			<filter minzoom="15" maxzoom="15" color="#888888" strokeWidth="6" tag="historic" value="city_walls"/>
 			<filter minzoom="16" color="#888888" strokeWidth="9" tag="historic" value="city_walls"/>
-		<filter minzoom="16" color="#aed1a0" strokeWidth="3" tag="natural" value="hedge"/>
 
 		<filter tag="natural" value="cliff" color="#148c14" color_2="#005300">
 			<filter minzoom="16" maxzoom="16" strokeWidth="7" strokeWidth_2="0.3" pathEffect="1_7"/>
@@ -2550,40 +2583,19 @@
 			<groupFilter color="#555555"/>
 			<groupFilter nightMode="true" color="#eeeeee"/>
 		</group>
-
+		
 		<!-- Railways -->
-		<filter tag="railway" value="rail" color="$railwayRailLowZoomColorDay">
-			<filter layer="-1" minzoom="9" maxzoom="13" strokeWidth="1:1" pathEffect="5_2"/>
-			<filter layer="-1" minzoom="14" strokeWidth="1:2" color_2="#ffffff" strokeWidth_2="1:2" pathEffect_2="4_4"/>
-			<filter layer="1" minzoom="14" color="#000000" strokeWidth="5" color_2="#ffffff" strokeWidth_2="4" color_3="#999999" strokeWidth_3="1" pathEffect_3="12_8_1_0"/>
-			<filter minzoom="7" maxzoom="7" strokeWidth="1"/>
-			<filter minzoom="8" maxzoom="8" strokeWidth="1.5"/>
-			<filter minzoom="9" maxzoom="12" strokeWidth="1:1"/>
-			<filter minzoom="13" maxzoom="13" strokeWidth="1:2" color_2="#ffffff" strokeWidth_2="1" pathEffect_2="8_12"/>
-			<filter minzoom="14" strokeWidth="1:2" color_2="#ffffff" strokeWidth_2="1" pathEffect_2="0_11_8_1"/>
-			<groupFilter subwayMode="true" color="$railwayRailLowZoomLightColorDay"/>
-			<groupFilter nightMode="true" color="$railwayRailLowZoomColorNight"/>
-			<groupFilter nightMode="true" subwayMode="true" color="$railwayRailLowZoomDarkColorNight"/>
-		</filter>
-
-		<filter tag="railway" value="tram" color="#444444">
-			<filter layer="-1" minzoom="13" maxzoom="14" strokeWidth="1" pathEffect="5_3"/>
-			<filter layer="-1" minzoom="15" strokeWidth="2" pathEffect="5_3"/>
-			<filter minzoom="13" maxzoom="14" strokeWidth="1"/>
-			<filter minzoom="15" strokeWidth="1:1"/>
-		</filter>
-
 		<group>
-			<filter tag="railway" value="subway">
-				<filter subwayMode="true" minzoom="11"> <!-- color for subway lines without "color" (color) tag in subwayMode-->
-					<groupFilter color="$subwayLineDefaultColorDay"/>
-					<groupFilter nightMode="true" color="$subwayLineDefaultColorNight"/>
-				</filter>
-				<filter minzoom="13">
-					<filter layer="-1" pathEffect="5_3"/>
-					<groupFilter color="#999999" strokeWidth="2"/>
-				</filter>
-			</filter>
+			<filter tag="railway" value="subway"/>
+			<filter subwayMode="true" tag="railway" value="rail" additional="network=rer"/>
+			<groupFilter minzoom="13">
+				<filter layer="-1" pathEffect="5_3"/>
+				<groupFilter color="#999999" strokeWidth="2"/>
+			</groupFilter>
+			<groupFilter subwayMode="true" minzoom="11"> <!-- color for subway lines without "color" (color) tag in subwayMode-->
+				<groupFilter color="$subwayLineDefaultColorDay"/>
+				<groupFilter nightMode="true" color="$subwayLineDefaultColorNight"/>
+			</groupFilter>
 			<groupFilter subwayMode="true" pathEffect="" cap="ROUND">
 				<filter nightMode="true" additional="color_red=" color="$subwayRedColorNight"/>
 				<filter additional="color_red=" color="$subwayRedColorDay"/>
@@ -2605,6 +2617,7 @@
 				<filter additional="color_purple=" color="$subwayPurpleColorDay"/>
 				<filter nightMode="true" additional="color_gray=" color="$subwayGrayColorNight"/>
 				<filter additional="color_gray=" color="$subwayGrayColorDay"/>
+				<groupFilter tag="railway" value="rail" additional="network=rer" cap="SQUARE" pathEffect="4_12"/>
 				<groupFilter minzoom="11" maxzoom="11" strokeWidth="3" strokeWidth__1="4"/>
 				<groupFilter minzoom="12" maxzoom="12" strokeWidth="4" strokeWidth__1="5"/>
 				<groupFilter minzoom="13" maxzoom="13" strokeWidth="4.5" strokeWidth__1="5.5"/>
@@ -2614,6 +2627,27 @@
 				<groupFilter minzoom="19" strokeWidth="7" strokeWidth__1="9"/>
 			</groupFilter>
 		</group>
+
+		<filter tag="railway" value="rail" color="$railwayRailLowZoomColorDay">
+			<filter layer="-1" minzoom="9" maxzoom="13" strokeWidth="1:1" pathEffect="5_2"/>
+			<filter layer="-1" minzoom="14" strokeWidth="1:2" color_2="#ffffff" strokeWidth_2="1:2" pathEffect_2="4_4"/>
+			<filter layer="1" minzoom="14" color="#000000" strokeWidth="5" color_2="#ffffff" strokeWidth_2="4" color_3="#999999" strokeWidth_3="1" pathEffect_3="12_8_1_0"/>
+			<filter minzoom="7" maxzoom="7" strokeWidth="1"/>
+			<filter minzoom="8" maxzoom="8" strokeWidth="1.5"/>
+			<filter minzoom="9" maxzoom="12" strokeWidth="1:1"/>
+			<filter minzoom="13" maxzoom="13" strokeWidth="1:2" color_2="#ffffff" strokeWidth_2="1" pathEffect_2="8_12"/>
+			<filter minzoom="14" strokeWidth="1:2" color_2="#ffffff" strokeWidth_2="1" pathEffect_2="0_11_8_1"/>
+			<groupFilter subwayMode="true" color="$railwayRailLowZoomLightColorDay"/>
+			<groupFilter nightMode="true" color="$railwayRailLowZoomColorNight"/>
+			<groupFilter nightMode="true" subwayMode="true" color="$railwayRailLowZoomDarkColorNight"/>
+		</filter>
+
+		<filter tag="railway" value="tram" color="#444444">
+			<filter layer="-1" minzoom="13" maxzoom="14" strokeWidth="1" pathEffect="5_3"/>
+			<filter layer="-1" minzoom="15" strokeWidth="2" pathEffect="5_3"/>
+			<filter minzoom="13" maxzoom="14" strokeWidth="1"/>
+			<filter minzoom="15" strokeWidth="1:1"/>
+		</filter>
 
 		<filter layer="-1" tag="railway" value="light_rail" minzoom="13" color="#666666" strokeWidth="1:1" pathEffect="5_3"/>
 		<filter tag="railway" value="light_rail" minzoom="13" color="#666666" strokeWidth="1:1"/>
