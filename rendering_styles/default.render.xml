@@ -338,31 +338,44 @@
 	<!-- Order should be between 0 and 255 (integer) -->
 	<!-- output ! objectType point = 1, line = 2, polygon = 3 and order -->
 	<order>
-		
-		<!-- point has order 128 -->
-		<filter tag="" value="" point="true" order="128" objectType="1"/>
-<!--		<filter tag="railway" value="subway_entrance" objectType="1" order="1"/>-->
+	<!-- Point -->
+		 <group objectType="1" area="false" point="true">
+			<!-- point has order 128 -->
+			<filter tag="" value="" order="128"/>
+			<filter tag="railway" value="subway_entrance" order="4"/>
+		</group>
+
+	<!-- Polygon -->
+		<group objectType="3" area="true" point="false">
+			<filter layer="-1" tag="" value="" order="3"/>
+			<filter tag="" value="" order="5"/>
+			<filter layer="-1" tag="natural" value="coastline" order="3"/>
+			<filter layer="-1" tag="natural" value="land" order="3"/>
+			<filter layer="-1" tag="place" value="island" order="3"/>
+			<filter tag="leisure" value="nature_reserve" order="9"/>
+			<filter tag="landuse" value="military" order="8"/>
+			<filter tag="military" value="danger_area" order="8"/>
+			<filter tag="railway" value="subway_entrance" order="4"/>
+		</group>
+
 
 		<!-- default polygon -->
-		<filter area="true" layer="-1" tag="" value="" order="3" objectType="3"/>
 		<filter cycle="true" tag="" value="" order="5" objectType="3"/>
-		<filter area="true" tag="" value="" order="5" objectType="3"/>
-		<filter area="true" layer="-1" tag="natural" value="coastline" order="3" objectType="3"/>
-		<filter area="true" layer="-1" tag="natural" value="land" order="3" objectType="3"/>
-		<filter area="true" layer="-1" tag="place" value="island" order="3" objectType="3"/>
-		<filter area="true" tag="leisure" value="nature_reserve" order="9" objectType="3"/>
 		<filter cycle="true" tag="leisure" value="nature_reserve" order="9" objectType="3"/>
-		<filter area="true" tag="landuse" value="military" order="8" objectType="3"/>
 		<filter cycle="true" tag="landuse" value="military" order="8" objectType="3"/>
-		<filter area="true" tag="military" value="danger_area" order="8" objectType="3"/>
 		<filter cycle="true" tag="military" value="danger_area" order="8" objectType="3"/>
 
-		<!-- default line -->
-		<filter layer="-1" tag="" value="" order="10" objectType="2"/>
-		<filter tag="" value="" order="11" objectType="2"/>
+	<!-- Line -->
+		<group objectType="2" area="false">
+			<!-- default line -->
+			<filter layer="-1" tag="" value="" order="10"/>
+			<filter tag="" value="" order="11"/>
+		</group>
 
-		<filter tag="railway" value="subway_entrance" objectType="1" order="1"/>
 
+
+
+		
 		<group>
 			<filter tag="railway" value="platform"/>
 			<filter tag="railway" value="station"/>
