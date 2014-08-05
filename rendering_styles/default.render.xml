@@ -427,6 +427,7 @@
 			<filter tag="power" value="minor_line" order="96"/>
 
 			<group subwayMode="true" order="90">
+				<filter tag="railway" value="rail" additional="network=rer" order="89"/>
 				<filter tag="railway" value="rail"/>
 				<filter tag="railway" value="subway"/>
 				<filter tag="railway" value="tram"/>
@@ -1541,7 +1542,6 @@
 		<!-- Barriers -->
 		<group iconOrder="87">
 			<group minzoom="$barriersMinZoom">
-				<filter icon="barrier_gate" tag="highway" value="gate"/>
 				<filter icon="barrier_gate" tag="barrier" value="gate"/>
 				<filter icon="barrier_lift_gate" tag="barrier" value="lift_gate"/>
 				<filter icon="barrier_lift_gate" tag="barrier" value="swing_gate"/>
@@ -1582,7 +1582,12 @@
 			<groupFilter appMode="default" minzoom="14" maxzoom="15" disable="true"/>
 			<groupFilter appMode="pedestrian" minzoom="14" maxzoom="15" disable="true"/>
 		</group>
-		<filter minzoom="18" icon="barrier_entrance" tag="building" value="entrance"/>
+		<group>
+			<filter minzoom="18" icon="building_entrance" tag="entrance" value="main"/>
+			<filter minzoom="19" icon="building_entrance" tag="entrance" value="yes"/>
+			<groupFilter additional="access=private" icon=""/> <!--  showAccess="true" -->
+			<groupFilter additional="access=no" icon=""/> <!--  showAccess="true" -->
+		</group>
 
 		<!-- Accommodation -->
 		<group iconOrder="85" shield="white_blue_square_shield" iconVisibleSize="32">
