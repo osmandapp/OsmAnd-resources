@@ -343,6 +343,7 @@
 			<!-- point has order 128 -->
 			<filter tag="" value=""/>
 			<filter tag="railway" value=""/>
+			<filter tag="railway" value="station"/>
 			<filter tag="place" value=""/>
 			<filter tag="public_transport" value=""/>
 			<filter tag="highway" value="ford"/>
@@ -353,6 +354,8 @@
 			<filter tag="aeroway" value=""/>
 			<filter tag="aerialway" value=""/>
 			<filter tag="amenity" value=""/>
+			<filter tag="amenity" value="parking"/>
+			<filter tag="amenity" value="bicycle_parking"/>
 			<filter tag="emergency" value=""/>
 			<filter tag="man_made" value=""/>
 			<filter tag="natural" value=""/>
@@ -379,6 +382,7 @@
 			<filter tag="leisure" value="nature_reserve" order="9"/>
 			<filter tag="military" value="danger_area" order="8"/>
 			<filter tag="railway" value="" order="4"/>
+			<filter tag="railway" value="station" order="5"/>
 			<filter tag="public_transport" value="" order="5"/>
 			<group order="5">
 				<filter tag="highway" value="tertiary"/>
@@ -394,6 +398,13 @@
 		<group objectType="3" point="false">
 			<filter tag="landuse" value="military" order="8"/>
 			<filter tag="military" value="danger_area" order="8"/>
+			<filter tag="amenity" value=""/>
+			<filter tag="amenity" value="parking"/>
+			<filter tag="amenity" value="bicycle_parking"/>
+<!--			<filter tag="railway" value=""/>-->
+			<filter tag="railway" value="station"/>
+			<filter tag="public_transport" value="" order="5"/>
+			<filter tag="leisure" value="nature_reserve" order="9"/>
 			<group order="5">
 				<filter tag="natural" value="water"/>
 				<filter tag="waterway" value="riverbank"/>
@@ -426,15 +437,16 @@
 			<filter tag="power" value="line" order="96"/>
 			<filter tag="power" value="minor_line" order="96"/>
 
-			<group subwayMode="true" order="90">
+<!--			<group subwayMode="true" order="90">
 				<filter tag="railway" value="rail" additional="network=rer" order="89"/>
 				<filter tag="railway" value="rail"/>
 				<filter tag="railway" value="subway"/>
 				<filter tag="railway" value="tram"/>
 				<filter tag="railway" value="light_rail"/>
-			</group>
+			</group>-->
 			<filter layer="1" tag="railway" value="" order="88"/>
-			
+			<filter tag="railway" value="station"/>
+
 			<filter layer="1" tag="waterway" value="" order="68"/>
 			<filter tag="waterway" value="" order="18"/>
 
@@ -1149,11 +1161,11 @@
 
 		<!-- Man made -->
 		<group textHaloRadius="$textHaloRadiusDay">
-			<filter minzoom="16" textSize="12" textColor="#444444" textDy="7" textWrapWidth="20" tag="man_made" value="windmill"/>
-			<filter minzoom="13" textSize="12" textColor="#ffa0c0" textBold="true" textWrapWidth="20" tag="military" value="danger_area"/>
-			<groupFilter nightMode="true" textColor="#ffd3dc" textHaloRadius="$textHaloRadiusNight" textHaloColor="#55724456"/>
+			<filter minzoom="13" textSize="12" textColor="#ff0255" textBold="true" textWrapWidth="20" tag="military" value="danger_area"/>
+			<groupFilter nightMode="true" textColor="#f6dada" textHaloRadius="$textHaloRadiusNight" textHaloColor="#88a20035"/>
 		</group>
 		<group textHaloRadius="$textHaloRadiusDay">
+			<filter minzoom="16" textSize="12" textColor="#444444" textDy="7" textWrapWidth="20" tag="man_made" value="windmill"/>
 			<filter minzoom="16" textSize="11" textColor="#444444" textDy="9" tag="man_made" value="tower" additional="tower:type=communication"/>
 			<groupFilter nightMode="true" textColor="#eeeeee" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 		</group>
@@ -1378,8 +1390,9 @@
 			<filter minzoom="16" icon="amenity_drinking_water" tag="amenity" value="drinking_water" shield="white_gray_square_shield"/>
 			<filter nightMode="true" minzoom="15" icon="man_made_water_well" tag="man_made" value="water_well" shield="gray_gray_square_shield"/>
 			<filter minzoom="15" icon="man_made_water_well" tag="man_made" value="water_well" shield="white_gray_square_shield"/>
-			<filter nightMode="true" minzoom="14" icon="natural_spring2" tag="natural" value="spring" shield="gray_blue_square_shield"/>
-			<filter minzoom="14" icon="natural_spring2" tag="natural" value="spring" shield="white_blue_square_shield"/>
+			<filter minzoom="14" icon="natural_spring2" tag="natural" value="spring" shield="white_blue_square_shield">
+				<filter nightMode="true" shield="gray_blue_square_shield"/>
+			</filter>
 			<filter minzoom="17" icon="amenity_bench" tag="amenity" value="bench"/>
 			<filter tag="traffic_calming" value="bump" disable="true"/>
 			<filter tag="amenity" value="fuel" minzoom="14" maxzoom="16" disable="true"/>
@@ -1389,9 +1402,12 @@
 		<filter nightMode="true" minzoom="11" icon="natural_peak_night" tag="natural" value="peak"/>
 		<filter minzoom="11" icon="natural_peak" tag="natural" value="peak" iconOrder="65"/>
 		<filter minzoom="11" icon="natural_volcano" tag="natural" value="volcano" iconOrder="50"/>
-		<filter minzoom="15" icon="natural_cave_entrance" tag="natural" value="cave_entrance" iconOrder="85"/>
-		<filter nightMode="true" minzoom="14" icon="natural_spring2" tag="natural" value="spring" shield="gray_blue_square_shield"/>
-		<filter minzoom="14" icon="natural_spring2" tag="natural" value="spring" shield="white_blue_square_shield"/>
+		<filter minzoom="15" icon="natural_cave_entrance" tag="natural" value="cave_entrance" shield="white_gray_square_shield" iconOrder="85">
+			<filter nightMode="true" shield="gray_gray_square_shield"/>
+		</filter>
+		<filter minzoom="14" icon="natural_spring2" tag="natural" value="spring" shield="white_blue_square_shield">
+			<filter nightMode="true" shield="gray_blue_square_shield"/>
+		</filter>
 		<filter minzoom="16" icon="natural_tree" tag="natural" value="tree" iconVisibleSize="7"/>
 
 		<!-- Location dots -->
@@ -1471,11 +1487,11 @@
 			<filter minzoom="16" icon="amenity_bicycle_rental" tag="amenity" value="bicycle_rental"/>
 			<filter minzoom="15" icon="leisure_marina" tag="leisure" value="marina"/>
 			<filter minzoom="16" icon="amenity_boat_sharing" tag="amenity" value="boat_sharing"/>
+			<filter minzoom="15" icon="leisure_slipway" tag="leisure" value="slipway"/>
+			<filter minzoom="15" icon="man_made_lighthouse" tag="man_made" value="lighthouse"/>
 			<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
 		</group>
 
-		<filter minzoom="15" icon="leisure_slipway" tag="leisure" value="slipway"/>
-		<filter minzoom="15" icon="man_made_lighthouse" tag="man_made" value="lighthouse"/>
 		<filter minzoom="15" icon="waterway_lock_gate" tag="waterway" value="lock_gate"/>
 		<!-- not a conventional tag: filter minzoom="15" icon="waterway_lock_gate" tag="waterway" value="lock"/ -->
 
@@ -1599,9 +1615,9 @@
 			<filter minzoom="16" icon="tourism_hostel" tag="tourism" value="hostel"/>
 			<filter minzoom="16" icon="tourism_hotel" tag="tourism" value="hotel"/>
 			<filter minzoom="16" icon="tourism_motel" tag="tourism" value="motel"/>
+			<filter minzoom="16" icon="amenity_shelter" tag="amenity" value="shelter"/>
 			<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
 		</group>
-		<filter minzoom="16" icon="amenity_shelter" tag="amenity" value="shelter"/>
 
 		<!-- Tourism, Entertainment -->
 		<filter minzoom="14" icon="tourism_picnic_site" tag="tourism" value="picnic_site" iconOrder="85"/>
@@ -1687,7 +1703,7 @@
 			<filter minzoom="16" icon="amenity_post_office" tag="amenity" value="post_office"/>
 			<filter minzoom="16" icon="amenity_prison" tag="amenity" value="prison"/>
 			<filter minzoom="16" icon="amenity_toilets" tag="amenity" value="toilets" iconOrder="54"/>
-			<filter minzoom="16" icon="amenity_grave_yard" tag="amenity" value="grave_yard" iconOrder="75"/>
+<!--			<filter minzoom="16" icon="amenity_grave_yard" tag="amenity" value="grave_yard" iconOrder="75"/>-->
 			<groupFilter nightMode="true" shield="gray_gray_square_shield"/>
 		</group>
 		<filter minzoom="16" icon="amenity_place_of_worship" tag="amenity" value="place_of_worship" iconVisibleSize="7" iconOrder="70">
@@ -1982,6 +1998,8 @@
 			<filter minzoom="12" color="#9d9d6c" tag="landuse" value="landfill"/>
 			<filter minzoom="12" color="#efc8c8" tag="landuse" value="commercial"/>
 			<filter minzoom="10" color="#CDCDCD" tag="landuse" value="residential"/>
+			<filter minzoom="11" color="#dfd1d6" tag="amenity" value="prison"/>
+			<filter minzoom="12" color="#dfd1d6" tag="railway" value="station"/>
 			<filter minzoom="15" color="#f0f0d8" color_2="#d4a89e" strokeWidth_2=":1" tag="amenity" value="kindergarten"/>
 			<filter minzoom="15" color="#f0f0d8" color_2="#d4a89e" strokeWidth_2=":1" tag="amenity" value="school"/>
 			<filter minzoom="15" color="#f0f0d8" color_2="#d4a89e" strokeWidth_2=":1" tag="amenity" value="college"/>
@@ -1993,6 +2011,7 @@
 			<filter minzoom="12" color="#b0b6fdb6" tag="leisure" value="resort"/>
 			<filter minzoom="12" color="#b0b6fdb6" tag="amenity" value="sanatorium"/>
 			<filter minzoom="12" color="#b0b6fdb6" tag="amenity" value="social_facility"/>
+			<filter minzoom="12" color="#b0b6fdb6" tag="leisure" value="water_park"/>
 			<filter minzoom="15" color="#cc9999" tag="amenity" value="cinema"/>
 			<filter minzoom="10" color="#bde3cb" tag="landuse" value="allotments"/>
 			<filter minzoom="12" color="#feeaea" tag="landuse" value="retail"/>
@@ -2600,7 +2619,7 @@
 				<filter layer="-1" pathEffect="5_3"/>
 				<groupFilter color="#999999" strokeWidth="2"/>
 			</groupFilter>
-			<groupFilter subwayMode="true" minzoom="11"> <!-- color for subway lines without "color" (color) tag in subwayMode-->
+			<groupFilter subwayMode="true" minzoom="11"> <!-- color for subway lines without tag="colo(u)r" in subwayMode-->
 				<groupFilter color="$subwayLineDefaultColorDay"/>
 				<groupFilter nightMode="true" color="$subwayLineDefaultColorNight"/>
 			</groupFilter>
