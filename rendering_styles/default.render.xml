@@ -364,6 +364,7 @@
 			<filter tag="man_made" value=""/>
 			<filter tag="natural" value=""/>
 			<filter tag="waterway" value=""/>
+			<filter tag="waterway" value="waterfall"/>
 			<filter tag="shop" value=""/>
 			<filter tag="tourism" value=""/>
 			<filter tag="historic" value=""/>
@@ -418,7 +419,6 @@
 				<filter tag="aeroway" value="terminal"/>
 			</group>
 			<filter tag="" value="" order="5"/>
-			<filter tag="waterway" value="canal"/>
 			<filter tag="waterway" value="dock"/>
 			<filter tag="aeroway" value="runway"/>
 		</group>
@@ -460,6 +460,7 @@
 			<filter layer="1" tag="waterway" value="" order="68"/>
 			<filter tag="waterway" value="" order="18"/>
 			<filter tag="waterway" value="canal"/>
+			<filter tag="waterway" value="waterfall"/>
 
 			<!-- Admin_levels under highways unless appMode=default -->
 			<filter appMode="pedestrian" tag="admin_level" value="" order="34"/>
@@ -925,8 +926,9 @@
 			<filter minzoom="15" textOnPath="true" tag="waterway" value="drain" textOrder="15"/>
 			<filter minzoom="15" textDy="7" textWrapWidth="30" tag="waterway" value="lock_gate" textOrder="15"/>
 			<!-- not a conventional tag: filter minzoom="15" textDy="7" textWrapWidth="30" tag="waterway" value="lock" textOrder="15"/ -->
-			<filter minzoom="15" textWrapWidth="20" tag="waterway" value="dam" textOrder="15"/>
+			<filter minzoom="15" textWrapWidth="20" tag="waterway" value="dam" textOnPath="true" textOrder="15"/>
 			<filter minzoom="16" textDy="7" textWrapWidth="20" tag="natural" value="spring" textOrder="15"/>
+			<filter minzoom="15" textDy="7" textWrapWidth="20" tag="waterway" value="waterfall" textOnPath="true" textOrder="15"/>
 
 			<filter minzoom="13" textWrapWidth="20" tag="landuse" value="water"/>
 			<filter minzoom="13" textWrapWidth="20" tag="landuse" value="reservoir"/>
@@ -994,6 +996,9 @@
 		<filter minzoom="14" tag="leisure" value="marina" textSize="12" textColor="#0000bb" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ccffffff" textWrapWidth="30" textDy="8">
 			<filter nightMode="true" textColor="#a3c8ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#66002357"/>
 		</filter>
+		<filter minzoom="16" tag="man_made" value="pier" textSize="11" textColor="#1f62ae" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ccffffff" textOnPath="true" textWrapWidth="30">
+			<filter nightMode="true" textColor="#a3c8ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#66002357"/>
+		</filter>
 
 		<!-- Cycling: texts for the cycle networks -->
 		<group appMode="bicycle" showCycleRoutes="true">
@@ -1033,8 +1038,8 @@
 				<filter minzoom="15" textSize="13" textBold="true" tag="public_transport" value="station"/>
 			<filter minzoom="14" textSize="12" tag="railway" value="halt" textOrder="10"/>
 			<filter minzoom="15" textSize="12" tag="railway" value="tram_stop"/>
-			<filter minzoom="14" maxzoom="14" textSize="12" textBold="true" tag="public_transport" value="platform"/>
-				<filter minzoom="15" textSize="13" textBold="true" tag="public_transport" value="platform"/>
+			<filter minzoom="14" maxzoom="14" textSize="12" textBold="true" textOnPath="true" tag="public_transport" value="platform"/>
+				<filter minzoom="15" textSize="13" textBold="true" textOnPath="true" tag="public_transport" value="platform"/>
 
 			<filter minzoom="14" textSize="12" tag="aerialway" value="station"/>
 			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#d4d4ff" textHaloColor="#994563a7"/>
@@ -1421,9 +1426,11 @@
 		<filter minzoom="15" icon="natural_cave_entrance" tag="natural" value="cave_entrance" shield="white_gray_square_shield" iconOrder="85">
 			<filter nightMode="true" shield="gray_gray_square_shield"/>
 		</filter>
-		<filter minzoom="14" icon="natural_spring2" tag="natural" value="spring" shield="white_blue_square_shield">
-			<filter nightMode="true" shield="gray_blue_square_shield"/>
-		</filter>
+		<group shield="white_blue_square_shield">
+			<filter minzoom="14" tag="natural" value="spring" icon="natural_spring2"/>
+			<filter minzoom="14" tag="waterway" value="waterfall" icon="waterway_waterfall"/>
+			<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
+		</group>
 		<filter minzoom="16" icon="natural_tree" tag="natural" value="tree" iconVisibleSize="7"/>
 
 		<!-- Location dots -->
@@ -2567,6 +2574,12 @@
 			<groupFilter nightMode="true" color="#6d8a6d" color_2="#e5e5e5"/>
 		</filter>
 
+		<filter tag="waterway" value="waterfall" color="#3f3f3f" color_2="#3f3f3f">
+			<filter minzoom="16" maxzoom="16" strokeWidth="7" strokeWidth_2="0.1" pathEffect="1_7"/>
+			<filter minzoom="17" maxzoom="17" strokeWidth="9" strokeWidth_2="0.1" pathEffect="1_9"/>
+			<filter minzoom="18" strokeWidth="13" strokeWidth_2="0.1" pathEffect="1_13"/>
+			<groupFilter nightMode="true" color="#9dbde1" color_2="#9dbde1"/>
+		</filter>
 		<!-- Group of all Waterways with same color -->
 		<group>
 			<filter tag="waterway" value="stream">
