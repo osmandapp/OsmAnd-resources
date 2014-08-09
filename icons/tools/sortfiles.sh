@@ -357,6 +357,7 @@ mygroup food_shop shopping_convenience.png
 mygroup shop shopping_department_store.png
 mycp shop alcohol shopping_alcohol.png
 mycp shop bakery shopping_bakery.png
+mycp shop baby_goods shopping_baby.png
 mycp shop bicycle shopping_bicycle.png
 mycp shop boutique shopping_clothes.png
 mycp shop butcher shopping_butcher2.png
