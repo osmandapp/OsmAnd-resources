@@ -220,7 +220,7 @@ warning(4, 'traffic_calming.ogg').
 % warning(bump, 'traffic_calming.ogg'). Voice router test still needs to be adjusted to regular behavior.
 warning(5, 'toll_booth.ogg').
 warning(6, 'stop.ogg').
-warning(Type, '') :- not(Type = 1; Type = 2; Type = 3; Type = 4; Type = 5; Type = 7).
+warning(Type, '') :- not(Type = 1; Type = 2; Type = 3; Type = 4; Type = 5; Type = 6).
 
 
 %% 
