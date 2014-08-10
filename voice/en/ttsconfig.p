@@ -206,14 +206,14 @@ speed_alarm -- ['exceed_limit.ogg'].
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 
 % TRAFFIC WARNINGS
-warning(SPEED_CAMERA, 'speed_camera.ogg').
-warning(SPEED_LIMIT, '').
-warning(BORDER_CONTROL, 'border_control.ogg').
-warning(TRAFFIC_CALMING, 'traffic_calming.ogg').
-warning(TOLL_BOOTH, 'toll_booth.ogg').
-warning(STOP, 'stop.ogg').
-warning(MAXIMUM, '').
-warning(Type, '') :- not(Type = SPEED_CAMERA; Type = SPEED_LIMIT; Type = BORDER_CONTROL; Type = TRAFFIC_CALMING; Type = TOLL_BOOTH; Type = STOP; Type = MAXIMUM).
+warning('SPEED_CAMERA', 'speed_camera.ogg').
+warning('SPEED_LIMIT', '').
+warning('BORDER_CONTROL', 'border_control.ogg').
+warning('TRAFFIC_CALMING', 'traffic_calming.ogg').
+warning('TOLL_BOOTH', 'toll_booth.ogg').
+warning('STOP', 'stop.ogg').
+warning('MAXIMUM', '').
+warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'MAXIMUM').
 
 
 %% 
