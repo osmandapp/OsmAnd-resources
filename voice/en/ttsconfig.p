@@ -15,7 +15,7 @@ fest_language('cmu_us_awb_arctic_clunits').
 % (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
 % (X) arrival
 % (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
-% (to be tested) attention Type implementation
+% (X) attention Type implementation
 % (X) special grammar: onto / on / to Street fur turn and follow commands
 % (N/A) special grammar: nominative/dativ for distance measure
 % (N/A) special grammar: imperative/infinitive distincion for turns
@@ -206,21 +206,14 @@ speed_alarm -- ['exceed_limit.ogg'].
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 
 % TRAFFIC WARNINGS
-%  SPEED_CAMERA(1),
-%  SPEED_LIMIT(2),
-%  BORDER_CONTROL(3),
-%  TRAFFIC_CALMING(4),
-%  TOLL_BOOTH(5),
-%  STOP(6),
-%  MAXIMUM(7);
-warning(1, 'speed_camera.ogg').
-warning(2, '').
-warning(3, 'border_control.ogg').
-warning(4, 'traffic_calming.ogg').
-% warning(bump, 'traffic_calming.ogg'). Voice router test still needs to be adjusted to regular behavior.
-warning(5, 'toll_booth.ogg').
-warning(6, 'stop.ogg').
-warning(Type, '') :- not(Type = 1; Type = 2; Type = 3; Type = 4; Type = 5; Type = 6).
+warning(SPEED_CAMERA, 'speed_camera.ogg').
+warning(SPEED_LIMIT, '').
+warning(BORDER_CONTROL, 'border_control.ogg').
+warning(TRAFFIC_CALMING, 'traffic_calming.ogg').
+warning(TOLL_BOOTH, 'toll_booth.ogg').
+warning(STOP, 'stop.ogg').
+warning(MAXIMUM, '').
+warning(Type, '') :- not(Type = SPEED_CAMERA; Type = SPEED_LIMIT; Type = BORDER_CONTROL; Type = TRAFFIC_CALMING; Type = TOLL_BOOTH; Type = MAXIMUM).
 
 
 %% 
