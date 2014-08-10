@@ -282,6 +282,7 @@ mycp amenity recycling amenity_recycling.png
 mycp amenity telephone amenity_telephone.png
 mycp amenity toilets amenity_toilets.png
 mycp amenity fountain amenity_fountain2.png
+mycp amenity monastery place_of_worship_monastery.png
 mycp amenity place_of_worship place_of_worship_unknown.png
 mycp religion christian place_of_worship_christian3.png
 mycp religion jewish place_of_worship_jewish3.png
