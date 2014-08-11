@@ -370,6 +370,7 @@ mycp shop computer shopping_computer.png
 mycp shop confectionery shopping_confectionery.png
 mycp shop convenience shopping_convenience.png
 mycp shop copyshop shopping_copyshop.png
+mycp shop dairy shopping_dairy.png
 mycp shop department_store shopping_department_store.png
 mycp shop doityourself shopping_diy.png
 mycp shop electronics shopping_hifi.png
