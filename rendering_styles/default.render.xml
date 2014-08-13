@@ -401,6 +401,7 @@
 			</group>
 		</group>
 		<group objectType="3" cycle="true" point="false">
+			<filter tag="highway" value="raceway"/>
 			<filter tag="landuse" value="military" order="8"/>
 			<filter tag="military" value="danger_area" order="8"/>
 <!--			<filter tag="amenity" value=""/>-->
@@ -547,7 +548,9 @@
 			<filter layer="1" tag="highway" value="bridleway" order="90"/>
 			<filter appMode="pedestrian" tag="highway" value="bridleway" order="59"/>
 			<filter tag="highway" value="bridleway" order="37"/>
-			
+
+			<filter tag="highway" value="raceway"/>
+
 			<filter tag="natural" value="coastline_broken" order="35"/>
 			<filter tag="natural" value="coastline_line" order="35"/>
 			<filter tag="route" value="ferry" order="35"/>
@@ -1085,12 +1088,11 @@
 
 		<!-- Aeroway -->
 		<group>
-			<filter minzoom="14" textSize="12" textColor="#333333" textOnPath="true" textMinDistance="50" tag="aeroway" value="runway" nameTag="ref"/>
-			<filter minzoom="15" textSize="12" textColor="#333333" textOnPath="true" textMinDistance="50" tag="aeroway" value="taxiway" nameTag="ref"/>
-			<filter minzoom="17" textSize="12" textColor="#333366" textHaloRadius="$textHaloRadiusDay" textHaloColor="#99a5e3fd" textWrapWidth="10" textDy="7" tag="aeroway" value="gate" nameTag="ref"/>
+			<filter minzoom="14" textColor="#333333" textOnPath="true" textMinDistance="50" tag="aeroway" value="runway" nameTag2="ref"/>
+			<filter minzoom="15" textColor="#333333" textOnPath="true" textMinDistance="50" tag="aeroway" value="taxiway" nameTag="ref"/>
+			<filter minzoom="17" textColor="#333366" textWrapWidth="10" textDy="7" tag="aeroway" value="gate" nameTag="ref"/>
+			<groupFilter textSize="12" textHaloRadius="$textHaloRadiusDay" textHaloColor="#99dddddd"/>
 			<groupFilter nightMode="true" textColor="#c7e4ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#99444444"/>
-			<!-- Leave night halo white here, provides more contrast on the mostly grey backgrounds -->
-			<!-- groupFilter nightMode="true" textHaloColor="#cccccc"/ -->
 		</group>
 		<group>
 			<filter minzoom="11" tag="aeroway" value="aerodrome"/>
@@ -2531,6 +2533,18 @@
 		</filter>
 
 		<group>
+			<filter tag="highway" value="raceway"/>
+			<groupFilter color="$racewayColorDay" cap="ROUND">
+				<filter minzoom="14" maxzoom="14" strokeWidth=":2"/>
+				<filter minzoom="15" maxzoom="15" strokeWidth=":3"/>
+				<filter minzoom="16" maxzoom="16" strokeWidth=":5"/>
+				<filter minzoom="17" maxzoom="17" strokeWidth=":8"/>
+				<filter minzoom="18" strokeWidth=":10"/>
+			<groupFilter nightMode="true" color="$racewayColorNight"/>
+			</groupFilter>
+		</group>
+
+		<group>
 			<filter contourLines="11" tag="contour" value="elevation" minzoom="11" color="#2Aff7c00" strokeWidth=":1"/>
 			<filter contourLines="12" tag="contour" value="elevation" minzoom="12" color="#2Aff7c00" strokeWidth=":1"/>
 			<filter contourLines="13" tag="contour" value="elevation" minzoom="13" color="#2Aff7c00" strokeWidth=":1"/>
@@ -2594,12 +2608,15 @@
 			<groupFilter nightMode="true" color="#6d8a6d" color_2="#e5e5e5"/>
 		</filter>
 
-		<filter tag="waterway" value="waterfall" color="#3f3f3f" color_2="#3f3f3f">
-			<filter minzoom="16" maxzoom="16" strokeWidth="7" strokeWidth_2="0.1" pathEffect="1_7"/>
-			<filter minzoom="17" maxzoom="17" strokeWidth="9" strokeWidth_2="0.1" pathEffect="1_9"/>
-			<filter minzoom="18" strokeWidth="13" strokeWidth_2="0.1" pathEffect="1_13"/>
+		<group>
+			<filter tag="waterway" value="waterfall"/>
+			<filter tag="natural" value="waterfall"/>
+			<groupFilter minzoom="16" maxzoom="16" strokeWidth="7" strokeWidth_2="0.1" pathEffect="1_7"/>
+			<groupFilter minzoom="17" maxzoom="17" strokeWidth="9" strokeWidth_2="0.1" pathEffect="1_9"/>
+			<groupFilter minzoom="18" strokeWidth="13" strokeWidth_2="0.1" pathEffect="1_13"/>
+			<groupFilter color="#3f3f3f" color_2="#3f3f3f"/>
 			<groupFilter nightMode="true" color="#9dbde1" color_2="#9dbde1"/>
-		</filter>
+		</group>
 		<!-- Group of all Waterways with same color -->
 		<group>
 			<filter tag="waterway" value="stream">
