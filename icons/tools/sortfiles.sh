@@ -44,6 +44,7 @@ mycp natural cave_entrance poi_cave.png
 mycp natural spring functional-icons_spring.png  #scale 0.375
 mycp natural spring2 water_spring.png  #scale 0.375
 mycp natural tree functional-icons_tree.png  #scale 0.25
+mycp waterway waterfall water_waterfall.png  #scale 0.375
 
 
 ## Location dots
@@ -281,6 +282,7 @@ mycp amenity recycling amenity_recycling.png
 mycp amenity telephone amenity_telephone.png
 mycp amenity toilets amenity_toilets.png
 mycp amenity fountain amenity_fountain2.png
+mycp amenity monastery place_of_worship_monastery.png
 mycp amenity place_of_worship place_of_worship_unknown.png
 mycp religion christian place_of_worship_christian3.png
 mycp religion jewish place_of_worship_jewish3.png
@@ -356,6 +358,7 @@ mygroup food_shop shopping_convenience.png
 mygroup shop shopping_department_store.png
 mycp shop alcohol shopping_alcohol.png
 mycp shop bakery shopping_bakery.png
+mycp shop baby_goods shopping_baby.png
 mycp shop bicycle shopping_bicycle.png
 mycp shop boutique shopping_clothes.png
 mycp shop butcher shopping_butcher2.png
@@ -367,6 +370,7 @@ mycp shop computer shopping_computer.png
 mycp shop confectionery shopping_confectionery.png
 mycp shop convenience shopping_convenience.png
 mycp shop copyshop shopping_copyshop.png
+mycp shop dairy shopping_dairy.png
 mycp shop department_store shopping_department_store.png
 mycp shop doityourself shopping_diy.png
 mycp shop electronics shopping_hifi.png

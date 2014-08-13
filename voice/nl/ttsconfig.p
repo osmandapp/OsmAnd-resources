@@ -1,4 +1,4 @@
-﻿% for turbo-prolog
+% for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog
 :- op(500, xfy,'--').
@@ -15,6 +15,7 @@ language('nl').
 % (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
 % (X) arrival
 % (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
+% (X) attention Type implementation
 % ( ) special grammar: onto / on / to Street fur turn and follow commands
 % (N/A) special grammar: nominative/dativ for distance measure
 % (N/A) special grammar: imperative/infinitive distincion for turns
@@ -99,6 +100,12 @@ string('location_lost.ogg', 'G P S  signaal verloren ').
 string('location_recovered.ogg', 'g p s signaal hersteld ').
 string('off_route.ogg', 'je bent afgeweken van de route vanaf ').
 string('exceed_limit.ogg', 'je overschrijdt de maximumsnelheid ').
+string('speed_camera.ogg', 'snelheidscontrole ').
+string('border_control.ogg', 'grenscontrole ').
+string('traffic_calming.ogg', 'verkeersdrempel ').
+string('toll_booth.ogg', 'tol poort ').
+% de spatie is nodig voor een betere uitspraak
+string('stop.ogg', 'stop teken ').
 
 % STREET NAME GRAMMAR
 string('onto.ogg', 'naar  ').
@@ -185,8 +192,19 @@ route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg
 location_lost -- ['location_lost.ogg'].
 location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
-attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
+% attention(_Type) -- ['attention.ogg'].
+attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
+
+% TRAFFIC WARNINGS
+warning('SPEED_CAMERA', 'speed_camera.ogg').
+warning('SPEED_LIMIT', '').
+warning('BORDER_CONTROL', 'border_control.ogg').
+warning('TRAFFIC_CALMING', 'traffic_calming.ogg').
+warning('TOLL_BOOTH', 'toll_booth.ogg').
+warning('STOP', 'stop.ogg').
+warning('MAXIMUM', '').
+warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'MAXIMUM').
 
 
 %% 

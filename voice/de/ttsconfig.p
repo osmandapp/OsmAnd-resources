@@ -17,6 +17,7 @@ language('de').
 % (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
 % (X) arrival
 % (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
+% (X) attention Type implementation
 % (X) special grammar: onto / on / to Street fur turn and follow commands
 % (X) special grammar: nominative/dativ for distance measure
 % (N/A) special grammar: imperative/infinitive distincion for turns
@@ -95,6 +96,12 @@ string('reached.ogg', 'erreicht ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'Achtung, ').
+string('speed_camera.ogg', 'Geschwindigkeitskontrolle ').
+string('border_control.ogg', 'Grenzkontrolle ').
+string('traffic_calming.ogg', 'Verkehrsberuhigung ').
+string('toll_booth.ogg', 'Mautstelle ').
+string('stop.ogg', 'Stoppzeichen ').
+
 string('location_lost.ogg', 'GPS Signal verloren ').   % maybe change to "tschie pie es" because of pronounciation
 string('location_recovered.ogg', 'GPS Signal gefunden ').  % maybe change to "tschie pie es" because of pronounciation
 string('off_route.ogg', 'Sie weichen von der Route ab seit ').  % possibly "Sie verlassen die Route seit "
@@ -203,8 +210,19 @@ route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg
 location_lost -- ['location_lost.ogg'].
 location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist, dativ) -- D.
-attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
+% attention(_Type) -- ['attention.ogg'].
+attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
+
+% TRAFFIC WARNINGS
+warning('SPEED_CAMERA', 'speed_camera.ogg').
+warning('SPEED_LIMIT', '').
+warning('BORDER_CONTROL', 'border_control.ogg').
+warning('TRAFFIC_CALMING', 'traffic_calming.ogg').
+warning('TOLL_BOOTH', 'toll_booth.ogg').
+warning('STOP', 'stop.ogg').
+warning('MAXIMUM', '').
+warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'MAXIMUM').
 
 
 %% 
