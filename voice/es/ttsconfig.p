@@ -1,4 +1,4 @@
-﻿% for turbo-prolog
+% for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog
 :- op(500, xfy,'--').
@@ -15,6 +15,7 @@ language('es').
 % (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
 % (X) arrival
 % (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
+% (X) attention Type implementation
 % ( ) special grammar: onto / on / to Street fur turn and follow commands
 % (N/A) special grammar: nominative/dativ for distance measure
 % (X) special grammar: imperative/infinitive distincion for turns
@@ -23,6 +24,7 @@ language('es').
 % (X) Name announcement for destination / intermediate / GPX waypoint arrival
 % (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
 % ( ) word order checked
+% (X) Announcement of favorites, waypoints and pois along the route
 
 
 % ROUTE CALCULATED
@@ -61,7 +63,7 @@ string('make_uturn_wp.ogg', 'cuando puedas, da la vuelta').
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Prepárate para entrar en la rotonda después de').
 string('roundabout.ogg', 'entra en la rotonda').
-string('then.ogg', '. Luego').
+string('then.ogg', ', luego').
 string('and.ogg', 'y').
 string('take.ogg', 'toma la').
 string('exit.ogg', 'salida').
@@ -93,11 +95,21 @@ string('and_arrive_destination.ogg', 'y llegarás a tu destino').
 string('reached_destination.ogg','has llegado a tu destino').
 string('and_arrive_intermediate.ogg', 'y llegarás a tu punto intermedio').
 string('reached_intermediate.ogg', 'has llegado a tu punto intermedio').
-string('and_arrive_waypoint.ogg', 'y llegarás a tu punto intermedio').
-string('reached_waypoint.ogg', 'has llegado a tu punto intermedio').
+string('and_arrive_waypoint.ogg', 'y llegarás a tu punto G P X intermedio').
+string('and_arrive_favorite.ogg', 'y llegarás a tu favorito ').
+string('and_arrive_poi_waypoint.ogg', 'y llegarás al P D I ').
+string('reached_waypoint.ogg', 'has llegado a tu punto G P X intermedio').
+string('reached_favorite.ogg', 'has llegado a tu punto intermedio favorito ').
+string('reached_poi.ogg', 'has llegado a tu P D I ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'atención, ').
+string('speed_camera.ogg', 'radar de velocidad ').
+string('border_control.ogg', 'control fronterizo ').
+string('traffic_calming.ogg', 'badén ').
+string('toll_booth.ogg', 'cabina de peaje ').
+string('stop.ogg', 'señal de ESTOP ').
+
 string('location_lost.ogg', 'señal g p s perdida').
 string('location_recovered.ogg', 'señal g p s encontrada ').
 string('off_route.ogg', 'te has desviado de la ruta').
@@ -197,6 +209,10 @@ and_arrive_intermediate(D) -- ['and_arrive_intermediate.ogg'|Ds] :- name(D, Ds).
 reached_intermediate(D) -- ['reached_intermediate.ogg'|Ds] :- name(D, Ds).
 and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
+and_arrive_favorite(D) -- ['and_arrive_favorite.ogg'|Ds] :- name(D, Ds).
+reached_favorite(D) -- ['reached_favorite.ogg'|Ds] :- name(D, Ds).
+and_arrive_poi(D) -- ['and_arrive_poi.ogg'|Ds] :- name(D, Ds).
+reached_poi(D) -- ['reached_poi.ogg'|Ds] :- name(D, Ds).
 
 route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
@@ -205,9 +221,19 @@ route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg
 location_lost -- ['location_lost.ogg'].
 location_recovered -- ['location_recovered.ogg'].
 off_route(_Dist) -- ['off_route.ogg'].
-attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
+% attention(_Type) -- ['attention.ogg'].
+attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 
+% TRAFFIC WARNINGS
+warning('SPEED_CAMERA', 'speed_camera.ogg').
+warning('SPEED_LIMIT', '').
+warning('BORDER_CONTROL', 'border_control.ogg').
+warning('TRAFFIC_CALMING', 'traffic_calming.ogg').
+warning('TOLL_BOOTH', 'toll_booth.ogg').
+warning('STOP', 'stop.ogg').
+warning('MAXIMUM', '').
+warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'MAXIMUM').
 
 %% 
 nth(1, '1st.ogg').
@@ -232,6 +258,7 @@ nth(17, '17th.ogg').
 %% resolve command main method
 %% if you are familar with Prolog you can input specific to the whole mechanism,
 %% by adding exception cases.
+
 flatten(X, Y) :- flatten(X, [], Y), !.
 flatten([], Acc, Acc).
 flatten([X|Y], Acc, Res):- flatten(Y, Acc, R), flatten(X, R, Res).
