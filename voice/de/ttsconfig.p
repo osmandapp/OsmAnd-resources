@@ -49,13 +49,12 @@ string('right_keep.ogg', 'rechts halten ').
 % if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
-string('prepare_make_uturn.ogg', 'In Kürze bitte Wenden ').
 string('make_uturn1.ogg', 'wenden ').
 string('make_uturn2.ogg', 'Bitte wenden ').
 string('make_uturn_wp.ogg', 'Wenn möglich, bitte wenden ').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Vorbereiten zum Einbiegen in Kreisverkehr ').
+string('prepare_roundabout.ogg', 'Einbiegen in Kreisverkehr ').
 string('roundabout.ogg', 'in den Kreisverkehr einfahren, ').
 string('then.ogg', 'dann ').
 string('and.ogg', 'und ').
@@ -111,7 +110,7 @@ string('exceed_limit.ogg', 'Sie überschreiten die Höchstgeschwindigkeit ').
 string('onto.ogg', 'auf ').  % possibly "Richtung", better grammar, but is also misleading is some cases
 string('on.ogg', 'auf ').
 string('to.ogg', 'bis ').
-string('with.ogg', 'über ').  % "mit" gives bad results in some cases; wrong grammar
+string('with.ogg', 'entlang ').  % is used if you turn together with your current street, i.e. street name does not change. "über" is wrong here.
 string('to2.ogg', 'Richtung '). % "zu " gives wrong results in many cases
 
 % DISTANCE UNIT SUPPORT
@@ -181,12 +180,12 @@ prepare_turn(Turn, Dist, Street) -- ['prepare.ogg', 'after.ogg', D, M | Sgen] :-
 turn(Turn, Dist, Street) -- ['after.ogg', D, M, ' '| Sgen] :- distance(Dist, dativ) -- D, turn(Turn, M), turn_street(Street, Sgen).
 turn(Turn, Street) -- [M, ' '| Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
 
-prepare_make_ut(Dist, Street) -- ['prepare_make_uturn.ogg', 'after.ogg', D | Sgen] :- distance(Dist, dativ) -- D, turn_street(Street, Sgen).
+prepare_make_ut(Dist, Street) -- ['prepare.ogg', 'after.pgg', D, 'make_uturn2.ogg' | Sgen] :- distance(Dist, dativ) -- D, turn_street(Street, Sgen).
 make_ut(Dist, Street) --  ['after.ogg', D, 'make_uturn1.ogg' | Sgen] :- distance(Dist, dativ) -- D, turn_street(Street, Sgen).
 make_ut(Street) -- ['make_uturn2.ogg' | Sgen] :- turn_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
-prepare_roundabout(Dist, _Exit, _Street) -- ['prepare_roundabout.ogg', 'after.ogg', D] :- distance(Dist, dativ) -- D.
+prepare_roundabout(Dist, _Exit, _Street) -- ['prepare.ogg', 'after.ogg', D, 'prepare_roundabout.ogg'] :- distance(Dist, dativ) -- D.
 roundabout(Dist, _Angle, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', 'then.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist, dativ) -- D, nth(Exit, E), turn_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 
