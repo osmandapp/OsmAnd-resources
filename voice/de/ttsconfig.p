@@ -89,8 +89,8 @@ string('and_arrive_destination.ogg', 'dann haben Sie Ihr Ziel ').
 string('reached_destination.ogg', 'Ziel ').
 string('and_arrive_intermediate.ogg', 'dann haben Sie Ihr Zwischenziel ').
 string('reached_intermediate.ogg', 'Zwischenziel ').
-string('and_arrive_waypoint.ogg', 'dann haben Sie den Wegpunkt ').
-string('reached_waypoint.ogg', 'Wegpunkt ').
+string('and_arrive_waypoint.ogg', 'dann haben Sie den Weegpunkt ').
+string('reached_waypoint.ogg', 'Weegpunkt ').
 string('reached.ogg', 'erreicht ').
 
 % OTHER PROMPTS
@@ -180,7 +180,7 @@ prepare_turn(Turn, Dist, Street) -- ['prepare.ogg', 'after.ogg', D, M | Sgen] :-
 turn(Turn, Dist, Street) -- ['after.ogg', D, M, ' '| Sgen] :- distance(Dist, dativ) -- D, turn(Turn, M), turn_street(Street, Sgen).
 turn(Turn, Street) -- [M, ' '| Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
 
-prepare_make_ut(Dist, Street) -- ['prepare.ogg', 'after.pgg', D, 'make_uturn2.ogg' | Sgen] :- distance(Dist, dativ) -- D, turn_street(Street, Sgen).
+prepare_make_ut(Dist, Street) -- ['prepare.ogg', 'after.ogg', D, 'make_uturn2.ogg' | Sgen] :- distance(Dist, dativ) -- D, turn_street(Street, Sgen).
 make_ut(Dist, Street) --  ['after.ogg', D, 'make_uturn1.ogg' | Sgen] :- distance(Dist, dativ) -- D, turn_street(Street, Sgen).
 make_ut(Street) -- ['make_uturn2.ogg' | Sgen] :- turn_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
