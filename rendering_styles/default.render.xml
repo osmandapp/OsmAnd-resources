@@ -239,8 +239,7 @@
 
 	<renderingConstant name="woodTextColorDay" value="#000000"/>
 	<renderingConstant name="parkTextColorDay" value="#004300"/>
-	<renderingConstant name="woodTextHaloColorDay" value="#ffffff"/>
-	<renderingConstant name="forestTextColorDay" value="#729972"/>
+	<renderingConstant name="forestTextColorDay" value="#388738"/>
 	<renderingConstant name="railwayPOITextColorDay" value="#6666ff"/>
 	<renderingConstant name="railwayTextColorDay" value="#000000"/>
 	<renderingConstant name="railwayTextHaloColorDay" value="#aaffffff"/>
@@ -893,8 +892,7 @@
 			<filter contourLines="16" minzoom="16" textSize="12" tag="contour" value=""/>
 			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="1" textHaloColor="#77777777"/>
 		</group>
-		<group textSize="12" textWrapWidth="15" textHaloRadius="$textHaloRadiusDay" textHaloColor="$woodTextHaloColorDay">
-			<filter minzoom="13" textColor="$woodTextColorDay" tag="natural" value="wood" textOrder="10"/>
+		<group textSize="12" textWrapWidth="15" textHaloRadius="$textHaloRadiusDay" textHaloColor="#aaffffff">
 			<filter minzoom="15" textColor="$parkTextColorDay" tag="natural" value="park" textOrder="10"/>
 			<filter minzoom="15" textColor="$parkTextColorDay" tag="leisure" value="park" textOrder="10"/>
 			<groupFilter nightMode="true" textColor="#9fe39f" textHaloRadius="$textHaloRadiusNight" textHaloColor="#88444444"/>
@@ -938,6 +936,7 @@
 			<filter minzoom="13" textWrapWidth="20" tag="landuse" value="reservoir"/>
 			<filter minzoom="13" textWrapWidth="20" tag="landuse" value="basin"/>
 			<filter minzoom="17" textWrapWidth="20" tag="leisure" value="swimming_pool"/>
+			<filter minzoom="13" textWrapWidth="20" tag="natural" value="glacier"/>
 			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="$waterTextColorNight" textHaloColor="#994563a7"/>
 			<groupFilter nightMode="true" subwayMode="true" textHaloRadius="$textHaloRadiusNight" textColor="$waterTextDesaturatedColorNight" textHaloColor="#aa303849"/>
 		</group>
@@ -947,12 +946,15 @@
 			<filter minzoom="14" tag="landuse" value="allotments"/>
 			<filter minzoom="14" tag="landuse" value="cemetery"/>
 			<filter minzoom="15" tag="landuse" value="commercial"/>
+			<filter minzoom="15" tag="landuse" value="retail"/>
 			<filter minzoom="15" tag="landuse" value="construction"/>
 			<filter minzoom="15" tag="landuse" value="industrial"/>
 			<filter minzoom="15" tag="landuse" value="garages"/>
 			<filter minzoom="13" tag="landuse" value="railway"/>
 			<filter minzoom="13" tag="landuse" value="residential"/>
 			<filter minzoom="13" tag="landuse" value="quarry"/>
+			<filter minzoom="13" tag="landuse" value="landfill"/>
+			<filter minzoom="15" tag="landuse" value="farmyard"/>
 			<filter minzoom="15" tag="power" value="plant"/>
 			<filter minzoom="16" tag="power" value="substation"/>
 			<filter minzoom="15" tag="power" value="generator"/>
@@ -966,7 +968,24 @@
 		<!-- National Forest, Wilderness, National Park: (http://wiki.openstreetmap.org/wiki/US_Forest_Service_Data)
 		all have boundary=national_park: National forests with landuse=forest, Wilderness with leisure=nature_reserve, NatPark just boundary=national_park (protected_areas need not be rendered for this) -->
 		<group textSize="12" textColor="$forestTextColorDay" textWrapWidth="20" textHaloRadius="$textHaloRadiusDay">
+			<filter minzoom="13" tag="natural" value="wood" textOrder="10"/>
+			<filter minzoom="17" tag="natural" value="scrub" textOrder="20"/>
+			<filter minzoom="13" tag="natural" value="wetland" textOrder="20"/>
+			<filter minzoom="13" tag="natural" value="marsh" textOrder="20"/>
+			<filter minzoom="14" tag="natural" value="heath" textOrder="30"/>
 			<filter minzoom="9" tag="landuse" value="forest" textOrder="10"/>
+			<filter minzoom="14" tag="landuse" value="meadow" textOrder="30"/>
+			<filter minzoom="13" tag="landuse" value="recreation_ground" textOrder="30"/>
+			<filter minzoom="14" tag="landuse" value="conservation" textOrder="30"/>
+			<filter minzoom="15" tag="landuse" value="orchard" textOrder="30"/>
+			<filter minzoom="15" tag="landuse" value="vineyard" textOrder="30"/>
+			<filter minzoom="17" tag="landuse" value="grass" textOrder="30"/>
+			<filter minzoom="15" tag="landuse" value="farmland" textOrder="30"/>
+			<filter minzoom="15" tag="landuse" value="farm" textOrder="30"/>
+			<filter minzoom="14" tag="leisure" value="garden" textOrder="30"/>
+			<filter minzoom="14" tag="leisure" value="common" textOrder="30"/>
+			<filter minzoom="14" tag="leisure" value="golf_course" textOrder="30"/>
+			<filter minzoom="14" tag="natural" value="grassland" textOrder="30"/>
 			<filter minzoom="9" tag="leisure" value="nature_reserve" textOrder="10"/>
 			<filter minzoom="9" tag="boundary" value="national_park" textOrder="11"/>
 			<groupFilter nightMode="true" textColor="#9fe39f" textHaloRadius="$textHaloRadiusNight" textHaloColor="#88444444"/>
@@ -989,6 +1008,7 @@
 		<group subwayMode="false" textSize="12" textColor="#0066ff" textHaloRadius="$textHaloRadiusDay" textDy="7">
 			<filter minzoom="17" textWrapWidth="25" tag="amenity" value="fuel"/>
 			<filter minzoom="17" textWrapWidth="30" tag="amenity" value="parking"/>
+			<filter minzoom="17" textWrapWidth="30" tag="amenity" value="bicycle_parking"/>
 			<filter minzoom="16" textWrapWidth="25" tag="amenity" value="bus_station"/>
 			<filter minzoom="15" textWrapWidth="20" tag="man_made" value="lighthouse"/>
 			<filter minzoom="16" tag="aerialway" value="station"/>
@@ -1102,7 +1122,9 @@
 		</group>
 
 		<group>
-			<filter tag="aeroway" value="terminal" minzoom="15" textSize="12" textColor="#333333" textWrapWidth="25" textHaloRadius="1" textDy="9"/>
+			<filter minzoom="15" tag="aeroway" value="terminal"/>
+			<filter minzoom="17" tag="aeroway" value="apron"/>
+			<groupFilter textSize="12" textColor="#333333" textWrapWidth="25" textHaloRadius="1" textDy="9"/>
 			<groupFilter nightMode="true" textColor="#c7e4ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#881f4568"/>
 		</group>
 
@@ -1277,7 +1299,6 @@
 			<filter minzoom="16" tag="sport" value="skating"/>
 			<filter minzoom="17" tag="sport" value="archery"/>
 			<filter minzoom="16" tag="sport" value="baseball"/>
-			<filter minzoom="15" tag="leisure" value="stadium"/>
 			<filter minzoom="17" tag="sport" value="canoe"/>
 			<filter minzoom="16" tag="sport" value="tennis"/>
 			<filter minzoom="16" tag="sport" value="shooting"/>
@@ -1288,6 +1309,8 @@
 			<filter minzoom="17" tag="sport" value="scuba_diving"/>
 			<filter minzoom="17" tag="sport" value="billiard"/>
 			<filter minzoom="17" tag="sport" value="gymnastics"/>
+			<filter minzoom="15" tag="leisure" value="stadium"/>
+			<filter minzoom="16" tag="leisure" value="track"/>
 			<filter minzoom="16" tag="leisure" value="playground"/>
 			<filter minzoom="16" tag="leisure" value="water_park"/>
 			<filter minzoom="16" tag="leisure" value="sports_centre"/>
@@ -2069,7 +2092,7 @@
 			<filter minzoom="12" color="#b0b6fdb6" tag="leisure" value="water_park"/>
 			<filter minzoom="15" color="#cc9999" tag="amenity" value="cinema"/>
 			<filter minzoom="10" color="#bde3cb" tag="landuse" value="allotments"/>
-			<filter minzoom="12" color="#feeaea" tag="landuse" value="retail"/>
+			<filter minzoom="12" color="#efd0c8" tag="landuse" value="retail"/>
 			<!-- Tourism -->
 			<filter minzoom="13" color="#f2caea" tag="tourism" value="attraction"/>
 			<filter minzoom="15" color="#f2caea" tag="amenity" value="place_of_worship"/>
