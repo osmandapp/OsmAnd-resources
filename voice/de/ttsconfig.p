@@ -110,7 +110,7 @@ string('exceed_limit.ogg', 'Sie überschreiten die Höchstgeschwindigkeit ').
 string('onto.ogg', 'auf ').  % possibly "Richtung", better grammar, but is also misleading is some cases
 string('on.ogg', 'auf ').
 string('to.ogg', 'bis ').
-string('with.ogg', 'entlang ').  % is used if you turn together with your current street, i.e. street name does not change. "über" is wrong here.
+string('with.ogg', 'auf ').  % is used if you turn together with your current street, i.e. street name does not change. "mit " or "entlang" are possible alternatives, "auf" seems to be adequate in most instances. "über" is wrong here.
 string('to2.ogg', 'Richtung '). % "zu " gives wrong results in many cases
 
 % DISTANCE UNIT SUPPORT
