@@ -815,6 +815,7 @@
 				<filter tag="railway" value="tram" textColor="$routeTramColor"/>
 				<filter minzom="11" tag="route" value="train" nameTag="train_ref" textColor="$routeTrainColor"/>
 				<filter tag="route" value="light_rail" nameTag="lightrail_ref" textColor="$routeLightrailColor"/>
+				<filter tag="railway" value="light_rail" textColor="$routeLightrailColor"/>
 			</group>
 			<group nightMode="true" textHaloColor="#ffffff" textHaloRadius="2">
 				<filter tag="route" value="bus" nameTag="bus_ref" textColor="$routeBusColorNight"/>
@@ -823,6 +824,7 @@
 				<filter tag="railway" value="tram" textColor="$routeTramColorNight"/>
 				<filter tag="route" value="train" nameTag="train_ref" textColor="$routeTrainColorNight"/>
 				<filter tag="route" value="light_rail" nameTag="lightrail_ref" textColor="$routeLightrailColorNight"/>
+				<filter tag="railway" value="light_rail" textColor="$routeLightrailColorNight"/>
 			</group>
 			<groupFilter minzoom="11" maxzoom="14" textSize="7"/>
 			<groupFilter minzoom="15" maxzoom="16" textSize="13"/>
@@ -1231,6 +1233,7 @@
 		<group textSize="12" textColor="$historicTextColorDay" textHaloRadius="$textHaloRadiusDay" textDy="9" textWrapWidth="20">
 			<filter minzoom="16" tag="historic" value="castle"/>
 			<filter minzoom="16" tag="historic" value="monument"/>
+			<filter minzoom="18" tag="historic" value="tomb"/>
 			<filter minzoom="17" tag="historic" value="memorial"/>
 			<filter minzoom="15" tag="historic" value="battlefield"/>
 			<filter minzoom="15" tag="historic" value="fort"/>
@@ -1239,8 +1242,8 @@
 			<filter minzoom="16" tag="historic" value="wreck"/>
 			<filter minzoom="15" tag="amenity" value="monastery"/>
 			<filter minzoom="15" tag="historic" value="monastery"/>
-			<filter minzoom="16" tag="historic" value="wayside_cross"/>
-			<filter minzoom="16" tag="historic" value="wayside_shrine"/>
+			<filter minzoom="17" tag="historic" value="wayside_cross"/>
+			<filter minzoom="17" tag="historic" value="wayside_shrine"/>
 			<filter minzoom="16" tag="historic" value="mine"/>
 			<filter minzoom="16" tag="historic" value="boundary_stone"/>
 			<filter minzoom="16" tag="historic" value="wreck"/>
@@ -1818,6 +1821,10 @@
 			<filter minzoom="15" icon="amenity_monastery" tag="historic" value="monastery"/>
 			<filter minzoom="15" icon="historic_mine" tag="historic" value="mine"/>
 			<groupFilter nightMode="true" shield="gray_brown_square_shield"/>
+		</group>
+		<group shield="white_gray_square_shield">
+			<filter minzoom="16" icon="historic_memorial" tag="historic" value="tomb" iconOrder="85"/>
+			<groupFilter nightMode="true" shield="gray_gray_square_shield"/>
 		</group>
 
 		<!-- Sport, leisure -->
@@ -2903,6 +2910,7 @@
 				<filter tag="railway" value="tram" color="$routeTramColor"/>
 				<filter tag="route" value="train" color="$routeTrainColor"/>
 				<filter tag="route" value="light_rail" color="$routeLightrailColor"/>
+				<filter tag="railway" value="light_rail" color="$routeLightrailColor"/>
 				<groupFilter minzoom="11" maxzoom="11" strokeWidth="1.6"/>
 				<groupFilter minzoom="12" maxzoom="12" strokeWidth="2.5"/>
 				<groupFilter minzoom="13" maxzoom="13" strokeWidth="3.3"/>
@@ -2912,8 +2920,10 @@
 				<groupFilter minzoom="17" maxzoom="17" strokeWidth="10"/>
 				<groupFilter minzoom="18" strokeWidth="13"/>
 				<groupFilter nightMode="true" tag="route" value="tram" color="$routeTramColorNight"/>
+				<groupFilter nightMode="true" tag="railway" value="tram" color="$routeTramColorNight"/>
 				<groupFilter nightMode="true" tag="route" value="train" color="$routeTrainColorNight"/>
 				<groupFilter nightMode="true" tag="route" value="light_rail" color="$routeLightrailColorNight"/>
+				<groupFilter nightMode="true" tag="railway" value="light_rail" color="$routeLightrailColorNight"/>
 			</group>
 		</group>
 
@@ -3062,7 +3072,10 @@
 		<filter tag="leisure" value="marina" minzoom="13" maxzoom="15" color="#0000ff" strokeWidth="1" pathEffect="6_2"/>
 			<filter tag="leisure" value="marina" minzoom="16" color="#0000ff" strokeWidth="2" pathEffect="6_2"/>
 
-		<filter tag="route" value="ferry" minzoom="8" color="#7777FF" strokeWidth="2" pathEffect="6_3"/>
+		<group>
+			<filter tag="route" value="ferry" minzoom="8" color="#7777FF" strokeWidth="2" pathEffect="6_3"/>
+			<groupFilter publicTransportMode="true" strokeWidth="5" pathEffect="10_5"/>
+		</group>
 
 		<group appMode="bicycle" showCycleRoutes="true">
 			<filter tag="lcn_network" value="lcn" color="#400000ff"/>
