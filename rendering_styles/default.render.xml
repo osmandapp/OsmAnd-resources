@@ -293,6 +293,11 @@
 	<renderingConstant name="routeLightrailColor" value="#009100"/>
 	<renderingConstant name="routeLightrailColorNight" value="#009100"/>
 
+	<renderingConstant name="publicTransportModeStopTextColor" value="#1a39d7"/>
+	<renderingConstant name="publicTransportModeStopTextHaloColor" value="#ffebe6"/>
+	<renderingConstant name="publicTransportModeStopTextColorNight" value="#b2eaff"/>
+	<renderingConstant name="publicTransportModeStopTextHaloColorNight" value="#770579a4"/>
+
 		<!-- transparent to see conjunctions -->
 		<!-- <renderingConstant name="motorwayRoadColor" value="#55809bff"/>
 		<renderingConstant name="trunkRoadColor" value="#55FF8095"/>
@@ -1114,18 +1119,32 @@
 
 		<!-- Railroad, public transport -->
 		<group textColor="$railwayPOITextColorDay" textDy="9" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textOnPath="true" textBold="true">
-			<filter subwayMode="false" minzoom="14" maxzoom="14" textSize="12" textBold="true" tag="railway" value="station" textOrder="5"/>
-			<filter minzoom="15" tag="railway" value="station" textOrder="5"/>
-			<filter minzoom="14" tag="railway" value="halt" textOrder="10"/>
-			<filter minzoom="16" tag="railway" value="tram_stop"/>
-			<filter minzoom="15" tag="public_transport" value="station"/>
-			<filter minzoom="16" tag="public_transport" value="platform" nameTag=""/>
-			<filter minzoom="16" tag="amenity" value="bus_station" textOrder="10"/>
-			<filter minzoom="16" tag="highway" value="bus_stop" nameTag=""/>
-			<groupFilter minzoom="14" maxzoom="14" textSize="12"/>
-			<groupFilter minzoom="15" textSize="13"/>
-			<groupFilter publicTransportMode="true" textOrder="2"/>
-			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#d4d4ff" textHaloColor="#994563a7"/>
+			<group publicTransportMode="true" minzoom="14" maxzoom="15" textSize="12" textOrder="10" textColor="$publicTransportModeStopTextColor" textHaloColor="$publicTransportModeStopTextHaloColor"> <!-- render bus stops and station texts at 14-15 zoom when in publicTransportMode -->
+				<filter tag="amenity" value="bus_station"/>
+				<filter tag="public_transport" value="platform" nameTag=""/>
+				<filter tag="highway" value="bus_stop" nameTag=""/>
+				<filter tag="railway" value="tram_stop"/>
+				<groupFilter nightMode="true" textColor="$publicTransportModeStopTextColorNight" textHaloRadius="$textHaloRadiusNight" textHaloColor="$publicTransportModeStopTextHaloColorNight"/>
+			</group>
+			<group> <!-- assigns colors to 16+ zoom tags depends on publicTransportMode -->
+				<filter minzoom="16" tag="public_transport" value="platform" textSize="13" nameTag=""/>
+				<filter minzoom="16" tag="amenity" value="bus_station" textSize="13" textOrder="10"/>
+				<filter minzoom="16" tag="highway" value="bus_stop" textSize="13" nameTag=""/>
+				<filter minzoom="16" tag="railway" value="tram_stop" textSize="13"/>
+				<groupFilter publicTransportMode="true" textColor="$publicTransportModeStopTextColor" textHaloColor="$publicTransportModeStopTextHaloColor"/>
+				<groupFilter nightMode="true" textColor="#d4d4ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#994563a7"/>
+				<groupFilter publicTransportMode="true" nightMode="true" textColor="$publicTransportModeStopTextColorNight" textHaloRadius="$textHaloRadiusNight" textHaloColor="$publicTransportModeStopTextHaloColorNight"/>
+			</group>
+			<group> <!-- fallback: set attributes to 14-15 zooms when not in publicTransportMode -->
+				<filter subwayMode="false" minzoom="14" maxzoom="14" textSize="12" textBold="true" tag="railway" value="station" textOrder="5"/>
+				<filter minzoom="15" textSize="13" textBold="true" tag="railway" value="station" textOrder="5"/>
+				<filter minzoom="14" maxzoom="14" tag="railway" value="halt" textSize="12" textOrder="10"/>
+				<filter minzoom="15" tag="railway" value="halt" textSize="13" textOrder="10"/>
+				<filter minzoom="14" maxzoom="14" tag="public_transport" value="station" textSize="12"/>
+				<filter minzoom="15" tag="public_transport" value="station" textSize="13"/>
+				<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#d4d4ff" textHaloColor="#994563a7"/>
+			</group>
+			<groupFilter publicTransportMode="true" textOrder="1"/>
 		</group>
 
 		<group subwayMode="true">
@@ -1636,19 +1655,36 @@
 			<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
 		</group>
 
+		<group publicTransportMode="true" minzoom="14" maxzoom="15" iconVisibleSize="2" iconOrder="55"> <!-- assign round icons to 14-15 zooms when in publicTransportMode -->
+			<filter tag="highway" value="bus_stop"/>
+			<filter tag="public_transport" value="platform" additional="bus=yes"/>
+			<filter tag="public_transport" value="platform" additional="trolleybus=yes"/>
+			<groupFilter icon="highway_bus_stop_round_small"/>
+			<groupFilter nightMode="true" icon="highway_bus_stop_round_small_night"/>
+		</group>
+
 		<group shield="white_blue_square_shield" iconOrder="82">
 			<filter minzoom="17" icon="highway_bus_stop" tag="highway" value="bus_stop" iconVisibleSize="16"/>
 			<filter minzoom="17" icon="highway_bus_stop" tag="public_transport" value="platform" iconVisibleSize="16"/>
 			<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
 		</group>
 
+		<group> <!-- assing big round icons to zoom 16 when in publicTransportMode. else assign old square blue icon -->
+			<filter minzoom="16" maxzoom="16" tag="highway" value="bus_stop"/>
+			<filter minzoom="16" maxzoom="16" tag="public_transport" value="platform" additional="bus=yes"/>
+			<filter minzoom="16" maxzoom="16" tag="public_transport" value="platform" additional="trolleybus=yes"/>
+			<groupFilter icon="highway_bus_stop_small"/> <!-- fallback -->
+			<groupFilter publicTransportMode="true" iconVisibleSize="2" iconOrder="55">
+				<groupFilter icon="highway_bus_stop_round_big"/>
+				<groupFilter nightMode="true" icon="highway_bus_stop_round_big_night"/>
+			</groupFilter>
+		</group>
+
 		<group minzoom="14" icon="amenity_bus_station2" shield="white_red_round_shield" iconVisibleSize="10" iconOrder="72">
 			<filter tag="amenity" value="bus_station"/>
-			<filter tag="public_transport" value="station"/>
+<!--			<filter tag="public_transport" value="station"/>-->
 			<groupFilter nightMode="true" shield="gray_red_round_shield"/>
 		</group>
-		<filter minzoom="16" maxzoom="16" icon="highway_bus_stop_small" tag="highway" value="bus_stop" iconVisibleSize="2" iconOrder="82"/>
-		<filter minzoom="16" maxzoom="16" icon="highway_bus_stop_small" tag="public_transport" value="platform" iconVisibleSize="4" iconOrder="82"/>
 
 		<group shield="white_blue_square_shield">
 			<filter minzoom="16" icon="amenity_car_rental" tag="amenity" value="car_rental"/>
@@ -1695,7 +1731,7 @@
 			<filter minzoom="13" maxzoom="14" icon="railway_halt" tag="railway" value="halt" iconVisibleSize="2"/>
 			<filter minzoom="15" icon="railway_station_small" tag="railway" value="halt" iconVisibleSize="5"/>
 			<filter nightMode="true" minzoom="14" maxzoom="14" icon="railway_halt" tag="railway" value="tram_stop" shield="gray_blue_square_shield" iconVisibleSize="2"/>
-			<filter minzoom="14" maxzoom="14" icon="railway_halt" tag="railway" value="tram_stop" shield="white_blue_square_shield" iconVisibleSize="2"/>
+			<filter minzoom="14" maxzoom="14" icon="railway_halt" tag="railway" value="tram_stop" iconVisibleSize="2"/>
 			<filter minzoom="15" icon="railway_station_small" tag="railway" value="tram_stop" iconVisibleSize="5"/>
 			<filter minzoom="15" icon="railway_level_crossing" tag="railway" value="level_crossing"/>
 

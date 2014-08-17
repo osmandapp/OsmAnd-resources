@@ -114,6 +114,10 @@ mycp amenity bus_station transport_bus_station.png
 mycp amenity bus_station_2 transport_bus_station_2.png
 mycp highway bus_stop transport_bus_stop.png
 mycp highway bus_stop_small functional-icons_bus_stop_small.png
+mycp highway bus_stop_round_small functional-icons_bus_stop_round_small.png
+mycp highway bus_stop_round_big functional-icons_bus_stop_round_big.png
+mycp highway bus_stop_round_small_night functional-icons_bus_stop_round_small_night.png
+mycp highway bus_stop_round_big_night functional-icons_bus_stop_round_big_night.png
 mycp public_transport platform transport_bus_stop.png
 mycp amenity taxi transport_taxi_rank.png
 
