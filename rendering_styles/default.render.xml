@@ -1536,9 +1536,10 @@
 			<groupFilter nightMode="true" shield="gray_red_round_shield"/>
 		</group>
 		<group appMode="pedestrian" iconOrder="80">
-			<group shield="white_blue_square_shield">
-				<filter minzoom="17" icon="highway_bus_stop" tag="highway" value="bus_stop" iconVisibleSize="14"/>
-				<filter minzoom="17" icon="highway_bus_stop" tag="public_transport" value="platform" iconVisibleSize="14"/>
+			<group shield="white_blue_square_shield" iconOrder="82">
+				<filter minzoom="17" icon="highway_bus_stop" tag="highway" value="bus_stop" iconVisibleSize="16"/>
+				<filter minzoom="17" icon="highway_bus_stop" tag="public_transport" value="platform" additional="bus=yes" iconVisibleSize="16"/>
+				<filter minzoom="17" icon="highway_bus_stop" tag="public_transport" value="platform" additional="trolleybus=yes" iconVisibleSize="16"/>
 				<filter minzoom="15" icon="railway_station" tag="railway" value="station" iconVisibleSize="4"/>
 				<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
 			</group>
@@ -1659,7 +1660,21 @@
 			<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
 		</group>
 
-		<!-- Public transport mode icons -->
+		<group shield="white_blue_square_shield">
+			<filter minzoom="16" icon="amenity_car_rental" tag="amenity" value="car_rental"/>
+			<filter minzoom="16" icon="amenity_car_sharing" tag="amenity" value="car_sharing"/>
+			<filter minzoom="16" icon="amenity_bicycle_rental" tag="amenity" value="bicycle_rental"/>
+			<filter minzoom="15" icon="leisure_marina" tag="leisure" value="marina"/>
+			<filter minzoom="16" icon="amenity_boat_sharing" tag="amenity" value="boat_sharing"/>
+			<filter minzoom="15" icon="leisure_slipway" tag="leisure" value="slipway"/>
+			<filter minzoom="15" icon="man_made_lighthouse" tag="man_made" value="lighthouse"/>
+			<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
+		</group>
+
+		<filter minzoom="15" icon="waterway_lock_gate" tag="waterway" value="lock_gate"/>
+		<!-- not a conventional tag: filter minzoom="15" icon="waterway_lock_gate" tag="waterway" value="lock"/ -->
+
+	<!-- Public transport mode icons -->
 		<group publicTransportMode="true" minzoom="14" maxzoom="15" iconVisibleSize="2" iconOrder="55"> <!-- assign round icons to 14-15 zooms when in publicTransportMode -->
 			<filter tag="highway" value="bus_stop"/>
 			<filter tag="public_transport" value="platform" additional="bus=yes"/>
@@ -1670,7 +1685,8 @@
 
 		<group shield="white_blue_square_shield" iconOrder="82">
 			<filter minzoom="17" icon="highway_bus_stop" tag="highway" value="bus_stop" iconVisibleSize="16"/>
-			<filter minzoom="17" icon="highway_bus_stop" tag="public_transport" value="platform" iconVisibleSize="16"/>
+			<filter minzoom="17" icon="highway_bus_stop" tag="public_transport" value="platform" additional="bus=yes" iconVisibleSize="16"/>
+			<filter minzoom="17" icon="highway_bus_stop" tag="public_transport" value="platform" additional="trolleybus=yes" iconVisibleSize="16"/>
 			<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
 		</group>
 
@@ -1694,22 +1710,18 @@
 			<groupFilter nightMode="true" shield="gray_blue_round_shield"/>
 		</group>
 
-		<group shield="white_blue_square_shield">
-			<filter minzoom="16" icon="amenity_car_rental" tag="amenity" value="car_rental"/>
-			<filter minzoom="16" icon="amenity_car_sharing" tag="amenity" value="car_sharing"/>
-			<filter minzoom="16" icon="amenity_bicycle_rental" tag="amenity" value="bicycle_rental"/>
-			<filter minzoom="15" icon="leisure_marina" tag="leisure" value="marina"/>
-			<filter minzoom="16" icon="amenity_boat_sharing" tag="amenity" value="boat_sharing"/>
-			<filter minzoom="15" icon="leisure_slipway" tag="leisure" value="slipway"/>
-			<filter minzoom="15" icon="man_made_lighthouse" tag="man_made" value="lighthouse"/>
-			<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
+		<group minzoom="15" icon="railway_station" shield="white_blue_square_shield" iconVisibleSize="7">
+			<filter tag="railway" value="station"/>
+			<filter tag="public_transport" value="platform" additional="train=yes"/>
+			<filter tag="public_transport" value="platform" additional="tram=yes"/>
+			<filter tag="public_transport" value="platform" additional="light_rail=yes"/>
+			<groupFilter nightMode="true" shield="gray_blue_round_shield"/>
 		</group>
 
-		<filter minzoom="15" icon="waterway_lock_gate" tag="waterway" value="lock_gate"/>
-		<!-- not a conventional tag: filter minzoom="15" icon="waterway_lock_gate" tag="waterway" value="lock"/ -->
-
-		<filter nightMode="true" minzoom="15" icon="railway_station" tag="railway" value="station" shield="gray_blue_square_shield" iconVisibleSize="4"/>
-		<filter minzoom="15" icon="railway_station" tag="railway" value="station" shield="white_blue_square_shield" iconVisibleSize="4"/>
+		<group minzoom="15" icon="amenity_bus_station2" shield="white_blue_square_shield">
+			<filter tag="public_transport" value="platform"/> <!-- fallback public_transport=platform -->
+			<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
+		</group>
 
 		<group subwayMode="true">
 			<filter minzoom="12" maxzoom="14" tag="railway" value="station" additional="route=subway" icon="railway_subway_station_small_default" shield="white_round_small_shield" iconOrder="99">
