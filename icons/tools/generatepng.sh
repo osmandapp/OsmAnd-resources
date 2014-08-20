@@ -81,7 +81,7 @@ generatePngs 'tourist' '#734A08' '#777777'
 generatePngs 'sport'  '#39AC39' '#777777'
 
 generatePngs 'amenity' '#777777' '#734A08'
-generatePngs 'place_of_worship' '#777777' '#777777'
+generatePngs 'place_of_worship' '#333333' '#777777'
 generatePngs 'money' '#777777' '#777777'
 generatePngs 'education' '#777777' '#39AC39'
 generatePngs 'poi' '#777777' '#777777' 
