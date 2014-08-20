@@ -299,6 +299,9 @@ mycp religion christian place_of_worship_christian3.png
 mycp religion jewish place_of_worship_jewish3.png
 mycp religion muslim place_of_worship_islamic3.png
 mycp religion sikh place_of_worship_sikh3.png
+mycp religion buddhist place_of_worship_buddhist3.png
+mycp religion hindu place_of_worship_hindu3.png
+mycp religion shinto place_of_worship_shinto3.png
 #! mycp amenity grave_yard place_of_worship_christian3.png  #already defined as icon in the shader section
 
 mygroup finance money_bank2.png
