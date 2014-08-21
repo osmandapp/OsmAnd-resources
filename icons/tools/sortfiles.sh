@@ -74,9 +74,8 @@ mycp barrier small_red_4 functional-icons_point_red_4.png  #scale 0.25
 mygroup emergency emergency_emergency_phone.png
 mycp emergency phone emergency_emergency_phone.png
 mycp emergency fire_hydrant emergency_fire_hydrant.png
-mycp amenity police emergency_police2.png
-mycp amenity fire_station emergency_firestation3.png
-mycp amenity fire_station_2 amenity_firestation.png
+mycp amenity police emergency_police3.png
+mycp amenity fire_station emergency_firestation4.png
 
 mygroup healthcare health_pharmacy.png
 mycp amenity pharmacy health_pharmacy.png
