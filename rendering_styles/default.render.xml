@@ -2116,9 +2116,7 @@
 				<filter nightMode="true" color="#9f9f9f" color_2="#464646"/>
 			</groupFilter>
 		</group>
-
 		<group>
-			<filter tag="highway" value="service"/>
 			<filter tag="highway" value="pedestrian"/>
 			<filter tag="highway" value="footway"/>
 			<group tag="highway" value="pedestrian" minzoom="16">
@@ -2128,9 +2126,30 @@
 				<groupFilter shader="pedestrian_paved"/>
 				<groupFilter nightMode="true" shader="pedestrian_paved_night"/>
 			</group>
+			<group tag="highway" value="footway" minzoom="16">
+				<filter additional="surface=sett"/>
+				<filter additional="surface=cobblestone"/>
+				<filter additional="surface=paving_stones"/>
+				<groupFilter shader="pedestrian_paved"/>
+				<groupFilter nightMode="true" shader="pedestrian_paved_night"/>
+			</group>
 			<groupFilter>
-				<filter minzoom="14" color="#ECECEC" color_2="#969696" strokeWidth_2=":1"/>
-				<filter test="$hmRendered" minzoom="13" color="#ECECEC" color_2="#969696" strokeWidth_2=":1"/>
+				<filter minzoom="14" color="#ececec" color_2="#969696" strokeWidth_2=":1"/>
+				<filter test="$hmRendered" minzoom="13" color="#ececec" color_2="#969696" strokeWidth_2=":1"/>
+			</groupFilter>
+			<groupFilter nightMode="true" color="#727272" color_2="#464646"/>
+			<groupFilter appMode="car" shader="" color="#f0e0d8" color_2="$null">
+				<filter tag="highway" value="pedestrian"/>
+				<filter tag="highway" value="footway"/>
+				<groupFilter nightMode="true" color="#25999999" color_2="$null"/>
+			</groupFilter>
+		</group>
+
+		<group>
+			<filter tag="highway" value="service"/>
+			<groupFilter>
+				<filter minzoom="14" color="#ececec" color_2="#969696" strokeWidth_2=":1"/>
+				<filter test="$hmRendered" minzoom="13" color="#ececec" color_2="#969696" strokeWidth_2=":1"/>
 			</groupFilter>
 			<groupFilter nightMode="true" color="#727272" color_2="#464646"/>
 		</group>
@@ -2668,6 +2687,7 @@
 				</groupFilter>
 				<!-- pedestrian roads are forbidden for cars and cyclists: show them like that in car and bicycle mode -->
 				<groupFilter appMode="car" tag="highway" value="pedestrian" color="#F7D4D4"/>
+				<groupFilter nightMode="true" appMode="car" tag="highway" value="pedestrian" color="#412e2e"/>
 				<!-- <groupFilter appMode="bicycle" tag="highway" value="pedestrian" color="#F7D4D4"/> -->
 			</group>
 			<groupFilter showAccess="true">
