@@ -101,7 +101,7 @@ string('speed_camera.ogg', 'traffipax ').
 string('border_control.ogg', 'határellenőrzés ').
 string('traffic_calming.ogg', 'forgalomlassító ').
 string('toll_booth.ogg', 'fizetőkapu ').
-string('stop.ogg', 'stop sign ').
+string('stop.ogg', 'stop tábla ').
 
 string('location_lost.ogg', 'nem található dzsípíesz jel ').
 string('location_recovered.ogg', 'pozíció meghatározva').
