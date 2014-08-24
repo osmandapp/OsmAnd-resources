@@ -5,10 +5,7 @@
 	<renderingProperty attr="showSurfaceGrade" name=" Quality of roads" description="Show the quality of roads" type="boolean" possibleValues=""/>
 	<renderingProperty attr="showAccess" name=" Show the type of access" description="Show the type of access" type="boolean" possibleValues=""/>
 <!--	<renderingProperty attr="showNotes" name=" Fixme, note, description" description="Show fixme, note, description, inscription" type="boolean" possibleValues=""/> -->
-<!--	<renderingProperty attr="lessIntrusiveShopsFood" name=" Less intrusive shops+food" description="Suppress display of most shops and food (+drink) POIs until zoom level 19" type="boolean" possibleValues=""/>
-	<renderingProperty attr="lessIntrusiveBanksHealthPost" name="Less intr banks+health+post" description="Suppress display of most banks, atm, health and post amenities (except hospitals) until zoom level 19" type="boolean" possibleValues=""/>-->
 	<renderingProperty attr="lessDetailed" name=" Less detailed" description="Suppress display of some details" type="boolean" possibleValues=""/>
-<!--	<renderingProperty attr="hideBuildings" name=" Hide buildings" description="Hide buildings" type="boolean" possibleValues=""/>--> <!-- temporarily disabled -->
 	<renderingProperty attr="buildings15zoom" name=" Buildings on 15 zoom" description="Buildings on 15 zoom" type="boolean" possibleValues=""/>
 	<renderingAttribute name="polygonMinSizeToDisplay">
 	<!-- Minimum polygon size in pixels -->
@@ -330,18 +327,18 @@
 					<groupFilter nightMode="true" color="#795877" color_2="#6dffd6"/>
 				</group>
 
-<!--				<groupFilter hideBuildings="true" disable="true"/>--> <!-- temporarily disabled -->
-
 				<group lessDetailed="false">
 					<filter buildings15zoom="true" nightMode="true" minzoom="15" maxzoom="15" tag="building" value="" color="#685454"/>
 					<filter buildings15zoom="true" minzoom="15" maxzoom="15" tag="building" value="" color="#bca9a9"/>
 				</group>
 
 				<!-- Added support of abandoned and ruins tags -->
-				<groupFilter minzoom="16" additional="abandoned=yes" color_2="#000000" strokeWidth_2="1" pathEffect_2="9_3"/>
-				<groupFilter minzoom="16" additional="ruins=yes" color_2="#000000" strokeWidth_2="1" pathEffect_2="9_3"/>
-				<groupFilter minzoom="16" nightMode="true" additional="abandoned=yes" color_2="#999999" strokeWidth_2="1" pathEffect_2="9_3"/>
-				<groupFilter minzoom="16" nightMode="true" additional="ruins=yes" color_2="#999999" strokeWidth_2="1" pathEffect_2="9_3"/>
+				<groupFilter additional="ruins=yes" color_2="#999999" strokeWidth_2="0.5" pathEffect_2="9_3">
+					<filter nightMode="true" color_2="#aaaaaa"/>
+				</groupFilter>
+				<groupFilter additional="abandoned=yes" color_2="#000000" strokeWidth_2="0.5" pathEffect_2="9_3">
+					<filter nightMode="true" color_2="#aaaaaa"/>
+				</groupFilter>
 
 			</group>  <!-- /Buildings -->
 
@@ -1278,8 +1275,8 @@
 			<filter tag="waterway" value="canal"/>
 			<filter tag="waterway" value="ditch"/>
 			<filter tag="waterway" value="drain"/>
-			<groupFilter appMode="car" additional="tunnel=yes" disable="true"/>
-			<groupFilter appMode="car" additional="tunnel=culvert" disable="true"/>
+<!--			<groupFilter appMode="car" additional="tunnel=yes" disable="true"/>
+			<groupFilter appMode="car" additional="tunnel=culvert" disable="true"/>-->
 			<groupFilter color="$waterwayColorDay"/>
 			<groupFilter subwayMode="true" color="$waterwayDesaturatedColorDay"/>
 			<groupFilter nightMode="true" color="$waterwayColorNight"/>
