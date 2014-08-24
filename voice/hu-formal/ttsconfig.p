@@ -1,9 +1,9 @@
-﻿% for turbo-prolog
+% for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog
 :- op(500, xfy,'--').
 
-version(102).
+version(103).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
@@ -15,14 +15,16 @@ language('hu').
 % (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
 % (X) arrival
 % (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
-% (N/A) special grammar: onto_street / on_street / to_street
-% (X) special grammar: nom/acc for distance measure
+% (X) attention Type implementation
+% (X) special grammar: onto / on / to Street fur turn and follow commands
+% (N/A) special grammar: nominative/dativ for distance measure
 % (N/A) special grammar: imperative/infinitive distincion for turns
 % (X) distance measure: meters / feet / yard support
 % (X) Street name announcement (suppress in prepare_roundabout)
 % (X) Name announcement for destination / intermediate / GPX waypoint arrival
 % (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
-% ( ) word order checked. Grammar also needs checking and some translations are not very precise.
+% (X) word order checked
+% (X) Announcement of favorites, waypoints and pois along the route
 
 
 % ROUTE CALCULATED
@@ -87,20 +89,31 @@ string('reached_destination.ogg','megérkezett az uticélhoz ').
 string('and_arrive_intermediate.ogg', 'és megérkezik a köztes célponthoz. ').
 string('reached_intermediate.ogg', 'megérkezett a köztes célponthoz ').
 string('and_arrive_waypoint.ogg', 'és megérkezik a köztes GPX útponthoz ').
+string('and_arrive_favorite.ogg', 'és megérkezik a kedvencéhez ').
+string('and_arrive_poi_waypoint.ogg', 'és megérkezik a POI ponthoz ').
 string('reached_waypoint.ogg', 'megérkezett a köztes GPX útponthoz ').
+string('reached_favorite.ogg', 'megérkezett a kedvenc útponthoz ').
+string('reached_poi.ogg', 'megérkezett a POI ponthoz ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'figyelem, ').
+string('speed_camera.ogg', 'traffipax ').
+string('border_control.ogg', 'határellenőrzés ').
+string('traffic_calming.ogg', 'forgalomlassító ').
+string('toll_booth.ogg', 'fizetőkapu ').
+string('stop.ogg', 'stop tábla ').
+
 string('location_lost.ogg', 'nem található dzsípíesz jel ').
 string('location_recovered.ogg', 'pozíció meghatározva').
 string('off_route.ogg', 'Letért a tervezett útvonalról ').
 string('exceed_limit.ogg', 'Túllépte a sebességhatárt ').
 
 % STREET NAME GRAMMAR
-string('onto_pre.ogg', ', ').
-string('onto_post.ogg', 'irányába ').
+string('comma.ogg', ', ').
+string('onto.ogg', 'irányába ').
 string('on.ogg', ', ezen: ').
 string('to.ogg', ', eddig: ').
+string('to2.ogg', ', felé ').
 
 % DISTANCE UNIT SUPPORT
 string('meters_nom.ogg', 'méter ').
@@ -158,41 +171,74 @@ to_street('', []).
 to_street(Street, ['to.ogg', Street]) :- tts.
 to_street(_Street, []) :- not(tts).
 
-prepare_turn(Turn, Dist, Street) -- [D, 'after.ogg', M | Sgen] :- distance(Dist, nom) -- D, turn(Turn, M), onto_street(Street, Sgen).
-turn(Turn, Dist, Street) -- [D, 'after.ogg', M | Sgen] :- distance(Dist, nom) -- D, turn(Turn, M), onto_street(Street, Sgen).
-turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), onto_street(Street, Sgen).
+% cut_part_street(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
+cut_part_street(voice(['', '', Dest], _), Dest).
+% cut_part_street(voice(['', Name, _], _), Name). % not necessary
+cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
 
-prepare_make_ut(Dist, Street) -- ['prepare_make_uturn.ogg', D, 'after.ogg' | Sgen] :- distance(Dist, nom) -- D, on_street(Street, Sgen).
-make_ut(Dist, Street) --  [D, 'make_uturn1.ogg' | Sgen] :- distance(Dist, nom) -- D, on_street(Street, Sgen).
-make_ut(Street) -- ['make_uturn2.ogg' | Sgen] :- on_street(Street, Sgen).
+turn_street('', []).
+turn_street(voice(['','',''],_), []).
+turn_street(Street, ['comma.ogg', SName, 'to2.ogg']) :- tts, Street = voice(['', '', D], _), cut_part_street(Street, SName).
+turn_street(Street, ['comma.ogg', SName, 'onto.ogg']) :- tts, not(Street = voice([R, S, _],[R, S, _])), cut_part_street(Street, SName).
+turn_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), cut_part_street(Street, SName).
+turn_street(_Street, []) :- not(tts).
+
+follow_street('', []).
+follow_street(voice(['','',''],_), []).
+follow_street(Street, ['to.ogg', SName]) :- tts, Street = voice(['', '', D], _), cut_part_street(Street, SName).
+follow_street(Street, ['to.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), cut_part_street(Street, SName).
+follow_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), cut_part_street(Street, SName).
+follow_street(_Street, []) :- not(tts).
+
+prepare_turn(Turn, Dist, Street) -- [D, 'after.ogg', M | Sgen] :- distance(Dist, nom) -- D, turn(Turn, M), turn_street(Street, Sgen).
+turn(Turn, Dist, Street) -- [D, 'after.ogg', M | Sgen] :- distance(Dist, nom) -- D, turn(Turn, M), turn_street(Street, Sgen).
+turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
+
+prepare_make_ut(Dist, Street) -- ['prepare_make_uturn.ogg', D, 'after.ogg' | Sgen] :- distance(Dist, nom) -- D, turn_street(Street, Sgen).
+make_ut(Dist, Street) --  [D, 'make_uturn1.ogg' | Sgen] :- distance(Dist, nom) -- D, turn_street(Street, Sgen).
+make_ut(Street) -- ['make_uturn2.ogg' | Sgen] :- turn_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
 prepare_roundabout(Dist, _Exit, _Street) -- [D, 'prepare_roundabout.ogg'] :- distance(Dist, nom) -- D.
-roundabout(Dist, _Angle, Exit, Street) -- [D, 'roundabout.ogg', E, 'roundabout2.ogg' | Sgen] :- distance(Dist, nom) -- D, nth(Exit, E), onto_street(Street, Sgen).
-roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), onto_street(Street, Sgen).
+roundabout(Dist, _Angle, Exit, Street) -- [D, 'roundabout.ogg', E, 'roundabout2.ogg' | Sgen] :- distance(Dist, nom) -- D, nth(Exit, E), turn_street(Street, Sgen).
+roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 
-go_ahead -- ['go_ahead.ogg'].
-go_ahead(Dist, Street) -- ['follow1.ogg', D | Sgen]:- distance(Dist, acc) -- D, to_street(Street, Sgen).
+go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen] :- distance(Dist, acc) -- D, follow_street(Street, Sgen).
 
 then -- ['then.ogg'].
 name(D, [D]) :- tts.
 name(_D, []) :- not(tts).
-and_arrive_destination(D) -- ['and_arrive_destination.ogg', Ds] :- name(D, Ds).
-reached_destination(D) -- ['reached_destination.ogg', Ds] :- name(D, Ds).
-and_arrive_intermediate(D) -- ['and_arrive_intermediate.ogg', Ds] :- name(D, Ds).
-reached_intermediate(D) -- ['reached_intermediate.ogg', Ds] :- name(D, Ds).
-and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg', Ds] :- name(D, Ds).
-reached_waypoint(D) -- ['reached_waypoint.ogg', Ds] :- name(D, Ds).
+and_arrive_destination(D) -- ['and_arrive_destination.ogg'|Ds] :- name(D, Ds).
+reached_destination(D) -- ['reached_destination.ogg'|Ds] :- name(D, Ds).
+and_arrive_intermediate(D) -- ['and_arrive_intermediate.ogg'|Ds] :- name(D, Ds).
+reached_intermediate(D) -- ['reached_intermediate.ogg'|Ds] :- name(D, Ds).
+and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
+reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
+and_arrive_favorite(D) -- ['and_arrive_favorite.ogg'|Ds] :- name(D, Ds).
+reached_favorite(D) -- ['reached_favorite.ogg'|Ds] :- name(D, Ds).
+and_arrive_poi(D) -- ['and_arrive_poi.ogg'|Ds] :- name(D, Ds).
+reached_poi(D) -- ['reached_poi.ogg'|Ds] :- name(D, Ds).
 
 route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg', T] :- distance(Dist, nom) -- D, time(Time) -- T.
 route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
-route_recalc(Dist, Time) -- ['route_calculate.ogg', ', ', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist, nom) -- D, time(Time) -- T.
+route_recalc(Dist, Time) -- ['route_calculate.ogg', 'comma.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist, nom) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
 location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist, acc) -- D.
-attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
+% attention(_Type) -- ['attention.ogg'].
+attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
+
+% TRAFFIC WARNINGS
+warning('SPEED_CAMERA', 'speed_camera.ogg').
+warning('SPEED_LIMIT', '').
+warning('BORDER_CONTROL', 'border_control.ogg').
+warning('TRAFFIC_CALMING', 'traffic_calming.ogg').
+warning('TOLL_BOOTH', 'toll_booth.ogg').
+warning('STOP', 'stop.ogg').
+warning('MAXIMUM', '').
+warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'MAXIMUM').
 
 
 %% 
@@ -215,9 +261,10 @@ nth(16, '16th.ogg').
 nth(17, '17th.ogg').
 
 
-%% resolve command main method
+%% command main method
 %% if you are familar with Prolog you can input specific to the whole mechanism,
 %% by adding exception cases.
+
 flatten(X, Y) :- flatten(X, [], Y), !.
 flatten([], Acc, Acc).
 flatten([X|Y], Acc, Res):- flatten(Y, Acc, R), flatten(X, R, Res).
@@ -227,7 +274,7 @@ flatten(X, Acc, [X|Acc]).
 
 resolve(X, Y) :- resolve_impl(X,Z), flatten(Z, Y).
 resolve_impl([],[]).
-resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ((X -- L) -> append(L, Tail, List); List = Tail).
+resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ('--'(X, L) -> append(L, Tail, List); List = Tail).
 
 
 % handling alternatives
