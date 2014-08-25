@@ -74,9 +74,8 @@ mycp barrier small_red_4 functional-icons_point_red_4.png  #scale 0.25
 mygroup emergency emergency_emergency_phone.png
 mycp emergency phone emergency_emergency_phone.png
 mycp emergency fire_hydrant emergency_fire_hydrant.png
-mycp amenity police emergency_police2.png
-mycp amenity fire_station emergency_firestation3.png
-mycp amenity fire_station_2 amenity_firestation.png
+mycp amenity police emergency_police3.png
+mycp amenity fire_station emergency_firestation4.png
 
 mygroup healthcare health_pharmacy.png
 mycp amenity pharmacy health_pharmacy.png
@@ -185,6 +184,8 @@ mygroup barrier barrier_bollard.png
 mycp highway gate barrier_gate.png
 mycp barrier gate barrier_gate.png
 mycp barrier lift_gate barrier_lift_gate.png
+mycp barrier swing_gate barrier_swing_gate.png
+mycp barrier chain barrier_chain.png
 mycp barrier sally_port barrier_bollard.png
 mycp barrier bollard barrier_bollard.png
 mycp barrier block barrier_blocks.png
@@ -299,6 +300,10 @@ mycp religion christian place_of_worship_christian3.png
 mycp religion jewish place_of_worship_jewish3.png
 mycp religion muslim place_of_worship_islamic3.png
 mycp religion sikh place_of_worship_sikh3.png
+mycp religion buddhist place_of_worship_buddhist3.png
+mycp religion hindu place_of_worship_hindu3.png
+mycp religion shinto place_of_worship_shinto3.png
+mycp religion taoist place_of_worship_taoist.png
 #! mycp amenity grave_yard place_of_worship_christian3.png  #already defined as icon in the shader section
 
 mygroup finance money_bank2.png
