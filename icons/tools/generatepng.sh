@@ -64,6 +64,7 @@ generatePngs() {
 }
 
 generateElements 'shaders'
+generateElements 'osmc'
 generatePngs 'functional-icons' '#777777' '#777777'
 generatePngs 'water' '#0092DA' '#777777'
 
