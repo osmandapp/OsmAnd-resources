@@ -87,7 +87,7 @@ string('and_arrive_intermediate.ogg', 'and arrive at your waypoint ').
 string('reached_intermediate.ogg', 'you have reached your waypoint ').
 string('and_arrive_waypoint.ogg', 'and arrive at your GPX waypoint ').
 string('and_arrive_favorite.ogg', 'and arrive at your favorite ').
-string('and_arrive_poi_waypoint.ogg', 'and arrive at POI ').
+string('and_arrive_poi.ogg', 'and arrive at POI ').
 string('reached_waypoint.ogg', 'you have reached your GPX waypoint ').
 string('reached_favorite.ogg', 'you have reached your favorite waypoint ').
 string('reached_poi.ogg', 'you have reached POI ').

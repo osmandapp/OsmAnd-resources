@@ -3,8 +3,8 @@
 :- op('--', xfy, 500).
 % for swi-prolog
 :- op(500, xfy,'--').
+version(0).
 
-version(103).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
