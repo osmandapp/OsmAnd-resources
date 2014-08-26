@@ -18,6 +18,7 @@
 	<renderingProperty attr="noPolygons" name="Hide polygons" description="Make all areal land features on map transparent"
 		type="boolean" possibleValues=""/>
 	<renderingProperty attr="hideBuildings" name=" Hide buildings" description="Hide buildings" type="boolean" possibleValues=""/>
+	<renderingProperty attr="moreDetailed" name=" More detailed" description="More detailed map" type="boolean" possibleValues=""/>
 	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show cycle routes (*cn_networks) in bicycle mode"
 		type="boolean" possibleValues=""/>
 	<renderingProperty attr="coloredBuildings" name="Colored buildings" description="Colored buildings by type"
@@ -70,28 +71,29 @@
 		<!-- filter nightMode="false" attrColorValue="#B4B319FF"/ -->
 		<filter attrColorValue="#B400FFFF"/>
 	</renderingAttribute>
-
+	
 	<renderingAttribute name="polygonMinSizeToDisplay">
 	<!-- Minimum polygon size in pixels -->
+		<filter moreDetailed="true" attrIntValue="10"/>
 		<filter attrIntValue="75"/>
 	</renderingAttribute>
-	
+
 	<renderingAttribute name="roadDensityZoomTile">
 	<!-- 8 (=1 pixel tile) down to 0 (=large tile) -->
 		<filter attrIntValue="3"/>
 	</renderingAttribute>
-	
+
 	<!-- Use hmRendered for more map detail and better visibility of small roads -->
 	<renderingConstant name="hmRendered" value="false"/>
-	
+
 	<renderingAttribute name="roadsDensityLimitPerTile">
 	<!-- Number of roads to display per tile -->
+		<filter moreDetailed="true" attrIntValue="28"/>
 		<filter appMode="pedestrian" attrIntValue="24"/>
 		<filter appMode="bicycle" attrIntValue="24"/>
-		<filter test="$hmRendered" attrIntValue="100"/>
 		<filter attrIntValue="12"/>
 	</renderingAttribute>
-	
+
 	<!-- filter does not work for renderingConstant - the last one will be used, but better use separate depends Rendering style -->
 
 
@@ -103,6 +105,10 @@
 	<renderingConstant name="tertiaryRoadColor" value="#ffff80"/>
 	<renderingConstant name="residentialRoadColor" value="#ffffff"/>
 	<renderingConstant name="residentialRoadColorNight" value="#9f9f9f"/>
+	<renderingConstant name="serviceRoadColor" value="#ececec"/>
+	<renderingConstant name="serviceRoadColorNight" value="#727272"/>
+	<renderingConstant name="serviceDrivewayRoadColor" value="#e0e0e0"/>
+	<renderingConstant name="serviceDrivewayRoadColorNight" value="#636363"/>
 	<renderingConstant name="constructionRoadColor" value="#79a8fd"/>
 	<renderingConstant name="constructionRoadColor2" value="#ffffff"/>
 	<renderingConstant name="proposedRoadColor" value="#16333333"/>
@@ -1747,7 +1753,7 @@
 			<filter tag="highway" value="bus_stop"/>
 			<filter tag="public_transport" value="platform" additional="bus=yes"/>
 			<filter tag="public_transport" value="platform" additional="trolleybus=yes"/>
-			<groupFilter icon="highway_bus_stop_small"/> <!-- fallback -->
+			<groupFilter icon="highway_bus_stop_small" iconVisibleSize="5" iconOrder="65"/> <!-- fallback -->
 			<groupFilter publicTransportMode="true" iconVisibleSize="2" iconOrder="55">
 				<groupFilter icon="highway_bus_stop_round_big"/>
 				<groupFilter nightMode="true" icon="highway_bus_stop_round_big_night"/>
@@ -2167,10 +2173,10 @@
 				<filter test="$hmRendered" minzoom="13" color="#ececec" color_2="#969696" strokeWidth_2=":1"/>
 			</groupFilter>
 			<groupFilter nightMode="true" color="#727272" color_2="#464646"/>
-			<groupFilter appMode="car" shader="" color="#f0e0d8" color_2="$null">
+			<groupFilter appMode="car" shader="" color="#f0e0d8" color_2="#44aaaaaa">
 				<filter tag="highway" value="pedestrian"/>
 				<filter tag="highway" value="footway"/>
-				<groupFilter nightMode="true" color="#25999999" color_2="$null"/>
+				<groupFilter nightMode="true" color="#353535" color_2="#77666666"/>
 			</groupFilter>
 		</group>
 
@@ -2207,8 +2213,12 @@
 
 		<!-- Buildings, night color 685454 -->
 		<group hideBuildings="false">
-			<group minzoom="16" color_2="#000000" strokeWidth_2="0.3">
-				<group coloredBuildings="true">
+			<group minzoom="15" color_2="#000000">
+				<filter moreDetailed="true" tag="building" value="" maxzoom="15">
+					<filter nightMode="true" color="$buildingColorNight"/>
+					<filter color="$buildingColorDay"/>
+				</filter>
+				<group minzoom="16" coloredBuildings="true" strokeWidth_2="0.3">
 					<group>
 						<filter tag="building" value="garages"/>
 						<filter tag="building" value="garage"/>
@@ -2259,22 +2269,22 @@
 						<groupFilter nightMode="true" color="#885d5d"/>
 					</group>
 				</group>
-				<group>
+				<group minzoom="16" strokeWidth_2="0.3">
 					<filter tag="building" value="collapsed"/>
 					<filter tag="building" value="damaged"/>
 					<groupFilter color="$buildingColorDay" color_2="#000000" strokeWidth_2="0.5" pathEffect_2="9_3"/>
 					<groupFilter nightMode="true" color="$buildingColorNight" color_2="#999999"/>
 				</group>
-				<group>
+				<group minzoom="16">
 					<filter tag="building" value="construction" color="#aaa279" color_2="#666666" strokeWidth_2="0.5" pathEffect_2="8_4"/>
 					<groupFilter nightMode="true" color="#494921" color_2="#aaaaaa"/>
 				</group>
-				<filter nightMode="true" tag="building" value="" color="$buildingColorNight" color_2="#999999"/>
-				<filter tag="building" value="" color="$buildingColorDay"/>
-				<groupFilter additional="ruins=yes" color_2="#999999" strokeWidth_2="0.5" pathEffect_2="9_3">
+				<filter minzoom="16" nightMode="true" tag="building" value="" color="$buildingColorNight" color_2="#999999" strokeWidth_2="0.3"/>
+				<filter minzoom="16" tag="building" value="" color="$buildingColorDay" strokeWidth_2="0.3"/>
+				<groupFilter minzoom="16" additional="ruins=yes" color_2="#999999" strokeWidth_2="0.5" pathEffect_2="9_3">
 					<filter nightMode="true" color_2="#aaaaaa"/>
 				</groupFilter>
-				<groupFilter additional="abandoned=yes" color_2="#000000" strokeWidth_2="0.5" pathEffect_2="9_3">
+				<groupFilter minzoom="16" additional="abandoned=yes" color_2="#000000" strokeWidth_2="0.5" pathEffect_2="9_3">
 					<filter nightMode="true" color_2="#aaaaaa"/>
 				</groupFilter>
 			</group>
@@ -2655,11 +2665,9 @@
 				<filter tag="highway" value="unclassified"/>
 				<filter tag="highway" value="residential"/>
 				<groupFilter color="$residentialRoadColor" shadowRadius=":1.5" cap="ROUND">
-					<filter test="$hmRendered" minzoom="12" maxzoom="12" strokeWidth="2"/>
-					<filter test="$hmRendered" minzoom="13" maxzoom="13" strokeWidth="3"/>
-					<filter minzoom="13" maxzoom="13" strokeWidth="2" shadowColor="#33666666" shadowRadius=":1"/>
 					<filter color_0="#000000">
-						<filter test="$hmRendered" minzoom="14" maxzoom="14" strokeWidth="5"/>
+						<filter moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth="1.5" shadowColor="#44666666" shadowRadius=":1"/>
+						<filter minzoom="13" maxzoom="13" strokeWidth="2" shadowColor="#33666666" shadowRadius=":1"/>
 						<filter minzoom="14" maxzoom="14" strokeWidth="1:2" shadowColor="#44666666" shadowRadius=":1"/>
 						<filter minzoom="15" maxzoom="15" strokeWidth="2:3"/>
 						<filter minzoom="16" maxzoom="16" strokeWidth="5:4"/>
@@ -2692,10 +2700,10 @@
 				<filter tag="highway" value="rest_area"/>
 				<filter tag="highway" value="living_street"/>
 				<filter tag="highway" value="pedestrian"/>
-				<groupFilter color="#ececec" shadowRadius=":1.5" cap="ROUND">
-					<filter test="$hmRendered" minzoom="13" maxzoom="13" strokeWidth="2"/>
+				<groupFilter color="$serviceRoadColor" shadowRadius=":1.5" cap="ROUND">
+					<filter moreDetailed="true" minzoom="13" maxzoom="13" strokeWidth="1" shadowRadius="0"/>
 					<filter color_0="#000000">
-						<filter test="$hmRendered" minzoom="14" maxzoom="14" strokeWidth="1:2"/>
+						<filter moreDetailed="true" minzoom="14" maxzoom="14" strokeWidth="2" shadowRadius=":1" shadowColor="#55777777"/>
 						<filter minzoom="15" maxzoom="15" strokeWidth="2:2"/>
 						<filter minzoom="16" maxzoom="16" strokeWidth="3:2"/>
 						<filter minzoom="17" maxzoom="17" strokeWidth="4:4"/>
@@ -2713,13 +2721,29 @@
 							<groupFilter nightMode="true" color_0="#ffffff"/>
 						</groupFilter>
 					</filter>
-					<groupFilter nightMode="true" color="#727272"/>
+					<groupFilter nightMode="true" color="$serviceRoadColorNight"/>
+					<groupFilter>
+						<filter additional="service=driveway" color="$serviceDrivewayRoadColor" shadowColor="#bb999999">
+							<filter minzoom="13" maxzoom="13" disable="true"/>
+							<filter nightMode="true" color="$serviceDrivewayRoadColorNight" shadowColor="$null"/>
+						</filter>
+						<filter additional="service=parking_aisle" color="$serviceDrivewayRoadColor" shadowColor="#bb999999">
+							<filter minzoom="13" maxzoom="13" disable="true"/>
+							<filter nightMode="true" color="$serviceDrivewayRoadColorNight" shadowColor="$null"/>
+						</filter>
+						<filter additional="service=alley" color="$serviceDrivewayRoadColor" shadowColor="#bb999999">
+							<filter minzoom="13" maxzoom="13" disable="true"/>
+							<filter nightMode="true" color="$serviceDrivewayRoadColorNight" shadowColor="$null"/>
+						</filter>
+					</groupFilter>
 	<!--				<groupFilter minzoom="15" additional="access=no" color_3="#F7D4D4" strokeWidth_3="1:2" pathEffect_3="10_3"/> 
 					<groupFilter minzoom="15" additional="access=private" color_3="#F7D4D4" strokeWidth_3="1:2" pathEffect_3="10_3"/>-->
 				</groupFilter>
 				<!-- pedestrian roads are forbidden for cars and cyclists: show them like that in car and bicycle mode -->
-				<groupFilter appMode="car" tag="highway" value="pedestrian" color="#F7D4D4"/>
-				<groupFilter nightMode="true" appMode="car" tag="highway" value="pedestrian" color="#412e2e"/>
+				<groupFilter tag="highway" value="pedestrian" shadowColor="#55555555">
+					<filter nightMode="true" appMode="car" color="#412e2e" shadowRadius="0"/>
+					<filter appMode="car" color="#f7d4d4" shadowColor="#44444444"/>
+				</groupFilter>
 				<!-- <groupFilter appMode="bicycle" tag="highway" value="pedestrian" color="#F7D4D4"/> -->
 			</group>
 			<groupFilter showAccess="true" cap_3="ROUND">
