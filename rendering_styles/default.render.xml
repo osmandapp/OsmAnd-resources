@@ -90,9 +90,9 @@
 
 	<renderingAttribute name="roadsDensityLimitPerTile">
 	<!-- Number of roads to display per tile -->
-		<filter moreDetailed="true" attrIntValue="28"/>
-		<filter appMode="pedestrian" attrIntValue="24"/>
-		<filter appMode="bicycle" attrIntValue="24"/>
+		<filter moreDetailed="true" attrIntValue="55"/>
+		<filter appMode="pedestrian" attrIntValue="28"/>
+		<filter appMode="bicycle" attrIntValue="22"/>
 		<filter attrIntValue="12"/>
 	</renderingAttribute>
 
@@ -2936,10 +2936,10 @@
 		<!-- Next segment: Highways without grade distinction (cycleway, bridleway, black path): pathEffect 4_2. Base setting for highways with possible grade distinction but none specified (track, byway, red footway): 5_5 -->
 		<group>
 			<filter tag="highway" value="track" color="#996600" pathEffect="4_2">
-				<filter appMode="pedestrian" test="$hmRendered" minzoom="14" strokeWidth="2"/>
-				<filter appMode="pedestrian" minzoom="15" strokeWidth="2"/>
-				<filter test="$hmRendered" minzoom="12" maxzoom="12" strokeWidth="0.5"/>
-				<filter test="$hmRendered" minzoom="13" strokeWidth="1"/>
+<!--				<filter appMode="pedestrian" moreDetailed="true" minzoom="14" strokeWidth="1.5"/>
+				<filter appMode="pedestrian" minzoom="15" strokeWidth="2"/>-->
+				<filter moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth="0.6" pathEffect=""/>
+				<filter moreDetailed="true" minzoom="13" maxzoom="13" strokeWidth="0.8" pathEffect=""/>
 				<filter minzoom="14" strokeWidth="1"/>
 				<groupFilter>
 					<!-- Dash pattern: solid(100%), long-dashed(77%), short-dashed(63%), dash-dotted(50%), dotted(50%), dotted2(40%), short-dashed-narrow-spaced(66%) for not-specified -->
@@ -2948,6 +2948,7 @@
 					<filter additional="tracktype=grade3" pathEffect="5_3"/>
 					<filter additional="tracktype=grade4" pathEffect="4_3_2_3"/>
 					<filter additional="tracktype=grade5" pathEffect="2_3"/>
+					<groupFilter minzoom="12" maxzoom="13" pathEffect=""/>
 				</groupFilter>
 				<groupFilter appMode="bicycle" additional="bicycle=no" color="#14996600"/>
 			</filter>
@@ -2963,14 +2964,11 @@
 			</filter>
 
 			<filter tag="highway" value="path" color="#000000" pathEffect="4_2">
-				<filter appMode="bicycle" additional="bicycle=designated" color="$cyclewayColorDay" pathEffect="4_2" minzoom="14" strokeWidth="2">
-					<filter test="$hmRendered" minzoom="12" maxzoom="12" strokeWidth="0.5"/>
-					<filter test="$hmRendered" minzoom="13" strokeWidth="1"/>
-				</filter>
-				<filter appMode="pedestrian" test="$hmRendered" minzoom="14" strokeWidth="2"/>
+				<filter appMode="bicycle" additional="bicycle=designated" color="$cyclewayColorDay" pathEffect="4_2" minzoom="14" strokeWidth="2"/>
+				<filter appMode="pedestrian" moreDetailed="true" minzoom="13" strokeWidth="1.5"/>
 				<filter appMode="pedestrian" minzoom="15" strokeWidth="2"/>
-				<filter test="$hmRendered" minzoom="12" maxzoom="12" strokeWidth="0.5"/>
-				<filter test="$hmRendered" minzoom="13" strokeWidth="1"/>
+				<filter moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth="0.5"/>
+				<filter moreDetailed="true" minzoom="13" strokeWidth="1"/>
 				<filter minzoom="14" strokeWidth="1"/>
 				<groupFilter>
 					<!-- Dash pattern: solid(100%), long-dashed(77%), short-dashed(63%), dash-dotted(50%), dotted(50%), dotted2(40%), short-dashed-narrow-spaced(66%) for not-specified -->
@@ -2988,18 +2986,17 @@
 			</filter>
 
 			<filter tag="highway" value="cycleway" color="$cyclewayColorDay" pathEffect="4_2">
+				<filter appMode="bicycle" moreDetailed="true" minzoom="13" maxzoom="13" strokeWidth="1"/>
 				<filter appMode="bicycle" minzoom="14" strokeWidth="2"/>
-				<filter appMode="pedestrian" test="$hmRendered" minzoom="14" strokeWidth="2"/>
-				<filter test="$hmRendered" minzoom="12" maxzoom="12" strokeWidth="0.5"/>
-				<filter test="$hmRendered" minzoom="13" strokeWidth="1"/>
+<!--				<filter appMode="pedestrian" moreDetailed="true" minzoom="14" strokeWidth="2"/>-->
 				<filter minzoom="14" strokeWidth="1"/>
 			</filter>
 
 			<filter tag="highway" value="footway" color="#fa5073" pathEffect="4_2">
-				<filter appMode="pedestrian" test="$hmRendered" minzoom="14" strokeWidth="2"/>
-				<filter appMode="pedestrian" minzoom="15" strokeWidth="2"/>
+<!--				<filter appMode="pedestrian" moreDetailed="true" minzoom="14" strokeWidth="2"/>-->
+				<filter appMode="pedestrian" minzoom="15" strokeWidth="1.5"/>
 				<filter test="$hmRendered" minzoom="12" maxzoom="12" strokeWidth="0.5"/>
-				<filter test="$hmRendered" minzoom="13" strokeWidth="1"/>
+				<filter moreDetailed="true" minzoom="14" maxzoom="15" strokeWidth="1"/>
 				<filter minzoom="16" strokeWidth="1"/>
 				<groupFilter appMode="bicycle" additional="bicycle=no" color="#20fa5073"/>
 			</filter>
@@ -3015,8 +3012,8 @@
 			<filter tag="highway" value="bridleway" color="#339900" pathEffect="4_2">
 				<filter appMode="pedestrian" test="$hmRendered" minzoom="14" strokeWidth="2"/>
 				<filter appMode="pedestrian" minzoom="15" strokeWidth="2"/>
-				<filter test="$hmRendered" minzoom="12" maxzoom="12" strokeWidth="0.5"/>
-				<filter test="$hmRendered" minzoom="13" strokeWidth="1"/>
+				<filter moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth="0.5"/>
+				<filter moreDetailed="true" minzoom="13" strokeWidth="1"/>
 				<filter minzoom="16" strokeWidth="1"/>
 				<groupFilter appMode="bicycle" additional="bicycle=no" color="#17339900"/>
 			</filter>
@@ -3535,7 +3532,7 @@
 				<groupFilter minzoom="17" maxzoom="17" strokeWidth="18" pathEffect="37_12"/>
 				<groupFilter minzoom="18" strokeWidth="24" pathEffect="42_14"/>
 			</group>
-			<filter tag="hiking_route" value="hiking" minzoom="12" color="#2200c0ff">
+			<filter tag="hiking_route" value="hiking" minzoom="12" color="#220058a2">
 				<filter maxzoom="12" strokeWidth="3"/>
 				<filter maxzoom="13" strokeWidth="4"/>
 				<filter maxzoom="14" strokeWidth="6"/>
