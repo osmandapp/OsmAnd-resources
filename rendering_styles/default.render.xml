@@ -135,6 +135,7 @@
 	<renderingConstant name="constructionRoadDesaturatedColorDay" value="#98a4ba"/>
 	<renderingConstant name="constructionRoadDesaturatedColorNight" value="#505e79"/>
 	<renderingConstant name="constructionRoadDesaturatedColor2Night" value="#888888"/>
+	<renderingConstant name="pathPathEffect" value="4_2"/>
 
 	<!-- Forest -->
 	<renderingConstant name="woodColorDay" value="#aed1a0"/>
@@ -1154,11 +1155,11 @@
 			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffe7c2" textHaloColor="#88644e2c"/>
 		</group>
 
-		<group textColor="#654321" textDy="7" textWrapWidth="25" textHaloColor="#77ffffff">
-			<filter minzoom="12" maxzoom="13" tag="natural" value="peak" nameTag="ele" textSize="12" textHaloRadius="$textHaloRadiusDay" textOrder="10"/>
-			<filter maxzoom="14" textSize="12" tag="natural" value="peak" nameTag="" nameTag2="ele" textHaloRadius="$textHaloRadiusDay" textOrder="10"/>
-			<filter maxzoom="16" textSize="13" tag="natural" value="peak" nameTag="" nameTag2="ele" textHaloRadius="$textHaloRadiusDay" textOrder="15"/>
-			<filter minzoom="17" textSize="16" tag="natural" value="peak" nameTag="" nameTag2="ele" textHaloRadius="$textHaloRadiusDay" textOrder="15"/>
+		<group textColor="#654321" textDy="7" textWrapWidth="25" textHaloColor="#77ffffff" textHaloRadius="$textHaloRadiusDay" >
+			<filter minzoom="12" maxzoom="13" tag="natural" value="peak" nameTag="ele" textSize="12" textOrder="10"/>
+			<filter maxzoom="14" textSize="12" tag="natural" value="peak" nameTag="" nameTag2="ele" textOrder="10"/>
+			<filter maxzoom="16" textSize="13" tag="natural" value="peak" nameTag="" nameTag2="ele" textOrder="15"/>
+			<filter minzoom="17" textSize="16" tag="natural" value="peak" nameTag="" nameTag2="ele" textOrder="15"/>
 			<filter minzoom="16" textSize="12" tag="natural" value="cave_entrance" textOrder="15"/>
 			<filter minzoom="13" textSize="14" tag="natural" value="volcano" textOrder="3"/>
 			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffcc9b" textHaloColor="#774d2803"/>
@@ -2963,13 +2964,16 @@
 				<filter minzoom="14" strokeWidth="1"/>
 			</filter>
 
-			<filter tag="highway" value="path" color="#000000" pathEffect="4_2">
+			<filter tag="highway" value="path" color="#000000" pathEffect="$pathPathEffect">
 				<filter appMode="bicycle" additional="bicycle=designated" color="$cyclewayColorDay" pathEffect="4_2" minzoom="14" strokeWidth="2"/>
-				<filter appMode="pedestrian" moreDetailed="true" minzoom="13" strokeWidth="1.5"/>
-				<filter appMode="pedestrian" minzoom="15" strokeWidth="2"/>
-				<filter moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth="0.5"/>
-				<filter moreDetailed="true" minzoom="13" strokeWidth="1"/>
-				<filter minzoom="14" strokeWidth="1"/>
+				<filter appMode="pedestrian" minzoom="15" strokeWidth="1.3"/>
+				<filter moreDetailed="true" minzoom="12">
+					<filter maxzoom="12" strokeWidth="0.5" color="#333333" pathEffect=""/>
+					<filter appMode="pedestrian" minzoom="13" maxzoom="13" strokeWidth="0.7" color="#333333" pathEffect=""/>
+					<filter maxzoom="13" strokeWidth="0.6" color="#333333" pathEffect=""/>
+					<filter minzoom="14" strokeWidth="0.6"/>
+				</filter>
+				<filter minzoom="14" strokeWidth="0.8"/>
 				<groupFilter>
 					<!-- Dash pattern: solid(100%), long-dashed(77%), short-dashed(63%), dash-dotted(50%), dotted(50%), dotted2(40%), short-dashed-narrow-spaced(66%) for not-specified -->
 					<!-- Also: switch color to 'pedestrian-red' to better indicate these special ratings in line with many alpine maps -->
@@ -2979,7 +2983,10 @@
 					<filter additional="sac_scale=alpine_hiking" color="#fa5073" pathEffect="4_3_2_3"/>
 					<filter additional="sac_scale=demanding_alpine_hiking" color="#fa5073" pathEffect="3_3"/>
 					<filter additional="sac_scale=difficult_alpine_hiking" color="#fa5073" pathEffect="2_3"/>
-					<filter nightMode="true" color="#787878"/>
+				</groupFilter>
+				<groupFilter nightMode="true">
+					<filter minzoom="12" maxzoom="13" color="#606060"/>
+					<filter color="#787878"/>
 				</groupFilter>
 				<groupFilter appMode="bicycle" additional="bicycle=no" color="#17000000"/>
 				<groupFilter nightMode="true" appMode="bicycle" additional="bicycle=no" color="#17787878"/>
