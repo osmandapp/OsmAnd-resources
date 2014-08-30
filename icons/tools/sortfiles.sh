@@ -175,7 +175,7 @@ mycp railway subway_station_small_black functional-icons_subway_station_small_bl
 mycp railway subway_station_small_black2 functional-icons_subway_station_small_black2.png
 
 mycp aerialway station_small functional-icons_halt.png  #scale 0.25
-mycp aerialway station functional-icons_station_small.png  #scale 0.375
+mycp aerialway station transport_aerialway_station.png  #scale 0.375
 
 mycp aeroway helipad transport_helicopter_pad.png
 mycp aeroway aerodrome transport_aerodrome.png
