@@ -26,6 +26,7 @@ mygroup landuse landuse_coniferous.png
 mycp landuse grass landuse_grass.png
 mycp landuse forest landuse_coniferous.png               # Keep shaders with background color, cannot be replaced by icons!
 mycp natural beach tourist_beach.png                     # Keep shaders with background color, cannot be replaced by icons!
+mycp natural beach2 tourist_beach2.png                     # Keep shaders with background color, cannot be replaced by icons!
 mycp landuse cemetery place_of_worship_christian3.png    # Keep shaders with background color, cannot be replaced by icons!
 mycp amenity grave_yard place_of_worship_christian3.png  # Keep shaders with background color, cannot be replaced by icons!
 mycp natural scrub landuse_scrub.png                     # Keep shaders with background color, cannot be replaced by icons!
