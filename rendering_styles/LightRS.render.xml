@@ -2,16 +2,16 @@
 <!-- xmd5a (xmd5a@yandex.ru) http://forum.openstreetmap.org/viewtopic.php?id=23125 -->
 <renderingStyle name="LightRS" depends="" defaultColor="#ffffff" version="1">
 	<renderingProperty attr="contourLines" name="Show contour lines" description="Select minimum zoom level to display in map if available. Separate contour file may be needed." type="string" possibleValues="--,16,15,14,13,12,11"/>
+	<renderingProperty attr="moreDetailed" name="More details" description="More details on map" type="boolean" possibleValues=""/>
+	<renderingProperty attr="noPolygons" name="Hide polygons (exc.buildings)" description="Make all areal land features on map transparent" type="boolean" possibleValues=""/>
+	<renderingProperty attr="hideWoodScrubs" name="Hide wood and scrubs" description="Hide wood and scrubs" type="boolean" possibleValues=""/>
+	<renderingProperty attr="hideBuildings" name="Hide buildings" description="Hide buildings" type="boolean" possibleValues=""/>
+	<renderingProperty attr="hideNonVehicleHighways" name="Hide non-vehicle highways" description="Hide non-vehicle highways" type="boolean" possibleValues=""/>
+	<renderingProperty attr="hideAccess" name="Hide access restrictions" description="Hide access type" type="boolean" possibleValues=""/>
+	<renderingProperty attr="hideText" name="Hide text" description="Hide text" type="boolean" possibleValues=""/>
 	<!-- This should not be here, but it's referenced from 2 rules, and due to this validation of this style fails -->
 	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
-	<renderingProperty attr="noPolygons" name="Hide polygons (exc.buildings)" description="Make all areal land features on map transparent" type="boolean" possibleValues=""/>
-	<renderingProperty attr="hideBuildings" name=" Hide buildings" description="Hide buildings" type="boolean" possibleValues=""/>
-	<renderingProperty attr="hideNonVehicleHighways" name=" Hide non-vehicle highways" description="Hide non-vehicle highways" type="boolean" possibleValues=""/>
-	<renderingProperty attr="hideText" name=" Hide text" description="Hide text" type="boolean" possibleValues=""/>
-	<renderingProperty attr="hideWoodScrubs" name=" Hide wood and scrubs" description="Hide wood and scrubs" type="boolean" possibleValues=""/>
-	<renderingProperty attr="hideAccess" name=" Hide access type" description="Hide access type" type="boolean" possibleValues=""/>
-	<renderingProperty attr="moreDetailed" name=" More detailed" description="More detailed map" type="boolean" possibleValues=""/>
 
 	<renderingAttribute name="defaultColor">
 		<filter noPolygons="true" attrColorValue="#00ffffff"/>
@@ -290,12 +290,6 @@
 			 <filter layer="1" appMode="bicycle" tag="cycleway" value="" order="90"/>
 			<filter appMode="bicycle" tag="cycleway" value="" order="60"/>
 
-			<!-- byway is deprecated tag, describes UK-only road. Proper tag should be highway=track or highway=path -->
-			<filter layer="1" tag="highway" value="byway" order="90"/>
-			<filter appMode="pedestrian" tag="highway" value="byway" order="60"/>
-			<filter appMode="bicycle" tag="highway" value="byway" order="59"/>
-			<filter tag="highway" value="byway" order="37"/>
-
 			<filter tag="highway" value="ford" order="80"/>
 
 			<filter layer="1" tag="highway" value="track" order="90"/>
@@ -516,7 +510,6 @@
 				<group>
 					<filter tag="highway" value="track" textOrder="9"/>
 					<filter tag="highway" value="path" textOrder="9"/>
-					<filter tag="highway" value="byway" textOrder="9"/>
 					<filter tag="highway" value="cycleway" textOrder="14"/>
 					<filter tag="highway" value="footway" textOrder="15"/>
 					<filter tag="highway" value="steps" textOrder="15"/>
@@ -926,8 +919,22 @@
 		</group>
 
 		<filter nightMode="true" minzoom="11" icon="natural_peak_night" tag="natural" value="peak"/>
-		<filter minzoom="11" icon="natural_peak" tag="natural" value="peak" iconOrder="65"/>
-		<filter minzoom="11" icon="natural_volcano" tag="natural" value="volcano" iconOrder="50"/>
+		<filter tag="natural" value="peak" iconOrder="65">
+			<filter nightMode="true">
+				<filter minzoom="11" maxzoom="14" icon="natural_peak_night"/>
+				<filter minzoom="15" icon="natural_peak_night_big"/>
+			</filter>
+			<filter minzoom="11" maxzoom="14" icon="natural_peak_framed"/>
+			<filter minzoom="15" icon="natural_peak_framed_big"/>
+		</filter>
+		<filter tag="natural" value="volcano" iconOrder="50">
+			<filter nightMode="true">
+				<filter minzoom="11" maxzoom="14" icon="natural_volcano"/>
+				<filter minzoom="15" icon="natural_volcano_big"/>
+			</filter>
+			<filter minzoom="11" maxzoom="14" icon="natural_volcano_framed"/>
+			<filter minzoom="15" icon="natural_volcano_framed_big"/>
+		</filter>
 		<filter minzoom="15" icon="natural_cave_entrance" tag="natural" value="cave_entrance" shield="white_gray_square_shield" iconOrder="85">
 			<filter nightMode="true" shield="gray_gray_square_shield"/>
 		</filter>

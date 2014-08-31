@@ -26,6 +26,7 @@ mygroup landuse landuse_coniferous.png
 mycp landuse grass landuse_grass.png
 mycp landuse forest landuse_coniferous.png               # Keep shaders with background color, cannot be replaced by icons!
 mycp natural beach tourist_beach.png                     # Keep shaders with background color, cannot be replaced by icons!
+mycp natural beach2 tourist_beach2.png                     # Keep shaders with background color, cannot be replaced by icons!
 mycp landuse cemetery place_of_worship_christian3.png    # Keep shaders with background color, cannot be replaced by icons!
 mycp amenity grave_yard place_of_worship_christian3.png  # Keep shaders with background color, cannot be replaced by icons!
 mycp natural scrub landuse_scrub.png                     # Keep shaders with background color, cannot be replaced by icons!
@@ -38,13 +39,21 @@ mycp natural glacier poi_peak2.png                       # Keep shaders with bac
 ## Natural
 mygroup natural poi_peak2.png
 mycp natural peak functional-icons_peak.png  #needs black icon!  #scale 0.5
+mycp natural peak_framed functional-icons_peak_framed.png
+mycp natural peak_framed_big functional-icons_peak_framed_big.png
 mycp natural peak_night functional-icons_peak_night.png  #For night orienteering use orange similar to contour lines (=day version with color #CC6600)  #scale 0.5
+mycp natural peak_night_big functional-icons_peak_night_big.png  #For night orienteering use orange similar to contour lines (=day version with color #CC6600)  #scale 0.5
+mycp natural saddle functional-icons_saddle.png
 mycp natural volcano functional-icons_volcano.png  #Is poi_peak.png with color #D40000  #scale 0.5
+mycp natural volcano_framed functional-icons_volcano_framed.png
+mycp natural volcano_framed_big functional-icons_volcano_framed_big.png
+mycp natural volcano_big functional-icons_volcano_big.png
 mycp natural cave_entrance poi_cave.png
 mycp natural spring functional-icons_spring.png  #scale 0.375
 mycp natural spring2 water_spring.png  #scale 0.375
 mycp natural tree functional-icons_tree.png  #scale 0.25
 mycp waterway waterfall water_waterfall.png  #scale 0.375
+mycp natural stone functional-icons_stone.png  #scale 0.375
 
 
 ## Location dots
@@ -171,7 +180,7 @@ mycp railway subway_station_small_black functional-icons_subway_station_small_bl
 mycp railway subway_station_small_black2 functional-icons_subway_station_small_black2.png
 
 mycp aerialway station_small functional-icons_halt.png  #scale 0.25
-mycp aerialway station functional-icons_station_small.png  #scale 0.375
+mycp aerialway station transport_aerialway_station.png  #scale 0.375
 
 mycp aeroway helipad transport_helicopter_pad.png
 mycp aeroway aerodrome transport_aerodrome.png

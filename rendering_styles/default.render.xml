@@ -13,29 +13,30 @@
 	<!-- renderingProperty Types : string, int, boolean; possibleValues comma separated possible values for int/string -->
 	<renderingProperty attr="contourLines" name="Show contour lines" description="Select minimum zoom level to display in map if available. Separate contour file may be needed."
 		type="string" possibleValues="--,16,15,14,13,12,11"/>
-	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
-		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
+	<renderingProperty attr="moreDetailed" name="More details" description="More details on map" type="boolean" possibleValues=""/>
+	<renderingProperty attr="noAdminboundaries" name="Hide boundaries" description="Suppress display of admin levels 5-9"
+		type="boolean" possibleValues=""/>
 	<renderingProperty attr="noPolygons" name="Hide polygons" description="Make all areal land features on map transparent"
 		type="boolean" possibleValues=""/>
-	<renderingProperty attr="hideBuildings" name=" Hide buildings" description="Hide buildings" type="boolean" possibleValues=""/>
-	<renderingProperty attr="moreDetailed" name=" More detailed" description="More detailed map" type="boolean" possibleValues=""/>
-	<renderingProperty attr="osmcTraces" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces"
+	<renderingProperty attr="hideBuildings" name="Hide buildings" description="Hide buildings" type="boolean" possibleValues=""/>
+	<renderingProperty attr="coloredBuildings" name="Colored buildings" description="Buildings colored by type"
 		type="boolean" possibleValues=""/>
+	<renderingProperty attr="showAccess" name="Show access restrictions" description="Show access restrictions" type="boolean" possibleValues=""/>
 	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show cycle routes (*cn_networks) in bicycle mode"
 		type="boolean" possibleValues=""/>
-	<renderingProperty attr="coloredBuildings" name="Colored buildings" description="Colored buildings by type"
+	<renderingProperty attr="osmcTraces" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces"
 		type="boolean" possibleValues=""/>
 	<renderingProperty attr="publicTransportMode" name="Public transport mode" description="Public transport rendering mode"
 		type="boolean" possibleValues=""/>
 	<renderingProperty attr="subwayMode" name="Subway mode" description="Subway rendering mode"
 		type="boolean" possibleValues=""/>
-	<renderingProperty attr="showAccess" name=" Show the type of access" description="Show the type of access" type="boolean" possibleValues=""/>
-	<renderingProperty attr="noAdminboundaries" name="Hide boundaries" description="Suppress display of admin levels 5-9"
-		type="boolean" possibleValues=""/>
 	<!--
 	<renderingProperty attr="showRoadMaps" name="Roads-only maps" description="Select how to show maps that have only road information"
 		type="string" possibleValues="Always - never show regular maps,Where no regular map is available,Never"/>
 	-->
+	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
+		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
+
 	<renderingAttribute name="defaultColor">
 		<!-- next line should should make background transparent for underlays to be visible, but this curretnly does not work as desired -->
 		<filter noPolygons="true" attrColorValueAlgorithms="#00555555"/>
@@ -91,7 +92,7 @@
 			<filter shadowColor="#969696"	shadowRadius=":1" cap="ROUND" color="#B400FFFF"/>
 		</filter>
 	</renderingAttribute>
-	
+
 	<renderingAttribute name="polygonMinSizeToDisplay">
 	<!-- Minimum polygon size in pixels -->
 		<filter moreDetailed="true" attrIntValue="10"/>
@@ -108,9 +109,9 @@
 
 	<renderingAttribute name="roadsDensityLimitPerTile">
 	<!-- Number of roads to display per tile -->
-		<filter moreDetailed="true" attrIntValue="28"/>
-		<filter appMode="pedestrian" attrIntValue="24"/>
-		<filter appMode="bicycle" attrIntValue="24"/>
+		<filter moreDetailed="true" attrIntValue="55"/>
+		<filter appMode="pedestrian" attrIntValue="28"/>
+		<filter appMode="bicycle" attrIntValue="22"/>
 		<filter attrIntValue="12"/>
 	</renderingAttribute>
 
@@ -152,6 +153,7 @@
 	<renderingConstant name="constructionRoadDesaturatedColorDay" value="#98a4ba"/>
 	<renderingConstant name="constructionRoadDesaturatedColorNight" value="#505e79"/>
 	<renderingConstant name="constructionRoadDesaturatedColor2Night" value="#888888"/>
+	<renderingConstant name="pathPathEffect" value="4_2"/>
 
 	<!-- Forest -->
 	<renderingConstant name="woodColorDay" value="#aed1a0"/>
@@ -362,7 +364,7 @@
 		<renderingConstant name="tertiaryRoadColor" value="#ffff80"/>
 		-->
 
-	
+
 	<!--
 	RENDERER CONCEPT: Concept of what is Rendered at what Zoom Level (Dr. Hardy Mueller, 2011-06-26)
 
@@ -382,7 +384,7 @@
 		 - 17   "Immediate orientation"            Building details, street corner details like traffic_signals, post_box, remaining POIs
 
 		- roadColors="Road atlas style" scheme aligned with conventional road atlas, Saturation=50, Brightness=100, except trunk is considered special case of primary (same hue). For best visibility: routeColor="#960000FF, gpxColor="#B400FFFF".
-	
+
 	-->
 
 	<!--
@@ -489,6 +491,8 @@
 			</group>
 			<filter tag="" value="" order="5"/>
 			<filter tag="waterway" value="dock"/>
+			<filter tag="natural" value="cliff"/>
+			<filter tag="natural" value="crater"/>
 		</group>
 
 	<!-- Line -->
@@ -536,6 +540,9 @@
 			<filter layer="1" tag="railway" value="" order="88"/>
 			<filter tag="railway" value="station"/>
 
+			<filter tag="natural" value="cliff"/>
+			<filter tag="natural" value="crater"/>
+
 			<filter tag="waterway" value="canal"/>
 			<filter tag="waterway" value="waterfall"/>
 			<group order="18">
@@ -546,14 +553,28 @@
 				</filter>
 			</group>
 
-			<group>
-				<filter tag="osmc_symbol_red" value=""/>
-				<filter tag="osmc_symbol_green" value=""/>
-				<filter tag="osmc_symbol_blue" value=""/>
-				<filter tag="osmc_symbol_yellow" value=""/>
-				<filter tag="osmc_symbol_black" value=""/>
-				<filter tag="osmc_symbol_white" value=""/>
+			<group osmcTraces="true">
+				<filter tag="osmc_symbol_red" value="" order="1"/>
+				<filter tag="osmc_symbol_green" value="" order="1"/>
+				<filter tag="osmc_symbol_blue" value="" order="1"/>
+				<filter tag="osmc_symbol_yellow" value="" order="1"/>
+				<filter tag="osmc_symbol_black" value="" order="1"/>
+				<filter tag="osmc_symbol_white" value="" order="1"/>
 			</group>
+			<group>
+				<filter tag="lcn_network" value="lcn" order="112"/>
+				<filter tag="rcn_network" value="rcn" order="111"/>
+				<filter tag="ncn_network" value="ncn" order="110"/>
+				<filter tag="icn_network" value="icn" order="110"/>
+				<filter tag="lcn_ref" value="" order="112"/>
+				<filter tag="rcn_ref" value="" order="111"/>
+				<filter tag="ncn_ref" value="" order="110"/>
+				<filter tag="icn_ref" value="" order="110"/>
+				<groupFilter>
+					<filter point="true" objectType="1" order="74"/>
+				</groupFilter>
+			</group>
+
 
 			<!-- Admin_levels under highways unless appMode=default -->
 			<filter appMode="pedestrian" tag="admin_level" value="" order="34"/>
@@ -613,12 +634,6 @@
 			 <filter layer="1" appMode="bicycle" tag="cycleway" value="" order="90"/>
 			<filter appMode="bicycle" tag="cycleway" value="" order="60"/>
 
-			<!-- byway is deprecated tag, describes UK-only road. Proper tag should be highway=track or highway=path -->
-			<filter layer="1" tag="highway" value="byway" order="90"/>
-			<filter appMode="pedestrian" tag="highway" value="byway" order="60"/>
-			<filter appMode="bicycle" tag="highway" value="byway" order="59"/>
-			<filter tag="highway" value="byway" order="37"/>
-
 			<filter tag="highway" value="ford" order="80"/>
 			<filter tag="highway" value="rest_area" order="80"/>
 
@@ -656,7 +671,7 @@
 			<filter tag="natural" value="coastline_broken" order="35"/>
 			<filter tag="natural" value="coastline_line" order="35"/>
 			<filter tag="route" value="ferry" order="35"/>
-			
+
 			<filter tag="aeroway" value="" order="32"/>
 			<filter tag="aeroway" value="runway"/>
 			<filter tag="contour" value="" order="15"/>
@@ -664,20 +679,6 @@
 			<filter tag="barrier" value="" order="20"/>
 			<filter tag="barrier" value="city_wall"/>
 			<filter tag="fenced" value="yes" order="20"/>
-		</group>
-
-		<group appMode="bicycle">
-			<filter tag="lcn_network" value="lcn" order="112"/>
-			<filter tag="rcn_network" value="rcn" order="111"/>
-			<filter tag="ncn_network" value="ncn" order="110"/>
-			<filter tag="icn_network" value="icn" order="110"/>
-			<filter tag="lcn_ref" value="" order="112"/>
-			<filter tag="rcn_ref" value="" order="111"/>
-			<filter tag="ncn_ref" value="" order="110"/>
-			<filter tag="icn_ref" value="" order="110"/>
-			<groupFilter>
-				<filter point="true" objectType="1" order="74"/>
-			</groupFilter>
 		</group>
 
 		<group objectType="3" point="false" order="5">
@@ -724,7 +725,7 @@
 			<filter tag="landuse" value="village_green" order="4"/>
 			<filter tag="landuse" value="" order="3"/>
 
-			
+
 			<filter tag="natural" value="bay" order="5"/>
 			<filter tag="natural" value="land" order="2"/>
 			<filter tag="natural" value="coastline" order="1"/>
@@ -735,8 +736,7 @@
 
 	<!-- PRIORITY Input to filter : tag, value, zoom [minzoom, maxzoom], textLength, ref, textOrder (default=100) -->
 	<text>
-		<group osmcTraces="true" minzoom="12" textMinDistance="10" textOnPath="false" textLength="1" textSize="12">
-			<filter tag="osmc_symbol" value="" textOrder="1">
+		<filter osmcTraces="true" tag="route" value="hiking" minzoom="12" textMinDistance="10" textOnPath="false" textColor="#00ffffff" textSize="12">
 				<filter nameTag="osmc_symbol_black_blue_name">
 					<filter additional="osmc_shape=bar" textShield="osmc_black_bg_blue_bar"/>
 					<filter additional="osmc_shape=circle" textShield="osmc_black_bg_blue_circle"/>
@@ -757,6 +757,8 @@
 					<filter additional="osmc_shape=bar" textShield="osmc_black_bg_yellow_bar"/>
 					<filter additional="osmc_shape=circle" textShield="osmc_black_bg_yellow_circle"/>
 				</filter>
+				<filter nameTag="osmc_symbol_black_name" textShield="osmc_black_bg"/>
+
 				<filter nameTag="osmc_symbol_blue_black_name">
 					<filter additional="osmc_shape=bar" textShield="osmc_blue_bg_black_bar"/>
 					<filter additional="osmc_shape=circle" textShield="osmc_blue_bg_black_circle"/>
@@ -777,6 +779,8 @@
 					<filter additional="osmc_shape=bar" textShield="osmc_blue_bg_yellow_bar"/>
 					<filter additional="osmc_shape=circle" textShield="osmc_blue_bg_yellow_circle"/>
 				</filter>
+				<filter nameTag="osmc_symbol_blue_name" textShield="osmc_blue_bg"/>
+
 				<filter nameTag="osmc_symbol_green_black_name">
 					<filter additional="osmc_shape=bar" textShield="osmc_green_bg_black_bar"/>
 					<filter additional="osmc_shape=circle" textShield="osmc_green_bg_black_circle"/>
@@ -797,6 +801,8 @@
 					<filter additional="osmc_shape=bar" textShield="osmc_green_bg_yellow_bar"/>
 					<filter additional="osmc_shape=circle" textShield="osmc_green_bg_yellow_circle"/>
 				</filter>
+				<filter nameTag="osmc_symbol_green_name" textShield="osmc_green_bg"/>
+
 				<filter nameTag="osmc_symbol_red_black_name">
 					<filter additional="osmc_shape=bar" textShield="osmc_red_bg_black_bar"/>
 					<filter additional="osmc_shape=circle" textShield="osmc_red_bg_black_circle"/>
@@ -817,6 +823,8 @@
 					<filter additional="osmc_shape=bar" textShield="osmc_red_bg_yellow_bar"/>
 					<filter additional="osmc_shape=circle" textShield="osmc_red_bg_yellow_circle"/>
 				</filter>
+				<filter nameTag="osmc_symbol_red_name" textShield="osmc_red_bg"/>
+
 				<filter nameTag="osmc_symbol_white_black_name">
 					<filter additional="osmc_shape=bar" textShield="osmc_white_bg_black_bar"/>
 					<filter additional="osmc_shape=circle" textShield="osmc_white_bg_black_circle"/>
@@ -837,6 +845,8 @@
 					<filter additional="osmc_shape=bar" textShield="osmc_white_bg_yellow_bar"/>
 					<filter additional="osmc_shape=circle" textShield="osmc_white_bg_yellow_circle"/>
 				</filter>
+				<filter nameTag="osmc_symbol_white_name" textShield="osmc_white_bg"/>
+
 				<filter nameTag="osmc_symbol_yellow_black_name">
 					<filter additional="osmc_shape=bar" textShield="osmc_yellow_bg_black_bar"/>
 					<filter additional="osmc_shape=circle" textShield="osmc_yellow_bg_black_circle"/>
@@ -857,8 +867,13 @@
 					<filter additional="osmc_shape=bar" textShield="osmc_yellow_bg_white_bar"/>
 					<filter additional="osmc_shape=circle" textShield="osmc_yellow_bg_white_circle"/>
 				</filter>
-			</filter>
-		</group>
+				<filter nameTag="osmc_symbol_yellow_name" textShield="osmc_yellow_bg"/>
+
+				<filter nameTag="hiking_route_name" nameTag2="hiking_route_ref" minzoom="14" textMinDistance="100" textColor="#000000" textHaloRadius="1" textHaloColor="#aadddddd" textSize="12" textOnPath="true">
+					<filter nightMode="true" textColor="#ffffff" textHaloColor="#44111111"/>
+				</filter>
+		</filter>
+
 		<!-- Highway refs -->
 		<filter minzoom="8" subwayMode="false" tag="highway" value="motorway" nameTag="ref" textMinDistance="150" textColor="#ffffff" textSize="12" textBold="true" textOrder="7">
 			<filter textLength="1" textShield="mot_shield1"/>
@@ -991,13 +1006,13 @@
 		<group textColor="#000000" textHaloRadius="$highwayTrackTextHaloRadiusDay" textHaloColor="$highwayTrackTextHaloColorDay">
 			<filter tag="highway" value="track" textOrder="9"/>
 			<filter tag="highway" value="path" textOrder="9"/>
-			<filter tag="highway" value="byway" textOrder="9"/>
 			<filter tag="highway" value="cycleway" textOrder="14"/>
 			<filter tag="highway" value="footway" textOrder="15"/>
 			<filter tag="highway" value="steps" textOrder="15"/>
 			<filter tag="highway" value="bridleway" textOrder="15"/>
 			<filter tag="highway" value="raceway" textOrder="9"/>
 			<groupFilter minzoom="14" nameTag="">
+				<filter tag="highway" value="path" maxzoom="14" disable="true"/>
 				<filter maxzoom="14" textSize="12"/>
 				<filter maxzoom="15" textSize="13"/>
 				<filter maxzoom="16" textSize="14"/>
@@ -1069,6 +1084,11 @@
 			<filter tag="aerialway" value="chair_lift" textOrder="10"/>
 			<filter tag="aerialway" value="mixed_lift" textOrder="10"/>
 			<filter tag="aerialway" value="drag_lift" textOrder="10"/>
+			<filter tag="aerialway" value="t-bar"/>
+			<filter tag="aerialway" value="j-bar"/>
+			<filter tag="aerialway" value="platter"/>
+			<filter tag="aerialway" value="magic_carpet"/>
+			<filter tag="aerialway" value="rope_tow"/>
 			<groupFilter minzoom="14" nameTag="">
 				<filter maxzoom="14" textSize="12"/>
 				<filter maxzoom="15" textSize="13"/>
@@ -1152,19 +1172,24 @@
 			<filter minzoom="15" tag="leisure" value="park" textColor="$parkTextColorDay" textOrder="10"/>
 			<groupFilter nightMode="true" textColor="#9fe39f" textHaloRadius="$textHaloRadiusNight" textHaloColor="#88444444"/>
 		</group>
-		<group>
-			<filter minzoom="14" textSize="12" textColor="#6699cc" textWrapWidth="20" textHaloRadius="$textHaloRadiusDay" tag="natural" value="beach" textDy="-7" textOrder="10"/>
-			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffe7c2" textHaloColor="#88644e2c"/>
-		</group>
 
-		<group textColor="#654321" textDy="7" textWrapWidth="25" textHaloColor="#77ffffff">
-			<filter minzoom="12" maxzoom="13" tag="natural" value="peak" nameTag="ele" textSize="12" textHaloRadius="$textHaloRadiusDay" textOrder="10"/>
-			<filter maxzoom="14" textSize="12" tag="natural" value="peak" nameTag="" nameTag2="ele" textHaloRadius="$textHaloRadiusDay" textOrder="10"/>
-			<filter maxzoom="16" textSize="13" tag="natural" value="peak" nameTag="" nameTag2="ele" textHaloRadius="$textHaloRadiusDay" textOrder="15"/>
-			<filter minzoom="17" textSize="16" tag="natural" value="peak" nameTag="" nameTag2="ele" textHaloRadius="$textHaloRadiusDay" textOrder="15"/>
+		<group textColor="#654321" textDy="7" textWrapWidth="25" textHaloColor="#77ffffff" textHaloRadius="$textHaloRadiusDay" >
+			<filter minzoom="12" maxzoom="13" tag="natural" value="peak" nameTag="ele" textSize="12" textOrder="10"/>
+			<filter maxzoom="14" textSize="12" tag="natural" value="peak" nameTag="" nameTag2="ele" textOrder="10"/>
+			<filter maxzoom="16" textSize="13" tag="natural" value="peak" nameTag="" nameTag2="ele" textOrder="15"/>
+			<filter minzoom="17" textSize="16" tag="natural" value="peak" nameTag="" nameTag2="ele" textOrder="15"/>
 			<filter minzoom="16" textSize="12" tag="natural" value="cave_entrance" textOrder="15"/>
-			<filter minzoom="13" textSize="14" tag="natural" value="volcano" textOrder="3"/>
-			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffcc9b" textHaloColor="#774d2803"/>
+			<filter minzoom="14" textSize="12" tag="natural" value="ridge" textOnPath="true"/>
+			<filter minzoom="15" textSize="12" tag="natural" value="saddle" nameTag="" nameTag2="ele"/>
+			<filter minzoom="13" textSize="14" tag="natural" value="volcano" textOrder="3" textHaloColor="#99ffd6c0"/>
+			<filter minzoom="13" textSize="14" tag="natural" value="crater" textColor="#4e0d0d" textDy="-4"/>
+			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffcc9b" textHaloColor="#774d2803">
+				<filter tag="natural" value="volcano" textHaloColor="#77772105"/>
+			</groupFilter>
+		</group>
+		<group textDy="7" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textOrder="90">
+			<filter minzoom="13" textSize="12" tag="natural" value="cape" textColor="#510060" textHaloColor="#55fbe2ff"/>
+			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#fadcff" textHaloColor="#55570067"/>
 		</group>
 
 		<!-- Water -->
@@ -1229,7 +1254,7 @@
 
 		<!-- National Forest, Wilderness, National Park: (http://wiki.openstreetmap.org/wiki/US_Forest_Service_Data)
 		all have boundary=national_park: National forests with landuse=forest, Wilderness with leisure=nature_reserve, NatPark just boundary=national_park (protected_areas need not be rendered for this) -->
-		<group textSize="12" textColor="$forestTextColorDay" textWrapWidth="20" textHaloRadius="$textHaloRadiusDay">
+		<group textSize="12" textColor="$forestTextColorDay" textWrapWidth="20" textHaloRadius="$textHaloRadiusDay" nameTag="">
 			<filter minzoom="13" tag="natural" value="wood" textOrder="10"/>
 			<filter minzoom="17" tag="natural" value="scrub" textOrder="20"/>
 			<filter minzoom="13" tag="natural" value="wetland" textOrder="20"/>
@@ -1251,6 +1276,8 @@
 			<filter minzoom="9" tag="leisure" value="nature_reserve" textOrder="10"/>
 			<filter minzoom="9" tag="boundary" value="national_park" textOrder="11"/>
 			<filter minzoom="18" textSize="11" tag="natural" value="tree"/>
+			<filter minzoom="18" textSize="11" tag="natural" value="stone" textDy="4"/>
+			<filter minzoom="11" tag="natural" value="reef"/>
 			<groupFilter nightMode="true" textColor="#9fe39f" textHaloRadius="$textHaloRadiusNight" textHaloColor="#88444444"/>
 		</group>
 
@@ -1293,7 +1320,7 @@
 		</filter>
 
 		<!-- Cycling: texts for the cycle networks -->
-		<group appMode="bicycle" showCycleRoutes="true">
+		<group showCycleRoutes="true">
 			<!-- routes -->
 			<filter tag="lcn_network" value="lcn" nameTag="lcn_ref" textColor="$cyclewayColorDay" textOrder="9"/>
 			<filter tag="rcn_network" value="rcn" nameTag="rcn_ref" textColor="$cyclewayColorDay" textOrder="8"/>
@@ -1353,7 +1380,7 @@
 		</group>
 
 		<group subwayMode="true">
-			<filter tag="railway" value="station" additional="route=subway">
+			<filter tag="railway" value="station" additional="route=subway" nameTag="">
 				<groupFilter minzoom="12" maxzoom="12" textSize="12"/>
 				<groupFilter minzoom="13" maxzoom="13" textSize="13"/>
 				<groupFilter minzoom="14" maxzoom="14" textSize="14"/>
@@ -1438,7 +1465,7 @@
 
 		<!-- Tourism and Entertainment -->
 		<group textColor="#7d0f00" textHaloRadius="$textHaloRadiusDay" textDy="9" textWrapWidth="20" textSize="13" textBold="true" textOrder="10">
-			<filter minzoom="15" tag="tourism" value="attraction"/>
+			<filter minzoom="15" tag="tourism" value="attraction" nameTag=""/>
 			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffd7c2" textHaloColor="#88641500"/>
 		</group>
 		<group textSize="12" textColor="$tourismTextColorDay" textHaloRadius="$textHaloRadiusDay" textDy="9" textWrapWidth="20">
@@ -1458,6 +1485,7 @@
 			<filter minzoom="17" tag="amenity" value="studio"/>
 			<filter minzoom="17" tag="amenity" value="sauna"/>
 			<filter minzoom="17" tag="amenity" value="brothel"/>
+			<filter minzoom="16" tag="natural" value="beach"/>
 			<groupFilter nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffe7c2" textHaloColor="#88644e2c"/>
 		</group>
 
@@ -1759,8 +1787,10 @@
 			<filter publicTransportMode="false" minzoom="14" maxzoom="14" icon="railway_halt" tag="railway" value="tram_stop" iconVisibleSize="3"/>
 			<filter publicTransportMode="false" minzoom="15" icon="railway_station_small" tag="railway" value="tram_stop" iconVisibleSize="2"/>
 			<filter minzoom="15" icon="railway_level_crossing" tag="railway" value="level_crossing"/>
-			<filter minzoom="13" maxzoom="14" icon="railway_halt" tag="aerialway" value="station"/>
-			<filter minzoom="15" icon="railway_station_small" tag="aerialway" value="station"/>
+			<filter minzoom="13" maxzoom="14" icon="aerialway_station_small" tag="aerialway" value="station" iconVisibleSize="3"/>
+			<filter minzoom="15" icon="aerialway_station" tag="aerialway" value="station" shield="white_blue_round_shield">
+				<filter nightMode="true" shield="gray_blue_round_shield"/>
+			</filter>
 		</group>
 		<group appMode="pedestrian" iconOrder="81">
 			<filter nightMode="true" minzoom="16" icon="emergency_phone" tag="emergency" value="phone" shield="gray_red_square_shield"/>
@@ -1791,9 +1821,23 @@
 		</group>
 
 		<!-- Natural -->
-		<filter nightMode="true" minzoom="11" icon="natural_peak_night" tag="natural" value="peak"/>
-		<filter minzoom="11" icon="natural_peak" tag="natural" value="peak" iconOrder="65"/>
-		<filter minzoom="11" icon="natural_volcano" tag="natural" value="volcano" iconOrder="50"/>
+		<filter tag="natural" value="peak" iconOrder="65">
+			<filter nightMode="true">
+				<filter minzoom="11" maxzoom="14" icon="natural_peak_night"/>
+				<filter minzoom="15" icon="natural_peak_night_big"/>
+			</filter>
+			<filter minzoom="11" maxzoom="14" icon="natural_peak_framed"/>
+			<filter minzoom="15" icon="natural_peak_framed_big"/>
+		</filter>
+		<filter tag="natural" value="volcano" iconOrder="50">
+			<filter nightMode="true">
+				<filter minzoom="11" maxzoom="14" icon="natural_volcano"/>
+				<filter minzoom="15" icon="natural_volcano_big"/>
+			</filter>
+			<filter minzoom="11" maxzoom="14" icon="natural_volcano_framed"/>
+			<filter minzoom="15" icon="natural_volcano_framed_big"/>
+		</filter>
+		<filter minzoom="14" icon="natural_saddle" tag="natural" value="saddle" iconOrder="66"/>
 		<filter minzoom="15" icon="natural_cave_entrance" tag="natural" value="cave_entrance" shield="white_gray_square_shield" iconOrder="85">
 			<filter nightMode="true" shield="gray_gray_square_shield"/>
 		</filter>
@@ -1804,6 +1848,7 @@
 			<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
 		</group>
 		<filter minzoom="16" icon="natural_tree" tag="natural" value="tree" iconVisibleSize="7"/>
+		<filter minzoom="18" icon="natural_stone" tag="natural" value="stone" iconVisibleSize="7"/>
 
 		<!-- Location dots -->
 		<group>
@@ -1956,7 +2001,7 @@
 				<groupFilter iconVisibleSize="2"/>
 			</filter>
 		</group>
-		
+
 		<group publicTransportMode="true" iconOrder="55">
 			<filter tag="railway" value="tram_stop"/>
 			<filter tag="public_transport" value="stop_position" additional="tram=yes"/>
@@ -1975,7 +2020,9 @@
 			<filter minzoom="15" icon="railway_level_crossing" tag="railway" value="level_crossing"/>
 
 			<filter minzoom="13" maxzoom="14" icon="aerialway_station_small" tag="aerialway" value="station" iconVisibleSize="3"/>
-			<filter minzoom="15" icon="aerialway_station" tag="aerialway" value="station" iconVisibleSize="2"/>
+			<filter minzoom="15" icon="aerialway_station" tag="aerialway" value="station" shield="white_blue_round_shield">
+				<filter nightMode="true" shield="gray_blue_round_shield"/>
+			</filter>
 		</group>
 
 		<filter minzoom="15" tag="railway" value="subway_entrance" shield="white_black_round_shield" iconVisibleSize="16" icon="railway_subway_entrance_2" iconOrder="128">
@@ -1991,7 +2038,7 @@
 			<filter additional="color_gray=" icon="railway_subway_entrance_gray"/>
 			<filter additional="color_black=" icon="railway_subway_entrance_black"/>
 		</filter>
-			
+
 		<group shield="white_blue_square_shield">
 			<filter minzoom="10" icon="aeroway_aerodrome" tag="aeroway" value="aerodrome" iconOrder="71"/>
 			<filter minzoom="9" icon="aeroway_airport" tag="aeroway" value="airport" iconOrder="70"/>
@@ -2076,6 +2123,7 @@
 				<filter minzoom="15" icon="tourism_zoo" tag="tourism" value="zoo"/>
 			</group>
 			<filter minzoom="16" icon="tourism_viewpoint" tag="tourism" value="viewpoint" iconOrder="85"/>
+			<filter minzoom="16" icon="natural_beach2" tag="natural" value="beach" iconOrder="79"/>
 
 			<filter minzoom="16" icon="amenity_arts_centre" tag="amenity" value="arts_centre" iconVisibleSize="32" iconOrder="85"/>
 			<filter minzoom="16" icon="amenity_casino" tag="amenity" value="casino" iconVisibleSize="32"/>
@@ -2607,7 +2655,7 @@
 				<filter minzoom="12" color="$landuseConstructionColorDay" color_2="$landuseConstructionColorDayStroke" strokeWidth_2="0.5" pathEffect_2="8_4"/>
 				<groupFilter nightMode="true" color="$landuseConstructionColorNight" color_2="$landuseConstructionColorNightStroke"/>
 			</filter>
-		
+
 			<group>
 				<filter minzoom="13" color="#bbbbbb" tag="power" value="plant"/>
 				<filter minzoom="13" color="#bbbbbb" tag="power" value="generator"/>
@@ -2648,8 +2696,39 @@
 				<filter minzoom="12" shader="grave_yard" color="#aacbaf" tag="amenity" value="grave_yard"/>
 				<groupFilter nightMode="true" shader="" color="#334433"/>
 			</group>
-			<filter nightMode="true" minzoom="5" shader="glacier" color="#100000" color_2="#497CAF" strokeWidth_2=":2" tag="natural" value="glacier"/>
-			<filter minzoom="5" shader="glacier" color="#100000" color_2="#99ccff" strokeWidth_2=":2" tag="natural" value="glacier"/>
+			<filter tag="natural" value="glacier" color="#100000">
+				<filter nightMode="true" minzoom="4" shader="glacier2night" color_2="#497caf" strokeWidth_2=":2" pathEffect_2="7_4"/>
+				<filter minzoom="4" shader="glacier2" color_2="#99ccff" strokeWidth_2=":2" pathEffect_2="7_4"/>
+				<groupFilter minzoom="4" maxzoom="8" strokeWidth_2=":1"/>
+				<groupFilter minzoom="9" maxzoom="9" strokeWidth_2=":1.7"/>
+			</filter>
+			<filter tag="natural" value="cliff" minzoom="16" color_2="#148c14">
+				<filter maxzoom="16" strokeWidth_2="5" pathEffect_2="1_7"/>
+				<filter maxzoom="17" strokeWidth_2="8" pathEffect_2="1_9"/>
+				<filter minzoom="18" strokeWidth_2="11" pathEffect_2="1_13"/>
+				<groupFilter nightMode="true" color_2="#6d8a6d"/>
+			</filter>
+			<filter tag="natural" value="crater" minzoom="11" color="#22653f3f" color_2="#886a6a">
+				<filter maxzoom="11" strokeWidth_2="0.6"/>
+				<filter maxzoom="12" strokeWidth_2="1"/>
+				<filter maxzoom="13" strokeWidth_2="2"/>
+				<filter maxzoom="14" strokeWidth_2="3"/>
+				<filter maxzoom="15" strokeWidth_2="4"/>
+				<filter minzoom="16" strokeWidth_2="4.6"/>
+				<groupFilter nightMode="true" color="#224e1111" color_2="#452121"/>
+			</filter>
+			<filter minzoom="14" shader="scree" tag="natural" value="scree" color="#77100000">
+				<filter nightMode="true" shader="" color="#33444444"/>
+			</filter>
+			<filter minzoom="14" shader="fell" tag="natural" value="fell" color="#88100000">
+				<filter nightMode="true" shader="" color="#33555555"/>
+			</filter>
+			<filter minzoom="14" shader="bare_rock" tag="natural" value="bare_rock" color="#99100000">
+				<filter nightMode="true" shader="" color="#55555555"/>
+			</filter>
+			<filter minzoom="11" shader="reef" tag="natural" value="reef" color="#66100000">
+				<filter nightMode="true" shader="" color="#55555555"/>
+			</filter>
 			<filter nightMode="true" minzoom="6" shader="nr2_night" color="#100000" color_2="#09821F" strokeWidth_2=":2" tag="leisure" value="nature_reserve"/>
 			<filter minzoom="6" shader="nr2" color="#100000" color_2="#6DE783" strokeWidth_2=":2" tag="leisure" value="nature_reserve"/>
 			<filter nightMode="true" minzoom="10" shader="danger_night" color="#100000" color_2="#84ffa0c0" strokeWidth_2=":2" tag="landuse" value="military"/>
@@ -2842,7 +2921,7 @@
 					</filter>
 					<groupFilter nightMode="true" color="$residentialRoadColorNight"/>
 					<groupFilter nightMode="true" maxzoom="13" subwayMode="true" color="$residentialRoadDesaturatedColorNight"/>
-	<!--				<groupFilter minzoom="15" additional="access=no" color_3="#F7D4D4" strokeWidth_3="2:3" pathEffect_3="10_3"/> 
+	<!--				<groupFilter minzoom="15" additional="access=no" color_3="#F7D4D4" strokeWidth_3="2:3" pathEffect_3="10_3"/>
 					<groupFilter minzoom="15" additional="access=private" color_3="#F7D4D4" strokeWidth_3="2:3" pathEffect_3="10_3"/>-->
 				</groupFilter>
 			</group>
@@ -2889,7 +2968,7 @@
 							<filter nightMode="true" color="$serviceDrivewayRoadColorNight" shadowColor="$null"/>
 						</filter>
 					</groupFilter>
-	<!--				<groupFilter minzoom="15" additional="access=no" color_3="#F7D4D4" strokeWidth_3="1:2" pathEffect_3="10_3"/> 
+	<!--				<groupFilter minzoom="15" additional="access=no" color_3="#F7D4D4" strokeWidth_3="1:2" pathEffect_3="10_3"/>
 					<groupFilter minzoom="15" additional="access=private" color_3="#F7D4D4" strokeWidth_3="1:2" pathEffect_3="10_3"/>-->
 				</groupFilter>
 				<!-- pedestrian roads are forbidden for cars and cyclists: show them like that in car and bicycle mode -->
@@ -2936,13 +3015,13 @@
 			</groupFilter>
 		</group>
 
-		<!-- Next segment: Highways without grade distinction (cycleway, bridleway, black path): pathEffect 4_2. Base setting for highways with possible grade distinction but none specified (track, byway, red footway): 5_5 -->
+		<!-- Next segment: Highways without grade distinction (cycleway, bridleway, black path): pathEffect 4_2. Base setting for highways with possible grade distinction but none specified (track, red footway): 5_5 -->
 		<group>
 			<filter tag="highway" value="track" color="#996600" pathEffect="4_2">
-				<filter appMode="pedestrian" test="$hmRendered" minzoom="14" strokeWidth="2"/>
-				<filter appMode="pedestrian" minzoom="15" strokeWidth="2"/>
-				<filter test="$hmRendered" minzoom="12" maxzoom="12" strokeWidth="0.5"/>
-				<filter test="$hmRendered" minzoom="13" strokeWidth="1"/>
+<!--				<filter appMode="pedestrian" moreDetailed="true" minzoom="14" strokeWidth="1.5"/>
+				<filter appMode="pedestrian" minzoom="15" strokeWidth="2"/>-->
+				<filter moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth="0.6" pathEffect=""/>
+				<filter moreDetailed="true" minzoom="13" maxzoom="13" strokeWidth="0.8" pathEffect=""/>
 				<filter minzoom="14" strokeWidth="1"/>
 				<groupFilter>
 					<!-- Dash pattern: solid(100%), long-dashed(77%), short-dashed(63%), dash-dotted(50%), dotted(50%), dotted2(40%), short-dashed-narrow-spaced(66%) for not-specified -->
@@ -2951,30 +3030,21 @@
 					<filter additional="tracktype=grade3" pathEffect="5_3"/>
 					<filter additional="tracktype=grade4" pathEffect="4_3_2_3"/>
 					<filter additional="tracktype=grade5" pathEffect="2_3"/>
+					<groupFilter minzoom="12" maxzoom="13" pathEffect=""/>
 				</groupFilter>
 				<groupFilter appMode="bicycle" additional="bicycle=no" color="#14996600"/>
 			</filter>
 
-			<!-- byway is deprecated tag, describes UK-only road. Proper tag should be highway=track or highway=path -->
-			<filter tag="highway" value="byway" color="#996600" pathEffect="5_5">
-				<filter appMode="pedestrian" test="$hmRendered" minzoom="14" strokeWidth="2"/>
-				<filter appMode="pedestrian" minzoom="15" strokeWidth="2"/>
-				<filter appMode="bicycle" minzoom="14" strokeWidth="2"/>
-				<filter test="$hmRendered" minzoom="12" maxzoom="12" strokeWidth="0.5"/>
-				<filter test="$hmRendered" minzoom="13" strokeWidth="1"/>
-				<filter minzoom="14" strokeWidth="1"/>
-			</filter>
-
-			<filter tag="highway" value="path" color="#000000" pathEffect="4_2">
-				<filter appMode="bicycle" additional="bicycle=designated" color="$cyclewayColorDay" pathEffect="4_2" minzoom="14" strokeWidth="2">
-					<filter test="$hmRendered" minzoom="12" maxzoom="12" strokeWidth="0.5"/>
-					<filter test="$hmRendered" minzoom="13" strokeWidth="1"/>
+			<filter tag="highway" value="path" color="#000000" pathEffect="$pathPathEffect">
+				<filter appMode="bicycle" additional="bicycle=designated" color="$cyclewayColorDay" pathEffect="4_2" minzoom="14" strokeWidth="2"/>
+				<filter appMode="pedestrian" minzoom="15" strokeWidth="1.3"/>
+				<filter moreDetailed="true" minzoom="12">
+					<filter maxzoom="12" strokeWidth="0.5" color="#333333" pathEffect=""/>
+					<filter appMode="pedestrian" minzoom="13" maxzoom="13" strokeWidth="0.7" color="#333333" pathEffect=""/>
+					<filter maxzoom="13" strokeWidth="0.6" color="#333333" pathEffect=""/>
+					<filter minzoom="14" strokeWidth="0.6"/>
 				</filter>
-				<filter appMode="pedestrian" test="$hmRendered" minzoom="14" strokeWidth="2"/>
-				<filter appMode="pedestrian" minzoom="15" strokeWidth="2"/>
-				<filter test="$hmRendered" minzoom="12" maxzoom="12" strokeWidth="0.5"/>
-				<filter test="$hmRendered" minzoom="13" strokeWidth="1"/>
-				<filter minzoom="14" strokeWidth="1"/>
+				<filter minzoom="14" strokeWidth="0.8"/>
 				<groupFilter>
 					<!-- Dash pattern: solid(100%), long-dashed(77%), short-dashed(63%), dash-dotted(50%), dotted(50%), dotted2(40%), short-dashed-narrow-spaced(66%) for not-specified -->
 					<!-- Also: switch color to 'pedestrian-red' to better indicate these special ratings in line with many alpine maps -->
@@ -2984,25 +3054,27 @@
 					<filter additional="sac_scale=alpine_hiking" color="#fa5073" pathEffect="4_3_2_3"/>
 					<filter additional="sac_scale=demanding_alpine_hiking" color="#fa5073" pathEffect="3_3"/>
 					<filter additional="sac_scale=difficult_alpine_hiking" color="#fa5073" pathEffect="2_3"/>
-					<filter nightMode="true" color="#787878"/>
+				</groupFilter>
+				<groupFilter nightMode="true">
+					<filter minzoom="12" maxzoom="13" color="#606060"/>
+					<filter color="#787878"/>
 				</groupFilter>
 				<groupFilter appMode="bicycle" additional="bicycle=no" color="#17000000"/>
 				<groupFilter nightMode="true" appMode="bicycle" additional="bicycle=no" color="#17787878"/>
 			</filter>
 
 			<filter tag="highway" value="cycleway" color="$cyclewayColorDay" pathEffect="4_2">
+				<filter appMode="bicycle" moreDetailed="true" minzoom="13" maxzoom="13" strokeWidth="1"/>
 				<filter appMode="bicycle" minzoom="14" strokeWidth="2"/>
-				<filter appMode="pedestrian" test="$hmRendered" minzoom="14" strokeWidth="2"/>
-				<filter test="$hmRendered" minzoom="12" maxzoom="12" strokeWidth="0.5"/>
-				<filter test="$hmRendered" minzoom="13" strokeWidth="1"/>
+<!--				<filter appMode="pedestrian" moreDetailed="true" minzoom="14" strokeWidth="2"/>-->
 				<filter minzoom="14" strokeWidth="1"/>
 			</filter>
 
 			<filter tag="highway" value="footway" color="#fa5073" pathEffect="4_2">
-				<filter appMode="pedestrian" test="$hmRendered" minzoom="14" strokeWidth="2"/>
-				<filter appMode="pedestrian" minzoom="15" strokeWidth="2"/>
+<!--				<filter appMode="pedestrian" moreDetailed="true" minzoom="14" strokeWidth="2"/>-->
+				<filter appMode="pedestrian" minzoom="15" strokeWidth="1.5"/>
 				<filter test="$hmRendered" minzoom="12" maxzoom="12" strokeWidth="0.5"/>
-				<filter test="$hmRendered" minzoom="13" strokeWidth="1"/>
+				<filter moreDetailed="true" minzoom="14" maxzoom="15" strokeWidth="1"/>
 				<filter minzoom="16" strokeWidth="1"/>
 				<groupFilter appMode="bicycle" additional="bicycle=no" color="#20fa5073"/>
 			</filter>
@@ -3018,8 +3090,8 @@
 			<filter tag="highway" value="bridleway" color="#339900" pathEffect="4_2">
 				<filter appMode="pedestrian" test="$hmRendered" minzoom="14" strokeWidth="2"/>
 				<filter appMode="pedestrian" minzoom="15" strokeWidth="2"/>
-				<filter test="$hmRendered" minzoom="12" maxzoom="12" strokeWidth="0.5"/>
-				<filter test="$hmRendered" minzoom="13" strokeWidth="1"/>
+				<filter moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth="0.5"/>
+				<filter moreDetailed="true" minzoom="13" strokeWidth="1"/>
 				<filter minzoom="16" strokeWidth="1"/>
 				<groupFilter appMode="bicycle" additional="bicycle=no" color="#17339900"/>
 			</filter>
@@ -3137,11 +3209,29 @@
 			<groupFilter color="#888888"/>
 		</group>
 
-		<filter tag="natural" value="cliff" minzoom="16" color="#148c14" color_2="#005300">
-			<filter maxzoom="16" strokeWidth="7" strokeWidth_2="0.3" pathEffect="1_7"/>
-			<filter maxzoom="17" strokeWidth="9" strokeWidth_2="0.3" pathEffect="1_9"/>
-			<filter minzoom="18" strokeWidth="13" strokeWidth_2="0.3" pathEffect="1_13"/>
+		<filter tag="natural" value="cliff" minzoom="16" color="#148c14" color_2="#005300" strokeWidth_2="0.3">
+			<filter maxzoom="16" strokeWidth="5" pathEffect="1_7"/>
+			<filter maxzoom="17" strokeWidth="8" pathEffect="1_9"/>
+			<filter minzoom="18" strokeWidth="11" pathEffect="1_13"/>
 			<groupFilter nightMode="true" color="#6d8a6d" color_2="#e5e5e5"/>
+		</filter>
+		<filter tag="natural" value="ridge" minzoom="11" color="#666666" color_2="#000000">
+			<filter maxzoom="11" strokeWidth="0.3"/>
+			<filter maxzoom="12" strokeWidth="0.8"/>
+			<filter maxzoom="13" strokeWidth="1.5" strokeWidth_2="2.3" pathEffect_2="1_23"/>
+			<filter maxzoom="14" strokeWidth="1.9" strokeWidth_2="2.9" pathEffect_2="1_27"/>
+			<filter maxzoom="15" strokeWidth="2.5" strokeWidth_2="3.5" pathEffect_2="1_32"/>
+			<filter minzoom="16" strokeWidth="3" strokeWidth_2="3.7" pathEffect_2="1_37"/>
+			<groupFilter nightMode="true" color="#666666" color_2="#999999"/>
+		</filter>
+		<filter tag="natural" value="crater" minzoom="11" color="#886a6a">
+			<filter maxzoom="11" strokeWidth="0.6"/>
+			<filter maxzoom="12" strokeWidth="1"/>
+			<filter maxzoom="13" strokeWidth="2"/>
+			<filter maxzoom="14" strokeWidth="3"/>
+			<filter maxzoom="15" strokeWidth="4"/>
+			<filter minzoom="16" strokeWidth="4.6"/>
+			<groupFilter nightMode="true" color="#452121"/>
 		</filter>
 
 		<group>
@@ -3163,13 +3253,13 @@
 					<filter maxzoom="17" strokeWidth="2.7" strokeWidth_2="2.3"/>
 					<filter minzoom="18" strokeWidth="4" strokeWidth_2="3.5"/>
 				</filter>
-				<filter additional="intermittent=yes" minzoom="13">
+				<groupFilter additional="intermittent=yes" minzoom="13">
 					<filter maxzoom="13" strokeWidth="1.3" pathEffect="4.5_3"/>
 					<filter maxzoom="14" strokeWidth="1.8" pathEffect="6_4"/>
 					<filter maxzoom="16" strokeWidth="2.3" pathEffect="8_5"/>
 					<filter maxzoom="17" strokeWidth="2.7" pathEffect="9_5.5"/>
 					<filter minzoom="18" strokeWidth="4" pathEffect="12_7"/>
-				</filter>
+				</groupFilter>
 				<filter maxzoom="12" strokeWidth="1"/>
 				<filter maxzoom="13" strokeWidth="1.3"/>
 				<filter maxzoom="14" strokeWidth="1.8"/>
@@ -3177,7 +3267,7 @@
 				<filter maxzoom="17" strokeWidth="2.7"/>
 				<filter minzoom="18" strokeWidth="4"/>
 			</filter>
-			
+
 			<filter tag="waterway" value="wadi" minzoom="13">
 				<filter maxzoom="13" strokeWidth="1.3" pathEffect="4.5_3"/>
 				<filter maxzoom="14" strokeWidth="1.8" pathEffect="6_4"/>
@@ -3392,12 +3482,19 @@
 		</group>
 
 		<group minzoom="13" color="#bababa" strokeWidth="2">
-			<filter tag="aerialway" value="gondola"/>
-			<filter tag="aerialway" value="chair_lift"/>
-			<filter tag="aerialway" value="mixed_lift"/>
+			<filter tag="aerialway" value="magic_carpet"/>
+		</group>
+		<group minzoom="13" color="#bababa" strokeWidth="2" pathEffect="24_3">
+			<filter tag="aerialway" value="rope_tow"/>
 		</group>
 		<group>
 			<filter tag="aerialway" value="drag_lift"/>
+			<filter tag="aerialway" value="chair_lift"/>
+			<filter tag="aerialway" value="t-bar"/>
+			<filter tag="aerialway" value="j-bar"/>
+			<filter tag="aerialway" value="platter"/>
+			<filter tag="aerialway" value="mixed_lift" cap_2="ROUND"/>
+			<filter tag="aerialway" value="gondola" cap_2="SQUARE"/>
 			<filter tag="aerialway" value="cable_car" cap_2="ROUND"/>
 			<groupFilter minzoom="13" color="#999999" color_2="#333333">
 				<filter maxzoom="13" strokeWidth="0.5" strokeWidth_2="1.6" pathEffect_2="1_11"/>
@@ -3496,7 +3593,7 @@
 			<groupFilter nightMode="true" color="#99111111" color__1="#66ffffff"/>
 		</group>
 
-		<group appMode="bicycle" showCycleRoutes="true">
+		<group showCycleRoutes="true">
 			<filter tag="lcn_network" value="lcn" color="#400000ff"/>
 			<filter tag="rcn_network" value="rcn" color="#40ff00ff"/>
 			<filter tag="ncn_network" value="ncn" color="#40ff4000"/>
@@ -3514,13 +3611,22 @@
 			</groupFilter>
 		</group>
 
-		<group osmcTraces="true" strokeWidth="5" pathEffect="5_10">
-			<filter tag="osmc_symbol" value="black" color="#44000000"/>
-			<filter tag="osmc_symbol" value="blue" color="#440000ff"/>
-			<filter tag="osmc_symbol" value="green" color="#4400ff00"/>
-			<filter tag="osmc_symbol" value="red" color="#44ff0000"/>
-			<filter tag="osmc_symbol" value="white" color="#ffffff"/>
-			<filter tag="osmc_symbol" value="yellow" color="#44ffff00"/>
+		<group osmcTraces="true">
+			<filter tag="route" value="hiking" minzoom="12" color="#170058a2">
+				<filter additional="osmc_symbol=black" color="#44000000"/>
+				<filter additional="osmc_symbol=blue" color="#440000ff"/>
+				<filter additional="osmc_symbol=green" color="#4400ff00"/>
+				<filter additional="osmc_symbol=red" color="#44ff0000"/>
+				<filter additional="osmc_symbol=white" color="#aaffffff"/>
+				<filter additional="osmc_symbol=yellow" color="#44ffff00"/>
+				<groupFilter minzoom="12" maxzoom="12" strokeWidth="7"/><!-- pathEffect="20_5"-->
+				<groupFilter minzoom="13" maxzoom="13" strokeWidth="9"/><!-- pathEffect="22_6"-->
+				<groupFilter minzoom="14" maxzoom="14" strokeWidth="11"/><!-- pathEffect="24_7"-->
+				<groupFilter minzoom="15" maxzoom="15" strokeWidth="14"/><!-- pathEffect="28_9"-->
+				<groupFilter minzoom="16" maxzoom="16" strokeWidth="16"/><!-- pathEffect="33_10"-->
+				<groupFilter minzoom="17" maxzoom="17" strokeWidth="18"/><!-- pathEffect="37_12"-->
+				<groupFilter minzoom="18" strokeWidth="24"/><!-- pathEffect="42_14"-->
+			</filter>
 		</group>
 
 		<!-- Admin levels (boundaries) -->

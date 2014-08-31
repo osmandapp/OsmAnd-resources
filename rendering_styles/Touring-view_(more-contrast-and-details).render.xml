@@ -90,11 +90,11 @@
 	-->
 
 
-	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
-		type="boolean" possibleValues=""/>
-	<renderingProperty attr="osmcTraces" name="Hiking symbol overlay" description="Render paths according to OSMC traces"
-		type="boolean" possibleValues=""/>
 	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show bicycle routes (bicycle mode)"
+		type="boolean" possibleValues=""/>
+<!--	<renderingProperty attr="osmcTraces" name="Hiking symbol overlay" description="Render paths according to OSMC traces"
+		type="boolean" possibleValues=""/>-->
+	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
 		type="boolean" possibleValues=""/>
 
 	<!-- road casing contrast higher than in default -->
@@ -105,6 +105,7 @@
 		<filter minzoom="14" attrIntValue="3" shadowColor="#464646"/>
 		<filter minzoom="9" maxzoom="13" attrIntValue="3" shadowColor="#262626"/>
 		<filter attrIntValue="0"/>
+	<!-- This block seems broken, all occurrences of "shadowColor" below inserted on 2014-08-31 as temporary workaround -->
 	</renderingAttribute>
 
 	<!-- road color contrast higher than in default, and all road types clearly distinguished - road colors defined directly in line below. xxRoadColor not used here. -->
@@ -123,7 +124,8 @@
 
 	<renderingAttribute name="polygonMinSizeToDisplay">
 	<!-- Minimum polygon size in pixels -->
-		<filter attrIntValue="100"/>
+	<!-- Careful, this is a significant performance killer -->
+		<filter attrIntValue="36"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="roadDensityZoomTile">
@@ -133,8 +135,8 @@
 
 	<renderingAttribute name="roadsDensityLimitPerTile">
 	<!-- Number of roads to display per tile - 24 default for bicycle and pedestrian, 12 otherwise -->
-		<filter appMode="pedestrian" attrIntValue="50"/>
-		<filter appMode="bicycle" attrIntValue="50"/>
+		<filter appMode="pedestrian" attrIntValue="55"/>
+		<filter appMode="bicycle" attrIntValue="55"/>
 		<filter attrIntValue="100"/>
 	</renderingAttribute>
 
@@ -147,11 +149,11 @@
 
 
 	<order>
-		<filter tag="osmc_symbol_red" value="" order="95"/>
+<!--		<filter tag="osmc_symbol_red" value="" order="95"/>
 		<filter tag="osmc_symbol_green" value="" order="95"/>
 		<filter tag="osmc_symbol_blue" value="" order="95"/>
 		<filter tag="osmc_symbol_yellow" value="" order="95"/>
-		<filter tag="osmc_symbol_black" value="" order="95"/>
+		<filter tag="osmc_symbol_black" value="" order="95"/>-->
 
 		<filter appMode="bicycle" showCycleRoutes="true" tag="lcn_network" value="lcn" order="110"/>
 		<filter appMode="bicycle" showCycleRoutes="true" tag="rcn_network" value="rcn" order="111"/>
@@ -161,7 +163,7 @@
 
 
 	<text>
-		<filter minzoom="12" tag="osmc_symbol_red" value="" nameTag="osmc_symbol_white_red_bar_name" textMinDistance="100" textColor="#ffffff" textSize="12" textBold="true" textOrder="7" textShield="osmc_white_red_bar"/>
+<!--		<filter minzoom="12" tag="osmc_symbol_red" value="" nameTag="osmc_symbol_white_red_bar_name" textMinDistance="100" textColor="#ffffff" textSize="12" textBold="true" textOrder="7" textShield="osmc_white_red_bar"/>
 		<filter minzoom="12" tag="osmc_symbol_red" value="" nameTag="osmc_symbol_red_white_bar_name" textMinDistance="100" textColor="#ffffff" textSize="12" textBold="true" textOrder="7" textShield="osmc_red_white_bar"/>
 
 		<filter minzoom="12" tag="osmc_symbol_yellow" value="" nameTag="osmc_symbol_white_yellow_bar_name" textMinDistance="100" textColor="#ffffff" textSize="12" textBold="true" textOrder="7" textShield="osmc_white_yellow_bar"/>
@@ -172,7 +174,7 @@
 		<filter minzoom="12" tag="osmc_symbol_green" value="" nameTag="osmc_symbol_white_green_bar_name" textMinDistance="100" textColor="#ffffff" textSize="12" textBold="true" textOrder="7" textShield="osmc_white_green_bar"/>
 		<filter minzoom="12" tag="osmc_symbol_green" value="" nameTag="osmc_symbol_white_green_backslash_name" textMinDistance="100" textColor="#ffffff" textSize="12" textBold="true" textOrder="7" textShield="osmc_white_green_backslash"/>
 		
-		<filter minzoom="12" tag="osmc_symbol_black" value="" nameTag="osmc_symbol_white_black_bar_name" textMinDistance="100" textColor="#ffffff" textSize="12" textBold="true" textOrder="7" textShield="osmc_white_black_bar"/>
+		<filter minzoom="12" tag="osmc_symbol_black" value="" nameTag="osmc_symbol_white_black_bar_name" textMinDistance="100" textColor="#ffffff" textSize="12" textBold="true" textOrder="7" textShield="osmc_white_black_bar"/>-->
 
 		<group>
 			<filter appMode="bicycle" showCycleRoutes="true" tag="lcn_network" value="lcn" nameTag="lcn_ref" textColor="#0000ff" textOrder="22"/>
@@ -201,7 +203,7 @@
 			<filter tag="highway" value="road"/>
 			<filter tag="highway" value="unclassified"/>
 			<filter tag="highway" value="residential"/>
-			<groupFilter color="#ffffff" color_2="#969696" minzoom="12" strokeWidth_2=":1">
+			<groupFilter color="#ffffff" color_2="#767676" minzoom="12" strokeWidth_2=":1">
 				<filter nightMode="true" color="#9f9f9f" color_2="#464646"/>
 			</groupFilter>
 		</group>
@@ -211,7 +213,7 @@
 			<filter tag="highway" value="pedestrian"/>
 			<filter tag="highway" value="footway"/>
 			<groupFilter>
-				<filter minzoom="13" color="#ECECEC" color_2="#969696" strokeWidth_2=":1"/>
+				<filter minzoom="13" color="#ECECEC" color_2="#767676" strokeWidth_2=":1"/>
 			</groupFilter>
 			<groupFilter nightMode="true" color="#727272" color_2="#464646"/>
 		</group>
@@ -311,24 +313,24 @@
 			<filter appMode="car" tag="highway" value="primary_link" nightMode="true" color="#cc6882"/>
 			<filter tag="highway" value="primary" color="#ff80a0"/>
 			<filter tag="highway" value="primary_link" color="#ff80a0"/>
-			<groupFilter shadowRadius=":1.5" cap="ROUND">
+			<groupFilter shadowRadius=":1.5" shadowColor="#767676" cap="ROUND">
 				<filter minzoom="5" maxzoom="6" strokeWidth="1"/>
 				<filter minzoom="7" maxzoom="8" strokeWidth="2"/>
-				<filter minzoom="9" maxzoom="9" strokeWidth="3"/>
+				<filter minzoom="9" maxzoom="9" strokeWidth="3" shadowColor="#262626"/>
 				<filter appMode="car"> <!-- bigger strokewidth for better visibility of road type during navigation -->
-					<filter minzoom="10" maxzoom="10" strokeWidth="5"/>
-					<filter minzoom="11" maxzoom="11" strokeWidth="6"/>
-					<filter minzoom="12" maxzoom="12" strokeWidth="7"/>
-					<filter minzoom="13" maxzoom="13" strokeWidth="8"/>
+					<filter minzoom="10" maxzoom="10" strokeWidth="5" shadowColor="#262626"/>
+					<filter minzoom="11" maxzoom="11" strokeWidth="6" shadowColor="#262626"/>
+					<filter minzoom="12" maxzoom="12" strokeWidth="7" shadowColor="#262626"/>
+					<filter minzoom="13" maxzoom="13" strokeWidth="8" shadowColor="#262626"/>
 					<filter minzoom="14" maxzoom="14" strokeWidth="14"/>
 					<filter minzoom="15" maxzoom="15" strokeWidth="18"/>
 					<filter minzoom="16" maxzoom="16" strokeWidth="23"/>
 					<filter minzoom="17" strokeWidth="27"/>
 				</filter>
-				<filter minzoom="10" maxzoom="10" strokeWidth="3"/>
-				<filter minzoom="11" maxzoom="11" strokeWidth="4"/>
-				<filter minzoom="12" maxzoom="12" strokeWidth="5"/>
-				<filter minzoom="13" maxzoom="13" strokeWidth="7"/>
+				<filter minzoom="10" maxzoom="10" strokeWidth="3" shadowColor="#262626"/>
+				<filter minzoom="11" maxzoom="11" strokeWidth="4" shadowColor="#262626"/>
+				<filter minzoom="12" maxzoom="12" strokeWidth="5" shadowColor="#262626"/>
+				<filter minzoom="13" maxzoom="13" strokeWidth="7" shadowColor="#262626"/>
 				<filter minzoom="14" maxzoom="14" strokeWidth="9"/>
 				<filter minzoom="15" maxzoom="15" strokeWidth="12"/>
 				<filter minzoom="16" maxzoom="16" strokeWidth="15"/>
@@ -360,6 +362,7 @@
 					<filter minzoom="17" strokeWidth_0="20:4"/>
 					<groupFilter nightMode="true" color_0="#ffffff"/>
 				</groupFilter>
+			<groupFilter nightMode="true" shadowColor="#464646"/>
 			</groupFilter>
 		</group>
 
@@ -368,23 +371,23 @@
 			<filter appMode="car" tag="highway" value="secondary_link" nightMode="true" color="#cca568"/>
 			<filter tag="highway" value="secondary" color="#ffd080"/>
 			<filter tag="highway" value="secondary_link" color="#ffd080"/>
-			<groupFilter shadowRadius=":1.5" cap="ROUND">
+			<groupFilter shadowRadius=":1.5" shadowColor="#767676" cap="ROUND">
 				<filter minzoom="8" maxzoom="8" strokeWidth="1"/>
-				<filter minzoom="9" maxzoom="9" strokeWidth="2"/>
+				<filter minzoom="9" maxzoom="9" strokeWidth="2" shadowColor="#262626"/>
 				<filter appMode="car"> <!-- bigger strokewidth for better visibility of road type during navigation -->
-					<filter minzoom="10" maxzoom="10" strokeWidth="4"/>
-					<filter minzoom="11" maxzoom="11" strokeWidth="5"/>
-					<filter minzoom="12" maxzoom="12" strokeWidth="6"/>
-					<filter minzoom="13" maxzoom="13" strokeWidth="7"/>
+					<filter minzoom="10" maxzoom="10" strokeWidth="4" shadowColor="#262626"/>
+					<filter minzoom="11" maxzoom="11" strokeWidth="5" shadowColor="#262626"/>
+					<filter minzoom="12" maxzoom="12" strokeWidth="6" shadowColor="#262626"/>
+					<filter minzoom="13" maxzoom="13" strokeWidth="7" shadowColor="#262626"/>
 					<filter minzoom="14" maxzoom="14" strokeWidth="12"/>
 					<filter minzoom="15" maxzoom="15" strokeWidth="17"/>
 					<filter minzoom="16" maxzoom="16" strokeWidth="22"/>
 					<filter minzoom="17" strokeWidth="26"/>
 				</filter>
-				<filter minzoom="10" maxzoom="10" strokeWidth="2"/>
-				<filter minzoom="11" maxzoom="11" strokeWidth="3"/>
-				<filter minzoom="12" maxzoom="12" strokeWidth="4"/>
-				<filter minzoom="13" maxzoom="13" strokeWidth="6"/>
+				<filter minzoom="10" maxzoom="10" strokeWidth="2" shadowColor="#262626"/>
+				<filter minzoom="11" maxzoom="11" strokeWidth="3" shadowColor="#262626"/>
+				<filter minzoom="12" maxzoom="12" strokeWidth="4" shadowColor="#262626"/>
+				<filter minzoom="13" maxzoom="13" strokeWidth="6" shadowColor="#262626"/>
 				<filter minzoom="14" maxzoom="14" strokeWidth="8"/>
 				<filter minzoom="15" maxzoom="15" strokeWidth="10"/>
 				<filter minzoom="16" maxzoom="16" strokeWidth="14"/>
@@ -416,6 +419,7 @@
 					<filter minzoom="17" strokeWidth_0="19:4"/>
 					<groupFilter nightMode="true" color_0="#ffffff"/>
 				</groupFilter>
+			<groupFilter nightMode="true" shadowColor="#464646"/>
 			</groupFilter>
 		</group>
 
@@ -424,21 +428,21 @@
 			<filter appMode="car" tag="highway" value="tertiary_link" nightMode="true" color="#cccc68"/>
 			<filter tag="highway" value="tertiary" color="#ffff80"/>
 			<filter tag="highway" value="tertiary_link" color="#ffff80"/>
-			<groupFilter  shadowRadius=":1.5" cap="ROUND">
+			<groupFilter  shadowRadius=":1.5" shadowColor="#767676" cap="ROUND">
 				<filter appMode="car"> <!-- bigger strokewidth for better visibility of road type during navigation -->
-					<filter minzoom="10" maxzoom="10" strokeWidth="3"/>
-					<filter minzoom="11" maxzoom="11" strokeWidth="4"/>
-					<filter minzoom="12" maxzoom="12" strokeWidth="5"/>
-					<filter minzoom="13" maxzoom="13" strokeWidth="6"/>
+					<filter minzoom="10" maxzoom="10" strokeWidth="3" shadowColor="#262626"/>
+					<filter minzoom="11" maxzoom="11" strokeWidth="4" shadowColor="#262626"/>
+					<filter minzoom="12" maxzoom="12" strokeWidth="5" shadowColor="#262626"/>
+					<filter minzoom="13" maxzoom="13" strokeWidth="6" shadowColor="#262626"/>
 					<filter minzoom="14" maxzoom="14" strokeWidth="8"/>
 					<filter minzoom="15" maxzoom="15" strokeWidth="16"/>
 					<filter minzoom="16" maxzoom="16" strokeWidth="22"/>
 					<filter minzoom="17" strokeWidth="26"/>
 				</filter>
-				<filter minzoom="10" maxzoom="10" strokeWidth="2"/>
-				<filter minzoom="11" maxzoom="11" strokeWidth="2"/>
-				<filter minzoom="12" maxzoom="12" strokeWidth="3"/>
-				<filter minzoom="13" maxzoom="13" strokeWidth="4"/>
+				<filter minzoom="10" maxzoom="10" strokeWidth="2" shadowColor="#262626"/>
+				<filter minzoom="11" maxzoom="11" strokeWidth="2" shadowColor="#262626"/>
+				<filter minzoom="12" maxzoom="12" strokeWidth="3" shadowColor="#262626"/>
+				<filter minzoom="13" maxzoom="13" strokeWidth="4" shadowColor="#262626"/>
 				<filter minzoom="14" maxzoom="14" strokeWidth="6"/>
 				<filter minzoom="15" maxzoom="15" strokeWidth="8"/>
 				<filter minzoom="16" maxzoom="16" strokeWidth="13"/>
@@ -470,6 +474,7 @@
 					<filter minzoom="17" strokeWidth_0="18:4"/>
 					<groupFilter nightMode="true" color_0="#ffffff"/>
 				</groupFilter>
+			<groupFilter nightMode="true" shadowColor="#464646"/>
 			</groupFilter>
 		</group>
 
@@ -478,9 +483,9 @@
 			<filter tag="highway" value="road"/>
 			<filter tag="highway" value="unclassified"/>
 			<filter tag="highway" value="residential"/>
-			<groupFilter color="#ffffff" shadowRadius=":1.5" cap="ROUND">
-				<filter minzoom="12" maxzoom="12" strokeWidth="2"/>
-				<filter minzoom="13" maxzoom="13" strokeWidth="3"/>
+			<groupFilter color="#ffffff" shadowRadius=":1.5" shadowColor="#767676" cap="ROUND">
+				<filter minzoom="12" maxzoom="12" strokeWidth="2" shadowColor="#262626"/>
+				<filter minzoom="13" maxzoom="13" strokeWidth="3" shadowColor="#262626"/>
 				<filter color_0="#000000">
 					<filter minzoom="14" maxzoom="14" strokeWidth="1:4"/>
 					<filter minzoom="15" maxzoom="15" strokeWidth="3:4"/>
@@ -500,7 +505,7 @@
 						<groupFilter nightMode="true" color_0="#ffffff"/>
 					</groupFilter>
 				</filter>
-				<groupFilter nightMode="true" color="#9F9F9F"/>
+				<groupFilter nightMode="true" color="#9F9F9F" shadowColor="#464646"/>
 				<groupFilter minzoom="15" additional="access=no" color_3="#F7D4D4" strokeWidth_3="2:3" pathEffect_3="10_3"/> 
 				<groupFilter minzoom="15" additional="access=private" color_3="#F7D4D4" strokeWidth_3="2:3" pathEffect_3="10_3"/>
 			</groupFilter>
@@ -510,8 +515,10 @@
 			<filter tag="highway" value="service"/>
 			<filter tag="highway" value="living_street"/>
 			<filter tag="highway" value="pedestrian"/>
-			<groupFilter color="#ececec" shadowRadius=":1.5" cap="ROUND">
-				<filter minzoom="13" maxzoom="13" strokeWidth="2"/>
+			<filter tag="highway" value="services"/>
+			<filter tag="highway" value="rest_area"/>
+			<groupFilter color="#ececec" shadowRadius=":1.5" shadowColor="#767676" cap="ROUND">
+				<filter minzoom="13" maxzoom="13" strokeWidth="2" shadowColor="#262626"/>
 				<filter color_0="#000000">
 					<filter minzoom="14" maxzoom="14" strokeWidth="1:2"/>
 					<filter minzoom="15" maxzoom="15" strokeWidth="2:2"/>
@@ -531,7 +538,7 @@
 						<groupFilter nightMode="true" color_0="#ffffff"/>
 					</groupFilter>
 				</filter>
-				<groupFilter nightMode="true" color="#727272"/>
+				<groupFilter nightMode="true" color="#727272" shadowColor="#464646"/>
 				<groupFilter minzoom="15" additional="access=no" color_3="#F7D4D4" strokeWidth_3="1:2" pathEffect_3="10_3"/> 
 				<groupFilter minzoom="15" additional="access=private" color_3="#F7D4D4" strokeWidth_3="1:2" pathEffect_3="10_3"/>
 			</groupFilter>
@@ -587,12 +594,14 @@
 
 			<!-- Block byway should be unchanged from default renderer -->
 			<!-- byway is deprecated tag, describes UK-only road. Proper tag should be highway=track or highway=path -->
+			<!-- now mapped to track in rendering-types
 			<filter tag="highway" value="byway" color="#996600" pathEffect="5_5">
 				<filter appMode="pedestrian" minzoom="14" strokeWidth="2"/>
 				<filter appMode="bicycle" minzoom="14" strokeWidth="2"/>
 				<filter minzoom="12" maxzoom="12" strokeWidth="0.5"/>
 				<filter minzoom="13" strokeWidth="1"/>
 			</filter>
+			-->
 
 			<filter tag="highway" value="path" alpineHiking="true">
 				<filter additional="sac_scale=hiking" color="#000000" pathEffect="10_3"/>
@@ -728,7 +737,7 @@
 		</group>
 
 		<!-- osmc symbols -->
-		<filter tag="osmc_symbol_red" value="" color="#31FF0000" osmcTraces="true">
+<!--		<filter tag="osmc_symbol_red" value="" color="#31FF0000" osmcTraces="true">
 			<filter minzoom="12" maxzoom="13" strokeWidth="8"  pathEffect="8_6"   />
 			<filter minzoom="14" maxzoom="14" strokeWidth="10" pathEffect="8_6"   />
 			<filter minzoom="15" maxzoom="15" strokeWidth="12" pathEffect="16_12" />
@@ -766,7 +775,7 @@
 			<filter minzoom="15" maxzoom="15" strokeWidth="12" pathEffect="16_12_16" />
 			<filter minzoom="16" maxzoom="16" strokeWidth="16" pathEffect="32_24_32"/>
 			<filter minzoom="17"              strokeWidth="20" pathEffect="32_24_32"/>
-		</filter>
+		</filter>-->
 
 		<!-- cycle routes -->
 		<group>
