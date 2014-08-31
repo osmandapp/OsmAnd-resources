@@ -45,6 +45,9 @@ mycp natural peak_night functional-icons_peak_night.png  #For night orienteering
 mycp natural peak_night_big functional-icons_peak_night_big.png  #For night orienteering use orange similar to contour lines (=day version with color #CC6600)  #scale 0.5
 mycp natural saddle functional-icons_saddle.png
 mycp natural volcano functional-icons_volcano.png  #Is poi_peak.png with color #D40000  #scale 0.5
+mycp natural volcano_framed functional-icons_volcano_framed.png
+mycp natural volcano_framed_big functional-icons_volcano_framed_big.png
+mycp natural volcano_big functional-icons_volcano_big.png
 mycp natural cave_entrance poi_cave.png
 mycp natural spring functional-icons_spring.png  #scale 0.375
 mycp natural spring2 water_spring.png  #scale 0.375
