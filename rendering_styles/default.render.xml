@@ -22,6 +22,7 @@
 	<renderingProperty attr="coloredBuildings" name="Colored buildings" description="Buildings colored by type"
 		type="boolean" possibleValues=""/>
 	<renderingProperty attr="showAccess" name="Show access restrictions" description="Show access restrictions" type="boolean" possibleValues=""/>
+	<renderingProperty attr="showSurfaces" name="Road surface" description="Show road surfaces" type="boolean" possibleValues=""/>
 	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show cycle routes (*cn_networks) in bicycle mode"
 		type="boolean" possibleValues=""/>
 	<renderingProperty attr="osmcTraces" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces"
@@ -204,6 +205,19 @@
 	<renderingConstant name="landuseConstructionColorNight" value="#3c3c1b"/>
 	<renderingConstant name="landuseConstructionColorNightStroke" value="#aaaaaa"/>
 
+	<renderingConstant name="surfaceGroundColor" value="#cc9900"/>
+	<renderingConstant name="surfaceSandColor" value="#ffd700"/>
+	<renderingConstant name="surfaceGrassColor" value="#1fbe1f"/>
+	<renderingConstant name="surfaceGrass_paverColor" value="#a7bef8"/>
+	<renderingConstant name="surfaceDirtColor" value="#a9820f"/>
+	<renderingConstant name="surfaceMudColor" value="#765902"/>
+	<renderingConstant name="surfaceIceColor" value="#9feeef"/>
+	<renderingConstant name="surfaceSaltColor" value="#7eded8"/>
+
+	<renderingConstant name="surfaceAsphaltColor" value="#ada7f8"/>
+	<renderingConstant name="surfaceLooselyPavedColor" value="#a7cdf8"/>
+	<renderingConstant name="surfacePavedColor" value="#a7cdf8"/>
+
 	<renderingConstant name="subwayLineDefaultColorDay" value="#7b0000"/>
 	<renderingConstant name="subwayLineDefaultColorNight" value="#7b0000"/>
 
@@ -338,13 +352,13 @@
 	<renderingConstant name="accessDestinationColorNight" value="#8db8d3"/>
 	<renderingConstant name="accessPermissiveColor" value="#9afb87"/>
 	<renderingConstant name="accessPermissiveColorNight" value="#88d779"/>
-	<renderingConstant name="accessAgriculturalColor" value="#7dad56"/>
+	<renderingConstant name="accessAgriculturalColor" value="#8fc763"/>
 	<renderingConstant name="accessAgriculturalColorNight" value="#7dad56"/>
-	<renderingConstant name="accessForestryColor" value="#7dad56"/>
+	<renderingConstant name="accessForestryColor" value="#8fc763"/>
 	<renderingConstant name="accessForestryColorNight" value="#7dad56"/>
 	<renderingConstant name="accessCustomersColor" value="#dfb3e5"/>
 	<renderingConstant name="accessCustomersColorNight" value="#b671be"/>
-	<renderingConstant name="accessDeliveryColor" value="#9383a5"/>
+	<renderingConstant name="accessDeliveryColor" value="#b2aeb7"/>
 	<renderingConstant name="accessDeliveryColorNight" value="#9383a5"/>
 
 	<renderingConstant name="null" value="#00000000"/>
@@ -3075,41 +3089,69 @@
 				<groupFilter noPolygons="true" shadowRadius_4=":1" shadowColor_4="#999999"/>
 				<groupFilter appMode="bicycle" additional="bicycle=no" color_0="$null" color__1="$null"/>
 			</group>
-			<groupFilter showAccess="true" cap_3="ROUND">
-				<filter additional="access=private" color_3="$accessPrivateColor">
+			<groupFilter showSurfaces="true" minzoom="14" cap_3="SQUARE">
+				<filter additional="surface=unpaved" color_3="$surfaceGroundColor"/>
+				<filter additional="surface=sand" color_3="$surfaceSandColor"/>
+				<filter additional="surface=grass" color_3="$surfaceGrassColor"/>
+				<filter additional="surface=grass_paver" color_3="$surfaceGrass_paverColor"/>
+				<filter additional="surface=ground" color_3="$surfaceGroundColor"/>
+				<filter additional="surface=dirt" color_3="$surfaceDirtColor"/>
+				<filter additional="surface=mud" color_3="$surfaceMudColor"/>
+				<filter additional="surface=ice" color_3="$surfaceIceColor"/>
+				<filter additional="surface=salt" color_3="$surfaceSaltColor"/>
+				<filter additional="surface=snow" color_3="$surfaceIceColor"/>
+
+				<filter additional="surface=asphalt" color_3="$surfaceAsphaltColor"/>
+				<filter additional="surface=paved" color_3="$surfacePavedColor"/>
+				<filter additional="surface=concrete" color_3="$surfacePavedColor"/>
+				<filter additional="surface=sett" color_3="$surfacePavedColor"/>
+				<filter additional="surface=cobblestone" color_3="$surfacePavedColor"/>
+				<filter additional="surface=paving_stones" color_3="$surfacePavedColor"/>
+
+				<filter additional="surface=pebblestone" color_3="$surfacePavedColor"/>
+				<filter additional="surface=stone" color_3="$surfacePavedColor"/>
+				<filter additional="surface=metal" color_3="$surfacePavedColor"/>
+				<filter additional="surface=wood" color_3="$surfacePavedColor"/>
+				<filter additional="surface=gravel" color_3="$surfaceLooselyPavedColor"/>
+				<filter additional="surface=fine_gravel" color_3="$surfaceLooselyPavedColor"/>
+				<filter additional="surface=compacted" color_3="$surfaceLooselyPavedColor"/>
+			</groupFilter>
+			<groupFilter showAccess="true">
+				<filter additional="access=private" color_3="$accessPrivateColor" cap_3="ROUND">
 					<filter appMode="bicycle" additional="bicycle=yes" color_3="$null"/>
 					<filter appMode="pedestrian" additional="foot=yes" color_3="$null"/>
 					<filter nightMode="true" color_3="$accessPrivateColorNight"/>
 				</filter>
-				<filter additional="access=no" color_3="$accessPrivateColor">
+				<filter additional="access=no" color_3="$accessPrivateColor" cap_3="ROUND">
 					<filter appMode="bicycle" additional="bicycle=yes" color_3="$null"/>
 					<filter appMode="pedestrian" additional="foot=yes" color_3="$null"/>
 					<filter nightMode="true" color_3="$accessPrivateColorNight"/>
 				</filter>
-				<filter additional="access=destination" color_3="$accessDestinationColor">
+				<filter additional="access=destination" color_3="$accessDestinationColor" cap_3="ROUND">
 					<filter nightMode="true" color_3="$accessDestinationColorNight"/>
 				</filter>
-				<filter additional="access=permissive" color_3="$accessPermissiveColor">
+				<filter additional="access=permissive" color_3="$accessPermissiveColor" cap_3="ROUND">
 					<filter nightMode="true" color_3="$accessPermissiveColorNight"/>
 				</filter>
-				<filter additional="access=agricultural" color_3="$accessAgriculturalColor">
+				<filter additional="access=agricultural" color_3="$accessAgriculturalColor" cap_3="ROUND">
 					<filter nightMode="true" color_3="$accessAgriculturalColorNight"/>
 				</filter>
-				<filter additional="access=forestry" color_3="$accessForestryColor">
+				<filter additional="access=forestry" color_3="$accessForestryColor" cap_3="ROUND">
 					<filter nightMode="true" color_3="$accessForestryColorNight"/>
 				</filter>
-				<filter additional="access=customers" color_3="$accessCustomersColor">
+				<filter additional="access=customers" color_3="$accessCustomersColor" cap_3="ROUND">
 					<filter nightMode="true" color_3="$accessCustomersColorNight"/>
 				</filter>
-				<filter additional="access=delivery" color_3="$accessDeliveryColor">
+				<filter additional="access=delivery" color_3="$accessDeliveryColor" cap_3="ROUND">
 					<filter nightMode="true" color_3="$accessDeliveryColorNight"/>
 				</filter>
-				<groupFilter minzoom="15" maxzoom="15" strokeWidth_3="4" pathEffect_3="3_8"/>
-				<groupFilter minzoom="16" maxzoom="16" strokeWidth_3="5" pathEffect_3="4_11"/>
-				<groupFilter minzoom="17" maxzoom="17" strokeWidth_3="7" pathEffect_3="5_13"/>
-				<groupFilter minzoom="18" maxzoom="18" strokeWidth_3="9" pathEffect_3="6_15"/>
-				<groupFilter minzoom="19" strokeWidth_3="11" pathEffect_3="7_18"/>
 			</groupFilter>
+			<groupFilter moreDetailed="true" minzoom="14" maxzoom="14" strokeWidth_3="4" pathEffect_3="5_8"/>
+			<groupFilter minzoom="15" maxzoom="15" strokeWidth_3="4" pathEffect_3="5_8"/>
+			<groupFilter minzoom="16" maxzoom="16" strokeWidth_3="5" pathEffect_3="5_11"/>
+			<groupFilter minzoom="17" maxzoom="17" strokeWidth_3="7" pathEffect_3="5_13"/>
+			<groupFilter minzoom="18" maxzoom="18" strokeWidth_3="9" pathEffect_3="6_17"/>
+			<groupFilter minzoom="19" strokeWidth_3="11" pathEffect_3="7_21"/>
 		</group>
 
 		<group>
