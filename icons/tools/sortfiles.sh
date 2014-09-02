@@ -103,8 +103,7 @@ mycp highway traffic_signals transport_traffic_lights.png
 mycp highway mini_roundabout transport_miniroundabout_anticlockwise.png
 mycp highway noexit functional-icons_noexit.png
 mycp highway ford transport_ford.png
-mycp highway crossing transport_zebra_crossing.png
-mycp highway crossing2 transport_zebra_crossing2.png
+mycp highway crossing2 functional-icons_zebra_crossing2.png
 mycp traffic_calming bump transport_speedbump.png
 mycp highway milestone functional-icons_milestone.png
 
@@ -203,6 +202,7 @@ mycp barrier kissing_gate barrier_kissing_gate.png
 mycp barrier toll_booth barrier_toll_booth.png
 mycp barrier border_control barrier_lift_gate.png
 mycp barrier entrance barrier_entrance.png
+mycp entrance exit barrier_exit.png
 mycp building entrance barrier_entrance.png
 
 
