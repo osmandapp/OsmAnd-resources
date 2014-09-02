@@ -78,6 +78,7 @@ mycp barrier small_red_1 functional-icons_point_red_1.png  #scale 0.25
 mycp barrier small_red_2 functional-icons_point_red_2.png  #scale 0.25
 mycp barrier small_red_3 functional-icons_point_red_3.png  #scale 0.25
 mycp barrier small_red_4 functional-icons_point_red_4.png  #scale 0.25
+mycp entrance yes functional-icons_point_gray.png  #scale 0.25
 
 ## Emergency + Health
 mygroup emergency emergency_emergency_phone.png
