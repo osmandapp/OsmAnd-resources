@@ -130,6 +130,12 @@
 	<renderingConstant name="residentialRoadColorNight" value="#9f9f9f"/>
 	<renderingConstant name="serviceRoadColor" value="#ececec"/>
 	<renderingConstant name="serviceRoadColorNight" value="#727272"/>
+
+	<renderingConstant name="pedestrianRoadModeColorDay" value="#ececec"/>
+	<renderingConstant name="pedestrianRoadModeColorNight" value="#727272"/>
+	<renderingConstant name="pedestrianRoadShadowColorDay" value="#55555555"/>
+	<renderingConstant name="pedestrianRoadShadowColorNight" value="#999999"/>
+
 	<renderingConstant name="serviceDrivewayRoadColor" value="#e0e0e0"/>
 	<renderingConstant name="serviceDrivewayRoadColorNight" value="#636363"/>
 	<renderingConstant name="constructionRoadColor" value="#79a8fd"/>
@@ -2409,11 +2415,14 @@
 				<groupFilter shader="pedestrian_paved"/>
 				<groupFilter nightMode="true" shader="pedestrian_paved_night"/>
 			</group>
-			<groupFilter>
-				<filter minzoom="14" color="#ececec" color_2="#969696" strokeWidth_2=":1"/>
-				<filter test="$hmRendered" minzoom="13" color="#ececec" color_2="#969696" strokeWidth_2=":1"/>
+			<groupFilter minzoom="14"> <!-- this code is needed to allow pedestrian areas coloring in UniRS -->
+				<groupFilter color="$serviceRoadColor" color_2="$pedestrianRoadShadowColorDay" strokeWidth_2=":1"/>
+				<groupFilter nightMode="true" color="#727272" color_2="$pedestrianRoadShadowColorNight"/>
+				<groupFilter appMode="pedestrian">
+					<groupFilter color="$pedestrianRoadModeColorDay" color_2="$pedestrianRoadShadowColorDay"/>
+					<groupFilter nightMode="true" color="$pedestrianRoadModeColorNight" color_2="$pedestrianRoadShadowColorNight"/>
+				</groupFilter>
 			</groupFilter>
-			<groupFilter nightMode="true" color="#727272" color_2="#464646"/>
 			<groupFilter appMode="car" shader="" color="#f0e0d8" color_2="#44aaaaaa">
 				<filter tag="highway" value="pedestrian"/>
 				<filter tag="highway" value="footway"/>
@@ -3016,9 +3025,13 @@
 						<groupFilter minzoom="15" additional="access=private" color_3="#F7D4D4" strokeWidth_3="1:2" pathEffect_3="10_3"/>-->
 					</groupFilter>
 					<!-- pedestrian roads are forbidden for cars and cyclists: show them like that in car and bicycle mode -->
-					<groupFilter tag="highway" value="pedestrian" shadowColor="#55555555">
-						<filter nightMode="true" appMode="car" color="#412e2e" shadowRadius="0"/>
-						<filter appMode="car" color="#f7d4d4" shadowColor="#44444444"/>
+					<groupFilter tag="highway" value="pedestrian" shadowColor="$pedestrianRoadShadowColorDay"> <!-- this code is needed (partially) to allow pedestrian areas coloring in UniRS -->
+						<groupFilter appMode="car" color="#f7d4d4" shadowColor="#44444444"/>
+						<groupFilter nightMode="true" appMode="car" color="#412e2e" shadowRadius="0"/>
+						<groupFilter appMode="pedestrian" color="$pedestrianRoadModeColorDay">
+							<filter appMode="pedestrian" nightMode="true" color="$pedestrianRoadModeColorNight"/>
+						</groupFilter>
+						<groupFilter nightMode="true" shadowColor="$pedestrianRoadShadowColorNight"/>
 					</groupFilter>
 					<!-- <groupFilter appMode="bicycle" tag="highway" value="pedestrian" color="#F7D4D4"/> -->
 				</group>
@@ -3144,8 +3157,8 @@
 				</group>
 				<!-- Assign strokeWidth and pathEffect for surface, smoothness and access -->
 				<groupFilter moreDetailed="true" minzoom="14" maxzoom="14" strokeWidth_2="6" strokeWidth_3="6" pathEffect_3="3_11"/>
-				<groupFilter minzoom="15" maxzoom="15" strokeWidth_2="7" strokeWidth_3="7" pathEffect_3="5_13"/>
-				<groupFilter minzoom="16" maxzoom="16" strokeWidth_2="8" strokeWidth_3="8" pathEffect_3="5_15"/>
+				<groupFilter minzoom="15" maxzoom="15" strokeWidth_2="6" strokeWidth_3="6" pathEffect_3="5_13"/>
+				<groupFilter minzoom="16" maxzoom="16" strokeWidth_2="7.5" strokeWidth_3="7.5" pathEffect_3="5_15"/>
 				<groupFilter minzoom="17" maxzoom="17" strokeWidth_2="9" strokeWidth_3="9" pathEffect_3="6_17"/>
 				<groupFilter minzoom="18" maxzoom="18" strokeWidth_2="10" strokeWidth_3="10" pathEffect_3="6_20"/>
 				<groupFilter minzoom="19" strokeWidth_2="13" strokeWidth_3="13" pathEffect_3="7_23"/>
