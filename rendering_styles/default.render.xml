@@ -579,11 +579,11 @@
 				</groupFilter>
 			</group>
 			<group publicTransportMode="true">
-				<filter tag="route" value="bus" order="104"/>
-				<filter tag="route" value="train" order="103"/>
-				<filter tag="route" value="light_rail" order="102"/>
-				<filter tag="route" value="tram" order="101"/>
-				<filter tag="route" value="trolleybus" order="100"/>
+				<filter tag="route_bus" value="" order="104"/>
+				<filter tag="route_train" value="" order="103"/>
+				<filter tag="route_light_rail" value="" order="102"/>
+				<filter tag="route_tram" value="" order="101"/>
+				<filter tag="route_trolleybus" value="" order="100"/>
 			</group>
 
 			<filter layer="1" tag="railway" value="" order="88"/>
@@ -785,7 +785,7 @@
 
 	<!-- PRIORITY Input to filter : tag, value, zoom [minzoom, maxzoom], textLength, ref, textOrder (default=100) -->
 	<text>
-		<filter osmcTraces="true" tag="route" value="hiking" minzoom="12" textMinDistance="10" textOnPath="false" textColor="#00ffffff" textSize="12">
+		<filter osmcTraces="true" tag="route_hiking" value="" minzoom="12" textMinDistance="10" textOnPath="false" textColor="#00ffffff" textSize="12">
 				<filter nameTag="osmc_symbol_black_blue_name">
 					<filter additional="osmc_shape=bar" textShield="osmc_black_bg_blue_bar"/>
 					<filter additional="osmc_shape=circle" textShield="osmc_black_bg_blue_circle"/>
@@ -1082,21 +1082,21 @@
 
 		<group publicTransportMode="true" textWrapWidth="20" textOnPath="true" textDy="-1" textOrder="1">
 			<group textHaloColor="#ddffffff" textHaloRadius="2">
-				<filter tag="route" value="bus" nameTag="bus_ref" textColor="$routeBusColor"/>
-				<filter tag="route" value="trolleybus" nameTag="trolleybus_ref" textColor="$routeTrolleybusColor"/>
-				<filter tag="route" value="tram" nameTag="tram_ref" textColor="$routeTramColor"/>
-				<filter tag="railway" value="tram" textColor="$routeTramColor"/>
-				<filter tag="route" value="train" nameTag="train_ref" textColor="$routeTrainColor"/>
-				<filter tag="route" value="light_rail" nameTag="lightrail_ref" textColor="$routeLightrailColor"/>
+				<filter tag="route_bus" value="" nameTag="bus_ref" textColor="$routeBusColor"/>
+				<filter tag="route_trolleybus" value="" nameTag="trolleybus_ref" textColor="$routeTrolleybusColor" textHaloColor="#ffc8fd"/>
+				<filter tag="route_tram" value="" nameTag="tram_ref" textColor="$routeTramColor"/>
+<!--				<filter tag="railway" value="tram" textColor="$routeTramColor"/>-->
+				<filter tag="route_train" value="" nameTag="train_ref" textColor="$routeTrainColor"/>
+				<filter tag="route_light_rail" value="" nameTag="lightrail_ref" textColor="$routeLightrailColor"/>
 				<filter tag="railway" value="light_rail" textColor="$routeLightrailColor"/>
 			</group>
 			<group nightMode="true" textHaloColor="#ffffff" textHaloRadius="2">
-				<filter tag="route" value="bus" nameTag="bus_ref" textColor="$routeBusColorNight"/>
-				<filter tag="route" value="trolleybus" nameTag="trolleybus_ref" textColor="$routeTrolleybusColorNight"/>
-				<filter tag="route" value="tram" nameTag="tram_ref" textColor="$routeTramColorNight"/>
-				<filter tag="railway" value="tram" textColor="$routeTramColorNight"/>
-				<filter tag="route" value="train" nameTag="train_ref" textColor="$routeTrainColorNight"/>
-				<filter tag="route" value="light_rail" nameTag="lightrail_ref" textColor="$routeLightrailColorNight"/>
+				<filter tag="route_bus" value="" nameTag="bus_ref" textColor="$routeBusColorNight"/>
+				<filter tag="route_trolleybus" value="" nameTag="trolleybus_ref" textColor="$routeTrolleybusColorNight" textHaloColor="#ffc8fd"/>
+				<filter tag="route_tram" value="" nameTag="tram_ref" textColor="$routeTramColorNight"/>
+<!--				<filter tag="railway" value="tram" textColor="$routeTramColorNight"/>-->
+				<filter tag="route_train" value="" nameTag="train_ref" textColor="$routeTrainColorNight"/>
+				<filter tag="route_light_rail" value="" nameTag="lightrail_ref" textColor="$routeLightrailColorNight"/>
 				<filter tag="railway" value="light_rail" textColor="$routeLightrailColorNight"/>
 			</group>
 <!--			<groupFilter minzoom="11" maxzoom="14" textSize="7"/>-->
@@ -1404,14 +1404,14 @@
 				<filter tag="amenity" value="bus_station"/>
 				<filter tag="public_transport" value="platform" nameTag=""/>
 				<filter tag="highway" value="bus_stop" nameTag=""/>
-				<filter tag="railway" value="tram_stop"/>
+				<filter tag="railway" value="tram_stop" nameTag=""/>
 				<groupFilter nightMode="true" textColor="$publicTransportModeStopTextColorNight" textHaloRadius="$textHaloRadiusNight" textHaloColor="$publicTransportModeStopTextHaloColorNight"/>
 			</group>
 			<group> <!-- assigns colors to 16+ zoom tags depends on publicTransportMode -->
 				<filter minzoom="16" tag="public_transport" value="platform" textSize="13" nameTag=""/>
 				<filter minzoom="16" tag="amenity" value="bus_station" textSize="13" textOrder="10"/>
 				<filter minzoom="16" tag="highway" value="bus_stop" textSize="13" nameTag=""/>
-				<filter minzoom="16" tag="railway" value="tram_stop" textSize="13"/>
+				<filter minzoom="16" tag="railway" value="tram_stop" textSize="13" nameTag=""/>
 				<groupFilter publicTransportMode="true" textColor="$publicTransportModeStopTextColor" textHaloColor="$publicTransportModeStopTextHaloColor"/>
 				<groupFilter nightMode="true" textColor="#d4d4ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#994563a7"/>
 				<groupFilter publicTransportMode="true" nightMode="true" textColor="$publicTransportModeStopTextColorNight" textHaloRadius="$textHaloRadiusNight" textHaloColor="$publicTransportModeStopTextHaloColorNight"/>
@@ -3528,23 +3528,35 @@
 
 		<group publicTransportMode="true">
 			<group cap="ROUND">
-				<filter tag="route" value="bus" color="$routeBusColor"/>
-				<filter tag="route" value="trolleybus" color="$routeTrolleybusColor"/>
+				<filter tag="route_bus" value="" color="$routeBusColor"/>
 				<groupFilter minzoom="11" maxzoom="11" strokeWidth="1.3"/>
 				<groupFilter minzoom="12" maxzoom="12" strokeWidth="2"/>
 				<groupFilter minzoom="13" maxzoom="13" strokeWidth="2.5"/>
-				<groupFilter minzoom="14" maxzoom="14" strokeWidth="3.3"/>
-				<groupFilter minzoom="15" maxzoom="15" strokeWidth="4.5"/>
-				<groupFilter minzoom="16" maxzoom="16" strokeWidth="5.8"/>
-				<groupFilter minzoom="17" maxzoom="17" strokeWidth="7"/>
-				<groupFilter minzoom="18" strokeWidth="8"/>
-				<groupFilter nightMode="true" tag="route" value="bus" color="$routeBusColorNight"/>
-				<groupFilter nightMode="true" tag="route" value="trolleybus" color="$routeTrolleybusColorNight"/>
+				<groupFilter minzoom="14" maxzoom="14" strokeWidth="2.5"/>
+				<groupFilter minzoom="15" maxzoom="15" strokeWidth="3.5"/>
+				<groupFilter minzoom="16" maxzoom="16" strokeWidth="4.4"/>
+				<groupFilter minzoom="17" maxzoom="17" strokeWidth="5.5"/>
+				<groupFilter minzoom="18" maxzoom="18" strokeWidth="6.5"/>
+				<groupFilter minzoom="19" strokeWidth="7.5"/>
+				<groupFilter nightMode="true" color="$routeBusColorNight"/>
 			</group>
 			<group cap="ROUND">
-				<filter tag="route" value="tram" color="$routeTramColor"/>
-				<filter tag="railway" value="tram" color="$routeTramColor"/>
-				<filter tag="route" value="light_rail" color="$routeLightrailColor"/>
+				<filter tag="route_trolleybus" value="" color="$routeTrolleybusColor"/>
+				<groupFilter minzoom="11" maxzoom="11" strokeWidth="1.3"/>
+				<groupFilter minzoom="12" maxzoom="12" strokeWidth="2"/>
+				<groupFilter minzoom="13" maxzoom="13" strokeWidth="2.5"/>
+				<groupFilter minzoom="14" maxzoom="14" strokeWidth="4.5"/>
+				<groupFilter minzoom="15" maxzoom="15" strokeWidth="6"/>
+				<groupFilter minzoom="16" maxzoom="16" strokeWidth="7.5"/>
+				<groupFilter minzoom="17" maxzoom="17" strokeWidth="8.4"/>
+				<groupFilter minzoom="18" maxzoom="18" strokeWidth="10"/>
+				<groupFilter minzoom="19" strokeWidth="12"/>
+				<groupFilter nightMode="true" color="$routeTrolleybusColorNight"/>
+			</group>
+			<group cap="ROUND">
+				<filter tag="route_tram" value="" color="$routeTramColor"/>
+<!--				<filter tag="railway" value="tram" color="$routeTramColor"/>-->
+				<filter tag="route_light_rail" value="" color="$routeLightrailColor"/>
 				<filter tag="railway" value="light_rail" color="$routeLightrailColor"/>
 				<groupFilter minzoom="11" maxzoom="11" strokeWidth="1.6"/>
 				<groupFilter minzoom="12" maxzoom="12" strokeWidth="2.5"/>
@@ -3554,14 +3566,13 @@
 				<groupFilter minzoom="16" maxzoom="16" strokeWidth="7"/>
 				<groupFilter minzoom="17" maxzoom="17" strokeWidth="10"/>
 				<groupFilter minzoom="18" strokeWidth="13"/>
-				<groupFilter nightMode="true" tag="route" value="tram" color="$routeTramColorNight"/>
-				<groupFilter nightMode="true" tag="railway" value="tram" color="$routeTramColorNight"/>
-				<groupFilter nightMode="true" tag="route" value="train" color="$routeTrainColorNight"/>
-				<groupFilter nightMode="true" tag="route" value="light_rail" color="$routeLightrailColorNight"/>
-				<groupFilter nightMode="true" tag="railway" value="light_rail" color="$routeLightrailColorNight"/>
+				<groupFilter nightMode="true" tag="route_tram" value="" color="$routeTramColorNight"/>
+<!--				<groupFilter nightMode="true" tag="railway" value="tram" color="$routeTramColorNight"/>-->
+				<groupFilter nightMode="true" tag="route_light_rail" value="" color="$routeLightrailColorNight"/>
+<!--				<groupFilter nightMode="true" tag="railway" value="light_rail" color="$routeLightrailColorNight"/>-->
 			</group>
 			<group cap="ROUND">
-				<filter tag="route" value="train" color="$routeTrainColor" color_2="#ffffff"/>
+				<filter tag="route_train" value="" color="$routeTrainColor" color_2="#ffffff"/>
 				<groupFilter minzoom="11" maxzoom="12" strokeWidth="5" strokeWidth_2="3" pathEffect_2="10_10"/>
 				<groupFilter minzoom="13" maxzoom="13" strokeWidth="6.5" strokeWidth_2="4.5" pathEffect_2="13_13"/>
 				<groupFilter minzoom="14" maxzoom="14" strokeWidth="7.5" strokeWidth_2="6" pathEffect_2="17_17"/>
@@ -3771,7 +3782,7 @@
 		</group>
 
 		<group osmcTraces="true">
-			<filter tag="route" value="hiking" minzoom="12" color="#170058a2">
+			<filter tag="route_hiking" value="" minzoom="12" color="#170058a2">
 				<filter additional="osmc_symbol=black" color="#44000000"/>
 				<filter additional="osmc_symbol=blue" color="#440000ff"/>
 				<filter additional="osmc_symbol=green" color="#4400ff00"/>
