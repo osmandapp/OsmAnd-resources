@@ -116,7 +116,7 @@ if __name__=='__main__':
                 shouldRegenerate = True
                 print("Missing resource file '%s', will regenerate resources list..." % (resourceFileName))
                 break
-            elif if os.path.getmtime(resourceFileName) > os.path.getmtime(resourcesPath + "/embed-resources.list"):
+            elif os.path.getmtime(resourceFileName) > os.path.getmtime(resourcesPath + "/embed-resources.list"):
                 shouldRegenerate = True
                 print("Resource file '%s' is newer than list, will regenerate resources list..." % (resourceFileName))
                 break
