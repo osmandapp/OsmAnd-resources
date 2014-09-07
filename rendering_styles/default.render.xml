@@ -229,6 +229,7 @@
 
 	<renderingConstant name="waterwayColorDay" value="#b5d0d0"/>
 	<renderingConstant name="waterwayColorNight" value="#330099"/>
+	<renderingConstant name="waterwayDesaturatedColorDay" value="#b5d0d0"/>
 	<renderingConstant name="waterwayDesaturatedColorNight" value="#2a3d50"/>
 
 	<renderingConstant name="parkingColorDay" value="#f6eeb7"/>
@@ -1780,14 +1781,14 @@
 			<filter minzoom="16" icon="highway_noexit" tag="noexit" value="yes" iconVisibleSize="12"/>
 			<filter minzoom="14" icon="highway_ford" tag="highway" value="ford" iconVisibleSize="10"/>
 			<filter minzoom="15" icon="railway_level_crossing" tag="railway" value="level_crossing"/>
-			<filter nightMode="true" subwayMode="false" minzoom="16" icon="amenity_bicycle_parking" tag="amenity" value="bicycle_parking" shield="gray_blue_square_shield"/>
-			<filter minzoom="16" subwayMode="false" icon="amenity_bicycle_parking" tag="amenity" value="bicycle_parking" shield="white_blue_square_shield"/>
-			<filter nightMode="true" minzoom="16" icon="amenity_drinking_water" tag="amenity" value="drinking_water" shield="gray_gray_square_shield"/>
-			<filter minzoom="16" icon="amenity_drinking_water" tag="amenity" value="drinking_water" shield="white_gray_square_shield"/>
-			<filter nightMode="true" minzoom="16" icon="man_made_water_well" tag="man_made" value="water_well" shield="gray_gray_square_shield"/>
-			<filter minzoom="16" icon="man_made_water_well" tag="man_made" value="water_well" shield="white_gray_square_shield"/>
-			<filter minzoom="16" icon="amenity_bicycle_rental" tag="amenity" value="bicycle_rental"/>
+			<group shield="white_blue_square_shield">
+				<filter minzoom="16" icon="amenity_bicycle_rental" tag="amenity" value="bicycle_rental"/>
+				<filter minzoom="16" subwayMode="false" icon="amenity_bicycle_parking" tag="amenity" value="bicycle_parking"/>
+				<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
+			</group>
 			<group shield="white_gray_square_shield">
+				<filter minzoom="16" icon="man_made_water_well" tag="man_made" value="water_well"/>
+				<filter minzoom="16" icon="amenity_drinking_water" tag="amenity" value="drinking_water"/>
 				<filter minzoom="18" icon="barrier_gate" tag="highway" value="gate"/>
 				<filter minzoom="18" icon="barrier_gate" tag="barrier" value="gate"/>
 				<filter minzoom="18" icon="barrier_lift_gate" tag="barrier" value="lift_gate"/>
@@ -1846,7 +1847,9 @@
 					<filter minzoom="14" icon="tourism_picnic_site" tag="tourism" value="picnic_site"/>
 					<groupFilter nightMode="true" shield="gray_brown_square_shield"/>
 				</group>
-				<filter minzoom="16" icon="tourism_viewpoint" tag="tourism" value="viewpoint"/>
+				<filter minzoom="16" icon="tourism_viewpoint" tag="tourism" value="viewpoint" shield="white_brown_square_shield">
+					<filter nightMode="true" shield="gray_brown_square_shield"/>
+				</filter>
 			</group>
 			<filter nightMode="true" minzoom="13" icon="tourism_alpine_hut" tag="tourism" value="alpine_hut" shield="gray_blue_square_shield"/>
 			<filter minzoom="13" icon="tourism_alpine_hut" tag="tourism" value="alpine_hut" shield="white_blue_square_shield"/>
@@ -3474,6 +3477,7 @@
 			</group>
 			<!-- Waterway color -->
 			<groupFilter color="$waterwayColorDay" color_2="#ffffff"/>
+			<groupFilter subwayMode="true" color="$waterwayDesaturatedColorDay"/>
 			<groupFilter nightMode="true" color="$waterwayColorNight" color_2="#7340D9"/>
 			<groupFilter nightMode="true" subwayMode="true" color="$waterwayDesaturatedColorNight"/>
 		</group>
