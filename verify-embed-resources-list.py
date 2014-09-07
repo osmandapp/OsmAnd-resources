@@ -74,44 +74,75 @@ if __name__=='__main__':
     # Check if should regenerate. Regeneration is needed in following cases:
     #  - stamp (git commit hash of the HEAD) differs from current HEAD
     #  - '.git' directory missing
+    #  - this script is newer than list itself
+    #  - previous list is present and any of the file is newer or missing
     shouldRegenerate = False
     currentHeadCommitHash = ""
-    if not os.path.isdir(resourcesPath + "/.git"):
+    if not shouldRegenerate and not os.path.isdir(resourcesPath + "/.git"):
         shouldRegenerate = True
         print("Non-development build, will regenerate resources list...")
     if not shouldRegenerate:
-        currentHeadCommitHash = "#" + subprocess.check_output(["git", "rev-parse", "HEAD"], universal_newlines=True).strip()
+        oldcwd = os.getcwd()
+        os.chdir(resourcesPath)
+        currentHeadCommitHash = "#" + subprocess.check_output(
+            ["git", "rev-parse", "HEAD"],
+            universal_newlines=True).strip()
+        os.chdir(oldcwd)
         lastProcessedCommitHash = ""
-        with open(rootPath + "/resources/embed-resources.stamp", "r") as stampFile:
-            lastProcessedCommitHash = stampFile.read().strip()
-        if currentHeadCommitHash != lastProcessedCommitHash:
+        if os.path.exists(resourcesPath + "/.embed-resources.stamp"):
+            with open(resourcesPath + "/.embed-resources.stamp", "r") as stampFile:
+                lastProcessedCommitHash = stampFile.read().strip()
+            if currentHeadCommitHash != lastProcessedCommitHash:
+                shouldRegenerate = True
+                print("Last processed commit: " + lastProcessedCommitHash)
+                print("Current HEAD commit:   " + currentHeadCommitHash)
+                print("New commits present, will regenerate resources list...")
+        else:
             shouldRegenerate = True
-            print("Last processed commit: " + lastProcessedCommitHash)
+            print("Last processed commit: none")
             print("Current HEAD commit:   " + currentHeadCommitHash)
-            print("New commits present, will regenerate resources list...")
+            print("Will regenerate resources list...")
+    if not shouldRegenerate:
+        if os.path.getmtime(os.path.realpath(__file__)) > os.path.getmtime(resourcesPath + "/embed-resources.list"):
+            shouldRegenerate = True
+            print("List generation script is newer than generated list, will regenerate resources list...")
+    if not shouldRegenerate and os.path.exists(resourcesPath + "/embed-resources.list"):
+        currentResourcesList = list()
+        with open(resourcesPath + "/embed-resources.list") as currentResourcesListFile:
+            currentResourcesList = currentResourcesListFile.readlines()
+        for resourceListLine in currentResourcesList:
+            resourceFileName = my_string.split(':')[0]
+            if not os.path.exists(resourceFileName):
+                shouldRegenerate = True
+                print("Missing resource file '%s', will regenerate resources list..." % (resourceFileName))
+                break
+            elif if os.path.getmtime(resourceFileName) > os.path.getmtime(resourcesPath + "/embed-resources.list"):
+                shouldRegenerate = True
+                print("Resource file '%s' is newer than list, will regenerate resources list..." % (resourceFileName))
+                break
     if not shouldRegenerate:
         print("Resources list is up-to-date")
         sys.exit(0)
 
     rules = [
         # Map styles and related:
-        [r'rendering_styles/default\.render\.xml', r'map/styles/default.render.xml'],
-        [r'rendering_styles/default\.map_styles_presets\.xml', r'map/presets/default.map_styles_presets.xml'],
+        [r'rendering_styles/default\.render\.xml', 'map/styles/default.render.xml'],
+        [r'rendering_styles/default\.map_styles_presets\.xml', 'map/presets/default.map_styles_presets.xml'],
 
-        # Map icons (Android mdpi == 1.0 ddf, and it's base):
-        [r'rendering_styles/style-icons/drawable-mdpi/h_(.*shield.*)\.png', r'map/shields/\1.png'],
-        [r'rendering_styles/style-icons/drawable-mdpi/h_(.*)\.png', r'map/shaders/\1.png'],
-        [r'rendering_styles/style-icons/drawable-mdpi/mm_(.*)\.png', r'map/icons/\1.png'],
+        # Map icons (Android mdpi == 1.0 ddf):
+        [r'rendering_styles/style-icons/drawable-mdpi/h_(.*shield.*)\.png', r'[ddf=1.0]map/shields/\1.png'],
+        [r'rendering_styles/style-icons/drawable-mdpi/h_(.*)\.png', r'[ddf=1.0]map/shaders/\1.png'],
+        [r'rendering_styles/style-icons/drawable-mdpi/mm_(.*)\.png', r'[ddf=1.0]map/icons/\1.png'],
 
         # Map icons (Android hdpi == 1.5 ddf):
-        [r'rendering_styles/style-icons/drawable-hdpi/h_(.*shield.*)\.png', r'map/shields/1.5-ddf/\1.png'],
-        [r'rendering_styles/style-icons/drawable-hdpi/h_(.*)\.png', r'map/shaders/1.5-ddf/\1.png'],
-        [r'rendering_styles/style-icons/drawable-hdpi/mm_(.*)\.png', r'map/icons/1.5-ddf/\1.png'],
+        [r'rendering_styles/style-icons/drawable-hdpi/h_(.*shield.*)\.png', r'[ddf=1.5]map/shields/\1.png'],
+        [r'rendering_styles/style-icons/drawable-hdpi/h_(.*)\.png', r'[ddf=1.5]map/shaders/\1.png'],
+        [r'rendering_styles/style-icons/drawable-hdpi/mm_(.*)\.png', r'[ddf=1.5]map/icons/\1.png'],
 
         # Map icons (Android xhdpi == 2.0 ddf):
-        [r'rendering_styles/style-icons/drawable-xhdpi/h_(.*shield.*)\.png', r'map/shields/2.0-ddf/\1.png'],
-        [r'rendering_styles/style-icons/drawable-xhdpi/h_(.*)\.png', r'map/shaders/2.0-ddf/\1.png'],
-        [r'rendering_styles/style-icons/drawable-xhdpi/mm_(.*)\.png', r'map/icons/2.0-ddf/\1.png'],
+        [r'rendering_styles/style-icons/drawable-xhdpi/h_(.*shield.*)\.png', r'[ddf=2.0]map/shields/\1.png'],
+        [r'rendering_styles/style-icons/drawable-xhdpi/h_(.*)\.png', r'[ddf=2.0]map/shaders/\1.png'],
+        [r'rendering_styles/style-icons/drawable-xhdpi/mm_(.*)\.png', r'[ddf=2.0]map/icons/\1.png'],
 
         # Misc map resources:
         [r'rendering_styles/stubs/(.*)\.png', r'map/stubs/\1.png'],
@@ -136,7 +167,7 @@ if __name__=='__main__':
 
     # Update stamp (if development build)
     if currentHeadCommitHash:
-        with open(resourcesPath + "/embed-resources.stamp", "w") as stampFile:
+        with open(resourcesPath + "/.embed-resources.stamp", "w") as stampFile:
             stampFile.write(currentHeadCommitHash)
 
     sys.exit(0)
