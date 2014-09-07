@@ -155,7 +155,7 @@ if __name__=='__main__':
         [r'rendering_styles/fonts/(.*)\.(ttf)', r'map/fonts/\1.\2'],
 
         # Misc resources
-        [r'misc/icu4c/icudt\d+([lb])\.dat', r'misc/icu4c/icu-data-\1.dat'],       
+        [r'misc/icu4c/icudt\d+([lb])\.dat', r'misc/icu4c/icu-data-\1.dat'],
     ]
 
     resourcesListFilename = resourcesPath + "/embed-resources.list"
