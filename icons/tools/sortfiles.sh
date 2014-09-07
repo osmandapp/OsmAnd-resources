@@ -202,7 +202,10 @@ mycp barrier kissing_gate barrier_kissing_gate.png
 mycp barrier toll_booth barrier_toll_booth.png
 mycp barrier border_control barrier_lift_gate.png
 mycp barrier entrance barrier_entrance.png
+mycp entrance yes_2 barrier_entrance2.png
 mycp entrance exit barrier_exit.png
+mycp entrance main functional-icons_entrance3.png
+mycp entrance exit_2 functional-icons_entrance_exit.png
 mycp building entrance barrier_entrance.png
 
 
