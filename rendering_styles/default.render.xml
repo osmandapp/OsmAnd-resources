@@ -167,6 +167,11 @@
 	<renderingConstant name="pathLowZoomPathEffect" value=""/>
 	<renderingConstant name="sacScaleColor" value="#e23cad"/>
 
+	<renderingConstant name="cycleRoutelcnColor" value="#400000ff"/>
+	<renderingConstant name="cycleRoutercnColor" value="#40ff00ff"/>
+	<renderingConstant name="cycleRoutencnColor" value="#40ff4000"/>
+	<renderingConstant name="cycleRouteicnColor" value="#40ff0000"/>
+
 	<renderingConstant name="motorwayRoadDesaturatedColorDay" value="#bcc6ec"/>
 	<renderingConstant name="motorwayRoadDesaturatedColorNight" value="#3f4764"/>
 	<renderingConstant name="trunkRoadDesaturatedColorDay" value="#ffc7d0"/>
@@ -181,6 +186,9 @@
 	<renderingConstant name="constructionRoadDesaturatedColorDay" value="#98a4ba"/>
 	<renderingConstant name="constructionRoadDesaturatedColorNight" value="#505e79"/>
 	<renderingConstant name="constructionRoadDesaturatedColor2Night" value="#888888"/>
+
+	<renderingConstant name="contourLineColor" value="#2Aff7c00"/>
+	<renderingConstant name="contourLineColor50m" value="#2Aea7300"/>
 
 	<!-- Forest -->
 	<renderingConstant name="woodColorDay" value="#aed1a0"/>
@@ -398,21 +406,6 @@
 
 	<renderingConstant name="null" value="#00000000"/>
 
-		<!-- transparent to see conjunctions -->
-		<!-- <renderingConstant name="motorwayRoadColor" value="#55809bff"/>
-		<renderingConstant name="trunkRoadColor" value="#55FF8095"/>
-		<renderingConstant name="primaryRoadColor" value="#55FFAA80"/>
-		<renderingConstant name="secondaryRoadColor" value="#55ffd080"/>
-		<renderingConstant name="tertiaryRoadColor" value="#55ffff80"/> -->
-	<!-- roadColors="Road atlas style" -->
-		<!-- but see Touring view, optimized pattern is used there
-		<renderingConstant name="motorwayRoadColor" value="#809bff"/>
-		<renderingConstant name="trunkRoadColor" value="#ed154b"/>
-		<renderingConstant name="primaryRoadColor" value="#ff80a0"/>
-		<renderingConstant name="secondaryRoadColor" value="#ffd080"/>
-		<renderingConstant name="tertiaryRoadColor" value="#ffff80"/>
-		-->
-
 
 	<!--
 	RENDERER CONCEPT: Concept of what is Rendered at what Zoom Level (Dr. Hardy Mueller, 2011-06-26)
@@ -424,7 +417,7 @@
 		 Level  Typical Use                        Features Rendered
                  *****  *********************************  *****************
 		 -  7   "Rough Region Level Overview"      Shows motorways, trunks, primary roads and city names
-		 - 11   "Country Road Atlas"               Secondary roads (already from zoom 9) and tertiary (already from zoom 10). Show large scale landuse like forest and residential areas (already from zoom 10). Also all town names (already from zoom 9) and now all other locality names. Shows mountain peaks for orientation
+		 - 11   "Country Road Atlas"               Secondary roads (already from zoom 9) and motorways/trunks/primaries from z7, secondaries from z9, tertiaries from z10. Show large scale landuse like forest and residential areas (already from zoom 10). Also all town names (already from zoom 9) and now all other locality names. Shows mountain peaks for orientation
 		 - 12   "Detailed Country Road Atlas"      Add all other public highways like road, unclassified, residential. Add tracks including track-type, and foot and bike paths. Also tag mountain peaks. Note that from this zoom level on ALL roads/tracks/paths are displayed, so it gives RELIABLE TRAVEL OVERVIEW!
 		 - 13   "Regional Driving. Good Overview"  Displays all driving as well as hiking connections. Show service, living street, pedestrian and footway highways. Include all area landuse.
 		 - 14   "Local Driving", also "Hiking Map"
@@ -432,24 +425,24 @@
 		 - 16   "Walking", "City Tour"             Outline and tag buildings
 		 - 17   "Immediate orientation"            Building details, street corner details like traffic_signals, post_box, remaining POIs
 
+		- Remark: These were the original "static" zoom limits, before we expanded the rendering scheme below zoom 7 and created an algorithm to already "selectively" include significant map objects there at map creation time.
 		- roadColors="Road atlas style" scheme aligned with conventional road atlas, Saturation=50, Brightness=100, except trunk is considered special case of primary (same hue). For best visibility: routeColor="#960000FF, gpxColor="#B400FFFF".
-
 	-->
 
 	<!--
 	NIGHT VIEW CONCEPT: Main colors for night renderer, by Hardy Mueller, 2011-07-04, reworked to more grey/green pattern 2013-11-30:
 		Areas:
-		- default:   002a2a      (old 003333)
-		- forest:    001122      (old 000034)
+		- default:        002a2a (middle ground between open lighter nature and darker forests)
+		- forest:         001122
 		- other open (non-forest) nature: 004333 (vegetation shaders replaced by 334433)
-		- water:     330099
-		- built-up areas: 3b3b3b (old 66004B)
-		- buildings: 685454      (old 560000)
+		- water:          330099
+		- built-up areas: 3b3b3b
+		- buildings:      685454
 		Roads:
-		- road brightness levels aligned with road priority
-		- 'white' roads: 9F9F9F to darken high density areas sufficiently
-		- leave other road colors like day, for easy recognition
-		- applied some additional road dimming for car profile night view (as roads are thicker)
+		- road brightness levels aligned with road priority!
+		- 'white' roads: 9f9f9f to darken high density areas sufficiently
+		- leave other road colors like day, for easy recognition!
+		- applied some additional (80% brightness) road dimming for car profile night view (as roads are thicker)
 	-->
 
 
@@ -3318,17 +3311,17 @@
 		</group>
 
 		<group>
-			<filter contourLines="11" tag="contour" value="elevation" minzoom="11" color="#2Aff7c00" strokeWidth=":1"/>
-			<filter contourLines="12" tag="contour" value="elevation" minzoom="12" color="#2Aff7c00" strokeWidth=":1"/>
-			<filter contourLines="13" tag="contour" value="elevation" minzoom="13" color="#2Aff7c00" strokeWidth=":1"/>
-			<filter contourLines="14" tag="contour" value="elevation" minzoom="14" color="#2Aff7c00" strokeWidth=":1"/>
-			<filter contourLines="15" tag="contour" value="elevation" minzoom="15" color="#2Aff7c00" strokeWidth=":1"/>
-			<filter contourLines="16" tag="contour" value="elevation" minzoom="16" color="#2Aff7c00" strokeWidth=":1"/>
+			<filter contourLines="11" tag="contour" value="elevation" minzoom="11" color="$contourLineColor" strokeWidth=":1"/>
+			<filter contourLines="12" tag="contour" value="elevation" minzoom="12" color="$contourLineColor" strokeWidth=":1"/>
+			<filter contourLines="13" tag="contour" value="elevation" minzoom="13" color="$contourLineColor" strokeWidth=":1"/>
+			<filter contourLines="14" tag="contour" value="elevation" minzoom="14" color="$contourLineColor" strokeWidth=":1"/>
+			<filter contourLines="15" tag="contour" value="elevation" minzoom="15" color="$contourLineColor" strokeWidth=":1"/>
+			<filter contourLines="16" tag="contour" value="elevation" minzoom="16" color="$contourLineColor" strokeWidth=":1"/>
 			<groupFilter>
-				<filter additional="contourtype=10m" color="#2Aff7c00" strokeWidth=":1"/>
-				<filter additional="contourtype=20m" color="#2Aff7c00" strokeWidth=":1"/>
-				<filter additional="contourtype=50m" minzoom="16" color="#2AEA7300" strokeWidth=":1.5"/>
-				<filter additional="contourtype=100m" color="#2AEA7300" strokeWidth=":2"/>
+				<filter additional="contourtype=10m" color="$contourLineColor" strokeWidth=":1"/>
+				<filter additional="contourtype=20m" color="$contourLineColor" strokeWidth=":1"/>
+				<filter additional="contourtype=50m" minzoom="16" color="$contourLineColor50m" strokeWidth=":1.5"/>
+				<filter additional="contourtype=100m" color="$contourLineColor50m" strokeWidth=":2"/>
 			</groupFilter>
 		</group>
 
@@ -3781,10 +3774,10 @@
 		</group>
 
 		<group showCycleRoutes="true">
-			<filter tag="lcn_network" value="lcn" color="#400000ff"/>
-			<filter tag="rcn_network" value="rcn" color="#40ff00ff"/>
-			<filter tag="ncn_network" value="ncn" color="#40ff4000"/>
-			<filter tag="icn_network" value="icn" color="#40ff0000"/>
+			<filter tag="lcn_network" value="lcn" color="$cycleRoutelcnColor"/>
+			<filter tag="rcn_network" value="rcn" color="$cycleRoutercnColor"/>
+			<filter tag="ncn_network" value="ncn" color="$cycleRoutencnColor"/>
+			<filter tag="icn_network" value="icn" color="$cycleRouteicnColor"/>
 			<groupFilter minzoom="10" cap="BUTT">
 				<filter maxzoom="10" strokeWidth="4"/>
 				<filter maxzoom="11" strokeWidth="5"/>
