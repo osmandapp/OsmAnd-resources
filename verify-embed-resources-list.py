@@ -111,12 +111,12 @@ if __name__=='__main__':
         with open(resourcesPath + "/embed-resources.list") as currentResourcesListFile:
             currentResourcesList = currentResourcesListFile.readlines()
         for resourceListLine in currentResourcesList:
-            resourceFileName = my_string.split(':')[0]
-            if not os.path.exists(resourceFileName):
+            resourceFileName = resourceListLine.split(':')[0]
+            if not os.path.exists(resourcesPath + resourceFileName):
                 shouldRegenerate = True
                 print("Missing resource file '%s', will regenerate resources list..." % (resourceFileName))
                 break
-            elif os.path.getmtime(resourceFileName) > os.path.getmtime(resourcesPath + "/embed-resources.list"):
+            elif os.path.getmtime(resourcesPath + resourceFileName) > os.path.getmtime(resourcesPath + "/embed-resources.list"):
                 shouldRegenerate = True
                 print("Resource file '%s' is newer than list, will regenerate resources list..." % (resourceFileName))
                 break
