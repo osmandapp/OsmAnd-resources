@@ -41,24 +41,14 @@ if (CMAKE_SHARED_LIBS_ALLOWED_ON_TARGET)
 	add_library(OsmAndCore_ResourcesBundle_shared SHARED
 		${OsmAndCore_ResourcesBundle_src})
 	add_dependencies(OsmAndCore_ResourcesBundle_shared
-		OsmAndCore_ResourcesBundle_VerifyPackagingList
-		OsmAndCore_shared)
-	target_link_libraries(OsmAndCore_ResourcesBundle_shared
-		LINK_PUBLIC 
-			OsmAndCore_shared
-	)
+		OsmAndCore_ResourcesBundle_VerifyPackagingList)
 endif()
 
 if (CMAKE_STATIC_LIBS_ALLOWED_ON_TARGET)
 	add_library(OsmAndCore_ResourcesBundle_static STATIC
 		${OsmAndCore_ResourcesBundle_src})
 	add_dependencies(OsmAndCore_ResourcesBundle_static
-		OsmAndCore_ResourcesBundle_VerifyPackagingList
-		OsmAndCore_static)
-	target_link_libraries(OsmAndCore_ResourcesBundle_static
-		LINK_PUBLIC 
-			OsmAndCore_static
-	)
+		OsmAndCore_ResourcesBundle_VerifyPackagingList)
 	if (CMAKE_COMPILER_FAMILY STREQUAL "msvc")
 		target_link_libraries(OsmAndCore_ResourcesBundle_static
 			LINK_PUBLIC
