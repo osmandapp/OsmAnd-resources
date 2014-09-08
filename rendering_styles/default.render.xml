@@ -262,6 +262,9 @@
 	<renderingConstant name="surfaceGradeVery_horribleColor" value="#fe5050"/>
 	<renderingConstant name="surfaceGradeImpassableColor" value="#ff1111"/>
 
+	<renderingConstant name="pedestrianModePavingStonesShader" value="paving_stones"/> <!-- used in UniRS -->
+	<renderingConstant name="pedestrianModePavingStonesShaderNight" value="paving_stones_night"/> <!-- used in UniRS -->
+
 	<renderingConstant name="subwayLineDefaultColorDay" value="#7b0000"/>
 	<renderingConstant name="subwayLineDefaultColorNight" value="#7b0000"/>
 
@@ -2432,15 +2435,23 @@
 				<filter additional="surface=sett"/>
 				<filter additional="surface=cobblestone"/>
 				<filter additional="surface=paving_stones"/>
-				<groupFilter shader="pedestrian_paved"/>
-				<groupFilter nightMode="true" shader="pedestrian_paved_night"/>
+				<groupFilter shader="paving_stones">
+					<filter appMode="pedestrian" shader="$pedestrianModePavingStonesShader"/>
+				</groupFilter>
+				<groupFilter nightMode="true" shader="paving_stones_night">
+					<filter appMode="pedestrian" shader="$pedestrianModePavingStonesShaderNight"/>
+				</groupFilter>
 			</group>
 			<group tag="highway" value="footway" minzoom="16">
 				<filter additional="surface=sett"/>
 				<filter additional="surface=cobblestone"/>
 				<filter additional="surface=paving_stones"/>
-				<groupFilter shader="pedestrian_paved"/>
-				<groupFilter nightMode="true" shader="pedestrian_paved_night"/>
+				<groupFilter shader="paving_stones">
+					<filter appMode="pedestrian" shader="$pedestrianModePavingStonesShader"/>
+				</groupFilter>
+				<groupFilter nightMode="true" shader="paving_stones_night">
+					<filter appMode="pedestrian" shader="$pedestrianModePavingStonesShaderNight"/>
+				</groupFilter>
 			</group>
 			<groupFilter minzoom="14"> <!-- this code is needed to allow pedestrian areas coloring in UniRS -->
 				<groupFilter color="$serviceRoadColor" color_2="$pedestrianRoadShadowColorDay" strokeWidth_2=":1"/>
