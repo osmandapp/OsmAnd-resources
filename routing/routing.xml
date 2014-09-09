@@ -18,21 +18,32 @@
 	<attribute name="planRoadDirection" value="0" />
 
 	<!-- 1.3 When there is a query to recalculate route, -->
-	<!-- recalculate smart using old route withot N-meters (0 recalculate fresh, default 10km)  -->
+	<!-- recalculate smart using old route within N-meters (0 recalculate fresh, default 10km)  -->
 	<attribute name="recalculateDistanceHelp" value="10000" />
 
 	<!-- HELP INFORMATION ABOUT FILE -->
-	<!-- 1) Highway defines acceptable route for routingProfile, speed in km/h (if it is not specified on level road) -->
-	<!-- 	priority is multiplicator for already passed road (consider it is an accelerator of the road) -->
-	<!-- 		<road tag="highway" value="living_street" speed="25" priority="0.5" dynamicPriority="0.5"/>  -->
-	<!-- 		<road tag="route" value="ferry" speed="15" priority="1.0" /> -->
-	<!-- 2) Obstacle defines a point of the road and how it could be passed by vehicle -->
-	<!-- 		penalty is measured in time and -1 means it could not be passed! -->
-	<!-- 		<obstacle tag="highway" value="traffic_signals" penalty="35"/>, penalty measured in seconds  -->
-	<!-- 3) Avoid describes what road should be completely avoided or passed with multiplied (decreased) priority  -->
-	<!-- 			<avoid tag="access" value="no" decreasedPriority="0.9"/> -->
-	<!-- The order of specialization matters only how it was supplied : -->
-	<!--  short_way, avoid_ferries, avoid_toll, [prefer_motorway | avoid_motorway], avoid_unpaved -->
+	<!--
+	   Description of blocks:
+	     1) <way attribute="access">
+	        Defines acceptable roads for routingProfile. Value of -1 means way way impassable, value of 1 means way passable.
+	     2) <way attribute="speed" type="speed">
+	        Defines speed limits on roads in km/h (if it is not specified on the road via maxspeed tag)
+	     3) <way attribute="priority">
+	     	Priority is a preference multiplicator for the road type (consider it is an accelerator of the road)
+	     4) <point attribute="obstacle">
+	        Obstacle defines a point of the road and how it could be passed by the vehicle
+	        Penalty is measured in seconds and a value of -1 means the obstacle cannot be passed!
+             5) <point attribute="obstacle_time">
+                Penalty for crossing a feature on the road. It is measured in seconds.
+	     		
+	   The order of specialization matters only how it was supplied :
+	      short_way, avoid_ferries, avoid_toll, [prefer_motorway | avoid_motorway], avoid_unpaved
+	   
+	   Conditional values (based on parameters) can be specified as:
+	      <select value="x" t="y" v="z">
+                <if param="parameter id"/>
+              </select>
+	-->
 	<routingProfile name="car" baseProfile="car" restrictionsAware="true" minDefaultSpeed="45.0" maxDefaultSpeed="130.0"
 			leftTurn="5" rightTurn="5" roundaboutTurn="5" onewayAware="true">
 	    <!--
