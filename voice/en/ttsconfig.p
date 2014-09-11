@@ -85,11 +85,12 @@ string('and_arrive_destination.ogg', 'and arrive at your destination ').
 string('reached_destination.ogg','you have reached your destination ').
 string('and_arrive_intermediate.ogg', 'and arrive at your waypoint ').
 string('reached_intermediate.ogg', 'you have reached your waypoint ').
-string('and_arrive_waypoint.ogg', 'and arrive at your GPX waypoint ').
-string('and_arrive_favorite.ogg', 'and arrive at your favorite ').
+%NEARBY POINTS
+string('and_arrive_waypoint.ogg', 'and arrive at GPX waypoint ').
+string('reached_waypoint.ogg', 'you have reached GPX waypoint ').
+string('and_arrive_favorite.ogg', 'and arrive at favorite ').
+string('reached_favorite.ogg', 'you have reached favorite ').
 string('and_arrive_poi.ogg', 'and arrive at POI ').
-string('reached_waypoint.ogg', 'you have reached your GPX waypoint ').
-string('reached_favorite.ogg', 'you have reached your favorite waypoint ').
 string('reached_poi.ogg', 'you have reached POI ').
 
 % OTHER PROMPTS

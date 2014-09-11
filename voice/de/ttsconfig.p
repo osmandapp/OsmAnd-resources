@@ -26,6 +26,7 @@ language('de').
 % (X) Name announcement for destination / intermediate / GPX waypoint arrival
 % (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
 % (X) word order checked
+% (X) Announcement of favorites, waypoints and pois along the route
 
 
 % ROUTE CALCULATED
@@ -89,9 +90,14 @@ string('and_arrive_destination.ogg', 'dann haben Sie Ihr Ziel ').
 string('reached_destination.ogg', 'Ziel ').
 string('and_arrive_intermediate.ogg', 'dann haben Sie Ihr Zwischenziel ').
 string('reached_intermediate.ogg', 'Zwischenziel ').
+string('reached.ogg', 'erreicht ').
+%NEARBY POINTS
 string('and_arrive_waypoint.ogg', 'dann haben Sie den Weegpunkt ').
 string('reached_waypoint.ogg', 'Weegpunkt ').
-string('reached.ogg', 'erreicht ').
+string('and_arrive_favorite.ogg', 'dann haben Sie Favorit ').
+string('reached_favorite.ogg', 'Favorit ').
+string('and_arrive_poi.ogg', 'dann haben Sie P O I ').
+string('reached_poi.ogg', 'P O I ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'Achtung, ').
@@ -201,6 +207,10 @@ and_arrive_intermediate(D) -- ['and_arrive_intermediate.ogg', Ds, 'reached.ogg']
 reached_intermediate(D) -- ['reached_intermediate.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
 and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
+and_arrive_favorite(D) -- ['and_arrive_favorite.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
+reached_favorite(D) -- ['reached_favorite.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
+and_arrive_poi(D) -- ['and_arrive_poi.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
+reached_poi(D) -- ['reached_poi.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
 
 route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'route_is2.ogg', 'time.ogg', T] :- distance(Dist, nominativ) -- D, time(Time) -- T.
 route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
