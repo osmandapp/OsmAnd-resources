@@ -1323,7 +1323,7 @@
 			<filter minzoom="14" tag="natural" value="grassland" textOrder="30"/>
 			<filter minzoom="9" tag="leisure" value="nature_reserve" textOrder="10"/>
 			<filter minzoom="9" tag="boundary" value="national_park" textOrder="11"/>
-			<filter minzoom="18" textSize="11" tag="natural" value="tree"/>
+			<filter minzoom="18" textSize="11" tag="natural" value="tree" textDy="5"/>
 			<filter minzoom="18" textSize="11" tag="natural" value="stone" textDy="4"/>
 			<filter minzoom="11" tag="natural" value="reef"/>
 			<groupFilter nightMode="true" textColor="#9fe39f" textHaloRadius="$textHaloRadiusNight" textHaloColor="#88444444"/>
@@ -1900,8 +1900,19 @@
 			<filter minzoom="14" tag="natural" value="waterfall" icon="waterway_waterfall"/>
 			<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
 		</group>
-		<filter minzoom="16" icon="natural_tree" tag="natural" value="tree" iconVisibleSize="7"/>
-		<filter minzoom="18" icon="natural_stone" tag="natural" value="stone" iconVisibleSize="7"/>
+		<switch icon="natural_tree" tag="natural" value="tree">
+			<case minzoom="16" maxzoom="17" iconVisibleSize="7"/>
+			<switch minzoom="18">
+				<case additional="leaf_type=broadleaved" icon="natural_tree_broadleaved"/>
+				<case additional="leaf_type=needleleaved" icon="natural_tree_needleleaved"/>
+				<case additional="leaf_type=leafless" icon="natural_tree_leafless"/>
+				<case additional="type=palm" icon="natural_tree_palm"/>
+				<case additional="type=cypress" icon="natural_tree_cypress"/>
+				<case icon="natural_tree_broadleaved"/>
+			</switch>
+		</switch>
+			
+		<case minzoom="18" icon="natural_stone" tag="natural" value="stone" iconVisibleSize="7"/>
 
 		<!-- Location dots -->
 		<group>

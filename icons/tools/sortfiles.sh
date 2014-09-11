@@ -52,6 +52,11 @@ mycp natural cave_entrance poi_cave.png
 mycp natural spring functional-icons_spring.png  #scale 0.375
 mycp natural spring2 water_spring.png  #scale 0.375
 mycp natural tree functional-icons_tree.png  #scale 0.25
+mycp natural tree_broadleaved functional-icons_tree_broadleaved.png
+mycp natural tree_needleleaved functional-icons_tree_needleleaved.png
+mycp natural tree_leafless functional-icons_tree_leafless.png
+mycp natural tree_palm functional-icons_tree_palm.png
+mycp natural tree_cypress functional-icons_tree_cypress.png
 mycp waterway waterfall water_waterfall.png  #scale 0.375
 mycp natural stone functional-icons_stone.png  #scale 0.375
 
