@@ -194,6 +194,9 @@
 	<renderingConstant name="woodColorDay" value="#aed1a0"/>
 	<renderingConstant name="forestColorDay" value="#9dd57c"/>
 	<renderingConstant name="woodColorNight" value="#001122"/>
+	<renderingConstant name="woodBroadleavedShader" value="wood_broadleaved"/> <!-- for UniRS -->
+	<renderingConstant name="woodNeedleleavedShader" value="wood_needleleaved"/>
+	<renderingConstant name="woodMixedShader" value="wood_mixed"/>
 
 	<!-- Open nature -->
 	<renderingConstant name="openNatureColorNight" value="#004333"/>
@@ -1894,15 +1897,15 @@
 		<filter minzoom="15" icon="natural_cave_entrance" tag="natural" value="cave_entrance" shield="white_gray_square_shield" iconOrder="85">
 			<filter nightMode="true" shield="gray_gray_square_shield"/>
 		</filter>
-		<group shield="white_blue_square_shield">
-			<filter minzoom="14" tag="natural" value="spring" icon="natural_spring2"/>
-			<filter minzoom="14" tag="waterway" value="waterfall" icon="waterway_waterfall"/>
-			<filter minzoom="14" tag="natural" value="waterfall" icon="waterway_waterfall"/>
-			<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
-		</group>
+		<switch shield="white_blue_square_shield">
+			<case minzoom="14" tag="natural" value="spring" icon="natural_spring2"/>
+			<case minzoom="14" tag="waterway" value="waterfall" icon="waterway_waterfall"/>
+			<case minzoom="14" tag="natural" value="waterfall" icon="waterway_waterfall"/>
+			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+		</switch>
 		<switch icon="natural_tree" tag="natural" value="tree">
 			<case minzoom="16" maxzoom="17" iconVisibleSize="7"/>
-			<switch minzoom="18">
+			<switch minzoom="18" iconVisibleSize="5">
 				<case additional="leaf_type=broadleaved" icon="natural_tree_broadleaved"/>
 				<case additional="leaf_type=needleleaved" icon="natural_tree_needleleaved"/>
 				<case additional="leaf_type=leafless" icon="natural_tree_leafless"/>
@@ -2671,13 +2674,19 @@
 
 
 			<!-- Forest, night color 001122 -->
-			<group>
-				<filter minzoom="6" color="$woodColorDay" tag="natural" value="wood"/>
-				<filter minzoom="6" color="$woodColorDay" tag="landuse" value="wood"/>
-				<filter minzoom="6" maxzoom="12" color="$forestColorDay" tag="landuse" value="forest"/>
-				<filter minzoom="13" shader="forest" tag="landuse" value="forest"/>
-				<groupFilter nightMode="true" color="$woodColorNight" shader=""/>
-			</group>
+			<switch>
+				<case minzoom="6" color="$woodColorDay" tag="natural" value="wood">
+					<case minzoom="13" additional="leaf_type=broadleaved" shader="$woodBroadleavedShader"/>
+					<case minzoom="13" additional="leaf_type=needleleaved" shader="$woodNeedleleavedShader"/>
+					<case minzoom="13" additional="leaf_type=mixed" shader="$woodMixedShader"/>
+				</case>
+				<case minzoom="6" color="$forestColorDay" tag="landuse" value="forest">
+					<case minzoom="13" additional="leaf_type=broadleaved" shader="forest_broadleaved"/>
+					<case minzoom="13" additional="leaf_type=needleleaved" shader="forest_needleleaved"/>
+					<case minzoom="13" additional="leaf_type=mixed" shader="forest_mixed"/>
+				</case>
+				<apply_if nightMode="true" color="$woodColorNight" shader=""/>
+			</switch>
 
 
 			<!-- Open nature, night color 004333 -->
