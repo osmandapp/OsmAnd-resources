@@ -92,12 +92,12 @@ string('and_arrive_intermediate.ogg', 'dann haben Sie Ihr Zwischenziel ').
 string('reached_intermediate.ogg', 'Zwischenziel ').
 string('reached.ogg', 'erreicht ').
 %NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'dann haben Sie den Weegpunkt ').
-string('reached_waypoint.ogg', 'Weegpunkt ').
-string('and_arrive_favorite.ogg', 'dann haben Sie Favorit ').
-string('reached_favorite.ogg', 'Favorit ').
-string('and_arrive_poi.ogg', 'dann haben Sie P O I ').
-string('reached_poi.ogg', 'P O I ').
+string('and_arrive_waypoint.ogg', 'dann passieren Sie Weegpunkt ').
+string('reached_waypoint.ogg', 'Sie passieren Weegpunkt ').
+string('and_arrive_favorite.ogg', 'dann passieren Sie Favorit ').
+string('reached_favorite.ogg', 'Sie passieren Favorit ').
+string('and_arrive_poi.ogg', 'dann passieren Sie P O I ').
+string('reached_poi.ogg', 'Sie passieren P O I ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'Achtung, ').
@@ -205,12 +205,12 @@ and_arrive_destination(D) -- ['and_arrive_destination.ogg', Ds, 'reached.ogg'] :
 reached_destination(D) -- ['reached_destination.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
 and_arrive_intermediate(D) -- ['and_arrive_intermediate.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
 reached_intermediate(D) -- ['reached_intermediate.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
-and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
-reached_waypoint(D) -- ['reached_waypoint.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
-and_arrive_favorite(D) -- ['and_arrive_favorite.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
-reached_favorite(D) -- ['reached_favorite.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
-and_arrive_poi(D) -- ['and_arrive_poi.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
-reached_poi(D) -- ['reached_poi.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
+and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
+reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
+and_arrive_favorite(D) -- ['and_arrive_favorite.ogg'|Ds] :- name(D, Ds).
+reached_favorite(D) -- ['reached_favorite.ogg'|Ds] :- name(D, Ds).
+and_arrive_poi(D) -- ['and_arrive_poi.ogg'|Ds] :- name(D, Ds).
+reached_poi(D) -- ['reached_poi.ogg'|Ds] :- name(D, Ds).
 
 route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'route_is2.ogg', 'time.ogg', T] :- distance(Dist, nominativ) -- D, time(Time) -- T.
 route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
