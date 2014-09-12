@@ -2791,27 +2791,35 @@
 
 			<!-- Special nature, with shaders -->
 			<!-- Looks like shaders are not working without color statement, hence color="#100000" introduced for now where missing -->
-			<filter nightMode="true" tag="natural" value="beach" minzoom="11" shader="beach2night"/>
-			<filter minzoom="11" shader="beach2" color="#100000" tag="natural" value="beach"/>
-			<group>
-				<filter minzoom="10" shader="marsh" color="#100000" tag="natural" value="wetland"/>
-				<filter minzoom="12" shader="marsh" color="#100000" tag="natural" value="marsh"/>
-				<filter minzoom="12" shader="mud" color="#100000" tag="natural" value="mud"/>
-				<filter minzoom="12" shader="scrub" color="#100000" tag="natural" value="scrub"/>
-				<filter minzoom="12" shader="orchard" color="#100000" tag="landuse" value="orchard"/>
-				<filter minzoom="12" shader="vineyard" color="#abdf96" tag="landuse" value="vineyard"/>
-				<filter minzoom="12" tag="landuse" value="cemetery" shader="cemetery">
-					<filter additional="religion=christian" shader="cemetery_christian"/>
-					<filter additional="religion=muslim" shader="cemetery_muslim"/>
-					<filter additional="religion=jewish" shader="cemetery_jewish"/>
-				</filter>
-				<filter minzoom="12" tag="amenity" value="grave_yard" shader="cemetery">
-					<filter additional="religion=christian" shader="cemetery_christian"/>
-					<filter additional="religion=muslim" shader="cemetery_muslim"/>
-					<filter additional="religion=jewish" shader="cemetery_jewish"/>
-				</filter>
-				<groupFilter nightMode="true" shader="" color="#334433"/>
-			</group>
+			<case minzoom="11" tag="natural" value="beach" shader="beach2">
+				<case nightMode="true" shader="beach2night"/>
+			</case>
+			<switch>
+				<case minzoom="10" shader="marsh" tag="natural" value="wetland"/>
+				<case minzoom="12" shader="marsh" tag="natural" value="marsh"/>
+				<case minzoom="12" shader="mud" tag="natural" value="mud"/>
+				<case minzoom="12" shader="scrub" tag="natural" value="scrub"/>
+				<case minzoom="12" shader="orchard2" tag="landuse" value="orchard">
+					<case additional="trees=olive_trees" shader="orchard_olive"/>
+					<case additional="trees=apple_trees" shader="orchard_apple"/>
+					<case additional="trees=almond_trees" shader="orchard_almond"/>
+					<case additional="trees=oil_palms" shader="orchard_oil_palms"/>
+					<case additional="trees=orange_trees" shader="orchard_orange"/>
+					<case additional="trees=banana_plants" shader="orchard_banana"/>
+				</case>
+				<case minzoom="12" shader="vineyard" color="#abdf96" tag="landuse" value="vineyard"/>
+				<case minzoom="12" tag="landuse" value="cemetery" shader="cemetery">
+					<case additional="religion=christian" shader="cemetery_christian"/>
+					<case additional="religion=muslim" shader="cemetery_muslim"/>
+					<case additional="religion=jewish" shader="cemetery_jewish"/>
+				</case>
+				<case minzoom="12" tag="amenity" value="grave_yard" shader="cemetery">
+					<case additional="religion=christian" shader="cemetery_christian"/>
+					<case additional="religion=muslim" shader="cemetery_muslim"/>
+					<case additional="religion=jewish" shader="cemetery_jewish"/>
+				</case>
+				<apply_if nightMode="true" shader="" color="#334433"/>
+			</switch>
 			<filter tag="natural" value="glacier" color="#100000">
 				<filter nightMode="true" minzoom="4" shader="glacier2night" color_2="#497caf" strokeWidth_2=":2" pathEffect_2="7_4"/>
 				<filter minzoom="4" shader="glacier2" color_2="#99ccff" strokeWidth_2=":2" pathEffect_2="7_4"/>
