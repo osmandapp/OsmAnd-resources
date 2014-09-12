@@ -46,7 +46,7 @@ class OsmAndCoreResourcesPacker(object):
         outputFile.write("        }\n")
         outputFile.write("#else\n")
         outputFile.write("#   define EMIT_GETTER(varname, accessor)\\\n")
-        outputFile.write("        extern \"C\" const void* __get__##varname() {\\\n")
+        outputFile.write("        extern \"C\" const void* __attribute__ ((visibility (\"default\"))) __get__##varname() {\\\n")
         outputFile.write("            return reinterpret_cast<const void*>(accessor varname);\\\n")
         outputFile.write("        }\n")
         outputFile.write("#endif // defined(OSMAND_COMPILER_FAMILY_msvc)\n")
