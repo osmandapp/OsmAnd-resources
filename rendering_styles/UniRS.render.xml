@@ -149,9 +149,9 @@
 	<renderingConstant name="woodColorDesaturatedDay" value="#b4d0a9"/>
 	<renderingConstant name="forestColorDesaturatedDay" value="#aac599"/>
 	<renderingConstant name="woodColorNight" value="#134025"/>
-	<renderingConstant name="woodBroadleavedShader" value="forest_broadleaved"/>
-	<renderingConstant name="woodNeedleleavedShader" value="forest_needleleaved"/>
-	<renderingConstant name="woodMixedShader" value="forest_mixed"/>
+	<renderingConstant name="woodBroadleavedShader" value="wood_broadleaved2"/>
+	<renderingConstant name="woodNeedleleavedShader" value="wood_needleleaved2"/>
+	<renderingConstant name="woodMixedShader" value="wood_mixed2"/>
 
 	<renderingConstant name="waterwayColorDay" value="#41cad3"/>
 	<renderingConstant name="waterwayColorNight" value="#330099"/>
@@ -419,13 +419,10 @@
 				<filter minzoom="6" color="#f6e3c7" tag="landuse" value="farmland"/>
 				<filter minzoom="6" color="#ddbf92" tag="landuse" value="farmyard"/>
 				<filter minzoom="6" color="#9d9d6c" tag="landuse" value="greenfield"/>
-				<group>
-					<filter minzoom="6" subwayMode="true" color="$woodColorDesaturatedDay" tag="natural" value="wood"/>
-					<filter minzoom="6" color="$woodColorDay" tag="natural" value="wood"/>
-					<filter minzoom="6" subwayMode="true" color="$forestColorDesaturatedDay" maxzoom="12" tag="landuse" value="forest"/>
-					<filter minzoom="6" maxzoom="12" color="$forestColorDay" tag="landuse" value="forest"/>
-					<filter minzoom="13" shader="forest" tag="landuse" value="forest"/>
-				</group>
+				<switch minzoom="6" subwayMode="true">
+					<case tag="natural" value="wood" color="$woodColorDesaturatedDay" shader=""/>
+					<case maxzoom="12" tag="landuse" value="forest" color="$forestColorDesaturatedDay" shader=""/>
+				</switch>
 				<!-- Changed look of leisure=track -->
 				<group>
 					<filter tag="leisure" value="track"/>
