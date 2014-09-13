@@ -1,4 +1,4 @@
-﻿% for turbo-prolog
+% for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog
 :- op(500, xfy,'--').
@@ -113,11 +113,57 @@ string('off_route.ogg', 'Sie weichen von der Route ab seit ').  % possibly "Sie 
 string('exceed_limit.ogg', 'Sie überschreiten die Höchstgeschwindigkeit ').
 
 % STREET NAME GRAMMAR
+
 string('onto.ogg', 'auf ').  % possibly "Richtung", better grammar, but is also misleading is some cases
 string('on.ogg', 'auf ').
 string('to.ogg', 'bis ').
 string('with.ogg', 'auf ').  % is used if you turn together with your current street, i.e. street name does not change. "mit " or "entlang" are possible alternatives, "auf" seems to be adequate in most instances. "über" is wrong here.
 string('to2.ogg', 'Richtung '). % "zu " gives wrong results in many cases
+
+% Utility: toLowerCaseStr(OldString,NewString)
+toLowerCaseStr(L1,L1):-  var(L1), !.
+toLowerCaseStr([],[]):-  !.
+toLowerCaseStr([H1|T1],[H2|T2]):- H1>64,H1<91, !, H2 is H1+32, toLowerCaseStr(T1,T2).
+toLowerCaseStr([H1|T1],[H1|T2]):- toLowerCaseStr(T1,T2).
+
+% Utility: toLowerCaseAto(OldString,NewString)
+toLowerCaseAto(A1,A2) :- atom_codes(A1,S1),toLowerCaseStr(S1,S2),atom_codes(A2,S2).
+
+% Utility: removeSemicolonStr(OldString,NewString)
+removeSemicolonStr(L1,L1):-  var(L1), !.
+removeSemicolonStr([],[]):-  !.
+removeSemicolonStr([H1|T1],[H2|T2]):- H1=59, !, H2 is 32, removeSemicolonStr(T1,T2).
+removeSemicolonStr([H1|T1],[H1|T2]):- removeSemicolonStr(T1,T2).
+
+% Utility: removeSemicolonAto(OldString,NewString)
+removeSemicolonAto(A1,A2) :- atom_codes(A1,S1),removeSemicolonStr(S1,S2),atom_codes(A2,S2).
+
+% Utility endsWithString(String, Match)
+endsWithString(String, Match) :- toLowerCaseAto(String,LString), atom_length(LString, SLeng), atom_length(Match, MLeng), sub_atom(LString, FPos, _, _, Match), FLeng is FPos + MLeng, SLeng =:= FLeng.
+
+isMale(Street) :-  endsWithString(Street, 'weg').
+isMale(Street) :-  endsWithString(Street, 'ring').
+isMale(Street) :-  endsWithString(Street, 'damm').
+
+isFemale(Street) :-  endsWithString(Street, 'strasse').
+isFemale(Street) :-  endsWithString(Street, 'straße').
+isFemale(Street) :-  endsWithString(Street, 'bahn').
+isFemale(Street) :-  endsWithString(Street, 'allee').
+isFemale(Street) :-  endsWithString(Street, '0').
+isFemale(Street) :-  endsWithString(Street, '1').
+isFemale(Street) :-  endsWithString(Street, '2').
+isFemale(Street) :-  endsWithString(Street, '3').
+isFemale(Street) :-  endsWithString(Street, '4').
+isFemale(Street) :-  endsWithString(Street, '5').
+isFemale(Street) :-  endsWithString(Street, '6').
+isFemale(Street) :-  endsWithString(Street, '7').
+isFemale(Street) :-  endsWithString(Street, '8').
+isFemale(Street) :-  endsWithString(Street, '9').
+
+street_is_male(voice([Ref, Name, Dest],_)) :- isMale(Name).
+street_is_female(voice([Ref, Name, Dest],_)) :- isFemale(Name).
+street_is_female(voice([Ref, Name, Dest],_)) :- isFemale(Ref).
+street_is_nothing(voice([Ref, Name, Dest],_)) :- not(isMale(Name)), not(isFemale(Name)).
 
 % DISTANCE UNIT SUPPORT
 string('meters_nominativ.ogg', 'meter ').
@@ -164,21 +210,25 @@ bear_left(_Street) -- ['left_keep.ogg'].
 bear_right(_Street) -- ['right_keep.ogg'].
 
 % cut_part_street(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
-cut_part_street(voice(['', '', Dest], _), Dest).
+cut_part_street(voice(['', '', Dest], _), DestClean) :- removeSemicolonAto(Dest,DestClean).
 % cut_part_street(voice(['', Name, _], _), Name). % not necessary
-cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
+cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Name, ' ', C1), atom_concat(C1, Ref, Concat).
+
 
 turn_street('', []).
 turn_street(voice(['','',''],_), []).
 turn_street(Street, ['to2.ogg', SName]) :- tts, Street = voice(['', '', D], _), cut_part_street(Street, SName).
-turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), cut_part_street(Street, SName).
-turn_street(Street, ['with.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), cut_part_street(Street, SName).
+turn_street(Street, ['onto.ogg', 'den ', SName]) :- tts, not(Street = voice(['', '', D], _)), street_is_male(Street), cut_part_street(Street, SName).
+turn_street(Street, ['onto.ogg', 'die ', SName]) :- tts, not(Street = voice(['', '', D], _)), street_is_female(Street), cut_part_street(Street, SName).
+turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice(['', '', D], _)), street_is_nothing(Street), cut_part_street(Street, SName).
 turn_street(_Street, []) :- not(tts).
 
 follow_street('', []).
 follow_street(voice(['','',''],_), []).
 follow_street(Street, ['to.ogg', SName]) :- tts, Street = voice(['', '', D], _), cut_part_street(Street, SName).
-follow_street(Street, ['to.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), cut_part_street(Street, SName).
+follow_street(Street, ['to.ogg', 'zum ', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), street_is_male(Street), cut_part_street(Street, SName).
+follow_street(Street, ['to.ogg', 'zur ', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), street_is_female(Street), cut_part_street(Street, SName).
+follow_street(Street, ['to.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), street_is_nothing(Street), cut_part_street(Street, SName).
 follow_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), cut_part_street(Street, SName).
 follow_street(_Street, []) :- not(tts).
 
