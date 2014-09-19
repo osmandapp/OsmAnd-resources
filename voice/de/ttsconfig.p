@@ -142,7 +142,7 @@ removeSemicolonAto(A1,A2) :- atom_codes(A1,S1),removeSemicolonStr(S1,S2),atom_co
 reverseStr([H|T], A, R) :- reverseStr(T, [H|A], R).
 reverseStr([], A, A).
 
-% Utility: toLowerCaseStr(OldString,NewString)
+% Utility: startsWithStr(String,Match)
 startsWithStr([],[]).
 startsWithStr([H1|T1],[]):- startsWithStr(T1,[]).
 startsWithStr([H1|T1],[H1|T2]):- startsWithStr(T1,T2).
