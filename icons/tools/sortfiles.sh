@@ -364,6 +364,7 @@ mycp power station_wind power_station_wind.png
 mycp power station_water2 power_station_water2.png
 mycp man_made chimney poi_chimney.png
 mycp tower_type communication poi_tower_communications.png
+mycp tower_type communication2 poi_tower_communications2.png
 mycp man_made water_tower poi_water_tower.png
 mycp man_made mineshaft poi_mine.png
 mycp man_made windmill poi_windmill.png

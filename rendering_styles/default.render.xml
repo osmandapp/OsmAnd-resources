@@ -730,8 +730,8 @@
 			<filter tag="fenced" value="yes" order="20"/>
 		</group>
 
-		<group objectType="3" point="false" order="5">
-<!--			<group order="5">
+<!--		<group objectType="3" point="false" order="5">
+			<group order="5">
 				<filter tag="natural" value="water"/>
 				<filter tag="waterway" value="riverbank"/>
 				<filter tag="aeroway" value="aerodrome"/>
@@ -778,8 +778,8 @@
 			<filter tag="natural" value="bay" order="5"/>
 			<filter tag="natural" value="land" order="2"/>
 			<filter tag="natural" value="coastline" order="1"/>
-			<filter tag="natural" value="" order="3"/> -->
-		</group>
+			<filter tag="natural" value="" order="3"/>
+		</group>-->
 	</order>
 
 
@@ -1903,7 +1903,7 @@
 			<case minzoom="14" tag="natural" value="waterfall" icon="waterway_waterfall"/>
 			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 		</switch>
-		<switch icon="natural_tree" tag="natural" value="tree">
+		<switch minzoom="16" icon="natural_tree" tag="natural" value="tree">
 			<case minzoom="16" maxzoom="17" iconVisibleSize="7"/>
 			<switch minzoom="18" iconVisibleSize="5">
 				<case additional="leaf_type=broadleaved" icon="natural_tree_broadleaved"/>
@@ -2342,7 +2342,10 @@
 			<groupFilter nightMode="true" shield="gray_gray_square_shield"/>
 		</group>
 
-		<filter minzoom="14" icon="power_tower2" tag="power" value="tower"/>
+		<case minzoom="14" icon="power_tower2" tag="power" value="tower" iconVisibleSize="3"/>
+		<case minzoom="16" icon="barrier_small_black_4" tag="power" value="pole">
+			<apply_if nightMode="true" icon="barrier_small_white_4"/>
+		</case>
 		<group shield="white_gray_square_shield">
 			<filter minzoom="17" icon="man_made_chimney" tag="man_made" value="chimney" iconOrder="100"/>
 			<filter minzoom="16" icon="man_made_windmill" tag="man_made" value="windmill"/>
@@ -2359,10 +2362,11 @@
 			<filter minzoom="17" icon="power_transformer2" tag="power" value="substation"/>
 			<groupFilter nightMode="true" shield="gray_gray_square_shield"/>
 		</group>
-		<group iconOrder="71">
-			<filter minzoom="16" icon="man_made_water_tower" tag="man_made" value="water_tower"/>
-			<filter minzoom="$towerCommunicationMinZoom" icon="tower_type_communication" tag="man_made" value="tower" additional="tower:type=communication" iconVisibleSize="48"/>
-		</group>
+		<switch>
+			<case minzoom="16" icon="man_made_water_tower" tag="man_made" value="water_tower"/>
+			<case minzoom="$towerCommunicationMinZoom" icon="tower_type_communication2" tag="man_made" value="tower" additional="tower:type=communication" iconVisibleSize="48"/>
+			<apply iconOrder="71"/>
+		</switch>
 
 		<!-- Food and Drink -->
 		<group shield="white_gray_square_shield">
@@ -2676,14 +2680,14 @@
 			<!-- Forest, night color 001122 -->
 			<switch>
 				<case minzoom="6" color="$woodColorDay" tag="natural" value="wood">
-					<case minzoom="13" additional="leaf_type=broadleaved" shader="$woodBroadleavedShader"/>
-					<case minzoom="13" additional="leaf_type=needleleaved" shader="$woodNeedleleavedShader"/>
-					<case minzoom="13" additional="leaf_type=mixed" shader="$woodMixedShader"/>
+					<case minzoom="15" additional="leaf_type=broadleaved" shader="$woodBroadleavedShader"/>
+					<case minzoom="15" additional="leaf_type=needleleaved" shader="$woodNeedleleavedShader"/>
+					<case minzoom="15" additional="leaf_type=mixed" shader="$woodMixedShader"/>
 				</case>
 				<case minzoom="6" color="$forestColorDay" tag="landuse" value="forest">
-					<case minzoom="13" additional="leaf_type=broadleaved" shader="forest_broadleaved"/>
-					<case minzoom="13" additional="leaf_type=needleleaved" shader="forest_needleleaved"/>
-					<case minzoom="13" additional="leaf_type=mixed" shader="forest_mixed"/>
+					<case minzoom="15" additional="leaf_type=broadleaved" shader="forest_broadleaved"/>
+					<case minzoom="15" additional="leaf_type=needleleaved" shader="forest_needleleaved"/>
+					<case minzoom="15" additional="leaf_type=mixed" shader="forest_mixed"/>
 				</case>
 				<apply_if nightMode="true" color="$woodColorNight" shader=""/>
 			</switch>
@@ -2799,19 +2803,25 @@
 				<case minzoom="12" shader="marsh" tag="natural" value="marsh"/>
 				<case minzoom="12" shader="mud" tag="natural" value="mud"/>
 				<case minzoom="12" shader="scrub" tag="natural" value="scrub"/>
-				<case minzoom="12" shader="orchard2" tag="landuse" value="orchard">
-					<case additional="trees=olive_trees" shader="orchard_olive"/>
-					<case additional="trees=apple_trees" shader="orchard_apple"/>
-					<case additional="trees=almond_trees" shader="orchard_almond"/>
-					<case additional="trees=oil_palms" shader="orchard_oil_palms"/>
-					<case additional="trees=orange_trees" shader="orchard_orange"/>
-					<case additional="trees=banana_plants" shader="orchard_banana"/>
+				<case minzoom="12" tag="landuse" value="orchard" shader="orchard">
+					<case minzoom="15" shader="orchard2">
+						<case additional="trees=olive_trees" shader="orchard_olive"/>
+						<case additional="trees=apple_trees" shader="orchard_apple"/>
+						<case additional="trees=almond_trees" shader="orchard_almond"/>
+						<case additional="trees=oil_palms" shader="orchard_oil_palms"/>
+						<case additional="trees=orange_trees" shader="orchard_orange"/>
+						<case additional="trees=banana_plants" shader="orchard_banana"/>
+					</case>
 				</case>
-				<case minzoom="12" shader="vineyard2" color="#abdf96" tag="landuse" value="vineyard"/>
-				<case minzoom="12" tag="landuse" value="cemetery" shader="cemetery">
-					<case additional="religion=christian" shader="cemetery_christian"/>
-					<case additional="religion=muslim" shader="cemetery_muslim"/>
-					<case additional="religion=jewish" shader="cemetery_jewish"/>
+				<case minzoom="12" tag="landuse" value="vineyard" shader="vineyard2_small">
+					<case minzoom="15" shader="vineyard2"/>
+				</case>
+				<case minzoom="12" tag="landuse" value="cemetery" shader="cemetery_small">
+					<case minzoom="15" shader="cemetery">
+						<case additional="religion=christian" shader="cemetery_christian"/>
+						<case additional="religion=muslim" shader="cemetery_muslim"/>
+						<case additional="religion=jewish" shader="cemetery_jewish"/>
+					</case>
 				</case>
 				<case minzoom="12" tag="amenity" value="grave_yard" shader="cemetery">
 					<case additional="religion=christian" shader="cemetery_christian"/>
@@ -2820,41 +2830,44 @@
 				</case>
 				<apply_if nightMode="true" shader="" color="#334433"/>
 			</switch>
-			<filter tag="natural" value="glacier" color="#100000">
-				<filter nightMode="true" minzoom="4" shader="glacier2night" color_2="#497caf" strokeWidth_2=":2" pathEffect_2="7_4"/>
-				<filter minzoom="4" shader="glacier2" color_2="#99ccff" strokeWidth_2=":2" pathEffect_2="7_4"/>
-				<groupFilter minzoom="4" maxzoom="8" strokeWidth_2=":1"/>
-				<groupFilter minzoom="9" maxzoom="9" strokeWidth_2=":1.7"/>
-			</filter>
-			<filter tag="natural" value="cliff" minzoom="16" color_2="#148c14">
-				<filter maxzoom="16" strokeWidth_2="5" pathEffect_2="1_7"/>
-				<filter maxzoom="17" strokeWidth_2="8" pathEffect_2="1_9"/>
-				<filter minzoom="18" strokeWidth_2="11" pathEffect_2="1_13"/>
-				<groupFilter nightMode="true" color_2="#6d8a6d"/>
-			</filter>
-			<filter tag="natural" value="crater" minzoom="11" color="#22653f3f" color_2="#886a6a">
-				<filter maxzoom="11" strokeWidth_2="0.6"/>
-				<filter maxzoom="12" strokeWidth_2="1"/>
-				<filter maxzoom="13" strokeWidth_2="2"/>
-				<filter maxzoom="14" strokeWidth_2="3"/>
-				<filter maxzoom="15" strokeWidth_2="4"/>
-				<filter minzoom="16" strokeWidth_2="4.6"/>
-				<groupFilter nightMode="true" color="#224e1111" color_2="#452121"/>
-			</filter>
-			<filter minzoom="14" shader="scree" tag="natural" value="scree" color="#77100000">
-				<filter nightMode="true" shader="" color="#33444444"/>
-			</filter>
-			<filter minzoom="14" shader="fell" tag="natural" value="fell" color="#88100000">
-				<filter nightMode="true" shader="" color="#33555555"/>
-			</filter>
-			<filter minzoom="14" shader="bare_rock" tag="natural" value="bare_rock" color="#99100000">
-				<filter nightMode="true" shader="" color="#55555555"/>
-			</filter>
-			<filter minzoom="11" shader="reef" tag="natural" value="reef" color="#99100000">
-				<filter nightMode="true" shader="" color="#55555555"/>
-			</filter>
-			<filter nightMode="true" minzoom="6" shader="nr2_night" color="#100000" color_2="#09821F" strokeWidth_2=":2" tag="leisure" value="nature_reserve"/>
-			<filter minzoom="6" shader="nr2" color="#100000" color_2="#6DE783" strokeWidth_2=":2" tag="leisure" value="nature_reserve"/>
+			<case tag="natural" value="glacier" strokeWidth_2=":2">
+				<case minzoom="4" shader="glacier2" color_2="#99ccff" pathEffect_2="7_4">
+					<case nightMode="true" shader="glacier2night" color_2="#497caf"/>
+				</case>
+				<apply_if minzoom="4" maxzoom="8" strokeWidth_2=":1"/>
+				<apply_if minzoom="9" maxzoom="9" strokeWidth_2=":1.7"/>
+			</case>
+			<case tag="natural" value="cliff" minzoom="16" color_2="#148c14">
+				<case maxzoom="16" strokeWidth_2="5" pathEffect_2="1_7"/>
+				<case maxzoom="17" strokeWidth_2="8" pathEffect_2="1_9"/>
+				<case minzoom="18" strokeWidth_2="11" pathEffect_2="1_13"/>
+				<apply_if nightMode="true" color_2="#6d8a6d"/>
+			</case>
+			<case tag="natural" value="crater" minzoom="11" color="#22653f3f" color_2="#886a6a">
+				<case maxzoom="11" strokeWidth_2="0.6"/>
+				<case maxzoom="12" strokeWidth_2="1"/>
+				<case maxzoom="13" strokeWidth_2="2"/>
+				<case maxzoom="14" strokeWidth_2="3"/>
+				<case maxzoom="15" strokeWidth_2="4"/>
+				<case minzoom="16" strokeWidth_2="4.6"/>
+				<apply_if nightMode="true" color="#224e1111" color_2="#452121"/>
+			</case>
+			<case minzoom="14" shader="scree" tag="natural" value="scree" color="#77100000">
+				<case nightMode="true" shader="" color="#33444444"/>
+			</case>
+			<case minzoom="14" shader="fell" tag="natural" value="fell" color="#88100000">
+				<case nightMode="true" shader="" color="#33555555"/>
+			</case>
+			<case minzoom="14" shader="bare_rock" tag="natural" value="bare_rock" color="#99100000">
+				<case nightMode="true" shader="" color="#55555555"/>
+			</case>
+			<case minzoom="11" shader="reef" tag="natural" value="reef" color="#99100000">
+				<case nightMode="true" shader="" color="#55555555"/>
+			</case>
+			<case minzoom="6" shader="nr2" color_2="#6DE783" strokeWidth_2=":2" tag="leisure" value="nature_reserve">
+				<case nightMode="true" shader="nr2_night" color_2="#09821F"/>
+				<apply_if maxzoom="9" strokeWidth_2=":1"/>
+			</case>
 			<filter nightMode="true" minzoom="10" shader="danger_night" color="#100000" color_2="#84ffa0c0" strokeWidth_2=":2" tag="landuse" value="military"/>
 			<filter minzoom="10" shader="danger" color="#100000" color_2="#c8ffa0c0" strokeWidth_2=":2" tag="landuse" value="military"/>
 			<filter nightMode="true" minzoom="7" shader="danger_night" color="#100000" color_2="#ffa0c0" strokeWidth_2=":2" tag="military" value="danger_area"/>
@@ -3197,7 +3210,7 @@
 
 					<group>
 						<filter tag="highway" value="footway"/>
-						<groupFilter tag="highway" value="footway" minzoom="14" strokeWidth="0.1" color="$null" color_4="$footwayColorDay" pathEffect_4="4_2">
+						<groupFilter minzoom="14" strokeWidth="0.1" color="$null" color_4="$footwayColorDay" pathEffect_4="4_2">
 		<!--					<filter appMode="pedestrian" moreDetailed="true" minzoom="14" strokeWidth_4="2"/>-->
 							<filter appMode="pedestrian" minzoom="15" strokeWidth_4="1.5"/>
 							<filter moreDetailed="true" minzoom="14" maxzoom="15" strokeWidth_4="1"/>
@@ -3245,7 +3258,7 @@
 					<groupFilter layer="-1" minzoom="16">
 						<filter nightMode="true" color__1="#ffffff" strokeWidth__1="$trackBridgeWidth" pathEffect__1="$trackTunnelPathEffect" color_0="#000000" strokeWidth_0="$trackBridgeInnerWidth"/>
 						<filter color__1="#000000" strokeWidth__1="$trackBridgeWidth" pathEffect__1="$trackTunnelPathEffect" color_0="#ffffff" strokeWidth_0="$trackBridgeInnerWidth"/>
-						<groupFilter moreDetailed="false" maxzoom="14" disable="true"/>
+<!--						<groupFilter moreDetailed="false" maxzoom="14" disable="true"/>-->
 					</groupFilter>
 					<groupFilter noPolygons="true" shadowRadius_4=":1" shadowColor_4="#999999"/>
 					<groupFilter appMode="bicycle" additional="bicycle=no" color_0="$null" color__1="$null"/>

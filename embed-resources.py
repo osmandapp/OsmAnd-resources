@@ -39,17 +39,28 @@ class OsmAndCoreResourcesPacker(object):
         outputFile.write("#define GETTER_NAME(varname) __get__##varname\\\n")
         outputFile.write("\n")
         outputFile.write("#if defined(OSMAND_COMPILER_FAMILY_msvc)\n")
+        outputFile.write("#   define BUNDLE_API __declspec(dllexport)\n")
+        outputFile.write("#elif defined(OSMAND_COMPILER_FAMILY_gcc) || defined(OSMAND_COMPILER_FAMILY_clang)\n")
+        outputFile.write("#   define BUNDLE_API __attribute__ ((visibility(\"default\"), used))\n")
+        outputFile.write("#else\n")
+        outputFile.write("#   define BUNDLE_API\n")
+        outputFile.write("#endif\n")
+        outputFile.write("\n")
+        outputFile.write("#if defined(OSMAND_COMPILER_FAMILY_msvc)\n")
         outputFile.write("#   define EMIT_GETTER(varname, accessor)\\\n")
         outputFile.write("        __pragma( comment ( linker, \"/INCLUDE:_\"___STRINGIFY( __get__##varname ) ) )\\\n")
-        outputFile.write("        extern \"C\" __declspec(dllexport) const void* __get__##varname() {\\\n")
+        outputFile.write("        BUNDLE_API const void* __get__##varname() {\\\n")
         outputFile.write("            return reinterpret_cast<const void*>(accessor varname);\\\n")
         outputFile.write("        }\n")
         outputFile.write("#else\n")
         outputFile.write("#   define EMIT_GETTER(varname, accessor)\\\n")
-        outputFile.write("        extern \"C\" const void* __attribute__ ((visibility (\"default\"))) __get__##varname() {\\\n")
+        outputFile.write("        BUNDLE_API const void* __get__##varname() {\\\n")
         outputFile.write("            return reinterpret_cast<const void*>(accessor varname);\\\n")
         outputFile.write("        }\n")
         outputFile.write("#endif // defined(OSMAND_COMPILER_FAMILY_msvc)\n")
+        outputFile.write("\n")
+        outputFile.write("extern \"C\" {\n")
+        outputFile.write("\n")
 
         # For each resource in collection, pack it
         for (idx, resource) in enumerate(resources):
@@ -75,7 +86,7 @@ class OsmAndCoreResourcesPacker(object):
             # Write content
             for (byteIdx, byteValue) in enumerate(packedContent):
                 if byteIdx % 16 == 0:
-                    outputFile.write("\n\t\t")
+                    outputFile.write("\n\t")
                 outputFile.write("0x%02x, " % (byteValue))
             outputFile.write("\n")
             outputFile.write("};\n")
@@ -91,14 +102,15 @@ class OsmAndCoreResourcesPacker(object):
         outputFile.write("const uint32_t __CoreResourcesEmbeddedBundle__ResourcesCount = %d;\n" % (len(resources)))
         outputFile.write("EMIT_GETTER(__CoreResourcesEmbeddedBundle__ResourcesCount, &)\n")
         outputFile.write("\n")
-        outputFile.write("#if defined(OSMAND_COMPILER_FAMILY_msvc)\n")
-        outputFile.write("extern \"C\" __declspec(dllexport) void __CoreResourcesEmbeddedBundle__FakeReferences() {\\\n")
+        outputFile.write("BUNDLE_API void __CoreResourcesEmbeddedBundle__FakeReferences() {\\\n")
         for (idx, resource) in enumerate(resources):
             outputFile.write("    GETTER_NAME(__CoreResourcesEmbeddedBundle__ResourceName_%d)();\n" % (idx))
             outputFile.write("    GETTER_NAME(__CoreResourcesEmbeddedBundle__ResourceData_%d)();\n" % (idx))
             outputFile.write("    GETTER_NAME(__CoreResourcesEmbeddedBundle__ResourceSize_%d)();\n" % (idx))
         outputFile.write("}\n")
-        outputFile.write("#endif // defined(OSMAND_COMPILER_FAMILY_msvc)\n")
+        outputFile.write("\n")
+        outputFile.write("} // extern \"C\"\n")
+        outputFile.write("\n")
         outputFile.flush()
         outputFile.close()
 
