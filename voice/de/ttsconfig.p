@@ -138,12 +138,22 @@ removeSemicolonStr([H1|T1],[H1|T2]):- removeSemicolonStr(T1,T2).
 % Utility: removeSemicolonAto(OldString,NewString)
 removeSemicolonAto(A1,A2) :- atom_codes(A1,S1),removeSemicolonStr(S1,S2),atom_codes(A2,S2).
 
+% Utility: reverseStr(OldStr,[],RevStr)
+reverseStr([H|T], A, R) :- reverseStr(T, [H|A], R).
+reverseStr([], A, A).
+
+% Utility: toLowerCaseStr(OldString,NewString)
+startsWithStr([],[]).
+startsWithStr([H1|T1],[]):- startsWithStr(T1,[]).
+startsWithStr([H1|T1],[H1|T2]):- startsWithStr(T1,T2).
+
 % Utility endsWithString(String, Match)
-endsWithString(String, Match) :- toLowerCaseAto(String,LString), atom_length(LString, SLeng), atom_length(Match, MLeng), sub_atom(LString, FPos, _, _, Match), FLeng is FPos + MLeng, SLeng =:= FLeng.
+endsWithString(A1,A2) :- atom_codes(A1,S1),atom_codes(A2,S2),reverseStr(S1,[],R1),reverseStr(S2,[],R2),toLowerCaseStr(R1,RL1),startsWithStr(RL1,R2).
 
 isMale(Street) :-  endsWithString(Street, 'weg').
 isMale(Street) :-  endsWithString(Street, 'ring').
 isMale(Street) :-  endsWithString(Street, 'damm').
+isMale(Street) :-  endsWithString(Street, 'platz').
 
 isFemale(Street) :-  endsWithString(Street, 'strasse').
 isFemale(Street) :-  endsWithString(Street, 'straße').
@@ -213,7 +223,6 @@ bear_right(_Street) -- ['right_keep.ogg'].
 cut_part_street(voice(['', '', Dest], _), DestClean) :- removeSemicolonAto(Dest,DestClean).
 % cut_part_street(voice(['', Name, _], _), Name). % not necessary
 cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Name, ' ', C1), atom_concat(C1, Ref, Concat).
-
 
 turn_street('', []).
 turn_street(voice(['','',''],_), []).
