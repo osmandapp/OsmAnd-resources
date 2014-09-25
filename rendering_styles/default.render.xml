@@ -2621,11 +2621,11 @@
 
 
 			<!-- Aeroway -->
-			<group color="#80cccccc">
-				<filter minzoom="12" tag="aeroway" value="aerodrome"/>
-				<filter minzoom="12" tag="aeroway" value="airport"/>
-				<groupFilter nightMode="true" color="#80a0a0a9"/>
-			</group>
+			<switch color="#80cccccc">
+				<case minzoom="12" tag="aeroway" value="aerodrome"/>
+				<case minzoom="12" tag="aeroway" value="airport"/>
+				<apply_if nightMode="true" color="#80a0a0a9"/>
+			</switch>
 			<filter minzoom="14" tag="aeroway" value="terminal" color="#cc99ff" color_2="#66444444" strokeWidth_2="0.3" >
 				<filter nightMode="true" color="#7951a2" color_2="#a0a0a0" strokeWidth_2="0.3"/>
 			</filter>
@@ -3138,214 +3138,215 @@
 				<groupFilter minzoom="19" strokeWidth_2="8:3" strokeWidth_3="8:3" pathEffect_3="7_23"/>
 			</group>
 			<!-- Next segment: Highways without grade distinction (cycleway, bridleway, black path): pathEffect 4_2. Base setting for highways with possible grade distinction but none specified (track, red footway): 5_5 -->
-			<group>
-				<group>
-					<group>
-						<filter tag="highway" value="track"/>
-						<groupFilter minzoom="12" strokeWidth="0.1" color="$null" color_4="$trackColor" pathEffect_4="4_2">
-		<!--					<filter appMode="pedestrian" moreDetailed="true" minzoom="14" strokeWidth_4="1.5"/>
-							<filter appMode="pedestrian" minzoom="15" strokeWidth_4="2"/>-->
-							<filter moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth_4="0.6" pathEffect_4=""/>
-							<filter moreDetailed="true" minzoom="13" maxzoom="13" strokeWidth_4="0.8" pathEffect_4=""/>
-							<filter minzoom="14" strokeWidth_4="$trackStrokeWidth">
-								<filter showSurfaces="true" strokeWidth_4="2"/>
-								<filter showSurfaceGrade="true" strokeWidth_4="2"/>
-							</filter>
-							<groupFilter>
+			<switch>
+				<switch>
+					<switch>
+						<case minzoom="12" tag="highway" value="track"/>
+						<apply_if strokeWidth="0.1" color="$null" color_4="$trackColor" pathEffect_4="4_2">
+							<case maxzoom="13" moreDetailed="true" pathEffect_4="">
+								<case maxzoom="12" strokeWidth_4="0.6"/>
+								<case maxzoom="13" strokeWidth_4="0.8"/>
+							</case>
+							<case minzoom="14" strokeWidth_4="$trackStrokeWidth">
+								<case showSurfaces="true" strokeWidth_4="2"/>
+								<case showSurfaceGrade="true" strokeWidth_4="2"/>
+							</case>
+							<apply>
 								<!-- Dash pattern: solid(100%), long-dashed(77%), short-dashed(63%), dash-dotted(50%), dotted(50%), dotted2(40%), short-dashed-narrow-spaced(66%) for not-specified -->
-								<filter additional="tracktype=grade1" pathEffect_4=""/>
-								<filter additional="tracktype=grade2" pathEffect_4="10_3"/>
-								<filter additional="tracktype=grade3" pathEffect_4="5_3"/>
-								<filter additional="tracktype=grade4" pathEffect_4="4_3_2_3"/>
-								<filter additional="tracktype=grade5" pathEffect_4="2_3"/>
-								<groupFilter minzoom="12" maxzoom="13" pathEffect_4=""/>
-							</groupFilter>
-							<groupFilter appMode="bicycle" additional="bicycle=no" color_4="#14996600"/>
-						</groupFilter>
-					</group>
+								<case additional="tracktype=grade1" pathEffect_4=""/>
+								<case additional="tracktype=grade2" pathEffect_4="10_3"/>
+								<case additional="tracktype=grade3" pathEffect_4="5_3"/>
+								<case additional="tracktype=grade4" pathEffect_4="4_3_2_3"/>
+								<case additional="tracktype=grade5" pathEffect_4="2_3"/>
+								<apply_if minzoom="12" maxzoom="13" pathEffect_4=""/>
+							</apply>
+							<apply_if appMode="bicycle" additional="bicycle=no" color_4="#14996600"/>
+						</apply_if>
+					</switch>
 
-					<group>
-						<filter tag="highway" value="path"/>
-						<groupFilter minzoom="12" strokeWidth="0.1" color="$null" color_4="$pathColorDay" pathEffect_4="$pathPathEffect">
-							<filter appMode="bicycle" additional="bicycle=designated" color_4="$cyclewayColorDay" pathEffect_4="4_2" minzoom="14" strokeWidth_4="2"/>
-							<filter moreDetailed="true" minzoom="12">
-								<filter maxzoom="12" strokeWidth_4="0.5" color_4="$pathLowZoomColorDay" pathEffect_4="$pathLowZoomPathEffect"/>
-								<filter appMode="pedestrian" minzoom="13" maxzoom="13" strokeWidth_4="0.7" color_4="$pathLowZoomColorDay" pathEffect_4="$pathLowZoomPathEffect"/>
-								<filter maxzoom="13" strokeWidth_4="0.6" color_4="$pathLowZoomColorDay" pathEffect_4="$pathLowZoomPathEffect"/>
-								<filter minzoom="14" strokeWidth_4="$pathStrokeWidth">
-									<filter showSurfaceGrade="true" strokeWidth_4="1.5"/>
-									<filter showSurfaces="true" strokeWidth_4="1.5"/>
-								</filter>
-							</filter>
-							<filter appMode="pedestrian" minzoom="15" strokeWidth_4="1.3"/>
-							<filter minzoom="14" strokeWidth_4="$pathStrokeWidth">
-								<filter showSurfaces="true" strokeWidth_4="2"/>
-								<filter showSurfaceGrade="true" strokeWidth_4="2"/>
-							</filter>
-							<groupFilter>
+					<switch>
+						<case minzoom="12" tag="highway" value="path"/>
+						<apply strokeWidth="0.1" color="$null" color_4="$pathColorDay" pathEffect_4="$pathPathEffect">
+							<case appMode="bicycle" additional="bicycle=designated" color_4="$cyclewayColorDay" pathEffect_4="4_2" minzoom="14" strokeWidth_4="2"/>
+							<case moreDetailed="true">
+								<case maxzoom="12" strokeWidth_4="0.5" color_4="$pathLowZoomColorDay" pathEffect_4="$pathLowZoomPathEffect"/>
+								<case appMode="pedestrian" minzoom="13" maxzoom="13" strokeWidth_4="0.7" color_4="$pathLowZoomColorDay" pathEffect_4="$pathLowZoomPathEffect"/>
+								<case maxzoom="13" strokeWidth_4="0.6" color_4="$pathLowZoomColorDay" pathEffect_4="$pathLowZoomPathEffect"/>
+								<case minzoom="14" strokeWidth_4="$pathStrokeWidth">
+									<apply_if showSurfaceGrade="true" strokeWidth_4="1.5"/>
+									<apply_if showSurfaces="true" strokeWidth_4="1.5"/>
+								</case>
+							</case>
+<!--							<case appMode="pedestrian" minzoom="15" strokeWidth_4="1.3"/>-->
+							<case minzoom="14" strokeWidth_4="$pathStrokeWidth">
+								<apply_if showSurfaces="true" strokeWidth_4="2"/>
+								<apply_if showSurfaceGrade="true" strokeWidth_4="2"/>
+							</case>
+							<apply>
 								<!-- Dash pattern: solid(100%), long-dashed(77%), short-dashed(63%), dash-dotted(50%), dotted(50%), dotted2(40%), short-dashed-narrow-spaced(66%) for not-specified -->
 								<!-- Also: switch color to 'pedestrian-red' to better indicate these special ratings in line with many alpine maps -->
-								<filter additional="sac_scale=hiking" color_4="$sacScaleColor" pathEffect_4=""/>
-								<filter additional="sac_scale=mountain_hiking" color_4="$sacScaleColor" pathEffect_4="10_3"/>
-								<filter additional="sac_scale=demanding_mountain_hiking" color_4="$sacScaleColor" pathEffect_4="5_3"/>
-								<filter additional="sac_scale=alpine_hiking" color_4="$sacScaleColor" pathEffect_4="4_3_2_3"/>
-								<filter additional="sac_scale=demanding_alpine_hiking" color_4="$sacScaleColor" pathEffect_4="3_3"/>
-								<filter additional="sac_scale=difficult_alpine_hiking" color_4="$sacScaleColor" pathEffect_4="2_3"/>
-							</groupFilter>
-							<groupFilter nightMode="true">
-								<filter minzoom="12" maxzoom="13" color_4="$pathLowZoomColorNight"/>
-								<filter color_4="$pathColorNight"/>
-							</groupFilter>
-							<groupFilter appMode="bicycle" additional="bicycle=no" color_4="#17000000"/>
-							<groupFilter nightMode="true" appMode="bicycle" additional="bicycle=no" color_4="#17787878"/>
-						</groupFilter>
-					</group>
+								<case additional="sac_scale=hiking" color_4="$sacScaleColor" pathEffect_4=""/>
+								<case additional="sac_scale=mountain_hiking" color_4="$sacScaleColor" pathEffect_4="10_3"/>
+								<case additional="sac_scale=demanding_mountain_hiking" color_4="$sacScaleColor" pathEffect_4="5_3"/>
+								<case additional="sac_scale=alpine_hiking" color_4="$sacScaleColor" pathEffect_4="4_3_2_3"/>
+								<case additional="sac_scale=demanding_alpine_hiking" color_4="$sacScaleColor" pathEffect_4="3_3"/>
+								<case additional="sac_scale=difficult_alpine_hiking" color_4="$sacScaleColor" pathEffect_4="2_3"/>
+							</apply>
+							<apply_if nightMode="true">
+								<apply_if minzoom="12" maxzoom="13" color_4="$pathLowZoomColorNight"/>
+								<apply color_4="$pathColorNight"/>
+							</apply_if>
+							<apply_if appMode="bicycle" additional="bicycle=no" color_4="#17000000">
+								<apply_if nightMode="true" color_4="#17787878"/>
+							</apply_if>
+						</apply>
+					</switch>
 
-					<group>
-						<filter tag="highway" value="cycleway"/>
-						<groupFilter minzoom="13" strokeWidth="0.1" color="$null" color_4="$cyclewayColorDay" pathEffect_4="$cyclewayPathEffect">
-							<filter appMode="bicycle" moreDetailed="true" minzoom="13" maxzoom="13" strokeWidth_4="1"/>
-							<filter appMode="bicycle" minzoom="14" strokeWidth_4="2"/>
+					<switch>
+						<case minzoom="13" tag="highway" value="cycleway"/>
+						<apply strokeWidth="0.1" color="$null" color_4="$cyclewayColorDay" pathEffect_4="$cyclewayPathEffect">
+							<case appMode="bicycle" moreDetailed="true" minzoom="13" maxzoom="13" strokeWidth_4="1"/>
+							<case appMode="bicycle" minzoom="14" strokeWidth_4="2"/>
 		<!--					<filter appMode="pedestrian" moreDetailed="true" minzoom="14" strokeWidth_4="2"/>-->
-							<filter minzoom="14" strokeWidth_4="$cyclewayStrokeWidth"/>
-						</groupFilter>
-					</group>
+							<case minzoom="14" strokeWidth_4="$cyclewayStrokeWidth"/>
+						</apply>
+					</switch>
 
-					<group>
-						<filter tag="highway" value="footway"/>
-						<groupFilter minzoom="14" strokeWidth="0.1" color="$null" color_4="$footwayColorDay" pathEffect_4="4_2">
+					<switch>
+						<case minzoom="14" tag="highway" value="footway"/>
+						<apply strokeWidth="0.1" color="$null" color_4="$footwayColorDay" pathEffect_4="4_2">
 		<!--					<filter appMode="pedestrian" moreDetailed="true" minzoom="14" strokeWidth_4="2"/>-->
-							<filter appMode="pedestrian" minzoom="15" strokeWidth_4="1.5"/>
-							<filter moreDetailed="true" minzoom="14" maxzoom="15" strokeWidth_4="1"/>
-							<filter minzoom="16" strokeWidth_4="$footwayStrokeWidth">
-								<filter showSurfaceGrade="true" strokeWidth_4="2"/>
-								<filter showSurfaces="true" strokeWidth_4="2"/>
-							</filter>
-							<groupFilter nightMode="true" color_4="$footwayColorNight"/>
-							<groupFilter appMode="bicycle" additional="bicycle=no" color_4="#20fa5073"/>
-						</groupFilter>
-					</group>
+							<case appMode="pedestrian" minzoom="15" strokeWidth_4="1.5"/>
+							<case moreDetailed="true" minzoom="14" maxzoom="15" strokeWidth_4="1"/>
+							<case minzoom="16" strokeWidth_4="$footwayStrokeWidth">
+								<apply_if showSurfaceGrade="true" strokeWidth_4="2"/>
+								<apply_if showSurfaces="true" strokeWidth_4="2"/>
+							</case>
+							<apply_if nightMode="true" color_4="$footwayColorNight"/>
+							<apply_if appMode="bicycle" additional="bicycle=no" color_4="#20fa5073"/>
+						</apply>
+					</switch>
 
-					<group>
-						<filter tag="highway" value="steps"/>
-						<groupFilter minzoom="14" strokeWidth="0.1" color="$null" color_4="$footwayColorDay" pathEffect_4="1_2">
-							<filter appMode="pedestrian" minzoom="15" strokeWidth_4="4" pathEffect_4="2_2"/>
-							<filter minzoom="16" strokeWidth_4="4"/>
-							<groupFilter nightMode="true" color_4="$footwayColorNight"/>
-							<groupFilter appMode="bicycle" additional="bicycle=no" color_4="#17fa5073"/>
-						</groupFilter>
-					</group>
+					<switch>
+						<case minzoom="14" tag="highway" value="steps"/>
+						<apply strokeWidth="0.1" color="$null" color_4="$footwayColorDay" pathEffect_4="1_2">
+							<case appMode="pedestrian" minzoom="15" strokeWidth_4="4" pathEffect_4="2_2"/>
+							<case minzoom="16" strokeWidth_4="4"/>
+							<apply_if nightMode="true" color_4="$footwayColorNight"/>
+							<apply_if appMode="bicycle" additional="bicycle=no" color_4="#17fa5073"/>
+						</apply>
+					</switch>
 
-					<group>
-						<filter tag="highway" value="bridleway"/>
-						<groupFilter minzoom="12" strokeWidth="0.1" color="$null" color_4="#339900" pathEffect_4="4_2">
-							<filter appMode="pedestrian" test="$hmRendered" minzoom="14" strokeWidth_4="2"/>
-							<filter appMode="pedestrian" minzoom="15" strokeWidth_4="2"/>
-							<filter moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth_4="0.5"/>
-							<filter moreDetailed="true" minzoom="13" strokeWidth_4="1"/>
-							<filter minzoom="16" strokeWidth_4="1">
-								<filter showSurfaceGrade="true" strokeWidth_4="2"/>
-								<filter showSurfaces="true" strokeWidth_4="2"/>
-							</filter>
-							<groupFilter appMode="bicycle" additional="bicycle=no" color_4="#17339900"/>
-						</groupFilter>
-					</group>
+					<switch>
+						<case minzoom="12" tag="highway" value="bridleway"/>
+						<apply strokeWidth="0.1" color="$null" color_4="#339900" pathEffect_4="4_2">
+							<case appMode="pedestrian" test="$hmRendered" minzoom="14" strokeWidth_4="2"/>
+							<case appMode="pedestrian" minzoom="15" strokeWidth_4="2"/>
+							<case moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth_4="0.5"/>
+							<case moreDetailed="true" minzoom="13" strokeWidth_4="1"/>
+							<case minzoom="16" strokeWidth_4="1">
+								<apply_if showSurfaceGrade="true" strokeWidth_4="2"/>
+								<apply_if showSurfaces="true" strokeWidth_4="2"/>
+							</case>
+							<apply_if appMode="bicycle" additional="bicycle=no" color_4="#17339900"/>
+						</apply>
+					</switch>
 
 					<!-- Bridges -->
-					<groupFilter layer="1" minzoom="16">
-						<filter nightMode="true" color__1="#ffffff" strokeWidth__1="$trackBridgeWidth" color_0="#000000" strokeWidth_0="$trackBridgeInnerWidth"/>
-						<filter color__1="#000000" strokeWidth__1="$trackBridgeWidth" color_0="#ffffff" strokeWidth_0="$trackBridgeInnerWidth"/>
+					<apply_if layer="1" minzoom="16">
+						<case nightMode="true" color__1="#ffffff" strokeWidth__1="$trackBridgeWidth" color_0="#000000" strokeWidth_0="$trackBridgeInnerWidth"/>
+						<case color__1="#000000" strokeWidth__1="$trackBridgeWidth" color_0="#ffffff" strokeWidth_0="$trackBridgeInnerWidth"/>
 <!--						<groupFilter moreDetailed="false" maxzoom="14" disable="true"/>-->
-					</groupFilter>
+					</apply_if>
 					<!-- Tunnels -->
-					<groupFilter layer="-1" minzoom="16">
-						<filter nightMode="true" color__1="#ffffff" strokeWidth__1="$trackBridgeWidth" pathEffect__1="$trackTunnelPathEffect" color_0="#000000" strokeWidth_0="$trackBridgeInnerWidth"/>
-						<filter color__1="#000000" strokeWidth__1="$trackBridgeWidth" pathEffect__1="$trackTunnelPathEffect" color_0="#ffffff" strokeWidth_0="$trackBridgeInnerWidth"/>
+					<apply_if layer="-1" minzoom="16">
+						<case nightMode="true" color__1="#ffffff" strokeWidth__1="$trackBridgeWidth" pathEffect__1="$trackTunnelPathEffect" color_0="#000000" strokeWidth_0="$trackBridgeInnerWidth"/>
+						<case color__1="#000000" strokeWidth__1="$trackBridgeWidth" pathEffect__1="$trackTunnelPathEffect" color_0="#ffffff" strokeWidth_0="$trackBridgeInnerWidth"/>
 <!--						<groupFilter moreDetailed="false" maxzoom="14" disable="true"/>-->
-					</groupFilter>
-					<groupFilter noPolygons="true" shadowRadius_4=":1" shadowColor_4="#999999"/>
-					<groupFilter appMode="bicycle" additional="bicycle=no" color_0="$null" color__1="$null"/>
-				</group>
+					</apply_if>
+<!--					<groupFilter noPolygons="true" shadowRadius=":1" shadowColor="#999999"/>--> <!-- Needs a fix! -->
+					<apply_if appMode="bicycle" additional="bicycle=no" color_0="$null" color__1="$null"/>
+				</switch>
 				<!-- Assign strokeWidth and pathEffect for surface, smoothness and access -->
-				<groupFilter moreDetailed="true" minzoom="14" maxzoom="14" strokeWidth_2="6" strokeWidth_3="6" pathEffect_3="3_11"/>
-				<groupFilter minzoom="15" maxzoom="15" strokeWidth_2="6" strokeWidth_3="6" pathEffect_3="5_13"/>
-				<groupFilter minzoom="16" maxzoom="16" strokeWidth_2="7.5" strokeWidth_3="7.5" pathEffect_3="5_15"/>
-				<groupFilter minzoom="17" maxzoom="17" strokeWidth_2="9" strokeWidth_3="9" pathEffect_3="6_17"/>
-				<groupFilter minzoom="18" maxzoom="18" strokeWidth_2="10" strokeWidth_3="10" pathEffect_3="6_20"/>
-				<groupFilter minzoom="19" strokeWidth_2="13" strokeWidth_3="13" pathEffect_3="7_23"/>
-			</group>
-			<groupFilter showSurfaceGrade="true" minzoom="14" cap_2="BUTT">
-				<filter additional="surface:grade=3" color_2="$surfaceGradeGoodColor"/>
-				<filter additional="surface:grade=2" color_2="$surfaceGradeIntermediateColor"/>
-				<filter additional="smoothness=excellent" color_2="$surfaceGradeExcellentColor"/>
-				<filter additional="smoothness=good" color_2="$surfaceGradeGoodColor"/>
-				<filter additional="smoothness=intermediate" color_2="$surfaceGradeIntermediateColor"/>
+				<apply_if moreDetailed="true" minzoom="14" maxzoom="14" strokeWidth_2="6" strokeWidth_3="6" pathEffect_3="3_11"/>
+				<apply_if minzoom="15" maxzoom="15" strokeWidth_2="6" strokeWidth_3="6" pathEffect_3="5_13"/>
+				<apply_if minzoom="16" maxzoom="16" strokeWidth_2="7.5" strokeWidth_3="7.5" pathEffect_3="5_15"/>
+				<apply_if minzoom="17" maxzoom="17" strokeWidth_2="9" strokeWidth_3="9" pathEffect_3="6_17"/>
+				<apply_if minzoom="18" maxzoom="18" strokeWidth_2="10" strokeWidth_3="10" pathEffect_3="6_20"/>
+				<apply_if minzoom="19" strokeWidth_2="13" strokeWidth_3="13" pathEffect_3="7_23"/>
+			</switch>
+			<apply_if showSurfaceGrade="true" minzoom="14" cap_2="BUTT">
+				<case additional="surface:grade=3" color_2="$surfaceGradeGoodColor"/>
+				<case additional="surface:grade=2" color_2="$surfaceGradeIntermediateColor"/>
+				<case additional="smoothness=excellent" color_2="$surfaceGradeExcellentColor"/>
+				<case additional="smoothness=good" color_2="$surfaceGradeGoodColor"/>
+				<case additional="smoothness=intermediate" color_2="$surfaceGradeIntermediateColor"/>
 
-				<filter additional="surface:grade=1" color_2="$surfaceGradeVery_badColor"/>
-				<filter additional="surface:grade=0" color_2="$surfaceGradeHorribleColor"/>
-				<filter additional="smoothness=bad" color_2="$surfaceGradeBadColor"/>
-				<filter additional="smoothness=very_bad" color_2="$surfaceGradeVery_badColor"/>
-				<filter additional="smoothness=horrible" color_2="$surfaceGradeHorribleColor"/>
-				<filter additional="smoothness=very_horrible" color_2="$surfaceGradeVery_horribleColor"/>
-				<filter additional="smoothness=impassable" color_2="$surfaceGradeImpassableColor"/>
-			</groupFilter>
-			<groupFilter showSurfaces="true" minzoom="14" cap_3="SQUARE">
-				<filter additional="surface=unpaved" color_3="$surfaceGroundColor"/>
-				<filter additional="surface=sand" color_3="$surfaceSandColor"/>
-				<filter additional="surface=grass" color_3="$surfaceGrassColor"/>
-				<filter additional="surface=grass_paver" color_3="$surfaceGrass_paverColor"/>
-				<filter additional="surface=ground" color_3="$surfaceGroundColor"/>
-				<filter additional="surface=dirt" color_3="$surfaceDirtColor"/>
-				<filter additional="surface=mud" color_3="$surfaceMudColor"/>
-				<filter additional="surface=ice" color_3="$surfaceIceColor"/>
-				<filter additional="surface=salt" color_3="$surfaceSaltColor"/>
-				<filter additional="surface=snow" color_3="$surfaceIceColor"/>
+				<case additional="surface:grade=1" color_2="$surfaceGradeVery_badColor"/>
+				<case additional="surface:grade=0" color_2="$surfaceGradeHorribleColor"/>
+				<case additional="smoothness=bad" color_2="$surfaceGradeBadColor"/>
+				<case additional="smoothness=very_bad" color_2="$surfaceGradeVery_badColor"/>
+				<case additional="smoothness=horrible" color_2="$surfaceGradeHorribleColor"/>
+				<case additional="smoothness=very_horrible" color_2="$surfaceGradeVery_horribleColor"/>
+				<case additional="smoothness=impassable" color_2="$surfaceGradeImpassableColor"/>
+			</apply_if>
+			<apply_if showSurfaces="true" minzoom="14" cap_3="SQUARE">
+				<case additional="surface=unpaved" color_3="$surfaceGroundColor"/>
+				<case additional="surface=sand" color_3="$surfaceSandColor"/>
+				<case additional="surface=grass" color_3="$surfaceGrassColor"/>
+				<case additional="surface=grass_paver" color_3="$surfaceGrass_paverColor"/>
+				<case additional="surface=ground" color_3="$surfaceGroundColor"/>
+				<case additional="surface=dirt" color_3="$surfaceDirtColor"/>
+				<case additional="surface=mud" color_3="$surfaceMudColor"/>
+				<case additional="surface=ice" color_3="$surfaceIceColor"/>
+				<case additional="surface=salt" color_3="$surfaceSaltColor"/>
+				<case additional="surface=snow" color_3="$surfaceIceColor"/>
 
-				<filter additional="surface=asphalt" color_3="$surfaceAsphaltColor"/>
-				<filter additional="surface=paved" color_3="$surfacePavedColor"/>
-				<filter additional="surface=concrete" color_3="$surfacePavedColor"/>
-				<filter additional="surface=sett" color_3="$surfacePavedColor"/>
-				<filter additional="surface=cobblestone" color_3="$surfacePavedColor"/>
-				<filter additional="surface=paving_stones" color_3="$surfacePavedColor"/>
+				<case additional="surface=asphalt" color_3="$surfaceAsphaltColor"/>
+				<case additional="surface=paved" color_3="$surfacePavedColor"/>
+				<case additional="surface=concrete" color_3="$surfacePavedColor"/>
+				<case additional="surface=sett" color_3="$surfacePavedColor"/>
+				<case additional="surface=cobblestone" color_3="$surfacePavedColor"/>
+				<case additional="surface=paving_stones" color_3="$surfacePavedColor"/>
 
-				<filter additional="surface=pebblestone" color_3="$surfacePavedColor"/>
-				<filter additional="surface=stone" color_3="$surfacePavedColor"/>
-				<filter additional="surface=metal" color_3="$surfacePavedColor"/>
-				<filter additional="surface=wood" color_3="$surfacePavedColor"/>
-				<filter additional="surface=gravel" color_3="$surfaceLooselyPavedColor"/>
-				<filter additional="surface=fine_gravel" color_3="$surfaceLooselyPavedColor"/>
-				<filter additional="surface=compacted" color_3="$surfaceLooselyPavedColor"/>
-			</groupFilter>
-			<groupFilter showAccess="true">
-				<filter additional="access=private" color_3="$accessPrivateColor" color_2="$null" cap_3="ROUND">
-					<filter appMode="bicycle" additional="bicycle=yes" color_3="$null"/>
-					<filter appMode="pedestrian" additional="foot=yes" color_3="$null"/>
-					<filter nightMode="true" color_3="$accessPrivateColorNight"/>
-				</filter>
-				<filter additional="access=no" color_3="$accessPrivateColor" color_2="$null" cap_3="ROUND">
-					<filter appMode="bicycle" additional="bicycle=yes" color_3="$null"/>
-					<filter appMode="pedestrian" additional="foot=yes" color_3="$null"/>
-					<filter nightMode="true" color_3="$accessPrivateColorNight"/>
-				</filter>
-				<filter additional="access=destination" color_3="$accessDestinationColor" color_2="$null" cap_3="ROUND">
-					<filter nightMode="true" color_3="$accessDestinationColorNight"/>
-				</filter>
-				<filter additional="access=permissive" color_3="$accessPermissiveColor" color_2="$null" cap_3="ROUND">
-					<filter nightMode="true" color_3="$accessPermissiveColorNight"/>
-				</filter>
-				<filter additional="access=agricultural" color_3="$accessAgriculturalColor" color_2="$null" cap_3="ROUND">
-					<filter nightMode="true" color_3="$accessAgriculturalColorNight"/>
-				</filter>
-				<filter additional="access=forestry" color_3="$accessForestryColor" color_2="$null" cap_3="ROUND">
-					<filter nightMode="true" color_3="$accessForestryColorNight"/>
-				</filter>
-				<filter additional="access=customers" color_3="$accessCustomersColor" color_2="$null" cap_3="ROUND">
-					<filter nightMode="true" color_3="$accessCustomersColorNight"/>
-				</filter>
-				<filter additional="access=delivery" color_3="$accessDeliveryColor" color_2="$null" cap_3="ROUND">
-					<filter nightMode="true" color_3="$accessDeliveryColorNight"/>
-				</filter>
-			</groupFilter>
+				<case additional="surface=pebblestone" color_3="$surfacePavedColor"/>
+				<case additional="surface=stone" color_3="$surfacePavedColor"/>
+				<case additional="surface=metal" color_3="$surfacePavedColor"/>
+				<case additional="surface=wood" color_3="$surfacePavedColor"/>
+				<case additional="surface=gravel" color_3="$surfaceLooselyPavedColor"/>
+				<case additional="surface=fine_gravel" color_3="$surfaceLooselyPavedColor"/>
+				<case additional="surface=compacted" color_3="$surfaceLooselyPavedColor"/>
+			</apply_if>
+			<apply_if showAccess="true">
+				<case additional="access=private" color_3="$accessPrivateColor" color_2="$null" cap_3="ROUND">
+					<case appMode="bicycle" additional="bicycle=yes" color_3="$null"/>
+					<case appMode="pedestrian" additional="foot=yes" color_3="$null"/>
+					<apply_if nightMode="true" color_3="$accessPrivateColorNight"/>
+				</case>
+				<case additional="access=no" color_3="$accessPrivateColor" color_2="$null" cap_3="ROUND">
+					<case appMode="bicycle" additional="bicycle=yes" color_3="$null"/>
+					<case appMode="pedestrian" additional="foot=yes" color_3="$null"/>
+					<apply_if nightMode="true" color_3="$accessPrivateColorNight"/>
+				</case>
+				<case additional="access=destination" color_3="$accessDestinationColor" color_2="$null" cap_3="ROUND">
+					<apply_if nightMode="true" color_3="$accessDestinationColorNight"/>
+				</case>
+				<case additional="access=permissive" color_3="$accessPermissiveColor" color_2="$null" cap_3="ROUND">
+					<apply_if nightMode="true" color_3="$accessPermissiveColorNight"/>
+				</case>
+				<case additional="access=agricultural" color_3="$accessAgriculturalColor" color_2="$null" cap_3="ROUND">
+					<apply_if nightMode="true" color_3="$accessAgriculturalColorNight"/>
+				</case>
+				<case additional="access=forestry" color_3="$accessForestryColor" color_2="$null" cap_3="ROUND">
+					<apply_if nightMode="true" color_3="$accessForestryColorNight"/>
+				</case>
+				<case additional="access=customers" color_3="$accessCustomersColor" color_2="$null" cap_3="ROUND">
+					<apply_if nightMode="true" color_3="$accessCustomersColorNight"/>
+				</case>
+				<case additional="access=delivery" color_3="$accessDeliveryColor" color_2="$null" cap_3="ROUND">
+					<apply_if nightMode="true" color_3="$accessDeliveryColorNight"/>
+				</case>
+			</apply_if>
 		</group>
 
 		<group minzoom="14">
