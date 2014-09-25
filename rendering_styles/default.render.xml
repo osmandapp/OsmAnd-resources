@@ -219,8 +219,10 @@
 	<renderingConstant name="parkColorDayStroke" value="#9db487"/>
 	<renderingConstant name="golfCourseColorDay" value="#b5e3b5"/>
 	<renderingConstant name="golfCourseColorDayStroke" value="#9db487"/>
-	<renderingConstant name="leisureTrackColorDay" value="#74dcba"/>
-	<renderingConstant name="leisureTrackColorDayStroke" value="#888888"/>
+	<renderingConstant name="leisureTrackColorDay" value="#6674dcba"/>
+	<renderingConstant name="leisureTrackColorNight" value="#33599682"/>
+	<renderingConstant name="leisureTrackColorDayStroke" value="#74dcba"/>
+	<renderingConstant name="leisureTrackColorNightStroke" value="#599682"/>
 	<renderingConstant name="pitchColorDay" value="#8ad3af"/>
 	<renderingConstant name="pitchColorDayStroke" value="#888888"/>
 	<renderingConstant name="playgroundColorDay" value="#ccfff1"/>
@@ -2476,22 +2478,17 @@
 				</apply_if>
 			</apply_if>
 			<apply_if appMode="car" shader="" color="#f0e0d8" color_2="#44aaaaaa">
-				<case tag="highway" value="pedestrian"/>
-				<case tag="highway" value="footway"/>
 				<apply_if nightMode="true" color="#353535" color_2="#77666666"/>
 			</apply_if>
 		</switch>
 
-		<group>
-			<filter tag="highway" value="service"/>
-			<filter tag="highway" value="services"/>
-			<filter tag="highway" value="rest_area"/>
-			<groupFilter>
-				<filter minzoom="14" color="#ececec" color_2="#969696" strokeWidth_2=":1"/>
-				<filter test="$hmRendered" minzoom="13" color="#ececec" color_2="#969696" strokeWidth_2=":1"/>
-			</groupFilter>
-			<groupFilter nightMode="true" color="#727272" color_2="#464646"/>
-		</group>
+		<switch>
+			<case tag="highway" value="service"/>
+			<case tag="highway" value="services"/>
+			<case tag="highway" value="rest_area"/>
+			<apply_if minzoom="14" color="#ececec" color_2="#969696" strokeWidth_2=":1"/>
+			<apply_if nightMode="true" color="#727272" color_2="#464646"/>
+		</switch>
 
 		<group>
 			<filter tag="highway" value="track"/>
@@ -2711,7 +2708,18 @@
 				<filter minzoom="8" color="$parkColorDay" color_2="$parkColorDayStroke" strokeWidth_2=":1" tag="natural" value="park"/>
 				<filter minzoom="8" color="$parkColorDay" color_2="$parkColorDayStroke" strokeWidth_2=":1" tag="leisure" value="park"/>
 				<filter minzoom="8" color="$golfCourseColorDay" color_2="$golfCourseColorDayStroke" strokeWidth_2=":1" tag="leisure" value="golf_course"/>
-				<filter minzoom="12" color="$leisureTrackColorDay" color_2="$leisureTrackColorDayStroke" strokeWidth_2=":1" tag="leisure" value="track"/>
+				<case minzoom="12" color="$leisureTrackColorDay" color_2="$leisureTrackColorDayStroke" strokeWidth_2=":1" tag="leisure" value="track">
+					<apply color="$leisureTrackColorDay" color_2="$leisureTrackColorDayStroke" shadowRadius="5" shadowColor="#ff0000">
+						<case minzoom="12" maxzoom="12" strokeWidth_2=":1"/>
+						<case minzoom="13" maxzoom="13" strokeWidth_2=":2"/>
+						<case minzoom="14" maxzoom="14" strokeWidth_2=":3"/>
+						<case minzoom="15" maxzoom="15" strokeWidth_2=":4"/>
+						<case minzoom="16" maxzoom="16" strokeWidth_2=":6"/>
+						<case minzoom="17" maxzoom="17" strokeWidth_2=":10"/>
+						<case minzoom="18" strokeWidth_2=":13"/>
+					</apply>
+					<apply_if nightMode="true" color="$leisureTrackColorNight" color_2="$leisureTrackColorNightStroke"/>
+				</case>
 				<filter minzoom="12" color="$pitchColorDay" color_2="$pitchColorDayStroke" strokeWidth_2=":1" tag="leisure" value="pitch"/>
 				<filter minzoom="12" color="$recreationGroundColorDayStroke" tag="leisure" value="recreation_ground"/>
 				<filter minzoom="15" color="$playgroundColorDay" tag="leisure" value="playground"/>

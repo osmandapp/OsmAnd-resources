@@ -120,7 +120,6 @@
 
 	<renderingConstant name="accessPrivateColor" value="#feb3b3"/>
 	<renderingConstant name="accessPrivateColorNight" value="#e78d8d"/>
-	<renderingConstant name="accessPrivateAreaColorNight" value="#ae6262"/>
 	<renderingConstant name="accessDestinationColor" value="#8db8d3"/>
 	<renderingConstant name="accessDestinationColorNight" value="#8db8d3"/>
 	<renderingConstant name="accessPermissiveColor" value="#9afb87"/>
@@ -131,8 +130,6 @@
 	<renderingConstant name="accessForestryColorNight" value="#7dad56"/>
 	<renderingConstant name="accessCustomersColor" value="#dfb3e5"/>
 	<renderingConstant name="accessCustomersColorNight" value="#b671be"/>
-	<renderingConstant name="accessCustomersAreaColor" value="#e1c5e5"/>
-	<renderingConstant name="accessCustomersAreaColorNight" value="#ac8ab0"/>
 	<renderingConstant name="accessDeliveryColor" value="#9383a5"/>
 	<renderingConstant name="accessDeliveryColorNight" value="#9383a5"/>
 	<renderingConstant name="pedestrianModePavingStonesShader" value="paving_stones_green"/>
@@ -161,12 +158,18 @@
 	<renderingConstant name="waterwayTunnelDashColorDay" value="#aaffffff"/>
 	<renderingConstant name="waterwayTunnelDashColorNight" value="#447340d9"/>
 
-	<renderingConstant name="leisureTrackColorDay" value="#6674dcba"/>
+<!--	<renderingConstant name="leisureTrackColorDay" value="#6674dcba"/>
 	<renderingConstant name="leisureTrackColorNight" value="#33599682"/>
 	<renderingConstant name="leisureTrackColorDayStroke" value="#74dcba"/>
-	<renderingConstant name="leisureTrackColorNightStroke" value="#599682"/>
+	<renderingConstant name="leisureTrackColorNightStroke" value="#599682"/>-->
 	<renderingConstant name="parkingColorDay" value="#f6eeb7"/>
 	<renderingConstant name="parkingColorNight" value="#41536c"/>
+	<renderingConstant name="parkingPrivateColorDay" value="#77f8f5df"/>
+	<renderingConstant name="parkingPrivateColorNight" value="#7741536c"/>
+	<renderingConstant name="parkingPermissiveColorDay" value="#2251ff53"/>
+	<renderingConstant name="parkingPermissiveColorNight" value="#1151ff53"/>
+	<renderingConstant name="parkingCustomersColorDay" value="#33a247ad"/>
+	<renderingConstant name="parkingCustomersColorNight" value="#44a247ad"/>
 	<renderingConstant name="landuseConstructionColorDay" value="#cac090"/>
 	<renderingConstant name="landuseConstructionColorDayStroke" value="#666666"/>
 	<renderingConstant name="landuseConstructionColorNight" value="#3c3c1b"/>
@@ -424,7 +427,7 @@
 					<case maxzoom="12" tag="landuse" value="forest" color="$forestColorDesaturatedDay" shader=""/>
 				</switch>
 				<!-- Changed look of leisure=track -->
-				<group>
+<!--				<group>
 					<filter tag="leisure" value="track"/>
 					<groupFilter color="$leisureTrackColorDay" color_2="$leisureTrackColorDayStroke" shadowRadius="5" shadowColor="#ff0000">
 						<filter minzoom="12" maxzoom="12" strokeWidth_2=":1"/>
@@ -437,16 +440,16 @@
 					</groupFilter>
 					<groupFilter nightMode="true" color="$leisureTrackColorNight" color_2="$leisureTrackColorNightStroke"/>
 				</group>
-
+-->
 
 			</group>   <!-- /Landuse + amenities -->
 
 			<!-- 'access' section -->
 			<groupFilter showAccess="true">
-				<filter nightMode="true" tag="amenity" value="parking" additional="access=private" color="$accessPrivateAreaColorNight"/>
-				<filter tag="amenity" value="parking" additional="access=private" color="$accessPrivateColor"/>
-				<filter nightMode="true" tag="amenity" value="bicycle_parking" additional="access=private" color="$accessPrivateAreaColorNight"/>
-				<filter tag="amenity" value="bicycle_parking" additional="access=private" color="$accessPrivateColor"/>
+				<filter nightMode="true" tag="amenity" value="parking" additional="access=private" color="$parkingPrivateColorNight"/>
+				<filter tag="amenity" value="parking" additional="access=private" color="$parkingPrivateColorDay"/>
+				<filter nightMode="true" tag="amenity" value="bicycle_parking" additional="access=private" color="$parkingPrivateColorNight"/>
+				<filter tag="amenity" value="bicycle_parking" additional="access=private" color="$parkingPrivateColorDay"/>
 				<filter additional="access=private" color_2="$accessPrivateColor" cap_2="ROUND">
 					<filter minzoom="15" maxzoom="15" strokeWidth_2="4" pathEffect_2="3_8"/>
 					<filter minzoom="16" maxzoom="16" strokeWidth_2="5" pathEffect_2="4_11"/>
@@ -454,10 +457,10 @@
 					<filter minzoom="18" strokeWidth_2="8" pathEffect_2="6_15"/>
 					<groupFilter nightMode="true" color_2="$accessPrivateColorNight"/>
 				</filter>
-				<filter nightMode="true" tag="amenity" value="parking" additional="access=no" color="$accessPrivateAreaColorNight"/>
-				<filter tag="amenity" value="parking" additional="access=no" color="$accessPrivateColor"/>
-				<filter nightMode="true" tag="amenity" value="bicycle_parking" additional="access=no" color="$accessPrivateAreaColorNight"/>
-				<filter tag="amenity" value="bicycle_parking" additional="access=no" color="$accessPrivateColor"/>
+				<filter nightMode="true" tag="amenity" value="parking" additional="access=no" color="$parkingPrivateColorNight"/>
+				<filter tag="amenity" value="parking" additional="access=no" color="$parkingPrivateColorDay"/>
+				<filter nightMode="true" tag="amenity" value="bicycle_parking" additional="access=no" color="$parkingPrivateColorNight"/>
+				<filter tag="amenity" value="bicycle_parking" additional="access=no" color="$parkingPrivateColorDay"/>
 				<filter additional="access=no" color_2="$accessPrivateColor" cap_2="ROUND">
 					<filter minzoom="15" maxzoom="15" strokeWidth_2="4" pathEffect_2="3_8"/>
 					<filter minzoom="16" maxzoom="16" strokeWidth_2="5" pathEffect_2="4_11"/>
@@ -474,10 +477,10 @@
 					<filter minzoom="18" strokeWidth_2="8" pathEffect_2="6_15"/>
 					<groupFilter nightMode="true" color_2="$accessDestinationColorNight"/>
 				</filter>
-				<filter nightMode="true" tag="amenity" value="parking" additional="access=permissive" color="$accessPermissiveColorNight"/>
-				<filter tag="amenity" value="parking" additional="access=permissive" color="$accessPermissiveColor"/>
-				<filter nightMode="true" tag="amenity" value="bicycle_parking" additional="access=permissive" color="$accessPermissiveColorNight"/>
-				<filter tag="amenity" value="bicycle_parking" additional="access=permissive" color="$accessPermissiveColor"/>
+				<filter nightMode="true" tag="amenity" value="parking" additional="access=permissive" color="$parkingPermissiveColorNight"/>
+				<filter tag="amenity" value="parking" additional="access=permissive" color="$parkingPermissiveColorDay"/>
+				<filter nightMode="true" tag="amenity" value="bicycle_parking" additional="access=permissive" color="$parkingPermissiveColorNight"/>
+				<filter tag="amenity" value="bicycle_parking" additional="access=permissive" color="$parkingPermissiveColorDay"/>
 				<filter additional="access=permissive" color_2="$accessPermissiveColor" cap_2="ROUND">
 					<filter minzoom="15" maxzoom="15" strokeWidth_2="4" pathEffect_2="3_8"/>
 					<filter minzoom="16" maxzoom="16" strokeWidth_2="5" pathEffect_2="4_11"/>
@@ -499,10 +502,10 @@
 					<filter minzoom="18" strokeWidth_2="8" pathEffect_2="6_15"/>
 					<groupFilter nightMode="true" color_2="$accessForestryColorNight"/>
 				</filter>
-				<filter nightMode="true" tag="amenity" value="parking" additional="access=customers" color="$accessCustomersAreaColorNight"/>
-				<filter tag="amenity" value="parking" additional="access=customers" color="$accessCustomersAreaColor"/>
-				<filter nightMode="true" tag="amenity" value="bicycle_parking" additional="access=customers" color="$accessCustomersAreaColorNight"/>
-				<filter tag="amenity" value="bicycle_parking" additional="access=customers" color="$accessCustomersAreaColor"/>
+				<filter nightMode="true" tag="amenity" value="parking" additional="access=customers" color="$parkingCustomersColorNight"/>
+				<filter tag="amenity" value="parking" additional="access=customers" color="$parkingCustomersColorDay"/>
+				<filter nightMode="true" tag="amenity" value="bicycle_parking" additional="access=customers" color="$parkingCustomersColorNight"/>
+				<filter tag="amenity" value="bicycle_parking" additional="access=customers" color="$parkingCustomersColorDay"/>
 				<filter additional="access=customers" color_2="$accessCustomersColor" cap_2="ROUND">
 					<filter minzoom="15" maxzoom="15" strokeWidth_2="4" pathEffect_2="3_8"/>
 					<filter minzoom="16" maxzoom="16" strokeWidth_2="5" pathEffect_2="4_11"/>
