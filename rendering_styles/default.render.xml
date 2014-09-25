@@ -506,6 +506,8 @@
 			<filter tag="railway" value="station" order="5"/>
 			<filter tag="public_transport" value="" order="5"/>
 			<group order="5">
+				<filter tag="highway" value="primary"/>
+				<filter tag="highway" value="secondary"/>
 				<filter tag="highway" value="tertiary"/>
 				<filter tag="highway" value="pedestrian"/>
 				<filter tag="highway" value="service"/>
@@ -2438,15 +2440,17 @@
 	<!-- PRIORITY Input to filter : tag, value, zoom [minzoom, maxzoom] -->
 	<polygon>
 		<!-- Polygon highways -->
-		<group>
-			<filter tag="highway" value="tertiary"/>
-			<filter tag="highway" value="road"/>
-			<filter tag="highway" value="unclassified"/>
-			<filter tag="highway" value="residential"/>
-			<groupFilter color="#ffffff" color_2="#969696" minzoom="12" strokeWidth_2=":1">
-				<filter nightMode="true" color="#9f9f9f" color_2="#464646"/>
-			</groupFilter>
-		</group>
+		<switch>
+			<case tag="highway" value="primary"/>
+			<case tag="highway" value="secondary"/>
+			<case tag="highway" value="tertiary"/>
+			<case tag="highway" value="road"/>
+			<case tag="highway" value="unclassified"/>
+			<case tag="highway" value="residential"/>
+			<apply color="#ffffff" color_2="#969696" minzoom="12" strokeWidth_2=":1">
+				<case nightMode="true" color="#9f9f9f" color_2="#464646"/>
+			</apply>
+		</switch>
 		<group>
 			<filter tag="highway" value="pedestrian"/>
 			<filter tag="highway" value="footway"/>
