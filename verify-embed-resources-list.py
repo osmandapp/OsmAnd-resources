@@ -103,6 +103,10 @@ if __name__=='__main__':
             print("Current HEAD commit:   " + currentHeadCommitHash)
             print("Will regenerate resources list...")
     if not shouldRegenerate:
+        if not os.path.exists(resourcesPath + "/embed-resources.list"):
+            shouldRegenerate = True
+            print("Resources list missing, will regenerate...")
+    if not shouldRegenerate:
         if os.path.getmtime(os.path.realpath(__file__)) > os.path.getmtime(resourcesPath + "/embed-resources.list"):
             shouldRegenerate = True
             print("List generation script is newer than generated list, will regenerate resources list...")
