@@ -596,8 +596,6 @@
 			<filter tag="natural" value="cliff"/>
 			<filter tag="natural" value="crater"/>
 
-			<filter tag="waterway" value="canal"/>
-			<filter tag="waterway" value="waterfall"/>
 			<group order="18">
 				<filter tag="waterway" value="">
 					<filter layer="1" order="68"/>
@@ -3267,19 +3265,21 @@
 				<apply_if minzoom="18" maxzoom="18" strokeWidth_2="10" strokeWidth_3="10" pathEffect_3="6_20"/>
 				<apply_if minzoom="19" strokeWidth_2="13" strokeWidth_3="13" pathEffect_3="7_23"/>
 				<apply_if>
-					<case osmcTraces="true">
-						<apply color="#ffffff">
-							<apply_if nightMode="true" color="#000000"/>
-						</apply>
-					</case>
-					<case noPolygons="true">
-						<apply color="#eeeeee">
-							<apply_if nightMode="true" color="#333333"/>
-						</apply>
-					</case>
-					<apply_if minzoom="13" maxzoom="13" strokeWidth="0.8"/>
-					<apply_if minzoom="14" maxzoom="14" strokeWidth="2.1" strokeWidth_4="1.8"/>
-					<apply_if minzoom="15" strokeWidth="2.3" strokeWidth_4="2"/>
+					<switch>
+						<case osmcTraces="true">
+							<apply color="#ffffff">
+								<apply_if nightMode="true" color="#000000"/>
+							</apply>
+						</case>
+						<case noPolygons="true">
+							<apply color="#eeeeee">
+								<apply_if nightMode="true" color="#333333"/>
+							</apply>
+						</case>
+						<apply_if minzoom="13" maxzoom="13" strokeWidth="0.8"/>
+						<apply_if minzoom="14" maxzoom="14" strokeWidth="2.1" strokeWidth_4="1.8"/>
+						<apply_if minzoom="15" strokeWidth="2.3" strokeWidth_4="2"/>
+					</switch>
 				</apply_if>
 			</switch>
 			<apply_if showSurfaceGrade="true" minzoom="14" cap_2="BUTT">
