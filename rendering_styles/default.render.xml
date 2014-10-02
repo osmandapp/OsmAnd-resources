@@ -537,6 +537,9 @@
 			<case tag="waterway" value="dock"/>
 			<case tag="natural" value="cliff"/>
 			<case tag="natural" value="crater"/>
+			<case tag="building" value="">
+				<apply_if moreDetailed="false" minzoom="15" maxzoom="15" order="-1"/>
+			</case>
 			<case tag="" value="" order="5"/>
 			<switch order="5">
 				<case tag="natural" value="water"/>
@@ -2519,83 +2522,87 @@
 		</switch>
 
 		<!-- Buildings, night color 685454 -->
-		<group hideBuildings="false">
-			<group minzoom="15" color_2="#000000">
-				<filter moreDetailed="true" tag="building" value="" maxzoom="15">
-					<filter nightMode="true" color="$buildingColorNight"/>
-					<filter color="$buildingColorDay"/>
-				</filter>
-				<group minzoom="16" coloredBuildings="true" strokeWidth_2="0.3">
-					<group>
-						<filter tag="building" value="garages"/>
-						<filter tag="building" value="garage"/>
-						<filter tag="building" value="industrial"/>
-						<filter tag="building" value="transportation"/>
-						<filter tag="building" value="train_station"/>
-						<filter tag="building" value="warehouse"/>
-						<filter tag="building" value="hangar"/>
-						<filter tag="building" value="factory"/>
-						<filter tag="building" value="manufacture"/>
-						<filter tag="building" value="farm_auxiliary"/>
-						<filter tag="building" value="shed"/>
-						<filter tag="building" value="barn"/>
-						<filter tag="building" value="greenhouse"/>
-						<groupFilter color="#b2afb9"/>
-						<groupFilter nightMode="true" color="#514c59"/>
-					</group>
-					<group>
-						<filter tag="building" value="apartments"/>
-						<filter tag="building" value="house"/>
-						<filter tag="building" value="hut"/>
-						<filter tag="building" value="cabin"/>
-						<filter tag="building" value="detached"/>
-						<filter tag="building" value="dormitory"/>
-						<filter tag="building" value="residential"/>
-						<filter tag="building" value="farm"/>
-						<filter tag="building" value="hotel"/>
-						<groupFilter color="#b8b39e"/>
-						<groupFilter nightMode="true" color="#685e49"/>
-					</group>
-					<group>
-						<filter tag="building" value="hospital"/>
-						<filter tag="building" value="civic"/>
-						<filter tag="building" value="public"/>
-						<filter tag="building" value="school"/>
-						<filter tag="building" value="kindergarten"/>
-						<filter tag="building" value="university"/>
-						<filter tag="building" value="college"/>
-						<groupFilter color="#a4b0b7"/>
-						<groupFilter nightMode="true" color="#56636b"/>
-					</group>
-					<group>
-						<filter tag="building" value="commercial"/>
-						<filter tag="building" value="retail"/>
-						<filter tag="building" value="shop"/>
-						<filter tag="building" value="supermarket"/>
-						<groupFilter color="#d1aeae"/>
-						<groupFilter nightMode="true" color="#885d5d"/>
-					</group>
-				</group>
-				<group minzoom="16" strokeWidth_2="0.3">
-					<filter tag="building" value="collapsed"/>
-					<filter tag="building" value="damaged"/>
-					<groupFilter color="$buildingColorDay" color_2="#000000" strokeWidth_2="0.5" pathEffect_2="9_3"/>
-					<groupFilter nightMode="true" color="$buildingColorNight" color_2="#999999"/>
-				</group>
-				<group minzoom="16">
-					<filter tag="building" value="construction" color="#aaa279" color_2="#666666" strokeWidth_2="0.5" pathEffect_2="8_4"/>
-					<groupFilter nightMode="true" color="#494921" color_2="#aaaaaa"/>
-				</group>
-				<filter minzoom="16" nightMode="true" tag="building" value="" color="$buildingColorNight" color_2="#999999" strokeWidth_2="0.3"/>
-				<filter minzoom="16" tag="building" value="" color="$buildingColorDay" strokeWidth_2="0.3"/>
-				<groupFilter minzoom="16" additional="ruins=yes" color_2="#999999" strokeWidth_2="0.5" pathEffect_2="9_3">
-					<filter nightMode="true" color_2="#aaaaaa"/>
-				</groupFilter>
-				<groupFilter minzoom="16" additional="abandoned=yes" color_2="#000000" strokeWidth_2="0.5" pathEffect_2="9_3">
-					<filter nightMode="true" color_2="#aaaaaa"/>
-				</groupFilter>
-			</group>
-		</group>
+		<switch hideBuildings="false" minzoom="15" color_2="#000000">
+			<switch coloredBuildings="true" strokeWidth_2="0.3">
+				<switch>
+					<case tag="building" value="garages"/>
+					<case tag="building" value="garage"/>
+					<case tag="building" value="industrial"/>
+					<case tag="building" value="transportation"/>
+					<case tag="building" value="train_station"/>
+					<case tag="building" value="warehouse"/>
+					<case tag="building" value="hangar"/>
+					<case tag="building" value="factory"/>
+					<case tag="building" value="manufacture"/>
+					<case tag="building" value="farm_auxiliary"/>
+					<case tag="building" value="shed"/>
+					<case tag="building" value="barn"/>
+					<case tag="building" value="greenhouse"/>
+					<apply color="#b2afb9">
+						<apply_if nightMode="true" color="#514c59"/>
+					</apply>
+				</switch>
+				<switch>
+					<case tag="building" value="apartments"/>
+					<case tag="building" value="house"/>
+					<case tag="building" value="hut"/>
+					<case tag="building" value="cabin"/>
+					<case tag="building" value="detached"/>
+					<case tag="building" value="dormitory"/>
+					<case tag="building" value="residential"/>
+					<case tag="building" value="farm"/>
+					<case tag="building" value="hotel"/>
+					<apply color="#b8b39e">
+						<apply_if nightMode="true" color="#685e49"/>
+					</apply>
+				</switch>
+				<switch>
+					<case tag="building" value="hospital"/>
+					<case tag="building" value="civic"/>
+					<case tag="building" value="public"/>
+					<case tag="building" value="school"/>
+					<case tag="building" value="kindergarten"/>
+					<case tag="building" value="university"/>
+					<case tag="building" value="college"/>
+					<apply color="#a4b0b7">
+						<apply_if nightMode="true" color="#56636b"/>
+					</apply>
+				</switch>
+				<switch>
+					<case tag="building" value="commercial"/>
+					<case tag="building" value="retail"/>
+					<case tag="building" value="shop"/>
+					<case tag="building" value="supermarket"/>
+					<apply color="#d1aeae">
+						<apply_if nightMode="true" color="#885d5d"/>
+					</apply>
+				</switch>
+			</switch>
+			<switch strokeWidth_2="0.5" color_2="#000000" pathEffect_2="9_3">
+				<case tag="building" value="collapsed"/>
+				<case tag="building" value="damaged"/>
+				<apply color="$buildingColorDay">
+					<apply_if maxzoom="15" pathEffect_2="4_2"/>
+					<apply_if nightMode="true" color="$buildingColorNight" color_2="#999999"/>
+				</apply>
+			</switch>
+			<case tag="building" value="construction" color="#aaa279" color_2="#666666" strokeWidth_2="0.5" pathEffect_2="8_4">
+				<apply_if nightMode="true" color="#494921" color_2="#aaaaaa"/>
+			</case>
+			<case tag="building" value="" color="$buildingColorDay" strokeWidth_2="0.3">
+				<apply_if nightMode="true" color="$buildingColorNight" color_2="#999999"/>
+			</case>
+			<apply>
+				<switch>
+					<case additional="ruins=yes"/>
+					<case additional="abandoned=yes"/>
+					<apply color_2="#000000" strokeWidth_2="0.5" pathEffect_2="9_3">
+						<apply_if maxzoom="15" pathEffect_2="4_2"/>
+						<apply_if nightMode="true" color_2="#aaaaaa"/>
+					</apply>
+				</switch>
+			</apply>
+		</switch>
 
 	    <!-- for 'no polygons' -->
 		<group noPolygons="false">
