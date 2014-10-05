@@ -148,12 +148,12 @@
 	<renderingConstant name="racewayColorDay" value="#ffc5cf"/>
 	<renderingConstant name="racewayColorNight" value="#cd9fa7"/>
 	<renderingConstant name="trackColor" value="#996600"/>
-	<renderingConstant name="trackStrokeWidth" value="0.5:0.5"/>
+	<renderingConstant name="trackStrokeWidth" value="0.7:0.7"/>
 	<renderingConstant name="trackBridgeWidth" value="4:2.5"/>
 	<renderingConstant name="trackBridgeInnerWidth" value="3:2"/>
 	<renderingConstant name="trackTunnelPathEffect" value="3_3"/>
 	<renderingConstant name="cyclewayColorDay" value="#0000ff"/>
-	<renderingConstant name="cyclewayStrokeWidth" value="0.5:0.5"/>
+	<renderingConstant name="cyclewayStrokeWidth" value="0.6:0.6"/>
 	<renderingConstant name="cyclewayPathEffect" value="4_2"/>
 	<renderingConstant name="footwayColorDay" value="#fa5073"/>
 	<renderingConstant name="footwayColorNight" value="#fa5073"/>
@@ -162,7 +162,7 @@
 	<renderingConstant name="pathLowZoomColorDay" value="#333333"/>
 	<renderingConstant name="pathColorNight" value="#787878"/>
 	<renderingConstant name="pathLowZoomColorNight" value="#787878"/>
-	<renderingConstant name="pathStrokeWidth" value="0.4:0.4"/>
+	<renderingConstant name="pathStrokeWidth" value="0.7:0.7"/>
 	<renderingConstant name="pathPathEffect" value="4_2"/>
 	<renderingConstant name="pathLowZoomPathEffect" value=""/>
 	<renderingConstant name="sacScaleColor" value="#e23cad"/>
@@ -460,38 +460,39 @@
 	<!-- output ! objectType point = 1, line = 2, polygon = 3 and order -->
 	<order>
 	<!-- Point -->
-		<group objectType="1" area="false" point="true" order="128">
+		<switch objectType="1" area="false" point="true" order="128">
 			<!-- point has order 128 -->
-			<filter tag="" value=""/>
-			<filter tag="railway" value="station"/>
-			<filter tag="railway" value=""/>
-			<filter tag="place" value=""/>
-			<filter tag="public_transport" value=""/>
-			<filter tag="highway" value="ford"/>
-			<filter tag="traffic_calming" value=""/>
-			<filter tag="noexit" value=""/>
-			<filter tag="flood_prone" value=""/>
-			<filter tag="barrier" value=""/>
-			<filter tag="aeroway" value=""/>
-			<filter tag="aerialway" value="station"/>
-			<filter tag="aerialway" value=""/>
-			<filter tag="amenity" value="parking"/>
-			<filter tag="amenity" value="bicycle_parking"/>
-			<filter tag="amenity" value=""/>
-			<filter tag="emergency" value=""/>
-			<filter tag="man_made" value=""/>
-			<filter tag="natural" value=""/>
-			<filter tag="waterway" value="waterfall"/>
-			<filter tag="waterway" value=""/>
-			<filter tag="shop" value=""/>
-			<filter tag="tourism" value=""/>
-			<filter tag="historic" value=""/>
-			<filter tag="leisure" value=""/>
-			<filter tag="sport" value=""/>
-			<filter tag="geocache" value=""/>
-			<filter tag="office" value=""/>
-			<filter tag="power" value=""/>
-		</group>
+			<case tag="" value=""/>
+			<case tag="railway" value="station"/>
+			<case tag="railway" value=""/>
+			<case tag="place" value=""/>
+			<case tag="public_transport" value=""/>
+			<case tag="highway" value="ford"/>
+			<case tag="traffic_calming" value=""/>
+			<case appMode="pedestrian" tag="traffic_calming" value="bump" order="-1"/>
+			<case tag="noexit" value=""/>
+			<case tag="flood_prone" value=""/>
+			<case tag="barrier" value=""/>
+			<case tag="aeroway" value=""/>
+			<case tag="aerialway" value="station"/>
+			<case tag="aerialway" value=""/>
+			<case tag="amenity" value="parking"/>
+			<case tag="amenity" value="bicycle_parking"/>
+			<case tag="amenity" value=""/>
+			<case tag="emergency" value=""/>
+			<case tag="man_made" value=""/>
+			<case tag="natural" value=""/>
+			<case tag="waterway" value="waterfall"/>
+			<case tag="waterway" value=""/>
+			<case tag="shop" value=""/>
+			<case tag="tourism" value=""/>
+			<case tag="historic" value=""/>
+			<case tag="leisure" value=""/>
+			<case tag="sport" value=""/>
+			<case tag="geocache" value=""/>
+			<case tag="office" value=""/>
+			<case tag="power" value=""/>
+		</switch>
 
 	<!-- Polygon -->
 		<group objectType="3" area="true" point="false">
@@ -608,27 +609,25 @@
 				</filter>
 			</group>
 
-			<group osmcTraces="true">
-				<filter tag="osmc_symbol_red" value="" order="1"/>
-				<filter tag="osmc_symbol_green" value="" order="1"/>
-				<filter tag="osmc_symbol_blue" value="" order="1"/>
-				<filter tag="osmc_symbol_yellow" value="" order="1"/>
-				<filter tag="osmc_symbol_black" value="" order="1"/>
-				<filter tag="osmc_symbol_white" value="" order="1"/>
-			</group>
-			<group>
-				<filter tag="lcn_network" value="lcn" order="112"/>
-				<filter tag="rcn_network" value="rcn" order="111"/>
-				<filter tag="ncn_network" value="ncn" order="110"/>
-				<filter tag="icn_network" value="icn" order="110"/>
-				<filter tag="lcn_ref" value="" order="112"/>
-				<filter tag="rcn_ref" value="" order="111"/>
-				<filter tag="ncn_ref" value="" order="110"/>
-				<filter tag="icn_ref" value="" order="110"/>
-				<groupFilter>
-					<filter point="true" objectType="1" order="74"/>
-				</groupFilter>
-			</group>
+			<switch osmcTraces="true">
+				<case tag="osmc_symbol_red" value="" order="1"/>
+				<case tag="osmc_symbol_green" value="" order="1"/>
+				<case tag="osmc_symbol_blue" value="" order="1"/>
+				<case tag="osmc_symbol_yellow" value="" order="1"/>
+				<case tag="osmc_symbol_black" value="" order="1"/>
+				<case tag="osmc_symbol_white" value="" order="1"/>
+			</switch>
+			<switch>
+				<case tag="lcn_network" value="lcn" order="112"/>
+				<case tag="rcn_network" value="rcn" order="111"/>
+				<case tag="ncn_network" value="ncn" order="110"/>
+				<case tag="icn_network" value="icn" order="110"/>
+				<case tag="lcn_ref" value="" order="112"/>
+				<case tag="rcn_ref" value="" order="111"/>
+				<case tag="ncn_ref" value="" order="110"/>
+				<case tag="icn_ref" value="" order="110"/>
+				<apply_if point="true" objectType="1" order="74"/>
+			</switch>
 
 
 			<!-- Admin_levels under highways unless appMode=default -->
@@ -1083,132 +1082,134 @@
 			</apply_if>
 		</switch>
 		<!-- Motorway junction -->
-		<group tag="highway" value="motorway_junction" textColor="#00008b" textHaloRadius="$textHaloRadiusDay" textWrapWidth="16" textMinDistance="10" textOrder="6">
-			<filter appMode="car" minzoom="13" maxzoom="13" textSize="12" nameTag="ref"/>
-			<filter appMode="car" minzoom="14" textSize="13" nameTag="" nameTag2="ref"/>
-			<filter minzoom="14" textSize="12" nameTag="" nameTag2="ref"/>
-			<!-- Leave night halo white here, provides more contrast -->
-			<groupFilter nightMode="true" textColor="#dcdcff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77050547"/>
-		</group>
+		<case tag="highway" value="motorway_junction" textColor="#00008b" textHaloRadius="$textHaloRadiusDay" textWrapWidth="16" textMinDistance="10" textOrder="6">
+			<case appMode="car" minzoom="13">
+				<case maxzoom="13" textSize="12" nameTag="ref"/>
+				<case minzoom="14" textSize="13" nameTag="" nameTag2="ref"/>
+			</case>
+			<case minzoom="14" textSize="12" nameTag="" nameTag2="ref"/>
+			<apply_if nightMode="true" textColor="#dcdcff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77050547"/>
+		</case>
 
-		<group publicTransportMode="true" textOnPath="true" textDy="-1" textBold="true" textOrder="1">
-			<group textColor="#ffffff" textHaloRadius="1">
-				<filter tag="route_bus" value="" nameTag="bus_ref" textHaloColor="$routeBusColor"/>
-				<filter tag="route_trolleybus" value="" nameTag="trolleybus_ref" textHaloColor="$routeTrolleybusColor"/>
-				<filter tag="route_tram" value="" nameTag="tram_ref" textHaloColor="$routeTramColor"/>
-<!--				<filter tag="railway" value="tram" textColor="$routeTramColor"/>-->
-				<filter tag="route_train" value="" nameTag="train_ref" textHaloColor="$routeTrainColor"/>
-				<filter tag="route_light_rail" value="" nameTag="lightrail_ref" textHaloColor="$routeLightrailColor"/>
-				<filter tag="railway" value="light_rail" textHaloColor="$routeLightrailColor"/>
-			</group>
-			<group nightMode="true" textColor="#ffffff" textHaloRadius="2">
-				<filter tag="route_bus" value="" nameTag="bus_ref" textHaloColor="$routeBusColorNight"/>
-				<filter tag="route_trolleybus" value="" nameTag="trolleybus_ref" textHaloColor="$routeTrolleybusColorNight"/>
-				<filter tag="route_tram" value="" nameTag="tram_ref" textHaloColor="$routeTramColorNight"/>
-<!--				<filter tag="railway" value="tram" textColor="$routeTramColorNight"/>-->
-				<filter tag="route_train" value="" nameTag="train_ref" textHaloColor="$routeTrainColorNight"/>
-				<filter tag="route_light_rail" value="" nameTag="lightrail_ref" textHaloColor="$routeLightrailColorNight"/>
-				<filter tag="railway" value="light_rail" textHaloColor="$routeLightrailColorNight"/>
-			</group>
-			<groupFilter minzoom="13" maxzoom="14" textSize="6"/>
-			<groupFilter minzoom="15" maxzoom="15" textSize="9"/>
-			<groupFilter minzoom="16" maxzoom="16" textSize="10"/>
-			<groupFilter minzoom="17" maxzoom="17" textSize="12"/>
-			<groupFilter minzoom="18" textSize="14"/>
-		</group>
+		<switch publicTransportMode="true" minzoom="13" textOnPath="true" textDy="-1" textBold="true" textOrder="1" textColor="#ffffff" textHaloRadius="1">
+			<case tag="route_bus" value="" nameTag="bus_ref" textHaloColor="$routeBusColor"/>
+			<case tag="route_trolleybus" value="" nameTag="trolleybus_ref" textHaloColor="$routeTrolleybusColor"/>
+			<case tag="route_tram" value="" nameTag="tram_ref" textHaloColor="$routeTramColor"/>
+			<case tag="route_train" value="" nameTag="train_ref" textHaloColor="$routeTrainColor">
+				<apply_if nightMode="true" textHaloColor="$routeTrainColorNight"/>
+			</case>
+			<case tag="route_light_rail" value="" nameTag="lightrail_ref" textHaloColor="$routeLightrailColor"/>
+			<apply_if minzoom="13" maxzoom="14" textSize="6"/>
+			<apply_if minzoom="15" maxzoom="15" textSize="9"/>
+			<apply_if minzoom="16" maxzoom="16" textSize="10"/>
+			<apply_if minzoom="17" maxzoom="17" textSize="12"/>
+			<apply_if minzoom="18" textSize="14"/>
+			<apply_if nightMode="true" textHaloRadius="2"/>
+		</switch>
 
-		<group textColor="$railwayTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$railwayTextHaloColorDay">
-			<filter tag="railway" value="rail" textOrder="9"/>
-			<filter tag="railway" value="tram" textOrder="9"/>
-			<filter tag="railway" value="subway" textOrder="9"/>
-			<filter tag="railway" value="light_rail" textOrder="9"/>
-			<filter tag="railway" value="abandoned" textOrder="9"/>
-			<filter tag="railway" value="disused" textOrder="9"/>
-			<filter tag="railway" value="preserved" textOrder="9"/>
-			<filter tag="railway" value="narrow_gauge" textOrder="9"/>
-			<filter tag="railway" value="construction" textOrder="9"/>
-			<filter tag="railway" value="monorail" textOrder="9"/>
-			<filter tag="railway" value="funicular" textOrder="9"/>
-			<groupFilter minzoom="14" nameTag="">
-				<filter maxzoom="14" textSize="12"/>
-				<filter maxzoom="15" textSize="13"/>
-				<filter maxzoom="16" textSize="14"/>
-				<filter maxzoom="17" textSize="16"/>
-				<filter minzoom="18" textSize="18"/>
-				<groupFilter textOnPath="true" textDy="-7"/>
-				<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
-			</groupFilter>
-		</group>
+		<switch minzoom="14" textColor="$railwayTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$railwayTextHaloColorDay" textOrder="9">
+			<case tag="railway" value="rail"/>
+			<case tag="railway" value="tram"/>
+			<case tag="railway" value="subway"/>
+			<case tag="railway" value="light_rail"/>
+			<case tag="railway" value="abandoned"/>
+			<case tag="railway" value="disused"/>
+			<case tag="railway" value="preserved"/>
+			<case tag="railway" value="narrow_gauge"/>
+			<case tag="railway" value="construction"/>
+			<case tag="railway" value="monorail"/>
+			<case tag="railway" value="funicular"/>
+			<apply nameTag="" textOnPath="true" textDy="-7">
+				<case maxzoom="14" textSize="12"/>
+				<case maxzoom="15" textSize="13"/>
+				<case maxzoom="16" textSize="14"/>
+				<case maxzoom="17" textSize="16"/>
+				<case minzoom="18" textSize="18"/>
+				<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
+			</apply>
+		</switch>
 
-		<group textColor="$aerialwayTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$aerialwayTextHaloColorDay">
-			<filter tag="aerialway" value="cable_car" textOrder="10"/>
-			<filter tag="aerialway" value="gondola" textOrder="10"/>
-			<filter tag="aerialway" value="chair_lift" textOrder="10"/>
-			<filter tag="aerialway" value="mixed_lift" textOrder="10"/>
-			<filter tag="aerialway" value="drag_lift" textOrder="10"/>
-			<filter tag="aerialway" value="t-bar"/>
-			<filter tag="aerialway" value="j-bar"/>
-			<filter tag="aerialway" value="platter"/>
-			<filter tag="aerialway" value="magic_carpet"/>
-			<filter tag="aerialway" value="rope_tow"/>
-			<groupFilter minzoom="14" nameTag="">
-				<filter maxzoom="14" textSize="12"/>
-				<filter maxzoom="15" textSize="13"/>
-				<filter maxzoom="16" textSize="14"/>
-				<filter maxzoom="17" textSize="16"/>
-				<filter minzoom="18" textSize="18"/>
-				<groupFilter textOnPath="true" textDy="3"/>
-				<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
-			</groupFilter>
-		</group>
+		<switch minzoom="14" textColor="$aerialwayTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$aerialwayTextHaloColorDay" textOrder="10">
+			<case tag="aerialway" value="cable_car"/>
+			<case tag="aerialway" value="gondola"/>
+			<case tag="aerialway" value="chair_lift"/>
+			<case tag="aerialway" value="mixed_lift"/>
+			<case tag="aerialway" value="drag_lift"/>
+			<case tag="aerialway" value="t-bar"/>
+			<case tag="aerialway" value="j-bar"/>
+			<case tag="aerialway" value="platter"/>
+			<case tag="aerialway" value="magic_carpet"/>
+			<case tag="aerialway" value="rope_tow"/>
+			<apply nameTag="" textOnPath="true" textDy="3">
+				<case maxzoom="14" textSize="12"/>
+				<case maxzoom="15" textSize="13"/>
+				<case maxzoom="16" textSize="14"/>
+				<case maxzoom="17" textSize="16"/>
+				<case minzoom="18" textSize="18"/>
+				<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
+			</apply>
+		</switch>
 
 		<!-- Location names -->
-		<group>
-			<filter minzoom="3" tag="natural" value="coastline"/>
-			<filter minzoom="3" tag="natural" value="land"/>
-			<groupFilter textSize="14" textColor="#883287" textWrapWidth="35" textHaloRadius="$textHaloRadiusDay" textHaloColor="#aaffffff"/>
-			<groupFilter nightMode="true" textColor="#ffb9fe" textHaloColor="#77333333"/>
-		</group>
+		<switch minzoom="3">
+			<case tag="natural" value="coastline"/>
+			<case tag="natural" value="land"/>
+			<apply textSize="14" textColor="#883287" textWrapWidth="35" textHaloRadius="$textHaloRadiusDay" textHaloColor="#aaffffff"/>
+			<apply_if nightMode="true" textColor="#ffb9fe" textHaloColor="#77333333"/>
+		</switch>
 		<!-- continent not really useful here: filter minzoom="2" maxzoom="2" textSize="14" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="continent"/ -->
 
 		<!-- most countries are not tagged with ref: filter minzoom="2" maxzoom="2" textSize="14" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="country" nameTag="ref"/ -->
-		<filter tag="place" value="country" minzoom="3" textColor="#5f295e" textHaloColor="#99ffffff" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20">
-			<filter maxzoom="3" textSize="14"/>
-			<filter maxzoom="5" textSize="16" textBold="true" textOrder="3"/>
-			<filter minzoom="6" textSize="14"/>
-			<groupFilter nightMode="true" textColor="#d498d3" textHaloColor="#bb553155"/>
-		</filter>
+		<case minzoom="3" tag="place" value="country" textColor="#5f295e" textHaloColor="#99ffffff" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20">
+			<case maxzoom="3" textSize="14"/>
+			<case maxzoom="5" textSize="16" textBold="true" textOrder="1"/>
+			<case minzoom="6" textSize="14" textBold="true"/>
+			<apply_if nightMode="true" textColor="#d498d3" textHaloColor="#bb553155"/>
+		</case>
 
-		<filter minzoom="5" maxzoom="5" textSize="13" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="state" nameTag="ref" textOrder="2"/>
-		<filter minzoom="6" textSize="13" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="state" nameTag=""/>
-		<filter minzoom="5" maxzoom="5" textSize="13" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="region" nameTag="ref" textOrder="2"/>
-		<filter minzoom="6" textSize="13" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="region" nameTag=""/>
-		<filter minzoom="5" maxzoom="5" textSize="13" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="province" nameTag="ref" textOrder="2"/>
-		<filter minzoom="6" textSize="13" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="province" nameTag=""/>
+		<switch minzoom="5" textSize="13" textColor="#9d6c9d" textWrapWidth="20">
+			<case maxzoom="10" tag="place" value="state">
+				<apply nameTag="ref" textOrder="3"/>
+				<apply_if minzoom="6" nameTag=""/>
+			</case>
+			<case tag="place" value="region">
+				<apply nameTag="ref" textOrder="2"/>
+				<apply_if minzoom="6" nameTag=""/>
+			</case>
+			<case tag="place" value="province">
+				<apply nameTag="ref" textOrder="2"/>
+				<apply_if minzoom="6" nameTag=""/>
+			</case>
+			<apply_if nightMode="false" textHaloRadius="$textHaloRadiusDay" textHaloColor="#88ffffff"/>
+		</switch>
 
 		<!-- county not really useful here: filter minzoom="9" textSize="13" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="county" nameTag=""/ -->
 
-		<group textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="#88ffffff" textBold="true">
-			<filter minzoom="4" maxzoom="5" textSize="14" textDy="3" tag="osmand_place_basemap" value="city" textOrder="4" nameTag="">
-				<filter additional="capital=yes" textOrder="3"/>
-			</filter>
-			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
-		</group>
+		<switch minzoom="3" textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="#88ffffff" textBold="true">
+			<case tag="osmand_place_basemap" value="city" nameTag="">
+				<case maxzoom="5" textSize="13" textDy="3" textOrder="5">
+					<apply_if additional="capital=yes" textSize="17" textOrder="4"/>
+				</case>
+				<case maxzoom="7" textSize="17" textDy="1" textOrder="3">
+					<apply_if additional="capital=yes" textSize="20" textOrder="2"/>
+				</case>
+				<case maxzoom="12" textSize="17" textDy="1" textOrder="4">
+					<apply_if additional="capital=yes" textSize="20" textOrder="3"/>
+				</case>
+			</case>
+			<case minzoom="6" tag="place" value="city" textDy="1" nameTag="">
+				<case maxzoom="7" textSize="17" textOrder="3">
+					<apply_if additional="capital=yes" textSize="20" textOrder="2"/>
+				</case>
+				<case minzoom="8" textSize="20" textOrder="4">
+					<apply_if additional="capital=yes" textSize="22" textOrder="3"/>
+				</case>
+			</case>
+			<case minzoom="8" tag="place" value="town" textSize="16" textDy="1" textOrder="5" nameTag=""/>
+			<case minzoom="11" tag="place" value="village" textSize="14" textDy="1" textOrder="10" nameTag=""/>
+			<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
+		</switch>
 
-		<group textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeBoldTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay" textBold="true">
-			<filter minzoom="6" maxzoom="7" textSize="20" textDy="1" tag="osmand_place_basemap" value="city" textOrder="3" nameTag="">
-				<filter additional="capital=yes" textOrder="2"/>
-			</filter>
-			<filter minzoom="8" maxzoom="12" textSize="20" textDy="1" tag="osmand_place_basemap" value="city" textOrder="4" nameTag="">
-				<filter additional="capital=yes" textOrder="3"/>
-			</filter>
-			<filter minzoom="6" textSize="20" textDy="1" tag="place" value="city" textOrder="4" nameTag="">
-				<filter additional="capital=yes" textOrder="3"/>
-			</filter>
-			<filter minzoom="8" textSize="16" textDy="1" tag="place" value="town" textOrder="5" nameTag=""/>
-			<filter minzoom="11" textSize="14" textDy="1" tag="place" value="village" textOrder="10" nameTag=""/>
-			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
-		</group>
 		<group textColor="$placeSuburbLocalityTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay">
 			<filter minzoom="$placeHamletMinZoom" textSize="13" tag="place" value="hamlet" textOrder="12"/>
 			<filter minzoom="13" textSize="13" tag="place" value="isolated_dwelling" textOrder="13"/>
@@ -1845,7 +1846,7 @@
 					<case minzoom="15" tag="railway" value="station" icon="railway_station" iconVisibleSize="4"/>
 					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 				</switch>
-				<case minzoom="16" maxzoom="17" icon="" tag="amenity" value="bicycle_parking"/>
+				<case minzoom="16" maxzoom="17" tag="amenity" value="bicycle_parking" icon=""/>
 				<switch publicTransportMode="false">
 					<case minzoom="16" maxzoom="16" tag="highway" value="bus_stop" icon="highway_bus_stop_small" iconVisibleSize="4"/>
 					<case minzoom="14" maxzoom="14" tag="railway" value="tram_stop" icon="railway_halt" iconVisibleSize="3"/>
@@ -1885,11 +1886,10 @@
 					<case minzoom="15" tag="man_made" value="water_well" icon="man_made_water_well"/>
 					<apply_if nightMode="true" shield="gray_gray_square_shield"/>
 				</switch>
-				<filter minzoom="14" icon="natural_spring2" tag="natural" value="spring" shield="white_blue_square_shield">
-					<filter nightMode="true" shield="gray_blue_square_shield"/>
-				</filter>
-				<filter minzoom="17" icon="amenity_bench" tag="amenity" value="bench"/>
-				<filter tag="traffic_calming" value="bump" disable="true"/>
+				<case minzoom="14" tag="natural" value="spring" icon="natural_spring2" shield="white_blue_square_shield">
+					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+				</case>
+				<case minzoom="17" tag="amenity" value="bench" icon="amenity_bench"/>
 				<filter tag="amenity" value="fuel" minzoom="14" maxzoom="16" disable="true"/>
 			</switch>
 			<switch iconOrder="85">
@@ -1903,26 +1903,26 @@
 		</switch>
 
 		<!-- Natural -->
-		<filter tag="natural" value="peak" iconOrder="65">
-			<filter nightMode="true">
-				<filter minzoom="11" maxzoom="14" icon="natural_peak_night"/>
-				<filter minzoom="15" icon="natural_peak_night_big"/>
-			</filter>
-			<filter minzoom="11" maxzoom="14" icon="natural_peak_framed"/>
-			<filter minzoom="15" icon="natural_peak_framed_big"/>
-		</filter>
-		<filter tag="natural" value="volcano" iconOrder="50">
-			<filter nightMode="true">
-				<filter minzoom="11" maxzoom="14" icon="natural_volcano"/>
-				<filter minzoom="15" icon="natural_volcano_big"/>
-			</filter>
-			<filter minzoom="11" maxzoom="14" icon="natural_volcano_framed"/>
-			<filter minzoom="15" icon="natural_volcano_framed_big"/>
-		</filter>
-		<filter minzoom="14" icon="natural_saddle" tag="natural" value="saddle" iconOrder="66"/>
-		<filter minzoom="15" icon="natural_cave_entrance" tag="natural" value="cave_entrance" shield="white_gray_square_shield" iconOrder="85">
-			<filter nightMode="true" shield="gray_gray_square_shield"/>
-		</filter>
+		<case minzoom="11" tag="natural" value="peak" iconOrder="65">
+			<case maxzoom="14" icon="natural_peak_framed"/>
+			<case minzoom="15" icon="natural_peak_framed_big"/>
+			<apply_if nightMode="true">
+				<case minzoom="11" maxzoom="14" icon="natural_peak_night"/>
+				<case minzoom="15" icon="natural_peak_night_big"/>
+			</apply_if>
+		</case>
+		<case minzoom="11" tag="natural" value="volcano" iconOrder="50">
+			<case maxzoom="14" icon="natural_volcano_framed"/>
+			<case minzoom="15" icon="natural_volcano_framed_big"/>
+			<apply_if nightMode="true">
+				<case minzoom="11" maxzoom="14" icon="natural_volcano"/>
+				<case minzoom="15" icon="natural_volcano_big"/>
+			</apply_if>
+		</case>
+		<case minzoom="14" tag="natural" value="saddle" icon="natural_saddle" iconOrder="66"/>
+		<case minzoom="15" tag="natural" value="cave_entrance" icon="natural_cave_entrance" shield="white_gray_square_shield" iconOrder="85">
+			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
+		</case>
 		<switch shield="white_blue_square_shield">
 			<case minzoom="14" tag="natural" value="spring" icon="natural_spring2"/>
 			<case minzoom="14" tag="waterway" value="waterfall" icon="waterway_waterfall"/>
@@ -1937,32 +1937,32 @@
 				<case additional="leaf_type=leafless" icon="natural_tree_leafless"/>
 				<case additional="type=palm" icon="natural_tree_palm"/>
 				<case additional="type=cypress" icon="natural_tree_cypress"/>
-				<case icon="natural_tree_broadleaved"/>
+				<apply icon="natural_tree_broadleaved"/>
 			</switch>
 		</switch>
 			
 		<case minzoom="18" icon="natural_stone" tag="natural" value="stone" iconVisibleSize="7"/>
 
 		<!-- Location dots -->
-		<group>
-			<filter tag="place" value="city" minzoom="6" maxzoom="16" icon="place_city"/>
-			<filter tag="osmand_place_basemap" value="city" minzoom="4" maxzoom="5" icon="place_city"/>
-			<groupFilter>
-				<filter additional="capital=yes" icon="place_capital" iconVisibleSize="0" iconOrder="99">
-					<filter nightMode="true" icon="place_capital_night" iconVisibleSize="0" iconOrder="99"/>
-				</filter>
-				<filter nightMode="true" icon="place_city_night"/>
-			</groupFilter>
-		</group>
-		<filter nightMode="true" minzoom="7" icon="place_town_night" tag="place" value="town"/>
-		<filter minzoom="7" icon="place_town" tag="place" value="town"/>
-
-		<filter tag="place" value="village" minzoom="11" maxzoom="12" icon="place_town">
-			<filter nightMode="true" icon="place_town_night"/>
-		</filter>
-		<filter tag="place" value="hamlet" minzoom="11" maxzoom="12" icon="place_town">
-			<filter nightMode="true" icon="place_town_night"/>
-		</filter>
+		<switch>
+			<case minzoom="6" maxzoom="16" tag="place" value="city" icon="place_city" iconVisibleSize="4"/>
+			<case minzoom="4" maxzoom="5" tag="osmand_place_basemap" value="city" icon="place_city" iconVisibleSize="4"/>
+			<apply_if nightMode="true" icon="place_city_night"/>
+			<apply>
+				<case additional="capital=yes" icon="place_capital" iconVisibleSize="0" iconOrder="99">
+					<apply_if nightMode="true" icon="place_capital_night" iconVisibleSize="0" iconOrder="99"/>
+				</case>
+			</apply>
+		</switch>
+		<case minzoom="7" tag="place" value="town" icon="place_town" iconVisibleSize="12">
+			<apply_if nightMode="true" icon="place_town_night"/>
+		</case>
+		<case minzoom="11" maxzoom="12" tag="place" value="village" icon="place_town">
+			<apply_if nightMode="true" icon="place_town_night"/>
+		</case>
+		<case minzoom="11" maxzoom="12" tag="place" value="hamlet" icon="place_town">
+			<apply_if nightMode="true" icon="place_town_night"/>
+		</case>
 
 		<!-- Emergency + Health  -->
 		<group shield="white_red_square_shield" minzoom="16" iconVisibleSize="24">
@@ -2630,12 +2630,10 @@
 			<case minzoom="11" tag="public_transport" value="station" color="#d4aaaa">
 				<apply_if nightMode="true" color="#685454"/>
 			</case>
-			<switch minzoom="15">
+			<switch minzoom="15" color="#bababa">
 				<case tag="public_transport" value="platform"/>
 				<case tag="railway" value="platform"/>
-				<apply color="#bababa">
-					<apply_if nightMode="true" color="#685454"/>
-				</apply>
+				<apply_if nightMode="true" color="#685454"/>
 	<!--			<groupFilter appMode="car" layer="-1" disable="true"/> does not works properly due to relation issue -->
 			</switch>
 
@@ -2658,7 +2656,7 @@
 				<case minzoom="12" tag="aeroway" value="airport"/>
 				<apply_if nightMode="true" color="#80a0a0a9"/>
 			</switch>
-			<case minzoom="14" tag="aeroway" value="terminal" color="#cc99ff" color_2="#66444444" strokeWidth_2="0.3" >
+			<case minzoom="14" tag="aeroway" value="terminal" color="#cc99ff" color_2="#66444444" strokeWidth_2="0.5:0.5" >
 				<apply_if nightMode="true" color="#7951a2" color_2="#a0a0a0"/>
 			</case>
 			<case minzoom="13" tag="aeroway" value="apron" color="#e9d1ff">
@@ -2670,7 +2668,7 @@
 				</apply_if>
 				<apply_if nightMode="true" color="#90909e"/>
 			</case>
-			<case minzoom="18" tag="aeroway" value="helipad" color="#55aaaaaa" color_2="#999999" strokeWidth_2="1">
+			<case minzoom="18" tag="aeroway" value="helipad" color="#55aaaaaa" color_2="#999999" strokeWidth_2="0.5:0.5">
 				<apply_if nightMode="true" color="#88555555" color_2="#666666"/>
 			</case>
 
@@ -2748,16 +2746,14 @@
 					</apply>
 				</switch>
 				<case minzoom="8" tag="leisure" value="golf_course" color="$golfCourseColorDay" color_2="$golfCourseColorDayStroke" strokeWidth_2=":1"/>
-				<case minzoom="12" tag="leisure" value="track">
-					<apply color="$leisureTrackColorDay" color_2="$leisureTrackColorDayStroke" shadowRadius="5" shadowColor="#ff0000" strokeWidth_2=":1" cap_2="ROUND">
-						<case minzoom="12" maxzoom="12" strokeWidth_2=":1"/>
-						<case minzoom="13" maxzoom="13" strokeWidth_2=":2"/>
-						<case minzoom="14" maxzoom="14" strokeWidth_2=":3"/>
-						<case minzoom="15" maxzoom="15" strokeWidth_2=":4"/>
-						<case minzoom="16" maxzoom="16" strokeWidth_2=":6"/>
-						<case minzoom="17" maxzoom="17" strokeWidth_2=":10"/>
-						<case minzoom="18" strokeWidth_2=":13"/>
-					</apply>
+				<case minzoom="12" tag="leisure" value="track" color="$leisureTrackColorDay" color_2="$leisureTrackColorDayStroke" cap_2="ROUND">
+					<case maxzoom="12" strokeWidth_2="0.5:0.5"/>
+					<case maxzoom="13" strokeWidth_2="1:1"/>
+					<case maxzoom="14" strokeWidth_2="1.5:1.5"/>
+					<case maxzoom="15" strokeWidth_2="2:2"/>
+					<case maxzoom="16" strokeWidth_2="3:3"/>
+					<case maxzoom="17" strokeWidth_2="5:5"/>
+					<case minzoom="18" strokeWidth_2="6.5:6.5"/>
 					<apply_if nightMode="true" color="$leisureTrackColorNight" color_2="$leisureTrackColorNightStroke"/>
 				</case>
 				<case minzoom="12" tag="leisure" value="pitch" color="$pitchColorDay" color_2="$pitchColorDayStroke" strokeWidth_2=":1"/>
@@ -2840,9 +2836,8 @@
 			</case>
 
 			<!-- Special nature, with shaders -->
-			<!-- Looks like shaders are not working without color statement, hence color="#100000" introduced for now where missing -->
 			<case minzoom="11" tag="natural" value="beach" shader="beach2">
-				<case nightMode="true" shader="beach2night"/>
+				<apply_if nightMode="true" shader="beach2night"/>
 			</case>
 			<switch>
 				<switch>
@@ -2867,7 +2862,7 @@
 					</case>
 				</case>
 				<case minzoom="12" tag="landuse" value="vineyard" shader="vineyard2_small">
-					<case minzoom="15" shader="vineyard2"/>
+					<apply_if minzoom="15" shader="vineyard2"/>
 				</case>
 				<case minzoom="12" tag="landuse" value="cemetery" shader="cemetery_small">
 					<case minzoom="15" shader="cemetery">
@@ -2883,7 +2878,7 @@
 				</case>
 				<apply_if nightMode="true" shader="" color="#334433"/>
 			</switch>
-			<case minzoom="4" tag="natural" value="glacier" strokeWidth_2=":2">
+			<case minzoom="4" tag="natural" value="glacier">
 				<apply shader="glacier2" color_2="#99ccff" pathEffect_2="7_4">
 					<apply_if nightMode="true" shader="glacier2night" color_2="#497caf"/>
 				</apply>
@@ -2891,9 +2886,9 @@
 				<apply_if minzoom="9" maxzoom="9" strokeWidth_2=":1.7"/>
 			</case>
 			<case minzoom="16" tag="natural" value="cliff" color_2="#148c14">
-				<case maxzoom="16" strokeWidth_2="5" pathEffect_2="1_7"/>
-				<case maxzoom="17" strokeWidth_2="8" pathEffect_2="1_9"/>
-				<case minzoom="18" strokeWidth_2="11" pathEffect_2="1_13"/>
+				<case maxzoom="16" strokeWidth_2="2.5:2.5" pathEffect_2="1_7"/>
+				<case maxzoom="17" strokeWidth_2="4:4" pathEffect_2="1_9"/>
+				<case minzoom="18" strokeWidth_2="5.5:5.5" pathEffect_2="1_13"/>
 				<apply_if nightMode="true" color_2="#6d8a6d"/>
 			</case>
 			<case minzoom="11" tag="natural" value="crater" color="#22653f3f" color_2="#886a6a">
@@ -2975,13 +2970,13 @@
 				</apply>
 			</switch>
 			<apply shadowRadius=":1" cap="ROUND">
-				<case maxzoom="6" strokeWidth="1"/>
-				<case maxzoom="8" strokeWidth="2"/>
-				<case maxzoom="9" strokeWidth="2.4"/>
-				<case maxzoom="10" strokeWidth="3.2"/>
-				<case maxzoom="11" strokeWidth="3.8"/>
-				<case maxzoom="12" strokeWidth="4.5"/>
-				<case maxzoom="13" strokeWidth="5"/>
+				<case maxzoom="6" strokeWidth="0.5:0.5"/>
+				<case maxzoom="8" strokeWidth="1:1"/>
+				<case maxzoom="9" strokeWidth="1.2:1.2"/>
+				<case maxzoom="10" strokeWidth="1.6:1.6"/>
+				<case maxzoom="11" strokeWidth="1.8:1.8"/>
+				<case maxzoom="12" strokeWidth="2.2:2.2"/>
+				<case maxzoom="13" strokeWidth="2.5:2.5"/>
 			</apply>
 		</switch>
 
@@ -2989,13 +2984,13 @@
 			<case tag="highway" value="primary"/>
 			<case tag="highway" value="primary_link"/>
 			<apply color="$primaryRoadColor" shadowRadius=":1" cap="ROUND">
-				<case maxzoom="6" strokeWidth="0.8"/>
-				<case maxzoom="8" strokeWidth="1.8"/>
-				<case maxzoom="9" strokeWidth="2.7"/>
-				<case maxzoom="10" strokeWidth="3.5"/>
+				<case maxzoom="6" strokeWidth="0.4:0.4"/>
+				<case maxzoom="8" strokeWidth="0.9:0.9"/>
+				<case maxzoom="9" strokeWidth="1.3:1.3"/>
+				<case maxzoom="10" strokeWidth="1.7:1.7"/>
 				<case maxzoom="11" strokeWidth="3.5"/>
-				<case maxzoom="12" strokeWidth="4"/>
-				<case maxzoom="13" strokeWidth="4"/>
+				<case maxzoom="12" strokeWidth="2:2"/>
+				<case maxzoom="13" strokeWidth="2:2"/>
 			</apply>
 			<apply>
 				<switch>
@@ -3012,11 +3007,11 @@
 			<case tag="highway" value="secondary"/>
 			<case tag="highway" value="secondary_link"/>
 			<apply color="$secondaryRoadColor" shadowRadius=":1" cap="ROUND">
-				<case maxzoom="9" strokeWidth="2.2"/>
-				<case maxzoom="10" strokeWidth="2.5"/>
-				<case maxzoom="11" strokeWidth="3"/>
-				<case maxzoom="12" strokeWidth="3.5"/>
-				<case maxzoom="13" strokeWidth="3.5"/>
+				<case maxzoom="9" strokeWidth="1.1:1.1"/>
+				<case maxzoom="10" strokeWidth="1.3:1.3"/>
+				<case maxzoom="11" strokeWidth="1.5:1.5"/>
+				<case maxzoom="12" strokeWidth="1.7:1.7"/>
+				<case maxzoom="13" strokeWidth="1.7:1.7"/>
 			</apply>
 			<apply>
 				<switch>
@@ -3098,6 +3093,9 @@
 								<apply_if nightMode="true" color_0="#ffffff"/>
 							</apply_if>
 						</case>
+						<apply_if appMode="bicycle" additional="bicycle=no" color="$tertiaryRoadDesaturatedColorDay">
+							<apply_if nightMode="true" color="$tertiaryRoadDesaturatedColorNight" shadowRadius="0"/>
+						</apply_if>
 					</apply>
 				</switch>
 
@@ -3111,12 +3109,11 @@
 							</apply_if>
 						</apply>
 					</switch>
-					<switch>
-						<case tag="highway" value="road"/>
+					<case tag="highway" value="road">
 						<apply color="$roadRoadColor">
 							<apply_if nightMode="true" color="$roadRoadColorNight"/>
 						</apply>
-					</switch>
+					</case>
 					<apply shadowRadius=":1.5" cap="ROUND" color_0="#000000">
 						<case moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth="0.75:0.75" shadowColor="#44666666" shadowRadius=":1"/>
 						<case minzoom="13" maxzoom="13" strokeWidth="1:1" shadowColor="#33666666" shadowRadius=":1"/>
@@ -3164,8 +3161,7 @@
 							</switch>
 						</apply>
 					</switch>
-					<switch>
-						<case tag="highway" value="pedestrian"/>
+					<case tag="highway" value="pedestrian">
 						<apply color="$serviceRoadColor" shadowColor="$pedestrianRoadShadowColorDay">
 							<apply_if nightMode="true" color="$serviceRoadColorNight" shadowColor="$pedestrianRoadShadowColorNight"/>
 							<apply_if appMode="car" color="#f7d4d4" shadowColor="#44444444">
@@ -3175,7 +3171,7 @@
 								<apply_if nightMode="true" color="$pedestrianRoadModeColorNight"/>
 							</apply_if>
 						</apply>
-					</switch>
+					</case>
 					<apply cap="ROUND" color_0="#000000" shadowRadius=":1.5">
 						<switch moreDetailed="true">
 							<case minzoom="13" maxzoom="13" strokeWidth="0.5:0.5" shadowRadius="0"/>
@@ -3209,7 +3205,7 @@
 			<!-- Next segment: Highways without grade distinction (cycleway, bridleway, black path): pathEffect 4_2. Base setting for highways with possible grade distinction but none specified (track, red footway): 5_5 -->
 			<switch>
 				<switch>
-					<switch tag="highway" value="track">
+					<case tag="highway" value="track">
 						<case minzoom="12" maxzoom="13" moreDetailed="true" pathEffect_4="">
 							<case maxzoom="12" strokeWidth_4="0.3:0.3"/>
 							<case maxzoom="13" strokeWidth_4="0.4:0.4"/>
@@ -3229,9 +3225,9 @@
 							<apply_if minzoom="12" maxzoom="13" pathEffect_4=""/>
 						</apply>
 						<apply_if appMode="bicycle" additional="bicycle=no" color_4="#14996600"/>
-					</switch>
+					</case>
 
-					<switch tag="highway" value="path">
+					<case tag="highway" value="path">
 						<case appMode="bicycle" additional="bicycle=designated" color_4="$cyclewayColorDay" pathEffect_4="4_2" minzoom="14" strokeWidth_4="1:1"/>
 						<case moreDetailed="true" minzoom="12" color_4="$pathColorDay" pathEffect_4="$pathPathEffect">
 							<case maxzoom="12" strokeWidth_4="0.25:0.25" color_4="$pathLowZoomColorDay" pathEffect_4="$pathLowZoomPathEffect"/>
@@ -3265,17 +3261,22 @@
 							<apply_if nightMode="true" color_4="#17787878"/>
 						</apply_if>
 						<apply strokeWidth="0.1" color="$null"/>
-					</switch>
+					</case>
 
-					<switch tag="highway" value="cycleway">
+					<case tag="highway" value="cycleway">
 						<case appMode="bicycle" moreDetailed="true" minzoom="13" maxzoom="13" strokeWidth_4="0.5:0.5"/>
 						<case appMode="bicycle" minzoom="14" strokeWidth_4="1:1"/>
 		<!--				<filter appMode="pedestrian" moreDetailed="true" minzoom="14" strokeWidth_4="2"/>-->
 						<case minzoom="14" strokeWidth_4="$cyclewayStrokeWidth"/>
 						<apply strokeWidth="0.1" color="$null" color_4="$cyclewayColorDay" pathEffect_4="$cyclewayPathEffect"/>
-					</switch>
+						<apply_if nightMode="true" color="#cccccc">
+							<apply_if minzoom="13" maxzoom="13" strokeWidth="0.4:0.4"/>
+							<apply_if minzoom="14" maxzoom="14" strokeWidth="1:1" strokeWidth_4="0.9:0.9"/>
+							<apply_if minzoom="15" strokeWidth="1.2:1.2" strokeWidth_4="1:1"/>
+						</apply_if>
+					</case>
 
-					<switch tag="highway" value="footway">
+					<case tag="highway" value="footway">
 						<!-- <case appMode="pedestrian" moreDetailed="true" minzoom="14" strokeWidth_4="2"/>-->
 						<case appMode="pedestrian" minzoom="15" strokeWidth_4="0.7:0.7" pathEffect_4="4_2"/>
 						<case moreDetailed="true" minzoom="14" maxzoom="15" strokeWidth_4="0.5:0.5" pathEffect_4="4_2">
@@ -3289,18 +3290,18 @@
 							<apply_if nightMode="true" color_4="$footwayColorNight"/>
 							<apply_if appMode="bicycle" additional="bicycle=no" color_4="#20fa5073"/>
 						</apply>
-					</switch>
+					</case>
 
-					<switch tag="highway" value="steps">
+					<case tag="highway" value="steps">
 						<case appMode="pedestrian" minzoom="15" strokeWidth_4="2:2" pathEffect_4="2_2"/>
 						<case minzoom="16" strokeWidth_4="2:2"/>
 						<apply strokeWidth="0.1" color="$null" color_4="$footwayColorDay" pathEffect_4="1_2">
 							<apply_if nightMode="true" color_4="$footwayColorNight"/>
 							<apply_if appMode="bicycle" additional="bicycle=no" color_4="#24fa5073"/>
 						</apply>
-					</switch>
+					</case>
 
-					<switch tag="highway" value="bridleway">
+					<case tag="highway" value="bridleway">
 						<case appMode="pedestrian" minzoom="15" strokeWidth_4="1:1"/>
 						<case moreDetailed="true" minzoom="12" maxzoom="15">
 							<case maxzoom="12" strokeWidth_4="0.3:0.3"/>
@@ -3312,7 +3313,7 @@
 						</case>
 						<apply strokeWidth="0.1" color="$null" color_4="#339900" pathEffect_4="4_2"/>
 						<apply_if appMode="bicycle" additional="bicycle=no" color_4="#17339900"/>
-					</switch>
+					</case>
 
 					<!-- Bridges -->
 					<apply_if layer="1" minzoom="16" color__1="#000000" strokeWidth__1="$trackBridgeWidth" color_0="#ffffff" strokeWidth_0="$trackBridgeInnerWidth">
@@ -3344,7 +3345,7 @@
 							</apply>
 						</case>
 						<apply_if minzoom="13" maxzoom="13" strokeWidth="0.4:0.4"/>
-						<apply_if minzoom="14" maxzoom="14" strokeWidth="1.05:1.05" strokeWidth_4="0.9:0.9"/>
+						<apply_if minzoom="14" maxzoom="14" strokeWidth="1:1" strokeWidth_4="0.9:0.9"/>
 						<apply_if minzoom="15" strokeWidth="1.2:1.2" strokeWidth_4="1:1"/>
 					</switch>
 				</apply_if>
@@ -3430,15 +3431,15 @@
 				<case tag="cycleway" value="opposite_lane"/>
 				<apply color="#0000ff" strokeWidth="1:1" pathEffect="8_4"/>
 			</switch>
-			<case tag="cycleway" value="share_busway" minzoom="14" strokeWidth="1:1" pathEffect="8_8"/>
-			<case tag="cycleway" value="opposite" minzoom="16" strokeWidth="1:1" pathEffect="2_4"/>
+			<case minzoom="14" tag="cycleway" value="share_busway" strokeWidth="1:1" pathEffect="8_8"/>
+			<case minzoom="16" tag="cycleway" value="opposite" strokeWidth="1:1" pathEffect="2_4"/>
 		</switch>
 
-		<case tag="highway" value="ford" minzoom="15" color="#447777ff" strokeWidth="2.3:2.3">
+		<case minzoom="15" tag="highway" value="ford" color="#447777ff" strokeWidth="2.3:2.3">
 			<apply_if nightMode="true" color="#445555cc"/>
 		</case>
 
-		<case tag="highway" value="construction" minzoom="13">
+		<case minzoom="13" tag="highway" value="construction">
 			<case maxzoom="14" strokeWidth="2:2" strokeWidth_2="1.5:1.5" pathEffect_2="8_14"/>
 			<case maxzoom="16" strokeWidth="3:3" strokeWidth_2="2.5:2.5" pathEffect_2="11_19"/>
 			<case minzoom="17" strokeWidth="3:3" strokeWidth_2="2.5:2.5" pathEffect_2="13_23"/>
@@ -3448,7 +3449,7 @@
 			</apply_if>
 		</case>
 
-		<case tag="highway" value="proposed" minzoom="13">
+		<case minzoom="13" tag="highway" value="proposed">
 			<case maxzoom="14" strokeWidth="2:2" strokeWidth_2="1.5:1.5" pathEffect_2="8_14"/>
 			<case maxzoom="16" strokeWidth="3:3" strokeWidth_2="2.5:2.5" pathEffect_2="11_19"/>
 			<case minzoom="17" strokeWidth="3:3" strokeWidth_2="2.5:2.5" pathEffect_2="13_23"/>
@@ -3457,26 +3458,25 @@
 			</apply>
 		</case>
 
-		<case tag="highway" value="raceway" minzoom="14">
-			<case maxzoom="14" strokeWidth=":2"/>
-			<case maxzoom="15" strokeWidth=":3"/>
-			<case maxzoom="16" strokeWidth=":5"/>
-			<case maxzoom="17" strokeWidth=":8"/>
-			<case minzoom="18" strokeWidth=":10"/>
+		<case minzoom="14" tag="highway" value="raceway">
+			<case maxzoom="14" strokeWidth="1:1"/>
+			<case maxzoom="15" strokeWidth="1.5:1.5"/>
+			<case maxzoom="16" strokeWidth="2.5:2.5"/>
+			<case maxzoom="17" strokeWidth="4:4"/>
+			<case minzoom="18" strokeWidth="5:5"/>
 			<apply color="$racewayColorDay" cap="ROUND">
 				<apply_if nightMode="true" color="$racewayColorNight"/>
 			</apply>
 		</case>
 
-		<switch>
-			<case contourLines="11" tag="contour" value="elevation" minzoom="11"/>
-			<case contourLines="12" tag="contour" value="elevation" minzoom="12"/>
-			<case contourLines="13" tag="contour" value="elevation" minzoom="13"/>
-			<case contourLines="14" tag="contour" value="elevation" minzoom="14"/>
-			<case contourLines="15" tag="contour" value="elevation" minzoom="15"/>
-			<case contourLines="16" tag="contour" value="elevation" minzoom="16"/>
-			<apply color="$contourLineColor" strokeWidth=":1"/>
-			<apply>
+		<switch tag="contour" value="elevation">
+			<case minzoom="11" contourLines="11"/>
+			<case minzoom="12" contourLines="12"/>
+			<case minzoom="13" contourLines="13"/>
+			<case minzoom="14" contourLines="14"/>
+			<case minzoom="15" contourLines="15"/>
+			<case minzoom="16" contourLines="16"/>
+			<apply color="$contourLineColor" strokeWidth=":1">
 				<case additional="contourtype=10m" color="$contourLineColor" strokeWidth=":1"/>
 				<case additional="contourtype=20m" color="$contourLineColor" strokeWidth=":1"/>
 				<case additional="contourtype=50m" minzoom="16" color="$contourLineColor50m" strokeWidth=":1.5"/>
@@ -3517,23 +3517,23 @@
 			</apply>
 		</switch>
 
-		<case tag="barrier" value="ditch" minzoom="16" color="#768c8c" strokeWidth="1:1">
+		<case minzoom="16" tag="barrier" value="ditch" color="#768c8c" strokeWidth="1:1">
 			<apply_if nightMode="true" color="#5f6767"/>
 		</case>
-		<case tag="barrier" value="city_wall" minzoom="14">
+		<case minzoom="14" tag="barrier" value="city_wall">
 			<case maxzoom="14" strokeWidth="2:2"/>
 			<case maxzoom="15" strokeWidth="3:3"/>
 			<case minzoom="16" strokeWidth="4.5:4.5"/>
 			<apply color="#888888"/>
 		</case>
 
-		<case tag="natural" value="cliff" minzoom="16" color="#148c14" color_2="#005300" strokeWidth_2="0.2:0.2">
+		<case minzoom="16" tag="natural" value="cliff" color="#148c14" color_2="#005300" strokeWidth_2="0.2:0.2">
 			<case maxzoom="16" strokeWidth="2.5:2.5" pathEffect="1_7"/>
 			<case maxzoom="17" strokeWidth="4:4" pathEffect="1_9"/>
 			<case minzoom="18" strokeWidth="5.5:5.5" pathEffect="1_13"/>
 			<apply_if nightMode="true" color="#6d8a6d" color_2="#e5e5e5"/>
 		</case>
-		<case tag="natural" value="ridge" minzoom="11" color="#666666" color_2="#000000">
+		<case minzoom="11" tag="natural" value="ridge" color="#666666" color_2="#000000">
 			<case maxzoom="11" strokeWidth="0.15:0.15"/>
 			<case maxzoom="12" strokeWidth="0.4:0.4"/>
 			<case maxzoom="13" strokeWidth="0.7:0.7" strokeWidth_2="1.1:1.1" pathEffect_2="1_23"/>
@@ -3542,7 +3542,7 @@
 			<case minzoom="16" strokeWidth="1.5:1.5" strokeWidth_2="1.8:1.8" pathEffect_2="1_37"/>
 			<apply_if nightMode="true" color="#666666" color_2="#999999"/>
 		</case>
-		<case tag="natural" value="crater" minzoom="11" color="#886a6a">
+		<case minzoom="11" tag="natural" value="crater" color="#886a6a">
 			<case maxzoom="11" strokeWidth="0.3:0.3"/>
 			<case maxzoom="12" strokeWidth="0.5:0.5"/>
 			<case maxzoom="13" strokeWidth="1:1"/>
@@ -3552,7 +3552,7 @@
 			<apply_if nightMode="true" color="#452121"/>
 		</case>
 
-		<switch>
+		<switch minzoom="16">
 			<case tag="waterway" value="waterfall"/>
 			<case tag="natural" value="waterfall"/>
 			<apply_if minzoom="16" maxzoom="16" strokeWidth="3.5:3.5" pathEffect="1_7"/>
@@ -3619,17 +3619,17 @@
 				<case tag="waterway" value="drain"/>
 				<apply>
 					<case layer="-1" pathEffect_2="3_1.6">
-						<case maxzoom="13" strokeWidth_2="0.6"/>
-						<case maxzoom="14" strokeWidth_2="0.8"/>
-						<case maxzoom="16" strokeWidth_2="1"/>
-						<case maxzoom="17" strokeWidth_2="1.3"/>
-						<case minzoom="18" strokeWidth_2="1.8"/>
+						<case maxzoom="13" strokeWidth_2="0.3:0.3"/>
+						<case maxzoom="14" strokeWidth_2="0.4:0.4"/>
+						<case maxzoom="16" strokeWidth_2="0.5:0.5"/>
+						<case maxzoom="17" strokeWidth_2="0.6:0.6"/>
+						<case minzoom="18" strokeWidth_2="0.9:0.9"/>
 					</case>
-					<apply_if minzoom="13" maxzoom="13" strokeWidth="0.8"/>
-					<apply_if minzoom="14" maxzoom="14" strokeWidth="1.1"/>
-					<apply_if minzoom="15" maxzoom="16" strokeWidth="1.4"/>
-					<apply_if minzoom="17" maxzoom="17" strokeWidth="1.7"/>
-					<apply_if minzoom="18" strokeWidth="2.3"/>
+					<apply_if minzoom="13" maxzoom="13" strokeWidth="0.4:0.4"/>
+					<apply_if minzoom="14" maxzoom="14" strokeWidth="0.5:0.5"/>
+					<apply_if minzoom="15" maxzoom="16" strokeWidth="0.7:0.7"/>
+					<apply_if minzoom="17" maxzoom="17" strokeWidth="0.8:0.8"/>
+					<apply_if minzoom="18" strokeWidth="1.1:1.1"/>
 				</apply>
 			</switch>
 			<!-- Waterway color -->
@@ -3646,9 +3646,9 @@
 		</switch>
 
 		<switch>
-			<case tag="waterway" value="dam" minzoom="13"/>
-			<case tag="waterway" value="weir" minzoom="15" color="#aaaaaa"/>
-			<apply color="#555555" strokeWidth="2">
+			<case minzoom="13" tag="waterway" value="dam"/>
+			<case minzoom="15" tag="waterway" value="weir" color="#aaaaaa"/>
+			<apply color="#555555" strokeWidth="1:1">
 				<apply_if nightMode="true" color="#eeeeee"/>
 			</apply>
 		</switch>
@@ -3662,7 +3662,7 @@
 					<apply_if layer="1" color__1="#000000" strokeWidth__1="3.5:3.5" color_0="#ffffff" strokeWidth_0="2.5:3"/>
 				</apply_if>
 			</case>
-			<case minzoom="11" subwayMode="true" tag="railway" value="rail" additional="network=rer">
+			<case subwayMode="true" minzoom="11" tag="railway" value="rail" additional="network=rer">
 				<apply pathEffect="" cap="ROUND" color_2="#ffffff">
 					<apply_if nightMode="true" color_2="#333333"/>
 				</apply>
@@ -3762,7 +3762,7 @@
 				<case maxzoom="14" strokeWidth="3.7:3.7" strokeWidth_2="3:3" pathEffect_2="17_17"/>
 				<case maxzoom="15" strokeWidth="4.2:4.2" strokeWidth_2="3.5:3.5" pathEffect_2="23_23"/>
 				<case maxzoom="16" strokeWidth="4.7:4.7" strokeWidth_2="4:4" pathEffect_2="24_24"/>
-				<case maxzoom="17" strokeWidth="10.5:10.5" strokeWidth_2="4.7:4.7" pathEffect_2="26_26"/>
+				<case maxzoom="17" strokeWidth="5.5:5.5" strokeWidth_2="4.7:4.7" pathEffect_2="26_26"/>
 				<case minzoom="18" strokeWidth="6.5:6.5" strokeWidth_2="5.5:5.5" pathEffect_2="28_28"/>
 				<apply_if nightMode="true" color="$routeTrainColorNight" color_2="#ffffff"/>
 			</case>
@@ -3813,71 +3813,76 @@
 			<apply_if layer="1" minzoom="14" color__1="#000000" strokeWidth__1="3.5:3.5" color_0="#ffffff" strokeWidth_0="2.5:3"/>
 		</switch>
 
-		<group>
-			<filter tag="railway" value="platform"/>
-			<filter tag="public_transport" value="platform"/>
-			<groupFilter color="#888888" strokeWidth="4" strokeWidth_2="2" color_2="#bababa" minzoom="16">
-				<filter minzoom="18" strokeWidth="6" strokeWidth_2="4"/>
-			</groupFilter>
-			<groupFilter layer="-1" color="#44888888" color_2="#bababa" pathEffect="20_3" pathEffect_2="20_3"/>
-			<groupFilter appMode="bicycle">
-				<groupFilter layer="-1" color="#25888888" color_2="#25bababa" pathEffect="20_3" pathEffect_2="20_3">
-					<groupFilter nightMode="true" color="#10888888" color_2="#10bababa"/>
-				</groupFilter>
-			</groupFilter>
-			<groupFilter appMode="car" layer="-1" disable="true"/>
-		</group>
+		<switch>
+			<case tag="railway" value="platform"/>
+			<case tag="public_transport" value="platform"/>
+			<apply_if minzoom="16" color="#888888" strokeWidth="2:2" strokeWidth_2="1:1" color_2="#bababa">
+				<apply_if minzoom="18" strokeWidth="3:3" strokeWidth_2="2:2"/>
+			</apply_if>
+			<apply_if layer="-1" color="#44888888" color_2="#bababa" pathEffect="20_3" pathEffect_2="20_3"/>
+			<apply_if appMode="bicycle">
+				<apply_if layer="-1" color="#25888888" color_2="#25bababa" pathEffect="20_3" pathEffect_2="20_3">
+					<apply_if nightMode="true" color="#10888888" color_2="#10bababa"/>
+				</apply_if>
+			</apply_if>
+			<apply_if appMode="car" layer="-1" disable="true"/>
+		</switch>
 
-		<group minzoom="13" color="#bababa" strokeWidth="2">
-			<filter tag="aerialway" value="magic_carpet"/>
-		</group>
-		<group minzoom="13" color="#bababa" strokeWidth="2" pathEffect="24_3">
-			<filter tag="aerialway" value="rope_tow"/>
-		</group>
-		<group>
-			<filter tag="aerialway" value="drag_lift"/>
-			<filter tag="aerialway" value="chair_lift"/>
-			<filter tag="aerialway" value="t-bar"/>
-			<filter tag="aerialway" value="j-bar"/>
-			<filter tag="aerialway" value="platter"/>
-			<filter tag="aerialway" value="mixed_lift" cap_2="ROUND"/>
-			<filter tag="aerialway" value="gondola" cap_2="SQUARE"/>
-			<filter tag="aerialway" value="cable_car" cap_2="ROUND"/>
-			<groupFilter minzoom="13" color="#999999" color_2="#333333">
-				<filter maxzoom="13" strokeWidth="0.5" strokeWidth_2="1.6" pathEffect_2="1_11"/>
-				<filter maxzoom="14" strokeWidth="0.7" strokeWidth_2="2.3" pathEffect_2="1_15"/>
-				<filter maxzoom="15" strokeWidth="1" strokeWidth_2="2.8" pathEffect_2="1_19"/>
-				<filter maxzoom="16" strokeWidth="1.1" strokeWidth_2="3.3" pathEffect_2="1_24"/>
-				<filter maxzoom="17" strokeWidth="1.2" strokeWidth_2="3.5" pathEffect_2="1_29"/>
-				<filter minzoom="18" strokeWidth="1.2" strokeWidth_2="3.9" pathEffect_2="1_37"/>
-			</groupFilter>
-			<groupFilter nightMode="true" color="#999999" color_2="#eeeeee"/>
-		</group>
+		<switch minzoom="13">
+			<case tag="aerialway" value="magic_carpet" color="#bababa" strokeWidth="1:1"/>
+			<case tag="aerialway" value="rope_tow" color="#bababa" strokeWidth="1:1" pathEffect="24_3"/>
+			<switch>
+				<case tag="aerialway" value="drag_lift"/>
+				<case tag="aerialway" value="chair_lift"/>
+				<case tag="aerialway" value="t-bar"/>
+				<case tag="aerialway" value="j-bar"/>
+				<case tag="aerialway" value="platter"/>
+				<case tag="aerialway" value="mixed_lift" cap_2="ROUND"/>
+				<case tag="aerialway" value="gondola" cap_2="SQUARE"/>
+				<case tag="aerialway" value="cable_car" cap_2="ROUND"/>
+				<apply_if color="#999999" color_2="#333333">
+					<case maxzoom="13" strokeWidth="0.25:0.25" strokeWidth_2="0.8:0.8" pathEffect_2="1_11"/>
+					<case maxzoom="14" strokeWidth="0.3:0.3" strokeWidth_2="1.1:1.1" pathEffect_2="1_15"/>
+					<case maxzoom="15" strokeWidth="0.5:0.5" strokeWidth_2="1.4:1.4" pathEffect_2="1_19"/>
+					<case maxzoom="16" strokeWidth="0.55:0.55" strokeWidth_2="1.7:1.7" pathEffect_2="1_24"/>
+					<case maxzoom="17" strokeWidth="0.6:0.6" strokeWidth_2="1.7:1.7" pathEffect_2="1_29"/>
+					<case minzoom="18" strokeWidth="0.6:0.6" strokeWidth_2="1.9:1.9" pathEffect_2="1_37"/>
+					<apply_if nightMode="true" color="#999999" color_2="#eeeeee"/>
+				</apply_if>
+			</switch>
+		</switch>
 
 		<!-- Aeroway -->
-		<filter tag="aeroway" value="runway" minzoom="11" color="#bbbbcc">
-			<filter layer="1" minzoom="13" maxzoom="13" color="#000000" strokeWidth="9" color_2="#bbbbcc" strokeWidth_2="7" cap_2="SQUARE"/>
-			<filter layer="1" minzoom="14" maxzoom="14" color="#000000" strokeWidth="14" color_2="#bbbbcc" strokeWidth_2="12" cap_2="SQUARE"/>
-			<filter layer="1" minzoom="15" color="#000000" strokeWidth="20" color_2="#bbbbcc" strokeWidth_2="18" cap_2="SQUARE"/>
-			<filter maxzoom="11" strokeWidth="2"/>
-			<filter maxzoom="12" strokeWidth="4"/>
-			<filter maxzoom="13" strokeWidth="7"/>
-			<filter maxzoom="14" strokeWidth="12"/>
-			<filter minzoom="15" color="#bbbbcc" strokeWidth="18"/>
-			<groupFilter nightMode="true" color="#90909e"/>
-			<groupFilter additional="abandoned=yes" color="#77bbbbbb"/>
-			<groupFilter nightMode="true" additional="abandoned=yes" color="#72808080"/>
-		</filter>
+		<case minzoom="11" tag="aeroway" value="runway" color="#bbbbcc">
+			<case maxzoom="11" strokeWidth="1:1"/>
+			<case maxzoom="12" strokeWidth="2:2"/>
+			<case maxzoom="13" strokeWidth="3.5:3.5"/>
+			<case maxzoom="14" strokeWidth="6:6"/>
+			<case minzoom="15" strokeWidth="9:9"/>
+			<apply_if nightMode="true" color="#90909e"/>
+			<apply_if additional="abandoned=yes" color="#c6c7c6">
+				<apply_if nightMode="true" additional="abandoned=yes" color="#526163"/>
+			</apply_if>
+			<apply_if layer="1" minzoom="13" color__1="#000000">
+				<case maxzoom="13" strokeWidth__1="3.5:5"/>
+				<case maxzoom="14" strokeWidth__1="6:8"/>
+				<case minzoom="15" strokeWidth__1="9:12"/>
+				<apply_if nightMode="true" color__1="#ffffff"/>
+			</apply_if>
+		</case>
 
-		<filter tag="aeroway" value="taxiway" minzoom="12" color="#bbbbcc">
-			<filter layer="1" minzoom="13" maxzoom="13" color="#000000" strokeWidth="3" color_2="#bbbbcc" strokeWidth_2="1" cap_2="SQUARE"/>
-			<filter layer="1" minzoom="14" maxzoom="14" color="#000000" strokeWidth="6" color_2="#bbbbcc" strokeWidth_2="4" cap_2="SQUARE"/>
-			<filter layer="1" minzoom="15" color="#000000" strokeWidth="8" color_2="#bbbbcc" strokeWidth_2="6" cap_2="SQUARE"/>
-			<filter maxzoom="12" strokeWidth="1"/>
-			<filter maxzoom="13" strokeWidth="1.7"/>
-			<filter maxzoom="14" strokeWidth="3"/>
-			<filter minzoom="15" color="#bbbbcc" strokeWidth="5"/>
-		</filter>
+		<case minzoom="12" tag="aeroway" value="taxiway" color="#bbbbcc">
+			<case maxzoom="12" strokeWidth="0.5:0.5"/>
+			<case maxzoom="13" strokeWidth="0.8:0.8"/>
+			<case maxzoom="14" strokeWidth="1.5:1.5"/>
+			<case minzoom="15" strokeWidth="2.5:2.5"/>
+			<apply_if layer="1" minzoom="13" color__1="#000000">
+				<case maxzoom="13" strokeWidth__1="0.8:2.5"/>
+				<case maxzoom="14" strokeWidth__1="1.5:3"/>
+				<case minzoom="15" strokeWidth__1="2.5:4"/>
+				<apply_if nightMode="true" color__1="#ffffff"/>
+			</apply_if>
+		</case>
 
 		<!-- Man made -->
 		<switch color="#bababa">
@@ -3928,20 +3933,27 @@
 			<apply_if nightMode="true" color="$woodColorNight"/>
 		</case>
 
-		<case minzoom="13" tag="leisure" value="track" color="#888888" strokeWidth="0.5:0.5"/>
+		<case minzoom="13" tag="leisure" value="track" color="$leisureTrackColorDayStroke" cap="ROUND">
+			<case maxzoom="13" strokeWidth="1:1"/>
+			<case maxzoom="14" strokeWidth="1.5:1.5"/>
+			<case maxzoom="15" strokeWidth="2:2"/>
+			<case maxzoom="16" strokeWidth="3:3"/>
+			<case maxzoom="17" strokeWidth="5:5"/>
+			<case minzoom="18" strokeWidth="6.5:6.5"/>
+			<apply_if nightMode="true" color="$leisureTrackColorNightStroke"/>
+		</case>
 
 		<case minzoom="13" maxzoom="15" tag="leisure" value="marina" color="#0000ff" strokeWidth="0.5:0.5" pathEffect="6_2">
 			<apply_if minzoom="16" color="#0000ff" strokeWidth="1:1"/>
 		</case>
 
-		<switch minzoom="14">
-			<case minzoom="8" tag="route" value="ferry" color="#7777FF" strokeWidth="1:1" pathEffect="6_3"/>
+		<case minzoom="8" tag="route" value="ferry" color="#7777FF" strokeWidth="1:1" pathEffect="6_3">
 			<apply_if publicTransportMode="true">
 				<case maxzoom="14" strokeWidth="1.5:1.5" pathEffect="8_5"/>
 				<case maxzoom="15" strokeWidth="2.2:2.2" pathEffect="10_5"/>
 				<case minzoom="16" strokeWidth="2.5:2.5" pathEffect="12_6"/>
 			</apply_if>
-		</switch>
+		</case>
 
 		<switch noPolygons="false" minzoom="15" color="#33ffffff" color_0="#77999999" color__1="#44000000" strokeWidth="3:3" strokeWidth_0="4:4" cap="ROUND" cap_0="ROUND">
 			<case tag="man_made" value="embankment"/>
@@ -3952,77 +3964,82 @@
 			<apply_if nightMode="true" color="#99111111" color__1="#66ffffff"/>
 		</switch>
 
-		<group showCycleRoutes="true">
-			<filter tag="lcn_network" value="lcn" color="$cycleRoutelcnColor"/>
-			<filter tag="rcn_network" value="rcn" color="$cycleRoutercnColor"/>
-			<filter tag="ncn_network" value="ncn" color="$cycleRoutencnColor"/>
-			<filter tag="icn_network" value="icn" color="$cycleRouteicnColor"/>
-			<groupFilter minzoom="10" cap="BUTT">
-				<filter maxzoom="10" strokeWidth="4"/>
-				<filter maxzoom="11" strokeWidth="5"/>
-				<filter maxzoom="12" strokeWidth="7"/>
-				<filter maxzoom="13" strokeWidth="8"/>
-				<filter maxzoom="14" strokeWidth="9"/>
-				<filter maxzoom="15" strokeWidth="12"/>
-				<filter maxzoom="16" strokeWidth="15"/>
-				<filter maxzoom="17" strokeWidth="19"/>
-				<filter minzoom="18" strokeWidth="25"/>
-			</groupFilter>
-		</group>
+		<switch showCycleRoutes="true" minzoom="11">
+			<case tag="lcn_network" value="lcn" color="$cycleRoutelcnColor"/>
+			<case tag="rcn_network" value="rcn" color="$cycleRoutercnColor"/>
+			<case tag="ncn_network" value="ncn" color="$cycleRoutencnColor"/>
+			<case tag="icn_network" value="icn" color="$cycleRouteicnColor"/>
+			<apply cap="BUTT">
+				<case maxzoom="11" strokeWidth="2.5:2.5"/>
+				<case maxzoom="12" strokeWidth="3.5:3.5"/>
+				<case maxzoom="13" strokeWidth="4:4"/>
+				<case maxzoom="14" strokeWidth="4.5:4.5"/>
+				<case maxzoom="15" strokeWidth="6:6"/>
+				<case maxzoom="16" strokeWidth="7.5:7.5"/>
+				<case maxzoom="17" strokeWidth="9:9"/>
+				<case minzoom="18" strokeWidth="12:12"/>
+			</apply>
+		</switch>
 
-		<group osmcTraces="true">
-			<filter tag="route_hiking" value="" minzoom="12" color="#170058a2">
-				<filter additional="osmc_symbol=black" color="#44000000"/>
-				<filter additional="osmc_symbol=blue" color="#440000ff"/>
-				<filter additional="osmc_symbol=green" color="#4400ff00"/>
-				<filter additional="osmc_symbol=red" color="#44ff0000"/>
-				<filter additional="osmc_symbol=white" color="#aaffffff"/>
-				<filter additional="osmc_symbol=yellow" color="#44ffff00"/>
-				<groupFilter minzoom="12" maxzoom="12" strokeWidth="7"/><!-- pathEffect="20_5"-->
-				<groupFilter minzoom="13" maxzoom="13" strokeWidth="9"/><!-- pathEffect="22_6"-->
-				<groupFilter minzoom="14" maxzoom="14" strokeWidth="11"/><!-- pathEffect="24_7"-->
-				<groupFilter minzoom="15" maxzoom="15" strokeWidth="14"/><!-- pathEffect="28_9"-->
-				<groupFilter minzoom="16" maxzoom="16" strokeWidth="16"/><!-- pathEffect="33_10"-->
-				<groupFilter minzoom="17" maxzoom="17" strokeWidth="18"/><!-- pathEffect="37_12"-->
-				<groupFilter minzoom="18" strokeWidth="24"/><!-- pathEffect="42_14"-->
-			</filter>
-		</group>
+		<case osmcTraces="true" minzoom="12" tag="route_hiking" value="" color="#170058a2">
+			<case additional="osmc_symbol=black" color="#44000000"/>
+			<case additional="osmc_symbol=blue" color="#440000ff"/>
+			<case additional="osmc_symbol=green" color="#4400ff00"/>
+			<case additional="osmc_symbol=red" color="#44ff0000"/>
+			<case additional="osmc_symbol=white" color="#aaffffff"/>
+			<case additional="osmc_symbol=yellow" color="#44ffff00"/>
+			<apply_if minzoom="12" maxzoom="12" strokeWidth="3.5:3.5"/><!-- pathEffect="20_5"-->
+			<apply_if minzoom="13" maxzoom="13" strokeWidth="4.5:4.5"/><!-- pathEffect="22_6"-->
+			<apply_if minzoom="14" maxzoom="14" strokeWidth="5.5:5.5"/><!-- pathEffect="24_7"-->
+			<apply_if minzoom="15" maxzoom="15" strokeWidth="7:7"/><!-- pathEffect="28_9"-->
+			<apply_if minzoom="16" maxzoom="16" strokeWidth="8:8"/><!-- pathEffect="33_10"-->
+			<apply_if minzoom="17" maxzoom="17" strokeWidth="9:9"/><!-- pathEffect="37_12"-->
+			<apply_if minzoom="18" strokeWidth="12:12"/><!-- pathEffect="42_14"-->
+		</case>
 
 		<!-- Admin levels (boundaries) -->
-		<group>
+		<switch minzoom="2">
 			<!-- does admin_level=0 exist?? -->
-			<filter tag="admin_level" value="0"/>
-			<filter tag="admin_level" value="1"/>
-			<filter tag="admin_level" value="2"/>
-			<groupFilter minzoom="2" color="#15800080" color_0="#2A800080">
-				<filter maxzoom="2" strokeWidth="0.5"/>
-				<filter maxzoom="3" strokeWidth="1"/>
-				<filter maxzoom="4" strokeWidth="3" strokeWidth_0="1"/>
-				<filter maxzoom="6" strokeWidth="6" strokeWidth_0="1"/>
-				<filter maxzoom="8" strokeWidth="9" strokeWidth_0="2"/>
-				<filter minzoom="9" strokeWidth="12" strokeWidth_0="2"/>
-			</groupFilter>
-		</group>
-
-		<switch>
-			<case tag="admin_level" value="3" pathEffect="6_1"/>
-			<case tag="admin_level" value="4" pathEffect="6_1"/>
-			<apply_if minzoom="5" color="#15800080" color_0="#2A800080">
-				<case maxzoom="6" strokeWidth="3" strokeWidth_0="1"/>
-				<case maxzoom="8" strokeWidth="6" strokeWidth_0="1"/>
-				<case minzoom="9" strokeWidth="9" strokeWidth_0="2"/>
+			<case tag="admin_level" value="0"/>
+			<case tag="admin_level" value="1"/>
+			<case tag="admin_level" value="2"/>
+			<apply_if color="#15800080" color_0="#2A800080">
+				<case maxzoom="2" strokeWidth="0.25:0.25"/>
+				<case maxzoom="3" strokeWidth="0.5:0.5"/>
+				<case maxzoom="4" strokeWidth="1.5:1.5" strokeWidth_0="0.5:0.5"/>
+				<case maxzoom="6" strokeWidth="3:3" strokeWidth_0="0.5:0.5"/>
+				<case maxzoom="8" strokeWidth="2.2:2.2" strokeWidth_0="1:1"/>
+				<case minzoom="9" strokeWidth="6:6" strokeWidth_0="1:1"/>
 			</apply_if>
 		</switch>
 
-		<case noAdminboundaries="false" tag="admin_level" value="5" minzoom="11" color="#15800080" color_0="#2A800080" strokeWidth="6" strokeWidth_0="1" pathEffect="6_3_2_3_2_3" pathEffect_0="6_3_2_3_2_3"/>
-		<case noAdminboundaries="false" tag="admin_level" value="6" minzoom="11" color="#15800080" color_0="#2A800080" strokeWidth="6" strokeWidth_0="1" pathEffect="6_3_2_3" pathEffect_0="6_3_2_3"/>
-		<case noAdminboundaries="false" tag="admin_level" value="7" minzoom="12" color="#15800080" color_0="#2A800080" strokeWidth="6" strokeWidth_0="1" pathEffect="5_1" pathEffect_0="5_1"/>
-		<case noAdminboundaries="false" tag="admin_level" value="8" minzoom="12" color="#15800080" color_0="#2A800080" strokeWidth="6" strokeWidth_0="1" pathEffect="5_1" pathEffect_0="5_1"/>
-		<case noAdminboundaries="false" tag="admin_level" value="9" minzoom="13" color="#15800080" color_0="#2A800080" strokeWidth="6" strokeWidth_0="1" pathEffect="4_1" pathEffect_0="4_1"/>
-		<case noAdminboundaries="false" tag="admin_level" value="10" minzoom="13" color="#15800080" color_0="#2A800080" strokeWidth="6" strokeWidth_0="1" pathEffect="4_1" pathEffect_0="4_1"/>
+		<switch minzoom="5">
+			<case tag="admin_level" value="3" pathEffect="6_1"/>
+			<case tag="admin_level" value="4" pathEffect="6_1"/>
+			<apply_if color="#15800080" color_0="#2A800080">
+				<case maxzoom="6" strokeWidth="1.5:1.5" strokeWidth_0="0.5:0.5"/>
+				<case maxzoom="8" strokeWidth="3:3" strokeWidth_0="0.5:0.5"/>
+				<case minzoom="9" strokeWidth="4.5:4.5" strokeWidth_0="1:1"/>
+			</apply_if>
+		</switch>
 
-		<case noAdminboundaries="false" tag="boundary" value="national_park" minzoom="7" maxzoom="9" color="#5009dd09" color_0="#A0800080" strokeWidth="3" strokeWidth_0="1" pathEffect="4_1" pathEffect_0="4_1"/>
-		<case noAdminboundaries="false" tag="boundary" value="national_park" minzoom="10" color="#5009dd09" color_0="#A0800080" strokeWidth="6" strokeWidth_0="1" pathEffect="4_1" pathEffect_0="4_1"/>
+		<switch noAdminboundaries="false">
+			<switch>
+				<case tag="admin_level" value="5" minzoom="11" pathEffect="6_3_2_3_2_3" pathEffect_0="6_3_2_3_2_3"/>
+				<case tag="admin_level" value="6" minzoom="11" pathEffect="6_3_2_3" pathEffect_0="6_3_2_3"/>
+				<case tag="admin_level" value="7" minzoom="12" pathEffect="5_1" pathEffect_0="5_1"/>
+				<case tag="admin_level" value="8" minzoom="12" pathEffect="5_1" pathEffect_0="5_1"/>
+				<case tag="admin_level" value="9" minzoom="13" pathEffect="4_1" pathEffect_0="4_1"/>
+				<case tag="admin_level" value="10" minzoom="13" pathEffect="4_1" pathEffect_0="4_1"/>
+				<apply color="#15800080" color_0="#2A800080" strokeWidth="3:3" strokeWidth_0="0.5:0.5"/>
+			</switch>
+			<case tag="boundary" value="national_park" minzoom="7">
+				<case maxzoom="9" strokeWidth="1.5:1.5"/>
+				<case minzoom="10" strokeWidth="3:3"/>
+				<apply color="#5009dd09" color_0="#A0800080" strokeWidth_0="0.5:0.5" pathEffect="4_1" pathEffect_0="4_1"/>
+			</case>
+		</switch>
+
 		<!-- protected_areas should not be needed, see e.g. remark on National Forest/Park
 		<filter noAdminboundaries="false" tag="boundary" value="protected_area" minzoom="7" maxzoom="9" color="#5009dd09" color_0="#A0800080" strokeWidth="3" strokeWidth_0="1" pathEffect="4_1" pathEffect_0="4_1"/>
 			<filter noAdminboundaries="false" tag="boundary" value="protected_area" minzoom="10" color="#5009dd09" color_0="#A0800080" strokeWidth="3" strokeWidth_0="1" pathEffect="4_1" pathEffect_0="4_1"/>
