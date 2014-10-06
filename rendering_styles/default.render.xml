@@ -2052,55 +2052,44 @@
 		<!-- not a conventional tag: filter minzoom="15" icon="waterway_lock_gate" tag="waterway" value="lock"/ -->
 
 	<!-- Public transport mode icons -->
-
-		<switch publicTransportMode="true" minzoom="14" maxzoom="15" iconVisibleSize="2" iconOrder="55"> <!-- assign round icons to 14-15 zooms when in publicTransportMode -->
+		<switch>
 			<case tag="highway" value="bus_stop"/>
 			<case tag="public_transport" value="platform" additional="bus=yes"/>
 			<case tag="public_transport" value="platform" additional="trolleybus=yes"/>
-			<apply icon="highway_bus_stop_round_small">
+			<apply_if publicTransportMode="true" minzoom="14" maxzoom="15" icon="highway_bus_stop_round_small" iconVisibleSize="2" iconOrder="55">
 				<apply_if nightMode="true" icon="highway_bus_stop_round_small_night"/>
-			</apply>
+			</apply_if>
+			<apply_if minzoom="15" maxzoom="16" icon="highway_bus_stop_small" iconVisibleSize="5" iconOrder="65">
+				<apply_if publicTransportMode="true" iconVisibleSize="2" iconOrder="55">
+					<apply icon="highway_bus_stop_round_big">
+						<apply_if nightMode="true" icon="highway_bus_stop_round_big_night"/>
+					</apply>
+				</apply_if>
+			</apply_if>
+			<apply_if minzoom="17" icon="highway_bus_stop" shield="white_blue_square_shield" iconVisibleSize="16" iconOrder="82">
+				<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+			</apply_if>
 		</switch>
 
-		<switch minzoom="17" shield="white_blue_square_shield" iconOrder="82">
-			<case tag="highway" value="bus_stop" icon="highway_bus_stop" iconVisibleSize="16"/>
-			<case tag="public_transport" value="platform" additional="bus=yes"  icon="highway_bus_stop" iconVisibleSize="16"/>
-			<case icon="highway_bus_stop" tag="public_transport" value="platform" additional="trolleybus=yes" iconVisibleSize="16"/>
+		<case minzoom="14" tag="amenity" value="bus_station" icon="amenity_bus_station2" shield="white_red_round_shield" iconVisibleSize="10" iconOrder="72">
+			<apply_if nightMode="true" shield="gray_red_round_shield"/>
+		</case>
+		<case minzoom="14" tag="public_transport" value="station" icon="amenity_bus_station2" shield="white_blue_round_shield" iconVisibleSize="10" iconOrder="72">
+			<apply_if nightMode="true" shield="gray_blue_round_shield"/>
+		</case>
+
+		<switch minzoom="15" iconVisibleSize="7" shield="white_blue_square_shield">
+			<case tag="railway" value="station" icon="railway_station"/>
+			<case tag="public_transport" value="platform" icon="amenity_bus_station2">
+				<switch>
+					<case additional="train=yes"/>
+					<case additional="tram=yes"/>
+					<case additional="light_rail=yes"/>
+					<apply icon="railway_station"/>
+				</switch>
+			</case>
 			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 		</switch>
-
-		<group minzoom="15" maxzoom="16"> <!-- assing big round icons to zoom 16 when in publicTransportMode. else assign old square blue icon -->
-			<filter tag="highway" value="bus_stop"/>
-			<filter tag="public_transport" value="platform" additional="bus=yes"/>
-			<filter tag="public_transport" value="platform" additional="trolleybus=yes"/>
-			<groupFilter icon="highway_bus_stop_small" iconVisibleSize="5" iconOrder="65"/> <!-- fallback -->
-			<groupFilter publicTransportMode="true" iconVisibleSize="2" iconOrder="55">
-				<groupFilter icon="highway_bus_stop_round_big"/>
-				<groupFilter nightMode="true" icon="highway_bus_stop_round_big_night"/>
-			</groupFilter>
-		</group>
-
-		<group minzoom="14" icon="amenity_bus_station2" shield="white_red_round_shield" iconVisibleSize="10" iconOrder="72">
-			<filter tag="amenity" value="bus_station"/>
-			<groupFilter nightMode="true" shield="gray_red_round_shield"/>
-		</group>
-		<group minzoom="14" icon="amenity_bus_station2" shield="white_blue_round_shield" iconVisibleSize="10" iconOrder="72">
-			<filter tag="public_transport" value="station"/>
-			<groupFilter nightMode="true" shield="gray_blue_round_shield"/>
-		</group>
-
-		<group minzoom="15" icon="railway_station" shield="white_blue_square_shield" iconVisibleSize="7">
-			<filter tag="railway" value="station"/>
-			<filter tag="public_transport" value="platform" additional="train=yes"/>
-			<filter tag="public_transport" value="platform" additional="tram=yes"/>
-			<filter tag="public_transport" value="platform" additional="light_rail=yes"/>
-			<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
-		</group>
-
-		<group minzoom="15" icon="amenity_bus_station2" shield="white_blue_square_shield">
-			<filter tag="public_transport" value="platform"/> <!-- fallback public_transport=platform -->
-			<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
-		</group>
 
 		<group subwayMode="true">
 			<filter minzoom="12" maxzoom="14" tag="railway" value="station" additional="route=subway" icon="railway_subway_station_small_default" shield="white_round_small_shield" iconOrder="99">
