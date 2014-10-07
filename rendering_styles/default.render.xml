@@ -344,7 +344,7 @@
 	<renderingConstant name="placeSuburbLocalityTextColorDay" value="#222222"/>
 	<renderingConstant name="placeTextHaloRadiusDay" value="1"/>
 	<renderingConstant name="placeBoldTextHaloRadiusDay" value="0"/>
-	<renderingConstant name="placeTextHaloColorDay" value="#ccffffff"/>
+	<renderingConstant name="placeTextHaloColorDay" value="#bbf7ebf7"/>
 
 	<renderingConstant name="placeHamletMinZoom" value="12"/>
 	<renderingConstant name="placeSuburbMinZoom" value="12"/>
@@ -1226,8 +1226,9 @@
 		<!-- continent not really useful here: filter minzoom="2" maxzoom="2" textSize="14" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="continent"/ -->
 
 		<!-- most countries are not tagged with ref: filter minzoom="2" maxzoom="2" textSize="14" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="country" nameTag="ref"/ -->
-		<case minzoom="3" tag="place" value="country" textColor="#5f295e" textHaloColor="#99ffffff" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20">
-			<case maxzoom="3" textSize="14"/>
+		<case minzoom="3" tag="place" value="country" textColor="#8e3a7e" textHaloColor="#aaf7ebf7" textHaloRadius="3" textWrapWidth="15">
+			<case maxzoom="3" textSize="12"/>
+			<case maxzoom="4" textSize="14" textBold="true" textOrder="1"/>
 			<case maxzoom="5" textSize="16" textBold="true" textOrder="1"/>
 			<case minzoom="6" textSize="14" textBold="true"/>
 			<apply_if nightMode="true" textColor="#d498d3" textHaloColor="#bb553155"/>
@@ -1251,29 +1252,28 @@
 
 		<!-- county not really useful here: filter minzoom="9" textSize="13" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="county" nameTag=""/ -->
 
-		<switch minzoom="3" textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="#88ffffff" textBold="true">
+		<switch minzoom="3" textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="#bbf7ebf7" textBold="true">
 			<case tag="osmand_place_basemap" value="city" nameTag="">
-				<case maxzoom="5" textSize="13" textDy="3" textOrder="5">
-					<apply_if additional="capital=yes" textSize="17" textOrder="4"/>
+				<case additional="capital=yes">
+					<case maxzoom="5" textSize="14" textOrder="4"/>
+					<case maxzoom="7" textSize="20" textOrder="2"/>
+					<case maxzoom="12" textSize="20" textOrder="2"/>
 				</case>
-				<case maxzoom="7" textSize="17" textDy="1" textOrder="3">
-					<apply_if additional="capital=yes" textSize="20" textOrder="2"/>
-				</case>
-				<case maxzoom="12" textSize="17" textDy="1" textOrder="4">
-					<apply_if additional="capital=yes" textSize="20" textOrder="3"/>
-				</case>
+				<case maxzoom="5" textSize="12" textDy="3" textOrder="5"/>
+				<case maxzoom="7" textSize="17" textDy="1" textOrder="3"/>
+				<case maxzoom="12" textSize="17" textDy="1" textOrder="4"/>
 			</case>
 			<case minzoom="6" tag="place" value="city" textDy="1" nameTag="">
-				<case maxzoom="7" textSize="17" textOrder="3">
-					<apply_if additional="capital=yes" textSize="20" textOrder="2"/>
+				<case additional="capital=yes">
+					<case maxzoom="7" textSize="20" textOrder="2"/>
+					<case minzoom="8" textSize="22" textOrder="3"/>
 				</case>
-				<case minzoom="8" textSize="20" textOrder="4">
-					<apply_if additional="capital=yes" textSize="22" textOrder="3"/>
-				</case>
+				<case maxzoom="7" textSize="17" textOrder="3"/>
+				<case minzoom="8" textSize="20" textOrder="4"/>
 			</case>
 			<case minzoom="8" tag="place" value="town" textSize="16" textDy="1" textOrder="5" nameTag=""/>
 			<case minzoom="11" tag="place" value="village" textSize="14" textDy="1" textOrder="10" nameTag=""/>
-			<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
+			<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77444444"/>
 		</switch>
 
 		<switch textColor="$placeSuburbLocalityTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay">
@@ -2012,17 +2012,29 @@
 		<case minzoom="18" icon="natural_stone" tag="natural" value="stone" iconVisibleSize="7"/>
 
 		<!-- Location dots -->
+
 		<switch>
-			<case minzoom="6" maxzoom="16" tag="place" value="city" icon="place_city" iconVisibleSize="4"/>
-			<case minzoom="4" maxzoom="5" tag="osmand_place_basemap" value="city" icon="place_city" iconVisibleSize="4"/>
-			<apply_if nightMode="true" icon="place_city_night"/>
-			<apply>
-				<case additional="capital=yes" icon="place_capital" iconVisibleSize="0" iconOrder="99">
-					<apply_if nightMode="true" icon="place_capital_night" iconVisibleSize="0" iconOrder="99"/>
+			<case tag="osmand_place_basemap" value="city"/>
+			<case tag="place" value="city"/>
+			<apply iconVisibleSize="8">
+				<case minzoom="4" maxzoom="5" icon="place_city_small">
+					<apply_if nightMode="true" icon="place_city_small_night"/>
+				</case>
+				<case minzoom="6" maxzoom="16" icon="place_city">
+					<apply_if nightMode="true" icon="place_city_night"/>
 				</case>
 			</apply>
+			<apply_if additional="capital=yes" iconVisibleSize="0" iconOrder="99">
+				<case minzoom="4" maxzoom="5" icon="place_capital_small">
+					<apply_if nightMode="true" icon="place_capital_small_night"/>
+				</case>
+				<case minzoom="6" maxzoom="16" icon="place_capital">
+					<apply_if nightMode="true" icon="place_capital_night"/>
+				</case>
+			</apply_if>
 		</switch>
-		<case minzoom="7" tag="place" value="town" icon="place_town" iconVisibleSize="12">
+
+		<case minzoom="7" tag="place" value="town" icon="place_town" iconVisibleSize="24">
 			<apply_if nightMode="true" icon="place_town_night"/>
 		</case>
 		<case minzoom="11" maxzoom="12" tag="place" value="village" icon="place_town">
@@ -4159,24 +4171,26 @@
 			<case tag="admin_level" value="0"/>
 			<case tag="admin_level" value="1"/>
 			<case tag="admin_level" value="2"/>
-			<apply_if color="#15800080" color_0="#2A800080">
-				<case maxzoom="2" strokeWidth="0.25:0.25"/>
-				<case maxzoom="3" strokeWidth="0.5:0.5"/>
-				<case maxzoom="4" strokeWidth="1.5:1.5" strokeWidth_0="0.5:0.5"/>
-				<case maxzoom="6" strokeWidth="3:3" strokeWidth_0="0.5:0.5"/>
-				<case maxzoom="8" strokeWidth="2.2:2.2" strokeWidth_0="1:1"/>
+			<apply color="#15800080" color_0="#2A800080">
+				<case maxzoom="2" strokeWidth="0.7:0.7"/>
+				<case maxzoom="3" strokeWidth="0.1" strokeWidth_0="0.7:0.7"/>
+				<case maxzoom="4" strokeWidth="1:1" strokeWidth_0="0.7:0.7"/>
+				<case maxzoom="5" strokeWidth="2:2" strokeWidth_0="0.9:0.9"/>
+				<case maxzoom="6" strokeWidth="3:3" strokeWidth_0="0.9:0.9"/>
+				<case maxzoom="8" strokeWidth="4:4" strokeWidth_0="1:1"/>
 				<case minzoom="9" strokeWidth="6:6" strokeWidth_0="1:1"/>
-			</apply_if>
+				<apply_if nightMode="true" color="#22b21cb2" color_0="#44ffb3ff"/>
+			</apply>
 		</switch>
 
 		<switch minzoom="5">
 			<case tag="admin_level" value="3" pathEffect="6_1"/>
 			<case tag="admin_level" value="4" pathEffect="6_1"/>
-			<apply_if color="#15800080" color_0="#2A800080">
+			<apply color="#15800080" color_0="#2A800080">
 				<case maxzoom="6" strokeWidth="1.5:1.5" strokeWidth_0="0.5:0.5"/>
 				<case maxzoom="8" strokeWidth="3:3" strokeWidth_0="0.5:0.5"/>
 				<case minzoom="9" strokeWidth="4.5:4.5" strokeWidth_0="1:1"/>
-			</apply_if>
+			</apply>
 		</switch>
 
 		<switch noAdminboundaries="false">
