@@ -41,9 +41,10 @@
 
 	<renderingAttribute name="defaultColor">
 		<!-- next line should should make background transparent for underlays to be visible, but this curretnly does not work as desired -->
-		<filter noPolygons="true" attrColorValue="#00555555"/>
-		<filter nightMode="true" attrColorValue="#002a2a"/>
-		<filter attrColorValue="#f1eae4"/>
+		<case noPolygons="true" attrColorValue="#00555555"/>
+		<case attrColorValue="#f1eae4">
+			<apply_if nightMode="true" attrColorValue="#002a2a"/>
+		</case>
 	</renderingAttribute>
 
 	<renderingAttribute name="showRoadMapsAttribute">
@@ -52,69 +53,65 @@
 		<filter showRoadMaps="Where no regular map is available" attrIntValue="0"/>
 		<filter showRoadMaps="Never" attrIntValue="-1"/>
 		-->
-		<filter attrIntValue="0"/>
+		<case attrIntValue="0"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="shadowRendering">
 	<!-- 0 - no shadow, 1 - one step, 2 - blur shadow, 3 - solid shadow -->
 		<!-- next line ensures bridges stand out ok -->
-		<filter minzoom="14" nightMode="false" attrIntValue="3" shadowColor="#969696"/>
-		<filter minzoom="14" attrIntValue="3" shadowColor="#464646"/>
-		<filter minzoom="9" maxzoom="13" attrIntValue="3" shadowColor="#969696"/>
-		<filter attrIntValue="0"/>
+		<case minzoom="14" nightMode="false" attrIntValue="3" shadowColor="#969696"/>
+		<case minzoom="14" attrIntValue="3" shadowColor="#464646"/>
+		<case minzoom="9" maxzoom="13" attrIntValue="3" shadowColor="#969696"/>
+		<case attrIntValue="0"/>
 	</renderingAttribute>
 
-	<renderingAttribute name="routeColor">
+	<renderingAttribute name="routeColor"> <!-- deprecated -->
 		<!-- fluorescent: filter attrColorValue="#CCFF6600"/ -->
 		<!-- was badly visible on motorways: filter nightMode="false" attrColorValue="#960000FF"/ -->
-		<filter nightMode="false" attrColorValue="#CCaa0088"/>
-		<filter attrColorValue="#CCff4400"/>
+		<case attrColorValue="#ccaa0088">
+			<apply_if nightMode="true" attrColorValue="#ccff4400"/>
+		</case>
 	</renderingAttribute>
 
-	<renderingAttribute name="gpxColor">
+	<renderingAttribute name="gpxColor"> <!-- deprecated -->
 		<!-- fluorescent: filter attrColorValue="#B400FFFF"/ -->
 		<!-- filter nightMode="false" attrColorValue="#B4B319FF"/ -->
-		<filter attrColorValue="#B400FFFF"/>
+		<case attrColorValue="#b400ffff"/>
 	</renderingAttribute>
 
 
 	<renderingAttribute name="route">
 		<!-- fluorescent: filter attrColorValue="#CCFF6600"/ -->
 		<!-- was badly visible on motorways: filter nightMode="false" attrColorValue="#960000FF"/ -->
-		<filter nightMode="false" color="#CCaa0088" strokeWidth="7:6"/>
-		<filter color="#CCff4400" strokeWidth="7:6"/>
+		<case color="#ccaa0088" strokeWidth="7:6">
+			<apply_if nightMode="true" color="#ccff4400" strokeWidth="7:6"/>
+		</case>
 	</renderingAttribute>
 
 	<renderingAttribute name="gpx">
 		<!-- fluorescent: filter attrColorValue="#B400FFFF"/ -->
-		<filter strokeWidth="7:6">
-			<filter nightMode="true" color="#B4B319FF" />
-			<filter additional="routePoints=true"
-				pathEffect="6_5" cap="BUTT" color="#B400FFFF"/>
-			<filter cap="ROUND" color="#B400FFFF"/>
-		</filter>
+		<case additional="routePoints=true" pathEffect="6_5" cap="BUTT"/>
+		<case strokeWidth="7:6" cap="ROUND" color="#b400ffff"/>
+		<apply_if nightMode="true" color="#b4b319ff"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="polygonMinSizeToDisplay">
 	<!-- Minimum polygon size in pixels -->
-		<filter moreDetailed="true" attrIntValue="10"/>
-		<filter attrIntValue="75"/>
+		<case moreDetailed="true" attrIntValue="10"/>
+		<case attrIntValue="75"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="roadDensityZoomTile">
 	<!-- 8 (=1 pixel tile) down to 0 (=large tile) -->
-		<filter attrIntValue="3"/>
+		<case attrIntValue="3"/>
 	</renderingAttribute>
-
-	<!-- Use hmRendered for more map detail and better visibility of small roads -->
-	<renderingConstant name="hmRendered" value="false"/>
 
 	<renderingAttribute name="roadsDensityLimitPerTile">
 	<!-- Number of roads to display per tile -->
-		<filter moreDetailed="true" attrIntValue="55"/>
-		<filter appMode="pedestrian" attrIntValue="28"/>
-		<filter appMode="bicycle" attrIntValue="22"/>
-		<filter attrIntValue="12"/>
+		<case moreDetailed="true" attrIntValue="55"/>
+		<case appMode="pedestrian" attrIntValue="28"/>
+		<case appMode="bicycle" attrIntValue="22"/>
+		<case attrIntValue="12"/>
 	</renderingAttribute>
 
 	<!-- filter does not work for renderingConstant - the last one will be used, but better use separate depends Rendering style -->
@@ -477,8 +474,17 @@
 			<case tag="aeroway" value=""/>
 			<case tag="aerialway" value="station"/>
 			<case tag="aerialway" value=""/>
-			<case tag="amenity" value="parking"/>
-			<case tag="amenity" value="bicycle_parking"/>
+			<case tag="amenity" value="parking">
+				<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
+				<apply_if appMode="bicycle" maxzoom="16" order="-1"/>
+			</case>
+			<case tag="amenity" value="bicycle_parking">
+				<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
+			</case>
+			<case tag="amenity" value="fuel">
+				 <apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
+				 <apply_if appMode="bicycle" maxzoom="16" order="-1"/>
+			</case>
 			<case tag="amenity" value=""/>
 			<case tag="emergency" value=""/>
 			<case tag="man_made" value=""/>
@@ -1046,9 +1052,9 @@
 
 		<switch textColor="#000000" textDy="-2">
 			<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" textOrder="9">
-				<filter tag="highway" value="road"/>
-				<filter tag="highway" value="unclassified"/>
-				<filter tag="highway" value="residential"/>
+				<case tag="highway" value="road"/>
+				<case tag="highway" value="unclassified"/>
+				<case tag="highway" value="residential"/>
 				<apply_if nightMode="true" textBold="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#88666666"/>
 			</switch>
 			<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay">
@@ -1767,7 +1773,7 @@
 	</text>
 
 
-	<!-- PRIORITY Input to filter : tag, value, zoom [minzoom, maxzoom] -->
+	<!-- PRIORITY Input to filter : zoom [minzoom, maxzoom], tag, value -->
 	<point>
 		<!-- Car profile priority icons -->
 		<switch appMode="car" iconOrder="80">
@@ -1852,7 +1858,6 @@
 			<case minzoom="16" tag="emergency" value="phone" icon="emergency_phone" shield="white_red_square_shield">
 				<apply_if nightMode="true" shield="gray_red_square_shield"/>
 			</case>
-			<case minzoom="14" maxzoom="16" tag="amenity" value="fuel" disable="true"/>
 		</switch>
 
 		<!-- Pedestrian profile priority icons -->
@@ -1870,7 +1875,6 @@
 					<case minzoom="15" tag="railway" value="station" icon="railway_station" iconVisibleSize="4"/>
 					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 				</switch>
-				<case minzoom="16" maxzoom="17" tag="amenity" value="bicycle_parking" icon=""/>
 				<switch publicTransportMode="false">
 					<case minzoom="16" maxzoom="16" tag="highway" value="bus_stop" icon="highway_bus_stop_small" iconVisibleSize="4"/>
 					<case minzoom="14" maxzoom="14" tag="railway" value="tram_stop" icon="railway_halt" iconVisibleSize="3"/>
@@ -1914,7 +1918,6 @@
 					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 				</case>
 				<case minzoom="17" tag="amenity" value="bench" icon="amenity_bench"/>
-				<filter tag="amenity" value="fuel" minzoom="14" maxzoom="16" disable="true"/>
 			</switch>
 			<switch iconOrder="85">
 				<case minzoom="14" tag="tourism" value="picnic_site" icon="tourism_picnic_site">
@@ -1953,16 +1956,17 @@
 			<case minzoom="14" tag="natural" value="waterfall" icon="waterway_waterfall"/>
 			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 		</switch>
-		<switch minzoom="16" icon="natural_tree" tag="natural" value="tree">
-			<case minzoom="16" maxzoom="17" iconVisibleSize="7"/>
+		<switch tag="natural" value="tree">
+			<case minzoom="16" maxzoom="17" icon="natural_tree"/>
 			<switch minzoom="18" iconVisibleSize="5">
 				<case additional="leaf_type=broadleaved" icon="natural_tree_broadleaved"/>
 				<case additional="leaf_type=needleleaved" icon="natural_tree_needleleaved"/>
 				<case additional="leaf_type=leafless" icon="natural_tree_leafless"/>
 				<case additional="type=palm" icon="natural_tree_palm"/>
 				<case additional="type=cypress" icon="natural_tree_cypress"/>
-				<apply icon="natural_tree_broadleaved"/>
+				<case icon="natural_tree_broadleaved"/>
 			</switch>
+			<apply maxzoom="17" iconVisibleSize="7"/>
 		</switch>
 			
 		<case minzoom="18" icon="natural_stone" tag="natural" value="stone" iconVisibleSize="7"/>
@@ -1997,7 +2001,7 @@
 			<case tag="amenity" value="dentist" icon="amenity_dentist"/>
 			<apply_if nightMode="true" shield="gray_red_square_shield"/>
 		</switch>
-		<case minzoom="16" tag="amenity" value="fire_station" iconVisibleSize="24" shield="white_red_round_shield" iconOrder="85">
+		<case minzoom="16" tag="amenity" value="fire_station" icon="amenity_fire_station" iconVisibleSize="24" shield="white_red_round_shield" iconOrder="85">
 			<apply_if nightMode="true" shield="gray_red_round_shield"/>
 		</case>
 		<case minzoom="15" tag="amenity" value="hospital" icon="amenity_hospital2" iconVisibleSize="24" shield="white_red_round_shield" iconOrder="79">
@@ -2008,8 +2012,8 @@
 		</case>
 
 		<!-- Traffic + Transportation -->
-		<filter minzoom="17" tag="highway" value="traffic_signals" icon="highway_traffic_signals" iconVisibleSize="3"/>
-		<filter minzoom="15" tag="highway" value="mini_roundabout" icon="highway_mini_roundabout"/>
+		<case minzoom="17" tag="highway" value="traffic_signals" icon="highway_traffic_signals" iconVisibleSize="3"/>
+		<case minzoom="15" tag="highway" value="mini_roundabout" icon="highway_mini_roundabout"/>
 		<case subwayMode="false" minzoom="15" tag="noexit" value="yes">
 			<case maxzoom="16" icon="barrier_small_red_2" iconVisibleSize="0"/>
 			<case minzoom="17" icon="highway_noexit" iconVisibleSize="12"/>
@@ -2026,12 +2030,12 @@
 			<case minzoom="16" tag="amenity" value="parking" icon="amenity_parking" iconVisibleSize="32" iconOrder="80">
 				<case additional="fee=yes" icon="amenity_parking_paid"/>
 				<case minzoom="17" maxzoom="17" iconVisibleSize="16">
-					<filter additional="access=private" icon=""/>
-					<filter additional="access=no" icon=""/>
+					<case additional="access=private" icon=""/>
+					<case additional="access=no" icon=""/>
 				</case>
 				<case minzoom="18" iconVisibleSize="16">
-					<filter additional="access=private" icon="amenity_parking_private"/>
-					<filter additional="access=no" icon="amenity_parking_private"/>
+					<case additional="access=private" icon="amenity_parking_private"/>
+					<case additional="access=no" icon="amenity_parking_private"/>
 				</case>
 			</case>
 			<case minzoom="16" tag="amenity" value="bicycle_parking" icon="amenity_bicycle_parking" iconVisibleSize="32" iconOrder="80"/>
@@ -2092,72 +2096,80 @@
 			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 		</switch>
 
-		<group subwayMode="true">
-			<filter minzoom="12" maxzoom="14" tag="railway" value="station" additional="route=subway" icon="railway_subway_station_small_default" shield="white_round_small_shield" iconOrder="99">
-				<filter>
-					<filter additional="color_red=" icon="railway_subway_station_small_red"/>
-					<filter additional="color_brown=" icon="railway_subway_station_small_brown"/>
-					<filter additional="color_orange=" icon="railway_subway_station_small_orange"/>
-					<filter nightMode="true" additional="color_yellow=" icon="railway_subway_station_small_yellow"/>
-					<filter additional="color_yellow=" icon="railway_subway_station_small_yellow2"/>
-					<filter additional="color_lightgreen=" icon="railway_subway_station_small_lightgreen"/>
-					<filter additional="color_green=" icon="railway_subway_station_small_green"/>
-					<filter additional="color_lightblue=" icon="railway_subway_station_small_lightblue"/>
-					<filter additional="color_blue=" icon="railway_subway_station_small_blue"/>
-					<filter additional="color_purple=" icon="railway_subway_station_small_purple"/>
-					<filter additional="color_gray=" icon="railway_subway_station_small_gray"/>
-					<filter nightMode="true" additional="color_black=" icon="railway_subway_station_small_black2"/>
-					<filter additional="color_black=" icon="railway_subway_station_small_black"/>
-				</filter>
-				<groupFilter nightMode="true" shield="darkgray_round_small_shield"/>
-				<groupFilter iconVisibleSize="2"/>
-			</filter>
-		</group>
+		<switch subwayMode="true">
+			<case minzoom="12" maxzoom="14" tag="railway" value="station" additional="route=subway" icon="railway_subway_station_small_default" shield="white_round_small_shield" iconOrder="99">
+				<case additional="color_red=" icon="railway_subway_station_small_red"/>
+				<case additional="color_brown=" icon="railway_subway_station_small_brown"/>
+				<case additional="color_orange=" icon="railway_subway_station_small_orange"/>
+				<case additional="color_yellow=" icon="railway_subway_station_small_yellow2">
+					<apply_if nightMode="true" icon="railway_subway_station_small_yellow"/>
+				</case>
+				<case additional="color_lightgreen=" icon="railway_subway_station_small_lightgreen"/>
+				<case additional="color_green=" icon="railway_subway_station_small_green"/>
+				<case additional="color_lightblue=" icon="railway_subway_station_small_lightblue"/>
+				<case additional="color_blue=" icon="railway_subway_station_small_blue"/>
+				<case additional="color_purple=" icon="railway_subway_station_small_purple"/>
+				<case additional="color_gray=" icon="railway_subway_station_small_gray"/>
+				<case additional="color_black=" icon="railway_subway_station_small_black">
+					<apply_if nightMode="true" icon="railway_subway_station_small_black2"/>
+				</case>
+				<apply iconVisibleSize="2"/>
+				<apply_if nightMode="true" shield="darkgray_round_small_shield"/>
+			</case>
+		</switch>
 
-		<group publicTransportMode="true" iconOrder="55">
-			<filter tag="railway" value="tram_stop"/>
-			<filter tag="public_transport" value="stop_position" additional="tram=yes"/>
-			<filter tag="public_transport" value="platform" additional="tram=yes"/>
-			<groupFilter minzoom="14" maxzoom="15" icon="railway_tram_stop_round_small"/>
-			<groupFilter nightMode="true" minzoom="14" maxzoom="15" icon="railway_tram_stop_round_small_night"/>
-			<groupFilter minzoom="16" icon="railway_tram_stop_round_big"/>
-			<groupFilter nightMode="true" minzoom="16" icon="railway_tram_stop_round_big_night"/>
-		</group>
+		<switch publicTransportMode="true" iconOrder="55">
+			<case tag="railway" value="tram_stop"/>
+			<case tag="public_transport" value="stop_position" additional="tram=yes"/>
+			<case tag="public_transport" value="platform" additional="tram=yes"/>
+			<apply_if minzoom="14" maxzoom="14" icon="railway_tram_stop_round_small">
+				<apply_if nightMode="true" icon="railway_tram_stop_round_small_night"/>
+			</apply_if>
+			<apply_if minzoom="15" icon="railway_tram_stop_round_big">
+				<apply_if nightMode="true" icon="railway_tram_stop_round_big_night"/>
+			</apply_if>
+		</switch>
 
-		<group iconOrder="83">
-			<filter minzoom="13" maxzoom="14" icon="railway_halt" tag="railway" value="halt" iconVisibleSize="2"/>
-			<filter minzoom="15" icon="railway_station_small" tag="railway" value="halt" iconVisibleSize="5"/>
-			<filter minzoom="14" maxzoom="14" icon="railway_halt" tag="railway" value="tram_stop" iconVisibleSize="2"/>
-			<filter minzoom="15" icon="railway_station_small" tag="railway" value="tram_stop" iconVisibleSize="5"/>
-			<filter minzoom="15" icon="railway_level_crossing" tag="railway" value="level_crossing"/>
+		<switch iconOrder="83">
+			<case minzoom="13" tag="railway" value="halt">
+				<case maxzoom="14" icon="railway_halt" iconVisibleSize="2"/>
+				<case minzoom="15" icon="railway_station_small" iconVisibleSize="5"/>
+			</case>
+			<case minzoom="14" tag="railway" value="tram_stop">
+				<case maxzoom="14" icon="railway_halt" iconVisibleSize="2"/>
+				<case minzoom="15" icon="railway_station_small" iconVisibleSize="5"/>
+			</case>
+			<case minzoom="15" tag="railway" value="level_crossing" icon="railway_level_crossing"/>
 
-			<filter minzoom="13" maxzoom="14" icon="aerialway_station_small" tag="aerialway" value="station" iconVisibleSize="3"/>
-			<filter minzoom="15" icon="aerialway_station" tag="aerialway" value="station" shield="white_blue_round_shield">
-				<filter nightMode="true" shield="gray_blue_round_shield"/>
-			</filter>
-		</group>
+			<case minzoom="13" tag="aerialway" value="station">
+				<case maxzoom="14" icon="aerialway_station_small" iconVisibleSize="3"/>
+				<case minzoom="15" icon="aerialway_station" shield="white_blue_round_shield">
+					<apply_if nightMode="true" shield="gray_blue_round_shield"/>
+				</case>
+			</case>
+		</switch>
 
-		<filter minzoom="15" tag="railway" value="subway_entrance" shield="white_black_round_shield" iconVisibleSize="16" icon="railway_subway_entrance_2" iconOrder="128">
-			<filter additional="color_red=" icon="railway_subway_entrance_red"/>
-			<filter additional="color_brown=" icon="railway_subway_entrance_brown"/>
-			<filter additional="color_orange=" icon="railway_subway_entrance_orange"/>
-			<filter additional="color_yellow=" icon="railway_subway_entrance_yellow"/>
-			<filter additional="color_lightgreen=" icon="railway_subway_entrance_lightgreen"/>
-			<filter additional="color_green=" icon="railway_subway_entrance_green"/>
-			<filter additional="color_lightblue=" icon="railway_subway_entrance_lightblue"/>
-			<filter additional="color_blue=" icon="railway_subway_entrance_blue"/>
-			<filter additional="color_purple=" icon="railway_subway_entrance_purple"/>
-			<filter additional="color_gray=" icon="railway_subway_entrance_gray"/>
-			<filter additional="color_black=" icon="railway_subway_entrance_black"/>
-		</filter>
+		<case minzoom="15" tag="railway" value="subway_entrance" icon="railway_subway_entrance_2" shield="white_black_round_shield" iconVisibleSize="16" iconOrder="128">
+			<case additional="color_red=" icon="railway_subway_entrance_red"/>
+			<case additional="color_brown=" icon="railway_subway_entrance_brown"/>
+			<case additional="color_orange=" icon="railway_subway_entrance_orange"/>
+			<case additional="color_yellow=" icon="railway_subway_entrance_yellow"/>
+			<case additional="color_lightgreen=" icon="railway_subway_entrance_lightgreen"/>
+			<case additional="color_green=" icon="railway_subway_entrance_green"/>
+			<case additional="color_lightblue=" icon="railway_subway_entrance_lightblue"/>
+			<case additional="color_blue=" icon="railway_subway_entrance_blue"/>
+			<case additional="color_purple=" icon="railway_subway_entrance_purple"/>
+			<case additional="color_gray=" icon="railway_subway_entrance_gray"/>
+			<case additional="color_black=" icon="railway_subway_entrance_black"/>
+		</case>
 
-		<group shield="white_blue_square_shield">
-			<filter minzoom="10" icon="aeroway_aerodrome" tag="aeroway" value="aerodrome" iconOrder="71"/>
-			<filter minzoom="9" icon="aeroway_airport" tag="aeroway" value="airport" iconOrder="70"/>
-			<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
-		</group>
-		<filter minzoom="15" icon="aeroway_helipad" tag="aeroway" value="helipad"/>
-		<filter minzoom="17" icon="aeroway_gate" tag="aeroway" value="gate" iconVisibleSize="7"/>
+		<switch shield="white_blue_square_shield">
+			<case minzoom="9" icon="aeroway_airport" tag="aeroway" value="airport" iconOrder="70"/>
+			<case minzoom="10" icon="aeroway_aerodrome" tag="aeroway" value="aerodrome" iconOrder="71"/>
+			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+		</switch>
+		<case minzoom="15" icon="aeroway_helipad" tag="aeroway" value="helipad"/>
+		<case minzoom="17" icon="aeroway_gate" tag="aeroway" value="gate" iconVisibleSize="7"/>
 
 		<!-- Barriers -->
 		<switch iconOrder="87">
@@ -2375,7 +2387,7 @@
 			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
 		</case>
 
-		<case minzoom="17" tag="emergency" value="fire_hydrant" icon="emergency_fire_hydrant"/>
+		<case minzoom="18" tag="emergency" value="fire_hydrant" icon="emergency_fire_hydrant"/>
 
 		<switch shield="white_gray_square_shield" iconVisibleSize="32" iconOrder="96">
 			<case minzoom="17" tag="amenity" value="atm" icon="amenity_atm"/>
@@ -2497,7 +2509,7 @@
 	</point>
 
 
-	<!-- PRIORITY Input to filter : tag, value, zoom [minzoom, maxzoom] -->
+	<!-- PRIORITY Input to filter : zoom [minzoom, maxzoom], tag, value -->
 	<polygon>
 		<!-- Polygon highways -->
 		<switch>
@@ -2657,7 +2669,7 @@
 	    <!-- for 'no polygons' -->
 		<switch noPolygons="false">
 			<!-- Polygon railway -->
-			<switch minzoom="11" color="#d4aaaa">
+			<switch minzoom="11" color="#d4aaaa" color_2="#000000" strokeWidth_2="0.4:0.4">
 				<case tag="railway" value="station"/>
 				<case tag="aerialway" value="station"/>
 				<apply_if nightMode="true" color="#685454"/>
@@ -2865,7 +2877,7 @@
 				<case maxzoom="15" strokeWidth_2="2:2"/>
 				<case maxzoom="16" strokeWidth_2="3.5:3.5"/>
 				<case minzoom="17" strokeWidth_2="4.5:4.5"/>
-				<apply color="#77999999" color_2="#888888">
+				<apply color="#77999999" color_2="#888888" cap_2="SQUARE">
 					<apply_if nightMode="true" color="#77444444" color_2="#888888"/>
 				</apply>
 			</case>
