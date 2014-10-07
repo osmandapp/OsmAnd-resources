@@ -97,13 +97,13 @@ string('and_arrive_destination.ogg', 'e chega ao destino ').
 string('reached_destination.ogg', 'chegou ao destino ').
 string('and_arrive_intermediate.ogg', 'e chega ao ponto intermédio ').
 string('reached_intermediate.ogg', 'chegou ao ponto intermédio ').
-string('and_arrive_waypoint.ogg', 'e chega ao ponto GPX ').
-string('reached_waypoint.ogg', 'chegou ao ponto GPX ').
+string('and_arrive_waypoint.ogg', 'e chega ao ponto G P X ').
+string('reached_waypoint.ogg', 'chegou ao ponto G P X ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'atenção! ').
-string('location_lost.ogg', 'sem sinal gps ').
-string('location_recovered.ogg', 'sinal gps recuperado ').
+string('location_lost.ogg', 'sem sinal g p s ').
+string('location_recovered.ogg', 'sinal g p s recuperado ').
 string('off_route.ogg', 'desviou-se da rota por ').
 string('exceed_limit.ogg', 'a exceder o limite de velocidade ').
 
