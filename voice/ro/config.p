@@ -101,10 +101,10 @@ string('and_arrive_waypoint.ogg', 'și ajungeți la punctul intermediar GPX').
 string('reached_waypoint.ogg', 'Ați ajuns la punctul intermediar GPX').
 
 % OTHER PROMPTS
-string('attention.ogg', 'atención, ').
+string('attention.ogg', 'atenţie, ').
 string('location_lost.ogg', 'semnal gipies pierdut ').
-string('off_route.ogg', 'te has desviado de la ruta').
-string('exceed_limit.ogg', 'límite de velocidad excedido').
+string('off_route.ogg', 'ați deviat de la rută').
+string('exceed_limit.ogg', 'limita de viteză depășită').
 
 % STREET NAME GRAMMAR
 string('onto.ogg', 'pe ').
@@ -262,7 +262,7 @@ distance_km(Dist) -- [ X, 'meters.ogg']                  :- Dist < 20,   D is ro
 distance_km(Dist) -- [ X, 'meters_de.ogg']               :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
 distance_km(Dist) -- [ X, 'meters.ogg']                  :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
 distance_km(Dist) -- ['around_1_kilometer.ogg']          :- Dist < 1500.
-distance_km(Dist) -- ['around.ogg', X, 'kilometers.ogg'] :- Dist < 10000, D is round(Dist/1000.0),            dist(D, X).
+distance_km(Dist) -- ['around.ogg', X, 'kilometers.ogg'] :- Dist < 20000, D is round(Dist/1000.0),            dist(D, X).
 distance_km(Dist) -- [ X, 'kilometers_de.ogg']           :-               D is round(Dist/1000.0),            dist(D, X).
 
 %%% distance measure mi/f

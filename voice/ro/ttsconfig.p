@@ -263,7 +263,7 @@ distance_km(Dist) -- [ X, 'meters.ogg']                  :- Dist < 20,   D is ro
 distance_km(Dist) -- [ X, 'meters_de.ogg']               :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
 distance_km(Dist) -- [ X, 'meters.ogg']                  :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
 distance_km(Dist) -- ['around_1_kilometer.ogg']          :- Dist < 1500.
-distance_km(Dist) -- ['around.ogg', X, 'kilometers.ogg'] :- Dist < 10000, D is round(Dist/1000.0),            dist(D, X).
+distance_km(Dist) -- ['around.ogg', X, 'kilometers.ogg'] :- Dist < 20000, D is round(Dist/1000.0),            dist(D, X).
 distance_km(Dist) -- [ X, 'kilometers_de.ogg']           :-               D is round(Dist/1000.0),            dist(D, X).
 
 %%% distance measure mi/f
