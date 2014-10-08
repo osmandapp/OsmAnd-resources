@@ -25,6 +25,7 @@ fest_language('cmu_us_awb_arctic_clunits').
 % (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
 % (X) word order checked
 % (X) Announcement of favorites, waypoints and pois along the route
+% (X) Announcement when user returns back to route
 
 
 % ROUTE CALCULATED
@@ -104,6 +105,7 @@ string('stop.ogg', 'stop sign ').
 string('location_lost.ogg', 'g p s signal lost ').
 string('location_recovered.ogg', 'g p s signal restored ').
 string('off_route.ogg', 'you have been off the route for').
+string('back_on_route.ogg', 'you have returned to route').
 string('exceed_limit.ogg', 'you are exceeding the speed limit ').
 
 % STREET NAME GRAMMAR
