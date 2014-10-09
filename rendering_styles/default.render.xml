@@ -233,6 +233,14 @@
 
 	<renderingConstant name="buildingColorDay" value="#bca9a9"/>
 	<renderingConstant name="buildingColorNight" value="#685454"/>
+	<renderingConstant name="churchColorDay" value="#bca9a9"/>
+	<renderingConstant name="churchColorNight" value="#685454"/>
+	<renderingConstant name="attractionColorDay" value="#f2caea"/>
+	<renderingConstant name="attractionColorNight" value="#3b3b3b"/>
+	<renderingConstant name="attractionStrokeColorDay" value="#000000"/>
+	<renderingConstant name="attractionStrokeColorNight" value="#999999"/>
+	<renderingConstant name="attractionStrokeWidth" value="0.25:0.25"/>
+	<renderingConstant name="attractionStrokeWidth2" value="0"/>
 
 	<renderingConstant name="waterwayColorDay" value="#b5d0d0"/>
 	<renderingConstant name="waterwayColorNight" value="#330099"/>
@@ -2689,6 +2697,15 @@
 						<apply_if nightMode="true" color="#885d5d"/>
 					</apply>
 				</switch>
+				<switch>
+					<case tag="building" value="church"/>
+					<case tag="building" value="cathedral"/>
+					<case tag="building" value="chapel"/>
+					<case tag="building" value="mosque"/>
+					<apply strokeWidth_2="$attractionStrokeWidth" color="$churchColorDay" color_2="$attractionStrokeColorDay">
+						<apply_if nightMode="true" color="$churchColorNight" color_2="$attractionStrokeColorNight"/>
+					</apply>
+				</switch>
 			</switch>
 			<case tag="building" value="" color="$buildingColorDay">
 				<apply_if nightMode="true" color="$buildingColorNight" color_2="#999999"/>
@@ -2738,19 +2755,6 @@
 	<!--			<groupFilter appMode="car" layer="-1" disable="true"/> does not works properly due to relation issue -->
 			</switch>
 
-			<!-- Polygon waterways -->
-			<switch minzoom="10">
-				<case tag="waterway" value="riverbank"/>
-				<case tag="waterway" value="dock"/>
-				<case tag="waterway" value="mill_pond"/>
-				<apply color="$waterwayColorDay">
-					<apply_if nightMode="true" color="$waterwayColorNight">
-						<apply_if subwayMode="true" color="$waterwayDesaturatedColorNight"/>
-						<apply_if publicTransportMode="true" color="$waterwayDesaturatedColorNight"/>
-					</apply_if>
-				</apply>
-			</switch>
-
 			<!-- Aeroway -->
 			<switch color="#80cccccc">
 				<case minzoom="12" tag="aeroway" value="aerodrome"/>
@@ -2779,6 +2783,9 @@
 				<case minzoom="1" tag="natural" value="coastline"/> <!--  color_2="#2Aff7c00" strokeWidth_2=":1"-->
 				<case minzoom="4" tag="natural" value="water"/>
 				<case minzoom="4" tag="natural" value="lake"/>
+				<case minzoom="10" tag="waterway" value="riverbank"/>
+				<case minzoom="10" tag="waterway" value="dock"/>
+				<case minzoom="10" tag="waterway" value="mill_pond"/>
 				<case minzoom="4" tag="natural" value="bay"/>
 				<case minzoom="7" tag="landuse" value="reservoir"/>
 				<case minzoom="7" tag="landuse" value="water"/>
@@ -2788,11 +2795,18 @@
 					<case minzoom="16" tag="amenity" value="fountain"/>
 					<apply color_2="#7479ec" strokeWidth_2=":1"/>
 				</switch>
-				<apply color="$waterwayColorDay"/>
-				<apply_if nightMode="true" color="$waterwayColorNight">
-					<apply_if subwayMode="true" color="$waterwayDesaturatedColorNight"/>
-					<apply_if publicTransportMode="true" color="$waterwayDesaturatedColorNight"/>
-				</apply_if>
+				<apply color="$waterwayColorDay">
+					<apply_if nightMode="true" color="$waterwayColorNight"/>
+					<apply>
+						<switch>
+							<case subwayMode="true"/>
+							<case publicTransportMode="true"/>
+							<apply color="$waterwayDesaturatedColorDay">
+								<apply_if nightMode="true" color="$waterwayDesaturatedColorNight"/>
+							</apply>
+						</switch>
+					</apply>
+				</apply>
 			</switch>
 
 			<switch>
@@ -2952,11 +2966,6 @@
 				<case minzoom="12" tag="amenity" value="social_facility" color="#b0b6fdb6"/>
 				<case minzoom="12" tag="leisure" value="water_park" color="#b0b6fdb6"/>
 				<case minzoom="15" tag="amenity" value="cinema" color="#cc9999"/>
-				<!-- Tourism -->
-				<case minzoom="13" tag="tourism" value="attraction" color="#f2caea"/>
-				<case minzoom="15" tag="amenity" value="place_of_worship" color="#f2caea"/>
-				<case minzoom="13" tag="amenity" value="monastery" color="#f2caea"/>
-				<case minzoom="13" tag="historic" value="monastery" color="#f2caea"/>
 				<case minzoom="12" tag="tourism" value="theme_park">
 					<case maxzoom="15" strokeWidth_2=":1"/>
 					<case minzoom="16" strokeWidth_2=":2"/>
@@ -2967,6 +2976,28 @@
 				<case minzoom="13" tag="tourism" value="picnic_site" color="#a0ccff99"/>
 				<apply_if nightMode="true" color="$builtUpAreasColorNight"/>
 			</switch>
+			<switch>
+				<!-- Tourism -->
+				<case minzoom="13" tag="tourism" value="attraction"/>
+				<case minzoom="15" tag="amenity" value="place_of_worship">
+					<apply>
+						<switch>
+							<case additional="ruins=yes"/>
+							<case additional="abandoned=yes"/>
+							<apply>
+								<apply_if maxzoom="15" pathEffect_2="4_2"/>
+								<apply_if nightMode="true"/>
+							</apply>
+							<apply_if minzoom="16" pathEffect_2="9_3"/>
+						</switch>
+					</apply>
+				</case>
+				<case minzoom="13" tag="amenity" value="monastery"/>
+				<case minzoom="13" tag="historic" value="monastery"/>
+				<apply color="$attractionColorDay" strokeWidth_2="$attractionStrokeWidth2" color_2="$attractionStrokeColorDay">
+					<apply_if nightMode="true" color="$attractionColorNight" color_2="$attractionStrokeColorNight"/>
+				</apply>
+			</switch>
 
 			<case minzoom="12" tag="landuse" value="construction" color="$landuseConstructionColorDay" color_2="$landuseConstructionColorDayStroke" strokeWidth_2="0.5" pathEffect_2="8_4">
 				<apply_if nightMode="true" color="$landuseConstructionColorNight" color_2="$landuseConstructionColorNightStroke"/>
@@ -2976,14 +3007,17 @@
 				<apply_if nightMode="true" color="$landuseGaragesColorNight"/>
 			</case>
 			<switch>
-				<case minzoom="13" tag="power" value="plant" color="#bbbbbb"/>
-				<case minzoom="13" tag="power" value="generator" color="#bbbbbb"/>
-				<case minzoom="13" tag="power" value="substation" color="#bbbbbb"/>
 				<case minzoom="13" tag="leisure" value="stadium" color="#33cc99"/>
 				<case minzoom="13" tag="leisure" value="sports_centre" color="#33cc99"/>
 				<case minzoom="12" tag="military" value="barracks" color="#ff8f8f"/>
 				<!-- use semi-ransparent shader to better show area details: filter minzoom="10" color="#a0ffa0c0" color_2="#ffa0c0" strokeWidth_2=":2" tag="landuse" value="military"/ -->
 				<apply_if nightMode="true" color="#362d2d"/>
+			</switch>
+			<switch minzoom="13">
+				<case tag="power" value="plant" color="#bbbbbb"/>
+				<case tag="power" value="generator" color="#bbbbbb"/>
+				<case tag="power" value="substation" color="#bbbbbb"/>
+				<apply_if nightMode="true" color="#132c4e"/>
 			</switch>
 
 			<case minzoom="13" tag="man_made" value="pier" color="#f2efe9">
@@ -3604,7 +3638,7 @@
 			</apply>
 		</switch>
 
-		<switch appMode="bicycle" color="#0000ff">
+		<switch color="#0000ff">
 			<switch minzoom="14">
 				<case tag="cycleway" value="lane"/>
 				<case tag="cycleway" value="track"/>
@@ -3816,10 +3850,12 @@
 			<apply color="$waterwayColorDay" color_2="#ffffff">
 				<apply_if nightMode="true" color="$waterwayColorNight" color_2="#7340D9"/>
 				<apply>
-					<switch color="$waterwayDesaturatedColorDay">
+					<switch>
 						<case subwayMode="true"/>
 						<case publicTransportMode="true"/>
-						<apply_if nightMode="true" color="$waterwayDesaturatedColorNight"/>
+						<apply color="$waterwayDesaturatedColorDay">
+							<apply_if nightMode="true" color="$waterwayDesaturatedColorNight"/>
+						</apply>
 					</switch>
 				</apply>
 			</apply>

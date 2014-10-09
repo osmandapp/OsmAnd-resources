@@ -92,20 +92,6 @@
 	<renderingConstant name="waterTextColorDay" value="#2375aa"/>
 	<renderingConstant name="waterTextHaloColorDay" value="#bbddf1fd"/>
 
-<!--	<renderingConstant name="accessPrivateColor" value="#feb3b3"/>
-	<renderingConstant name="accessPrivateColorNight" value="#e78d8d"/>
-	<renderingConstant name="accessDestinationColor" value="#8db8d3"/>
-	<renderingConstant name="accessDestinationColorNight" value="#8db8d3"/>
-	<renderingConstant name="accessPermissiveColor" value="#9afb87"/>
-	<renderingConstant name="accessPermissiveColorNight" value="#88d779"/>
-	<renderingConstant name="accessAgriculturalColor" value="#7dad56"/>
-	<renderingConstant name="accessAgriculturalColorNight" value="#7dad56"/>
-	<renderingConstant name="accessForestryColor" value="#7dad56"/>
-	<renderingConstant name="accessForestryColorNight" value="#7dad56"/>
-	<renderingConstant name="accessCustomersColor" value="#dfb3e5"/>
-	<renderingConstant name="accessCustomersColorNight" value="#b671be"/>
-	<renderingConstant name="accessDeliveryColor" value="#9383a5"/>
-	<renderingConstant name="accessDeliveryColorNight" value="#9383a5"/>-->
 	<renderingConstant name="pedestrianModePavingStonesShader" value="paving_stones_green"/>
 	<renderingConstant name="pedestrianModePavingStonesShaderNight" value="paving_stones_green_night"/>
 
@@ -128,12 +114,6 @@
 	<renderingConstant name="waterwayColorNight" value="#330099"/>
 	<renderingConstant name="waterwayDesaturatedColorDay" value="#b5d0d0"/>
 	<renderingConstant name="waterwayDesaturatedColorNight" value="#184d6f"/>
-	<renderingConstant name="waterwayTunnelColorNight" value="#444a48aa"/>
-	<renderingConstant name="waterwayTunnelDashColorDay" value="#aaffffff"/>
-	<renderingConstant name="waterwayTunnelDashColorNight" value="#447340d9"/>
-<!--
-	<renderingConstant name="parkingColorNight" value="#41536c"/>
-	<renderingConstant name="bicycleParkingColorNight" value="#41536c"/>-->
 
 	<renderingConstant name="parkingPrivateColorDay" value="#77f8f5df"/>
 	<renderingConstant name="parkingPrivateColorNight" value="#7741536c"/>
@@ -160,18 +140,16 @@
 	<renderingConstant name="farmyardColorNight" value="#3d3528"/>
 	<renderingConstant name="wetlandColorNight" value="#304a5e"/>
 	<renderingConstant name="meadowColorNight" value="#232d01"/>
+	<renderingConstant name="churchColorDay" value="#b6a0b5"/>
+	<renderingConstant name="churchColorNight" value="#795877"/>
+	<renderingConstant name="attractionColorNight" value="#834522"/>
+	<renderingConstant name="attractionStrokeColorDay" value="#920029"/>
+	<renderingConstant name="attractionStrokeColorNight" value="#6dffd6"/>
+	<renderingConstant name="attractionStrokeWidth" value="0.8:0.8"/>
+	<renderingConstant name="attractionStrokeWidth2" value="0.8:0.8"/>
 
 	<order>
-
-		<group objectType="2" area="false" point="false">
-			<filter appMode="car" layer="-1" tag="public_transport" value="station" order="10"/>
-
-			<filter tag="power" value="line" order="50"/>
-			<filter tag="power" value="minor_line" order="50"/>
-		</group>
-
 	</order>
-
 
 	<text>
 
@@ -184,29 +162,13 @@
 			<groupFilter textSize="10" minzoom="16" textColor="#000000" textHaloRadius="1" textDy="7"/>
 		</group> -->
 
-		<group textColor="#000000" textWrapWidth="20" textHaloRadius="$textHaloRadiusDay">
-			<filter minzoom="$placeLocalityMinZoom" textSize="11" tag="place" value="locality" textColor="$placeSuburbLocalityTextColorDay" textOrder="15"/>
-			<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
-		</group>
-
-		<group textColor="#000000" textDy="-2">
-			<group textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffffff">
-				<filter tag="highway" value="pedestrian" textOrder="11"/>
-				<filter tag="highway" value="footway" textOrder="12"/>
-				<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
-				<groupFilter appMode="pedestrian" textHaloColor="$pedestrianRoadModeColorDay">
-					<filter nightMode="true" textHaloColor="$pedestrianRoadModeColorNight"/>
-				</groupFilter>
-			</group>
-			<groupFilter textOnPath="true" nameTag="">
-				<filter minzoom="14" maxzoom="14" textSize="12"/>
-				<filter minzoom="15" maxzoom="15" textSize="13"/>
-				<filter minzoom="16" maxzoom="16" textSize="14"/>
-				<filter minzoom="17" maxzoom="17" textSize="16"/>
-				<filter minzoom="18" textSize="18"/>
-			</groupFilter>
-		</group>
-
+		<switch>
+			<case tag="highway" value="pedestrian"/>
+			<case tag="highway" value="footway"/>
+			<apply_if appMode="pedestrian" textHaloColor="$pedestrianRoadModeColorDay">
+				<apply_if nightMode="true" textHaloColor="$pedestrianRoadModeColorNight"/>
+			</apply_if>
+		</switch>
 	</text>
 
 
@@ -225,45 +187,9 @@
 
 	<polygon>
 
-		<group>   <!-- Buildings and landuse+amenities group -->
-			<group>    <!-- Buildings group-->
-				<group>
-					<filter minzoom="13" color="#bbbbbb" tag="power" value="generator"/>
-					<filter minzoom="13" color="#bbbbbb" tag="power" value="plant"/>
-					<filter minzoom="14" color="#bbbbbb" tag="power" value="substation"/>
-					<groupFilter nightMode="true" color="#132c4e"/>
-				</group>
-
-				<group minzoom="16">
-					<filter tag="building" value="church"/>
-					<filter tag="building" value="cathedral"/>
-					<filter tag="building" value="chapel"/>
-					<filter tag="building" value="mosque"/>
-					<groupFilter strokeWidth_2="1.3" color="#b6a0b5" color_2="#920029"/>
-					<groupFilter nightMode="true" color="#795877" color_2="#6dffd6"/>
-				</group>
-
-				<!-- Added support of abandoned and ruins tags -->
-				<groupFilter additional="ruins=yes" color_2="#999999" strokeWidth_2="0.5" pathEffect_2="9_3">
-					<filter nightMode="true" color_2="#aaaaaa"/>
-				</groupFilter>
-				<groupFilter additional="abandoned=yes" color_2="#000000" strokeWidth_2="0.5" pathEffect_2="9_3">
-					<filter nightMode="true" color_2="#aaaaaa"/>
-				</groupFilter>
-
-			</group>  <!-- /Buildings -->
-
-		</group>   <!-- /Buildings and landuse+amenities -->
 		
 		<group noPolygons="false">
 
-			<group minzoom="13" color="#f2caea" color_2="#920029">
-				<filter tag="tourism" value="attraction"/>
-				<filter tag="amenity" value="monastery"/>
-				<filter tag="historic" value="monastery"/>
-				<groupFilter subwayMode="false" strokeWidth_2="1.3"/>
-				<groupFilter nightMode="true" color="#834522" color_2="#6dffd6"/>
-			</group>
 
 			<group>
 				<filter minzoom="16" color="#66f2caea" color_2="#734a08" strokeWidth_2=":2" pathEffect_2="9_3" tag="tourism" value="theme_park"/>
@@ -273,49 +199,7 @@
 			<filter nightMode="true" minzoom="15" tag="leisure" value="sports_centre" color="#0b4336"/>
 			<filter nightMode="true" minzoom="8" tag="leisure" value="park" color="#035340"/>
 
-			<!-- Added support of disused,abandoned,ruins tags to polygonal place_of_worship amenity -->
-			<filter minzoom="15" tag="amenity" value="place_of_worship" color="#f2caea" color_2="#920029" strokeWidth_2="1.7">
-				<filter additional="disused=yes" color_2="#920029" pathEffect_2="9_3"/>
-				<filter additional="abandoned=yes" color_2="#920029" pathEffect_2="9_3"/>
-				<filter additional="ruins=yes" color_2="#920029" pathEffect_2="9_3"/>
-				<groupFilter nightMode="true" color="#834522" color_2="#6dffd6"/>
-			</filter>
-
-			<!-- Changing waterway colors for better visibility in the forest-->
-			<group>
-				<filter tag="waterway" value="riverbank"/>
-				<filter tag="waterway" value="canal"/>
-				<filter tag="waterway" value="dock"/>
-				<filter tag="waterway" value="mill_pond"/>
-				<groupFilter color="$waterwayColorDay"/>
-				<groupFilter subwayMode="true" color="$waterwayDesaturatedColorDay"/>
-				<groupFilter nightMode="true" color="$waterwayColorNight"/>
-				<groupFilter nightMode="true" subwayMode="true" color="$waterwayDesaturatedColorNight"/>
-			</group>
-			<group>
-				<filter minzoom="1" tag="natural" value="coastline" color_2="#2Aff7c00" strokeWidth_2="1"/>
-				<filter minzoom="4" tag="natural" value="water"/>
-				<filter minzoom="4" tag="natural" value="lake"/>
-				<filter minzoom="4" tag="natural" value="bay"/>
-				<filter minzoom="7" tag="landuse" value="reservoir"/>
-				<filter minzoom="7" tag="landuse" value="water"/>
-				<filter minzoom="10" tag="landuse" value="basin"/>
-				<filter minzoom="15" tag="leisure" value="swimming_pool" color_2="#7479ec" strokeWidth_2="1"/>
-				<groupFilter color="$waterwayColorDay"/>
-				<groupFilter subwayMode="true" color="$waterwayDesaturatedColorDay"/>
-				<groupFilter nightMode="true" color="$waterwayColorNight"/>
-				<groupFilter nightMode="true" subwayMode="true" color="$waterwayDesaturatedColorNight"/>
-			</group>
-
 		</group>
-
-		<filter minzoom="13" tag="aeroway" value="apron" color="#e0c4fb">
-			<filter nightMode="true" color="#4c3a5d"/>
-		</filter>
-
-		<filter minzoom="14" tag="aeroway" value="terminal" color="#cc99ff" strokeWidth_2="0.3" color_2="#000000">
-			<filter nightMode="true" color="#a65ae1" color_2="#999999"/>
-		</filter>
 
 		<filter appMode="car" layer="-1" tag="public_transport" value="platform" disable="true"/>
 		<filter appMode="car" layer="-1" tag="railway" value="platform" disable="true"/>
