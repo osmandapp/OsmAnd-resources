@@ -160,9 +160,8 @@ mycp railway platform transport_train_station2.png
 mycp railway halt functional-icons_halt.png  #scale 0.25
 mycp railway tram_stop transport_tram_stop.png
 mycp railway level_crossing functional-icons_level_crossing.png  #scale 0.5
-mycp railway subway_entrance transport_subway.png
 
-mycp railway subway_entrance_2 functional-icons_subway_entrance.png
+mycp railway subway_entrance functional-icons_subway_entrance.png
 mycp railway subway_entrance_red functional-icons_subway_entrance_red.png
 mycp railway subway_entrance_brown functional-icons_subway_entrance_brown.png
 mycp railway subway_entrance_orange functional-icons_subway_entrance_orange.png
