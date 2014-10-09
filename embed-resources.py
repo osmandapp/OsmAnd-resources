@@ -40,7 +40,7 @@ class OsmAndCoreResourcesPacker(object):
         outputFile.write("\n")
         outputFile.write("#if defined(_WIN32) || defined(__CYGWIN__)\n")
         outputFile.write("#   define BUNDLE_API __declspec(dllexport)\n")
-        outputFile.write("#elif defined(__GNUC__) && __GNUC__ >= 4\n")
+        outputFile.write("#elif (defined(__GNUC__) && __GNUC__ >= 4) || defined(__clang__)\n")
         outputFile.write("#   define BUNDLE_API __attribute__ ((visibility(\"default\"), used))\n")
         outputFile.write("#else\n")
         outputFile.write("#   define BUNDLE_API\n")
