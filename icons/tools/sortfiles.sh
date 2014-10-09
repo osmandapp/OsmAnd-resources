@@ -25,8 +25,7 @@ cp ../png/xhdpi/h_* ../../rendering_styles/style-icons/drawable-xhdpi/
 mygroup landuse landuse_coniferous.png
 mycp landuse grass landuse_grass.png
 mycp landuse forest landuse_coniferous.png               # Keep shaders with background color, cannot be replaced by icons!
-mycp natural beach tourist_beach.png                     # Keep shaders with background color, cannot be replaced by icons!
-mycp natural beach2 tourist_beach2.png                     # Keep shaders with background color, cannot be replaced by icons!
+mycp natural beach tourist_beach2.png                     # Keep shaders with background color, cannot be replaced by icons!
 mycp landuse cemetery place_of_worship_christian3.png    # Keep shaders with background color, cannot be replaced by icons!
 mycp amenity grave_yard place_of_worship_christian3.png  # Keep shaders with background color, cannot be replaced by icons!
 mycp natural scrub landuse_scrub.png                     # Keep shaders with background color, cannot be replaced by icons!
@@ -49,8 +48,7 @@ mycp natural volcano_framed functional-icons_volcano_framed.png
 mycp natural volcano_framed_big functional-icons_volcano_framed_big.png
 mycp natural volcano_big functional-icons_volcano_big.png
 mycp natural cave_entrance poi_cave.png
-mycp natural spring functional-icons_spring.png  #scale 0.375
-mycp natural spring2 water_spring.png  #scale 0.375
+mycp natural spring water_spring.png  #scale 0.375
 mycp natural tree functional-icons_tree.png  #scale 0.25
 mycp natural tree_broadleaved functional-icons_tree_broadleaved.png
 mycp natural tree_needleleaved functional-icons_tree_needleleaved.png
@@ -87,7 +85,6 @@ mycp barrier small_red_1 functional-icons_point_red_1.png  #scale 0.25
 mycp barrier small_red_2 functional-icons_point_red_2.png  #scale 0.25
 mycp barrier small_red_3 functional-icons_point_red_3.png  #scale 0.25
 mycp barrier small_red_4 functional-icons_point_red_4.png  #scale 0.25
-mycp entrance yes functional-icons_point_gray.png  #scale 0.25
 
 ## Emergency + Health
 mygroup emergency emergency_emergency_phone.png
@@ -97,10 +94,8 @@ mycp amenity police emergency_police3.png
 mycp amenity fire_station emergency_firestation4.png
 
 mygroup healthcare health_pharmacy.png
-mycp amenity pharmacy health_pharmacy.png
-mycp amenity pharmacy_2 health_pharmacy_2.png
-mycp amenity hospital health_hospital.png
-mycp amenity hospital_2 health_hospital_2.png
+mycp amenity pharmacy health_pharmacy_2.png
+mycp amenity hospital health_hospital_2.png
 mmycp amenity veterinary health_veterinary.png
 mycp amenity doctors health_doctors.png
 mycp amenity dentist health_dentist.png
@@ -112,7 +107,7 @@ mycp highway traffic_signals transport_traffic_lights.png
 mycp highway mini_roundabout transport_miniroundabout_anticlockwise.png
 mycp highway noexit functional-icons_noexit.png
 mycp highway ford transport_ford.png
-mycp highway crossing2 functional-icons_zebra_crossing2.png
+mycp highway crossing functional-icons_zebra_crossing2.png
 mycp traffic_calming bump transport_speedbump.png
 mycp highway speed_camera transport_speedcamera.png
 mycp highway milestone functional-icons_milestone.png
@@ -128,8 +123,7 @@ mycp amenity parking_paid transport_parking_car_paid.png
 mycp amenity bicycle_parking transport_parking_bicycle.png
 
 mygroup public_transport transport_bus_stop.png
-mycp amenity bus_station transport_bus_station.png
-mycp amenity bus_station_2 transport_bus_station_2.png
+mycp amenity bus_station transport_bus_station_2.png
 mycp highway bus_stop transport_bus_stop.png
 mycp highway bus_stop_small functional-icons_bus_stop_small.png
 mycp highway bus_stop_round_small functional-icons_bus_stop_round_small.png
@@ -212,10 +206,9 @@ mycp barrier kissing_gate barrier_kissing_gate.png
 mycp barrier toll_booth barrier_toll_booth.png
 mycp barrier border_control barrier_lift_gate.png
 mycp barrier entrance barrier_entrance.png
-mycp entrance yes_2 barrier_entrance2.png
-mycp entrance exit barrier_exit.png
+mycp entrance yes barrier_entrance2.png
+mycp entrance exit functional-icons_entrance_exit.png
 mycp entrance main functional-icons_entrance3.png
-mycp entrance exit_2 functional-icons_entrance_exit.png
 mycp building entrance barrier_entrance.png
 
 
@@ -295,8 +288,7 @@ mycp sport gymnastics sport_gymnasium.png
 mygroup leisure sport_playground.png
 mycp leisure playground sport_playground.png
 mycp leisure water_park sport_swimming_outdoor.png
-mycp leisure sports_centre sport_leisure_centre.png
-mycp leisure sports_centre_2 sport_leisure_centre_2.png
+mycp leisure sports_centre sport_leisure_centre_2.png
 mycp leisure ice_rink sport_iceskating.png
 mycp leisure fishing sport_fishing.png  #used shop=fish turned by 45 degrees for now
 mycp leisure bird_hide poi_tower_lookout.png
@@ -310,8 +302,7 @@ mycp geocache found poi_point_of_interest.png
 mygroup other amenity_post_office.png
 mycp amenity bench amenity_bench.png
 mycp amenity post_box amenity_post_box.png
-mycp amenity post_office amenity_post_office.png
-mycp amenity post_office_2 amenity_post_office_2.png
+mycp amenity post_office amenity_post_office_2.png
 mycp amenity prison amenity_prison.png
 mycp amenity recycling amenity_recycling.png
 mycp amenity telephone amenity_telephone.png
@@ -356,19 +347,17 @@ mycp amenity university education_university.png
 
 ## Man made
 mygroup man_made power_station_wind.png
-mycp power tower functional-icons_power_tower.png  #scale 0.5
-mycp power tower2 functional-icons_power_tower2.png  #scale 0.5
+mycp power tower functional-icons_power_tower2.png
 mycp power station power_station.png
-mycp power transformer2 power_transformer2.png
+mycp power substation power_transformer2.png
 mycp power station_coal power_station_coal.png
 mycp power station_gas power_station_gas.png
 mycp power station_nuclear power_station_nuclear.png
 mycp power station_solar power_station_solar.png
 mycp power station_wind power_station_wind.png
-mycp power station_water2 power_station_water2.png
+mycp power station_water power_station_water2.png
 mycp man_made chimney poi_chimney.png
-mycp tower_type communication poi_tower_communications.png
-mycp tower_type communication2 poi_tower_communications2.png
+mycp tower_type communication poi_tower_communications2.png
 mycp man_made water_tower poi_water_tower.png
 mycp man_made mineshaft poi_mine.png
 mycp man_made windmill poi_windmill.png
