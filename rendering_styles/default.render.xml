@@ -218,7 +218,10 @@
 	<renderingConstant name="conservationColorDay" value="#cfeca8"/>
 	<renderingConstant name="villageGreenColorDay" value="#cfeca8"/>
 	<renderingConstant name="parkColorDay" value="#b0b6fdb6"/>
-	<renderingConstant name="parkColorDayStroke" value="#9db487"/>
+	<renderingConstant name="parkStrokeColorDay" value="#9db487"/>
+	<renderingConstant name="parkColorNight" value="#004333"/>
+	<renderingConstant name="parkStrokeColorNight" value="#9db487"/>
+
 	<renderingConstant name="golfCourseColorDay" value="#b5e3b5"/>
 	<renderingConstant name="golfCourseColorDayStroke" value="#9db487"/>
 	<renderingConstant name="leisureTrackColorDay" value="#6674dcba"/>
@@ -248,6 +251,7 @@
 	<renderingConstant name="waterwayDesaturatedColorDay" value="#b5d0d0"/>
 	<renderingConstant name="waterwayDesaturatedColorNight" value="#2a3d50"/>
 
+	<renderingConstant name="builtUpAreasColorNight" value="#3b3b3b"/>
 	<renderingConstant name="parkingColorDay" value="#f6eeb7"/>
 	<renderingConstant name="parkingColorNight" value="#36455a"/>
 	<renderingConstant name="parkingPrivateColorDay" value="#77f6eeb7"/>
@@ -256,7 +260,6 @@
 	<renderingConstant name="parkingCustomersColorNight" value="#7741536c"/>
 	<renderingConstant name="bicycleParkingColorDay" value="#f6eeb7"/>
 	<renderingConstant name="bicycleParkingColorNight" value="#36455a"/>
-	<renderingConstant name="builtUpAreasColorNight" value="#3b3b3b"/>
 	<renderingConstant name="landuseConstructionColorDay" value="#cac090"/>
 	<renderingConstant name="landuseConstructionColorDayStroke" value="#666666"/>
 	<renderingConstant name="landuseConstructionColorNight" value="#3c3c1b"/>
@@ -286,6 +289,10 @@
 	<renderingConstant name="landuseGaragesColorNight" value="#362d2d"/>
 	<renderingConstant name="leisureResortColorDay" value="#b0b6fdb6"/>
 	<renderingConstant name="leisureResortColorNight" value="#362d2d"/>
+	<renderingConstant name="themeparkColorDay" value="#66f2caea"/>
+	<renderingConstant name="themeparkStrokeColorDay" value="#734a08"/>
+	<renderingConstant name="themeparkColorNight" value="#3b3b3b"/>
+	<renderingConstant name="themeparkStrokeColorNight" value="#734a08"/>
 
 	<renderingConstant name="surfaceGroundColor" value="#cc9900"/>
 	<renderingConstant name="surfaceSandColor" value="#ffd700"/>
@@ -2892,8 +2899,8 @@
 				<switch minzoom="8">
 					<case tag="natural" value="park"/>
 					<case tag="leisure" value="park"/>
-					<apply color="$parkColorDay" color_2="$parkColorDayStroke" strokeWidth_2=":1">
-						<apply_if nightMode="true" color="$openNatureColorNight"/>
+					<apply color="$parkColorDay" color_2="$parkStrokeColorDay" strokeWidth_2=":1">
+						<apply_if nightMode="true" color="$parkColorNight" color_2="$parkStrokeColorNight"/>
 					</apply>
 				</switch>
 				<case minzoom="8" tag="leisure" value="golf_course" color="$golfCourseColorDay" color_2="$golfCourseColorDayStroke" strokeWidth_2=":1"/>
@@ -3006,16 +3013,17 @@
 				<case minzoom="12" tag="amenity" value="social_facility" color="#b0b6fdb6"/>
 				<case minzoom="12" tag="leisure" value="water_park" color="#b0b6fdb6"/>
 				<case minzoom="15" tag="amenity" value="cinema" color="#cc9999"/>
-				<case minzoom="12" tag="tourism" value="theme_park">
-					<case maxzoom="15" strokeWidth_2=":1"/>
-					<case minzoom="16" strokeWidth_2=":2"/>
-					<apply color="#66f2caea" color_2="#734a08" pathEffect_2="9_3"/>
-				</case>
 				<case minzoom="13" tag="tourism" value="camp_site" color="#a0ccff99"/>
 				<case minzoom="13" tag="tourism" value="caravan_site" color="#a0ccff99"/>
 				<case minzoom="13" tag="tourism" value="picnic_site" color="#a0ccff99"/>
 				<apply_if nightMode="true" color="$builtUpAreasColorNight"/>
 			</switch>
+			<case minzoom="12" tag="tourism" value="theme_park">
+				<case maxzoom="15" strokeWidth_2=":1"/>
+				<case minzoom="16" strokeWidth_2=":2"/>
+				<apply color="$themeparkColorDay" color_2="$themeparkStrokeColorDay" pathEffect_2="9_3"/>
+				<apply_if nightMode="true" color="$themeparkColorNight" color_2="$themeparkStrokeColorNight"/>
+			</case>
 			<switch>
 				<!-- Tourism -->
 				<case minzoom="13" tag="tourism" value="attraction"/>
@@ -3049,14 +3057,14 @@
 			<switch>
 				<case minzoom="13" tag="leisure" value="stadium" color="#33cc99"/>
 				<case minzoom="13" tag="leisure" value="sports_centre" color="#33cc99"/>
-				<case minzoom="12" tag="military" value="barracks" color="#ff8f8f"/>
 				<!-- use semi-ransparent shader to better show area details: filter minzoom="10" color="#a0ffa0c0" color_2="#ffa0c0" strokeWidth_2=":2" tag="landuse" value="military"/ -->
-				<apply_if nightMode="true" color="#362d2d"/>
+				<apply_if nightMode="true" color="#04382c"/>
 			</switch>
 			<switch minzoom="13">
 				<case tag="power" value="plant" color="#bbbbbb"/>
 				<case tag="power" value="generator" color="#bbbbbb"/>
 				<case tag="power" value="substation" color="#bbbbbb"/>
+				<case tag="military" value="barracks" color="#ff8f8f"/>
 				<apply_if nightMode="true" color="#132c4e"/>
 			</switch>
 
@@ -3979,7 +3987,7 @@
 				<case maxzoom="16" strokeWidth="2.2:2.2"/>
 				<case maxzoom="17" strokeWidth="2.7:2.7"/>
 				<case maxzoom="18" strokeWidth="3.2:3.2"/>
-				<caser minzoom="19" strokeWidth="3.7:3.7"/>
+				<case minzoom="19" strokeWidth="3.7:3.7"/>
 				<apply_if nightMode="true" color="$routeBusColorNight"/>
 			</case>
 			<case tag="route_trolleybus" value="" color="$routeTrolleybusColor">
