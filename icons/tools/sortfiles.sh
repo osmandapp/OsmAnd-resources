@@ -346,7 +346,7 @@ mycp amenity university education_university.png
 
 
 ## Man made
-mygroup man_made power_station_wind.png
+mygroup man_made power_station_wind2.png
 mycp power tower functional-icons_power_tower2.png
 mycp power station power_station.png
 mycp power substation power_transformer2.png
@@ -376,6 +376,8 @@ mycp amenity bar food_bar.png
 mycp amenity biergarten food_biergarten.png
 mycp amenity ice_cream food_ice_cream.png
 mycp amenity drinking_water food_drinkingtap.png
+mycp amenity car_wash amenity_car_wash.png
+mycp amenity car_wash_self_service amenity_car_wash_self_service.png
 mycp man_made water_well food_water_well.png
 
 ## Seamarks
