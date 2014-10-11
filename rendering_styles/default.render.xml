@@ -1128,36 +1128,50 @@
 			<apply_if nightMode="true" textBold="true"/>
 		</switch>
 
-		<switch textColor="#000000" textDy="-2">
-			<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" textOrder="9">
-				<case tag="highway" value="road"/>
-				<case tag="highway" value="road_area"/>
-				<case tag="highway" value="unclassified"/>
-				<case tag="highway" value="unclassified_area"/>
-				<case tag="highway" value="residential"/>
-				<case tag="highway" value="residential_area"/>
-				<apply_if nightMode="true" textBold="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#88666666"/>
+		<switch textDy="-2">
+			<switch>
+				<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" textOrder="9">
+					<case tag="highway" value="road"/>
+					<case tag="highway" value="road_area"/>
+					<case tag="highway" value="unclassified"/>
+					<case tag="highway" value="unclassified_area"/>
+					<case tag="highway" value="residential"/>
+					<case tag="highway" value="residential_area"/>
+					<apply_if nightMode="true" textBold="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#88666666"/>
+				</switch>
+				<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay">
+					<case tag="highway" value="service" textOrder="10"/>
+					<case tag="highway" value="service_area" textOrder="10"/>
+					<case tag="highway" value="living_street" textOrder="10"/>
+					<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
+				</switch>
+				<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" textOrder="10">
+					<case tag="highway" value="services" minzoom="16" textDy="4"/>
+					<case tag="highway" value="rest_area"/>
+					<case tag="highway" value="ford"/>
+					<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
+				</switch>
+				<case tag="highway" value="construction" textHaloRadius="$textHaloRadiusDay" textHaloColor="#99bdff" textOrder="9">
+					<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textHaloColor="#99bdff"/>
+				</case>
+				<case tag="highway" value="proposed" textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" textOrder="9">
+					<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textHaloColor="#aa777777"/>
+				</case>
+				<apply color="#000000">
+					<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
+				</apply>
 			</switch>
 			<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay">
-				<case tag="highway" value="service" textOrder="10"/>
-				<case tag="highway" value="service_area" textOrder="10"/>
-				<case tag="highway" value="living_street" textOrder="10"/>
 				<case tag="highway" value="pedestrian" textOrder="11"/>
 				<case tag="highway" value="pedestrian_area" textOrder="11"/>
 				<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
+				<apply color="#000000">
+					<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
+				</apply>
+				<apply_if appMode="pedestrian" textHaloColor="$pedestrianRoadModeColorDay">
+					<apply_if nightMode="true" textHaloColor="$pedestrianRoadModeColorNight"/>
+				</apply_if>
 			</switch>
-			<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" textOrder="10">
-				<case tag="highway" value="services" minzoom="16" textDy="4"/>
-				<case tag="highway" value="rest_area"/>
-				<case tag="highway" value="ford"/>
-				<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
-			</switch>
-			<case tag="highway" value="construction" textHaloRadius="$textHaloRadiusDay" textHaloColor="#99bdff" textOrder="9">
- 				<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textHaloColor="#99bdff"/>
-			</case>
-			<case tag="highway" value="proposed" textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" textOrder="9">
-				<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textHaloColor="#aa777777"/>
-			</case>
 			<apply minzoom="14" textOnPath="true" nameTag="">
 				<case maxzoom="14" textSize="12"/>
 				<case maxzoom="15" textSize="13"/>
@@ -1177,7 +1191,6 @@
 				<case tag="cycleway" value="opposite_lane" textOrder="14"/>
 				<case tag="cycleway" value="share_busway" textOrder="14"/>
 				<case tag="cycleway" value="opposite" textOrder="14"/>
-				<case tag="highway" value="footway" textOrder="15"/>
 				<case tag="highway" value="steps" textOrder="15"/>
 				<case tag="highway" value="bridleway" textOrder="15"/>
 				<case tag="highway" value="raceway" textOrder="9"/>
@@ -1193,6 +1206,22 @@
 				<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 			</apply_if>
 		</switch>
+		<switch minzoom="15" textOrder="15" nameTag="">
+			<case tag="highway" value="footway"/>
+			<case tag="highway" value="footway_area"/>
+			<apply>
+				<case maxzoom="15" textSize="13"/>
+				<case maxzoom="16" textSize="14"/>
+				<case maxzoom="17" textSize="16"/>
+				<case minzoom="18" textSize="18"/>
+			</apply>
+			<apply textColor="#000000" textHaloRadius="$highwayTrackTextHaloRadiusDay" textHaloColor="$highwayTrackTextHaloColorDay" textOnPath="true" textDy="-7"/>
+			<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
+			<apply_if appMode="pedestrian" textHaloColor="$pedestrianRoadModeColorDay">
+				<apply_if nightMode="true" textHaloColor="$pedestrianRoadModeColorNight"/>
+			</apply_if>
+		</switch>
+
 		<!-- Motorway junction -->
 		<case tag="highway" value="motorway_junction" textColor="#00008b" textHaloRadius="$textHaloRadiusDay" textWrapWidth="16" textMinDistance="10" textOrder="6">
 			<case appMode="car" minzoom="13">
