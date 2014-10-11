@@ -108,6 +108,7 @@ mycp highway mini_roundabout transport_miniroundabout_anticlockwise.png
 mycp highway noexit functional-icons_noexit.png
 mycp highway ford transport_ford.png
 mycp highway crossing functional-icons_zebra_crossing2.png
+mycp highway steps functional-icons_steps.png
 mycp traffic_calming bump transport_speedbump.png
 mycp highway speed_camera transport_speedcamera.png
 mycp highway milestone functional-icons_milestone.png
