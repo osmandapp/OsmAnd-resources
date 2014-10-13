@@ -580,19 +580,6 @@
 			<case tag="railway" value="" order="4"/>
 			<case tag="railway" value="station" order="5"/>
 			<case tag="public_transport" value="" order="5"/>
-			<switch order="5">
-				<case tag="highway" value="primary"/>
-				<case tag="highway" value="secondary"/>
-				<case tag="highway" value="tertiary"/>
-				<case tag="highway" value="pedestrian"/>
-				<case tag="highway" value="service"/>
-				<case tag="highway" value="road"/>
-				<case tag="highway" value="unclassified"/>
-				<case tag="highway" value="residential"/>
-				<case tag="highway" value="track"/>
-				<case tag="highway" value="footway"/>
-				<case tag="highway" value="rest_area"/>
-			</switch>
 			<case tag="barrier" value="city_wall"/>
 		</switch>
 		<switch objectType="3" order="5" cycle="true" point="false">
@@ -606,9 +593,10 @@
 			<case tag="highway" value="residential_area"/>
 			<case tag="highway" value="track_area"/>
 			<case tag="highway" value="footway_area"/>
+			<case tag="highway" value="services_area"/>
 			<case tag="highway" value="rest_area"/>
+
 			<case tag="highway" value="raceway"/>
-			<case tag="highway" value="rest_area"/>
 			<case tag="landuse" value="military" order="8"/>
 			<case tag="military" value="danger_area" order="8"/>
 			<case tag="amenity" value="parking"/>
@@ -1147,6 +1135,7 @@
 				</switch>
 				<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" textOrder="10">
 					<case tag="highway" value="services" minzoom="16" textDy="4"/>
+					<case tag="highway" value="services_area" minzoom="16" textDy="4"/>
 					<case tag="highway" value="rest_area"/>
 					<case tag="highway" value="ford"/>
 					<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
@@ -2653,26 +2642,18 @@
 	<polygon>
 		<!-- Polygon highways -->
 		<switch>
-			<case tag="highway" value="primary"/>
 			<case tag="highway" value="primary_area"/>
-			<case tag="highway" value="secondary"/>
 			<case tag="highway" value="secondary_area"/>
-			<case tag="highway" value="tertiary"/>
 			<case tag="highway" value="tertiary_area"/>
-			<case tag="highway" value="road"/>
 			<case tag="highway" value="road_area"/>
-			<case tag="highway" value="unclassified"/>
 			<case tag="highway" value="unclassified_area"/>
-			<case tag="highway" value="residential"/>
 			<case tag="highway" value="residential_area"/>
 			<apply color="#ffffff" color_2="#969696" minzoom="12" strokeWidth_2=":1">
 				<apply_if nightMode="true" color="#9f9f9f" color_2="#464646"/>
 			</apply>
 		</switch>
 		<switch>
-			<case tag="highway" value="pedestrian"/>
 			<case tag="highway" value="pedestrian_area"/>
-			<case tag="highway" value="footway"/>
 			<case tag="highway" value="footway_area"/>
 			<apply_if minzoom="16">
 				<switch>
@@ -2701,9 +2682,8 @@
 		</switch>
 
 		<switch minzoom="14">
-			<case tag="highway" value="service"/>
 			<case tag="highway" value="service_area"/>
-			<case tag="highway" value="services"/>
+			<case tag="highway" value="services_area"/>
 			<case tag="highway" value="rest_area"/>
 			<apply color="#ececec" color_2="#969696" strokeWidth_2=":1">
 				<apply_if nightMode="true" color="#727272" color_2="#464646"/>
@@ -2711,7 +2691,6 @@
 		</switch>
 
 		<switch>
-			<case minzoom="16" tag="highway" value="track"/>
 			<case minzoom="16" tag="highway" value="track_area"/>
 			<apply color="#e2b36f" color_2="#a87a10" pathEffect_2="4_2" strokeWidth_2=":1">
 				<apply_if nightMode="true" color="#6b5432"/>
