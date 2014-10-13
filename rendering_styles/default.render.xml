@@ -237,6 +237,17 @@
 
 	<renderingConstant name="buildingColorDay" value="#bca9a9"/>
 	<renderingConstant name="buildingColorNight" value="#685454"/>
+	<renderingConstant name="buildingIndustrialColorDay" value="#b2afb9"/>
+	<renderingConstant name="buildingIndustrialColorNight" value="#514c59"/>
+	<renderingConstant name="buildingResidentialColorDay" value="#b8b39e"/>
+	<renderingConstant name="buildingResidentialColorNight" value="#685e49"/>
+	<renderingConstant name="buildingEducationalColorDay" value="#a4b0b7"/>
+	<renderingConstant name="buildingEducationalColorNight" value="#56636b"/>
+	<renderingConstant name="buildingCommercialColorDay" value="#d1aeae"/>
+	<renderingConstant name="buildingCommercialColorNight" value="#885d5d"/>
+	<renderingConstant name="buildingMilitaryColorDay" value="#d97979"/>
+	<renderingConstant name="buildingMilitaryColorNight" value="#794444"/>
+
 	<renderingConstant name="churchColorDay" value="#bca9a9"/>
 	<renderingConstant name="churchColorNight" value="#685454"/>
 	<renderingConstant name="attractionColorDay" value="#f2caea"/>
@@ -611,9 +622,14 @@
 			<case tag="waterway" value="dock"/>
 			<case tag="natural" value="cliff"/>
 			<case tag="natural" value="crater"/>
-			<case tag="building" value="">
+			<case tag="man_made" value="chimney"/>
+			<case tag="building" value="no" order="-1"/>
+			<switch>
+				<case tag="military" value="bunker"/>
+				<case tag="military" value="barracks"/>
+				<case tag="building" value=""/>
 				<apply_if moreDetailed="false" minzoom="15" maxzoom="15" order="-1"/>
-			</case>
+			</switch>
 			<switch order="5">
 				<case tag="natural" value="water"/>
 				<case tag="waterway" value="riverbank"/>
@@ -1361,11 +1377,9 @@
 			<case contourLines="16" minzoom="16"/>
 			<apply_if nightMode="true" textColor="#ffffff" textHaloRadius=":1" textHaloColor="#77777777"/>
 		</case>
-		<switch textSize="12" textWrapWidth="15" textHaloRadius="$textHaloRadiusDay" textHaloColor="#aaffffff" textColor="$parkTextColorDay" textOrder="10">
-			<case minzoom="15" tag="natural" value="park"/>
-			<case minzoom="15" tag="leisure" value="park"/>
+		<case minzoom="15" tag="leisure" value="park" textSize="12" textWrapWidth="15" textHaloRadius="$textHaloRadiusDay" textHaloColor="#aaffffff" textColor="$parkTextColorDay" textOrder="10">
 			<apply_if nightMode="true" textColor="#9fe39f" textHaloRadius="$textHaloRadiusNight" textHaloColor="#88444444"/>
-		</switch>
+		</case>
 
 		<switch textColor="#654321" textDy="7" textWrapWidth="25" textHaloColor="#77ffffff" textHaloRadius="$textHaloRadiusDay" >
 			<switch>
@@ -1755,19 +1769,24 @@
 
 		<!-- Buildings -->
 		<switch textHaloRadius="$buildingTextHaloRadiusDay" textHaloColor="$buildingTextHaloColorDay">
-			<case tag="building" value="">
-				<case minzoom="16" maxzoom="17" textSize="13" textMinDistance="40"/>
-				<case minzoom="18" textSize="15"/>
-				<apply textColor="#444444" textDy="7" textWrapWidth="20" textOrder="16"/>
-			</case>
-			<case minzoom="18" tag="addr:housenumber" value="" textSize="15" textColor="#444444" textDy="7" textWrapWidth="20" textOrder="17"/>
+			<switch>
+				<case tag="military" value="barracks"/>
+				<case tag="military" value="bunker"/>
+				<case tag="building" value=""/>
+				<apply_if minzoom="16" maxzoom="17" textSize="13" textMinDistance="40"/>
+				<apply_if minzoom="18" textSize="15"/>
+				<apply  textDy="7" textWrapWidth="20" textOrder="16"/>
+			</switch>
+			<case minzoom="18" tag="addr:housenumber" value="" textSize="15" textDy="7" textWrapWidth="20" textOrder="17"/>
 			<case tag="addr:flats" value="">
 				<case minzoom="18" maxzoom="18" nameTag="ref" textSize="13"/>
 				<case minzoom="19" nameTag="ref" nameTag2="addr:flats" textSize="15"/>
-				<apply textColor="#444444" textDy="7" textWrapWidth="20" textOrder="18"/>
+				<apply textDy="7" textWrapWidth="20" textOrder="18"/>
 			</case>
 			<case minzoom="19" tag="entrance" value="" nameTag2="ref" textSize="12" textWrapWidth="15" textDy="3"/>
-			<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77666666"/>
+			<apply textColor="#444444">
+				<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77666666"/>
+			</apply>
 		</switch>
 
 		<!-- Food and Drink -->
@@ -2713,7 +2732,6 @@
 					<case tag="building" value="garage"/>
 					<case tag="building" value="industrial"/>
 					<case tag="building" value="transportation"/>
-					<case tag="building" value="train_station"/>
 					<case tag="building" value="warehouse"/>
 					<case tag="building" value="hangar"/>
 					<case tag="building" value="factory"/>
@@ -2722,8 +2740,9 @@
 					<case tag="building" value="shed"/>
 					<case tag="building" value="barn"/>
 					<case tag="building" value="greenhouse"/>
-					<apply color="#b2afb9">
-						<apply_if nightMode="true" color="#514c59"/>
+					<case tag="man_made" value="chimney"/>
+					<apply color="$buildingIndustrialColorDay">
+						<apply_if nightMode="true" color="$buildingIndustrialColorNight"/>
 					</apply>
 				</switch>
 				<switch>
@@ -2734,20 +2753,22 @@
 					<case tag="building" value="detached"/>
 					<case tag="building" value="farm"/>
 					<case tag="building" value="hotel"/>
-					<apply color="#b8b39e">
-						<apply_if nightMode="true" color="#685e49"/>
+					<apply color="$buildingResidentialColorDay">
+						<apply_if nightMode="true" color="$buildingResidentialColorNight"/>
 					</apply>
 				</switch>
 				<switch>
 					<case tag="building" value="hospital"/>
 					<case tag="building" value="civic"/>
+					<case tag="building" value="hall"/>
+					<case tag="building" value="administrative"/>
 					<case tag="building" value="public"/>
 					<case tag="building" value="school"/>
 					<case tag="building" value="kindergarten"/>
 					<case tag="building" value="university"/>
 					<case tag="building" value="college"/>
-					<apply color="#a4b0b7">
-						<apply_if nightMode="true" color="#56636b"/>
+					<apply color="$buildingEducationalColorDay">
+						<apply_if nightMode="true" color="$buildingEducationalColorNight"/>
 					</apply>
 				</switch>
 				<switch>
@@ -2755,8 +2776,8 @@
 					<case tag="building" value="retail"/>
 					<case tag="building" value="shop"/>
 					<case tag="building" value="supermarket"/>
-					<apply color="#d1aeae">
-						<apply_if nightMode="true" color="#885d5d"/>
+					<apply color="$buildingCommercialColorDay">
+						<apply_if nightMode="true" color="$buildingCommercialColorNight"/>
 					</apply>
 				</switch>
 				<switch>
@@ -2768,6 +2789,13 @@
 						<apply_if nightMode="true" color="$churchColorNight" color_2="$attractionStrokeColorNight"/>
 					</apply>
 				</switch>
+			</switch>
+			<switch>
+				<case tag="military" value="bunker"/>
+				<case tag="military" value="barracks"/>
+				<apply color="$buildingMilitaryColorDay">
+					<apply_if nightMode="true" color="$buildingMilitaryColorNight"/>
+				</apply>
 			</switch>
 			<case tag="building" value="" color="$buildingColorDay">
 				<apply_if nightMode="true" color="$buildingColorNight" color_2="#999999"/>
@@ -2911,7 +2939,6 @@
 				<case minzoom="6" tag="landuse" value="recreation_ground" color="$recreationGroundColorDay"/>
 				<case minzoom="6" tag="landuse" value="village_green" color="$villageGreenColorDay"/>
 				<switch minzoom="8">
-					<case tag="natural" value="park"/>
 					<case tag="leisure" value="park"/>
 					<apply color="$parkColorDay" color_2="$parkStrokeColorDay" strokeWidth_2=":1">
 						<apply_if nightMode="true" color="$parkColorNight" color_2="$parkStrokeColorNight"/>
@@ -3079,7 +3106,6 @@
 				<case tag="power" value="plant" color="#bbbbbb"/>
 				<case tag="power" value="generator" color="#bbbbbb"/>
 				<case tag="power" value="substation" color="#bbbbbb"/>
-				<case tag="military" value="barracks" color="#ff8f8f"/>
 				<apply_if nightMode="true" color="#132c4e"/>
 			</switch>
 
