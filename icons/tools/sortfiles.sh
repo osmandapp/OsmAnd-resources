@@ -32,6 +32,7 @@ mycp natural scrub landuse_scrub.png                     # Keep shaders with bac
 mycp natural swamp landuse_swamp.png                     # Keep shaders with background color, cannot be replaced by icons!
 mycp tourism zoo tourist_zoo.png                         # Keep shaders with background color, cannot be replaced by icons!
 mycp military danger_area poi_mine.png                   # Keep shaders with background color, cannot be replaced by icons!
+mycp military nuclear_explosion_site functional-icons_nuclear_explosion_site.png
 mycp natural glacier poi_peak2.png                       # Keep shaders with background color, cannot be replaced by icons!
 
 
@@ -257,6 +258,7 @@ mycp historic battlefield tourist_battlefield.png
 mycp historic fort tourist_castle2.png
 mycp historic ruins tourist_ruin.png
 mycp historic archaeological_site tourist_archaeological2.png
+mycp historic ship tourist_ship.png
 mycp historic wreck tourist_wreck.png
 mycp historic wayside_cross tourist_wayside_cross.png
 mycp historic wayside_shrine tourist_wayside_shrine.png
