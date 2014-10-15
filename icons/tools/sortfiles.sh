@@ -117,6 +117,7 @@ mycp highway milestone functional-icons_milestone.png
 mygroup fuel transport_fuel.png
 mycp amenity fuel transport_fuel.png
 mycp amenity fuel_lpg transport_fuel_lpg.png
+mycp amenity ev_charging transport_ev_charging.png
 
 mygroup parking transport_parking.png
 mycp amenity parking transport_parking.png
@@ -303,6 +304,8 @@ mycp geocache found poi_point_of_interest.png
 
 ## Other amenities
 mygroup other amenity_post_office.png
+mycp amenity car_wash amenity_car_wash.png
+mycp amenity car_wash_self_service amenity_car_wash_self_service.png
 mycp amenity bench amenity_bench.png
 mycp amenity post_box amenity_post_box.png
 mycp amenity post_office amenity_post_office_2.png
@@ -379,8 +382,6 @@ mycp amenity bar food_bar.png
 mycp amenity biergarten food_biergarten.png
 mycp amenity ice_cream food_ice_cream.png
 mycp amenity drinking_water food_drinkingtap.png
-mycp amenity car_wash amenity_car_wash.png
-mycp amenity car_wash_self_service amenity_car_wash_self_service.png
 mycp man_made water_well food_water_well.png
 
 ## Seamarks

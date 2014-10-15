@@ -547,10 +547,12 @@
 			<case tag="amenity" value="bicycle_parking">
 				<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
 			</case>
-			<case tag="amenity" value="fuel">
+			<switch>
+				<case tag="amenity" value="fuel"/>
+				<case tag="amenity" value="ev_charging"/>
 				 <apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
 				 <apply_if appMode="bicycle" maxzoom="16" order="-1"/>
-			</case>
+			</switch>
 			<case tag="amenity" value="car_wash" appMode="pedestrian" maxzoom="17" order="-1"/>
 			<case tag="amenity" value=""/>
 			<case tag="emergency" value=""/>
@@ -1509,6 +1511,7 @@
 		<!-- Traffic, transportation and orientation -->
 		<switch subwayMode="false" textSize="12" textColor="#0066ff" textHaloRadius="$textHaloRadiusDay" textDy="9">
 			<case minzoom="17" tag="amenity" value="fuel" textWrapWidth="20"/>
+			<case minzoom="17" tag="amenity" value="ev_charging" textWrapWidth="20"/>
 			<case minzoom="17" tag="amenity" value="parking" textWrapWidth="20"/>
 			<case minzoom="17" tag="amenity" value="bicycle_parking" textWrapWidth="20"/>
 			<case minzoom="15" tag="man_made" value="lighthouse" textWrapWidth="20"/>
@@ -1932,9 +1935,8 @@
 					<filter additional="access=no" icon="amenity_parking_private"/>
 				</filter>-->
 				<case minzoom="14" tag="highway" value="services" icon="highway_services" iconOrder="60"/>
-				<case minzoom="14" tag="amenity" value="fuel" icon="amenity_fuel" iconVisibleSize="6">
-					<case additional="fuel:lpg=yes" icon="amenity_fuel_lpg"/>
-				</case>
+				<case minzoom="14" tag="amenity" value="fuel" icon="amenity_fuel" iconVisibleSize="6"/>
+				<case minzoom="15" tag="amenity" value="ev_charging" icon="amenity_ev_charging"/>
 				<case minzoom="16" tag="amenity" value="car_rental" icon="amenity_car_rental"/>
 				<case minzoom="16" tag="amenity" value="car_sharing" icon="amenity_car_sharing"/>
 				<case minzoom="15" tag="highway" value="speed_camera" icon="highway_speed_camera"/>
@@ -2172,8 +2174,7 @@
 			<case minzoom="15" tag="highway" value="services" icon="highway_services" iconOrder="60"/>
 			<case minzoom="17" tag="traffic_calming" value="bump" icon="traffic_calming_bump" iconVisibleSize="10" iconOrder="70"/>
 			<case minzoom="14" tag="amenity" value="fuel" icon="amenity_fuel" iconVisibleSize="6" iconOrder="81"/>
-<!--				<case additional="fuel:lpg=yes" icon="amenity_fuel_lpg"/>
-			</case>-->
+			<case minzoom="15" tag="amenity" value="ev_charging" icon="amenity_ev_charging" iconOrder="81"/>
 			<case minzoom="16" tag="amenity" value="parking" icon="amenity_parking" iconVisibleSize="32" iconOrder="80">
 				<case additional="fee=yes" icon="amenity_parking_paid"/>
 				<case minzoom="17" maxzoom="17" iconVisibleSize="16">
