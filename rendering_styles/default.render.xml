@@ -531,7 +531,12 @@
 			<case tag="highway" value="steps"/>
 			<case tag="highway" value="ford"/>
 			<case tag="traffic_calming" value=""/>
-			<case appMode="pedestrian" tag="traffic_calming" value="bump" order="-1"/>
+			<switch>
+				<case tag="traffic_calming" value="bump"/>
+				<case tag="traffic_calming" value="hump"/>
+				<case tag="traffic_calming" value="cushion"/>
+				<apply_if appMode="pedestrian" order="-1"/>
+			</switch>
 			<case tag="noexit" value=""/>
 			<case tag="flood_prone" value=""/>
 			<case tag="barrier" value="">
@@ -1925,9 +1930,14 @@
 			<case minzoom="17" tag="highway" value="crossing" icon="highway_crossing" iconVisibleSize="6"/>
 			<case subwayMode="false" minzoom="16" maxzoom="17" tag="amenity" value="bicycle_parking" icon=""/>
 			<case minzoom="15" tag="railway" value="level_crossing" icon="railway_level_crossing"/>
-			<case minzoom="17" tag="traffic_calming" value="bump" icon="traffic_calming_bump" shield="white_blue_square_shield" iconVisibleSize="10">
-				<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-			</case>
+			<switch minzoom="17">
+				<case tag="traffic_calming" value="bump"/>
+				<case tag="traffic_calming" value="hump"/>
+				<case tag="traffic_calming" value="cushion"/>
+				<apply icon="traffic_calming_bump" shield="white_blue_square_shield" iconVisibleSize="10">
+					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+				</apply>
+			</switch>
 			<switch subwayMode="false" shield="white_blue_square_shield">
 				<case minzoom="14" tag="highway" value="services" icon="highway_services" iconOrder="60"/>
 				<case minzoom="14" tag="amenity" value="fuel" icon="amenity_fuel" iconVisibleSize="6"/>
@@ -2174,7 +2184,12 @@
 		<switch subwayMode="false" shield="white_blue_square_shield">
 			<case minzoom="18" tag="highway" value="speed_camera" icon="highway_speed_camera" iconOrder="70"/>
 			<case minzoom="15" tag="highway" value="services" icon="highway_services" iconOrder="60"/>
-			<case minzoom="17" tag="traffic_calming" value="bump" icon="traffic_calming_bump" iconVisibleSize="10" iconOrder="70"/>
+			<switch minzoom="17">
+				<case tag="traffic_calming" value="bump"/>
+				<case tag="traffic_calming" value="hump"/>
+				<case tag="traffic_calming" value="cushion"/>
+				<apply icon="traffic_calming_bump" iconVisibleSize="10" iconOrder="70"/>
+			</switch>
 			<case minzoom="14" tag="amenity" value="fuel" icon="amenity_fuel" iconVisibleSize="6" iconOrder="81"/>
 			<case minzoom="15" tag="amenity" value="ev_charging" icon="amenity_ev_charging" iconOrder="81"/>
 			<case minzoom="16" tag="amenity" value="taxi" icon="amenity_taxi" iconOrder="81"/>
