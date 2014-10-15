@@ -308,6 +308,7 @@ mycp geocache found poi_point_of_interest.png
 mygroup other amenity_post_office.png
 mycp amenity car_wash amenity_car_wash.png
 mycp amenity car_wash_self_service amenity_car_wash_self_service.png
+mycp service tyres amenity_service_tyres.png
 mycp amenity bench amenity_bench.png
 mycp amenity post_box amenity_post_box.png
 mycp amenity post_office amenity_post_office_2.png
