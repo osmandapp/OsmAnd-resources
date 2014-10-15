@@ -2009,8 +2009,15 @@
 					<case minzoom="17" tag="highway" value="bus_stop" icon="highway_bus_stop" iconVisibleSize="16"/>
 					<case minzoom="17" tag="public_transport" value="platform" additional="bus=yes" icon="highway_bus_stop" iconVisibleSize="16"/>
 					<case minzoom="17" tag="public_transport" value="platform" additional="trolleybus=yes" icon="highway_bus_stop" iconVisibleSize="16"/>
-					<case minzoom="15" tag="railway" value="station" icon="railway_station" iconVisibleSize="4"/>
 					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+				</switch>
+				<switch minzoom="15">
+					<case tag="railway" value="station" additional="route=subway" icon="railway_station_subway" shield="white_blue_arc_shield">
+						<apply_if nightMode="true" shield="gray_blue_arc_shield"/>
+					</case>
+					<case tag="railway" value="station" icon="railway_station" shield="white_blue_square_shield" iconVisibleSize="8" iconOrder="82">
+						<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+					</case>
 				</switch>
 				<switch publicTransportMode="false">
 					<case minzoom="16" maxzoom="16" tag="highway" value="bus_stop" icon="highway_bus_stop_small" iconVisibleSize="4"/>
@@ -2232,7 +2239,6 @@
 		</case>
 
 		<switch minzoom="15" iconVisibleSize="7" shield="white_blue_square_shield">
-			<case tag="railway" value="station" icon="railway_station"/>
 			<case tag="public_transport" value="platform" icon="amenity_bus_station">
 				<switch>
 					<case additional="train=yes"/>
@@ -2265,6 +2271,20 @@
 				<apply_if nightMode="true" shield="darkgray_round_small_shield"/>
 			</case>
 		</switch>
+		<switch subwayMode="false" minzoom="12" maxzoom="14" iconVisibleSize="2">
+			<case tag="railway" value="station"/>
+			<apply_if maxzoom="12" icon="railway_halt"/>
+			<apply_if minzoom="13" icon="railway_station_small"/>
+		</switch>
+		<switch minzoom="15">
+			<case tag="railway" value="station" additional="route=subway" icon="railway_station_subway" shield="white_blue_arc_shield">
+				<apply_if nightMode="true" shield="gray_blue_arc_shield"/>
+			</case>
+			<case tag="railway" value="station" icon="railway_station" shield="white_blue_square_shield" iconVisibleSize="8" iconOrder="82">
+				<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+			</case>
+		</switch>
+
 
 		<switch publicTransportMode="true" iconOrder="55">
 			<case tag="railway" value="tram_stop"/>
