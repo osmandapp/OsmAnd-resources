@@ -406,6 +406,7 @@ mycp shop car_repair shopping_car_repair.png
 mycp shop car_parts shopping_car_parts.png
 mycp shop clothes shopping_clothes.png
 mycp clothes children shopping_clothes_children.png
+mycp shop shoes shopping_shoes.png
 mycp shop computer shopping_computer.png
 mycp shop confectionery shopping_confectionery.png
 mycp shop convenience shopping_convenience.png
