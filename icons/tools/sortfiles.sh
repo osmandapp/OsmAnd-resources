@@ -399,6 +399,7 @@ mycp shop alcohol shopping_alcohol.png
 mycp shop bakery shopping_bakery.png
 mycp shop baby_goods shopping_baby.png
 mycp shop bicycle shopping_bicycle.png
+mycp shop books shopping_book2.png
 mycp shop boutique shopping_clothes.png
 mycp shop butcher shopping_butcher2.png
 mycp shop car shopping_car.png
@@ -416,6 +417,7 @@ mycp shop department_store shopping_department_store.png
 mycp shop doityourself shopping_diy.png
 mycp shop electronics shopping_hifi.png
 mycp shop fashion shopping_clothes.png
+mycp shop fishing shopping_tackle.png
 mycp shop florist shopping_florist.png
 mycp shop garden_centre shopping_garden_centre.png
 mycp shop general shopping_convenience.png
