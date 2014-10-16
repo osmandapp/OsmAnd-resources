@@ -126,6 +126,8 @@
 	<renderingConstant name="tertiaryRoadColor" value="#ffff80"/>
 	<renderingConstant name="residentialRoadColor" value="#ffffff"/>
 	<renderingConstant name="residentialRoadColorNight" value="#9f9f9f"/>
+	<renderingConstant name="residentialRoadLowZoom1ShadowColor" value="#44666666"/>
+	<renderingConstant name="residentialRoadLowZoom2ShadowColor" value="#44666666"/>
 	<renderingConstant name="serviceRoadColor" value="#ececec"/>
 	<renderingConstant name="serviceRoadColorNight" value="#727272"/>
 	<renderingConstant name="roadRoadColor" value="#ececec"/>
@@ -606,6 +608,7 @@
 			<case tag="public_transport" value="" order="5"/>
 			<case tag="historic" value="memorial"/>
 			<case tag="barrier" value="city_wall"/>
+			<case tag="barrier" value="wall"/>
 		</switch>
 		<switch cycle="true" point="false" objectType="3" order="5">
 			<case tag="highway" value="primary_area"/>
@@ -705,6 +708,7 @@
 			<case tag="natural" value="cliff"/>
 			<case tag="natural" value="crater"/>
 
+			<case tag="waterway" value="weir" order="19"/>
 			<case tag="waterway" value="" order="18">
 				<apply_if layer="1" order="68"/>
 				<apply_if layer="-1" appMode="car" order="-1"/>
@@ -3154,6 +3158,11 @@
 					<apply_if nightMode="true" color="#77444444" color_2="#888888"/>
 				</apply>
 			</case>
+			<switch minzoom="16">
+				<case tag="barrier" value="wall"/>
+				<apply color="#44999999" color_2="#333333" strokeWidth_2="0.7:0.7"/>
+				<apply_if nightMode="true" color="#444444" color_2="#999999"/>
+			</switch>
 
 			<!-- Special nature, with shaders -->
 			<case minzoom="11" tag="natural" value="beach" shader="beach2">
@@ -3440,9 +3449,9 @@
 						</apply>
 					</case>
 					<apply shadowRadius=":1.5" cap="ROUND" color_0="#000000">
-						<case moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth="0.75:0.75" shadowColor="#44666666" shadowRadius=":1"/>
-						<case minzoom="13" maxzoom="13" strokeWidth="1:1" shadowColor="#33666666" shadowRadius=":1"/>
-						<case minzoom="14" maxzoom="14" strokeWidth="1.5:1.5" shadowColor="#44666666" shadowRadius=":1"/>
+						<case moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth="0.75:0.75" shadowColor="$residentialRoadLowZoom1ShadowColor" shadowRadius=":1"/>
+						<case minzoom="13" maxzoom="13" strokeWidth="1:1" shadowColor="$residentialRoadLowZoom2ShadowColor" shadowRadius=":1"/>
+						<case minzoom="14" maxzoom="14" strokeWidth="1.5:1.5" shadowColor="$residentialRoadLowZoom2ShadowColor" shadowRadius=":1"/>
 						<case minzoom="15" maxzoom="15" strokeWidth="2.5:2.5"/>
 						<case minzoom="16" maxzoom="16" strokeWidth="4.5:4.5"/>
 						<case minzoom="17" maxzoom="17" strokeWidth="6:6"/>
@@ -3500,7 +3509,7 @@
 					<apply cap="ROUND" color_0="#000000" shadowRadius=":1.5">
 						<switch moreDetailed="true">
 							<case minzoom="13" maxzoom="13" strokeWidth="0.5:0.5" shadowRadius="0"/>
-							<case minzoom="14" maxzoom="14" strokeWidth="1:1" shadowRadius=":1" shadowColor="#55777777"/>
+							<case minzoom="14" maxzoom="14" strokeWidth="1:1" shadowRadius=":1" shadowColor="$residentialRoadLowZoom2ShadowColor"/>
 						</switch>
 						<case minzoom="15" maxzoom="15" strokeWidth="2:2"/>
 						<case minzoom="16" maxzoom="16" strokeWidth="3:3"/>
