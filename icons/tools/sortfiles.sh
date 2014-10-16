@@ -138,6 +138,7 @@ mycp railway tram_stop_round_big functional-icons_blue_stop_round_big.png
 mycp railway tram_stop_round_small_night functional-icons_blue_stop_round_small_night.png
 mycp railway tram_stop_round_big_night functional-icons_blue_stop_round_big_night.png
 mycp public_transport platform transport_bus_stop.png
+mycp amenity ferry_terminal transport_ferry_terminal.png
 mycp amenity taxi transport_taxi_rank.png
 mycp highway services transport_services.png
 mycp mountain pass poi_mountain_pass.png

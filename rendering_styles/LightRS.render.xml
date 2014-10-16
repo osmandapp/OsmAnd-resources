@@ -158,6 +158,7 @@
 			<filter tag="aeroway" value=""/>
 			<filter tag="aerialway" value=""/>
 			<filter tag="aerialway" value="station"/>
+			<case tag="amenity" value="ferry_terminal"/>
 			<filter tag="amenity" value=""/>
 			<filter tag="amenity" value="parking"/>
 			<filter tag="amenity" value="bicycle_parking"/>
@@ -641,23 +642,25 @@
 				<groupFilter nightMode="true" textColor="#ffffff" textHaloRadius="2" textHaloColor="#77666666"/>
 			</group>
 
-			<group textColor="#6666ff" textDy="9" textWrapWidth="25" nameTag="">
-				<filter minzoom="14" maxzoom="14" textSize="12" textHaloRadius="1" textBold="true" tag="railway" value="station" textOrder="5"/>
-					<filter minzoom="15" textSize="13" textHaloRadius="1" textBold="true" tag="railway" value="station" textOrder="5"/>
-				<filter minzoom="16" textSize="13" textHaloRadius="1" textBold="true" textWrapWidth="25" tag="amenity" value="bus_station"/>
-					<filter minzoom="15" textSize="13" textHaloRadius="1" textBold="true" tag="amenity" value="bus_station" textOrder="5"/>
-				<filter minzoom="14" maxzoom="14" textSize="12" textHaloRadius="1" textBold="true" tag="public_transport" value="station"/>
-					<filter minzoom="15" textSize="13" textHaloRadius="1" textBold="true" tag="public_transport" value="station"/>
-				<filter minzoom="14" textSize="12" textHaloRadius="1" tag="railway" value="halt" textOrder="10"/>
-				<filter minzoom="15" textSize="12" textHaloRadius="1" tag="railway" value="tram_stop"/>
-				<filter minzoom="14" maxzoom="14" textSize="12" textHaloRadius="1" textBold="true" tag="highway" value="bus_stop" nameTag=""/>
-					<filter minzoom="15" textSize="13" textHaloRadius="1" textBold="true" tag="highway" value="bus_stop" nameTag=""/>
-				<filter minzoom="14" maxzoom="14" textSize="12" textHaloRadius="1" textBold="true" tag="public_transport" value="platform"/>
-					<filter minzoom="15" textSize="13" textHaloRadius="1" textBold="true" tag="public_transport" value="platform"/>
-				<filter minzoom="14" maxzoom="14" textSize="12" textHaloRadius="1" textBold="true" tag="railway" value="platform"/>
-					<filter minzoom="15" textSize="13" textHaloRadius="1" textBold="true" tag="railway" value="platform"/>
-				<filter minzoom="14" textSize="12" tag="aerialway" value="station"/>
-				<groupFilter nightMode="true" textHaloRadius="1" textColor="#d4d4ff" textHaloColor="#aa2f4371"/>
+			<group textColor="#6666ff" textDy="9" textWrapWidth="25" textHaloRadius="1" nameTag="">
+				<case minzoom="14" tag="railway" value="station" textBold="true" textOrder="5">
+					<apply_if maxzoom="14" textSize="12"/>
+					<apply_if minzoom="15" textSize="13"/>
+				</case>
+				<case minzoom="15" tag="amenity" value="bus_station" textSize="13" textBold="true" textOrder="5"/>
+				<case minzoom="16" tag="amenity" value="ferry_terminal" textSize="13" textBold="true" textOrder="5"/>
+				<filter minzoom="14" maxzoom="14" textSize="12" textBold="true" tag="public_transport" value="station"/>
+					<filter minzoom="15" textSize="13" textBold="true" tag="public_transport" value="station"/>
+				<filter minzoom="14" tag="railway" value="halt" textSize="12" textOrder="10"/>
+				<filter minzoom="15" tag="railway" value="tram_stop" textSize="12"/>
+				<filter minzoom="14" maxzoom="14" tag="highway" value="bus_stop" textSize="12" textBold="true"/>
+				<filter minzoom="15" tag="highway" value="bus_stop" textSize="13" textBold="true"/>
+				<filter minzoom="14" maxzoom="14" tag="public_transport" value="platform" textSize="12" textBold="true"/>
+				<filter minzoom="15" tag="public_transport" value="platform" textSize="13" textBold="true"/>
+				<filter minzoom="14" maxzoom="14" tag="railway" value="platform" textSize="12" textBold="true"/>
+				<filter minzoom="15" tag="railway" value="platform" textSize="13" textBold="true"/>
+				<filter minzoom="14" tag="aerialway" value="station" textSize="12"/>
+				<groupFilter nightMode="true" textColor="#d4d4ff" textHaloColor="#aa2f4371"/>
 			</group>
 			<group>
 				<filter minzoom="16" tag="railway" value="subway_entrance" textSize="13" nameTag=""/>
@@ -758,9 +761,7 @@
 		<filter nightMode="true" minzoom="17" icon="highway_crossing" tag="highway" value="crossing" iconVisibleSize="10"/>
 		<filter minzoom="17" icon="highway_crossing" tag="highway" value="crossing" iconVisibleSize="10" shield="white_blue_square_shield"/>
 		<group shield="white_blue_square_shield">
-			<filter minzoom="14" tag="amenity" value="fuel" icon="amenity_fuel" iconVisibleSize="6" iconOrder="81">
-				<filter additional="fuel:lpg=yes" icon="amenity_fuel_lpg"/>
-			</filter>
+			<filter minzoom="14" tag="amenity" value="fuel" icon="amenity_fuel" iconVisibleSize="6" iconOrder="81"/>
 			<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
 		</group>
 		<filter tag="amenity" value="parking" minzoom="16" icon="amenity_parking" iconVisibleSize="32" shield="white_blue_square_shield" iconOrder="80">
@@ -784,6 +785,9 @@
 			<filter tag="public_transport" value="station"/>
 			<groupFilter nightMode="true" shield="gray_blue_round_shield"/>
 		</group>
+		<case minzoom="15" tag="amenity" value="ferry_terminal" icon="amenity_ferry_terminal" shield="white_blue_square_shield" iconOrder="72">
+			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+		</case>
 		<group shield="white_blue_square_shield">
 			<filter minzoom="16" icon="amenity_bicycle_parking" tag="amenity" value="bicycle_parking"/>
 			<filter minzoom="17" icon="highway_bus_stop" tag="highway" value="bus_stop" iconVisibleSize="4"/>
