@@ -133,10 +133,6 @@ mycp highway bus_stop_round_small functional-icons_bus_stop_round_small.png
 mycp highway bus_stop_round_big functional-icons_bus_stop_round_big.png
 mycp highway bus_stop_round_small_night functional-icons_bus_stop_round_small_night.png
 mycp highway bus_stop_round_big_night functional-icons_bus_stop_round_big_night.png
-mycp railway tram_stop_round_small functional-icons_blue_stop_round_small.png
-mycp railway tram_stop_round_big functional-icons_blue_stop_round_big.png
-mycp railway tram_stop_round_small_night functional-icons_blue_stop_round_small_night.png
-mycp railway tram_stop_round_big_night functional-icons_blue_stop_round_big_night.png
 mycp public_transport platform transport_bus_stop.png
 mycp amenity ferry_terminal transport_ferry_terminal.png
 mycp amenity taxi transport_taxi_rank.png
@@ -159,6 +155,10 @@ mycp railway station_small functional-icons_station_small.png  #scale 0.375
 mycp railway platform transport_train_station2.png
 mycp railway halt functional-icons_halt.png  #scale 0.25
 mycp railway tram_stop transport_tram_stop.png
+mycp railway tram_stop_round_small functional-icons_blue_stop_round_small.png
+mycp railway tram_stop_round_big functional-icons_blue_stop_round_big.png
+mycp railway tram_stop_round_small_night functional-icons_blue_stop_round_small_night.png
+mycp railway tram_stop_round_big_night functional-icons_blue_stop_round_big_night.png
 mycp railway level_crossing functional-icons_level_crossing.png  #scale 0.5
 
 mycp railway subway_entrance functional-icons_subway_entrance.png

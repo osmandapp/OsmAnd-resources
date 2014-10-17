@@ -2001,8 +2001,16 @@
 				</switch>
 				<switch publicTransportMode="false">
 					<case minzoom="16" maxzoom="16" tag="highway" value="bus_stop" icon="highway_bus_stop_small" iconVisibleSize="4"/>
-					<case minzoom="14" maxzoom="14" tag="railway" value="tram_stop" icon="railway_halt" iconVisibleSize="3"/>
-					<case minzoom="15" tag="railway" value="tram_stop" icon="railway_station_small" iconVisibleSize="2"/>
+					<switch>
+						<case tag="railway" value="tram_stop"/>
+						<case tag="public_transport" value="stop_position" additional="tram=yes"/>
+						<case tag="public_transport" value="platform" additional="tram=yes"/>
+						<apply_if minzoom="14" maxzoom="14" icon="railway_halt" iconVisibleSize="3"/>
+						<apply_if minzoom="15" maxzoom="16" icon="railway_station_small" iconVisibleSize="4"/>
+						<apply_if minzoom="17" icon="railway_tram_stop" shield="white_blue_square_shield" iconVisibleSize="8">
+							<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+						</apply_if>
+					</switch>
 				</switch>
 				<case minzoom="16" maxzoom="16" tag="public_transport" value="platform" icon="highway_bus_stop_small" iconVisibleSize="4"/>
 				<case minzoom="14" tag="highway" value="ford" icon="highway_ford"/>
@@ -2290,8 +2298,11 @@
 			<apply_if minzoom="14" maxzoom="14" icon="railway_tram_stop_round_small">
 				<apply_if nightMode="true" icon="railway_tram_stop_round_small_night"/>
 			</apply_if>
-			<apply_if minzoom="15" icon="railway_tram_stop_round_big">
+			<apply_if minzoom="15" maxzoom="16" icon="railway_tram_stop_round_big">
 				<apply_if nightMode="true" icon="railway_tram_stop_round_big_night"/>
+			</apply_if>
+			<apply_if minzoom="17" icon="railway_tram_stop" shield="white_blue_square_shield" iconVisibleSize="8">
+				<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 			</apply_if>
 		</switch>
 
@@ -2302,7 +2313,10 @@
 			</case>
 			<case minzoom="14" tag="railway" value="tram_stop">
 				<case maxzoom="14" icon="railway_halt" iconVisibleSize="2"/>
-				<case minzoom="15" icon="railway_station_small" iconVisibleSize="5"/>
+				<case maxzoom="16" icon="railway_station_small" iconVisibleSize="4"/>
+				<case minzoom="17" icon="railway_tram_stop" shield="white_blue_square_shield" iconVisibleSize="8">
+					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+				</case>
 			</case>
 			<case minzoom="15" tag="railway" value="level_crossing" icon="railway_level_crossing"/>
 
@@ -3575,10 +3589,7 @@
 								<apply_if showSurfaces="true" strokeWidth_4="0.9:0.9"/>
 							</case>
 						</case>
-						<case minzoom="14" strokeWidth="1.4:1.4" strokeWidth_4="$pathStrokeWidth" color_4="$pathColorDay" pathEffect_4="$pathPathEffect">
-							<apply_if showSurfaces="true" strokeWidth_4="1:1"/>
-							<apply_if showSurfaceGrade="true" strokeWidth_4="1:1"/>
-						</case>
+						<case minzoom="14" strokeWidth="1.4:1.4" strokeWidth_4="$pathStrokeWidth" color_4="$pathColorDay" pathEffect_4="$pathPathEffect"/>
 						<apply_if nightMode="true">
 							<apply_if minzoom="12" maxzoom="13" color_4="$pathLowZoomColorNight"/>
 							<apply color_4="$pathColorNight"/>
