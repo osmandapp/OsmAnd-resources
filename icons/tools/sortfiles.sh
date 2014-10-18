@@ -246,6 +246,7 @@ mygroup sightseeing tourist_castle2.png
 mygroup tourism tourist_museum.png
 mygroup for_tourists tourist_view_point.png
 mycp tourism artwork tourist_artwork.png
+mycp tourism attraction tourist_attraction.png
 mycp tourism picnic_site tourist_picnic.png
 mycp tourism museum tourist_museum.png
 mycp tourism information tourist_information.png
