@@ -245,6 +245,7 @@ mycp amenity shelter accommodation_shelter2.png
 mygroup sightseeing tourist_castle2.png
 mygroup tourism tourist_museum.png
 mygroup for_tourists tourist_view_point.png
+mycp tourism artwork tourist_artwork.png
 mycp tourism picnic_site tourist_picnic.png
 mycp tourism museum tourist_museum.png
 mycp tourism information tourist_information.png
@@ -320,14 +321,15 @@ mygroup other amenity_post_office.png
 mycp amenity car_wash amenity_car_wash.png
 mycp amenity car_wash_self_service amenity_car_wash_self_service.png
 mycp service tyres amenity_service_tyres.png
-mycp amenity bench amenity_bench.png
+mycp amenity bench functional-icons_bench.png
 mycp amenity post_box amenity_post_box.png
 mycp amenity post_office amenity_post_office_2.png
 mycp amenity prison amenity_prison.png
 mycp amenity recycling amenity_recycling.png
 mycp amenity telephone amenity_telephone.png
 mycp amenity toilets amenity_toilets.png
-mycp amenity fountain amenity_fountain2.png
+mycp amenity fountain functional-icons_fountain2.png
+mycp amenity fountain_night functional-icons_fountain2_night.png
 mycp amenity monastery place_of_worship_monastery.png
 mycp amenity place_of_worship place_of_worship_unknown.png
 mycp religion christian place_of_worship_christian3.png
@@ -377,7 +379,8 @@ mycp power station_solar power_station_solar.png
 mycp power station_wind power_station_wind.png
 mycp power station_water power_station_water2.png
 mycp man_made chimney poi_chimney.png
-mycp tower_type communication poi_tower_communications2.png
+mycp tower_type communication functional-icons_tower_communications2.png
+mycp tower_type communication_night functional-icons_tower_communications2_night.png
 mycp man_made water_tower poi_water_tower.png
 mycp man_made mineshaft poi_mine.png
 mycp man_made windmill poi_windmill.png
