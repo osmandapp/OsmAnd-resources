@@ -78,6 +78,7 @@
 	<renderingConstant name="railwayDayColor" value="#777777"/>
 	<renderingConstant name="railwayNightColor" value="#454545"/>
 	<renderingConstant name="railwayNightColor2" value="#888888"/>
+	<renderingConstant name="tramDayColor" value="#444444"/>
 	<renderingConstant name="tramNightColor" value="#999999"/>
 	<renderingConstant name="contourDayColorNon100m" value="#304f4f4f"/>
 	<renderingConstant name="contourDayColor100m" value="#404f4f4f"/>
@@ -87,7 +88,7 @@
 	<renderingConstant name="buildingTextHaloColorDay" value="#aaffffff"/>
 
 	<renderingConstant name="buildingColorDay" value="#bbbbbb"/>
-	<renderingConstant name="buildingColorNight" value="#565257"/>
+	<renderingConstant name="buildingColorNight" value="#3f3c40"/>
 	<renderingConstant name="waterColorDay" value="#41cad3"/>
 	<renderingConstant name="waterColorNight" value="#26415d"/>
 	<renderingConstant name="woodColorDay" value="#67bd67"/>
@@ -650,14 +651,14 @@
 				</case>
 				<case minzoom="15" tag="amenity" value="bus_station" textSize="13" textBold="true" textOrder="5"/>
 				<case minzoom="16" tag="amenity" value="ferry_terminal" textSize="13" textBold="true" textOrder="5"/>
-				<filter minzoom="14" maxzoom="14" textSize="12" textBold="true" tag="public_transport" value="station"/>
-					<filter minzoom="15" textSize="13" textBold="true" tag="public_transport" value="station"/>
-				<filter minzoom="14" tag="railway" value="halt" textSize="12" textOrder="10"/>
-				<filter minzoom="15" tag="railway" value="tram_stop" textSize="12"/>
-				<filter minzoom="14" maxzoom="14" tag="highway" value="bus_stop" textSize="12" textBold="true"/>
-				<filter minzoom="15" tag="highway" value="bus_stop" textSize="13" textBold="true"/>
-				<filter minzoom="14" maxzoom="14" tag="public_transport" value="platform" textSize="12" textBold="true"/>
-				<filter minzoom="15" tag="public_transport" value="platform" textSize="13" textBold="true"/>
+				<case minzoom="14" tag="public_transport" value="station" textBold="true">
+					<apply_if maxzoom="14" textSize="12"/>
+					<apply_if minzoom="15" textSize="13"/>
+				</case>
+				<case minzoom="14" tag="railway" value="halt" textSize="12" textOrder="10"/>
+				<case minzoom="15" tag="railway" value="tram_stop" textSize="12"/>
+				<case minzoom="15" tag="highway" value="bus_stop" textSize="13" textBold="true"/>
+				<case minzoom="15" tag="public_transport" value="platform" textSize="13" textBold="true"/>
 				<filter minzoom="14" maxzoom="14" tag="railway" value="platform" textSize="12" textBold="true"/>
 				<filter minzoom="15" tag="railway" value="platform" textSize="13" textBold="true"/>
 				<filter minzoom="14" tag="aerialway" value="station" textSize="12"/>
@@ -761,8 +762,7 @@
 		<filter minzoom="15" icon="highway_mini_roundabout" tag="highway" value="mini_roundabout"/>
 		<filter minzoom="15" icon="highway_ford" tag="highway" value="ford"/>
 		<filter minzoom="16" icon="highway_noexit" tag="noexit" value="yes" iconVisibleSize="7"/>
-		<filter nightMode="true" minzoom="17" icon="highway_crossing" tag="highway" value="crossing" iconVisibleSize="10"/>
-		<filter minzoom="17" icon="highway_crossing" tag="highway" value="crossing" iconVisibleSize="10" shield="white_blue_square_shield"/>
+		<case minzoom="17" tag="highway" value="crossing" icon="highway_crossing" iconVisibleSize="10"/>
 		<switch shield="white_blue_square_shield" iconOrder="81">
 			<case minzoom="14" tag="amenity" value="fuel" icon="amenity_fuel" iconVisibleSize="6"/>
 			<case minzoom="16" tag="amenity" value="taxi" icon="amenity_taxi"/>
@@ -849,20 +849,20 @@
 		</group>
 		<filter minzoom="18" icon="barrier_entrance" tag="building" value="entrance"/>
 
-		<filter minzoom="15" tag="railway" value="subway_entrance" shield="white_black_round_shield" iconVisibleSize="16" icon="railway_subway_entrance_2" iconOrder="55">
-			<filter additional="color_red=" icon="railway_subway_entrance_red"/>
-			<filter additional="color_brown=" icon="railway_subway_entrance_brown"/>
-			<filter additional="color_orange=" icon="railway_subway_entrance_orange"/>
-			<filter additional="color_darkyellow=" icon="railway_subway_entrance_darkyellow"/>
-			<filter additional="color_yellow=" icon="railway_subway_entrance_yellow"/>
-			<filter additional="color_lightgreen=" icon="railway_subway_entrance_lightgreen"/>
-			<filter additional="color_green=" icon="railway_subway_entrance_green"/>
-			<filter additional="color_lightblue=" icon="railway_subway_entrance_lightblue"/>
-			<filter additional="color_blue=" icon="railway_subway_entrance_blue"/>
-			<filter additional="color_purple=" icon="railway_subway_entrance_purple"/>
-			<filter additional="color_gray=" icon="railway_subway_entrance_gray"/>
-			<filter additional="color_black=" icon="railway_subway_entrance_black"/>
-		</filter>
+		<case minzoom="15" tag="railway" value="subway_entrance" shield="white_black_round_shield" iconVisibleSize="16" icon="railway_subway_entrance_2" iconOrder="55">
+			<case additional="color_red=" icon="railway_subway_entrance_red"/>
+			<case additional="color_brown=" icon="railway_subway_entrance_brown"/>
+			<case additional="color_orange=" icon="railway_subway_entrance_orange"/>
+			<case additional="color_darkyellow=" icon="railway_subway_entrance_darkyellow"/>
+			<case additional="color_yellow=" icon="railway_subway_entrance_yellow"/>
+			<case additional="color_lightgreen=" icon="railway_subway_entrance_lightgreen"/>
+			<case additional="color_green=" icon="railway_subway_entrance_green"/>
+			<case additional="color_lightblue=" icon="railway_subway_entrance_lightblue"/>
+			<case additional="color_blue=" icon="railway_subway_entrance_blue"/>
+			<case additional="color_purple=" icon="railway_subway_entrance_purple"/>
+			<case additional="color_gray=" icon="railway_subway_entrance_gray"/>
+			<case additional="color_black=" icon="railway_subway_entrance_black"/>
+		</case>
 
 		<switch>
 			<case tag="highway" value="bus_stop"/>
@@ -881,6 +881,7 @@
 			<apply_if nightMode="true" shield="gray_blue_round_shield"/>
 		</case>
 
+		<case minzoom="14" maxzoom="14" tag="railway" value="station" icon="railway_station_small" iconVisibleSize="4"/>
 		<switch minzoom="15" iconVisibleSize="7" shield="white_blue_square_shield">
 			<case tag="railway" value="station" icon="railway_station"/>
 			<case tag="public_transport" value="platform" icon="amenity_bus_station">
@@ -1010,64 +1011,64 @@
 			</switch>
 		</switch>
 
-		<group shield="white_blue_square_shield">
-			<filter minzoom="10" icon="aeroway_aerodrome" tag="aeroway" value="aerodrome" iconOrder="71"/>
-			<filter minzoom="9" icon="aeroway_airport" tag="aeroway" value="airport" iconOrder="70"/>
-			<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
-		</group>
+		<switch shield="white_blue_square_shield">
+			<case minzoom="10" tag="aeroway" value="aerodrome" icon="aeroway_aerodrome" iconOrder="71"/>
+			<case minzoom="9" tag="aeroway" value="airport" icon="aeroway_airport" iconOrder="70"/>
+			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+		</switch>
 
-		<filter minzoom="16" icon="amenity_place_of_worship" tag="amenity" value="place_of_worship" iconVisibleSize="7" iconOrder="70">
-			<filter additional="religion=christian" icon="religion_christian"/>
-			<filter additional="religion=jewish" icon="religion_jewish"/>
-			<filter additional="religion=muslim" icon="religion_muslim"/>
-			<filter additional="religion=sikh" icon="religion_sikh"/>
-			<filter additional="religion=buddhist" icon="religion_buddhist"/>
-			<filter additional="religion=hindu" icon="religion_hindu"/>
-			<filter additional="religion=shinto" icon="religion_shinto"/>
-			<filter additional="religion=taoist" icon="religion_taoist"/>
-			<groupFilter nightMode="true" shield="gray_gray_square_shield" iconVisibleSize="16"/>
-		</filter>
+		<case minzoom="16" tag="amenity" value="place_of_worship" icon="amenity_place_of_worship" iconVisibleSize="7" iconOrder="70">
+			<case additional="religion=christian" icon="religion_christian"/>
+			<case additional="religion=jewish" icon="religion_jewish"/>
+			<case additional="religion=muslim" icon="religion_muslim"/>
+			<case additional="religion=sikh" icon="religion_sikh"/>
+			<case additional="religion=buddhist" icon="religion_buddhist"/>
+			<case additional="religion=hindu" icon="religion_hindu"/>
+			<case additional="religion=shinto" icon="religion_shinto"/>
+			<case additional="religion=taoist" icon="religion_taoist"/>
+			<apply_if nightMode="true" shield="gray_gray_square_shield" iconVisibleSize="16"/>
+		</case>
 
-		<group minzoom="15" icon="amenity_monastery" shield="white_gray_square_shield" iconVisibleSize="7" iconOrder="70">
-			<filter tag="amenity" value="monastery"/>
-			<filter tag="historic" value="monastery"/>
-			<groupFilter nightMode="true" shield="gray_gray_square_shield" iconVisibleSize="20"/>
-		</group>
+		<switch minzoom="15" icon="amenity_monastery" shield="white_gray_square_shield" iconVisibleSize="7" iconOrder="70">
+			<case tag="amenity" value="monastery"/>
+			<case tag="historic" value="monastery"/>
+			<apply_if nightMode="true" shield="gray_gray_square_shield" iconVisibleSize="20"/>
+		</switch>
 
-		<filter nightMode="true" minzoom="14" tag="man_made" value="tower" additional="tower:type=communication" icon="tower_type_communication" shield="gray_gray_square_shield" iconVisibleSize="7" iconOrder="60"/>
-		<filter minzoom="14" tag="man_made" value="tower" additional="tower:type=communication" icon="tower_type_communication" shield="white_gray_square_shield" iconVisibleSize="7" iconOrder="60"/>
+		<case minzoom="14" tag="man_made" value="tower" additional="tower:type=communication" icon="tower_type_communication" shield="white_gray_square_shield" iconVisibleSize="7" iconOrder="60">
+			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
+		</case>
 
-		<group shield="white_gray_square_shield">
-			<filter minzoom="16" icon="shop_convenience" tag="shop" value="convenience" iconOrder="85"/>
-			<filter minzoom="15" icon="shop_supermarket" tag="shop" value="supermarket" iconOrder="75"/>
-			<filter minzoom="15" icon="shop_department_store" tag="shop" value="department_store" iconOrder="75"/>
-			<groupFilter nightMode="true" shield="gray_gray_square_shield" iconVisibleSize="16"/>
-		</group>
+		<switch shield="white_gray_square_shield">
+			<case minzoom="16" tag="shop" value="convenience" icon="shop_convenience" iconOrder="85"/>
+			<case minzoom="15" tag="shop" value="supermarket" icon="shop_supermarket" iconOrder="75"/>
+			<case minzoom="15" tag="shop" value="department_store" icon="shop_department_store" iconOrder="75"/>
+			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
+		</switch>
 
-		<filter nightMode="true" minzoom="11" icon="natural_peak_night" tag="natural" value="peak"/>
-		<filter tag="natural" value="peak" iconOrder="65">
-			<filter nightMode="true">
-				<filter minzoom="11" maxzoom="14" icon="natural_peak_night"/>
-				<filter minzoom="15" icon="natural_peak_night_big"/>
-			</filter>
-			<filter minzoom="11" maxzoom="14" icon="natural_peak_framed"/>
-			<filter minzoom="15" icon="natural_peak_framed_big"/>
-		</filter>
-		<filter tag="natural" value="volcano" iconOrder="50">
-			<filter nightMode="true">
-				<filter minzoom="11" maxzoom="14" icon="natural_volcano"/>
-				<filter minzoom="15" icon="natural_volcano_big"/>
-			</filter>
-			<filter minzoom="11" maxzoom="14" icon="natural_volcano_framed"/>
-			<filter minzoom="15" icon="natural_volcano_framed_big"/>
-		</filter>
-		<filter minzoom="15" icon="natural_cave_entrance" tag="natural" value="cave_entrance" shield="white_gray_square_shield" iconOrder="85">
-			<filter nightMode="true" shield="gray_gray_square_shield"/>
-		</filter>
+		<case minzoom="11" tag="natural" value="peak" iconOrder="65">
+			<case maxzoom="14" icon="natural_peak_framed"/>
+			<case minzoom="15" icon="natural_peak_framed_big"/>
+			<apply_if nightMode="true">
+				<case minzoom="11" maxzoom="14" icon="natural_peak_night"/>
+				<case minzoom="15" icon="natural_peak_night_big"/>
+			</apply_if>
+		</case>
+		<case minzoom="11" tag="natural" value="volcano" iconOrder="50">
+			<case maxzoom="14" icon="natural_volcano_framed"/>
+			<case minzoom="15" icon="natural_volcano_framed_big"/>
+			<apply_if nightMode="true">
+				<case minzoom="11" maxzoom="14" icon="natural_volcano"/>
+				<case minzoom="15" icon="natural_volcano_big"/>
+			</apply_if>
+		</case>
+		<case minzoom="15" tag="natural" value="cave_entrance" icon="natural_cave_entrance" shield="white_gray_square_shield" iconOrder="85">
+			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
+		</case>
 
-		<filter minzoom="14" icon="natural_spring" tag="natural" value="spring" shield="white_blue_square_shield">
-			<filter nightMode="true" shield="gray_blue_square_shield"/>
-		</filter>
+		<case minzoom="14" tag="natural" value="spring" icon="natural_spring" shield="white_blue_square_shield">
+			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+		</case>
 
 		<switch>
 			<case tag="osmand_place_basemap" value="city"/>
@@ -1089,16 +1090,15 @@
 				</case>
 			</apply_if>
 		</switch>
-		<filter nightMode="true" minzoom="7" maxzoom="11" icon="place_town_night" tag="place" value="town"/>
-		<filter minzoom="7" maxzoom="11" icon="place_town" tag="place" value="town"/>
-
-		<filter nightMode="true" minzoom="11" maxzoom="12" icon="place_town_night" tag="place" value="village"/>
-		<filter minzoom="11" maxzoom="12" icon="place_town" tag="place" value="village"/>
-		<filter nightMode="true" minzoom="11" maxzoom="12" icon="place_town_night" tag="place" value="hamlet"/>
-		<filter minzoom="11" maxzoom="12" icon="place_town" tag="place" value="hamlet"/>
-
-		<filter nightMode="true" minzoom="4" maxzoom="5" icon="place_city_night" tag="osmand_place_basemap" value="city"/>
-		<filter minzoom="4" maxzoom="5" icon="place_city" tag="osmand_place_basemap" value="city"/>
+		<case minzoom="7" tag="place" value="town" icon="place_town" iconVisibleSize="24">
+			<apply_if nightMode="true" icon="place_town_night"/>
+		</case>
+		<case minzoom="11" maxzoom="12" tag="place" value="village" icon="place_town">
+			<apply_if nightMode="true" icon="place_town_night"/>
+		</case>
+		<case minzoom="11" maxzoom="12" tag="place" value="hamlet" icon="place_town">
+			<apply_if nightMode="true" icon="place_town_night"/>
+		</case>
 	</point>
 
 	<polygon>
@@ -1116,8 +1116,9 @@
 				</apply>
 			</switch>
 			<group moreDetailed="true">
-				<filter nightMode="true" minzoom="15" maxzoom="15" tag="building" value="" color="#4b5257"/>
-				<filter minzoom="15" maxzoom="15" tag="building" value="" color="#bbbbbb"/>
+				<case minzoom="15" maxzoom="15" tag="building" value="" color="$buildingColorDay">
+					<apply_if nightMode="true" color="$buildingColorNight"/>
+				</case>
 			</group>
 
 			<groupFilter minzoom="16">
@@ -1801,7 +1802,7 @@
 				<filter layer="-1" disable="true"/>
 				<filter minzoom="13" maxzoom="14" strokeWidth="1"/>
 				<filter minzoom="15" strokeWidth="1:1"/>
-				<groupFilter color="$railwayDayColor"/>
+				<groupFilter color="$tramDayColor"/>
 				<groupFilter nightMode="true" color="$tramNightColor"/>
 			</filter>
 			<filter layer="-1" tag="railway" value="subway" disable="true"/>
