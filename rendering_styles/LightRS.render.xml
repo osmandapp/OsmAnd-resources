@@ -756,10 +756,7 @@
 
 	<point>
 
-		<switch minzoom="16" icon="highway_traffic_signals" shield="white_blue_round_shield" iconVisibleSize="12" iconOrder="71">
-			<case tag="highway" value="traffic_signals"/>
-			<apply_if nightMode="true" shield="gray_blue_round_shield"/>
-		</switch>
+		<case minzoom="16" tag="highway" value="traffic_signals" icon="highway_traffic_signals" shield="traffic_signals_shield" iconVisibleSize="10" iconOrder="71"/>
 		<case minzoom="15" tag="highway" value="mini_roundabout" icon="highway_mini_roundabout" shield="miniroundabout_anticlockwise_shield">
 			<apply_if nightMode="true" shield=""/>
 		</case>
@@ -888,17 +885,28 @@
 		</case>
 
 		<case minzoom="14" maxzoom="14" tag="railway" value="station" icon="railway_station_small" iconVisibleSize="4"/>
-		<switch minzoom="15" iconVisibleSize="7" shield="white_blue_square_shield">
-			<case tag="railway" value="station" icon="railway_station"/>
-			<case tag="public_transport" value="platform" icon="amenity_bus_station">
+		<switch minzoom="15" iconVisibleSize="7">
+			<case tag="railway" value="station">
+				<switch>
+					<case additional="route=subway"/>
+					<case additional="station=subway"/>
+					<apply icon="railway_station_subway" shield="white_blue_arc_shield">
+						<apply_if nightMode="true" shield="gray_blue_arc_shield"/>
+					</apply>
+				</switch>
+				<case icon="railway_station" shield="white_blue_square_shield" iconVisibleSize="8" iconOrder="82">
+					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+				</case>
+			</case>
+			<case tag="public_transport" value="platform" icon="amenity_bus_station" shield="white_blue_square_shield">
 				<switch>
 					<case additional="train=yes"/>
 					<case additional="tram=yes"/>
 					<case additional="light_rail=yes"/>
 					<apply icon="railway_station"/>
 				</switch>
+				<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 			</case>
-			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 		</switch>
 
 		<switch iconOrder="83">
