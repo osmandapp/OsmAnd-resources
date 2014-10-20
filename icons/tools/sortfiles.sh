@@ -108,8 +108,8 @@ mycp highway traffic_signals transport_traffic_lights.png
 mycp highway mini_roundabout transport_miniroundabout_anticlockwise.png
 mycp highway noexit functional-icons_noexit.png
 mycp highway ford transport_ford.png
-mycp highway crossing functional-icons_zebra_crossing2.png
-mycp highway steps functional-icons_steps.png
+mycp highway crossing transport_zebra_crossing2.png
+mycp highway steps transport_highway_steps.png
 mycp traffic_calming bump transport_speedbump.png
 mycp highway speed_camera transport_speedcamera.png
 mycp highway milestone functional-icons_milestone.png
@@ -267,19 +267,20 @@ mycp amenity stripclub tourist_night_club.png
 
 ## Historic
 mygroup historic tourist_archaeological2.png
+mycp historic archaeological_site tourist_archaeological2.png
+mycp historic battlefield tourist_battlefield.png
+mycp historic boundary_stone poi_boundary_administrative.png
 mycp historic castle tourist_castle2.png
 mycp historic monument tourist_monument.png
 mycp historic memorial tourist_memorial.png
-mycp historic battlefield tourist_battlefield.png
+mycp historic mine poi_mine_abandoned.png
 mycp historic fort tourist_castle2.png
 mycp historic ruins tourist_ruin.png
-mycp historic archaeological_site tourist_archaeological2.png
+mycp historic rune_stone functional-icons_rune_stone.png
 mycp historic ship tourist_ship.png
 mycp historic wreck tourist_wreck.png
 mycp historic wayside_cross tourist_wayside_cross.png
 mycp historic wayside_shrine tourist_wayside_shrine.png
-mycp historic boundary_stone poi_boundary_administrative.png
-mycp historic mine poi_mine_abandoned.png
 
 
 ## Sport
@@ -329,7 +330,7 @@ mycp amenity prison amenity_prison.png
 mycp amenity recycling amenity_recycling.png
 mycp amenity telephone amenity_telephone.png
 mycp amenity toilets amenity_toilets.png
-mycp amenity fountain functional-icons_fountain2.png
+mycp amenity fountain amenity_fountain2.png
 mycp amenity fountain_night functional-icons_fountain2_night.png
 mycp amenity monastery place_of_worship_monastery.png
 mycp amenity place_of_worship place_of_worship_unknown.png
