@@ -1923,7 +1923,7 @@
 			<case minzoom="14" tag="highway" value="ford" icon="highway_ford" shield="highway_ford_shield" iconVisibleSize="10">
 				<apply_if nightMode="true" shield=""/>
 			</case>
-			<case minzoom="17" tag="highway" value="crossing" icon="highway_crossing" iconVisibleSize="6" shield="highway_crossing_shield"/>
+			<case minzoom="16" tag="highway" value="crossing" icon="highway_crossing" iconVisibleSize="6" shield="highway_crossing_shield"/>
 			<case subwayMode="false" minzoom="16" maxzoom="17" tag="amenity" value="bicycle_parking" icon=""/>
 			<case minzoom="15" tag="railway" value="level_crossing" icon="railway_level_crossing"/>
 			<switch minzoom="17">
@@ -3064,13 +3064,23 @@
 				<case minzoom="6" tag="landuse" value="conservation" color="$conservationColorDay"/>
 				<case minzoom="6" tag="landuse" value="recreation_ground" color="$recreationGroundColorDay"/>
 				<case minzoom="6" tag="landuse" value="village_green" color="$villageGreenColorDay"/>
-				<switch minzoom="8">
-					<case tag="leisure" value="park"/>
-					<apply color="$parkColorDay" color_2="$parkStrokeColorDay" strokeWidth_2=":1">
-						<apply_if nightMode="true" color="$parkColorNight" color_2="$parkStrokeColorNight"/>
-					</apply>
+				<case minzoom="12" tag="leisure" value="recreation_ground" color="$recreationGroundColorDayStroke"/>
+				<case minzoom="15" tag="leisure" value="playground" color="$playgroundColorDay"/>
+				<case minzoom="12" tag="leisure" value="common" color="$leisureCommonColorDay"/>
+				<apply_if nightMode="true" color="$openNatureColorNight"/>
+			</switch>
+			<case minzoom="8" tag="leisure" value="park">
+				<apply color="$parkColorDay" color_2="$parkStrokeColorDay" strokeWidth_2=":1">
+					<apply_if nightMode="true" color="$parkColorNight" color_2="$parkStrokeColorNight"/>
+				</apply>
+			</case>
+
+			<switch>
+				<switch strokeWidth_2=":1">
+					<case minzoom="12" tag="leisure" value="pitch" color="$pitchColorDay" color_2="$pitchColorDayStroke"/>
+					<case minzoom="8" tag="leisure" value="golf_course" color="$golfCourseColorDay" color_2="$golfCourseColorDayStroke"/>
+					<apply_if nightMode="true" color="$openNatureColorNight"/>
 				</switch>
-				<case minzoom="8" tag="leisure" value="golf_course" color="$golfCourseColorDay" color_2="$golfCourseColorDayStroke" strokeWidth_2=":1"/>
 				<case minzoom="12" tag="leisure" value="track" color="$leisureTrackColorDay" color_2="$leisureTrackColorDayStroke" cap_2="ROUND">
 					<case maxzoom="12" strokeWidth_2="0.5:0.5"/>
 					<case maxzoom="13" strokeWidth_2="1:1"/>
@@ -3081,15 +3091,20 @@
 					<case minzoom="18" strokeWidth_2="6.5:6.5"/>
 					<apply_if nightMode="true" color="$leisureTrackColorNight" color_2="$leisureTrackColorNightStroke"/>
 				</case>
-				<case minzoom="12" tag="leisure" value="pitch" color="$pitchColorDay" color_2="$pitchColorDayStroke" strokeWidth_2=":1"/>
-				<case minzoom="12" tag="leisure" value="recreation_ground" color="$recreationGroundColorDayStroke"/>
-				<case minzoom="15" tag="leisure" value="playground" color="$playgroundColorDay"/>
-				<case minzoom="12" tag="leisure" value="common" color="$leisureCommonColorDay"/>
-				<apply_if nightMode="true" color="$openNatureColorNight"/>
+				<case minzoom="12" tag="leisure" value="garden" color="$gardenColorDay">
+					<apply_if nightMode="true" color="$gardenColorNight"/>
+				</case>
+				<apply>
+					<switch minzoom="16" showAccess="true">
+						<case additional="access=private"/>
+						<case additional="access=no"/>
+						<apply color_2="$accessPrivateColor" strokeWidth_2="3" pathEffect_2="1_6" cap_2="ROUND">
+							<apply_if nightMode="true" color_2="$accessPrivateColorNight"/>
+						</apply>
+					</switch>
+				</apply>
 			</switch>
-			<case minzoom="12" tag="leisure" value="garden" color="$gardenColorDay">
-				<apply_if nightMode="true" color="$gardenColorNight"/>
-			</case>
+
 			<case minzoom="6" tag="landuse" value="farmyard" color="$farmyardColorDay">
 				<apply_if nightMode="true" color="$farmyardColorNight"/>
 			</case>
