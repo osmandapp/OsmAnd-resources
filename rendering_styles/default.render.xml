@@ -841,23 +841,31 @@
 				<apply_if layer="1" order="90"/>
 			</case>
 			<switch>
-				<case tag="highway" value="path" order="37">
-					<apply_if appMode="pedestrian" order="60"/>
-					<apply_if layer="1" order="90"/>
-				</case>
-				<case tag="highway" value="footway" order="37">
-					<apply_if appMode="pedestrian" order="60"/>
-					<apply_if layer="1" order="90"/>
-				</case>
+				<switch>
+					<case tag="highway" value="path" order="37">
+						<apply_if appMode="pedestrian" order="60"/>
+						<apply_if layer="1" order="90"/>
+					</case>
+					<case tag="highway" value="footway" order="37">
+						<apply_if appMode="pedestrian" order="60"/>
+						<apply_if layer="1" order="90"/>
+					</case>
+					<case tag="highway" value="bridleway" order="37">
+						<apply_if appMode="pedestrian" order="59"/>
+						<apply_if layer="1" order="90"/>
+					</case>
+					<apply_if maxzoom="15" layer="1" order="40"/>
+				</switch>
 				<case tag="highway" value="steps" order="38">
 					<apply_if appMode="pedestrian" order="61"/>
-					<apply_if layer="1" order="91"/>
+					<apply_if layer="1" order="91">
+						<apply_if maxzoom="15" order="40"/>
+					</apply_if>
 				</case>
-				<case tag="highway" value="bridleway" order="37">
-					<apply_if appMode="pedestrian" order="59"/>
-					<apply_if layer="1" order="90"/>
-				</case>
-				<apply_if appMode="car" maxzoom="17" order="-1"/>
+				<apply_if appMode="car">
+					<case layer="0" maxzoom="17" order="-1"/>
+					<case layer="-1" maxzoom="17" order="-1"/>
+				</apply_if>
 			</switch>
 
 			<case tag="highway" value="raceway"/>
@@ -3730,6 +3738,7 @@
 					<case tag="highway" value="footway" minzoom="14">
 						<switch minzoom="14" maxzoom="15">
 							<case moreDetailed="true">
+								<case layer="1" strokeWidth="0.1" strokeWidth_4="0.5:0.5"/>
 								<case maxzoom="14" strokeWidth="1.4:1.4" strokeWidth_4="0.5:0.5" pathEffect_4="">
 									<apply_if appMode="pedestrian" strokeWidth_4="0.8:0.8"/>
 								</case>
@@ -3757,6 +3766,7 @@
 
 					<case tag="highway" value="steps">
 						<case appMode="pedestrian" minzoom="15" strokeWidth="2:2" strokeWidth_4="2:2" pathEffect_4="2_2"/>
+						<case layer="1" moreDetailed="true" minzoom="14" maxzoom="15" strokeWidth="1.7:1.7" strokeWidth_4="1.7:1.7"/>
 						<case minzoom="16" strokeWidth="2:2" strokeWidth_4="2:2"/>
 						<apply color_4="$footwayColorDay" pathEffect_4="1_2">
 							<apply_if nightMode="true" color_4="$footwayColorNight"/>
@@ -3779,7 +3789,9 @@
 					</case>
 
 					<!-- Bridges -->
-					<apply_if layer="1" minzoom="16" color__1="#000000" strokeWidth__1="$trackBridgeWidth" color_0="#ffffff" strokeWidth_0="$trackBridgeInnerWidth">
+					<apply_if layer="1" minzoom="14" color__1="#000000" color_0="#ffffff">
+						<case maxzoom="15" strokeWidth__1="3:2" strokeWidth_0="2.3:1.5"/>
+						<case minzoom="16" strokeWidth__1="$trackBridgeWidth" strokeWidth_0="$trackBridgeInnerWidth"/>
 						<apply_if nightMode="true" color__1="#ffffff" color_0="#000000"/>
 					</apply_if>
 					<!-- Tunnels -->
