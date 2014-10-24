@@ -100,6 +100,7 @@ mycp amenity hospital health_hospital_2.png
 mmycp amenity veterinary health_veterinary.png
 mycp amenity doctors health_doctors.png
 mycp amenity dentist health_dentist.png
+mycp amenity nursing_home health_nursing_home.png
 
 
 ## Traffic + Transportation
