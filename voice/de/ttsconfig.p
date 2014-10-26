@@ -154,10 +154,16 @@ isMale(Street) :-  endsWithString(Street, 'weg').
 isMale(Street) :-  endsWithString(Street, 'ring').
 isMale(Street) :-  endsWithString(Street, 'damm').
 isMale(Street) :-  endsWithString(Street, 'platz').
+isMale(Street) :-  endsWithString(Street, 'markt').
+isMale(Street) :-  endsWithString(Street, 'steig').
+isMale(Street) :-  endsWithString(Street, 'pfad').
 
 isFemale(Street) :-  endsWithString(Street, 'strasse').
 isFemale(Street) :-  endsWithString(Street, 'straße').
 isFemale(Street) :-  endsWithString(Street, 'bahn').
+isFemale(Street) :-  endsWithString(Street, 'chaussee').
+isFemale(Street) :-  endsWithString(Street, 'gasse').
+isFemale(Street) :-  endsWithString(Street, 'zeile').
 isFemale(Street) :-  endsWithString(Street, 'allee').
 isFemale(Street) :-  endsWithString(Street, '0').
 isFemale(Street) :-  endsWithString(Street, '1').
