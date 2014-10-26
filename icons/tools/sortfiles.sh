@@ -100,6 +100,7 @@ mycp amenity hospital health_hospital_2.png
 mmycp amenity veterinary health_veterinary.png
 mycp amenity doctors health_doctors.png
 mycp amenity dentist health_dentist.png
+mycp amenity nursing_home health_nursing_home.png
 
 
 ## Traffic + Transportation
@@ -371,7 +372,9 @@ mycp amenity university education_university.png
 
 ## Man made
 mygroup man_made power_station_wind2.png
-mycp power tower functional-icons_power_tower2.png
+mycp power tower functional-icons_power_tower.png
+mycp power tower_small functional-icons_power_tower_small.png
+mycp power tower_big functional-icons_power_tower_big.png
 mycp power station power_station.png
 mycp power substation power_transformer2.png
 mycp power station_coal power_station_coal.png
