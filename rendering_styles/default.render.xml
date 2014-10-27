@@ -1518,6 +1518,7 @@
 			<case minzoom="17" tag="amenity" value="fuel" textWrapWidth="20"/>
 			<case minzoom="17" tag="amenity" value="ev_charging" textWrapWidth="20"/>
 			<case minzoom="17" tag="amenity" value="parking" textWrapWidth="20"/>
+			<case minzoom="18" tag="amenity" value="parking_entrance" textWrapWidth="20"/>
 			<case minzoom="17" tag="amenity" value="bicycle_parking" textWrapWidth="20"/>
 			<case minzoom="17" tag="amenity" value="taxi" textWrapWidth="20"/>
 			<case minzoom="15" tag="man_made" value="lighthouse" textWrapWidth="20"/>
@@ -1952,6 +1953,14 @@
 					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 				</apply>
 			</switch>
+			<switch tag="amenity" value="parking_entrance" iconVisibleSize="8">
+				<case minzoom="16" maxzoom="16" icon="barrier_small_black_3">
+					<apply_if nightMode="true" icon="barrier_small_white_3"/>
+				</case>
+				<case minzoom="17" icon="amenity_parking_entrance" shield="white_gray_square_small_shield">
+					<apply_if nightMode="true" shield="gray_gray_square_small_shield"/>
+				</case>
+			</switch>
 			<switch subwayMode="false" shield="white_blue_square_shield">
 				<case minzoom="14" tag="highway" value="services" icon="highway_services" iconOrder="60"/>
 				<case minzoom="14" tag="amenity" value="fuel" icon="amenity_fuel" iconVisibleSize="6"/>
@@ -2244,6 +2253,12 @@
 			<case minzoom="15" tag="amenity" value="ev_charging" icon="amenity_ev_charging" iconOrder="81"/>
 			<case minzoom="16" tag="amenity" value="taxi" icon="amenity_taxi" iconOrder="81"/>
 			<case minzoom="16" tag="amenity" value="parking" icon="amenity_parking" iconVisibleSize="32" iconOrder="80">
+				<case additional="parking=multi-storey" icon="amenity_parking_multi-storey">
+					<case additional="fee=yes" icon="amenity_parking_multi-storey_paid"/>
+				</case>
+				<case additional="parking=underground" icon="amenity_parking_underground">
+					<case additional="fee=yes" icon="amenity_parking_underground_paid"/>
+				</case>
 				<case additional="fee=yes" icon="amenity_parking_paid"/>
 				<case minzoom="17" maxzoom="17" iconVisibleSize="16">
 					<case additional="access=private" icon=""/>
@@ -2531,6 +2546,14 @@
 					<apply_if nightMode="true" icon="barrier_small_white_3"/>
 				</case>
 				<case minzoom="19" icon="entrance_yes" shield="white_gray_square_small_shield">
+					<apply_if nightMode="true" shield="gray_gray_square_small_shield"/>
+				</case>
+			</switch>
+			<switch tag="amenity" value="parking_entrance">
+				<case maxzoom="17" icon="barrier_small_black_3">
+					<apply_if nightMode="true" icon="barrier_small_white_3"/>
+				</case>
+				<case minzoom="18" icon="amenity_parking_entrance" shield="white_gray_square_small_shield">
 					<apply_if nightMode="true" shield="gray_gray_square_small_shield"/>
 				</case>
 			</switch>
@@ -3163,6 +3186,15 @@
 			</case>
 			<case minzoom="15" tag="amenity" value="parking" color="$parkingColorDay">
 				<apply_if nightMode="true" color="$parkingColorNight"/>
+				<apply>
+					<switch>
+						<case additional="parking=multi-storey"/>
+						<case additional="parking=underground"/>
+						<apply color_2="#555555" strokeWidth_2="0.7:0.7">
+							<apply_if nightMode="true" color_2="#999999"/>
+						</apply>
+					</switch>
+				</apply>
 				<apply showAccess="true">
 					<switch>
 						<case additional="access=private"/>

@@ -124,6 +124,10 @@ mygroup parking transport_parking.png
 mycp amenity parking transport_parking.png
 mycp amenity parking_private transport_parking_private2.png
 mycp amenity parking_paid transport_parking_car_paid.png
+mycp amenity parking_multi-storey transport_parking_multi-storey.png
+mycp amenity parking_multi-storey_paid transport_parking_multi-storey_paid.png
+mycp amenity parking_underground transport_parking_underground.png
+mycp amenity parking_underground_paid transport_parking_underground_paid.png
 mycp amenity bicycle_parking transport_parking_bicycle.png
 
 mygroup public_transport transport_bus_stop.png
@@ -226,6 +230,7 @@ mycp barrier entrance barrier_entrance.png
 mycp entrance yes barrier_entrance2.png
 mycp entrance exit functional-icons_entrance_exit.png
 mycp entrance main functional-icons_entrance3.png
+mycp amenity parking_entrance functional-icons_parking_entrance.png
 mycp building entrance barrier_entrance.png
 
 

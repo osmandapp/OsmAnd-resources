@@ -771,18 +771,24 @@
 			<case minzoom="16" tag="amenity" value="taxi" icon="amenity_taxi"/>
 			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 		</switch>
-		<filter tag="amenity" value="parking" minzoom="16" icon="amenity_parking" iconVisibleSize="32" shield="white_blue_square_shield" iconOrder="80">
-			<filter additional="fee=yes" icon="amenity_parking_paid"/>
-			<filter minzoom="16" maxzoom="16" iconVisibleSize="16">
-				<filter additional="access=private" icon=""/>
-				<filter additional="access=no" icon=""/>
-			</filter>
-			<filter minzoom="17" iconVisibleSize="16">
-				<filter additional="access=private" icon="amenity_parking_private"/>
-				<filter additional="access=no" icon="amenity_parking_private"/>
-			</filter>
-			<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
-		</filter>
+		<switch minzoom="16" tag="amenity" value="parking" icon="amenity_parking" shield="white_blue_square_shield" iconVisibleSize="32" iconOrder="80">
+			<case additional="parking=multi-storey" icon="amenity_parking_multi-storey">
+				<case additional="fee=yes" icon="amenity_parking_multi-storey_paid"/>
+			</case>
+			<case additional="parking=underground" icon="amenity_parking_underground">
+				<case additional="fee=yes" icon="amenity_parking_underground_paid"/>
+			</case>
+			<case additional="fee=yes" icon="amenity_parking_paid"/>
+			<case minzoom="17" maxzoom="17" iconVisibleSize="16">
+				<case additional="access=private" icon=""/>
+				<case additional="access=no" icon=""/>
+			</case>
+			<case minzoom="18" iconVisibleSize="16">
+				<case additional="access=private" icon="amenity_parking_private"/>
+				<case additional="access=no" icon="amenity_parking_private"/>
+			</case>
+			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+		</switch>
 
 		<group minzoom="14" icon="amenity_bus_station" shield="white_red_round_shield" iconVisibleSize="10" iconOrder="72">
 			<filter tag="amenity" value="bus_station"/>
@@ -1020,6 +1026,14 @@
 					<apply_if nightMode="true" icon="barrier_small_white_3"/>
 				</case>
 				<case minzoom="19" icon="entrance_yes_2" shield="white_gray_square_small_shield">
+					<apply_if nightMode="true" shield="gray_gray_square_small_shield"/>
+				</case>
+			</switch>
+			<switch tag="amenity" value="parking_entrance">
+				<case maxzoom="17" icon="barrier_small_black_3">
+					<apply_if nightMode="true" icon="barrier_small_white_3"/>
+				</case>
+				<case minzoom="18" icon="amenity_parking_entrance" shield="white_gray_square_small_shield">
 					<apply_if nightMode="true" shield="gray_gray_square_small_shield"/>
 				</case>
 			</switch>
