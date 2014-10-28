@@ -124,8 +124,8 @@ mygroup parking transport_parking.png
 mycp amenity parking transport_parking.png
 mycp amenity parking_private transport_parking_private2.png
 mycp amenity parking_paid transport_parking_car_paid.png
-mycp amenity parking_multi-storey transport_parking_multi-storey.png
-mycp amenity parking_multi-storey_paid transport_parking_multi-storey_paid.png
+mycp amenity parking_multi_storey transport_parking_multi-storey.png
+mycp amenity parking_multi_storey_paid transport_parking_multi-storey_paid.png
 mycp amenity parking_underground transport_parking_underground.png
 mycp amenity parking_underground_paid transport_parking_underground_paid.png
 mycp amenity bicycle_parking transport_parking_bicycle.png
