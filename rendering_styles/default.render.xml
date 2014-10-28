@@ -465,6 +465,8 @@
 
 	<renderingConstant name="routeBusColor" value="#ff0000"/>
 	<renderingConstant name="routeBusColorNight" value="#ff0000"/>
+	<renderingConstant name="routeShareTaxiColor" value="#f620cb"/>
+	<renderingConstant name="routeShareTaxiColorNight" value="#f620cb"/>
 	<renderingConstant name="routeTrolleybusColor" value="#920071"/>
 	<renderingConstant name="routeTrolleybusColorNight" value="#920071"/>
 	<renderingConstant name="routeTramColor" value="#0000ff"/>
@@ -723,7 +725,8 @@
 				<apply_if subwayMode="true" order="90"/>
 			</switch>
 			<switch publicTransportMode="true">
-				<case tag="route_bus" value="" order="104"/>
+				<case tag="route_bus" value="" order="105"/>
+				<case tag="route_share_taxi" value="" order="104"/>
 				<case tag="route_train" value="" order="103"/>
 				<case tag="route_light_rail" value="" order="102"/>
 				<case tag="route_tram" value="" order="100"/>
@@ -1247,6 +1250,7 @@
 
 		<switch publicTransportMode="true" minzoom="13" textOnPath="true" textBold="true" textOrder="1" textColor="#ffffff" textHaloRadius="$textHaloRadiusDay">
 			<case tag="route_bus" value="" nameTag="bus_ref" textHaloColor="$routeBusColor"/>
+			<case tag="route_share_taxi" value="" nameTag="share_taxi_ref" textHaloColor="$routeShareTaxiColor"/>
 			<case tag="route_trolleybus" value="" nameTag="trolleybus_ref" textHaloColor="$routeTrolleybusColor"/>
 			<case tag="route_tram" value="" nameTag="tram_ref" textHaloColor="$routeTramColor"/>
 			<case tag="route_train" value="" nameTag="train_ref" textHaloColor="$routeTrainColor">
@@ -4263,18 +4267,25 @@
 		</switch>
 
 		<switch publicTransportMode="true" minzoom="11" cap="ROUND">
-			<case tag="route_bus" value="" color="$routeBusColor">
-				<case maxzoom="11" strokeWidth="0.65:0.65"/>
-				<case maxzoom="12" strokeWidth="1:1"/>
-				<case maxzoom="13" strokeWidth="1.25:1.25"/>
-				<case maxzoom="14" strokeWidth="1.25:1.25"/>
-				<case maxzoom="15" strokeWidth="1.75:1.75"/>
-				<case maxzoom="16" strokeWidth="2.2:2.2"/>
-				<case maxzoom="17" strokeWidth="2.7:2.7"/>
-				<case maxzoom="18" strokeWidth="3.2:3.2"/>
-				<case minzoom="19" strokeWidth="3.7:3.7"/>
-				<apply_if nightMode="true" color="$routeBusColorNight"/>
-			</case>
+			<switch>
+				<case tag="route_bus" value="" color="$routeBusColor">
+					<apply_if nightMode="true" color="$routeBusColorNight"/>
+				</case>
+				<case tag="route_share_taxi" value="" color="$routeShareTaxiColor">
+					<apply_if nightMode="true" color="$routeShareTaxiColorNight"/>
+				</case>
+				<apply>
+					<case maxzoom="11" strokeWidth="0.65:0.65"/>
+					<case maxzoom="12" strokeWidth="1:1"/>
+					<case maxzoom="13" strokeWidth="1.25:1.25"/>
+					<case maxzoom="14" strokeWidth="1.25:1.25"/>
+					<case maxzoom="15" strokeWidth="1.75:1.75"/>
+					<case maxzoom="16" strokeWidth="2.2:2.2"/>
+					<case maxzoom="17" strokeWidth="2.7:2.7"/>
+					<case maxzoom="18" strokeWidth="3.2:3.2"/>
+					<case minzoom="19" strokeWidth="3.7:3.7"/>
+				</apply>
+			</switch>
 			<case tag="route_trolleybus" value="" color="$routeTrolleybusColor">
 				<case maxzoom="11" strokeWidth="0.65:0.65"/>
 				<case maxzoom="12" strokeWidth="1:1"/>
