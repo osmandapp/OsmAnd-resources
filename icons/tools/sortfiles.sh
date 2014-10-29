@@ -5,9 +5,11 @@ mygroup() {
  	cp ../png/mdpi/${2} ../../rendering_styles/style-icons/drawable-mdpi/mm_${1}.png
  	cp ../png/hdpi/${2} ../../rendering_styles/style-icons/drawable-hdpi/mm_${1}.png
  	cp ../png/xhdpi/${2} ../../rendering_styles/style-icons/drawable-xhdpi/mm_${1}.png
+ 	cp ../png/xxhdpi/${2} ../../rendering_styles/style-icons/drawable-xxhdpi/mm_${1}.png
  	cp ../png/big-mdpi/${2} ../../rendering_styles/style-icons/drawable-mdpi/mx_${1}.png
  	cp ../png/big-hdpi/${2} ../../rendering_styles/style-icons/drawable-hdpi/mx_${1}.png
  	cp ../png/big-xhdpi/${2} ../../rendering_styles/style-icons/drawable-xhdpi/mx_${1}.png
+ 	cp ../png/big-xxhdpi/${2} ../../rendering_styles/style-icons/drawable-xxhdpi/mx_${1}.png
 }
 
 
@@ -21,6 +23,7 @@ mycp() {
 cp ../png/mdpi/h_* ../../rendering_styles/style-icons/drawable-mdpi/
 cp ../png/hdpi/h_* ../../rendering_styles/style-icons/drawable-hdpi/
 cp ../png/xhdpi/h_* ../../rendering_styles/style-icons/drawable-xhdpi/
+cp ../png/xxhdpi/h_* ../../rendering_styles/style-icons/drawable-xxhdpi/
 
 mygroup landuse landuse_coniferous.png
 mycp landuse grass landuse_grass.png
@@ -97,7 +100,7 @@ mycp amenity fire_station emergency_firestation4.png
 mygroup healthcare health_pharmacy.png
 mycp amenity pharmacy health_pharmacy_2.png
 mycp amenity hospital health_hospital_2.png
-mmycp amenity veterinary health_veterinary.png
+mycp amenity veterinary health_veterinary.png
 mycp amenity doctors health_doctors.png
 mycp amenity dentist health_dentist.png
 mycp amenity nursing_home health_nursing_home.png
@@ -147,7 +150,7 @@ mycp mountain pass poi_mountain_pass.png
 mycp amenity bicycle_rental transport_rental_bicycle.png
 mycp amenity car_rental transport_rental_car.png
 mycp amenity car_sharing transport_car_share.png
-mycp amenity boat_sharing transport_boat_share.png
+mycp amenity boat_sharing amenity_boat_sharing.png
 
 mycp leisure marina transport_marina.png
 mycp leisure slipway transport_slipway.png
