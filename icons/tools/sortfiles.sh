@@ -98,8 +98,8 @@ mycp amenity police emergency_police3.png
 mycp amenity fire_station emergency_firestation4.png
 
 mygroup healthcare health_pharmacy.png
-mycp amenity pharmacy health_pharmacy_2.png
-mycp amenity hospital health_hospital_2.png
+mycp amenity pharmacy health_pharmacy2.png
+mycp amenity hospital health_hospital2.png
 mycp amenity veterinary health_veterinary.png
 mycp amenity doctors health_doctors.png
 mycp amenity dentist health_dentist.png
@@ -134,7 +134,7 @@ mycp amenity parking_underground_paid transport_parking_underground_paid.png
 mycp amenity bicycle_parking transport_parking_bicycle.png
 
 mygroup public_transport transport_bus_stop.png
-mycp amenity bus_station transport_bus_station_2.png
+mycp amenity bus_station transport_bus_station2.png
 mycp highway bus_stop transport_bus_stop.png
 mycp highway bus_stop_small functional-icons_bus_stop_small.png
 mycp highway bus_stop_round_small functional-icons_bus_stop_round_small.png
@@ -317,7 +317,7 @@ mycp sport gymnastics sport_gymnasium.png
 mygroup leisure sport_playground.png
 mycp leisure playground sport_playground.png
 mycp leisure water_park sport_swimming_outdoor.png
-mycp leisure sports_centre sport_leisure_centre_2.png
+mycp leisure sports_centre sport_leisure_centre2.png
 mycp leisure ice_rink sport_iceskating.png
 mycp leisure fishing sport_fishing.png  #used shop=fish turned by 45 degrees for now
 mycp leisure bird_hide poi_tower_lookout.png
@@ -334,7 +334,7 @@ mycp amenity car_wash_self_service amenity_car_wash_self_service.png
 mycp service tyres amenity_service_tyres.png
 mycp amenity bench functional-icons_bench.png
 mycp amenity post_box amenity_post_box.png
-mycp amenity post_office amenity_post_office_2.png
+mycp amenity post_office amenity_post_office2.png
 mycp amenity prison amenity_prison.png
 mycp amenity recycling amenity_recycling.png
 mycp amenity telephone amenity_telephone.png
