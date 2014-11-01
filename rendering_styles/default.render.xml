@@ -724,16 +724,21 @@
 			<case tag="power" value="line" order="96"/>
 			<case tag="power" value="minor_line" order="96"/>
 			<switch order="58">
-				<case tag="railway" value="rail" additional="network=rer"/>
-				<case tag="railway" value="rail"/>
-				<case tag="railway" value="subway"/>
-				<case tag="railway" value="tram"/>
-				<case tag="railway" value="light_rail"/>
-				<apply_if layer="-1" minzoom="9" maxzoom="15">
+				<switch>
+					<case tag="railway" value="rail" additional="network=rer"/>
+					<case tag="railway" value="subway">
+						<apply_if subwayMode="true" order="90"/>
+					</case>
+				</switch>
+				<switch>
+					<case tag="railway" value="rail"/>
+					<case tag="railway" value="tram"/>
+					<case tag="railway" value="light_rail"/>
+				</switch>
+				<apply_if subwayMode="false" layer="-1" minzoom="9" maxzoom="15">
 					<apply_if appMode="car" order="-1"/>
 					<apply_if appMode="bicycle" order="-1"/>
 				</apply_if>
-				<apply_if subwayMode="true" order="90"/>
 			</switch>
 			<case tag="route_bus" value="" order="105"/>
 			<case tag="route_share_taxi" value="" order="104"/>
@@ -2490,7 +2495,7 @@
 			<case minzoom="10" icon="aeroway_aerodrome" tag="aeroway" value="aerodrome" iconOrder="71"/>
 			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 		</switch>
-		<case minzoom="15" icon="aeroway_helipad" tag="aeroway" value="helipad" shield="white_blue_round_small_shield">
+		<case minzoom="16" icon="aeroway_helipad" tag="aeroway" value="helipad" shield="white_blue_round_small_shield">
 			<apply_if nightMode="true" shield="gray_blue_round_small_shield"/>
 		</case>
 		<case minzoom="17" icon="aeroway_gate" tag="aeroway" value="gate" iconVisibleSize="7" shield="aeroway_gate_shield">
@@ -2659,7 +2664,7 @@
 			</switch>
 			<case minzoom="16" tag="historic" value="battlefield" icon="historic_battlefield"/>
 			<case minzoom="16" tag="historic" value="monument" icon="historic_monument" iconVisibleSize="32" iconOrder="85"/>
-			<case minzoom="16" tag="historic" value="archaeological_site" icon="historic_archaeological_site" iconOrder="85"/>
+			<case minzoom="16" tag="historic" value="archaeological_site" icon="historic_archaeological_site" iconVisibleSize="24" iconOrder="85"/>
 			<case minzoom="15" tag="historic" value="monastery" icon="amenity_monastery"/>
 			<case minzoom="15" tag="historic" value="mine" icon="historic_mine"/>
 			<apply_if nightMode="true" shield="gray_brown_square_shield"/>
@@ -3345,11 +3350,11 @@
 				</apply>
 			</switch>
 			<switch minzoom="15" pathEffect_2="10_3">
-				<case tag="historic" value="ruins" color="#55c4583a" color_2="#aa9a3300">
-					<apply_if nightMode="true" color="#55c4583a"/>
+				<case tag="historic" value="ruins" color="#33c4583a" color_2="#aa9a3300">
+					<apply_if nightMode="true" color="#35c4583a"/>
 				</case>
-				<case tag="historic" value="archaeological_site" color="#55a7783a" color_2="#aaa7783a">
-					<apply_if nightMode="true" color="#37a7783a" color_2="#66a7783a"/>
+				<case tag="historic" value="archaeological_site" color="#33a7783a" color_2="#aaa7783a">
+					<apply_if nightMode="true" color="#27a7783a" color_2="#66a7783a"/>
 				</case>
 				<apply_if maxzoom="16" strokeWidth_2="1:1"/>
 				<apply_if minzoom="17" strokeWidth_2="1.5:1.5"/>
