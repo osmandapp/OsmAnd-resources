@@ -5,9 +5,11 @@ mygroup() {
  	cp ../png/mdpi/${2} ../../rendering_styles/style-icons/drawable-mdpi/mm_${1}.png
  	cp ../png/hdpi/${2} ../../rendering_styles/style-icons/drawable-hdpi/mm_${1}.png
  	cp ../png/xhdpi/${2} ../../rendering_styles/style-icons/drawable-xhdpi/mm_${1}.png
+ 	cp ../png/xxhdpi/${2} ../../rendering_styles/style-icons/drawable-xxhdpi/mm_${1}.png
  	cp ../png/big-mdpi/${2} ../../rendering_styles/style-icons/drawable-mdpi/mx_${1}.png
  	cp ../png/big-hdpi/${2} ../../rendering_styles/style-icons/drawable-hdpi/mx_${1}.png
  	cp ../png/big-xhdpi/${2} ../../rendering_styles/style-icons/drawable-xhdpi/mx_${1}.png
+ 	cp ../png/big-xxhdpi/${2} ../../rendering_styles/style-icons/drawable-xxhdpi/mx_${1}.png
 }
 
 
@@ -21,6 +23,7 @@ mycp() {
 cp ../png/mdpi/h_* ../../rendering_styles/style-icons/drawable-mdpi/
 cp ../png/hdpi/h_* ../../rendering_styles/style-icons/drawable-hdpi/
 cp ../png/xhdpi/h_* ../../rendering_styles/style-icons/drawable-xhdpi/
+cp ../png/xxhdpi/h_* ../../rendering_styles/style-icons/drawable-xxhdpi/
 
 mygroup landuse landuse_coniferous.png
 mycp landuse grass landuse_grass.png
@@ -95,9 +98,9 @@ mycp amenity police emergency_police3.png
 mycp amenity fire_station emergency_firestation4.png
 
 mygroup healthcare health_pharmacy.png
-mycp amenity pharmacy health_pharmacy_2.png
-mycp amenity hospital health_hospital_2.png
-mmycp amenity veterinary health_veterinary.png
+mycp amenity pharmacy health_pharmacy2.png
+mycp amenity hospital health_hospital2.png
+mycp amenity veterinary health_veterinary.png
 mycp amenity doctors health_doctors.png
 mycp amenity dentist health_dentist.png
 mycp amenity nursing_home health_nursing_home.png
@@ -124,14 +127,14 @@ mygroup parking transport_parking.png
 mycp amenity parking transport_parking.png
 mycp amenity parking_private transport_parking_private2.png
 mycp amenity parking_paid transport_parking_car_paid.png
-mycp amenity parking_multi-storey transport_parking_multi-storey.png
-mycp amenity parking_multi-storey_paid transport_parking_multi-storey_paid.png
+mycp amenity parking_multi_storey transport_parking_multi-storey.png
+mycp amenity parking_multi_storey_paid transport_parking_multi-storey_paid.png
 mycp amenity parking_underground transport_parking_underground.png
 mycp amenity parking_underground_paid transport_parking_underground_paid.png
 mycp amenity bicycle_parking transport_parking_bicycle.png
 
 mygroup public_transport transport_bus_stop.png
-mycp amenity bus_station transport_bus_station_2.png
+mycp amenity bus_station transport_bus_station2.png
 mycp highway bus_stop transport_bus_stop.png
 mycp highway bus_stop_small functional-icons_bus_stop_small.png
 mycp highway bus_stop_round_small functional-icons_bus_stop_round_small.png
@@ -147,7 +150,7 @@ mycp mountain pass poi_mountain_pass.png
 mycp amenity bicycle_rental transport_rental_bicycle.png
 mycp amenity car_rental transport_rental_car.png
 mycp amenity car_sharing transport_car_share.png
-mycp amenity boat_sharing transport_boat_share.png
+mycp amenity boat_sharing amenity_boat_sharing.png
 
 mycp leisure marina transport_marina.png
 mycp leisure slipway transport_slipway.png
@@ -314,7 +317,7 @@ mycp sport gymnastics sport_gymnasium.png
 mygroup leisure sport_playground.png
 mycp leisure playground sport_playground.png
 mycp leisure water_park sport_swimming_outdoor.png
-mycp leisure sports_centre sport_leisure_centre_2.png
+mycp leisure sports_centre sport_leisure_centre2.png
 mycp leisure ice_rink sport_iceskating.png
 mycp leisure fishing sport_fishing.png  #used shop=fish turned by 45 degrees for now
 mycp leisure bird_hide poi_tower_lookout.png
@@ -331,7 +334,7 @@ mycp amenity car_wash_self_service amenity_car_wash_self_service.png
 mycp service tyres amenity_service_tyres.png
 mycp amenity bench functional-icons_bench.png
 mycp amenity post_box amenity_post_box.png
-mycp amenity post_office amenity_post_office_2.png
+mycp amenity post_office amenity_post_office2.png
 mycp amenity prison amenity_prison.png
 mycp amenity recycling amenity_recycling.png
 mycp amenity telephone amenity_telephone.png
