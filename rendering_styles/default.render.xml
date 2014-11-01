@@ -734,6 +734,7 @@
 					<case tag="railway" value="rail"/>
 					<case tag="railway" value="tram"/>
 					<case tag="railway" value="light_rail"/>
+					<case tag="railway" value="monorail"/>
 				</switch>
 				<apply_if subwayMode="false" layer="-1" minzoom="9" maxzoom="15">
 					<apply_if appMode="car" order="-1"/>
@@ -744,6 +745,7 @@
 			<case tag="route_share_taxi" value="" order="104"/>
 			<case tag="route_train" value="" order="103"/>
 			<case tag="route_light_rail" value="" order="102"/>
+			<case tag="route_monorail" value="" order="101"/>
 			<case tag="route_tram" value="" order="100"/>
 			<case tag="route_trolleybus" value="" order="101"/>
 
@@ -1271,6 +1273,7 @@
 				<apply_if nightMode="true" textHaloColor="$routeTrainColorNight"/>
 			</case>
 			<case trainLightrailRoutes="true" tag="route_light_rail" value="" nameTag="lightrail_ref" textHaloColor="$routeLightrailColor"/>
+			<case trainLightrailRoutes="true" tag="route_monorail" value="" nameTag="monorail_ref" textHaloColor="$routeLightrailColor"/>
 			<apply_if minzoom="13" maxzoom="14" textSize="6"/>
 			<apply_if minzoom="15" maxzoom="15" textSize="9"/>
 			<apply_if minzoom="16" maxzoom="16" textSize="10"/>
@@ -2368,6 +2371,7 @@
 					<case additional="train=yes"/>
 					<case additional="tram=yes"/>
 					<case additional="light_rail=yes"/>
+					<case additional="monorail=yes"/>
 					<apply icon="railway_station"/>
 				</switch>
 			</case>
@@ -2633,7 +2637,7 @@
 		</case>
 		<switch shield="white_brown_square_shield">
 			<switch iconOrder="70" iconVisibleSize="16">
-				<case minzoom="18" tag="tourism" value="artwork" icon="tourism_artwork"/>
+				<case minzoom="18" tag="tourism" value="artwork" icon="tourism_artwork" iconOrder="100"/>
 				<case minzoom="16" tag="tourism" value="museum" icon="tourism_museum"/>
 				<case minzoom="16" tag="historic" value="ship" icon="historic_ship"/>
 				<case minzoom="16" tag="historic" value="boundary_stone" icon="historic_boundary_stone"/>
@@ -2743,7 +2747,7 @@
 			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
 		</case>
 
-		<case minzoom="18" tag="emergency" value="fire_hydrant" icon="emergency_fire_hydrant"/>
+		<case minzoom="19" tag="emergency" value="fire_hydrant" icon="emergency_fire_hydrant"/>
 		<case minzoom="13" tag="military" value="nuclear_explosion_site" icon="military_nuclear_explosion_site"/>
 
 		<switch shield="white_gray_square_shield" iconVisibleSize="32" iconOrder="96">
@@ -3350,7 +3354,7 @@
 				</apply>
 			</switch>
 			<switch minzoom="15" pathEffect_2="10_3">
-				<case tag="historic" value="ruins" color="#33c4583a" color_2="#aa9a3300">
+				<case tag="historic" value="ruins" color="#33c4583a" color_2="#669a3300">
 					<apply_if nightMode="true" color="#35c4583a"/>
 				</case>
 				<case tag="historic" value="archaeological_site" color="#33a7783a" color_2="#aaa7783a">
@@ -3944,11 +3948,6 @@
 				<apply_if minzoom="19" strokeWidth_2="6.5:6.5" strokeWidth_3="6.5:6.5"/>
 				<apply_if>
 					<switch> <!-- Substrate -->
-						<case osmcTraces="true">
-							<apply color="#ffffff">
-								<apply_if nightMode="true" color="#77002a2a"/>
-							</apply>
-						</case>
 						<case noPolygons="true">
 							<apply color="#eeeeee">
 								<apply_if nightMode="true" color="#333333"/>
@@ -4392,6 +4391,17 @@
 				</case>
 				<case trainLightrailRoutes="true" tag="route_light_rail" value="" color="$routeLightrailColor">
 					<apply_if nightMode="true" color="$routeLightrailColorNight"/>
+				</case>
+				<case trainLightrailRoutes="true" tag="route_monorail" value="" color="$routeLightrailColor" color__1="#f1eae4" cap="ROUND">
+					<apply_if minzoom="11" maxzoom="11" pathEffect="1_1" strokeWidth__1="0.8:0.8"/>
+					<apply_if minzoom="12" maxzoom="12" pathEffect="1_3" strokeWidth__1="1.25:1.25"/>
+					<apply_if minzoom="13" maxzoom="13" pathEffect="1_5" strokeWidth__1="2:2"/>
+					<apply_if minzoom="14" maxzoom="14" pathEffect="1_7" strokeWidth__1="3:3"/>
+					<apply_if minzoom="15" maxzoom="15" pathEffect="1_10" strokeWidth__1="4:4"/>
+					<apply_if minzoom="16" maxzoom="16" pathEffect="1_12" strokeWidth__1="4.5:4.5"/>
+					<apply_if minzoom="17" maxzoom="17" pathEffect="1_15" strokeWidth__1="6.5:6.5"/>
+					<apply_if minzoom="18" pathEffect="1_17" strokeWidth__1="7.5:7.5"/>
+					<apply_if nightMode="true" color="$routeLightrailColorNight" color__1="#002a2a"/>
 				</case>
 				<apply_if minzoom="11" maxzoom="11" strokeWidth="0.8:0.8"/>
 				<apply_if minzoom="12" maxzoom="12" strokeWidth="1.25:1.25"/>
