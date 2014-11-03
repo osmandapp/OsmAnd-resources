@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- xmd5a (xmd5a@yandex.ru) http://forum.openstreetmap.org/viewtopic.php?id=23125 -->
 <renderingStyle name="LightRS" depends="" defaultColor="#ffffff" version="1">
-	<renderingProperty attr="contourLines" name="Show contour lines" description="Select minimum zoom level to display in map if available. Separate contour file may be needed." type="string" possibleValues="--,16,15,14,13,12,11"/>
-	<renderingProperty attr="moreDetailed" name="More details" description="More details on map" type="boolean" possibleValues=""/>
-	<renderingProperty attr="noPolygons" name="Hide polygons (exc.buildings)" description="Make all areal land features on map transparent" type="boolean" possibleValues=""/>
-	<renderingProperty attr="hideWoodScrubs" name="Hide wood and scrubs" description="Hide wood and scrubs" type="boolean" possibleValues=""/>
-	<renderingProperty attr="hideBuildings" name="Hide buildings" description="Hide buildings" type="boolean" possibleValues=""/>
-	<renderingProperty attr="hideNonVehicleHighways" name="Hide non-vehicle highways" description="Hide non-vehicle highways" type="boolean" possibleValues=""/>
-	<renderingProperty attr="hideAccess" name="Hide access restrictions" description="Hide access type" type="boolean" possibleValues=""/>
-	<renderingProperty attr="hideText" name="Hide text" description="Hide text" type="boolean" possibleValues=""/>
+	<renderingProperty attr="moreDetailed" name="More details" description="More details on map" type="boolean" possibleValues="" category="details"/>
+	<renderingProperty attr="contourLines" name="Show contour lines" description="Select minimum zoom level to display in map if available. Separate contour file may be needed." type="string" possibleValues="--,16,15,14,13,12,11" category="details"/>
+	<renderingProperty attr="noPolygons" name="Hide polygons (exc.buildings)" description="Make all areal land features on map transparent" type="boolean" possibleValues="" category="hide"/>
+	<renderingProperty attr="hideWoodScrubs" name="Hide wood and scrubs" description="Hide wood and scrubs" type="boolean" possibleValues="" category="hide"/>
+	<renderingProperty attr="hideBuildings" name="Hide buildings" description="Hide buildings" type="boolean" possibleValues="" category="hide"/>
+	<renderingProperty attr="hideNonVehicleHighways" name="Hide non-vehicle highways" description="Hide non-vehicle highways" type="boolean" possibleValues="" category="hide"/>
+	<renderingProperty attr="hideAccess" name="Hide access restrictions" description="Hide access type" type="boolean" possibleValues="" category="hide"/>
+	<renderingProperty attr="hideText" name="Hide text" description="Hide text" type="boolean" possibleValues="" category="hide"/>
 	<!-- This should not be here, but it's referenced from 2 rules, and due to this validation of this style fails -->
 	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
@@ -1476,34 +1476,34 @@
 <!--			<groupFilter nightMode="true" hideBuildings="false" shadowRadius=":3" shadowColor="#555555"/>-->
 		</group>
 
-		<group>
-			<filter tag="highway" value="tertiary" color="$tertiaryRoadDayColor"/>
-			<filter tag="highway" value="tertiary_link" color="$tertiaryRoadDayColor"/>
-			<groupFilter minzoom="10" cap="ROUND">
-				<filter maxzoom="10" strokeWidth="1:1"/>
-				<filter maxzoom="11" strokeWidth="1.2:1.2"/>
-				<filter maxzoom="12" strokeWidth="1.6:1.6"/>
-				<filter maxzoom="13" strokeWidth="2.2:2.2"/>
-				<filter maxzoom="14" strokeWidth="3:3"/>
-				<filter maxzoom="15" strokeWidth="4.5:4.5"/>
-				<filter maxzoom="16" strokeWidth="5:5"/>
-				<filter maxzoom="17" strokeWidth="6.5:6.5"/>
-				<filter maxzoom="18" strokeWidth="9:9"/>
-				<filter minzoom="19" strokeWidth="10.5:10.5"/>
-			</groupFilter>
-			<groupFilter layer="-1" pathEffect="4_4" cap="BUTT"/>
-			<groupFilter layer="1" minzoom="14" color_0="$bridgeDayColor" cap="SQUARE" cap_0="BUTT">
-				<filter maxzoom="14" strokeWidth_0="3.7:4.5"/>
-				<filter maxzoom="15" strokeWidth_0="5.5:6"/>
-				<filter maxzoom="16" strokeWidth_0="6.5:7"/>
-				<filter maxzoom="17" strokeWidth_0="8:9"/>
-				<filter maxzoom="18" strokeWidth_0="11:13"/>
-				<filter minzoom="19" strokeWidth_0="12:14"/>
-				<groupFilter nightMode="true" color_0="$bridgeNightColor"/>
-			</groupFilter>
+		<switch minzoom="10">
+			<case tag="highway" value="tertiary" color="$tertiaryRoadDayColor"/>
+			<case tag="highway" value="tertiary_link" color="$tertiaryRoadDayColor"/>
+			<apply_if cap="ROUND">
+				<case maxzoom="10" strokeWidth="1:1"/>
+				<case maxzoom="11" strokeWidth="1.2:1.2"/>
+				<case maxzoom="12" strokeWidth="1.6:1.6"/>
+				<case maxzoom="13" strokeWidth="2.2:2.2"/>
+				<case maxzoom="14" strokeWidth="3:3"/>
+				<case maxzoom="15" strokeWidth="4.5:4.5"/>
+				<case maxzoom="16" strokeWidth="5:5"/>
+				<case maxzoom="17" strokeWidth="6.5:6.5"/>
+				<case maxzoom="18" strokeWidth="9:9"/>
+				<case minzoom="19" strokeWidth="10.5:10.5"/>
+			</apply_if>
+			<apply_if layer="-1" pathEffect="4_4" cap="BUTT"/>
+			<apply_if layer="1" minzoom="14" color_0="$bridgeDayColor" cap="SQUARE" cap_0="BUTT">
+				<case maxzoom="14" strokeWidth_0="3.7:4.5"/>
+				<case maxzoom="15" strokeWidth_0="5.5:6"/>
+				<case maxzoom="16" strokeWidth_0="6.5:7"/>
+				<case maxzoom="17" strokeWidth_0="8:9"/>
+				<case maxzoom="18" strokeWidth_0="11:13"/>
+				<case minzoom="19" strokeWidth_0="12:14"/>
+				<apply_if nightMode="true" color_0="$bridgeNightColor"/>
+			</apply_if>
 <!--			<groupFilter nightMode="true" hideBuildings="false" minzoom="16" shadowRadius=":2" shadowColor="#555555"/>-->
-			<groupFilter nightMode="true" color="$tertiaryRoadNightColor"/>
-		</group>
+			<apply_if nightMode="true" color="$tertiaryRoadNightColor"/>
+		</switch>
 
 		<switch>
 			<case tag="highway" value="road"/>
