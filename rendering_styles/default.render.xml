@@ -136,7 +136,9 @@
 		<case roadStyle="orange" attrColorValue="#ffae4b">
 			<apply_if nightMode="true" attrColorValue="#cf692d"/>
 		</case>
-		<case attrColorValue="#809bff"/>
+		<case attrColorValue="#809bff">
+			<apply_if nightMode="true" attrColorValue="#2b8dba"/>
+		</case>
 	</renderingAttribute>
 	<renderingAttribute name="motorwayRoadLowZoomColor">
 		<switch>
@@ -150,7 +152,9 @@
 		<case roadStyle="orange" attrColorValue="#ffae4b">
 			<apply_if nightMode="true" attrColorValue="#cf692d"/>
 		</case>
-		<case attrColorValue="#809bff"/>
+		<case attrColorValue="#809bff">
+			<apply_if nightMode="true" attrColorValue="#2b8dba"/>
+		</case>
 	</renderingAttribute>
 	<renderingAttribute name="motorwayRoadShadowColor">
 		<case roadStyle="orange" attrColorValue="#935f20"/>
@@ -161,7 +165,9 @@
 		<case roadStyle="orange" attrColorValue="#ffae4b">
 			<apply_if nightMode="true" attrColorValue="#cf692d"/>
 		</case>
-		<case attrColorValue="#ff8095"/>
+		<case attrColorValue="#ff8095">
+			<apply_if nightMode="true" attrColorValue="#cb5662"/>
+		</case>
 	</renderingAttribute>
 	<renderingAttribute name="trunkRoadLowZoomColor">
 		<switch>
@@ -175,14 +181,18 @@
 		<case roadStyle="orange" attrColorValue="#ffae4b">
 			<apply_if nightMode="true" attrColorValue="#cf692d"/>
 		</case>
-		<case attrColorValue="#ff8095"/>
+		<case attrColorValue="#ff8095">
+			<apply_if nightMode="true" attrColorValue="#cb5662"/>
+		</case>
 	</renderingAttribute>
 <!--   -->
 	<renderingAttribute name="primaryRoadColor">
 		<case roadStyle="orange" attrColorValue="#f8de93">
 			<apply_if nightMode="true" attrColorValue="#d19a66"/>
 		</case>
-		<case attrColorValue="#ffaa80"/>
+		<case attrColorValue="#ffaa80">
+			<apply_if nightMode="true" attrColorValue="#c7675a"/>
+		</case>
 	</renderingAttribute>
 	<renderingAttribute name="primaryRoadLowZoomColor">
 		<switch>
@@ -196,18 +206,22 @@
 		<case roadStyle="orange" attrColorValue="#f8de93">
 			<apply_if nightMode="true" attrColorValue="#d19a66"/>
 		</case>
-		<case attrColorValue="#ffaa80"/>
+		<case attrColorValue="#ffaa80">
+			<apply_if nightMode="true" attrColorValue="#c7675a"/>
+		</case>
 	</renderingAttribute>
 	<renderingAttribute name="primaryRoadShadowColor">
 		<case roadStyle="orange" attrColorValue="#a35e27"/>
-		<case attrColorValue="#464646"/>
+		<case attrColorValue="#77464646"/>
 	</renderingAttribute>
 <!--   -->
 	<renderingAttribute name="secondaryRoadColor">
 		<case roadStyle="orange" attrColorValue="#f8de93">
 			<apply_if nightMode="true" attrColorValue="#d19a66"/>
 		</case>
-		<case attrColorValue="#f3f1a6"/>
+		<case attrColorValue="#ffd080">
+			<apply_if nightMode="true" attrColorValue="#c99870"/>
+		</case>
 	</renderingAttribute>
 	<renderingAttribute name="secondaryRoadLowZoomColor">
 		<switch>
@@ -221,20 +235,24 @@
 		<case roadStyle="orange" attrColorValue="#f8de93">
 			<apply_if nightMode="true" attrColorValue="#d19a66"/>
 		</case>
-		<case attrColorValue="#ffd080"/>
+		<case attrColorValue="#ffd080">
+			<apply_if nightMode="true" attrColorValue="#c99870"/>
+		</case>
 	</renderingAttribute>
 	<renderingAttribute name="secondaryRoadShadowColor">
 		<case roadStyle="orange" attrColorValue="#a35e27">
 			<apply_if nightMode="true" attrColorValue="#b8a56d"/>
 		</case>
-		<case attrColorValue="#464646"/>
+		<case attrColorValue="#77464646"/>
 	</renderingAttribute>
 <!--   -->
 	<renderingAttribute name="tertiaryRoadColor">
 		<case roadStyle="orange" attrColorValue="#fffcb8">
 			<apply_if nightMode="true" attrColorValue="#c5ac90"/>
 		</case>
-		<case attrColorValue="#ffff80"/>
+		<case attrColorValue="#ffff80">
+			<apply_if nightMode="true" attrColorValue="#b8b878"/>
+		</case>
 	</renderingAttribute>
 	<renderingAttribute name="tertiaryRoadLowZoomColor">
 		<switch>
@@ -248,7 +266,9 @@
 		<case roadStyle="orange" attrColorValue="#fffcb8">
 			<apply_if nightMode="true" attrColorValue="#c5ac90"/>
 		</case>
-		<case attrColorValue="#ffff80"/>
+		<case attrColorValue="#ffff80">
+			<apply_if nightMode="true" attrColorValue="#b8b878"/>
+		</case>
 	</renderingAttribute>
 
 	<renderingConstant name="residentialRoadColor" value="#ffffff"/>
@@ -1227,7 +1247,7 @@
 			<apply_if textLength="5" textShield="unc_shield5"/>
 		</case>
 		<!-- Highway text -->
-		<switch textHaloRadius="$textHaloRadiusDay" nameTag="">
+		<switch textHaloRadius="$textHaloRadiusDay" textOnPath="true" nameTag="">
 			<case tag="highway" value="motorway" textHaloColor="$motorwayRoadColor" textOrder="6"/>
 			<case tag="highway" value="motorway_area" textHaloColor="$motorwayRoadColor" textOrder="6"/>
 			<case tag="highway" value="motorway_link" textHaloColor="$motorwayRoadColor" textOrder="7"/>
@@ -1240,8 +1260,15 @@
 			<case tag="highway" value="secondary" textHaloColor="$secondaryRoadColor" textOrder="8"/>
 			<case tag="highway" value="secondary_area" textHaloColor="$secondaryRoadColor" textOrder="8"/>
 			<case tag="highway" value="secondary_link" textHaloColor="$secondaryRoadColor" textOrder="9"/>
-			<apply_if nightMode="true" subwayMode="true" maxzoom="13" textHaloColor="$primaryRoadLowZoomColor"/>
-			<apply_if minzoom="13" textOnPath="true">
+			<apply maxzoom="13">
+				<switch>
+					<case subwayMode="true"/>
+					<case publicTransportMode="true"/>
+					<case tramTrainRoutes="true"/>
+					<apply textHaloColor="$primaryRoadLowZoomColor"/>
+				</switch>
+			</apply>
+			<apply_if minzoom="13">
 				<case maxzoom="13" textSize="12"/>
 				<case maxzoom="14" textSize="13"/>
 				<case maxzoom="15" textSize="14"/>
@@ -1252,11 +1279,11 @@
 			<apply_if nightMode="true" textBold="true"/>
 		</switch>
 
-		<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$tertiaryRoadColor">
+		<switch textHaloRadius="$textHaloRadiusDay" textOnPath="true" textHaloColor="$tertiaryRoadColor" nameTag="">
 			<case tag="highway" value="tertiary" textOrder="8"/>
 			<case tag="highway" value="tertiary_area" textOrder="8"/>
 			<case tag="highway" value="tertiary_link" textOrder="9"/>
-			<apply_if minzoom="14" textOnPath="true" nameTag="">
+			<apply_if minzoom="14">
 				<case maxzoom="14" textSize="12"/>
 				<case maxzoom="15" textSize="13"/>
 				<case maxzoom="16" textSize="14"/>
