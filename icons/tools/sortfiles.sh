@@ -398,6 +398,7 @@ mycp man_made water_tower poi_water_tower.png
 mycp man_made mineshaft poi_mine.png
 mycp man_made windmill poi_windmill.png
 mycp man_made petroleum_well poi_petroleum_well.png
+mycp man_made adit poi_adit.png
 mygroup military poi_military_bunker.png
 
 
