@@ -397,6 +397,7 @@ mycp tower_type communication_night functional-icons_tower_communications2_night
 mycp man_made water_tower poi_water_tower.png
 mycp man_made mineshaft poi_mine.png
 mycp man_made windmill poi_windmill.png
+mycp man_made petroleum_well poi_petroleum_well.png
 mygroup military poi_military_bunker.png
 
 
