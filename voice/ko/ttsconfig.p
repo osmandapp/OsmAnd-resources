@@ -26,8 +26,8 @@ language('ko').
 
 
 % ROUTE CALCULATED
-string('route_is.ogg', '총 거리는 ').
-string('route_calculate.ogg', '경로가 재탐색되었습니다. ').
+string('route_is.ogg', '루트 거리는 ').
+string('route_calculate.ogg', '새로운 경로를 찾았습니다. ').
 string('distance.ogg', '거리는 ').
 string('is.ogg', '입니다 ').
 
@@ -85,17 +85,17 @@ string('follow.ogg', ' 직진하세요 ').
 % ARRIVE
 string('and_arrive_destination.ogg', ' 다음은 목적지에 도착합니다 ').
 string('reached_destination.ogg', '목적지에 도착하였습니다 ').
-string('and_arrive_intermediate.ogg', '당신을 통해 지점에 도착 ').
-string('reached_intermediate.ogg', '당신은 당신을 통해 지점에 도달했습니다').
-string('and_arrive_waypoint.ogg', '당신을 통해 지점에 도착 GPX').
-string('reached_waypoint.ogg', '당신은 당신을 통해 지점에 도달했습니다 GPX').
+string('and_arrive_intermediate.ogg', '지점에 도착합니다 ').
+string('reached_intermediate.ogg', '지점에 도착했습니다').
+string('and_arrive_waypoint.ogg', '다음은 지점을 통과 합니다').
+string('reached_waypoint.ogg', '지점을 통과 중 입니다').
 
 % OTHER PROMPTS
-string('attention.ogg', '주의, ').
+string('attention.ogg', '과속을 주의 하세요, ').
 string('location_lost.ogg', 'g p s 신호가 없습니다 ').
-string('location_recovered.ogg', 'g p s 신호는 복구').
-string('off_route.ogg', '당신은 경로에서 이탈했다 ').
-string('exceed_limit.ogg', '당신은 속도 제한을 초과하는 ').
+string('location_recovered.ogg', 'g p s 신호가 복구 되었습니다').
+string('off_route.ogg', '경로에서 이탈했습니다 ').
+string('exceed_limit.ogg', '제한 속도를 초과하고 있습니다 ').
 
 % STREET NAME GRAMMAR
 string('onto.ogg', '에 ').
@@ -118,7 +118,7 @@ string('yards.ogg', '미터 ').
 
 % TIME SUPPORT
 string('time.ogg', '시간이 필요 ').
-string('1_hour.ogg', '일시간 ').
+string('1_hour.ogg', '한 시간 ').
 string('hours.ogg', '시간 ').
 string('less_a_minute.ogg', '이하의 분 ').
 string('1_minute.ogg', '일분 ').
@@ -148,7 +148,7 @@ onto_street(_Street, []) :- not(tts).
 %to_street(_Street, []) :- not(tts).
 
 prepare_turn(Turn, Dist, Street) -- [D, 'after.ogg', M, 'prepare.ogg' | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
-turn(Turn, Dist, Street) -- [D, 'after.ogg', M, 'after.ogg' | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
+turn(Turn, Dist, Street) -- [D, 'after.ogg', M, 'have.ogg' | Sgen] :- distance(Dist) -- D, turn(Turn, M), onto_street(Street, Sgen).
 turn(Turn, Street) -- [M, 'have.ogg' | Sgen] :- turn(Turn, M), onto_street(Street, Sgen).
 
 prepare_make_ut(Dist, Street) -- [D, 'prepare_make_uturn.ogg' | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
