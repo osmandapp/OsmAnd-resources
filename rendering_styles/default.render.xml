@@ -133,6 +133,7 @@
 
 
 	<!-- roadColors="Modified Mapnik" -->
+<!-- Motorway  -->
 	<renderingAttribute name="motorwayRoadColor">
 		<case roadStyle="orange" attrColorValue="#ffae4b">
 			<apply_if nightMode="true" attrColorValue="#cf692d"/>
@@ -169,10 +170,13 @@
 		<case nightMode="true" attrColorValue="$null"/>
 		<case attrColorValue="#969696"/>
 	</renderingAttribute>
-<!--   -->
+<!-- Trunk  -->
 	<renderingAttribute name="trunkRoadColor">
 		<case roadStyle="orange" attrColorValue="#ffae4b">
 			<apply_if nightMode="true" attrColorValue="#cf692d"/>
+		</case>
+		<case roadStyle="germanRoadAtlas" attrColorValue="#ff8c40">
+			<apply_if nightMode="true" attrColorValue="#ff8c40"/>
 		</case>
 		<case attrColorValue="#ff8095">
 			<apply_if nightMode="true" attrColorValue="#cb5662"/>
@@ -190,17 +194,20 @@
 		<case roadStyle="orange" attrColorValue="#ffae4b">
 			<apply_if nightMode="true" attrColorValue="#cf692d"/>
 		</case>
+		<case roadStyle="germanRoadAtlas" attrColorValue="#ff8c40">
+			<apply_if nightMode="true" attrColorValue="#ff8c40"/>
+		</case>
 		<case attrColorValue="#ff8095">
 			<apply_if nightMode="true" attrColorValue="#cb5662"/>
 		</case>
 	</renderingAttribute>
-<!--   -->
+<!-- Primary  -->
 	<renderingAttribute name="primaryRoadColor">
 		<case roadStyle="orange" attrColorValue="#f8de93">
 			<apply_if nightMode="true" attrColorValue="#d19a66"/>
 		</case>
-		<case roadStyle="germanRoadAtlas" attrColorValue="#f55a5a">
-			<apply_if nightMode="true" attrColorValue="#f55a5a"/>
+		<case roadStyle="germanRoadAtlas" attrColorValue="#f56262">
+			<apply_if nightMode="true" attrColorValue="#f56262"/>
 		</case>
 		<case attrColorValue="#ffaa80">
 			<apply_if nightMode="true" attrColorValue="#c7675a"/>
@@ -218,8 +225,8 @@
 		<case roadStyle="orange" attrColorValue="#f8de93">
 			<apply_if nightMode="true" attrColorValue="#d19a66"/>
 		</case>
-		<case roadStyle="germanRoadAtlas" attrColorValue="#f55a5a">
-			<apply_if nightMode="true" attrColorValue="#f55a5a"/>
+		<case roadStyle="germanRoadAtlas" attrColorValue="#f56262">
+			<apply_if nightMode="true" attrColorValue="#f56262"/>
 		</case>
 		<case attrColorValue="#ffaa80">
 			<apply_if nightMode="true" attrColorValue="#c7675a"/>
@@ -227,15 +234,16 @@
 	</renderingAttribute>
 	<renderingAttribute name="primaryRoadShadowColor">
 		<case roadStyle="orange" attrColorValue="#a35e27"/>
+		<case roadStyle="germanRoadAtlas" attrColorValue="#3a3a3a"/>
 		<case attrColorValue="#77464646"/>
 	</renderingAttribute>
-<!--   -->
+<!-- Secondary  -->
 	<renderingAttribute name="secondaryRoadColor">
 		<case roadStyle="orange" attrColorValue="#f8de93">
 			<apply_if nightMode="true" attrColorValue="#d19a66"/>
 		</case>
-		<case roadStyle="germanRoadAtlas" attrColorValue="#f55a5a">
-			<apply_if nightMode="true" attrColorValue="#f55a5a"/>
+		<case roadStyle="germanRoadAtlas" attrColorValue="#f56262">
+			<apply_if nightMode="true" attrColorValue="#f56262"/>
 		</case>
 		<case attrColorValue="#ffd080">
 			<apply_if nightMode="true" attrColorValue="#c99870"/>
@@ -253,8 +261,8 @@
 		<case roadStyle="orange" attrColorValue="#f8de93">
 			<apply_if nightMode="true" attrColorValue="#d19a66"/>
 		</case>
-		<case roadStyle="germanRoadAtlas" attrColorValue="#f55a5a">
-			<apply_if nightMode="true" attrColorValue="#f55a5a"/>
+		<case roadStyle="germanRoadAtlas" attrColorValue="#f56262">
+			<apply_if nightMode="true" attrColorValue="#f56262"/>
 		</case>
 		<case attrColorValue="#ffd080">
 			<apply_if nightMode="true" attrColorValue="#c99870"/>
@@ -264,9 +272,10 @@
 		<case roadStyle="orange" attrColorValue="#a35e27">
 			<apply_if nightMode="true" attrColorValue="#b8a56d"/>
 		</case>
+		<case roadStyle="germanRoadAtlas" attrColorValue="#3a3a3a"/>
 		<case attrColorValue="#77464646"/>
 	</renderingAttribute>
-<!--   -->
+<!-- Tertiary  -->
 	<renderingAttribute name="tertiaryRoadColor">
 		<case roadStyle="orange" attrColorValue="#fffcb8">
 			<apply_if nightMode="true" attrColorValue="#c5ac90"/>
@@ -3709,15 +3718,25 @@
 
 		<switch minzoom="6" maxzoom="13">
 			<switch>
-				<case tag="highway" value="motorway"/>
-				<case tag="highway" value="motorway_link"/>
-				<apply color="$motorwayRoadLowZoomColor"/>
+				<case tag="highway" value="motorway" color="$motorwayRoadLowZoomColor"/>
+				<case tag="highway" value="trunk" color="$trunkRoadLowZoomColor"/>
+				<apply_if roadStyle="germanRoadAtlas" minzoom="7">
+						<case maxzoom="7" shadowRadius=":2"/>
+						<case maxzoom="9" shadowRadius=":3"/>
+						<case maxzoom="10" shadowRadius=":4"/>
+						<case minzoom="11" shadowRadius=":5"/>
+				</apply_if>
 			</switch>
 			<switch>
-				<case tag="highway" value="trunk"/>
-				<case tag="highway" value="trunk_link"/>
-				<apply color="$trunkRoadLowZoomColor"/>
+				<case tag="highway" value="motorway_link" color="$motorwayRoadLowZoomColor"/>
+				<case tag="highway" value="trunk_link" color="$trunkRoadLowZoomColor"/>
 			</switch>
+			<apply shadowRadius=":1" shadowColor="$motorwayRoadShadowColor">
+				<case roadStyle="orange">
+					<case minzoom="8" maxzoom="9" shadowRadius=":1"/>
+					<case minzoom="10" shadowRadius=":2"/>
+				</case>
+			</apply>
 			<apply cap="ROUND">
 				<case maxzoom="6" strokeWidth="0.5:0.5"/>
 				<case maxzoom="8" strokeWidth="1:1"/>
@@ -3726,18 +3745,6 @@
 				<case maxzoom="11" strokeWidth="1.8:1.8"/>
 				<case maxzoom="12" strokeWidth="2.2:2.2"/>
 				<case maxzoom="13" strokeWidth="2.5:2.5"/>
-				<apply shadowRadius=":1" shadowColor="$motorwayRoadShadowColor">
-					<case roadStyle="orange">
-						<case minzoom="8" maxzoom="9" shadowRadius=":1"/>
-						<case minzoom="10" shadowRadius=":2"/>
-					</case>
-					<case roadStyle="germanRoadAtlas" minzoom="7">
-						<case maxzoom="7" shadowRadius=":2"/>
-						<case maxzoom="9" shadowRadius=":3"/>
-						<case maxzoom="10" shadowRadius=":4"/>
-						<case minzoom="11" shadowRadius=":5"/>
-					</case>
-				</apply>
 				<apply_if subwayMode="true" shadowRadius=":1"/>
 			</apply>
 		</switch>
@@ -3771,7 +3778,7 @@
 				<case maxzoom="12" strokeWidth="1.7:1.7"/>
 				<case maxzoom="13" strokeWidth="1.7:1.7"/>
 			</apply>
-			<apply_if roadStyle="orange" shadowColor="$secondaryRoadShadowColor"/>
+			<apply_if minzoom="9" shadowRadius=":1" shadowColor="$secondaryRoadShadowColor"/>
 			<apply color="$secondaryRoadLowZoomColor"/>
 			<apply_if nightMode="true" shadowRadius="0"/>
 		</switch>
@@ -3798,12 +3805,7 @@
 					<switch>
 						<case tag="highway" value="motorway_link" color="$motorwayRoadColor" shadowColor="$motorwayRoadShadowColor"/>
 						<case tag="highway" value="trunk_link" color="$trunkRoadColor" shadowColor="$motorwayRoadShadowColor"/>
-						<apply shadowRadius=":1">
-							<case roadStyle="germanRoadAtlas">
-								<case maxzoom="15" shadowRadius=":3"/>
-								<case minzoom="16" shadowRadius=":4"/>
-							</case>
-						</apply>
+						<apply shadowRadius=":1"/>
 					</switch>
 					<apply_if roadStyle="orange" shadowRadius=":2"/>
 				</switch>
