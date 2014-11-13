@@ -165,10 +165,18 @@
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="motorwayRoadShadowColor">
+		<switch>
+			<case publicTransportMode="true"/>
+			<case tramTrainRoutes="true"/>
+			<case subwayMode="true"/>
+			<apply attrColorValue="#bbbbbb">
+				<apply_if nightMode="true" attrColorValue="#555555"/>
+			</apply>
+		</switch>
 		<case roadStyle="orange" attrColorValue="#935f20"/>
 		<case roadStyle="germanRoadAtlas" attrColorValue="#fe2e2e"/>
-		<case nightMode="true" attrColorValue="$null"/>
 		<case attrColorValue="#969696"/>
+		<case nightMode="true" attrColorValue="$null"/>
 	</renderingAttribute>
 <!-- Trunk  -->
 	<renderingAttribute name="trunkRoadColor">
@@ -200,6 +208,20 @@
 		<case attrColorValue="#ff8095">
 			<apply_if nightMode="true" attrColorValue="#cb5662"/>
 		</case>
+	</renderingAttribute>
+	<renderingAttribute name="trunkRoadShadowColor">
+		<switch>
+			<case publicTransportMode="true"/>
+			<case tramTrainRoutes="true"/>
+			<case subwayMode="true"/>
+			<apply attrColorValue="#bbbbbb">
+				<apply_if nightMode="true" attrColorValue="#555555"/>
+			</apply>
+		</switch>
+		<case roadStyle="orange" attrColorValue="#935f20"/>
+		<case roadStyle="germanRoadAtlas" attrColorValue="#fe2e2e"/>
+		<case nightMode="true" attrColorValue="$null"/>
+		<case attrColorValue="#969696"/>
 	</renderingAttribute>
 <!-- Primary  -->
 	<renderingAttribute name="primaryRoadColor">
@@ -233,6 +255,14 @@
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="primaryRoadShadowColor">
+		<switch>
+			<case publicTransportMode="true"/>
+			<case tramTrainRoutes="true"/>
+			<case subwayMode="true"/>
+			<apply attrColorValue="#bbbbbb">
+				<apply_if nightMode="true" attrColorValue="#555555"/>
+			</apply>
+		</switch>
 		<case roadStyle="orange" attrColorValue="#a35e27"/>
 		<case roadStyle="germanRoadAtlas" attrColorValue="#3a3a3a"/>
 		<case attrColorValue="#77464646"/>
@@ -269,6 +299,14 @@
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="secondaryRoadShadowColor">
+		<switch>
+			<case publicTransportMode="true"/>
+			<case tramTrainRoutes="true"/>
+			<case subwayMode="true"/>
+			<apply attrColorValue="#bbbbbb">
+				<apply_if nightMode="true" attrColorValue="#555555"/>
+			</apply>
+		</switch>
 		<case roadStyle="orange" attrColorValue="#a35e27">
 			<apply_if nightMode="true" attrColorValue="#b8a56d"/>
 		</case>
@@ -3718,8 +3756,8 @@
 
 		<switch minzoom="6" maxzoom="13">
 			<switch>
-				<case tag="highway" value="motorway" color="$motorwayRoadLowZoomColor"/>
-				<case tag="highway" value="trunk" color="$trunkRoadLowZoomColor"/>
+				<case tag="highway" value="motorway" color="$motorwayRoadLowZoomColor" shadowColor="$motorwayRoadShadowColor"/>
+				<case tag="highway" value="trunk" color="$trunkRoadLowZoomColor" shadowColor="$trunkRoadShadowColor"/>
 				<apply_if roadStyle="germanRoadAtlas" minzoom="7">
 						<case maxzoom="7" shadowRadius=":2"/>
 						<case maxzoom="9" shadowRadius=":3"/>
@@ -3728,10 +3766,10 @@
 				</apply_if>
 			</switch>
 			<switch>
-				<case tag="highway" value="motorway_link" color="$motorwayRoadLowZoomColor"/>
-				<case tag="highway" value="trunk_link" color="$trunkRoadLowZoomColor"/>
+				<case tag="highway" value="motorway_link" color="$motorwayRoadLowZoomColor" shadowColor="$motorwayRoadShadowColor"/>
+				<case tag="highway" value="trunk_link" color="$trunkRoadLowZoomColor" shadowColor="$trunkRoadShadowColor"/>
 			</switch>
-			<apply shadowRadius=":1" shadowColor="$motorwayRoadShadowColor">
+			<apply shadowRadius=":1">
 				<case roadStyle="orange">
 					<case minzoom="8" maxzoom="9" shadowRadius=":1"/>
 					<case minzoom="10" shadowRadius=":2"/>
@@ -3794,7 +3832,7 @@
 				<switch>
 					<switch>
 						<case tag="highway" value="motorway" color="$motorwayRoadColor" shadowColor="$motorwayRoadShadowColor"/>
-						<case tag="highway" value="trunk" color="$trunkRoadColor" shadowColor="$motorwayRoadShadowColor"/>
+						<case tag="highway" value="trunk" color="$trunkRoadColor" shadowColor="$trunkRoadShadowColor"/>
 						<apply shadowRadius=":1">
 							<case roadStyle="germanRoadAtlas">
 								<case maxzoom="15" shadowRadius=":6"/>
@@ -3804,7 +3842,7 @@
 					</switch>
 					<switch>
 						<case tag="highway" value="motorway_link" color="$motorwayRoadColor" shadowColor="$motorwayRoadShadowColor"/>
-						<case tag="highway" value="trunk_link" color="$trunkRoadColor" shadowColor="$motorwayRoadShadowColor"/>
+						<case tag="highway" value="trunk_link" color="$trunkRoadColor" shadowColor="$trunkRoadShadowColor"/>
 						<apply shadowRadius=":1"/>
 					</switch>
 					<apply_if roadStyle="orange" shadowRadius=":2"/>
