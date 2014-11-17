@@ -23,7 +23,8 @@ language('pl').
 % (X) Name announcement for destination / intermediate / GPX waypoint arrival
 % (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
 % (X) word order checked
-
+% (X) Announcement of favorites, waypoints and pois along the route
+% (X) Announcement when user returns back to route
 
 % ROUTE CALCULATED
 string('route_is.ogg', 'Długość trasy to ').
@@ -31,7 +32,7 @@ string('route_calculate.ogg', 'Nowa trasa wyznaczona').
 string('distance.ogg', ', jej długość to ').
 
 % LEFT/RIGHT
-string('prepare.ogg', ' ').
+string('prepare.ogg', 'Przygotuj się do ').
 string('after.ogg', 'za ').
 
 string('left.ogg', 'skręć w lewo ').
@@ -83,19 +84,33 @@ string('and_arrive_destination.ogg', 'i dojedź do celu ').
 string('reached_destination.ogg', 'cel podróży został osiągnięty ').
 string('and_arrive_intermediate.ogg', 'i dojedź do punktu pośredniego ').
 string('reached_intermediate.ogg', 'punkt pośredni został osiągnięty ').
+%NEARBY POINTS
 string('and_arrive_waypoint.ogg', 'i dojedź do punktu pośredniego ').
 string('reached_waypoint.ogg', 'punkt trasy został osiągnięty ').
+string('and_arrive_favorite.ogg', 'i dojedź do ulubionego miejsca ').
+string('reached_favorite.ogg', 'dotarłeś do ulubionego miejsca ').
+string('and_arrive_poi_waypoint.ogg', 'i dojedź do POI ').
+string('reached_poi.ogg', 'dotarłeś do POI ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'uwaga, ').
+string('speed_camera.ogg', 'fotoradar ').
+string('border_control.ogg', 'kontrola graniczna ').
+string('traffic_calming.ogg', 'uspokojenie ruchu ').
+string('toll_booth.ogg', 'punkt poboru opłat ').
+string('stop.ogg', 'znak stopu ').
+
 string('location_lost.ogg', 'Utracono sygnał GPS ').
 string('location_recovered.ogg', 'Odzyskano sygnał GPS').
-
 string('off_route.ogg', 'znajdujesz się poza trasą ').
+string('back_on_route.ogg', 'wróciłeś na trasę').
 string('exceed_limit.ogg', 'przekraczasz dozwoloną prędkość ').
 
 % STREET NAME GRAMMAR
+string('onto.ogg', 'na ').
 string('on.ogg', 'w ').
+string('to.ogg', 'do ').
+string('to2.ogg', 'w kierunku ').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'metrów ').
@@ -132,9 +147,24 @@ turn('right_keep', ['right_keep.ogg']).
 bear_left(_Street) -- ['left_keep.ogg'].
 bear_right(_Street) -- ['right_keep.ogg'].
 
-on_street('', []).
-on_street(Street, ['on.ogg', Street]) :- tts.
-on_street(_Street, []) :- not(tts).
+% cut_part_street(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
+cut_part_street(voice(['', '', Dest], _), Dest).
+% cut_part_street(voice(['', Name, _], _), Name). % not necessary
+cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
+
+turn_street('', []).
+turn_street(voice(['','',''],_), []).
+turn_street(Street, ['to2.ogg', SName]) :- tts, Street = voice(['', '', D], _), cut_part_street(Street, SName).
+turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), cut_part_street(Street, SName).
+turn_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), cut_part_street(Street, SName).
+turn_street(_Street, []) :- not(tts).
+
+follow_street('', []).
+follow_street(voice(['','',''],_), []).
+follow_street(Street, ['to.ogg', SName]) :- tts, Street = voice(['', '', D], _), cut_part_street(Street, SName).
+follow_street(Street, ['to.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), cut_part_street(Street, SName).
+follow_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), cut_part_street(Street, SName).
+follow_street(_Street, []) :- not(tts).
 
 prepare_turn(Turn, Dist, Street) -- ['prepare.ogg', M, 'after.ogg', D, ' '| Sgen] :- distance(Dist) -- D, turn(Turn, M), on_street(Street, Sgen).
 turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), on_street(Street, Sgen).
@@ -160,6 +190,10 @@ and_arrive_intermediate(D) -- ['and_arrive_intermediate.ogg'|Ds] :- name(D, Ds).
 reached_intermediate(D) -- ['reached_intermediate.ogg'|Ds] :- name(D, Ds).
 and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
+and_arrive_favorite(D) -- ['and_arrive_favorite.ogg'|Ds] :- name(D, Ds).
+reached_favorite(D) -- ['reached_favorite.ogg'|Ds] :- name(D, Ds).
+and_arrive_poi(D) -- ['and_arrive_poi.ogg'|Ds] :- name(D, Ds).
+reached_poi(D) -- ['reached_poi.ogg'|Ds] :- name(D, Ds).
 
 route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
@@ -170,6 +204,18 @@ location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
 attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
+
+
+% TRAFFIC WARNINGS
+warning('SPEED_CAMERA', 'speed_camera.ogg').
+warning('SPEED_LIMIT', '').
+warning('BORDER_CONTROL', 'border_control.ogg').
+warning('TRAFFIC_CALMING', 'traffic_calming.ogg').
+warning('TOLL_BOOTH', 'toll_booth.ogg').
+warning('STOP', 'stop.ogg').
+warning('MAXIMUM', '').
+warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'MAXIMUM').
+
 
 
 %% 
@@ -190,7 +236,6 @@ nth(14, '14th.ogg').
 nth(15, '15th.ogg').
 nth(16, '16th.ogg').
 nth(17, '17th.ogg').
-
 
 %% command main method
 %% if you are familar with Prolog you can input specific to the whole mechanism,
