@@ -2219,11 +2219,11 @@
 
 		<!-- type not supported -->
 		<!-- <filter minzoom="16" textSize="13" textWrapWidth="15" tag="landuse" type="point"/> -->
-		<case minzoom="11" tag="osmand" value="file_waypoint">
+
+		<case minzoom="11" tag="osmand" value="file_waypoint"> <!-- for new OpenGL engine -->
 			<case additional="file_has_waypoints=true" textWrapWidth="25" textHaloRadius=":1" textColor="#000000" textHaloColor="#ffc8c85f0000" textOrder="1">
-				<case maxzoom="12" textSize="10"/>
-				<case maxzoom="14" textSize="11"/>
-				<case minzoom="15" textSize="12"/>
+				<case maxzoom="12" textSize="11"/>
+				<case minzoom="14" textSize="12"/>
 				<apply_if nightMode="true" textColor="#dddddd" textHaloColor="#5f0000"/>
 			</case>
 		</case>
@@ -2232,8 +2232,8 @@
 
 	<!-- PRIORITY Input to filter : zoom [minzoom, maxzoom], tag, value -->
 	<point>
-		<case minzoom="5" tag="osmand" value="file_waypoint">
-			<case additional="file_has_waypoints=true" icon="natural_volcano_framed_big" iconVisibleSize="3"/>
+		<case minzoom="5" tag="osmand" value="file_waypoint"> <!-- for new OpenGL engine -->
+			<case additional="file_has_waypoints=true" icon="osmand_waypoint" shield="waypoint_shield" iconVisibleSize="5"/>
 		</case>
 		<!-- Car profile priority icons -->
 		<switch appMode="car" iconOrder="80">
@@ -3793,18 +3793,19 @@
 
 	<line>
 
-		<case tag="osmand" value="file_trackline">
-			<case additional="file_has_trackpoints=true">
-				<case additional="file_has_routepoints=true"/> <!-- do nothing -->
-				<case color="#77ff0000" strokeWidth="7:6"/>
+		<switch minzoom="2"> <!-- for new OpenGL engine -->
+			<case tag="osmand" value="file_trackline" additional="file_has_routepoints=false" color="#77ff0000"/>
+			<case tag="osmand" value="file_routeline" color="#77ff0000">
+				<case maxzoom="4" pathEffect="2_2"/>
+				<case maxzoom="6" pathEffect="3_2"/>
+				<case maxzoom="9" pathEffect="5_4"/>
+				<case minzoom="10" pathEffect="6_5"/>
 			</case>
-		</case>
-
-		<case tag="osmand" value="file_routeline">
-			<case additional="file_has_routepoints=true">
-				<case additional="file_has_trackpoints=false" color="#77ff0000" strokeWidth="7:6" pathEffect="6_5"/>
-			</case>
-		</case>
+			<apply_if minzoom="2" maxzoom="4" strokeWidth="1.5:1.5"/>
+			<apply_if minzoom="5" maxzoom="6" strokeWidth="3:3"/>
+			<apply_if minzoom="7" maxzoom="9" strokeWidth="5:5"/>
+			<apply_if minzoom="10" strokeWidth="7:6"/>
+		</switch>
 
 		<case minzoom="1" tag="natural" value="coastline_broken" color="#111111" strokeWidth=":1"/>
 		<case minzoom="5" tag="natural" value="coastline_line" color="#cc999999" strokeWidth=":1"/>
