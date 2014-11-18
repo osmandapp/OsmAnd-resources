@@ -571,8 +571,14 @@
 	<renderingConstant name="surfaceIceColor" value="#9feeef"/>
 	<renderingConstant name="surfaceSaltColor" value="#7eded8"/>
 
-	<renderingConstant name="surfaceAsphaltColor" value="#ada7f8"/>
-	<renderingConstant name="surfaceLooselyPavedColor" value="#a7cdf8"/>
+	<renderingAttribute name="surfaceAsphaltColor">
+		<case nightMode="true" attrColorValue="#ada7f8"/>
+		<case attrColorValue="#ad8cf8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceLooselyPavedColor">
+		<case nightMode="true" attrColorValue="#d1d1d1"/>
+		<case attrColorValue="#ababab"/>
+	</renderingAttribute>
 	<renderingConstant name="surfacePavedColor" value="#a7cdf8"/>
 
 	<renderingConstant name="surfaceGradeExcellentColor" value="#00d8ff"/>
@@ -726,22 +732,36 @@
 	<renderingConstant name="publicTransportModeStopTextColorNight" value="#b2eaff"/>
 	<renderingConstant name="publicTransportModeStopTextHaloColorNight" value="#770579a4"/>
 
-	<renderingConstant name="accessPrivateColor" value="#feb3b3"/>
-	<renderingConstant name="accessPrivateColorNight" value="#e78d8d"/>
-	<renderingConstant name="accessDestinationColor" value="#8db8d3"/>
-	<renderingConstant name="accessDestinationColorNight" value="#8db8d3"/>
-	<renderingConstant name="accessPermissiveColor" value="#9afb87"/>
-	<renderingConstant name="accessPermissiveColorNight" value="#88d779"/>
+	<renderingAttribute name="accessPrivateColor">
+		<case nightMode="true" attrColorValue="#e78d8d"/>
+		<case attrColorValue="#feb3b3"/>
+	</renderingAttribute>
+	<renderingAttribute name="accessDestinationColor">
+		<case nightMode="true" attrColorValue="#8db8d3"/>
+		<case attrColorValue="#8db8d3"/>
+	</renderingAttribute>
+	<renderingAttribute name="accessPermissiveColor">
+		<case nightMode="true" attrColorValue="#88d779"/>
+		<case attrColorValue="#9afb87"/>
+	</renderingAttribute>
 	<renderingConstant name="accessPermissiveColorNight2" value="#33512e"/>
-	<renderingConstant name="accessAgriculturalColor" value="#8fc763"/>
-	<renderingConstant name="accessAgriculturalColorNight" value="#7dad56"/>
-	<renderingConstant name="accessForestryColor" value="#8fc763"/>
-	<renderingConstant name="accessForestryColorNight" value="#7dad56"/>
-	<renderingConstant name="accessCustomersColor" value="#dfb3e5"/>
-	<renderingConstant name="accessCustomersColorNight" value="#b671be"/>
+	<renderingAttribute name="accessAgriculturalColor">
+		<case nightMode="true" attrColorValue="#7dad56"/>
+		<case attrColorValue="#8fc763"/>
+	</renderingAttribute>
+	<renderingAttribute name="accessForestryColor">
+		<case nightMode="true" attrColorValue="#7dad56"/>
+		<case attrColorValue="#8fc763"/>
+	</renderingAttribute>
+	<renderingAttribute name="accessCustomersColor">
+		<case nightMode="true" attrColorValue="#b671be"/>
+		<case attrColorValue="#dfb3e5"/>
+	</renderingAttribute>
 	<renderingConstant name="accessCustomersColorNight2" value="#5b385f"/>
-	<renderingConstant name="accessDeliveryColor" value="#b2aeb7"/>
-	<renderingConstant name="accessDeliveryColorNight" value="#9383a5"/>
+	<renderingAttribute name="accessDeliveryColor">
+		<case nightMode="true" attrColorValue="#9383a5"/>
+		<case attrColorValue="#b2aeb7"/>
+	</renderingAttribute>
 
 	<renderingConstant name="null" value="#00000000"/>
 
@@ -3499,9 +3519,7 @@
 					<switch minzoom="16" showAccess="true">
 						<case additional="access=private"/>
 						<case additional="access=no"/>
-						<apply color_2="$accessPrivateColor" strokeWidth_2="3" pathEffect_2="1_6" cap_2="ROUND">
-							<apply_if nightMode="true" color_2="$accessPrivateColorNight"/>
-						</apply>
+						<apply color_2="$accessPrivateColor" strokeWidth_2="3" pathEffect_2="1_6" cap_2="ROUND"/>
 					</switch>
 				</apply>
 			</switch>
@@ -4298,33 +4316,17 @@
 			<apply>
 				<switch showAccess="true" minzoom="15" cap_3="ROUND">
 					<switch>
-						<case additional="access=private" color_3="$accessPrivateColor">
-							<apply_if nightMode="true" color_3="$accessPrivateColorNight"/>
-						</case>
-						<case additional="access=no" color_3="$accessPrivateColor">
-							<apply_if nightMode="true" color_3="$accessPrivateColorNight"/>
-						</case>
+						<case additional="access=private" color_3="$accessPrivateColor"/>
+						<case additional="access=no" color_3="$accessPrivateColor"/>
 						<apply_if appMode="bicycle" additional="bicycle=yes" color_3="$null"/>
 						<apply_if appMode="pedestrian" additional="foot=yes" color_3="$null"/>
 					</switch>
-					<case additional="access=destination" color_3="$accessDestinationColor">
-						<apply_if nightMode="true" color_3="$accessDestinationColorNight"/>
-					</case>
-					<case additional="access=permissive" color_3="$accessPermissiveColor">
-						<apply_if nightMode="true" color_3="$accessPermissiveColorNight"/>
-					</case>
-					<case additional="access=agricultural" color_3="$accessAgriculturalColor">
-						<apply_if nightMode="true" color_3="$accessAgriculturalColorNight"/>
-					</case>
-					<case additional="access=forestry" color_3="$accessForestryColor">
-						<apply_if nightMode="true" color_3="$accessForestryColorNight"/>
-					</case>
-					<case additional="access=customers" color_3="$accessCustomersColor">
-						<apply_if nightMode="true" color_3="$accessCustomersColorNight"/>
-					</case>
-					<case additional="access=delivery" color_3="$accessDeliveryColor">
-						<apply_if nightMode="true" color_3="$accessDeliveryColorNight"/>
-					</case>
+					<case additional="access=destination" color_3="$accessDestinationColor"/>
+					<case additional="access=permissive" color_3="$accessPermissiveColor"/>
+					<case additional="access=agricultural" color_3="$accessAgriculturalColor"/>
+					<case additional="access=forestry" color_3="$accessForestryColor"/>
+					<case additional="access=customers" color_3="$accessCustomersColor"/>
+					<case additional="access=delivery" color_3="$accessDeliveryColor"/>
 					<apply color_2="$null"/>
 					<apply_if minzoom="15" maxzoom="15" pathEffect_3="1_8"/>
 					<apply_if minzoom="16" maxzoom="16" pathEffect_3="1_11"/>
