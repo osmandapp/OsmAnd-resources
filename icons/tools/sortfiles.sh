@@ -117,6 +117,8 @@ mycp highway steps transport_highway_steps.png
 mycp traffic_calming bump transport_speedbump.png
 mycp highway speed_camera transport_speedcamera.png
 mycp highway milestone functional-icons_milestone.png
+mycp oneway blue functional-icons_oneway_blue.png
+mycp oneway reverse_blue functional-icons_oneway_reverse_blue.png
 
 mygroup fuel transport_fuel.png
 mycp amenity fuel transport_fuel.png
