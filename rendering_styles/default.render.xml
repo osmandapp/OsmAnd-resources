@@ -1631,17 +1631,17 @@
 		<!-- county not really useful here: filter minzoom="9" textSize="13" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="county" nameTag=""/ -->
 
 		<switch minzoom="3" textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="#bbf7ebf7" textBold="true">
-			<case tag="osmand_place_basemap" value="city" nameTag="">
+			<case tag="osmand_place_basemap" value="city" nameTag="" intersectionSizeFactor="1.7">
 				<case additional="capital=yes">
 					<case maxzoom="5" textSize="14" textOrder="4"/>
 					<case maxzoom="7" textSize="20" textOrder="2"/>
 					<case maxzoom="12" textSize="20" textOrder="2"/>
 				</case>
-				<case maxzoom="5" textSize="12" textDy="3" textOrder="5"/>
-				<case maxzoom="7" textSize="17" textDy="1" textOrder="3"/>
-				<case maxzoom="12" textSize="17" textDy="1" textOrder="4"/>
+				<case maxzoom="5" textSize="12" textOrder="5"/>
+				<case maxzoom="7" textSize="17" textOrder="3"/>
+				<case maxzoom="12" textSize="17" textOrder="4"/>
 			</case>
-			<case minzoom="6" tag="place" value="city" textDy="1" nameTag="">
+			<case minzoom="6" tag="place" value="city" nameTag="" intersectionSizeFactor="1.7">
 				<case additional="capital=yes">
 					<case maxzoom="7" textSize="20" textOrder="2"/>
 					<case minzoom="8" textSize="22" textOrder="3"/>
@@ -1649,8 +1649,8 @@
 				<case maxzoom="7" textSize="17" textOrder="3"/>
 				<case minzoom="8" textSize="20" textOrder="4"/>
 			</case>
-			<case minzoom="8" tag="place" value="town" textSize="16" textDy="1" textOrder="5" nameTag=""/>
-			<case minzoom="11" tag="place" value="village" textSize="14" textDy="1" textOrder="10" nameTag=""/>
+			<case minzoom="8" tag="place" value="town" textSize="16" textOrder="5" nameTag=""/>
+			<case minzoom="11" tag="place" value="village" textSize="14" textOrder="10" nameTag=""/>
 			<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77444444"/>
 		</switch>
 
@@ -1680,17 +1680,21 @@
 
 		<switch textColor="#654321" textDy="7" textWrapWidth="25" textHaloColor="#aaf1eae4" textHaloRadius="$textHaloRadiusDay" textItalic="true">
 			<switch>
-				<case minzoom="12" maxzoom="13" tag="natural" value="peak" nameTag="ele" textSize="12" textOrder="10"/>
-				<case maxzoom="14" textSize="12" tag="natural" value="peak" nameTag="" nameTag2="ele" textOrder="10"/>
-				<case maxzoom="16" textSize="13" tag="natural" value="peak" nameTag="" nameTag2="ele" textOrder="15"/>
-				<case minzoom="17" textSize="16" tag="natural" value="peak" nameTag="" nameTag2="ele" textOrder="15"/>
+				<case minzoom="12" tag="natural" value="peak">
+					<case maxzoom="13" nameTag="ele" textSize="11" textOrder="10"/>
+					<case maxzoom="14" nameTag="" nameTag2="ele" textSize="12" textOrder="10"/>
+					<case maxzoom="16" nameTag="" nameTag2="ele" textSize="13" textOrder="15"/>
+					<case minzoom="17" nameTag="" nameTag2="ele" textSize="16" textOrder="15"/>
+				</case>
 				<case minzoom="16" textSize="12" tag="natural" value="cave_entrance" textOrder="15"/>
 				<case minzoom="14" textSize="12" tag="natural" value="ridge" textOnPath="true" textDy="0"/>
 				<case minzoom="15" textSize="12" tag="natural" value="saddle" nameTag="" nameTag2="ele"/>
 				<case minzoom="13" textSize="14" tag="natural" value="crater" textColor="#4e0d0d" textDy="-4"/>
 				<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffcc9b" textHaloColor="#774d2803"/>
 			</switch>
-			<case minzoom="13" textSize="14" tag="natural" value="volcano" textOrder="3" textHaloColor="#99ffd6c0">
+			<case minzoom="11" tag="natural" value="volcano" textOrder="3" textHaloColor="#99ffd6c0">
+				<case maxzoom="12" textSize="12"/>
+				<case minzoom="13" textSize="13"/>
 				<apply_if nightMode="true" textColor="#ffcc9b" textHaloColor="#77772105"/>
 			</case>
 		</switch>
@@ -1702,7 +1706,7 @@
 		<switch textColor="$waterTextColorDay" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$waterTextHaloColorDay" textSize="12" textItalic="true">
 			<case minzoom="3" tag="place" value="ocean" textWrapWidth="20" textOrder="3"/>
 			<case minzoom="5" tag="place" value="sea" textWrapWidth="20" textOrder="5"/>
-			<case minzoom="6" tag="natural" value="water" textWrapWidth="17" textOrder="10"/>
+			<case minzoom="6" tag="natural" value="water" textWrapWidth="17" textOrder="10" intersectionSizeFactor="1.7"/>
 			<case minzoom="8" tag="natural" value="bay" textWrapWidth="17" textOrder="10"/>
 			<case minzoom="8" tag="natural" value="strait" textOnPath="true" textWrapWidth="25" textOrder="8"/>
 			<case minzoom="11" tag="natural" value="fjord" textOnPath="true" textWrapWidth="25" textOrder="10"/>
@@ -2457,6 +2461,7 @@
 
 		<!-- Natural -->
 		<case minzoom="11" tag="natural" value="peak" iconOrder="65">
+			<case maxzoom="11" icon="natural_peak_framed" iconVisibleSize="25" intersectionSizeFactor="2"/>
 			<case maxzoom="14" icon="natural_peak_framed"/>
 			<case minzoom="15" icon="natural_peak_framed_big"/>
 			<apply_if nightMode="true">
@@ -2464,7 +2469,7 @@
 				<case minzoom="15" icon="natural_peak_night_big"/>
 			</apply_if>
 		</case>
-		<case minzoom="11" tag="natural" value="volcano" iconOrder="50">
+		<case minzoom="10" tag="natural" value="volcano" iconOrder="50">
 			<case maxzoom="14" icon="natural_volcano_framed"/>
 			<case minzoom="15" icon="natural_volcano_framed_big"/>
 			<apply_if nightMode="true">
@@ -2523,7 +2528,7 @@
 					<apply_if nightMode="true" icon="place_city_night"/>
 				</case>
 			</apply>
-			<apply_if additional="capital=yes" iconVisibleSize="0" iconOrder="99">
+			<apply_if additional="capital=yes" iconVisibleSize="1" iconOrder="99">
 				<case minzoom="4" maxzoom="5" icon="place_capital_small">
 					<apply_if nightMode="true" icon="place_capital_small_night"/>
 				</case>
