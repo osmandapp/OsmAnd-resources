@@ -2084,6 +2084,7 @@
 			<case minzoom="17" tag="amenity" value="fountain"/>
 			<case minzoom="17" tag="amenity" value="telephone"/>
 			<case minzoom="17" tag="amenity" value="car_wash"/>
+			<case minzoom="18" tag="amenity" value="smoking_area" textSize="11"/>
 			<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#7774734f"/>
 		</switch>
 
@@ -3027,6 +3028,9 @@
 		<case minzoom="17" tag="amenity" value="bench" icon="amenity_bench"/>
 		<case minzoom="17" tag="amenity" value="recycling" icon="amenity_recycling" shield="recycling_shield">
 			<apply_if nightMode="true" shield=""/>
+		</case>
+		<case minzoom="17" tag="amenity" value="smoking_area" icon="amenity_smoking_area" shield="white_gray_square_shield">
+			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
 		</case>
 		<case minzoom="16" tag="amenity" value="fountain" icon="amenity_fountain" shield="fountain_shield">
 			<apply_if nightMode="true" icon="amenity_fountain" shield=""/>
@@ -4003,6 +4007,10 @@
 				<apply_if minzoom="17" maxzoom="17" strokeWidth_2="5:5" strokeWidth_3="5:5"/>
 				<apply_if minzoom="18" maxzoom="18" strokeWidth_2="6:6" strokeWidth_3="6:6"/>
 				<apply_if minzoom="19" strokeWidth_2="7:7" strokeWidth_3="7:7"/>
+				<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
+					<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
+					<apply additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
+				</apply_if>
 			</switch>
 			<switch>
 				<switch>
@@ -4148,6 +4156,10 @@
 				<apply_if minzoom="18" maxzoom="18" strokeWidth_2="4.9:4.9" strokeWidth_3="4.9:4.9"/>
 				<apply_if minzoom="19" strokeWidth_2="6:6" strokeWidth_3="6:6"/>
 				<apply_if appMode="car" tag="highway" value="pedestrian" strokeWidth_2="" strokeWidth_3=""/>
+				<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
+					<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
+					<apply additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
+				</apply_if>
 			</switch>
 			<!-- Next segment: Highways without grade distinction (cycleway, bridleway, black path): pathEffect 4_2. Base setting for highways with possible grade distinction but none specified (track, red footway): 5_5 -->
 			<switch>
@@ -4311,6 +4323,10 @@
 						</case>
 					</switch>
 				</apply_if>
+				<apply_if minzoom="17"> <!-- for new OpenGL engine only -->
+					<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
+					<apply additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
+				</apply_if>
 			</switch>
 			<apply_if showSurfaceGrade="true" minzoom="14" cap_2="ROUND">
 				<case additional="smoothness=excellent" color_2="$surfaceGradeExcellentColor"/>
@@ -4378,8 +4394,6 @@
 					<apply_if minzoom="19" pathEffect_3="7_23"/>
 				</switch>
 			</apply>
-			<apply additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="50"/> <!-- for new OpenGL engine only -->
-			<apply additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="50"/> <!-- for new OpenGL engine only -->
 		</switch>
 
 		<switch color="#0000ff">
@@ -4425,6 +4439,10 @@
 			<apply color="$racewayColorDay" cap="ROUND">
 				<apply_if nightMode="true" color="$racewayColorNight"/>
 			</apply>
+			<apply_if minzoom="17"> <!-- for new OpenGL engine only -->
+				<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
+				<apply additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
+			</apply_if>
 		</case>
 
 		<switch tag="contour" value="elevation">

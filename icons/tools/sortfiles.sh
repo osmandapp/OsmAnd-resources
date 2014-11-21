@@ -360,6 +360,7 @@ mycp religion buddhist place_of_worship_buddhist3.png
 mycp religion hindu place_of_worship_hindu3.png
 mycp religion shinto place_of_worship_shinto3.png
 mycp religion taoist place_of_worship_taoist.png
+mycp amenity smoking_area amenity_smoking_area.png
 #! mycp amenity grave_yard place_of_worship_christian3.png  #already defined as icon in the shader section
 
 mygroup finance money_bank2.png
