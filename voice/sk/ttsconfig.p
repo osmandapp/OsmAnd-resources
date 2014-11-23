@@ -100,8 +100,8 @@ string('reached_waypoint.ogg', 'dorazili ste k Vášmu prechodnému bodu GPX').
 
 % OTHER PROMPTS
 string('attention.ogg', 'pozor, ').
-string('location_lost.ogg', 'strata satelytného signálu ').
-string('location_recovered.ogg', 'g p s signal restored ').
+string('location_lost.ogg', 'strata g p s signálu ').
+string('location_recovered.ogg', 'obnovenie g p s signálu').
 string('off_route.ogg', 'odchýlili ste sa od trasy').
 string('exceed_limit.ogg', 'prekročili ste maximálnu povolenú rýchlosť').
 
@@ -117,7 +117,7 @@ string('around.ogg', 'približne ').
 string('kilometers1.ogg', 'kilometre').
 string('kilometers2.ogg', 'kilometrov ').
 
-string('feet.ogg', 'stop ').
+string('feet.ogg', 'stôp ').
 string('1_tenth_of_a_mile.ogg', 'desatiny míle').
 string('tenths_of_a_mile.ogg', 'desatiny míle').
 string('around_1_mile.ogg', 'o jednej míľu').
