@@ -513,9 +513,25 @@
 	<renderingConstant name="attractionStrokeWidth" value="0.25:0.25"/>
 	<renderingConstant name="attractionStrokeWidth2" value="0"/>
 
-	<renderingConstant name="waterwayColorDay" value="#acd8f3"/>
+	<renderingAttribute name="waterwayColorDay">
+		<switch>
+			<case publicTransportMode="true"/>
+			<case tramTrainRoutes="true"/>
+			<case subwayMode="true"/>
+			<apply attrColorValue="#b5d0d0"/>
+		</switch>
+		<case attrColorValue="#acd8f3"/>
+	</renderingAttribute>
 	<renderingConstant name="waterwayStrokeColorDay" value="#86c0e4"/>
-	<renderingConstant name="waterwayColorNight" value="#330099"/>
+	<renderingAttribute name="waterwayColorNight">
+		<switch>
+			<case publicTransportMode="true"/>
+			<case tramTrainRoutes="true"/>
+			<case subwayMode="true"/>
+			<apply attrColorValue="#2a3d50"/>
+		</switch>
+		<case attrColorValue="#330099"/>
+	</renderingAttribute>
 	<renderingAttribute name="waterwayStrokeColorNight">
 		<switch>
 			<case publicTransportMode="true"/>
@@ -525,8 +541,6 @@
 		</switch>
 		<case attrColorValue="#511db8"/>
 	</renderingAttribute>
-	<renderingConstant name="waterwayDesaturatedColorDay" value="#b5d0d0"/>
-	<renderingConstant name="waterwayDesaturatedColorNight" value="#2a3d50"/>
 
 	<renderingConstant name="builtUpAreasColorNight" value="#3b3b3b"/>
 	<renderingConstant name="parkingColorDay" value="#f6eeb7"/>
@@ -3465,16 +3479,6 @@
 				</switch>
 				<apply color="$waterwayColorDay" strokeWidth_2="1:" color_2="$waterwayStrokeColorDay">
 					<apply_if nightMode="true" color="$waterwayColorNight" color_2="$waterwayStrokeColorNight"/>
-					<apply>
-						<switch>
-							<case publicTransportMode="true"/>
-							<case tramTrainRoutes="true"/>
-							<case subwayMode="true"/>
-							<apply color="$waterwayDesaturatedColorDay">
-								<apply_if nightMode="true" color="$waterwayDesaturatedColorNight"/>
-							</apply>
-						</switch>
-					</apply>
 				</apply>
 				<apply_if additional="intermittent=yes" strokeWidth_2="1:" color_2="#7479ec" pathEffect_2="7_5"/>
 			</switch>
@@ -4641,16 +4645,6 @@
 			<!-- Waterway color -->
 			<apply color="$waterwayColorDay" color_2="#ffffff">
 				<apply_if nightMode="true" color="$waterwayColorNight" color_2="#7340D9"/>
-				<apply>
-					<switch>
-						<case publicTransportMode="true"/>
-						<case tramTrainRoutes="true"/>
-						<case subwayMode="true"/>
-						<apply color="$waterwayDesaturatedColorDay">
-							<apply_if nightMode="true" color="$waterwayDesaturatedColorNight"/>
-						</apply>
-					</switch>
-				</apply>
 			</apply>
 		</switch>
 
