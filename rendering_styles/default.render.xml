@@ -514,7 +514,17 @@
 	<renderingConstant name="attractionStrokeWidth2" value="0"/>
 
 	<renderingConstant name="waterwayColorDay" value="#acd8f3"/>
+	<renderingConstant name="waterwayStrokeColorDay" value="#86c0e4"/>
 	<renderingConstant name="waterwayColorNight" value="#330099"/>
+	<renderingAttribute name="waterwayStrokeColorNight">
+		<switch>
+			<case publicTransportMode="true"/>
+			<case tramTrainRoutes="true"/>
+			<case subwayMode="true"/>
+			<apply attrColorValue="#2a3d50"/>
+		</switch>
+		<case attrColorValue="#511db8"/>
+	</renderingAttribute>
 	<renderingConstant name="waterwayDesaturatedColorDay" value="#b5d0d0"/>
 	<renderingConstant name="waterwayDesaturatedColorNight" value="#2a3d50"/>
 
@@ -3453,8 +3463,8 @@
 					<case minzoom="16" tag="amenity" value="fountain"/>
 					<apply color_2="#7479ec" strokeWidth_2="1:"/>
 				</switch>
-				<apply color="$waterwayColorDay">
-					<apply_if nightMode="true" color="$waterwayColorNight"/>
+				<apply color="$waterwayColorDay" strokeWidth_2="1:" color_2="$waterwayStrokeColorDay">
+					<apply_if nightMode="true" color="$waterwayColorNight" color_2="$waterwayStrokeColorNight"/>
 					<apply>
 						<switch>
 							<case publicTransportMode="true"/>
