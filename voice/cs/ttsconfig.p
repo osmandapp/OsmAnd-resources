@@ -145,18 +145,18 @@ string('tenths_of_a_mile_accusative.ogg', 'tenths of a mile').
 string('around_1_mile_accusative.ogg', 'about one mile ').
 string('miles_accusative.ogg', 'miles ').
 
-string('feet_locative.ogg', 'feet ').
-string('1_tenth_of_a_mile_locative.ogg', 'one tenth of a mile').
-string('tenths_of_a_mile_locative.ogg', 'tenths of a mile').
-string('around_1_mile_locative.ogg', 'about one mile ').
-string('miles_locative.ogg', 'miles ').
+string('feet_locative.ogg', 'stopách ').
+string('1_tenth_of_a_mile_locative.ogg', 'desetině míle').
+string('tenths_of_a_mile_locative.ogg', 'desetinách míle').
+string('around_1_mile_locative.ogg', 'přibližně jedné míli ').
+string('miles_locative.ogg', 'mílích ').
 
-string('yards_accusative.ogg', 'yards ').
+string('yards_accusative.ogg', 'yardy ').
 
-string('yards_locative.ogg', 'yards ').
+string('yards_locative.ogg', 'yardech ').
 
 % TIME SUPPORT
-string('time.ogg', 'doba potřebná ').
+string('time.ogg', 'potřebná doba ').
 string('1_hour.ogg', 'jedna hodina ').
 string('hours.ogg', 'hodiny ').
 string('less_a_minute.ogg', 'méně než jedna minuta ').
