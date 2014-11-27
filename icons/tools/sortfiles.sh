@@ -298,6 +298,7 @@ mycp historic ship tourist_ship.png
 mycp historic wreck tourist_wreck.png
 mycp historic wayside_cross tourist_wayside_cross.png
 mycp historic wayside_shrine tourist_wayside_shrine.png
+mycp geologic palaeontological_site tourist_palaeontological_site.png
 
 
 ## Sport
