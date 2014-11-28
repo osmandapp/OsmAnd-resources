@@ -1,7 +1,10 @@
-﻿% for turbo-prolog
+﻿% conditional compilation of operation -- creation (for portability betwean turbo and swi prolog)
+:- if(not(catch(op(500, xfy,'--'),_,fail))).
 :- op('--', xfy, 500).
-% for swi-prolog
-:- op(500, xfy,'--').
+:- endif.
+
+% suppresing warnings that string and -- are not defined on consecutive lines.
+:- discontiguous(string/2,(--)/2).
 
 version(102).
 tts :- version(X), X > 99.
