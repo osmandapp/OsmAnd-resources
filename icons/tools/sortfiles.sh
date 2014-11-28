@@ -229,7 +229,7 @@ mycp barrier lift_gate barrier_lift_gate.png
 mycp barrier swing_gate barrier_swing_gate.png
 mycp barrier bump_gate barrier_bump_gate.png
 mycp barrier chain barrier_chain.png
-mycp barrier sally_port barrier_bollard.png
+mycp barrier sally_port barrier_sally_port.png
 mycp barrier bollard barrier_bollard.png
 mycp barrier block barrier_blocks.png
 mycp barrier kissing_gate barrier_kissing_gate.png
