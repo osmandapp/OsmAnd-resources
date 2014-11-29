@@ -54,6 +54,7 @@ mycp natural volcano_big functional-icons_volcano_big.png
 mycp natural cave_entrance poi_cave.png
 mycp natural spring water_spring.png  #scale 0.375
 mycp natural hot_spring water_hot_spring.png  #scale 0.375
+mycp natural geyser water_geyser.png  #scale 0.375
 mycp natural tree functional-icons_tree.png  #scale 0.25
 mycp natural tree_broadleaved functional-icons_tree_broadleaved.png
 mycp natural tree_needleleaved functional-icons_tree_needleleaved.png
