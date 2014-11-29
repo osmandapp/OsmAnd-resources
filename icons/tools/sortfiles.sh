@@ -337,6 +337,7 @@ mycp leisure ice_rink sport_iceskating.png
 mycp leisure fishing sport_fishing.png  #used shop=fish turned by 45 degrees for now
 mycp leisure bird_hide poi_tower_lookout.png
 mycp leisure miniature_golf sport_miniature_golf.png
+mycp leisure beach_resort tourist_beach_resort.png
 
 mygroup geocache poi_point_of_interest.png
 mycp geocache not_found poi_point_of_interest.png
