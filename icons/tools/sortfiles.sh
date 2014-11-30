@@ -63,6 +63,7 @@ mycp natural tree_palm functional-icons_tree_palm.png
 mycp natural tree_cypress functional-icons_tree_cypress.png
 mycp waterway waterfall water_waterfall.png  #scale 0.375
 mycp natural stone functional-icons_stone.png  #scale 0.375
+mycp waterway rapids barrier_rapids.png  #scale 0.375
 
 
 ## Location dots
