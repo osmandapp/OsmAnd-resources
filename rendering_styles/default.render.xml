@@ -1642,18 +1642,18 @@
 		</case>
 
 		<switch minzoom="5" textSize="13" textColor="#9d6c9d" textWrapWidth="20">
-			<case maxzoom="10" tag="place" value="state">
-				<apply nameTag="ref" textOrder="3"/>
-				<apply_if minzoom="6" nameTag=""/>
-			</case>
-			<case tag="place" value="region">
-				<apply nameTag="ref" textOrder="2"/>
-				<apply_if minzoom="6" nameTag=""/>
-			</case>
-			<case tag="place" value="province">
-				<apply nameTag="ref" textOrder="2"/>
-				<apply_if minzoom="6" nameTag=""/>
-			</case>
+			<switch maxzoom="10" tag="place" value="state">
+				<case maxzoom="6" nameTag="ref" textOrder="3"/>
+				<case minzoom="7" nameTag=""/>
+			</switch>
+			<switch tag="place" value="region">
+				<case maxzoom="6" nameTag="ref" textOrder="2"/>
+				<case minzoom="7" nameTag=""/>
+			</switch>
+			<switch tag="place" value="province">
+				<case maxzoom="6" nameTag="ref" textOrder="2"/>
+				<case minzoom="7" nameTag=""/>
+			</switch>
 			<apply_if nightMode="false" textHaloRadius="$textHaloRadiusDay" textHaloColor="#88ffffff"/>
 		</switch>
 
@@ -2585,7 +2585,7 @@
 		<switch>
 			<case tag="osmand_place_basemap" value="city"/>
 			<case tag="place" value="city"/>
-			<apply iconVisibleSize="8">
+			<apply iconVisibleSize="8" iconOrder="99">
 				<case minzoom="4" maxzoom="5" icon="place_city_small">
 					<apply_if nightMode="true" icon="place_city_small_night"/>
 				</case>
