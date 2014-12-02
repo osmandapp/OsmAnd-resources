@@ -418,6 +418,7 @@ mycp power station_nuclear power_station_nuclear.png
 mycp power station_solar power_station_solar.png
 mycp power station_wind power_station_wind.png
 mycp power station_water power_station_water2.png
+mycp power station_geothermal power_station_geothermal.png
 mycp man_made chimney poi_chimney.png
 mycp tower_type communication functional-icons_tower_communications2.png
 mycp tower_type communication_night functional-icons_tower_communications2_night.png
