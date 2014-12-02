@@ -573,18 +573,18 @@
 			</case>
 
 			<switch minzoom="5" textSize="13" textColor="#9d6c9d" textWrapWidth="20">
-				<case maxzoom="10" tag="place" value="state">
-					<apply nameTag="ref" textOrder="3"/>
-					<apply_if minzoom="6" nameTag=""/>
-				</case>
-				<case tag="place" value="region">
-					<apply nameTag="ref" textOrder="2"/>
-					<apply_if minzoom="6" nameTag=""/>
-				</case>
-				<case tag="place" value="province">
-					<apply nameTag="ref" textOrder="2"/>
-					<apply_if minzoom="6" nameTag=""/>
-				</case>
+				<switch maxzoom="10" tag="place" value="state">
+					<case maxzoom="6" nameTag="ref" textOrder="3"/>
+					<case minzoom="7" nameTag=""/>
+				</switch>
+				<switch tag="place" value="region">
+					<case maxzoom="6" nameTag="ref" textOrder="2"/>
+					<case minzoom="7" nameTag=""/>
+				</switch>
+				<switch tag="place" value="province">
+					<case maxzoom="6" nameTag="ref" textOrder="2"/>
+					<case minzoom="7" nameTag=""/>
+				</switch>
 				<apply_if nightMode="true" textHaloRadius="$textHaloRadiusDay" textHaloColor="#3e2809"/>
 			</switch>
 
@@ -620,6 +620,8 @@
 
 			<group textColor="#000000" textHaloColor="#ffffff" textWrapWidth="20" textHaloRadius="2">
 				<filter minzoom="11" textSize="13" tag="place" value="hamlet" textOrder="12"/>
+				<filter minzoom="11" textSize="13" tag="place" value="allotments" textOrder="12"/>
+				<filter minzoom="11" textSize="13" tag="place" value="farm" textOrder="12"/>
 				<filter minzoom="13" textSize="13" tag="place" value="isolated_dwelling" textOrder="13"/>
 				<filter minzoom="11" textSize="11" tag="place" value="locality" textColor="#666666" textOrder="15"/>
 				<filter minzoom="11" textSize="14" tag="place" value="island" textOrder="10"/>
@@ -1415,165 +1417,175 @@
 
 		</group>
 
-		<group>
-			<filter nightMode="true" tag="highway" value="motorway" color="$motorwayRoadNightColor"/>
-			<filter tag="highway" value="motorway" color="$motorwayRoadDayColor"/>
-			<filter nightMode="true" tag="highway" value="motorway_link" color="$motorwayRoadNightColor"/>
-			<filter tag="highway" value="motorway_link" color="$motorwayRoadDayColor"/>
-			<filter nightMode="true" tag="highway" value="trunk" color="$trunkRoadNightColor"/>
-			<filter tag="highway" value="trunk" color="$trunkRoadDayColor"/>
-			<filter nightMode="true" tag="highway" value="trunk_link" color="$trunkRoadNightColor"/>
-			<filter tag="highway" value="trunk_link" color="$trunkRoadDayColor"/>
-			<filter nightMode="true" tag="highway" value="primary" color="$primaryRoadNightColor"/>
-			<filter tag="highway" value="primary" color="$primaryRoadDayColor"/>
-			<filter nightMode="true" tag="highway" value="primary_link" color="$primaryRoadNightColor"/>
-			<filter tag="highway" value="primary_link" color="$primaryRoadDayColor"/>
-			<filter nightMode="true" tag="highway" value="secondary" color="$secondaryRoadNightColor"/>
-			<filter tag="highway" value="secondary" color="$secondaryRoadDayColor"/>
-			<filter nightMode="true" tag="highway" value="secondary_link" color="$secondaryRoadNightColor"/>
-			<filter tag="highway" value="secondary_link" color="$secondaryRoadDayColor"/>
-			<groupFilter cap="ROUND">
-				<filter minzoom="16">
-					<filter maxzoom="16" strokeWidth="7:7"/>
-					<filter maxzoom="17" strokeWidth="8.5:8.5"/>
-					<filter maxzoom="18" strokeWidth="10:10"/>
-					<filter minzoom="19" strokeWidth="11.5:11.5"/>
-				</filter>
-				<groupFilter layer="-1" pathEffect="4_4" cap="BUTT"/>
-				<!-- Bridges -->
-				<groupFilter layer="1" minzoom="16" color_0="$bridgeDayColor" shadowRadius=":0" cap="SQUARE" cap_0="BUTT">
-					<filter maxzoom="16" strokeWidth_0="8.5:10"/>
-					<filter maxzoom="17" strokeWidth_0="10:11"/>
-					<filter maxzoom="18" strokeWidth_0="12.5:14.5"/>
-					<filter minzoom="19" strokeWidth_0="13.5:15.5"/>
-					<groupFilter nightMode="true" color_0="$bridgeNightColor"/>
-				</groupFilter>
-			</groupFilter>
-<!--			<groupFilter nightMode="true" hideBuildings="false" shadowRadius=":3" shadowColor="#555555"/>-->
-		</group>
-
-		<switch minzoom="10">
-			<case tag="highway" value="tertiary" color="$tertiaryRoadDayColor"/>
-			<case tag="highway" value="tertiary_link" color="$tertiaryRoadDayColor"/>
-			<apply_if cap="ROUND">
-				<case maxzoom="10" strokeWidth="1:1"/>
-				<case maxzoom="11" strokeWidth="1.2:1.2"/>
-				<case maxzoom="12" strokeWidth="1.6:1.6"/>
-				<case maxzoom="13" strokeWidth="2.2:2.2"/>
-				<case maxzoom="14" strokeWidth="3:3"/>
-				<case maxzoom="15" strokeWidth="4.5:4.5"/>
-				<case maxzoom="16" strokeWidth="5:5"/>
-				<case maxzoom="17" strokeWidth="6.5:6.5"/>
-				<case maxzoom="18" strokeWidth="9:9"/>
-				<case minzoom="19" strokeWidth="10.5:10.5"/>
-			</apply_if>
-			<apply_if layer="-1" pathEffect="4_4" cap="BUTT"/>
-			<apply_if layer="1" minzoom="14" color_0="$bridgeDayColor" cap="SQUARE" cap_0="BUTT">
-				<case maxzoom="14" strokeWidth_0="3.7:4.5"/>
-				<case maxzoom="15" strokeWidth_0="5.5:6"/>
-				<case maxzoom="16" strokeWidth_0="6.5:7"/>
-				<case maxzoom="17" strokeWidth_0="8:9"/>
-				<case maxzoom="18" strokeWidth_0="11:13"/>
-				<case minzoom="19" strokeWidth_0="12:14"/>
-				<apply_if nightMode="true" color_0="$bridgeNightColor"/>
-			</apply_if>
-<!--			<groupFilter nightMode="true" hideBuildings="false" minzoom="16" shadowRadius=":2" shadowColor="#555555"/>-->
-			<apply_if nightMode="true" color="$tertiaryRoadNightColor"/>
-		</switch>
-
 		<switch>
-			<case tag="highway" value="road"/>
-			<case tag="highway" value="unclassified"/>
-			<case tag="highway" value="residential"/>
-			<case tag="highway" value="living_street"/>
-			<apply color="$residentialRoadDayColor"/>
-			<apply cap="ROUND">
-				<apply_if moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth="2" color="$residentialRoadLowZoomDayColor2"/>
-				<apply_if minzoom="13" maxzoom="13" strokeWidth="2.5" color="$residentialRoadLowZoomDayColor2"/>
-				<apply_if nightMode="true" color="$residentialRoadLowZoomNightColor">
-					<apply_if moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth="2"/>
-					<apply_if minzoom="13" maxzoom="13" strokeWidth="2.5"/>
-				</apply_if>
-				<apply_if minzoom="14">
-					<case maxzoom="14" strokeWidth="1.7:1.7" color="$residentialRoadLowZoomDayColor2"/>
-					<case maxzoom="15" strokeWidth="2.5:2.5" color="$residentialRoadLowZoomDayColor"/>
-					<case maxzoom="16" strokeWidth="4.5:4.5"/>
-					<case maxzoom="17" strokeWidth="6:6"/>
+			<group>
+				<filter nightMode="true" tag="highway" value="motorway" color="$motorwayRoadNightColor"/>
+				<filter tag="highway" value="motorway" color="$motorwayRoadDayColor"/>
+				<filter nightMode="true" tag="highway" value="motorway_link" color="$motorwayRoadNightColor"/>
+				<filter tag="highway" value="motorway_link" color="$motorwayRoadDayColor"/>
+				<filter nightMode="true" tag="highway" value="trunk" color="$trunkRoadNightColor"/>
+				<filter tag="highway" value="trunk" color="$trunkRoadDayColor"/>
+				<filter nightMode="true" tag="highway" value="trunk_link" color="$trunkRoadNightColor"/>
+				<filter tag="highway" value="trunk_link" color="$trunkRoadDayColor"/>
+				<filter nightMode="true" tag="highway" value="primary" color="$primaryRoadNightColor"/>
+				<filter tag="highway" value="primary" color="$primaryRoadDayColor"/>
+				<filter nightMode="true" tag="highway" value="primary_link" color="$primaryRoadNightColor"/>
+				<filter tag="highway" value="primary_link" color="$primaryRoadDayColor"/>
+				<filter nightMode="true" tag="highway" value="secondary" color="$secondaryRoadNightColor"/>
+				<filter tag="highway" value="secondary" color="$secondaryRoadDayColor"/>
+				<filter nightMode="true" tag="highway" value="secondary_link" color="$secondaryRoadNightColor"/>
+				<filter tag="highway" value="secondary_link" color="$secondaryRoadDayColor"/>
+				<groupFilter cap="ROUND">
+					<filter minzoom="16">
+						<filter maxzoom="16" strokeWidth="7:7"/>
+						<filter maxzoom="17" strokeWidth="8.5:8.5"/>
+						<filter maxzoom="18" strokeWidth="10:10"/>
+						<filter minzoom="19" strokeWidth="11.5:11.5"/>
+					</filter>
+					<groupFilter layer="-1" pathEffect="4_4" cap="BUTT"/>
+					<!-- Bridges -->
+					<groupFilter layer="1" minzoom="16" color_0="$bridgeDayColor" shadowRadius=":0" cap="SQUARE" cap_0="BUTT">
+						<filter maxzoom="16" strokeWidth_0="8.5:10"/>
+						<filter maxzoom="17" strokeWidth_0="10:11"/>
+						<filter maxzoom="18" strokeWidth_0="12.5:14.5"/>
+						<filter minzoom="19" strokeWidth_0="13.5:15.5"/>
+						<groupFilter nightMode="true" color_0="$bridgeNightColor"/>
+					</groupFilter>
+				</groupFilter>
+	<!--			<groupFilter nightMode="true" hideBuildings="false" shadowRadius=":3" shadowColor="#555555"/>-->
+			</group>
+
+			<switch minzoom="10">
+				<case tag="highway" value="tertiary" color="$tertiaryRoadDayColor"/>
+				<case tag="highway" value="tertiary_link" color="$tertiaryRoadDayColor"/>
+				<apply_if cap="ROUND">
+					<case maxzoom="10" strokeWidth="1:1"/>
+					<case maxzoom="11" strokeWidth="1.2:1.2"/>
+					<case maxzoom="12" strokeWidth="1.6:1.6"/>
+					<case maxzoom="13" strokeWidth="2.2:2.2"/>
+					<case maxzoom="14" strokeWidth="3:3"/>
+					<case maxzoom="15" strokeWidth="4.5:4.5"/>
+					<case maxzoom="16" strokeWidth="5:5"/>
+					<case maxzoom="17" strokeWidth="6.5:6.5"/>
 					<case maxzoom="18" strokeWidth="9:9"/>
 					<case minzoom="19" strokeWidth="10.5:10.5"/>
-					<apply_if nightMode="true" color="$residentialRoadNightColor">
-						<apply_if minzoom="13" maxzoom="14" color="$residentialRoadLowZoomNightColor"/>
-					</apply_if>
 				</apply_if>
-			</apply>
-			<groupFilter layer="-1" pathEffect="4_4" cap="BUTT"/>
-			<groupFilter layer="1" minzoom="14" color_0="$bridgeDayColor" cap="SQUARE" cap_0="BUTT">
-				<filter maxzoom="14" strokeWidth_0="2.5:3"/>
-				<filter maxzoom="15" strokeWidth_0="3.5:4"/>
-				<filter maxzoom="16" strokeWidth_0="5:7"/>
-				<filter maxzoom="17" strokeWidth_0="7:9"/>
-				<filter maxzoom="18" strokeWidth_0="10:13"/>
-				<filter minzoom="19" strokeWidth_0="12:15"/>
-				<groupFilter nightMode="true" color_0="$bridgeNightColor"/>
-			</groupFilter>
-			<groupFilter hideAccess="false">
-				<groupFilter minzoom="15" additional="access=no" color="$accessDayColor" pathEffect="6_1.5" cap="BUTT"/>
-				<groupFilter nightMode="true" minzoom="15" additional="access=no" color="$accessNightColor" pathEffect="6_1.5" cap="BUTT"/>
-				<groupFilter minzoom="15" additional="access=private" color="$accessDayColor" pathEffect="6_1.5" cap="BUTT"/>
-				<groupFilter nightMode="true" minzoom="15" additional="access=private" color="$accessNightColor" pathEffect="6_1.5" cap="BUTT"/>
-			</groupFilter>
-		</switch>
+				<apply_if layer="-1" pathEffect="4_4" cap="BUTT"/>
+				<apply_if layer="1" minzoom="14" color_0="$bridgeDayColor" cap="SQUARE" cap_0="BUTT">
+					<case maxzoom="14" strokeWidth_0="3.7:4.5"/>
+					<case maxzoom="15" strokeWidth_0="5.5:6"/>
+					<case maxzoom="16" strokeWidth_0="6.5:7"/>
+					<case maxzoom="17" strokeWidth_0="8:9"/>
+					<case maxzoom="18" strokeWidth_0="11:13"/>
+					<case minzoom="19" strokeWidth_0="12:14"/>
+					<apply_if nightMode="true" color_0="$bridgeNightColor"/>
+				</apply_if>
+	<!--			<groupFilter nightMode="true" hideBuildings="false" minzoom="16" shadowRadius=":2" shadowColor="#555555"/>-->
+				<apply_if nightMode="true" color="$tertiaryRoadNightColor"/>
+				<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
+					<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
+					<apply additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
+				</apply_if>
+			</switch>
 
-		<group>
-			<filter tag="highway" value="service"/>
-			<filter tag="highway" value="services"/>
-			<filter tag="highway" value="rest_area"/>
-			<groupFilter minzoom="12" color="$serviceRoadDayColor" cap="ROUND">
-				<filter maxzoom="12" strokeWidth="0.3:0.3" color="#aaaaaa"/>
-				<filter maxzoom="13" strokeWidth="0.5:0.5" color="#aaaaaa"/>
-				<filter maxzoom="14" strokeWidth="1:1" color="#aaaaaa"/>
-				<filter maxzoom="15" strokeWidth="1.5:1.5"/>
-				<filter maxzoom="16" strokeWidth="2.5:2.5"/>
-				<filter maxzoom="17" strokeWidth="4:4"/>
-				<filter minzoom="18" strokeWidth="5.5:5.5"/>
-				<apply>
-					<switch>
-						<case additional="service=driveway"/>
-						<case additional="service=parking_aisle"/>
-						<case additional="service=alley"/>
-						<apply>
-							<apply_if minzoom="12" maxzoom="12" strokeWidth="0.2:0.2"/>
-							<apply_if minzoom="13" maxzoom="13" strokeWidth="0.3:0.3"/>
-							<apply_if minzoom="14" maxzoom="14" strokeWidth="0.7:0.7"/>
-							<apply_if minzoom="15" maxzoom="15" strokeWidth="1:1"/>
-							<apply_if minzoom="16" maxzoom="16" strokeWidth="1.7:1.7"/>
-							<apply_if minzoom="17" maxzoom="17" strokeWidth="3:3"/>
-							<apply_if minzoom="18" strokeWidth="4:4"/>
-						</apply>
-					</switch>
+			<switch>
+				<case tag="highway" value="road"/>
+				<case tag="highway" value="unclassified"/>
+				<case tag="highway" value="residential"/>
+				<case tag="highway" value="living_street"/>
+				<apply color="$residentialRoadDayColor"/>
+				<apply cap="ROUND">
+					<apply_if moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth="2" color="$residentialRoadLowZoomDayColor2"/>
+					<apply_if minzoom="13" maxzoom="13" strokeWidth="2.5" color="$residentialRoadLowZoomDayColor2"/>
+					<apply_if nightMode="true" color="$residentialRoadLowZoomNightColor">
+						<apply_if moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth="2"/>
+						<apply_if minzoom="13" maxzoom="13" strokeWidth="2.5"/>
+					</apply_if>
+					<apply_if minzoom="14">
+						<case maxzoom="14" strokeWidth="1.7:1.7" color="$residentialRoadLowZoomDayColor2"/>
+						<case maxzoom="15" strokeWidth="2.5:2.5" color="$residentialRoadLowZoomDayColor"/>
+						<case maxzoom="16" strokeWidth="4.5:4.5"/>
+						<case maxzoom="17" strokeWidth="6:6"/>
+						<case maxzoom="18" strokeWidth="9:9"/>
+						<case minzoom="19" strokeWidth="10.5:10.5"/>
+						<apply_if nightMode="true" color="$residentialRoadNightColor">
+							<apply_if minzoom="13" maxzoom="14" color="$residentialRoadLowZoomNightColor"/>
+						</apply_if>
+					</apply_if>
 				</apply>
-				<groupFilter moreDetailed="false" minzoom="11" maxzoom="13" disable="true"/>
-				<groupFilter moreDetailed="false" additional="service=driveway" minzoom="11" maxzoom="14" disable="true"/>
-				<groupFilter moreDetailed="false" additional="service=parking_aisle" minzoom="11" maxzoom="14" disable="true"/>
-				<groupFilter moreDetailed="false" additional="service=alley" minzoom="11" maxzoom="14" disable="true"/>
-			</groupFilter>
-			<groupFilter layer="-1" pathEffect="4_4" cap="BUTT"/>
-			<groupFilter layer="1" minzoom="14" color_0="$bridgeDayColor" cap="SQUARE" cap_0="BUTT">
-				<filter maxzoom="14" strokeWidth_0="1.5:2"/>
-				<filter maxzoom="15" strokeWidth_0="2:3.5"/>
-				<filter maxzoom="16" strokeWidth_0="3:4.5"/>
-				<filter maxzoom="17" strokeWidth_0="5:6"/>
-				<filter minzoom="18" strokeWidth_0="7:8.5"/>
-				<groupFilter nightMode="true" color_0="$bridgeNightColor"/>
-			</groupFilter>
-			<groupFilter nightMode="true" color="$serviceRoadNightColor"/>
-			<groupFilter hideAccess="false">
-				<groupFilter minzoom="15" additional="access=no" color="$accessDayColor" pathEffect="4_1" cap="BUTT"/>
-				<groupFilter nightMode="true" minzoom="15" additional="access=no" color="$accessNightColor" pathEffect="4_1" cap="BUTT"/>
-				<groupFilter minzoom="15" additional="access=private" color="$accessDayColor" pathEffect="4_1" cap="BUTT"/>
-				<groupFilter nightMode="true" minzoom="15" additional="access=private" color="$accessNightColor" pathEffect="4_1" cap="BUTT"/>
-			</groupFilter>
-		</group>
+				<groupFilter layer="-1" pathEffect="4_4" cap="BUTT"/>
+				<groupFilter layer="1" minzoom="14" color_0="$bridgeDayColor" cap="SQUARE" cap_0="BUTT">
+					<filter maxzoom="14" strokeWidth_0="2.5:3"/>
+					<filter maxzoom="15" strokeWidth_0="3.5:4"/>
+					<filter maxzoom="16" strokeWidth_0="5:7"/>
+					<filter maxzoom="17" strokeWidth_0="7:9"/>
+					<filter maxzoom="18" strokeWidth_0="10:13"/>
+					<filter minzoom="19" strokeWidth_0="12:15"/>
+					<groupFilter nightMode="true" color_0="$bridgeNightColor"/>
+				</groupFilter>
+				<groupFilter hideAccess="false">
+					<groupFilter minzoom="15" additional="access=no" color="$accessDayColor" pathEffect="6_1.5" cap="BUTT"/>
+					<groupFilter nightMode="true" minzoom="15" additional="access=no" color="$accessNightColor" pathEffect="6_1.5" cap="BUTT"/>
+					<groupFilter minzoom="15" additional="access=private" color="$accessDayColor" pathEffect="6_1.5" cap="BUTT"/>
+					<groupFilter nightMode="true" minzoom="15" additional="access=private" color="$accessNightColor" pathEffect="6_1.5" cap="BUTT"/>
+				</groupFilter>
+			</switch>
+
+			<group>
+				<filter tag="highway" value="service"/>
+				<filter tag="highway" value="services"/>
+				<filter tag="highway" value="rest_area"/>
+				<groupFilter minzoom="12" color="$serviceRoadDayColor" cap="ROUND">
+					<filter maxzoom="12" strokeWidth="0.3:0.3" color="#aaaaaa"/>
+					<filter maxzoom="13" strokeWidth="0.5:0.5" color="#aaaaaa"/>
+					<filter maxzoom="14" strokeWidth="1:1" color="#aaaaaa"/>
+					<filter maxzoom="15" strokeWidth="1.5:1.5"/>
+					<filter maxzoom="16" strokeWidth="2.5:2.5"/>
+					<filter maxzoom="17" strokeWidth="4:4"/>
+					<filter minzoom="18" strokeWidth="5.5:5.5"/>
+					<apply>
+						<switch>
+							<case additional="service=driveway"/>
+							<case additional="service=parking_aisle"/>
+							<case additional="service=alley"/>
+							<apply>
+								<apply_if minzoom="12" maxzoom="12" strokeWidth="0.2:0.2"/>
+								<apply_if minzoom="13" maxzoom="13" strokeWidth="0.3:0.3"/>
+								<apply_if minzoom="14" maxzoom="14" strokeWidth="0.7:0.7"/>
+								<apply_if minzoom="15" maxzoom="15" strokeWidth="1:1"/>
+								<apply_if minzoom="16" maxzoom="16" strokeWidth="1.7:1.7"/>
+								<apply_if minzoom="17" maxzoom="17" strokeWidth="3:3"/>
+								<apply_if minzoom="18" strokeWidth="4:4"/>
+							</apply>
+						</switch>
+					</apply>
+					<groupFilter moreDetailed="false" minzoom="11" maxzoom="13" disable="true"/>
+					<groupFilter moreDetailed="false" additional="service=driveway" minzoom="11" maxzoom="14" disable="true"/>
+					<groupFilter moreDetailed="false" additional="service=parking_aisle" minzoom="11" maxzoom="14" disable="true"/>
+					<groupFilter moreDetailed="false" additional="service=alley" minzoom="11" maxzoom="14" disable="true"/>
+				</groupFilter>
+				<groupFilter layer="-1" pathEffect="4_4" cap="BUTT"/>
+				<groupFilter layer="1" minzoom="14" color_0="$bridgeDayColor" cap="SQUARE" cap_0="BUTT">
+					<filter maxzoom="14" strokeWidth_0="1.5:2"/>
+					<filter maxzoom="15" strokeWidth_0="2:3.5"/>
+					<filter maxzoom="16" strokeWidth_0="3:4.5"/>
+					<filter maxzoom="17" strokeWidth_0="5:6"/>
+					<filter minzoom="18" strokeWidth_0="7:8.5"/>
+					<groupFilter nightMode="true" color_0="$bridgeNightColor"/>
+				</groupFilter>
+				<groupFilter nightMode="true" color="$serviceRoadNightColor"/>
+				<groupFilter hideAccess="false">
+					<groupFilter minzoom="15" additional="access=no" color="$accessDayColor" pathEffect="4_1" cap="BUTT"/>
+					<groupFilter nightMode="true" minzoom="15" additional="access=no" color="$accessNightColor" pathEffect="4_1" cap="BUTT"/>
+					<groupFilter minzoom="15" additional="access=private" color="$accessDayColor" pathEffect="4_1" cap="BUTT"/>
+					<groupFilter nightMode="true" minzoom="15" additional="access=private" color="$accessNightColor" pathEffect="4_1" cap="BUTT"/>
+				</groupFilter>
+			</group>
+			<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
+				<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
+				<apply additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
+			</apply_if>
+		</switch>
 
 		<group>
 			<filter tag="highway" value="track" color="#555555" pathEffect="4_2">
@@ -1607,10 +1619,14 @@
 				</groupFilter>
 			<groupFilter hideAccess="false" additional="access=no" disable="true"/>
 			<groupFilter hideAccess="false" additional="access=private" disable="true"/>
+			<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
+				<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
+				<apply additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
+			</apply_if>
 		</group>
 
-		<group hideNonVehicleHighways="false">
-			<group>
+		<switch hideNonVehicleHighways="false">
+			<switch>
 				<filter tag="highway" value="pedestrian"/>
 				<groupFilter color="$nonMotoVehicleRoadDayColor" cap="ROUND">
 					<filter moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth="1"/>
@@ -1634,9 +1650,9 @@
 				</groupFilter>
 				<groupFilter hideAccess="false" additional="access=no" disable="true"/>
 				<groupFilter hideAccess="false" additional="access=private" disable="true"/>
-			</group>
+			</switch>
 
-			<group>
+			<switch>
 				<filter tag="highway" value="footway">
 					<filter moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth="0.5"/>
 					<filter moreDetailed="true" minzoom="13" maxzoom="13" strokeWidth="0.8"/>
@@ -1693,21 +1709,25 @@
 				<groupFilter nightMode="true" color="$nonMotoVehicleRoadNightColor"/>
 				<groupFilter hideAccess="false" additional="access=no" disable="true"/>
 				<groupFilter hideAccess="false" additional="access=private" disable="true"/>
-			</group>
+			</switch>
 			<groupFilter noPolygons="true" shadowRadius=":1" shadowColor="#999999"/>
-		</group>
+			<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
+				<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
+				<apply additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
+			</apply_if>
+		</switch>
 
-		<group>
+		<switch>
 			<filter minzoom="16" tag="barrier" value="fence"/>
 			<filter minzoom="16" tag="barrier" value="wall"/>
 			<filter minzoom="16" tag="fenced" value="yes"/>
 			<groupFilter color="#333333" strokeWidth="0.7"/>
 			<groupFilter nightMode="true" color="#cccccc"/>
 			<groupFilter layer="-1" disable="true"/>
-		</group>
+		</switch>
 
-		<group>
-			<group>
+		<switch>
+			<switch>
 				<filter tag="admin_level" value="0"/>
 				<filter tag="admin_level" value="1"/>
 				<filter tag="admin_level" value="2"/>
@@ -1719,9 +1739,9 @@
 					<filter maxzoom="8" strokeWidth="9" strokeWidth_0="2"/>
 					<filter minzoom="9" strokeWidth="12" strokeWidth_0="2"/>
 				</groupFilter>
-			</group>
+			</switch>
 
-			<group>
+			<switch>
 				<filter tag="admin_level" value="3" pathEffect="6_1"/>
 				<filter tag="admin_level" value="4" pathEffect="6_1"/>
 				<groupFilter minzoom="5">
@@ -1729,10 +1749,10 @@
 					<filter maxzoom="8" strokeWidth="6" strokeWidth_0="1"/>
 					<filter minzoom="9" strokeWidth="9" strokeWidth_0="2"/>
 				</groupFilter>
-			</group>
+			</switch>
 			<groupFilter color="#22c95cb8" color_0="#33c95c0c"/>
 			<groupFilter nightMode="true" color="#28c95c0c" color_0="#40c95c0c"/>
-		</group>
+		</switch>
 
 		<case minzoom="14" tag="barrier" value="city_wall">
 			<case maxzoom="14" strokeWidth="2:2"/>
@@ -1795,7 +1815,7 @@
 				<case layer="1" minzoom="14" color="#000000" strokeWidth="7" color_2="#ffffff" strokeWidth_2="5" color_3="#999999" strokeWidth_3="1" pathEffect_3="12_8_1_0">
 					<apply_if nightMode="true" color_3="#333333"/>
 				</case>
-				<filter minzoom="7" maxzoom="8" strokeWidth="1.8" strokeWidth_2="1" pathEffect_2="3_4.5"/>
+				<filter minzoom="7" maxzoom="8" strokeWidth="0.9:0.9" strokeWidth_2="1" pathEffect_2="3_4.5"/>
 				<filter minzoom="9" maxzoom="12" strokeWidth="1:1" strokeWidth_2="0.9" pathEffect_2="3_4.5"/>
 				<filter minzoom="13" maxzoom="13" strokeWidth="1:2" strokeWidth_2="1.5" pathEffect_2="5_7"/>
 				<filter minzoom="14" strokeWidth="1:2" strokeWidth_2="1.5" pathEffect_2="0_7_5_1"/>
