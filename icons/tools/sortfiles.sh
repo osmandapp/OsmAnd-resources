@@ -321,7 +321,7 @@ mycp sport horse_racing sport_horse_racing.png
 mycp sport soccer sport_soccer.png
 mycp sport skating sport_iceskating.png
 mycp sport archery sport_archery.png
-mycp sport baseball sport_baseball.png
+mycp sport baseball sport_baseball2.png
 mycp sport stadium sport_stadium.png
 mycp sport canoe sport_canoe.png
 mycp sport tennis sport_tennis.png
@@ -335,6 +335,22 @@ mycp sport billiard sport_snooker.png
 mycp sport gymnastics sport_gymnasium.png
 mycp sport motor sport_motorracing.png
 mycp sport sailing sport_sailing.png
+mycp sport paragliding sport_paragliding.png
+mycp sport bmx sport_bmx.png
+mycp sport skateboard sport_skateboard.png
+mycp sport hockey sport_hockey.png
+mycp sport 9pin sport_bowling.png
+mycp sport 10pin sport_bowling.png
+mycp sport cycling sport_cycling.png
+mycp sport rugby_union sport_rugby_union.png
+mycp sport rugby_league sport_rugby_league.png
+mycp sport table_tennis sport_table_tennis.png
+mycp sport base sport_basejumping.png
+mycp sport athletics sport_athletics.png
+mycp sport surfing sport_surfing.png
+mycp sport handball sport_handball.png
+mycp sport volleyball sport_volleyball.png
+mycp sport basketball sport_basketball.png
 
 
 ## Leisure
