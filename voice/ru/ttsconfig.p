@@ -87,6 +87,8 @@ string('reached_intermediate.ogg', 'вы прибыли в промежуточ�
 string('reached_destination.ogg','вы прибыли в пункт назначения ').
 string('and_arrive_waypoint.ogg', 'и вы прибудете к GPX точке').
 string('reached_waypoint.ogg', 'вы прибыли к GPX точке ').
+string('and_arrive_poi.ogg', ' и вы прибудете к точке POI ').
+string('reached_poi.ogg', 'вы прибыли к точке POI ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'Внимание, ').
