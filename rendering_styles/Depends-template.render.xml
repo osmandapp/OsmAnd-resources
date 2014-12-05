@@ -1,18 +1,23 @@
 <renderingStyle name="Depends-template" depends="default" defaultColor="#f1eae4" version="1">
 	<!-- In a dependent renderer, just specify what should change vs. the master/default renderer -->
 
+	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
+		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
 
-	<!-- Example: modify route and gpx overlay colors -->
-	<renderingAttribute name="routeColor">
-		<filter nightMode="false" attrColorValue="#CCFF6600"/>
-		<filter attrColorValue="#CCFF6600"/>
+	<!-- Example: modify route and gpx overlay style -->
+	<renderingAttribute name="route">
+		<case color="#ccaa0088" strokeWidth="7:6">
+			<apply_if nightMode="true" color="#ccff4400" strokeWidth="7:6"/>
+		</case>
 	</renderingAttribute>
 
-	<renderingAttribute name="gpxColor">
-		<filter nightMode="false" attrColorValue="#B400FFFF"/>
-		<filter attrColorValue="#B400FFFF"/>
+	<renderingAttribute name="gpx">
+		<case strokeWidth="7:6" cap="BUTT">
+			<case nightMode="true" color="#b4b319ff"/>
+			<case additional="routePoints=true" pathEffect="6_5" color="#b400ffff"/>
+			<case color="#b400ffff"/>
+		</case>
 	</renderingAttribute>
-
 
 	<order>
 	</order>
