@@ -24,6 +24,8 @@ fest_language(msu_ru_nsh_clunits).
 % (X) Name announcement for destination / intermediate / GPX waypoint arrival
 % (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
 % (X) word order checked
+% (X) Announcement of favorites, waypoints and pois along the route
+% (X) Announcement when user returns back to route
 
 
 % ROUTE CALCULATED
@@ -91,6 +93,7 @@ string('attention.ogg', 'Внимание, ').
 string('location_lost.ogg', 'потерян сигнал ДЖИПИИЭС').
 string('location_recovered.ogg', 'ДЖИПИИЭС сигнал восстановлен ').
 string('off_route.ogg', 'Вы отклонились от маршрута на ').
+string('back_on_route.ogg', 'Вы вернулись на дорогу.').
 string('exceed_limit.ogg', 'Вы превысили допустимую скорость ').
 
 % STREET NAME GRAMMAR
@@ -182,6 +185,10 @@ and_arrive_intermediate(D) -- ['and_arrive_intermediate.ogg'|Ds] :- name(D, Ds).
 reached_intermediate(D) -- ['reached_intermediate.ogg'|Ds] :- name(D, Ds).
 and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
+and_arrive_favorite(D) -- ['and_arrive_favorite.ogg'|Ds] :- name(D, Ds).
+reached_favorite(D) -- ['reached_favorite.ogg'|Ds] :- name(D, Ds).
+and_arrive_poi(D) -- ['and_arrive_poi.ogg'|Ds] :- name(D, Ds).
+reached_poi(D) -- ['reached_poi.ogg'|Ds] :- name(D, Ds).
 
 
 route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
