@@ -2196,7 +2196,7 @@
 		</switch>
 
 		<!-- Buildings -->
-		<switch textHaloRadius="$buildingTextHaloRadiusDay" textHaloColor="$buildingTextHaloColorDay">
+		<switch textHaloRadius="$buildingTextHaloRadiusDay">
 			<switch>
 				<case tag="military" value="barracks"/>
 				<case tag="military" value="bunker"/>
@@ -2204,21 +2204,26 @@
 				<apply_if minzoom="16" maxzoom="17" textSize="13" textMinDistance="40"/>
 				<apply_if minzoom="18" textSize="15"/>
 				<apply textDy="7" textWrapWidth="20" textOrder="16"/>
+				<apply textColor="#404040" textHaloColor="$buildingTextHaloColorDay">
+					<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77666666"/>
+				</apply>
 			</switch>
-			<case minzoom="16" tag="addr:housenumber" value="" textWrapWidth="25" textOrder="17" textDy="7">
-				<case maxzoom="16" textSize="13" intersectionSizeFactor="1.7"/>
-				<case maxzoom="17" textSize="14" intersectionSizeFactor="1.4"/>
-				<case minzoom="18" textSize="15" intersectionSizeFactor="1.4"/>
-			</case>
-			<case tag="addr:flats" value="" textOrder="18">
-				<case minzoom="18" maxzoom="18" nameTag="ref" textSize="13"/>
-				<case minzoom="19" nameTag="ref" nameTag2="addr:flats" textSize="15"/>
-				<apply textDy="7" textWrapWidth="20" textOrder="18"/>
-			</case>
-			<case minzoom="19" tag="entrance" value="" nameTag2="ref" textSize="12" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="15" textDy="3"/>
-			<apply textColor="#444444">
-				<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77666666"/>
-			</apply>
+			<switch>
+				<case minzoom="16" tag="addr:housenumber" value="" textColor="#404040" textWrapWidth="25" textOrder="17" textDy="7">
+					<case maxzoom="16" textSize="13" intersectionSizeFactor="1.7"/>
+					<case maxzoom="17" textSize="14" intersectionSizeFactor="1.4"/>
+					<case minzoom="18" textSize="15" intersectionSizeFactor="1.4"/>
+				</case>
+				<case tag="addr:flats" value="" textOrder="18" textColor="#555555">
+					<case minzoom="18" maxzoom="18" nameTag="ref" textSize="13"/>
+					<case minzoom="19" nameTag="ref" nameTag2="addr:flats" textSize="15"/>
+					<apply textDy="7" textWrapWidth="20" textOrder="18"/>
+				</case>
+				<case minzoom="19" tag="entrance" value="" nameTag2="ref" textSize="12" textColor="#555555" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="15" textDy="3"/>
+				<apply textHaloColor="#ddffffff">
+					<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77666666"/>
+				</apply>
+			</switch>
 		</switch>
 
 		<!-- Food and Drink -->
@@ -3045,7 +3050,7 @@
 				</switch>
 			</apply>
 		</switch>
-		<switch minzoom="17" iconOrder="100" iconVisibleSize="8">
+		<switch minzoom="17" iconVisibleSize="8">
 			<switch tag="entrance" value="main">
 				<case maxzoom="17" icon="barrier_small_black_3">
 					<apply_if nightMode="true" icon="barrier_small_white_3"/>
@@ -3078,6 +3083,7 @@
 					<apply_if nightMode="true" shield="gray_gray_square_small_shield"/>
 				</case>
 			</switch>
+			<apply iconOrder="128"/>
 		</switch>
 
 		<!-- Accommodation -->
@@ -3118,7 +3124,6 @@
 			<case minzoom="16" tag="amenity" value="theatre" icon="amenity_theatre" iconVisibleSize="16" iconOrder="70"/>
 			<case minzoom="16" tag="amenity" value="nightclub" icon="amenity_nightclub" iconVisibleSize="32"/>
 			<case minzoom="16" tag="amenity" value="stripclub" icon="amenity_nightclub" iconVisibleSize="32"/>
-			<!-- TODO: MISSING ICON: filter minzoom="16" icon="" tag="amenity" value="studio"/ -->
 			<!-- TODO: MISSING ICON: filter minzoom="16" icon="" tag="amenity" value="sauna"/ -->
 			<!-- TODO: MISSING ICON: filter minzoom="16" icon="" tag="amenity" value="brothel"/ -->
 
@@ -3222,6 +3227,7 @@
 			<case minzoom="17" tag="amenity" value="car_wash" icon="amenity_car_wash">
 				<case additional="self_service=yes" icon="amenity_car_wash_self_service"/>
 			</case>
+			<case minzoom="16" tag="amenity" value="studio" icon="amenity_studio"/>
 			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
 		</switch>
 		<case minzoom="16" tag="amenity" value="place_of_worship" icon="amenity_place_of_worship" iconVisibleSize="7" iconOrder="70">
@@ -5129,7 +5135,7 @@
 		</case>
 
 		<!-- Man made -->
-		<switch color="#bababa">
+		<switch color="#999999">
 			<case minzoom="14" tag="power" value="line">
 				<case maxzoom="14" strokeWidth="0.5:0.55"/>
 				<case minzoom="15" strokeWidth="0.8:0.8"/>
