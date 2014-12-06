@@ -1451,7 +1451,7 @@
 					<case subwayMode="true"/>
 					<case publicTransportMode="true"/>
 					<case tramTrainRoutes="true"/>
-					<apply textHaloColor="$primaryRoadLowZoomColor"/>
+					<apply textHaloColor="$primaryRoadLowZoomColor" intersectsWith="transport" textOrder="128"/>
 				</switch>
 			</apply>
 			<apply_if minzoom="13">
@@ -1479,7 +1479,7 @@
 			<apply_if nightMode="true" textBold="true"/>
 		</switch>
 
-		<switch>
+		<switch intersectsWith="transport">
 			<switch>
 				<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" textOrder="9">
 					<case tag="highway" value="road"/>
@@ -1584,7 +1584,7 @@
 			<apply_if nightMode="true" textColor="#dcdcff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77050547"/>
 		</case>
 
-		<switch minzoom="13" textOnPath="true" textBold="true" textOrder="1" textColor="#ffffff" textHaloRadius="$textHaloRadiusDay">
+		<switch minzoom="13" textOnPath="true" textBold="true" textOrder="2" textColor="#ffffff" textHaloRadius="2" intersectsWith="">
 			<switch publicTransportMode="true">
 				<case tag="route_bus" value="" nameTag="bus_ref" textHaloColor="$routeBusColor"/>
 				<case tag="route_share_taxi" value="" nameTag="share_taxi_ref" textHaloColor="$routeShareTaxiColor"/>
@@ -1604,10 +1604,9 @@
 			<apply_if minzoom="16" maxzoom="16" textSize="10"/>
 			<apply_if minzoom="17" maxzoom="17" textSize="12"/>
 			<apply_if minzoom="18" textSize="14"/>
-			<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight"/>
 		</switch>
 
-		<switch minzoom="14" textColor="$railwayTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$railwayTextHaloColorDay" textOrder="9">
+		<switch minzoom="14" textColor="$railwayTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$railwayTextHaloColorDay" textOrder="99">
 			<case tag="railway" value="rail"/>
 			<case tag="railway" value="tram"/>
 			<case tag="railway" value="subway"/>
@@ -1992,6 +1991,13 @@
 				<case minzoom="15" tag="public_transport" value="station" textSize="13"/>
 				<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#d4d4ff" textHaloColor="#994563a7"/>
 			</switch>
+			<apply>
+				<switch>
+					<case publicTransportMode="true"/>
+					<case tramTrainRoutes="true"/>
+					<apply intersectsWith=""/>
+				</switch>
+			</apply>
 		</switch>
 
 		<switch subwayMode="true">
