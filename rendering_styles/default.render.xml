@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <renderingStyle name="default" depends="" defaultColor="#f1eae4" version="1">
 
-	<!-- Rule definition :
+	<!--  Rules documentation
+	<switch> (old name <group>) combines <case> and <apply>
+	<case> - old name filter
+	<apply> (old name <groupFilter>) - synonym <apply_if>
+
+	1. <switch> and <case> could be top level elements , <apply> can't
+	2. <switch> is used to flattenize cases similar to group
+	3. DIFFERENCE : <apply> is called if at least one <case> successful
+
+	<switch> element :
+		1. if <switch> (or <group> logically the same ) is top level, it propogates all it is attributes i.e. strokeWidth... to the <case> level (if they are not set there)
+		2. if <switch> has children <case> or <switch> it executes its <case> or <switch> in order with if else and return "true" if first one succeeds (all the rest are not executed). If one succeeds then all <applies> are executed in defined order
+		3. If <switch> doesn't have children <case> or <switch> and all children are <apply>, it should execute all of them and return "true"
+		4. Special validation first top level elements (<case>) should have tag/value attributes. It could be a nested sequence of <switch><switch><case tag="" value=""></switch></switch>, but first top level element is obliged to have tag/value.
+
+	 <case> element :
+		1. <case> works exactly the same as <switch>, when executing its children. But first it evaluates itself
+			DIFFERENCE comparing to <switch> ! If case is matched, it always returns 'true'
+		2. <case> the only logical element that could be evaluated true top level (top level <switch> should contain at least one <case>)
+
+	 <apply> element :
+		1. If <apply>  also evaluates its children as <switch> but it always returns true, however noone uses that return value
+
+	-->
+
+	<!-- Rule definition (old scheme):
 		- "filter" is analogue of If(...) Else. So if one "filter" passes other neighbors will not be checked.
 		- "group" is tag to combine many filters and define common inner filter for them as "groupFilter"
 		- "group" can be only top level element!
@@ -12,7 +37,7 @@
 
 	<!-- renderingProperty Types : string, int, boolean; possibleValues comma separated possible values for int/string -->
 	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
-		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
+		type="string" possibleValues="browse map,car,bicycle,pedestrian"/> <!-- linked to profiles -->
 	<renderingProperty attr="publicTransportMode" name="Public transport mode" description="Public transport rendering mode"
 		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="tramTrainRoutes" name="Tram and trains" description="Tram and train routes"
