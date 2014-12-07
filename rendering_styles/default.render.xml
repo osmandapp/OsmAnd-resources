@@ -988,6 +988,7 @@
 			<case tag="waterway" value="dock"/>
 			<case tag="waterway" value="wadi"/>
 			<case tag="natural" value="cliff"/>
+			<case tag="natural" value="slope"/>
 			<case tag="natural" value="crater"/>
 			<case tag="natural" value="hot_spring"/>
 			<case tag="natural" value="geyser"/>
@@ -1083,6 +1084,7 @@
 			<case tag="amenity" value="ferry_terminal"/>
 
 			<case tag="natural" value="cliff"/>
+			<case tag="natural" value="slope"/>
 			<case tag="natural" value="crater"/>
 			<case tag="natural" value="strait"/>
 			<case tag="natural" value="fjord"/>
@@ -1126,6 +1128,7 @@
 
 			<case tag="administrative" value="" order="62"/>
 			<case tag="boundary" value="" order="62"/>
+			<case tag="addr:interpolation" value=""/>
 
 			<!-- Highways: 35-57, bridges 70-88 -->
 			<case tag="highway" value="motorway" order="57">
@@ -2411,8 +2414,8 @@
 				<case tag="traffic_calming" value="bump"/>
 				<case tag="traffic_calming" value="hump"/>
 				<case tag="traffic_calming" value="cushion"/>
-				<apply icon="traffic_calming_bump" shield="white_blue_square_shield" iconVisibleSize="10">
-					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+				<apply icon="traffic_calming_bump" shield="white_blue_triangle_shield" iconVisibleSize="10">
+					<apply_if nightMode="true" shield="gray_blue_triangle_shield"/>
 				</apply>
 			</switch>
 			<switch tag="amenity" value="parking_entrance" iconVisibleSize="8">
@@ -2740,12 +2743,6 @@
 		<switch subwayMode="false" shield="white_blue_square_shield">
 			<case minzoom="18" tag="highway" value="speed_camera" icon="highway_speed_camera" iconOrder="70"/>
 			<case minzoom="15" tag="highway" value="services" icon="highway_services" iconOrder="60"/>
-			<switch minzoom="17">
-				<case tag="traffic_calming" value="bump"/>
-				<case tag="traffic_calming" value="hump"/>
-				<case tag="traffic_calming" value="cushion"/>
-				<apply icon="traffic_calming_bump" iconVisibleSize="16" iconOrder="70"/>
-			</switch>
 			<case minzoom="14" tag="amenity" value="fuel" icon="amenity_fuel" iconVisibleSize="13" iconOrder="81"/>
 			<case minzoom="15" tag="amenity" value="charging_station" icon="amenity_ev_charging" iconOrder="81"/>
 			<case minzoom="16" tag="amenity" value="taxi" icon="amenity_taxi" iconOrder="81"/>
@@ -2780,6 +2777,14 @@
 				<case additional="fee=yes" icon="amenity_motorcycle_parking_paid"/>
 			</case>
 			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+		</switch>
+		
+		<switch minzoom="17" shield="white_blue_triangle_shield">
+			<case tag="traffic_calming" value="bump"/>
+			<case tag="traffic_calming" value="hump"/>
+			<case tag="traffic_calming" value="cushion"/>
+			<apply icon="traffic_calming_bump" iconVisibleSize="16" iconOrder="70"/>
+			<apply_if nightMode="true" shield="gray_blue_triangle_shield"/>
 		</switch>
 
 		<switch shield="white_blue_square_shield">
@@ -3925,7 +3930,13 @@
 			</switch>
 
 			<case minzoom="13" tag="man_made" value="pier" color="#f2efe9">
-				<apply_if nightMode="true" color="#5c7596"/>
+				<switch minzoom="15">
+					<case additional="access=no"/>
+					<case additional="access=private"/>
+					<apply color_2="$accessPrivateColor" strokeWidth_2="3" pathEffect_2="1_7" cap_2="ROUND"/>
+					<apply_if nightMode="true" color_2="$accessPrivateColor"/>
+				</switch>
+				<apply nightMode="true" color="#5c7596"/>
 			</case>
 
 			<case minzoom="13" tag="waterway" value="dam" color="#33555555" color_2="#555555">
@@ -4005,12 +4016,17 @@
 				<apply_if maxzoom="8" strokeWidth_2=":1"/>
 				<apply_if minzoom="9" maxzoom="9" strokeWidth_2=":1.7"/>
 			</case>
-			<case minzoom="16" tag="natural" value="cliff" color="$null" color_2="#148c14">
-				<case maxzoom="16" strokeWidth_2="2.5:2.5" pathEffect_2="1_7"/>
-				<case maxzoom="17" strokeWidth_2="4:4" pathEffect_2="1_9"/>
-				<case minzoom="18" strokeWidth_2="5.5:5.5" pathEffect_2="1_13"/>
-				<apply_if nightMode="true" color_2="#6d8a6d"/>
-			</case>
+			<switch minzoom="16" color="$null">
+				<case tag="natural" value="cliff" color_2="#148c14">
+					<apply_if nightMode="true" color_2="#6d8a6d"/>
+				</case>
+				<case tag="natural" value="slope" color_2="#949494">
+					<apply_if nightMode="true" color_2="#5e5e5e"/>
+				</case>
+				<apply maxzoom="16" strokeWidth_2="2.5:2.5" pathEffect_2="1_7"/>
+				<apply minzoom="17" maxzoom="17" strokeWidth_2="4:4" pathEffect_2="1_9"/>
+				<apply minzoom="18" strokeWidth_2="5.5:5.5" pathEffect_2="1_13"/>
+			</switch>
 			<case minzoom="11" tag="natural" value="crater" color="#22653f3f" color_2="#886a6a">
 				<case maxzoom="11" strokeWidth_2="0.3:0.3"/>
 				<case maxzoom="12" strokeWidth_2="0.5:0.5"/>
@@ -4750,12 +4766,17 @@
 			</apply>
 		</case>
 
-		<case minzoom="16" tag="natural" value="cliff" color="#148c14" color_2="#005300" strokeWidth_2="0.2:0.2">
-			<case maxzoom="16" strokeWidth="2.5:2.5" pathEffect="1_7"/>
-			<case maxzoom="17" strokeWidth="4:4" pathEffect="1_9"/>
-			<case minzoom="18" strokeWidth="5.5:5.5" pathEffect="1_13"/>
-			<apply_if nightMode="true" color="#6d8a6d" color_2="#e5e5e5"/>
-		</case>
+		<switch minzoom="16" strokeWidth="0.2:0.2">
+			<case tag="natural" value="cliff" color="#148c14" color_2="#005300">
+				<apply_if nightMode="true" color="#6d8a6d" color_2="#6d8a6d"/>
+			</case>
+			<case tag="natural" value="slope" color="#88949494" color_2="#949494">
+				<apply_if nightMode="true" color="#995e5e5e" color_2="#5e5e5e"/>
+			</case>
+			<apply maxzoom="16" strokeWidth_2="2.5:2.5" pathEffect_2="1_7"/>
+			<apply minzoom="17" maxzoom="17" strokeWidth_2="4:4" pathEffect_2="1_9"/>
+			<apply minzoom="18" strokeWidth_2="5.5:5.5" pathEffect_2="1_13"/>
+		</switch>
 		<case minzoom="11" tag="natural" value="ridge" color="#666666" color_2="#000000">
 			<case maxzoom="11" strokeWidth="0.15:0.15"/>
 			<case maxzoom="12" strokeWidth="0.4:0.4"/>
@@ -5169,9 +5190,15 @@
 		</switch>
 
 		<case minzoom="13" tag="man_made" value="pier" color="#f2efe9">
-			<case maxzoom="13" strokeWidth="0.5:0.5"/>
-			<case maxzoom="15" strokeWidth="1.5:1.5"/>
-			<case minzoom="16" strokeWidth="3:3"/>
+			<switch minzoom="15">
+				<case additional="access=no"/>
+				<case additional="access=private"/>
+				<apply color_2="$accessPrivateColor" strokeWidth_2="3" pathEffect_2="1_7" cap_2="ROUND"/>
+				<apply_if nightMode="true" color_2="$accessPrivateColor"/>
+			</switch>
+			<apply_if maxzoom="13" strokeWidth="0.5:0.5"/>
+			<apply_if minzoom="14" maxzoom="15" strokeWidth="1.5:1.5"/>
+			<apply_if minzoom="16" strokeWidth="3:3"/>
 			<apply_if nightMode="true" color="#5c7596"/>
 		</case>
 
@@ -5212,6 +5239,11 @@
 		</case>
 
 		<case minzoom="8" tag="route" value="ferry" color="#7777FF" strokeWidth="1:1" pathEffect="6_3"/>
+
+		<case minzoom="16" tag="addr:interpolation" value="" color="#777777">
+			<case maxzoom="17" strokeWidth=":1" pathEffect="1_18" cap="ROUND"/>
+			<case minzoom="18" strokeWidth=":2" pathEffect="1_30" cap="ROUND"/>
+		</case>
 
 		<switch noPolygons="false" minzoom="15" color="#33ffffff" color_0="#77999999" color__1="#44000000" strokeWidth="3:3" strokeWidth_0="4:4" cap="ROUND" cap_0="ROUND">
 			<case tag="man_made" value="embankment"/>
