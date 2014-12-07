@@ -875,13 +875,16 @@
 			<case tag="aerialway" value="station"/>
 			<case tag="aerialway" value=""/>
 			<case tag="amenity" value="ferry_terminal"/>
-			<case tag="amenity" value="motorcycle_parking"/>
+			<case tag="amenity" value="motorcycle_parking">
+				<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
+			</case>
 			<case tag="amenity" value="parking">
 				<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
 				<apply_if appMode="bicycle" maxzoom="17" order="-1"/>
 			</case>
 			<case tag="amenity" value="bicycle_parking">
 				<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
+				<apply_if appMode="car" maxzoom="17" order="-1"/>
 			</case>
 			<case tag="amenity" value="taxi">
 				<apply_if appMode="bicycle" maxzoom="17" order="-1"/>
@@ -892,7 +895,9 @@
 				 <apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
 				 <apply_if appMode="bicycle" maxzoom="16" order="-1"/>
 			</switch>
-			<case tag="amenity" value="car_wash" appMode="pedestrian" maxzoom="17" order="-1"/>
+			<case tag="amenity" value="car_wash">
+				<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
+			</case>
 			<case tag="amenity" value=""/>
 			<case tag="emergency" value=""/>
 			<case tag="man_made" value="petroleum_well"/>
@@ -1995,7 +2000,7 @@
 				<switch>
 					<case publicTransportMode="true"/>
 					<case tramTrainRoutes="true"/>
-					<apply intersectsWith=""/>
+					<apply intersectsWith="transport_stops"/>
 				</switch>
 			</apply>
 		</switch>
@@ -2416,7 +2421,7 @@
 			</switch>
 			<switch subwayMode="false" shield="white_blue_square_shield">
 				<case minzoom="14" tag="highway" value="services" icon="highway_services" iconOrder="60"/>
-				<case minzoom="14" tag="amenity" value="fuel" icon="amenity_fuel" iconVisibleSize="6"/>
+				<case minzoom="14" tag="amenity" value="fuel" icon="amenity_fuel"/>
 				<case minzoom="15" tag="amenity" value="charging_station" icon="amenity_ev_charging"/>
 				<case minzoom="16" tag="amenity" value="car_rental" icon="amenity_car_rental"/>
 				<case minzoom="16" tag="amenity" value="car_sharing" icon="amenity_car_sharing"/>
@@ -2539,7 +2544,7 @@
 				<case minzoom="14" tag="highway" value="ford" icon="highway_ford" shield="highway_ford_shield">
 					<apply_if nightMode="true" shield=""/>
 				</case>
-				<switch subwayMode="false" iconVisibleSize="2">
+				<switch subwayMode="false" iconVisibleSize="13">
 					<case minzoom="12" maxzoom="12" tag="railway" value="station" icon="railway_halt"/>
 					<case minzoom="13" maxzoom="14" tag="railway" value="station" icon="railway_station_small"/>
 				</switch>
@@ -2735,9 +2740,9 @@
 				<case tag="traffic_calming" value="bump"/>
 				<case tag="traffic_calming" value="hump"/>
 				<case tag="traffic_calming" value="cushion"/>
-				<apply icon="traffic_calming_bump" iconVisibleSize="10" iconOrder="70"/>
+				<apply icon="traffic_calming_bump" iconVisibleSize="16" iconOrder="70"/>
 			</switch>
-			<case minzoom="14" tag="amenity" value="fuel" icon="amenity_fuel" iconVisibleSize="6" iconOrder="81"/>
+			<case minzoom="14" tag="amenity" value="fuel" icon="amenity_fuel" iconVisibleSize="13" iconOrder="81"/>
 			<case minzoom="15" tag="amenity" value="charging_station" icon="amenity_ev_charging" iconOrder="81"/>
 			<case minzoom="16" tag="amenity" value="taxi" icon="amenity_taxi" iconOrder="81"/>
 			<case minzoom="16" tag="amenity" value="parking" icon="amenity_parking" iconVisibleSize="32" iconOrder="80">
@@ -2748,11 +2753,11 @@
 					<case additional="fee=yes" icon="amenity_parking_underground_paid"/>
 				</case>
 				<case additional="fee=yes" icon="amenity_parking_paid"/>
-				<case minzoom="17" maxzoom="17" iconVisibleSize="16">
+				<case minzoom="17" maxzoom="17">
 					<case additional="access=private" icon=""/>
 					<case additional="access=no" icon=""/>
 				</case>
-				<case minzoom="18" iconVisibleSize="16">
+				<case minzoom="18">
 					<case additional="access=private" icon="amenity_parking_private"/>
 					<case additional="access=no" icon="amenity_parking_private"/>
 				</case>
@@ -2890,7 +2895,7 @@
 						<apply_if nightMode="true" shield="gray_blue_arc_shield"/>
 					</apply>
 				</switch>
-				<case icon="railway_station" shield="white_blue_square_shield" iconVisibleSize="8" iconOrder="82">
+				<case icon="railway_station" shield="white_blue_square_shield" iconVisibleSize="14" iconOrder="82">
 					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 				</case>
 			</case>
@@ -3055,7 +3060,7 @@
 				</switch>
 			</apply>
 		</switch>
-		<switch minzoom="17" iconVisibleSize="8">
+		<switch minzoom="17" iconVisibleSize="10" intersectionSizeFactor="0.8">
 			<switch tag="entrance" value="main">
 				<case maxzoom="17" icon="barrier_small_black_3">
 					<apply_if nightMode="true" icon="barrier_small_white_3"/>
