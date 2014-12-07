@@ -984,6 +984,7 @@
 			<case tag="waterway" value="dock"/>
 			<case tag="waterway" value="wadi"/>
 			<case tag="natural" value="cliff"/>
+			<case tag="natural" value="slope"/>
 			<case tag="natural" value="crater"/>
 			<case tag="natural" value="hot_spring"/>
 			<case tag="natural" value="geyser"/>
@@ -1079,6 +1080,7 @@
 			<case tag="amenity" value="ferry_terminal"/>
 
 			<case tag="natural" value="cliff"/>
+			<case tag="natural" value="slope"/>
 			<case tag="natural" value="crater"/>
 			<case tag="natural" value="strait"/>
 			<case tag="natural" value="fjord"/>
@@ -4010,12 +4012,17 @@
 				<apply_if maxzoom="8" strokeWidth_2=":1"/>
 				<apply_if minzoom="9" maxzoom="9" strokeWidth_2=":1.7"/>
 			</case>
-			<case minzoom="16" tag="natural" value="cliff" color="$null" color_2="#148c14">
-				<case maxzoom="16" strokeWidth_2="2.5:2.5" pathEffect_2="1_7"/>
-				<case maxzoom="17" strokeWidth_2="4:4" pathEffect_2="1_9"/>
-				<case minzoom="18" strokeWidth_2="5.5:5.5" pathEffect_2="1_13"/>
-				<apply_if nightMode="true" color_2="#6d8a6d"/>
-			</case>
+			<switch minzoom="16" color="$null">
+				<case tag="natural" value="cliff" color_2="#148c14">
+					<apply_if nightMode="true" color_2="#6d8a6d"/>
+				</case>
+				<case tag="natural" value="slope" color_2="#949494">
+					<apply_if nightMode="true" color_2="#5e5e5e"/>
+				</case>
+				<apply maxzoom="16" strokeWidth_2="2.5:2.5" pathEffect_2="1_7"/>
+				<apply minzoom="17" maxzoom="17" strokeWidth_2="4:4" pathEffect_2="1_9"/>
+				<apply minzoom="18" strokeWidth_2="5.5:5.5" pathEffect_2="1_13"/>
+			</switch>
 			<case minzoom="11" tag="natural" value="crater" color="#22653f3f" color_2="#886a6a">
 				<case maxzoom="11" strokeWidth_2="0.3:0.3"/>
 				<case maxzoom="12" strokeWidth_2="0.5:0.5"/>
@@ -4755,12 +4762,17 @@
 			</apply>
 		</case>
 
-		<case minzoom="16" tag="natural" value="cliff" color="#148c14" color_2="#005300" strokeWidth_2="0.2:0.2">
-			<case maxzoom="16" strokeWidth="2.5:2.5" pathEffect="1_7"/>
-			<case maxzoom="17" strokeWidth="4:4" pathEffect="1_9"/>
-			<case minzoom="18" strokeWidth="5.5:5.5" pathEffect="1_13"/>
-			<apply_if nightMode="true" color="#6d8a6d" color_2="#e5e5e5"/>
-		</case>
+		<switch minzoom="16" strokeWidth="0.2:0.2">
+			<case tag="natural" value="cliff" color="#148c14" color_2="#005300">
+				<apply_if nightMode="true" color="#6d8a6d" color_2="#6d8a6d"/>
+			</case>
+			<case tag="natural" value="slope" color="#88949494" color_2="#949494">
+				<apply_if nightMode="true" color="#995e5e5e" color_2="#5e5e5e"/>
+			</case>
+			<apply maxzoom="16" strokeWidth_2="2.5:2.5" pathEffect_2="1_7"/>
+			<apply minzoom="17" maxzoom="17" strokeWidth_2="4:4" pathEffect_2="1_9"/>
+			<apply minzoom="18" strokeWidth_2="5.5:5.5" pathEffect_2="1_13"/>
+		</switch>
 		<case minzoom="11" tag="natural" value="ridge" color="#666666" color_2="#000000">
 			<case maxzoom="11" strokeWidth="0.15:0.15"/>
 			<case maxzoom="12" strokeWidth="0.4:0.4"/>
