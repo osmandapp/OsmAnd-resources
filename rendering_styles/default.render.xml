@@ -1804,7 +1804,7 @@
 			<case minzoom="16" tag="natural" value="spring" textDy="7" textWrapWidth="20" textOrder="15"/>
 			<case minzoom="16" tag="natural" value="hot_spring" textDy="7" textWrapWidth="20" textOrder="15"/>
 			<case minzoom="16" tag="natural" value="geyser" textDy="7" textWrapWidth="20" textOrder="15"/>
-			<case minzoom="15" tag="waterway" value="waterfall" textDy="7" textWrapWidth="20" textOnPath="true" textOrder="15"/>
+			<case minzoom="15" tag="waterway" value="waterfall" textHaloColor="#bbddf1fd" textDy="7" textWrapWidth="20" textOnPath="true" textOrder="15"/>
 
 			<case minzoom="13" tag="landuse" value="water" textWrapWidth="20"/>
 			<case minzoom="13" tag="landuse" value="reservoir" textWrapWidth="20"/>
@@ -5234,7 +5234,12 @@
 			<apply_if minzoom="16" color="#0000ff" strokeWidth="1:1"/>
 		</case>
 
-		<case minzoom="8" tag="route" value="ferry" color="#7777FF" strokeWidth="1:1" pathEffect="6_3"/>
+		<case minzoom="8" tag="route" value="ferry" color="#7777FF" strokeWidth="1:1" pathEffect="6_3">
+			<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
+				<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
+				<apply additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
+			</apply_if>
+		</case>
 
 		<case minzoom="16" tag="addr:interpolation" value="" color="#777777">
 			<case maxzoom="17" strokeWidth=":1" pathEffect="1_18" cap="ROUND"/>
