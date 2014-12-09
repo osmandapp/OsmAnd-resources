@@ -74,7 +74,7 @@ generatePngs 'health' '#DA0092' '#777777'
 
 generatePngs 'transport' '#0092DA' '#777777'
 
-generatePngs 'barrier' '#777777' '#777777'
+generatePngs 'barrier' '#444444' '#777777'
 
 generatePngs 'accommodation' '#0092DA' '#777777'
 
