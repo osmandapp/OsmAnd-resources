@@ -246,7 +246,7 @@ mycp barrier kissing_gate barrier_kissing_gate.png
 mycp barrier toll_booth barrier_toll_booth.png
 mycp barrier turnstile barrier_turnstile.png
 mycp barrier stile barrier_stile.png
-mycp barrier border_control barrier_lift_gate.png
+mycp barrier border_control barrier_border_control.png
 mycp barrier entrance barrier_entrance.png
 mycp entrance yes barrier_entrance2.png
 mycp entrance exit functional-icons_entrance_exit.png
