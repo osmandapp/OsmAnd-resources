@@ -106,7 +106,7 @@
 
 	<renderingConstant name="accessDayColor" value="#ff9292"/>
 	<renderingConstant name="accessNightColor" value="#d45656"/>
-	<renderingConstant name="barriersMinZoom" value="15"/>
+	<renderingConstant name="barrierMinZoom" value="17"/>
 
 	<renderingConstant name="subwayLineDefaultColorDay" value="#7b0000"/>
 	<renderingConstant name="subwayLineDefaultColorNight" value="#7b0000"/>
@@ -820,7 +820,7 @@
 		<group shield="white_blue_square_shield">
 			<filter minzoom="16" icon="amenity_bicycle_parking" tag="amenity" value="bicycle_parking"/>
 			<filter minzoom="17" icon="highway_bus_stop" tag="highway" value="bus_stop" iconVisibleSize="4"/>
-			<filter minzoom="17" icon="highway_bus_stop" tag="public_transport" value="platform" iconVisibleSize="4"/>
+			<filter minzoom="17" icon="highway_bus_stop" tag="public_transport" value="platform" iconVisibleSize="9"/>
 			<filter minzoom="17" icon="traffic_calming_bump" tag="traffic_calming" value="bump" iconVisibleSize="16"/>
 			<groupFilter nightMode="true" shield="gray_blue_square_shield"/>
 		</group>
@@ -915,51 +915,51 @@
 		<switch iconOrder="87">
 			<switch>
 				<case tag="barrier" value="gate">
-					<apply_if minzoom="18" icon="barrier_gate"/>
+					<apply_if minzoom="$barrierMinZoom" icon="barrier_gate" shield="barrier_gate_shield"/>
 				</case>
 				<case tag="barrier" value="yes">
-					<apply_if minzoom="18" icon="barrier_gate"/>
+					<apply_if minzoom="$barrierMinZoom" icon="barrier_gate" shield="barrier_gate_shield"/>
 				</case>
 				<case tag="barrier" value="lift_gate">
-					<apply_if minzoom="18" icon="barrier_lift_gate"/>
+					<apply_if minzoom="$barrierMinZoom" icon="barrier_lift_gate" shield="barrier_lift_gate_shield"/>
 				</case>
 				<case tag="barrier" value="swing_gate">
-					<apply_if minzoom="18" icon="barrier_swing_gate"/>
+					<apply_if minzoom="$barrierMinZoom" icon="barrier_swing_gate" shield="barrier_swing_gate_shield"/>
 				</case>
 				<case tag="barrier" value="bump_gate">
-					<apply_if minzoom="18" icon="barrier_bump_gate"/>
+					<apply_if minzoom="$barrierMinZoom" icon="barrier_bump_gate" shield="barrier_bump_gate_shield"/>
 				</case>
 				<case tag="barrier" value="chain">
-					<apply_if minzoom="18" icon="barrier_chain"/>
-				</case>
-				<case tag="barrier" value="sally_port">
-					<apply_if minzoom="18" icon="barrier_sally_port"/>
+					<apply_if minzoom="$barrierMinZoom" icon="barrier_chain" shield="barrier_chain_shield"/>
 				</case>
 				<case tag="barrier" value="cycle_barrier">
-					<apply_if minzoom="18" icon="barrier_cycle_barrier"/>
+					<apply_if minzoom="$barrierMinZoom" icon="barrier_cycle_barrier" shield="barrier_cycle_barrier_shield"/>
 				</case>
 				<case tag="barrier" value="motorcycle_barrier">
-					<apply_if minzoom="18" icon="barrier_motorcycle_barrier"/>
+					<apply_if minzoom="$barrierMinZoom" icon="barrier_motorcycle_barrier" shield="barrier_motorcycle_barrier_shield"/>
 				</case>
 				<case tag="barrier" value="turnstile">
-					<apply_if minzoom="18" icon="barrier_turnstile"/>
+					<apply_if minzoom="$barrierMinZoom" icon="barrier_turnstile" shield="barrier_turnstile_shield"/>
 				</case>
 				<case tag="barrier" value="stile">
-					<apply_if minzoom="18" icon="barrier_stile"/>
+					<apply_if minzoom="$barrierMinZoom" icon="barrier_stile" shield="barrier_stile_shield"/>
+				</case>
+				<case tag="barrier" value="sally_port">
+					<apply_if minzoom="$barrierMinZoom" icon="barrier_sally_port" shield="barrier_sally_port_shield"/>
 				</case>
 				<case tag="barrier" value="kissing_gate">
-					<apply_if minzoom="18" icon="barrier_kissing_gate"/>
+					<apply_if minzoom="$barrierMinZoom" icon="barrier_kissing_gate" shield="barrier_kissing_gate_shield"/>
 				</case>
 				<case tag="barrier" value="entrance">
-					<apply_if minzoom="18" icon="barrier_entrance"/>
+					<apply_if minzoom="$barrierMinZoom" icon="barrier_entrance" shield="barrier_entrance_shield"/>
 				</case>
 			</switch>
 			<switch>
 				<case tag="barrier" value="toll_booth">
-					<apply_if minzoom="18" icon="barrier_toll_booth"/>
+					<apply_if minzoom="$barrierMinZoom" icon="barrier_toll_booth" shield="barrier_toll_booth_shield"/>
 				</case>
 				<case tag="barrier" value="border_control">
-					<apply_if minzoom="18" icon="barrier_border_control"/>
+					<apply_if minzoom="$barrierMinZoom" icon="barrier_border_control"/>
 				</case>
 				<apply_if minzoom="14" maxzoom="14" icon="barrier_small_black_4">
 					<apply_if nightMode="true" icon="barrier_small_white_4"/>
@@ -969,57 +969,53 @@
 				</apply_if>
 			</switch>
 			<apply>
-				<apply_if minzoom="16" maxzoom="16" icon="barrier_small_black_2">
+				<apply_if minzoom="15" maxzoom="15" icon="barrier_small_black_3" shield="">
+					<apply_if nightMode="true" icon="barrier_small_white_3"/>
+				</apply_if>
+				<apply_if minzoom="16" maxzoom="16" icon="barrier_small_black_2" shield="">
 					<apply_if nightMode="true" icon="barrier_small_white_2"/>
 				</apply_if>
-				<apply_if minzoom="17" maxzoom="17" icon="barrier_small_black_1">
-					<apply_if nightMode="true" icon="barrier_small_white_1"/>
-				</apply_if>
-				<apply_if minzoom="18" shield="white_gray_square_shield">
-					<apply_if nightMode="true" shield="gray_gray_square_shield"/>
-				</apply_if>
 			</apply>
-			<apply minzoom="14" maxzoom="17" iconVisibleSize="0"/>
+			<apply minzoom="14" maxzoom="16" iconVisibleSize="0"/>
 		</switch>
 
 		<!-- Impassable barriers -->
 		<switch iconOrder="87">
 			<case tag="barrier" value="bollard">
-				<apply_if minzoom="18" icon="barrier_bollard"/>
+				<apply_if minzoom="$barrierMinZoom" icon="barrier_bollard" shield="barrier_bollard_shield"/>
 			</case>
 			<case tag="barrier" value="block">
-				<apply_if minzoom="18" icon="barrier_block"/>
+				<apply_if minzoom="$barrierMinZoom" icon="barrier_block" shield="barrier_block_shield"/>
 			</case>
-			<apply_if minzoom="18" shield="white_gray_square_shield">
-				<apply_if nightMode="true" shield="gray_gray_square_shield"/>
-			</apply_if>
-			<apply_if minzoom="16" maxzoom="16" icon="barrier_small_red_2" iconVisibleSize="0"/>
-			<apply_if minzoom="17" maxzoom="17" icon="barrier_small_red_1" iconVisibleSize="0"/>
+			<apply_if minzoom="15" maxzoom="15" icon="barrier_small_red_2" iconVisibleSize="0" shield=""/>
+			<apply_if minzoom="16" maxzoom="16" icon="barrier_small_red_2" iconVisibleSize="0" shield=""/>
+			<apply>
+				<switch> <!-- These barriers are passable by bicycle and pedestrian -->
+					<case appMode="bicycle"/>
+					<case appMode="pedestrian"/>
+					<apply_if minzoom="16" maxzoom="16" icon="barrier_small_black_2"/>
+<!--					<apply_if minzoom="17" maxzoom="17" icon="barrier_small_black_1"/>-->
+				</switch>
+			</apply>
 		</switch>
-		<switch minzoom="17" iconOrder="100" iconVisibleSize="8">
+		<switch minzoom="17" iconVisibleSize="10" intersectionSizeFactor="0.8">
 			<switch tag="entrance" value="main">
 				<case maxzoom="17" icon="barrier_small_black_3">
 					<apply_if nightMode="true" icon="barrier_small_white_3"/>
 				</case>
-				<case minzoom="18" icon="entrance_main" shield="white_gray_square_small_shield">
-					<apply_if nightMode="true" shield="gray_gray_square_small_shield"/>
-				</case>
+				<case minzoom="18" icon="entrance_main" shield="barrier_entrance_small_shield"/>
 			</switch>
 			<switch tag="entrance" value="exit">
 				<case maxzoom="17" icon="barrier_small_red_3">
 					<apply_if nightMode="true" icon="barrier_small_red_3"/>
 				</case>
-				<case minzoom="18" icon="entrance_exit" shield="white_gray_square_small_shield">
-					<apply_if nightMode="true" shield="gray_gray_square_small_shield"/>
-				</case>
+				<case minzoom="18" icon="entrance_exit" shield="entrance_exit_shield"/>
 			</switch>
 			<switch tag="entrance" value="yes">
 				<case minzoom="18" maxzoom="18" icon="barrier_small_black_3">
 					<apply_if nightMode="true" icon="barrier_small_white_3"/>
 				</case>
-				<case minzoom="19" icon="entrance_yes_2" shield="white_gray_square_small_shield">
-					<apply_if nightMode="true" shield="gray_gray_square_small_shield"/>
-				</case>
+				<case minzoom="19" icon="entrance_yes" shield="barrier_entrance_small_shield"/>
 			</switch>
 			<switch tag="amenity" value="parking_entrance">
 				<case maxzoom="17" icon="barrier_small_black_3">
@@ -1029,6 +1025,7 @@
 					<apply_if nightMode="true" shield="gray_gray_square_small_shield"/>
 				</case>
 			</switch>
+			<apply iconOrder="128"/>
 		</switch>
 
 		<switch shield="white_blue_square_shield">
