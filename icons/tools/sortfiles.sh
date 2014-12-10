@@ -524,6 +524,9 @@ mycp shop toys shopping_toys.png
 mycp amenity vending_machine shopping_vending_machine.png
 mycp shop video shopping_video_rental.png
 
+# Seamarks
+mycp seamark buoy_cardinal_north seamark_buoy_cardinal_north.png
+
 
 # mygroup custom_id icons8 #TODO
 mygroup user_defined icons8_user.png
