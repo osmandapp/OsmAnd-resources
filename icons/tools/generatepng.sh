@@ -40,6 +40,11 @@ generatePngs() {
   COLOR=$2
   COLOR2=$3
   NEG=$4
+  LARGE_ICONS=$5
+  if [ "$LARGE_ICONS" = large ]
+     then
+      SIZES=(96 64 48 32 64 48 32 24)
+  fi
   echo "On: $TYPE"
   for FILE in $SVGFOLDER$1/*.svg; do
       FILENAME=${FILE##/*/}
@@ -64,37 +69,37 @@ generatePngs() {
     done
 }
 
-generateElements 'shaders'
-generateElements 'osmc'
-generatePngs 'seamark' '#777777' '#777777'
+  generateElements 'shaders'
+  generateElements 'osmc'
+  generatePngs 'seamark' '#777777' '#777777' '' large
 
-generatePngs 'functional-icons' '#777777' '#777777'
-generatePngs 'water' '#0092DA' '#777777'
+  generatePngs 'functional-icons' '#777777' '#777777'
+  generatePngs 'water' '#0092DA' '#777777'
 
-generatePngs 'emergency' '#DA0092' '#777777'
-generatePngs 'health' '#DA0092' '#777777'
+  generatePngs 'emergency' '#DA0092' '#777777'
+  generatePngs 'health' '#DA0092' '#777777'
 
-generatePngs 'transport' '#0092DA' '#777777'
+  generatePngs 'transport' '#0092DA' '#777777'
 
-generatePngs 'barrier' '#444444' '#777777'
+  generatePngs 'barrier' '#444444' '#777777'
 
-generatePngs 'accommodation' '#0092DA' '#777777'
+  generatePngs 'accommodation' '#0092DA' '#777777'
 
-generatePngs 'tourist' '#734A08' '#777777'
+  generatePngs 'tourist' '#734A08' '#777777'
 
-generatePngs 'sport'  '#39AC39' '#777777'
+  generatePngs 'sport'  '#39AC39' '#777777'
 
-generatePngs 'amenity' '#777777' '#734A08'
-generatePngs 'place_of_worship' '#333333' '#777777'
-generatePngs 'money' '#777777' '#777777'
-generatePngs 'education' '#777777' '#39AC39'
-generatePngs 'poi' '#777777' '#777777' 
-generatePngs 'power' '#777777' '#8e7409'
+  generatePngs 'amenity' '#777777' '#734A08'
+  generatePngs 'place_of_worship' '#333333' '#777777'
+  generatePngs 'money' '#777777' '#777777'
+  generatePngs 'education' '#777777' '#39AC39'
+  generatePngs 'poi' '#777777' '#777777' 
+  generatePngs 'power' '#777777' '#8e7409'
 
-generatePngs 'food' '#777777' '#734A08'
+  generatePngs 'food' '#777777' '#734A08'
 
-generatePngs 'shopping' '#777777' '#AC39AC'
+  generatePngs 'shopping' '#777777' '#AC39AC'
 
-generatePngs 'landuse' '#777777' '#999999'
+  generatePngs 'landuse' '#777777' '#999999'
 
-generatePngs 'icons8' '#777777' '#777777' neg
+  generatePngs 'icons8' '#777777' '#777777' neg
