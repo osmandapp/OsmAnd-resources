@@ -43,7 +43,7 @@ generatePngs() {
   LARGE_ICONS=$5
   if [ "$LARGE_ICONS" = large ]
      then
-      SIZES=(96 64 48 32 64 48 32 24)
+      SIZES=(96 64 48 32 96 64 48 32)
   fi
   echo "On: $TYPE"
   for FILE in $SVGFOLDER$1/*.svg; do

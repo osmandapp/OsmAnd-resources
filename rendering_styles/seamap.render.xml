@@ -370,20 +370,50 @@
 			<case minzoom="11" tag="place" value="island" textSize="14" textOrder="10"/>
 			<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 		</switch>
+		<switch textColor="#000000" textWrapWidth="20">
+			<case tag="osmand_legend" value="header" textOrder="1" nameTag="" textBold="true" textDy="-11" textHaloRadius=":1" textHaloColor="$defaultTextHaloColorDay">
+				<case minzoom="16" maxzoom="16" textSize="18"/>
+				<case minzoom="17" maxzoom="17" textSize="19" textWrapWidth="30"/>
+				<case minzoom="18" textSize="20" textWrapWidth="30"/>
+			</case>
+			<case tag="osmand_legend" value="element" textOrder="5" textHaloRadius="$textHaloRadiusDay" textHaloColor="$defaultTextHaloColorDay" nameTag="">
+				<case minzoom="17" maxzoom="17" textSize="11"/>
+				<case minzoom="18" textSize="12" textWrapWidth="30"/>
+			</case>
+			<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
+		</switch>
 
 		<!-- Seamarks -->
-		<switch textColor="#000000" textSize="13" textWrapWidth="19" textHaloColor="#aaacd8f3" textHaloRadius="2" textDy="6">
+		<switch minzoom="11" textColor="#000000" textWrapWidth="19" textHaloColor="#aaacd8f3" textHaloRadius="2" textDy="13">
 			<case tag="seamark" value="buoy_cardinal"/>
+			<case tag="seamark" value="buoy_isolated_danger"/>
+			<case tag="seamark" value="buoy_safe_water"/>
+			<apply>
+				<case maxzoom="12" textSize="13"/>
+				<case maxzoom="14" textSize="14"/>
+				<case maxzoom="16" textSize="15"/>
+			</apply>
+			<apply_if nightMode="true" textColor="#eaf6ff" textHaloColor="#5545a5e2"/>
 		</switch>
 	</text>
 
 
 	<point>
-
-		<case minzoom="12" tag="seamark" value="buoy_cardinal" icon="seamark_buoy_cardinal"> <!-- todo:icon -->
-			<apply_if additional="seamark:category" value="north" icon="seamark_buoy_cardinal_north"/>
-		</case>
-
+		<!-- Seamarks -->
+		<switch iconVisibleSize="14" intersectionSizeFactor="0.8">
+			<case minzoom="11" tag="seamark" value="buoy_cardinal" icon="seamark_buoy_cardinal">
+				<case additional="seamark:category=north" icon="seamark_buoy_cardinal_north"/>
+				<case additional="seamark:category=south" icon="seamark_buoy_cardinal_south"/>
+				<case additional="seamark:category=west" icon="seamark_buoy_cardinal_west"/>
+				<case additional="seamark:category=east" icon="seamark_buoy_cardinal_east"/>
+			</case>
+			<case minzoom="11" tag="seamark" value="buoy_lateral" icon="seamark_buoy_lateral" iconVisibleSize="14" intersectionSizeFactor="0.8"> <!-- icon? -->
+				<case additional="seamark:category=port" icon="seamark_buoy_lateral_port"/>
+				<case additional="seamark:category=starboard" icon="seamark_buoy_lateral_starboard"/>
+			</case>
+			<case minzoom="11" tag="seamark" value="buoy_isolated_danger" icon="seamark_buoy_isolated_danger"/>
+			<case minzoom="11" tag="seamark" value="buoy_safe_water" icon="seamark_buoy_safe_water"/>
+		</switch>
 	
 		<!-- Location dots -->
 

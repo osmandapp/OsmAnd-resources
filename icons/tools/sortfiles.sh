@@ -469,6 +469,16 @@ mycp man_made water_well food_water_well.png
 
 ## Seamarks
 mygroup seamark icons8_sail_boat.png
+mycp seamark buoy_cardinal seamark_buoy_cardinal.png
+mycp seamark buoy_cardinal_north seamark_buoy_cardinal_north.png
+mycp seamark buoy_cardinal_south seamark_buoy_cardinal_south.png
+mycp seamark buoy_cardinal_west seamark_buoy_cardinal_west.png
+mycp seamark buoy_cardinal_east seamark_buoy_cardinal_east.png
+mycp seamark buoy_isolated_danger seamark_buoy_isolated_danger.png
+mycp seamark buoy_safe_water seamark_buoy_safe_water.png
+mycp seamark buoy_lateral_port seamark_buoy_lateral_port.png
+mycp seamark buoy_lateral_starboard seamark_buoy_lateral_starboard.png
+
 
 
 ## Shops
@@ -523,9 +533,6 @@ mycp shop tobacco shopping_tobacco.png
 mycp shop toys shopping_toys.png
 mycp amenity vending_machine shopping_vending_machine.png
 mycp shop video shopping_video_rental.png
-
-# Seamarks
-mycp seamark buoy_cardinal_north seamark_buoy_cardinal_north.png
 
 
 # mygroup custom_id icons8 #TODO
