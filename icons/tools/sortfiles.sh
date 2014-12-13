@@ -167,6 +167,7 @@ mycp amenity car_sharing transport_car_share.png
 mycp amenity boat_sharing amenity_boat_sharing.png
 
 mycp leisure marina transport_marina.png
+mycp leisure marina_private transport_marina_private.png
 mycp leisure slipway transport_slipway.png
 mycp man_made lighthouse transport_lighthouse.png
 mycp waterway lock_gate functional-icons_lock_gate.png  #scale 0.5
