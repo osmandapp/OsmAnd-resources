@@ -35,7 +35,7 @@ mycp natural scrub landuse_scrub.png                     # Keep shaders with bac
 mycp natural swamp landuse_swamp.png                     # Keep shaders with background color, cannot be replaced by icons!
 mycp tourism zoo tourist_zoo.png                         # Keep shaders with background color, cannot be replaced by icons!
 mycp military danger_area poi_mine.png                   # Keep shaders with background color, cannot be replaced by icons!
-mycp military nuclear_explosion_site functional-icons_nuclear_explosion_site.png
+mycp military nuclear_explosion_site poi_nuclear_explosion_site.png
 mycp natural glacier poi_peak2.png                       # Keep shaders with background color, cannot be replaced by icons!
 
 
@@ -446,6 +446,7 @@ mycp man_made water_tower poi_water_tower.png
 mycp man_made mineshaft poi_mine.png
 mycp man_made windmill poi_windmill.png
 mycp man_made petroleum_well poi_petroleum_well.png
+mycp man_made crane poi_crane.png
 mycp man_made adit poi_adit.png
 mycp man_made observatory poi_observatory.png
 mycp man_made observatory_astronomical poi_observatory_astronomical.png
