@@ -6,7 +6,6 @@ BASEFOLDER=`pwd`;
 popd  > /dev/null
 BASEFOLDER=`dirname $BASEFOLDER`
 
-SIZES=(96 64 48 32 48 32 24 16)
 FOLDERS=(big-xxhdpi big-xhdpi big-hdpi big-mdpi xxhdpi xhdpi hdpi mdpi)
 
 SVGFOLDER=${BASEFOLDER}/svg/
@@ -41,11 +40,13 @@ generatePngs() {
   COLOR2=$3
   NEG=$4
   LARGE_ICONS=$5
-  if [ "$LARGE_ICONS" = large ]
-     then
-      SIZES=(96 64 48 32 96 64 48 32)
-  fi
   echo "On: $TYPE"
+  if [ "$LARGE_ICONS" = 'large' ]
+    then
+     SIZES=(96 64 48 32 96 64 48 32)
+       else
+     SIZES=(96 64 48 32 48 32 24 16)
+  fi
   for FILE in $SVGFOLDER$1/*.svg; do
       FILENAME=${FILE##/*/}
       if [[ $FILENAME == _* ]]; then
@@ -55,7 +56,7 @@ generatePngs() {
 
       for (( j = 0 ; j < ${#SIZES[@]} ; j++ )) do
         OUTF=${OUTPUTFOLDER}${FOLDERS[j]}/
-        
+
         if [[ -z $NEG ]]; then
           ${BASEFOLDER}/tools/recolourtopng.sh ${FILE} 'none' 'none' $COLOR ${SIZES[j]} ${OUTF}${FILENAME}
           ${BASEFOLDER}/tools/recolourtopng.sh ${FILE} 'none' 'none' $COLOR2 ${SIZES[j]} ${OUTF}${FILENAME}_2
@@ -65,7 +66,6 @@ generatePngs() {
         fi
         # convert ${OUTF}${FILENAME}.png \( +clone -background "#ffffff" -shadow 8000x2-0+0 \) +swap -background none -layers merge +repage -trim ${OUTF}${FILENAME}_glow.png
       done
-
     done
 }
 
