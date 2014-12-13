@@ -396,6 +396,7 @@ mycp religion shinto place_of_worship_shinto3.png
 mycp religion taoist place_of_worship_taoist.png
 mycp amenity smoking_area amenity_smoking_area.png
 mycp amenity studio amenity_studio.png
+mycp amenity brothel amenity_brothel.png
 #! mycp amenity grave_yard place_of_worship_christian3.png  #already defined as icon in the shader section
 
 mygroup finance money_bank2.png
@@ -476,8 +477,6 @@ mycp seamark buoy_cardinal_west seamark_buoy_cardinal_west.png
 mycp seamark buoy_cardinal_east seamark_buoy_cardinal_east.png
 mycp seamark buoy_isolated_danger seamark_buoy_isolated_danger.png
 mycp seamark buoy_safe_water seamark_buoy_safe_water.png
-mycp seamark buoy_lateral_port seamark_buoy_lateral_port_red.png
-mycp seamark buoy_lateral_starboard seamark_buoy_lateral_starboard_green.png
 
 
 
