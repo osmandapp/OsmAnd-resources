@@ -42,15 +42,14 @@ mycp natural glacier poi_peak2.png                       # Keep shaders with bac
 ## Natural
 mygroup natural poi_peak2.png
 mycp natural peak functional-icons_peak.png  #needs black icon!  #scale 0.5
-mycp natural peak_framed functional-icons_peak_framed.png
-mycp natural peak_framed_big functional-icons_peak_framed_big.png
+mycp natural peak_big functional-icons_peak_big.png  #needs black icon!  #scale 0.5
 mycp natural peak_night functional-icons_peak_night.png  #For night orienteering use orange similar to contour lines (=day version with color #CC6600)  #scale 0.5
 mycp natural peak_night_big functional-icons_peak_night_big.png  #For night orienteering use orange similar to contour lines (=day version with color #CC6600)  #scale 0.5
 mycp natural saddle functional-icons_saddle.png
 mycp natural volcano functional-icons_volcano.png  #Is poi_peak.png with color #D40000  #scale 0.5
-mycp natural volcano_framed functional-icons_volcano_framed.png
-mycp natural volcano_framed_big functional-icons_volcano_framed_big.png
 mycp natural volcano_big functional-icons_volcano_big.png
+mycp natural volcano_active functional-icons_volcano_active.png
+mycp natural volcano_active_big functional-icons_volcano_active_big.png
 mycp natural cave_entrance poi_cave.png
 mycp natural spring water_spring.png  #scale 0.375
 mycp natural hot_spring water_hot_spring.png  #scale 0.375
