@@ -298,6 +298,7 @@ mycp historic archaeological_site tourist_archaeological2.png
 mycp historic battlefield tourist_battlefield.png
 mycp historic boundary_stone poi_boundary_administrative.png
 mycp historic castle tourist_castle2.png
+mycp historic cannon tourist_cannon.png
 mycp historic monument tourist_monument.png
 mycp historic memorial tourist_memorial.png
 mycp historic mine poi_mine_abandoned.png
