@@ -121,6 +121,7 @@ mycp highway speed_camera transport_speedcamera.png
 mycp highway milestone functional-icons_milestone.png
 mycp oneway blue functional-icons_oneway_blue.png
 mycp oneway reverse_blue functional-icons_oneway_reverse_blue.png
+mycp harbour yes poi_harbour.png
 
 mygroup fuel transport_fuel.png
 mycp amenity fuel transport_fuel.png

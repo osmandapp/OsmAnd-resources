@@ -927,6 +927,7 @@
 			<case tag="geological" value="palaeontological_site"/>
 			<case tag="leisure" value="marina"/>
 			<case tag="leisure" value=""/>
+			<case tag="harbour" value="yes"/>
 			<case tag="sport" value=""/>
 			<case tag="geocache" value=""/>
 			<case tag="office" value=""/>
@@ -990,6 +991,7 @@
 			<case tag="public_transport" value="" order="5"/>
 			<case tag="leisure" value="marina"/>
 			<case tag="leisure" value="nature_reserve" order="9"/>
+			<case tag="harbour" value="yes"/>
 			<case tag="waterway" value="dock"/>
 			<case tag="waterway" value="wadi"/>
 			<case tag="natural" value="cliff"/>
@@ -1934,9 +1936,12 @@
 		<case minzoom="3" tag="route" value="ferry" nameTag2="ref" textSize="14" textColor="#7330a7" textHaloRadius="$textHaloRadiusDay" textHaloColor="#eef1eae4" textWrapWidth="35" textOnPath="true">
 			<apply_if nightMode="true" textColor="#ffcdfe" textHaloRadius="$textHaloRadiusNight" textHaloColor="#663e203e"/>
 		</case>
-		<case minzoom="14" tag="leisure" value="marina" textSize="12" textColor="#0000bb" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ccffffff" textWrapWidth="30" textDy="8">
-			<apply_if nightMode="true" textColor="#a3c8ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#66002357"/>
-		</case>
+		<switch>
+			<case minzoom="15" tag="leisure" value="marina" textSize="12"/>
+			<apply textColor="#0000bb" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ccffffff" textWrapWidth="30" textDy="8">
+				<apply_if nightMode="true" textColor="#a3c8ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#66002357"/>
+			</apply>
+		</switch>
 		<case minzoom="16" tag="man_made" value="pier" textSize="11" textColor="#1f62ae" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ccffffff" textOnPath="true" textWrapWidth="30">
 			<apply_if nightMode="true" textColor="#a3c8ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#66002357"/>
 		</case>
@@ -2198,18 +2203,19 @@
 		<case minzoom="14" tag="military" value="nuclear_explosion_site" textSize="11" textDy="9" textHaloRadius="$textHaloRadiusDay" textHaloColor="$defaultTextHaloColorDay" textColor="#444444" textWrapWidth="17">
 			<apply_if nightMode="true" textColor="#eeeeee" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 		</case>
-		<switch textColor="#444444" textHaloRadius="$textHaloRadiusDay" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="17" textDy="9">
+		<switch textSize="11" textColor="#444444" textHaloRadius="$textHaloRadiusDay" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="17" textDy="9">
 			<case minzoom="17" textSize="12" tag="man_made" value="windmill"/>
-			<case minzoom="16" textSize="11" tag="man_made" value="communications_tower"/>
-			<case minzoom="16" textSize="11" tag="man_made" value="petroleum_well"/>
-			<case minzoom="16" textSize="11" tag="man_made" value="crane"/>
-			<case minzoom="16" textSize="11" tag="man_made" value="adit"/>
-			<case minzoom="17" textSize="11" tag="man_made" value="water_tower"/>
-			<case minzoom="16" textSize="11" tag="man_made" value="mineshaft"/>
-			<case minzoom="16" textSize="11" tag="amenity" value="hunting_stand"/>
-			<case minzoom="17" textSize="11" tag="man_made" value="storage_tank"/>
-			<case minzoom="17" textSize="11" tag="man_made" value="silo"/>
-			<case minzoom="15" textSize="11" tag="man_made" value="observatory"/>
+			<case minzoom="16" tag="man_made" value="communications_tower"/>
+			<case minzoom="16" tag="man_made" value="petroleum_well"/>
+			<case minzoom="16" tag="man_made" value="crane"/>
+			<case minzoom="16" tag="man_made" value="adit"/>
+			<case minzoom="17" tag="man_made" value="water_tower"/>
+			<case minzoom="16" tag="man_made" value="mineshaft"/>
+			<case minzoom="16" tag="amenity" value="hunting_stand"/>
+			<case minzoom="17" tag="man_made" value="storage_tank"/>
+			<case minzoom="17" tag="man_made" value="silo"/>
+			<case minzoom="15" tag="man_made" value="observatory"/>
+			<case minzoom="15" tag="harbour" value="yes" textSize="12"/>
 			<apply_if nightMode="true" textColor="#eeeeee" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 		</switch>
 
@@ -2805,6 +2811,9 @@
 			<case minzoom="15" tag="man_made" value="lighthouse" icon="man_made_lighthouse"/>
 			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 		</switch>
+		<case minzoom="16" tag="harbour" value="yes" icon="harbour_yes" shield="harbour_shield">
+			<apply_if nightMode="true" shield=""/>
+		</case>
 
 		<case minzoom="14" tag="mountain_pass" value="yes" icon="mountain_pass" shield="white_gray_square_shield" iconOrder="65">
 			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
