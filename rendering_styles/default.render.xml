@@ -912,6 +912,7 @@
 			<case tag="natural" value="fjord"/>
 			<case tag="natural" value="hot_spring"/>
 			<case tag="natural" value="geyser"/>
+			<case tag="natural" value="volcano"/>
 			<case tag="natural" value=""/>
 			<case tag="waterway" value="waterfall"/>
 			<case tag="waterway" value="rapids"/>
@@ -994,6 +995,7 @@
 			<case tag="natural" value="cliff"/>
 			<case tag="natural" value="slope"/>
 			<case tag="natural" value="crater"/>
+			<case tag="natural" value="volcano"/>
 			<case tag="natural" value="hot_spring"/>
 			<case tag="natural" value="geyser"/>
 			<case tag="building" value="no" order="-1"/>
@@ -2624,10 +2626,10 @@
 		</case>
 		<case minzoom="10" tag="natural" value="volcano" iconOrder="50">
 			<case maxzoom="14" icon="natural_volcano" shield="peakvolcano_shield">
-				<case additional="status=active" icon="natural_volcano_active" shield="natural_volcano_active_shield"/>
+				<case additional="status=active" icon="natural_volcano_active" shield="volcano_active_shield"/>
 			</case>
 			<case minzoom="15" icon="natural_volcano_big" shield="peakvolcano_big_shield">
-				<case additional="status=active" icon="natural_volcano_active_big" shield="natural_volcano_active_shield_big"/>
+				<case additional="status=active" icon="natural_volcano_active_big" shield="volcano_active_big_shield"/>
 			</case>
 			<apply_if nightMode="true" shield=""/>
 		</case>
@@ -4030,15 +4032,21 @@
 				<apply minzoom="17" maxzoom="17" strokeWidth_2="4:4" pathEffect_2="1_9"/>
 				<apply minzoom="18" strokeWidth_2="5.5:5.5" pathEffect_2="1_13"/>
 			</switch>
-			<case minzoom="11" tag="natural" value="crater" color="#22653f3f" color_2="#886a6a">
-				<case maxzoom="11" strokeWidth_2="0.3:0.3"/>
-				<case maxzoom="12" strokeWidth_2="0.5:0.5"/>
-				<case maxzoom="13" strokeWidth_2="1:1"/>
-				<case maxzoom="14" strokeWidth_2="1.5:1.5"/>
-				<case maxzoom="15" strokeWidth_2="2:2"/>
-				<case minzoom="16" strokeWidth_2="2.3:2.3"/>
-				<apply_if nightMode="true" color="#224e1111" color_2="#452121"/>
-			</case>
+			<switch minzoom="11">
+				<case tag="natural" value="crater"/>
+				<case tag="natural" value="volcano"/>
+				<apply color="#22653f3f" color_2="#886a6a">
+					<apply_if nightMode="true" color="#224e1111" color_2="#452121"/>
+				</apply>
+				<apply>
+					<case maxzoom="11" strokeWidth_2="0.3:0.3"/>
+					<case maxzoom="12" strokeWidth_2="0.5:0.5"/>
+					<case maxzoom="13" strokeWidth_2="1:1"/>
+					<case maxzoom="14" strokeWidth_2="1.5:1.5"/>
+					<case maxzoom="15" strokeWidth_2="2:2"/>
+					<case minzoom="16" strokeWidth_2="2.3:2.3"/>
+				</apply>
+			</switch>
 			<case minzoom="13" tag="landuse" value="logging" color="#d3dec5">
 				<case minzoom="15" shader="logging"/>
 				<apply_if nightMode="true" shader="" color="#3a3f37"/>
