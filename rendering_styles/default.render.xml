@@ -924,6 +924,7 @@
 			<case tag="historic" value="ship"/>
 			<case tag="historic" value=""/>
 			<case tag="geological" value="palaeontological_site"/>
+			<case tag="leisure" value="marina"/>
 			<case tag="leisure" value=""/>
 			<case tag="sport" value=""/>
 			<case tag="geocache" value=""/>
@@ -986,6 +987,7 @@
 			<case tag="railway" value="station"/>
 			<case tag="aerialway" value="station"/>
 			<case tag="public_transport" value="" order="5"/>
+			<case tag="leisure" value="marina"/>
 			<case tag="leisure" value="nature_reserve" order="9"/>
 			<case tag="waterway" value="dock"/>
 			<case tag="waterway" value="wadi"/>
@@ -3923,15 +3925,22 @@
 				<apply_if nightMode="true" color="#132c4e"/>
 			</switch>
 
-			<case minzoom="13" tag="man_made" value="pier" color="#fffcf6">
-				<switch minzoom="15">
-					<case additional="access=no"/>
-					<case additional="access=private"/>
-					<apply color_2="$accessPrivateColor" strokeWidth_2="3" pathEffect_2="1_7" cap_2="ROUND"/>
-					<apply_if nightMode="true" color_2="$accessPrivateColor"/>
-				</switch>
-				<apply nightMode="true" color="#5c7596"/>
-			</case>
+			<switch minzoom="13">
+				<case tag="man_made" value="pier" color="#fffcf6">
+					<apply_if nightMode="true" color="#5c7596"/>
+				</case>
+				<case tag="leisure" value="marina" color="#d6f0ef" strokeWidth_2="2" color_2="#8098c0">
+					<apply_if nightMode="true" color="#406596" color_2="#5587c7"/>
+				</case>
+				<apply minzoom="15">
+					<switch>
+						<case additional="access=no"/>
+						<case additional="access=private"/>
+						<apply color_2="$accessPrivateColor" strokeWidth_2="3" pathEffect_2="1_7" cap_2="ROUND"/>
+						<apply_if nightMode="true" color_2="$accessPrivateColor"/>
+					</switch>
+				</apply>
+			</switch>
 
 			<case minzoom="13" tag="waterway" value="dam" color="#33555555" color_2="#555555">
 				<case maxzoom="14" strokeWidth_2="0.6:0.6"/>
