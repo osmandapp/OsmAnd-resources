@@ -171,6 +171,7 @@ mycp leisure marina_private transport_marina_private.png
 mycp leisure slipway transport_slipway.png
 mycp man_made lighthouse transport_lighthouse.png
 mycp waterway lock_gate functional-icons_lock_gate.png  #scale 0.5
+mycp waterway dock transport_dock.png
 
 mycp railway station transport_train_station.png
 mycp railway station_subway transport_station_subway.png
