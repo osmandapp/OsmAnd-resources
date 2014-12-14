@@ -1098,6 +1098,7 @@
 			<case tag="natural" value="cliff"/>
 			<case tag="natural" value="slope"/>
 			<case tag="natural" value="crater"/>
+			<case tag="natural" value="volcano"/>
 			<case tag="natural" value="strait"/>
 			<case tag="natural" value="fjord"/>
 
@@ -4857,15 +4858,21 @@
 			<case minzoom="16" strokeWidth="1.5:1.5" strokeWidth_2="1.8:1.8" pathEffect_2="1_37"/>
 			<apply_if nightMode="true" color="#666666" color_2="#999999"/>
 		</case>
-		<case minzoom="11" tag="natural" value="crater" color="#886a6a">
-			<case maxzoom="11" strokeWidth="0.3:0.3"/>
-			<case maxzoom="12" strokeWidth="0.5:0.5"/>
-			<case maxzoom="13" strokeWidth="1:1"/>
-			<case maxzoom="14" strokeWidth="1.5:1.5"/>
-			<case maxzoom="15" strokeWidth="2:2"/>
-			<case minzoom="16" strokeWidth="2.3:2.3"/>
-			<apply_if nightMode="true" color="#452121"/>
-		</case>
+		<switch minzoom="11">
+			<case tag="natural" value="crater"/>
+			<case tag="natural" value="volcano"/>
+			<apply>
+				<case maxzoom="11" strokeWidth="0.3:0.3"/>
+				<case maxzoom="12" strokeWidth="0.5:0.5"/>
+				<case maxzoom="13" strokeWidth="1:1"/>
+				<case maxzoom="14" strokeWidth="1.5:1.5"/>
+				<case maxzoom="15" strokeWidth="2:2"/>
+				<case minzoom="16" strokeWidth="2.3:2.3"/>
+			</apply>
+			<apply color="#886a6a">
+				<apply_if nightMode="true" color="#452121"/>
+			</apply>
+		</switch>
 
 		<switch minzoom="16">
 			<case tag="waterway" value="waterfall"/>
