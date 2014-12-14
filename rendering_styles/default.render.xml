@@ -927,6 +927,9 @@
 			<case tag="geological" value="palaeontological_site"/>
 			<case tag="leisure" value="marina"/>
 			<case tag="leisure" value=""/>
+			<case tag="attraction" value="water_slide"/>
+			<case tag="attraction" value="train"/>
+			<case tag="attraction" value="roller_coaster"/>
 			<case tag="harbour" value="yes"/>
 			<case tag="sport" value=""/>
 			<case tag="geocache" value=""/>
@@ -1006,6 +1009,8 @@
 			<case tag="historic" value="ship"/>
 			<case tag="amenity" value="ferry_terminal"/>
 			<case tag="geological" value="palaeontological_site"/>
+			<case tag="attraction" value="train"/>
+			<case tag="attraction" value="log_flume"/>
 			<switch>
 				<case tag="military" value="bunker"/>
 				<case tag="military" value="barracks"/>
@@ -1103,6 +1108,9 @@
 				<apply_if layer="1" order="68"/>
 				<apply_if layer="-1" appMode="car" order="-1"/>
 			</case>
+			<case tag="attraction" value="water_slide"/>
+			<case tag="attraction" value="roller_coaster"/>
+			<case tag="attraction" value="train"/>
 
 			<switch osmcTraces="true">
 				<case tag="osmc_symbol_red" value=""/>
@@ -2108,8 +2116,9 @@
 
 		<!-- Tourism and Entertainment -->
 		<switch textColor="$tourismAttractionTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$tourismAttractionTextHaloColorDay" textDy="9" textWrapWidth="20" textBold="true" textOrder="10">
-			<case minzoom="15" tag="tourism" value="attraction" textSize="13" nameTag=""/>
 			<case minzoom="16" tag="historic" value="city_gate" textSize="12"/>
+			<case minzoom="15" tag="tourism" value="attraction" textSize="13" nameTag=""/>
+			<case minzoom="16" tag="attraction" value="big_wheel" textSize="12"/>
 			<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="$tourismAttractionTextColorNight" textHaloColor="#88641500"/>
 		</switch>
 		<switch textSize="12" textColor="$tourismTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$tourismTextHaloColorDay" textDy="9" textWrapWidth="20">
@@ -2131,6 +2140,19 @@
 			<case minzoom="17" tag="amenity" value="brothel"/>
 			<case minzoom="16" tag="natural" value="beach"/>
 			<case minzoom="16" tag="leisure" value="beach_resort"/>
+			<switch minzoom="18">
+				<case tag="attraction" value="amusement_ride"/>
+				<case tag="attraction" value="animal"/>
+				<case tag="attraction" value="carousel"/>
+				<case tag="attraction" value="log_flume" textOnPath="true"/>
+				<case tag="attraction" value="maze"/>
+				<case tag="attraction" value="roller_coaster" textOnPath="true"/>
+				<case tag="attraction" value="slide"/>
+				<case tag="attraction" value="summer_toboggan"/>
+				<case tag="attraction" value="swing_carousel"/>
+				<case tag="attraction" value="train"/>
+				<case tag="attraction" value="water_slide" textOnPath="true"/>
+			</switch>
 			<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffe7c2" textHaloColor="#88644e2c"/>
 		</switch>
 
@@ -3146,6 +3168,20 @@
 				<case minzoom="15" tag="tourism" value="theme_park" icon="tourism_theme_park"/>
 				<case minzoom="15" tag="tourism" value="zoo" icon="tourism_zoo"/>
 			</switch>
+			<switch minzoom="18">
+				<case tag="attraction" value="amusement_ride" icon="attraction_amusement_ride"/>
+				<case tag="attraction" value="animal" icon="attraction_animal"/>
+				<case tag="attraction" value="carousel" icon="attraction_carousel"/>
+				<case tag="attraction" value="maze" icon="attraction_maze"/>
+				<case tag="attraction" value="slide" icon="attraction_slide"/>
+				<case tag="attraction" value="summer_toboggan" icon="attraction_summer_toboggan"/>
+				<case tag="attraction" value="train" icon="attraction_train"/>
+				<case tag="attraction" value="water_slide" icon="attraction_water_slide"/>
+			</switch>
+			<case minzoom="17" tag="attraction" value="roller_coaster" icon="attraction_roller_coaster"/>
+			<case minzoom="17" tag="attraction" value="swing_carousel" icon="attraction_swing_carousel"/>
+			<case minzoom="16" tag="attraction" value="big_wheel" icon="attraction_big_wheel"/>
+
 			<case minzoom="16" tag="tourism" value="viewpoint" icon="tourism_viewpoint" iconOrder="85"/>
 			<case minzoom="16" tag="natural" value="beach" icon="natural_beach" iconOrder="79"/>
 			<case minzoom="16" tag="leisure" value="beach_resort" icon="leisure_beach_resort" iconOrder="79"/>
@@ -3498,7 +3534,7 @@
 			</apply>
 		</case>
 
-		<!-- Buildings, night color 685454 -->
+		<!-- Buildings -->
 		<switch hideBuildings="false" minzoom="15" color_2="#000000">
 			<switch coloredBuildings="true">
 				<switch>
@@ -3515,6 +3551,7 @@
 					<case tag="building" value="greenhouse"/>
 					<case tag="man_made" value="storage_tank"/>
 					<case tag="man_made" value="silo"/>
+					<case tag="man_made" value="chimney"/>
 					<apply color="$buildingIndustrialColorDay">
 						<apply_if nightMode="true" color="$buildingIndustrialColorNight"/>
 					</apply>
@@ -3564,20 +3601,26 @@
 						<apply_if nightMode="true" color="$churchColorNight" color_2="$attractionStrokeColorNight"/>
 					</apply>
 				</switch>
+				<switch>
+					<case tag="military" value="bunker"/>
+					<case tag="military" value="barracks"/>
+					<apply color="$buildingMilitaryColorDay">
+						<apply_if nightMode="true" color="$buildingMilitaryColorNight"/>
+					</apply>
+				</switch>
 			</switch>
-			<case tag="man_made" value="chimney" color="$buildingIndustrialColorDay">
-				<apply_if nightMode="true" color="$buildingIndustrialColorNight"/>
-			</case>
 			<switch>
+				<case tag="building" value=""/>
+				<case tag="historic" value="city_gate"/>
+				<case tag="man_made" value="storage_tank"/>
+				<case tag="man_made" value="silo"/>
+				<case tag="man_made" value="chimney"/>
 				<case tag="military" value="bunker"/>
 				<case tag="military" value="barracks"/>
-				<apply color="$buildingMilitaryColorDay">
-					<apply_if nightMode="true" color="$buildingMilitaryColorNight"/>
+				<apply color="$buildingColorDay">
+					<apply_if nightMode="true" color="$buildingColorNight" color_2="#999999"/>
 				</apply>
 			</switch>
-			<case tag="building" value="" color="$buildingColorDay">
-				<apply_if nightMode="true" color="$buildingColorNight" color_2="#999999"/>
-			</case>
 			<switch>
 				<case tag="building" value="collapsed"/>
 				<case tag="building" value="abandoned"/>
@@ -5262,6 +5305,25 @@
 		<case minzoom="13" maxzoom="15" tag="leisure" value="marina" color="#0000ff" strokeWidth="0.5:0.5" pathEffect="6_2">
 			<apply_if minzoom="16" color="#0000ff" strokeWidth="1:1"/>
 		</case>
+		<switch minzoom="17">
+			<case tag="attraction" value="water_slide" color="#b2ddf3" color__1="#187db2">
+				<apply_if nightMode="true" color="#187db2" color__1="#8cbad3"/>
+			</case>
+			<case tag="attraction" value="roller_coaster" color="#d3a98c" color__1="#7f6554">
+				<apply_if nightMode="true" color="#7f6554" color__1="#d3a98c"/>
+			</case>
+			<apply>
+				<case maxzoom="17" strokeWidth="2" strokeWidth__1="4"/>
+				<case maxzoom="18" strokeWidth="3" strokeWidth__1="6"/>
+				<case minzoom="19" strokeWidth="4" strokeWidth__1="8"/>
+			</apply>
+			<apply_if layer="-1" pathEffect="4_4" pathEffect__1="4_4"/>
+			<apply_if layer="1" color__1="#000000">
+				<apply_if nightMode="true" color__1="#cccccc"/>
+			</apply_if>
+		</switch>
+		<case minzoom="17" tag="attraction" value="train" strokeWidth="0.1"/>
+		<case minzoom="18" tag="attraction" value="log_flume" strokeWidth="0.1"/>
 
 		<case minzoom="8" tag="route" value="ferry" color="#7777FF" strokeWidth="1:1" pathEffect="6_3">
 			<apply_if minzoom="16"> <!-- for new OpenGL engine only -->

@@ -282,7 +282,17 @@ mycp tourism information tourist_information.png
 mycp tourism viewpoint tourist_view_point.png
 mycp tourism theme_park tourist_theme_park.png
 mycp tourism zoo tourist_zoo.png
-
+mycp attraction amusement_ride tourist_amusement_ride.png
+mycp attraction animal tourist_animal.png
+mycp attraction big_wheel tourist_big_wheel.png
+mycp attraction carousel tourist_carousel.png
+mycp attraction maze tourist_maze.png
+mycp attraction roller_coaster tourist_roller_coaster.png
+mycp attraction slide tourist_slide.png
+mycp attraction summer_toboggan tourist_summer_toboggan.png
+mycp attraction swing_carousel tourist_swing_carousel.png
+mycp attraction train tourist_train.png
+mycp attraction water_slide tourist_water_slide.png
 
 ## Entertainment
 mygroup entertainment tourist_cinema.png
