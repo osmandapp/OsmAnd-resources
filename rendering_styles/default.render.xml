@@ -450,6 +450,12 @@
 	<renderingConstant name="pathPathEffect" value="4_2"/>
 	<renderingConstant name="pathLowZoomPathEffect" value=""/>
 	<renderingConstant name="sacScaleColor" value="#e23cad"/>
+	<renderingConstant name="sacScaleColorT1" value="#000000"/>
+	<renderingConstant name="sacScaleColorT2" value="#e23cad"/>
+	<renderingConstant name="sacScaleColorT3" value="#e23cad"/>
+	<renderingConstant name="sacScaleColorT4" value="#6000ff"/>
+	<renderingConstant name="sacScaleColorT5" value="#6000ff"/>
+	<renderingConstant name="sacScaleColorT6" value="#6000ff"/>
 
 	<renderingConstant name="contourLineColor" value="#2Aff7c00"/>
 	<renderingConstant name="contourLineColor50m" value="#2Aea7300"/>
@@ -4258,7 +4264,7 @@
 			<apply_if nightMode="true" shadowRadius="0"/>
 		</switch>
 
-		<case minzoom="18" tag="highway" value="footway" additional="footway=crossing" color="#ffffff" color__1="#77555555">
+		<case minzoom="18" tag="highway" value="footway" additional="footway=crossing" color="#ffffff" color__1="#77555555"> <!-- this code is here because we do not want surfaces,surfaceGrade and access on crossings -->
 			<apply_if maxzoom="18" strokeWidth="4:4" pathEffect="2_2" strokeWidth__1="4:4"/>
 			<apply_if minzoom="19" strokeWidth="6:6" pathEffect="3_3" strokeWidth__1="6:6"/>
 			<apply_if nightMode="true" color="#aaaaaa" color__1="#33ffffff"/>
@@ -4528,16 +4534,21 @@
 							<apply color_5="$pathColorNight"/>
 						</apply_if>
 						<apply>
-							<!-- Dash pattern: solid(100%), long-dashed(77%), short-dashed(63%), dash-dotted(50%), dotted(50%), dotted2(40%), short-dashed-narrow-spaced(66%) for not-specified -->
-							<!-- Also: switch color to 'pedestrian-red' to better indicate these special ratings in line with many alpine maps -->
 							<switch alpineHiking="true">
-								<case additional="sac_scale=hiking" pathEffect_5=""/>
-								<case additional="sac_scale=mountain_hiking" pathEffect_5="10_3"/>
-								<case additional="sac_scale=demanding_mountain_hiking" pathEffect_5="5_3"/>
-								<case additional="sac_scale=alpine_hiking" pathEffect_5="4_3_2_3"/>
-								<case additional="sac_scale=demanding_alpine_hiking" pathEffect_5="3_3"/>
-								<case additional="sac_scale=difficult_alpine_hiking" pathEffect_5="2_3"/>
-								<apply color_5="$sacScaleColor"/>
+								<case additional="sac_scale=hiking" color_5="$sacScaleColorT1" pathEffect_5="10_3"/>
+								<case additional="sac_scale=mountain_hiking" color_5="$sacScaleColorT2" pathEffect_5=""/>
+								<case additional="sac_scale=demanding_mountain_hiking" color_5="$sacScaleColorT3" pathEffect_5="10_3"/>
+								<case additional="sac_scale=alpine_hiking" color_5="$sacScaleColorT4" pathEffect_5=""/>
+								<case additional="sac_scale=demanding_alpine_hiking" color_5="$sacScaleColorT5" pathEffect_5="10_3"/>
+								<case additional="sac_scale=difficult_alpine_hiking" color_5="$sacScaleColorT6" pathEffect_5="3_3"/>
+							</switch>
+							<switch alpineHiking="false">
+								<filter additional="sac_scale=hiking" pathEffect_5="10_3"/>
+								<filter additional="sac_scale=mountain_hiking" pathEffect_5="5_5"/>
+								<filter additional="sac_scale=demanding_mountain_hiking" pathEffect_5="2_6"/>
+								<filter additional="sac_scale=alpine_hiking" pathEffect_5="2_6"/>
+								<filter additional="sac_scale=demanding_alpine_hiking" pathEffect_5="2_6"/>
+								<filter additional="sac_scale=difficult_alpine_hiking" pathEffect_5="2_6"/>
 							</switch>
 						</apply>
 						<apply_if appMode="bicycle" additional="bicycle=no" color_5="#17000000">
