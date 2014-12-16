@@ -27,35 +27,35 @@ fest_language('cmu_us_awb_arctic_clunits').
 
 
 % ROUTE CALCULATED
-string('route_is.ogg', 'مسافت مسیر ').
+string('route_is.ogg', 'مسافت مسیری که تعیین کرده اید').
 string('route_calculate.ogg', 'مسیر جدید محاسبه شد').
-string('distance.ogg', 'مسافت').
+string('distance.ogg', 'فاصله').
 
 % LEFT/RIGHT
 string('prepare.ogg', 'آماده باشید ').
 string('after.ogg', 'بعد از ').
 
-string('left.ogg', 'از سمت چپ برانید ').
-string('left_sh.ogg', 'سریعا به چپ بپیچید ').
-string('left_sl.ogg', 'به آرامی به چپ بپیچید ').
-string('right.ogg', 'از سمت راست یرانید ').
-string('right_sh.ogg', 'سریعا به راست بپیچید ').
-string('right_sl.ogg', 'به آرامی به راست بپیچید ').
+string('left.ogg', 'به چپ بپیچید').
+string('left_sh.ogg', 'سریعا به مسیر سمت چپ بروید').
+string('left_sl.ogg', 'به آرامی به مسیر سمت چپ بروید').
+string('right.ogg', 'به راست بپیچید').
+string('right_sh.ogg', 'سریعا به مسیر سمت راست بروید ').
+string('right_sl.ogg', 'به آرامی به مسیر سمت راست بروید').
 string('left_keep.ogg', 'مسیر سمت چپ را دنبال کنید').
 string('right_keep.ogg', 'مسیر سمت راست را دنبال کنید').
 % if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
-string('make_uturn.ogg', 'حالا دور بزنید ').
-string('make_uturn_wp.ogg', 'در اولین زمان ممکن دور بزنید ').
+string('make_uturn.ogg', 'دور بزنید').
+string('make_uturn_wp.ogg', 'هر زمان که امکان داشت دور بزنید ').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'به میدان نزدیک میشوید بعد از ').
-string('roundabout.ogg', 'وارد میدان شوید بعد از, ').
+string('prepare_roundabout.ogg', 'شما به میدان نزدیک میشوید بعد از مسافتی حدود ').
+string('roundabout.ogg', ' وارد میدان شوید بعد از طی مسافتی حدود, ').
 string('then.ogg', ', سپس ').
 string('and.ogg', 'و ').
 string('take.ogg', 'وارد شوید به ').
-string('exit.ogg', 'خروج ').
+string('exit.ogg', 'خروجی ').
 
 string('1st.ogg', 'اولین ').
 string('2nd.ogg', 'دومین ').
@@ -162,8 +162,8 @@ make_ut(Dist, Street) --  ['after.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(
 make_ut(Street) -- ['make_uturn.ogg' | Sgen] :- turn_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
-prepare_roundabout(Dist, _Exit, _Street) -- ['prepare_roundabout.ogg', 'after.ogg', D] :- distance(Dist) -- D.
-roundabout(Dist, _Angle, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
+prepare_roundabout(Dist, _Exit, _Street) -- ['prepare_roundabout.ogg', D] :- distance(Dist) -- D.
+roundabout(Dist, _Angle, Exit, Street) -- ['roundabout.ogg', D, 'and.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 
 go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen] :- distance(Dist) -- D, follow_street(Street, Sgen).
