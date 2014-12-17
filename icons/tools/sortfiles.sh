@@ -484,14 +484,25 @@ mycp man_made water_well food_water_well.png
 
 ## Seamarks
 mygroup seamark icons8_sail_boat.png
-mycp seamark buoy_cardinal seamark_buoy_cardinal.png
-mycp seamark buoy_cardinal_north seamark_buoy_cardinal_north.png
-mycp seamark buoy_cardinal_south seamark_buoy_cardinal_south.png
-mycp seamark buoy_cardinal_west seamark_buoy_cardinal_west.png
-mycp seamark buoy_cardinal_east seamark_buoy_cardinal_east.png
-mycp seamark buoy_isolated_danger seamark_buoy_isolated_danger.png
-mycp seamark buoy_safe_water seamark_buoy_safe_water.png
-
+mycp seamark buoy_red_conical seamark_buoy_red_conical.png
+mycp seamark buoy_red_barrel seamark_buoy_red_barrel.png
+mycp seamark buoy_red_can seamark_buoy_red_can.png
+mycp seamark buoy_red_pillar seamark_buoy_red_pillar.png
+mycp seamark buoy_red_spar seamark_buoy_red_spar.png
+mycp seamark buoy_red_spherical seamark_buoy_red_spherical.png
+mycp seamark buoy_green_conical seamark_buoy_green_conical.png
+mycp seamark buoy_green_barrel seamark_buoy_green_barrel.png
+mycp seamark buoy_green_can seamark_buoy_green_can.png
+mycp seamark buoy_green_pillar seamark_buoy_green_pillar.png
+mycp seamark buoy_green_spar seamark_buoy_green_spar.png
+mycp seamark buoy_green_spherical seamark_buoy_green_spherical.png
+mycp seamark buoy_yellow_conical seamark_buoy_yellow_conical.png
+mycp seamark buoy_yellow_barrel seamark_buoy_yellow_barrel.png
+mycp seamark buoy_yellow_can seamark_buoy_yellow_can.png
+mycp seamark buoy_yellow_pillar seamark_buoy_yellow_pillar.png
+mycp seamark buoy_yellow_spar seamark_buoy_yellow_spar.png
+mycp seamark buoy_yellow_spherical seamark_buoy_yellow_spherical.png
+mycp seamark buoy_yellow_super_buoy seamark_buoy_yellow_super_buoy.png
 
 
 ## Shops
