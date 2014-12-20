@@ -1,4 +1,4 @@
-% for turbo-prolog
+﻿% for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog
 :- op(500, xfy,'--').
@@ -27,6 +27,7 @@ language('de').
 % (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
 % (X) word order checked
 % (X) Announcement of favorites, waypoints and pois along the route
+% (X) Support announcement of railroad crossings and pedestrian crosswalks
 
 
 % ROUTE CALCULATED
@@ -103,9 +104,11 @@ string('reached_poi.ogg', 'Sie passieren P O I ').
 string('attention.ogg', 'Achtung, ').
 string('speed_camera.ogg', 'Geschwindigkeitskontrolle ').
 string('border_control.ogg', 'Grenzkontrolle ').
+string('railroad_crossing.ogg', 'Bahnübergang ').
 string('traffic_calming.ogg', 'Verkehrsberuhigung ').
 string('toll_booth.ogg', 'Mautstelle ').
 string('stop.ogg', 'Stoppzeichen ').
+string('pedestrian_crosswalk.ogg', 'Fusgängerübergang ').
 
 string('location_lost.ogg', 'GPS Signal verloren ').   % maybe change to "tschie pie es" because of pronounciation
 string('location_recovered.ogg', 'GPS Signal gefunden ').  % maybe change to "tschie pie es" because of pronounciation
@@ -292,11 +295,13 @@ attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').
 warning('BORDER_CONTROL', 'border_control.ogg').
+warning('RAILWAY', 'railroad_crossing.ogg').
 warning('TRAFFIC_CALMING', 'traffic_calming.ogg').
 warning('TOLL_BOOTH', 'toll_booth.ogg').
 warning('STOP', 'stop.ogg').
+warning('PEDESTRIAN', 'pedestrian_crosswalk.ogg').
 warning('MAXIMUM', '').
-warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'MAXIMUM').
+warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'RAILWAY'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'PEDESTRIAN'; Type = 'MAXIMUM').
 
 
 %% 
