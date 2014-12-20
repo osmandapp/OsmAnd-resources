@@ -26,6 +26,7 @@ fest_language('cmu_us_awb_arctic_clunits').
 % (X) word order checked
 % (X) Announcement of favorites, waypoints and pois along the route
 % (X) Announcement when user returns back to route
+% (X) Support announcement of railroad crossings and pedestrian crosswalks
 
 
 % ROUTE CALCULATED
@@ -98,9 +99,11 @@ string('reached_poi.ogg', 'you are passing POI ').
 string('attention.ogg', 'attention, ').
 string('speed_camera.ogg', 'speed cam ').
 string('border_control.ogg', 'border control ').
+string('railroad_crossing.ogg', 'railroad crossing ').
 string('traffic_calming.ogg', 'traffic calming ').
 string('toll_booth.ogg', 'toll booth ').
 string('stop.ogg', 'stop sign ').
+string('pedestrian_crosswalk.ogg', 'pedestrian crosswalk ').
 
 string('location_lost.ogg', 'g p s signal lost ').
 string('location_recovered.ogg', 'g p s signal restored ').
@@ -212,11 +215,13 @@ attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').
 warning('BORDER_CONTROL', 'border_control.ogg').
+warning('RAILWAYS', 'railroad_crossing.ogg.ogg').
 warning('TRAFFIC_CALMING', 'traffic_calming.ogg').
 warning('TOLL_BOOTH', 'toll_booth.ogg').
 warning('STOP', 'stop.ogg').
+warning('PEDESTRIAN', 'pedestrian_crosswalk.ogg').
 warning('MAXIMUM', '').
-warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'MAXIMUM').
+warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'RAILWAY'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'PEDESTRIAN'; Type = 'MAXIMUM').
 
 
 %% 
