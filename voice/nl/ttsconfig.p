@@ -24,7 +24,7 @@ language('nl').
 % (X) Name announcement for destination / intermediate / GPX waypoint arrival
 % (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
 % ( ) word order checked
-
+% (X) Support announcement of railroad crossings and pedestrian crosswalks
 
 % ROUTE CALCULATED
 string('route_is1.ogg', 'De berekende afstand is ').
@@ -102,11 +102,12 @@ string('off_route.ogg', 'je bent afgeweken van de route vanaf ').
 string('exceed_limit.ogg', 'je overschrijdt de maximumsnelheid ').
 string('speed_camera.ogg', 'snelheidscontrole ').
 string('border_control.ogg', 'grenscontrole ').
+string('railroad_crossing.ogg', 'spoorweg overgang ').
 string('traffic_calming.ogg', 'verkeersdrempel ').
 string('toll_booth.ogg', 'tol poort ').
 % de spatie is nodig voor een betere uitspraak
 string('stop.ogg', 'stop teken ').
-
+string('pedestrian_crosswalk.ogg', 'zebra ').
 % STREET NAME GRAMMAR
 string('onto.ogg', 'naar  ').
 
@@ -200,12 +201,13 @@ attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').
 warning('BORDER_CONTROL', 'border_control.ogg').
+warning('RAILWAY', 'railroad_crossing.ogg').
 warning('TRAFFIC_CALMING', 'traffic_calming.ogg').
 warning('TOLL_BOOTH', 'toll_booth.ogg').
 warning('STOP', 'stop.ogg').
+warning('PEDESTRIAN', 'pedestrian_crosswalk.ogg').
 warning('MAXIMUM', '').
-warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'MAXIMUM').
-
+warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'RAILWAY'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'PEDESTRIAN'; Type = 'MAXIMUM').
 
 %% 
 nth(1, '1st.ogg').
