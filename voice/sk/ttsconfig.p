@@ -23,7 +23,8 @@ language('sk').
 % (X) Name announcement for destination / intermediate / GPX waypoint arrival
 % (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
 % ( ) word order checked
-
+% (X) Announcement of favorites, waypoints and pois along the route
+% (X) Support announcement of railroad crossings and pedestrian crosswalks
 
 % ROUTE CALCULATED
 string('route_is.ogg', 'Cesta je dlhá ').
@@ -97,9 +98,24 @@ string('and_arrive_intermediate.ogg', 'a dorazíte cez Váš prechodný bod ').
 string('reached_intermediate.ogg', 'dorazili ste k Vášmu prechodnému bodu').
 string('and_arrive_waypoint.ogg', 'a dorazíte cez Váš prechodný bod GPX').
 string('reached_waypoint.ogg', 'dorazili ste k Vášmu prechodnému bodu GPX').
+%NEARBY POINTS
+string('and_arrive_waypoint.ogg', 'a prejdete prechodným bodom ').
+string('reached_waypoint.ogg', 'dosiahli ste prechodný bod ').
+string('and_arrive_favorite.ogg', 'a prejdete obľúbeným bodom ').
+string('reached_favorite.ogg', 'dosiahli ste obľúbený bod ').
+string('and_arrive_poi.ogg', 'a prejdete bodom záujmu ').
+string('reached_poi.ogg', 'dosiahli ste bod záujmu ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'pozor, ').
+string('speed_camera.ogg', 'Rýchlostný radar ').
+string('border_control.ogg', 'Hraničná kontrola ').
+string('railroad_crossing.ogg', 'Železničné priecestie ').
+string('traffic_calming.ogg', 'Spomaľovač ').
+string('toll_booth.ogg', 'Mýtna búdka ').
+string('stop.ogg', 'Značka stop ').
+string('pedestrian_crosswalk.ogg', 'Priechod pre chodcov ').
+
 string('location_lost.ogg', 'strata g p s signálu ').
 string('location_recovered.ogg', 'obnovenie g p s signálu').
 string('off_route.ogg', 'odchýlili ste sa od trasy').
@@ -189,6 +205,10 @@ and_arrive_intermediate(D) -- ['and_arrive_intermediate.ogg'|Ds] :- name(D, Ds).
 reached_intermediate(D) -- ['reached_intermediate.ogg'|Ds] :- name(D, Ds).
 and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
+and_arrive_favorite(D) -- ['and_arrive_favorite.ogg'|Ds] :- name(D, Ds).
+reached_favorite(D) -- ['reached_favorite.ogg'|Ds] :- name(D, Ds).
+and_arrive_poi(D) -- ['and_arrive_poi.ogg'|Ds] :- name(D, Ds).
+reached_poi(D) -- ['reached_poi.ogg'|Ds] :- name(D, Ds).
 
 route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
@@ -197,9 +217,20 @@ route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg
 location_lost -- ['location_lost.ogg'].
 location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
-attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
+attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 
+% TRAFFIC WARNINGS
+warning('SPEED_CAMERA', 'speed_camera.ogg').
+warning('SPEED_LIMIT', '').
+warning('BORDER_CONTROL', 'border_control.ogg').
+warning('RAILWAY', 'railroad_crossing.ogg').
+warning('TRAFFIC_CALMING', 'traffic_calming.ogg').
+warning('TOLL_BOOTH', 'toll_booth.ogg').
+warning('STOP', 'stop.ogg').
+warning('PEDESTRIAN', 'pedestrian_crosswalk.ogg').
+warning('MAXIMUM', '').
+warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'RAILWAY'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'PEDESTRIAN'; Type = 'MAXIMUM').
 
 %% 
 nth(1, '1st.ogg').
