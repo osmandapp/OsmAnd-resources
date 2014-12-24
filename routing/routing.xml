@@ -315,16 +315,11 @@
 		<!-- <attribute name="relaxNodesIfStartDistSmallCoeff" value="2.5"/>  -->
 		<!-- New ROUTING API -->
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
-		<!-- Внимание! Выбор галочки "Избегать автомагистралей" теперь не заставляет вас делать круги по 800 километров! Перенесено в <way attribute="priority"> -->
 		<parameter id="avoid_motorway" name="Avoid motorways" description="Avoid motorways" type="boolean"/>
-		<!-- Добавлен тег smoothness=*. Смотреть в <way attribute="priority"> -->
 		<parameter id="avoid_unpaved" name="Avoid unpaved roads" description="Avoid unpaved roads" type="boolean"/>
-		<!-- Избегать лестниц - для тех, кто не любит таскать велосипед на себе. Смотреть в <way attribute="priority"> -->
-		<parameter id="avoid_steps" name="Избегать лестниц" description="Избегать лестниц" type="boolean"/>
-		<!-- Избегать автобусных полос - для людей, кто активно соблюдает ПДД РФ или боится больших машин. Смотреть в <way attribute="priority"> -->
-		<parameter id="avoid_busway" name="Избегать автобусных полос" description="Избегать автобусных полос" type="boolean"/>
-		<!-- Избегать зимников — избегать дорог, проложенных по поверхности рек и озёр в зимнее время. Смотреть в <way attribute="access"> -->
-		<parameter id="avoid_ice_roads" name="Избегать зимников" description="Избегать зимников" type="boolean"/>
+		<parameter id="avoid_steps" name="Avoid steps" description="Avoid steps" type="boolean"/>
+		<parameter id="avoid_busway" name="Avoid buslanes" description="Avoid buslanes" type="boolean"/>
+		<parameter id="avoid_ice_roads" name="Avoid ice roads" description="Avoid ice roads" type="boolean"/>
 		<parameter id="avoid_sidewalk" name="Избегать тротуаров" description="Избегать тротуаров" type="boolean"/>
 		<parameter id="sidewalk_priority" name="Приоритет тротуаров" description="Приоритет тротуаров" type="boolean"/>
 		<parameter id="avoid_private_access" name="Не выезжать с access=private" description="Не пересекать границу закрытых территорий - экспериментальный" type="boolean"/>
@@ -368,6 +363,7 @@
 			<select value="1" t="route" v="ferry"/>
 			<select value="-1"/>
 		</way>
+		
 		<way attribute="oneway">
 			<select value="0" t="cycleway" v="opposite_lane"/>
 			<select value="0" t="cycleway:left" v="opposite_lane"/>
@@ -385,6 +381,7 @@
 			<select value="1" t="roundabout" />
 			<select value="1" t="junction" v="roundabout" />
 		</way>
+		
 		<way attribute="penalty_transition">
 			<!-- cost in time when you change the route from motorway to primary or from primary
 				 to living_street, but not other way around. Calculated as difference between values -->
@@ -394,6 +391,7 @@
 			</if>
 			<select value="100"/>
 		</way>
+		
 		<way attribute="speed" type="speed">
 			<select value="12" t="highway" v="motorway"/>
 			<select value="12" t="highway" v="motorway_link"/>
@@ -423,6 +421,7 @@
 			<select value="5"  t="route"   v="ferry"/>
 			<select value="16"/>
 		</way>
+		
 		<way attribute="priority">
 			<if param="avoid_motorway">
 				<select value="0.1" t="highway" v="motorway"/>
@@ -555,10 +554,8 @@
 		<!-- NEW ROUTING API -->
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_motorway" name="Avoid motorways" description="Avoid motorways" type="boolean"/>
-		<!-- Коляски с детьми и люди в инвалидных креслах относятся к маломобильной группе граждан, поэтому теперь и они учитываются при построении маршрута. Избежать лестниц невозможно, однако можно максимально понизить их приоритет. -->
 		<parameter id="avoid_stairways" name="Коляска, инвалидное кресло" description="Коляска, инвалидное кресло" type="boolean"/>
-		<!-- То же самое, что и "Избегать грунтовок", но для пешеходов -->
-		<parameter id="avoid_unpaved" name="Шпильки!" description="Шпильки!" type="boolean"/>
+		<parameter id="avoid_unpaved" name="Avoid unpaved" description="Avoid unpaved" type="boolean"/>
 		<way attribute="access">
 			<select value="-1" t="route" v="ferry">
 				<if param="avoid_ferries"/>
