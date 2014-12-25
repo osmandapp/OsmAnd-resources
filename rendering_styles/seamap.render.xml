@@ -635,7 +635,7 @@
 
 
 		<!-- Seamarks -->
-		<switch textColor="#0400ab" textWrapWidth="19" textHaloColor="#aaacd8f3" textHaloRadius="2" textDy="13" nameTag="seamark:name" nameTag2="">
+		<switch textColor="#0400ab" textWrapWidth="19" textHaloColor="#aaacd8f3" textHaloRadius="2" textDy="19" nameTag="seamark:name" nameTag2="">
 			<case minzoom="12" tag="seamark:type" value="buoy_lateral"/>
 			<case minzoom="12" tag="seamark:type" value="buoy_cardinal"/>
 			<case minzoom="12" tag="seamark:type" value="buoy_isolated_danger"/>
@@ -647,7 +647,7 @@
 				<case maxzoom="14" textSize="12"/>
 				<case minzoom="16" textSize="13"/>
 			</apply>
-			<apply_if engine_v1="false" textDy="0"/>
+			<apply_if engine_v1="false" textDy="7"/>
 			<apply_if nightMode="true" textColor="#eaf6ff" textHaloColor="#5545a5e2"/>
 		</switch>
 	</text>
@@ -1056,7 +1056,29 @@
 					</case>
 				</apply>
 			</switch>
-<!--			<apply_if additional="seamark:light:colour=white" icon_2="seamark_light_white"/>-->
+			<apply>
+				<case additional="seamark:light:colour=white" shield="seamark_light_white"/>
+				<case additional="seamark:light:colour=red" shield="seamark_light_red"/>
+				<case additional="seamark:light:colour=green" shield="seamark_light_green"/>
+				<case additional="seamark:light:colour=yellow" shield="seamark_light_yellow"/>
+				<case additional="seamark:light:colour=blue" shield="seamark_light_blue"/>
+				<case additional="seamark:light:colour=orange" shield="seamark_light_orange"/>
+				<case additional="seamark:light:colour=white;green" shield="seamark_light_whitegreen"/>
+				<case additional="seamark:light:colour=red;green" shield="seamark_light_redgreen"/>
+				<case additional="seamark:light:colour=white;red" shield="seamark_light_whitered"/>
+				<case additional="seamark:light:colour=violet" shield="seamark_light_violet"/>
+			</apply>
+			<apply>
+				<switch>
+					<case additional="seamark:fog_signal:category=horn"/>
+					<case additional="seamark:fog_signal:category=siren"/>
+					<case additional="seamark:fog_signal:category=bell"/>
+					<case additional="seamark:fog_signal:category=whistle"/>
+					<apply icon_2="seamark_fog_signal_additional">
+						<apply_if nightMode="true" icon_2="seamark_fog_signal_additional_night"/>
+					</apply>
+				</switch>
+			</apply>
 		</switch>
 
 		<case minzoom="11" tag="natural" value="peak" iconOrder="65">

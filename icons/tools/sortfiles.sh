@@ -717,6 +717,20 @@ mycp seamark topmark_vertical_yellow_sphere seamark_topmark_vertical_yellow_sphe
 mycp seamark topmark_vertical_yellow_xshape seamark_topmark_vertical_yellow_xshape.png
 mycp seamark topmark_vertical_yellow_cross seamark_topmark_vertical_yellow_cross.png
 
+mycp seamark fog_signal_additional seamark_fog_signal_additional.png
+mycp seamark fog_signal_additional_night seamark_fog_signal_additional_night.png
+
+mycp seamark light_white seamark_shields_light_white.png
+mycp seamark light_red seamark_shields_light_red.png
+mycp seamark light_green seamark_shields_light_green.png
+mycp seamark light_yellow seamark_shields_light_yellow.png
+mycp seamark light_blue seamark_shields_light_blue.png
+mycp seamark light_orange seamark_shields_light_orange.png
+mycp seamark light_whitegreen seamark_shields_light_whitegreen.png
+mycp seamark light_redgreen seamark_shields_light_redgreen.png
+mycp seamark light_whitered seamark_shields_light_whitered.png
+mycp seamark light_violet seamark_shields_light_violet.png
+
 ## Shops
 mygroup car_aid shopping_car.png
 mygroup food_shop shopping_convenience.png
