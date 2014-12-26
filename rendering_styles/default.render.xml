@@ -623,7 +623,10 @@
 	</renderingAttribute>
 	<renderingConstant name="waterwayDesaturatedColorDay" value="#b5d0d0"/>
 	<renderingConstant name="waterwayDesaturatedColorNight" value="#2a3d50"/>
-
+	<renderingAttribute name="pierColor">
+		<case nightMode="true" attrColorValue="#5c7596"/>
+		<case attrColorValue="#e8dcd7"/>
+	</renderingAttribute>
 	<renderingConstant name="builtUpAreasColorNight" value="#3b3b3b"/>
 	<renderingConstant name="parkingColorDay" value="#f6eeb7"/>
 	<renderingConstant name="parkingColorNight" value="#36455a"/>
@@ -4051,9 +4054,7 @@
 			</switch>
 
 			<switch minzoom="13">
-				<case tag="man_made" value="pier" color="#fffcf6">
-					<apply_if nightMode="true" color="#5c7596"/>
-				</case>
+				<case tag="man_made" value="pier" color="$pierColor"/>
 				<apply minzoom="15">
 					<switch showAccess="true">
 						<case additional="access=no"/>
@@ -5368,7 +5369,7 @@
 			</apply>
 		</switch>
 
-		<case minzoom="13" tag="man_made" value="pier" color="#fffcf6">
+		<case minzoom="13" tag="man_made" value="pier" color="$pierColor">
 			<switch minzoom="15" showAccess="true">
 				<case additional="access=no"/>
 				<case additional="access=private"/>
@@ -5378,7 +5379,6 @@
 			<apply_if maxzoom="13" strokeWidth="0.5:0.5"/>
 			<apply_if minzoom="14" maxzoom="15" strokeWidth="1.5:1.5"/>
 			<apply_if minzoom="16" strokeWidth="3:3"/>
-			<apply_if nightMode="true" color="#5c7596"/>
 		</case>
 
 		<case noPolygons="false" minzoom="12" tag="man_made" value="cutline" color="#d6f1d4" color_2="#bbbbbb">
