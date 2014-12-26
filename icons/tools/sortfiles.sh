@@ -731,6 +731,9 @@ mycp seamark light_redgreen seamark_shields_light_redgreen.png
 mycp seamark light_whitered seamark_shields_light_whitered.png
 mycp seamark light_violet seamark_shields_light_violet.png
 
+mycp seamark radar_reflector_additional seamark_radar_reflector_additional.png
+mycp seamark radar_reflector_additional_night seamark_radar_reflector_additional_night.png
+
 ## Shops
 mygroup car_aid shopping_car.png
 mygroup food_shop shopping_convenience.png
