@@ -627,6 +627,7 @@ mycp seamark light_float_red seamark_light_float_red.png
 mycp seamark light_float_green seamark_light_float_green.png
 mycp seamark light_float_redwhite_vertical seamark_light_float_redwhite_vertical.png
 
+mycp seamark light_major seamark_big_light_major.png
 mycp seamark light_vessel seamark_light_vessel.png
 
 mycp seamark topmark_oblique_red_board seamark_topmark_oblique_red_board.png

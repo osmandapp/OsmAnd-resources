@@ -98,6 +98,7 @@ generatePngs() {
       generateElements 'shaders'
       generateElements 'osmc'
       generatePngs 'seamark' '#777777' '#777777' '' x2 '' nomx
+      generatePngs 'seamark_big' '#777777' '#777777' '' '' x4 nomx
       generatePngs 'seamark_shields' '#777777' '#777777' '' '' x4 nomx
 
       generatePngs 'functional-icons' '#777777' '#777777'
