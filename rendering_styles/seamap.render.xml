@@ -636,29 +636,36 @@
 
 		<!-- Seamarks -->
 		<switch textColor="#0400ab" textWrapWidth="19" textHaloColor="#aaacd8f3" textHaloRadius="2" textDy="19" nameTag="seamark:name" nameTag2="">
-			<switch textItalic="true">
-				<case minzoom="12" tag="seamark:type" value="buoy_lateral"/>
-				<case minzoom="12" tag="seamark:type" value="buoy_cardinal"/>
-				<case minzoom="12" tag="seamark:type" value="buoy_isolated_danger"/>
-				<case minzoom="11" tag="seamark:type" value="buoy_safe_water"/>
-				<case minzoom="11" tag="seamark:type" value="buoy_special_purpose"/>
-				<case minzoom="12" tag="seamark:type" value="buoy_installation"/>
+			<switch>
+				<switch textItalic="true">
+					<case minzoom="12" tag="seamark:type" value="buoy_lateral"/>
+					<case minzoom="12" tag="seamark:type" value="buoy_cardinal"/>
+					<case minzoom="12" tag="seamark:type" value="buoy_isolated_danger"/>
+					<case minzoom="11" tag="seamark:type" value="buoy_safe_water"/>
+					<case minzoom="11" tag="seamark:type" value="buoy_special_purpose"/>
+					<case minzoom="12" tag="seamark:type" value="buoy_installation"/>
+				</switch>
+				<case minzoom="12" tag="seamark:type" value="beacon_lateral"/>
+				<case minzoom="12" tag="seamark:type" value="beacon_cardinal"/>
+				<case minzoom="12" tag="seamark:type" value="beacon_isolated_danger"/>
+				<case minzoom="11" tag="seamark:type" value="beacon_safe_water"/>
+				<case minzoom="11" tag="seamark:type" value="beacon_special_purpose"/>
+				<case minzoom="12" tag="seamark:type" value="light_float"/>
+				<case minzoom="12" tag="seamark:type" value="light_vessel"/>
+				<apply_if engine_v1="false" textDy="7"/>
 			</switch>
-			<case minzoom="12" tag="seamark:type" value="beacon_lateral"/>
-			<case minzoom="12" tag="seamark:type" value="beacon_cardinal"/>
-			<case minzoom="12" tag="seamark:type" value="beacon_isolated_danger"/>
-			<case minzoom="11" tag="seamark:type" value="beacon_safe_water"/>
-			<case minzoom="11" tag="seamark:type" value="beacon_special_purpose"/>
-			<case minzoom="12" tag="seamark:type" value="light_major"/>
-			<case minzoom="12" tag="seamark:type" value="light_minor"/>
-			<case minzoom="12" tag="seamark:type" value="light_float"/>
-			<case minzoom="12" tag="seamark:type" value="light_vessel"/>
+			<switch>
+				<case minzoom="12" tag="seamark:type" value="light_major"/>
+				<case minzoom="12" tag="seamark:type" value="light_minor"/>
+				<apply textDy="26">
+					<apply_if engine_v1="false" textDy="16"/>
+				</apply>
+			</switch>
 			<apply>
 				<case maxzoom="12" textSize="12"/>
 				<case maxzoom="14" textSize="12"/>
 				<case minzoom="16" textSize="13"/>
 			</apply>
-			<apply_if engine_v1="false" textDy="7"/>
 			<apply_if nightMode="true" textColor="#eaf6ff" textHaloColor="#5545a5e2"/>
 		</switch>
 	</text>
@@ -667,414 +674,478 @@
 	<point>
 	<!-- Seamarks -->
 		<switch>
-			<!-- Buoys -->
-			<switch iconVisibleSize="9" intersectionSizeFactor="0.6">
-				<case minzoom="12" tag="seamark:type" value="buoy_lateral" icon="seamark_buoy_red_pillar">
-					<case additional="seamark:buoy_lateral:colour=red" icon="seamark_buoy_red_pillar">
-						<case additional="seamark:buoy_lateral:shape=conical" icon="seamark_buoy_red_conical"/>
-						<case additional="seamark:buoy_lateral:shape=barrel" icon="seamark_buoy_red_barrel"/>
-						<case additional="seamark:buoy_lateral:shape=can" icon="seamark_buoy_red_can"/>
-						<case additional="seamark:buoy_lateral:shape=pillar" icon="seamark_buoy_red_pillar"/>
-						<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_red_spar"/>
-						<case additional="seamark:buoy_lateral:shape=spherical" icon="seamark_buoy_red_spherical"/>
-					</case>
-					<case additional="seamark:buoy_lateral:colour=green" icon="seamark_buoy_green_pillar">
-						<case additional="seamark:buoy_lateral:shape=conical" icon="seamark_buoy_green_conical"/>
-						<case additional="seamark:buoy_lateral:shape=barrel" icon="seamark_buoy_green_barrel"/>
-						<case additional="seamark:buoy_lateral:shape=can" icon="seamark_buoy_green_can"/>
-						<case additional="seamark:buoy_lateral:shape=pillar" icon="seamark_buoy_green_pillar"/>
-						<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_green_spar"/>
-						<case additional="seamark:buoy_lateral:shape=spherical" icon="seamark_buoy_green_spherical"/>
-					</case>
-					<case additional="seamark:buoy_lateral:colour=yellow" icon="seamark_buoy_yellow_can">
-						<case additional="seamark:buoy_lateral:shape=conical" icon="seamark_buoy_yellow_conical"/>
-						<case additional="seamark:buoy_lateral:shape=can" icon="seamark_buoy_yellow_can"/>
-						<case additional="seamark:buoy_lateral:shape=barrel" icon="seamark_buoy_yellow_barrel"/>
-						<case additional="seamark:buoy_lateral:shape=pillar" icon="seamark_buoy_yellow_pillar"/>
-						<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_yellow_spar"/>
-						<case additional="seamark:buoy_lateral:shape=spherical" icon="seamark_buoy_yellow_spherical"/>
-					</case>
-					<case additional="seamark:buoy_lateral:colour=white" icon="seamark_buoy_white_conical">
-						<case additional="seamark:buoy_lateral:shape=conical" icon="seamark_buoy_white_conical"/>
-					</case>
-					<case additional="seamark:buoy_lateral:colour=red;green;red" icon="seamark_buoy_redgreenred_pillar_horizontal">
-						<case additional="seamark:buoy_lateral:colour_pattern=horizontal">
-							<case additional="seamark:buoy_lateral:shape=can" icon="seamark_buoy_redgreenred_can_horizontal"/>
-							<case additional="seamark:buoy_lateral:shape=pillar" icon="seamark_buoy_redgreenred_pillar_horizontal"/>
-							<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_redgreenred_spar_horizontal"/>
-							<case additional="seamark:buoy_lateral:shape=spherical" icon="seamark_buoy_redgreenred_spherical_horizontal"/>
+			<switch>
+				<!-- Buoys -->
+				<switch iconVisibleSize="9" intersectionSizeFactor="0.6">
+					<case minzoom="12" tag="seamark:type" value="buoy_lateral" icon="seamark_buoy_red_pillar">
+						<case additional="seamark:buoy_lateral:colour=red" icon="seamark_buoy_red_pillar">
+							<case additional="seamark:buoy_lateral:shape=conical" icon="seamark_buoy_red_conical"/>
+							<case additional="seamark:buoy_lateral:shape=barrel" icon="seamark_buoy_red_barrel"/>
+							<case additional="seamark:buoy_lateral:shape=can" icon="seamark_buoy_red_can"/>
+							<case additional="seamark:buoy_lateral:shape=pillar" icon="seamark_buoy_red_pillar"/>
+							<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_red_spar"/>
+							<case additional="seamark:buoy_lateral:shape=spherical" icon="seamark_buoy_red_spherical"/>
 						</case>
-					</case>
-					<case additional="seamark:buoy_lateral:colour=red;white;red;white" icon="seamark_buoy_redwhiteredwhite_spar_horizontal">
-						<case additional="seamark:buoy_lateral:colour_pattern=horizontal">
-							<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_redwhiteredwhite_spar_horizontal"/>
-							<case additional="seamark:buoy_lateral:shape=can" icon="seamark_buoy_redwhiteredwhite_can_horizontal"/>
+						<case additional="seamark:buoy_lateral:colour=green" icon="seamark_buoy_green_pillar">
+							<case additional="seamark:buoy_lateral:shape=conical" icon="seamark_buoy_green_conical"/>
+							<case additional="seamark:buoy_lateral:shape=barrel" icon="seamark_buoy_green_barrel"/>
+							<case additional="seamark:buoy_lateral:shape=can" icon="seamark_buoy_green_can"/>
+							<case additional="seamark:buoy_lateral:shape=pillar" icon="seamark_buoy_green_pillar"/>
+							<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_green_spar"/>
+							<case additional="seamark:buoy_lateral:shape=spherical" icon="seamark_buoy_green_spherical"/>
 						</case>
-					</case>
-					<case additional="seamark:buoy_lateral:colour=white;red;white;red" icon="seamark_buoy_whiteredwhitered_spar_horizontal">
-						<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_whiteredwhitered_spar_horizontal"/>
-					</case>
-					<case additional="seamark:buoy_lateral:colour=green;white;green;white" icon="seamark_buoy_greenwhitegreenwhite_conical_horizontal">
-						<case additional="seamark:buoy_lateral:colour_pattern=horizontal">
-							<case additional="seamark:buoy_lateral:shape=conical" icon="seamark_buoy_greenwhitegreenwhite_conical_horizontal"/>
-							<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_greenwhitegreenwhite_spar_horizontal"/>
+						<case additional="seamark:buoy_lateral:colour=yellow" icon="seamark_buoy_yellow_can">
+							<case additional="seamark:buoy_lateral:shape=conical" icon="seamark_buoy_yellow_conical"/>
+							<case additional="seamark:buoy_lateral:shape=can" icon="seamark_buoy_yellow_can"/>
+							<case additional="seamark:buoy_lateral:shape=barrel" icon="seamark_buoy_yellow_barrel"/>
+							<case additional="seamark:buoy_lateral:shape=pillar" icon="seamark_buoy_yellow_pillar"/>
+							<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_yellow_spar"/>
+							<case additional="seamark:buoy_lateral:shape=spherical" icon="seamark_buoy_yellow_spherical"/>
 						</case>
-					</case>
-					<case additional="seamark:buoy_lateral:colour=white;green;white;green" icon="seamark_buoy_whitegreenwhitegreen_spar_horizontal">
-						<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_whitegreenwhitegreen_spar_horizontal"/>
-					</case>
-					<case additional="seamark:buoy_lateral:colour=green;red;green" icon="seamark_buoy_greenredgreen_pillar_horizontal">
-						<case additional="seamark:buoy_lateral:colour_pattern=horizontal">
-							<case additional="seamark:buoy_lateral:shape=conical" icon="seamark_buoy_greenredgreen_conical_horizontal"/>
-							<case additional="seamark:buoy_lateral:shape=can" icon="seamark_buoy_greenredgreen_can_horizontal"/>
-							<case additional="seamark:buoy_lateral:shape=pillar" icon="seamark_buoy_greenredgreen_pillar_horizontal"/>
-							<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_greenredgreen_spar_horizontal"/>
-							<case additional="seamark:buoy_lateral:shape=spherical" icon="seamark_buoy_greenredgreen_spherical_horizontal"/>
+						<case additional="seamark:buoy_lateral:colour=white" icon="seamark_buoy_white_conical">
+							<case additional="seamark:buoy_lateral:shape=conical" icon="seamark_buoy_white_conical"/>
 						</case>
-					</case>
-					<case additional="seamark:buoy_lateral:colour=red;white" icon="seamark_buoy_redwhite_spar_horizontal">
-						<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_redwhite_spar_horizontal"/>
-					</case>
-					<case additional="seamark:buoy_lateral:colour=green;white" icon="seamark_buoy_greenwhite_spar_horizontal">
-						<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_greenwhite_spar_horizontal"/>
-					</case>
-				</case>
-
-				<case minzoom="12" tag="seamark:type" value="buoy_cardinal" icon="seamark_buoy_blackyellowblack_pillar">
-					<case additional="seamark:buoy_cardinal:colour=yellow;black;yellow" icon="seamark_buoy_yellowblackyellow_pillar">
-						<case additional="seamark:buoy_cardinal:shape=spar" icon="seamark_buoy_yellowblackyellow_spar"/>
-						<case additional="seamark:buoy_cardinal:shape=pillar" icon="seamark_buoy_yellowblackyellow_pillar"/>
-						<case additional="seamark:buoy_cardinal:shape=can" icon="seamark_buoy_yellowblackyellow_can"/>
-						<case additional="seamark:buoy_cardinal:shape=conical" icon="seamark_buoy_yellowblackyellow_conical"/>
-					</case>
-					<case additional="seamark:buoy_cardinal:colour=black;yellow;black" icon="seamark_buoy_blackyellowblack_pillar">
-						<case additional="seamark:buoy_cardinal:shape=spar" icon="seamark_buoy_blackyellowblack_spar"/>
-						<case additional="seamark:buoy_cardinal:shape=pillar" icon="seamark_buoy_blackyellowblack_pillar"/>
-						<case additional="seamark:buoy_cardinal:shape=can" icon="seamark_buoy_blackyellowblack_can"/>
-						<case additional="seamark:buoy_cardinal:shape=conical" icon="seamark_buoy_blackyellowblack_conical"/>
-					</case>
-					<case additional="seamark:buoy_cardinal:colour=yellow;black" icon="seamark_buoy_yellowblack_pillar">
-						<case additional="seamark:buoy_cardinal:shape=spar" icon="seamark_buoy_yellowblack_spar"/>
-						<case additional="seamark:buoy_cardinal:shape=pillar" icon="seamark_buoy_yellowblack_pillar"/>
-						<case additional="seamark:buoy_cardinal:shape=can" icon="seamark_buoy_yellowblack_can"/>
-						<case additional="seamark:buoy_cardinal:shape=conical" icon="seamark_buoy_yellowblack_conical"/>
-					</case>
-					<case additional="seamark:buoy_cardinal:colour=black;yellow" icon="seamark_buoy_blackyellow_pillar">
-						<case additional="seamark:buoy_cardinal:shape=spar" icon="seamark_buoy_blackyellow_spar"/>
-						<case additional="seamark:buoy_cardinal:shape=pillar" icon="seamark_buoy_blackyellow_pillar"/>
-						<case additional="seamark:buoy_cardinal:shape=can" icon="seamark_buoy_blackyellow_can"/>
-						<case additional="seamark:buoy_cardinal:shape=conical" icon="seamark_buoy_blackyellow_conical"/>
-					</case>
-				</case>
-
-				<case minzoom="11" tag="seamark:type" value="buoy_isolated_danger" icon="seamark_buoy_blackredblack_pillar">
-					<case additional="seamark:buoy_isolated_danger:shape=pillar" icon="seamark_buoy_blackredblack_pillar"/>
-					<case additional="seamark:buoy_isolated_danger:shape=spar" icon="seamark_buoy_blackredblack_spar"/>
-					<case additional="seamark:buoy_isolated_danger:shape=spherical" icon="seamark_buoy_blackredblack_spherical"/>
-					<case additional="seamark:buoy_isolated_danger:shape=conical" icon="seamark_buoy_blackredblack_conical"/>
-				</case>
-
-				<case minzoom="11" tag="seamark:type" value="buoy_safe_water" icon="seamark_buoy_redwhite_pillar_vertical">
-					<case additional="seamark:buoy_safe_water:colour=red;white" icon="seamark_buoy_redwhite_pillar_vertical">
-						<case additional="seamark:buoy_safe_water:shape=pillar" icon="seamark_buoy_redwhite_pillar_vertical"/>
-						<case additional="seamark:buoy_safe_water:shape=spherical" icon="seamark_buoy_redwhite_spherical_vertical"/>
-						<case additional="seamark:buoy_safe_water:shape=spar" icon="seamark_buoy_redwhite_spar_vertical"/>
-					</case>
-				</case>
-
-				<case minzoom="12" tag="seamark:type" value="buoy_special_purpose" icon="seamark_buoy_yellow_spar">
-					<case additional="seamark:buoy_special_purpose:colour=yellow" icon="seamark_buoy_yellow_pillar">
-						<case additional="seamark:buoy_special_purpose:shape=conical" icon="seamark_buoy_yellow_conical"/>
-						<case additional="seamark:buoy_special_purpose:shape=barrel" icon="seamark_buoy_yellow_barrel"/>
-						<case additional="seamark:buoy_special_purpose:shape=can" icon="seamark_buoy_yellow_can"/>
-						<case additional="seamark:buoy_special_purpose:shape=pillar" icon="seamark_buoy_yellow_pillar"/>
-						<case additional="seamark:buoy_special_purpose:shape=spar" icon="seamark_buoy_yellow_spar"/>
-						<case additional="seamark:buoy_special_purpose:shape=spherical" icon="seamark_buoy_yellow_spherical"/>
-						<case additional="seamark:buoy_special_purpose:shape=super-buoy" icon="seamark_buoy_yellow_super-buoy"/>
-					</case>
-					<case additional="seamark:buoy_special_purpose:colour=white" icon="seamark_buoy_white_pillar">
-						<case additional="seamark:buoy_special_purpose:shape=conical" icon="seamark_buoy_white_conical"/>
-						<case additional="seamark:buoy_special_purpose:shape=barrel" icon="seamark_buoy_white_barrel"/>
-						<case additional="seamark:buoy_special_purpose:shape=can" icon="seamark_buoy_white_can"/>
-						<case additional="seamark:buoy_special_purpose:shape=pillar" icon="seamark_buoy_white_pillar"/>
-						<case additional="seamark:buoy_special_purpose:shape=spar" icon="seamark_buoy_white_spar"/>
-						<case additional="seamark:buoy_special_purpose:shape=spherical" icon="seamark_buoy_white_spherical"/>
-						<case additional="seamark:buoy_special_purpose:shape=super-buoy" icon="seamark_buoy_white_super-buoy"/>
-					</case>
-					<case additional="seamark:buoy_special_purpose:colour=white;yellow" icon="seamark_buoy_yellow_spherical">
-						<case additional="seamark:buoy_special_purpose:colour_pattern=cross">
-							<case additional="seamark:buoy_special_purpose:shape=spherical" icon="seamark_buoy_whiteyellow_spherical_cross"/>
-						</case>
-					</case>
-				</case>
-
-				<case minzoom="12" tag="seamark:type" value="buoy_installation" icon="seamark_buoy_yellow_installation"/>
-
-				<apply> <!-- When to topmark shape is set -->
-					<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_oblique_red_sphere"/>
-					<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_oblique_green_sphere"/>
-					<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_oblique_black_sphere"/>
-					<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_oblique_yellow_sphere"/>
-				</apply>
-				<apply> <!-- Topmarks -->
-					<case additional="seamark:topmark:shape=cylinder" icon__1="seamark_topmark_oblique_black_cylinder">
-						<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_oblique_red_cylinder"/>
-						<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_oblique_green_cylinder"/>
-						<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_oblique_black_cylinder"/>
-						<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_oblique_yellow_cylinder"/>
-						<case additional="seamark:topmark:colour=red;white;red" icon__1="seamark_topmark_oblique_redwhitered_cylinder"/>
-					</case>
-					<switch>
-						<case additional="seamark:topmark:shape=board" icon__1="seamark_topmark_oblique_redwhitered_board"/>
-						<case additional="seamark:topmark:shape=square" icon__1="seamark_topmark_oblique_redwhitered_board"/>
-						<case additional="seamark:topmark:shape=rectangle" icon__1="seamark_topmark_oblique_redwhitered_board"/>
-						<apply>
-							<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_oblique_red_board"/>
-							<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_oblique_green_board"/>
-							<case additional="seamark:topmark:colour=red;white;red" icon__1="seamark_topmark_oblique_redwhitered_board"/>
-							<case additional="seamark:topmark:colour=white;red">
-								<case additional="seamark:topmark:colour_pattern=border" icon__1="seamark_topmark_oblique_whitered_board_border"/>
+						<case additional="seamark:buoy_lateral:colour=red;green;red" icon="seamark_buoy_redgreenred_pillar_horizontal">
+							<case additional="seamark:buoy_lateral:colour_pattern=horizontal">
+								<case additional="seamark:buoy_lateral:shape=can" icon="seamark_buoy_redgreenred_can_horizontal"/>
+								<case additional="seamark:buoy_lateral:shape=pillar" icon="seamark_buoy_redgreenred_pillar_horizontal"/>
+								<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_redgreenred_spar_horizontal"/>
+								<case additional="seamark:buoy_lateral:shape=spherical" icon="seamark_buoy_redgreenred_spherical_horizontal"/>
 							</case>
-						</apply>
-					</switch>
-					<switch>
-						<case additional="seamark:topmark:shape=cone, point down" icon__1="seamark_topmark_oblique_black_conepointdown"/>
-						<case additional="seamark:topmark:shape=triangle, point down" icon__1="seamark_topmark_oblique_black_conepointdown"/>
-						<apply>
-							<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_oblique_red_conepointdown"/>
-							<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_oblique_green_conepointdown"/>
-							<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_oblique_black_conepointdown"/>
-							<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_oblique_yellow_conepointdown"/>
-							<case additional="seamark:topmark:colour=red;white;red" icon__1="seamark_topmark_oblique_redwhitered_conepointdown"/>
-						</apply>
-					</switch>
-					<switch>
-						<case additional="seamark:topmark:shape=cone" icon__1="seamark_topmark_oblique_black_conepointup"/>
-						<case additional="seamark:topmark:shape=cone, point up" icon__1="seamark_topmark_oblique_black_conepointup"/>
-						<case additional="seamark:topmark:shape=triangle, point up" icon__1="seamark_topmark_oblique_black_conepointup"/>
-						<apply>
-							<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_oblique_red_conepointup"/>
-							<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_oblique_green_conepointup"/>
-							<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_oblique_black_conepointup"/>
-							<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_oblique_yellow_conepointup"/>
-						</apply>
-					</switch>
-					<case additional="seamark:topmark:shape=rhombus" icon__1="seamark_topmark_oblique_black_rhombus">
-						<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_oblique_red_rhombus"/>
-						<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_oblique_black_rhombus"/>
-						<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_oblique_yellow_rhombus"/>
+						</case>
+						<case additional="seamark:buoy_lateral:colour=red;white;red;white" icon="seamark_buoy_redwhiteredwhite_spar_horizontal">
+							<case additional="seamark:buoy_lateral:colour_pattern=horizontal">
+								<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_redwhiteredwhite_spar_horizontal"/>
+								<case additional="seamark:buoy_lateral:shape=can" icon="seamark_buoy_redwhiteredwhite_can_horizontal"/>
+							</case>
+						</case>
+						<case additional="seamark:buoy_lateral:colour=white;red;white;red" icon="seamark_buoy_whiteredwhitered_spar_horizontal">
+							<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_whiteredwhitered_spar_horizontal"/>
+						</case>
+						<case additional="seamark:buoy_lateral:colour=green;white;green;white" icon="seamark_buoy_greenwhitegreenwhite_conical_horizontal">
+							<case additional="seamark:buoy_lateral:colour_pattern=horizontal">
+								<case additional="seamark:buoy_lateral:shape=conical" icon="seamark_buoy_greenwhitegreenwhite_conical_horizontal"/>
+								<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_greenwhitegreenwhite_spar_horizontal"/>
+							</case>
+						</case>
+						<case additional="seamark:buoy_lateral:colour=white;green;white;green" icon="seamark_buoy_whitegreenwhitegreen_spar_horizontal">
+							<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_whitegreenwhitegreen_spar_horizontal"/>
+						</case>
+						<case additional="seamark:buoy_lateral:colour=green;red;green" icon="seamark_buoy_greenredgreen_pillar_horizontal">
+							<case additional="seamark:buoy_lateral:colour_pattern=horizontal">
+								<case additional="seamark:buoy_lateral:shape=conical" icon="seamark_buoy_greenredgreen_conical_horizontal"/>
+								<case additional="seamark:buoy_lateral:shape=can" icon="seamark_buoy_greenredgreen_can_horizontal"/>
+								<case additional="seamark:buoy_lateral:shape=pillar" icon="seamark_buoy_greenredgreen_pillar_horizontal"/>
+								<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_greenredgreen_spar_horizontal"/>
+								<case additional="seamark:buoy_lateral:shape=spherical" icon="seamark_buoy_greenredgreen_spherical_horizontal"/>
+							</case>
+						</case>
+						<case additional="seamark:buoy_lateral:colour=red;white" icon="seamark_buoy_redwhite_spar_horizontal">
+							<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_redwhite_spar_horizontal"/>
+						</case>
+						<case additional="seamark:buoy_lateral:colour=green;white" icon="seamark_buoy_greenwhite_spar_horizontal">
+							<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_greenwhite_spar_horizontal"/>
+						</case>
 					</case>
-					<case additional="seamark:topmark:shape=sphere" icon__1="seamark_topmark_oblique_black_sphere">
+
+					<case minzoom="12" tag="seamark:type" value="buoy_cardinal" icon="seamark_buoy_blackyellowblack_pillar">
+						<case additional="seamark:buoy_cardinal:colour=yellow;black;yellow" icon="seamark_buoy_yellowblackyellow_pillar">
+							<case additional="seamark:buoy_cardinal:shape=spar" icon="seamark_buoy_yellowblackyellow_spar"/>
+							<case additional="seamark:buoy_cardinal:shape=pillar" icon="seamark_buoy_yellowblackyellow_pillar"/>
+							<case additional="seamark:buoy_cardinal:shape=can" icon="seamark_buoy_yellowblackyellow_can"/>
+							<case additional="seamark:buoy_cardinal:shape=conical" icon="seamark_buoy_yellowblackyellow_conical"/>
+						</case>
+						<case additional="seamark:buoy_cardinal:colour=black;yellow;black" icon="seamark_buoy_blackyellowblack_pillar">
+							<case additional="seamark:buoy_cardinal:shape=spar" icon="seamark_buoy_blackyellowblack_spar"/>
+							<case additional="seamark:buoy_cardinal:shape=pillar" icon="seamark_buoy_blackyellowblack_pillar"/>
+							<case additional="seamark:buoy_cardinal:shape=can" icon="seamark_buoy_blackyellowblack_can"/>
+							<case additional="seamark:buoy_cardinal:shape=conical" icon="seamark_buoy_blackyellowblack_conical"/>
+						</case>
+						<case additional="seamark:buoy_cardinal:colour=yellow;black" icon="seamark_buoy_yellowblack_pillar">
+							<case additional="seamark:buoy_cardinal:shape=spar" icon="seamark_buoy_yellowblack_spar"/>
+							<case additional="seamark:buoy_cardinal:shape=pillar" icon="seamark_buoy_yellowblack_pillar"/>
+							<case additional="seamark:buoy_cardinal:shape=can" icon="seamark_buoy_yellowblack_can"/>
+							<case additional="seamark:buoy_cardinal:shape=conical" icon="seamark_buoy_yellowblack_conical"/>
+						</case>
+						<case additional="seamark:buoy_cardinal:colour=black;yellow" icon="seamark_buoy_blackyellow_pillar">
+							<case additional="seamark:buoy_cardinal:shape=spar" icon="seamark_buoy_blackyellow_spar"/>
+							<case additional="seamark:buoy_cardinal:shape=pillar" icon="seamark_buoy_blackyellow_pillar"/>
+							<case additional="seamark:buoy_cardinal:shape=can" icon="seamark_buoy_blackyellow_can"/>
+							<case additional="seamark:buoy_cardinal:shape=conical" icon="seamark_buoy_blackyellow_conical"/>
+						</case>
+					</case>
+
+					<case minzoom="11" tag="seamark:type" value="buoy_isolated_danger" icon="seamark_buoy_blackredblack_pillar">
+						<case additional="seamark:buoy_isolated_danger:shape=pillar" icon="seamark_buoy_blackredblack_pillar"/>
+						<case additional="seamark:buoy_isolated_danger:shape=spar" icon="seamark_buoy_blackredblack_spar"/>
+						<case additional="seamark:buoy_isolated_danger:shape=spherical" icon="seamark_buoy_blackredblack_spherical"/>
+						<case additional="seamark:buoy_isolated_danger:shape=conical" icon="seamark_buoy_blackredblack_conical"/>
+					</case>
+
+					<case minzoom="11" tag="seamark:type" value="buoy_safe_water" icon="seamark_buoy_redwhite_pillar_vertical">
+						<case additional="seamark:buoy_safe_water:colour=red;white" icon="seamark_buoy_redwhite_pillar_vertical">
+							<case additional="seamark:buoy_safe_water:shape=pillar" icon="seamark_buoy_redwhite_pillar_vertical"/>
+							<case additional="seamark:buoy_safe_water:shape=spherical" icon="seamark_buoy_redwhite_spherical_vertical"/>
+							<case additional="seamark:buoy_safe_water:shape=spar" icon="seamark_buoy_redwhite_spar_vertical"/>
+						</case>
+					</case>
+
+					<case minzoom="12" tag="seamark:type" value="buoy_special_purpose" icon="seamark_buoy_yellow_spar">
+						<case additional="seamark:buoy_special_purpose:colour=yellow" icon="seamark_buoy_yellow_pillar">
+							<case additional="seamark:buoy_special_purpose:shape=conical" icon="seamark_buoy_yellow_conical"/>
+							<case additional="seamark:buoy_special_purpose:shape=barrel" icon="seamark_buoy_yellow_barrel"/>
+							<case additional="seamark:buoy_special_purpose:shape=can" icon="seamark_buoy_yellow_can"/>
+							<case additional="seamark:buoy_special_purpose:shape=pillar" icon="seamark_buoy_yellow_pillar"/>
+							<case additional="seamark:buoy_special_purpose:shape=spar" icon="seamark_buoy_yellow_spar"/>
+							<case additional="seamark:buoy_special_purpose:shape=spherical" icon="seamark_buoy_yellow_spherical"/>
+							<case additional="seamark:buoy_special_purpose:shape=super-buoy" icon="seamark_buoy_yellow_super-buoy"/>
+						</case>
+						<case additional="seamark:buoy_special_purpose:colour=white" icon="seamark_buoy_white_pillar">
+							<case additional="seamark:buoy_special_purpose:shape=conical" icon="seamark_buoy_white_conical"/>
+							<case additional="seamark:buoy_special_purpose:shape=barrel" icon="seamark_buoy_white_barrel"/>
+							<case additional="seamark:buoy_special_purpose:shape=can" icon="seamark_buoy_white_can"/>
+							<case additional="seamark:buoy_special_purpose:shape=pillar" icon="seamark_buoy_white_pillar"/>
+							<case additional="seamark:buoy_special_purpose:shape=spar" icon="seamark_buoy_white_spar"/>
+							<case additional="seamark:buoy_special_purpose:shape=spherical" icon="seamark_buoy_white_spherical"/>
+							<case additional="seamark:buoy_special_purpose:shape=super-buoy" icon="seamark_buoy_white_super-buoy"/>
+						</case>
+						<case additional="seamark:buoy_special_purpose:colour=white;yellow" icon="seamark_buoy_yellow_spherical">
+							<case additional="seamark:buoy_special_purpose:colour_pattern=cross">
+								<case additional="seamark:buoy_special_purpose:shape=spherical" icon="seamark_buoy_whiteyellow_spherical_cross"/>
+							</case>
+						</case>
+					</case>
+
+					<case minzoom="12" tag="seamark:type" value="buoy_installation" icon="seamark_buoy_yellow_installation"/>
+
+					<apply> <!-- When to topmark shape is set -->
 						<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_oblique_red_sphere"/>
 						<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_oblique_green_sphere"/>
 						<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_oblique_black_sphere"/>
 						<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_oblique_yellow_sphere"/>
-					</case>
-					<case additional="seamark:topmark:shape=x-shape" icon__1="seamark_topmark_oblique_yellow_xshape">
-						<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_oblique_red_xshape"/>
-						<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_oblique_green_xshape"/>
-						<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_oblique_black_xshape"/>
-						<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_oblique_yellow_xshape"/>
-					</case>
-					<case additional="seamark:topmark:shape=2 cones point together" icon__1="seamark_topmark_oblique_black_2conespointtogether">
-						<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_oblique_yellow_2conespointtogether"/>
-					</case>
-					<case additional="seamark:topmark:shape=2 cones base together" icon__1="seamark_topmark_oblique_black_2conesbasetogether"/>
-					<case additional="seamark:topmark:shape=2 cones up" icon__1="seamark_topmark_oblique_black_2conesup"/>
-					<case additional="seamark:topmark:shape=2 cones down" icon__1="seamark_topmark_oblique_black_2conesdown"/>
-					<case additional="seamark:topmark:shape=2 spheres" icon__1="seamark_topmark_oblique_black_2spheres"/>
-				</apply>
-
-			</switch>
-
-			<!-- Beacons and lights-->
-			<switch iconVisibleSize="9" intersectionSizeFactor="0.6">
-				<case minzoom="11" tag="seamark:type" value="beacon_lateral" icon="seamark_beacon_pile">
-					<switch>
-						<case additional="seamark:beacon_lateral:shape=stake" icon="seamark_beacon_stake"/>
-						<case additional="seamark:beacon_lateral:shape=pole" icon="seamark_beacon_stake"/>
-						<case additional="seamark:beacon_lateral:shape=post" icon="seamark_beacon_stake"/>
-						<apply>
-							<case additional="seamark:beacon_lateral:colour=red" icon="seamark_beacon_red_stake"/>
-							<case additional="seamark:beacon_lateral:colour=green" icon="seamark_beacon_green_stake"/>
-							<case additional="seamark:beacon_lateral:colour=white;red" icon="seamark_beacon_whitered_stake"/>
-							<case additional="seamark:beacon_lateral:colour=red;white" icon="seamark_beacon_redwhite_stake"/>
-							<case additional="seamark:beacon_lateral:colour=white;green" icon="seamark_beacon_whitegreen_stake"/>
-							<case additional="seamark:beacon_lateral:colour=green;white" icon="seamark_beacon_greenwhite_stake"/>
-							<case additional="seamark:beacon_lateral:colour=green;white;green;white" icon="seamark_beacon_greenwhitegreenwhite_stake"/>
-						</apply>
-					</switch>
-					<case additional="seamark:beacon_lateral:shape=tower" icon="seamark_beacon_tower">
-						<case additional="seamark:beacon_lateral:colour=red" icon="seamark_beacon_red_tower"/>
-						<case additional="seamark:beacon_lateral:colour=green" icon="seamark_beacon_green_tower"/>
-						<case additional="seamark:beacon_lateral:colour=white;red" icon="seamark_beacon_whitered_tower"/>
-						<case additional="seamark:beacon_lateral:colour=red;white" icon="seamark_beacon_redwhite_tower"/>
-						<case additional="seamark:beacon_lateral:colour=white;green" icon="seamark_beacon_whitegreen_tower"/>
-						<case additional="seamark:beacon_lateral:colour=green;white" icon="seamark_beacon_greenwhite_tower"/>
-						<case additional="seamark:beacon_lateral:colour=green;white;green;white" icon="seamark_beacon_greenwhitegreenwhite_tower"/>
-					</case>
-					<case additional="seamark:beacon_lateral:shape=pillar" icon="seamark_beacon_pillar">
-						<case additional="seamark:beacon_lateral:colour=black" icon="seamark_beacon_black_pillar"/>
-						<case additional="seamark:beacon_lateral:colour=green" icon="seamark_beacon_green_pillar"/>
-						<case additional="seamark:beacon_lateral:colour=red" icon="seamark_beacon_red_pillar"/>
-					</case>
-					<case additional="seamark:beacon_lateral:shape=perch">
-						<case additional="seamark:beacon_lateral:category=port" icon="seamark_beacon_perch_port">
-							<case additional="seamark:beacon_lateral:colour=red" icon="seamark_beacon_red_perch_port"/>
-							<case additional="seamark:beacon_lateral:colour=green" icon="seamark_beacon_green_perch_port"/>
+					</apply>
+					<apply> <!-- Topmarks -->
+						<case additional="seamark:topmark:shape=cylinder" icon__1="seamark_topmark_oblique_black_cylinder">
+							<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_oblique_red_cylinder"/>
+							<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_oblique_green_cylinder"/>
+							<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_oblique_black_cylinder"/>
+							<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_oblique_yellow_cylinder"/>
+							<case additional="seamark:topmark:colour=red;white;red" icon__1="seamark_topmark_oblique_redwhitered_cylinder"/>
 						</case>
-						<case additional="seamark:beacon_lateral:category=starboard" icon="seamark_beacon_perch_starboard">
-							<case additional="seamark:beacon_lateral:colour=red" icon="seamark_beacon_red_perch_starboard"/>
-							<case additional="seamark:beacon_lateral:colour=green" icon="seamark_beacon_green_perch_starboard"/>
+						<switch>
+							<case additional="seamark:topmark:shape=board" icon__1="seamark_topmark_oblique_redwhitered_board"/>
+							<case additional="seamark:topmark:shape=square" icon__1="seamark_topmark_oblique_redwhitered_board"/>
+							<case additional="seamark:topmark:shape=rectangle" icon__1="seamark_topmark_oblique_redwhitered_board"/>
+							<apply>
+								<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_oblique_red_board"/>
+								<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_oblique_green_board"/>
+								<case additional="seamark:topmark:colour=red;white;red" icon__1="seamark_topmark_oblique_redwhitered_board"/>
+								<case additional="seamark:topmark:colour=white;red">
+									<case additional="seamark:topmark:colour_pattern=border" icon__1="seamark_topmark_oblique_whitered_board_border"/>
+								</case>
+							</apply>
+						</switch>
+						<switch>
+							<case additional="seamark:topmark:shape=cone, point down" icon__1="seamark_topmark_oblique_black_conepointdown"/>
+							<case additional="seamark:topmark:shape=triangle, point down" icon__1="seamark_topmark_oblique_black_conepointdown"/>
+							<apply>
+								<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_oblique_red_conepointdown"/>
+								<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_oblique_green_conepointdown"/>
+								<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_oblique_black_conepointdown"/>
+								<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_oblique_yellow_conepointdown"/>
+								<case additional="seamark:topmark:colour=red;white;red" icon__1="seamark_topmark_oblique_redwhitered_conepointdown"/>
+							</apply>
+						</switch>
+						<switch>
+							<case additional="seamark:topmark:shape=cone" icon__1="seamark_topmark_oblique_black_conepointup"/>
+							<case additional="seamark:topmark:shape=cone, point up" icon__1="seamark_topmark_oblique_black_conepointup"/>
+							<case additional="seamark:topmark:shape=triangle, point up" icon__1="seamark_topmark_oblique_black_conepointup"/>
+							<apply>
+								<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_oblique_red_conepointup"/>
+								<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_oblique_green_conepointup"/>
+								<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_oblique_black_conepointup"/>
+								<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_oblique_yellow_conepointup"/>
+							</apply>
+						</switch>
+						<case additional="seamark:topmark:shape=rhombus" icon__1="seamark_topmark_oblique_black_rhombus">
+							<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_oblique_red_rhombus"/>
+							<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_oblique_black_rhombus"/>
+							<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_oblique_yellow_rhombus"/>
 						</case>
-					</case>
-				</case>
-				<case minzoom="11" tag="seamark:type" value="beacon_cardinal" icon="seamark_beacon_pile">
-					<case additional="seamark:beacon_cardinal:colour=yellow;black;yellow" icon="seamark_beacon_yellowblackyellow_stake">
-						<case additional="seamark:beacon_cardinal:shape=tower" icon="seamark_beacon_yellowblackyellow_tower"/>
-						<case additional="seamark:beacon_cardinal:shape=stake" icon="seamark_beacon_yellowblackyellow_stake"/>
-					</case>
-					<case additional="seamark:beacon_cardinal:colour=black;yellow;black" icon="seamark_beacon_blackyellowblack_stake">
-						<case additional="seamark:beacon_cardinal:shape=tower" icon="seamark_beacon_blackyellowblack_tower"/>
-						<case additional="seamark:beacon_cardinal:shape=stake" icon="seamark_beacon_blackyellowblack_stake"/>
-					</case>
-					<case additional="seamark:beacon_cardinal:colour=black;yellow" icon="seamark_beacon_blackyellow_stake">
-						<case additional="seamark:beacon_cardinal:shape=tower" icon="seamark_beacon_blackyellow_tower"/>
-						<case additional="seamark:beacon_cardinal:shape=stake" icon="seamark_beacon_blackyellow_stake"/>
-					</case>
-					<case additional="seamark:beacon_cardinal:colour=yellow;black" icon="seamark_beacon_yellowblack_stake">
-						<case additional="seamark:beacon_cardinal:shape=tower" icon="seamark_beacon_yellowblack_tower"/>
-						<case additional="seamark:beacon_cardinal:shape=stake" icon="seamark_beacon_yellowblack_stake"/>
-					</case>
-				</case>
-				<case minzoom="11" tag="seamark:type" value="beacon_isolated_danger" icon="seamark_beacon_blackredblack_pile">
-					<case additional="seamark:beacon_isolated_danger:colour=black;red;black">
-						<case additional="seamark:beacon_isolated_danger:shape=tower" icon="seamark_beacon_blackredblack_tower"/>
-						<case additional="seamark:beacon_isolated_danger:shape=stake" icon="seamark_beacon_blackredblack_stake"/>
-						<case additional="seamark:beacon_isolated_danger:shape=pile" icon="seamark_beacon_blackredblack_pile"/>
-					</case>
-				</case>
-				<case minzoom="11" tag="seamark:type" value="beacon_safe_water" icon="seamark_beacon_redwhite_pole_vertical">
-					<case additional="seamark:beacon_safe_water:colour=red;white">
-						<case additional="seamark:beacon_safe_water:colour_pattern=vertical">
-							<case additional="seamark:beacon_safe_water:shape=tower" icon="seamark_beacon_redwhite_tower_vertical"/>
-							<case additional="seamark:beacon_safe_water:shape=pole" icon="seamark_beacon_redwhite_pole_vertical"/>
+						<case additional="seamark:topmark:shape=sphere" icon__1="seamark_topmark_oblique_black_sphere">
+							<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_oblique_red_sphere"/>
+							<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_oblique_green_sphere"/>
+							<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_oblique_black_sphere"/>
+							<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_oblique_yellow_sphere"/>
 						</case>
-					</case>
-				</case>
-				<case minzoom="11" tag="seamark:type" value="beacon_special_purpose" icon="seamark_beacon_yellow_pile">
-					<case additional="seamark:beacon_special_purpose:colour=yellow">
-						<case additional="seamark:beacon_special_purpose:shape=stake" icon="seamark_beacon_yellow_stake"/>
-						<case additional="seamark:beacon_special_purpose:shape=pile" icon="seamark_beacon_yellow_pile"/>
-						<case additional="seamark:beacon_special_purpose:shape=tower" icon="seamark_beacon_yellow_tower"/>
-					</case>
-					<case additional="seamark:beacon_special_purpose:colour=white" icon="seamark_beacon_white_stake">
-						<case additional="seamark:beacon_special_purpose:shape=stake" icon="seamark_beacon_white_stake"/>
-						<case additional="seamark:beacon_special_purpose:shape=pile" icon="seamark_beacon_white_pile"/>
-						<case additional="seamark:beacon_special_purpose:shape=tower" icon="seamark_beacon_white_tower"/>
-					</case>
-					<case additional="seamark:beacon_special_purpose:colour=white;red;white;orange" icon="seamark_beacon_whiteredwhiteorange_pile"/>
-					<case additional="seamark:beacon_special_purpose:colour=black" icon="seamark_beacon_black_stake">
-						<case additional="seamark:beacon_special_purpose:shape=stake" icon="seamark_beacon_stake"/>
-						<case additional="seamark:beacon_special_purpose:shape=tower" icon="seamark_beacon_black_tower"/>
-					</case>
-					<case additional="seamark:beacon_special_purpose:shape=cairn" icon="seamark_beacon_cairn"/>
-				</case>
+						<case additional="seamark:topmark:shape=x-shape" icon__1="seamark_topmark_oblique_yellow_xshape">
+							<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_oblique_red_xshape"/>
+							<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_oblique_green_xshape"/>
+							<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_oblique_black_xshape"/>
+							<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_oblique_yellow_xshape"/>
+						</case>
+						<case additional="seamark:topmark:shape=2 cones point together" icon__1="seamark_topmark_oblique_black_2conespointtogether">
+							<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_oblique_yellow_2conespointtogether"/>
+						</case>
+						<case additional="seamark:topmark:shape=2 cones base together" icon__1="seamark_topmark_oblique_black_2conesbasetogether"/>
+						<case additional="seamark:topmark:shape=2 cones up" icon__1="seamark_topmark_oblique_black_2conesup"/>
+						<case additional="seamark:topmark:shape=2 cones down" icon__1="seamark_topmark_oblique_black_2conesdown"/>
+						<case additional="seamark:topmark:shape=2 spheres" icon__1="seamark_topmark_oblique_black_2spheres"/>
+					</apply>
 
-				<case minzoom="11" tag="seamark:type" value="light_major" icon="seamark_light_major"/>
-				<case minzoom="12" tag="seamark:type" value="light_float" icon="seamark_light_float_red">
-					<case additional="seamark:light_float:colour=red" icon="seamark_light_float_red"/>
-					<case additional="seamark:light_float:colour=green" icon="seamark_light_float_green"/>
-					<case additional="seamark:light_float:colour_pattern=vertical">
-						<case additional="seamark:light_float:colour=red;white" icon="seamark_light_float_redwhite_vertical"/>
+				</switch>
+
+				<!-- Beacons and lights-->
+				<switch iconVisibleSize="9" intersectionSizeFactor="0.6">
+					<case minzoom="11" tag="seamark:type" value="beacon_lateral" icon="seamark_beacon_pile">
+						<switch>
+							<case additional="seamark:beacon_lateral:shape=stake" icon="seamark_beacon_stake"/>
+							<case additional="seamark:beacon_lateral:shape=pole" icon="seamark_beacon_stake"/>
+							<case additional="seamark:beacon_lateral:shape=post" icon="seamark_beacon_stake"/>
+							<apply>
+								<case additional="seamark:beacon_lateral:colour=red" icon="seamark_beacon_red_stake"/>
+								<case additional="seamark:beacon_lateral:colour=green" icon="seamark_beacon_green_stake"/>
+								<case additional="seamark:beacon_lateral:colour=white;red" icon="seamark_beacon_whitered_stake"/>
+								<case additional="seamark:beacon_lateral:colour=red;white" icon="seamark_beacon_redwhite_stake"/>
+								<case additional="seamark:beacon_lateral:colour=white;green" icon="seamark_beacon_whitegreen_stake"/>
+								<case additional="seamark:beacon_lateral:colour=green;white" icon="seamark_beacon_greenwhite_stake"/>
+								<case additional="seamark:beacon_lateral:colour=green;white;green;white" icon="seamark_beacon_greenwhitegreenwhite_stake"/>
+							</apply>
+						</switch>
+						<case additional="seamark:beacon_lateral:shape=tower" icon="seamark_beacon_tower">
+							<case additional="seamark:beacon_lateral:colour=red" icon="seamark_beacon_red_tower"/>
+							<case additional="seamark:beacon_lateral:colour=green" icon="seamark_beacon_green_tower"/>
+							<case additional="seamark:beacon_lateral:colour=white;red" icon="seamark_beacon_whitered_tower"/>
+							<case additional="seamark:beacon_lateral:colour=red;white" icon="seamark_beacon_redwhite_tower"/>
+							<case additional="seamark:beacon_lateral:colour=white;green" icon="seamark_beacon_whitegreen_tower"/>
+							<case additional="seamark:beacon_lateral:colour=green;white" icon="seamark_beacon_greenwhite_tower"/>
+							<case additional="seamark:beacon_lateral:colour=green;white;green;white" icon="seamark_beacon_greenwhitegreenwhite_tower"/>
+						</case>
+						<case additional="seamark:beacon_lateral:shape=pillar" icon="seamark_beacon_pillar">
+							<case additional="seamark:beacon_lateral:colour=black" icon="seamark_beacon_black_pillar"/>
+							<case additional="seamark:beacon_lateral:colour=green" icon="seamark_beacon_green_pillar"/>
+							<case additional="seamark:beacon_lateral:colour=red" icon="seamark_beacon_red_pillar"/>
+						</case>
+						<case additional="seamark:beacon_lateral:shape=perch">
+							<case additional="seamark:beacon_lateral:category=port" icon="seamark_beacon_perch_port">
+								<case additional="seamark:beacon_lateral:colour=red" icon="seamark_beacon_red_perch_port"/>
+								<case additional="seamark:beacon_lateral:colour=green" icon="seamark_beacon_green_perch_port"/>
+							</case>
+							<case additional="seamark:beacon_lateral:category=starboard" icon="seamark_beacon_perch_starboard">
+								<case additional="seamark:beacon_lateral:colour=red" icon="seamark_beacon_red_perch_starboard"/>
+								<case additional="seamark:beacon_lateral:colour=green" icon="seamark_beacon_green_perch_starboard"/>
+							</case>
+						</case>
 					</case>
-				</case>
-				<case minzoom="12" tag="seamark:type" value="light_vessel" icon="seamark_light_vessel"/>
+					<case minzoom="11" tag="seamark:type" value="beacon_cardinal" icon="seamark_beacon_pile">
+						<case additional="seamark:beacon_cardinal:colour=yellow;black;yellow" icon="seamark_beacon_yellowblackyellow_stake">
+							<case additional="seamark:beacon_cardinal:shape=tower" icon="seamark_beacon_yellowblackyellow_tower"/>
+							<case additional="seamark:beacon_cardinal:shape=stake" icon="seamark_beacon_yellowblackyellow_stake"/>
+						</case>
+						<case additional="seamark:beacon_cardinal:colour=black;yellow;black" icon="seamark_beacon_blackyellowblack_stake">
+							<case additional="seamark:beacon_cardinal:shape=tower" icon="seamark_beacon_blackyellowblack_tower"/>
+							<case additional="seamark:beacon_cardinal:shape=stake" icon="seamark_beacon_blackyellowblack_stake"/>
+						</case>
+						<case additional="seamark:beacon_cardinal:colour=black;yellow" icon="seamark_beacon_blackyellow_stake">
+							<case additional="seamark:beacon_cardinal:shape=tower" icon="seamark_beacon_blackyellow_tower"/>
+							<case additional="seamark:beacon_cardinal:shape=stake" icon="seamark_beacon_blackyellow_stake"/>
+						</case>
+						<case additional="seamark:beacon_cardinal:colour=yellow;black" icon="seamark_beacon_yellowblack_stake">
+							<case additional="seamark:beacon_cardinal:shape=tower" icon="seamark_beacon_yellowblack_tower"/>
+							<case additional="seamark:beacon_cardinal:shape=stake" icon="seamark_beacon_yellowblack_stake"/>
+						</case>
+					</case>
+					<case minzoom="11" tag="seamark:type" value="beacon_isolated_danger" icon="seamark_beacon_blackredblack_pile">
+						<case additional="seamark:beacon_isolated_danger:colour=black;red;black">
+							<case additional="seamark:beacon_isolated_danger:shape=tower" icon="seamark_beacon_blackredblack_tower"/>
+							<case additional="seamark:beacon_isolated_danger:shape=stake" icon="seamark_beacon_blackredblack_stake"/>
+							<case additional="seamark:beacon_isolated_danger:shape=pile" icon="seamark_beacon_blackredblack_pile"/>
+						</case>
+					</case>
+					<case minzoom="11" tag="seamark:type" value="beacon_safe_water" icon="seamark_beacon_redwhite_pole_vertical">
+						<case additional="seamark:beacon_safe_water:colour=red;white">
+							<case additional="seamark:beacon_safe_water:colour_pattern=vertical">
+								<case additional="seamark:beacon_safe_water:shape=tower" icon="seamark_beacon_redwhite_tower_vertical"/>
+								<case additional="seamark:beacon_safe_water:shape=pole" icon="seamark_beacon_redwhite_pole_vertical"/>
+							</case>
+						</case>
+					</case>
+					<case minzoom="11" tag="seamark:type" value="beacon_special_purpose" icon="seamark_beacon_yellow_pile">
+						<case additional="seamark:beacon_special_purpose:colour=yellow">
+							<case additional="seamark:beacon_special_purpose:shape=stake" icon="seamark_beacon_yellow_stake"/>
+							<case additional="seamark:beacon_special_purpose:shape=pile" icon="seamark_beacon_yellow_pile"/>
+							<case additional="seamark:beacon_special_purpose:shape=tower" icon="seamark_beacon_yellow_tower"/>
+						</case>
+						<case additional="seamark:beacon_special_purpose:colour=white" icon="seamark_beacon_white_stake">
+							<case additional="seamark:beacon_special_purpose:shape=stake" icon="seamark_beacon_white_stake"/>
+							<case additional="seamark:beacon_special_purpose:shape=pile" icon="seamark_beacon_white_pile"/>
+							<case additional="seamark:beacon_special_purpose:shape=tower" icon="seamark_beacon_white_tower"/>
+						</case>
+						<case additional="seamark:beacon_special_purpose:colour=white;red;white;orange" icon="seamark_beacon_whiteredwhiteorange_pile"/>
+						<case additional="seamark:beacon_special_purpose:colour=black" icon="seamark_beacon_black_stake">
+							<case additional="seamark:beacon_special_purpose:shape=stake" icon="seamark_beacon_stake"/>
+							<case additional="seamark:beacon_special_purpose:shape=tower" icon="seamark_beacon_black_tower"/>
+						</case>
+						<case additional="seamark:beacon_special_purpose:shape=cairn" icon="seamark_beacon_cairn"/>
+					</case>
+
+					<case minzoom="12" tag="seamark:type" value="light_float" icon="seamark_light_float_red">
+						<case additional="seamark:light_float:colour=red" icon="seamark_light_float_red"/>
+						<case additional="seamark:light_float:colour=green" icon="seamark_light_float_green"/>
+						<case additional="seamark:light_float:colour_pattern=vertical">
+							<case additional="seamark:light_float:colour=red;white" icon="seamark_light_float_redwhite_vertical"/>
+						</case>
+					</case>
+					<case minzoom="12" tag="seamark:type" value="light_vessel" icon="seamark_light_vessel"/>
+					<apply>
+						<case additional="seamark:topmark:shape=2 cones point together" icon__1="seamark_topmark_vertical_black_2conespointtogether"/>
+						<case additional="seamark:topmark:shape=2 cones base together" icon__1="seamark_topmark_vertical_black_2conesbasetogether"/>
+						<case additional="seamark:topmark:shape=2 cones up" icon__1="seamark_topmark_vertical_black_2conesup"/>
+						<case additional="seamark:topmark:shape=2 cones down" icon__1="seamark_topmark_vertical_black_2conesdown"/>
+						<case additional="seamark:topmark:shape=2 spheres" icon__1="seamark_topmark_vertical_black_2spheres"/>
+						<case additional="seamark:topmark:shape=cylinder" icon__1="seamark_topmark_vertical_black_cylinder">
+							<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_vertical_red_cylinder"/>
+							<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_vertical_green_cylinder"/>
+							<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_vertical_black_cylinder"/>
+							<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_vertical_yellow_cylinder"/>
+							<case additional="seamark:topmark:colour=red;white;red" icon__1="seamark_topmark_vertical_redwhitered_cylinder"/>
+						</case>
+						<switch>
+							<case additional="seamark:topmark:shape=square" icon__1="seamark_topmark_vertical_redwhitered_board"/>
+							<case additional="seamark:topmark:shape=board" icon__1="seamark_topmark_vertical_redwhitered_board"/>
+							<case additional="seamark:topmark:shape=rectangle" icon__1="seamark_topmark_vertical_redwhitered_board"/>
+							<apply>
+								<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_vertical_red_board"/>
+								<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_vertical_green_board"/>
+								<case additional="seamark:topmark:colour=red;white;red" icon__1="seamark_topmark_vertical_redwhitered_board"/>
+								<case additional="seamark:topmark:colour=white;red">
+									<case additional="seamark:topmark:colour_pattern=border" icon__1="seamark_topmark_vertical_whitered_board_border"/>
+								</case>
+								<case additional="seamark:topmark:colour=white;black">
+									<case additional="seamark:topmark:colour_pattern=border" icon__1="seamark_topmark_vertical_whiteblack_board_border"/>
+								</case>
+							</apply>
+						</switch>
+						<switch>
+							<case additional="seamark:topmark:shape=cone, point down" icon__1="seamark_topmark_vertical_black_conepointdown"/>
+							<case additional="seamark:topmark:shape=triangle, point down" icon__1="seamark_topmark_vertical_black_conepointdown"/>
+							<apply>
+								<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_vertical_red_conepointdown"/>
+								<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_vertical_green_conepointdown"/>
+								<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_vertical_black_conepointdown"/>
+								<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_vertical_yellow_conepointdown"/>
+								<case additional="seamark:topmark:colour=red;white;red" icon__1="seamark_topmark_vertical_redwhitered_conepointdown"/>
+								<case additional="seamark:topmark:colour=white;red" icon__1="seamark_topmark_vertical_whitered_conepointdown_border">
+									<case additional="seamark:topmark:colour_pattern=border" icon__1="seamark_topmark_vertical_whitered_conepointdown_border"/>
+								</case>
+							</apply>
+						</switch>
+						<switch>
+							<case additional="seamark:topmark:shape=cone" icon__1="seamark_topmark_vertical_black_conepointup"/>
+							<case additional="seamark:topmark:shape=cone, point up" icon__1="seamark_topmark_vertical_black_conepointup"/>
+							<case additional="seamark:topmark:shape=triangle, point up" icon__1="seamark_topmark_vertical_black_conepointup"/>
+							<apply>
+								<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_vertical_red_conepointup"/>
+								<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_vertical_green_conepointup"/>
+								<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_vertical_black_conepointup"/>
+								<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_vertical_yellow_conepointup"/>
+							</apply>
+						</switch>
+						<case additional="seamark:topmark:shape=rhombus" icon__1="seamark_topmark_vertical_black_rhombus">
+							<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_vertical_red_rhombus"/>
+							<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_vertical_black_rhombus"/>
+							<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_vertical_yellow_rhombus"/>
+							<case additional="seamark:topmark:colour=green;white" icon__1="seamark_topmark_vertical_greenwhite_rhombus_vertical">
+								<case additional="seamark:topmark:colour_pattern=vertical" icon__1="seamark_topmark_vertical_greenwhite_rhombus_vertical"/>
+							</case>
+							<case additional="seamark:topmark:colour=white;black;white" icon__1="seamark_topmark_vertical_whiteblackwhite_rhombus_vertical">
+								<case additional="seamark:topmark:colour_pattern=vertical" icon__1="seamark_topmark_vertical_whiteblackwhite_rhombus_vertical"/>
+							</case>
+							<case additional="seamark:topmark:colour=white;green" icon__1="seamark_topmark_vertical_whitegreen_rhombus_border">
+								<case additional="seamark:topmark:colour_pattern=border" icon__1="seamark_topmark_vertical_whitegreen_rhombus_border"/>
+							</case>
+
+						</case>
+						<case additional="seamark:topmark:shape=sphere" icon__1="seamark_topmark_vertical_black_sphere">
+							<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_vertical_red_sphere"/>
+							<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_vertical_green_sphere"/>
+							<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_vertical_black_sphere"/>
+							<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_vertical_yellow_sphere"/>
+						</case>
+						<case additional="seamark:topmark:shape=x-shape" icon__1="seamark_topmark_vertical_yellow_xshape">
+							<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_vertical_red_xshape"/>
+							<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_vertical_green_xshape"/>
+							<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_vertical_black_xshape"/>
+							<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_vertical_yellow_xshape"/>
+						</case>
+						<case additional="seamark:topmark:shape=cross" icon__1="seamark_topmark_vertical_yellow_cross">
+							<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_vertical_yellow_cross"/>
+						</case>
+					</apply>
+				</switch>
 				<apply>
-					<case additional="seamark:topmark:shape=2 cones point together" icon__1="seamark_topmark_vertical_black_2conespointtogether"/>
-					<case additional="seamark:topmark:shape=2 cones base together" icon__1="seamark_topmark_vertical_black_2conesbasetogether"/>
-					<case additional="seamark:topmark:shape=2 cones up" icon__1="seamark_topmark_vertical_black_2conesup"/>
-					<case additional="seamark:topmark:shape=2 cones down" icon__1="seamark_topmark_vertical_black_2conesdown"/>
-					<case additional="seamark:topmark:shape=2 spheres" icon__1="seamark_topmark_vertical_black_2spheres"/>
-					<case additional="seamark:topmark:shape=cylinder" icon__1="seamark_topmark_vertical_black_cylinder">
-						<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_vertical_red_cylinder"/>
-						<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_vertical_green_cylinder"/>
-						<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_vertical_black_cylinder"/>
-						<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_vertical_yellow_cylinder"/>
-						<case additional="seamark:topmark:colour=red;white;red" icon__1="seamark_topmark_vertical_redwhitered_cylinder"/>
-					</case>
 					<switch>
-						<case additional="seamark:topmark:shape=square" icon__1="seamark_topmark_vertical_redwhitered_board"/>
-						<case additional="seamark:topmark:shape=board" icon__1="seamark_topmark_vertical_redwhitered_board"/>
-						<case additional="seamark:topmark:shape=rectangle" icon__1="seamark_topmark_vertical_redwhitered_board"/>
-						<apply>
-							<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_vertical_red_board"/>
-							<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_vertical_green_board"/>
-							<case additional="seamark:topmark:colour=red;white;red" icon__1="seamark_topmark_vertical_redwhitered_board"/>
-							<case additional="seamark:topmark:colour=white;red">
-								<case additional="seamark:topmark:colour_pattern=border" icon__1="seamark_topmark_vertical_whitered_board_border"/>
-							</case>
-							<case additional="seamark:topmark:colour=white;black">
-								<case additional="seamark:topmark:colour_pattern=border" icon__1="seamark_topmark_vertical_whiteblack_board_border"/>
-							</case>
+						<case additional="seamark:fog_signal:category=horn"/>
+						<case additional="seamark:fog_signal:category=siren"/>
+						<case additional="seamark:fog_signal:category=bell"/>
+						<case additional="seamark:fog_signal:category=whistle"/>
+						<apply icon_2="seamark_fog_signal_additional">
+							<apply_if nightMode="true" icon_2="seamark_fog_signal_additional_night"/>
 						</apply>
 					</switch>
-					<switch>
-						<case additional="seamark:topmark:shape=cone, point down" icon__1="seamark_topmark_vertical_black_conepointdown"/>
-						<case additional="seamark:topmark:shape=triangle, point down" icon__1="seamark_topmark_vertical_black_conepointdown"/>
-						<apply>
-							<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_vertical_red_conepointdown"/>
-							<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_vertical_green_conepointdown"/>
-							<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_vertical_black_conepointdown"/>
-							<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_vertical_yellow_conepointdown"/>
-							<case additional="seamark:topmark:colour=red;white;red" icon__1="seamark_topmark_vertical_redwhitered_conepointdown"/>
-							<case additional="seamark:topmark:colour=white;red" icon__1="seamark_topmark_vertical_whitered_conepointdown_border">
-								<case additional="seamark:topmark:colour_pattern=border" icon__1="seamark_topmark_vertical_whitered_conepointdown_border"/>
-							</case>
-						</apply>
-					</switch>
-					<switch>
-						<case additional="seamark:topmark:shape=cone" icon__1="seamark_topmark_vertical_black_conepointup"/>
-						<case additional="seamark:topmark:shape=cone, point up" icon__1="seamark_topmark_vertical_black_conepointup"/>
-						<case additional="seamark:topmark:shape=triangle, point up" icon__1="seamark_topmark_vertical_black_conepointup"/>
-						<apply>
-							<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_vertical_red_conepointup"/>
-							<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_vertical_green_conepointup"/>
-							<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_vertical_black_conepointup"/>
-							<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_vertical_yellow_conepointup"/>
-						</apply>
-					</switch>
-					<case additional="seamark:topmark:shape=rhombus" icon__1="seamark_topmark_vertical_black_rhombus">
-						<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_vertical_red_rhombus"/>
-						<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_vertical_black_rhombus"/>
-						<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_vertical_yellow_rhombus"/>
-						<case additional="seamark:topmark:colour=green;white" icon__1="seamark_topmark_vertical_greenwhite_rhombus_vertical">
-							<case additional="seamark:topmark:colour_pattern=vertical" icon__1="seamark_topmark_vertical_greenwhite_rhombus_vertical"/>
-						</case>
-						<case additional="seamark:topmark:colour=white;black;white" icon__1="seamark_topmark_vertical_whiteblackwhite_rhombus_vertical">
-							<case additional="seamark:topmark:colour_pattern=vertical" icon__1="seamark_topmark_vertical_whiteblackwhite_rhombus_vertical"/>
-						</case>
-						<case additional="seamark:topmark:colour=white;green" icon__1="seamark_topmark_vertical_whitegreen_rhombus_border">
-							<case additional="seamark:topmark:colour_pattern=border" icon__1="seamark_topmark_vertical_whitegreen_rhombus_border"/>
-						</case>
-
-					</case>
-					<case additional="seamark:topmark:shape=sphere" icon__1="seamark_topmark_vertical_black_sphere">
-						<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_vertical_red_sphere"/>
-						<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_vertical_green_sphere"/>
-						<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_vertical_black_sphere"/>
-						<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_vertical_yellow_sphere"/>
-					</case>
-					<case additional="seamark:topmark:shape=x-shape" icon__1="seamark_topmark_vertical_yellow_xshape">
-						<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_vertical_red_xshape"/>
-						<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_vertical_green_xshape"/>
-						<case additional="seamark:topmark:colour=black" icon__1="seamark_topmark_vertical_black_xshape"/>
-						<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_vertical_yellow_xshape"/>
-					</case>
-					<case additional="seamark:topmark:shape=cross" icon__1="seamark_topmark_vertical_yellow_cross">
-						<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_vertical_yellow_cross"/>
-					</case>
 				</apply>
+				<apply_if additional="seamark:radar_reflector=yes" icon_3="seamark_radar_reflector_additional">
+					<apply_if nightMode="true" icon_3="seamark_radar_reflector_additional_night"/>
+				</apply_if>
+			</switch>
+			<switch>
+				<case minzoom="11" tag="seamark:type" value="light_major" icon="seamark_light_major" iconOrder="10"/>
+				<case minzoom="12" tag="seamark:type" value="light_minor" icon="seamark_light_minor" iconOrder="15"/>
+				<apply>
+					<switch> <!-- simplify when it will be possible to filter all possible values -->
+						<case additional="seamark:fog_signal:category=horn"/>
+						<case additional="seamark:fog_signal:category=siren"/>
+						<case additional="seamark:fog_signal:category=bell"/>
+						<case additional="seamark:fog_signal:category=whistle"/>
+						<apply icon_2="seamark_fog_signal_additional_big">
+							<apply_if nightMode="true" icon_2="seamark_fog_signal_additional_big_night"/>
+						</apply>
+					</switch>
+				</apply>
+				<apply>
+					<case additional="seamark:topmark:shape=2 cones point together" icon__1="seamark_topmark_vertical_black_2conespointtogether_big"/>
+					<case additional="seamark:topmark:shape=2 cones base together" icon__1="seamark_topmark_vertical_black_2conesbasetogether_big"/>
+					<case additional="seamark:topmark:shape=2 cones up" icon__1="seamark_topmark_vertical_black_2conesup_big"/>
+					<case additional="seamark:topmark:shape=2 cones down" icon__1="seamark_topmark_vertical_black_2conesdown_big"/>
+					<case additional="seamark:topmark:shape=2 spheres" icon__1="seamark_topmark_vertical_black_2spheres_big"/>
+					<switch>
+						<case additional="seamark:topmark:shape=cylinder"/>
+						<case additional="seamark:topmark:shape=square"/>
+						<case additional="seamark:topmark:shape=board"/>
+						<case additional="seamark:topmark:shape=rectangle"/>
+						<apply icon__1="seamark_topmark_vertical_black_cylinder_big"/>
+					</switch>
+					<switch>
+						<case additional="seamark:topmark:shape=cone, point down"/>
+						<case additional="seamark:topmark:shape=triangle, point down"/>
+						<apply icon__1="seamark_topmark_vertical_black_conepointdown_big"/>
+					</switch>
+					<switch>
+						<case additional="seamark:topmark:shape=cone"/>
+						<case additional="seamark:topmark:shape=cone, point up"/>
+						<case additional="seamark:topmark:shape=triangle, point up"/>
+						<apply icon__1="seamark_topmark_vertical_black_conepointup"/>
+					</switch>
+					<case additional="seamark:topmark:shape=rhombus" icon__1="seamark_topmark_vertical_black_rhombus_big"/>
+					<case additional="seamark:topmark:shape=sphere" icon__1="seamark_topmark_vertical_black_sphere_big"/>
+					<case additional="seamark:topmark:shape=x-shape" icon__1="seamark_topmark_vertical_yellow_xshape_big"/>
+				</apply>
+				<apply_if additional="seamark:radar_reflector=yes" icon_3="seamark_radar_reflector_additional_big">
+					<apply_if nightMode="true" icon_3="seamark_radar_reflector_additional_big_night"/>
+				</apply_if>
+				<apply_if additional="seamark:radar_transponder:category=racon" icon_4="seamark_radar_transponder_additional_big"> <!-- simplify when available -->
+					<apply_if nightMode="true" icon_4="seamark_radar_transponder_additional_big_night"/>
+				</apply_if>
 			</switch>
 			<apply>
 				<case additional="seamark:light:colour=white" shield="seamark_light_white"/>
@@ -1097,20 +1168,6 @@
 				</switch>
 				<apply iconVisibleSize="13" intersectionSizeFactor="0.8"/>
 			</apply>
-			<apply>
-				<switch>
-					<case additional="seamark:fog_signal:category=horn"/>
-					<case additional="seamark:fog_signal:category=siren"/>
-					<case additional="seamark:fog_signal:category=bell"/>
-					<case additional="seamark:fog_signal:category=whistle"/>
-					<apply icon_2="seamark_fog_signal_additional">
-						<apply_if nightMode="true" icon_2="seamark_fog_signal_additional_night"/>
-					</apply>
-				</switch>
-			</apply>
-			<apply_if additional="seamark:radar_reflector=yes" icon_3="seamark_radar_reflector_additional">
-				<apply_if nightMode="true" icon_3="seamark_radar_reflector_additional_night"/>
-			</apply_if>
 		</switch>
 
 		<case minzoom="11" tag="natural" value="peak" iconOrder="65">
