@@ -635,7 +635,7 @@
 
 
 		<!-- Seamarks -->
-		<switch textColor="#0400ab" textWrapWidth="19" textHaloColor="#aaacd8f3" textHaloRadius="2" textDy="19" nameTag="seamark:name" nameTag2="">
+		<switch minzoom="11" textColor="#0400ab" textWrapWidth="19" textHaloColor="#aaacd8f3" textHaloRadius="2" textDy="19" nameTag="seamark:name" nameTag2="">
 			<switch>
 				<switch textItalic="true">
 					<case minzoom="12" tag="seamark:type" value="buoy_lateral"/>
@@ -660,7 +660,7 @@
 				<case minzoom="12" tag="seamark:type" value="fog_signal" textOrder="20"/>
 				<case minzoom="12" tag="seamark:type" value="radar_transponder" textOrder="21"/>
 				<case minzoom="12" tag="seamark:type" value="platform" textOrder="21"/>
-				<apply textDy="27">
+				<apply textDy="29">
 					<apply_if engine_v1="false" textDy="0"/>
 				</apply>
 			</switch>
@@ -671,6 +671,18 @@
 			</apply>
 			<apply_if nightMode="true" textColor="#eaf6ff" textHaloColor="#5545a5e2"/>
 		</switch>
+		<switch>
+			<case minzoom="12" tag="seamark:type" value="separation_zone"/>
+			<case minzoom="14" tag="seamark:type" value="separation_roundabout"/>
+			<apply textColor="#471c62" textWrapWidth="26" textHaloColor="#66debee7" textHaloRadius="2" nameTag="seamark:name">
+				<case maxzoom="10" textSize="9"/>
+				<case maxzoom="12" textSize="11"/>
+				<case maxzoom="14" textSize="12"/>
+				<case minzoom="16" textSize="13"/>
+			</apply>
+			<apply_if nightMode="true" textColor="#f3e1ff" textHaloColor="#5545a5e2"/>
+		</switch>
+
 	</text>
 
 
@@ -1241,6 +1253,13 @@
 
 
 	<polygon>
+		<switch minzoom="10">
+			<case tag="seamark:type" value="separation_zone"/>
+			<case tag="seamark:type" value="separation_roundabout"/>
+			<apply color="#339c00ff">
+				<apply_if nightMode="true" color="#88c05dff"/>
+			</apply>
+		</switch>
 		<switch>
 			<case tag="highway" value="primary_area"/>
 			<case tag="highway" value="secondary_area"/>
@@ -1320,6 +1339,36 @@
 	<line>
 		<case minzoom="1" tag="natural" value="coastline_broken" color="#111111" strokeWidth=":1"/>
 		<case minzoom="5" tag="natural" value="coastline_line" color="#cc999999" strokeWidth=":1"/>
+
+		<switch>
+			<case minzoom="11" tag="seamark:type" value="separation_line"/>
+			<case minzoom="11" tag="seamark:type" value="separation_lane"/>
+			<apply>
+				<case engine_v1="true" cap="ROUND" color="#339c00ff">
+					<case maxzoom="12" strokeWidth="1" pathEffect="1_5"/>
+					<case maxzoom="14" strokeWidth="2" pathEffect="1_10"/>
+					<case maxzoom="16" strokeWidth="3" pathEffect="1_20"/>
+					<case minzoom="17" strokeWidth="4" pathEffect="1_24"/>
+					<apply_if nightMode="true" color="#88c05dff"/>
+				</case>
+				<case>
+					<case maxzoom="13" pathIcon="separation_line_arrow_small" pathIconStep="50">
+						<apply_if nightMode="true" pathIcon="separation_line_arrow_small_night"/>
+					</case>
+					<case minzoom="14" pathIcon="separation_line_arrow" pathIconStep="90">
+						<apply_if nightMode="true" pathIcon="separation_line_arrow_night"/>
+					</case>
+					<apply strokeWidth="0.1" color="$null"/>
+				</case>
+			</apply>
+		</switch>
+		<case minzoom="11" tag="seamark:type" value="separation_boundary" color="#339c00ff" cap="SQUARE">
+			<case maxzoom="12" strokeWidth="2" pathEffect="2_5"/>
+			<case maxzoom="14" strokeWidth="3" pathEffect="4_10"/>
+			<case maxzoom="16" strokeWidth="4" pathEffect="8_20"/>
+			<case minzoom="17" strokeWidth="5" pathEffect="12_24"/>
+			<apply_if nightMode="true" color="#88c05dff"/>
+		</case>
 
 		<switch minzoom="6" maxzoom="13">
 			<switch shadowRadius=":1">

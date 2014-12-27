@@ -770,6 +770,11 @@ mycp seamark radar_transponder_additional_big_night seamark_big_radar_transponde
 mycp seamark platform_production_additional seamark_big_platform_production_additional.png
 mycp seamark platform_fpso_additional seamark_big_platform_fpso_additional.png
 
+mycp seamark separation_line_arrow seamark_separation_line_arrow.png
+mycp seamark separation_line_arrow_night seamark_separation_line_arrow_night.png
+mycp seamark separation_line_arrow_small seamark_separation_line_arrow_small.png
+mycp seamark separation_line_arrow_small_night seamark_separation_line_arrow_small_night.png
+
 ## Shops
 mygroup car_aid shopping_car.png
 mygroup food_shop shopping_convenience.png
