@@ -638,20 +638,20 @@
 		<switch minzoom="11" textColor="#0400ab" textWrapWidth="19" textHaloColor="#aaacd8f3" textHaloRadius="2" textDy="19" nameTag="seamark:name" nameTag2="">
 			<switch>
 				<switch textItalic="true">
-					<case minzoom="12" tag="seamark:type" value="buoy_lateral"/>
-					<case minzoom="12" tag="seamark:type" value="buoy_cardinal"/>
-					<case minzoom="12" tag="seamark:type" value="buoy_isolated_danger"/>
-					<case minzoom="11" tag="seamark:type" value="buoy_safe_water"/>
-					<case minzoom="11" tag="seamark:type" value="buoy_special_purpose"/>
-					<case minzoom="12" tag="seamark:type" value="buoy_installation"/>
+					<case minzoom="15" tag="seamark:type" value="buoy_lateral"/>
+					<case minzoom="15" tag="seamark:type" value="buoy_cardinal"/>
+					<case minzoom="14" tag="seamark:type" value="buoy_isolated_danger"/>
+					<case minzoom="14" tag="seamark:type" value="buoy_safe_water"/>
+					<case minzoom="15" tag="seamark:type" value="buoy_special_purpose"/>
+					<case minzoom="15" tag="seamark:type" value="buoy_installation"/>
 				</switch>
-				<case minzoom="12" tag="seamark:type" value="beacon_lateral"/>
-				<case minzoom="12" tag="seamark:type" value="beacon_cardinal"/>
-				<case minzoom="12" tag="seamark:type" value="beacon_isolated_danger"/>
-				<case minzoom="11" tag="seamark:type" value="beacon_safe_water"/>
-				<case minzoom="11" tag="seamark:type" value="beacon_special_purpose"/>
-				<case minzoom="12" tag="seamark:type" value="light_float"/>
-				<case minzoom="12" tag="seamark:type" value="light_vessel"/>
+				<case minzoom="15" tag="seamark:type" value="beacon_lateral"/>
+				<case minzoom="15" tag="seamark:type" value="beacon_cardinal"/>
+				<case minzoom="14" tag="seamark:type" value="beacon_isolated_danger"/>
+				<case minzoom="14" tag="seamark:type" value="beacon_safe_water"/>
+				<case minzoom="15" tag="seamark:type" value="beacon_special_purpose"/>
+				<case minzoom="15" tag="seamark:type" value="light_float"/>
+				<case minzoom="15" tag="seamark:type" value="light_vessel"/>
 				<apply_if engine_v1="false" textDy="7"/>
 			</switch>
 			<switch> <!-- for big icons -->
@@ -667,18 +667,17 @@
 			<apply>
 				<case maxzoom="12" textSize="12"/>
 				<case maxzoom="14" textSize="12"/>
-				<case minzoom="16" textSize="13"/>
+				<case minzoom="15" textSize="13"/>
 			</apply>
 			<apply_if nightMode="true" textColor="#eaf6ff" textHaloColor="#5545a5e2"/>
 		</switch>
 		<switch>
-			<case minzoom="12" tag="seamark:type" value="separation_zone"/>
+			<case minzoom="11" tag="seamark:type" value="separation_zone"/>
 			<case minzoom="14" tag="seamark:type" value="separation_roundabout"/>
-			<apply textColor="#471c62" textWrapWidth="26" textHaloColor="#66debee7" textHaloRadius="2" nameTag="seamark:name">
-				<case maxzoom="10" textSize="9"/>
-				<case maxzoom="12" textSize="11"/>
-				<case maxzoom="14" textSize="12"/>
-				<case minzoom="16" textSize="13"/>
+			<apply textColor="#471c62" textWrapWidth="26" textHaloColor="#66debee7" textHaloRadius="2" textBold="true" nameTag="seamark:name">
+				<case maxzoom="12" textSize="12"/>
+				<case maxzoom="14" textSize="13"/>
+				<case minzoom="16" textSize="14"/>
 			</apply>
 			<apply_if nightMode="true" textColor="#f3e1ff" textHaloColor="#5545a5e2"/>
 		</switch>
@@ -912,7 +911,7 @@
 
 				<!-- Beacons and lights-->
 				<switch iconVisibleSize="9" intersectionSizeFactor="0.6">
-					<case minzoom="11" tag="seamark:type" value="beacon_lateral" icon="seamark_beacon_pile">
+					<case minzoom="12" tag="seamark:type" value="beacon_lateral" icon="seamark_beacon_pile">
 						<switch>
 							<case additional="seamark:beacon_lateral:shape=stake" icon="seamark_beacon_stake"/>
 							<case additional="seamark:beacon_lateral:shape=pole" icon="seamark_beacon_stake"/>
@@ -1117,61 +1116,66 @@
 				</apply_if>
 			</switch>
 			<switch>
-				<case minzoom="11" tag="seamark:type" value="light_major" icon="seamark_light_major" iconOrder="10"/>
-				<case minzoom="12" tag="seamark:type" value="light_minor" icon="seamark_light_minor" iconOrder="15"/>
-				<case minzoom="12" tag="seamark:type" value="fog_signal" icon="seamark_fog_signal" iconOrder="20"/>
-				<case minzoom="12" tag="seamark:type" value="radar_transponder" icon="seamark_radar_transponder" iconOrder="21"/>
-				<case minzoom="12" tag="seamark:type" value="platform" icon="seamark_platform" iconOrder="22">
-					<apply_if additional="seamark:platform:category=production" icon_3="seamark_platform_production_additional"/>
-					<apply_if additional="seamark:platform:category=oil" icon_3="seamark_platform_production_additional"/>
-					<apply_if additional="seamark:platform:category=fpso" icon_3="seamark_platform_fpso_additional"/>
-				</case>
-				<apply>
-					<switch> <!-- simplify when it will be possible to filter all possible values -->
-						<case additional="seamark:fog_signal:category=horn"/>
-						<case additional="seamark:fog_signal:category=siren"/>
-						<case additional="seamark:fog_signal:category=bell"/>
-						<case additional="seamark:fog_signal:category=whistle"/>
-						<case additional="seamark:fog_signal:category=diaphone"/>
-						<apply icon_2="seamark_fog_signal_additional_big">
-							<apply_if nightMode="true" icon_2="seamark_fog_signal_additional_big_night"/>
-						</apply>
-					</switch>
-				</apply>
-				<apply>
-					<case additional="seamark:topmark:shape=2 cones point together" icon__1="seamark_topmark_vertical_black_2conespointtogether_big"/>
-					<case additional="seamark:topmark:shape=2 cones base together" icon__1="seamark_topmark_vertical_black_2conesbasetogether_big"/>
-					<case additional="seamark:topmark:shape=2 cones up" icon__1="seamark_topmark_vertical_black_2conesup_big"/>
-					<case additional="seamark:topmark:shape=2 cones down" icon__1="seamark_topmark_vertical_black_2conesdown_big"/>
-					<case additional="seamark:topmark:shape=2 spheres" icon__1="seamark_topmark_vertical_black_2spheres_big"/>
-					<switch>
-						<case additional="seamark:topmark:shape=cylinder"/>
-						<case additional="seamark:topmark:shape=square"/>
-						<case additional="seamark:topmark:shape=board"/>
-						<case additional="seamark:topmark:shape=rectangle"/>
-						<apply icon__1="seamark_topmark_vertical_black_cylinder_big"/>
-					</switch>
-					<switch>
-						<case additional="seamark:topmark:shape=cone, point down"/>
-						<case additional="seamark:topmark:shape=triangle, point down"/>
-						<apply icon__1="seamark_topmark_vertical_black_conepointdown_big"/>
-					</switch>
-					<switch>
-						<case additional="seamark:topmark:shape=cone"/>
-						<case additional="seamark:topmark:shape=cone, point up"/>
-						<case additional="seamark:topmark:shape=triangle, point up"/>
-						<apply icon__1="seamark_topmark_vertical_black_conepointup"/>
-					</switch>
-					<case additional="seamark:topmark:shape=rhombus" icon__1="seamark_topmark_vertical_black_rhombus_big"/>
-					<case additional="seamark:topmark:shape=sphere" icon__1="seamark_topmark_vertical_black_sphere_big"/>
-					<case additional="seamark:topmark:shape=x-shape" icon__1="seamark_topmark_vertical_yellow_xshape_big"/>
-				</apply>
-				<apply_if additional="seamark:radar_reflector=yes" icon_3="seamark_radar_reflector_additional_big">
-					<apply_if nightMode="true" icon_3="seamark_radar_reflector_additional_big_night"/>
-				</apply_if>
-				<apply_if additional="seamark:radar_transponder:category=racon" icon_4="seamark_radar_transponder_additional_big"> <!-- simplify when available -->
-					<apply_if nightMode="true" icon_4="seamark_radar_transponder_additional_big_night"/>
-				</apply_if>
+				<switch>
+					<case minzoom="10" maxzoom="10" tag="seamark:type" value="light_major" icon="seamark_light_major_small" iconOrder="10"/>
+				</switch>
+				<switch>
+					<case minzoom="11" tag="seamark:type" value="light_major" icon="seamark_light_major" iconOrder="10"/>
+					<case minzoom="12" tag="seamark:type" value="light_minor" icon="seamark_light_minor" iconOrder="15"/>
+					<case minzoom="12" tag="seamark:type" value="fog_signal" icon="seamark_fog_signal" iconOrder="20"/>
+					<case minzoom="12" tag="seamark:type" value="radar_transponder" icon="seamark_radar_transponder" iconOrder="21"/>
+					<case minzoom="12" tag="seamark:type" value="platform" icon="seamark_platform" iconOrder="22">
+						<apply_if additional="seamark:platform:category=production" icon_3="seamark_platform_production_additional"/>
+						<apply_if additional="seamark:platform:category=oil" icon_3="seamark_platform_production_additional"/>
+						<apply_if additional="seamark:platform:category=fpso" icon_3="seamark_platform_fpso_additional"/>
+					</case>
+					<apply>
+						<switch> <!-- simplify when it will be possible to filter all possible values -->
+							<case additional="seamark:fog_signal:category=horn"/>
+							<case additional="seamark:fog_signal:category=siren"/>
+							<case additional="seamark:fog_signal:category=bell"/>
+							<case additional="seamark:fog_signal:category=whistle"/>
+							<case additional="seamark:fog_signal:category=diaphone"/>
+							<apply icon_2="seamark_fog_signal_additional_big">
+								<apply_if nightMode="true" icon_2="seamark_fog_signal_additional_big_night"/>
+							</apply>
+						</switch>
+					</apply>
+					<apply>
+						<case additional="seamark:topmark:shape=2 cones point together" icon__1="seamark_topmark_vertical_black_2conespointtogether_big"/>
+						<case additional="seamark:topmark:shape=2 cones base together" icon__1="seamark_topmark_vertical_black_2conesbasetogether_big"/>
+						<case additional="seamark:topmark:shape=2 cones up" icon__1="seamark_topmark_vertical_black_2conesup_big"/>
+						<case additional="seamark:topmark:shape=2 cones down" icon__1="seamark_topmark_vertical_black_2conesdown_big"/>
+						<case additional="seamark:topmark:shape=2 spheres" icon__1="seamark_topmark_vertical_black_2spheres_big"/>
+						<switch>
+							<case additional="seamark:topmark:shape=cylinder"/>
+							<case additional="seamark:topmark:shape=square"/>
+							<case additional="seamark:topmark:shape=board"/>
+							<case additional="seamark:topmark:shape=rectangle"/>
+							<apply icon__1="seamark_topmark_vertical_black_cylinder_big"/>
+						</switch>
+						<switch>
+							<case additional="seamark:topmark:shape=cone, point down"/>
+							<case additional="seamark:topmark:shape=triangle, point down"/>
+							<apply icon__1="seamark_topmark_vertical_black_conepointdown_big"/>
+						</switch>
+						<switch>
+							<case additional="seamark:topmark:shape=cone"/>
+							<case additional="seamark:topmark:shape=cone, point up"/>
+							<case additional="seamark:topmark:shape=triangle, point up"/>
+							<apply icon__1="seamark_topmark_vertical_black_conepointup"/>
+						</switch>
+						<case additional="seamark:topmark:shape=rhombus" icon__1="seamark_topmark_vertical_black_rhombus_big"/>
+						<case additional="seamark:topmark:shape=sphere" icon__1="seamark_topmark_vertical_black_sphere_big"/>
+						<case additional="seamark:topmark:shape=x-shape" icon__1="seamark_topmark_vertical_yellow_xshape_big"/>
+					</apply>
+					<apply_if additional="seamark:radar_reflector=yes" icon_3="seamark_radar_reflector_additional_big">
+						<apply_if nightMode="true" icon_3="seamark_radar_reflector_additional_big_night"/>
+					</apply_if>
+					<apply_if additional="seamark:radar_transponder:category=racon" icon_4="seamark_radar_transponder_additional_big"> <!-- simplify when available -->
+						<apply_if nightMode="true" icon_4="seamark_radar_transponder_additional_big_night"/>
+					</apply_if>
+				</switch>
 			</switch>
 			<apply>
 				<case additional="seamark:light:colour=white" shield="seamark_light_white"/>
@@ -1311,7 +1315,7 @@
 					<apply_if additional="abandoned=yes" strokeWidth_2="1:" color_2="#7479ec" pathEffect_2="7_5"/>
 				</switch>
 				<case minzoom="11" tag="waterway" value="wadi" strokeWidth_2="1:" color_2="#7479ec" pathEffect_2="7_5"/>
-				<apply engine_v1="true" strokeWidth_2="1:" color_2="$waterwayStrokeColorDay"/>
+<!--				<apply engine_v1="true" strokeWidth_2="1:" color_2="$waterwayStrokeColorDay"/>-->
 			</switch>
 			<switch>
 				<case minzoom="15" tag="leisure" value="swimming_pool"/>
@@ -1341,11 +1345,10 @@
 		<case minzoom="5" tag="natural" value="coastline_line" color="#cc999999" strokeWidth=":1"/>
 
 		<switch>
-			<case minzoom="11" tag="seamark:type" value="separation_line"/>
-			<case minzoom="11" tag="seamark:type" value="separation_lane"/>
+			<case minzoom="9" tag="seamark:type" value="separation_line"/>
+			<case minzoom="9" tag="seamark:type" value="separation_lane"/>
 			<apply>
 				<case engine_v1="true" cap="ROUND" color="#339c00ff">
-					<case maxzoom="12" strokeWidth="1" pathEffect="1_5"/>
 					<case maxzoom="14" strokeWidth="2" pathEffect="1_10"/>
 					<case maxzoom="16" strokeWidth="3" pathEffect="1_20"/>
 					<case minzoom="17" strokeWidth="4" pathEffect="1_24"/>
@@ -1362,7 +1365,7 @@
 				</case>
 			</apply>
 		</switch>
-		<case minzoom="11" tag="seamark:type" value="separation_boundary" color="#339c00ff" cap="SQUARE">
+		<case minzoom="9" tag="seamark:type" value="separation_boundary" color="#339c00ff" cap="SQUARE">
 			<case maxzoom="12" strokeWidth="2" pathEffect="2_5"/>
 			<case maxzoom="14" strokeWidth="3" pathEffect="4_10"/>
 			<case maxzoom="16" strokeWidth="4" pathEffect="8_20"/>

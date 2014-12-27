@@ -629,6 +629,7 @@ mycp seamark light_float_redwhite_vertical seamark_light_float_redwhite_vertical
 
 mycp seamark light_minor seamark_big_light_minor.png
 mycp seamark light_major seamark_big_light_major.png
+mycp seamark light_major_small seamark_big_light_major_small.png
 mycp seamark light_vessel seamark_light_vessel.png
 
 mycp seamark fog_signal seamark_big_fog_signal.png
