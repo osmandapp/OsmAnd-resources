@@ -631,6 +631,8 @@ mycp seamark light_minor seamark_big_light_minor.png
 mycp seamark light_major seamark_big_light_major.png
 mycp seamark light_vessel seamark_light_vessel.png
 
+mycp seamark fog_signal seamark_big_fog_signal.png
+
 mycp seamark topmark_oblique_red_board seamark_topmark_oblique_red_board.png
 mycp seamark topmark_oblique_red_conepointdown seamark_topmark_oblique_red_conepointdown.png
 mycp seamark topmark_oblique_red_conepointup seamark_topmark_oblique_red_conepointup.png
