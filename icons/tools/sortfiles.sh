@@ -808,6 +808,7 @@ mycp seamark white_black_round_shield seamark_white_black_round_shield.png
 mycp seamark anchorage seamark_anchorage.png
 mycp seamark anchorage_small_craft seamark_anchorage_small_craft.png
 mycp seamark anchorage_tanker seamark_anchorage_tanker.png
+mycp seamark anchor_berth seamark_anchor_berth.png
 
 ## Shops
 mygroup car_aid shopping_car.png

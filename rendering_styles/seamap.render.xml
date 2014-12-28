@@ -52,13 +52,11 @@
 
 	<renderingAttribute name="polygonMinSizeToDisplay">
 	<!-- Minimum polygon size in pixels -->
-		<case moreDetailed="true" attrIntValue="10"/>
 		<case attrIntValue="75"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="roadsDensityLimitPerTile">
 	<!-- Number of roads to display per tile -->
-		<case moreDetailed="true" attrIntValue="55"/>
 		<case appMode="pedestrian" attrIntValue="28"/>
 		<case appMode="bicycle" attrIntValue="22"/>
 		<case attrIntValue="12"/>
@@ -193,6 +191,7 @@
 			<case tag="power" value=""/>
 			<case tag="osmand" value="file_waypoint"/>
 			<case tag="seamark:type" value="anchorage"/>
+			<case tag="seamark:type" value="anchor_berth"/>
 			<case tag="seamark" value=""/>
 		</switch>
 	<!-- Polygon -->
@@ -225,6 +224,7 @@
 			<case tag="waterway" value="dock"/>
 			<case tag="waterway" value="wadi"/>
 			<case tag="seamark:type" value="anchorage"/>
+			<case tag="seamark:type" value="anchor_berth"/>
 			<case tag="natural" value="cliff"/>
 			<case tag="natural" value="crater"/>
 			<case tag="natural" value="hot_spring"/>
@@ -235,7 +235,6 @@
 				<case tag="military" value="barracks"/>
 				<case tag="man_made" value="chimney"/>
 				<case tag="building" value=""/>
-				<apply_if moreDetailed="false" minzoom="15" maxzoom="15" order="-1"/>
 			</switch>
 			<case tag="waterway" value="dam"/>
 			<case tag="waterway" value="rapids"/>
@@ -693,10 +692,11 @@
 			<apply_if nightMode="true" textColor="#eaf6ff" textHaloColor="#5545a5e2"/>
 		</switch>
 		<switch>
-			<case minzoom="11" tag="seamark:type" value="separation_zone"/>
-			<case minzoom="14" tag="seamark:type" value="separation_roundabout"/>
-			<case minzoom="12" tag="seamark:type" value="anchorage" textDy="10"/>
-			<apply textColor="#471c62" textWrapWidth="26" textHaloColor="#66debee7" textHaloRadius="2" textBold="true" nameTag="seamark:name">
+			<case minzoom="11" tag="seamark:type" value="separation_zone" textBold="true"/>
+			<case minzoom="14" tag="seamark:type" value="separation_roundabout" textBold="true"/>
+			<case minzoom="12" tag="seamark:type" value="anchorage" textDy="10" textBold="true"/>
+			<case minzoom="16" tag="seamark:type" value="anchor_berth" textDy="10"/>
+			<apply textColor="#471c62" textWrapWidth="26" textHaloColor="#66debee7" textHaloRadius="2" nameTag="seamark:name">
 				<case maxzoom="12" textSize="12"/>
 				<case maxzoom="14" textSize="13"/>
 				<case minzoom="16" textSize="14"/>
@@ -1296,10 +1296,15 @@
 			<case shield="seamark_harbour_shield"/>
 		</case>
 
-		<case minzoom="12" tag="seamark:type" value="anchorage" icon="seamark_anchorage">
-			<case additional="seamark:anchorage:category=small_craft" icon="seamark_anchorage_small_craft"/>
-			<case additional="seamark:anchorage:category=tanker" icon="seamark_anchorage_tanker"/>
-		</case>
+		<switch minzoom="12">
+			<case tag="seamark:type" value="anchorage"/>
+			<apply icon="seamark_anchorage">
+				<case additional="seamark:anchorage:category=small_craft" icon="seamark_anchorage_small_craft"/>
+				<case additional="seamark:anchorage:category=tanker" icon="seamark_anchorage_tanker"/>
+			</apply>
+		</switch>
+
+		<case minzoom="14" tag="seamark:type" value="anchor_berth" icon="seamark_anchor_berth"/>
 
 		<switch minzoom="11" iconVisibleSize="27" intersectionSizeFactor="0.8" iconOrder="20">
 			<case tag="waterway" value="lock_gate"/>
@@ -1374,13 +1379,17 @@
 			</apply>
 		</switch>
 
-		<case minzoom="11" tag="seamark:type" value="anchorage" color="#099c00ff" color_2="#339c00ff">
-			<case maxzoom="12" strokeWidth_2="1.5" pathEffect_2="2_2"/>
-			<case maxzoom="14" strokeWidth_2="2" pathEffect_2="2_3"/>
-			<case maxzoom="16" strokeWidth_2="3" pathEffect_2="2_4"/>
-			<case minzoom="17" strokeWidth_2="4" pathEffect_2="2_5"/>
-			<apply_if nightMode="true" color_2="#88c05dff"/>
-		</case>
+		<switch minzoom="11">
+			<case tag="seamark:type" value="anchorage"/>
+			<case tag="seamark:type" value="anchor_berth"/>
+			<apply color="#099c00ff" color_2="#339c00ff">
+				<case maxzoom="12" strokeWidth_2="1.5" pathEffect_2="2_2"/>
+				<case maxzoom="14" strokeWidth_2="2" pathEffect_2="2_3"/>
+				<case maxzoom="16" strokeWidth_2="3" pathEffect_2="2_4"/>
+				<case minzoom="17" strokeWidth_2="4" pathEffect_2="2_5"/>
+				<apply_if nightMode="true" color_2="#88c05dff"/>
+			</apply>
+		</switch>
 
 		<case minzoom="10" tag="natural" value="wetland">
 			<case additional="wetland=tidalflat" shader="wetland_tidalflat">
@@ -1711,7 +1720,6 @@
 				<case minzoom="19" strokeWidth="7:7"/>
 				<apply_if layer="-1" pathEffect="4_4" cap="BUTT"/>
 				<apply_if layer="1" shadowRadius="0" cap="SQUARE" cap_0="BUTT">
-					<case moreDetailed="true" minzoom="14" maxzoom="14" strokeWidth_0="1.5:2"/>
 					<case minzoom="15" maxzoom="15" strokeWidth_0="2.5:4"/>
 					<case minzoom="16" maxzoom="16" strokeWidth_0="3.5:5"/>
 					<case minzoom="17" maxzoom="17" strokeWidth_0="5:6"/>
