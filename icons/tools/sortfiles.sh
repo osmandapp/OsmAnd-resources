@@ -802,6 +802,10 @@ mycp seamark separation_line_arrow_night seamark_separation_line_arrow_night.png
 mycp seamark separation_line_arrow_small seamark_separation_line_arrow_small.png
 mycp seamark separation_line_arrow_small_night seamark_separation_line_arrow_small_night.png
 
+mycp seamark lock_gate seamark_lock_gate.png
+mycp seamark white_black_round_shield seamark_white_black_round_shield.png
+
+
 ## Shops
 mygroup car_aid shopping_car.png
 mygroup food_shop shopping_convenience.png
