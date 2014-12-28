@@ -450,8 +450,8 @@
 			<case minzoom="13" tag="place" value="allotments" textSize="13" textOrder="12"/>
 			<case minzoom="13" tag="place" value="farm" textSize="13" textOrder="12"/>
 			<case minzoom="13" tag="place" value="isolated_dwelling" textSize="13" textOrder="13"/>
- 			<case minzoom="12" tag="place" value="suburb" textSize="14" textOrder="12"/>
- 			<case minzoom="13" tag="place" value="neighbourhood" textSize="13" textOrder="13"/>
+			<case minzoom="12" tag="place" value="suburb" textSize="14" textOrder="12"/>
+			<case minzoom="13" tag="place" value="neighbourhood" textSize="13" textOrder="13"/>
 			<case minzoom="13" tag="place" value="locality" textSize="13" textOrder="15"/>
 			<case minzoom="11" tag="place" value="island" textSize="14" textOrder="10"/>
 			<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
@@ -664,6 +664,13 @@
 				<case minzoom="12" tag="seamark:type" value="signal_station_traffic" textOrder="21"/>
 				<case minzoom="12" tag="seamark:type" value="platform" textOrder="22"/>
 				<apply textDy="29">
+					<apply_if engine_v1="false" textDy="0"/>
+				</apply>
+			</switch>
+			<switch textBold="true">
+				<case minzoom="11" tag="seamark:type" value="harbour" textOrder="1" nameTag="seamark:name" nameTag2=""/>
+				<case minzoom="12" tag="waterway" value="dock" textOrder="9"/>
+				<apply textDy="15">
 					<apply_if engine_v1="false" textDy="0"/>
 				</apply>
 			</switch>
@@ -1249,6 +1256,33 @@
 				<apply iconVisibleSize="13" intersectionSizeFactor="0.8"/>
 			</apply>
 		</switch>
+
+		<case minzoom="11" tag="seamark:type" value="harbour" icon="seamark_harbour_default" iconOrder="9">
+			<switch>
+				<case additional="seamark:harbour:category=marina" icon="seamark_harbour_marina"/>
+				<case additional="seamark:harbour:category=fishing" icon="seamark_harbour_fishing"/>
+				<case additional="seamark:harbour:category=shipyard" icon="seamark_harbour_shipyard"/>
+				<switch>
+					<case additional="seamark:harbour:category=container"/>
+					<case additional="seamark:harbour:category=bulk"/>
+					<case additional="seamark:harbour:category=tanker"/>
+					<case additional="seamark:harbour:category=timber"/>
+					<case additional="seamark:harbour:category=cargo"/>
+					<case additional="seamark:harbour:category=container;bulk"/>
+					<apply icon="seamark_harbour_container"/>
+				</switch>
+				<switch>
+					<case additional="seamark:harbour:category=ferry"/>
+					<case additional="seamark:harbour:category=passenger"/>
+					<apply icon="seamark_harbour_ferry"/>
+				</switch>
+				<apply shield="seamark_harbour_shield"/>
+			</switch>
+			<switch>
+				<case additional="seamark:harbour:category=marina_no_facilities" icon="seamark_harbour_marina"/>
+			</switch>
+			<case shield="seamark_harbour_shield"/>
+		</case>
 
 		<case minzoom="11" tag="natural" value="peak" iconOrder="65">
 			<case maxzoom="11" icon="natural_peak" shield="peakvolcano_shield" iconVisibleSize="25" intersectionSizeFactor="2"/>

@@ -649,6 +649,14 @@ mycp seamark landmark_windsock seamark_big_landmark_windsock.png
 mycp seamark landmark_cemetery seamark_big_landmark_cemetery.png
 mycp seamark landmark_cross seamark_big_landmark_cross.png
 
+mycp seamark harbour_shield seamark_harbour_shield.png
+mycp seamark harbour_default seamark_harbour_default.png
+mycp seamark harbour_marina seamark_harbour_marina.png
+mycp seamark harbour_fishing seamark_harbour_fishing.png
+mycp seamark harbour_container seamark_harbour_container.png
+mycp seamark harbour_shipyard seamark_harbour_shipyard.png
+mycp seamark harbour_ferry seamark_harbour_ferry.png
+
 mycp seamark topmark_oblique_red_board seamark_topmark_oblique_red_board.png
 mycp seamark topmark_oblique_red_conepointdown seamark_topmark_oblique_red_conepointdown.png
 mycp seamark topmark_oblique_red_conepointup seamark_topmark_oblique_red_conepointup.png
