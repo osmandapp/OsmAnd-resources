@@ -26,6 +26,7 @@ language('da').
 % (X) word order checked
 % (X) Announcement of favorites, waypoints and pois along the route
 % (X) Announcement when user returns back to route
+% (X) Support announcement of railroad crossings and pedestrian crosswalks
 
 
 % ROUTE CALCULATED
@@ -109,9 +110,11 @@ string('reached_poi.ogg', 'du har nået interessepunktet ').
 string('attention.ogg', 'Advarsel, ').
 string('speed_camera.ogg', 'fartkamera ').
 string('border_control.ogg', 'grænsekontrol ').
+string('railroad_crossing.ogg', 'jernbaneoverskæring ').
 string('traffic_calming.ogg', 'trafikdæmpning ').
 string('toll_booth.ogg', 'betalingsanlæg ').
 string('stop.ogg', 'stopskilt ').
+string('pedestrian_crosswalk.ogg', 'fodgængerovergang ').
 
 string('location_lost.ogg', 'g p s signal mistet ').
 string('location_recovered.ogg', 'g p s signal fundet ').
@@ -167,6 +170,7 @@ turn_inf('right_sh', ['right_sh_inf.ogg']).
 turn_inf('right_sl', ['right_sl_inf.ogg']).
 turn_inf('left_keep', ['left_keep_inf.ogg']).
 turn_inf('right_keep', ['right_keep_inf.ogg']).
+
 % cut_part_street(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
 cut_part_street(voice(['', '', Dest], _), Dest).
 % cut_part_street(voice(['', Name, _], _), Name). % not necessary
@@ -230,11 +234,13 @@ attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').
 warning('BORDER_CONTROL', 'border_control.ogg').
+warning('RAILWAY', 'railroad_crossing.ogg').
 warning('TRAFFIC_CALMING', 'traffic_calming.ogg').
 warning('TOLL_BOOTH', 'toll_booth.ogg').
 warning('STOP', 'stop.ogg').
+warning('PEDESTRIAN', 'pedestrian_crosswalk.ogg').
 warning('MAXIMUM', '').
-warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'MAXIMUM').
+warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'RAILWAY'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'PEDESTRIAN'; Type = 'MAXIMUM').
 
 
 %%
