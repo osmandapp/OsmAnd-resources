@@ -99,7 +99,8 @@ generatePngs() {
       generateElements 'osmc'
       generatePngs 'seamark' '#777777' '#777777' '' x2 '' nomx
       generatePngs 'seamark_big' '#777777' '#777777' '' '' x4 nomx
-      generatePngs 'seamark_shields' '#777777' '#777777' '' '' x4 nomx
+      generateElements 'seamark_shields'
+      generateElements 'seamark_shields_x4'
 
       generatePngs 'functional-icons' '#777777' '#777777'
       generatePngs 'water' '#0092DA' '#777777'

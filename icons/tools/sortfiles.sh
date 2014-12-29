@@ -649,7 +649,6 @@ mycp seamark landmark_windsock seamark_big_landmark_windsock.png
 mycp seamark landmark_cemetery seamark_big_landmark_cemetery.png
 mycp seamark landmark_cross seamark_big_landmark_cross.png
 
-mycp seamark harbour_shield seamark_harbour_shield.png
 mycp seamark harbour_default seamark_harbour_default.png
 mycp seamark harbour_marina seamark_harbour_marina.png
 mycp seamark harbour_fishing seamark_harbour_fishing.png
@@ -792,12 +791,12 @@ mycp seamark separation_line_arrow_small seamark_separation_line_arrow_small.png
 mycp seamark separation_line_arrow_small_night seamark_separation_line_arrow_small_night.png
 
 mycp seamark lock_gate seamark_lock_gate.png
-mycp seamark white_black_round_shield seamark_white_black_round_shield.png
 
 mycp seamark anchorage seamark_anchorage.png
 mycp seamark anchorage_small_craft seamark_anchorage_small_craft.png
 mycp seamark anchorage_tanker seamark_anchorage_tanker.png
 mycp seamark anchor_berth seamark_anchor_berth.png
+mycp seamark berth seamark_berth.png
 
 ## Shops
 mygroup car_aid shopping_car.png
