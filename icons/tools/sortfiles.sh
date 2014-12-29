@@ -798,6 +798,11 @@ mycp seamark anchorage_tanker seamark_anchorage_tanker.png
 mycp seamark anchor_berth seamark_anchor_berth.png
 mycp seamark berth seamark_berth.png
 
+mycp seamark bridge_fixed seamark_bridge_fixed.png
+mycp seamark bridge_opening seamark_bridge_opening.png
+mycp seamark bridge_lifting seamark_bridge_lifting.png
+mycp seamark bridge_suspension seamark_bridge_suspension.png
+
 ## Shops
 mygroup car_aid shopping_car.png
 mygroup food_shop shopping_convenience.png
