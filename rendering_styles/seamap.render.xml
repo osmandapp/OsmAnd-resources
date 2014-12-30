@@ -171,6 +171,8 @@
 	<renderingConstant name="highwayServiceTextHaloColorDay" value="#ffffff"/>
 	<renderingConstant name="highwayTrackTextHaloRadiusDay" value=":1"/>
 	<renderingConstant name="highwayTrackTextHaloColorDay" value="#aaf1eae4"/>
+	<renderingConstant name="fairwayDayColor" value="#5487ff46"/>
+	<renderingConstant name="fairwayNightColor" value="#5500ff00"/>
 
 	<order>
 	<!-- Point -->
@@ -227,6 +229,7 @@
 			<case tag="seamark:type" value="anchorage"/>
 			<case tag="seamark:type" value="anchor_berth"/>
 			<case tag="seamark:type" value="berth"/>
+			<case tag="seamark:type" value="fairway"/>
 			<case tag="natural" value="cliff"/>
 			<case tag="natural" value="crater"/>
 			<case tag="natural" value="hot_spring"/>
@@ -270,6 +273,7 @@
 				<case tag="seamark:type" value="lock_basin"/>
 				<case tag="seamark:type" value="lock_basin_part"/>
 			</switch>
+			<case tag="seamark:type" value="fairway"/>
 
 			<case tag="waterway" value="dam"/>
 			<case tag="waterway" value="weir" order="19"/>
@@ -1423,6 +1427,10 @@
 			</apply>
 		</switch>
 
+		<case minzoom="10" tag="seamark:type" value="fairway" color="$fairwayDayColor">
+			<apply_if nightMode="true" color="$fairwayNightColor"/>
+		</case>
+		
 		<case minzoom="10" tag="natural" value="wetland">
 			<case additional="wetland=tidalflat" shader="wetland_tidalflat">
 				<apply_if nightMode="true" shader="" color="#323b69"/>
@@ -1555,6 +1563,17 @@
 				<apply_if nightMode="true" color="#55b4baf4" shadowColor="#cacfff"/>
 			</apply>
 		</switch>
+
+		<case minzoom="10" tag="seamark:type" value="fairway" color="$fairwayDayColor">
+			<case maxzoom="12" strokeWidth="4"/>
+			<case maxzoom="13" strokeWidth="6"/>
+			<case maxzoom="14" strokeWidth="9"/>
+			<case maxzoom="15" strokeWidth="13"/>
+			<case maxzoom="16" strokeWidth="18"/>
+			<case maxzoom="17" strokeWidth="24"/>
+			<case minzoom="18" strokeWidth="34"/>
+			<apply_if nightMode="true" color="$fairwayNightColor"/>
+		</case>
 
 		<switch minzoom="6" maxzoom="13">
 			<switch shadowRadius=":1">
