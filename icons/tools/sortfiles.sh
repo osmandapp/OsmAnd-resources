@@ -803,6 +803,12 @@ mycp seamark bridge_opening seamark_bridge_opening.png
 mycp seamark bridge_lifting seamark_bridge_lifting.png
 mycp seamark bridge_suspension seamark_bridge_suspension.png
 
+mycp seamark building seamark_building.png
+mycp seamark building_church seamark_building_church.png
+mycp seamark building_customs seamark_building_customs.png
+mycp seamark building_harbour_master seamark_building_harbour_master.png
+mycp seamark building_water_police_station seamark_building_water_police_station.png
+
 ## Shops
 mygroup car_aid shopping_car.png
 mygroup food_shop shopping_convenience.png
