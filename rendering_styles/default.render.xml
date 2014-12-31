@@ -599,6 +599,7 @@
 	<renderingConstant name="buildingCommercialColorNight" value="#885d5d"/>
 	<renderingConstant name="buildingMilitaryColorDay" value="#d97979"/>
 	<renderingConstant name="buildingMilitaryColorNight" value="#794444"/>
+	<renderingConstant name="buildingStrokeWidth" value="0.25:0.25"/>
 
 	<renderingConstant name="churchColorDay" value="#bca9a9"/>
 	<renderingConstant name="churchColorNight" value="#685454"/>
@@ -1082,8 +1083,13 @@
 				<case tag="military" value="barracks"/>
 				<case tag="man_made" value="chimney"/>
 				<case tag="building" value=""/>
+				<case tag="abandoned:building" value="no" order="-1"/>
+				<case tag="abandoned:building" value=""/>
 				<apply_if moreDetailed="false" minzoom="15" maxzoom="15" order="-1"/>
 			</switch>
+			<case tag="abandoned:place" value="" order="10"/>
+			<case tag="abandoned:landuse" value="" order="10"/>
+
 			<case tag="man_made" value="petroleum_well"/>
 			<case tag="waterway" value="dam"/>
 			<case tag="waterway" value="rapids"/>
@@ -1833,6 +1839,16 @@
 			<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 		</switch>
 
+		<switch>
+			<case minzoom="13" tag="abandoned:place" value=""/>
+			<case minzoom="15" tag="abandoned:landuse" value=""/>
+			<case minzoom="15" tag="landuse" value="abandoned"/>
+			<apply textSize="13" textColor="#656565" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay" textOrder="15">
+				<apply_if nightMode="true" textColor="#d7d7d7" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
+			</apply>
+		</switch>
+
+
 		<!-- Natural -->
 		<case tag="contour" value="" textColor="#444444" textOnPath="true" textSize="12">
 			<case contourLines="11" minzoom="13"/>
@@ -2319,6 +2335,7 @@
 			<switch>
 				<case tag="military" value="barracks"/>
 				<case tag="military" value="bunker"/>
+				<case tag="abandoned:building" value=""/>
 				<case tag="building" value="" nameTag=""/>
 				<apply_if minzoom="16" maxzoom="17" textSize="13" textMinDistance="40"/>
 				<apply_if minzoom="18" textSize="15"/>
@@ -3680,6 +3697,16 @@
 						<apply_if nightMode="true" color="$buildingMilitaryColorNight"/>
 					</apply>
 				</switch>
+				<apply_if minzoom="16" strokeWidth_2="$buildingStrokeWidth"/>
+			</switch>
+			<case tag="abandoned:building" value="no" disable="yes"/>
+			<switch>
+				<case tag="building" value="collapsed"/>
+				<case tag="building" value="abandoned"/>
+				<case tag="building" value="disused"/>
+				<case tag="abandoned:building" value=""/>
+				<apply_if minzoom="15" color="#99ababab" color_2="#000000" pathEffect_2="9_3" strokeWidth_2="0.7:0.7"/>
+				<apply_if nightMode="true" color="#494949" color_2="#999999"/>
 			</switch>
 			<switch>
 				<case tag="building" value=""/>
@@ -3693,38 +3720,28 @@
 				<apply color="$buildingColorDay">
 					<apply_if nightMode="true" color="$buildingColorNight" color_2="#999999"/>
 				</apply>
-			</switch>
-			<switch>
-				<case tag="building" value="collapsed"/>
-				<case tag="building" value="abandoned"/>
-				<case tag="building" value="disused"/>
-				<apply color="$buildingColorDay">
-					<apply_if maxzoom="15" pathEffect_2="4_2"/>
-					<apply_if nightMode="true" color="$buildingColorNight" color_2="#999999"/>
+				<apply_if minzoom="16" strokeWidth_2="$buildingStrokeWidth"/>
+				<apply>
+					<switch>
+						<case additional="ruins=yes"/>
+						<case additional="abandoned=yes"/>
+						<apply strokeWidth_2="0.7:0.7" color="#99ababab" color_2="#000000" pathEffect_2="9_3"/>
+						<apply_if nightMode="true" color="#494949" color_2="#aaaaaa"/>
+					</switch>
 				</apply>
-				<apply_if minzoom="16" color_2="#000000" pathEffect_2="9_3"/>
 			</switch>
 			<case tag="building" value="construction" color="#aaa279" color_2="#666666" pathEffect_2="8_4">
+				<apply_if minzoom="16" strokeWidth_2="$buildingStrokeWidth"/>
 				<apply_if nightMode="true" color="#494921" color_2="#aaaaaa"/>
 			</case>
-			<case tag="building" value="proposed" color="#77bca9a9" color_2="#666666" pathEffect_2="8_4">
+			<case tag="building" value="proposed" color="#33bca9a9" color_2="#666666" pathEffect_2="8_4">
+				<apply_if minzoom="16" strokeWidth_2="0.7:0.7"/>
 				<apply_if nightMode="true" color="#77685454" color_2="#aaaaaa"/>
 			</case>
 			<case tag="building" value="pyramid" color="#be865d" color_2="#000000" strokeWidth_2="0.7:0.7">
 				<apply_if nightMode="true" color="#665228" />
 			</case>
-			<apply minzoom="16" strokeWidth_2="0.25:0.25"/>
-			<apply>
-				<switch>
-					<case additional="ruins=yes"/>
-					<case additional="abandoned=yes"/>
-					<apply>
-						<apply_if maxzoom="15" pathEffect_2="4_2"/>
-						<apply_if nightMode="true" color_2="#aaaaaa"/>
-					</apply>
-					<apply_if minzoom="16" strokeWidth_2="0.45:0.45" color_2="#000000" pathEffect_2="9_3"/>
-				</switch>
-			</apply>
+<!--			<apply minzoom="16" strokeWidth_2="0.25:0.25"/>-->
 		</switch>
 
 	    <!-- for 'no polygons' -->
@@ -3954,6 +3971,18 @@
 				<apply_if additional="residential=rural" color="$landuseResidentialRuralColorDay"/>
 				<apply_if nightMode="true" color="$landuseResidentialColorNight"/>
 			</case>
+			
+			<switch>
+				<case minzoom="12" tag="landuse" value="abandoned"/>
+				<case minzoom="12" tag="abandoned:landuse" value=""/>
+				<case minzoom="11" tag="abandoned:place" value="" strokeWidth_2="0.5:0.5" color_2="#44444444">
+					<apply_if nightMode="true" color_2="#77aaaaaa"/>
+				</case>
+				<apply shader="diagonal_gray_shader">
+					<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
+				</apply>
+			</switch>
+
 			<case minzoom="12" tag="landuse" value="landfill" color="$landuseLandfillColorDay">
 				<apply_if nightMode="true" color="$landuseLandfillColorNight"/>
 			</case>
