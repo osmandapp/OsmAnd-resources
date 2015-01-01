@@ -98,6 +98,7 @@ mycp emergency phone emergency_emergency_phone.png
 mycp emergency fire_hydrant emergency_fire_hydrant.png
 mycp amenity police emergency_police3.png
 mycp amenity fire_station emergency_firestation4.png
+mycp hazard yes functional-icons_hazard.png
 
 mygroup healthcare health_pharmacy.png
 mycp amenity pharmacy health_pharmacy2.png
