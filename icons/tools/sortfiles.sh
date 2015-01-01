@@ -282,6 +282,7 @@ mycp tourism information tourist_information.png
 mycp tourism viewpoint tourist_view_point.png
 mycp tourism theme_park tourist_theme_park.png
 mycp tourism zoo tourist_zoo.png
+mycp tourism aquarium tourist_aquarium.png
 mycp attraction amusement_ride tourist_amusement_ride.png
 mycp attraction animal tourist_animal.png
 mycp attraction big_wheel tourist_big_wheel.png
