@@ -388,6 +388,7 @@ mygroup other amenity_post_office.png
 mycp amenity car_wash amenity_car_wash.png
 mycp amenity car_wash_self_service amenity_car_wash_self_service.png
 mycp service tyres amenity_service_tyres.png
+mycp amenity vehicle_ramp amenity_vehicle_ramp.png
 mycp amenity bench functional-icons_bench.png
 mycp amenity post_box amenity_post_box.png
 mycp amenity post_office amenity_post_office2.png
