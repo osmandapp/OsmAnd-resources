@@ -463,6 +463,7 @@ mycp man_made crane poi_crane.png
 mycp man_made adit poi_adit.png
 mycp man_made observatory poi_observatory.png
 mycp man_made observatory_astronomical poi_observatory_astronomical.png
+mycp man_made tower poi_tower.png
 mycp amenity hunting_stand poi_hunting_stand.png
 mycp railway buffer_stop poi_buffer_stop.png
 mygroup military poi_military_bunker.png
