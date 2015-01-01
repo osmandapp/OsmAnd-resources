@@ -457,6 +457,7 @@ mycp power station_oil power_station_oil.png
 mycp man_made chimney poi_chimney.png
 mycp tower_type communication functional-icons_tower_communications2.png
 mycp tower_type communication_night functional-icons_tower_communications2_night.png
+mycp man_made mast poi_mast.png
 mycp man_made water_tower poi_water_tower.png
 mycp man_made monitoring_station_radar poi_monitoring_station_radar.png
 mycp man_made mineshaft poi_mine.png
