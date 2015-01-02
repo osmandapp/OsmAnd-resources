@@ -1018,6 +1018,7 @@
 				</apply_if>
 			</case>
 			<case tag="hazard" value=""/>
+			<case tag="abandoned:place" value="" order="10"/>
 			<case tag="osmand" value="file_waypoint"/>
 		</switch>
 
@@ -1851,9 +1852,10 @@
 			<case minzoom="13" tag="abandoned:place" value=""/>
 			<case minzoom="15" tag="abandoned:landuse" value=""/>
 			<case minzoom="15" tag="landuse" value="abandoned"/>
-			<apply textSize="13" textColor="#656565" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay" textOrder="15">
+			<apply textSize="13" textColor="#656565" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay" textDy="10" textOrder="15">
 				<apply_if nightMode="true" textColor="#d7d7d7" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 			</apply>
+			<apply engine_v1="false" textDy="0"/>
 		</switch>
 
 
@@ -2850,6 +2852,20 @@
 		<case minzoom="11" maxzoom="12" tag="place" value="hamlet" icon="place_town">
 			<apply_if nightMode="true" icon="place_town_night"/>
 		</case>
+
+		<switch>
+			<case minzoom="14" tag="abandoned:place" value=""/>
+			<case minzoom="14" tag="abandoned:landuse" value=""/>
+			<case minzoom="14" tag="landuse" value="abandoned"/>
+			<switch minzoom="17">
+				<case tag="abandoned:building" value=""/>
+				<case tag="building" value="" additional="abandoned=yes"/>
+				<case tag="building" value="" additional="ruins=yes"/>
+				<case tag="building" value="damaged"/>
+				<case tag="building" value="collapsed"/>
+			</switch>
+			<apply icon="landuse_abandoned" shield="abandoned_shield" iconOrder="128"/>
+		</switch>
 
 		<!-- Emergency + Health  -->
 		<switch shield="white_red_square_shield" minzoom="16" iconVisibleSize="24">
