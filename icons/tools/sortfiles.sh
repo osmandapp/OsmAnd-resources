@@ -144,6 +144,7 @@ mycp amenity parking_multi_storey_paid transport_parking_multi-storey_paid.png
 mycp amenity parking_underground transport_parking_underground.png
 mycp amenity parking_underground_paid transport_parking_underground_paid.png
 mycp amenity bicycle_parking transport_parking_bicycle.png
+mycp bicycle_parking bg transport_parking_bicycle_bg.png
 mycp bicycle_parking stands transport_parking_bicycle_stands.png
 mycp bicycle_parking wall_loops transport_parking_bicycle_wall_loops.png
 mycp bicycle_parking rack transport_parking_bicycle_rack.png
