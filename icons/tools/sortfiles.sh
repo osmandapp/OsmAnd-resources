@@ -102,6 +102,8 @@ mycp hazard yes overlays_hazard.png
 mycp hazard nuclear overlays_hazard_nuclear.png
 mycp hazard erosion overlays_hazard_erosion.png
 mycp hazard slippery_road overlays_hazard_slippery_road.png
+mycp hazard flood overlays_hazard_flood.png
+mycp hazard avalanche overlays_hazard_avalanche.png
 
 mygroup healthcare health_pharmacy.png
 mycp amenity pharmacy health_pharmacy2.png
