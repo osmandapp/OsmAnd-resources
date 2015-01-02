@@ -38,6 +38,7 @@ mycp military danger_area poi_mine.png                   # Keep shaders with bac
 mycp military nuclear_explosion_site poi_nuclear_explosion_site.png
 mycp natural glacier poi_peak2.png                       # Keep shaders with background color, cannot be replaced by icons!
 
+mycp stroke darkgreen functional-icons_darkgreen_stroke.png
 
 ## Natural
 mygroup natural poi_peak2.png
