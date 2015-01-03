@@ -1848,17 +1848,6 @@
 			<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 		</switch>
 
-		<switch>
-			<case minzoom="13" tag="abandoned:place" value=""/>
-			<case minzoom="15" tag="abandoned:landuse" value=""/>
-			<case minzoom="15" tag="landuse" value="abandoned"/>
-			<apply textSize="13" textColor="#656565" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay" textDy="10" textOrder="15">
-				<apply_if nightMode="true" textColor="#d7d7d7" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
-			</apply>
-			<apply engine_v1="false" textDy="0"/>
-		</switch>
-
-
 		<!-- Natural -->
 		<case tag="contour" value="" textColor="#444444" textOnPath="true" textSize="12">
 			<case contourLines="11" minzoom="13"/>
@@ -1939,8 +1928,24 @@
 		</switch>
 
 		<!-- landuse -->
+		<switch>
+			<case minzoom="13" tag="abandoned:place" value=""/>
+			<case minzoom="15" tag="abandoned:landuse" value=""/>
+			<case minzoom="15" tag="landuse" value="abandoned"/>
+			<case minzoom="15" tag="landuse" value="construction" additional="abandoned=yes"/>
+			<case minzoom="15" tag="landuse" value="industrial" additional="abandoned=yes"/>
+			<case minzoom="15" tag="landuse" value="garages" additional="abandoned=yes"/>
+			<case minzoom="13" tag="landuse" value="railway" additional="abandoned=yes"/>
+			<case minzoom="13" tag="landuse" value="residential" additional="abandoned=yes"/>
+			<case minzoom="13" tag="landuse" value="quarry" additional="abandoned=yes"/>
+			<apply textSize="13" textColor="#656565" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay" textDy="10" textOrder="15">
+				<apply_if nightMode="true" textColor="#d7d7d7" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
+			</apply>
+			<apply engine_v1="false" textDy="0"/>
+		</switch>
+
 		<switch textSize="12" textColor="$landuseManmadeTextColorDay" textHaloRadius="$landuseManmadeTextHaloRadiusDay" textHaloColor="$landuseManmadeTextHaloColorDay" textWrapWidth="20" textOrder="200">
-			<switch>
+			<switch textDy="9">
 				<case minzoom="14" tag="landuse" value="allotments"/>
 				<case minzoom="14" tag="landuse" value="cemetery"/>
 				<case minzoom="15" tag="landuse" value="construction"/>
@@ -2857,6 +2862,11 @@
 			<case minzoom="14" tag="abandoned:place" value=""/>
 			<case minzoom="14" tag="abandoned:landuse" value=""/>
 			<case minzoom="14" tag="landuse" value="abandoned"/>
+			<case minzoom="14" tag="landuse" value="industrial" additional="abandoned=yes"/>
+			<case minzoom="14" tag="landuse" value="residential" additional="abandoned=yes"/>
+			<case minzoom="14" tag="landuse" value="railway" additional="abandoned=yes"/>
+			<case minzoom="14" tag="landuse" value="garages" additional="abandoned=yes"/>
+			<case minzoom="14" tag="landuse" value="construction" additional="abandoned=yes"/>
 			<switch minzoom="17">
 				<case tag="abandoned:building" value=""/>
 				<case tag="building" value="" additional="abandoned=yes"/>
@@ -3986,9 +3996,15 @@
 			<!-- Built-up areas -->
 			<case minzoom="11" tag="landuse" value="industrial" color="$landuseIndustrialColorDay">
 				<apply_if nightMode="true" color="$landuseIndustrialColorNight"/>
+				<apply_if additional="abandoned=yes" shader="diagonal_gray_shader">
+					<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
+				</apply_if>
 			</case>
 			<case minzoom="12" tag="landuse" value="railway" color="$landuseRailwayColorDay">
 				<apply_if nightMode="true" color="$landuseRailwayColorNight"/>
+				<apply_if additional="abandoned=yes" shader="diagonal_gray_shader">
+					<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
+				</apply_if>
 			</case>
 			<case minzoom="11" tag="amenity" value="prison" color="$landusePrisonColorDay">
 				<apply_if nightMode="true" color="$landusePrisonColorNight"/>
@@ -4034,6 +4050,9 @@
 			<case minzoom="10" tag="landuse" value="residential" color="$landuseResidentialColorDay">
 				<apply_if additional="residential=rural" color="$landuseResidentialRuralColorDay"/>
 				<apply_if nightMode="true" color="$landuseResidentialColorNight"/>
+				<apply_if additional="abandoned=yes" shader="diagonal_gray_shader">
+					<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
+				</apply_if>
 			</case>
 			
 			<switch>
@@ -4135,10 +4154,16 @@
 			</switch>
 			<case minzoom="12" tag="landuse" value="construction" color="$landuseConstructionColorDay" color_2="$landuseConstructionColorDayStroke" strokeWidth_2="0.5" pathEffect_2="8_4">
 				<apply_if nightMode="true" color="$landuseConstructionColorNight" color_2="$landuseConstructionColorNightStroke"/>
+				<apply_if additional="abandoned=yes" shader="diagonal_gray_shader">
+					<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
+				</apply_if>
 			</case>
 
 			<case minzoom="14" tag="landuse" value="garages" color="$landuseGaragesColorDay">
 				<apply_if nightMode="true" color="$landuseGaragesColorNight"/>
+				<apply_if additional="abandoned=yes" shader="diagonal_gray_shader">
+					<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
+				</apply_if>
 			</case>
 			<switch>
 				<case minzoom="13" tag="leisure" value="stadium" color="#33cc99"/>
@@ -4286,6 +4311,9 @@
 			</case>
 			<case minzoom="10" tag="landuse" value="military" shader="danger" color="#100000" color_2="#c8ffa0c0" strokeWidth_2=":2">
 				<apply_if nightMode="true" shader="danger_night" color_2="#84ffa0c0"/>
+				<apply_if additional="abandoned=yes" shader="military_abandoned">
+					<apply_if nightMode="true" shader="military_abandoned_night"/>
+				</apply_if>
 			</case>
 			<case minzoom="7" tag="military" value="danger_area" shader="hazard" color_2="#ffa0c0" strokeWidth_2=":2">
 				<apply_if nightMode="true" color_2="#ffa0c0"/>
@@ -4299,6 +4327,9 @@
 			</case>
 			<case minzoom="12" tag="landuse" value="quarry" shader="quarry3">
 				<apply_if nightMode="true" shader="quarry3night"/>
+				<apply_if additional="abandoned=yes" shader="quarry3_abandoned">
+					<apply_if nightMode="true" shader="quarry3_abandoned_night"/>
+				</apply_if>
 			</case>
 		    <!-- groupFilter noPolygons="true" color="#00ffffff" color_2="#00ffffff" shader=""/ -->
 		</switch>
