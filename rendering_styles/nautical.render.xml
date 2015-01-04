@@ -714,7 +714,8 @@
 				<case minzoom="15" tag="seamark:type" value="beacon_special_purpose"/>
 				<case minzoom="15" tag="seamark:type" value="light_float"/>
 				<case minzoom="15" tag="seamark:type" value="light_vessel"/>
-				<case minzoom="17" tag="seamark:type" value="notice"/>
+				<case minzoom="17" tag="seamark:type" value="notice" nameTag="seamark:notice:information"/>
+				<case minzoom="17" tag="seamark:type" value="notice" nameTag="seamark:notice:1:information"/>
 				<switch minzoom="16" textOnPath="true" textOrder="80">
 					<case tag="seamark:type" value="lock_basin"/>
 					<case tag="seamark:type" value="lock_basin_part"/>
@@ -1357,7 +1358,11 @@
 					<case additional="seamark:notice:category=no_turning" icon="seamark_notice_prohibition_noturning"/>
 					<case additional="seamark:notice:category=no_wash" icon="seamark_notice_prohibition_nowash"/>
 					<case additional="seamark:notice:category=no_motor_craft" icon="seamark_notice_prohibition_nomotorcraft"/>
-					<case additional="seamark:notice:category=no_sport_craft" icon="seamark_notice_prohibition_nosportcraft"/>
+					<switch>
+						<case additional="seamark:notice:category=no_sport_craft"/>
+						<case additional="seamark:notice:category=no_sports_craft"/>
+						<apply icon="seamark_notice_prohibition_nosportcraft"/>
+					</switch>
 					<case additional="seamark:notice:category=no_waterskiing" icon="seamark_notice_prohibition_nowaterskiing"/>
 					<case additional="seamark:notice:category=no_sailing_craft" icon="seamark_notice_prohibition_nosailingcraft"/>
 					<case additional="seamark:notice:category=no_unpowered_craft" icon="seamark_notice_prohibition_nounpoweredcraft"/>
@@ -1365,9 +1370,37 @@
 					<case additional="seamark:notice:category=no_high_speeds" icon="seamark_notice_prohibition_nohighspeeds"/>
 					<case additional="seamark:notice:category=no_launching_beaching" icon="seamark_notice_prohibition_nolaunchingbeaching"/>
 					<case additional="seamark:notice:category=no_waterbikes" icon="seamark_notice_prohibition_nowaterbikes"/>
-					<apply icon__1="seamark_notice_prohibition_bg"/>
+					<apply icon__1="seamark_notice_prohibition_bg">
+						<apply_if nightMode="true" icon__1="seamark_notice_prohibition_bg_night"/>
+					</apply>
 				</switch>
-				<case icon__1="seamark_notice_prohibition_bg"/>
+				<case icon="seamark_notice_prohibition_bg">
+					<apply_if nightMode="true" icon="seamark_notice_prohibition_bg_night"/>
+				</case>
+			</case>
+			<case additional="seamark:notice:function=regulation">
+				<switch>
+					<case additional="seamark:notice:category=move_to_left" icon="seamark_notice_regulation_movetoleft"/>
+					<case additional="seamark:notice:category=move_to_right" icon="seamark_notice_regulation_movetoright"/>
+					<case additional="seamark:notice:category=move_to_port" icon="seamark_notice_regulation_movetoport"/>
+					<case additional="seamark:notice:category=move_to_starboard" icon="seamark_notice_regulation_movetostarboard"/>
+					<case additional="seamark:notice:category=keep_to_port" icon="seamark_notice_regulation_keeptoport"/>
+					<case additional="seamark:notice:category=keep_to_starboard" icon="seamark_notice_regulation_keeptostarboard"/>
+					<case additional="seamark:notice:category=cross_to_port" icon="seamark_notice_regulation_crosstoport"/>
+					<case additional="seamark:notice:category=cross_to_starboard" icon="seamark_notice_regulation_crosstostarboard"/>
+					<case additional="seamark:notice:category=stop" icon="seamark_notice_regulation_stop"/>
+					<case additional="seamark:notice:category=sound_horn" icon="seamark_notice_regulation_soundhorn"/>
+					<case additional="seamark:notice:category=keep_lookout" icon="seamark_notice_regulation_keeplookout"/>
+					<case additional="seamark:notice:category=give_way_junction" icon="seamark_notice_regulation_givewayjunction"/>
+					<case additional="seamark:notice:category=give_way_crossing" icon="seamark_notice_regulation_givewaycrossing"/>
+					<case additional="seamark:notice:category=make_radio_contact" icon="seamark_notice_regulation_makeradiocontact"/>
+					<apply icon__1="seamark_notice_regulation_bg">
+						<apply_if nightMode="true" icon__1="seamark_notice_regulation_bg_night"/>
+					</apply>
+				</switch>
+				<case icon="seamark_notice_regulation_bg">
+					<apply_if nightMode="true" icon="seamark_notice_regulation_bg_night"/>
+				</case>
 			</case>
 			<apply> <!-- icon_2 - top, icon_3 - right, icon_4 - bottom, icon_5 - left -->
 				<case additional="seamark:notice:addition=left_board" icon_5="seamark_notice_addition_leftboard"/>
