@@ -130,9 +130,10 @@ mycp traffic_calming bump transport_speedbump.png
 mycp highway speed_camera transport_speedcamera.png
 mycp highway milestone functional-icons_milestone.png
 mycp oneway blue functional-icons_oneway_blue.png
-mycp oneway blue_big functional-icons_oneway_blue_big.png
-mycp oneway blue_big_night functional-icons_oneway_blue_big_night.png
 mycp oneway reverse_blue functional-icons_oneway_reverse_blue.png
+mycp arrow blue_big functional-icons_arrow_blue_big.png
+mycp arrow blue_big_night functional-icons_arrow_blue_big_night.png
+mycp triangle blue functional-icons_triangle_blue.png
 mycp harbour yes poi_harbour.png
 
 mygroup fuel transport_fuel.png
