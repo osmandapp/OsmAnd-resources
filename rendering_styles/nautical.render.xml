@@ -724,8 +724,6 @@
 				<apply_if engine_v1="false" textDy="7"/>
 			</switch>
 			<switch> <!-- for big icons -->
-				<case minzoom="13" tag="seamark:type" value="landmark" textOrder="9" nameTag="seamark:name"/>
-				<case minzoom="13" tag="seamark:type" value="landmark" textOrder="9" nameTag=""/>
 				<switch>
 					<case minzoom="11" tag="seamark:type" value="light_major" nameTag="name" nameTag2="seamark:light:character" textOrder="10"/>
 					<case minzoom="11" tag="seamark:type" value="light_major" nameTag="seamark:name" nameTag2="seamark:light:character" textOrder="10"/>
@@ -756,12 +754,26 @@
 			</apply>
 			<apply_if nightMode="true" textColor="#eaf6ff" textHaloColor="#5545a5e2"/>
 		</switch>
+		<switch minzoom="11" textColor="#0400ab" textWrapWidth="19" textHaloColor="#55aaaaaa" textHaloRadius="2" textDy="19">
+			<case minzoom="13" tag="seamark:type" value="landmark" textOrder="9" nameTag="seamark:name"/>
+			<case minzoom="13" tag="seamark:type" value="landmark" textOrder="9" nameTag=""/>
+			<apply>
+				<case maxzoom="12" textSize="12"/>
+				<case maxzoom="14" textSize="12"/>
+				<case minzoom="15" textSize="13"/>
+			</apply>
+			<apply_if nightMode="true" textColor="#eaf6ff" textHaloColor="#5545a5e2"/>
+		</switch>
 		<switch>
 			<case minzoom="11" tag="seamark:type" value="separation_zone" textBold="true"/>
 			<case minzoom="14" tag="seamark:type" value="separation_roundabout" textBold="true"/>
 			<case minzoom="12" tag="seamark:type" value="anchorage" textDy="10" textBold="true"/>
 			<case minzoom="16" tag="seamark:type" value="anchor_berth" textDy="10"/>
-			<case minzoom="17" tag="seamark:type" value="bridge" textDy="14" nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height"/>
+			<case minzoom="17" tag="seamark:type" value="bridge" textDy="14">
+				<case additional="seamark:bridge:category=opening" nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height_closed"/>
+				<case additional="seamark:bridge:category=lifting" nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height_closed"/>
+				<case nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height"/>
+			</case>
 			<switch minzoom="16" tag="seamark:type" value="berth" textDy="10">
 <!--				<case nameTag="seamark:name" nameTag2="seamark:berth:information"/>
 				<case nameTag="" nameTag2="seamark:berth:information"/> NEED A FIX-->
@@ -1444,6 +1456,8 @@
 					<case additional="seamark:notice:category=berthing_marked_pushing_3" icon="seamark_notice_information_berthingmarkedpushing3"/>
 					<case additional="seamark:notice:category=berthing_unmarked_non_pushing" icon="seamark_notice_information_berthingunmarkednonpushing"/>
 					<case additional="seamark:notice:category=berthing_marked_non_pushing_1" icon="seamark_notice_information_berthingmarkednonpushing1"/>
+					<case additional="seamark:notice:category=berthing_marked_non_pushing_2" icon="seamark_notice_information_berthingmarkednonpushing2"/>
+					<case additional="seamark:notice:category=berthing_marked_non_pushing_3" icon="seamark_notice_information_berthingmarkednonpushing3"/>
 					<case additional="seamark:notice:category=berthing_unmarked" icon="seamark_notice_information_berthingunmarked"/>
 					<case additional="seamark:notice:category=berthing_marked_1" icon="seamark_notice_information_berthingmarked1"/>
 					<case additional="seamark:notice:category=berthing_marked_2" icon="seamark_notice_information_berthingmarked2"/>
@@ -1482,6 +1496,7 @@
 					<case additional="seamark:notice:category=waterbikes_permitted" icon="seamark_notice_information_waterbikespermitted"/>
 					<apply icon__1="seamark_notice_information_bg"/>
 				</switch>
+				<case icon="seamark_notice_information_bg"/>
 			</case>
 			<apply>
 				<case additional="seamark:notice:addition=left_board" icon_2="seamark_notice_addition_leftboard"/>
@@ -1582,7 +1597,7 @@
 			<apply icon="seamark_lock_gate" shield="seamark_white_black_round_shield"/>
 		</switch>
 
-		<case minzoom="16" tag="seamark:type" value="bridge" icon="seamark_bridge_fixed">
+		<case minzoom="16" tag="seamark:type" value="bridge" icon="seamark_bridge_fixed" iconOrder="19">
 			<case additional="seamark:bridge:category=fixed" icon="seamark_bridge_fixed"/>
 			<case additional="seamark:bridge:category=opening" icon="seamark_bridge_opening"/>
 			<case additional="seamark:bridge:category=lifting" icon="seamark_bridge_lifting"/>
