@@ -175,9 +175,6 @@
 	<renderingConstant name="pathColorNight" value="#787878"/>
 	<renderingConstant name="pathStrokeWidth" value="0.9:0.9"/>
 	<renderingConstant name="pathPathEffect" value="4_2"/>
-<!--	<renderingConstant name="cyclewayColorDay" value="#0000ff"/>
-	<renderingConstant name="cyclewayStrokeWidth" value="0.8:0.8"/>
-	<renderingConstant name="cyclewayPathEffect" value="12_4"/>-->
 	<renderingConstant name="footwayColorDay" value="#645638"/>
 	<renderingConstant name="footwayColorNight" value="#dadada"/>
 	<renderingConstant name="footwayStrokeWidth" value="0.9:0.9"/>
@@ -194,6 +191,10 @@
 	<renderingConstant name="landuseManmadeTextHaloRadiusDay" value=":1"/>
 	<renderingConstant name="landuseManmadeTextColorDay" value="#000000"/>
 	<renderingConstant name="landuseManmadeTextHaloColorDay" value="#aafddb8f"/>
+	<renderingConstant name="waterTextHaloRadiusDay" value="1"/>
+	<renderingConstant name="waterTextColorDay" value="#2375aa"/>
+	<renderingConstant name="waterTextColorNight" value="#95e7ff"/>
+	<renderingConstant name="waterTextHaloColorDay" value="#99ddf1fd"/>
 
 	<renderingConstant name="textHaloRadiusDay" value=":1"/>
 	<renderingConstant name="textHaloRadiusNight" value=":2"/>
@@ -614,12 +615,10 @@
 		<switch minzoom="14">
 			<switch nameTag="">
 				<case tag="highway" value="track" textOrder="9"/>
-<!--				<case tag="highway" value="cycleway" textOrder="14"/>-->
 				<case tag="highway" value="steps" textOrder="15"/>
-<!--				<case tag="highway" value="bridleway" textOrder="15"/>-->
 			</switch>
 			<case tag="highway" value="path" textOrder="9" nameTag=""/>
-			<case tag="highway" value="footway"/>
+			<case tag="highway" value="footway" nameTag=""/>
 			<apply nameTag="" textColor="#000000" textHaloRadius="$highwayTrackTextHaloRadiusDay" textHaloColor="#fddb8f" textOnPath="true"/>
 			<apply_if minzoom="15">
 				<case maxzoom="15" textSize="13"/>
@@ -695,6 +694,38 @@
 			<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#fadcff" textHaloColor="#55570067"/>
 		</case>
 
+		<!-- Water -->
+		<switch textColor="$waterTextColorDay" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$waterTextHaloColorDay" textSize="12" textItalic="true">
+			<case minzoom="3" tag="place" value="ocean" textWrapWidth="20" textOrder="3"/>
+			<case minzoom="5" tag="place" value="sea" textWrapWidth="20" textOrder="5"/>
+			<case minzoom="6" tag="natural" value="water" textWrapWidth="17" textOrder="10" intersectionSizeFactor="1.7"/>
+			<case minzoom="8" tag="natural" value="bay" textWrapWidth="17" textOrder="10"/>
+			<case minzoom="8" tag="natural" value="strait" textOnPath="true" textWrapWidth="25" textOrder="8"/>
+			<case minzoom="11" tag="natural" value="fjord" textOnPath="true" textWrapWidth="25" textOrder="10"/>
+			<case minzoom="13" tag="waterway" value="stream" textOnPath="true" textOrder="15"/>
+			<case minzoom="13" tag="waterway" value="wadi" textOnPath="true" textOrder="15"/>
+			<case minzoom="11" tag="waterway" value="river" textOnPath="true" textMinDistance="80" textOrder="10"/>
+			<case minzoom="13" tag="waterway" value="canal" textOnPath="true" textMinDistance="80" textOrder="10"/>
+			<case minzoom="17" tag="waterway" value="dock" textOrder="15" textDy="7"/>
+			<case minzoom="15" tag="waterway" value="ditch" textOnPath="true" textOrder="15"/>
+			<case minzoom="15" tag="waterway" value="drain" textOnPath="true" textOrder="15"/>
+			<case minzoom="15" tag="waterway" value="lock_gate" textDy="7" textWrapWidth="30" textOrder="15"/>
+			<!-- not a conventional tag: case minzoom="15" textDy="7" textWrapWidth="30" tag="waterway" value="lock" textOrder="15"/ -->
+			<case minzoom="15" tag="waterway" value="dam" textWrapWidth="20" textOnPath="true" textOrder="15"/>
+			<case minzoom="16" tag="waterway" value="weir" textWrapWidth="20" textOnPath="true" textOrder="15"/>
+			<case minzoom="16" tag="natural" value="spring" textDy="7" textWrapWidth="20" textOrder="15"/>
+			<case minzoom="16" tag="natural" value="hot_spring" textDy="7" textWrapWidth="20" textOrder="15"/>
+			<case minzoom="16" tag="natural" value="geyser" textDy="7" textWrapWidth="20" textOrder="15"/>
+			<case minzoom="15" tag="waterway" value="waterfall" nameTag2="height" textHaloColor="#bbddf1fd" textDy="7" textWrapWidth="20" textOnPath="true" textOrder="15"/>
+
+			<case minzoom="13" tag="landuse" value="water" textWrapWidth="20"/>
+			<case minzoom="13" tag="landuse" value="reservoir" textWrapWidth="20"/>
+			<case minzoom="13" tag="landuse" value="basin" textWrapWidth="20"/>
+			<case minzoom="17" tag="leisure" value="swimming_pool" textWrapWidth="20"/>
+			<case minzoom="16" tag="landuse" value="salt_pond" textWrapWidth="20"/>
+			<case minzoom="13" tag="natural" value="glacier" textWrapWidth="20" textDy="-9"/>
+			<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="$waterTextColorNight" textHaloColor="#994563a7"/>
+		</switch>
 
 		<!-- Seamarks -->
 		<switch minzoom="11" textColor="#0400ab" textWrapWidth="19" textHaloColor="#5576cbea" textHaloRadius="2" textDy="19">
@@ -1542,6 +1573,18 @@
 					<case additional="seamark:notice:addition=top_board;left_triangle"/>
 					<apply icon_2="seamark_notice_addition_topboard" icon_3="seamark_notice_addition_lefttriangle"/>
 				</switch>
+			</apply>
+			<apply>
+				<case additional="seamark:notice:impact=upstream" icon_5="seamark_notice_impact_upstream"/>
+				<case additional="seamark:notice:impact=downstream" icon_5="seamark_notice_impact_downstream"/>
+				<case additional="seamark:notice:impact=upstream;downstream" icon_5="seamark_notice_impact_upstreamdownstream"/>
+				<case additional="seamark:notice:impact=right_bank" icon_5="seamark_notice_impact_rightbank"/>
+				<case additional="seamark:notice:impact=left_bank" icon_5="seamark_notice_impact_leftbank"/>
+				<case additional="seamark:notice:impact=upstream;downstream;left_bank" icon_5="seamark_notice_impact_upstreamdownstreamleftbank"/>
+				<case additional="seamark:notice:impact=upstream;downstream;right_bank" icon_5="seamark_notice_impact_upstreamdownstreamrightbank"/>
+				<case additional="seamark:notice:impact=bank_to_bank" icon_5="seamark_notice_impact_banktobank"/>
+				<case additional="seamark:notice:impact=left_bank;right_bank" icon_5="seamark_notice_impact_banktobank"/>
+				<case additional="seamark:notice:impact=downstream;left_bank" icon_5="seamark_notice_impact_downstreamleftbank"/>
 			</apply>
 		</switch>
 
