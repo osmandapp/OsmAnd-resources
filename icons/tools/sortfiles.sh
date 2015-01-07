@@ -504,6 +504,11 @@ mycp man_made water_well food_water_well.png
 
 ## Seamarks
 mygroup seamark icons8_sail_boat.png
+mycp seamark buoy_conical seamark_buoy_conical.png
+mycp seamark buoy_barrel seamark_buoy_barrel.png
+mycp seamark buoy_can seamark_buoy_can.png
+mycp seamark buoy_spherical seamark_buoy_spherical.png
+
 mycp seamark buoy_blackredblack_conical seamark_buoy_blackredblack_conical.png
 mycp seamark buoy_blackredblack_pillar seamark_buoy_blackredblack_pillar.png
 mycp seamark buoy_blackredblack_spar seamark_buoy_blackredblack_spar.png
@@ -521,6 +526,7 @@ mycp seamark buoy_green_can seamark_buoy_green_can.png
 mycp seamark buoy_green_pillar seamark_buoy_green_pillar.png
 mycp seamark buoy_green_spar seamark_buoy_green_spar.png
 mycp seamark buoy_green_spherical seamark_buoy_green_spherical.png
+mycp seamark buoy_orange_spherical seamark_buoy_orange_spherical.png
 mycp seamark buoy_yellow_conical seamark_buoy_yellow_conical.png
 mycp seamark buoy_yellow_barrel seamark_buoy_yellow_barrel.png
 mycp seamark buoy_yellow_can seamark_buoy_yellow_can.png
@@ -955,6 +961,14 @@ mycp seamark notice_impact_upstreamdownstream seamark_notice_impact_upstreamdown
 mycp seamark notice_impact_upstreamdownstreamleftbank seamark_notice_impact_upstreamdownstreamleftbank.png
 mycp seamark notice_impact_upstreamdownstreamrightbank seamark_notice_impact_upstreamdownstreamrightbank.png
 mycp seamark notice_impact_downstreamleftbank seamark_notice_impact_downstreamleftbank.png
+
+mycp seamark mooring_bollard seamark_mooring_bollard.png
+mycp seamark mooring_deviationdolphin seamark_mooring_deviationdolphin.png
+mycp seamark mooring_dolphin seamark_mooring_dolphin.png
+mycp seamark mooring_pile seamark_mooring_pile.png
+mycp seamark mooring_pylon seamark_mooring_pylon.png
+mycp seamark mooring_wall seamark_mooring_wall.png
+mycp seamark mooring_additional_for_buoy seamark_mooring_additional_for_buoy.png
 
 ## Shops
 mygroup car_aid shopping_car.png
