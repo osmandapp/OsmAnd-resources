@@ -2198,8 +2198,13 @@
 			<apply textSize="12" textHaloRadius="$textHaloRadiusDay" textHaloColor="#99dddddd"/>
 			<apply_if nightMode="true" textColor="#c7e4ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#99444444"/>
 		</switch>
-		<switch>
-			<case minzoom="11" tag="aeroway" value="aerodrome" nameTag=""/>
+		<switch minzoom="11" tag="aeroway" value="aerodrome" nameTag="">
+			<case additional="iata"/> <!-- usually large aerodromes -->
+			<case additional="icao"/>
+			<case additional="faa"/>
+			<case additional="souce=faa"/>
+			<case additional="wikipedia"/>
+			<case minzoom="15"/>
 			<apply textColor="#0748a8" textSize="12" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ddeeeeff" textDy="9"/>
 			<apply_if nightMode="true" textColor="#c3dbff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#99222222"/>
 		</switch>
@@ -3169,17 +3174,20 @@
 			<case additional="color_black=" icon="railway_subway_entrance_black"/>
 		</case>
 
-		<switch engine_v1="false" minzoom="10" tag="aeroway" value="aerodrome" icon="aeroway_aerodrome">
-			<case additional="iata" shield="white_blue_square_shield" iconOrder="71">
-				<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-			</case>
-			<case shield="aerodrome_shield" iconOrder="100">
+		<switch minzoom="10" tag="aeroway" value="aerodrome">
+			<switch> <!-- usually large aerodromes -->
+				<case additional="iata"/>
+				<case additional="icao"/>
+				<case additional="faa"/>
+				<case additional="souce=faa"/>
+				<case additional="wikipedia"/>
+				<apply icon="aeroway_aerodrome" shield="white_blue_square_shield" iconOrder="71">
+					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+				</apply>
+			</switch>
+			<case minzoom="14" icon="aeroway_aerodrome" shield="aerodrome_shield" iconOrder="100">
 				<apply_if nightMode="true" shield=""/>
 			</case>
-		</switch>
-		<switch shield="white_blue_square_shield">
-			<case minzoom="10" tag="aeroway" value="aerodrome" icon="aeroway_aerodrome" iconOrder="71"/>
-			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 		</switch>
 		<case minzoom="16" tag="aeroway" value="helipad" icon="aeroway_helipad" shield="white_blue_round_small_shield">
 			<apply_if nightMode="true" shield="gray_blue_round_small_shield"/>
