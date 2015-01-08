@@ -228,6 +228,7 @@
 			<case tag="seamark:type" value="anchorage"/>
 			<case tag="seamark:type" value="anchor_berth"/>
 			<case tag="seamark:type" value="berth"/>
+			<case tag="seamark:type" value="production_area"/>
 			<case tag="seamark" value=""/>
 		</switch>
 	<!-- Polygon -->
@@ -263,6 +264,7 @@
 			<case tag="seamark:type" value="anchor_berth"/>
 			<case tag="seamark:type" value="berth"/>
 			<case tag="seamark:type" value="fairway"/>
+			<case tag="seamark:type" value="production_area"/>
 			<case tag="natural" value="cliff"/>
 			<case tag="natural" value="crater"/>
 			<case tag="natural" value="hot_spring"/>
@@ -698,10 +700,9 @@
 			<case minzoom="13" tag="waterway" value="wadi" textOnPath="true" textOrder="15"/>
 			<case minzoom="11" tag="waterway" value="river" textOnPath="true" textMinDistance="80" textOrder="10"/>
 			<case minzoom="13" tag="waterway" value="canal" textOnPath="true" textMinDistance="80" textOrder="10"/>
-			<case minzoom="17" tag="waterway" value="dock" textOrder="15" textDy="7"/>
 			<case minzoom="15" tag="waterway" value="ditch" textOnPath="true" textOrder="15"/>
 			<case minzoom="15" tag="waterway" value="drain" textOnPath="true" textOrder="15"/>
-			<case minzoom="15" tag="waterway" value="lock_gate" textDy="7" textWrapWidth="30" textOrder="15"/>
+<!--			<case minzoom="15" tag="waterway" value="lock_gate" textDy="7" textWrapWidth="30" textOrder="15"/>-->
 			<!-- not a conventional tag: case minzoom="15" textDy="7" textWrapWidth="30" tag="waterway" value="lock" textOrder="15"/ -->
 			<case minzoom="15" tag="waterway" value="dam" textWrapWidth="20" textOnPath="true" textOrder="15"/>
 			<case minzoom="16" tag="waterway" value="weir" textWrapWidth="20" textOnPath="true" textOrder="15"/>
@@ -793,6 +794,7 @@
 		<switch minzoom="11" textColor="#0400ab" textWrapWidth="19" textHaloColor="#88ffffff" textHaloRadius="2" textDy="19">
 			<case minzoom="13" tag="seamark:type" value="landmark" textOrder="9" nameTag="seamark:name"/>
 			<case minzoom="13" tag="seamark:type" value="landmark" textOrder="9" nameTag=""/>
+			<case minzoom="13" tag="seamark:type" value="production_area" textOrder="9"/>
 			<apply>
 				<case maxzoom="12" textSize="12"/>
 				<case maxzoom="14" textSize="12"/>
@@ -1698,6 +1700,8 @@
 			<case additional="seamark:building:function=water-police_station" icon="seamark_building_water_police_station"/>
 		</case>
 
+		<case minzoom="12" tag="seamark:type" value="berth" icon="seamark_berth"/>
+
 		<case minzoom="11" tag="natural" value="peak" iconOrder="65">
 			<case maxzoom="11" icon="natural_peak" shield="peakvolcano_shield" iconVisibleSize="25" intersectionSizeFactor="2"/>
 			<case maxzoom="14" icon="natural_peak" shield="peakvolcano_shield"/>
@@ -1707,6 +1711,11 @@
 				<case minzoom="15" icon="natural_peak_night_big"/>
 			</apply_if>
 		</case>
+
+		<case minzoom="12" tag="seamark:type" value="production_area">
+			<case additional="seamark:production_area:category=wind_farm" icon="seamark_landmark_windmotor"/>
+		</case>
+
 		<case minzoom="10" tag="natural" value="volcano" iconOrder="50">
 			<case maxzoom="14" icon="natural_volcano" shield="peakvolcano_shield">
 				<case additional="status=active" icon="natural_volcano_active" shield="natural_volcano_active_shield"/>
@@ -1717,7 +1726,6 @@
 			<apply_if nightMode="true" shield=""/>
 		</case>
 
-	
 		<!-- Location dots -->
 
 		<switch>
@@ -1779,7 +1787,18 @@
 		<case minzoom="10" tag="seamark:type" value="fairway" color="$fairwayDayColor">
 			<apply_if nightMode="true" color="$fairwayNightColor"/>
 		</case>
-		
+
+		<case minzoom="9" tag="seamark:type" value="production_area">
+			<case maxzoom="11" strokeWidth_2="0.5:0.5" pathEffect_2="2_2"/>
+			<case maxzoom="13" strokeWidth_2="0.8:0.8" pathEffect_2="2_2"/>
+			<case maxzoom="15" strokeWidth_2="1:1" pathEffect_2="3_3"/>
+			<case maxzoom="16" strokeWidth_2="1.5:1.5" pathEffect_2="4_5"/>
+			<case minzoom="17" strokeWidth_2="2:2" pathEffect_2="5_6"/>
+			<apply color="#33514432" color_2="#111111">
+				<apply_if nightMode="true" color="#66898175" color_2="#aaaaaa"/>
+			</apply>
+		</case>
+
 		<case minzoom="8" tag="natural" value="wetland">
 			<case additional="wetland=tidalflat" shader="wetland_tidalflat">
 				<apply_if nightMode="true" shader="" color="#323b69"/>
