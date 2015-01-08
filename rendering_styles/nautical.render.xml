@@ -1255,7 +1255,7 @@
 				<apply_if additional="seamark:radar_reflector=yes" icon_3="seamark_radar_reflector_additional">
 					<apply_if nightMode="true" icon_3="seamark_radar_reflector_additional_night"/>
 				</apply_if>
-				<apply_if additional="seamark:radar_transponder:category=racon" icon_4="seamark_radar_transponder_additional"> <!-- simplify when available -->
+				<apply_if additional="seamark:radar_transponder:category" icon_4="seamark_radar_transponder_additional">
 					<apply_if nightMode="true" icon_4="seamark_radar_transponder_additional_night"/>
 				</apply_if>
 			</switch>
@@ -1322,16 +1322,9 @@
 						<apply_if additional="seamark:platform:category=fpso" icon_3="seamark_platform_fpso_additional"/>
 					</case>
 					<apply>
-						<switch> <!-- simplify when it will be possible to filter all possible values -->
-							<case additional="seamark:fog_signal:category=horn"/>
-							<case additional="seamark:fog_signal:category=siren"/>
-							<case additional="seamark:fog_signal:category=bell"/>
-							<case additional="seamark:fog_signal:category=whistle"/>
-							<case additional="seamark:fog_signal:category=diaphone"/>
-							<apply icon_2="seamark_fog_signal_additional_big">
-								<apply_if nightMode="true" icon_2="seamark_fog_signal_additional_big_night"/>
-							</apply>
-						</switch>
+						<case additional="seamark:fog_signal:category" icon_2="seamark_fog_signal_additional_big">
+							<apply_if nightMode="true" icon_2="seamark_fog_signal_additional_big_night"/>
+						</case>
 					</apply>
 					<apply>
 						<case additional="seamark:topmark:shape=2 cones point together" icon__1="seamark_topmark_vertical_black_2conespointtogether_big"/>
@@ -1364,7 +1357,7 @@
 					<apply_if additional="seamark:radar_reflector=yes" icon_3="seamark_radar_reflector_additional_big">
 						<apply_if nightMode="true" icon_3="seamark_radar_reflector_additional_big_night"/>
 					</apply_if>
-					<apply_if additional="seamark:radar_transponder:category=racon" icon_4="seamark_radar_transponder_additional_big"> <!-- simplify when available -->
+					<apply_if additional="seamark:radar_transponder:category" icon_4="seamark_radar_transponder_additional_big">
 						<apply_if nightMode="true" icon_4="seamark_radar_transponder_additional_big_night"/>
 					</apply_if>
 				</switch>
@@ -1380,19 +1373,12 @@
 				<case additional="seamark:light:colour=red;green" shield="light_redgreen_shield"/>
 				<case additional="seamark:light:colour=white;red" shield="light_whitered_shield"/>
 				<case additional="seamark:light:colour=violet" shield="light_violet_shield"/>
-				<switch> <!-- simplify when it will be possible to filter all possible values -->
-					<case additional="seamark:light:2:colour=red"/>
-					<case additional="seamark:light:2:colour=green"/>
-					<case additional="seamark:light:2:colour=white"/>
-					<case additional="seamark:light:2:colour=yellow"/>
-					<case additional="seamark:light:2:colour=blue"/>
-					<apply shield="light_violet_shield"/>
-				</switch>
+				<case additional="seamark:light:2:colour" shield="light_violet_shield"/>
 			</apply>
 		</switch>
 
 		<switch>
-			<case minzoom="16" tag="seamark:type" value="mooring">
+			<case minzoom="16" tag="seamark:type" value="mooring" iconOrder="106">
 				<case additional="seamark:mooring:category=dolphin" icon="seamark_mooring_dolphin"/> <!-- add bw colour -->
 				<case additional="seamark:mooring:category=deviation_dolphin" icon="seamark_mooring_deviationdolphin"/>
 				<case additional="seamark:mooring:category=bollard" icon="seamark_mooring_bollard"/>
@@ -1617,16 +1603,30 @@
 				</switch>
 			</apply>
 			<apply>
-				<case additional="seamark:notice:impact=upstream" icon_5="seamark_notice_impact_upstream"/>
-				<case additional="seamark:notice:impact=downstream" icon_5="seamark_notice_impact_downstream"/>
-				<case additional="seamark:notice:impact=upstream;downstream" icon_5="seamark_notice_impact_upstreamdownstream"/>
-				<case additional="seamark:notice:impact=right_bank" icon_5="seamark_notice_impact_rightbank"/>
-				<case additional="seamark:notice:impact=left_bank" icon_5="seamark_notice_impact_leftbank"/>
-				<case additional="seamark:notice:impact=upstream;downstream;left_bank" icon_5="seamark_notice_impact_upstreamdownstreamleftbank"/>
-				<case additional="seamark:notice:impact=upstream;downstream;right_bank" icon_5="seamark_notice_impact_upstreamdownstreamrightbank"/>
-				<case additional="seamark:notice:impact=bank_to_bank" icon_5="seamark_notice_impact_banktobank"/>
-				<case additional="seamark:notice:impact=left_bank;right_bank" icon_5="seamark_notice_impact_banktobank"/>
-				<case additional="seamark:notice:impact=downstream;left_bank" icon_5="seamark_notice_impact_downstreamleftbank"/>
+				<switch>
+					<case additional="seamark:notice:orientation">
+						<case additional="seamark:notice:orientation=0" icon_5="seamark_notice_orientation_0"/>
+						<case additional="seamark:notice:orientation=45" icon_5="seamark_notice_orientation_45"/>
+						<case additional="seamark:notice:orientation=90" icon_5="seamark_notice_orientation_90"/>
+						<case additional="seamark:notice:orientation=135" icon_5="seamark_notice_orientation_135"/>
+						<case additional="seamark:notice:orientation=180" icon_5="seamark_notice_orientation_180"/>
+						<case additional="seamark:notice:orientation=225" icon_5="seamark_notice_orientation_225"/>
+						<case additional="seamark:notice:orientation=270" icon_5="seamark_notice_orientation_270"/>
+						<case additional="seamark:notice:orientation=315" icon_5="seamark_notice_orientation_315"/>
+					</case>
+					<case additional="seamark:notice:impact">
+						<case additional="seamark:notice:impact=upstream" icon_5="seamark_notice_impact_upstream"/>
+						<case additional="seamark:notice:impact=downstream" icon_5="seamark_notice_impact_downstream"/>
+						<case additional="seamark:notice:impact=upstream;downstream" icon_5="seamark_notice_impact_upstreamdownstream"/>
+						<case additional="seamark:notice:impact=right_bank" icon_5="seamark_notice_impact_rightbank"/>
+						<case additional="seamark:notice:impact=left_bank" icon_5="seamark_notice_impact_leftbank"/>
+						<case additional="seamark:notice:impact=upstream;downstream;left_bank" icon_5="seamark_notice_impact_upstreamdownstreamleftbank"/>
+						<case additional="seamark:notice:impact=upstream;downstream;right_bank" icon_5="seamark_notice_impact_upstreamdownstreamrightbank"/>
+						<case additional="seamark:notice:impact=bank_to_bank" icon_5="seamark_notice_impact_banktobank"/>
+						<case additional="seamark:notice:impact=left_bank;right_bank" icon_5="seamark_notice_impact_banktobank"/>
+						<case additional="seamark:notice:impact=downstream;left_bank" icon_5="seamark_notice_impact_downstreamleftbank"/>
+					</case>
+				</switch>
 			</apply>
 		</switch>
 
