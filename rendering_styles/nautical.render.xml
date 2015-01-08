@@ -162,7 +162,7 @@
 	<renderingConstant name="pedestrianRoadShadowColorDay" value="#777d6212"/>
 	<renderingConstant name="pedestrianRoadShadowColorNight" value="#8a7f5e"/>
 	<renderingAttribute name="trackColor">
-		<case attrColorValue="#996600">
+		<case attrColorValue="#998100">
 			<apply_if nightMode="true" attrColorValue="#cbc896"/>
 		</case>
 	</renderingAttribute>
@@ -181,6 +181,13 @@
 	<renderingConstant name="bridgeColorNight" value="#ffe9b5"/>
 	<renderingConstant name="buildingColorDay" value="#a3a3a3"/>
 	<renderingConstant name="buildingColorNight" value="#685454"/>
+	<renderingAttribute name="pierColor">
+		<case attrColorValue="$defaultColor"/>
+	</renderingAttribute>
+	<renderingAttribute name="accessPrivateColor">
+		<case nightMode="true" attrColorValue="#cc4747"/>
+		<case attrColorValue="#fe5757"/>
+	</renderingAttribute>
 	<renderingConstant name="buildingTextHaloRadiusDay" value="1"/>
 	<renderingConstant name="buildingTextHaloColorDay" value="#ddfddb8f"/>
 	<renderingConstant name="landuseIndustrialColorDay" value="#dfd1d6"/>
@@ -258,6 +265,8 @@
 			<case tag="highway" value="services_area"/>
 			<case tag="highway" value="rest_area"/>
 			<case tag="leisure" value="nature_reserve" order="9"/>
+			<case tag="landuse" value="military" order="8"/>
+			<case tag="military" value="danger_area" order="8"/>
 			<case tag="waterway" value="dock"/>
 			<case tag="waterway" value="wadi"/>
 			<case tag="seamark:type" value="anchorage"/>
@@ -523,6 +532,9 @@
 				</apply>
 			</switch>
 		</switch>
+		<case minzoom="16" tag="man_made" value="pier" textSize="11" textColor="#1f62ae" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ccffffff" textOnPath="true" textWrapWidth="30">
+			<apply_if nightMode="true" textColor="#a3c8ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#66002357"/>
+		</case>
 
 		<!-- Highway text -->
 		<switch textHaloRadius="$textHaloRadiusDay" textOnPath="true" nameTag="">
@@ -652,6 +664,14 @@
 				<apply_if engine_v1="true" textDy="13"/>
 			</switch>-->
 			<apply_if nightMode="true" textColor="$defaultTextColorNight" textHaloColor="#77464234"/>
+		</switch>
+
+		<case minzoom="15" tag="landuse" value="military" textSize="12" textColor="#990d2a" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffd9e6" textWrapWidth="20" textOrder="10">
+			<apply_if nightMode="true" textColor="#ffd3dc" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77724456"/>
+		</case>
+		<switch textHaloRadius="$textHaloRadiusDay" textSize="13" textColor="#ff0255" textBold="true" textWrapWidth="20">
+			<case minzoom="13" tag="military" value="danger_area"/>
+			<apply_if nightMode="true" textColor="#f6dada" textHaloRadius="$textHaloRadiusNight" textHaloColor="#88a20035"/>
 		</switch>
 
 		<switch textColor="#000000" textWrapWidth="20">
@@ -1804,6 +1824,17 @@
 			</apply>
 		</case>
 
+		<switch minzoom="13">
+			<case tag="man_made" value="pier" color="$pierColor"/>
+			<apply minzoom="15">
+				<case additional="access=no"/>
+				<case additional="access=private"/>
+				<case appMode="bicycle" additional="bicycle=no"/>
+				<apply color_2="$accessPrivateColor" strokeWidth_2="3" pathEffect_2="1_7" cap_2="ROUND"/>
+				<apply_if nightMode="true" color_2="$accessPrivateColor"/>
+			</apply>
+		</switch>
+
 		<case minzoom="9" tag="natural" value="wetland">
 			<case additional="wetland=tidalflat" shader="wetland_tidalflat">
 				<apply_if nightMode="true" shader="" color="#323b69"/>
@@ -1853,6 +1884,16 @@
 			<case tag="building" value=""/>
 			<apply_if nightMode="true" shader="diagonal_fill_white_dark_shader" color_2="#999999"/>
 		</switch>
+		
+		<case minzoom="10" tag="landuse" value="military" shader="danger" color="#100000" color_2="#c8ffa0c0" strokeWidth_2="1:1">
+			<apply_if nightMode="true" shader="danger_night" color_2="#84ffa0c0"/>
+			<apply_if additional="abandoned=yes" shader="military_abandoned">
+				<apply_if nightMode="true" shader="military_abandoned_night"/>
+			</apply_if>
+		</case>
+		<case minzoom="7" tag="military" value="danger_area" shader="hazard" color_2="#f46997" strokeWidth_2="1:1">
+			<apply_if nightMode="true" color_2="#cc1652"/>
+		</case>
 
 		<switch>
 			<switch>
@@ -1972,6 +2013,19 @@
 				<apply_if nightMode="true" color="#dddddd"/>
 			</apply>
 		</switch>
+
+		<case minzoom="13" tag="man_made" value="pier" color="$pierColor">
+			<switch minzoom="15">
+				<case additional="access=no"/>
+				<case additional="access=private"/>
+				<case appMode="bicycle" additional="bicycle=no"/>
+				<apply color_2="$accessPrivateColor" strokeWidth_2="3" pathEffect_2="1_7" cap_2="ROUND"/>
+				<apply_if nightMode="true" color_2="$accessPrivateColor"/>
+			</switch>
+			<apply_if maxzoom="13" strokeWidth="0.5:0.5"/>
+			<apply_if minzoom="14" maxzoom="15" strokeWidth="1.5:1.5"/>
+			<apply_if minzoom="16" strokeWidth="3:3"/>
+		</case>
 
 <!--		<switch minzoom="6" maxzoom="13">
 			<switch shadowRadius=":1">
