@@ -2204,10 +2204,12 @@
 			<case additional="faa"/>
 			<case additional="ref_aerodrome"/> <!-- artificial tag. Included in obf data when aeroway=aerodrome + ref=* are in osm data (see rendering_types.xml) -->
 			<case additional="souce=faa"/>
+			<case additional="souce=wikipedia"/>
 			<case additional="wikipedia"/>
-			<case minzoom="15"/>
+			<case minzoom="18"/>
 			<apply textColor="#0748a8" textSize="12" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ddeeeeff" textDy="9"/>
 			<apply_if nightMode="true" textColor="#c3dbff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#99222222"/>
+			<apply_if minzoom="9" maxzoom="15" additional="abandoned=yes" disable="true"/>
 		</switch>
 		<switch>
 			<case minzoom="15" tag="aeroway" value="terminal"/>
@@ -3176,12 +3178,16 @@
 		</case>
 
 		<switch minzoom="10" tag="aeroway" value="aerodrome">
+			<case minzoom="14" additional="abandoned=yes" icon="aeroway_aerodrome" shield="aerodrome_shield" iconOrder="100">
+				<apply_if nightMode="true" shield=""/>
+			</case>
 			<switch> <!-- usually large aerodromes -->
 				<case additional="iata"/>
 				<case additional="icao"/>
 				<case additional="faa"/>
 				<case additional="ref_aerodrome"/> <!-- artificial tag. Included in obf data when aeroway=aerodrome + ref=* are in osm data (see rendering_types.xml) -->
 				<case additional="souce=faa"/>
+				<case additional="souce=wikipedia"/>
 				<case additional="wikipedia"/>
 				<apply icon="aeroway_aerodrome" shield="white_blue_square_shield" iconOrder="71">
 					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
