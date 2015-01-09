@@ -19,6 +19,11 @@
 		?order - order to store sequentially as tag in object (default 50)
 		?poi_with_name - add poi to index only if it has name=* tag
 		/>
+		
+		Entity convert used to convert tags.
+		Examples:
+		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="tower" if_tag1="tower:type" if_value1="communication" to_tag1="man_made" to_value1="communications_tower"/>
+		<entity_convert pattern="tag_transform" from_tag="attraction" if_not_tag1="tourism" to_tag1="attraction" to_tag2="tourism" to_value2="attraction"/>
 	 -->
 	<!-- additional  -->
 	<type tag="oneway" value="yes" minzoom="15" additional="true" only_map="true"/>
@@ -277,6 +282,7 @@
 		<type tag="highway" value="crossing" minzoom="15" poi_prefix="highway_" />
 		<type tag="noexit" value="yes" minzoom="16"/>
 		<type tag="highway" value="motorway_junction" minzoom="13" nameTags="ref"/>
+		
 		<type tag="highway" value="bus_stop" minzoom="14" poi_category="transportation"/>
 		<type tag="highway" value="turning_circle" minzoom="16" poi_category="transportation"/>
 		<type tag="highway" value="emergency_access_point" minzoom="16" poi_category="emergency"/>
@@ -748,12 +754,14 @@
 
 	<category name="aeroway" poi_tag="aeroway" poi_category="transportation">
 		<type tag="aeroway" value="aerodrome" minzoom="6" />
+		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="aeroway" if_value1="aerodrome" to_tag1="ref_aerodrome"/>
+		<type tag="ref_aerodrome" additional="true" minzoom="7" /> <!-- artificial tag. Used because ref is nameTag -->
 		<type tag="aeroway" value="terminal" minzoom="14" poi_prefix="aeroway_" order="60"/>
 		<type tag="aeroway" value="helipad" minzoom="10" />
 		<type tag="aeroway" value="runway" minzoom="11" poi_prefix="aeroway_"/>
 		<type tag="aeroway" value="taxiway" minzoom="12" nameTags="ref" poi_prefix="aeroway_" poi_category=""/>
 		<type tag="aeroway" value="apron" minzoom="12" poi_category=""/>
-		<type tag="aeroway" value="airport" target_value="aerodrome" minzoom="11" />
+		<entity_convert pattern="tag_transform" from_tag="aeroway" from_value="airport" to_tag1="aeroway" to_value1="aerodrome"/>
 		<type tag="aeroway" value="gate" minzoom="15" nameTags="ref" poi_prefix="aeroway_"/>
 		<type tag="aeroway" value="windsock" minzoom="15" />
 	</category>
@@ -1418,17 +1426,17 @@
 		<type tag="healthcare" value="yes" poi_prefix="healthcare_" minzoom="15" />
 		<type tag="amenity" value="pharmacy" minzoom="15" />
 		<type tag="amenity" value="hospital" minzoom="15" />
-		<type tag="healthcare" value="hospital" target_tag="amenity" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="healthcare" from_value="hospital" to_tag1="amenity"/>
 		<type tag="amenity" value="baby_hatch" minzoom="15" />
 		<type tag="amenity" value="dentist" minzoom="15" />
-		<type tag="healthcare" value="dentist" target_tag="amenity" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="healthcare" from_value="dentist" to_tag1="amenity"/>
 		<type tag="amenity" value="doctors" minzoom="15" />
-		<type tag="healthcare" value="doctor" target_tag="amenity" target_value="doctors" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="healthcare" from_value="doctor" to_tag1="amenity" to_value1="doctors"/>
 		<type tag="amenity" value="clinic" minzoom="15" />
-		<type tag="healthcare" value="clinic" target_tag="amenity" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="healthcare" from_value="clinic" to_tag1="amenity"/>
 		<type tag="amenity" value="veterinary" minzoom="15" />
 		<type tag="amenity" value="first_aid" minzoom="15" />
-		<type tag="amenity" value="firstaid" target_value="first_aid" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="firstaid" to_tag1="amenity" to_value1="first_aid"/>
 		<type tag="amenity" value="sanatorium" minzoom="12" />
 		<type tag="amenity" value="social_facility" minzoom="12" />
 		<type tag="amenity" value="nursing_home" minzoom="15" />
@@ -1448,7 +1456,7 @@
 		<type tag="amenity" value="theatre" minzoom="15" />
 		<type tag="theatre:genre" value="circus" minzoom="15" additional="true" />
 		<type tag="amenity" value="sauna" minzoom="15" />
-		<type tag="leisure" value="sauna" target_tag="amenity" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="leisure" from_value="sauna" to_tag1="amenity"/>
 		<type tag="amenity" value="brothel" minzoom="15" />
 	</category>
 
@@ -1684,7 +1692,7 @@
 		<type tag="seamark:type" value="beacon_special_purpose" minzoom="11" nameTags="seamark:name,seamark:light:character"/>
 		<type tag="seamark:type" value="gate" minzoom="10" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="fairway" minzoom="10" nameTags="seamark:name"/>
-		<type tag="waterway" value="fairway" target_tag="seamark:type" target_value="fairway" nameTags="name" minzoom="10"/>
+		<entity_convert pattern="tag_transform" from_tag="waterway" from_value="fairway" to_tag1="seamark:type" to_value1="fairway"/>
 		<type tag="seamark:type" value="fog_signal" minzoom="11" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="harbour" minzoom="10" nameTags="name,seamark:name"/>
 		<type tag="seamark:type" value="landmark" minzoom="10" nameTags="seamark:name"/>
@@ -1738,13 +1746,13 @@
 		<type tag="seamark:topmark:shape" minzoom="11" additional="true"/>
 		<type tag="seamark:topmark:colour" minzoom="11" additional="true"/>
 		<type tag="seamark:topmark:colour_pattern" minzoom="11" additional="true"/>
-		<type tag="seamark:daymark:shape" target_tag="seamark:topmark:shape" minzoom="11" additional="true"/>
-		<type tag="seamark:daymark:colour" target_tag="seamark:topmark:colour"minzoom="11" additional="true"/>
-		<type tag="seamark:daymark:colour_pattern" target_tag="seamark:topmark:colour_pattern" minzoom="11" additional="true"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:daymark:shape" to_tag1="seamark:topmark:shape"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:daymark:colour" to_tag1="seamark:topmark:colour"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:daymark:colour_pattern" to_tag1="seamark:topmark:colour_pattern"/>
 		<type tag="seamark:light_float:colour" minzoom="11" additional="true"/>
 		<type tag="seamark:light_float:colour_pattern" minzoom="11" additional="true"/>
 		<type tag="seamark:light:colour" minzoom="11" additional="true"/>
-		<type tag="seamark:light:1:colour" target_tag="seamark:light:colour" minzoom="11" additional="true"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:light:1:colour" to_tag1="seamark:light:colour"/>
 		<type tag="seamark:light:2:colour" minzoom="11" additional="true"/>
 		<type tag="seamark:light:3:colour" minzoom="11" additional="true"/>
 		<type tag="seamark:fog_signal:category" minzoom="11" additional="true"/>
@@ -1763,13 +1771,12 @@
 		<type tag="seamark:notice:addition" minzoom="13" additional="true"/>
 		<type tag="seamark:notice:orientation" minzoom="13" additional="true"/> <!-- this tag is simplified by 45 degrees in preprocessing -->
 		<type tag="seamark:notice:impact" minzoom="13" additional="true"/>
-		<type tag="seamark:notice:direction" target_tag="seamark:notice:impact" minzoom="13" additional="true"/>
-		<type tag="seamark:notice:1:function" target_tag="seamark:notice:function" minzoom="13" additional="true"/>
-		<type tag="seamark:notice:1:category" target_tag="seamark:notice:category" minzoom="13" additional="true"/>
-		<type tag="seamark:notice:1:addition" target_tag="seamark:notice:addition" minzoom="13" additional="true"/>
-		<type tag="seamark:notice:1:orientation" target_tag="seamark:notice:orientation" minzoom="13" additional="true"/>
-		<type tag="seamark:notice:1:impact" target_tag="seamark:notice:impact" minzoom="13" additional="true"/>
-		<type tag="seamark:notice:1:direction" target_tag="seamark:notice:impact" minzoom="13" additional="true"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:notice:1:function" to_tag1="seamark:notice:function"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:notice:1:category" to_tag1="seamark:notice:category"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:notice:1:addition" to_tag1="seamark:notice:addition"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:notice:1:orientation" to_tag1="seamark:notice:orientation"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:notice:1:impact" to_tag1="seamark:notice:impact"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:notice:1:direction" to_tag1="seamark:notice:impact"/>
 		<type tag="seamark:notice:2:function" minzoom="13" additional="true"/>
 		<type tag="seamark:mooring:category" minzoom="13" additional="true"/>
 		<type tag="seamark:mooring:colour" minzoom="13" additional="true"/>
