@@ -63,14 +63,11 @@
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_motorway" name="Avoid motorways" description="Avoid motorways" type="boolean"/>
 		<parameter id="weight" name="Weight" description="Weight" type="numeric" values="0,1500,3000" valueDescriptions="-,1.5t,3t"/>
-
 		<way attribute="access">
-			<select value="-1" t="highway" v="motorway">
-				<if param="avoid_motorway"/>
-			</select>
-			<select value="-1" t="highway" v="motorway_link">
-				<if param="avoid_motorway"/>
-			</select>
+			<if param="avoid_motorway">
+				<select value="-1" t="highway" v="motorway"/>
+				<select value="-1" t="highway" v="motorway_link"/>	
+			</if>
 			<select value="-1" t="toll" v="yes">
 				<if param="avoid_toll"/>
 			</select>
@@ -134,7 +131,6 @@
 			<select value="1" t="route" v="ferry"/>
 			<select value="-1"/>
 		</way>
-
 		<way attribute="oneway">
 			<select value="1" t="oneway" v="yes"/>
 			<select value="-1" t="oneway" v="reverse"/>
@@ -156,7 +152,6 @@
 			<if param="short_way">
 				<select value="0"/>
 			</if>
-			
 			<select value="0" t="highway" v="motorway"/>
 			<select value="0" t="highway" v="motorway_link"/>
 			<select value="0" t="highway" v="trunk"/>
@@ -179,7 +174,6 @@
 			<select value="" t="highway" v="living_street"/>
 			<select value="" t="route" v="ferry"/>-->
 		</way>
-
 		<way attribute="speed" type="speed">
 			<!-- shortway handled internally -->
 			<select value="$maxspeed:practical" t="maxspeed:practical"/>
@@ -208,7 +202,6 @@
 			<select value="25" t="highway" v="living_street"/>
 			<select value="15" t="route" v="ferry"/>
 		</way>
-
 		<way attribute="priority">
 			<if param="prefer_motorway">
 				<select value="1.2" t="highway" v="motorway"/>
@@ -231,7 +224,6 @@
 			<select t="access" v="private" value="0.05"/>
 			<select t="access" v="destination" value="0.05"/>
 			<select t="access" v="delivery" value="0.05"/>
-
 			<select value="1.1" t="highway" v="motorway"/>
 			<!-- make links slightly smaller so in connections they will not be used -->
 			<select value="1" t="highway" v="motorway_link"/>
@@ -251,16 +243,12 @@
 			<!-- road = no type, no review and may be not accurate -->
 			<select value="0.7" t="highway" v="road"/>
 			<select value="0.7" t="highway" v="residential"/>
-
 			<select value="0.5" t="highway" v="track"/>
-
 			<select value="0.5" t="highway" v="service"/>
 			<select value="0.5" t="highway" v="living_street"/>
 			<select value="1" t="route" v="ferry"/>
-
 			<select value="0.7"/>
 		</way>
-
 		<point attribute="obstacle_time">
 			<select value="25" t="barrier"/>
 			<select value="10" t="traffic_calming"/>
@@ -271,11 +259,9 @@
 			<select value="25" t="barrier" v="toll_booth"/>
 			<select value="25" t="highway" v="ford"/>
 			<select value="25" t="ford"/>
-
 			<select t="railway" v="crossing" value="25" />
 			<select t="railway" v="level_crossing" value="25"/>
 		</point>
-
 		<point attribute="obstacle">
 			<!-- If access for a car is explicitly marked, the barrier is passable,
 			     with a slight penalty.
@@ -287,27 +273,23 @@
 			<select value="1"  t="motorcar" v="yes"/>
 			<select value="1"  t="motorcar" v="permissive"/>
 			<select value="1"  t="motorcar" v="designated"/>
-
 			<select value="-1" t="motor_vehicle" v="no"/>
 			<select value="-1" t="motor_vehicle" v="agricultural"/>
 			<select value="-1" t="motor_vehicle" v="forestry"/>
 			<select value="1"  t="motor_vehicle" v="yes"/>
 			<select value="1"  t="motor_vehicle" v="permissive"/>
 			<select value="1"  t="motor_vehicle" v="designated"/>
-
 			<select value="-1" t="vehicle" v="no"/>
 			<select value="-1" t="vehicle" v="agricultural"/>
 			<select value="-1" t="vehicle" v="forestry"/>
 			<select value="1"  t="vehicle" v="yes"/>
 			<select value="1"  t="vehicle" v="permissive"/>
 			<select value="1"  t="vehicle" v="designated"/>
-
 			<select value="-1" t="access" v="no"/>
 			<select value="-1" t="access" v="agricultural"/>
 			<select value="-1" t="access" v="forestry"/>
 			<select value="1"  t="access" v="yes"/>
 			<select value="1"  t="access" v="permissive"/>
-
 			<select value="5"   t="barrier" v="cattle_grid"/>
 			<select value="300" t="barrier" v="border_control"/>
 			<select value="300" t="barrier" v="bump_gate"/>
@@ -318,13 +300,12 @@
 			<select value="100" t="barrier" v="sally_port"/>
 			<select value="300" t="barrier" v="swing_gate"/>
 			<select value="1" t="barrier" v="toll_booth"/>
+			<select value="300" t="barrier" v="guard_rail" />
 			<!-- Without explicit access marking, barriers other than the listed values above are impassable to a car. -->
 			<select value="-1" t="barrier"/>
-
 			<select value="10" t="traffic_calming"/>
 			<!-- New introduction to not drive through city -->
 			<select value="15" t="highway" v="traffic_signals"/>			
-
 			<select t="highway" v="ford" value="25"/>
 			<select t="ford" value="25"/>
 		</point>
@@ -337,20 +318,23 @@
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_motorway" name="Avoid motorways" description="Avoid motorways" type="boolean"/>
 		<parameter id="avoid_unpaved" name="Avoid unpaved roads" description="Avoid unpaved roads" type="boolean"/>
-
+		<parameter id="avoid_steps" name="Avoid steps" description="Avoid steps" type="boolean"/>
+		<parameter id="avoid_busway" name="Avoid buslanes" description="Avoid buslanes" type="boolean"/>
+		<parameter id="avoid_ice_roads" name="Avoid ice roads" description="Avoid ice roads" type="boolean"/>
+		<parameter id="avoid_sidewalk" name="Avoid sidewalks" description="Avoid sidewalks" type="boolean"/>
+		<parameter id="sidewalk_priority" name="Sidewalk priority" description="Sidewalk priority" type="boolean"/>
+		<parameter id="avoid_private_access" name="Don't cross private border" description="Don't cross private border" type="boolean"/>
 		<way attribute="access">
-			<if param="avoid_motorway">
-				<select value="-1" t="highway" v="motorway"/>
-				<select value="-1" t="highway" v="motorway_link"/>
-				<select value="-1" t="highway" v="trunk"/>
-				<select value="-1" t="highway" v="trunk_link"/>
-			</if>
 			<select value="-1" t="route" v="ferry">
 				<if param="avoid_ferries"/>
 			</select>
 			<!-- <select value="-1" t="access" v="no"/> -->
+			<if param="avoid_ice_roads">
+				<select value="-1" t="ice_road" v="yes"/>
+				<select value="-1" t="surface" v="ice"/>
+				<select value="-1" t="seasonal" v="winter"/>
+			</if>
 			<select value="-1" t="bicycle" v="no"/>
-
 			<select value="1" t="highway" v="motorway"/>
 			<select value="1" t="highway" v="motorway_link"/>
 			<select value="1" t="highway" v="trunk"/>
@@ -364,6 +348,7 @@
 			<select value="1" t="highway" v="road"/>
 			<select value="1" t="highway" v="residential"/>
 			<select value="1" t="highway" v="cycleway"/>
+			<select value="1" t="bicycle" v="designated"/>
 			<select value="1" t="highway" v="unclassified"/>
 			<select value="1" t="highway" v="service"/>
 			<select value="1" t="highway" v="track"/>
@@ -379,9 +364,11 @@
 			<select value="1" t="route" v="ferry"/>
 			<select value="-1"/>
 		</way>
-
+		
 		<way attribute="oneway">
 			<select value="0" t="cycleway" v="opposite_lane"/>
+			<select value="0" t="cycleway:left" v="opposite_lane"/>
+			<select value="0" t="cycleway:right" v="opposite_lane"/>
 			<select value="0" t="cycleway" v="opposite_track"/>
 			<select value="0" t="cycleway" v="opposite_share_busway"/>
 			<select value="0" t="cycleway" v="opposite"/>
@@ -395,7 +382,17 @@
 			<select value="1" t="roundabout" />
 			<select value="1" t="junction" v="roundabout" />
 		</way>
-
+		
+		<way attribute="penalty_transition">
+			<!-- cost in time when you change the route from motorway to primary or from primary
+				 to living_street, but not other way around. Calculated as difference between values -->
+			<if param="avoid_private_access">
+				<select value="1500" t="access" v="private"/>
+				<select value="1500" t="access" v="destination"/>
+			</if>
+			<select value="100"/>
+		</way>
+		
 		<way attribute="speed" type="speed">
 			<select value="12" t="highway" v="motorway"/>
 			<select value="12" t="highway" v="motorway_link"/>
@@ -425,8 +422,26 @@
 			<select value="5"  t="route"   v="ferry"/>
 			<select value="16"/>
 		</way>
-
+		
 		<way attribute="priority">
+			<if param="avoid_motorway">
+				<select value="0.1" t="highway" v="motorway"/>
+				<select value="0.1" t="highway" v="motorway_link"/>
+				<select value="0.1" t="highway" v="trunk"/>
+				<select value="0.1" t="highway" v="trunk_link"/>
+			</if>
+			<if param="avoid_busway"> 
+				<select value="0.2" t="busway" v="lane"/>
+				<select value="0.2" t="busway:right" v="lane"/>
+			</if>
+			<if param="avoid_sidewalk"> 
+				<select value="0.2" t="footway" v="sidewalk"/>
+				<select value="0.2" t="highway" v="pedestrian"/>
+				<select value="0.2" t="highway" v="footway"/>
+			</if>
+			<if param="avoid_steps"> 
+				<select value="0.05" t="highway" v="steps"/>
+			</if>
 			<if param="avoid_unpaved">
 				<select value="0.4" t="tracktype" v="grade2"/>
 				<select value="0.1" t="tracktype" v="grade3"/>
@@ -444,18 +459,29 @@
 				<select value="0.1" t="surface" v="pebblestone"/>
 				<select value="0.1" t="surface" v="sand"/>
 				<select value="0.1" t="surface" v="wood"/>
+				<select value="0.3" t="smoothness" v="bad"/>
+				<select value="0.2" t="smoothness" v="very_bad"/>
+				<select value="0.1" t="smoothness" v="horrible"/>
+				<select value="0.1" t="smoothness" v="very_horrible"/>
+				<select value="0.1" t="smoothness" v="impassable"/>
+			</if>
+			<if param="sidewalk_priority"> 
+				<select value="1.5" t="footway" v="sidewalk"/>
+				<select value="1.5" t="highway" v="service"/>
+				<select value="1.5" t="highway" v="track"/>
+				<select value="1.5" t="highway" v="path"/>
+				<select value="1.6" t="highway" v="living_street"/>
+				<select value="1.3" t="highway" v="pedestrian"/>
+				<select value="1.3" t="highway" v="footway"/>
 			</if>
 			<select value="0.8" t="surface" v="gravel"/>
 			<select value="0.8" t="surface" v="unpaved"/>
 			<select value="0.8" t="surface" v="grass"/>
 			<select value="0.8" t="tracktype" v="grade4"/>
 			<select value="0.8" t="tracktype" v="grade5"/>
-			<select value="0.1" t="access" v="private"/>
 			<select value="0.1" t="barrier" v="debris"/>
-
 			<select value="1.4" t="bicycle" v="designated"/>
 			<select value="1.2" t="bicycle" v="yes"/>
-
 			<select value="1.6" t="cycleway" v="lane"/>
 			<select value="1.6" t="cycleway" v="opposite_lane"/>
 			<select value="1.6" t="cycleway" v="share_busway"/>
@@ -463,29 +489,54 @@
 			<select value="1.6" t="cycleway" v="opposite_track"/>
 			<select value="1.6" t="cycleway" v="shared"/>
 			<select value="1.6" t="cycleway" v="shared_lane"/>
-
 			<select value="1.5" t="highway" v="cycleway"/>
-
 			<select value="0.5" t="highway" v="motorway"/>
 			<select value="0.5" t="highway" v="motorway_link"/>
 			<select value="0.5" t="highway" v="trunk"/>
 			<select value="0.5" t="highway" v="trunk_link"/>
-		</way>
-
+			<select value="1.5" t="bicycle" v="designated"/>
+			<select value="0.7" t="highway" v="primary"/>
+			<select value="0.7" t="highway" v="primary_link"/>
+			<select value="0.8" t="highway" v="secondary"/>
+			<select value="0.8" t="highway" v="secondary_link"/>
+			<select value="0.9" t="highway" v="tertiary"/>
+			<select value="0.9" t="highway" v="tertiary_link"/>
+			<select value="1" t="highway" v="road"/>
+			<select value="1.1" t="highway" v="residential"/>
+			<select value="1.5" t="highway" v="cycleway"/>
+			<select value="1" t="highway" v="unclassified"/>
+			<select value="1" t="highway" v="service"/>
+			<select value="1" t="highway" v="track"/>
+			<select value="1" t="highway" v="path"/>
+			<select value="1.1" t="highway" v="living_street"/>
+			<select value="0.9" t="highway" v="pedestrian"/>
+			<select value="0.9" t="highway" v="footway"/>
+			<select value="1" t="highway" v="byway"/>
+			<select value="0.8" t="highway" v="platform"/>
+			<select value="1" t="highway" v="services"/>
+			<select value="0.8" t="highway" v="bridleway"/>
+			<select value="0.5" t="highway" v="steps"/>
+			<select value="1" t="route" v="ferry"/>
+			<!-- <select value="0.1" t="access" v="private"/> -->
+		</way>	
 		<point attribute="obstacle_time">
 			<select value="10" t="barrier" v="cycle_barrier"/>
 			<select value="5" t="barrier"/>
 			<select value="30" t="highway" v="traffic_signals"/>
+			<select value="30" t="crossing" v="traffic_signals"/>
 			<select value="15" t="highway" v="stop"/>
 			<select value="7" t="highway" v="give_way"/>
-			<select value="25" t="highway" v="ford" />
-			<select value="25" t="ford" />
-
-			<select value="25" t="railway" v="crossing" />
+			<select value="25" t="highway" v="ford"/>
+			<select value="25" t="ford"/>
+			<select value="25" t="railway" v="crossing"/>
 			<select value="25" t="railway" v="level_crossing"/>
 		</point>
-
 		<point attribute="obstacle">
+			<if t="barrier">
+				<select value="1000" t="access" v="private"/>
+				<select value="1000" t="access" v="no"/>
+				<select value="1000" t="access" v="destination"/>
+			</if>
 			<select value="-1" t="bicycle" v="no"/>
 			<select value="10" t="barrier" v="cycle_barrier"/>
 			<select value="5" t="barrier"/>
@@ -504,20 +555,14 @@
 		<!-- NEW ROUTING API -->
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_motorway" name="Avoid motorways" description="Avoid motorways" type="boolean"/>
-
+		<parameter id="avoid_stairways" name="Коляска, инвалидное кресло" description="Коляска, инвалидное кресло" type="boolean"/>
+		<parameter id="avoid_unpaved" name="Avoid unpaved" description="Avoid unpaved" type="boolean"/>
 		<way attribute="access">
-			<if param="avoid_motorway">
-				<select value="-1" t="highway" v="motorway"/>
-				<select value="-1" t="highway" v="motorway_link"/>
-				<select value="-1" t="highway" v="trunk"/>
-				<select value="-1" t="highway" v="trunk_link"/>
-			</if>
 			<select value="-1" t="route" v="ferry">
 				<if param="avoid_ferries"/>
 			</select>
 			<select value="-1" t="foot" v="no"/>
 			<select value="-1" t="pedestrian" v="no"/>
-
 			<select value="1" t="highway" v="motorway"/>
 			<select value="1" t="highway" v="motorway_link"/>
 			<select value="1" t="highway" v="trunk"/>
@@ -548,23 +593,51 @@
 			<select value="1" t="route" v="ferry"/>
 			<select value="-1"/>
 		</way>
-
 		<way attribute="oneway">
 		</way>
-
 		<way attribute="speed" type="speed">
 			<select value="4" t="highway" v="steps"/>
 			<select value="5"/>
 		</way>
-
 		<way attribute="priority">
 			<!-- Additional tags -->
 			<select value="0.05" t="access" v="private"/>
 			<select value="0.05" t="access" v="destination"/>
 			<select value="1.2" t="sidewalk" v="yes"/>
 			<select value="0.9" t="sidewalk" v="no"/>
-
 			<!-- object tags -->
+			<if param="avoid_motorway">
+				<select value="0.05" t="highway" v="motorway"/>
+				<select value="0.05" t="highway" v="motorway_link"/>
+				<select value="0.05" t="highway" v="trunk"/>
+				<select value="0.05" t="highway" v="trunk_link"/>
+			</if>
+			<if param="avoid_stairways">
+				<select value="0.05" t="highway" v="steps" />
+			</if>
+			<if param="avoid_unpaved">
+				<select value="0.4" t="tracktype" v="grade2"/>
+				<select value="0.1" t="tracktype" v="grade3"/>
+				<select value="0.1" t="tracktype" v="grade4"/>
+				<select value="0.1" t="tracktype" v="grade5"/>
+				<select value="0.1" t="surface" v="unpaved"/>
+				<select value="0.4" t="surface" v="compacted"/>
+				<select value="0.1" t="surface" v="dirt"/>
+				<select value="0.1" t="surface" v="earth"/>
+				<select value="0.1" t="surface" v="gravel"/>
+				<select value="0.4" t="surface" v="fine_gravel"/>
+				<select value="0.1" t="surface" v="grass"/>
+				<select value="0.1" t="surface" v="ground"/>
+				<select value="0.1" t="surface" v="mud"/>
+				<select value="0.1" t="surface" v="pebblestone"/>
+				<select value="0.1" t="surface" v="sand"/>
+				<select value="0.1" t="surface" v="wood"/>
+				<select value="0.3" t="smoothness" v="bad"/>
+				<select value="0.2" t="smoothness" v="very_bad"/>
+				<select value="0.1" t="smoothness" v="horrible"/>
+				<select value="0.1" t="smoothness" v="very_horrible"/>
+				<select value="0.1" t="smoothness" v="impassable"/>
+			</if>
 			<select value="0.7" t="highway" v="motorway"/>
 			<select value="0.7" t="highway" v="motorway_link"/>
 			<select value="0.7" t="highway" v="trunk"/>
@@ -578,10 +651,9 @@
 			<select value="1.2" t="highway" v="living_street"/>
 			<select value="1.2" t="highway" v="pedestrian"/>
 			<select value="1.2" t="highway" v="footway"/>
-
+			<select value="1.2" t="foot" v="designated"/>
 			<select value="1"/>
 		</way>
-
 		<point attribute="obstacle_time">
 			<select value="5" t="highway" v="traffic_signals"/>
 			<select value="5" t="highway" v="ford" />
@@ -589,13 +661,22 @@
 			<select value="5" t="railway" v="crossing" />
 			<select value="5" t="railway" v="level_crossing"/>
 		</point>
-
 		<point attribute="obstacle">
+			<if param="avoid_stairways">
+				<select value="15" t="barrier" />
+				<select value="30" t="highway" v="ford" />
+				<select value="30" t="ford" />
+				<select value="30" t="railway" v="crossing" />
+				<select value="30" t="railway" v="level_crossing"/>
+			</if>
+			<if t="barrier">
+				<select value="600" t="access" v="private"/>
+				<select value="600" t="access" v="no"/>
+				<select value="600" t="access" v="destination"/>
+			</if>
 			<select value="-1" t="foot" v="no"/>
 			<select value="-1" t="pedestrian" v="no"/>
 		</point>
-
-
 	</routingProfile>
 
 </osmand_routing_config>
