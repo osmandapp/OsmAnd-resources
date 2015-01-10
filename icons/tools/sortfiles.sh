@@ -242,6 +242,7 @@ mycp aerialway station transport_aerialway_station.png  #scale 0.375
 
 mycp aeroway helipad transport_helicopter_pad.png
 mycp aeroway aerodrome transport_aerodrome.png
+mycp aeroway aerodrome_abandoned functional-icons_aerodrome_abandoned.png
 mycp aeroway airport transport_airport.png
 mycp aeroway gate transport_airport_gate.png
 
