@@ -110,13 +110,6 @@
 	<type tag="hazard_type" value="avalanche" target_tag="hazard" minzoom="10" only_map="true" order="1"/>
 	<type tag="hazard" minzoom="10" only_map="true" order="1"/>
 
-	<type tag="iata" minzoom="10" additional="true"/>
-	<type tag="icao" minzoom="10" additional="true"/>
-	<type tag="faa" minzoom="10" additional="true"/>
-	<type tag="source" value="faa" minzoom="10" additional="true"/>
-	<type tag="source" value="wikipedia" minzoom="10" additional="true"/>
-	<type tag="wikipedia" minzoom="10" additional="true"/>
-
 	<type tag="name" additional="text" order="40"/>
 	<type tag="name:en" additional="text" order="45"/>
 	<!-- Temporary disable locale names, causing issues with osmand <1.7 version, displays randomly names -->
@@ -300,6 +293,7 @@
 		<type tag="route" value="hiking" target_tag="route_hiking" target_value="" nameTags="ref,name" namePrefix="hiking_route_" minzoom="11" relation="true"/>
 		<type tag="route_bus" value="" nameTags="ref" namePrefix="bus_" minzoom="11" relation="true"/>
 		<type tag="route" value="bus" target_tag="route_bus" target_value="" nameTags="ref" namePrefix="bus_" minzoom="11" relation="true"/>
+<!--		<entity_convert pattern="tag_transform" from_tag="route" from_value="bus" if_not_tag1="public_transport" if_not_value1="platform" to_tag1="route_bus"/>-->
 		<type tag="route_share_taxi" value="" nameTags="ref" namePrefix="share_taxi_" minzoom="11" relation="true"/>
 		<type tag="route" value="share_taxi" target_tag="route_share_taxi" target_value="" nameTags="ref" namePrefix="share_taxi_" minzoom="11" relation="true"/>
 		<type tag="route_trolleybus" value="" nameTags="ref" namePrefix="trolleybus_" minzoom="11" relation="true"/>
@@ -755,8 +749,15 @@
 
 	<category name="aeroway" poi_tag="aeroway" poi_category="transportation">
 		<type tag="aeroway" value="aerodrome" minzoom="6" />
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="aeroway" if_value1="aerodrome" to_tag1="ref_aerodrome"/>
-		<type tag="ref_aerodrome" additional="true" minzoom="7" /> <!-- artificial tag. Used because ref is nameTag -->
+		 <!-- artificial tags. Used because only (usually) large aerodromes are using these tags and they are nameTags -->
+		<entity_convert pattern="tag_transform" from_tag="iata" if_tag1="aeroway" if_value1="aerodrome" to_tag1="large_aerodrome" to_value1="yes" to_tag2="iata"/>
+		<entity_convert pattern="tag_transform" from_tag="icao" if_tag1="aeroway" if_value1="aerodrome" to_tag1="large_aerodrome" to_value1="yes" to_tag2="icao"/>
+		<entity_convert pattern="tag_transform" from_tag="faa" if_tag1="aeroway" if_value1="aerodrome" to_tag1="large_aerodrome" to_value1="yes" to_tag2="faa"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="aeroway" if_value1="aerodrome" to_tag1="large_aerodrome" to_value1="yes" to_tag2="ref"/>
+		<entity_convert pattern="tag_transform" from_tag="source" from_value="faa" if_tag1="aeroway" if_value1="aerodrome" to_tag1="large_aerodrome" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" if_tag1="aeroway" if_value1="aerodrome" to_tag1="large_aerodrome" to_value1="yes" to_tag2="wikipedia"/>
+		<entity_convert pattern="tag_transform" from_tag="source" from_value="wikipedia" if_tag1="aeroway" if_value1="aerodrome" to_tag1="large_aerodrome" to_value1="yes"/>
+		<type tag="large_aerodrome" value="yes" additional="true" minzoom="8" />
 		<type tag="aeroway" value="terminal" minzoom="14" poi_prefix="aeroway_" order="60"/>
 		<type tag="aeroway" value="helipad" minzoom="10" />
 		<type tag="aeroway" value="runway" minzoom="11" poi_prefix="aeroway_"/>
