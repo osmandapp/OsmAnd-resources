@@ -3,7 +3,8 @@
 	<!-- currently  name tags are indexed with name and additional in nameTags separated by comma-->
 
 	<!--
-		<category ?name ?poi_category ?poi_prefix ?poi_tag> -->
+		<category ?name ?poi_category ?poi_prefix ?poi_tag>
+		nameTags= can't be used with category -->
 	<!--
 		<type 
 		tag="" value="" - necessary
@@ -1723,6 +1724,7 @@
 		<type tag="seamark:type" value="separation_lane" minzoom="10" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="separation_boundary" minzoom="10" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="separation_roundabout" minzoom="10" nameTags="seamark:name"/>
+		<type tag="seamark:type" value="small_craft_facility" minzoom="10" nameTags="seamark:name"/>
 
 		<type tag="seamark:buoy_lateral:shape" minzoom="11" additional="true"/>
 		<type tag="seamark:buoy_lateral:colour" minzoom="11" additional="true"/>
@@ -1768,12 +1770,15 @@
 		<type tag="seamark:radar_transponder:category" minzoom="11" additional="true"/>
 		<type tag="seamark:radio_station:category" minzoom="11" additional="true"/>
 		<type tag="seamark:landmark:category" minzoom="11" additional="true"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:landmark:category" if_not_tag1="seamark:type" to_tag1="seamark:type" to_value1="landmark" to_tag2="seamark:landmark:category"/>
 		<type tag="seamark:harbour:category" minzoom="11" additional="true"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:harbour:category" if_not_tag1="seamark:type" to_tag1="seamark:type" to_value1="harbour" to_tag2="seamark:harbour:category"/>
 		<type tag="seamark:gate:category" minzoom="11" additional="true"/>
 		<type tag="seamark:anchorage:category" minzoom="11" additional="true"/>
 		<type tag="seamark:bridge:category" minzoom="11" additional="true"/>
 		<type tag="seamark:building:function" minzoom="11" additional="true"/>
 		<type tag="seamark:notice:function" minzoom="13" additional="true"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:notice:function" if_not_tag1="seamark:type" to_tag1="seamark:type" to_value1="notice" to_tag2="seamark:notice:function"/>
 		<type tag="seamark:notice:category" minzoom="13" additional="true"/>
 		<type tag="seamark:notice:addition" minzoom="13" additional="true"/>
 		<type tag="seamark:notice:orientation" minzoom="13" additional="true"/> <!-- this tag is simplified by 45 degrees in preprocessing -->
@@ -1789,6 +1794,18 @@
 		<type tag="seamark:mooring:colour" minzoom="13" additional="true"/>
 		<type tag="seamark:mooring:shape" minzoom="13" additional="true"/>
 		<type tag="seamark:production_area:category" minzoom="10" additional="true"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:production_area:category" if_not_tag1="seamark:type" to_tag1="seamark:type" to_value1="production_area" to_tag2="seamark:production_area:category"/>
+		<type tag="seamark:small_craft_facility:category" minzoom="13" additional="true"/>
+		<type tag="seamark:small_craft_facility:2:category" minzoom="13" additional="true"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:small_craft_facility:category" if_not_tag1="seamark:type" to_tag1="seamark:type" to_value1="small_craft_facility" to_tag2="seamark:small_craft_facility:category"/>
+
+		<!-- Shifting indexes to fix sitiation when :0: :1: :2: exists on the same object. This simplifies rendering style.
+		     convert :2: to :3: if exists (:0: + :1:)
+		     convert :1: to :2: if exists :0:
+		     convert :1: to : if not exists :0: -->
+		<entity_convert pattern="tag_transform" from_tag="seamark:small_craft_facility:2:category" if_tag1="seamark:small_craft_facility:category" if_tag2="seamark:small_craft_facility:1:category" to_tag1="seamark:small_craft_facility:3:category"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:small_craft_facility:1:category" if_tag1="seamark:small_craft_facility:category" to_tag1="seamark:small_craft_facility:2:category"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:small_craft_facility:1:category" if_not_tag1="seamark:small_craft_facility:category" to_tag1="seamark:small_craft_facility:category"/>
 	</category>
 
 	<category name="seamarks" poi_tag="seamark" nameTags="seamark:name,ref" poi_category="seamark" >

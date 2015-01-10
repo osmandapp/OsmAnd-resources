@@ -831,6 +831,7 @@
 			<case minzoom="11" tag="waterway" value="fairway" textOnPath="true"/>
 			<case minzoom="12" tag="seamark:type" value="anchorage" textDy="10" textBold="true"/>
 			<case minzoom="16" tag="seamark:type" value="anchor_berth" textDy="10"/>
+			<case minzoom="17" tag="seamark:type" value="small_craft_facility" textDy="10"/>
 			<case minzoom="17" tag="seamark:type" value="bridge" textDy="14">
 				<case additional="seamark:bridge:category=opening" nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height_closed"/>
 				<case additional="seamark:bridge:category=lifting" nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height_closed"/>
@@ -1439,7 +1440,7 @@
 		</switch>
 
 		<switch minzoom="16" tag="seamark:type" value="notice" iconOrder="101">
-			<case additional="seamark:notice:function=prohibition">
+			<switch>    <!--  prohibition -->
 				<case additional="seamark:notice:category=no_entry" icon="seamark_notice_prohibition_noentry"/>
 				<case additional="seamark:notice:category=closed_area" icon="seamark_notice_prohibition_closedarea"/>
 				<case additional="seamark:notice:category=no_passage_left" icon="seamark_notice_prohibition_nopassageleft"/>
@@ -1472,11 +1473,8 @@
 						<apply_if nightMode="true" icon__1="seamark_notice_prohibition_bg_night"/>
 					</apply>
 				</switch>
-				<case icon="seamark_notice_prohibition_bg">
-					<apply_if nightMode="true" icon="seamark_notice_prohibition_bg_night"/>
-				</case>
-			</case>
-			<case additional="seamark:notice:function=regulation" iconOrder="102">
+			</switch>
+			<switch iconOrder="102"> <!--  regulation -->
 				<switch>
 					<case additional="seamark:notice:category=move_to_left" icon="seamark_notice_regulation_movetoleft"/>
 					<case additional="seamark:notice:category=move_to_right" icon="seamark_notice_regulation_movetoright"/>
@@ -1497,11 +1495,8 @@
 						<apply_if nightMode="true" icon__1="seamark_notice_regulation_bg_night"/>
 					</apply>
 				</switch>
-				<case icon="seamark_notice_regulation_bg">
-					<apply_if nightMode="true" icon="seamark_notice_regulation_bg_night"/>
-				</case>
-			</case>
-			<case additional="seamark:notice:function=restriction" iconOrder="103">
+			</switch>
+			<switch iconOrder="103">  <!-- restriction -->
 				<switch>
 					<case additional="seamark:notice:category=limited_depth" icon="seamark_notice_restriction_limiteddepth"/>
 					<case additional="seamark:notice:category=limited_headroom" icon="seamark_notice_restriction_limitedheadroom"/>
@@ -1512,11 +1507,8 @@
 						<apply_if nightMode="true" icon__1="seamark_notice_regulation_bg_night"/>
 					</apply>
 				</switch>
-				<case icon="seamark_notice_regulation_bg">
-					<apply_if nightMode="true" icon="seamark_notice_regulation_bg_night"/>
-				</case>
-			</case>
-			<case additional="seamark:notice:function=recommendation" iconOrder="104">
+			</switch>
+			<switch iconOrder="104">   <!-- recommendation -->
 				<case additional="seamark:notice:category=channel_two_way" icon="seamark_notice_recommendation_channeltwoway"/>
 				<case additional="seamark:notice:category=channel_one_way" icon="seamark_notice_recommendation_channeloneway"/>
 				<case additional="seamark:notice:category=opening_to_right" icon="seamark_notice_recommendation_openingtoright"/>
@@ -1526,8 +1518,8 @@
 					<case additional="seamark:notice:category=proceed_to_right" icon="seamark_notice_recommendation_proceedtoright"/>
 					<apply icon__1="seamark_notice_information_bg"/>
 				</switch>
-			</case>
-			<case additional="seamark:notice:function=information" iconOrder="105">
+			</switch>
+			<switch iconOrder="105">  <!-- information -->
 				<case additional="seamark:notice:category=entry_permitted" icon="seamark_notice_information_entrypermitted"/>
 				<switch>
 					<case additional="seamark:notice:category=overhead_cable" icon="seamark_notice_information_overheadcable"/>
@@ -1535,7 +1527,6 @@
 					<case additional="seamark:notice:category=ferry_non_independent" icon="seamark_notice_information_ferrynonindependent"/>
 					<case additional="seamark:notice:category=ferry_independent" icon="seamark_notice_information_ferryindependent"/>
 					<case additional="seamark:notice:category=berthing_permitted" icon="seamark_notice_information_berthingpermitted"/>
-<!--					check berthing_lateral_limit  berthing_lateral_limits -->
 					<case additional="seamark:notice:category=berthing_unmarked_pushing" icon="seamark_notice_information_berthingunmarkedpushing"/>
 					<case additional="seamark:notice:category=berthing_marked_pushing_1" icon="seamark_notice_information_berthingmarkedpushing1"/>
 					<case additional="seamark:notice:category=berthing_marked_pushing_2" icon="seamark_notice_information_berthingmarkedpushing2"/>
@@ -1580,11 +1571,22 @@
 					<case additional="seamark:notice:category=launching_beaching_permitted" icon="seamark_notice_information_launchingbeachingpermitted"/>
 					<case additional="seamark:notice:category=radio_information" icon="seamark_notice_information_radioinformation"/>
 					<case additional="seamark:notice:category=waterbikes_permitted" icon="seamark_notice_information_waterbikespermitted"/>
-					<case additional="seamark:notice:category=berth_rafting_limit"/>
 					<apply icon__1="seamark_notice_information_bg"/>
 				</switch>
-				<case icon="seamark_notice_information_bg"/>
+			</switch>
+			<!-- when no category is found use background from seamark:notice:function -->
+			<case additional="seamark:notice:function=prohibition" icon="seamark_notice_prohibition_bg">
+				<apply_if nightMode="true" icon="seamark_notice_prohibition_bg_night"/>
 			</case>
+			<switch>
+				<case additional="seamark:notice:function=regulation"/>
+				<case additional="seamark:notice:function=restriction"/>
+				<apply icon="seamark_notice_regulation_bg">
+					<apply_if nightMode="true" icon="seamark_notice_regulation_bg_night"/>
+				</apply>
+			</switch>
+			<case additional="seamark:notice:function=information" icon="seamark_notice_information_bg"/>
+
 			<apply>
 				<case additional="seamark:notice:addition=left_board" icon_2="seamark_notice_addition_leftboard"/>
 				<case additional="seamark:notice:addition=left_triangle" icon_2="seamark_notice_addition_lefttriangle"/>
@@ -1728,6 +1730,48 @@
 
 		<case minzoom="12" tag="seamark:type" value="berth" icon="seamark_berth"/>
 
+		<switch minzoom="16" tag="seamark:type" value="small_craft_facility" iconVisibleSize="24" intersectionSizeFactor="0.7">
+			<switch>
+				<case additional="seamark:small_craft_facility:category=boat_hoist" icon="seamark_small_craft_facility_boat_hoist"/>
+				<case additional="seamark:small_craft_facility:category=boatyard" icon="seamark_small_craft_facility_boatyard"/>
+				<case additional="seamark:small_craft_facility:category=chandler" icon="seamark_small_craft_facility_chandler"/>
+				<case additional="seamark:small_craft_facility:category=electricity" icon="seamark_small_craft_facility_electricity"/>
+				<switch>
+					<case additional="seamark:small_craft_facility:category=fuel_station"/>
+					<case additional="seamark:small_craft_facility:category=fuel"/>
+					<apply icon="seamark_small_craft_facility_fuel_station"/>
+				</switch>
+				<case additional="seamark:small_craft_facility:category=laundrette" icon="seamark_small_craft_facility_laundrette"/>
+				<case additional="seamark:small_craft_facility:category=nautical_club" icon="seamark_small_craft_facility_nautical_club"/>
+				<case additional="seamark:small_craft_facility:category=public_inn" icon="seamark_small_craft_facility_public_inn"/>
+				<case additional="seamark:small_craft_facility:category=pump-out" icon="seamark_small_craft_facility_pump_out"/>
+				<case additional="seamark:small_craft_facility:category=restaurant" icon="seamark_small_craft_facility_restaurant"/>
+				<case additional="seamark:small_craft_facility:category=showers" icon="seamark_small_craft_facility_showers"/>
+				<case additional="seamark:small_craft_facility:category=slipway" icon="seamark_small_craft_facility_slipway"/>
+				<case additional="seamark:small_craft_facility:category=toilets" icon="seamark_small_craft_facility_toilets"/>
+				<case additional="seamark:small_craft_facility:category=water_tap" icon="seamark_small_craft_facility_water_tap"/>
+				<switch>
+					<case additional="seamark:small_craft_facility:category=fuel_station;pump-out" icon="seamark_small_craft_facility_fuel_station" icon_3="seamark_small_craft_facility_pump_out2"/>
+					<case additional="seamark:small_craft_facility:category=showers;toilets;laundrette" icon="seamark_small_craft_facility_showers" icon_3="seamark_small_craft_facility_toilets2"/>
+					<apply icon_2="seamark_small_craft_facility_shield2"/>
+				</switch>
+				<apply shield="seamark_small_craft_facility_shield"/>
+				<apply>
+					<switch>
+						<case additional="seamark:small_craft_facility:2:category=pump-out" icon_3="seamark_small_craft_facility_pump_out2"/>
+						<case additional="seamark:small_craft_facility:2:category=toilets" icon_3="seamark_small_craft_facility_toilets2"/>
+						<apply icon_2="seamark_small_craft_facility_shield2"/>
+					</switch>
+				</apply>
+			</switch>
+			<case additional="seamark:small_craft_facility:category=visitor_berth" icon="seamark_small_craft_facility_visitor_berth"/>
+			<case additional="seamark:small_craft_facility:category=visitors_mooring" icon="seamark_small_craft_facility_visitors_mooring"/>
+		</switch>
+
+		<case minzoom="12" tag="seamark:type" value="production_area">
+			<case additional="seamark:production_area:category=wind_farm" icon="seamark_landmark_windmotor"/>
+		</case>
+
 		<case minzoom="11" tag="natural" value="peak" iconOrder="65">
 			<case maxzoom="11" icon="natural_peak" shield="peakvolcano_shield" iconVisibleSize="25" intersectionSizeFactor="2"/>
 			<case maxzoom="14" icon="natural_peak" shield="peakvolcano_shield"/>
@@ -1736,10 +1780,6 @@
 				<case minzoom="11" maxzoom="14" icon="natural_peak_night"/>
 				<case minzoom="15" icon="natural_peak_night_big"/>
 			</apply_if>
-		</case>
-
-		<case minzoom="12" tag="seamark:type" value="production_area">
-			<case additional="seamark:production_area:category=wind_farm" icon="seamark_landmark_windmotor"/>
 		</case>
 
 		<case minzoom="10" tag="natural" value="volcano" iconOrder="50">
