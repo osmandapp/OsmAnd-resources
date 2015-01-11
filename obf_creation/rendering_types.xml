@@ -25,7 +25,20 @@
 		Examples:
 		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="tower" if_tag1="tower:type" if_value1="communication" to_tag1="man_made" to_value1="communications_tower"/>
 		<entity_convert pattern="tag_transform" from_tag="attraction" if_not_tag1="tourism" to_tag1="attraction" to_tag2="tourism" to_value2="attraction"/>
+
+		<entity_convert pattern="tag_transform" from_tag="attraction" if_not_tag1="tourism" to_tag1="attraction" to_tag2="tourism" to_value2="attraction" apply_to="node,way,relation"/>
 	 -->
+	<!-- ORDER of entity_convert matters so it is better to group them sequantially -->
+	<entity_convert pattern="tag_transform" from_tag="area" from_value="true" to_tag1="area" to_value1="yes"/> 
+	<entity_convert pattern="tag_transform" from_tag="area:highway" if_not_tag1="area" to_tag1="area:highway" to_tag2="area" 			to_value2="yes" apply_to="node,way"/>
+	<entity_convert pattern="tag_transform" from_tag="landuse" from_value="pedestrian" if_not_tag1="area" to_tag1="landuse" 	        to_tag2="area" to_value2="yes" apply_to="node,way"/>
+	<entity_convert pattern="tag_transform" from_tag="highway" if_tag1="area" if_value1="yes" to_tag1="area:highway"/>
+	
+	<entity_convert pattern="tag_transform" from_tag="osmc:symbol" to_tag1="osmc:symbol"
+			to_tag2="route" to_value2="hiking"/>
+	
+
+
 	<!-- additional  -->
 	<type tag="oneway" value="yes" minzoom="15" additional="true" only_map="true"/>
 	<type tag="oneway" value="true" target_value="yes" minzoom="15" additional="true" only_map="true"/>
