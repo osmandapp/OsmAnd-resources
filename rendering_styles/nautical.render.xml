@@ -57,8 +57,6 @@
 
 	<renderingAttribute name="roadsDensityLimitPerTile">
 	<!-- Number of roads to display per tile -->
-		<case appMode="pedestrian" attrIntValue="28"/>
-		<case appMode="bicycle" attrIntValue="22"/>
 		<case attrIntValue="12"/>
 	</renderingAttribute>
 
@@ -252,18 +250,18 @@
 			<case tag="barrier" value="city_wall"/>
 		</switch>
 		<switch cycle="true" point="false" objectType="3" order="5">
-			<case tag="highway" value="primary_area"/>
-			<case tag="highway" value="secondary_area"/>
-			<case tag="highway" value="tertiary_area"/>
-			<case tag="highway" value="pedestrian_area"/>
-			<case tag="highway" value="service_area"/>
-			<case tag="highway" value="road_area"/>
-			<case tag="highway" value="unclassified_area"/>
-			<case tag="highway" value="residential_area"/>
-			<case tag="highway" value="track_area"/>
-			<case tag="highway" value="footway_area"/>
-			<case tag="highway" value="services_area"/>
+			<case tag="area:highway" value="primary"/>
+			<case tag="area:highway" value="secondary"/>
+			<case tag="area:highway" value="tertiary"/>
+			<case tag="area:highway" value="pedestrian"/>
+			<case tag="area:highway" value="service"/>
+			<case tag="area:highway" value="road"/>
+			<case tag="area:highway" value="unclassified"/>
+			<case tag="area:highway" value="service"/>
+			<case tag="area:highway" value="services"/>
 			<case tag="highway" value="rest_area"/>
+			<case tag="area:highway" value="residential"/>
+			<case tag="area:highway" value="footway"/>
 			<case tag="leisure" value="nature_reserve" order="9"/>
 			<case tag="landuse" value="military" order="8"/>
 			<case tag="military" value="danger_area" order="8"/>
@@ -325,12 +323,7 @@
 			<case tag="waterway" value="" order="18">
 				<apply_if layer="1" order="68"/>
 			</case>
-			<case tag="admin_level" value="" order="62">
-				<case appMode="pedestrian"/>
-				<case appMode="bicycle"/>
-				<case appMode="car"/>
-				<apply order="34"/>
-			</case>
+			<case tag="admin_level" value="" order="62"/>
 			<case tag="administrative" value="" order="62"/>
 			<case tag="boundary" value="" order="62"/>
 			<!-- Highways: 35-57, bridges 70-88 -->
@@ -539,16 +532,14 @@
 		<!-- Highway text -->
 		<switch textHaloRadius="$textHaloRadiusDay" textOnPath="true" nameTag="">
 			<case tag="highway" value="motorway" textHaloColor="$motorwayRoadColor" textOrder="6"/>
-			<case tag="highway" value="motorway_area" textHaloColor="$motorwayRoadColor" textOrder="6"/>
 			<case tag="highway" value="motorway_link" textHaloColor="$motorwayRoadColor" textOrder="7"/>
 			<case tag="highway" value="trunk" textHaloColor="$trunkRoadColor" textOrder="6"/>
-			<case tag="highway" value="trunk_area" textHaloColor="$trunkRoadColor" textOrder="6"/>
 			<case tag="highway" value="trunk_link" textHaloColor="$trunkRoadColor" textOrder="7"/>
 			<case tag="highway" value="primary" textHaloColor="$primaryRoadColor" textOrder="7"/>
-			<case tag="highway" value="primary_area" textHaloColor="$primaryRoadColor" textOrder="7"/>
+			<case tag="area:highway" value="primary" textHaloColor="$primaryRoadColor" textOrder="7"/>
 			<case tag="highway" value="primary_link" textHaloColor="$primaryRoadColor" textOrder="8"/>
 			<case tag="highway" value="secondary" textHaloColor="$secondaryRoadColor" textOrder="8"/>
-			<case tag="highway" value="secondary_area" textHaloColor="$secondaryRoadColor" textOrder="8"/>
+			<case tag="area:highway" value="secondary" textHaloColor="$secondaryRoadColor" textOrder="8"/>
 			<case tag="highway" value="secondary_link" textHaloColor="$secondaryRoadColor" textOrder="9"/>
 			<apply_if minzoom="13">
 				<case maxzoom="13" textSize="12"/>
@@ -563,7 +554,7 @@
 
 		<switch textHaloRadius="$textHaloRadiusDay" textOnPath="true" textHaloColor="$tertiaryRoadColor" nameTag="">
 			<case tag="highway" value="tertiary" textOrder="8"/>
-			<case tag="highway" value="tertiary_area" textOrder="8"/>
+			<case tag="area:highway" value="tertiary" textOrder="8"/>
 			<case tag="highway" value="tertiary_link" textOrder="9"/>
 			<apply_if minzoom="14">
 				<case maxzoom="14" textSize="12"/>
@@ -579,22 +570,22 @@
 			<switch>
 				<switch textHaloRadius="$textHaloRadiusDay" textOrder="9">
 					<case tag="highway" value="road"/>
-					<case tag="highway" value="road_area"/>
+					<case tag="area:highway" value="road"/>
 					<case tag="highway" value="unclassified"/>
-					<case tag="highway" value="unclassified_area"/>
+					<case tag="area:highway" value="unclassified"/>
 					<case tag="highway" value="residential"/>
-					<case tag="highway" value="residential_area"/>
+					<case tag="area:highway" value="residential"/>
 					<apply_if nightMode="true" textBold="true"/>
 				</switch>
 				<switch textHaloRadius="$textHaloRadiusDay">
 					<case tag="highway" value="service" textOrder="10"/>
-					<case tag="highway" value="service_area" textOrder="10"/>
+					<case tag="area:highway" value="service" textOrder="10"/>
 					<case tag="highway" value="living_street" textOrder="10"/>
 					<apply_if nightMode="true"/>
 				</switch>
 				<switch textHaloRadius="$textHaloRadiusDay" textOrder="10">
 					<case tag="highway" value="services" minzoom="16" textDy="4"/>
-					<case tag="highway" value="services_area" minzoom="16" textDy="4"/>
+					<case tag="area:highway" value="services" minzoom="16" textDy="4"/>
 					<case tag="highway" value="rest_area"/>
 					<apply_if nightMode="true"/>
 				</switch>
@@ -604,7 +595,7 @@
 			</switch>
 			<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$pedestrianRoadModeColorDay">
 				<case tag="highway" value="pedestrian" textOrder="11"/>
-				<case tag="highway" value="pedestrian_area" textOrder="11"/>
+				<case tag="area:highway" value="pedestrian" textOrder="11"/>
 				<apply textColor="#000000">
 					<apply_if nightMode="true" textColor="$defaultTextColorNight" textHaloRadius="$textHaloRadiusNight" textHaloColor="$pedestrianRoadModeColorNight"/>
 				</apply>
@@ -635,7 +626,7 @@
 			</apply_if>
 		</switch>
 		<switch minzoom="15" textOrder="15" nameTag="">
-			<case tag="highway" value="footway_area"/>
+			<case tag="area:highway" value="footway"/>
 			<apply>
 				<case maxzoom="15" textSize="13"/>
 				<case maxzoom="16" textSize="14"/>
@@ -1868,11 +1859,12 @@
 		<switch minzoom="13">
 			<case tag="man_made" value="pier" color="$pierColor"/>
 			<apply minzoom="15">
-				<case additional="access=no"/>
-				<case additional="access=private"/>
-				<case appMode="bicycle" additional="bicycle=no"/>
-				<apply color_2="$accessPrivateColor" strokeWidth_2="3" pathEffect_2="1_7" cap_2="ROUND"/>
-				<apply_if nightMode="true" color_2="$accessPrivateColor"/>
+				<switch>
+					<case additional="access=no"/>
+					<case additional="access=private"/>
+					<apply color_2="$accessPrivateColor" strokeWidth_2="3" pathEffect_2="1_7" cap_2="ROUND"/>
+					<apply_if nightMode="true" color_2="$accessPrivateColor"/>
+				</switch>
 			</apply>
 		</switch>
 
@@ -1890,27 +1882,27 @@
 		</case>
 
 		<switch>
-			<case tag="highway" value="primary_area"/>
-			<case tag="highway" value="secondary_area"/>
-			<case tag="highway" value="tertiary_area"/>
-			<case tag="highway" value="road_area"/>
-			<case tag="highway" value="unclassified_area"/>
-			<case tag="highway" value="residential_area"/>
+			<case tag="area:highway" value="primary"/>
+			<case tag="area:highway" value="secondary"/>
+			<case tag="area:highway" value="tertiary"/>
+			<case tag="area:highway" value="road"/>
+			<case tag="area:highway" value="unclassified"/>
+			<case tag="area:highway" value="residential"/>
 			<apply color="$tertiaryRoadColor" color_2="#969696" minzoom="12" strokeWidth_2=":1">
 				<apply_if nightMode="true" color_2="#464646"/>
 			</apply>
 		</switch>
 		<switch>
-			<case tag="highway" value="pedestrian_area"/>
-			<case tag="highway" value="footway_area"/>
+			<case tag="area:highway" value="pedestrian"/>
+			<case tag="area:highway" value="footway"/>
 			<apply_if minzoom="14">
 				<apply color="$pedestrianRoadModeColorDay" color_2="$pedestrianRoadShadowColorDay" strokeWidth_2=":1"/>
 				<apply_if nightMode="true" color="$pedestrianRoadModeColorNight" color_2="$pedestrianRoadShadowColorNight"/>
 			</apply_if>
 		</switch>
 		<switch minzoom="14">
-			<case tag="highway" value="service_area"/>
-			<case tag="highway" value="services_area"/>
+			<case tag="area:highway" value="service"/>
+			<case tag="area:highway" value="services"/>
 			<case tag="highway" value="rest_area"/>
 			<apply color="$serviceRoadColor" color_2="#969696" strokeWidth_2=":1">
 				<apply_if nightMode="true" color="#464234" color_2="$residentialRoadShadowColor"/>
@@ -2059,7 +2051,6 @@
 			<switch minzoom="15">
 				<case additional="access=no"/>
 				<case additional="access=private"/>
-				<case appMode="bicycle" additional="bicycle=no"/>
 				<apply color_2="$accessPrivateColor" strokeWidth_2="3" pathEffect_2="1_7" cap_2="ROUND"/>
 				<apply_if nightMode="true" color_2="$accessPrivateColor"/>
 			</switch>
