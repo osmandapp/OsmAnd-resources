@@ -792,28 +792,34 @@
 			</apply>
 			<apply_if nightMode="true" textColor="#eaf6ff" textHaloColor="#5545a5e2"/>
 		</switch>
-		<switch minzoom="13" textColor="#222222" textWrapWidth="19" textHaloColor="#aaffffff" textHaloRadius="2" textOnPath="true" textBold="true">
-			<case tag="seamark:type" value="recommended_track"/>
-			<case tag="seamark:type" value="navigation_line"/>
-			<apply>
-				<case maxzoom="12" textSize="12"/>
-				<case maxzoom="14" textSize="12"/>
-				<case minzoom="15" textSize="13"/>
-			</apply>
-			<apply_if nightMode="true" textColor="#dddddd" textHaloColor="#99333333"/>
-		</switch>
 
-		<switch minzoom="11" textColor="#0400ab" textWrapWidth="19" textHaloColor="#88ffffff" textHaloRadius="2">
-			<case minzoom="13" tag="seamark:type" value="landmark" textOrder="9" nameTag="seamark:name"/>
-			<case minzoom="13" tag="seamark:type" value="landmark" textOrder="9" nameTag=""/>
-			<case minzoom="13" tag="seamark:type" value="production_area" textOrder="9"/>
+		<switch>
+			<switch minzoom="13" textColor="#222222" textWrapWidth="19" textHaloColor="#aaffffff" textHaloRadius="2" textOnPath="true" textBold="true">
+				<case tag="seamark:type" value="recommended_track"/>
+				<case tag="seamark:type" value="navigation_line"/>
+				<apply_if nightMode="true" textColor="#dddddd" textHaloColor="#99333333"/>
+			</switch>
+
+			<switch minzoom="11" textColor="#0400ab" textWrapWidth="19" textHaloColor="#88ffffff" textHaloRadius="2">
+				<case minzoom="13" tag="seamark:type" value="landmark" textOrder="9" nameTag="seamark:name"/>
+				<case minzoom="13" tag="seamark:type" value="landmark" textOrder="9" nameTag=""/>
+				<case minzoom="13" tag="seamark:type" value="production_area" textOrder="9"/>
+				<apply_if engine_v1="true" textDy="19"/>
+				<apply_if nightMode="true" textColor="#eaf6ff" textHaloColor="#5545a5e2"/>
+			</switch>
+			<switch minzoom="13" textColor="#8c0000" textWrapWidth="19" textHaloColor="#99ffc9c9" textHaloRadius="2" textOrder="11">
+				<case tag="seamark:type" value="restricted_area" nameTag="seamark:name" nameTag2="seamark:restricted_area:information"/>
+				<case tag="seamark:type" value="restricted_area" nameTag="seamark:restricted_area:information" nameTag2="seamark:name"/>
+				<case tag="seamark:type" value="obstruction" nameTag="seamark:name"/>
+				<apply_if nightMode="true" textColor="#ffe4e4" textHaloColor="#55971515"/>
+				<apply_if maxzoom="15" additional="seamark:restricted_area:restriction" disable="true"/>
+				<apply_if engine_v1="true" textDy="11"/>
+			</switch>
 			<apply>
 				<case maxzoom="12" textSize="12"/>
 				<case maxzoom="14" textSize="12"/>
 				<case minzoom="15" textSize="13"/>
 			</apply>
-			<apply_if engine_v1="true" textDy="19"/>
-			<apply_if nightMode="true" textColor="#eaf6ff" textHaloColor="#5545a5e2"/>
 		</switch>
 		<switch>
 			<case minzoom="11" tag="seamark:type" value="separation_zone" textBold="true"/>
@@ -1763,6 +1769,64 @@
 			<case additional="seamark:production_area:category=wind_farm" icon="seamark_landmark_windmotor"/>
 		</case>
 
+		<case minzoom="13" tag="seamark:type" value="restricted_area">
+			<case additional="seamark:restricted_area:category=kite_surfing" icon="seamark_restricted_area_kite_surfing"/>
+			<case additional="seamark:restricted_area:category=swimming" icon="seamark_restricted_area_swimming"/>
+			<switch>
+				<case additional="seamark:restricted_area:restriction=no_wake"/>
+				<case additional="seamark:restricted_area:category=no_wake"/>
+				<case additional="seamark:restricted_area:category=noise_limit"/>
+				<apply icon="seamark_restricted_area_no_wake"/>
+			</switch>
+			<case additional="seamark:restricted_area:category=fish_sanctuary" icon="seamark_restricted_area_fish_sanctuary"/>
+			<case additional="seamark:restricted_area:category=water_skiing" icon="seamark_restricted_area_water_skiing"/>
+			<switch minzoom="15">
+				<switch>
+					<case additional="seamark:restricted_area:restriction=no_anchoring"/>
+					<case additional="seamark:restricted_area:restriction=no_anchoring;no_fishing"/>
+					<apply icon="seamark_notice_prohibition_noanchoring"/>
+				</switch>
+				<switch>
+					<case additional="seamark:restricted_area:restriction=no_entry"/>
+					<case additional="seamark:restricted_area:restriction=restricted_entry"/>
+					<case additional="seamark:restricted_area:restriction=entry_prohibited"/>
+					<apply icon="seamark_notice_prohibition_noentry"/>
+				</switch>
+				<switch>
+					<case additional="seamark:restricted_area:restriction=no_landing"/>
+					<apply icon="seamark_notice_prohibition_nomooring"/>
+				</switch>
+				<switch>
+					<case additional="seamark:restricted_area:restriction=no_berthing"/>
+					<case additional="seamark:restricted_area:restriction=berthing prohibited"/>
+					<apply icon="seamark_notice_prohibition_noberthing"/>
+				</switch>
+				<apply icon__1="seamark_notice_prohibition_bg">
+					<apply_if nightMode="true" icon__1="seamark_notice_prohibition_bg_night"/>
+				</apply>
+			</switch>
+			<switch minzoom="15">
+				<switch>
+					<case additional="seamark:restricted_area:category=speed_max"/>
+					<case additional="seamark:restricted_area:restriction=restricted_speed"/>
+					<apply icon="seamark_notice_regulation_speedlimit"/>
+				</switch>
+				<switch>
+					<case additional="seamark:restricted_area:restriction=restricted_fairway_depth" icon="seamark_notice_restriction_limiteddepth"/>
+				</switch>
+				<apply icon__1="seamark_notice_regulation_bg">
+					<apply_if nightMode="true" icon__1="seamark_notice_regulation_bg_night"/>
+				</apply>
+			</switch>
+			<case minzoom="15" additional="seamark:restricted_area:category=safety" icon="seamark_notice_prohibition_noentry"/>
+		</case>
+		<case minzoom="13" tag="seamark:type" value="obstruction">
+			<case additional="seamark:obstruction:category=foul_ground" icon="seamark_obstruction_foul_ground"/>
+			<case additional="seamark:obstruction:category=fish_haven" icon="seamark_restricted_area_fish_sanctuary"/>
+			<case additional="seamark:obstruction:category=boom" icon="seamark_obstruction_boom"/>
+			<case additional="seamark:obstruction:category=construction" icon="seamark_obstruction_construction"/>
+		</case>
+
 		<case minzoom="11" tag="natural" value="peak" iconOrder="65">
 			<case maxzoom="11" icon="natural_peak" shield="peakvolcano_shield" iconVisibleSize="25" intersectionSizeFactor="2"/>
 			<case maxzoom="14" icon="natural_peak" shield="peakvolcano_shield"/>
@@ -1829,15 +1893,39 @@
 		</switch>
 
 		<switch minzoom="11">
-			<case tag="seamark:type" value="anchorage"/>
-			<case tag="seamark:type" value="anchor_berth"/>
-			<case tag="seamark:type" value="berth"/>
-			<apply color="#099c00ff" color_2="#339c00ff">
+			<switch>
+				<case tag="seamark:type" value="anchorage"/>
+				<case tag="seamark:type" value="anchor_berth"/>
+				<case tag="seamark:type" value="berth"/>
+				<apply color="#099c00ff" color_2="#339c00ff">
+					<apply_if nightMode="true" color_2="#88c05dff"/>
+				</apply>
+			</switch>
+			<case tag="seamark:type" value="obstruction" color="#25cc0000">
+				<apply color_2="#ff0000">
+					<apply_if nightMode="true" color_2="#aaff0000"/>
+				</apply>
+			</case>
+			<case tag="seamark:type" value="restricted_area" color="#10ff0000">
+				<case additional="seamark:restricted_area:category=military" shader="danger" color="#100000">
+					<apply_if nightMode="true" shader="danger_night"/>
+				</case>
+				<switch>
+					<case additional="seamark:restricted_area:category=nature_reserve"/>
+					<case additional="seamark:restricted_area:category=ecological_reserve"/>
+					<apply shader="seamark_nr" color="#100000">
+						<apply_if nightMode="true" shader="seamark_nr_night"/>
+					</apply>
+				</switch>
+				<apply color_2="#99ff0000">
+					<apply_if nightMode="true" color_2="#88ff0000"/>
+				</apply>
+			</case>
+			<apply>
 				<case maxzoom="12" strokeWidth_2="1.5" pathEffect_2="2_2"/>
 				<case maxzoom="14" strokeWidth_2="2" pathEffect_2="2_3"/>
 				<case maxzoom="16" strokeWidth_2="3" pathEffect_2="2_4"/>
 				<case minzoom="17" strokeWidth_2="4" pathEffect_2="2_5"/>
-				<apply_if nightMode="true" color_2="#88c05dff"/>
 			</apply>
 		</switch>
 

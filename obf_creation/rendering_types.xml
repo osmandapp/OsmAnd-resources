@@ -1734,11 +1734,13 @@
 		<type tag="seamark:type" value="mooring" minzoom="15" nameTags="seamark:name,name"/>
 		<type tag="seamark:type" value="navigation_line" minzoom="10" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="notice" minzoom="13" nameTags="seamark:name,seamark:notice:information,seamark:notice:1:information"/>
+		<type tag="seamark:type" value="obstruction" minzoom="10" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="platform" minzoom="11" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="production_area" minzoom="10" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="radar_transponder" minzoom="11" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="radio_station" minzoom="11" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="recommended_track" minzoom="10" nameTags="seamark:name"/>
+		<type tag="seamark:type" value="restricted_area" minzoom="10" nameTags="seamark:name,seamark:restricted_area:information"/>
 		<type tag="seamark:type" value="signal_station_traffic" minzoom="11" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="separation_zone" minzoom="10" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="separation_line" minzoom="10" nameTags="seamark:name"/>
@@ -1819,7 +1821,6 @@
 		<type tag="seamark:small_craft_facility:category" minzoom="13" additional="true"/>
 		<type tag="seamark:small_craft_facility:2:category" minzoom="13" additional="true"/>
 		<entity_convert pattern="tag_transform" from_tag="seamark:small_craft_facility:category" if_not_tag1="seamark:type" to_tag1="seamark:type" to_value1="small_craft_facility" to_tag2="seamark:small_craft_facility:category"/>
-
 		<!-- Shifting indexes to fix sitiation when :0: :1: :2: exists on the same object. This simplifies rendering style.
 		     convert :2: to :3: if exists (:0: + :1:)
 		     convert :1: to :2: if exists :0:
@@ -1827,6 +1828,13 @@
 		<entity_convert pattern="tag_transform" from_tag="seamark:small_craft_facility:2:category" if_tag1="seamark:small_craft_facility:category" if_tag2="seamark:small_craft_facility:1:category" to_tag1="seamark:small_craft_facility:3:category"/>
 		<entity_convert pattern="tag_transform" from_tag="seamark:small_craft_facility:1:category" if_tag1="seamark:small_craft_facility:category" to_tag1="seamark:small_craft_facility:2:category"/>
 		<entity_convert pattern="tag_transform" from_tag="seamark:small_craft_facility:1:category" if_not_tag1="seamark:small_craft_facility:category" to_tag1="seamark:small_craft_facility:category"/>
+		<type tag="seamark:restricted_area:category" minzoom="10" additional="true"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:restricted_area:category" from_value="foul_ground" to_tag1="seamark:type" to_value1="obstruction" to_tag2="seamark:obstruction:category" to_value2="foul_ground"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:restricted_area:category" from_value="military_area" to_tag1="seamark:restricted_area:category" to_value1="military"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:restricted_area:category" from_value="waterskiing" to_tag1="seamark:restricted_area:category" to_value1="water_skiing"/>
+		<type tag="seamark:restricted_area:restriction" minzoom="10" additional="true"/>
+		<type tag="seamark:obstruction:category" minzoom="10" additional="true"/>
+
 	</category>
 
 	<category name="seamarks" poi_tag="seamark" nameTags="seamark:name,ref" poi_category="seamark" >
