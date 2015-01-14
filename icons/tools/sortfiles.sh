@@ -677,6 +677,7 @@ mycp seamark landmark_cemetery seamark_big_landmark_cemetery.png
 mycp seamark landmark_cross seamark_big_landmark_cross.png
 
 mycp seamark harbour_default seamark_harbour_default.png
+mycp seamark harbour_default_small seamark_harbour_default_small.png
 mycp seamark harbour_marina seamark_harbour_marina.png
 mycp seamark harbour_fishing seamark_harbour_fishing.png
 mycp seamark harbour_container seamark_harbour_container.png
