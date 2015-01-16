@@ -1151,16 +1151,17 @@
 			</groupFilter>
 		</group>
 
-		<group>
-			<filter minzoom="13" tag="tourism" value="attraction"/>
-			<filter minzoom="15" tag="amenity" value="place_of_worship"/>
-			<filter minzoom="13" tag="amenity" value="monastery"/>
-			<filter minzoom="13" tag="historic" value="monastery"/>
-			<groupFilter color="#deff88" color_2="#ff8a34" strokeWidth_2="2"/>
-			<groupFilter nightMode="true" color="#685d20" color_2="#d9bd21"/>
-		</group>
+		<switch>
+			<case minzoom="13" tag="tourism" value="attraction"/>
+			<case minzoom="15" tag="amenity" value="place_of_worship"/>
+			<case minzoom="13" tag="amenity" value="monastery"/>
+			<case minzoom="13" tag="historic" value="monastery"/>
+			<apply color="#deff88" color_2="#ff8a34" strokeWidth_2="2">
+				<apply_if nightMode="true" color="#685d20" color_2="#d9bd21"/>
+			</apply>
+		</switch>
 
-		<group noPolygons="false">
+		<switch noPolygons="false">
 			<group hideWoodScrubs="false">
 				<switch minzoom="6">
 					<case tag="natural" value="wood"/>
@@ -1248,8 +1249,15 @@
 				<filter minzoom="11" maxzoom="12" strokeWidth_2="0"/>
 				<filter minzoom="13" strokeWidth_2="1"/>
 			</filter>
+			<switch>
+				<case tag="place" value="island"/>
+				<case tag="natural" value="land"/>
+				<apply color="#ffffff">
+					<apply_if nightMode="true" color="#000000"/>
+				</apply>
+			</switch>
 
-		</group>
+		</switch>
 
 		<!-- Polygonal highways -->
 		<switch>
@@ -1300,24 +1308,17 @@
 			</apply_if>
 		</switch>
 
-		<group>
-			<filter tag="place" value="island"/>
-			<filter tag="natural" value="land"/>
-			<groupFilter color="#ffffff">
-				<filter nightMode="true" color="#000000"/>
-			</groupFilter>
-	 	</group>
 
-		<filter tag="aeroway" value="runway" color="#bbbbcc">
-			<filter nightMode="true" color="#90909e"/>
-		</filter>
+		<case tag="aeroway" value="runway" color="#bbbbcc">
+			<apply_if nightMode="true" color="#90909e"/>
+		</case>
 
-		<filter minzoom="13" tag="aeroway" value="apron" color="#e0c4fb">
-			<filter nightMode="true" color="#4c3a5d"/>
-		</filter>
-		<filter hideBuildings="false" minzoom="14" tag="aeroway" value="terminal" color="#b371b7" strokeWidth_2="0.5" color_2="#964ae5">
-			<filter nightMode="true" color="#835286" strokeWidth_2="0.5" color_2="#c98df7"/>
-		</filter>
+		<case minzoom="13" tag="aeroway" value="apron" color="#e0c4fb">
+			<apply_if nightMode="true" color="#4c3a5d"/>
+		</case>
+		<case hideBuildings="false" minzoom="14" tag="aeroway" value="terminal" color="#b371b7" strokeWidth_2="0.5" color_2="#964ae5">
+			<apply_if nightMode="true" color="#835286" strokeWidth_2="0.5" color_2="#c98df7"/>
+		</case>
 		
 		<case minzoom="14" tag="barrier" value="city_wall">
 			<case maxzoom="14" strokeWidth_2="1:1"/>
@@ -1332,8 +1333,8 @@
 	</polygon>
 
 	<line>
-		<filter minzoom="1" tag="natural" value="coastline_broken" color="#111111" strokeWidth=":1"/>
-		<filter minzoom="5" tag="natural" value="coastline_line" color="#cc999999" strokeWidth=":1"/>
+		<case minzoom="1" tag="natural" value="coastline_broken" color="#111111" strokeWidth=":1"/>
+		<case minzoom="5" tag="natural" value="coastline_line" color="#cc999999" strokeWidth=":1"/>
 
 		<group>
 			<filter contourLines="11" tag="contour" value="elevation" minzoom="11" color="$contourDayColorNon100m" strokeWidth=":0.7"/>
