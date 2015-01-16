@@ -35,8 +35,8 @@
 	<entity_convert pattern="tag_transform" from_tag="highway" if_not_tag1="highway" if_not_value1="rest_area" if_tag1="area" if_value1="yes" to_tag1="area:highway" to_tag2="highway" to_value2="service_area"/> <!-- to_tag2 used for compatibility with 1.9 -->
 
 	<entity_convert pattern="tag_transform" from_tag="osmc:symbol" to_tag1="osmc:symbol" to_tag2="route" to_value2="hiking"/>
-	
-
+	<entity_convert pattern="split" from_tag="natural" from_value="coastline" if_tag1="place" if_value1="island" to_tag1="natural" to_value1="coastline"/>
+	<entity_convert pattern="tag_transform" from_tag="natural" from_value="coastline" if_tag1="place" if_value1="island"/>
 
 	<!-- additional  -->
 	<type tag="oneway" value="yes" minzoom="15" additional="true" only_map="true"/>
@@ -1599,7 +1599,7 @@
 		<type tag="place" value="locality" minzoom="10" />
 		<type tag="place" value="allotments" minzoom="10"/>
 		<type tag="place" value="farm" target_value="hamlet" minzoom="10"/>
-		<type tag="place" value="island" minzoom="10" />
+		<type tag="place" value="island" minzoom="10" order="100"/>
 		<type tag="osmand_region" value="yes" minzoom="5" nameTags="download_name,region_prefix,region_suffix,key_name" poi_category="" />
 		<type tag="capital" value="yes" minzoom="4" poi_prefix="capital_" additional="true"/>
 	</category>
@@ -1950,6 +1950,7 @@
 
 		<routing_type tag="destination" mode="text"/>
 		<routing_type tag="destination:lanes" mode="text"/>
+		<routing_type tag="destination:ref" mode="text"/>
 		<routing_type tag="direction" mode="text"/>
 		<routing_type tag="duration" mode="text"/>
 
