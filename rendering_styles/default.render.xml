@@ -4650,9 +4650,6 @@
 								<apply_if nightMode="true" color_0="#ffffff"/>
 							</apply_if>
 						</case>
-						<apply_if appMode="bicycle" additional="bicycle=no" color="$tertiaryRoadDesaturatedColorDay">
-							<apply_if nightMode="true" color="$tertiaryRoadDesaturatedColorNight" shadowRadius="0"/>
-						</apply_if>
 					</apply>
 				</switch>
 
@@ -4790,7 +4787,6 @@
 							<case additional="tracktype=grade5" pathEffect_5="2_3"/>
 							<apply_if minzoom="12" maxzoom="13" pathEffect_5=""/>
 						</apply>
-						<apply_if appMode="bicycle" additional="bicycle=no" color_5="#14996600"/>
 					</case>
 
 					<case tag="highway" value="path">
@@ -4828,9 +4824,6 @@
 								<filter additional="sac_scale=difficult_alpine_hiking" pathEffect_5="2_6"/>
 							</switch>
 						</apply>
-						<apply_if appMode="bicycle" additional="bicycle=no" color_5="#17000000">
-							<apply_if nightMode="true" color_5="#17787878"/>
-						</apply_if>
 					</case>
 
 					<case tag="highway" value="cycleway">
@@ -4872,7 +4865,6 @@
 						</case>
 						<apply color_5="$footwayColorDay">
 							<apply_if nightMode="true" color_5="$footwayColorNight"/>
-							<apply_if appMode="bicycle" additional="bicycle=no" color_5="#20fa5073"/>
 						</apply>
 					</case>
 
@@ -4882,7 +4874,6 @@
 						<case minzoom="16" strokeWidth_4="2:2" strokeWidth_5="2:2"/>
 						<apply color_5="$footwayColorDay" pathEffect_5="1_2">
 							<apply_if nightMode="true" color_5="$footwayColorNight"/>
-							<apply_if appMode="bicycle" additional="bicycle=no" color_5="#24fa5073"/>
 						</apply>
 						<apply>
 							<case additional="conveying=yes" pathEffect_5="2_1"/>
@@ -4900,7 +4891,6 @@
 							<apply_if showSurfaces="true" strokeWidth_5="1:1"/>
 						</case>
 						<apply color_5="$bridlewayColorDay" pathEffect_5="4_2"/>
-						<apply_if appMode="bicycle" additional="bicycle=no" color_5="#17339900"/>
 					</case>
 
 					<!-- Bridges -->
@@ -4913,7 +4903,6 @@
 					<apply_if layer="-1" minzoom="16" color__1="#000000" strokeWidth__1="$trackBridgeWidth" pathEffect__1="$trackTunnelPathEffect" color_0="#ffffff" strokeWidth_0="$trackBridgeInnerWidth">
 						<apply_if nightMode="true" color__1="#ffffff" pathEffect__1="$trackTunnelPathEffect" color_0="#000000"/>
 					</apply_if>
-					<apply_if appMode="bicycle" additional="bicycle=no" color_0="$null" color__1="$null"/>
 				</switch>
 				<!-- Assign strokeWidth and pathEffect for surface, smoothness and access -->
 				<apply_if moreDetailed="true" minzoom="14" maxzoom="14" strokeWidth_2="3:3" strokeWidth_3="3:3"/>
@@ -4952,11 +4941,77 @@
 			</apply_if>
 			<apply>
 				<switch showAccess="true" minzoom="15" cap_3="ROUND">
+					<switch appMode="car">
+						<switch>
+							<case additional="vehicle=private"/>
+							<case additional="vehicle=no"/>
+							<case additional="motor_vehicle=private"/>
+							<case additional="motor_vehicle=no"/>
+							<case additional="motorcar=private"/>
+							<case additional="motorcar=no"/>
+							<apply color_3="$accessPrivateColor"/>
+						</switch>
+						<switch>
+							<case additional="vehicle=destination"/>
+							<case additional="motor_vehicle=destination"/>
+							<case additional="motorcar=destination"/>
+							<apply color_3="$accessDestinationColor"/>
+						</switch>
+						<switch>
+							<case additional="vehicle=permissive"/>
+							<case additional="motor_vehicle=permissive"/>
+							<case additional="motorcar=permissive"/>
+							<apply color_3="$accessPermissiveColor"/>
+						</switch>
+						<switch>
+							<case additional="vehicle=agricultural"/>
+							<case additional="vehicle=agricultural;forestry"/>
+							<case additional="motor_vehicle=agricultural"/>
+							<case additional="motor_vehicle=agricultural;forestry"/>
+							<case additional="motorcar=agricultural"/>
+							<case additional="motorcar=agricultural;forestry"/>
+							<apply color_3="$accessAgriculturalColor"/>
+						</switch>
+						<switch>
+							<case additional="vehicle=forestry"/>
+							<case additional="motor_vehicle=forestry"/>
+							<case additional="motorcar=forestry"/>
+							<apply color_3="$accessForestryColor"/>
+						</switch>
+						<switch>
+							<case additional="vehicle=customers"/>
+							<case additional="motor_vehicle=customers"/>
+							<case additional="motorcar=customers"/>
+							<apply color_3="$accessCustomersColor"/>
+						</switch>
+						<switch>
+							<case additional="vehicle=delivery"/>
+							<case additional="motor_vehicle=delivery"/>
+							<case additional="motorcar=delivery"/>
+							<apply color_3="$accessDeliveryColor"/>
+						</switch>
+						<case additional="vehicle=yes"/>
+						<case additional="motor_vehicle=yes"/>
+						<case additional="motorcar=yes"/>
+					</switch>
+					<switch appMode="pedestrian">
+						<case additional="foot=private" color_3="$accessPrivateColor"/>
+						<case additional="foot=no" color_3="$accessPrivateColor"/>
+						<case additional="foot=destination" color_3="$accessDestinationColor"/>
+						<case additional="foot=permissive" color_3="$accessPermissiveColor"/>
+						<case additional="foot=customers" color_3="$accessCustomersColor"/>
+						<case additional="foot=yes"/>
+					</switch>
+					<switch appMode="bicycle">
+						<case additional="bicycle=private" color_3="$accessPrivateColor"/>
+						<case additional="bicycle=no" color_3="$accessPrivateColor"/>
+						<case additional="bicycle=destination" color_3="$accessDestinationColor"/>
+						<case additional="bicycle=permissive" color_3="$accessPermissiveColor"/>
+						<case additional="bicycle=yes"/>
+					</switch>
 					<switch>
 						<case additional="access=private" color_3="$accessPrivateColor"/>
 						<case additional="access=no" color_3="$accessPrivateColor"/>
-						<apply_if appMode="bicycle" additional="bicycle=yes" color_3="$null"/>
-						<apply_if appMode="pedestrian" additional="foot=yes" color_3="$null"/>
 					</switch>
 					<case additional="access=destination" color_3="$accessDestinationColor"/>
 					<case additional="access=permissive" color_3="$accessPermissiveColor"/>
