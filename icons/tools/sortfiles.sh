@@ -41,6 +41,7 @@ mycp natural glacier poi_peak2.png                       # Keep shaders with bac
 mycp stroke darkgreen functional-icons_darkgreen_stroke.png
 mycp stroke black functional-icons_black_stroke.png
 mycp stroke gray functional-icons_gray_stroke.png
+mycp stroke gray_triangle functional-icons_gray_stroke_triangle.png
 mycp stroke white functional-icons_white_stroke.png
 
 ## Natural
@@ -120,11 +121,14 @@ mycp amenity nursing_home health_nursing_home.png
 
 ## Traffic + Transportation
 mygroup transportation transport_taxi_rank.png
-mycp highway traffic_signals transport_traffic_lights.png
+mycp highway traffic_signals functional-icons_traffic_lights.png
 mycp highway mini_roundabout transport_miniroundabout_anticlockwise.png
 mycp highway noexit functional-icons_noexit.png
 mycp highway ford transport_ford.png
 mycp highway crossing transport_zebra_crossing2.png
+mycp highway crossing_unmarked functional-icons_highway_crossing_unmarked.png
+mycp highway crossing_uncontrolled functional-icons_highway_crossing_uncontrolled.png
+mycp highway crossing_traffic_signals functional-icons_highway_crossing_traffic_signals.png
 mycp highway steps transport_highway_steps.png
 mycp traffic_calming bump transport_speedbump.png
 mycp highway speed_camera transport_speedcamera.png
