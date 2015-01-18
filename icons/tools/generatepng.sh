@@ -98,6 +98,7 @@ generatePngs() {
       generateElements 'shaders'
       generateElements 'osmc'
       generatePngs 'seamark' '#777777' '#777777' '' x2 '' nomx
+      generatePngs 'seamark_small' '#777777' '#777777' '' '' '' nomx
       generatePngs 'seamark_big' '#777777' '#777777' '' '' x4 nomx
       generateElements 'seamark_shields'
       generateElements 'seamark_shields_x4'
@@ -122,7 +123,7 @@ generatePngs() {
       generatePngs 'place_of_worship' '#333333' '#777777'
       generatePngs 'money' '#777777' '#777777'
       generatePngs 'education' '#777777' '#39AC39'
-      generatePngs 'poi' '#777777' '#777777' 
+      generatePngs 'poi' '#3f3f3f' '#777777' 
       generatePngs 'power' '#777777' '#8e7409'
 
       generatePngs 'food' '#777777' '#734A08'
@@ -132,3 +133,5 @@ generatePngs() {
       generatePngs 'landuse' '#777777' '#999999'
 
       generatePngs 'icons8' '#777777' '#777777' neg
+
+      generatePngs 'overlays' '#777777' '#777777' '' x2 '' nomx

@@ -680,12 +680,21 @@
 				<case minzoom="13" tag="landuse" value="residential"/>
 				<case minzoom="13" tag="landuse" value="quarry"/>
 			</switch>
+			<case minzoom="17" textSize="12" tag="man_made" value="windmill"/>
+			<case minzoom="17" tag="man_made" value="tower"/>
+			<case minzoom="17" tag="man_made" value="mast"/>
+			<case minzoom="17" tag="man_made" value="monitoring_station"/>
+			<case minzoom="16" tag="man_made" value="petroleum_well"/>
+			<case minzoom="18" tag="man_made" value="crane"/>
+			<case minzoom="15" tag="man_made" value="observatory"/>
+			<case minzoom="17" tag="man_made" value="water_tower"/>
 <!--			<switch>
 				<case minzoom="15" tag="power" value="plant"/>
 				<case minzoom="16" tag="power" value="substation"/>
 				<case minzoom="15" tag="power" value="generator"/>
 				<apply_if engine_v1="true" textDy="13"/>
 			</switch>-->
+			<apply_if engine_v1="true" textDy="5"/>
 			<apply_if nightMode="true" textColor="$defaultTextColorNight" textHaloColor="#77464234"/>
 		</switch>
 
@@ -1441,11 +1450,11 @@
 		</switch>
 
 		<switch>
-			<case minzoom="16" tag="seamark:type" value="mooring" iconOrder="106">
-				<case additional="seamark:mooring:category=dolphin" icon="seamark_mooring_dolphin"/> <!-- add bw colour -->
+			<case minzoom="16" tag="seamark:type" value="mooring" iconOrder="106" iconVisibleSize="28" intersectionSizeFactor="0.8">
+				<case additional="seamark:mooring:category=dolphin" icon="seamark_mooring_dolphin" iconVisibleSize="13" intersectionSizeFactor="0.4"/> <!-- add bw colour -->
 				<case additional="seamark:mooring:category=deviation_dolphin" icon="seamark_mooring_deviationdolphin"/>
-				<case additional="seamark:mooring:category=bollard" icon="seamark_mooring_bollard"/>
-				<case additional="seamark:mooring:category=pile" icon="seamark_mooring_pile"/>
+				<case additional="seamark:mooring:category=bollard" icon="seamark_mooring_bollard" iconVisibleSize="13" intersectionSizeFactor="0.4"/>
+				<case additional="seamark:mooring:category=pile" icon="seamark_mooring_pile" iconVisibleSize="13" intersectionSizeFactor="0.4"/>
 				<case additional="seamark:mooring:category=post" icon="seamark_mooring_pile"/>
 				<case additional="seamark:mooring:category=wall" icon="seamark_mooring_wall"/>
 				<case additional="seamark:mooring:category=pylon" icon="seamark_mooring_pylon"/>
@@ -1474,7 +1483,7 @@
 			</case>
 		</switch>
 
-		<switch minzoom="16" tag="seamark:type" value="notice" iconOrder="101">
+		<switch minzoom="16" tag="seamark:type" value="notice" iconOrder="101" iconVisibleSize="26" intersectionSizeFactor="0.7">
 			<switch>    <!--  prohibition -->
 				<case additional="seamark:notice:category=no_entry" icon="seamark_notice_prohibition_noentry"/>
 				<case additional="seamark:notice:category=closed_area" icon="seamark_notice_prohibition_closedarea"/>
@@ -1768,7 +1777,7 @@
 
 		<case minzoom="12" tag="seamark:type" value="berth" icon="seamark_berth"/>
 
-		<switch minzoom="16" tag="seamark:type" value="small_craft_facility" iconVisibleSize="24" intersectionSizeFactor="0.7">
+		<switch minzoom="16" tag="seamark:type" value="small_craft_facility" iconVisibleSize="24" intersectionSizeFactor="0.5">
 			<switch>
 				<case additional="seamark:small_craft_facility:category=boat_hoist" icon="seamark_small_craft_facility_boat_hoist"/>
 				<case additional="seamark:small_craft_facility:category=boatyard" icon="seamark_small_craft_facility_boatyard"/>
@@ -1920,6 +1929,30 @@
 			</case>
 			<apply_if nightMode="true" shield=""/>
 		</case>
+		<case minzoom="17" tag="man_made" value="chimney" icon="man_made_chimney" shield="chimney_shield" iconOrder="100"/>
+		<case minzoom="16" tag="man_made" value="windmill" icon="man_made_windmill" shield="windmill_shield"/>
+		<case minzoom="15" tag="man_made" value="observatory" icon="man_made_observatory" shield="observatory_shield">
+			<apply_if additional="observatory:type=astronomical" icon="man_made_observatory_astronomical" shield="observatory_astronomical_shield"/>
+		</case>
+
+		<case minzoom="16" tag="man_made" value="monitoring_station" icon="man_made_monitoring_station_radar" shield="monitoring_station_radar_shield"/>
+		<case minzoom="16" tag="man_made" value="mast" icon="man_made_mast" shield="mast_shield"/>
+		<switch iconOrder="71">
+			<case minzoom="16" tag="man_made" value="water_tower" icon="man_made_water_tower" shield="water_tower_shield"/>
+			<switch minzoom="15" tag="man_made" value="tower">
+				<case additional="tower:type=communication" icon="man_made_tower_type_communication" shield="tower_communications_shield"/>
+				<case icon="man_made_tower" shield="tower_shield"/>
+			</switch>
+		</switch>
+		<case minzoom="16" tag="man_made" value="petroleum_well" icon="man_made_petroleum_well" shield="petroleum_well_shield"/>
+		<case minzoom="17" tag="man_made" value="crane" icon="man_made_crane" shield="crane_shield"/>
+		<case minzoom="14" tag="power" value="tower">
+			<case maxzoom="15" icon="power_tower_small" iconVisibleSize="3"/>
+			<case maxzoom="17" icon="power_tower" iconVisibleSize="7"/>
+			<case minzoom="18" icon="power_tower_big" shield="power_tower_big_shield"/>
+		</case>
+		<case minzoom="15" tag="power" value="generator" additional="generator:source=wind" icon="seamark_landmark_windmotor" iconVisibleSize="25" intersectionSizeFactor="0.4"/>
+
 
 		<!-- Location dots -->
 
@@ -2553,6 +2586,16 @@
 			</apply>
 		</switch>
 
+		<switch minzoom="13">
+			<case tag="man_made" value="groyne"/>
+			<case tag="man_made" value="breakwater"/>
+			<apply color="#aaaaaa">
+				<case maxzoom="13" strokeWidth="0.5:0.5"/>
+				<case maxzoom="15" strokeWidth="1:1"/>
+				<case minzoom="16" strokeWidth="2:2"/>
+			</apply>
+		</switch>
+
 		<switch>
 			<case tag="natural" value="strait"/>
 			<case tag="natural" value="fjord"/>
@@ -2565,6 +2608,15 @@
 				<apply additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
 			</apply_if>
 		</case>
+
+		<switch color="#999999">
+			<case minzoom="14" tag="power" value="line">
+				<case maxzoom="14" strokeWidth="0.5:0.55"/>
+				<case minzoom="15" strokeWidth="0.8:0.8"/>
+			</case>
+			<case minzoom="15" tag="power" value="minor_line" strokeWidth="0.25:0.25"/>
+			<apply_if nightMode="true" color="#777777"/>
+		</switch>
 
 		<!-- Admin levels (boundaries) -->
 		<switch minzoom="2">
