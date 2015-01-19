@@ -148,7 +148,7 @@ if __name__=='__main__':
         [r'rendering_styles/style-icons/drawable-xhdpi/h_(.*)\.png', r'[ddf=2.0]map/shaders/\1.png'],
         [r'rendering_styles/style-icons/drawable-xhdpi/mm_(.*)\.png', r'[ddf=2.0]map/icons/\1.png'],
 
-        # Map icons (Android xhdpi == 3 ddf):
+        # Map icons (Android xxhdpi == 3.0 ddf):
         [r'rendering_styles/style-icons/drawable-xxhdpi/h_((.*shield.*)|(.*osmc.*))\.png', r'[ddf=3.0]map/shields/\1.png'],
         [r'rendering_styles/style-icons/drawable-xxhdpi/h_(.*)\.png', r'[ddf=3.0]map/shaders/\1.png'],
         [r'rendering_styles/style-icons/drawable-xxhdpi/mm_(.*)\.png', r'[ddf=3.0]map/icons/\1.png'],
