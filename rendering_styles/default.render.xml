@@ -74,6 +74,8 @@
 		type="string" possibleValues="--,16,15,14,13,12,11" category="details"/>
 	<renderingProperty attr="coloredBuildings" name="Colored buildings" description="Buildings colored by type"
 		type="boolean" possibleValues="" category="details"/>
+	<renderingProperty attr="streetLighting" name="Street lighting" description="Show street lighting"
+		type="boolean" possibleValues="" category="details"/>
 
 	<renderingProperty attr="noAdminboundaries" name="Hide boundaries" description="Suppress display of admin levels 5-9"
 		type="boolean" possibleValues="" category="hide"/>
@@ -248,6 +250,7 @@
 		</case>
 		<case roadStyle="americanRoadAtlas" attrColorValue="#3977ba"/>
 		<case attrColorValue="#969696">
+			<case streetLighting="true" attrColorValue="#555555"/>
 			<apply_if nightMode="true" attrColorValue="$null"/>
 		</case>
 	</renderingAttribute>
@@ -311,6 +314,7 @@
 			<apply_if nightMode="true" attrColorValue="#a72202"/>
 		</case>
 		<case attrColorValue="#969696">
+			<case streetLighting="true" attrColorValue="#555555"/>
 			<apply_if nightMode="true" attrColorValue="$null"/>
 		</case>
 	</renderingAttribute>
@@ -370,7 +374,9 @@
 			<!-- NOTE: Touring view's <renderingConstant name="shadowColorLowZoom" value="#262626"/> still ignored here for now -->
 		</case>
 		<case roadStyle="americanRoadAtlas" attrColorValue="#693431"/>
-		<case attrColorValue="#77464646"/>
+		<case attrColorValue="#77464646">
+			<case streetLighting="true" attrColorValue="#555555"/>
+		</case>
 	</renderingAttribute>
 <!-- Secondary  -->
 	<renderingAttribute name="secondaryRoadColor">
@@ -423,12 +429,16 @@
 			<apply_if nightMode="true" attrColorValue="#464646"/>
 			<!-- NOTE: Touring view's <renderingConstant name="shadowColorLowZoom" value="#262626"/> still ignored here for now -->
 		</case>
-		<case attrColorValue="#77464646"/>
+		<case attrColorValue="#77464646">
+			<case streetLighting="true" attrColorValue="#444444">
+				<apply_if nightMode="true" attrColorValue="#ffffff"/>
+			</case>
+		</case>
 	</renderingAttribute>
 <!-- Tertiary  -->
 	<renderingAttribute name="tertiaryRoadColor">
 		<case roadStyle="orange" attrColorValue="#fffcb8">
-			<apply_if nightMode="true" attrColorValue="#c5ac90"/>
+			<apply_if nightMode="true" attrColorValue="#d7bc6e"/>
 		</case>
 		<case roadStyle="germanRoadAtlas" attrColorValue="#ffff80">
 			<apply_if nightMode="true" attrColorValue="#ffff80">
@@ -465,7 +475,11 @@
 			<apply_if nightMode="true" attrColorValue="#464646"/>
 			<!-- NOTE: Touring view's <renderingConstant name="shadowColorLowZoom" value="#262626"/> ignored here for now -->
 		</case>
-		<case attrColorValue="#969696"/>
+		<case attrColorValue="#969696">
+			<case streetLighting="true" attrColorValue="#444444">
+				<apply_if nightMode="true" attrColorValue="#ffffff"/>
+			</case>
+		</case>
 	</renderingAttribute>
 
 	<renderingConstant name="residentialRoadColor" value="#ffffff"/>
@@ -747,6 +761,15 @@
 
 	<renderingConstant name="railwayRailColorDay" value="#999999"/>
 	<renderingConstant name="railwayRailColorNight" value="#999999"/>
+	<renderingAttribute name="litYesColor">
+		<case nightMode="true" attrColorValue="#99aeae00"/>
+		<case attrColorValue="#99ffea00"/>
+	</renderingAttribute>
+	<renderingAttribute name="litNoColor">
+		<case nightMode="true" attrColorValue="#66d91500"/>
+		<case attrColorValue="#aad91500"/>
+	</renderingAttribute>
+
 
 	<!-- Text -->
 	<renderingConstant name="black" value="#000000"/>
@@ -1073,23 +1096,24 @@
 			<case tag="historic" value="ship"/>
 			<case tag="barrier" value="city_wall"/>
 			<case tag="barrier" value="wall"/>
-			<case tag="lit" value="" order="1"/>
 		</switch>
 		<switch cycle="true" point="false" objectType="3" order="5">
-			<case tag="area:highway" value="primary"/>
-			<case tag="area:highway" value="secondary"/>
-			<case tag="area:highway" value="tertiary"/>
-			<case tag="area:highway" value="pedestrian"/>
-			<case tag="area:highway" value="service"/>
-			<case tag="area:highway" value="road"/>
-			<case tag="area:highway" value="unclassified"/>
-			<case tag="area:highway" value="service"/>
-			<case tag="area:highway" value="services"/>
-			<case tag="highway" value="rest_area"/>
-			<case tag="area:highway" value="residential"/>
-			<case tag="area:highway" value="footway"/>
-			<case tag="area:highway" value="track"/>
-
+			<switch>
+				<case tag="area:highway" value="primary"/>
+				<case tag="area:highway" value="secondary"/>
+				<case tag="area:highway" value="tertiary"/>
+				<case tag="area:highway" value="pedestrian"/>
+				<case tag="area:highway" value="service"/>
+				<case tag="area:highway" value="road"/>
+				<case tag="area:highway" value="unclassified"/>
+				<case tag="area:highway" value="service"/>
+				<case tag="area:highway" value="services"/>
+				<case tag="highway" value="rest_area"/>
+				<case tag="area:highway" value="residential"/>
+				<case tag="area:highway" value="footway"/>
+				<case tag="area:highway" value="track"/>
+				<apply order="7"/>
+			</switch>
 			<case tag="landuse" value="military" order="8"/>
 			<case tag="military" value="danger_area" order="8"/>
 			<case tag="amenity" value="parking"/>
@@ -1383,10 +1407,7 @@
 			</case>
 			<case tag="man_made" value="embankment" order="10"/>
 			<case tag="hazard" value="" order="1"/>
-			<case tag="lit" value="">
-				<case maxzoom="13" order="100"/>
-				<case minzoom="14" order="1"/>
-			</case>
+			<case tag="lit" value="" order="1"/>
 			<case tag="osmand" value="file_trackline"/>
 			<case tag="osmand" value="file_routeline"/>
 		</switch>
@@ -2427,7 +2448,9 @@
 				<switch minzoom="19">
 					<case tag="entrance" value="" nameTag="ref"/>
 					<case tag="entrance" value="" nameTag2="ref"/>
-					<apply textSize="12" textColor="#555555" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="15" textDy="3"/>
+					<apply textSize="12" textColor="#555555" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="15" textDy="3">
+						<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77444444"/>
+					</apply>
 				</switch>
 				<apply textHaloColor="#ddffffff">
 					<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77444444"/>
@@ -4399,22 +4422,21 @@
 			</case>
 		    <!-- groupFilter noPolygons="true" color="#00ffffff" color_2="#00ffffff" shader=""/ -->
 		</switch>
-<!--		<switch minzoom="10" cap_2="ROUND">
-			<case tag="lit" value="yes" color="#88ffea00" color_2="#88ffea00">
-				<apply_if nightMode="true" color="#55ffea00" color_2="#55ffea00"/>
-			</case>
+		<switch streetLighting="true" minzoom="10" cap_2="ROUND">
+			<case tag="lit" value="yes" color="$null" color_2="$litYesColor"/>
+			<case tag="lit" value="no" color="$null" color_2="$litNoColor"/>
 			<apply>
-				<case maxzoom="11" strokeWidth_2="3:3"/>
+				<case maxzoom="11" strokeWidth_2="4:4"/>
 				<case maxzoom="12" strokeWidth_2="5:5"/>
-				<case maxzoom="13" strokeWidth_2="8:8"/>
+				<case maxzoom="13" strokeWidth_2="7:7"/>
 				<case maxzoom="14" strokeWidth_2="10:10"/>
-				<case maxzoom="15" strokeWidth_2="14:14"/>
-				<case maxzoom="16" strokeWidth_2="18:18"/>
+				<case maxzoom="15" strokeWidth_2="13:13"/>
+				<case maxzoom="16" strokeWidth_2="16:16"/>
 				<case maxzoom="17" strokeWidth_2="25:25"/>
 				<case maxzoom="18" strokeWidth_2="34:34"/>
 				<case minzoom="19" strokeWidth_2="40:40"/>
 			</apply>
-		</switch>-->
+		</switch>
 	</polygon>
 
 
@@ -4651,7 +4673,6 @@
 								<apply_if minzoom="12" maxzoom="12" strokeWidth="1.4:1.4"/>
 								<apply_if minzoom="13" maxzoom="13" strokeWidth="1.6:1.6"/>
 							</apply>
-							<apply_if nightMode="true" shadowRadius="0"/>
 						</case>
 						<case minzoom="14" color_0="#000000">
 							<case maxzoom="14" strokeWidth="3:3"/>
@@ -4700,7 +4721,9 @@
 							<case minzoom="17" maxzoom="17" strokeWidth="6:6"/>
 							<case minzoom="18" maxzoom="18" strokeWidth="9:9"/>
 							<case minzoom="19" strokeWidth="10.5:10.5"/>
-							<apply shadowColor="$residentialRoadShadowColor"/>
+							<apply shadowColor="$residentialRoadShadowColor">
+								<apply_if streetLighting="true" nightMode="true" shadowColor="#ffffff"/>
+							</apply>
 						</switch>
 						<apply_if layer="-1" pathEffect="4_4" cap="BUTT"/>
 						<!-- Bridges -->
@@ -4761,6 +4784,7 @@
 						<case minzoom="17" maxzoom="17" strokeWidth="4:4"/>
 						<case minzoom="18" maxzoom="18" strokeWidth="5.5:5.5"/>
 						<case minzoom="19" strokeWidth="7:7"/>
+						<apply_if streetLighting="true" nightMode="true" shadowColor="#77ffffff"/>
 						<apply_if layer="-1" pathEffect="4_4" cap="BUTT"/>
 						<apply_if layer="1" shadowRadius="0" cap="SQUARE" cap_0="BUTT">
 							<case moreDetailed="true" minzoom="14" maxzoom="14" strokeWidth_0="1.5:2"/>
@@ -5771,22 +5795,27 @@
 			<apply color="#99ffff00" shadowColor="#ff0000"/>
 		</switch>
 
-<!--		<switch minzoom="10" cap="ROUND">
-			<case tag="lit" value="yes" color="#bbffea00">
-				<apply_if nightMode="true" color="#55ffea00"/>
+		<switch streetLighting="true" minzoom="10" cap="ROUND">
+			<case tag="lit" value="yes" color="$litYesColor"/>
+			<case tag="lit" value="no" color="$litNoColor"/>
+			<case tag="lit" value="interval" color="$litYesColor" cap="BUTT">
+				<case maxzoom="12" pathEffect="8_6"/>
+				<case maxzoom="14" pathEffect="12_8"/>
+				<case maxzoom="16" pathEffect="19_12"/>
+				<case minzoom="17" pathEffect="29_16"/>
 			</case>
 			<apply>
-				<case maxzoom="11" strokeWidth="3:3"/>
+				<case maxzoom="11" strokeWidth="4:4"/>
 				<case maxzoom="12" strokeWidth="5:5"/>
-				<case maxzoom="13" strokeWidth="8:8"/>
+				<case maxzoom="13" strokeWidth="7:7"/>
 				<case maxzoom="14" strokeWidth="10:10"/>
-				<case maxzoom="15" strokeWidth="14:14"/>
-				<case maxzoom="16" strokeWidth="18:18"/>
+				<case maxzoom="15" strokeWidth="13:13"/>
+				<case maxzoom="16" strokeWidth="16:16"/>
 				<case maxzoom="17" strokeWidth="25:25"/>
 				<case maxzoom="18" strokeWidth="34:34"/>
 				<case minzoom="19" strokeWidth="40:40"/>
 			</apply>
-		</switch>-->
+		</switch>
 
 		<!-- Admin levels (boundaries) -->
 		<switch minzoom="2">
