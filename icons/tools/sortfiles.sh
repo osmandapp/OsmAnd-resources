@@ -1019,6 +1019,9 @@ mycp seamark obstruction_foul_ground seamark_small_obstruction_foul_ground.png
 mycp seamark obstruction_boom seamark_small_obstruction_boom.png
 mycp seamark obstruction_construction seamark_small_obstruction_construction.png
 
+mycp seamark distance_mark seamark_small_distance_mark.png
+mycp seamark distance_mark_installed seamark_small_distance_mark_installed.png
+
 
 ## Shops
 mygroup car_aid shopping_car.png
