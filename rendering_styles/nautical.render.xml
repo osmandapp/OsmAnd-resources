@@ -308,6 +308,7 @@
 				<case tag="building" value=""/>
 			</switch>
 			<case tag="waterway" value="dam"/>
+			<case tag="waterway" value="weir"/>
 			<case tag="waterway" value="rapids"/>
 			<switch order="5">
 				<case tag="natural" value="water"/>
@@ -792,8 +793,6 @@
 			<case minzoom="15" tag="waterway" value="drain" textOnPath="true" textOrder="15"/>
 <!--			<case minzoom="15" tag="waterway" value="lock_gate" textDy="7" textWrapWidth="30" textOrder="15"/>-->
 			<!-- not a conventional tag: case minzoom="15" textDy="7" textWrapWidth="30" tag="waterway" value="lock" textOrder="15"/ -->
-			<case minzoom="15" tag="waterway" value="dam" textWrapWidth="20" textOnPath="true" textOrder="15"/>
-			<case minzoom="16" tag="waterway" value="weir" textWrapWidth="20" textOnPath="true" textOrder="15"/>
 			<case minzoom="16" tag="natural" value="spring" textDy="7" textWrapWidth="20" textOrder="15"/>
 			<case minzoom="16" tag="natural" value="hot_spring" textDy="7" textWrapWidth="20" textOrder="15"/>
 			<case minzoom="16" tag="natural" value="geyser" textDy="7" textWrapWidth="20" textOrder="15"/>
@@ -871,6 +870,10 @@
 			<switch minzoom="13" textColor="#222222" textWrapWidth="19" textHaloColor="#aaffffff" textHaloRadius="2" textOnPath="true" textBold="true">
 				<case tag="seamark:type" value="recommended_track"/>
 				<case tag="seamark:type" value="navigation_line"/>
+				<case minzoom="15" tag="seamark:type" value="dam" nameTag="seamark:name"/>
+				<case minzoom="15" tag="seamark:type" value="dam" nameTag=""/>
+				<case minzoom="15" tag="waterway" value="dam"/>
+				<case minzoom="16" tag="waterway" value="weir"/>
 				<apply_if nightMode="true" textColor="#dddddd" textHaloColor="#99333333"/>
 			</switch>
 			<switch minzoom="15" textColor="#444444" textWrapWidth="19" textHaloColor="#33ffffff" textHaloRadius="2" textOnPath="true">
@@ -2203,6 +2206,22 @@
 			<apply_if additional="intermittent=yes" strokeWidth_2="1:" color_2="#7479ec" pathEffect_2="7_5"/>
 		</switch>
 		<switch>
+			<switch minzoom="12">
+				<case tag="waterway" value="dam"/>
+				<case tag="seamark:type" value="dam"/>
+				<apply>
+					<case maxzoom="15" strokeWidth_2="1:1"/>
+					<case maxzoom="17" strokeWidth_2="2:2"/>
+					<case minzoom="18" strokeWidth_2="4:4"/>
+				</apply>
+			</switch>
+			<case minzoom="15" tag="waterway" value="weir" strokeWidth_2="1:1"/>
+			<apply color="#33555555" color_2="#555555">
+				<apply_if nightMode="true" color="#33eeeeee" color_2="#eeeeee"/>
+			</apply>
+		</switch>
+
+		<switch>
 			<case tag="place" value="island"/>
 			<case tag="natural" value="land"/>
 			<apply color="#fddb8f">
@@ -2623,9 +2642,17 @@
 		</switch>
 
 		<switch>
-			<case minzoom="13" tag="waterway" value="dam"/>
-			<case minzoom="15" tag="waterway" value="weir" color="#aaaaaa"/>
-			<apply color="#555555" strokeWidth="1:1">
+			<case minzoom="15" tag="waterway" value="weir" strokeWidth="1:1"/>
+			<switch minzoom="12">
+				<case tag="waterway" value="dam"/>
+				<case tag="seamark:type" value="dam"/>
+				<apply>
+					<case maxzoom="15" strokeWidth="1:1"/>
+					<case maxzoom="17" strokeWidth="2:2"/>
+					<case minzoom="18" strokeWidth="4:4"/>
+				</apply>
+			</switch>
+			<apply color="#555555">
 				<apply_if nightMode="true" color="#eeeeee"/>
 			</apply>
 		</switch>

@@ -1131,6 +1131,7 @@
 
 			<case tag="man_made" value="petroleum_well"/>
 			<case tag="waterway" value="dam"/>
+			<case tag="waterway" value="weir"/>
 			<case tag="waterway" value="rapids"/>
 			<switch order="5">
 				<case tag="natural" value="water"/>
@@ -4247,11 +4248,16 @@
 				</apply>
 			</switch>
 
-			<case minzoom="13" tag="waterway" value="dam" color="#33555555" color_2="#555555">
-				<case maxzoom="14" strokeWidth_2="0.6:0.6"/>
-				<case minzoom="15" strokeWidth_2="1:1"/>
-				<apply_if nightMode="true" color="#33eeeeee" color_2="#eeeeee"/>
-			</case>
+			<switch>
+				<case minzoom="13" tag="waterway" value="dam">
+					<case maxzoom="14" strokeWidth_2="0.6:0.6"/>
+					<case minzoom="15" strokeWidth_2="1:1"/>
+				</case>
+				<case minzoom="15" tag="waterway" value="weir" strokeWidth_2="1:1"/>
+				<apply color="#33555555" color_2="#555555">
+					<apply_if nightMode="true" color="#33eeeeee" color_2="#eeeeee"/>
+				</apply>
+			</switch>
 
 			<case minzoom="14" tag="barrier" value="city_wall">
 				<case maxzoom="14" strokeWidth_2="1:1"/>
@@ -5315,7 +5321,7 @@
 
 		<switch>
 			<case minzoom="13" tag="waterway" value="dam"/>
-			<case minzoom="15" tag="waterway" value="weir" color="#aaaaaa"/>
+			<case minzoom="15" tag="waterway" value="weir"/>
 			<apply color="#555555" strokeWidth="1:1">
 				<apply_if nightMode="true" color="#eeeeee"/>
 			</apply>
