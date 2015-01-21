@@ -160,7 +160,7 @@
 	<entity_convert pattern="tag_transform" from_tag="hazard_type" from_value="avalanche" to_tag1="hazard" to_value1="avalanche"/>
 	<type tag="hazard" minzoom="10" only_map="true" order="1"/>
 
-<!--	<entity_convert pattern="split" from_tag="lit" from_value="yes" to_tag1="lit" to_tag2="yes"/>-->
+	<type tag="light_source" minzoom="12" only_map="true" order="100"/>
 	<type tag="lit" value="yes" minzoom="10" only_map="true" order="100"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="automatic" to_tag1="lit" to_value1="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="24/7" to_tag1="lit" to_value1="yes"/>
@@ -183,7 +183,11 @@
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="temporarily" to_tag1="lit" to_value1="interval"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="half" to_tag1="lit" to_value1="interval"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="Mo-Fr 22:00-05:00" to_tag1="lit" to_value1="interval"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_not_tag1="highway" if_not_tag2="railway" if_not_tag3="area:highway" apply_to="way,node"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_not_tag1="highway" if_not_tag2="railway" if_not_tag3="area:highway" if_not_tag4="tower:type" apply_to="way,node"/>
+	<type tag="lit_additional" value="yes" minzoom="16" additional="true" only_map="true" order="100"/>
+	<type tag="lit_additional" value="no" minzoom="16" additional="true" only_map="true" order="100"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="highway" if_value1="street_lamp" to_tag1="lit_additional" apply_to="node"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="tower:type" if_value1="lighting" to_tag1="lit_additional" apply_to="way,node"/>
 
 	<type tag="name" additional="text" order="40"/>
 	<type tag="name:en" additional="text" order="45"/>
@@ -387,7 +391,7 @@
 		<type tag="highway" value="turning_circle" minzoom="16" poi_category="transportation"/>
 		<type tag="highway" value="emergency_access_point" minzoom="16" poi_category="emergency"/>
 		<type tag="highway" value="speed_camera" minzoom="15" poi_category="transportation"/>
-		<type tag="highway" value="street_lamp" minzoom="16" />
+		<type tag="highway" value="street_lamp" minzoom="16" only_map="true"/>
 		<type tag="mountain_pass" value="yes" minzoom="16" nameTags="ele" poi_prefix="mountain_pass_" poi_category="transportation"/>
 
 	</category>
@@ -1019,6 +1023,7 @@
 		<type tag="man_made" value="survey_point" minzoom="15" />
 		<type tag="man_made" value="tower" minzoom="13" order="60"/>
 		<type tag="tower:type" value="communication" additional="true" minzoom="13" />
+		<type tag="tower:type" value="lighting" additional="true" minzoom="13" />
 		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="communications_tower" to_tag1="man_made" to_value1="tower" to_tag2="tower:type" to_value2="communication"/>
 		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="communication_tower" to_tag1="man_made" to_value1="tower" to_tag2="tower:type" to_value2="communication"/>
 		<type tag="man_made" value="mast" minzoom="13"/>

@@ -491,6 +491,9 @@ mycp man_made survey_point poi_survey_point.png
 mycp amenity hunting_stand poi_hunting_stand.png
 mycp railway buffer_stop poi_buffer_stop.png
 mycp landuse abandoned functional-icons_abandoned.png
+mycp highway street_lamp functional-icons_street_lamp.png
+mycp highway street_lamp_lit functional-icons_street_lamp_lit.png
+mycp no icon functional-icons_no_icon.png
 mygroup military poi_military_bunker.png
 
 

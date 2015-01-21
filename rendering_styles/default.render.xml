@@ -3616,12 +3616,37 @@
 			<case minzoom="16" tag="man_made" value="water_tower" icon="man_made_water_tower" shield="water_tower_shield"/>
 			<switch minzoom="$towerCommunicationMinZoom" tag="man_made" value="tower">
 				<case additional="tower:type=communication" icon="man_made_tower_type_communication" shield="tower_communications_shield" iconVisibleSize="48"/>
+				<case streetLighting="true" additional="tower:type=lighting" icon="man_made_tower" iconVisibleSize="14">
+					<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
+						<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
+					</case>
+					<case shield="street_lamp_lit_yes_shield">
+						<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
+					</case>
+				</case>
 				<case minzoom="16" icon="man_made_tower" shield="tower_shield"/>
 			</switch>
 		</switch>
 
 		<case minzoom="16" tag="man_made" value="petroleum_well" icon="man_made_petroleum_well" shield="petroleum_well_shield"/>
 		<case minzoom="18" tag="man_made" value="crane" icon="man_made_crane" shield="crane_shield"/>
+
+		<switch streetLighting="true" minzoom="16" iconVisibleSize="10" intersectionSizeFactor="0.7">
+			<case tag="highway" value="street_lamp"/>
+			<case tag="light_source" value=""/>
+			<apply icon="highway_street_lamp">
+				<case additional="lit_additional=yes" icon="highway_street_lamp_lit" shield="street_lamp_lit_yes_shield">
+					<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
+				</case>
+				<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
+					<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
+				</case>
+				<case shield="street_lamp_lit_yes_shield">
+					<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
+				</case>
+			</apply>
+			<apply_if maxzoom="16" icon="no_icon"/>
+		</switch>
 
 		<switch minzoom="16">
 			<case tag="hazard" value="nuclear" icon="hazard_nuclear"/>
