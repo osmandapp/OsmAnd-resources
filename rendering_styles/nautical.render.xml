@@ -342,6 +342,7 @@
 				<case tag="seamark:type" value="lock_basin"/>
 				<case tag="seamark:type" value="lock_basin_part"/>
 			</switch>
+			<case tag="seamark:type" value="fortified_structure"/>
 			<case tag="seamark:type" value="fairway"/>
 
 			<case tag="waterway" value="dam"/>
@@ -932,6 +933,10 @@
 		<switch minzoom="17" textSize="10" textColor="#5a0461" textWrapWidth="7" textHaloColor="#33ffffff" textHaloRadius="1" textDy="10" textOrder="100">
 			<case tag="seamark:type" value="distance_mark" nameTag="seamark:distance_mark:distance" nameTag2="seamark:distance_mark:units"/>
 			<apply_if nightMode="true" textColor="#e4d0e3"/>
+		</switch>
+		<switch textSize="12" textColor="#734a08" textHaloRadius="$textHaloRadiusDay" textHaloColor="#fddb8f" textDy="9" textWrapWidth="20">
+			<case minzoom="17" tag="seamark:type" value="fortified_structure" textOnPath="true" textColor="#ffffff" textHaloColor="#7b7463" textDy="0"/>
+			<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffe7c2" textHaloColor="#88644e2c"/>
 		</switch>
 	</text>
 
@@ -2333,6 +2338,14 @@
 				<apply_if nightMode="true" color="#99666666" color_2="#77ffffff"/>
 			</apply>
 		</case>
+		<case minzoom="14" tag="seamark:type" value="fortified_structure">
+			<case maxzoom="14" strokeWidth="2:2"/>
+			<case maxzoom="15" strokeWidth="3:3"/>
+			<case minzoom="16" strokeWidth="4.5:4.5"/>
+			<apply color="#888888">
+				<apply_if nightMode="true" color="#545454"/>
+			</apply>
+		</case>
 
 		<case minzoom="13" tag="man_made" value="pier" color="$pierColor">
 			<switch minzoom="15">
@@ -2345,54 +2358,6 @@
 			<apply_if minzoom="14" maxzoom="15" strokeWidth="1.5:1.5"/>
 			<apply_if minzoom="16" strokeWidth="3:3"/>
 		</case>
-
-<!--		<switch minzoom="6" maxzoom="13">
-			<switch shadowRadius=":1">
-				<case tag="highway" value="motorway" color="$motorwayRoadColor" shadowColor="$motorwayRoadShadowColor"/>
-				<case tag="highway" value="trunk" color="$trunkRoadColor" shadowColor="$trunkRoadShadowColor"/>
-			</switch>
-			<switch shadowRadius=":1">
-				<case tag="highway" value="motorway_link" color="$motorwayRoadColor" shadowColor="$motorwayRoadShadowColor"/>
-				<case tag="highway" value="trunk_link" color="$trunkRoadColor" shadowColor="$trunkRoadShadowColor"/>
-			</switch>
-			<apply cap="ROUND">
-				<case maxzoom="6" strokeWidth="0.5:0.5"/>
-				<case maxzoom="8" strokeWidth="1:1"/>
-				<case maxzoom="9" strokeWidth="1.2:1.2"/>
-				<case maxzoom="10" strokeWidth="1.6:1.6"/>
-				<case maxzoom="11" strokeWidth="1.8:1.8"/>
-				<case maxzoom="12" strokeWidth="2.2:2.2"/>
-				<case maxzoom="13" strokeWidth="2.5:2.5"/>
-			</apply>
-		</switch>
-		<switch minzoom="6" maxzoom="13">
-			<case tag="highway" value="primary"/>
-			<case tag="highway" value="primary_link"/>
-			<apply color="$primaryRoadColor" cap="ROUND">
-				<case maxzoom="6" strokeWidth="0.4:0.4"/>
-				<case maxzoom="8" strokeWidth="0.9:0.9"/>
-				<case maxzoom="9" strokeWidth="1.3:1.3"/>
-				<case maxzoom="10" strokeWidth="1.7:1.7"/>
-				<case maxzoom="11" strokeWidth="1.8:1.8"/>
-				<case maxzoom="12" strokeWidth="2:2"/>
-				<case maxzoom="13" strokeWidth="2:2"/>
-			</apply>
-			<apply_if minzoom="9" shadowRadius=":1" shadowColor="#9c7136"/>
-			<apply_if nightMode="true" shadowRadius="0"/>
-		</switch>
-		<switch minzoom="9" maxzoom="13">
-			<case tag="highway" value="secondary"/>
-			<case tag="highway" value="secondary_link"/>
-			<apply color="$secondaryRoadColor" shadowRadius=":1" cap="ROUND">
-				<case maxzoom="9" strokeWidth="1.1:1.1"/>
-				<case maxzoom="10" strokeWidth="1.3:1.3"/>
-				<case maxzoom="11" strokeWidth="1.5:1.5"/>
-				<case maxzoom="12" strokeWidth="1.7:1.7"/>
-				<case maxzoom="13" strokeWidth="1.7:1.7"/>
-			</apply>
-			<apply_if minzoom="9" shadowRadius=":1" shadowColor="#9c7136"/>
-			<apply_if nightMode="true" shadowRadius="0"/>
-		</switch>-->
 
 		<switch minzoom="13">
 			<switch shadowRadius=":1">
