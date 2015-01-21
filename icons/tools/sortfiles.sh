@@ -1027,6 +1027,8 @@ mycp seamark obstruction_construction seamark_small_obstruction_construction.png
 mycp seamark distance_mark seamark_small_distance_mark.png
 mycp seamark distance_mark_installed seamark_small_distance_mark_installed.png
 
+mycp seamark fishing_facility seamark_fishing_facility.png
+
 
 ## Shops
 mygroup car_aid shopping_car.png
