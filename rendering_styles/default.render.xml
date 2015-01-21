@@ -476,7 +476,7 @@
 			<!-- NOTE: Touring view's <renderingConstant name="shadowColorLowZoom" value="#262626"/> ignored here for now -->
 		</case>
 		<case attrColorValue="#969696">
-			<case streetLighting="true" attrColorValue="#444444">
+			<case streetLighting="true" minzoom="14" attrColorValue="#444444">
 				<apply_if nightMode="true" attrColorValue="#ffffff"/>
 			</case>
 		</case>
@@ -1073,6 +1073,7 @@
 			</case>
 			<case tag="hazard" value=""/>
 			<case tag="abandoned:place" value="" order="10"/>
+			<case appMode="car" maxzoom="18" tag="barrier" value="turnstile" order="-1"/>
 			<case tag="osmand" value="file_waypoint"/>
 		</switch>
 
@@ -1408,6 +1409,7 @@
 			<case tag="man_made" value="embankment" order="10"/>
 			<case tag="hazard" value="" order="1"/>
 			<case tag="lit" value="" order="1"/>
+			<case appMode="car" tag="lit_pedestrian_layer-1" value="" order="-1"/>
 			<case tag="osmand" value="file_trackline"/>
 			<case tag="osmand" value="file_routeline"/>
 		</switch>
@@ -2627,12 +2629,29 @@
 			<case minzoom="14" tag="highway" value="ford" icon="highway_ford" shield="highway_ford_shield" iconVisibleSize="10">
 				<apply_if nightMode="true" shield=""/>
 			</case>
-			<case minzoom="16" tag="highway" value="crossing" icon="highway_crossing" iconVisibleSize="8" shield="highway_crossing_shield">
+			<case minzoom="16" tag="highway" value="crossing" icon="highway_crossing" iconVisibleSize="8" icon__1="highway_crossing_bg">
 				<case additional="crossing=uncontrolled" icon_2="highway_crossing_uncontrolled"/>
 				<case additional="crossing=traffic_signals" icon_2="highway_crossing_traffic_signals"/>
+				<apply_if streetLighting="true">
+					<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
+						<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
+					</case>
+					<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
+						<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
+					</case>
+				</apply_if>
 			</case>
 			<case subwayMode="false" minzoom="16" maxzoom="17" tag="amenity" value="bicycle_parking" icon=""/>
-			<case minzoom="15" tag="railway" value="level_crossing" icon="railway_level_crossing"/>
+			<case minzoom="15" tag="railway" value="level_crossing" icon="railway_level_crossing">
+				<apply_if streetLighting="true">
+					<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
+						<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
+					</case>
+					<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
+						<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
+					</case>
+				</apply_if>
+			</case>
 			<switch minzoom="17">
 				<case tag="traffic_calming" value="bump"/>
 				<case tag="traffic_calming" value="hump"/>
@@ -2692,7 +2711,16 @@
 				<apply_if nightMode="true" shield=""/>
 			</case>
 			<case minzoom="16" tag="highway" value="steps" icon="highway_steps" shield="highway_steps_shield" iconVisibleSize="8"/>
-			<case minzoom="15" tag="railway" value="level_crossing" icon="railway_level_crossing"/>
+			<case minzoom="15" tag="railway" value="level_crossing" icon="railway_level_crossing">
+				<apply_if streetLighting="true">
+					<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
+						<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
+					</case>
+					<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
+						<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
+					</case>
+				</apply_if>
+			</case>
 			<switch shield="white_blue_square_shield">
 				<case minzoom="16" tag="amenity" value="bicycle_rental" icon="amenity_bicycle_rental"/>
 				<case minzoom="16" tag="amenity" value="bicycle_parking" icon="amenity_bicycle_parking">
@@ -2783,7 +2811,16 @@
 					<case minzoom="13" maxzoom="14" icon="railway_halt" iconVisibleSize="2"/>
 					<case minzoom="15" icon="railway_station_small" iconVisibleSize="4"/>
 				</switch>
-				<case minzoom="15" tag="railway" value="level_crossing" icon="railway_level_crossing"/>
+				<case minzoom="15" tag="railway" value="level_crossing" icon="railway_level_crossing">
+					<apply_if streetLighting="true">
+						<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
+							<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
+						</case>
+						<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
+							<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
+						</case>
+					</apply_if>
+				</case>
 				<switch tag="aerialway" value="station">
 					<case minzoom="13" maxzoom="14" icon="aerialway_station_small" iconVisibleSize="3"/>
 					<case minzoom="15" icon="aerialway_station" shield="white_blue_round_shield">
@@ -2982,10 +3019,18 @@
 		<case minzoom="14" tag="highway" value="ford" icon="highway_ford" shield="highway_ford_shield" iconVisibleSize="10">
 			<apply_if nightMode="true" shield=""/>
 		</case>
-		<case minzoom="17" tag="highway" value="crossing" icon="highway_crossing" iconVisibleSize="8" shield="highway_crossing_shield">
+		<case minzoom="17" tag="highway" value="crossing" icon="highway_crossing" iconVisibleSize="8" icon__1="highway_crossing_bg">
 			<case additional="crossing=uncontrolled" icon_2="highway_crossing_uncontrolled"/>
 			<case additional="crossing=traffic_signals" icon_2="highway_crossing_traffic_signals"/>
 			<case additional="crossing=unmarked" icon="highway_crossing_unmarked"/>
+			<apply_if streetLighting="true">
+				<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
+					<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
+				</case>
+				<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
+					<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
+				</case>
+			</apply_if>
 		</case>
 		<case minzoom="17" tag="highway" value="steps" icon="highway_steps" shield="highway_steps_shield" iconVisibleSize="8"/>
 		<switch subwayMode="false" shield="white_blue_square_shield">
@@ -3197,7 +3242,16 @@
 					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 				</case>
 			</case>
-			<case minzoom="15" tag="railway" value="level_crossing" icon="railway_level_crossing"/>
+			<case minzoom="15" tag="railway" value="level_crossing" icon="railway_level_crossing">
+				<apply_if streetLighting="true">
+					<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
+						<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
+					</case>
+					<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
+						<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
+					</case>
+				</apply_if>
+			</case>
 
 			<case minzoom="13" tag="aerialway" value="station">
 				<case maxzoom="14" icon="aerialway_station_small" iconVisibleSize="3"/>
@@ -5828,25 +5882,33 @@
 		</switch>
 
 		<switch streetLighting="true" minzoom="10" cap="ROUND">
-			<case tag="lit" value="yes" color="$litYesColor"/>
-			<case tag="lit" value="no" color="$litNoColor"/>
-			<case tag="lit" value="interval" color="$litYesColor" cap="BUTT">
-				<case maxzoom="12" pathEffect="8_6"/>
-				<case maxzoom="14" pathEffect="12_8"/>
-				<case maxzoom="16" pathEffect="19_12"/>
-				<case minzoom="17" pathEffect="29_16"/>
-			</case>
-			<apply>
-				<case maxzoom="11" strokeWidth="4:4"/>
-				<case maxzoom="12" strokeWidth="5:5"/>
-				<case maxzoom="13" strokeWidth="7:7"/>
-				<case maxzoom="14" strokeWidth="10:10"/>
-				<case maxzoom="15" strokeWidth="13:13"/>
-				<case maxzoom="16" strokeWidth="16:16"/>
-				<case maxzoom="17" strokeWidth="25:25"/>
-				<case maxzoom="18" strokeWidth="34:34"/>
-				<case minzoom="19" strokeWidth="40:40"/>
-			</apply>
+			<switch>
+				<case tag="lit" value="yes" color="$litYesColor"/>
+				<case tag="lit" value="no" color="$litNoColor"/>
+				<case tag="lit" value="interval" color="$litYesColor" cap="BUTT">
+					<case maxzoom="12" pathEffect="8_6"/>
+					<case maxzoom="14" pathEffect="12_8"/>
+					<case maxzoom="16" pathEffect="19_12"/>
+					<case minzoom="17" pathEffect="29_16"/>
+				</case>
+				<apply>
+					<case maxzoom="11" strokeWidth="4:4"/>
+					<case maxzoom="12" strokeWidth="5:5"/>
+					<case maxzoom="13" strokeWidth="7:7"/>
+					<case maxzoom="14" strokeWidth="10:10"/>
+					<case maxzoom="15" strokeWidth="13:13"/>
+					<case maxzoom="16" strokeWidth="16:16"/>
+					<case maxzoom="17" strokeWidth="25:25"/>
+					<case maxzoom="18" strokeWidth="34:34"/>
+					<case minzoom="19" strokeWidth="40:40"/>
+				</apply>
+			</switch>
+			<switch minzoom="17">
+				<case tag="lit_pedestrian_layer-1" value="interval" color="$litYesColor" pathEffect="6_3"/>
+				<case tag="lit_pedestrian_layer-1" value="yes" color="$litYesColor" pathEffect="15_7"/>
+				<case tag="lit_pedestrian_layer-1" value="no" color="$litNoColor" pathEffect="15_7"/>
+				<apply cap="BUTT" strokeWidth="9:9"/>
+			</switch>
 		</switch>
 
 		<!-- Admin levels (boundaries) -->
