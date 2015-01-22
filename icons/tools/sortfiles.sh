@@ -1034,6 +1034,11 @@ mycp seamark distance_mark_installed seamark_small_distance_mark_installed.png
 
 mycp seamark fishing_facility seamark_fishing_facility.png
 
+mycp seamark marine_farm seamark_marine_farm.png
+mycp seamark marine_farm_crustaceans_additional seamark_marine_farm_crustaceans_additional.png
+mycp seamark marine_farm_fish_additional seamark_marine_farm_fish_additional.png
+mycp seamark marine_farm_oysters_mussels_additional seamark_marine_farm_oysters_mussels_additional.png
+mycp seamark marine_farm_seaweed_additional seamark_marine_farm_seaweed_additional.png
 
 ## Shops
 mygroup car_aid shopping_car.png

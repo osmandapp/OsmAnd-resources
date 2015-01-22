@@ -259,6 +259,7 @@
 			<case tag="seamark:type" value="gate"/>
 			<case tag="seamark:type" value="production_area"/>
 			<case tag="seamark:type" value="hulk"/>
+			<case tag="seamark:type" value="marine_farm"/>
 			<case tag="seamark" value=""/>
 			<case tag="seamark:type" value="fishing_facility"/>
 		</switch>
@@ -304,6 +305,7 @@
 			<case tag="seamark:type" value="obstruction" order="6"/>
 			<case tag="seamark:type" value="hulk"/>
 			<case tag="seamark:type" value="inshore_traffic_zone"/>
+			<case tag="seamark:type" value="marine_farm"/>
 			<case tag="natural" value="cliff"/>
 			<case tag="natural" value="crater"/>
 			<case tag="natural" value="hot_spring"/>
@@ -900,6 +902,7 @@
 				<case minzoom="13" tag="seamark:type" value="landmark" textOrder="9" nameTag="seamark:name"/>
 				<case minzoom="13" tag="seamark:type" value="landmark" textOrder="9" nameTag=""/>
 				<case minzoom="13" tag="seamark:type" value="production_area" textOrder="9"/>
+				<case minzoom="16" tag="seamark:type" value="marine_farm" textOrder="9"/>
 				<apply_if engine_v1="true" textDy="19"/>
 				<apply_if nightMode="true" textColor="#eaf6ff" textHaloColor="#5545a5e2"/>
 			</switch>
@@ -1983,6 +1986,14 @@
 			<case additional="seamark:hulk:category=restaurant" icon_2="seamark_hulk_restaurant_additional"/>
 		</case>
 
+		<case minzoom="16" tag="seamark:type" value="marine_farm" icon="seamark_marine_farm" iconOrder="40">
+			<case additional="seamark:marine_farm:category=fish" icon_2="seamark_marine_farm_fish_additional"/>
+			<case additional="seamark:marine_farm:category=crustaceans" icon_2="seamark_marine_farm_crustaceans_additional"/>
+			<case additional="seamark:marine_farm:category=oysters_mussels" icon_2="seamark_marine_farm_oysters_mussels_additional"/>
+			<case additional="seamark:marine_farm:category=seaweed" icon_2="seamark_marine_farm_seaweed_additional"/>
+		</case>
+
+
 		<case minzoom="11" tag="natural" value="peak" iconOrder="65">
 			<case maxzoom="11" icon="natural_peak" shield="peakvolcano_shield" iconVisibleSize="25" intersectionSizeFactor="2"/>
 			<case maxzoom="14" icon="natural_peak" shield="peakvolcano_shield"/>
@@ -2134,16 +2145,20 @@
 
 		<case minzoom="10" tag="seamark:type" value="fairway" color="$fairwayColor"/>
 
-		<case minzoom="8" tag="seamark:type" value="production_area">
-			<case maxzoom="11" strokeWidth_2="0.5:0.5" pathEffect_2="2_2"/>
-			<case maxzoom="13" strokeWidth_2="0.8:0.8" pathEffect_2="2_2"/>
-			<case maxzoom="15" strokeWidth_2="1:1" pathEffect_2="3_3"/>
-			<case maxzoom="16" strokeWidth_2="1.5:1.5" pathEffect_2="4_5"/>
-			<case minzoom="17" strokeWidth_2="2:2" pathEffect_2="5_6"/>
+		<switch>
+			<case minzoom="8" tag="seamark:type" value="production_area"/>
+			<case minzoom="15" tag="seamark:type" value="marine_farm"/>
+			<apply>
+				<case maxzoom="11" strokeWidth_2="0.5:0.5" pathEffect_2="2_2"/>
+				<case maxzoom="13" strokeWidth_2="0.8:0.8" pathEffect_2="2_2"/>
+				<case maxzoom="15" strokeWidth_2="1:1" pathEffect_2="3_3"/>
+				<case maxzoom="16" strokeWidth_2="1.5:1.5" pathEffect_2="4_5"/>
+				<case minzoom="17" strokeWidth_2="2:2" pathEffect_2="5_6"/>
+			</apply>
 			<apply color="#33514432" color_2="#111111">
 				<apply_if nightMode="true" color="#66898175" color_2="#aaaaaa"/>
 			</apply>
-		</case>
+		</switch>
 		<case minzoom="17" tag="seamark:type" value="fishing_facility" strokeWidth_2="1:1" pathEffect_2="1_6" color_2="#555555" cap_2="ROUND">
 			<apply_if nightMode="true" color_2="#777777"/>
 		</case>
