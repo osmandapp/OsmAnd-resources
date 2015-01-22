@@ -127,9 +127,9 @@ mycp highway mini_roundabout transport_miniroundabout_anticlockwise.png
 mycp highway noexit functional-icons_noexit.png
 mycp highway ford transport_ford.png
 mycp highway crossing transport_zebra_crossing2.png
-mycp highway crossing_bg functional-icons_highway_crossing_bg.png
 mycp highway crossing_unmarked functional-icons_highway_crossing_unmarked.png
 mycp highway crossing_uncontrolled functional-icons_highway_crossing_uncontrolled.png
+mycp highway crossing_bg functional-icons_highway_crossing_bg.png
 mycp highway crossing_traffic_signals functional-icons_highway_crossing_traffic_signals.png
 mycp highway steps transport_highway_steps.png
 mycp traffic_calming bump transport_speedbump.png
@@ -828,6 +828,7 @@ mycp seamark separation_line_arrow_night seamark_separation_line_arrow_night.png
 mycp seamark separation_line_arrow_small seamark_separation_line_arrow_small.png
 mycp seamark separation_line_arrow_small_night seamark_separation_line_arrow_small_night.png
 
+mycp seamark gate seamark_gate.png
 mycp seamark lock_gate seamark_lock_gate.png
 
 mycp seamark anchorage seamark_anchorage.png
