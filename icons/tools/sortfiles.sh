@@ -831,6 +831,9 @@ mycp seamark separation_line_arrow_small_night seamark_separation_line_arrow_sma
 mycp seamark gate seamark_gate.png
 mycp seamark lock_gate seamark_lock_gate.png
 
+mycp seamark hulk seamark_hulk.png
+mycp seamark hulk_restaurant_additional seamark_hulk_restaurant_additional.png
+
 mycp seamark anchorage seamark_anchorage.png
 mycp seamark anchorage_small_craft seamark_anchorage_small_craft.png
 mycp seamark anchorage_tanker seamark_anchorage_tanker.png
