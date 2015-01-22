@@ -276,6 +276,7 @@
 			<case tag="historic" value="ship"/>
 			<case tag="barrier" value="city_wall"/>
 			<case tag="seamark:type" value="inshore_traffic_zone"/>
+			<case tag="seamark:type" value="military_area"/>
 		</switch>
 		<switch cycle="true" point="false" objectType="3" order="5">
 			<case tag="area:highway" value="primary"/>
@@ -306,6 +307,7 @@
 			<case tag="seamark:type" value="hulk"/>
 			<case tag="seamark:type" value="inshore_traffic_zone"/>
 			<case tag="seamark:type" value="marine_farm"/>
+			<case tag="seamark:type" value="military_area"/>
 			<case tag="natural" value="cliff"/>
 			<case tag="natural" value="crater"/>
 			<case tag="natural" value="hot_spring"/>
@@ -735,9 +737,12 @@
 			<apply_if nightMode="true" textColor="$defaultTextColorNight" textHaloColor="#77464234"/>
 		</switch>
 
-		<case minzoom="15" tag="landuse" value="military" textSize="12" textColor="#990d2a" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffd9e6" textWrapWidth="20" textOrder="10">
+		<switch>
+			<case minzoom="15" tag="landuse" value="military"/>
+			<case minzoom="15" tag="seamark:type" value="military_area"/>
+			<apply textSize="12" textColor="#990d2a" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffd9e6" textWrapWidth="20" textOrder="10"/>
 			<apply_if nightMode="true" textColor="#ffd3dc" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77724456"/>
-		</case>
+		</switch>
 		<switch textHaloRadius="$textHaloRadiusDay" textSize="13" textColor="#ff0255" textBold="true" textWrapWidth="20">
 			<case minzoom="13" tag="military" value="danger_area"/>
 			<apply_if nightMode="true" textColor="#f6dada" textHaloRadius="$textHaloRadiusNight" textHaloColor="#88a20035"/>
@@ -2026,6 +2031,7 @@
 			<case minzoom="16" tag="man_made" value="water_tower" icon="man_made_water_tower" shield="water_tower_shield"/>
 			<switch minzoom="15" tag="man_made" value="tower">
 				<case additional="tower:type=communication" icon="man_made_tower_type_communication" shield="tower_communications_shield"/>
+				<case additional="tower:type=lighting" icon="man_made_tower_type_lighting" shield="tower_lighting_shield"/>
 				<case icon="man_made_tower" shield="tower_shield"/>
 			</switch>
 		</switch>
@@ -2236,12 +2242,16 @@
 			<apply_if nightMode="true" shader="diagonal_fill_white_dark_shader" color_2="#999999"/>
 		</switch>
 		
-		<case minzoom="10" tag="landuse" value="military" shader="danger" color="#100000" color_2="#c8ffa0c0" strokeWidth_2="1:1">
-			<apply_if nightMode="true" shader="danger_night" color_2="#84ffa0c0"/>
+		<switch minzoom="10">
+			<case tag="landuse" value="military"/>
+			<case tag="seamark:type" value="military_area"/>
+			<apply shader="danger" color="#100000" color_2="#c8ffa0c0" strokeWidth_2="1:1">
+				<apply_if nightMode="true" shader="danger_night" color_2="#84ffa0c0"/>
+			</apply>
 			<apply_if additional="abandoned=yes" shader="military_abandoned">
 				<apply_if nightMode="true" shader="military_abandoned_night"/>
 			</apply_if>
-		</case>
+		</switch>
 		<case minzoom="7" tag="military" value="danger_area" shader="hazard" color_2="#f46997" strokeWidth_2="1:1">
 			<apply_if nightMode="true" color_2="#cc1652"/>
 		</case>
