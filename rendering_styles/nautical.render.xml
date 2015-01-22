@@ -274,6 +274,7 @@
 			<case tag="railway" value="" order="4"/>
 			<case tag="historic" value="ship"/>
 			<case tag="barrier" value="city_wall"/>
+			<case tag="seamark:type" value="inshore_traffic_zone"/>
 		</switch>
 		<switch cycle="true" point="false" objectType="3" order="5">
 			<case tag="area:highway" value="primary"/>
@@ -302,6 +303,7 @@
 			<case tag="seamark:type" value="restricted_area" order="6"/>
 			<case tag="seamark:type" value="obstruction" order="6"/>
 			<case tag="seamark:type" value="hulk"/>
+			<case tag="seamark:type" value="inshore_traffic_zone"/>
 			<case tag="natural" value="cliff"/>
 			<case tag="natural" value="crater"/>
 			<case tag="natural" value="hot_spring"/>
@@ -352,6 +354,7 @@
 			<case tag="seamark:type" value="fairway"/>
 			<case tag="seamark:type" value="fishing_facility"/>
 			<case tag="seamark:type" value="gate"/>
+			<case tag="seamark:type" value="inshore_traffic_zone"/>
 
 			<case tag="waterway" value="dam"/>
 			<case tag="waterway" value="weir" order="19"/>
@@ -900,11 +903,12 @@
 				<apply_if engine_v1="true" textDy="19"/>
 				<apply_if nightMode="true" textColor="#eaf6ff" textHaloColor="#5545a5e2"/>
 			</switch>
-			<switch minzoom="13" textColor="#8c0000" textWrapWidth="19" textHaloColor="#99ffc9c9" textHaloRadius="2" textOrder="11">
-				<case tag="seamark:type" value="restricted_area" nameTag="seamark:name" nameTag2="seamark:restricted_area:information"/>
-				<case tag="seamark:type" value="restricted_area" nameTag="seamark:restricted_area:information" nameTag2="seamark:name"/>
-				<case tag="seamark:type" value="obstruction" nameTag="seamark:name"/>
-				<case tag="seamark:type" value="cable_area" nameTag="seamark:name"/>
+			<switch textColor="#8c0000" textWrapWidth="19" textHaloColor="#99ffc9c9" textHaloRadius="2" textOrder="11">
+				<case minzoom="13" tag="seamark:type" value="restricted_area" nameTag="seamark:name" nameTag2="seamark:restricted_area:information"/>
+				<case minzoom="13" tag="seamark:type" value="restricted_area" nameTag="seamark:restricted_area:information" nameTag2="seamark:name"/>
+				<case minzoom="13" tag="seamark:type" value="obstruction" nameTag="seamark:name"/>
+				<case minzoom="13" tag="seamark:type" value="cable_area" nameTag="seamark:name"/>
+				<case minzoom="11" tag="seamark:type" value="inshore_traffic_zone" nameTag="seamark:name" textOnPath="true"/>
 				<apply_if nightMode="true" textColor="#ffe4e4" textHaloColor="#55971515"/>
 				<apply_if maxzoom="15" additional="seamark:restricted_area:restriction" disable="true"/>
 				<apply_if engine_v1="true" textDy="11"/>
@@ -2116,6 +2120,18 @@
 			</apply>
 		</switch>
 
+		<switch>
+			<case minzoom="10" tag="seamark:type" value="inshore_traffic_zone" color_2="#c09daa">
+				<apply_if nightMode="true" color_2="#999b5452"/>
+			</case>
+			<apply>
+				<case maxzoom="12" strokeWidth_2="2" pathEffect_2="2_5"/>
+				<case maxzoom="14" strokeWidth_2="3" pathEffect_2="4_10"/>
+				<case maxzoom="16" strokeWidth_2="4" pathEffect_2="8_20"/>
+				<case minzoom="17" strokeWidth_2="5" pathEffect_2="12_24"/>
+			</apply>
+		</switch>
+
 		<case minzoom="10" tag="seamark:type" value="fairway" color="$fairwayColor"/>
 
 		<case minzoom="8" tag="seamark:type" value="production_area">
@@ -2296,13 +2312,20 @@
 				</case>
 			</apply>
 		</switch>
-		<case minzoom="9" tag="seamark:type" value="separation_boundary" color="#339c00ff" cap="SQUARE">
-			<case maxzoom="12" strokeWidth="2" pathEffect="2_5"/>
-			<case maxzoom="14" strokeWidth="3" pathEffect="4_10"/>
-			<case maxzoom="16" strokeWidth="4" pathEffect="8_20"/>
-			<case minzoom="17" strokeWidth="5" pathEffect="12_24"/>
-			<apply_if nightMode="true" color="#88c05dff"/>
-		</case>
+		<switch>
+			<case minzoom="9" tag="seamark:type" value="separation_boundary" color="#339c00ff" cap="SQUARE">
+				<apply_if nightMode="true" color="#88c05dff"/>
+			</case>
+			<case minzoom="10" tag="seamark:type" value="inshore_traffic_zone" color="#c09daa">
+				<apply_if nightMode="true" color="#999b5452"/>
+			</case>
+			<apply>
+				<case maxzoom="12" strokeWidth="2" pathEffect="2_5"/>
+				<case maxzoom="14" strokeWidth="3" pathEffect="4_10"/>
+				<case maxzoom="16" strokeWidth="4" pathEffect="8_20"/>
+				<case minzoom="17" strokeWidth="5" pathEffect="12_24"/>
+			</apply>
+		</switch>
 
 		<switch minzoom="14">
 			<case tag="seamark:type" value="lock_basin"/>
