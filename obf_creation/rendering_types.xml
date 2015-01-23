@@ -11,11 +11,11 @@
 		minzoom="" - indexed for map section (min zoom)
 		?additional="true/text" - attach tag/value to another map object
 		?apply_tag="" ?apply_value="" - not tested yet, first usage should test it
-		?target_tag ?target_value - convert to a differnt tag/value
+		?target_tag ?target_value - convert to a differnt tag/value (deprecated)
 		?only_poi ?only_map - register only for poi or only for map
 		?poi_prefix - prefix poi subtype visible name to make clear or distinguish with others
 		?poi_category - target poi category (should be one of category)
-		?relation - propogate tag from relation objects to 
+		?relation - propogate tag from relation objects to
 		?namePrefix - add prefix to all text tags
 		?order - order to store sequentially as tag in object (default 50)
 		?poi_with_name - add poi to index only if it has name=* tag
@@ -1071,7 +1071,7 @@
 		<type tag="leisure" value="sports_centre" minzoom="13" order="71"/>
 		<type tag="leisure" value="golf_course" minzoom="12" />
 		<type tag="leisure" value="stadium" minzoom="13" order="72" />
-		<type tag="sport" value="stadium" target_tag="leisure" minzoom="13" order="72" />
+		<entity_convert pattern="tag_transform" from_tag="sport" from_value="stadium" to_tag1="leisure"/>
 		<type tag="leisure" value="track" minzoom="12" />
 		<type tag="leisure" value="pitch" minzoom="12" order="59" />
 		<type tag="leisure" value="water_park" minzoom="13" order="71" />
@@ -1081,7 +1081,7 @@
 		<type tag="leisure" value="slipway" minzoom="15" />
 		<type tag="leisure" value="fishing" minzoom="15" />
 		<type tag="leisure" value="park" minzoom="10" poi_category="leisure" order="59"/>
-		<type tag="natural" value="park" target_tag="leisure" minzoom="10" order="59"/>
+		<entity_convert pattern="tag_transform" from_tag="natural" from_value="park" to_tag1="leisure"/>
 		<type tag="leisure" value="recreation_ground" minzoom="6" order="58" />
 		<type tag="leisure" value="playground" minzoom="15" />
 		<type tag="leisure" value="garden" minzoom="10" order="50" />
@@ -1091,7 +1091,7 @@
 		<type tag="leisure" value="dance" minzoom="15" order="71" />
 		<type tag="leisure" value="bird_hide" minzoom="15" />
 		<type tag="leisure" value="beach_resort" minzoom="15" order="71"/>
-		<type tag="amenity" value="beach_resort" target_tag="leisure" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="beach_resort" to_tag1="leisure"/>
 	</category>
 
 
@@ -1105,7 +1105,7 @@
 		<type tag="office" value="employment_agency" minzoom="15" />
 		<type tag="office" value="estate_agent" minzoom="15" />
 		<type tag="office" value="government" minzoom="15" />
-		<type tag="amenity" value="government" target_tag="office" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="government" to_tag1="office"/>
 		<type tag="government" value="bailiff" minzoom="15" additional="true" />
 		<type tag="government" value="prosecutor" minzoom="15" additional="true" />
 		<type tag="government" value="pension_fund" minzoom="15" additional="true" />
@@ -1120,7 +1120,7 @@
 		<type tag="office" value="research" minzoom="15" />
 		<type tag="office" value="telecommunication" minzoom="15" />
 		<type tag="office" value="travel_agent" minzoom="15" />
-		<type tag="amenity" value="architect_office" minzoom="15" target_tag="office" target_value="architect" poi_category="office"/>
+		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="architect_office" to_tag1="office" to_value1="architect"/>
 	</category>
 
 
@@ -1167,7 +1167,7 @@
 		<type tag="shop" value="electronics" minzoom="15" />
 		<type tag="shop" value="erotic" minzoom="15" />
 		<type tag="shop" value="fabric" minzoom="15" />
-		<type tag="shop" value="fabrics" target_value="fabric" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="shop" from_value="fabrics" to_tag1="shop" to_value1="fabric"/>
 		<type tag="shop" value="farm" minzoom="15" />
 		<type tag="shop" value="fishing" minzoom="15" />
 		<type tag="shop" value="florist" minzoom="15" />
@@ -1188,7 +1188,7 @@
 		<type tag="shop" value="houseware" minzoom="15" />
 		<type tag="shop" value="hunting" minzoom="15" />
 		<type tag="amenity" value="ice_cream" minzoom="15" />
-		<type tag="shop" value="ice_cream" target_tag="amenity" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="shop" from_value="ice_cream" to_tag1="amenity"/>
 		<type tag="shop" value="interior_decoration" minzoom="15" />
 		<type tag="shop" value="jewelry" minzoom="15" />
 		<type tag="shop" value="kiosk" minzoom="15" />
@@ -1223,7 +1223,7 @@
 		<type tag="shop" value="tobacco" minzoom="15" />
 		<type tag="shop" value="toys" minzoom="15" />
 		<type tag="shop" value="trade" minzoom="15" />
-		<type tag="shop" value="travel_agency" target_tag="office" target_value="travel_agent" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="shop" from_value="travel_agency" to_tag1="office" to_value1="travel_agent"/>
 		<type tag="shop" value="variety_store" minzoom="15" />
 		<type tag="shop" value="vacuum_cleaner" minzoom="15" />
 		<type tag="shop" value="video" minzoom="15" />
@@ -1312,15 +1312,15 @@
 		<type tag="emergency" value="ambulance_station" minzoom="15" />
 		<type tag="emergency" value="ses_station" minzoom="15" />
 		<type tag="amenity" value="police" minzoom="15" />
-		<type tag="emergency" value="police" target_tag="amenity" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="emergency" from_value="police" to_tag1="amenity"/>
 		<type tag="emergency" value="fire_extinguisher" minzoom="15" />
 		<type tag="emergency" value="fire_flapper" minzoom="15" />
 		<type tag="emergency" value="fire_hose" minzoom="15" />
 		<type tag="emergency" value="fire_hydrant" minzoom="15" />
 		<type tag="emergency" value="fire_water_pond" minzoom="15" />
 		<type tag="emergency" value="phone" minzoom="15" />
-		<type tag="amenity" value="emergency_phone" target_tag="emergency" target_value="phone" minzoom="15" />
-		<type tag="emergency" value="access_point" target_tag="highway" target_value="emergency_access_point" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="emergency_phone" to_tag1="emergency" to_value1="phone"/>
+		<entity_convert pattern="tag_transform" from_tag="emergency" from_value="access_point" to_tag1="highway" to_value1="emergency_access_point"/>
 		<type tag="emergency" value="siren" minzoom="15" />
 		<type tag="amenity" value="fire_station" minzoom="15"/>
 	</category>
@@ -1371,7 +1371,7 @@
 		<type tag="historic" value="memorial" minzoom="15" />
 		<type tag="historic" value="tomb" minzoom="15" />
 		<type tag="historic" value="mine" minzoom="15" poi_prefix="historic_"/>
-		<type tag="historic" value="mine_shaft" target_value="mine" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="historic" from_value="mine_shaft" to_tag1="historic" to_value1="mine"/>
 		<type tag="historic" value="monument" minzoom="15" />
 		<type tag="historic" value="monastery" minzoom="13" order="80"/>
 		<type tag="historic" value="ruins" poi_prefix="historic_" minzoom="15" order="75" />
@@ -1398,13 +1398,13 @@
 		<type tag="landuse" value="forest" minzoom="6" poi_category="landuse" order="59"/>
 		<type tag="landuse" value="garages" minzoom="12" order="71"/>
 		<type tag="landuse" value="grass" minzoom="6" order="60"/>
-		<type tag="natural" value="grass" target_tag="landuse" minzoom="6" order="60"/>
+		<entity_convert pattern="tag_transform" from_tag="natural" from_value="grass" to_tag1="landuse"/>
 		<type tag="landuse" value="greenfield" minzoom="6" order="60" />
 		<type tag="landuse" value="greenhouse_horticulture" minzoom="6" />
 		<type tag="landuse" value="industrial" minzoom="6" />
 		<type tag="landuse" value="landfill" minzoom="6" />
 		<type tag="landuse" value="meadow" minzoom="6" order="60" poi_category="landuse"/>
-		<type tag="natural" value="meadow" target_tag="landuse" minzoom="6" order="60" poi_category="landuse"/>
+		<entity_convert pattern="tag_transform" from_tag="natural" from_value="meadow" to_tag1="landuse"/>
 		<type tag="landuse" value="logging" minzoom="6" order="60"/>
 		<type tag="landuse" value="military" minzoom="6" poi_category="landuse"/>
 		<type tag="landuse" value="orchard" minzoom="6" poi_category="landuse"/>
@@ -1421,14 +1421,14 @@
 		<type tag="landuse" value="quarry" minzoom="6" poi_category="landuse"/>
 		<type tag="landuse" value="vineyard" minzoom="6" poi_category="landuse"/>
 		<type tag="landuse" value="field" minzoom="6" order="60" />
-		<type tag="natural" value="field" minzoom="6" target_tag="landuse" target_value="field" poi_category="" />
+		<entity_convert pattern="tag_transform" from_tag="natural" from_value="field" to_tag1="landuse"/>
 	</category>
 
 
 	<category name="military" poi_category="military" poi_tag="military">
 		<type tag="military" value="airfield" minzoom="12" />
 		<type tag="military" value="bunker" minzoom="15" />
-		<type tag="building" value="bunker" target_tag="military" minzoom="15"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="bunker" to_tag1="military"/>
 		<type tag="military" value="barracks" minzoom="13" />
 		<type tag="military" value="danger_area" minzoom="10" />
 		<type tag="military" value="range" minzoom="10" />
@@ -1444,7 +1444,7 @@
 		<type tag="natural" value="beach" minzoom="6" poi_category="natural" />
 		<type tag="natural" value="cliff" minzoom="10" />
 		<type tag="natural" value="slope" minzoom="10" />
-		<type tag="cliff" value="yes" target_tag="natural" target_value="cliff" minzoom="10" poi_category="natural" />
+		<entity_convert pattern="tag_transform" from_tag="cliff" from_value="yes" to_tag1="natural" to_value1="cliff"/>
 		<type tag="natural" value="fell" minzoom="6" />
 		<type tag="geological" value="moraine" minzoom="6" />
 		<type tag="natural" value="glacier" minzoom="5" poi_category="natural" />
@@ -1455,16 +1455,16 @@
 		<type tag="natural" value="lava" minzoom="6" poi_category="natural" />
 		<type tag="natural" value="peak" minzoom="10" nameTags="ele" poi_category="natural" />
 		<type tag="natural" value="bare_rock" minzoom="10" poi_with_name="true" />
-		<type tag="natural" value="bedrock" target_value="bare_rock" minzoom="10" />
-		<type tag="natural" value="rock" target_value="bare_rock" minzoom="10" />
-		<type tag="natural" value="rocks" target_value="bare_rock" minzoom="10" />
+		<entity_convert pattern="tag_transform" from_tag="natural" from_value="bedrock" to_tag1="natural" to_value1="bare_rock"/>
+		<entity_convert pattern="tag_transform" from_tag="natural" from_value="rock" to_tag1="natural" to_value1="bare_rock"/>
+		<entity_convert pattern="tag_transform" from_tag="natural" from_value="rocks" to_tag1="natural" to_value1="bare_rock"/>
 		<type tag="natural" value="ridge" minzoom="10" poi_category="natural" />
-		<type tag="natural" value="arete" target_value="ridge" minzoom="10" poi_category="natural" />
+		<entity_convert pattern="tag_transform" from_tag="natural" from_value="arete" to_tag1="natural" to_value1="ridge"/>
 		<type tag="natural" value="saddle" minzoom="10" nameTags="ele" poi_category="natural" />
-		<type tag="natural" value="waterfall" target_tag="waterway" target_value="waterfall" minzoom="10" nameTags="ele" />
+		<entity_convert pattern="tag_transform" from_tag="natural" from_value="waterfall" to_tag1="waterway"/>
 		<type tag="natural" value="cape" minzoom="10" poi_category="natural" />
 		<type tag="natural" value="volcano" minzoom="10" nameTags="ele" poi_category="natural" />
-		<type tag="volcano" value="yes" target_tag="natural" target_value="volcano" minzoom="10" />
+		<entity_convert pattern="tag_transform" from_tag="volcano" from_value="yes" to_tag1="natural" to_value1="volcano"/>
 		<type tag="natural" value="crater" minzoom="10" poi_category="natural" />
 		<type tag="natural" value="cave_entrance" minzoom="10" nameTags="ele" poi_category="natural" />
 		<type tag="natural" value="sand" minzoom="6" />
@@ -1478,20 +1478,20 @@
 		<type tag="natural" value="stone" minzoom="10" poi_category="natural" poi_with_name="true" />
 		<type tag="natural" value="tree" minzoom="10" poi_with_name="true" />
 		<type tag="natural" value="tree_row" minzoom="12" />
-		<type tag="tree_row" value="yes" target_tag="natural" target_value="tree_row" minzoom="12"/>
-		<type tag="natural" value="tree_line" target_tag="natural" target_value="tree_row" minzoom="12"/>
+		<entity_convert pattern="tag_transform" from_tag="tree_row" from_value="yes" to_tag1="natural" to_value1="tree_row"/>
+		<entity_convert pattern="tag_transform" from_tag="natural" from_value="tree_line" to_tag1="natural" to_value1="tree_row"/>
 		<type tag="natural" value="water" minzoom="4"  poi_category="natural" poi_with_name="true"/>
-		<type tag="landcover" value="water" target_tag="natural" minzoom="4" />
+		<entity_convert pattern="tag_transform" from_tag="landcover" from_value="water" to_tag1="natural"/>
 		<type tag="natural" value="fjord" minzoom="12" poi_category="natural" />
 		<type tag="natural" value="reef" minzoom="5" order="1" poi_category="natural" />
-		<type tag="natural" value="lake" target_value="water" minzoom="4"/>
+		<entity_convert pattern="tag_transform" from_tag="natural" from_value="lake" to_tag1="natural" to_value1="water"/>
 		<type tag="natural" value="strait" minzoom="4" poi_with_name="true" />
 		<type tag="natural" value="wetland" minzoom="6" poi_category="natural" poi_with_name="true"/>
 		<type tag="wetland" value="marsh" minzoom="12" additional="true"/>
-		<type tag="natural" value="marsh" target_tag="wetland" minzoom="6" poi_category="natural" />
+		<entity_convert pattern="tag_transform" from_tag="natural" from_value="marsh" to_tag1="wetland"/>
 		<type tag="wetland" value="tidalflat" minzoom="11" additional="true"/>
 		<type tag="natural" value="wood" minzoom="6" order="61" poi_category="natural" poi_with_name="true"/>
-		<type tag="landuse" value="wood" minzoom="6" target_tag="natural" target_value="wood" />
+		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="wood" to_tag1="natural" />
 		<type tag="contour" value="elevation" minzoom="11" />
 		<type tag="leisure" value="nature_reserve" minzoom="6" poi_category="natural" order="49"/>
 
@@ -1507,25 +1507,26 @@
 		<type tag="trees" value="oil_palms" minzoom="12" additional="true"/>
 		<type tag="trees" value="orange_trees" minzoom="12" additional="true"/>
 		<type tag="trees" value="banana_plants" minzoom="12" additional="true"/>
-		<type tag="leaf_type" value="deciduous" target_value="broadleaved" minzoom="12" additional="true" />
-		<type tag="leaf_type" value="broad_leaved" target_value="broadleaved" minzoom="12" additional="true" />
-		<type tag="wood" value="deciduous" target_tag="leaf_type" target_value="broadleaved" minzoom="12" additional="true" />
-		<type tag="wood" value="deciduos" target_tag="leaf_type" target_value="broadleaved" minzoom="12" additional="true" />
-		<type tag="type" value="deciduous" target_tag="leaf_type" target_value="broadleaved" minzoom="12" additional="true" />
-		<type tag="type" value="deciduos" target_tag="leaf_type" target_value="broadleaved" minzoom="12" additional="true" />
-		<type tag="type" value="broad_leaf" target_tag="leaf_type" target_value="broadleaved" minzoom="12" additional="true" />
-		<type tag="type" value="broad_leafed" target_tag="leaf_type" target_value="broadleaved" minzoom="12" additional="true" />
-		<type tag="type" value="broad-leaved" target_tag="leaf_type" target_value="broadleaved" minzoom="12" additional="true" />
-		<type tag="trees" value="broad-leaved" target_tag="leaf_type" target_value="broadleaved" minzoom="12" additional="true" />
-		<type tag="leaf_type" value="coniferous" target_value="needleleaved" minzoom="12" additional="true" />
-		<type tag="wood" value="coniferous" target_tag="leaf_type" target_value="needleleaved" minzoom="12" additional="true" />
-		<type tag="type" value="conifer" target_tag="leaf_type" target_value="needleleaved" minzoom="12" additional="true" />
-		<type tag="type" value="coniferous" target_tag="leaf_type" target_value="needleleaved" minzoom="12" additional="true" />
-		<type tag="trees" value="coniferous" target_tag="leaf_type" target_value="needleleaved" minzoom="12" additional="true" />
-		<type tag="wood" value="mixed" target_tag="leaf_type" minzoom="12" additional="true" />
-		<type tag="trees" value="mixed" target_tag="leaf_type" minzoom="12" additional="true" />
-		<type tag="tree" value="palm" target_tag="type" additional="true" minzoom="12"/>
-		<type tag="tree:type" value="palm" target_tag="type" additional="true" minzoom="12"/>
+		<entity_convert pattern="tag_transform" from_tag="leaf_type" from_value="deciduous" to_tag1="leaf_type" to_value1="broadleaved"/>
+		<entity_convert pattern="tag_transform" from_tag="leaf_type" from_value="broad_leaved" to_tag1="leaf_type" to_value1="broadleaved"/>
+		<entity_convert pattern="tag_transform" from_tag="wood" from_value="deciduous" to_tag1="leaf_type" to_value1="broadleaved"/>
+		<entity_convert pattern="tag_transform" from_tag="wood" from_value="deciduos" to_tag1="leaf_type" to_value1="broadleaved"/>
+		<entity_convert pattern="tag_transform" from_tag="type" from_value="deciduous" to_tag1="leaf_type" to_value1="broadleaved"/>
+		<entity_convert pattern="tag_transform" from_tag="type" from_value="deciduos" to_tag1="leaf_type" to_value1="broadleaved"/>
+		<entity_convert pattern="tag_transform" from_tag="type" from_value="broad_leaf" to_tag1="leaf_type" to_value1="broadleaved"/>
+		<entity_convert pattern="tag_transform" from_tag="type" from_value="broad_leafed" to_tag1="leaf_type" to_value1="broadleaved"/>
+		<entity_convert pattern="tag_transform" from_tag="type" from_value="broad-leaved" to_tag1="leaf_type" to_value1="broadleaved"/>
+		<entity_convert pattern="tag_transform" from_tag="trees" from_value="broad-leaved" to_tag1="leaf_type" to_value1="broadleaved"/>
+		<entity_convert pattern="tag_transform" from_tag="leaf_type" from_value="coniferous" to_tag1="leaf_type" to_value1="needleleaved"/>
+		<entity_convert pattern="tag_transform" from_tag="wood" from_value="coniferous" to_tag1="leaf_type" to_value1="needleleaved"/>
+		<entity_convert pattern="tag_transform" from_tag="type" from_value="conifer" to_tag1="leaf_type" to_value1="needleleaved"/>
+		<entity_convert pattern="tag_transform" from_tag="type" from_value="coniferous" to_tag1="leaf_type" to_value1="needleleaved"/>
+		<entity_convert pattern="tag_transform" from_tag="trees" from_value="coniferous" to_tag1="leaf_type" to_value1="needleleaved"/>
+		<entity_convert pattern="tag_transform" from_tag="trees" from_value="coniferous" to_tag1="leaf_type" to_value1="needleleaved"/>
+		<entity_convert pattern="tag_transform" from_tag="wood" from_value="mixed" to_tag1="leaf_type" to_value1="mixed"/>
+		<entity_convert pattern="tag_transform" from_tag="trees" from_value="mixed" to_tag1="leaf_type" to_value1="mixed"/>
+		<entity_convert pattern="tag_transform" from_tag="tree" from_value="palm" to_tag1="type" to_value1="palm"/>
+		<entity_convert pattern="tag_transform" from_tag="tree:type" from_value="palm" to_tag1="type" to_value1="palm"/>
 	</category>
 
 	<category name="contourtype">
@@ -1567,7 +1568,7 @@
 		<type tag="amenity" value="ferry_terminal" minzoom="12" />
 		<type tag="amenity" value="fuel" minzoom="13" />
 		<type tag="amenity" value="charging_station" minzoom="13" />
-		<type tag="amenity" value="ev_charging" target_value="charging_station" />
+		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="ev_charging" to_tag1="amenity" to_value1="charging_station"/>
 		<type tag="amenity" value="vehicle_inspection" minzoom="15" />
 		<type tag="amenity" value="vehicle_ramp" minzoom="15" />
 		<type tag="amenity" value="taxi" minzoom="15" />
@@ -1597,7 +1598,7 @@
 		<type tag="amenity" value="bank" minzoom="15" />
 		<type tag="amenity" value="bureau_de_change" minzoom="15" />
 		<type tag="bitcoin" value="yes" poi_prefix="bitcoin_" minzoom="15" />
-		<type tag="payment:bitcoin" target_tag="bitcoin" value="yes" poi_prefix="bitcoin_" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="payment:bitcoin" to_tag1="bitcoin" to_value1="yes"/>
 	</category>
 
 
@@ -1658,7 +1659,7 @@
 		<type tag="amenity" value="crematorium" minzoom="15" />
 		<type tag="amenity" value="driving_school" minzoom="15" />
 		<type tag="amenity" value="embassy" minzoom="15" />
-		<type tag="diplomatic" value="embassy" target_tag="amenity" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="diplomatic" from_value="embassy" to_tag1="amenity"/>
 		<type tag="amenity" value="register_office" minzoom="15" />
 		<type tag="amenity" value="customs" minzoom="15" />
 		<type tag="amenity" value="grave_yard" minzoom="15" order="49" />
@@ -1720,7 +1721,7 @@
 		<type tag="place" value="neighbourhood" minzoom="10" />
 		<type tag="place" value="locality" minzoom="10" />
 		<type tag="place" value="allotments" minzoom="10"/>
-		<type tag="place" value="farm" target_value="hamlet" minzoom="10"/>
+		<type tag="place" value="farm" minzoom="10"/>
 		<type tag="place" value="island" minzoom="10" order="100"/>
 		<type tag="osmand_region" value="yes" minzoom="5" nameTags="download_name,region_prefix,region_suffix,key_name" poi_category="" />
 		<type tag="capital" value="yes" minzoom="4" poi_prefix="capital_" additional="true"/>
@@ -1790,7 +1791,7 @@
 		<type tag="sport" value="horse_racing" minzoom="15" />
 		<type tag="sport" value="ice_skating" minzoom="15" />
 		<type tag="sport" value="ice_stock" minzoom="15" />
-		<type tag="sport" value="ice_hockey" target_value="hockey" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="sport" from_value="ice_hockey" to_tag1="sport" to_value1="hockey"/>
 		<type tag="sport" value="korfball" minzoom="15" />
 		<type tag="sport" value="motor" minzoom="15" />
 		<type tag="sport" value="multi" minzoom="15" />
@@ -1803,18 +1804,18 @@
 		<type tag="sport" value="rowing" minzoom="15" />
 		<type tag="sport" value="rugby_union" minzoom="15" />
 		<type tag="sport" value="rugby_league" minzoom="15" />
-		<type tag="sport" value="rugby" target_value="rugby_union" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="sport" from_value="rugby" to_tag1="sport" to_value1="rugby_union"/>
 		<type tag="sport" value="sailing" minzoom="15" />
 		<type tag="sport" value="shooting" minzoom="15" />
 		<type tag="sport" value="skating" minzoom="15" />
 		<type tag="sport" value="skateboard" minzoom="15" />
 		<type tag="sport" value="skiing" minzoom="15" />
 		<type tag="sport" value="soccer" minzoom="15" />
-		<type tag="sport" value="football" target_value="soccer" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="sport" from_value="football" to_tag1="sport" to_value1="soccer"/>
 		<type tag="sport" value="surfing" minzoom="15" />
 		<type tag="sport" value="swimming" minzoom="15" />
 		<type tag="sport" value="table_tennis" minzoom="15" />
-		<type tag="sport" value="team_handball" target_value="handball" minzoom="15" />
+		<type tag="sport" value="team_handball" minzoom="15" />
 		<type tag="sport" value="tennis" minzoom="15" />
 		<type tag="sport" value="toboggan" minzoom="15" />
 		<type tag="sport" value="volleyball" minzoom="15" />
