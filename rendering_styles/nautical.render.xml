@@ -918,6 +918,7 @@
 				<case minzoom="13" tag="seamark:type" value="restricted_area" nameTag="seamark:restricted_area:information" nameTag2="seamark:name"/>
 				<case minzoom="13" tag="seamark:type" value="obstruction" nameTag="seamark:name"/>
 				<case minzoom="13" tag="seamark:type" value="cable_area" nameTag="seamark:name"/>
+				<case minzoom="13" tag="seamark:type" value="pipeline_area" nameTag="seamark:name"/>
 				<case minzoom="11" tag="seamark:type" value="inshore_traffic_zone" nameTag="seamark:name" textOnPath="true"/>
 				<apply_if nightMode="true" textColor="#ffe4e4" textHaloColor="#55971515"/>
 				<apply_if maxzoom="15" additional="seamark:restricted_area:restriction" disable="true"/>
@@ -1971,11 +1972,14 @@
 				</switch>
 			</switch>
 		</case>
-		<case minzoom="13" tag="seamark:type" value="cable_area" icon="seamark_notice_prohibition_noanchoring" shield="seamark_restriction_bg" iconVisibleSize="26" intersectionSizeFactor="0.7">
+		<switch>
+			<case minzoom="13" tag="seamark:type" value="cable_area"/>
+			<case minzoom="13" tag="seamark:type" value="pipeline_area"/>
+			<apply icon="seamark_notice_prohibition_noanchoring" shield="seamark_restriction_bg" iconVisibleSize="26" intersectionSizeFactor="0.7"/>
 			<apply icon__1="seamark_notice_prohibition_bg">
 				<apply_if nightMode="true" icon__1="seamark_notice_prohibition_bg_night"/>
 			</apply>
-		</case>
+		</switch>
 
 		<case minzoom="13" tag="seamark:type" value="obstruction">
 			<case additional="seamark:obstruction:category=foul_ground" icon="seamark_obstruction_foul_ground"/>
@@ -2134,11 +2138,13 @@
 					<apply_if nightMode="true" color_2="#88ff0000"/>
 				</apply>
 			</case>
-			<case minzoom="11" tag="seamark:type" value="cable_area" color="#10ff0000">
-				<apply color_2="#555555">
+			<switch>
+				<case minzoom="13" tag="seamark:type" value="cable_area"/>
+				<case minzoom="13" tag="seamark:type" value="pipeline_area"/>
+				<apply color="#10ff0000" color_2="#555555">
 					<apply_if nightMode="true" color_2="#777777"/>
 				</apply>
-			</case>
+			</switch>
 			<apply>
 				<case maxzoom="12" strokeWidth_2="1.5" pathEffect_2="2_2"/>
 				<case maxzoom="14" strokeWidth_2="2" pathEffect_2="2_3"/>
