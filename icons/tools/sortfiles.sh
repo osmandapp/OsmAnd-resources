@@ -1040,6 +1040,9 @@ mycp seamark marine_farm_fish_additional seamark_marine_farm_fish_additional.png
 mycp seamark marine_farm_oysters_mussels_additional seamark_marine_farm_oysters_mussels_additional.png
 mycp seamark marine_farm_seaweed_additional seamark_marine_farm_seaweed_additional.png
 
+mycp seamark pilot_boarding seamark_pilot_boarding.png
+
+
 ## Shops
 mygroup car_aid shopping_car.png
 mygroup food_shop shopping_convenience.png

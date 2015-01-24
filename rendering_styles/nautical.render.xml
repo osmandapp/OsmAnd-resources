@@ -189,8 +189,8 @@
 	<renderingConstant name="buildingColorDay" value="#a3a3a3"/>
 	<renderingConstant name="buildingColorNight" value="#685454"/>
 	<renderingAttribute name="pierColor">
-		<case attrColorValue="#fddb8f">
-			<apply_if nightMode="true" attrColorValue="#464234"/>
+		<case attrColorValue="#e9ca84">
+			<apply_if nightMode="true" attrColorValue="#67614c"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="accessPrivateColor">
@@ -863,6 +863,7 @@
 					<case minzoom="11" tag="seamark:type" value="light_major" nameTag="name" nameTag2="seamark:light:character" textOrder="10"/>
 					<case minzoom="11" tag="seamark:type" value="light_major" nameTag="seamark:name" nameTag2="seamark:light:character" textOrder="10"/>
 					<case minzoom="13" tag="seamark:type" value="light_minor" textOrder="15"/>
+					<case minzoom="13" tag="man_made" value="lighthouse" textOrder="20"/>
 				</switch>
 				<case minzoom="12" tag="seamark:type" value="fog_signal" textOrder="20"/>
 				<case minzoom="12" tag="seamark:type" value="radar_transponder" textOrder="21"/>
@@ -936,6 +937,7 @@
 			<case minzoom="16" tag="seamark:type" value="anchor_berth" textDy="10"/>
 			<case minzoom="17" tag="seamark:type" value="small_craft_facility" textDy="10"/>
 			<case minzoom="17" tag="seamark:type" value="fishing_facility" textDy="10"/>
+			<case minzoom="16" tag="seamark:type" value="pilot_boarding" textDy="14"/>
 			<case minzoom="17" tag="seamark:type" value="bridge" textDy="14">
 				<case additional="seamark:bridge:category=opening" nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height_closed"/>
 				<case additional="seamark:bridge:category=lifting" nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height_closed"/>
@@ -1424,7 +1426,11 @@
 						<apply iconVisibleSize="13" intersectionSizeFactor="0.4"/>
 					</case>
 					<case minzoom="11" tag="seamark:type" value="light_major" icon="seamark_light_major" iconOrder="10" iconVisibleSize="20" intersectionSizeFactor="0.7"/>
-					<case minzoom="12" tag="seamark:type" value="light_minor" icon="seamark_light_minor" iconOrder="15" iconVisibleSize="16" intersectionSizeFactor="0.6"/>
+					<switch minzoom="12">
+						<case tag="seamark:type" value="light_minor"/>
+						<case tag="man_made" value="lighthouse"/>
+						<apply icon="seamark_light_minor" iconVisibleSize="16" intersectionSizeFactor="0.6" iconOrder="15"/>
+					</switch>
 					<case minzoom="12" tag="seamark:type" value="fog_signal" icon="seamark_fog_signal" iconVisibleSize="16" intersectionSizeFactor="0.5" iconOrder="20"/>
 					<case minzoom="12" tag="seamark:type" value="radar_transponder" icon="seamark_radar_transponder" iconVisibleSize="20" intersectionSizeFactor="0.6" iconOrder="21"/>
 					<case minzoom="12" tag="seamark:type" value="signal_station_traffic" icon="seamark_radio_station" iconVisibleSize="20" intersectionSizeFactor="0.6" iconOrder="21"/>
@@ -1998,6 +2004,9 @@
 			<case additional="seamark:marine_farm:category=seaweed" icon_2="seamark_marine_farm_seaweed_additional"/>
 		</case>
 
+		<case minzoom="16" tag="seamark:type" value="pilot_boarding" icon="seamark_pilot_boarding" shield="seamark_harbour_shield">
+			<apply_if nightMode="true" shield="seamark_harbour_night_shield"/>
+		</case>
 
 		<case minzoom="11" tag="natural" value="peak" iconOrder="65">
 			<case maxzoom="11" icon="natural_peak" shield="peakvolcano_shield" iconVisibleSize="25" intersectionSizeFactor="2"/>
@@ -2008,7 +2017,6 @@
 				<case minzoom="15" icon="natural_peak_night_big"/>
 			</apply_if>
 		</case>
-
 
 		<case minzoom="10" tag="natural" value="volcano" iconOrder="50">
 			<case maxzoom="14" icon="natural_volcano" shield="peakvolcano_shield">
