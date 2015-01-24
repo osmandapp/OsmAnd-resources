@@ -98,6 +98,8 @@
 	<renderingConstant name="textHaloRadiusNight" value=":2"/>
 	<renderingConstant name="defaultTextHaloColorDay" value="#bbfddb8f"/>
 
+	<renderingConstant name="black" value="#000000"/>
+	<renderingConstant name="white" value="#ffffff"/>
 	<renderingConstant name="null" value="#00000000"/>
 
 	<renderingAttribute name="motorwayRoadColor">
@@ -308,6 +310,7 @@
 			<case tag="seamark:type" value="inshore_traffic_zone"/>
 			<case tag="seamark:type" value="marine_farm"/>
 			<case tag="seamark:type" value="military_area"/>
+			<case tag="seamark:type" value="pipeline_area"/>
 			<case tag="natural" value="cliff"/>
 			<case tag="natural" value="crater"/>
 			<case tag="natural" value="hot_spring"/>
@@ -359,6 +362,7 @@
 			<case tag="seamark:type" value="fishing_facility"/>
 			<case tag="seamark:type" value="gate"/>
 			<case tag="seamark:type" value="inshore_traffic_zone"/>
+			<case tag="seamark:type" value="pipeline_area"/>
 
 			<case tag="waterway" value="dam"/>
 			<case tag="waterway" value="weir" order="19"/>
@@ -902,7 +906,10 @@
 			<switch minzoom="15" textColor="#444444" textWrapWidth="19" textHaloColor="#33ffffff" textHaloRadius="2" textOnPath="true">
 				<case tag="seamark:type" value="cable_submarine" nameTag="seamark:name"/>
 				<case tag="seamark:type" value="cable_submarine" nameTag=""/>
-				<apply_if nightMode="true" textColor="#999999" textHaloColor="#33333333"/>
+				<case tag="seamark:type" value="pipeline_submarine" textOnPath="true" nameTag="seamark:name"/>
+				<case tag="seamark:type" value="pipeline_area" textDy="8" nameTag="seamark:name"/>
+				<apply_if nightMode="true" textColor="#999999" textHaloColor="#55333333"/>
+				<apply_if engine_v1="false" textDy="0"/>
 			</switch>
 
 			<switch minzoom="11" textColor="#0400ab" textWrapWidth="19" textHaloColor="#88ffffff" textHaloRadius="2">
@@ -918,7 +925,6 @@
 				<case minzoom="13" tag="seamark:type" value="restricted_area" nameTag="seamark:restricted_area:information" nameTag2="seamark:name"/>
 				<case minzoom="13" tag="seamark:type" value="obstruction" nameTag="seamark:name"/>
 				<case minzoom="13" tag="seamark:type" value="cable_area" nameTag="seamark:name"/>
-				<case minzoom="13" tag="seamark:type" value="pipeline_area" nameTag="seamark:name"/>
 				<case minzoom="11" tag="seamark:type" value="inshore_traffic_zone" nameTag="seamark:name" textOnPath="true"/>
 				<apply_if nightMode="true" textColor="#ffe4e4" textHaloColor="#55971515"/>
 				<apply_if maxzoom="15" additional="seamark:restricted_area:restriction" disable="true"/>
@@ -2413,17 +2419,29 @@
 			</apply>
 		</switch>
 
-		<case minzoom="14" tag="seamark:type" value="cable_submarine">
-			<case maxzoom="14" strokeWidth="0.8:0.8" pathEffect="25_7" pathEffect_2="25_7"/>
-			<case maxzoom="15" strokeWidth="1:1" pathEffect="30_10" pathEffect_2="30_10"/>
-			<case maxzoom="16" strokeWidth="1.5:1.5" strokeWidth_2="0.5:0.5" pathEffect="30_10" pathEffect_2="30_10"/>
-			<case maxzoom="17" strokeWidth="2:2" strokeWidth_2="0.7:0.7" pathEffect="37_11" pathEffect_2="37_11"/>
-			<case minzoom="18" strokeWidth="2.5:2.5" strokeWidth_2="0.8:0.8" pathEffect="40_13" pathEffect_2="40_13"/>
-			<apply_if engine_v1="false" maxzoom="14" strokeWidth="0.4:0.4"/>
-			<apply color="#77888888" color_2="#ffffff">
-				<apply_if nightMode="true" color="#99666666" color_2="#77ffffff"/>
+		<switch>
+			<case minzoom="14" tag="seamark:type" value="cable_submarine" color_2="#ffffff">
+				<apply_if nightMode="true" color_2="#77ffffff"/>
+			</case>
+			<switch minzoom="14">
+				<case tag="seamark:type" value="pipeline_area"/>
+				<case tag="seamark:type" value="pipeline_submarine"/>
+				<apply color_2="#000000">
+					<apply_if nightMode="true" color_2="$black"/>
+				</apply>
+			</switch>
+			<apply>
+				<case maxzoom="14" strokeWidth="0.8:0.8" pathEffect="25_7" pathEffect_2="25_7"/>
+				<case maxzoom="15" strokeWidth="1:1" pathEffect="30_10" pathEffect_2="30_10"/>
+				<case maxzoom="16" strokeWidth="1.5:1.5" strokeWidth_2="0.5:0.5" pathEffect="30_10" pathEffect_2="30_10"/>
+				<case maxzoom="17" strokeWidth="2:2" strokeWidth_2="0.7:0.7" pathEffect="37_11" pathEffect_2="37_11"/>
+				<case minzoom="18" strokeWidth="2.5:2.5" strokeWidth_2="0.8:0.8" pathEffect="40_13" pathEffect_2="40_13"/>
 			</apply>
-		</case>
+			<apply_if engine_v1="false" maxzoom="14" strokeWidth="0.4:0.4"/>
+			<apply color="#77888888">
+				<apply_if nightMode="true" color="#99666666"/>
+			</apply>
+		</switch>
 		<case minzoom="14" tag="seamark:type" value="fortified_structure">
 			<case maxzoom="14" strokeWidth="2:2"/>
 			<case maxzoom="15" strokeWidth="3:3"/>
