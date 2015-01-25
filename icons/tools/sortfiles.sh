@@ -685,6 +685,11 @@ mycp seamark landmark_dish_aerial seamark_big_landmark_dish_aerial.png
 mycp seamark landmark_windsock seamark_big_landmark_windsock.png
 mycp seamark landmark_cemetery seamark_big_landmark_cemetery.png
 mycp seamark landmark_cross seamark_big_landmark_cross.png
+mycp seamark landmark_statue seamark_big_landmark_statue.png
+mycp seamark landmark_minaret seamark_big_landmark_minaret.png
+mycp seamark landmark_spire_big seamark_big_landmark_spire_big.png
+mycp seamark landmark_dome_big seamark_big_landmark_dome_big.png
+mycp seamark landmark_cairn seamark_big_landmark_cairn.png
 
 mycp seamark landmark_communication_additional seamark_big_landmark_communication_additional.png
 mycp seamark landmark_church seamark_big_landmark_church.png
