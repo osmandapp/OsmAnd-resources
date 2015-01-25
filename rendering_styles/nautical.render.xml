@@ -925,6 +925,7 @@
 				<case minzoom="13" tag="seamark:type" value="restricted_area" nameTag="seamark:restricted_area:information" nameTag2="seamark:name"/>
 				<case minzoom="13" tag="seamark:type" value="obstruction" nameTag="seamark:name"/>
 				<case minzoom="13" tag="seamark:type" value="cable_area" nameTag="seamark:name"/>
+				<case minzoom="13" tag="seamark:type" value="precautionary_area" nameTag="seamark:name"/>
 				<case minzoom="11" tag="seamark:type" value="inshore_traffic_zone" nameTag="seamark:name" textOnPath="true"/>
 				<apply_if nightMode="true" textColor="#ffe4e4" textHaloColor="#55971515"/>
 				<apply_if maxzoom="15" additional="seamark:restricted_area:restriction" disable="true"/>
@@ -1941,6 +1942,22 @@
 			<case additional="seamark:production_area:category=wind_farm" icon="seamark_landmark_windmotor"/>
 		</case>
 
+		<switch minzoom="13" tag="seamark:type" value="precautionary_area" iconVisibleSize="32" intersectionSizeFactor="0.5">
+			<switch>
+				<case additional="seamark:precautionary_area:restriction=no_fishing" icon="seamark_restriction_fishing"/>
+				<case additional="seamark:precautionary_area:restriction=no_anchoring" icon="seamark_notice_prohibition_noanchoring"/>
+				<apply icon__1="seamark_notice_prohibition_bg">
+					<apply_if nightMode="true" icon__1="seamark_notice_prohibition_bg_night"/>
+				</apply>
+			</switch>
+			<switch>
+				<case additional="seamark:precautionary_area:restriction=restricted_fishing" icon="seamark_restriction_fishing"/>
+				<apply icon__1="seamark_notice_regulation_bg">
+					<apply_if nightMode="true" icon__1="seamark_notice_regulation_bg_night"/>
+				</apply>
+			</switch>
+		</switch>
+
 		<case minzoom="13" tag="seamark:type" value="restricted_area" iconOrder="30">
 			<case additional="seamark:restricted_area:category=kite_surfing" icon="seamark_restricted_area_kite_surfing"/>
 			<case additional="seamark:restricted_area:category=swimming" icon="seamark_restricted_area_swimming"/>
@@ -2168,6 +2185,11 @@
 			<case minzoom="11" tag="seamark:type" value="obstruction" color="#25cc0000">
 				<apply color_2="#ff0000">
 					<apply_if nightMode="true" color_2="#aaff0000"/>
+				</apply>
+			</case>
+			<case minzoom="11" tag="seamark:type" value="precautionary_area" color="#258e6800">
+				<apply color_2="#ffba00">
+					<apply_if nightMode="true" color_2="#aaffba00"/>
 				</apply>
 			</case>
 			<case tag="seamark:type" value="restricted_area" color="#10ff0000">
