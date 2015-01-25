@@ -1059,6 +1059,9 @@ mycp seamark marine_farm_seaweed_additional seamark_marine_farm_seaweed_addition
 
 mycp seamark pilot_boarding seamark_pilot_boarding.png
 
+mycp seamark pylon seamark_pylon.png
+mycp seamark pylon_power seamark_pylon_power.png
+
 
 ## Shops
 mygroup car_aid shopping_car.png
