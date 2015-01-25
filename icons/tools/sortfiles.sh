@@ -1062,6 +1062,8 @@ mycp seamark pilot_boarding seamark_pilot_boarding.png
 mycp seamark pylon seamark_pylon.png
 mycp seamark pylon_power seamark_pylon_power.png
 
+mycp seamark radar_reflector seamark_radar_reflector.png
+
 
 ## Shops
 mygroup car_aid shopping_car.png
