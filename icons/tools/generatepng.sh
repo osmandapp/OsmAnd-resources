@@ -120,10 +120,10 @@ generatePngs() {
       generatePngs 'sport'  '#39AC39' '#777777'
 
       generatePngs 'amenity' '#777777' '#734A08'
-      generatePngs 'place_of_worship' '#000000' '#777777'
+      generatePngs 'place_of_worship' '#333333' '#777777'
       generatePngs 'money' '#777777' '#777777'
       generatePngs 'education' '#777777' '#39AC39'
-      generatePngs 'poi' '#000000' '#777777'
+      generatePngs 'poi' '#3f3f3f' '#777777' 
       generatePngs 'power' '#777777' '#8e7409'
 
       generatePngs 'food' '#777777' '#734A08'

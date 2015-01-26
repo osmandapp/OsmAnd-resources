@@ -262,6 +262,7 @@
 			<case tag="seamark:type" value="production_area"/>
 			<case tag="seamark:type" value="hulk"/>
 			<case tag="seamark:type" value="marine_farm"/>
+			<case tag="seamark:type" value="rapids"/>
 			<case tag="seamark" value=""/>
 			<case tag="seamark:type" value="fishing_facility"/>
 		</switch>
@@ -324,7 +325,7 @@
 			</switch>
 			<case tag="waterway" value="dam"/>
 			<case tag="waterway" value="weir"/>
-			<case tag="waterway" value="rapids"/>
+<!--			<case tag="waterway" value="rapids"/>-->
 			<switch order="5">
 				<case tag="natural" value="water"/>
 				<case tag="waterway" value="riverbank"/>
@@ -363,6 +364,7 @@
 			<case tag="seamark:type" value="gate"/>
 			<case tag="seamark:type" value="inshore_traffic_zone"/>
 			<case tag="seamark:type" value="pipeline_area"/>
+			<case tag="seamark:type" value="rapids"/>
 
 			<case tag="waterway" value="dam"/>
 			<case tag="waterway" value="weir" order="19"/>
@@ -785,7 +787,6 @@
 					<case minzoom="17" nameTag="" nameTag2="ele" textSize="16" textOrder="15"/>
 				</case>
 				<case minzoom="14" textSize="12" tag="natural" value="ridge" textOnPath="true" textDy="0"/>
-				<case minzoom="16" textSize="12" tag="waterway" value="rapids" textOnPath="true"/>
 				<case minzoom="13" textSize="14" tag="natural" value="crater" textColor="#4e0d0d" textDy="-4"/>
 				<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffcc9b" textHaloColor="#77464234"/>
 			</switch>
@@ -821,6 +822,12 @@
 			<case minzoom="16" tag="natural" value="hot_spring" textDy="7" textWrapWidth="20" textOrder="15"/>
 			<case minzoom="16" tag="natural" value="geyser" textDy="7" textWrapWidth="20" textOrder="15"/>
 			<case minzoom="15" tag="waterway" value="waterfall" nameTag2="height" textHaloColor="#bbddf1fd" textDy="7" textWrapWidth="20" textOnPath="true" textOrder="15"/>
+			<switch minzoom="17">
+				<case tag="waterway" value="rapids"/>
+				<case tag="seamark:waterway" value="rapids"/>
+				<apply textSize="11" textOnPath="true"/>
+				<apply_if engine_v1="true" textDy="6"/>
+			</switch>
 
 			<case minzoom="13" tag="landuse" value="water" textWrapWidth="20"/>
 			<case minzoom="13" tag="landuse" value="reservoir" textWrapWidth="20"/>
@@ -2094,6 +2101,12 @@
 
 		<case minzoom="15" tag="seamark:type" value="radar_reflector" icon="seamark_radar_reflector"/>
 
+		<switch minzoom="15">
+			<case tag="seamark:type" value="rapids"/>
+			<case tag="waterway" value="rapids"/>
+			<apply icon="waterway_rapids" shield="rapids_shield"/>
+		</switch>
+
 		<case minzoom="11" tag="natural" value="peak" iconOrder="65">
 			<case maxzoom="11" icon="natural_peak" shield="peakvolcano_shield" iconVisibleSize="25" intersectionSizeFactor="2"/>
 			<case maxzoom="14" icon="natural_peak" shield="peakvolcano_shield"/>
@@ -2824,6 +2837,7 @@
 		<switch minzoom="15">
 			<case tag="seamark:type" value="gate"/>
 			<case tag="waterway" value="lock_gate"/>
+			<case minzoom="16" tag="waterway" value="rapids" pathEffect="1_12" cap="ROUND"/>
 			<apply color="#777777">
 				<case maxzoom="17" strokeWidth="2:2"/>
 				<case minzoom="18" strokeWidth="4:4"/>
