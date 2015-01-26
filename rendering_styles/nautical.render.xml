@@ -279,6 +279,7 @@
 			<case tag="railway" value="" order="4"/>
 			<case tag="historic" value="ship"/>
 			<case tag="barrier" value="city_wall"/>
+			<case tag="seamark:type" value="fortified_structure"/>
 			<case tag="seamark:type" value="inshore_traffic_zone"/>
 			<case tag="seamark:type" value="military_area"/>
 		</switch>
@@ -359,6 +360,7 @@
 				<case tag="seamark:type" value="lock_basin"/>
 				<case tag="seamark:type" value="lock_basin_part"/>
 			</switch>
+			<case tag="barrier" value="city_wall"/>
 			<case tag="seamark:type" value="fortified_structure"/>
 			<case tag="seamark:type" value="fairway"/>
 			<case tag="seamark:type" value="fishing_facility"/>
@@ -985,8 +987,9 @@
 			<case tag="seamark:type" value="distance_mark" nameTag="seamark:distance_mark:distance" nameTag2="seamark:distance_mark:units"/>
 			<apply_if nightMode="true" textColor="#e4d0e3"/>
 		</switch>
-		<switch textSize="12" textColor="#734a08" textHaloRadius="$textHaloRadiusDay" textHaloColor="#fddb8f" textDy="9" textWrapWidth="20">
-			<case minzoom="17" tag="seamark:type" value="fortified_structure" textOnPath="true" textColor="#ffffff" textHaloColor="#7b7463" textDy="0"/>
+		<switch textSize="12" textColor="#ffffff" textHaloRadius="$textHaloRadiusDay" textHaloColor="#7b7463" textWrapWidth="20" textOnPath="true" textDy="0">
+			<case minzoom="17" tag="barrier" value="city_wall"/>
+			<case minzoom="17" tag="seamark:type" value="fortified_structure"/>
 			<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffe7c2" textHaloColor="#88644e2c"/>
 		</switch>
 	</text>
@@ -2260,7 +2263,7 @@
 		</switch>
 
 		<switch>
-			<case minzoom="10" tag="seamark:type" value="inshore_traffic_zone" color_2="#c09daa">
+			<case minzoom="10" tag="seamark:type" value="inshore_traffic_zone" color="#22c09daa" color_2="#c09daa">
 				<apply_if nightMode="true" color_2="#999b5452"/>
 			</case>
 			<apply>
@@ -2377,6 +2380,18 @@
 		<case minzoom="7" tag="military" value="danger_area" shader="hazard" color_2="#f46997" strokeWidth_2="1:1">
 			<apply_if nightMode="true" color_2="#cc1652"/>
 		</case>
+		<switch>
+			<case minzoom="14" tag="seamark:type" value="fortified_structure"/>
+			<case minzoom="14" tag="barrier" value="city_wall"/>
+			<apply>
+				<case maxzoom="14" strokeWidth_2="2:2"/>
+				<case maxzoom="15" strokeWidth_2="3:3"/>
+				<case minzoom="16" strokeWidth_2="4.5:4.5"/>
+			</apply>
+			<apply color_2="#888888">
+				<apply_if nightMode="true" color_2="#545454"/>
+			</apply>
+		</switch>
 
 		<switch>
 			<switch>
@@ -2542,14 +2557,18 @@
 				<apply_if nightMode="true" color="#99666666"/>
 			</apply>
 		</switch>
-		<case minzoom="14" tag="seamark:type" value="fortified_structure">
-			<case maxzoom="14" strokeWidth="2:2"/>
-			<case maxzoom="15" strokeWidth="3:3"/>
-			<case minzoom="16" strokeWidth="4.5:4.5"/>
+		<switch>
+			<case minzoom="14" tag="seamark:type" value="fortified_structure"/>
+			<case minzoom="14" tag="barrier" value="city_wall"/>
+			<apply>
+				<case maxzoom="14" strokeWidth="2:2"/>
+				<case maxzoom="15" strokeWidth="3:3"/>
+				<case minzoom="16" strokeWidth="4.5:4.5"/>
+			</apply>
 			<apply color="#888888">
 				<apply_if nightMode="true" color="#545454"/>
 			</apply>
-		</case>
+		</switch>
 
 		<case minzoom="17" tag="seamark:type" value="fishing_facility" strokeWidth="1:1" pathEffect="1_6" color="#555555" cap="ROUND">
 			<apply_if nightMode="true" color="#777777"/>
