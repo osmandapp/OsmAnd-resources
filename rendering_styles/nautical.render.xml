@@ -263,6 +263,7 @@
 			<case tag="seamark:type" value="hulk"/>
 			<case tag="seamark:type" value="marine_farm"/>
 			<case tag="seamark:type" value="rapids"/>
+			<case tag="seamark:type" value="waterfall"/>
 			<case tag="seamark" value=""/>
 			<case tag="seamark:type" value="fishing_facility"/>
 		</switch>
@@ -365,11 +366,13 @@
 			<case tag="seamark:type" value="inshore_traffic_zone"/>
 			<case tag="seamark:type" value="pipeline_area"/>
 			<case tag="seamark:type" value="rapids"/>
+			<case tag="seamark:type" value="waterfall"/>
 
 			<case tag="waterway" value="dam"/>
 			<case tag="waterway" value="weir" order="19"/>
 			<case tag="waterway" value="lock_gate"/>
 			<case tag="waterway" value="wadi"/>
+			<case tag="waterway" value="waterfall"/>
 			<case tag="waterway" value="" order="18">
 				<apply_if layer="1" order="68"/>
 			</case>
@@ -821,7 +824,11 @@
 			<case minzoom="16" tag="natural" value="spring" textDy="7" textWrapWidth="20" textOrder="15"/>
 			<case minzoom="16" tag="natural" value="hot_spring" textDy="7" textWrapWidth="20" textOrder="15"/>
 			<case minzoom="16" tag="natural" value="geyser" textDy="7" textWrapWidth="20" textOrder="15"/>
-			<case minzoom="15" tag="waterway" value="waterfall" nameTag2="height" textHaloColor="#bbddf1fd" textDy="7" textWrapWidth="20" textOnPath="true" textOrder="15"/>
+			<switch minzoom="15">
+				<case tag="waterway" value="waterfall" nameTag2="height"/>
+				<case tag="seamark:type" value="waterfall" nameTag2="height"/>
+				<apply textDy="7" textWrapWidth="20" textOnPath="true" textOrder="15"/>
+			</switch>
 			<switch minzoom="17">
 				<case tag="waterway" value="rapids"/>
 				<case tag="seamark:waterway" value="rapids"/>
@@ -2106,6 +2113,7 @@
 			<case tag="waterway" value="rapids"/>
 			<apply icon="waterway_rapids" shield="rapids_shield"/>
 		</switch>
+		<case minzoom="14" tag="waterway" value="waterfall" icon="seamark_waterfall" shield="seamark_waterfall_shield"/>
 
 		<case minzoom="11" tag="natural" value="peak" iconOrder="65">
 			<case maxzoom="11" icon="natural_peak" shield="peakvolcano_shield" iconVisibleSize="25" intersectionSizeFactor="2"/>
@@ -2833,6 +2841,19 @@
 			<apply color="#555555">
 				<apply_if nightMode="true" color="#eeeeee"/>
 			</apply>
+		</switch>
+		<switch minzoom="16">
+			<case tag="waterway" value="waterfall"/>
+			<apply_if engine_v1="true">
+				<case maxzoom="16" strokeWidth="3.5:3.5" pathEffect="1_7"/>
+				<case maxzoom="17" strokeWidth="4.5:4.5" pathEffect="1_9"/>
+				<case minzoom="18" strokeWidth="6.5:6.5" pathEffect="1_13"/>
+				<apply color="#6c6ce2" color_2="#3f3f3f" strokeWidth_2="0.5:0.5"/>
+				<apply_if nightMode="true" color="#9dbde1" color_2="#9dbde1"/>
+			</apply_if>
+			<apply_if engine_v1="false" color="#6c6ce2" strokeWidth="0.5:0.5" pathIcon="stroke_black" pathIconStep="13">
+				<apply_if nightMode="true" pathIcon="stroke_gray" color="#9dbde1"/>
+			</apply_if>
 		</switch>
 		<switch minzoom="15">
 			<case tag="seamark:type" value="gate"/>

@@ -1058,11 +1058,10 @@ mycp seamark marine_farm_oysters_mussels_additional seamark_marine_farm_oysters_
 mycp seamark marine_farm_seaweed_additional seamark_marine_farm_seaweed_additional.png
 
 mycp seamark pilot_boarding seamark_pilot_boarding.png
-
 mycp seamark pylon seamark_pylon.png
 mycp seamark pylon_power seamark_pylon_power.png
-
 mycp seamark radar_reflector seamark_radar_reflector.png
+mycp seamark waterfall seamark_waterfall.png
 
 
 ## Shops
