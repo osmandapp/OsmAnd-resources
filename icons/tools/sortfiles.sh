@@ -1063,6 +1063,7 @@ mycp seamark pylon_power seamark_pylon_power.png
 mycp seamark radar_reflector seamark_radar_reflector.png
 mycp seamark waterfall seamark_waterfall.png
 mycp seamark rescue_station seamark_rescue_station.png
+mycp seamark seaplane_landing_area seamark_small_seaplane_landing_area.png
 
 
 ## Shops

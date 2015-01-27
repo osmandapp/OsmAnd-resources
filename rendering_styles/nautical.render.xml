@@ -950,6 +950,7 @@
 				<case minzoom="13" tag="seamark:type" value="obstruction" nameTag="seamark:name"/>
 				<case minzoom="13" tag="seamark:type" value="cable_area" nameTag="seamark:name"/>
 				<case minzoom="13" tag="seamark:type" value="precautionary_area" nameTag="seamark:name"/>
+				<case minzoom="15" tag="seamark:type" value="seaplane_landing_area" nameTag="seamark:name"/>
 				<case minzoom="11" tag="seamark:type" value="inshore_traffic_zone" nameTag="seamark:name" textOnPath="true"/>
 				<apply_if nightMode="true" textColor="#ffe4e4" textHaloColor="#55971515"/>
 				<apply_if maxzoom="15" additional="seamark:restricted_area:restriction" disable="true"/>
@@ -1995,7 +1996,10 @@
 					<apply_if nightMode="true" icon__1="seamark_notice_regulation_bg_night"/>
 				</apply>
 			</switch>
+			<apply shield="seamark_restriction_shield"/>
 		</switch>
+
+		<case minzoom="14" tag="seamark:type" value="seaplane_landing_area" icon="seamark_seaplane_landing_area"/>
 
 		<case minzoom="13" tag="seamark:type" value="restricted_area" iconOrder="30">
 			<case additional="seamark:restricted_area:category=kite_surfing" icon="seamark_restricted_area_kite_surfing"/>
@@ -2241,11 +2245,13 @@
 					<apply_if nightMode="true" color_2="#aaff0000"/>
 				</apply>
 			</case>
-			<case minzoom="11" tag="seamark:type" value="precautionary_area" color="#258e6800">
-				<apply color_2="#ffba00">
+			<switch>
+				<case minzoom="11" tag="seamark:type" value="precautionary_area"/>
+				<case minzoom="13" tag="seamark:type" value="seaplane_landing_area"/>
+				<apply color="#258e6800" color_2="#ffba00">
 					<apply_if nightMode="true" color_2="#aaffba00"/>
 				</apply>
-			</case>
+			</switch>
 			<case tag="seamark:type" value="restricted_area" color="#10ff0000">
 				<case additional="seamark:restricted_area:category=military" shader="danger" color="#100000">
 					<apply_if nightMode="true" shader="danger_night"/>
