@@ -900,6 +900,7 @@
 				<case minzoom="10" tag="seamark:type" value="harbour" textOrder="2" nameTag=""/>
 				<case minzoom="12" tag="waterway" value="dock" textOrder="9"/>
 				<case minzoom="16" tag="seamark:type" value="building" textOrder="13" textBold="false"/>
+				<case minzoom="16" tag="seamark:type" value="rescue_station" textOrder="13" textBold="false"/>
 				<case minzoom="16" tag="seamark:type" value="hulk" textOrder="14" textBold="false"/>
 				<apply_if engine_v1="true" textDy="15"/>
 			</switch>
@@ -958,30 +959,35 @@
 			</apply>
 		</switch>
 		<switch>
-			<case minzoom="11" tag="seamark:type" value="separation_zone" textBold="true"/>
-			<case minzoom="14" tag="seamark:type" value="separation_roundabout" textBold="true"/>
-			<case minzoom="11" tag="seamark:type" value="fairway" textOnPath="true"/>
-			<case minzoom="11" tag="waterway" value="fairway" textOnPath="true"/>
-			<case minzoom="12" tag="seamark:type" value="anchorage" textDy="10" textBold="true"/>
-			<case minzoom="16" tag="seamark:type" value="anchor_berth" textDy="10"/>
-			<case minzoom="17" tag="seamark:type" value="small_craft_facility" textDy="10"/>
-			<case minzoom="17" tag="seamark:type" value="fishing_facility" textDy="10"/>
-			<case minzoom="16" tag="seamark:type" value="pilot_boarding" textDy="14"/>
-			<case minzoom="17" tag="seamark:type" value="bridge" textDy="14">
-				<case additional="seamark:bridge:category=opening" nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height_closed"/>
-				<case additional="seamark:bridge:category=lifting" nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height_closed"/>
-				<case nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height"/>
-			</case>
-			<switch minzoom="16" tag="seamark:type" value="berth" textDy="10">
-				<case nameTag="seamark:name" nameTag2="seamark:berth:information"/>
-				<case nameTag="" nameTag2="seamark:berth:information"/>
+			<switch>
+				<case minzoom="11" tag="seamark:type" value="separation_zone" textBold="true"/>
+				<case minzoom="14" tag="seamark:type" value="separation_roundabout" textBold="true"/>
+				<case minzoom="11" tag="seamark:type" value="fairway" textOnPath="true"/>
+				<case minzoom="11" tag="waterway" value="fairway" textOnPath="true"/>
+				<case minzoom="12" tag="seamark:type" value="anchorage" textDy="10" textBold="true"/>
+				<case minzoom="16" tag="seamark:type" value="anchor_berth" textDy="10"/>
+				<case minzoom="17" tag="seamark:type" value="small_craft_facility" textDy="10"/>
+				<case minzoom="17" tag="seamark:type" value="fishing_facility" textDy="10"/>
+				<switch minzoom="16" tag="seamark:type" value="berth" textDy="10">
+					<case nameTag="seamark:name" nameTag2="seamark:berth:information"/>
+					<case nameTag="" nameTag2="seamark:berth:information"/>
+				</switch>
+				<apply_if engine_v1="false" textDy="-7"/>
+			</switch>
+			<switch>
+				<case minzoom="16" tag="seamark:type" value="pilot_boarding" textDy="14"/>
+				<case minzoom="17" tag="seamark:type" value="bridge" textDy="14">
+					<case additional="seamark:bridge:category=opening" nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height_closed"/>
+					<case additional="seamark:bridge:category=lifting" nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height_closed"/>
+					<case nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height"/>
+				</case>
+				<apply_if engine_v1="false" textDy="-1"/>
 			</switch>
 			<apply textColor="#471c62" textWrapWidth="26" textHaloColor="#66debee7" textHaloRadius="2">
 				<case maxzoom="12" textSize="12"/>
 				<case maxzoom="14" textSize="13"/>
 				<case minzoom="16" textSize="14"/>
 			</apply>
-			<apply_if engine_v1="false" textDy="-13"/>
 			<apply_if nightMode="true" textColor="#f3e1ff" textHaloColor="#5545a5e2"/>
 		</switch>
 		<switch minzoom="17" textSize="10" textColor="#5a0461" textWrapWidth="7" textHaloColor="#33ffffff" textHaloRadius="1" textDy="10" textOrder="100">
@@ -2118,6 +2124,8 @@
 			<apply icon="waterway_rapids" shield="rapids_shield"/>
 		</switch>
 		<case minzoom="14" tag="waterway" value="waterfall" icon="seamark_waterfall" shield="seamark_waterfall_shield"/>
+
+		<case minzoom="15" tag="seamark:type" value="rescue_station" icon="seamark_rescue_station"/>
 
 		<case minzoom="11" tag="natural" value="peak" iconOrder="65">
 			<case maxzoom="11" icon="natural_peak" shield="peakvolcano_shield" iconVisibleSize="25" intersectionSizeFactor="2"/>
