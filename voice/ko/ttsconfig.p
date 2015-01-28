@@ -117,7 +117,7 @@ string('miles.ogg', '마일 ').
 string('yards.ogg', '미터 ').
 
 % TIME SUPPORT
-string('time.ogg', '시간이 필요 ').
+string('time.ogg', '시간은 ').
 string('1_hour.ogg', '한 시간 ').
 string('hours.ogg', '시간 ').
 string('less_a_minute.ogg', '이하의 분 ').
@@ -172,7 +172,7 @@ reached_intermediate(D) -- ['reached_intermediate.ogg'|Ds] :- name(D, Ds).
 and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
 
-route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'is.ogg', 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'is.ogg', 'time.ogg', T, 'is.ogg'] :- distance(Dist) -- D, time(Time) -- T.
 route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'is.ogg', 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
