@@ -28,7 +28,7 @@ language('ko').
 
 % ROUTE CALCULATED
 string('route_is.ogg', '총 거리는 ').
-string('route_calculate.ogg', '경로가 재탐색되었습니다. ').
+string('route_calculate.ogg', '새로운 경로를 찾았습니다. ').
 string('distance.ogg', '거리는 ').
 string('is.ogg', '입니다 ').
 
@@ -86,17 +86,17 @@ string('follow.ogg', ' 직진하세요 ').
 % ARRIVE
 string('and_arrive_destination.ogg', ' 다음은 목적지에 도착합니다 ').
 string('reached_destination.ogg', '목적지에 도착하였습니다 ').
-string('and_arrive_intermediate.ogg', '당신을 통해 지점에 도착 ').
-string('reached_intermediate.ogg', '당신은 당신을 통해 지점에 도달했습니다').
-string('and_arrive_waypoint.ogg', '당신을 통해 지점에 도착 GPX').
-string('reached_waypoint.ogg', '당신은 당신을 통해 지점에 도달했습니다 GPX').
+string('and_arrive_intermediate.ogg', '지점에 도착합니다 ').
+string('reached_intermediate.ogg', '지점에 도착하였습니다').
+string('and_arrive_waypoint.ogg', '다음은 지점을 통과 합니다').
+string('reached_waypoint.ogg', '지점을 통과 중 입니다').
 
 % OTHER PROMPTS
-string('attention.ogg', '주의, ').
+string('attention.ogg', '과속을 주의 하세요, ').
 string('location_lost.ogg', 'g p s 신호가 없습니다 ').
-string('location_recovered.ogg', 'g p s 신호는 복구').
-string('off_route.ogg', '당신은 경로에서 이탈했다 ').
-string('exceed_limit.ogg', '당신은 속도 제한을 초과하는 ').
+string('location_recovered.ogg', 'g p s 신호가 복구 되었습니다').
+string('off_route.ogg', '경로에서 이탈했습니다 ').
+string('exceed_limit.ogg', '제한 속도를 초과하고 있습니다 ').
 
 % STREET NAME GRAMMAR
 string('onto.ogg', '에 ').
@@ -110,7 +110,7 @@ string('around.ogg', '약, ').
 string('kilometers.ogg', ' 킬로미터 ').
 
 string('feet.ogg', '피트 ').
-string('1_tenth_of_a_mile.ogg', '마일 10 분의 1').
+string('1_tenth_of_a_mile.ogg', '10 분의 1 마일').
 string('tenths_of_a_mile.ogg', '마일의 에바').
 string('around_1_mile.ogg', '약 1 마일').
 string('miles.ogg', '마일 ').
@@ -118,10 +118,10 @@ string('miles.ogg', '마일 ').
 string('yards.ogg', '미터 ').
 
 % TIME SUPPORT
-string('time.ogg', '시간이 필요 ').
-string('1_hour.ogg', '일시간 ').
+string('time.ogg', '시간은 ').
+string('1_hour.ogg', '한 시간 ').
 string('hours.ogg', '시간 ').
-string('less_a_minute.ogg', '이하의 분 ').
+string('less_a_minute.ogg', '일분 이하 ').
 string('1_minute.ogg', '일분 ').
 string('minutes.ogg', '분 ').
 
@@ -173,7 +173,7 @@ reached_intermediate(D) -- ['reached_intermediate.ogg'|Ds] :- name(D, Ds).
 and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
 
-route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'is.ogg', 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'is.ogg', 'time.ogg', T, 'is.ogg'] :- distance(Dist) -- D, time(Time) -- T.
 route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'is.ogg', 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
