@@ -1067,6 +1067,9 @@ mycp seamark waterfall seamark_waterfall.png
 mycp seamark rescue_station seamark_rescue_station.png
 mycp seamark seaplane_landing_area seamark_small_seaplane_landing_area.png
 
+mycp seamark rock_awash seamark_rock_awash.png
+mycp seamark rock_covers seamark_rock_covers.png
+mycp seamark rock_submerged seamark_rock_submerged.png
 
 ## Shops
 mygroup car_aid shopping_car.png
