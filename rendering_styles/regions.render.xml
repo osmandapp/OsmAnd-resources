@@ -3,7 +3,6 @@
 
 	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
-
 	<renderingConstant name="null" value="#00000000"/>
 
 	<!-- Example: modify route and gpx overlay style -->
@@ -24,11 +23,18 @@
 	<order>
 	<!-- Point -->
 		<switch area="false" point="true" objectType="1" order="128">
+			<switch maxzoom="9" order="-1">
+				<case tag="place" value="town"/>
+				<case tag="osmand_place_basemap" value="city"/>
+				<case tag="place" value="city"/>
+				<case tag="place" value="country"/>
+			</switch>
 		</switch>
 	<!-- Polygon -->
 		<switch area="true" point="false" objectType="3" order="5">
 		</switch>
 		<switch cycle="true" point="false" objectType="3" order="5">
+			<case tag="osmand_region" value="yes"/>
 		</switch>
 	<!-- Line -->
 		<switch area="false" objectType="2" order="80">
@@ -39,6 +45,15 @@
 
 
 	<text>
+		<switch minzoom="2" textHaloColor="#ffffff" textColor="#000000" textHaloRadius="2" textBold="true" textOnPath="true" textOrder="1" intersectionSizeFactor="0.7">
+			<case tag="osmand_region" value="yes"/>
+			<apply>
+				<case maxzoom="15" textSize="13"/>
+				<case maxzoom="16" textSize="14"/>
+				<case maxzoom="17" textSize="16"/>
+				<case minzoom="18" textSize="18"/>
+			</apply>
+		</switch>
 	</text>
 
 
@@ -50,6 +65,18 @@
 
 
 	<polygon>
+		<switch minzoom="2">
+			<case tag="osmand_region" value="yes" color="#66c09daa" color_2="#0000ff">
+				<apply_if nightMode="true" color_2="#999b5452"/>
+			</case>
+			<apply>
+				<case maxzoom="12" strokeWidth_2="2"/>
+				<case maxzoom="14" strokeWidth_2="3"/>
+				<case maxzoom="16" strokeWidth_2="4"/>
+				<case minzoom="17" strokeWidth_2="5"/>
+			</apply>
+		</switch>
+
 	</polygon>
 
 
