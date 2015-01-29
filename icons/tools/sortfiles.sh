@@ -1071,6 +1071,11 @@ mycp seamark rock_awash seamark_rock_awash.png
 mycp seamark rock_covers seamark_rock_covers.png
 mycp seamark rock_submerged seamark_rock_submerged.png
 
+mycp seamark waterway_gauge seamark_waterway_gauge.png
+
+mycp seamark wreck seamark_wreck.png
+mycp seamark wreck_hull_showing seamark_wreck_hull_showing.png
+
 ## Shops
 mygroup car_aid shopping_car.png
 mygroup food_shop shopping_convenience.png
