@@ -4,6 +4,8 @@
 	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
 	<renderingConstant name="null" value="#00000000"/>
+	<renderingConstant name="boundaryColorInner" value="#330000ff"/>
+	<renderingConstant name="boundaryColorOuter" value="#220000ff"/>
 
 	<!-- Example: modify route and gpx overlay style -->
 	<renderingAttribute name="route">
@@ -35,6 +37,10 @@
 		</switch>
 		<switch cycle="true" point="false" objectType="3" order="5">
 			<case tag="osmand_region" value="yes"/>
+			<switch order="-1">
+				<case tag="landuse" value="forest"/>
+				<case tag="natural" value="wood"/>
+			</switch>
 		</switch>
 	<!-- Line -->
 		<switch area="false" objectType="2" order="80">
@@ -46,7 +52,7 @@
 
 	<text>
 		<switch minzoom="2" textHaloColor="#ffffff" textColor="#000000" textHaloRadius="2" textBold="true" textOnPath="true" textOrder="1" intersectionSizeFactor="0.7">
-			<case tag="osmand_region" value="yes"/>
+			<case tag="osmand_region" value="yes" nameTag="" nameTag2="download_name"/>
 			<apply>
 				<case maxzoom="15" textSize="13"/>
 				<case maxzoom="16" textSize="14"/>
@@ -66,7 +72,7 @@
 
 	<polygon>
 		<switch minzoom="2">
-			<case tag="osmand_region" value="yes" color="#66c09daa" color_2="#0000ff">
+			<case tag="osmand_region" value="yes" color="#66c09daa" color_2="#ff0000">
 				<apply_if nightMode="true" color_2="#999b5452"/>
 			</case>
 			<apply>
