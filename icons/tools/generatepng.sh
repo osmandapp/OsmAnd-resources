@@ -43,8 +43,8 @@ generateElements() {
 
 generatePngs() {
   TYPE=$1
-  COLOR=$2
-  COLOR2=$3
+  COLOR=$2 # color for map icons(mm_*)
+  COLOR2=$3 # color for osmand interface icons (poi layer,search) (mx_)
   NEG=$4
   X2_ICONS=$5
   X4_ICONS=$6
@@ -81,17 +81,24 @@ generatePngs() {
         continue;
       fi
       FILENAME=${TYPE}_${FILENAME%.*}
-      for (( j = 0 ; j < ${#SIZES[@]}; j++ )) do
+      for (( j = 0 ; j < ${SIZES_HALF}; j++ )) do
         OUTF=${OUTPUTFOLDER}${FOLDERS[j]}/
         if [[ -z $NEG ]]; then
-          ${BASEFOLDER}/tools/recolourtopng.sh ${FILE} 'none' 'none' $COLOR ${SIZES[j]} ${OUTF}${FILENAME} > /dev/null 2>&1
-          ${BASEFOLDER}/tools/recolourtopng.sh ${FILE} 'none' 'none' $COLOR2 ${SIZES[j]} ${OUTF}${FILENAME}_2 > /dev/null 2>&1
+          ${BASEFOLDER}/tools/recolourtopng.sh ${FILE} 'none' 'none' $COLOR2 ${SIZES[j]} ${OUTF}${FILENAME} > /dev/null 2>&1
         else
-          ${BASEFOLDER}/tools/recolourtopng.sh ${FILE} $COLOR $COLOR '#ffffff'  ${SIZES[j]} ${OUTF}${FILENAME} > /dev/null 2>&1
-          ${BASEFOLDER}/tools/recolourtopng.sh ${FILE} ${COLOR2} ${COLOR2} '#ffffff'  ${SIZES[j]} ${OUTF}${FILENAME}_2 > /dev/null 2>&1
+          ${BASEFOLDER}/tools/recolourtopng.sh ${FILE} $COLOR2 $COLOR2 '#ffffff'  ${SIZES[j]} ${OUTF}${FILENAME} > /dev/null 2>&1
         fi
         # convert ${OUTF}${FILENAME}.png \( +clone -background "#ffffff" -shadow 8000x2-0+0 \) +swap -background none -layers merge +repage -trim ${OUTF}${FILENAME}_glow.png
       done
+      for (( j = ${SIZES_HALF} ; j < ${#SIZES[@]}; j++ )) do
+        OUTF=${OUTPUTFOLDER}${FOLDERS[j]}/
+        if [[ -z $NEG ]]; then
+          ${BASEFOLDER}/tools/recolourtopng.sh ${FILE} 'none' 'none' $COLOR ${SIZES[j]} ${OUTF}${FILENAME} > /dev/null 2>&1
+        else
+          ${BASEFOLDER}/tools/recolourtopng.sh ${FILE} $COLOR $COLOR '#ffffff'  ${SIZES[j]} ${OUTF}${FILENAME} > /dev/null 2>&1
+        fi
+      done
+
     done
 }
 
@@ -104,33 +111,33 @@ generatePngs() {
       generateElements 'seamark_shields_x4'
 
       generatePngs 'functional-icons' '#777777' '#777777'
-      generatePngs 'water' '#0092DA' '#777777'
+      generatePngs 'water' '#0092DA' '#0092DA'
 
-      generatePngs 'emergency' '#DA0092' '#777777'
-      generatePngs 'health' '#DA0092' '#777777'
+      generatePngs 'emergency' '#DA0092' '#DA0092'
+      generatePngs 'health' '#DA0092' '#DA0092'
 
-      generatePngs 'transport' '#0092DA' '#777777'
+      generatePngs 'transport' '#0092DA' '#0092DA'
 
       generatePngs 'barrier' '#444444' '#777777'
 
-      generatePngs 'accommodation' '#0092DA' '#777777'
+      generatePngs 'accommodation' '#0092DA' '#0092DA'
 
-      generatePngs 'tourist' '#734A08' '#777777'
+      generatePngs 'tourist' '#734A08' '#734A08'
 
-      generatePngs 'sport'  '#39AC39' '#777777'
+      generatePngs 'sport'  '#39AC39' '#39AC39'
 
-      generatePngs 'amenity' '#777777' '#734A08'
+      generatePngs 'amenity' '#777777' '#777777'
       generatePngs 'place_of_worship' '#333333' '#777777'
       generatePngs 'money' '#777777' '#777777'
-      generatePngs 'education' '#777777' '#39AC39'
-      generatePngs 'poi' '#3f3f3f' '#777777' 
-      generatePngs 'power' '#777777' '#8e7409'
+      generatePngs 'education' '#777777' '#777777'
+      generatePngs 'poi' '#3f3f3f' '#777777'
+      generatePngs 'power' '#777777' '#777777'
 
-      generatePngs 'food' '#777777' '#734A08'
+      generatePngs 'food' '#777777' '#777777'
 
-      generatePngs 'shopping' '#777777' '#AC39AC'
+      generatePngs 'shopping' '#777777' '#777777'
 
-      generatePngs 'landuse' '#777777' '#999999'
+      generatePngs 'landuse' '#777777' '#777777'
 
       generatePngs 'icons8' '#777777' '#777777' neg
 
