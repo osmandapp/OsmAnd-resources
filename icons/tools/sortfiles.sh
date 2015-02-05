@@ -1123,6 +1123,7 @@ mycp shop optician shopping_opticians.png
 mycp shop outdoor shopping_tackle.png
 mycp shop pet shopping_pet2.png
 mycp shop seafood shopping_fish.png
+mycp shop sports shopping_sports.png
 mycp shop supermarket shopping_supermarket.png
 mycp shop tobacco shopping_tobacco.png
 mycp shop toys shopping_toys.png
