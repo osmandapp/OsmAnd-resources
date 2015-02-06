@@ -12,38 +12,39 @@
 
 
 	<renderingAttribute name="defaultColor">
-		<filter noPolygons="true" attrColorValue="#00ffffff"/>
-		<filter nightMode="true" attrColorValue="#003333"/>
-		<filter attrColorValue="#F5FFFF"/>
+		<case noPolygons="true" attrColorValue="#00FFFFFF"/>
+		<case nightMode="true" attrColorValue="#003333"/>
+		<case attrColorValue="#F5FFFF"/>
 	</renderingAttribute>
+	<renderingConstant name="null" value="#00000000"/>
 
 
 	<order>
 		<!-- Winter layers -->
-		<group objectType="2">
-			<filter tag="oa_nordic" value="" order="60"/>
-			<filter tag="oa_downhill" value="" order="60"/>
-			<filter tag="oa_skitour" value="" order="60"/>
-			<filter tag="oa_hike" value="" order="60"/>
-		</group>
+		<switch objectType="2">
+			<case tag="oa_nordic" value="" order="60"/>
+			<case tag="oa_downhill" value="" order="60"/>
+			<case tag="oa_skitour" value="" order="60"/>
+			<case tag="oa_hike" value="" order="60"/>
+		</switch>
 	</order>
 
 
 	<text>
 		<!--Winter text-->
-		<group>
-			<filter tag="oa_nordic" value="" textOrder="8"/>
-			<filter tag="oa_downhill" value="" textOrder="8"/>
-			<filter tag="oa_skitour" value="" textOrder="8"/>
-			<filter tag="oa_hike" value="" textOrder="8"/>
-			<groupFilter textOnPath="true" textColor="#00747B" textHaloRadius="1" textWrapWidth="5">
-				<filter minzoom="14" maxzoom="14" textSize="12"/>
-				<filter minzoom="15" maxzoom="15" textSize="13"/>
-				<filter minzoom="16" maxzoom="16" textSize="14"/>
-				<filter minzoom="17" maxzoom="17" textSize="16"/>
-				<filter minzoom="18" textSize="18"/>
-			</groupFilter>
-		</group>
+		<switch>
+			<case tag="oa_nordic" value="" textOrder="8"/>
+			<case tag="oa_downhill" value="" textOrder="8"/>
+			<case tag="oa_skitour" value="" textOrder="8"/>
+			<case tag="oa_hike" value="" textOrder="8"/>
+			<apply_if minzoom="14" textOnPath="true" textColor="#00747B" textHaloRadius="1" textWrapWidth="5">
+				<case maxzoom="14" textSize="12"/>
+				<case maxzoom="15" textSize="13"/>
+				<case maxzoom="16" textSize="14"/>
+				<case maxzoom="17" textSize="16"/>
+				<case minzoom="18" textSize="18"/>
+			</apply_if>
+		</switch>
 	</text>
 
 
@@ -53,34 +54,34 @@
 
 	<polygon>
 		<!--Winter landscape-->
-			<filter minzoom="10" color="#F5FFFF" tag="natural" value="land"/>
-			<filter minzoom="12" color="#F5FFFF" tag="natural" value="heath"/>
-			<filter minzoom="12" color="#F5FFFF" tag="landuse" value="farm"/>
-			<filter minzoom="12" color="#F5FFFF" tag="landuse" value="farmland"/>
-			<filter minzoom="12" color="#F5FFFF" tag="landuse" value="farmyard"/>
-			<filter minzoom="12" color="#F5FFFF" tag="landuse" value="greenfield"/>
-			<filter minzoom="12" color="#F5FFFF" tag="landuse" value="grass"/>
-			<filter minzoom="12" color="#F5FFFF" tag="natural" value="grassland"/>
-			<filter minzoom="12" color="#F5FFFF" tag="landuse" value="meadow"/>
-			<filter minzoom="12" color="#F5FFFF" tag="landuse" value="brownfield"/>
-			<filter minzoom="12" maxzoom="13" color="#F5FFFF" tag="natural" value="field"/>
-				<filter minzoom="14" color="#F5FFFF" color_2="#F5FFFF" strokeWidth_2=":1" tag="natural" value="field"/>
+		<case minzoom="10" tag="natural" value="land" color="#F5FFFF"/>
+		<case minzoom="12" tag="natural" value="heath" color="#F5FFFF"/>
+		<case minzoom="12" tag="landuse" value="farm" color="#F5FFFF"/>
+		<case minzoom="12" tag="landuse" value="farmland" color="#F5FFFF"/>
+		<case minzoom="12" tag="landuse" value="farmyard" color="#F5FFFF"/>
+		<case minzoom="12" tag="landuse" value="greenfield" color="#F5FFFF"/>
+		<case minzoom="12" tag="landuse" value="grass" color="#F5FFFF"/>
+		<case minzoom="12" tag="natural" value="grassland" color="#F5FFFF"/>
+		<case minzoom="12" tag="landuse" value="meadow" color="#F5FFFF"/>
+		<case minzoom="12" tag="landuse" value="brownfield" color="#F5FFFF"/>
+		<switch minzoom="12" tag="natural" value="field" color="#F5FFFF">
+			<case minzoom="14" color_2="#F5FFFF" strokeWidth_2=":1"/>
+		</switch>
+		<case minzoom="12" tag="landuse" value="village_green" color="#F5FFFF"/>
+		<case minzoom="12" tag="leisure" value="park" color="#F5FFFF"/>
+		<case minzoom="12" tag="leisure" value="garden" color="#F5FFFF"/>
+		<case minzoom="12" tag="leisure" value="common" color="#F5FFFF"/>
+		<case minzoom="11" tag="natural" value="beach" shader="beach"/>
+		<case minzoom="12" tag="natural" value="mud" shader="mud"/>
+		<case minzoom="12" tag="natural" value="scrub" shader="scrub"/>
 
-			<filter minzoom="12" color="#F5FFFF" tag="landuse" value="village_green"/>
-			<filter minzoom="12" color="#F5FFFF" tag="leisure" value="park"/>
-			<filter minzoom="12" color="#F5FFFF" tag="leisure" value="garden"/>
-			<filter minzoom="12" color="#F5FFFF" tag="leisure" value="common"/>
-		<filter minzoom="11" shader="beach" color="#00F5FFFF" tag="natural" value="beach"/>
-		<filter minzoom="12" shader="mud" color="#00F5FFFF" tag="natural" value="mud"/>
-		<filter minzoom="12" shader="scrub" color="#00F5FFFF" tag="natural" value="scrub"/>
-
-		<group>
-			<filter minzoom="9" color="#ABC4F6" tag="natural" value="wood"/>
-			<filter minzoom="9" color="#ABC4F6" tag="landuse" value="wood"/>
-			<filter minzoom="9" maxzoom="12" color="#ABC4F6" tag="landuse" value="forest"/>
-				<filter minzoom="13" color="#ABC4F6" tag="landuse" value="forest"/>
+		<switch>
+			<case minzoom="9" tag="natural" value="wood" color="#ABC4F6"/>
+			<switch minzoom="9" tag="landuse" value="forest">
+				<case maxzoom="12" color="#ABC4F6"/>
+				<case minzoom="13" color="#ABC4F6" tag="landuse" value="forest"/>
 			<groupFilter nightMode="true" color="#000034" shader=""/>
-		</group>
+		</switch>
 
 	</polygon>
 
