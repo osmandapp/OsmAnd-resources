@@ -1092,7 +1092,6 @@ mycp shop car_repair shopping_car_repair.png
 mycp shop car_parts shopping_car_parts.png
 mycp shop clothes shopping_clothes.png
 mycp clothes children shopping_clothes_children.png
-mycp shop shoes shopping_shoes.png
 mycp shop computer shopping_computer.png
 mycp shop confectionery shopping_confectionery.png
 mycp shop convenience shopping_convenience.png
@@ -1104,6 +1103,7 @@ mycp shop electronics shopping_hifi.png
 mycp shop fashion shopping_clothes.png
 mycp shop fishing shopping_tackle.png
 mycp shop florist shopping_florist.png
+mycp shop furniture shopping_furniture.png
 mycp shop garden_centre shopping_garden_centre.png
 mycp shop general shopping_convenience.png
 mycp shop gift shopping_gift.png
@@ -1123,6 +1123,7 @@ mycp shop optician shopping_opticians.png
 mycp shop outdoor shopping_tackle.png
 mycp shop pet shopping_pet2.png
 mycp shop seafood shopping_fish.png
+mycp shop shoes shopping_shoes.png
 mycp shop sports shopping_sports.png
 mycp shop supermarket shopping_supermarket.png
 mycp shop tobacco shopping_tobacco.png
