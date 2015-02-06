@@ -131,7 +131,7 @@ generatePngs() {
       generatePngs 'money' '#777777' '#777777'
       generatePngs 'education' '#777777' '#777777'
       generatePngs 'poi' '#3f3f3f' '#777777'
-      generatePngs 'power' '#777777' '#777777'
+      generatePngs 'power' '#3f3f3f' '#777777'
 
       generatePngs 'food' '#777777' '#777777'
 
