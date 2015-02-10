@@ -10,12 +10,13 @@
 		Thank you to Yves! 
 	--> 
 
-
 	<renderingAttribute name="defaultColor">
 		<case noPolygons="true" attrColorValue="#00ffffff"/>
 		<case nightMode="true" attrColorValue="#003333"/>
 		<case attrColorValue="#f5ffff"/>
 	</renderingAttribute>
+	<renderingProperty attr="pisteGrooming" name="Piste grooming" description="Describes the style of piste preparation" type="boolean" possibleValues="" category="details"/>
+
 
 <!-- Highways -->
 	<renderingAttribute name="motorwayRoadColor">
@@ -103,14 +104,16 @@
 		<case nightMode="true" attrColorValue="#3369f148"/>
 		<case attrColorValue="#5520d740"/>
 	</renderingAttribute>
+
 	<renderingAttribute name="pisteDifficultyEasyColor">
-		<case nightMode="true" attrColorValue="#991f19d0"/>
-		<case attrColorValue="#771f19d0"/>
+		<case nightMode="true" attrColorValue="#994c48ff"/>
+		<case attrColorValue="#661f19d0"/>
 	</renderingAttribute>
 	<renderingAttribute name="pisteAreaDifficultyEasyColor">
 		<case nightMode="true" attrColorValue="#551f19d0"/>
 		<case attrColorValue="#551f19d0"/>
 	</renderingAttribute>
+
 	<renderingAttribute name="pisteDifficultyIntermediateColor">
 		<case nightMode="true" attrColorValue="#99d01a19"/>
 		<case attrColorValue="#66d01a19"/>
@@ -119,6 +122,7 @@
 		<case nightMode="true" attrColorValue="#55d01a19"/>
 		<case attrColorValue="#55d01a19"/>
 	</renderingAttribute>
+
 	<renderingAttribute name="pisteDifficultyAdvancedColor">
 		<case nightMode="true" attrColorValue="#bb9d9572"/>
 		<case attrColorValue="#aa63615b"/>
@@ -127,14 +131,16 @@
 		<case nightMode="true" attrColorValue="#779d9572"/>
 		<case attrColorValue="#7763615b"/>
 	</renderingAttribute>
+
 	<renderingAttribute name="pisteDifficultyExpertColor">
 		<case nightMode="true" attrColorValue="#ccd1962a"/>
-		<case attrColorValue="#ccfcb533"/>
+		<case attrColorValue="#aafcb533"/>
 	</renderingAttribute>
 	<renderingAttribute name="pisteAreaDifficultyExpertColor">
 		<case nightMode="true" attrColorValue="#88d1962a"/>
 		<case attrColorValue="#88fcb533"/>
 	</renderingAttribute>
+
 	<renderingAttribute name="pisteDifficultyFreerideColor">
 		<case nightMode="true" attrColorValue="#ccceb300"/>
 		<case attrColorValue="#ccffde00"/>
@@ -150,35 +156,6 @@
 	<renderingAttribute name="pisteAreaDifficultyExtremeColor">
 		<case nightMode="true" attrColorValue="#77f95a00"/>
 		<case attrColorValue="#66f95a00"/>
-	</renderingAttribute>
-
-	<renderingAttribute name="pisteDifficultyNoviceShadowColor">
-		<case nightMode="true" attrColorValue="#e9ffe3"/>
-		<case attrColorValue="#50d019"/>
-	</renderingAttribute>
-	<renderingAttribute name="pisteDifficultyEasyShadowColor">
-		<case nightMode="true" attrColorValue="#7371b0"/>
-		<case attrColorValue="#1f19d0"/>
-	</renderingAttribute>
-	<renderingAttribute name="pisteDifficultyIntermediateShadowColor">
-		<case nightMode="true" attrColorValue="#d06464"/>
-		<case attrColorValue="#8a1111"/>
-	</renderingAttribute>
-	<renderingAttribute name="pisteDifficultyAdvancedShadowColor">
-		<case nightMode="true" attrColorValue="#9d9572"/>
-		<case attrColorValue="#000000"/>
-	</renderingAttribute>
-	<renderingAttribute name="pisteDifficultyExpertShadowColor">
-		<case nightMode="true" attrColorValue="#fcecce"/>
-		<case attrColorValue="#e1a22e"/>
-	</renderingAttribute>
-	<renderingAttribute name="pisteDifficultyFreerideShadowColor">
-		<case nightMode="true" attrColorValue="#fffefa"/>
-		<case attrColorValue="#c9c227"/>
-	</renderingAttribute>
-	<renderingAttribute name="pisteDifficultyExtremeShadowColor">
-		<case nightMode="true" attrColorValue="#00000000"/>
-		<case attrColorValue="#ff7f39"/>
 	</renderingAttribute>
 
 	<renderingConstant name="waterwayColorDay" value="#a4deff"/>
@@ -375,14 +352,56 @@
 			<case tag="piste:type" value="sled"/>
 			<case tag="piste:type" value="sleigh"/>
 			<case tag="piste:type" value="snow_park"/>
-			<apply color="$pisteDefaultColor">
-				<case additional="piste:difficulty=novice" color="$pisteDifficultyNoviceColor"/>
-				<case additional="piste:difficulty=easy" color="$pisteDifficultyEasyColor"/>
-				<case additional="piste:difficulty=intermediate" color="$pisteDifficultyIntermediateColor"/>
-				<case additional="piste:difficulty=advanced" color="$pisteDifficultyAdvancedColor"/>
-				<case additional="piste:difficulty=expert" color="$pisteDifficultyExpertColor"/>
-				<case additional="piste:difficulty=freeride" color="$pisteDifficultyFreerideColor"/>
-				<case additional="piste:difficulty=extreme" color="$pisteDifficultyExtremeColor"/>
+			<apply_if additional="piste:oneway=yes">
+				<case minzoom="13" maxzoom="14" pathIcon="arrow_triangle_black_small_nobg" pathIconStep="25">
+					<apply_if nightMode="true" pathIcon="arrow_triangle_black_small"/>
+				</case>
+				<case minzoom="15" maxzoom="16" pathIcon="arrow_triangle_black_nobg" pathIconStep="40">
+					<apply_if nightMode="true" pathIcon="arrow_triangle_black"/>
+				</case>
+				<case minzoom="17" pathIcon="arrow_triangle_black_big_nobg" pathIconStep="50">
+					<apply_if nightMode="true" pathIcon="arrow_triangle_black_big"/>
+				</case>
+			</apply_if>
+			<apply_if additional="piste:abandoned=yes" cap="ROUND">
+				<case maxzoom="12" pathEffect="1_17"/>
+				<case maxzoom="14" pathEffect="1_30"/>
+				<case maxzoom="16" pathEffect="1_45"/>
+				<case maxzoom="18" pathEffect="1_65"/>
+			</apply_if>
+			<apply color="$pisteDefaultColor" color_2="#000000">
+				<switch>
+					<case additional="piste:difficulty=novice" color="$pisteDifficultyNoviceColor"/>
+					<case additional="piste:difficulty=easy" color="$pisteDifficultyEasyColor"/>
+					<case additional="piste:difficulty=intermediate" color="$pisteDifficultyIntermediateColor"/>
+					<case additional="piste:difficulty=advanced" color="$pisteDifficultyAdvancedColor"/>
+					<case additional="piste:difficulty=expert" color="$pisteDifficultyExpertColor"/>
+					<case additional="piste:difficulty=freeride" color="$pisteDifficultyFreerideColor"/>
+					<case additional="piste:difficulty=extreme" color="$pisteDifficultyExtremeColor"/>
+					<apply color__2="#555555" color__1="#555555">
+						<apply_if nightMode="true" color__2="#ffffff" color__1="#ffffff"/>
+					</apply>
+				</switch>
+			</apply>
+			<apply minzoom="14" pisteGrooming="true">
+				<switch>
+					<case additional="piste:grooming=classic"/>
+					<case additional="piste:grooming=mogul"/>
+					<switch>
+						<case additional="piste:grooming=skating" pathEffect__2="32_4" pathEffect__1="2_2_2_30" CAP__1="BUTT"/>
+						<case additional="piste:grooming=classic+skating" pathEffect__1="2_30" CAP__1="BUTT"/>
+						<apply>
+							<case maxzoom="14" strokeWidth__1="3:3"/>
+							<case minzoom="15" strokeWidth__1="4:4"/>
+						</apply>
+					</switch>
+					<case additional="piste:grooming=scooter" pathEffect__2="17_4"/>
+					<case additional="piste:grooming=backcountry" pathEffect__2="5_20"/>
+					<apply>
+						<case maxzoom="14" strokeWidth__2="1:1"/>
+						<case minzoom="15" strokeWidth__2="2:2"/>
+					</apply>
+				</switch>
 			</apply>
 		</switch>
 		<switch minzoom="13">
