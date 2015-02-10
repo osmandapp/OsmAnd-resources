@@ -139,7 +139,18 @@ mycp oneway blue functional-icons_oneway_blue.png
 mycp oneway reverse_blue functional-icons_oneway_reverse_blue.png
 mycp arrow blue_big functional-icons_arrow_blue_big.png
 mycp arrow blue_big_night functional-icons_arrow_blue_big_night.png
-mycp triangle blue functional-icons_triangle_blue.png
+mycp arrow triangle_black functional-icons_arrow_triangle_black.png
+mycp arrow triangle_black_big functional-icons_arrow_triangle_black_big.png
+mycp arrow triangle_black_small functional-icons_arrow_triangle_black_small.png
+mycp arrow triangle_black_nobg functional-icons_arrow_triangle_black_nobg.png
+mycp arrow triangle_black_big_nobg functional-icons_arrow_triangle_black_big_nobg.png
+mycp arrow triangle_black_small_nobg functional-icons_arrow_triangle_black_small_nobg.png
+mycp arrow triangle_blue functional-icons_arrow_triangle_blue.png
+mycp arrow triangle_blue_big functional-icons_arrow_triangle_blue_big.png
+mycp arrow triangle_blue_small functional-icons_arrow_triangle_blue_small.png
+mycp arrow triangle_darkblue functional-icons_arrow_triangle_darkblue.png
+mycp arrow triangle_darkblue_big functional-icons_arrow_triangle_darkblue_big.png
+mycp arrow triangle_darkblue_small functional-icons_arrow_triangle_darkblue_small.png
 mycp harbour yes poi_harbour.png
 
 mygroup fuel transport_fuel.png
