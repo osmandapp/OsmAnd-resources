@@ -298,6 +298,7 @@
 			<case tag="piste:type" value="hike"/>
 			<case tag="piste:type" value="sled"/>
 			<case tag="piste:type" value="sleigh"/>
+			<case tag="piste:type" value="snow_park"/>
 		</switch>
 
 		<switch objectType="2">
@@ -375,12 +376,10 @@
 
 	<point>
 		<switch minzoom="12" tag="aerialway" value="station">
-			<case maxzoom="16" icon="railway_subway_station_small_black" shield="white_round_small_shield">
+			<case maxzoom="16" icon="railway_subway_station_small_black" shield="white_round_small_shield" iconVisibleSize="3" intersectionSizeFactor="0.3" iconOrder="2">
 				<apply_if nightMode="true" icon="railway_subway_station_small_white" shield="darkgray_round_small_shield"/>
 			</case>
-			<case minzoom="17" icon="aerialway_station" shield="white_black_round_shield">
-				<apply_if nightMode="true" shield="gray_black_round_shield"/>
-			</case>
+			<case minzoom="17" icon="aerialway_station" shield="white_black_round_shield"/>
 		</switch>
 
 	</point>
@@ -422,15 +421,22 @@
 			<case tag="piste:type" value="hike"/>
 			<case tag="piste:type" value="sled"/>
 			<case tag="piste:type" value="sleigh"/>
-			<case tag="piste:type" value="snow_park"/>
+			<case tag="piste:type" value="snow_park">
+				<apply color_2="$pisteDefaultColor">
+					<case maxzoom="12" pathEffect_2="16_2_3_2" strokeWidth_2="1.5:1.5"/>
+					<case maxzoom="14" pathEffect_2="22_4_5_4" strokeWidth_2="2.5:2.5"/>
+					<case maxzoom="16" pathEffect_2="27_6_9_6" strokeWidth_2="3.5:3.5"/>
+					<case minzoom="17" pathEffect_2="40_7_10_7" strokeWidth_2="4.5:4.5"/>
+				</apply>
+			</case>
 			<apply color="$pisteAreaDefaultColor">
-				<case additional="piste:difficulty=novice" color="$pisteAreaDifficultyNoviceColor"/>
-				<case additional="piste:difficulty=easy" color="$pisteAreaDifficultyEasyColor"/>
-				<case additional="piste:difficulty=intermediate" color="$pisteAreaDifficultyIntermediateColor"/>
-				<case additional="piste:difficulty=advanced" color="$pisteAreaDifficultyAdvancedColor"/>
-				<case additional="piste:difficulty=expert" color="$pisteAreaDifficultyExpertColor"/>
-				<case additional="piste:difficulty=freeride" color="$pisteAreaDifficultyFreerideColor"/>
-				<case additional="piste:difficulty=extreme" color="$pisteAreaDifficultyExtremeColor"/>
+				<case additional="piste:difficulty=novice" color="$pisteAreaDifficultyNoviceColor" color_2="$pisteDifficultyNoviceColor"/>
+				<case additional="piste:difficulty=easy" color="$pisteAreaDifficultyEasyColor" color_2="$pisteDifficultyEasyColor"/>
+				<case additional="piste:difficulty=intermediate" color="$pisteAreaDifficultyIntermediateColor" color_2="$pisteDifficultyIntermediateColor"/>
+				<case additional="piste:difficulty=advanced" color="$pisteAreaDifficultyAdvancedColor" color_2="$pisteDifficultyAdvancedColor"/>
+				<case additional="piste:difficulty=expert" color="$pisteAreaDifficultyExpertColor" color_2="$pisteDifficultyExpertColor"/>
+				<case additional="piste:difficulty=freeride" color="$pisteAreaDifficultyFreerideColor" color_2="$pisteDifficultyFreerideColor"/>
+				<case additional="piste:difficulty=extreme" color="$pisteAreaDifficultyExtremeColor" color_2="$pisteDifficultyExtremeColor"/>
 			</apply>
 		</switch>
 
@@ -476,8 +482,32 @@
 					<case minzoom="17" strokeWidth="4.5:4.5"/>
 				</apply>
 			</switch>
-			<case tag="piste:type" value="sled"/>
-			<case tag="piste:type" value="sleigh"/>
+			<switch>
+				<switch>
+					<case tag="piste:type" value="sled"/>
+					<case tag="piste:type" value="sleigh"/>
+					<apply>
+						<case maxzoom="12" pathEffect="14_1"/>
+						<case maxzoom="14" pathEffect="19_2"/>
+						<case maxzoom="16" pathEffect="22_3"/>
+						<case minzoom="17" pathEffect="30_4"/>
+					</apply>
+				</switch>
+				<case tag="piste:type" value="snow_park">
+					<apply>
+						<case maxzoom="12" pathEffect="16_2_3_2"/>
+						<case maxzoom="14" pathEffect="22_4_5_4"/>
+						<case maxzoom="16" pathEffect="27_6_9_6"/>
+						<case minzoom="17" pathEffect="40_7_10_7"/>
+					</apply>
+				</case>
+				<apply>
+					<case maxzoom="12" strokeWidth="1:1"/>
+					<case maxzoom="14" strokeWidth="2.5:2.5"/>
+					<case maxzoom="16" strokeWidth="3.5:3.5"/>
+					<case minzoom="17" strokeWidth="4.5:4.5"/>
+				</apply>
+			</switch>
 			<case tag="piste:type" value="snow_park"/>
 			<apply_if additional="piste:oneway=yes">
 				<case minzoom="13" maxzoom="14" pathIcon="arrow_triangle_black_small_nobg" pathIconStep="25">
@@ -532,8 +562,8 @@
 			</apply>
 		</switch>
 
-		<switch>
-			<switch minzoom="12">
+		<switch minzoom="12">
+			<switch>
 				<case tag="aerialway" value="gondola"/>
 				<case tag="aerialway" value="cable_car"/>
 				<apply>
@@ -543,22 +573,18 @@
 					<case minzoom="17" strokeWidth="3:3"/>
 				</apply>
 			</switch>
-			<switch minzoom="12">
-				<switch tag="aerialway" value="chair_lift">
-					<case additional="oneway=no" pathIcon="arrow_2triangles_white">
-						<apply_if nightMode="true" pathIcon="arrow_2triangles_black"/>
-					</case>
-					<case pathIcon="arrow_triangle_white2">
+			<switch>
+				<switch>
+					<case tag="aerialway" value="chair_lift"/>
+					<case tag="aerialway" value="t-bar"/>
+					<case tag="aerialway" value="j-bar"/>
+					<case tag="aerialway" value="platter"/>
+					<case tag="aerialway" value="magic_carpet"/>
+					<case tag="aerialway" value="rope_tow"/>
+					<apply minzoom="14" pathIcon="arrow_triangle_white2">
 						<apply_if nightMode="true" pathIcon="arrow_triangle_black2"/>
-					</case>
-					<apply>
-						<case minzoom="14" maxzoom="16" pathIconStep="25"/>
-						<case minzoom="17" pathIconStep="35"/>
 					</apply>
 				</switch>
-				<case tag="aerialway" value="t-bar"/>
-				<case tag="aerialway" value="j-bar"/>
-				<case tag="aerialway" value="platter"/>
 				<case tag="aerialway" value="mixed_lift"/>
 				<apply>
 					<case maxzoom="12" strokeWidth="0.5:0.5"/>
@@ -567,12 +593,27 @@
 					<case minzoom="17" strokeWidth="1.5:1.5"/>
 				</apply>
 			</switch>
-			<case minzoom="13" tag="aerialway" value="drag_lift">
+			<case tag="aerialway" value="drag_lift">
 				<case maxzoom="14" strokeWidth="0.5:0.5"/>
 				<case maxzoom="16" strokeWidth="0.8:0.8"/>
 				<case minzoom="17" strokeWidth="1:1"/>
 			</case>
-			<apply color="#222222">
+			<apply>
+				<switch minzoom="14">
+					<case additional="oneway=no" pathIcon="arrow_2triangles_white">
+						<apply_if nightMode="true" pathIcon="arrow_2triangles_black"/>
+					</case>
+					<case additional="oneway=yes" pathIcon="arrow_triangle_white2">
+						<apply_if nightMode="true" pathIcon="arrow_triangle_black2"/>
+					</case>
+				</switch>
+			</apply>
+			<apply>
+				<case maxzoom="15" pathIconStep="25"/>
+				<case maxzoom="16" pathIconStep="35"/>
+				<case minzoom="17" pathIconStep="45"/>
+			</apply>
+			<apply color="#000000">
 				<apply_if nightMode="true" color="#ffffff"/>
 			</apply>
 		</switch>
