@@ -241,6 +241,17 @@
 		<case attrColorValue="#66f95a00"/>
 	</renderingAttribute>
 
+	<renderingAttribute name="woodColor">
+		<case attrColorValue="#abc4f6">
+			<apply_if nightMode="true" attrColorValue="#001122"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="forestColor">
+		<case attrColorValue="#abc4f6">
+			<apply_if nightMode="true" attrColorValue="#001122"/>
+		</case>
+	</renderingAttribute>
+
 	<renderingConstant name="waterwayColorDay" value="#a4deff"/>
 	<renderingConstant name="waterwayColorNight" value="#20005f"/>
 	<renderingConstant name="heathColorDay" value="#f5ffff"/>
@@ -385,13 +396,10 @@
 			<apply_if nightMode="true" shader="" color="#334433"/>
 		</switch>
 
-		<switch>
-			<case minzoom="9" tag="natural" value="wood" color="#abc4f6"/>
-			<switch minzoom="9" tag="landuse" value="forest">
-				<case maxzoom="12" color="#abc4f6"/>
-				<case minzoom="13" color="#abc4f6" tag="landuse" value="forest"/>
-			</switch>
-			<apply_if nightMode="true" color="#000034" shader=""/>
+		<switch minzoom="9">
+			<case tag="natural" value="wood"/>
+			<case tag="landuse" value="forest"/>
+			<apply shader=""/>
 		</switch>
 		<switch>
 			<case tag="place" value="island"/>

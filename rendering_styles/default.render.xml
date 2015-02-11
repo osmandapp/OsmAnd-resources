@@ -588,9 +588,16 @@
 	<renderingConstant name="boundaryColorOuter" value="#10800080"/>
 
 	<!-- Forest -->
-	<renderingConstant name="woodColorDay" value="#aed1a0"/>
-	<renderingConstant name="forestColorDay" value="#9dd57c"/>
-	<renderingConstant name="woodColorNight" value="#001122"/>
+	<renderingAttribute name="woodColor">
+		<case attrColorValue="#aed1a0">
+			<apply_if nightMode="true" attrColorValue="#001122"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="forestColor">
+		<case attrColorValue="#9dd57c">
+			<apply_if nightMode="true" attrColorValue="#001122"/>
+		</case>
+	</renderingAttribute>
 	<renderingConstant name="woodBroadleavedShader" value="wood_broadleaved"/> <!-- for UniRS -->
 	<renderingConstant name="woodNeedleleavedShader" value="wood_needleleaved"/>
 	<renderingConstant name="woodMixedShader" value="wood_mixed"/>
@@ -4118,17 +4125,17 @@
 
 			<!-- Forest, wood -->
 			<switch minzoom="6">
-				<case tag="natural" value="wood" color="$woodColorDay">
+				<case tag="natural" value="wood" color="$woodColor">
 					<apply_if minzoom="15" additional="leaf_type=broadleaved" shader="$woodBroadleavedShader"/>
 					<apply_if minzoom="15" additional="leaf_type=needleleaved" shader="$woodNeedleleavedShader"/>
 					<apply_if minzoom="15" additional="leaf_type=mixed" shader="$woodMixedShader"/>
 				</case>
-				<case tag="landuse" value="forest" color="$forestColorDay">
+				<case tag="landuse" value="forest" color="$forestColor">
 					<apply_if minzoom="15" additional="leaf_type=broadleaved" shader="forest_broadleaved"/>
 					<apply_if minzoom="15" additional="leaf_type=needleleaved" shader="forest_needleleaved"/>
 					<apply_if minzoom="15" additional="leaf_type=mixed" shader="forest_mixed"/>
 				</case>
-				<apply_if nightMode="true" color="$woodColorNight" shader=""/>
+				<apply_if nightMode="true" shader=""/>
 			</switch>
 
 
@@ -5808,13 +5815,12 @@
 			<apply_if nightMode="true" color="#004333" color_2="$null"/>
 		</case>
 
-		<case noPolygons="false" minzoom="14" tag="natural" value="tree_row" color="#9cd77b" cap="ROUND">
+		<case noPolygons="false" minzoom="14" tag="natural" value="tree_row" color="$woodColor" cap="ROUND">
 			<case moreDetailed="true" maxzoom="14" strokeWidth="1:1" pathEffect="1_4"/>
 			<case maxzoom="15" strokeWidth="1.3:1.3" pathEffect="1_6"/>
 			<case maxzoom="16" strokeWidth="1.7:1.7" pathEffect="1_8"/>
 			<case maxzoom="17" strokeWidth="2.2:2.2" pathEffect="1_10"/>
 			<case minzoom="18" strokeWidth="2.8:2.8" pathEffect="1_15"/>
-			<apply_if nightMode="true" color="$woodColorNight"/>
 		</case>
 
 		<case minzoom="13" tag="leisure" value="track" color="$leisureTrackColorDayStroke" cap="ROUND">
