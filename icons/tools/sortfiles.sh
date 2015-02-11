@@ -253,6 +253,7 @@ mycp railway subway_station_small_gray functional-icons_subway_station_small_gra
 mycp railway subway_station_small_gray2 functional-icons_subway_station_small_gray2.png
 mycp railway subway_station_small_black functional-icons_subway_station_small_black.png
 mycp railway subway_station_small_black2 functional-icons_subway_station_small_black2.png
+mycp railway subway_station_small_white functional-icons_subway_station_small_white.png
 
 mycp aerialway station_small functional-icons_halt.png  #scale 0.25
 mycp aerialway station transport_aerialway_station.png  #scale 0.375

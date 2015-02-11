@@ -481,14 +481,35 @@
 			</case>
 		</case>
 	</renderingAttribute>
+	<renderingAttribute name="residentialRoadColor">
+		<case attrColorValue="#ffffff">
+			<apply_if nightMode="true" attrColorValue="#9f9f9f"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="residentialRoadShadowColor">
+		<case attrColorValue="#969696"/>
+	</renderingAttribute>
+	<renderingAttribute name="serviceRoadColor">
+		<case attrColorValue="#ececec">
+			<apply_if nightMode="true" attrColorValue="#727272"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="serviceRoadShadowColor">
+		<case attrColorValue="#969696"/>
+	</renderingAttribute>
+	<renderingAttribute name="serviceDrivewayRoadColor">
+		<case attrColorValue="#e0e0e0">
+			<apply_if nightMode="true" attrColorValue="#636363"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="serviceDrivewayRoadShadowColor">
+		<case attrColorValue="#bb999999">
+			<apply_if nightMode="true" attrColorValue="$null"/>
+		</case>
+	</renderingAttribute>
 
-	<renderingConstant name="residentialRoadColor" value="#ffffff"/>
-	<renderingConstant name="residentialRoadColorNight" value="#9f9f9f"/>
 	<renderingConstant name="residentialRoadLowZoom1ShadowColor" value="#44666666"/>
 	<renderingConstant name="residentialRoadLowZoom2ShadowColor" value="#44666666"/>
-	<renderingConstant name="residentialRoadShadowColor" value="#969696"/>
-	<renderingConstant name="serviceRoadColor" value="#ececec"/>
-	<renderingConstant name="serviceRoadColorNight" value="#727272"/>
 
 	<!-- NOTE: Road is usually public, while service road is not, that's why we should mabye use the residential and not service road color pattern here: -->
 	<renderingConstant name="roadRoadColor" value="#ececec"/>
@@ -498,9 +519,6 @@
 	<renderingConstant name="pedestrianRoadModeColorNight" value="#727272"/>
 	<renderingConstant name="pedestrianRoadShadowColorDay" value="#55555555"/>
 	<renderingConstant name="pedestrianRoadShadowColorNight" value="#999999"/>
-
-	<renderingConstant name="serviceDrivewayRoadColor" value="#e0e0e0"/>
-	<renderingConstant name="serviceDrivewayRoadColorNight" value="#636363"/>
 
 	<!-- NOTE: Switch still needed here to align construction and proposed colors between germanRoadatlas and Touring view -->
 	<renderingConstant name="constructionRoadColor" value="#79a8fd"/>
@@ -787,6 +805,10 @@
 		<case attrColorValue="$black"/>
 	</renderingAttribute>
 	<renderingAttribute name="highwayTertiaryTextColor">
+		<case attrColorValue="$black"/>
+	</renderingAttribute>
+	<renderingAttribute name="highwayResidentialServiceTextColor">
+		<case nightMode="true" attrColorValue="$white"/>
 		<case attrColorValue="$black"/>
 	</renderingAttribute>
 	<renderingConstant name="highwayResidentialTextHaloColorDay" value="#ffffff"/>
@@ -1681,8 +1703,8 @@
 				<case tag="highway" value="proposed" textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" textOrder="9">
 					<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textHaloColor="#aa777777"/>
 				</case>
-				<apply textColor="#000000">
-					<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
+				<apply textColor="$highwayResidentialServiceTextColor">
+					<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 				</apply>
 			</switch>
 			<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay">
@@ -4801,9 +4823,7 @@
 						<case tag="highway" value="unclassified"/>
 						<case tag="highway" value="residential"/>
 						<apply color="$residentialRoadColor">
-							<apply_if nightMode="true" color="$residentialRoadColorNight">
-								<apply_if subwayMode="true" maxzoom="13" color="$residentialRoadDesaturatedColorNight"/>
-							</apply_if>
+							<apply_if nightMode="true" subwayMode="true" maxzoom="13" color="$residentialRoadDesaturatedColorNight"/>
 						</apply>
 					</switch>
 					<case tag="highway" value="road">
@@ -4847,25 +4867,22 @@
 						<case tag="highway" value="living_street"/>
 						<!-- pedestrian roads are forbidden for cars and cyclists: show them like that in car and bicycle mode -->
 						<!-- <groupFilter appMode="bicycle" tag="highway" value="pedestrian" color="#F7D4D4"/> -->
-						<apply color="$serviceRoadColor">
-							<apply_if nightMode="true" color="$serviceRoadColorNight"/>
-						</apply>
+						<apply color="$serviceRoadColor" shadowColor="$serviceRoadShadowColor"/>
 						<apply>
 							<switch>
 								<case additional="service=driveway"/>
 								<case additional="service=parking_aisle"/>
 								<case additional="service=alley"/>
-								<apply color="$serviceDrivewayRoadColor" shadowColor="#bb999999">
+								<apply color="$serviceDrivewayRoadColor" shadowColor="$serviceDrivewayRoadShadowColor">
 									<apply_if minzoom="13" maxzoom="13" disable="true"/>
 									<apply_if minzoom="14" maxzoom="14" shadowColor="#33777777"/>
-									<apply_if nightMode="true" color="$serviceDrivewayRoadColorNight" shadowColor="$null"/>
 								</apply>
 							</switch>
 						</apply>
 					</switch>
 					<case tag="highway" value="pedestrian">
 						<apply color="$serviceRoadColor" shadowColor="$pedestrianRoadShadowColorDay">
-							<apply_if nightMode="true" color="$serviceRoadColorNight" shadowColor="$pedestrianRoadShadowColorNight"/>
+							<apply_if nightMode="true" shadowColor="$pedestrianRoadShadowColorNight"/>
 							<apply_if appMode="car" color="#f7d4d4" shadowColor="#44444444">
 								<apply_if nightMode="true" color="#412e2e" shadowRadius="0"/>
 							</apply_if>
