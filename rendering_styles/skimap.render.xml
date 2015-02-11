@@ -156,8 +156,12 @@
 
 
 	<renderingAttribute name="pisteDefaultColor">
-		<case nightMode="true" attrColorValue="#99727272"/>
-		<case attrColorValue="#9d9d9d"/>
+		<switch engine_v1="true">
+			<case nightMode="true" attrColorValue="#cc777777"/>
+			<case attrColorValue="#88525252"/>
+		</switch>
+		<case nightMode="true" attrColorValue="#aa777777"/>
+		<case attrColorValue="#66525252"/>
 	</renderingAttribute>
 	<renderingAttribute name="pisteAreaDefaultColor">
 		<case nightMode="true" attrColorValue="#cc727272"/>
@@ -290,7 +294,6 @@
 		<!-- Winter layers -->
 		<switch cycle="true" point="false" objectType="3" order="5">
 			<case tag="piste:type" value="downhill"/>
-			<case tag="piste:type" value="nordic"/>
 			<case tag="piste:type" value="skitour"/>
 			<case tag="piste:type" value="hike"/>
 			<case tag="piste:type" value="sled"/>
@@ -385,16 +388,19 @@
 
 	<polygon>
 		<!--Winter landscape-->
-		<case minzoom="12" tag="natural" value="field">
+		<switch>
+			<case minzoom="12" tag="natural" value="field"/>
 			<apply_if minzoom="14" color_2="#f5ffff" strokeWidth_2=":1"/>
 			<apply_if nightMode="true" color="#004333" color_2="#004333"/>
-		</case>
+		</switch>
 		<switch>
 			<case minzoom="11" tag="natural" value="beach" shader="beach"/>
 			<case minzoom="12" tag="natural" value="mud" shader="mud"/>
 			<apply_if nightMode="true" shader="" color="#334433"/>
 		</switch>
-		<case minzoom="12" tag="natural" value="scrub" color="#8decb6" shader=""/>
+		<case minzoom="12" tag="natural" value="scrub" color="#8decb6" shader="">
+			<apply_if nightMode="true" shader="" color="#002014"/>
+		</case>
 
 		<switch minzoom="6">
 			<case tag="natural" value="wood"/>
@@ -404,6 +410,7 @@
 		<switch>
 			<case tag="place" value="island"/>
 			<case tag="natural" value="land"/>
+			<case tag="natural" value="grassland"/>
 			<apply color="#f5ffff">
 				<apply_if nightMode="true" color="#002a2a"/>
 			</apply>
@@ -412,7 +419,6 @@
 		<switch minzoom="12">
 			<case tag="piste:type" value="downhill"/>
 			<case tag="piste:type" value="skitour"/>
-			<case tag="piste:type" value="nordic"/>
 			<case tag="piste:type" value="hike"/>
 			<case tag="piste:type" value="sled"/>
 			<case tag="piste:type" value="sleigh"/>
@@ -490,7 +496,10 @@
 				<case maxzoom="16" pathEffect="1_45"/>
 				<case maxzoom="18" pathEffect="1_65"/>
 			</apply_if>
-			<apply color="$pisteDefaultColor" color_2="#000000">
+			<apply color="$pisteDefaultColor" color_2="#000000" color__2="#555555" color__1="#555555">
+				<apply_if nightMode="true" color__2="#ffffff" color__1="#ffffff"/>
+			</apply>
+			<apply>
 				<switch>
 					<case additional="piste:difficulty=novice" color="$pisteDifficultyNoviceColor"/>
 					<case additional="piste:difficulty=easy" color="$pisteDifficultyEasyColor"/>
@@ -499,9 +508,6 @@
 					<case additional="piste:difficulty=expert" color="$pisteDifficultyExpertColor"/>
 					<case additional="piste:difficulty=freeride" color="$pisteDifficultyFreerideColor"/>
 					<case additional="piste:difficulty=extreme" color="$pisteDifficultyExtremeColor"/>
-					<apply color__2="#555555" color__1="#555555">
-						<apply_if nightMode="true" color__2="#ffffff" color__1="#ffffff"/>
-					</apply>
 				</switch>
 			</apply>
 			<apply minzoom="14" pisteGrooming="true">
@@ -538,7 +544,18 @@
 				</apply>
 			</switch>
 			<switch minzoom="12">
-				<case tag="aerialway" value="chair_lift"/>
+				<switch tag="aerialway" value="chair_lift">
+					<case additional="oneway=no" pathIcon="arrow_2triangles_white">
+						<apply_if nightMode="true" pathIcon="arrow_2triangles_black"/>
+					</case>
+					<case pathIcon="arrow_triangle_white2">
+						<apply_if nightMode="true" pathIcon="arrow_triangle_black2"/>
+					</case>
+					<apply>
+						<case minzoom="14" maxzoom="16" pathIconStep="25"/>
+						<case minzoom="17" pathIconStep="35"/>
+					</apply>
+				</switch>
 				<case tag="aerialway" value="t-bar"/>
 				<case tag="aerialway" value="j-bar"/>
 				<case tag="aerialway" value="platter"/>
