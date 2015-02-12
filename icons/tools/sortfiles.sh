@@ -1094,6 +1094,22 @@ mycp seamark waterway_gauge seamark_waterway_gauge.png
 mycp seamark wreck seamark_wreck.png
 mycp seamark wreck_hull_showing seamark_wreck_hull_showing.png
 
+## Skimap
+mycp skimap overlay_advanced skimap_overlay_advanced.png
+mycp skimap overlay_easy skimap_overlay_easy.png
+mycp skimap overlay_expert skimap_overlay_expert.png
+mycp skimap overlay_extreme skimap_overlay_extreme.png
+mycp skimap overlay_freeride skimap_overlay_freeride.png
+mycp skimap overlay_intermediate skimap_overlay_intermediate.png
+mycp skimap overlay_novice skimap_overlay_novice.png
+mycp piste_type downhill skimap_piste_downhill.png
+mycp piste_type hike skimap_piste_hike.png
+mycp piste_type nordic skimap_piste_nordic.png
+mycp piste_type skitour skimap_piste_skitour.png
+mycp piste_type sled skimap_piste_sled.png
+mycp skimap gray_black_round_shield skimap_gray_black_round_shield.png
+mycp skimap white_black_round_shield skimap_white_black_round_shield.png
+
 ## Shops
 mygroup car_aid shopping_car.png
 mygroup food_shop shopping_convenience.png

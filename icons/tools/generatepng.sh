@@ -110,6 +110,8 @@ generatePngs() {
       generateElements 'seamark_shields'
       generateElements 'seamark_shields_x4'
 
+      generatePngs 'skimap' '#777777' '#777777' '' x2
+
       generatePngs 'functional-icons' '#777777' '#777777'
       generatePngs 'water' '#0092DA' '#0092DA'
 
