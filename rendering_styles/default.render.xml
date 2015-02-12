@@ -529,25 +529,46 @@
 	<renderingConstant name="proposedRoadColor2" value="#44ffffff"/>
 	<renderingConstant name="proposedRoadColorNight" value="#22999999"/>
 
-	<renderingConstant name="racewayColorDay" value="#ffc5cf"/>
-	<renderingConstant name="racewayColorNight" value="#cd9fa7"/>
-	<renderingConstant name="trackColor" value="#996600"/>
+	<renderingAttribute name="racewayColor">
+		<case attrColorValue="#ffc5cf">
+			<apply_if nightMode="true" attrColorValue="#cd9fa7"/>
+		</case>
+	</renderingAttribute>
+
+	<renderingAttribute name="trackColor">
+		<case attrColorValue="#996600">
+			<apply_if nightMode="true" attrColorValue="#996600"/>
+		</case>
+	</renderingAttribute>
 	<renderingConstant name="trackStrokeWidth" value="0.9:0.9"/>
 	<renderingConstant name="trackLowZoomStrokeWidth" value="0.5:0.5"/>
 	<renderingConstant name="trackBridgeWidth" value="4:2.5"/>
 	<renderingConstant name="trackBridgeInnerWidth" value="3:2"/>
 	<renderingConstant name="trackTunnelPathEffect" value="3_3"/>
-	<renderingConstant name="cyclewayColorDay" value="#0000ff"/>
+	<renderingAttribute name="cyclewayColor">
+		<case attrColorValue="#0000ff">
+			<apply_if nightMode="true" attrColorValue="#0000ff"/>
+		</case>
+	</renderingAttribute>
 	<renderingConstant name="cyclewayStrokeWidth" value="0.8:0.8"/>
 	<renderingConstant name="cyclewayPathEffect" value="12_4"/>
-	<renderingConstant name="footwayColorDay" value="#fa5073"/>
-	<renderingConstant name="footwayColorNight" value="#fa5073"/>
+	<renderingAttribute name="footwayColor">
+		<case attrColorValue="#fa5073">
+			<apply_if nightMode="true" attrColorValue="#fa5073"/>
+		</case>
+	</renderingAttribute>
 	<renderingConstant name="footwayStrokeWidth" value="0.9:0.9"/>
-	<renderingConstant name="pathColorDay" value="#000000"/>
 	<!-- NOTE: For full alignment with Touring view, we either need to make sure low zoom rules take no effect if germanRoadAtlas is selected, or define extra lowZoomColors (identical with high zoom colors) for germanRoadAtlas case -->
-	<renderingConstant name="pathLowZoomColorDay" value="#333333"/>
-	<renderingConstant name="pathColorNight" value="#787878"/>
-	<renderingConstant name="pathLowZoomColorNight" value="#787878"/>
+	<renderingAttribute name="pathLowZoomColor">
+		<case attrColorValue="#333333">
+			<apply_if nightMode="true" attrColorValue="#787878"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="pathColor">
+		<case attrColorValue="#000000">
+			<apply_if nightMode="true" attrColorValue="#787878"/>
+		</case>
+	</renderingAttribute>
 	<renderingConstant name="pathStrokeWidth" value="0.9:0.9"/>
 	<renderingConstant name="pathLowZoomStrokeWidth" value="0.4:0.4"/>
 	<renderingConstant name="pathPathEffect" value="4_2"/>
@@ -560,7 +581,11 @@
 	<renderingConstant name="sacScaleColorT4" value="#6000ff"/>
 	<renderingConstant name="sacScaleColorT5" value="#6000ff"/>
 	<renderingConstant name="sacScaleColorT6" value="#6000ff"/>
-	<renderingConstant name="bridlewayColorDay" value="#339900"/>
+	<renderingAttribute name="bridlewayColor">
+		<case attrColorValue="#339900">
+			<apply_if nightMode="true" attrColorValue="#339900"/>
+		</case>
+	</renderingAttribute>
 
 	<renderingConstant name="contourLineColor" value="#2Aff7c00"/>
 	<renderingConstant name="contourLineColor50m" value="#2Aea7300"/>
@@ -2171,7 +2196,7 @@
 				<case maxzoom="17" textSize="20"/>
 				<case minzoom="18" textSize="26"/>
 			</apply_if>
-			<apply textColor="$cyclewayColorDay"/>
+			<apply textColor="$cyclewayColor"/>
 			<apply_if nightMode="true" textHaloColor="#aaffffff"/>
 		</switch>
 
@@ -4684,7 +4709,7 @@
 			<apply_if nightMode="true" shadowRadius="0"/>
 		</switch>
 
-		<case minzoom="15" tag="highway" value="footway" additional="footway=crossing" strokeWidth="0.1" color_5="$footwayColorDay"> <!-- this code is here because we do not want surfaces,surfaceGrade and access on crossings -->
+		<case minzoom="15" tag="highway" value="footway" additional="footway=crossing" strokeWidth="0.1" color_5="$footwayColor"> <!-- this code is here because we do not want surfaces,surfaceGrade and access on crossings -->
 			<case maxzoom="16" strokeWidth_5="0.5"/>
 			<case maxzoom="17" strokeWidth_5="1"/>
 			<case minzoom="18" color="#ffffff" color__1="#77555555">
@@ -4692,7 +4717,6 @@
 				<case minzoom="19" strokeWidth="6:6" pathEffect="3_3" strokeWidth__1="6:6"/>
 				<apply_if nightMode="true" color="#aaaaaa" color__1="#33ffffff"/>
 			</case>
-			<apply_if nightMode="true" color_5="$footwayColorNight"/>
 		</case>
 
 		<switch>
@@ -4960,21 +4984,20 @@
 					</case>
 
 					<case tag="highway" value="path">
-						<case appMode="bicycle" minzoom="14" additional="bicycle=designated" color_5="$cyclewayColorDay" pathEffect_5="4_2" strokeWidth_5="1:1"/>
-						<case moreDetailed="true" minzoom="12" maxzoom="13" color_5="$pathColorDay" pathEffect_5="$pathPathEffect">
-							<case maxzoom="12" strokeWidth_5="0.25:0.25" color_5="$pathLowZoomColorDay" pathEffect_5="$pathLowZoomPathEffect"/>
-							<case maxzoom="13" color_5="$pathLowZoomColorDay" pathEffect_5="$pathLowZoomPathEffect">
+						<case appMode="bicycle" minzoom="14" additional="bicycle=designated" color_5="$cyclewayColor" pathEffect_5="4_2" strokeWidth_5="1:1"/>
+						<case moreDetailed="true" minzoom="12" maxzoom="13" color_5="$pathColor" pathEffect_5="$pathPathEffect">
+							<case maxzoom="12" strokeWidth_5="0.25:0.25" color_5="$pathLowZoomColor" pathEffect_5="$pathLowZoomPathEffect"/>
+							<case maxzoom="13" color_5="$pathLowZoomColor" pathEffect_5="$pathLowZoomPathEffect">
 								<case appMode="pedestrian" strokeWidth_5="0.5:0.5"/>
 								<case strokeWidth_5="$pathLowZoomStrokeWidth"/>
 							</case>
 						</case>
-						<case minzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="$pathStrokeWidth" color_5="$pathColorDay" pathEffect_5="$pathPathEffect">
+						<case minzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="$pathStrokeWidth" color_5="$pathColor" pathEffect_5="$pathPathEffect">
 							<apply_if showSurfaceGrade="true" strokeWidth_5="1:1"/>
 							<apply_if showSurfaces="true" strokeWidth_5="1:1"/>
 						</case>
 						<apply_if nightMode="true">
-							<apply_if minzoom="12" maxzoom="13" color_5="$pathLowZoomColorNight"/>
-							<apply color_5="$pathColorNight"/>
+							<apply_if minzoom="12" maxzoom="13" color_5="$pathLowZoomColor"/>
 						</apply_if>
 						<apply>
 							<switch alpineHiking="true">
@@ -5002,7 +5025,7 @@
 							<apply minzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="1:1" pathEffect_5="$cyclewayPathEffect"/>
 						</case>
 						<case minzoom="14" strokeWidth_4="1.3:1.3" strokeWidth_5="$cyclewayStrokeWidth" pathEffect_5="$cyclewayPathEffect"/>
-						<apply color_5="$cyclewayColorDay"/>
+						<apply color_5="$cyclewayColor"/>
 						<apply_if nightMode="true" color="#77002a2a">
 							<apply_if minzoom="13" maxzoom="13" strokeWidth_4="0.4:0.4"/>
 							<apply_if minzoom="14" maxzoom="14" strokeWidth_4="1:1" strokeWidth_5="0.9:0.9"/>
@@ -5010,7 +5033,7 @@
 						</apply_if>
 					</case>
 
-					<case tag="highway" value="footway" minzoom="14">
+					<case minzoom="14" tag="highway" value="footway" color_5="$footwayColor">
 						<switch minzoom="14" maxzoom="15">
 							<case moreDetailed="true">
 								<case layer="1" strokeWidth_5="0.5:0.5"/>
@@ -5033,18 +5056,13 @@
 								<apply strokeWidth_5="1:1"/>
 							</switch>
 						</case>
-						<apply color_5="$footwayColorDay">
-							<apply_if nightMode="true" color_5="$footwayColorNight"/>
-						</apply>
 					</case>
 
 					<case tag="highway" value="steps">
 						<case appMode="pedestrian" minzoom="15" strokeWidth_4="2:2" strokeWidth_5="2:2" pathEffect_5="2_2"/>
 						<case layer="1" moreDetailed="true" minzoom="14" maxzoom="15" strokeWidth_4="1.7:1.7" strokeWidth_5="1.7:1.7"/>
 						<case minzoom="16" strokeWidth_4="2:2" strokeWidth_5="2:2"/>
-						<apply color_5="$footwayColorDay" pathEffect_5="1_2">
-							<apply_if nightMode="true" color_5="$footwayColorNight"/>
-						</apply>
+						<apply color_5="$footwayColor" pathEffect_5="1_2"/>
 						<apply>
 							<case additional="conveying=yes" pathEffect_5="2_1"/>
 						</apply>
@@ -5060,7 +5078,7 @@
 							<apply_if showSurfaceGrade="true" strokeWidth_5="1:1"/>
 							<apply_if showSurfaces="true" strokeWidth_5="1:1"/>
 						</case>
-						<apply color_5="$bridlewayColorDay" pathEffect_5="4_2"/>
+						<apply color_5="$bridlewayColor" pathEffect_5="4_2"/>
 					</case>
 
 					<!-- Bridges -->
@@ -5272,8 +5290,8 @@
 			<case maxzoom="16" strokeWidth="2.5:2.5" shadowRadius="2"/>
 			<case maxzoom="17" strokeWidth="4:4" shadowRadius="2"/>
 			<case minzoom="18" strokeWidth="5:5" shadowRadius="2"/>
-			<apply color="$racewayColorDay" cap="ROUND" shadowColor="#7c5b5b">
-				<apply_if nightMode="true" color="$racewayColorNight" shadowColor="#ffdddd"/>
+			<apply color="$racewayColor" cap="ROUND" shadowColor="#7c5b5b">
+				<apply_if nightMode="true" shadowColor="#ffdddd"/>
 			</apply>
 			<apply_if minzoom="17"> <!-- for new OpenGL engine only -->
 				<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
