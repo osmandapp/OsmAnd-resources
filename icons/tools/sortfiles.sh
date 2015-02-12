@@ -151,6 +151,10 @@ mycp arrow triangle_blue_small functional-icons_arrow_triangle_blue_small.png
 mycp arrow triangle_darkblue functional-icons_arrow_triangle_darkblue.png
 mycp arrow triangle_darkblue_big functional-icons_arrow_triangle_darkblue_big.png
 mycp arrow triangle_darkblue_small functional-icons_arrow_triangle_darkblue_small.png
+mycp arrow 2triangles_black functional-icons_arrow_2triangles_black.png
+mycp arrow 2triangles_white functional-icons_arrow_2triangles_white.png
+mycp arrow triangle_white2 functional-icons_arrow_triangle_white2.png
+mycp arrow triangle_black2 functional-icons_arrow_triangle_black2.png
 mycp harbour yes poi_harbour.png
 
 mygroup fuel transport_fuel.png
