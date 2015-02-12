@@ -155,6 +155,12 @@ mycp arrow 2triangles_black functional-icons_arrow_2triangles_black.png
 mycp arrow 2triangles_white functional-icons_arrow_2triangles_white.png
 mycp arrow triangle_white2 functional-icons_arrow_triangle_white2.png
 mycp arrow triangle_black2 functional-icons_arrow_triangle_black2.png
+mycp skimap arrow_2triangles_black skimap_arrow_2triangles_black.png
+mycp skimap arrow_2triangles_black_big skimap_arrow_2triangles_black_big.png
+mycp skimap arrow_2triangles_black_big_nobg skimap_arrow_2triangles_black_big_nobg.png
+mycp skimap arrow_2triangles_black_nobg skimap_arrow_2triangles_black_nobg.png
+mycp skimap arrow_2triangles_black_small skimap_arrow_2triangles_black_small.png
+mycp skimap arrow_2triangles_black_small_nobg skimap_arrow_2triangles_black_small_nobg.png
 mycp harbour yes poi_harbour.png
 
 mygroup fuel transport_fuel.png
