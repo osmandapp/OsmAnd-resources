@@ -212,6 +212,7 @@ mycp amenity bicycle_rental transport_rental_bicycle.png
 mycp amenity car_rental transport_rental_car.png
 mycp amenity car_sharing transport_car_share.png
 mycp amenity boat_sharing amenity_boat_sharing.png
+mycp amenity ski_rental transport_ski_rental.png
 
 mycp leisure marina transport_marina.png
 mycp leisure marina_private transport_marina_private.png
