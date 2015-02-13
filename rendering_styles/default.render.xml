@@ -39,6 +39,15 @@
 		
 	-->
 
+	<!-- strokeWidth="1:1" explanation: this is dp:dx. dp depends from screen dpi. dx is measured in absolute pixels. That means that resulting width is calculated as (for xxhdpi screen): 1:1 = ( 1*2 ) + 1 = 3 px
+	xhdpi: 2.0
+	hdpi: 1.5
+	mdpi: 1.0
+	ldpi: 0.75
+
+	Text size is measured in dp only.
+	-->
+
 	<!-- Rule definition (old scheme):
 		- "filter" is analogue of If(...) Else. So if one "filter" passes other neighbors will not be checked.
 		- "group" is tag to combine many filters and define common inner filter for them as "groupFilter"
@@ -489,6 +498,27 @@
 	<renderingAttribute name="residentialRoadShadowColor">
 		<case attrColorValue="#969696"/>
 	</renderingAttribute>
+	<renderingAttribute name="primaryResidentialHighwayAreaColor">
+		<case attrColorValue="#ffffff">
+			<apply_if nightMode="true" attrColorValue="#9f9f9f"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="primaryResidentialHighwayAreaShadowColor">
+		<case attrColorValue="#969696">
+			<apply_if nightMode="true" attrColorValue="#464646"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="serviceHighwayAreaColor">
+		<case attrColorValue="#ececec">
+			<apply_if nightMode="true" attrColorValue="#727272"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="serviceHighwayAreaShadowColor">
+		<case attrColorValue="#969696">
+			<apply_if nightMode="true" attrColorValue="#464646"/>
+		</case>
+	</renderingAttribute>
+
 	<renderingAttribute name="serviceRoadColor">
 		<case attrColorValue="#ececec">
 			<apply_if nightMode="true" attrColorValue="#727272"/>
@@ -516,11 +546,16 @@
 
 	<renderingConstant name="residentialRoadLowZoom1ShadowColor" value="#44666666"/>
 	<renderingConstant name="residentialRoadLowZoom2ShadowColor" value="#44666666"/>
-
-	<renderingConstant name="pedestrianRoadModeColorDay" value="#ececec"/>
-	<renderingConstant name="pedestrianRoadModeColorNight" value="#727272"/>
-	<renderingConstant name="pedestrianRoadShadowColorDay" value="#55555555"/>
-	<renderingConstant name="pedestrianRoadShadowColorNight" value="#999999"/>
+	<renderingAttribute name="pedestrianRoadModeColor">
+		<case attrColorValue="#ececec">
+			<apply_if nightMode="true" attrColorValue="#727272"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="pedestrianRoadShadowColor">
+		<case attrColorValue="#55555555">
+			<apply_if nightMode="true" attrColorValue="#999999"/>
+		</case>
+	</renderingAttribute>
 
 	<!-- NOTE: Switch still needed here to align construction and proposed colors between germanRoadatlas and Touring view -->
 	<renderingConstant name="constructionRoadColor" value="#79a8fd"/>
@@ -550,7 +585,7 @@
 			<apply_if nightMode="true" attrColorValue="#0000ff"/>
 		</case>
 	</renderingAttribute>
-	<renderingConstant name="cyclewayStrokeWidth" value="1"/>
+	<renderingConstant name="cyclewayStrokeWidth" value="0.9"/>
 	<renderingConstant name="cyclewayPathEffect" value="12_4"/>
 	<renderingAttribute name="footwayColor">
 		<case attrColorValue="#fa5073">
@@ -1747,9 +1782,7 @@
 				<apply textColor="#000000">
 					<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 				</apply>
-				<apply_if appMode="pedestrian" textHaloColor="$pedestrianRoadModeColorDay">
-					<apply_if nightMode="true" textHaloColor="$pedestrianRoadModeColorNight"/>
-				</apply_if>
+				<apply_if appMode="pedestrian" textHaloColor="$pedestrianRoadModeColor"/>
 			</switch>
 			<apply minzoom="14" textOnPath="true" nameTag="">
 				<case maxzoom="14" textSize="12"/>
@@ -1796,9 +1829,7 @@
 			</apply>
 			<apply textColor="#000000" textHaloRadius="$highwayTrackTextHaloRadiusDay" textHaloColor="$highwayTrackTextHaloColorDay" textOnPath="true"/>
 			<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
-			<apply_if appMode="pedestrian" textHaloColor="$pedestrianRoadModeColorDay">
-				<apply_if nightMode="true" textHaloColor="$pedestrianRoadModeColorNight"/>
-			</apply_if>
+			<apply_if appMode="pedestrian" textHaloColor="$pedestrianRoadModeColor"/>
 		</switch>
 
 		<!-- Motorway junction -->
@@ -2896,7 +2927,6 @@
 				</case>
 				<switch shield="white_gray_square_shield">
 					<case minzoom="17" tag="barrier" value="entrance" icon="barrier_entrance"/>
-					<case minzoom="18" tag="building" value="entrance" icon="barrier_entrance"/>
 					<apply_if nightMode="true" shield="gray_gray_square_shield"/>
 				</switch>
 				<case minzoom="13" tag="tourism" value="alpine_hut" icon="tourism_alpine_hut" shield="white_blue_square_shield">
@@ -3874,9 +3904,7 @@
 			<case tag="area:highway" value="road"/>
 			<case tag="area:highway" value="unclassified"/>
 			<case tag="area:highway" value="residential"/>
-			<apply color="#ffffff" color_2="#969696" minzoom="12" strokeWidth_2=":1">
-				<apply_if nightMode="true" color="#9f9f9f" color_2="#464646"/>
-			</apply>
+			<apply color="$primaryResidentialHighwayAreaColor" color_2="$primaryResidentialHighwayAreaShadowColor" minzoom="12" strokeWidth_2=":1"/>
 		</switch>
 		<switch minzoom="14">
 			<case tag="area:highway" value="pedestrian"/>
@@ -3895,12 +3923,9 @@
 				</switch>
 			</apply_if>
 			<apply_if minzoom="14"> <!-- this code is needed to allow pedestrian areas coloring in UniRS -->
-				<apply color="$serviceRoadColor" color_2="$pedestrianRoadShadowColorDay" strokeWidth_2=":1"/>
-				<apply_if nightMode="true" color="#727272" color_2="$pedestrianRoadShadowColorNight"/>
-				<apply_if appMode="pedestrian">
-					<apply color="$pedestrianRoadModeColorDay" color_2="$pedestrianRoadShadowColorDay"/>
-					<apply_if nightMode="true" color="$pedestrianRoadModeColorNight" color_2="$pedestrianRoadShadowColorNight"/>
-				</apply_if>
+				<apply color="$serviceRoadColor" color_2="$pedestrianRoadShadowColor" strokeWidth_2=":1"/>
+				<apply_if nightMode="true" color="#727272"/>
+				<apply_if appMode="pedestrian" color="$pedestrianRoadModeColor"/>
 			</apply_if>
 			<apply_if appMode="car" shader="" color="#f0e0d8" color_2="#44aaaaaa">
 				<apply_if nightMode="true" color="#353535" color_2="#77666666"/>
@@ -3911,9 +3936,7 @@
 			<case tag="area:highway" value="service"/>
 			<case tag="area:highway" value="services"/>
 			<case tag="highway" value="rest_area"/>
-			<apply color="#ececec" color_2="#969696" strokeWidth_2=":1">
-				<apply_if nightMode="true" color="#727272" color_2="#464646"/>
-			</apply>
+			<apply color="$serviceHighwayAreaColor" color_2="$serviceHighwayAreaShadowColor" strokeWidth_2=":1"/>
 		</switch>
 
 		<switch>
@@ -4912,14 +4935,11 @@
 						</apply>
 					</switch>
 					<case tag="highway" value="pedestrian">
-						<apply color="$serviceRoadColor" shadowColor="$pedestrianRoadShadowColorDay">
-							<apply_if nightMode="true" shadowColor="$pedestrianRoadShadowColorNight"/>
+						<apply color="$serviceRoadColor" shadowColor="$pedestrianRoadShadowColor">
 							<apply_if appMode="car" color="#f7d4d4" shadowColor="#44444444">
 								<apply_if nightMode="true" color="#412e2e" shadowRadius="0"/>
 							</apply_if>
-							<apply_if appMode="pedestrian" color="$pedestrianRoadModeColorDay">
-								<apply_if nightMode="true" color="$pedestrianRoadModeColorNight"/>
-							</apply_if>
+							<apply_if appMode="pedestrian" color="$pedestrianRoadModeColor"/>
 						</apply>
 					</case>
 					<apply cap="ROUND" color_0="#000000" shadowRadius=":1.5">
@@ -5028,8 +5048,8 @@
 						<apply color_5="$cyclewayColor"/>
 						<apply_if nightMode="true" color="#77002a2a">
 							<apply_if minzoom="13" maxzoom="13" strokeWidth_4="0.6"/>
-							<apply_if minzoom="14" maxzoom="14" strokeWidth_4="1:1" strokeWidth_5="0.9"/>
-							<apply_if minzoom="15" strokeWidth_4="1.2:1.2" strokeWidth_5="1:1"/>
+							<apply_if minzoom="14" maxzoom="14" strokeWidth_4="1:1"/>
+							<apply_if minzoom="15" strokeWidth_4="1.2:1.2"/>
 						</apply_if>
 					</case>
 
