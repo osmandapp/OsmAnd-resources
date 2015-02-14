@@ -119,6 +119,8 @@
 	<type tag="bicycle" value="designated" minzoom="12" additional="true" only_map="true"/>
 	<type tag="fee" value="yes" minzoom="15" additional="true" only_map="true"/>
 	<type tag="boat" value="no" minzoom="10" additional="true" only_map="true"/>
+	<type tag="ski" value="yes" minzoom="15" additional="true" only_map="true"/>
+	<type tag="ski" value="no" minzoom="15" additional="true" only_map="true"/>
 
 	<type tag="bus" value="yes" minzoom="13" additional="true" only_map="true"/>
 	<type tag="trolleybus" value="yes" minzoom="13" additional="true" only_map="true"/>
@@ -503,7 +505,8 @@
 		<entity_convert pattern="tag_transform" from_tag="route_funicular" if_tag1="building" apply_to="way"/>
 
 		<type tag="route" value="subway" additional="true" minzoom="11" relation="true"/> <!-- used only to distinguish subway stations from regular railway stations -->
-		<type tag="route" value="ski" minzoom="11" relation="true"/>
+		<type tag="route" value="piste" minzoom="11" additional="true" relation="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route" from_value="ski" to_tag1="route" to_value1="piste"/>
 
 		<type tag="iwn_network" value="iwn" nameTags="ref,name" namePrefix="iwn_" relation="true"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="iwn" to_tag1="iwn_network" to_value1="iwn"/>
@@ -564,6 +567,7 @@
 		<type tag="piste:difficulty" value="expert" minzoom="11" additional="true" relation="true"/>
 		<type tag="piste:difficulty" value="freeride" minzoom="11" additional="true" relation="true"/>
 		<type tag="piste:difficulty" value="extreme" minzoom="11" additional="true" relation="true"/>
+		<entity_convert pattern="tag_transform" from_tag="piste:difficulty" if_not_tag1="piste:type" to_tag1="piste:difficulty" to_tag2="piste:type" to_value2="hike"/>
 		<type tag="piste:abandoned" value="yes" minzoom="11" additional="true" relation="true"/>
 		<type tag="piste:grooming" value="classic" minzoom="13" additional="true" relation="true"/>
 		<type tag="piste:grooming" value="classic+skating" minzoom="13" additional="true" relation="true"/>
@@ -573,6 +577,9 @@
 		<type tag="piste:grooming" value="scooter" minzoom="13" additional="true" relation="true"/>
 		<type tag="piste:grooming" value="skating" minzoom="13" additional="true" relation="true"/>
 		<type tag="piste:grooming" value="mogul" minzoom="13" additional="true" relation="true"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_tag1="ski" if_value1="designated" if_not_tag2="piste:type" to_tag1="highway" to_tag2="piste:type" to_value2="hike"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_tag1="ski" if_value1="downhill" if_not_tag2="piste:type" to_tag1="highway" to_tag2="piste:type" to_value2="downhill"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_tag1="ski" if_value1="nordic" if_not_tag2="piste:type" to_tag1="highway" to_tag2="piste:type" to_value2="nordic"/>
 	</category>
 
 	<category name="sidewalk">
