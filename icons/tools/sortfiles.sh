@@ -104,12 +104,18 @@ mycp emergency phone emergency_emergency_phone.png
 mycp emergency fire_hydrant emergency_fire_hydrant.png
 mycp amenity police emergency_police3.png
 mycp amenity fire_station emergency_firestation4.png
+
+## Overlays
 mycp hazard yes overlays_hazard.png
 mycp hazard nuclear overlays_hazard_nuclear.png
 mycp hazard erosion overlays_hazard_erosion.png
 mycp hazard slippery_road overlays_hazard_slippery_road.png
 mycp hazard flood overlays_hazard_flood.png
 mycp hazard avalanche overlays_hazard_avalanche.png
+mycp fixme_tag yes overlays_fixme.png
+mycp fixme_tag_lowzoom yes overlays_fixme_dot.png
+mycp fixme_tag_lowzoom2 yes overlays_fixme_dot_2.png
+mycp note_tag yes overlays_note.png
 
 mygroup healthcare health_pharmacy.png
 mycp amenity pharmacy health_pharmacy2.png
