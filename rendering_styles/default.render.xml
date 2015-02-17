@@ -254,6 +254,7 @@
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="motorwayRoadShadowColor">
+		<case additional="motorroad=yes" attrColorValue="#5f5fff"/>
 		<switch>
 			<case publicTransportMode="true"/>
 			<case tramTrainRoutes="true"/>
@@ -272,14 +273,18 @@
 			<apply_if nightMode="true" attrColorValue="$null"/>
 		</case>
 	</renderingAttribute>
+	<renderingAttribute name="highwayShadowRadius">
+		<case additional="motorroad=yes" attrFloatValue=":2"/>
+		<case attrFloatValue=":1"/>
+	</renderingAttribute>
 <!-- Trunk  -->
 	<renderingAttribute name="trunkRoadColor">
 		<case roadStyle="orange" attrColorValue="#ffae4b">
 			<apply_if nightMode="true" attrColorValue="#cf692d"/>
 		</case>
 		<case roadStyle="germanRoadAtlas" attrColorValue="#dcdcdc">
-			<apply_if nightMode="true" attrColorValue="#ffffff">
-				<apply_if appMode="car" attrColorValue="#cccccc"/>
+			<apply_if nightMode="true" attrColorValue="#dddddd">
+				<apply_if appMode="car" attrColorValue="#bbbbbb"/>
 			</apply_if>
 		</case>
 		<case roadStyle="americanRoadAtlas" attrColorValue="#eea67a">
@@ -320,6 +325,7 @@
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="trunkRoadShadowColor">
+		<case additional="motorroad=yes" attrColorValue="#5f5fff"/>
 		<switch>
 			<case publicTransportMode="true"/>
 			<case tramTrainRoutes="true"/>
@@ -390,6 +396,7 @@
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="primaryRoadShadowColor">
+		<case additional="motorroad=yes" attrColorValue="#5f5fff"/>
 		<switch>
 			<case publicTransportMode="true"/>
 			<case tramTrainRoutes="true"/>
@@ -450,6 +457,7 @@
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="secondaryRoadShadowColor">
+		<case additional="motorroad=yes" attrColorValue="#5f5fff"/>
 		<switch>
 			<case publicTransportMode="true"/>
 			<case tramTrainRoutes="true"/>
@@ -510,6 +518,7 @@
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="tertiaryRoadShadowColor">
+		<case additional="motorroad=yes" attrColorValue="#5f5fff"/>
 		<case roadStyle="germanRoadAtlas" attrColorValue="#767676">
 			<apply_if nightMode="true" attrColorValue="#464646"/>
 			<!-- NOTE: Touring view's <renderingConstant name="shadowColorLowZoom" value="#262626"/> ignored here for now -->
@@ -526,6 +535,7 @@
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="residentialRoadShadowColor">
+		<case additional="motorroad=yes" attrColorValue="#5f5fff"/>
 		<case attrColorValue="#969696"/>
 	</renderingAttribute>
 	<renderingAttribute name="primaryResidentialHighwayAreaColor">
@@ -555,6 +565,7 @@
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="serviceRoadShadowColor">
+		<case additional="motorroad=yes" attrColorValue="#5f5fff"/>
 		<case attrColorValue="#969696"/>
 	</renderingAttribute>
 	<renderingAttribute name="serviceDrivewayRoadColor">
@@ -4768,7 +4779,7 @@
 		<case minzoom="5" tag="natural" value="coastline_line" color="#cc999999" strokeWidth=":1"/>
 
 		<switch minzoom="6" maxzoom="13">
-			<switch shadowRadius=":1">
+			<switch>
 				<case tag="highway" value="motorway" color="$motorwayRoadLowZoomColor" color__2="$motorwayRoadShadowColor" shadowColor="$motorwayRoadShadowColor">
 					<apply_if roadStyle="americanRoadAtlas" shadowRadius=":0">
 						<case maxzoom="6" strokeWidth__2="0.5:1"/>
@@ -4790,6 +4801,12 @@
 						<case minzoom="12" strokeWidth__2="4:4"/>
 					</apply_if>
 				</case>
+				<apply>
+					<case engine_v1="true" shadowRadius=":1">
+						<apply_if additional="motorroad=yes" shadowRadius=":2"/>
+					</case>
+					<case shadowRadius="$highwayShadowRadius"/>
+				</apply>
 				<apply>
 					<case roadStyle="germanRoadAtlas" shadowRadius=":0">
 						<case maxzoom="6" strokeWidth__2="1.6"/>
@@ -4841,7 +4858,12 @@
 				<case maxzoom="12" strokeWidth="2:2"/>
 				<case maxzoom="13" strokeWidth="2:2"/>
 			</apply>
-			<apply_if minzoom="9" shadowRadius=":1" shadowColor="$primaryRoadShadowColor"/>
+			<apply_if minzoom="9" shadowColor="$primaryRoadShadowColor">
+				<case engine_v1="true" shadowRadius=":1">
+					<apply_if additional="motorroad=yes" shadowRadius=":2"/>
+				</case>
+				<case shadowRadius="$highwayShadowRadius"/>
+			</apply_if>
 			<apply color="$primaryRoadLowZoomColor"/>
 			<apply_if nightMode="true" shadowRadius="0"/>
 		</switch>
@@ -4849,14 +4871,19 @@
 		<switch minzoom="9" maxzoom="13">
 			<case tag="highway" value="secondary"/>
 			<case tag="highway" value="secondary_link"/>
-			<apply color="$secondaryRoadColor" shadowRadius=":1" cap="ROUND">
+			<apply color="$secondaryRoadColor" cap="ROUND">
 				<case maxzoom="9" strokeWidth="1.1:1.1"/>
 				<case maxzoom="10" strokeWidth="1.3:1.3"/>
 				<case maxzoom="11" strokeWidth="1.5:1.5"/>
 				<case maxzoom="12" strokeWidth="1.7:1.7"/>
 				<case maxzoom="13" strokeWidth="1.7:1.7"/>
 			</apply>
-			<apply_if minzoom="9" shadowRadius=":1" shadowColor="$secondaryRoadShadowColor"/>
+			<apply shadowRadius=":1" shadowColor="$secondaryRoadShadowColor">
+				<case engine_v1="true" shadowRadius=":1">
+					<apply_if additional="motorroad=yes" shadowRadius=":2"/>
+				</case>
+				<case shadowRadius="$highwayShadowRadius"/>
+			</apply>
 			<apply color="$secondaryRoadLowZoomColor"/>
 			<apply_if nightMode="true" shadowRadius="0"/>
 		</switch>
@@ -4874,8 +4901,14 @@
 		<switch>
 			<switch minzoom="14">
 				<switch>
-					<switch shadowRadius=":1">
+					<switch>
 						<case tag="highway" value="motorway" color="$motorwayRoadColor" color__2="$motorwayRoadShadowColor" shadowColor="$motorwayRoadShadowColor">
+							<apply>
+								<case engine_v1="true" shadowRadius=":1">
+									<apply_if additional="motorroad=yes" shadowRadius=":2"/>
+								</case>
+								<case shadowRadius="$highwayShadowRadius"/>
+							</apply>
 							<apply_if roadStyle="americanRoadAtlas" shadowRadius=":0">
 								<case maxzoom="14" strokeWidth__2="9:9"/>
 								<case maxzoom="15" strokeWidth__2="10:10"/>
@@ -4886,6 +4919,12 @@
 							</apply_if>
 						</case>
 						<case tag="highway" value="trunk" color="$trunkRoadColor" color__2="$trunkRoadShadowColor" shadowColor="$trunkRoadShadowColor">
+							<apply>
+								<case engine_v1="true" shadowRadius=":1">
+									<apply_if additional="motorroad=yes" shadowRadius=":2"/>
+								</case>
+								<case shadowRadius="$highwayShadowRadius"/>
+							</apply>
 							<apply_if roadStyle="americanRoadAtlas" shadowRadius=":0">
 								<case maxzoom="14" strokeWidth__2="6:6"/>
 								<case maxzoom="15" strokeWidth__2="8:8"/>
@@ -4906,9 +4945,15 @@
 							</case>
 						</apply>
 					</switch>
-					<switch shadowRadius=":1">
+					<switch>
 						<case tag="highway" value="motorway_link" color="$motorwayRoadColor" shadowColor="$motorwayRoadShadowColor"/>
 						<case tag="highway" value="trunk_link" color="$trunkRoadColor" shadowColor="$trunkRoadShadowColor"/>
+						<apply>
+							<case engine_v1="true" shadowRadius=":1">
+								<apply_if additional="motorroad=yes" shadowRadius=":2"/>
+							</case>
+							<case shadowRadius="$highwayShadowRadius"/>
+						</apply>
 						<apply>
 							<switch>
 								<case roadStyle="americanRoadAtlas"/>
@@ -4925,7 +4970,12 @@
 					<case tag="highway" value="primary_link" color="$primaryRoadColor" shadowColor="$primaryRoadShadowColor"/>
 					<case tag="highway" value="secondary" color="$secondaryRoadColor" shadowColor="$secondaryRoadShadowColor"/>
 					<case tag="highway" value="secondary_link" color="$secondaryRoadColor" shadowColor="$secondaryRoadShadowColor"/>
-					<apply shadowRadius=":1"/>
+					<apply>
+						<case engine_v1="true" shadowRadius=":1">
+							<apply_if additional="motorroad=yes" shadowRadius=":2"/>
+						</case>
+						<case shadowRadius="$highwayShadowRadius"/>
+					</apply>
 				</switch>
 				<apply cap="ROUND">
 					<case maxzoom="14" strokeWidth="4:4"/>
@@ -4973,6 +5023,12 @@
 				<switch>
 					<case tag="highway" value="tertiary"/>
 					<case tag="highway" value="tertiary_link"/>
+					<apply>
+						<case engine_v1="true" shadowRadius=":1">
+							<apply_if additional="motorroad=yes" shadowRadius=":2"/>
+						</case>
+						<case shadowRadius="$highwayShadowRadius"/>
+					</apply>
 					<apply color="$tertiaryRoadColor" cap="ROUND">
 						<case minzoom="11" maxzoom="13">
 							<apply color="$tertiaryRoadLowZoomColor">
@@ -4980,9 +5036,9 @@
 								<apply_if minzoom="12" maxzoom="12" strokeWidth="1.4:1.4"/>
 								<apply_if minzoom="13" maxzoom="13" strokeWidth="1.6:1.6"/>
 							</apply>
-							<apply_if nightMode="false" shadowRadius=":1" shadowColor="$tertiaryRoadShadowColor"/>
+							<apply_if nightMode="false" shadowColor="$tertiaryRoadShadowColor"/>
 						</case>
-						<case minzoom="14" color_0="#000000" shadowRadius=":1" shadowColor="$tertiaryRoadShadowColor">
+						<case minzoom="14" color_0="#000000" shadowColor="$tertiaryRoadShadowColor">
 							<case maxzoom="14" strokeWidth="3:3"/>
 							<case maxzoom="15" strokeWidth="4:4"/>
 							<case maxzoom="16" strokeWidth="5:5"/>
@@ -4992,12 +5048,12 @@
 							<apply_if layer="-1" pathEffect="4_4" cap="BUTT"/>
 							<!-- Bridges -->
 							<apply_if layer="1" minzoom="14" shadowRadius="0" cap="SQUARE" cap_0="BUTT">
-								<case maxzoom="14" strokeWidth_0="3.5:5"/>
-								<case maxzoom="15" strokeWidth_0="4:8"/>
-								<case maxzoom="16" strokeWidth_0="5:9"/>
-								<case maxzoom="17" strokeWidth_0="7:10"/>
-								<case maxzoom="18" strokeWidth_0="9.5:13"/>
-								<case minzoom="19" strokeWidth_0="12:14"/>
+								<case maxzoom="14" strokeWidth_0="3.7:5.4"/>
+								<case maxzoom="15" strokeWidth_0="4.5:8.8"/>
+								<case maxzoom="16" strokeWidth_0="5.7:9.5"/>
+								<case maxzoom="17" strokeWidth_0="8:11"/>
+								<case maxzoom="18" strokeWidth_0="10.5:14"/>
+								<case minzoom="19" strokeWidth_0="13:16"/>
 								<apply_if nightMode="true" color_0="#ffffff"/>
 							</apply_if>
 						</case>
@@ -5013,7 +5069,7 @@
 						</apply>
 					</switch>
 					<case tag="highway" value="road" color="$roadRoadColor"/>
-					<apply shadowRadius=":1" cap="ROUND" color_0="#000000">
+					<apply cap="ROUND" color_0="#000000">
 						<case moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth="0.9" shadowColor="$residentialRoadLowZoom1ShadowColor"/>
 						<case minzoom="13" maxzoom="13" strokeWidth="1:1" shadowColor="$residentialRoadLowZoom2ShadowColor"/>
 						<case minzoom="14" maxzoom="14" strokeWidth="1.5:1.5" shadowColor="$residentialRoadLowZoom2ShadowColor"/>
@@ -5027,6 +5083,12 @@
 								<apply_if streetLighting="true" nightMode="true" shadowColor="#ffffff"/>
 							</apply>
 						</switch>
+						<apply>
+							<case engine_v1="true" shadowRadius=":1">
+								<apply_if additional="motorroad=yes" shadowRadius=":2"/>
+							</case>
+							<case shadowRadius="$highwayShadowRadius"/>
+						</apply>
 						<apply_if layer="-1" pathEffect="4_4" cap="BUTT"/>
 						<!-- Bridges -->
 						<apply_if layer="1" minzoom="14" shadowRadius="0" cap="SQUARE" cap_0="BUTT">
@@ -5049,6 +5111,12 @@
 						<case tag="highway" value="living_street"/>
 						<!-- pedestrian roads are forbidden for cars and cyclists: show them like that in car and bicycle mode -->
 						<!-- <groupFilter appMode="bicycle" tag="highway" value="pedestrian" color="#F7D4D4"/> -->
+						<apply>
+							<case engine_v1="true" shadowRadius=":1">
+								<apply_if additional="motorroad=yes" shadowRadius=":2"/>
+							</case>
+							<case shadowRadius="$highwayShadowRadius"/>
+						</apply>
 						<apply color="$serviceRoadColor"/>
 						<apply minzoom="15" shadowColor="$serviceRoadShadowColor"/>
 						<apply>
@@ -5071,7 +5139,7 @@
 							<apply_if appMode="pedestrian" color="$pedestrianRoadModeColor"/>
 						</apply>
 					</case>
-					<apply cap="ROUND" color_0="#000000" shadowRadius=":1.5">
+					<apply cap="ROUND" color_0="#000000">
 						<switch moreDetailed="true">
 							<case minzoom="13" maxzoom="13" strokeWidth="0.7" shadowRadius="0"/>
 							<case minzoom="14" maxzoom="14" strokeWidth="1:1" shadowRadius=":1" shadowColor="$residentialRoadLowZoom2ShadowColor"/>
