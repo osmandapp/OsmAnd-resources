@@ -110,6 +110,8 @@ generatePngs() {
       generateElements 'seamark_shields'
       generateElements 'seamark_shields_x4'
 
+      generatePngs 'skimap' '#777777' '#777777' '' x2
+
       generatePngs 'functional-icons' '#777777' '#777777'
       generatePngs 'water' '#0092DA' '#0092DA'
 
@@ -123,6 +125,7 @@ generatePngs() {
       generatePngs 'accommodation' '#0092DA' '#0092DA'
 
       generatePngs 'tourist' '#734A08' '#734A08'
+      generatePngs 'special_poi' '#a62b00' '#a62b00' '' '' '' nomx
 
       generatePngs 'sport'  '#39AC39' '#39AC39'
 

@@ -170,7 +170,7 @@
 		</case>
 	</renderingAttribute>
 	<renderingConstant name="trackStrokeWidth" value="1:1"/>
-	<renderingConstant name="trackLowZoomStrokeWidth" value="0.8:0.8"/>
+	<renderingConstant name="trackLowZoomStrokeWidth" value="0.8"/>
 	<renderingConstant name="trackBridgeWidth" value="3:3"/>
 	<renderingConstant name="trackBridgeInnerWidth" value="2:2"/>
 	<renderingConstant name="trackTunnelPathEffect" value="6_4"/>
@@ -178,13 +178,13 @@
 		<case nightMode="true" attrColorValue="#645638"/>
 		<case attrColorValue="#787878"/>
 	</renderingAttribute>
-	<renderingConstant name="pathStrokeWidth" value="0.9:0.9"/>
+	<renderingConstant name="pathStrokeWidth" value="0.9"/>
 	<renderingConstant name="pathPathEffect" value="4_2"/>
 	<renderingAttribute name="footwayColor">
 		<case nightMode="true" attrColorValue="#dadada"/>
 		<case attrColorValue="#645638"/>
 	</renderingAttribute>
-	<renderingConstant name="footwayStrokeWidth" value="0.9:0.9"/>
+	<renderingConstant name="footwayStrokeWidth" value="0.9"/>
 	<renderingConstant name="bridgeColorNight" value="#ffe9b5"/>
 	<renderingConstant name="railwayRailColorDay" value="#97957d"/>
 	<renderingConstant name="railwayRailColorNight" value="#665f45"/>
@@ -979,7 +979,9 @@
 				<case minzoom="11" tag="waterway" value="fairway" textOnPath="true"/>
 				<case minzoom="12" tag="seamark:type" value="anchorage" textDy="10" textBold="true"/>
 				<case minzoom="16" tag="seamark:type" value="anchor_berth" textDy="10"/>
-				<case minzoom="17" tag="seamark:type" value="small_craft_facility" textDy="10"/>
+				<case minzoom="17" tag="seamark:type" value="small_craft_facility" textDy="10">
+					<case additional="seamark:small_craft_facility:category=slipway" textOnPath="true"/>
+				</case>
 				<case minzoom="17" tag="seamark:type" value="fishing_facility" textDy="10"/>
 				<switch minzoom="16" tag="seamark:type" value="berth" textDy="10">
 					<case nameTag="seamark:name" nameTag2="seamark:berth:information"/>
@@ -989,14 +991,14 @@
 			</switch>
 			<switch>
 				<case minzoom="16" tag="seamark:type" value="pilot_boarding" textDy="14"/>
-				<case minzoom="17" tag="seamark:type" value="bridge" textDy="14">
+				<case minzoom="16" tag="seamark:type" value="bridge" textDy="14" textOrder="5" intersectionSizeFactor="0.5">
 					<case additional="seamark:bridge:category=opening" nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height_closed"/>
 					<case additional="seamark:bridge:category=lifting" nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height_closed"/>
 					<case nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height"/>
 				</case>
 				<apply_if engine_v1="false" textDy="-1"/>
 			</switch>
-			<apply textColor="#471c62" textWrapWidth="26" textHaloColor="#66debee7" textHaloRadius="2">
+			<apply textColor="#471c62" textWrapWidth="26" textHaloColor="#aae8d5ee" textHaloRadius="2">
 				<case maxzoom="12" textSize="12"/>
 				<case maxzoom="14" textSize="13"/>
 				<case minzoom="16" textSize="14"/>
@@ -1942,7 +1944,7 @@
 		</switch>
 		<case minzoom="12" tag="seamark:type" value="gate" icon="seamark_gate" shield="seamark_white_black_round_shield"/>
 
-		<case minzoom="16" tag="seamark:type" value="bridge" icon="seamark_bridge_fixed" iconOrder="19">
+		<case minzoom="15" tag="seamark:type" value="bridge" icon="seamark_bridge_fixed" iconOrder="19">
 			<case additional="seamark:bridge:category=fixed" icon="seamark_bridge_fixed"/>
 			<case additional="seamark:bridge:category=opening" icon="seamark_bridge_opening"/>
 			<case additional="seamark:bridge:category=lifting" icon="seamark_bridge_lifting"/>
@@ -2200,9 +2202,11 @@
 		<case minzoom="16" tag="man_made" value="mast" icon="man_made_mast" shield="mast_shield"/>
 		<switch iconOrder="71">
 			<case minzoom="16" tag="man_made" value="water_tower" icon="man_made_water_tower" shield="water_tower_shield"/>
-			<switch minzoom="15" tag="man_made" value="tower">
+			<switch minzoom="16" tag="man_made" value="tower">
 				<case additional="tower:type=communication" icon="man_made_tower_type_communication" shield="tower_communications_shield"/>
 				<case additional="tower:type=lighting" icon="man_made_tower_type_lighting" shield="tower_lighting_shield"/>
+				<case additional="tower:type=cooling" icon="man_made_tower_type_cooling" shield="tower_cooling_shield"/>
+				<case additional="tower:type=bell_tower" icon="man_made_tower_type_bell_tower" shield="tower_bell_tower_shield"/>
 				<case icon="man_made_tower" shield="tower_shield"/>
 			</switch>
 		</switch>
@@ -2337,8 +2341,8 @@
 			<case minzoom="8" tag="seamark:type" value="production_area"/>
 			<case minzoom="15" tag="seamark:type" value="marine_farm"/>
 			<apply>
-				<case maxzoom="11" strokeWidth_2="0.5:0.5" pathEffect_2="2_2"/>
-				<case maxzoom="13" strokeWidth_2="0.8:0.8" pathEffect_2="2_2"/>
+				<case maxzoom="11" strokeWidth_2="0.6" pathEffect_2="2_2"/>
+				<case maxzoom="13" strokeWidth_2="0.8" pathEffect_2="2_2"/>
 				<case maxzoom="15" strokeWidth_2="1:1" pathEffect_2="3_3"/>
 				<case maxzoom="16" strokeWidth_2="1.5:1.5" pathEffect_2="4_5"/>
 				<case minzoom="17" strokeWidth_2="2:2" pathEffect_2="5_6"/>
@@ -2483,7 +2487,7 @@
 				<case minzoom="16" tag="amenity" value="fountain"/>
 				<case minzoom="16" tag="natural" value="hot_spring"/>
 				<case minzoom="16" tag="natural" value="geyser"/>
-				<apply color="#8876cbea" color_2="#777479ec" strokeWidth_2="0.5:0.5">
+				<apply color="#8876cbea" color_2="#777479ec" strokeWidth_2="0.6">
 					<apply_if nightMode="true" color="#551c0f5e" color_2="$waterwayStrokeColorNight"/>
 				</apply>
 			</switch>
@@ -2589,8 +2593,8 @@
 				<case minzoom="17" pathEffect="5_9"/>
 			</case>
 			<apply>
-				<case maxzoom="10" strokeWidth="0.5:0.5"/>
-				<case maxzoom="12" strokeWidth="0.7:0.7"/>
+				<case maxzoom="10" strokeWidth="0.6"/>
+				<case maxzoom="12" strokeWidth="0.8"/>
 				<case maxzoom="14" strokeWidth="1.2:1.2"/>
 				<case maxzoom="15" strokeWidth="1.7:1.7"/>
 				<case maxzoom="16" strokeWidth="2:2"/>
@@ -2613,13 +2617,12 @@
 				</apply>
 			</switch>
 			<apply>
-				<case maxzoom="14" strokeWidth="0.8:0.8" pathEffect="25_7" pathEffect_2="25_7"/>
+				<case maxzoom="14" strokeWidth="0.9" pathEffect="25_7" pathEffect_2="25_7"/>
 				<case maxzoom="15" strokeWidth="1:1" pathEffect="30_10" pathEffect_2="30_10"/>
-				<case maxzoom="16" strokeWidth="1.5:1.5" strokeWidth_2="0.5:0.5" pathEffect="30_10" pathEffect_2="30_10"/>
-				<case maxzoom="17" strokeWidth="2:2" strokeWidth_2="0.7:0.7" pathEffect="37_11" pathEffect_2="37_11"/>
-				<case minzoom="18" strokeWidth="2.5:2.5" strokeWidth_2="0.8:0.8" pathEffect="40_13" pathEffect_2="40_13"/>
+				<case maxzoom="16" strokeWidth="1.5:1.5" strokeWidth_2="0.6" pathEffect="30_10" pathEffect_2="30_10"/>
+				<case maxzoom="17" strokeWidth="2:2" strokeWidth_2="0.7" pathEffect="37_11" pathEffect_2="37_11"/>
+				<case minzoom="18" strokeWidth="2.5:2.5" strokeWidth_2="0.8" pathEffect="40_13" pathEffect_2="40_13"/>
 			</apply>
-			<apply_if engine_v1="false" maxzoom="14" strokeWidth="0.4:0.4"/>
 			<apply color="#77888888">
 				<apply_if nightMode="true" color="#99666666"/>
 			</apply>
@@ -2648,22 +2651,26 @@
 				<apply color_2="$accessPrivateColor" strokeWidth_2="3" pathEffect_2="1_7" cap_2="ROUND"/>
 				<apply_if nightMode="true" color_2="$accessPrivateColor"/>
 			</switch>
-			<apply_if maxzoom="13" strokeWidth="0.5:0.5"/>
+			<apply_if maxzoom="13" strokeWidth="0.6"/>
 			<apply_if minzoom="14" maxzoom="15" strokeWidth="1.5:1.5"/>
 			<apply_if minzoom="16" strokeWidth="3:3"/>
 		</case>
-		<switch engine_v1="false" minzoom="16" strokeWidth="0.4:0.4">
+		<switch engine_v1="false" minzoom="16" strokeWidth="0.5">
 			 <case tag="natural" value="cliff" color="#555555" pathIcon="stroke_gray" pathIconStep="10"/>
 		</switch>
+		<case minzoom="16" tag="seamark:type" value="small_craft_facility" additional="seamark:small_craft_facility:category=slipway" strokeWidth="2:2" color="#fddb8f" strokeWidth__1="4:4" color__1="#d28ce4">
+			<apply_if nightMode="true" color="#464234"/>
+		</case>
+
 		<switch minzoom="16">
 			<case tag="barrier" value="fence"/>
 			<case tag="barrier" value="wall"/>
-			<apply strokeWidth="0.5:0.5" color="#333333">
+			<apply strokeWidth="0.5" color="#333333">
 				<apply_if nightMode="true" color="#999999"/>
 			</apply>
 		</switch>
 
-		<switch minzoom="16" strokeWidth="0.4:0.4">
+		<switch minzoom="16" strokeWidth="0.5">
 			<case tag="natural" value="cliff" color="#555555" color_2="#555555">
 				<apply_if nightMode="true" color="#888888" color_2="#888888"/>
 			</case>
@@ -2826,7 +2833,7 @@
 		</switch>
 
 		<case minzoom="13" tag="railway" value="rail">
-			<case layer="1" minzoom="13" color="#000000" strokeWidth="3:5" color_2="#fff7db" strokeWidth_2="2.5:3.5" color_3="#000000" strokeWidth_3="0.7:0.7" pathEffect_3="12_8_1_0"/>
+			<case layer="1" minzoom="13" color="#000000" strokeWidth="3:5" color_2="#fff7db" strokeWidth_2="2.5:3.5" color_3="#000000" strokeWidth_3="0.7" pathEffect_3="12_8_1_0"/>
 			<switch>
 				<case minzoom="13" maxzoom="14" color="#c8ba8d" color_2="#55ffffff">
 					<apply_if nightMode="true" color="#5d5b41"/>
@@ -2834,7 +2841,7 @@
 				<case minzoom="15" color="$railwayRailColorDay" color_2="#ffffff">
 					<apply_if nightMode="true" color="$railwayRailColorNight"/>
 				</case>
-				<apply strokeWidth="1:2" strokeWidth_2="0.9:0.9" pathEffect_2="0_11_8_1"/>
+				<apply strokeWidth="1:2" strokeWidth_2="0.9" pathEffect_2="0_11_8_1"/>
 			</switch>
 			<apply_if nightMode="true" color_2="#bbb99d"/>
 		</case>
@@ -2843,8 +2850,8 @@
 			<switch minzoom="13">
 				<case tag="waterway" value="stream">
 					<case layer="-1" pathEffect_2="4_2">
-						<case maxzoom="13" strokeWidth_2="0.5:0.5"/>
-						<case maxzoom="14" strokeWidth_2="0.7:0.7"/>
+						<case maxzoom="13" strokeWidth_2="0.6"/>
+						<case maxzoom="14" strokeWidth_2="0.8"/>
 						<case maxzoom="16" strokeWidth_2="1:1"/>
 						<case maxzoom="17" strokeWidth_2="1.2:1.2"/>
 						<case minzoom="18" strokeWidth_2="1.7:1.7"/>
@@ -2863,8 +2870,8 @@
 					<case maxzoom="17" pathEffect="9_5.5"/>
 					<case minzoom="18" pathEffect="12_7"/>
 				</case>
-				<apply_if minzoom="13" maxzoom="13" strokeWidth="0.6:0.6"/>
-				<apply_if minzoom="14" maxzoom="14" strokeWidth="0.9:0.9"/>
+				<apply_if minzoom="13" maxzoom="13" strokeWidth="0.7"/>
+				<apply_if minzoom="14" maxzoom="14" strokeWidth="0.9"/>
 				<apply_if minzoom="15" maxzoom="16" strokeWidth="1.2:1.2"/>
 				<apply_if minzoom="17" maxzoom="17" strokeWidth="1.4:1.4"/>
 				<apply_if minzoom="18" strokeWidth="2:2"/>
@@ -2886,10 +2893,10 @@
 					</apply>
 				</case>
 				<apply>
-					<case maxzoom="9" strokeWidth="0.5:0.5"/>
+					<case maxzoom="9" strokeWidth="0.7"/>
 					<case maxzoom="12" strokeWidth="1:1"/>
 					<case layer="-1" minzoom="13" pathEffect_2="4_2">
-						<case maxzoom="13" strokeWidth_2="0.5:0.5"/>
+						<case maxzoom="13" strokeWidth_2="0.6"/>
 						<case maxzoom="14" strokeWidth_2="1.5:1.5"/>
 						<case maxzoom="16" strokeWidth_2="2:2"/>
 						<case maxzoom="17" strokeWidth_2="4:4"/>
@@ -2909,16 +2916,16 @@
 				<case tag="waterway" value="drain"/>
 				<apply>
 					<case layer="-1" pathEffect_2="3_1.6">
-						<case maxzoom="13" strokeWidth_2="0.3:0.3"/>
-						<case maxzoom="14" strokeWidth_2="0.4:0.4"/>
-						<case maxzoom="16" strokeWidth_2="0.5:0.5"/>
-						<case maxzoom="17" strokeWidth_2="0.6:0.6"/>
-						<case minzoom="18" strokeWidth_2="0.9:0.9"/>
+						<case maxzoom="13" strokeWidth_2="0.3"/>
+						<case maxzoom="14" strokeWidth_2="0.4"/>
+						<case maxzoom="16" strokeWidth_2="0.5"/>
+						<case maxzoom="17" strokeWidth_2="0.6"/>
+						<case minzoom="18" strokeWidth_2="0.9"/>
 					</case>
-					<apply_if minzoom="13" maxzoom="13" strokeWidth="0.4:0.4"/>
-					<apply_if minzoom="14" maxzoom="14" strokeWidth="0.5:0.5"/>
-					<apply_if minzoom="15" maxzoom="16" strokeWidth="0.7:0.7"/>
-					<apply_if minzoom="17" maxzoom="17" strokeWidth="0.8:0.8"/>
+					<apply_if minzoom="13" maxzoom="13" strokeWidth="0.5"/>
+					<apply_if minzoom="14" maxzoom="14" strokeWidth="0.7"/>
+					<apply_if minzoom="15" maxzoom="16" strokeWidth="0.9"/>
+					<apply_if minzoom="17" maxzoom="17" strokeWidth="1"/>
 					<apply_if minzoom="18" strokeWidth="1.1:1.1"/>
 				</apply>
 			</switch>
@@ -2933,6 +2940,9 @@
 			<apply color="$waterwayColorDay" color_2="#fddb8f">
 				<apply_if nightMode="true" color="$waterwayColorNight" color_2="#7340D9"/>
 			</apply>
+			<apply_if additional="boat=no" color="#88b8c2c6" pathIcon="">
+				<apply_if nightMode="true" color="#44242840"/>
+			</apply_if>
 		</switch>
 
 		<switch>
@@ -2956,10 +2966,10 @@
 				<case maxzoom="16" strokeWidth="3.5:3.5" pathEffect="1_7"/>
 				<case maxzoom="17" strokeWidth="4.5:4.5" pathEffect="1_9"/>
 				<case minzoom="18" strokeWidth="6.5:6.5" pathEffect="1_13"/>
-				<apply color="#6c6ce2" color_2="#3f3f3f" strokeWidth_2="0.5:0.5"/>
+				<apply color="#6c6ce2" color_2="#3f3f3f" strokeWidth_2="0.6"/>
 				<apply_if nightMode="true" color="#9dbde1" color_2="#9dbde1"/>
 			</apply_if>
-			<apply_if engine_v1="false" color="#6c6ce2" strokeWidth="0.5:0.5" pathIcon="stroke_black" pathIconStep="13">
+			<apply_if engine_v1="false" color="#6c6ce2" strokeWidth="0.6" pathIcon="stroke_black" pathIconStep="13">
 				<apply_if nightMode="true" pathIcon="stroke_gray" color="#9dbde1"/>
 			</apply_if>
 		</switch>
@@ -2981,7 +2991,7 @@
 			<case tag="man_made" value="groyne"/>
 			<case tag="man_made" value="breakwater"/>
 			<apply color="#aaaaaa">
-				<case maxzoom="13" strokeWidth="0.5:0.5"/>
+				<case maxzoom="13" strokeWidth="0.6"/>
 				<case maxzoom="15" strokeWidth="1:1"/>
 				<case minzoom="16" strokeWidth="2:2"/>
 			</apply>
@@ -2994,10 +3004,10 @@
 		</switch>
 
 		<case minzoom="11" tag="natural" value="ridge" color="#666666" color_2="#000000">
-			<case maxzoom="11" strokeWidth="0.15:0.15"/>
-			<case maxzoom="12" strokeWidth="0.4:0.4"/>
-			<case maxzoom="13" strokeWidth="0.7:0.7" strokeWidth_2="1.1:1.1" pathEffect_2="1_23"/>
-			<case maxzoom="14" strokeWidth="0.9:0.9" strokeWidth_2="1.5:1.5" pathEffect_2="1_27"/>
+			<case maxzoom="11" strokeWidth="0.2"/>
+			<case maxzoom="12" strokeWidth="0.5"/>
+			<case maxzoom="13" strokeWidth="0.7" strokeWidth_2="1.1:1.1" pathEffect_2="1_23"/>
+			<case maxzoom="14" strokeWidth="0.9" strokeWidth_2="1.5:1.5" pathEffect_2="1_27"/>
 			<case maxzoom="15" strokeWidth="1.3:1.3" strokeWidth_2="1.7:1.7" pathEffect_2="1_32"/>
 			<case minzoom="16" strokeWidth="1.5:1.5" strokeWidth_2="1.8:1.8" pathEffect_2="1_37"/>
 			<apply_if nightMode="true" color="#666666" color_2="#999999"/>
@@ -3015,11 +3025,11 @@
 				<case tag="seamark:type" value="cable_overhead"/>
 				<case tag="power" value="line"/>
 				<apply>
-					<case maxzoom="14" strokeWidth="0.5:0.55"/>
-					<case minzoom="15" strokeWidth="0.6:0.6"/>
+					<case maxzoom="14" strokeWidth="0.6"/>
+					<case minzoom="15" strokeWidth="0.7"/>
 				</apply>
 			</switch>
-			<case minzoom="15" tag="power" value="minor_line" strokeWidth="0.25:0.25"/>
+			<case minzoom="15" tag="power" value="minor_line" strokeWidth="0.3"/>
 			<apply_if nightMode="true" color="#777777"/>
 		</switch>
 
@@ -3036,8 +3046,8 @@
 			<case tag="admin_level" value="1"/>
 			<case tag="admin_level" value="2"/>
 			<apply color="$boundaryColorOuter" color_0="$boundaryColorInner">
-				<case maxzoom="2" strokeWidth="0.7:0.7"/>
-				<case maxzoom="3" strokeWidth="0.1" strokeWidth_0="0.7:0.7"/>
+				<case maxzoom="2" strokeWidth="0.8"/>
+				<case maxzoom="3" strokeWidth="0.1" strokeWidth_0="0.8"/>
 				<case maxzoom="4" strokeWidth="1:1" strokeWidth_0="2:2"/>
 				<case maxzoom="5" strokeWidth="2:2" strokeWidth_0="2:2"/>
 				<case maxzoom="6" strokeWidth="3:3" strokeWidth_0="1.5:1.5"/>
@@ -3051,8 +3061,8 @@
 			<case tag="admin_level" value="3" pathEffect="6_1"/>
 			<case tag="admin_level" value="4" pathEffect="6_1"/>
 			<apply color="$boundaryColorOuter" color_0="$boundaryColorInner">
-				<case maxzoom="6" strokeWidth="1.5:1.5" strokeWidth_0="0.5:0.5"/>
-				<case maxzoom="8" strokeWidth="2.5:2.5" strokeWidth_0="0.5:0.5"/>
+				<case maxzoom="6" strokeWidth="1.5:1.5" strokeWidth_0="0.6"/>
+				<case maxzoom="8" strokeWidth="2.5:2.5" strokeWidth_0="0.6"/>
 				<case minzoom="9" strokeWidth="4.5:4.5" strokeWidth_0="1:1"/>
 			</apply>
 		</switch>
@@ -3065,12 +3075,12 @@
 				<case tag="admin_level" value="8" minzoom="12" pathEffect="5_1" pathEffect_0="5_1"/>
 				<case tag="admin_level" value="9" minzoom="13" pathEffect="4_1" pathEffect_0="4_1"/>
 				<case tag="admin_level" value="10" minzoom="13" pathEffect="4_1" pathEffect_0="4_1"/>
-				<apply color="$boundaryColorOuter" color_0="$boundaryColorInner" strokeWidth="3:3" strokeWidth_0="0.5:0.5"/>
+				<apply color="$boundaryColorOuter" color_0="$boundaryColorInner" strokeWidth="3:3" strokeWidth_0="0.6"/>
 			</switch>
 			<case tag="boundary" value="national_park" minzoom="7">
 				<case maxzoom="9" strokeWidth="1.5:1.5"/>
 				<case minzoom="10" strokeWidth="3:3"/>
-				<apply color="#2909dd09" color_0="#55097309" strokeWidth_0="0.5:0.5" pathEffect="4_1" pathEffect_0="4_1"/>
+				<apply color="#2909dd09" color_0="#55097309" strokeWidth_0="0.6" pathEffect="4_1" pathEffect_0="4_1"/>
 				<apply_if nightMode="true" color="#2009dd09"/>
 			</case>
 		</switch>

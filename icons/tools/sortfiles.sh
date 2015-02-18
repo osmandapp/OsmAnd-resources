@@ -104,12 +104,18 @@ mycp emergency phone emergency_emergency_phone.png
 mycp emergency fire_hydrant emergency_fire_hydrant.png
 mycp amenity police emergency_police3.png
 mycp amenity fire_station emergency_firestation4.png
+
+## Overlays
 mycp hazard yes overlays_hazard.png
 mycp hazard nuclear overlays_hazard_nuclear.png
 mycp hazard erosion overlays_hazard_erosion.png
 mycp hazard slippery_road overlays_hazard_slippery_road.png
 mycp hazard flood overlays_hazard_flood.png
 mycp hazard avalanche overlays_hazard_avalanche.png
+mycp fixme_tag yes overlays_fixme.png
+mycp fixme_tag_lowzoom yes overlays_fixme_dot.png
+mycp fixme_tag_lowzoom2 yes overlays_fixme_dot_2.png
+mycp note_tag yes overlays_note.png
 
 mygroup healthcare health_pharmacy.png
 mycp amenity pharmacy health_pharmacy2.png
@@ -139,7 +145,34 @@ mycp oneway blue functional-icons_oneway_blue.png
 mycp oneway reverse_blue functional-icons_oneway_reverse_blue.png
 mycp arrow blue_big functional-icons_arrow_blue_big.png
 mycp arrow blue_big_night functional-icons_arrow_blue_big_night.png
-mycp triangle blue functional-icons_triangle_blue.png
+mycp arrow triangle_black functional-icons_arrow_triangle_black.png
+mycp arrow triangle_black_big functional-icons_arrow_triangle_black_big.png
+mycp arrow triangle_black_small functional-icons_arrow_triangle_black_small.png
+mycp arrow triangle_black_nobg functional-icons_arrow_triangle_black_nobg.png
+mycp arrow triangle_black_big_nobg functional-icons_arrow_triangle_black_big_nobg.png
+mycp arrow triangle_black_small_nobg functional-icons_arrow_triangle_black_small_nobg.png
+mycp arrow triangle_white_nobg functional-icons_arrow_triangle_white_nobg.png
+mycp arrow triangle_white_big_nobg functional-icons_arrow_triangle_white_big_nobg.png
+mycp arrow triangle_white_small_nobg functional-icons_arrow_triangle_white_small_nobg.png
+mycp arrow triangle_blue functional-icons_arrow_triangle_blue.png
+mycp arrow triangle_blue_big functional-icons_arrow_triangle_blue_big.png
+mycp arrow triangle_blue_small functional-icons_arrow_triangle_blue_small.png
+mycp arrow triangle_darkblue functional-icons_arrow_triangle_darkblue.png
+mycp arrow triangle_darkblue_big functional-icons_arrow_triangle_darkblue_big.png
+mycp arrow triangle_darkblue_small functional-icons_arrow_triangle_darkblue_small.png
+mycp arrow 2triangles_black functional-icons_arrow_2triangles_black.png
+mycp arrow 2triangles_white functional-icons_arrow_2triangles_white.png
+mycp arrow triangle_white2 functional-icons_arrow_triangle_white2.png
+mycp arrow triangle_black2 functional-icons_arrow_triangle_black2.png
+mycp skimap arrow_2triangles_black skimap_arrow_2triangles_black.png
+mycp skimap arrow_2triangles_black_big skimap_arrow_2triangles_black_big.png
+mycp skimap arrow_2triangles_black_big_nobg skimap_arrow_2triangles_black_big_nobg.png
+mycp skimap arrow_2triangles_white_big_nobg skimap_arrow_2triangles_white_big_nobg.png
+mycp skimap arrow_2triangles_black_nobg skimap_arrow_2triangles_black_nobg.png
+mycp skimap arrow_2triangles_white_nobg skimap_arrow_2triangles_white_nobg.png
+mycp skimap arrow_2triangles_black_small skimap_arrow_2triangles_black_small.png
+mycp skimap arrow_2triangles_black_small_nobg skimap_arrow_2triangles_black_small_nobg.png
+mycp skimap arrow_2triangles_white_small_nobg skimap_arrow_2triangles_white_small_nobg.png
 mycp harbour yes poi_harbour.png
 
 mygroup fuel transport_fuel.png
@@ -185,6 +218,7 @@ mycp amenity bicycle_rental transport_rental_bicycle.png
 mycp amenity car_rental transport_rental_car.png
 mycp amenity car_sharing transport_car_share.png
 mycp amenity boat_sharing amenity_boat_sharing.png
+mycp amenity ski_rental transport_ski_rental.png
 
 mycp leisure marina transport_marina.png
 mycp leisure marina_private transport_marina_private.png
@@ -242,6 +276,7 @@ mycp railway subway_station_small_gray functional-icons_subway_station_small_gra
 mycp railway subway_station_small_gray2 functional-icons_subway_station_small_gray2.png
 mycp railway subway_station_small_black functional-icons_subway_station_small_black.png
 mycp railway subway_station_small_black2 functional-icons_subway_station_small_black2.png
+mycp railway subway_station_small_white functional-icons_subway_station_small_white.png
 
 mycp aerialway station_small functional-icons_halt.png  #scale 0.25
 mycp aerialway station transport_aerialway_station.png  #scale 0.375
@@ -346,6 +381,16 @@ mycp historic wayside_shrine tourist_wayside_shrine.png
 mycp geologic palaeontological_site tourist_palaeontological_site.png
 mycp building pyramid tourist_pyramid.png
 
+## Special POI icons
+mycp special_poi big_ben special_poi_big_ben.png
+mycp special_poi brandenburg_gate special_poi_brandenburg_gate.png
+mycp special_poi chichen_itza special_poi_chichen_itza.png
+mycp special_poi colosseum special_poi_colosseum.png
+mycp special_poi eiffel_tower special_poi_eiffel_tower.png
+mycp special_poi sagrada_familia special_poi_sagrada_familia.png
+mycp special_poi statue_of_liberty special_poi_statue_of_liberty.png
+mycp special_poi taj_mahal special_poi_taj_mahal.png
+mycp special_poi us_capitol special_poi_us_capitol.png
 
 ## Sport
 mygroup sport sport_swimming_outdoor.png
@@ -1077,6 +1122,22 @@ mycp seamark waterway_gauge seamark_waterway_gauge.png
 
 mycp seamark wreck seamark_wreck.png
 mycp seamark wreck_hull_showing seamark_wreck_hull_showing.png
+
+## Skimap
+mycp skimap overlay_advanced skimap_overlay_advanced.png
+mycp skimap overlay_easy skimap_overlay_easy.png
+mycp skimap overlay_expert skimap_overlay_expert.png
+mycp skimap overlay_extreme skimap_overlay_extreme.png
+mycp skimap overlay_freeride skimap_overlay_freeride.png
+mycp skimap overlay_intermediate skimap_overlay_intermediate.png
+mycp skimap overlay_novice skimap_overlay_novice.png
+mycp piste_type downhill skimap_piste_downhill.png
+mycp piste_type hike skimap_piste_hike.png
+mycp piste_type nordic skimap_piste_nordic.png
+mycp piste_type skitour skimap_piste_skitour.png
+mycp piste_type sled skimap_piste_sled.png
+mycp skimap gray_black_round_shield skimap_gray_black_round_shield.png
+mycp skimap white_black_round_shield skimap_white_black_round_shield.png
 
 ## Shops
 mygroup car_aid shopping_car.png

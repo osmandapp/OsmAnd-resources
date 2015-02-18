@@ -36,12 +36,22 @@
 
 	<entity_convert pattern="tag_transform" from_tag="osmc:symbol" to_tag1="osmc:symbol" to_tag2="route" to_value2="hiking"/>
 	<entity_convert pattern="split" from_tag="natural" from_value="coastline" if_tag1="place" if_value1="island" to_tag1="natural" to_value1="coastline"/>
-	<entity_convert pattern="tag_transform" from_tag="natural" from_value="coastline" if_tag1="place" if_value1="island"/>
+<!--	<entity_convert pattern="tag_transform" from_tag="natural" from_value="coastline" if_tag1="place" if_value1="island"/>-->
+	<entity_convert pattern="split" from_tag="fixme" to_tag1="fixme" to_tag2="fixme_tag" to_value2="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="fixme" from_value="yes"/>
+	<entity_convert pattern="split" from_tag="note" to_tag1="note" to_tag2="note_tag" to_value2="yes"/>
+	<type tag="fixme" additional="text" minzoom="12"/>
+	<type tag="fixme_tag" value="yes" minzoom="12" nameTags="fixme"/>
+	<type tag="note" additional="text" minzoom="12"/>
+	<type tag="note_tag" value="yes" minzoom="12" nameTags="note"/>
 
 	<!-- additional  -->
 	<type tag="oneway" value="yes" minzoom="15" additional="true" only_map="true"/>
 	<entity_convert pattern="tag_transform" from_tag="oneway" from_value="true" to_tag1="oneway" to_value1="yes"/>
+	<type tag="piste:oneway" value="yes" minzoom="12" additional="true" only_map="true"/>
+	<entity_convert pattern="tag_transform" from_tag="piste:oneway" from_value="1" to_tag1="piste:oneway" to_value1="yes"/>
 	<type tag="oneway" value="no" minzoom="15" additional="true" only_map="true"/>
+	<type tag="piste:oneway" value="no" minzoom="12" additional="true" only_map="true"/>
 	<entity_convert pattern="tag_transform" from_tag="oneway" from_value="false" to_tag1="oneway" to_value1="no"/>
 	<type tag="oneway" value="-1" minzoom="15" additional="true" only_map="true"/>
 	<entity_convert pattern="tag_transform" from_tag="oneway" from_value="reverse" to_tag1="oneway" to_value1="-1"/>
@@ -63,6 +73,7 @@
 	<type tag="access" value="forestry" minzoom="15" additional="true" only_map="true"/>
 	<type tag="access" value="customers" minzoom="15" additional="true" only_map="true"/>
 	<type tag="access" value="delivery" minzoom="15" additional="true" only_map="true"/>
+	<type tag="access" value="emergency" minzoom="15" additional="true" only_map="true"/>
 	<type tag="vehicle" value="no" minzoom="15" additional="true" only_map="true"/>
 	<type tag="vehicle" value="yes" minzoom="15" additional="true" only_map="true"/>
 	<type tag="vehicle" value="destination" minzoom="15" additional="true" only_map="true"/>
@@ -109,6 +120,9 @@
 	<type tag="bicycle" value="destination" minzoom="15" additional="true" only_map="true"/>
 	<type tag="bicycle" value="designated" minzoom="12" additional="true" only_map="true"/>
 	<type tag="fee" value="yes" minzoom="15" additional="true" only_map="true"/>
+	<type tag="boat" value="no" minzoom="10" additional="true" only_map="true"/>
+	<type tag="ski" value="yes" minzoom="15" additional="true" only_map="true"/>
+	<type tag="ski" value="no" minzoom="15" additional="true" only_map="true"/>
 
 	<type tag="bus" value="yes" minzoom="13" additional="true" only_map="true"/>
 	<type tag="trolleybus" value="yes" minzoom="13" additional="true" only_map="true"/>
@@ -138,10 +152,10 @@
 	<entity_convert pattern="tag_transform" from_tag="covered" from_value="yes" to_tag1="layer" to_value1="-1"/>
 
 	<type tag="man_made" value="bridge" minzoom="10"/>
-	<entity_convert pattern="tag_transform" from_tag="bridge" from_value="yes" to_tag1="man_made" to_value1="bridge"/>
+	<entity_convert pattern="tag_transform" from_tag="bridge" from_value="yes" to_tag1="man_made" to_value1="bridge" to_tag2="layer" to_value2="1"/>
 	<type tag="man_made" value="tunnel" minzoom="10"/>
-	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="yes" to_tag1="man_made" to_value1="tunnel"/>
-	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="culvert" to_tag1="tunnel" to_value1="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="yes" to_tag1="man_made" to_value1="tunnel" to_tag2="layer" to_value2="-1"/>
+	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="culvert" to_tag1="tunnel" to_value1="yes" to_tag2="layer" to_value2="-1"/>
 	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="building_passage" to_tag1="layer" to_value1="-1"/>
 
 	<type tag="intermittent" value="yes" minzoom="13" additional="true" only_map="true"/>
@@ -158,6 +172,7 @@
 	<entity_convert pattern="tag_transform" from_tag="hazard_type" from_value="flood" to_tag1="hazard" to_value1="flood"/>
 	<type tag="hazard" value="avalanche" minzoom="10" only_map="true" order="1"/>
 	<entity_convert pattern="tag_transform" from_tag="hazard_type" from_value="avalanche" to_tag1="hazard" to_value1="avalanche"/>
+	<entity_convert pattern="split" from_tag="hazard" to_tag1="hazard"/>
 	<type tag="hazard" minzoom="10" only_map="true" order="1"/>
 <!--	<entity_convert pattern="split" from_tag="hazard" to_tag1="hazard"/>
 	<entity_convert pattern="split" from_tag="hazard_type" to_tag1="hazard_type"/>-->
@@ -171,6 +186,7 @@
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="yes/automatic/24/7" to_tag1="lit" to_value1="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="1" to_tag1="lit" to_value1="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="yes/automatic/24/7" to_tag1="lit" to_value1="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="piste:lit" from_value="yes" to_tag1="lit" to_value1="yes"/>
 	<type tag="lit" value="no" minzoom="10" only_map="true" order="100"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="disused" to_tag1="lit" to_value1="no"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="construction" to_tag1="lit" to_value1="no"/>
@@ -342,6 +358,8 @@
 		<type tag="highway" value="raceway" minzoom="12" nameTags="ref"/>
 		<!-- <type id="" tag="highway" value="bus_guideway" minzoom="15" /> -->
 
+		<type tag="motorroad" value="yes" minzoom="11" additional="true"/>
+
 		<!-- This section is needed for compatibility with v1.9 -->
 		<type tag="highway" value="primary_area" minzoom="15" nameTags="ref"/>
 		<type tag="highway" value="secondary_area" minzoom="15" nameTags="ref"/>
@@ -365,17 +383,17 @@
 		<entity_convert pattern="tag_transform" from_tag="area:highway" from_value="track" to_tag1="highway" to_value1="track_area" to_tag2="area:highway" to_value2="track"/>
 		<!-- This section is needed for compatibility with v1.9 -->
 
-		<type tag="area:highway" value="primary" minzoom="15" nameTags="ref"/>
-		<type tag="area:highway" value="secondary" minzoom="15" nameTags="ref"/>
-		<type tag="area:highway" value="tertiary" minzoom="16" nameTags="ref"/>
-		<type tag="area:highway" value="unclassified" minzoom="16" nameTags="ref"/>
-		<type tag="area:highway" value="residential" minzoom="16" nameTags="ref"/>
-		<type tag="area:highway" value="service" minzoom="16" nameTags="ref"/>
-		<type tag="area:highway" value="services" minzoom="16" nameTags="ref"/>
+		<type tag="area:highway" value="primary" minzoom="15" nameTags="ref" order="10"/>
+		<type tag="area:highway" value="secondary" minzoom="15" nameTags="ref" order="10"/>
+		<type tag="area:highway" value="tertiary" minzoom="16" nameTags="ref" order="10"/>
+		<type tag="area:highway" value="unclassified" minzoom="16" nameTags="ref" order="10"/>
+		<type tag="area:highway" value="residential" minzoom="16" nameTags="ref" order="10"/>
+		<type tag="area:highway" value="service" minzoom="16" nameTags="ref" order="10"/>
+		<type tag="area:highway" value="services" minzoom="16" nameTags="ref" order="10"/>
 		<type tag="highway" value="rest_area" minzoom="16" nameTags="ref" poi_category="leisure"/>
-		<type tag="area:highway" value="pedestrian" minzoom="16" nameTags="ref"/>
-		<type tag="area:highway" value="footway" minzoom="16" nameTags="ref"/>
-		<type tag="area:highway" value="track" minzoom="16" nameTags="ref"/>
+		<type tag="area:highway" value="pedestrian" minzoom="16" nameTags="ref" order="10"/>
+		<type tag="area:highway" value="footway" minzoom="16" nameTags="ref" order="10"/>
+		<type tag="area:highway" value="track" minzoom="16" nameTags="ref" order="10"/>
 
 		<type tag="highway" value="ford" minzoom="14" poi_category="transportation" />
 		<entity_convert pattern="tag_transform" from_tag="ford" from_value="yes" to_tag1="highway" to_value1="ford"/>
@@ -490,7 +508,8 @@
 		<entity_convert pattern="tag_transform" from_tag="route_funicular" if_tag1="building" apply_to="way"/>
 
 		<type tag="route" value="subway" additional="true" minzoom="11" relation="true"/> <!-- used only to distinguish subway stations from regular railway stations -->
-		<type tag="route" value="ski" minzoom="11" relation="true"/>
+		<type tag="route" value="piste" minzoom="11" additional="true" relation="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route" from_value="ski" to_tag1="route" to_value1="piste"/>
 
 		<type tag="iwn_network" value="iwn" nameTags="ref,name" namePrefix="iwn_" relation="true"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="iwn" to_tag1="iwn_network" to_value1="iwn"/>
@@ -532,16 +551,38 @@
 		<type tag="tracktype" value="grade5" minzoom="12" additional="true"/>
 	</category>
 
-	<category name="piste type">
-		<type tag="piste:type" value="nordic" minzoom="11" relation="true"/>
-		<type tag="piste:type" value="downhill" minzoom="11" relation="true"/>
-		<type tag="piste:type" value="sleigh" minzoom="11" relation="true"/>
-		<type tag="piste:type" value="sled" minzoom="11" relation="true"/>
-		<type tag="piste:type" value="skitour" minzoom="11" relation="true"/>
-		<type tag="piste:type" value="hike" minzoom="11" relation="true"/>
-		<type tag="piste:type" value="snow_park" minzoom="11" relation="true"/>
-		<type tag="piste:type" value="playground" minzoom="11" relation="true"/>
-		<type tag="piste:type" value="ice_skate" minzoom="11" relation="true"/>
+	<category name="piste">
+		<type tag="piste:type" value="downhill" minzoom="11" nameTags="piste:name,name,ref" relation="true" poi_with_name="true" poi_category="other"/>
+		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="downhill" to_tag1="piste:type" to_value1="downhill" to_tag2="piste:oneway" to_value2="yes"/>
+		<type tag="piste:type" value="nordic" minzoom="11" nameTags="piste:name,name,ref" relation="true" poi_with_name="true" poi_category="other"/>
+		<type tag="piste:type" value="skitour" minzoom="11" nameTags="piste:name,name,ref" relation="true" poi_with_name="true" poi_category="other"/>
+		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="skitour" to_tag1="piste:type" to_value1="skitour" to_tag2="piste:grooming" to_value2="backcountry"/>
+		<type tag="piste:type" value="hike" minzoom="11" nameTags="piste:name,name,ref" relation="true" poi_with_name="true" poi_category="other"/>
+		<type tag="piste:type" value="sleigh" minzoom="11" nameTags="piste:name,name,ref" relation="true" poi_with_name="true" poi_category="other"/>
+		<type tag="piste:type" value="sled" minzoom="11" nameTags="piste:name,name,ref" relation="true" poi_with_name="true" poi_category="other"/>
+		<type tag="piste:type" value="snow_park" minzoom="11" nameTags="piste:name,name,ref" relation="true" poi_with_name="true" poi_category="other"/>
+		<type tag="piste:type" value="playground" minzoom="11" nameTags="piste:name,name,ref" relation="true" poi_with_name="true" poi_category="other"/>
+		<type tag="piste:type" value="ice_skate" minzoom="11" nameTags="piste:name,name,ref" relation="true" poi_with_name="true" poi_category="other"/>
+		<type tag="piste:difficulty" value="novice" minzoom="11" additional="true" relation="true"/>
+		<type tag="piste:difficulty" value="easy" minzoom="11" additional="true" relation="true"/>
+		<type tag="piste:difficulty" value="intermediate" minzoom="11" additional="true" relation="true"/>
+		<type tag="piste:difficulty" value="advanced" minzoom="11" additional="true" relation="true"/>
+		<type tag="piste:difficulty" value="expert" minzoom="11" additional="true" relation="true"/>
+		<type tag="piste:difficulty" value="freeride" minzoom="11" additional="true" relation="true"/>
+		<type tag="piste:difficulty" value="extreme" minzoom="11" additional="true" relation="true"/>
+		<entity_convert pattern="tag_transform" from_tag="piste:difficulty" if_not_tag1="piste:type" to_tag1="piste:difficulty" to_tag2="piste:type" to_value2="hike"/>
+		<type tag="piste:abandoned" value="yes" minzoom="11" additional="true" relation="true"/>
+		<type tag="piste:grooming" value="classic" minzoom="13" additional="true" relation="true"/>
+		<type tag="piste:grooming" value="classic+skating" minzoom="13" additional="true" relation="true"/>
+		<entity_convert pattern="tag_transform" from_tag="piste:grooming" from_value="classic;skating" to_tag1="piste:grooming" to_value1="classic+skating"/>
+		<type tag="piste:grooming" value="classic+skating" minzoom="13" additional="true" relation="true"/>
+		<type tag="piste:grooming" value="backcountry" minzoom="13" additional="true" relation="true"/>
+		<type tag="piste:grooming" value="scooter" minzoom="13" additional="true" relation="true"/>
+		<type tag="piste:grooming" value="skating" minzoom="13" additional="true" relation="true"/>
+		<type tag="piste:grooming" value="mogul" minzoom="13" additional="true" relation="true"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_tag1="ski" if_value1="designated" if_not_tag2="piste:type" to_tag1="highway" to_tag2="piste:type" to_value2="hike"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_tag1="ski" if_value1="downhill" if_not_tag2="piste:type" to_tag1="highway" to_tag2="piste:type" to_value2="downhill"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_tag1="ski" if_value1="nordic" if_not_tag2="piste:type" to_tag1="highway" to_tag2="piste:type" to_value2="nordic"/>
 	</category>
 
 	<category name="sidewalk">
@@ -884,6 +925,7 @@
 		<type tag="waterway" value="riverbank" minzoom="8" poi_category=""/>
 		<type tag="waterway" value="river" minzoom="5" poi_with_name="true"/>
 		<type tag="waterway" value="canal" minzoom="10" poi_with_name="true"/>
+		<entity_convert pattern="tag_transform" from_tag="waterway" from_value="artificial" to_tag1="waterway" to_value1="canal"/>
 		<type tag="waterway" value="ditch" minzoom="13" poi_category=""/>
 		<type tag="waterway" value="drain" minzoom="13" poi_category=""/>
 		<type tag="waterway" value="dock" minzoom="10" poi_prefix="water_" poi_category="man_made"/>
@@ -1095,6 +1137,7 @@
 		<type tag="leisure" value="marina" minzoom="10" order="89"/>
 		<type tag="harbour" value="yes" minzoom="8" poi_prefix="harbour_" order="91"/>
 		<type tag="leisure" value="slipway" minzoom="15" />
+		<type tag="leisure" value="ski_resort" minzoom="11" />
 		<type tag="leisure" value="fishing" minzoom="15" />
 		<type tag="leisure" value="park" minzoom="10" poi_category="leisure" order="59"/>
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="park" to_tag1="leisure"/>
@@ -1363,6 +1406,7 @@
 		<type tag="tourism" value="picnic_site" minzoom="13" order="80" />
 		<type tag="tourism" value="theme_park" minzoom="6" order="60" />
 		<type tag="tourism" value="zoo" minzoom="6" />
+		<type tag="tourism" value="apartment" minzoom="15" />
 		<type tag="tourism" value="alpine_hut" minzoom="14" />
 		<type tag="tourism" value="chalet" minzoom="15" />
 		<type tag="tourism" value="guest_house" minzoom="15" />
@@ -1375,6 +1419,26 @@
 		<type tag="leisure" value="resort" minzoom="12" order="71"/>
 	</category>
 
+	<category name="special_poi">
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="en:Big Ben" to_tag1="wikipedia" to_value1="en:Big Ben" to_tag2="special_poi" to_value2="big_ben"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="de:Brandenburger Tor" to_tag1="wikipedia" to_value1="de:Brandenburger Tor" to_tag2="special_poi" to_value2="brandenburg_gate"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="http://en.wikipedia.org/wiki/Chichén_Itzá" to_tag1="wikipedia" to_value1="http://en.wikipedia.org/wiki/Chichén_Itzá" to_tag2="special_poi" to_value2="chichen_itza"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="it:Colosseo" to_tag1="wikipedia" to_value1="it:Colosseo" to_tag2="special_poi" to_value2="colosseum"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="fr:Tour Eiffel" to_tag1="wikipedia" to_value1="fr:Tour Eiffel" to_tag2="special_poi" to_value2="eiffel_tower"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="ca:Temple Expiatori de la Sagrada Família" to_tag1="wikipedia" to_value1="ca:Temple Expiatori de la Sagrada Família" to_tag2="special_poi" to_value2="sagrada_familia"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="en:Statue of Liberty" to_tag1="wikipedia" to_value1="en:Statue of Liberty" to_tag2="special_poi" to_value2="statue_of_liberty"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia:en" from_value="Taj Mahal" to_tag1="wikipedia:en" to_value1="Taj Mahal" to_tag2="special_poi" to_value2="taj_mahal"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="en:United States Capitol" to_tag1="wikipedia" to_value1="en:United States Capitol" to_tag2="special_poi" to_value2="us_capitol"/>
+		<type tag="special_poi" value="big_ben" minzoom="15" />
+		<type tag="special_poi" value="brandenburg_gate" minzoom="15" />
+		<type tag="special_poi" value="chichen_itza" minzoom="15" />
+		<type tag="special_poi" value="colosseum" minzoom="15" />
+		<type tag="special_poi" value="eiffel_tower" minzoom="15" />
+		<type tag="special_poi" value="sagrada_familia" minzoom="15" />
+		<type tag="special_poi" value="statue_of_liberty" minzoom="15" />
+		<type tag="special_poi" value="taj_mahal" minzoom="15" />
+		<type tag="special_poi" value="us_capitol" minzoom="15" />
+	</category>
 
 	<category name="historic" poi_tag="historic" poi_category="historic">
 		<type tag="historic" value="archaeological_site" minzoom="15" order="75" />
@@ -1595,6 +1659,7 @@
 		<type tag="amenity" value="car_sharing" minzoom="15" />
 		<type tag="amenity" value="boat_sharing" minzoom="15" />
 		<type tag="amenity" value="car_wash" minzoom="15" />
+		<type tag="amenity" value="ski_rental" minzoom="15" />
 		<type tag="amenity" value="grit_bin" minzoom="15" />
 		<type tag="amenity" value="compressed_air" minzoom="15" />
 		<type tag="service" value="tyres" poi_prefix="service_" additional="true" minzoom="15" />
