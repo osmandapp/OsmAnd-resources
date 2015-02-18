@@ -381,6 +381,16 @@ mycp historic wayside_shrine tourist_wayside_shrine.png
 mycp geologic palaeontological_site tourist_palaeontological_site.png
 mycp building pyramid tourist_pyramid.png
 
+## Special POI icons
+mycp special_poi big_ben special_poi_big_ben.png
+mycp special_poi brandenburg_gate special_poi_brandenburg_gate.png
+mycp special_poi chichen_itza special_poi_chichen_itza.png
+mycp special_poi colosseum special_poi_colosseum.png
+mycp special_poi eiffel_tower special_poi_eiffel_tower.png
+mycp special_poi sagrada_familia special_poi_sagrada_familia.png
+mycp special_poi statue_of_liberty special_poi_statue_of_liberty.png
+mycp special_poi taj_mahal special_poi_taj_mahal.png
+mycp special_poi us_capitol special_poi_us_capitol.png
 
 ## Sport
 mygroup sport sport_swimming_outdoor.png
