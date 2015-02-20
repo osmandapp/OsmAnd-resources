@@ -12,6 +12,8 @@ import subprocess
 # =============================================================================
 
 class OsmAndCoreResourcesListGenerator(object):
+    FILENAME_REGEXP = r"[A–Za–z0–9._-]*?"
+
     # -------------------------------------------------------------------------
     def __init__(self):
         return
@@ -29,7 +31,7 @@ class OsmAndCoreResourcesListGenerator(object):
         print("Looking for files...")
         filenames = []
         for path, dirs, files in os.walk(workroot):
-        	if path.startswith('.'):
+        	if path.startswith('.') or os.path.basename(path).startswith('.'):
         		print("Ignoring '%s'" % (path))
         		continue
         	print("Listing '%s' with %d files" % (path, len(files)))
@@ -134,34 +136,35 @@ if __name__=='__main__':
         [r'rendering_styles/default\.map_styles_presets\.xml', 'map/presets/default.map_styles_presets.xml'],
 
         # Map icons (Android mdpi == 1.0 ddf):
-        [r'rendering_styles/style-icons/drawable-mdpi/h_((.*shield.*)|(.*osmc.*))\.png', r'[ddf=1.0]map/shields/\1.png'],
-        [r'rendering_styles/style-icons/drawable-mdpi/h_(.*)\.png', r'[ddf=1.0]map/shaders/\1.png'],
-        [r'rendering_styles/style-icons/drawable-mdpi/mm_(.*)\.png', r'[ddf=1.0]map/icons/\1.png'],
+        [r'rendering_styles/style-icons/drawable-mdpi/h_((?:[^/]*?shield[^/]*?)|(?:[^/]*?osmc[^/]*?))\.png', r'[ddf=1.0]map/shields/\1.png'],
+        [r'rendering_styles/style-icons/drawable-mdpi/h_([^/]*?)\.png', r'[ddf=1.0]map/shaders/\1.png'],
+        [r'rendering_styles/style-icons/drawable-mdpi/mm_([^/]*?)\.png', r'[ddf=1.0]map/icons/\1.png'],
 
         # Map icons (Android hdpi == 1.5 ddf):
-        [r'rendering_styles/style-icons/drawable-hdpi/h_((.*shield.*)|(.*osmc.*))\.png', r'[ddf=1.5]map/shields/\1.png'],
-        [r'rendering_styles/style-icons/drawable-hdpi/h_(.*)\.png', r'[ddf=1.5]map/shaders/\1.png'],
-        [r'rendering_styles/style-icons/drawable-hdpi/mm_(.*)\.png', r'[ddf=1.5]map/icons/\1.png'],
+        [r'rendering_styles/style-icons/drawable-hdpi/h_((?:[^/]*?shield[^/]*?)|(?:[^/]*?osmc[^/]*?))\.png', r'[ddf=1.5]map/shields/\1.png'],
+        [r'rendering_styles/style-icons/drawable-hdpi/h_([^/]*?)\.png', r'[ddf=1.5]map/shaders/\1.png'],
+        [r'rendering_styles/style-icons/drawable-hdpi/mm_([^/]*?)\.png', r'[ddf=1.5]map/icons/\1.png'],
 
         # Map icons (Android xhdpi == 2.0 ddf):
-        [r'rendering_styles/style-icons/drawable-xhdpi/h_((.*shield.*)|(.*osmc.*))\.png', r'[ddf=2.0]map/shields/\1.png'],
-        [r'rendering_styles/style-icons/drawable-xhdpi/h_(.*)\.png', r'[ddf=2.0]map/shaders/\1.png'],
-        [r'rendering_styles/style-icons/drawable-xhdpi/mm_(.*)\.png', r'[ddf=2.0]map/icons/\1.png'],
+        [r'rendering_styles/style-icons/drawable-xhdpi/h_((?:[^/]*?shield[^/]*?)|(?:[^/]*?osmc[^/]*?))\.png', r'[ddf=2.0]map/shields/\1.png'],
+        [r'rendering_styles/style-icons/drawable-xhdpi/h_([^/]*?)\.png', r'[ddf=2.0]map/shaders/\1.png'],
+        [r'rendering_styles/style-icons/drawable-xhdpi/mm_([^/]*?)\.png', r'[ddf=2.0]map/icons/\1.png'],
 
         # Map icons (Android xxhdpi == 3.0 ddf):
-        [r'rendering_styles/style-icons/drawable-xxhdpi/h_((.*shield.*)|(.*osmc.*))\.png', r'[ddf=3.0]map/shields/\1.png'],
-        [r'rendering_styles/style-icons/drawable-xxhdpi/h_(.*)\.png', r'[ddf=3.0]map/shaders/\1.png'],
-        [r'rendering_styles/style-icons/drawable-xxhdpi/mm_(.*)\.png', r'[ddf=3.0]map/icons/\1.png'],
+        [r'rendering_styles/style-icons/drawable-xxhdpi/h_((?:[^/]*?shield[^/]*?)|(?:[^/]*?osmc[^/]*?))\.png', r'[ddf=3.0]map/shields/\1.png'],
+        [r'rendering_styles/style-icons/drawable-xxhdpi/h_([^/]*?)\.png', r'[ddf=3.0]map/shaders/\1.png'],
+        [r'rendering_styles/style-icons/drawable-xxhdpi/mm_([^/]*?)\.png', r'[ddf=3.0]map/icons/\1.png'],
 
         # Misc map resources:
-        [r'rendering_styles/stubs/(.*)\.png', r'map/stubs/\1.png'],
+        [r'rendering_styles/stubs/([^/]*?)\.png', r'map/stubs/\1.png'],
+        [r'rendering_styles/stubs/\[([^/]*?)\]/([^/]*?)\.png', r'[\1]map/stubs/\2.png'],
 
         # Routing:
         [r'routing/routing\.xml', r'routing/routing.xml'],
 
         # Fonts:
-        [r'rendering_styles/fonts/(.*)/(.*)\.(ttf)', r'map/fonts/\1/\2.\3'],
-        [r'rendering_styles/fonts/(.*)\.(ttf)', r'map/fonts/\1.\2'],
+        [r'rendering_styles/fonts/([^/]*?)/([^/]*?)\.(ttf)', r'map/fonts/\1/\2.\3'],
+        [r'rendering_styles/fonts/([^/]*?)\.(ttf)', r'map/fonts/\1.\2'],
 
         # Misc resources
         [r'misc/icu4c/icudt\d+([lb])\.dat', r'misc/icu4c/icu-data-\1.dat'],
