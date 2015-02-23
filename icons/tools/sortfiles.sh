@@ -37,6 +37,7 @@ mycp tourism zoo tourist_zoo.png                         # Keep shaders with bac
 mycp military danger_area poi_mine.png                   # Keep shaders with background color, cannot be replaced by icons!
 mycp military nuclear_explosion_site poi_nuclear_explosion_site.png
 mycp natural glacier poi_peak2.png                       # Keep shaders with background color, cannot be replaced by icons!
+mycp landuse landfill landuse_landfill.png
 
 mycp stroke darkgreen functional-icons_darkgreen_stroke.png
 mycp stroke black functional-icons_black_stroke.png
