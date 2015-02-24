@@ -37,6 +37,7 @@ mycp tourism zoo tourist_zoo.png                         # Keep shaders with bac
 mycp military danger_area poi_mine.png                   # Keep shaders with background color, cannot be replaced by icons!
 mycp military nuclear_explosion_site poi_nuclear_explosion_site.png
 mycp natural glacier poi_peak2.png                       # Keep shaders with background color, cannot be replaced by icons!
+mycp landuse landfill landuse_landfill.png
 
 mycp stroke darkgreen functional-icons_darkgreen_stroke.png
 mycp stroke black functional-icons_black_stroke.png
@@ -57,6 +58,7 @@ mycp natural volcano_big functional-icons_volcano_big.png
 mycp natural volcano_active functional-icons_volcano_active.png
 mycp natural volcano_active_big functional-icons_volcano_active_big.png
 mycp natural cave_entrance poi_cave.png
+mycp natural sinkhole functional-icons_sinkhole.png
 mycp natural spring water_spring.png  #scale 0.375
 mycp natural hot_spring water_hot_spring.png  #scale 0.375
 mycp natural geyser water_geyser.png  #scale 0.375
@@ -137,6 +139,7 @@ mycp highway crossing_unmarked functional-icons_highway_crossing_unmarked.png
 mycp highway crossing_uncontrolled functional-icons_highway_crossing_uncontrolled.png
 mycp highway crossing_bg functional-icons_highway_crossing_bg.png
 mycp highway crossing_traffic_signals functional-icons_highway_crossing_traffic_signals.png
+mycp highway passing_place functional-icons_passing_place.png
 mycp highway steps transport_highway_steps.png
 mycp traffic_calming bump transport_speedbump.png
 mycp highway speed_camera transport_speedcamera.png
@@ -315,6 +318,7 @@ mycp building entrance barrier_entrance.png
 
 ## Accommodation
 mygroup accomodation accommodation_hotel.png
+mycp tourism apartment accommodation_apartment.png
 mycp tourism camp_site accommodation_camping.png
 mycp tourism caravan_site accommodation_caravan_park.png
 mycp tourism alpine_hut accommodation_alpinehut.png
