@@ -317,6 +317,7 @@ mycp building entrance barrier_entrance.png
 
 ## Accommodation
 mygroup accomodation accommodation_hotel.png
+mycp tourism apartment accommodation_apartment.png
 mycp tourism camp_site accommodation_camping.png
 mycp tourism caravan_site accommodation_caravan_park.png
 mycp tourism alpine_hut accommodation_alpinehut.png
