@@ -168,6 +168,7 @@ if __name__=='__main__':
 
         # Misc resources
         [r'misc/icu4c/icudt\d+([lb])\.dat', r'misc/icu4c/icu-data-\1.dat'],
+        [r'misc/([^/]*?)', r'misc/\1'],
     ]
 
     resourcesListFilename = resourcesPath + "/embed-resources.list"
