@@ -139,6 +139,7 @@ mycp highway crossing_unmarked functional-icons_highway_crossing_unmarked.png
 mycp highway crossing_uncontrolled functional-icons_highway_crossing_uncontrolled.png
 mycp highway crossing_bg functional-icons_highway_crossing_bg.png
 mycp highway crossing_traffic_signals functional-icons_highway_crossing_traffic_signals.png
+mycp highway passing_place functional-icons_passing_place.png
 mycp highway steps transport_highway_steps.png
 mycp traffic_calming bump transport_speedbump.png
 mycp highway speed_camera transport_speedcamera.png
