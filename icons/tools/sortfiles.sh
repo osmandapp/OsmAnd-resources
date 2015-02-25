@@ -231,8 +231,10 @@ mycp waterway lock_gate functional-icons_lock_gate.png  #scale 0.5
 mycp waterway dock transport_dock.png
 
 mycp railway station transport_train_station.png
+mycp railway station_disused functional-icons_train_station_disused.png
 mycp railway station_subway transport_station_subway.png
 mycp railway station_small functional-icons_station_small.png  #scale 0.375
+mycp railway station_small_disused functional-icons_station_small_disused.png
 mycp railway platform transport_train_station2.png
 mycp railway halt functional-icons_halt.png  #scale 0.25
 mycp railway tram_stop transport_tram_stop.png

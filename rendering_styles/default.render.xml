@@ -1132,7 +1132,15 @@
 		<switch area="false" point="true" objectType="1" order="128">
 			<!-- point has order 128 -->
 			<case tag="" value=""/>
-			<case tag="railway" value="station"/>
+			<case tag="railway" value="station">
+				<apply_if maxzoom="12">
+					<switch>
+						<case additional="disused=yes"/>
+						<case additional="abandoned=yes"/>
+						<apply order="-1"/>
+					</switch>
+				</apply_if>
+			</case>
 			<case tag="railway" value="buffer_stop"/>
 			<case tag="railway" value=""/>
 			<case tag="place" value=""/>
@@ -2356,14 +2364,13 @@
 				<apply_if nightMode="true" textColor="#d4d4ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#994563a7"/>
 			</switch>
 			<switch> <!-- fallback: set attributes for 14-15 zooms when no public transport is selected -->
-				<case subwayMode="false" minzoom="14" maxzoom="14" textSize="12" textBold="true" tag="railway" value="station" textOrder="5"/>
-				<case minzoom="15" tag="railway" value="station" textSize="13" textBold="true" textOrder="5" />
 				<case minzoom="14" maxzoom="14" tag="railway" value="halt" textSize="12" textOrder="6"/>
 				<case minzoom="15" tag="railway" value="halt" textSize="13" textOrder="6"/>
 				<case minzoom="14" maxzoom="14" tag="public_transport" value="station" textSize="12"/>
 				<case minzoom="15" tag="public_transport" value="station" textSize="13"/>
 				<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#d4d4ff" textHaloColor="#994563a7"/>
 			</switch>
+
 			<apply_if engine_v1="true" textDy="9"/>
 			<apply>
 				<switch>
@@ -2373,6 +2380,21 @@
 				</switch>
 			</apply>
 		</switch>
+		<case minzoom="14" tag="railway" value="station" nameTag="" textOrder="5" textColor="$railwayPOITextColorDay" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textBold="true">
+			<apply_if subwayMode="false" maxzoom="14" textSize="12"/>
+			<apply_if minzoom="15" textSize="13"/>
+			<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#d4d4ff" textHaloColor="#994563a7"/>
+			<apply_if>
+				<switch>
+					<case additional="disused=yes"/>
+					<case additional="abandoned=yes"/>
+					<apply textColor="#8a8a8a">
+						<apply_if nightMode="true" textHaloColor="#22ffffff"/>
+					</apply>
+				</switch>
+			</apply_if>
+			<apply_if engine_v1="true" textDy="9"/>
+		</case>
 
 		<switch subwayMode="true">
 			<switch tag="railway" value="station" nameTag="">
@@ -3005,20 +3027,6 @@
 					<case minzoom="17" tag="public_transport" value="platform" additional="trolleybus=yes" icon="highway_bus_stop" iconVisibleSize="16"/>
 					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 				</switch>
-				<switch minzoom="15">
-					<case tag="railway" value="station">
-						<switch>
-							<case additional="route=subway"/>
-							<case additional="station=subway"/>
-							<apply icon="railway_station_subway" shield="white_blue_arc_shield">
-								<apply_if nightMode="true" shield="gray_blue_arc_shield"/>
-							</apply>
-						</switch>
-						<case icon="railway_station" shield="white_blue_square_shield" iconVisibleSize="8" iconOrder="82">
-							<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-						</case>
-					</case>
-				</switch>
 <!--				<switch publicTransportMode="false">
 					<case minzoom="16" maxzoom="16" tag="highway" value="bus_stop" icon="highway_bus_stop_small" iconVisibleSize="4"/>
 					<switch>
@@ -3038,7 +3046,36 @@
 				</case>
 				<switch subwayMode="false" iconVisibleSize="13">
 					<case minzoom="12" maxzoom="12" tag="railway" value="station" icon="railway_halt"/>
-					<case minzoom="13" maxzoom="14" tag="railway" value="station" icon="railway_station_small"/>
+					<case minzoom="13" maxzoom="14" tag="railway" value="station" icon="railway_station_small">
+						<switch>
+							<case additional="disused=yes"/>
+							<case additional="abandoned=yes"/>
+							<apply icon="railway_station_small_disused"/>
+						</switch>
+					</case>
+				</switch>
+				<switch minzoom="15">
+					<case tag="railway" value="station">
+						<switch>
+							<case additional="route=subway"/>
+							<case additional="station=subway"/>
+							<apply icon="railway_station_subway" shield="white_blue_arc_shield">
+								<apply_if nightMode="true" shield="gray_blue_arc_shield"/>
+							</apply>
+						</switch>
+						<case icon="railway_station" shield="white_blue_square_shield" iconVisibleSize="8" iconOrder="82">
+							<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+							<apply>
+								<switch>
+									<case additional="disused=yes"/>
+									<case additional="abandoned=yes"/>
+									<apply icon="railway_station_disused" shield="white_gray_square_shield">
+										<apply_if nightMode="true" shield="gray_gray_square_shield"/>
+									</apply>
+								</switch>
+							</apply>
+						</case>
+					</case>
 				</switch>
 				<switch tag="railway" value="halt">
 					<case minzoom="13" maxzoom="14" icon="railway_halt" iconVisibleSize="2"/>
@@ -3434,13 +3471,24 @@
 			<apply_if nightMode="true" shield="darkgray_round_small_shield"/>
 		</switch>
 		<switch subwayMode="false" minzoom="12" maxzoom="14" iconVisibleSize="2">
-			<case tag="railway" value="station"/>
 			<case tag="amenity" value="ferry_terminal"/>
 			<apply_if maxzoom="12" icon="railway_halt"/>
 			<apply_if minzoom="13" icon="railway_station_small"/>
 		</switch>
-		<switch minzoom="15">
-			<case tag="railway" value="station">
+		
+		<switch minzoom="12" tag="railway" value="station">
+			<switch maxzoom="14">
+				<case maxzoom="12" icon="railway_halt"/>
+				<case minzoom="13" icon="railway_station_small"/>
+				<apply>
+					<switch>
+						<case additional="disused=yes"/>
+						<case additional="abandoned=yes"/>
+						<apply icon="railway_station_small_disused"/>
+					</switch>
+				</apply>
+			</switch>
+			<switch minzoom="15">
 				<switch>
 					<case additional="route=subway"/>
 					<case additional="station=subway"/>
@@ -3450,8 +3498,17 @@
 				</switch>
 				<case icon="railway_station" shield="white_blue_square_shield" iconVisibleSize="14" iconOrder="82">
 					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+					<apply>
+						<switch>
+							<case additional="disused=yes"/>
+							<case additional="abandoned=yes"/>
+							<apply icon="railway_station_disused" shield="white_gray_square_shield">
+								<apply_if nightMode="true" shield="gray_gray_square_shield"/>
+							</apply>
+						</switch>
+					</apply>
 				</case>
-			</case>
+			</switch>
 		</switch>
 
 		<switch tramTrainRoutes="true" iconOrder="55">
