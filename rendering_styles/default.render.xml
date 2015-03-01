@@ -1140,11 +1140,11 @@
 				<apply_if maxzoom="12">
 					<switch>
 						<case additional="disused=yes"/>
-						<case additional="abandoned=yes"/>
 						<apply order="-1"/>
 					</switch>
 				</apply_if>
 			</case>
+			<case maxzoom="12" tag="abandoned:railway" value="station" order="-1"/>
 			<case tag="railway" value="buffer_stop"/>
 			<case tag="railway" value=""/>
 			<case tag="place" value=""/>
@@ -1164,6 +1164,7 @@
 			<case tag="barrier" value="">
 				<apply_if minzoom="14" maxzoom="15" appMode="pedestrian" order="-1"/>
 			</case>
+			<case tag="abandoned:aeroway" value=""/>
 			<case tag="aeroway" value=""/>
 			<case tag="aerialway" value="station"/>
 			<case tag="aerialway" value=""/>
@@ -1308,6 +1309,7 @@
 			<case tag="natural" value="sinkhole"/>
 			<case tag="natural" value="hot_spring"/>
 			<case tag="natural" value="geyser"/>
+			<case tag="natural" value="wetland" order="6"/>
 			<case tag="building" value="no" order="-1"/>
  			<case tag="historic" value="archaeological_site"/>
 			<case tag="historic" value="memorial"/>
@@ -1338,7 +1340,9 @@
 			<switch order="5">
 				<case tag="natural" value="water"/>
 				<case tag="waterway" value="riverbank"/>
+				<case tag="abandoned:aeroway" value="runway"/>
 				<case tag="aeroway" value="runway"/>
+				<case tag="abandoned:aeroway" value="aerodrome"/>
 				<case tag="aeroway" value="aerodrome"/>
 				<case tag="aeroway" value="apron"/>
 				<case tag="aeroway" value="terminal"/>
@@ -1577,8 +1581,9 @@
 			<case tag="natural" value="coastline_line" order="35"/>
 			<case tag="route" value="ferry" order="35"/>
 
-			<case tag="aeroway" value="" order="32"/>
+			<case tag="abandoned:aeroway" value="runway"/>
 			<case tag="aeroway" value="runway"/>
+			<case tag="aeroway" value="" order="32"/>
 			<case tag="contour" value="" order="15"/>
 
 			<case tag="barrier" value="" order="20">
@@ -2175,13 +2180,6 @@
 		<switch>
 			<case minzoom="13" tag="abandoned:place" value=""/>
 			<case minzoom="15" tag="abandoned:landuse" value=""/>
-			<case minzoom="15" tag="landuse" value="abandoned"/>
-			<case minzoom="15" tag="landuse" value="construction" additional="abandoned=yes"/>
-			<case minzoom="15" tag="landuse" value="industrial" additional="abandoned=yes"/>
-			<case minzoom="15" tag="landuse" value="garages" additional="abandoned=yes"/>
-			<case minzoom="13" tag="landuse" value="railway" additional="abandoned=yes"/>
-			<case minzoom="13" tag="landuse" value="residential" additional="abandoned=yes"/>
-			<case minzoom="13" tag="landuse" value="quarry" additional="abandoned=yes"/>
 			<apply textSize="13" textColor="#656565" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay" textOrder="15">
 				<apply_if nightMode="true" textColor="#d7d7d7" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 			</apply>
@@ -2349,9 +2347,9 @@
 				<apply_if nightMode="true" textColor="$publicTransportModeStopTextColorNight" textHaloRadius="$textHaloRadiusNight" textHaloColor="$publicTransportModeStopTextHaloColorNight"/>
 			</switch>
 			<switch minzoom="16" textSize="13"> <!-- When public transport is selected -->
-				<switch tag="public_transport" value="platform" textOnPath="true" textOrder="1">
-					<case publicTransportMode="true"/>
-					<case tramTrainRoutes="true"/>
+				<switch tag="public_transport" value="platform" textOrder="1">
+					<apply_if publicTransportMode="true" textOnPath="true"/>
+					<apply_if tramTrainRoutes="true" textOnPath="true"/>
 				</switch>
 				<case publicTransportMode="true" tag="amenity" value="bus_station" textOrder="10"/>
 				<case publicTransportMode="true" tag="highway" value="bus_stop" textOrder="1"/>
@@ -2391,7 +2389,6 @@
 			<apply_if>
 				<switch>
 					<case additional="disused=yes"/>
-					<case additional="abandoned=yes"/>
 					<apply textColor="#8a8a8a">
 						<apply_if nightMode="true" textHaloColor="#22ffffff"/>
 					</apply>
@@ -2448,6 +2445,7 @@
 		<!-- Aeroway -->
 		<switch>
 			<case minzoom="14" textColor="#333333" textOnPath="true" textMinDistance="50" tag="aeroway" value="runway" nameTag2="ref"/>
+			<case minzoom="14" textColor="#333333" textOnPath="true" textMinDistance="50" tag="abandoned:aeroway" value="runway" nameTag2="ref"/>
 			<case minzoom="15" textColor="#333333" textOnPath="true" textMinDistance="50" tag="aeroway" value="taxiway" nameTag="ref"/>
 			<case minzoom="17" textColor="#333366" textWrapWidth="10" tag="aeroway" value="gate" nameTag2="ref">
 				<apply_if engine_v1="true" textDy="7"/>
@@ -2455,16 +2453,21 @@
 			<apply textSize="12" textHaloRadius="$textHaloRadiusDay" textHaloColor="#99dddddd"/>
 			<apply_if nightMode="true" textColor="#c7e4ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#99444444"/>
 		</switch>
-		<switch minzoom="11" tag="aeroway" value="aerodrome" nameTag="">
-			<case additional="iata"/> <!-- iata,icao and faa tags are used in basemap, but for regular maps we use artificial tag large_aerodrome=yes which is created when any of these three are present on aerodrome -->
-			<case additional="icao"/>
-			<case additional="faa"/>
-			<case additional="large_aerodrome"/>
-			<case minzoom="15"/>
-			<apply textColor="#0748a8" textSize="12" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ddeeeeff"/>
-			<apply_if nightMode="true" textColor="#c3dbff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#99222222"/>
-			<apply_if minzoom="9" maxzoom="15" additional="abandoned=yes" disable="true"/>
-			<apply_if engine_v1="true" textDy="9"/>
+		<switch minzoom="11">
+			<case tag="aeroway" value="aerodrome" nameTag=""/>
+			<case minzoom="16" tag="abandoned:aeroway" value="aerodrome" nameTag=""/>
+			<apply>
+				<switch>
+					<case additional="iata"/> <!-- iata,icao and faa tags are used in basemap, but for regular maps we use artificial tag large_aerodrome=yes which is created when any of these three are present on aerodrome -->
+					<case additional="icao"/>
+					<case additional="faa"/>
+					<case additional="large_aerodrome"/>
+					<case minzoom="15"/>
+					<apply textColor="#0748a8" textSize="12" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ddeeeeff"/>
+					<apply_if nightMode="true" textColor="#c3dbff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#99222222"/>
+					<apply_if engine_v1="true" textDy="9"/>
+				</switch>
+			</apply>
 		</switch>
 		<switch>
 			<case minzoom="15" tag="aeroway" value="terminal"/>
@@ -2639,7 +2642,7 @@
 		</switch>
 
 		<!-- Buildings -->
-		<switch textHaloRadius="$buildingTextHaloRadiusDay">
+		<switch textHaloRadius="$buildingTextHaloRadiusDay" intersectsWith="building">
 			<switch>
 				<case tag="military" value="barracks"/>
 				<case tag="military" value="bunker"/>
@@ -3010,7 +3013,7 @@
 				<apply_if nightMode="true" shield="gray_gray_square_shield"/>
 			</switch>
 			<case minzoom="14" tag="tourism" value="picnic_site" icon="tourism_picnic_site" shield="picnic_shield">
-				<apply_if nightMode="true" shield="gray_brown_square_shield"/>
+				<apply_if nightMode="true" shield=""/>
 			</case>
 			<case minzoom="16" tag="emergency" value="phone" icon="emergency_phone" shield="white_red_square_shield">
 				<apply_if nightMode="true" shield="gray_red_square_shield"/>
@@ -3050,13 +3053,12 @@
 				</case>
 				<switch subwayMode="false" iconVisibleSize="13">
 					<case minzoom="12" maxzoom="12" tag="railway" value="station" icon="railway_halt"/>
-					<case minzoom="13" maxzoom="14" tag="railway" value="station" icon="railway_station_small">
-						<switch>
-							<case additional="disused=yes"/>
-							<case additional="abandoned=yes"/>
-							<apply icon="railway_station_small_disused"/>
-						</switch>
-					</case>
+					<switch minzoom="13" maxzoom="14">
+						<case tag="railway" value="station" icon="railway_station_small">
+							<apply_if additional="disused=yes" icon="railway_station_small_disused"/>
+						</case>
+						<case tag="abandoned:railway" value="station" icon="railway_station_small_disused"/>
+					</switch>
 				</switch>
 				<switch minzoom="15">
 					<case tag="railway" value="station">
@@ -3067,17 +3069,12 @@
 								<apply_if nightMode="true" shield="gray_blue_arc_shield"/>
 							</apply>
 						</switch>
+						<case tag="abandoned:railway" value="station" icon="railway_station_disused"/>
 						<case icon="railway_station" shield="white_blue_square_shield" iconVisibleSize="8" iconOrder="82">
 							<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-							<apply>
-								<switch>
-									<case additional="disused=yes"/>
-									<case additional="abandoned=yes"/>
-									<apply icon="railway_station_disused" shield="white_gray_square_shield">
-										<apply_if nightMode="true" shield="gray_gray_square_shield"/>
-									</apply>
-								</switch>
-							</apply>
+							<apply_if additional="disused=yes" icon="railway_station_disused" shield="white_gray_square_shield">
+								<apply_if nightMode="true" shield="gray_gray_square_shield"/>
+							</apply_if>
 						</case>
 					</case>
 				</switch>
@@ -3133,7 +3130,7 @@
 			</switch>
 			<switch iconOrder="85">
 				<case minzoom="14" tag="tourism" value="picnic_site" icon="tourism_picnic_site" shield="picnic_shield">
-					<apply_if nightMode="true" shield="gray_brown_square_shield"/>
+					<apply_if nightMode="true" shield=""/>
 				</case>
 				<case minzoom="16" tag="tourism" value="viewpoint" icon="tourism_viewpoint" shield="white_brown_square_shield">
 					<apply_if nightMode="true" shield="gray_brown_square_shield"/>
@@ -3240,18 +3237,11 @@
 			<apply_if nightMode="true" icon="place_town_night"/>
 		</case>
 
-		<switch>
-			<case minzoom="14" tag="abandoned:place" value=""/>
-			<case minzoom="14" tag="abandoned:landuse" value=""/>
-			<case minzoom="14" tag="landuse" value="abandoned"/>
-			<case minzoom="14" tag="landuse" value="industrial" additional="abandoned=yes"/>
-			<case minzoom="14" tag="landuse" value="residential" additional="abandoned=yes"/>
-			<case minzoom="14" tag="landuse" value="railway" additional="abandoned=yes"/>
-			<case minzoom="14" tag="landuse" value="garages" additional="abandoned=yes"/>
-			<case minzoom="14" tag="landuse" value="construction" additional="abandoned=yes"/>
+		<switch minzoom="14">
+			<case tag="abandoned:place" value=""/>
+			<case tag="abandoned:landuse" value=""/>
 			<switch minzoom="17">
 				<case tag="abandoned:building" value=""/>
-				<case tag="building" value="" additional="abandoned=yes"/>
 				<case tag="building" value="" additional="ruins=yes"/>
 				<case tag="building" value="damaged"/>
 				<case tag="building" value="collapsed"/>
@@ -3480,38 +3470,33 @@
 			<apply_if minzoom="13" icon="railway_station_small"/>
 		</switch>
 		
-		<switch minzoom="12" tag="railway" value="station">
+		<switch minzoom="12">
 			<switch maxzoom="14">
-				<case maxzoom="12" icon="railway_halt"/>
-				<case minzoom="13" icon="railway_station_small"/>
-				<apply>
-					<switch>
-						<case additional="disused=yes"/>
-						<case additional="abandoned=yes"/>
-						<apply icon="railway_station_small_disused"/>
-					</switch>
-				</apply>
+				<switch tag="railway" value="station">
+					<case maxzoom="12" icon="railway_halt"/>
+					<case minzoom="13" icon="railway_station_small">
+						<apply_if additional="disused=yes" icon="railway_station_small_disused"/>
+					</case>
+				</switch>
+				<case minzoom="13" tag="abandoned:railway" value="station" icon="railway_station_small_disused"/>
 			</switch>
 			<switch minzoom="15">
-				<switch>
-					<case additional="route=subway"/>
-					<case additional="station=subway"/>
-					<apply icon="railway_station_subway" shield="white_blue_arc_shield">
-						<apply_if nightMode="true" shield="gray_blue_arc_shield"/>
-					</apply>
+				<switch tag="railway" value="station">
+					<switch>
+						<case additional="route=subway"/>
+						<case additional="station=subway"/>
+						<apply icon="railway_station_subway" shield="white_blue_arc_shield">
+							<apply_if nightMode="true" shield="gray_blue_arc_shield"/>
+						</apply>
+					</switch>
+					<case icon="railway_station" shield="white_blue_square_shield" iconVisibleSize="14" iconOrder="82">
+						<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+						<apply_if additional="disused=yes" icon="railway_station_disused" shield="white_gray_square_shield">
+							<apply_if nightMode="true" shield="gray_gray_square_shield"/>
+						</apply_if>
+					</case>
 				</switch>
-				<case icon="railway_station" shield="white_blue_square_shield" iconVisibleSize="14" iconOrder="82">
-					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-					<apply>
-						<switch>
-							<case additional="disused=yes"/>
-							<case additional="abandoned=yes"/>
-							<apply icon="railway_station_disused" shield="white_gray_square_shield">
-								<apply_if nightMode="true" shield="gray_gray_square_shield"/>
-							</apply>
-						</switch>
-					</apply>
-				</case>
+				<case tag="abandoned:railway" value="station" icon="railway_station_disused"/>
 			</switch>
 		</switch>
 
@@ -3595,6 +3580,11 @@
 				<apply_if nightMode="true" shield=""/>
 			</case>
 		</switch>
+		<case minzoom="14" tag="abandoned:aeroway" value="aerodrome">
+			<apply icon="aeroway_aerodrome_abandoned" shield="aerodrome_shield" iconOrder="100">
+				<apply_if nightMode="true" shield=""/>
+			</apply>
+		</case>
 		<case minzoom="16" tag="aeroway" value="helipad" icon="aeroway_helipad" shield="white_blue_round_small_shield">
 			<apply_if nightMode="true" shield="gray_blue_round_small_shield"/>
 		</case>
@@ -3740,7 +3730,7 @@
 		<!-- Tourism, Entertainment -->
 		<case minzoom="15" tag="tourism" value="information" icon="tourism_information" iconOrder="86" shield="information_shield"/>
 		<case minzoom="14" tag="tourism" value="picnic_site" icon="tourism_picnic_site" shield="picnic_shield" iconOrder="85">
-			<apply_if nightMode="true" shield="gray_brown_square_shield"/>
+			<apply_if nightMode="true" shield=""/>
 		</case>
 		<switch shield="white_brown_square_shield">
 			<switch iconOrder="128">
@@ -4258,7 +4248,6 @@
 				<apply>
 					<switch>
 						<case additional="ruins=yes"/>
-						<case additional="abandoned=yes"/>
 						<apply strokeWidth_2="3" color="#99ababab" color_2="#000000" pathEffect_2="9_3"/>
 						<apply_if nightMode="true" color="#494949" color_2="#ffffff"/>
 						<apply_if maxzoom="15" moreDetailed="true" strokeWidth_2="$buildingStrokeWidth"/>
@@ -4268,7 +4257,6 @@
 			</switch>
 			<switch>
 				<case tag="building" value="collapsed"/>
-				<case tag="building" value="abandoned"/>
 				<case tag="building" value="disused"/>
 				<case tag="abandoned:building" value=""/>
 				<apply_if color="#99ababab" color_2="#000000" pathEffect_2="9_3" strokeWidth_2="$buildingStrokeWidth"/>
@@ -4290,7 +4278,6 @@
 				<apply>
 					<switch>
 						<case additional="ruins=yes"/>
-						<case additional="abandoned=yes"/>
 						<apply color="#99ababab" color_2="#000000" pathEffect_2="9_3"/>
 						<apply_if nightMode="true" color="#494949" color_2="#aaaaaa"/>
 					</switch>
@@ -4329,12 +4316,12 @@
 			</switch>
 
 			<!-- Aeroway -->
-			<switch minzoom="12" tag="aeroway" value="aerodrome">
-				<case additional="abandoned=yes" shader="diagonal_gray_shader">
-					<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
-				</case>
-				<case color="#80cccccc">
+			<switch minzoom="12">
+				<case tag="aeroway" value="aerodrome" color="#80cccccc">
 					<apply_if nightMode="true" color="#80a0a0a9"/>
+				</case>
+				<case tag="abandoned:aeroway" value="aerodrome" shader="diagonal_gray_shader">
+					<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
 				</case>
 			</switch>
 			<case minzoom="14" tag="aeroway" value="terminal" color="#cc99ff" color_2="#66444444" strokeWidth_2="0.5" >
@@ -4343,12 +4330,14 @@
 			<case minzoom="13" tag="aeroway" value="apron" color="#e9d1ff">
 				<apply_if nightMode="true" color="#887c88"/>
 			</case>
-			<case minzoom="13" tag="aeroway" value="runway" color="#bbbbcc">
-				<apply_if additional="abandoned=yes" color="#77bbbbbb">
+			<switch minzoom="13">
+				<case tag="aeroway" value="runway" color="#bbbbcc">
+					<apply_if nightMode="true" color="#90909e"/>
+				</case>
+				<case tag="abandoned:aeroway" value="runway" color="#77bbbbbb">
 					<apply_if nightMode="true" color="#99909090"/>
-				</apply_if>
-				<apply_if nightMode="true" color="#90909e"/>
-			</case>
+				</case>
+			</switch>
 			<case minzoom="18" tag="aeroway" value="helipad" color="#55aaaaaa" color_2="#999999" strokeWidth_2="0.5">
 				<apply_if nightMode="true" color="#88555555" color_2="#666666"/>
 			</case>
@@ -4490,18 +4479,38 @@
 			</case>
 
 			<!-- Built-up areas -->
-			<case minzoom="11" tag="landuse" value="industrial" color="$landuseIndustrialColorDay">
-				<apply_if nightMode="true" color="$landuseIndustrialColorNight"/>
-				<apply_if additional="abandoned=yes" shader="diagonal_gray_shader">
-					<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
-				</apply_if>
-			</case>
-			<case minzoom="12" tag="landuse" value="railway" color="$landuseRailwayColorDay">
-				<apply_if nightMode="true" color="$landuseRailwayColorNight"/>
-				<apply_if additional="abandoned=yes" shader="diagonal_gray_shader">
-					<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
-				</apply_if>
-			</case>
+			<switch>
+				<case minzoom="11" tag="landuse" value="industrial" color="$landuseIndustrialColorDay">
+					<apply_if nightMode="true" color="$landuseIndustrialColorNight"/>
+				</case>
+				<case minzoom="12" tag="landuse" value="railway" color="$landuseRailwayColorDay">
+					<apply_if nightMode="true" color="$landuseRailwayColorNight"/>
+				</case>
+				<case minzoom="10" tag="landuse" value="residential" color="$landuseResidentialColorDay">
+					<apply_if additional="residential=rural" color="$landuseResidentialRuralColorDay"/>
+					<apply_if nightMode="true" color="$landuseResidentialColorNight"/>
+				</case>
+				<case minzoom="14" tag="landuse" value="garages" color="$landuseGaragesColorDay">
+					<apply_if nightMode="true" color="$landuseGaragesColorNight"/>
+				</case>
+				<switch>
+					<case minzoom="12" tag="abandoned:landuse" value="industrial"/>
+					<case minzoom="11" tag="abandoned:landuse" value="railway"/>
+					<case minzoom="11" tag="abandoned:landuse" value="residential"/>
+					<case minzoom="11" tag="abandoned:landuse" value="garages"/>
+					<switch>
+						<case minzoom="12" tag="landuse" value="abandoned"/>
+						<case minzoom="12" tag="abandoned:landuse" value=""/>
+						<case minzoom="11" tag="abandoned:place" value="" strokeWidth_2="0.5" color_2="#44444444">
+							<apply_if nightMode="true" color_2="#77aaaaaa"/>
+						</case>
+					</switch>
+					<apply shader="diagonal_gray_shader">
+						<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
+					</apply>
+				</switch>
+			</switch>
+
 			<case minzoom="11" tag="amenity" value="prison" color="$landusePrisonColorDay">
 				<apply_if nightMode="true" color="$landusePrisonColorNight"/>
 			</case>
@@ -4543,24 +4552,6 @@
 			<case minzoom="12" tag="landuse" value="commercial" color="$landuseCommercialColorDay">
 				<apply_if nightMode="true" color="$landuseCommercialColorNight"/>
 			</case>
-			<case minzoom="10" tag="landuse" value="residential" color="$landuseResidentialColorDay">
-				<apply_if additional="residential=rural" color="$landuseResidentialRuralColorDay"/>
-				<apply_if nightMode="true" color="$landuseResidentialColorNight"/>
-				<apply_if additional="abandoned=yes" shader="diagonal_gray_shader">
-					<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
-				</apply_if>
-			</case>
-			
-			<switch>
-				<case minzoom="12" tag="landuse" value="abandoned"/>
-				<case minzoom="12" tag="abandoned:landuse" value=""/>
-				<case minzoom="11" tag="abandoned:place" value="" strokeWidth_2="0.5" color_2="#44444444">
-					<apply_if nightMode="true" color_2="#77aaaaaa"/>
-				</case>
-				<apply shader="diagonal_gray_shader">
-					<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
-				</apply>
-			</switch>
 
 			<case minzoom="12" tag="landuse" value="landfill" color="$landuseLandfillColorDay">
 				<apply_if nightMode="true" color="$landuseLandfillColorNight"/>
@@ -4655,13 +4646,6 @@
 					<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
 				</apply_if>
 			</case>
-
-			<case minzoom="14" tag="landuse" value="garages" color="$landuseGaragesColorDay">
-				<apply_if nightMode="true" color="$landuseGaragesColorNight"/>
-				<apply_if additional="abandoned=yes" shader="diagonal_gray_shader">
-					<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
-				</apply_if>
-			</case>
 			<switch>
 				<case minzoom="13" tag="leisure" value="stadium" color="#33cc99"/>
 				<case minzoom="13" tag="leisure" value="sports_centre" color="#33cc99"/>
@@ -4729,9 +4713,21 @@
 				<case additional="wetland=tidalflat" shader="wetland_tidalflat">
 					<apply_if nightMode="true" shader="" color="#323b69"/>
 				</case>
-				<case shader="marsh">
+				<switch>
+					<case additional="wetland=bog" shader="wetland_bog"/>
+					<case additional="wetland=marsh" shader="wetland_marsh"/>
+					<case additional="wetland=swamp" shader="wetland_swamp"/>
+					<case additional="wetland=reedbed" shader="wetland_reedbed"/>
+					<case additional="wetland=mangrove" shader="wetland_mangrove"/>
+					<case additional="wetland=wet_meadow" shader="wetland_wet_meadow"/>
+					<case additional="wetland=string_bog" shader="wetland_string_bog"/>
+					<case additional="wetland=saltmarsh" shader="wetland_saltmarsh"/>
+					<case additional="wetland=saltern" shader="wetland_saltern"/>
+					<case additional="wetland=fen" shader="wetland_fen"/>
+					<case additional="wetland=palsa_bog" shader="wetland_palsa_bog"/>
+					<case shader="wetland"/>
 					<apply_if nightMode="true" shader="" color="$wetlandColorNight"/>
-				</case>
+				</switch>
 			</case>
 			<switch>
 				<case minzoom="12" tag="natural" value="mud" color="#d6cbc6">
@@ -4815,12 +4811,27 @@
 				<case nightMode="true" shader="nr3_night" color_2="#09821F"/>
 				<apply_if maxzoom="9" strokeWidth_2="0.5"/>
 			</case>
-			<case minzoom="10" tag="landuse" value="military" shader="danger" color="#100000" color_2="#c8ffa0c0" strokeWidth_2="1:1">
-				<apply_if nightMode="true" shader="danger_night" color_2="#84ffa0c0"/>
-				<apply_if additional="abandoned=yes" shader="military_abandoned">
+
+			<switch minzoom="12">
+				<case tag="landuse" value="quarry" shader="quarry3">
+					<apply_if nightMode="true" shader="quarry3night"/>
+				</case>
+				<case tag="abandoned:landuse" value="quarry" shader="quarry3_abandoned">
+					<apply_if nightMode="true" shader="quarry3_abandoned_night"/>
+				</case>
+			</switch>
+
+			<switch minzoom="10">
+				<case tag="landuse" value="military" shader="danger">
+					<apply_if nightMode="true" shader="danger_night"/>
+				</case>
+				<case tag="abandoned:landuse" value="military" shader="military_abandoned">
 					<apply_if nightMode="true" shader="military_abandoned_night"/>
-				</apply_if>
-			</case>
+				</case>
+				<apply color_2="#c8ffa0c0" strokeWidth_2="1:1">
+					<apply_if nightMode="true" color_2="#84ffa0c0"/>
+				</apply>
+			</switch>
 			<case minzoom="7" tag="military" value="danger_area" shader="hazard" color_2="#ffa0c0" strokeWidth_2="1:1">
 				<apply_if nightMode="true" color_2="#ffa0c0"/>
 			</case>
@@ -4842,12 +4853,6 @@
 			<!-- Special nature with shaders -->
 			<case minzoom="12" tag="tourism" value="zoo" shader="zoo">
 				<apply_if nightMode="true" shader="" color="#5d8358"/>
-			</case>
-			<case minzoom="12" tag="landuse" value="quarry" shader="quarry3">
-				<apply_if nightMode="true" shader="quarry3night"/>
-				<apply_if additional="abandoned=yes" shader="quarry3_abandoned">
-					<apply_if nightMode="true" shader="quarry3_abandoned_night"/>
-				</apply_if>
 			</case>
 		    <!-- groupFilter noPolygons="true" color="#00ffffff" color_2="#00ffffff" shader=""/ -->
 		</switch>
@@ -6096,23 +6101,27 @@
 		</case>
 
 		<!-- Aeroway -->
-		<case minzoom="11" tag="aeroway" value="runway" color="#bbbbcc">
-			<case maxzoom="11" strokeWidth="1:1"/>
-			<case maxzoom="12" strokeWidth="2:2"/>
-			<case maxzoom="13" strokeWidth="3.5:3.5"/>
-			<case maxzoom="14" strokeWidth="6:6"/>
-			<case minzoom="15" strokeWidth="9:9"/>
-			<apply_if nightMode="true" color="#90909e"/>
-			<apply_if additional="abandoned=yes" color="#c6c7c6">
-				<apply_if nightMode="true" additional="abandoned=yes" color="#526163"/>
-			</apply_if>
+		<switch minzoom="11">
+			<case tag="aeroway" value="runway" color="#bbbbcc">
+				<apply_if nightMode="true" color="#90909e"/>
+			</case>
+			<case tag="abandoned:aeroway" value="runway" color="#c6c7c6">
+				<apply_if nightMode="true" color="#526163"/>
+			</case>
+			<apply>
+				<case maxzoom="11" strokeWidth="1:1"/>
+				<case maxzoom="12" strokeWidth="2:2"/>
+				<case maxzoom="13" strokeWidth="3.5:3.5"/>
+				<case maxzoom="14" strokeWidth="6:6"/>
+				<case minzoom="15" strokeWidth="9:9"/>
+			</apply>
 			<apply_if layer="1" minzoom="13" color__1="#000000">
 				<case maxzoom="13" strokeWidth__1="3.5:5"/>
 				<case maxzoom="14" strokeWidth__1="6:8"/>
 				<case minzoom="15" strokeWidth__1="9:12"/>
 				<apply_if nightMode="true" color__1="#ffffff"/>
 			</apply_if>
-		</case>
+		</switch>
 
 		<case minzoom="12" tag="aeroway" value="taxiway" color="#bbbbcc">
 			<case maxzoom="12" strokeWidth="0.6"/>
