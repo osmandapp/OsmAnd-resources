@@ -40,9 +40,9 @@
 	<entity_convert pattern="split" from_tag="fixme" to_tag1="fixme" to_tag2="fixme_tag" to_value2="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="fixme" from_value="yes"/>
 	<entity_convert pattern="split" from_tag="note" to_tag1="note" to_tag2="note_tag" to_value2="yes"/>
-	<type tag="fixme" additional="text" minzoom="12"/>
+	<type tag="fixme" additional="text" minzoom="12" order="128"/>
 	<type tag="fixme_tag" value="yes" minzoom="12" nameTags="fixme"/>
-	<type tag="note" additional="text" minzoom="12"/>
+	<type tag="note" additional="text" minzoom="12" order="128"/>
 	<type tag="note_tag" value="yes" minzoom="12" nameTags="note"/>
 
 	<!-- additional  -->
@@ -284,18 +284,41 @@
 	<type tag="fuel:cng" value="yes" minzoom="15" poi_prefix="fuel_type_" additional="true" only_poi="true"/>
 
 	<type tag="abandoned" value="yes" minzoom="11" additional="true"/>
+	<type tag="disused" value="yes" minzoom="11" additional="true"/>
 <!--	<type tag="abandoned_poi" value="yes" minzoom="11" poi_prefix="abandoned_poi_" poi_category="man_made" order="128"/>   does not works for unknown reason -->
-	<entity_convert pattern="tag_transform" from_tag="burnt" from_value="yes" to_tag1="abandoned" to_value1="yes" to_tag2="abandoned_poi" to_value2="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="building" if_tag1="burnt" if_value1="yes" to_tag1="abandoned:building" to_value1="yes" to_tag2="abandoned_poi" to_value2="yes"/>
 	<type tag="ruins" value="yes" minzoom="16" additional="true"/>
 	<entity_convert pattern="tag_transform" from_tag="ruins" from_value="yes" to_tag1="ruins" to_value1="yes" to_tag2="abandoned" to_value2="yes" to_tag3="abandoned_poi" to_value3="yes"/>
-	<type tag="abandoned:place" minzoom="11"/>
-	<entity_convert pattern="tag_transform" from_tag="abandoned:place" to_tag1="abandoned:place" to_tag2="abandoned" to_value2="yes" to_tag3="abandoned_poi" to_value3="yes"/>
-	<type tag="landuse" value="abandoned" minzoom="11"/>
-	<entity_convert pattern="tag_transform" from_tag="landuse" from_value="abandoned" to_tag1="landuse" to_value1="abandoned" to_tag2="abandoned" to_value2="yes" to_tag3="abandoned_poi" to_value3="yes"/>
-	<type tag="abandoned:landuse" minzoom="11"/>
-	<entity_convert pattern="tag_transform" from_tag="abandoned:landuse" to_tag1="abandoned:landuse" to_tag2="abandoned" to_value2="yes" to_tag3="abandoned_poi" to_value3="yes"/>
+	<type tag="abandoned:place" value="city" minzoom="11"/>
+	<type tag="abandoned:place" value="town" minzoom="11"/>
+	<type tag="abandoned:place" value="village" minzoom="11"/>
+	<type tag="abandoned:place" value="hamlet" minzoom="11"/>
+	<type tag="abandoned:place" value="suburb" minzoom="11"/>
+	<type tag="abandoned:place" value="isolated_dwelling" minzoom="11"/>
+	<type tag="abandoned:place" value="farm" minzoom="11"/>
+	<entity_convert pattern="tag_transform" from_tag="abandoned:place" to_tag1="abandoned:place" to_tag2="abandoned_poi" to_value2="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="place" if_tag1="abandoned" if_value1="yes" to_tag1="abandoned:place" to_tag2="abandoned_poi" to_value2="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="abandoned:place" from_value="yes" to_tag1="abandoned:place" to_value1="hamlet" to_tag2="abandoned_poi" to_value2="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="abandoned:place" from_value="locality" to_tag1="place" to_value1="locality" to_tag2="abandoned_poi" to_value2="yes"/>
+	<type tag="abandoned:landuse" value="construction" minzoom="11"/>
+	<type tag="abandoned:landuse" value="industrial" minzoom="11"/>
+	<type tag="abandoned:landuse" value="garages" minzoom="11"/>
+	<type tag="abandoned:landuse" value="railway" minzoom="11"/>
+	<type tag="abandoned:landuse" value="residential" minzoom="11"/>
+	<type tag="abandoned:landuse" value="quarry" minzoom="11"/>
+	<type tag="abandoned:landuse" value="military" minzoom="11"/>
+	<entity_convert pattern="tag_transform" from_tag="landuse" from_value="abandoned" to_tag1="abandoned:landuse" to_value1="industrial" to_tag2="abandoned_poi" to_value2="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="landuse" if_tag1="abandoned" if_value1="yes" to_tag1="abandoned:landuse" to_tag2="abandoned_poi" to_value2="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="abandoned:landuse" to_tag1="abandoned:landuse" to_tag2="abandoned_poi" to_value2="yes"/>
+	<type tag="abandoned:building" minzoom="15"/>
 	<type tag="abandoned:building" value="no" minzoom="15"/>
-	<type tag="disused" value="yes" minzoom="11" additional="true"/>
+	<entity_convert pattern="tag_transform" from_tag="abandoned:building" if_not_tag1="abandoned:building" if_not_value1="no" to_tag1="abandoned:building" to_tag2="abandoned_poi" to_value2="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="building" if_tag1="abandoned" if_value1="yes" to_tag1="abandoned:building" to_tag2="abandoned_poi" to_value2="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="aeroway" if_tag1="abandoned" if_value1="yes" to_tag1="abandoned:aeroway" to_tag2="abandoned_poi" to_value2="yes"/>
+	<type tag="abandoned:aeroway" value="aerodrome" minzoom="11" nameTags="ref"/>
+	<type tag="abandoned:aeroway" value="runway" minzoom="11" nameTags="ref"/>
+	<type tag="abandoned:railway" value="station" minzoom="11"/>
+	<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_tag1="abandoned" if_value1="yes" to_tag1="abandoned:railway" to_value1="station" to_tag2="abandoned_poi" to_value2="yes"/>
 
 	<type tag="parking" value="multi-storey" minzoom="15" additional="true"/>
 	<type tag="parking" value="underground" minzoom="15" additional="true"/>
@@ -730,10 +753,7 @@
 		<type tag="building" value="supermarket" minzoom="15"/>
 		<type tag="building" value="factory" minzoom="15"/>
 		<type tag="building" value="manufacture" minzoom="15"/>
-		
-		<type tag="building" value="abandoned" minzoom="15"/>
-		<entity_convert pattern="tag_transform" from_tag="building" if_tag1="abandoned" if_value1="yes" to_tag1="building" to_value1="abandoned" to_tag2="abandoned" to_value2="yes" to_tag3="abandoned_poi" to_value3="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="abandoned:building" if_not_tag1="abandoned:building" if_not_value1="no" to_tag1="building" to_value1="abandoned" to_tag2="abandoned" to_value2="yes" to_tag3="abandoned_poi" to_value3="yes"/>
+
 		<type tag="building" value="collapsed" minzoom="15"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="ruins" to_tag1="building" to_value1="collapsed" to_tag2="abandoned" to_value2="yes" to_tag3="abandoned_poi" to_value3="yes"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="ruin" to_tag1="building" to_value1="collapsed" to_tag2="abandoned" to_value2="yes" to_tag3="abandoned_poi" to_value3="yes"/>
@@ -1586,6 +1606,8 @@
 		<type tag="wetland" value="string_bog" minzoom="12" additional="true"/>
 		<type tag="wetland" value="saltmarsh" minzoom="12" additional="true"/>
 		<type tag="wetland" value="saltern" minzoom="12" additional="true"/>
+		<type tag="wetland" value="fen" minzoom="12" additional="true"/>
+		<type tag="wetland" value="palsa_bog" minzoom="12" additional="true"/>
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="marsh" to_tag1="wetland"/>
 		<type tag="natural" value="wood" minzoom="6" order="61" poi_category="natural" poi_with_name="true"/>
 		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="wood" to_tag1="natural" />
