@@ -830,8 +830,10 @@
 	<renderingConstant name="amenityEducationalStrokeColorNight" value="#d4a89e"/>
 	<renderingConstant name="amenityHospitalColorDay" value="#f0f0d8"/>
 	<renderingConstant name="amenityHospitalColorNight" value="#3b3b3b"/>
-	<renderingConstant name="landuseAllotmentsColorDay" value="#bde3cb"/>
-	<renderingConstant name="landuseAllotmentsColorNight" value="#3b3b3b"/>
+	<renderingAttribute name="landuseAllotmentsColor">
+		<case nightMode="true" attrColorValue="#3b3b3b"/>
+		<case attrColorValue="#bde3cb"/>
+	</renderingAttribute>
 	<renderingConstant name="landuseGaragesColorDay" value="#dfd1d6"/>
 	<renderingConstant name="landuseGaragesColorNight" value="#362d2d"/>
 	<renderingConstant name="leisureResortColorDay" value="#b0b6fdb6"/>
@@ -4591,8 +4593,10 @@
 				<apply color="$amenityHospitalColorDay" color_2="#d4a89e" strokeWidth_2=":1"/>
 				<apply_if nightMode="true" color="$amenityHospitalColorNight" color_2="$amenityEducationalStrokeColorNight"/>
 			</switch>
-			<case minzoom="10" tag="landuse" value="allotments" color="$landuseAllotmentsColorDay" color_2="#8fbda0" strokeWidth_2=":1">
-				<apply_if nightMode="true" color="$landuseAllotmentsColorNight" color_2="#00510e"/>
+			<case minzoom="10" tag="landuse" value="allotments" color="$landuseAllotmentsColor" color_2="#8fbda0" strokeWidth_2=":1">
+				<case minzoom="13" maxzoom="14" shader="allotments_small"/>
+				<case minzoom="15" shader="allotments"/>
+				<apply_if nightMode="true" shader="" color_2="#00510e"/>
 			</case>
 			<case minzoom="12" tag="landuse" value="retail" color="$landuseRetailColorDay">
 				<apply_if nightMode="true" color="$landuseRetailColorNight"/>
