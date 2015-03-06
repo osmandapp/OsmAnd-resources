@@ -1163,9 +1163,6 @@
 			</switch>
 			<case tag="noexit" value=""/>
 			<case tag="flood_prone" value=""/>
-			<case tag="barrier" value="">
-				<apply_if minzoom="14" maxzoom="15" appMode="pedestrian" order="-1"/>
-			</case>
 			<case tag="abandoned:aeroway" value=""/>
 			<case tag="aeroway" value=""/>
 			<case tag="aerialway" value="station"/>
@@ -1247,11 +1244,23 @@
 			<case tag="fixme_tag" value="yes"/>
 			<case tag="note_tag" value="yes"/>
 			<case tag="abandoned:place" value="" order="10"/>
-			<case appMode="car" maxzoom="18" tag="barrier" value="turnstile" order="-1"/>
-			<case tag="barrier" value="height_restrictor">
-				<apply_if appMode="pedestrian" order="-1"/>
-				<apply_if appMode="bicycle" order="-1"/>
-			</case>
+			<case tag="barrier" value=""/>
+			<switch appMode="pedestrian" tag="barrier" order="-1">
+				<case value="" minzoom="14" maxzoom="15"/>
+				<case value="cycle_barrier"/>
+				<case value="motorcycle_barrier"/>
+				<case value="block"/>
+				<case value="bollard"/>
+				<case value="cattle_grid"/>
+				<case value="height_restrictor"/>
+			</switch>
+			<switch appMode="car" tag="barrier" order="-1">
+				<case value="cattle_grid"/>
+				<case maxzoom="18" value="turnstile"/>
+			</switch>
+			<switch appMode="bicycle" tag="barrier" order="-1">
+				<case value="height_restrictor"/>
+			</switch>
 			<case tag="osmand" value="file_waypoint"/>
 		</switch>
 
@@ -3629,6 +3638,9 @@
 				</case>
 				<case tag="barrier" value="bump_gate">
 					<apply_if minzoom="$barrierMinZoom" icon="barrier_bump_gate" shield="barrier_bump_gate_shield"/>
+				</case>
+				<case tag="barrier" value="cattle_grid">
+					<apply_if minzoom="18" icon="barrier_cattle_grid" shield="barrier_cattle_grid_shield"/>
 				</case>
 				<case tag="barrier" value="chain">
 					<apply_if minzoom="$barrierMinZoom" icon="barrier_chain" shield="barrier_chain_shield"/>

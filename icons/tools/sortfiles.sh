@@ -302,6 +302,7 @@ mycp barrier lift_gate barrier_lift_gate.png
 mycp barrier swing_gate barrier_swing_gate.png
 mycp barrier bump_gate barrier_bump_gate.png
 mycp barrier height_restrictor barrier_height_restrictor.png
+mycp barrier cattle_grid barrier_cattle_grid2.png
 mycp barrier chain barrier_chain.png
 mycp barrier sally_port barrier_sally_port.png
 mycp barrier bollard barrier_bollard.png
