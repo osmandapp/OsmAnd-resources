@@ -532,6 +532,7 @@ mycp man_made tower_type_communication poi_tower_communications2.png
 mycp man_made tower_type_lighting poi_tower_lighting.png
 mycp man_made tower_type_cooling poi_tower_cooling.png
 mycp man_made tower_type_bell_tower poi_tower_bell_tower.png
+mycp man_made antenna poi_antenna.png
 mycp man_made mast poi_mast.png
 mycp man_made water_tower poi_water_tower.png
 mycp man_made monitoring_station_radar poi_monitoring_station_radar.png
