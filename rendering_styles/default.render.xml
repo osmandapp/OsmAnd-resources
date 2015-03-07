@@ -683,6 +683,11 @@
 	<renderingConstant name="cycleRoutercnColor" value="#40ff00ff"/>
 	<renderingConstant name="cycleRoutencnColor" value="#40ff4000"/>
 	<renderingConstant name="cycleRouteicnColor" value="#40ff0000"/>
+	<renderingAttribute name="cycleRouteColor">
+		<case attrColorValue="#80252c81">
+			<apply_if nightMode="true" attrColorValue="#807781ff"/>
+		</case>
+	</renderingAttribute>
 
 	<renderingConstant name="motorwayRoadDesaturatedColorDay" value="#bcc6ec"/>
 	<renderingConstant name="motorwayRoadDesaturatedColorNight" value="#3f4764"/>
@@ -2340,10 +2345,10 @@
 			<case tag="rcn_network" value="rcn" nameTag="rcn_ref" textOrder="8"/>
 			<case tag="ncn_network" value="ncn" nameTag="ncn_ref" textOrder="7"/>
 			<case tag="icn_network" value="icn" nameTag="icn_ref" textOrder="7"/>
-			<case tag="network" value="lcn" nameTag="lcn_ref" textOrder="9"/>
+<!--			<case tag="network" value="lcn" nameTag="lcn_ref" textOrder="9"/>
 			<case tag="network" value="rcn" nameTag="rcn_ref" textOrder="8"/>
 			<case tag="network" value="ncn" nameTag="ncn_ref" textOrder="7"/>
-			<case tag="network" value="icn" nameTag="icn_ref" textOrder="7"/>
+			<case tag="network" value="icn" nameTag="icn_ref" textOrder="7"/>-->
 			<!-- nodes without relation -->
 			<case tag="lcn_ref" value="" textOrder="9"/>
 			<case tag="rcn_ref" value="" textOrder="8"/>
@@ -2357,6 +2362,18 @@
 				<case minzoom="18" textSize="26"/>
 			</apply_if>
 			<apply textColor="$cyclewayColor"/>
+			<apply_if nightMode="true" textHaloColor="#aaffffff"/>
+		</switch>
+		<switch showCycleRoutes="true">
+			<case tag="route" value="bicycle" nameTag="routebicycle_name" nameTag2="routebicycle_ref" textOrder="7"/>
+			<case tag="route" value="bicycle" nameTag="routebicycle_ref" textOrder="7"/>
+			<apply_if minzoom="13" textHaloRadius="$textHaloRadiusDay">
+				<case maxzoom="15" textSize="12"/>
+				<case maxzoom="16" textSize="13"/>
+				<case maxzoom="17" textSize="14"/>
+				<case minzoom="18" textSize="15"/>
+			</apply_if>
+			<apply textColor="$cyclewayColor" textOnPath="true"/>
 			<apply_if nightMode="true" textHaloColor="#aaffffff"/>
 		</switch>
 
@@ -6330,6 +6347,7 @@
 			<case tag="rcn_network" value="rcn" color="$cycleRoutercnColor"/>
 			<case tag="ncn_network" value="ncn" color="$cycleRoutencnColor"/>
 			<case tag="icn_network" value="icn" color="$cycleRouteicnColor"/>
+			<case tag="route" value="bicycle" color="$cycleRouteColor"/>
 			<apply cap="BUTT">
 				<case maxzoom="11" strokeWidth="2.5:2.5"/>
 				<case maxzoom="12" strokeWidth="3.5:3.5"/>
