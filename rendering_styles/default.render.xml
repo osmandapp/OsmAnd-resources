@@ -684,8 +684,48 @@
 	<renderingConstant name="cycleRoutencnColor" value="#50ff4000"/>
 	<renderingConstant name="cycleRouteicnColor" value="#50ff0000"/>
 	<renderingAttribute name="cycleRouteColor">
-		<case attrColorValue="#80252c81">
-			<apply_if nightMode="true" attrColorValue="#807781ff"/>
+		<case attrColorValue="#80ff940a">
+			<apply_if nightMode="true" attrColorValue="#90ff940a"/>
+		</case>
+	</renderingAttribute>
+<!--	<renderingAttribute name="cycleRouteMtbScale0Color">
+		<case engine_v1="true" attrColorValue="#bb975500">
+			<apply_if nightMode="true" attrColorValue="#bb975500"/>
+		</case>
+		<case attrColorValue="#77975500">
+			<apply_if nightMode="true" attrColorValue="#77975500"/>
+		</case>
+	</renderingAttribute>-->
+	<renderingAttribute name="cycleRouteMtbScale1Color">
+		<case engine_v1="true" attrColorValue="#9900ff00">
+			<apply_if nightMode="true" attrColorValue="#9900ff00"/>
+		</case>
+		<case attrColorValue="#7700ff00">
+			<apply_if nightMode="true" attrColorValue="#7700ff00"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="cycleRouteMtbScale2Color">
+		<case engine_v1="true" attrColorValue="#600000ff">
+			<apply_if nightMode="true" attrColorValue="#70ced4ff"/>
+		</case>
+		<case attrColorValue="#400000ff">
+			<apply_if nightMode="true" attrColorValue="#50ced4ff"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="cycleRouteMtbScale3Color">
+		<case engine_v1="true" attrColorValue="#88ff0000">
+			<apply_if nightMode="true" attrColorValue="#bbff0000"/>
+		</case>
+		<case attrColorValue="#55ff0000">
+			<apply_if nightMode="true" attrColorValue="#77ff0000"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="cycleRouteMtbScale4Color">
+		<case engine_v1="true" attrColorValue="#66000000">
+			<apply_if nightMode="true" attrColorValue="#585858"/>
+		</case>
+		<case attrColorValue="#44000000">
+			<apply_if nightMode="true" attrColorValue="#585858"/>
 		</case>
 	</renderingAttribute>
 
@@ -6378,31 +6418,49 @@
 				<case minzoom="18" strokeWidth="12:12"/>
 			</case>
 			<case tag="route" value="mtb" color="$cycleRouteColor">
-				<case maxzoom="14" strokeWidth="2:2"/>
-				<case maxzoom="16" strokeWidth="3:3"/>
-				<case maxzoom="17" strokeWidth="4:4"/>
-				<case minzoom="18" strokeWidth="5:5"/>
-				<apply_if additional="mtb:scale=0" color="#bb00ff00">
-					<apply_if engine_v1="false" color="#7700ff00"/>
-				</apply_if>
-				<apply_if additional="mtb:scale=1" color="#990000ff">
-					<apply_if engine_v1="false" color="#770000ff"/>
-				</apply_if>
-				<apply_if additional="mtb:scale=2" color="#bbed8b00">
-					<apply_if engine_v1="false" color="#77ed8b00"/>
-				</apply_if>
-				<apply_if additional="mtb:scale=3" color="#bbff0000">
-					<apply_if engine_v1="false" color="#77ff0000"/>
-				</apply_if>
-				<apply_if additional="mtb:scale=4" color="#bbff00ff">
-					<apply_if engine_v1="false" color="#77ff00ff"/>
-				</apply_if>
-				<apply_if additional="mtb:scale=5" color="#bbff00ff">
-					<apply_if engine_v1="false" color="#77ff00ff"/>
-				</apply_if>
-				<apply_if additional="mtb:scale=6" color="#bbff00ff">
-					<apply_if engine_v1="false" color="#77ff00ff"/>
-				</apply_if>
+				<case maxzoom="14" strokeWidth="3:3"/>
+				<case maxzoom="16" strokeWidth="4:4"/>
+				<case maxzoom="17" strokeWidth="5:5"/>
+				<case minzoom="18" strokeWidth="6:6"/>
+				<apply>
+					<switch>
+						<case additional="mtb:scale=0" color="$cycleRouteColor"/>
+						<case additional="mtb:scale=1" color="$cycleRouteMtbScale1Color"/>
+						<case additional="mtb:scale=2" color="$cycleRouteMtbScale2Color"/>
+						<case additional="mtb:scale=3" color="$cycleRouteMtbScale3Color"/>
+						<case additional="mtb:scale=4" color="$cycleRouteMtbScale4Color"/>
+						<case additional="mtb:scale=5" color="$cycleRouteMtbScale4Color"/>
+						<case additional="mtb:scale=6" color="$cycleRouteMtbScale4Color"/>
+					</switch>
+				</apply>
+				<apply>
+					<switch minzoom="13">
+						<case additional="mtb:scale:uphill=1">
+							<case maxzoom="14" pathEffect_3="2_15"/>
+							<case minzoom="15" pathEffect_3="2_30"/>
+						</case>
+						<case additional="mtb:scale:uphill=2">
+							<case maxzoom="14" pathEffect_3="2_2_2_15"/>
+							<case minzoom="15" pathEffect_3="2_2_2_30"/>
+						</case>
+						<case additional="mtb:scale:uphill=3">
+							<case maxzoom="14" pathEffect_3="2_2_2_2_2_15"/>
+							<case minzoom="15" pathEffect_3="2_2_2_2_2_30"/>
+						</case>
+						<case additional="mtb:scale:uphill=4">
+							<case maxzoom="14" pathEffect_3="2_2_2_2_2_2_2_15"/>
+							<case minzoom="15" pathEffect_3="2_2_2_2_2_2_2_30"/>
+						</case>
+						<case additional="mtb:scale:uphill=5">
+							<case maxzoom="14" pathEffect_3="2_2_2_2_2_2_2_2_2_15"/>
+							<case minzoom="15" pathEffect_3="2_2_2_2_2_2_2_2_2_30"/>
+						</case>
+						<apply color_2="#333333" color_3="#333333">
+							<apply_if maxzoom="16" strokeWidth_2="1:1" strokeWidth_3="3.5:3.5"/>
+							<apply_if minzoom="17" strokeWidth_2="1.5:1.5" strokeWidth_3="6:6"/>
+						</apply>
+					</switch>
+				</apply>
 			</case>
 			<apply>
 				<switch>
