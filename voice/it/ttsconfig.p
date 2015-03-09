@@ -52,7 +52,7 @@ string('right_keep.ogg', 'tenersi sulla destra').
 
 % U-TURNS
 string('make_uturn1.ogg', 'torna indietro ').
-string('make_uturn2.ogg', 'Si prega di torna indietro ').
+string('make_uturn2.ogg', 'Si prega di tornare indietro ').
 string('make_uturn_wp.ogg', 'Quando possibile, fare inversione a u').
 
 % ROUNDABOUTS
