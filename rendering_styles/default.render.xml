@@ -2588,6 +2588,7 @@
 			<case minzoom="18" tag="tourism" value="artwork"/>
 			<case minzoom="17" tag="tourism" value="picnic_site"/>
 			<case minzoom="17" tag="tourism" value="museum"/>
+			<case minzoom="17" tag="tourism" value="information"/>
 			<case minzoom="17" tag="tourism" value="viewpoint"/>
 			<case minzoom="16" tag="tourism" value="theme_park"/>
 			<case minzoom="16" tag="tourism" value="zoo"/>
@@ -2620,32 +2621,6 @@
 			<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffe7c2" textHaloColor="#88644e2c"/>
 		</switch>
 	
-		<case minzoom="10" tag="tourism" value="information" textSize="12" textColor="$tourismTextColorDay" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20">
-			<switch showCycleRoutes="true"> <!-- this is needed because node (without relation) *cn_ref with tourism=information tag can't be displayed. The problem lies in fact that osmand rendering engines can display text only from first tag in object data: Point types [tourism-information (408), ncn_ref (415)] Names [name(1) - tourism=information, ncn_ref(415) - ncn_ref] (inspector output) -->
-				<case nameTag="lcn_ref" textOrder="9"/>
-				<case nameTag="rcn_ref" textOrder="8"/>
-				<case nameTag="ncn_ref" textOrder="7"/>
-				<case nameTag="icn_ref" textOrder="7"/>
-				<apply_if minzoom="10" textColor="$cyclewayColor" textHaloRadius="$textHaloRadiusDay">
-					<case maxzoom="12" textSize="18"/>
-					<case maxzoom="15" textSize="20"/>
-					<case maxzoom="16" textSize="22"/>
-					<case maxzoom="17" textSize="20"/>
-					<case minzoom="18" textSize="26"/>
-				</apply_if>
-				<apply_if nightMode="true" textHaloColor="#aaffffff"/>
-			</switch>
-			<case nameTag="">
-				<apply_if maxzoom="16" disable="true"/>
-				<apply textHaloColor="$tourismTextHaloColorDay"/>
-				<apply_if engine_v1="true" textDy="9"/>
-				<apply_if nightMode="true" textColor="#ffe7c2" textHaloColor="#88644e2c"/>
-			</case>
-			<case>
-				<apply_if maxzoom="16" disable="true"/>
-			</case>
-		</case>
-
 		<!-- Historic -->
 		<switch textSize="12" textColor="$historicTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$historicTextHaloColorDay" textWrapWidth="20">
 			<switch>
