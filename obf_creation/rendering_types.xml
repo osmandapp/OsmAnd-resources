@@ -567,21 +567,37 @@
 		<type tag="lwn_network" value="lwn" nameTags="ref,name" namePrefix="lwn_" relation="true"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="lwn" to_tag1="lwn_network" to_value1="lwn"/>
 
-		<type tag="icn_network" value="icn" nameTags="ref,name" namePrefix="icn_" minzoom="8" relation="true"/>
-		<entity_convert pattern="tag_transform" from_tag="network" from_value="icn" to_tag1="icn_network" to_value1="icn"/>
-		<type tag="lcn_network" value="lcn" nameTags="ref,name" namePrefix="lcn_" minzoom="8" relation="true"/>
-		<entity_convert pattern="tag_transform" from_tag="network" from_value="lcn" to_tag1="lcn_network" to_value1="lcn"/>
-		<type tag="ncn_network" value="ncn" nameTags="ref,name" namePrefix="ncn_" minzoom="8" relation="true"/>
-		<entity_convert pattern="tag_transform" from_tag="network" from_value="ncn" to_tag1="ncn_network" to_value1="ncn"/>
-		<type tag="rcn_network" value="rcn" nameTags="ref,name" namePrefix="rcn_" minzoom="8" relation="true"/>
-		<entity_convert pattern="tag_transform" from_tag="network" from_value="rcn" to_tag1="rcn_network" to_value1="rcn"/>
+		<!-- for compatibility -->
+		<type tag="icn_network" value="icn" minzoom="11" relation="true"/>
+		<entity_convert pattern="tag_transform" from_tag="network" from_value="icn" to_tag1="network" to_value1="icn" to_tag2="icn_network" to_value2="icn"/>
+		<type tag="lcn_network" value="lcn" minzoom="11" relation="true"/>
+		<entity_convert pattern="tag_transform" from_tag="network" from_value="lcn" to_tag1="network" to_value1="lcn" to_tag2="lcn_network" to_value2="lcn"/>
+		<type tag="ncn_network" value="ncn" minzoom="11" relation="true"/>
+		<entity_convert pattern="tag_transform" from_tag="network" from_value="ncn" to_tag1="network" to_value1="ncn" to_tag2="ncn_network" to_value2="ncn"/>
+		<type tag="rcn_network" value="rcn" minzoom="11" relation="true" order="80"/>
+		<entity_convert pattern="tag_transform" from_tag="network" from_value="rcn" to_tag1="network" to_value1="rcn" to_tag2="rcn_network" to_value2="rcn"/>
+
+		<type tag="network" value="icn" minzoom="11" additional="true" relation="true"/>
+		<type tag="network" value="lcn" minzoom="11" additional="true" relation="true"/>
+		<type tag="network" value="ncn" minzoom="11" additional="true" relation="true"/>
+		<type tag="network" value="rcn" minzoom="11" additional="true" relation="true"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="network" if_value1="icn" to_tag1="icn_ref" apply_to="relation"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="network" if_value1="lcn" to_tag1="lcn_ref" apply_to="relation"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="network" if_value1="ncn" to_tag1="ncn_ref" apply_to="relation"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="network" if_value1="rcn" to_tag1="rcn_ref" apply_to="relation"/>
+<!--		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="bicycle" to_tag1="bicycle_ref" apply_to="relation"/> needs a fix (causes NPE)-->
+<!--		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="mtb" to_tag1="mtb_ref" apply_to="relation"/> needs a fix (causes NPE) -->
 
 		<type tag="network" value="rer" minzoom="11" additional="true" relation="true"/>
-		<type tag="route" value="bicycle" minzoom="11" relation="true" nameTags="name,ref" namePrefix="routebicycle_"/>
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="bicycle" if_tag1="icn_network" if_value1="icn" apply_to="way,relation"/> <!-- remove *cn_network if route=bicycle also presents (for backward compatibility) -->
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="bicycle" if_tag1="lcn_network" if_value1="lcn" apply_to="way,relation"/>
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="bicycle" if_tag1="ncn_network" if_value1="ncn" apply_to="way,relation"/>
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="bicycle" if_tag1="rcn_network" if_value1="rcn" apply_to="way,relation"/>
+		<type tag="route" value="bicycle" minzoom="11" relation="true" nameTags="name,bicycle_ref,icn_ref,lcn_ref,ncn_ref,rcn_ref"/>
+		<type tag="route" value="mtb" minzoom="11" relation="true" nameTags="name,mtb_ref,icn_ref,lcn_ref,ncn_ref,rcn_ref"/>
+		<type tag="mtb:scale" value="0" minzoom="11" additional="true" relation="true"/>
+		<type tag="mtb:scale" value="1" minzoom="11" additional="true" relation="true"/>
+		<type tag="mtb:scale" value="2" minzoom="11" additional="true" relation="true"/>
+		<type tag="mtb:scale" value="3" minzoom="11" additional="true" relation="true"/>
+		<type tag="mtb:scale" value="4" minzoom="11" additional="true" relation="true"/>
+		<type tag="mtb:scale" value="5" minzoom="11" additional="true" relation="true"/>
+		<type tag="mtb:scale" value="6" minzoom="11" additional="true" relation="true"/>
 	</category>
 
 	<category name="routing nodes">
@@ -589,10 +605,10 @@
 		<type tag="nwn_ref" value="" nameTags="nwn_ref" minzoom="8" relation="false"/>
 		<type tag="rwn_ref" value="" nameTags="rwn_ref" minzoom="8" relation="false"/>
 		<type tag="lwn_ref" value="" nameTags="lwn_ref" minzoom="8" relation="false"/>
-		<type tag="icn_ref" value="" nameTags="icn_ref" minzoom="8" relation="false"/>
-		<type tag="ncn_ref" value="" nameTags="ncn_ref" minzoom="8" relation="false"/>
-		<type tag="rcn_ref" value="" nameTags="rcn_ref" minzoom="8" relation="false"/>
-		<type tag="lcn_ref" value="" nameTags="lcn_ref" minzoom="8" relation="false"/>
+		<type tag="icn_ref" value="" nameTags="icn_ref" minzoom="14" poi_prefix="cycle_node_" poi_category="transportation" relation="false"/>
+		<type tag="ncn_ref" value="" nameTags="ncn_ref" minzoom="14" poi_prefix="cycle_node_" poi_category="transportation" relation="false"/>
+		<type tag="rcn_ref" value="" nameTags="rcn_ref" minzoom="14" poi_prefix="cycle_node_" poi_category="transportation" relation="false"/>
+		<type tag="lcn_ref" value="" nameTags="lcn_ref" minzoom="14" poi_prefix="cycle_node_" poi_category="transportation" relation="false"/>
 	</category>
 
 	<category name="tracktype">
@@ -1468,7 +1484,7 @@
 		<type tag="tourism" value="hotel" minzoom="15" />
 		<type tag="tourism" value="motel" minzoom="15" />
 		<type tag="tourism" value="museum" minzoom="15" />
-		<type tag="tourism" value="information" minzoom="15" />
+		<type tag="tourism" value="information" minzoom="15" order="10"/>
 		<type tag="tourism" value="viewpoint" minzoom="15" />
 		<type tag="leisure" value="resort" minzoom="12" order="71"/>
 	</category>
@@ -1734,10 +1750,10 @@
 		<type tag="nwn_ref" value="" minzoom="14" nameTags="nwn_ref" poi_prefix="walking_node_"/>
 		<type tag="rwn_ref" value="" minzoom="14" nameTags="rwn_ref" poi_prefix="walking_node_"/>
 		<type tag="lwn_ref" value="" minzoom="14" nameTags="lwn_ref" poi_prefix="walking_node_"/>
-		<type tag="icn_ref" value="" minzoom="14" nameTags="icn_ref" poi_prefix="cycle_node_"/>
+<!--		<type tag="icn_ref" value="" minzoom="14" nameTags="icn_ref" poi_prefix="cycle_node_"/> does not works
 		<type tag="ncn_ref" value="" minzoom="14" nameTags="ncn_ref" poi_prefix="cycle_node_"/>
 		<type tag="rcn_ref" value="" minzoom="14" nameTags="rcn_ref" poi_prefix="cycle_node_"/>
-		<type tag="lcn_ref" value="" minzoom="14" nameTags="lcn_ref" poi_prefix="cycle_node_"/>
+		<type tag="lcn_ref" value="" minzoom="14" nameTags="lcn_ref" poi_prefix="cycle_node_"/>-->
 	</category>
 
 

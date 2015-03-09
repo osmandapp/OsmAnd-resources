@@ -679,10 +679,10 @@
 	<renderingConstant name="contourLineColor" value="#2Aff7c00"/>
 	<renderingConstant name="contourLineColor50m" value="#2Aea7300"/>
 
-	<renderingConstant name="cycleRoutelcnColor" value="#400000ff"/>
-	<renderingConstant name="cycleRoutercnColor" value="#40ff00ff"/>
-	<renderingConstant name="cycleRoutencnColor" value="#40ff4000"/>
-	<renderingConstant name="cycleRouteicnColor" value="#40ff0000"/>
+	<renderingConstant name="cycleRoutelcnColor" value="#500000ff"/>
+	<renderingConstant name="cycleRoutercnColor" value="#50ff00ff"/>
+	<renderingConstant name="cycleRoutencnColor" value="#50ff4000"/>
+	<renderingConstant name="cycleRouteicnColor" value="#50ff0000"/>
 	<renderingAttribute name="cycleRouteColor">
 		<case attrColorValue="#80252c81">
 			<apply_if nightMode="true" attrColorValue="#807781ff"/>
@@ -1429,6 +1429,8 @@
 			<case tag="route_train" value="" order="101"/>
 			<case tag="route_tram" value="" order="100"/>
 			<case tag="route_trolleybus" value="" order="101"/>
+			<case tag="route" value="bicycle" order="128"/>
+			<case tag="route" value="mtb" order="127"/>
 
 			<case layer="1" tag="railway" value="" order="88"/>
 			<case tag="railway" value="station"/>
@@ -1616,6 +1618,7 @@
 				<apply_if layer="-1" order="-1"/>
 				<apply_if appMode="car" order="-1"/>
 			</case>
+			<case tag="man_made" value="cutline" order="5"/>
 			<case tag="hazard" value="" order="1"/>
 			<case tag="fixme_tag" value="yes" order="2"/>
 			<case tag="note_tag" value="yes"/>
@@ -2339,22 +2342,21 @@
 		</case>
 
 		<!-- Cycling: texts for the cycle networks -->
-		<switch showCycleRoutes="true">
+		<switch showCycleRoutes="true" minzoom="10">
 			<!-- routes -->
-			<case tag="lcn_network" value="lcn" nameTag="lcn_ref" textOrder="9"/>
-			<case tag="rcn_network" value="rcn" nameTag="rcn_ref" textOrder="8"/>
-			<case tag="ncn_network" value="ncn" nameTag="ncn_ref" textOrder="7"/>
-			<case tag="icn_network" value="icn" nameTag="icn_ref" textOrder="7"/>
-<!--			<case tag="network" value="lcn" nameTag="lcn_ref" textOrder="9"/>
-			<case tag="network" value="rcn" nameTag="rcn_ref" textOrder="8"/>
-			<case tag="network" value="ncn" nameTag="ncn_ref" textOrder="7"/>
-			<case tag="network" value="icn" nameTag="icn_ref" textOrder="7"/>-->
-			<!-- nodes without relation -->
+			<case tag="route" value="bicycle" textOrder="7"/>
+			<case tag="route" value="mtb" textOrder="7"/>
 			<case tag="lcn_ref" value="" textOrder="9"/>
 			<case tag="rcn_ref" value="" textOrder="8"/>
 			<case tag="ncn_ref" value="" textOrder="7"/>
 			<case tag="icn_ref" value="" textOrder="7"/>
-			<apply_if minzoom="10" textHaloRadius="$textHaloRadiusDay">
+			<apply>
+				<case additional="network=lcn" nameTag="lcn_ref" textOnPath="false" textOrder="9"/>
+				<case additional="network=rcn" nameTag="rcn_ref" textOnPath="false" textOrder="8"/>
+				<case additional="network=ncn" nameTag="ncn_ref" textOnPath="false" textOrder="7"/>
+				<case additional="network=icn" nameTag="icn_ref" textOnPath="false" textOrder="7"/>
+			</apply>
+			<apply_if textHaloRadius="$textHaloRadiusDay">
 				<case maxzoom="12" textSize="18"/>
 				<case maxzoom="15" textSize="20"/>
 				<case maxzoom="16" textSize="22"/>
@@ -2362,18 +2364,6 @@
 				<case minzoom="18" textSize="26"/>
 			</apply_if>
 			<apply textColor="$cyclewayColor"/>
-			<apply_if nightMode="true" textHaloColor="#aaffffff"/>
-		</switch>
-		<switch showCycleRoutes="true">
-			<case tag="route" value="bicycle" nameTag="routebicycle_name" nameTag2="routebicycle_ref" textOrder="7"/>
-			<case tag="route" value="bicycle" nameTag="routebicycle_ref" textOrder="7"/>
-			<apply_if minzoom="13" textHaloRadius="$textHaloRadiusDay">
-				<case maxzoom="15" textSize="12"/>
-				<case maxzoom="16" textSize="13"/>
-				<case maxzoom="17" textSize="14"/>
-				<case minzoom="18" textSize="15"/>
-			</apply_if>
-			<apply textColor="$cyclewayColor" textOnPath="true"/>
 			<apply_if nightMode="true" textHaloColor="#aaffffff"/>
 		</switch>
 
@@ -2479,7 +2469,7 @@
 			</apply_if>
 		</switch>
 		<switch>
-			<case minzoom="17" textSize="13" textColor="#0000ff" textHaloColor="#ffffff" textHaloRadius="$textHaloRadiusDay" textBold="true" tag="railway" value="subway_entrance" nameTag="" textOrder="1"/>
+			<case minzoom="17" tag="railway" value="subway_entrance" nameTag="" textSize="13" textColor="#0000ff" textHaloColor="#ffffff" textHaloRadius="$textHaloRadiusDay" textBold="true" textOrder="1"/>
 			<apply_if engine_v1="true" textDy="8"/>
 			<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#bbe4ff" textHaloColor="#bb4563a7"/>
 		</switch>
@@ -2487,12 +2477,14 @@
 
 		<!-- Aeroway -->
 		<switch>
-			<case minzoom="14" textColor="#333333" textOnPath="true" textMinDistance="50" tag="aeroway" value="runway" nameTag2="ref"/>
-			<case minzoom="14" textColor="#333333" textOnPath="true" textMinDistance="50" tag="abandoned:aeroway" value="runway" nameTag2="ref"/>
-			<case minzoom="15" textColor="#333333" textOnPath="true" textMinDistance="50" tag="aeroway" value="taxiway" nameTag="ref"/>
-			<case minzoom="17" textColor="#333366" textWrapWidth="10" tag="aeroway" value="gate" nameTag2="ref">
+			<case minzoom="14" tag="aeroway" value="runway" nameTag2="ref" textColor="#333333" textOnPath="true" textMinDistance="50"/>
+			<case minzoom="14" tag="abandoned:aeroway" value="runway" nameTag2="ref" textColor="#333333" textOnPath="true" textMinDistance="50"/>
+			<case minzoom="15" tag="aeroway" value="taxiway" nameTag="ref" textColor="#333333" textOnPath="true" textMinDistance="50"/>
+			<switch minzoom="17" tag="aeroway" value="gate" textColor="#333366" textWrapWidth="10">
+				<case nameTag="ref"/>
+				<case nameTag="" nameTag2="ref"/>
 				<apply_if engine_v1="true" textDy="7"/>
-			</case>
+			</switch>
 			<apply textSize="12" textHaloRadius="$textHaloRadiusDay" textHaloColor="#99dddddd"/>
 			<apply_if nightMode="true" textColor="#c7e4ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#99444444"/>
 		</switch>
@@ -2556,7 +2548,6 @@
 			<case minzoom="18" tag="tourism" value="artwork"/>
 			<case minzoom="17" tag="tourism" value="picnic_site"/>
 			<case minzoom="17" tag="tourism" value="museum"/>
-			<case minzoom="17" tag="tourism" value="information"/>
 			<case minzoom="17" tag="tourism" value="viewpoint"/>
 			<case minzoom="16" tag="tourism" value="theme_park"/>
 			<case minzoom="16" tag="tourism" value="zoo"/>
@@ -2588,6 +2579,32 @@
 			<apply_if engine_v1="true" textDy="9"/>
 			<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffe7c2" textHaloColor="#88644e2c"/>
 		</switch>
+	
+		<case minzoom="10" tag="tourism" value="information" textSize="12" textColor="$tourismTextColorDay" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20">
+			<switch showCycleRoutes="true"> <!-- this is needed because node (without relation) *cn_ref with tourism=information tag can't be displayed. The problem lies in fact that osmand rendering engines can display text only from first tag in object data: Point types [tourism-information (408), ncn_ref (415)] Names [name(1) - tourism=information, ncn_ref(415) - ncn_ref] (inspector output) -->
+				<case nameTag="lcn_ref" textOrder="9"/>
+				<case nameTag="rcn_ref" textOrder="8"/>
+				<case nameTag="ncn_ref" textOrder="7"/>
+				<case nameTag="icn_ref" textOrder="7"/>
+				<apply_if minzoom="10" textColor="$cyclewayColor" textHaloRadius="$textHaloRadiusDay">
+					<case maxzoom="12" textSize="18"/>
+					<case maxzoom="15" textSize="20"/>
+					<case maxzoom="16" textSize="22"/>
+					<case maxzoom="17" textSize="20"/>
+					<case minzoom="18" textSize="26"/>
+				</apply_if>
+				<apply_if nightMode="true" textHaloColor="#aaffffff"/>
+			</switch>
+			<case nameTag="">
+				<apply_if maxzoom="16" disable="true"/>
+				<apply textHaloColor="$tourismTextHaloColorDay"/>
+				<apply_if engine_v1="true" textDy="9"/>
+				<apply_if nightMode="true" textColor="#ffe7c2" textHaloColor="#88644e2c"/>
+			</case>
+			<case>
+				<apply_if maxzoom="16" disable="true"/>
+			</case>
+		</case>
 
 		<!-- Historic -->
 		<switch textSize="12" textColor="$historicTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$historicTextHaloColorDay" textWrapWidth="20">
@@ -4039,7 +4056,7 @@
 					<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
 				</case>
 			</apply>
-			<apply_if maxzoom="16" icon="no_icon"/>
+			<apply_if maxzoom="16" icon=""/>
 		</switch>
 
 		<switch minzoom="16">
@@ -4136,6 +4153,13 @@
 			<case minzoom="16" tag="shop" value="wine" icon="shop_alcohol" iconVisibleSize="32"/>
 			<case minzoom="17" tag="amenity" value="vending_machine" icon="amenity_vending_machine"/>
 			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
+		</switch>
+		<switch minzoom="12">
+			<case tag="lcn_ref" value=""/>
+			<case tag="rcn_ref" value=""/>
+			<case tag="ncn_ref" value=""/>
+			<case tag="icn_ref" value=""/>
+			<apply icon=""/>
 		</switch>
 	</point>
 
@@ -6343,12 +6367,7 @@
 		</case>
 
 		<switch showCycleRoutes="true" minzoom="11">
-			<case tag="lcn_network" value="lcn" color="$cycleRoutelcnColor"/>
-			<case tag="rcn_network" value="rcn" color="$cycleRoutercnColor"/>
-			<case tag="ncn_network" value="ncn" color="$cycleRoutencnColor"/>
-			<case tag="icn_network" value="icn" color="$cycleRouteicnColor"/>
-			<case tag="route" value="bicycle" color="$cycleRouteColor"/>
-			<apply cap="BUTT">
+			<case tag="route" value="bicycle" color="$cycleRouteColor" cap="BUTT">
 				<case maxzoom="11" strokeWidth="2.5:2.5"/>
 				<case maxzoom="12" strokeWidth="3.5:3.5"/>
 				<case maxzoom="13" strokeWidth="4:4"/>
@@ -6357,6 +6376,51 @@
 				<case maxzoom="16" strokeWidth="7.5:7.5"/>
 				<case maxzoom="17" strokeWidth="9:9"/>
 				<case minzoom="18" strokeWidth="12:12"/>
+			</case>
+			<case tag="route" value="mtb" color="$cycleRouteColor">
+				<case maxzoom="14" strokeWidth="2:2"/>
+				<case maxzoom="16" strokeWidth="3:3"/>
+				<case maxzoom="17" strokeWidth="4:4"/>
+				<case minzoom="18" strokeWidth="5:5"/>
+				<apply_if additional="mtb:scale=0" color="#bb00ff00">
+					<apply_if engine_v1="false" color="#7700ff00"/>
+				</apply_if>
+				<apply_if additional="mtb:scale=1" color="#990000ff">
+					<apply_if engine_v1="false" color="#770000ff"/>
+				</apply_if>
+				<apply_if additional="mtb:scale=2" color="#bbed8b00">
+					<apply_if engine_v1="false" color="#77ed8b00"/>
+				</apply_if>
+				<apply_if additional="mtb:scale=3" color="#bbff0000">
+					<apply_if engine_v1="false" color="#77ff0000"/>
+				</apply_if>
+				<apply_if additional="mtb:scale=4" color="#bbff00ff">
+					<apply_if engine_v1="false" color="#77ff00ff"/>
+				</apply_if>
+				<apply_if additional="mtb:scale=5" color="#bbff00ff">
+					<apply_if engine_v1="false" color="#77ff00ff"/>
+				</apply_if>
+				<apply_if additional="mtb:scale=6" color="#bbff00ff">
+					<apply_if engine_v1="false" color="#77ff00ff"/>
+				</apply_if>
+			</case>
+			<apply>
+				<switch>
+					<case additional="network=lcn" color="$cycleRoutelcnColor"/>
+					<case additional="network=rcn" color="$cycleRoutercnColor"/>
+					<case additional="network=ncn" color="$cycleRoutencnColor"/>
+					<case additional="network=icn" color="$cycleRouteicnColor"/>
+					<apply>
+						<case maxzoom="11" strokeWidth="2.5:2.5"/>
+						<case maxzoom="12" strokeWidth="3.5:3.5"/>
+						<case maxzoom="13" strokeWidth="4:4"/>
+						<case maxzoom="14" strokeWidth="4.5:4.5"/>
+						<case maxzoom="15" strokeWidth="6:6"/>
+						<case maxzoom="16" strokeWidth="7.5:7.5"/>
+						<case maxzoom="17" strokeWidth="9:9"/>
+						<case minzoom="18" strokeWidth="12:12"/>
+					</apply>
+				</switch>
 			</apply>
 		</switch>
 
