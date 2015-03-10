@@ -4,7 +4,7 @@
 	TOURING VIEW Renderer by Hardy Mueller, 2012-10-28 (Advanced version of the previous All-Purpose Renderer)
 		Differences of the "Touring View" vs. the "Default" Renderer:
 		In Touring View:
-		  * some road and track types already rendered at lower zooms (for travel and orienteering)
+		  * some road and track types already shown at lower zooms (essential for travel and orienteering)
 		  * the road colors allow unambiguous distinction between all highway/road/track types 
 		  * the road colors are more aligned with conventional road atlas
 		  * the road visibility is increased for better outdoor, driving, and navigation use
@@ -13,6 +13,7 @@
                     - to display the SAC scale (for Alpine hiking)
                     - display hiking route symbols (now moved as module to default renderer)
                     - display bicycle networks (now moved as module to default renderer)
+		  * TODO: Area-sensitive rendering: Include _all_ roads in very low density areas (remote deserts, etc.)
 	-->
 
 	<!--
@@ -89,6 +90,17 @@
 		email: dingsdale@gmx.de
 	-->
 
+	<!-- Draft descriptions to explain the Touring view map style:
+		<string name="plugin_touringview_name">Touring map view</string>
+		<string name="plugin_touringview_descr">Activating this view changes OsmAnd\'s map style to \'Touring view\', this is a special high-detail view for travelers and professional drivers.
+			\n\nThis view provides, at any given map zoom, the maximum amount of travel details available in the map data (particularly roads, tracks, paths, and orientation marks).
+			\n\nIt also clearly depicts all types of roads unambiguously by color coding, which is useful when e.g. driving large vehicles.
+			\n\nAnd it provides special touring options like showing bicycle routes or Alpine mountain routes.
+			\n\nA special map download is not needed, the view is created from our standard maps.
+			\n\nThis view can be reverted by either de-activating it again here, or by changing the \'Map style\' under \'Configure map\' as desired.
+		</string>
+	-->
+
 
 	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show bicycle routes (bicycle mode)"
 		type="boolean" possibleValues="" category="routes"/>
@@ -138,12 +150,8 @@
 		<filter attrIntValue="100"/>
 	</renderingAttribute>
 
-	<!-- maximize map details:
-		- maximizes map details: road inclusion as early as possible
-		- Touring View should be independent of outdated hmRendered switch now, all minzooms defined directly!
-		- TODO: include _all_ roads in very low density areas
-	-->
 	<!-- renderingConstant name="hmRendered" value="true"/-->
+	<!-- hmRendered now outdated as all minzooms are defined directly. Switch was formerly used to maximize map details and include roads as early as possible for travel and orienteering -->
 
 
 	<!-- Touring View color pattern -->
@@ -212,20 +220,21 @@
 	<renderingConstant name="null" value="#00000000"/>
 
 	<!-- Area colors -->
-	<renderingConstant name="woodColorDay" value="#aed1a0"/>
-	<renderingConstant name="forestColorDay" value="#9dd57c"/>
-	<renderingConstant name="woodColorNight" value="#001122"/>
-
 	<renderingConstant name="defaultColor" value="#f1eae4"/>
 	<renderingConstant name="defaultColorNight" value="#002a2a"/>
 	<renderingConstant name="openNatureColorNight" value="#004333"/>
 	<renderingConstant name="shaderColorNight" value="#334433"/>
 
+	<renderingConstant name="forestColorDay" value="#9dd57c"/>
+	<renderingConstant name="forestColorNight" value="#001122"/>
+	<renderingConstant name="woodColorDay" value="#aed1a0"/>
+	<renderingConstant name="woodColorNight" value="#001122"/>
+
+	<renderingConstant name="waterColorDay" value="#b5d0d0"/>
+	<renderingConstant name="waterColorNight" value="#330099"/>
+
 	<renderingConstant name="buildingColorDay" value="#bca9a9"/>
 	<renderingConstant name="buildingColorNight" value="#685454"/>
-
-	<renderingConstant name="waterwayColorDay" value="#b5d0d0"/>
-	<renderingConstant name="waterwayColorNight" value="#330099"/>
 
 	<renderingConstant name="landuseConstructionColorDay" value="#ffffff"/>
 	<renderingConstant name="landuseConstructionColorDayStroke" value="#ff6600"/>
