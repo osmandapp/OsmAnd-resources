@@ -777,7 +777,6 @@
 	<renderingConstant name="grassColorDay" value="#cfeca8"/>
 	<renderingConstant name="meadowColorDay" value="#cfeca8"/>
 	<renderingConstant name="meadowColorNight" value="#004333"/>
-	<renderingConstant name="loggingColorDay" value="#d3dec5"/>
 	<renderingConstant name="brownfieldColorDay" value="#9d9d6c"/>
 	<renderingConstant name="recreationGroundColorDay" value="#cfeca8"/>
 	<renderingConstant name="recreationGroundColorDayStroke" value="#b0b6fdb6"/>
@@ -4499,6 +4498,12 @@
 					<apply_if minzoom="15" additional="leaf_type=needleleaved" shader="forest_needleleaved"/>
 					<apply_if minzoom="15" additional="leaf_type=mixed" shader="forest_mixed"/>
 				</case>
+				<apply>
+					<switch>
+						<case additional="wood:damage=windfall" shader="wood_windfall"/>
+						<case additional="wood:damage=dead_wood" shader="wood_dead_wood"/>
+					</switch>
+				</apply>
 				<apply_if nightMode="true" shader=""/>
 			</switch>
 
@@ -4882,9 +4887,8 @@
 					<case minzoom="16" strokeWidth_2="2.3:2.3"/>
 				</apply>
 			</switch>
-			<case minzoom="13" tag="landuse" value="logging" color="#d3dec5">
-				<case minzoom="15" shader="logging"/>
-				<apply_if nightMode="true" shader="" color="#3a3f37"/>
+			<case minzoom="15" tag="landuse" value="logging" shader="logging">
+				<apply_if nightMode="true" shader=""/>
 			</case>
 			<switch minzoom="14">
 				<case tag="natural" value="scree"/>
