@@ -1200,6 +1200,7 @@ mycp shop seafood shopping_fish.png
 mycp shop shoes shopping_shoes.png
 mycp shop sports shopping_sports.png
 mycp shop supermarket shopping_supermarket.png
+mycp shop ticket shopping_ticket.png
 mycp shop tobacco shopping_tobacco.png
 mycp shop toys shopping_toys.png
 mycp shop video shopping_video_rental.png
