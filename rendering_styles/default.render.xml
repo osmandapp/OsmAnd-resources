@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <renderingStyle name="default" depends="" defaultColor="#f1eae4" version="1">
 
-	<!--  Rules documentation
-	<switch> (old name <group>) combines <case> and <apply>
-	<case> - old name filter
-	<apply> (old name <groupFilter>) - synonym <apply_if>
+	<!--  Documentation of the rendering syntax:
+	Elements:
+		<switch> :  Old convention <group>, bundles (groups) a section of <case>, <apply>, and further <switch> levels
+		<case>   :  Old convention <filter>, is the analog of (if...else)
+		<apply> and <apply_if> (synonym) :  Old convention <groupFilter>, specifies additional conditions/assignments to their parent filter
 
-	1. <switch> and <case> could be top level elements , <apply> can't
-	2. <switch> is used to flattenize cases similar to group
-	3. DIFFERENCE : <apply> is called if at least one <case> successful
+		- <switch> and <case> can be top level elements, <apply> cannot
 
 	<switch> element :
-		1. if <switch> (or <group> logically the same ) is top level, it propogates all it is attributes i.e. strokeWidth... to the <case> level (if they are not set there)
-		2. if <switch> has children <case> or <switch> it executes its <case> or <switch> in order with if else and return "true" if first one succeeds (all the rest are not executed). If one succeeds then all <applies> are executed in defined order
-		3. If <switch> doesn't have children <case> or <switch> and all children are <apply>, it should execute all of them and return "true"
-		4. Special validation first top level elements (<case>) should have tag/value attributes. It could be a nested sequence of <switch><switch><case tag="" value=""></switch></switch>, but first top level element is obliged to have tag/value.
+		1. A <switch> (or <group>, logically the same) on the top level propagates all its attributes like e.g. strokeWidth to the <case> level (unless overwritten there)
+		2. If <switch> has <case> or <switch> children, it tests these in their order with (if...else), and returns "true" when/if the first test succeeds (all others are not executed any more). If one succeeds, also all <applies> are executed in their specified order.
+		3. If <switch> does not have <case> or <switch>, but only <apply> children, all of these are executed, and "true" is returned.
+		4. All highest (top level) occurrences of <case> elements must contain tag/value attributes! A nested sequence from the top level like <switch><switch><case tag="" value=""></switch></switch> is possible, though.
 
-	 <case> element :
-		1. <case> works exactly the same as <switch>, when executing its children. But first it evaluates itself
-			DIFFERENCE comparing to <switch> ! If case is matched, it always returns 'true'
-		2. <case> the only logical element that could be evaluated true top level (top level <switch> should contain at least one <case>)
+	<case> element :
+		1. <case> works exactly like <switch> when executing its children, but the difference is it first evaluates itself.
+			A DIFFERENCE vs. <switch> is that if <case> matches, it always returns "true", while for <switch> this depends on a match of one of its children.
+		2. <case> is the only logical element which can return "true" on the top level. A top level <switch> must contain at least one <case>.
 
-	 <apply> element :
-		1. If <apply>  also evaluates its children as <switch> but it always returns true, however noone uses that return value
-
+	<apply> element :
+		1. <apply> evaluates its children just like <switch>, but it always returns "true", however nothing below evaluates this return value any more.
+		2. <apply> is only executed if at least one <case> applies
 	-->
 	
 	<!--	nameTag is input parameter.
