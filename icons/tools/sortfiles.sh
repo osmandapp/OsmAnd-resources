@@ -45,6 +45,7 @@ mycp stroke gray functional-icons_gray_stroke.png
 mycp stroke gray_triangle functional-icons_gray_stroke_triangle.png
 mycp stroke lightorange_left functional-icons_lightorange_left_stroke.png
 mycp stroke white functional-icons_white_stroke.png
+mycp stroke brown_right functional-icons_brown_right_stroke.png
 
 ## Natural
 mygroup natural poi_peak2.png
