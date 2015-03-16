@@ -1023,7 +1023,7 @@
 	<renderingConstant name="parkTextColorDay" value="#004300"/>
 	<renderingConstant name="forestTextColorDay" value="#388738"/>
 	<renderingConstant name="railwayPOITextColorDay" value="#6666ff"/>
-	<renderingConstant name="railwayTextColorDay" value="#000000"/>
+	<renderingConstant name="railwayTextColorDay" value="#333333"/>
 	<renderingConstant name="railwayTextHaloColorDay" value="#aaf1eae4"/>
 	<renderingConstant name="aerialwayTextColorDay" value="#000000"/>
 	<renderingConstant name="aerialwayTextHaloColorDay" value="#77f1eae4"/>
@@ -1941,7 +1941,7 @@
 			</switch>
 			<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay">
 				<case tag="highway" value="pedestrian" textOrder="11"/>
-				<case tag="area:highway" value="pedestrian" textOrder="11"/>
+				<case tag="area:highway" value="pedestrian" textOrder="100"/>
 				<apply textColor="#000000">
 					<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 				</apply>
@@ -1981,7 +1981,7 @@
 				<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 			</apply_if>
 		</switch>
-		<switch minzoom="15" textOrder="15" nameTag="">
+		<switch minzoom="15" textOrder="15" nameTag="" intersectsWith="building">
 			<case tag="highway" value="footway"/>
 			<case tag="area:highway" value="footway"/>
 			<apply>
@@ -2044,7 +2044,7 @@
 			<apply_if minzoom="18" textSize="14"/>
 		</switch>
 
-		<switch minzoom="14" textColor="$railwayTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$railwayTextHaloColorDay" textOrder="99">
+		<switch minzoom="14" textColor="$railwayTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$railwayTextHaloColorDay" textOrder="128">
 			<case tag="railway" value="rail"/>
 			<case tag="railway" value="tram"/>
 			<case tag="railway" value="subway"/>
@@ -2151,12 +2151,14 @@
 			<case minzoom="6" tag="place" value="city" nameTag="" intersectionMargin="25">
 				<case additional="capital=yes">
 					<case maxzoom="7" textSize="20" textOrder="2"/>
-					<case minzoom="8" textSize="22" textOrder="3"/>
+					<case maxzoom="16" textSize="22" textOrder="3"/>
 				</case>
 				<case maxzoom="7" textSize="17" textOrder="3"/>
-				<case minzoom="8" textSize="20" textOrder="4"/>
+				<case maxzoom="16" textSize="20" textOrder="4"/>
 			</case>
-			<case minzoom="8" tag="place" value="town" textSize="16" textOrder="5" nameTag=""/>
+			<case minzoom="8" tag="place" value="town" textSize="16" textOrder="5" nameTag="">
+				<apply_if minzoom="17" textOrder="100"/>
+			</case>
 			<case minzoom="11" tag="place" value="village" textSize="14" textOrder="10" nameTag=""/>
 			<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77444444"/>
 		</switch>
@@ -2334,7 +2336,7 @@
 		</switch>
 
 		<!-- Emergency and Health -->
-		<switch textSize="12" textColor="#da0092" textHaloRadius="$textHaloRadiusDay" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="25">
+		<switch textSize="12" textColor="#da0092" textHaloRadius="$textHaloRadiusDay" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="25" intersectsWith="building">
 			<case minzoom="17" tag="amenity" value="police"/>
 			<case minzoom="16" tag="amenity" value="fire_station"/>
 
@@ -2350,7 +2352,7 @@
 		</switch>
 
 		<!-- Traffic, transportation and orientation -->
-		<switch subwayMode="false" textSize="12" textColor="#0066ff" textHaloRadius="$textHaloRadiusDay" textHaloColor="$defaultTextHaloColorDay">
+		<switch subwayMode="false" textSize="12" textColor="#0066ff" textHaloRadius="$textHaloRadiusDay" textHaloColor="$defaultTextHaloColorDay" intersectsWith="building">
 			<case minzoom="17" tag="amenity" value="fuel" nameTag="" textWrapWidth="20"/>
 			<case minzoom="17" tag="amenity" value="fuel" nameTag="brand" textWrapWidth="20"/>
 			<case minzoom="17" tag="amenity" value="charging_station" textWrapWidth="20"/>
@@ -2561,7 +2563,7 @@
 		</switch>
 
 		<!-- Accommodation -->
-		<switch textSize="12" textColor="$accomodationTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$accomodationTextHaloColorDay" textWrapWidth="25">
+		<switch textSize="12" textColor="$accomodationTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$accomodationTextHaloColorDay" textWrapWidth="25" intersectsWith="building">
 			<switch>
 				<case minzoom="16" tag="tourism" value="camp_site"/>
 				<case minzoom="16" tag="tourism" value="caravan_site"/>
@@ -2584,7 +2586,7 @@
 		</switch>
 
 		<!-- Tourism and Entertainment -->
-		<switch textColor="$tourismAttractionTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$tourismAttractionTextHaloColorDay" textWrapWidth="20" textBold="true" textOrder="10">
+		<switch textColor="$tourismAttractionTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$tourismAttractionTextHaloColorDay" textWrapWidth="20" textBold="true" textOrder="10" intersectsWith="building">
 			<case minzoom="16" tag="historic" value="city_gate" textSize="12"/>
 			<case minzoom="15" tag="tourism" value="attraction" textSize="13" nameTag=""/>
 			<case minzoom="16" tag="attraction" value="big_wheel" textSize="12"/>
@@ -2592,7 +2594,7 @@
 			<apply_if engine_v1="true" textDy="9"/>
 			<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="$tourismAttractionTextColorNight" textHaloColor="#88641500"/>
 		</switch>
-		<switch textSize="12" textColor="$tourismTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$tourismTextHaloColorDay" textWrapWidth="20">
+		<switch textSize="12" textColor="$tourismTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$tourismTextHaloColorDay" textWrapWidth="20" intersectsWith="building">
 			<case minzoom="18" tag="tourism" value="artwork"/>
 			<case minzoom="17" tag="tourism" value="picnic_site"/>
 			<case minzoom="17" tag="tourism" value="museum"/>
@@ -2630,7 +2632,7 @@
 		</switch>
 	
 		<!-- Historic -->
-		<switch textSize="12" textColor="$historicTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$historicTextHaloColorDay" textWrapWidth="20">
+		<switch textSize="12" textColor="$historicTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$historicTextHaloColorDay" textWrapWidth="20" intersectsWith="building">
 			<switch>
 				<case minzoom="16" tag="historic" value="castle"/>
 				<case minzoom="18" tag="historic" value="cannon"/>
@@ -2659,7 +2661,7 @@
 		</switch>
 
 		<!-- Other Amenities -->
-		<switch textSize="12" textColor="$otherAmenitiesTextColorDay" textHaloColor="$otherAmenitiesTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20">
+		<switch textSize="12" textColor="$otherAmenitiesTextColorDay" textHaloColor="$otherAmenitiesTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20" intersectsWith="building">
 			<case minzoom="17" tag="amenity" value="prison"/>
 			<case minzoom="16" tag="amenity" value="place_of_worship"/>
 
@@ -2777,7 +2779,7 @@
 		</switch>
 
 		<!-- Food and Drink -->
-		<switch textSize="12" textColor="$foodTextColorDay" textHaloColor="$foodTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20">
+		<switch textSize="12" textColor="$foodTextColorDay" textHaloColor="$foodTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20" intersectsWith="building">
 			<case minzoom="17" tag="amenity" value="restaurant"/>
 			<case minzoom="17" tag="amenity" value="cafe"/>
 			<case minzoom="17" tag="amenity" value="fast_food"/>
@@ -2793,7 +2795,7 @@
 		</switch>
 
 		<!-- Shops -->
-		<switch textSize="12" textColor="$shopsTextColorDay" textHaloColor="$shopsTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textWrapWidth="15">
+		<switch textSize="12" textColor="$shopsTextColorDay" textHaloColor="$shopsTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textWrapWidth="15" intersectsWith="building">
 			<case minzoom="17" tag="shop" value="alcohol"/>
 			<case minzoom="17" tag="shop" value="baby_goods"/>
 			<case minzoom="17" tag="shop" value="bakery"/>
