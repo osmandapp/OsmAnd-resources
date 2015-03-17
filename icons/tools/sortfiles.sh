@@ -1213,3 +1213,14 @@ mygroup osmwiki icons8_wikipedia.png
 mygroup name_finder icons8_web_search.png
 mycp osmand waypoint functional-icons_waypoint.png
 mygroup null icons8_worldwide_location.png
+
+mycp stub amenity functional-icons_stub_amenity.png
+mycp stub club functional-icons_stub_club.png
+mycp stub craft functional-icons_stub_craft.png
+mycp stub emergency functional-icons_stub_emergency.png
+mycp stub healthcare functional-icons_stub_healthcare.png
+mycp stub historic functional-icons_stub_historic.png
+mycp stub office functional-icons_stub_office.png
+mycp stub man_made functional-icons_stub_man_made.png
+mycp stub shop functional-icons_stub_shop.png
+mycp stub tourism functional-icons_stub_tourism.png
