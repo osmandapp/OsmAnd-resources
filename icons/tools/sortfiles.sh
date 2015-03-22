@@ -506,6 +506,7 @@ mycp amenity social_centre amenity_public_building.png
 mycp amenity townhall amenity_town_hall2.png
 mycp office government amenity_public_building.png
 
+mygroup service amenity_service.png
 
 ## Education
 mygroup education education_university.png
