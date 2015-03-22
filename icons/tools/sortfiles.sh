@@ -727,9 +727,9 @@ mycp seamark light_major seamark_light_major.png
 mycp seamark light_major_small seamark_light_major_small.png
 mycp seamark light_vessel seamark_light_vessel.png
 
-mycp seamark fog_signal seamark_big_fog_signal.png
-mycp seamark radar_transponder seamark_big_radar_transponder.png
-mycp seamark radio_station seamark_big_radio_station.png
+mycp seamark fog_signal seamark_fog_signal.png
+mycp seamark radar_transponder seamark_radar_transponder.png
+mycp seamark radio_station seamark_radio_station.png
 mycp seamark platform seamark_platform.png
 
 mycp seamark landmark_tower seamark_big_landmark_tower.png
