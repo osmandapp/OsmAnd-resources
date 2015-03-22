@@ -112,36 +112,36 @@ generatePngs() {
 
       generatePngs 'skimap' '#777777' '#777777' '' x2
 
-      generatePngs 'functional-icons' '#777777' '#777777'
-      generatePngs 'water' '#0092DA' '#0092DA'
+      generatePngs 'functional-icons' '#777777' '#ff8f00'
+      generatePngs 'water' '#0092DA' '#ff8f00'
 
-      generatePngs 'emergency' '#DA0092' '#DA0092'
-      generatePngs 'health' '#DA0092' '#DA0092'
+      generatePngs 'emergency' '#DA0092' '#ff8f00'
+      generatePngs 'health' '#DA0092' '#ff8f00'
 
-      generatePngs 'transport' '#0092DA' '#0092DA'
+      generatePngs 'transport' '#0092DA' '#ff8f00'
 
-      generatePngs 'barrier' '#444444' '#777777'
+      generatePngs 'barrier' '#444444' '#ff8f00'
 
-      generatePngs 'accommodation' '#0092DA' '#0092DA'
+      generatePngs 'accommodation' '#0092DA' '#ff8f00'
 
-      generatePngs 'tourist' '#734A08' '#734A08'
+      generatePngs 'tourist' '#734A08' '#ff8f00'
       generatePngs 'special_poi' '#a62b00' '#a62b00' '' '' '' nomx
 
-      generatePngs 'sport'  '#39AC39' '#39AC39'
+      generatePngs 'sport'  '#39AC39' '#ff8f00'
 
-      generatePngs 'amenity' '#777777' '#777777'
-      generatePngs 'place_of_worship' '#333333' '#777777'
-      generatePngs 'money' '#777777' '#777777'
-      generatePngs 'education' '#777777' '#777777'
-      generatePngs 'poi' '#3f3f3f' '#777777'
-      generatePngs 'power' '#3f3f3f' '#777777'
+      generatePngs 'amenity' '#777777' '#ff8f00'
+      generatePngs 'place_of_worship' '#333333' '#ff8f00'
+      generatePngs 'money' '#777777' '#ff8f00'
+      generatePngs 'education' '#777777' '#ff8f00'
+      generatePngs 'poi' '#3f3f3f' '#ff8f00'
+      generatePngs 'power' '#3f3f3f' '#ff8f00'
 
-      generatePngs 'food' '#777777' '#777777'
+      generatePngs 'food' '#777777' '#ff8f00'
 
-      generatePngs 'shopping' '#777777' '#777777'
+      generatePngs 'shopping' '#777777' '#ff8f00'
 
-      generatePngs 'landuse' '#777777' '#777777'
+      generatePngs 'landuse' '#777777' '#ff8f00'
 
-      generatePngs 'icons8' '#777777' '#777777' neg
+      generatePngs 'icons8' '#777777' '#ff8f00' neg
 
       generatePngs 'overlays' '#777777' '#777777' '' x2 '' nomx

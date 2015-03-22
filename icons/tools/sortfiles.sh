@@ -219,7 +219,7 @@ mycp highway services transport_services.png
 mycp mountain pass poi_mountain_pass.png
 
 mycp amenity bicycle_rental transport_rental_bicycle.png
-mycp amenity boat_sharing amenity_boat_sharing.png
+mycp amenity boat_sharing transport_boat_sharing.png
 mycp amenity car_rental transport_rental_car.png
 mycp amenity car_sharing transport_car_share.png
 mycp amenity ski_rental transport_ski_rental.png
@@ -318,7 +318,7 @@ mycp barrier turnstile barrier_turnstile.png
 mycp entrance yes barrier_entrance2.png
 mycp entrance exit functional-icons_entrance_exit.png
 mycp entrance main functional-icons_entrance3.png
-mycp amenity parking_entrance functional-icons_parking_entrance.png
+mycp amenity parking_entrance transport_parking_entrance.png
 mycp building entrance barrier_entrance.png
 
 
@@ -383,7 +383,7 @@ mycp historic memorial tourist_memorial.png
 mycp historic mine poi_mine_abandoned.png
 mycp historic monument tourist_monument.png
 mycp historic ruins tourist_ruin.png
-mycp historic rune_stone functional-icons_rune_stone.png
+mycp historic rune_stone tourist_rune_stone.png
 mycp historic ship tourist_ship.png
 mycp historic wayside_cross tourist_wayside_cross.png
 mycp historic wayside_shrine tourist_wayside_shrine.png
