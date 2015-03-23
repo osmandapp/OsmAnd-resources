@@ -187,7 +187,7 @@ mycp harbour yes poi_harbour.png
 
 mygroup fuel transport_fuel.png
 mygroup filling_station transport_fuel.png
-mycp amenity ev_charging transport_ev_charging.png
+mycp amenity charging_station transport_charging_station.png
 mycp amenity fuel_lpg transport_fuel_lpg.png
 mycp amenity fuel transport_fuel.png
 
