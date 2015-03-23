@@ -34,7 +34,7 @@ mycp amenity grave_yard place_of_worship_christian3.png  # Keep shaders with bac
 mycp natural scrub landuse_scrub.png                     # Keep shaders with background color, cannot be replaced by icons!
 mycp natural swamp landuse_swamp.png                     # Keep shaders with background color, cannot be replaced by icons!
 mycp tourism zoo tourist_zoo.png                         # Keep shaders with background color, cannot be replaced by icons!
-mycp military danger_area poi_mine.png                   # Keep shaders with background color, cannot be replaced by icons!
+mycp military danger_area poi_danger_area.png
 mycp military nuclear_explosion_site poi_nuclear_explosion_site.png
 mycp natural glacier poi_peak2.png                       # Keep shaders with background color, cannot be replaced by icons!
 mycp landuse landfill landuse_landfill.png
