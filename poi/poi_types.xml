@@ -157,7 +157,7 @@
 			<poi_type name="emergency_access_point" tag="highway" value="emergency_access_point"/>
 		</poi_category>
 		<poi_category name="transportation" default_tag="highway">
-			<poi_filter name="road_obstacles">
+			<poi_filter name="road_obstacle">
 				<poi_type name="ford" tag="highway" value="ford"/>
 				<poi_type name="mountain_pass" tag="mountain_pass" value="yes"/>
 				<poi_type name="gate" tag="barrier" value="gate"/>
@@ -174,12 +174,7 @@
 				<poi_type name="traffic_calming_choker" tag="traffic_calming" value="choker"/>
 				<poi_type name="traffic_signals" tag="highway" value="traffic_signals"/>
 			</poi_filter>
-			<poi_filter name="personal_transport">
-				<poi_type name="car_repair" tag="shop" value="car_repair">
-					<poi_additional name="service_tyres" tag="service" value="tyres"/>
-				</poi_type>
-				<poi_type name="vehicle_inspection" tag="amenity" value="vehicle_inspection"/>
-				<poi_type name="car_wash" tag="amenity" value="car_wash"/>
+			<poi_filter name="filling_station">
 				<poi_type name="fuel" tag="amenity" value="fuel">
 					<poi_additional name="fuel_diesel" tag="fuel:diesel" value="yes"/>
 					<poi_additional name="fuel_lpg" tag="fuel:lpg" value="yes"/>
@@ -189,6 +184,13 @@
 					<poi_additional name="fuel_cng" tag="fuel:cng" value="yes"/>
 				</poi_type>
 				<poi_type name="charging_station" tag="amenity" value="charging_station"/>
+			</poi_filter>
+			<poi_filter name="personal_transport">
+				<poi_type name="car_repair" tag="shop" value="car_repair">
+					<poi_additional name="service_tyres" tag="service" value="tyres"/>
+				</poi_type>
+				<poi_type name="vehicle_inspection" tag="amenity" value="vehicle_inspection"/>
+				<poi_type name="car_wash" tag="amenity" value="car_wash"/>
 				<poi_type name="vehicle_ramp" tag="amenity" value="vehicle_ramp"/>
 				<poi_type name="compressed_air" tag="amenity" value="compressed_air"/>
 				<poi_type name="parking" tag="amenity" value="parking"/>
@@ -251,7 +253,7 @@
 			<poi_type name="motorway_junction" tag="highway" value="motorway_junction"/>
 		</poi_category>
 		<poi_category name="man_made" default_tag="man_made">
-			<poi_filter name="transport_constructions">
+			<poi_filter name="transport_construction">
 				<poi_type name="tunnel" tag="man_made" value="tunnel"/>
 				<poi_type name="bridge" tag="man_made" value="bridge"/>
 			</poi_filter>
@@ -276,7 +278,7 @@
 				<poi_type name="power_plant" tag="power" value="plant"/>
 				<poi_type name="power_generator" tag="power" value="generator"/>
 			</poi_filter>
-			<poi_filter name="communications">
+			<poi_filter name="communication">
 				<poi_type name="post_office" tag="amenity" value="post_office"/>
 				<poi_type name="post_box" tag="amenity" value="post_box"/>
 				<poi_type name="telephone" tag="amenity" value="telephone"/>
@@ -466,7 +468,7 @@
 			<poi_type name="volleyball" tag="sport" value="volleyball"/>
 		</poi_category>
 		<poi_category name="tourism" default_tag="tourism">
-			<poi_filter name="sights">
+			<poi_filter name="sightseeing">
 				<poi_type name="museum" tag="tourism" value="museum"/>
 				<poi_type name="memorial" tag="historic" value="memorial"/>
 				<poi_type name="artwork" tag="tourism" value="artwork"/>
@@ -486,7 +488,7 @@
 				<poi_type name="historic_mine" tag="historic" value="mine"/>
 				<poi_type name="monument" tag="historic" value="monument"/>
 				<poi_type name="viewpoint" tag="tourism" value="viewpoint"/>
-				<poi_reference name="zoo"/>
+				<poi_type name="zoo" tag="tourism" value="zoo"/>
 				<poi_type name="aquarium" tag="tourism" value="aquarium"/>
 				<poi_type name="theme_park" tag="tourism" value="theme_park"/>
 				<poi_type name="lighthouse" tag="man_made" value="lighthouse"/>
@@ -505,7 +507,7 @@
 				<poi_type name="attraction_train" tag="tourism" value="train"/>
 				<poi_type name="attraction_water_slide" tag="tourism" value="water_slide"/>
 			</poi_filter>
-			<poi_filter name="lodging">
+			<poi_filter name="accomodation">
 				<poi_type name="hotel" tag="tourism" value="hotel"/>
 				<poi_type name="guest_house" tag="tourism" value="guest_house"/>
 				<poi_type name="hostel" tag="tourism" value="hostel"/>
@@ -551,7 +553,9 @@
 			<poi_type name="resort" tag="leisure" value="resort"/>
 		</poi_category>
 		<poi_category name="entertainment" default_tag="amenity">
-			<poi_filter name="clubs">
+			<poi_filter name="club">
+				<poi_type name="nightclub" tag="amenity" value="nightclub"/>
+				<poi_type name="stripclub" tag="amenity" value="stripclub"/>
 				<poi_type name="club_art" tag="club" value="art"/>
 				<poi_type name="club_astronomy" tag="club" value="astronomy"/>
 				<poi_type name="club_computer" tag="club" value="computer"/>
@@ -588,9 +592,7 @@
 			</poi_type>
 			<poi_type name="museum" tag="tourism" value="museum"/>
 			<poi_type name="dance_floor" tag="leisure" value="dance"/>
-			<poi_type name="zoo" tag="tourism" value="zoo"/>
-			<poi_type name="nightclub" tag="amenity" value="nightclub"/>
-			<poi_type name="stripclub" tag="amenity" value="stripclub"/>
+			<poi_reference name="zoo"/>
 			<poi_type name="beach_resort" tag="leisure" value="beach_resort"/>
 			<poi_type name="dog_park" tag="leisure" value="dog_park"/>
 			<poi_type name="leisure_fishing" tag="leisure" value="fishing"/>
@@ -607,13 +609,15 @@
 			<poi_type name="theme_park" tag="tourism" value="theme_park"/>
 		</poi_category>
 		<poi_category name="sustenance" default_tag="amenity">
-			<poi_type name="cafe" tag="amenity" value="cafe"/>
-			<poi_type name="biergarten" tag="amenity" value="biergarten"/>
-			<poi_type name="restaurant" tag="amenity" value="restaurant"/>
+			<poi_filter name="cafe_and_restaurant">
+				<poi_type name="cafe" tag="amenity" value="cafe"/>
+				<poi_type name="restaurant" tag="amenity" value="restaurant"/>
+				<poi_type name="food_court" tag="amenity" value="food_court"/>
+			</poi_filter>
 			<poi_type name="fast_food" tag="amenity" value="fast_food"/>
+			<poi_type name="biergarten" tag="amenity" value="biergarten"/>
 			<poi_type name="bar" tag="amenity" value="bar"/>
 			<poi_type name="pub" tag="amenity" value="pub"/>
-			<poi_type name="food_court" tag="amenity" value="food_court"/>
 			<poi_type name="drinking_water" tag="amenity" value="drinking_water"/>
 			<poi_type name="barbecue" tag="amenity" value="bbq"/>
 		</poi_category>
