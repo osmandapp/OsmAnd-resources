@@ -2749,12 +2749,12 @@
 
 		<!-- Buildings -->
 		<switch textHaloRadius="$buildingTextHaloRadiusDay" intersectsWith="building">
-			<switch>
+			<switch minzoom="16">
 				<case tag="military" value="barracks"/>
 				<case tag="military" value="bunker"/>
 				<case tag="abandoned:building" value=""/>
-				<case tag="building" value="" nameTag=""/>
-				<apply_if minzoom="16" maxzoom="17" textSize="13" textMinDistance="40"/>
+				<case tag="building" value="" nameTag="" nameTag2="addr:housenumber"/>
+				<apply_if maxzoom="17" textSize="13" textMinDistance="40"/>
 				<apply_if minzoom="18" textSize="15"/>
 				<apply_if engine_v1="true" textDy="7"/>
 				<apply textColor="#404040" textHaloColor="$buildingTextHaloColorDay" textWrapWidth="20" textOrder="16">
@@ -2762,20 +2762,23 @@
 				</apply>
 			</switch>
 			<switch>
-				<case minzoom="16" tag="addr:housenumber" value="" textColor="#404040" textWrapWidth="25" textOrder="17">
+				<case minzoom="16" tag="addr:housenumber" value="" nameTag="addr:housenumber"/>
+				<case minzoom="16" tag="addr:housenumber" value="" nameTag=""/>
+				<apply>
 					<case maxzoom="16" textSize="13" intersectionSizeFactor="1.6"/>
 					<case maxzoom="17" textSize="14" intersectionSizeFactor="1.4"/>
 					<case minzoom="18" textSize="15" intersectionSizeFactor="1.4"/>
+					<apply textColor="#404040" textWrapWidth="25" textOrder="17"/>
 					<apply_if engine_v1="true" textDy="7"/>
-					<apply engine_v1="false" textOrder="1"/>
-				</case>
+					<apply_if engine_v1="false" textOrder="1"/>
+				</apply>
 				<apply textColor="#404040" textHaloColor="$buildingTextHaloColorDay">
 					<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77666666"/>
 				</apply>
 			</switch>
 			<switch>
-				<case tag="addr:flats" value="" textOrder="18" textColor="#555555">
-					<case minzoom="18" maxzoom="18" nameTag="ref" textSize="12"/>
+				<case minzoom="18" tag="addr:flats" value="" textOrder="18" textColor="#555555">
+					<case maxzoom="18" nameTag="ref" textSize="12"/>
 					<switch minzoom="19" textSize="13">
 						<case nameTag="ref" nameTag2="addr:flats"/>
 						<case nameTag="addr:flats"/>
