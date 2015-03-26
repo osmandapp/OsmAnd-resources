@@ -61,6 +61,11 @@
 		- ! All top level filters should have "tag" and "value" attributes to proper indexing them
 	-->
 
+	<!-- <order>
+		ignorePolygonArea - process polygon even if it is filtered by area
+		ignorePolygonAsPointArea - process polygon as point (center) even if it is filtered by area
+	-->
+
 	<!-- renderingProperty Types : string, int, boolean; possibleValues comma separated possible values for int/string -->
 	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/> <!-- linked to profiles -->
@@ -954,10 +959,18 @@
 	<renderingConstant name="railwayRailColorDay" value="#999999"/>
 	<renderingConstant name="railwayRailColorNight" value="#999999"/>
 	<renderingAttribute name="litYesColor">
+		<case engine_v1="false">
+			<case nightMode="true" attrColorValue="#55aeae00"/>
+			<case attrColorValue="#66ffea00"/>
+		</case>
 		<case nightMode="true" attrColorValue="#99aeae00"/>
 		<case attrColorValue="#99ffea00"/>
 	</renderingAttribute>
 	<renderingAttribute name="litNoColor">
+		<case engine_v1="false">
+			<case nightMode="true" attrColorValue="#44d91500"/>
+			<case attrColorValue="#88d91500"/>
+		</case>
 		<case nightMode="true" attrColorValue="#66d91500"/>
 		<case attrColorValue="#aad91500"/>
 	</renderingAttribute>
@@ -1413,7 +1426,7 @@
 				<case tag="abandoned:aeroway" value="runway"/>
 				<case tag="aeroway" value="runway"/>
 				<case tag="abandoned:aeroway" value="aerodrome"/>
-				<case tag="aeroway" value="aerodrome"/>
+				<case tag="aeroway" value="aerodrome" ignorePolygonArea="true"/>
 				<case tag="aeroway" value="apron"/>
 				<case tag="aeroway" value="terminal"/>
 				<case tag="aeroway" value="helipad"/>
@@ -2406,8 +2419,8 @@
 		<!-- Cycling: texts for the cycle networks -->
 		<switch showCycleRoutes="true" minzoom="10">
 			<!-- routes -->
-			<case tag="route" value="bicycle" nameTag2="bicycle_ref" textOrder="7"/>
-			<case tag="route" value="mtb" nameTag2="mtb_ref" textOrder="7"/>
+			<case tag="route" value="bicycle" nameTag="bicycle_ref" nameTag2="bicycle_name" textOrder="1"/>
+			<case tag="route" value="mtb" nameTag="mtb_ref" nameTag2="mtb_name" textOrder="1"/>
 			<case tag="lcn_ref" value="" textOrder="9"/>
 			<case tag="rcn_ref" value="" textOrder="8"/>
 			<case tag="ncn_ref" value="" textOrder="7"/>
@@ -2744,12 +2757,12 @@
 
 		<!-- Buildings -->
 		<switch textHaloRadius="$buildingTextHaloRadiusDay" intersectsWith="building">
-			<switch>
+			<switch minzoom="16">
 				<case tag="military" value="barracks"/>
 				<case tag="military" value="bunker"/>
 				<case tag="abandoned:building" value=""/>
-				<case tag="building" value="" nameTag=""/>
-				<apply_if minzoom="16" maxzoom="17" textSize="13" textMinDistance="40"/>
+				<case tag="building" value="" nameTag="" nameTag2="addr:housenumber"/>
+				<apply_if maxzoom="17" textSize="13" textMinDistance="40"/>
 				<apply_if minzoom="18" textSize="15"/>
 				<apply_if engine_v1="true" textDy="7"/>
 				<apply textColor="#404040" textHaloColor="$buildingTextHaloColorDay" textWrapWidth="20" textOrder="16">
@@ -2757,20 +2770,23 @@
 				</apply>
 			</switch>
 			<switch>
-				<case minzoom="16" tag="addr:housenumber" value="" textColor="#404040" textWrapWidth="25" textOrder="17">
+				<case minzoom="16" tag="addr:housenumber" value="" nameTag="addr:housenumber"/>
+				<case minzoom="16" tag="addr:housenumber" value="" nameTag=""/>
+				<apply>
 					<case maxzoom="16" textSize="13" intersectionSizeFactor="1.6"/>
 					<case maxzoom="17" textSize="14" intersectionSizeFactor="1.4"/>
 					<case minzoom="18" textSize="15" intersectionSizeFactor="1.4"/>
+					<apply textColor="#404040" textWrapWidth="25" textOrder="17"/>
 					<apply_if engine_v1="true" textDy="7"/>
-					<apply engine_v1="false" textOrder="1"/>
-				</case>
+					<apply_if engine_v1="false" textOrder="1"/>
+				</apply>
 				<apply textColor="#404040" textHaloColor="$buildingTextHaloColorDay">
 					<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77666666"/>
 				</apply>
 			</switch>
 			<switch>
-				<case tag="addr:flats" value="" textOrder="18" textColor="#555555">
-					<case minzoom="18" maxzoom="18" nameTag="ref" textSize="12"/>
+				<case minzoom="18" tag="addr:flats" value="" textOrder="18" textColor="#555555">
+					<case maxzoom="18" nameTag="ref" textSize="12"/>
 					<switch minzoom="19" textSize="13">
 						<case nameTag="ref" nameTag2="addr:flats"/>
 						<case nameTag="addr:flats"/>
