@@ -1431,6 +1431,7 @@
 				<case tag="aeroway" value="terminal"/>
 				<case tag="aeroway" value="helipad"/>
 			</switch>
+			<case tag="addr:interpolation" value=""/>
 			<case tag="hazard" value="" order="128"/>
 			<case tag="fixme_tag" value="yes" order="128"/>
 			<case tag="note_tag" value="yes"/>
@@ -1903,7 +1904,7 @@
 					<case subwayMode="true"/>
 					<case publicTransportMode="true"/>
 					<case tramTrainRoutes="true"/>
-					<apply textHaloColor="$primaryRoadLowZoomColor" intersectsWith="transport" textOrder="128"/>
+					<apply textHaloColor="$primaryRoadLowZoomColor" textOrder="128"/>
 				</switch>
 			</apply>
 			<apply_if minzoom="13">
@@ -1931,9 +1932,9 @@
 			<apply_if nightMode="true" textBold="true"/>
 		</switch>
 
-		<switch intersectsWith="transport">
+		<switch>
 			<switch>
-				<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" textOrder="9">
+				<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" textOrder="8">
 					<case tag="highway" value="road"/>
 					<case tag="area:highway" value="road"/>
 					<case tag="highway" value="unclassified"/>
@@ -1968,7 +1969,7 @@
 			</switch>
 			<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay">
 				<case tag="highway" value="pedestrian" textOrder="11"/>
-				<case tag="area:highway" value="pedestrian" textOrder="100"/>
+				<case tag="area:highway" value="pedestrian" textOrder="4"/>
 				<apply textColor="#000000">
 					<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 				</apply>
@@ -2008,7 +2009,7 @@
 				<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 			</apply_if>
 		</switch>
-		<switch minzoom="15" textOrder="15" nameTag="" intersectsWith="building">
+		<switch minzoom="15" textOrder="15" nameTag="">
 			<case tag="highway" value="footway"/>
 			<case tag="area:highway" value="footway"/>
 			<apply>
@@ -2363,7 +2364,7 @@
 		</switch>
 
 		<!-- Emergency and Health -->
-		<switch textSize="12" textColor="#da0092" textHaloRadius="$textHaloRadiusDay" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="25" intersectsWith="building">
+		<switch textSize="12" textColor="#da0092" textHaloRadius="$textHaloRadiusDay" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="25">
 			<case minzoom="17" tag="amenity" value="police"/>
 			<case minzoom="16" tag="amenity" value="fire_station"/>
 
@@ -2379,7 +2380,7 @@
 		</switch>
 
 		<!-- Traffic, transportation and orientation -->
-		<switch subwayMode="false" textSize="12" textColor="#0066ff" textHaloRadius="$textHaloRadiusDay" textHaloColor="$defaultTextHaloColorDay" intersectsWith="building">
+		<switch subwayMode="false" textSize="12" textColor="#0066ff" textHaloRadius="$textHaloRadiusDay" textHaloColor="$defaultTextHaloColorDay">
 			<case minzoom="17" tag="amenity" value="fuel" nameTag="" textWrapWidth="20"/>
 			<case minzoom="17" tag="amenity" value="fuel" nameTag="brand" textWrapWidth="20"/>
 			<case minzoom="17" tag="amenity" value="charging_station" textWrapWidth="20"/>
@@ -2448,20 +2449,16 @@
 		<!-- Railroad, public transport -->
 		<switch textColor="$railwayPOITextColorDay" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textBold="true" nameTag="">
 			<switch minzoom="14" maxzoom="15" textSize="12" textColor="$publicTransportModeStopTextColor" textHaloColor="$publicTransportModeStopTextHaloColor" textOrder="1">
-				<switch tag="public_transport" value="platform" textOnPath="true">
-					<case publicTransportMode="true"/>
-					<case tramTrainRoutes="true"/>
-				</switch>
+				<case publicTransportMode="true" tag="public_transport" value="platform" textOnPath="true"/>
+				<case tramTrainRoutes="true" tag="public_transport" value="platform" textOnPath="true"/>
 				<case publicTransportMode="true" tag="amenity" value="bus_station"/>
 				<case publicTransportMode="true" tag="highway" value="bus_stop"/>
 				<case tramTrainRoutes="true" tag="railway" value="tram_stop"/>
 				<apply_if nightMode="true" textColor="$publicTransportModeStopTextColorNight" textHaloRadius="$textHaloRadiusNight" textHaloColor="$publicTransportModeStopTextHaloColorNight"/>
 			</switch>
 			<switch minzoom="16" textSize="13"> <!-- When public transport is selected -->
-				<switch tag="public_transport" value="platform" textOrder="1">
-					<apply_if publicTransportMode="true" textOnPath="true"/>
-					<apply_if tramTrainRoutes="true" textOnPath="true"/>
-				</switch>
+				<case publicTransportMode="true" tag="public_transport" value="platform" textOnPath="true" textOrder="1"/>
+				<case tramTrainRoutes="true" tag="public_transport" value="platform" textOnPath="true" textOrder="1"/>
 				<case publicTransportMode="true" tag="amenity" value="bus_station" textOrder="10"/>
 				<case publicTransportMode="true" tag="highway" value="bus_stop" textOrder="1"/>
 				<case tramTrainRoutes="true" tag="railway" value="tram_stop" textOrder="1"/>
@@ -2489,7 +2486,7 @@
 				<switch>
 					<case publicTransportMode="true"/>
 					<case tramTrainRoutes="true"/>
-					<apply intersectsWith="transport_stops"/>
+					<apply intersectsWith="transport"/>
 				</switch>
 			</apply>
 		</switch>
@@ -2547,7 +2544,7 @@
 			</apply_if>
 		</switch>
 		<switch>
-			<case minzoom="17" tag="railway" value="subway_entrance" nameTag="" textSize="13" textColor="#0000ff" textHaloColor="#ffffff" textHaloRadius="$textHaloRadiusDay" textBold="true" textOrder="1"/>
+			<case minzoom="17" tag="railway" value="subway_entrance" nameTag="" textSize="13" textColor="#0000ff" textHaloColor="#ffffff" textHaloRadius="$textHaloRadiusDay" textBold="true" textOrder="6"/>
 			<apply_if engine_v1="true" textDy="8"/>
 			<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#bbe4ff" textHaloColor="#bb4563a7"/>
 		</switch>
@@ -2592,7 +2589,7 @@
 		</switch>
 
 		<!-- Accommodation -->
-		<switch textSize="12" textColor="$accomodationTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$accomodationTextHaloColorDay" textWrapWidth="25" intersectsWith="building">
+		<switch textSize="12" textColor="$accomodationTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$accomodationTextHaloColorDay" textWrapWidth="25">
 			<switch>
 				<case minzoom="16" tag="tourism" value="camp_site"/>
 				<case minzoom="16" tag="tourism" value="caravan_site"/>
@@ -2615,7 +2612,7 @@
 		</switch>
 
 		<!-- Tourism and Entertainment -->
-		<switch textColor="$tourismAttractionTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$tourismAttractionTextHaloColorDay" textWrapWidth="20" textBold="true" textOrder="10" intersectsWith="building">
+		<switch textColor="$tourismAttractionTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$tourismAttractionTextHaloColorDay" textWrapWidth="20" textBold="true" textOrder="10">
 			<case minzoom="16" tag="historic" value="city_gate" textSize="12"/>
 			<case minzoom="15" tag="tourism" value="attraction" textSize="13" nameTag=""/>
 			<case minzoom="16" tag="attraction" value="big_wheel" textSize="12"/>
@@ -2623,7 +2620,7 @@
 			<apply_if engine_v1="true" textDy="9"/>
 			<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="$tourismAttractionTextColorNight" textHaloColor="#88641500"/>
 		</switch>
-		<switch textSize="12" textColor="$tourismTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$tourismTextHaloColorDay" textWrapWidth="20" intersectsWith="building">
+		<switch textSize="12" textColor="$tourismTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$tourismTextHaloColorDay" textWrapWidth="20">
 			<case minzoom="18" tag="tourism" value="artwork"/>
 			<case minzoom="17" tag="tourism" value="picnic_site"/>
 			<case minzoom="17" tag="tourism" value="museum"/>
@@ -2661,7 +2658,7 @@
 		</switch>
 	
 		<!-- Historic -->
-		<switch textSize="12" textColor="$historicTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$historicTextHaloColorDay" textWrapWidth="20" intersectsWith="building">
+		<switch textSize="12" textColor="$historicTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$historicTextHaloColorDay" textWrapWidth="20">
 			<switch>
 				<case minzoom="16" tag="historic" value="castle"/>
 				<case minzoom="18" tag="historic" value="cannon"/>
@@ -2690,7 +2687,7 @@
 		</switch>
 
 		<!-- Other Amenities -->
-		<switch textSize="12" textColor="$otherAmenitiesTextColorDay" textHaloColor="$otherAmenitiesTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20" intersectsWith="building">
+		<switch textSize="12" textColor="$otherAmenitiesTextColorDay" textHaloColor="$otherAmenitiesTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20">
 			<case minzoom="17" tag="amenity" value="prison"/>
 			<case minzoom="16" tag="amenity" value="place_of_worship"/>
 
@@ -2759,7 +2756,7 @@
 		</switch>
 
 		<!-- Buildings -->
-		<switch textHaloRadius="$buildingTextHaloRadiusDay" intersectsWith="building">
+		<switch textHaloRadius="$buildingTextHaloRadiusDay">
 			<switch minzoom="16">
 				<case tag="military" value="barracks"/>
 				<case tag="military" value="bunker"/>
@@ -2781,7 +2778,6 @@
 					<case minzoom="18" textSize="15" intersectionSizeFactor="1.4"/>
 					<apply textColor="#404040" textWrapWidth="25" textOrder="17"/>
 					<apply_if engine_v1="true" textDy="7"/>
-					<apply_if engine_v1="false" textOrder="1"/>
 				</apply>
 				<apply textColor="#404040" textHaloColor="$buildingTextHaloColorDay">
 					<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77666666"/>
@@ -2809,10 +2805,11 @@
 					<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77444444"/>
 				</apply>
 			</switch>
+<!--			<apply textOrder="111"/>-->
 		</switch>
 
 		<!-- Food and Drink -->
-		<switch textSize="12" textColor="$foodTextColorDay" textHaloColor="$foodTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20" intersectsWith="building">
+		<switch textSize="12" textColor="$foodTextColorDay" textHaloColor="$foodTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20">
 			<case minzoom="17" tag="amenity" value="restaurant"/>
 			<case minzoom="17" tag="amenity" value="cafe"/>
 			<case minzoom="17" tag="amenity" value="fast_food"/>
@@ -2828,7 +2825,7 @@
 		</switch>
 
 		<!-- Shops -->
-		<switch textSize="12" textColor="$shopsTextColorDay" textHaloColor="$shopsTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textWrapWidth="15" intersectsWith="building">
+		<switch textSize="12" textColor="$shopsTextColorDay" textHaloColor="$shopsTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textWrapWidth="15">
 			<case minzoom="17" tag="shop" value="alcohol"/>
 			<case minzoom="17" tag="shop" value="baby_goods"/>
 			<case minzoom="17" tag="shop" value="bakery"/>
@@ -3338,7 +3335,7 @@
 					<apply_if moreDetailed="false" iconVisibleSize="13"/>
 				</apply>
 			</switch>
-			<apply maxzoom="17" iconVisibleSize="7">
+			<apply maxzoom="17" iconVisibleSize="9">
 				<apply_if moreDetailed="false" iconVisibleSize="12"/>
 			</apply>
 		</switch>
