@@ -1515,6 +1515,7 @@
 			<case tag="waterway" value="" order="18">
 				<apply_if layer="1" order="68"/>
 				<apply_if layer="-1" appMode="car" order="-1"/>
+				<apply_if maxzoom="15" layer="-1" appMode="bicycle" order="-1"/>
 			</case>
 			<case tag="attraction" value="water_slide"/>
 			<case tag="attraction" value="roller_coaster"/>
@@ -6021,8 +6022,21 @@
 				<apply_if minzoom="18" strokeWidth="2:2"/>
 			</switch>
 			<switch minzoom="5">
-				<case tag="waterway" value="river"/>
-				<case tag="waterway" value="canal"/>
+				<case tag="waterway" value="river">
+					<apply minzoom="13" pathIcon="arrow_blue_big_night">
+						<case maxzoom="13" pathIconStep="130"/>
+						<case maxzoom="14" pathIconStep="140"/>
+						<case minzoom="15" pathIconStep="150"/>
+						<apply_if additional="intermittent=yes" pathIconStep="190"/>
+						<apply_if nightMode="true" pathIcon="arrow_blue_big"/>
+					</apply>
+				</case>
+				<case tag="waterway" value="canal">
+					<apply minzoom="15" pathIcon="arrow_blue_big_night" pathIconStep="150">
+						<apply_if additional="intermittent=yes" pathIconStep="190"/>
+						<apply_if nightMode="true" pathIcon="arrow_blue_big"/>
+					</apply>
+				</case>
 				<apply>
 					<case maxzoom="9" strokeWidth="0.6"/>
 					<case maxzoom="12" strokeWidth="1:1"/>
