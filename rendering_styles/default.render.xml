@@ -2207,7 +2207,7 @@
 				<case minzoom="13" tag="place" value="isolated_dwelling" textSize="13" textOrder="13"/>
 				<case minzoom="$placeSuburbMinZoom" tag="place" value="suburb" textSize="14" textOrder="12"/>
 				<case minzoom="$placeNeighbourhoodMinZoom" tag="place" value="neighbourhood" textSize="13" textOrder="13"/>
-				<case minzoom="14" tag="place" value="quarter" textSize="13" textOrder="13"/>
+				<case minzoom="17" tag="place" value="quarter" textSize="13" textOrder="13"/>
 				<case minzoom="$placeLocalityMinZoom" tag="place" value="locality" textSize="13" textOrder="15"/>
 				<case minzoom="11" tag="place" value="island" textSize="14" textOrder="10"/>
 				<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
@@ -2688,7 +2688,7 @@
 			</switch>
 
 			<!-- Other Amenities -->
-			<switch textSize="12" textColor="$otherAmenitiesTextColorDay" textHaloColor="$otherAmenitiesTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20">
+			<switch textSize="12" textColor="$otherAmenitiesTextColorDay" textHaloColor="$otherAmenitiesTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20" textOrder="68">
 				<case minzoom="17" tag="amenity" value="prison"/>
 				<case minzoom="16" tag="amenity" value="place_of_worship"/>
 
@@ -2770,14 +2770,14 @@
 						<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77666666"/>
 					</apply>
 				</switch>
-				<switch>
+				<switch intersectsWith="any">
 					<case minzoom="16" tag="addr:housenumber" value="" nameTag="addr:housenumber"/>
 					<case minzoom="16" tag="addr:housenumber" value="" nameTag=""/>
 					<apply>
 						<case maxzoom="16" textSize="13" intersectionSizeFactor="1.6"/>
 						<case maxzoom="17" textSize="14" intersectionSizeFactor="1.4"/>
 						<case minzoom="18" textSize="15" intersectionSizeFactor="1.4"/>
-						<apply textColor="#404040" textWrapWidth="25" textOrder="17"/>
+						<apply textColor="#404040" textWrapWidth="25" textOrder="13"/>
 						<apply_if engine_v1="true" textDy="7"/>
 					</apply>
 					<apply textColor="#404040" textHaloColor="$buildingTextHaloColorDay">
@@ -2810,7 +2810,7 @@
 			</switch>
 
 			<!-- Food and Drink -->
-			<switch textSize="12" textColor="$foodTextColorDay" textHaloColor="$foodTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20">
+			<switch textSize="12" textColor="$foodTextColorDay" textHaloColor="$foodTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20" textOrder="69">
 				<case minzoom="17" tag="amenity" value="restaurant"/>
 				<case minzoom="17" tag="amenity" value="cafe"/>
 				<case minzoom="17" tag="amenity" value="fast_food"/>
@@ -2826,7 +2826,7 @@
 			</switch>
 
 			<!-- Shops -->
-			<switch textSize="12" textColor="$shopsTextColorDay" textHaloColor="$shopsTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textWrapWidth="15">
+			<switch textSize="12" textColor="$shopsTextColorDay" textHaloColor="$shopsTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textWrapWidth="15" textOrder="70">
 				<case minzoom="17" tag="shop" value="alcohol"/>
 				<case minzoom="17" tag="shop" value="baby_goods"/>
 				<case minzoom="17" tag="shop" value="bakery"/>
@@ -3015,7 +3015,7 @@
 			<case minzoom="16" tag="historic" value="city_gate" textSize="12"/>
 			<case minzoom="15" tag="tourism" value="attraction" textSize="13" nameTag=""/>
 			<case minzoom="16" tag="attraction" value="big_wheel" textSize="12"/>
-			<case minzoom="16" tag="special_poi" value="" textSize="12"/>
+			<case minzoom="14" tag="special_poi" value="" textSize="12"/>
 			<apply_if engine_v1="true" textDy="9"/>
 			<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="$tourismAttractionTextColorNight" textHaloColor="#88641500"/>
 		</switch>
@@ -3398,7 +3398,10 @@
 				<case tag="abandoned:building" value=""/>
 				<case tag="building" value="collapsed"/>
 			</switch>
-			<apply icon="landuse_abandoned" shield="abandoned_shield" iconOrder="128"/>
+			<apply icon="landuse_abandoned" shield="abandoned_shield" iconOrder="128">
+				<apply_if maxzoom="17" iconVisibleSize="23" intersectionSizeFactor="1.6"/>
+				<apply_if minzoom="18" maxzoom="18" iconVisibleSize="25" intersectionSizeFactor="1.7"/>
+			</apply>
 		</switch>
 
 		<!-- Emergency + Health  -->
@@ -3859,17 +3862,6 @@
 			<apply_if nightMode="true" shield=""/>
 		</case>
 		<switch shield="white_brown_square_shield">
-			<switch iconOrder="128">
-				<case minzoom="15" tag="special_poi" value="big_ben" icon="special_poi_big_ben"/>
-				<case minzoom="15" tag="special_poi" value="brandenburg_gate" icon="special_poi_brandenburg_gate"/>
-				<case minzoom="15" tag="special_poi" value="chichen_itza" icon="special_poi_chichen_itza"/>
-				<case minzoom="15" tag="special_poi" value="colosseum" icon="special_poi_colosseum"/>
-				<case minzoom="15" tag="special_poi" value="eiffel_tower" icon="special_poi_eiffel_tower"/>
-				<case minzoom="15" tag="special_poi" value="sagrada_familia" icon="special_poi_sagrada_familia"/>
-				<case minzoom="15" tag="special_poi" value="statue_of_liberty" icon="special_poi_statue_of_liberty"/>
-				<case minzoom="15" tag="special_poi" value="taj_mahal" icon="special_poi_taj_mahal"/>
-				<case minzoom="15" tag="special_poi" value="us_capitol" icon="special_poi_us_capitol"/>
-			</switch>
 			<switch iconOrder="70" iconVisibleSize="16">
 				<case minzoom="18" tag="tourism" value="artwork" icon="tourism_artwork" iconOrder="100"/>
 				<case minzoom="16" tag="tourism" value="museum" icon="tourism_museum"/>
@@ -4101,6 +4093,18 @@
 		<case minzoom="17" tag="landuse" value="landfill" icon="landuse_landfill" shield="landfill_shield" iconOrder="100" iconVisibleSize="20" intersectionSizeFactor="1.3">
 			<apply_if nightMode="true" shield=""/>
 		</case>
+		<switch shield="white_brown_square_shield" iconOrder="1">
+			<case minzoom="14" tag="special_poi" value="big_ben" icon="special_poi_big_ben"/>
+			<case minzoom="14" tag="special_poi" value="brandenburg_gate" icon="special_poi_brandenburg_gate"/>
+			<case minzoom="14" tag="special_poi" value="chichen_itza" icon="special_poi_chichen_itza"/>
+			<case minzoom="14" tag="special_poi" value="colosseum" icon="special_poi_colosseum"/>
+			<case minzoom="14" tag="special_poi" value="eiffel_tower" icon="special_poi_eiffel_tower"/>
+			<case minzoom="14" tag="special_poi" value="sagrada_familia" icon="special_poi_sagrada_familia"/>
+			<case minzoom="14" tag="special_poi" value="statue_of_liberty" icon="special_poi_statue_of_liberty"/>
+			<case minzoom="14" tag="special_poi" value="taj_mahal" icon="special_poi_taj_mahal"/>
+			<case minzoom="14" tag="special_poi" value="us_capitol" icon="special_poi_us_capitol"/>
+			<apply_if nightMode="true" shield="gray_brown_square_shield"/>
+		</switch>
 
 		<switch iconOrder="71">
 			<case minzoom="16" tag="building" value="tower" icon="man_made_tower" shield="tower_shield"/>
