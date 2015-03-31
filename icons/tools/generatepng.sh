@@ -8,9 +8,9 @@ BASEFOLDER=`dirname $BASEFOLDER`
 
 FOLDERS=(big-xxhdpi big-xhdpi big-hdpi big-mdpi xxhdpi xhdpi hdpi mdpi)
 FOLDERS_NOMX=(xxhdpi xhdpi hdpi mdpi) # no icons used in osmand interface (search, poi overlay)
-SIZES=(64 48 32 24 48 32 24 16)
-SIZESx2=(64 48 32 24 96 64 48 32)
-SIZESx4=(64 48 32 24 192 128 96 64)
+SIZES=(96 64 48 32 48 32 24 16)
+SIZESx2=(96 64 48 32 96 64 48 32)
+SIZESx4=(96 64 48 32 192 128 96 64)
 
 FOLDERS_ORIG=("${FOLDERS[@]}")
 SIZES_ORIG=("${SIZES[@]}")
