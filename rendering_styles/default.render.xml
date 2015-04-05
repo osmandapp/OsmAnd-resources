@@ -1705,6 +1705,8 @@
 			<case tag="aeroway" value="runway"/>
 			<case tag="aeroway" value="" order="32"/>
 			<case tag="contour" value="" order="15"/>
+			
+			<case appMode="car" maxzoom="17" tag="barrier" value="hedge" order="-1"/>
 
 			<case tag="barrier" value="" order="20">
 				<apply_if appMode="car" layer="-1" order="-1"/>
@@ -2007,7 +2009,7 @@
 						<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 					</apply>
 				</switch>
-				<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay">
+				<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" intersectionMargin="20">
 					<case tag="highway" value="pedestrian" textOrder="11"/>
 					<case tag="area:highway" value="pedestrian" textOrder="4"/>
 					<apply textColor="#000000">
@@ -2808,7 +2810,9 @@
 					<case minzoom="16" tag="addr:housenumber" value="" nameTag="addr:housenumber"/>
 					<case minzoom="16" tag="addr:housenumber" value="" nameTag=""/>
 					<apply>
-						<case maxzoom="16" textSize="13" intersectionSizeFactor="1.6"/>
+						<case maxzoom="16" textSize="13" intersectionSizeFactor="1.6">
+							<apply_if appMode="car" intersectionSizeFactor="2.5"/>
+						</case>
 						<case maxzoom="17" textSize="14" intersectionSizeFactor="1.4"/>
 						<case minzoom="18" textSize="15" intersectionSizeFactor="1.4"/>
 						<apply textColor="#404040" textWrapWidth="25" textOrder="13"/>
@@ -3066,16 +3070,16 @@
 			<case minzoom="16" tag="emergency" value="phone" icon="emergency_phone" shield="white_red_square_shield">
 				<apply_if nightMode="true" shield="gray_red_square_shield"/>
 			</case>
-			<case minzoom="16" tag="highway" value="traffic_signals" icon="highway_traffic_signals" iconVisibleSize="2" shield="traffic_signals_shield"/>
+			<case moreDetailed="true" minzoom="16" tag="highway" value="traffic_signals" icon="highway_traffic_signals" iconVisibleSize="8" shield="traffic_signals_shield"/>
 			<case minzoom="15" tag="highway" value="mini_roundabout" icon="highway_mini_roundabout" shield="miniroundabout_anticlockwise_shield">
 				<apply_if nightMode="true" shield=""/>
 			</case>
-			<case minzoom="16" tag="noexit" value="yes" icon="highway_noexit" iconVisibleSize="12"/>
+			<case moreDetailed="true" minzoom="16" tag="noexit" value="yes" icon="highway_noexit" iconVisibleSize="12"/>
 			<case minzoom="14" tag="highway" value="ford" icon="highway_ford" shield="highway_ford_shield" iconVisibleSize="10">
 				<apply_if nightMode="true" shield=""/>
 			</case>
 			<case minzoom="16" tag="highway" value="passing_place" icon="highway_passing_place"/>
-			<case minzoom="16" tag="highway" value="crossing" icon="highway_crossing" iconVisibleSize="8" icon__1="highway_crossing_bg">
+			<case moreDetailed="true" minzoom="16" tag="highway" value="crossing" icon="highway_crossing" icon__1="highway_crossing_bg" iconVisibleSize="18" intersectionSizeFactor="1.2">
 				<case additional="crossing=uncontrolled" icon_2="highway_crossing_uncontrolled"/>
 				<case additional="crossing=traffic_signals" icon_2="highway_crossing_traffic_signals"/>
 				<apply_if streetLighting="true">
@@ -3123,7 +3127,7 @@
 				<case minzoom="15" tag="highway" value="speed_camera" icon="highway_speed_camera"/>
 				<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 			</switch>
-			<switch minzoom="16">
+			<switch moreDetailed="true" minzoom="16">
 				<case tag="barrier" value="block" icon="barrier_block" shield="barrier_block_shield"/>
 				<case tag="barrier" value="bollard" icon="barrier_bollard" shield="barrier_bollard_shield"/>
 				<case tag="barrier" value="bus_trap" icon="barrier_bus_trap" shield="barrier_bus_trap_shield"/>
@@ -3365,7 +3369,7 @@
 			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 		</switch>
 		<switch tag="natural" value="tree">
-			<case minzoom="16" maxzoom="17" icon="natural_tree"/>
+			<case minzoom="17" maxzoom="17" icon="natural_tree"/>
 			<switch minzoom="18">
 				<case additional="leaf_type=broadleaved" icon="natural_tree_broadleaved"/>
 				<case additional="leaf_type=needleleaved" icon="natural_tree_needleleaved"/>
@@ -3957,7 +3961,7 @@
 		<case minzoom="16" tag="leisure" value="horse_riding" icon="sport_horse_racing" shield="white_gray_square_shield">
 			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
 		</case>
-		<case minzoom="16" tag="leisure" value="playground" icon="leisure_playground" iconOrder="75" iconVisibleSize="40" intersectionSizeFactor="2.5"/>
+		<case minzoom="17" tag="leisure" value="playground" icon="leisure_playground" iconOrder="75" iconVisibleSize="40" intersectionSizeFactor="2.5"/>
 		<switch iconOrder="75" shield="white_green_square_shield" iconVisibleSize="40" intersectionSizeFactor="2.5">
 			<case minzoom="15" tag="leisure" value="stadium" icon="sport_stadium" iconOrder="70"/>
 			<case minzoom="15" tag="sport" value="horse_racing" icon="sport_horse_racing"/>
@@ -5966,13 +5970,9 @@
 			<apply_if nightMode="true" color="#99111111" color__1="#66ffffff"/>
 		</case>
 
-		<switch minzoom="16">
-			<case tag="barrier" value="hedge"/>
-			<case tag="natural" value="hedge"/>
-			<apply color="#aed1a0" strokeWidth="1.5:1.5">
-				<apply_if nightMode="true" color="#285926"/>
-			</apply>
-		</switch>
+		<case minzoom="16" tag="barrier" value="hedge" color="#aed1a0" strokeWidth="1.5:1.5">
+			<apply_if nightMode="true" color="#285926"/>
+		</case>
 
 		<case minzoom="16" tag="barrier" value="ditch" color="#768c8c" strokeWidth="1:1">
 			<apply_if nightMode="true" color="#5f6767"/>
@@ -6483,11 +6483,10 @@
 			<apply_if nightMode="true" color="#004333" color_2="$null"/>
 		</case>
 
-		<case noPolygons="false" minzoom="14" tag="natural" value="tree_row" color="$woodColor" cap="ROUND">
-			<case moreDetailed="true" maxzoom="14" strokeWidth="1:1" pathEffect="1_4"/>
-			<case maxzoom="15" strokeWidth="1.3:1.3" pathEffect="1_6"/>
-			<case maxzoom="16" strokeWidth="1.7:1.7" pathEffect="1_8"/>
-			<case maxzoom="17" strokeWidth="2.2:2.2" pathEffect="1_10"/>
+		<case noPolygons="false" minzoom="15" tag="natural" value="tree_row" color="$woodColor" cap="ROUND">
+			<case moreDetailed="true" maxzoom="15" strokeWidth="1.3:1.3" pathEffect="1_6"/>
+			<case moreDetailed="true" minzoom="16" maxzoom="16" strokeWidth="1.7:1.7" pathEffect="1_8"/>
+			<case minzoom="17" maxzoom="17" strokeWidth="2.2:2.2" pathEffect="1_10"/>
 			<case minzoom="18" strokeWidth="2.8:2.8" pathEffect="1_15"/>
 		</case>
 
