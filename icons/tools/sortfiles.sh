@@ -121,6 +121,8 @@ mycp fixme_tag yes overlays_fixme.png
 mycp fixme_tag_lowzoom yes overlays_fixme_dot.png
 mycp fixme_tag_lowzoom2 yes overlays_fixme_dot_2.png
 mycp note_tag yes overlays_note.png
+mycp drinking_water yes overlays_drinking_water_yes.png
+mycp drinking_water no overlays_drinking_water_no.png
 
 mygroup healthcare health_pharmacy.png
 mycp amenity dentist health_dentist.png
@@ -1174,11 +1176,11 @@ mycp skimap overlay_extreme skimap_overlay_extreme.png
 mycp skimap overlay_freeride skimap_overlay_freeride.png
 mycp skimap overlay_intermediate skimap_overlay_intermediate.png
 mycp skimap overlay_novice skimap_overlay_novice.png
-mycp piste_type downhill skimap_piste_downhill.png
-mycp piste_type hike skimap_piste_hike.png
-mycp piste_type nordic skimap_piste_nordic.png
-mycp piste_type skitour skimap_piste_skitour.png
-mycp piste_type sled skimap_piste_sled.png
+mycp piste downhill skimap_piste_downhill.png
+mycp piste hike skimap_piste_hike.png
+mycp piste nordic skimap_piste_nordic.png
+mycp piste skitour skimap_piste_skitour.png
+mycp piste sled skimap_piste_sled.png
 mycp skimap gray_black_round_shield skimap_gray_black_round_shield.png
 mycp skimap white_black_round_shield skimap_white_black_round_shield.png
 
