@@ -3203,6 +3203,8 @@
 			<switch shield="white_gray_square_shield">
 				<case minzoom="16" tag="man_made" value="water_well" icon="man_made_water_well"/>
 				<case minzoom="16" tag="amenity" value="drinking_water" icon="amenity_drinking_water"/>
+				<apply_if additional="drinking_water=yes" icon_2="drinking_water_yes"/>
+				<apply_if additional="drinking_water=no" icon_2="drinking_water_no"/>
 				<apply_if nightMode="true" shield="gray_gray_square_shield"/>
 			</switch>
 			<case minzoom="14" tag="tourism" value="picnic_site" icon="tourism_picnic_site" shield="picnic_shield">
@@ -3304,20 +3306,24 @@
 				</case>
 				<case minzoom="16" tag="geocache" value="found" icon="geocache_found"/>
 				<case minzoom="16" tag="geocache" value="" icon="geocache_not_found"/>
-				<switch shield="white_gray_square_shield">
-					<case minzoom="16" tag="amenity" value="drinking_water" icon="amenity_drinking_water"/>
-					<case minzoom="15" tag="man_made" value="water_well" icon="man_made_water_well"/>
-					<apply_if nightMode="true" shield="gray_gray_square_shield"/>
+				<switch>
+					<switch shield="white_gray_square_shield">
+						<case minzoom="16" tag="amenity" value="drinking_water" icon="amenity_drinking_water"/>
+						<case minzoom="15" tag="man_made" value="water_well" icon="man_made_water_well"/>
+						<apply_if nightMode="true" shield="gray_gray_square_shield"/>
+					</switch>
+					<case minzoom="14" tag="natural" value="spring" icon="natural_spring" shield="white_blue_square_shield">
+						<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+					</case>
+					<case minzoom="14" tag="natural" value="hot_spring" icon="natural_hot_spring" shield="white_blue_square_shield">
+						<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+					</case>
+					<case minzoom="14" tag="natural" value="geyser" icon="natural_geyser" shield="white_blue_square_shield">
+						<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+					</case>
+					<apply_if additional="drinking_water=yes" icon_2="drinking_water_yes"/>
+					<apply_if additional="drinking_water=no" icon_2="drinking_water_no"/>
 				</switch>
-				<case minzoom="14" tag="natural" value="spring" icon="natural_spring" shield="white_blue_square_shield">
-					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-				</case>
-				<case minzoom="14" tag="natural" value="hot_spring" icon="natural_hot_spring" shield="white_blue_square_shield">
-					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-				</case>
-				<case minzoom="14" tag="natural" value="geyser" icon="natural_geyser" shield="white_blue_square_shield">
-					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-				</case>
 				<case minzoom="17" tag="amenity" value="bench" icon="amenity_bench"/>
 			</switch>
 			<switch iconOrder="85">
@@ -3366,6 +3372,8 @@
 			<case minzoom="14" tag="natural" value="geyser" icon="natural_geyser"/>
 			<case minzoom="14" tag="natural" value="spring" icon="natural_spring"/>
 			<case minzoom="14" tag="waterway" value="waterfall" icon="waterway_waterfall"/>
+			<apply_if additional="drinking_water=yes" icon_2="drinking_water_yes"/>
+			<apply_if additional="drinking_water=no" icon_2="drinking_water_no"/>
 			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 		</switch>
 		<switch tag="natural" value="tree">
@@ -4026,6 +4034,8 @@
 			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
 		</case>
 		<case minzoom="16" tag="amenity" value="fountain" icon="amenity_fountain" shield="fountain_shield">
+			<apply_if additional="drinking_water=yes" icon_2="drinking_water_yes"/>
+			<apply_if additional="drinking_water=no" icon_2="drinking_water_no"/>
 			<apply_if nightMode="true" icon="amenity_fountain" shield=""/>
 		</case>
 		<case minzoom="16" tag="amenity" value="post_office" icon="amenity_post_office" shield="white_gray_square_shield">
@@ -4036,7 +4046,10 @@
 			<case minzoom="17" tag="amenity" value="post_box" icon="amenity_post_box"/>
 			<case minzoom="16" tag="amenity" value="post_office" icon="amenity_post_office"/>
 			<case minzoom="16" tag="amenity" value="prison" icon="amenity_prison"/>
-			<case minzoom="16" tag="amenity" value="toilets" icon="amenity_toilets" iconOrder="54"/>
+			<case minzoom="16" tag="amenity" value="toilets" icon="amenity_toilets" iconOrder="54">
+				<apply_if additional="drinking_water=yes" icon_2="drinking_water_yes"/>
+				<apply_if additional="drinking_water=no" icon_2="drinking_water_no"/>
+			</case>
 			<case minzoom="16" tag="amenity" value="grave_yard" icon="amenity_grave_yard" iconOrder="75"/>
 			<case minzoom="17" tag="amenity" value="car_wash" icon="amenity_car_wash">
 				<case additional="self_service=yes" icon="amenity_car_wash_self_service"/>
@@ -4200,16 +4213,16 @@
 			<case tag="hazard" value="slippery_road" icon="hazard_slippery_road"/>
 			<case tag="hazard" value="flood" icon="hazard_flood"/>
 			<case tag="hazard" value="" icon="hazard_yes"/>
-			<apply iconVisibleSize="0" iconOrder="128" intersectsWith="" intersectionSizeFactor="0"/>
+			<apply iconVisibleSize="0" iconOrder="128" intersectsWith="" intersectionSizeFactor="0" icon_shift_px="0.5" icon_shift_py="-0.5"/>
 		</switch>
 
 		<switch OSMMapperAssistant="true" iconVisibleSize="0" intersectionSizeFactor="0" iconOrder="128">
 			<switch minzoom="12" tag="fixme_tag" value="yes">
 				<case maxzoom="12" icon="fixme_tag_lowzoom_yes"/>
 				<case maxzoom="15" icon="fixme_tag_lowzoom2_yes"/>
-				<case minzoom="16" icon="fixme_tag_yes"/>
+				<case minzoom="16" icon="fixme_tag_yes" icon_shift_px="0.5" icon_shift_py="-0.5"/>
 			</switch>
-			<case minzoom="16" tag="note_tag" value="yes" icon="note_tag_yes"/>
+			<case minzoom="16" tag="note_tag" value="yes" icon="note_tag_yes" icon_shift_px="-0.5" icon_shift_py="-0.5"/>
 <!--			<case minzoom="16" tag="description_tag" value="yes" icon="note_tag_yes"/>-->
 		</switch>
 
@@ -4223,8 +4236,12 @@
 			<case minzoom="16" tag="amenity" value="bar" icon="amenity_bar" iconVisibleSize="32"/>
 			<case minzoom="16" tag="amenity" value="biergarten" icon="amenity_biergarten"/>
 			<case minzoom="16" tag="amenity" value="ice_cream" icon="amenity_ice_cream"/>
-			<case minzoom="16" tag="amenity" value="drinking_water" icon="amenity_drinking_water"/>
-			<case minzoom="15" tag="man_made" value="water_well" icon="man_made_water_well"/>
+			<switch>
+				<case minzoom="16" tag="amenity" value="drinking_water" icon="amenity_drinking_water"/>
+				<case minzoom="15" tag="man_made" value="water_well" icon="man_made_water_well"/>
+				<apply_if additional="drinking_water=yes" icon_2="drinking_water_yes"/>
+				<apply_if additional="drinking_water=no" icon_2="drinking_water_no"/>
+			</switch>
 			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
 		</switch>
 
