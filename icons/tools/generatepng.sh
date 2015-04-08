@@ -124,22 +124,22 @@ generatePngs() {
 
       generatePngs 'accommodation' '#0092DA' '#ff8f00'
 
-      generatePngs 'tourist' '#734A08' '#ff8f00'
+      generatePngs 'tourist' '#593906' '#ff8f00'
       generatePngs 'special_poi' '#a62b00' '#a62b00' '' '' '' nomx
 
       generatePngs 'sport'  '#39AC39' '#ff8f00'
 
-      generatePngs 'amenity' '#777777' '#ff8f00'
+      generatePngs 'amenity' '#555555' '#ff8f00'
       generatePngs 'craft' '#777777' '#ff8f00'
       generatePngs 'place_of_worship' '#333333' '#ff8f00'
-      generatePngs 'money' '#777777' '#ff8f00'
-      generatePngs 'education' '#777777' '#ff8f00'
+      generatePngs 'money' '#555555' '#ff8f00'
+      generatePngs 'education' '#555555' '#ff8f00'
       generatePngs 'poi' '#3f3f3f' '#ff8f00'
       generatePngs 'power' '#3f3f3f' '#ff8f00'
 
-      generatePngs 'food' '#777777' '#ff8f00'
+      generatePngs 'food' '#e58004' '#ff8f00'
 
-      generatePngs 'shopping' '#777777' '#ff8f00'
+      generatePngs 'shopping' '#a734c2' '#ff8f00'
 
       generatePngs 'landuse' '#777777' '#ff8f00'
 
