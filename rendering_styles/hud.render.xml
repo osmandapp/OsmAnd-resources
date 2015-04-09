@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- xmd5a (xmd5a@yandex.ru) http://forum.openstreetmap.org/viewtopic.php?id=23125 -->
-<renderingStyle name="LightRS" depends="" defaultColor="#ffffff" version="1">
+<renderingStyle name="Hud" depends="" defaultColor="#000000" version="1">
 	<renderingProperty attr="moreDetailed" name="More details" description="More details on map" type="boolean" possibleValues="" category="details"/>
-	<renderingProperty attr="contourLines" name="Show contour lines" description="Select minimum zoom level to display in map if available. Separate contour file may be needed." type="string" possibleValues="--,16,15,14,13,12,11" category="details"/>
 	<renderingProperty attr="noPolygons" name="Hide polygons (exc.buildings)" description="Make all areal land features on map transparent" type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideWoodScrubs" name="Hide wood and scrubs" description="Hide wood and scrubs" type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideBuildings" name="Hide buildings" description="Hide buildings" type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideNonVehicleHighways" name="Hide non-vehicle highways" description="Hide non-vehicle highways" type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideAccess" name="Hide access restrictions" description="Hide access type" type="boolean" possibleValues="" category="hide"/>
-	<renderingProperty attr="hideText" name="Hide text" description="Hide text" type="boolean" possibleValues="" category="hide"/>
+	<renderingProperty attr="showText" name="Show text" description="Show text" type="boolean" possibleValues=""/>
 	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
 
 	<renderingAttribute name="defaultColor">
 		<case noPolygons="true" attrColorValue="#00ffffff"/>
 		<case nightMode="true" attrColorValue="#000000"/>
-		<case attrColorValue="#ffffff"/>
+		<case attrColorValue="#000000"/>
 	</renderingAttribute>
 	<renderingAttribute name="route">
 		<case nightMode="false" color="#77ff00de" strokeWidth="7:6"/>
@@ -60,43 +58,46 @@
 		<case attrFloatValue="0"/>
 	</renderingAttribute>
 
+	<renderingConstant name="roadShadowRadius" value="2"/>
+	<renderingConstant name="roadShadowColor" value="#00fcac"/>
+
 	<renderingAttribute name="motorwayRoadColor">
 		<case nightMode="true" attrColorValue="#a00000"/>
-		<case attrColorValue="#a71818"/>
+		<case attrColorValue="#000000"/>
 	</renderingAttribute>
 	<renderingAttribute name="trunkRoadColor">
 		<case nightMode="true" attrColorValue="#850000"/>
-		<case attrColorValue="#ff0000"/>
+		<case attrColorValue="#333333"/>
 	</renderingAttribute>
 	<renderingAttribute name="primaryRoadColor">
 		<case nightMode="true" attrColorValue="#700000"/>
-		<case attrColorValue="#ff5400"/>
+		<case attrColorValue="#333333"/>
 	</renderingAttribute>
 	<renderingConstant name="primaryRoadAreaNightColor" value="#571300"/>
 	<renderingAttribute name="secondaryRoadColor">
 		<case nightMode="true" attrColorValue="#700000"/>
-		<case attrColorValue="#ff5400"/>
+		<case attrColorValue="#333333"/>
 	</renderingAttribute>
 	<renderingAttribute name="tertiaryRoadColor">
 		<case nightMode="true" attrColorValue="#701111"/>
-		<case attrColorValue="#ff7800"/>
+		<case attrColorValue="#333333"/>
 	</renderingAttribute>
-	<renderingConstant name="residentialRoadDayColor" value="#777777"/>
-	<renderingConstant name="residentialRoadLowZoomDayColor" value="#888888"/>
-	<renderingConstant name="residentialRoadLowZoomDayColor2" value="#aaaaaa"/>
+	<renderingConstant name="residentialRoadDayColor" value="#333333"/>
+	<renderingConstant name="residentialRoadLowZoomDayColor" value="#333333"/>
+	<renderingConstant name="residentialRoadLowZoomDayColor2" value="#333333"/>
 	<renderingConstant name="residentialRoadNightColor" value="#7e3b3b"/>
 	<renderingConstant name="residentialRoadLowZoomNightColor" value="#5d2a2a"/>
 	<renderingAttribute name="serviceRoadLowZoomColor">
 		<case nightMode="true" attrColorValue="#6f4141"/>
-		<case attrColorValue="#aaaaaa"/>
+		<case attrColorValue="#333333"/>
 	</renderingAttribute>
 
-	<renderingConstant name="serviceRoadDayColor" value="#888888"/>
+	<renderingConstant name="serviceRoadDayColor" value="#333333"/>
 	<renderingConstant name="serviceRoadNightColor" value="#6f4141"/>
-	<renderingConstant name="trackDayColor" value="#555555"/>
+	<renderingConstant name="trackDayColor" value="#333333"/>
 	<renderingConstant name="trackNightColor" value="#665555"/>
 
-	<renderingConstant name="nonMotoVehicleRoadDayColor" value="#4862d2"/> <!--bd5007-->
+	<renderingConstant name="nonMotoVehicleRoadDayColor" value="#333333"/> <!--bd5007-->
 	<renderingConstant name="nonMotoVehicleRoadNightColor" value="#994b16"/>
 	<renderingConstant name="bridgeDayColor" value="#000000"/><!-- "#67db34"-->
 	<renderingConstant name="bridgeNightColor" value="#cccccc"/>
@@ -422,7 +423,7 @@
 			</case>
 			<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 		</switch>
-		<switch hideText="false">
+		<switch showText="true">
 			<switch nameTag="ref">
 				<case minzoom="8" tag="highway" value="motorway"/>
 				<case minzoom="8" tag="highway" value="trunk"/>
@@ -451,7 +452,7 @@
 			</case>
 		</switch>
 
-		<switch hideText="false" textHaloRadius="$textHaloRadiusDay">
+		<switch showText="true" textHaloRadius="$textHaloRadiusDay">
 			<switch textColor="#a01300" textHaloColor="#ffe6e3" textWrapWidth="20" textBold="true" textOrder="10">
 				<case minzoom="15" tag="tourism" value="attraction" textSize="13"/>
 				<case minzoom="16" tag="tourism" value="artwork" textSize="12" nameTag=""/>
@@ -857,570 +858,15 @@
 	</text>
 
 	<point>
-
-		<case minzoom="16" tag="highway" value="traffic_signals" icon="highway_traffic_signals" shield="traffic_signals_shield" iconVisibleSize="10" iconOrder="71"/>
-		<case minzoom="15" tag="highway" value="mini_roundabout" icon="highway_mini_roundabout" shield="miniroundabout_anticlockwise_shield">
-			<apply_if nightMode="true" shield=""/>
-		</case>
-		<case minzoom="15" tag="highway" value="ford" icon="highway_ford" shield="highway_ford_shield">
-			<apply_if nightMode="true" shield=""/>
-		</case>
-		<case minzoom="16" tag="noexit" value="yes" icon="highway_noexit" iconVisibleSize="7"/>
-		<case minzoom="17" tag="highway" value="crossing" icon="highway_crossing" iconVisibleSize="8" shield="highway_crossing_shield"/>
-		<case minzoom="17" tag="highway" value="steps" icon="highway_steps" shield="highway_steps_shield" iconVisibleSize="8"/>
-		<switch shield="white_blue_square_shield" iconOrder="81">
-			<case minzoom="14" tag="amenity" value="fuel" icon="amenity_fuel" iconVisibleSize="6"/>
-			<case minzoom="15" tag="amenity" value="charging_station" icon="amenity_charging_station"/>
-			<case minzoom="16" tag="amenity" value="taxi" icon="amenity_taxi"/>
-			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-		</switch>
-		<switch minzoom="16" tag="amenity" value="parking" icon="amenity_parking" shield="white_blue_square_shield" iconVisibleSize="32" iconOrder="80">
-			<case additional="parking=multi-storey" icon="amenity_parking_multi_storey">
-				<case additional="fee=yes" icon="amenity_parking_multi_storey_paid"/>
-			</case>
-			<case additional="parking=underground" icon="amenity_parking_underground">
-				<case additional="fee=yes" icon="amenity_parking_underground_paid"/>
-			</case>
-			<case additional="fee=yes" icon="amenity_parking_paid"/>
-			<case minzoom="17" maxzoom="17" iconVisibleSize="16">
-				<case additional="access=private" icon=""/>
-				<case additional="access=no" icon=""/>
-			</case>
-			<case minzoom="18" iconVisibleSize="16">
-				<case additional="access=private" icon="amenity_parking_private"/>
-				<case additional="access=no" icon="amenity_parking_private"/>
-			</case>
-			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-		</switch>
-
-		<case minzoom="14" tag="public_transport" value="station" icon="amenity_bus_station" shield="white_blue_round_shield" iconVisibleSize="10" iconOrder="72">
-			<apply_if nightMode="true" shield="gray_blue_round_shield"/>
-		</case>
-		<case minzoom="15" tag="amenity" value="ferry_terminal" icon="amenity_ferry_terminal" shield="white_blue_square_shield" iconOrder="72">
-			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-		</case>
-<!--		<filter minzoom="16" maxzoom="16" icon="highway_bus_stop_small" tag="highway" value="bus_stop" iconVisibleSize="6"/>
-		<filter minzoom="16" maxzoom="16" icon="highway_bus_stop_small" tag="public_transport" value="platform" iconVisibleSize="6"/>
-		<filter minzoom="16" icon="railway_level_crossing" tag="railway" value="level_crossing"/>
-		<filter minzoom="13" maxzoom="14" icon="railway_halt" tag="aerialway" value="station"/>
-		<filter minzoom="15" icon="railway_station_small" tag="aerialway" value="station"/>-->
-
-		<case minzoom="16" tag="railway" value="subway_entrance" shield="subway_entrance_shield" icon="railway_subway_entrance_2" iconOrder="55">
-			<case additional="color_red=" icon="railway_subway_entrance_red"/>
-			<case additional="color_brown=" icon="railway_subway_entrance_brown"/>
-			<case additional="color_orange=" icon="railway_subway_entrance_orange"/>
-			<case additional="color_darkyellow=" icon="railway_subway_entrance_darkyellow"/>
-			<case additional="color_yellow=" icon="railway_subway_entrance_yellow"/>
-			<case additional="color_lightgreen=" icon="railway_subway_entrance_lightgreen"/>
-			<case additional="color_green=" icon="railway_subway_entrance_green"/>
-			<case additional="color_lightblue=" icon="railway_subway_entrance_lightblue"/>
-			<case additional="color_blue=" icon="railway_subway_entrance_blue"/>
-			<case additional="color_purple=" icon="railway_subway_entrance_purple"/>
-			<case additional="color_gray=" icon="railway_subway_entrance_gray"/>
-			<case additional="color_black=" icon="railway_subway_entrance_black"/>
-			<apply_if maxzoom="16" iconVisibleSize="22" intersectionSizeFactor="1.3"/>
-		</case>
-
-		<switch minzoom="15">
-			<case tag="highway" value="bus_stop"/>
-			<case tag="public_transport" value="platform" additional="bus=yes"/>
-			<case tag="public_transport" value="platform" additional="trolleybus=yes"/>
-			<apply_if maxzoom="16" icon="highway_bus_stop_small" iconVisibleSize="5" iconOrder="65"/>
-			<apply_if minzoom="17" icon="highway_bus_stop" shield="white_blue_square_shield" iconVisibleSize="16" iconOrder="82">
-				<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-			</apply_if>
-		</switch>
-		<switch shield="white_blue_square_shield">
-			<case minzoom="17" tag="public_transport" value="platform" icon="highway_bus_stop"/>
-			<case minzoom="17" tag="traffic_calming" value="bump" icon="traffic_calming_bump" iconVisibleSize="16"/>
-			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-		</switch>
-
-		<case minzoom="14" tag="amenity" value="bus_station" icon="amenity_bus_station" shield="white_red_round_shield" iconVisibleSize="10" iconOrder="72">
-			<apply_if nightMode="true" shield="gray_red_round_shield"/>
-		</case>
-		<case minzoom="14" tag="public_transport" value="station" icon="amenity_bus_station" shield="white_blue_round_shield" iconVisibleSize="10" iconOrder="72">
-			<apply_if nightMode="true" shield="gray_blue_round_shield"/>
-		</case>
-
-		<case minzoom="14" maxzoom="14" tag="railway" value="station" icon="railway_station_small" iconVisibleSize="4"/>
-		<switch minzoom="15" iconVisibleSize="7">
-			<case tag="railway" value="station">
-				<switch>
-					<case additional="route=subway"/>
-					<case additional="station=subway"/>
-					<apply icon="railway_station_subway" shield="white_blue_arc_shield">
-						<apply_if nightMode="true" shield="gray_blue_arc_shield"/>
-					</apply>
-				</switch>
-				<case icon="railway_station" shield="white_blue_square_shield" iconVisibleSize="8" iconOrder="82">
-					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-				</case>
-			</case>
-			<case tag="public_transport" value="platform" icon="amenity_bus_station" shield="white_blue_square_shield">
-				<switch>
-					<case additional="train=yes"/>
-					<case additional="tram=yes"/>
-					<case additional="light_rail=yes"/>
-					<apply icon="railway_station"/>
-				</switch>
-				<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-			</case>
-		</switch>
-
-		<switch iconOrder="83">
-			<case minzoom="13" tag="railway" value="halt">
-				<case maxzoom="14" icon="railway_halt" iconVisibleSize="2"/>
-				<case minzoom="15" icon="railway_station_small" iconVisibleSize="5"/>
-			</case>
-			<case minzoom="14" tag="railway" value="tram_stop">
-				<case maxzoom="14" icon="railway_halt" iconVisibleSize="2"/>
-				<case minzoom="15" maxzoom="16" icon="railway_station_small" iconVisibleSize="5"/>
-				<case minzoom="17" icon="railway_tram_stop" shield="white_blue_square_shield">
-					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-				</case>
-			</case>
-			<case minzoom="15" tag="railway" value="level_crossing" icon="railway_level_crossing"/>
-
-			<case minzoom="13" tag="aerialway" value="station">
-				<case maxzoom="14" icon="aerialway_station_small" iconVisibleSize="3"/>
-				<case minzoom="15" icon="aerialway_station" shield="white_blue_round_shield">
-					<apply_if nightMode="true" shield="gray_blue_round_shield"/>
-				</case>
-			</case>
-		</switch>
-
-		<!-- Barriers -->
-		<switch iconOrder="87">
-			<switch>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="gate" icon="barrier_gate" shield="barrier_gate_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="yes" icon="barrier_gate" shield="barrier_gate_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="lift_gate" icon="barrier_lift_gate" shield="barrier_lift_gate_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="swing_gate" icon="barrier_swing_gate" shield="barrier_swing_gate_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="bump_gate" icon="barrier_bump_gate" shield="barrier_bump_gate_shield"/>
-				<case minzoom="18" tag="barrier" value="cattle_grid" icon="barrier_cattle_grid" shield="barrier_cattle_grid_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="chain" icon="barrier_chain" shield="barrier_chain_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="height_restrictor" icon="barrier_height_restrictor" shield="barrier_height_restrictor_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="cycle_barrier" icon="barrier_cycle_barrier" shield="barrier_cycle_barrier_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="motorcycle_barrier" icon="barrier_motorcycle_barrier" shield="barrier_motorcycle_barrier_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="turnstile" icon="barrier_turnstile" shield="barrier_turnstile_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="stile" icon="barrier_stile" shield="barrier_stile_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="sally_port" icon="barrier_sally_port" shield="barrier_sally_port_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="kissing_gate" icon="barrier_kissing_gate" shield="barrier_kissing_gate_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="entrance" icon="barrier_entrance" shield="barrier_entrance_shield"/>
-				<apply_if minzoom="15" maxzoom="15" icon="barrier_small_black_3" shield="" iconVisibleSize="0">
-					<apply_if nightMode="true" icon="barrier_small_white_3"/>
-				</apply_if>
-				<apply_if minzoom="16" maxzoom="16" icon="barrier_small_black_2" shield="" iconVisibleSize="0">
-					<apply_if nightMode="true" icon="barrier_small_white_2"/>
-				</apply_if>
-			</switch>
-			<switch>
-				<case minzoom="14" tag="barrier" value="toll_booth" icon="barrier_toll_booth" shield="barrier_toll_booth_shield"/>
-				<apply_if minzoom="14" maxzoom="14" icon="barrier_small_black_4" shield="" iconVisibleSize="0">
-					<apply_if nightMode="true" icon="barrier_small_white_4"/>
-				</apply_if>
-				<apply_if minzoom="15" maxzoom="15" icon="barrier_small_black_3" shield="" iconVisibleSize="0">
-					<apply_if nightMode="true" icon="barrier_small_white_3"/>
-				</apply_if>
-				<apply_if minzoom="16" maxzoom="16" icon="barrier_small_black_2" shield="" iconVisibleSize="0">
-					<apply_if nightMode="true" icon="barrier_small_white_2"/>
-				</apply_if>
-			</switch>
-			<case minzoom="14" tag="barrier" value="border_control">
-				<apply_if maxzoom="14" icon="barrier_small_black_4" iconVisibleSize="0">
-					<apply_if nightMode="true" icon="barrier_small_white_4"/>
-				</apply_if>
-				<apply_if minzoom="15" icon="barrier_border_control" shield="white_gray_square_shield">
-					<apply_if nightMode="true" shield="gray_gray_square_shield"/>
-				</apply_if>
-			</case>
-		</switch>
-
-		<!-- Impassable barriers -->
-		<switch iconOrder="87">
-			<case tag="barrier" value="bollard">
-				<apply_if minzoom="$barrierMinZoom" icon="barrier_bollard" shield="barrier_bollard_shield"/>
-			</case>
-			<case tag="barrier" value="block">
-				<apply_if minzoom="$barrierMinZoom" icon="barrier_block" shield="barrier_block_shield"/>
-			</case>
-			<apply_if minzoom="15" maxzoom="15" icon="barrier_small_red_2" iconVisibleSize="0" shield=""/>
-			<apply_if minzoom="16" maxzoom="16" icon="barrier_small_red_2" iconVisibleSize="0" shield=""/>
-			<apply>
-				<switch> <!-- These barriers are passable by bicycle and pedestrian -->
-					<case appMode="bicycle"/>
-					<case appMode="pedestrian"/>
-					<apply_if minzoom="16" maxzoom="16" icon="barrier_small_black_2"/>
-				</switch>
-			</apply>
-		</switch>
-		<switch minzoom="17" iconVisibleSize="10" intersectionSizeFactor="0.8">
-			<switch tag="entrance" value="main">
-				<case maxzoom="17" icon="barrier_small_black_3">
-					<apply_if nightMode="true" icon="barrier_small_white_3"/>
-				</case>
-				<case minzoom="18" icon="entrance_main" shield="barrier_entrance_small_shield"/>
-			</switch>
-			<switch tag="entrance" value="exit">
-				<case maxzoom="17" icon="barrier_small_red_3">
-					<apply_if nightMode="true" icon="barrier_small_red_3"/>
-				</case>
-				<case minzoom="18" icon="entrance_exit" shield="entrance_exit_shield"/>
-			</switch>
-			<switch tag="entrance" value="yes">
-				<case minzoom="18" maxzoom="18" icon="barrier_small_black_3">
-					<apply_if nightMode="true" icon="barrier_small_white_3"/>
-				</case>
-				<case minzoom="19" icon="entrance_yes" shield="barrier_entrance_small_shield"/>
-			</switch>
-			<switch tag="amenity" value="parking_entrance">
-				<case maxzoom="17" icon="barrier_small_black_3">
-					<apply_if nightMode="true" icon="barrier_small_white_3"/>
-				</case>
-				<case minzoom="18" icon="amenity_parking_entrance" shield="white_gray_square_small_shield">
-					<apply_if nightMode="true" shield="gray_gray_square_small_shield"/>
-				</case>
-			</switch>
-			<apply iconOrder="128"/>
-		</switch>
-
-		<switch minzoom="10" tag="aeroway" value="aerodrome">
-			<case additional="abandoned=yes">
-				<case minzoom="14" icon="aeroway_aerodrome_abandoned" shield="aerodrome_shield" iconOrder="100"/>
-				<apply_if nightMode="true" shield=""/>
-			</case>
-			<switch>
-				<case additional="iata"/> <!-- iata,icao and faa tags are used in basemap, but for regular maps we use artificial tag large_aerodrome=yes which is created when any of these three are present on aerodrome -->
-				<case additional="icao"/>
-				<case additional="faa"/>
-				<case additional="large_aerodrome" icon="aeroway_aerodrome" shield="white_blue_square_shield" iconOrder="71"/> <!-- artificial tag, see rendering_types.xml-->
-				<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-			</switch>
-			<case minzoom="14" icon="aeroway_aerodrome" shield="aerodrome_shield" iconOrder="100">
-				<apply_if nightMode="true" shield=""/>
-			</case>
-		</switch>
-
-		<case minzoom="16" tag="amenity" value="place_of_worship" icon="amenity_place_of_worship" iconVisibleSize="7" iconOrder="70">
-			<case additional="religion=christian" icon="religion_christian"/>
-			<case additional="religion=jewish" icon="religion_jewish"/>
-			<case additional="religion=muslim" icon="religion_muslim"/>
-			<case additional="religion=sikh" icon="religion_sikh"/>
-			<case additional="religion=buddhist" icon="religion_buddhist"/>
-			<case additional="religion=hindu" icon="religion_hindu"/>
-			<case additional="religion=shinto" icon="religion_shinto"/>
-			<case additional="religion=taoist" icon="religion_taoist"/>
-			<apply_if nightMode="true" shield="gray_gray_square_shield" iconVisibleSize="16"/>
-		</case>
-
-		<switch minzoom="15" icon="amenity_monastery" shield="white_gray_square_shield" iconVisibleSize="7" iconOrder="70">
-			<case tag="amenity" value="monastery"/>
-			<case tag="historic" value="monastery"/>
-			<apply_if nightMode="true" shield="gray_gray_square_shield" iconVisibleSize="20"/>
-		</switch>
-
-		<case minzoom="14" tag="man_made" value="tower" additional="tower:type=communication" icon="tower_type_communication" shield="white_gray_square_shield" iconVisibleSize="7" iconOrder="60">
-			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
-		</case>
-	
-		<case minzoom="14" tag="power" value="tower">
-			<case maxzoom="15" icon="power_tower_small" iconVisibleSize="3"/>
-			<case maxzoom="17" icon="power_tower" iconVisibleSize="7"/>
-			<case minzoom="18" icon="power_tower_big" shield="power_tower_big_shield"/>
-		</case>
-
-		<switch shield="white_gray_square_shield">
-			<case minzoom="16" tag="shop" value="convenience" icon="shop_convenience" iconOrder="85"/>
-			<case minzoom="15" tag="shop" value="supermarket" icon="shop_supermarket" iconOrder="75"/>
-			<case minzoom="15" tag="shop" value="department_store" icon="shop_department_store" iconOrder="75"/>
-			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
-		</switch>
-
-		<case minzoom="11" tag="natural" value="peak" iconOrder="65">
-			<case maxzoom="11" icon="natural_peak" shield="peakvolcano_shield" iconVisibleSize="25" intersectionSizeFactor="2"/>
-			<case maxzoom="14" icon="natural_peak" shield="peakvolcano_shield"/>
-			<case minzoom="15" icon="natural_peak_big" shield="peakvolcano_big_shield"/>
-			<apply_if nightMode="true" shield="">
-				<case minzoom="11" maxzoom="14" icon="natural_peak_night"/>
-				<case minzoom="15" icon="natural_peak_night_big"/>
-			</apply_if>
-		</case>
-		<case minzoom="10" tag="natural" value="volcano" iconOrder="50">
-			<case maxzoom="14" icon="natural_volcano" shield="peakvolcano_shield">
-				<case additional="status=active" icon="natural_volcano_active" shield="natural_volcano_active_shield"/>
-			</case>
-			<case minzoom="15" icon="natural_volcano_big" shield="peakvolcano_big_shield">
-				<case additional="status=active" icon="natural_volcano_active_big" shield="natural_volcano_active_shield_big"/>
-			</case>
-			<apply_if nightMode="true" shield=""/>
-		</case>
-		<case minzoom="15" tag="natural" value="cave_entrance" icon="natural_cave_entrance" shield="white_gray_square_shield" iconOrder="85">
-			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
-		</case>
-
-		<case minzoom="14" tag="natural" value="spring" icon="natural_spring" shield="white_blue_square_shield">
-			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-		</case>
-
-		<switch>
-			<case tag="osmand_place_basemap" value="city"/>
-			<case tag="place" value="city"/>
-			<apply iconVisibleSize="8">
-				<case minzoom="4" maxzoom="5" icon="place_city_dot_small">
-					<apply_if nightMode="true" icon="place_city_dot_small_night"/>
-				</case>
-				<case minzoom="6" maxzoom="16" icon="place_city_dot">
-					<apply_if nightMode="true" icon="place_city_dot_night"/>
-				</case>
-			</apply>
-			<apply_if additional="capital=yes" iconVisibleSize="0" iconOrder="99">
-				<case minzoom="4" maxzoom="5" icon="place_capital_dot_small">
-					<apply_if nightMode="true" icon="place_capital_dot_small_night"/>
-				</case>
-				<case minzoom="6" maxzoom="16" icon="place_capital_dot">
-					<apply_if nightMode="true" icon="place_capital_dot_night"/>
-				</case>
-			</apply_if>
-		</switch>
-		<case minzoom="7" tag="place" value="town" icon="place_town_dot" iconVisibleSize="24">
-			<apply_if nightMode="true" icon="place_town_dot_night"/>
-		</case>
-		<case minzoom="11" maxzoom="12" tag="place" value="village" icon="place_town_dot">
-			<apply_if nightMode="true" icon="place_town_dot_night"/>
-		</case>
-		<case minzoom="11" maxzoom="12" tag="place" value="hamlet" icon="place_town_dot">
-			<apply_if nightMode="true" icon="place_town_dot_night"/>
-		</case>
 	</point>
 
 	<polygon>
-		<switch hideBuildings="false">
-			<case minzoom="16" color="$buildingColorDay" tag="building" value="" strokeWidth_2="0.4" color_2="#000000">
-				<apply_if nightMode="true" color="$buildingColorNight" color_2="#aaaaaa"/>
-			</case>
-			<switch minzoom="16">
-				<case tag="building" value="place_of_worship"/>
-				<case tag="building" value="basilica"/>
-				<case tag="building" value="bell_tower"/>
-				<case tag="building" value="castle_tower"/>
-				<apply color="#bbbbbb" color_2="#c0611e" strokeWidth_2="1.3">
-					<apply_if nightMode="true" color="#4b5257" color_2="#d9bd21"/>
-				</apply>
-			</switch>
-			<switch moreDetailed="true">
-				<case minzoom="15" maxzoom="15" tag="building" value="" color="$buildingColorDay">
-					<apply_if nightMode="true" color="$buildingColorNight"/>
-				</case>
-			</switch>
-<!--
-			<groupFilter minzoom="16">
-				<filter additional="abandoned=yes" color_2="#000000" strokeWidth_2="1" pathEffect_2="9_3"/>
-				<filter additional="ruins=yes" color_2="#000000" strokeWidth_2="1" pathEffect_2="9_3"/>
-				<groupFilter nightMode="true">
-					<filter additional="abandoned=yes" color_2="#999999" strokeWidth_2="1" pathEffect_2="9_3"/>
-					<filter additional="ruins=yes" color_2="#999999" strokeWidth_2="1" pathEffect_2="9_3"/>
-				</groupFilter>
-			</groupFilter>-->
-		</switch>
-
-		<switch>
-			<case minzoom="13" tag="tourism" value="attraction"/>
-			<case minzoom="15" tag="amenity" value="place_of_worship"/>
-			<case minzoom="13" tag="amenity" value="monastery"/>
-			<case minzoom="13" tag="historic" value="monastery"/>
-			<apply color="#deff88" color_2="#ff8a34" strokeWidth_2="2">
-				<apply_if nightMode="true" color="#685d20" color_2="#d9bd21"/>
-			</apply>
-		</switch>
-
-		<switch noPolygons="false">
-			<switch hideWoodScrubs="false">
-				<switch minzoom="6">
-					<case tag="natural" value="wood"/>
-					<case tag="landuse" value="forest"/>
-					<case tag="natural" value="scrub"/>
-					<apply color="$woodColorDay">
-						<apply_if nightMode="true" color="$woodColorNight"/>
-					</apply>
-				</switch>
-				<case minzoom="10" tag="natural" value="wetland" shader="wetland">
-					<apply_if nightMode="true" color="#0b322d" shader=""/>
-				</case>
-				<case minzoom="12" tag="landuse" value="orchard" shader="orchard">
-					<apply_if nightMode="true" color="#063b10" shader=""/>
-				</case>
-				<case minzoom="12" tag="landuse" value="vineyard" shader="vineyard2">
-					<apply_if nightMode="true" color="#24442a" shader=""/>
-				</case>
-			</switch>
-			<switch>
-				<case minzoom="12" tag="landuse" value="cemetery" color="#b5ccb2">
-					<apply_if nightMode="true" color="#39463b"/>
-				</case>
-				<case minzoom="12" tag="amenity" value="grave_yard" shader="grave_yard">
-					<apply_if nightMode="true" color="#576b5b" shader=""/>
-				</case>
-				<case minzoom="11" tag="natural" value="beach" shader="beach2">
-					<apply_if nightMode="true" shader="beach2night"/>
-				</case>
-			</switch>
-			<case minzoom="10" tag="landuse" value="allotments" color="$allotmentsColorDay" color_2="#a9e052" strokeWidth_2=":1">
-				<apply_if nightMode="true" color="$allotmentsColorNight" color_2="#22411c"/>
-			</case>
-			<case minzoom="8" tag="leisure" value="park" color="$parkColorDay" color_2="#9DB487" strokeWidth_2=":1">
-				<apply_if nightMode="true" color="$parkColorNight" color_2="#617052"/>
-			</case>
-
-			<case minzoom="10" tag="landuse" value="military">
-				<apply_if maxzoom="13" strokeWidth_2="1:1"/>
-				<apply_if minzoom="14" strokeWidth_2="1.5:1.5"/>
-				<apply color="#29ff0000" color_2="#c8ea6691">
-					<apply_if nightMode="true" color="#44ff0000" color_2="#84ffa0c0"/>
-				</apply>
-			</case>
-			<case minzoom="7" tag="military" value="danger_area" color="#29ff0000" color_2="#c8ea6691" strokeWidth_2=":3">
-				<apply_if maxzoom="13" strokeWidth_2="1:1"/>
-				<apply_if minzoom="14" strokeWidth_2="1.5:1.5"/>
-				<apply_if nightMode="true" color="#44ff0000" color_2="#ffa0c0"/>
-			</case>
-
-			<case minzoom="10" tag="landuse" value="residential" color="$residentialColorDay">
-				<apply_if nightMode="true" color="$residentialColorNight"/>
-			</case>
-			<case minzoom="9" tag="landuse" value="industrial" color="$industrialColorDay">
-				<apply_if nightMode="true" color="$industrialColorNight"/>
-			</case>
-
-			<case minzoom="15" tag="amenity" value="parking" color="$parkingColorDay">
-				<apply_if nightMode="true" color="$parkingColorNight"/>
-			</case>
-
-			<switch tag="waterway" minzoom="10">
-				<case value="riverbank" />
-				<case value="canal"/>
-				<case value="dock"/>
-				<case value="mill_pond"/>
-				<apply_if color="$waterColorDay">
-					<apply_if nightMode="true" color="$waterColorNight"/>
-				</apply_if>
-			</switch>
-			<switch>
-				<case minzoom="1" tag="natural" value="coastline"/>
-				<case minzoom="4" tag="natural" value="water"/>
-				<case minzoom="4" tag="natural" value="bay"/>
-				<case minzoom="7" tag="landuse" value="reservoir"/>
-				<case minzoom="7" tag="landuse" value="water"/>
-				<case minzoom="10" tag="landuse" value="basin"/>
-				<case minzoom="15" tag="leisure" value="swimming_pool" color_2="#7479ec" strokeWidth_2=":1"/>
-				<apply color="$waterColorDay">
-					<apply_if nightMode="true" color="$waterColorNight"/>
-				</apply>
-			</switch>
-
-			<case minzoom="11" tag="aeroway" value="aerodrome" color="#256b79f1" color_2="#306b79f1">
-				<case maxzoom="12" strokeWidth_2="0"/>
-				<case minzoom="13" strokeWidth_2="1"/>
-			</case>
-			<switch>
-				<case tag="place" value="island"/>
-				<case tag="natural" value="land"/>
-				<apply color="#ffffff">
-					<apply_if nightMode="true" color="#000000"/>
-				</apply>
-			</switch>
-
-		</switch>
-
-		<!-- Polygonal highways -->
-		<switch>
-			<case minzoom="15" tag="area:highway" value="primary" color="#ffa352"/>
-			<apply_if nightMode="true" color="$primaryRoadAreaNightColor"/>
-		</switch>
-		<switch>
-			<case minzoom="15" tag="area:highway" value="secondary" color="#ffa352"/>
-			<apply_if nightMode="true" color="$primaryRoadAreaNightColor"/>
-		</switch>
-		<switch>
-			<case minzoom="15" tag="area:highway" value="tertiary" color="#ffa352"/>
-			<apply_if nightMode="true" color="$primaryRoadAreaNightColor"/>
-		</switch>
-		<switch minzoom="16" color="#7d7d7d">
-			<case tag="area:highway" value="road"/>
-			<case tag="area:highway" value="unclassified"/>
-			<case tag="area:highway" value="residential"/>
-			<apply_if nightMode="true" color="$primaryRoadAreaNightColor"/>
-		</switch>
-		<switch minzoom="16">
-			<case tag="area:highway" value="service"/>
-			<case tag="area:highway" value="services"/>
-			<case tag="highway" value="rest_area"/>
-			<apply_if color="#a4a4a4">
-				<apply_if nightMode="true" color="#4f2215"/>
-			</apply_if>
-		</switch>
-		<switch hideNonVehicleHighways="false" minzoom="16">
-			<case tag="area:highway" value="pedestrian"/>
-			<case tag="area:highway" value="footway"/>
-			<apply color="#879bef">
-				<apply_if nightMode="true" color="#683500"/>
-			</apply>
-		</switch>
-		<switch minzoom="16">
-			<case tag="area:highway" value="track" color="#6b6b6b"/>
-			<apply_if nightMode="true" color="#2e2e2e"/>
-		</switch>
-
-
-		<case tag="aeroway" value="runway" color="#bbbbcc">
-			<apply_if nightMode="true" color="#90909e"/>
-		</case>
-
-		<case minzoom="13" tag="aeroway" value="apron" color="#e0c4fb">
-			<apply_if nightMode="true" color="#4c3a5d"/>
-		</case>
-		<case hideBuildings="false" minzoom="14" tag="aeroway" value="terminal" color="#b371b7" strokeWidth_2="0.5" color_2="#964ae5">
-			<apply_if nightMode="true" color="#835286" strokeWidth_2="0.5" color_2="#c98df7"/>
-		</case>
-		
-		<case minzoom="14" tag="barrier" value="city_wall">
-			<case maxzoom="14" strokeWidth_2="1:1"/>
-			<case maxzoom="15" strokeWidth_2="2:2"/>
-			<case maxzoom="16" strokeWidth_2="3.5:3.5"/>
-			<case minzoom="17" strokeWidth_2="4.5:4.5"/>
-			<apply color="#77999999" color_2="#555555" cap_2="SQUARE">
-				<apply_if nightMode="true" color="#77444444" color_2="#555555"/>
-			</apply>
-		</case>
-
 	</polygon>
 
 	<line>
 		<case minzoom="1" tag="natural" value="coastline_broken" color="#111111" strokeWidth=":1"/>
 		<case minzoom="5" tag="natural" value="coastline_line" color="#cc999999" strokeWidth=":1"/>
 
-		<switch tag="contour" value="elevation" color="$contourDayColorNon100m">
-			<case minzoom="11" contourLines="11" strokeWidth="0.7"/>
-			<case minzoom="12" contourLines="12" strokeWidth="0.7"/>
-			<case minzoom="13" contourLines="13" strokeWidth="1"/>
-			<case minzoom="14" contourLines="14" strokeWidth="1"/>
-			<case minzoom="15" contourLines="15" strokeWidth="1"/>
-			<case minzoom="16" contourLines="16" strokeWidth="1"/>
-			<apply>
-				<case additional="contourtype=10m" color="$contourDayColorNon100m">
-					<apply_if nightMode="true" color="$contourNightColorNon100m" strokeWidth="1"/>
-				</case>
-				<case additional="contourtype=20m" color="$contourDayColorNon100m">
-					<apply_if nightMode="true" color="$contourNightColorNon100m" strokeWidth="1"/>
-				</case>
-				<case additional="contourtype=50m" color="$contourDayColorNon100m">
-					<apply_if nightMode="true" color="$contourNightColorNon100m" strokeWidth="1.3"/>
-				</case>
-				<case additional="contourtype=100m" color="$contourDayColor100m">
-					<apply_if nightMode="true" color="$contourNightColor100m" strokeWidth="1.6"/>
-				</case>
-			</apply>
-		</switch>
 
 		<switch minzoom="6" maxzoom="15">
 			<case tag="highway" value="motorway" color="$motorwayRoadColor"/>
@@ -1438,13 +884,13 @@
 				<case maxzoom="14" strokeWidth="5:5"/>
 				<case maxzoom="15" strokeWidth="6:6"/>
 			</apply>
-			<apply_if minzoom="14" layer="-1" pathEffect="4_4" cap="BUTT"/>
-			<!-- Bridges -->
+<!--			<apply_if minzoom="14" layer="-1" pathEffect="4_4" cap="BUTT"/>
 			<apply_if layer="1" minzoom="14" color_0="$bridgeDayColor" shadowRadius=":0" cap="SQUARE" cap_0="BUTT">
 				<case maxzoom="14" strokeWidth_0="6:7.5"/>
 				<case strokeWidth_0="7.5:9.5"/>
 				<apply_if nightMode="true" color_0="$bridgeNightColor"/>
-			</apply_if>
+			</apply_if>-->
+			<apply shadowRadius="$roadShadowRadius" shadowColor="$roadShadowColor"/>
 		</switch>
 
 		<switch minzoom="6" maxzoom="15">
@@ -1462,13 +908,13 @@
 				<case maxzoom="14" strokeWidth="4.5:4.5"/>
 				<case maxzoom="15" strokeWidth="6:6"/>
 			</apply>
-			<apply_if minzoom="14" layer="-1" pathEffect="4_4" cap="BUTT"/>
-			<!-- Bridges -->
+<!--			<apply_if minzoom="14" layer="-1" pathEffect="4_4" cap="BUTT"/>
 			<apply_if layer="1" minzoom="14" color_0="$bridgeDayColor" shadowRadius=":0" cap="SQUARE" cap_0="BUTT">
 				<case maxzoom="14" strokeWidth_0="5.4:6.5"/>
 				<case strokeWidth_0="7.5:9"/>
 				<apply_if nightMode="true" color_0="$bridgeNightColor"/>
-			</apply_if>
+			</apply_if>-->
+			<apply shadowRadius="$roadShadowRadius" shadowColor="$roadShadowColor"/>
 		</switch>
 
 		<switch minzoom="9" maxzoom="15">
@@ -1484,13 +930,13 @@
 				<case maxzoom="14" strokeWidth="4.5:4.5"/>
 				<case maxzoom="15" strokeWidth="6:6"/>
 			</apply_if>
-			<apply_if minzoom="14" layer="-1" pathEffect="4_4" cap="BUTT"/>
-			<!-- Bridges -->
+<!--			<apply_if minzoom="14" layer="-1" pathEffect="4_4" cap="BUTT"/>
 			<apply_if layer="1" minzoom="14" color_0="$bridgeDayColor" shadowRadius=":0" cap="SQUARE" cap_0="BUTT">
 				<case maxzoom="14" strokeWidth_0="5.4:6.5"/>
 				<case strokeWidth_0="7.5:9"/>
 				<apply_if nightMode="true" color_0="$bridgeNightColor"/>
-			</apply_if>
+			</apply_if>-->
+			<apply shadowRadius="$roadShadowRadius" shadowColor="$roadShadowColor"/>
 		</switch>
 
 		<switch>
@@ -1510,16 +956,16 @@
 						<case maxzoom="18" strokeWidth="10:10"/>
 						<case minzoom="19" strokeWidth="11.5:11.5"/>
 					</case>
-					<apply_if layer="-1" pathEffect="4_4" cap="BUTT"/>
-					<!-- Bridges -->
+<!--					<apply_if layer="-1" pathEffect="4_4" cap="BUTT"/>
 					<apply_if layer="1" color_0="$bridgeDayColor" shadowRadius=":0" cap="SQUARE" cap_0="BUTT">
 						<case maxzoom="16" strokeWidth_0="8.5:10"/>
 						<case maxzoom="17" strokeWidth_0="10:11"/>
 						<case maxzoom="18" strokeWidth_0="12.5:14.5"/>
 						<case minzoom="19" strokeWidth_0="13.5:15.5"/>
 						<apply_if nightMode="true" color_0="$bridgeNightColor"/>
-					</apply_if>
+					</apply_if>-->
 				</apply>
+			<apply shadowRadius="$roadShadowRadius" shadowColor="$roadShadowColor"/>
 	<!--			<groupFilter nightMode="true" hideBuildings="false" shadowRadius=":3" shadowColor="#555555"/>-->
 			</switch>
 
@@ -1539,7 +985,7 @@
 					<case maxzoom="18" strokeWidth="9:9"/>
 					<case minzoom="19" strokeWidth="10.5:10.5"/>
 				</apply_if>
-				<apply_if layer="-1" pathEffect="4_4" cap="BUTT"/>
+<!--				<apply_if layer="-1" pathEffect="4_4" cap="BUTT"/>
 				<apply_if layer="1" minzoom="14" color_0="$bridgeDayColor" cap="SQUARE" cap_0="BUTT">
 					<case maxzoom="14" strokeWidth_0="3.7:4.5"/>
 					<case maxzoom="15" strokeWidth_0="5.5:6"/>
@@ -1548,12 +994,13 @@
 					<case maxzoom="18" strokeWidth_0="11:13"/>
 					<case minzoom="19" strokeWidth_0="12:14"/>
 					<apply_if nightMode="true" color_0="$bridgeNightColor"/>
-				</apply_if>
+				</apply_if>-->
 	<!--			<groupFilter nightMode="true" hideBuildings="false" minzoom="16" shadowRadius=":2" shadowColor="#555555"/>-->
 				<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
 					<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
 					<apply additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
 				</apply_if>
+				<apply shadowRadius="$roadShadowRadius" shadowColor="$roadShadowColor"/>
 			</switch>
 
 			<switch>
@@ -1581,7 +1028,7 @@
 						</apply_if>
 					</apply_if>
 				</apply>
-				<apply_if layer="-1" pathEffect="4_4" cap="BUTT"/>
+<!--				<apply_if layer="-1" pathEffect="4_4" cap="BUTT"/>
 				<apply_if layer="1" minzoom="14" color_0="$bridgeDayColor" cap="SQUARE" cap_0="BUTT">
 					<case maxzoom="14" strokeWidth_0="2.5:3"/>
 					<case maxzoom="15" strokeWidth_0="3.5:4"/>
@@ -1590,14 +1037,8 @@
 					<case maxzoom="18" strokeWidth_0="10:13"/>
 					<case minzoom="19" strokeWidth_0="12:15"/>
 					<apply_if nightMode="true" color_0="$bridgeNightColor"/>
-				</apply_if>
-				<apply_if hideAccess="false">
-					<switch minzoom="15">
-						<case additional="access=no"/>
-						<case additional="access=private"/>
-						<apply color="$accessNoColor" pathEffect="6_1.5" cap="BUTT"/>
-					</switch>
-				</apply_if>
+				</apply_if>-->
+				<apply shadowRadius="$roadShadowRadius" shadowColor="$roadShadowColor"/>
 			</switch>
 
 			<switch>
@@ -1629,7 +1070,7 @@
 						</switch>
 					</apply>
 				</apply>
-				<apply_if layer="-1" pathEffect="4_4" cap="BUTT"/>
+<!--				<apply_if layer="-1" pathEffect="4_4" cap="BUTT"/>
 				<apply_if layer="1" minzoom="14" color_0="$bridgeDayColor" cap="SQUARE" cap_0="BUTT">
 					<case maxzoom="14" strokeWidth_0="1.5:2"/>
 					<case maxzoom="15" strokeWidth_0="2:3.5"/>
@@ -1637,15 +1078,9 @@
 					<case maxzoom="17" strokeWidth_0="5:6"/>
 					<case minzoom="18" strokeWidth_0="7:8.5"/>
 					<apply_if nightMode="true" color_0="$bridgeNightColor"/>
-				</apply_if>
+				</apply_if>-->
+				<apply shadowRadius="$roadShadowRadius" shadowColor="$roadShadowColor"/>
 				<apply_if nightMode="true" color="$serviceRoadNightColor"/>
-				<apply_if hideAccess="false">
-					<switch minzoom="15">
-						<case additional="access=no"/>
-						<case additional="access=private"/>
-						<apply color="$accessNoColor" pathEffect="4_1" cap="BUTT"/>
-					</switch>
-				</apply_if>
 			</switch>
 			<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
 				<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
@@ -1663,9 +1098,8 @@
 				<case maxzoom="17" strokeWidth="3" pathEffect="11_5.5"/>
 				<case minzoom="18" strokeWidth="5" pathEffect="15_7.5"/>
 			</case>
-			<apply_if hideWoodScrubs="false" color="$trackDayColor"/>
 			<apply_if nightMode="true" color="$trackNightColor" shadowRadius="0"/>
-			<apply_if layer="1" minzoom="15" color__1="#333333" color_0="#ffffff">
+<!--			<apply_if layer="1" minzoom="15" color__1="#333333" color_0="#ffffff">
 				<case maxzoom="15" strokeWidth__1="4:4" strokeWidth_0="4"/>
 				<case maxzoom="16" strokeWidth__1="4:5" strokeWidth_0="4:1"/>
 				<case maxzoom="17" strokeWidth__1="4:7.5" strokeWidth_0="4:3"/>
@@ -1678,9 +1112,8 @@
 				<case maxzoom="17" strokeWidth__1="4:7.5" strokeWidth_0="4:3"/>
 				<case minzoom="18" strokeWidth__1="4:9" strokeWidth_0="4:5"/>
 				<apply_if nightMode="true" color__1="#dddddd" color_0="#333333"/>
-			</apply_if>
-			<apply_if hideAccess="false" additional="access=no" disable="true"/>
-			<apply_if hideAccess="false" additional="access=private" disable="true"/>
+			</apply_if>-->
+			<apply shadowRadius="$roadShadowRadius" shadowColor="$roadShadowColor"/>
 			<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
 				<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
 				<apply additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
@@ -1688,7 +1121,7 @@
 		</switch>
 
 		<switch hideNonVehicleHighways="false">
-			<switch>
+<!--			<switch>
 				<case minzoom="12" tag="highway" value="pedestrian"/>
 				<apply color="$nonMotoVehicleRoadDayColor" cap="ROUND">
 					<case moreDetailed="true" maxzoom="12" strokeWidth="1"/>
@@ -1714,10 +1147,10 @@
 				</apply_if>
 				<apply_if hideAccess="false" additional="access=no" disable="true"/>
 				<apply_if hideAccess="false" additional="access=private" disable="true"/>
-			</switch>
+			</switch>-->
 
 			<switch>
-				<case minzoom="12" tag="highway" value="footway">
+<!--				<case minzoom="12" tag="highway" value="footway">
 					<case moreDetailed="true">
 						<case maxzoom="12" strokeWidth="0.5"/>
 						<case maxzoom="13" strokeWidth="0.8"/>
@@ -1729,7 +1162,7 @@
 						<case maxzoom="17" strokeWidth="1.7" pathEffect="7_3"/>
 						<case minzoom="18" strokeWidth="2.5" pathEffect="10_4"/>
 					</apply_if>
-				</case>
+				</case>-->
 
 				<case minzoom="12" tag="highway" value="cycleway">
 					<case moreDetailed="true" maxzoom="12" strokeWidth="0.8"/>
@@ -1743,7 +1176,7 @@
 					</apply_if>
 				</case>
 
-				<case minzoom="12" tag="highway" value="path">
+<!--				<case minzoom="12" tag="highway" value="path">
 					<case moreDetailed="true" maxzoom="12" strokeWidth="0.5" pathEffect="0.4_0.4"/>
 					<case moreDetailed="true" maxzoom="13" strokeWidth="0.8" pathEffect="0.8_0.8"/>
 					<apply_if minzoom="14">
@@ -1776,20 +1209,18 @@
 						<case minzoom="18" strokeWidth__1="4:7" strokeWidth_0="4:3"/>
 						<apply_if nightMode="true" color__1="#dddddd" color_0="#333333"/>
 					</case>
-				</apply_if>
+				</apply_if>-->
 				<apply color="$nonMotoVehicleRoadDayColor"/>
 				<apply_if nightMode="true" color="$nonMotoVehicleRoadNightColor"/>
-				<apply_if hideAccess="false" additional="access=no" disable="true"/>
-				<apply_if hideAccess="false" additional="access=private" disable="true"/>
 			</switch>
 			<apply_if noPolygons="true" shadowRadius=":1" shadowColor="#999999"/>
-			<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
+			<apply_if minzoom="16">
 				<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
 				<apply additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
 			</apply_if>
 		</switch>
 
-		<switch>
+<!--		<switch>
 			<case minzoom="16" tag="barrier" value="fence"/>
 			<case minzoom="16" tag="barrier" value="wall"/>
 			<case minzoom="16" tag="fenced" value="yes"/>
@@ -1797,9 +1228,9 @@
 				<apply_if nightMode="true" color="#cccccc"/>
 			</apply>
 			<apply_if layer="-1" disable="true"/>
-		</switch>
+		</switch>-->
 
-		<switch>
+<!--		<switch>
 			<switch minzoom="2">
 				<case tag="admin_level" value="0"/>
 				<case tag="admin_level" value="1"/>
@@ -1825,16 +1256,16 @@
 			</switch>
 			<apply color="#22c95cb8" color_0="#33c95c0c"/>
 			<apply_if nightMode="true" color="#28c95c0c" color_0="#40c95c0c"/>
-		</switch>
+		</switch>-->
 
-		<case minzoom="14" tag="barrier" value="city_wall">
+<!--		<case minzoom="14" tag="barrier" value="city_wall">
 			<case maxzoom="14" strokeWidth="2:2"/>
 			<case maxzoom="15" strokeWidth="3:3"/>
 			<case minzoom="16" strokeWidth="4.5:4.5"/>
 			<apply color="#555555"/>
-		</case>
+		</case>-->
 
-		<switch>
+<!--		<switch>
 			<switch minzoom="12" tag="waterway" value="stream">
 				<case maxzoom="12" strokeWidth="1"/>
 				<case maxzoom="13" strokeWidth="1.3"/>
@@ -1888,9 +1319,9 @@
 			<apply color="$waterColorDay" color_2="#ffffff">
 				<case nightMode="true" color="$waterColorNight" color_2="#7340D9"/>
 			</apply>
-		</switch>
+		</switch>-->
 		
-		<switch>
+<!--		<switch>
 			<case minzoom="7" tag="railway" value="rail">
 				<case layer="1" minzoom="14" color="#000000" strokeWidth="7" color_2="#ffffff" strokeWidth_2="5" color_3="#999999" strokeWidth_3="1" pathEffect_3="12_8_1_0">
 					<apply_if nightMode="true" color_3="#333333"/>
@@ -1916,17 +1347,17 @@
 				<apply_if layer="-1" color="#146159" strokeWidth="5" pathEffect="5_3" color_2="#cccccc" strokeWidth_2="3"/>
 			</case>
 		</switch>
-
-		<case minzoom="11" tag="aeroway" value="runway" color="#a99dba">
+-->
+<!--		<case minzoom="11" tag="aeroway" value="runway" color="#a99dba">
 			<case maxzoom="11" strokeWidth="2"/>
 			<case maxzoom="12" strokeWidth="4"/>
 			<case maxzoom="13" strokeWidth="7"/>
 			<case maxzoom="14" strokeWidth="12"/>
 			<case minzoom="15" strokeWidth="18"/>
 			<apply_if nightMode="true" color="#6d6378"/>
-		</case>
+		</case>-->
 
-		<case minzoom="12" tag="aeroway" value="taxiway" color="#a99dba">
+<!--		<case minzoom="12" tag="aeroway" value="taxiway" color="#a99dba">
 			<case moreDetailed="true" maxzoom="13" strokeWidth="1"/>
 			<case moreDetailed="true" maxzoom="14" strokeWidth="2.5"/>
 			<case minzoom="15" strokeWidth="4"/>
@@ -1939,7 +1370,7 @@
 			</case>
 			<case minzoom="15" tag="power" value="minor_line" strokeWidth="0.3"/>
 			<apply_if nightMode="true" color="#777777"/>
-		</switch>
+		</switch>-->
 
 	</line>
 </renderingStyle>
