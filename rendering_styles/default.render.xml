@@ -1389,7 +1389,14 @@
 			<case tag="leisure" value="nature_reserve" order="9"/>
 			<case tag="military" value="danger_area" order="8"/>
 			<case tag="railway" value="" order="4"/>
-			<case tag="railway" value="station" order="5"/>
+			<case tag="railway" value="station" order="5">
+				<apply_if maxzoom="12">
+					<switch>
+						<case additional="disused=yes"/>
+						<apply order="-1"/>
+					</switch>
+				</apply_if>
+			</case>
 			<case tag="public_transport" value="" order="5"/>
 			<case tag="historic" value="archaeological_site"/>
 			<case tag="historic" value="memorial"/>
@@ -1419,9 +1426,28 @@
 			<case tag="landuse" value="military" order="8"/>
 			<case tag="military" value="danger_area" order="8"/>
 			<case tag="landuse" value="cemetery" order="5"/>
-			<case tag="amenity" value="parking"/>
-			<case tag="amenity" value="bicycle_parking"/>
-			<case tag="amenity" value="motorcycle_parking"/>
+			<case tag="amenity" value="motorcycle_parking">
+				<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
+			</case>
+			<case tag="amenity" value="parking">
+				<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
+				<apply_if appMode="bicycle" maxzoom="17" order="-1"/>
+			</case>
+			<case tag="amenity" value="bicycle_parking">
+				<apply_if appMode="default" maxzoom="17" order="-1"/>
+				<apply_if appMode="pedestrian" maxzoom="18" order="-1"/>
+				<apply_if appMode="car" maxzoom="18" order="-1"/>
+			</case>
+			<case tag="amenity" value="taxi">
+				<apply_if appMode="bicycle" maxzoom="17" order="-1"/>
+			</case>
+			<switch>
+				<case tag="amenity" value="fuel"/>
+				<case tag="amenity" value="charging_station"/>
+				<case tag="amenity" value="car_wash"/>
+				<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
+				<apply_if appMode="bicycle" maxzoom="16" order="-1"/>
+			</switch>
 			<case tag="amenity" value="fountain"/>
 			<case tag="railway" value="station"/>
 			<case tag="aerialway" value="station"/>
