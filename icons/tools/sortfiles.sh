@@ -17,6 +17,10 @@ mycp() {
 	mygroup ${1}_${2} $3
 }
 
+mycpname() {
+	mygroup ${1} ${2}
+}
+
 
 
 ## Shaders ! # copy all shaders untouched
@@ -401,7 +405,7 @@ mycp historic ship tourist_ship.png
 mycp historic wayside_cross tourist_wayside_cross.png
 mycp historic wayside_shrine tourist_wayside_shrine.png
 mycp historic wreck tourist_wreck.png
-mycp geologic palaeontological_site tourist_palaeontological_site.png
+mycpname palaeontological_site tourist_palaeontological_site.png
 mycp building pyramid tourist_pyramid.png
 
 ## Special POI icons
