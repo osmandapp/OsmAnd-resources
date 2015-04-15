@@ -517,6 +517,8 @@ mycp religion taoist place_of_worship_taoist.png
 mycp amenity brothel amenity_brothel.png
 mycp amenity smoking_area amenity_smoking_area.png
 mycp amenity studio amenity_studio.png
+mycpname waste_basket poi_waste_basket.png
+mycpname waste_disposal poi_waste_disposal.png
 #! mycp amenity grave_yard place_of_worship_christian3.png  #already defined as icon in the shader section
 
 mygroup craft craft_tailor.png
