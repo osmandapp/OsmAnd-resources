@@ -31,7 +31,8 @@ cp ../png/xxhdpi/h_* ../../rendering_styles/style-icons/drawable-xxhdpi/
 
 mygroup landuse landuse_coniferous.png
 mycp landuse grass landuse_grass.png
-mycp landuse forest landuse_coniferous.png               # Keep shaders with background color, cannot be replaced by icons!
+mycpname forest landuse_coniferous_and_deciduous.png               # Keep shaders with background color, cannot be replaced by icons!
+mycpname wood landuse_coniferous_and_deciduous.png
 mycp natural beach tourist_beach2.png                     # Keep shaders with background color, cannot be replaced by icons!
 mycp landuse cemetery place_of_worship_christian3.png    # Keep shaders with background color, cannot be replaced by icons!
 mycp amenity grave_yard place_of_worship_christian3.png  # Keep shaders with background color, cannot be replaced by icons!
@@ -42,6 +43,7 @@ mycp military danger_area poi_danger_area.png
 mycp military nuclear_explosion_site poi_nuclear_explosion_site.png
 mycp natural glacier poi_peak2.png                       # Keep shaders with background color, cannot be replaced by icons!
 mycp landuse landfill landuse_landfill.png
+mycpname wetland landuse_wetland.png
 
 mycp stroke black functional-icons_black_stroke.png
 mycp stroke darkgreen functional-icons_darkgreen_stroke.png
@@ -589,6 +591,7 @@ mycp power tower_big functional-icons_power_tower_big.png
 mycp power tower functional-icons_power_tower.png
 mycp power tower_small functional-icons_power_tower_small.png
 mycp railway buffer_stop poi_buffer_stop.png
+mycpname works poi_works.png
 mygroup military poi_military_bunker.png
 
 
