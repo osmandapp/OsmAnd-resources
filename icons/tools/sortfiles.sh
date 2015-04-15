@@ -1253,6 +1253,7 @@ mycp shop ticket shopping_ticket.png
 mycp shop tobacco shopping_tobacco.png
 mycp shop toys shopping_toys.png
 mycp shop video shopping_video_rental.png
+mycpname wine shopping_wine.png
 
 
 # mygroup custom_id icons8 #TODO
