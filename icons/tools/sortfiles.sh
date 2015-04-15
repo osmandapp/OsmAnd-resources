@@ -221,6 +221,8 @@ mycp amenity motorcycle_parking_paid transport_parking_motorcycle_paid.png
 
 mygroup public_transport transport_bus_stop.png
 mycp amenity bus_station transport_bus_station2.png
+mycpname public_transport_station transport_bus_station.png
+mycpname public_transport_stop_position transport_bus_stop2.png
 mycp highway bus_stop transport_bus_stop.png
 mycp highway bus_stop_small functional-icons_bus_stop_small.png
 mycp highway bus_stop_round_small functional-icons_bus_stop_round_small.png
@@ -246,8 +248,9 @@ mycp man_made lighthouse transport_lighthouse.png
 mycp waterway lock_gate functional-icons_lock_gate.png  #scale 0.5
 mycp waterway dock transport_dock.png
 
-mycp railway halt functional-icons_halt.png  #scale 0.25
-mycp railway level_crossing functional-icons_level_crossing.png  #scale 0.5
+mycpname halt_small functional-icons_halt.png  #scale 0.25
+mycpname halt transport_halt.png  #scale 0.25
+ycp railway level_crossing functional-icons_level_crossing.png  #scale 0.5
 mycp railway platform transport_train_station2.png
 mycp railway station_disused functional-icons_train_station_disused.png
 mycp railway station_small_disused functional-icons_station_small_disused.png
