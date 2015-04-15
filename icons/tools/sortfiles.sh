@@ -250,7 +250,7 @@ mycp waterway dock transport_dock.png
 
 mycpname halt_small functional-icons_halt.png  #scale 0.25
 mycpname halt transport_halt.png  #scale 0.25
-ycp railway level_crossing functional-icons_level_crossing.png  #scale 0.5
+mycp railway level_crossing functional-icons_level_crossing.png  #scale 0.5
 mycp railway platform transport_train_station2.png
 mycp railway station_disused functional-icons_train_station_disused.png
 mycp railway station_small_disused functional-icons_station_small_disused.png
@@ -1243,6 +1243,7 @@ mycp shop musical_instrument shopping_music.png
 mycp shop optician shopping_opticians.png
 mycp shop outdoor shopping_tackle.png
 mycp shop pet shopping_pet2.png
+mycpname photo shopping_photo.png
 mycp shop seafood shopping_fish.png
 mycp shop shoes shopping_shoes.png
 mycp shop sports shopping_sports.png
