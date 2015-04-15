@@ -559,6 +559,8 @@ mygroup water_supply poi_water_tower.png
 mygroup power power_station.png
 mygroup communication amenity_telephone.png
 mygroup trash_disposal landuse_landfill.png
+mycpname bridge poi_bridge.png
+mycpname tunnel poi_tunnel.png
 mycp amenity hunting_stand poi_hunting_stand.png
 mycp highway street_lamp functional-icons_street_lamp.png
 mycp highway street_lamp_lit functional-icons_street_lamp_lit.png
