@@ -405,9 +405,10 @@ mycp historic rune_stone tourist_rune_stone.png
 mycp historic ship tourist_ship.png
 mycp historic wayside_cross tourist_wayside_cross.png
 mycp historic wayside_shrine tourist_wayside_shrine.png
-mycp historic wreck tourist_wreck.png
+mycpname wreck tourist_wreck.png
 mycpname palaeontological_site tourist_palaeontological_site.png
 mycp building pyramid tourist_pyramid.png
+mycpname tomb tourist_memorial.png
 
 ## Special POI icons
 mycp special_poi big_ben special_poi_big_ben.png
