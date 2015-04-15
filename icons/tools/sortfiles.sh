@@ -36,8 +36,8 @@ mycpname wood landuse_coniferous_and_deciduous.png
 mycp natural beach tourist_beach2.png                     # Keep shaders with background color, cannot be replaced by icons!
 mycp landuse cemetery place_of_worship_christian3.png    # Keep shaders with background color, cannot be replaced by icons!
 mycp amenity grave_yard place_of_worship_christian3.png  # Keep shaders with background color, cannot be replaced by icons!
-mycp natural scrub landuse_scrub.png                     # Keep shaders with background color, cannot be replaced by icons!
-mycp natural swamp landuse_swamp.png                     # Keep shaders with background color, cannot be replaced by icons!
+#mycp natural scrub landuse_scrub.png                     # Keep shaders with background color, cannot be replaced by icons!
+#mycp natural swamp landuse_swamp.png                     # Keep shaders with background color, cannot be replaced by icons!
 mycp tourism zoo tourist_zoo.png                         # Keep shaders with background color, cannot be replaced by icons!
 mycp military danger_area poi_danger_area.png
 mycp military nuclear_explosion_site poi_nuclear_explosion_site.png
@@ -382,6 +382,7 @@ mycp tourism picnic_site tourist_picnic.png
 mycp tourism theme_park tourist_theme_park.png
 mycp tourism viewpoint tourist_view_point.png
 mycp tourism zoo tourist_zoo.png
+mycpname city_wall tourist_city_wall.png
 
 ## Entertainment
 mygroup entertainment tourist_cinema.png
