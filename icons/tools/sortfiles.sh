@@ -352,6 +352,7 @@ mycp tourism guest_house accommodation_bed_and_breakfast.png
 mycp tourism hostel accommodation_hostel.png
 mycp tourism hotel accommodation_hotel.png
 mycp tourism motel accommodation_motel.png
+mycpname wilderness_hut accommodation_wilderness_hut.png
 
 
 ## Tourism
