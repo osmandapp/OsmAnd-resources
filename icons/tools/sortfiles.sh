@@ -1217,6 +1217,7 @@ mycp shop alcohol shopping_alcohol.png
 mycp shop baby_goods shopping_baby.png
 mycp shop bakery shopping_bakery.png
 mycp shop bicycle shopping_bicycle.png
+mycpname beverages shopping_beverages.png
 mycp shop books shopping_book2.png
 mycp shop boutique shopping_clothes.png
 mycp shop butcher shopping_butcher2.png
