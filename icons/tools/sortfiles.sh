@@ -488,6 +488,7 @@ mycp amenity car_wash_self_service amenity_car_wash_self_service.png
 mycp amenity fountain amenity_fountain2.png
 mycp amenity fountain_night functional-icons_fountain2_night.png
 mycp amenity monastery place_of_worship_monastery.png
+mycpname historic_monastery place_of_worship_monastery.png
 mycp amenity place_of_worship place_of_worship_unknown.png
 mycp amenity post_box amenity_post_box.png
 mycp amenity post_office amenity_post_office2.png
