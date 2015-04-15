@@ -599,6 +599,7 @@ mycp power tower functional-icons_power_tower.png
 mycp power tower_small functional-icons_power_tower_small.png
 mycp railway buffer_stop poi_buffer_stop.png
 mycpname works poi_works.png
+mycpname military_bunker poi_military_bunker.png
 mygroup military poi_military_bunker.png
 
 
