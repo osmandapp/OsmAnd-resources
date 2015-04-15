@@ -606,7 +606,6 @@ mycp amenity cafe food_cafe.png
 mycp amenity drinking_water food_drinkingtap.png
 mycp amenity fast_food food_fastfood.png
 mycp amenity food_court food_fastfood.png
-mycp amenity ice_cream food_ice_cream.png
 mycp amenity pub food_pub.png
 mycp amenity restaurant food_restaurant.png
 mycp man_made water_well food_water_well.png
@@ -1238,6 +1237,7 @@ mycp shop greengrocer shopping_greengrocer.png
 mycp shop hairdresser shopping_hairdresser.png
 mycp shop hardware shopping_diy.png
 mycp shop hearing_aids shopping_hearing_aids.png
+mycpname ice_cream food_ice_cream.png
 mycp shop jewelry shopping_jewelry2.png
 mycp shop kiosk shopping_kiosk.png
 mycp shop laundry shopping_laundrette.png
