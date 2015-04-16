@@ -1233,7 +1233,8 @@ mycp shop copyshop shopping_copyshop.png
 mycp shop dairy shopping_dairy.png
 mycp shop department_store shopping_department_store.png
 mycp shop doityourself shopping_diy.png
-mycp shop electronics shopping_hifi.png
+mycpname electronics shopping_electronics.png
+mycpname hifi shopping_hifi.png
 mycp shop fashion shopping_clothes.png
 mycp shop fishing shopping_tackle.png
 mycp shop florist shopping_florist.png
