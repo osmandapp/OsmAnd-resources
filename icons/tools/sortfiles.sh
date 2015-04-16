@@ -1270,6 +1270,7 @@ mycpname wine shopping_wine.png
 
 # mygroup custom_id icons8 #TODO
 mygroup user_defined icons8_user.png
+mygroup user_defined_other icons8_user.png
 mygroup osmwiki icons8_wikipedia.png
 mygroup name_finder icons8_web_search.png
 mycp osmand waypoint functional-icons_waypoint.png
