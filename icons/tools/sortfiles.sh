@@ -529,6 +529,7 @@ mycpname internet_access_wlan amenity_internet_access_wlan.png
 mygroup craft craft_tailor.png
 mycpname craft_beekeeper craft_beekeeper.png
 mycpname craft_blacksmith craft_blacksmith.png
+mycpname craft_brewery craft_brewery.png
 mycpname craft_locksmith craft_locksmith.png
 mycpname craft_painter craft_painter.png
 mycpname craft_tailor craft_tailor.png
