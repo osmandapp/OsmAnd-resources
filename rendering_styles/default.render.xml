@@ -1089,6 +1089,8 @@
 	<renderingConstant name="shopsTextHaloColorDay" value="#f1eae4"/>
 	<renderingConstant name="sportTextColorDay" value="#004d33"/>
 	<renderingConstant name="sportTextHaloColorDay" value="#f1eae4"/>
+	<renderingConstant name="craftTextColorDay" value="#273249"/>
+	<renderingConstant name="craftTextHaloColorDay" value="#aae4edff"/>
 
 	<renderingConstant name="subwayTextBrownColorDay" value="#7e4a00"/>
 	<renderingConstant name="subwayTextOrangeColorDay" value="#b75200"/>
@@ -1323,6 +1325,7 @@
 				</apply>
 			</switch>
 			<case tag="shop" value=""/>
+			<case tag="craft" value=""/>
 			<case tag="tourism" value=""/>
 			<case tag="historic" value="archaeological_site"/>
 			<case tag="historic" value="memorial"/>
@@ -2971,6 +2974,13 @@
 				<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffe0ff" textHaloColor="#556f3f6e"/>
 			</switch>
 
+			<!-- Craft -->
+			<switch textSize="12" textColor="$craftTextColorDay" textHaloColor="$craftTextHaloColorDay" textHaloRadius="$textHaloRadiusDay" textWrapWidth="15" textOrder="70">
+				<case minzoom="18" tag="craft" value="tailor"/>
+				<apply_if engine_v1="true" textDy="9"/>
+				<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffe0ff" textHaloColor="#556f3f6e"/>
+			</switch>
+
 			<!-- Sport + Leisure -->
 			<switch textSize="12" textColor="$sportTextColorDay" textWrapWidth="19" textHaloColor="$sportTextHaloColorDay" textHaloRadius="$textHaloRadiusDay">
 				<switch>
@@ -4394,6 +4404,12 @@
 			<case minzoom="17" tag="amenity" value="vending_machine" icon="amenity_vending_machine"/>
 			<apply_if nightMode="true" shield="gray_purple_square_shield"/>
 		</switch>
+
+		<switch shield="white_gray_square_shield">
+			<case minzoom="18" tag="craft" value="tailor" icon="craft_tailor"/>
+			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
+		</switch>
+
 		<switch minzoom="12">
 			<case tag="lcn_ref" value=""/>
 			<case tag="rcn_ref" value=""/>

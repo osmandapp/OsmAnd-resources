@@ -134,6 +134,7 @@ mygroup healthcare health_pharmacy.png
 mycp amenity dentist health_dentist.png
 mycp amenity doctors health_doctors.png
 mycp amenity hospital health_hospital2.png
+mycpname clinic health_hospital.png
 mycp amenity nursing_home health_nursing_home.png
 mycp amenity pharmacy health_pharmacy2.png
 mycp amenity veterinary health_veterinary.png
@@ -526,6 +527,11 @@ mycpname internet_access_wlan amenity_internet_access_wlan.png
 #! mycp amenity grave_yard place_of_worship_christian3.png  #already defined as icon in the shader section
 
 mygroup craft craft_tailor.png
+mycpname craft_beekeeper craft_beekeeper.png
+mycpname craft_blacksmith craft_blacksmith.png
+mycpname craft_locksmith craft_locksmith.png
+mycpname craft_painter craft_painter.png
+mycpname craft_tailor craft_tailor.png
 
 mygroup finance money_bank2.png
 mycp amenity atm money_atm.png

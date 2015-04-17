@@ -130,7 +130,7 @@ generatePngs() {
       generatePngs 'sport'  '#39AC39' '#ff8f00'
 
       generatePngs 'amenity' '#555555' '#ff8f00'
-      generatePngs 'craft' '#777777' '#ff8f00'
+      generatePngs 'craft' '#637394' '#ff8f00'
       generatePngs 'place_of_worship' '#333333' '#ff8f00'
       generatePngs 'money' '#555555' '#ff8f00'
       generatePngs 'education' '#555555' '#ff8f00'
