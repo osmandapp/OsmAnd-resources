@@ -43,7 +43,7 @@ mycp military danger_area poi_danger_area.png
 mycp military nuclear_explosion_site poi_nuclear_explosion_site.png
 mycp natural glacier poi_peak2.png                       # Keep shaders with background color, cannot be replaced by icons!
 mycp landuse landfill landuse_landfill.png
-mycpname wetland landuse_wetland.png
+#mycpname wetland landuse_wetland.png
 
 mycp stroke black functional-icons_black_stroke.png
 mycp stroke darkgreen functional-icons_darkgreen_stroke.png
@@ -383,6 +383,7 @@ mycp tourism theme_park tourist_theme_park.png
 mycp tourism viewpoint tourist_view_point.png
 mycp tourism zoo tourist_zoo.png
 mycpname city_wall tourist_city_wall.png
+mycpname clock tourist_clock.png
 
 ## Entertainment
 mygroup entertainment tourist_cinema.png
@@ -517,8 +518,9 @@ mycp religion taoist place_of_worship_taoist.png
 mycp amenity brothel amenity_brothel.png
 mycp amenity smoking_area amenity_smoking_area.png
 mycp amenity studio amenity_studio.png
-mycpname waste_basket poi_waste_basket.png
-mycpname waste_disposal poi_waste_disposal.png
+mycpname waste_basket amenity_waste_bin.png
+mycpname waste_basket2 amenity_waste_basket.png
+mycpname waste_disposal amenity_waste_disposal.png
 
 mycpname internet_access_wlan amenity_internet_access_wlan.png
 #! mycp amenity grave_yard place_of_worship_christian3.png  #already defined as icon in the shader section
@@ -547,7 +549,7 @@ mygroup landuse landuse_landuse.png
 ## Education
 mygroup education education_university.png
 mycp amenity college education_college.png
-mycp amenity kindergarten education_nursery2.png
+mycpname kindergarten education_kindergarten.png
 mycp amenity school education_school.png
 mycp amenity university education_university.png
 
