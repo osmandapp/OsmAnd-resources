@@ -164,6 +164,8 @@ mycp highway traffic_signals functional-icons_traffic_lights.png
 mycp traffic_calming bump transport_speedbump.png
 mycp oneway blue functional-icons_oneway_blue.png
 mycp oneway reverse_blue functional-icons_oneway_reverse_blue.png
+mycp oneway blue_big functional-icons_oneway_blue_big.png
+mycp oneway reverse_blue_big functional-icons_oneway_reverse_blue_big.png
 mycp arrow blue_big functional-icons_arrow_blue_big.png
 mycp arrow blue_big_night functional-icons_arrow_blue_big_night.png
 mycp arrow triangle_black functional-icons_arrow_triangle_black.png
