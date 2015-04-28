@@ -137,7 +137,7 @@ generatePngs() {
       generatePngs 'poi' '#3f3f3f' '#ff8f00'
       generatePngs 'power' '#3f3f3f' '#ff8f00'
 
-      generatePngs 'food' '#e58004' '#ff8f00'
+      generatePngs 'food' '#8f6732' '#ff8f00'
 
       generatePngs 'shopping' '#a734c2' '#ff8f00'
 

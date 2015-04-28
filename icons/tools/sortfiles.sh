@@ -536,6 +536,7 @@ mycpname craft_tailor craft_tailor.png
 
 mygroup finance money_bank2.png
 mycp amenity atm money_atm.png
+mycpname payment_terminal money_payment_terminal.png
 mycp amenity bank money_bank2.png
 mycp amenity bureau_de_change money_currency_exchange.png
 mycp bitcoin yes money_bitcoin.png
