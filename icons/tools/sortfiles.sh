@@ -507,7 +507,7 @@ mycp amenity recycling amenity_recycling.png
 mycp amenity telephone amenity_telephone.png
 mycp amenity toilets amenity_toilets.png
 mycp amenity vehicle_ramp amenity_vehicle_ramp.png
-mycp service tyres amenity_service_tyres.png
+mycpname service_tyres amenity_service_tyres.png
 mycp religion christian place_of_worship_christian3.png
 mycp religion jewish place_of_worship_jewish3.png
 mycp religion muslim place_of_worship_islamic3.png
@@ -516,9 +516,9 @@ mycp religion buddhist place_of_worship_buddhist3.png
 mycp religion hindu place_of_worship_hindu3.png
 mycp religion shinto place_of_worship_shinto3.png
 mycp religion taoist place_of_worship_taoist.png
-mycp amenity brothel amenity_brothel.png
-mycp amenity smoking_area amenity_smoking_area.png
-mycp amenity studio amenity_studio.png
+mycpname brothel amenity_brothel.png
+mycpname smoking_area amenity_smoking_area.png
+mycpname studio amenity_studio.png
 mycpname waste_basket amenity_waste_bin.png
 mycpname waste_basket2 amenity_waste_basket.png
 mycpname waste_disposal amenity_waste_disposal.png
