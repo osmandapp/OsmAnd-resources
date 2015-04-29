@@ -1211,6 +1211,7 @@ mycp skimap overlay_extreme skimap_overlay_extreme.png
 mycp skimap overlay_freeride skimap_overlay_freeride.png
 mycp skimap overlay_intermediate skimap_overlay_intermediate.png
 mycp skimap overlay_novice skimap_overlay_novice.png
+mycpname piste skimap_piste.png
 mycp piste downhill skimap_piste_downhill.png
 mycp piste hike skimap_piste_hike.png
 mycp piste nordic skimap_piste_nordic.png
