@@ -336,7 +336,7 @@ mycp barrier motorcycle_barrier barrier_cycle_barrier.png
 mycp barrier sally_port barrier_sally_port.png
 mycp barrier stile barrier_stile.png
 mycp barrier swing_gate barrier_swing_gate.png
-mycp barrier toll_booth barrier_toll_booth.png
+mycpname toll_booth barrier_toll_booth.png
 mycp barrier turnstile barrier_turnstile.png
 mycp entrance yes barrier_entrance2.png
 mycp entrance exit functional-icons_entrance_exit.png
