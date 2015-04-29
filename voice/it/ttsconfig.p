@@ -278,7 +278,7 @@ reached_favorite(D) -- ['reached_favorite.ogg'|Ds] :- name(D, Ds).
 and_arrive_poi(D) -- ['and_arrive_poi.ogg'|Ds] :- name(D, Ds).
 reached_poi(D) -- ['reached_poi.ogg'|Ds] :- name(D, Ds).
  
-route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'route_is2.ogg', 'time.ogg', T] :- distance(Dist, nominativ) -- D, time(Time) -- T.
+route_new_calc(Dist, Time) -- ['route_is1.ogg', 'route_is2.ogg', D, 'time.ogg', T] :- distance(Dist, nominativ) -- D, time(Time) -- T.
 route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist, nominativ) -- D, time(Time) -- T.
  
