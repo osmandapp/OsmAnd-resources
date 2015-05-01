@@ -570,7 +570,7 @@ mygroup transport_construction transport_bridge.png
 mygroup water_supply poi_water_tower.png
 mygroup power power_station.png
 mygroup communication amenity_telephone.png
-mygroup trash_disposal landuse_landfill.png
+mygroup trash_disposal amenity_waste_disposal.png
 mycpname bridge poi_bridge.png
 mycpname tunnel poi_tunnel.png
 mycp amenity hunting_stand poi_hunting_stand.png
