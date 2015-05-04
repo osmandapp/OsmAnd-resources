@@ -1251,6 +1251,8 @@
 		<type tag="man_made" value="gasometer" minzoom="15" poi_with_name="true" />
 		<type tag="man_made" value="observatory" minzoom="12" />
 		<type tag="observatory:type" value="astronomical" minzoom="12" additional="true"/>
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="observatory" to_tag1="man_made" to_value1="observatory" to_tag2="observatory:type" to_value2="astronomical" to_tag3="tourism_attraction" to_value3="yes"/>
+
 		<type tag="man_made" value="monitoring_station" minzoom="13" />
 		<type tag="monitoring_station" value="radar" minzoom="13" additional="true"/>
 	</category>
@@ -1270,6 +1272,8 @@
 		<type tag="leisure" value="park" minzoom="10" order="59"/>
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="park" to_tag1="leisure"/>
 		<type tag="leisure" value="recreation_ground" minzoom="6" order="58" />
+		<type tag="leisure" value="picnic_table" minzoom="6" order="58" poi_category="tourism"/>
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="picnic_table" to_tag1="leisure"/>
 		<type tag="leisure" value="playground" minzoom="15" />
 		<type tag="leisure" value="garden" minzoom="10" order="50" />
 		<type tag="leisure" value="common" minzoom="12" />
@@ -1522,6 +1526,7 @@
 	<category name="tourism" poi_category="tourism" >
 		<type tag="tourism" value="attraction" minzoom="13" order="80" />
 		<type tag="tourism_attraction" value="yes" additional="true" minzoom="13" order="80" />
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="tourism-attraction" to_tag1="tourism" to_value1="attraction"/>
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="attraction" to_tag1="tourism" to_value1="attraction" to_tag2="tourism_attraction" to_value2="yes"/>
 		<type tag="attraction" value="amusement_ride" minzoom="13" poi_prefix="attraction_"/>
 		<type tag="attraction" value="animal" minzoom="13" poi_prefix="attraction_"/>
@@ -1537,22 +1542,38 @@
 		<type tag="attraction" value="water_slide" minzoom="13" poi_prefix="attraction_"/>
 		<type tag="tourism" value="artwork" minzoom="15" order="100" />
 		<type tag="tourism" value="aquarium" minzoom="15" />
+		<type tag="tourism" value="cabin" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="hut" to_tag1="tourism" to_value1="cabin"/>
 		<type tag="tourism" value="camp_site" minzoom="13" order="80" />
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="camping" to_tag1="tourism" to_value1="camp_site"/>
+		<type tag="tourism" value="gallery" minzoom="6" poi_category="entertainment"/>
 		<type tag="tourism" value="caravan_site" minzoom="13" order="80" />
 		<type tag="tourism" value="picnic_site" minzoom="13" order="80" />
 		<type tag="tourism" value="theme_park" minzoom="6" order="60" />
 		<type tag="tourism" value="zoo" minzoom="6" />
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="park" to_tag1="leisure" to_value1="park"/>
 		<type tag="tourism" value="apartment" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="apartments" to_tag1="tourism" to_value1="apartment"/>
 		<type tag="tourism" value="alpine_hut" minzoom="14" />
 		<type tag="tourism" value="wilderness_hut" minzoom="14" />
 		<type tag="tourism" value="chalet" minzoom="15" />
+		<type tag="tourism" value="lean_to" minzoom="15" />
+		<type tag="tourism" value="hunting_lodge" minzoom="15" />
 		<type tag="tourism" value="guest_house" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="bed_and_breakfast" to_tag1="tourism" to_value1="guest_house"/>
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="guest_house;apartment" to_tag1="tourism" to_value1="guest_house"/>
+		<type tag="tourism" value="trail_riding_station" minzoom="15" poi_category="entertainment"/>
+		<type tag="tourism" value="hanami" minzoom="15" />
 		<type tag="tourism" value="hostel" minzoom="15" />
 		<type tag="tourism" value="hotel" minzoom="15" />
 		<type tag="tourism" value="motel" minzoom="15" />
 		<type tag="tourism" value="museum" minzoom="15" />
 		<type tag="tourism" value="information" minzoom="15" order="10"/>
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="sign" to_tag1="tourism" to_value1="information"/>
 		<type tag="tourism" value="viewpoint" minzoom="15" />
+		<type tag="tourism" value="yes" minzoom="15" poi_prefix="general_tourist_attraction_"/>
+		<type tag="tourism" value="wine_cellar" minzoom="15" />
+		<type tag="tourism" value="winery" minzoom="15" />
 		<type tag="leisure" value="resort" minzoom="12" order="71"/>
 		<type tag="amenity" value="grave_yard" minzoom="15" order="49" />
 		<type tag="amenity" value="fountain" minzoom="15" order="65"/>
@@ -1599,12 +1620,15 @@
 		<type tag="historic" value="city_gate" minzoom="13" order="65"/>
 		<type tag="historic" value="fort" minzoom="15" />
 		<type tag="historic" value="memorial" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="memorial" to_tag1="historic"/>
 		<type tag="historic" value="tomb" minzoom="15" />
 		<type tag="historic" value="mine" minzoom="15" poi_prefix="historic_"/>
 		<entity_convert pattern="tag_transform" from_tag="historic" from_value="mine_shaft" to_tag1="historic" to_value1="mine"/>
 		<type tag="historic" value="monument" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="monument" to_tag1="historic"/>
 		<type tag="historic" value="monastery" minzoom="13" poi_prefix="historic_" order="80"/>
 		<type tag="historic" value="ruins" poi_prefix="historic_" minzoom="15" order="75" />
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="ruins" to_tag1="historic"/>
 		<type tag="historic" value="rune_stone" minzoom="15" />
 		<type tag="historic" value="ship" poi_prefix="historic_" minzoom="15" order="75" />
 		<type tag="historic" value="wayside_cross" minzoom="15" />
@@ -1642,6 +1666,7 @@
 		<type tag="landuse" value="recreation_ground" minzoom="6" poi_category="entertainment"/>
 		<type tag="landuse" value="conservation" minzoom="6" poi_with_name="true" poi_category="man_made"/>
 		<type tag="landuse" value="village_green" order="49" minzoom="6" poi_category="entertainment"/>
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="holiday_park" to_tag1="landuse" to_value1="village_green"/>
 		<type tag="landuse" value="reservoir" minzoom="6" poi_with_name="true" poi_category="man_made"/>
 		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="water" to_tag1="landuse" to_value1="reservoir"/>
 		<type tag="landuse" value="residential" minzoom="6" poi_with_name="true" poi_category="administrative"/>
@@ -1672,6 +1697,7 @@
 		<type tag="natural" value="coastline" minzoom="1" />
 		<type tag="natural" value="bay" minzoom="5" poi_category="natural" />
 		<type tag="natural" value="beach" minzoom="6" poi_category="natural" />
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="beach" to_tag1="natural" to_value1="beach"/>
 		<type tag="natural" value="cliff" minzoom="12" />
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="cliff" if_tag1="waterway" if_value1="waterfall"/>
 		<type tag="natural" value="slope" minzoom="12" />
@@ -1709,6 +1735,7 @@
 		<type tag="natural" value="geyser" minzoom="10" poi_category="natural" />
 		<type tag="natural" value="stone" minzoom="10" poi_category="natural" poi_with_name="true" />
 		<type tag="natural" value="valley" minzoom="10" poi_with_name="true" poi_category="natural" />
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="valley" to_tag1="natural" to_tag1="valley"/>
 		<type tag="natural" value="tree" minzoom="10" poi_with_name="true" />
 		<type tag="natural" value="tree_row" minzoom="12" />
 		<entity_convert pattern="tag_transform" from_tag="tree_row" from_value="yes" to_tag1="natural" to_value1="tree_row"/>
@@ -1794,6 +1821,7 @@
 	<!-- Amenities  -->
 	<category name="sustenance" poi_category="sustenance">
 		<type tag="amenity" value="restaurant" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="restaurant" to_tag1="amenity" to_value1="restaurant"/>
 		<type tag="amenity" value="cafe" minzoom="15" />
 		<type tag="amenity" value="food_court" minzoom="15" />
 		<type tag="amenity" value="fast_food" minzoom="15" />
@@ -1901,6 +1929,7 @@
 		<type tag="amenity" value="brothel" minzoom="15" />
 		<type tag="amenity" value="hunting_stand" minzoom="15" />
 		<type tag="amenity" value="bench" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="bench" to_tag1="amenity" to_value1="bench"/>
 	</category>
 
 	<category name="service" poi_category="service">
