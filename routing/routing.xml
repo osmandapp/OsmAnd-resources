@@ -62,6 +62,7 @@
 		<parameter id="avoid_unpaved" name="Avoid unpaved roads" description="Avoid unpaved roads" type="boolean"/>
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_motorway" name="Avoid motorways" description="Avoid motorways" type="boolean"/>
+		<parameter id="avoid_borders" name="Avoid border crossing" description="Avoid crossing a border into another country" type="boolean"/>
 		<parameter id="weight" name="Weight" description="Weight" type="numeric" values="0,1500,3000" valueDescriptions="-,1.5t,3t"/>
 
 		<way attribute="access">
@@ -310,6 +311,9 @@
 		</point>
 
 		<point attribute="obstacle">
+			<if param="avoid_borders">
+				<select value="-1" t="barrier" v="border_control"/>
+			</if>
 			<!-- If access for a car is explicitly marked, the barrier is passable,
 			     with a slight penalty.
 			     If no access for a car is explicitly marked, the barrier is impassable.
@@ -369,6 +373,7 @@
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_motorway" name="Avoid motorways" description="Avoid motorways" type="boolean"/>
 		<parameter id="avoid_unpaved" name="Avoid unpaved roads" description="Avoid unpaved roads" type="boolean"/>
+		<parameter id="avoid_borders" name="Avoid border crossing" description="Avoid crossing a border into another country" type="boolean"/>
 
 		<way attribute="access">
 			<if param="avoid_motorway">
@@ -535,6 +540,9 @@
 		</point>
 
 		<point attribute="obstacle">
+			<if param="avoid_borders">
+				<select value="-1" t="barrier" v="border_control"/>
+			</if>
 			<select value="-1" t="bicycle" v="no"/>
 			<select value="1"  t="bicycle" v="yes"/>
 			<select value="1"  t="bicycle" v="permissive"/>
