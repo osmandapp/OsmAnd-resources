@@ -29,6 +29,11 @@ cp ../png/hdpi/h_* ../../rendering_styles/style-icons/drawable-hdpi/
 cp ../png/xhdpi/h_* ../../rendering_styles/style-icons/drawable-xhdpi/
 cp ../png/xxhdpi/h_* ../../rendering_styles/style-icons/drawable-xxhdpi/
 
+cp ../png/mdpi/osmc_* ../../rendering_styles/style-icons/drawable-mdpi/
+cp ../png/hdpi/osmc_* ../../rendering_styles/style-icons/drawable-hdpi/
+cp ../png/xhdpi/osmc_* ../../rendering_styles/style-icons/drawable-xhdpi/
+cp ../png/xxhdpi/osmc_* ../../rendering_styles/style-icons/drawable-xxhdpi/
+
 mygroup landuse landuse_coniferous.png
 mycp landuse grass landuse_grass.png
 mycpname forest landuse_coniferous_and_deciduous.png               # Keep shaders with background color, cannot be replaced by icons!

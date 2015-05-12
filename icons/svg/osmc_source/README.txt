@@ -1,0 +1,1 @@
+To generate icons/svg/osmc icons run /icons/tools/generate_osmc.sh

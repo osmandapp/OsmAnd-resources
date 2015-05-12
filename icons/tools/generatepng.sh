@@ -103,7 +103,15 @@ generatePngs() {
 }
 
       generateElements 'shaders'
-      generateElements 'osmc'
+      generateElements 'osmc/bg'
+      generateElements 'osmc/black'
+      generateElements 'osmc/blue'
+      generateElements 'osmc/green'
+      generateElements 'osmc/orange'
+      generateElements 'osmc/other'
+      generateElements 'osmc/red'
+      generateElements 'osmc/white'
+      generateElements 'osmc/yellow'
       generatePngs 'seamark' '#777777' '#777777' '' x2 '' nomx
       generatePngs 'seamark_small' '#777777' '#777777' '' '' '' nomx
       generatePngs 'seamark_big' '#777777' '#777777' '' '' x4 nomx
