@@ -64,6 +64,7 @@
 		<parameter id="avoid_motorway" name="Avoid motorways" description="Avoid motorways" type="boolean"/>
 		<parameter id="avoid_borders" name="Avoid border crossing" description="Avoid crossing a border into another country" type="boolean"/>
 		<parameter id="weight" name="Weight" description="Weight" type="numeric" values="0,1500,3000,5000,10000,15000,20000" valueDescriptions="-,1.5t,3t,5t,10t,15t,20t"/>
+		<parameter id="height" name="Height" description="Height" type="numeric" values="0,1.5,2,2.5,3,3.5,4" valueDescriptions="-,1.5m,2m,2.5m,3m,3.5m,4m"/>
 
 		<way attribute="access">
 			<select value="-1" t="highway" v="motorway">
@@ -130,6 +131,9 @@
 
 			<select value="-1" t="maxweight">
 				<gt value1=":weight" value2="$maxweight" type="weight"/>
+			</select>
+			<select value="-1" t="maxheight">
+				<gt value1=":height" value2="$maxheight" type="length"/>
 			</select>
 
 			<select value="1" t="highway" v="motorway"/>
@@ -317,6 +321,12 @@
 			<if param="avoid_borders">
 				<select value="-1" t="barrier" v="border_control"/>
 			</if>
+
+			<!-- Some barrier nodes are combined with maxheight, e.g. height_restrictor or underground parking entrances. -->
+			<select value="-1" t="maxheight">
+				<gt value1=":height" value2="$maxheight" type="length"/>
+			</select>
+
 			<!-- If access for a car is explicitly marked, the barrier is passable,
 			     with a slight penalty.
 			     If no access for a car is explicitly marked, the barrier is impassable.
