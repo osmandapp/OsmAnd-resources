@@ -84,8 +84,7 @@ generatePngs() {
       for (( j = 0 ; j < ${SIZES_HALF}; j++ )) do
         OUTF=${OUTPUTFOLDER}${FOLDERS[j]}/
         if [[ -z $NEG ]]; then
-#   	      echo $FILE
-         ${BASEFOLDER}/tools/recolourtopng.sh "${FILE}" 'none' 'none' $COLOR2 ${SIZES[j]} ${OUTF}${FILENAME}
+         ${BASEFOLDER}/tools/recolourtopng.sh "${FILE}" 'none' 'none' $COLOR2 ${SIZES[j]} ${OUTF}${FILENAME} > /dev/null 2>&1
         else
          ${BASEFOLDER}/tools/recolourtopng.sh "${FILE}" $COLOR2 $COLOR2 '#ffffff'  ${SIZES[j]} ${OUTF}${FILENAME} > /dev/null 2>&1
         fi
