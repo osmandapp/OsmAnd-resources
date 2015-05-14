@@ -546,6 +546,8 @@
 		<entity_convert pattern="tag_transform" from_tag="route" from_value="hiking" to_tag1="route_hiking" to_value1="" apply_to="way,relation"/>
 		<type tag="route_foot" value="" nameTags="ref,name" namePrefix="foot_route_" minzoom="11" relation="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route" from_value="foot" to_tag1="route_foot" to_value1="" apply_to="way,relation"/>
+		<type tag="route_walking" value="" nameTags="ref,name" namePrefix="walking_route_" minzoom="11" relation="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route" from_value="walking" to_tag1="route_walking" to_value1="" apply_to="way,relation"/>
 
 		<type tag="route_bus" value="" nameTags="ref" namePrefix="bus_" minzoom="11" relation="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route" from_value="bus" to_tag1="route_bus" to_value1="" apply_to="way,node,relation"/>
@@ -889,7 +891,7 @@
 		<type tag="osmc_symbol_blue"   nameTags="osmc_symbol_white_blue_bar_name"   value="" minzoom="12"/>
 		<type tag="osmc_symbol_black"  nameTags="osmc_symbol_white_black_bar_name"   value="" minzoom="12"/>-->
 
-		<!-- New scheme -->
+		<!-- Old scheme -->
 		<type tag="osmc_shape" value="bar" additional="true" minzoom="12"/>
 		<type tag="osmc_shape" value="circle" additional="true" minzoom="12"/>
 		<type tag="osmc_symbol" value="black" additional="true" minzoom="12"/>
@@ -941,10 +943,33 @@
 		<type tag="osmc_symbol_yellow_white_name" additional="text" />
 		<type tag="osmc_symbol_yellow_name" additional="text" />
 
-		<type tag="osmc_route_color" additional="true" />
-		<type tag="osmc_background" additional="true" />
-		<type tag="osmc_foreground" additional="true" />
-		<type tag="osmc_stub_name" additional="text" />
+		<!-- New scheme -->
+		<type tag="osmc_route_color" additional="true" relation="true"/>
+		<type tag="osmc_background" additional="true" relation="true"/>
+		<type tag="osmc_background" value="white" additional="true" relation="true"/>
+		<type tag="osmc_foreground" additional="true" relation="true"/>
+		<!-- We do not need to define all possible values because we support most of them. However, these values are used for entity_convert (jel) -->
+		<type tag="osmc_foreground" value="red_cross" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="blue_cross" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="green_cross" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="yellow_cross" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="red_bar" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="green_bar" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="yellow_bar" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="green_triangle" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="blue_triangle" additional="true" relation="true"/>
+		<type tag="osmc_stub_name" value="." additional="text" relation="true"/>
+
+		<!-- jel is a hungarian route symbol. It has priority over osmc:symbol -->
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="p+" to_tag1="osmc_foreground" to_value1="red_cross" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="s" to_tag1="osmc_foreground" to_value1="yellow_bar" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="k+" to_tag1="osmc_foreground" to_value1="blue_cross" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="z" to_tag1="osmc_foreground" to_value1="green_bar" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="p" to_tag1="osmc_foreground" to_value1="red_bar" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="z+" to_tag1="osmc_foreground" to_value1="green_cross" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="s+" to_tag1="osmc_foreground" to_value1="yellow_cross" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="k3" to_tag1="osmc_foreground" to_value1="blue_triangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="z3" to_tag1="osmc_foreground" to_value1="green_triangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
 	</category>
 
 	<!-- For the purpose of rendering the color-coded trails using the tag "colour" or "color", when they are not used tags "osmc_symbol" -->

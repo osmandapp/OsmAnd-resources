@@ -5,7 +5,7 @@ INPUTFOLDER=${BASEFOLDER}/../svg/osmc_source/
 OUTPUTFOLDER=${BASEFOLDER}/../svg/
 
 COLORS=(black blue green red white yellow orange)
-COLORS_HEX=(000000 0023ff 00ac26 d60e1e fefefe dada00 ffa800)
+COLORS_HEX=(000000 0023ff 00ac26 d60e1e fefefe ffce00 ffa800)
 SRC_HEX=0000ff #color of src
 
 for (( i = 0 ; i < ${#COLORS[@]} ; i++ )) do
