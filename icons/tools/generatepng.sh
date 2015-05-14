@@ -84,73 +84,76 @@ generatePngs() {
       for (( j = 0 ; j < ${SIZES_HALF}; j++ )) do
         OUTF=${OUTPUTFOLDER}${FOLDERS[j]}/
         if [[ -z $NEG ]]; then
-          ${BASEFOLDER}/tools/recolourtopng.sh ${FILE} 'none' 'none' $COLOR2 ${SIZES[j]} ${OUTF}${FILENAME} > /dev/null 2>&1
+#   	      echo $FILE
+         ${BASEFOLDER}/tools/recolourtopng.sh "${FILE}" 'none' 'none' $COLOR2 ${SIZES[j]} ${OUTF}${FILENAME}
         else
-          ${BASEFOLDER}/tools/recolourtopng.sh ${FILE} $COLOR2 $COLOR2 '#ffffff'  ${SIZES[j]} ${OUTF}${FILENAME} > /dev/null 2>&1
+         ${BASEFOLDER}/tools/recolourtopng.sh "${FILE}" $COLOR2 $COLOR2 '#ffffff'  ${SIZES[j]} ${OUTF}${FILENAME} > /dev/null 2>&1
         fi
         # convert ${OUTF}${FILENAME}.png \( +clone -background "#ffffff" -shadow 8000x2-0+0 \) +swap -background none -layers merge +repage -trim ${OUTF}${FILENAME}_glow.png
       done
       for (( j = ${SIZES_HALF} ; j < ${#SIZES[@]}; j++ )) do
         OUTF=${OUTPUTFOLDER}${FOLDERS[j]}/
         if [[ -z $NEG ]]; then
-          ${BASEFOLDER}/tools/recolourtopng.sh ${FILE} 'none' 'none' $COLOR ${SIZES[j]} ${OUTF}${FILENAME} > /dev/null 2>&1
+          ${BASEFOLDER}/tools/recolourtopng.sh "${FILE}" 'none' 'none' $COLOR ${SIZES[j]} ${OUTF}${FILENAME} > /dev/null 2>&1
         else
-          ${BASEFOLDER}/tools/recolourtopng.sh ${FILE} $COLOR $COLOR '#ffffff'  ${SIZES[j]} ${OUTF}${FILENAME} > /dev/null 2>&1
+          ${BASEFOLDER}/tools/recolourtopng.sh "${FILE}" $COLOR $COLOR '#ffffff'  ${SIZES[j]} ${OUTF}${FILENAME} > /dev/null 2>&1
         fi
       done
 
     done
 }
 
-      generateElements 'shaders'
-      generateElements 'osmc/bg'
-      generateElements 'osmc/black'
-      generateElements 'osmc/blue'
-      generateElements 'osmc/green'
-      generateElements 'osmc/orange'
-      generateElements 'osmc/other'
-      generateElements 'osmc/red'
-      generateElements 'osmc/white'
-      generateElements 'osmc/yellow'
-      generatePngs 'seamark' '#777777' '#777777' '' x2 '' nomx
-      generatePngs 'seamark_small' '#777777' '#777777' '' '' '' nomx
-      generatePngs 'seamark_big' '#777777' '#777777' '' '' x4 nomx
-      generateElements 'seamark_shields'
-      generateElements 'seamark_shields_x4'
+       generateElements 'shaders'
+       generateElements 'osmc_bg'
 
-      generatePngs 'skimap' '#000000' '#ff8f00' '' x2
+       generatePngs 'osmc_black' '#777777' '#777777' '' '' '' nomx
+       generatePngs 'osmc_blue' '#777777' '#777777' '' '' '' nomx
+       generatePngs 'osmc_green' '#777777' '#777777' '' '' '' nomx
+       generatePngs 'osmc_orange' '#777777' '#777777' '' '' '' nomx
+       generatePngs 'osmc_red' '#777777' '#777777' '' '' '' nomx
+       generatePngs 'osmc_white' '#777777' '#777777' '' '' '' nomx
+       generatePngs 'osmc_yellow' '#777777' '#777777' '' '' '' nomx
+       generatePngs 'osmc_other' '#777777' '#777777' '' '' '' nomx
 
-      generatePngs 'functional-icons' '#777777' '#ff8f00'
-      generatePngs 'water' '#0092DA' '#ff8f00'
+       generatePngs 'seamark' '#777777' '#777777' '' x2 '' nomx
+       generatePngs 'seamark_small' '#777777' '#777777' '' '' '' nomx
+       generatePngs 'seamark_big' '#777777' '#777777' '' '' x4 nomx
+       generateElements 'seamark_shields'
+       generateElements 'seamark_shields_x4'
 
-      generatePngs 'emergency' '#DA0092' '#ff8f00'
-      generatePngs 'health' '#DA0092' '#ff8f00'
+       generatePngs 'skimap' '#000000' '#ff8f00' '' x2
 
-      generatePngs 'transport' '#0092DA' '#ff8f00'
+       generatePngs 'functional-icons' '#777777' '#ff8f00'
+       generatePngs 'water' '#0092DA' '#ff8f00'
 
-      generatePngs 'barrier' '#444444' '#ff8f00'
+       generatePngs 'emergency' '#DA0092' '#ff8f00'
+       generatePngs 'health' '#DA0092' '#ff8f00'
 
-      generatePngs 'accommodation' '#0092DA' '#ff8f00'
+       generatePngs 'transport' '#0092DA' '#ff8f00'
 
-      generatePngs 'tourist' '#593906' '#ff8f00'
-      generatePngs 'special_poi' '#a62b00' '#a62b00' '' '' '' nomx
+       generatePngs 'barrier' '#444444' '#ff8f00'
 
-      generatePngs 'sport'  '#39AC39' '#ff8f00'
+       generatePngs 'accommodation' '#0092DA' '#ff8f00'
 
-      generatePngs 'amenity' '#555555' '#ff8f00'
-      generatePngs 'craft' '#637394' '#ff8f00'
-      generatePngs 'place_of_worship' '#333333' '#ff8f00'
-      generatePngs 'money' '#555555' '#ff8f00'
-      generatePngs 'education' '#555555' '#ff8f00'
-      generatePngs 'poi' '#3f3f3f' '#ff8f00'
-      generatePngs 'power' '#3f3f3f' '#ff8f00'
+       generatePngs 'tourist' '#593906' '#ff8f00'
+       generatePngs 'special_poi' '#a62b00' '#a62b00' '' '' '' nomx
 
-      generatePngs 'food' '#8f6732' '#ff8f00'
+       generatePngs 'sport'  '#39AC39' '#ff8f00'
 
-      generatePngs 'shopping' '#a734c2' '#ff8f00'
+       generatePngs 'amenity' '#555555' '#ff8f00'
+       generatePngs 'craft' '#637394' '#ff8f00'
+       generatePngs 'place_of_worship' '#333333' '#ff8f00'
+       generatePngs 'money' '#555555' '#ff8f00'
+       generatePngs 'education' '#555555' '#ff8f00'
+       generatePngs 'poi' '#3f3f3f' '#ff8f00'
+       generatePngs 'power' '#3f3f3f' '#ff8f00'
 
-      generatePngs 'landuse' '#777777' '#ff8f00'
+       generatePngs 'food' '#8f6732' '#ff8f00'
 
-      generatePngs 'icons8' '#777777' '#ff8f00' neg
+       generatePngs 'shopping' '#a734c2' '#ff8f00'
 
-      generatePngs 'overlays' '#777777' '#777777' '' x2 '' nomx
+       generatePngs 'landuse' '#777777' '#ff8f00'
+
+       generatePngs 'icons8' '#777777' '#ff8f00' neg
+
+       generatePngs 'overlays' '#777777' '#777777' '' x2 '' nomx
