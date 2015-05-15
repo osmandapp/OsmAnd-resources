@@ -1542,6 +1542,7 @@ mycpname osmc_black_red_diamond osmc_other_osmc_black_red_diamond.png
 mycpname osmc_heart osmc_other_osmc_heart.png
 mycpname osmc_mine osmc_other_osmc_mine.png
 mycpname osmc_red_grape osmc_other_osmc_red_grape.png
+mycpname osmc_blue_grape osmc_other_osmc_blue_grape.png
 mycpname osmc_shell_modern osmc_other_osmc_shell_modern.png
 mycpname osmc_tower osmc_other_osmc_tower.png
 mycpname osmc_white_red_diamond osmc_other_osmc_white_red_diamond.png
