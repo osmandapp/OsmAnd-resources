@@ -944,21 +944,91 @@
 		<type tag="osmc_symbol_yellow_name" additional="text" />
 
 		<!-- New scheme -->
-		<type tag="osmc_route_color" additional="true" relation="true"/>
+		<type tag="osmc_waycolor" additional="true" relation="true"/>
 		<type tag="osmc_background" additional="true" relation="true"/>
 		<type tag="osmc_background" value="white" additional="true" relation="true"/>
 		<type tag="osmc_foreground" additional="true" relation="true"/>
+<!--		<type tag="osmc_foreground2" additional="true" relation="true"/>-->
+		<type tag="osmc_text" additional="true" relation="true"/> <!-- no need to make this type additional="text", we'll use it as regular tag-->
+		<type tag="osmc_textcolor" additional="true" relation="true"/>
 		<!-- We do not need to define all possible values because we support most of them. However, these values are used for entity_convert (jel) -->
-		<type tag="osmc_foreground" value="red_cross" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="black_m" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="black_t" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="blue_arch" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="blue_bar" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="blue_circle_arrow" additional="true" relation="true"/>
 		<type tag="osmc_foreground" value="blue_cross" additional="true" relation="true"/>
-		<type tag="osmc_foreground" value="green_cross" additional="true" relation="true"/>
-		<type tag="osmc_foreground" value="yellow_cross" additional="true" relation="true"/>
-		<type tag="osmc_foreground" value="red_bar" additional="true" relation="true"/>
-		<type tag="osmc_foreground" value="green_bar" additional="true" relation="true"/>
-		<type tag="osmc_foreground" value="yellow_bar" additional="true" relation="true"/>
-		<type tag="osmc_foreground" value="green_triangle" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="blue_dot" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="blue_l" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="blue_m" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="blue_t" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="blue_rectangle" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="blue_slash" additional="true" relation="true"/>
 		<type tag="osmc_foreground" value="blue_triangle" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="green_arch" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="green_bar" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="green_circle_arrow" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="green_cross" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="green_dot" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="green_l" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="green_m" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="green_t" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="green_triangle" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="green_rectangle" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="green_z" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="orange_m" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="orange_t" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="purple_m" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="red_arch" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="red_bar" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="red_cross" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="red_dot" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="red_l" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="red_m" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="red_t" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="red_rectangle" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="red_triangle" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="yellow_arch" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="yellow_bar" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="yellow_circle_arrow" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="yellow_cross" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="yellow_dot" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="yellow_l" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="yellow_m" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="yellow_mz" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="yellow_t" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="yellow_rectangle" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="yellow_triangle" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="white_m" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="white_t" additional="true" relation="true"/>
 		<type tag="osmc_stub_name" value="." additional="text" relation="true"/>
+
+		<!-- Here we manually convert most often used :text:textcolor to foreground.
+		Note that many osmc:symbol tags have wrong format in OSM:
+		blue:white::A:blue
+		this does not matches scheme in wiki:   way color:background:foreground:foreground2:text:text color
+		"A" here is processed as :foreground2: but meant :text: . For that reason we can't convert foreground2 to foreground because it will break a lot of these tags.
+		This is correct: blue:white:::M:blue -->
+
+		<entity_convert pattern="tag_transform" from_tag="osmc_text" from_value="m" if_tag1="osmc_textcolor" if_value1="purple" to_tag1="osmc_foreground" to_value1="purple_m"/>
+		<entity_convert pattern="tag_transform" from_tag="osmc_text" from_value="m" if_tag1="osmc_textcolor" if_value1="black" to_tag1="osmc_foreground" to_value1="black_m"/>
+		<entity_convert pattern="tag_transform" from_tag="osmc_text" from_value="m" if_tag1="osmc_textcolor" if_value1="blue" to_tag1="osmc_foreground" to_value1="blue_m"/>
+		<entity_convert pattern="tag_transform" from_tag="osmc_text" from_value="m" if_tag1="osmc_textcolor" if_value1="green" to_tag1="osmc_foreground" to_value1="green_m"/>
+		<entity_convert pattern="tag_transform" from_tag="osmc_text" from_value="m" if_tag1="osmc_textcolor" if_value1="orange" to_tag1="osmc_foreground" to_value1="orange_m"/>
+		<entity_convert pattern="tag_transform" from_tag="osmc_text" from_value="m" if_tag1="osmc_textcolor" if_value1="red" to_tag1="osmc_foreground" to_value1="red_m"/>
+		<entity_convert pattern="tag_transform" from_tag="osmc_text" from_value="m" if_tag1="osmc_textcolor" if_value1="yellow" to_tag1="osmc_foreground" to_value1="yellow_m"/>
+		<entity_convert pattern="tag_transform" from_tag="osmc_text" from_value="m" if_tag1="osmc_textcolor" if_value1="white" to_tag1="osmc_foreground" to_value1="white_m"/>
+
+		<entity_convert pattern="tag_transform" from_tag="osmc_text" from_value="t" if_tag1="osmc_textcolor" if_value1="black" to_tag1="osmc_foreground" to_value1="black_t"/>
+		<entity_convert pattern="tag_transform" from_tag="osmc_text" from_value="t" if_tag1="osmc_textcolor" if_value1="blue" to_tag1="osmc_foreground" to_value1="blue_t"/>
+		<entity_convert pattern="tag_transform" from_tag="osmc_text" from_value="t" if_tag1="osmc_textcolor" if_value1="green" to_tag1="osmc_foreground" to_value1="green_t"/>
+		<entity_convert pattern="tag_transform" from_tag="osmc_text" from_value="t" if_tag1="osmc_textcolor" if_value1="orange" to_tag1="osmc_foreground" to_value1="orange_t"/>
+		<entity_convert pattern="tag_transform" from_tag="osmc_text" from_value="t" if_tag1="osmc_textcolor" if_value1="red" to_tag1="osmc_foreground" to_value1="red_t"/>
+		<entity_convert pattern="tag_transform" from_tag="osmc_text" from_value="t" if_tag1="osmc_textcolor" if_value1="yellow" to_tag1="osmc_foreground" to_value1="yellow_t"/>
+		<entity_convert pattern="tag_transform" from_tag="osmc_text" from_value="t" if_tag1="osmc_textcolor" if_value1="white" to_tag1="osmc_foreground" to_value1="white_t"/>
+
+		<entity_convert pattern="tag_transform" from_tag="osmc_text" from_value="z" if_tag1="osmc_textcolor" if_value1="green" to_tag1="osmc_foreground" to_value1="green_z"/>
+		<entity_convert pattern="tag_transform" from_tag="osmc_text" from_value="mz" if_tag1="osmc_textcolor" if_value1="yellow" to_tag1="osmc_foreground" to_value1="yellow_mz"/>
 
 		<!-- jel is a hungarian route symbol. It has priority over osmc:symbol -->
 		<entity_convert pattern="tag_transform" from_tag="jel" from_value="p+" to_tag1="osmc_foreground" to_value1="red_cross" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
@@ -970,6 +1040,42 @@
 		<entity_convert pattern="tag_transform" from_tag="jel" from_value="s+" to_tag1="osmc_foreground" to_value1="yellow_cross" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
 		<entity_convert pattern="tag_transform" from_tag="jel" from_value="k3" to_tag1="osmc_foreground" to_value1="blue_triangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
 		<entity_convert pattern="tag_transform" from_tag="jel" from_value="z3" to_tag1="osmc_foreground" to_value1="green_triangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="lm" to_tag1="osmc_foreground" to_value1="purple_m" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="p3" to_tag1="osmc_foreground" to_value1="red_triangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="km" to_tag1="osmc_foreground" to_value1="blue_m" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="kq" to_tag1="osmc_foreground" to_value1="blue_dot" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="pq" to_tag1="osmc_foreground" to_value1="red_dot" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="k4" to_tag1="osmc_foreground" to_value1="blue_rectangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="s3" to_tag1="osmc_foreground" to_value1="yellow_triangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="p4" to_tag1="osmc_foreground" to_value1="red_rectangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="pm" to_tag1="osmc_foreground" to_value1="red_m" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="z4" to_tag1="osmc_foreground" to_value1="green_rectangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="k" to_tag1="osmc_foreground" to_value1="blue_bar" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zq" to_tag1="osmc_foreground" to_value1="green_dot" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="sq" to_tag1="osmc_foreground" to_value1="yellow_dot" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="pl" to_tag1="osmc_foreground" to_value1="red_l" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="t" to_tag1="osmc_foreground" to_value1="black_t" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="kl" to_tag1="osmc_foreground" to_value1="blue_l" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="s4" to_tag1="osmc_foreground" to_value1="yellow_rectangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zl" to_tag1="osmc_foreground" to_value1="green_l" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zut" to_tag1="osmc_foreground" to_value1="green_z" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="kc" to_tag1="osmc_foreground" to_value1="blue_circle_arrow" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="pb" to_tag1="osmc_foreground" to_value1="red_arch" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="pc" to_tag1="osmc_foreground" to_value1="red_circle_arrow" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zt" to_tag1="osmc_foreground" to_value1="green_t" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="kb" to_tag1="osmc_foreground" to_value1="blue_arch" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zc" to_tag1="osmc_foreground" to_value1="green_circle_arrow" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="sl" to_tag1="osmc_foreground" to_value1="yellow_l" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="pt" to_tag1="osmc_foreground" to_value1="red_t" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="sm" to_tag1="osmc_foreground" to_value1="yellow_m" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="katl" to_tag1="osmc_foreground" to_value1="blue_slash" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="sc" to_tag1="osmc_foreground" to_value1="yellow_circle_arrow" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zb" to_tag1="osmc_foreground" to_value1="green_arch" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="kt" to_tag1="osmc_foreground" to_value1="blue_t" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="st" to_tag1="osmc_foreground" to_value1="yellow_t" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="smz" to_tag1="osmc_foreground" to_value1="yellow_mz" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="sb" to_tag1="osmc_foreground" to_value1="yellow_arch" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zm" to_tag1="osmc_foreground" to_value1="green_m" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
 	</category>
 
 	<!-- For the purpose of rendering the color-coded trails using the tag "colour" or "color", when they are not used tags "osmc_symbol" -->
