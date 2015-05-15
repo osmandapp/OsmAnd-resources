@@ -1555,3 +1555,4 @@ mycpname osmc_red_wheelchair osmc_other_osmc_red_wheelchair.png
 mycpname osmc_purple_m osmc_other_osmc_purple_m.png
 mycpname osmc_green_z osmc_other_osmc_green_z.png
 mycpname osmc_yellow_mz osmc_other_osmc_yellow_mz.png
+mycpname osmc_brown_x osmc_other_osmc_brown_x.png

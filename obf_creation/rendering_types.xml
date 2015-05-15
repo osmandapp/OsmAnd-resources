@@ -1076,6 +1076,11 @@
 		<entity_convert pattern="tag_transform" from_tag="jel" from_value="smz" to_tag1="osmc_foreground" to_value1="yellow_mz" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
 		<entity_convert pattern="tag_transform" from_tag="jel" from_value="sb" to_tag1="osmc_foreground" to_value1="yellow_arch" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
 		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zm" to_tag1="osmc_foreground" to_value1="green_m" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+
+		<!-- Use color tag as osmc waycolor if no waycolor present -->
+		<type tag="osmc_waycolor" value="black" additional="true" relation="true"/>
+		<entity_convert pattern="tag_transform" from_tag="color_black" if_tag1="osmc_waycolor" if_value1="" to_tag1="osmc_waycolor" to_value1="black" apply_to="way,relation"/>
+		<entity_convert pattern="tag_transform" from_tag="color_black" if_tag1="route_hiking" if_value1="" if_not_tag1="osmc_waycolor" to_tag1="osmc_waycolor" to_value1="black" apply_to="way,relation"/>
 	</category>
 
 	<!-- For the purpose of rendering the color-coded trails using the tag "colour" or "color", when they are not used tags "osmc_symbol" -->
