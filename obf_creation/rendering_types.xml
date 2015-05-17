@@ -618,6 +618,12 @@
 		<type tag="lwn_network" value="lwn" nameTags="ref,name" namePrefix="lwn_" relation="true"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="lwn" to_tag1="lwn_network" to_value1="lwn"/>-->
 
+		<!-- Fix for routes without route=hiking but with network=*wn -->
+		<entity_convert pattern="tag_transform" from_tag="network" from_value="lwn" if_not_tag1="route" to_tag1="network" to_value1="lwn" to_tag2="route_hiking" to_value2="" apply_to="way,relation"/>
+		<entity_convert pattern="tag_transform" from_tag="network" from_value="iwn" if_not_tag1="route" to_tag1="network" to_value1="iwn" to_tag2="route_hiking" to_value2="" apply_to="way,relation"/>
+		<entity_convert pattern="tag_transform" from_tag="network" from_value="rwn" if_not_tag1="route" to_tag1="network" to_value1="rwn" to_tag2="route_hiking" to_value2="" apply_to="way,relation"/>
+		<entity_convert pattern="tag_transform" from_tag="network" from_value="nwn" if_not_tag1="route" to_tag1="network" to_value1="nwn" to_tag2="route_hiking" to_value2="" apply_to="way,relation"/>
+
 		<!-- for compatibility -->
 		<type tag="icn_network" value="icn" minzoom="11" relation="true"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="icn" to_tag1="network" to_value1="icn" to_tag2="icn_network" to_value2="icn"/>
@@ -982,6 +988,7 @@
 		<type tag="osmc_foreground" value="green_l" additional="true" relation="true"/>
 		<type tag="osmc_foreground" value="green_m" additional="true" relation="true"/>
 		<type tag="osmc_foreground" value="green_rectangle" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="green_slash" additional="true" relation="true"/>
 		<type tag="osmc_foreground" value="green_t" additional="true" relation="true"/>
 		<type tag="osmc_foreground" value="green_triangle" additional="true" relation="true"/>
 		<type tag="osmc_foreground" value="green_z" additional="true" relation="true"/>
@@ -997,8 +1004,10 @@
 		<type tag="osmc_foreground" value="red_l" additional="true" relation="true"/>
 		<type tag="osmc_foreground" value="red_m" additional="true" relation="true"/>
 		<type tag="osmc_foreground" value="red_rectangle" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="red_slash" additional="true" relation="true"/>
 		<type tag="osmc_foreground" value="red_t" additional="true" relation="true"/>
 		<type tag="osmc_foreground" value="red_triangle" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="shell_modern" additional="true" relation="true"/>
 		<type tag="osmc_foreground" value="white_m" additional="true" relation="true"/>
 		<type tag="osmc_foreground" value="white_t" additional="true" relation="true"/>
 		<type tag="osmc_foreground" value="yellow_arch" additional="true" relation="true"/>
@@ -1011,6 +1020,7 @@
 		<type tag="osmc_foreground" value="yellow_mz" additional="true" relation="true"/>
 		<type tag="osmc_foreground" value="yellow_rectangle" additional="true" relation="true"/>
 		<type tag="osmc_foreground" value="yellow_sg" additional="true" relation="true"/>
+		<type tag="osmc_foreground" value="yellow_slash" additional="true" relation="true"/>
 		<type tag="osmc_foreground" value="yellow_t" additional="true" relation="true"/>
 		<type tag="osmc_foreground" value="yellow_triangle" additional="true" relation="true"/>
 		<type tag="osmc_stub_name" value="." additional="text" relation="true"/>
@@ -1102,6 +1112,10 @@
 		<entity_convert pattern="tag_transform" from_tag="jel" from_value="ll" to_tag1="osmc_foreground" to_value1="purple_l" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
 		<entity_convert pattern="tag_transform" from_tag="jel" from_value="sgy" to_tag1="osmc_foreground" to_value1="yellow_sg" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
 		<entity_convert pattern="tag_transform" from_tag="jel" from_value="but" to_tag1="osmc_foreground" to_value1="mine" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="stj" to_tag1="osmc_foreground" to_value1="shell_modern" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zatl" to_tag1="osmc_foreground" to_value1="green_slash" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="satl" to_tag1="osmc_foreground" to_value1="yellow_slash" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="patl" to_tag1="osmc_foreground" to_value1="red_slash" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
 
 		<!-- Convert some non-standard foregrounds to supported ones -->
 		<entity_convert pattern="tag_transform" from_tag="osmc_foreground" from_value="×" to_tag1="osmc_foreground" to_value1="black_x" to_tag3="osmc_stub_name" to_value3="."/>
