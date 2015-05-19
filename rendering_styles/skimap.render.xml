@@ -509,20 +509,43 @@
 
 
 	<text>
-		<switch minzoom="14" textOrder="8">
-			<case tag="piste:type" value="nordic" nameTag="piste:name"/>
-			<case tag="piste:type" value="nordic" nameTag=""/>
-			<case tag="piste:type" value="downhill" nameTag="piste:name"/>
-			<case tag="piste:type" value="downhill" nameTag=""/>
-			<case tag="piste:type" value="skitour" nameTag="piste:name"/>
-			<case tag="piste:type" value="skitour" nameTag=""/>
-			<case tag="piste:type" value="hike" nameTag="piste:name"/>
-			<case tag="piste:type" value="hike" nameTag=""/>
-			<case tag="piste:type" value="sled" nameTag="piste:name"/>
-			<case tag="piste:type" value="sled" nameTag=""/>
-			<case tag="piste:type" value="sleigh" nameTag="piste:name"/>
-			<case tag="piste:type" value="sleigh" nameTag=""/>
-			<case tag="piste:type" value="snow_park"/>
+		<switch minzoom="14" textOrder="8" textOnPath="false">
+			<switch tag="piste:type" value="nordic" textColor="$pisteTextColor" textHaloColor="$pisteDefaultColor" textHaloRadius="3">
+				<switch>
+					<case nameTag="piste_nordic_red" textShield="osmc_red_bg"/>
+					<case nameTag="piste_nordic_brown" textShield="osmc_brown_bg"/>
+					<case nameTag="piste_nordic_orange" textShield="osmc_orange_bg"/>
+					<case nameTag="piste_nordic_yellow" textShield="osmc_yellow_bg"/>
+					<case nameTag="piste_nordic_green" textShield="osmc_green_bg"/>
+					<case nameTag="piste_nordic_blue" textShield="osmc_blue_bg"/>
+					<case nameTag="piste_nordic_purple" textShield="osmc_purple_bg"/>
+					<case nameTag="piste_nordic_black" textShield="osmc_black_bg"/>
+					<apply textColor="#00ffffff" textHaloRadius="0" textOrder="9" intersectionSizeFactor="0.1"/>
+				</switch>
+				<case nameTag="piste:name" nameTag2="piste_ref"/>
+				<case nameTag="piste_ref"/>
+				<case nameTag=""/>
+				<apply intersectsWith="piste_nordic"/>
+			</switch>
+			<switch>
+				<case tag="piste:type" value="downhill" nameTag="piste:name" nameTag2="piste_ref"/>
+				<case tag="piste:type" value="downhill" nameTag="piste_ref"/>
+				<case tag="piste:type" value="downhill" nameTag=""/>
+				<case tag="piste:type" value="skitour" nameTag="piste:name" nameTag2="piste_ref"/>
+				<case tag="piste:type" value="skitour" nameTag="piste_ref"/>
+				<case tag="piste:type" value="skitour" nameTag=""/>
+				<case tag="piste:type" value="hike" nameTag="piste:name" nameTag2="piste_ref"/>
+				<case tag="piste:type" value="hike" nameTag="piste_ref"/>
+				<case tag="piste:type" value="hike" nameTag=""/>
+				<case tag="piste:type" value="sled" nameTag="piste:name" nameTag2="piste_ref"/>
+				<case tag="piste:type" value="sled" nameTag="piste_ref"/>
+				<case tag="piste:type" value="sled" nameTag=""/>
+				<case tag="piste:type" value="sleigh" nameTag="piste:name" nameTag2="piste_ref"/>
+				<case tag="piste:type" value="sleigh" nameTag="piste_ref"/>
+				<case tag="piste:type" value="sleigh" nameTag=""/>
+				<case tag="piste:type" value="snow_park"/>
+				<apply textColor="$pisteTextColor" textHaloColor="$pisteDefaultColor" textHaloRadius="3"/>
+			</switch>
 			<apply>
 				<case maxzoom="14" textSize="12"/>
 				<case maxzoom="15" textSize="13"/>
@@ -530,7 +553,7 @@
 				<case maxzoom="17" textSize="16"/>
 				<case minzoom="18" textSize="18"/>
 			</apply>
-			<apply textColor="$pisteTextColor" textBold="true" textHaloRadius="3" textHaloColor="$pisteDefaultColor" textWrapWidth="25"/>
+			<apply textBold="true" textWrapWidth="25"/>
 <!--			<apply_if engine_v1="true" textDy="4"/>-->
 			<apply>
 				<case additional="piste:difficulty=intermediate" textHaloColor="$pisteDifficultyIntermediateTextHaloColor"/>
