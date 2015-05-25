@@ -794,6 +794,7 @@ mycp seamark fog_signal seamark_fog_signal.png
 mycp seamark radar_transponder seamark_radar_transponder.png
 mycp seamark radio_station seamark_radio_station.png
 mycp seamark platform seamark_platform.png
+mycp seamark platform_small seamark_small_platform_small.png
 
 mycp seamark landmark_tower seamark_big_landmark_tower.png
 mycp seamark landmark_windmotor seamark_big_landmark_windmotor.png
