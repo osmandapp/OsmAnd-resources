@@ -127,6 +127,8 @@ mycp fixme_tag yes overlays_fixme.png
 mycp fixme_tag_lowzoom yes overlays_fixme_dot.png
 mycp fixme_tag_lowzoom2 yes overlays_fixme_dot_2.png
 mycp note_tag yes overlays_note.png
+mycp osm_note dot overlays_osm_note_dot.png
+mycp osm_note dot_2 overlays_osm_note_dot_2.png
 mycp drinking_water yes overlays_drinking_water_yes.png
 mycp drinking_water no overlays_drinking_water_no.png
 
@@ -792,6 +794,7 @@ mycp seamark fog_signal seamark_fog_signal.png
 mycp seamark radar_transponder seamark_radar_transponder.png
 mycp seamark radio_station seamark_radio_station.png
 mycp seamark platform seamark_platform.png
+mycp seamark platform_small seamark_small_platform_small.png
 
 mycp seamark landmark_tower seamark_big_landmark_tower.png
 mycp seamark landmark_windmotor seamark_big_landmark_windmotor.png
@@ -1204,6 +1207,9 @@ mycp seamark waterway_gauge seamark_waterway_gauge.png
 
 mycp seamark wreck seamark_wreck.png
 mycp seamark wreck_hull_showing seamark_wreck_hull_showing.png
+
+mycp seamark power_line seamark_small_power_line.png
+mycp seamark submarine_cable seamark_small_submarine_cable.png
 
 ## Skimap
 mycp skimap overlay_advanced skimap_overlay_advanced.png

@@ -1503,10 +1503,6 @@
 			<case tag="amenity" value="motorcycle_parking">
 				<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
 			</case>
-			<case tag="amenity" value="parking">
-				<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
-				<apply_if appMode="bicycle" maxzoom="17" order="-1"/>
-			</case>
 			<case tag="amenity" value="bicycle_parking">
 				<apply_if appMode="default" maxzoom="17" order="-1"/>
 				<apply_if appMode="pedestrian" maxzoom="18" order="-1"/>
@@ -3449,7 +3445,7 @@
 				<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 			</switch>
 			<switch OSMMapperAssistant="true" minzoom="15" intersectionSizeFactor="0">
-				<switch tag="fixme_tag" value="yes" nameTag="fixme" textColor="#ffffff" textHaloColor="#ccf800e0" textOrder="1">
+				<switch tag="fixme_tag" value="yes" nameTag="fixme" textColor="#ffffff" textHaloColor="#ccf800e0" textWrapWidth="20" textOrder="1">
 					<case maxzoom="15" textSize="10" textDy="-40"/>
 					<case minzoom="16" textSize="11" textDy="-50"/>
 					<apply_if engine_v1="true">
@@ -3460,15 +3456,17 @@
 				</switch>
 				<switch>
 					<case tag="note_tag" value="yes" nameTag="note"/>
-	<!--				<case tag="note_tag" value="yes" nameTag="description"/>-->
-	<!--				<case tag="description_tag" value="yes" nameTag="description"/>-->
-					<apply textColor="#ffffff" textHaloColor="#cc347b4c" textOrder="33">
+					<apply textColor="#ffffff" textHaloColor="#cc347b4c" textOrder="33" textWrapWidth="20">
 						<apply_if minzoom="17" textSize="11" textDy="30"/>
 						<apply_if engine_v1="true" minzoom="17" textDy="40"/>
 						<apply_if nightMode="true" textColor="#008b12" textHaloColor="#deffe3"/>
 					</apply>
 				</switch>
-				<apply textBold="true" textWrapWidth="20" textOnPath="true" textHaloRadius="2"/>
+				<case minzoom="17" tag="osm_note" value="yes" textColor="#ffffff" textHaloColor="#ff5757" textSize="11" textOrder="5" textWrapWidth="30">
+					<apply_if engine_v1="true" textDy="8"/>
+					<apply_if nightMode="true" textColor="#ff5757" textHaloColor="#ffe9e9"/>
+				</case>
+				<apply textBold="true" textOnPath="true" textHaloRadius="2"/>
 			</switch>
 
 			<!-- type not supported -->
@@ -3669,6 +3667,7 @@
 				<apply icon="tourism_picnic_site" shield="picnic_shield"/>
 				<apply_if nightMode="true" shield=""/>
 			</switch>
+			<case maxzoom="18" tag="amenity" value="parking" icon="no_icon"/>
 			<case minzoom="16" tag="emergency" value="phone" icon="emergency_phone" shield="white_red_square_shield">
 				<apply_if nightMode="true" shield="gray_red_square_shield"/>
 			</case>
@@ -3808,6 +3807,7 @@
 					<apply_if nightMode="true" shield="gray_brown_square_shield"/>
 				</case>
 			</switch>
+			<case maxzoom="18" tag="amenity" value="parking" icon="no_icon"/>
 		</switch>
 
 		<!-- Natural -->
@@ -4530,7 +4530,7 @@
 
 		<!-- Other amenities -->
 		<case minzoom="17" tag="amenity" value="bench" icon="amenity_bench"/>
-		<case minzoom="17" tag="amenity" value="recycling" icon="amenity_recycling" shield="recycling_shield"/>
+		<case minzoom="18" tag="amenity" value="recycling" icon="amenity_recycling" shield="recycling_shield"/>
 		<case minzoom="17" tag="amenity" value="smoking_area" icon="smoking_area" shield="white_gray_square_shield">
 			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
 		</case>
@@ -4723,6 +4723,10 @@
 				<case maxzoom="12" icon="fixme_tag_lowzoom_yes"/>
 				<case maxzoom="15" icon="fixme_tag_lowzoom2_yes"/>
 				<case minzoom="16" icon="fixme_tag_yes" icon_shift_px="0.5" icon_shift_py="-0.5"/>
+			</switch>
+			<switch minzoom="12" tag="osm_note" value="yes">
+				<case maxzoom="12" icon="osm_note_dot"/>
+				<case maxzoom="17" icon="osm_note_dot_2"/>
 			</switch>
 			<case minzoom="16" tag="note_tag" value="yes" icon="note_tag_yes" icon_shift_px="-0.5" icon_shift_py="-0.5"/>
 <!--			<case minzoom="16" tag="description_tag" value="yes" icon="note_tag_yes"/>-->
@@ -5589,9 +5593,7 @@
 			<case minzoom="7" tag="military" value="danger_area" shader="hazard" color_2="#ffa0c0" strokeWidth_2="1:1">
 				<apply_if nightMode="true" color_2="#ffa0c0"/>
 			</case>
-			<case minzoom="11" tag="hazard" value="" shader="hazard">
-				<apply_if nightMode="true"/>
-			</case>
+			<case minzoom="11" maxzoom="14" tag="hazard" value="" shader="hazard"/>
 			<switch OSMMapperAssistant="true" minzoom="12">
 				<case tag="fixme_tag" value="yes"/>
 				<apply>
