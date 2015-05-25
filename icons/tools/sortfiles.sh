@@ -1207,6 +1207,9 @@ mycp seamark waterway_gauge seamark_waterway_gauge.png
 mycp seamark wreck seamark_wreck.png
 mycp seamark wreck_hull_showing seamark_wreck_hull_showing.png
 
+mycp seamark power_line seamark_small_power_line.png
+mycp seamark submarine_cable seamark_small_submarine_cable.png
+
 ## Skimap
 mycp skimap overlay_advanced skimap_overlay_advanced.png
 mycp skimap overlay_easy skimap_overlay_easy.png
