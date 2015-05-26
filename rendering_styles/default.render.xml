@@ -107,9 +107,10 @@
 	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show cycle routes (*cn_networks) in bicycle mode" type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="osmcTraces" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces"
 		type="boolean" possibleValues="" category="routes"/>
+<!--	<renderingProperty attr="walkingRoutesScopeOSMC" name="walkingRoutesScopeOSMC" description="walkingRoutesScopeOSMC"
+		type="boolean" possibleValues="" category="routes"/>-->
 	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
 		type="boolean" possibleValues="" category="routes"/>
-
 	<renderingProperty attr="roadStyle" name="Road style" description="Road style"
 		type="string" possibleValues=",orange,germanRoadAtlas,americanRoadAtlas,highContrastRoads"/>
 
@@ -1688,6 +1689,11 @@
 				<apply_if point="true" objectType="1" order="74"/>
 			</switch>
 
+			<case tag="network_iwn" value="" order="19"/>
+			<case tag="network_nwn" value="" order="20"/>
+			<case tag="network_rwn" value="" order="21"/>
+			<case tag="network_lwn" value="" order="22"/>
+
 			<!-- Admin_levels under highways unless appMode=default -->
 			<case tag="admin_level" value="" order="62">
 				<case appMode="pedestrian"/>
@@ -1850,7 +1856,7 @@
 	<text>
 		<switch intersectsWith="any"> <!-- temporary solution for OpenGL engine (issues with text intersection) -->
 			<switch intersectsWith="text"> <!-- temporary solution for OpenGL engine (issues with text intersection) -->
-				<switch osmcTraces="true" minzoom="12" textMinDistance="101" textOnPath="false" textColor="#00ffffff" textSize="11" textOrder="1">
+				<switch minzoom="12" textMinDistance="101" textOnPath="false" textColor="#00ffffff" textSize="11" textOrder="1">
 					<switch minzoom="12" textOrder="2">
 						<case tag="route_hiking" value="" nameTag="osmc_text" nameTag2="hiking_route_ref" textSize="13"/>
 						<case tag="route_foot" value="" nameTag="osmc_text" nameTag2="foot_route_ref" textSize="13"/>
@@ -1861,8 +1867,13 @@
 						<case minzoom="17" tag="route_hiking" value="" nameTag="hiking_route_name" textOrder="10"/>
 						<case minzoom="17" tag="route_foot" value="" nameTag="foot_route_name" textOrder="10"/>
 						<case minzoom="17" tag="route_walking" value="" nameTag="walking_route_name" textOrder="10"/>
-						<apply textMinDistance="100" textColor="#0078ff" textBold="true" textHaloRadius="2" textHaloColor="#ccebf4ff" textWrapWidth="30">
-							<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#aa0800a0"/>
+						<apply>
+							<switch>
+								<case osmcTraces="true"/>
+								<case walkingRoutesScopeOSMC="true"/>
+								<apply textMinDistance="100" textColor="#0078ff" textBold="true" textHaloRadius="2" textHaloColor="#ccebf4ff" textWrapWidth="30"/>
+								<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#aa0800a0"/>
+							</switch>
 						</apply>
 					</switch>
 				</switch>
@@ -7171,7 +7182,35 @@
 			<apply_if minzoom="16" maxzoom="16" strokeWidth="10:10"/>
 			<apply_if minzoom="17" maxzoom="17" strokeWidth="11:11"/>
 			<apply_if minzoom="18" strokeWidth="13:13"/>
+			<apply_if walkingRoutesScopeOSMC="true" color="$null"/>
 		</switch>
+<!--		<switch walkingRoutesScopeOSMC="true" color="$osmcDefaultColor">
+			<case minzoom="12" tag="network_iwn" value="" color="#d94545">
+				<apply_if maxzoom="12" strokeWidth="5"/>
+				<apply_if minzoom="13" maxzoom="13" strokeWidth="7"/>
+				<apply_if minzoom="14" maxzoom="15" strokeWidth="9"/>
+				<apply_if minzoom="15" maxzoom="16" strokeWidth="11"/>
+				<apply_if minzoom="17" strokeWidth="13"/>
+			</case>
+			<case minzoom="12" tag="network_nwn" value="" color="#0000ff">
+				<apply_if maxzoom="12" strokeWidth="3"/>
+				<apply_if minzoom="13" maxzoom="13" strokeWidth="4"/>
+				<apply_if minzoom="14" maxzoom="15" strokeWidth="7"/>
+				<apply_if minzoom="15" maxzoom="16" strokeWidth="9"/>
+				<apply_if minzoom="17" strokeWidth="11"/>
+			</case>
+			<case minzoom="13" tag="network_rwn" value="" color="#ffa200">
+				<apply_if maxzoom="13" strokeWidth="2.5"/>
+				<apply_if minzoom="14" maxzoom="15" strokeWidth="5"/>
+				<apply_if minzoom="15" maxzoom="16" strokeWidth="7"/>
+				<apply_if minzoom="17" strokeWidth="9"/>
+			</case>
+			<case minzoom="14" tag="network_lwn" value="" color="#cf00d7">
+				<apply_if maxzoom="15" strokeWidth="3.5"/>
+				<apply_if minzoom="15" maxzoom="16" strokeWidth="4"/>
+				<apply_if minzoom="17" strokeWidth="6"/>
+			</case>
+		</switch>-->
 
 <!--		<switch minzoom="16">
 			<case tag="hazard" value=""/>
