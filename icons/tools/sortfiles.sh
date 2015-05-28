@@ -1307,6 +1307,7 @@ mycpname wine shopping_wine.png
 mygroup user_defined icons8_user.png
 mygroup user_defined_other icons8_user.png
 mygroup osmwiki icons8_wikipedia.png
+mycpname wiki_place poi_wikipedia2.png
 mygroup name_finder icons8_web_search.png
 mycp osmand waypoint functional-icons_waypoint.png
 mygroup null icons8_worldwide_location.png

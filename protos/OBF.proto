@@ -188,7 +188,9 @@ message OsmAndAddressIndex {
 	}
 
 	// encoded as fixed32 length delimited
-	optional OsmAndAddressNameIndexData nameIndex = 7;  
+	optional OsmAndAddressNameIndexData nameIndex = 7;
+
+	optional StringTable attributeTagsTable = 8;
 }
 
 message OsmAndAddressNameIndexData {
@@ -225,6 +227,8 @@ message CityIndex {
     
 	required string name = 2;
 	optional string name_en = 3;
+	repeated uint32 attributeTagIds = 11;
+	repeated string attributeValues = 12;
 	optional uint64 id = 4;
 	
 	required uint32 x = 5; // x tile of 31 zoom
@@ -258,6 +262,8 @@ message CityBlockIndex {
 message StreetIndex {
 	required string name = 1;
 	optional string name_en = 2;
+	repeated uint32 attributeTagIds = 13;
+	repeated string attributeValues = 14;
 	
 	required sint32 x = 3; // delta encoded to parent 24 zoom
 	required sint32 y = 4; // delta encoded to parent 24 zoom
@@ -265,13 +271,15 @@ message StreetIndex {
 	optional uint64 id = 6;
 	
 	repeated BuildingIndex buildings = 12;
-	
+
 	repeated StreetIntersection intersections = 5;
 }
 
 message StreetIntersection {
 	required string name = 2;
 	optional string name_en = 3;
+	repeated uint32 attributeTagIds = 6;
+	repeated string attributeValues = 7;
 	
 	required sint32 intersectedX = 4; // delta encoded to parent street x 24 zoom
 	required sint32 intersectedY = 5; // delta encoded to parent street y 24 zoom
@@ -280,10 +288,14 @@ message StreetIntersection {
 message BuildingIndex {
 	required string name = 1;
 	optional string name_en = 2;
+	repeated uint32 attributeTagIds = 15;
+	repeated string attributeValues = 16;
 	
 	// used for interpolation
 	optional string name2 = 3;
 	optional string name_en2 = 4;
+	repeated uint32 attributeTagIds2 = 17;
+	repeated string attributeValues2 = 18;
 	
 	// special values 0 means - nothing, -1 - all, -2 - even, -3 - odd, -4, alphabetic
 	// positive - just positive interpolation 
@@ -374,6 +386,10 @@ message OsmAndTransportIndex {
 	
 	required StringTable stringTable = 9;
 }
+
+////////////////////////////
+/////   POI messages   /////
+////////////////////////////
 
 message OsmAndPoiIndex {
     required string name = 1;
