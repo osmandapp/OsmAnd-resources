@@ -1562,6 +1562,7 @@ mycpname osmc_blue_wheelchair osmc_other_osmc_blue_wheelchair.png
 mycpname osmc_brown_bar osmc_other_osmc_brown_bar.png
 mycpname osmc_brown_dot osmc_other_osmc_brown_dot.png
 mycpname osmc_brown_x osmc_other_osmc_brown_x.png
+mycpname osmc_green_wheelchair osmc_other_osmc_green_wheelchair.png
 mycpname osmc_green_z osmc_other_osmc_green_z.png
 mycpname osmc_heart osmc_other_osmc_heart.png
 mycpname osmc_mine osmc_other_osmc_mine.png
