@@ -1289,7 +1289,6 @@ mycp shop mobile_phone shopping_mobile_phone.png
 mycp shop motorcycle shopping_motorcycle.png
 mycp shop musical_instrument shopping_music.png
 mycp shop optician shopping_opticians.png
-mycp shop outdoor shopping_tackle.png
 mycp shop pet shopping_pet2.png
 mycpname photo shopping_photo.png
 mycp shop seafood shopping_fish.png
@@ -1301,12 +1300,14 @@ mycp shop tobacco shopping_tobacco.png
 mycp shop toys shopping_toys.png
 mycp shop video shopping_video_rental.png
 mycpname wine shopping_wine.png
+mycpname outdoor shopping_outdoor.png
 
 
 # mygroup custom_id icons8 #TODO
 mygroup user_defined icons8_user.png
 mygroup user_defined_other icons8_user.png
 mygroup osmwiki icons8_wikipedia.png
+mycpname wiki_place poi_wikipedia2.png
 mygroup name_finder icons8_web_search.png
 mycp osmand waypoint functional-icons_waypoint.png
 mygroup null icons8_worldwide_location.png
@@ -1562,6 +1563,7 @@ mycpname osmc_blue_wheelchair osmc_other_osmc_blue_wheelchair.png
 mycpname osmc_brown_bar osmc_other_osmc_brown_bar.png
 mycpname osmc_brown_dot osmc_other_osmc_brown_dot.png
 mycpname osmc_brown_x osmc_other_osmc_brown_x.png
+mycpname osmc_green_wheelchair osmc_other_osmc_green_wheelchair.png
 mycpname osmc_green_z osmc_other_osmc_green_z.png
 mycpname osmc_heart osmc_other_osmc_heart.png
 mycpname osmc_mine osmc_other_osmc_mine.png
