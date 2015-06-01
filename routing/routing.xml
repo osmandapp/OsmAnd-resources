@@ -40,7 +40,7 @@
                 Only for visual effect (ETA).
 	     		
 	   The order of specialization matters only how it was supplied :
-	      short_way, avoid_ferries, avoid_toll, [prefer_motorway | avoid_motorway], avoid_unpaved
+	      short_way, avoid_ferries, avoid_toll, avoid_motorway, avoid_unpaved
 	   
 	   Conditional values (based on parameters) can be specified as:
 	      <select value="x" t="y" v="z">
@@ -54,7 +54,8 @@
 
 		-->
 		<!-- NEW ROUTING API -->
-		<parameter id="prefer_motorway" name="Prefer motorways" description="Prefer motorways" type="boolean"/>
+		
+		<!-- <parameter id="prefer_motorway" name="Prefer motorways" description="Prefer motorways" type="boolean"/> -->
 		<!-- <parameter id="no_new_routing" name="Do not use v1.9 routing" description="Do not use v1.9 routing" type="boolean"/> -->
 		
 		<parameter id="short_way" name="Short way" description="Short way" type="boolean"/>
@@ -253,12 +254,14 @@
 		</way>
 
 		<way attribute="priority">
+			<!-- not working fine -->
+			<!--
 			<if param="prefer_motorway">
 				<select value="1.2" t="highway" v="motorway"/>
 				<select value="1.1" t="highway" v="motorway_link"/>
 				<select value="1.2" t="highway" v="trunk"/>
 				<select value="1.1" t="highway" v="trunk_link"/>
-			</if>
+			</if> -->
 			<!-- access deprioritize -->
 			<select t="tracktype" v="grade5" value="0.1"/>
 			<select t="motorcar" v="private" value="0.05"/>
@@ -520,6 +523,11 @@
 		</way>
 
 		<way attribute="priority">
+			<select value="0.1" t="bicycle" v="private"/>
+			<select value="0.1" t="bicycle" v="destination"/>
+			<select value="0.1" t="access" v="private"/>
+			<select value="0.1" t="barrier" v="debris"/>
+
 			<if param="avoid_unpaved">
 				<select value="0.4" t="tracktype" v="grade2"/>
 				<select value="0.1" t="tracktype" v="grade3"/>
@@ -543,12 +551,7 @@
 			<select value="0.8" t="surface" v="grass"/>
 			<select value="0.8" t="tracktype" v="grade4"/>
 			<select value="0.8" t="tracktype" v="grade5"/>
-			<select value="0.1" t="access" v="private"/>
-			<select value="0.1" t="barrier" v="debris"/>
-
-			<select value="1.4" t="bicycle" v="designated"/>
-			<select value="1.2" t="bicycle" v="yes"/>
-
+			
 			<select value="1.6" t="cycleway" v="lane"/>
 			<select value="1.6" t="cycleway" v="opposite_lane"/>
 			<select value="1.6" t="cycleway" v="share_busway"/>
@@ -558,6 +561,10 @@
 			<select value="1.6" t="cycleway" v="shared_lane"/>
 
 			<select value="1.5" t="highway" v="cycleway"/>
+
+			<select value="1.5" t="bicycle" v="official"/>
+			<select value="1.4" t="bicycle" v="designated"/>
+			<select value="1.2" t="bicycle" v="yes"/>
 
 			<select value="0.5" t="highway" v="motorway"/>
 			<select value="0.5" t="highway" v="motorway_link"/>

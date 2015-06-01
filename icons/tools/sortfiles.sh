@@ -1289,7 +1289,6 @@ mycp shop mobile_phone shopping_mobile_phone.png
 mycp shop motorcycle shopping_motorcycle.png
 mycp shop musical_instrument shopping_music.png
 mycp shop optician shopping_opticians.png
-mycp shop outdoor shopping_tackle.png
 mycp shop pet shopping_pet2.png
 mycpname photo shopping_photo.png
 mycp shop seafood shopping_fish.png
@@ -1301,6 +1300,7 @@ mycp shop tobacco shopping_tobacco.png
 mycp shop toys shopping_toys.png
 mycp shop video shopping_video_rental.png
 mycpname wine shopping_wine.png
+mycpname outdoor shopping_outdoor.png
 
 
 # mygroup custom_id icons8 #TODO
