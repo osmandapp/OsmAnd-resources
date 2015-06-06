@@ -2,7 +2,7 @@
 <!-- xmd5a (xmd5a@yandex.ru) http://forum.openstreetmap.org/viewtopic.php?id=23125 -->
 <renderingStyle name="LightRS" depends="" defaultColor="#ffffff" version="1">
 	<renderingProperty attr="moreDetailed" name="More details" description="More details on map" type="boolean" possibleValues="" category="details"/>
-	<renderingProperty attr="contourLines" name="Show contour lines" description="Select minimum zoom level to display in map if available. Separate contour file may be needed." type="string" possibleValues="--,16,15,14,13,12,11" category="details"/>
+	<renderingProperty attr="contourLines" name="Show contour lines" description="Select minimum zoom level to display in map if available. Separate contour file may be needed." type="string" possibleValues="16,15,14,13" category="details"/>
 	<renderingProperty attr="noPolygons" name="Hide polygons (exc.buildings)" description="Make all areal land features on map transparent" type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideWoodScrubs" name="Hide wood and scrubs" description="Hide wood and scrubs" type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideBuildings" name="Hide buildings" description="Hide buildings" type="boolean" possibleValues="" category="hide"/>
@@ -791,6 +791,15 @@
 				</apply>
 			</switch>
 
+			<case tag="contour" value="" textColor="#444444" textOnPath="true" textSize="12" textHaloRadius="0">
+				<case minzoom="13" contourLines="13"/>
+				<case minzoom="14" contourLines=""/>
+				<case minzoom="14" contourLines="14"/>
+				<case minzoom="15" contourLines="15"/>
+				<case minzoom="16" contourLines="16"/>
+				<apply_if nightMode="true" textColor="#ffffff" textHaloRadius=":1" textHaloColor="#77777777"/>
+			</case>
+
 			<switch textColor="#6666ff" textDy="9" textWrapWidth="25" nameTag="">
 				<case minzoom="14" tag="railway" value="station" textBold="true" textOrder="5">
 					<apply_if maxzoom="14" textSize="12"/>
@@ -1451,6 +1460,7 @@
 			<case minzoom="11" contourLines="11" strokeWidth="0.7"/>
 			<case minzoom="12" contourLines="12" strokeWidth="0.7"/>
 			<case minzoom="13" contourLines="13" strokeWidth="1"/>
+			<case minzoom="14" contourLines="" strokeWidth="1"/>
 			<case minzoom="14" contourLines="14" strokeWidth="1"/>
 			<case minzoom="15" contourLines="15" strokeWidth="1"/>
 			<case minzoom="16" contourLines="16" strokeWidth="1"/>
