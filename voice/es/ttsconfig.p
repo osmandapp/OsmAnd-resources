@@ -117,7 +117,7 @@ string('exceed_limit.ogg', 'límite de velocidad excedido').
 
 % STREET NAME GRAMMAR
 string('on.ogg', 'en').
-string('to.ogg', 'a').
+string('to.ogg', 'hacia').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'metros').
