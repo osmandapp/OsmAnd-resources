@@ -255,6 +255,56 @@
 		<case engine_v1="false" attrColorValue="#15ea7300"/>
 		<case attrColorValue="#2aea7300"/>
 	</renderingAttribute>
+	<renderingAttribute name="whiteColor">
+		<case attrColorValue="#88ffffff"/>
+	</renderingAttribute>
+	<renderingAttribute name="redColor">
+		<case attrColorValue="#88ff0000"/>
+	</renderingAttribute>
+	<renderingAttribute name="orangeColor">
+		<case nightMode="true" attrColorValue="#88ffb631"/>
+		<case attrColorValue="#88ff7200"/>
+	</renderingAttribute>
+	<renderingAttribute name="brownColor">
+		<case nightMode="true" attrColorValue="#88b46100"/>
+		<case attrColorValue="#88ba7007"/>
+	</renderingAttribute>
+	<renderingAttribute name="darkyellowColor">
+		<case nightMode="true" attrColorValue="#88737812"/>
+		<case attrColorValue="#88afb61c"/>
+	</renderingAttribute>
+	<renderingAttribute name="yellowColor">
+		<case attrColorValue="#88edc300"/>
+	</renderingAttribute>
+	<renderingAttribute name="lightgreenColor">
+		<case nightMode="true" attrColorValue="#8895ff79"/>
+		<case attrColorValue="#886cb52b"/>
+	</renderingAttribute>
+	<renderingAttribute name="greenColor">
+		<case nightMode="true" attrColorValue="#8838c012"/>
+		<case attrColorValue="#8800842b"/>
+	</renderingAttribute>
+	<renderingAttribute name="lightblueColor">
+		<case nightMode="true" attrColorValue="#887fe5ff"/>
+		<case attrColorValue="#882ec6ff"/>
+	</renderingAttribute>
+	<renderingAttribute name="blueColor">
+		<case nightMode="true" attrColorValue="#886d74ff"/>
+		<case attrColorValue="#884e4eff"/>
+	</renderingAttribute>
+	<renderingAttribute name="purpleColor">
+		<case nightMode="true" attrColorValue="#88cd5efb"/>
+		<case attrColorValue="#88a71de1"/>
+	</renderingAttribute>
+	<renderingAttribute name="grayColor">
+		<case nightMode="true" attrColorValue="#aa999999"/>
+		<case attrColorValue="#aa999999"/>
+	</renderingAttribute>
+	<renderingAttribute name="blackColor">
+		<case nightMode="true" attrColorValue="#aa666666"/>
+		<case attrColorValue="#aa000000"/>
+	</renderingAttribute>
+
 
 	<order>
 	<!-- Point -->
@@ -518,6 +568,13 @@
 
 
 	<text>
+		<case minzoom="11" tag="osmand" value="file_waypoint"> <!-- for new OpenGL engine -->
+			<case additional="file_has_waypoints=true" textWrapWidth="25" textHaloRadius=":1" textColor="#000000" textHaloColor="#ffc8c8" textOrder="1">
+				<case maxzoom="12" textSize="11"/>
+				<case minzoom="14" textSize="12"/>
+				<apply_if nightMode="true" textColor="#dddddd" textHaloColor="#5f0000"/>
+			</case>
+		</case>
 		<!-- Location names -->
 		<switch minzoom="3">
 			<case tag="natural" value="coastline"/>
@@ -1053,6 +1110,9 @@
 
 
 	<point>
+		<case minzoom="5" tag="osmand" value="file_waypoint"> <!-- for new OpenGL engine -->
+			<case additional="file_has_waypoints=true" icon="osmand_waypoint" shield="waypoint_shield" iconVisibleSize="5" iconOrder="127"/>
+		</case>
 	<!-- Seamarks -->
 		<switch>
 			<!-- Buoys -->
@@ -2637,6 +2697,45 @@
 
 
 	<line>
+		<switch minzoom="2"> <!-- for new OpenGL engine -->
+			<switch>
+				<case tag="osmand" value="file_trackline" color="#55ff0000" cap="ROUND">
+					<case minzoom="13" maxzoom="16" pathIcon="arrow_triangle_white_nobg" pathIconStep="40"/>
+					<case minzoom="17" pathIcon="arrow_triangle_white_nobg" pathIconStep="50"/>
+					<apply>
+						<case additional="color=white" color="$whiteColor" pathIcon="arrow_triangle_black_nobg"/>
+						<case additional="color=red" color="$redColor"/>
+						<case additional="color=orange" color="$orangeColor"/>
+						<case additional="color=brown" color="$brownColor"/>
+						<case additional="color=darkyellow" color="$darkyellowColor"/>
+						<case additional="color=yellow" color="$yellowColor" pathIcon="arrow_triangle_black_nobg"/>
+						<case additional="color=lightgreen" color="$lightgreenColor"/>
+						<case additional="color=green" color="$greenColor"/>
+						<case additional="color=lightblue" color="$lightblueColor"/>
+						<case additional="color=blue" color="$blueColor"/>
+						<case additional="color=purple" color="$purpleColor"/>
+						<case additional="color=gray" color="$grayColor"/>
+						<case additional="color=black" color="$blackColor"/>
+					</apply>
+				</case>
+				<case tag="osmand" value="file_routeline" color="#55ff00ff" cap="ROUND">
+					<case maxzoom="4" pathEffect="2_2"/>
+					<case maxzoom="6" pathEffect="3_2"/>
+					<case maxzoom="12" pathEffect="5_4"/>
+					<case minzoom="13" pathEffect="6_5"/>
+				</case>
+			</switch>
+			<apply>
+				<case maxzoom="4" strokeWidth="1.5:1.5"/>
+				<case maxzoom="6" strokeWidth="3:3"/>
+				<case maxzoom="9" strokeWidth="4:4"/>
+				<case maxzoom="10" strokeWidth="4.5:4.5"/>
+				<case maxzoom="11" strokeWidth="5:5"/>
+				<case maxzoom="12" strokeWidth="5:5"/>
+				<case maxzoom="13" strokeWidth="5.5:5.5"/>
+				<case minzoom="14" strokeWidth="6:6"/>
+			</apply>
+		</switch>
 		<case minzoom="1" tag="natural" value="coastline_broken" color="#111111" strokeWidth=":1"/>
 		<case minzoom="5" tag="natural" value="coastline_line" color="#cc999999" strokeWidth=":1"/>
 
