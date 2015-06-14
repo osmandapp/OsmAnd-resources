@@ -624,21 +624,15 @@
 		<attribute name="heuristicCoefficient" value="1.2" />
 		<!-- NEW ROUTING API -->
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
+		<parameter id="avoid_motorway" name="Avoid motorways" description="Avoid motorways" type="boolean"/>
 		<parameter id="avoid_highways" name="Avoid highways" description="Avoid highways" type="boolean"/>
-		<parameter id="prefer_paths" name="Prefer paths" description="Prefer paths" type="boolean"/>
 
 		<way attribute="access">
-			<if param="avoid_highways">
+			<if param="avoid_motorway">
 				<select value="-1" t="highway" v="motorway"/>
 				<select value="-1" t="highway" v="motorway_link"/>
 				<select value="-1" t="highway" v="trunk"/>
 				<select value="-1" t="highway" v="trunk_link"/>
-				<select value="-1" t="highway" v="primary"/>
-				<select value="-1" t="highway" v="primary_link"/>
-				<select value="-1" t="highway" v="secondary"/>
-				<select value="-1" t="highway" v="secondary_link"/>
-				<select value="-1" t="highway" v="tertiary"/>
-				<select value="-1" t="highway" v="tertiary_link"/>
 			</if>
 			<select value="-1" t="route" v="ferry">
 				<if param="avoid_ferries"/>
@@ -694,15 +688,17 @@
 		</way>
 
 		<way attribute="priority">
-			<if param="prefer_paths">
-				<select value="1.5" t="highway" v="path"/>
-				<select value="1.5" t="highway" v="footway"/>
-				<select value="1.2" t="highway" v="track"/>
+			<if param="avoid_highways">
+				<select value="0.1" t="highway" v="primary"/>
+				<select value="0.1" t="highway" v="primary_link"/>
+				<select value="0.1" t="highway" v="secondary"/>
+				<select value="0.1" t="highway" v="secondary_link"/>
+				<select value="0.1" t="highway" v="tertiary"/>
+				<select value="0.1" t="highway" v="tertiary_link"/>
 			</if>
 			<!-- Additional tags -->
 			<select value="0.05" t="foot" v="private"/>
 			<select value="0.05" t="foot" v="destination"/>
-			<select value="1.2" t="foot" v="yes"/>
 
 			<select value="0.05" t="access" v="private"/>
 			<select value="0.05" t="access" v="destination"/>
@@ -724,6 +720,8 @@
 			<select value="1.2" t="highway" v="pedestrian"/>
 			<select value="1.2" t="highway" v="footway"/>
 			<select value="1.2" t="highway" v="path"/>
+
+			<select value="1.2" t="foot" v="yes"/>
 
 			<select value="1"   t="route"   v="ferry"/>
 
