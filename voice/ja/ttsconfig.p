@@ -1,4 +1,4 @@
-﻿% for turbo-prolog
+% for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog
 :- op(500, xfy,'--').
@@ -26,87 +26,89 @@ fest_language('').
 
 
 % ROUTE CALCULATED
-string('mokutekichi_made.ogg', 'Mokutekichi made ').
-string('michi_wo_koushin_shimashita.ogg', 'Michi wo koushin shimashita').
-string('kyouri_ha.ogg', 'Kyouri ha ').
+string('mokutekichi_made.ogg', '目的地まで、').
+string('michi_wo_koushin_shimashita.ogg', 'ルートを更新しました。').
+string('kyouri_ha.ogg', '距離は、').
+string('jikan_ha.ogg', '時間は、').
 
 % LEFT/RIGHT
 %string('prepare.ogg', 'Prepare to ').
-string('saki.ogg', 'Saki ').
+string('saki.ogg', '先、').
 
-string('hidari_ni_magatte_kudasai.ogg', 'Hidari ni magatte kudasai ').
-string('hidari_wo_eikaku_ni_magatte_kudasai.ogg', 'Hidari wo eikaku ni magatte kudasai ').
-string('hidari_wo_yuruyaka_ni_magatte_kudasai.ogg', 'Hidari wo yuruyaka ni magatte kudasai ').
-string('migi_ni_magatte_kudasai.ogg', 'Migi ni magatte kudasai ').
-string('migi_wo_eikaku_ni_magatte_kudasai.ogg', 'Migi wo eikaku ni magatte kudasai ').
-string('migi_wo_yuruyaka_ni_magatte_kudasai.ogg', 'Migi wo yuruyaka ni magatte kudasai').
-string('hidari_ni_yotte_kudasai.ogg', 'Hidari ni yotte kudasai').
-string('migi_ni_yotte_kudasai.ogg', 'Migi ni yotte kudasai').
+string('hidari_ni_magatte_kudasai.ogg', '左に曲ってください。').
+string('hidari_wo_eikaku_ni_magatte_kudasai.ogg', '左を鋭角に曲ってください。').
+string('hidari_wo_yuruyaka_ni_magatte_kudasai.ogg', '左をゆるやかに曲ってください。').
+string('migi_ni_magatte_kudasai.ogg', '右に曲ってください。').
+string('migi_wo_eikaku_ni_magatte_kudasai.ogg', '右を鋭角に曲ってください。').
+string('migi_wo_yuruyaka_ni_magatte_kudasai.ogg', '右をゆるやかに曲ってください。').
+string('hidari_ni_yotte_kudasai.ogg', '左に寄ってください。').
+string('migi_ni_yotte_kudasai.ogg', '右に寄ってください。').
 % if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 % U-TURNS
-string('uturn_wo_shite_kudasai.ogg', 'U turn wo shite kudasai ').
-%string('make_uturn_wp.ogg', 'When possible, please make a U turn ').
+string('uturn_wo_shite_kudasai.ogg', 'Uターンをしてください。').
+string('make_uturn_wp.ogg', '可能ならUターンをしてください。').
 
 % ROUNDABOUTS
-%string('prepare_roundabout.ogg', 'Prepare to enter a roundabout ').
-string('rotary_ga_arimasu.ogg', 'Rotary ga arimasu').
-string('soshite.ogg', ', soshite ').
+%string('prepare_roundabout.ogg', 'ラウンドアバウトがあります。').
+string('rotary_ga_arimasu.ogg', 'ロータリーがあります。').
+string('soshite.ogg', ' そして、').
 %string('and.ogg', 'and ').
-string('rotary_no.ogg', 'rotary no ').
-string('no_deguchi_wo_dete_kudasai.ogg', 'no deguchi wo dete kudasai ').
+string('rotary_no.ogg', 'ロータリーの').
+string('no_deguchi_wo_dete_kudasai.ogg', 'の出口を出てください。').
 
-string('1.ogg', 'ichi ').
-string('2.ogg', 'ni ').
-string('3.ogg', 'san ').
-string('4.ogg', 'yon ').
-string('5.ogg', 'go ').
-string('6.ogg', 'roku ').
-string('7.ogg', 'nana ').
-string('8.ogg', 'hachi ').
-string('9.ogg', 'kyuu ').
-string('10.ogg', 'juu ').
-string('11.ogg', 'juu ichi ').
-string('12.ogg', 'juu ni ').
-string('13.ogg', 'juu san ').
-string('14.ogg', 'juu yon  ').
-string('15.ogg', 'juu go ').
-string('16.ogg', 'juu roku ').
-string('17.ogg', 'juu nana ').
+string('1.ogg', '1').
+string('2.ogg', '2').
+string('3.ogg', '3').
+string('4.ogg', '4').
+string('5.ogg', '5').
+string('6.ogg', '6').
+string('7.ogg', '7').
+string('8.ogg', '8').
+string('9.ogg', '9').
+string('10.ogg', '10').
+string('11.ogg', '11').
+string('12.ogg', '12').
+string('13.ogg', '13').
+string('14.ogg', '14').
+string('15.ogg', '15').
+string('16.ogg', '16').
+string('17.ogg', '17').
 
-string('ban_me.ogg', 'ban me ').
+string('ban_me.ogg', '番目').
 
 % STRAIGHT/FOLLOW
-string('chokushin_shite_kudasai.ogg', 'CHokushin shite kudasai ').
+string('chokushin_shite_kudasai.ogg', '直進してください。').
 %string('follow.ogg', 'Follow the course of the road for').
 
 % ARRIVE
-string('touchaku_shimasu.ogg', 'touchaku shimasu ').
-string('touchaku_shimashita.ogg','touchaku shimashita ').
-string('tochuu_no_mokuteki_ni_tsukimasu.ogg', 'tochuu no mokuteki ni tsukimasu ').
-string('tochuu_no_mokuteki_ni_tsukimashita.ogg', 'tochuu no mokuteki ni tsukimashita ').
-string('waypoint_ni_tsukimasu.ogg', 'waypoint ni tsukimasu ').
-string('waypoint_ni_tsukimashita.ogg', 'waypoint ni tsukimashita ').
+string('touchaku_shimasu.ogg', '目的地です。').
+string('touchaku_shimashita.ogg','目的地です。').
+string('tochuu_no_mokuteki_ni_tsukimasu.ogg', '途中の目的地につきます。').
+string('tochuu_no_mokuteki_ni_tsukimashita.ogg', '途中の目的地につきました。').
+string('waypoint_ni_tsukimasu.ogg', 'ウェイポイントにつきます。').
+string('waypoint_ni_tsukimashita.ogg', 'ウェイポイントにつきました。').
 
 % OTHER PROMPTS
-string('ki_wo_tsukete.ogg', 'Ki wo tsukete, ').
-string('kengai_desu.ogg', 'kengai_desu ').
-string('location_recovered.ogg', 'GPS信号が回復').
-string('mae_kara_michi_ga_chigaimasu.ogg', 'mae kara michi ga chigaimasu').
-string('speed_over_desu.ogg', 'Speed over desu ').
+string('ki_wo_tsukete.ogg', '注意が必要です。').
+string('kengai_desu.ogg', 'GPS信号が受信できません。').
+string('location_recovered.ogg', 'GPS信号が回復しました。').
+string('mae_kara_michi_ga_chigaimasu.ogg', '前から道が違います。').
+string('speed_over_desu.ogg', 'スピードオーバーです。').
 
 % STREET NAME GRAMMAR
-string('ni.ogg', 'ni ').
+string('ni.ogg', 'に、').
 %string('on.ogg', 'on ').
-string('made.ogg', 'made ').
+string('made.ogg', 'まで、').
+string('desu.ogg', 'です。').
 
 % DISTANCE UNIT SUPPORT
-string('meters.ogg', 'meters ').
-string('oyoso_1_kilo.ogg', 'oyoso 1 kilo ').
-string('oyoso.ogg', 'oyoso ').
-string('kilo.ogg', 'kilo ').
+string('meters.ogg', 'メートル、').
+string('oyoso_1_kilo.ogg', 'およそ、1キロ、').
+string('oyoso.ogg', 'およそ、').
+string('kilo.ogg', 'キロ、').
 
-string('feet.ogg', 'feet ').
+string('feet.ogg', 'フィート').
 string('1_tenth_of_a_mile.ogg', 'one tenth of a mile').
 string('tenths_of_a_mile.ogg', 'tenths of a mile').
 string('around_1_mile.ogg', 'about 1 mile ').
@@ -115,12 +117,21 @@ string('miles.ogg', 'miles ').
 string('yards.ogg', 'yards ').
 
 % TIME SUPPORT
-string('jikan.ogg', 'jikan ').
-%string('1_jikan.ogg', 'ichi jikan ').
+string('jikan.ogg', '時間').
+%string('1_jikan.ogg', '1時間').
 %string('hours.ogg', 'hours ').
-string('ippun_inai.ogg', 'ippun inai ').
-string('ippun.ogg', 'ippun ').
-%string('minutes.ogg', 'minutes ').
+string('ippun_inai.ogg', '1分以内').
+string('ippun.ogg', '1分').
+string('ni_fun.ogg', '2分').
+string('san_pun.ogg', '3分').
+string('yon_pun.ogg', '4分').
+string('go_fun.ogg', '5分').
+string('roppun.ogg', '6分').
+string('nana_fun.ogg', '7分').
+string('happun.ogg', '8分').
+string('kyuu_fun.ogg', '9分').
+string('juppun.ogg', '10分').
+string('minutes.ogg', '分').
 
 
 %% COMMAND BUILDING / WORD ORDER
@@ -136,10 +147,10 @@ bear_left(_Street) -- ['hidari_ni_yotte_kudasai.ogg'].
 bear_right(_Street) -- ['migi_ni_yotte_kudasai.ogg'].
 
 onto_street('', []).
-onto_street(Street, [Street, 'ni.ogg']) :- tts.
+onto_street(Street, [Street, 'desu.ogg']) :- tts.
 onto_street(_Street, []) :- not(tts).
 on_street('', []).
-on_street(Street, [Street, 'ni.ogg']) :- tts.
+on_street(Street, [Street, 'desu.ogg']) :- tts.
 on_street(_Street, []) :- not(tts).
 to_street('', []).
 to_street(Street, [Street, 'made.ogg']) :- tts.
@@ -152,7 +163,7 @@ turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), onto_street(Street, Sgen).
 prepare_make_ut(Dist, Street) -- [D, 'saki.ogg', 'uturn_wo_shite_kudasai.ogg' | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
 make_ut(Dist, Street) --  [D, 'saki.ogg', 'uturn_wo_shite_kudasai.ogg' | Sgen] :- distance(Dist) -- D, onto_street(Street, Sgen).
 make_ut(Street) -- ['uturn_wo_shite_kudasai.ogg' | Sgen] :- onto_street(Street, Sgen).
-make_ut_wp -- ['uturn_wo_shite_kudasai.ogg'].
+make_ut_wp -- ['make_uturn_wp.ogg'].
 
 prepare_roundabout(Dist, _Exit, _Street) -- [D, 'saki.ogg', 'rotary_ga_arimasu.ogg'] :- distance(Dist) -- D.
 roundabout(Dist, _Angle, Exit, Street) -- [D, 'saki.ogg', 'rotary_no.ogg', E, 'no_deguchi_wo_dete_kudasai.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), onto_street(Street, Sgen).
@@ -245,8 +256,8 @@ hours(S, []) :- S < 60.
 hours(S, [Ogg, 'jikan.ogg']) :- H is S div 60, pnumber(H, Ogg).
 time(Sec) -- ['ippun_inai.ogg'] :- Sec < 30.
 time(Sec) -- [H, 'ippun.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, St = 1, pnumber(St, Ogg).
-%time(Sec) -- [H, Ogg, 'minutes.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, pnumber(St, Ogg).
-%time(Sec) -- [H, Ogg, 'minutes.ogg'] :- not(tts), S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60, pnumber(St, Ogg).
+time(Sec) -- [H, Ogg, 'minutes.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, pnumber(St, Ogg).
+
 time(Sec) -- [H, 'go_fun.ogg'] :- not(tts), S is round(Sec/60.0) * 5, hours(S, H).
 time(Sec) -- [H, 'juppun.ogg'] :- not(tts), S is round(Sec/60.0) * 10, hours(S, H).
 time(Sec) -- [H, '10.ogg', 'go_fun.ogg'] :- not(tts), S is round(Sec/60.0) * 15, hours(S, H).
