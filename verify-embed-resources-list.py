@@ -133,7 +133,6 @@ if __name__=='__main__':
     rules = [
         # Map styles and related:
         [r'rendering_styles/default\.render\.xml', 'map/styles/default.render.xml'],
-        [r'rendering_styles/default\.map_styles_presets\.xml', 'map/presets/default.map_styles_presets.xml'],
 
         # Map icons (Android mdpi == 1.0 ddf):
         [r'rendering_styles/style-icons/drawable-mdpi/h_((?:[^/]*?shield[^/]*?)|(?:[^/]*?osmc[^/]*?))\.png', r'[ddf=1.0]map/shields/\1.png'],
