@@ -850,7 +850,7 @@
 			<apply_if nightMode="true" textColor="$naturalTextColor" textHaloRadius="$textHaloRadiusNight" textHaloColor="#88464234"/>
 		</switch>
 
-		<case tag="contour" value="" textColor="#444444" textOnPath="true" textSize="12">
+		<switch tag="contour" value="" textOnPath="true">
 			<case minzoom="13" contourLines="11"/>
 			<case minzoom="13" contourLines="12"/>
 			<case minzoom="13" contourLines="13"/>
@@ -858,8 +858,21 @@
 			<case minzoom="14" contourLines="14"/>
 			<case minzoom="15" contourLines="15"/>
 			<case minzoom="16" contourLines="16"/>
-			<apply_if nightMode="true" textColor="#ffffff" textHaloRadius=":1" textHaloColor="#77777777"/>
-		</case>
+			<apply>
+				<case minzoom="15" additional="contourtype=50m" textColor="#777777" textSize="10" textMinDistance="600">
+					<apply_if nightMode="true" textColor="#aaaaaa" textHaloRadius=":1" textHaloColor="#66777777"/>
+				</case>
+				<case minzoom="16" additional="contourtype=20m" textColor="#777777" textSize="10" textMinDistance="700">
+					<apply_if nightMode="true" textColor="#999999" textHaloRadius=":1" textHaloColor="#22777777"/>
+				</case>
+				<case minzoom="17" additional="contourtype=10m" textColor="#888888" textSize="9" textMinDistance="800">
+					<apply_if nightMode="true" textColor="#888888" textHaloRadius=":1" textHaloColor="#22777777"/>
+				</case>
+				<case additional="contourtype=100m" textColor="#444444" textSize="12" textMinDistance="240">
+					<apply_if nightMode="true" textColor="#bbbbbb" textHaloRadius=":1" textHaloColor="#77777777"/>
+				</case>
+			</apply>
+		</switch>
 
 		<switch textColor="#000000" textWrapWidth="20">
 			<case tag="osmand_legend" value="header" textOrder="1" nameTag="" textBold="true" textDy="-11" textHaloRadius=":1" textHaloColor="$defaultTextHaloColorDay">
