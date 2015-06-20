@@ -28,9 +28,9 @@
 	 -->
 	<!-- ORDER of entity_convert matters so it is better to group them sequantially -->
 	<entity_convert pattern="tag_transform" from_tag="area" from_value="true" to_tag1="area" to_value1="yes"/>
-	<entity_convert pattern="tag_transform" from_tag="area:highway" if_not_tag1="area" to_tag1="area:highway" to_tag2="area" to_value2="yes" apply_to="node,way"/>
+	<entity_convert pattern="tag_transform" from_tag="area:highway" if_not_tag1="area" to_tag1="area:highway" to_tag2="area" to_value2="yes" apply_to="way"/>
 	<entity_convert pattern="tag_transform" from_tag="landuse" from_value="pedestrian" if_not_tag1="area" to_tag1="area:highway" to_value1="pedestrian" to_tag2="area" to_value2="yes" apply_to="node,way"/>
-	<entity_convert pattern="tag_transform" from_tag="highway" if_not_tag1="highway" if_not_value1="rest_area" if_tag1="area" if_value1="yes" to_tag1="area:highway" to_tag2="highway" to_value2="service_area"/> <!-- to_tag2 used for compatibility with 1.9 -->
+<!--	<entity_convert pattern="tag_transform" from_tag="highway" if_not_tag1="highway" if_not_value1="rest_area" if_not_tag2="highway" if_not_value2=if_tag1="area" if_value1="yes" to_tag1="area:highway"/>-->
 
 	<entity_convert pattern="split" from_tag="natural" from_value="coastline" if_tag1="place" if_value1="island" to_tag1="natural" to_value1="coastline"/>
 <!--	<entity_convert pattern="tag_transform" from_tag="natural" from_value="coastline" if_tag1="place" if_value1="island"/>-->
@@ -441,28 +441,15 @@
 
 		<type tag="motorroad" value="yes" minzoom="11" additional="true"/>
 
-		<!-- This section is needed for compatibility with v1.9 -->
-		<type tag="highway" value="primary_area" minzoom="15" nameTags="ref"/>
-		<type tag="highway" value="secondary_area" minzoom="15" nameTags="ref"/>
-		<type tag="highway" value="tertiary_area" minzoom="16" nameTags="ref"/>
-		<type tag="highway" value="unclassified_area" minzoom="16" nameTags="ref"/>
-		<type tag="highway" value="residential_area" minzoom="16" nameTags="ref"/>
-		<type tag="highway" value="service_area" minzoom="16" nameTags="ref"/>
-		<type tag="highway" value="services_area" minzoom="16" nameTags="ref"/>
-		<type tag="highway" value="pedestrian_area" minzoom="16" nameTags="ref"/>
-		<type tag="highway" value="footway_area" minzoom="16" nameTags="ref"/>
-		<type tag="highway" value="track_area" minzoom="16" nameTags="ref"/>
-		<entity_convert pattern="tag_transform" from_tag="area:highway" from_value="primary" to_tag1="highway" to_value1="primary_area" to_tag2="area:highway" to_value2="primary"/>
-		<entity_convert pattern="tag_transform" from_tag="area:highway" from_value="secondary" to_tag1="highway" to_value1="secondary_area" to_tag2="area:highway" to_value2="secondary"/>
-		<entity_convert pattern="tag_transform" from_tag="area:highway" from_value="tertiary" to_tag1="highway" to_value1="tertiary_area" to_tag2="area:highway" to_value2="tertiary"/>
-		<entity_convert pattern="tag_transform" from_tag="area:highway" from_value="unclassified" to_tag1="highway" to_value1="unclassified_area" to_tag2="area:highway" to_value2="unclassified"/>
-		<entity_convert pattern="tag_transform" from_tag="area:highway" from_value="residential" to_tag1="highway" to_value1="residential_area" to_tag2="area:highway" to_value2="residential"/>
-		<entity_convert pattern="tag_transform" from_tag="area:highway" from_value="service" to_tag1="highway" to_value1="service_area" to_tag2="area:highway" to_value2="service"/>
-		<entity_convert pattern="tag_transform" from_tag="area:highway" from_value="services" to_tag1="highway" to_value1="services_area" to_tag2="area:highway" to_value2="services"/>
-		<entity_convert pattern="tag_transform" from_tag="area:highway" from_value="pedestrian" to_tag1="highway" to_value1="pedestrian_area" to_tag2="area:highway" to_value2="pedestrian"/>
-		<entity_convert pattern="tag_transform" from_tag="area:highway" from_value="footway" to_tag1="highway" to_value1="footway_area" to_tag2="area:highway" to_value2="footway"/>
-		<entity_convert pattern="tag_transform" from_tag="area:highway" from_value="track" to_tag1="highway" to_value1="track_area" to_tag2="area:highway" to_value2="track"/>
-		<!-- This section is needed for compatibility with v1.9 -->
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="primary" if_tag1="area" if_value1="yes" to_tag1="area:highway" to_value1="primary"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="secondary" if_tag1="area" if_value1="yes" to_tag1="area:highway" to_value1="secondary"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="tertiary" if_tag1="area" if_value1="yes" to_tag1="area:highway" to_value1="tertiary"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="unclassified" if_tag1="area" if_value1="yes" to_tag1="area:highway" to_value1="unclassified"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="residential" if_tag1="area" if_value1="yes" to_tag1="area:highway" to_value1="residential"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="service" if_tag1="area" if_value1="yes" to_tag1="area:highway" to_value1="service"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="pedestrian" if_tag1="area" if_value1="yes" to_tag1="area:highway" to_value1="pedestrian"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="footway" if_tag1="area" if_value1="yes" to_tag1="area:highway" to_value1="footway"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="track" if_tag1="area" if_value1="yes" to_tag1="area:highway" to_value1="track"/>
 
 		<type tag="area:highway" value="primary" minzoom="15" nameTags="ref" order="10"/>
 		<type tag="area:highway" value="secondary" minzoom="15" nameTags="ref" order="10"/>
@@ -470,7 +457,6 @@
 		<type tag="area:highway" value="unclassified" minzoom="16" nameTags="ref" order="10"/>
 		<type tag="area:highway" value="residential" minzoom="16" nameTags="ref" order="10"/>
 		<type tag="area:highway" value="service" minzoom="16" nameTags="ref" order="10"/>
-		<type tag="area:highway" value="services" minzoom="16" nameTags="ref" order="10"/>
 		<type tag="highway" value="rest_area" minzoom="16" nameTags="ref" poi_category="transportation"/>
 		<type tag="area:highway" value="pedestrian" minzoom="16" nameTags="ref" order="10"/>
 		<type tag="area:highway" value="footway" minzoom="16" nameTags="ref" order="10"/>

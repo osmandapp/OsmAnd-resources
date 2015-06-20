@@ -1412,6 +1412,7 @@
 				<apply_if appMode="pedestrian" maxzoom="18" order="-1"/>
 				<apply_if appMode="bicycle" maxzoom="17" order="-1"/>
 			</switch>
+			<case tag="highway" value="services"/>
 			<case tag="highway" value="passing_place">
 				<apply_if appMode="pedestrian" order="-1"/>
 			</case>
@@ -1539,13 +1540,13 @@
 				<case tag="area:highway" value="road"/>
 				<case tag="area:highway" value="unclassified"/>
 				<case tag="area:highway" value="service"/>
-				<case tag="area:highway" value="services"/>
 				<case tag="highway" value="rest_area"/>
 				<case tag="area:highway" value="residential"/>
 				<case tag="area:highway" value="footway"/>
 				<case tag="area:highway" value="track"/>
 				<apply order="7"/>
 			</switch>
+			<case tag="highway" value="services"/>
 			<case tag="landuse" value="military" order="8"/>
 			<case tag="military" value="danger_area" order="8"/>
 			<case tag="landuse" value="cemetery" order="5"/>
@@ -2391,8 +2392,6 @@
 							<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 						</switch>
 						<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" textOrder="10">
-							<case tag="highway" value="services" minzoom="16" textDy="4"/>
-							<case tag="area:highway" value="services" minzoom="16" textDy="4"/>
 							<case tag="highway" value="rest_area"/>
 							<case tag="highway" value="ford"/>
 							<apply_if engine_v1="false" textDy="0"/>
@@ -2760,26 +2759,23 @@
 			</switch>
 
 			<switch textSize="12" textColor="$landuseManmadeTextColorDay" textHaloRadius="$landuseManmadeTextHaloRadiusDay" textHaloColor="$landuseManmadeTextHaloColorDay" textWrapWidth="20" textOrder="200">
-				<switch>
-					<case minzoom="14" tag="landuse" value="allotments"/>
-					<case minzoom="14" tag="landuse" value="cemetery"/>
-					<case minzoom="15" tag="landuse" value="construction"/>
-					<case minzoom="15" tag="landuse" value="industrial"/>
-					<case minzoom="15" tag="landuse" value="garages"/>
-					<case minzoom="13" tag="landuse" value="railway"/>
-					<case minzoom="13" tag="landuse" value="residential"/>
-					<case minzoom="13" tag="landuse" value="quarry"/>
-					<case minzoom="13" tag="landuse" value="landfill"/>
-					<case minzoom="15" tag="landuse" value="farmyard"/>
-					<case minzoom="15" tag="man_made" value="wastewater_plant"/>
-				</switch>
-				<switch>
-					<case minzoom="15" tag="landuse" value="retail"/>
-					<case minzoom="15" tag="landuse" value="commercial"/>
-					<case minzoom="15" tag="power" value="plant"/>
-					<case minzoom="16" tag="power" value="substation"/>
-					<case minzoom="15" tag="power" value="generator"/>
-				</switch>
+				<case minzoom="14" tag="landuse" value="allotments"/>
+				<case minzoom="14" tag="landuse" value="cemetery"/>
+				<case minzoom="15" tag="landuse" value="construction"/>
+				<case minzoom="15" tag="landuse" value="industrial"/>
+				<case minzoom="15" tag="landuse" value="garages"/>
+				<case minzoom="13" tag="landuse" value="railway"/>
+				<case minzoom="13" tag="landuse" value="residential"/>
+				<case minzoom="13" tag="landuse" value="quarry"/>
+				<case minzoom="13" tag="landuse" value="landfill"/>
+				<case minzoom="15" tag="landuse" value="farmyard"/>
+				<case minzoom="15" tag="man_made" value="wastewater_plant"/>
+				<case minzoom="15" tag="landuse" value="retail"/>
+				<case minzoom="15" tag="landuse" value="commercial"/>
+				<case minzoom="15" tag="power" value="plant"/>
+				<case minzoom="16" tag="power" value="substation"/>
+				<case minzoom="15" tag="power" value="generator"/>
+				<case minzoom="16" tag="highway" value="services"/>
 				<apply_if engine_v1="true" textDy="9"/>
 				<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#77777777"/>
 			</switch>
@@ -4867,7 +4863,6 @@
 			</switch>
 			<switch minzoom="14">
 				<case tag="area:highway" value="service"/>
-				<case tag="area:highway" value="services"/>
 				<case tag="highway" value="rest_area"/>
 				<apply color="$serviceHighwayAreaColor" color_2="$serviceHighwayAreaShadowColor" strokeWidth_2=":1"/>
 			</switch>
@@ -5320,9 +5315,12 @@
 				<case minzoom="15" shader="allotments"/>
 				<apply_if nightMode="true" shader="" color_2="#00510e"/>
 			</case>
-			<case minzoom="12" tag="landuse" value="retail" color="$landuseRetailColorDay">
+			<switch>
+				<case minzoom="12" tag="landuse" value="retail"/>
+				<case minzoom="13" tag="highway" value="services"/>
+				<apply color="$landuseRetailColorDay"/>
 				<apply_if nightMode="true" color="$landuseRetailColorNight"/>
-			</case>
+			</switch>
 			<switch minzoom="12">
 				<case tag="leisure" value="resort"/>
 				<case tag="amenity" value="sanatorium"/>
