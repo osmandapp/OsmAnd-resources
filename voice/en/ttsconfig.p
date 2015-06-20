@@ -153,7 +153,7 @@ bear_left(_Street) -- ['left_keep.ogg'].
 bear_right(_Street) -- ['right_keep.ogg'].
 
 % cut_part_street(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
-cut_part_street(voice(['', '', Dest], _), Dest).
+cut_part_street(voice([Ref, '', Dest], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Dest, Concat).
 % cut_part_street(voice(['', Name, _], _), Name). % not necessary
 cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
 
