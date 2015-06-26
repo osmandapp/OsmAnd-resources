@@ -1,5 +1,7 @@
 <renderingStyle name="UniRS" depends="default" defaultColor="#f1eae4" version="1.2">
 <!-- Universal Rendering Style for OsmAnd by xmd5a (xmd5a@yandex.ru) 11.12.2013 http://forum.openstreetmap.org/viewtopic.php?id=23125 -->
+	<renderingProperty attr="currentTrackColor" name="Current GPX color" description="Color of the currently recording track"
+		type="string" possibleValues="red,orange,brown,yellow,lightgreen,green,lightblue,blue,purple" defaultValueDescription="default"/>
 
 	<renderingAttribute name="route">
 		<case color="#88aa0088" strokeWidth="7:6" color_3="#ffde5b" strokeWidth_3="7:6">
@@ -7,10 +9,20 @@
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="gpx" cap="ROUND">
-		<case strokeWidth="2" color="#ff0000">
+		<case currentTrackColor="red" color="$redColor"/>
+		<case currentTrackColor="orange" color="$orangeColor"/>
+		<case currentTrackColor="brown" color="$brownColor"/>
+		<case currentTrackColor="yellow" color="$yellowColor"/>
+		<case currentTrackColor="lightgreen" color="$lightgreenColor"/>
+		<case currentTrackColor="green" color="$greenColor"/>
+		<case currentTrackColor="lightblue" color="$lightblueColor"/>
+		<case currentTrackColor="blue" color="$blueColor"/>
+		<case currentTrackColor="purple" color="$purpleColor"/>
+		<case color="#ff0000">
 			<apply_if roadStyle="germanRoadAtlas" color="#aa0088"/>
-			<apply_if additional="routePoints=true" pathEffect="6_5" color="#b400ffff"/>
 		</case>
+		<apply_if additional="routePoints=true" pathEffect="6_5"/> <!--  color="#b400ffff" -->
+		<apply strokeWidth="2"/>
 	</renderingAttribute>
 
 	<renderingConstant name="null" value="#00000000"/>
@@ -161,6 +173,41 @@
 	<renderingConstant name="themeparkStrokeColorNight" value="#71b7b5"/>
 	<renderingConstant name="parkColorNight" value="#035340"/>
 	<renderingConstant name="parkStrokeColorNight" value="#00000000"/>
+
+	<renderingAttribute name="redColor">
+		<case attrColorValue="#ff0000"/>
+	</renderingAttribute>
+	<renderingAttribute name="orangeColor">
+		<case nightMode="true" attrColorValue="#ffb631"/>
+		<case attrColorValue="#ff7200"/>
+	</renderingAttribute>
+	<renderingAttribute name="brownColor">
+		<case nightMode="true" attrColorValue="#b46100"/>
+		<case attrColorValue="#ba7007"/>
+	</renderingAttribute>
+	<renderingAttribute name="yellowColor">
+		<case attrColorValue="#edc300"/>
+	</renderingAttribute>
+	<renderingAttribute name="lightgreenColor">
+		<case nightMode="true" attrColorValue="#95ff79"/>
+		<case attrColorValue="#6cb52b"/>
+	</renderingAttribute>
+	<renderingAttribute name="greenColor">
+		<case nightMode="true" attrColorValue="#38c012"/>
+		<case attrColorValue="#00842b"/>
+	</renderingAttribute>
+	<renderingAttribute name="lightblueColor">
+		<case nightMode="true" attrColorValue="#7fe5ff"/>
+		<case attrColorValue="#2ec6ff"/>
+	</renderingAttribute>
+	<renderingAttribute name="blueColor">
+		<case nightMode="true" attrColorValue="#6d74ff"/>
+		<case attrColorValue="#4e4eff"/>
+	</renderingAttribute>
+	<renderingAttribute name="purpleColor">
+		<case nightMode="true" attrColorValue="#cd5efb"/>
+		<case attrColorValue="#a71de1"/>
+	</renderingAttribute>
 
 	<order>
 	</order>
