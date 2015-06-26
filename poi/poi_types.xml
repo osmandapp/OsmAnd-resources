@@ -786,7 +786,9 @@
 			<poi_type name="funeral_directors" tag="shop" value="funeral_directors"/>
 			<poi_reference name="bureau_de_change"/>
 			<poi_reference name="driving_school"/>
-			<poi_type name="post_office" tag="amenity" value="post_office"/>
+			<poi_type name="post_office" tag="amenity" value="post_office">
+				<poi_additional name="atm:at_post_office" tag="atm" value="yes"/>
+			</poi_type>
 			<poi_type name="post_box" tag="amenity" value="post_box"/>
 			<poi_type name="beauty" tag="shop" value="beauty">
 				<poi_additional name="beauty_salon_nails" tag="beauty" value="nails"/>
@@ -818,8 +820,14 @@
 			<poi_reference name="rest_area"/>
 		</poi_category>
 		<poi_category name="finance" default_tag="finance">
-			<poi_type name="bank" tag="amenity" value="bank"/>
-			<poi_type name="atm" tag="amenity" value="atm"/>
+			<poi_type name="bank" tag="amenity" value="bank">
+				<poi_additional name="atm:at_bank" tag="atm" value="yes"/>
+			</poi_type>
+			<poi_filter name="atm">
+				<poi_type name="atm:standalone" tag="amenity" value="atm"/>
+				<poi_reference name="atm:at_bank"/>
+				<poi_reference name="atm:at_post_office"/>
+			</poi_filter>
 			<poi_type name="payment_terminal" tag="amenity" value="payment_terminal"/>
 			<poi_type name="money_lender" tag="shop" value="money_lender"/>
 			<poi_type name="bureau_de_change" tag="amenity" value="bureau_de_change"/>
