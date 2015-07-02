@@ -501,6 +501,7 @@ mygroup internet_access amenity_internet_access.png
 mycp amenity bench functional-icons_bench.png
 mycp amenity car_wash amenity_car_wash.png
 mycp amenity car_wash_self_service amenity_car_wash_self_service.png
+mycpname vehicle_inspection amenity_vehicle_inspection.png
 mycp amenity fountain amenity_fountain2.png
 mycp amenity fountain_night functional-icons_fountain2_night.png
 mycp amenity monastery place_of_worship_monastery.png
