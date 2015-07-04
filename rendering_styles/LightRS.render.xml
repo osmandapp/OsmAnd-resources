@@ -9,6 +9,10 @@
 	<renderingProperty attr="hideNonVehicleHighways" name="Hide non-vehicle highways" description="Hide non-vehicle highways" type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideAccess" name="Hide access restrictions" description="Hide access type" type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideText" name="Hide text" description="Hide text" type="boolean" possibleValues="" category="hide"/>
+	<renderingProperty attr="currentTrackColor" name="Current GPX color" description="Color of the currently recording track"
+		type="string" possibleValues="red,orange,yellow,lightgreen,green,lightblue,blue,purple,translucent_red,translucent_orange,translucent_yellow,translucent_lightgreen,translucent_green,translucent_lightblue,translucent_blue,translucent_purple" defaultValueDescription="default"/>
+	<renderingProperty attr="currentTrackWidth" name="Current GPX width" description="Width of the currently recording track"
+		type="string" possibleValues="2,3,4,5,6,7,8" defaultValueDescription="default"/>
 	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
 
@@ -21,12 +25,37 @@
 		<case nightMode="false" color="#77ff00de" strokeWidth="7:6" color_3="#ffde5b" strokeWidth_3="7:6"/>
 		<case color="#77ff00c0" strokeWidth="7:6" color_3="#ffde5b"/>
 	</renderingAttribute>
-	<renderingAttribute name="gpx">
-		<case strokeWidth="7:6" cap="ROUND">
-			<case nightMode="true" color="#ccf40977"/>
-			<case additional="routePoints=true" pathEffect="6_2" color="#b400ffff"/>
-			<case color="#ccf40977"/>
-		</case>
+	<renderingAttribute name="gpx" cap="ROUND">
+		<switch>
+			<case currentTrackColor="red" color="#ff0000"/>
+			<case currentTrackColor="orange" color="#ff7200"/>
+			<case currentTrackColor="yellow" color="#edc300"/>
+			<case currentTrackColor="lightgreen" color="#6cb52b"/>
+			<case currentTrackColor="green" color="#00842b"/>
+			<case currentTrackColor="lightblue" color="#2ec6ff"/>
+			<case currentTrackColor="blue" color="#4e4eff"/>
+			<case currentTrackColor="purple" color="#a71de1"/>
+			<case currentTrackColor="translucent_red" color="#88ff0000"/>
+			<case currentTrackColor="translucent_orange" color="#88ff7200"/>
+			<case currentTrackColor="translucent_yellow" color="#88edc300"/>
+			<case currentTrackColor="translucent_lightgreen" color="#886cb52b"/>
+			<case currentTrackColor="translucent_green" color="#8800842b"/>
+			<case currentTrackColor="translucent_lightblue" color="#882ec6ff"/>
+			<case currentTrackColor="translucent_blue" color="#884e4eff"/>
+			<case currentTrackColor="translucent_purple" color="#88a71de1"/>
+			<case color="#ff0000"/>
+			<apply>
+				<case currentTrackWidth="2" strokeWidth="2"/>
+				<case currentTrackWidth="3" strokeWidth="3"/>
+				<case currentTrackWidth="4" strokeWidth="4"/>
+				<case currentTrackWidth="5" strokeWidth="5"/>
+				<case currentTrackWidth="6" strokeWidth="6"/>
+				<case currentTrackWidth="7" strokeWidth="7"/>
+				<case currentTrackWidth="8" strokeWidth="8"/>
+				<case strokeWidth="2"/>
+			</apply>
+			<apply_if additional="routePoints=true" pathEffect="6_2"/>
+		</switch>
 	</renderingAttribute>
 
 	<renderingAttribute name="roadDensityZoomTile">
