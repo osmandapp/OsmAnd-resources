@@ -1,29 +1,47 @@
 <renderingStyle name="UniRS" depends="default" defaultColor="#f1eae4" version="1.2">
 <!-- Universal Rendering Style for OsmAnd by xmd5a (xmd5a@yandex.ru) 11.12.2013 http://forum.openstreetmap.org/viewtopic.php?id=23125 -->
-<!--	<renderingProperty attr="currentTrackColor" name="Current GPX color" description="Color of the currently recording track"
-		type="string" possibleValues="red,orange,brown,yellow,lightgreen,green,lightblue,blue,purple" defaultValueDescription="default"/>
--->
+	<renderingProperty attr="currentTrackColor" name="Current GPX color" description="Color of the currently recording track"
+		type="string" possibleValues="red,orange,yellow,lightgreen,green,lightblue,blue,purple,translucent_red,translucent_orange,translucent_yellow,translucent_lightgreen,translucent_green,translucent_lightblue,translucent_blue,translucent_purple" defaultValueDescription="default"/>
+	<renderingProperty attr="currentTrackWidth" name="Current GPX width" description="Width of the currently recording track"
+		type="string" possibleValues="2,3,4,6,8,11" defaultValueDescription="default"/>
+
 	<renderingAttribute name="route">
 		<case color="#88aa0088" strokeWidth="7:6" color_3="#ffde5b" strokeWidth_3="7:6">
 			<apply_if nightMode="true" color="#77ff4400" strokeWidth="7:6"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="gpx" cap="ROUND">
-<!--		<switch>
+		<switch>
 			<case currentTrackColor="red" color="#ff0000"/>
 			<case currentTrackColor="orange" color="#ff7200"/>
-			<case currentTrackColor="brown" color="#ba7007"/>
 			<case currentTrackColor="yellow" color="#edc300"/>
 			<case currentTrackColor="lightgreen" color="#6cb52b"/>
 			<case currentTrackColor="green" color="#00842b"/>
 			<case currentTrackColor="lightblue" color="#2ec6ff"/>
 			<case currentTrackColor="blue" color="#4e4eff"/>
-			<case currentTrackColor="purple" color="#a71de1"/>-->
-			<case strokeWidth="2" color="#ff0000">
-				<apply_if roadStyle="germanRoadAtlas" color="#aa0088"/>
+			<case currentTrackColor="purple" color="#a71de1"/>
+			<case currentTrackColor="translucent_red" color="#88ff0000"/>
+			<case currentTrackColor="translucent_orange" color="#88ff7200"/>
+			<case currentTrackColor="translucent_yellow" color="#88edc300"/>
+			<case currentTrackColor="translucent_lightgreen" color="#886cb52b"/>
+			<case currentTrackColor="translucent_green" color="#8800842b"/>
+			<case currentTrackColor="translucent_lightblue" color="#882ec6ff"/>
+			<case currentTrackColor="translucent_blue" color="#884e4eff"/>
+			<case currentTrackColor="translucent_purple" color="#88a71de1"/>
+			<case color="#ff0000">
+				<apply_if roadStyle="germanRoadAtlas" color="#aa0088"/> <!-- does not works -->
 			</case>
-			<apply_if additional="routePoints=true" pathEffect="6_2"/> <!--  color="#b400ffff" -->
-<!--		</switch>-->
+			<apply>
+				<case currentTrackWidth="2" strokeWidth="2"/>
+				<case currentTrackWidth="3" strokeWidth="3"/>
+				<case currentTrackWidth="4" strokeWidth="4"/>
+				<case currentTrackWidth="6" strokeWidth="6"/>
+				<case currentTrackWidth="8" strokeWidth="8"/>
+				<case currentTrackWidth="11" strokeWidth="11"/>
+				<case strokeWidth="2"/>
+			</apply>
+			<apply_if additional="routePoints=true" pathEffect="6_2"/>
+		</switch>
 	</renderingAttribute>
 
 	<renderingConstant name="null" value="#00000000"/>
