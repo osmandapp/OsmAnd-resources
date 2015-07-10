@@ -107,6 +107,11 @@
 	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
 		type="boolean" possibleValues="" category="routes"/>
 
+	<renderingProperty attr="currentTrackColor" name="GPX color" description="Color of displayed GPX tracks"
+		type="string" possibleValues="red,orange,yellow,lightgreen,green,lightblue,blue,purple,translucent_red,translucent_orange,translucent_yellow,translucent_light_green,translucent_green,translucent_light_blue,translucent_blue,translucent_purple" defaultValueDescription="* Translucent cyan"/>
+	<renderingProperty attr="currentTrackWidth" name="GPX width" description="Width of displayed GPX tracks"
+		type="string" possibleValues="2,3,4,6,8,11" defaultValueDescription="default"/>
+
 	<!-- road casing contrast higher than in default -->
 	<renderingAttribute name="shadowRendering">
 	<!-- 0 - no shadow, 1 - one step, 2 - blur shadow, 3 - solid shadow -->
@@ -126,10 +131,41 @@
 
 	<!-- gpxColor contrast higher than in default -->
 	<renderingAttribute name="gpx">
+		<!--  This was the original block before introduction of renderingProperty currentTrackColor and currentTrackWidth:
 		<filter strokeWidth="7:6" cap="BUTT" color="#B400FFFF">
 			<filter nightMode="true" color="#B400FFFF"/>
 			<filter additional="routePoints=true" color="#B400FFFF" pathEffect="6_5"/>
 		</filter>
+		-->
+		<switch>
+			<case currentTrackColor="red" color="#ff0000"/>
+			<case currentTrackColor="orange" color="#ff7200"/>
+			<case currentTrackColor="yellow" color="#edc300"/>
+			<case currentTrackColor="lightgreen" color="#6cb52b"/>
+			<case currentTrackColor="green" color="#00842b"/>
+			<case currentTrackColor="lightblue" color="#2ec6ff"/>
+			<case currentTrackColor="blue" color="#4e4eff"/>
+			<case currentTrackColor="purple" color="#a71de1"/>
+			<case currentTrackColor="translucent_red" color="#88ff0000"/>
+			<case currentTrackColor="translucent_orange" color="#88ff7200"/>
+			<case currentTrackColor="translucent_yellow" color="#88edc300"/>
+			<case currentTrackColor="translucent_lightgreen" color="#886cb52b"/>
+			<case currentTrackColor="translucent_green" color="#8800842b"/>
+			<case currentTrackColor="translucent_lightblue" color="#882ec6ff"/>
+			<case currentTrackColor="translucent_blue" color="#884e4eff"/>
+			<case currentTrackColor="translucent_purple" color="#88a71de1"/>
+			<case color="#B400FFFF"/>
+			<apply>
+				<case currentTrackWidth="2" strokeWidth="2"/>
+				<case currentTrackWidth="3" strokeWidth="3"/>
+				<case currentTrackWidth="4" strokeWidth="4"/>
+				<case currentTrackWidth="6" strokeWidth="6"/>
+				<case currentTrackWidth="8" strokeWidth="8"/>
+				<case currentTrackWidth="11" strokeWidth="11"/>
+				<case strokeWidth="7:6"/>
+			</apply>
+			<apply_if additional="routePoints=true" pathEffect="6_5"/>
+		</switch>
 	</renderingAttribute>
 
 	<renderingAttribute name="polygonMinSizeToDisplay">
