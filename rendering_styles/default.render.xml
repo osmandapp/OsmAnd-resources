@@ -2400,7 +2400,7 @@
 							<case tag="highway" value="living_street" textOrder="130"/>
 							<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 						</switch>
-						<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" textOrder="131">
+						<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" textOrder="130">
 							<case tag="highway" value="rest_area"/>
 							<case tag="highway" value="ford"/>
 							<apply_if engine_v1="false" textDy="0"/>
@@ -2847,16 +2847,16 @@
 			</switch>
 
 			<!-- Emergency and Health -->
-			<switch textSize="12" textColor="#da0092" textHaloRadius="$textHaloRadiusDay" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="25" textOrder="147">
+			<switch textSize="12" textColor="#da0092" textHaloRadius="$textHaloRadiusDay" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="25" textOrder="131">
 				<case minzoom="17" tag="amenity" value="police"/>
 				<case minzoom="16" tag="amenity" value="fire_station"/>
 
-				<case minzoom="17" tag="amenity" value="pharmacy"/>
+				<case minzoom="17" tag="amenity" value="pharmacy" textOrder="147"/>
 				<case minzoom="16" tag="amenity" value="hospital"/>
 				<case minzoom="16" tag="amenity" value="clinic"/>
-				<case minzoom="16" tag="amenity" value="veterinary"/>
+				<case minzoom="16" tag="amenity" value="veterinary" textOrder="147"/>
 				<case minzoom="16" tag="amenity" value="doctors"/>
-				<case minzoom="16" tag="amenity" value="dentist"/>
+				<case minzoom="16" tag="amenity" value="dentist" textOrder="147"/>
 				<case minzoom="16" tag="amenity" value="nursing_home"/>
 				<apply_if nightMode="true" textColor="#ffd4f0" textHaloRadius="$textHaloRadiusNight" textHaloColor="#66b16396"/>
 				<apply_if engine_v1="true" textDy="9"/>
@@ -2951,7 +2951,7 @@
 					</apply>
 				</switch>
 				<switch minzoom="16" textSize="13"> <!-- When no public transport is selected -->
-					<case tag="public_transport" value="platform" textOnPath="true" textOrder="64"/>
+					<case tag="public_transport" value="platform" textOnPath="true" textOrder="64" intersectionMargin="15"/>
 					<case tag="amenity" value="bus_station" textOrder="61"/>
 					<case tag="highway" value="bus_stop" textOrder="66"/>
 					<case tag="railway" value="tram_stop" textOrder="67"/>
@@ -3103,7 +3103,7 @@
 				<case minzoom="18" tag="tourism" value="artwork"/>
 				<case minzoom="17" tag="tourism" value="picnic_site"/>
 				<case minzoom="17" tag="leisure" value="picnic_table"/>
-				<case minzoom="17" tag="tourism" value="museum" textOrder="154"/>
+				<case minzoom="17" tag="tourism" value="museum" textOrder="132"/>
 				<case minzoom="17" tag="tourism" value="information" nameTag=""/>
 				<case minzoom="17" tag="tourism" value="viewpoint"/>
 				<case minzoom="16" tag="tourism" value="theme_park" textOrder="153"/>
@@ -3113,7 +3113,7 @@
 				<case minzoom="17" tag="amenity" value="arts_centre"/>
 				<case minzoom="17" tag="amenity" value="casino"/>
 				<case minzoom="17" tag="amenity" value="cinema"/>
-				<case minzoom="17" tag="amenity" value="theatre" textOrder="154"/>
+				<case minzoom="17" tag="amenity" value="theatre" textOrder="132"/>
 				<case minzoom="17" tag="amenity" value="nightclub"/>
 				<case minzoom="17" tag="amenity" value="stripclub"/>
 				<case minzoom="17" tag="amenity" value="studio"/>
@@ -3189,10 +3189,10 @@
 				<case minzoom="17" tag="amenity" value="post_office"/>
 				<case minzoom="18" tag="amenity" value="post_box"/>
 
-				<case minzoom="17" tag="amenity" value="kindergarten"/>
-				<case minzoom="17" tag="amenity" value="school"/>
-				<case minzoom="17" tag="amenity" value="college"/>
-				<case minzoom="16" tag="amenity" value="university"/>
+				<case minzoom="17" tag="amenity" value="kindergarten" textOrder="133"/>
+				<case minzoom="17" tag="amenity" value="school" textOrder="133"/>
+				<case minzoom="17" tag="amenity" value="college" textOrder="133"/>
+				<case minzoom="16" tag="amenity" value="university" textOrder="133"/>
 
 				<case minzoom="18" tag="amenity" value="bench"/>
 				<case minzoom="17" tag="amenity" value="fountain"/>
@@ -3280,7 +3280,7 @@
 					</case>
 					<switch minzoom="19">
 						<case tag="entrance" value="" nameTag="ref"/>
-						<case tag="entrance" value="" nameTag2="ref"/>
+						<case tag="entrance" value="" nameTag="" nameTag2="ref"/>
 						<apply textSize="12" textColor="#555555" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="15">
 							<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77444444"/>
 						</apply>
@@ -4083,26 +4083,37 @@
 					</apply>
 				</case>
 			</apply_if>
-			<apply_if minzoom="17" icon="highway_bus_stop" shield="white_blue_square_shield" iconVisibleSize="16" iconOrder="82">
-				<apply_if additional="shelter=yes" shield="white_blue_square_shelter_yes_shield"/>
-				<apply_if additional="shelter=no" shield="white_blue_square_shelter_no_shield"/>
-				<apply_if nightMode="true" shield="gray_blue_square_shield">
-					<apply_if additional="shelter=yes" shield="gray_blue_square_shelter_yes_shield"/>
-					<apply_if additional="shelter=no" shield="gray_blue_square_shelter_no_shield"/>
-				</apply_if>
+			<apply_if minzoom="17">
+				<switch>
+					<switch>
+						<case additional="train=yes"/>
+						<case additional="tram=yes"/>
+						<case additional="light_rail=yes"/>
+						<case additional="monorail=yes"/>
+						<apply icon="railway_station"/>
+					</switch>
+					<case icon="highway_bus_stop"/>
+					<apply shield="white_blue_square_shield" iconOrder="82" intersectionMargin="3"/>
+					<apply_if additional="shelter=yes" shield="white_blue_square_shelter_yes_shield" intersectionSizeFactor="0.9"/>
+					<apply_if additional="shelter=no" shield="white_blue_square_shelter_no_shield" intersectionSizeFactor="0.9"/>
+					<apply_if nightMode="true" shield="gray_blue_square_shield">
+						<apply_if additional="shelter=yes" shield="gray_blue_square_shelter_yes_shield" intersectionSizeFactor="0.9"/>
+						<apply_if additional="shelter=no" shield="gray_blue_square_shelter_no_shield" intersectionSizeFactor="0.9"/>
+					</apply_if>
+				</switch>
 			</apply_if>
 		</switch>
 
-		<case minzoom="14" tag="amenity" value="bus_station" icon="amenity_bus_station" shield="white_red_round_shield" iconVisibleSize="14" iconOrder="72">
+		<case minzoom="14" tag="amenity" value="bus_station" icon="amenity_bus_station" shield="white_red_round_shield" iconOrder="72">
 			<apply_if nightMode="true" shield="gray_red_round_shield"/>
 		</case>
-		<case minzoom="15" tag="public_transport" value="station" icon="amenity_bus_station" shield="white_blue_round_shield" iconVisibleSize="14" iconOrder="73">
+		<case minzoom="15" tag="public_transport" value="station" icon="amenity_bus_station" shield="white_blue_round_shield" iconOrder="73">
 			<apply_if nightMode="true" shield="gray_blue_round_shield"/>
 		</case>
 
-		<switch minzoom="15" tag="public_transport" value="platform" iconVisibleSize="7">
+<!--		<switch minzoom="15" tag="public_transport" value="platform" iconVisibleSize="7">
 			<case maxzoom="16" icon="highway_bus_stop_small"/>
-			<case minzoom="17" icon="amenity_bus_station" shield="white_blue_square_shield">
+			<case minzoom="17" icon="amenity_bus_station" shield="white_blue_square_shield" intersectionMargin="3">
 				<switch>
 					<case additional="train=yes"/>
 					<case additional="tram=yes"/>
@@ -4117,7 +4128,7 @@
 					<apply_if additional="shelter=no" shield="gray_blue_square_shelter_no_shield"/>
 				</apply_if>
 			</case>
-		</switch>
+		</switch>-->
 
 		<switch subwayMode="true" minzoom="12" maxzoom="14" tag="railway" value="station" icon="railway_subway_station_small_default" shield="white_round_small_shield" iconVisibleSize="2" iconOrder="72">
 			<case additional="route=subway"/>
@@ -4169,7 +4180,7 @@
 			<switch maxzoom="14">
 				<switch tag="railway" value="station">
 					<case maxzoom="12" icon="halt_small"/>
-					<case minzoom="13" icon="railway_station_small">
+					<case minzoom="13" icon="railway_station_small" iconVisibleSize="10" intersectionSizeFactor="0.8">
 						<apply_if additional="disused=yes" icon="railway_station_small_disused"/>
 					</case>
 				</switch>
@@ -4224,7 +4235,7 @@
 			<case minzoom="14" tag="railway" value="tram_stop">
 				<case maxzoom="14" icon="halt_small" iconVisibleSize="2"/>
 				<case maxzoom="16" icon="railway_station_small" iconVisibleSize="4"/>
-				<case minzoom="17" icon="railway_tram_stop" shield="white_blue_square_shield" iconVisibleSize="8">
+				<case minzoom="17" icon="railway_tram_stop" shield="white_blue_square_shield">
 					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 					<apply_if additional="shelter=yes" shield="white_blue_square_shelter_yes_shield"/>
 					<apply_if additional="shelter=no" shield="white_blue_square_shelter_no_shield"/>
@@ -5507,7 +5518,7 @@
 					<case shader="wetland"/>
 					<apply_if nightMode="true" shader="" color="$wetlandColorNight"/>
 				</switch>
-				<apply_if minzoom="15" additional="intermittent=yes" strokeWidth_2="2" color_2="#7479ec" pathEffect_2="13_7"/>
+				<apply_if minzoom="15" additional="intermittent=yes" strokeWidth_2="1" color_2="#7479ec" pathEffect_2="12_5"/>
 			</case>
 			<switch>
 				<case minzoom="12" tag="natural" value="mud" color="#d6cbc6">
