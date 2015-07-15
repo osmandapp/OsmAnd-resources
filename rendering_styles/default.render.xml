@@ -1916,8 +1916,8 @@
 
 	<!-- PRIORITY Input to filter : tag, value, zoom [minzoom, maxzoom], textLength, ref, textOrder (default=100) -->
 	<text>
-		<switch intersectsWith="any"> <!-- temporary solution for OpenGL engine (issues with text intersection) -->
-			<switch intersectsWith="text"> <!-- temporary solution for OpenGL engine (issues with text intersection) -->
+		<switch> <!-- temporary solution for OpenGL engine (issues with text intersection)  intersectsWith="any"-->
+			<switch> <!-- temporary solution for OpenGL engine (issues with text intersection)  intersectsWith="text"-->
 				<switch minzoom="12" textMinDistance="101" textOnPath="false" textColor="#00ffffff" textSize="11" textOrder="1">
 					<switch minzoom="12" textOrder="2">
 						<case tag="route_hiking" value="" nameTag="osmc_text" nameTag2="hiking_route_ref" textSize="13"/>
@@ -2567,7 +2567,7 @@
 			</switch>
 
 			<!-- Location names -->
-			<switch minzoom="3" intersectsWith="text">
+			<switch minzoom="3"> <!-- intersectsWith="text"-->
 				<case tag="natural" value="coastline"/>
 				<case tag="natural" value="land"/>
 				<apply textSize="14" textColor="#883287" textWrapWidth="35" textHaloRadius="$textHaloRadiusDay" textHaloColor="#aaffffff"/>
@@ -2576,7 +2576,7 @@
 			<!-- continent not really useful here: filter minzoom="2" maxzoom="2" textSize="14" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="continent"/ -->
 
 			<!-- most countries are not tagged with ref: filter minzoom="2" maxzoom="2" textSize="14" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="country" nameTag="ref"/ -->
-			<case minzoom="3" tag="place" value="country" textColor="#8e3a7e" textHaloColor="#aaf7ebf7" textHaloRadius=":3" textWrapWidth="15" intersectsWith="text">
+			<case minzoom="3" tag="place" value="country" textColor="#8e3a7e" textHaloColor="#aaf7ebf7" textHaloRadius=":3" textWrapWidth="15">  <!--intersectsWith="text"-->
 				<case maxzoom="3" textSize="12"/>
 				<case maxzoom="4" textSize="14" textBold="true" textOrder="1"/>
 				<case maxzoom="5" textSize="16" textBold="true" textOrder="1"/>
@@ -2584,7 +2584,7 @@
 				<apply_if nightMode="true" textColor="#d498d3" textHaloColor="#bb553155"/>
 			</case>
 
-			<switch minzoom="5" textSize="13" textColor="#9d6c9d" textWrapWidth="20" intersectsWith="text">
+			<switch minzoom="5" textSize="13" textColor="#9d6c9d" textWrapWidth="20">  <!--intersectsWith="text"-->
 				<switch engine_v1="true">
 					<case maxzoom="10" tag="place" value="state">
 						<case maxzoom="5" nameTag="ref" textOrder="3"/>
@@ -2616,7 +2616,7 @@
 
 			<!-- county not really useful here: filter minzoom="9" textSize="13" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="county" nameTag=""/ -->
 
-			<switch minzoom="3" textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="#bbf7ebf7" textBold="true" intersectsWith="text">
+			<switch minzoom="3" textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="#bbf7ebf7" textBold="true">  <!--intersectsWith="text"-->
 				<case tag="osmand_place_basemap" value="city" nameTag="" intersectionMargin="25">
 					<case additional="capital=yes">
 						<case maxzoom="5" textSize="14" textOrder="4"/>
@@ -2644,7 +2644,7 @@
 				<apply_if engine_v1="false" textDy="-2"/>
 			</switch>
 
-			<switch textColor="$placeSuburbLocalityTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay" intersectsWith="text" intersectionMargin="15">
+			<switch textColor="$placeSuburbLocalityTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay" intersectionMargin="15">  <!--intersectsWith="text"-->
 				<case minzoom="$placeSuburbMinZoom" maxzoom="17" tag="place" value="suburb" nameTag="" textSize="15" textItalic="true" textHaloColor="#ddffffff" textOrder="16" intersectionMargin="25">
 					<apply_if minzoom="16" textSize="17"/>
 				</case>
@@ -3249,11 +3249,11 @@
 					<apply_if maxzoom="17" textSize="13" textMinDistance="40" intersectionMargin="20"/>
 					<apply_if minzoom="18" textSize="15"/>
 					<apply_if engine_v1="true" textDy="7"/>
-					<apply textColor="#404040" textHaloColor="$buildingTextHaloColorDay" textWrapWidth="20" textOrder="136">
+					<apply textColor="#404040" textHaloColor="$buildingTextHaloColorDay" textWrapWidth="20" textOrder="135">
 						<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77666666"/>
 					</apply>
 				</switch>
-				<switch intersectsWith="any">
+				<switch>  <!--intersectsWith="any"-->
 					<case minzoom="16" tag="addr:housenumber" value="" nameTag="" nameTag2="addr:housenumber"/>
 					<case minzoom="16" tag="addr:housenumber" value="" nameTag="addr:housenumber"/>
 					<apply>
@@ -3262,14 +3262,14 @@
 						</case>
 						<case maxzoom="17" textSize="14" intersectionMargin="20"/>
 						<case minzoom="18" textSize="15" intersectionMargin="20"/>
-						<apply textColor="#404040" textWrapWidth="25" textOrder="135"/>
+						<apply textColor="#404040" textWrapWidth="25" textOrder="136"/>
 						<apply_if engine_v1="true" textDy="7"/>
 					</apply>
 					<apply textColor="#404040" textHaloColor="$buildingTextHaloColorDay">
 						<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77666666"/>
 					</apply>
 				</switch>
-				<switch intersectsWith="any">
+				<switch> <!-- intersectsWith="any"-->
 					<case minzoom="18" tag="addr:flats" value="" textWrapWidth="20" textOrder="137" textColor="#555555">
 						<case maxzoom="18" nameTag="ref" textSize="12"/>
 						<switch minzoom="19" textSize="13">
@@ -3504,12 +3504,12 @@
 				<apply_if engine_v1="true" textDy="7"/>
 			</switch>
 			<apply_if additional="tourism_attraction=yes" nameTag="">
-				<apply intersectionMargin="15" textOrder="80" intersectsWith="any" textColor="$tourismAttractionTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$tourismAttractionTextHaloColorDay" textWrapWidth="20" textBold="true" textDy="9"/> <!-- intersectsWith="any": temporary solution for OpenGL engine (issues with text intersection) -->
+				<apply intersectionMargin="15" textOrder="80" textColor="$tourismAttractionTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$tourismAttractionTextHaloColorDay" textWrapWidth="20" textBold="true" textDy="9"/> <!-- intersectsWith="any": temporary solution for OpenGL engine (issues with text intersection)  intersectsWith="any"-->
 				<apply_if maxzoom="16" textWrapWidth="16"/>
 				<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="$tourismAttractionTextColorNight" textHaloColor="#88641500"/>
 			</apply_if>
 		</switch>
-		<switch textColor="$tourismAttractionTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$tourismAttractionTextHaloColorDay" textWrapWidth="16" textBold="true" intersectionMargin="25" intersectsWith="any"> <!-- intersectsWith="any": temporary solution for OpenGL engine (issues with text intersection) -->
+		<switch textColor="$tourismAttractionTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$tourismAttractionTextHaloColorDay" textWrapWidth="16" textBold="true" intersectionMargin="25"> <!-- intersectsWith="any": temporary solution for OpenGL engine (issues with text intersection)  intersectsWith="any"-->
 			<case minzoom="16" tag="historic" value="city_gate" textSize="12" textOrder="82"/>
 			<case minzoom="15" tag="tourism" value="attraction" textSize="13" textOrder="81">
 				<apply_if maxzoom="15" textSize="12" textWrapWidth="15"/>
@@ -4484,7 +4484,7 @@
 		<case minzoom="16" tag="leisure" value="horse_riding" icon="sport_horse_racing" shield="white_gray_square_shield">
 			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
 		</case>
-		<case minzoom="17" tag="leisure" value="playground" icon="leisure_playground" iconOrder="75" iconVisibleSize="40" intersectsWith="" intersectionSizeFactor="2.5"/>
+		<case minzoom="17" tag="leisure" value="playground" icon="leisure_playground" iconOrder="75" iconVisibleSize="40" intersectionSizeFactor="2.5"/>  <!--intersectsWith=""-->
 		<switch iconOrder="75" shield="white_green_square_shield" iconVisibleSize="40" intersectionSizeFactor="2.5">
 			<case minzoom="15" tag="leisure" value="stadium" icon="sport_stadium" iconOrder="70"/>
 			<case minzoom="15" tag="sport" value="horse_racing" icon="sport_horse_racing"/>
