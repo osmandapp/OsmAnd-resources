@@ -1302,6 +1302,20 @@ mycp shop toys shopping_toys.png
 mycp shop video shopping_video_rental.png
 mycpname wine shopping_wine.png
 mycpname outdoor shopping_outdoor.png
+mycpname tyres shopping_tyres.png
+mycpname cosmetics shopping_cosmetics.png
+mycpname leather shopping_leather.png
+mycpname medical_supply shopping_medical_supply.png
+mycpname cheese shopping_cheese.png
+mycpname chocolate shopping_chocolate.png
+mycpname coffee shopping_coffee.png
+mycpname farm shopping_farm.png
+mycpname tea shopping_tea.png
+mycpname pastry shopping_pastry.png
+mycpname antiques shopping_antiques.png
+mycpname bag shopping_bag.png
+mycpname bed shopping_bed.png
+mycpname boutique shopping_boutique.png
 
 
 # mygroup custom_id icons8 #TODO
