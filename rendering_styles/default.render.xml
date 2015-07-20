@@ -542,6 +542,9 @@
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="residentialRoadColor">
+		<case roadStyle="highContrastRoads" attrColorValue="#ffe778">
+			<apply_if nightMode="true" attrColorValue="#ceba61"/>
+		</case>
 		<case attrColorValue="#ffffff">
 			<apply_if nightMode="true" attrColorValue="#9f9f9f"/>
 		</case>
@@ -572,6 +575,9 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="serviceRoadColor">
+		<case roadStyle="highContrastRoads" attrColorValue="#fff3ba">
+			<apply_if nightMode="true" attrColorValue="#b0a781"/>
+		</case>
 		<case attrColorValue="#ececec">
 			<apply_if nightMode="true" attrColorValue="#727272"/>
 		</case>
@@ -581,6 +587,9 @@
 		<case attrColorValue="#969696"/>
 	</renderingAttribute>
 	<renderingAttribute name="serviceDrivewayRoadColor">
+		<case roadStyle="highContrastRoads" attrColorValue="#ebe2bd">
+			<apply_if nightMode="true" attrColorValue="#8c8667"/>
+		</case>
 		<case attrColorValue="#e0e0e0">
 			<apply_if nightMode="true" attrColorValue="#636363"/>
 		</case>
@@ -1114,12 +1123,20 @@
 	<renderingAttribute name="highwayTertiaryTextColor">
 		<case attrColorValue="$black"/>
 	</renderingAttribute>
-	<renderingAttribute name="highwayResidentialServiceTextColor">
-		<case nightMode="true" attrColorValue="$white"/>
+	<renderingAttribute name="highwayResidentialTextColor">
+		<case nightMode="true" attrColorValue="$white">
+			<apply_if roadStyle="highContrastRoads" attrColorValue="$black"/>
+		</case>
 		<case attrColorValue="$black"/>
 	</renderingAttribute>
-	<renderingConstant name="highwayResidentialTextHaloColorDay" value="#ffffff"/>
-	<renderingConstant name="highwayServiceTextHaloColorDay" value="#ffffff"/>
+	<renderingAttribute name="highwayServiceTextColor">
+		<case nightMode="true" attrColorValue="$white">
+			<apply_if roadStyle="highContrastRoads" attrColorValue="$black"/>
+		</case>
+		<case attrColorValue="$black"/>
+	</renderingAttribute>
+<!--	<renderingConstant name="highwayResidentialTextHaloColorDay" value="#ffffff"/>
+	<renderingConstant name="highwayServiceTextHaloColorDay" value="#ffffff"/>-->
 	<renderingConstant name="highwayTrackTextHaloRadiusDay" value=":1"/>
 	<renderingConstant name="highwayTrackTextHaloColorDay" value="#aaf1eae4"/>
 
@@ -2385,38 +2402,30 @@
 
 				<switch minzoom="14">
 					<switch>
-						<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay">
+						<switch textColor="$highwayResidentialTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="$residentialRoadColor"><!-- $highwayResidentialTextHaloColorDay-->
 							<case tag="highway" value="road" textOrder="120"/>
 							<case tag="area:highway" value="road" textOrder="121"/>
 							<case tag="highway" value="unclassified" textOrder="122"/>
 							<case tag="area:highway" value="unclassified" intersectsWith="any" textOrder="123"/>
 							<case tag="highway" value="residential" textOrder="124"/>
 							<case tag="area:highway" value="residential" textOrder="125" intersectsWith="any"/>
-							<apply_if nightMode="true" textBold="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#88666666"/>
+							<apply_if nightMode="true" textBold="true"/>
 						</switch>
-						<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay">
+						<switch textColor="$highwayServiceTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="$serviceRoadColor">
 							<case tag="highway" value="service" textOrder="128"/>
 							<case tag="area:highway" value="service" textOrder="129"/>
 							<case tag="highway" value="living_street" textOrder="130"/>
-							<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 						</switch>
-						<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" textOrder="130">
+						<switch textHaloRadius="$textHaloRadiusDay" textColor="$highwayServiceTextColor" textHaloColor="$serviceRoadColor" textOrder="130">
 							<case tag="highway" value="rest_area"/>
 							<case tag="highway" value="ford"/>
 							<apply_if engine_v1="false" textDy="0"/>
-							<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 						</switch>
-						<case tag="highway" value="construction" textHaloRadius="$textHaloRadiusDay" textHaloColor="#99bdff" textOrder="223">
-							<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textHaloColor="#99bdff"/>
-						</case>
-						<case tag="highway" value="proposed" textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" textOrder="253">
-							<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textHaloColor="#aa777777"/>
-						</case>
-						<apply textColor="$highwayResidentialServiceTextColor">
-							<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
-						</apply>
+						<case tag="highway" value="construction" textColor="$highwayServiceTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="#99bdff" textOrder="223"/>
+						<case tag="highway" value="proposed" textColor="$highwayServiceTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="$serviceRoadColor" textOrder="253"/>
+						<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight"/>
 					</switch>
-					<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$highwayResidentialTextHaloColorDay" intersectionMargin="20">
+					<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$residentialRoadColor" intersectionMargin="20">
 						<case tag="highway" value="pedestrian" textOrder="126"/>
 						<case tag="area:highway" value="pedestrian" textOrder="53" textHaloColor="#aaffffff" intersectsWith="any"/>
 						<apply textColor="#000000">
