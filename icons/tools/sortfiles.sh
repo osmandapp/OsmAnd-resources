@@ -1319,6 +1319,13 @@ mycpname antiques shopping_antiques.png
 mycpname bag shopping_bag.png
 mycpname bed shopping_bed.png
 mycpname boutique shopping_boutique.png
+mycpname bathroom_furnishing shopping_bathroom_furnishing.png
+mycpname camera shopping_camera.png
+mycpname carpet shopping_carpet.png
+mycpname chemist shopping_chemist.png
+mycpname curtain shopping_curtain.png
+mycpname fabric shopping_fabric.png
+mycpname bedding shopping_bedding.png
 
 
 # mygroup custom_id icons8 #TODO
