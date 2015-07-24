@@ -1326,6 +1326,14 @@ mycpname chemist shopping_chemist.png
 mycpname curtain shopping_curtain.png
 mycpname fabric shopping_fabric.png
 mycpname bedding shopping_bedding.png
+mycpname dive shopping_dive.png
+mycpname erotic shopping_erotic.png
+mycpname fashion shopping_fashion.png
+mycpname frame shopping_frame.png
+mycpname free_flying shopping_free_flying.png
+mycpname furnace shopping_furnace.png
+mycpname gas shopping_gas.png
+mycpname glaziery shopping_glaziery.png
 
 
 # mygroup custom_id icons8 #TODO
