@@ -1319,6 +1319,21 @@ mycpname antiques shopping_antiques.png
 mycpname bag shopping_bag.png
 mycpname bed shopping_bed.png
 mycpname boutique shopping_boutique.png
+mycpname bathroom_furnishing shopping_bathroom_furnishing.png
+mycpname camera shopping_camera.png
+mycpname carpet shopping_carpet.png
+mycpname chemist shopping_chemist.png
+mycpname curtain shopping_curtain.png
+mycpname fabric shopping_fabric.png
+mycpname bedding shopping_bedding.png
+mycpname dive shopping_dive.png
+mycpname erotic shopping_erotic.png
+mycpname fashion shopping_fashion.png
+mycpname frame shopping_frame.png
+mycpname free_flying shopping_free_flying.png
+mycpname furnace shopping_furnace.png
+mycpname gas shopping_gas.png
+mycpname glaziery shopping_glaziery.png
 
 
 # mygroup custom_id icons8 #TODO
