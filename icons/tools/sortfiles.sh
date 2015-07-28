@@ -78,6 +78,9 @@ mycp natural volcano_big functional-icons_volcano_big.png
 mycp natural volcano functional-icons_volcano.png  #Is poi_peak.png with color #D40000  #scale 0.5
 mycp waterway rapids barrier_rapids.png  #scale 0.375
 mycpname waterfall water_waterfall.png  #scale 0.375
+mycpname dam water_dam.png
+mycpname weir water_weir.png
+mycpname stream water_stream.png
 
 
 ## Location dots
@@ -93,7 +96,9 @@ mycp place capital_dot_small functional-icons_capital_small.png  #scale 0.375
 mycp place town_dot_night functional-icons_town_night.png  #scale 0.25
 mycp place town_dot functional-icons_town.png  #scale .25
 mycp place city poi_city.png  #scale 0.375
-mycp place town poi_town.png  #scale .25
+mycp place town poi_town.png
+mycpname hamlet poi_hamlet.png
+mycpname village poi_village.png
 
 ## Barrier dots
 mycp barrier small_black_1 functional-icons_point_black_1.png  #scale 0.25
