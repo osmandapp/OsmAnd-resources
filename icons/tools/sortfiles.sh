@@ -81,6 +81,7 @@ mycpname waterfall water_waterfall.png  #scale 0.375
 mycpname dam water_dam.png
 mycpname weir water_weir.png
 mycpname stream water_stream.png
+mycpname river water_river.png
 
 
 ## Location dots
