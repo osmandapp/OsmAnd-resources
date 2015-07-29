@@ -445,6 +445,37 @@
 		<type tag="highway" value="raceway" minzoom="12" nameTags="ref" poi_category="sport"/>
 		<!-- <type id="" tag="highway" value="bus_guideway" minzoom="15" /> -->
 
+		<!-- For compatibility with <2.2 -->
+		<type tag="highway_construction" value="motorway" minzoom="13" nameTags="ref,int_ref"/>
+		<type tag="highway_construction" value="trunk" minzoom="13" nameTags="ref,int_ref"/>
+		<type tag="highway_construction" value="primary" minzoom="13" nameTags="ref,int_ref"/>
+		<type tag="highway_construction" value="secondary" minzoom="13" nameTags="ref,int_ref"/>
+		<type tag="highway_construction" value="tertiary" minzoom="13" nameTags="ref,int_ref"/>
+		<type tag="highway_construction" value="residential" minzoom="13" nameTags="ref,int_ref"/>
+		<type tag="highway_construction" value="service" minzoom="13" nameTags="ref,int_ref"/>
+		<type tag="highway_construction" value="pedestrian" minzoom="13" nameTags="ref,int_ref"/>
+
+		<type tag="construction" value="yes" minzoom="13" additional="true" />
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="construction" to_tag1="highway" to_value1="construction" to_tag2="highway_construction" to_value2="residential" to_tag3="construction" to_value3="yes" routing="no"/>
+
+		<!-- How to remove backward compatibility with <2.2:
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="construction" if_tag1="construction" if_value1="motorway" to_tag1="highway" to_value1="motorway" to_tag2="construction" to_value2="yes" routing="no"/>
+		-->
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="construction" if_tag1="construction" if_value1="motorway" to_tag1="highway" to_value1="construction" to_tag2="highway_construction" to_value2="motorway" to_tag3="construction" to_value3="yes" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="construction" if_tag1="construction" if_value1="motorway_link" to_tag1="highway" to_value1="construction" to_tag2="highway_construction" to_value2="motorway" to_tag3="construction" to_value3="yes" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="construction" if_tag1="construction" if_value1="trunk" to_tag1="highway" to_value1="construction" to_tag2="highway_construction" to_value2="trunk" to_tag3="construction" to_value3="yes" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="construction" if_tag1="construction" if_value1="trunk_link" to_tag1="highway" to_value1="construction" to_tag2="highway_construction" to_value2="trunk" to_tag3="construction" to_value3="yes" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="construction" if_tag1="construction" if_value1="primary" to_tag1="highway" to_value1="construction" to_tag2="highway_construction" to_value2="primary" to_tag3="construction" to_value3="yes" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="construction" if_tag1="construction" if_value1="primary_link" to_tag1="highway" to_value1="construction" to_tag2="highway_construction" to_value2="primary" to_tag3="construction" to_value3="yes" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="construction" if_tag1="construction" if_value1="secondary" to_tag1="highway" to_value1="construction" to_tag2="highway_construction" to_value2="secondary" to_tag3="construction" to_value3="yes" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="construction" if_tag1="construction" if_value1="secondary_link" to_tag1="highway" to_value1="construction" to_tag2="highway_construction" to_value2="secondary" to_tag3="construction" to_value3="yes" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="construction" if_tag1="construction" if_value1="tertiary" to_tag1="highway" to_value1="construction" to_tag2="highway_construction" to_value2="tertiary" to_tag3="construction" to_value3="yes" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="construction" if_tag1="construction" if_value1="tertiary_link" to_tag1="highway" to_value1="construction" to_tag2="highway_construction" to_value2="tertiary" to_tag3="construction" to_value3="yes" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="construction" if_tag1="construction" if_value1="residential" to_tag1="highway" to_value1="construction" to_tag2="highway_construction" to_value2="residential" to_tag3="construction" to_value3="yes" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="construction" if_tag1="construction" if_value1="unclassified" to_tag1="highway" to_value1="construction" to_tag2="highway_construction" to_value2="residential" to_tag3="construction" to_value3="yes" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="construction" if_tag1="construction" if_value1="service" to_tag1="highway" to_value1="construction" to_tag2="highway_construction" to_value2="service" to_tag3="construction" to_value3="yes" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="construction" if_tag1="construction" if_value1="pedestrian" to_tag1="highway" to_value1="construction" to_tag2="highway_construction" to_value2="pedestrian" to_tag3="construction" to_value3="yes" routing="no"/>
+
 		<type tag="motorroad" value="yes" minzoom="11" additional="true"/>
 
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="primary" if_tag1="area" if_value1="yes" to_tag1="area:highway" to_value1="primary" routing="no"/>
