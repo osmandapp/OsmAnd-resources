@@ -41,7 +41,7 @@ mycp military danger_area poi_danger_area.png
 mycp military nuclear_explosion_site poi_nuclear_explosion_site.png
 mycp natural glacier poi_peak2.png                       # Keep shaders with background color, cannot be replaced by icons!
 mycp landuse landfill landuse_landfill.png
-#mycpname wetland landuse_wetland.png
+mycpname wetland landuse_wetland.png
 mycpname cemetery landuse_cemetery.png
 mycpname grave_yard landuse_cemetery.png
 
