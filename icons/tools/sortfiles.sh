@@ -1340,6 +1340,8 @@ mycpname free_flying shopping_free_flying.png
 mycpname furnace shopping_furnace.png
 mycpname gas shopping_gas.png
 mycpname glaziery shopping_glaziery.png
+mycpname herbalist shopping_herbalist.png
+mycpname houseware shopping_houseware.png
 
 
 # mygroup custom_id icons8 #TODO
