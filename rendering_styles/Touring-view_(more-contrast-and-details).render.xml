@@ -213,10 +213,16 @@
 	<renderingConstant name="secondaryRoadColorDimmed" value="#cca568"/>
 	<renderingConstant name="tertiaryRoadColorDimmed" value="#cccc68"/>
 
-	<renderingConstant name="residentialRoadColor" value="#ffffff"/>
-	<renderingConstant name="residentialRoadColorNight" value="#9f9f9f"/>
-	<renderingConstant name="serviceRoadColor" value="#ececec"/>
-	<renderingConstant name="serviceRoadColorNight" value="#727272"/>
+	<renderingAttribute name="residentialRoadColor">
+		<case attrColorValue="#ffffff">
+			<apply_if nightMode="true" attrColorValue="#9f9f9f"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="serviceRoadColor">
+		<case attrColorValue="#ececec">
+			<apply_if nightMode="true" attrColorValue="#727272"/>
+		</case>
+	</renderingAttribute>
 
 	<renderingConstant name="trackColor" value="#996600"/>
 	<renderingConstant name="pathColorDay" value="#000000"/>
@@ -320,7 +326,7 @@
 			<filter tag="highway" value="unclassified"/>
 			<filter tag="highway" value="residential"/>
 			<groupFilter color="$residentialRoadColor" color_2="$shadowColorDay" minzoom="12" strokeWidth_2=":1">
-				<filter nightMode="true" color="$residentialRoadColorNight" color_2="$shadowColorNight"/>
+				<filter nightMode="true" color_2="$shadowColorNight"/>
 			</groupFilter>
 		</group>
 
@@ -331,7 +337,7 @@
 			<groupFilter>
 				<filter minzoom="13" color="$serviceRoadColor" color_2="$shadowColorDay" strokeWidth_2=":1"/>
 			</groupFilter>
-			<groupFilter nightMode="true" color="$serviceRoadColorNight" color_2="$shadowColorNight"/>
+			<groupFilter nightMode="true" color_2="$shadowColorNight"/>
 		</group>
 	</polygon>
 
@@ -633,7 +639,7 @@
 						<groupFilter nightMode="true" color_0="#ffffff"/>
 					</groupFilter>
 				</filter>
-				<groupFilter nightMode="true" color="$residentialRoadColorNight" shadowColor="$shadowColorNight"/>
+				<groupFilter nightMode="true" shadowColor="$shadowColorNight"/>
 
 			<!--    Use showAccess module from default renderer from now on:
 				<groupFilter minzoom="15" additional="access=no" color_3="$accessPrivateColor" strokeWidth_3="2:3" pathEffect_3="10_3"/> 
@@ -670,7 +676,7 @@
 						<groupFilter nightMode="true" color_0="#ffffff"/>
 					</groupFilter>
 				</filter>
-				<groupFilter nightMode="true" color="$serviceRoadColorNight" shadowColor="$shadowColorNight"/>
+				<groupFilter nightMode="true" shadowColor="$shadowColorNight"/>
 
 			<!--    Use showAccess module from default renderer from now on:
 				<groupFilter minzoom="15" additional="access=no" color_3="$accessPrivateColor" strokeWidth_3="1:2" pathEffect_3="10_3"/> 
