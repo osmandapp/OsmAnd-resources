@@ -132,15 +132,6 @@ toLowerCaseStr([H1|T1],[H1|T2]):- toLowerCaseStr(T1,T2).
 % Utility: toLowerCaseAto(OldString,NewString)
 toLowerCaseAto(A1,A2) :- atom_codes(A1,S1),toLowerCaseStr(S1,S2),atom_codes(A2,S2).
 
-% Utility: removeSemicolonStr(OldString,NewString)
-%removeSemicolonStr(L1,L1):-  var(L1), !.
-%removeSemicolonStr([],[]):-  !.
-%removeSemicolonStr([H1|T1],[H2|T2]):- H1=59, !, H2 is 32, removeSemicolonStr(T1,T2).
-%removeSemicolonStr([H1|T1],[H1|T2]):- removeSemicolonStr(T1,T2).
-
-% Utility: removeSemicolonAto(OldString,NewString)
-%removeSemicolonAto(A1,A2) :- atom_codes(A1,S1),removeSemicolonStr(S1,S2),atom_codes(A2,S2).
-
 % Utility: reverseStr(OldStr,[],RevStr)
 reverseStr([H|T], A, R) :- reverseStr(T, [H|A], R).
 reverseStr([], A, A).
@@ -230,7 +221,6 @@ bear_right(_Street) -- ['right_keep.ogg'].
 
 % cut_part_street(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
 cut_part_street(voice([Ref, '', Dest], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Dest, Concat).
-%%cut_part_street(voice(['', '', Dest], _), DestClean) :- removeSemicolonAto(Dest,DestClean). % not necessary, done in code now
 % cut_part_street(voice(['', Name, _], _), Name). % not necessary
 cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
 
