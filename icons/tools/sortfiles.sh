@@ -31,8 +31,8 @@ cp ../png/xxhdpi/h_* ../../rendering_styles/style-icons/drawable-xxhdpi/
 
 mygroup landuse landuse_coniferous.png
 mycp landuse grass landuse_grass.png
-mycpname forest landuse_coniferous_and_deciduous.png               # Keep shaders with background color, cannot be replaced by icons!
-mycpname wood landuse_coniferous_and_deciduous.png
+mycpname forest landuse_forest.png               # Keep shaders with background color, cannot be replaced by icons!
+mycpname wood landuse_forest.png
 mycp natural beach tourist_beach2.png                     # Keep shaders with background color, cannot be replaced by icons!
 #mycp natural scrub landuse_scrub.png                     # Keep shaders with background color, cannot be replaced by icons!
 #mycp natural swamp landuse_swamp.png                     # Keep shaders with background color, cannot be replaced by icons!
@@ -82,6 +82,7 @@ mycpname dam water_dam.png
 mycpname weir water_weir.png
 mycpname stream water_stream.png
 mycpname river water_river.png
+mycpname water water_water.png
 
 
 ## Location dots
@@ -481,6 +482,7 @@ mycp sport swimming sport_swimming_outdoor.png
 mycp sport table_tennis sport_table_tennis.png
 mycp sport tennis sport_tennis.png
 mycp sport volleyball sport_volleyball.png
+mycpname pitch sport_pitch.png
 
 
 ## Leisure
@@ -1342,6 +1344,9 @@ mycpname gas shopping_gas.png
 mycpname glaziery shopping_glaziery.png
 mycpname herbalist shopping_herbalist.png
 mycpname houseware shopping_houseware.png
+
+## Entertainment
+mycpname park entertainment_park.png
 
 
 # mygroup custom_id icons8 #TODO

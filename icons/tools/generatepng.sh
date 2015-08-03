@@ -154,6 +154,8 @@ generatePngs() {
 
        generatePngs 'landuse' '#3f3f3f' '#ff8f00'
 
+       generatePngs 'entertainment'  '#6dba00' '#ff8f00'
+
        generatePngs 'icons8' '#777777' '#ff8f00' neg
 
        generatePngs 'overlays' '#777777' '#777777' '' x2 '' nomx
