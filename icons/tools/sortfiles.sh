@@ -506,7 +506,6 @@ mycp geocache found poi_point_of_interest.png
 mygroup other amenity_post_office.png
 mygroup place_of_worship place_of_worship_unknown.png
 mygroup internet_access amenity_internet_access.png
-mycp amenity bench functional-icons_bench.png
 mycp amenity car_wash amenity_car_wash.png
 mycp amenity car_wash_self_service amenity_car_wash_self_service.png
 mycpname vehicle_inspection amenity_vehicle_inspection.png
@@ -538,6 +537,7 @@ mycpname waste_basket amenity_waste_bin.png
 mycpname waste_basket2 amenity_waste_basket.png
 mycpname waste_disposal amenity_waste_disposal.png
 mycpname shower amenity_shower.png
+mycpname bench amenity_bench.png
 
 mycpname internet_access_wlan amenity_internet_access_wlan.png
 #! mycp amenity grave_yard place_of_worship_christian3.png  #already defined as icon in the shader section
