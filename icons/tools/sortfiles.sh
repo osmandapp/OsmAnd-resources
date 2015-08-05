@@ -537,6 +537,7 @@ mycpname studio amenity_studio.png
 mycpname waste_basket amenity_waste_bin.png
 mycpname waste_basket2 amenity_waste_basket.png
 mycpname waste_disposal amenity_waste_disposal.png
+mycpname shower amenity_shower.png
 
 mycpname internet_access_wlan amenity_internet_access_wlan.png
 #! mycp amenity grave_yard place_of_worship_christian3.png  #already defined as icon in the shader section
