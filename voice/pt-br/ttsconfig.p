@@ -120,7 +120,7 @@ string('location_lost.ogg', 'sem sinal gps ').
 string('location_recovered.ogg', 'sinal gps recuperado ').
 string('off_route.ogg', 'desviou-se da rota por ').
 string('back_on_route.ogg', 'retornou ao percurso').
-string('exceed_limit.ogg', 'excedendo o limite de velocidade ').
+string('exceed_limit.ogg', 'excesso de velocidade ').
 
 % STREET NAME GRAMMAR
 string('onto.ogg', 'em direção a ').
