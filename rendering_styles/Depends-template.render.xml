@@ -43,8 +43,22 @@
 
 
 	<point>
-		<case minzoom="5" tag="osmand" value="file_waypoint">
-			<case additional="file_has_waypoints=true" icon="osmand_waypoint" shield="waypoint_shield" iconVisibleSize="5"/>
+		<case minzoom="5" tag="osmand" value="file_waypoint"> <!-- for new OpenGL engine -->
+			<case additional="file_has_waypoints=true" icon="osmand_waypoint" iconVisibleSize="5" iconOrder="1">
+				<case additional="color=white" shield="waypoint_white_shield"/>
+				<case additional="color=orange" shield="waypoint_orange_shield"/>
+				<case additional="color=brown" shield="waypoint_brown_shield"/>
+				<case additional="color=darkyellow" shield="waypoint_darkyellow_shield"/>
+				<case additional="color=yellow" shield="waypoint_yellow_shield"/>
+				<case additional="color=lightgreen" shield="waypoint_lightgreen_shield"/>
+				<case additional="color=green" shield="waypoint_green_shield"/>
+				<case additional="color=lightblue" shield="waypoint_lightblue_shield"/>
+				<case additional="color=blue" shield="waypoint_blue_shield"/>
+				<case additional="color=purple" shield="waypoint_purple_shield"/>
+				<case additional="color=gray" shield="waypoint_gray_shield"/>
+				<case additional="color=black" shield="waypoint_black_shield"/>
+				<case shield="waypoint_red_shield"/>
+			</case>
 		</case>
 	</point>
 
@@ -54,5 +68,44 @@
 
 
 	<line>
+		<switch minzoom="2"> <!-- for new OpenGL engine -->
+			<switch>
+				<case tag="osmand" value="file_trackline" color="#55ff0000" cap="ROUND">
+					<case minzoom="13" maxzoom="16" pathIcon="arrow_triangle_white_nobg" pathIconStep="40"/>
+					<case minzoom="17" pathIcon="arrow_triangle_white_nobg" pathIconStep="50"/>
+					<apply>
+						<case additional="color=white" color="$whiteColor" pathIcon="arrow_triangle_black_nobg"/>
+						<case additional="color=red" color="$redColor"/>
+						<case additional="color=orange" color="$orangeColor"/>
+						<case additional="color=brown" color="$brownColor"/>
+						<case additional="color=darkyellow" color="$darkyellowColor"/>
+						<case additional="color=yellow" color="$yellowColor" pathIcon="arrow_triangle_black_nobg"/>
+						<case additional="color=lightgreen" color="$lightgreenColor"/>
+						<case additional="color=green" color="$greenColor"/>
+						<case additional="color=lightblue" color="$lightblueColor"/>
+						<case additional="color=blue" color="$blueColor"/>
+						<case additional="color=purple" color="$purpleColor"/>
+						<case additional="color=gray" color="$grayColor"/>
+						<case additional="color=black" color="$blackColor"/>
+					</apply>
+				</case>
+				<case tag="osmand" value="file_routeline" color="#55ff00ff" cap="ROUND">
+					<case maxzoom="4" pathEffect="5_1"/>
+					<case maxzoom="6" pathEffect="8_1"/>
+					<case maxzoom="12" pathEffect="11_1"/>
+					<case minzoom="13" pathEffect="13_1"/>
+				</case>
+			</switch>
+			<apply>
+				<case maxzoom="4" strokeWidth="1.5:1.5"/>
+				<case maxzoom="6" strokeWidth="3:3"/>
+				<case maxzoom="9" strokeWidth="4:4"/>
+				<case maxzoom="10" strokeWidth="4.5:4.5"/>
+				<case maxzoom="11" strokeWidth="5:5"/>
+				<case maxzoom="12" strokeWidth="5:5"/>
+				<case maxzoom="13" strokeWidth="5.5:5.5"/>
+				<case minzoom="14" strokeWidth="6:6"/>
+			</apply>
+		</switch>
 	</line>
 </renderingStyle>
