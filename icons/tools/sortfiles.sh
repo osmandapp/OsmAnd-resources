@@ -44,6 +44,8 @@ mycp landuse landfill landuse_landfill.png
 mycpname wetland landuse_wetland.png
 mycpname cemetery landuse_cemetery.png
 mycpname grave_yard landuse_cemetery.png
+mycpname military landuse_military.png
+mycpname military_landuse landuse_military.png
 
 mycp stroke black functional-icons_black_stroke.png
 mycp stroke darkgreen functional-icons_darkgreen_stroke.png
