@@ -45,6 +45,9 @@ mycpname wetland landuse_wetland.png
 mycpname cemetery landuse_cemetery.png
 mycpname grave_yard landuse_cemetery.png
 mycpname military_landuse landuse_military.png
+mycpname industrial landuse_industrial.png
+mycpname construction landuse_construction.png
+mycpname garages landuse_garages.png
 
 mycp stroke black functional-icons_black_stroke.png
 mycp stroke darkgreen functional-icons_darkgreen_stroke.png
@@ -567,6 +570,7 @@ mycp amenity public_building amenity_public_building.png
 mycp amenity social_centre amenity_public_building.png
 mycp amenity townhall amenity_town_hall2.png
 mycp office government amenity_public_building.png
+mycpname register_office amenity_register_office.png
 
 mygroup service amenity_service.png
 mygroup landuse landuse_landuse.png
@@ -625,6 +629,7 @@ mycp power tower_big functional-icons_power_tower_big.png
 mycp power tower functional-icons_power_tower.png
 mycp power tower_small functional-icons_power_tower_small.png
 mycp power tower_small2 functional-icons_power_tower_small2.png
+mycpname power_generator power_generator.png
 mycp railway buffer_stop poi_buffer_stop.png
 mycpname transformer power_transformer_small.png
 mycpname works poi_works.png
