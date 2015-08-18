@@ -1306,7 +1306,7 @@ mycp shop laundry shopping_laundrette.png
 mycp shop mall shopping_department_store.png
 mycp shop mobile_phone shopping_mobile_phone.png
 mycp shop motorcycle shopping_motorcycle.png
-mycp shop musical_instrument shopping_music.png
+mycp shop musical_instrument shopping_musical_instrument.png
 mycp shop optician shopping_opticians.png
 mycp shop pet shopping_pet2.png
 mycpname photo shopping_photo.png
@@ -1351,6 +1351,21 @@ mycpname gas shopping_gas.png
 mycpname glaziery shopping_glaziery.png
 mycpname herbalist shopping_herbalist.png
 mycpname houseware shopping_houseware.png
+mycpname hunting shopping_hunting.png
+mycpname beauty shopping_beauty.png
+mycpname interior_decoration shopping_interior_decoration.png
+mycpname art shopping_art.png
+mycpname model shopping_model.png
+mycpname music shopping_music.png
+mycpname newsagent shopping_newsagent.png
+mycpname paint shopping_paint.png
+mycpname radiotechnics shopping_radiotechnics.png
+mycpname scuba_diving_shop shopping_scuba_diving_shop.png
+mycpname stationery shopping_stationery.png
+mycpname tableware shopping_tableware.png
+mycpname trophy shopping_trophy.png
+mycpname trade shopping_trade.png
+mycpname vacuum_cleaner shopping_vacuum_cleaner.png
 
 ## Entertainment
 mycpname park entertainment_park.png
