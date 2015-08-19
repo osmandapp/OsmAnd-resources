@@ -91,6 +91,7 @@ mycpname weir water_weir.png
 mycpname stream water_stream.png
 mycpname river water_river.png
 mycpname water water_water.png
+mycpname canal water_canal.png
 
 
 ## Location dots
@@ -417,7 +418,7 @@ mycpname route_hiking_lwn_poi tourist_route_hiking_lwn_poi.png
 ## Entertainment
 mygroup entertainment tourist_cinema.png
 mygroup club tourist_night_club.png
-mycp amenity arts_centre tourist_art_gallery2.png
+mycp amenity arts_centre tourist_art_gallery.png
 mycp amenity casino tourist_casino.png
 mycp amenity cinema tourist_cinema.png
 mycp amenity nightclub tourist_night_club.png
@@ -510,7 +511,7 @@ mycp leisure ice_rink sport_iceskating.png
 mycp leisure miniature_golf sport_miniature_golf.png
 mycp leisure playground sport_playground.png
 mycp leisure sports_centre sport_leisure_centre2.png
-mycp leisure water_park sport_swimming_outdoor.png
+mycp leisure water_park tourist_water_slide.png
 mycp amenity sauna sport_sauna.png
 
 mygroup geocache poi_point_of_interest.png
@@ -525,7 +526,7 @@ mygroup internet_access amenity_internet_access.png
 mycp amenity car_wash amenity_car_wash.png
 mycp amenity car_wash_self_service amenity_car_wash_self_service.png
 mycpname vehicle_inspection amenity_vehicle_inspection.png
-mycp amenity fountain amenity_fountain2.png
+mycp amenity fountain water_fountain2.png
 mycp amenity fountain_night functional-icons_fountain2_night.png
 mycp amenity monastery place_of_worship_monastery.png
 mycpname historic_monastery place_of_worship_monastery.png
@@ -554,8 +555,9 @@ mycpname waste_basket2 amenity_waste_basket.png
 mycpname waste_disposal amenity_waste_disposal.png
 mycpname shower amenity_shower.png
 mycpname bench amenity_bench.png
-mycpname travel_agent amenity_travel_agent.png
-
+mycpname dry_cleaning amenity_dry_cleaning.png
+mycpname massage amenity_massage.png
+mycpname funeral_directors amenity_funeral_directors.png
 mycpname internet_access_wlan amenity_internet_access_wlan.png
 #! mycp amenity grave_yard place_of_worship_christian3.png  #already defined as icon in the shader section
 
@@ -566,6 +568,7 @@ mycpname craft_brewery craft_brewery.png
 mycpname craft_locksmith craft_locksmith.png
 mycpname craft_painter craft_painter.png
 mycpname craft_tailor craft_tailor.png
+mycpname craft_shoemaker craft_shoemaker.png
 
 mygroup finance money_bank2.png
 mycp amenity atm money_atm.png
@@ -1384,8 +1387,15 @@ mycpname vacuum_cleaner shopping_vacuum_cleaner.png
 mycpname tattoo shopping_tattoo.png
 mycpname perfumery shopping_perfumery.png
 
+## Office
+mycpname estate_agent office_estate_agent.png
+mycpname insurance office_insurance.png
+mycpname research office_research.png
+mycpname travel_agent office_travel_agent.png
+
 ## Entertainment
 mycpname park entertainment_park.png
+mycpname dance_floor entertainment_dance_floor.png
 
 
 # mygroup custom_id icons8 #TODO
