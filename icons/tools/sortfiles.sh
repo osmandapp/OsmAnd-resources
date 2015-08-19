@@ -48,6 +48,9 @@ mycpname military_landuse landuse_military.png
 mycpname industrial landuse_industrial.png
 mycpname construction landuse_construction.png
 mycpname garages landuse_garages.png
+mycpname quarry landuse_quarry.png
+mycpname allotments landuse_allotments.png
+mycpname village_green landuse_village_green.png
 
 mycp stroke black functional-icons_black_stroke.png
 mycp stroke darkgreen functional-icons_darkgreen_stroke.png
@@ -76,6 +79,7 @@ mycp natural tree functional-icons_tree.png  #scale 0.25
 mycp natural tree_leafless functional-icons_tree_leafless.png
 mycp natural tree_needleleaved functional-icons_tree_needleleaved.png
 mycp natural tree_palm functional-icons_tree_palm.png
+mycpname tree poi_tree.png
 mycp natural volcano_active_big functional-icons_volcano_active_big.png
 mycp natural volcano_active functional-icons_volcano_active.png
 mycp natural volcano_big functional-icons_volcano_big.png
@@ -105,6 +109,7 @@ mycp place city poi_city.png  #scale 0.375
 mycp place town poi_town.png
 mycpname hamlet poi_hamlet.png
 mycpname village poi_village.png
+mycpname locality poi_place_locality.png
 
 ## Barrier dots
 mycp barrier small_black_1 functional-icons_point_black_1.png  #scale 0.25
@@ -174,6 +179,8 @@ mycp highway passing_place functional-icons_passing_place.png
 mycp highway speed_camera transport_speedcamera.png
 mycp highway steps transport_highway_steps.png
 mycp highway traffic_signals functional-icons_traffic_lights.png
+mycpname motorway_junction transport_motorway_junction.png
+mycpname junction transport_junction.png
 mycp traffic_calming bump transport_speedbump.png
 mycp oneway blue functional-icons_oneway_blue.png
 mycp oneway reverse_blue functional-icons_oneway_reverse_blue.png
@@ -402,6 +409,10 @@ mycp tourism viewpoint tourist_view_point.png
 mycp tourism zoo tourist_zoo.png
 mycpname city_wall tourist_city_wall.png
 mycpname clock tourist_clock.png
+mycpname route_hiking_iwn_poi tourist_route_hiking_iwn_poi.png
+mycpname route_hiking_nwn_poi tourist_route_hiking_nwn_poi.png
+mycpname route_hiking_rwn_poi tourist_route_hiking_rwn_poi.png
+mycpname route_hiking_lwn_poi tourist_route_hiking_lwn_poi.png
 
 ## Entertainment
 mygroup entertainment tourist_cinema.png
@@ -487,6 +498,7 @@ mycp sport table_tennis sport_table_tennis.png
 mycp sport tennis sport_tennis.png
 mycp sport volleyball sport_volleyball.png
 mycpname pitch sport_pitch.png
+mycpname swimming_pool sport_swimming_outdoor.png
 
 
 ## Leisure
@@ -581,6 +593,7 @@ mycp amenity college education_college.png
 mycpname kindergarten education_kindergarten.png
 mycp amenity school education_school.png
 mycp amenity university education_university.png
+mycpname driving_school education_driving_school.png
 
 
 ## Man made
@@ -635,6 +648,7 @@ mycpname transformer power_transformer_small.png
 mycpname works poi_works.png
 mycpname military_bunker poi_military_bunker.png
 mycpname abandoned_poi poi_abandoned_poi.png
+mycpname surveillance poi_surveillance.png
 
 mygroup military poi_military_bunker.png
 
@@ -1366,6 +1380,8 @@ mycpname tableware shopping_tableware.png
 mycpname trophy shopping_trophy.png
 mycpname trade shopping_trade.png
 mycpname vacuum_cleaner shopping_vacuum_cleaner.png
+mycpname tattoo shopping_tattoo.png
+mycpname perfumery shopping_perfumery.png
 
 ## Entertainment
 mycpname park entertainment_park.png
