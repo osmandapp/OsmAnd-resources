@@ -1969,6 +1969,9 @@
 				</switch>
 				<case tag="highway" value="steps" order="38">
 					<apply_if appMode="pedestrian" order="61"/>
+					<apply_if appMode="default" moreDetailed="false">
+						<apply_if minzoom="15" maxzoom="15" order="-1"/>
+					</apply_if>
 					<apply_if layer="1" order="91">
 						<apply_if maxzoom="15" order="40"/>
 					</apply_if>
@@ -6439,7 +6442,10 @@
 
 					<case minzoom="15" tag="highway" value="steps">
 						<case appMode="pedestrian" strokeWidth_4="2:2" strokeWidth_5="2:2" pathEffect_5="2_2"/>
-						<case layer="1" moreDetailed="true" minzoom="14" maxzoom="15" strokeWidth_4="1.7:1.7" strokeWidth_5="1.7:1.7"/>
+						<case moreDetailed="true" maxzoom="15">
+							<case layer="1" strokeWidth_4="1.7:1.7" strokeWidth_5="1.7:1.7"/>
+							<case strokeWidth_4="2:2" strokeWidth_5="2:2"/> <!-- If we remove this and let <order> to decide when to hide steps, layer="1" will be also hidden which is undesirable.-->
+						</case>
 						<case minzoom="16" strokeWidth_4="2:2" strokeWidth_5="2:2"/>
 						<apply color_5="$footwayColor" pathEffect_5="1_2"/>
 						<apply>
@@ -6626,7 +6632,7 @@
 					<case additional="surface=gravel" color_3="$surfaceLooselyPavedColor"/>
 					<case additional="surface=fine_gravel" color_3="$surfaceLooselyPavedColor"/>
 					<case additional="surface=compacted" color_3="$surfaceLooselyPavedColor"/>
-					<apply_if moreDetailed="true" minzoom="14" maxzoom="14" pathEffect_3="3_11"/>
+					<apply_if moreDetailed="true" maxzoom="14" pathEffect_3="3_11"/>
 					<apply_if minzoom="15" maxzoom="15" pathEffect_3="5_13"/>
 					<apply_if minzoom="16" maxzoom="16" pathEffect_3="5_15"/>
 					<apply_if minzoom="17" maxzoom="17" pathEffect_3="6_17"/>
