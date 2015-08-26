@@ -1,0 +1,903 @@
+<renderingStyle name="test" depends="" defaultColor="#f1eae4" version="1.2">
+	<renderingProperty attr="noAdminboundaries" name="Hide boundaries" description="Suppress display of admin levels 5-9"
+		type="boolean" possibleValues="" category="hide"/>
+	<renderingProperty attr="noPolygons" name="Hide polygons" description="Make all areal land features on map transparent"
+		type="boolean" possibleValues="" category="hide"/>
+	<renderingAttribute name="route">
+		<case color="#88aa0088" strokeWidth="7:6" color_3="#ffde5b" strokeWidth_3="7:6">
+			<apply_if nightMode="true" color="#77ff4400" strokeWidth="7:6"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="defaultColor">
+		<!-- next line should should make background transparent for underlays to be visible, but this curretnly does not work as desired -->
+		<!-- To change default color completely you should do that also for tag="place" value="island" and tag="natural" value="land" (search this file) -->
+<!--		<case noPolygons="true" attrColorValue="#00555555"/>-->
+		<case attrColorValue="#f1eae4">
+			<apply_if nightMode="true" attrColorValue="#002a2a"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="gpx" cap="ROUND">
+		<switch>
+			<case currentTrackColor="red" color="#ff0000"/>
+			<case currentTrackColor="orange" color="#ff7200"/>
+			<case currentTrackColor="yellow" color="#edc300"/>
+			<case currentTrackColor="lightgreen" color="#6cb52b"/>
+			<case currentTrackColor="green" color="#00842b"/>
+			<case currentTrackColor="lightblue" color="#2ec6ff"/>
+			<case currentTrackColor="blue" color="#4e4eff"/>
+			<case currentTrackColor="purple" color="#a71de1"/>
+			<case currentTrackColor="translucent_red" color="#88ff0000"/>
+			<case currentTrackColor="translucent_orange" color="#88ff7200"/>
+			<case currentTrackColor="translucent_yellow" color="#88edc300"/>
+			<case currentTrackColor="translucent_lightgreen" color="#886cb52b"/>
+			<case currentTrackColor="translucent_green" color="#8800842b"/>
+			<case currentTrackColor="translucent_lightblue" color="#882ec6ff"/>
+			<case currentTrackColor="translucent_blue" color="#884e4eff"/>
+			<case currentTrackColor="translucent_purple" color="#88a71de1"/>
+			<case color="#ff0000"/>
+			<apply>
+				<case currentTrackWidth="2" strokeWidth="2"/>
+				<case currentTrackWidth="3" strokeWidth="3"/>
+				<case currentTrackWidth="4" strokeWidth="4"/>
+				<case currentTrackWidth="6" strokeWidth="6"/>
+				<case currentTrackWidth="8" strokeWidth="8"/>
+				<case currentTrackWidth="11" strokeWidth="11"/>
+				<case strokeWidth="2"/>
+			</apply>
+		</switch>
+	</renderingAttribute>
+
+	<renderingConstant name="null" value="#00000000"/>
+
+	<renderingAttribute name="motorwayRoadColor">
+		<case nightMode="true" attrColorValue="#000000"/>
+		<case attrColorValue="#ffffff"/>
+	</renderingAttribute>
+	<renderingAttribute name="trunkRoadColor">
+		<case nightMode="true" attrColorValue="#000000"/>
+		<case attrColorValue="#ffffff"/>
+	</renderingAttribute>
+	<renderingAttribute name="primaryRoadColor">
+		<case nightMode="true" attrColorValue="#000000"/>
+		<case attrColorValue="#ffffff"/>
+	</renderingAttribute>
+	<renderingConstant name="primaryRoadAreaNightColor" value="#000000"/>
+	<renderingAttribute name="secondaryRoadColor">
+		<case nightMode="true" attrColorValue="#000000"/>
+		<case attrColorValue="#ffffff"/>
+	</renderingAttribute>
+	<renderingAttribute name="tertiaryRoadColor">
+		<case nightMode="true" attrColorValue="#000000"/>
+		<case attrColorValue="#ffffff"/>
+	</renderingAttribute>
+	<renderingConstant name="residentialRoadDayColor" value="#ffffff"/>
+	<renderingConstant name="residentialRoadLowZoomDayColor" value="#ffffff"/>
+	<renderingConstant name="residentialRoadLowZoomDayColor2" value="#ffffff"/>
+	<renderingConstant name="residentialRoadNightColor" value="#000000"/>
+	<renderingConstant name="residentialRoadLowZoomNightColor" value="#000000"/>
+	<renderingAttribute name="serviceRoadLowZoomColor">
+		<case nightMode="true" attrColorValue="#000000"/>
+		<case attrColorValue="#ffffff"/>
+	</renderingAttribute>
+
+	<renderingConstant name="serviceRoadDayColor" value="#ffffff"/>
+	<renderingConstant name="serviceRoadNightColor" value="#000000"/>
+
+	<renderingConstant name="waterColorDay" value="#acd8f3"/>
+	<renderingConstant name="waterColorNight" value="#330099"/>
+	<!-- Forest -->
+	<renderingAttribute name="woodColor">
+		<case attrColorValue="#aed1a0">
+			<apply_if nightMode="true" attrColorValue="#001122"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="forestColor">
+		<case attrColorValue="#9dd57c">
+			<apply_if nightMode="true" attrColorValue="#001122"/>
+		</case>
+	</renderingAttribute>
+	<renderingConstant name="woodBroadleavedShader" value="wood_broadleaved"/> <!-- for UniRS -->
+	<renderingConstant name="woodNeedleleavedShader" value="wood_needleleaved"/>
+	<renderingConstant name="woodMixedShader" value="wood_mixed"/>
+	<renderingConstant name="parkColorDay" value="#b0b6fdb6"/>
+	<renderingConstant name="parkStrokeColorDay" value="#9db487"/>
+	<renderingConstant name="parkColorNight" value="#004333"/>
+	<renderingConstant name="parkStrokeColorNight" value="#9db487"/>
+	<renderingConstant name="allotmentsColorDay" value="#b1cc86"/>
+	<renderingConstant name="allotmentsColorNight" value="#232e14"/>
+	<renderingConstant name="parkingColorDay" value="#f6eeb7"/>
+	<renderingConstant name="parkingColorNight" value="#2b2e4f"/>
+	<renderingConstant name="residentialColorDay" value="#dddddd"/>
+	<renderingConstant name="residentialColorNight" value="#202020"/>
+	<renderingConstant name="industrialColorDay" value="#dbc5df"/>
+	<renderingConstant name="industrialColorNight" value="#2d1c2d"/>
+	<renderingConstant name="attractionColorDay" value="#f2caea"/>
+	<renderingConstant name="attractionColorNight" value="#3b3b3b"/>
+
+	<renderingConstant name="openNatureColorNight" value="#004333"/>
+	<renderingConstant name="shaderColorNight" value="#334433"/>
+	<renderingConstant name="heathColorDay" value="#ffffc0"/>
+	<renderingConstant name="wetlandColorNight" value="#1b3238"/>
+	<renderingConstant name="grasslandColorDay" value="#cfeca8"/>
+	<renderingConstant name="lavaColorDay" value="#ffe7ff"/>
+	<renderingConstant name="desertColorDay" value="#fff7bf"/>
+	<renderingConstant name="farmColorDay" value="#f6e3c7"/>
+	<renderingConstant name="farmColorNight" value="#004333"/>
+	<renderingConstant name="farmyardColorDay" value="#ddbf92"/>
+	<renderingConstant name="farmyardColorNight" value="#004333"/>
+	<renderingConstant name="greenfieldColorDay" value="#9d9d6c"/>
+	<renderingConstant name="grassColorDay" value="#cfeca8"/>
+	<renderingConstant name="meadowColorDay" value="#cfeca8"/>
+	<renderingConstant name="meadowColorNight" value="#004333"/>
+	<renderingConstant name="brownfieldColorDay" value="#9d9d6c"/>
+	<renderingConstant name="recreationGroundColorDay" value="#cfeca8"/>
+	<renderingConstant name="recreationGroundColorDayStroke" value="#b0b6fdb6"/>
+	<renderingConstant name="conservationColorDay" value="#cfeca8"/>
+	<renderingConstant name="villageGreenColorDay" value="#cfeca8"/>
+
+	<renderingConstant name="buildingColorDay" value="#bca9a9"/>
+	<renderingConstant name="buildingColorNight" value="#685454"/>
+
+	<renderingConstant name="builtUpAreasColorNight" value="#3b3b3b"/>
+	<renderingConstant name="landuseConstructionColorDay" value="#cac090"/>
+	<renderingConstant name="landuseConstructionColorDayStroke" value="#666666"/>
+	<renderingConstant name="landuseConstructionColorNight" value="#3c3c1b"/>
+	<renderingConstant name="landuseConstructionColorNightStroke" value="#aaaaaa"/>
+	<renderingConstant name="landuseIndustrialColorDay" value="#dfd1d6"/>
+	<renderingConstant name="landuseIndustrialColorNight" value="#3b3b3b"/>
+	<renderingConstant name="landuseResidentialColorDay" value="#cdcdcd"/>
+	<renderingConstant name="landuseResidentialColorNight" value="#3b3b3b"/>
+	<renderingConstant name="landuseResidentialRuralColorDay" value="#cdd5cd"/>
+	<renderingConstant name="landuseRailwayColorDay" value="#dfd1d6"/>
+	<renderingConstant name="landuseRailwayColorNight" value="#3b3b3b"/>
+<!--	<renderingConstant name="landusePrisonColorDay" value="#dfd1d6"/>-->
+	<renderingConstant name="landusePrisonColorNight" value="#3b3b3b"/>
+	<renderingConstant name="landuseCommercialColorDay" value="#efc8c8"/>
+	<renderingConstant name="landuseCommercialColorNight" value="#3b3b3b"/>
+	<renderingConstant name="landuseRetailColorDay" value="#efd0c8"/>
+	<renderingConstant name="landuseRetailColorNight" value="#3b3b3b"/>
+	<renderingConstant name="landuseLandfillColorDay" value="#9d9d6c"/>
+	<renderingConstant name="landuseLandfillColorNight" value="#3b3b3b"/>
+	<renderingConstant name="amenityEducationalColorDay" value="#f0f0d8"/>
+	<renderingConstant name="amenityEducationalColorNight" value="#3b3b3b"/>
+	<renderingConstant name="amenityEducationalStrokeColorNight" value="#d4a89e"/>
+	<renderingConstant name="amenityHospitalColorDay" value="#f0f0d8"/>
+	<renderingConstant name="amenityHospitalColorNight" value="#3b3b3b"/>
+	<renderingConstant name="playgroundColorDay" value="#ccfff1"/>
+	<renderingConstant name="gardenColorDay" value="#cfeca8"/>
+	<renderingConstant name="gardenColorNight" value="#004333"/>
+	<renderingConstant name="leisureCommonColorDay" value="#cfeca8"/>
+
+	<renderingAttribute name="landuseAllotmentsColor">
+		<case nightMode="true" attrColorValue="#3b3b3b"/>
+		<case attrColorValue="#bde3cb"/>
+	</renderingAttribute>
+	<renderingConstant name="landuseGaragesColorDay" value="#dfd1d6"/>
+	<renderingConstant name="landuseGaragesColorNight" value="#362d2d"/>
+	<renderingConstant name="leisureResortColorDay" value="#b0b6fdb6"/>
+	<renderingConstant name="leisureResortColorNight" value="#362d2d"/>
+	<renderingConstant name="themeparkColorDay" value="#66f2caea"/>
+	<renderingConstant name="themeparkStrokeColorDay" value="#734a08"/>
+	<renderingConstant name="themeparkColorNight" value="#3b3b3b"/>
+	<renderingConstant name="themeparkStrokeColorNight" value="#734a08"/>
+	<renderingConstant name="waterwayDirectionIcon" value="arrow_blue_big_night"/>
+
+	<renderingAttribute name="whiteColor">
+		<case attrColorValue="#88ffffff"/>
+	</renderingAttribute>
+	<renderingAttribute name="redColor">
+		<case attrColorValue="#88ff0000"/>
+	</renderingAttribute>
+	<renderingAttribute name="orangeColor">
+		<case nightMode="true" attrColorValue="#88ffb631"/>
+		<case attrColorValue="#88ff7200"/>
+	</renderingAttribute>
+	<renderingAttribute name="brownColor">
+		<case nightMode="true" attrColorValue="#88b46100"/>
+		<case attrColorValue="#88ba7007"/>
+	</renderingAttribute>
+	<renderingAttribute name="darkyellowColor">
+		<case nightMode="true" attrColorValue="#88737812"/>
+		<case attrColorValue="#88afb61c"/>
+	</renderingAttribute>
+	<renderingAttribute name="yellowColor">
+		<case attrColorValue="#88edc300"/>
+	</renderingAttribute>
+	<renderingAttribute name="lightgreenColor">
+		<case nightMode="true" attrColorValue="#8895ff79"/>
+		<case attrColorValue="#886cb52b"/>
+	</renderingAttribute>
+	<renderingAttribute name="greenColor">
+		<case nightMode="true" attrColorValue="#8838c012"/>
+		<case attrColorValue="#8800842b"/>
+	</renderingAttribute>
+	<renderingAttribute name="lightblueColor">
+		<case nightMode="true" attrColorValue="#887fe5ff"/>
+		<case attrColorValue="#882ec6ff"/>
+	</renderingAttribute>
+	<renderingAttribute name="blueColor">
+		<case nightMode="true" attrColorValue="#886d74ff"/>
+		<case attrColorValue="#884e4eff"/>
+	</renderingAttribute>
+	<renderingAttribute name="purpleColor">
+		<case nightMode="true" attrColorValue="#88cd5efb"/>
+		<case attrColorValue="#88a71de1"/>
+	</renderingAttribute>
+	<renderingAttribute name="grayColor">
+		<case nightMode="true" attrColorValue="#aa999999"/>
+		<case attrColorValue="#aa999999"/>
+	</renderingAttribute>
+	<renderingAttribute name="blackColor">
+		<case nightMode="true" attrColorValue="#aa666666"/>
+		<case attrColorValue="#aa000000"/>
+	</renderingAttribute>
+
+	<order>
+	<!-- Point -->
+		<switch area="false" point="true" objectType="1" order="128">
+		</switch>
+	<!-- Polygon -->
+		<switch area="true" point="false" objectType="3" order="5">
+			<switch layer="-1" order="3">
+				<case tag="natural" value="coastline"/>
+				<case tag="natural" value="land"/>
+				<case tag="place" value="island"/>
+				<case tag="" value=""/>
+			</switch>
+		</switch>
+		<switch cycle="true" point="false" objectType="3" order="5">
+			<case tag="" value="" order="5"/>
+		</switch>
+	<!-- Line -->
+		<switch area="false" objectType="2" order="80">
+			<case layer="-1" tag="" value="" order="10"/>
+			<case tag="" value="" order="11"/>
+			<case tag="natural" value="coastline_broken" order="35"/>
+			<case tag="natural" value="coastline_line" order="35"/>
+			<switch>
+				<case tag="highway" value="motorway" order="57">
+					<apply_if layer="1" order="87"/>
+				</case>
+				<case tag="highway" value="motorway_link" order="44">
+					<apply_if layer="1" order="74"/>
+				</case>
+				<case tag="highway" value="trunk" order="56">
+					<apply_if layer="1" order="86"/>
+				</case>
+				<case tag="highway" value="trunk_link" order="43">
+					<apply_if layer="1" order="73"/>
+				</case>
+				<case tag="highway" value="primary" order="55">
+					<apply_if layer="1" order="85"/>
+				</case>
+				<case tag="highway" value="primary_link" order="42">
+					<apply_if layer="1" order="72"/>
+				</case>
+				<case tag="highway" value="secondary" order="54">
+					<apply_if layer="1" order="84"/>
+				</case>
+				<case tag="highway" value="secondary_link" order="41">
+					<apply_if layer="1" order="71"/>
+				</case>
+				<case tag="highway" value="tertiary" order="53">
+					<apply_if layer="1" order="83"/>
+				</case>
+				<case tag="highway" value="tertiary_link" order="40">
+					<apply_if layer="1" order="70"/>
+				</case>
+				<case tag="highway" value="road" order="52">
+					<apply_if layer="1" order="82"/>
+				</case>
+				<case tag="highway" value="unclassified" order="52">
+					<apply_if layer="1" order="82"/>
+				</case>
+				<case tag="highway" value="residential" order="51">
+					<apply_if layer="1" order="81"/>
+				</case>
+				<case tag="highway" value="service" order="51">
+					<apply_if layer="1" order="81"/>
+				</case>
+				<case tag="highway" value="living_street" order="50">
+					<apply_if layer="1" order="80"/>
+				</case>
+				<case tag="highway" value="pedestrian" order="50">
+					<apply_if appMode="pedestrian" order="58"/>
+					<apply_if layer="1" order="80"/>
+				</case>
+				<apply_if maxzoom="13" additional="construction=yes" order="-1"/>
+			</switch>
+		</switch>
+		<case tag="waterway" value="" layer="-1" order="-1"/>
+		<case tag="osmand" value="file_trackline"/>
+		<case tag="osmand" value="file_routeline"/>
+	</order>
+
+	<text>
+	</text>
+
+	<point>
+	</point>
+
+	<polygon>
+		<switch>
+			<case minzoom="1" tag="natural" value="coastline"/>
+			<case minzoom="4" tag="natural" value="water"/>
+			<case minzoom="4" tag="natural" value="bay"/>
+			<case minzoom="7" tag="landuse" value="reservoir"/>
+			<case minzoom="10" tag="waterway" value="riverbank"/>
+			<case minzoom="7" tag="landuse" value="water"/>
+			<case minzoom="10" tag="landuse" value="basin"/>
+			<case minzoom="15" tag="leisure" value="swimming_pool" color_2="#7479ec" strokeWidth_2=":1"/>
+			<apply color="$waterColorDay">
+				<apply_if nightMode="true" color="$waterColorNight"/>
+			</apply>
+		</switch>
+		<case minzoom="6" tag="landuse" value="farmyard" color="$farmyardColorDay">
+			<apply_if nightMode="true" color="$farmyardColorNight"/>
+		</case>
+		<switch minzoom="6">
+			<case tag="landuse" value="farm"/>
+			<case tag="landuse" value="farmland"/>
+			<apply color="$farmColorDay">
+				<apply_if nightMode="true" color="$farmColorNight"/>
+			</apply>
+		</switch>
+		<switch minzoom="6">
+			<case tag="natural" value="wood" color="$woodColor">
+				<apply_if minzoom="15" additional="leaf_type=broadleaved" shader="$woodBroadleavedShader"/>
+				<apply_if minzoom="15" additional="leaf_type=needleleaved" shader="$woodNeedleleavedShader"/>
+				<apply_if minzoom="15" additional="leaf_type=mixed" shader="$woodMixedShader"/>
+			</case>
+			<case tag="landuse" value="forest" color="$forestColor">
+				<apply_if minzoom="15" additional="leaf_type=broadleaved" shader="forest_broadleaved"/>
+				<apply_if minzoom="15" additional="leaf_type=needleleaved" shader="forest_needleleaved"/>
+				<apply_if minzoom="15" additional="leaf_type=mixed" shader="forest_mixed"/>
+			</case>
+			<apply>
+				<switch>
+					<case additional="wood:damage=windfall" shader="wood_windfall"/>
+					<case additional="wood:damage=dead_wood" shader="wood_dead_wood"/>
+				</switch>
+			</apply>
+			<apply_if nightMode="true" shader=""/>
+		</switch>
+
+		<case minzoom="6" tag="landuse" value="meadow" color="$meadowColorDay">
+			<apply_if nightMode="true" color="$meadowColorNight"/>
+		</case>
+
+		<!-- Built-up areas -->
+		<case minzoom="16" color="$buildingColorDay" tag="building" value="" strokeWidth_2="0.4" color_2="#000000">
+			<apply_if nightMode="true" color="$buildingColorNight" color_2="#aaaaaa"/>
+		</case>
+		<switch>
+			<case minzoom="6" tag="landuse" value="residential" color="$landuseResidentialColorDay">
+				<apply_if additional="residential=rural" color="$landuseResidentialRuralColorDay"/>
+				<apply_if nightMode="true" color="$landuseResidentialColorNight"/>
+			</case>
+			<case minzoom="11" tag="landuse" value="industrial" color="$landuseIndustrialColorDay">
+				<apply_if nightMode="true" color="$landuseIndustrialColorNight"/>
+			</case>
+			<case minzoom="12" tag="landuse" value="railway" color="$landuseRailwayColorDay">
+				<apply_if nightMode="true" color="$landuseRailwayColorNight"/>
+			</case>
+			<case minzoom="14" tag="landuse" value="garages" color="$landuseGaragesColorDay">
+				<apply_if nightMode="true" color="$landuseGaragesColorNight"/>
+			</case>
+		</switch>
+		<case minzoom="12" tag="landuse" value="construction" color="$landuseConstructionColorDay" color_2="$landuseConstructionColorDayStroke" strokeWidth_2="0.5" pathEffect_2="8_4">
+			<apply_if nightMode="true" color="$landuseConstructionColorNight" color_2="$landuseConstructionColorNightStroke"/>
+			<apply_if additional="abandoned=yes" shader="diagonal_gray_shader">
+				<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
+			</apply_if>
+		</case>
+		<switch>
+			<case minzoom="13" tag="leisure" value="stadium" color="#33cc99"/>
+			<case minzoom="13" tag="leisure" value="sports_centre" color="#33cc99"/>
+			<!-- use semi-ransparent shader to better show area details: filter minzoom="10" color="#a0ffa0c0" color_2="#ffa0c0" strokeWidth_2=":2" tag="landuse" value="military"/ -->
+			<apply_if nightMode="true" color="#04382c"/>
+		</switch>
+		<switch minzoom="13">
+			<case tag="power" value="plant" color="#bbbbbb"/>
+			<case tag="power" value="generator" color="#bbbbbb"/>
+			<case tag="power" value="substation" color="#bbbbbb"/>
+			<apply_if nightMode="true" color="#132c4e"/>
+		</switch>
+
+		<case minzoom="12" tag="landuse" value="commercial" color="$landuseCommercialColorDay">
+			<apply_if nightMode="true" color="$landuseCommercialColorNight"/>
+		</case>
+
+		<case minzoom="12" tag="landuse" value="landfill" color="$landuseLandfillColorDay">
+			<apply_if nightMode="true" color="$landuseLandfillColorNight"/>
+		</case>
+		<switch minzoom="15">
+			<case tag="amenity" value="kindergarten"/>
+			<case tag="amenity" value="school"/>
+			<case tag="amenity" value="college"/>
+			<case tag="amenity" value="university"/>
+			<apply color="$amenityEducationalColorDay" color_2="#d4a89e" strokeWidth_2=":1">
+				<apply_if nightMode="true" color="$amenityEducationalColorNight" color_2="$amenityEducationalStrokeColorNight"/>
+			</apply>
+		</switch>
+		<switch minzoom="15">
+			<case tag="amenity" value="hospital"/>
+			<case tag="amenity" value="clinic"/>
+			<apply color="$amenityHospitalColorDay" color_2="#d4a89e" strokeWidth_2=":1"/>
+			<apply_if nightMode="true" color="$amenityHospitalColorNight" color_2="$amenityEducationalStrokeColorNight"/>
+		</switch>
+		<case minzoom="10" tag="landuse" value="allotments" color="$landuseAllotmentsColor" color_2="#8fbda0" strokeWidth_2=":1">
+			<case minzoom="13" maxzoom="14" shader="allotments_small"/>
+			<case minzoom="15" shader="allotments"/>
+			<apply_if nightMode="true" shader="" color_2="#00510e"/>
+		</case>
+		<switch>
+			<case minzoom="12" tag="landuse" value="retail"/>
+			<case minzoom="13" tag="highway" value="services"/>
+			<apply color="$landuseRetailColorDay"/>
+			<apply_if nightMode="true" color="$landuseRetailColorNight"/>
+		</switch>
+		<switch>
+			<case minzoom="12" tag="railway" value="station" color="#dfd1d6"/>
+			<case minzoom="16" tag="amenity" value="library" color="#bca9a9"/>
+			<case minzoom="12" tag="amenity" value="social_facility" color="#b0b6fdb6"/>
+			<case minzoom="12" tag="leisure" value="water_park" color="#b0b6fdb6"/>
+			<case minzoom="15" tag="amenity" value="cinema" color="#dec8c8" color_2="#8c7878" strokeWidth_2=":1"/>
+			<case minzoom="13" tag="tourism" value="camp_site" color="#a0ccff99"/>
+			<case minzoom="13" tag="tourism" value="caravan_site" color="#a0ccff99"/>
+			<case minzoom="13" tag="tourism" value="picnic_site" color="#a0ccff99"/>
+			<case minzoom="14" tag="leisure" value="horse_riding" color="#a0dec8c8"/>
+			<apply_if nightMode="true" color="$builtUpAreasColorNight"/>
+		</switch>
+		<case minzoom="12" tag="tourism" value="theme_park">
+			<case maxzoom="15" strokeWidth_2=":1"/>
+			<case minzoom="16" strokeWidth_2=":2"/>
+			<apply color="$themeparkColorDay" color_2="$themeparkStrokeColorDay" pathEffect_2="9_3"/>
+			<apply_if nightMode="true" color="$themeparkColorNight" color_2="$themeparkStrokeColorNight"/>
+		</case>
+		<case minzoom="15" tag="amenity" value="parking" color="$parkingColorDay">
+			<apply_if nightMode="true" color="$parkingColorNight"/>
+		</case>
+		<switch>
+			<!-- Tourism -->
+			<case minzoom="13" tag="tourism" value="attraction"/>
+			<case minzoom="16" tag="tourism" value="artwork"/>
+			<case minzoom="15" tag="amenity" value="place_of_worship"/>
+			<case minzoom="13" tag="amenity" value="monastery"/>
+			<case minzoom="13" tag="historic" value="monastery"/>
+			<case minzoom="13" tag="historic" value="memorial"/>
+			<case minzoom="13" tag="landuse" value="religious"/>
+			<case minzoom="13" tag="historic" value="ship"/>
+			<apply color="$attractionColorDay">
+				<apply_if nightMode="true" color="$attractionColorNight"/>
+			</apply>
+		</switch>
+
+		<!-- Open nature, night color 004333 -->
+		<switch>
+			<case minzoom="6" tag="natural" value="heath" color="$heathColorDay"/>
+			<case minzoom="6" tag="natural" value="grassland" color="$grasslandColorDay"/>
+			<case minzoom="6" tag="natural" value="lava" color="$lavaColorDay"/>
+			 <!-- desert is disputed because not well defined and little verifiable -->
+			<case minzoom="6" tag="natural" value="desert" color="$desertColorDay"/>
+			<!-- field is unofficial -->
+			<case minzoom="6" tag="landuse" value="field" color="$farmColorDay"/>
+			<case minzoom="6" tag="landuse" value="greenfield" color="$greenfieldColorDay"/>
+			<case minzoom="6" tag="landuse" value="grass" color="$grassColorDay"/>
+			<case minzoom="6" tag="landuse" value="brownfield" color="$brownfieldColorDay"/>
+			<case minzoom="6" tag="landuse" value="conservation" color="$conservationColorDay"/>
+			<case minzoom="6" tag="landuse" value="recreation_ground" color="$recreationGroundColorDay"/>
+			<case minzoom="6" tag="landuse" value="village_green" color="$villageGreenColorDay"/>
+			<case minzoom="12" tag="leisure" value="recreation_ground" color="$recreationGroundColorDayStroke"/>
+			<case minzoom="15" tag="leisure" value="playground" color="$playgroundColorDay"/>
+			<case minzoom="12" tag="leisure" value="common" color="$leisureCommonColorDay"/>
+			<apply_if nightMode="true" color="$openNatureColorNight"/>
+		</switch>
+		<case minzoom="8" tag="leisure" value="park">
+			<apply color="$parkColorDay" color_2="$parkStrokeColorDay" strokeWidth_2=":1">
+				<apply_if nightMode="true" color="$parkColorNight" color_2="$parkStrokeColorNight"/>
+			</apply>
+		</case>
+
+		<switch minzoom="12">
+			<case tag="landuse" value="quarry" shader="quarry3">
+				<apply_if nightMode="true" shader="quarry3night"/>
+			</case>
+			<case tag="abandoned:landuse" value="quarry" shader="quarry3_abandoned">
+				<apply_if nightMode="true" shader="quarry3_abandoned_night"/>
+			</case>
+		</switch>
+
+		<switch minzoom="10">
+			<case tag="landuse" value="military" shader="danger">
+				<apply_if nightMode="true" shader="danger_night"/>
+			</case>
+			<case tag="abandoned:landuse" value="military" shader="military_abandoned">
+				<apply_if nightMode="true" shader="military_abandoned_night"/>
+			</case>
+			<apply color_2="#c8ffa0c0" strokeWidth_2="1:1">
+				<apply_if nightMode="true" color_2="#84ffa0c0"/>
+			</apply>
+		</switch>
+		<case minzoom="7" tag="military" value="danger_area" shader="hazard" color_2="#ffa0c0" strokeWidth_2="1:1">
+			<apply_if nightMode="true" color_2="#ffa0c0"/>
+		</case>
+
+		<switch>
+			<case tag="place" value="island"/>
+			<case tag="natural" value="land"/>
+			<apply color="#f1eae4">
+				<apply_if nightMode="true" color="#000000"/>
+			</apply>
+		</switch>
+	</polygon>
+
+	<line>
+		<switch minzoom="2"> <!-- for new OpenGL engine -->
+			<switch>
+				<case tag="osmand" value="file_trackline" color="#55ff0000" cap="ROUND">
+					<case minzoom="13" maxzoom="16" pathIcon="arrow_triangle_white_nobg" pathIconStep="40"/>
+					<case minzoom="17" pathIcon="arrow_triangle_white_nobg" pathIconStep="50"/>
+					<apply>
+						<case additional="color=white" color="$whiteColor" pathIcon="arrow_triangle_black_nobg"/>
+						<case additional="color=red" color="$redColor"/>
+						<case additional="color=orange" color="$orangeColor"/>
+						<case additional="color=brown" color="$brownColor"/>
+						<case additional="color=darkyellow" color="$darkyellowColor"/>
+						<case additional="color=yellow" color="$yellowColor" pathIcon="arrow_triangle_black_nobg"/>
+						<case additional="color=lightgreen" color="$lightgreenColor"/>
+						<case additional="color=green" color="$greenColor"/>
+						<case additional="color=lightblue" color="$lightblueColor"/>
+						<case additional="color=blue" color="$blueColor"/>
+						<case additional="color=purple" color="$purpleColor"/>
+						<case additional="color=gray" color="$grayColor"/>
+						<case additional="color=black" color="$blackColor"/>
+					</apply>
+				</case>
+				<case tag="osmand" value="file_routeline" color="#55ff00ff" cap="ROUND">
+					<case maxzoom="4" pathEffect="5_1"/>
+					<case maxzoom="6" pathEffect="8_1"/>
+					<case maxzoom="12" pathEffect="11_1"/>
+					<case minzoom="13" pathEffect="13_1"/>
+				</case>
+			</switch>
+			<apply>
+				<case maxzoom="4" strokeWidth="1.5:1.5"/>
+				<case maxzoom="6" strokeWidth="3:3"/>
+				<case maxzoom="9" strokeWidth="4:4"/>
+				<case maxzoom="10" strokeWidth="4.5:4.5"/>
+				<case maxzoom="11" strokeWidth="5:5"/>
+				<case maxzoom="12" strokeWidth="5:5"/>
+				<case maxzoom="13" strokeWidth="5.5:5.5"/>
+				<case minzoom="14" strokeWidth="6:6"/>
+			</apply>
+		</switch>
+		<case minzoom="1" tag="natural" value="coastline_broken" color="#111111" strokeWidth=":1"/>
+		<case minzoom="5" tag="natural" value="coastline_line" color="#cc999999" strokeWidth=":1"/>
+
+		<switch minzoom="6" maxzoom="15">
+			<case tag="highway" value="motorway" color="$motorwayRoadColor"/>
+			<case tag="highway" value="motorway_link" color="$motorwayRoadColor"/>
+			<case tag="highway" value="trunk" color="$trunkRoadColor"/>
+			<case tag="highway" value="trunk_link" color="$trunkRoadColor"/>
+			<apply cap="ROUND">
+				<case maxzoom="6" strokeWidth="1:1"/>
+				<case maxzoom="8" strokeWidth="1.5:1.5"/>
+				<case maxzoom="9" strokeWidth="2:2"/>
+				<case maxzoom="10" strokeWidth="2.3:2.3"/>
+				<case maxzoom="11" strokeWidth="2.7:2.7"/>
+				<case maxzoom="12" strokeWidth="3.3:3.3"/>
+				<case maxzoom="13" strokeWidth="3.8:3.8"/>
+				<case maxzoom="14" strokeWidth="5:5"/>
+				<case maxzoom="15" strokeWidth="6:6"/>
+			</apply>
+<!--			<apply_if minzoom="14" layer="-1" pathEffect="4_4" cap="BUTT"/>-->
+			<!-- Bridges -->
+<!--			<apply_if layer="1" minzoom="14" color_0="$bridgeDayColor" shadowRadius=":0" cap="SQUARE" cap_0="BUTT">
+				<case maxzoom="14" strokeWidth_0="6:7.5"/>
+				<case strokeWidth_0="7.5:9.5"/>
+				<apply_if nightMode="true" color_0="$bridgeNightColor"/>
+			</apply_if>-->
+		</switch>
+
+		<switch minzoom="6" maxzoom="15">
+			<case tag="highway" value="primary"/>
+			<case tag="highway" value="primary_link"/>
+			<apply color="$primaryRoadColor"/>
+			<apply cap="ROUND">
+				<case maxzoom="6" strokeWidth="0.5"/>
+				<case maxzoom="8" strokeWidth="1:1"/>
+				<case maxzoom="9" strokeWidth="1.6:1.6"/>
+				<case maxzoom="10" strokeWidth="1.8:1.8"/>
+				<case maxzoom="11" strokeWidth="2:2"/>
+				<case maxzoom="12" strokeWidth="2.5:2.5"/>
+				<case maxzoom="13" strokeWidth="3:3"/>
+				<case maxzoom="14" strokeWidth="4.5:4.5"/>
+				<case maxzoom="15" strokeWidth="6:6"/>
+			</apply>
+<!--			<apply_if minzoom="14" layer="-1" pathEffect="4_4" cap="BUTT"/>-->
+			<!-- Bridges -->
+<!--			<apply_if layer="1" minzoom="14" color_0="$bridgeDayColor" shadowRadius=":0" cap="SQUARE" cap_0="BUTT">
+				<case maxzoom="14" strokeWidth_0="5.4:6.5"/>
+				<case strokeWidth_0="7.5:9"/>
+				<apply_if nightMode="true" color_0="$bridgeNightColor"/>
+			</apply_if>-->
+		</switch>
+		<switch minzoom="9" maxzoom="15">
+			<case tag="highway" value="secondary"/>
+			<case tag="highway" value="secondary_link"/>
+			<apply color="$secondaryRoadColor"/>
+			<apply_if cap="ROUND">
+				<case maxzoom="9" strokeWidth="1.6:1.6"/>
+				<case maxzoom="10" strokeWidth="1.8:1.8"/>
+				<case maxzoom="11" strokeWidth="2:2"/>
+				<case maxzoom="12" strokeWidth="2.5:2.5"/>
+				<case maxzoom="13" strokeWidth="3:3"/>
+				<case maxzoom="14" strokeWidth="4.5:4.5"/>
+				<case maxzoom="15" strokeWidth="6:6"/>
+			</apply_if>
+<!--			<apply_if minzoom="14" layer="-1" pathEffect="4_4" cap="BUTT"/>-->
+			<!-- Bridges -->
+<!--			<apply_if layer="1" minzoom="14" color_0="$bridgeDayColor" shadowRadius=":0" cap="SQUARE" cap_0="BUTT">
+				<case maxzoom="14" strokeWidth_0="5.4:6.5"/>
+				<case strokeWidth_0="7.5:9"/>
+				<apply_if nightMode="true" color_0="$bridgeNightColor"/>
+			</apply_if>-->
+		</switch>
+		<switch>
+			<switch minzoom="16">
+				<case tag="highway" value="motorway" color="$motorwayRoadColor"/>
+				<case tag="highway" value="motorway_link" color="$motorwayRoadColor"/>
+				<case tag="highway" value="trunk" color="$trunkRoadColor"/>
+				<case tag="highway" value="trunk_link" color="$trunkRoadColor"/>
+				<case tag="highway" value="primary" color="$primaryRoadColor"/>
+				<case tag="highway" value="primary_link" color="$primaryRoadColor"/>
+				<case tag="highway" value="secondary" color="$secondaryRoadColor"/>
+				<case tag="highway" value="secondary_link" color="$secondaryRoadColor"/>
+				<apply cap="ROUND">
+					<case>
+						<case maxzoom="16" strokeWidth="7:7"/>
+						<case maxzoom="17" strokeWidth="8.5:8.5"/>
+						<case maxzoom="18" strokeWidth="10:10"/>
+						<case minzoom="19" strokeWidth="11.5:11.5"/>
+					</case>
+<!--					<apply_if layer="-1" pathEffect="4_4" cap="BUTT"/>-->
+					<!-- Bridges -->
+<!--					<apply_if layer="1" color_0="$bridgeDayColor" shadowRadius=":0" cap="SQUARE" cap_0="BUTT">
+						<case maxzoom="16" strokeWidth_0="8.5:10"/>
+						<case maxzoom="17" strokeWidth_0="10:11"/>
+						<case maxzoom="18" strokeWidth_0="12.5:14.5"/>
+						<case minzoom="19" strokeWidth_0="13.5:15.5"/>
+						<apply_if nightMode="true" color_0="$bridgeNightColor"/>
+					</apply_if>-->
+				</apply>
+				<apply_if additional="oneway=yes" pathIcon="oneway_blue_big" pathIconStep="70"/>
+				<apply_if additional="oneway=-1" pathIcon="oneway_blue_reverse_big" pathIconStep="70"/>
+	<!--			<groupFilter nightMode="true" hideBuildings="false" shadowRadius=":3" shadowColor="#555555"/>-->
+			</switch>
+
+			<switch minzoom="10">
+				<case tag="highway" value="tertiary"/>
+				<case tag="highway" value="tertiary_link"/>
+				<apply color="$tertiaryRoadColor"/>
+				<apply_if cap="ROUND">
+					<case maxzoom="10" strokeWidth="1:1"/>
+					<case maxzoom="11" strokeWidth="1.2:1.2"/>
+					<case maxzoom="12" strokeWidth="1.6:1.6"/>
+					<case maxzoom="13" strokeWidth="2.2:2.2"/>
+					<case maxzoom="14" strokeWidth="3:3"/>
+					<case maxzoom="15" strokeWidth="4.5:4.5"/>
+					<case maxzoom="16" strokeWidth="5:5"/>
+					<case maxzoom="17" strokeWidth="6.5:6.5"/>
+					<case maxzoom="18" strokeWidth="9:9"/>
+					<case minzoom="19" strokeWidth="10.5:10.5"/>
+				</apply_if>
+<!--				<apply_if layer="-1" pathEffect="4_4" cap="BUTT"/>
+				<apply_if layer="1" minzoom="14" color_0="$bridgeDayColor" cap="SQUARE" cap_0="BUTT">
+					<case maxzoom="14" strokeWidth_0="3.7:4.5"/>
+					<case maxzoom="15" strokeWidth_0="5.5:6"/>
+					<case maxzoom="16" strokeWidth_0="6.5:7"/>
+					<case maxzoom="17" strokeWidth_0="8:9"/>
+					<case maxzoom="18" strokeWidth_0="11:13"/>
+					<case minzoom="19" strokeWidth_0="12:14"/>
+					<apply_if nightMode="true" color_0="$bridgeNightColor"/>
+				</apply_if>-->
+				<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
+					<apply_if maxzoom="16" additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
+					<apply_if minzoom="17" additional="oneway=yes" pathIcon="oneway_blue_big" pathIconStep="70"/>
+					<apply_if maxzoom="16" additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
+					<apply_if minzoom="17" additional="oneway=-1" pathIcon="oneway_blue_reverse_big" pathIconStep="70"/>
+				</apply_if>
+			</switch>
+
+			<switch>
+				<case tag="highway" value="road"/>
+				<case tag="highway" value="unclassified"/>
+				<case tag="highway" value="residential"/>
+				<case tag="highway" value="living_street"/>
+				<apply color="$residentialRoadDayColor"/>
+				<apply cap="ROUND">
+					<apply_if moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth="2" color="$residentialRoadLowZoomDayColor2"/>
+					<apply_if minzoom="13" maxzoom="13" strokeWidth="2.5" color="$residentialRoadLowZoomDayColor2"/>
+					<apply_if nightMode="true" color="$residentialRoadLowZoomNightColor">
+<!--						<apply_if moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth="2"/>-->
+						<apply_if minzoom="13" maxzoom="13" strokeWidth="2.5"/>
+					</apply_if>
+					<apply_if minzoom="14">
+						<case maxzoom="14" strokeWidth="1.7:1.7" color="$residentialRoadLowZoomDayColor2"/>
+						<case maxzoom="15" strokeWidth="2.5:2.5" color="$residentialRoadLowZoomDayColor"/>
+						<case maxzoom="16" strokeWidth="4.5:4.5"/>
+						<case maxzoom="17" strokeWidth="6:6"/>
+						<case maxzoom="18" strokeWidth="9:9"/>
+						<case minzoom="19" strokeWidth="10.5:10.5"/>
+						<apply_if nightMode="true" color="$residentialRoadNightColor">
+							<apply_if minzoom="13" maxzoom="14" color="$residentialRoadLowZoomNightColor"/>
+						</apply_if>
+					</apply_if>
+				</apply>
+<!--				<apply_if layer="-1" pathEffect="4_4" cap="BUTT"/>
+				<apply_if layer="1" minzoom="14" color_0="$bridgeDayColor" cap="SQUARE" cap_0="BUTT">
+					<case maxzoom="14" strokeWidth_0="2.5:3"/>
+					<case maxzoom="15" strokeWidth_0="3.5:4"/>
+					<case maxzoom="16" strokeWidth_0="5:7"/>
+					<case maxzoom="17" strokeWidth_0="7:9"/>
+					<case maxzoom="18" strokeWidth_0="10:13"/>
+					<case minzoom="19" strokeWidth_0="12:15"/>
+					<apply_if nightMode="true" color_0="$bridgeNightColor"/>
+				</apply_if>-->
+<!--				<apply_if hideAccess="false">
+					<switch minzoom="15">
+						<case additional="access=no"/>
+						<case additional="access=private"/>
+						<apply color="$accessNoColor" pathEffect="6_1.5" cap="BUTT"/>
+					</switch>
+				</apply_if>-->
+				<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
+					<apply_if maxzoom="16" additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
+					<apply_if minzoom="17" additional="oneway=yes" pathIcon="oneway_blue_big" pathIconStep="70"/>
+					<apply_if maxzoom="16" additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
+					<apply_if minzoom="17" additional="oneway=-1" pathIcon="oneway_blue_reverse_big" pathIconStep="70"/>
+				</apply_if>
+			</switch>
+
+			<switch>
+				<case tag="highway" value="service"/>
+				<case tag="highway" value="rest_area"/>
+				<apply minzoom="12" color="$serviceRoadDayColor" cap="ROUND">
+					<case maxzoom="12" strokeWidth="0.4" color="$serviceRoadLowZoomColor"/>
+					<case maxzoom="13" strokeWidth="0.6" color="$serviceRoadLowZoomColor"/>
+					<case maxzoom="14" strokeWidth="1:1" color="$serviceRoadLowZoomColor"/>
+					<case maxzoom="15" strokeWidth="1.5:1.5"/>
+					<case maxzoom="16" strokeWidth="2.5:2.5"/>
+					<case maxzoom="17" strokeWidth="4:4"/>
+					<case minzoom="18" strokeWidth="5.5:5.5"/>
+					<apply>
+						<switch>
+							<case additional="service=driveway"/>
+							<case additional="service=parking_aisle"/>
+							<case additional="service=alley"/>
+							<apply minzoom="12">
+								<case maxzoom="12" strokeWidth="0.3"/>
+								<case maxzoom="13" strokeWidth="0.4"/>
+								<case maxzoom="14" strokeWidth="0.8"/>
+								<case maxzoom="15" strokeWidth="1:1"/>
+								<case maxzoom="16" strokeWidth="1.7:1.7"/>
+								<case maxzoom="17" strokeWidth="3:3"/>
+								<case minzoom="18" strokeWidth="4:4"/>
+							</apply>
+						</switch>
+					</apply>
+				</apply>
+<!--				<apply_if layer="-1" pathEffect="4_4" cap="BUTT"/>
+				<apply_if layer="1" minzoom="14" color_0="$bridgeDayColor" cap="SQUARE" cap_0="BUTT">
+					<case maxzoom="14" strokeWidth_0="1.5:2"/>
+					<case maxzoom="15" strokeWidth_0="2:3.5"/>
+					<case maxzoom="16" strokeWidth_0="3:4.5"/>
+					<case maxzoom="17" strokeWidth_0="5:6"/>
+					<case minzoom="18" strokeWidth_0="7:8.5"/>
+					<apply_if nightMode="true" color_0="$bridgeNightColor"/>
+				</apply_if>-->
+				<apply_if nightMode="true" color="$serviceRoadNightColor"/>
+<!--				<apply_if hideAccess="false">
+					<switch minzoom="15">
+						<case additional="access=no"/>
+						<case additional="access=private"/>
+						<apply color="$accessNoColor" pathEffect="4_1" cap="BUTT"/>
+					</switch>
+				</apply_if>-->
+				<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
+					<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
+					<apply additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
+				</apply_if>
+			</switch>
+		</switch>
+		<switch>
+			<switch minzoom="13">
+				<case tag="waterway" value="stream">
+					<case layer="-1" pathEffect_2="4_2">
+						<case maxzoom="13" strokeWidth_2="0.6"/>
+						<case maxzoom="14" strokeWidth_2="0.9"/>
+						<case maxzoom="16" strokeWidth_2="1:1"/>
+						<case maxzoom="17" strokeWidth_2="1.2:1.2"/>
+						<case minzoom="18" strokeWidth_2="1.7:1.7"/>
+					</case>
+				</case>
+				<case tag="waterway" value="wadi">
+					<case maxzoom="13" pathEffect="4.5_3"/>
+					<case maxzoom="14" pathEffect="6_4"/>
+					<case maxzoom="16" pathEffect="8_5"/>
+					<case maxzoom="17" pathEffect="9_5.5"/>
+					<case minzoom="18" pathEffect="12_7"/>
+				</case>
+				<apply_if minzoom="13" maxzoom="13" strokeWidth="0.8"/>
+				<apply_if minzoom="14" maxzoom="14" strokeWidth="1"/>
+				<apply_if minzoom="15" maxzoom="16" strokeWidth="1.2:1.2"/>
+				<apply_if minzoom="17" maxzoom="17" strokeWidth="1.4:1.4"/>
+				<apply_if minzoom="18" strokeWidth="2:2"/>
+			</switch>
+			<switch minzoom="5">
+				<case tag="waterway" value="river">
+					<apply minzoom="13" pathIcon="$waterwayDirectionIcon">
+						<case maxzoom="13" pathIconStep="130"/>
+						<case maxzoom="14" pathIconStep="140"/>
+						<case minzoom="15" pathIconStep="150"/>
+						<apply_if additional="intermittent=yes" pathIconStep="190"/>
+						<apply_if nightMode="true" pathIcon="arrow_blue_big"/>
+					</apply>
+				</case>
+				<case tag="waterway" value="canal">
+					<apply minzoom="15" pathIcon="$waterwayDirectionIcon" pathIconStep="150">
+						<apply_if additional="intermittent=yes" pathIconStep="190"/>
+						<apply_if nightMode="true" pathIcon="arrow_blue_big"/>
+					</apply>
+				</case>
+				<apply>
+					<case maxzoom="9" strokeWidth="0.6"/>
+					<case maxzoom="12" strokeWidth="1:1"/>
+					<case layer="-1" minzoom="13" pathEffect_2="4_2">
+						<case maxzoom="13" strokeWidth_2="0.7"/>
+						<case maxzoom="14" strokeWidth_2="1.5:1.5"/>
+						<case maxzoom="16" strokeWidth_2="2:2"/>
+						<case maxzoom="17" strokeWidth_2="4:4"/>
+						<case minzoom="18" strokeWidth_2="5:5"/>
+					</case>
+					<apply_if minzoom="13" maxzoom="13" strokeWidth="1.5:1.5"/>
+					<apply_if minzoom="14" maxzoom="14" strokeWidth="2.5:2.5"/>
+					<apply_if minzoom="15" maxzoom="16" strokeWidth="3:3"/>
+					<apply_if minzoom="17" maxzoom="17" strokeWidth="5:5"/>
+					<apply_if minzoom="18" strokeWidth="6:6"/>
+				</apply>
+			</switch>
+
+			<switch minzoom="13">
+				<case tag="waterway" value="ditch"/>
+				<case tag="waterway" value="drain"/>
+				<apply>
+					<case layer="-1" pathEffect_2="3_1.6">
+						<case maxzoom="13" strokeWidth_2="0.3"/>
+						<case maxzoom="14" strokeWidth_2="0.4"/>
+						<case maxzoom="16" strokeWidth_2="0.5"/>
+						<case maxzoom="17" strokeWidth_2="0.6"/>
+						<case minzoom="18" strokeWidth_2="0.9"/>
+					</case>
+					<apply_if minzoom="13" maxzoom="13" strokeWidth="0.5"/>
+					<apply_if minzoom="14" maxzoom="14" strokeWidth="0.7"/>
+					<apply_if minzoom="15" maxzoom="16" strokeWidth="0.9"/>
+					<apply_if minzoom="17" maxzoom="17" strokeWidth="1"/>
+					<apply_if minzoom="18" strokeWidth="1.1:1.1"/>
+				</apply>
+			</switch>
+			<apply_if additional="intermittent=yes">
+				<case maxzoom="13" pathEffect="4.5_3"/>
+				<case maxzoom="14" pathEffect="6_4"/>
+				<case maxzoom="16" pathEffect="8_5"/>
+				<case maxzoom="17" pathEffect="9_5.5"/>
+				<case minzoom="18" pathEffect="12_7"/>
+			</apply_if>
+			<!-- Waterway color -->
+			<apply color="$waterColorDay" color_2="#ffffff">
+				<apply_if nightMode="true" color="$waterColorNight" color_2="#7340D9"/>
+			</apply>
+		</switch>
+	</line>
+</renderingStyle>
