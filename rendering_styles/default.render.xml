@@ -987,15 +987,42 @@
 	<renderingConstant name="surfaceIceColor" value="#9feeef"/>
 	<renderingConstant name="surfaceSaltColor" value="#7eded8"/>
 
-	<renderingAttribute name="surfaceAsphaltColor">
-		<case nightMode="true" attrColorValue="#eae6f3"/>
-		<case attrColorValue="#6f687e"/>
-	</renderingAttribute>
-	<renderingAttribute name="surfaceLooselyPavedColor">
-		<case nightMode="true" attrColorValue="#c5c5dc"/>
-		<case attrColorValue="#cbcbe8"/>
-	</renderingAttribute>
 	<renderingConstant name="surfacePavedColor" value="#a7cdf8"/>
+
+	<renderingAttribute name="surfaceColor"> <!-- This attribute is needed because of motorcar=yes,foot=yes,bicycle=yes access types (see showAccess="true" section). After <case motorcar=yes> we need to restore surface color (because access and surface uses the same color_3 line layer). Downside: renderingAttribute can't be used inside another renderingAttribute. Upside: custom surface types can be added via dependent rendering style without too much code copying. -->
+		<case additional="surface=unpaved" attrColorValue="$surfaceGroundColor"/>
+		<case additional="surface=sand" attrColorValue="$surfaceSandColor"/>
+		<case additional="surface=grass" attrColorValue="$surfaceGrassColor"/>
+		<case additional="surface=grass_paver" attrColorValue="$surfaceGrass_paverColor"/>
+		<case additional="surface=ground" attrColorValue="$surfaceGroundColor"/>
+		<case additional="surface=dirt" attrColorValue="$surfaceDirtColor"/>
+		<case additional="surface=mud" attrColorValue="$surfaceMudColor"/>
+		<case additional="surface=ice" attrColorValue="$surfaceIceColor"/>
+		<case additional="surface=salt" attrColorValue="$surfaceSaltColor"/>
+		<case additional="surface=snow" attrColorValue="$surfaceIceColor"/>
+
+		<case additional="surface=asphalt" attrColorValue="#6f687e">
+			<apply_if nightMode="true" attrColorValue="#eae6f3"/>
+		</case>
+		<case additional="surface=paved" attrColorValue="$surfacePavedColor"/>
+		<case additional="surface=concrete" attrColorValue="$surfacePavedColor"/>
+		<case additional="surface=sett" attrColorValue="$surfacePavedColor"/>
+		<case additional="surface=cobblestone" attrColorValue="$surfacePavedColor"/>
+		<case additional="surface=paving_stones" attrColorValue="$surfacePavedColor"/>
+
+		<case additional="surface=pebblestone" attrColorValue="$surfacePavedColor"/>
+		<case additional="surface=stone" attrColorValue="$surfacePavedColor"/>
+		<case additional="surface=metal" attrColorValue="$surfacePavedColor"/>
+		<case additional="surface=wood" attrColorValue="$surfacePavedColor"/>
+		<switch>
+			<case additional="surface=gravel"/>
+			<case additional="surface=fine_gravel"/>
+			<case additional="surface=compacted"/>
+			<apply attrColorValue="#cbcbe8"/>
+			<apply_if nightMode="true" attrColorValue="#c5c5dc"/>
+		</switch>
+		<case attrColorValue="$null"/>
+	</renderingAttribute>
 
 	<renderingConstant name="surfaceGradeExcellentColor" value="#00d8ff"/>
 	<renderingConstant name="surfaceGradeGoodColor" value="#7debff"/>
@@ -6431,19 +6458,19 @@
 							<case additional="motor_vehicle=no"/>
 							<case additional="motorcar=private"/>
 							<case additional="motorcar=no"/>
-							<apply color_3="$accessPrivateColor"/>
+							<apply color_3="$accessPrivateColor" color_2="$null"/>
 						</switch>
 						<switch>
 							<case additional="vehicle=destination"/>
 							<case additional="motor_vehicle=destination"/>
 							<case additional="motorcar=destination"/>
-							<apply color_3="$accessDestinationColor"/>
+							<apply color_3="$accessDestinationColor" color_2="$null"/>
 						</switch>
 						<switch>
 							<case additional="vehicle=permissive"/>
 							<case additional="motor_vehicle=permissive"/>
 							<case additional="motorcar=permissive"/>
-							<apply color_3="$accessPermissiveColor"/>
+							<apply color_3="$accessPermissiveColor" color_2="$null"/>
 						</switch>
 						<switch>
 							<case additional="vehicle=agricultural"/>
@@ -6452,45 +6479,59 @@
 							<case additional="motor_vehicle=agricultural;forestry"/>
 							<case additional="motorcar=agricultural"/>
 							<case additional="motorcar=agricultural;forestry"/>
-							<apply color_3="$accessAgriculturalColor"/>
+							<apply color_3="$accessAgriculturalColor" color_2="$null"/>
 						</switch>
 						<switch>
 							<case additional="vehicle=forestry"/>
 							<case additional="motor_vehicle=forestry"/>
 							<case additional="motorcar=forestry"/>
-							<apply color_3="$accessForestryColor"/>
+							<apply color_3="$accessForestryColor" color_2="$null"/>
 						</switch>
 						<switch>
 							<case additional="vehicle=customers"/>
 							<case additional="motor_vehicle=customers"/>
 							<case additional="motorcar=customers"/>
-							<apply color_3="$accessCustomersColor"/>
+							<apply color_3="$accessCustomersColor" color_2="$null"/>
 						</switch>
 						<switch>
 							<case additional="vehicle=delivery"/>
 							<case additional="motor_vehicle=delivery"/>
 							<case additional="motorcar=delivery"/>
-							<apply color_3="$accessDeliveryColor"/>
+							<apply color_3="$accessDeliveryColor" color_2="$null"/>
 						</switch>
-						<case additional="vehicle=yes"/>
-						<case additional="motor_vehicle=yes"/>
-						<case additional="motorcar=yes"/>
+						<switch>
+							<case additional="vehicle=yes"/>
+							<case additional="motor_vehicle=yes"/>
+							<case additional="motorcar=yes"/>
+<!--	We need to restore surface color when particular transport access is "yes". This can't be done another way because we can't go through 2 switches (showAccess and showSurfaces). Though not perfect solution.  -->
+							<apply_if showSurfaces="true" color_3="$surfaceColor" cap_3="SQUARE"/>
+						</switch>
 					</switch>
 					<switch appMode="pedestrian" minzoom="15">
-						<case additional="foot=private" color_3="$accessPrivateColor"/>
-						<case additional="foot=no" color_3="$accessPrivateColor"/>
-						<case additional="foot=destination" color_3="$accessDestinationColor"/>
-						<case additional="foot=permissive" color_3="$accessPermissiveColor"/>
-						<case additional="foot=customers" color_3="$accessCustomersColor"/>
-						<case additional="foot=yes"/>
+						<switch>
+							<case additional="foot=private" color_3="$accessPrivateColor"/>
+							<case additional="foot=no" color_3="$accessPrivateColor"/>
+							<case additional="foot=destination" color_3="$accessDestinationColor"/>
+							<case additional="foot=permissive" color_3="$accessPermissiveColor"/>
+							<case additional="foot=customers" color_3="$accessCustomersColor"/>
+							<apply color_2="$null"/>
+						</switch>
+						<case additional="foot=yes">
+							<apply_if showSurfaces="true" color_3="$surfaceColor" cap_3="SQUARE"/>
+						</case>
 					</switch>
 					<switch appMode="bicycle" minzoom="15">
-						<case additional="bicycle=private" color_3="$accessPrivateColor"/>
-						<case additional="bicycle=no" color_3="$accessPrivateColor"/>
-						<case additional="bicycle=destination" color_3="$accessDestinationColor"/>
-						<case additional="bicycle=permissive" color_3="$accessPermissiveColor"/>
-						<case additional="bicycle=yes"/>
-						<case additional="motorroad=yes" color_3="$accessPrivateColor"/>
+						<switch>
+							<case additional="bicycle=private" color_3="$accessPrivateColor"/>
+							<case additional="bicycle=no" color_3="$accessPrivateColor"/>
+							<case additional="bicycle=destination" color_3="$accessDestinationColor"/>
+							<case additional="bicycle=permissive" color_3="$accessPermissiveColor"/>
+							<case additional="motorroad=yes" color_3="$accessPrivateColor"/>
+							<apply color_2="$null"/>
+						</switch>
+						<case additional="bicycle=yes">
+							<apply_if showSurfaces="true" color_3="$surfaceColor" cap_3="SQUARE"/>
+						</case>
 					</switch>
 					<switch minzoom="15">
 						<case additional="access=private" color_3="$accessPrivateColor"/>
@@ -6503,47 +6544,22 @@
 						<case additional="access=delivery" color_3="$accessDeliveryColor"/>
 						<case additional="access=emergency" color_3="$accessEmergencyColor"/>
 						<case additional="ski=no" color_3="$accessSkiNoColor"/>
+						<apply color_2="$null"/>
 					</switch>
-					<apply color_2="$null"/>
 					<apply_if minzoom="15" maxzoom="15" pathEffect_3="1_8"/>
 					<apply_if minzoom="16" maxzoom="16" pathEffect_3="1_11"/>
 					<apply_if minzoom="17" maxzoom="17" pathEffect_3="1_13"/>
 					<apply_if minzoom="18" maxzoom="18" pathEffect_3="1_17"/>
 					<apply_if minzoom="19" pathEffect_3="1_20"/>
 				</switch>
-				<switch showSurfaces="true" minzoom="14" cap_3="SQUARE">
-					<case additional="surface=unpaved" color_3="$surfaceGroundColor"/>
-					<case additional="surface=sand" color_3="$surfaceSandColor"/>
-					<case additional="surface=grass" color_3="$surfaceGrassColor"/>
-					<case additional="surface=grass_paver" color_3="$surfaceGrass_paverColor"/>
-					<case additional="surface=ground" color_3="$surfaceGroundColor"/>
-					<case additional="surface=dirt" color_3="$surfaceDirtColor"/>
-					<case additional="surface=mud" color_3="$surfaceMudColor"/>
-					<case additional="surface=ice" color_3="$surfaceIceColor"/>
-					<case additional="surface=salt" color_3="$surfaceSaltColor"/>
-					<case additional="surface=snow" color_3="$surfaceIceColor"/>
-
-					<case additional="surface=asphalt" color_3="$surfaceAsphaltColor"/>
-					<case additional="surface=paved" color_3="$surfacePavedColor"/>
-					<case additional="surface=concrete" color_3="$surfacePavedColor"/>
-					<case additional="surface=sett" color_3="$surfacePavedColor"/>
-					<case additional="surface=cobblestone" color_3="$surfacePavedColor"/>
-					<case additional="surface=paving_stones" color_3="$surfacePavedColor"/>
-
-					<case additional="surface=pebblestone" color_3="$surfacePavedColor"/>
-					<case additional="surface=stone" color_3="$surfacePavedColor"/>
-					<case additional="surface=metal" color_3="$surfacePavedColor"/>
-					<case additional="surface=wood" color_3="$surfacePavedColor"/>
-					<case additional="surface=gravel" color_3="$surfaceLooselyPavedColor"/>
-					<case additional="surface=fine_gravel" color_3="$surfaceLooselyPavedColor"/>
-					<case additional="surface=compacted" color_3="$surfaceLooselyPavedColor"/>
+				<case showSurfaces="true" minzoom="14" cap_3="SQUARE" color_3="$surfaceColor">
 					<apply_if moreDetailed="true" maxzoom="14" pathEffect_3="3_11"/>
 					<apply_if minzoom="15" maxzoom="15" pathEffect_3="5_13"/>
 					<apply_if minzoom="16" maxzoom="16" pathEffect_3="5_15"/>
 					<apply_if minzoom="17" maxzoom="17" pathEffect_3="6_17"/>
 					<apply_if minzoom="18" maxzoom="18" pathEffect_3="6_20"/>
 					<apply_if minzoom="19" pathEffect_3="7_23"/>
-				</switch>
+				</case>
 			</apply>
 		</switch>
 
