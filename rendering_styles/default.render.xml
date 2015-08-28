@@ -1549,6 +1549,7 @@
 			</switch>
 			<case tag="place" value="quarter"/>
 			<case tag="osmand" value="file_waypoint"/>
+			<case tag="osmand" value="fav"/>
 
 		</switch>
 
@@ -3541,11 +3542,16 @@
 			<!-- <filter minzoom="16" textSize="13" textWrapWidth="15" tag="landuse" type="point"/> -->
 
 			<case minzoom="11" tag="osmand" value="file_waypoint"> <!-- for new OpenGL engine -->
-				<case additional="file_has_waypoints=true" textWrapWidth="25" textHaloRadius=":1" textColor="#000000" textHaloColor="#aaffffff" textOrder="1">
+				<case additional="file_has_waypoints=true" textWrapWidth="25" textHaloRadius="1" textColor="#000000" textHaloColor="#aaffffff" textOrder="1">
 					<case maxzoom="12" textSize="11"/>
 					<case minzoom="14" textSize="12"/>
-					<apply_if nightMode="true" textColor="#dddddd" textHaloColor="#5f0000"/>
+					<apply_if nightMode="true" textColor="#dddddd" textHaloColor="#66000000"/>
 				</case>
+			</case>
+			<case minzoom="10" tag="osmand" value="fav" textWrapWidth="25" textHaloRadius="1" textColor="#000000" textHaloColor="#aaffffff" textOrder="1"> <!-- for new OpenGL engine -->
+				<case maxzoom="12" textSize="13"/>
+				<case minzoom="14" textSize="14"/>
+				<apply_if nightMode="true" textColor="#dddddd" textHaloColor="#66000000"/>
 			</case>
 
 			<switch OSMMapperAssistant="true" minzoom="17">
@@ -3584,8 +3590,8 @@
 
 	<!-- PRIORITY Input to filter : zoom [minzoom, maxzoom], tag, value -->
 	<point>
-		<case minzoom="5" tag="osmand" value="file_waypoint"> <!-- for new OpenGL engine -->
-			<case additional="file_has_waypoints=true" icon="osmand_waypoint" iconVisibleSize="5" iconOrder="1">
+		<case minzoom="3" tag="osmand" value="file_waypoint"> <!-- for new OpenGL engine -->
+			<case additional="file_has_waypoints=true" icon="osmand_waypoint" iconVisibleSize="5" iconOrder="2">
 				<case additional="color=orange" shield="waypoint_orange_shield"/>
 				<case additional="color=yellow" shield="waypoint_yellow_shield"/>
 				<case additional="color=green" shield="waypoint_green_shield"/>
@@ -3595,6 +3601,16 @@
 				<case additional="color=gray" shield="waypoint_gray_shield"/>
 				<case shield="waypoint_red_shield"/>
 			</case>
+		</case>
+		<case minzoom="1" tag="osmand" value="fav" icon="osmand_fav" iconVisibleSize="5" iconOrder="1"> <!-- for new OpenGL engine -->
+			<case additional="color=orange" shield="fav_orange_shield"/>
+			<case additional="color=yellow" shield="fav_yellow_shield"/>
+			<case additional="color=green" shield="fav_green_shield"/>
+			<case additional="color=lightblue" shield="fav_lightblue_shield"/>
+			<case additional="color=blue" shield="fav_blue_shield"/>
+			<case additional="color=purple" shield="fav_purple_shield"/>
+			<case additional="color=gray" shield="fav_gray_shield"/>
+			<case shield="fav_red_shield"/>
 		</case>
 		<!-- Car profile priority icons -->
 		<switch appMode="car" iconOrder="80">
