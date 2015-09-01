@@ -179,7 +179,8 @@ mycp highway noexit functional-icons_noexit.png
 mycp highway passing_place functional-icons_passing_place.png
 mycp highway speed_camera transport_speedcamera.png
 mycp highway steps transport_highway_steps.png
-mycp highway traffic_signals functional-icons_traffic_lights.png
+mycp highway traffic_signals_map functional-icons_traffic_lights.png
+mycp highway traffic_signals transport_traffic_lights.png
 mycpname motorway_junction transport_motorway_junction.png
 mycpname junction transport_junction.png
 mycp traffic_calming bump transport_speedbump.png
