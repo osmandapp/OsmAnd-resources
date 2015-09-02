@@ -1228,6 +1228,38 @@
 	<renderingConstant name="craftTextColorDay" value="#273249"/>
 	<renderingConstant name="craftTextHaloColorDay" value="#aae4edff"/>
 
+	<renderingAttribute name="textOrderPopulation">
+		<case additional="population=1500000000" attrIntValue="4"/>
+		<case additional="population=400000000" attrIntValue="5"/>
+		<case additional="population=200000000" attrIntValue="6"/>
+		<case additional="population=100000000" attrIntValue="7"/>
+		<case additional="population=50000000" attrIntValue="8"/>
+		<case additional="population=25000000" attrIntValue="9"/>
+		<case additional="population=20000000" attrIntValue="10"/>
+		<case additional="population=15000000" attrIntValue="11"/>
+		<case additional="population=12000000" attrIntValue="12"/>
+		<case additional="population=9000000" attrIntValue="13"/>
+		<case additional="population=7000000" attrIntValue="14"/>
+		<case additional="population=5000000" attrIntValue="15"/>
+		<case additional="population=3000000" attrIntValue="16"/>
+		<case additional="population=2000000" attrIntValue="17"/>
+		<case additional="population=1000000" attrIntValue="18"/>
+		<case additional="population=700000" attrIntValue="19"/>
+		<case additional="population=400000" attrIntValue="20"/>
+		<case additional="population=200000" attrIntValue="21"/>
+		<case additional="population=100000" attrIntValue="22"/>
+		<case additional="population=70000" attrIntValue="23"/>
+		<case additional="population=40000" attrIntValue="24"/>
+		<case additional="population=20000" attrIntValue="25"/>
+		<case additional="population=10000" attrIntValue="26"/>
+		<case additional="population=5000" attrIntValue="27"/>
+		<case additional="population=2500" attrIntValue="28"/>
+		<case additional="population=1000" attrIntValue="29"/>
+		<case additional="population=500" attrIntValue="30"/>
+		<case additional="population=200" attrIntValue="31"/>
+		<case additional="population=100" attrIntValue="31"/>
+	</renderingAttribute>
+
 	<renderingAttribute name="subwayTextDefaultColor">
 		<case nightMode="true" attrColorValue="#f7dede"/>
 		<case attrColorValue="#7b0000"/>
@@ -2634,82 +2666,85 @@
 			<!-- continent not really useful here: filter minzoom="2" maxzoom="2" textSize="14" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="continent"/ -->
 
 			<!-- most countries are not tagged with ref: filter minzoom="2" maxzoom="2" textSize="14" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="country" nameTag="ref"/ -->
-			<case minzoom="3" tag="place" value="country" textColor="#8e3a7e" textHaloColor="#aaf7ebf7" textHaloRadius="3" textWrapWidth="15">  <!--intersectsWith="text"-->
+			<case minzoom="3" tag="place" value="country" textColor="#8e3a7e" textHaloColor="#aaf7ebf7" textHaloRadius="3" textWrapWidth="15" textOrder="12">
 				<case maxzoom="3" textSize="12"/>
-				<case maxzoom="4" textSize="14" textBold="true" textOrder="1"/>
-				<case maxzoom="5" textSize="16" textBold="true" textOrder="1"/>
-				<case minzoom="6" textSize="14" textBold="true"/>
+				<case maxzoom="4" textSize="14" textBold="true"/>
+				<case maxzoom="5" textSize="16" textBold="true"/>
+				<case minzoom="6" textSize="14" textBold="true" textOrder="21"/>
 				<apply_if nightMode="true" textColor="#d498d3" textHaloColor="#bb553155"/>
+				<apply textOrder="$textOrderPopulation"/>
 			</case>
 
-			<switch minzoom="5" textSize="13" textColor="#9d6c9d" textWrapWidth="20">  <!--intersectsWith="text"-->
+			<switch minzoom="5" textSize="13" textColor="#9d6c9d" textWrapWidth="20">
 				<switch engine_v1="true">
 					<case maxzoom="10" tag="place" value="state">
-						<case maxzoom="5" nameTag="ref" textOrder="3"/>
-						<case minzoom="6" nameTag=""/>
+						<case maxzoom="5" nameTag="ref" textOrder="13"/>
+						<case minzoom="6" nameTag="" textOrder="20"/>
 					</case>
 					<case tag="place" value="region">
-						<case maxzoom="5" nameTag="ref" textOrder="2"/>
-						<case minzoom="6" nameTag=""/>
+						<case maxzoom="5" nameTag="ref" textOrder="14"/>
+						<case minzoom="6" nameTag="" textOrder="20"/>
 					</case>
 					<case tag="place" value="province">
-						<case maxzoom="5" nameTag="ref" textOrder="2"/>
-						<case minzoom="6" nameTag=""/>
+						<case maxzoom="5" nameTag="ref" textOrder="14"/>
+						<case minzoom="6" nameTag="" textOrder="20"/>
 					</case>
 				</switch>
 				<switch maxzoom="10" tag="place" value="state">
-					<case maxzoom="5" nameTag="ref" textOrder="3"/>
+					<case maxzoom="5" nameTag="ref" textOrder="13"/>
 					<case minzoom="6" nameTag=""/>
 				</switch>
 				<switch tag="place" value="region">
-					<case maxzoom="5" nameTag="ref" textOrder="2"/>
-					<case minzoom="6" nameTag=""/>
+					<case maxzoom="5" nameTag="ref" textOrder="14"/>
+					<case minzoom="6" nameTag="" textOrder="20"/>
 				</switch>
 				<switch tag="place" value="province">
-					<case maxzoom="5" nameTag="ref" textOrder="2"/>
-					<case minzoom="6" nameTag=""/>
+					<case maxzoom="5" nameTag="ref" textOrder="14"/>
+					<case minzoom="6" nameTag="" textOrder="20"/>
 				</switch>
 				<apply_if nightMode="false" textHaloRadius="$textHaloRadiusDay" textHaloColor="#88ffffff"/>
+<!--				<apply textOrder="$textOrderPopulation"/>-->
 			</switch>
 
 			<!-- county not really useful here: filter minzoom="9" textSize="13" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="county" nameTag=""/ -->
 
 			<switch minzoom="3" textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColorDay" textBold="true">  <!--intersectsWith="text"-->
-				<case tag="osmand_place_basemap" value="city" nameTag="" intersectionMargin="25" textOrder="3">
-					<case additional="capital=yes" textOrder="2">
+				<case tag="osmand_place_basemap" value="city" nameTag="" intersectionMargin="25" textOrder="21">
+					<case additional="capital=yes" textOrder="19">
 						<case maxzoom="5" textSize="14"/>
-						<case maxzoom="7" textSize="20"/>
+						<case maxzoom="8" textSize="20"/>
 						<case maxzoom="12" textSize="20"/>
 					</case>
 					<case maxzoom="5" textSize="12"/>
 					<case maxzoom="7" textSize="17"/>
 					<case maxzoom="12" textSize="17"/>
 				</case>
-				<case minzoom="6" tag="place" value="city" nameTag="" intersectionMargin="25" textOrder="3">
-					<case additional="capital=yes" textOrder="2">
+				<case minzoom="6" tag="place" value="city" nameTag="" intersectionMargin="25" textOrder="21">
+					<case additional="capital=yes" textOrder="19">
 						<case maxzoom="7" textSize="20"/>
-						<case maxzoom="16" textSize="22"/>
+						<case minzoom="8" textSize="22"/>
 					</case>
 					<case maxzoom="7" textSize="17"/>
-					<case maxzoom="16" textSize="20"/>
+					<case minzoom="8" textSize="20"/>
 				</case>
-				<case minzoom="8" tag="place" value="town" textSize="16" textOrder="15" nameTag="" intersectionMargin="15"/>
-				<case minzoom="11" tag="place" value="village" textSize="14" textOrder="17" nameTag="" intersectionMargin="15">
+				<case minzoom="8" tag="place" value="town" textSize="16" textOrder="25" nameTag="" intersectionMargin="15"/>
+				<case minzoom="11" tag="place" value="village" textSize="14" textOrder="29" nameTag="" intersectionMargin="15">
 					<apply_if minzoom="16" textSize="16"/>
 					<apply_if minzoom="17" textSize="17"/>
 				</case>
 				<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77444444"/>
 				<apply_if engine_v1="false" textDy="-2"/>
+<!--				<apply textOrder="$textOrderPopulation"/>-->
 			</switch>
 
-			<switch textColor="$placeSuburbLocalityTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="" intersectionMargin="15">  <!--intersectsWith="text"-->
+			<switch textColor="$placeSuburbLocalityTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="" intersectionMargin="15">
 				<case minzoom="$placeSuburbMinZoom" maxzoom="17" tag="place" value="suburb" nameTag="" textSize="15" textItalic="true" textHaloColor="$placeCityVillageTextHaloColorDay" textOrder="16" intersectionMargin="25">
 					<apply_if minzoom="16" textSize="17"/>
 				</case>
 				<switch>
-					<case minzoom="$placeNeighbourhoodMinZoom" tag="place" value="neighbourhood" nameTag="" textOrder="18"/>
-					<case minzoom="17" tag="place" value="quarter" textOrder="19"/>
-					<case minzoom="$placeHamletMinZoom" tag="place" value="hamlet" nameTag="" textOrder="20"/>
+					<case minzoom="$placeNeighbourhoodMinZoom" tag="place" value="neighbourhood" nameTag="" textOrder="28"/>
+					<case minzoom="17" tag="place" value="quarter" textOrder="27"/>
+					<case minzoom="$placeHamletMinZoom" tag="place" value="hamlet" nameTag="" textOrder="31"/>
 					<case minzoom="$placeHamletMinZoom" tag="place" value="farm" nameTag="" textOrder="109"/>
 					<case minzoom="13" tag="place" value="allotments" nameTag="" textOrder="110"/>
 					<case minzoom="13" tag="place" value="isolated_dwelling" nameTag="" textOrder="111"/>
@@ -2723,6 +2758,7 @@
 				</case>
 				<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 				<apply_if engine_v1="false" textDy="-5"/>
+<!--				<apply textOrder="$textOrderPopulation"/>-->
 			</switch>
 
 			<!-- Natural -->
