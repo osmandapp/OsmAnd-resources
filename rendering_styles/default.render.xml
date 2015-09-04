@@ -822,20 +822,6 @@
 		<case attrColorValue="#aa000000"/>
 	</renderingAttribute>
 
-	<renderingConstant name="motorwayRoadDesaturatedColorDay" value="#bcc6ec"/>
-	<renderingConstant name="motorwayRoadDesaturatedColorNight" value="#3f4764"/>
-	<renderingConstant name="trunkRoadDesaturatedColorDay" value="#ffc7d0"/>
-	<renderingConstant name="trunkRoadDesaturatedColorNight" value="#966c72"/>
-	<renderingConstant name="primaryRoadDesaturatedColorDay" value="#ffd9c7"/>
-	<renderingConstant name="primaryRoadDesaturatedColorNight" value="#866f64"/>
-	<renderingConstant name="secondaryRoadDesaturatedColorDay" value="#ffe7bc"/>
-	<renderingConstant name="secondaryRoadDesaturatedColorNight" value="#766b59"/>
-	<renderingConstant name="tertiaryRoadDesaturatedColorDay" value="#feffc1"/>
-	<renderingConstant name="tertiaryRoadDesaturatedColorNight" value="#5c5c4a"/>
-	<renderingConstant name="residentialRoadDesaturatedColorNight" value="#505050"/>
-	<renderingConstant name="constructionRoadDesaturatedColorDay" value="#98a4ba"/>
-	<renderingConstant name="constructionRoadDesaturatedColorNight" value="#505e79"/>
-	<renderingConstant name="constructionRoadDesaturatedColor2Night" value="#888888"/>
 	<renderingConstant name="boundaryColorInner" value="#2A800080"/>
 	<renderingConstant name="boundaryColorOuter" value="#10800080"/>
 	<renderingConstant name="boundaryNationalParkColor" value="#a0800080"/>
@@ -1171,8 +1157,7 @@
 	<renderingConstant name="placeCityVillageTextColorDay" value="#000000"/>
 	<renderingConstant name="placeSuburbLocalityTextColorDay" value="#222222"/>
 	<renderingConstant name="placeTextHaloRadiusDay" value="1:1"/>
-	<renderingConstant name="placeCityVillageTextHaloColorDay" value="#ccffffff"/>
-	<renderingConstant name="placeTextHaloColorDay" value="#bbf7ebf7"/>
+	<renderingConstant name="placeCityVillageTextHaloColorDay" value="#ccf1eae4"/>
 	<renderingConstant name="placeHamletMinZoom" value="12"/>
 	<renderingConstant name="placeSuburbMinZoom" value="12"/>
 	<renderingConstant name="placeNeighbourhoodMinZoom" value="13"/>
@@ -2866,7 +2851,7 @@
 			<switch>
 				<case minzoom="13" tag="abandoned:place" value="" textOrder="226"/>
 				<case minzoom="15" tag="abandoned:landuse" value="" textOrder="227"/>
-				<apply textSize="13" textColor="#656565" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay">
+				<apply textSize="13" textColor="#656565" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="#bbf7ebf7">
 					<apply_if nightMode="true" textColor="#d7d7d7" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 				</apply>
 				<apply_if engine_v1="true" textDy="10"/>
@@ -5713,6 +5698,7 @@
 				<apply_if nightMode="true" shader=""/>
 			</case>
 			<switch minzoom="14">
+			<!-- Special nature with shaders -->
 				<case tag="natural" value="scree"/>
 				<case tag="geological" value="moraine"/>
 				<apply shader="scree" color="#77100000">
@@ -5772,11 +5758,9 @@
 				</apply>
 				<apply color="$null" color_2="#77f800e0"/>
 			</switch>
-			<!-- Special nature with shaders -->
 			<case minzoom="12" tag="tourism" value="zoo" shader="zoo">
 				<apply_if nightMode="true" shader="" color="#5d8358"/>
 			</case>
-		    <!-- groupFilter noPolygons="true" color="#00ffffff" color_2="#00ffffff" shader=""/ -->
 		</switch>
 		<switch streetLighting="true" minzoom="10" cap_2="ROUND">
 			<case tag="lit" value="yes" color="$null" color_2="$litYesColor"/>
@@ -6161,9 +6145,7 @@
 							<case tag="highway_construction" value="residential"/> <!-- For compatibility with <2.2 -->
 							<case tag="highway" value="unclassified"/>
 							<case tag="highway" value="residential"/>
-							<apply color="$residentialRoadColor" color__1="$residentialRoadColor">
-								<apply_if nightMode="true" subwayMode="true" maxzoom="13" color="$residentialRoadDesaturatedColorNight"/>
-							</apply>
+							<apply color="$residentialRoadColor" color__1="$residentialRoadColor"/>
 						</switch>
 						<case tag="highway" value="road" color="$roadRoadColor"/>
 						<apply cap="ROUND" color_0="#000000">
@@ -6634,16 +6616,6 @@
 		<case minzoom="15" tag="highway" value="ford" color="#447777ff" strokeWidth="2.3:2.3">
 			<apply_if nightMode="true" color="#445555cc"/>
 		</case>
-
-<!--		<case minzoom="13" tag="highway" value="construction">
-			<case maxzoom="14" strokeWidth="2:2" strokeWidth_2="1.5:1.5" pathEffect_2="8_14"/>
-			<case maxzoom="16" strokeWidth="3:3" strokeWidth_2="2.5:2.5" pathEffect_2="11_19"/>
-			<case minzoom="17" strokeWidth="3:3" strokeWidth_2="2.5:2.5" pathEffect_2="13_23"/>
-			<apply color="$constructionRoadColor" color_2="$constructionRoadColor2" cap="ROUND"/>
-			<apply_if subwayMode="true" color="$constructionRoadDesaturatedColorDay" color_2="$constructionRoadColor2">
-				<apply_if nightMode="true" color="$constructionRoadDesaturatedColorNight" color_2="$constructionRoadDesaturatedColor2Night"/>
-			</apply_if>
-		</case>-->
 
 		<case minzoom="13" tag="highway" value="proposed">
 			<case maxzoom="14" strokeWidth="2:2" strokeWidth_2="1.5:1.5" pathEffect_2="8_14"/>
