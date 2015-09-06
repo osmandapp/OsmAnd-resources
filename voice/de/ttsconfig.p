@@ -56,7 +56,7 @@ string('make_uturn2.ogg', 'Bitte wenden ').
 string('make_uturn_wp.ogg', 'Wenn möglich, bitte wenden ').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Einbiegen in Kreisverkehr ').
+string('prepare_roundabout.ogg', 'einbiegen in Kreisverkehr ').
 string('roundabout.ogg', 'in den Kreisverkehr einfahren, ').
 string('then.ogg', 'dann ').
 string('and.ogg', 'und ').
