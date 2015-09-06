@@ -33,6 +33,7 @@
 <!--	<entity_convert pattern="tag_transform" from_tag="natural" from_value="coastline" if_tag1="place" if_value1="island"/>-->
 	<entity_convert pattern="split" from_tag="fixme" to_tag1="fixme" to_tag2="fixme_tag" to_value2="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="fixme" from_value="yes"/>
+<!--	<entity_convert pattern="tag_transform" from_tag="description" if_not_tag1="note" to_tag1="note" poi="no"/>-->
 	<entity_convert pattern="split" from_tag="note" to_tag1="note" to_tag2="note_tag" to_value2="yes"/>
 	<type tag="fixme" additional="text" minzoom="12" order="128"/>
 	<type tag="fixme_tag" value="yes" minzoom="12" nameTags="fixme"/>
@@ -129,6 +130,10 @@
 
 	<entity_convert pattern="tag_transform" from_tag="seasonal" from_value="fall" to_tag1="seasonal" to_value1="autumn" map="no"/>
 	<entity_convert pattern="tag_transform" from_tag="seasonal" from_value="year_round" to_tag1="seasonal" to_value1="no" map="no"/>
+
+	<entity_convert pattern="tag_transform" from_tag="toilets:wheelchair" from_value="yes" to_tag1="wheelchair" to_value1="yes" map="no"/>
+
+	<entity_convert pattern="tag_transform" from_tag="content" from_value="muck" to_tag1="content" to_value1="manure" map="no"/>
 
 
 	<type tag="bus" value="yes" minzoom="13" additional="true" only_map="true"/>
@@ -279,8 +284,7 @@
 	<type tag="region_metric" additional="true"/>
 	<type tag="region_lang" additional="text"/>
 
-<!--	<type tag="description_tag" value="yes" minzoom="12" nameTags="description" order="128"/>
-	<entity_convert pattern="tag_transform" from_tag="description" to_tag1="description" to_tag2="description_tag" to_value2="yes"/>-->
+<!--	<type tag="description_tag" value="yes" minzoom="12" nameTags="description" order="128"/>-->
 	<entity_convert pattern="tag_transform" from_tag="contact:phone" if_not_tag1="phone" to_tag1="phone" map="no"/>
 	<entity_convert pattern="tag_transform" from_tag="contact:website" if_not_tag1="website" to_tag1="website" map="no"/>
 	<entity_convert pattern="tag_transform" from_tag="contact:url" if_not_tag1="website" to_tag1="website" map="no"/>
@@ -2024,6 +2028,7 @@
 		<type tag="landuse" value="greenhouse_horticulture" minzoom="6" />
 		<type tag="landuse" value="industrial" minzoom="6" />
 		<type tag="landuse" value="landfill" minzoom="6" />
+		<entity_convert pattern="tag_transform" from_tag="landfill:waste" if_not_tag1="landuse" if_not_value1="landfill" to_tag1="landfill:waste" to_tag2="landuse" to_value2="landfill"/>
 		<type tag="landuse" value="meadow" minzoom="6" order="60"/>
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="meadow" to_tag1="landuse"/>
 		<type tag="landuse" value="logging" minzoom="6" order="60"/>
