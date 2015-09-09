@@ -82,7 +82,8 @@ string('17th.ogg', 'seventeenth ').
 
 % STRAIGHT/FOLLOW
 string('go_ahead.ogg', 'Go straight ahead ').
-string('follow.ogg', 'Follow the course of the road for').
+%string('follow.ogg', 'Follow the course of the road for').
+string('follow.ogg', 'Now continue for').
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'and arrive at your destination ').
