@@ -116,14 +116,6 @@ string('reached_intermediate.ogg', 'dorazili jste do mezicíle ').
 string('and_arrive_waypoint.ogg', 'a dorazíte do GPX mezicíle ').
 string('reached_waypoint.ogg', 'dorazili jste do GPX mezicíle ').
 
-%NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'a dorazíte do mezicíle ').
-string('reached_waypoint.ogg', 'dorazili jste do mezicíle ').
-string('and_arrive_favorite.ogg', 'a dorazíte do oblíbeného bodu ').
-string('reached_favorite.ogg', 'dorazili jste do oblíbeného bodu ').
-string('and_arrive_poi.ogg', 'a dorazíte do bodu zájmu ').
-string('reached_poi.ogg', 'dorazili jste do bodu zájmu ').
-
 % OTHER PROMPTS
 string('attention.ogg', 'pozor, ').
 string('speed_camera.ogg', 'Rychlostní radar ').
@@ -146,11 +138,14 @@ string('on.ogg', 'na ').
 string('meters_accusative.ogg', 'metrů ').
 string('around_1_kilometer_accusative.ogg', 'přibližně jeden kilometr ').
 string('around.ogg', 'přibližně ').
-string('kilometers_accusative.ogg', 'kilometry ').
+string('kilometers_accusative2.ogg', 'dva kilometry ').
+string('kilometers_accusative3_4.ogg', 'kilometry ').
+string('kilometers_accusative5.ogg', 'kilometrů ').
 
 string('meters_locative.ogg', 'metrech ').
 string('around_1_kilometer_locative.ogg', 'přibližně jednom kilometru ').
 string('kilometers_locative.ogg', 'kilometrech ').
+string('kilometers_locative2.ogg', 'dvou kilometrech ').
 
 string('farther_workaround.ogg', 'dál ').
 string('around_workaround.ogg', 'dál přibližně ').
@@ -336,14 +331,19 @@ distance_km(Dist, locative) --   [ X, 'meters_locative.ogg']                    
 distance_km(Dist, workaround) -- ['farther_workaround.ogg', X, 'meters_accusative.ogg']                    :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
 distance_km(Dist, accusative) -- [ X, 'meters_accusative.ogg']                  :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
 distance_km(Dist, locative) --   [ X, 'meters_locative.ogg']                    :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
-distance_km(Dist, workaround) -- ['around_1_kilometer_accusative.ogg']            :- Dist < 1500.
+distance_km(Dist, workaround) -- ['around_1_kilometer_accusative.ogg']          :- Dist < 1500.
 distance_km(Dist, accusative) -- ['around_1_kilometer_accusative.ogg']          :- Dist < 1500.
 distance_km(Dist, locative) --   ['around_1_kilometer_locative.ogg']            :- Dist < 1500.
-distance_km(Dist, workaround) -- ['around_workaround.ogg', X, 'kilometers_accusative.ogg']   :- Dist < 10000, D is round(Dist/1000.0),            dist(D, X).
-distance_km(Dist, accusative) -- ['around.ogg', X, 'kilometers_accusative.ogg'] :- Dist < 10000, D is round(Dist/1000.0),            dist(D, X).
+distance_km(Dist, accusative) -- ['kilometers_accusative2.ogg']                 :- Dist < 2500.
+distance_km(Dist, locative)   -- ['kilometers_locative2.ogg']                   :- Dist < 2500.
+distance_km(Dist, workaround) -- ['around_workaround.ogg', X, 'kilometers_accusative3_4.ogg']   :- Dist < 4500, D is round(Dist/1000.0),            dist(D, X).
+distance_km(Dist, accusative) -- ['around.ogg', X, 'kilometers_accusative3_4.ogg'] :- Dist < 4500, D is round(Dist/1000.0),            dist(D, X).
+distance_km(Dist, locative) --   ['around.ogg', X, 'kilometers_locative.ogg']   :- Dist < 4500, D is round(Dist/1000.0),            dist(D, X).
+distance_km(Dist, workaround) -- ['around_workaround.ogg', X, 'kilometers_accusative5.ogg']   :- Dist < 10000, D is round(Dist/1000.0),            dist(D, X).
+distance_km(Dist, accusative) -- ['around.ogg', X, 'kilometers_accusative5.ogg'] :- Dist < 10000, D is round(Dist/1000.0),            dist(D, X).
 distance_km(Dist, locative) --   ['around.ogg', X, 'kilometers_locative.ogg']   :- Dist < 10000, D is round(Dist/1000.0),            dist(D, X).
-distance_km(Dist, workaround) -- ['farther_workaround.ogg', X, 'kilometers_accusative.ogg']                :-               D is round(Dist/1000.0),            dist(D, X).
-distance_km(Dist, accusative) -- [ X, 'kilometers_accusative.ogg']              :-               D is round(Dist/1000.0),            dist(D, X).
+distance_km(Dist, workaround) -- ['farther_workaround.ogg', X, 'kilometers_accusative5.ogg']                :-               D is round(Dist/1000.0),            dist(D, X).
+distance_km(Dist, accusative) -- [ X, 'kilometers_accusative5.ogg']              :-               D is round(Dist/1000.0),            dist(D, X).
 distance_km(Dist, locative) --   [ X, 'kilometers_locative.ogg']                :-               D is round(Dist/1000.0),            dist(D, X).
 
 %%% distance measure mi/f
