@@ -116,8 +116,24 @@ string('reached_intermediate.ogg', 'dorazili jste do mezicíle ').
 string('and_arrive_waypoint.ogg', 'a dorazíte do GPX mezicíle ').
 string('reached_waypoint.ogg', 'dorazili jste do GPX mezicíle ').
 
+%NEARBY POINTS
+string('and_arrive_waypoint.ogg', 'a dorazíte do mezicíle ').
+string('reached_waypoint.ogg', 'dorazili jste do mezicíle ').
+string('and_arrive_favorite.ogg', 'a dorazíte do oblíbeného bodu ').
+string('reached_favorite.ogg', 'dorazili jste do oblíbeného bodu ').
+string('and_arrive_poi.ogg', 'a dorazíte do bodu zájmu ').
+string('reached_poi.ogg', 'dorazili jste do bodu zájmu ').
+
 % OTHER PROMPTS
 string('attention.ogg', 'pozor, ').
+string('speed_camera.ogg', 'Rychlostní kamera ').
+string('border_control.ogg', 'Hraniční kontrola ').
+string('railroad_crossing.ogg', 'Železniční přejezd ').
+string('traffic_calming.ogg', 'Retardér ').
+string('toll_booth.ogg', 'Mýtná budka ').
+string('stop.ogg', 'Značka stop ').
+string('pedestrian_crosswalk.ogg', 'Přechod pro chodce ').
+
 string('location_lost.ogg', 'ztráta signálu ').
 string('location_recovered.ogg', 'signál zpět').
 string('off_route.ogg', 'odchylujete se z trasy ').
@@ -225,6 +241,17 @@ off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist, accusative) -- D.
 attention(_Type) -- ['attention.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
 
+% TRAFFIC WARNINGS
+warning('SPEED_CAMERA', 'speed_camera.ogg').
+warning('SPEED_LIMIT', '').
+warning('BORDER_CONTROL', 'border_control.ogg').
+warning('RAILWAY', 'railroad_crossing.ogg').
+warning('TRAFFIC_CALMING', 'traffic_calming.ogg').
+warning('TOLL_BOOTH', 'toll_booth.ogg').
+warning('STOP', 'stop.ogg').
+warning('PEDESTRIAN', 'pedestrian_crosswalk.ogg').
+warning('MAXIMUM', '').
+warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'RAILWAY'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'PEDESTRIAN'; Type = 'MAXIMUM').
 
 %% 
 nth(1, nominative, '1st.ogg').
