@@ -126,7 +126,7 @@ string('reached_poi.ogg', 'dorazili jste do bodu zájmu ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'pozor, ').
-string('speed_camera.ogg', 'Rychlostní kamera ').
+string('speed_camera.ogg', 'Rychlostní radar ').
 string('border_control.ogg', 'Hraniční kontrola ').
 string('railroad_crossing.ogg', 'Železniční přejezd ').
 string('traffic_calming.ogg', 'Retardér ').
