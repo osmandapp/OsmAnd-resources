@@ -2689,13 +2689,13 @@
 			<!-- continent not really useful here: filter minzoom="2" maxzoom="2" textSize="14" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="continent"/ -->
 
 			<!-- most countries are not tagged with ref: filter minzoom="2" maxzoom="2" textSize="14" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="country" nameTag="ref"/ -->
-			<case minzoom="3" tag="place" value="country" textColor="#8e3a7e" textHaloColor="#aaf7ebf7" textHaloRadius="3" textWrapWidth="15" textOrder="23">
+			<case minzoom="3" tag="place" value="country" textColor="#8e3a7e" textHaloColor="#aaf7ebf7" textHaloRadius="3" textWrapWidth="15" textOrder="5">
 				<case maxzoom="3" textSize="12"/>
 				<case maxzoom="4" textSize="14" textBold="true"/>
 				<case maxzoom="5" textSize="16" textBold="true"/>
 				<case minzoom="6" textSize="14" textBold="true" textOrder="33"/>
 				<apply_if nightMode="true" textColor="#d498d3" textHaloColor="#bb553155"/>
-				<apply_if additional="population=" textOrder="$textOrderPopulation"/> <!-- TODO: fix. No population for countries in basemap --> <!--  additional="population=" here is needed because renderingAtribute="textOrderPopulation" returns "0" when there is no population tag. And we can't include additional empty "case" in it because it is used more than 1 time on elements with different default textOrder -->
+				<apply_if additional="population=" textOrder="$textOrderPopulation"/> <!--  additional="population=" here is needed because renderingAtribute="textOrderPopulation" returns "0" when there is no population tag. And we can't include additional empty "case" in it because it is used more than 1 time on elements with different default textOrder -->
 			</case>
 
 			<switch minzoom="5" textSize="13" textColor="#9d6c9d" textWrapWidth="20">
@@ -2726,7 +2726,7 @@
 					<case minzoom="6" nameTag="" textOrder="33"/>
 				</switch>
 				<apply_if nightMode="false" textHaloRadius="$textHaloRadiusDay" textHaloColor="#88ffffff"/>
-				<apply_if additional="population=" textOrder="$textOrderPopulation"/>
+<!--				<apply_if additional="population=" textOrder="$textOrderPopulation"/>-->
 			</switch>
 
 			<!-- county not really useful here: filter minzoom="9" textSize="13" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="county" nameTag=""/ -->
@@ -2737,10 +2737,10 @@
 						<case maxzoom="7" textSize="17"/>
 						<case maxzoom="12" textSize="17"/>
 					</case>-->
-				<case minzoom="6" tag="place" value="city" nameTag="" intersectionMargin="25" textOrder="32">
-					<case maxzoom="7" textSize="17"/>
+				<case minzoom="5" tag="place" value="city" nameTag="" intersectionMargin="25" textOrder="32">
+					<case minzoom="6" maxzoom="7" textSize="17"/>
 					<case minzoom="8" textSize="20"/>
-					<apply_if additional="population=" textOrder="$textOrderPopulation"/>
+					<apply_if additional="population=" textOrder="$textOrderPopulation"/>-->
 					<apply_if engine_v1="false"> <!-- Workaround for bug in OpenGL engine. Delete when fixed https://trello.com/c/WjuVi6UC/502-population-case-additional-renderingattribute-opengl -->
 						<case additional="population=1500000000" textOrder="15"/>
 						<case additional="population=400000000" textOrder="16"/>
@@ -2775,7 +2775,7 @@
 
 					<apply_if additional="capital=yes" textOrder="11">
 						<switch>
-							<case maxzoom="5" textSize="14"/>
+							<case maxzoom="5" textSize="13" textOrder="25"/>
 							<case maxzoom="7" textSize="20"/>
 							<case minzoom="8" textSize="22"/>
 							<apply>
@@ -2840,7 +2840,7 @@
 					</apply_if>
 				</switch>
 				<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77444444"/>
-				<apply_if engine_v1="false" textDy="-2"/>
+				<apply_if engine_v1="false" textDy="-3"/>
 			</switch>
 
 			<switch textColor="$placeSuburbLocalityTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="" intersectionMargin="15">
@@ -4149,18 +4149,18 @@
 		<!-- Location dots -->
 
 		<switch>
-			<case tag="osmand_place_basemap" value="city"/>
+<!--			<case tag="osmand_place_basemap" value="city"/>-->
 			<case tag="place" value="city"/>
 			<apply iconVisibleSize="8" iconOrder="99">
-				<case minzoom="4" maxzoom="5" icon="place_city_dot_small">
+<!--				<case minzoom="5" maxzoom="5" icon="place_city_dot_small">
 					<apply_if nightMode="true" icon="place_city_dot_small_night"/>
-				</case>
+				</case>-->
 				<case minzoom="6" maxzoom="16" icon="place_city_dot">
 					<apply_if nightMode="true" icon="place_city_dot_night"/>
 				</case>
 			</apply>
 			<apply_if additional="capital=yes" iconVisibleSize="1" iconOrder="99">
-				<case minzoom="4" maxzoom="5" icon="place_capital_dot_small">
+				<case minzoom="5" maxzoom="5" icon="place_capital_dot_small">
 					<apply_if nightMode="true" icon="place_capital_dot_small_night"/>
 				</case>
 				<case minzoom="6" maxzoom="16" icon="place_capital_dot">
