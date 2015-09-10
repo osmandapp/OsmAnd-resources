@@ -2698,7 +2698,7 @@
 				<apply_if additional="population=" textOrder="$textOrderPopulation"/> <!--  additional="population=" here is needed because renderingAtribute="textOrderPopulation" returns "0" when there is no population tag. And we can't include additional empty "case" in it because it is used more than 1 time on elements with different default textOrder -->
 			</case>
 
-			<switch minzoom="5" textSize="13" textColor="#9d6c9d" textWrapWidth="20">
+			<switch minzoom="5" textSize="13" textColor="#9d6c9d" textWrapWidth="20" textHaloRadius="$textHaloRadiusDay" textHaloColor="#88ffffff">
 				<switch engine_v1="true">
 					<case maxzoom="10" tag="place" value="state">
 						<case maxzoom="5" nameTag="ref" textOrder="24"/>
@@ -2725,7 +2725,7 @@
 					<case maxzoom="5" nameTag="ref" textOrder="25"/>
 					<case minzoom="6" nameTag="" textOrder="33"/>
 				</switch>
-				<apply_if nightMode="false" textHaloRadius="$textHaloRadiusDay" textHaloColor="#88ffffff"/>
+				<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textHaloColor="#bb553155"/>
 <!--				<apply_if additional="population=" textOrder="$textOrderPopulation"/>-->
 			</switch>
 
@@ -2843,8 +2843,8 @@
 				<apply_if engine_v1="false" textDy="-3"/>
 			</switch>
 
-			<switch textColor="$placeSuburbLocalityTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="" intersectionMargin="15">
-				<case minzoom="$placeSuburbMinZoom" maxzoom="17" tag="place" value="suburb" nameTag="" textSize="15" textItalic="true" textHaloColor="$placeCityVillageTextHaloColorDay" textOrder="37" intersectionMargin="25">
+			<switch textColor="$placeSuburbLocalityTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColorDay" intersectionMargin="15">
+				<case minzoom="$placeSuburbMinZoom" maxzoom="17" tag="place" value="suburb" nameTag="" textSize="15" textItalic="true" textOrder="37" intersectionMargin="25">
 					<apply_if minzoom="16" textSize="17"/>
 				</case>
 				<switch>
@@ -4151,14 +4151,7 @@
 		<switch>
 <!--			<case tag="osmand_place_basemap" value="city"/>-->
 			<case tag="place" value="city"/>
-			<apply iconVisibleSize="8" iconOrder="99">
-<!--				<case minzoom="5" maxzoom="5" icon="place_city_dot_small">
-					<apply_if nightMode="true" icon="place_city_dot_small_night"/>
-				</case>-->
-				<case minzoom="6" maxzoom="16" icon="place_city_dot">
-					<apply_if nightMode="true" icon="place_city_dot_night"/>
-				</case>
-			</apply>
+			<apply_if minzoom="6" maxzoom="16" icon="place_city_dot" iconVisibleSize="12" intersectionSizeFactor="0.9" iconOrder="99"/>
 			<apply_if additional="capital=yes" iconVisibleSize="1" iconOrder="99">
 				<case minzoom="5" maxzoom="5" icon="place_capital_dot_small">
 					<apply_if nightMode="true" icon="place_capital_dot_small_night"/>
@@ -4170,16 +4163,16 @@
 		</switch>
 
 		<case minzoom="7" tag="place" value="town" icon="place_town_dot" iconVisibleSize="24">
-			<apply_if nightMode="true" icon="place_town_dot_night"/>
+<!--			<apply_if nightMode="true" icon="place_town_dot_night"/>-->
 		</case>
 		<case minzoom="11" maxzoom="12" tag="place" value="village" icon="place_town_dot">
-			<apply_if nightMode="true" icon="place_town_dot_night"/>
+<!--			<apply_if nightMode="true" icon="place_town_dot_night"/>-->
 		</case>
 		<case minzoom="11" maxzoom="12" tag="place" value="hamlet" icon="place_town_dot">
-			<apply_if nightMode="true" icon="place_town_dot_night"/>
+<!--			<apply_if nightMode="true" icon="place_town_dot_night"/>-->
 		</case>
 		<case minzoom="12" maxzoom="12" tag="place" value="farm" icon="place_town_dot">
-			<apply_if nightMode="true" icon="place_town_dot_night"/>
+<!--			<apply_if nightMode="true" icon="place_town_dot_night"/>-->
 		</case>
 
 		<switch minzoom="16">
