@@ -51,6 +51,7 @@ mycpname garages landuse_garages.png
 mycpname quarry landuse_quarry.png
 mycpname allotments landuse_allotments.png
 mycpname village_green landuse_village_green.png
+mycpname recreation_ground landuse_recreation_ground.png
 
 mycp stroke black functional-icons_black_stroke.png
 mycp stroke darkgreen functional-icons_darkgreen_stroke.png
@@ -570,6 +571,7 @@ mycpname craft_locksmith craft_locksmith.png
 mycpname craft_painter craft_painter.png
 mycpname craft_tailor craft_tailor.png
 mycpname craft_shoemaker craft_shoemaker.png
+mycpname craft_jeweller craft_jeweller.png
 
 mygroup finance money_bank2.png
 mycp amenity atm money_atm.png
@@ -1387,12 +1389,14 @@ mycpname trade shopping_trade.png
 mycpname vacuum_cleaner shopping_vacuum_cleaner.png
 mycpname tattoo shopping_tattoo.png
 mycpname perfumery shopping_perfumery.png
+mycpname pawnbroker shopping_pawnbroker.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
 mycpname insurance office_insurance.png
 mycpname research office_research.png
 mycpname travel_agent office_travel_agent.png
+mycpname it office_it.png
 
 ## Entertainment
 mycpname park entertainment_park.png
