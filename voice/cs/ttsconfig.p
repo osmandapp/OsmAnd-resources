@@ -75,7 +75,7 @@ string('4th.ogg', 'čtvrtý ').
 string('5th.ogg', 'pátý ').
 string('6th.ogg', 'šestý ').
 string('7th.ogg', 'sedmý ').
-string('8th.ogg', 'osmý').
+string('8th.ogg', 'osmý ').
 string('9th.ogg', 'devátý ').
 string('10th.ogg', 'desátý ').
 string('11th.ogg', 'jedenáctý ').
@@ -93,7 +93,7 @@ string('4th_inst.ogg', 'čtvrtým ').
 string('5th_inst.ogg', 'pátým ').
 string('6th_inst.ogg', 'šestým ').
 string('7th_inst.ogg', 'sedmým ').
-string('8th_inst.ogg', 'osmým').
+string('8th_inst.ogg', 'osmým ').
 string('9th_inst.ogg', 'devátým ').
 string('10th_inst.ogg', 'desátým ').
 string('11th_inst.ogg', 'jedenáctým ').
@@ -111,23 +111,23 @@ string('go_ahead_m.ogg', 'pokračujte ').
 % ARRIVE
 string('and_arrive_destination.ogg', 'a dorazíte do cíle ').
 string('reached_destination.ogg', 'dorazili jste do cíle ').
-string('and_arrive_intermediate.ogg', 'a dorazíte do mezicíle  ').
+string('and_arrive_intermediate.ogg', 'a dorazíte do mezicíle ').
 string('reached_intermediate.ogg', 'dorazili jste do mezicíle ').
 string('and_arrive_waypoint.ogg', 'a dorazíte do GPX mezicíle ').
 string('reached_waypoint.ogg', 'dorazili jste do GPX mezicíle ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'pozor, ').
-string('speed_camera.ogg', 'Rychlostní radar ').
-string('border_control.ogg', 'Hraniční kontrola ').
-string('railroad_crossing.ogg', 'Železniční přejezd ').
-string('traffic_calming.ogg', 'Retardér ').
-string('toll_booth.ogg', 'Mýtná budka ').
-string('stop.ogg', 'Značka stop ').
-string('pedestrian_crosswalk.ogg', 'Přechod pro chodce ').
+string('speed_camera.ogg', 'rychlostní radar ').
+string('border_control.ogg', 'hraniční kontrola ').
+string('railroad_crossing.ogg', 'železniční přejezd ').
+string('traffic_calming.ogg', 'retardér ').
+string('toll_booth.ogg', 'mýtná budka ').
+string('stop.ogg', 'značka stop ').
+string('pedestrian_crosswalk.ogg', 'přechod pro chodce ').
 
 string('location_lost.ogg', 'ztráta signálu ').
-string('location_recovered.ogg', 'signál zpět').
+string('location_recovered.ogg', 'signál zpět ').
 string('off_route.ogg', 'odchylujete se z trasy ').
 string('exceed_limit.ogg', 'překračujete povolenou rychlost ').
 
@@ -150,15 +150,15 @@ string('kilometers_locative2.ogg', 'dvou kilometrech ').
 string('farther_workaround.ogg', 'dál ').
 string('around_workaround.ogg', 'dál přibližně ').
 
-string('feet_accusative.ogg', 'feet ').
-string('1_tenth_of_a_mile_accusative.ogg', 'one tenth of a mile').
-string('tenths_of_a_mile_accusative.ogg', 'tenths of a mile').
-string('around_1_mile_accusative.ogg', 'about one mile ').
-string('miles_accusative.ogg', 'miles ').
+string('feet_accusative.ogg', 'stopy ').
+string('1_tenth_of_a_mile_accusative.ogg', 'desetinu míle ').
+string('tenths_of_a_mile_accusative.ogg', 'desetiny míle ').
+string('around_1_mile_accusative.ogg', 'přibližně jednu míli ').
+string('miles_accusative.ogg', 'míle ').
 
 string('feet_locative.ogg', 'stopách ').
-string('1_tenth_of_a_mile_locative.ogg', 'desetině míle').
-string('tenths_of_a_mile_locative.ogg', 'desetinách míle').
+string('1_tenth_of_a_mile_locative.ogg', 'desetině míle ').
+string('tenths_of_a_mile_locative.ogg', 'desetinách míle ').
 string('around_1_mile_locative.ogg', 'přibližně jedné míli ').
 string('miles_locative.ogg', 'mílích ').
 
