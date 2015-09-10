@@ -70,10 +70,10 @@ mycp natural peak_big functional-icons_peak_big.png  #needs black icon!  #scale 
 mycp natural peak functional-icons_peak.png  #needs black icon!  #scale 0.5
 mycp natural peak_night_big functional-icons_peak_night_big.png  #For night orienteering use orange similar to contour lines (=day version with color #CC6600)  #scale 0.5
 mycp natural peak_night functional-icons_peak_night.png  #For night orienteering use orange similar to contour lines (=day version with color #CC6600)  #scale 0.5
-mycp natural saddle functional-icons_saddle.png
-mycp natural sinkhole functional-icons_sinkhole.png
+mycp natural saddle poi_saddle.png
+mycp natural sinkhole poi_sinkhole.png
 mycp natural spring water_spring.png  #scale 0.375
-mycp natural stone functional-icons_stone.png  #scale 0.375
+mycp natural stone poi_stone.png  #scale 0.375
 mycp natural tree_broadleaved functional-icons_tree_broadleaved.png
 mycp natural tree_cypress functional-icons_tree_cypress.png
 mycp natural tree functional-icons_tree.png  #scale 0.25
@@ -273,7 +273,8 @@ mycp leisure marina transport_marina.png
 mycp leisure marina_private transport_marina_private.png
 mycp leisure slipway transport_slipway.png
 mycp man_made lighthouse transport_lighthouse.png
-mycp waterway lock_gate functional-icons_lock_gate.png  #scale 0.5
+mycp waterway lock_gate_small functional-icons_lock_gate.png  #scale 0.5
+mycpname lock_gate poi_lock_gate.png  #scale 0.25
 mycp waterway dock transport_dock.png
 
 mycpname halt_small functional-icons_halt.png  #scale 0.25
@@ -502,6 +503,7 @@ mycp sport tennis sport_tennis.png
 mycp sport volleyball sport_volleyball.png
 mycpname pitch sport_pitch.png
 mycpname swimming_pool sport_swimming_outdoor.png
+mycpname leisure_track sport_leisure_track.png
 
 
 ## Leisure
@@ -588,7 +590,6 @@ mycp amenity library amenity_library.png
 mycp amenity public_building amenity_public_building.png
 mycp amenity social_centre amenity_public_building.png
 mycp amenity townhall amenity_town_hall2.png
-mycp office government amenity_public_building.png
 mycpname register_office amenity_register_office.png
 
 mygroup service amenity_service.png
@@ -1314,7 +1315,7 @@ mycp shop fishing shopping_tackle.png
 mycp shop florist shopping_florist.png
 mycp shop furniture shopping_furniture.png
 mycp shop garden_centre shopping_garden_centre.png
-mycp shop general shopping_convenience.png
+mycp shop general shopping_general.png
 mycp shop gift shopping_gift.png
 mycp shop greengrocer shopping_greengrocer.png
 mycp shop hairdresser shopping_hairdresser.png
@@ -1390,6 +1391,7 @@ mycpname vacuum_cleaner shopping_vacuum_cleaner.png
 mycpname tattoo shopping_tattoo.png
 mycpname perfumery shopping_perfumery.png
 mycpname pawnbroker shopping_pawnbroker.png
+mycpname second_hand shopping_second_hand.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
@@ -1397,6 +1399,7 @@ mycpname insurance office_insurance.png
 mycpname research office_research.png
 mycpname travel_agent office_travel_agent.png
 mycpname it office_it.png
+mycp office government office_government.png
 
 ## Entertainment
 mycpname park entertainment_park.png
