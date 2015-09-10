@@ -122,7 +122,7 @@ string('speed_camera.ogg', 'rychlostní radar ').
 string('border_control.ogg', 'hraniční kontrola ').
 string('railroad_crossing.ogg', 'železniční přejezd ').
 string('traffic_calming.ogg', 'retardér ').
-string('toll_booth.ogg', 'mýtná budka ').
+string('toll_booth.ogg', 'mýtná brána ').
 string('stop.ogg', 'značka stop ').
 string('pedestrian_crosswalk.ogg', 'přechod pro chodce ').
 
