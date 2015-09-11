@@ -112,6 +112,7 @@ mycp place town poi_town.png
 mycpname hamlet poi_hamlet.png
 mycpname village poi_village.png
 mycpname locality poi_place_locality.png
+mycpname suburb poi_place_suburb.png
 
 ## Barrier dots
 mycp barrier small_black_1 functional-icons_point_black_1.png  #scale 0.25
@@ -1400,6 +1401,7 @@ mycpname research office_research.png
 mycpname travel_agent office_travel_agent.png
 mycpname it office_it.png
 mycp office government office_government.png
+mycpname company office_company.png
 
 ## Entertainment
 mycpname park entertainment_park.png
