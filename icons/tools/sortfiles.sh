@@ -52,6 +52,10 @@ mycpname quarry landuse_quarry.png
 mycpname allotments landuse_allotments.png
 mycpname village_green landuse_village_green.png
 mycpname recreation_ground landuse_recreation_ground.png
+mycpname residential landuse_residential.png
+mycpname commercial landuse_commercial.png
+mycpname retail landuse_retail.png
+mycpname religious landuse_religious.png
 
 mycp stroke black functional-icons_black_stroke.png
 mycp stroke darkgreen functional-icons_darkgreen_stroke.png
@@ -66,8 +70,8 @@ mygroup natural poi_peak2.png
 mycp natural cave_entrance poi_cave.png
 mycp natural geyser water_geyser.png  #scale 0.375
 mycp natural hot_spring water_hot_spring.png  #scale 0.375
-mycp natural peak_big functional-icons_peak_big.png  #needs black icon!  #scale 0.5
-mycp natural peak functional-icons_peak.png  #needs black icon!  #scale 0.5
+mycp natural peak_big poi_peak_big.png
+mycp natural peak poi_peak.png
 mycp natural peak_night_big functional-icons_peak_night_big.png  #For night orienteering use orange similar to contour lines (=day version with color #CC6600)  #scale 0.5
 mycp natural peak_night functional-icons_peak_night.png  #For night orienteering use orange similar to contour lines (=day version with color #CC6600)  #scale 0.5
 mycp natural saddle poi_saddle.png
@@ -113,6 +117,7 @@ mycpname hamlet poi_hamlet.png
 mycpname village poi_village.png
 mycpname locality poi_place_locality.png
 mycpname suburb poi_place_suburb.png
+mycpname isolated_dwelling poi_isolated_dwelling.png
 
 ## Barrier dots
 mycp barrier small_black_1 functional-icons_point_black_1.png  #scale 0.25
