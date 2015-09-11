@@ -339,6 +339,8 @@ mycp railway subway_station_small_white functional-icons_subway_station_small_wh
 
 mycp aerialway station_small functional-icons_halt.png  #scale 0.25
 mycp aerialway station transport_aerialway_station.png  #scale 0.375
+mycpname aerialway_cable_car transport_aerialway_cable_car.png
+mycpname aerialway_chair_lift transport_aerialway_chair_lift.png
 
 mycp aeroway aerodrome_abandoned functional-icons_aerodrome_abandoned.png
 mycp aeroway aerodrome transport_aerodrome.png
