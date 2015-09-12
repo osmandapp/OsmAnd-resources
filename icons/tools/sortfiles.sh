@@ -118,6 +118,7 @@ mycpname village poi_village.png
 mycpname locality poi_place_locality.png
 mycpname suburb poi_place_suburb.png
 mycpname isolated_dwelling poi_isolated_dwelling.png
+mycpname neighborhood poi_place_neighborhood.png
 
 ## Barrier dots
 mycp barrier small_black_1 functional-icons_point_black_1.png  #scale 0.25
@@ -341,6 +342,15 @@ mycp aerialway station_small functional-icons_halt.png  #scale 0.25
 mycp aerialway station transport_aerialway_station.png  #scale 0.375
 mycpname aerialway_cable_car transport_aerialway_cable_car.png
 mycpname aerialway_chair_lift transport_aerialway_chair_lift.png
+mycpname aerialway_pylon transport_aerialway_pylon.png
+mycpname aerialway_pylon_small functional-icons_aerialway_pylon_small.png
+mycpname aerialway_drag_lift transport_aerialway_drag_lift.png
+mycpname aerialway_platter transport_aerialway_platter.png
+mycpname aerialway_t_bar transport_aerialway_t_bar.png
+mycpname aerialway_goods transport_aerialway_goods.png
+mycpname aerialway_magic_carpet transport_aerialway_magic_carpet.png
+mycpname aerialway_gondola transport_aerialway_gondola.png
+mycpname aerialway_rope_tow transport_aerialway_rope_tow.png
 
 mycp aeroway aerodrome_abandoned functional-icons_aerodrome_abandoned.png
 mycp aeroway aerodrome transport_aerodrome.png
@@ -536,7 +546,7 @@ mygroup other amenity_post_office.png
 mygroup place_of_worship place_of_worship_unknown.png
 mygroup internet_access amenity_internet_access.png
 mycp amenity car_wash amenity_car_wash.png
-mycp amenity car_wash_self_service amenity_car_wash_self_service.png
+mycpname car_wash_self_service amenity_car_wash_self_service.png
 mycpname vehicle_inspection amenity_vehicle_inspection.png
 mycp amenity fountain water_fountain2.png
 mycp amenity fountain_night functional-icons_fountain2_night.png
@@ -632,27 +642,29 @@ mycp man_made crane poi_crane.png
 mycp man_made mast poi_mast.png
 mycp man_made mineshaft poi_mine.png
 mycp man_made monitoring_station_radar poi_monitoring_station_radar.png
-mycp man_made observatory_astronomical poi_observatory_astronomical.png
+mycpname astronomical_observatory poi_observatory_astronomical.png
 mycp man_made observatory poi_observatory.png
+mycpname observation_tower poi_observatory.png
 mycp man_made petroleum_well poi_petroleum_well.png
 mycp man_made survey_point poi_survey_point.png
 mycp man_made tower poi_tower.png
-mycp man_made tower_type_bell_tower poi_tower_bell_tower.png
-mycp man_made tower_type_communication poi_tower_communications2.png
-mycp man_made tower_type_cooling poi_tower_cooling.png
-mycp man_made tower_type_lighting poi_tower_lighting.png
+mycpname bell_tower poi_tower_bell_tower.png
+mycpname communication_tower poi_tower_communications2.png
+mycpname cooling_tower poi_tower_cooling.png
+mycpname lighting_tower poi_tower_lighting.png
 mycp man_made water_tower poi_water_tower.png
 mycp man_made windmill poi_windmill.png
 mycp no icon functional-icons_no_icon.png
-mycp power station_coal power_station_coal.png
-mycp power station_gas power_station_gas.png
-mycp power station_geothermal power_station_geothermal.png
-mycp power station_nuclear power_station_nuclear.png
-mycp power station_oil power_station_oil.png
-mycp power station power_station.png
-mycp power station_solar power_station_solar.png
-mycp power station_water power_station_water2.png
-mycp power station_wind power_station_wind.png
+mycpname generator_coal power_generator_coal.png
+mycpname generator_gas power_generator_gas.png
+mycpname generator_geothermal power_generator_geothermal.png
+mycpname generator_nuclear power_generator_nuclear.png
+mycpname generator_oil power_generator_oil.png
+mycpname generator_solar power_generator_solar.png
+mycpname generator_water power_generator_water2.png
+mycpname generator_wind power_generator_wind.png
+mycpname power_generator power_generator.png
+mycpname power_plant power_plant.png
 mycp power substation power_transformer2.png
 mycp power tower_big functional-icons_power_tower_big.png
 mycp power tower functional-icons_power_tower.png
