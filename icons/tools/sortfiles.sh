@@ -346,6 +346,7 @@ mycpname aerialway_pylon transport_aerialway_pylon.png
 mycpname aerialway_pylon_small functional-icons_aerialway_pylon_small.png
 mycpname aerialway_drag_lift transport_aerialway_drag_lift.png
 mycpname aerialway_platter transport_aerialway_platter.png
+mycpname aerialway_j_bar transport_aerialway_j_bar.png
 mycpname aerialway_t_bar transport_aerialway_t_bar.png
 mycpname aerialway_goods transport_aerialway_goods.png
 mycpname aerialway_magic_carpet transport_aerialway_magic_carpet.png
@@ -655,14 +656,15 @@ mycpname lighting_tower poi_tower_lighting.png
 mycp man_made water_tower poi_water_tower.png
 mycp man_made windmill poi_windmill.png
 mycp no icon functional-icons_no_icon.png
-mycpname generator_coal power_generator_coal.png
-mycpname generator_gas power_generator_gas.png
-mycpname generator_geothermal power_generator_geothermal.png
-mycpname generator_nuclear power_generator_nuclear.png
-mycpname generator_oil power_generator_oil.png
-mycpname generator_solar power_generator_solar.png
-mycpname generator_water power_generator_water2.png
-mycpname generator_wind power_generator_wind.png
+mycpname generator_source_coal power_generator_coal.png
+mycpname generator_source_gas power_generator_gas.png
+mycpname generator_source_geothermal power_generator_geothermal.png
+mycpname generator_source_nuclear power_generator_nuclear.png
+mycpname generator_source_oil power_generator_oil.png
+mycpname generator_source_diesel power_generator_diesel.png
+mycpname generator_source_solar power_generator_solar.png
+mycpname generator_source_hydro power_generator_water2.png
+mycpname generator_source_wind power_generator_wind.png
 mycpname power_generator power_generator.png
 mycpname power_plant power_plant.png
 mycp power substation power_transformer2.png
@@ -694,6 +696,7 @@ mycp amenity food_court food_fastfood.png
 mycp amenity pub food_pub.png
 mycp amenity restaurant food_restaurant.png
 mycp man_made water_well food_water_well.png
+mycpname water_point food_water_point.png
 
 ## Seamarks
 mygroup seamark icons8_sail_boat.png

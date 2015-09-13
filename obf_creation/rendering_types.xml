@@ -890,6 +890,7 @@
 		<type tag="building" value="cabin" minzoom="15"/>
 		<type tag="building" value="commercial" minzoom="15"/>
 		<type tag="building" value="industrial" minzoom="15"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="service" to_tag1="building" to_value1="industrial"/>
 		<type tag="building" value="retail" minzoom="15"/>
 		<type tag="building" value="warehouse" minzoom="15"/>
 		<type tag="building" value="place_of_worship" minzoom="15"/>
@@ -901,6 +902,7 @@
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="temple" to_tag1="building" to_value1="place_of_worship"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="wayside_shrine" to_tag1="building" to_value1="place_of_worship"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="wayside_chapel" to_tag1="building" to_value1="place_of_worship"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="shrine" to_tag1="building" to_value1="place_of_worship"/>
 		<type tag="building" value="basilica" minzoom="15"/>
 		<type tag="building" value="bell_tower" minzoom="15"/>
 		<type tag="building" value="castle_tower" minzoom="15"/>
@@ -932,7 +934,7 @@
 		<type tag="building" value="farm" minzoom="15"/>
 		<type tag="building" value="farm_auxiliary" minzoom="15"/>
 		<type tag="building" value="barn" minzoom="15"/>
-		<type tag="building" value="office" minzoom="15"/>
+<!--		<type tag="building" value="office" minzoom="15"/> deprecated-->
 		<type tag="building" value="hotel" minzoom="15"/>
 		<type tag="building" value="supermarket" minzoom="15"/>
 		<type tag="building" value="factory" minzoom="15"/>
@@ -1599,6 +1601,8 @@
 		<type tag="man_made" value="watermill" minzoom="15" />
 		<type tag="man_made" value="water_tower" minzoom="15" />
 		<type tag="man_made" value="water_well" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="water_well" from_value="pump" to_tag1="pump" to_value1="manual"/>
+		<type tag="amenity" value="water_point" minzoom="14" />
 		<type tag="man_made" value="windmill" minzoom="15" />
 		<type tag="man_made" value="storage_tank" minzoom="15" />
 		<type tag="man_made" value="silo" minzoom="15" />
@@ -2123,8 +2127,13 @@
 		<type tag="natural" value="scrub" minzoom="6" />
 		<type tag="natural" value="grassland" minzoom="6" />
 		<type tag="natural" value="spring" minzoom="10" />
-		<entity_convert pattern="tag_transform" from_tag="waterway" from_value="mineral_spring" to_tag1="natural" to_value1="spring"/>
+		<entity_convert pattern="tag_transform" from_tag="waterway" from_value="mineral_spring" to_tag1="natural" to_value1="spring" to_tag2="water_characteristic" to_value2="mineral"/>
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="karst_spring" to_tag1="natural" to_value1="spring"/>
+		<entity_convert pattern="tag_transform" from_tag="mineral" from_value="yes" if_tag1="natural" if_value1="water" to_tag1="water_characteristic" to_value1="mineral"/>
+		<entity_convert pattern="tag_transform" from_tag="mineral" from_value="yes" if_tag1="natural" if_value1="spring" to_tag1="water_characteristic" to_value1="mineral"/>
+		<entity_convert pattern="tag_transform" from_tag="mineral" from_value="yes" if_tag1="man_made" if_value1="reservoir" to_tag1="water_characteristic" to_value1="mineral"/>
+		<entity_convert pattern="tag_transform" from_tag="mineral" from_value="yes" if_tag1="leisure" if_value1="swimming_pool" to_tag1="water_characteristic" to_value1="mineral"/>
+		<entity_convert pattern="tag_transform" from_tag="mineral" from_value="yes" if_tag1="man_made" if_value1="water_well" to_tag1="water_characteristic" to_value1="mineral"/>
 		<type tag="natural" value="hot_spring" minzoom="10" />
 		<type tag="natural" value="geyser" minzoom="10" />
 		<type tag="natural" value="stone" minzoom="10" />
