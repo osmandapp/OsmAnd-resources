@@ -319,13 +319,15 @@ hours(S, ['2_hours.ogg']) :- S < 180, H is S div 60, pnumber(H, Ogg).
 hours(S, [Ogg, '3_4_hours.ogg']) :- S < 300, H is S div 60, pnumber(H, Ogg).
 hours(S, [Ogg, 'hours.ogg']) :- H is S div 60, pnumber(H, Ogg).
 time(Sec) -- ['less_a_minute.ogg'] :- Sec < 30.
-time(Sec) -- [H, '1_minute.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, St = 1, pnumber(St, Ogg).
-time(Sec) -- ['2_minutes.ogg']           :- tts, Sec < 180, S is round(Sec/60.0), hours(S, H), St is S mod 60, pnumber(St, Ogg).
-time(Sec) -- [H, Ogg, '3_4_minutes.ogg'] :- tts, Sec < 300, S is round(Sec/60.0), hours(S, H), St is S mod 60, pnumber(St, Ogg).
+time(Sec) -- ['1_minute.ogg'] :- Sec < 90.
+time(Sec) -- ['2_minutes.ogg'] :- Sec < 150.
+time(Sec) -- [H, '1_minute.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, St = 1.
+time(Sec) -- [H, '2_minutes.ogg']  :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, St = 2.
+time(Sec) -- [H, Ogg, '3_4_minutes.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, St < 5, pnumber(St, Ogg).
 time(Sec) -- [H, Ogg, 'minutes.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, pnumber(St, Ogg).
-time(Sec) -- [Ogg, 'minutes.ogg'] :- not(tts), Sec < 300, St is Sec/60, pnumber(St, Ogg).
+time(Sec) -- [Ogg, '3_4_minutes.ogg'] :- not(tts), Sec < 300, St is round(Sec/60.0), pnumber(St, Ogg).
+time(Sec) -- [Ogg, 'minutes.ogg'] :- not(tts), Sec < 1260, St is round(Sec/60.0), pnumber(St, Ogg).
 time(Sec) -- [H, Ogg, 'minutes.ogg'] :- not(tts), S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60, pnumber(St, Ogg).
-
 
 %%% distance measure
 distance(Dist, Y) -- D :- measure('km-m'), distance_km(Dist, Y) -- D.
