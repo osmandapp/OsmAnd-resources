@@ -238,19 +238,19 @@ mygroup parking transport_parking.png
 mycp amenity parking transport_parking.png
 mycp amenity parking_private transport_parking_private2.png
 mycp amenity parking_paid transport_parking_car_paid.png
-mycp amenity parking_multi_storey transport_parking_multi-storey.png
+mycpname parking_multi_storey transport_parking_multi-storey.png
 mycp amenity parking_multi_storey_paid transport_parking_multi-storey_paid.png
-mycp amenity parking_underground transport_parking_underground.png
+mycpname parking_underground transport_parking_underground.png
 mycp amenity parking_underground_paid transport_parking_underground_paid.png
-mycp amenity bicycle_parking transport_parking_bicycle.png
-mycp bicycle_parking bg transport_parking_bicycle_bg.png
-mycp bicycle_parking stands transport_parking_bicycle_stands.png
-mycp bicycle_parking wall_loops transport_parking_bicycle_wall_loops.png
-mycp bicycle_parking rack transport_parking_bicycle_rack.png
-mycp bicycle_parking anchors transport_parking_bicycle_anchors.png
-mycp bicycle_parking building transport_parking_bicycle_building.png
-mycp bicycle_parking bollard transport_parking_bicycle_bollard.png
-mycp bicycle_parking informal transport_parking_bicycle_informal.png
+mycpname bicycle_parking transport_parking_bicycle.png
+mycpname bicycle_parking_stands transport_bicycle_parking_stands.png
+mycpname bicycle_parking_wall_loops transport_bicycle_parking_wall_loops.png
+mycpname bicycle_parking_rack transport_bicycle_parking_rack.png
+mycpname bicycle_parking_anchors transport_bicycle_parking_anchors.png
+mycpname bicycle_parking_building transport_bicycle_parking_building.png
+mycpname bicycle_parking_shed transport_bicycle_parking_building.png
+mycpname bicycle_parking_bollard transport_bicycle_parking_bollard.png
+mycpname bicycle_parking_informal transport_bicycle_parking_informal.png
 mycp amenity motorcycle_parking transport_parking_motorcycle.png
 mycp amenity motorcycle_parking_paid transport_parking_motorcycle_paid.png
 
@@ -298,8 +298,10 @@ mycp railway tram_stop_round_big_night functional-icons_blue_stop_round_big_nigh
 mycp railway tram_stop_round_small functional-icons_blue_stop_round_small.png
 mycp railway tram_stop_round_small_night functional-icons_blue_stop_round_small_night.png
 mycp railway tram_stop transport_tram_stop.png
+mycpname subway_station transport_subway_station.png
 
 mycp railway subway_entrance functional-icons_subway_entrance.png
+mycpname subway_entrance transport_subway_entrance.png
 mycp railway subway_entrance_red functional-icons_subway_entrance_red.png
 mycp railway subway_entrance_brown functional-icons_subway_entrance_brown.png
 mycp railway subway_entrance_orange functional-icons_subway_entrance_orange.png
@@ -582,6 +584,7 @@ mycpname dry_cleaning amenity_dry_cleaning.png
 mycpname massage amenity_massage.png
 mycpname funeral_directors amenity_funeral_directors.png
 mycpname internet_access_wlan amenity_internet_access_wlan.png
+mycpname internet_access_wired amenity_internet_access_wired.png
 #! mycp amenity grave_yard place_of_worship_christian3.png  #already defined as icon in the shader section
 
 mygroup craft craft_tailor.png
@@ -642,6 +645,7 @@ mycp man_made chimney poi_chimney.png
 mycp man_made crane poi_crane.png
 mycp man_made mast poi_mast.png
 mycp man_made mineshaft poi_mine.png
+mycpname radar poi_monitoring_station_radar.png
 mycp man_made monitoring_station_radar poi_monitoring_station_radar.png
 mycpname astronomical_observatory poi_observatory_astronomical.png
 mycp man_made observatory poi_observatory.png
