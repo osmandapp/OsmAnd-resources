@@ -1465,7 +1465,9 @@
 			<case tag="public_transport" value=""/>
 			<case tag="highway" value="crossing"/>
 			<case tag="highway" value="steps"/>
-			<case tag="highway" value="ford"/>
+			<case tag="ford" value="yes"/>
+			<case tag="ford" value="stepping_stones"/>
+			<case tag="flood_prone" value=""/>
 			<case tag="traffic_calming" value=""/>
 			<switch>
 				<case tag="traffic_calming" value="bump"/>
@@ -1476,7 +1478,6 @@
 			<case tag="noexit" value="">
 				<apply_if moreDetailed="false" order="-1"/>
 			</case>
-			<case tag="flood_prone" value=""/>
 			<case tag="abandoned:aeroway" value=""/>
 			<case tag="aeroway" value=""/>
 			<case tag="aerialway" value="station"/>
@@ -1935,7 +1936,8 @@
 				<apply_if layer="1" order="75"/>
 			</case>
 
-			<case tag="highway" value="ford" order="80"/>
+			<case tag="ford" value="yes" order="80"/>
+			<case tag="ford" value="stepping_stones" order="80"/>
 			<case tag="highway" value="rest_area" order="80"/>
 
 			<case tag="highway" value="track" order="37">
@@ -2523,7 +2525,6 @@
 						</switch>
 						<switch textHaloRadius="$textHaloRadiusDay" textColor="$serviceTextColor" textHaloColor="$serviceTextHaloColor" textOrder="130">
 							<case tag="highway" value="rest_area"/>
-							<case tag="highway" value="ford"/>
 							<apply_if engine_v1="false" textDy="0"/>
 						</switch>
 <!--						<case tag="highway" value="construction" textColor="$serviceTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="#99bdff" textOrder="223"/>-->
@@ -2608,6 +2609,8 @@
 					<case minzoom="17" tag="highway" value="traffic_signals" textOrder="141">
 						<apply_if engine_v1="true" textDy="7"/>
 					</case>
+					<case tag="ford" value="yes" textDy="7"/>
+					<case tag="ford" value="stepping_stones" textDy="7"/>
 					<apply textSize="13" textColor="#222222" textHaloRadius="$textHaloRadiusDay" textHaloColor="#77ffffff" textWrapWidth="16" textMinDistance="10"/>
 					<apply_if nightMode="true" textColor="#dcdcdc" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77050547"/>
 				</switch>
@@ -3803,9 +3806,12 @@
 				<apply_if nightMode="true" shield=""/>
 			</case>
 			<case moreDetailed="true" minzoom="16" tag="noexit" value="yes" icon="highway_noexit" iconVisibleSize="12" intersectsWith=""/>
-			<case minzoom="14" tag="highway" value="ford" icon="highway_ford" shield="highway_ford_shield" iconVisibleSize="10">
+			<switch minzoom="14">
+				<case tag="ford" value="yes"/>
+				<case tag="ford" value="stepping_stones"/>
+				<apply icon="highway_ford" shield="highway_ford_shield"/>
 				<apply_if nightMode="true" shield=""/>
-			</case>
+			</switch>
 			<case minzoom="16" tag="highway" value="passing_place" icon="highway_passing_place"/>
 			<case moreDetailed="true" minzoom="16" tag="highway" value="crossing" icon="highway_crossing" shield="highway_crossing_shield" iconVisibleSize="18" intersectionSizeFactor="1.2">
 				<case additional="crossing=uncontrolled" icon="highway_crossing_uncontrolled"/>
@@ -3890,9 +3896,12 @@
 				<apply_if nightMode="true" shield=""/>
 			</case>
 			<case minzoom="16" tag="noexit" value="yes" icon="highway_noexit" iconVisibleSize="12" intersectsWith=""/>
-			<case minzoom="14" tag="highway" value="ford" icon="highway_ford" shield="highway_ford_shield" iconVisibleSize="10">
+			<switch minzoom="14">
+				<case tag="ford" value="yes"/>
+				<case tag="ford" value="stepping_stones"/>
+				<apply icon="highway_ford" shield="highway_ford_shield"/>
 				<apply_if nightMode="true" shield=""/>
-			</case>
+			</switch>
 			<case minzoom="16" tag="highway" value="steps" icon="highway_steps" shield="highway_steps_shield" iconVisibleSize="8"/>
 			<case minzoom="15" tag="railway" value="level_crossing" icon="railway_level_crossing">
 				<apply_if streetLighting="true">
@@ -3982,9 +3991,12 @@
 					</switch>
 				</switch>-->
 <!--				<case minzoom="16" maxzoom="16" tag="public_transport" value="platform" icon="highway_bus_stop_small" iconVisibleSize="4"/>-->
-				<case minzoom="14" tag="highway" value="ford" icon="highway_ford" shield="highway_ford_shield">
+				<switch minzoom="14">
+					<case tag="ford" value="yes"/>
+					<case tag="ford" value="stepping_stones"/>
+					<apply icon="highway_ford" shield="highway_ford_shield"/>
 					<apply_if nightMode="true" shield=""/>
-				</case>
+				</switch>
 				<switch subwayMode="false" iconVisibleSize="13">
 					<case minzoom="12" maxzoom="12" tag="railway" value="station" icon="halt_small"/>
 					<switch minzoom="13" maxzoom="14">
@@ -4230,9 +4242,12 @@
 			<case minzoom="17" icon="highway_noexit" iconVisibleSize="12"/>
 		</case>
 		<case minzoom="16" tag="junction" value="yes" icon=""/>
-		<case minzoom="14" tag="highway" value="ford" icon="highway_ford" shield="highway_ford_shield" iconVisibleSize="10">
+		<switch minzoom="14">
+			<case tag="ford" value="yes"/>
+			<case tag="ford" value="stepping_stones"/>
+			<apply icon="highway_ford" shield="highway_ford_shield"/>
 			<apply_if nightMode="true" shield=""/>
-		</case>
+		</switch>
 		<case minzoom="17" tag="highway" value="passing_place" icon="highway_passing_place"/>
 		<case minzoom="17" tag="highway" value="crossing" icon="highway_crossing" iconVisibleSize="14" shield="highway_crossing_shield">
 			<case additional="crossing=uncontrolled" icon="highway_crossing_uncontrolled"/>
@@ -6752,9 +6767,12 @@
 			<apply color="$cyclewayColor"/>
 		</switch>
 
-		<case minzoom="15" tag="highway" value="ford" color="#447777ff" strokeWidth="2.3:2.3">
+		<switch minzoom="15">
+			<case tag="ford" value="yes"/>
+			<case tag="ford" value="stepping_stones"/>
+			<apply color="#447777ff" strokeWidth="2.3:2.3"/>
 			<apply_if nightMode="true" color="#445555cc"/>
-		</case>
+		</switch>
 
 		<case minzoom="13" tag="highway" value="proposed">
 			<case maxzoom="14" strokeWidth="2:2" strokeWidth_2="1.5:1.5" pathEffect_2="8_14"/>
