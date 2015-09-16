@@ -21,6 +21,7 @@ if [ $# -eq 0 ]
     echo " Be sure that your console/terminal locale matches the character encoding"
     echo " of the source ttsconfig.p file of the language, e.g. UTF8."
     echo ""
+    exit 1
 fi
 
 CONFIG_FILE=$(readlink -m $1/config.p)
