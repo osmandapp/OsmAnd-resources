@@ -51,10 +51,10 @@ cd work
 [ ! -r ../gen_config.p ] && echo "gen_config.p file is missing!" && exit 1
 
 #default factor for speeding up or slowing down the generated speech
-# < 1 .. slower
-# = 1 .. no change
-# > 1 .. faster
-TEMPO_FACTOR=1
+# < 1.0 .. slower
+# = 1.0 .. no change
+# > 1.0 .. faster
+TEMPO_FACTOR="1.0"
 
 echo "Interpreting the ttsconfig.p prolog file..."
 if [ $ENGINE = "google" ]; then
@@ -106,7 +106,7 @@ done
 
 # change the tempo (speed without altering the pitch),
 # see http://sox.sourceforge.net/sox.html tempo
-if [ $TEMPO_FACTOR -ne "1" ]; then
+if [ $TEMPO_FACTOR != "1.0" ]; then
 	echo "Changing tempo by factor $TEMPO_FACTOR ..."
 	for Og in `ls *.ogg`; do
 		cp ${Og} TEMPslow_${Og}
