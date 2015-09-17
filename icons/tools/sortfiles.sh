@@ -180,7 +180,7 @@ mycp highway crossing_traffic_signals functional-icons_highway_crossing_traffic_
 mycp highway crossing transport_zebra_crossing2.png
 mycp highway crossing_uncontrolled functional-icons_highway_crossing_uncontrolled.png
 mycp highway crossing_unmarked functional-icons_highway_crossing_unmarked.png
-mycp highway ford transport_ford.png
+mycpname ford transport_ford.png
 mycp highway milestone functional-icons_milestone.png
 mycp highway mini_roundabout transport_miniroundabout_anticlockwise.png
 mycp highway noexit functional-icons_noexit.png
