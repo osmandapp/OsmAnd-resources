@@ -106,9 +106,11 @@ string('reached_poi.ogg', 'has llegado a tu P D I ').
 string('attention.ogg', 'atención, ').
 string('speed_camera.ogg', 'radar de velocidad ').
 string('border_control.ogg', 'control fronterizo ').
+string('railroad_crossing.ogg', 'paso a nivel ').
 string('traffic_calming.ogg', 'badén ').
 string('toll_booth.ogg', 'cabina de peaje ').
 string('stop.ogg', 'señal de ESTOP ').
+string('pedestrian_crosswalk.ogg', 'paso de peatones ').
 
 string('location_lost.ogg', 'señal g p s perdida').
 string('location_recovered.ogg', 'señal g p s encontrada ').
