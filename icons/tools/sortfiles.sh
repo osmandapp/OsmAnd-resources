@@ -678,7 +678,7 @@ mycp power tower_small functional-icons_power_tower_small.png
 mycp power tower_small2 functional-icons_power_tower_small2.png
 mycpname power_generator power_generator.png
 mycp railway buffer_stop poi_buffer_stop.png
-mycpname transformer power_transformer_small.png
+mycpname power_transformer power_transformer_small.png
 mycpname works poi_works.png
 mycpname military_bunker poi_military_bunker.png
 mycpname abandoned_poi poi_abandoned_poi.png
