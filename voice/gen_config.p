@@ -16,7 +16,7 @@ write_fsave([string(Ogg, X) |L]) :- cut(Ogg, Name), write('\n(fsave "'), write(X
 write_wget([],_).
 write_wget([string(Ogg, X) |L], FL) :- cut_mp3(Ogg, Name), 
 			write('wget -q -U Mozilla -O "'), write(Name),
-			write('" "http://translate.google.com/translate_tts?ie=UTF-8&tl='), write(FL), write('&q='), 
+			write('" "http://translate.google.com/translate_tts?ie=UTF-8&total=1&idx=0&client=t&tl='), write(FL), write('&q='), 
 			write(X),  write('"\n'), write_wget(L, FL).
 
 write_wget_govorec([],_).
