@@ -56,6 +56,10 @@ mycpname residential landuse_residential.png
 mycpname commercial landuse_commercial.png
 mycpname retail landuse_retail.png
 mycpname religious landuse_religious.png
+mycpname orchard landuse_orchard.png
+mycpname vineyard landuse_vineyard.png
+mycpname garden landuse_garden.png
+mycpname farmland landuse_farmland.png
 
 mycp stroke black functional-icons_black_stroke.png
 mycp stroke darkgreen functional-icons_darkgreen_stroke.png
@@ -97,6 +101,7 @@ mycpname stream water_stream.png
 mycpname river water_river.png
 mycpname water water_water.png
 mycpname canal water_canal.png
+mycpname crater poi_crater.png
 
 
 ## Location dots
@@ -429,6 +434,7 @@ mycp tourism attraction tourist_attraction.png
 mycp tourism information tourist_information.png
 mycp tourism museum tourist_museum.png
 mycp tourism picnic_site tourist_picnic.png
+mycpname picnic_table tourist_picnic_table.png
 mycp tourism theme_park tourist_theme_park.png
 mycp tourism viewpoint tourist_view_point.png
 mycp tourism zoo tourist_zoo.png
@@ -438,6 +444,10 @@ mycpname route_hiking_iwn_poi tourist_route_hiking_iwn_poi.png
 mycpname route_hiking_nwn_poi tourist_route_hiking_nwn_poi.png
 mycpname route_hiking_rwn_poi tourist_route_hiking_rwn_poi.png
 mycpname route_hiking_lwn_poi tourist_route_hiking_lwn_poi.png
+mycpname icn_ref tourist_icn_ref.png
+mycpname ncn_ref tourist_ncn_ref.png
+mycpname rcn_ref tourist_rcn_ref.png
+mycpname lcn_ref tourist_lcn_ref.png
 
 ## Entertainment
 mygroup entertainment tourist_cinema.png
