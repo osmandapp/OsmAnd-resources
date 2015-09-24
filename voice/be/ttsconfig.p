@@ -237,9 +237,11 @@ pnumberf(X, Ogg) :- num_atom(X, A), atom_concat(A, '.ogg', Ogg).
 hours(S, []) :- S < 60.
 hours(S, [Ogg, Hs]) :- H is S div 60, plural_hs(H, Hs), pnumberf(H, Ogg).
 time(Sec) -- ['less_a_minute.ogg'] :- Sec < 30.
+time(Sec) -- [H] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, St = 0.
 time(Sec) -- [H, Ogg, Mn] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, plural_mn(St, Mn), pnumberf(St, Ogg).
 time(Sec) -- [Ogg, Mn] :- not(tts), Sec < 300, St is Sec/60, plural_mn(St, Mn), pnumber(St, Ogg).
-time(Sec) -- [H, Ogg, Mn] :- not(tts), S is round(Sec/300.0)*5, hours(S, H), St is S mod 60, plural_mn(St, Mn), pnumberf(St, Ogg).
+time(Sec) -- [H, Ogg, Mn] :- not(tts), S is round(Sec/300.0)*5, St is S mod 60, St > 0, hours(S, H), plural_mn(St, Mn), pnumberf(St, Ogg).
+time(Sec) -- [H] :- not(tts), S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60.
 
 plural_hs(D, 'hour.ogg') :- 1 is D mod 10, R100 is D mod 100,(R100 > 20; R100 < 10).
 plural_hs(D, 'hours_y.ogg') :- Mod is D mod 10, Mod < 5,  Mod > 1, R100 is D mod 100,(R100 > 20; R100 < 10).
