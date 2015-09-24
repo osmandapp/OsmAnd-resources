@@ -42,7 +42,7 @@ string('right.ogg', 'odbočte vpravo ').
 string('right_sh.ogg', 'odbočte ostře vpravo ').
 string('right_sl.ogg', 'odbočte mírně vpravo ').
 string('left_keep.ogg', 'držte se vlevo ').
-string('right_keep.ogg', 'držte se vpravo').
+string('right_keep.ogg', 'držte se vpravo ').
 % if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 string('left_p.ogg', 'vlevo ').
@@ -75,7 +75,7 @@ string('4th.ogg', 'čtvrtý ').
 string('5th.ogg', 'pátý ').
 string('6th.ogg', 'šestý ').
 string('7th.ogg', 'sedmý ').
-string('8th.ogg', 'osmý').
+string('8th.ogg', 'osmý ').
 string('9th.ogg', 'devátý ').
 string('10th.ogg', 'desátý ').
 string('11th.ogg', 'jedenáctý ').
@@ -93,7 +93,7 @@ string('4th_inst.ogg', 'čtvrtým ').
 string('5th_inst.ogg', 'pátým ').
 string('6th_inst.ogg', 'šestým ').
 string('7th_inst.ogg', 'sedmým ').
-string('8th_inst.ogg', 'osmým').
+string('8th_inst.ogg', 'osmým ').
 string('9th_inst.ogg', 'devátým ').
 string('10th_inst.ogg', 'desátým ').
 string('11th_inst.ogg', 'jedenáctým ').
@@ -111,15 +111,23 @@ string('go_ahead_m.ogg', 'pokračujte ').
 % ARRIVE
 string('and_arrive_destination.ogg', 'a dorazíte do cíle ').
 string('reached_destination.ogg', 'dorazili jste do cíle ').
-string('and_arrive_intermediate.ogg', 'a dorazíte do mezicíle  ').
+string('and_arrive_intermediate.ogg', 'a dorazíte do mezicíle ').
 string('reached_intermediate.ogg', 'dorazili jste do mezicíle ').
 string('and_arrive_waypoint.ogg', 'a dorazíte do GPX mezicíle ').
 string('reached_waypoint.ogg', 'dorazili jste do GPX mezicíle ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'pozor, ').
+string('speed_camera.ogg', 'rychlostní radar ').
+string('border_control.ogg', 'hraniční kontrola ').
+string('railroad_crossing.ogg', 'železniční přejezd ').
+string('traffic_calming.ogg', 'retardér ').
+string('toll_booth.ogg', 'mýtná brána ').
+string('stop.ogg', 'značka stop ').
+string('pedestrian_crosswalk.ogg', 'přechod pro chodce ').
+
 string('location_lost.ogg', 'ztráta signálu ').
-string('location_recovered.ogg', 'signál zpět').
+string('location_recovered.ogg', 'signál zpět ').
 string('off_route.ogg', 'odchylujete se z trasy ').
 string('exceed_limit.ogg', 'překračujete povolenou rychlost ').
 
@@ -130,24 +138,27 @@ string('on.ogg', 'na ').
 string('meters_accusative.ogg', 'metrů ').
 string('around_1_kilometer_accusative.ogg', 'přibližně jeden kilometr ').
 string('around.ogg', 'přibližně ').
-string('kilometers_accusative.ogg', 'kilometry ').
+string('kilometers_accusative2.ogg', 'dva kilometry ').
+string('kilometers_accusative3_4.ogg', 'kilometry ').
+string('kilometers_accusative5.ogg', 'kilometrů ').
 
 string('meters_locative.ogg', 'metrech ').
 string('around_1_kilometer_locative.ogg', 'přibližně jednom kilometru ').
 string('kilometers_locative.ogg', 'kilometrech ').
+string('kilometers_locative2.ogg', 'dvou kilometrech ').
 
 string('farther_workaround.ogg', 'dál ').
 string('around_workaround.ogg', 'dál přibližně ').
 
-string('feet_accusative.ogg', 'feet ').
-string('1_tenth_of_a_mile_accusative.ogg', 'one tenth of a mile').
-string('tenths_of_a_mile_accusative.ogg', 'tenths of a mile').
-string('around_1_mile_accusative.ogg', 'about one mile ').
-string('miles_accusative.ogg', 'miles ').
+string('feet_accusative.ogg', 'stopy ').
+string('1_tenth_of_a_mile_accusative.ogg', 'desetinu míle ').
+string('tenths_of_a_mile_accusative.ogg', 'desetiny míle ').
+string('around_1_mile_accusative.ogg', 'přibližně jednu míli ').
+string('miles_accusative.ogg', 'míle ').
 
 string('feet_locative.ogg', 'stopách ').
-string('1_tenth_of_a_mile_locative.ogg', 'desetině míle').
-string('tenths_of_a_mile_locative.ogg', 'desetinách míle').
+string('1_tenth_of_a_mile_locative.ogg', 'desetině míle ').
+string('tenths_of_a_mile_locative.ogg', 'desetinách míle ').
 string('around_1_mile_locative.ogg', 'přibližně jedné míli ').
 string('miles_locative.ogg', 'mílích ').
 
@@ -158,9 +169,13 @@ string('yards_locative.ogg', 'yardech ').
 % TIME SUPPORT
 string('time.ogg', 'potřebná doba ').
 string('1_hour.ogg', 'jedna hodina ').
-string('hours.ogg', 'hodiny ').
+string('2_hours.ogg', 'dvě hodiny ').
+string('3_4_hours.ogg', 'hodiny ').
+string('hours.ogg', 'hodin ').
 string('less_a_minute.ogg', 'méně než jedna minuta ').
 string('1_minute.ogg', 'jedna minuta ').
+string('2_minutes.ogg', 'dvě minuty ').
+string('3_4_minutes.ogg', 'minuty ').
 string('minutes.ogg', 'minut ').
 
 
@@ -222,9 +237,20 @@ route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg
 location_lost -- ['location_lost.ogg'].
 location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist, accusative) -- D.
-attention(_Type) -- ['attention.ogg'].
+attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 speed_alarm -- ['exceed_limit.ogg'].
 
+% TRAFFIC WARNINGS
+warning('SPEED_CAMERA', 'speed_camera.ogg').
+warning('SPEED_LIMIT', '').
+warning('BORDER_CONTROL', 'border_control.ogg').
+warning('RAILWAY', 'railroad_crossing.ogg').
+warning('TRAFFIC_CALMING', 'traffic_calming.ogg').
+warning('TOLL_BOOTH', 'toll_booth.ogg').
+warning('STOP', 'stop.ogg').
+warning('PEDESTRIAN', 'pedestrian_crosswalk.ogg').
+warning('MAXIMUM', '').
+warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'RAILWAY'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'PEDESTRIAN'; Type = 'MAXIMUM').
 
 %% 
 nth(1, nominative, '1st.ogg').
@@ -289,13 +315,19 @@ pnumber(X, Ogg) :- num_atom(X, A), atom_concat(A, '.ogg', Ogg).
 % time measure
 hours(S, []) :- S < 60.
 hours(S, ['1_hour.ogg']) :- S < 120, H is S div 60, pnumber(H, Ogg).
+hours(S, ['2_hours.ogg']) :- S < 180, H is S div 60, pnumber(H, Ogg).
+hours(S, [Ogg, '3_4_hours.ogg']) :- S < 300, H is S div 60, pnumber(H, Ogg).
 hours(S, [Ogg, 'hours.ogg']) :- H is S div 60, pnumber(H, Ogg).
 time(Sec) -- ['less_a_minute.ogg'] :- Sec < 30.
-time(Sec) -- [H, '1_minute.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, St = 1, pnumber(St, Ogg).
+time(Sec) -- ['1_minute.ogg'] :- Sec < 90.
+time(Sec) -- ['2_minutes.ogg'] :- Sec < 150.
+time(Sec) -- [H, '1_minute.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, St = 1.
+time(Sec) -- [H, '2_minutes.ogg']  :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, St = 2.
+time(Sec) -- [H, Ogg, '3_4_minutes.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, St < 5, pnumber(St, Ogg).
 time(Sec) -- [H, Ogg, 'minutes.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, pnumber(St, Ogg).
-time(Sec) -- [Ogg, 'minutes.ogg'] :- not(tts), Sec < 300, St is Sec/60, pnumber(St, Ogg).
+time(Sec) -- [Ogg, '3_4_minutes.ogg'] :- not(tts), Sec < 300, St is round(Sec/60.0), pnumber(St, Ogg).
+time(Sec) -- [Ogg, 'minutes.ogg'] :- not(tts), Sec < 1260, St is round(Sec/60.0), pnumber(St, Ogg).
 time(Sec) -- [H, Ogg, 'minutes.ogg'] :- not(tts), S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60, pnumber(St, Ogg).
-
 
 %%% distance measure
 distance(Dist, Y) -- D :- measure('km-m'), distance_km(Dist, Y) -- D.
@@ -309,14 +341,19 @@ distance_km(Dist, locative) --   [ X, 'meters_locative.ogg']                    
 distance_km(Dist, workaround) -- ['farther_workaround.ogg', X, 'meters_accusative.ogg']                    :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
 distance_km(Dist, accusative) -- [ X, 'meters_accusative.ogg']                  :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
 distance_km(Dist, locative) --   [ X, 'meters_locative.ogg']                    :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
-distance_km(Dist, workaround) -- ['around_1_kilometer_accusative.ogg']            :- Dist < 1500.
+distance_km(Dist, workaround) -- ['around_1_kilometer_accusative.ogg']          :- Dist < 1500.
 distance_km(Dist, accusative) -- ['around_1_kilometer_accusative.ogg']          :- Dist < 1500.
 distance_km(Dist, locative) --   ['around_1_kilometer_locative.ogg']            :- Dist < 1500.
-distance_km(Dist, workaround) -- ['around_workaround.ogg', X, 'kilometers_accusative.ogg']   :- Dist < 10000, D is round(Dist/1000.0),            dist(D, X).
-distance_km(Dist, accusative) -- ['around.ogg', X, 'kilometers_accusative.ogg'] :- Dist < 10000, D is round(Dist/1000.0),            dist(D, X).
+distance_km(Dist, accusative) -- ['kilometers_accusative2.ogg']                 :- Dist < 2500.
+distance_km(Dist, locative)   -- ['kilometers_locative2.ogg']                   :- Dist < 2500.
+distance_km(Dist, workaround) -- ['around_workaround.ogg', X, 'kilometers_accusative3_4.ogg']   :- Dist < 4500, D is round(Dist/1000.0),            dist(D, X).
+distance_km(Dist, accusative) -- ['around.ogg', X, 'kilometers_accusative3_4.ogg'] :- Dist < 4500, D is round(Dist/1000.0),            dist(D, X).
+distance_km(Dist, locative) --   ['around.ogg', X, 'kilometers_locative.ogg']   :- Dist < 4500, D is round(Dist/1000.0),            dist(D, X).
+distance_km(Dist, workaround) -- ['around_workaround.ogg', X, 'kilometers_accusative5.ogg']   :- Dist < 10000, D is round(Dist/1000.0),            dist(D, X).
+distance_km(Dist, accusative) -- ['around.ogg', X, 'kilometers_accusative5.ogg'] :- Dist < 10000, D is round(Dist/1000.0),            dist(D, X).
 distance_km(Dist, locative) --   ['around.ogg', X, 'kilometers_locative.ogg']   :- Dist < 10000, D is round(Dist/1000.0),            dist(D, X).
-distance_km(Dist, workaround) -- ['farther_workaround.ogg', X, 'kilometers_accusative.ogg']                :-               D is round(Dist/1000.0),            dist(D, X).
-distance_km(Dist, accusative) -- [ X, 'kilometers_accusative.ogg']              :-               D is round(Dist/1000.0),            dist(D, X).
+distance_km(Dist, workaround) -- ['farther_workaround.ogg', X, 'kilometers_accusative5.ogg']                :-               D is round(Dist/1000.0),            dist(D, X).
+distance_km(Dist, accusative) -- [ X, 'kilometers_accusative5.ogg']              :-               D is round(Dist/1000.0),            dist(D, X).
 distance_km(Dist, locative) --   [ X, 'kilometers_locative.ogg']                :-               D is round(Dist/1000.0),            dist(D, X).
 
 %%% distance measure mi/f
