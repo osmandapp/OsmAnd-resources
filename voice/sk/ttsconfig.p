@@ -292,9 +292,11 @@ time(Sec) -- ['less_a_minute.ogg']      :- Sec < 30.
 time(Sec) -- ['minutes1.ogg']           :- tts, Sec < 120, S is round(Sec/60.0), hours(S, H), St is S mod 60, pnumber(St, Ogg).
 time(Sec) -- ['minutes2.ogg']           :- tts, Sec < 180, S is round(Sec/60.0), hours(S, H), St is S mod 60, pnumber(St, Ogg).
 time(Sec) -- [H, Ogg, 'minutes3_4.ogg'] :- tts, Sec < 300, S is round(Sec/60.0), hours(S, H), St is S mod 60, pnumber(St, Ogg).
+time(Sec) -- [H]                        :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, St = 0.
 time(Sec) -- [H, Ogg, 'minutes5.ogg']   :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, pnumber(St, Ogg).
 time(Sec) -- [Ogg, 'minutes5.ogg']      :- not(tts), Sec < 300, St is Sec/60, pnumber(St, Ogg).
-time(Sec) -- [H, Ogg, 'minutes5.ogg']   :- not(tts), S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60, pnumber(St, Ogg).
+time(Sec) -- [H, Ogg, 'minutes5.ogg']   :- not(tts), S is round(Sec/300.0) * 5, St is S mod 60, St > 0, hours(S, H), pnumber(St, Ogg).
+time(Sec) -- [H]                        :- not(tts), S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60.
 
 %%% distance measure
 distance(Dist) -- D :- measure('km-m'), distance_km(Dist) -- D.
