@@ -345,6 +345,11 @@ mycp railway subway_station_small_black functional-icons_subway_station_small_bl
 mycp railway subway_station_small_black2 functional-icons_subway_station_small_black2.png
 mycp railway subway_station_small_white functional-icons_subway_station_small_white.png
 
+mycpname subway_moscow functional-icons_subway_moscow.png
+mycpname subway_moscow_small functional-icons_subway_moscow_small.png
+mycpname subway_samara functional-icons_subway_samara.png
+mycpname subway_samara_small functional-icons_subway_samara_small.png
+
 mycp aerialway station_small functional-icons_halt.png  #scale 0.25
 mycp aerialway station transport_aerialway_station.png  #scale 0.375
 mycpname aerialway_cable_car transport_aerialway_cable_car.png
