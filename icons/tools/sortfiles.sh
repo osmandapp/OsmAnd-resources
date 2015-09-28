@@ -349,6 +349,9 @@ mycpname subway_moscow functional-icons_subway_moscow.png
 mycpname subway_moscow_small functional-icons_subway_moscow_small.png
 mycpname subway_samara functional-icons_subway_samara.png
 mycpname subway_samara_small functional-icons_subway_samara_small.png
+mycpname subway_budapest functional-icons_subway_budapest.png
+mycpname subway_budapest_small functional-icons_subway_budapest_small.png
+mycpname subway_spb functional-icons_subway_spb.png
 
 mycp aerialway station_small functional-icons_halt.png  #scale 0.25
 mycp aerialway station transport_aerialway_station.png  #scale 0.375
