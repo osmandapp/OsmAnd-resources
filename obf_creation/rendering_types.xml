@@ -152,8 +152,6 @@
 	<entity_convert pattern="tag_transform" from_tag="seasonal" from_value="fall" to_tag1="seasonal" to_value1="autumn" map="no"/>
 	<entity_convert pattern="tag_transform" from_tag="seasonal" from_value="year_round" to_tag1="seasonal" to_value1="no" map="no"/>
 
-	<entity_convert pattern="tag_transform" from_tag="toilets:wheelchair" from_value="yes" to_tag1="wheelchair" to_value1="yes" map="no"/>
-
 	<entity_convert pattern="tag_transform" from_tag="content" from_value="muck" to_tag1="content" to_value1="manure" map="no"/>
 	<entity_convert pattern="tag_transform" from_tag="storage" from_value="oil" to_tag1="content" to_value1="oil" map="no"/>
 	<entity_convert pattern="tag_transform" from_tag="storage" from_value="water" to_tag1="content" to_value1="water" map="no"/>
@@ -1800,6 +1798,7 @@
 		<entity_convert pattern="tag_transform" from_tag="shop" from_value="candle" to_tag1="shop" to_value1="candles"/>
 		<type tag="shop" value="car" minzoom="15" />
 		<type tag="shop" value="car_parts" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="parts" to_tag1="service:parts" to_value1="yes" map="no"/>
 		<type tag="shop" value="carpet" minzoom="15" />
 		<type tag="shop" value="car_repair" minzoom="15"/>
 		<type tag="shop" value="cheese" minzoom="15" />
@@ -2357,6 +2356,11 @@
 		<type tag="amenity" value="biergarten" minzoom="15" />
 		<type tag="amenity" value="drinking_water" minzoom="15" />
 		<type tag="amenity" value="bbq" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="diet:vegetarian" from_value="limited" to_tag1="diet:vegetarian" to_value1="few" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="diet" from_value="vegetarian" to_tag1="diet:vegetarian" to_value1="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="diet" from_value="vegetarian, vegan" to_tag1="diet:vegetarian" to_value1="yes" to_tag2="diet:vegan" to_value2="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="diet" from_value="halal" to_tag1="diet:halal" to_value1="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="diet" from_value="vegan" to_tag1="diet:vegan" to_value1="yes" map="no"/>
 	</category>
 
 	<category name="education" order="40">
@@ -2386,6 +2390,31 @@
 		<type tag="amenity" value="grit_bin" minzoom="15"/>
 		<type tag="amenity" value="compressed_air" minzoom="15" />
 		<type tag="service" value="tyres" additional="true" minzoom="15" />
+		<!-- TODO: implement better way of doing this -->
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="tyres" to_tag1="service:tyres" to_value1="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="dealer" to_tag1="service:dealer" to_value1="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="repair" to_tag1="service:repair" to_value1="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="repair" from_value="yes" to_tag1="service:repair" to_value1="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="repair" from_value="no" to_tag1="service:repair" to_value1="no" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="dealer;repair" to_tag1="service:repair" to_value1="yes" to_tag2="service:dealer" to_value2="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="tyres;repair" to_tag1="service:repair" to_value1="yes" to_tag2="service:tyres" to_value2="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="dealer; repair" to_tag1="service:repair" to_value1="yes" to_tag2="service:dealer" to_value2="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="dealer;repair;parts" to_tag1="service:repair" to_value1="yes" to_tag2="service:dealer" to_value2="yes" to_tag3="service:parts" to_value3="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="dealer;repair;tyres" to_tag1="service:repair" to_value1="yes" to_tag2="service:dealer" to_value2="yes" to_tag3="service:tyres" to_value3="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="dealer;parts;repair" to_tag1="service:repair" to_value1="yes" to_tag2="service:dealer" to_value2="yes" to_tag3="service:parts" to_value3="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="dealer; repair; parts" to_tag1="service:repair" to_value1="yes" to_tag2="service:dealer" to_value2="yes" to_tag3="service:parts" to_value3="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="dealer;tyres;repair" to_tag1="service:repair" to_value1="yes" to_tag2="service:dealer" to_value2="yes" to_tag3="service:tyres" to_value3="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="repair;tyres;parts" to_tag1="service:repair" to_value1="yes" to_tag2="service:parts" to_value2="yes" to_tag3="service:tyres" to_value3="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="dealer;repair;tyres;parts" to_tag1="service:repair" to_value1="yes" to_tag2="service:dealer" to_value2="yes" to_tag3="service:tyres" to_value3="yes" to_tag4="service:parts" to_value4="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="dealer;repair;parts;tyres" to_tag1="service:repair" to_value1="yes" to_tag2="service:dealer" to_value2="yes" to_tag3="service:tyres" to_value3="yes" to_tag4="service:parts" to_value4="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="dealer;tyres;repair;parts" to_tag1="service:repair" to_value1="yes" to_tag2="service:dealer" to_value2="yes" to_tag3="service:tyres" to_value3="yes" to_tag4="service:parts" to_value4="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="repair;tyres" to_tag1="service:repair" to_value1="yes" to_tag2="service:tyres" to_value2="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="repair;parts" to_tag1="service:repair" to_value1="yes" to_tag2="service:parts" to_value2="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="parts;repair" to_tag1="service:repair" to_value1="yes" to_tag2="service:parts" to_value2="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="repair;dealer" to_tag1="service:repair" to_value1="yes" to_tag2="service:dealer" to_value2="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="dealer;repair;parts;tyres;electrical" to_tag1="service:repair" to_value1="yes" to_tag2="service:dealer" to_value2="yes" to_tag3="service:tyres" to_value3="yes" to_tag4="service:parts" to_value4="yes" to_tag5="service:electrical" to_value5="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="dealer;tyres;parts;repair" to_tag1="service:repair" to_value1="yes" to_tag2="service:dealer" to_value2="yes" to_tag3="service:tyres" to_value3="yes" to_tag4="service:parts" to_value4="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="dealer;parts" to_tag1="service:parts" to_value1="yes" to_tag2="service:dealer" to_value2="yes" map="no"/>
 <!--		<type tag="iwn_ref" value="" minzoom="14" nameTags="iwn_ref" poi_prefix="walking_node_"/>
 		<type tag="nwn_ref" value="" minzoom="14" nameTags="nwn_ref" poi_prefix="walking_node_"/>
 		<type tag="rwn_ref" value="" minzoom="14" nameTags="rwn_ref" poi_prefix="walking_node_"/>
@@ -2479,6 +2508,8 @@
 		<type tag="amenity" value="waste_disposal" minzoom="15" />
 		<type tag="amenity" value="shower" minzoom="15" />
 		<type tag="amenity" value="toilets" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="toilets:changing_table" from_value="yes" to_tag1="diaper" to_value1="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="toilets:changing_table" from_value="no" to_tag1="diaper" to_value1="no" map="no"/>
 		<type tag="amenity" value="smoking_area" minzoom="15" />
 		<type tag="amenity" value="car_rental" minzoom="15" />
 		<type tag="amenity" value="car_sharing" minzoom="15" />
