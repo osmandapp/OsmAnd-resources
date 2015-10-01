@@ -40,7 +40,7 @@ mkdir -p work
 echo "%%% !!! THIS IS GENERATED FILE !!! Modify ttsconfig.p" > $CONFIG_FILE
 
 [ ! -r $1/ttsconfig.p ] && echo "ttsconfig.p file is missing in language folder!" && exit 1
-sed "s/version(102)/version(0)/g" $1/ttsconfig.p >> $CONFIG_FILE
+sed "s/version(103)/version(0)/g" $1/ttsconfig.p >> $CONFIG_FILE
 
 cp $CONFIG_FILE work/_config.p
 sed "s/\"/'/g" $CONFIG_FILE > work/g_config.p
@@ -88,7 +88,7 @@ fi
 
 echo "Converting mp3 to wav..."
 for t in `ls *.mp3`; do
-	W=${t::-4}
+	W=${t%????}
 	mpg123 -w ${W}.wav $t
 done
 
@@ -98,7 +98,7 @@ done
 echo "Reducing the silence..."
 # see http://sox.sourceforge.net/sox.html silence
 for t in `ls *.wav *.ogg`; do
-	Og=${t::-4}
+	Og=${t%????}
 	sox $t TEMPreverse_${Og}.ogg reverse
 	sox TEMPreverse_${Og}.ogg ${Og}.ogg silence 1 0.1 0.01% reverse
 	rm TEMPreverse_${Og}.ogg
