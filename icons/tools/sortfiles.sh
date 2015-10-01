@@ -345,32 +345,34 @@ mycp railway subway_station_small_black functional-icons_subway_station_small_bl
 mycp railway subway_station_small_black2 functional-icons_subway_station_small_black2.png
 mycp railway subway_station_small_white functional-icons_subway_station_small_white.png
 
-mycpname subway_moscow functional-icons_subway_moscow.png
-mycpname subway_moscow_small functional-icons_subway_moscow_small.png
-mycpname subway_samara functional-icons_subway_samara.png
-mycpname subway_samara_small functional-icons_subway_samara_small.png
-mycpname subway_budapest functional-icons_subway_budapest.png
-mycpname subway_budapest_small functional-icons_subway_budapest_small.png
-mycpname subway_spb functional-icons_subway_spb.png
-mycpname subway_kazan functional-icons_subway_kazan.png
-mycpname subway_baku functional-icons_subway_baku.png
-mycpname subway_tbilisi functional-icons_subway_tbilisi.png
-mycpname subway_yerevan functional-icons_subway_yerevan.png
-mycpname subway_minsk functional-icons_subway_minsk.png
-mycpname subway_nnovgorod functional-icons_subway_nnovgorod.png
-mycpname subway_novosibirsk functional-icons_subway_novosibirsk.png
-mycpname subway_yekaterinburg functional-icons_subway_yekaterinburg.png
-mycpname subway_germany functional-icons_subway_germany.png
-mycpname subway_wien functional-icons_subway_wien.png
-mycpname subway_madrid functional-icons_subway_madrid.png
-mycpname subway_paris functional-icons_subway_paris.png
-mycpname subway_london functional-icons_subway_london.png
-mycpname subway_barcelona functional-icons_subway_barcelona.png
-mycpname subway_stockholm functional-icons_subway_stockholm.png
-mycpname subway_chicago functional-icons_subway_chicago.png
-mycpname subway_newyork functional-icons_subway_newyork.png
-mycpname subway_tokyo functional-icons_subway_tokyo.png
-mycpname subway_osaka functional-icons_subway_osaka.png
+mycpname subway_moscow subway_subway_moscow.png
+mycpname subway_samara subway_subway_samara.png
+mycpname subway_budapest subway_subway_budapest.png
+mycpname subway_spb subway_subway_spb.png
+mycpname subway_kazan subway_subway_kazan.png
+mycpname subway_baku subway_subway_baku.png
+mycpname subway_tbilisi subway_subway_tbilisi.png
+mycpname subway_yerevan subway_subway_yerevan.png
+mycpname subway_minsk subway_subway_minsk.png
+mycpname subway_nnovgorod subway_subway_nnovgorod.png
+mycpname subway_novosibirsk subway_subway_novosibirsk.png
+mycpname subway_yekaterinburg subway_subway_yekaterinburg.png
+mycpname subway_germany subway_subway_germany.png
+mycpname subway_wien subway_subway_wien.png
+mycpname subway_madrid subway_subway_madrid.png
+mycpname subway_paris subway_subway_paris.png
+mycpname subway_london subway_subway_london.png
+mycpname subway_barcelona subway_subway_barcelona.png
+mycpname subway_stockholm subway_subway_stockholm.png
+mycpname subway_praha subway_subway_praha.png
+mycpname subway_chicago subway_subway_chicago.png
+mycpname subway_newyork subway_subway_newyork.png
+mycpname subway_tokyo subway_subway_tokyo.png
+mycpname subway_osaka subway_subway_osaka.png
+mycpname subway_singapore subway_subway_singapore.png
+mycpname subway_kolkata subway_subway_kolkata.png
+mycpname subway_delhi subway_subway_delhi.png
+mycpname subway_cairo subway_subway_cairo.png
 
 mycp aerialway station_small functional-icons_halt.png  #scale 0.25
 mycp aerialway station transport_aerialway_station.png  #scale 0.375

@@ -124,6 +124,8 @@ generatePngs() {
        generatePngs 'skimap' '#000000' '#ff8f00' '' x2
 
        generatePngs 'functional-icons' '#777777' '#ff8f00'
+       generatePngs 'subway' '#777777' '#ff8f00' '' x2 '' nomx
+
        generatePngs 'water' '#0092DA' '#ff8f00'
 
        generatePngs 'emergency' '#DA0092' '#ff8f00'
