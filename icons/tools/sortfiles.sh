@@ -366,7 +366,11 @@ mycpname subway_madrid functional-icons_subway_madrid.png
 mycpname subway_paris functional-icons_subway_paris.png
 mycpname subway_london functional-icons_subway_london.png
 mycpname subway_barcelona functional-icons_subway_barcelona.png
+mycpname subway_stockholm functional-icons_subway_stockholm.png
+mycpname subway_chicago functional-icons_subway_chicago.png
 mycpname subway_newyork functional-icons_subway_newyork.png
+mycpname subway_tokyo functional-icons_subway_tokyo.png
+mycpname subway_osaka functional-icons_subway_osaka.png
 
 mycp aerialway station_small functional-icons_halt.png  #scale 0.25
 mycp aerialway station transport_aerialway_station.png  #scale 0.375
