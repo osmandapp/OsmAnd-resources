@@ -40,7 +40,7 @@ mkdir -p work
 echo "%%% !!! THIS IS GENERATED FILE !!! Modify ttsconfig.p" > $CONFIG_FILE
 
 [ ! -r $1/ttsconfig.p ] && echo "ttsconfig.p file is missing in language folder!" && exit 1
-sed "s/version(103)/version(0)/g" $1/ttsconfig.p >> $CONFIG_FILE
+sed "s/version(10[2-3])/version(0)/g" $1/ttsconfig.p >> $CONFIG_FILE
 
 cp $CONFIG_FILE work/_config.p
 sed "s/\"/'/g" $CONFIG_FILE > work/g_config.p
