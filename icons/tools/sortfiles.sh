@@ -493,6 +493,10 @@ mycpname icn_ref tourist_icn_ref.png
 mycpname ncn_ref tourist_ncn_ref.png
 mycpname rcn_ref tourist_rcn_ref.png
 mycpname lcn_ref tourist_lcn_ref.png
+mycpname iwn_ref tourist_iwn_ref.png
+mycpname nwn_ref tourist_nwn_ref.png
+mycpname rwn_ref tourist_rwn_ref.png
+mycpname lwn_ref tourist_lwn_ref.png
 
 ## Entertainment
 mygroup entertainment tourist_cinema.png
