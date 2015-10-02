@@ -29,18 +29,23 @@ cp ../png/hdpi/h_* ../../rendering_styles/style-icons/drawable-hdpi/
 cp ../png/xhdpi/h_* ../../rendering_styles/style-icons/drawable-xhdpi/
 cp ../png/xxhdpi/h_* ../../rendering_styles/style-icons/drawable-xxhdpi/
 
+cp ../no-svg/drawable-mdpi/* ../../rendering_styles/style-icons/drawable-mdpi/
+cp ../no-svg/drawable-hdpi/* ../../rendering_styles/style-icons/drawable-hdpi/
+cp ../no-svg/drawable-xhdpi/* ../../rendering_styles/style-icons/drawable-xhdpi/
+cp ../no-svg/drawable-xxhdpi/* ../../rendering_styles/style-icons/drawable-xxhdpi/
+
 mygroup landuse landuse_coniferous.png
-mycp landuse grass landuse_grass.png
+mycpname grass landuse_grass.png
 mycpname forest landuse_forest.png               # Keep shaders with background color, cannot be replaced by icons!
 mycpname wood landuse_forest.png
-mycp natural beach tourist_beach2.png                     # Keep shaders with background color, cannot be replaced by icons!
+mycpname beach tourist_beach2.png                     # Keep shaders with background color, cannot be replaced by icons!
 #mycp natural scrub landuse_scrub.png                     # Keep shaders with background color, cannot be replaced by icons!
 #mycp natural swamp landuse_swamp.png                     # Keep shaders with background color, cannot be replaced by icons!
-mycp tourism zoo tourist_zoo.png                         # Keep shaders with background color, cannot be replaced by icons!
-mycp military danger_area poi_danger_area.png
-mycp military nuclear_explosion_site poi_nuclear_explosion_site.png
-mycp natural glacier poi_peak2.png                       # Keep shaders with background color, cannot be replaced by icons!
-mycp landuse landfill landuse_landfill.png
+mycpname zoo tourist_zoo.png                         # Keep shaders with background color, cannot be replaced by icons!
+mycpname military_danger_area poi_danger_area.png
+mycpname military_nuclear_explosion_site poi_nuclear_explosion_site.png
+mycpname glacier poi_peak2.png                       # Keep shaders with background color, cannot be replaced by icons!
+mycpname landfill landuse_landfill.png
 mycpname wetland landuse_wetland.png
 mycpname cemetery landuse_cemetery.png
 mycpname grave_yard landuse_cemetery.png
@@ -88,11 +93,13 @@ mycp natural tree functional-icons_tree.png  #scale 0.25
 mycp natural tree_leafless functional-icons_tree_leafless.png
 mycp natural tree_needleleaved functional-icons_tree_needleleaved.png
 mycp natural tree_palm functional-icons_tree_palm.png
+mycpname tree_dot functional-icons_tree.png
 mycpname tree poi_tree.png
 mycp natural volcano_active_big functional-icons_volcano_active_big.png
 mycp natural volcano_active functional-icons_volcano_active.png
 mycp natural volcano_big functional-icons_volcano_big.png
-mycp natural volcano functional-icons_volcano.png  #Is poi_peak.png with color #D40000  #scale 0.5
+mycp natural volcano_map functional-icons_volcano.png  #Is poi_peak.png with color #D40000  #scale 0.5
+mycpname volcano poi_volcano_active.png
 mycp waterway rapids barrier_rapids.png  #scale 0.375
 mycpname waterfall water_waterfall.png  #scale 0.375
 mycpname dam water_dam.png
@@ -189,6 +196,7 @@ mycpname ford transport_ford.png
 mycp highway milestone functional-icons_milestone.png
 mycp highway mini_roundabout transport_miniroundabout_anticlockwise.png
 mycp highway noexit functional-icons_noexit.png
+mycpname deadlock poi_noexit.png
 mycp highway passing_place functional-icons_passing_place.png
 mycp highway speed_camera transport_speedcamera.png
 mycp highway steps transport_highway_steps.png
@@ -291,7 +299,8 @@ mycp waterway dock transport_dock.png
 
 mycpname halt_small functional-icons_halt.png  #scale 0.25
 mycpname halt transport_halt.png  #scale 0.25
-mycp railway level_crossing functional-icons_level_crossing.png  #scale 0.5
+mycpname level_crossing_map functional-icons_level_crossing.png  #scale 0.5
+mycpname level_crossing poi_level_crossing.png  #scale 0.5
 mycp railway platform transport_train_station2.png
 mycp railway station_disused functional-icons_train_station_disused.png
 mycp railway station_small_disused functional-icons_station_small_disused.png
@@ -307,6 +316,7 @@ mycpname subway_station transport_subway_station.png
 
 mycp railway subway_entrance functional-icons_subway_entrance.png
 mycpname subway_entrance transport_subway_entrance.png
+mycpname subway_entrance_map functional-icons_subway_entrance.png
 mycp railway subway_entrance_red functional-icons_subway_entrance_red.png
 mycp railway subway_entrance_brown functional-icons_subway_entrance_brown.png
 mycp railway subway_entrance_orange functional-icons_subway_entrance_orange.png
@@ -418,8 +428,10 @@ mycp barrier swing_gate barrier_swing_gate.png
 mycpname toll_booth barrier_toll_booth.png
 mycp barrier turnstile barrier_turnstile.png
 mycp entrance yes barrier_entrance2.png
-mycp entrance exit functional-icons_entrance_exit.png
-mycp entrance main functional-icons_entrance3.png
+mycpname entrance_exit_map functional-icons_entrance_exit.png
+mycpname entrance_main_map functional-icons_entrance3.png
+mycpname entrance_exit poi_entrance_exit.png
+mycpname entrance_main barrier_entrance2.png
 mycp amenity parking_entrance transport_parking_entrance.png
 mycp building entrance barrier_entrance.png
 
@@ -666,10 +678,10 @@ mycpname driving_school education_driving_school.png
 
 
 ## Man made
-mygroup man_made power_station_wind2.png
-mygroup transport_construction transport_bridge.png
+mygroup man_made power_generator_wind2.png
+mygroup transport_construction poi_bridge.png
 mygroup water_supply poi_water_tower.png
-mygroup power power_station.png
+mygroup power power_generator.png
 mygroup communication amenity_telephone.png
 mygroup trash_disposal amenity_waste_disposal.png
 mycpname bridge poi_bridge.png
@@ -677,7 +689,6 @@ mycpname tunnel poi_tunnel.png
 mycp amenity hunting_stand poi_hunting_stand.png
 mycp highway street_lamp functional-icons_street_lamp.png
 mycp highway street_lamp_lit functional-icons_street_lamp_lit.png
-mycp landuse abandoned functional-icons_abandoned.png
 mycp man_made adit poi_adit.png
 mycp man_made antenna poi_antenna.png
 mycp man_made chimney poi_chimney.png
@@ -711,8 +722,8 @@ mycpname generator_source_wind power_generator_wind.png
 mycpname power_generator power_generator.png
 mycpname power_plant power_plant.png
 mycp power substation power_transformer2.png
-mycp power tower_big functional-icons_power_tower_big.png
-mycp power tower functional-icons_power_tower.png
+mycp power tower poi_power_tower.png
+mycp power tower_square functional-icons_power_tower.png
 mycp power tower_small functional-icons_power_tower_small.png
 mycp power tower_small2 functional-icons_power_tower_small2.png
 mycpname power_generator power_generator.png
