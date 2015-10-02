@@ -382,6 +382,7 @@ mycpname subway_osaka subway_subway_osaka.png
 mycpname subway_singapore subway_subway_singapore.png
 mycpname subway_kolkata subway_subway_kolkata.png
 mycpname subway_delhi subway_subway_delhi.png
+mycpname subway_tehran subway_subway_tehran.png
 mycpname subway_cairo subway_subway_cairo.png
 
 mycp aerialway station_small functional-icons_halt.png  #scale 0.25
