@@ -375,10 +375,13 @@ mycpname subway_london subway_subway_london.png
 mycpname subway_barcelona subway_subway_barcelona.png
 mycpname subway_stockholm subway_subway_stockholm.png
 mycpname subway_praha subway_subway_praha.png
+mycpname subway_athens subway_subway_athens.png
+mycpname subway_italy subway_subway_italy.png
 mycpname subway_chicago subway_subway_chicago.png
 mycpname subway_newyork subway_subway_newyork.png
 mycpname subway_tokyo subway_subway_tokyo.png
 mycpname subway_osaka subway_subway_osaka.png
+mycpname subway_nagoya subway_subway_nagoya.png
 mycpname subway_singapore subway_subway_singapore.png
 mycpname subway_kolkata subway_subway_kolkata.png
 mycpname subway_delhi subway_subway_delhi.png
