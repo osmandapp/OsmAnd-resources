@@ -331,6 +331,7 @@ mycp railway subway_entrance_gray functional-icons_subway_entrance_gray.png
 mycp railway subway_entrance_black functional-icons_subway_entrance_black.png
 
 mycp railway subway_station_small_default functional-icons_subway_station_small_default.png
+mycp railway subway_station_small_default2 functional-icons_subway_station_small_default2.png
 mycp railway subway_station_small_red functional-icons_subway_station_small_red.png
 mycp railway subway_station_small_brown functional-icons_subway_station_small_brown.png
 mycp railway subway_station_small_orange functional-icons_subway_station_small_orange.png
@@ -395,6 +396,8 @@ mycpname subway_almaty subway_subway_almaty.png
 mycpname subway_manila subway_subway_manila.png
 mycpname subway_toronto subway_subway_toronto.png
 mycpname subway_montreal subway_subway_montreal.png
+mycpname subway_kyiv subway_subway_kyiv.png
+mycpname subway_kharkiv subway_subway_kharkiv.png
 
 mycp aerialway station_small functional-icons_halt.png  #scale 0.25
 mycp aerialway station transport_aerialway_station.png  #scale 0.375
