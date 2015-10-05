@@ -109,6 +109,8 @@ mycpname river water_river.png
 mycpname water water_water.png
 mycpname canal water_canal.png
 mycpname crater poi_crater.png
+mycpname cape poi_cape.png
+mycpname bay poi_bay.png
 
 
 ## Location dots
@@ -752,6 +754,7 @@ mycpname works poi_works.png
 mycpname military_bunker poi_military_bunker.png
 mycpname abandoned_poi poi_abandoned_poi.png
 mycpname surveillance poi_surveillance.png
+mycpname pier poi_pier.png
 
 mygroup military poi_military_bunker.png
 
