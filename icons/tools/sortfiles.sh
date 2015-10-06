@@ -421,6 +421,7 @@ mycp aeroway aerodrome transport_aerodrome.png
 mycp aeroway airport transport_airport.png
 mycp aeroway gate transport_airport_gate.png
 mycp aeroway helipad transport_helicopter_pad.png
+mycpname aeroway_terminal transport_airport_terminal.png
 
 
 ## Barrier
