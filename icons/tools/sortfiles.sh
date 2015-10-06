@@ -111,6 +111,7 @@ mycpname canal water_canal.png
 mycpname crater poi_crater.png
 mycpname cape poi_cape.png
 mycpname bay poi_bay.png
+mycpname reef poi_reef.png
 
 
 ## Location dots
@@ -206,6 +207,7 @@ mycp highway traffic_signals_map functional-icons_traffic_lights.png
 mycp highway traffic_signals transport_traffic_lights.png
 mycpname motorway_junction transport_motorway_junction.png
 mycpname junction transport_junction.png
+mycpname rest_area transport_rest_area.png
 mycp traffic_calming bump transport_speedbump.png
 mycp oneway blue functional-icons_oneway_blue.png
 mycp oneway reverse_blue functional-icons_oneway_reverse_blue.png
@@ -517,7 +519,7 @@ mygroup entertainment tourist_cinema.png
 mygroup club tourist_night_club.png
 mycp amenity arts_centre tourist_art_gallery.png
 mycp amenity casino tourist_casino.png
-mycp amenity cinema tourist_cinema.png
+mycp amenity cinema tourist_cinema.pngf
 mycp amenity nightclub tourist_night_club.png
 mycp amenity stripclub tourist_night_club.png
 mycp amenity theatre tourist_theatre.png
@@ -598,6 +600,7 @@ mycp sport volleyball sport_volleyball.png
 mycpname pitch sport_pitch.png
 mycpname swimming_pool sport_swimming_outdoor.png
 mycpname leisure_track sport_leisure_track.png
+mycpname ice_skating sport_iceskating.png
 
 
 ## Leisure
