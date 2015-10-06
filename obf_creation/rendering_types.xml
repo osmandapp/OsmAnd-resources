@@ -419,6 +419,11 @@
 <!--	<entity_convert pattern="tag_transform" from_tag="shelter" from_value="yes" to_tag1="shelter" to_value1="yes" to_tag2="shelter_tmp" to_value2="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="shelter_tmp" from_value="yes" to_tag1="amenity" to_value1="shelter" map="no"/>-->
 	<type tag="shelter" value="no" minzoom="15" additional="true"/>
+	<entity_convert pattern="tag_transform" from_tag="shelter" from_value="yes" to_tag1="covered" to_value1="yes" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="shelter" from_value="no" to_tag1="covered" to_value1="no" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="shelter_type" from_value="hut" to_tag1="shelter_type" to_value1="basic_hut" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="shelter" from_value="public_transport" to_tag1="shelter" to_value1="yes" to_tag2="shelter_type" to_value2="public_transport" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="shelter" from_value="abandoned" to_tag1="shelter" to_value1="yes" to_tag2="shelter_type" to_value2="abandoned" map="no"/>
 
 	<category name="highway">
 		<type tag="highway" value="motorway" minzoom="6" nameTags="ref,int_ref"/>
@@ -2915,6 +2920,12 @@
 		<type tag="internet_access" value="wired" minzoom="15" />
 		<type tag="internet_access" value="public" minzoom="15" />
 		<type tag="internet_access" value="service" minzoom="15" />
+		<!-- POI: convert internet_access to internet_access:type (additional in poi_types) if used with "main" tag -->
+		<entity_convert pattern="tag_transform" from_tag="internet_access" if_tag1="tourism" to_tag1="internet_access:type" to_value1="wlan"/>
+		<entity_convert pattern="tag_transform" from_tag="internet_access" if_tag1="historic" to_tag1="internet_access:type" to_value1="wlan"/>
+		<entity_convert pattern="tag_transform" from_tag="internet_access" if_tag1="amenity" to_tag1="internet_access:type" to_value1="wlan"/>
+		<entity_convert pattern="tag_transform" from_tag="internet_access" if_tag1="leisure" to_tag1="internet_access:type" to_value1="wlan"/>
+		<entity_convert pattern="tag_transform" from_tag="internet_access" if_tag1="shop" to_tag1="internet_access:type" to_value1="wlan"/>
 	</category>
 
 
