@@ -386,6 +386,8 @@ mycpname subway_italy subway_subway_italy.png
 mycpname subway_italy_catania subway_subway_italy_catania.png
 ##mycpname subway_italy_brescia subway_subway_italy_brescia.png
 mycpname subway_rotterdam subway_subway_rotterdam.png
+mycpname subway_amsterdam subway_subway_amsterdam.png
+mycpname subway_brussels subway_subway_brussels.png
 mycpname subway_chicago subway_subway_chicago.png
 mycpname subway_newyork subway_subway_newyork.png
 mycpname subway_tokyo subway_subway_tokyo.png
@@ -603,6 +605,7 @@ mycpname pitch sport_pitch.png
 mycpname swimming_pool sport_swimming_outdoor.png
 mycpname leisure_track sport_leisure_track.png
 mycpname ice_skating sport_iceskating.png
+mycpname orienteering sport_orienteering.png
 
 
 ## Leisure
