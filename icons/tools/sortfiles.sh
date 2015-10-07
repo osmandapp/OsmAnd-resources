@@ -388,6 +388,7 @@ mycpname subway_italy_catania subway_subway_italy_catania.png
 mycpname subway_rotterdam subway_subway_rotterdam.png
 mycpname subway_amsterdam subway_subway_amsterdam.png
 mycpname subway_brussels subway_subway_brussels.png
+mycpname subway_lyon subway_subway_lyon.png
 mycpname subway_chicago subway_subway_chicago.png
 mycpname subway_newyork subway_subway_newyork.png
 mycpname subway_tokyo subway_subway_tokyo.png
@@ -406,6 +407,10 @@ mycpname subway_toronto subway_subway_toronto.png
 mycpname subway_montreal subway_subway_montreal.png
 mycpname subway_kyiv subway_subway_kyiv.png
 mycpname subway_kharkiv subway_subway_kharkiv.png
+mycpname subway_buenosaires subway_subway_buenosaires.png
+mycpname subway_boston subway_subway_boston.png
+mycpname subway_washington subway_subway_washington.png
+mycpname subway_bucharest subway_subway_bucharest.png
 
 mycp aerialway station_small functional-icons_halt.png  #scale 0.25
 mycp aerialway station transport_aerialway_station.png  #scale 0.375

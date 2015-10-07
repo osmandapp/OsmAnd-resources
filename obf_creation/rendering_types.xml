@@ -1704,6 +1704,8 @@
 		<type tag="subway_region" value="rotterdam" additional="true" minzoom="12" />
 		<type tag="subway_region" value="amsterdam" additional="true" minzoom="12" />
 		<type tag="subway_region" value="brussels" additional="true" minzoom="12" />
+		<type tag="subway_region" value="bucharest" additional="true" minzoom="12" />
+		<type tag="subway_region" value="lyon" additional="true" minzoom="12" />
 		<type tag="subway_region" value="osaka" additional="true" minzoom="12" />
 		<type tag="subway_region" value="tokyo" additional="true" minzoom="12" />
 		<type tag="subway_region" value="nagoya" additional="true" minzoom="12" />
@@ -1715,10 +1717,14 @@
 <!--		<type tag="subway_region" value="tehran" additional="true" minzoom="12" />--> <!-- There are two more subway systems in Iran -->
 		<type tag="subway_region" value="chicago" additional="true" minzoom="12" />
 		<type tag="subway_region" value="newyork" additional="true" minzoom="12" />
+		<type tag="subway_region" value="boston" additional="true" minzoom="12" />
+		<type tag="subway_region" value="washington" additional="true" minzoom="12" />
+<!--		<type tag="subway_region" value="losangeles" additional="true" minzoom="12" />-->
 		<type tag="subway_region" value="montreal" additional="true" minzoom="12" />
 		<type tag="subway_region" value="toronto" additional="true" minzoom="12" />
 		<type tag="subway_region" value="cairo" additional="true" minzoom="12" />
 		<type tag="subway_region" value="riodejaneiro" additional="true" minzoom="12" />
+		<type tag="subway_region" value="buenosaires" additional="true" minzoom="12" />
 
 		<!-- Russia -->
 			<!-- Samara -->
@@ -1787,6 +1793,10 @@
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="ile-de-france" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="paris"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="ile-de-france" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="paris"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="ile-de-france" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="paris"/>
+			<!-- Lyon -->
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="rhone-alpes" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="lyon"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="rhone-alpes" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="lyon"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="rhone-alpes" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="lyon"/>
 			<!-- Budapest -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="hungary" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="budapest"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="hungary" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="budapest"/>
@@ -1853,17 +1863,27 @@
 			<!-- Brussels --> <!-- do not convert railway_entrance here because belgium map contains them in other cities -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="belgium" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="brussels"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="belgium" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="brussels"/>
+			<!-- Bucharest -->
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="romania" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="bucharest"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="romania" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="bucharest"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="romania" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="bucharest"/>
 
 		<!-- Asia -->
-			<!-- Tokyo -->
-		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="kanto" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="tokyo"/>
-		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kanto" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="tokyo"/>
-		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kanto" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="tokyo"/>
+			<!-- Tokyo --> <!-- in Kanto region there is Yokohama subway sustem, so we use tag "operator" to distingiush Tokyo subway from Yokohama -->
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kanto" if_tag1="operator" if_value1="東京地下鉄" if_tag2="route" if_value2="subway" to_tag1="railway" to_value1="station" to_tag3="subway_region" to_value3="tokyo"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kanto" if_tag1="operator" if_value1="東京都交通局" if_tag2="route" if_value2="subway" to_tag1="railway" to_value1="station" to_tag3="subway_region" to_value3="tokyo"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kanto" if_tag1="operator" if_value1="東京都交通局;東京地下鉄" if_tag2="route" if_value2="subway" to_tag1="railway" to_value1="station" to_tag3="subway_region" to_value3="tokyo"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kanto" if_tag1="operator" if_value1="東京メトロ" if_tag2="route" if_value2="subway" to_tag1="railway" to_value1="station" to_tag3="subway_region" to_value3="tokyo"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kanto" if_tag1="operator" if_value1="小田急電鉄;東京メトロ" if_tag2="route" if_value2="subway" to_tag1="railway" to_value1="station" to_tag3="subway_region" to_value3="tokyo"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kanto" if_tag1="operator" if_value1="東京地下鉄;東京都交通局" if_tag2="route" if_value2="subway" to_tag1="railway" to_value1="station" to_tag3="subway_region" to_value3="tokyo"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kanto" if_tag1="operator" if_value1="東武鉄道;東京地下鉄" if_tag2="route" if_value2="subway"to_tag1="railway" to_value1="station" to_tag3="subway_region" to_value3="tokyo"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kanto" if_tag1="operator" if_value1="東京地下鉄;西武鉄道" if_tag2="route" if_value2="subway"to_tag1="railway" to_value1="station" to_tag3="subway_region" to_value3="tokyo"/>
+
 			<!-- Osaka -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="kinki" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="osaka"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kinki" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="osaka"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kinki" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="osaka"/>
-			<!-- Osaka -->
+			<!-- Nagoya -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="chubu" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="nagoya"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="chubu" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="nagoya"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="chubu" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="nagoya"/>
@@ -1900,6 +1920,16 @@
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="illinois" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="chicago"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="illinois" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="chicago"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="illinois" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="chicago"/>
+			<!-- Boston -->
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="massachusetts" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="boston"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="massachusetts" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="boston"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="massachusetts" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="boston"/>
+			<!-- Washington -->
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="district-of-columbia" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="washington"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="district-of-columbia,virginia,maryland" if_tag1="operator" if_value1="Washington Metropolitan Area Transit Authority" to_tag1="railway" to_value1="station" to_tag2="route" to_value2="subway" to_tag3="station" to_value3="subway" to_tag4="subway_region" to_value4="washington"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="district-of-columbia,virginia,maryland" if_tag1="operator" if_value1="WMATA" to_tag1="railway" to_value1="station" to_tag2="route" to_value2="subway" to_tag3="station" to_value3="subway" to_tag4="subway_region" to_value4="washington"/>
+			<!-- Los Angeles -->
+<!--		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="california" if_tag1="operator" if_value1="Los Angeles County Metropolitan Transportation Authority" to_tag1="railway" to_value1="station" to_tag2="route" to_value2="subway" to_tag3="station" to_value3="subway" to_tag4="subway_region" to_value4="losangeles"/>--> <!-- https://github.com/osmandapp/Osmand/issues/1785 -->
 
 		<!-- Canada -->
 			<!-- Montreal -->
@@ -1922,6 +1952,11 @@
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="brazil" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="riodejaneiro"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="brazil" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="riodejaneiro"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="brazil" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="riodejaneiro"/>
+
+			<!-- Buenos Aires -->
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="argentina" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="buenosaires"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="argentina" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="buenosaires"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="argentina" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="buenosaires"/>
 
 		<type tag="station" value="subway" minzoom="12" additional="true" />
 		<type tag="railway" value="subway" minzoom="11"/>
