@@ -65,6 +65,7 @@ mycpname orchard landuse_orchard.png
 mycpname vineyard landuse_vineyard.png
 mycpname garden landuse_garden.png
 mycpname farmland landuse_farmland.png
+mycpname nature_reserve landuse_nature_reserve.png
 
 mycp stroke black functional-icons_black_stroke.png
 mycp stroke darkgreen functional-icons_darkgreen_stroke.png
@@ -384,6 +385,7 @@ mycpname subway_athens subway_subway_athens.png
 mycpname subway_italy subway_subway_italy.png
 mycpname subway_italy_catania subway_subway_italy_catania.png
 ##mycpname subway_italy_brescia subway_subway_italy_brescia.png
+mycpname subway_rotterdam subway_subway_rotterdam.png
 mycpname subway_chicago subway_subway_chicago.png
 mycpname subway_newyork subway_subway_newyork.png
 mycpname subway_tokyo subway_subway_tokyo.png
