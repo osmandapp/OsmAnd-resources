@@ -17,6 +17,7 @@
 		/>
 		
 		Entity convert used to convert tags.
+		if_tag1="1" if_tag2="2" means 1 and 2
 		Examples:
 		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="tower" if_tag1="tower:type" if_value1="communication" to_tag1="man_made" to_value1="communications_tower"/>
 		<entity_convert pattern="tag_transform" from_tag="attraction" if_not_tag1="tourism" to_tag1="attraction" to_tag2="tourism" to_value2="attraction"/>
@@ -241,6 +242,7 @@
 	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="yes" if_tag1="highway" if_value1="track" to_tag1="tunnel" to_value1="yes" to_tag2="tunnel_car" to_value2="yes" map="no" routing="no"/>
 
 	<!-- Add bridge_car=yes if bridge tag or man_made=bridge and pedestrian highways are present (POI)-->
+	<entity_convert pattern="tag_transform" from_tag="bridge" if_tag1="waterway" to_tag1="bridge" to_tag2="bridge_waterway" to_value2="yes" map="no" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge" if_tag1="highway" if_value1="motorway" to_tag1="bridge" to_tag2="bridge_car" to_value2="yes" map="no" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge" if_tag1="highway" if_value1="motorway_link" to_tag1="bridge" to_tag2="bridge_car" to_value2="yes" map="no" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge" if_tag1="highway" if_value1="trunk" to_tag1="bridge" to_tag2="bridge_car" to_value2="yes" map="no" routing="no"/>
@@ -259,12 +261,13 @@
 	<entity_convert pattern="tag_transform" from_tag="bridge" if_tag1="highway" if_value1="service" to_tag1="bridge" to_tag2="bridge_car" to_value2="yes" map="no" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge" if_tag1="highway" if_value1="track" to_tag1="bridge" to_tag2="bridge_car" to_value2="yes" map="no" routing="no"/>
 
-	<!-- Add bridge_pedestrian=yes if tunnel tag and pedestrian highways are present (POI)-->
+	<!-- Add tunnel_pedestrian=yes if tunnel tag and pedestrian highways are present (POI)-->
 	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="yes" if_tag1="highway" if_value1="pedestrian" to_tag1="tunnel" to_value1="yes" to_tag2="tunnel_pedestrian" to_value2="yes" map="no" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="yes" if_tag1="highway" if_value1="footway" to_tag1="tunnel" to_value1="yes" to_tag2="tunnel_pedestrian" to_value2="yes" map="no" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="yes" if_tag1="highway" if_value1="path" to_tag1="tunnel" to_value1="yes" to_tag2="tunnel_pedestrian" to_value2="yes" map="no" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="yes" if_tag1="highway" if_value1="steps" to_tag1="tunnel" to_value1="yes" to_tag2="tunnel_pedestrian" to_value2="yes" map="no" routing="no"/>
-	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="yes" if_tag1="highway" if_value1="cycleway" to_tag1="tunnel" to_value1="yes" to_tag2="tunnel_cycleway" to_value2="yes" map="no" routing="no"/>
+
+	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="yes" if_tag1="railway" to_tag1="tunnel" to_value1="yes" to_tag2="tunnel_railway" to_value2="yes" map="no" routing="no"/>
 
 	<!-- Add bridge_pedestrian=yes if bridge or man_made=bridge tag and pedestrian highways are present (POI)-->
 	<entity_convert pattern="tag_transform" from_tag="bridge" if_tag1="highway" if_value1="pedestrian" to_tag1="bridge" to_tag2="bridge_pedestrian" to_value2="yes" map="no" routing="no"/>
@@ -274,6 +277,8 @@
 	<entity_convert pattern="tag_transform" from_tag="bridge" if_tag1="highway" if_value1="path" to_tag1="bridge" to_tag2="bridge_pedestrian" to_value2="yes" map="no" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="man_made" from_value="bridge" if_tag1="highway" if_value1="path" to_tag1="bridge" to_tag2="bridge_pedestrian" to_value2="yes" to_tag3="man_made" to_value3="bridge" map="no" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge" if_tag1="highway" if_value1="steps" to_tag1="bridge" to_tag2="bridge_pedestrian" to_value2="yes" map="no" routing="no"/>
+
+	<entity_convert pattern="tag_transform" from_tag="bridge" if_tag1="railway" to_tag1="bridge" to_tag2="bridge_railway" to_value2="yes" map="no" routing="no"/>
 
 	<!-- Add bridge_bicycle=yes if bridge tag and cycleway highway are present (POI)-->
 	<entity_convert pattern="tag_transform" from_tag="bridge" if_tag1="highway" if_value1="cycleway" to_tag1="bridge" to_tag2="bridge_bicycle" to_value2="yes" map="no" routing="no"/>
@@ -787,6 +792,7 @@
 		<type tag="nwn_ref" value="" nameTags="nwn_ref" minzoom="12" relation="false"/>
 		<type tag="rwn_ref" value="" nameTags="rwn_ref" minzoom="12" relation="false"/>
 		<type tag="lwn_ref" value="" nameTags="lwn_ref" minzoom="12" relation="false"/>-->
+
 		<entity_convert pattern="tag_transform" from_tag="iwn_ref" to_tag1="name" to_tag2="iwn_ref" to_value2="yes" map="false"/>
 		<entity_convert pattern="tag_transform" from_tag="nwn_ref" to_tag1="name" to_tag2="nwn_ref" to_value2="yes" map="false"/>
 		<entity_convert pattern="tag_transform" from_tag="rwn_ref" to_tag1="name" to_tag2="rwn_ref" to_value2="yes" map="false"/>
