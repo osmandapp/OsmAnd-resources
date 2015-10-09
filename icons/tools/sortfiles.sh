@@ -156,6 +156,8 @@ mycp amenity fire_station emergency_firestation4.png
 mycp amenity police emergency_police3.png
 mycp emergency fire_hydrant emergency_fire_hydrant.png
 mycp emergency phone emergency_emergency_phone.png
+mycpname emergency_access_point emergency_emergency_access_point.png
+
 
 ## Overlays
 mycp hazard yes overlays_hazard.png
