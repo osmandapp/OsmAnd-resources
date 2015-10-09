@@ -488,7 +488,13 @@
 	<entity_convert pattern="tag_transform" from_tag="shelter" from_value="no" to_tag1="covered" to_value1="no" map="no"/>
 	<entity_convert pattern="tag_transform" from_tag="shelter_type" from_value="hut" to_tag1="shelter_type" to_value1="basic_hut" map="no"/>
 	<entity_convert pattern="tag_transform" from_tag="shelter" from_value="public_transport" to_tag1="shelter" to_value1="yes" to_tag2="shelter_type" to_value2="public_transport" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="shelter" from_value="abandoned" to_tag1="shelter" to_value1="yes" to_tag2="shelter_type" to_value2="abandoned" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="shelter" from_value="abandoned" to_tag1="amenity" to_value1="shelter" to_tag2="shelter_type" to_value2="abandoned" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="amenity" from_value="shelter" if_tag1="public_transport" to_tag1="shelter" to_value1="yes" to_tag2="shelter_type" to_value2="public_transport" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="amenity" from_value="shelter" if_tag1="tourism" if_not_tag1="tourism" if_not_value1="yes" to_tag1="shelter" to_value1="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="amenity" from_value="shelter" if_tag1="historic" if_not_tag1="historic" if_not_value1="yes" to_tag1="shelter" to_value1="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="amenity" from_value="shelter" if_tag1="amenity" to_tag1="shelter" to_value1="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="amenity" from_value="shelter" if_tag1="shop" to_tag1="shelter" to_value1="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="amenity" from_value="shelter" if_tag1="leisure" to_tag1="shelter" to_value1="yes"/>
 
 	<category name="highway">
 		<type tag="highway" value="motorway" minzoom="6" nameTags="ref,int_ref"/>
@@ -2190,6 +2196,15 @@
 		<type tag="man_made" value="adit" minzoom="15" />
 		<type tag="man_made" value="petroleum_well" minzoom="15" />
 		<type tag="man_made" value="surveillance" minzoom="15"/>
+		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="surveillance" if_tag1="tourism" to_tag1="surveillance" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="surveillance" if_tag1="historic" to_tag1="surveillance" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="surveillance" if_tag1="amenity" to_tag1="surveillance" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="surveillance" if_tag1="shop" to_tag1="surveillance" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="surveillance" if_tag1="leisure" to_tag1="surveillance" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="surveillance" if_tag1="craft" to_tag1="surveillance" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="surveillance" if_tag1="office" to_tag1="surveillance" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="surveillance" if_tag1="emergency" to_tag1="surveillance" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="surveillance" if_tag1="healthcare" to_tag1="surveillance" to_value1="yes"/>
 		<type tag="man_made" value="standpipe" minzoom="15" />
 		<type tag="man_made" value="survey_point" minzoom="15" />
 		<type tag="man_made" value="tower" minzoom="15" order="60"/>
@@ -2293,6 +2308,11 @@
 		<type tag="shop" value="bed" minzoom="15" />
 		<type tag="shop" value="beverages" minzoom="15" />
 		<type tag="shop" value="bicycle" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="shop:bicycle:repair" to_tag1="service:bicycle:repair"/>
+		<entity_convert pattern="tag_transform" from_tag="shop:bicycle:retail" to_tag1="service:bicycle:retail"/>
+		<entity_convert pattern="tag_transform" from_tag="shop:bicycle:sell" to_tag1="service:bicycle:retail"/>
+		<entity_convert pattern="tag_transform" from_tag="shop:bicycle:pump" to_tag1="service:bicycle:pump"/>
+		<entity_convert pattern="tag_transform" from_tag="shop:bicycle:second_hand" to_tag1="service:bicycle:second_hand"/>
 		<type tag="shop" value="bookmaker" minzoom="15"/>
 		<type tag="shop" value="books" minzoom="15" />
 		<type tag="shop" value="boutique" minzoom="15" />
@@ -2347,7 +2367,7 @@
 		<type tag="shop" value="garden_furniture" minzoom="15" />
 		<type tag="shop" value="gas" minzoom="15" />
 		<type tag="shop" value="general" minzoom="15" />
-		<entity_convert pattern="tag_transform" from_tag="shop" from_value="yes" to_tag1="shop" to_value1="general"/>
+		<entity_convert pattern="tag_transform" from_tag="shop" from_value="yes" if_not_tag1="amenity" if_not_value1="fuel" to_tag1="shop" to_value1="general"/>
 		<type tag="shop" value="gift" minzoom="15" />
 		<type tag="shop" value="glaziery" minzoom="15" />
 		<type tag="shop" value="greengrocer" minzoom="15" />
@@ -3018,7 +3038,10 @@
 		<type tag="amenity" value="brothel" minzoom="15" />
 		<type tag="amenity" value="hunting_stand" minzoom="15" />
 		<type tag="amenity" value="bench" minzoom="15" />
-		<entity_convert pattern="tag_transform" from_tag="bench" from_value="yes" to_tag1="bench" to_value1="yes" to_tag2="amenity" to_value2="bench" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="bench" if_tag1="tourism" if_not_tag1="tourism" if_not_value1="yes" to_tag1="bench" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="bench" if_tag1="historic" if_not_tag1="historic" if_not_value1="yes" to_tag1="bench" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="bench" if_tag1="shop" to_tag1="bench" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="bench" if_tag1="leisure" to_tag1="bench" to_value1="yes"/>
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="bench" to_tag1="amenity" to_value1="bench"/>
 	</category>
 
@@ -3035,10 +3058,16 @@
 		<entity_convert pattern="tag_transform" from_tag="recycling:electrical_appliances" to_tag1="recycling:electrical_items" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="recycling:electronics" to_tag1="recycling:electrical_items" map="no"/>
 		<type tag="amenity" value="waste_basket" minzoom="15" />
-		<entity_convert pattern="tag_transform" from_tag="waste_basket" from_value="yes" to_tag1="amenity" to_value1="waste_basket" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="waste_basket" if_tag1="tourism" to_tag1="waste_basket" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="waste_basket" if_tag1="shop" to_tag1="waste_basket" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="waste_basket" if_tag1="leisure" to_tag1="waste_basket" to_value1="yes"/>
 		<type tag="amenity" value="waste_disposal" minzoom="15" />
 		<type tag="amenity" value="shower" minzoom="15" />
 		<type tag="amenity" value="toilets" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="toilets" if_tag1="tourism" to_tag1="toilets" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="toilets" if_tag1="historic" if_not_tag1="historic" if_not_value1="yes" to_tag1="toilets" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="toilets" if_tag1="shop" to_tag1="toilets" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="toilets" if_tag1="leisure" to_tag1="toilets" to_value1="yes"/>
 		<entity_convert pattern="tag_transform" from_tag="toilets:changing_table" from_value="yes" to_tag1="diaper" to_value1="yes" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="toilets:changing_table" from_value="no" to_tag1="diaper" to_value1="no" map="no"/>
 		<type tag="amenity" value="smoking_area" minzoom="15" />
