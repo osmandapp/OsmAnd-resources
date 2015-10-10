@@ -3387,9 +3387,11 @@
 			<!-- Historic -->
 			<switch textSize="12" textColor="$historicTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$historicTextHaloColorDay" textWrapWidth="20" textOrder="158">
 				<switch>
+					<case minzoom="17" tag="historic" value="aircraft"/>
 					<case minzoom="16" tag="historic" value="castle" nameTag=""/>
 					<case minzoom="18" tag="historic" value="cannon"/>
 					<case minzoom="16" tag="historic" value="monument"/>
+					<case minzoom="16" tag="historic" value="technical_monument"/>
 					<case minzoom="18" tag="historic" value="tomb"/>
 					<case minzoom="17" tag="historic" value="memorial"/>
 					<case minzoom="15" tag="historic" value="battlefield"/>
@@ -3455,6 +3457,9 @@
 				<case minzoom="20" tag="amenity" value="waste_basket"/>
 				<case minzoom="20" tag="amenity" value="waste_disposal"/>
 				<case minzoom="17" tag="office" value="travel_agent"/>
+				<case minzoom="17" tag="office" value="employment_agency"/>
+
+				<case minzoom="17" tag="amenity" value="watering_place"/>
 				<apply_if engine_v1="true" textDy="9"/>
 				<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#7774734f"/>
 			</switch>
@@ -4855,6 +4860,7 @@
 				<case minzoom="16" tag="historic" value="boundary_stone" icon="historic_boundary_stone"/>
 				<case minzoom="15" tag="tourism" value="theme_park" icon="tourism_theme_park"/>
 				<case minzoom="15" tag="tourism" value="zoo" icon="zoo"/>
+				<case minzoom="16" tag="historic" value="aircraft" icon="historic_aircraft"/>
 			</switch>
 			<switch minzoom="18">
 				<case tag="attraction" value="amusement_ride" icon="attraction_amusement_ride"/>
@@ -4894,6 +4900,7 @@
 			<case minzoom="14" tag="building" value="pyramid" icon="building_pyramid" iconOrder="5"/>
 			<case minzoom="16" tag="historic" value="battlefield" icon="historic_battlefield"/>
 			<case minzoom="16" tag="historic" value="monument" icon="historic_monument" iconVisibleSize="32" iconOrder="85"/>
+			<case minzoom="16" tag="historic" value="technical_monument" icon="technical_monument" iconOrder="85"/>
 			<case minzoom="16" tag="historic" value="archaeological_site" icon="historic_archaeological_site" iconVisibleSize="24" iconOrder="85"/>
 			<case minzoom="16" tag="geological" value="palaeontological_site" icon="palaeontological_site" iconOrder="85"/>
 			<case minzoom="15" tag="historic" value="monastery" icon="amenity_monastery"/>
@@ -5000,6 +5007,8 @@
 			<case minzoom="16" tag="amenity" value="studio" icon="studio"/>
 			<case minzoom="16" tag="amenity" value="brothel" icon="brothel"/>
 			<case minzoom="17" tag="office" value="travel_agent" icon="travel_agent"/>
+			<case minzoom="17" tag="office" value="employment_agency" icon="employment_agency"/>
+			<case minzoom="17" tag="amenity" value="watering_place" icon="watering_place"/>
 			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
 		</switch>
 		<case minzoom="16" tag="amenity" value="hunting_stand" icon="amenity_hunting_stand" shield="hunting_stand_shield"/>
@@ -5549,11 +5558,12 @@
 						<apply_if additional="abandoned=yes" strokeWidth_2="1:0" color_2="#7479ec" pathEffect_2="7_5"/>
 					</switch>
 					<case minzoom="11" tag="waterway" value="wadi" strokeWidth_2="1:0" color_2="#7479ec" pathEffect_2="7_5"/>
-<!--					<apply engine_v1="true" strokeWidth_2="1:0" color_2="$waterStrokeColorDay"/>-->
 				</switch>
 				<switch>
 					<case minzoom="15" tag="leisure" value="swimming_pool"/>
-					<case minzoom="15" tag="landuse" value="salt_pond"/>
+					<case minzoom="15" tag="landuse" value="salt_pond" shader="wetland_saltern">
+						<apply_if nightMode="true" shader="" color="$wetlandColorNight"/>
+					</case>
 					<case minzoom="16" tag="amenity" value="fountain"/>
 					<case minzoom="16" tag="natural" value="hot_spring"/>
 					<case minzoom="16" tag="natural" value="geyser"/>
@@ -5820,6 +5830,7 @@
 				<case minzoom="13" tag="historic" value="memorial"/>
 				<case minzoom="13" tag="landuse" value="religious"/>
 				<case minzoom="13" tag="historic" value="ship"/>
+				<case minzoom="16" tag="historic" value="aircraft"/>
 				<apply color="$attractionColor" strokeWidth_2="$attractionStrokeWidth2" color_2="$attractionStrokeColor"/>
 			</switch>
 			<switch minzoom="15" pathEffect_2="10_3">
@@ -5931,7 +5942,6 @@
 					<case additional="wetland=wet_meadow" shader="wetland_wet_meadow"/>
 					<case additional="wetland=string_bog" shader="wetland_string_bog"/>
 					<case additional="wetland=saltmarsh" shader="wetland_saltmarsh"/>
-					<case additional="wetland=saltern" shader="wetland_saltern"/>
 					<case additional="wetland=fen" shader="wetland_fen"/>
 					<case additional="wetland=palsa_bog" shader="wetland_palsa_bog"/>
 					<case additional="wetland=mud" shader="mud2"/>
@@ -5940,6 +5950,7 @@
 				</switch>
 				<apply_if minzoom="15" additional="intermittent=yes" strokeWidth_2="1" color_2="#7479ec" pathEffect_2="12_5"/>
 			</case>
+
 			<switch>
 <!--				<case minzoom="12" tag="natural" value="mud" color="#d6cbc6">
 					<apply_if minzoom="13" shader="mud2"/>
@@ -6063,7 +6074,7 @@
 				</apply>
 				<apply color="$null" color_2="#77f800e0"/>
 			</switch>
-			<case minzoom="12" tag="tourism" value="zoo" shader="zoo">
+			<case minzoom="12" tag="tourism" value="zoo" shader="zoo_shader">
 				<apply_if nightMode="true" shader="" color="#5d8358"/>
 			</case>
 		</switch>
@@ -6583,7 +6594,7 @@
 					<case tag="abandoned:highway" value="unclassified"/>
 					<case tag="abandoned:highway" value="residential"/>
 					<case tag="abandoned:highway" value="service"/>
-					<apply color="#55ffffff" pathEffect="20_7" shadowRadius="$highwayShadowRadius" shadowColor="$residentialRoadShadowColor">
+					<apply color="#55ffffff" pathEffect="20_7" shadowRadius="3" shadowColor="$residentialRoadShadowColor">
 						<switch>
 							<case minzoom="15" maxzoom="15" strokeWidth="2.5:2.5"/>
 							<case minzoom="16" maxzoom="16" strokeWidth="4.5:4.5"/>

@@ -35,11 +35,12 @@
 	<entity_convert pattern="split" from_tag="fixme" to_tag1="fixme" to_tag2="fixme_tag" to_value2="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="fixme" from_value="yes"/>
 <!--	<entity_convert pattern="tag_transform" from_tag="description" if_not_tag1="note" to_tag1="note" poi="no"/>-->
-	<entity_convert pattern="split" from_tag="note" to_tag1="note" to_tag2="note_tag" to_value2="yes"/>
+	<entity_convert pattern="split" from_tag="note" to_tag1="note" to_tag2="note_tag" to_value2="yes" poi="no"/>
 	<type tag="fixme" additional="text" minzoom="12" order="128"/>
 	<type tag="fixme_tag" value="yes" minzoom="12" nameTags="fixme"/>
 	<type tag="note" additional="text" minzoom="12" order="128"/>
 	<type tag="note_tag" value="yes" minzoom="12" nameTags="note"/>
+	<entity_convert pattern="tag_transform" from_tag="comment" to_tag1="note"/>
 
 	<!-- additional -->
 	<type tag="oneway" value="yes" minzoom="15" additional="true" only_map="true"/>
@@ -495,6 +496,7 @@
 	<entity_convert pattern="tag_transform" from_tag="amenity" from_value="shelter" if_tag1="amenity" to_tag1="shelter" to_value1="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="amenity" from_value="shelter" if_tag1="shop" to_tag1="shelter" to_value1="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="amenity" from_value="shelter" if_tag1="leisure" to_tag1="shelter" to_value1="yes"/>
+	<type tag="amenity" value="watering_place" minzoom="14"/>
 
 	<category name="highway">
 		<type tag="highway" value="motorway" minzoom="6" nameTags="ref,int_ref"/>
@@ -604,6 +606,7 @@
 		<type tag="highway" value="traffic_signals" minzoom="16"/>
 		<type tag="highway" value="passing_place" minzoom="15" />
 		<type tag="highway" value="crossing" minzoom="15"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="elevator" to_tag1="elevator" to_value1="yes"/>
 
 		<type tag="crossing" value="uncontrolled" minzoom="15" additional="true" />
 		<entity_convert pattern="tag_transform" from_tag="crossing" from_value="island;uncontrolled" to_tag1="crossing" to_value1="uncontrolled"/>
@@ -2553,7 +2556,11 @@
 		<type tag="tourism" value="attraction" minzoom="13" order="80" />
 		<type tag="tourism_attraction" value="yes" additional="true" minzoom="13" order="80" />
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="tourism-attraction" to_tag1="tourism" to_value1="attraction"/>
-		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="attraction" to_tag1="tourism" to_value1="attraction" to_tag2="tourism_attraction" to_value2="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="attraction" if_tag1="historic" if_not_tag1="historic" if_not_value1="yes" to_tag1="tourism_attraction" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="attraction" if_tag1="amenity" to_tag1="tourism_attraction" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="attraction" if_tag1="leisure" to_tag1="tourism_attraction" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="attraction" if_tag1="shop" to_tag1="tourism_attraction" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="attraction" from_value="yes" to_tag1="tourism_attraction" to_value1="yes"/>
 		<type tag="attraction" value="amusement_ride" minzoom="13"/>
 		<type tag="attraction" value="animal" minzoom="13"/>
 		<type tag="attraction" value="big_wheel" minzoom="13"/>
@@ -2635,15 +2642,15 @@
 	</category>
 
 	<category name="special_poi">
-		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="en:Big Ben" to_tag1="wikipedia" to_value1="en:Big Ben" to_tag2="special_poi" to_value2="big_ben"/>
-		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="de:Brandenburger Tor" to_tag1="wikipedia" to_value1="de:Brandenburger Tor" to_tag2="special_poi" to_value2="brandenburg_gate"/>
-		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="http://en.wikipedia.org/wiki/Chichén_Itzá" to_tag1="wikipedia" to_value1="http://en.wikipedia.org/wiki/Chichén_Itzá" to_tag2="special_poi" to_value2="chichen_itza"/>
-		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="it:Colosseo" to_tag1="wikipedia" to_value1="it:Colosseo" to_tag2="special_poi" to_value2="colosseum"/>
-		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="fr:Tour Eiffel" to_tag1="wikipedia" to_value1="fr:Tour Eiffel" to_tag2="special_poi" to_value2="eiffel_tower"/>
-		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="ca:Temple Expiatori de la Sagrada Família" to_tag1="wikipedia" to_value1="ca:Temple Expiatori de la Sagrada Família" to_tag2="special_poi" to_value2="sagrada_familia"/>
-		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="en:Statue of Liberty" to_tag1="wikipedia" to_value1="en:Statue of Liberty" to_tag2="special_poi" to_value2="statue_of_liberty"/>
-		<entity_convert pattern="tag_transform" from_tag="wikipedia:en" from_value="Taj Mahal" to_tag1="wikipedia:en" to_value1="Taj Mahal" to_tag2="special_poi" to_value2="taj_mahal"/>
-		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="en:United States Capitol" to_tag1="wikipedia" to_value1="en:United States Capitol" to_tag2="special_poi" to_value2="us_capitol"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="en:Big Ben" to_tag1="wikipedia" to_value1="en:Big Ben" to_tag2="special_poi" to_value2="big_ben" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="de:Brandenburger Tor" to_tag1="wikipedia" to_value1="de:Brandenburger Tor" to_tag2="special_poi" to_value2="brandenburg_gate" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="http://en.wikipedia.org/wiki/Chichén_Itzá" to_tag1="wikipedia" to_value1="http://en.wikipedia.org/wiki/Chichén_Itzá" to_tag2="special_poi" to_value2="chichen_itza" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="it:Colosseo" to_tag1="wikipedia" to_value1="it:Colosseo" to_tag2="special_poi" to_value2="colosseum" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="fr:Tour Eiffel" to_tag1="wikipedia" to_value1="fr:Tour Eiffel" to_tag2="special_poi" to_value2="eiffel_tower" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="ca:Temple Expiatori de la Sagrada Família" to_tag1="wikipedia" to_value1="ca:Temple Expiatori de la Sagrada Família" to_tag2="special_poi" to_value2="sagrada_familia" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="en:Statue of Liberty" to_tag1="wikipedia" to_value1="en:Statue of Liberty" to_tag2="special_poi" to_value2="statue_of_liberty" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia:en" from_value="Taj Mahal" to_tag1="wikipedia:en" to_value1="Taj Mahal" to_tag2="special_poi" to_value2="taj_mahal" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="en:United States Capitol" to_tag1="wikipedia" to_value1="en:United States Capitol" to_tag2="special_poi" to_value2="us_capitol" poi="no"/>
 		<type tag="special_poi" value="big_ben" minzoom="14" />
 		<type tag="special_poi" value="brandenburg_gate" minzoom="14" />
 		<type tag="special_poi" value="chichen_itza" minzoom="14" />
@@ -2656,6 +2663,7 @@
 	</category>
 
 	<category name="historic">
+		<type tag="historic" value="aircraft" minzoom="15" />
 		<type tag="historic" value="archaeological_site" minzoom="15" order="75" />
 		<type tag="historic" value="battlefield" minzoom="15" />
 		<type tag="historic" value="boundary_stone" minzoom="15" />
@@ -2675,6 +2683,7 @@
 		<entity_convert pattern="tag_transform" from_tag="memorial:type" from_value="stone" to_tag1="memorial" to_value1="stone"/>
 		<entity_convert pattern="tag_transform" from_tag="memorial:type" from_value="stele" to_tag1="memorial" to_value1="stele"/>
 		<entity_convert pattern="tag_transform" from_tag="memorial:type" from_value="obelisk" to_tag1="memorial" to_value1="obelisk"/>
+		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="obelisk" to_tag1="historic" to_value1="memorial" to_tag2="memorial" to_value2="obelisk"/>
 		<entity_convert pattern="tag_transform" from_tag="memorial:type" from_value="war_memorial" to_tag1="memorial" to_value1="war_memorial"/>
 		<entity_convert pattern="tag_transform" from_tag="memorial:type" from_value="cross" to_tag1="memorial" to_value1="cross"/>
 		<entity_convert pattern="tag_transform" from_tag="memorial:type" from_value="bust" to_tag1="memorial" to_value1="bust"/>
@@ -2698,6 +2707,7 @@
 		<entity_convert pattern="tag_transform" from_tag="monument" from_value="city_gate" to_tag1="historic" to_value1="city_gate"/>
 		<entity_convert pattern="tag_transform" from_tag="historic" from_value="monument" if_tag1="monument" if_value1="city_gate" to_tag1="historic" to_value1="city_gate"/>
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="monument" to_tag1="historic"/>
+		<type tag="historic" value="technical_monument" minzoom="15" />
 		<type tag="historic" value="monastery" minzoom="13" order="80"/>
 		<type tag="historic" value="ruins" minzoom="15" order="75" />
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="ruins" to_tag1="historic"/>
@@ -2729,6 +2739,10 @@
 		<type tag="landuse" value="greenfield" minzoom="6" order="60" />
 		<type tag="landuse" value="greenhouse_horticulture" minzoom="6" />
 		<type tag="landuse" value="industrial" minzoom="6" />
+		<entity_convert pattern="tag_transform" from_tag="industrial" from_value="well_cluster" to_tag1="industrial" to_value2="well_site" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="industrial" from_value="salt_pond" to_tag1="landuse" to_value2="salt_pond"/>
+		<entity_convert pattern="tag_transform" from_tag="industrial" from_value="salt-pond" to_tag1="landuse" to_value2="salt_pond"/>
+		<entity_convert pattern="tag_transform" from_tag="industrial" from_value="natural_gas" to_tag1="industrial" to_value2="gas" map="no"/>
 		<type tag="landuse" value="landfill" minzoom="6" />
 		<entity_convert pattern="tag_transform" from_tag="landfill:waste" if_not_tag1="landuse" if_not_value1="landfill" to_tag1="landfill:waste" to_tag2="landuse" to_value2="landfill"/>
 		<type tag="landuse" value="meadow" minzoom="6" order="60"/>
@@ -2747,8 +2761,8 @@
 		<type tag="landuse" value="residential" minzoom="6" order="110"/>
 		<type tag="residential" value="rural" minzoom="10" additional="true"/>
 		<type tag="landuse" value="retail" minzoom="6" />
-		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="salt_pond" to_tag1="natural" to_value1="wetland" to_tag2="wetland" to_value2="saltern"/>
 		<type tag="landuse" value="quarry" minzoom="6"/>
+		<type tag="landuse" value="salt_pond" minzoom="11"/>
 		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="peat_cutting" to_tag1="landuse" to_value1="quarry" to_tag2="resource" to_value2="peat"/>
 		<type tag="landuse" value="vineyard" minzoom="6"/>
 		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="field" to_tag1="landuse" to_value1="farmland"/>
@@ -2837,6 +2851,8 @@
 		<type tag="natural" value="wetland" minzoom="6"/>
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="wetland" if_tag1="seasonal" if_value1="yes" to_tag1="natural" to_value1="wetland" to_tag2="intermittent" to_value2="yes"/>
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="mud" to_tag1="natural" to_value1="wetland" to_tag2="wetland" to_value2="mud"/>
+		<entity_convert pattern="tag_transform" from_tag="wetland" from_value="saltern" to_tag1="landuse" to_value1="salt_pond"/>
+		<entity_convert pattern="tag_transform" from_tag="natural" from_value="wetland" if_tag1="wetland" if_value1="saltern" to_tag1="landuse" to_value1="salt_pond"/>
 		<type tag="wetland" value="tidalflat" minzoom="11" additional="true"/>
 		<type tag="wetland" value="bog" minzoom="12" additional="true"/>
 		<type tag="wetland" value="marsh" minzoom="12" additional="true"/>
@@ -2845,8 +2861,6 @@
 		<type tag="wetland" value="mangrove" minzoom="12" additional="true"/>
 		<type tag="wetland" value="wet_meadow" minzoom="12" additional="true"/>
 		<type tag="wetland" value="string_bog" minzoom="12" additional="true"/>
-		<type tag="wetland" value="saltmarsh" minzoom="12" additional="true"/>
-		<type tag="wetland" value="saltern" minzoom="12" additional="true"/>
 		<type tag="wetland" value="fen" minzoom="12" additional="true"/>
 		<type tag="wetland" value="palsa_bog" minzoom="12" additional="true"/>
 		<type tag="wetland" value="mud" minzoom="12" additional="true"/>
@@ -2862,7 +2876,10 @@
 		<type tag="leaf_type" value="mixed" minzoom="12" additional="true"/>
 		<type tag="leaf_type" value="leafless" minzoom="12" additional="true"/>
 		<type tag="tree:type" value="palm" minzoom="12" additional="true"/>
+		<entity_convert pattern="tag_transform" from_tag="type" from_value="palm" to_tag1="tree:type" to_value1="palm"/>
+		<entity_convert pattern="tag_transform" from_tag="leaf_type" from_value="palm" to_tag1="tree:type" to_value1="palm"/>
 		<type tag="tree:type" value="cypress" minzoom="12" additional="true"/>
+		<entity_convert pattern="tag_transform" from_tag="type" from_value="cypress" to_tag1="tree:type" to_value1="cypress"/>
 		<type tag="trees" value="olive_trees" minzoom="12" additional="true"/>
 		<type tag="trees" value="apple_trees" minzoom="12" additional="true"/>
 		<type tag="trees" value="almond_trees" minzoom="12" additional="true"/>
@@ -3094,6 +3111,9 @@
 		<type tag="amenity" value="bicycle_rental" minzoom="15" />
 		<type tag="amenity" value="ski_rental" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="animal_shelter" from_value="cat;dog" to_tag1="animal_shelter" to_value1="dog;cat" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="animal_boarding" from_value="cat;dog" to_tag1="animal_boarding" to_value1="dog;cat" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="animal_boarding" from_value="cat, dog" to_tag1="animal_boarding" to_value1="dog;cat" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="animal_boarding" from_value="dogs" to_tag1="animal_boarding" to_value1="dog" map="no"/>
 	</category>
 
 	<category name="internet_access">

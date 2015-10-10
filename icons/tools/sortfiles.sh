@@ -113,6 +113,7 @@ mycpname crater poi_crater.png
 mycpname cape poi_cape.png
 mycpname bay poi_bay.png
 mycpname reef poi_reef.png
+mycpname reservoir water_reservoir.png
 
 
 ## Location dots
@@ -532,7 +533,7 @@ mycp amenity arts_centre tourist_art_gallery.png
 mycp amenity casino tourist_casino.png
 mycp amenity cinema tourist_cinema.pngf
 mycp amenity nightclub tourist_night_club.png
-mycp amenity stripclub tourist_night_club.png
+mycp amenity stripclub amenity_stripclub.png
 mycp amenity theatre tourist_theatre.png
 
 
@@ -557,6 +558,8 @@ mycpname wreck tourist_wreck.png
 mycpname palaeontological_site tourist_palaeontological_site.png
 mycp building pyramid tourist_pyramid.png
 mycpname tomb tourist_memorial.png
+mycpname historic_aircraft tourist_historic_aircraft.png
+mycpname technical_monument tourist_technical_monument.png
 
 ## Special POI icons
 mycp special_poi big_ben special_poi_big_ben.png
@@ -613,6 +616,8 @@ mycpname swimming_pool sport_swimming_outdoor.png
 mycpname leisure_track sport_leisure_track.png
 mycpname ice_skating sport_iceskating.png
 mycpname orienteering sport_orienteering.png
+mycpname golf_course sport_golf.png
+mycpname horse_riding sport_horse_riding.png
 
 
 ## Leisure
@@ -674,6 +679,9 @@ mycpname funeral_directors amenity_funeral_directors.png
 mycpname internet_access_wlan amenity_internet_access_wlan.png
 mycpname internet_access_wired amenity_internet_access_wired.png
 #! mycp amenity grave_yard place_of_worship_christian3.png  #already defined as icon in the shader section
+mycpname watering_place amenity_watering_place.png
+mycpname animal_shelter amenity_animal_shelter.png
+mycpname animal_boarding amenity_animal_boarding.png
 
 mygroup craft craft_tailor.png
 mycpname craft_beekeeper craft_beekeeper.png
@@ -768,9 +776,12 @@ mycp railway buffer_stop poi_buffer_stop.png
 mycpname power_transformer power_transformer_small.png
 mycpname works poi_works.png
 mycpname military_bunker poi_military_bunker.png
+mycpname military_airfield poi_military_airfield.png
 mycpname abandoned_poi poi_abandoned_poi.png
 mycpname surveillance poi_surveillance.png
 mycpname pier poi_pier.png
+mycpname beacon poi_beacon.png
+mycpname breakwater poi_breakwater.png
 
 mygroup military poi_military_bunker.png
 
@@ -1507,6 +1518,7 @@ mycpname tattoo shopping_tattoo.png
 mycpname perfumery shopping_perfumery.png
 mycpname pawnbroker shopping_pawnbroker.png
 mycpname second_hand shopping_second_hand.png
+mycpname honey shopping_honey.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
@@ -1516,6 +1528,8 @@ mycpname travel_agent office_travel_agent.png
 mycpname it office_it.png
 mycp office government office_government.png
 mycpname company office_company.png
+mycpname advertising_agency office_advertising_agency.png
+mycpname employment_agency office_employment_agency.png
 
 ## Entertainment
 mycpname park entertainment_park.png

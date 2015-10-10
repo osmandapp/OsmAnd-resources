@@ -6,6 +6,7 @@
 	<poi_additional name="collection_times" tag="collection_times" type="text"/>
 	<poi_additional name="description" tag="description" type="text"/>
 	<poi_additional name="inscription" tag="inscription" type="text"/>
+	<poi_additional name="note" tag="note" type="text"/>
 	<poi_additional name="phone" tag="phone" type="text"/>
 	<poi_additional name="website" tag="website" type="text"/>
 	<poi_additional name="email" tag="email" type="text"/>
@@ -32,7 +33,7 @@
 	<poi_additional name="levels" tag="levels"/>
 	<poi_additional name="abandoned" tag="abandoned" value="yes" />
 	<poi_additional name="disused" tag="disused" value="yes" />
-	<poi_additional name="tourism_attraction" tag="tourism_attraction" value="yes" />
+	<poi_additional name="tourism_attraction" tag="tourism_attraction" value="yes" /> <!-- internal tag -->
 	<poi_additional name="operator" tag="operator" type="text" />
 	<poi_additional name="brand" tag="brand" type="text" />
 	<poi_additional name="fee_yes" tag="fee" value="yes" />
@@ -653,6 +654,9 @@
 
 	<poi_additional name="monument_yes" tag="monument" value="yes"/>
 
+	<poi_additional name="elevator_yes" tag="elevator" value="yes"/>
+	<poi_additional name="elevator_no" tag="elevator" value="no"/>
+
 		<poi_category name="shop" default_tag="shop">
 			<poi_filter name="shop_food" top="true">
 				<poi_type name="alcohol" tag="shop" value="alcohol"/>
@@ -668,6 +672,7 @@
 				<poi_type name="deli" tag="shop" value="deli"/>
 				<poi_type name="farm" tag="shop" value="farm"/>
 				<poi_type name="greengrocer" tag="shop" value="greengrocer"/>
+				<poi_type name="honey" tag="shop" value="honey"/>
 				<poi_type name="ice_cream" tag="amenity" value="ice_cream"/>
 				<poi_type name="mall" tag="shop" value="mall"/>
 				<poi_type name="pasta" tag="shop" value="pasta"/>
@@ -1044,12 +1049,13 @@
 				<poi_type name="weir" tag="waterway" value="weir"/>
 				<poi_type name="dam" tag="waterway" value="dam"/>
 				<poi_type name="watermill" tag="man_made" value="watermill"/>
-<!--				<poi_type name="salt_pond" tag="landuse" value="salt_pond" name_only="true"/>-->
+				<poi_type name="salt_pond" tag="landuse" value="salt_pond" name_only="true"/>
 				<poi_type name="reservoir" tag="landuse" value="reservoir" name_only="true"/>
 				<poi_type name="canal" tag="waterway" value="canal" name_only="true"/>
 				<poi_type name="breakwater" tag="man_made" value="breakwater" name_only="true"/>
 				<poi_type name="groyne" tag="man_made" value="groyne" name_only="true"/>
 				<poi_type name="water_point" tag="amenity" value="water_point"/>
+				<poi_type name="watering_place" tag="amenity" value="watering_place"/>
 			</poi_filter>
 			<poi_filter name="power">
 				<poi_type name="power_substation" tag="power" value="substation"/>
@@ -1097,7 +1103,24 @@
 				<poi_additional name="lighting_tower" tag="tower:type" value="lighting"/>
 			</poi_type>
 			<poi_filter name="landuse">
-				<poi_type name="industrial" tag="landuse" value="industrial" name_only="true"/>
+				<poi_type name="industrial" tag="landuse" value="industrial" name_only="true">
+					<poi_additional name="industrial_oil" tag="industrial" value="oil"/>
+					<poi_additional name="industrial_wellsite" tag="industrial" value="wellsite"/>
+					<poi_additional name="industrial_factory" tag="industrial" value="factory"/>
+					<poi_additional name="industrial_gas" tag="industrial" value="gas"/>
+					<poi_additional name="industrial_timber" tag="industrial" value="timber"/>
+					<poi_additional name="industrial_refinery" tag="industrial" value="refinery"/>
+					<poi_additional name="industrial_warehouse" tag="industrial" value="warehouse"/>
+					<poi_additional name="industrial_auto_wrecker" tag="industrial" value="auto_wrecker"/>
+					<poi_additional name="industrial_agriculture" tag="industrial" value="agriculture"/>
+					<poi_additional name="industrial_brewery" tag="industrial" value="brewery"/>
+					<poi_additional name="industrial_brickyard" tag="industrial" value="brickyard"/>
+					<poi_additional name="industrial_intermodal_freight_terminal" tag="industrial" value="intermodal_freight_terminal"/>
+					<poi_additional name="industrial_sawmill" tag="industrial" value="sawmill"/>
+					<poi_additional name="industrial_water_purification" tag="industrial" value="water purification"/>
+					<poi_additional name="industrial_port" tag="industrial" value="port"/>
+					<poi_additional name="industrial_depot" tag="industrial" value="depot"/>
+				</poi_type>
 				<poi_type name="quarry" tag="landuse" value="quarry" name_only="true"/>
 				<poi_type name="vineyard" tag="landuse" value="vineyard" name_only="true"/>
 				<poi_type name="orchard" tag="landuse" value="orchard" name_only="true"/>
@@ -1337,6 +1360,7 @@
 				<poi_type name="museum" tag="tourism" value="museum"/>
 				<poi_type name="memorial" tag="historic" value="memorial"/>
 				<poi_type name="monument" tag="historic" value="monument"/>
+				<poi_type name="technical_monument" tag="historic" value="technical_monument"/>
 				<poi_type name="artwork" tag="tourism" value="artwork">
 					<poi_additional name="artwork_type_sculpture" tag="artwork_type" value="sculpture"/>
 					<poi_additional name="artwork_type_statue" tag="artwork_type" value="statue"/>
@@ -1358,6 +1382,7 @@
 				<poi_type name="boundary_stone" tag="historic" value="boundary_stone"/>
 				<poi_type name="historic_cannon" tag="historic" value="cannon"/>
 				<poi_type name="historic_quarry" tag="historic" value="quarry"/>
+				<poi_type name="historic_aircraft" tag="historic" value="aircraft"/>
 				<poi_type name="castle" tag="historic" value="castle"/>
 				<poi_type name="city_gate" tag="historic" value="city_gate"/>
 				<poi_type name="fort" tag="historic" value="fort"/>
@@ -1812,10 +1837,18 @@
 			<poi_type name="shelter" tag="amenity" value="shelter"/>
 			<poi_type name="copyshop" tag="shop" value="copyshop"/>
 			<poi_reference name="rest_area"/>
-			<poi_type name="animal_shelter_dog" tag="animal_shelter" value="dog"/>
-			<poi_type name="animal_shelter_cat" tag="animal_shelter" value="cat"/>
-			<poi_type name="animal_shelter_dog_cat" tag="animal_shelter" value="dog;cat"/>
-			<poi_type name="animal_shelter_bird" tag="animal_shelter" value="bird"/>
+			<poi_type name="animal_shelter" tag="amenity" value="animal_shelter">
+				<poi_additional name="animal_shelter_dog" tag="animal_shelter" value="dog"/>
+				<poi_additional name="animal_shelter_cat" tag="animal_shelter" value="cat"/>
+				<poi_additional name="animal_shelter_dog_cat" tag="animal_shelter" value="dog;cat"/>
+				<poi_additional name="animal_shelter_bird" tag="animal_shelter" value="bird"/>
+			</poi_type>
+			<poi_type name="animal_boarding" tag="amenity" value="animal_boarding">
+				<poi_additional name="animal_boarding_dog" tag="animal_boarding" value="dog"/>
+				<poi_additional name="animal_boarding_cat" tag="animal_boarding" value="cat"/>
+				<poi_additional name="animal_boarding_dog_cat" tag="animal_boarding" value="dog;cat"/>
+				<poi_additional name="animal_boarding_horse" tag="animal_boarding" value="horse"/>
+			</poi_type>
 		</poi_category>
 		<poi_category name="finance" default_tag="amenity">
 			<poi_type name="bank" tag="amenity" value="bank"/>
@@ -1861,7 +1894,7 @@
 				<poi_additional name="wetland_marsh" tag="wetland" value="marsh"/>
 				<poi_additional name="wetland_reedbed" tag="wetland" value="reedbed"/>
 				<poi_additional name="wetland_swamp" tag="wetland" value="swamp"/>
-				<poi_additional name="wetland_saltern" tag="wetland" value="saltern"/>
+<!--				<poi_additional name="wetland_saltern" tag="wetland" value="saltern"/>--> <!-- better use landuse=salt_pond -->
 				<poi_additional name="wetland_tidalflat" tag="wetland" value="tidalflat"/>
 				<poi_additional name="wetland_saltmarsh" tag="wetland" value="saltmarsh"/>
 				<poi_additional name="wetland_mangrove" tag="wetland" value="mangrove"/>
