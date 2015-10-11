@@ -2053,7 +2053,7 @@
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="argentina" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="buenosaires"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="argentina" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="buenosaires"/>
 
-		<type tag="station" value="subway" minzoom="12" additional="true" />
+		<type tag="station" value="subway" minzoom="12" additional="true" relation="true"/>
 		<type tag="railway" value="subway" minzoom="11"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="station" to_value2="subway"/> <!-- https://github.com/osmandapp/Osmand/issues/1782 -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway" if_tag1="construction" if_value1="yes" to_tag1="railway" to_value1="construction"/>
@@ -2292,6 +2292,8 @@
 		<type tag="amenity" value="studio" minzoom="15" />
 		<type tag="office" value="travel_agent" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="architect_office" to_tag1="office" to_value1="architect"/>
+		<type tag="office" value="camping" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="camp_site" from_value="reception" to_tag1="office" to_value1="camping"/>
 	</category>
 
 
@@ -2602,6 +2604,7 @@
 		<type tag="tourism" value="motel" minzoom="15" />
 		<type tag="tourism" value="museum" minzoom="15" />
 		<type tag="tourism" value="information" minzoom="15" order="10"/>
+		<type tag="information" value="office" additional="true" minzoom="13"/>
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="sign" to_tag1="tourism" to_value1="information"/>
 		<entity_convert pattern="tag_transform" from_tag="information" from_value="wild_life" to_tag1="information" to_value1="wildlife"/>
 		<entity_convert pattern="tag_transform" from_tag="information" from_value="citymap" to_tag1="information" to_value1="map"/>
@@ -2688,6 +2691,7 @@
 		<entity_convert pattern="tag_transform" from_tag="memorial:type" from_value="cross" to_tag1="memorial" to_value1="cross"/>
 		<entity_convert pattern="tag_transform" from_tag="memorial:type" from_value="bust" to_tag1="memorial" to_value1="bust"/>
 		<entity_convert pattern="tag_transform" from_tag="memorial:type" from_value="vehicle" to_tag1="memorial" to_value1="vehicle"/>
+		<type tag="memorial" value="stolperstein" additional="true" minzoom="15" />
 		<type tag="historic" value="tomb" minzoom="15" />
 		<type tag="historic" value="mine" minzoom="15"/>
 		<entity_convert pattern="tag_transform" from_tag="historic" from_value="mine_shaft" to_tag1="historic" to_value1="mine"/>
@@ -2836,6 +2840,7 @@
 		<type tag="natural" value="valley" minzoom="10" />
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="valley" to_tag1="natural" to_value1="valley"/>
 		<type tag="natural" value="tree" minzoom="17" />
+		<entity_convert pattern="tag_transform" from_tag="denotation" from_value="natural_monument" to_tag1="monument" to_value1="yes"/>
 		<type tag="natural" value="tree_row" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="tree_row" from_value="yes" to_tag1="natural" to_value1="tree_row"/>
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="tree_line" to_tag1="natural" to_value1="tree_row"/>
@@ -3045,6 +3050,7 @@
 		<type tag="amenity" value="dentist" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="healthcare" from_value="dentist" to_tag1="amenity"/>
 		<type tag="amenity" value="doctors" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="office" from_value="physician" to_tag1="amenity" to_value1="doctors"/>
 		<entity_convert pattern="tag_transform" from_tag="healthcare" from_value="doctor" to_tag1="amenity" to_value1="doctors"/>
 		<type tag="amenity" value="clinic" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="healthcare" from_value="clinic" to_tag1="amenity"/>
@@ -3331,6 +3337,7 @@
 		<type tag="sport" value="toboggan" minzoom="15" />
 		<type tag="sport" value="volleyball" minzoom="15" />
 		<type tag="leisure" value="pitch" minzoom="12" order="59" />
+		<type tag="sport" value="model_aerodrome" minzoom="15" />
 
 		<type tag="golf" value="hole" minzoom="15" nameTags="ref,par"/>
 	</category>

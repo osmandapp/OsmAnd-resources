@@ -178,9 +178,9 @@ mycp drinking_water no overlays_drinking_water_no.png
 
 mygroup healthcare health_pharmacy.png
 mycp amenity dentist health_dentist.png
-mycp amenity doctors health_doctors.png
+mycp amenity doctors health_doctors3.png
 mycp amenity hospital health_hospital2.png
-mycpname clinic health_hospital.png
+mycpname clinic health_clinic.png
 mycp amenity nursing_home health_nursing_home.png
 mycp amenity pharmacy health_pharmacy2.png
 mycp amenity veterinary health_veterinary.png
@@ -505,6 +505,7 @@ mycp tourism aquarium tourist_aquarium.png
 mycp tourism artwork tourist_artwork.png
 mycp tourism attraction tourist_attraction.png
 mycp tourism information tourist_information.png
+mycpname information_office tourist_information_office.png
 mycp tourism museum tourist_museum.png
 mycp tourism picnic_site tourist_picnic.png
 mycpname picnic_table tourist_picnic_table.png
@@ -560,6 +561,7 @@ mycp building pyramid tourist_pyramid.png
 mycpname tomb tourist_memorial.png
 mycpname historic_aircraft tourist_historic_aircraft.png
 mycpname technical_monument tourist_technical_monument.png
+mycpname memorial_stolperstein tourist_memorial_stolperstein.png
 
 ## Special POI icons
 mycp special_poi big_ben special_poi_big_ben.png
@@ -618,6 +620,7 @@ mycpname ice_skating sport_iceskating.png
 mycpname orienteering sport_orienteering.png
 mycpname golf_course sport_golf.png
 mycpname horse_riding sport_horse_riding.png
+mycpname model_aerodrome sport_model_aerodrome.png
 
 
 ## Leisure
@@ -682,6 +685,7 @@ mycpname internet_access_wired amenity_internet_access_wired.png
 mycpname watering_place amenity_watering_place.png
 mycpname animal_shelter amenity_animal_shelter.png
 mycpname animal_boarding amenity_animal_boarding.png
+mycpname baby_hatch amenity_baby_hatch.png
 
 mygroup craft craft_tailor.png
 mycpname craft_beekeeper craft_beekeeper.png
@@ -782,6 +786,7 @@ mycpname surveillance poi_surveillance.png
 mycpname pier poi_pier.png
 mycpname beacon poi_beacon.png
 mycpname breakwater poi_breakwater.png
+mycpname military_range poi_military_range.png
 
 mygroup military poi_military_bunker.png
 
@@ -1530,6 +1535,29 @@ mycp office government office_government.png
 mycpname company office_company.png
 mycpname advertising_agency office_advertising_agency.png
 mycpname employment_agency office_employment_agency.png
+mycpname lawyer office_lawyer.png
+mycpname office_administrative office_administrative.png
+mycpname ngo office_ngo.png
+mycpname political_party office_political_party.png
+mycpname telecommunication office_telecommunication.png
+mycpname accountant office_accountant.png
+mycpname architect office_architect.png
+mycpname association office_association.png
+mycpname office_camping office_camping.png
+mycpname educational_institution office_educational_institution.png
+mycpname office_foundation office_foundation.png
+mycpname guide office_guide.png
+mycpname newspaper office_newspaper.png
+mycpname quango office_quango.png
+mycpname tax_advisor office_tax_advisor.png
+mycpname consulting office_consulting.png
+mycpname cooperative office_cooperative.png
+mycpname financial office_financial.png
+mycpname forestry office_forestry.png
+mycpname logistics office_logistics.png
+mycpname notary office_notary.png
+mycpname parish office_parish.png
+mycpname publisher office_publisher.png
 
 ## Entertainment
 mycpname park entertainment_park.png
