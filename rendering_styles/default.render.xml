@@ -1204,7 +1204,6 @@
 	<renderingConstant name="placeLocalityMinZoom" value="13"/>
 
 	<renderingConstant name="towerCommunicationMinZoom" value="15"/>
-	<renderingConstant name="barrierMinZoom" value="16"/>
 	<renderingConstant name="minzoomNonVehicleInCarMode-1" value="18"/>
 
 	<renderingConstant name="buildingTextHaloRadiusDay" value="1"/>
@@ -1589,9 +1588,11 @@
 			<case tag="note_tag" value="yes"/>
 			<case tag="abandoned:place" value="" order="10"/>
 			<case tag="barrier" value=""/>
-			<switch appMode="pedestrian" tag="barrier" order="-1">
+			<switch appMode="pedestrian" tag="barrier" maxzoom="17" order="-1">
 				<case value="" minzoom="14" maxzoom="15"/>
 				<case value="block"/>
+				<case value="jersey_barrier"/>
+				<case value="debris"/>
 				<case value="bollard"/>
 				<case value="bus_trap"/>
 				<case value="cattle_grid"/>
@@ -3890,7 +3891,10 @@
 			</switch>
 			<switch moreDetailed="true" minzoom="16" iconOrder="128">
 				<case tag="barrier" value="block" icon="barrier_block" shield="barrier_block_shield"/>
+				<case tag="barrier" value="debris" icon="barrier_debris" shield="barrier_debris_shield"/>
+				<case tag="barrier" value="jersey_barrier" icon="barrier_jersey_barrier" shield="barrier_jersey_barrier_shield"/>
 				<case tag="barrier" value="bollard" icon="barrier_bollard" shield="barrier_bollard_shield"/>
+				<case tag="barrier" value="horse_stile" icon="barrier_horse_stile" shield="barrier_horse_stile_shield"/>
 				<case tag="barrier" value="bus_trap" icon="barrier_bus_trap" shield="barrier_bus_trap_shield"/>
 				<case tag="barrier" value="chain" icon="barrier_chain" shield="barrier_chain_shield"/>
 				<case tag="barrier" value="gate" icon="barrier_gate" shield="barrier_gate_shield"/>
@@ -3964,6 +3968,9 @@
 				<case tag="barrier" value="stile" icon="barrier_stile" shield="barrier_stile_shield"/>
 				<case tag="barrier" value="sally_port" icon="barrier_sally_port" shield="barrier_sally_port_shield"/>
 				<case tag="barrier" value="block" icon="barrier_block" shield="barrier_block_shield"/>
+				<case tag="barrier" value="debris" icon="barrier_debris" shield="barrier_debris_shield"/>
+				<case tag="barrier" value="jersey_barrier" icon="barrier_jersey_barrier" shield="barrier_jersey_barrier_shield"/>
+				<case tag="barrier" value="horse_stile" icon="barrier_horse_stile" shield="barrier_horse_stile_shield"/>
 				<case tag="barrier" value="kissing_gate" icon="barrier_kissing_gate" shield="barrier_kissing_gate_shield"/>
 			</switch>
 			<switch shield="white_gray_square_shield">
@@ -4731,22 +4738,23 @@
 		<!-- Barriers -->
 		<switch iconOrder="128">
 			<switch>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="gate" icon="barrier_gate" shield="barrier_gate_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="yes" icon="barrier_gate" shield="barrier_gate_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="lift_gate" icon="barrier_lift_gate" shield="barrier_lift_gate_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="swing_gate" icon="barrier_swing_gate" shield="barrier_swing_gate_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="bump_gate" icon="barrier_bump_gate" shield="barrier_bump_gate_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="bus_trap" icon="barrier_bus_trap" shield="barrier_bus_trap_shield"/>
+				<case minzoom="16" tag="barrier" value="gate" icon="barrier_gate" shield="barrier_gate_shield"/>
+				<case minzoom="16" tag="barrier" value="yes" icon="barrier_gate" shield="barrier_gate_shield"/>
+				<case minzoom="16" tag="barrier" value="lift_gate" icon="barrier_lift_gate" shield="barrier_lift_gate_shield"/>
+				<case minzoom="16" tag="barrier" value="swing_gate" icon="barrier_swing_gate" shield="barrier_swing_gate_shield"/>
+				<case minzoom="16" tag="barrier" value="bump_gate" icon="barrier_bump_gate" shield="barrier_bump_gate_shield"/>
+				<case minzoom="16" tag="barrier" value="bus_trap" icon="barrier_bus_trap" shield="barrier_bus_trap_shield"/>
 				<case minzoom="18" tag="barrier" value="cattle_grid" icon="barrier_cattle_grid" shield="barrier_cattle_grid_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="chain" icon="barrier_chain" shield="barrier_chain_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="height_restrictor" icon="barrier_height_restrictor" shield="barrier_height_restrictor_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="cycle_barrier" icon="barrier_cycle_barrier" shield="barrier_cycle_barrier_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="motorcycle_barrier" icon="barrier_motorcycle_barrier" shield="barrier_motorcycle_barrier_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="turnstile" icon="barrier_turnstile" shield="barrier_turnstile_shield" iconOrder="128"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="stile" icon="barrier_stile" shield="barrier_stile_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="sally_port" icon="barrier_sally_port" shield="barrier_sally_port_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="kissing_gate" icon="barrier_kissing_gate" shield="barrier_kissing_gate_shield"/>
-				<case minzoom="$barrierMinZoom" tag="barrier" value="entrance" icon="barrier_entrance" shield="barrier_entrance_shield"/>
+				<case minzoom="16" tag="barrier" value="chain" icon="barrier_chain" shield="barrier_chain_shield"/>
+				<case minzoom="16" tag="barrier" value="height_restrictor" icon="barrier_height_restrictor" shield="barrier_height_restrictor_shield"/>
+				<case minzoom="16" tag="barrier" value="cycle_barrier" icon="barrier_cycle_barrier" shield="barrier_cycle_barrier_shield"/>
+				<case minzoom="16" tag="barrier" value="motorcycle_barrier" icon="barrier_motorcycle_barrier" shield="barrier_motorcycle_barrier_shield"/>
+				<case minzoom="16" tag="barrier" value="turnstile" icon="barrier_turnstile" shield="barrier_turnstile_shield" iconOrder="128"/>
+				<case minzoom="16" tag="barrier" value="stile" icon="barrier_stile" shield="barrier_stile_shield"/>
+				<case minzoom="16" tag="barrier" value="sally_port" icon="barrier_sally_port" shield="barrier_sally_port_shield"/>
+				<case minzoom="16" tag="barrier" value="kissing_gate" icon="barrier_kissing_gate" shield="barrier_kissing_gate_shield"/>
+				<case minzoom="16" tag="barrier" value="horse_stile" icon="barrier_horse_stile" shield="barrier_horse_stile_shield"/>
+				<case minzoom="16" tag="barrier" value="entrance" icon="barrier_entrance" shield="barrier_entrance_shield"/>
 				<apply_if minzoom="16" maxzoom="16" icon="barrier_small_black_2" shield="" iconVisibleSize="0">
 					<apply_if nightMode="true" icon="barrier_small_white_2"/>
 				</apply_if>
@@ -4776,16 +4784,21 @@
 		<!-- Impassable barriers -->
 		<switch iconOrder="128">
 			<case tag="barrier" value="bollard">
-				<apply_if minzoom="$barrierMinZoom" icon="barrier_bollard" shield="barrier_bollard_shield"/>
+				<apply_if minzoom="16" icon="barrier_bollard" shield="barrier_bollard_shield"/>
 			</case>
 			<case tag="barrier" value="block">
-				<apply_if minzoom="$barrierMinZoom" icon="barrier_block" shield="barrier_block_shield"/>
+				<apply_if minzoom="16" icon="barrier_block" shield="barrier_block_shield"/>
+			</case>
+			<case tag="barrier" value="debris">
+				<apply_if minzoom="16" icon="barrier_debris" shield="barrier_debris_shield"/>
+			</case>
+			<case tag="barrier" value="jersey_barrier">
+				<apply_if minzoom="16" icon="barrier_jersey_barrier" shield="barrier_jersey_barrier_shield"/>
 			</case>
 			<apply_if minzoom="16" maxzoom="16" icon="barrier_small_red_2" iconVisibleSize="0" shield=""/>
 			<apply>
 				<switch> <!-- These barriers are passable by bicycle and pedestrian -->
 					<case appMode="bicycle"/>
-					<case appMode="pedestrian"/>
 					<apply_if minzoom="16" maxzoom="16" icon="barrier_small_black_2"/>
 				</switch>
 			</apply>
@@ -5102,7 +5115,7 @@
 			<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 		</switch>
 		<case minzoom="17" tag="power" value="substation" icon="power_substation" shield="power_substation_shield"/>
-		<case minzoom="17" tag="power" value="transformer" icon="transformer"/>
+		<case minzoom="17" tag="power" value="transformer" icon="power_transformer"/>
 		<case minzoom="15" tag="man_made" value="observatory" icon="man_made_observatory" shield="observatory_shield">
 			<apply_if additional="observatory:type=astronomical" icon="astronomical_observatory" shield="astronomical_observatory_shield"/>
 			<apply_if moreDetailed="false" maxzoom="15" icon=""/>
@@ -6987,6 +7000,7 @@
 		<switch minzoom="15">
 			<case tag="barrier" value="yes"/>
 			<case tag="barrier" value="fence"/>
+			<case tag="barrier" value="jersey_barrier"/>
 			<case tag="barrier" value="wall"/>
 			<case tag="barrier" value="retaining_wall">
 				<apply_if minzoom="16" pathIcon="stroke_darkgreen" pathIconStep="15"/>

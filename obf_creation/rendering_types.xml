@@ -164,7 +164,8 @@
 	<entity_convert pattern="tag_transform" from_tag="storage" from_value="water" to_tag1="content" to_value1="water" map="no"/>
 	<entity_convert pattern="tag_transform" from_tag="storage" from_value="gas" to_tag1="content" to_value1="gas" map="no"/>
 	<entity_convert pattern="tag_transform" from_tag="storage" from_value="fuel" to_tag1="content" to_value1="fuel" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="storage" from_value="waste_water" to_tag1="content" to_value1="wastewater" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="storage" from_value="waste_water" to_tag1="content" to_value1="sewage" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="storage" from_value="wastewater" to_tag1="content" to_value1="sewage" map="no"/>
 
 	<type tag="bus" value="yes" minzoom="13" additional="true" only_map="true"/>
 	<type tag="trolleybus" value="yes" minzoom="13" additional="true" only_map="true"/>
@@ -305,7 +306,7 @@
 	<type tag="hazard" minzoom="15" only_map="true" order="1"/>
 
 	<type tag="light_source" minzoom="12" only_map="true" order="100"/>
-	<type tag="lit" value="yes" minzoom="10" only_map="true" order="100"/>
+	<type tag="lit" value="yes" minzoom="10" order="100"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="automatic" to_tag1="lit" to_value1="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="24/7" to_tag1="lit" to_value1="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="on" to_tag1="lit" to_value1="yes"/>
@@ -314,7 +315,7 @@
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="1" to_tag1="lit" to_value1="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="yes/automatic/24/7" to_tag1="lit" to_value1="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="piste:lit" from_value="yes" to_tag1="lit" to_value1="yes"/>
-	<type tag="lit" value="no" minzoom="10" only_map="true" order="100"/>
+	<type tag="lit" value="no" minzoom="10" order="100"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="disused" to_tag1="lit" to_value1="no"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="construction" to_tag1="lit" to_value1="no"/>
 	<type tag="lit" value="interval" minzoom="10" only_map="true" order="100"/>
@@ -331,30 +332,30 @@
 	<entity_convert pattern="tag_transform" from_tag="lit" if_not_tag1="highway" if_not_tag2="railway" if_not_tag3="area:highway" if_not_tag4="man_made" if_not_tag5="building" if_not_value5="tower" apply_to="way,node"/>
 	<type tag="lit_additional" value="yes" minzoom="16" additional="true" only_map="true" order="100"/>
 	<type tag="lit_additional" value="no" minzoom="16" additional="true" only_map="true" order="100"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="highway" if_value1="street_lamp" to_tag1="lit_additional" apply_to="node"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="man_made" if_value1="tower" to_tag1="lit_additional" apply_to="way,node"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="building" if_value1="tower" to_tag1="lit_additional" apply_to="way,node"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="man_made" if_value1="mast" to_tag1="lit_additional" apply_to="way,node"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="highway" if_value1="crossing" to_tag1="lit_additional" apply_to="way,node"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="railway" if_value1="level_crossing" to_tag1="lit_additional" apply_to="way,node"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="highway" if_value1="street_lamp" to_tag1="lit_additional" apply_to="node" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="man_made" if_value1="tower" to_tag1="lit_additional" apply_to="way,node" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="building" if_value1="tower" to_tag1="lit_additional" apply_to="way,node" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="man_made" if_value1="mast" to_tag1="lit_additional" apply_to="way,node" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="highway" if_value1="crossing" to_tag1="lit_additional" apply_to="way,node" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="railway" if_value1="level_crossing" to_tag1="lit_additional" apply_to="way,node" poi="no"/>
 	<type tag="lit_pedestrian_layer-1" value="yes" minzoom="16" only_map="true" order="100"/>
 	<type tag="lit_pedestrian_layer-1" value="no" minzoom="16" only_map="true" order="100"/>
 	<type tag="lit_pedestrian_layer-1" value="interval" minzoom="16" only_map="true" order="100"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-1" if_tag2="highway" if_value2="footway" to_tag1="lit_pedestrian_layer-1" apply_to="way"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-1" if_tag2="highway" if_value2="steps" to_tag1="lit_pedestrian_layer-1" apply_to="way"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-1" if_tag2="highway" if_value2="path" to_tag1="lit_pedestrian_layer-1" apply_to="way"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-2" if_tag2="highway" if_value2="footway" to_tag1="lit_pedestrian_layer-1" apply_to="way"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-2" if_tag2="highway" if_value2="steps" to_tag1="lit_pedestrian_layer-1" apply_to="way"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-2" if_tag2="highway" if_value2="path" to_tag1="lit_pedestrian_layer-1" apply_to="way"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-3" if_tag2="highway" if_value2="footway" to_tag1="lit_pedestrian_layer-1" apply_to="way"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-3" if_tag2="highway" if_value2="steps" to_tag1="lit_pedestrian_layer-1" apply_to="way"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-3" if_tag2="highway" if_value2="path" to_tag1="lit_pedestrian_layer-1" apply_to="way"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-4" if_tag2="highway" if_value2="footway" to_tag1="lit_pedestrian_layer-1" apply_to="way"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-4" if_tag2="highway" if_value2="steps" to_tag1="lit_pedestrian_layer-1" apply_to="way"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-4" if_tag2="highway" if_value2="path" to_tag1="lit_pedestrian_layer-1" apply_to="way"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-5" if_tag2="highway" if_value2="footway" to_tag1="lit_pedestrian_layer-1" apply_to="way"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-5" if_tag2="highway" if_value2="steps" to_tag1="lit_pedestrian_layer-1" apply_to="way"/>
-	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-5" if_tag2="highway" if_value2="path" to_tag1="lit_pedestrian_layer-1" apply_to="way"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-1" if_tag2="highway" if_value2="footway" to_tag1="lit_pedestrian_layer-1" apply_to="way" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-1" if_tag2="highway" if_value2="steps" to_tag1="lit_pedestrian_layer-1" apply_to="way" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-1" if_tag2="highway" if_value2="path" to_tag1="lit_pedestrian_layer-1" apply_to="way" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-2" if_tag2="highway" if_value2="footway" to_tag1="lit_pedestrian_layer-1" apply_to="way" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-2" if_tag2="highway" if_value2="steps" to_tag1="lit_pedestrian_layer-1" apply_to="way" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-2" if_tag2="highway" if_value2="path" to_tag1="lit_pedestrian_layer-1" apply_to="way" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-3" if_tag2="highway" if_value2="footway" to_tag1="lit_pedestrian_layer-1" apply_to="way" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-3" if_tag2="highway" if_value2="steps" to_tag1="lit_pedestrian_layer-1" apply_to="way" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-3" if_tag2="highway" if_value2="path" to_tag1="lit_pedestrian_layer-1" apply_to="way" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-4" if_tag2="highway" if_value2="footway" to_tag1="lit_pedestrian_layer-1" apply_to="way" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-4" if_tag2="highway" if_value2="steps" to_tag1="lit_pedestrian_layer-1" apply_to="way" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-4" if_tag2="highway" if_value2="path" to_tag1="lit_pedestrian_layer-1" apply_to="way" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-5" if_tag2="highway" if_value2="footway" to_tag1="lit_pedestrian_layer-1" apply_to="way" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-5" if_tag2="highway" if_value2="steps" to_tag1="lit_pedestrian_layer-1" apply_to="way" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-5" if_tag2="highway" if_value2="path" to_tag1="lit_pedestrian_layer-1" apply_to="way" poi="no"/>
 
 	<type tag="name" additional="text" order="40"/>
 	<type tag="name:en" additional="text" order="45"/>
@@ -493,7 +494,6 @@
 	<entity_convert pattern="tag_transform" from_tag="amenity" from_value="shelter" if_tag1="public_transport" to_tag1="shelter" to_value1="yes" to_tag2="shelter_type" to_value2="public_transport" map="no"/>
 	<entity_convert pattern="tag_transform" from_tag="amenity" from_value="shelter" if_tag1="tourism" if_not_tag1="tourism" if_not_value1="yes" to_tag1="shelter" to_value1="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="amenity" from_value="shelter" if_tag1="historic" if_not_tag1="historic" if_not_value1="yes" to_tag1="shelter" to_value1="yes"/>
-	<entity_convert pattern="tag_transform" from_tag="amenity" from_value="shelter" if_tag1="amenity" to_tag1="shelter" to_value1="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="amenity" from_value="shelter" if_tag1="shop" to_tag1="shelter" to_value1="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="amenity" from_value="shelter" if_tag1="leisure" to_tag1="shelter" to_value1="yes"/>
 	<type tag="amenity" value="watering_place" minzoom="14"/>
@@ -1693,6 +1693,8 @@
 		<type tag="barrier" value="cycle_barrier" minzoom="15" />
 		<type tag="barrier" value="motorcycle_barrier" minzoom="15" />
 		<type tag="barrier" value="block" minzoom="15" />
+		<type tag="barrier" value="debris" minzoom="15" />
+		<type tag="barrier" value="jersey_barrier" minzoom="15" />
 		<type tag="barrier" value="bus_trap" minzoom="15" />
 		<type tag="barrier" value="cattle_grid" minzoom="15" />
 		<type tag="barrier" value="toll_booth" minzoom="14"/>
@@ -2768,6 +2770,7 @@
 		<type tag="landuse" value="quarry" minzoom="6"/>
 		<type tag="landuse" value="salt_pond" minzoom="11"/>
 		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="peat_cutting" to_tag1="landuse" to_value1="quarry" to_tag2="resource" to_value2="peat"/>
+		<entity_convert pattern="tag_transform" from_tag="quarry:type" from_value="peat_cutting" to_tag1="resource" to_value2="peat"/>
 		<type tag="landuse" value="vineyard" minzoom="6"/>
 		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="field" to_tag1="landuse" to_value1="farmland"/>
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="field" to_tag1="landuse"/>
@@ -2969,6 +2972,8 @@
 		<type tag="amenity" value="motorcycle_parking" minzoom="15" order="49" />
 		<type tag="amenity" value="ferry_terminal" minzoom="12" />
 		<type tag="amenity" value="fuel" minzoom="13" nameTags="name,brand,operator"/>
+		<entity_convert pattern="tag_transform" from_tag="fuel:alcohol" from_value="yes" to_tag1="fuel:ethanol" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="fuel" from_value="electric" to_tag1="fuel:electricity" to_value1="yes"/>
 		<type tag="amenity" value="charging_station" minzoom="13" />
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="ev_charging" to_tag1="amenity" to_value1="charging_station"/>
 		<type tag="amenity" value="vehicle_inspection" minzoom="15" />

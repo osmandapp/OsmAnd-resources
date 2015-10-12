@@ -254,6 +254,7 @@ mygroup filling_station transport_fuel.png
 mycp amenity charging_station transport_charging_station.png
 mycp amenity fuel_lpg transport_fuel_lpg.png
 mycp amenity fuel transport_fuel.png
+mycpname aeroway_fuel transport_aeroway_fuel.png
 
 mygroup parking transport_parking.png
 mycp amenity parking transport_parking.png
@@ -322,9 +323,9 @@ mycp railway tram_stop_round_small_night functional-icons_blue_stop_round_small_
 mycp railway tram_stop transport_tram_stop.png
 mycpname subway_station transport_subway_station.png
 
-mycp railway subway_entrance functional-icons_subway_entrance.png
+mycpname subway_entrance_map functional-icons_subway_entrance_map.png
+mycpname subway_entrance poi_subway_entrance.png
 mycpname subway_entrance transport_subway_entrance.png
-mycpname subway_entrance_map functional-icons_subway_entrance.png
 mycp railway subway_entrance_red functional-icons_subway_entrance_red.png
 mycp railway subway_entrance_brown functional-icons_subway_entrance_brown.png
 mycp railway subway_entrance_orange functional-icons_subway_entrance_orange.png
@@ -466,6 +467,9 @@ mycpname entrance_exit poi_entrance_exit.png
 mycpname entrance_main barrier_entrance2.png
 mycp amenity parking_entrance transport_parking_entrance.png
 mycp building entrance barrier_entrance.png
+mycpname barrier_debris barrier_debris.png
+mycpname barrier_horse_stile barrier_horse_stile.png
+mycpname barrier_jersey_barrier barrier_jersey_barrier.png
 
 
 ## Accommodation
