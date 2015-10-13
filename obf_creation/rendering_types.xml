@@ -2283,6 +2283,8 @@
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="picnic_table" to_tag1="leisure"/>
 		<type tag="leisure" value="playground" minzoom="15" />
 		<type tag="leisure" value="garden" minzoom="10" order="50" />
+		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="hop_garden" to_tag1="landuse" to_value1="farmland" to_tag2="crop" to_value2="hop"/>
+		<entity_convert pattern="tag_transform" from_tag="produce" from_value="hop" if_tag1="landuse" if_value1="farmland" to_tag1="crop" to_value1="hop" to_tag2="landuse" to_value2="farmland"/>
 		<type tag="leisure" value="common" minzoom="12" />
 		<type tag="leisure" value="miniature_golf" minzoom="15" />
 		<type tag="leisure" value="dance" minzoom="15" order="71" />
@@ -2775,6 +2777,11 @@
 		<type tag="landuse" value="landfill" minzoom="6" />
 		<entity_convert pattern="tag_transform" from_tag="landfill:waste" if_not_tag1="landuse" if_not_value1="landfill" to_tag1="landfill:waste" to_tag2="landuse" to_value2="landfill"/>
 		<type tag="landuse" value="meadow" minzoom="6" order="60"/>
+		<entity_convert pattern="tag_transform" from_tag="crop" from_value="native_pasture" to_tag1="landuse" to_value1="meadow"/>
+		<entity_convert pattern="tag_transform" from_tag="crop" from_value="vegetable" to_tag1="crop" to_value1="vegetables"/>
+		<entity_convert pattern="tag_transform" from_tag="crop" from_value="dairy" to_tag1="landuse" to_value1="meadow"/>
+		<entity_convert pattern="tag_transform" from_tag="crop" from_value="maize" to_tag1="crop" to_value1="corn"/>
+		<entity_convert pattern="tag_transform" from_tag="crop" from_value="hay" to_tag1="landuse" to_value1="meadow"/>
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="meadow" to_tag1="landuse"/>
 		<type tag="landuse" value="logging" minzoom="6" order="60"/>
 		<type tag="landuse" value="military" minzoom="6"/>
@@ -2795,6 +2802,8 @@
 		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="peat_cutting" to_tag1="landuse" to_value1="quarry" to_tag2="resource" to_value2="peat"/>
 		<entity_convert pattern="tag_transform" from_tag="quarry:type" from_value="peat_cutting" to_tag1="resource" to_value2="peat"/>
 		<type tag="landuse" value="vineyard" minzoom="6"/>
+		<entity_convert pattern="tag_transform" from_tag="crop" from_value="grape" to_tag1="landuse" to_value1="vineyard"/>
+		<entity_convert pattern="tag_transform" from_tag="crop" from_value="WINE GRAPES" to_tag1="landuse" to_value1="vineyard"/>
 		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="field" to_tag1="landuse" to_value1="farmland"/>
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="field" to_tag1="landuse"/>
 	</category>
@@ -2912,11 +2921,21 @@
 		<type tag="tree:type" value="cypress" minzoom="12" additional="true"/>
 		<entity_convert pattern="tag_transform" from_tag="type" from_value="cypress" to_tag1="tree:type" to_value1="cypress"/>
 		<type tag="trees" value="olive_trees" minzoom="12" additional="true"/>
+		<entity_convert pattern="tag_transform" from_tag="crop" from_value="olive" to_tag1="landuse" to_value1="orchard" to_tag2="trees" to_value2="olive_trees"/>
+		<entity_convert pattern="tag_transform" from_tag="crop" from_value="olives" to_tag1="landuse" to_value1="orchard" to_tag2="trees" to_value2="olive_trees"/>
+		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="orchard" if_tag1="produce" if_value1="olive" to_tag1="landuse" to_value1="orchard" to_tag2="trees" to_value2="olive_trees"/>
+		<entity_convert pattern="tag_transform" from_tag="crop" from_value="mango" to_tag1="landuse" to_value1="orchard" to_tag2="trees" to_value2="mango_trees"/>
+		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="farmland" if_tag1="produce" if_value1="tea" to_tag1="landuse" to_value1="farmland" to_tag2="crop" to_value2="tea"/>
+		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="orchard" if_tag1="produce" if_value1="tea" to_tag1="landuse" to_value1="orchard" to_tag2="crop" to_value2="tea"/>
 		<type tag="trees" value="apple_trees" minzoom="12" additional="true"/>
+		<entity_convert pattern="tag_transform" from_tag="crop" from_value="apple" to_tag1="landuse" to_value1="orchard" to_tag2="trees" to_value2="apple_trees"/>
+		<entity_convert pattern="tag_transform" from_tag="crop" from_value="coconut" to_tag1="landuse" to_value1="orchard" to_tag2="trees" to_value2="coconut_palms"/>
 		<type tag="trees" value="almond_trees" minzoom="12" additional="true"/>
 		<type tag="trees" value="oil_palms" minzoom="12" additional="true"/>
+		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="orchard" if_tag1="produce" if_value1="palm_oil" to_tag1="landuse" to_value1="orchard" to_tag2="trees" to_value2="oil_palms"/>
 		<type tag="trees" value="orange_trees" minzoom="12" additional="true"/>
 		<type tag="trees" value="banana_plants" minzoom="12" additional="true"/>
+		<entity_convert pattern="tag_transform" from_tag="crop" from_value="banana" to_tag1="landuse" to_value1="orchard" to_tag2="trees" to_value2="banana_plants"/>
 		<entity_convert pattern="tag_transform" from_tag="leaf_type" from_value="deciduous" to_tag1="leaf_type" to_value1="broadleaved"/>
 		<entity_convert pattern="tag_transform" from_tag="leaf_type" from_value="broad_leaved" to_tag1="leaf_type" to_value1="broadleaved"/>
 		<entity_convert pattern="tag_transform" from_tag="wood" from_value="deciduous" to_tag1="leaf_type" to_value1="broadleaved"/>
