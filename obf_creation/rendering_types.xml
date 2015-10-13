@@ -396,6 +396,8 @@
 	<entity_convert pattern="tag_transform" from_tag="contact:vk" if_not_tag1="vk" to_tag1="vk" map="no"/>
 	<entity_convert pattern="tag_transform" from_tag="contact:google_plus" if_not_tag1="google_plus" to_tag1="google_plus" map="no"/>
 
+	<type tag="operator" minzoom="15" additional="text" relation="true" map="false" poi="false"/>
+
 	<type tag="abandoned" value="yes" minzoom="11" additional="true"/>
 	<type tag="disused" value="yes" minzoom="11" additional="true"/>
 	<entity_convert pattern="tag_transform" from_tag="building" if_tag1="burnt" if_value1="yes" to_tag1="abandoned:building" to_value1="yes" to_tag2="abandoned_poi" to_value2="yes"/>
@@ -816,15 +818,28 @@
 	</category>
 
 	<category name="routing nodes">
-<!--		<type tag="iwn_ref" value="" nameTags="iwn_ref" minzoom="12" relation="false"/>
-		<type tag="nwn_ref" value="" nameTags="nwn_ref" minzoom="12" relation="false"/>
-		<type tag="rwn_ref" value="" nameTags="rwn_ref" minzoom="12" relation="false"/>
-		<type tag="lwn_ref" value="" nameTags="lwn_ref" minzoom="12" relation="false"/>-->
-
+		<type tag="iwn_ref" value="" nameTags="iwn_ref" minzoom="12" additional="text" relation="false"/>
+		<type tag="nwn_ref" value="" nameTags="nwn_ref" minzoom="12" additional="text" relation="false"/>
+		<type tag="rwn_ref" value="" nameTags="rwn_ref" minzoom="12" additional="text" relation="false"/>
+		<type tag="lwn_ref" value="" nameTags="lwn_ref" minzoom="12" additional="text" relation="false"/>
 		<entity_convert pattern="tag_transform" from_tag="iwn_ref" to_tag1="name" to_tag2="iwn_ref" to_value2="yes" map="false"/>
 		<entity_convert pattern="tag_transform" from_tag="nwn_ref" to_tag1="name" to_tag2="nwn_ref" to_value2="yes" map="false"/>
 		<entity_convert pattern="tag_transform" from_tag="rwn_ref" to_tag1="name" to_tag2="rwn_ref" to_value2="yes" map="false"/>
 		<entity_convert pattern="tag_transform" from_tag="lwn_ref" to_tag1="name" to_tag2="lwn_ref" to_value2="yes" map="false"/>
+<!--		<type tag="iwn_ref" value="yes" minzoom="12" relation="false"/>
+		<type tag="nwn_ref" value="yes" minzoom="12" relation="false"/>
+		<type tag="rwn_ref" value="yes" minzoom="12" relation="false"/>
+		<type tag="lwn_ref" value="yes" minzoom="12" relation="false"/>
+		<entity_convert pattern="split" from_tag="iwn_ref" to_tag1="iwn_ref"/>
+		<entity_convert pattern="split" from_tag="nwn_ref" to_tag1="nwn_ref"/>
+		<entity_convert pattern="split" from_tag="rwn_ref" to_tag1="rwn_ref"/>
+		<entity_convert pattern="split" from_tag="lwn_ref" to_tag1="lwn_ref"/>
+
+		<entity_convert pattern="tag_transform" from_tag="iwn_ref" to_tag1="name" to_tag2="iwn_ref" to_value2="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="nwn_ref" to_tag1="name" to_tag2="nwn_ref" to_value2="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="rwn_ref" to_tag1="name" to_tag2="rwn_ref" to_value2="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="lwn_ref" to_tag1="name" to_tag2="lwn_ref" to_value2="yes"/>-->
+
 		<type tag="icn_ref" value="" nameTags="icn_ref" minzoom="14" relation="false"/>
 		<type tag="ncn_ref" value="" nameTags="ncn_ref" minzoom="14" relation="false"/>
 		<type tag="rcn_ref" value="" nameTags="rcn_ref" minzoom="14" relation="false"/>
@@ -1816,7 +1831,7 @@
 		<type tag="subway_region" value="newyork" additional="true" minzoom="12" />
 		<type tag="subway_region" value="boston" additional="true" minzoom="12" />
 		<type tag="subway_region" value="washington" additional="true" minzoom="12" />
-<!--		<type tag="subway_region" value="losangeles" additional="true" minzoom="12" />-->
+		<type tag="subway_region" value="losangeles" additional="true" minzoom="12" />
 		<type tag="subway_region" value="montreal" additional="true" minzoom="12" />
 		<type tag="subway_region" value="toronto" additional="true" minzoom="12" />
 		<type tag="subway_region" value="cairo" additional="true" minzoom="12" />
@@ -2026,7 +2041,7 @@
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="district-of-columbia,virginia,maryland" if_tag1="operator" if_value1="Washington Metropolitan Area Transit Authority" to_tag1="railway" to_value1="station" to_tag2="route" to_value2="subway" to_tag3="station" to_value3="subway" to_tag4="subway_region" to_value4="washington"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="district-of-columbia,virginia,maryland" if_tag1="operator" if_value1="WMATA" to_tag1="railway" to_value1="station" to_tag2="route" to_value2="subway" to_tag3="station" to_value3="subway" to_tag4="subway_region" to_value4="washington"/>
 			<!-- Los Angeles -->
-<!--		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="california" if_tag1="operator" if_value1="Los Angeles County Metropolitan Transportation Authority" to_tag1="railway" to_value1="station" to_tag2="route" to_value2="subway" to_tag3="station" to_value3="subway" to_tag4="subway_region" to_value4="losangeles"/>--> <!-- https://github.com/osmandapp/Osmand/issues/1785 -->
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="california" if_tag1="operator" if_value1="Los Angeles County Metropolitan Transportation Authority" to_tag1="railway" to_value1="station" to_tag2="route" to_value2="subway" to_tag3="station" to_value3="subway" to_tag4="subway_region" to_value4="losangeles"/> <!-- https://github.com/osmandapp/Osmand/issues/1785 -->
 
 		<!-- Canada -->
 			<!-- Montreal -->

@@ -415,6 +415,7 @@ mycpname subway_buenosaires subway_subway_buenosaires.png
 mycpname subway_boston subway_subway_boston.png
 mycpname subway_washington subway_subway_washington.png
 mycpname subway_bucharest subway_subway_bucharest.png
+mycpname subway_losangeles subway_subway_losangeles.png
 
 mycp aerialway station_small functional-icons_halt.png  #scale 0.25
 mycp aerialway station transport_aerialway_station.png  #scale 0.375
