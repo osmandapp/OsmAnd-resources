@@ -38,7 +38,7 @@
 	<entity_convert pattern="split" from_tag="note" to_tag1="note" to_tag2="note_tag" to_value2="yes" poi="no"/>
 	<type tag="fixme" additional="text" minzoom="12" order="128"/>
 	<type tag="fixme_tag" value="yes" minzoom="12" nameTags="fixme"/>
-	<type tag="note" additional="text" minzoom="12" order="128"/>
+	<type tag="note" additional="text" minzoom="12" order="128" relation="true"/>
 	<type tag="note_tag" value="yes" minzoom="12" nameTags="note"/>
 	<entity_convert pattern="tag_transform" from_tag="comment" to_tag1="note"/>
 
@@ -655,10 +655,17 @@
 		<type tag="route_hiking" value="" nameTags="ref,name" namePrefix="hiking_route_" minzoom="11" relation="true"/> <!-- Internal tag! It is used to allow many routes on the same way -->
 
 		<!-- POI for hiking routes -->
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="hiking" if_tag2="network" if_value2="iwn" to_tag1="route_hiking_ref_poi" to_tag2="route_hiking_iwn_poi" to_value2="yes" apply_to="way,relation" map="no" routing="no"/>
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="hiking" if_tag2="network" if_value2="nwn" to_tag1="route_hiking_ref_poi" to_tag2="route_hiking_nwn_poi" to_value2="yes" apply_to="way,relation" map="no" routing="no"/>
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="hiking" if_tag2="network" if_value2="rwn" to_tag1="route_hiking_ref_poi" to_tag2="route_hiking_rwn_poi" to_value2="yes" apply_to="way,relation" map="no" routing="no"/>
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="hiking" if_tag2="network" if_value2="lwn" to_tag1="route_hiking_ref_poi" to_tag2="route_hiking_lwn_poi" to_value2="yes" apply_to="way,relation" map="no" routing="no"/>
+		<type tag="route_hiking_iwn_poi" value="yes" minzoom="13" relation="true"/>
+		<type tag="route_hiking_nwn_poi" value="yes" minzoom="13" relation="true"/>
+		<type tag="route_hiking_rwn_poi" value="yes" minzoom="13" relation="true"/>
+		<type tag="route_hiking_lwn_poi" value="yes" minzoom="13" relation="true"/>
+
+<!--		<type tag="route_hiking_ref_poi" additional="text" relation="true"/>-->
+
+		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="hiking" if_tag2="network" if_value2="iwn" to_tag1="route_hiking_ref_poi" to_tag2="route_hiking_iwn_poi" to_value2="yes" apply_to="relation" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="hiking" if_tag2="network" if_value2="nwn" to_tag1="route_hiking_ref_poi" to_tag2="route_hiking_nwn_poi" to_value2="yes" apply_to="relation" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="hiking" if_tag2="network" if_value2="rwn" to_tag1="route_hiking_ref_poi" to_tag2="route_hiking_rwn_poi" to_value2="yes" apply_to="relation" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="hiking" if_tag2="network" if_value2="lwn" to_tag1="route_hiking_ref_poi" to_tag2="route_hiking_lwn_poi" to_value2="yes" apply_to="relation" map="no" routing="no"/>
 
 		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="foot" if_tag2="network" if_value2="iwn" to_tag1="route_hiking_ref_poi" to_tag2="route_hiking_iwn_poi" to_value2="yes" apply_to="way,relation" map="no" routing="no"/>
 		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="foot" if_tag2="network" if_value2="nwn" to_tag1="route_hiking_ref_poi" to_tag2="route_hiking_nwn_poi" to_value2="yes" apply_to="way,relation" map="no" routing="no"/>
