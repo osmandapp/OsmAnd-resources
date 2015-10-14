@@ -25,6 +25,8 @@ language('es').
 % (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
 % ( ) word order checked
 % (X) Announcement of favorites, waypoints and pois along the route
+% (X) Announcement when user returns back to route
+% (X) Support announcement of railroad crossings and pedestrian crosswalks
 
 
 % ROUTE CALCULATED
@@ -33,8 +35,9 @@ string('route_calculate.ogg', 'Ruta recalculada ').
 string('distance.ogg', ', distancia').
 
 % LEFT/RIGHT
-string('prepare.ogg', 'prepárate para').
+string('prepare.ogg', 'Prepárate para').
 string('after.ogg', 'después de ').
+string('in.ogg', 'en ').
 
 string('left.ogg', 'gira a la izquierda').
 string('left_sh.ogg', 'efectúa un giro cerrado a la izquierda').
@@ -56,12 +59,13 @@ string('left_keep_inf.ogg', 'mantenerte a la izquierda').
 string('right_keep_inf.ogg', 'mantenerte a la derecha').
 
 % U-TURNS
-string('prepare_make_uturn.ogg', 'Prepárate para dar la vuelta después de').
-string('make_uturn.ogg', 'da la vuelta').
-string('make_uturn_wp.ogg', 'cuando puedas, da la vuelta').
+
+string('make_uturn.ogg', 'Da la vuelta').
+string('make_uturn_wp.ogg', 'Cuando puedas, da la vuelta').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Prepárate para entrar en la rotonda después de').
+%string('prepare_roundabout.ogg', 'Prepárate para entrar en la rotonda después de').
+string('prepare_roundabout.ogg', 'entra en la rotonda ').
 string('roundabout.ogg', 'entra en la rotonda').
 string('then.ogg', ', luego').
 string('and.ogg', 'y').
@@ -95,12 +99,14 @@ string('and_arrive_destination.ogg', 'y llegarás a tu destino').
 string('reached_destination.ogg','has llegado a tu destino').
 string('and_arrive_intermediate.ogg', 'y llegarás a tu punto intermedio').
 string('reached_intermediate.ogg', 'has llegado a tu punto intermedio').
-string('and_arrive_waypoint.ogg', 'y llegarás a tu punto G P X intermedio').
-string('and_arrive_favorite.ogg', 'y llegarás a tu favorito ').
-string('and_arrive_poi_waypoint.ogg', 'y llegarás al P D I ').
-string('reached_waypoint.ogg', 'has llegado a tu punto G P X intermedio').
-string('reached_favorite.ogg', 'has llegado a tu punto intermedio favorito ').
-string('reached_poi.ogg', 'has llegado a tu P D I ').
+string('and_arrive_waypoint.ogg', 'y pasarás tu punto G P X intermedio').
+string('reached_waypoint.ogg', 'estás pasando tu punto G P X intermedio').
+
+string('and_arrive_favorite.ogg', 'y pasarás tu favorito ').
+string('reached_favorite.ogg', 'estás pasando tu punto favorito ').
+string('and_arrive_poi_waypoint.ogg', 'y pasarás el P D I ').
+
+string('reached_poi.ogg', 'estás pasando el P D I ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'atención, ').
@@ -115,7 +121,8 @@ string('pedestrian_crosswalk.ogg', 'paso de peatones ').
 string('location_lost.ogg', 'señal g p s perdida').
 string('location_recovered.ogg', 'señal g p s encontrada ').
 string('off_route.ogg', 'te has desviado de la ruta').
-string('exceed_limit.ogg', 'límite de velocidad excedido').
+string('back_on_route.ogg', 'has regresado a la ruta').
+string('exceed_limit.ogg', 'estás excediendo el límite de velocidad ').
 
 % STREET NAME GRAMMAR
 string('on.ogg', 'en').
@@ -190,12 +197,12 @@ prepare_turn(Turn, Dist, _Street) -- ['prepare.ogg', M, 'after.ogg', D, ' '] :- 
 turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
 turn(Turn, Street) -- [M | Sgen]  :- turn(Turn, M), turn_street(Street, Sgen).
 
-prepare_make_ut(Dist, Street) -- ['prepare_make_uturn.ogg', D | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
+prepare_make_ut(Dist, Street) -- ['after.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
 make_ut(Dist, Street) --  ['after.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
 make_ut(Street) -- ['make_uturn.ogg' | Sgen] :- turn_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
-prepare_roundabout(Dist, _Exit, _Street) -- ['prepare_roundabout.ogg', D] :- distance(Dist) -- D.
+prepare_roundabout(Dist, _Exit, _Street) -- ['after.ogg', D , 'prepare_roundabout.ogg'] :- distance(Dist) -- D.
 roundabout(Dist, _Angle, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 
@@ -222,7 +229,7 @@ route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg
 
 location_lost -- ['location_lost.ogg'].
 location_recovered -- ['location_recovered.ogg'].
-off_route(_Dist) -- ['off_route.ogg'].
+off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
 speed_alarm -- ['exceed_limit.ogg'].
 % attention(_Type) -- ['attention.ogg'].
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
@@ -231,11 +238,13 @@ attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').
 warning('BORDER_CONTROL', 'border_control.ogg').
+warning('RAILWAY', 'railroad_crossing.ogg').
 warning('TRAFFIC_CALMING', 'traffic_calming.ogg').
 warning('TOLL_BOOTH', 'toll_booth.ogg').
 warning('STOP', 'stop.ogg').
+warning('PEDESTRIAN', 'pedestrian_crosswalk.ogg').
 warning('MAXIMUM', '').
-warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'MAXIMUM').
+warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'RAILWAY'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'PEDESTRIAN'; Type = 'MAXIMUM').
 
 %% 
 nth(1, '1st.ogg').
