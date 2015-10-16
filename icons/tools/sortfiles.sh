@@ -511,6 +511,11 @@ mycp tourism artwork tourist_artwork.png
 mycp tourism attraction tourist_attraction.png
 mycp tourism information tourist_information.png
 mycpname information_office tourist_information_office.png
+mycpname information_board tourist_information_board.png
+mycpname information_guidepost tourist_information_guidepost.png
+mycpname information_map tourist_information_map.png
+mycpname information_terminal tourist_information_terminal.png
+mycpname information_audioguide tourist_information_audioguide.png
 mycp tourism museum tourist_museum.png
 mycp tourism picnic_site tourist_picnic.png
 mycpname picnic_table tourist_picnic_table.png
@@ -702,6 +707,7 @@ mycpname craft_painter craft_painter.png
 mycpname craft_tailor craft_tailor.png
 mycpname craft_shoemaker craft_shoemaker.png
 mycpname craft_jeweller craft_jeweller.png
+mycpname craft_agricultural_engines craft_agricultural_engines.png
 
 mygroup finance money_bank2.png
 mycp amenity atm money_atm.png
@@ -793,6 +799,7 @@ mycpname pier poi_pier.png
 mycpname beacon poi_beacon.png
 mycpname breakwater poi_breakwater.png
 mycpname military_range poi_military_range.png
+mycpname power_cable_distribution_cabinet power_cable_distribution_cabinet.png
 
 mygroup military poi_military_bunker.png
 
