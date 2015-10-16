@@ -563,10 +563,11 @@ mycp historic wayside_shrine tourist_wayside_shrine.png
 mycpname wreck tourist_wreck.png
 mycpname palaeontological_site tourist_palaeontological_site.png
 mycp building pyramid tourist_pyramid.png
-mycpname tomb tourist_memorial.png
+mycpname tomb tourist_tomb.png
 mycpname historic_aircraft tourist_historic_aircraft.png
 mycpname technical_monument tourist_technical_monument.png
 mycpname memorial_stolperstein tourist_memorial_stolperstein.png
+mycpname historic_manor tourist_historic_manor.png
 
 ## Special POI icons
 mycp special_poi big_ben special_poi_big_ben.png
