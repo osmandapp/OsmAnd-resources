@@ -800,6 +800,7 @@ mycpname beacon poi_beacon.png
 mycpname breakwater poi_breakwater.png
 mycpname military_range poi_military_range.png
 mycpname power_cable_distribution_cabinet power_cable_distribution_cabinet.png
+mycpname kiln poi_kiln.png
 
 mygroup military poi_military_bunker.png
 
