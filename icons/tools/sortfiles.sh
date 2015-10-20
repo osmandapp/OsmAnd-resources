@@ -248,6 +248,7 @@ mycp skimap arrow_2triangles_black_small skimap_arrow_2triangles_black_small.png
 mycp skimap arrow_2triangles_black_small_nobg skimap_arrow_2triangles_black_small_nobg.png
 mycp skimap arrow_2triangles_white_small_nobg skimap_arrow_2triangles_white_small_nobg.png
 mycp harbour yes poi_harbour.png
+mycpname historic_milestone tourist_historic_milestone.png
 
 mygroup fuel transport_fuel.png
 mygroup filling_station transport_fuel.png
@@ -552,7 +553,7 @@ mycp amenity theatre tourist_theatre.png
 mygroup historic tourist_archaeological2.png
 mycp historic archaeological_site tourist_archaeological2.png
 mycp historic battlefield tourist_battlefield.png
-mycp historic boundary_stone poi_boundary_administrative.png
+mycp historic boundary_stone tourist_boundary_stone.png
 mycp historic cannon tourist_cannon.png
 mycp historic castle tourist_castle2.png
 mycpname city_gate barrier_sally_port.png
@@ -801,6 +802,7 @@ mycpname breakwater poi_breakwater.png
 mycpname military_range poi_military_range.png
 mycpname power_cable_distribution_cabinet power_cable_distribution_cabinet.png
 mycpname kiln poi_kiln.png
+mycpname cairn poi_cairn.png
 
 mygroup military poi_military_bunker.png
 
