@@ -158,6 +158,8 @@ mycp amenity police emergency_police3.png
 mycp emergency fire_hydrant emergency_fire_hydrant.png
 mycp emergency phone emergency_emergency_phone.png
 mycpname emergency_access_point emergency_emergency_access_point.png
+mycpname defibrillator emergency_defibrillator.png
+mycpname ambulance_station emergency_ambulance_station.png
 
 
 ## Overlays
@@ -709,6 +711,7 @@ mycpname craft_tailor craft_tailor.png
 mycpname craft_shoemaker craft_shoemaker.png
 mycpname craft_jeweller craft_jeweller.png
 mycpname craft_agricultural_engines craft_agricultural_engines.png
+mycpname craft_boatbuilder craft_boatbuilder.png
 
 mygroup finance money_bank2.png
 mycp amenity atm money_atm.png
@@ -803,6 +806,8 @@ mycpname military_range poi_military_range.png
 mycpname power_cable_distribution_cabinet power_cable_distribution_cabinet.png
 mycpname kiln poi_kiln.png
 mycpname cairn poi_cairn.png
+mycpname groyne poi_groyne.png
+mycpname military_naval_base poi_military_naval_base.png
 
 mygroup military poi_military_bunker.png
 
@@ -1578,6 +1583,7 @@ mycpname publisher office_publisher.png
 ## Entertainment
 mycpname park entertainment_park.png
 mycpname dance_floor entertainment_dance_floor.png
+mycpname dog_park entertainment_dog_park.png
 
 
 # mygroup custom_id icons8 #TODO
