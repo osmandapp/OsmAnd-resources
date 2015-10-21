@@ -575,6 +575,12 @@ mycpname tomb tourist_tomb.png
 mycpname historic_aircraft tourist_historic_aircraft.png
 mycpname technical_monument tourist_technical_monument.png
 mycpname memorial_stolperstein tourist_memorial_stolperstein.png
+mycpname memorial_bust tourist_bust.png
+mycpname memorial_obelisk tourist_obelisk.png
+mycpname memorial_plaque tourist_plaque.png
+mycpname memorial_statue tourist_statue.png
+mycpname memorial_stele tourist_stele.png
+mycpname memorial_war tourist_war_memorial.png
 mycpname historic_manor tourist_historic_manor.png
 
 ## Special POI icons
