@@ -24,6 +24,8 @@
 		<entity_convert pattern="tag_transform" from_tag="attraction" if_not_tag1="tourism" to_tag1="attraction" to_tag2="tourism" to_value2="attraction"/>
 
 		<entity_convert pattern="tag_transform" from_tag="attraction" if_not_tag1="tourism" to_tag1="attraction" to_tag2="tourism" to_value2="attraction" apply_to="node,way,relation"/>
+		
+		if_region_name
 	 -->
 	<!-- ORDER of entity_convert matters so it is better to group them sequantially -->
 	<entity_convert pattern="tag_transform" from_tag="area" from_value="true" to_tag1="area" to_value1="yes"/>
@@ -943,6 +945,14 @@
 		<entity_convert pattern="tag_transform" from_tag="highway" if_tag1="ski" if_value1="designated" if_not_tag2="piste:type" to_tag1="highway" to_tag2="piste:type" to_value2="hike"/>
 		<entity_convert pattern="tag_transform" from_tag="highway" if_tag1="ski" if_value1="downhill" if_not_tag2="piste:type" to_tag1="highway" to_tag2="piste:type" to_value2="downhill"/>
 		<entity_convert pattern="tag_transform" from_tag="highway" if_tag1="ski" if_value1="nordic" if_not_tag2="piste:type" to_tag1="highway" to_tag2="piste:type" to_value2="nordic"/>
+
+		<type tag="piste_region" value="us_canada_au" minzoom="11" additional="true"/>
+		<type tag="piste_region" value="japan" minzoom="11" additional="true"/>
+		<type tag="piste_region" value="scandinavia" minzoom="11" additional="true"/>
+
+		<entity_convert pattern="tag_transform" from_tag="piste:type" if_region_name="northamerica,australia-oceania,new-zealand" to_tag1="piste:type" to_tag2="piste_region" to_value2="us_canada_au"/>
+		<entity_convert pattern="tag_transform" from_tag="piste:type" if_region_name="japan" to_tag1="piste:type" to_tag2="piste_region" to_value2="japan"/>
+		<entity_convert pattern="tag_transform" from_tag="piste:type" if_region_name="norway,sweden,finland" to_tag1="piste:type" to_tag2="piste_region" to_value2="scandinavia"/>
 	</category>
 
 	<category name="sidewalk">
@@ -2294,6 +2304,7 @@
 		<type tag="harbour" value="yes" minzoom="8" order="91"/>
 		<type tag="leisure" value="slipway" minzoom="15"/>
 		<type tag="leisure" value="ski_resort" minzoom="11" />
+		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="winter_sports" to_tag1="leisure" to_value1="ski_resort"/>
 		<type tag="leisure" value="fishing" minzoom="15" />
 		<type tag="leisure" value="park" minzoom="10" order="59"/>
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="park" to_tag1="leisure"/>
