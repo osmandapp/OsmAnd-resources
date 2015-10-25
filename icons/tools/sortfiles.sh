@@ -66,6 +66,9 @@ mycpname vineyard landuse_vineyard.png
 mycpname garden landuse_garden.png
 mycpname farmland landuse_farmland.png
 mycpname nature_reserve landuse_nature_reserve.png
+mycpname logging landuse_logging.png
+mycpname sand landuse_sand.png
+mycpname meadow landuse_meadow.png
 
 mycp stroke black functional-icons_black_stroke.png
 mycp stroke darkgreen functional-icons_darkgreen_stroke.png
@@ -186,6 +189,7 @@ mycpname clinic health_clinic.png
 mycp amenity nursing_home health_nursing_home.png
 mycp amenity pharmacy health_pharmacy2.png
 mycp amenity veterinary health_veterinary.png
+mycpname social_facility health_nursing_home.png
 
 
 ## Traffic + Transportation
@@ -559,7 +563,6 @@ mycp historic boundary_stone tourist_boundary_stone.png
 mycp historic cannon tourist_cannon.png
 mycp historic castle tourist_castle2.png
 mycpname city_gate barrier_sally_port.png
-mycp historic fort tourist_castle2.png
 mycp historic memorial tourist_memorial.png
 mycp historic mine poi_mine_abandoned.png
 mycp historic monument tourist_monument.png
@@ -582,6 +585,7 @@ mycpname memorial_statue tourist_statue.png
 mycpname memorial_stele tourist_stele.png
 mycpname memorial_war tourist_war_memorial.png
 mycpname historic_manor tourist_historic_manor.png
+mycpname historic_stone tourist_historic_stone.png
 
 ## Special POI icons
 mycp special_poi big_ben special_poi_big_ben.png
@@ -646,7 +650,7 @@ mycpname model_aerodrome sport_model_aerodrome.png
 ## Leisure
 mygroup leisure sport_playground.png
 mycp leisure beach_resort tourist_beach_resort.png
-mycp leisure bird_hide poi_tower_lookout.png
+mycp leisure bird_hide entertainment_bird_hide.png
 mycp leisure fishing sport_fishing.png  #used shop=fish turned by 45 degrees for now
 mycp leisure ice_rink sport_iceskating.png
 mycp leisure miniature_golf sport_miniature_golf.png
@@ -1552,6 +1556,7 @@ mycpname perfumery shopping_perfumery.png
 mycpname pawnbroker shopping_pawnbroker.png
 mycpname second_hand shopping_second_hand.png
 mycpname honey shopping_honey.png
+mycpname charity shopping_charity.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png

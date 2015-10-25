@@ -1022,6 +1022,15 @@
 		<entity_convert pattern="tag_transform" from_tag="surface" from_value="paving_stones:20" to_tag1="surface" to_value1="paving_stones"/>
 		<entity_convert pattern="tag_transform" from_tag="surface" from_value="paving_stones:30" to_tag1="surface" to_value1="paving_stones"/>
 		<entity_convert pattern="tag_transform" from_tag="surface" from_value="paving_stones:double_t" to_tag1="surface" to_value1="paving_stones"/>
+
+		<entity_convert pattern="tag_transform" from_tag="material" from_value="wood;planks" to_tag1="material" to_value1="wood" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="material" from_value="boulder" to_tag1="material" to_value1="stone" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="material" from_value="dry_stone" to_tag1="material" to_value1="stone" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="material" from_value="white rough sand" to_tag1="material" to_value1="sandstone" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="material" from_value="soil" to_tag1="material" to_value1="earth" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="material" from_value="ground" to_tag1="material" to_value1="earth" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="material" from_value="granite" to_tag1="material" to_value1="granite_stone" map="no"/>
+
 	</category>
 
 	<category name="smoothness">
@@ -1742,6 +1751,8 @@
 		<entity_convert pattern="tag_transform" from_tag="historic" from_value="city_wall" to_tag1="barrier" to_value1="city_wall"/>
 		<entity_convert pattern="tag_transform" from_tag="historic" from_value="citywalls" to_tag1="barrier" to_value1="city_wall"/>
 		<entity_convert pattern="tag_transform" from_tag="historic" from_value="city_walls" to_tag1="barrier" to_value1="city_wall"/>
+		<entity_convert pattern="tag_transform" from_tag="wall" from_value="castle_wall" to_tag1="barrier" to_value1="city_wall"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="castle_wall" to_tag1="barrier" to_value1="city_wall"/>
 		<type tag="barrier" value="bollard" minzoom="15" />
 		<type tag="barrier" value="cycle_barrier" minzoom="15" />
 		<type tag="barrier" value="motorcycle_barrier" minzoom="15" />
@@ -2678,13 +2689,14 @@
 
 	<category name="tourism">
 		<type tag="tourism" value="attraction" minzoom="13" order="80" />
-		<type tag="tourism_attraction" value="yes" additional="true" minzoom="13" order="80" />
+		<type tag="tourism" value="yes" additional="true" minzoom="13" order="80" />
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="tourism-attraction" to_tag1="tourism" to_value1="attraction"/>
-		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="attraction" if_tag1="historic" if_not_tag1="historic" if_not_value1="yes" to_tag1="tourism_attraction" to_value1="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="attraction" if_tag1="amenity" to_tag1="tourism_attraction" to_value1="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="attraction" if_tag1="leisure" to_tag1="tourism_attraction" to_value1="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="attraction" if_tag1="shop" to_tag1="tourism_attraction" to_value1="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="attraction" from_value="yes" to_tag1="tourism_attraction" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="attraction" if_tag1="historic" if_not_tag1="historic" if_not_value1="yes" to_tag1="tourism" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="attraction" if_tag1="amenity" to_tag1="tourism" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="attraction" if_tag1="leisure" to_tag1="tourism" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="attraction" if_tag1="shop" to_tag1="tourism" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="attraction" from_value="yes" if_not_tag1="amenity" if_not_tag2="historic" if_not_tag3="tourism" if_not_tag4="natural" if_not_tag5="man_made" to_tag1="tourism" to_value1="attraction"/>
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="yes" if_not_tag1="amenity" if_not_tag2="historic" if_not_tag3="leisure" if_not_tag4="highway" if_not_tag5="man_made" to_tag1="tourism" to_value1="attraction"/>
 		<type tag="attraction" value="amusement_ride" minzoom="13"/>
 		<type tag="attraction" value="animal" minzoom="13"/>
 		<type tag="attraction" value="big_wheel" minzoom="13"/>
@@ -2759,6 +2771,7 @@
 		<type tag="amenity" value="fountain" minzoom="15" order="65"/>
 		<type tag="amenity" value="clock" minzoom="15" />
 		<type tag="amenity" value="monastery" minzoom="13" order="40" />
+		<entity_convert pattern="tag_transform" from_tag="historic" from_value="monastery" to_tag1="amenity" to_value1="monastery" to_tag2="historic" to_value2="yes"/>
 		<type tag="amenity" value="place_of_worship" minzoom="15" order="40" />
 		<type tag="religion" value="christian" minzoom="15" additional="true"/>
 		<type tag="religion" value="jewish" minzoom="15" additional="true"/>
@@ -2796,17 +2809,19 @@
 	<category name="historic">
 		<type tag="historic" value="aircraft" minzoom="15" />
 		<type tag="historic" value="archaeological_site" minzoom="15" order="75" />
+		<entity_convert pattern="tag_transform" from_tag="megalith_type" from_value="grosssteingrab" to_tag1="megalith_type" to_value1="dolmen" map="no"/>
 		<type tag="historic" value="battlefield" minzoom="15" />
 		<type tag="historic" value="boundary_stone" minzoom="15" />
 		<type tag="historic" value="milestone" minzoom="15" />
 		<type tag="historic" value="castle" minzoom="15" />
-		<entity_convert pattern="tag_transform" from_tag="castle_type" from_value="manor" to_tag1="historic" to_tag2="manor" map="no"/>
-		<entity_convert pattern="tag_transform" from_tag="castle_type" from_value="citadel" to_tag1="castle_type" to_tag2="defensive" map="no"/>
-		<entity_convert pattern="tag_transform" from_tag="castle_type" from_value="fortress;defensive" to_tag1="castle_type" to_tag2="defensive" map="no"/>
-		<entity_convert pattern="tag_transform" from_tag="castle_type" from_value="fortification" to_tag1="castle_type" to_tag2="fortress" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="castle_type" from_value="manor" to_tag1="historic" to_value1="manor" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="castle_type" from_value="citadel" to_tag1="castle_type" to_value1="defensive" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="castle_type" from_value="fortress;defensive" to_tag1="castle_type" to_value1="defensive" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="castle_type" from_value="fortification" to_tag1="castle_type" to_value1="fortress" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="historic" from_value="palace" to_tag1="historic" to_value1="castle" to_tag2="castle_type" to_value2="palace" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="historic" from_value="fort" to_tag1="historic" to_value1="castle" to_tag2="castle_type" to_value2="fortress"/>
 		<type tag="historic" value="cannon" minzoom="15" />
 		<type tag="historic" value="city_gate" minzoom="13" order="65"/>
-		<type tag="historic" value="fort" minzoom="15" />
 		<type tag="historic" value="memorial" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="memorial" to_tag1="historic"/>
 		<entity_convert pattern="tag_transform" from_tag="memorial" from_value="war" to_tag1="memorial" to_value1="war_memorial"/>
@@ -2853,7 +2868,6 @@
 		<entity_convert pattern="tag_transform" from_tag="historic" from_value="monument" if_tag1="monument" if_value1="city_gate" to_tag1="historic" to_value1="city_gate"/>
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="monument" to_tag1="historic"/>
 		<type tag="historic" value="technical_monument" minzoom="15" />
-		<type tag="historic" value="monastery" minzoom="13" order="80"/>
 		<type tag="historic" value="ruins" minzoom="15" order="75" />
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="ruins" to_tag1="historic"/>
 		<type tag="historic" value="rune_stone" minzoom="15" />
