@@ -543,6 +543,7 @@ mycpname iwn_ref tourist_iwn_ref.png
 mycpname nwn_ref tourist_nwn_ref.png
 mycpname rwn_ref tourist_rwn_ref.png
 mycpname lwn_ref tourist_lwn_ref.png
+mycpname gallery tourist_gallery.png
 
 ## Entertainment
 mygroup entertainment tourist_cinema.png
@@ -565,7 +566,7 @@ mycp historic castle tourist_castle2.png
 mycpname city_gate barrier_sally_port.png
 mycp historic memorial tourist_memorial.png
 mycp historic mine poi_mine_abandoned.png
-mycp historic monument tourist_monument.png
+mycpname monument tourist_monument2.png
 mycp historic ruins tourist_ruin.png
 mycp historic rune_stone tourist_rune_stone.png
 mycp historic ship tourist_ship.png
@@ -722,6 +723,10 @@ mycpname craft_shoemaker craft_shoemaker.png
 mycpname craft_jeweller craft_jeweller.png
 mycpname craft_agricultural_engines craft_agricultural_engines.png
 mycpname craft_boatbuilder craft_boatbuilder.png
+mycpname craft_electrician craft_electrician.png
+mycpname craft_handicraft craft_handicraft.png
+mycpname craft_hvac craft_hvac.png
+mycpname craft_insulation craft_insulation.png
 
 mygroup finance money_bank2.png
 mycp amenity atm money_atm.png
