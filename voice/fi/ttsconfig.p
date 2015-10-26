@@ -103,8 +103,8 @@ string('reached_waypoint.ogg', 'olet reittipisteessä').
 
 % OTHER PROMPTS
 string('attention.ogg', 'huomio, ').
-string('location_lost.ogg', 'satelliittisignaali kadonnut').
-string('location_recovered.ogg', 'g p s signal restored ').
+string('location_lost.ogg', 'GPS-signaali katosi ').
+string('location_recovered.ogg', 'GPS-signaali palautui ').
 string('off_route.ogg', 'olet poikennut reitiltä ').
 string('exceed_limit.ogg', 'ylitit nopeusrajoituksen ').
 
