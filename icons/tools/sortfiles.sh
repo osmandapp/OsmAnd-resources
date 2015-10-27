@@ -136,9 +136,11 @@ mycp place town poi_town.png
 mycpname hamlet poi_hamlet.png
 mycpname village poi_village.png
 mycpname locality poi_place_locality.png
-mycpname suburb poi_place_suburb.png
+mycpname suburb poi_suburb.png
+mycpname neighbourhood poi_suburb.png
 mycpname isolated_dwelling poi_isolated_dwelling.png
 mycpname neighborhood poi_place_neighborhood.png
+mycpname island poi_island.png
 
 ## Barrier dots
 mycp barrier small_black_1 functional-icons_point_black_1.png  #scale 0.25
