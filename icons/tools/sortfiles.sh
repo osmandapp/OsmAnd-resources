@@ -827,6 +827,7 @@ mycpname groyne poi_groyne.png
 mycpname military_naval_base poi_military_naval_base.png
 mycpname building_map functional-icons_building_map.png
 mycpname square poi_square.png
+mycpname building poi_building.png
 
 mygroup military poi_military_bunker.png
 
