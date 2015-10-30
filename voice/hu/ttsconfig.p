@@ -1,4 +1,4 @@
-% for turbo-prolog
+﻿% for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog
 :- op(500, xfy,'--').
@@ -174,9 +174,13 @@ to_street(Street, ['to.ogg', Street]) :- tts.
 to_street(_Street, []) :- not(tts).
 
 % cut_part_street(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
-cut_part_street(voice(['', '', Dest], _), Dest).
 % cut_part_street(voice(['', Name, _], _), Name). % not necessary
-cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
+% Next 2 lines for Name taking precedence over Dest...
+%cut_part_street(voice([Ref, '', Dest], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Dest, Concat).
+%cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
+% ...or next 2 lines for Dest taking precedence over Name
+cut_part_street(voice([Ref, Name, ''], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
+cut_part_street(voice([Ref, _, Dest], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Dest, Concat).
 
 turn_street('', []).
 turn_street(voice(['','',''],_), []).
