@@ -141,6 +141,7 @@ mycpname neighbourhood poi_suburb.png
 mycpname isolated_dwelling poi_isolated_dwelling.png
 mycpname neighborhood poi_place_neighborhood.png
 mycpname island poi_island.png
+mycpname country poi_country.png
 
 ## Barrier dots
 mycp barrier small_black_1 functional-icons_point_black_1.png  #scale 0.25
@@ -589,6 +590,7 @@ mycpname memorial_stele tourist_stele.png
 mycpname memorial_war tourist_war_memorial.png
 mycpname historic_manor tourist_historic_manor.png
 mycpname historic_stone tourist_historic_stone.png
+mycpname prison_camp tourist_prison_camp.png
 
 ## Special POI icons
 mycp special_poi big_ben special_poi_big_ben.png
@@ -828,6 +830,7 @@ mycpname military_naval_base poi_military_naval_base.png
 mycpname building_map functional-icons_building_map.png
 mycpname square poi_square.png
 mycpname building poi_building.png
+mycpname cross poi_cross.png
 
 mygroup military poi_military_bunker.png
 
