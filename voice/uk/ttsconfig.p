@@ -1,5 +1,3 @@
-﻿%%% !!! THIS IS GENERATED FILE !!! Modify ttsconfig.p
-﻿% :- 
 % for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog
