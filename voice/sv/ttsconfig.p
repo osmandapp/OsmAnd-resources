@@ -3,6 +3,7 @@
 % for swi-prolog
 :- op(500, xfy,'--').
 
+% TODO: Should be updated to v103 to get more features and better grammar. Use exsting v103 files as template.
 version(102).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
