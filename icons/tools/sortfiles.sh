@@ -298,6 +298,7 @@ mycp highway bus_stop_round_small_night functional-icons_bus_stop_round_small_ni
 mycp highway bus_stop_round_big_night functional-icons_bus_stop_round_big_night.png
 mycp public_transport platform transport_bus_stop.png
 mycp amenity ferry_terminal transport_ferry_terminal.png
+mycpname ferry_terminal_small functional-icons_ferry_terminal_small.png
 mycp amenity taxi transport_taxi_rank.png
 mycp highway services transport_services.png
 mycp mountain pass poi_mountain_pass.png
@@ -316,21 +317,24 @@ mycp waterway lock_gate_small functional-icons_lock_gate.png  #scale 0.5
 mycpname lock_gate poi_lock_gate.png  #scale 0.25
 mycp waterway dock transport_dock.png
 
-mycpname halt_small functional-icons_halt.png  #scale 0.25
+mycpname halt_small functional-icons_halt_small.png  #scale 0.25
+mycpname halt_small_2 functional-icons_halt_small_2.png  #scale 0.25
 mycpname halt transport_halt.png  #scale 0.25
 mycpname level_crossing_map functional-icons_level_crossing.png  #scale 0.5
 mycpname level_crossing poi_level_crossing.png  #scale 0.5
 mycp railway platform transport_train_station2.png
 mycp railway station_disused functional-icons_train_station_disused.png
-mycp railway station_small_disused functional-icons_station_small_disused.png
-mycp railway station_small functional-icons_station_small.png  #scale 0.375
+mycp railway station_small_disused functional-icons_railway_station_small_disused.png
+mycp railway station_small functional-icons_railway_station_small.png  #scale 0.375
 mycp railway station_subway transport_station_subway.png
+mycp railway station_subway_small functional-icons_railway_station_subway_small.png  #scale 0.375
 mycp railway station transport_train_station.png
 mycp railway tram_stop_round_big functional-icons_blue_stop_round_big.png
 mycp railway tram_stop_round_big_night functional-icons_blue_stop_round_big_night.png
 mycp railway tram_stop_round_small functional-icons_blue_stop_round_small.png
 mycp railway tram_stop_round_small_night functional-icons_blue_stop_round_small_night.png
 mycp railway tram_stop transport_tram_stop.png
+mycpname tram_stop_small functional-icons_tram_stop_small.png
 mycpname subway_station transport_subway_station.png
 
 mycpname subway_entrance_map functional-icons_subway_entrance_map.png
@@ -427,7 +431,7 @@ mycpname subway_washington subway_subway_washington.png
 mycpname subway_bucharest subway_subway_bucharest.png
 mycpname subway_losangeles subway_subway_losangeles.png
 
-mycp aerialway station_small functional-icons_halt.png  #scale 0.25
+mycp aerialway station_small functional-icons_aerialway_station_small.png  #scale 0.25
 mycp aerialway station transport_aerialway_station.png  #scale 0.375
 mycpname aerialway_cable_car transport_aerialway_cable_car.png
 mycpname aerialway_chair_lift transport_aerialway_chair_lift.png
@@ -515,7 +519,7 @@ mycp attraction slide tourist_slide.png
 mycp attraction summer_toboggan tourist_summer_toboggan.png
 mycp attraction swing_carousel tourist_swing_carousel.png
 mycp attraction train tourist_train.png
-mycp attraction water_slide tourist_water_slide.png
+mycp attraction water_slide entertainment_water_slide.png
 mycp tourism aquarium tourist_aquarium.png
 mycp tourism artwork tourist_artwork.png
 mycp tourism attraction tourist_attraction.png
@@ -661,7 +665,7 @@ mycp leisure ice_rink sport_iceskating.png
 mycp leisure miniature_golf sport_miniature_golf.png
 mycp leisure playground sport_playground.png
 mycp leisure sports_centre sport_leisure_centre2.png
-mycp leisure water_park tourist_water_slide.png
+mycp leisure water_park entertainment_water_slide.png
 mycp amenity sauna sport_sauna.png
 
 mygroup geocache poi_point_of_interest.png
