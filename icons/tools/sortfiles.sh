@@ -726,6 +726,7 @@ mycpname watering_place amenity_watering_place.png
 mycpname animal_shelter amenity_animal_shelter.png
 mycpname animal_boarding amenity_animal_boarding.png
 mycpname baby_hatch amenity_baby_hatch.png
+mycpname boat_storage amenity_boat_storage.png
 
 mygroup craft craft_tailor.png
 mycpname craft_beekeeper craft_beekeeper.png
@@ -743,6 +744,8 @@ mycpname craft_handicraft craft_handicraft.png
 mycpname craft_hvac craft_hvac.png
 mycpname craft_insulation craft_insulation.png
 mycpname craft_photographic_laboratory craft_photographic_laboratory.png
+mycpname craft_clockmaker craft_clockmaker.png
+mycpname craft_key_cutter craft_key_cutter.png
 
 mygroup finance money_bank2.png
 mycp amenity atm money_atm.png
@@ -843,6 +846,7 @@ mycpname building_map functional-icons_building_map.png
 mycpname square poi_square.png
 mycpname building poi_building.png
 mycpname cross poi_cross.png
+mycpname storage_tank poi_storage_tank.png
 
 mygroup military poi_military_bunker.png
 
