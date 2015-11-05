@@ -221,7 +221,14 @@ mycp highway traffic_signals transport_traffic_lights.png
 mycpname motorway_junction transport_motorway_junction.png
 mycpname junction transport_junction.png
 mycpname rest_area transport_rest_area.png
-mycp traffic_calming bump transport_speedbump.png
+mycpname traffic_calming_bump transport_speedbump.png
+mycpname traffic_calming_rumble_strip transport_rumble_strip.png
+mycpname traffic_calming_chicane transport_chicane.png
+mycpname traffic_calming_choker transport_choker.png
+mycpname traffic_calming_cushion transport_cushion.png
+mycpname traffic_calming_hump transport_hump.png
+mycpname traffic_calming_island transport_traffic_island.png
+mycpname traffic_calming_table transport_table.png
 mycp oneway blue functional-icons_oneway_blue.png
 mycp oneway reverse_blue functional-icons_oneway_reverse_blue.png
 mycp oneway blue_big functional-icons_oneway_blue_big.png

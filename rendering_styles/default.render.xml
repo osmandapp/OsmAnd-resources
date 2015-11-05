@@ -1475,13 +1475,9 @@
 			<case tag="ford" value="yes"/>
 			<case tag="ford" value="stepping_stones"/>
 			<case tag="flood_prone" value=""/>
-			<case tag="traffic_calming" value=""/>
-			<switch>
-				<case tag="traffic_calming" value="bump"/>
-				<case tag="traffic_calming" value="hump"/>
-				<case tag="traffic_calming" value="cushion"/>
+			<case tag="traffic_calming" value="">
 				<apply_if appMode="pedestrian" order="-1"/>
-			</switch>
+			</case>
 			<case tag="noexit" value="">
 				<apply_if moreDetailed="false" order="-1"/>
 			</case>
@@ -1494,7 +1490,7 @@
 				<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
 			</case>
 			<case tag="amenity" value="parking">
-				<apply_if appMode="pedestrian" maxzoom="17" order="-1"/> <!-- TODO: this code does not works for some reason -->
+				<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
 				<apply_if appMode="bicycle" maxzoom="17" order="-1"/>
 			</case>
 			<case tag="amenity" value="bicycle_parking">
@@ -3870,11 +3866,16 @@
 				</apply_if>
 			</case>
 			<switch minzoom="17">
-				<case tag="traffic_calming" value="bump"/>
-				<case tag="traffic_calming" value="hump"/>
-				<case tag="traffic_calming" value="cushion"/>
-				<apply icon="traffic_calming_bump" shield="white_blue_triangle_shield" iconVisibleSize="10">
-					<apply_if nightMode="true" shield="gray_blue_triangle_shield"/>
+				<case tag="traffic_calming" value="bump" icon="traffic_calming_bump"/>
+				<case tag="traffic_calming" value="hump" icon="traffic_calming_hump"/>
+				<case tag="traffic_calming" value="cushion" icon="traffic_calming_cushion"/>
+				<case tag="traffic_calming" value="choker" icon="traffic_calming_choker"/>
+				<case tag="traffic_calming" value="chicane" icon="traffic_calming_chicane"/>
+				<case tag="traffic_calming" value="island" icon="traffic_calming_island"/>
+				<case tag="traffic_calming" value="table" icon="traffic_calming_table"/>
+				<case tag="traffic_calming" value="rumble_strip" icon="traffic_calming_rumble_strip"/>
+				<apply shield="white_blue_square_shield">
+					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 				</apply>
 			</switch>
 			<switch tag="amenity" value="parking_entrance" iconVisibleSize="8">
@@ -4308,12 +4309,18 @@
 			<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 		</switch>
 
-		<switch minzoom="17" shield="white_blue_triangle_shield">
-			<case tag="traffic_calming" value="bump"/>
-			<case tag="traffic_calming" value="hump"/>
-			<case tag="traffic_calming" value="cushion"/>
-			<apply icon="traffic_calming_bump" iconVisibleSize="16" iconOrder="70"/>
-			<apply_if nightMode="true" shield="gray_blue_triangle_shield"/>
+		<switch minzoom="17">
+			<case tag="traffic_calming" value="bump" icon="traffic_calming_bump"/>
+			<case tag="traffic_calming" value="hump" icon="traffic_calming_hump"/>
+			<case tag="traffic_calming" value="cushion" icon="traffic_calming_cushion"/>
+			<case tag="traffic_calming" value="choker" icon="traffic_calming_choker"/>
+			<case tag="traffic_calming" value="chicane" icon="traffic_calming_chicane"/>
+			<case tag="traffic_calming" value="island" icon="traffic_calming_island"/>
+			<case tag="traffic_calming" value="table" icon="traffic_calming_table"/>
+			<case tag="traffic_calming" value="rumble_strip" icon="traffic_calming_rumble_strip"/>
+			<apply shield="white_blue_square_shield">
+				<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+			</apply>
 		</switch>
 		<case minzoom="18" tag="amenity" value="vehicle_inspection" icon="vehicle_inspection" shield="white_gray_square_shield">
 			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
