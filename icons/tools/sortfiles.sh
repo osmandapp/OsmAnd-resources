@@ -742,6 +742,7 @@ mycpname craft_electrician craft_electrician.png
 mycpname craft_handicraft craft_handicraft.png
 mycpname craft_hvac craft_hvac.png
 mycpname craft_insulation craft_insulation.png
+mycpname craft_photographic_laboratory craft_photographic_laboratory.png
 
 mygroup finance money_bank2.png
 mycp amenity atm money_atm.png
