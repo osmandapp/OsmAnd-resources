@@ -746,6 +746,9 @@ mycpname craft_insulation craft_insulation.png
 mycpname craft_photographic_laboratory craft_photographic_laboratory.png
 mycpname craft_clockmaker craft_clockmaker.png
 mycpname craft_key_cutter craft_key_cutter.png
+mycpname craft_plasterer craft_plasterer.png
+mycpname craft_plumber craft_plumber.png
+mycpname craft_roofer craft_roofer.png
 
 mygroup finance money_bank2.png
 mycp amenity atm money_atm.png
@@ -847,6 +850,7 @@ mycpname square poi_square.png
 mycpname building poi_building.png
 mycpname cross poi_cross.png
 mycpname storage_tank poi_storage_tank.png
+mycpname wastewater_plant poi_wastewater_plant.png
 
 mygroup military poi_military_bunker.png
 
