@@ -1589,6 +1589,7 @@ mycpname pawnbroker shopping_pawnbroker.png
 mycpname second_hand shopping_second_hand.png
 mycpname honey shopping_honey.png
 mycpname charity shopping_charity.png
+mycpname energy shopping_energy.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
