@@ -55,6 +55,7 @@ mycpname construction landuse_construction.png
 mycpname garages landuse_garages.png
 mycpname quarry landuse_quarry.png
 mycpname allotments landuse_allotments.png
+mycpname place_allotments poi_hamlet.png
 mycpname village_green landuse_village_green.png
 mycpname recreation_ground landuse_recreation_ground.png
 mycpname residential landuse_residential.png
@@ -142,6 +143,7 @@ mycpname isolated_dwelling poi_isolated_dwelling.png
 mycpname neighborhood poi_place_neighborhood.png
 mycpname island poi_island.png
 mycpname country poi_country.png
+mycpname quarter poi_quarter.png
 
 ## Barrier dots
 mycp barrier small_black_1 functional-icons_point_black_1.png  #scale 0.25
