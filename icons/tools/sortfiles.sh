@@ -70,6 +70,7 @@ mycpname nature_reserve landuse_nature_reserve.png
 mycpname logging landuse_logging.png
 mycpname sand landuse_sand.png
 mycpname meadow landuse_meadow.png
+mycpname salt_pond landuse_salt_pond.png
 
 mycp stroke black functional-icons_black_stroke.png
 mycp stroke darkgreen functional-icons_darkgreen_stroke.png
@@ -118,7 +119,6 @@ mycpname cape poi_cape.png
 mycpname bay poi_bay.png
 mycpname reef poi_reef.png
 mycpname reservoir water_reservoir.png
-
 
 ## Location dots
 mygroup administrative poi_boundary_administrative.png
@@ -274,6 +274,7 @@ mycp amenity charging_station transport_charging_station.png
 mycp amenity fuel_lpg transport_fuel_lpg.png
 mycp amenity fuel transport_fuel.png
 mycpname aeroway_fuel transport_aeroway_fuel.png
+mycpname turning_circle transport_turning_circle.png
 
 mygroup parking transport_parking.png
 mycp amenity parking transport_parking.png
@@ -751,6 +752,7 @@ mycpname craft_key_cutter craft_key_cutter.png
 mycpname craft_plasterer craft_plasterer.png
 mycpname craft_plumber craft_plumber.png
 mycpname craft_roofer craft_roofer.png
+mycpname craft_stonemason craft_stonemason.png
 
 mygroup finance money_bank2.png
 mycp amenity atm money_atm.png
@@ -853,6 +855,8 @@ mycpname building poi_building.png
 mycpname cross poi_cross.png
 mycpname storage_tank poi_storage_tank.png
 mycpname wastewater_plant poi_wastewater_plant.png
+mycpname water_works poi_water_works.png
+mycpname watermill poi_watermill.png
 
 mygroup military poi_military_bunker.png
 
