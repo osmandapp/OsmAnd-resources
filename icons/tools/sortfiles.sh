@@ -664,6 +664,7 @@ mycpname orienteering sport_orienteering.png
 mycpname golf_course sport_golf.png
 mycpname horse_riding sport_horse_riding.png
 mycpname model_aerodrome sport_model_aerodrome.png
+mycpname american_football sport_american_football.png
 
 
 ## Leisure
@@ -677,6 +678,7 @@ mycp leisure playground sport_playground.png
 mycp leisure sports_centre sport_leisure_centre2.png
 mycp leisure water_park entertainment_water_slide.png
 mycp amenity sauna sport_sauna.png
+mycpname fitness_station sport_fitness_station.png
 
 mygroup geocache poi_point_of_interest.png
 mycp geocache not_found poi_point_of_interest.png
@@ -753,6 +755,7 @@ mycpname craft_plasterer craft_plasterer.png
 mycpname craft_plumber craft_plumber.png
 mycpname craft_roofer craft_roofer.png
 mycpname craft_stonemason craft_stonemason.png
+mycpname craft_carpenter craft_carpenter.png
 
 mygroup finance money_bank2.png
 mycp amenity atm money_atm.png
@@ -870,7 +873,7 @@ mycp amenity biergarten food_biergarten.png
 mycp amenity cafe food_cafe.png
 mycp amenity drinking_water food_drinkingtap.png
 mycp amenity fast_food food_fastfood.png
-mycp amenity food_court food_fastfood.png
+mycp amenity food_court food_food_court.png
 mycp amenity pub food_pub.png
 mycp amenity restaurant food_restaurant.png
 mycp man_made water_well food_water_well.png
@@ -1596,6 +1599,8 @@ mycpname second_hand shopping_second_hand.png
 mycpname honey shopping_honey.png
 mycpname charity shopping_charity.png
 mycpname energy shopping_energy.png
+mycpname variety_store shopping_variety_store.png
+mycpname kitchen shopping_kitchen.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
