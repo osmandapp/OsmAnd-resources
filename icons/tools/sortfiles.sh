@@ -169,6 +169,16 @@ mycpname emergency_access_point emergency_emergency_access_point.png
 mycpname defibrillator emergency_defibrillator.png
 mycpname ambulance_station emergency_ambulance_station.png
 
+mygroup healthcare health_pharmacy.png
+mycp amenity dentist health_dentist.png
+mycp amenity doctors health_doctors3.png
+mycp amenity hospital health_hospital2.png
+mycpname clinic health_clinic.png
+mycp amenity nursing_home health_nursing_home.png
+mycp amenity pharmacy health_pharmacy2.png
+mycp amenity veterinary health_veterinary.png
+mycpname social_facility health_nursing_home.png
+mycpname sanatorium health_sanatorium.png
 
 ## Overlays
 mycp hazard yes overlays_hazard.png
@@ -185,16 +195,6 @@ mycp osm_note dot overlays_osm_note_dot.png
 mycp osm_note dot_2 overlays_osm_note_dot_2.png
 mycp drinking_water yes overlays_drinking_water_yes.png
 mycp drinking_water no overlays_drinking_water_no.png
-
-mygroup healthcare health_pharmacy.png
-mycp amenity dentist health_dentist.png
-mycp amenity doctors health_doctors3.png
-mycp amenity hospital health_hospital2.png
-mycpname clinic health_clinic.png
-mycp amenity nursing_home health_nursing_home.png
-mycp amenity pharmacy health_pharmacy2.png
-mycp amenity veterinary health_veterinary.png
-mycpname social_facility health_nursing_home.png
 
 
 ## Traffic + Transportation
@@ -571,6 +571,7 @@ mycp amenity cinema tourist_cinema.pngf
 mycp amenity nightclub tourist_night_club.png
 mycp amenity stripclub amenity_stripclub.png
 mycp amenity theatre tourist_theatre.png
+mycpname hackerspace entertainment_hackerspace.png
 
 
 ## Historic
@@ -732,6 +733,8 @@ mycpname animal_shelter amenity_animal_shelter.png
 mycpname animal_boarding amenity_animal_boarding.png
 mycpname baby_hatch amenity_baby_hatch.png
 mycpname boat_storage amenity_boat_storage.png
+mycpname crematorium amenity_crematorium.png
+mycpname mortuary amenity_mortuary.png
 
 mygroup craft craft_tailor.png
 mycpname craft_beekeeper craft_beekeeper.png
@@ -756,6 +759,7 @@ mycpname craft_plumber craft_plumber.png
 mycpname craft_roofer craft_roofer.png
 mycpname craft_stonemason craft_stonemason.png
 mycpname craft_carpenter craft_carpenter.png
+mycpname craft_sawmill craft_sawmill.png
 
 mygroup finance money_bank2.png
 mycp amenity atm money_atm.png
@@ -1601,6 +1605,7 @@ mycpname charity shopping_charity.png
 mycpname energy shopping_energy.png
 mycpname variety_store shopping_variety_store.png
 mycpname kitchen shopping_kitchen.png
+mycpname video_games shopping_video_games.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
