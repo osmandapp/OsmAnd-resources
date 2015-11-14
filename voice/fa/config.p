@@ -38,7 +38,7 @@ string('after.ogg', 'بعد از ').
 string('left.ogg', 'از سمت چپ برانید ').
 string('left_sh.ogg', 'سریعا به چپ بپیچید ').
 string('left_sl.ogg', 'به آرامی به چپ بپیچید ').
-string('right.ogg', 'از سمب راست یرانید ').
+string('right.ogg', 'از سمت راست برانید ').
 string('right_sh.ogg', 'سریعا به راست بپیچید ').
 string('right_sl.ogg', 'به آرامی به راست بپیچید ').
 string('left_keep.ogg', 'مسیر سمت چپ را دنبال کنید').
