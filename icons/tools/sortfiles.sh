@@ -1621,7 +1621,7 @@ mycpname lawyer office_lawyer.png
 mycpname office_administrative office_administrative.png
 mycpname ngo office_ngo.png
 mycpname political_party office_political_party.png
-mycpname telecommunication office_telecommunication.png
+mycpname office_telecommunication office_telecommunication.png
 mycpname accountant office_accountant.png
 mycpname architect office_architect.png
 mycpname association office_association.png
