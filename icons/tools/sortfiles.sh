@@ -119,6 +119,8 @@ mycpname cape poi_cape.png
 mycpname bay poi_bay.png
 mycpname reef poi_reef.png
 mycpname reservoir water_reservoir.png
+mycpname basin water_reservoir.png
+mycpname ridge poi_ridge.png
 
 ## Location dots
 mygroup administrative poi_boundary_administrative.png
