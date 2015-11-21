@@ -79,24 +79,24 @@ string('go_ahead.ogg', 'مستقیم حرکت کنید ').
 string('follow.ogg', 'این جاده را دنبال نمایید').
 
 % ARRIVE
-string('and_arrive_destination.ogg', 'و شما به مقصد خود خواهید رسید ').
+string('and_arrive_destination.ogg', 'و شما به مقصدِ خود خواهید رسید ').
 string('reached_destination.ogg','به مقصد رسیدید ').
-string('and_arrive_intermediate.ogg', 'به ایستگاهِ بین راهی که مشخص کرده بودید خواهید رسید ').
+string('and_arrive_intermediate.ogg', 'به ایستگاهِ بینِ راهی که مشخص کرده بودید خواهید رسید ').
 string('reached_intermediate.ogg', 'به ایستگاهِ بین راهیِ مشخص شده رسیدید ').
-string('and_arrive_waypoint.ogg', 'به ایستگاهِ جی پی ایکسی که تعیین کرده بودید خواهید رسید ').
-string('reached_waypoint.ogg', 'به ایستگاهِ بین راهیِ فایلِ جی پی ایکس رسیدید ').
+string('and_arrive_waypoint.ogg', 'به ایستگاهِ جی پیی ایکسی که تعیین کرده بودید خواهید رسید ').
+string('reached_waypoint.ogg', 'به ایستگاهِ بینِ راهیِ فایلِِ جی پیی ایکس رسیدید ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'توجه, ').
 string('location_lost.ogg', 'قطعِ سیگنالِ جی پیی اس ').
 string('location_recovered.ogg', 'اتصال به ماهواره یِ جی پیی اس ').
 string('off_route.ogg', 'از مسیرِ تعیین شده خارج شدید').
-string('exceed_limit.ogg', 'سرعت شما بیش از حدِ مجاز است').
+string('exceed_limit.ogg', 'سرعتِ شما بیش از حدِ مجاز است').
 
 % STREET NAME GRAMMAR
 string('onto.ogg', ‘ِبه سمت ').
 string('on.ogg', 'در ').
-string('to.ogg', ‘ِدرون ').
+string('to.ogg', ‘ِِدرون ').
 string('to2.ogg', ‘ِسمت ').
 
 % DISTANCE UNIT SUPPORT
