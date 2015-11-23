@@ -790,6 +790,7 @@ mycpname kindergarten education_kindergarten.png
 mycp amenity school education_school.png
 mycp amenity university education_university.png
 mycpname driving_school education_driving_school.png
+mycpname training education_training.png
 
 
 ## Man made
