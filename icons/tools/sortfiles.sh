@@ -569,7 +569,7 @@ mygroup entertainment tourist_cinema.png
 mygroup club tourist_night_club.png
 mycp amenity arts_centre tourist_art_gallery.png
 mycp amenity casino tourist_casino.png
-mycp amenity cinema tourist_cinema.pngf
+mycp amenity cinema tourist_cinema3.png
 mycp amenity nightclub tourist_night_club.png
 mycp amenity stripclub amenity_stripclub.png
 mycp amenity theatre tourist_theatre.png
