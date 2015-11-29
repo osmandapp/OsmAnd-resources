@@ -642,7 +642,9 @@
 	<renderingConstant name="trackTunnelPathEffect" value="3_3"/>
 	<renderingAttribute name="cyclewayColor">
 		<case attrColorValue="#0000ff">
-			<apply_if nightMode="true" attrColorValue="#0000ff"/>
+			<apply_if nightMode="true" attrColorValue="#3670FF">
+				<apply_if appMode="bicycle" attrColorValue="#00FFFF"/>
+			</apply_if>
 		</case>
 	</renderingAttribute>
 	<renderingConstant name="cyclewayStrokeWidth" value="0.9"/>
@@ -691,10 +693,31 @@
 		<case attrColorValue="#2aea7300"/>
 	</renderingAttribute>
 
-	<renderingConstant name="cycleRoutelcnColor" value="#500000ff"/>
-	<renderingConstant name="cycleRoutercnColor" value="#50ff00ff"/>
-	<renderingConstant name="cycleRoutencnColor" value="#50ff4000"/>
-	<renderingConstant name="cycleRouteicnColor" value="#50ff0000"/>
+	<renderingAttribute name="cycleRoutelcnColor">
+		<case attrColorValue="#500000ff">
+			<apply_if nightMode="true" attrColorValue="#80006bff"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="cycleRoutercnColor">
+		<case attrColorValue="#50ff00ff">
+			<apply_if nightMode="true" attrColorValue="#70ff00ff"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="cycleRoutencnColor">
+		<case attrColorValue="#50ff4000">
+			<apply_if nightMode="true" attrColorValue="#70ff4000"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="cycleRouteicnColor">
+		<case attrColorValue="#50ff0000">
+			<apply_if nightMode="true" attrColorValue="#70ff0000"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="cycleRouteTextColor">
+		<case attrColorValue="#0000ff">
+			<apply_if nightMode="true" attrColorValue="#0000ff"/>
+		</case>
+	</renderingAttribute>
 	<renderingAttribute name="cycleRouteColor">
 		<case attrColorValue="#80ff940a">
 			<apply_if nightMode="true" attrColorValue="#90ff940a"/>
@@ -1959,12 +1982,14 @@
 			</case>
 			<case tag="highway" value="cycleway" order="39">
 				<apply_if appMode="pedestrian" order="59"/>
-				<apply_if appMode="bicycle" order="60"/>
 				<apply_if layer="1" order="70"/>
+				<apply_if appMode="bicycle" order="143">
+					<apply_if layer="1" order="143"/>
+				</apply_if>
 				<apply_if appMode="default" moreDetailed="false" maxzoom="15" order="-1"/>
 			</case>
-			<case appMode="bicycle" tag="cycleway" value="" order="60">
-				<apply_if layer="1" order="90">
+			<case appMode="bicycle" tag="cycleway" value="" order="143">
+				<apply_if layer="1" order="144">
 					<apply_if appMode="default" moreDetailed="false" maxzoom="15" order="-1"/>
 				</apply_if>
 			</case>
@@ -3173,7 +3198,7 @@
 					<case maxzoom="17" textSize="19"/>
 					<case minzoom="18" textSize="23"/>
 				</apply>
-				<apply textColor="$cyclewayColor"/>
+				<apply textColor="$cycleRouteTextColor"/>
 				<apply_if nightMode="true" textHaloColor="#aaffffff"/>
 			</switch>
 
