@@ -1579,7 +1579,10 @@
 			<case tag="craft" value=""/>
 			<case tag="tourism" value=""/>
 			<case tag="historic" value="archaeological_site"/>
-			<case tag="historic" value="memorial"/>
+			<case tag="historic" value="memorial">
+				<apply_if maxzoom="16" additional="memorial=plaque" order="-1"/>
+				<apply_if maxzoom="16" additional="memorial=stolperstein" order="-1"/>
+			</case>
 			<case tag="historic" value="ruins"/>
 			<case tag="historic" value="ship"/>
 			<case tag="historic" value=""/>
@@ -3222,11 +3225,13 @@
 						<apply_if nightMode="true" textColor="$publicTransportModeStopTextColorNight" textHaloRadius="$textHaloRadiusNight" textHaloColor="$publicTransportModeStopTextHaloColorNight"/>
 					</apply>
 				</switch>
-				<switch minzoom="16" textSize="13"> <!-- When no public transport is selected -->
+				<switch minzoom="16"> <!-- When no public transport is selected -->
 					<case tag="public_transport" value="platform" textOnPath="true" textOrder="71" intersectionMargin="15"/>
 					<case tag="amenity" value="bus_station" textOrder="68"/>
 					<case tag="highway" value="bus_stop" textOrder="73"/>
 					<case tag="railway" value="tram_stop" textOrder="74"/>
+					<apply_if maxzoom="16" textSize="11"/>
+					<apply_if minzoom="17" textSize="13"/>
 					<apply_if nightMode="true" textColor="#d4d4ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#994563a7"/>
 				</switch>
 				<switch> <!-- fallback: set attributes for 14-15 zooms when no public transport is selected -->
