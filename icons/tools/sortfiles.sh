@@ -1939,3 +1939,10 @@ mycpname osmc_yellow_hexagon osmc_other_osmc_yellow_hexagon.png
 mycpname osmc_yellow_mz osmc_other_osmc_yellow_mz.png
 mycpname osmc_yellow_sg osmc_other_osmc_yellow_sg.png
 mycpname osmc_yellow_shell osmc_other_osmc_yellow_shell.png
+
+mycpname cuisine poi_cuisine.png
+mycpname website poi_website.png
+mycpname email poi_email.png
+mycpname facebook poi_facebook.png
+mycpname twitter poi_twitter.png
+mycpname youtube poi_youtube.png
