@@ -121,6 +121,8 @@ mycpname reef poi_reef.png
 mycpname reservoir water_reservoir.png
 mycpname basin water_reservoir.png
 mycpname ridge poi_ridge.png
+mycpname strait poi_strait.png
+mycpname fjord poi_fjord.png
 
 ## Location dots
 mygroup administrative poi_boundary_administrative.png
@@ -146,6 +148,7 @@ mycpname neighborhood poi_place_neighborhood.png
 mycpname island poi_island.png
 mycpname country poi_country.png
 mycpname quarter poi_quarter.png
+mycpname place_farm poi_place_farm.png
 
 ## Barrier dots
 mycp barrier small_black_1 functional-icons_point_black_1.png  #scale 0.25
@@ -269,6 +272,7 @@ mycp skimap arrow_2triangles_black_small_nobg skimap_arrow_2triangles_black_smal
 mycp skimap arrow_2triangles_white_small_nobg skimap_arrow_2triangles_white_small_nobg.png
 mycp harbour yes poi_harbour.png
 mycpname historic_milestone tourist_historic_milestone.png
+mycpname runway transport_runway.png
 
 mygroup fuel transport_fuel.png
 mygroup filling_station transport_fuel.png
@@ -348,6 +352,8 @@ mycp railway tram_stop_round_small_night functional-icons_blue_stop_round_small_
 mycp railway tram_stop transport_tram_stop.png
 mycpname tram_stop_small functional-icons_tram_stop_small.png
 mycpname subway_station transport_subway_station.png
+mycpname funicular transport_funicular.png
+mycpname escape_lane transport_escape_lane.png
 
 mycpname subway_entrance_map functional-icons_subway_entrance_map.png
 mycpname subway_entrance poi_subway_entrance.png
@@ -668,6 +674,7 @@ mycpname golf_course sport_golf.png
 mycpname horse_riding sport_horse_riding.png
 mycpname model_aerodrome sport_model_aerodrome.png
 mycpname american_football sport_american_football.png
+mycpname raceway sport_raceway.png
 
 
 ## Leisure
