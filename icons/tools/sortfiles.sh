@@ -71,6 +71,13 @@ mycpname logging landuse_logging.png
 mycpname sand landuse_sand.png
 mycpname meadow landuse_meadow.png
 mycpname salt_pond landuse_salt_pond.png
+mycpname farmyard landuse_farmyard.png
+mycpname landuse_railway landuse_railway.png
+mycpname scrub landuse_scrub2.png
+mycpname heath landuse_heath.png
+mycpname grassland landuse_grassland.png
+mycpname greenfield landuse_greenfield.png
+mycpname brownfield landuse_brownfield.png
 
 mycp stroke black functional-icons_black_stroke.png
 mycp stroke darkgreen functional-icons_darkgreen_stroke.png
@@ -1655,6 +1662,7 @@ mycpname publisher office_publisher.png
 mycpname park entertainment_park.png
 mycpname dance_floor entertainment_dance_floor.png
 mycpname dog_park entertainment_dog_park.png
+mycpname ski_resort entertainment_ski_resort.png
 
 
 # mygroup custom_id icons8 #TODO
