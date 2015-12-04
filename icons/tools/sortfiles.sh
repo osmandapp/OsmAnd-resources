@@ -280,6 +280,7 @@ mycp skimap arrow_2triangles_white_small_nobg skimap_arrow_2triangles_white_smal
 mycp harbour yes poi_harbour.png
 mycpname historic_milestone tourist_historic_milestone.png
 mycpname runway transport_runway.png
+mycpname ford_stepping_stones transport_ford_stepping_stones.png
 
 mygroup fuel transport_fuel.png
 mygroup filling_station transport_fuel.png
@@ -751,6 +752,7 @@ mycpname baby_hatch amenity_baby_hatch.png
 mycpname boat_storage amenity_boat_storage.png
 mycpname crematorium amenity_crematorium.png
 mycpname mortuary amenity_mortuary.png
+mycpname internet_access_yes amenity_internet_access_wlan.png
 
 mygroup craft craft_tailor.png
 mycpname craft_beekeeper craft_beekeeper.png
@@ -826,7 +828,6 @@ mycp man_made crane poi_crane.png
 mycp man_made mast poi_mast.png
 mycp man_made mineshaft poi_mine.png
 mycpname radar poi_monitoring_station_radar.png
-mycp man_made monitoring_station_radar poi_monitoring_station_radar.png
 mycpname astronomical_observatory poi_observatory_astronomical.png
 mycp man_made observatory poi_observatory.png
 mycpname observation_tower poi_observatory.png
@@ -881,6 +882,7 @@ mycpname storage_tank poi_storage_tank.png
 mycpname wastewater_plant poi_wastewater_plant.png
 mycpname water_works poi_water_works.png
 mycpname watermill poi_watermill.png
+mycpname monitoring_station poi_monitoring_station.png
 
 mygroup military poi_military_bunker.png
 
