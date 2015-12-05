@@ -3192,22 +3192,25 @@
 			</case>
 
 			<!-- Cycling: texts for the cycle networks -->
-			<switch showCycleRoutes="true" minzoom="10" textHaloColor="#ddffffff" textWrapWidth="28">
+			<switch appMode="bicycle" minzoom="10" textHaloColor="#ddffffff" textWrapWidth="28">
 				<!-- routes -->
 				<case tag="route" value="bicycle" nameTag="bicycle_ref" nameTag2="bicycle_name" textOrder="1"/>
 				<case tag="route" value="bicycle" nameTag="bicycle_name" textOrder="1"/>
-				<case tag="route" value="mtb" nameTag="mtb_ref" nameTag2="mtb_name" textOrder="1"/>
-				<case tag="route" value="mtb" nameTag="mtb_name" textOrder="1"/>
-				<case tag="lcn_ref" value="" textOrder="9"/>
-				<case tag="rcn_ref" value="" textOrder="8"/>
-				<case tag="ncn_ref" value="" textOrder="7"/>
-				<case tag="icn_ref" value="" textOrder="7"/>
-				<apply>
+				<case tag="route" value="bicycle" nameTag="mtb:name" textOrder="1"/>
+				<case tag="route" value="mtb" nameTag="mtb_ref" nameTag2="mtb:name" textOrder="1"/>
+				<case tag="route" value="mtb" nameTag="mtb:name" textOrder="1"/>
+				<switch showCycleRoutes="true">
+					<case tag="lcn_ref" value="" textOrder="9"/>
+					<case tag="rcn_ref" value="" textOrder="8"/>
+					<case tag="ncn_ref" value="" textOrder="7"/>
+					<case tag="icn_ref" value="" textOrder="7"/>
+				</switch>
+				<apply_if showCycleRoutes="true">
 					<case additional="network=lcn" nameTag="lcn_ref" textOnPath="false" textOrder="9"/>
 					<case additional="network=rcn" nameTag="rcn_ref" textOnPath="false" textOrder="8"/>
 					<case additional="network=ncn" nameTag="ncn_ref" textOnPath="false" textOrder="7"/>
 					<case additional="network=icn" nameTag="icn_ref" textOnPath="false" textOrder="7"/>
-				</apply>
+				</apply_if>
 				<apply textHaloRadius="$textHaloRadiusDay">
 					<case maxzoom="12" textSize="15"/>
 					<case maxzoom="15" textSize="17"/>
@@ -7653,8 +7656,8 @@
 			<apply_if nightMode="true" color="#222222"/>
 		</case>
 
-		<switch showCycleRoutes="true" minzoom="11">
-			<case tag="route" value="bicycle" color="$cycleRouteColor" cap="BUTT">
+		<switch appMode="bicycle" minzoom="11">
+			<case tag="route" value="bicycle">
 				<case maxzoom="11" strokeWidth="2.5:2.5"/>
 				<case maxzoom="12" strokeWidth="3.5:3.5"/>
 				<case maxzoom="13" strokeWidth="4:4"/>
@@ -7663,12 +7666,14 @@
 				<case maxzoom="16" strokeWidth="7.5:7.5"/>
 				<case maxzoom="17" strokeWidth="9:9"/>
 				<case minzoom="18" strokeWidth="12:12"/>
+				<apply_if minzoom="13" color="$cycleRouteColor" cap="BUTT"/>
 			</case>
-			<case tag="route" value="mtb" color="$cycleRouteColor">
+			<case tag="route" value="mtb">
 				<case maxzoom="14" strokeWidth="3:3"/>
 				<case maxzoom="16" strokeWidth="4:4"/>
 				<case maxzoom="17" strokeWidth="5:5"/>
 				<case minzoom="18" strokeWidth="6:6"/>
+				<apply_if minzoom="13" color="$cycleRouteColor"/>
 				<apply>
 					<switch>
 						<case additional="mtb:scale=0" color="$cycleRouteColor"/>
@@ -7709,7 +7714,7 @@
 					</switch>
 				</apply>
 			</case>
-			<apply>
+			<apply_if showCycleRoutes="true">
 				<switch>
 					<case additional="network=lcn" color="$cycleRoutelcnColor"/>
 					<case additional="network=rcn" color="$cycleRoutercnColor"/>
@@ -7726,7 +7731,7 @@
 						<case minzoom="18" strokeWidth="12:12"/>
 					</apply>
 				</switch>
-			</apply>
+			</apply_if>
 		</switch>
 
 		<switch hikingRoutesOSMC="walkingRoutesOSMC" minzoom="12" color="$osmcDefaultColor">
