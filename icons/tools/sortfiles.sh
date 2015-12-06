@@ -579,7 +579,7 @@ mycpname lwn_ref tourist_lwn_ref.png
 mycpname gallery tourist_gallery.png
 
 ## Entertainment
-mygroup entertainment tourist_cinema.png
+mygroup entertainment tourist_cinema3.png
 mygroup club tourist_night_club.png
 mycp amenity arts_centre tourist_art_gallery.png
 mycp amenity casino tourist_casino.png
@@ -1625,6 +1625,10 @@ mycpname energy shopping_energy.png
 mycpname variety_store shopping_variety_store.png
 mycpname kitchen shopping_kitchen.png
 mycpname video_games shopping_video_games.png
+mycpname pyrotechnics shopping_pyrotechnics.png
+mycpname weapons shopping_weapons.png
+mycpname window_blind shopping_window_blind.png
+mycpname watches shopping_watches.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
