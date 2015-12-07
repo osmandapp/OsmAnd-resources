@@ -114,6 +114,8 @@
 		type="string" possibleValues="walkingRoutesOSMC,walkingRoutesScopeOSMC" defaultValueDescription="disabled" category="routes"/>
 	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
 		type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="horseRoutes" name="Horse routes" description="Horse routes"
+		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="roadStyle" name="Road style" description="Road style"
 		type="string" possibleValues="orange,germanRoadAtlas,americanRoadAtlas,highContrastRoads,boldOutline" defaultValueDescription="default"/>
 
@@ -796,8 +798,12 @@
 		<case attrColorValue="#44ab00d6"/>
 	</renderingAttribute>
 	<renderingAttribute name="osmcDefaultColor">
-		<case engine_v1="true" attrColorValue="#500058a2"/>
-		<case attrColorValue="#220058a2"/>
+		<case engine_v1="true" attrColorValue="#660058a2"/>
+		<case attrColorValue="#280058a2"/>
+	</renderingAttribute>
+	<renderingAttribute name="horseRouteDefaultColor">
+		<case engine_v1="true" attrColorValue="#8000ad88"/>
+		<case attrColorValue="#3500ad88"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="whiteColor">
@@ -2101,15 +2107,24 @@
 						<case tag="route_hiking" value="" nameTag="hiking_route_ref" textSize="13"/>
 						<case tag="route_foot" value="" nameTag="foot_route_ref" textSize="13"/>
 						<case tag="route_walking" value="" nameTag="walking_route_ref" textSize="13"/>
+						<case tag="route_horse" value="" nameTag="horse_route_ref" textSize="13"/>
 						<case minzoom="17" tag="route_hiking" value="" nameTag="hiking_route_name" textOrder="10"/>
 						<case minzoom="17" tag="route_foot" value="" nameTag="foot_route_name" textOrder="10"/>
 						<case minzoom="17" tag="route_walking" value="" nameTag="walking_route_name" textOrder="10"/>
+						<case minzoom="13" tag="route_horse" value="" nameTag="horse_route_name" textOrder="8"/>
 						<apply>
 							<switch>
-								<case hikingRoutesOSMC="walkingRoutesOSMC"/>
-								<case hikingRoutesOSMC="walkingRoutesScopeOSMC"/>
-								<apply textMinDistance="100" textColor="#0078ff" textBold="true" textHaloRadius="2" textHaloColor="#ccebf4ff" textWrapWidth="30"/>
-								<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#aa0800a0"/>
+								<case hikingRoutesOSMC="walkingRoutesOSMC" textColor="#0078ff" textHaloColor="#ccebf4ff">
+									<apply_if nightMode="true" textHaloColor="#aa0800a0"/>
+								</case>
+								<case hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="#0078ff" textHaloColor="#ccebf4ff">
+									<apply_if nightMode="true" textHaloColor="#aa0800a0"/>
+								</case>
+								<case horseRoutes="true" textColor="#00745b" textHaloColor="#ccffffff">
+									<apply_if nightMode="true" textHaloColor="#00745b"/>
+								</case>
+								<apply textMinDistance="100" textBold="true" textHaloRadius="2" textWrapWidth="30"/>
+								<apply_if nightMode="true" textColor="#ffffff"/>
 							</switch>
 						</apply>
 					</switch>
@@ -2124,6 +2139,9 @@
 						<case minzoom="12" tag="route_hiking" value="" nameTag="osmc_stub_name"/>
 						<case minzoom="12" tag="route_foot" value="" nameTag="osmc_stub_name"/>
 						<case minzoom="12" tag="route_walking" value="" nameTag="osmc_stub_name"/>
+					</switch>
+					<switch horseRoutes="true">
+						<case minzoom="12" horseRoutes="true" tag="route_horse" value="" nameTag="osmc_stub_name"/>
 					</switch>
 					<apply>
 						<switch>
@@ -6823,6 +6841,10 @@
 
 					<case minzoom="12" tag="highway" value="bridleway">
 						<case appMode="pedestrian" minzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="1:1"/>
+						<case horseRoutes="true" maxzoom="15">
+							<case maxzoom="12" strokeWidth_4="1.5" strokeWidth_5="1.3"/>
+							<case minzoom="13" strokeWidth_4="1.8:1.8" strokeWidth_5="1.7"/>
+						</case>
 						<case moreDetailed="true" maxzoom="15">
 							<case maxzoom="12" strokeWidth_4="0.9" strokeWidth_5="0.8"/>
 							<case minzoom="13" strokeWidth_4="1.2:1.2" strokeWidth_5="1"/>
@@ -6830,6 +6852,7 @@
 						<case minzoom="16" strokeWidth_4="1.4:1.4" strokeWidth_5="1">
 							<apply_if showSurfaceGrade="true" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
 							<apply_if showSurfaces="true" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
+							<apply_if horseRoutes="true" strokeWidth_4="3:3" strokeWidth_5="1.5:1.5"/>
 						</case>
 						<apply color_5="$bridlewayColor" pathEffect_5="4_2"/>
 					</case>
@@ -7737,10 +7760,15 @@
 			</apply_if>
 		</switch>
 
-		<switch hikingRoutesOSMC="walkingRoutesOSMC" minzoom="12" color="$osmcDefaultColor">
-			<case tag="route_hiking" value=""/>
-			<case tag="route_foot" value=""/>
-			<case tag="route_walking" value=""/>
+		<switch>
+			<switch hikingRoutesOSMC="walkingRoutesOSMC" minzoom="12" color="$osmcDefaultColor">
+				<case tag="route_hiking" value=""/>
+				<case tag="route_foot" value=""/>
+				<case tag="route_walking" value=""/>
+			</switch>
+			<switch horseRoutes="true" minzoom="12" color="$horseRouteDefaultColor">
+				<case tag="route_horse" value=""/>
+			</switch>
 			<apply>
 				<case additional="osmc_waycolor=black" color="$osmcBlackColor"/>
 				<case additional="osmc_waycolor=blue" color="$osmcBlueColor"/>
