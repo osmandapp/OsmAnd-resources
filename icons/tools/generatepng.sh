@@ -161,4 +161,6 @@ generatePngs() {
 
        generatePngs 'icons8' '#777777' '#ff8f00' neg
 
+       generatePngs 'xmas' '#aa2001' '#ff8f00'
+
        generatePngs 'overlays' '#777777' '#777777' '' x2 '' nomx
