@@ -1967,3 +1967,10 @@ mycpname email poi_email.png
 mycpname facebook poi_facebook.png
 mycpname twitter poi_twitter.png
 mycpname youtube poi_youtube.png
+
+#Xmas
+mycpname xmas_event xmas_event.png
+mycpname xmas_market xmas_market.png
+mycpname xmas_pyramid xmas_pyramid.png
+mycpname xmas_shop xmas_shop.png
+mycpname xmas_tree xmas_tree.png
