@@ -683,6 +683,7 @@ mycpname horse_riding sport_horse_riding.png
 mycpname model_aerodrome sport_model_aerodrome.png
 mycpname american_football sport_american_football.png
 mycpname raceway sport_raceway.png
+mycpname fitness_centre sport_fitness_centre.png
 
 
 ## Leisure
