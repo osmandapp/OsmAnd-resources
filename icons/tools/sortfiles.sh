@@ -350,7 +350,7 @@ mycp railway platform transport_train_station2.png
 mycp railway station_disused functional-icons_train_station_disused.png
 mycp railway station_small_disused functional-icons_railway_station_small_disused.png
 mycp railway station_small functional-icons_railway_station_small.png  #scale 0.375
-mycp railway station_subway transport_station_subway.png
+mycp railway station_subway_map transport_station_subway.png
 mycp railway station_subway_small functional-icons_railway_station_subway_small.png  #scale 0.375
 mycp railway station transport_train_station.png
 mycp railway tram_stop_round_big functional-icons_blue_stop_round_big.png
@@ -684,6 +684,7 @@ mycpname model_aerodrome sport_model_aerodrome.png
 mycpname american_football sport_american_football.png
 mycpname raceway sport_raceway.png
 mycpname fitness_centre sport_fitness_centre.png
+mycpname billiards sport_billiards.png
 
 
 ## Leisure
@@ -1670,6 +1671,7 @@ mycpname park entertainment_park.png
 mycpname dance_floor entertainment_dance_floor.png
 mycpname dog_park entertainment_dog_park.png
 mycpname ski_resort entertainment_ski_resort.png
+mycpname bandstand entertainment_bandstand.png
 
 
 # mygroup custom_id icons8 #TODO
@@ -1979,8 +1981,50 @@ mycpname abandoned additional_abandoned.png
 mycpname disused additional_disused.png
 mycpname drinking_water_yes additional_drinking_water_yes.png
 mycpname drinking_water_no additional_drinking_water_no.png
+mycpname seasonal_no additional_seasonal_no.png
+mycpname seasonal_yes additional_seasonal_yes.png
+mycpname seasonal_summer additional_seasonal_summer.png
+mycpname seasonal_winter additional_seasonal_winter.png
+mycpname route_bus_ref transport_bus_stop.png
+mycpname route_tram_ref additional_tram.png
+mycpname route_trolleybus_ref additional_trolleybus.png
+mycpname route_train_ref transport_train_station2.png
+mycpname route_share_taxi_ref additional_share_taxi.png
+mycpname route_railway_ref transport_train_station.png
+mycpname route_ferry_ref transport_ferry_terminal.png
+mycpname route_funicular_ref transport_funicular.png
+mycpname route_monorail_ref additional_monorail.png
+mycpname route_light_rail_ref additional_light_rail.png
+mycpname shop_yes shopping_convenience.png
+mycpname beauty_salon_nails additional_beauty_salon_nails.png
+mycpname historic_yes tourist_archaeological2.png
+mycpname lit_yes additional_lit_yes.png
+mycpname lit_no additional_lit_no.png
+mycpname elevator_yes poi_elevator.png
+mycpname theatre_genre_comedy additional_comedy.png
+mycpname temperature additional_temperature.png
+mycpname conveying_yes additional_conveying_yes.png
+mycpname shoes_women additional_shoes_women.png
+mycpname shoes_children additional_shoes_children.png
+mycpname shoes_men shopping_shoes.png
+mycpname cargo_vehicle additional_cargo_vehicle.png
+mycpname cargo_passengers additional_cargo_passengers.png
+mycpname bridge_movable_lift additional_bridge_movable_lift.png
+mycpname bridge_structure_arch additional_bridge_structure_arch.png
+mycpname bridge_structure_beam additional_bridge_structure_beam.png
+mycpname bridge_structure_suspension additional_bridge_structure_suspension.png
+mycpname bridge_type_movable additional_bridge_type_movable.png
+mycpname building_type_basilica additional_building_type_basilica.png
+mycpname building_type_cathedral additional_uilding_type_cathedral.png
+mycpname building_type_chapel additional_building_type_chapel.png
+mycpname building_type_church additional_building_type_church.png
+mycpname building_type_monastery additional_building_type_monastery.png
+mycpname building_type_mosque additional_building_type_mosque.png
+mycpname building_type_pyramid additional_building_type_pyramid.png
+mycpname building_type_synagogue additional_building_type_synagogue.png
 
 #Xmas
+mygroup xmas xmas_tree.png
 mycpname xmas_event xmas_event.png
 mycpname xmas_market xmas_market.png
 mycpname xmas_pyramid xmas_pyramid.png
