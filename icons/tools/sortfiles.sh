@@ -1962,12 +1962,23 @@ mycpname osmc_yellow_mz osmc_other_osmc_yellow_mz.png
 mycpname osmc_yellow_sg osmc_other_osmc_yellow_sg.png
 mycpname osmc_yellow_shell osmc_other_osmc_yellow_shell.png
 
-mycpname cuisine poi_cuisine.png
-mycpname website poi_website.png
-mycpname email poi_email.png
-mycpname facebook poi_facebook.png
-mycpname twitter poi_twitter.png
-mycpname youtube poi_youtube.png
+#Additional
+mycpname cuisine additional_cuisine.png
+mycpname website additional_website.png
+mycpname email additional_email.png
+mycpname facebook additional_facebook.png
+mycpname twitter additional_twitter.png
+mycpname youtube additional_youtube.png
+mycpname vk additional_vk.png
+mycpname fee_yes additional_fee_yes.png
+mycpname fee_no additional_fee_no.png
+mycpname ele additional_ele.png
+mycpname width additional_width.png
+mycpname height additional_height.png
+mycpname abandoned additional_abandoned.png
+mycpname disused additional_disused.png
+mycpname drinking_water_yes additional_drinking_water_yes.png
+mycpname drinking_water_no additional_drinking_water_no.png
 
 #Xmas
 mycpname xmas_event xmas_event.png
