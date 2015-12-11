@@ -2015,7 +2015,7 @@ mycpname bridge_structure_beam additional_bridge_structure_beam.png
 mycpname bridge_structure_suspension additional_bridge_structure_suspension.png
 mycpname bridge_type_movable additional_bridge_type_movable.png
 mycpname building_type_basilica additional_building_type_basilica.png
-mycpname building_type_cathedral additional_uilding_type_cathedral.png
+mycpname building_type_cathedral additional_building_type_cathedral.png
 mycpname building_type_chapel additional_building_type_chapel.png
 mycpname building_type_church additional_building_type_church.png
 mycpname building_type_monastery additional_building_type_monastery.png
@@ -2023,6 +2023,21 @@ mycpname building_type_mosque additional_building_type_mosque.png
 mycpname building_type_pyramid additional_building_type_pyramid.png
 mycpname building_type_synagogue additional_building_type_synagogue.png
 mycpname tourism_yes additional_tourism_yes.png
+mycpname supervised_yes additional_supervised_yes.png
+mycpname supervised_no additional_supervised_no.png
+mycpname access_no additional_access_no.png
+mycpname access_private additional_access_private.png
+mycpname smoking_yes additional_smoking_yes.png
+mycpname smoking_no additional_smoking_no.png
+mycpname covered_yes additional_covered_yes.png
+mycpname covered_no additional_covered_no.png
+mycpname male_yes additional_male_yes.png
+mycpname male_no additional_male_no.png
+mycpname female_yes additional_female_yes.png
+mycpname female_no additional_female_no.png
+mycpname wheelchair additional_wheelchair.png
+mycpname wheelchair_no additional_wheelchair_no.png
+
 
 #Xmas
 mygroup xmas xmas_tree.png
