@@ -2022,6 +2022,7 @@ mycpname building_type_monastery additional_building_type_monastery.png
 mycpname building_type_mosque additional_building_type_mosque.png
 mycpname building_type_pyramid additional_building_type_pyramid.png
 mycpname building_type_synagogue additional_building_type_synagogue.png
+mycpname tourism_yes additional_tourism_yes.png
 
 #Xmas
 mygroup xmas xmas_tree.png
