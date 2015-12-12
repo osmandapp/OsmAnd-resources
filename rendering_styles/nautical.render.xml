@@ -106,6 +106,17 @@
 		</case>
 	</renderingAttribute>
 
+	<renderingAttribute name="placeCountryTextColor">
+		<case attrColorValue="#635700">
+			<apply_if nightMode="true" attrColorValue="#fffccc"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="placeCountryTextHaloColor">
+		<case attrColorValue="#aaf7ebf7">
+			<apply_if nightMode="true" attrColorValue="#77777545"/>
+		</case>
+	</renderingAttribute>
+
 	<renderingConstant name="placeCityVillageTextColorDay" value="#000000"/>
 	<renderingConstant name="placeSuburbLocalityTextColorDay" value="#222222"/>
 	<renderingConstant name="placeTextHaloRadiusDay" value=":1"/>
@@ -617,12 +628,12 @@
 			<apply_if nightMode="true" textColor="#ffb9fe" textHaloColor="#77333333"/>
 		</switch>
 		<!-- continent not really useful here: filter minzoom="2" maxzoom="2" textSize="14" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="continent"/ -->
-		<case minzoom="3" tag="place" value="country" textColor="#635700" textHaloColor="#aaf7ebf7" textHaloRadius="3" textWrapWidth="15" textOrder="5">
+			<case minzoom="1" maxzoom="2" tag="place" value="continent" textSize="13" textColor="$placeCountryTextColor" textHaloColor="$placeCountryTextHaloColor" textHaloRadius="3" textBold="true" textWrapWidth="15" textOrder="1"/>
+		<case minzoom="3" tag="place" value="country" textColor="$placeCountryTextColor" textHaloColor="$placeCountryTextHaloColor" textHaloRadius="3" textWrapWidth="15" textOrder="5">
 			<case maxzoom="3" textSize="12"/>
 			<case maxzoom="4" textSize="14" textBold="true"/>
 			<case maxzoom="5" textSize="16" textBold="true"/>
 			<case minzoom="6" textSize="14" textBold="true" textOrder="33"/>
-			<apply_if nightMode="true" textColor="#fffccc" textHaloColor="#77777545"/>
 			<apply_if additional="population_rounded=" textOrder="$textOrderPopulation"/> <!--  additional="population_rounded=" here is needed because renderingAtribute="textOrderPopulation" returns "0" when there is no population tag. And we can't include additional empty "case" in it because it is used more than 1 time on elements with different default textOrder -->
 		</case>
 
@@ -1080,7 +1091,7 @@
 
 		<!-- Water -->
 		<switch textColor="$waterTextColorDay" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$waterTextHaloColorDay" textSize="12" textItalic="true">
-			<case minzoom="3" tag="place" value="ocean" textWrapWidth="20" textOrder="3"/>
+			<case minzoom="2" tag="place" value="ocean" textWrapWidth="20" textOrder="3"/>
 			<case minzoom="5" tag="place" value="sea" textWrapWidth="20" textOrder="33"/>
 			<case minzoom="6" tag="natural" value="water" textWrapWidth="17" textOrder="178" intersectionSizeFactor="1.4">
 				<case engine_v1="true" textDy="13"/>

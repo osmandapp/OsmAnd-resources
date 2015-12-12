@@ -299,6 +299,17 @@
 		<case attrColorValue="#22c95cb8"/>
 	</renderingAttribute>
 
+	<renderingAttribute name="placeCountryTextColor">
+		<case attrColorValue="#8e3a7e">
+			<apply_if nightMode="true" attrColorValue="#d99b42"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="placeCountryTextHaloColor">
+		<case attrColorValue="#ddffffff">
+			<apply_if nightMode="true" attrColorValue="#ddffffff"/>
+		</case>
+	</renderingAttribute>
+
 	<renderingAttribute name="textOrderPopulation">
 		<case additional="population_rounded=1500000000" attrIntValue="15"/>
 		<case additional="population_rounded=400000000" attrIntValue="16"/>
@@ -778,12 +789,13 @@
 				<apply_if nightMode="true" textSize="13" textColor="#ffd1d1" textHaloColor="#88000000"/>
 			</switch>
 
-			<case minzoom="3" tag="place" value="country" textColor="#8e3a7e" textHaloColor="#ddffffff" textHaloRadius="3" textWrapWidth="15" textOrder="5">
+			<case minzoom="1" maxzoom="2" tag="place" value="continent" textSize="13" textColor="$placeCountryTextColor" textHaloColor="$placeCountryTextHaloColor" textHaloRadius="3" textBold="true" textWrapWidth="15" textOrder="1"/>
+
+			<case minzoom="3" tag="place" value="country" textColor="$placeCountryTextColor" textHaloColor="$placeCountryTextHaloColor" textHaloRadius="3" textWrapWidth="15" textOrder="5">
 				<case maxzoom="3" textSize="12"/>
 				<case maxzoom="4" textSize="14" textBold="true"/>
 				<case maxzoom="5" textSize="16" textBold="true"/>
 				<case minzoom="6" textSize="14" textBold="true" textOrder="33"/>
-				<apply_if nightMode="true" textColor="#d99b42" textHaloColor="#8873552a"/>
 				<apply_if additional="population_rounded=" textOrder="$textOrderPopulation"/>
 			</case>
 
@@ -1124,7 +1136,7 @@
 
 
 			<switch textColor="#2375aa" textHaloColor="#ddf1fd" textHaloRadius="$textHaloRadiusDay">
-				<case minzoom="3" tag="place" value="ocean" textSize="12" textWrapWidth="20" textOrder="3"/>
+				<case minzoom="2" tag="place" value="ocean" textSize="12" textWrapWidth="20" textOrder="3"/>
 				<case minzoom="5" tag="place" value="sea" textSize="12" textWrapWidth="20" textOrder="33"/>
 				<case minzoom="6" tag="natural" value="water" textSize="12" textWrapWidth="20" textOrder="178"/>
 				<case minzoom="8" tag="natural" value="bay" textSize="12" textWrapWidth="17" textOrder="179"/>
