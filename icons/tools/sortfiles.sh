@@ -588,6 +588,7 @@ mycp amenity nightclub tourist_night_club.png
 mycp amenity stripclub amenity_stripclub.png
 mycp amenity theatre tourist_theatre.png
 mycpname hackerspace entertainment_hackerspace.png
+mycpname leisure_common entertainment_leisure_common.png
 
 
 ## Historic
@@ -2042,6 +2043,8 @@ mycpname bench_no additional_bench_no.png
 mycpname waste_basket_yes additional_waste_basket_yes.png
 mycpname waste_basket_no additional_waste_basket_no.png
 mycpname surface_sand additional_surface_sand.png
+mycpname recycling_container amenity_waste_disposal.png
+mycpname recycling_centre additional_recycling_centre.png
 
 
 #Xmas
