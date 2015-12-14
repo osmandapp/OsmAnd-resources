@@ -156,6 +156,7 @@ mycpname island poi_island.png
 mycpname country poi_country.png
 mycpname quarter poi_quarter.png
 mycpname place_farm poi_place_farm.png
+mycpname islet poi_islet.png
 
 ## Barrier dots
 mycp barrier small_black_1 functional-icons_point_black_1.png  #scale 0.25
@@ -218,10 +219,11 @@ mygroup water_transport transport_ferry_terminal.png
 mygroup bicycle_transport shopping_bicycle.png
 mygroup aerialway_transport transport_aerialway_station.png
 mycp highway crossing_bg functional-icons_highway_crossing_bg.png
-mycp highway crossing_traffic_signals functional-icons_highway_crossing_traffic_signals.png
 mycp highway crossing transport_zebra_crossing2.png
-mycp highway crossing_uncontrolled functional-icons_highway_crossing_uncontrolled.png
-mycp highway crossing_unmarked functional-icons_highway_crossing_unmarked.png
+mycpname crossing_traffic_signals_map functional-icons_highway_crossing_traffic_signals.png
+mycpname crossing_uncontrolled_map functional-icons_highway_crossing_uncontrolled.png
+mycpname crossing_unmarked_map functional-icons_highway_crossing_unmarked.png
+
 mycpname ford transport_ford.png
 mycp highway milestone functional-icons_milestone.png
 mycp highway mini_roundabout transport_miniroundabout_anticlockwise.png
@@ -756,6 +758,8 @@ mycpname boat_storage amenity_boat_storage.png
 mycpname crematorium amenity_crematorium.png
 mycpname mortuary amenity_mortuary.png
 mycpname internet_access_yes amenity_internet_access_wlan.png
+mycpname customs amenity_customs.png
+mycpname dojo amenity_dojo.png
 
 mygroup craft craft_tailor.png
 mycpname craft_beekeeper craft_beekeeper.png
@@ -2045,6 +2049,18 @@ mycpname waste_basket_no additional_waste_basket_no.png
 mycpname surface_sand additional_surface_sand.png
 mycpname recycling_container amenity_waste_disposal.png
 mycpname recycling_centre additional_recycling_centre.png
+mycpname crossing_traffic_signals additional_crossing_traffic_lights.png
+mycpname crossing_unmarked additional_crossing_unmarked.png
+mycpname crossing_uncontrolled additional_crossing_uncontrolled.png
+mycpname vending_parking_tickets additional_vending_parking_tickets.png
+mycpname vending_cigarettes additional_vending_cigarettes.png
+mycpname vending_excrement_bags additional_vending_excrement_bags.png
+mycpname vending_public_transport_tickets additional_vending_public_transport_tickets.png
+mycpname vending_drinks additional_vending_drinks.png
+mycpname vending_sweets additional_vending_sweets.png
+mycpname vending_parcel_pickup_mail_in additional_vending_parcel_pickup_mail_in.png
+mycpname vending_condoms additional_vending_condoms.png
+mycpname vending_stamps additional_vending_stamps.png
 
 
 #Xmas
