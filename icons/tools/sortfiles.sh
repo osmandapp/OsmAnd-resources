@@ -591,6 +591,7 @@ mycp amenity stripclub amenity_stripclub.png
 mycp amenity theatre tourist_theatre.png
 mycpname hackerspace entertainment_hackerspace.png
 mycpname leisure_common entertainment_leisure_common.png
+mycpname love_hotel entertainment_love_hotel.png
 
 
 ## Historic
@@ -760,6 +761,7 @@ mycpname mortuary amenity_mortuary.png
 mycpname internet_access_yes amenity_internet_access_wlan.png
 mycpname customs amenity_customs.png
 mycpname dojo amenity_dojo.png
+mycpname social_centre amenity_social_centre.png
 
 mygroup craft craft_tailor.png
 mycpname craft_beekeeper craft_beekeeper.png
@@ -1654,7 +1656,6 @@ mycpname political_party office_political_party.png
 mycpname office_telecommunication office_telecommunication.png
 mycpname accountant office_accountant.png
 mycpname architect office_architect.png
-mycpname association office_association.png
 mycpname office_camping office_camping.png
 mycpname educational_institution office_educational_institution.png
 mycpname office_foundation office_foundation.png
@@ -2061,6 +2062,9 @@ mycpname vending_sweets additional_vending_sweets.png
 mycpname vending_parcel_pickup_mail_in additional_vending_parcel_pickup_mail_in.png
 mycpname vending_condoms additional_vending_condoms.png
 mycpname vending_stamps additional_vending_stamps.png
+mycpname product_brick additional_product_brick.png
+mycpname backrest_yes additional_backrest_yes.png
+mycpname backrest_no additional_backrest_no.png
 
 
 #Xmas
