@@ -689,6 +689,15 @@ mycpname american_football sport_american_football.png
 mycpname raceway sport_raceway.png
 mycpname fitness_centre sport_fitness_centre.png
 mycpname billiards sport_billiards.png
+mycpname chess sport_chess.png
+mycpname gaelic_games sport_gaelic_games.png
+mycpname running sport_running.png
+mycpname karting sport_karting.png
+mycpname badminton sport_badminton.png
+mycpname ice_stock sport_ice_stock.png
+mycpname korfball sport_korfball.png
+mycpname judo sport_judo.png
+mycpname rc_car sport_rc_car.png
 
 
 ## Leisure
@@ -816,6 +825,7 @@ mycp amenity school education_school.png
 mycp amenity university education_university.png
 mycpname driving_school education_driving_school.png
 mycpname training education_training.png
+mycpname training_yoga education_training_yoga.png
 
 
 ## Man made
