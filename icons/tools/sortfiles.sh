@@ -206,8 +206,8 @@ mycp fixme_tag_lowzoom2 yes overlays_fixme_dot_2.png
 mycp note_tag yes overlays_note.png
 mycp osm_note dot overlays_osm_note_dot.png
 mycp osm_note dot_2 overlays_osm_note_dot_2.png
-mycp drinking_water yes overlays_drinking_water_yes.png
-mycp drinking_water no overlays_drinking_water_no.png
+mycp drinking_water yes_map overlays_drinking_water_yes.png
+mycp drinking_water no_map overlays_drinking_water_no.png
 
 
 ## Traffic + Transportation
