@@ -40,20 +40,20 @@ string('after.ogg', 'después de ').
 string('in.ogg', 'en ').
 
 string('left.ogg', 'gira a la izquierda').
-string('left_sh.ogg', 'efectúa un giro cerrado a la izquierda').
+string('left_sh.ogg', 'gira cerrado a la izquierda').
 string('left_sl.ogg', 'gira levemente a la izquierda').
 string('right.ogg', 'gira a la derecha').
-string('right_sh.ogg', 'efectúa un giro cerrado a la derecha').
+string('right_sh.ogg', 'gira cerrado a la derecha').
 string('right_sl.ogg', 'gira levemente a la derecha').
 string('left_keep.ogg', 'mantente a la izquierda').
 string('right_keep.ogg', 'mantente a la derecha').
 % if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 string('left_inf.ogg', 'girar a la izquierda').
-string('left_sh_inf.ogg', 'efectuar un giro cerrado a la izquierda').
+string('left_sh_inf.ogg', 'girar cerrado a la izquierda').
 string('left_sl_inf.ogg', 'girar levemente a la izquierda').
 string('right_inf.ogg', 'girar a la derecha').
-string('right_sh_inf.ogg', 'efectuar un giro cerrado a la derecha').
+string('right_sh_inf.ogg', 'girar cerrado a la derecha').
 string('right_sl_inf.ogg', 'girar levemente a la derecha').
 string('left_keep_inf.ogg', 'mantenerte a la izquierda').
 string('right_keep_inf.ogg', 'mantenerte a la derecha').
@@ -112,17 +112,17 @@ string('reached_poi.ogg', 'estás pasando el P D I ').
 string('attention.ogg', 'atención, ').
 string('speed_camera.ogg', 'radar de velocidad ').
 string('border_control.ogg', 'control fronterizo ').
-string('railroad_crossing.ogg', 'paso a nivel ').
-string('traffic_calming.ogg', 'badén ').
+string('railroad_crossing.ogg', 'cruce ferroviario ').
+string('traffic_calming.ogg', 'reductor de velocidad ').
 string('toll_booth.ogg', 'cabina de peaje ').
 string('stop.ogg', 'señal de ESTOP ').
-string('pedestrian_crosswalk.ogg', 'paso de peatones ').
+string('pedestrian_crosswalk.ogg', 'cruce de peatones ').
 
-string('location_lost.ogg', 'señal g p s perdida').
-string('location_recovered.ogg', 'señal g p s encontrada ').
+string('location_lost.ogg', 'señal G P S perdida').
+string('location_recovered.ogg', 'señal G P S encontrada ').
 string('off_route.ogg', 'te has desviado de la ruta').
-string('back_on_route.ogg', 'has regresado a la ruta').
-string('exceed_limit.ogg', 'estás excediendo el límite de velocidad ').
+string('back_on_route.ogg', 'has vuelto a la ruta').
+string('exceed_limit.ogg', 'excedes el límite de velocidad ').
 
 % STREET NAME GRAMMAR
 string('on.ogg', 'en').
