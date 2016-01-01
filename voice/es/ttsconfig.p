@@ -130,14 +130,14 @@ string('to.ogg', 'hacia').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'metros').
-string('around_1_kilometer.ogg', 'cerca de un kilómetro').
-string('around.ogg', 'cerca de').
+string('around_1_kilometer.ogg', 'aproximadamente un kilómetro').
+string('around.ogg', 'aproximadamente').
 string('kilometers.ogg', 'kilómetros').
 
 string('feet.ogg', 'pies').
 string('1_tenth_of_a_mile.ogg', 'una décima de milla').
 string('tenths_of_a_mile.ogg', 'décimas de milla').
-string('around_1_mile.ogg', 'cerca de una milla').
+string('around_1_mile.ogg', 'aproximadamente una milla').
 string('miles.ogg', 'millas').
 
 string('yards.ogg', 'yardas').
