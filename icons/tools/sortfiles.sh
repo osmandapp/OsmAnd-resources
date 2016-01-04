@@ -902,6 +902,7 @@ mycpname wastewater_plant poi_wastewater_plant.png
 mycpname water_works poi_water_works.png
 mycpname watermill poi_watermill.png
 mycpname monitoring_station poi_monitoring_station.png
+mycpname dolphin poi_dolphin.png
 
 mygroup military poi_military_bunker.png
 
