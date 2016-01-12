@@ -2077,6 +2077,8 @@ mycpname product_brick additional_product_brick.png
 mycpname backrest_yes additional_backrest_yes.png
 mycpname backrest_no additional_backrest_no.png
 mycpname construction_yes additional_construction_yes.png
+mycpname atm_yes additional_atm_yes.png
+mycpname atm_no additional_atm_no.png
 
 
 #Xmas
