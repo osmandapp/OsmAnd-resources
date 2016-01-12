@@ -108,6 +108,8 @@
 		type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideProposed" name="Hide proposed objects" description="Hide proposed objects"
 		type="boolean" possibleValues="" category="hide"/>
+	<renderingProperty attr="hideIcons" name="Hide map icons" description="Hide map icons"
+		type="boolean" possibleValues="" category="hide"/>
 
 	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show cycle routes (*cn_networks) in bicycle mode" type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="hikingRoutesOSMC" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces"
@@ -3917,72 +3919,88 @@
 		</case>
 		<!-- Car profile priority icons -->
 		<switch appMode="car" iconOrder="80">
-			<case minzoom="16" tag="emergency" value="phone" icon="emergency_phone" shield="white_red_square_shield">
-				<apply_if nightMode="true" shield="gray_red_square_shield"/>
-			</case>
-			<case moreDetailed="true" minzoom="16" tag="highway" value="traffic_signals" icon="highway_traffic_signals_map" shield="traffic_signals_shield"/>
-			<case minzoom="15" tag="highway" value="mini_roundabout" icon="highway_mini_roundabout" shield="miniroundabout_anticlockwise_shield">
-				<apply_if nightMode="true" shield=""/>
-			</case>
-			<case moreDetailed="true" minzoom="16" tag="noexit" value="yes" icon="highway_noexit" iconVisibleSize="12" intersectsWith=""/>
-			<switch minzoom="14">
-				<case tag="ford" value="yes"/>
-				<case tag="ford" value="stepping_stones"/>
-				<apply icon="ford" shield="ford_shield"/>
-			</switch>
-			<case minzoom="16" tag="highway" value="passing_place" icon="highway_passing_place"/>
-			<case moreDetailed="true" minzoom="16" tag="highway" value="crossing" icon="highway_crossing" shield="highway_crossing_shield" iconVisibleSize="18" intersectionSizeFactor="1.2">
-				<case additional="crossing=uncontrolled" icon="crossing_uncontrolled_map"/>
-				<case additional="crossing=traffic_signals" icon_2="crossing_traffic_signals_map"/>
-				<apply_if streetLighting="true">
-					<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
-						<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
+			<switch hideIcons="false">
+				<case minzoom="16" tag="emergency" value="phone" icon="emergency_phone" shield="white_red_square_shield">
+					<apply_if nightMode="true" shield="gray_red_square_shield"/>
+				</case>
+				<case moreDetailed="true" minzoom="16" tag="highway" value="traffic_signals" icon="highway_traffic_signals_map" shield="traffic_signals_shield"/>
+				<case minzoom="15" tag="highway" value="mini_roundabout" icon="highway_mini_roundabout" shield="miniroundabout_anticlockwise_shield">
+					<apply_if nightMode="true" shield=""/>
+				</case>
+				<case moreDetailed="true" minzoom="16" tag="noexit" value="yes" icon="highway_noexit" iconVisibleSize="12" intersectsWith=""/>
+				<switch minzoom="14">
+					<case tag="ford" value="yes"/>
+					<case tag="ford" value="stepping_stones"/>
+					<apply icon="ford" shield="ford_shield"/>
+				</switch>
+				<case minzoom="16" tag="highway" value="passing_place" icon="highway_passing_place"/>
+				<case moreDetailed="true" minzoom="16" tag="highway" value="crossing" icon="highway_crossing" shield="highway_crossing_shield" iconVisibleSize="18" intersectionSizeFactor="1.2">
+					<case additional="crossing=uncontrolled" icon="crossing_uncontrolled_map"/>
+					<case additional="crossing=traffic_signals" icon_2="crossing_traffic_signals_map"/>
+					<apply_if streetLighting="true">
+						<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
+							<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
+						</case>
+						<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
+							<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
+						</case>
+					</apply_if>
+				</case>
+				<case minzoom="16" maxzoom="17" tag="amenity" value="bicycle_parking" icon=""/>
+				<case minzoom="15" tag="railway" value="level_crossing" icon="level_crossing_map">
+					<apply_if streetLighting="true">
+						<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
+							<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
+						</case>
+						<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
+							<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
+						</case>
+					</apply_if>
+				</case>
+				<switch minzoom="17">
+					<case tag="traffic_calming" value="bump" icon="traffic_calming_bump"/>
+					<case tag="traffic_calming" value="hump" icon="traffic_calming_hump"/>
+					<case tag="traffic_calming" value="cushion" icon="traffic_calming_cushion"/>
+					<case tag="traffic_calming" value="choker" icon="traffic_calming_choker"/>
+					<case tag="traffic_calming" value="chicane" icon="traffic_calming_chicane"/>
+					<case tag="traffic_calming" value="island" icon="traffic_calming_island"/>
+					<case tag="traffic_calming" value="table" icon="traffic_calming_table"/>
+					<case tag="traffic_calming" value="rumble_strip" icon="traffic_calming_rumble_strip"/>
+					<apply shield="white_blue_square_shield">
+						<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+					</apply>
+				</switch>
+				<switch tag="amenity" value="parking_entrance" iconVisibleSize="8">
+					<case minzoom="16" maxzoom="16" icon="barrier_small_black_3">
+						<apply_if nightMode="true" icon="barrier_small_white_3"/>
 					</case>
-					<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
-						<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
+					<case minzoom="17" icon="amenity_parking_entrance" shield="white_gray_square_small_shield">
+						<apply_if nightMode="true" shield="gray_gray_square_small_shield"/>
 					</case>
-				</apply_if>
-			</case>
-			<case minzoom="16" maxzoom="17" tag="amenity" value="bicycle_parking" icon=""/>
-			<case minzoom="15" tag="railway" value="level_crossing" icon="level_crossing_map">
-				<apply_if streetLighting="true">
-					<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
-						<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
-					</case>
-					<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
-						<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
-					</case>
-				</apply_if>
-			</case>
-			<switch minzoom="17">
-				<case tag="traffic_calming" value="bump" icon="traffic_calming_bump"/>
-				<case tag="traffic_calming" value="hump" icon="traffic_calming_hump"/>
-				<case tag="traffic_calming" value="cushion" icon="traffic_calming_cushion"/>
-				<case tag="traffic_calming" value="choker" icon="traffic_calming_choker"/>
-				<case tag="traffic_calming" value="chicane" icon="traffic_calming_chicane"/>
-				<case tag="traffic_calming" value="island" icon="traffic_calming_island"/>
-				<case tag="traffic_calming" value="table" icon="traffic_calming_table"/>
-				<case tag="traffic_calming" value="rumble_strip" icon="traffic_calming_rumble_strip"/>
-				<apply shield="white_blue_square_shield">
+				</switch>
+				<switch shield="white_blue_square_shield">
+					<case minzoom="14" tag="highway" value="services" icon="highway_services" iconOrder="60"/>
+					<case minzoom="14" tag="amenity" value="fuel" icon="amenity_fuel"/>
+					<case minzoom="15" tag="amenity" value="charging_station" icon="amenity_charging_station"/>
+					<case minzoom="16" tag="amenity" value="car_rental" icon="amenity_car_rental"/>
+					<case minzoom="16" tag="amenity" value="car_sharing" icon="amenity_car_sharing"/>
+					<case minzoom="15" tag="highway" value="speed_camera" icon="highway_speed_camera"/>
 					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-				</apply>
-			</switch>
-			<switch tag="amenity" value="parking_entrance" iconVisibleSize="8">
-				<case minzoom="16" maxzoom="16" icon="barrier_small_black_3">
-					<apply_if nightMode="true" icon="barrier_small_white_3"/>
-				</case>
-				<case minzoom="17" icon="amenity_parking_entrance" shield="white_gray_square_small_shield">
-					<apply_if nightMode="true" shield="gray_gray_square_small_shield"/>
-				</case>
-			</switch>
-			<switch shield="white_blue_square_shield">
-				<case minzoom="14" tag="highway" value="services" icon="highway_services" iconOrder="60"/>
-				<case minzoom="14" tag="amenity" value="fuel" icon="amenity_fuel"/>
-				<case minzoom="15" tag="amenity" value="charging_station" icon="amenity_charging_station"/>
-				<case minzoom="16" tag="amenity" value="car_rental" icon="amenity_car_rental"/>
-				<case minzoom="16" tag="amenity" value="car_sharing" icon="amenity_car_sharing"/>
-				<case minzoom="15" tag="highway" value="speed_camera" icon="highway_speed_camera"/>
-				<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+				</switch>
+				<switch shield="white_gray_square_shield">
+					<case minzoom="15" tag="barrier" value="border_control" icon="barrier_border_control" iconOrder="40"/>
+					<case minzoom="16" tag="shop" value="car_repair" icon="shop_car_repair">
+						<case additional="service=tyres" icon="service_tyres"/>
+					</case>
+					<case minzoom="16" tag="shop" value="car_parts" icon="shop_car_parts"/>
+					<case minzoom="16" tag="shop" value="tyres" icon="tyres"/>
+					<case minzoom="16" tag="amenity" value="car_wash" icon="amenity_car_wash">
+						<case additional="self_service=yes" icon="amenity_car_wash_self_service"/>
+					</case>
+					<case minzoom="16" tag="amenity" value="vehicle_ramp" icon="amenity_vehicle_ramp"/>
+					<case minzoom="16" tag="amenity" value="vehicle_inspection" icon="vehicle_inspection"/>
+					<apply_if nightMode="true" shield="gray_gray_square_shield"/>
+				</switch>
 			</switch>
 			<switch moreDetailed="true" minzoom="16" iconOrder="128">
 				<case tag="barrier" value="block" icon="barrier_block" shield="barrier_block_shield"/>
@@ -3999,58 +4017,63 @@
 				<case tag="barrier" value="swing_gate" icon="barrier_swing_gate" shield="barrier_swing_gate_shield"/>
 				<case tag="barrier" value="toll_booth" icon="toll_booth" shield="barrier_toll_booth_shield"/>
 			</switch>
-			<switch shield="white_gray_square_shield">
-				<case minzoom="15" tag="barrier" value="border_control" icon="barrier_border_control" iconOrder="40"/>
-				<case minzoom="16" tag="shop" value="car_repair" icon="shop_car_repair">
-					<case additional="service=tyres" icon="service_tyres"/>
-				</case>
-				<case minzoom="16" tag="shop" value="car_parts" icon="shop_car_parts"/>
-				<case minzoom="16" tag="shop" value="tyres" icon="tyres"/>
-				<case minzoom="16" tag="amenity" value="car_wash" icon="amenity_car_wash">
-					<case additional="self_service=yes" icon="amenity_car_wash_self_service"/>
-				</case>
-				<case minzoom="16" tag="amenity" value="vehicle_ramp" icon="amenity_vehicle_ramp"/>
-				<case minzoom="16" tag="amenity" value="vehicle_inspection" icon="vehicle_inspection"/>
-				<apply_if nightMode="true" shield="gray_gray_square_shield"/>
-			</switch>
 		</switch>
 
 		<!-- Bicycle profile priority icons -->
 		<switch appMode="bicycle" iconOrder="80">
-			<case minzoom="17" tag="highway" value="traffic_signals" icon="highway_traffic_signals_map" shield="traffic_signals_shield"/>
-			<case minzoom="15" tag="highway" value="mini_roundabout" icon="highway_mini_roundabout" shield="miniroundabout_anticlockwise_shield">
-				<apply_if nightMode="true" shield=""/>
-			</case>
-			<case minzoom="16" tag="noexit" value="yes" icon="highway_noexit" iconVisibleSize="12" intersectsWith=""/>
-			<switch minzoom="14">
-				<case tag="ford" value="yes"/>
-				<case tag="ford" value="stepping_stones"/>
-				<apply icon="ford" shield="ford_shield"/>
-			</switch>
-			<case minzoom="16" tag="highway" value="steps" icon="highway_steps" shield="highway_steps_shield" iconVisibleSize="8"/>
-			<case minzoom="15" tag="railway" value="level_crossing" icon="level_crossing_map">
-				<apply_if streetLighting="true">
-					<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
-						<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
-					</case>
-					<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
-						<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
-					</case>
-				</apply_if>
-			</case>
-			<switch shield="white_blue_square_shield">
-				<case minzoom="16" tag="amenity" value="bicycle_rental" icon="amenity_bicycle_rental"/>
-				<case minzoom="16" tag="amenity" value="bicycle_parking" icon="bicycle_parking">
-					<case additional="bicycle_parking=stands" icon="bicycle_parking_stands"/>
-					<case additional="bicycle_parking=wall_loops" icon="bicycle_parking_wall_loops"/>
-					<case additional="bicycle_parking=rack" icon="bicycle_parking_rack"/>
-					<case additional="bicycle_parking=anchors" icon="bicycle_parking_anchors"/>
-					<case additional="bicycle_parking=building" icon="bicycle_parking_building"/>
-					<case additional="bicycle_parking=shed" icon="bicycle_parking_building"/>
-					<case additional="bicycle_parking=bollard" icon="bicycle_parking_bollard"/>
-					<case additional="bicycle_parking=informal" icon="bicycle_parking_informal"/>
+			<switch hideIcons="false">
+				<case minzoom="17" tag="highway" value="traffic_signals" icon="highway_traffic_signals_map" shield="traffic_signals_shield"/>
+				<case minzoom="15" tag="highway" value="mini_roundabout" icon="highway_mini_roundabout" shield="miniroundabout_anticlockwise_shield">
+					<apply_if nightMode="true" shield=""/>
 				</case>
-				<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+				<case minzoom="16" tag="noexit" value="yes" icon="highway_noexit" iconVisibleSize="12" intersectsWith=""/>
+				<switch minzoom="14">
+					<case tag="ford" value="yes"/>
+					<case tag="ford" value="stepping_stones"/>
+					<apply icon="ford" shield="ford_shield"/>
+				</switch>
+				<case minzoom="16" tag="highway" value="steps" icon="highway_steps" shield="highway_steps_shield" iconVisibleSize="8"/>
+				<case minzoom="15" tag="railway" value="level_crossing" icon="level_crossing_map">
+					<apply_if streetLighting="true">
+						<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
+							<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
+						</case>
+						<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
+							<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
+						</case>
+					</apply_if>
+				</case>
+				<switch shield="white_blue_square_shield">
+					<case minzoom="16" tag="amenity" value="bicycle_rental" icon="amenity_bicycle_rental"/>
+					<case minzoom="16" tag="amenity" value="bicycle_parking" icon="bicycle_parking">
+						<case additional="bicycle_parking=stands" icon="bicycle_parking_stands"/>
+						<case additional="bicycle_parking=wall_loops" icon="bicycle_parking_wall_loops"/>
+						<case additional="bicycle_parking=rack" icon="bicycle_parking_rack"/>
+						<case additional="bicycle_parking=anchors" icon="bicycle_parking_anchors"/>
+						<case additional="bicycle_parking=building" icon="bicycle_parking_building"/>
+						<case additional="bicycle_parking=shed" icon="bicycle_parking_building"/>
+						<case additional="bicycle_parking=bollard" icon="bicycle_parking_bollard"/>
+						<case additional="bicycle_parking=informal" icon="bicycle_parking_informal"/>
+					</case>
+					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+				</switch>
+				<switch shield="white_gray_square_shield">
+					<case minzoom="16" tag="man_made" value="water_well" icon="man_made_water_well"/>
+					<case minzoom="17" tag="amenity" value="drinking_water" icon="amenity_drinking_water"/>
+					<apply_if minzoom="17" additional="drinking_water=yes" icon_2="drinking_water_yes_map"/>
+					<apply_if minzoom="17" additional="drinking_water=no" icon_2="drinking_water_no_map"/>
+					<apply_if nightMode="true" shield="gray_gray_square_shield"/>
+				</switch>
+				<switch>
+					<case minzoom="14" tag="tourism" value="picnic_site"/>
+					<case minzoom="15" tag="leisure" value="picnic_table"/>
+					<apply icon="tourism_picnic_site" shield="picnic_shield"/>
+					<apply_if nightMode="true" shield=""/>
+				</switch>
+				<case maxzoom="18" tag="amenity" value="parking" icon="no_icon"/>
+				<case minzoom="16" tag="emergency" value="phone" icon="emergency_phone" shield="white_red_square_shield">
+					<apply_if nightMode="true" shield="gray_red_square_shield"/>
+				</case>
 			</switch>
 			<case minzoom="16" tag="barrier" value="cycle_barrier" icon="barrier_cycle_barrier" shield="barrier_cycle_barrier_shield"/>
 			<switch minzoom="17" iconOrder="128">
@@ -4067,27 +4090,10 @@
 				<case tag="barrier" value="horse_stile" icon="barrier_horse_stile" shield="barrier_horse_stile_shield"/>
 				<case tag="barrier" value="kissing_gate" icon="barrier_kissing_gate" shield="barrier_kissing_gate_shield"/>
 			</switch>
-			<switch shield="white_gray_square_shield">
-				<case minzoom="16" tag="man_made" value="water_well" icon="man_made_water_well"/>
-				<case minzoom="17" tag="amenity" value="drinking_water" icon="amenity_drinking_water"/>
-				<apply_if minzoom="17" additional="drinking_water=yes" icon_2="drinking_water_yes_map"/>
-				<apply_if minzoom="17" additional="drinking_water=no" icon_2="drinking_water_no_map"/>
-				<apply_if nightMode="true" shield="gray_gray_square_shield"/>
-			</switch>
-			<switch>
-				<case minzoom="14" tag="tourism" value="picnic_site"/>
-				<case minzoom="15" tag="leisure" value="picnic_table"/>
-				<apply icon="tourism_picnic_site" shield="picnic_shield"/>
-				<apply_if nightMode="true" shield=""/>
-			</switch>
-			<case maxzoom="18" tag="amenity" value="parking" icon="no_icon"/>
-			<case minzoom="16" tag="emergency" value="phone" icon="emergency_phone" shield="white_red_square_shield">
-				<apply_if nightMode="true" shield="gray_red_square_shield"/>
-			</case>
 		</switch>
 
 		<!-- Pedestrian profile priority icons -->
-		<switch appMode="pedestrian">
+		<switch appMode="pedestrian" hideIcons="false">
 			<switch minzoom="14" iconVisibleSize="10" iconOrder="69">
 				<case tag="amenity" value="bus_station"/>
 				<apply icon="amenity_bus_station" shield="white_red_round_shield"/>
@@ -4195,6 +4201,8 @@
 			<case maxzoom="18" tag="amenity" value="parking" icon="no_icon"/>
 		</switch>
 
+	<!-- Icons that can be hidden using hideIcons option -->
+	<switch hideIcons="false">
 		<!-- Natural -->
 		<case minzoom="11" tag="natural" value="peak" iconOrder="65">
 			<case maxzoom="11" icon="natural_peak" shield="peakvolcano_shield" iconVisibleSize="25" intersectionSizeFactor="2"/>
@@ -4257,26 +4265,6 @@
 		</case>
 		<case minzoom="17" tag="historic" value="rune_stone" icon="historic_rune_stone" shield="historic_rune_stone_shield"/>
 
-		<!-- Location dots -->
-
-		<switch>
-			<case tag="place" value="city"/>
-			<apply_if minzoom="6" maxzoom="16" icon="place_city_dot" iconVisibleSize="12" intersectionSizeFactor="0.9" iconOrder="99"/>
-			<apply_if additional="capital=yes" iconVisibleSize="1" iconOrder="99">
-				<case minzoom="5" maxzoom="5" icon="place_capital_dot_small">
-					<apply_if nightMode="true" icon="place_capital_dot_small_night"/>
-				</case>
-				<case minzoom="6" maxzoom="16" icon="place_capital_dot">
-					<apply_if nightMode="true" icon="place_capital_dot_night"/>
-				</case>
-			</apply_if>
-		</switch>
-
-		<case minzoom="7" tag="place" value="town" icon="place_town_dot" iconVisibleSize="24"/>
-		<case minzoom="11" maxzoom="12" tag="place" value="village" icon="place_town_dot"/>
-		<case minzoom="11" maxzoom="12" tag="place" value="hamlet" icon="place_town_dot"/>
-		<case minzoom="12" maxzoom="12" tag="place" value="farm" icon="place_town_dot"/>
-
 		<switch minzoom="16">
 			<case tag="abandoned:place" value=""/>
 			<case tag="abandoned:landuse" value=""/>
@@ -4335,7 +4323,6 @@
 			<case maxzoom="16" icon="barrier_small_red_2" iconVisibleSize="0"/>
 			<case minzoom="17" icon="highway_noexit" iconVisibleSize="12"/>
 		</case>
-		<case minzoom="16" tag="junction" value="yes" icon=""/>
 		<switch minzoom="14">
 			<case tag="ford" value="yes"/>
 			<case tag="ford" value="stepping_stones"/>
@@ -4445,46 +4432,6 @@
 		</case>
 		<!-- not a conventional tag: filter minzoom="15" icon="waterway_lock_gate" tag="waterway" value="lock"/ -->
 
-	<!-- Public transport mode icons -->
-		<switch>
-			<case tag="highway" value="bus_stop"/>
-			<case tag="public_transport" value="platform"/>
-			<apply>
-				<switch minzoom="14" maxzoom="14" iconVisibleSize="7" iconOrder="55">
-					<case publicTransportMode="true" icon="highway_bus_stop_round_small">
-						<apply_if nightMode="true" icon="highway_bus_stop_round_small_night"/>
-					</case>
-					<case tramTrainRoutes="true" icon="highway_bus_stop_small"/>
-				</switch>
-			</apply>
-			<apply_if minzoom="15" maxzoom="16" icon="highway_bus_stop_small" iconVisibleSize="9" iconOrder="65">
-				<case publicTransportMode="true">
-					<apply icon="highway_bus_stop_round_big" iconVisibleSize="7" iconOrder="55">
-						<apply_if nightMode="true" icon="highway_bus_stop_round_big_night"/>
-					</apply>
-				</case>
-			</apply_if>
-			<apply_if minzoom="17">
-				<switch>
-					<switch>
-						<case additional="train=yes"/>
-						<case additional="tram=yes"/>
-						<case additional="light_rail=yes"/>
-						<case additional="monorail=yes"/>
-						<apply icon="railway_station"/>
-					</switch>
-					<case icon="highway_bus_stop"/>
-					<apply shield="white_blue_square_shield" iconOrder="82" intersectionMargin="3"/>
-					<apply_if additional="shelter=yes" shield="white_blue_square_shelter_yes_shield" intersectionSizeFactor="0.9"/>
-					<apply_if additional="shelter=no" shield="white_blue_square_shelter_no_shield" intersectionSizeFactor="0.9"/>
-					<apply_if nightMode="true" shield="gray_blue_square_shield">
-						<apply_if additional="shelter=yes" shield="gray_blue_square_shelter_yes_shield" intersectionSizeFactor="0.9"/>
-						<apply_if additional="shelter=no" shield="gray_blue_square_shelter_no_shield" intersectionSizeFactor="0.9"/>
-					</apply_if>
-				</switch>
-			</apply_if>
-		</switch>
-
 		<case minzoom="14" tag="amenity" value="bus_station" icon="amenity_bus_station" shield="white_red_round_shield" iconOrder="72">
 			<apply_if nightMode="true" shield="gray_red_round_shield"/>
 		</case>
@@ -4524,191 +4471,6 @@
 				<apply_if nightMode="true" shield="gray_gray_square_shield"/>
 			</case>
 		</case>
-
-		<switch subwayMode="true" minzoom="12" maxzoom="14" tag="railway" value="station" icon="railway_subway_station_small_default" shield="white_round_small_shield" iconVisibleSize="2" iconOrder="33">
-<!--			<case additional="route=subway"/>-->
-			<case additional="station=subway"/>
-			<case additional="network=rer"/>
-			<apply_if nightMode="true" icon="railway_subway_station_small_default2"/>
-			<apply>
-				<case additional="color_red" icon="railway_subway_station_small_red"/>
-				<case additional="color_brown" icon="railway_subway_station_small_brown"/>
-				<case additional="color_orange" icon="railway_subway_station_small_orange">
-					<apply_if nightMode="true" icon="railway_subway_station_small_orange2"/>
-				</case>
-				<case additional="color_darkyellow" icon="railway_subway_station_small_darkyellow">
-					<apply_if nightMode="true" icon="railway_subway_station_small_darkyellow2"/>
-				</case>
-				<case additional="color_yellow" icon="railway_subway_station_small_yellow">
-					<apply_if nightMode="true" icon="railway_subway_station_small_yellow2"/>
-				</case>
-				<case additional="color_lightgreen" icon="railway_subway_station_small_lightgreen">
-					<apply_if nightMode="true" icon="railway_subway_station_small_lightgreen2"/>
-				</case>
-				<case additional="color_green" icon="railway_subway_station_small_green">
-					<apply_if nightMode="true" icon="railway_subway_station_small_green2"/>
-				</case>
-				<case additional="color_lightblue" icon="railway_subway_station_small_lightblue">
-					<apply_if nightMode="true" icon="railway_subway_station_small_lightblue2"/>
-				</case>
-				<case additional="color_blue" icon="railway_subway_station_small_blue">
-					<apply_if nightMode="true" icon="railway_subway_station_small_blue2"/>
-				</case>
-				<case additional="color_purple" icon="railway_subway_station_small_purple">
-					<apply_if nightMode="true" icon="railway_subway_station_small_purple2"/>
-				</case>
-				<case additional="color_gray" icon="railway_subway_station_small_gray">
-					<apply_if nightMode="true" icon="railway_subway_station_small_gray2"/>
-				</case>
-				<case additional="color_black" icon="railway_subway_station_small_black">
-					<apply_if nightMode="true" icon="railway_subway_station_small_black2"/>
-				</case>
-			</apply>
-			<apply_if nightMode="true" shield="darkgray_round_small_shield"/>
-		</switch>
-		<switch minzoom="12" tag="railway" value="station" iconOrder="112">
-<!--			<case maxzoom="12" icon="railway_station_small_2" iconVisibleSize="10"/>-->
-			<case minzoom="13" maxzoom="14" icon="railway_station_small" iconVisibleSize="10" intersectionSizeFactor="0.8">
-				<apply_if additional="disused=yes" icon="railway_station_small_disused"/>
-				<apply_if additional="station=subway" icon="railway_station_subway_small"/>
-			</case>
-			<case minzoom="15" maxzoom="15">
-				<switch>
-					<case additional="subway_region=samara" icon="subway_samara"/>
-					<case additional="subway_region=moscow" icon="subway_moscow"/>
-					<case additional="subway_region=spb" icon="subway_spb"/>
-					<case additional="subway_region=kazan" icon="subway_kazan"/>
-					<case additional="subway_region=nnovgorod" icon="subway_nnovgorod"/>
-					<case additional="subway_region=novosibirsk" icon="subway_novosibirsk"/>
-					<case additional="subway_region=yekaterinburg" icon="subway_yekaterinburg"/>
-					<case additional="subway_region=baku" icon="subway_baku"/>
-					<case additional="subway_region=tbilisi" icon="subway_tbilisi"/>
-					<case additional="subway_region=yerevan" icon="subway_yerevan"/>
-					<case additional="subway_region=tashkent" icon="subway_tashkent"/>
-					<case additional="subway_region=almaty" icon="subway_almaty"/>
-					<case additional="subway_region=minsk" icon="subway_minsk"/>
-					<case additional="subway_region=kyiv" icon="subway_kyiv"/>
-					<case additional="subway_region=kharkiv" icon="subway_kharkiv"/>
-					<case additional="subway_region=germany" icon="subway_germany"/>
-					<case additional="subway_region=wien" icon="subway_wien"/>
-					<case additional="subway_region=budapest" icon="subway_budapest"/>
-					<case additional="subway_region=madrid" icon="subway_madrid"/>
-					<case additional="subway_region=paris" icon="subway_paris"/>
-					<case additional="subway_region=lyon" icon="subway_lyon"/>
-					<case additional="subway_region=london" icon="subway_london"/>
-					<case additional="subway_region=barcelona" icon="subway_barcelona"/>
-					<case additional="subway_region=stockholm" icon="subway_stockholm"/>
-					<case additional="subway_region=oslo" icon="subway_stockholm"/>
-					<case additional="subway_region=praha" icon="subway_praha"/>
-					<case additional="subway_region=athens" icon="subway_athens"/>
-					<case additional="subway_region=italy" icon="subway_italy"/>
-					<case additional="subway_region=italy_catania" icon="subway_italy_catania"/>
-	<!--				<case additional="subway_region=italy_brescia" icon="subway_italy_brescia"/>-->
-					<case additional="subway_region=rotterdam" icon="subway_rotterdam"/>
-					<case additional="subway_region=amsterdam" icon="subway_amsterdam"/>
-					<case additional="subway_region=brussels" icon="subway_brussels"/>
-					<case additional="subway_region=bucharest" icon="subway_bucharest"/>
-					<case additional="subway_region=osaka" icon="subway_osaka"/>
-					<case additional="subway_region=tokyo" icon="subway_tokyo"/>
-					<case additional="subway_region=nagoya" icon="subway_nagoya"/>
-					<case additional="subway_region=singapore" icon="subway_singapore"/>
-					<case additional="subway_region=manila" icon="subway_manila"/>
-					<case additional="subway_region=kolkata" icon="subway_kolkata"/>
-					<case additional="subway_region=delhi" icon="subway_delhi"/>
-	<!--				<case additional="subway_region=bangkok" icon="subway_bangkok"/>-->
-	<!--				<case additional="subway_region=tehran" icon="subway_tehran"/>-->
-					<case additional="subway_region=chicago" icon="subway_chicago"/>
-					<case additional="subway_region=newyork" icon="subway_newyork"/>
-					<case additional="subway_region=boston" icon="subway_boston"/>
-					<case additional="subway_region=washington" icon="subway_washington"/>
-					<case additional="subway_region=losangeles" icon="subway_losangeles"/>
-					<case additional="subway_region=montreal" icon="subway_montreal"/>
-					<case additional="subway_region=toronto" icon="subway_toronto"/>
-					<case additional="subway_region=cairo" icon="subway_cairo"/>
-					<case additional="subway_region=riodejaneiro" icon="subway_riodejaneiro"/>
-					<case additional="subway_region=buenosaires" icon="subway_buenosaires"/>
-					<case additional="station=subway">
-						<apply icon="railway_station_subway_map" shield="white_blue_arc_shield">
-							<apply_if nightMode="true" shield="gray_blue_arc_shield"/>
-						</apply>
-					</case>
-					<apply iconVisibleSize="18" intersectionSizeFactor="0.6" iconOrder="40"/>
-				</switch>
-				<case additional="disused=yes" icon="railway_station_small_disused"/>
-				<case icon="railway_station_small" iconVisibleSize="12" intersectionSizeFactor="0.7" iconOrder="50"/>
-			</case>
-			<case minzoom="16">
-				<case additional="station=subway">
-					<apply icon="railway_station_subway_map" shield="white_blue_arc_shield">
-						<apply_if nightMode="true" shield="gray_blue_arc_shield"/>
-					</apply>
-					<apply_if iconOrder="40"/>
-				</case>
-				<case icon="railway_station" shield="white_blue_square_shield" iconVisibleSize="14" iconOrder="82">
-					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-					<apply_if additional="disused=yes" icon="railway_station_disused" shield="white_gray_square_shield">
-						<apply_if nightMode="true" shield="gray_gray_square_shield"/>
-					</apply_if>
-				</case>
-			</case>
-		</switch>
-
-		<switch tramTrainRoutes="true" iconOrder="55">
-			<case tag="railway" value="tram_stop"/>
-			<case tag="public_transport" value="stop_position" additional="tram=yes"/>
-			<case tag="public_transport" value="platform" additional="tram=yes"/>
-			<apply_if minzoom="14" maxzoom="14" icon="railway_tram_stop_round_small">
-				<apply_if nightMode="true" icon="railway_tram_stop_round_small_night"/>
-			</apply_if>
-			<apply_if minzoom="15" maxzoom="16" icon="railway_tram_stop_round_big">
-				<apply_if nightMode="true" icon="railway_tram_stop_round_big_night"/>
-			</apply_if>
-			<apply_if minzoom="17" icon="railway_tram_stop" shield="white_blue_square_shield" iconVisibleSize="8">
-				<apply_if additional="shelter=yes" shield="white_blue_square_shelter_yes_shield"/>
-				<apply_if additional="shelter=no" shield="white_blue_square_shelter_no_shield"/>
-				<apply_if nightMode="true" shield="gray_blue_square_shield">
-					<apply_if additional="shelter=yes" shield="gray_blue_square_shelter_yes_shield"/>
-					<apply_if additional="shelter=no" shield="gray_blue_square_shelter_no_shield"/>
-				</apply_if>
-			</apply_if>
-		</switch>
-
-		<switch iconOrder="83">
-			<case minzoom="13" tag="railway" value="halt">
-				<case maxzoom="14" icon="halt_small_2" iconVisibleSize="10"/>
-				<case minzoom="15" maxzoom="15" icon="halt_small"/>
-				<case minzoom="16" icon="halt" shield="white_blue_square_small_shield"/>
-			</case>
-			<case minzoom="15" tag="railway" value="tram_stop">
-				<case maxzoom="16" icon="tram_stop_small" iconVisibleSize="10"/>
-				<case minzoom="17" icon="railway_tram_stop" shield="white_blue_square_shield">
-					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-					<apply_if additional="shelter=yes" shield="white_blue_square_shelter_yes_shield"/>
-					<apply_if additional="shelter=no" shield="white_blue_square_shelter_no_shield"/>
-					<apply_if nightMode="true" shield="gray_blue_square_shield">
-						<apply_if additional="shelter=yes" shield="gray_blue_square_shelter_yes_shield"/>
-						<apply_if additional="shelter=no" shield="gray_blue_square_shelter_no_shield"/>
-					</apply_if>
-				</case>
-			</case>
-			<case minzoom="15" tag="railway" value="level_crossing" icon="level_crossing_map">
-				<apply_if streetLighting="true">
-					<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
-						<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
-					</case>
-					<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
-						<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
-					</case>
-				</apply_if>
-			</case>
-
-			<case minzoom="13" tag="aerialway" value="station">
-				<case maxzoom="14" icon="aerialway_station_small" iconVisibleSize="3"/>
-				<case minzoom="15" icon="aerialway_station" shield="white_blue_round_shield">
-					<apply_if nightMode="true" shield="gray_blue_round_shield"/>
-				</case>
-			</case>
-		</switch>
 
 		<case minzoom="16" tag="railway" value="subway_entrance" icon="subway_entrance_map" iconVisibleSize="20" intersectionSizeFactor="0.7">
 			<case additional="subway_region=samara" icon="subway_samara"/>
@@ -4811,103 +4573,6 @@
 			<apply_if nightMode="true" shield=""/>
 		</case>
 
-		<!-- Barriers -->
-		<switch iconOrder="128">
-			<switch>
-				<case minzoom="16" tag="barrier" value="gate" icon="barrier_gate" shield="barrier_gate_shield"/>
-				<case minzoom="16" tag="barrier" value="yes" icon="barrier_gate" shield="barrier_gate_shield"/>
-				<case minzoom="16" tag="barrier" value="lift_gate" icon="barrier_lift_gate" shield="barrier_lift_gate_shield"/>
-				<case minzoom="16" tag="barrier" value="swing_gate" icon="barrier_swing_gate" shield="barrier_swing_gate_shield"/>
-				<case minzoom="16" tag="barrier" value="bump_gate" icon="barrier_bump_gate" shield="barrier_bump_gate_shield"/>
-				<case minzoom="16" tag="barrier" value="bus_trap" icon="barrier_bus_trap" shield="barrier_bus_trap_shield"/>
-				<case minzoom="18" tag="barrier" value="cattle_grid" icon="barrier_cattle_grid" shield="barrier_cattle_grid_shield"/>
-				<case minzoom="16" tag="barrier" value="chain" icon="barrier_chain" shield="barrier_chain_shield"/>
-				<case minzoom="16" tag="barrier" value="height_restrictor" icon="barrier_height_restrictor" shield="barrier_height_restrictor_shield"/>
-				<case minzoom="16" tag="barrier" value="cycle_barrier" icon="barrier_cycle_barrier" shield="barrier_cycle_barrier_shield"/>
-				<case minzoom="16" tag="barrier" value="motorcycle_barrier" icon="barrier_motorcycle_barrier" shield="barrier_motorcycle_barrier_shield"/>
-				<case minzoom="16" tag="barrier" value="turnstile" icon="barrier_turnstile" shield="barrier_turnstile_shield" iconOrder="128"/>
-				<case minzoom="16" tag="barrier" value="stile" icon="barrier_stile" shield="barrier_stile_shield"/>
-				<case minzoom="16" tag="barrier" value="sally_port" icon="barrier_sally_port" shield="barrier_sally_port_shield"/>
-				<case minzoom="16" tag="barrier" value="kissing_gate" icon="barrier_kissing_gate" shield="barrier_kissing_gate_shield"/>
-				<case minzoom="16" tag="barrier" value="horse_stile" icon="barrier_horse_stile" shield="barrier_horse_stile_shield"/>
-				<case minzoom="16" tag="barrier" value="entrance" icon="barrier_entrance" shield="barrier_entrance_shield"/>
-				<apply_if minzoom="16" maxzoom="16" icon="barrier_small_black_2" shield="" iconVisibleSize="0">
-					<apply_if nightMode="true" icon="barrier_small_white_2"/>
-				</apply_if>
-			</switch>
-			<switch>
-				<case minzoom="14" tag="barrier" value="toll_booth" icon="toll_booth" shield="barrier_toll_booth_shield"/>
-				<apply_if minzoom="14" maxzoom="14" icon="barrier_small_black_4" shield="" iconVisibleSize="0">
-					<apply_if nightMode="true" icon="barrier_small_white_4"/>
-				</apply_if>
-				<apply_if minzoom="15" maxzoom="15" icon="barrier_small_black_3" shield="" iconVisibleSize="0">
-					<apply_if nightMode="true" icon="barrier_small_white_3"/>
-				</apply_if>
-				<apply_if minzoom="16" maxzoom="16" icon="barrier_small_black_2" shield="" iconVisibleSize="0">
-					<apply_if nightMode="true" icon="barrier_small_white_2"/>
-				</apply_if>
-			</switch>
-			<case minzoom="14" tag="barrier" value="border_control">
-				<apply_if maxzoom="14" icon="barrier_small_black_4" iconVisibleSize="0">
-					<apply_if nightMode="true" icon="barrier_small_white_4"/>
-				</apply_if>
-				<apply_if minzoom="15" icon="barrier_border_control" shield="white_gray_square_shield" iconOrder="40">
-					<apply_if nightMode="true" shield="gray_gray_square_shield"/>
-				</apply_if>
-			</case>
-		</switch>
-
-		<!-- Impassable barriers -->
-		<switch iconOrder="128">
-			<case tag="barrier" value="bollard">
-				<apply_if minzoom="16" icon="barrier_bollard" shield="barrier_bollard_shield"/>
-			</case>
-			<case tag="barrier" value="block">
-				<apply_if minzoom="16" icon="barrier_block" shield="barrier_block_shield"/>
-			</case>
-			<case tag="barrier" value="debris">
-				<apply_if minzoom="16" icon="barrier_debris" shield="barrier_debris_shield"/>
-			</case>
-			<case tag="barrier" value="jersey_barrier">
-				<apply_if minzoom="16" icon="barrier_jersey_barrier" shield="barrier_jersey_barrier_shield"/>
-			</case>
-			<apply_if minzoom="16" maxzoom="16" icon="barrier_small_red_2" iconVisibleSize="0" shield=""/>
-			<apply>
-				<switch> <!-- These barriers are passable by bicycle and pedestrian -->
-					<case appMode="bicycle"/>
-					<apply_if minzoom="16" maxzoom="16" icon="barrier_small_black_2"/>
-				</switch>
-			</apply>
-		</switch>
-		<switch minzoom="17" iconVisibleSize="10" intersectionSizeFactor="0.8" intersectsWith="">
-			<switch tag="entrance" value="main">
-				<case maxzoom="17" icon="barrier_small_black_3">
-					<apply_if nightMode="true" icon="barrier_small_white_3"/>
-				</case>
-				<case minzoom="18" icon="entrance_main_map" shield="barrier_entrance_small_shield"/>
-			</switch>
-			<switch tag="entrance" value="exit">
-				<case maxzoom="17" icon="barrier_small_red_3">
-					<apply_if nightMode="true" icon="barrier_small_red_3"/>
-				</case>
-				<case minzoom="18" icon="entrance_exit_map" shield="entrance_exit_shield"/>
-			</switch>
-			<switch tag="entrance" value="yes">
-				<case minzoom="18" maxzoom="18" icon="barrier_small_black_3">
-					<apply_if nightMode="true" icon="barrier_small_white_3"/>
-				</case>
-				<case minzoom="19" icon="entrance_yes" shield="barrier_entrance_small_shield"/>
-			</switch>
-			<switch tag="amenity" value="parking_entrance">
-				<case maxzoom="17" icon="barrier_small_black_3">
-					<apply_if nightMode="true" icon="barrier_small_white_3"/>
-				</case>
-				<case minzoom="18" icon="amenity_parking_entrance" shield="white_gray_square_small_shield">
-					<apply_if nightMode="true" shield="gray_gray_square_small_shield"/>
-				</case>
-			</switch>
-			<apply iconOrder="129"/>
-		</switch>
 
 		<!-- Accommodation -->
 		<switch iconOrder="85" shield="white_blue_square_shield" iconVisibleSize="32">
@@ -5167,18 +4832,6 @@
 			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
 		</switch>
 
-		<case minzoom="14" tag="power" value="tower">
-			<case maxzoom="14" icon="power_tower_small2" iconVisibleSize="3"/>
-			<case maxzoom="15" icon="power_tower_small" iconVisibleSize="3"/>
-			<case maxzoom="17" icon="power_tower_square" iconVisibleSize="7"/>
-			<case minzoom="18" icon="power_tower" shield="power_tower_big_shield"/>
-		</case>
-		<case minzoom="15" tag="aerialway" value="pylon" icon="aerialway_pylon_small" iconVisibleSize="4">
-			<apply_if moreDetailed="false" maxzoom="15" icon=""/>
-		</case>
-		<case minzoom="16" tag="power" value="pole" icon="barrier_small_black_4">
-			<apply_if nightMode="true" icon="barrier_small_white_4"/>
-		</case>
 		<case minzoom="17" tag="man_made" value="chimney" icon="man_made_chimney" shield="chimney_shield" iconOrder="100"/>
 		<case minzoom="18" tag="railway" value="buffer_stop" icon="railway_buffer_stop" shield="railway_buffer_stop_shield" iconOrder="100"/>
 		<case minzoom="16" tag="man_made" value="windmill" icon="man_made_windmill" shield="windmill_shield"/>
@@ -5260,48 +4913,6 @@
 		<case minzoom="16" tag="man_made" value="petroleum_well" icon="man_made_petroleum_well" shield="petroleum_well_shield"/>
 		<case minzoom="18" tag="man_made" value="crane" icon="man_made_crane" shield="crane_shield"/>
 
-		<switch streetLighting="true" minzoom="16" iconVisibleSize="10" intersectionSizeFactor="0.7">
-			<case tag="highway" value="street_lamp"/>
-			<case tag="light_source" value=""/>
-			<apply icon="highway_street_lamp">
-				<case additional="lit_additional=yes" icon="highway_street_lamp_lit" shield="street_lamp_lit_yes_shield">
-					<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
-				</case>
-				<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
-					<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
-				</case>
-				<case shield="street_lamp_lit_yes_shield">
-					<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
-				</case>
-			</apply>
-			<apply_if maxzoom="16" icon=""/>
-		</switch>
-
-		<switch minzoom="16">
-			<case tag="hazard" value="nuclear" icon="hazard_nuclear"/>
-			<case tag="hazard" value="radiation" icon="hazard_nuclear"/>
-			<case tag="hazard" value="erosion" icon="hazard_erosion"/>
-			<case tag="hazard" value="avalanche" icon="hazard_avalanche"/>
-			<case tag="hazard" value="rock_slide" icon="hazard_erosion"/>
-			<case tag="hazard" value="slippery_road" icon="hazard_slippery_road"/>
-			<case tag="hazard" value="flood" icon="hazard_flood"/>
-			<case tag="hazard" value="" icon="hazard_yes"/>
-			<apply iconVisibleSize="0" iconOrder="128" intersectsWith="" intersectionSizeFactor="0" icon_shift_px="0.5" icon_shift_py="-0.5"/>
-		</switch>
-
-		<switch OSMMapperAssistant="true" iconVisibleSize="0" intersectionSizeFactor="0" iconOrder="128">
-			<switch minzoom="12" tag="fixme_tag" value="yes">
-				<case maxzoom="12" icon="fixme_tag_lowzoom_yes"/>
-				<case maxzoom="15" icon="fixme_tag_lowzoom2_yes"/>
-				<case minzoom="16" icon="fixme_tag_yes" icon_shift_px="0.5" icon_shift_py="-0.5"/>
-			</switch>
-			<switch minzoom="12" tag="osm_note" value="yes">
-				<case maxzoom="12" icon="osm_note_dot"/>
-				<case maxzoom="17" icon="osm_note_dot_2"/>
-			</switch>
-			<case minzoom="16" tag="note_tag" value="yes" icon="note_tag_yes" icon_shift_px="-0.5" icon_shift_py="-0.5"/>
-<!--			<case minzoom="16" tag="description_tag" value="yes" icon="note_tag_yes"/>-->
-		</switch>
 
 		<!-- Food and Drink -->
 		<switch shield="white_orange_square_shield">
@@ -5402,6 +5013,182 @@
 			<case minzoom="18" tag="craft" value="tailor" icon="craft_tailor"/>
 			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
 		</switch>
+	</switch>
+
+		<!-- Location dots -->
+		<switch>
+			<case tag="place" value="city"/>
+			<apply_if minzoom="6" maxzoom="16" icon="place_city_dot" iconVisibleSize="12" intersectionSizeFactor="0.9" iconOrder="99"/>
+			<apply_if additional="capital=yes" iconVisibleSize="1" iconOrder="99">
+				<case minzoom="5" maxzoom="5" icon="place_capital_dot_small">
+					<apply_if nightMode="true" icon="place_capital_dot_small_night"/>
+				</case>
+				<case minzoom="6" maxzoom="16" icon="place_capital_dot">
+					<apply_if nightMode="true" icon="place_capital_dot_night"/>
+				</case>
+			</apply_if>
+		</switch>
+
+		<case minzoom="7" tag="place" value="town" icon="place_town_dot" iconVisibleSize="24"/>
+		<case minzoom="11" maxzoom="12" tag="place" value="village" icon="place_town_dot"/>
+		<case minzoom="11" maxzoom="12" tag="place" value="hamlet" icon="place_town_dot"/>
+		<case minzoom="12" maxzoom="12" tag="place" value="farm" icon="place_town_dot"/>
+
+		<case minzoom="16" tag="junction" value="yes" icon=""/>
+
+		<!-- Barriers -->
+		<switch iconOrder="128">
+			<switch>
+				<case minzoom="16" tag="barrier" value="gate" icon="barrier_gate" shield="barrier_gate_shield"/>
+				<case minzoom="16" tag="barrier" value="yes" icon="barrier_gate" shield="barrier_gate_shield"/>
+				<case minzoom="16" tag="barrier" value="lift_gate" icon="barrier_lift_gate" shield="barrier_lift_gate_shield"/>
+				<case minzoom="16" tag="barrier" value="swing_gate" icon="barrier_swing_gate" shield="barrier_swing_gate_shield"/>
+				<case minzoom="16" tag="barrier" value="bump_gate" icon="barrier_bump_gate" shield="barrier_bump_gate_shield"/>
+				<case minzoom="16" tag="barrier" value="bus_trap" icon="barrier_bus_trap" shield="barrier_bus_trap_shield"/>
+				<case minzoom="18" tag="barrier" value="cattle_grid" icon="barrier_cattle_grid" shield="barrier_cattle_grid_shield"/>
+				<case minzoom="16" tag="barrier" value="chain" icon="barrier_chain" shield="barrier_chain_shield"/>
+				<case minzoom="16" tag="barrier" value="height_restrictor" icon="barrier_height_restrictor" shield="barrier_height_restrictor_shield"/>
+				<case minzoom="16" tag="barrier" value="cycle_barrier" icon="barrier_cycle_barrier" shield="barrier_cycle_barrier_shield"/>
+				<case minzoom="16" tag="barrier" value="motorcycle_barrier" icon="barrier_motorcycle_barrier" shield="barrier_motorcycle_barrier_shield"/>
+				<case minzoom="16" tag="barrier" value="turnstile" icon="barrier_turnstile" shield="barrier_turnstile_shield" iconOrder="128"/>
+				<case minzoom="16" tag="barrier" value="stile" icon="barrier_stile" shield="barrier_stile_shield"/>
+				<case minzoom="16" tag="barrier" value="sally_port" icon="barrier_sally_port" shield="barrier_sally_port_shield"/>
+				<case minzoom="16" tag="barrier" value="kissing_gate" icon="barrier_kissing_gate" shield="barrier_kissing_gate_shield"/>
+				<case minzoom="16" tag="barrier" value="horse_stile" icon="barrier_horse_stile" shield="barrier_horse_stile_shield"/>
+				<case minzoom="16" tag="barrier" value="entrance" icon="barrier_entrance" shield="barrier_entrance_shield"/>
+				<apply_if minzoom="16" maxzoom="16" icon="barrier_small_black_2" shield="" iconVisibleSize="0">
+					<apply_if nightMode="true" icon="barrier_small_white_2"/>
+				</apply_if>
+			</switch>
+			<switch>
+				<case minzoom="14" tag="barrier" value="toll_booth" icon="toll_booth" shield="barrier_toll_booth_shield"/>
+				<apply_if minzoom="14" maxzoom="14" icon="barrier_small_black_4" shield="" iconVisibleSize="0">
+					<apply_if nightMode="true" icon="barrier_small_white_4"/>
+				</apply_if>
+				<apply_if minzoom="15" maxzoom="15" icon="barrier_small_black_3" shield="" iconVisibleSize="0">
+					<apply_if nightMode="true" icon="barrier_small_white_3"/>
+				</apply_if>
+				<apply_if minzoom="16" maxzoom="16" icon="barrier_small_black_2" shield="" iconVisibleSize="0">
+					<apply_if nightMode="true" icon="barrier_small_white_2"/>
+				</apply_if>
+			</switch>
+			<case minzoom="14" tag="barrier" value="border_control">
+				<apply_if maxzoom="14" icon="barrier_small_black_4" iconVisibleSize="0">
+					<apply_if nightMode="true" icon="barrier_small_white_4"/>
+				</apply_if>
+				<apply_if minzoom="15" icon="barrier_border_control" shield="white_gray_square_shield" iconOrder="40">
+					<apply_if nightMode="true" shield="gray_gray_square_shield"/>
+				</apply_if>
+			</case>
+		</switch>
+
+		<!-- Impassable barriers -->
+		<switch iconOrder="128">
+			<case tag="barrier" value="bollard">
+				<apply_if minzoom="16" icon="barrier_bollard" shield="barrier_bollard_shield"/>
+			</case>
+			<case tag="barrier" value="block">
+				<apply_if minzoom="16" icon="barrier_block" shield="barrier_block_shield"/>
+			</case>
+			<case tag="barrier" value="debris">
+				<apply_if minzoom="16" icon="barrier_debris" shield="barrier_debris_shield"/>
+			</case>
+			<case tag="barrier" value="jersey_barrier">
+				<apply_if minzoom="16" icon="barrier_jersey_barrier" shield="barrier_jersey_barrier_shield"/>
+			</case>
+			<apply_if minzoom="16" maxzoom="16" icon="barrier_small_red_2" iconVisibleSize="0" shield=""/>
+			<apply>
+				<switch> <!-- These barriers are passable by bicycle and pedestrian -->
+					<case appMode="bicycle"/>
+					<apply_if minzoom="16" maxzoom="16" icon="barrier_small_black_2"/>
+				</switch>
+			</apply>
+		</switch>
+		<switch minzoom="17" iconVisibleSize="10" intersectionSizeFactor="0.8" intersectsWith="">
+			<switch tag="entrance" value="main">
+				<case maxzoom="17" icon="barrier_small_black_3">
+					<apply_if nightMode="true" icon="barrier_small_white_3"/>
+				</case>
+				<case minzoom="18" icon="entrance_main_map" shield="barrier_entrance_small_shield"/>
+			</switch>
+			<switch tag="entrance" value="exit">
+				<case maxzoom="17" icon="barrier_small_red_3">
+					<apply_if nightMode="true" icon="barrier_small_red_3"/>
+				</case>
+				<case minzoom="18" icon="entrance_exit_map" shield="entrance_exit_shield"/>
+			</switch>
+			<switch tag="entrance" value="yes">
+				<case minzoom="18" maxzoom="18" icon="barrier_small_black_3">
+					<apply_if nightMode="true" icon="barrier_small_white_3"/>
+				</case>
+				<case minzoom="19" icon="entrance_yes" shield="barrier_entrance_small_shield"/>
+			</switch>
+			<switch tag="amenity" value="parking_entrance">
+				<case maxzoom="17" icon="barrier_small_black_3">
+					<apply_if nightMode="true" icon="barrier_small_white_3"/>
+				</case>
+				<case minzoom="18" icon="amenity_parking_entrance" shield="white_gray_square_small_shield">
+					<apply_if nightMode="true" shield="gray_gray_square_small_shield"/>
+				</case>
+			</switch>
+			<apply iconOrder="129"/>
+		</switch>
+
+		<case minzoom="14" tag="power" value="tower">
+			<case maxzoom="14" icon="power_tower_small2" iconVisibleSize="3"/>
+			<case maxzoom="15" icon="power_tower_small" iconVisibleSize="3"/>
+			<case maxzoom="17" icon="power_tower_square" iconVisibleSize="7"/>
+			<case minzoom="18" icon="power_tower" shield="power_tower_big_shield"/>
+		</case>
+		<case minzoom="15" tag="aerialway" value="pylon" icon="aerialway_pylon_small" iconVisibleSize="4">
+			<apply_if moreDetailed="false" maxzoom="15" icon=""/>
+		</case>
+		<case minzoom="16" tag="power" value="pole" icon="barrier_small_black_4">
+			<apply_if nightMode="true" icon="barrier_small_white_4"/>
+		</case>
+
+		<switch streetLighting="true" minzoom="16" iconVisibleSize="10" intersectionSizeFactor="0.7">
+			<case tag="highway" value="street_lamp"/>
+			<case tag="light_source" value=""/>
+			<apply icon="highway_street_lamp">
+				<case additional="lit_additional=yes" icon="highway_street_lamp_lit" shield="street_lamp_lit_yes_shield">
+					<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
+				</case>
+				<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
+					<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
+				</case>
+				<case shield="street_lamp_lit_yes_shield">
+					<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
+				</case>
+			</apply>
+			<apply_if maxzoom="16" icon=""/>
+		</switch>
+
+		<switch minzoom="16">
+			<case tag="hazard" value="nuclear" icon="hazard_nuclear"/>
+			<case tag="hazard" value="radiation" icon="hazard_nuclear"/>
+			<case tag="hazard" value="erosion" icon="hazard_erosion"/>
+			<case tag="hazard" value="avalanche" icon="hazard_avalanche"/>
+			<case tag="hazard" value="rock_slide" icon="hazard_erosion"/>
+			<case tag="hazard" value="slippery_road" icon="hazard_slippery_road"/>
+			<case tag="hazard" value="flood" icon="hazard_flood"/>
+			<case tag="hazard" value="" icon="hazard_yes"/>
+			<apply iconVisibleSize="0" iconOrder="128" intersectsWith="" intersectionSizeFactor="0" icon_shift_px="0.5" icon_shift_py="-0.5"/>
+		</switch>
+
+		<switch OSMMapperAssistant="true" iconVisibleSize="0" intersectionSizeFactor="0" iconOrder="128">
+			<switch minzoom="12" tag="fixme_tag" value="yes">
+				<case maxzoom="12" icon="fixme_tag_lowzoom_yes"/>
+				<case maxzoom="15" icon="fixme_tag_lowzoom2_yes"/>
+				<case minzoom="16" icon="fixme_tag_yes" icon_shift_px="0.5" icon_shift_py="-0.5"/>
+			</switch>
+			<switch minzoom="12" tag="osm_note" value="yes">
+				<case maxzoom="12" icon="osm_note_dot"/>
+				<case maxzoom="17" icon="osm_note_dot_2"/>
+			</switch>
+			<case minzoom="16" tag="note_tag" value="yes" icon="note_tag_yes" icon_shift_px="-0.5" icon_shift_py="-0.5"/>
+<!--			<case minzoom="16" tag="description_tag" value="yes" icon="note_tag_yes"/>-->
+		</switch>
 
 		<switch minzoom="12">
 			<case tag="lcn_ref" value=""/>
@@ -5422,6 +5209,232 @@
 			<case tag="man_made" value="" icon="stub_man_made"/>
 			<case tag="shop" value="" icon="stub_shop"/>
 			<case tag="tourism" value="" icon="stub_tourism"/>
+		</switch>
+
+		<!-- Public transport mode icons -->
+		<switch>
+			<case tag="highway" value="bus_stop"/>
+			<case tag="public_transport" value="platform"/>
+			<apply>
+				<switch minzoom="14" maxzoom="14" iconVisibleSize="7" iconOrder="55">
+					<case publicTransportMode="true" icon="highway_bus_stop_round_small">
+						<apply_if nightMode="true" icon="highway_bus_stop_round_small_night"/>
+					</case>
+					<case tramTrainRoutes="true" hideIcons="false" icon="highway_bus_stop_small"/>
+				</switch>
+			</apply>
+			<apply_if minzoom="15" maxzoom="16" iconVisibleSize="9" iconOrder="65">
+				<case hideIcons="false" icon="highway_bus_stop_small"/>
+				<case publicTransportMode="true">
+					<apply icon="highway_bus_stop_round_big" iconVisibleSize="7" iconOrder="55">
+						<apply_if nightMode="true" icon="highway_bus_stop_round_big_night"/>
+					</apply>
+				</case>
+			</apply_if>
+			<apply_if hideIcons="false" minzoom="17">
+				<switch>
+					<switch>
+						<case additional="train=yes"/>
+						<case additional="tram=yes"/>
+						<case additional="light_rail=yes"/>
+						<case additional="monorail=yes"/>
+						<apply icon="railway_station"/>
+					</switch>
+					<case icon="highway_bus_stop"/>
+					<apply shield="white_blue_square_shield" iconOrder="82" intersectionMargin="3"/>
+					<apply_if additional="shelter=yes" shield="white_blue_square_shelter_yes_shield" intersectionSizeFactor="0.9"/>
+					<apply_if additional="shelter=no" shield="white_blue_square_shelter_no_shield" intersectionSizeFactor="0.9"/>
+					<apply_if nightMode="true" shield="gray_blue_square_shield">
+						<apply_if additional="shelter=yes" shield="gray_blue_square_shelter_yes_shield" intersectionSizeFactor="0.9"/>
+						<apply_if additional="shelter=no" shield="gray_blue_square_shelter_no_shield" intersectionSizeFactor="0.9"/>
+					</apply_if>
+				</switch>
+			</apply_if>
+		</switch>
+		<switch tramTrainRoutes="true" iconOrder="55">
+			<case tag="railway" value="tram_stop"/>
+			<case tag="public_transport" value="stop_position" additional="tram=yes"/>
+			<case tag="public_transport" value="platform" additional="tram=yes"/>
+			<apply_if minzoom="14" maxzoom="14" icon="railway_tram_stop_round_small">
+				<apply_if nightMode="true" icon="railway_tram_stop_round_small_night"/>
+			</apply_if>
+			<apply_if minzoom="15" maxzoom="16" icon="railway_tram_stop_round_big">
+				<apply_if nightMode="true" icon="railway_tram_stop_round_big_night"/>
+			</apply_if>
+			<apply_if minzoom="17" icon="railway_tram_stop" shield="white_blue_square_shield" iconVisibleSize="8">
+				<apply_if additional="shelter=yes" shield="white_blue_square_shelter_yes_shield"/>
+				<apply_if additional="shelter=no" shield="white_blue_square_shelter_no_shield"/>
+				<apply_if nightMode="true" shield="gray_blue_square_shield">
+					<apply_if additional="shelter=yes" shield="gray_blue_square_shelter_yes_shield"/>
+					<apply_if additional="shelter=no" shield="gray_blue_square_shelter_no_shield"/>
+				</apply_if>
+			</apply_if>
+		</switch>
+
+		<switch hideIcons="false" iconOrder="83">
+			<case minzoom="13" tag="railway" value="halt">
+				<case maxzoom="14" icon="halt_small_2" iconVisibleSize="10"/>
+				<case minzoom="15" maxzoom="15" icon="halt_small"/>
+				<case minzoom="16" icon="halt" shield="white_blue_square_small_shield"/>
+			</case>
+			<case minzoom="15" tag="railway" value="tram_stop">
+				<case maxzoom="16" icon="tram_stop_small" iconVisibleSize="10"/>
+				<case minzoom="17" icon="railway_tram_stop" shield="white_blue_square_shield">
+					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+					<apply_if additional="shelter=yes" shield="white_blue_square_shelter_yes_shield"/>
+					<apply_if additional="shelter=no" shield="white_blue_square_shelter_no_shield"/>
+					<apply_if nightMode="true" shield="gray_blue_square_shield">
+						<apply_if additional="shelter=yes" shield="gray_blue_square_shelter_yes_shield"/>
+						<apply_if additional="shelter=no" shield="gray_blue_square_shelter_no_shield"/>
+					</apply_if>
+				</case>
+			</case>
+			<case minzoom="15" tag="railway" value="level_crossing" icon="level_crossing_map">
+				<apply_if streetLighting="true">
+					<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
+						<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
+					</case>
+					<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
+						<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
+					</case>
+				</apply_if>
+			</case>
+
+			<case minzoom="13" tag="aerialway" value="station">
+				<case maxzoom="14" icon="aerialway_station_small" iconVisibleSize="3"/>
+				<case minzoom="15" icon="aerialway_station" shield="white_blue_round_shield">
+					<apply_if nightMode="true" shield="gray_blue_round_shield"/>
+				</case>
+			</case>
+		</switch>
+
+		<!-- Icons for subwayMode (colored rings) -->
+		<switch subwayMode="true" minzoom="12" maxzoom="14" tag="railway" value="station" icon="railway_subway_station_small_default" shield="white_round_small_shield" iconVisibleSize="2" iconOrder="33">
+<!--			<case additional="route=subway"/>-->
+			<case additional="station=subway"/>
+			<case additional="network=rer"/>
+			<apply_if nightMode="true" icon="railway_subway_station_small_default2"/>
+			<apply>
+				<case additional="color_red" icon="railway_subway_station_small_red"/>
+				<case additional="color_brown" icon="railway_subway_station_small_brown"/>
+				<case additional="color_orange" icon="railway_subway_station_small_orange">
+					<apply_if nightMode="true" icon="railway_subway_station_small_orange2"/>
+				</case>
+				<case additional="color_darkyellow" icon="railway_subway_station_small_darkyellow">
+					<apply_if nightMode="true" icon="railway_subway_station_small_darkyellow2"/>
+				</case>
+				<case additional="color_yellow" icon="railway_subway_station_small_yellow">
+					<apply_if nightMode="true" icon="railway_subway_station_small_yellow2"/>
+				</case>
+				<case additional="color_lightgreen" icon="railway_subway_station_small_lightgreen">
+					<apply_if nightMode="true" icon="railway_subway_station_small_lightgreen2"/>
+				</case>
+				<case additional="color_green" icon="railway_subway_station_small_green">
+					<apply_if nightMode="true" icon="railway_subway_station_small_green2"/>
+				</case>
+				<case additional="color_lightblue" icon="railway_subway_station_small_lightblue">
+					<apply_if nightMode="true" icon="railway_subway_station_small_lightblue2"/>
+				</case>
+				<case additional="color_blue" icon="railway_subway_station_small_blue">
+					<apply_if nightMode="true" icon="railway_subway_station_small_blue2"/>
+				</case>
+				<case additional="color_purple" icon="railway_subway_station_small_purple">
+					<apply_if nightMode="true" icon="railway_subway_station_small_purple2"/>
+				</case>
+				<case additional="color_gray" icon="railway_subway_station_small_gray">
+					<apply_if nightMode="true" icon="railway_subway_station_small_gray2"/>
+				</case>
+				<case additional="color_black" icon="railway_subway_station_small_black">
+					<apply_if nightMode="true" icon="railway_subway_station_small_black2"/>
+				</case>
+			</apply>
+			<apply_if nightMode="true" shield="darkgray_round_small_shield"/>
+		</switch>
+		<switch hideIcons="false" minzoom="12" tag="railway" value="station" iconOrder="112">
+<!--			<case maxzoom="12" icon="railway_station_small_2" iconVisibleSize="10"/>-->
+			<case minzoom="13" maxzoom="14" icon="railway_station_small" iconVisibleSize="10" intersectionSizeFactor="0.8">
+				<apply_if additional="disused=yes" icon="railway_station_small_disused"/>
+				<apply_if additional="station=subway" icon="railway_station_subway_small"/>
+			</case>
+			<case minzoom="15" maxzoom="15">
+				<switch>
+					<case additional="subway_region=samara" icon="subway_samara"/>
+					<case additional="subway_region=moscow" icon="subway_moscow"/>
+					<case additional="subway_region=spb" icon="subway_spb"/>
+					<case additional="subway_region=kazan" icon="subway_kazan"/>
+					<case additional="subway_region=nnovgorod" icon="subway_nnovgorod"/>
+					<case additional="subway_region=novosibirsk" icon="subway_novosibirsk"/>
+					<case additional="subway_region=yekaterinburg" icon="subway_yekaterinburg"/>
+					<case additional="subway_region=baku" icon="subway_baku"/>
+					<case additional="subway_region=tbilisi" icon="subway_tbilisi"/>
+					<case additional="subway_region=yerevan" icon="subway_yerevan"/>
+					<case additional="subway_region=tashkent" icon="subway_tashkent"/>
+					<case additional="subway_region=almaty" icon="subway_almaty"/>
+					<case additional="subway_region=minsk" icon="subway_minsk"/>
+					<case additional="subway_region=kyiv" icon="subway_kyiv"/>
+					<case additional="subway_region=kharkiv" icon="subway_kharkiv"/>
+					<case additional="subway_region=germany" icon="subway_germany"/>
+					<case additional="subway_region=wien" icon="subway_wien"/>
+					<case additional="subway_region=budapest" icon="subway_budapest"/>
+					<case additional="subway_region=madrid" icon="subway_madrid"/>
+					<case additional="subway_region=paris" icon="subway_paris"/>
+					<case additional="subway_region=lyon" icon="subway_lyon"/>
+					<case additional="subway_region=london" icon="subway_london"/>
+					<case additional="subway_region=barcelona" icon="subway_barcelona"/>
+					<case additional="subway_region=stockholm" icon="subway_stockholm"/>
+					<case additional="subway_region=oslo" icon="subway_stockholm"/>
+					<case additional="subway_region=praha" icon="subway_praha"/>
+					<case additional="subway_region=athens" icon="subway_athens"/>
+					<case additional="subway_region=italy" icon="subway_italy"/>
+					<case additional="subway_region=italy_catania" icon="subway_italy_catania"/>
+	<!--				<case additional="subway_region=italy_brescia" icon="subway_italy_brescia"/>-->
+					<case additional="subway_region=rotterdam" icon="subway_rotterdam"/>
+					<case additional="subway_region=amsterdam" icon="subway_amsterdam"/>
+					<case additional="subway_region=brussels" icon="subway_brussels"/>
+					<case additional="subway_region=bucharest" icon="subway_bucharest"/>
+					<case additional="subway_region=osaka" icon="subway_osaka"/>
+					<case additional="subway_region=tokyo" icon="subway_tokyo"/>
+					<case additional="subway_region=nagoya" icon="subway_nagoya"/>
+					<case additional="subway_region=singapore" icon="subway_singapore"/>
+					<case additional="subway_region=manila" icon="subway_manila"/>
+					<case additional="subway_region=kolkata" icon="subway_kolkata"/>
+					<case additional="subway_region=delhi" icon="subway_delhi"/>
+	<!--				<case additional="subway_region=bangkok" icon="subway_bangkok"/>-->
+	<!--				<case additional="subway_region=tehran" icon="subway_tehran"/>-->
+					<case additional="subway_region=chicago" icon="subway_chicago"/>
+					<case additional="subway_region=newyork" icon="subway_newyork"/>
+					<case additional="subway_region=boston" icon="subway_boston"/>
+					<case additional="subway_region=washington" icon="subway_washington"/>
+					<case additional="subway_region=losangeles" icon="subway_losangeles"/>
+					<case additional="subway_region=montreal" icon="subway_montreal"/>
+					<case additional="subway_region=toronto" icon="subway_toronto"/>
+					<case additional="subway_region=cairo" icon="subway_cairo"/>
+					<case additional="subway_region=riodejaneiro" icon="subway_riodejaneiro"/>
+					<case additional="subway_region=buenosaires" icon="subway_buenosaires"/>
+					<case additional="station=subway">
+						<apply icon="railway_station_subway_map" shield="white_blue_arc_shield">
+							<apply_if nightMode="true" shield="gray_blue_arc_shield"/>
+						</apply>
+					</case>
+					<apply iconVisibleSize="18" intersectionSizeFactor="0.6" iconOrder="40"/>
+				</switch>
+				<case additional="disused=yes" icon="railway_station_small_disused"/>
+				<case icon="railway_station_small" iconVisibleSize="12" intersectionSizeFactor="0.7" iconOrder="50"/>
+			</case>
+			<case minzoom="16">
+				<case additional="station=subway">
+					<apply icon="railway_station_subway_map" shield="white_blue_arc_shield">
+						<apply_if nightMode="true" shield="gray_blue_arc_shield"/>
+					</apply>
+					<apply_if iconOrder="40"/>
+				</case>
+				<case icon="railway_station" shield="white_blue_square_shield" iconVisibleSize="14" iconOrder="82">
+					<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+					<apply_if additional="disused=yes" icon="railway_station_disused" shield="white_gray_square_shield">
+						<apply_if nightMode="true" shield="gray_gray_square_shield"/>
+					</apply_if>
+				</case>
+			</case>
 		</switch>
 
 	</point>
