@@ -579,6 +579,7 @@ mycpname nwn_ref tourist_nwn_ref.png
 mycpname rwn_ref tourist_rwn_ref.png
 mycpname lwn_ref tourist_lwn_ref.png
 mycpname gallery tourist_gallery.png
+mycpname firepit tourist_firepit.png
 
 ## Entertainment
 mygroup entertainment tourist_cinema3.png
@@ -903,6 +904,7 @@ mycpname water_works poi_water_works.png
 mycpname watermill poi_watermill.png
 mycpname monitoring_station poi_monitoring_station.png
 mycpname dolphin poi_dolphin.png
+mycpname street_cabinet poi_street_cabinet.png
 
 mygroup military poi_military_bunker.png
 
