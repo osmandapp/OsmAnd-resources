@@ -126,7 +126,7 @@ string('exceed_limit.ogg', 'excesso de velocidade ').
 string('onto.ogg', 'em direção a ').
 string('on.ogg', 'em ').
 string('to.ogg', 'em direção a ').
-string('to2.ogg', 'em direção a ').
+string('toward.ogg', 'em direção a ').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'metros ').
@@ -179,11 +179,11 @@ turn('right_keep', ['right_keep.ogg']).
 %cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
 % ...or next 2 lines for Dest taking precedence over Name
 cut_part_street(voice([Ref, Name, ''], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
-cut_part_street(voice([Ref, _, Dest], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Dest, Concat).
+cut_part_street(voice([Ref, _, Dest], _), [C1, 'toward.ogg', Dest]) :- atom_concat(Ref, ' ', C1).
 
 turn_street('', []).
 turn_street(voice(['','',''],_), []).
-turn_street(Street, ['to2.ogg', SName]) :- tts, Street = voice(['', '', D], _), cut_part_street(Street, SName).
+turn_street(Street, ['toward.ogg', SName]) :- tts, Street = voice(['', '', D], _), cut_part_street(Street, SName).
 turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), cut_part_street(Street, SName).
 turn_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), cut_part_street(Street, SName).
 turn_street(_Street, []) :- not(tts).

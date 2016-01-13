@@ -120,7 +120,7 @@ string('onto.ogg', 'su ').
 string('on.ogg', 'in ').
 string('to.ogg', 'fino a ').
 string('with.ogg', 'su ').  % is used if you turn together with your current street, i.e. street name does not change.
-string('to2.ogg', 'su ').
+string('toward.ogg', 'su ').
  
 % Utility: toLowerCaseStr(OldString,NewString)
 toLowerCaseStr(L1,L1):-  var(L1), !.
@@ -224,11 +224,11 @@ bear_right(_Street) -- ['right_keep.ogg'].
 %cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
 % ...or next 2 lines for Dest taking precedence over Name
 cut_part_street(voice([Ref, Name, ''], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
-cut_part_street(voice([Ref, _, Dest], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Dest, Concat).
+cut_part_street(voice([Ref, _, Dest], _), [C1, 'toward.ogg', Dest]) :- atom_concat(Ref, ' ', C1).
 
 turn_street('', []).
 turn_street(voice(['','',''],_), []).
-turn_street(Street, ['to2.ogg', SName]) :- tts, Street = voice(['', '', D], _), cut_part_street(Street, SName).
+turn_street(Street, ['toward.ogg', SName]) :- tts, Street = voice(['', '', D], _), cut_part_street(Street, SName).
 turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice(['', '', D], _)), street_is_male(Street), cut_part_street(Street, SName).
 turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice(['', '', D], _)), street_is_female(Street), cut_part_street(Street, SName).
 turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice(['', '', D], _)), street_is_nothing(Street), cut_part_street(Street, SName).
