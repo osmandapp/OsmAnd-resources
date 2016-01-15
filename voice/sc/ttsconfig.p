@@ -239,7 +239,7 @@ cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Name, ' ', C1),
 
 turn_street('', []).
 turn_street(voice(['','',''],_), []).
-turn_street(voice(['', '', D], _), ['toward.ogg', ' ', DestClean]) :- tts, removeSemicolonAto(D,DestClean).
+turn_street(voice(['', '', D], _), ['toward.ogg', DestClean]) :- tts, removeSemicolonAto(D,DestClean).
 turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice(['', '', D], _)), street_is_male(Street), cut_part_street(Street, SName).
 turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice(['', '', D], _)), street_is_female(Street), cut_part_street(Street, SName).
 turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice(['', '', D], _)), street_is_nothing(Street), cut_part_street(Street, SName).

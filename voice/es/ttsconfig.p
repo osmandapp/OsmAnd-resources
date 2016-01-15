@@ -125,8 +125,8 @@ string('back_on_route.ogg', 'has regresado a la ruta').
 string('exceed_limit.ogg', 'estás excediendo el límite de velocidad ').
 
 % STREET NAME GRAMMAR
-string('on.ogg', 'en').
-string('to.ogg', 'hacia').
+string('on.ogg', 'en ').
+string('to.ogg', 'hacia ').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'metros').
@@ -185,7 +185,7 @@ cut_part_street(voice([Ref, _, Dest], _), [C1, 'to.ogg', Dest]) :- atom_concat(R
 
 turn_street('', []).
 turn_street(voice(['','',''],_), []).
-turn_street(voice(['', '', D], _), ['to.ogg', ' ', D]) :- tts.
+turn_street(voice(['', '', D], _), ['to.ogg', D]) :- tts.
 turn_street(Street, ['on.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), cut_part_street(Street, SName).
 turn_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), cut_part_street(Street, SName).
 turn_street(_Street, []) :- not(tts).
