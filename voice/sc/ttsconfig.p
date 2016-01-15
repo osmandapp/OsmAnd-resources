@@ -120,7 +120,7 @@ string('onto.ogg', 'in ').
 string('on.ogg', 'in ').
 string('to.ogg', 'pro ').
 string('with.ogg', 'pro ').  % is used if you turn together with your current street, i.e. street name does not change.
-string('to2.ogg', 'pro ').
+string('toward.ogg', 'pro ').
  
 % Utility: toLowerCaseStr(OldString,NewString)
 toLowerCaseStr(L1,L1):-  var(L1), !.
@@ -227,13 +227,19 @@ bear_left(_Street) -- ['left_keep.ogg'].
 bear_right(_Street) -- ['right_keep.ogg'].
 
 % cut_part_street(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
-cut_part_street(voice(['', '', Dest], _), DestClean) :- removeSemicolonAto(Dest,DestClean).
 % cut_part_street(voice(['', Name, _], _), Name). % not necessary
+% Next 2 lines for Name taking precedence over Dest...
+%cut_part_street(voice([Ref, '', Dest], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Dest, Concat).
+%cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
 cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Name, ' ', C1), atom_concat(C1, Ref, Concat).
+% ...or next 2 lines for Dest taking precedence over Name
+%cut_part_street(voice([Ref, Name, ''], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
+%cut_part_street(voice([Ref, _, Dest], _), [C1, 'toward.ogg', Dest]) :- atom_concat(Ref, ' ', C1).
+
 
 turn_street('', []).
 turn_street(voice(['','',''],_), []).
-turn_street(Street, ['to2.ogg', SName]) :- tts, Street = voice(['', '', D], _), cut_part_street(Street, SName).
+turn_street(voice(['', '', D], _), ['toward.ogg', ' ', DestClean]) :- tts, removeSemicolonAto(D,DestClean).
 turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice(['', '', D], _)), street_is_male(Street), cut_part_street(Street, SName).
 turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice(['', '', D], _)), street_is_female(Street), cut_part_street(Street, SName).
 turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice(['', '', D], _)), street_is_nothing(Street), cut_part_street(Street, SName).

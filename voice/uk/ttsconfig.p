@@ -164,7 +164,7 @@ cut_part_street(voice([Ref, _, Dest], _), [C1, 'voice/to.ogg', Dest]) :- atom_co
 
 turn_street('', []).
 turn_street(voice(['','',''],_), []).
-turn_street(Street, ['voice/to.ogg', SName]) :- tts, Street = voice(['', '', D], _), cut_part_street(Street, SName).
+turn_street(voice(['', '', D], _), ['voice/to.ogg', ' ', D]) :- tts.
 turn_street(Street, ['voice/onto.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), cut_part_street(Street, SName).
 turn_street(Street, ['voice/on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), cut_part_street(Street, SName).
 turn_street(_Street, []) :- not(tts).
