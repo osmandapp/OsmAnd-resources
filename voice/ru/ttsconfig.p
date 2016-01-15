@@ -184,7 +184,7 @@ turn_street(_Street, []) :- not(tts).
 
 follow_street('', []).
 follow_street(voice(['','',''],_), []).
-follow_street(Street, ['to.ogg', SName]) :- tts, Street = voice(['', '', D], _), cut_part_street(Street, SName).
+follow_street(voice(['', '', D], _), ['to.ogg', D]) :- tts.
 follow_street(Street, ['to.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), cut_part_street(Street, SName).
 follow_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), cut_part_street(Street, SName).
 follow_street(_Street, []) :- not(tts).
