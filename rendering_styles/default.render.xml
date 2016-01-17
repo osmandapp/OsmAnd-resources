@@ -587,11 +587,11 @@
 		<case appMode="car" attrColorValue="#f7d4d4">
 			<apply_if nightMode="true" attrColorValue="#412e2e"/>
 		</case>
-		<case appMode="pedestrian" attrColorValue="#ececec">
-			<apply_if nightMode="true" attrColorValue="#727272"/>
+		<case appMode="pedestrian" attrColorValue="#dddde8">
+			<apply_if nightMode="true" attrColorValue="#727285"/>
 		</case>
 		<case roadStyle="highContrastRoads" attrColorValue="#fff3ba">
-			<apply_if additional="construction=yes" attrColorValue="#F9DD76"/>
+			<apply_if additional="construction=yes" attrColorValue="#f9dd76"/>
 			<apply_if nightMode="true" attrColorValue="#b0a781"/>
 		</case>
 		<case attrColorValue="#ececec">
@@ -607,7 +607,7 @@
 		<case roadStyle="boldOutline" attrColorValue="#000000">
 			<apply_if nightMode="true" attrColorValue="$null"/>
 		</case>
-		<case attrColorValue="#55555555">
+		<case attrColorValue="#b8b8cc">
 			<apply_if nightMode="true" attrColorValue="#999999"/>
 		</case>
 	</renderingAttribute>
@@ -1088,8 +1088,8 @@
 	<renderingConstant name="surfaceGradeVery_horribleColor" value="#fe5050"/>
 	<renderingConstant name="surfaceGradeImpassableColor" value="#ff1111"/>
 
-	<renderingConstant name="pedestrianModePavingStonesShader" value="paving_stones"/> <!-- used in UniRS -->
-	<renderingConstant name="pedestrianModePavingStonesShaderNight" value="paving_stones_night"/> <!-- used in UniRS -->
+	<renderingConstant name="pedestrianModePavingStonesShader" value="paving_stones_pedestrian"/>
+	<renderingConstant name="pedestrianModePavingStonesShaderNight" value="paving_stones_pedestrian_night"/>
 
 	<renderingConstant name="subwayLineDefaultColorDay" value="#a24141"/>
 	<renderingConstant name="subwayLineDefaultColorNight" value="#7b0000"/>
@@ -5556,17 +5556,24 @@
 						<case additional="surface=sett"/>
 						<case additional="surface=cobblestone"/>
 						<case additional="surface=paving_stones"/>
-						<apply shader="paving_stones">
-							<apply_if appMode="pedestrian" shader="$pedestrianModePavingStonesShader"/>
+						<apply>
+							<switch>
+								<case roadStyle="highContrastRoads" shader="paving_stones_hc">
+									<apply_if nightMode="true" shader="paving_stones_hc_night"/>
+								</case>
+								<case appMode="pedestrian" shader="$pedestrianModePavingStonesShader">
+									<apply_if nightMode="true" shader="$pedestrianModePavingStonesShaderNight"/>
+								</case>
+								<case shader="paving_stones">
+									<apply_if nightMode="true" shader="paving_stones_night"/>
+								</case>
+							</switch>
 						</apply>
-						<apply_if nightMode="true" shader="paving_stones_night">
-							<apply_if appMode="pedestrian" shader="$pedestrianModePavingStonesShaderNight"/>
-						</apply_if>
 					</switch>
 				</apply_if>
 				<apply_if minzoom="14">
-					<apply color="$pedestrianRoadColor" color_2="$pedestrianRoadShadowColor" strokeWidth_2=":1"/>
-					<apply_if nightMode="true" color="#727272"/>
+					<case color="$pedestrianRoadColor" color_2="$pedestrianRoadShadowColor" strokeWidth_2=":1"/>
+					<case nightMode="true" color="#727272"/>
 				</apply_if>
 				<apply_if appMode="car" shader="" color="#f0e0d8" color_2="#44aaaaaa">
 					<apply_if nightMode="true" color="#353535" color_2="#77666666"/>
