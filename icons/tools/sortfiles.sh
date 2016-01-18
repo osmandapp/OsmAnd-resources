@@ -659,7 +659,8 @@ mycp sport diving sport_diving.png
 mycp sport golf sport_golf.png
 mycp sport gymnastics sport_gymnasium.png
 mycp sport handball sport_handball.png
-mycp sport hockey sport_hockey.png
+mycpname ice_hockey sport_ice_hockey.png
+mycpname field_hockey sport_field_hockey.png
 mycp sport horse_racing sport_horse_racing.png
 mycp sport motor sport_motorracing.png
 mycp sport paragliding sport_paragliding.png
@@ -699,6 +700,7 @@ mycpname ice_stock sport_ice_stock.png
 mycpname korfball sport_korfball.png
 mycpname judo sport_judo.png
 mycpname rc_car sport_rc_car.png
+mycpname bandy sport_bandy.png
 
 
 ## Leisure
