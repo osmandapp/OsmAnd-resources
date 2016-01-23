@@ -110,6 +110,8 @@
 		type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideIcons" name="Hide map icons" description="Hide map icons"
 		type="boolean" possibleValues="" category="hide"/>
+	<renderingProperty attr="hideUnderground" name="Hide underground objects" description="Hide underground objects"
+		type="boolean" possibleValues="" category="hide"/>
 
 	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show cycle routes (*cn_networks) in bicycle mode" type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="hikingRoutesOSMC" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces"
@@ -1635,7 +1637,11 @@
 			<case tag="fixme_tag" value="yes"/>
 			<case tag="note_tag" value="yes"/>
 			<case tag="abandoned:place" value="" order="10"/>
-			<case tag="barrier" value=""/>
+			<case tag="barrier" value="">
+				<apply hideUnderground="true" layer="-1" order="-1"/>
+				<apply hideUnderground="true" additional="indoor=yes" order="-1"/>
+				<apply hideUnderground="true" additional="covered=yes" order="-1"/>
+			</case>
 			<switch appMode="pedestrian" tag="barrier" maxzoom="17" order="-1">
 				<case value="" minzoom="14" maxzoom="15"/>
 				<case value="block"/>
@@ -1681,6 +1687,11 @@
 					</switch>
 				</apply_if>
 			</case>
+			<switch hideUnderground="true" layer="-1">
+				<case tag="public_transport" value="platform"/>
+				<case tag="public_transport" value="station"/>
+				<apply order="-1"/>
+			</switch>
 			<switch appMode="car" maxzoom="18" layer="-1">
 				<case tag="public_transport" value="platform"/>
 				<case tag="public_transport" value="station"/>
@@ -1714,6 +1725,7 @@
 				<case tag="area:highway" value="track"/>
 				<case tag="man_made" value="bridge"/>
 				<apply order="7"/>
+				<apply_if hideUnderground="true" layer="-1" order="-1"/>
 			</switch>
 			<case tag="highway" value="services"/>
 			<case tag="landuse" value="military" order="8"/>
@@ -1815,6 +1827,19 @@
 			<!-- default line -->
 			<case layer="-1" tag="" value="" order="10"/>
 			<case tag="" value="" order="11"/>
+			<switch>
+				<case tag="highway" value="footway"/>
+				<case tag="highway" value="path"/>
+				<case tag="highway" value="steps"/>
+				<apply_if hideUnderground="true" additional="tunnel=yes" order="-1"/>
+				<apply_if hideUnderground="true" additional="indoor=yes" order="-1"/>
+			</switch>
+			<switch hideUnderground="true" layer="-1">
+				<case tag="public_transport" value="platform"/>
+				<case tag="public_transport" value="station"/>
+				<apply order="-1"/>
+			</switch>
+
 			<switch appMode="car">
 				<case tag="railway" value="" order="36">
 					<case layer="1" order="71"/>
@@ -1840,6 +1865,7 @@
 						<apply_if subwayMode="false" moreDetailed="true" minzoom="16" maxzoom="16" order="58"/>
 						<apply_if subwayMode="true" order="90"/>
 					</case>
+					<apply_if hideUnderground="true" subwayMode="false" layer="-1" order="-1"/>
 				</switch>
 				<switch>
 					<case tag="railway" value="rail">
@@ -1855,6 +1881,9 @@
 					<case tag="railway" value="light_rail"/>
 					<case tag="railway" value="monorail"/>
 					<case tag="railway" value="funicular"/>
+					<case tag="railway" value="abandoned"/>
+					<case tag="railway" value="construction"/>
+					<apply_if hideUnderground="true" layer="-1" order="-1"/>
 				</switch>
 				<apply_if subwayMode="false" layer="-1" minzoom="9" maxzoom="18">
 					<apply_if appMode="car" order="-1"/>
@@ -1894,20 +1923,12 @@
 				<apply_if layer="-1" maxzoom="18" order="-1"/>
 				<apply_if layer="-1" appMode="car" order="-1"/>
 				<apply_if maxzoom="15" layer="-1" appMode="bicycle" order="-1"/>
+				<apply_if hideUnderground="true" layer="-1" order="-1"/>
 			</case>
 			<case tag="attraction" value="water_slide"/>
 			<case tag="attraction" value="roller_coaster"/>
 			<case tag="attraction" value="train"/>
 
-<!--			<switch hikingRoutesOSMC="true">
-				<case tag="osmc_symbol_red" value=""/>
-				<case tag="osmc_symbol_green" value=""/>
-				<case tag="osmc_symbol_blue" value=""/>
-				<case tag="osmc_symbol_yellow" value=""/>
-				<case tag="osmc_symbol_black" value=""/>
-				<case tag="osmc_symbol_white" value=""/>
-				<apply order="1"/>
-			</switch>-->
 			<switch>
 				<case tag="lcn_network" value="lcn" order="112"/>
 				<case tag="rcn_network" value="rcn" order="111"/>
@@ -2087,6 +2108,9 @@
 
 			<case tag="barrier" value="" order="20">
 				<apply_if appMode="car" layer="-1" order="-1"/>
+				<apply_if hideUnderground="true" layer="-1" order="-1"/>
+				<apply_if hideUnderground="true" additional="covered=yes" order="-1"/>
+				<apply_if hideUnderground="true" additional="indoor=yes" order="-1"/>
 			</case>
 			<case tag="man_made" value="dyke" order="10"/>
 			<case tag="man_made" value="reinforced_slope"/>
@@ -2100,6 +2124,7 @@
 			<case tag="fixme_tag" value="yes" order="2"/>
 			<case tag="note_tag" value="yes"/>
 			<case tag="lit" value="" order="1"/>
+			<case hideUnderground="true" tag="lit_pedestrian_layer-1" value="" order="-1"/>
 			<case appMode="car" tag="lit_pedestrian_layer-1" value="" order="-1"/>
 			<case tag="osmand" value="file_trackline"/>
 			<case tag="osmand" value="file_routeline"/>
@@ -4557,7 +4582,7 @@
 			</case>
 		</case>
 
-		<case minzoom="16" tag="railway" value="subway_entrance" icon="subway_entrance_map" iconVisibleSize="20" intersectionSizeFactor="0.7">
+		<case minzoom="16" tag="railway" value="subway_entrance" icon="subway_entrance_map" iconVisibleSize="20" intersectionSizeFactor="0.7" iconOrder="10">
 			<case additional="subway_region=samara" icon="subway_samara"/>
 			<case additional="subway_region=moscow" icon="subway_moscow"/>
 			<case additional="subway_region=spb" icon="subway_spb"/>
@@ -6625,6 +6650,7 @@
 						<case maxzoom="18" strokeWidth="10:10"/>
 						<case minzoom="19" strokeWidth="11.5:11.5"/>
 						<apply_if additional="tunnel=yes" pathEffect="4_4" pathEffect__2="4_4" cap="BUTT"/>
+						<apply_if additional="covered=yes" pathEffect="7_2" pathEffect__2="1_1" cap="BUTT"/>
 						<!-- Bridges -->
 						<apply_if additional="bridge=yes" color_0="#000000" cap="SQUARE" cap_0="BUTT">
 							<switch>
@@ -6694,6 +6720,7 @@
 						<case maxzoom="18" strokeWidth="6:6"/>
 						<case minzoom="19" strokeWidth="7:7"/>
 						<apply_if additional="tunnel=yes" pathEffect="4_4" pathEffect__2="4_4" cap="BUTT"/>
+						<apply_if additional="covered=yes" pathEffect="7_2" pathEffect__2="1_1" cap="BUTT"/>
 						<!-- Bridges -->
 						<apply_if additional="bridge=yes" color_0="#000000" cap="SQUARE" cap_0="BUTT">
 							<switch>
@@ -6777,6 +6804,7 @@
 								<case maxzoom="18" strokeWidth="9:9"/>
 								<case minzoom="19" strokeWidth="10.5:10.5"/>
 								<apply_if additional="tunnel=yes" pathEffect="4_4" cap="BUTT"/>
+								<apply_if additional="covered=yes" pathEffect="7_2" pathEffect__2="1_1" cap="BUTT"/>
 								<!-- Bridges -->
 								<apply_if additional="bridge=yes" minzoom="14" shadowRadius="0" cap="SQUARE" cap_0="BUTT">
 									<case maxzoom="14" strokeWidth_0="3.7:5.4"/>
@@ -6826,6 +6854,7 @@
 								<case shadowRadius="$highwayShadowRadius"/>
 							</apply>
 							<apply_if additional="tunnel=yes" pathEffect="4_4" cap="BUTT"/>
+							<apply_if additional="covered=yes" pathEffect="7_2" pathEffect__2="1_1" cap="BUTT"/>
 							<!-- Bridges -->
 							<apply_if additional="bridge=yes" minzoom="14" shadowRadius="0" cap="SQUARE" cap_0="BUTT">
 								<case maxzoom="14" strokeWidth_0="1.8:3"/>
@@ -6902,6 +6931,7 @@
 						<case minzoom="19" strokeWidth="7:7"/>
 						<apply_if streetLighting="true" nightMode="true" shadowColor="#77ffffff"/>
 						<apply_if additional="tunnel=yes" pathEffect="4_4" cap="BUTT"/>
+						<apply_if additional="covered=yes" pathEffect="7_2" pathEffect__2="1_1" cap="BUTT"/>
 						<apply_if additional="bridge=yes" shadowRadius="0" cap="SQUARE" cap_0="BUTT">
 							<case moreDetailed="true" minzoom="14" maxzoom="14" strokeWidth_0="1.5:2"/>
 							<case minzoom="15" maxzoom="15" strokeWidth_0="2.5:4"/>
@@ -6946,6 +6976,7 @@
 							<apply_if nightMode="true" color="#33ffffff"/>
 						</switch>
 						<apply_if additional="tunnel=yes" pathEffect="4_4" cap="BUTT"/>
+						<apply_if additional="covered=yes" pathEffect="7_2" pathEffect__2="1_1" cap="BUTT"/>
 						<!-- Bridges -->
 						<apply_if additional="bridge=yes" minzoom="14" shadowRadius="0" color_0="#44333333" cap="BUTT" cap_0="BUTT">
 							<case maxzoom="15" strokeWidth_0="2.8:2.8"/>
@@ -7104,15 +7135,23 @@
 						<apply color="$null" color_5="#55996600" strokeWidth_5="1" pathEffect_5="6_2"/>
 					</switch>
 
+					<!-- Tunnels -->
+					<apply_if additional="tunnel=yes" minzoom="16" color__1="#000000" strokeWidth__1="$trackBridgeWidth" pathEffect__1="$trackTunnelPathEffect" color_0="#ffffff" strokeWidth_0="$trackBridgeInnerWidth">
+						<apply_if nightMode="true" color__1="#ffffff" color_0="#000000"/>
+					</apply_if>
+					<apply>
+						<switch>
+							<case additional="covered=yes"/>
+							<case additional="indoor=yes"/>
+							<apply pathEffect__1="4_2" color__1="#000000" color_0="#dddddd" strokeWidth__1="$trackBridgeWidth" strokeWidth_0="$trackBridgeInnerWidth"/>
+							<apply_if nightMode="true" color__1="#ffffff" color_0="#000000"/>
+						</switch>
+					</apply>
 					<!-- Bridges -->
-					<apply_if additional="bridge=yes" minzoom="14" color__1="#000000" color_0="#ffffff">
+					<apply_if additional="bridge=yes" minzoom="14" color__1="#000000" color_0="#ffffff" pathEffect__1="">
 						<case maxzoom="15" strokeWidth__1="3:2" strokeWidth_0="2.3:1.5"/>
 						<case minzoom="16" strokeWidth__1="$trackBridgeWidth" strokeWidth_0="$trackBridgeInnerWidth"/>
 						<apply_if nightMode="true" color__1="#ffffff" color_0="#000000"/>
-					</apply_if>
-					<!-- Tunnels -->
-					<apply_if additional="tunnel=yes" minzoom="16" color__1="#000000" strokeWidth__1="$trackBridgeWidth" pathEffect__1="$trackTunnelPathEffect" color_0="#ffffff" strokeWidth_0="$trackBridgeInnerWidth">
-						<apply_if nightMode="true" color__1="#ffffff" pathEffect__1="$trackTunnelPathEffect" color_0="#000000"/>
 					</apply_if>
 				</switch>
 				<!-- Assign strokeWidth and pathEffect for surface, smoothness and access -->

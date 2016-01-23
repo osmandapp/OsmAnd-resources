@@ -200,14 +200,16 @@
 	<entity_convert pattern="tag_transform" from_tag="layer" from_value="5" to_tag1="layer" to_value1="1"/>
 	<entity_convert pattern="tag_transform" from_tag="layer" from_value="+5" to_tag1="layer" to_value1="1"/>
 	<entity_convert pattern="tag_transform" from_tag="layer" from_value="-5" to_tag1="layer" to_value1="-1"/>
-	<entity_convert pattern="tag_transform" from_tag="covered" from_value="yes" to_tag1="layer" to_value1="-1" to_tag2="tunnel" to_value2="yes" poi="no"/>
-	<entity_convert pattern="tag_transform" from_tag="covered" from_value="colonnade" to_tag1="layer" to_value1="-1" to_tag2="tunnel" to_value2="yes" poi="no"/>
-	<entity_convert pattern="tag_transform" from_tag="covered" from_value="arcade" to_tag1="layer" to_value1="-1" to_tag2="tunnel" to_value2="yes" poi="no"/>
-	<entity_convert pattern="tag_transform" from_tag="covered" from_value="building_passage" to_tag1="layer" to_value1="-1" to_tag2="tunnel" to_value2="yes" poi="no"/>
-	<entity_convert pattern="tag_transform" from_tag="covered" from_value="roof" to_tag1="layer" to_value1="-1" to_tag2="tunnel" to_value2="yes" poi="no"/>
-	<entity_convert pattern="tag_transform" from_tag="covered" from_value="concrete" to_tag1="layer" to_value1="-1" to_tag2="tunnel" to_value2="yes" poi="no"/>
-	<entity_convert pattern="tag_transform" from_tag="covered" from_value="building_arcade" to_tag1="layer" to_value1="-1" to_tag2="tunnel" to_value2="yes" poi="no"/>
-	<entity_convert pattern="tag_transform" from_tag="covered" from_value="true" to_tag1="layer" to_value1="-1" to_tag2="tunnel" to_value2="yes" poi="no"/>
+<!--	<entity_convert pattern="tag_transform" from_tag="covered" from_value="yes" to_tag1="layer" to_value1="-1" to_tag2="tunnel" to_value2="yes" poi="no"/>-->
+	<type tag="covered" value="yes" minzoom="12" additional="true" poi="false"/>
+	<type tag="indoor" value="yes" minzoom="12" additional="true" poi="false"/>
+	<entity_convert pattern="tag_transform" from_tag="covered" from_value="colonnade" to_tag1="covered" to_value1="yes" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="covered" from_value="arcade" to_tag1="covered" to_value1="yes" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="covered" from_value="building_passage" to_tag1="covered" to_value1="yes" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="covered" from_value="roof" to_tag1="covered" to_value1="yes" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="covered" from_value="concrete" to_tag1="covered" to_value1="yes" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="covered" from_value="building_arcade" to_tag1="covered" to_value1="yes" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="covered" from_value="true" to_tag1="covered" to_value1="yes" poi="no"/>
 
 	<type tag="bridge" value="yes" minzoom="12" additional="true" routing="no"/>
 	<type tag="tunnel" value="yes" minzoom="12" additional="true" routing="no"/>
@@ -227,9 +229,10 @@
 	<entity_convert pattern="tag_transform" from_tag="bridge" from_value="covered" to_tag1="man_made" to_value1="bridge" to_tag2="layer" to_value2="1" to_tag3="bridge" to_value3="yes" to_tag4="covered" to_value4="yes" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge" from_value="trestle" to_tag1="man_made" to_value1="bridge" to_tag2="layer" to_value2="1" to_tag3="bridge" to_value3="yes" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge" from_value="arch" to_tag1="man_made" to_value1="bridge" to_tag2="layer" to_value2="1" to_tag3="bridge" to_value3="yes" to_tag4="bridge:structure" to_value4="arch" routing="no"/>
-	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="yes" to_tag1="man_made" to_value1="tunnel" to_tag2="layer" to_value2="-1" to_tag3="tunnel" to_value3="yes" routing="no"/>
+	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="yes" if_tag1="highway" if_not_tag1="layer" to_tag1="covered" to_value1="yes" routing="no"/>
+	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="yes" to_tag1="man_made" to_value1="tunnel" to_tag2="tunnel" to_value2="yes" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="culvert" to_tag1="tunnel" to_value1="yes" to_tag2="layer" to_value2="-1" routing="no" poi="no"/>
-	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="building_passage" to_tag1="layer" to_value1="-1" to_tag3="tunnel" to_value3="yes" routing="no"/>
+	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="building_passage" if_tag1="highway" to_tag1="covered" to_value1="yes" routing="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="highway" from_value="corridor" to_tag1="highway" to_value1="service" to_tag2="layer" to_value2="-1" to_tag3="tunnel" to_value3="yes" routing="no"/>
 
 	<entity_convert pattern="tag_transform" from_tag="bridge" if_tag1="highway" if_value1="proposed" routing="no"/>
