@@ -972,6 +972,7 @@
 		<type tag="piste:type" value="hike" minzoom="11" nameTags="piste:name" relation="true"/>
 		<type tag="piste:type" value="sleigh" minzoom="11" nameTags="piste:name" relation="true"/>
 		<type tag="piste:type" value="sled" minzoom="11" nameTags="piste:name" relation="true"/>
+		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="sled" to_tag1="piste:type" to_value1="sled" to_tag2="piste:oneway" to_value2="yes"/>
 		<type tag="piste:type" value="snow_park" minzoom="11" nameTags="piste:name" relation="true"/>
 		<type tag="piste:type" value="playground" minzoom="11" nameTags="piste:name" relation="true"/>
 		<type tag="piste:type" value="ice_skate" minzoom="11" nameTags="piste:name" relation="true"/>
@@ -1193,7 +1194,8 @@
 
 		<!-- Prepare buildings for POI -->
 		<entity_convert pattern="tag_transform" from_tag="building" to_tag1="building:type" to_tag2="building" to_value2="yes" map="no"/>
-		<entity_convert pattern="tag_transform" from_tag="building" if_not_tag1="name" if_not_tag2="old_name" if_not_tag3="alt_name" if_not_tag4="reg_name" if_not_tag5="int_name" if_not_tag6="loc_name" if_not_tag7="description" if_not_tag8="inscription" if_not_tag9="official_name" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="building" if_not_tag1="name" if_not_tag2="old_name" if_not_tag3="alt_name" if_not_tag4="reg_name" if_not_tag5="int_name" if_not_tag6="loc_name" if_not_tag7="description" if_not_tag8="inscription" if_not_tag9="official_name" if_not_tag10="addr:housename" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="addr:housename" if_tag1="building" if_not_tag1="name" to_tag1="name" map="no" routing="no"/>
 
 		<entity_convert pattern="tag_transform" from_tag="building" if_tag1="aeroway" if_value1="terminal"/>
 	</category>
@@ -2289,7 +2291,7 @@
 
 
 	<category name="man_made">
-		<type tag="building" minzoom="15" nameTags="addr:housenumber,addr:flats" order="70"/>
+		<type tag="building" minzoom="15" nameTags="addr:housenumber,addr:housename,addr:flats" order="70"/>
 		<type tag="addr:housenumber" minzoom="16" nameTags="addr:housenumber"/>
 		<type tag="addr:flats" minzoom="16" nameTags="addr:flats,ref"/>
 		<type tag="addr:interpolation" minzoom="16"/>
