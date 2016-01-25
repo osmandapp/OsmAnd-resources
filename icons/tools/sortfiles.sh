@@ -323,6 +323,7 @@ mycp highway bus_stop_round_small functional-icons_bus_stop_round_small.png
 mycp highway bus_stop_round_big functional-icons_bus_stop_round_big.png
 mycp highway bus_stop_round_small_night functional-icons_bus_stop_round_small_night.png
 mycp highway bus_stop_round_big_night functional-icons_bus_stop_round_big_night.png
+mycpname bus_station_small functional-icons_bus_station_small.png
 mycp public_transport platform transport_bus_stop.png
 mycp amenity ferry_terminal transport_ferry_terminal.png
 mycpname ferry_terminal_small functional-icons_ferry_terminal_small.png
