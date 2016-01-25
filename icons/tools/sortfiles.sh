@@ -1654,6 +1654,8 @@ mycpname pyrotechnics shopping_pyrotechnics.png
 mycpname weapons shopping_weapons.png
 mycpname window_blind shopping_window_blind.png
 mycpname watches shopping_watches.png
+mycpname candles shopping_candles.png
+mycpname religion shopping_religion.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
