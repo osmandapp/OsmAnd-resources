@@ -614,7 +614,27 @@
 			<apply_if nightMode="true" attrColorValue="#999999"/>
 		</case>
 	</renderingAttribute>
-	
+
+	<renderingAttribute name="mainHighwayOnewayArrowsColor">
+		<case roadStyle="highContrastRoads" attrColorValue="#000000"/>
+		<case roadStyle="orange" attrColorValue="#000000"/>
+		<case attrColorValue="#3a3e9c">
+			<apply_if nightMode="true" attrColorValue="#000000"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="trackPathHighwayOnewayArrowsColor">
+		<case roadStyle="highContrastRoads" attrColorValue="#000000">
+			<apply_if nightMode="true" attrColorValue="#dddddd"/>
+		</case>
+		<case roadStyle="orange" attrColorValue="#000000"/>
+		<case attrColorValue="#3a3e9c">
+			<apply_if nightMode="true" attrColorValue="#dddddd"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="waterwayArrowsColor">
+		<case attrColorValue="#6286ff"/>
+	</renderingAttribute>
+
 	<!-- NOTE: Switch still needed here to align construction and proposed colors between germanRoadatlas and Touring view -->
 	<renderingConstant name="constructionRoadColor" value="#79a8fd"/>
 	<renderingConstant name="constructionRoadColor2" value="#ffffff"/>
@@ -6783,6 +6803,7 @@
 					<case maxzoom="18" strokeWidth="5:5" strokeWidth_0="5:5" pathEffect="7_12" strokeWidth__1="5.7:6.7"/>
 					<case minzoom="19" strokeWidth="6:6" strokeWidth_0="6:6" pathEffect="7_12" strokeWidth__1="6.8:7.7"/>
 				</apply_if>
+				<apply onewayArrowsColor="$mainHighwayOnewayArrowsColor"/>
 				<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
 					<apply_if additional="oneway=yes" pathIcon="oneway_blue_big" pathIconStep="70"/>
 					<apply_if additional="oneway=-1" pathIcon="oneway_blue_reverse_big" pathIconStep="70"/>
@@ -7001,6 +7022,7 @@
 						</apply_if>
 					</apply>
 				</switch>
+				<apply onewayArrowsColor="$mainHighwayOnewayArrowsColor"/>
 
 				<!-- Assign strokeWidth and pathEffect for surface, smoothness and access -->
 				<apply_if moreDetailed="true" minzoom="14" maxzoom="14" strokeWidth_2="1:1" strokeWidth_3="1:1"/>
@@ -7167,6 +7189,7 @@
 						<apply_if nightMode="true" color__1="#ffffff" color_0="#000000"/>
 					</apply_if>
 				</switch>
+				<apply onewayArrowsColor="$trackPathHighwayOnewayArrowsColor"/>
 				<!-- Assign strokeWidth and pathEffect for surface, smoothness and access -->
 				<apply_if moreDetailed="true" minzoom="14" maxzoom="14" strokeWidth_2="3:3" strokeWidth_3="3:3"/>
 				<apply_if minzoom="15" maxzoom="15" strokeWidth_2="3:3" strokeWidth_3="3:3"/>
@@ -7582,6 +7605,7 @@
 				<case maxzoom="17" pathEffect="9_5.5"/>
 				<case minzoom="18" pathEffect="12_7"/>
 			</apply_if>
+			<apply onewayArrowsColor="$waterwayArrowsColor"/>
 			<!-- Waterway color -->
 			<apply color="$waterColor" color_2="#ffffff">
 				<apply_if nightMode="true" color_2="#7340D9"/>

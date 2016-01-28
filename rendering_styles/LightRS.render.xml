@@ -129,6 +129,15 @@
 	<renderingConstant name="trackDayColor" value="#555555"/>
 	<renderingConstant name="trackNightColor" value="#665555"/>
 
+	<renderingAttribute name="mainHighwayOnewayArrowsColor">
+		<case attrColorValue="#ffffff"/>
+	</renderingAttribute>
+	<renderingAttribute name="trackPathHighwayOnewayArrowsColor">
+		<case attrColorValue="#441383">
+			<apply_if nightMode="true" attrColorValue="#dddddd"/>
+		</case>
+	</renderingAttribute>
+
 	<renderingAttribute name="nonMotoVehicleRoadColor">
 		<case nightMode="true" attrColorValue="#783B11"/>
 		<case attrColorValue="#9191EC"/> <!--bd5007-->
@@ -2027,6 +2036,7 @@
 					<apply additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
 				</apply_if>
 			</switch>
+			<apply onewayArrowsColor="$mainHighwayOnewayArrowsColor"/>
 		</switch>
 
 		<switch>
@@ -2039,6 +2049,7 @@
 				<case maxzoom="17" strokeWidth="3" pathEffect="11_5.5"/>
 				<case minzoom="18" strokeWidth="5" pathEffect="15_7.5"/>
 			</case>
+			<apply onewayArrowsColor="$trackPathHighwayOnewayArrowsColor"/>
 			<apply_if hideWoodScrubs="false" color="$trackDayColor"/>
 			<apply_if nightMode="true" color="$trackNightColor" shadowRadius="0"/>
 			<apply_if additional="bridge=yes" minzoom="15" color__1="#333333" color_0="#ffffff">
@@ -2077,6 +2088,7 @@
 						<case minzoom="18" strokeWidth="17"/>
 					</apply_if>
 				</apply>
+				<apply onewayArrowsColor="$mainHighwayOnewayArrowsColor"/>
 				<apply_if additional="tunnel=yes" pathEffect="4_4" cap="BUTT"/>
 				<apply_if additional="bridge=yes" minzoom="14" color_0="$bridgeDayColor" cap="SQUARE" cap_0="BUTT">
 					<case maxzoom="14" strokeWidth_0="4:2"/>
@@ -2153,6 +2165,7 @@
 					</case>
 				</apply_if>
 				<apply color="$nonMotoVehicleRoadColor"/>
+				<apply onewayArrowsColor="$trackPathHighwayOnewayArrowsColor"/>
 				<apply_if hideAccess="false" additional="access=no" disable="true"/>
 				<apply_if hideAccess="false" additional="access=private" disable="true"/>
 			</switch>
