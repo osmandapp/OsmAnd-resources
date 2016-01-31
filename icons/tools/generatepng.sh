@@ -104,6 +104,7 @@ generatePngs() {
 
        generateElements 'shaders'
        generateElements 'shields'
+       generateElements 'road_shields'
        generateElements 'osmc_bg'
 
        generatePngs 'osmc_black' '#777777' '#777777' '' '' '' nomx
