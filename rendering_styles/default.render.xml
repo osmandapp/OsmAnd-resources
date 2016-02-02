@@ -2503,8 +2503,9 @@
 						</switch>
 					</apply>
 				</switch>
-
-				<switch OSMMapperAssistant="true">
+				
+				<!-- Highway refs -->
+				<switch>
 					<case tag="highway" value="motorway"/>
 					<case tag="highway" value="motorway_link"/>
 					<case tag="highway" value="trunk"/>
@@ -2578,7 +2579,7 @@
 									<case additional="road_modifier10=truck" icon="us_truck_icon_shield"/>
 									<case additional="road_modifier10=alternate" icon="us_alt_icon_shield"/>
 								</case>
-								<apply textColor="#ffffff" textSize="13" textBold="true" textMinDistance="0">
+								<apply textColor="#ffffff" textSize="13" textBold="true" textMinDistance="30">
 									<case textLength="1" textShield="us_interstate_shield"/>
 									<case textLength="2" textShield="us_interstate_shield"/>
 									<case textLength="3" textShield="us_interstate_wide_shield"/>
@@ -2672,7 +2673,7 @@
 									<case textLength="2" textShield="us_us_shield"/>
 									<case textLength="3" textShield="us_us_wide_shield"/>
 								</apply>
-								<apply textColor="#404040" textSize="13" textBold="true" textMinDistance="0"/>
+								<apply textColor="#404040" textSize="13" textBold="true" textMinDistance="30"/>
 							</switch>
 						</apply>
 						<apply>
@@ -2757,104 +2758,206 @@
 									<case additional="road_modifier10=bypass" icon="us_state_bypass_icon_shield"/>
 									<case additional="road_modifier10=connector" icon="us_state_connector_icon_shield"/>
 								</case>
-								<apply textColor="#404040" textSize="13" textBold="true" textMinDistance="0">
+								<apply textColor="#404040" textSize="13" textBold="true" textMinDistance="30">
 									<case textLength="1" textShield="us_state_shield"/>
 									<case textLength="2" textShield="us_state_shield"/>
 									<case textLength="3" textShield="us_state_wide_shield"/>
 								</apply>
 							</switch>
 						</apply>
+						<apply>
+							<switch>
+								<case additional="road_network1=e-road" nameTag="road_ref1" textOrder="11"/>
+								<case additional="road_network1=e-road" nameTag="road_ref2" textOrder="11"/>
+								<case additional="road_network1=e-road" nameTag="road_ref3" textOrder="11"/>
+								<case additional="road_network1=e-road" nameTag="road_ref4" textOrder="11"/>
+								<case additional="road_network1=e-road" nameTag="road_ref5" textOrder="11"/>
+								<apply textColor="#ffffff" textSize="13" textBold="true" textMinDistance="30">
+									<case textLength="1" textShield="green_square_road_shield"/>
+									<case textLength="2" textShield="green_square_road_shield"/>
+									<case textLength="3" textShield="green_square_wide_road_shield"/>
+									<case textLength="4" textShield="green_square_wide_road_shield"/>
+									<case textLength="5" textShield="green_square_wide_road_shield"/>
+								</apply>
+							</switch>
+						</apply>
 					</apply>
+					<apply_if nameTag="ref"> <!-- Old shields -->
+						<switch tag="highway" value="motorway" minzoom="8">
+							<case additional="region_name=gb">
+								<apply textColor="#ffffff" textSize="13" textBold="true" textMinDistance="30">
+									<case textLength="1" textShield="blue_square_narrow_road_shield"/>
+									<case textLength="2" textShield="blue_square_road_shield"/>
+									<case textLength="3" textShield="blue_square_road_shield"/>
+									<case textLength="4" textShield="blue_square_wide_road_shield"/>
+									<case textLength="5" textShield="blue_square_wide_road_shield"/>
+								</apply>
+							</case>
+							<case textMinDistance="150" textColor="#ffffff" textSize="12" textBold="true" textOrder="49">
+								<case textLength="1" textShield="mot_shield1"/>
+								<case textLength="2" textShield="mot_shield2"/>
+								<case textLength="3" textShield="mot_shield3"/>
+								<case textLength="4" textShield="mot_shield4"/>
+								<case textLength="5" textShield="mot_shield5"/>
+								<case textLength="6" textShield="mot_shield6"/>
+								<case textLength="7" textShield="mot_shield7"/>
+								<case textLength="8" textShield="mot_shield8"/>
+								<case textLength="9" textShield="mot_shield9"/>
+								<case textLength="10" textShield="mot_shield10"/>
+								<case textLength="11" textShield="mot_shield11"/>
+								<case textLength="12" textShield="mot_shield12"/>
+								<case textColor="#ffffff" textHaloColor="#6883e7" textHaloRadius="4"/>
+							</case>
+						</switch>
+						<case minzoom="8" tag="highway" value="trunk" textMinDistance="150" textColor="#ffffff" textSize="12" textBold="true" textOrder="52">
+							<case textLength="1" textShield="tru_shield1"/>
+							<case textLength="2" textShield="tru_shield2"/>
+							<case textLength="3" textShield="tru_shield3"/>
+							<case textLength="4" textShield="tru_shield4"/>
+							<case textLength="5" textShield="tru_shield5"/>
+							<case textLength="6" textShield="tru_shield6"/>
+							<case textLength="7" textShield="tru_shield7"/>
+							<case textLength="8" textShield="tru_shield8"/>
+							<case textLength="9" textShield="tru_shield9"/>
+							<case textLength="10" textShield="tru_shield10"/>
+							<case textLength="11" textShield="tru_shield11"/>
+							<case textLength="12" textShield="tru_shield12"/>
+							<case textColor="#ffffff" textHaloColor="#e7687d" textHaloRadius="4"/>
+						</case>
+						<case minzoom="10" tag="highway" value="primary" textMinDistance="150" textColor="#ffffff" textSize="12" textBold="true" textOrder="55">
+							<case textLength="1" textShield="pri_shield1"/>
+							<case textLength="2" textShield="pri_shield2"/>
+							<case textLength="3" textShield="pri_shield3"/>
+							<case textLength="4" textShield="pri_shield4"/>
+							<case textLength="5" textShield="pri_shield5"/>
+							<case textLength="6" textShield="pri_shield6"/>
+							<case textLength="7" textShield="pri_shield7"/>
+							<case textLength="8" textShield="pri_shield8"/>
+							<case textLength="9" textShield="pri_shield9"/>
+							<case textLength="10" textShield="pri_shield10"/>
+							<case textLength="11" textShield="pri_shield11"/>
+							<case textLength="12" textShield="pri_shield12"/>
+							<case textColor="#ffffff" textHaloColor="#e79268" textHaloRadius="4"/>
+						</case>
+						<case minzoom="12" tag="highway" value="secondary" textMinDistance="150" textColor="#000000" textSize="12" textBold="true" textOrder="59">
+							<case textLength="1" textShield="sec_shield1"/>
+							<case textLength="2" textShield="sec_shield2"/>
+							<case textLength="3" textShield="sec_shield3"/>
+							<case textLength="4" textShield="sec_shield4"/>
+							<case textLength="5" textShield="sec_shield5"/>
+							<case textLength="6" textShield="sec_shield6"/>
+							<case textLength="7" textShield="sec_shield7"/>
+							<case textLength="8" textShield="sec_shield8"/>
+							<case textLength="9" textShield="sec_shield9"/>
+							<case textLength="10" textShield="sec_shield10"/>
+							<case textLength="11" textShield="sec_shield11"/>
+							<case textLength="12" textShield="sec_shield12"/>
+							<case textColor="#ffffff" textHaloColor="#e7b868" textHaloRadius="4"/>
+						</case>
+						<case minzoom="13" tag="highway" value="tertiary" textShield="ter_shield12" textMinDistance="150" textColor="#000000" textSize="12" textBold="true" textOrder="93">
+							<case textLength="1" textShield="ter_shield1"/>
+							<case textLength="2" textShield="ter_shield2"/>
+							<case textLength="3" textShield="ter_shield3"/>
+							<case textLength="4" textShield="ter_shield4"/>
+							<case textLength="5" textShield="ter_shield5"/>
+							<case textLength="6" textShield="ter_shield6"/>
+							<case textLength="7" textShield="ter_shield7"/>
+							<case textLength="8" textShield="ter_shield8"/>
+							<case textLength="9" textShield="ter_shield9"/>
+							<case textLength="10" textShield="ter_shield10"/>
+							<case textLength="11" textShield="ter_shield11"/>
+						</case>
+						<case minzoom="14" tag="highway" value="unclassified" textMinDistance="150" textColor="#000000" textSize="12" textBold="true" textOrder="119">
+							<case textLength="1" textShield="unc_shield1"/>
+							<case textLength="2" textShield="unc_shield2"/>
+							<case textLength="3" textShield="unc_shield3"/>
+							<case textLength="4" textShield="unc_shield4"/>
+							<case textLength="5" textShield="unc_shield5"/>
+							<case textLength="6" textShield="unc_shield6"/>
+							<case textLength="7" textShield="unc_shield7"/>
+							<case textLength="8" textShield="unc_shield8"/>
+							<case textLength="9" textShield="unc_shield9"/>
+							<case textLength="10" textShield="unc_shield10"/>
+							<case textLength="11" textShield="unc_shield11"/>
+							<case textLength="12" textShield="unc_shield12"/>
+							<case textColor="#ffffff" textHaloColor="#d8d8d8" textHaloRadius="4"/>
+						</case>
+						<apply>
+							<case additional="region_name=gb">
+								<case additional="road_class=a" textColor="#ffc737" textSize="13" textBold="true" textMinDistance="30">
+									<case textLength="1" textShield="green_square_narrow_road_shield"/>
+									<case textLength="2" textShield="green_square_road_shield"/>
+									<case textLength="3" textShield="green_square_road_shield"/>
+									<case textLength="4" textShield="green_square_wide_road_shield"/>
+									<case textLength="5" textShield="green_square_wide_road_shield"/>
+								</case>
+								<case additional="road_class=b" textColor="#404040" textSize="13" textBold="true" textMinDistance="30">
+									<case textLength="1" textShield="white_square_road_shield"/>
+									<case textLength="2" textShield="white_square_road_shield"/>
+									<case textLength="3" textShield="white_square_road_shield"/>
+									<case textLength="4" textShield="white_square_wide_road_shield"/>
+									<case textLength="5" textShield="white_square_wide_road_shield"/>
+								</case>
+							</case>
+							<case additional="region_name=ireland">
+								<case additional="road_class=n" textColor="#ffc737" textSize="13" textBold="true" textMinDistance="30">
+									<case textLength="1" textShield="green_square_narrow_road_shield"/>
+									<case textLength="2" textShield="green_square_road_shield"/>
+									<case textLength="3" textShield="green_square_road_shield"/>
+									<case textLength="4" textShield="green_square_wide_road_shield"/>
+									<case textLength="5" textShield="green_square_wide_road_shield"/>
+								</case>
+								<switch>
+									<case additional="road_class=r"/>
+									<case additional="road_class=l"/>
+									<apply textColor="#404040" textSize="13" textBold="true" textMinDistance="30">
+										<case textLength="1" textShield="white_square_narrow_road_shield"/>
+										<case textLength="2" textShield="white_square_road_shield"/>
+										<case textLength="3" textShield="white_square_road_shield"/>
+										<case textLength="4" textShield="white_square_wide_road_shield"/>
+										<case textLength="5" textShield="white_square_wide_road_shield"/>
+									</apply>
+								</switch>
+							</case>
+							<case additional="region_name=iceland">
+								<apply textColor="#404040" textSize="13" textBold="true" textMinDistance="30">
+									<case textLength="1" textShield="white_square_narrow_road_shield"/>
+									<case textLength="2" textShield="white_square_road_shield"/>
+									<case textLength="3" textShield="white_square_road_shield"/>
+									<case textLength="4" textShield="white_square_wide_road_shield"/>
+									<case textLength="5" textShield="white_square_wide_road_shield"/>
+								</apply>
+							</case>
+							<case additional="region_name=france">
+								<switch>
+									<case additional="road_class=a"/>
+									<case additional="road_class=n"/>
+									<apply textColor="#ffffff" textSize="13" textBold="true" textMinDistance="30">
+										<case textLength="1" textShield="red_square_narrow_road_shield"/>
+										<case textLength="2" textShield="red_square_road_shield"/>
+										<case textLength="3" textShield="red_square_road_shield"/>
+										<case textLength="4" textShield="red_square_wide_road_shield"/>
+										<case textLength="5" textShield="red_square_wide_road_shield"/>
+									</apply>
+								</switch>
+								<case additional="road_class=d" textColor="#404040" textSize="13" textBold="true" textMinDistance="30">
+									<case textLength="1" textShield="yellow_square_narrow_road_shield"/>
+									<case textLength="2" textShield="yellow_square_road_shield"/>
+									<case textLength="3" textShield="yellow_square_road_shield"/>
+									<case textLength="4" textShield="yellow_square_wide_road_shield"/>
+									<case textLength="5" textShield="yellow_square_wide_road_shield"/>
+								</case>
+								<case additional="road_class=c" textColor="#404040" textSize="13" textBold="true" textMinDistance="30">
+									<case textLength="1" textShield="white_square_narrow_road_shield"/>
+									<case textLength="2" textShield="white_square_road_shield"/>
+									<case textLength="3" textShield="white_square_road_shield"/>
+									<case textLength="4" textShield="white_square_wide_road_shield"/>
+									<case textLength="5" textShield="white_square_wide_road_shield"/>
+								</case>
+							</case>
+						</apply>
+					</apply_if>
 				</switch>
-				<!-- Highway refs -->
-				<switch minzoom="8" tag="highway" value="motorway" nameTag="ref" textMinDistance="150" textColor="#ffffff" textSize="12" textBold="true" textOrder="49">
-					<case textLength="1" textShield="mot_shield1"/>
-					<case textLength="2" textShield="mot_shield2"/>
-					<case textLength="3" textShield="mot_shield3"/>
-					<case textLength="4" textShield="mot_shield4"/>
-					<case textLength="5" textShield="mot_shield5"/>
-					<case textLength="6" textShield="mot_shield6"/>
-					<case textLength="7" textShield="mot_shield7"/>
-					<case textLength="8" textShield="mot_shield8"/>
-					<case textLength="9" textShield="mot_shield9"/>
-					<case textLength="10" textShield="mot_shield10"/>
-					<case textLength="11" textShield="mot_shield11"/>
-					<case textLength="12" textShield="mot_shield12"/>
-					<case textColor="#ffffff" textHaloColor="#6883e7" textHaloRadius="4"/>
-				</switch>
-				<case minzoom="8" tag="highway" value="trunk" nameTag="ref" textMinDistance="150" textColor="#ffffff" textSize="12" textBold="true" textOrder="52">
-					<case textLength="1" textShield="tru_shield1"/>
-					<case textLength="2" textShield="tru_shield2"/>
-					<case textLength="3" textShield="tru_shield3"/>
-					<case textLength="4" textShield="tru_shield4"/>
-					<case textLength="5" textShield="tru_shield5"/>
-					<case textLength="6" textShield="tru_shield6"/>
-					<case textLength="7" textShield="tru_shield7"/>
-					<case textLength="8" textShield="tru_shield8"/>
-					<case textLength="9" textShield="tru_shield9"/>
-					<case textLength="10" textShield="tru_shield10"/>
-					<case textLength="11" textShield="tru_shield11"/>
-					<case textLength="12" textShield="tru_shield12"/>
-					<case textColor="#ffffff" textHaloColor="#e7687d" textHaloRadius="4"/>
-				</case>
-				<case minzoom="10" tag="highway" value="primary" nameTag="ref" textMinDistance="150" textColor="#ffffff" textSize="12" textBold="true" textOrder="55">
-					<case textLength="1" textShield="pri_shield1"/>
-					<case textLength="2" textShield="pri_shield2"/>
-					<case textLength="3" textShield="pri_shield3"/>
-					<case textLength="4" textShield="pri_shield4"/>
-					<case textLength="5" textShield="pri_shield5"/>
-					<case textLength="6" textShield="pri_shield6"/>
-					<case textLength="7" textShield="pri_shield7"/>
-					<case textLength="8" textShield="pri_shield8"/>
-					<case textLength="9" textShield="pri_shield9"/>
-					<case textLength="10" textShield="pri_shield10"/>
-					<case textLength="11" textShield="pri_shield11"/>
-					<case textLength="12" textShield="pri_shield12"/>
-					<case textColor="#ffffff" textHaloColor="#e79268" textHaloRadius="4"/>
-				</case>
-				<case minzoom="12" tag="highway" value="secondary" nameTag="ref" textMinDistance="150" textColor="#000000" textSize="12" textBold="true" textOrder="59">
-					<case textLength="1" textShield="sec_shield1"/>
-					<case textLength="2" textShield="sec_shield2"/>
-					<case textLength="3" textShield="sec_shield3"/>
-					<case textLength="4" textShield="sec_shield4"/>
-					<case textLength="5" textShield="sec_shield5"/>
-					<case textLength="6" textShield="sec_shield6"/>
-					<case textLength="7" textShield="sec_shield7"/>
-					<case textLength="8" textShield="sec_shield8"/>
-					<case textLength="9" textShield="sec_shield9"/>
-					<case textLength="10" textShield="sec_shield10"/>
-					<case textLength="11" textShield="sec_shield11"/>
-					<case textLength="12" textShield="sec_shield12"/>
-					<case textColor="#ffffff" textHaloColor="#e7b868" textHaloRadius="4"/>
-				</case>
-				<case minzoom="13" tag="highway" value="tertiary" nameTag="ref" textShield="ter_shield12" textMinDistance="150" textColor="#000000" textSize="12" textBold="true" textOrder="93">
-					<case textLength="1" textShield="ter_shield1"/>
-					<case textLength="2" textShield="ter_shield2"/>
-					<case textLength="3" textShield="ter_shield3"/>
-					<case textLength="4" textShield="ter_shield4"/>
-					<case textLength="5" textShield="ter_shield5"/>
-					<case textLength="6" textShield="ter_shield6"/>
-					<case textLength="7" textShield="ter_shield7"/>
-					<case textLength="8" textShield="ter_shield8"/>
-					<case textLength="9" textShield="ter_shield9"/>
-					<case textLength="10" textShield="ter_shield10"/>
-					<case textLength="11" textShield="ter_shield11"/>
-				</case>
-				<case minzoom="14" tag="highway" value="unclassified" nameTag="ref" textMinDistance="150" textColor="#000000" textSize="12" textBold="true" textOrder="119">
-					<case textLength="1" textShield="unc_shield1"/>
-					<case textLength="2" textShield="unc_shield2"/>
-					<case textLength="3" textShield="unc_shield3"/>
-					<case textLength="4" textShield="unc_shield4"/>
-					<case textLength="5" textShield="unc_shield5"/>
-					<case textLength="6" textShield="unc_shield6"/>
-					<case textLength="7" textShield="unc_shield7"/>
-					<case textLength="8" textShield="unc_shield8"/>
-					<case textLength="9" textShield="unc_shield9"/>
-					<case textLength="10" textShield="unc_shield10"/>
-					<case textLength="11" textShield="unc_shield11"/>
-					<case textLength="12" textShield="unc_shield12"/>
-					<case textColor="#ffffff" textHaloColor="#d8d8d8" textHaloRadius="4"/>
-				</case>
 				<!-- Highway text -->
 				<switch textHaloRadius="$textHaloRadiusDay" textOnPath="true" nameTag="">
 					<case tag="highway_construction" value="motorway" textColor="$motorwayTextColor" textHaloColor="$motorwayRoadColor" textOrder="60"/> <!-- For compatibility with <2.2 -->
