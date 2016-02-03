@@ -123,7 +123,7 @@ string('back_on_route.ogg', 'retornou ao percurso').
 string('exceed_limit.ogg', 'a exceder o limite de velocidade ').
 
 % STREET NAME GRAMMAR
-string('onto.ogg', 'em direção a ').
+string('onto.ogg', 'para ').
 string('on.ogg', 'na ').
 string('to.ogg', 'para ').
 string('toward.ogg', 'em direção a ').
