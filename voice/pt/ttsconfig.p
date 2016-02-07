@@ -113,7 +113,7 @@ string('attention.ogg', 'atenção! ').
 string('speed_camera.ogg', 'radar ').
 string('border_control.ogg', 'alfândega ').
 string('traffic_calming.ogg', 'obstáculo ').
-string('toll_booth.ogg', 'pedágio ').
+string('toll_booth.ogg', 'portagem ').
 string('stop.ogg', 'pare ').
 
 string('location_lost.ogg', 'sem sinal g p s ').
