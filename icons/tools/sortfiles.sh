@@ -79,6 +79,7 @@ mycpname grassland landuse_grassland.png
 mycpname greenfield landuse_greenfield.png
 mycpname brownfield landuse_brownfield.png
 mycpname protected_area landuse_protected_area.png
+mycpname plant_nursery landuse_plant_nursery.png
 
 mycp stroke black functional-icons_black_stroke.png
 mycp stroke darkgreen functional-icons_darkgreen_stroke.png
