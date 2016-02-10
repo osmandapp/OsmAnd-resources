@@ -114,12 +114,14 @@
 		type="boolean" possibleValues="" category="hide"/>
 
 	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show cycle routes (*cn_networks) in bicycle mode" type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="showMtbRoutes" name="Show MTB routes" description="Show mountain bike routes (*cn_networks) in bicycle mode" type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="hikingRoutesOSMC" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces"
 		type="string" possibleValues="walkingRoutesOSMC,walkingRoutesScopeOSMC" defaultValueDescription="disabled" category="routes"/>
 	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
 		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="horseRoutes" name="Horse routes" description="Horse routes"
 		type="boolean" possibleValues="" category="routes"/>
+
 	<renderingProperty attr="roadStyle" name="Road style" description="Road style"
 		type="string" possibleValues="orange,germanRoadAtlas,americanRoadAtlas,highContrastRoads,boldOutline" defaultValueDescription="default"/>
 
@@ -745,54 +747,79 @@
 			<apply_if nightMode="true" attrColorValue="#0000ff"/>
 		</case>
 	</renderingAttribute>
+	<renderingAttribute name="mtbRouteTextColor">
+		<case attrColorValue="#7000ff">
+			<apply_if nightMode="true" attrColorValue="#7000ff"/>
+		</case>
+	</renderingAttribute>
 	<renderingAttribute name="cycleRouteColor">
 		<case attrColorValue="#80ff940a">
 			<apply_if nightMode="true" attrColorValue="#90ff940a"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteMtbScale0Color">
-		<case engine_v1="true" attrColorValue="#7700ff00">
-			<apply_if nightMode="true" attrColorValue="#6600ff00"/>
+		<case attrColorValue="#0fed27">
+			<apply_if nightMode="true" attrColorValue="#007d10"/>
 		</case>
-		<case attrColorValue="#5500ff00">
-			<apply_if nightMode="true" attrColorValue="#6600ff00"/>
+	</renderingAttribute>
+	<renderingAttribute name="cycleRouteMtbScale0UnrecommendedColor">
+		<case attrColorValue="#777bf373">
+			<apply_if nightMode="true" attrColorValue="#55007d10"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteMtbScale1Color">
-		<case engine_v1="true" attrColorValue="#550000ff">
-			<apply_if nightMode="true" attrColorValue="#990000ff"/>
+		<case attrColorValue="#6a8cf2">
+			<apply_if nightMode="true" attrColorValue="#000cad"/>
 		</case>
-		<case attrColorValue="#440000ff">
-			<apply_if nightMode="true" attrColorValue="#770000ff"/>
+	</renderingAttribute>
+	<renderingAttribute name="cycleRouteMtbScale1UnrecommendedColor">
+		<case attrColorValue="#669c9aef">
+			<apply_if nightMode="true" attrColorValue="#55000cad"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteMtbScale2Color">
-		<case engine_v1="true" attrColorValue="#85ff0000">
-			<apply_if nightMode="true" attrColorValue="#85ff0000"/>
+		<case attrColorValue="#df4b4b">
+			<apply_if nightMode="true" attrColorValue="#841010"/>
 		</case>
-		<case attrColorValue="#85ff0000">
-			<apply_if nightMode="true" attrColorValue="#85ff0000"/>
+	</renderingAttribute>
+	<renderingAttribute name="cycleRouteMtbScale2UnrecommendedColor">
+		<case attrColorValue="#66f76d6b">
+			<apply_if nightMode="true" attrColorValue="#77841010"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteMtbScale3Color">
-		<case engine_v1="true" attrColorValue="#66000000">
-			<apply_if nightMode="true" attrColorValue="#dd585858"/>
+		<case attrColorValue="#8c8a84">
+			<apply_if nightMode="true" attrColorValue="#4a5152"/>
 		</case>
-		<case attrColorValue="#44000000">
-			<apply_if nightMode="true" attrColorValue="#cc585858"/>
+	</renderingAttribute>
+	<renderingAttribute name="cycleRouteMtbScale3UnrecommendedColor">
+		<case attrColorValue="#558c8a84">
+			<apply_if nightMode="true" attrColorValue="#774a5152"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteMtbScale4Color">
-		<case engine_v1="true" attrColorValue="#66000000">
-			<apply_if nightMode="true" attrColorValue="#bb585858"/>
-		</case>
-		<case attrColorValue="#44000000">
-			<apply_if nightMode="true" attrColorValue="#aa585858"/>
+		<case attrColorValue="#8c8a84">
+			<apply_if nightMode="true" attrColorValue="#4a5152"/>
 		</case>
 	</renderingAttribute>
-	<renderingAttribute name="cycleRouteMtbScale4ColorAdditional">
+	<renderingAttribute name="cycleRouteMtbScale4UnrecommendedColor">
+		<case attrColorValue="#558c8a84">
+			<apply_if nightMode="true" attrColorValue="#774a5152"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="cycleRouteMtbScale4AdditionalColor">
 		<case attrColorValue="#bbffd518">
 			<apply_if nightMode="true" attrColorValue="#aaffd518"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="cycleRouteMtbScale4AdditionalUnrecommendedColor">
+		<case attrColorValue="#99ffd518">
+			<apply_if nightMode="true" attrColorValue="#55ffd518"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="classBicycleMtbColor">
+		<case attrColorValue="#aaffe05b">
+			<apply_if nightMode="true" attrColorValue="#88ffd518"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="osmcBlackColor">
@@ -1927,8 +1954,8 @@
 			<case tag="route_train" value="" order="101"/>
 			<case tag="route_tram" value="" order="100"/>
 			<case tag="route_trolleybus" value="" order="101"/>
-			<case tag="route" value="bicycle" order="128"/>
-			<case tag="route" value="mtb" order="127"/>
+			<case tag="route_bicycle" value="" order="128"/>
+			<case tag="route_mtb" value="" order="60"/>
 
 			<case layer="1" tag="railway" value="" order="88"/>
 			<case tag="railway" value="station"/>
@@ -2060,6 +2087,7 @@
 
 			<case tag="highway" value="track" order="37">
 				<apply_if appMode="pedestrian" order="60"/>
+				<apply_if appMode="bicycle" order="61"/>
 				<apply_if layer="1" order="90"/>
 			</case>
 			<case tag="highway" value="cycleway" order="39">
@@ -3764,14 +3792,14 @@
 			</case>
 
 			<!-- Cycling: texts for the cycle networks -->
-			<switch appMode="bicycle" minzoom="10" textHaloColor="#ddffffff" textWrapWidth="28">
+			<switch appMode="bicycle" minzoom="10" textHaloColor="#ddffffff" textHaloRadius="$textHaloRadiusDay" textWrapWidth="28">
 				<!-- routes -->
-				<case tag="route" value="bicycle" nameTag="bicycle_ref" nameTag2="bicycle_name" textOrder="1"/>
-				<case tag="route" value="bicycle" nameTag="bicycle_name" textOrder="1"/>
-				<case tag="route" value="bicycle" nameTag="mtb:name" textOrder="1"/>
-				<case tag="route" value="mtb" nameTag="mtb_ref" nameTag2="mtb:name" textOrder="1"/>
-				<case tag="route" value="mtb" nameTag="mtb:name" textOrder="1"/>
-				<switch showCycleRoutes="true">
+				<case tag="route_bicycle" value="" nameTag="bicycle_ref" nameTag2="bicycle_name" textOrder="43" textColor="$cycleRouteTextColor"/>
+				<case tag="route_bicycle" value="" nameTag="bicycle_name" textOrder="43" textColor="$cycleRouteTextColor"/>
+				<case tag="route_bicycle" value="" nameTag="mtb:name" textOrder="43" textColor="$cycleRouteTextColor"/>
+				<case tag="route_mtb" value="" nameTag="mtb_ref" nameTag2="mtb:name" textOrder="43" textColor="$mtbRouteTextColor"/>
+				<case tag="route_mtb" value="" nameTag="mtb:name" textOrder="43" textColor="$mtbRouteTextColor"/>
+				<switch showCycleRoutes="true" textColor="$cycleRouteTextColor">
 					<case tag="lcn_ref" value="" textOrder="9"/>
 					<case tag="rcn_ref" value="" textOrder="8"/>
 					<case tag="ncn_ref" value="" textOrder="7"/>
@@ -3783,14 +3811,13 @@
 					<case additional="network=ncn" nameTag="ncn_ref" textOnPath="false" textOrder="7"/>
 					<case additional="network=icn" nameTag="icn_ref" textOnPath="false" textOrder="7"/>
 				</apply_if>
-				<apply textHaloRadius="$textHaloRadiusDay">
+				<apply>
 					<case maxzoom="12" textSize="15"/>
 					<case maxzoom="15" textSize="17"/>
 					<case maxzoom="16" textSize="18"/>
 					<case maxzoom="17" textSize="19"/>
 					<case minzoom="18" textSize="23"/>
 				</apply>
-				<apply textColor="$cycleRouteTextColor"/>
 				<apply_if nightMode="true" textHaloColor="#aaffffff"/>
 			</switch>
 
@@ -8465,7 +8492,7 @@
 		</case>
 
 		<switch appMode="bicycle" minzoom="11">
-			<case tag="route" value="bicycle">
+			<case showCycleRoutes="true" tag="route_bicycle" value="">
 				<case maxzoom="11" strokeWidth="2.5:2.5"/>
 				<case maxzoom="12" strokeWidth="3.5:3.5"/>
 				<case maxzoom="13" strokeWidth="4:4"/>
@@ -8476,49 +8503,78 @@
 				<case minzoom="18" strokeWidth="12:12"/>
 				<apply_if minzoom="13" color="$cycleRouteColor" cap="BUTT"/>
 			</case>
-			<case tag="route" value="mtb">
-				<case maxzoom="14" strokeWidth="3:3" strokeWidth_2="3:3"/>
-				<case maxzoom="16" strokeWidth="4:4" strokeWidth_2="4:4"/>
-				<case maxzoom="17" strokeWidth="5:5" strokeWidth_2="5:5"/>
-				<case minzoom="18" strokeWidth="6:6" strokeWidth_2="6:6"/>
+			<case showMtbRoutes="true" tag="route_mtb" value="">
+				<case maxzoom="13" strokeWidth="1.5:1.5" strokeWidth_2="1.5:1.5" strokeWidth__2="3:3"/>
+				<case maxzoom="14" strokeWidth="2:2" strokeWidth_2="2:2" strokeWidth__2="5:5"/>
+				<case maxzoom="16" strokeWidth="3:3" strokeWidth_2="3:3" strokeWidth__2="7:7"/>
+				<case maxzoom="17" strokeWidth="4:4" strokeWidth_2="4:4" strokeWidth__2="9:9"/>
+				<case minzoom="18" strokeWidth="5:5" strokeWidth_2="5:5" strokeWidth__2="12:12"/>
 				<apply_if minzoom="13" color="$cycleRouteColor"/>
 				<apply>
 					<switch>
-						<case additional="mtb:scale=0" color="$cycleRouteMtbScale0Color"/>
-						<case additional="mtb:scale=1" color="$cycleRouteMtbScale1Color"/>
-						<case additional="mtb:scale=2" color="$cycleRouteMtbScale2Color"/>
-						<case additional="mtb:scale=3" color="$cycleRouteMtbScale3Color"/>
-						<case additional="mtb:scale=4" color="$cycleRouteMtbScale4Color" color_2="$cycleRouteMtbScale4ColorAdditional" pathEffect_2="4_17"/>
-						<case additional="mtb:scale=5" color="$cycleRouteMtbScale4Color" color_2="$cycleRouteMtbScale4ColorAdditional" pathEffect_2="4_4_4_15"/>
-						<case additional="mtb:scale=6" color="$cycleRouteMtbScale4Color" color_2="$cycleRouteMtbScale4ColorAdditional" pathEffect_2="12_17"/>
+						<case additional="mtb:scale=0" color="$cycleRouteMtbScale0Color">
+							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale0UnrecommendedColor"/>
+						</case>
+						<case additional="mtb:scale=1" color="$cycleRouteMtbScale1Color">
+							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale1UnrecommendedColor"/>
+						</case>
+						<case additional="mtb:scale=2" color="$cycleRouteMtbScale2Color">
+							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale2UnrecommendedColor"/>
+						</case>
+						<case additional="mtb:scale=3" color="$cycleRouteMtbScale3Color">
+							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale3UnrecommendedColor"/>
+						</case>
+						<case additional="mtb:scale=4" color="$cycleRouteMtbScale4Color" color_2="$cycleRouteMtbScale4AdditionalColor">
+							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale4UnrecommendedColor" color_2="$cycleRouteMtbScale4AdditionalUnrecommendedColor"/>
+							<apply_if maxzoom="14" pathEffect_2="0_16_3_9"/>
+							<apply_if minzoom="15" pathEffect_2="0_28_4_8"/>
+						</case>
+						<case additional="mtb:scale=5" color="$cycleRouteMtbScale4Color" color_2="$cycleRouteMtbScale4AdditionalColor">
+							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale4UnrecommendedColor" color_2="$cycleRouteMtbScale4AdditionalUnrecommendedColor"/>
+							<apply_if maxzoom="14" pathEffect_2="0_16_3_3_3_3"/>
+							<apply_if minzoom="15" pathEffect_2="0_26_4_4_4_2"/>
+						</case>
+						<case additional="mtb:scale=6" color="$cycleRouteMtbScale4Color" color_2="$cycleRouteMtbScale4AdditionalColor">
+							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale4UnrecommendedColor" color_2="$cycleRouteMtbScale4AdditionalUnrecommendedColor"/>
+							<apply_if maxzoom="14" pathEffect_2="0_16_9_3"/>
+							<apply_if minzoom="15" pathEffect_2="0_26_14"/>
+						</case>
 					</switch>
 				</apply>
 				<apply>
 					<switch minzoom="13">
 						<case additional="mtb:scale:uphill=1">
-							<case maxzoom="14" pathEffect_3="2_15"/>
-							<case minzoom="15" pathEffect_3="2_30"/>
+							<case maxzoom="14" pathEffect_3="1_27"/>
+							<case minzoom="15" pathEffect_3="2_38"/>
 						</case>
 						<case additional="mtb:scale:uphill=2">
-							<case maxzoom="14" pathEffect_3="2_2_2_15"/>
-							<case minzoom="15" pathEffect_3="2_2_2_30"/>
+							<case maxzoom="14" pathEffect_3="1_2_1_24"/>
+							<case minzoom="15" pathEffect_3="2_2_2_34"/>
 						</case>
 						<case additional="mtb:scale:uphill=3">
-							<case maxzoom="14" pathEffect_3="2_2_2_2_2_15"/>
+							<case maxzoom="14" pathEffect_3="1_2_1_2_1_21"/>
 							<case minzoom="15" pathEffect_3="2_2_2_2_2_30"/>
 						</case>
 						<case additional="mtb:scale:uphill=4">
-							<case maxzoom="14" pathEffect_3="2_2_2_2_2_2_2_15"/>
-							<case minzoom="15" pathEffect_3="2_2_2_2_2_2_2_30"/>
+							<case maxzoom="14" pathEffect_3="1_2_1_2_1_2_1_18"/>
+							<case minzoom="15" pathEffect_3="2_2_2_2_2_2_2_26"/>
 						</case>
 						<case additional="mtb:scale:uphill=5">
-							<case maxzoom="14" pathEffect_3="2_2_2_2_2_2_2_2_2_15"/>
-							<case minzoom="15" pathEffect_3="2_2_2_2_2_2_2_2_2_30"/>
+							<case maxzoom="14" pathEffect_3="1_2_1_2_1_2_1_2_1_15"/>
+							<case minzoom="15" pathEffect_3="2_2_2_2_2_2_2_2_2_22"/>
 						</case>
-						<apply color_3="#333333">
+						<apply color_3="#000000">
 							<apply_if maxzoom="16" strokeWidth_3="2:2"/>
 							<apply_if minzoom="17" strokeWidth_3="3.5:3.5"/>
 						</apply>
+					</switch>
+				</apply>
+				<apply>
+					<switch minzoom="13">
+						<case additional="class:bicycle:mtb=1"/>
+						<case additional="class:bicycle:mtb=2"/>
+						<case additional="class:bicycle:mtb=3"/>
+						<apply color__2="$classBicycleMtbColor"/>
 					</switch>
 				</apply>
 			</case>
