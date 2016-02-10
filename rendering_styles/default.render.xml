@@ -6834,28 +6834,91 @@
 				<case additional="reef=stone" shader="reef_rock"/>
 				<case nightMode="true" shader="" color="#55555555"/>
 			</case>
-			<case minzoom="6" tag="leisure" value="nature_reserve" shader="nr3" color_2="#6DE783" strokeWidth_2="1:1">
-				<case nightMode="true" shader="nr3_night" color_2="#09821F"/>
-				<apply_if maxzoom="9" strokeWidth_2="0.5"/>
-			</case>
-			<case minzoom="8" tag="boundary" value="protected_area" shader="protected_area">
-				<apply color_2="#4400ae3d">
-					<case maxzoom="13" strokeWidth_2="2:2" pathEffect_2="10_5"/>
-					<case minzoom="14" strokeWidth_2="3.5:3.5" pathEffect_2="13_8"/>
-				</apply>
-			</case>
-
-			<switch minzoom="12">
-				<case tag="landuse" value="quarry" shader="quarry3">
-					<apply_if nightMode="true" shader="quarry3night"/>
+			<switch>
+				<case minzoom="6" tag="leisure" value="nature_reserve" shader="nr3" color_2="#6DE783" strokeWidth_2="1:1">
+					<case nightMode="true" shader="nr3_night" color_2="#09821F"/>
+					<apply_if maxzoom="9" strokeWidth_2="0.5"/>
 				</case>
-				<case tag="abandoned:landuse" value="quarry" shader="quarry3_abandoned">
+				<case minzoom="8" tag="boundary" value="protected_area" shader="protected_area">
+					<apply color_2="#4400ae3d">
+						<case maxzoom="13" strokeWidth_2="2:2" pathEffect_2="10_5"/>
+						<case minzoom="14" strokeWidth_2="3.5:3.5" pathEffect_2="13_8"/>
+					</apply>
+				</case>
+				<switch minzoom="12">
+					<case tag="landuse" value="quarry" shader="quarry3">
+						<apply_if nightMode="true" shader="quarry3night"/>
+					</case>
+					<case tag="abandoned:landuse" value="quarry" shader="quarry3_abandoned">
+						<apply_if nightMode="true" shader="quarry3_abandoned_night"/>
+					</case>
+				</switch>
+				<case minzoom="12" tag="historic" value="quarry" shader="quarry3_abandoned">
 					<apply_if nightMode="true" shader="quarry3_abandoned_night"/>
 				</case>
+				<apply_if showAccess="true" minzoom="13">
+					<switch>
+						<switch appMode="car">
+							<switch>
+								<case additional="vehicle=private"/>
+								<case additional="vehicle=no"/>
+								<case additional="motor_vehicle=private"/>
+								<case additional="motor_vehicle=no"/>
+								<case additional="motorcar=private"/>
+								<case additional="motorcar=no"/>
+								<apply color_2="$accessPrivateColor" cap_2="ROUND"/>
+								<apply_if tag="leisure" value="nature_reserve" shader="nature_reserve_access_no"/>
+								<apply_if tag="boundary" value="protected_area" shader="protected_area_access_no"/>
+								<apply_if tag="landuse" value="quarry" shader="quarry3_access_no">
+									<apply_if nightMode="true" shader="quarry3_access_no_night"/>
+								</apply_if>
+							</switch>
+							<case additional="vehicle=yes"/>
+							<case additional="motor_vehicle=yes"/>
+							<case additional="motorcar=yes"/>
+						</switch>
+						<switch appMode="pedestrian">
+							<switch>
+								<case additional="foot=private" color_2="$accessPrivateColor" cap_2="ROUND"/>
+								<case additional="foot=no" color_2="$accessPrivateColor" cap_2="ROUND"/>
+								<apply_if tag="leisure" value="nature_reserve" shader="nature_reserve_access_no"/>
+								<apply_if tag="boundary" value="protected_area" shader="protected_area_access_no"/>
+								<apply_if tag="landuse" value="quarry" shader="quarry3_access_no">
+									<apply_if nightMode="true" shader="quarry3_access_no_night"/>
+								</apply_if>
+							</switch>
+							<case additional="foot=yes"/>
+						</switch>
+						<switch appMode="bicycle">
+							<switch>
+								<case additional="bicycle=private" color_2="$accessPrivateColor" cap_2="ROUND"/>
+								<case additional="bicycle=no" color_2="$accessPrivateColor" cap_2="ROUND"/>
+								<apply_if tag="leisure" value="nature_reserve" shader="nature_reserve_access_no"/>
+								<apply_if tag="boundary" value="protected_area" shader="protected_area_access_no"/>
+								<apply_if tag="landuse" value="quarry" shader="quarry3_access_no">
+									<apply_if nightMode="true" shader="quarry3_access_no_night"/>
+								</apply_if>
+							</switch>
+							<case additional="bicycle=yes"/>
+						</switch>
+						<switch>
+							<case additional="access=private" color_2="$accessPrivateColor" cap_2="ROUND"/>
+							<case additional="access=no" color_2="$accessPrivateColor" cap_2="ROUND"/>
+							<apply_if tag="leisure" value="nature_reserve" shader="nature_reserve_access_no"/>
+							<apply_if tag="boundary" value="protected_area" shader="protected_area_access_no"/>
+							<apply_if tag="landuse" value="quarry" shader="quarry3_access_no">
+								<apply_if nightMode="true" shader="quarry3_access_no_night"/>
+							</apply_if>
+						</switch>
+						<apply_if maxzoom="14" strokeWidth_2="4" pathEffect_2="1_7"/>
+						<apply_if minzoom="15" maxzoom="15" strokeWidth_2="5.5" pathEffect_2="1_8"/>
+						<apply_if minzoom="16" maxzoom="16" strokeWidth_2="7" pathEffect_2="1_11"/>
+						<apply_if minzoom="17" maxzoom="17" strokeWidth_2="9" pathEffect_2="1_13"/>
+						<apply_if minzoom="18" maxzoom="18" strokeWidth_2="12" pathEffect_2="1_17"/>
+						<apply_if minzoom="19" strokeWidth_2="13" pathEffect_2="1_20"/>
+					</switch>
+				</apply_if>
 			</switch>
-			<case minzoom="12" tag="historic" value="quarry" shader="quarry3_abandoned">
-				<apply_if nightMode="true" shader="quarry3_abandoned_night"/>
-			</case>
 
 			<switch minzoom="10">
 				<case tag="landuse" value="military" shader="danger">
