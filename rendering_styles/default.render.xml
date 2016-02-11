@@ -1099,7 +1099,7 @@
 
 	<renderingConstant name="surfacePavedColor" value="#a7cdf8"/>
 
-	<renderingAttribute name="surfaceColor"> <!-- This attribute is needed because of motorcar=yes,foot=yes,bicycle=yes access types (see showAccess="true" section). After <case motorcar=yes> we need to restore surface color (because access and surface uses the same color_3 line layer). Downside: renderingAttribute can't be used inside another renderingAttribute. Upside: custom surface types can be added via dependent rendering style without too much code copying. -->
+	<renderingAttribute name="surfaceColor"> <!-- This attribute is needed because of motorcar=yes,foot=yes,bicycle=yes access types (see showAccess="true" section). After <case motorcar=yes> we need to restore surface color (because access and surface uses the same color_3 line layer). Downside: renderingAttribute can't be used inside another renderingAttribute. Upside: custom surface types can be added via dependent rendering style without too much copying of code. -->
 		<case additional="surface=unpaved" attrColorValue="$surfaceGroundColor"/>
 		<case additional="surface=sand" attrColorValue="$surfaceSandColor"/>
 		<case additional="surface=grass" attrColorValue="$surfaceGrassColor"/>
@@ -1504,6 +1504,10 @@
 		<case nightMode="true" attrColorValue="#a63f80"/>
 		<case attrColorValue="#be4892"/>
 	</renderingAttribute>
+
+	<renderingConstant name="roadShieldOrder1" value="47"/>
+	<renderingConstant name="roadShieldOrder2" value="48"/>
+	<renderingConstant name="roadShieldDefaultOrder" value="93"/>
 
 
 	<renderingConstant name="null" value="#00000000"/>
@@ -2551,61 +2555,61 @@
 					<apply>
 						<apply>
 							<switch>
-								<case additional="road_network1=us:i" nameTag="road_ref1" textOrder="11">
+								<case additional="road_network1=us:i" nameTag="road_ref1">
 									<case additional="road_modifier1=business" icon="us_interstate_business_wide_shield"/> <!-- these icons will be rendered on the top of the shields, but this simplifies code a lot -->
 									<case additional="road_modifier1=spur" icon="us_spur_icon_shield"/>
 									<case additional="road_modifier1=truck" icon="us_truck_icon_shield"/>
 									<case additional="road_modifier1=alternate" icon="us_alt_icon_shield"/>
 								</case>
-								<case additional="road_network2=us:i" nameTag="road_ref2" textOrder="12">
+								<case additional="road_network2=us:i" nameTag="road_ref2">
 									<case additional="road_modifier2=business" icon="us_interstate_business_wide_shield"/>
 									<case additional="road_modifier2=spur" icon="us_spur_icon_shield"/>
 									<case additional="road_modifier2=truck" icon="us_truck_icon_shield"/>
 									<case additional="road_modifier2=alternate" icon="us_alt_icon_shield"/>
 								</case>
-								<case additional="road_network3=us:i" nameTag="road_ref3" textOrder="13">
+								<case additional="road_network3=us:i" nameTag="road_ref3">
 									<case additional="road_modifier3=business" icon="us_interstate_business_wide_shield"/>
 									<case additional="road_modifier3=spur" icon="us_spur_icon_shield"/>
 									<case additional="road_modifier3=truck" icon="us_truck_icon_shield"/>
 									<case additional="road_modifier3=alternate" icon="us_alt_icon_shield"/>
 								</case>
-								<case additional="road_network4=us:i" nameTag="road_ref4" textOrder="14">
+								<case additional="road_network4=us:i" nameTag="road_ref4">
 									<case additional="road_modifier4=business" icon="us_interstate_business_wide_shield"/>
 									<case additional="road_modifier4=spur" icon="us_spur_icon_shield"/>
 									<case additional="road_modifier4=truck" icon="us_truck_icon_shield"/>
 									<case additional="road_modifier4=alternate" icon="us_alt_icon_shield"/>
 								</case>
-								<case additional="road_network5=us:i" nameTag="road_ref5" textOrder="15">
+								<case additional="road_network5=us:i" nameTag="road_ref5">
 									<case additional="road_modifier5=business" icon="us_interstate_business_wide_shield"/>
 									<case additional="road_modifier5=spur" icon="us_spur_icon_shield"/>
 									<case additional="road_modifier5=truck" icon="us_truck_icon_shield"/>
 									<case additional="road_modifier5=alternate" icon="us_alt_icon_shield"/>
 								</case>
-								<case additional="road_network6=us:i" nameTag="road_ref6" textOrder="16">
+								<case additional="road_network6=us:i" nameTag="road_ref6">
 									<case additional="road_modifier6=business" icon="us_interstate_business_wide_shield"/>
 									<case additional="road_modifier6=spur" icon="us_spur_icon_shield"/>
 									<case additional="road_modifier6=truck" icon="us_truck_icon_shield"/>
 									<case additional="road_modifier6=alternate" icon="us_alt_icon_shield"/>
 								</case>
-								<case additional="road_network7=us:i" nameTag="road_ref7" textOrder="17">
+								<case additional="road_network7=us:i" nameTag="road_ref7">
 									<case additional="road_modifier7=business" icon="us_interstate_business_wide_shield"/>
 									<case additional="road_modifier7=spur" icon="us_spur_icon_shield"/>
 									<case additional="road_modifier7=truck" icon="us_truck_icon_shield"/>
 									<case additional="road_modifier7=alternate" icon="us_alt_icon_shield"/>
 								</case>
-								<case additional="road_network8=us:i" nameTag="road_ref8" textOrder="18">
+								<case additional="road_network8=us:i" nameTag="road_ref8">
 									<case additional="road_modifier8=business" icon="us_interstate_business_wide_shield"/>
 									<case additional="road_modifier8=spur" icon="us_spur_icon_shield"/>
 									<case additional="road_modifier8=truck" icon="us_truck_icon_shield"/>
 									<case additional="road_modifier8=alternate" icon="us_alt_icon_shield"/>
 								</case>
-								<case additional="road_network9=us:i" nameTag="road_ref9" textOrder="19">
+								<case additional="road_network9=us:i" nameTag="road_ref9">
 									<case additional="road_modifier9=business" icon="us_interstate_business_wide_shield"/>
 									<case additional="road_modifier9=spur" icon="us_spur_icon_shield"/>
 									<case additional="road_modifier9=truck" icon="us_truck_icon_shield"/>
 									<case additional="road_modifier9=alternate" icon="us_alt_icon_shield"/>
 								</case>
-								<case additional="road_network10=us:i" nameTag="road_ref10" textOrder="20">
+								<case additional="road_network10=us:i" nameTag="road_ref10">
 									<case additional="road_modifier10=business" icon="us_interstate_business_wide_shield"/>
 									<case additional="road_modifier10=spur" icon="us_spur_icon_shield"/>
 									<case additional="road_modifier10=truck" icon="us_truck_icon_shield"/>
@@ -2617,11 +2621,12 @@
 									<case textLength="3" textShield="us_interstate_wide_shield"/>
 									<case textShield="us_interstate_wide_shield"/>
 								</apply>
+								<apply textOrder="$roadShieldOrder1"/>
 							</switch>
 						</apply>
 						<apply>
 							<switch>
-								<case additional="road_network1=us:us" nameTag="road_ref1" textOrder="11">
+								<case additional="road_network1=us:us" nameTag="road_ref1">
 									<case additional="road_modifier1=business" icon="us_business_icon_shield"/>
 									<case additional="road_modifier1=spur" icon="us_spur_icon_shield"/>
 									<case additional="road_modifier1=truck" icon="us_truck_icon_shield"/>
@@ -2629,7 +2634,7 @@
 									<case additional="road_modifier1=bypass" icon="us_bypass_icon_shield"/>
 									<case additional="road_modifier1=connector" icon="us_connector_icon_shield"/>
 								</case>
-								<case additional="road_network2=us:us" nameTag="road_ref2" textOrder="12">
+								<case additional="road_network2=us:us" nameTag="road_ref2">
 									<case additional="road_modifier2=business" icon="us_business_icon_shield"/>
 									<case additional="road_modifier2=spur" icon="us_spur_icon_shield"/>
 									<case additional="road_modifier2=truck" icon="us_truck_icon_shield"/>
@@ -2637,7 +2642,7 @@
 									<case additional="road_modifier2=bypass" icon="us_bypass_icon_shield"/>
 									<case additional="road_modifier2=connector" icon="us_connector_icon_shield"/>
 								</case>
-								<case additional="road_network3=us:us" nameTag="road_ref3" textOrder="13">
+								<case additional="road_network3=us:us" nameTag="road_ref3">
 									<case additional="road_modifier3=business" icon="us_business_icon_shield"/>
 									<case additional="road_modifier3=spur" icon="us_spur_icon_shield"/>
 									<case additional="road_modifier3=truck" icon="us_truck_icon_shield"/>
@@ -2645,7 +2650,7 @@
 									<case additional="road_modifier3=bypass" icon="us_bypass_icon_shield"/>
 									<case additional="road_modifier3=connector" icon="us_connector_icon_shield"/>
 								</case>
-								<case additional="road_network4=us:us" nameTag="road_ref4" textOrder="14">
+								<case additional="road_network4=us:us" nameTag="road_ref4">
 									<case additional="road_modifier4=business" icon="us_business_icon_shield"/>
 									<case additional="road_modifier4=spur" icon="us_spur_icon_shield"/>
 									<case additional="road_modifier4=truck" icon="us_truck_icon_shield"/>
@@ -2653,7 +2658,7 @@
 									<case additional="road_modifier4=bypass" icon="us_bypass_icon_shield"/>
 									<case additional="road_modifier4=connector" icon="us_connector_icon_shield"/>
 								</case>
-								<case additional="road_network5=us:us" nameTag="road_ref5" textOrder="15">
+								<case additional="road_network5=us:us" nameTag="road_ref5">
 									<case additional="road_modifier5=business" icon="us_business_icon_shield"/>
 									<case additional="road_modifier5=spur" icon="us_spur_icon_shield"/>
 									<case additional="road_modifier5=truck" icon="us_truck_icon_shield"/>
@@ -2661,7 +2666,7 @@
 									<case additional="road_modifier5=bypass" icon="us_bypass_icon_shield"/>
 									<case additional="road_modifier5=connector" icon="us_connector_icon_shield"/>
 								</case>
-								<case additional="road_network6=us:us" nameTag="road_ref6" textOrder="16">
+								<case additional="road_network6=us:us" nameTag="road_ref6">
 									<case additional="road_modifier6=business" icon="us_business_icon_shield"/>
 									<case additional="road_modifier6=spur" icon="us_spur_icon_shield"/>
 									<case additional="road_modifier6=truck" icon="us_truck_icon_shield"/>
@@ -2669,7 +2674,7 @@
 									<case additional="road_modifier6=bypass" icon="us_bypass_icon_shield"/>
 									<case additional="road_modifier6=connector" icon="us_connector_icon_shield"/>
 								</case>
-								<case additional="road_network7=us:us" nameTag="road_ref7" textOrder="17">
+								<case additional="road_network7=us:us" nameTag="road_ref7">
 									<case additional="road_modifier7=business" icon="us_business_icon_shield"/>
 									<case additional="road_modifier7=spur" icon="us_spur_icon_shield"/>
 									<case additional="road_modifier7=truck" icon="us_truck_icon_shield"/>
@@ -2677,7 +2682,7 @@
 									<case additional="road_modifier7=bypass" icon="us_bypass_icon_shield"/>
 									<case additional="road_modifier7=connector" icon="us_connector_icon_shield"/>
 								</case>
-								<case additional="road_network8=us:us" nameTag="road_ref8" textOrder="18">
+								<case additional="road_network8=us:us" nameTag="road_ref8">
 									<case additional="road_modifier8=business" icon="us_business_icon_shield"/>
 									<case additional="road_modifier8=spur" icon="us_spur_icon_shield"/>
 									<case additional="road_modifier8=truck" icon="us_truck_icon_shield"/>
@@ -2685,7 +2690,7 @@
 									<case additional="road_modifier8=bypass" icon="us_bypass_icon_shield"/>
 									<case additional="road_modifier8=connector" icon="us_connector_icon_shield"/>
 								</case>
-								<case additional="road_network9=us:us" nameTag="road_ref9" textOrder="19">
+								<case additional="road_network9=us:us" nameTag="road_ref9">
 									<case additional="road_modifier9=business" icon="us_business_icon_shield"/>
 									<case additional="road_modifier9=spur" icon="us_spur_icon_shield"/>
 									<case additional="road_modifier9=truck" icon="us_truck_icon_shield"/>
@@ -2693,7 +2698,7 @@
 									<case additional="road_modifier9=bypass" icon="us_bypass_icon_shield"/>
 									<case additional="road_modifier9=connector" icon="us_connector_icon_shield"/>
 								</case>
-								<case additional="road_network10=us:us" nameTag="road_ref10" textOrder="20">
+								<case additional="road_network10=us:us" nameTag="road_ref10">
 									<case additional="road_modifier10=business" icon="us_business_icon_shield"/>
 									<case additional="road_modifier10=spur" icon="us_spur_icon_shield"/>
 									<case additional="road_modifier10=truck" icon="us_truck_icon_shield"/>
@@ -2708,11 +2713,12 @@
 									<case textShield="us_us_wide_shield"/>
 								</apply>
 								<apply textColor="#404040" textSize="13" textBold="true" textMinDistance="30"/>
+								<apply textOrder="$roadShieldOrder2"/>
 							</switch>
 						</apply>
 						<apply>
 							<switch>
-								<case additional="us_state_network1=yes" nameTag="road_ref1" textOrder="11">
+								<case additional="us_state_network1=yes" nameTag="road_ref1">
 									<case additional="road_modifier1=business" icon="us_state_business_icon_shield"/>
 									<case additional="road_modifier1=spur" icon="us_state_spur_icon_shield"/>
 									<case additional="road_modifier1=truck" icon="us_state_truck_icon_shield"/>
@@ -2720,7 +2726,7 @@
 									<case additional="road_modifier1=bypass" icon="us_state_bypass_icon_shield"/>
 									<case additional="road_modifier1=connector" icon="us_state_connector_icon_shield"/>
 								</case>
-								<case additional="us_state_network2=yes" nameTag="road_ref2" textOrder="12">
+								<case additional="us_state_network2=yes" nameTag="road_ref2">
 									<case additional="road_modifier2=business" icon="us_state_business_icon_shield"/>
 									<case additional="road_modifier2=spur" icon="us_state_spur_icon_shield"/>
 									<case additional="road_modifier2=truck" icon="us_state_truck_icon_shield"/>
@@ -2728,7 +2734,7 @@
 									<case additional="road_modifier2=bypass" icon="us_state_bypass_icon_shield"/>
 									<case additional="road_modifier2=connector" icon="us_state_connector_icon_shield"/>
 								</case>
-								<case additional="us_state_network3=yes" nameTag="road_ref3" textOrder="13">
+								<case additional="us_state_network3=yes" nameTag="road_ref3">
 									<case additional="road_modifier3=business" icon="us_state_business_icon_shield"/>
 									<case additional="road_modifier3=spur" icon="us_state_spur_icon_shield"/>
 									<case additional="road_modifier3=truck" icon="us_state_truck_icon_shield"/>
@@ -2736,7 +2742,7 @@
 									<case additional="road_modifier3=bypass" icon="us_state_bypass_icon_shield"/>
 									<case additional="road_modifier3=connector" icon="us_state_connector_icon_shield"/>
 								</case>
-								<case additional="us_state_network4=yes" nameTag="road_ref4" textOrder="14">
+								<case additional="us_state_network4=yes" nameTag="road_ref4">
 									<case additional="road_modifier4=business" icon="us_state_business_icon_shield"/>
 									<case additional="road_modifier4=spur" icon="us_state_spur_icon_shield"/>
 									<case additional="road_modifier4=truck" icon="us_state_truck_icon_shield"/>
@@ -2744,7 +2750,7 @@
 									<case additional="road_modifier4=bypass" icon="us_state_bypass_icon_shield"/>
 									<case additional="road_modifier4=connector" icon="us_state_connector_icon_shield"/>
 								</case>
-								<case additional="us_state_network5=yes" nameTag="road_ref5" textOrder="15">
+								<case additional="us_state_network5=yes" nameTag="road_ref5">
 									<case additional="road_modifier5=business" icon="us_state_business_icon_shield"/>
 									<case additional="road_modifier5=spur" icon="us_state_spur_icon_shield"/>
 									<case additional="road_modifier5=truck" icon="us_state_truck_icon_shield"/>
@@ -2752,7 +2758,7 @@
 									<case additional="road_modifier5=bypass" icon="us_state_bypass_icon_shield"/>
 									<case additional="road_modifier5=connector" icon="us_state_connector_icon_shield"/>
 								</case>
-								<case additional="us_state_network6=yes" nameTag="road_ref6" textOrder="16">
+								<case additional="us_state_network6=yes" nameTag="road_ref6">
 									<case additional="road_modifier6=business" icon="us_state_business_icon_shield"/>
 									<case additional="road_modifier6=spur" icon="us_state_spur_icon_shield"/>
 									<case additional="road_modifier6=truck" icon="us_state_truck_icon_shield"/>
@@ -2760,7 +2766,7 @@
 									<case additional="road_modifier6=bypass" icon="us_state_bypass_icon_shield"/>
 									<case additional="road_modifier6=connector" icon="us_state_connector_icon_shield"/>
 								</case>
-								<case additional="us_state_network7=yes" nameTag="road_ref7" textOrder="17">
+								<case additional="us_state_network7=yes" nameTag="road_ref7">
 									<case additional="road_modifier7=business" icon="us_state_business_icon_shield"/>
 									<case additional="road_modifier7=spur" icon="us_state_spur_icon_shield"/>
 									<case additional="road_modifier7=truck" icon="us_state_truck_icon_shield"/>
@@ -2768,7 +2774,7 @@
 									<case additional="road_modifier7=bypass" icon="us_state_bypass_icon_shield"/>
 									<case additional="road_modifier7=connector" icon="us_state_connector_icon_shield"/>
 								</case>
-								<case additional="us_state_network8=yes" nameTag="road_ref8" textOrder="18">
+								<case additional="us_state_network8=yes" nameTag="road_ref8">
 									<case additional="road_modifier8=business" icon="us_state_business_icon_shield"/>
 									<case additional="road_modifier8=spur" icon="us_state_spur_icon_shield"/>
 									<case additional="road_modifier8=truck" icon="us_state_truck_icon_shield"/>
@@ -2776,7 +2782,7 @@
 									<case additional="road_modifier8=bypass" icon="us_state_bypass_icon_shield"/>
 									<case additional="road_modifier8=connector" icon="us_state_connector_icon_shield"/>
 								</case>
-								<case additional="us_state_network9=yes" nameTag="road_ref9" textOrder="19">
+								<case additional="us_state_network9=yes" nameTag="road_ref9">
 									<case additional="road_modifier9=business" icon="us_state_business_icon_shield"/>
 									<case additional="road_modifier9=spur" icon="us_state_spur_icon_shield"/>
 									<case additional="road_modifier9=truck" icon="us_state_truck_icon_shield"/>
@@ -2784,7 +2790,7 @@
 									<case additional="road_modifier9=bypass" icon="us_state_bypass_icon_shield"/>
 									<case additional="road_modifier9=connector" icon="us_state_connector_icon_shield"/>
 								</case>
-								<case additional="us_state_network10=yes" nameTag="road_ref10" textOrder="20">
+								<case additional="us_state_network10=yes" nameTag="road_ref10">
 									<case additional="road_modifier10=business" icon="us_state_business_icon_shield"/>
 									<case additional="road_modifier10=spur" icon="us_state_spur_icon_shield"/>
 									<case additional="road_modifier10=truck" icon="us_state_truck_icon_shield"/>
@@ -2798,45 +2804,114 @@
 									<case textLength="3" textShield="us_state_wide_shield"/>
 									<case textShield="us_state_wide_shield"/>
 								</apply>
+								<apply textOrder="$roadShieldOrder2"/>
 							</switch>
 						</apply>
 						<apply>
 							<switch>
-								<case additional="road_shield_color1=blue" nameTag="road_ref1" textOrder="11"/>
-								<case additional="road_shield_color2=blue" nameTag="road_ref2" textOrder="11"/>
-								<case additional="road_shield_color2=blue" nameTag="road_ref3" textOrder="11"/>
-								<case additional="road_shield_color3=blue" nameTag="road_ref4" textOrder="11"/>
-								<case additional="road_shield_color4=blue" nameTag="road_ref5" textOrder="11"/>
-								<apply textColor="#ffffff" textSize="13" textBold="true" textMinDistance="30">
-									<case textLength="1">
-										<case additional="road_shield_shape=hexagon" textShield="blue_hexagon_road_shield"/>
-										<case textShield="blue_square_narrow_road_shield"/>
+								<case additional="road_shield_color1=blue" nameTag="road_ref1" textOrder="$roadShieldDefaultOrder">
+									<case textLength="1" textShield="blue_square_narrow_road_shield">
+										<case additional="road_shield_shape1=hexagon" textShield="blue_hexagon_road_shield"/>
 									</case>
-									<case textLength="2">
-										<case additional="road_shield_shape=hexagon" textShield="blue_hexagon_road_shield"/>
-										<case textShield="blue_square_road_shield"/>
+									<case textLength="2" textShield="blue_square_road_shield">
+										<case additional="road_shield_shape1=hexagon" textShield="blue_hexagon_road_shield"/>
 									</case>
-									<case textLength="3">
-										<case additional="road_shield_shape=hexagon" textShield="blue_hexagon_road_shield"/>
-										<case textShield="blue_square_wide_road_shield"/>
+									<case textLength="3" textShield="blue_square_wide_road_shield">
+										<case additional="road_shield_shape1=hexagon" textShield="blue_hexagon_road_shield"/>
 									</case>
-									<case textLength="4">
-										<case additional="road_shield_shape=hexagon" textShield="blue_hexagon_wide_road_shield"/>
-										<case textShield="blue_square_wide_road_shield"/>
+									<case textLength="4" textShield="blue_square_wide_road_shield">
+										<case additional="road_shield_shape1=hexagon" textShield="blue_hexagon_wide_road_shield"/>
 									</case>
-									<case textLength="5">
-										<case additional="road_shield_shape=hexagon" textShield="blue_hexagon_very_wide_road_shield"/>
-										<case textShield="blue_square_wide_road_shield"/>
+									<case textLength="5" textShield="blue_square_wide_road_shield">
+										<case additional="road_shield_shape1=hexagon" textShield="blue_hexagon_very_wide_road_shield"/>
 									</case>
 									<case textHaloColor="#327ae6" textHaloRadius="5"/>
-								</apply>
+									<apply_if additional="road_shield_order1=1" textOrder="$roadShieldOrder1"/>
+									<apply_if additional="road_shield_order1=2" textOrder="$roadShieldOrder2"/>
+								</case>
+								<case additional="road_shield_color2=blue" nameTag="road_ref2" textOrder="$roadShieldDefaultOrder">
+									<case textLength="1" textShield="blue_square_narrow_road_shield">
+										<case additional="road_shield_shape2=hexagon" textShield="blue_hexagon_road_shield"/>
+									</case>
+									<case textLength="2" textShield="blue_square_road_shield">
+										<case additional="road_shield_shape2=hexagon" textShield="blue_hexagon_road_shield"/>
+									</case>
+									<case textLength="3" textShield="blue_square_wide_road_shield">
+										<case additional="road_shield_shape2=hexagon" textShield="blue_hexagon_road_shield"/>
+									</case>
+									<case textLength="4" textShield="blue_square_wide_road_shield">
+										<case additional="road_shield_shape2=hexagon" textShield="blue_hexagon_wide_road_shield"/>
+									</case>
+									<case textLength="5" textShield="blue_square_wide_road_shield">
+										<case additional="road_shield_shape2=hexagon" textShield="blue_hexagon_very_wide_road_shield"/>
+									</case>
+									<case textHaloColor="#327ae6" textHaloRadius="5"/>
+									<apply_if additional="road_shield_order2=1" textOrder="$roadShieldOrder1"/>
+									<apply_if additional="road_shield_order2=2" textOrder="$roadShieldOrder2"/>
+								</case>
+								<case additional="road_shield_color3=blue" nameTag="road_ref3" textOrder="$roadShieldDefaultOrder">
+									<case textLength="1" textShield="blue_square_narrow_road_shield">
+										<case additional="road_shield_shape3=hexagon" textShield="blue_hexagon_road_shield"/>
+									</case>
+									<case textLength="2" textShield="blue_square_road_shield">
+										<case additional="road_shield_shape3=hexagon" textShield="blue_hexagon_road_shield"/>
+									</case>
+									<case textLength="3" textShield="blue_square_wide_road_shield">
+										<case additional="road_shield_shape3=hexagon" textShield="blue_hexagon_road_shield"/>
+									</case>
+									<case textLength="4" textShield="blue_square_wide_road_shield">
+										<case additional="road_shield_shape3=hexagon" textShield="blue_hexagon_wide_road_shield"/>
+									</case>
+									<case textLength="5" textShield="blue_square_wide_road_shield">
+										<case additional="road_shield_shape3=hexagon" textShield="blue_hexagon_very_wide_road_shield"/>
+									</case>
+									<case textHaloColor="#327ae6" textHaloRadius="5"/>
+									<apply_if additional="road_shield_order3=1" textOrder="$roadShieldOrder1"/>
+									<apply_if additional="road_shield_order3=2" textOrder="$roadShieldOrder2"/>
+								</case>
+								<switch>
+									<case additional="road_shield_color4=blue" nameTag="road_ref4" textOrder="$roadShieldDefaultOrder">
+										<case textHaloColor="#327ae6" textHaloRadius="5"/>
+										<apply_if additional="road_shield_order4=1" textOrder="$roadShieldOrder1"/>
+										<apply_if additional="road_shield_order4=2" textOrder="$roadShieldOrder2"/>
+									</case>
+									<case additional="road_shield_color5=blue" nameTag="road_ref5" textOrder="$roadShieldDefaultOrder">
+										<case textHaloColor="#327ae6" textHaloRadius="5"/>
+										<apply_if additional="road_shield_order5=1" textOrder="$roadShieldOrder1"/>
+										<apply_if additional="road_shield_order5=2" textOrder="$roadShieldOrder2"/>
+									</case>
+									<apply>
+										<case textLength="1" textShield="blue_square_narrow_road_shield"/>
+										<case textLength="2" textShield="blue_square_road_shield"/>
+										<case textLength="3" textShield="blue_square_wide_road_shield"/>
+										<case textLength="4" textShield="blue_square_wide_road_shield"/>
+										<case textLength="5" textShield="blue_square_wide_road_shield"/>
+										<case textHaloColor="#327ae6" textHaloRadius="5"/>
+									</apply>
+								</switch>
+								<apply textColor="#ffffff" textSize="13" textBold="true" textMinDistance="30"/>
 							</switch>
 							<switch>
-								<case additional="road_shield_color1=green" nameTag="road_ref1" textOrder="11"/>
-								<case additional="road_shield_color2=green" nameTag="road_ref2" textOrder="11"/>
-								<case additional="road_shield_color2=green" nameTag="road_ref3" textOrder="11"/>
-								<case additional="road_shield_color3=green" nameTag="road_ref4" textOrder="11"/>
-								<case additional="road_shield_color4=green" nameTag="road_ref5" textOrder="11"/>
+								<case additional="road_shield_color1=green" nameTag="road_ref1" textOrder="$roadShieldDefaultOrder">
+									<apply_if additional="road_shield_order1=1" textOrder="$roadShieldOrder1"/>
+									<apply_if additional="road_shield_order1=2" textOrder="$roadShieldOrder2"/>
+								</case>
+								<case additional="road_shield_color2=green" nameTag="road_ref2" textOrder="$roadShieldDefaultOrder">
+									<apply_if additional="road_shield_order2=1" textOrder="$roadShieldOrder1"/>
+									<apply_if additional="road_shield_order2=2" textOrder="$roadShieldOrder2"/>
+								</case>
+								<case additional="road_shield_color3=green" nameTag="road_ref3" textOrder="$roadShieldDefaultOrder">
+									<apply_if additional="road_shield_order3=1" textOrder="$roadShieldOrder1"/>
+									<apply_if additional="road_shield_order3=2" textOrder="$roadShieldOrder2"/>
+								</case>
+								<case additional="road_shield_color4=green" nameTag="road_ref4" textOrder="$roadShieldDefaultOrder">
+									<apply_if additional="road_shield_order4=1" textOrder="$roadShieldOrder1"/>
+									<apply_if additional="road_shield_order4=2" textOrder="$roadShieldOrder2"/>
+								</case>
+								<case additional="road_shield_color5=green" nameTag="road_ref5" textOrder="$roadShieldDefaultOrder">
+									<apply_if additional="road_shield_order5=1" textOrder="$roadShieldOrder1"/>
+									<apply_if additional="road_shield_order5=2" textOrder="$roadShieldOrder2"/>
+								</case>
 								<apply textColor="#ffffff" textSize="13" textBold="true" textMinDistance="30">
 									<case textLength="1" textShield="green_square_narrow_road_shield"/>
 									<case textLength="2" textShield="green_square_road_shield"/>
@@ -2847,11 +2922,26 @@
 								</apply>
 							</switch>
 							<switch>
-								<case additional="road_shield_color1=white" nameTag="road_ref1" textOrder="11"/>
-								<case additional="road_shield_color2=white" nameTag="road_ref2" textOrder="11"/>
-								<case additional="road_shield_color2=white" nameTag="road_ref3" textOrder="11"/>
-								<case additional="road_shield_color3=white" nameTag="road_ref4" textOrder="11"/>
-								<case additional="road_shield_color4=white" nameTag="road_ref5" textOrder="11"/>
+								<case additional="road_shield_color1=white" nameTag="road_ref1" textOrder="$roadShieldDefaultOrder">
+									<apply_if additional="road_shield_order1=1" textOrder="$roadShieldOrder1"/>
+									<apply_if additional="road_shield_order1=2" textOrder="$roadShieldOrder2"/>
+								</case>
+								<case additional="road_shield_color2=white" nameTag="road_ref2" textOrder="$roadShieldDefaultOrder">
+									<apply_if additional="road_shield_order2=1" textOrder="$roadShieldOrder1"/>
+									<apply_if additional="road_shield_order2=2" textOrder="$roadShieldOrder2"/>
+								</case>
+								<case additional="road_shield_color3=white" nameTag="road_ref3" textOrder="$roadShieldDefaultOrder">
+									<apply_if additional="road_shield_order3=1" textOrder="$roadShieldOrder1"/>
+									<apply_if additional="road_shield_order3=2" textOrder="$roadShieldOrder2"/>
+								</case>
+								<case additional="road_shield_color4=white" nameTag="road_ref4" textOrder="$roadShieldDefaultOrder">
+									<apply_if additional="road_shield_order4=1" textOrder="$roadShieldOrder1"/>
+									<apply_if additional="road_shield_order4=2" textOrder="$roadShieldOrder2"/>
+								</case>
+								<case additional="road_shield_color5=white" nameTag="road_ref5" textOrder="$roadShieldDefaultOrder">
+									<apply_if additional="road_shield_order5=1" textOrder="$roadShieldOrder1"/>
+									<apply_if additional="road_shield_order5=2" textOrder="$roadShieldOrder2"/>
+								</case>
 								<apply textColor="#404040" textSize="13" textBold="true" textMinDistance="30">
 									<case textLength="1" textShield="white_square_narrow_road_shield"/>
 									<case textLength="2" textShield="white_square_road_shield"/>
@@ -2862,11 +2952,26 @@
 								</apply>
 							</switch>
 							<switch>
-								<case additional="road_shield_color1=yellow" nameTag="road_ref1" textOrder="11"/>
-								<case additional="road_shield_color2=yellow" nameTag="road_ref2" textOrder="11"/>
-								<case additional="road_shield_color2=yellow" nameTag="road_ref3" textOrder="11"/>
-								<case additional="road_shield_color3=yellow" nameTag="road_ref4" textOrder="11"/>
-								<case additional="road_shield_color4=yellow" nameTag="road_ref5" textOrder="11"/>
+								<case additional="road_shield_color1=yellow" nameTag="road_ref1" textOrder="$roadShieldDefaultOrder">
+									<apply_if additional="road_shield_order1=1" textOrder="$roadShieldOrder1"/>
+									<apply_if additional="road_shield_order1=2" textOrder="$roadShieldOrder2"/>
+								</case>
+								<case additional="road_shield_color2=yellow" nameTag="road_ref2" textOrder="$roadShieldDefaultOrder">
+									<apply_if additional="road_shield_order2=1" textOrder="$roadShieldOrder1"/>
+									<apply_if additional="road_shield_order2=2" textOrder="$roadShieldOrder2"/>
+								</case>
+								<case additional="road_shield_color3=yellow" nameTag="road_ref3" textOrder="$roadShieldDefaultOrder">
+									<apply_if additional="road_shield_order3=1" textOrder="$roadShieldOrder1"/>
+									<apply_if additional="road_shield_order3=2" textOrder="$roadShieldOrder2"/>
+								</case>
+								<case additional="road_shield_color4=yellow" nameTag="road_ref4" textOrder="$roadShieldDefaultOrder">
+									<apply_if additional="road_shield_order4=1" textOrder="$roadShieldOrder1"/>
+									<apply_if additional="road_shield_order4=2" textOrder="$roadShieldOrder2"/>
+								</case>
+								<case additional="road_shield_color5=yellow" nameTag="road_ref5" textOrder="$roadShieldDefaultOrder">
+									<apply_if additional="road_shield_order5=1" textOrder="$roadShieldOrder1"/>
+									<apply_if additional="road_shield_order5=2" textOrder="$roadShieldOrder2"/>
+								</case>
 								<apply textColor="#404040" textSize="13" textBold="true" textMinDistance="30">
 									<case textLength="1" textShield="yellow_square_narrow_road_shield"/>
 									<case textLength="2" textShield="yellow_square_road_shield"/>
@@ -2880,21 +2985,87 @@
 								</apply>
 							</switch>
 							<switch>
-								<case additional="road_shield_color1=red" nameTag="road_ref1" textOrder="11"/>
-								<case additional="road_shield_color2=red" nameTag="road_ref2" textOrder="11"/>
-								<case additional="road_shield_color2=red" nameTag="road_ref3" textOrder="11"/>
-								<case additional="road_shield_color3=red" nameTag="road_ref4" textOrder="11"/>
-								<case additional="road_shield_color4=red" nameTag="road_ref5" textOrder="11"/>
-								<apply textColor="#ffffff" textSize="13" textBold="true" textMinDistance="30">
-									<case textLength="1" textShield="red_square_narrow_road_shield"/>
-									<case textLength="2" textShield="red_square_road_shield"/>
-									<case textLength="3" textShield="red_square_wide_road_shield"/>
-									<case textLength="4" textShield="red_square_wide_road_shield"/>
-									<case textLength="5" textShield="red_square_wide_road_shield"/>
-									<case textLength="6" textShield="red_square_very_wide_road_shield"/>
-									<case textLength="7" textShield="red_square_very_wide_road_shield"/>
-									<case textHaloColor="dd6a6a" textHaloRadius="5"/>
-								</apply>
+								<case additional="road_shield_color1=red" nameTag="road_ref1" textOrder="$roadShieldDefaultOrder">
+									<case textLength="1" textShield="red_square_narrow_road_shield">
+										<case additional="road_shield_shape1=hexagon" textShield="red_hexagon_road_shield"/>
+									</case>
+									<case textLength="2" textShield="red_square_road_shield">
+										<case additional="road_shield_shape1=hexagon" textShield="red_hexagon_road_shield"/>
+									</case>
+									<case textLength="3" textShield="red_square_wide_road_shield">
+										<case additional="road_shield_shape1=hexagon" textShield="red_hexagon_road_shield"/>
+									</case>
+									<case textLength="4" textShield="red_square_wide_road_shield">
+										<case additional="road_shield_shape1=hexagon" textShield="red_hexagon_wide_road_shield"/>
+									</case>
+									<case textLength="5" textShield="red_square_wide_road_shield">
+										<case additional="road_shield_shape1=hexagon" textShield="red_hexagon_very_wide_road_shield"/>
+									</case>
+									<case textHaloColor="#dd6a6a" textHaloRadius="5"/>
+									<apply_if additional="road_shield_order1=1" textOrder="$roadShieldOrder1"/>
+									<apply_if additional="road_shield_order1=2" textOrder="$roadShieldOrder2"/>
+								</case>
+								<case additional="road_shield_color2=red" nameTag="road_ref2" textOrder="$roadShieldDefaultOrder">
+									<case textLength="1" textShield="red_square_narrow_road_shield">
+										<case additional="road_shield_shape2=hexagon" textShield="red_hexagon_road_shield"/>
+									</case>
+									<case textLength="2" textShield="red_square_road_shield">
+										<case additional="road_shield_shape2=hexagon" textShield="red_hexagon_road_shield"/>
+									</case>
+									<case textLength="3" textShield="red_square_wide_road_shield">
+										<case additional="road_shield_shape2=hexagon" textShield="red_hexagon_road_shield"/>
+									</case>
+									<case textLength="4" textShield="red_square_wide_road_shield">
+										<case additional="road_shield_shape2=hexagon" textShield="red_hexagon_wide_road_shield"/>
+									</case>
+									<case textLength="5" textShield="red_square_wide_road_shield">
+										<case additional="road_shield_shape2=hexagon" textShield="red_hexagon_very_wide_road_shield"/>
+									</case>
+									<case textHaloColor="#dd6a6a" textHaloRadius="5"/>
+									<apply_if additional="road_shield_order2=1" textOrder="$roadShieldOrder1"/>
+									<apply_if additional="road_shield_order2=2" textOrder="$roadShieldOrder2"/>
+								</case>
+								<case additional="road_shield_color3=red" nameTag="road_ref3" textOrder="$roadShieldDefaultOrder">
+									<case textLength="1" textShield="red_square_narrow_road_shield">
+										<case additional="road_shield_shape3=hexagon" textShield="red_hexagon_road_shield"/>
+									</case>
+									<case textLength="2" textShield="red_square_road_shield">
+										<case additional="road_shield_shape3=hexagon" textShield="red_hexagon_road_shield"/>
+									</case>
+									<case textLength="3" textShield="red_square_wide_road_shield">
+										<case additional="road_shield_shape3=hexagon" textShield="red_hexagon_road_shield"/>
+									</case>
+									<case textLength="4" textShield="red_square_wide_road_shield">
+										<case additional="road_shield_shape3=hexagon" textShield="red_hexagon_wide_road_shield"/>
+									</case>
+									<case textLength="5" textShield="red_square_wide_road_shield">
+										<case additional="road_shield_shape3=hexagon" textShield="red_hexagon_very_wide_road_shield"/>
+									</case>
+									<case textHaloColor="#dd6a6a" textHaloRadius="5"/>
+									<apply_if additional="road_shield_order3=1" textOrder="$roadShieldOrder1"/>
+									<apply_if additional="road_shield_order3=2" textOrder="$roadShieldOrder2"/>
+								</case>
+								<switch>
+									<case additional="road_shield_color4=red" nameTag="road_ref4" textOrder="$roadShieldDefaultOrder">
+										<case textHaloColor="#dd6a6a" textHaloRadius="5"/>
+										<apply_if additional="road_shield_order4=1" textOrder="$roadShieldOrder1"/>
+										<apply_if additional="road_shield_order4=2" textOrder="$roadShieldOrder2"/>
+									</case>
+									<case additional="road_shield_color5=red" nameTag="road_ref5" textOrder="$roadShieldDefaultOrder">
+										<case textHaloColor="#dd6a6a" textHaloRadius="5"/>
+										<apply_if additional="road_shield_order5=1" textOrder="$roadShieldOrder1"/>
+										<apply_if additional="road_shield_order5=2" textOrder="$roadShieldOrder2"/>
+									</case>
+									<apply>
+										<case textLength="1" textShield="red_square_narrow_road_shield"/>
+										<case textLength="2" textShield="red_square_road_shield"/>
+										<case textLength="3" textShield="red_square_wide_road_shield"/>
+										<case textLength="4" textShield="red_square_wide_road_shield"/>
+										<case textLength="5" textShield="red_square_wide_road_shield"/>
+										<case textHaloColor="#327ae6" textHaloRadius="5"/>
+									</apply>
+								</switch>
+								<apply textColor="#ffffff" textSize="13" textBold="true" textMinDistance="30"/>
 							</switch>
 						</apply>
 					</apply>
@@ -2995,25 +3166,20 @@
 						</switch>
 						<apply>
 							<case additional="road_shield_color=blue" textColor="#ffffff" textSize="13" textBold="true" textMinDistance="30">
-								<case textLength="1">
+								<case textLength="1" textShield="blue_square_narrow_road_shield">
 									<case additional="road_shield_shape=hexagon" textShield="blue_hexagon_road_shield"/>
-									<case textShield="blue_square_narrow_road_shield"/>
 								</case>
-								<case textLength="2">
+								<case textLength="2" textShield="blue_square_road_shield">
 									<case additional="road_shield_shape=hexagon" textShield="blue_hexagon_road_shield"/>
-									<case textShield="blue_square_road_shield"/>
 								</case>
-								<case textLength="3">
+								<case textLength="3" textShield="blue_square_wide_road_shield">
 									<case additional="road_shield_shape=hexagon" textShield="blue_hexagon_road_shield"/>
-									<case textShield="blue_square_wide_road_shield"/>
 								</case>
-								<case textLength="4">
+								<case textLength="4" textShield="blue_square_wide_road_shield">
 									<case additional="road_shield_shape=hexagon" textShield="blue_hexagon_wide_road_shield"/>
-									<case textShield="blue_square_wide_road_shield"/>
 								</case>
-								<case textLength="5">
+								<case textLength="5" textShield="blue_square_wide_road_shield">
 									<case additional="road_shield_shape=hexagon" textShield="blue_hexagon_very_wide_road_shield"/>
-									<case textShield="blue_square_wide_road_shield"/>
 								</case>
 								<case textHaloColor="#327ae6" textHaloRadius="5" textShield=""/>
 							</case>
@@ -3027,21 +3193,21 @@
 							</case>
 							<case additional="road_shield_color=white" textColor="#404040" textSize="13" textBold="true" textMinDistance="30">
 								<case textLength="1" textShield="white_square_road_shield"/>
-								<case textLength="2">
+								<case textLength="2" textShield="white_square_road_shield">
 									<case additional="road_shield_shape=pillow" textShield="white_pillow_road_shield"/>
-									<case textShield="white_square_road_shield"/>
+									<case additional="road_shield_shape=rounded_rectangle" textShield="us_state_shield"/>
 								</case>
-								<case textLength="3">
+								<case textLength="3" textShield="white_square_road_shield">
 									<case additional="road_shield_shape=pillow" textShield="white_pillow_road_shield"/>
-									<case textShield="white_square_road_shield"/>
+									<case additional="road_shield_shape=rounded_rectangle" textShield="us_state_wide_shield"/>
 								</case>
-								<case textLength="4">
+								<case textLength="4" textShield="white_square_wide_road_shield">
 									<case additional="road_shield_shape=pillow" textShield="white_pillow_wide_road_shield"/>
-									<case textShield="white_square_wide_road_shield"/>
+									<case additional="road_shield_shape=rounded_rectangle" textShield="white_rounded_rectangle_very_wide_road_shield"/>
 								</case>
-								<case textLength="5">
+								<case textLength="5" textShield="white_square_wide_road_shield">
 									<case additional="road_shield_shape=pillow" textShield="white_pillow_wide_road_shield"/>
-									<case textShield="white_square_wide_road_shield"/>
+									<case additional="road_shield_shape=rounded_rectangle" textShield="white_rounded_rectangle_very_wide_road_shield"/>
 								</case>
 								<case textHaloColor="#ffffff" textHaloRadius="5" textShield=""/>
 							</case>
@@ -3063,6 +3229,8 @@
 								<case textLength="7" textShield="red_square_very_wide_road_shield"/>
 								<case textHaloColor="#dd6a6a" textHaloRadius="5" textShield=""/>
 							</case>
+							<apply_if additional="road_shield_order=1" textOrder="$roadShieldOrder1"/>
+							<apply_if additional="road_shield_order=2" textOrder="$roadShieldOrder2"/>
 						</apply>
 					</apply_if>
 				</switch>
