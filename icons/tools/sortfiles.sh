@@ -779,6 +779,7 @@ mycpname customs amenity_customs.png
 mycpname dojo amenity_dojo.png
 mycpname social_centre amenity_social_centre.png
 mycpname compressed_air amenity_compressed_air.png
+mycpname amenity_vacuum_cleaner amenity_vacuum_cleaner.png
 
 mygroup craft craft_tailor.png
 mycpname craft_beekeeper craft_beekeeper.png
@@ -2094,6 +2095,7 @@ mycpname compressed_air_yes additional_compressed_air_yes.png
 mycpname compressed_air_no additional_compressed_air_no.png
 mycpname car_wash_yes additional_car_wash_yes.png
 mycpname car_wash_no additional_car_wash_no.png
+mycpname vacuum_cleaner_yes additional_vacuum_cleaner_yes.png
 
 
 #Xmas
