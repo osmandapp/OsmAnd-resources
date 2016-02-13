@@ -778,6 +778,7 @@ mycpname internet_access_yes amenity_internet_access_wlan.png
 mycpname customs amenity_customs.png
 mycpname dojo amenity_dojo.png
 mycpname social_centre amenity_social_centre.png
+mycpname compressed_air amenity_compressed_air.png
 
 mygroup craft craft_tailor.png
 mycpname craft_beekeeper craft_beekeeper.png
@@ -2089,6 +2090,10 @@ mycpname backrest_no additional_backrest_no.png
 mycpname construction_yes additional_construction_yes.png
 mycpname atm_yes additional_atm_yes.png
 mycpname atm_no additional_atm_no.png
+mycpname compressed_air_yes additional_compressed_air_yes.png
+mycpname compressed_air_no additional_compressed_air_no.png
+mycpname car_wash_yes additional_car_wash_yes.png
+mycpname car_wash_no additional_car_wash_no.png
 
 
 #Xmas
