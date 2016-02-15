@@ -663,7 +663,10 @@
 		<case nightMode="true" attrColorValue="$null"/>
 		<case attrColorValue="#77f1eae4"/>
 	</renderingAttribute>
-	<renderingConstant name="trackStrokeWidth" value="1"/>
+	<renderingAttribute name="trackStrokeWidth">
+		<case appMode="bicycle" attrIntValue="0.5:1"/>
+		<case attrIntValue="1"/>
+	</renderingAttribute>
 	<renderingConstant name="trackWithSurfaceStrokeWidth" value="0.5:1"/>
 	<renderingConstant name="trackLowZoomStrokeWidth" value="0.7"/>
 	<renderingConstant name="trackBridgeWidth" value="4:2.5"/>
@@ -7794,6 +7797,7 @@
 						</case>
 						<case appMode="pedestrian" minzoom="14" color_5="$pathColor" strokeWidth_4="1.4:1.4" strokeWidth_5="$pathStrokeWidth" pathEffect_5="$pathPathEffect"/>
 						<case minzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="$pathStrokeWidth" color_5="$pathColor" pathEffect_5="$pathPathEffect">
+							<apply_if appMode="bicycle" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
 							<apply_if showSurfaceGrade="true" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
 							<apply_if showSurfaces="true" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
 						</case>
@@ -7848,6 +7852,7 @@
 							<case appMode="pedestrian">
 								<case minzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="0.9" pathEffect_5=""/>
 							</case>
+							<case maxzoom="15" strokeWidth=""/>
 						</switch>
 						<case minzoom="16" strokeWidth_4="1.4:1.4" strokeWidth_5="$footwayStrokeWidth" pathEffect_5="4_2">
 							<switch>
@@ -7865,6 +7870,7 @@
 							<case layer="1" strokeWidth_4="1.7:1.7" strokeWidth_5="1.7:1.7"/>
 							<case strokeWidth_4="2:2" strokeWidth_5="2:2"/> <!-- If we remove this and let <order> to decide when to hide steps, layer="1" will be also hidden which is undesirable.-->
 						</case>
+						<case maxzoom="15" strokeWidth=""/>
 						<case minzoom="16" strokeWidth_4="2:2" strokeWidth_5="2:2"/>
 						<apply color_5="$footwayColor" pathEffect_5="1_2"/>
 						<apply>
@@ -7916,6 +7922,18 @@
 						<apply_if nightMode="true" color__1="#ffffff" color_0="#000000"/>
 					</apply_if>
 				</switch>
+				<apply_if additional="trail_visibility=bad">
+					<case maxzoom="14" pathEffect_5="2_6"/>
+					<case minzoom="15" pathEffect_5="2_9"/>
+				</apply_if>
+				<apply_if additional="trail_visibility=horrible">
+					<case maxzoom="14" pathEffect_5="2_9"/>
+					<case minzoom="15" pathEffect_5="2_13"/>
+				</apply_if>
+				<apply_if additional="trail_visibility=no">
+					<case maxzoom="14" pathEffect_5="2_13"/>
+					<case minzoom="15" pathEffect_5="2_19"/>
+				</apply_if>
 				<apply onewayArrowsColor="$trackPathHighwayOnewayArrowsColor"/>
 				<!-- Assign strokeWidth and pathEffect for surface, smoothness and access -->
 				<apply_if moreDetailed="true" minzoom="14" maxzoom="14" strokeWidth_2="3:3" strokeWidth_3="3:3"/>
