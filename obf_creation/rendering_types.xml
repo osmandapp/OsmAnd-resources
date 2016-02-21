@@ -529,99 +529,118 @@
 	<type tag="amenity" value="watering_place" minzoom="14"/>
 
 	<category name="highway">
-		<type tag="highway" value="motorway" minzoom="6" nameTags="ref,int_ref,road_ref1,road_ref2,road_ref3"/>
+		<type tag="highway" value="motorway" minzoom="6" nameTags="ref,int_ref,road_ref_1,road_ref_2,road_ref_3"/>
+		<type tag="route" value="road" minzoom="12" namePrefix="road_" nameTags="ref,network,modifier,us_state_network" relation="true" relationGroup="true"/>
 		<!-- USA road shields -->
-		<type tag="road_network1" value="us:i" additional="true"/>
-		<type tag="road_network2" value="us:i" additional="true"/>
-		<type tag="road_network3" value="us:i" additional="true"/>
-		<type tag="road_network4" value="us:i" additional="true"/>
-		<type tag="road_network5" value="us:i" additional="true"/>
-		<type tag="road_network6" value="us:i" additional="true"/>
-		<type tag="road_network7" value="us:i" additional="true"/>
-		<type tag="road_network8" value="us:i" additional="true"/>
-		<type tag="road_network9" value="us:i" additional="true"/>
-		<type tag="road_network10" value="us:i" additional="true"/>
-		<type tag="road_network1" value="us:us" additional="true"/>
-		<type tag="road_network2" value="us:us" additional="true"/>
-		<type tag="road_network3" value="us:us" additional="true"/>
-		<type tag="road_network4" value="us:us" additional="true"/>
-		<type tag="road_network5" value="us:us" additional="true"/>
-		<type tag="road_network6" value="us:us" additional="true"/>
-		<type tag="road_network7" value="us:us" additional="true"/>
-		<type tag="road_network8" value="us:us" additional="true"/>
-		<type tag="road_network9" value="us:us" additional="true"/>
-		<type tag="road_network10" value="us:us" additional="true"/>
+		<!-- Remove ref if any relations with route=road exist in particular regions -->
+		<entity_convert pattern="tag_transform" from_tag="ref" if_region_name="$us" if_tag1="highway" if_value1="motorway" if_tag2="road_ref_1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_region_name="$us" if_tag1="highway" if_value1="motorway_link" if_tag2="road_ref_1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_region_name="$us" if_tag1="highway" if_value1="trunk" if_tag2="road_ref_1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_region_name="$us" if_tag1="highway" if_value1="trunk_link" if_tag2="road_ref_1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_region_name="$us" if_tag1="highway" if_value1="primary" if_tag2="road_ref_1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_region_name="$us" if_tag1="highway" if_value1="primary_link" if_tag2="road_ref_1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_region_name="$us" if_tag1="highway" if_value1="secondary" if_tag2="road_ref_1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_region_name="$us" if_tag1="highway" if_value1="secondary_link" if_tag2="road_ref_1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_region_name="$us" if_tag1="highway" if_value1="tertiary" if_tag2="road_ref_1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_region_name="$us" if_tag1="highway" if_value1="unclassified" if_tag2="road_ref_1" apply_to="way"/>
+		<!-- US: convert refs from roads without route=road relations to us_state_network_1 and road_ref_1 (f.e Iowa) -->
+		<entity_convert pattern="tag_transform" from_tag="ref" if_region_name="$us" if_tag1="highway" if_value1="primary" if_not_tag1="road_ref_1" to_tag1="road_ref_1" to_tag2="road_us_state_network_1" to_value2="yes" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_region_name="$us" if_tag1="highway" if_value1="secondary" if_not_tag1="road_ref_1" to_tag1="road_ref_1" to_tag2="road_us_state_network_1" to_value2="yes" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_region_name="$us" if_tag1="highway" if_value1="tertiary" if_not_tag1="road_ref_1" to_tag1="road_ref_1" to_tag2="road_us_state_network_1" to_value2="yes" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_region_name="$us" if_tag1="highway" if_value1="unclassified" if_not_tag1="road_ref_1" to_tag1="road_ref_1" to_tag2="road_us_state_network_1" to_value2="yes" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_region_name="$us" if_tag1="highway" if_value1="residential" if_not_tag1="road_ref_1" to_tag1="road_ref_1" to_tag2="road_us_state_network_1" to_value2="yes" apply_to="way"/>
+
+		<type tag="road_network_1" value="us:i" additional="true"/>
+		<type tag="road_network_2" value="us:i" additional="true"/>
+		<type tag="road_network_3" value="us:i" additional="true"/>
+		<type tag="road_network_4" value="us:i" additional="true"/>
+		<type tag="road_network_5" value="us:i" additional="true"/>
+		<type tag="road_network_6" value="us:i" additional="true"/>
+		<type tag="road_network_7" value="us:i" additional="true"/>
+		<type tag="road_network_8" value="us:i" additional="true"/>
+		<type tag="road_network_9" value="us:i" additional="true"/>
+		<type tag="road_network_10" value="us:i" additional="true"/>
+		<type tag="road_network_1" value="us:us" additional="true"/>
+		<type tag="road_network_2" value="us:us" additional="true"/>
+		<type tag="road_network_3" value="us:us" additional="true"/>
+		<type tag="road_network_4" value="us:us" additional="true"/>
+		<type tag="road_network_5" value="us:us" additional="true"/>
+		<type tag="road_network_6" value="us:us" additional="true"/>
+		<type tag="road_network_7" value="us:us" additional="true"/>
+		<type tag="road_network_8" value="us:us" additional="true"/>
+		<type tag="road_network_9" value="us:us" additional="true"/>
+		<type tag="road_network_10" value="us:us" additional="true"/>
 		<!-- us_state_modifier is added because we do not render all these custom highway shields in every state -->
-		<type tag="us_state_network1" value="yes" additional="true"/>
-		<type tag="us_state_network2" value="yes" additional="true"/>
-		<type tag="us_state_network3" value="yes" additional="true"/>
-		<type tag="us_state_network4" value="yes" additional="true"/>
-		<type tag="us_state_network5" value="yes" additional="true"/>
-		<type tag="us_state_network6" value="yes" additional="true"/>
-		<type tag="us_state_network7" value="yes" additional="true"/>
-		<type tag="us_state_network8" value="yes" additional="true"/>
-		<type tag="us_state_network9" value="yes" additional="true"/>
-		<type tag="us_state_network10" value="yes" additional="true"/>
-		<type tag="road_modifier1" value="business" additional="true"/>
-		<type tag="road_modifier2" value="business" additional="true"/>
-		<type tag="road_modifier3" value="business" additional="true"/>
-		<type tag="road_modifier4" value="business" additional="true"/>
-		<type tag="road_modifier5" value="business" additional="true"/>
-		<type tag="road_modifier6" value="business" additional="true"/>
-		<type tag="road_modifier7" value="business" additional="true"/>
-		<type tag="road_modifier8" value="business" additional="true"/>
-		<type tag="road_modifier9" value="business" additional="true"/>
-		<type tag="road_modifier10" value="business" additional="true"/>
-		<type tag="road_modifier1" value="spur" additional="true"/>
-		<type tag="road_modifier2" value="spur" additional="true"/>
-		<type tag="road_modifier3" value="spur" additional="true"/>
-		<type tag="road_modifier4" value="spur" additional="true"/>
-		<type tag="road_modifier5" value="spur" additional="true"/>
-		<type tag="road_modifier6" value="spur" additional="true"/>
-		<type tag="road_modifier7" value="spur" additional="true"/>
-		<type tag="road_modifier8" value="spur" additional="true"/>
-		<type tag="road_modifier9" value="spur" additional="true"/>
-		<type tag="road_modifier10" value="spur" additional="true"/>
-		<type tag="road_modifier1" value="truck" additional="true"/>
-		<type tag="road_modifier2" value="truck" additional="true"/>
-		<type tag="road_modifier3" value="truck" additional="true"/>
-		<type tag="road_modifier4" value="truck" additional="true"/>
-		<type tag="road_modifier5" value="truck" additional="true"/>
-		<type tag="road_modifier6" value="truck" additional="true"/>
-		<type tag="road_modifier7" value="truck" additional="true"/>
-		<type tag="road_modifier8" value="truck" additional="true"/>
-		<type tag="road_modifier9" value="truck" additional="true"/>
-		<type tag="road_modifier10" value="truck" additional="true"/>
-		<type tag="road_modifier1" value="alternate" additional="true"/>
-		<type tag="road_modifier2" value="alternate" additional="true"/>
-		<type tag="road_modifier3" value="alternate" additional="true"/>
-		<type tag="road_modifier4" value="alternate" additional="true"/>
-		<type tag="road_modifier5" value="alternate" additional="true"/>
-		<type tag="road_modifier6" value="alternate" additional="true"/>
-		<type tag="road_modifier7" value="alternate" additional="true"/>
-		<type tag="road_modifier8" value="alternate" additional="true"/>
-		<type tag="road_modifier9" value="alternate" additional="true"/>
-		<type tag="road_modifier10" value="alternate" additional="true"/>
-		<type tag="road_modifier1" value="bypass" additional="true"/>
-		<type tag="road_modifier2" value="bypass" additional="true"/>
-		<type tag="road_modifier3" value="bypass" additional="true"/>
-		<type tag="road_modifier4" value="bypass" additional="true"/>
-		<type tag="road_modifier5" value="bypass" additional="true"/>
-		<type tag="road_modifier6" value="bypass" additional="true"/>
-		<type tag="road_modifier7" value="bypass" additional="true"/>
-		<type tag="road_modifier8" value="bypass" additional="true"/>
-		<type tag="road_modifier9" value="bypass" additional="true"/>
-		<type tag="road_modifier10" value="bypass" additional="true"/>
-		<type tag="road_modifier1" value="connector" additional="true"/>
-		<type tag="road_modifier2" value="connector" additional="true"/>
-		<type tag="road_modifier3" value="connector" additional="true"/>
-		<type tag="road_modifier4" value="connector" additional="true"/>
-		<type tag="road_modifier5" value="connector" additional="true"/>
-		<type tag="road_modifier6" value="connector" additional="true"/>
-		<type tag="road_modifier7" value="connector" additional="true"/>
-		<type tag="road_modifier8" value="connector" additional="true"/>
-		<type tag="road_modifier9" value="connector" additional="true"/>
-		<type tag="road_modifier10" value="connector" additional="true"/>
+		<type tag="road_us_state_network_1" value="yes" additional="true"/>
+		<type tag="road_us_state_network_2" value="yes" additional="true"/>
+		<type tag="road_us_state_network_3" value="yes" additional="true"/>
+		<type tag="road_us_state_network_4" value="yes" additional="true"/>
+		<type tag="road_us_state_network_5" value="yes" additional="true"/>
+		<type tag="road_us_state_network_6" value="yes" additional="true"/>
+		<type tag="road_us_state_network_7" value="yes" additional="true"/>
+		<type tag="road_us_state_network_8" value="yes" additional="true"/>
+		<type tag="road_us_state_network_9" value="yes" additional="true"/>
+		<type tag="road_us_state_network_10" value="yes" additional="true"/>
+		<type tag="road_modifier_1" value="business" additional="true"/>
+		<type tag="road_modifier_2" value="business" additional="true"/>
+		<type tag="road_modifier_3" value="business" additional="true"/>
+		<type tag="road_modifier_4" value="business" additional="true"/>
+		<type tag="road_modifier_5" value="business" additional="true"/>
+		<type tag="road_modifier_6" value="business" additional="true"/>
+		<type tag="road_modifier_7" value="business" additional="true"/>
+		<type tag="road_modifier_8" value="business" additional="true"/>
+		<type tag="road_modifier_9" value="business" additional="true"/>
+		<type tag="road_modifier_10" value="business" additional="true"/>
+		<type tag="road_modifier_1" value="spur" additional="true"/>
+		<type tag="road_modifier_2" value="spur" additional="true"/>
+		<type tag="road_modifier_3" value="spur" additional="true"/>
+		<type tag="road_modifier_4" value="spur" additional="true"/>
+		<type tag="road_modifier_5" value="spur" additional="true"/>
+		<type tag="road_modifier_6" value="spur" additional="true"/>
+		<type tag="road_modifier_7" value="spur" additional="true"/>
+		<type tag="road_modifier_8" value="spur" additional="true"/>
+		<type tag="road_modifier_9" value="spur" additional="true"/>
+		<type tag="road_modifier_10" value="spur" additional="true"/>
+		<type tag="road_modifier_1" value="truck" additional="true"/>
+		<type tag="road_modifier_2" value="truck" additional="true"/>
+		<type tag="road_modifier_3" value="truck" additional="true"/>
+		<type tag="road_modifier_4" value="truck" additional="true"/>
+		<type tag="road_modifier_5" value="truck" additional="true"/>
+		<type tag="road_modifier_6" value="truck" additional="true"/>
+		<type tag="road_modifier_7" value="truck" additional="true"/>
+		<type tag="road_modifier_8" value="truck" additional="true"/>
+		<type tag="road_modifier_9" value="truck" additional="true"/>
+		<type tag="road_modifier_10" value="truck" additional="true"/>
+		<type tag="road_modifier_1" value="alternate" additional="true"/>
+		<type tag="road_modifier_2" value="alternate" additional="true"/>
+		<type tag="road_modifier_3" value="alternate" additional="true"/>
+		<type tag="road_modifier_4" value="alternate" additional="true"/>
+		<type tag="road_modifier_5" value="alternate" additional="true"/>
+		<type tag="road_modifier_6" value="alternate" additional="true"/>
+		<type tag="road_modifier_7" value="alternate" additional="true"/>
+		<type tag="road_modifier_8" value="alternate" additional="true"/>
+		<type tag="road_modifier_9" value="alternate" additional="true"/>
+		<type tag="road_modifier_10" value="alternate" additional="true"/>
+		<type tag="road_modifier_1" value="bypass" additional="true"/>
+		<type tag="road_modifier_2" value="bypass" additional="true"/>
+		<type tag="road_modifier_3" value="bypass" additional="true"/>
+		<type tag="road_modifier_4" value="bypass" additional="true"/>
+		<type tag="road_modifier_5" value="bypass" additional="true"/>
+		<type tag="road_modifier_6" value="bypass" additional="true"/>
+		<type tag="road_modifier_7" value="bypass" additional="true"/>
+		<type tag="road_modifier_8" value="bypass" additional="true"/>
+		<type tag="road_modifier_9" value="bypass" additional="true"/>
+		<type tag="road_modifier_10" value="bypass" additional="true"/>
+		<type tag="road_modifier_1" value="connector" additional="true"/>
+		<type tag="road_modifier_2" value="connector" additional="true"/>
+		<type tag="road_modifier_3" value="connector" additional="true"/>
+		<type tag="road_modifier_4" value="connector" additional="true"/>
+		<type tag="road_modifier_5" value="connector" additional="true"/>
+		<type tag="road_modifier_6" value="connector" additional="true"/>
+		<type tag="road_modifier_7" value="connector" additional="true"/>
+		<type tag="road_modifier_8" value="connector" additional="true"/>
+		<type tag="road_modifier_9" value="connector" additional="true"/>
+		<type tag="road_modifier_10" value="connector" additional="true"/>
 
 		<type tag="road_shield_color" value="blue" additional="true"/>
 		<type tag="road_shield_color" value="green" additional="true"/>
@@ -630,31 +649,31 @@
 		<type tag="road_shield_color" value="yellow" additional="true"/>
 
 		<!-- These suffixed tags used when converting from relation -->
-		<type tag="road_shield_color1" value="blue" additional="true"/>
-		<type tag="road_shield_color2" value="blue" additional="true"/>
-		<type tag="road_shield_color3" value="blue" additional="true"/>
-		<type tag="road_shield_color4" value="blue" additional="true"/>
-		<type tag="road_shield_color5" value="blue" additional="true"/>
-		<type tag="road_shield_color1" value="green" additional="true"/>
-		<type tag="road_shield_color2" value="green" additional="true"/>
-		<type tag="road_shield_color3" value="green" additional="true"/>
-		<type tag="road_shield_color4" value="green" additional="true"/>
-		<type tag="road_shield_color5" value="green" additional="true"/>
-		<type tag="road_shield_color1" value="red" additional="true"/>
-		<type tag="road_shield_color2" value="red" additional="true"/>
-		<type tag="road_shield_color3" value="red" additional="true"/>
-		<type tag="road_shield_color4" value="red" additional="true"/>
-		<type tag="road_shield_color5" value="red" additional="true"/>
-		<type tag="road_shield_color1" value="white" additional="true"/>
-		<type tag="road_shield_color2" value="white" additional="true"/>
-		<type tag="road_shield_color3" value="white" additional="true"/>
-		<type tag="road_shield_color4" value="white" additional="true"/>
-		<type tag="road_shield_color5" value="white" additional="true"/>
-		<type tag="road_shield_color1" value="yellow" additional="true"/>
-		<type tag="road_shield_color2" value="yellow" additional="true"/>
-		<type tag="road_shield_color3" value="yellow" additional="true"/>
-		<type tag="road_shield_color4" value="yellow" additional="true"/>
-		<type tag="road_shield_color5" value="yellow" additional="true"/>
+		<type tag="road_shield_color_1" value="blue" additional="true"/>
+		<type tag="road_shield_color_2" value="blue" additional="true"/>
+		<type tag="road_shield_color_3" value="blue" additional="true"/>
+		<type tag="road_shield_color_4" value="blue" additional="true"/>
+		<type tag="road_shield_color_5" value="blue" additional="true"/>
+		<type tag="road_shield_color_1" value="green" additional="true"/>
+		<type tag="road_shield_color_2" value="green" additional="true"/>
+		<type tag="road_shield_color_3" value="green" additional="true"/>
+		<type tag="road_shield_color_4" value="green" additional="true"/>
+		<type tag="road_shield_color_5" value="green" additional="true"/>
+		<type tag="road_shield_color_1" value="red" additional="true"/>
+		<type tag="road_shield_color_2" value="red" additional="true"/>
+		<type tag="road_shield_color_3" value="red" additional="true"/>
+		<type tag="road_shield_color_4" value="red" additional="true"/>
+		<type tag="road_shield_color_5" value="red" additional="true"/>
+		<type tag="road_shield_color_1" value="white" additional="true"/>
+		<type tag="road_shield_color_2" value="white" additional="true"/>
+		<type tag="road_shield_color_3" value="white" additional="true"/>
+		<type tag="road_shield_color_4" value="white" additional="true"/>
+		<type tag="road_shield_color_5" value="white" additional="true"/>
+		<type tag="road_shield_color_1" value="yellow" additional="true"/>
+		<type tag="road_shield_color_2" value="yellow" additional="true"/>
+		<type tag="road_shield_color_3" value="yellow" additional="true"/>
+		<type tag="road_shield_color_4" value="yellow" additional="true"/>
+		<type tag="road_shield_color_5" value="yellow" additional="true"/>
 
 		<type tag="road_shield_shape" value="pillow" additional="true"/>
 		<type tag="road_shield_shape" value="hexagon" additional="true"/>
@@ -663,204 +682,211 @@
 		<type tag="road_shield_shape2" value="hexagon" additional="true"/>
 		<type tag="road_shield_shape3" value="hexagon" additional="true"/>
 
-		<!-- When object (relation or not) contains ref with only numbers, road_network?=# tag is added. This is needed to assign text_shield as fallback -->
-		<type tag="road_network1" value="#" additional="true"/>
-		<type tag="road_network2" value="#" additional="true"/>
-		<type tag="road_network3" value="#" additional="true"/>
-		<type tag="road_network4" value="#" additional="true"/>
-		<type tag="road_network5" value="#" additional="true"/>
-		<entity_convert pattern="tag_transform" from_tag="road_network1" from_value="#" if_region_name="denmark,norway" to_tag1="road_network1" to_value1="#" to_tag2="road_shield_color1" to_value2="white" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_network2" from_value="#" if_region_name="denmark,norway" to_tag1="road_network1" to_value1="#" to_tag2="road_shield_color2" to_value2="white" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_network3" from_value="#" if_region_name="denmark,norway" to_tag1="road_network1" to_value1="#" to_tag2="road_shield_color3" to_value2="white" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_network4" from_value="#" if_region_name="denmark,norway" to_tag1="road_network1" to_value1="#" to_tag2="road_shield_color4" to_value2="white" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_network5" from_value="#" if_region_name="denmark,norway" to_tag1="road_network1" to_value1="#" to_tag2="road_shield_color5" to_value2="white" apply_to="way"/>
+		<!-- When object (relation or not) contains ref with only numbers, road_network_?=# tag is added. This is needed to assign text_shield as fallback -->
+		<type tag="road_network_1" value="#" additional="true"/>
+		<type tag="road_network_2" value="#" additional="true"/>
+		<type tag="road_network_3" value="#" additional="true"/>
+		<type tag="road_network_4" value="#" additional="true"/>
+		<type tag="road_network_5" value="#" additional="true"/>
+		<entity_convert pattern="tag_transform" from_tag="road_network_1" from_value="#" if_region_name="denmark,norway" to_tag1="road_network_1" to_value1="#" to_tag2="road_shield_color_1" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_network_2" from_value="#" if_region_name="denmark,norway" to_tag1="road_network_1" to_value1="#" to_tag2="road_shield_color_2" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_network_3" from_value="#" if_region_name="denmark,norway" to_tag1="road_network_1" to_value1="#" to_tag2="road_shield_color_3" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_network_4" from_value="#" if_region_name="denmark,norway" to_tag1="road_network_1" to_value1="#" to_tag2="road_shield_color_4" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_network_5" from_value="#" if_region_name="denmark,norway" to_tag1="road_network_1" to_value1="#" to_tag2="road_shield_color_5" to_value2="white" apply_to="way"/>
 
 		<type tag="road_shield_order" value="1" additional="true"/>
 		<type tag="road_shield_order" value="2" additional="true"/>
-		<type tag="road_shield_order1" value="1" additional="true"/>
-		<type tag="road_shield_order1" value="2" additional="true"/>
-		<type tag="road_shield_order2" value="1" additional="true"/>
-		<type tag="road_shield_order2" value="2" additional="true"/>
-		<type tag="road_shield_order3" value="1" additional="true"/>
-		<type tag="road_shield_order3" value="2" additional="true"/>
-		<type tag="road_shield_order4" value="1" additional="true"/>
-		<type tag="road_shield_order4" value="2" additional="true"/>
-		<type tag="road_shield_order5" value="1" additional="true"/>
-		<type tag="road_shield_order5" value="2" additional="true"/>
+		<type tag="road_shield_order_1" value="1" additional="true"/>
+		<type tag="road_shield_order_1" value="2" additional="true"/>
+		<type tag="road_shield_order_2" value="1" additional="true"/>
+		<type tag="road_shield_order_2" value="2" additional="true"/>
+		<type tag="road_shield_order_3" value="1" additional="true"/>
+		<type tag="road_shield_order_3" value="2" additional="true"/>
+		<type tag="road_shield_order_4" value="1" additional="true"/>
+		<type tag="road_shield_order_4" value="2" additional="true"/>
+		<type tag="road_shield_order_5" value="1" additional="true"/>
+		<type tag="road_shield_order_5" value="2" additional="true"/>
 
-		<entity_convert pattern="tag_transform" from_tag="road_network1" from_value="e-road" if_region_name="$gb,germany,uzbekistan,$ireland,russia,ukraine,armenia,azerbaijan,georgia"/>
-		<entity_convert pattern="tag_transform" from_tag="road_network2" from_value="e-road" if_region_name="$gb,germany,uzbekistan,$ireland,russia,ukraine,armenia,azerbaijan,georgia"/>
-		<entity_convert pattern="tag_transform" from_tag="road_network3" from_value="e-road" if_region_name="$gb,germany,uzbekistan,$ireland,russia,ukraine,armenia,azerbaijan,georgia"/>
-		<entity_convert pattern="tag_transform" from_tag="road_network4" from_value="e-road" if_region_name="$gb,germany,uzbekistan,$ireland,russia,ukraine,armenia,azerbaijan,georgia"/>
-		<entity_convert pattern="tag_transform" from_tag="road_network5" from_value="e-road" if_region_name="$gb,germany,uzbekistan,$ireland,russia,ukraine,armenia,azerbaijan,georgia"/>
-		<entity_convert pattern="tag_transform" from_tag="road_network1" from_value="e-road" to_tag1="road_network1" to_value1="e-road" to_tag2="road_shield_color1" to_value2="green" to_tag3="road_shield_order1" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_network2" from_value="e-road" to_tag1="road_network2" to_value1="e-road" to_tag2="road_shield_color2" to_value2="green" to_tag3="road_shield_order2" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_network3" from_value="e-road" to_tag1="road_network3" to_value1="e-road" to_tag2="road_shield_color3" to_value2="green" to_tag3="road_shield_order3" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_network4" from_value="e-road" to_tag1="road_network4" to_value1="e-road" to_tag2="road_shield_color4" to_value2="green" to_tag3="road_shield_order4" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_network5" from_value="e-road" to_tag1="road_network5" to_value1="e-road" to_tag2="road_shield_color5" to_value2="green" to_tag3="road_shield_order5" to_value3="1" apply_to="way"/>
+<!--		<entity_convert pattern="tag_transform" from_tag="road_network_1" from_value="e-road" if_region_name="$gb,germany,uzbekistan,$ireland,russia,ukraine,armenia,azerbaijan,georgia"/>
+		<entity_convert pattern="tag_transform" from_tag="road_network_2" from_value="e-road" if_region_name="$gb,germany,uzbekistan,$ireland,russia,ukraine,armenia,azerbaijan,georgia"/>
+		<entity_convert pattern="tag_transform" from_tag="road_network_3" from_value="e-road" if_region_name="$gb,germany,uzbekistan,$ireland,russia,ukraine,armenia,azerbaijan,georgia"/>
+		<entity_convert pattern="tag_transform" from_tag="road_network_4" from_value="e-road" if_region_name="$gb,germany,uzbekistan,$ireland,russia,ukraine,armenia,azerbaijan,georgia"/>
+		<entity_convert pattern="tag_transform" from_tag="road_network_5" from_value="e-road" if_region_name="$gb,germany,uzbekistan,$ireland,russia,ukraine,armenia,azerbaijan,georgia"/>-->
+		<entity_convert pattern="tag_transform" from_tag="road_network_1" from_value="e-road" if_not_region_name="$ireland" to_tag1="road_network_1" to_value1="e-road" to_tag2="road_shield_color_1" to_value2="green" to_tag3="road_shield_order_1" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_network_2" from_value="e-road" if_not_region_name="$ireland" to_tag1="road_network_2" to_value1="e-road" to_tag2="road_shield_color_2" to_value2="green" to_tag3="road_shield_order_2" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_network_3" from_value="e-road" if_not_region_name="$ireland" to_tag1="road_network_3" to_value1="e-road" to_tag2="road_shield_color_3" to_value2="green" to_tag3="road_shield_order_3" to_value3="1" apply_to="way"/>
+<!--		<entity_convert pattern="tag_transform" from_tag="road_network_4" from_value="e-road" if_not_region_name="$gb,germany,uzbekistan,$ireland,russia,ukraine,armenia,azerbaijan,georgia" to_tag1="road_network_4" to_value1="e-road" to_tag2="road_shield_color_4" to_value2="green" to_tag3="road_shield_order_4" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_network_5" from_value="e-road" if_not_region_name="$gb,germany,uzbekistan,$ireland,russia,ukraine,armenia,azerbaijan,georgia" to_tag1="road_network_5" to_value1="e-road" to_tag2="road_shield_color_5" to_value2="green" to_tag3="road_shield_order_5" to_value3="1" apply_to="way"/>-->
 
 		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="iceland" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="iceland" if_tag1="road_ref_1" to_tag1="highway" to_tag2="road_shield_color_1" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="iceland" if_tag1="road_ref_2" to_tag1="highway" to_tag2="road_shield_color_2" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="iceland" if_tag1="road_ref_2" to_tag1="highway" to_tag2="road_shield_color_3" to_value2="white" apply_to="way"/>
 
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="motorway" if_region_name="$gb,$ireland,isle-of-man,jersey,spain" to_tag1="highway" to_value1="motorway" to_tag2="road_shield_color" to_value2="blue" to_tag3="road_shield_order" to_value3="1"/>
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="motorway" if_region_name="denmark" to_tag1="highway" to_value1="motorway" to_tag2="road_shield_color" to_value2="yellow" to_tag3="road_shield_order" to_value3="1"/>
-<!--
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="$gb,isle-of-man,jersey" if_tag1="road_network1" if_value1="a" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="green" to_tag3="road_shield_order1" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="$gb,isle-of-man,jersey" if_tag1="road_network2" if_value1="a" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="green" to_tag3="road_shield_order2" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="$gb,isle-of-man,jersey" if_tag1="road_network3" if_value1="a" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="green" to_tag3="road_shield_order3" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="$gb,isle-of-man,jersey" if_tag1="road_network1" if_value1="b" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="white" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="$gb,isle-of-man,jersey" if_tag1="road_network2" if_value1="b" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="white" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="$gb,isle-of-man,jersey" if_tag1="road_network3" if_value1="b" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="white" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="$gb,isle-of-man,jersey" if_starts_from_tag1="ref" if_starts_from_value1="a" to_tag1="highway" to_tag2="road_shield_color" to_value2="green" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="$gb,isle-of-man,jersey" if_starts_from_tag1="ref" if_starts_from_value1="b" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
 
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="$ireland" if_tag1="road_network1" if_value1="n" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="green" to_tag3="road_shield_order1" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="$ireland" if_tag1="road_network2" if_value1="n" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="green" to_tag3="road_shield_order2" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="$ireland" if_tag1="road_network3" if_value1="n" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="green" to_tag3="road_shield_order3" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="$ireland" if_starts_from_tag1="ref" if_starts_from_value1="n" to_tag1="highway" to_tag2="road_shield_color" to_value2="green" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="$ireland" if_starts_from_tag1="ref" if_starts_from_value1="r" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="$ireland" if_starts_from_tag1="ref" if_starts_from_value1="l" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="$gb,isle-of-man,jersey" if_tag1="road_network_1" if_value1="a" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="green" to_tag3="road_shield_order_1" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="$gb,isle-of-man,jersey" if_tag1="road_network_2" if_value1="a" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="green" to_tag3="road_shield_order_2" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="$gb,isle-of-man,jersey" if_tag1="road_network_3" if_value1="a" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="green" to_tag3="road_shield_order_3" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="$gb,isle-of-man,jersey" if_tag1="road_network_1" if_value1="b" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="$gb,isle-of-man,jersey" if_tag1="road_network_2" if_value1="b" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="$gb,isle-of-man,jersey" if_tag1="road_network_3" if_value1="b" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="$gb,isle-of-man,jersey" if_starts_with_tag1="ref" if_starts_with_value1="a" to_tag1="highway" to_tag2="road_shield_color" to_value2="green" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="$gb,isle-of-man,jersey" if_starts_with_tag1="ref" if_starts_with_value1="b" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="$gb,isle-of-man,jersey" if_starts_with_tag1="ref" if_starts_with_value1="c" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
 
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="france" if_tag1="road_network1" if_value1="a" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="red" to_tag3="road_shield_order1" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="france" if_tag1="road_network2" if_value1="a" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="red" to_tag3="road_shield_order2" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="france" if_tag1="road_network3" if_value1="a" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="red" to_tag3="road_shield_order3" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="france" if_tag1="road_network1" if_value1="n" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="red" to_tag3="road_shield_order1" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="france" if_tag1="road_network2" if_value1="n" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="red" to_tag3="road_shield_order2" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="france" if_tag1="road_network3" if_value1="n" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="red" to_tag3="road_shield_order3" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="france" if_starts_from_tag1="ref" if_starts_from_value1="a" to_tag1="highway" to_tag2="road_shield_color" to_value2="red" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="france" if_starts_from_tag1="ref" if_starts_from_value1="n" to_tag1="highway" to_tag2="road_shield_color" to_value2="red" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="france" if_starts_from_tag1="ref" if_starts_from_value1="d" to_tag1="highway" to_tag2="road_shield_color" to_value2="yellow" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="france" if_starts_from_tag1="ref" if_starts_from_value1="c" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="$ireland" if_tag1="road_network_1" if_value1="n" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="green" to_tag3="road_shield_order_1" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="$ireland" if_tag1="road_network_2" if_value1="n" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="green" to_tag3="road_shield_order_2" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="$ireland" if_tag1="road_network_3" if_value1="n" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="green" to_tag3="road_shield_order_3" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="$ireland" if_starts_with_tag1="ref" if_starts_with_value1="n" to_tag1="highway" to_tag2="road_shield_color" to_value2="green" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="$ireland" if_starts_with_tag1="ref" if_starts_with_value1="r" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="$ireland" if_starts_with_tag1="ref" if_starts_with_value1="l" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
 
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="portugal" if_tag1="road_network1" if_value1="a" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="blue" to_tag3="road_shield_order1" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="portugal" if_tag1="road_network2" if_value1="a" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="blue" to_tag3="road_shield_order2" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="portugal" if_tag1="road_network3" if_value1="a" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="blue" to_tag3="road_shield_order3" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="portugal" if_tag1="road_network1" if_value1="ip" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="red" to_tag3="road_shield_order1" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="portugal" if_tag1="road_network2" if_value1="ip" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="red" to_tag3="road_shield_order2" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="portugal" if_tag1="road_network3" if_value1="ip" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="red" to_tag3="road_shield_order3" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="portugal" if_tag1="road_network1" if_value1="ic" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="white" to_tag3="road_shield_order1" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="portugal" if_tag1="road_network2" if_value1="ic" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="white" to_tag3="road_shield_order2" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="portugal" if_tag1="road_network3" if_value1="ic" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="white" to_tag3="road_shield_order3" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="portugal" if_tag1="road_network1" if_value1="en" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="white" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="portugal" if_tag1="road_network2" if_value1="en" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="white" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="portugal" if_tag1="road_network3" if_value1="en" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="white" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="portugal" if_tag1="road_network1" if_value1="em" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="yellow" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="portugal" if_tag1="road_network2" if_value1="em" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="yellow" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="portugal" if_tag1="road_network3" if_value1="em" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="yellow" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="portugal" if_tag1="road_network1" if_value1="cm" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="yellow" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="portugal" if_tag1="road_network2" if_value1="cm" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="yellow" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="portugal" if_tag1="road_network3" if_value1="cm" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="yellow" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="portugal" if_starts_from_tag1="ref" if_starts_from_value1="a" to_tag1="highway" to_tag2="road_shield_color" to_value2="blue" to_tag3="road_shield_order" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="portugal" if_starts_from_tag1="ref" if_starts_from_value1="ip" to_tag1="highway" to_tag2="road_shield_color" to_value2="red" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="portugal" if_starts_from_tag1="ref" if_starts_from_value1="ic" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="portugal" if_starts_from_tag1="ref" if_starts_from_value1="en" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="portugal" if_starts_from_tag1="ref" if_starts_from_value1="er" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="portugal" if_starts_from_tag1="ref" if_starts_from_value1="em" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="portugal" if_starts_from_tag1="ref" if_starts_from_value1="cm" to_tag1="highway" to_tag2="road_shield_color" to_value2="yellow" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="france" if_tag1="road_network_1" if_value1="a" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="red" to_tag3="road_shield_order_1" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="france" if_tag1="road_network_2" if_value1="a" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="red" to_tag3="road_shield_order_2" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="france" if_tag1="road_network_3" if_value1="a" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="red" to_tag3="road_shield_order_3" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="france" if_tag1="road_network_1" if_value1="n" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="red" to_tag3="road_shield_order_1" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="france" if_tag1="road_network_2" if_value1="n" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="red" to_tag3="road_shield_order_2" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="france" if_tag1="road_network_3" if_value1="n" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="red" to_tag3="road_shield_order_3" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="france" if_starts_with_tag1="ref" if_starts_with_value1="a" to_tag1="highway" to_tag2="road_shield_color" to_value2="red" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="france" if_starts_with_tag1="ref" if_starts_with_value1="n" to_tag1="highway" to_tag2="road_shield_color" to_value2="red" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="france" if_starts_with_tag1="ref" if_starts_with_value1="d" to_tag1="highway" to_tag2="road_shield_color" to_value2="yellow" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="france" if_starts_with_tag1="ref" if_starts_with_value1="c" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="france" if_starts_with_tag1="road_ref_1" if_starts_with_value1="a" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="red" to_tag3="road_shield_order_1" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="france" if_starts_with_tag1="road_ref_2" if_starts_with_value1="a" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="red" to_tag3="road_shield_order_1" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="france" if_starts_with_tag1="road_ref_3" if_starts_with_value1="a" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="red" to_tag3="road_shield_order_1" to_value3="1" apply_to="way"/>
 
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="belgium" if_tag1="road_network1" if_value1="n" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="blue" to_tag3="road_shield_order1" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="belgium" if_tag1="road_network2" if_value1="n" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="blue" to_tag3="road_shield_order2" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="belgium" if_tag1="road_network3" if_value1="n" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="blue" to_tag3="road_shield_order3" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="belgium" if_tag1="road_network1" if_value1="a" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="white" to_tag3="road_shield_order1" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="belgium" if_tag1="road_network2" if_value1="a" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="white" to_tag3="road_shield_order2" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="belgium" if_tag1="road_network3" if_value1="a" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="white" to_tag3="road_shield_order3" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="belgium" if_starts_from_tag1="ref" if_starts_from_value1="n" to_tag1="highway" to_tag2="road_shield_color" to_value2="blue" to_tag3="road_shield_order" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="belgium" if_starts_from_tag1="ref" if_starts_from_value1="b" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="belgium" if_starts_from_tag1="ref" if_starts_from_value1="r" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="belgium" if_starts_from_tag1="ref" if_starts_from_value1="a" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" to_tag3="road_shield_order" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="portugal" if_tag1="road_network_1" if_value1="a" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="blue" to_tag3="road_shield_order_1" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="portugal" if_tag1="road_network_2" if_value1="a" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="blue" to_tag3="road_shield_order_2" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="portugal" if_tag1="road_network_3" if_value1="a" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="blue" to_tag3="road_shield_order_3" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="portugal" if_tag1="road_network_1" if_value1="ip" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="red" to_tag3="road_shield_order_1" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="portugal" if_tag1="road_network_2" if_value1="ip" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="red" to_tag3="road_shield_order_2" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="portugal" if_tag1="road_network_3" if_value1="ip" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="red" to_tag3="road_shield_order_3" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="portugal" if_tag1="road_network_1" if_value1="ic" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="white" to_tag3="road_shield_order_1" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="portugal" if_tag1="road_network_2" if_value1="ic" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="white" to_tag3="road_shield_order_2" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="portugal" if_tag1="road_network_3" if_value1="ic" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="white" to_tag3="road_shield_order_3" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="portugal" if_tag1="road_network_1" if_value1="en" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="portugal" if_tag1="road_network_2" if_value1="en" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="portugal" if_tag1="road_network_3" if_value1="en" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="portugal" if_tag1="road_network_1" if_value1="em" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="yellow" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="portugal" if_tag1="road_network_2" if_value1="em" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="yellow" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="portugal" if_tag1="road_network_3" if_value1="em" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="yellow" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="portugal" if_tag1="road_network_1" if_value1="cm" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="yellow" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="portugal" if_tag1="road_network_2" if_value1="cm" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="yellow" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="portugal" if_tag1="road_network_3" if_value1="cm" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="yellow" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="portugal" if_starts_with_tag1="ref" if_starts_with_value1="a" to_tag1="highway" to_tag2="road_shield_color" to_value2="blue" to_tag3="road_shield_order" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="portugal" if_starts_with_tag1="ref" if_starts_with_value1="ip" to_tag1="highway" to_tag2="road_shield_color" to_value2="red" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="portugal" if_starts_with_tag1="ref" if_starts_with_value1="ic" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="portugal" if_starts_with_tag1="ref" if_starts_with_value1="en" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="portugal" if_starts_with_tag1="ref" if_starts_with_value1="n" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="portugal" if_starts_with_tag1="ref" if_starts_with_value1="er" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="portugal" if_starts_with_tag1="ref" if_starts_with_value1="em" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="portugal" if_starts_with_tag1="ref" if_starts_with_value1="cm" to_tag1="highway" to_tag2="road_shield_color" to_value2="yellow" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="portugal" if_starts_with_tag1="ref" if_starts_with_value1="m" to_tag1="highway" to_tag2="road_shield_color" to_value2="yellow" apply_to="way"/>
 
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="netherlands" if_tag1="road_network1" if_value1="a" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="red" to_tag3="road_shield_order1" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="netherlands" if_tag1="road_network2" if_value1="a" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="red" to_tag3="road_shield_order2" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="netherlands" if_tag1="road_network3" if_value1="a" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="red" to_tag3="road_shield_order3" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="netherlands" if_starts_from_tag1="ref" if_starts_from_value1="a" to_tag1="highway" to_tag2="road_shield_color" to_value2="red" to_tag3="road_shield_order" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="netherlands" if_starts_from_tag1="ref" if_starts_from_value1="n" to_tag1="highway" to_tag2="road_shield_color" to_value2="yellow" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="netherlands" if_starts_from_tag1="ref" if_starts_from_value1="s" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" to_tag3="road_shield_shape" to_value3="pillow" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="belgium" if_tag1="road_network_1" if_value1="n" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="blue" to_tag3="road_shield_order_1" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="belgium" if_tag1="road_network_2" if_value1="n" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="blue" to_tag3="road_shield_order_2" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="belgium" if_tag1="road_network_3" if_value1="n" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="blue" to_tag3="road_shield_order_3" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="belgium" if_tag1="road_network_1" if_value1="a" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="white" to_tag3="road_shield_order_1" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="belgium" if_tag1="road_network_2" if_value1="a" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="white" to_tag3="road_shield_order_2" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="belgium" if_tag1="road_network_3" if_value1="a" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="white" to_tag3="road_shield_order_3" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="belgium" if_starts_with_tag1="ref" if_starts_with_value1="n" to_tag1="highway" to_tag2="road_shield_color" to_value2="blue" to_tag3="road_shield_order" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="belgium" if_starts_with_tag1="ref" if_starts_with_value1="b" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="belgium" if_starts_with_tag1="ref" if_starts_with_value1="r" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="belgium" if_starts_with_tag1="ref" if_starts_with_value1="a" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" to_tag3="road_shield_order" to_value3="1" apply_to="way"/>
 
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="germany" if_tag1="road_network1" if_value1="a" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="blue" to_tag3="road_shield_shape1" to_value3="hexagon" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="germany" if_tag1="road_network2" if_value1="a" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="blue" to_tag3="road_shield_shape2" to_value3="hexagon" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="germany" if_tag1="road_network3" if_value1="a" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="blue" to_tag3="road_shield_shape3" to_value3="hexagon" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="germany" if_tag1="road_network1" if_value1="b" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="yellow" to_tag3="road_shield_shape1" to_value3="hexagon" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="germany" if_tag1="road_network2" if_value1="b" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="yellow" to_tag3="road_shield_shape2" to_value3="hexagon" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="germany" if_tag1="road_network3" if_value1="b" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="yellow" to_tag3="road_shield_shape3" to_value3="hexagon" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="netherlands" if_tag1="road_network_1" if_value1="a" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="red" to_tag3="road_shield_order_1" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="netherlands" if_tag1="road_network_2" if_value1="a" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="red" to_tag3="road_shield_order_2" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="netherlands" if_tag1="road_network_3" if_value1="a" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="red" to_tag3="road_shield_order_3" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="netherlands" if_starts_with_tag1="ref" if_starts_with_value1="a" to_tag1="highway" to_tag2="road_shield_color" to_value2="red" to_tag3="road_shield_order" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="netherlands" if_starts_with_tag1="ref" if_starts_with_value1="n" to_tag1="highway" to_tag2="road_shield_color" to_value2="yellow" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="netherlands" if_starts_with_tag1="ref" if_starts_with_value1="s" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" to_tag3="road_shield_shape" to_value3="pillow" apply_to="way"/>
 
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="germany" if_starts_from_tag1="ref" if_starts_from_value1="a" to_tag1="highway" to_tag2="road_shield_color" to_value2="blue" to_tag3="road_shield_shape" to_value3="hexagon" to_tag4="road_shield_order" to_value4="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="germany" if_starts_from_tag1="ref" if_starts_from_value1="b" to_tag1="highway" to_tag2="road_shield_color" to_value2="yellow" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="germany" if_starts_from_tag1="ref" if_starts_from_value1="k" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="germany" if_starts_from_tag1="ref" if_starts_from_value1="l" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="germany" if_tag1="road_network_1" if_value1="a" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="blue" to_tag3="road_shield_shape1" to_value3="hexagon" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="germany" if_tag1="road_network_2" if_value1="a" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="blue" to_tag3="road_shield_shape2" to_value3="hexagon" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="germany" if_tag1="road_network_3" if_value1="a" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="blue" to_tag3="road_shield_shape3" to_value3="hexagon" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="germany" if_tag1="road_network_1" if_value1="b" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="yellow" to_tag3="road_shield_shape1" to_value3="hexagon" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="germany" if_tag1="road_network_2" if_value1="b" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="yellow" to_tag3="road_shield_shape2" to_value3="hexagon" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="germany" if_tag1="road_network_3" if_value1="b" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="yellow" to_tag3="road_shield_shape3" to_value3="hexagon" apply_to="way"/>
 
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="denmark" if_starts_from_tag1="ref" if_starts_from_value1="o" to_tag1="highway" to_tag2="road_shield_color" to_value2="yellow" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="germany" if_starts_with_tag1="ref" if_starts_with_value1="a" to_tag1="highway" to_tag2="road_shield_color" to_value2="blue" to_tag3="road_shield_shape" to_value3="hexagon" to_tag4="road_shield_order" to_value4="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="germany" if_starts_with_tag1="ref" if_starts_with_value1="b" to_tag1="highway" to_tag2="road_shield_color" to_value2="yellow" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="germany" if_starts_with_tag1="ref" if_starts_with_value1="k" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="germany" if_starts_with_tag1="ref" if_starts_with_value1="l" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
+
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="denmark" if_starts_with_tag1="ref" if_starts_with_value1="o" to_tag1="highway" to_tag2="road_shield_color" to_value2="yellow" apply_to="way"/>
 
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="motorway" if_region_name="norway" to_tag1="highway" to_value1="motorway" to_tag2="road_shield_color" to_value2="green" to_tag3="road_shield_order" to_value3="1"/>
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="trunk" if_region_name="norway" to_tag1="highway" to_value1="trunk" to_tag2="road_shield_color" to_value2="green" to_tag3="road_shield_order" to_value3="1"/>
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="primary" if_region_name="norway" to_tag1="highway" to_value1="primary" to_tag2="road_shield_color" to_value2="green" to_tag3="road_shield_order" to_value3="2"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="norway" if_starts_from_tag1="ref" if_starts_from_value1="fv" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="norway" if_starts_with_tag1="ref" if_starts_with_value1="fv" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" apply_to="way"/>
 
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="sweden" if_tag1="road_network1" if_value1="#" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="blue" to_tag3="road_shield_order1" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="sweden" if_tag1="road_network2" if_value1="#" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="blue" to_tag3="road_shield_order2" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="sweden" if_tag1="road_network3" if_value1="#" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="blue" to_tag3="road_shield_order3" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="sweden" if_tag1="ref" if_tag2="road_network1" if_value2="#" to_tag1="highway" to_tag2="road_shield_color" to_value2="blue" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="sweden" if_tag1="road_network_1" if_value1="#" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="blue" to_tag3="road_shield_order_1" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="sweden" if_tag1="road_network_2" if_value1="#" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="blue" to_tag3="road_shield_order_2" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="sweden" if_tag1="road_network_3" if_value1="#" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="blue" to_tag3="road_shield_order_3" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="sweden" if_tag1="ref" if_tag2="road_network_1" if_value2="#" to_tag1="highway" to_tag2="road_shield_color" to_value2="blue" apply_to="way"/>
 
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="motorway" if_region_name="finland" to_tag1="highway" to_value1="motorway" to_tag2="road_shield_color" to_value2="red" to_tag3="road_shield_order" to_value3="1"/>
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="trunk" if_region_name="finland" to_tag1="highway" to_value1="trunk" to_tag2="road_shield_color" to_value2="red" to_tag3="road_shield_order" to_value3="1"/>
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="primary" if_region_name="finland" to_tag1="highway" to_value1="primary" to_tag2="road_shield_color" to_value2="yellow" to_tag3="road_shield_order" to_value3="2"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="finland" if_tag1="road_network1" if_value1="trunk" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="red" to_tag3="road_shield_order1" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="finland" if_tag1="road_network2" if_value1="trunk" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="red" to_tag3="road_shield_order2" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="finland" if_tag1="road_network3" if_value1="trunk" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="red" to_tag3="road_shield_order3" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="finland" if_tag1="road_network1" if_value1="primary" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="yellow" to_tag3="road_shield_order1" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="finland" if_tag1="road_network2" if_value1="primary" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="yellow" to_tag3="road_shield_order2" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="finland" if_tag1="road_network3" if_value1="primary" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="yellow" to_tag3="road_shield_order3" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="finland" if_tag1="road_network_1" if_value1="trunk" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="red" to_tag3="road_shield_order_1" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="finland" if_tag1="road_network_2" if_value1="trunk" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="red" to_tag3="road_shield_order_2" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="finland" if_tag1="road_network_3" if_value1="trunk" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="red" to_tag3="road_shield_order_3" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="finland" if_tag1="road_network_1" if_value1="primary" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="yellow" to_tag3="road_shield_order_1" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="finland" if_tag1="road_network_2" if_value1="primary" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="yellow" to_tag3="road_shield_order_2" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="finland" if_tag1="road_network_3" if_value1="primary" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="yellow" to_tag3="road_shield_order_3" to_value3="2" apply_to="way"/>
 
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="poland" if_tag1="road_network1" if_value1="pl:motorways" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="red" to_tag3="road_shield_order1" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="poland" if_tag1="road_network2" if_value1="pl:motorways" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="red" to_tag3="road_shield_order2" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="poland" if_tag1="road_network3" if_value1="pl:motorways" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="red" to_tag3="road_shield_order3" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="poland" if_tag1="road_network1" if_value1="pl:expressways" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="red" to_tag3="road_shield_order1" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="poland" if_tag1="road_network2" if_value1="pl:expressways" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="red" to_tag3="road_shield_order2" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="poland" if_tag1="road_network3" if_value1="pl:expressways" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="red" to_tag3="road_shield_order3" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="poland" if_tag1="road_network1" if_value1="pl:regional" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="yellow" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="poland" if_tag1="road_network2" if_value1="pl:regional" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="yellow" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="poland" if_tag1="road_network3" if_value1="pl:regional" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="yellow" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="poland" if_tag1="road_network1" if_value1="pl:national" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="red" to_tag3="road_shield_order1" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="poland" if_tag1="road_network2" if_value1="pl:national" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="red" to_tag3="road_shield_order1" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="poland" if_tag1="road_network3" if_value1="pl:national" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="red" to_tag3="road_shield_order1" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="poland" if_tag1="road_network_1" if_value1="pl:motorways" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="red" to_tag3="road_shield_order_1" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="poland" if_tag1="road_network_2" if_value1="pl:motorways" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="red" to_tag3="road_shield_order_2" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="poland" if_tag1="road_network_3" if_value1="pl:motorways" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="red" to_tag3="road_shield_order_3" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="poland" if_tag1="road_network_1" if_value1="pl:expressways" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="red" to_tag3="road_shield_order_1" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="poland" if_tag1="road_network_2" if_value1="pl:expressways" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="red" to_tag3="road_shield_order_2" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="poland" if_tag1="road_network_3" if_value1="pl:expressways" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="red" to_tag3="road_shield_order_3" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="poland" if_tag1="road_network_1" if_value1="pl:regional" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="yellow" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="poland" if_tag1="road_network_2" if_value1="pl:regional" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="yellow" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="poland" if_tag1="road_network_3" if_value1="pl:regional" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="yellow" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="poland" if_tag1="road_network_1" if_value1="pl:national" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="red" to_tag3="road_shield_order_1" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="poland" if_tag1="road_network_2" if_value1="pl:national" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="red" to_tag3="road_shield_order_1" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="poland" if_tag1="road_network_3" if_value1="pl:national" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="red" to_tag3="road_shield_order_1" to_value3="2" apply_to="way"/>
 
-		<entity_convert pattern="tag_transform" from_tag="road_network1" from_value1="cz:national" if_region_name="czech-republic" if_starts_from_tag1="road_ref1" if_starts_from_value1="d" to_tag1="road_network1" to_value1="cz:national" to_tag2="road_shield_color1" to_value2="red" to_tag3="road_shield_order1" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_network2" from_value1="cz:national" if_region_name="czech-republic" if_starts_from_tag1="road_ref2" if_starts_from_value1="d" to_tag1="road_network2" to_value1="cz:national" to_tag2="road_shield_color2" to_value2="red" to_tag3="road_shield_order2" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_network3" from_value1="cz:national" if_region_name="czech-republic" if_starts_from_tag1="road_ref3" if_starts_from_value1="d" to_tag1="road_network3" to_value1="cz:national" to_tag2="road_shield_color3" to_value2="red" to_tag3="road_shield_order3" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="czech-republic" if_tag1="road_network1" if_value1="cz:national" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="blue" to_tag3="road_shield_order1" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="czech-republic" if_tag1="road_network2" if_value1="cz:national" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="blue" to_tag3="road_shield_order2" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="czech-republic" if_tag1="road_network3" if_value1="cz:national" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="blue" to_tag3="road_shield_order3" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="czech-republic" if_tag1="road_network1" if_value1="cz:regional" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="blue" to_tag3="road_shield_order1" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="czech-republic" if_tag1="road_network2" if_value1="cz:regional" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="blue" to_tag3="road_shield_order2" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="czech-republic" if_tag1="road_network3" if_value1="cz:regional" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="blue" to_tag3="road_shield_order3" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_network_1" from_value1="cz:national" if_region_name="czech-republic" if_starts_with_tag1="road_ref_1" if_starts_with_value1="d" to_tag1="road_network_1" to_value1="cz:national" to_tag2="road_shield_color_1" to_value2="red" to_tag3="road_shield_order_1" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_network_2" from_value1="cz:national" if_region_name="czech-republic" if_starts_with_tag1="road_ref_2" if_starts_with_value1="d" to_tag1="road_network_2" to_value1="cz:national" to_tag2="road_shield_color_2" to_value2="red" to_tag3="road_shield_order_2" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_network_3" from_value1="cz:national" if_region_name="czech-republic" if_starts_with_tag1="road_ref_3" if_starts_with_value1="d" to_tag1="road_network_3" to_value1="cz:national" to_tag2="road_shield_color_3" to_value2="red" to_tag3="road_shield_order_3" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="czech-republic" if_tag1="road_network_1" if_value1="cz:national" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="blue" to_tag3="road_shield_order_1" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="czech-republic" if_tag1="road_network_2" if_value1="cz:national" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="blue" to_tag3="road_shield_order_2" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="czech-republic" if_tag1="road_network_3" if_value1="cz:national" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="blue" to_tag3="road_shield_order_3" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="czech-republic" if_tag1="road_network_1" if_value1="cz:regional" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="blue" to_tag3="road_shield_order_1" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="czech-republic" if_tag1="road_network_2" if_value1="cz:regional" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="blue" to_tag3="road_shield_order_2" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="czech-republic" if_tag1="road_network_3" if_value1="cz:regional" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="blue" to_tag3="road_shield_order_3" to_value3="2" apply_to="way"/>
 
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="austria" if_tag1="road_network1" if_value1="at:a-road" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="blue" to_tag3="road_shield_order1" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="austria" if_tag1="road_network2" if_value1="at:a-road" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="blue" to_tag3="road_shield_order2" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="austria" if_tag1="road_network3" if_value1="at:a-road" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="blue" to_tag3="road_shield_order3" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="austria" if_starts_from_tag1="ref" if_starts_from_value1="a" to_tag1="highway" to_tag2="road_shield_color" to_value2="blue" to_tag3="road_shield_order" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="austria" if_starts_from_tag1="road_ref1" if_starts_from_value1="s" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="blue" to_tag3="road_shield_order1" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="austria" if_starts_from_tag1="road_ref2" if_starts_from_value1="s" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="blue" to_tag3="road_shield_order2" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="austria" if_starts_from_tag1="road_ref3" if_starts_from_value1="s" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="blue" to_tag3="road_shield_order3" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="austria" if_starts_from_tag1="ref" if_starts_from_value1="s" to_tag1="highway" to_tag2="road_shield_color" to_value2="blue" to_tag3="road_shield_order" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="austria" if_starts_from_tag1="road_ref1" if_starts_from_value1="b" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="blue" to_tag3="road_shield_order1" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="austria" if_starts_from_tag1="road_ref2" if_starts_from_value1="b" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="blue" to_tag3="road_shield_order2" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="austria" if_starts_from_tag1="road_ref3" if_starts_from_value1="b" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="blue" to_tag3="road_shield_order3" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="austria" if_starts_from_tag1="ref" if_starts_from_value1="b" to_tag1="highway" to_tag2="road_shield_color" to_value2="blue" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="austria" if_starts_from_tag1="ref" if_starts_from_value1="l" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" to_tag3="road_shield_shape" to_value3="rounded_rectangle" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="austria" if_tag1="road_network_1" if_value1="at:a-road" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="blue" to_tag3="road_shield_order_1" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="austria" if_tag1="road_network_2" if_value1="at:a-road" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="blue" to_tag3="road_shield_order_2" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="austria" if_tag1="road_network_3" if_value1="at:a-road" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="blue" to_tag3="road_shield_order_3" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="austria" if_starts_with_tag1="ref" if_starts_with_value1="a" to_tag1="highway" to_tag2="road_shield_color" to_value2="blue" to_tag3="road_shield_order" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="austria" if_starts_with_tag1="road_ref_1" if_starts_with_value1="s" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="blue" to_tag3="road_shield_order_1" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="austria" if_starts_with_tag1="road_ref_2" if_starts_with_value1="s" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="blue" to_tag3="road_shield_order_2" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="austria" if_starts_with_tag1="road_ref_3" if_starts_with_value1="s" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="blue" to_tag3="road_shield_order_3" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="austria" if_starts_with_tag1="ref" if_starts_with_value1="s" to_tag1="highway" to_tag2="road_shield_color" to_value2="blue" to_tag3="road_shield_order" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="austria" if_starts_with_tag1="road_ref_1" if_starts_with_value1="b" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="blue" to_tag3="road_shield_order_1" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="austria" if_starts_with_tag1="road_ref_2" if_starts_with_value1="b" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="blue" to_tag3="road_shield_order_2" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="austria" if_starts_with_tag1="road_ref_3" if_starts_with_value1="b" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="blue" to_tag3="road_shield_order_3" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="austria" if_starts_with_tag1="ref" if_starts_with_value1="b" to_tag1="highway" to_tag2="road_shield_color" to_value2="blue" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="austria" if_starts_with_tag1="ref" if_starts_with_value1="l" to_tag1="highway" to_tag2="road_shield_color" to_value2="white" to_tag3="road_shield_shape" to_value3="rounded_rectangle" apply_to="way"/>
 
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="luxembourg" if_starts_from_tag1="ref" if_starts_from_value1="a" to_tag1="highway" to_tag2="road_shield_color" to_value2="blue" to_tag3="road_shield_order" to_value3="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="luxembourg" if_starts_from_tag1="ref" if_starts_from_value1="b" to_tag1="highway" to_tag2="road_shield_color" to_value2="red" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="luxembourg" if_starts_from_tag1="ref" if_starts_from_value1="n" to_tag1="highway" to_tag2="road_shield_color" to_value2="red" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="luxembourg" if_starts_from_tag1="ref" if_starts_from_value1="cr" to_tag1="highway" to_tag2="road_shield_color" to_value2="yellow" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="luxembourg" if_starts_with_tag1="ref" if_starts_with_value1="a" to_tag1="highway" to_tag2="road_shield_color" to_value2="blue" to_tag3="road_shield_order" to_value3="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="luxembourg" if_starts_with_tag1="ref" if_starts_with_value1="b" to_tag1="highway" to_tag2="road_shield_color" to_value2="red" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="luxembourg" if_starts_with_tag1="ref" if_starts_with_value1="n" to_tag1="highway" to_tag2="road_shield_color" to_value2="red" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="luxembourg" if_starts_with_tag1="ref" if_starts_with_value1="cr" to_tag1="highway" to_tag2="road_shield_color" to_value2="yellow" apply_to="way"/>
 
-		<entity_convert pattern="tag_transform" from_tag="road_ref1" if_region_name="switzerland" if_tag1="road_network1" if_value1="motorway" to_tag1="road_ref1" to_tag2="road_shield_color1" to_value2="red" to_tag3="road_shield_shape1" to_value3="hexagon" to_tag4="road_shield_order1" to_value4="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref2" if_region_name="switzerland" if_tag1="road_network2" if_value1="motorway" to_tag1="road_ref2" to_tag2="road_shield_color2" to_value2="red" to_tag3="road_shield_shape2" to_value3="hexagon" to_tag4="road_shield_order2" to_value4="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="road_ref3" if_region_name="switzerland" if_tag1="road_network3" if_value1="motorway" to_tag1="road_ref3" to_tag2="road_shield_color3" to_value2="red" to_tag3="road_shield_shape3" to_value3="hexagon" to_tag4="road_shield_order3" to_value4="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="switzerland" if_starts_from_tag1="ref" if_starts_from_value1="a" to_tag1="highway" to_tag2="road_shield_color" to_value2="red" to_tag3="road_shield_shape" to_value3="hexagon" to_tag4="road_shield_order" to_value4="1" apply_to="way"/>
-		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="switzerland" if_not_starts_from_tag1="ref" if_not_starts_from_value1="a" to_tag1="highway" to_tag2="road_shield_color" to_value2="blue" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_1" if_region_name="switzerland" if_tag1="road_network_1" if_value1="motorway" to_tag1="road_ref_1" to_tag2="road_shield_color_1" to_value2="red" to_tag3="road_shield_shape1" to_value3="hexagon" to_tag4="road_shield_order_1" to_value4="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_2" if_region_name="switzerland" if_tag1="road_network_2" if_value1="motorway" to_tag1="road_ref_2" to_tag2="road_shield_color_2" to_value2="red" to_tag3="road_shield_shape2" to_value3="hexagon" to_tag4="road_shield_order_2" to_value4="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_3" if_region_name="switzerland" if_tag1="road_network_3" if_value1="motorway" to_tag1="road_ref_3" to_tag2="road_shield_color_3" to_value2="red" to_tag3="road_shield_shape3" to_value3="hexagon" to_tag4="road_shield_order_3" to_value4="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="switzerland" if_starts_with_tag1="ref" if_starts_with_value1="a" to_tag1="highway" to_tag2="road_shield_color" to_value2="red" to_tag3="road_shield_shape" to_value3="hexagon" to_tag4="road_shield_order" to_value4="1" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="highway" if_region_name="switzerland" if_not_starts_with_tag1="ref" if_not_starts_with_value1="a" to_tag1="highway" to_tag2="road_shield_color" to_value2="blue" to_tag3="road_shield_order" to_value3="2" apply_to="way"/>
 
-		-->
-<!--		<entity_convert pattern="tag_transform" from_tag="highway" from_value="motorway" if_region_name="europe" if_starts_from_tag1="ref" if_starts_from_value1="e" if_not_tag1="road_shield_color" to_tag1="highway" to_value1="motorway" to_tag2="road_shield_color" to_value2="green"/>-->
 
-		 <!-- Uncomment when if_starts_from_ and if_not_starts_from_ is implemented -->
+		<entity_convert pattern="tag_transform" from_tag="highway" from_value="motorway" if_region_name="europe" if_starts_with_tag1="ref" if_starts_with_value1="e" if_not_tag1="road_shield_color" to_tag1="highway" to_value1="motorway" to_tag2="road_shield_color" to_value2="green"/>
 
 		<type tag="highway" value="motorway_link" minzoom="10" nameTags="ref,int_ref"/>
 		<type tag="highway" value="trunk" minzoom="6" nameTags="ref,int_ref"/>
