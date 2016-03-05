@@ -667,7 +667,7 @@ mycpname ice_hockey sport_ice_hockey.png
 mycpname field_hockey sport_field_hockey.png
 mycp sport horse_racing sport_horse_racing.png
 mycp sport motor sport_motorracing.png
-mycp sport paragliding sport_paragliding.png
+mycpname sport_free_flying sport_free_flying.png
 mycp sport rugby_league sport_rugby_league.png
 mycp sport rugby_union sport_rugby_union.png
 mycp sport sailing sport_sailing.png
