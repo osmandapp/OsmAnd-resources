@@ -781,6 +781,7 @@ mycpname social_centre amenity_social_centre.png
 mycpname compressed_air amenity_compressed_air.png
 mycpname amenity_vacuum_cleaner amenity_vacuum_cleaner.png
 mycpname bicycle_repair_station amenity_bicycle_repair_station.png
+mycpname water_tap amenity_water_tap.png
 
 mygroup craft craft_tailor.png
 mycpname craft_beekeeper craft_beekeeper.png
@@ -1994,7 +1995,7 @@ mycpname osmc_yellow_mz osmc_other_osmc_yellow_mz.png
 mycpname osmc_yellow_sg osmc_other_osmc_yellow_sg.png
 mycpname osmc_yellow_shell osmc_other_osmc_yellow_shell.png
 
-#Additional
+# Additional
 mycpname cuisine additional_cuisine.png
 mycpname website additional_website.png
 mycpname email additional_email.png
