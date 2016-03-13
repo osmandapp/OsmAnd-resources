@@ -2098,7 +2098,8 @@ mycpname compressed_air_no additional_compressed_air_no.png
 mycpname car_wash_yes additional_car_wash_yes.png
 mycpname car_wash_no additional_car_wash_no.png
 mycpname vacuum_cleaner_yes additional_vacuum_cleaner_yes.png
-
+mycpname button_operated_yes additional_button_operated_yes.png
+mycpname button_operated_no additional_button_operated_no.png
 
 #Xmas
 mygroup xmas xmas_tree.png
