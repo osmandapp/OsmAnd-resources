@@ -719,6 +719,7 @@ mycp leisure sports_centre sport_leisure_centre2.png
 mycp leisure water_park entertainment_water_slide.png
 mycp amenity sauna sport_sauna.png
 mycpname fitness_station sport_fitness_station.png
+mycpname solarium amenity_solarium.png
 
 mygroup geocache poi_point_of_interest.png
 mycp geocache not_found poi_point_of_interest.png
