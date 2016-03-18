@@ -1575,7 +1575,7 @@ mycp shop fishing shopping_tackle.png
 mycp shop florist shopping_florist.png
 mycp shop furniture shopping_furniture.png
 mycp shop garden_centre shopping_garden_centre.png
-mycp shop general shopping_general.png
+mycpname shop_yes shopping_general.png
 mycp shop gift shopping_gift.png
 mycp shop greengrocer shopping_greengrocer.png
 mycp shop hairdresser shopping_hairdresser.png
@@ -2101,6 +2101,8 @@ mycpname car_wash_no additional_car_wash_no.png
 mycpname vacuum_cleaner_yes additional_vacuum_cleaner_yes.png
 mycpname button_operated_yes additional_button_operated_yes.png
 mycpname button_operated_no additional_button_operated_no.png
+mycpname shop_additional_yes additional_shop_additional_yes.png
+
 
 #Xmas
 mygroup xmas xmas_tree.png
