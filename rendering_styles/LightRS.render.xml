@@ -14,7 +14,7 @@
 	<renderingProperty attr="currentTrackColor" name="Current GPX color" description="Color of the currently recording track"
 		type="string" possibleValues="red,orange,yellow,lightgreen,green,lightblue,blue,purple,translucent_red,translucent_orange,translucent_yellow,translucent_lightgreen,translucent_green,translucent_lightblue,translucent_blue,translucent_purple" defaultValueDescription="default"/>
 	<renderingProperty attr="currentTrackWidth" name="Current GPX width" description="Width of the currently recording track"
-		type="string" possibleValues="1,2,3,4,6,8,11" defaultValueDescription="default"/>
+		type="string" possibleValues="2,5,11" defaultValueDescription="default"/>
 	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
 
@@ -27,7 +27,7 @@
 		<case nightMode="false" color="#7700cd0a" strokeWidth="12:8" color_3="#ffde5b" strokeWidth_3="7:6"/>
 		<case color="#cc00c1a9" strokeWidth="12:8" color_3="#ffde5b"/>
 	</renderingAttribute>
-	<renderingAttribute name="gpx" cap="ROUND">
+	<renderingAttribute name="gpx">
 		<switch>
 			<case currentTrackColor="red" color="#ff0000"/>
 			<case currentTrackColor="orange" color="#ff7200"/>
@@ -37,24 +37,38 @@
 			<case currentTrackColor="lightblue" color="#2ec6ff"/>
 			<case currentTrackColor="blue" color="#4e4eff"/>
 			<case currentTrackColor="purple" color="#a71de1"/>
-			<case currentTrackColor="translucent_red" color="#88ff0000"/>
-			<case currentTrackColor="translucent_orange" color="#88ff7200"/>
-			<case currentTrackColor="translucent_yellow" color="#88edc300"/>
-			<case currentTrackColor="translucent_lightgreen" color="#886cb52b"/>
-			<case currentTrackColor="translucent_green" color="#8800842b"/>
-			<case currentTrackColor="translucent_lightblue" color="#882ec6ff"/>
-			<case currentTrackColor="translucent_blue" color="#884e4eff"/>
-			<case currentTrackColor="translucent_purple" color="#88a71de1"/>
-			<case color="#ddf40977"/>
-			<apply>
-				<case currentTrackWidth="1" strokeWidth="1"/>
-				<case currentTrackWidth="2" strokeWidth="2"/>
-				<case currentTrackWidth="3" strokeWidth="3"/>
-				<case currentTrackWidth="4" strokeWidth="4"/>
-				<case currentTrackWidth="6" strokeWidth="6"/>
-				<case currentTrackWidth="8" strokeWidth="8"/>
-				<case currentTrackWidth="11" strokeWidth="11"/>
-				<case strokeWidth="4"/>
+			<case currentTrackColor="translucent_red" color="#aaff0000"/>
+			<case currentTrackColor="translucent_orange" color="#aaff7200"/>
+			<case currentTrackColor="translucent_yellow" color="#aaedc300"/>
+			<case currentTrackColor="translucent_lightgreen" color="#aa6cb52b"/>
+			<case currentTrackColor="translucent_green" color="#aa00842b"/>
+			<case currentTrackColor="translucent_lightblue" color="#aa00ffff"/>
+			<case currentTrackColor="translucent_blue" color="#aa4e4eff"/>
+			<case currentTrackColor="translucent_purple" color="#aaa71de1"/>
+			<case color="#ff0000">
+				<apply_if roadStyle="germanRoadAtlas" color="#aa0088"/> <!-- does not works -->
+			</case>
+			<apply cap="ROUND">
+				<case currentTrackWidth="2">
+					<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
+					<apply_if minzoom="6" strokeWidth="2"/>
+				</case>
+				<case currentTrackWidth="5">
+					<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
+					<apply_if minzoom="6" maxzoom="11" strokeWidth="3"/>
+					<apply_if minzoom="12" strokeWidth="5"/>
+				</case>
+				<case currentTrackWidth="11">
+					<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
+					<apply_if minzoom="6" maxzoom="7" strokeWidth="3"/>
+					<apply_if minzoom="8" maxzoom="9" strokeWidth="5"/>
+					<apply_if minzoom="10" maxzoom="11" strokeWidth="7"/>
+					<apply_if minzoom="12" strokeWidth="11"/>
+				</case>
+				<case>
+					<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
+					<apply_if minzoom="6" strokeWidth="2"/>
+				</case>
 			</apply>
 			<apply_if additional="routePoints=true" pathEffect="6_2"/>
 		</switch>
