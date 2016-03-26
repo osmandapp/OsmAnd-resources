@@ -317,7 +317,8 @@ distance(Dist) -- D :- measure('mi-y'), distance_mi_y(Dist) -- D.
 distance_km(Dist) -- []                        :- Dist < 1.
 distance_km(Dist) -- [ X, Km]                  :- Dist < 100,    D is round(Dist), dist(D, X), plural_mt(D, Km).
 distance_km(Dist) -- [ X, Km]                  :- Dist < 1000,   D is round(Dist/10.0)*10, dist(D, X), plural_mt(D, Km).
-distance_km(Dist) -- ['around.ogg','1','kilometr.ogg']          :- Dist < 1500.
+distance_km(Dist) -- ['around.ogg','1','kilometr.ogg']          :- Dist < 1500, tts, !.
+distance_km(Dist) -- ['around.ogg','1.ogg','kilometr.ogg']          :- Dist < 1500.
 distance_km(Dist) -- [ X, Km]                  :- D is round(Dist/1000.0), dist(D, X), plural_km(D, Km).
 
 %%% distance measure mi/f
