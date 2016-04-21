@@ -179,8 +179,8 @@ mygroup emergency emergency_emergency_phone.png
 mycp amenity fire_station emergency_firestation4.png
 mycp amenity police emergency_police3.png
 mycp emergency fire_hydrant emergency_fire_hydrant.png
-mycp emergency fire_hydrant_underground emergency_fire_hydrant_underground.png
-mycp emergency suction_point emergency_suction_point.png
+mycpname fire_hydrant_underground emergency_fire_hydrant_underground.png
+mycpname suction_point emergency_suction_point.png
 mycp emergency phone emergency_emergency_phone.png
 mycpname emergency_access_point emergency_emergency_access_point.png
 mycpname defibrillator emergency_defibrillator.png
