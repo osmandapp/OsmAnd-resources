@@ -55,7 +55,6 @@ string('make_uturn.ogg', 'Make a U turn ').
 string('make_uturn_wp.ogg', 'When possible, please make a U turn ').
 
 % ROUNDABOUTS
-%string('prepare_roundabout.ogg', 'Prepare to enter a roundabout ').
 string('prepare_roundabout.ogg', 'enter a roundabout ').
 string('roundabout.ogg', 'enter the roundabout, ').
 string('then.ogg', ', then ').
@@ -83,8 +82,7 @@ string('17th.ogg', 'seventeenth ').
 
 % STRAIGHT/FOLLOW
 string('go_ahead.ogg', 'Go straight ahead ').
-%string('follow.ogg', 'Follow the course of the road for').
-string('follow.ogg', 'Continue for').
+string('follow.ogg', 'Continue for').  % 'Follow the course of the road for' perceived as too chatty by many users
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'and arrive at your destination ').
