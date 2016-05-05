@@ -231,7 +231,7 @@ location_lost -- ['location_lost.ogg'].
 location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
 speed_alarm -- ['exceed_limit.ogg'].
-attention(_Type) -- ['attention.ogg'].
+% attention(_Type) -- ['attention.ogg'].
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 
 % TRAFFIC WARNINGS
@@ -351,7 +351,7 @@ dist(D, [L,'and.ogg'|'20.ogg']) :- D < 30, Ts is D - 20, !, dist(Ts, L).
 dist(30, ['30.ogg']) :-!.
 dist(D, [L,'and.ogg'|'30.ogg']) :- D < 40, Ts is D - 30, !, dist(Ts, L).
 dist(40, ['40.ogg']) :-!.
-dist(D, [L,'and.ogg'|'40.ogg']) :- D < 50, Ts is D - 30, !, dist(Ts, L).
+dist(D, [L,'and.ogg'|'40.ogg']) :- D < 50, Ts is D - 40, !, dist(Ts, L).
 dist(50, ['50.ogg']) :-!.
 dist(D, [L,'and.ogg'|'50.ogg']) :- D < 60, Ts is D - 50, !, dist(Ts, L).
 dist(60, ['60.ogg']) :-!.
