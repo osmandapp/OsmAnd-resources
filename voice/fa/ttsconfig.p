@@ -47,8 +47,8 @@ string('right_sh.ogg', 'سریعا به راست بپیچید ').
 string('right_sl.ogg', 'به آرامی به راست بپیچید ').
 string('left_keep.ogg', 'مسیرِ سمتِ چپ را دنبال کنید').
 string('right_keep.ogg', 'مسیرِ سمتِ راست را دنبال کنید').
-string('bear_left.ogg', 'مسیرِ سمتِ چپ را دنبال کنید').    % in English the same as keep left, may be dfferent in other languages
-string('bear_right.ogg', 'مسیرِ سمتِ راست را دنبال کنید'). % in English the same as keep right, may be dfferent in other languages
+string('bear_left.ogg', 'مسیرِ سمتِ چپ را دنبال کنید').    % in English the same as keep left, may be different in other languages
+string('bear_right.ogg', 'مسیرِ سمتِ راست را دنبال کنید'). % in English the same as keep right, may be different in other languages
 
 % U-TURNS
 string('make_uturn.ogg', 'حالا دور بزنید ').

@@ -47,8 +47,8 @@ string('right_sh.ogg', 'turn sharply right ').
 string('right_sl.ogg', 'turn slightly right ').
 string('left_keep.ogg', 'keep left ').
 string('right_keep.ogg', 'keep right ').
-string('bear_left.ogg', 'keep left ').   % in English the same as keep left, may be dfferent in other languages
-string('bear_right.ogg', 'keep right '). % in English the same as keep right, may be dfferent in other languages
+string('bear_left.ogg', 'keep left ').   % in English the same as keep left, may be different in other languages
+string('bear_right.ogg', 'keep right '). % in English the same as keep right, may be different in other languages
 
 % U-TURNS
 string('make_uturn.ogg', 'Make a U turn ').
