@@ -114,10 +114,10 @@ string('back_on_route.ogg', 'شما به مسیر بازگشت').
 string('exceed_limit.ogg', 'سرعتِ شما بیش از حدِ مجاز است').
 
 % STREET NAME GRAMMAR
-string('onto.ogg', ‘ِبه سمت ').
+string('onto.ogg', 'به سمت ').
 string('on.ogg', 'در ').
-string('to.ogg', ‘ِِدرون ').
-string('toward.ogg', ‘ِسمت ').
+string('to.ogg', 'ِِدرون ').
+string('toward.ogg', 'ِسمت ').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'متر ').
