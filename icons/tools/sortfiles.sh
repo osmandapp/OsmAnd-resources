@@ -509,6 +509,7 @@ mycp barrier sally_port barrier_sally_port.png
 mycp barrier stile barrier_stile.png
 mycp barrier swing_gate barrier_swing_gate.png
 mycpname toll_booth barrier_toll_booth.png
+mycpname military_checkpoint barrier_military_checkpoint.png
 mycp barrier turnstile barrier_turnstile.png
 mycp entrance yes barrier_entrance2.png
 mycpname entrance_exit_map functional-icons_entrance_exit.png
