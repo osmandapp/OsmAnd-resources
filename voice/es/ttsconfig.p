@@ -40,20 +40,20 @@ string('after.ogg', 'después de ').
 string('in.ogg', 'en ').
 
 string('left.ogg', 'gira a la izquierda').
-string('left_sh.ogg', 'efectúa un giro cerrado a la izquierda').
+string('left_sh.ogg', 'gira cerrado a la izquierda').
 string('left_sl.ogg', 'gira levemente a la izquierda').
 string('right.ogg', 'gira a la derecha').
-string('right_sh.ogg', 'efectúa un giro cerrado a la derecha').
+string('right_sh.ogg', 'gira cerrado a la derecha').
 string('right_sl.ogg', 'gira levemente a la derecha').
 string('left_keep.ogg', 'mantente a la izquierda').
 string('right_keep.ogg', 'mantente a la derecha').
 % if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
 
 string('left_inf.ogg', 'girar a la izquierda').
-string('left_sh_inf.ogg', 'efectuar un giro cerrado a la izquierda').
+string('left_sh_inf.ogg', 'girar cerrado a la izquierda').
 string('left_sl_inf.ogg', 'girar levemente a la izquierda').
 string('right_inf.ogg', 'girar a la derecha').
-string('right_sh_inf.ogg', 'efectuar un giro cerrado a la derecha').
+string('right_sh_inf.ogg', 'girar cerrado a la derecha').
 string('right_sl_inf.ogg', 'girar levemente a la derecha').
 string('left_keep_inf.ogg', 'mantenerte a la izquierda').
 string('right_keep_inf.ogg', 'mantenerte a la derecha').
@@ -92,37 +92,37 @@ string('17th.ogg', 'decimoséptima').
 
 % STRAIGHT/FOLLOW
 string('go_ahead.ogg', 'Continúa recto').
-string('follow.ogg', 'Sigue la vía durante').
+string('follow.ogg', 'Sigua la vía durante').
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'y llegarás a tu destino').
 string('reached_destination.ogg','has llegado a tu destino').
 string('and_arrive_intermediate.ogg', 'y llegarás a tu punto intermedio').
 string('reached_intermediate.ogg', 'has llegado a tu punto intermedio').
-string('and_arrive_waypoint.ogg', 'y pasarás tu punto G P X intermedio').
-string('reached_waypoint.ogg', 'estás pasando tu punto G P X intermedio').
+string('and_arrive_waypoint.ogg', 'y llegarás a tu punto G P X intermedio').
+string('reached_waypoint.ogg', 'has llegado a tu punto G P X intermedio').
 
-string('and_arrive_favorite.ogg', 'y pasarás tu favorito ').
-string('reached_favorite.ogg', 'estás pasando tu punto favorito ').
-string('and_arrive_poi_waypoint.ogg', 'y pasarás el P D I ').
+string('and_arrive_favorite.ogg', 'y llegarás a tu favorito ').
+string('reached_favorite.ogg', 'has llegado a tu punto favorito ').
+string('and_arrive_poi_waypoint.ogg', 'y llegarás al P D I ').
 
-string('reached_poi.ogg', 'estás pasando el P D I ').
+string('reached_poi.ogg', 'has llegado al P D I ').
 
 % OTHER PROMPTS
 string('attention.ogg', 'atención, ').
 string('speed_camera.ogg', 'radar de velocidad ').
 string('border_control.ogg', 'control fronterizo ').
 string('railroad_crossing.ogg', 'paso a nivel ').
-string('traffic_calming.ogg', 'badén ').
+string('traffic_calming.ogg', 'reductor de velocidad ').
 string('toll_booth.ogg', 'cabina de peaje ').
 string('stop.ogg', 'señal de ESTOP ').
-string('pedestrian_crosswalk.ogg', 'paso de peatones ').
+string('pedestrian_crosswalk.ogg', 'cruce de peatones ').
 
-string('location_lost.ogg', 'señal g p s perdida').
-string('location_recovered.ogg', 'señal g p s encontrada ').
+string('location_lost.ogg', 'señal G P S perdida').
+string('location_recovered.ogg', 'señal G P S encontrada ').
 string('off_route.ogg', 'te has desviado de la ruta').
-string('back_on_route.ogg', 'has regresado a la ruta').
-string('exceed_limit.ogg', 'estás excediendo el límite de velocidad ').
+string('back_on_route.ogg', 'has retomado la ruta').
+string('exceed_limit.ogg', 'límite de velocidad excedido ').
 
 % STREET NAME GRAMMAR
 string('on.ogg', 'en ').
