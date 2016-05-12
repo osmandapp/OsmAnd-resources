@@ -179,8 +179,9 @@ turn_inf('right_keep', ['right_keep_inf.ogg']).
 % Next 2 lines for Name taking precedence over Dest...
 %cut_part_street(voice([Ref, '', Dest], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Dest, Concat).
 %cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
-% ...or next 2 lines for Dest taking precedence over Name
+% ...or next 3 lines for Dest taking precedence over Name
 cut_part_street(voice([Ref, Name, ''], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
+cut_part_street(voice(['', Name, Dest], _), [C1, 'toward.ogg', Dest]) :- atom_concat(Name, ' ', C1).
 cut_part_street(voice([Ref, _, Dest], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Dest, Concat).
 
 turn_street('', []).
