@@ -108,7 +108,7 @@ string('stop.ogg', 'stop sign ').
 string('pedestrian_crosswalk.ogg', 'pedestrian crosswalk ').
 
 string('location_lost.ogg', 'g p s signal lost ').
-string('location_recovered.ogg', 'g p s signal restored ').
+string('location_recovered.ogg', 'g p s signal recovered ').
 string('off_route.ogg', 'you have been off the route for').
 string('back_on_route.ogg', 'you have returned to route').
 string('exceed_limit.ogg', 'you are exceeding the speed limit ').
