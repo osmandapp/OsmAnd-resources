@@ -11,19 +11,14 @@ language(uk).
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 %
-% (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
-% (X) arrival
-% (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
-% (X) special grammar: onto / on / to Street fur turn and follow commands
+% (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
+% (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
+% (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM
+% (X) Other prompts: gps lost, off route, back to route
+% (X) Street name support and prepositions (onto / on / to )
+% (X) Distance unit support (meters / feet / yard)
 % (N/A) special grammar: nominative/dative for distance measure
 % (N/A) special grammar: imperative/infinitive distinction for turns
-% (X) distance measure: meters / feet / yard support
-% (X) Street name announcement (suppress in prepare_roundabout)
-% (X) Name announcement for destination / intermediate / GPX waypoint arrival
-% (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
-% (X) word order checked
-% (X) Announcement of favorites, waypoints and pois along the route
-% (X) Announcement when user returns back to route
 
 
 % ROUTE CALCULATED
@@ -81,22 +76,35 @@ string('voice/go_ahead_m.ogg', 'Продовжуйте рух ').
 % ARRIVE
 string('voice/arrivals/and_arrive_destination.ogg', 'і ви прибудете до пункту призначення ').
 string('voice/arrivals/and_arrive_intermediate.ogg', 'і ви прибудете до проміжного пункту ').
-string('voice/arrivals/reached_intermediate.ogg', 'ви прибули до проміжного пункту').
+string('voice/arrivals/reached_intermediate.ogg', 'ви прибули до проміжного пункту ').
 string('voice/arrivals/reached_destination.ogg','ви прибули до пункту призначення ').
-string('voice/arrivals/and_arrive_waypoint.ogg', 'і ви прибудете до точки GPX').
-string('voice/arrivals/reached_waypoint.ogg', 'ви прибули до GPX').
+
+% NEARBY POINTS
+string('voice/arrivals/and_arrive_waypoint.ogg', 'і ви прибудете до точки GPX ').
+string('voice/arrivals/reached_waypoint.ogg', 'ви прибули до GPX ').
+string('voice/and_arrive_favorite.ogg', 'і ви прибудете до точки улюблений ').
+string('voice/reached_favorite.ogg', 'ви прибули до улюблений ').
 string('voice/arrivals/and_arrive_poi.ogg', ' і ви прибудете до точки інтересу ').
 string('voice/arrivals/reached_poi.ogg', 'ви прибули до точки інтересу ').
 
-% OTHER PROMPTS
+% ATTENTION
+string('voice/exceed_limit.ogg', 'Перевищуєте швидкість ').
 string('voice/attention.ogg', 'Увага, ').
+string('voice/speed_camera.ogg', 'швидкість камери ').
+string('voice/border_control.ogg', 'прикордонний контроль ').
+string('voice/railroad_crossing.ogg', 'залізничний переїзд ').
+string('voice/traffic_calming.ogg', 'трафіку заспокійливий ').
+string('voice/toll_booth.ogg', 'платних стенд ').
+string('voice/stop.ogg', 'знак зупинки ').
+string('voice/pedestrian_crosswalk.ogg', 'пішохідного переходу ').
+
+% OTHER PROMPTS
 string('voice/location_lost.ogg', 'втрачено сигнал GPS').
 string('voice/location_recovered.ogg', 'Відновлено сигнал GPS ').
 string('voice/off_route.ogg', 'Ви відхилились від маршруту на ').
 string('voice/back_on_route.ogg', 'Ви повернулись на дорогу.').
-string('voice/exceed_limit.ogg', 'Перевищуєте швидкість ').
 
-% STREET NAME GRAMMAR
+% STREET NAME PREPOSITIONS
 string('voice/on.ogg', 'по ').
 string('voice/onto.ogg', 'на ').
 string('voice/to.ogg', 'до ').
@@ -191,6 +199,7 @@ prepare_roundabout(Dist, Exit, Street) -- ['voice/prepare_after.ogg', D, 'voice/
 roundabout(Dist, _Angle, Exit, Street) -- ['voice/after.ogg', D, 'voice/round/roundabout.ogg', E| Sgen] :- distance(Dist) -- D, exitn(Exit, E), turn_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- ['voice/round/roundabout.ogg', E| Sgen] :- exitn(Exit, E), turn_street(Street, Sgen).
 
+go_ahead -- ['voice/go_ahead.ogg'].
 go_ahead(Dist, Street) -- ['voice/go_ahead_m.ogg', D | Sgen] :- distance(Dist) -- D, follow_street(Street, Sgen).
 
 then -- ['voice/then.ogg'].
@@ -207,21 +216,19 @@ reached_favorite(D) -- ['voice/arrivals/reached_favorite.ogg'|Ds] :- name(D, Ds)
 and_arrive_poi(D) -- ['voice/arrivals/and_arrive_poi.ogg'|Ds] :- name(D, Ds).
 reached_poi(D) -- ['voice/arrivals/reached_poi.ogg'|Ds] :- name(D, Ds).
 
-
 route_new_calc(Dist, Time) -- ['voice/route_is.ogg', D, 'voice/time_is.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 route_recalc(Dist, Time) -- ['voice/route_recalculated.ogg'] :- appMode('car').
 route_recalc(Dist, Time) -- ['voice/route_recalculated.ogg', 'voice/distance.ogg', D, 'voice/and_time_is.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
-
 location_lost -- ['voice/location_lost.ogg'].
 location_recovered -- ['voice/location_recovered.ogg'].
 off_route(Dist) -- ['voice/off_route.ogg', D] :- distance(Dist) -- D.
+back_on_route -- ['back_on_route.ogg'].
 
+% TRAFFIC WARNINGS
 speed_alarm -- ['voice/exceed_limit.ogg'].
 % attention(_Type) -- ['voice/attention.ogg'].
 attention(Type) -- ['voice/attention.ogg', W] :- warning(Type, W).
-
-% TRAFFIC WARNINGS
 warning('SPEED_CAMERA', 'voice/alerts/speed_camera.ogg').
 warning('SPEED_LIMIT', 'voice/alerts/speed_limit.ogg').
 warning('BORDER_CONTROL', 'voice/alerts/border_control.ogg').
@@ -232,7 +239,6 @@ warning('STOP', 'voice/alerts/stop.ogg').
 warning('PEDESTRIAN', 'voice/alerts/pedestrian_crosswalk.ogg').
 warning('MAXIMUM', '').
 warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'RAILWAY'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'PEDESTRIAN'; Type = 'MAXIMUM').
-
 
 
 %% 

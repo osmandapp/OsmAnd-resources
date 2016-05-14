@@ -12,21 +12,14 @@ language('da').
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 %
-% (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
-% (X) arrival
-% (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
-% (X) attention Type implementation
-% (X) special grammar: onto / on / to Street fur turn and follow commands
+% (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
+% (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
+% (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM
+% (X) Other prompts: gps lost, off route, back to route
+% (X) Street name support and prepositions (onto / on / to )
+% (X) Distance unit support (meters / feet / yard)
 % (N/A) special grammar: nominative/dative for distance measure
 % (X) special grammar: imperative/infinitive distinction for turns
-% (X) distance measure: meters / feet / yard support
-% (X) Street name announcement (suppress in prepare_roundabout)
-% (X) Name announcement for destination / intermediate / GPX waypoint arrival
-% (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
-% (X) word order checked
-% (X) Announcement of favorites, waypoints and pois along the route
-% (X) Announcement when user returns back to route
-% (X) Support announcement of railroad crossings and pedestrian crosswalks
 
 
 % ROUTE CALCULATED
@@ -98,7 +91,7 @@ string('reached_destination.ogg','du har nået destinationen ').
 string('and_arrive_intermediate.ogg', 'og så ankommer du til rutepunktet ').
 string('reached_intermediate.ogg', 'du har nået rutepunktet ').
 
-%NEARBY POINTS
+% NEARBY POINTS
 string('and_arrive_waypoint.ogg', 'og så ankommer du til GPX rutepunktet ').
 string('and_arrive_favorite.ogg', 'og så ankommer du til favoritpunktet ').
 string('and_arrive_poi.ogg', 'og så ankommer du til interessepunktet ').
@@ -106,7 +99,8 @@ string('reached_waypoint.ogg', 'du har nået dit GPX rutepunkt ').
 string('reached_favorite.ogg', 'du har nået dit favorit rutepunkt ').
 string('reached_poi.ogg', 'du har nået interessepunktet ').
 
-% OTHER PROMPTS
+% ATTENTION
+string('exceed_limit.ogg', 'Hastighedsgrænsen er overskredet ').
 string('attention.ogg', 'Advarsel, ').
 string('speed_camera.ogg', 'fartkamera ').
 string('border_control.ogg', 'grænsekontrol ').
@@ -116,13 +110,13 @@ string('toll_booth.ogg', 'betalingsanlæg ').
 string('stop.ogg', 'stopskilt ').
 string('pedestrian_crosswalk.ogg', 'fodgængerovergang ').
 
+% OTHER PROMPTS
 string('location_lost.ogg', 'g p s signal mistet ').
 string('location_recovered.ogg', 'g p s signal fundet ').
 string('off_route.ogg', 'du er kørt væk fra ruten ').
 string('back_on_route.ogg', 'du er vendt tilbage til ruten').
-string('exceed_limit.ogg', 'Hastighedsgrænsen er overskredet ').
 
-% STREET NAME GRAMMAR
+% STREET NAME PREPOSITIONS
 string('onto.ogg', 'ind på ').
 string('on.ogg', 'på ').
 string('to.ogg', 'til ').
@@ -208,6 +202,7 @@ prepare_roundabout(Dist, _Exit, _Street) -- ['prepare_roundabout.ogg', 'after.og
 roundabout(Dist, _Angle, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 
+go_ahead -- ['go_ahead.ogg'].
 go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen] :- distance(Dist) -- D, follow_street(Street, Sgen).
 
 then -- ['then.ogg'].
@@ -231,11 +226,12 @@ route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg
 location_lost -- ['location_lost.ogg'].
 location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
+back_on_route -- ['back_on_route.ogg'].
+
+% TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
 % attention(_Type) -- ['attention.ogg'].
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
-
-% TRAFFIC WARNINGS
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').
 warning('BORDER_CONTROL', 'border_control.ogg').

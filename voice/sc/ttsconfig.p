@@ -10,23 +10,16 @@ voice :- version(X), X < 99.
 language('sc').
 fest_language('Sardinian').
 
-
-% IMPLEMENTED (X) or MISSING ( ) FEATURES:
-% (X) new Version 1.5 format
-% (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
-% (X) arrival
-% (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
-% (X) attention Type implementation
-% (X) special grammar: onto / on / to Street fur turn and follow commands
-% (X) special grammar: nominative/dativ for distance measure
-% (X) special grammar: imperative/infinitive distincion for turns
-% (X) distance measure: meters / feet / yard support
-% (X) Street name announcement (suppress in prepare_roundabout)
-% (X) Name announcement for destination / intermediate / GPX waypoint arrival
-% (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
-% (X) word order checked
-% (X) Announcement of favorites, waypoints and pois along the route
-% (X) Support announcement of railroad crossings and pedestrian crosswalks
+% IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
+%
+% (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
+% (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
+% (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM
+% (X) Other prompts: gps lost, off route, back to route
+% (X) Street name support and prepositions (onto / on / to )
+% (X) Distance unit support (meters / feet / yard)
+% (N/A) special grammar: nominative/dative for distance measure
+% (X) special grammar: imperative/infinitive distinction for turns
 
 
 % ROUTE CALCULATED
@@ -90,10 +83,8 @@ string('and_arrive_destination.ogg', 'e ais a arribare a destinatzione').
 string('reached_destination.ogg','arribadu a destinatzione').
 string('and_arrive_intermediate.ogg', 'e ais a arribare a su puntu mesanu').
 string('reached_intermediate.ogg', 'arrivati al punto intermedio').
-string('and_arrive_waypoint.ogg', 'arribadu a su puntu mesanu').
-string('reached_waypoint.ogg', 'arribadu a su puntu mesanu').
 
-%NEARBY POINTS
+% NEARBY POINTS
 string('and_arrive_waypoint.ogg', 'e arribades a su puntu mesanu ').
 string('reached_waypoint.ogg', 'arribadu a su puntu mesanu ').
 string('and_arrive_favorite.ogg', 'e arriverai al preferito ').
@@ -101,7 +92,8 @@ string('reached_favorite.ogg', 'arribadu a su prefèrridu ').
 string('and_arrive_poi.ogg', 'e ais a arribare a su puntu de interesse ').
 string('reached_poi.ogg', 'arribadu a su puntu de interesse').
 
-% OTHER PROMPTS
+% ATTENTION
+string('exceed_limit.ogg', 'Barigadu su lìmite de lestresa').
 string('attention.ogg', 'atentzione, ').
 string('speed_camera.ogg', 'Autovelox ').
 string('border_control.ogg', 'Dogana ').
@@ -110,12 +102,14 @@ string('traffic_calming.ogg', 'Minimadore de lestresa ').
 string('toll_booth.ogg', 'Casellu ').
 string('stop.ogg', 'Stop ').
 string('pedestrian_crosswalk.ogg', 'Atraessamentu pedonale ').
+
+% OTHER PROMPTS
 string('location_lost.ogg', 'Sinnale GPS pèrdidu').
 string('location_recovered.ogg', 'Sinnale GPS torradu ').
 string('off_route.ogg', 'Seis essidos dae s'àndala').
-string('exceed_limit.ogg', 'Barigadu su lìmite de lestresa').
+string('back_on_route.ogg', ' ').
 
-% STREET NAME GRAMMAR
+% STREET NAME PREPOSITIONS
 string('onto.ogg', 'in ').
 string('on.ogg', 'in ').
 string('to.ogg', 'pro ').
@@ -292,11 +286,12 @@ route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg
 location_lost -- ['location_lost.ogg'].
 location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist, dativ) -- D.
+back_on_route -- ['back_on_route.ogg'].
+
+% TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
 % attention(_Type) -- ['attention.ogg'].
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
-
-% TRAFFIC WARNINGS
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').
 warning('BORDER_CONTROL', 'border_control.ogg').
@@ -307,6 +302,7 @@ warning('STOP', 'stop.ogg').
 warning('PEDESTRIAN', 'pedestrian_crosswalk.ogg').
 warning('MAXIMUM', '').
 warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'RAILWAY'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'PEDESTRIAN'; Type = 'MAXIMUM').
+
 
 %% 
 nth(1, '1st.ogg').

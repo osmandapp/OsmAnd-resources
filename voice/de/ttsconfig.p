@@ -14,20 +14,14 @@ language('de').
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 %
-% (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
-% (X) arrival
-% (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
-% (X) attention Type implementation
-% (X) special grammar: onto / on / to Street fur turn and follow commands
+% (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
+% (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
+% (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM
+% (X) Other prompts: gps lost, off route, back to route
+% (X) Street name support and prepositions (onto / on / to )
+% (X) Distance unit support (meters / feet / yard)
 % (X) special grammar: nominative/dative for distance measure
 % (N/A) special grammar: imperative/infinitive distinction for turns
-% (X) distance measure: meters / feet / yard support
-% (X) Street name announcement (suppress in prepare_roundabout)
-% (X) Name announcement for destination / intermediate / GPX waypoint arrival
-% (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
-% (X) word order checked
-% (X) Announcement of favorites, waypoints and pois along the route
-% (X) Support announcement of railroad crossings and pedestrian crosswalks
 
 
 % ROUTE CALCULATED
@@ -93,7 +87,8 @@ string('reached_destination.ogg', 'Ziel ').
 string('and_arrive_intermediate.ogg', 'dann haben Sie Ihr Zwischenziel ').
 string('reached_intermediate.ogg', 'Zwischenziel ').
 string('reached.ogg', 'erreicht ').
-%NEARBY POINTS
+
+% NEARBY POINTS
 string('and_arrive_waypoint.ogg', 'dann passieren Sie Weegpunkt ').
 string('reached_waypoint.ogg', 'Sie passieren Weegpunkt ').
 string('and_arrive_favorite.ogg', 'dann passieren Sie Favorit ').
@@ -101,7 +96,8 @@ string('reached_favorite.ogg', 'Sie passieren Favorit ').
 string('and_arrive_poi.ogg', 'dann passieren Sie P O I ').
 string('reached_poi.ogg', 'Sie passieren P O I ').
 
-% OTHER PROMPTS
+% ATTENTION
+string('exceed_limit.ogg', 'Sie überschreiten die Höchstgeschwindigkeit ').
 string('attention.ogg', 'Achtung, ').
 string('speed_camera.ogg', 'Geschwindigkeitskontrolle ').
 string('border_control.ogg', 'Grenzkontrolle ').
@@ -111,13 +107,13 @@ string('toll_booth.ogg', 'Mautstelle ').
 string('stop.ogg', 'Stoppzeichen ').
 string('pedestrian_crosswalk.ogg', 'Fusgängerübergang ').
 
+% OTHER PROMPTS
 string('location_lost.ogg', 'GPS Signal verloren ').   % maybe change to "tschie pie es" because of pronounciation
 string('location_recovered.ogg', 'GPS Signal gefunden ').  % maybe change to "tschie pie es" because of pronounciation
 string('off_route.ogg', 'Sie weichen von der Route ab seit ').  % possibly "Sie verlassen die Route seit "
-string('exceed_limit.ogg', 'Sie überschreiten die Höchstgeschwindigkeit ').
+string('back_on_route.ogg', 'Sie sind zurück auf der Route ').
 
-% STREET NAME GRAMMAR
-
+% STREET NAME PREPOSITIONS
 string('onto.ogg', 'auf ').  % possibly "Richtung", better grammar, but is also misleading is some cases
 string('on.ogg', 'auf ').
 string('to.ogg', 'bis ').
@@ -285,11 +281,12 @@ route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg
 location_lost -- ['location_lost.ogg'].
 location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist, dativ) -- D.
+back_on_route -- ['back_on_route.ogg'].
+
+% TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
 % attention(_Type) -- ['attention.ogg'].
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
-
-% TRAFFIC WARNINGS
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').
 warning('BORDER_CONTROL', 'border_control.ogg').

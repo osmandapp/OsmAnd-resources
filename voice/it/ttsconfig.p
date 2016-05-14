@@ -10,23 +10,16 @@ voice :- version(X), X < 99.
 language('it').
 fest_language('Italian').
 
-
 % IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 %
-% (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
-% (X) arrival
-% (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
-% (X) attention Type implementation
-% (X) special grammar: onto / on / to Street fur turn and follow commands
+% (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
+% (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
+% (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM
+% (X) Other prompts: gps lost, off route, back to route
+% (X) Street name support and prepositions (onto / on / to )
+% (X) Distance unit support (meters / feet / yard)
 % (X) special grammar: nominative/dative for distance measure
 % (X) special grammar: imperative/infinitive distinction for turns
-% (X) distance measure: meters / feet / yard support
-% (X) Street name announcement (suppress in prepare_roundabout)
-% (X) Name announcement for destination / intermediate / GPX waypoint arrival
-% (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
-% (X) word order checked
-% (X) Announcement of favorites, waypoints and pois along the route
-% (X) Support announcement of railroad crossings and pedestrian crosswalks
 
 
 % ROUTE CALCULATED
@@ -90,18 +83,17 @@ string('and_arrive_destination.ogg', 'e arriveremo a destinazione').
 string('reached_destination.ogg','arrivati a destinazione').
 string('and_arrive_intermediate.ogg', 'e arriveremo al punto intermedio').
 string('reached_intermediate.ogg', 'arrivati al punto intermedio').
+
+% NEARBY POINTS
 string('and_arrive_waypoint.ogg', 'e arriveremo al vostro punto GPX intermedio').
 string('reached_waypoint.ogg', 'arrivati al vostro punto GPX intermedio').
-
-%NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'e arriverai al punto di intermedio ').
-string('reached_waypoint.ogg', 'Punto intermedio raggiunto ').
 string('and_arrive_favorite.ogg', 'e arriverai al preferito ').
 string('reached_favorite.ogg', 'preferito raggiunto ').
 string('and_arrive_poi.ogg', 'e arriverai al P D I ').
 string('reached_poi.ogg', 'P D I raggiunto').
 
-% OTHER PROMPTS
+% ATTENTION
+string('exceed_limit.ogg', 'Limite di velocità superato').
 string('attention.ogg', 'attenzione, ').
 string('speed_camera.ogg', 'Autovelox ').
 string('border_control.ogg', 'Dogana ').
@@ -110,12 +102,14 @@ string('traffic_calming.ogg', 'Dosso rallentatore ').
 string('toll_booth.ogg', 'Casello ').
 string('stop.ogg', 'Stop ').
 string('pedestrian_crosswalk.ogg', 'Attraversamento pedonale ').
+
+% OTHER PROMPTS
 string('location_lost.ogg', 'Segnale g p s perso').
 string('location_recovered.ogg', 'Segnale g p s ripristinato ').
 string('off_route.ogg', 'Avete deviato dal percorso').
-string('exceed_limit.ogg', 'Limite di velocità superato').
+string('back_on_route.ogg', ' ').
 
-% STREET NAME GRAMMAR
+% STREET NAME PREPOSITIONS
 string('onto.ogg', 'su ').
 string('on.ogg', 'in ').
 string('to.ogg', 'fino a ').
@@ -281,11 +275,12 @@ route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg
 location_lost -- ['location_lost.ogg'].
 location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist, dativ) -- D.
+back_on_route -- ['back_on_route.ogg'].
+
+% TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
 % attention(_Type) -- ['attention.ogg'].
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
-
-% TRAFFIC WARNINGS
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').
 warning('BORDER_CONTROL', 'border_control.ogg').
@@ -296,6 +291,7 @@ warning('STOP', 'stop.ogg').
 warning('PEDESTRIAN', 'pedestrian_crosswalk.ogg').
 warning('MAXIMUM', '').
 warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'RAILWAY'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'PEDESTRIAN'; Type = 'MAXIMUM').
+
 
 %% 
 nth(1, '1st.ogg').

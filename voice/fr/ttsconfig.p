@@ -12,18 +12,14 @@ language('fr').
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 %
-% (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
-% (X) arrival
-% (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
-% (X) special grammar: onto / on / to Street fur turn and follow commands
+% (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
+% (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
+% (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM
+% (X) Other prompts: gps lost, off route, back to route
+% (X) Street name support and prepositions (onto / on / to )
+% (X) Distance unit support (meters / feet / yard)
 % (N/A) special grammar: nominative/dative for distance measure
 % (N/A) special grammar: imperative/infinitive distinction for turns
-% (X) special grammar: future
-% (X) distance measure: meters / feet / yard support
-% (X) Street name announcement (suppress in prepare_roundabout)
-% (X) Name announcement for destination / intermediate / GPX waypoint arrival
-% (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
-% ( ) word order checked
 
 
 %%%%% NO !!! no apostrophe  %%%%%%%%%%
@@ -96,17 +92,33 @@ string('and_arrive_destination.ogg', 'et arrivez à destination ').
 string('reached_destination.ogg','vous êtes arrivé à destination ').
 string('and_arrive_intermediate.ogg', "et arrivez à l''étape "). % !!! no apostrophe
 string('reached_intermediate.ogg', "vous êtes arrivé à l''étape").
+
+% NEARBY POINTS
 string('and_arrive_waypoint.ogg', "et arrivez à l''étape G P X ").
-string('reached_waypoint.ogg', "vous êtes arrivé à l''étape G P X").
+string('reached_waypoint.ogg', "vous êtes arrivé à l''étape G P X ").
+string('and_arrive_favorite.ogg', "et arrivez à l''étape favotite ").
+string('reached_favorite.ogg', "vous êtes arrivé à l''étape favorite ").
+string('and_arrive_poi.ogg', "et arrivez à l''étape POI ").
+string('reached_poi.ogg', "vous êtes arrivé à l''étape POI ").
+
+% ATTENTION
+string('exceed_limit.ogg', 'vous dépassez la limite de vitesse ').
+string('attention.ogg', 'attention , ').
+string('speed_camera.ogg', 'radar de vitesse ').
+string('border_control.ogg', 'contrôle des frontières ').
+string('railroad_crossing.ogg', 'passage à niveau ').
+string('traffic_calming.ogg', 'apaisement de la circulation ').
+string('toll_booth.ogg', 'cabine de péage ').
+string('stop.ogg', 'panneau stop ').
+string('pedestrian_crosswalk.ogg', 'passage pour piétons ').
 
 % OTHER PROMPTS
-string('attention.ogg', 'attention , ').
 string('location_lost.ogg', 'signal G P S perdu ').
 string('location_recovered.ogg', 'signal G P S restaurés ').
 string('off_route.ogg', "vous avez dévié de l''itinéraire depuis").
-string('exceed_limit.ogg', 'vous dépassez la limite de vitesse ').
+string('back_on_route.ogg', ' ').
 
-% STREET NAME GRAMMAR
+% STREET NAME PREPOSITIONS
 string('onto.ogg', 'sur ').
 string('on.ogg', 'sur ').
 string('to.ogg', 'vers ').
@@ -212,8 +224,22 @@ route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg
 location_lost -- ['location_lost.ogg'].
 location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
-attention(_Type) -- ['attention.ogg'].
+back_on_route -- ['back_on_route.ogg'].
+
+% TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
+% attention(_Type) -- ['attention.ogg'].
+attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
+warning('SPEED_CAMERA', 'speed_camera.ogg').
+warning('SPEED_LIMIT', '').
+warning('BORDER_CONTROL', 'border_control.ogg').
+warning('RAILWAY', 'railroad_crossing.ogg').
+warning('TRAFFIC_CALMING', 'traffic_calming.ogg').
+warning('TOLL_BOOTH', 'toll_booth.ogg').
+warning('STOP', 'stop.ogg').
+warning('PEDESTRIAN', 'pedestrian_crosswalk.ogg').
+warning('MAXIMUM', '').
+warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'RAILWAY'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'PEDESTRIAN'; Type = 'MAXIMUM').
 
 
 %% 

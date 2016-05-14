@@ -12,20 +12,14 @@ fest_language('cmu_us_awb_arctic_clunits').
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 %
-% (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
-% (X) arrival
-% (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
-% (X) attention Type implementation
-% (X) special grammar: onto / on / to Street fur turn and follow commands
+% (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
+% (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
+% (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM
+% (X) Other prompts: gps lost, off route, back to route
+% (X) Street name support and prepositions (onto / on / to )
+% (X) Distance unit support (meters / feet / yard)
 % (N/A) special grammar: nominative/dative for distance measure
-% (N/A) special grammar: imperative/infinitive distinction for turns
-% (X) distance measure: meters / feet / yard support
-% (X) Street name announcement (suppress in prepare_roundabout)
-% (X) Name announcement for destination / intermediate / GPX waypoint arrival
-% (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
-% (X) word order checked
-% (X) Announcement of favorites, waypoints and pois along the route
-% (X) Announcement when user returns back to route
+% (X) special grammar: imperative/infinitive distinction for turns
 % (X) Support announcement of railroad crossings and pedestrian crosswalks
 
 
@@ -89,7 +83,8 @@ string('and_arrive_destination.ogg', 'and arrive at your destination ').
 string('reached_destination.ogg','you have reached your destination ').
 string('and_arrive_intermediate.ogg', 'and arrive at your intermediate destination ').
 string('reached_intermediate.ogg', 'you have reached your intermediate destination ').
-%NEARBY POINTS
+
+% NEARBY POINTS
 string('and_arrive_waypoint.ogg', 'and pass GPX waypoint ').
 string('reached_waypoint.ogg', 'you are passing GPX waypoint ').
 string('and_arrive_favorite.ogg', 'and pass favorite ').
@@ -97,7 +92,8 @@ string('reached_favorite.ogg', 'you are passing favorite ').
 string('and_arrive_poi.ogg', 'and pass POI ').
 string('reached_poi.ogg', 'you are passing POI ').
 
-% OTHER PROMPTS
+% ATTENTION
+string('exceed_limit.ogg', 'you are exceeding the speed limit ').
 string('attention.ogg', 'attention, ').
 string('speed_camera.ogg', 'speed cam ').
 string('border_control.ogg', 'border control ').
@@ -107,13 +103,13 @@ string('toll_booth.ogg', 'toll booth ').
 string('stop.ogg', 'stop sign ').
 string('pedestrian_crosswalk.ogg', 'pedestrian crosswalk ').
 
+% OTHER PROMPTS
 string('location_lost.ogg', 'g p s signal lost ').
 string('location_recovered.ogg', 'g p s signal recovered ').
 string('off_route.ogg', 'you have been off the route for').
 string('back_on_route.ogg', 'you are back on the route ').
-string('exceed_limit.ogg', 'you are exceeding the speed limit ').
 
-% STREET NAME GRAMMAR
+% STREET NAME PREPOSITIONS
 string('onto.ogg', 'onto ').
 string('on.ogg', 'on ').
 string('to.ogg', 'to ').
@@ -192,6 +188,7 @@ prepare_roundabout(Dist, _Exit, _Street) -- ['after.ogg', D , 'prepare_roundabou
 roundabout(Dist, _Angle, Exit, Street) -- ['in.ogg', D, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 
+go_ahead -- ['go_ahead.ogg'].
 go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen] :- distance(Dist) -- D, follow_street(Street, Sgen).
 
 then -- ['then.ogg'].
@@ -217,11 +214,10 @@ location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
 back_on_route -- ['back_on_route.ogg'].
 
+% TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
 % attention(_Type) -- ['attention.ogg'].
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
-
-% TRAFFIC WARNINGS
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').
 warning('BORDER_CONTROL', 'border_control.ogg').

@@ -12,19 +12,14 @@ language('nl').
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 %
-% (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
-% (X) arrival
-% (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
-% (X) attention Type implementation
-% ( ) special grammar: onto / on / to Street fur turn and follow commands
+% (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
+% (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
+% (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM
+% (X) Other prompts: gps lost, off route, back to route
+% (X) Street name support and prepositions (onto / on / to )
+% (X) Distance unit support (meters / feet / yard)
 % (N/A) special grammar: nominative/dative for distance measure
 % (N/A) special grammar: imperative/infinitive distinction for turns
-% (X) distance measure: meters / feet / yard support
-% (X) Street name announcement (suppress in prepare_roundabout)
-% (X) Name announcement for destination / intermediate / GPX waypoint arrival
-% (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
-% ( ) word order checked
-% (X) Support announcement of railroad crossings and pedestrian crosswalks
 
 
 % ROUTE CALCULATED
@@ -91,16 +86,19 @@ string('and_arrive_destination.ogg', 'dan heb je je bestemming ').
 string('reached_destination.ogg','je hebt je Bestemming ').
 string('and_arrive_intermediate.ogg', 'en dan heb je je routepunt ').
 string('reached_intermediate.ogg', 'je hebt je routepunt ').
-string('and_arrive_waypoint.ogg', 'en dan heb je je GPX routepunt ').
-string('reached_waypoint.ogg', 'je hebt je GPX routepunt ').
 string('reached.ogg', 'bereikt  ').
 
-% OTHER PROMPTS
-string('attention.ogg', 'let op , ').
-string('location_lost.ogg', 'G P S  signaal verloren ').
-string('location_recovered.ogg', 'g p s signaal hersteld ').
-string('off_route.ogg', 'je bent afgeweken van de route vanaf ').
+% NEARBY POINTS
+string('and_arrive_waypoint.ogg', 'en dan heb je je GPX routepunt ').
+string('reached_waypoint.ogg', 'je hebt je GPX routepunt ').
+string('and_arrive_favorite.ogg', 'en dan heb je je favoriet ').
+string('reached_favorite.ogg', 'je hebt je favoriet ').
+string('and_arrive_poi.ogg', 'en dan heb je je POI ').
+string('reached_poi.ogg', 'je hebt je POI ').
+
+% ATTENTION
 string('exceed_limit.ogg', 'je overschrijdt de maximumsnelheid ').
+string('attention.ogg', 'let op , ').
 string('speed_camera.ogg', 'snelheidscontrole ').
 string('border_control.ogg', 'grenscontrole ').
 string('railroad_crossing.ogg', 'spoorweg overgang ').
@@ -110,7 +108,13 @@ string('toll_booth.ogg', 'tol poort ').
 string('stop.ogg', 'stop teken ').
 string('pedestrian_crosswalk.ogg', 'zebra ').
 
-% STREET NAME GRAMMAR
+% OTHER PROMPTS
+string('location_lost.ogg', 'G P S  signaal verloren ').
+string('location_recovered.ogg', 'g p s signaal hersteld ').
+string('off_route.ogg', 'je bent afgeweken van de route vanaf ').
+string('back_on_route.ogg', ' ').
+
+% STREET NAME PREPOSITIONS
 string('onto.ogg', 'naar  ').
 
 % DISTANCE UNIT SUPPORT
@@ -191,6 +195,10 @@ and_arrive_intermediate(D) -- ['and_arrive_intermediate.ogg', Ds, 'reached.ogg']
 reached_intermediate(D) -- ['reached_intermediate.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
 and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
+and_arrive_favorite(D) -- ['and_arrive_favorite.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
+reached_favorite(D) -- ['reached_favorite.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
+and_arrive_poi(D) -- ['and_arrive_poi.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
+reached_poi(D) -- ['reached_poi.ogg', Ds, 'reached.ogg'] :- name(D, Ds).
 
 % route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'route_is2.ogg', 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
@@ -200,11 +208,12 @@ route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg
 location_lost -- ['location_lost.ogg'].
 location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
+back_on_route -- ['back_on_route.ogg'].
+
+% TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
 % attention(_Type) -- ['attention.ogg'].
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
-
-% TRAFFIC WARNINGS
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').
 warning('BORDER_CONTROL', 'border_control.ogg').
