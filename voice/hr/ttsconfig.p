@@ -76,18 +76,18 @@ string('go_ahead.ogg', 'Idite ravno naprijed ').
 string('follow.ogg', 'Pratite cestu ').
 
 % ARRIVE
-string('and_arrive_destination.ogg', 'and arrive at your destination ').
+string('and_arrive_destination.ogg', 'i stići na odredište ').
 string('reached_destination.ogg','Stigli ste na vaše odredište ').
-string('and_arrive_intermediate.ogg', 'and arrive at your waypoint ').
-string('reached_intermediate.ogg', 'you have reached your waypoint ').
+string('and_arrive_intermediate.ogg', 'i doći na srednji odredište ').
+string('reached_intermediate.ogg', 'dostigli ste srednji odredište ').
 
 % NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'and pass GPX waypoint ').
-string('reached_waypoint.ogg', 'you are passing GPX waypoint ').
-string('and_arrive_favorite.ogg', 'and pass favorite ').
-string('reached_favorite.ogg', 'you are passing favorite ').
-string('and_arrive_poi.ogg', 'and pass POI ').
-string('reached_poi.ogg', 'you are passing POI ').
+string('and_arrive_waypoint.ogg', 'i proći GPX putne točke ').
+string('reached_waypoint.ogg', 'ste u prolazu GPX putne točke ').
+string('and_arrive_favorite.ogg', 'i proći favorita ').
+string('reached_favorite.ogg', 'ste u prolazu omiljene ').
+string('and_arrive_poi.ogg', 'i proći POI ').
+string('reached_poi.ogg', 'ste u prolazu POI ').
 
 
 % ATTENTION

@@ -87,9 +87,9 @@ string('reached_intermediate.ogg', 'به ایستگاهِ بین راهیِ مش
 string('and_arrive_waypoint.ogg', 'به ایستگاهِ جی پیی ایکسی که تعیین کرده بودید خواهید رسید ').
 string('reached_waypoint.ogg', 'به ایستگاهِ بینِ راهیِ فایلِِ جی پیی ایکس رسیدید ').
 string('and_arrive_favorite.ogg', 'به ایستگاهِ جی پیی ایکسی که تعیین کرده بودید خواهید رسید ').
-string('reached_favorite.ogg', 'you are passing favorite ').
+string('reached_favorite.ogg', 'شما در حال عبور مورد علاقه ').
 string('and_arrive_poi.ogg', 'به ایستگاهِ جی پیی ایکسی که تعیین کرده بودید خواهید رسید  ').
-string('reached_poi.ogg', 'you are passing POI ').
+string('reached_poi.ogg', 'شما در حال عبور POI ').
 
 % ATTENTION
 string('exceed_limit.ogg', 'سرعتِ شما بیش از حدِ مجاز است').
