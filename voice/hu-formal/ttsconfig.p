@@ -19,7 +19,7 @@ language('hu').
 % (X) Street name support and prepositions (onto / on / to )
 % (X) Distance unit support (meters / feet / yard)
 % (N/A) special grammar: nominative/dative for distance measure
-% () special grammar: imperative/infinitive distinction for turns
+% (N/A) special grammar: imperative/infinitive distinction for turns
 
 
 % ROUTE CALCULATED

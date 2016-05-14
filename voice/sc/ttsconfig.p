@@ -18,7 +18,7 @@ fest_language('Sardinian').
 % (X) Other prompts: gps lost, off route, back to route
 % (X) Street name support and prepositions (onto / on / to )
 % (X) Distance unit support (meters / feet / yard)
-% (N/A) special grammar: nominative/dative for distance measure
+% (X) special grammar: nominative/dative for distance measure
 % (X) special grammar: imperative/infinitive distinction for turns
 
 
