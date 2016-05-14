@@ -86,10 +86,10 @@ string('reached_intermediate.ogg', 'megérkezett a köztes célponthoz ').
 
 % NEARBY POINTS
 string('and_arrive_waypoint.ogg', 'és megérkezik a köztes GPX útponthoz ').
-string('and_arrive_favorite.ogg', 'és megérkezik a kedvencéhez ').
-string('and_arrive_poi.ogg', 'és megérkezik a POI ponthoz ').
 string('reached_waypoint.ogg', 'megérkezett a köztes GPX útponthoz ').
+string('and_arrive_favorite.ogg', 'és megérkezik a kedvencéhez ').
 string('reached_favorite.ogg', 'megérkezett a kedvenc útponthoz ').
+string('and_arrive_poi.ogg', 'és megérkezik a POI ponthoz ').
 string('reached_poi.ogg', 'megérkezett a POI ponthoz ').
 
 % ATTENTION

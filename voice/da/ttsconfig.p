@@ -93,10 +93,10 @@ string('reached_intermediate.ogg', 'du har nået rutepunktet ').
 
 % NEARBY POINTS
 string('and_arrive_waypoint.ogg', 'og så ankommer du til GPX rutepunktet ').
-string('and_arrive_favorite.ogg', 'og så ankommer du til favoritpunktet ').
-string('and_arrive_poi.ogg', 'og så ankommer du til interessepunktet ').
 string('reached_waypoint.ogg', 'du har nået dit GPX rutepunkt ').
+string('and_arrive_favorite.ogg', 'og så ankommer du til favoritpunktet ').
 string('reached_favorite.ogg', 'du har nået dit favorit rutepunkt ').
+string('and_arrive_poi.ogg', 'og så ankommer du til interessepunktet ').
 string('reached_poi.ogg', 'du har nået interessepunktet ').
 
 % ATTENTION
