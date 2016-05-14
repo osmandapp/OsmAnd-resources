@@ -110,7 +110,7 @@ string('pedestrian_crosswalk.ogg', 'pedestrian crosswalk ').
 string('location_lost.ogg', 'g p s signal lost ').
 string('location_recovered.ogg', 'g p s signal recovered ').
 string('off_route.ogg', 'you have been off the route for').
-string('back_on_route.ogg', 'you have returned to route').
+string('back_on_route.ogg', 'you are back on the route ').
 string('exceed_limit.ogg', 'you are exceeding the speed limit ').
 
 % STREET NAME GRAMMAR
@@ -215,6 +215,8 @@ route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg
 location_lost -- ['location_lost.ogg'].
 location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
+back_on_route -- ['back_on_route.ogg'].
+
 speed_alarm -- ['exceed_limit.ogg'].
 % attention(_Type) -- ['attention.ogg'].
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
