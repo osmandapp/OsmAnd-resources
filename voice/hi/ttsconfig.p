@@ -108,9 +108,9 @@ string('pedestrian_crosswalk.ogg', 'पैदल चलने वालों �
 
 % OTHER PROMPTS
 string('location_lost.ogg', 'जी पी एस सिग्नल नही ').
-string('location_recovered.ogg', 'g p s signal restored ').
+string('location_recovered.ogg', 'जीपीएस संकेत बहाल').
 string('off_route.ogg', 'आप मार्ग से भटक गए हैं ').
-string('back_on_route.ogg', 'you are back on the route ').
+string('back_on_route.ogg', 'आप मार्ग पर वापस आ रहे हैं ').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'पर ').
@@ -187,7 +187,7 @@ make_ut(Dist, Street) --  [D, 'in.ogg', 'make_uturn.ogg' | Sgen] :- distance(Dis
 make_ut(Street) -- ['make_uturn2.ogg' | Sgen] :- turn_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
-prepare_roundabout(Dist, _Exit, _Street) -- [D, 'after.ogg', 'prepare_roundabout.ogg'] :- distance(Dist) -- D.
+prepare_roundabout(Dist, _Exit, _Street) -- [D, 'after.ogg', 'roundabout.ogg'] :- distance(Dist) -- D.
 roundabout(Dist, _Angle, Exit, Street) -- [D, 'in.ogg', 'roundabout.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 
