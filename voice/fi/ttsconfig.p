@@ -3,8 +3,7 @@
 % for swi-prolog
 :- op(500, xfy,'--').
 
-% TODO: Should be updated to v103 to get more features and better grammar. Use existing v103 files as template.
-version(102).
+version(103).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
@@ -13,17 +12,14 @@ language('fi').
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 %
-% (X) route calculated prompts, left/right, u-turns, roundabouts, straight/follow
-% (X) arrival
-% (X) other prompts: attention (without Type implementation), location lost, off_route, exceed speed limit
-% ( ) special grammar: onto_street / on_street / to_street
-% (km only) special grammar: nominative/dative for distance measure
-% (N/A) special grammar: imperative/infinitive distinction for turns
-% (X) distance measure: meters / feet / yard support
-% (X) Street name announcement (suppress in prepare_roundabout)
-% (X) Name announcement for destination / intermediate / GPX waypoint arrival
-% (X) Time announcement for new and recalculated route (for recalculated suppress in appMode=car)
-% ( ) word order checked
+% (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
+% (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
+% (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM
+% (X) Other prompts: gps lost, off route, back to route
+% (X) Street name support and prepositions (onto / on / to )
+% (X) Distance unit support (meters / feet / yard)
+% (N/A) special grammar: nominative/dative for distance measure
+% (X) special grammar: imperative/infinitive distinction for turns
 
 
 % ROUTE CALCULATED
@@ -32,8 +28,9 @@ string('route_calculate.ogg', 'Reitin uudelleenlaskenta ').
 string('distance.ogg', ', etäisyys ').
 
 % LEFT/RIGHT
-string('prepare.ogg', 'Valmistaudu ').
+%string('prepare.ogg', 'Valmistaudu ').
 string('after.ogg', 'nach ').
+string('in.ogg', ' ').
 string('get.ogg', 'päästä  ').
 string('now.ogg', 'nyt,  ').
 
@@ -46,7 +43,8 @@ string('right_sh.ogg', 'käänny jyrkästi oikealle ').
 string('right_sl.ogg', 'käänny loivasti oikealle ').
 string('left_keep.ogg', 'pidä vasen ').
 string('right_keep.ogg', 'pidä oikea ').
-% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
+string('left_bear.ogg', 'pidä vasen ').    % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'pidä oikea ').   % in English the same as right_keep, may be different in other languages
 
 string('left_prep.ogg', 'kääntymään vasempaan ').
 string('left_sh_prep.ogg', 'kääntymään jyrkästi vasempaan ').
@@ -58,7 +56,7 @@ string('left_keep_prep.ogg', 'pitämään vasen ').
 string('right_keep_prep.ogg', 'pitämään oikea ').
 
 % U-TURNS
-string('prepare_make_uturn.ogg', 'Valmistaudu kääntymään takaisin ').
+%string('prepare_make_uturn.ogg', 'Valmistaudu kääntymään takaisin ').
 string('make_uturn1.ogg', 'Käänny takaisin ').
 string('make_uturn2.ogg', 'Nyt, käänny takaisin ').
 string('make_uturn_wp.ogg', 'Käänny takaisin, kun mahdollista ').
@@ -99,24 +97,41 @@ string('and_arrive_destination.ogg', 'ja olet perillä ').
 string('reached_destination.ogg', 'olet perillä ').
 string('and_arrive_intermediate.ogg', 'ja saavut välietappiin').
 string('reached_intermediate.ogg', 'olet välietapissa').
+
+% NEARBY POINTS
 string('and_arrive_waypoint.ogg', 'ja saavut reittipisteeseen').
 string('reached_waypoint.ogg', 'olet reittipisteessä').
+string('and_arrive_favorite.ogg', 'and pass favorite ').
+string('reached_favorite.ogg', 'you are passing favorite ').
+string('and_arrive_poi.ogg', 'and pass POI ').
+string('reached_poi.ogg', 'you are passing POI ').
+
+% ATTENTION
+string('exceed_limit.ogg', 'ylitit nopeusrajoituksen ').
+string('attention.ogg', 'huomio, ').
+string('speed_camera.ogg', 'nopeuskamera').
+string('border_control.ogg', 'rajavalvonta ').
+string('railroad_crossing.ogg', 'tasoristeys ').
+string('traffic_calming.ogg', 'liikenne rauhoittava ').
+string('toll_booth.ogg', 'tietullien ').
+string('stop.ogg', 'Stop-merkki ').
+string('pedestrian_crosswalk.ogg', 'suojatie ').
 
 % OTHER PROMPTS
-string('attention.ogg', 'huomio, ').
 string('location_lost.ogg', 'GPS-signaali katosi ').
 string('location_recovered.ogg', 'GPS-signaali palautui ').
 string('off_route.ogg', 'olet poikennut reitiltä ').
-string('exceed_limit.ogg', 'ylitit nopeusrajoituksen ').
+string('back_on_route.ogg', 'olet taas reitillä ').
 
-% STREET NAME GRAMMAR
+% STREET NAME PREPOSITIONS
 % In Finnish, street names would have to be inflected:
 % Turn onto Pihakatu -> Käänny PihakaDULLE 
 % Along Pihakatu -> PihakatuA pitkin
 % and there are no prepositions, so just saying the street name is the best that can be done easily
 string('onto.ogg', ' ').
-%string('on.ogg', 'auf ').
-%string('to.ogg', 'bis ').
+string('on.ogg', ' ').
+string('to.ogg', ' ').
+string('toward.ogg', 'kohti').
 
 % DISTANCE UNIT SUPPORT
 string('meters_metrin.ogg', 'metrin ').
@@ -159,40 +174,46 @@ turn('right_sh', ['right_sh.ogg']).
 turn('right_sl', ['right_sl.ogg']).
 turn('left_keep', ['left_keep.ogg']).
 turn('right_keep', ['right_keep.ogg']).
-bear_left(_Street) -- ['left_keep.ogg'].
-bear_right(_Street) -- ['right_keep.ogg'].
+% Note: turn('left_keep'/'right_keep',[]) is a turn type aiding lane selection, while bear_left()/bear_right() is triggered as brief "turn-after-next" preparation sounding always after a "..., then...". In some languages turn(l/r_keep) may not differ from bear_l/r:
+bear_left(_Street) -- ['left_bear.ogg'].
+bear_right(_Street) -- ['right_bear.ogg'].
 
-prepturn('left', ['left_prep.ogg']).
-prepturn('left_sh', ['left_sh_prep.ogg']).
-prepturn('left_sl', ['left_sl_prep.ogg']).
-prepturn('right', ['right_prep.ogg']).
-prepturn('right_sh', ['right_sh_prep.ogg']).
-prepturn('right_sl', ['right_sl_prep.ogg']).
-prepturn('left_keep', ['left_keep_prep.ogg']).
-prepturn('right_keep', ['right_keep_prep.ogg']).
+% cut_part_street(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
+% cut_part_street(voice(['', Name, _], _), Name). % not necessary
+% Next 2 lines for Name taking precedence over Dest...
+%cut_part_street(voice([Ref, '', Dest], _), [C1, 'toward.ogg', Dest]) :- atom_concat(Ref, ' ', C1).
+%cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
+% ...or next 3 lines for Dest taking precedence over Name
+cut_part_street(voice([Ref, Name, ''], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
+cut_part_street(voice(['', Name, Dest], _), [C1, 'toward.ogg', Dest]) :- atom_concat(Name, ' ', C1).
+cut_part_street(voice([Ref, _, Dest], _), [C1, 'toward.ogg', Dest]) :- atom_concat(Ref, ' ', C1).
 
-onto_street('', []).
-onto_street(Street, ['onto.ogg', Street]) :- tts.
-onto_street(_Street, []) :- not(tts).
-%on_street('', []).
-%on_street(Street, ['on.ogg', Street]) :- tts.
-%on_street(_Street, []) :- not(tts).
-%to_street('', []).
-%to_street(Street, ['to.ogg', Street]) :- tts.
-%to_street(_Street, []) :- not(tts).
+turn_street('', []).
+turn_street(voice(['','',''],_), []).
+turn_street(voice(['', '', D], _), ['toward.ogg', D]) :- tts.
+turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), cut_part_street(Street, SName).
+turn_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), cut_part_street(Street, SName).
+turn_street(_Street, []) :- not(tts).
 
-prepare_turn(Turn, Dist, Street) -- ['prepare.ogg', D, 'get.ogg', M | Sgen] :- distance(Dist, metrin) -- D, prepturn(Turn, M), onto_street(Street, Sgen).
-turn(Turn, Dist, Street) -- [D, 'get.ogg', M| Sgen] :- distance(Dist, metrin) -- D, turn(Turn, M), onto_street(Street, Sgen).
-turn(Turn, Street) -- ['now.ogg', M | Sgen] :- turn(Turn, M), onto_street(Street, Sgen).
+follow_street('', []).
+follow_street(voice(['','',''],_), []).
+follow_street(voice(['', '', D], _), ['to.ogg', D]) :- tts.
+follow_street(Street, ['to.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), cut_part_street(Street, SName).
+follow_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), cut_part_street(Street, SName).
+follow_street(_Street, []) :- not(tts).
 
-prepare_make_ut(Dist, Street) -- ['prepare_make_uturn.ogg', D, 'get.ogg' | Sgen] :- distance(Dist, metrin) -- D, onto_street(Street, Sgen).
-make_ut(Dist, Street) --  ['make_uturn1.ogg', D, 'get.ogg' | Sgen] :- distance(Dist, metrin) -- D, onto_street(Street, Sgen).
-make_ut(Street) -- ['make_uturn2.ogg' | Sgen] :- onto_street(Street, Sgen).
+prepare_turn(Turn, Dist, Street) -- ['after.ogg', D, 'get.ogg', M | Sgen] :- distance(Dist, metrin) -- D, turn(Turn, M), turn_street(Street, Sgen).
+turn(Turn, Dist, Street) -- ['in.ogg', D, 'get.ogg', M | Sgen] :- distance(Dist, metrin) -- D, turn(Turn, M), turn_street(Street, Sgen).
+turn(Turn, Street) -- ['now.ogg', M | Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
+
+prepare_make_ut(Dist, Street) -- ['make_uturn1.ogg', D, 'get.ogg'  | Sgen] :- distance(Dist, metrin) -- D, turn_street(Street, Sgen).
+make_ut(Dist, Street) --  ['make_uturn1.ogg', D, 'get.ogg'  | Sgen] :- distance(Dist, metrin) -- D, turn_street(Street, Sgen).
+make_ut(Street) -- ['make_uturn2.ogg' | Sgen] :- turn_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
-prepare_roundabout(Dist, _Exit, _Street) -- ['prepare_roundabout.ogg', D, 'get.ogg'] :- distance(Dist, metrin) -- D.
-roundabout(Dist, _Angle, Exit, Street) -- ['roundabout.ogg', D, 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist, metrin) -- D, nth(Exit, E), onto_street(Street, Sgen).
-roundabout(_Angle, Exit, Street) -- ['take2.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), onto_street(Street, Sgen).
+prepare_roundabout(Dist, _Exit, _Street) -- ['after.ogg', D , 'prepare_roundabout.ogg'] :- distance(Dist, metrin) -- D.
+roundabout(Dist, _Angle, Exit, Street) -- ['roundabout.ogg', D, 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist, metrin) -- D, nth(Exit, E), turn_street(Street, Sgen).
+roundabout(_Angle, Exit, Street) -- ['take2.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 
 go_ahead -- ['go_ahead.ogg'].
 go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen]:- distance(Dist, metria) -- D, onto_street(Street, Sgen).
@@ -200,12 +221,18 @@ go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen]:- distance(Dist, metria) -- D
 then -- ['then.ogg'].
 name(D, [D]) :- tts.
 name(_D, []) :- not(tts).
+
 and_arrive_destination(D) -- ['and_arrive_destination.ogg'|Ds] :- name(D, Ds).
 reached_destination(D) -- ['reached_destination.ogg'|Ds] :- name(D, Ds).
 and_arrive_intermediate(D) -- ['and_arrive_intermediate.ogg'|Ds] :- name(D, Ds).
 reached_intermediate(D) -- ['reached_intermediate.ogg'|Ds] :- name(D, Ds).
+
 and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
+and_arrive_favorite(D) -- ['and_arrive_favorite.ogg'|Ds] :- name(D, Ds).
+reached_favorite(D) -- ['reached_favorite.ogg'|Ds] :- name(D, Ds).
+and_arrive_poi(D) -- ['and_arrive_poi.ogg'|Ds] :- name(D, Ds).
+reached_poi(D) -- ['reached_poi.ogg'|Ds] :- name(D, Ds).
 
 route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg', T] :- distance(Dist, metria) -- D, time(Time) -- T.
 route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
@@ -214,8 +241,22 @@ route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg
 location_lost -- ['location_lost.ogg'].
 location_recovered -- ['location_recovered.ogg'].
 off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist, metrin) -- D.
-attention(_Type) -- ['attention.ogg'].
+back_on_route -- ['back_on_route.ogg'].
+
+% TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
+% attention(_Type) -- ['attention.ogg'].
+attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
+warning('SPEED_CAMERA', 'speed_camera.ogg').
+warning('SPEED_LIMIT', '').
+warning('BORDER_CONTROL', 'border_control.ogg').
+warning('RAILWAY', 'railroad_crossing.ogg').
+warning('TRAFFIC_CALMING', 'traffic_calming.ogg').
+warning('TOLL_BOOTH', 'toll_booth.ogg').
+warning('STOP', 'stop.ogg').
+warning('PEDESTRIAN', 'pedestrian_crosswalk.ogg').
+warning('MAXIMUM', '').
+warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'RAILWAY'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'PEDESTRIAN'; Type = 'MAXIMUM').
 
 
 %% 
@@ -238,9 +279,10 @@ nth(16, '16th.ogg').
 nth(17, '17th.ogg').
 
 
-%% resolve command main method
+%% command main method
 %% if you are familar with Prolog you can input specific to the whole mechanism,
 %% by adding exception cases.
+
 flatten(X, Y) :- flatten(X, [], Y), !.
 flatten([], Acc, Acc).
 flatten([X|Y], Acc, Res):- flatten(Y, Acc, R), flatten(X, R, Res).
@@ -271,7 +313,6 @@ time(Sec) -- [H, Ogg, 'minutes.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), 
 time(Sec) -- [Ogg, 'minutes.ogg'] :- not(tts), Sec < 300, St is Sec/60, pnumber(St, Ogg).
 time(Sec) -- [H, Ogg, 'minutes.ogg'] :- not(tts), S is round(Sec/300.0) * 5, St is S mod 60, St > 0, hours(S, H), pnumber(St, Ogg).
 time(Sec) -- [H] :- not(tts), S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60.
-
 
 %%% distance measure
 distance(Dist, Y) -- D :- measure('km-m'), distance_km(Dist, Y) -- D.
@@ -315,6 +356,7 @@ distance_mi_y(Dist, metrin) -- ['around.ogg', X, 'miles_metrin.ogg']    :- Dist 
 distance_mi_y(Dist, metria) -- ['around.ogg', X, 'miles_metri.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
 distance_mi_y(Dist, metrin) -- [ X, 'miles_metrin.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
 distance_mi_y(Dist, metria) -- [ X, 'miles_metri.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
+
 
 
 interval(St, St, End, _Step) :- St =< End.
