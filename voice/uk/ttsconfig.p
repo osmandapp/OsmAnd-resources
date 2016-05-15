@@ -23,7 +23,7 @@ language(uk).
 
 % ROUTE CALCULATED
 string('voice/route_is.ogg', 'Довжина маршруту ').
-string('voice/route_calculate.ogg', 'Маршрут перелічується').
+string('voice/route_calculated.ogg', 'Маршрут перелічується').
 string('voice/distance.ogg', 'відстань ').
 
 % LEFT/RIGHT
