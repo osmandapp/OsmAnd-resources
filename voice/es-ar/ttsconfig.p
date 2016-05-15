@@ -57,8 +57,7 @@ string('make_uturn.ogg', 'Da la vuelta').
 string('make_uturn_wp.ogg', 'Cuando puedas, da la vuelta').
 
 % ROUNDABOUTS
-%string('prepare_roundabout.ogg', 'Prepárate para entrar en la rotonda después de').
-string('prepare_roundabout.ogg', 'entra en la rotonda ').
+string('prepare_roundabout.ogg', 'Prepárate para entrar en la rotonda después de').
 string('roundabout.ogg', 'entra en la rotonda').
 string('then.ogg', ', luego').
 string('and.ogg', 'y').
@@ -85,7 +84,7 @@ string('17th.ogg', 'decimoséptima').
 
 % STRAIGHT/FOLLOW
 string('go_ahead.ogg', 'Continúa recto').
-string('follow.ogg', 'Sigua la vía durante').
+string('follow.ogg', 'Sigue la vía durante').
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'y llegarás a tu destino').
@@ -96,7 +95,7 @@ string('reached_intermediate.ogg', 'has llegado a tu punto intermedio').
 % NEARBY POINTS
 string('and_arrive_waypoint.ogg', 'y llegarás a tu punto G P X intermedio').
 string('reached_waypoint.ogg', 'has llegado a tu punto G P X intermedio').
-string('and_arrive_favorite.ogg', 'y llegarás a tu favorito ').
+string('and_arrive_favorite.ogg', 'y llegarás a tu punto favorito ').
 string('reached_favorite.ogg', 'has llegado a tu punto favorito ').
 string('and_arrive_poi.ogg', 'y llegarás al P D I ').
 string('reached_poi.ogg', 'has llegado al P D I ').
