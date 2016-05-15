@@ -40,7 +40,8 @@ string('right_sh.ogg', 'efectúa un giro cerrado a la derecha').
 string('right_sl.ogg', 'gira levemente a la derecha').
 string('left_keep.ogg', 'mantente a la izquierda').
 string('right_keep.ogg', 'mantente a la derecha').
-% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
+string('left_bear.ogg', 'mantente a la izquierda').   % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'mantente a la derecha').    % in English the same as right_keep, may be different in other languages
 
 string('left_inf.ogg', 'girar a la izquierda').
 string('left_sh_inf.ogg', 'efectuar un giro cerrado a la izquierda').
@@ -155,8 +156,9 @@ turn('right_sh', ['right_sh.ogg']).
 turn('right_sl', ['right_sl.ogg']).
 turn('left_keep', ['left_keep.ogg']).
 turn('right_keep', ['right_keep.ogg']).
-bear_left(_Street) -- ['left_keep.ogg'].
-bear_right(_Street) -- ['right_keep.ogg'].
+% Note: turn('left_keep'/'right_keep',[]) is a turn type aiding lane selection, while bear_left()/bear_right() is triggered as brief "turn-after-next" preparation sounding always after a "..., then...". In some languages turn(l/r_keep) may not differ from bear_l/r:
+bear_left(_Street) -- ['left_bear.ogg'].
+bear_right(_Street) -- ['right_bear.ogg'].
 
 turn_inf('left', ['left_inf.ogg']).
 turn_inf('left_sh', ['left_sh_inf.ogg']).

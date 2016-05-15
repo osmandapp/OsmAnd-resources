@@ -42,8 +42,8 @@ string('right_sh.ogg', 'scharf rechts abbiegen ').
 string('right_sl.ogg', 'leicht rechts abbiegen ').
 string('left_keep.ogg', 'links halten ').
 string('right_keep.ogg', 'rechts halten ').
-string('bear_left.ogg', 'links halten ').   % in English the same as keep left, may be different in other languages
-string('bear_right.ogg', 'rechts halten '). % in English the same as keep right, may be different in other languages
+string('left_bear.ogg', 'links halten ').    % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'rechts halten ').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
 string('make_uturn1.ogg', 'wenden ').
@@ -213,9 +213,9 @@ turn('right_sh', ['right_sh.ogg']).
 turn('right_sl', ['right_sl.ogg']).
 turn('left_keep', ['left_keep.ogg']).
 turn('right_keep', ['right_keep.ogg']).
-% Note: turn('left_keep'/'right_keep',[]) is a turn type aiding lane selection, while bear_left()/bear_right() are triggered as brief "turn-after-next" preparation sounding always after a "..., then...". In some languages l/r_keep may not differ from bear_l/r:
-bear_left(_Street) -- ['bear_left.ogg'].
-bear_right(_Street) -- ['bear_right.ogg'].
+% Note: turn('left_keep'/'right_keep',[]) is a turn type aiding lane selection, while bear_left()/bear_right() is triggered as brief "turn-after-next" preparation sounding always after a "..., then...". In some languages turn(l/r_keep) may not differ from bear_l/r:
+bear_left(_Street) -- ['left_bear.ogg'].
+bear_right(_Street) -- ['right_bear.ogg'].
 
 % cut_part_street(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
 % cut_part_street(voice(['', Name, _], _), Name). % not necessary

@@ -39,7 +39,8 @@ string('right_sh.ogg', 'forduljon élesen jobbra ').
 string('right_sl.ogg', 'forduljon enyhén jobbra ').
 string('left_keep.ogg', 'tartson balra ').
 string('right_keep.ogg', 'tartson jobbra ').
-% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
+string('left_bear.ogg', 'tartson balra ').    % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'tartson jobbra ').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
 string('prepare_make_uturn.ogg', 'Készüljön fel a visszafordulásra ').
@@ -159,8 +160,9 @@ turn('right_sh', ['right_sh.ogg']).
 turn('right_sl', ['right_sl.ogg']).
 turn('left_keep', ['left_keep.ogg']).
 turn('right_keep', ['right_keep.ogg']).
-bear_left(_Street) -- ['left_keep.ogg'].
-bear_right(_Street) -- ['right_keep.ogg'].
+% Note: turn('left_keep'/'right_keep',[]) is a turn type aiding lane selection, while bear_left()/bear_right() is triggered as brief "turn-after-next" preparation sounding always after a "..., then...". In some languages turn(l/r_keep) may not differ from bear_l/r:
+bear_left(_Street) -- ['left_bear.ogg'].
+bear_right(_Street) -- ['right_bear.ogg'].
 
 onto_street('', []).
 onto_street(Street, ['onto_pre.ogg', Street, 'onto_post.ogg']) :- tts.

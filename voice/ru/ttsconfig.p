@@ -39,8 +39,8 @@ string('right_sh.ogg', 'резко поверните направо ').
 string('right_sl.ogg', 'плавно поверните направо ').
 string('left_keep.ogg', 'держитесь левее ').
 string('right_keep.ogg', 'держитесь правее ').
-% string('bear_left.ogg', 'keep left').   % not needed as separate string in English but can be useful in Russian
-% string('bear_right.ogg', 'keep right'). % not needed as separate string in English but can be useful in Russian
+string('left_bear.ogg', 'держитесь левее ').    % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'держитесь правее ').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
 string('make_uturn.ogg', 'Выполните разворот ').
@@ -157,9 +157,9 @@ turn('right_sh', ['right_sh.ogg']).
 turn('right_sl', ['right_sl.ogg']).
 turn('left_keep', ['left_keep.ogg']).
 turn('right_keep', ['right_keep.ogg']).
-% Note: turn('left_keep'/'right_keep',[]) is a turn type aiding lane selection, while bear_left()/bear_right() are triggered as brief "turn-after-next" preparation sounding always after a "..., then...". In some languages l/r_keep may not differ from bear_l/r:
-bear_left(_Street) -- ['left_keep.ogg'].   % if needed use separate bear_left.ogg here
-bear_right(_Street) -- ['right_keep.ogg']. % if needed use separate bear_right.ogg here
+% Note: turn('left_keep'/'right_keep',[]) is a turn type aiding lane selection, while bear_left()/bear_right() is triggered as brief "turn-after-next" preparation sounding always after a "..., then...". In some languages turn(l/r_keep) may not differ from bear_l/r:
+bear_left(_Street) -- ['left_bear.ogg'].   % if needed use separate bear_left.ogg here
+bear_right(_Street) -- ['right_bear.ogg']. % if needed use separate bear_right.ogg here
 
 % cut_part_street(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
 % cut_part_street(voice(['', Name, _], _), Name). % not necessary
