@@ -108,7 +108,7 @@ string('pedestrian_crosswalk.ogg', 'gyalogos átkelő ').
 string('location_lost.ogg', 'nem található dzsípíesz jel ').
 string('location_recovered.ogg', 'pozíció meghatározva').
 string('off_route.ogg', 'Letértél a tervezett útvonalról ').
-string('back_on_route.ogg', ' ').
+string('back_on_route.ogg', 'Ön visszatér az útvonalon ').
 
 % STREET NAME PREPOSITIONS
 string('comma.ogg', ', ').

@@ -108,7 +108,7 @@ string('pedestrian_crosswalk.ogg', 'Atraessamentu pedonale ').
 string('location_lost.ogg', 'Sinnale GPS pèrdidu').
 string('location_recovered.ogg', 'Sinnale GPS torradu ').
 string('off_route.ogg', "Seis essidos dae s''àndala").
-string('back_on_route.ogg', ' ').
+string('back_on_route.ogg', 'si torna sulla rotta ').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'in ').

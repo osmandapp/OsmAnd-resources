@@ -106,7 +106,7 @@ string('pedestrian_crosswalk.ogg', 'pješačka zebra ').
 string('location_lost.ogg', 'g p s signal je izgubljen ').
 string('location_recovered.ogg', 'g p s signal je ponovno pronađen ').
 string('off_route.ogg', 'you have been off the route for').
-string('back_on_route.ogg', ' ').
+string('back_on_route.ogg', 'ti si natrag na ruti ').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'u ').

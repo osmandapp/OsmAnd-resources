@@ -113,7 +113,7 @@ string('pedestrian_crosswalk.ogg', 'zebra ').
 string('location_lost.ogg', 'G P S  signaal verloren ').
 string('location_recovered.ogg', 'g p s signaal hersteld ').
 string('off_route.ogg', 'je bent afgeweken van de route vanaf ').
-string('back_on_route.ogg', ' ').
+string('back_on_route.ogg', 'je bent weer op de route ').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'naar  ').
