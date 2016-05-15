@@ -39,9 +39,10 @@ string('left_sl.ogg', 'bortare de pagu a manca').
 string('right.ogg', 'bortare a destra').
 string('right_sh.ogg', 'luego a destra').
 string('right_sl.ogg', 'bortare de pagu a destra').
-string('left_keep.ogg', 'mantènnere sa manca').
-string('right_keep.ogg', 'mantènnere sa destra').
-% if needed, "left/right_bear.ogg" can be defined here also. "... (then) (bear_left/right)" is used in pre-announcements to indicate the direction of a successive turn AFTER the next turn.
+string('left_keep.ogg', 'mantènnere sa manca ').
+string('right_keep.ogg', 'mantènnere sa destra ').
+string('bear_left.ogg', 'mantènnere sa manca ').   % in English the same as keep left, may be different in other languages
+string('bear_right.ogg', 'mantènnere sa destra '). % in English the same as keep right, may be different in other languages
 
 % U-TURNS
 string('make_uturn1.ogg', 'faghide una furriadura a u ').
@@ -50,7 +51,7 @@ string('make_uturn_wp.ogg', 'In su primu momentu possìbile, fàghere una furria
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'a intrare in una rutunda').
-string('roundabout.ogg', 'intrade in sa rutunda, ').
+string('roundabout.ogg', 'intrade in sa rutunda ').
 string('then.ogg', ', pustis').
 string('and.ogg', 'e').
 string('take.ogg', 'pigade sa').
@@ -234,7 +235,7 @@ cut_part_street(voice([Ref, _, Dest], _), [C1, 'toward.ogg', Dest]) :- atom_conc
 
 turn_street('', []).
 turn_street(voice(['','',''],_), []).
-turn_street(voice(['', '', D], _), ['toward.ogg', DestClean]) :- tts, removeSemicolonAto(D,DestClean).
+turn_street(voice(['', '', D], _), ['toward.ogg', DestClean]) :- tts, removeSemicolonAto(D, DestClean).
 turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice(['', '', D], _)), street_is_male(Street), cut_part_street(Street, SName).
 turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice(['', '', D], _)), street_is_female(Street), cut_part_street(Street, SName).
 turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice(['', '', D], _)), street_is_nothing(Street), cut_part_street(Street, SName).
@@ -351,11 +352,12 @@ hours(S, []) :- S < 60.
 hours(S, ['1_hour.ogg']) :- S < 120, H is S div 60, pnumber(H, Ogg).
 hours(S, [Ogg, 'hours.ogg']) :- H is S div 60, pnumber(H, Ogg).
 time(Sec) -- ['less_a_minute.ogg'] :- Sec < 30.
+time(Sec) -- [H] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, St = 0.
 time(Sec) -- [H, '1_minute.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, St = 1, pnumber(St, Ogg).
 time(Sec) -- [H, Ogg, 'minutes.ogg'] :- tts, S is round(Sec/60.0), hours(S, H), St is S mod 60, pnumber(St, Ogg).
 time(Sec) -- [Ogg, 'minutes.ogg'] :- not(tts), Sec < 300, St is Sec/60, pnumber(St, Ogg).
 time(Sec) -- [H, Ogg, 'minutes.ogg'] :- not(tts), S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60, pnumber(St, Ogg).
-
+time(Sec) -- [H] :- not(tts), S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60.
 
 %%% distance measure
 distance(Dist, Y) -- D :- measure('km-m'), distance_km(Dist, Y) -- D.

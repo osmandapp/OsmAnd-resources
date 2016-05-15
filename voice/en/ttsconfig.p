@@ -20,7 +20,6 @@ fest_language('cmu_us_awb_arctic_clunits').
 % (X) Distance unit support (meters / feet / yard)
 % (N/A) special grammar: nominative/dative for distance measure
 % (X) special grammar: imperative/infinitive distinction for turns
-% (X) Support announcement of railroad crossings and pedestrian crosswalks
 
 
 % ROUTE CALCULATED
@@ -80,7 +79,7 @@ string('follow.ogg', 'Continue for').  % 'Follow the course of the road for' per
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'and arrive at your destination ').
-string('reached_destination.ogg','you have reached your destination ').
+string('reached_destination.ogg', 'you have reached your destination ').
 string('and_arrive_intermediate.ogg', 'and arrive at your intermediate destination ').
 string('reached_intermediate.ogg', 'you have reached your intermediate destination ').
 
