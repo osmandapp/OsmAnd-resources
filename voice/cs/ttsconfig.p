@@ -18,7 +18,7 @@ language('cs').
 % (X) Other prompts: gps lost, off route, back to route
 % (X) Street name support and prepositions (onto / on / to)
 % (X) Distance unit support (meters / feet / yard)
-% (X) Special grammar: nth(nominative/instrumental), distance(workaround/locatie/accusative), special plural 1 2 3_4
+% (X) Special grammar: nth(nominative/instrumental), distance(accusative/locative/workaround), special plural 1 2 3_4
 
 
 %% STRINGS
