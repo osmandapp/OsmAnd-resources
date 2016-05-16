@@ -162,21 +162,21 @@ turn('right_keep', ['right_keep.ogg']).
 bear_left(_Street) -- ['left_bear.ogg'].
 bear_right(_Street) -- ['right_bear.ogg'].
 
-% cut_part_street(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
-% cut_part_street(voice(['', Name, _], _), Name). % not necessary
+% assemble_street_name(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
+% assemble_street_name(voice(['', Name, _], _), Name). % not necessary
 % Next 2 lines for Name taking precedence over Dest...
-%cut_part_street(voice([Ref, '', Dest], _), [C1, 'onto.ogg', Dest]) :- atom_concat(Ref, ' ', C1).
-%cut_part_street(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
+%assemble_street_name(voice([Ref, '', Dest], _), [C1, 'onto.ogg', Dest]) :- atom_concat(Ref, ' ', C1).
+%assemble_street_name(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
 % ...or next 3 lines for Dest taking precedence over Name
-cut_part_street(voice([Ref, Name, ''], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
-cut_part_street(voice(['', Name, Dest], _), [C1, 'toward.ogg', Dest]) :- atom_concat(Name, ' ', C1).
-cut_part_street(voice([Ref, _, Dest], _), [C1, 'onto.ogg', Dest]) :- atom_concat(Ref, ' ', C1).
+assemble_street_name(voice([Ref, Name, ''], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
+assemble_street_name(voice(['', Name, Dest], _), [C1, 'toward.ogg', Dest]) :- atom_concat(Name, ' ', C1).
+assemble_street_name(voice([Ref, _, Dest], _), [C1, 'onto.ogg', Dest]) :- atom_concat(Ref, ' ', C1).
 
 turn_street('', []).
 turn_street(voice(['','',''],_), []).
 turn_street(voice(['', '', D], _), ['onto.ogg', D]) :- tts.
-turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), cut_part_street(Street, SName).
-turn_street(Street, ['onto.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), cut_part_street(Street, SName).
+turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), assemble_street_name(Street, SName).
+turn_street(Street, ['onto.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
 turn_street(_Street, []) :- not(tts).
 
 prepare_turn(Turn, Dist, Street) -- ['prepare.ogg', M, 'after.ogg', D | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
