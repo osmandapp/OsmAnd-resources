@@ -23,6 +23,9 @@ language('et').
 
 % TODO: Complex grammar code blocks need to be re-connected in v103 file
 
+
+%% STRINGS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
 string('route_is.ogg', 'Tee-kond on ').
 string('long.ogg', 'pikk, '). % Comma!
@@ -230,6 +233,11 @@ string('of_1000.ogg', 'tuhande').
 
 
 %% COMMAND BUILDING / WORD ORDER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'long.ogg', 'time.ogg', T] :- distance(Dist, 'nom') -- D, time(Time) -- T.
+route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car'), !.
+route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, ', ' , 'time.ogg', T] :- distance(Dist, 'nom') -- D, time(Time) -- T.
+
 turn('left', ['left.ogg']).
 turn('left_sh', ['left_sh.ogg']).
 turn('left_sl', ['left_sl.ogg']).
@@ -315,10 +323,6 @@ and_arrive_favorite(D) -- ['and_arrive_favorite.ogg'|Ds] :- name(D, Ds).
 reached_favorite(D) -- ['reached_favorite.ogg'|Ds] :- name(D, Ds).
 and_arrive_poi(D) -- ['and_arrive_poi.ogg'|Ds] :- name(D, Ds).
 reached_poi(D) -- ['reached_poi.ogg'|Ds] :- name(D, Ds).
-
-route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'long.ogg', 'time.ogg', T] :- distance(Dist, 'nom') -- D, time(Time) -- T.
-route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car'), !.
-route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, ', ' , 'time.ogg', T] :- distance(Dist, 'nom') -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
 location_recovered -- ['location_recovered.ogg'].

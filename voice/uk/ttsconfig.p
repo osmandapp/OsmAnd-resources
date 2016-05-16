@@ -21,6 +21,8 @@ language(uk).
 % (N/A) special grammar: imperative/infinitive distinction for turns
 
 
+%% STRINGS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
 string('route_is.ogg', 'Довжина маршруту ').
 string('route_calculated.ogg', 'Маршрут перелічується').
@@ -140,6 +142,11 @@ string('minutes.ogg', 'хвилин ').
 
 
 %% COMMAND BUILDING / WORD ORDER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time_is.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+route_recalc(Dist, Time) -- ['route_recalculated.ogg'] :- appMode('car').
+route_recalc(Dist, Time) -- ['route_recalculated.ogg', 'distance.ogg', D, 'and_time_is.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+
 turn('left', ['left.ogg']).
 turn('left_sh', ['left_sh.ogg']).
 turn('left_sl', ['left_sl.ogg']).
@@ -205,20 +212,18 @@ go_ahead(Dist, Street) -- ['go_ahead_m.ogg', D | Sgen] :- distance(Dist) -- D, f
 then -- ['then.ogg'].
 name(D, [D]) :- tts.
 name(_D, []) :- not(tts).
+
 and_arrive_destination(D) -- ['and_arrive_at_destination.ogg'|Ds] :- name(D, Ds).
 reached_destination(D) -- ['reached_destination.ogg'|Ds] :- name(D, Ds).
 and_arrive_intermediate(D) -- ['and_arrive_intermediate.ogg'|Ds] :- name(D, Ds).
 reached_intermediate(D) -- ['reached_intermediate.ogg'|Ds] :- name(D, Ds).
+
 and_arrive_waypoint(D) -- ['and_arrive_waypoint.ogg'|Ds] :- name(D, Ds).
 reached_waypoint(D) -- ['reached_waypoint.ogg'|Ds] :- name(D, Ds).
 and_arrive_favorite(D) -- ['and_arrive_favorite.ogg'|Ds] :- name(D, Ds).
 reached_favorite(D) -- ['reached_favorite.ogg'|Ds] :- name(D, Ds).
 and_arrive_poi(D) -- ['and_arrive_poi.ogg'|Ds] :- name(D, Ds).
 reached_poi(D) -- ['reached_poi.ogg'|Ds] :- name(D, Ds).
-
-route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time_is.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
-route_recalc(Dist, Time) -- ['route_recalculated.ogg'] :- appMode('car').
-route_recalc(Dist, Time) -- ['route_recalculated.ogg', 'distance.ogg', D, 'and_time_is.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 location_lost -- ['location_lost.ogg'].
 location_recovered -- ['location_recovered.ogg'].
