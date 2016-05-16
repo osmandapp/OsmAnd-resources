@@ -283,8 +283,8 @@ make_ut(Dist, Street) --  ['in.ogg', After, 'make_uturn.ogg' | Sgen] :- after(Di
 make_ut(Street) -- ['make_uturn.ogg' | Sgen] :- turn_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
-prepare_roundabout(Dist, Exit, Street) -- ['prepare_walk_roundabout.ogg', After, 'then.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- appMode('pedestrian'), !, after(Dist) -- After, nth(Exit, E), turn_street(Street, Sgen).
-prepare_roundabout(Dist, Exit, Street) -- ['prepare_roundabout.ogg', After, 'then.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- after(Dist) -- After, nth(Exit, E), turn_street(Street, Sgen).
+prepare_roundabout(Dist, _Exit, _Street) -- ['prepare_walk_roundabout.ogg', After, 'then.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- appMode('pedestrian'), !, after(Dist) -- After, nth(Exit, E), turn_street(Street, Sgen).
+prepare_roundabout(Dist, _Exit, _Street) -- ['prepare_roundabout.ogg', After, 'then.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- after(Dist) -- After, nth(Exit, E), turn_street(Street, Sgen).
 roundabout(Dist, _Angle, Exit, Street) -- [After, 'walk_roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- appMode('pedestrian'), !, after(Dist) -- After, nth(Exit, E), turn_street(Street, Sgen).
 roundabout(Dist, _Angle, Exit, Street) -- [After, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- after(Dist) -- After, nth(Exit, E), turn_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).

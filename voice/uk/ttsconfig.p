@@ -194,8 +194,8 @@ make_ut(Street) -- ['make_uturn.ogg'| Sgen] :- turn_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
 % prepare_roundabout(Dist, _Exit, Street) -- ['after.ogg', D, 'roundabout.ogg'] :- distance(Dist) -- D.
-prepare_roundabout(Dist, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', E] :- distance(Dist) -- D, toexitn(Exit, E).
-roundabout(Dist, _Angle, Exit, Street) -- ['in.ogg', D, 'roundabout.ogg', E| Sgen] :- distance(Dist) -- D, exitn(Exit, E), turn_street(Street, Sgen).
+prepare_roundabout(Dist, _Exit, _Street) -- ['after.ogg', D, 'roundabout.ogg', E] :- distance(Dist) -- D, toexitn(Exit, E).
+roundabout(Dist, _Angle, Exit, Street) -- ['in.ogg', D, 'roundabout.ogg', E | Sgen] :- distance(Dist) -- D, exitn(Exit, E), turn_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- ['roundabout.ogg', E| Sgen] :- exitn(Exit, E), turn_street(Street, Sgen).
 
 go_ahead -- ['go_ahead.ogg'].
