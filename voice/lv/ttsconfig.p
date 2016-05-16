@@ -152,9 +152,9 @@ string('minutes.ogg', 'minūtes ').
 
 %% COMMAND BUILDING / WORD ORDER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg', T] :- distance(Dist, 2) -- D, time(Time) -- T.
 route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
-route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist, 2) -- D, time(Time) -- T.
 
 turn('left', ['left.ogg']).
 turn('left_sh', ['left_sh.ogg']).
@@ -192,21 +192,21 @@ follow_street(Street, ['to.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R
 follow_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
 follow_street(_Street, []) :- not(tts).
 
-prepare_turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
-turn(Turn, Dist, Street) -- ['in.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
+prepare_turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist, 1) -- D, turn(Turn, M), turn_street(Street, Sgen).
+turn(Turn, Dist, Street) -- ['in.ogg', D, M | Sgen] :- distance(Dist, 1) -- D, turn(Turn, M), turn_street(Street, Sgen).
 turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
 
-prepare_make_ut(Dist, Street) -- ['after.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
-make_ut(Dist, Street) --  ['in.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
+prepare_make_ut(Dist, Street) -- ['after.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist, 1) -- D, turn_street(Street, Sgen).
+make_ut(Dist, Street) --  ['in.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist, 1) -- D, turn_street(Street, Sgen).
 make_ut(Street) -- ['make_uturn.ogg' | Sgen] :- turn_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
-prepare_roundabout(Dist, _Exit, _Street) -- ['after.ogg', D , 'prepare_roundabout.ogg'] :- distance(Dist) -- D.
-roundabout(Dist, _Angle, Exit, Street) -- ['in.ogg', D, 'roundabout.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
+prepare_roundabout(Dist, _Exit, _Street) -- ['after.ogg', D , 'prepare_roundabout.ogg'] :- distance(Dist, 1) -- D.
+roundabout(Dist, _Angle, Exit, Street) -- ['in.ogg', D, 'roundabout.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist, 1) -- D, nth(Exit, E), turn_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- ['exit2.ogg', E, 'exit3.ogg' | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 
 go_ahead -- ['go_ahead.ogg'].
-go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen] :- distance(Dist) -- D, follow_street(Street, Sgen).
+go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen] :- distance(Dist, 2) -- D, follow_street(Street, Sgen).
 
 then -- ['then.ogg'].
 name(D, [D]) :- tts.
@@ -226,7 +226,7 @@ reached_poi(D) -- ['reached_poi.ogg'|Ds] :- name(D, Ds).
 
 location_lost -- ['location_lost.ogg'].
 location_recovered -- ['location_recovered.ogg'].
-off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
+off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist, 2) -- D.
 back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
@@ -300,9 +300,9 @@ time(Sec) -- [H, Ogg, 'minutes.ogg'] :- not(tts), S is round(Sec/300.0) * 5, St 
 time(Sec) -- [H] :- not(tts), S is round(Sec/300.0) * 5, hours(S, H), St is S mod 60.
 
 %%% distance measure
-distance(Dist) -- D :- measure('km-m'), distance_km(Dist) -- D.
-distance(Dist) -- D :- measure('mi-f'), distance_mi_f(Dist) -- D.
-distance(Dist) -- D :- measure('mi-y'), distance_mi_y(Dist) -- D.
+distance(Dist, Y) -- D :- measure('km-m'), distance_km(Dist, Y) -- D.
+distance(Dist, Y) -- D :- measure('mi-f'), distance_mi_f(Dist, Y) -- D.
+distance(Dist, Y) -- D :- measure('mi-y'), distance_mi_y(Dist, Y) -- D.
 
 %%% distance measure km/m
 distance_km(Dist, 1) -- [ X, 'meters_1.ogg']                  :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
