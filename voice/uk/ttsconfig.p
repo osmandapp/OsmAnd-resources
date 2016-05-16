@@ -111,6 +111,7 @@ string('back_on_route.ogg', 'Ви повернулись на дорогу.').
 string('on.ogg', 'по ').
 string('onto.ogg', 'на ').
 string('to.ogg', 'до ').
+string('toward.ogg', 'до ').
 
 % DISTANCE UNIT SUPPORT
 string('metrov.ogg', 'метрів ').
@@ -153,8 +154,8 @@ turn('left_sl', ['left_sl.ogg']).
 turn('right', ['right.ogg']).
 turn('right_sh', ['right_sh.ogg']).
 turn('right_sl', ['right_sl.ogg']).
-turn('left_keep', ['keep_right.ogg']).
-turn('right_keep', ['keep_right.ogg']).
+turn('left_keep', ['left_keep.ogg']).
+turn('right_keep', ['right_keep.ogg']).
 % Note: turn('left_keep'/'right_keep',[]) is a turn type aiding lane selection, while bear_left()/bear_right() is triggered as brief "turn-after-next" preparation sounding always after a "..., then...". In some languages turn(l/r_keep) may not differ from bear_l/r:
 bear_left(_Street) -- ['left_bear.ogg'].
 bear_right(_Street) -- ['right_bear.ogg'].
@@ -162,7 +163,7 @@ bear_right(_Street) -- ['right_bear.ogg'].
 % assemble_street_name(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
 % assemble_street_name(voice(['', Name, _], _), Name). % not necessary
 % Next 2 lines for Name taking precedence over Dest...
-%assemble_street_name(voice([Ref, '', Dest], _), [C1, 'to.ogg', Dest]) :- atom_concat(Ref, ' ', C1).
+%assemble_street_name(voice([Ref, '', Dest], _), [C1, 'toward.ogg', Dest]) :- atom_concat(Ref, ' ', C1).
 %assemble_street_name(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
 % ...or next 3 lines for Dest taking precedence over Name
 assemble_street_name(voice([Ref, Name, ''], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
@@ -171,14 +172,14 @@ assemble_street_name(voice([Ref, _, Dest], _), [C1, 'to.ogg', Dest]) :- atom_con
 
 turn_street('', []).
 turn_street(voice(['','',''],_), []).
-turn_street(voice(['', '', D], _), ['to.ogg', D]) :- tts.
+turn_street(voice(['', '', D], _), ['toward.ogg', D]) :- tts.
 turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), assemble_street_name(Street, SName).
 turn_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
 turn_street(_Street, []) :- not(tts).
 
 follow_street('', []).
 follow_street(voice(['','',''],_), []).
-follow_street(voice(['', '', D], _), ['to.ogg', D]) :- tts.
+follow_street(voice(['', '', D], _), ['toward.ogg', D]) :- tts.
 follow_street(Street, ['to.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), assemble_street_name(Street, SName).
 follow_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
 follow_street(_Street, []) :- not(tts).
@@ -204,7 +205,7 @@ then -- ['then.ogg'].
 name(D, [D]) :- tts.
 name(_D, []) :- not(tts).
 
-and_arrive_destination(D) -- ['and_arrive_at_destination.ogg'|Ds] :- name(D, Ds).
+and_arrive_destination(D) -- ['and_arrive_destination.ogg'|Ds] :- name(D, Ds).
 reached_destination(D) -- ['reached_destination.ogg'|Ds] :- name(D, Ds).
 and_arrive_intermediate(D) -- ['and_arrive_intermediate.ogg'|Ds] :- name(D, Ds).
 reached_intermediate(D) -- ['reached_intermediate.ogg'|Ds] :- name(D, Ds).
@@ -225,7 +226,7 @@ back_on_route -- ['back_on_route.ogg'].
 speed_alarm -- ['exceed_limit.ogg'].
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
-warning('SPEED_LIMIT', 'speed_limit.ogg').
+warning('SPEED_LIMIT', '').
 warning('BORDER_CONTROL', 'border_control.ogg').
 warning('RAILWAY', 'railroad_crossing.ogg').
 warning('TRAFFIC_CALMING', 'traffic_calming.ogg').
@@ -294,7 +295,7 @@ toexitn(16, 'exit16.ogg').
 toexitn(17, 'exit17.ogg').
 
 
-%% resolve command main method
+%% command main method
 %% if you are familar with Prolog you can input specific to the whole mechanism,
 %% by adding exception cases.
 flatten(X, Y) :- flatten(X, [], Y), !.
