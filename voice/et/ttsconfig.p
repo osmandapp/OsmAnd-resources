@@ -19,7 +19,7 @@ language('et').
 % (X) Street name support and prepositions (onto / on / to)
 % (X) Distance unit support (meters / feet / yard)
 % (X) Special grammar: distance(Case), special after(Dist), street name (nominative/genitive/allative/adessive/terminative)
-% TODO: connect street name grammar again with v103 code
+% TODO: connect street declination code into new v103 turn_street and follow_street code
 
 
 %% STRINGS
@@ -237,7 +237,7 @@ turn('right_keep', ['right_keep.ogg']).
 bear_left(_Street) -- ['left_bear.ogg'].
 bear_right(_Street) -- ['right_bear.ogg'].
 
-% TODO: code not yet migrated into turn_street in v103
+% TODO: connect this street declination code into new v103 turn_street and follow_street code
 onto_street('', []) :- !.
 onto_street(Street, Onto_Street) :- tts, decline_street(Street, '-le', Onto_Street).
 onto_street(_Street, []) :- not(tts).
