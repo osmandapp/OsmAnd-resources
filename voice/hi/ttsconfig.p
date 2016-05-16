@@ -32,7 +32,7 @@ string('distance.ogg', ', अंतर ').
 % LEFT/RIGHT
 %string('prepare.ogg', ' मुडने के लिये तयार रहे').
 string('after.ogg', ' के बाद ').
-string('in.ogg', ' 'में').
+string('in.ogg', ' में').
 
 string('mudiye.ogg', ' मुडिये').
 string('left.ogg', ' बाये ').
