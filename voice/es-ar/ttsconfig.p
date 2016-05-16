@@ -34,10 +34,10 @@ string('in.ogg', 'en ').
 
 string('left.ogg', 'gira a la izquierda').
 string('left_sh.ogg', 'gira cerrado a la izquierda').
-string('left_sl.ogg', 'gira levemente a la izquierda').
+string('left_sl.ogg', 'gira leve a la izquierda').
 string('right.ogg', 'gira a la derecha').
 string('right_sh.ogg', 'gira cerrado a la derecha').
-string('right_sl.ogg', 'gira levemente a la derecha').
+string('right_sl.ogg', 'gira leve a la derecha').
 string('left_keep.ogg', 'mantente a la izquierda').
 string('right_keep.ogg', 'mantente a la derecha').
 string('left_bear.ogg', 'mantente a la izquierda').   % in English the same as left_keep, may be different in other languages
@@ -45,10 +45,10 @@ string('right_bear.ogg', 'mantente a la derecha').    % in English the same as r
 
 string('left_inf.ogg', 'girar a la izquierda').
 string('left_sh_inf.ogg', 'girar cerrado a la izquierda').
-string('left_sl_inf.ogg', 'girar levemente a la izquierda').
+string('left_sl_inf.ogg', 'girar leve a la izquierda').
 string('right_inf.ogg', 'girar a la derecha').
 string('right_sh_inf.ogg', 'girar cerrado a la derecha').
-string('right_sl_inf.ogg', 'girar levemente a la derecha').
+string('right_sl_inf.ogg', 'girar leve a la derecha').
 string('left_keep_inf.ogg', 'mantenerte a la izquierda').
 string('right_keep_inf.ogg', 'mantenerte a la derecha').
 
@@ -108,7 +108,7 @@ string('border_control.ogg', 'control fronterizo ').
 string('railroad_crossing.ogg', 'paso a nivel ').
 string('traffic_calming.ogg', 'reductor de velocidad ').
 string('toll_booth.ogg', 'cabina de peaje ').
-string('stop.ogg', 'señal de ESTOP ').
+string('stop.ogg', 'señal de detención obligatoria ').
 string('pedestrian_crosswalk.ogg', 'cruce de peatones ').
 
 % OTHER PROMPTS
