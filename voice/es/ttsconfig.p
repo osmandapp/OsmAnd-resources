@@ -16,10 +16,9 @@ language('es').
 % (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
 % (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM
 % (X) Other prompts: gps lost, off route, back to route
-% (X) Street name support and prepositions (onto / on / to )
+% (X) Street name support and prepositions (onto / on / to)
 % (X) Distance unit support (meters / feet / yard)
-% (N/A) special grammar: nominative/dative for distance measure
-% (N/A) special grammar: imperative/infinitive distinction for turns
+% (N/A) Special grammar: (please specify which)
 
 
 %% STRINGS
@@ -30,7 +29,7 @@ string('route_calculate.ogg', 'Ruta recalculada ').
 string('distance.ogg', ', distancia').
 
 % LEFT/RIGHT
-string('prepare.ogg', 'Prepárate para').
+%string('prepare.ogg', 'Prepárate para').
 string('after.ogg', 'después de ').
 string('in.ogg', 'en ').
 
@@ -44,15 +43,6 @@ string('left_keep.ogg', 'mantente a la izquierda').
 string('right_keep.ogg', 'mantente a la derecha').
 string('left_bear.ogg', 'mantente a la izquierda').   % in English the same as left_keep, may be different in other languages
 string('right_bear.ogg', 'mantente a la derecha').    % in English the same as right_keep, may be different in other languages
-
-string('left_inf.ogg', 'girar a la izquierda').
-string('left_sh_inf.ogg', 'efectuar un giro cerrado a la izquierda').
-string('left_sl_inf.ogg', 'girar levemente a la izquierda').
-string('right_inf.ogg', 'girar a la derecha').
-string('right_sh_inf.ogg', 'efectuar un giro cerrado a la derecha').
-string('right_sl_inf.ogg', 'girar levemente a la derecha').
-string('left_keep_inf.ogg', 'mantenerte a la izquierda').
-string('right_keep_inf.ogg', 'mantenerte a la derecha').
 
 % U-TURNS
 string('make_uturn.ogg', 'Da la vuelta').
@@ -167,15 +157,6 @@ turn('right_keep', ['right_keep.ogg']).
 bear_left(_Street) -- ['left_bear.ogg'].
 bear_right(_Street) -- ['right_bear.ogg'].
 
-turn_inf('left', ['left_inf.ogg']).
-turn_inf('left_sh', ['left_sh_inf.ogg']).
-turn_inf('left_sl', ['left_sl_inf.ogg']).
-turn_inf('right', ['right_inf.ogg']).
-turn_inf('right_sh', ['right_sh_inf.ogg']).
-turn_inf('right_sl', ['right_sl_inf.ogg']).
-turn_inf('left_keep', ['left_keep_inf.ogg']).
-turn_inf('right_keep', ['right_keep_inf.ogg']).
-
 % assemble_street_name(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
 % assemble_street_name(voice(['', Name, _], _), Name). % not necessary
 % Next 2 lines for Name taking precedence over Dest...
@@ -200,7 +181,7 @@ follow_street(Street, ['to.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R
 follow_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
 follow_street(_Street, []) :- not(tts).
 
-prepare_turn(Turn, Dist, _Street) -- ['prepare.ogg', M, 'after.ogg', D, ' '] :- distance(Dist) -- D, turn_inf(Turn, M), turn_street(Street, Sgen).
+prepare_turn(Turn, Dist, _Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
 turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
 turn(Turn, Street) -- [M | Sgen]  :- turn(Turn, M), turn_street(Street, Sgen).
 
@@ -239,7 +220,6 @@ back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
-% attention(_Type) -- ['attention.ogg'].
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').

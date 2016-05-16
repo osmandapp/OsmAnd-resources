@@ -16,10 +16,9 @@ language('ro').
 % (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
 % (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM
 % (X) Other prompts: gps lost, off route, back to route
-% (X) Street name support and prepositions (onto / on / to )
+% (X) Street name support and prepositions (onto / on / to)
 % (X) Distance unit support (meters / feet / yard)
-% (N/A) special grammar: nominative/dative for distance measure
-% (X) special grammar: imperative/infinitive distinction for turns
+% (N/A) Special grammar: (please specify which)
 
 
 %% STRINGS
@@ -30,7 +29,6 @@ string('route_calculate.ogg', 'Traseu recalculat ').
 string('distance.ogg', ', distanța ').
 
 % LEFT/RIGHT
-%string('prepare.ogg', 'Pregătiți-vă să ').
 string('after.ogg', 'peste ').
 string('in.ogg', 'la ').
 
@@ -44,15 +42,6 @@ string('left_keep.ogg', 'încadrați-vă pe partea stângă ').
 string('right_keep.ogg', 'încadrați-vă pe partea dreaptă ').
 string('left_bear.ogg', 'încadrați-vă pe partea stângă ').    % in English the same as left_keep, may be different in other languages
 string('right_bear.ogg', 'încadrați-vă pe partea dreaptă ').  % in English the same as right_keep, may be different in other languages
-
-string('left_prep.ogg', 'virați la stânga ').
-string('left_sh_prep.ogg', 'virați brusc la stânga ').
-string('left_sl_prep.ogg', 'virați ușor la stânga ').
-string('right_prep.ogg', 'virați la dreapta ').
-string('right_sh_prep.ogg', 'virați brusc la dreapta ').
-string('right_sl_prep.ogg', 'virați ușor la dreapta ').
-string('left_keep_prep.ogg', 'vă încadrați pe partea stângă').
-string('right_keep_prep.ogg', 'vă încadrați pe partea dreaptă').
 
 % U-TURNS
 %string('prepare_make_uturn.ogg', 'Pregătiți-vă să întoarceți peste ').
@@ -233,7 +222,6 @@ back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
-% attention(_Type) -- ['attention.ogg'].
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').

@@ -16,10 +16,9 @@ language('ko').
 % (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
 % (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM
 % (X) Other prompts: gps lost, off route, back to route
-% (X) Street name support and prepositions (onto / on / to )
+% (X) Street name support and prepositions (onto / on / to)
 % (X) Distance unit support (meters / feet / yard)
-% (N/A) special grammar: nominative/dative for distance measure
-% (X) special grammar: imperative/infinitive distinction for turns
+% (N/A) Special grammar: (please specify which)
 
 
 %% STRINGS
@@ -31,7 +30,7 @@ string('distance.ogg', '거리는 ').
 string('is.ogg', '입니다 ').
 
 % LEFT/RIGHT
-string('prepare.ogg', '을 준비하세요 ').
+%string('prepare.ogg', '을 준비하세요 ').
 string('after.ogg', '앞에서 ').
 string('have.ogg', '하세요 ').
 string('in.ogg', '에서 ').
@@ -185,8 +184,8 @@ follow_street(Street, ['to.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R
 follow_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
 follow_street(_Street, []) :- not(tts).
 
-prepare_turn(Turn, Dist, Street) -- [D, 'after.ogg', M 'have.ogg' | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
-turn(Turn, Dist, Street) -- [, 'in.ogg', M, 'have.ogg' | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
+prepare_turn(Turn, Dist, Street) -- [D, 'after.ogg', M ,'have.ogg' | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
+turn(Turn, Dist, Street) -- ['in.ogg', M, 'have.ogg' | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
 turn(Turn, Street) -- [M, 'have.ogg' | Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
 
 prepare_make_ut(Dist, Street) -- [D, 'after.ogg', 'make_uturn1.ogg' | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
@@ -194,7 +193,7 @@ make_ut(Dist, Street) --  [D, 'in.ogg', 'make_uturn1.ogg' | Sgen] :- distance(Di
 make_ut(Street) -- ['make_uturn2.ogg' | Sgen] :- turn_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
-prepare_roundabout(Dist, _Exit, _Street) -- [D, 'after.ogg', D , 'prepare_roundabout.ogg'] :- distance(Dist) -- D.
+prepare_roundabout(Dist, _Exit, _Street) -- [D, 'after.ogg', 'prepare_roundabout.ogg'] :- distance(Dist) -- D.
 roundabout(Dist, _Angle, Exit, Street) -- [D, 'in.ogg', 'roundabout.ogg', E, 'take.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- [E, 'take.ogg' | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 
@@ -224,7 +223,6 @@ back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
-% attention(_Type) -- ['attention.ogg'].
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').

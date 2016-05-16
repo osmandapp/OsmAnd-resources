@@ -16,10 +16,9 @@ language('sk').
 % (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
 % (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM
 % (X) Other prompts: gps lost, off route, back to route
-% (X) Street name support and prepositions (onto / on / to )
+% (X) Street name support and prepositions (onto / on / to)
 % (X) Distance unit support (meters / feet / yard)
-% (N/A) special grammar: nominative/dative for distance measure
-% (X) special grammar: imperative/infinitive distinction for turns
+% (X) Special grammar: special plural, 1 3 3_4 5
 
 
 %% STRINGS
@@ -30,7 +29,6 @@ string('route_calculate.ogg', 'Cesta prepočítaná').
 string('distance.ogg', ', vzdialenosť ').
 
 % LEFT/RIGHT
-%string('prepare.ogg', 'buďte pripravený ').
 string('after.ogg', 'o ').
 string('in.ogg', 'v ').
 
@@ -44,15 +42,6 @@ string('left_keep.ogg', 'držte sa vľavo').
 string('right_keep.ogg', 'držte sa vpravo').
 string('left_bear.ogg', 'držte sa vľavo ').    % in English the same as left_keep, may be different in other languages
 string('right_bear.ogg', 'držte sa vpravo ').  % in English the same as right_keep, may be different in other languages
-
-string('left_p.ogg', 'zahnúť doľava').
-string('left_sh_p.ogg', 'zahnúť prudko doľava').
-string('left_sl_p.ogg', 'zahnúť mierne doľava').
-string('right_p.ogg', 'zahnúť doprava').
-string('right_sh_p.ogg', 'zahnúť prudko doprava').
-string('right_sl_p.ogg', 'zahnúť mierne doprava').
-string('left_keep_p.ogg', 'držať sa vľavo').
-string('right_keep_p.ogg', 'držať sa vpravo').
 
 % U-TURNS
 %string('prepare_make_uturn.ogg', 'buďte pripravený otočiť sa naspäť').
@@ -195,15 +184,6 @@ turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R
 turn_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
 turn_street(_Street, []) :- not(tts).
 
-pturn('left', ['left_p.ogg']).
-pturn('left_sh', ['left_sh_p.ogg']).
-pturn('left_sl', ['left_sl_p.ogg']).
-pturn('right', ['right_p.ogg']).
-pturn('right_sh', ['right_sh_p.ogg']).
-pturn('right_sl', ['right_sl_p.ogg']).
-pturn('left_keep', ['left_keep_p.ogg']).
-pturn('right_keep', ['right_keep_p.ogg']).
-
 follow_street('', []).
 follow_street(voice(['','',''],_), []).
 follow_street(voice(['', '', D], _), ['to.ogg', D]) :- tts.
@@ -211,7 +191,7 @@ follow_street(Street, ['to.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R
 follow_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
 follow_street(_Street, []) :- not(tts).
 
-prepare_turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, pturn(Turn, M), turn_street(Street, Sgen).
+prepare_turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
 turn(Turn, Dist, Street) -- ['in.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
 turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
 
@@ -250,7 +230,6 @@ back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
-% attention(_Type) -- ['attention.ogg'].
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').

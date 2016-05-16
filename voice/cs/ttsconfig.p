@@ -16,10 +16,9 @@ language('cs').
 % (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
 % (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM
 % (X) Other prompts: gps lost, off route, back to route
-% (X) Street name support and prepositions (onto / on / to )
+% (X) Street name support and prepositions (onto / on / to)
 % (X) Distance unit support (meters / feet / yard)
-% (N/A) special grammar: nominative/dative for distance measure
-% (X) special grammar: imperative/infinitive distinction for turns
+% (X) Special grammar: nth(nominative/dative), distance(workaround/locatie/accusative) 
 
 
 %% STRINGS
@@ -44,15 +43,6 @@ string('left_keep.ogg', 'držte se vlevo ').
 string('right_keep.ogg', 'držte se vpravo ').
 string('left_bear.ogg', 'se držte vlevo ').    % in English the same as left_keep, may be different in other languages
 string('right_bear.ogg', 'se držte vpravo ').  % in English the same as right_keep, may be different in other languages
-
-string('left_p.ogg', 'budete odbočovat vlevo ').
-string('left_sh_p.ogg', 'budete odbočovat ostře vlevo ').
-string('left_sl_p.ogg', 'budete odbočovat mírně vlevo ').
-string('right_p.ogg', 'budete odbočovat vpravo ').
-string('right_sh_p.ogg', 'budete odbočovat ostře vpravo ').
-string('right_sl_p.ogg', 'budete odbočovat mírně vpravo ').
-string('left_keep_p.ogg', 'se budete držet vlevo ').
-string('right_keep_p.ogg', 'se budete držet vpravo ').
 
 % U-TURNS
 %string('prepare_make_uturn.ogg', 'se budete otáčet zpět ').
@@ -226,15 +216,6 @@ turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R
 turn_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
 turn_street(_Street, []) :- not(tts).
 
-pturn('left', ['left_p.ogg']).
-pturn('left_sh', ['left_sh_p.ogg']).
-pturn('left_sl', ['left_sl_p.ogg']).
-pturn('right', ['right_p.ogg']).
-pturn('right_sh', ['right_sh_p.ogg']).
-pturn('right_sl', ['right_sl_p.ogg']).
-pturn('left_keep', ['left_keep_p.ogg']).
-pturn('right_keep', ['right_keep_p.ogg']).
-
 follow_street('', []).
 follow_street(voice(['','',''],_), []).
 follow_street(voice(['', '', D], _), ['to.ogg', D]) :- tts.
@@ -242,12 +223,12 @@ follow_street(Street, ['to.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R
 follow_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
 follow_street(_Street, []) :- not(tts).
 
-prepare_turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist, locative) -- D, pturn(Turn, M), turn_street(Street, Sgen).
-turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist, locative) -- D, turn_after(Turn, M), turn_street(Street, Sgen).
+prepare_turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist, locative) -- D, turn(Turn, M), turn_street(Street, Sgen).
+turn(Turn, Dist, Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist, locative) -- D, turn(Turn, M), turn_street(Street, Sgen).
 turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
 
-prepare_make_ut(Dist, Street) -- ['after.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist, locative) -- D, on_street(Street, Sgen).
-make_ut(Dist, Street) --  ['in.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist, locative) -- D, on_street(Street, Sgen).
+prepare_make_ut(Dist, Street) -- ['after.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist, locative) -- D, turn_street(Street, Sgen).
+make_ut(Dist, Street) --  ['in.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist, locative) -- D, turn_street(Street, Sgen).
 make_ut(Street) -- ['make_uturn2.ogg' | Sgen] :- turn_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
@@ -281,7 +262,6 @@ back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
-% attention(_Type) -- ['attention.ogg'].
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').

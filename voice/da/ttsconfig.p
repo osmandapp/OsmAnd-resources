@@ -16,10 +16,9 @@ language('da').
 % (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
 % (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM
 % (X) Other prompts: gps lost, off route, back to route
-% (X) Street name support and prepositions (onto / on / to )
+% (X) Street name support and prepositions (onto / on / to)
 % (X) Distance unit support (meters / feet / yard)
-% (N/A) special grammar: nominative/dative for distance measure
-% (X) special grammar: imperative/infinitive distinction for turns
+% (N/A) Special grammar: (please specify which)
 
 
 %% STRINGS
@@ -43,15 +42,6 @@ string('left_keep.ogg', 'hold til venstre ').
 string('right_keep.ogg', 'hold til højre ').
 string('left_bear.ogg', 'til venstre ').   % in English the same as left_keep, may be different in other languages
 string('right_bear.ogg', 'til højre ').    % in English the same as right_keep, may be different in other languages
-
-string('left_imp.ogg', 'dreje til venstre ').
-string('left_sh_imp.ogg', 'dreje skarpt til venstre ').
-string('left_sl_imp.ogg', 'dreje svagt til venstre ').
-string('right_imp.ogg', 'dreje til højre ').
-string('right_sh_imp.ogg', 'dreje skarpt til højre ').
-string('right_sl_imp.ogg', 'dreje svagt til højre ').
-string('left_keep_imp.ogg', 'holde til venstre ').
-string('right_keep_imp.ogg', 'holde til højre ').
 
 % U-TURNS
 string('make_uturn.ogg', 'Foretag en U vending ').
@@ -165,15 +155,6 @@ turn('right_keep', ['right_keep.ogg']).
 bear_left(_Street) -- ['left_bear.ogg'].
 bear_right(_Street) -- ['right_bear.ogg'].
 
-turn_inf('left', ['left_inf.ogg']).
-turn_inf('left_sh', ['left_sh_inf.ogg']).
-turn_inf('left_sl', ['left_sl_inf.ogg']).
-turn_inf('right', ['right_inf.ogg']).
-turn_inf('right_sh', ['right_sh_inf.ogg']).
-turn_inf('right_sl', ['right_sl_inf.ogg']).
-turn_inf('left_keep', ['left_keep_inf.ogg']).
-turn_inf('right_keep', ['right_keep_inf.ogg']).
-
 % assemble_street_name(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
 % assemble_street_name(voice(['', Name, _], _), Name). % not necessary
 % Next 2 lines for Name taking precedence over Dest...
@@ -237,7 +218,6 @@ back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
-% attention(_Type) -- ['attention.ogg'].
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').

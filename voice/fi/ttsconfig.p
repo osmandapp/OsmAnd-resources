@@ -16,10 +16,9 @@ language('fi').
 % (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
 % (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM
 % (X) Other prompts: gps lost, off route, back to route
-% (X) Street name support and prepositions (onto / on / to )
+% (X) Street name support and prepositions (onto / on / to)
 % (X) Distance unit support (meters / feet / yard)
-% (N/A) special grammar: nominative/dative for distance measure
-% (X) special grammar: imperative/infinitive distinction for turns
+% (X) Special grammar: distance(Dist, metrin/metria)
 
 
 %% STRINGS
@@ -47,15 +46,6 @@ string('left_keep.ogg', 'pidä vasen ').
 string('right_keep.ogg', 'pidä oikea ').
 string('left_bear.ogg', 'pidä vasen ').    % in English the same as left_keep, may be different in other languages
 string('right_bear.ogg', 'pidä oikea ').   % in English the same as right_keep, may be different in other languages
-
-string('left_prep.ogg', 'kääntymään vasempaan ').
-string('left_sh_prep.ogg', 'kääntymään jyrkästi vasempaan ').
-string('left_sl_prep.ogg', 'kääntymään loivasti vasempaan ').
-string('right_prep.ogg', 'kääntymään oikealle ').
-string('right_sh_prep.ogg', 'kääntymään jyrkästi oikealle ').
-string('right_sl_prep.ogg', 'kääntymään loivasti oikealle ').
-string('left_keep_prep.ogg', 'pitämään vasen ').
-string('right_keep_prep.ogg', 'pitämään oikea ').
 
 % U-TURNS
 %string('prepare_make_uturn.ogg', 'Valmistaudu kääntymään takaisin ').
@@ -248,7 +238,6 @@ back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
-% attention(_Type) -- ['attention.ogg'].
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').

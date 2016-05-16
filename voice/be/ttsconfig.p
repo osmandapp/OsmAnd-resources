@@ -16,10 +16,9 @@ language('be').
 % (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
 % (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM
 % (X) Other prompts: gps lost, off route, back to route
-% (X) Street name support and prepositions (onto / on / to )
+% (X) Street name support and prepositions (onto / on / to)
 % (X) Distance unit support (meters / feet / yard)
-% (N/A) special grammar: nominative/dative for distance measure
-% (X) special grammar: imperative/infinitive distinction for turns
+% (X) Special grammar: special plural
 
 
 %% STRINGS
@@ -75,8 +74,7 @@ string('16th.ogg', 'шаснаццаты ').
 string('17th.ogg', 'сямнаццаты ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Рухайцеся наўпрост.').
-string('go_ahead_m.ogg', 'Рухайцеся наўпрост ').
+string('go_ahead.ogg', 'Рухайцеся наўпрост ').
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'і вы дабраліся.').
@@ -201,8 +199,8 @@ prepare_roundabout(Dist, _Exit, _Street) -- ['after.ogg', D , 'roundabout.ogg'] 
 roundabout(Dist, _Angle, Exit, Street) -- ['in.ogg', D, 'roundabout.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 
-go_ahead -- ['go_ahead_m.ogg'].
-go_ahead(Dist, Street) -- ['go_ahead_m.ogg', D | Sgen] :- distance(Dist) -- D, follow_street(Street, Sgen).
+go_ahead -- ['go_ahead.ogg'].
+go_ahead(Dist, Street) -- ['go_ahead.ogg', D | Sgen] :- distance(Dist) -- D, follow_street(Street, Sgen).
 
 then -- ['then.ogg'].
 name(D, [D]) :- tts.
@@ -227,7 +225,6 @@ back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
-% attention(_Type) -- ['attention.ogg'].
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').

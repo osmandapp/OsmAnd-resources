@@ -16,12 +16,10 @@ language('et').
 % (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
 % (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM
 % (X) Other prompts: gps lost, off route, back to route
-% (X) Street name support and prepositions (onto / on / to )
+% (X) Street name support and prepositions (onto / on / to)
 % (X) Distance unit support (meters / feet / yard)
-% (N/A) special grammar: nominative/dative for distance measure
-% (X) special grammar: imperative/infinitive distinction for turns
-
-% TODO: Complex grammar code blocks need to be re-connected in v103 file
+% (X) Special grammar: distance(Case), special after(Dist), street name (nominative/genitive/allative/adessive/terminative)
+% TODO: connect street name grammar again with v103 code
 
 
 %% STRINGS
@@ -37,7 +35,6 @@ string('distance.ogg', 'Tee-pikkus on ').
 string('after.ogg', 'pärast ').
 string('in.ogg', ' ').
 
-% Imperative (do turn):
 string('left.ogg', 'keerake vasakule ').
 string('left_sh.ogg', 'keerake järsult vasakule ').
 string('left_sl.ogg', 'keerake pisut vasakule ').
@@ -48,16 +45,6 @@ string('left_keep.ogg', 'hoidke vasakule ').
 string('right_keep.ogg', 'hoidke paremale ').
 string('left_bear.ogg', 'hoidke vasakule ').   % in English the same as left_keep, may be different in other languages
 string('right_bear.ogg', 'hoidke paremale ').  % in English the same as right_keep, may be different in other languages
-
-% "-ma"-infinitive ([prepare] to turn):
-string('inf_left.ogg', 'keerama vasakule ').
-string('inf_left_sh.ogg', 'keerama järsult vasakule ').
-string('inf_left_sl.ogg', 'keerama pisut vasakule ').
-string('inf_right.ogg', 'keerama paremale ').
-string('inf_right_sh.ogg', 'keerama järsult paremale ').
-string('inf_right_sl.ogg', 'keerama pisut paremale ').
-string('inf_left_keep.ogg', 'hoidma vasakule ').
-string('inf_right_keep.ogg', 'hoidma paremale ').
 
 % U-TURNS
 string('make_uturn.ogg', 'Keerake tagasi ').
@@ -250,9 +237,6 @@ turn('right_keep', ['right_keep.ogg']).
 bear_left(_Street) -- ['left_bear.ogg'].
 bear_right(_Street) -- ['right_bear.ogg'].
 
-% may not be needed any more
-turn_infinitive(Turn, [S]) :- atom_concat(Turn, '.ogg', Ogg), decline_string(Ogg, 'inf', S).
-
 % TODO: code not yet migrated into turn_street in v103
 onto_street('', []) :- !.
 onto_street(Street, Onto_Street) :- tts, decline_street(Street, '-le', Onto_Street).
@@ -331,7 +315,6 @@ back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
-% attention(_Type) -- ['attention.ogg'].
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').
