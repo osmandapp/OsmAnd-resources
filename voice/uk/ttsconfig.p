@@ -49,6 +49,7 @@ string('make_uturn_wp.ogg', 'При можливості розвернітьс�
 % ROUNDABOUTS
 string('roundabout.ogg', 'коло ').
 string('then.ogg', 'потім ').
+string('and.ogg', 'і ').
 string('take.ogg', 'виберіть ').
 string('exit.ogg', 'з_їзд ').
 
@@ -142,9 +143,9 @@ string('minutes.ogg', 'хвилин ').
 
 %% COMMAND BUILDING / WORD ORDER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time_is.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
-route_recalc(Dist, Time) -- ['route_recalculated.ogg'] :- appMode('car').
-route_recalc(Dist, Time) -- ['route_recalculated.ogg', 'distance.ogg', D, 'and_time_is.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+route_recalc(Dist, Time) -- ['route_calculate.ogg'] :- appMode('car').
+route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'and.ogg', 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 turn('left', ['left.ogg']).
 turn('left_sh', ['left_sh.ogg']).
