@@ -234,7 +234,7 @@ make_ut_wp -- ['make_uturn_wp.ogg'].
 
 prepare_roundabout(Dist, _Exit, _Street) -- ['after.ogg', D , 'prepare_roundabout.ogg'] :- distance(Dist, locative) -- D.
 roundabout(Dist, _Angle, Exit, Street) -- ['in.ogg', D, 'roundabout.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist, locative) -- D, nth(Exit, nominative, E), turn_street(Street, Sgen).
-roundabout(_Angle, Exit, Street) -- ['take2.ogg', E, 'exit2.ogg' | Sgen] nth(Exit, instrumental, E), turn_street(Street, Sgen).
+roundabout(_Angle, Exit, Street) -- ['take2.ogg', E, 'exit2.ogg' | Sgen] :- nth(Exit, instrumental, E), turn_street(Street, Sgen).
 
 go_ahead -- ['go_ahead.ogg'].
 go_ahead(Dist, Street) -- ['go_ahead_m.ogg', D | Sgen] :- distance(Dist, workaround) -- D, follow_street(Street, Sgen).
