@@ -118,6 +118,7 @@ string('back_on_route.ogg', 'je bent weer op de route ').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'naar  ').
+string('roward.ogg', 'richting  ').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'meter ').
@@ -173,9 +174,10 @@ assemble_street_name(voice([Ref, _, Dest], _), [C1, 'onto.ogg', Dest]) :- atom_c
 
 turn_street('', []).
 turn_street(voice(['','',''],_), []).
-turn_street(voice(['', '', D], _), ['onto.ogg', D]) :- tts.
-turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), assemble_street_name(Street, SName).
+turn_street(voice(['', '', D], _), ['toward.ogg', D]) :- tts.
 turn_street(Street, ['onto.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
+turn_street(Street, ['onto.ogg', SName]) :- tts, Street = voice([R, '', _],[R, _, _]), assemble_street_name(Street, SName).
+turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), assemble_street_name(Street, SName).
 turn_street(_Street, []) :- not(tts).
 
 prepare_turn(Turn, Dist, Street) -- ['prepare.ogg', M, 'after.ogg', D | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
