@@ -787,12 +787,12 @@
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteTextColor">
 		<case attrColorValue="#0000ff">
-			<apply_if nightMode="true" attrColorValue="#0000ff"/>
+			<apply_if nightMode="true" attrColorValue="#849DE7"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="mtbRouteTextColor">
 		<case attrColorValue="#7000ff">
-			<apply_if nightMode="true" attrColorValue="#7000ff"/>
+			<apply_if nightMode="true" attrColorValue="#B073FF"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteColor">
@@ -810,9 +810,19 @@
 			<apply_if nightMode="true" attrColorValue="#55007d10"/>
 		</case>
 	</renderingAttribute>
+	<renderingAttribute name="cycleRouteMtbScaleImba0Color">
+		<case attrColorValue="#00C750">
+			<apply_if nightMode="true" attrColorValue="#00A115"/>
+		</case>
+	</renderingAttribute>
 	<renderingAttribute name="cycleRouteMtbScale1Color">
 		<case attrColorValue="#6a8cf2">
 			<apply_if nightMode="true" attrColorValue="#000cad"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="cycleRouteMtbScaleImba1Color">
+		<case attrColorValue="#2C5DF2">
+			<apply_if nightMode="true" attrColorValue="#053FE7"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteMtbScale1UnrecommendedColor">
@@ -825,6 +835,11 @@
 			<apply_if nightMode="true" attrColorValue="#841010"/>
 		</case>
 	</renderingAttribute>
+	<renderingAttribute name="cycleRouteMtbScaleImba2Color">
+		<case attrColorValue="#FF2121">
+			<apply_if nightMode="true" attrColorValue="#BF1717"/>
+		</case>
+	</renderingAttribute>
 	<renderingAttribute name="cycleRouteMtbScale2UnrecommendedColor">
 		<case attrColorValue="#66f76d6b">
 			<apply_if nightMode="true" attrColorValue="#77841010"/>
@@ -835,6 +850,11 @@
 			<apply_if nightMode="true" attrColorValue="#4a5152"/>
 		</case>
 	</renderingAttribute>
+	<renderingAttribute name="cycleRouteMtbScaleImba3Color">
+		<case attrColorValue="#5E5D58">
+			<apply_if nightMode="true" attrColorValue="#5B6365"/>
+		</case>
+	</renderingAttribute>
 	<renderingAttribute name="cycleRouteMtbScale3UnrecommendedColor">
 		<case attrColorValue="#558c8a84">
 			<apply_if nightMode="true" attrColorValue="#774a5152"/>
@@ -843,6 +863,11 @@
 	<renderingAttribute name="cycleRouteMtbScale4Color">
 		<case attrColorValue="#8c8a84">
 			<apply_if nightMode="true" attrColorValue="#4a5152"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="cycleRouteMtbScaleImba4Color">
+		<case attrColorValue="#5E5D58">
+			<apply_if nightMode="true" attrColorValue="#5B6365"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteMtbScale4UnrecommendedColor">
@@ -4850,7 +4875,7 @@
 					<case maxzoom="17" textSize="19"/>
 					<case minzoom="18" textSize="23"/>
 				</apply>
-				<apply_if nightMode="true" textHaloColor="#aaffffff"/>
+				<apply_if nightMode="true" textHaloColor="#99111111"/>
 			</switch>
 
 			<!-- Railroad, public transport -->
@@ -9698,6 +9723,28 @@
 				<case minzoom="18" strokeWidth="5:5" strokeWidth_2="5:5" strokeWidth__2="12:12"/>
 				<apply_if minzoom="13" color="$cycleRouteColor"/>
 				<apply>
+					<switch>
+						<case additional="mtb:scale:imba=0" color="$cycleRouteMtbScaleImba0Color">
+							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale0UnrecommendedColor"/>
+						</case>
+						<case additional="mtb:scale:imba=1" color="$cycleRouteMtbScaleImba1Color">
+							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale1UnrecommendedColor"/>
+						</case>
+						<case additional="mtb:scale:imba=2" color="$cycleRouteMtbScaleImba2Color">
+							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale2UnrecommendedColor"/>
+						</case>
+						<case additional="mtb:scale:imba=3" color="$cycleRouteMtbScaleImba3Color">
+							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale3UnrecommendedColor"/>
+						</case>
+						<case additional="mtb:scale:imba=4" color="$cycleRouteMtbScaleImba4Color">
+							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale4UnrecommendedColor" color_2="$cycleRouteMtbScale4AdditionalUnrecommendedColor"/>
+						</case>
+						<apply shadowColor="#ffffff">
+							<apply_if nightMode="true" shadowColor="#000000"/>
+						</apply>
+						<apply_if maxzoom="12" shadowRadius="1"/>
+						<apply_if minzoom="13" shadowRadius="1:1"/>
+					</switch>
 					<switch>
 						<case additional="mtb:scale=0" color="$cycleRouteMtbScale0Color">
 							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale0UnrecommendedColor"/>
