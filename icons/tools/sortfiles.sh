@@ -2041,6 +2041,7 @@ mycpname historic_yes tourist_archaeological2.png
 mycpname lit_yes additional_lit_yes.png
 mycpname lit_no additional_lit_no.png
 mycpname elevator_yes poi_elevator.png
+mycpname elevator poi_elevator.png
 mycpname theatre_genre_comedy additional_comedy.png
 mycpname temperature additional_temperature.png
 mycpname conveying_yes additional_conveying_yes.png
