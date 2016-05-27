@@ -440,7 +440,7 @@ mycpname subway_praha subway_subway_praha.png
 mycpname subway_athens subway_subway_athens.png
 mycpname subway_italy subway_subway_italy.png
 mycpname subway_italy_catania subway_subway_italy_catania.png
-##mycpname subway_italy_brescia subway_subway_italy_brescia.png
+#mycpname subway_italy_brescia subway_subway_italy_brescia.png
 mycpname subway_rotterdam subway_subway_rotterdam.png
 mycpname subway_amsterdam subway_subway_amsterdam.png
 mycpname subway_brussels subway_subway_brussels.png
@@ -2111,6 +2111,7 @@ mycpname vacuum_cleaner_yes additional_vacuum_cleaner_yes.png
 mycpname button_operated_yes additional_button_operated_yes.png
 mycpname button_operated_no additional_button_operated_no.png
 mycpname shop_additional_yes additional_shop_additional_yes.png
+mycpname salt_yes additional_salt_yes.png
 
 
 #Xmas
