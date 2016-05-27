@@ -2077,6 +2077,7 @@ mycpname male_no additional_male_no.png
 mycpname female_yes additional_female_yes.png
 mycpname female_no additional_female_no.png
 mycpname wheelchair additional_wheelchair.png
+mycpname wheelchair_designated additional_wheelchair.png
 mycpname wheelchair_no additional_wheelchair_no.png
 mycpname bench_yes additional_bench_yes.png
 mycpname bench_no additional_bench_no.png
