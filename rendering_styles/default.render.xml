@@ -1940,6 +1940,8 @@
 			</switch>
 			<case tag="abandoned:place" value="" order="10"/>
 			<case tag="abandoned:landuse" value="" order="10"/>
+			<case tag="landuse" value="landfill" order="10"/>
+			<case tag="man_made" value="spoil_heap" order="10"/>
 
 			<case tag="man_made" value="petroleum_well"/>
 			<case tag="man_made" value="reinforced_slope"/>
@@ -4729,6 +4731,7 @@
 					<case minzoom="14" tag="landuse" value="allotments"/>
 					<case minzoom="13" tag="landuse" value="quarry"/>
 					<case minzoom="13" tag="landuse" value="landfill"/>
+					<case minzoom="13" tag="man_made" value="spoil_heap"/>
 					<case minzoom="16" tag="power" value="substation"/>
 					<case minzoom="18" tag="power" value="transformer"/>
 					<case minzoom="15" tag="man_made" value="wastewater_plant"/>
@@ -7700,9 +7703,12 @@
 				<apply_if nightMode="true" color="$landuseCommercialColorNight"/>
 			</case>
 
-			<case minzoom="12" tag="landuse" value="landfill" color="$landuseLandfillColorDay">
+			<switch>
+				<case minzoom="12" tag="landuse" value="landfill"/>
+				<case minzoom="13" tag="man_made" value="spoil_heap"/>
+				<apply color="$landuseLandfillColorDay"/>
 				<apply_if nightMode="true" color="$landuseLandfillColorNight"/>
-			</case>
+			</switch>
 			<switch minzoom="15">
 				<case tag="amenity" value="kindergarten"/>
 				<case tag="amenity" value="school"/>

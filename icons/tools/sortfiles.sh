@@ -924,6 +924,7 @@ mycpname monitoring_station poi_monitoring_station.png
 mycpname dolphin poi_dolphin.png
 mycpname street_cabinet poi_street_cabinet.png
 mycpname sanitary_dump_station poi_sanitary_dump_station.png
+mycpname spoil_heap poi_spoil_heap.png
 
 mygroup military poi_military_bunker.png
 
