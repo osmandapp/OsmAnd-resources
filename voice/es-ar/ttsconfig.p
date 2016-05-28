@@ -95,6 +95,7 @@ string('reached_poi.ogg', 'has llegado al P D I ').
 
 % ATTENTION
 string('exceed_limit.ogg', 'límite de velocidad excedido ').
+%string('exceed_limit.ogg', 'límite de velocidad ').
 string('attention.ogg', 'atención, ').
 string('speed_camera.ogg', 'radar de velocidad ').
 string('border_control.ogg', 'control fronterizo ').
@@ -223,6 +224,7 @@ back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
+%speed_alarm(MaxSpeed, _Speed) -- ['exceed_limit.ogg', I] :- num_atom(MaxSpeed, I).
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').

@@ -94,6 +94,7 @@ string('reached_poi.ogg', 'شما در حال عبور POI ').
 
 % ATTENTION
 string('exceed_limit.ogg', 'سرعتِ شما بیش از حدِ مجاز است').
+%string('exceed_limit.ogg', 'محدودیت سرعت ').
 string('attention.ogg', 'توجه, ').
 string('speed_camera.ogg', 'دوربین سرعت ').
 string('border_control.ogg', 'کنترل مرزی ').
@@ -221,6 +222,7 @@ back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
+%speed_alarm(MaxSpeed, _Speed) -- ['exceed_limit.ogg', I] :- num_atom(MaxSpeed, I).
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').

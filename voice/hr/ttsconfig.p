@@ -95,6 +95,7 @@ string('reached_poi.ogg', 'ste u prolazu POI ').
 
 % ATTENTION
 string('exceed_limit.ogg', 'prekoračili ste dozvoljenu brzinu ').
+%string('exceed_limit.ogg', 'ograničenje brzine ').
 string('attention.ogg', 'Pažnja, ').
 string('speed_camera.ogg', 'brzina kamere ').
 string('border_control.ogg', 'granična kontrola ').
@@ -221,6 +222,7 @@ back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
+%speed_alarm(MaxSpeed, _Speed) -- ['exceed_limit.ogg', I] :- num_atom(MaxSpeed, I).
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').

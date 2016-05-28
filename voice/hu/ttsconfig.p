@@ -96,6 +96,7 @@ string('reached_poi.ogg', 'megérkeztél a POI-hoz ').
 
 % ATTENTION
 string('exceed_limit.ogg', 'Túllépted a sebességhatárt ').
+%string('exceed_limit.ogg', 'sebességhatár ').
 string('attention.ogg', 'figyelem, ').
 string('speed_camera.ogg', 'traffipax ').
 string('border_control.ogg', 'határellenőrzés ').
@@ -245,6 +246,7 @@ back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
+%speed_alarm(MaxSpeed, _Speed) -- ['exceed_limit.ogg', I] :- num_atom(MaxSpeed, I).
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').

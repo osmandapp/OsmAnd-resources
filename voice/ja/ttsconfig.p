@@ -97,6 +97,7 @@ string('reached_poi.ogg', 'you are passing POI ').
 
 % ATTENTION
 string('exceed_limit.ogg', 'スピードオーバーです。').
+%string('exceed_limit.ogg', '制限速度 ').
 string('attention.ogg', '注意が必要です。').
 string('speed_camera.ogg', 'スピードカメラ ').
 string('border_control.ogg', '国境警備隊 ').
@@ -233,6 +234,7 @@ back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
 speed_alarm -- ['exceed_limit.ogg'].
+%speed_alarm(MaxSpeed, _Speed) -- ['exceed_limit.ogg', I] :- num_atom(MaxSpeed, I).
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').
