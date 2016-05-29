@@ -49,8 +49,8 @@ string('make_uturn.ogg', 'Da la vuelta').
 string('make_uturn_wp.ogg', 'Cuando puedas, da la vuelta').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Prepárate para entrar en la rotonda luego de').
-%string('prepare_roundabout.ogg', 'entra en la rotonda ').
+%string('prepare_roundabout.ogg', 'Prepárate para entrar en la rotonda luego de').
+string('prepare_roundabout.ogg', 'entra en la rotonda ').
 string('roundabout.ogg', 'entra en la rotonda').
 string('then.ogg', ', luego').
 string('and.ogg', 'y').
@@ -102,7 +102,7 @@ string('border_control.ogg', 'control fronterizo ').
 string('railroad_crossing.ogg', 'paso a nivel ').
 string('traffic_calming.ogg', 'reductor de velocidad ').
 string('toll_booth.ogg', 'cabina de peaje ').
-string('stop.ogg', 'señal de ESTOP ').
+string('stop.ogg', 'señal de pare ').
 string('pedestrian_crosswalk.ogg', 'cruce de peatones ').
 
 % OTHER PROMPTS
@@ -118,14 +118,14 @@ string('toward.ogg', 'hacia ').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'metros').
-string('around_1_kilometer.ogg', 'cerca de un kilómetro').
-string('around.ogg', 'cerca de').
+string('around_1_kilometer.ogg', 'alrededor de un kilómetro').
+string('around.ogg', 'alrededor de').
 string('kilometers.ogg', 'kilómetros').
 
 string('feet.ogg', 'pies').
 string('1_tenth_of_a_mile.ogg', 'una décima de milla').
 string('tenths_of_a_mile.ogg', 'décimas de milla').
-string('around_1_mile.ogg', 'cerca de una milla').
+string('around_1_mile.ogg', 'alrededor de una milla').
 string('miles.ogg', 'millas').
 
 string('yards.ogg', 'yardas').
@@ -185,17 +185,17 @@ follow_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, '', _],[R, _
 follow_street(Street, ['to.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), assemble_street_name(Street, SName).
 follow_street(_Street, []) :- not(tts).
 
-prepare_turn(Turn, Dist, _Street) -- ['after.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
+prepare_turn(Turn, Dist, _Street) -- ['on.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
 turn(Turn, Dist, Street) -- ['in.ogg', D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
 turn(Turn, Street) -- [M | Sgen]  :- turn(Turn, M), turn_street(Street, Sgen).
 
-prepare_make_ut(Dist, Street) -- ['after.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
-make_ut(Dist, Street) --  ['after.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
+prepare_make_ut(Dist, Street) -- ['on.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
+make_ut(Dist, Street) --  ['on.ogg', D, 'make_uturn.ogg' | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
 make_ut(Street) -- ['make_uturn.ogg' | Sgen] :- turn_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
-prepare_roundabout(Dist, _Exit, _Street) -- ['after.ogg', D , 'prepare_roundabout.ogg'] :- distance(Dist) -- D.
-roundabout(Dist, _Angle, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
+prepare_roundabout(Dist, _Exit, _Street) -- ['on.ogg', D , 'prepare_roundabout.ogg'] :- distance(Dist) -- D.
+roundabout(Dist, _Angle, Exit, Street) -- ['on.ogg', D, 'roundabout.ogg', 'and.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 
 go_ahead -- ['go_ahead.ogg'].
@@ -363,4 +363,3 @@ dist(D, ['700.ogg'|L]) :-  D < 800, Ts is D - 700, !, dist(Ts, L).
 dist(D, ['800.ogg'|L]) :-  D < 900, Ts is D - 800, !, dist(Ts, L).
 dist(D, ['900.ogg'|L]) :-  D < 1000, Ts is D - 900, !, dist(Ts, L).
 dist(D, ['1000.ogg'|L]):- Ts is D - 1000, !, dist(Ts, L).
-
