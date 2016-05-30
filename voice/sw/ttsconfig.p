@@ -94,8 +94,8 @@ string('and_arrive_poi.ogg', 'and pass POI ').
 string('reached_poi.ogg', 'you are passing POI ').
 
 % ATTENTION
-string('exceed_limit.ogg', 'wewe ni mno kikomo kasi ').
-%string('exceed_limit.ogg', 'kikomo kasi ').
+%string('exceed_limit.ogg', 'wewe ni mno kikomo kasi ').
+sstring('exceed_limit.ogg', 'kikomo kasi ').
 string('attention.ogg', 'attention, ').
 string('speed_camera.ogg', 'kamera kasi ').
 string('border_control.ogg', 'mpaka kudhibiti ').
@@ -223,8 +223,7 @@ off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
 back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
-speed_alarm -- ['exceed_limit.ogg'].
-%speed_alarm(MaxSpeed, _Speed) -- ['exceed_limit.ogg', I] :- num_atom(MaxSpeed, I).
+speed_alarm(MaxSpeed, _Speed) -- ['exceed_limit.ogg', I] :- num_atom(MaxSpeed, I).
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').

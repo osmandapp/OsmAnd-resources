@@ -95,8 +95,8 @@ string('and_arrive_poi.ogg', 'a prejdete bodom záujmu ').
 string('reached_poi.ogg', 'dosiahli ste bod záujmu ').
 
 % ATTENTION
-string('exceed_limit.ogg', 'prekročili ste maximálnu povolenú rýchlosť').
-%string('exceed_limit.ogg', 'rýchlostné obmedzenia ').
+%string('exceed_limit.ogg', 'prekročili ste maximálnu povolenú rýchlosť').
+sstring('exceed_limit.ogg', 'rýchlostné obmedzenia ').
 string('attention.ogg', 'pozor, ').
 string('speed_camera.ogg', 'rýchlostná kamera ').
 string('border_control.ogg', 'hraničné kontroly ').
@@ -232,8 +232,7 @@ off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
 back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
-speed_alarm -- ['exceed_limit.ogg'].
-%speed_alarm(MaxSpeed, _Speed) -- ['exceed_limit.ogg', I] :- num_atom(MaxSpeed, I).
+speed_alarm(MaxSpeed, _Speed) -- ['exceed_limit.ogg', I] :- num_atom(MaxSpeed, I).
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').

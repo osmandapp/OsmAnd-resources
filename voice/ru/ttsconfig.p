@@ -96,8 +96,8 @@ string('and_arrive_poi.ogg', 'и вы подъедете к точке POI ').
 string('reached_poi.ogg', 'вы проезжаете точку POI ').
 
 % ATTENTION
-string('exceed_limit.ogg', 'Вы превысили допустимую скорость ').
-%string('exceed_limit.ogg', 'ограничение скорости ').
+%string('exceed_limit.ogg', 'Вы превысили допустимую скорость ').
+sstring('exceed_limit.ogg', 'ограничение скорости ').
 string('attention.ogg', 'Внимание, ').
 string('speed_camera.ogg', 'камера ').
 string('border_control.ogg', 'пограничный пункт ').
@@ -232,8 +232,7 @@ off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
 back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
-speed_alarm -- ['exceed_limit.ogg'].
-%speed_alarm(MaxSpeed, _Speed) -- ['exceed_limit.ogg', I] :- num_atom(MaxSpeed, I).
+speed_alarm(MaxSpeed, _Speed) -- ['exceed_limit.ogg', I] :- num_atom(MaxSpeed, I).
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').

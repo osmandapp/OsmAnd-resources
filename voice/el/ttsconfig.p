@@ -93,8 +93,8 @@ string('and_arrive_poi.ogg', 'and pass POI ').
 string('reached_poi.ogg', 'you are passing POI ').
 
 % ATTENTION
-string('exceed_limit.ogg', 'έχετε υπερβεί το όριο ταχύτητας ').
-%string('exceed_limit.ogg', 'όριο ταχύτητας ').
+%string('exceed_limit.ogg', 'έχετε υπερβεί το όριο ταχύτητας ').
+sstring('exceed_limit.ogg', 'όριο ταχύτητας ').
 string('attention.ogg', 'προσοχή , ').
 string('speed_camera.ogg', 'κάμερα ταχύτητας ').
 string('border_control.ogg', 'τον έλεγχο των συνόρων ').
@@ -221,8 +221,7 @@ off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
 back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
-speed_alarm -- ['exceed_limit.ogg'].
-%speed_alarm(MaxSpeed, _Speed) -- ['exceed_limit.ogg', I] :- num_atom(MaxSpeed, I).
+speed_alarm(MaxSpeed, _Speed) -- ['exceed_limit.ogg', I] :- num_atom(MaxSpeed, I).
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').

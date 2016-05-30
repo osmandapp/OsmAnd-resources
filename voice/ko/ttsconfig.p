@@ -97,8 +97,8 @@ string('and_arrive_poi.ogg', 'and pass POI ').
 string('reached_poi.ogg', 'you are passing POI ').
 
 % ATTENTION
-string('exceed_limit.ogg', '제한 속도를 초과하고 있습니다 ').
-%string('exceed_limit.ogg', '속도 제한 ').
+%string('exceed_limit.ogg', '제한 속도를 초과하고 있습니다 ').
+sstring('exceed_limit.ogg', '속도 제한 ').
 string('attention.ogg', '과속을 주의 하세요, ').
 string('speed_camera.ogg', '속도 카메라 ').
 string('border_control.ogg', '국경 통제 ').
@@ -225,8 +225,7 @@ off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist) -- D.
 back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
-speed_alarm -- ['exceed_limit.ogg'].
-%speed_alarm(MaxSpeed, _Speed) -- ['exceed_limit.ogg', I] :- num_atom(MaxSpeed, I).
+speed_alarm(MaxSpeed, _Speed) -- ['exceed_limit.ogg', I] :- num_atom(MaxSpeed, I).
 attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').
