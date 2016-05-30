@@ -94,7 +94,7 @@ string('reached_poi.ogg', 'شما در حال عبور POI ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'سرعتِ شما بیش از حدِ مجاز است').
-sstring('exceed_limit.ogg', 'محدودیت سرعت ').
+string('exceed_limit.ogg', 'محدودیت سرعت ').
 string('attention.ogg', 'توجه, ').
 string('speed_camera.ogg', 'دوربین سرعت ').
 string('border_control.ogg', 'کنترل مرزی ').

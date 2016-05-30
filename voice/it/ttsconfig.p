@@ -97,7 +97,7 @@ string('reached_poi.ogg', 'P D I raggiunto').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'Limite di velocità superato').
-sstring('exceed_limit.ogg', 'Limite di velocità ').
+string('exceed_limit.ogg', 'Limite di velocità ').
 string('attention.ogg', 'attenzione, ').
 string('speed_camera.ogg', 'Autovelox ').
 string('border_control.ogg', 'Dogana ').

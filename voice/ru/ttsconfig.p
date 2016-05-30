@@ -97,7 +97,7 @@ string('reached_poi.ogg', 'вы проезжаете точку POI ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'Вы превысили допустимую скорость ').
-sstring('exceed_limit.ogg', 'ограничение скорости ').
+string('exceed_limit.ogg', 'ограничение скорости ').
 string('attention.ogg', 'Внимание, ').
 string('speed_camera.ogg', 'камера ').
 string('border_control.ogg', 'пограничный пункт ').

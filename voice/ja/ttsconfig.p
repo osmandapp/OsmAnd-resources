@@ -97,7 +97,7 @@ string('reached_poi.ogg', 'you are passing POI ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'スピードオーバーです。').
-sstring('exceed_limit.ogg', '制限速度 ').
+string('exceed_limit.ogg', '制限速度 ').
 string('attention.ogg', '注意が必要です。').
 string('speed_camera.ogg', 'スピードカメラ ').
 string('border_control.ogg', '国境警備隊 ').

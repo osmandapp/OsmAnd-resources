@@ -95,7 +95,7 @@ string('reached_poi.ogg', 'you are passing POI ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'wewe ni mno kikomo kasi ').
-sstring('exceed_limit.ogg', 'kikomo kasi ').
+string('exceed_limit.ogg', 'kikomo kasi ').
 string('attention.ogg', 'attention, ').
 string('speed_camera.ogg', 'kamera kasi ').
 string('border_control.ogg', 'mpaka kudhibiti ').

@@ -97,7 +97,7 @@ string('reached_poi.ogg', "vous êtes arrivé à l''étape POI ").
 
 % ATTENTION
 %string('exceed_limit.ogg', 'vous dépassez la limite de vitesse ').
-sstring('exceed_limit.ogg', 'limite de vitesse ').
+string('exceed_limit.ogg', 'limite de vitesse ').
 string('attention.ogg', 'attention , ').
 string('speed_camera.ogg', 'radar de vitesse ').
 string('border_control.ogg', 'contrôle des frontières ').

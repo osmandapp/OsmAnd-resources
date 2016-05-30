@@ -93,7 +93,7 @@ string('reached_poi.ogg', 'du har nået interessepunktet ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'Hastighedsgrænsen er overskredet ').
-sstring('exceed_limit.ogg', 'Hastighedsgrænse ').
+string('exceed_limit.ogg', 'Hastighedsgrænse ').
 string('attention.ogg', 'Advarsel, ').
 string('speed_camera.ogg', 'fartkamera ').
 string('border_control.ogg', 'grænsekontrol ').

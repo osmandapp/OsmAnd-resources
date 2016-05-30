@@ -96,7 +96,7 @@ string('reached_poi.ogg', 'arribadu a su puntu de interesse').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'Barigadu su lìmite de lestresa').
-sstring('exceed_limit.ogg', 'lìmite de lestresa ').
+string('exceed_limit.ogg', 'lìmite de lestresa ').
 string('attention.ogg', 'atentzione, ').
 string('speed_camera.ogg', 'Autovelox ').
 string('border_control.ogg', 'Dogana ').

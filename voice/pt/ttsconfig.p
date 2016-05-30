@@ -103,7 +103,7 @@ string('reached_poi.ogg', 'chegou ao POI ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'a exceder o limite de velocidade ').
-sstring('exceed_limit.ogg', 'limite de velocidade ').
+string('exceed_limit.ogg', 'limite de velocidade ').
 string('attention.ogg', 'atenção! ').
 string('speed_camera.ogg', 'radar ').
 string('border_control.ogg', 'alfândega ').

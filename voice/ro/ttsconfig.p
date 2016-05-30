@@ -95,7 +95,7 @@ string('reached_poi.ogg', 'you are passing POI ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'limita de viteză depăşită').
-sstring('exceed_limit.ogg', 'limita de viteză ').
+string('exceed_limit.ogg', 'limita de viteză ').
 string('attention.ogg', 'atenţie, ').
 string('speed_camera.ogg', 'camera de viteza ').
 string('border_control.ogg', 'controlul la frontieră ').

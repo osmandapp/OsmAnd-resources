@@ -93,7 +93,7 @@ string('reached_poi.ogg', 'you are passing POI ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'prekoračili ste dovoljeno hitrost ').
-sstring('exceed_limit.ogg', 'omejitev hitrosti ').
+string('exceed_limit.ogg', 'omejitev hitrosti ').
 string('attention.ogg', 'pozor, ').
 string('speed_camera.ogg', 'hitrost kamere').
 string('border_control.ogg', 'nadzor meje ').

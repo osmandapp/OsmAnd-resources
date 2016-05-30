@@ -95,7 +95,7 @@ string('reached_poi.ogg', 'you are passing POI ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'you are exceeding the speed limit ').
-sstring('exceed_limit.ogg', 'speed limit ').
+string('exceed_limit.ogg', 'speed limit ').
 string('attention.ogg', 'attention, ').
 string('speed_camera.ogg', 'speed cam ').
 string('border_control.ogg', 'border control ').

@@ -97,7 +97,7 @@ string('reached_poi.ogg', 'you are passing POI ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'Jums ir ātruma pārsniegšanu ').
-sstring('exceed_limit.ogg', 'ātruma ierobežojums ').
+string('exceed_limit.ogg', 'ātruma ierobežojums ').
 string('attention.ogg', 'uzmanība, ').
 string('speed_camera.ogg', 'ātruma kameru ').
 string('border_control.ogg', 'robežkontrole ').

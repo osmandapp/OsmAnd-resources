@@ -98,7 +98,7 @@ string('reached_poi.ogg', 'you are passing POI ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'आप गति सीमा से अधिक कर रहे हैं ').
-sstring('exceed_limit.ogg', 'गति सीमा ').
+string('exceed_limit.ogg', 'गति सीमा ').
 string('attention.ogg', 'ध्यान ').
 string('speed_camera.ogg', 'गति कैमरा ').
 string('border_control.ogg', 'सीमा नियंत्रण ').

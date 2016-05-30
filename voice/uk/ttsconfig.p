@@ -92,7 +92,7 @@ string('reached_poi.ogg', 'ви прибули до точки інтересу 
 
 % ATTENTION
 %string('exceed_limit.ogg', 'Перевищуєте швидкість ').
-sstring('exceed_limit.ogg', 'обмеження швидкості ').
+string('exceed_limit.ogg', 'обмеження швидкості ').
 string('attention.ogg', 'Увага, ').
 string('speed_camera.ogg', 'швидкість камери ').
 string('border_control.ogg', 'прикордонний контроль ').

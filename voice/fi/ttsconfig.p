@@ -100,7 +100,7 @@ string('reached_poi.ogg', 'you are passing POI ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'ylitit nopeusrajoituksen ').
-sstring('exceed_limit.ogg', 'nopeusrajoituksen ').
+string('exceed_limit.ogg', 'nopeusrajoituksen ').
 string('attention.ogg', 'huomio, ').
 string('speed_camera.ogg', 'nopeuskamera').
 string('border_control.ogg', 'rajavalvonta ').

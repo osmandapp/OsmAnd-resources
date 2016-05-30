@@ -94,7 +94,7 @@ string('reached_poi.ogg', 'ste u prolazu POI ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'prekoračili ste dozvoljenu brzinu ').
-sstring('exceed_limit.ogg', 'ograničenje brzine ').
+string('exceed_limit.ogg', 'ograničenje brzine ').
 string('attention.ogg', 'Pažnja, ').
 string('speed_camera.ogg', 'brzina kamere ').
 string('border_control.ogg', 'granična kontrola ').

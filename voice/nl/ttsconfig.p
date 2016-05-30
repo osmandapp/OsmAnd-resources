@@ -100,7 +100,7 @@ string('reached_poi.ogg', 'je hebt je POI ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'je overschrijdt de maximumsnelheid ').
-sstring('exceed_limit.ogg', 'maximumsnelheid ').
+string('exceed_limit.ogg', 'maximumsnelheid ').
 string('attention.ogg', 'let op , ').
 string('speed_camera.ogg', 'snelheidscontrole ').
 string('border_control.ogg', 'grenscontrole ').

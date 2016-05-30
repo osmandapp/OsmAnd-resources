@@ -96,7 +96,7 @@ string('reached_poi.ogg', 'megérkezett a POI ponthoz ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'Túllépte a sebességhatárt ').
-sstring('exceed_limit.ogg', 'sebességhatár ').
+string('exceed_limit.ogg', 'sebességhatár ').
 string('attention.ogg', 'figyelem, ').
 string('speed_camera.ogg', 'traffipax ').
 string('border_control.ogg', 'határellenőrzés ').

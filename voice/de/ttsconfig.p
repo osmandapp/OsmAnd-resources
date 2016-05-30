@@ -99,7 +99,7 @@ string('reached_poi.ogg', 'Sie passieren P O I ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'Sie überschreiten die Höchstgeschwindigkeit ').
-sstring('exceed_limit.ogg', 'Tempolimit ').
+string('exceed_limit.ogg', 'Tempolimit ').
 string('attention.ogg', 'Achtung, ').
 string('speed_camera.ogg', 'Geschwindigkeitskontrolle ').
 string('border_control.ogg', 'Grenzkontrolle ').

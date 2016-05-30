@@ -94,7 +94,7 @@ string('reached_poi.ogg', 'you are passing POI ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'έχετε υπερβεί το όριο ταχύτητας ').
-sstring('exceed_limit.ogg', 'όριο ταχύτητας ').
+string('exceed_limit.ogg', 'όριο ταχύτητας ').
 string('attention.ogg', 'προσοχή , ').
 string('speed_camera.ogg', 'κάμερα ταχύτητας ').
 string('border_control.ogg', 'τον έλεγχο των συνόρων ').

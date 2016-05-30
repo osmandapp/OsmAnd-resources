@@ -96,7 +96,7 @@ string('reached_poi.ogg', 'dosiahli ste bod záujmu ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'prekročili ste maximálnu povolenú rýchlosť').
-sstring('exceed_limit.ogg', 'rýchlostné obmedzenia ').
+string('exceed_limit.ogg', 'rýchlostné obmedzenia ').
 string('attention.ogg', 'pozor, ').
 string('speed_camera.ogg', 'rýchlostná kamera ').
 string('border_control.ogg', 'hraničné kontroly ').
