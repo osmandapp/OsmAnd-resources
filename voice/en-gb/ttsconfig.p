@@ -8,6 +8,7 @@ tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
 language('en-gb').
+%% This file should be identical with en-tts, except: railroad->railway, pedestrian crosswalk->pedestrian crossing, (kilo)meter(s)->(kilo)metre(s)
 fest_language('cmu_us_awb_arctic_clunits').
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
@@ -19,8 +20,6 @@ fest_language('cmu_us_awb_arctic_clunits').
 % (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 % (X) Distance unit support (meters / feet / yard)
 % (N/A) Special grammar: (please specify which)
-
-% This file should be identical to en-tts, except: railroad->railway, pedesrian crosswalk->pedesrian crossing, (kilo)meter(s)->(kilo)metre(s)
 
 
 %% STRINGS
