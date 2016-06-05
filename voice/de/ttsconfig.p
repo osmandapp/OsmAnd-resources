@@ -28,7 +28,7 @@ language('de').
 % ROUTE CALCULATED
 string('route_is1.ogg', 'Die berechnete Strecke ist ').
 string('route_is2.ogg', 'lang ').
-string('route_calculate.ogg', 'Route wurde neu berechnet ').
+string('route_calculate.ogg', 'Route neu berechnet ').
 string('distance.ogg', ', Die Entfernung beträgt ').
 
 % LEFT/RIGHT
