@@ -82,20 +82,20 @@ string('follow.ogg', 'Sigue la vía durante').
 % ARRIVE
 string('and_arrive_destination.ogg', 'y llegarás a tu destino').
 string('reached_destination.ogg','has llegado a tu destino').
-string('and_arrive_intermediate.ogg', 'y llegarás a tu punto intermedio').
-string('reached_intermediate.ogg', 'has llegado a tu punto intermedio').
+string('and_arrive_intermediate.ogg', 'y llegarás al punto intermedio').
+string('reached_intermediate.ogg', 'has llegado al punto intermedio').
 
 % NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'y llegarás a tu punto G P X intermedio').
-string('reached_waypoint.ogg', 'has llegado a tu punto G P X intermedio').
-string('and_arrive_favorite.ogg', 'y llegarás a tu punto favorito ').
-string('reached_favorite.ogg', 'has llegado a tu punto favorito ').
+string('and_arrive_waypoint.ogg', 'y llegarás al punto G P X intermedio').
+string('reached_waypoint.ogg', 'has llegado al punto G P X intermedio').
+string('and_arrive_favorite.ogg', 'y llegarás al favorito ').
+string('reached_favorite.ogg', 'has llegado al favorito ').
 string('and_arrive_poi.ogg', 'y llegarás al P D I ').
 string('reached_poi.ogg', 'has llegado al P D I ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'límite de velocidad excedido ').
-string('exceed_limit.ogg', 'límite de velocidad ').
+string('exceed_limit.ogg', 'límite de velocidad excedido, velocidad máxima: ').
 string('attention.ogg', 'atención, ').
 string('speed_camera.ogg', 'radar de velocidad ').
 string('border_control.ogg', 'control fronterizo ').
