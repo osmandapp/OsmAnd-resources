@@ -2082,8 +2082,8 @@ mycpname wheelchair_designated additional_wheelchair.png
 mycpname wheelchair_no additional_wheelchair_no.png
 mycpname bench_yes additional_bench_yes.png
 mycpname bench_no additional_bench_no.png
-mycpname waste_basket_yes additional_waste_basket_yes.png
-mycpname waste_basket_no additional_waste_basket_no.png
+mycpname bin_yes additional_bin_yes.png
+mycpname bin_no additional_bin_no.png
 mycpname surface_sand additional_surface_sand.png
 mycpname recycling_container amenity_waste_disposal.png
 mycpname recycling_centre additional_recycling_centre.png
