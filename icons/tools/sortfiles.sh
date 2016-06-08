@@ -901,7 +901,6 @@ mycp railway buffer_stop poi_buffer_stop.png
 mycpname power_transformer power_transformer_small.png
 mycpname works poi_works.png
 mycpname military_bunker poi_military_bunker.png
-mycpname military_airfield poi_military_airfield.png
 mycpname abandoned_poi poi_abandoned_poi.png
 mycpname surveillance poi_surveillance.png
 mycpname pier poi_pier.png
@@ -2115,7 +2114,9 @@ mycpname button_operated_yes additional_button_operated_yes.png
 mycpname button_operated_no additional_button_operated_no.png
 mycpname shop_additional_yes additional_shop_additional_yes.png
 mycpname salt_yes additional_salt_yes.png
-
+mycpname dispensing_yes additional_dispensing_yes.png
+mycpname dispensing_no additional_dispensing_no.png
+mycpname aerodrome_type_military additional_aerodrome_type_military.png
 
 #Xmas
 mygroup xmas xmas_tree.png
