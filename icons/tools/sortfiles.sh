@@ -541,6 +541,7 @@ mycp tourism hostel accommodation_hostel.png
 mycp tourism hotel accommodation_hotel.png
 mycp tourism motel accommodation_motel.png
 mycpname wilderness_hut accommodation_wilderness_hut.png
+mycpname summer_camp accommodation_summer_camp.png
 
 
 ## Tourism
