@@ -67,8 +67,11 @@ class OsmAndCoreResourcesPacker(object):
             originalSize = os.path.getsize(resource[0])
             with open(resource[0], "rb") as resourceFile:
                 resourceContent = resourceFile.read()
-            
-            packedContent = zlib.compress(resourceContent, 9)
+
+            if not resource[0].endswith(".png"):
+                packedContent = zlib.compress(resourceContent, 9)
+            else:
+                packedContent = resourceContent
             packedSize = len(packedContent)
 
             outputFile.write("static const char* const __CoreResourcesEmbeddedBundle__ResourceName_%d = \"%s\";\n" % (idx, resource[1]))
@@ -91,13 +94,13 @@ class OsmAndCoreResourcesPacker(object):
             outputFile.write("\n")
             outputFile.write("};\n")
             outputFile.write("EMIT_GETTER(__CoreResourcesEmbeddedBundle__ResourceData_%d, )\n" % (idx))
-            
+
             outputFile.write("const size_t __CoreResourcesEmbeddedBundle__ResourceSize_%d = 4 + %d;\n" % (idx, packedSize))
             outputFile.write("EMIT_GETTER(__CoreResourcesEmbeddedBundle__ResourceSize_%d, &)\n" % (idx))
             outputFile.write("\n")
 
             print("Packed '%s'(%d bytes) as '%s'(4+%d bytes)..." % (resource[0], originalSize, resource[1], packedSize))
-           
+
         # Write footer of the file and close it
         outputFile.write("const uint32_t __CoreResourcesEmbeddedBundle__ResourcesCount = %d;\n" % (len(resources)))
         outputFile.write("EMIT_GETTER(__CoreResourcesEmbeddedBundle__ResourcesCount, &)\n")
@@ -126,7 +129,7 @@ if __name__=='__main__':
     print("OsmAnd root path:      %s" % (rootPath))
     resourcesPath = rootPath + "/resources"
     print("OsmAnd resources path: %s" % (resourcesPath))
-    
+
     # Output filename (in current working directory)
     workingDir = os.getcwd()
     if len(sys.argv) >= 2:
@@ -143,7 +146,7 @@ if __name__=='__main__':
         originalPath = embedResourcesListEntryParts[0].strip()
         packedPath = embedResourcesListEntryParts[1].strip()
         embeddedResources.append((resourcesPath + originalPath, packedPath))
-    
+
     packer = OsmAndCoreResourcesPacker()
     ok = packer.pack(embeddedResources, embeddedFilename)
     sys.exit(0 if ok else -1)
