@@ -119,7 +119,7 @@ string('back_on_route.ogg', 'je bent weer op de route ').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'naar  ').
-string('roward.ogg', 'richting  ').
+string('toward.ogg', 'richting  ').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'meter ').
