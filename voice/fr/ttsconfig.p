@@ -108,8 +108,8 @@ string('stop.ogg', 'panneau stop ').
 string('pedestrian_crosswalk.ogg', 'passage pour piétons ').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'signal G P S perdu ').
-string('location_recovered.ogg', 'signal G P S restaurés ').
+string('location_lost.ogg', 'Position perdue ').
+string('location_recovered.ogg', 'Position retrouvée ').
 string('off_route.ogg', "vous avez dévié de l''itinéraire depuis").
 string('back_on_route.ogg', 'vous êtes de retour sur la route ').
 
