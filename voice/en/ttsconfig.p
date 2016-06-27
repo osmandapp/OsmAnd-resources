@@ -112,7 +112,7 @@ string('back_on_route.ogg', 'you are back on the route ').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'onto ').
-string('on.ogg', 'on ').
+string('on.ogg', 'on ').    % is used if you turn together with your current street, i.e. street name does not change.
 string('to.ogg', 'to ').
 string('toward.ogg', 'toward ').
 

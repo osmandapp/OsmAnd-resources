@@ -117,9 +117,8 @@ string('back_on_route.ogg', 'Sie sind zurück auf der Route ').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'auf ').  % possibly "Richtung", better grammar, but is also misleading is some cases
-string('on.ogg', 'auf ').
+string('on.ogg', 'auf ').    % is used if you turn together with your current street, i.e. street name does not change. "mit " or "entlang" are possible alternatives, "auf" seems to be adequate in most instances. "über" is wrong here.
 string('to.ogg', 'bis ').
-string('with.ogg', 'auf ').  % is used if you turn together with your current street, i.e. street name does not change. "mit " or "entlang" are possible alternatives, "auf" seems to be adequate in most instances. "über" is wrong here.
 string('toward.ogg', 'Richtung '). % "zu " gives wrong results in many cases
 
 % Utility: toLowerCaseStr(OldString,NewString)

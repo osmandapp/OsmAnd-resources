@@ -117,7 +117,6 @@ string('back_on_route.ogg', 'si torna sulla rotta ').
 string('onto.ogg', 'su ').
 string('on.ogg', 'in ').
 string('to.ogg', 'fino a ').
-string('with.ogg', 'su ').  % is used if you turn together with your current street, i.e. street name does not change.
 string('toward.ogg', 'su ').
  
 % Utility: toLowerCaseStr(OldString,NewString)
