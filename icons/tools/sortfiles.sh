@@ -524,6 +524,7 @@ mycp building entrance barrier_entrance.png
 mycpname barrier_debris barrier_debris.png
 mycpname barrier_horse_stile barrier_horse_stile.png
 mycpname barrier_jersey_barrier barrier_jersey_barrier.png
+mycpname barrier_log barrier_log.png
 
 
 ## Accommodation
