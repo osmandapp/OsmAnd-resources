@@ -3,7 +3,8 @@ if [ ! -d protobuf ]; then
    git clone https://github.com/google/protobuf.git
    cd protobuf && git checkout v2.5.0 && ./configure && cd - 
 fi 
-cd protobuf 
+cd protobuf
+git checkout .
 make install
 cd .. 
 mkdir -p protobuf-java

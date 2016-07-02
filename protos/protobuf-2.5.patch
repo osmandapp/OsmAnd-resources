@@ -55,13 +55,14 @@ diff -rupN protobuf/java/src/main/java/com/google/protobuf/CodedInputStream.java
    private CodedInputStream(final InputStream input) {
      buffer = new byte[BUFFER_SIZE];
      bufferSize = 0;
-@@ -734,7 +751,18 @@ public final class CodedInputStream {
+@@ -734,7 +752,19 @@ public final class CodedInputStream {
      totalBytesRetired += bufferSize;
  
      bufferPos = 0;
 -    bufferSize = (input == null) ? -1 : input.read(buffer);
 +    if (raf != null) {
 +    	// osmand change
++     totalBytesRetired = (int) raf.getFilePointer();
 +    	long remain = raf.length() - raf.getFilePointer();
 +    	bufferSize = (int) Math.min(remain, buffer.length);
 +    	if(bufferSize > 0) {
@@ -101,8 +102,8 @@ diff -rupN protobuf/java/src/main/java/com/google/protobuf/CodedInputStream.java
 +      if(raf != null) {
 +         bufferPos = 0;
 +         bufferSize = 0;
-+      	 final int n = raf.skipBytes(size - pos);
-+      	 totalBytesRetired += bufferSize + n; // ? pos incorrect
++      	 int n = raf.skipBytes(size - pos);
++        totalBytesRetired = (int) raf.getFilePointer();
 +      	 if (n <= 0) {
 +             throw InvalidProtocolBufferException.truncatedMessage();
 +         }
