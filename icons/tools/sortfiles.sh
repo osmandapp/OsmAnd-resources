@@ -869,6 +869,8 @@ mycp man_made mast poi_mast.png
 mycp man_made mineshaft poi_mine.png
 mycpname radar poi_monitoring_station_radar.png
 mycpname astronomical_observatory poi_observatory_astronomical.png
+mycpname telescope poi_telescope.png
+mycpname telescope_type_optical additional_telescope_type_optical.png
 mycp man_made observatory poi_observatory.png
 mycpname observation_tower poi_observatory.png
 mycp man_made petroleum_well poi_petroleum_well.png
