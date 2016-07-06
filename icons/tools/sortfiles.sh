@@ -80,6 +80,7 @@ mycpname greenfield landuse_greenfield.png
 mycpname brownfield landuse_brownfield.png
 mycpname protected_area landuse_protected_area.png
 mycpname plant_nursery landuse_plant_nursery.png
+mycpname greenhouse_horticulture landuse_greenhouse_horticulture.png
 
 mycp stroke black functional-icons_black_stroke.png
 mycp stroke darkgreen functional-icons_darkgreen_stroke.png
@@ -870,7 +871,6 @@ mycp man_made mineshaft poi_mine.png
 mycpname radar poi_monitoring_station_radar.png
 mycpname astronomical_observatory poi_observatory_astronomical.png
 mycpname telescope poi_telescope.png
-mycpname telescope_type_optical additional_telescope_type_optical.png
 mycp man_made observatory poi_observatory.png
 mycpname observation_tower poi_observatory.png
 mycp man_made petroleum_well poi_petroleum_well.png
@@ -2121,6 +2121,8 @@ mycpname salt_yes additional_salt_yes.png
 mycpname dispensing_yes additional_dispensing_yes.png
 mycpname dispensing_no additional_dispensing_no.png
 mycpname aerodrome_type_military additional_aerodrome_type_military.png
+mycpname telescope_type_optical additional_telescope_type_optical.png
+mycpname telescope_type_radio additional_telescope_type_radio.png
 
 #Xmas
 mygroup xmas xmas_tree.png
