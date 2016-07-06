@@ -518,6 +518,7 @@ mycp barrier turnstile barrier_turnstile.png
 mycp entrance yes barrier_entrance2.png
 mycpname entrance_exit_map functional-icons_entrance_exit.png
 mycpname entrance_main_map functional-icons_entrance3.png
+mycpname entrance_service functional-icons_entrance_service.png
 mycpname entrance_exit poi_entrance_exit.png
 mycpname entrance_main barrier_entrance2.png
 mycp amenity parking_entrance transport_parking_entrance.png
