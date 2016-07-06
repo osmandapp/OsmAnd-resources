@@ -930,6 +930,7 @@ mycpname street_cabinet poi_street_cabinet.png
 mycpname sanitary_dump_station poi_sanitary_dump_station.png
 mycpname spoil_heap poi_spoil_heap.png
 mycpname ventilation_shaft poi_ventilation_shaft.png
+mycpname pumping_station poi_pumping_station.png
 
 mygroup military poi_military_bunker.png
 
