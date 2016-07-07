@@ -291,6 +291,7 @@ mycp harbour yes poi_harbour.png
 mycpname historic_milestone tourist_historic_milestone.png
 mycpname runway transport_runway.png
 mycpname ford_stepping_stones transport_ford_stepping_stones.png
+mycpname traffic_mirror poi_traffic_mirror.png
 
 mygroup fuel transport_fuel.png
 mygroup filling_station transport_fuel.png
