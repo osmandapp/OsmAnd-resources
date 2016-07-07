@@ -81,6 +81,7 @@ mycpname brownfield landuse_brownfield.png
 mycpname protected_area landuse_protected_area.png
 mycpname plant_nursery landuse_plant_nursery.png
 mycpname greenhouse_horticulture landuse_greenhouse_horticulture.png
+mycpname aquaculture landuse_aquaculture.png
 
 mycp stroke black functional-icons_black_stroke.png
 mycp stroke darkgreen functional-icons_darkgreen_stroke.png
@@ -819,6 +820,7 @@ mycpname craft_roofer craft_roofer.png
 mycpname craft_stonemason craft_stonemason.png
 mycpname craft_carpenter craft_carpenter.png
 mycpname craft_sawmill craft_sawmill.png
+mycpname craft_pottery craft_pottery.png
 
 mygroup finance money_bank2.png
 mycp amenity atm money_atm.png
@@ -931,6 +933,7 @@ mycpname sanitary_dump_station poi_sanitary_dump_station.png
 mycpname spoil_heap poi_spoil_heap.png
 mycpname ventilation_shaft poi_ventilation_shaft.png
 mycpname pumping_station poi_pumping_station.png
+mycpname mdf poi_mdf.png
 
 mygroup military poi_military_bunker.png
 
@@ -1679,6 +1682,7 @@ mycpname window_blind shopping_window_blind.png
 mycpname watches shopping_watches.png
 mycpname candles shopping_candles.png
 mycpname religion shopping_religion.png
+mycpname games shopping_games.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
