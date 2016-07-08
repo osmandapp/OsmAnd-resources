@@ -797,6 +797,8 @@ mycpname compressed_air amenity_compressed_air.png
 mycpname amenity_vacuum_cleaner amenity_vacuum_cleaner.png
 mycpname bicycle_repair_station amenity_bicycle_repair_station.png
 mycpname water_tap amenity_water_tap.png
+mycpname recycling_centre amenity_recycling_centre.png
+mycpname recycling_container amenity_recycling_container.png
 
 mygroup craft craft_tailor.png
 mycpname craft_beekeeper craft_beekeeper.png
