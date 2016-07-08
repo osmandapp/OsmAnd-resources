@@ -718,6 +718,7 @@ mycpname korfball sport_korfball.png
 mycpname judo sport_judo.png
 mycpname rc_car sport_rc_car.png
 mycpname bandy sport_bandy.png
+mycpname sport_multi sport_multi.png
 
 
 ## Leisure
