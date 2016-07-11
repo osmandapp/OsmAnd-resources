@@ -1687,6 +1687,7 @@ mycpname watches shopping_watches.png
 mycpname candles shopping_candles.png
 mycpname religion shopping_religion.png
 mycpname games shopping_games.png
+mycpname doors shopping_doors.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
