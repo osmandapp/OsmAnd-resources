@@ -872,7 +872,7 @@ mycp highway street_lamp_lit functional-icons_street_lamp_lit.png
 mycp man_made adit poi_adit.png
 mycp man_made antenna poi_antenna.png
 mycp man_made chimney poi_chimney.png
-mycp man_made crane poi_crane.png
+mycpname crane poi_crane.png
 mycp man_made mast poi_mast.png
 mycp man_made mineshaft poi_mine.png
 mycpname radar poi_monitoring_station_radar.png
