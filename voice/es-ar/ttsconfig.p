@@ -95,7 +95,7 @@ string('reached_poi.ogg', 'has llegado al P D I ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'límite de velocidad excedido ').
-string('exceed_limit.ogg', 'límite de velocidad excedido. Velocidad máxima: ').
+string('exceed_limit.ogg', 'límite de velocidad ').
 string('attention.ogg', 'atención, ').
 string('speed_camera.ogg', 'radar de velocidad ').
 string('border_control.ogg', 'control fronterizo ').
@@ -103,7 +103,7 @@ string('railroad_crossing.ogg', 'paso a nivel ').
 string('traffic_calming.ogg', 'reductor de velocidad ').
 string('toll_booth.ogg', 'cabina de peaje ').
 string('stop.ogg', 'señal de pare ').
-string('pedestrian_crosswalk.ogg', 'cruce de peatones ').
+string('pedestrian_crosswalk.ogg', 'cruce peatonal ').
 
 % OTHER PROMPTS
 string('location_lost.ogg', 'señal G P S perdida').
