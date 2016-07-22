@@ -687,7 +687,6 @@ mycp sport sailing sport_sailing.png
 mycp sport scuba_diving sport_scuba_diving.png  #derived from NPS public library
 mycp sport shooting sport_shooting.png
 mycp sport skateboard sport_skateboard.png
-mycp sport skating sport_iceskating.png
 mycp sport skiing sport_skiing_downhill.png
 mycp sport soccer sport_soccer.png
 mycp sport stadium sport_stadium.png
@@ -1645,7 +1644,6 @@ mycpname chemist shopping_chemist.png
 mycpname curtain shopping_curtain.png
 mycpname fabric shopping_fabric.png
 mycpname bedding shopping_bedding.png
-mycpname dive shopping_dive.png
 mycpname erotic shopping_erotic.png
 mycpname fashion shopping_fashion.png
 mycpname frame shopping_frame.png
