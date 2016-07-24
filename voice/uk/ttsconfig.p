@@ -385,7 +385,8 @@ interval(X, St, End) :- interval(X, St, End, 1).
 string(Ogg, B) :- voice_generation, interval(X, 1, 2), atom_number(B, X), atom_concat(B, 'm-n', A), atom_concat(A, '.ogg', Ogg).
 string(Ogg, A) :- voice_generation, interval(X, 3, 19), atom_concat(A, '.ogg', Ogg).
 string(Ogg, A) :- voice_generation, interval(X, 20, 95, 5), atom_concat(A, '.ogg', Ogg).
-string(Ogg, A) :- voice_generation, interval(X, 100, 950, 50), atom_concat(A, '.ogg', Ogg).
+string(Ogg, A) :- voice_generation, interval(X, 100, 140, 10), atom_concat(A, '.ogg', Ogg).
+string(Ogg, A) :- voice_generation, interval(X, 150, 950, 50), atom_concat(A, '.ogg', Ogg).
 string(Ogg, A) :- voice_generation, interval(X, 1000, 9000, 1000), atom_concat(A, '.ogg', Ogg).
 
 dist(X, Y) :- tts, !, num_atom(X, Y).
