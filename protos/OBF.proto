@@ -343,7 +343,13 @@ message TransportRoute {
    optional uint32 distance = 8; // distance in meters
    
    repeated TransportRouteStop directStops = 15;
-   repeated TransportRouteStop reverseStops = 16; 
+   repeated TransportRouteStop reverseStops = 16;
+
+   // array of delta x,y sint32 (CodedIinputStream) >> 5 (precision 31 >> 5)
+   // first x,y - 31 coordinates (>>5), next points is delta to previous
+   // point, line or outer polygon coordinates
+   optional bytes directGeometry = 17;
+   optional bytes reverseGeometry = 17;
 }
 
 message TransportRouteStop {
