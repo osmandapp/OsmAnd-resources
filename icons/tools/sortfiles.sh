@@ -798,6 +798,7 @@ mycpname bicycle_repair_station amenity_bicycle_repair_station.png
 mycpname water_tap amenity_water_tap.png
 mycpname recycling_centre amenity_recycling_centre.png
 mycpname recycling_container amenity_recycling_container.png
+mycpname barbecue amenity_barbecue.png
 
 mygroup craft craft_tailor.png
 mycpname craft_beekeeper craft_beekeeper.png
