@@ -115,7 +115,7 @@ string('back_on_route.ogg', 'you are back on the route ').
 string('onto.ogg', 'onto ').
 string('on.ogg', 'on ').
 string('to.ogg', 'to ').
-string('toward.ogg', 'toward ').
+string('toward.ogg', 'towards ').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'metres ').
