@@ -48,7 +48,7 @@ string('make_uturn.ogg', 'Выполните разворот ').
 string('make_uturn_wp.ogg', 'При возможности, выполните разворот ').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Приготовтесь въехать на кольцо ').
+string('prepare_roundabout.ogg', 'Приготовьтесь въехать на кольцо ').
 string('roundabout.ogg', 'въедьте на кольцо, ').
 string('then.ogg', ' затем ').
 string('and.ogg', 'и ').
@@ -59,7 +59,7 @@ string('1na.ogg', 'одна ').
 string('2ve.ogg', 'две ').
 
 string('1th.ogg', 'первый ').
-string('2th.ogg', 'вто_рой ') :- google_gen, voice .
+string('2th.ogg', 'второй ') :- google_gen, voice .
 string('2th.ogg', 'второй ') :- not(google_gen).
 string('3th.ogg', 'третий ').
 string('4th.ogg', 'четвертый ').
@@ -92,8 +92,8 @@ string('and_arrive_waypoint.ogg', 'и вы подъедете к ДЖИ-ПИ-И�
 string('reached_waypoint.ogg', 'вы проезжаете ДЖИ-ПИ-ИКС точку ').
 string('and_arrive_favorite.ogg', 'и вы подъедете к точке из избранного ').
 string('reached_favorite.ogg', 'вы проезжаете точку из избранного ').
-string('and_arrive_poi.ogg', 'и вы подъедете к точке POI ').
-string('reached_poi.ogg', 'вы проезжаете точку POI ').
+string('and_arrive_poi.ogg', 'и вы подъедете к точке ПОИ ').
+string('reached_poi.ogg', 'вы проезжаете точку ПОИ ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'Вы превысили допустимую скорость ').
@@ -102,14 +102,14 @@ string('attention.ogg', 'Внимание, ').
 string('speed_camera.ogg', 'камера ').
 string('border_control.ogg', 'пограничный пункт ').
 string('railroad_crossing.ogg', 'железная дорога ').
-string('traffic_calming.ogg', 'искуственая неровность ').
+string('traffic_calming.ogg', 'искуственная неровность ').
 string('toll_booth.ogg', 'пункт оплаты проезда ').
 string('stop.ogg', 'знак Стоп ').
 string('pedestrian_crosswalk.ogg', 'пешеходный переход ').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'потерян сигнал ДЖИПИИЭС').
-string('location_recovered.ogg', 'ДЖИПИИЭС сигнал восстановлен ').
+string('location_lost.ogg', 'потерян сигнал ДЖИ-ПИ-ЭС').
+string('location_recovered.ogg', 'ДЖИ-ПИ-ЭС сигнал восстановлен ').
 string('off_route.ogg', 'Вы отклонились от маршрута на ').
 string('back_on_route.ogg', 'Вы вернулись на маршрут').
 
