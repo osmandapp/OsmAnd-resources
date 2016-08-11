@@ -120,7 +120,7 @@
 
 	<renderingConstant name="waterwayDirectionIcon" value="arrow_blue_big_night"/>
 	<renderingAttribute name="waterwayArrowsColor">
-		<case attrColorValue="#6286ff"/>
+		<case attrColorValue="#4C68C6"/>
 	</renderingAttribute>
 
 <!-- Motorway -->
@@ -270,8 +270,9 @@
 		<case nightMode="true" attrColorValue="#330099"/>
 		<case attrColorValue="#7ad1ed"/>
 	</renderingAttribute>
-	<renderingAttribute name="waterStrokeColorNight">
-		<case attrColorValue="#511db8"/>
+	<renderingAttribute name="waterStrokeColor">
+		<case nightMode="true" attrColorValue="#511db8"/>
+		<case attrColorValue="#4580cf"/>
 	</renderingAttribute>
 	<renderingAttribute name="woodColor">
 		<case attrColorValue="#8AD96A">
@@ -302,7 +303,7 @@
 	<renderingConstant name="waterTextColorDay" value="#266579"/>
 	<renderingConstant name="waterTextColorNight" value="#95e7ff"/>
 	<renderingConstant name="waterTextHaloColorDay" value="#77D2F4FF"/>
-	<renderingConstant name="textHaloRadiusDay" value="1"/>
+	<renderingConstant name="textHaloRadiusDay" value="2"/>
 	<renderingConstant name="textHaloRadiusNight" value="2"/>
 	<renderingConstant name="defaultTextHaloColorDay" value="#ffffff"/>
 
@@ -437,11 +438,10 @@
 
 	<renderingConstant name="placeCityVillageTextColorDay" value="#000000"/>
 	<renderingConstant name="placeSuburbLocalityTextColorDay" value="#000000"/>
-	<renderingConstant name="placeTextHaloRadiusDay" value="1"/>
 	<renderingConstant name="placeCityVillageTextColorDay" value="#000000"/>
 	<renderingConstant name="placeSuburbLocalityTextColorDay" value="#222222"/>
 	<renderingConstant name="placeTextHaloRadiusDay" value="1:1"/>
-	<renderingConstant name="placeCityVillageTextHaloColorDay" value="#ccffffff"/>
+	<renderingConstant name="placeCityVillageTextHaloColorDay" value="#ddffffff"/>
 	<renderingConstant name="placeHamletMinZoom" value="12"/>
 	<renderingConstant name="placeSuburbMinZoom" value="12"/>
 	<renderingConstant name="placeNeighbourhoodMinZoom" value="13"/>
@@ -542,6 +542,7 @@
 				</case>
 				<apply_if maxzoom="13" additional="construction=yes" order="-1"/>
 			</switch>
+			<case tag="man_made" value="cutline" order="5"/>
 		</switch>
 
 	</order>
@@ -748,7 +749,7 @@
 			<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight"/>
 		</switch>
 
-		<switch minzoom="3" textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColorDay" textBold="true">
+		<switch minzoom="3" textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textBold="true">
 			<case minzoom="5" tag="place" value="city" nameTag="" intersectionMargin="25" textOrder="32">
 				<case minzoom="6" maxzoom="7" textSize="17"/>
 				<case minzoom="8" textSize="20"/>
@@ -850,6 +851,7 @@
 					<case additional="population_rounded=100" textOrder="43"/>
 				</apply_if>
 			</switch>
+			<apply textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColorDay"/>
 			<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77444444"/>
 			<apply_if engine_v1="false" textDy="-3"/>
 		</switch>
@@ -914,7 +916,7 @@
 		</switch>
 
 		<!-- Natural -->
-		<switch tag="contour" value="" textOnPath="false" textBold="true" textOrder="255">
+		<switch tag="contour" value="" textOnPath="false" textBold="true" textOrder="255" textHaloColor="#66ffffff" textHaloRadius="1">
 			<case minzoom="13" contourLines="11"/>
 			<case minzoom="13" contourLines="12"/>
 			<case minzoom="13" contourLines="13"/>
@@ -924,16 +926,16 @@
 			<case minzoom="16" contourLines="16"/>
 			<apply>
 				<case minzoom="15" additional="contourtype=50m" textColor="#666666" textSize="12" textMinDistance="500">
-					<apply_if nightMode="true" textColor="#aaaaaa" textHaloRadius=":1" textHaloColor="#66777777"/>
+					<apply_if nightMode="true" textColor="#aaaaaa" textHaloColor="#66777777"/>
 				</case>
 				<case minzoom="15" additional="contourtype=20m" textColor="#666666" textSize="12" textMinDistance="600">
-					<apply_if nightMode="true" textColor="#999999" textHaloRadius=":1" textHaloColor="#55777777"/>
+					<apply_if nightMode="true" textColor="#999999" textHaloColor="#55777777"/>
 				</case>
 				<case minzoom="17" additional="contourtype=10m" textColor="#777777" textSize="11" textMinDistance="700">
-					<apply_if nightMode="true" textColor="#888888" textHaloRadius=":1" textHaloColor="#33777777"/>
+					<apply_if nightMode="true" textColor="#888888" textHaloColor="#33777777"/>
 				</case>
 				<case additional="contourtype=100m" textColor="#444444" textSize="13" textMinDistance="200">
-					<apply_if nightMode="true" textColor="#bbbbbb" textHaloRadius=":1" textHaloColor="#77777777"/>
+					<apply_if nightMode="true" textColor="#bbbbbb" textHaloColor="#77777777"/>
 				</case>
 			</apply>
 		</switch>
@@ -1016,7 +1018,7 @@
 					<case minzoom="7" tag="landuse" value="reservoir"/>
 					<case minzoom="7" tag="landuse" value="water"/>
 					<case minzoom="10" tag="landuse" value="basin"/>
-					<apply color_2="#4580cf" strokeWidth_2="1"/>
+					<apply color_2="$waterStrokeColor" strokeWidth_2="1"/>
 				</switch>
 			</switch>
 			<switch>
@@ -1028,9 +1030,7 @@
 				<apply color_2="#7479ec" strokeWidth_2="1.3:0"/>
 			</switch>
 			<case minzoom="10" tag="waterway" value="dock" color_2="#aa8387d5" strokeWidth_2="3"/>
-			<apply color="$waterColor">
-				<apply_if nightMode="true" color_2="$waterStrokeColorNight"/>
-			</apply>
+			<apply color="$waterColor"/>
 			<apply_if additional="intermittent=yes" strokeWidth_2="1:0" color_2="#7479ec" pathEffect_2="7_5"/>
 		</switch>
 
@@ -1058,7 +1058,7 @@
 				<case additional="wetland=saltmarsh" shader="wetland_saltmarsh"/>
 				<case additional="wetland=fen" shader="wetland_fen"/>
 				<case additional="wetland=palsa_bog" shader="wetland_palsa_bog"/>
-				<case additional="wetland=mud" shader="mud2"/>
+<!--				<case additional="wetland=mud" shader="mud2"/>-->
 				<case shader="wetland"/>
 				<apply_if nightMode="true" shader="" color="$wetlandColorNight"/>
 			</switch>
@@ -1125,9 +1125,9 @@
 					<apply_if minzoom="13" strokeWidth="1.6:1.6"/>
 				</case>
 				<apply color="$primaryRoadColor" cap="ROUND"/>
-				<apply_if minzoom="8" shadowColor="$primaryRoadShadowColor"/>
+				<apply_if minzoom="7" shadowColor="$primaryRoadShadowColor"/>
 				<apply>
-					<switch minzoom="8">
+					<switch minzoom="7">
 						<case maxzoom="8" shadowRadius="1"/>
 						<case minzoom="9" shadowRadius="$highwayShadowRadius"/>
 					</switch>
@@ -1469,6 +1469,19 @@
 				</apply_if>
 			</switch>
 
+		<case minzoom="12" tag="man_made" value="cutline" color="#888888">
+			<switch moreDetailed="true">
+				<case maxzoom="12" strokeWidth="0.3:0.3" pathEffect="6_2"/>
+				<case maxzoom="13" strokeWidth="0.5:0.5" pathEffect="8_3"/>
+			</switch>
+			<case minzoom="14" maxzoom="14" strokeWidth="1.3:1.3" pathEffect="10_3"/>
+			<case minzoom="15" maxzoom="15" strokeWidth="2:2" pathEffect="14_4"/>
+			<case minzoom="16" maxzoom="16" strokeWidth="2.5:2.5" pathEffect="19_5"/>
+			<case minzoom="17" maxzoom="17" strokeWidth="3:3" pathEffect="19_5"/>
+			<case minzoom="18" strokeWidth="4:4" pathEffect="19_5"/>
+<!--			<apply_if nightMode="true" color="#004333" color_2="$null"/>-->
+		</case>
+
 		<switch>
 			<switch minzoom="13">
 				<case tag="waterway" value="stream">
@@ -1554,7 +1567,7 @@
 			</apply_if>
 			<apply_if engine_v1="true" onewayArrowsColor="$waterwayArrowsColor"/>
 			<!-- Waterway color -->
-			<apply color="$waterColor" color_2="#ffffff">
+			<apply color="$waterColor" shadowColor="$waterStrokeColor" shadowRadius="1">
 				<apply_if nightMode="true" color_2="#7340D9"/>
 			</apply>
 		</switch>
