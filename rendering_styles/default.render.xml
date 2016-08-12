@@ -112,6 +112,8 @@
 		type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideUnderground" name="Hide underground objects" description="Hide underground objects"
 		type="boolean" possibleValues="" category="hide"/>
+	<renderingProperty attr="hideOverground" name="Hide overground objects" description="Hide overground objects"
+		type="boolean" possibleValues="" category="hide"/>
 
 	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show cycle routes (*cn_networks) in bicycle mode" type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="showMtbRoutes" name="Show MTB routes" description="Show mountain bike routes (*cn_networks) in bicycle mode" type="boolean" possibleValues="" category="routes"/>
@@ -1637,639 +1639,642 @@
 	<!-- Order should be between 0 and 255 (integer) -->
 	<!-- output ! objectType point = 1, line = 2, polygon = 3 and order -->
 	<order>
-	<!-- Point -->
-		<switch area="false" point="true" objectType="1" order="128">
-			<!-- point has order 128 -->
-			<case tag="" value=""/>
-			<case tag="railway" value="station">
-				<apply_if maxzoom="12">
-					<switch>
-						<case additional="disused=yes"/>
-						<apply order="-1"/>
-					</switch>
-				</apply_if>
-				<apply_if maxzoom="12" appMode="pedestrian" moreDetailed="false" order="-1"/>
-			</case>
-			<case maxzoom="12" tag="abandoned:railway" value="station" order="-1"/>
-			<case tag="railway" value="buffer_stop"/>
-			<case tag="railway" value="halt">
-				<apply_if maxzoom="12" appMode="pedestrian" moreDetailed="false" order="-1"/>
-			</case>
-			<case tag="railway" value=""/>
-			<case tag="place" value=""/>
-			<case tag="public_transport" value=""/>
-			<case tag="highway" value="crossing"/>
-			<case tag="highway" value="steps"/>
-			<case tag="ford" value="yes"/>
-			<case tag="ford" value="stepping_stones"/>
-			<case tag="flood_prone" value=""/>
-			<case tag="traffic_calming" value="">
-				<apply_if appMode="pedestrian" order="-1"/>
-				<apply_if appMode="default" maxzoom="17" order="-1"/>
-			</case>
-			<case tag="noexit" value="">
-				<apply_if moreDetailed="false" order="-1"/>
-			</case>
-			<case tag="abandoned:aeroway" value=""/>
-			<case tag="aeroway" value=""/>
-			<case tag="aerialway" value="station"/>
-			<case tag="aerialway" value=""/>
-			<case tag="amenity" value="ferry_terminal"/>
-			<case tag="amenity" value="motorcycle_parking">
-				<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
-			</case>
-			<case tag="amenity" value="parking">
-				<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
-				<apply_if appMode="bicycle" maxzoom="17" order="-1"/>
-			</case>
-			<case tag="amenity" value="bicycle_parking">
-				<apply_if appMode="default" maxzoom="17" order="-1"/>
-				<apply_if appMode="pedestrian" maxzoom="18" order="-1"/>
-				<apply_if appMode="car" maxzoom="18" order="-1"/>
-			</case>
-			<case tag="amenity" value="taxi">
-				<apply_if appMode="bicycle" maxzoom="17" order="-1"/>
-			</case>
-			<switch>
-				<case tag="amenity" value="fuel"/>
-				<case tag="amenity" value="charging_station"/>
-				<case tag="amenity" value="car_wash"/>
-				<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
-				<apply_if appMode="bicycle" maxzoom="16" order="-1"/>
-			</switch>
-			<switch>
-				<case tag="amenity" value="vehicle_ramp"/>
-				<apply_if appMode="pedestrian" maxzoom="18" order="-1"/>
-				<apply_if appMode="bicycle" maxzoom="17" order="-1"/>
-			</switch>
-			<case tag="amenity" value="vehicle_inspection">
-				<apply_if appMode="pedestrian" order="-1"/>
-				<apply_if appMode="bicycle" order="-1"/>
-			</case>
-			<case tag="highway" value="services"/>
-			<case tag="highway" value="passing_place">
-				<apply_if appMode="pedestrian" order="-1"/>
-			</case>
-			<case tag="amenity" value=""/>
-			<case tag="emergency" value=""/>
-			<case tag="man_made" value="petroleum_well"/>
-			<case tag="man_made" value="tower"/>
-			<case tag="man_made" value="monitoring_station"/>
-			<case tag="man_made" value=""/>
-			<case tag="natural" value="strait"/>
-			<case tag="natural" value="fjord"/>
-			<case tag="natural" value="hot_spring"/>
-			<case tag="natural" value="geyser"/>
-			<case tag="natural" value="volcano"/>
-			<case tag="natural" value="sinkhole"/>
-			<case tag="natural" value=""/>
-			<case tag="waterway" value="waterfall"/>
-			<case tag="waterway" value="rapids"/>
-			<case tag="waterway" value=""/>
-			<switch>
-				<case tag="shop" value="car_repair"/>
-				<case tag="shop" value="car_parts"/>
-				<case tag="amenity" value="car_wash"/>
-				<apply>
-					<switch>
-						<case appMode="default"/>
-						<case appMode="bicycle"/>
-						<case appMode="pedestrian"/>
-						<apply maxzoom="16" order="-1"/>
-					</switch>
-				</apply>
-			</switch>
-			<case tag="shop" value=""/>
-			<case tag="craft" value=""/>
-			<case tag="tourism" value=""/>
-			<case tag="historic" value="archaeological_site"/>
-			<case tag="historic" value="memorial">
-				<apply_if maxzoom="16" additional="memorial=plaque" order="-1"/>
-				<apply_if maxzoom="16" additional="memorial=stolperstein" order="-1"/>
-			</case>
-			<case tag="historic" value="ruins"/>
-			<case tag="historic" value="ship"/>
-			<case tag="historic" value=""/>
-			<case tag="geological" value="palaeontological_site"/>
-			<case tag="leisure" value="marina"/>
-			<case tag="leisure" value=""/>
-			<case tag="tourism" value="attraction"/>
-			<case tag="attraction" value="water_slide"/>
-			<case tag="attraction" value="train"/>
-			<case tag="attraction" value="roller_coaster"/>
-			<case tag="harbour" value="yes"/>
-			<case tag="sport" value=""/>
-			<case tag="geocache" value=""/>
-			<case tag="office" value=""/>
-			<case tag="power" value=""/>
-			<case tag="entrance" value=""/>
-			<case tag="hazard" value=""/>
-			<case tag="fixme_tag" value="yes"/>
-			<case tag="note_tag" value="yes"/>
-			<case tag="abandoned:place" value="" order="10"/>
-			<case tag="barrier" value="">
-				<apply hideUnderground="true" layer="-1" order="-1"/>
-				<apply hideUnderground="true" additional="indoor=yes" order="-1"/>
-				<apply hideUnderground="true" additional="covered=yes" order="-1"/>
-			</case>
-			<switch appMode="pedestrian" tag="barrier" maxzoom="17" order="-1">
-				<case value="" minzoom="14" maxzoom="15"/>
-				<case value="block"/>
-				<case value="jersey_barrier"/>
-				<case value="debris"/>
-				<case value="log"/>
-				<case value="bollard"/>
-				<case value="bus_trap"/>
-				<case value="cattle_grid"/>
-				<case value="cycle_barrier"/>
-				<case value="height_restrictor"/>
-				<case value="motorcycle_barrier"/>
-			</switch>
-			<switch appMode="car" tag="barrier" order="-1">
-				<case value="cattle_grid"/>
-				<case maxzoom="18" value="turnstile"/>
-			</switch>
-			<switch appMode="bicycle" tag="barrier" order="-1">
-				<case value="height_restrictor"/>
-			</switch>
-			<case tag="place" value="quarter"/>
-			<case tag="osmand" value="file_waypoint"/>
-			<case tag="osmand" value="fav"/>
-
-		</switch>
-
-	<!-- Polygon -->
-		<switch area="true" point="false" objectType="3" order="5">
-			<switch layer="-1" order="3">
-				<case tag="natural" value="coastline"/>
-				<case tag="natural" value="land"/>
-				<case tag="place" value="island"/>
+		<switch>
+			<!-- Point -->
+			<switch area="false" point="true" objectType="1" order="128">
+				<!-- point has order 128 -->
 				<case tag="" value=""/>
-			</switch>
-			<case cycle="true" tag="leisure" value="nature_reserve" order="9"/>
-			<case tag="leisure" value="nature_reserve" order="9"/>
-			<case tag="military" value="danger_area" order="8"/>
-			<case tag="railway" value="" order="4"/>
-			<case tag="railway" value="station" order="5">
-				<apply_if maxzoom="12">
-					<switch>
-						<case additional="disused=yes"/>
-						<apply order="-1"/>
-					</switch>
-				</apply_if>
-			</case>
-			<switch hideUnderground="true" layer="-1">
-				<case tag="public_transport" value="platform"/>
-				<case tag="public_transport" value="station"/>
-				<apply order="-1"/>
-			</switch>
-			<switch appMode="car" maxzoom="18" layer="-1">
-				<case tag="public_transport" value="platform"/>
-				<case tag="public_transport" value="station"/>
-				<apply order="-1"/>
-			</switch>
-			<case tag="public_transport" value="" order="5"/>
-			<case tag="historic" value="archaeological_site"/>
-			<case tag="historic" value="memorial"/>
-			<case tag="historic" value="ruins"/>
-			<case tag="historic" value="ship"/>
-			<case tag="barrier" value="city_wall"/>
-			<case tag="barrier" value="wall"/>
-			<case tag="man_made" value="reinforced_slope"/>
-			<case tag="man_made" value="breakwater"/>
-			<case tag="man_made" value="groyne"/>
-			<case tag="man_made" value="bridge"/>
-			<case tag="building:part" value="" order="100"/>
-		</switch>
-		<switch cycle="true" point="false" objectType="3" order="5">
-			<switch>
-				<case tag="area:highway" value="motorway"/>
-				<case tag="area:highway" value="trunk"/>
-				<case tag="area:highway" value="primary"/>
-				<case tag="area:highway" value="secondary"/>
-				<case tag="area:highway" value="tertiary"/>
-				<case tag="area:highway" value="pedestrian"/>
-				<case tag="area:highway" value="service"/>
-				<case tag="area:highway" value="road"/>
-				<case tag="area:highway" value="unclassified"/>
-				<case tag="area:highway" value="service"/>
-				<case tag="highway" value="rest_area"/>
-				<case tag="area:highway" value="residential"/>
-				<case tag="area:highway" value="footway"/>
-				<case tag="area:highway" value="track"/>
-				<case tag="man_made" value="bridge"/>
-				<apply order="7"/>
-				<apply_if hideUnderground="true" layer="-1" order="-1"/>
-			</switch>
-			<case tag="highway" value="services"/>
-			<case tag="landuse" value="military" order="8"/>
-			<case tag="military" value="danger_area" order="8"/>
-			<case tag="landuse" value="cemetery" order="5"/>
-			<case tag="amenity" value="motorcycle_parking">
-				<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
-			</case>
-			<case tag="amenity" value="bicycle_parking">
-				<apply_if appMode="default" maxzoom="17" order="-1"/>
-				<apply_if appMode="pedestrian" maxzoom="18" order="-1"/>
-				<apply_if appMode="car" maxzoom="18" order="-1"/>
-			</case>
-			<case tag="amenity" value="taxi">
-				<apply_if appMode="bicycle" maxzoom="17" order="-1"/>
-			</case>
-			<switch>
-				<case tag="amenity" value="fuel" ignorePolygonArea="true"/>
-				<case tag="amenity" value="charging_station" ignorePolygonArea="true"/>
-				<case tag="amenity" value="car_wash"/>
-				<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
-				<apply_if appMode="bicycle" maxzoom="16" order="-1"/>
-			</switch>
-			<case tag="amenity" value="vehicle_inspection">
-				<apply_if appMode="pedestrian" order="-1"/>
-				<apply_if appMode="bicycle" order="-1"/>
-			</case>
-			<case tag="amenity" value="fountain"/>
-			<case tag="railway" value="station" ignorePolygonArea="true"/>
-			<case tag="aerialway" value="station" ignorePolygonArea="true"/>
-			<case tag="public_transport" value="" order="5" ignorePolygonArea="true"/>
-			<case tag="leisure" value="nature_reserve" order="9"/>
-			<case tag="boundary" value="protected_area" order="9"/>
-			<case tag="harbour" value="yes"/>
-			<case tag="waterway" value="dock"/>
-			<case tag="waterway" value="wadi"/>
-			<case tag="natural" value="crater"/>
-			<case tag="natural" value="volcano"/>
-			<case tag="natural" value="sinkhole"/>
-			<case tag="natural" value="hot_spring"/>
-			<case tag="natural" value="geyser"/>
-			<case tag="natural" value="wetland" order="6"/>
-			<case tag="historic" value="archaeological_site"/>
-			<case tag="historic" value="memorial"/>
-			<case tag="historic" value="ruins"/>
-			<case tag="historic" value="ship"/>
-			<case tag="amenity" value="ferry_terminal" ignorePolygonArea="true"/>
-			<case tag="geological" value="palaeontological_site"/>
-			<case tag="tourism" value="attraction"/>
-			<case tag="attraction" value="train"/>
-			<case tag="attraction" value="log_flume"/>
-			<case tag="building" value="no" order="-1"/>
-			<case hideProposed="true" tag="building" value="proposed" order="-1"/>
-			<switch>
-				<case tag="man_made" value="storage_tank"/>
-				<case tag="man_made" value="silo"/>
-				<case tag="man_made" value="reservoir_covered"/>
-				<case tag="military" value="bunker"/>
-				<case tag="military" value="barracks"/>
-				<case tag="man_made" value="chimney"/>
+				<case tag="railway" value="station">
+					<apply_if maxzoom="12">
+						<switch>
+							<case additional="disused=yes"/>
+							<apply order="-1"/>
+						</switch>
+					</apply_if>
+					<apply_if maxzoom="12" appMode="pedestrian" moreDetailed="false" order="-1"/>
+				</case>
+				<case maxzoom="12" tag="abandoned:railway" value="station" order="-1"/>
+				<case tag="railway" value="buffer_stop"/>
+				<case tag="railway" value="halt">
+					<apply_if maxzoom="12" appMode="pedestrian" moreDetailed="false" order="-1"/>
+				</case>
+				<case tag="railway" value=""/>
+				<case tag="place" value=""/>
+				<case tag="public_transport" value=""/>
+				<case tag="highway" value="crossing"/>
+				<case tag="highway" value="steps"/>
+				<case tag="ford" value="yes"/>
+				<case tag="ford" value="stepping_stones"/>
+				<case tag="flood_prone" value=""/>
+				<case tag="traffic_calming" value="">
+					<apply_if appMode="pedestrian" order="-1"/>
+					<apply_if appMode="default" maxzoom="17" order="-1"/>
+				</case>
+				<case tag="noexit" value="">
+					<apply_if moreDetailed="false" order="-1"/>
+				</case>
+				<case tag="abandoned:aeroway" value=""/>
+				<case tag="aeroway" value=""/>
+				<case tag="aerialway" value="station"/>
+				<case tag="aerialway" value=""/>
+				<case tag="amenity" value="ferry_terminal"/>
+				<case tag="amenity" value="motorcycle_parking">
+					<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
+				</case>
+				<case tag="amenity" value="parking">
+					<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
+					<apply_if appMode="bicycle" maxzoom="17" order="-1"/>
+				</case>
+				<case tag="amenity" value="bicycle_parking">
+					<apply_if appMode="default" maxzoom="17" order="-1"/>
+					<apply_if appMode="pedestrian" maxzoom="18" order="-1"/>
+					<apply_if appMode="car" maxzoom="18" order="-1"/>
+				</case>
+				<case tag="amenity" value="taxi">
+					<apply_if appMode="bicycle" maxzoom="17" order="-1"/>
+				</case>
+				<switch>
+					<case tag="amenity" value="fuel"/>
+					<case tag="amenity" value="charging_station"/>
+					<case tag="amenity" value="car_wash"/>
+					<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
+					<apply_if appMode="bicycle" maxzoom="16" order="-1"/>
+				</switch>
+				<switch>
+					<case tag="amenity" value="vehicle_ramp"/>
+					<apply_if appMode="pedestrian" maxzoom="18" order="-1"/>
+					<apply_if appMode="bicycle" maxzoom="17" order="-1"/>
+				</switch>
+				<case tag="amenity" value="vehicle_inspection">
+					<apply_if appMode="pedestrian" order="-1"/>
+					<apply_if appMode="bicycle" order="-1"/>
+				</case>
+				<case tag="highway" value="services"/>
+				<case tag="highway" value="passing_place">
+					<apply_if appMode="pedestrian" order="-1"/>
+				</case>
+				<case tag="amenity" value=""/>
+				<case tag="emergency" value=""/>
+				<case tag="man_made" value="petroleum_well"/>
 				<case tag="man_made" value="tower"/>
 				<case tag="man_made" value="monitoring_station"/>
-				<case tag="building" value="" order="15"/>
-				<case tag="abandoned:building" value="no" order="-1"/>
-				<case tag="abandoned:building" value=""/>
-				<case tag="disused:building" value="no" order="-1"/>
-				<case tag="disused:building" value=""/>
-				<apply_if moreDetailed="false" minzoom="15" maxzoom="15" order="-1"/>
-			</switch>
-			<case tag="abandoned:place" value="" order="10"/>
-			<case tag="abandoned:landuse" value="" order="10"/>
-			<case tag="landuse" value="landfill" order="4"/>
-			<case tag="man_made" value="spoil_heap" order="4"/>
-
-			<case tag="man_made" value="petroleum_well"/>
-			<case tag="man_made" value="reinforced_slope"/>
-			<case tag="waterway" value="dam"/>
-			<case tag="waterway" value="weir"/>
-			<case tag="waterway" value="rapids"/>
-			<switch order="5">
-				<case tag="natural" value="water"/>
-				<case tag="waterway" value="riverbank"/>
-				<case tag="abandoned:aeroway" value="runway"/>
-				<case tag="aeroway" value="runway"/>
-				<case tag="abandoned:aeroway" value="aerodrome"/>
-				<case tag="aeroway" value="aerodrome" ignorePolygonArea="true"/>
-				<case tag="aeroway" value="apron"/>
-				<case tag="aeroway" value="terminal"/>
-				<case tag="aeroway" value="helipad"/>
-			</switch>
-			<case tag="place" value="quarter"/>
-			<case tag="addr:interpolation" value=""/>
-			<case tag="hazard" value="" order="128"/>
-			<case tag="fixme_tag" value="yes" order="128"/>
-			<case tag="note_tag" value="yes"/>
-			<case tag="" value="" order="5"/>
-		</switch>
-
-	<!-- Line -->
-		<switch area="false" objectType="2" order="80">
-			<!-- default line -->
-			<case layer="-1" tag="" value="" order="10"/>
-			<case tag="" value="" order="11"/>
-			<switch hideUnderground="true" layer="-1">
-				<case tag="public_transport" value="platform"/>
-				<case tag="public_transport" value="station"/>
-				<apply order="-1"/>
-			</switch>
-
-			<switch appMode="car">
-				<case tag="railway" value="" order="36">
-					<case layer="1" order="71"/>
+				<case tag="man_made" value=""/>
+				<case tag="natural" value="strait"/>
+				<case tag="natural" value="fjord"/>
+				<case tag="natural" value="hot_spring"/>
+				<case tag="natural" value="geyser"/>
+				<case tag="natural" value="volcano"/>
+				<case tag="natural" value="sinkhole"/>
+				<case tag="natural" value=""/>
+				<case tag="waterway" value="waterfall"/>
+				<case tag="waterway" value="rapids"/>
+				<case tag="waterway" value=""/>
+				<switch>
+					<case tag="shop" value="car_repair"/>
+					<case tag="shop" value="car_parts"/>
+					<case tag="amenity" value="car_wash"/>
+					<apply>
+						<switch>
+							<case appMode="default"/>
+							<case appMode="bicycle"/>
+							<case appMode="pedestrian"/>
+							<apply maxzoom="16" order="-1"/>
+						</switch>
+					</apply>
+				</switch>
+				<case tag="shop" value=""/>
+				<case tag="craft" value=""/>
+				<case tag="tourism" value=""/>
+				<case tag="historic" value="archaeological_site"/>
+				<case tag="historic" value="memorial">
+					<apply_if maxzoom="16" additional="memorial=plaque" order="-1"/>
+					<apply_if maxzoom="16" additional="memorial=stolperstein" order="-1"/>
 				</case>
-				<switch layer="-1">
+				<case tag="historic" value="ruins"/>
+				<case tag="historic" value="ship"/>
+				<case tag="historic" value=""/>
+				<case tag="geological" value="palaeontological_site"/>
+				<case tag="leisure" value="marina"/>
+				<case tag="leisure" value=""/>
+				<case tag="tourism" value="attraction"/>
+				<case tag="attraction" value="water_slide"/>
+				<case tag="attraction" value="train"/>
+				<case tag="attraction" value="roller_coaster"/>
+				<case tag="harbour" value="yes"/>
+				<case tag="sport" value=""/>
+				<case tag="geocache" value=""/>
+				<case tag="office" value=""/>
+				<case tag="power" value=""/>
+				<case tag="entrance" value=""/>
+				<case tag="hazard" value=""/>
+				<case tag="fixme_tag" value="yes"/>
+				<case tag="note_tag" value="yes"/>
+				<case tag="abandoned:place" value="" order="10"/>
+				<case tag="barrier" value="">
+					<apply hideUnderground="true" layer="-1" order="-1"/>
+					<apply hideUnderground="true" additional="indoor=yes" order="-1"/>
+					<apply hideUnderground="true" additional="covered=yes" order="-1"/>
+				</case>
+				<switch appMode="pedestrian" tag="barrier" maxzoom="17" order="-1">
+					<case value="" minzoom="14" maxzoom="15"/>
+					<case value="block"/>
+					<case value="jersey_barrier"/>
+					<case value="debris"/>
+					<case value="log"/>
+					<case value="bollard"/>
+					<case value="bus_trap"/>
+					<case value="cattle_grid"/>
+					<case value="cycle_barrier"/>
+					<case value="height_restrictor"/>
+					<case value="motorcycle_barrier"/>
+				</switch>
+				<switch appMode="car" tag="barrier" order="-1">
+					<case value="cattle_grid"/>
+					<case maxzoom="18" value="turnstile"/>
+				</switch>
+				<switch appMode="bicycle" tag="barrier" order="-1">
+					<case value="height_restrictor"/>
+				</switch>
+				<case tag="place" value="quarter"/>
+				<case tag="osmand" value="file_waypoint"/>
+				<case tag="osmand" value="fav"/>
+
+			</switch>
+
+			<!-- Polygon -->
+			<switch area="true" point="false" objectType="3" order="5">
+				<switch layer="-1" order="3">
+					<case tag="natural" value="coastline"/>
+					<case tag="natural" value="land"/>
+					<case tag="place" value="island"/>
+					<case tag="" value=""/>
+				</switch>
+				<case cycle="true" tag="leisure" value="nature_reserve" order="9"/>
+				<case tag="leisure" value="nature_reserve" order="9"/>
+				<case tag="military" value="danger_area" order="8"/>
+				<case tag="railway" value="" order="4"/>
+				<case tag="railway" value="station" order="5">
+					<apply_if maxzoom="12">
+						<switch>
+							<case additional="disused=yes"/>
+							<apply order="-1"/>
+						</switch>
+					</apply_if>
+				</case>
+				<switch hideUnderground="true" layer="-1">
 					<case tag="public_transport" value="platform"/>
 					<case tag="public_transport" value="station"/>
-					<apply order="10"/>
+					<apply order="-1"/>
 				</switch>
-				<case tag="public_transport" value="" order="36"/>
+				<switch appMode="car" maxzoom="18" layer="-1">
+					<case tag="public_transport" value="platform"/>
+					<case tag="public_transport" value="station"/>
+					<apply order="-1"/>
+				</switch>
+				<case tag="public_transport" value="" order="5"/>
+				<case tag="historic" value="archaeological_site"/>
+				<case tag="historic" value="memorial"/>
+				<case tag="historic" value="ruins"/>
+				<case tag="historic" value="ship"/>
+				<case tag="barrier" value="city_wall"/>
+				<case tag="barrier" value="wall"/>
+				<case tag="man_made" value="reinforced_slope"/>
+				<case tag="man_made" value="breakwater"/>
+				<case tag="man_made" value="groyne"/>
+				<case tag="man_made" value="bridge"/>
+				<case tag="building:part" value="" order="100"/>
 			</switch>
-			<case tag="public_transport" value="" order="58"/>
-			<!-- Over buildings -->
-			<case tag="aerialway" value="" order="96"/>
-			<case tag="aerialway" value="station" order="96"/>
-			<case tag="power" value="line" order="96"/>
-			<case tag="power" value="minor_line" order="96"/>
-			<switch order="58">
+			<switch cycle="true" point="false" objectType="3" order="5">
 				<switch>
-					<case tag="railway" value="rail" additional="network=rer"/>
-					<case tag="railway" value="subway">
-						<apply_if subwayMode="false" maxzoom="16" order="-1"/>
-						<apply_if subwayMode="false" moreDetailed="true" minzoom="16" maxzoom="16" order="58"/>
-						<apply_if subwayMode="true" order="90"/>
-					</case>
-					<apply_if hideUnderground="true" subwayMode="false" layer="-1" order="-1"/>
-				</switch>
-				<switch>
-					<case tag="railway" value="rail">
-						<apply_if maxzoom="14" order="50"/>
-						<apply_if additional="service=spur">
-							<case maxzoom="12" order="-1"/>
-							<case minzoom="13" order="40"/>
-						</apply_if>
-					</case>
-					<case tag="railway" value="tram">
-						<apply_if minzoom="18" order="100"/>
-					</case>
-					<case tag="railway" value="light_rail"/>
-					<case tag="railway" value="monorail"/>
-					<case tag="railway" value="funicular"/>
-					<case tag="railway" value="abandoned"/>
-					<case tag="railway" value="construction"/>
-					<case tag="railway" value="disused"/>
+					<case tag="area:highway" value="motorway"/>
+					<case tag="area:highway" value="trunk"/>
+					<case tag="area:highway" value="primary"/>
+					<case tag="area:highway" value="secondary"/>
+					<case tag="area:highway" value="tertiary"/>
+					<case tag="area:highway" value="pedestrian"/>
+					<case tag="area:highway" value="service"/>
+					<case tag="area:highway" value="road"/>
+					<case tag="area:highway" value="unclassified"/>
+					<case tag="area:highway" value="service"/>
+					<case tag="highway" value="rest_area"/>
+					<case tag="area:highway" value="residential"/>
+					<case tag="area:highway" value="footway"/>
+					<case tag="area:highway" value="track"/>
+					<case tag="man_made" value="bridge"/>
+					<apply order="7"/>
 					<apply_if hideUnderground="true" layer="-1" order="-1"/>
 				</switch>
-				<apply_if subwayMode="false" layer="-1" minzoom="9" maxzoom="18">
-					<apply_if appMode="car" order="-1"/>
-					<apply_if appMode="bicycle" order="-1"/>
-				</apply_if>
-			</switch>
-			<case tag="railway" value="" order="58"/>
-			<case tag="route_bus" value="" order="105"/>
-			<case tag="route_share_taxi" value="" order="104"/>
-			<case tag="route_monorail" value="" order="103"/>
-			<case tag="route_funicular" value="" order="103"/>
-			<case tag="route_light_rail" value="" order="102"/>
-			<case tag="route_train" value="" order="101"/>
-			<case tag="route_tram" value="" order="100"/>
-			<case tag="route_trolleybus" value="" order="101"/>
-			<case tag="route_bicycle" value="" order="128"/>
-			<case tag="route_mtb" value="" order="60"/>
-
-			<case layer="1" tag="railway" value="" order="88"/>
-			<case tag="railway" value="station"/>
-
-			<case tag="amenity" value="ferry_terminal"/>
-
-			<case tag="natural" value="cliff"/>
-			<case tag="natural" value="slope"/>
-			<case tag="natural" value="earth_bank"/>
-			<case tag="natural" value="crater"/>
-			<case tag="natural" value="volcano"/>
-			<case tag="natural" value="strait"/>
-			<case tag="natural" value="fjord"/>
-
-			<case tag="waterway" value="dam"/>
-			<case tag="waterway" value="weir" order="19"/>
-			<case tag="waterway" value="wadi"/>
-			<case tag="waterway" value="" order="18">
-				<apply_if layer="1" order="68"/>
-				<apply_if OSMMapperAssistant="false" layer="-1" maxzoom="17" order="-1"/>
-				<apply_if layer="-1" appMode="car" order="-1"/>
-				<apply_if maxzoom="15" layer="-1" appMode="bicycle" order="-1"/>
-				<apply_if hideUnderground="true" layer="-1" order="-1"/>
-			</case>
-			<case tag="attraction" value="water_slide"/>
-			<case tag="attraction" value="roller_coaster"/>
-			<case tag="attraction" value="train"/>
-
-			<switch>
-				<case tag="lcn_network" value="lcn" order="112"/>
-				<case tag="rcn_network" value="rcn" order="111"/>
-				<case tag="ncn_network" value="ncn" order="110"/>
-				<case tag="icn_network" value="icn" order="110"/>
-				<case tag="lcn_ref" value="" order="112"/>
-				<case tag="rcn_ref" value="" order="111"/>
-				<case tag="ncn_ref" value="" order="110"/>
-				<case tag="icn_ref" value="" order="110"/>
-				<apply_if point="true" objectType="1" order="74"/>
-			</switch>
-
-			<case tag="network_iwn" value="" order="115"/>
-			<case tag="network_nwn" value="" order="116"/>
-			<case tag="network_rwn" value="" order="117"/>
-			<case tag="network_lwn" value="" order="118"/>
-			<switch hikingRoutesOSMC="walkingRoutesScopeOSMC" order="114">
-				<case tag="route_hiking" value=""/>
-				<case tag="route_foot" value=""/>
-				<case tag="route_walking" value=""/>
-			</switch>
-			<!-- Admin_levels under highways unless appMode=default -->
-			<case tag="admin_level" value="" order="62">
-				<case appMode="pedestrian"/>
-				<case appMode="bicycle"/>
-				<case appMode="car"/>
-				<apply order="34"/>
-			</case>
-
-			<case tag="administrative" value="" order="62"/>
-			<case tag="boundary" value="" order="62"/>
-			<case tag="addr:interpolation" value=""/>
-
-			<!-- Highways: 35-57, bridges 70-88 -->
-			<switch>
+				<case tag="highway" value="services"/>
+				<case tag="landuse" value="military" order="8"/>
+				<case tag="military" value="danger_area" order="8"/>
+				<case tag="landuse" value="cemetery" order="5"/>
+				<case tag="amenity" value="motorcycle_parking">
+					<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
+				</case>
+				<case tag="amenity" value="bicycle_parking">
+					<apply_if appMode="default" maxzoom="17" order="-1"/>
+					<apply_if appMode="pedestrian" maxzoom="18" order="-1"/>
+					<apply_if appMode="car" maxzoom="18" order="-1"/>
+				</case>
+				<case tag="amenity" value="taxi">
+					<apply_if appMode="bicycle" maxzoom="17" order="-1"/>
+				</case>
 				<switch>
-					<case tag="highway" value="motorway" order="57">
-						<apply_if layer="1" order="87"/>
+					<case tag="amenity" value="fuel" ignorePolygonArea="true"/>
+					<case tag="amenity" value="charging_station" ignorePolygonArea="true"/>
+					<case tag="amenity" value="car_wash"/>
+					<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
+					<apply_if appMode="bicycle" maxzoom="16" order="-1"/>
+				</switch>
+				<case tag="amenity" value="vehicle_inspection">
+					<apply_if appMode="pedestrian" order="-1"/>
+					<apply_if appMode="bicycle" order="-1"/>
+				</case>
+				<case tag="amenity" value="fountain"/>
+				<case tag="railway" value="station" ignorePolygonArea="true"/>
+				<case tag="aerialway" value="station" ignorePolygonArea="true"/>
+				<case tag="public_transport" value="" order="5" ignorePolygonArea="true"/>
+				<case tag="leisure" value="nature_reserve" order="9"/>
+				<case tag="boundary" value="protected_area" order="9"/>
+				<case tag="harbour" value="yes"/>
+				<case tag="waterway" value="dock"/>
+				<case tag="waterway" value="wadi"/>
+				<case tag="natural" value="crater"/>
+				<case tag="natural" value="volcano"/>
+				<case tag="natural" value="sinkhole"/>
+				<case tag="natural" value="hot_spring"/>
+				<case tag="natural" value="geyser"/>
+				<case tag="natural" value="wetland" order="6"/>
+				<case tag="historic" value="archaeological_site"/>
+				<case tag="historic" value="memorial"/>
+				<case tag="historic" value="ruins"/>
+				<case tag="historic" value="ship"/>
+				<case tag="amenity" value="ferry_terminal" ignorePolygonArea="true"/>
+				<case tag="geological" value="palaeontological_site"/>
+				<case tag="tourism" value="attraction"/>
+				<case tag="attraction" value="train"/>
+				<case tag="attraction" value="log_flume"/>
+				<case tag="building" value="no" order="-1"/>
+				<case hideProposed="true" tag="building" value="proposed" order="-1"/>
+				<switch>
+					<case tag="man_made" value="storage_tank"/>
+					<case tag="man_made" value="silo"/>
+					<case tag="man_made" value="reservoir_covered"/>
+					<case tag="military" value="bunker"/>
+					<case tag="military" value="barracks"/>
+					<case tag="man_made" value="chimney"/>
+					<case tag="man_made" value="tower"/>
+					<case tag="man_made" value="monitoring_station"/>
+					<case tag="building" value="" order="15"/>
+					<case tag="abandoned:building" value="no" order="-1"/>
+					<case tag="abandoned:building" value=""/>
+					<case tag="disused:building" value="no" order="-1"/>
+					<case tag="disused:building" value=""/>
+					<apply_if moreDetailed="false" minzoom="15" maxzoom="15" order="-1"/>
+				</switch>
+				<case tag="abandoned:place" value="" order="10"/>
+				<case tag="abandoned:landuse" value="" order="10"/>
+				<case tag="landuse" value="landfill" order="4"/>
+				<case tag="man_made" value="spoil_heap" order="4"/>
+
+				<case tag="man_made" value="petroleum_well"/>
+				<case tag="man_made" value="reinforced_slope"/>
+				<case tag="waterway" value="dam"/>
+				<case tag="waterway" value="weir"/>
+				<case tag="waterway" value="rapids"/>
+				<switch order="5">
+					<case tag="natural" value="water"/>
+					<case tag="waterway" value="riverbank"/>
+					<case tag="abandoned:aeroway" value="runway"/>
+					<case tag="aeroway" value="runway"/>
+					<case tag="abandoned:aeroway" value="aerodrome"/>
+					<case tag="aeroway" value="aerodrome" ignorePolygonArea="true"/>
+					<case tag="aeroway" value="apron"/>
+					<case tag="aeroway" value="terminal"/>
+					<case tag="aeroway" value="helipad"/>
+				</switch>
+				<case tag="place" value="quarter"/>
+				<case tag="addr:interpolation" value=""/>
+				<case tag="hazard" value="" order="128"/>
+				<case tag="fixme_tag" value="yes" order="128"/>
+				<case tag="note_tag" value="yes"/>
+				<case tag="" value="" order="5"/>
+			</switch>
+
+			<!-- Line -->
+			<switch area="false" objectType="2" order="80">
+				<!-- default line -->
+				<case layer="-1" tag="" value="" order="10"/>
+				<case tag="" value="" order="11"/>
+				<switch hideUnderground="true" layer="-1">
+					<case tag="public_transport" value="platform"/>
+					<case tag="public_transport" value="station"/>
+					<apply order="-1"/>
+				</switch>
+
+				<switch appMode="car">
+					<case tag="railway" value="" order="36">
+						<case layer="1" order="71"/>
 					</case>
-					<case tag="highway" value="motorway_link" order="44">
-						<apply_if layer="1" order="74"/>
-					</case>
-					<case tag="highway" value="trunk" order="56">
-						<apply_if layer="1" order="86"/>
-					</case>
-					<case tag="highway" value="trunk_link" order="43">
-						<apply_if layer="1" order="73"/>
-					</case>
-					<case tag="highway" value="primary" order="55">
-						<apply_if layer="1" order="85"/>
-					</case>
-					<case tag="highway" value="primary_link" order="42">
-						<apply_if layer="1" order="72"/>
-					</case>
-					<case tag="highway" value="secondary" order="54">
-						<apply_if layer="1" order="84"/>
-					</case>
-					<case tag="highway" value="secondary_link" order="41">
-						<apply_if layer="1" order="71"/>
-					</case>
-					<case tag="highway" value="tertiary" order="53">
-						<apply_if layer="1" order="83"/>
-					</case>
-					<case tag="highway" value="tertiary_link" order="40">
-						<apply_if layer="1" order="70"/>
-					</case>
-					<case tag="highway" value="road" order="52">
-						<apply_if layer="1" order="82"/>
-					</case>
-					<case tag="highway" value="unclassified" order="52">
-						<apply_if layer="1" order="82"/>
-					</case>
-					<case tag="highway" value="residential" order="51">
-						<apply_if layer="1" order="81"/>
-					</case>
-					<case tag="highway" value="service" order="51">
-						<apply_if layer="1" order="81"/>
-					</case>
-					<case tag="highway" value="living_street" order="50">
+					<switch layer="-1">
+						<case tag="public_transport" value="platform"/>
+						<case tag="public_transport" value="station"/>
+						<apply order="10"/>
+					</switch>
+					<case tag="public_transport" value="" order="36"/>
+				</switch>
+				<case tag="public_transport" value="" order="58"/>
+				<!-- Over buildings -->
+				<case tag="aerialway" value="" order="96"/>
+				<case tag="aerialway" value="station" order="96"/>
+				<case tag="power" value="line" order="96"/>
+				<case tag="power" value="minor_line" order="96"/>
+				<switch order="58">
+					<switch>
+						<case tag="railway" value="rail" additional="network=rer"/>
+						<case tag="railway" value="subway">
+							<apply_if subwayMode="false" maxzoom="16" order="-1"/>
+							<apply_if subwayMode="false" moreDetailed="true" minzoom="16" maxzoom="16" order="58"/>
+							<apply_if subwayMode="true" order="90"/>
+						</case>
+						<apply_if hideUnderground="true" subwayMode="false" layer="-1" order="-1"/>
+					</switch>
+					<switch>
+						<case tag="railway" value="rail">
+							<apply_if maxzoom="14" order="50"/>
+							<apply_if additional="service=spur">
+								<case maxzoom="12" order="-1"/>
+								<case minzoom="13" order="40"/>
+							</apply_if>
+						</case>
+						<case tag="railway" value="tram">
+							<apply_if minzoom="18" order="100"/>
+						</case>
+						<case tag="railway" value="light_rail"/>
+						<case tag="railway" value="monorail"/>
+						<case tag="railway" value="funicular"/>
+						<case tag="railway" value="abandoned"/>
+						<case tag="railway" value="construction"/>
+						<case tag="railway" value="disused"/>
+						<apply_if hideUnderground="true" layer="-1" order="-1"/>
+					</switch>
+					<apply_if subwayMode="false" layer="-1" minzoom="9" maxzoom="18">
+						<apply_if appMode="car" order="-1"/>
+						<apply_if appMode="bicycle" order="-1"/>
+					</apply_if>
+				</switch>
+				<case tag="railway" value="" order="58"/>
+				<case tag="route_bus" value="" order="105"/>
+				<case tag="route_share_taxi" value="" order="104"/>
+				<case tag="route_monorail" value="" order="103"/>
+				<case tag="route_funicular" value="" order="103"/>
+				<case tag="route_light_rail" value="" order="102"/>
+				<case tag="route_train" value="" order="101"/>
+				<case tag="route_tram" value="" order="100"/>
+				<case tag="route_trolleybus" value="" order="101"/>
+				<case tag="route_bicycle" value="" order="128"/>
+				<case tag="route_mtb" value="" order="60"/>
+
+				<case layer="1" tag="railway" value="" order="88"/>
+				<case tag="railway" value="station"/>
+
+				<case tag="amenity" value="ferry_terminal"/>
+
+				<case tag="natural" value="cliff"/>
+				<case tag="natural" value="slope"/>
+				<case tag="natural" value="earth_bank"/>
+				<case tag="natural" value="crater"/>
+				<case tag="natural" value="volcano"/>
+				<case tag="natural" value="strait"/>
+				<case tag="natural" value="fjord"/>
+
+				<case tag="waterway" value="dam"/>
+				<case tag="waterway" value="weir" order="19"/>
+				<case tag="waterway" value="wadi"/>
+				<case tag="waterway" value="" order="18">
+					<apply_if layer="1" order="68"/>
+					<apply_if OSMMapperAssistant="false" layer="-1" maxzoom="17" order="-1"/>
+					<apply_if layer="-1" appMode="car" order="-1"/>
+					<apply_if maxzoom="15" layer="-1" appMode="bicycle" order="-1"/>
+					<apply_if hideUnderground="true" layer="-1" order="-1"/>
+				</case>
+				<case tag="attraction" value="water_slide"/>
+				<case tag="attraction" value="roller_coaster"/>
+				<case tag="attraction" value="train"/>
+
+				<switch>
+					<case tag="lcn_network" value="lcn" order="112"/>
+					<case tag="rcn_network" value="rcn" order="111"/>
+					<case tag="ncn_network" value="ncn" order="110"/>
+					<case tag="icn_network" value="icn" order="110"/>
+					<case tag="lcn_ref" value="" order="112"/>
+					<case tag="rcn_ref" value="" order="111"/>
+					<case tag="ncn_ref" value="" order="110"/>
+					<case tag="icn_ref" value="" order="110"/>
+					<apply_if point="true" objectType="1" order="74"/>
+				</switch>
+
+				<case tag="network_iwn" value="" order="115"/>
+				<case tag="network_nwn" value="" order="116"/>
+				<case tag="network_rwn" value="" order="117"/>
+				<case tag="network_lwn" value="" order="118"/>
+				<switch hikingRoutesOSMC="walkingRoutesScopeOSMC" order="114">
+					<case tag="route_hiking" value=""/>
+					<case tag="route_foot" value=""/>
+					<case tag="route_walking" value=""/>
+				</switch>
+				<!-- Admin_levels under highways unless appMode=default -->
+				<case tag="admin_level" value="" order="62">
+					<case appMode="pedestrian"/>
+					<case appMode="bicycle"/>
+					<case appMode="car"/>
+					<apply order="34"/>
+				</case>
+
+				<case tag="administrative" value="" order="62"/>
+				<case tag="boundary" value="" order="62"/>
+				<case tag="addr:interpolation" value=""/>
+
+				<!-- Highways: 35-57, bridges 70-88 -->
+				<switch>
+					<switch>
+						<case tag="highway" value="motorway" order="57">
+							<apply_if layer="1" order="87"/>
+						</case>
+						<case tag="highway" value="motorway_link" order="44">
+							<apply_if layer="1" order="74"/>
+						</case>
+						<case tag="highway" value="trunk" order="56">
+							<apply_if layer="1" order="86"/>
+						</case>
+						<case tag="highway" value="trunk_link" order="43">
+							<apply_if layer="1" order="73"/>
+						</case>
+						<case tag="highway" value="primary" order="55">
+							<apply_if layer="1" order="85"/>
+						</case>
+						<case tag="highway" value="primary_link" order="42">
+							<apply_if layer="1" order="72"/>
+						</case>
+						<case tag="highway" value="secondary" order="54">
+							<apply_if layer="1" order="84"/>
+						</case>
+						<case tag="highway" value="secondary_link" order="41">
+							<apply_if layer="1" order="71"/>
+						</case>
+						<case tag="highway" value="tertiary" order="53">
+							<apply_if layer="1" order="83"/>
+						</case>
+						<case tag="highway" value="tertiary_link" order="40">
+							<apply_if layer="1" order="70"/>
+						</case>
+						<case tag="highway" value="road" order="52">
+							<apply_if layer="1" order="82"/>
+						</case>
+						<case tag="highway" value="unclassified" order="52">
+							<apply_if layer="1" order="82"/>
+						</case>
+						<case tag="highway" value="residential" order="51">
+							<apply_if layer="1" order="81"/>
+						</case>
+						<case tag="highway" value="service" order="51">
+							<apply_if layer="1" order="81"/>
+						</case>
+						<case tag="highway" value="living_street" order="50">
+							<apply_if layer="1" order="80"/>
+						</case>
+						<case tag="highway" value="escape" order="51">
+							<apply_if appMode="car" order="80"/>
+						</case>
+						<apply_if appMode="pedestrian" hideUnderground="true" layer="-1" order="-1"/>
+					</switch>
+					<case tag="highway" value="pedestrian" order="50">
+						<apply_if appMode="pedestrian" order="58"/>
 						<apply_if layer="1" order="80"/>
 					</case>
-					<case tag="highway" value="escape" order="51">
-						<apply_if appMode="car" order="80"/>
-					</case>
-					<apply_if appMode="pedestrian" hideUnderground="true" layer="-1" order="-1"/>
+					<apply_if maxzoom="13" additional="construction=yes" order="-1"/>
 				</switch>
-				<case tag="highway" value="pedestrian" order="50">
-					<apply_if appMode="pedestrian" order="58"/>
-					<apply_if layer="1" order="80"/>
+	<!--			<case tag="highway" value="construction" order="46">
+					<apply_if layer="1" order="76"/>
+				</case>-->
+				<case tag="highway" value="proposed" order="45">
+					<apply_if layer="1" order="75"/>
+					<apply_if hideProposed="true" order="-1"/>
 				</case>
-				<apply_if maxzoom="13" additional="construction=yes" order="-1"/>
-			</switch>
-<!--			<case tag="highway" value="construction" order="46">
-				<apply_if layer="1" order="76"/>
-			</case>-->
-			<case tag="highway" value="proposed" order="45">
-				<apply_if layer="1" order="75"/>
-				<apply_if hideProposed="true" order="-1"/>
-			</case>
 
-			<case tag="ford" value="yes" order="80"/>
-			<case tag="ford" value="stepping_stones" order="80"/>
-			<case tag="highway" value="rest_area" order="80"/>
+				<case tag="ford" value="yes" order="80"/>
+				<case tag="ford" value="stepping_stones" order="80"/>
+				<case tag="highway" value="rest_area" order="80"/>
 
-			<case tag="highway" value="track" order="37">
-				<apply_if appMode="pedestrian" order="60"/>
-				<apply_if appMode="bicycle" order="61"/>
-				<apply_if layer="1" order="90"/>
-			</case>
-			<case tag="highway" value="cycleway" order="39">
-				<apply_if appMode="pedestrian" order="59"/>
-				<apply_if layer="1" order="70"/>
-				<apply_if appMode="bicycle" order="143">
-					<apply_if layer="1" order="143"/>
-				</apply_if>
-				<apply_if appMode="default" moreDetailed="false" maxzoom="15" order="-1"/>
-			</case>
-			<case appMode="bicycle" tag="cycleway" value="" order="143">
-				<apply_if layer="1" order="144"/>
-			</case>
-			<case appMode="default" tag="cycleway" value="" moreDetailed="false" maxzoom="15" order="-1"/>
-			<case appMode="bicycle" tag="bicycle_road" value="yes" order="143">
-				<apply_if layer="1" order="144"/>
-			</case>
-			<case appMode="default" tag="bicycle_road" value="yes" moreDetailed="false" maxzoom="15" order="-1"/>
-			<switch>
+				<case tag="highway" value="track" order="37">
+					<apply_if appMode="pedestrian" order="60"/>
+					<apply_if appMode="bicycle" order="61"/>
+					<apply_if layer="1" order="90"/>
+				</case>
+				<case tag="highway" value="cycleway" order="39">
+					<apply_if appMode="pedestrian" order="59"/>
+					<apply_if layer="1" order="70"/>
+					<apply_if appMode="bicycle" order="143">
+						<apply_if layer="1" order="143"/>
+					</apply_if>
+					<apply_if appMode="default" moreDetailed="false" maxzoom="15" order="-1"/>
+				</case>
+				<case appMode="bicycle" tag="cycleway" value="" order="143">
+					<apply_if layer="1" order="144"/>
+				</case>
+				<case appMode="default" tag="cycleway" value="" moreDetailed="false" maxzoom="15" order="-1"/>
+				<case appMode="bicycle" tag="bicycle_road" value="yes" order="143">
+					<apply_if layer="1" order="144"/>
+				</case>
+				<case appMode="default" tag="bicycle_road" value="yes" moreDetailed="false" maxzoom="15" order="-1"/>
 				<switch>
-					<case tag="highway" value="path" order="37">
-						<apply_if appMode="pedestrian" order="60"/>
-						<apply_if appMode="bicycle" order="60"/>
-						<apply_if appMode="default" moreDetailed="false">
-							<apply_if minzoom="14" maxzoom="15" order="-1"/>
+					<switch>
+						<case tag="highway" value="path" order="37">
+							<apply_if appMode="pedestrian" order="60"/>
+							<apply_if appMode="bicycle" order="60"/>
+							<apply_if appMode="default" moreDetailed="false">
+								<apply_if minzoom="14" maxzoom="15" order="-1"/>
+							</apply_if>
+						</case>
+						<case tag="highway" value="footway" order="37">
+							<apply_if appMode="pedestrian" order="60"/>
+							<apply_if appMode="bicycle" moreDetailed="false" order="60">
+								<apply_if minzoom="15" maxzoom="15" order="-1"/>
+							</apply_if>
+							<apply_if appMode="default" moreDetailed="false">
+								<apply_if minzoom="14" maxzoom="15" order="-1"/>
+							</apply_if>
+							<apply_if additional="footway=crossing" order="90"/>
+						</case>
+						<case tag="highway" value="bridleway" order="37">
+							<apply_if appMode="pedestrian" order="59"/>
+						</case>
+						<apply_if maxzoom="15" layer="1" order="40">
+							<apply_if minzoom="16" order="90"/>
+							<apply_if appMode="default" moreDetailed="false" order="-1"/>
 						</apply_if>
-					</case>
-					<case tag="highway" value="footway" order="37">
-						<apply_if appMode="pedestrian" order="60"/>
-						<apply_if appMode="bicycle" moreDetailed="false" order="60">
+					</switch>
+					<case tag="highway" value="steps" order="38">
+						<apply_if appMode="pedestrian" order="61"/>
+						<apply_if appMode="default" moreDetailed="false">
 							<apply_if minzoom="15" maxzoom="15" order="-1"/>
+							<apply_if additional="conveying=yes" layer="-1" maxzoom="16" order="-1"/>
 						</apply_if>
-						<apply_if appMode="default" moreDetailed="false">
-							<apply_if minzoom="14" maxzoom="15" order="-1"/>
+						<apply_if layer="1" order="91">
+							<apply_if maxzoom="15" order="40"/>
+							<apply_if appMode="default" moreDetailed="false" maxzoom="15" order="-1"/>
 						</apply_if>
-						<apply_if additional="footway=crossing" order="90"/>
 					</case>
-					<case tag="highway" value="bridleway" order="37">
-						<apply_if appMode="pedestrian" order="59"/>
-					</case>
-					<apply_if maxzoom="15" layer="1" order="40">
-						<apply_if minzoom="16" order="90"/>
-						<apply_if appMode="default" moreDetailed="false" order="-1"/>
+					<apply_if hideUnderground="true" additional="tunnel=yes" order="-1"/>
+					<apply_if hideUnderground="true" additional="indoor=yes" order="-1"/>
+					<apply_if appMode="car">
+						<case layer="0" maxzoom="18" order="-1"/>
+						<case layer="-1" maxzoom="18" order="-1"/>
+						<case layer="1" order="34"/>
 					</apply_if>
 				</switch>
-				<case tag="highway" value="steps" order="38">
-					<apply_if appMode="pedestrian" order="61"/>
-					<apply_if appMode="default" moreDetailed="false">
-						<apply_if minzoom="15" maxzoom="15" order="-1"/>
-						<apply_if additional="conveying=yes" layer="-1" maxzoom="16" order="-1"/>
-					</apply_if>
-					<apply_if layer="1" order="91">
-						<apply_if maxzoom="15" order="40"/>
-						<apply_if appMode="default" moreDetailed="false" maxzoom="15" order="-1"/>
-					</apply_if>
+
+				<case tag="highway" value="raceway"/>
+				<case tag="abandoned:highway" value=""/>
+
+				<case tag="natural" value="coastline_broken" order="35"/>
+				<case tag="natural" value="coastline_line" order="35"/>
+				<case tag="route" value="ferry" order="35"/>
+
+				<case tag="abandoned:aeroway" value="runway"/>
+				<case tag="aeroway" value="runway"/>
+				<case tag="aeroway" value="" order="32"/>
+				<case tag="contour" value="" order="15"/>
+
+				<case appMode="car" maxzoom="17" tag="barrier" value="hedge" order="-1"/>
+
+				<case tag="barrier" value="" order="20">
+					<apply_if appMode="car" layer="-1" order="-1"/>
+					<apply_if hideUnderground="true" layer="-1" order="-1"/>
+					<apply_if hideUnderground="true" additional="covered=yes" order="-1"/>
+					<apply_if hideUnderground="true" additional="indoor=yes" order="-1"/>
 				</case>
-				<apply_if hideUnderground="true" additional="tunnel=yes" order="-1"/>
-				<apply_if hideUnderground="true" additional="indoor=yes" order="-1"/>
-				<apply_if appMode="car">
-					<case layer="0" maxzoom="18" order="-1"/>
-					<case layer="-1" maxzoom="18" order="-1"/>
-					<case layer="1" order="34"/>
-				</apply_if>
+				<case tag="man_made" value="dyke" order="10"/>
+				<case tag="man_made" value="reinforced_slope"/>
+				<case tag="man_made" value="embankment" order="10"/>
+				<case tag="man_made" value="pipeline">
+					<apply_if layer="-1" order="-1"/>
+					<apply_if appMode="car" order="-1"/>
+				</case>
+				<case tag="man_made" value="cutline" order="5"/>
+				<case tag="hazard" value="" order="1"/>
+				<case tag="fixme_tag" value="yes" order="2"/>
+				<case tag="note_tag" value="yes"/>
+				<case tag="lit" value="" order="1"/>
+				<case hideUnderground="true" tag="lit_pedestrian_layer-1" value="" order="-1"/>
+				<case appMode="car" tag="lit_pedestrian_layer-1" value="" order="-1"/>
+				<case tag="building:part" value=""/>
+				<case tag="osmand" value="file_trackline"/>
+				<case tag="osmand" value="file_routeline"/>
 			</switch>
-
-			<case tag="highway" value="raceway"/>
-			<case tag="abandoned:highway" value=""/>
-
-			<case tag="natural" value="coastline_broken" order="35"/>
-			<case tag="natural" value="coastline_line" order="35"/>
-			<case tag="route" value="ferry" order="35"/>
-
-			<case tag="abandoned:aeroway" value="runway"/>
-			<case tag="aeroway" value="runway"/>
-			<case tag="aeroway" value="" order="32"/>
-			<case tag="contour" value="" order="15"/>
-
-			<case appMode="car" maxzoom="17" tag="barrier" value="hedge" order="-1"/>
-
-			<case tag="barrier" value="" order="20">
-				<apply_if appMode="car" layer="-1" order="-1"/>
-				<apply_if hideUnderground="true" layer="-1" order="-1"/>
-				<apply_if hideUnderground="true" additional="covered=yes" order="-1"/>
-				<apply_if hideUnderground="true" additional="indoor=yes" order="-1"/>
-			</case>
-			<case tag="man_made" value="dyke" order="10"/>
-			<case tag="man_made" value="reinforced_slope"/>
-			<case tag="man_made" value="embankment" order="10"/>
-			<case tag="man_made" value="pipeline">
-				<apply_if layer="-1" order="-1"/>
-				<apply_if appMode="car" order="-1"/>
-			</case>
-			<case tag="man_made" value="cutline" order="5"/>
-			<case tag="hazard" value="" order="1"/>
-			<case tag="fixme_tag" value="yes" order="2"/>
-			<case tag="note_tag" value="yes"/>
-			<case tag="lit" value="" order="1"/>
-			<case hideUnderground="true" tag="lit_pedestrian_layer-1" value="" order="-1"/>
-			<case appMode="car" tag="lit_pedestrian_layer-1" value="" order="-1"/>
-			<case tag="building:part" value=""/>
-			<case tag="osmand" value="file_trackline"/>
-			<case tag="osmand" value="file_routeline"/>
+			<apply_if hideOverground="true" minzoom="15" layer="0" order="-1"/>
+			<apply_if hideOverground="true" minzoom="15" layer="1" order="-1"/>
 		</switch>
-
 	</order>
 
 
