@@ -8,12 +8,13 @@ if [ $# -eq 0 ]
     echo "  With only 1 argument given the script will generate defaults for the other arguments."
     echo "  It is best to supply all 4 arguments."
     echo ""
-    echo "  $ gen_voice.sh <language folder> <language> <voice generator> <prefix for zip file>"
+    echo "  $ gen_voice.sh <language folder> <language> <voice generator> <prefix for zip file> <tempo>"
     echo ""
     echo "  examples:"
     echo "     ./gen_voice.sh de German google de"
     echo "     ./gen_voice.sh en English fest en-m"
     echo "     ./gen_voice.sh en English google en"
+    echo "     ./gen_voice.sh en English google en 1.3"
     echo "     ./gen_voice.sh sl Slovenian govorec sl"
     echo ""
     echo " The script requires the sox and mpg123 packages to be installed."
@@ -54,7 +55,11 @@ cd work
 # < 1.0 .. slower
 # = 1.0 .. no change
 # > 1.0 .. faster
+
+TEMPO_FACTOR=$5
+if [ -z $TEMPO_FACTOR ]; then
 TEMPO_FACTOR="1.0"
+fi
 
 echo "Interpreting the ttsconfig.p prolog file..."
 if [ $ENGINE = "google" ]; then
