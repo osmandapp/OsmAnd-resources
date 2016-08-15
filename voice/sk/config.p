@@ -40,7 +40,6 @@ string('right_sh.ogg', 'zahnite prudko doprava').
 string('right_sl.ogg', 'zahnite mierne doprava').
 string('left_keep.ogg', 'držte sa vľavo').
 string('right_keep.ogg', 'držte sa vpravo').
-% Note: turn('left_keep'/'right_keep',[]) is a turn type aiding lane selection, while bear_left()/bear_right() are triggered as brief "turn-after-next" preparation sounding always after a "..., then...". In some languages l/r_keep may not differ from bear_l/r:
 string('left_bear.ogg', 'sa držte vľavo').      % in English the same as left_keep, may be different in other languages
 string('right_bear.ogg', 'sa držte vpravo').    % in English the same as right_keep, may be different in other languages
 
@@ -96,6 +95,7 @@ string('and_arrive_poi.ogg', 'a prejdete bodom záujmu ').
 string('reached_poi.ogg', 'dorazili ste k bodu záujmu ').
 
 % ATTENTION
+%string('exceed_limit.ogg', 'Prekročili ste maximálnu povolenú rýchlosť').
 string('exceed_limit.ogg', 'Povolená rýchlosť ').
 string('attention.ogg', 'Pozor, ').
 string('speed_camera.ogg', 'rýchlostný radar').
@@ -163,14 +163,15 @@ turn('right_sh', ['right_sh.ogg']).
 turn('right_sl', ['right_sl.ogg']).
 turn('left_keep', ['left_keep.ogg']).
 turn('right_keep', ['right_keep.ogg']).
-bear_left(_Street)  -- ['left_bear.ogg'].
+% Note: turn('left_keep'/'right_keep',[]) is a turn type aiding lane selection, while bear_left()/bear_right() is triggered as brief "turn-after-next" preparation sounding always after a "..., then...". In some languages turn(l/r_keep) may not differ from bear_l/r:
+bear_left(_Street) -- ['left_bear.ogg'].
 bear_right(_Street) -- ['right_bear.ogg'].
 
 % assemble_street_name(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
 % assemble_street_name(voice(['', Name, _], _), Name). % not necessary
 % Next 2 lines for Name taking precedence over Dest...
-%assemble_street_name(voice([Ref, '', Dest], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Dest, Concat).
-%assemble_street_name(voice([Ref, Name, _], _), [C1, 'toward.ogg', Dest]) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
+%assemble_street_name(voice([Ref, '', Dest], _), [C1, 'toward.ogg', Dest]) :- atom_concat(Ref, ' ', C1).
+%assemble_street_name(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
 % ...or next 3 lines for Dest taking precedence over Name
 assemble_street_name(voice([Ref, Name, ''], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
 assemble_street_name(voice(['', Name, Dest], _), [C1, 'toward.ogg', Dest]) :- atom_concat(Name, ' ', C1).
