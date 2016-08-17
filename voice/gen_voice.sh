@@ -8,13 +8,13 @@ if [ $# -eq 0 ]
     echo "  With only 1 argument given the script will generate defaults for the other arguments."
     echo "  It is best to supply all 4 arguments."
     echo ""
-    echo "  $ gen_voice.sh <language folder> <language> <voice generator> <prefix for zip file> <tempo>"
+    echo "  $ gen_voice.sh <language folder> <language> <voice generator> <prefix for zip file> <tempo> <normalise yes/no>"
     echo ""
     echo "  examples:"
     echo "     ./gen_voice.sh de German google de"
     echo "     ./gen_voice.sh en English fest en-m"
     echo "     ./gen_voice.sh en English google en"
-    echo "     ./gen_voice.sh en English google en 1.3"
+    echo "     ./gen_voice.sh en English google en 1.3 yes"
     echo "     ./gen_voice.sh sl Slovenian govorec sl"
     echo ""
     echo " The script requires the sox and mpg123 packages to be installed."
@@ -24,6 +24,9 @@ if [ $# -eq 0 ]
     echo ""
     exit 1
 fi
+
+BOLD=$(tput bold)
+NORMAL=$(tput sgr0)
 
 CONFIG_FILE=$(readlink -m $1/config.p)
 TARGET_FILE=$4
@@ -35,6 +38,8 @@ ENGINE=$3
 if [ -z $ENGINE ]; then
 ENGINE="google"
 fi
+
+echo "${BOLD}Generating voice Data for $2${NORMAL}"
 
 GOAL="gen('g_config.p','$ENGINE')"
 mkdir -p work
@@ -59,6 +64,11 @@ cd work
 TEMPO_FACTOR=$5
 if [ -z $TEMPO_FACTOR ]; then
 TEMPO_FACTOR="1.0"
+fi
+
+NORMALISE=$6
+if [ -z $NORMALISE ]; then
+NORMALISE="yes"
 fi
 
 echo "Interpreting the ttsconfig.p prolog file..."
@@ -120,12 +130,26 @@ if [ $TEMPO_FACTOR != "1.0" ]; then
 	done
 fi
 
+# normalise
+if [ $NORMALISE == "yes" ]; then
+	echo "Normalising audio ..."
+	for Og in `ls *.ogg`; do
+		cp ${Og} TEMPslow_${Og}
+		sox TEMPslow_${Og} ${Og} gain -n
+		rm TEMPslow_${Og}
+	done
+fi
+
 touch .nomedia
 echo "Packaging voice files..."
 echo "Voice Data $2 ($TARGET_FILE)" | zip ${TARGET_FILE}_0.voice.zip _config.p -c
 zip ${TARGET_FILE}_0.voice.zip *.ogg .nomedia
+
+rm -f ../$1/voice/*.*
+mv *.ogg ../$1/voice/
+
 rm -f *.wav *.mp3
-rm -f *.ogg *.p
+rm -f *.p
 
 echo ""
 echo "### You can find your zipped voice file ${TARGET_FILE}_0.voice.zip in the folder work ###"
