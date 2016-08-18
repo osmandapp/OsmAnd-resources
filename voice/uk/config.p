@@ -383,7 +383,12 @@ interval(T, St, End, Step) :- interval(Init, St, End, Step), T is Init + Step, (
 
 interval(X, St, End) :- interval(X, St, End, 1).
 
-string(Ogg, B) :- voice_generation, interval(X, 1, 2), atom_number(B, X), atom_concat(B, 'm-n', A), atom_concat(A, '.ogg', Ogg).
+% string(Ogg, B) :- voice_generation, interval(X, 1, 2), atom_number(B, X), atom_concat(B, 'm-n', A), atom_concat(A, '.ogg', Ogg).
+string('1m-n.ogg', '1').
+% string('1f-n.ogg', '1'). %??
+string('2m-n.ogg', '2').
+% string('2f-n.ogg', '2'). %??
+
 string(Ogg, A) :- voice_generation, interval(X, 3, 19), atom_concat(A, '.ogg', Ogg).
 string(Ogg, A) :- voice_generation, interval(X, 20, 95, 5), atom_concat(A, '.ogg', Ogg).
 string(Ogg, A) :- voice_generation, interval(X, 100, 140, 10), atom_concat(A, '.ogg', Ogg).
