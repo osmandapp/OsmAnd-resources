@@ -347,6 +347,12 @@
 	</renderingAttribute>
 	<renderingConstant name="buildingStrokeWidth" value="0"/>
 
+	<renderingAttribute name="landuseAllotmentsColor">
+		<case nightMode="true" attrColorValue="#3b3b3b"/>
+		<case attrColorValue="#a1eca6"/>
+	</renderingAttribute>
+
+
 	<renderingConstant name="buildingTextHaloRadiusDay" value="1"/>
 	<renderingConstant name="buildingTextHaloColorDay" value="#ddf1eae4"/>
 
@@ -357,6 +363,11 @@
 	<renderingConstant name="textHaloRadiusDay" value="2"/>
 	<renderingConstant name="textHaloRadiusNight" value="2"/>
 	<renderingConstant name="defaultTextHaloColorDay" value="#ffffff"/>
+
+	<renderingConstant name="landuseManmadeTextHaloRadiusDay" value="2"/>
+	<renderingConstant name="landuseManmadeTextColorDay" value="#000000"/>
+	<renderingConstant name="landuseManmadeFadedTextColorDay" value="#525252"/>
+	<renderingConstant name="landuseManmadeTextHaloColorDay" value="#ccffffff"/>
 
 	<renderingConstant name="black" value="#000000"/>
 	<renderingConstant name="white" value="#ffffff"/>
@@ -528,6 +539,7 @@
 			<case tag="natural" value="water" order="9"/>
 			<case tag="waterway" value="riverbank" order="9"/>
 			<case tag="natural" value="wetland" order="6"/>
+			<case tag="natural" value="scrub" order="7"/>
 			<case tag="building" value="no" order="-1"/>
 			<case tag="man_made" value="storage_tank"/>
 			<case tag="man_made" value="silo"/>
@@ -542,6 +554,7 @@
 			<case tag="abandoned:building" value=""/>
 			<case tag="disused:building" value="no" order="-1"/>
 			<case tag="disused:building" value=""/>
+			<case tag="landuse" value="cemetery" order="10"/>
 			<case tag="" value="" order="5"/>
 		</switch>
 
@@ -1115,6 +1128,40 @@
 				<apply_if engine_v1="false" textDy="0"/>
 			</switch>
 		</switch>
+		<switch textSize="12" textHaloRadius="$landuseManmadeTextHaloRadiusDay" textHaloColor="$landuseManmadeTextHaloColorDay" textWrapWidth="20" textOrder="144">
+			<switch>
+				<case minzoom="14" tag="landuse" value="cemetery"/>
+				<case minzoom="15" tag="landuse" value="industrial"/>
+				<case minzoom="15" tag="landuse" value="garages"/>
+				<case minzoom="13" tag="landuse" value="railway"/>
+				<case minzoom="13" tag="landuse" value="residential"/>
+				<case minzoom="15" tag="landuse" value="farmyard"/>
+				<case minzoom="15" tag="landuse" value="retail"/>
+				<case minzoom="15" tag="landuse" value="commercial"/>
+				<case minzoom="15" tag="power" value="plant"/>
+				<case minzoom="15" tag="power" value="generator" nameTag="">
+					<apply_if additional="generator:source=wind" nameTag2="height"/>
+				</case>
+				<case minzoom="16" tag="highway" value="services"/>
+				<apply textColor="$landuseManmadeTextColorDay"/>
+			</switch>
+			<switch>
+				<case minzoom="15" tag="landuse" value="construction"/>
+				<case minzoom="14" tag="landuse" value="allotments"/>
+				<case minzoom="13" tag="landuse" value="quarry"/>
+				<case minzoom="13" tag="landuse" value="landfill"/>
+				<case minzoom="13" tag="man_made" value="spoil_heap"/>
+				<case minzoom="16" tag="power" value="substation"/>
+				<case minzoom="18" tag="power" value="transformer"/>
+				<case minzoom="15" tag="man_made" value="wastewater_plant"/>
+				<case minzoom="15" tag="landuse" value="greenfield"/>
+				<case minzoom="15" tag="landuse" value="brownfield"/>
+				<apply textColor="$landuseManmadeFadedTextColorDay"/>
+			</switch>
+			<apply_if engine_v1="true" textDy="9"/>
+			<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#77777777"/>
+			<apply_if moreDetailed="false" maxzoom="15" disable="true"/>
+		</switch>
 
 	</text>
 
@@ -1175,6 +1222,11 @@
 					 </case>
 				</switch>
 			</apply>
+		</case>
+		<case minzoom="10" tag="landuse" value="allotments" color="$landuseAllotmentsColor" color_2="#8fbda0" strokeWidth_2=":1">
+<!--			<case minzoom="13" maxzoom="14" shader="allotments_small"/>-->
+			<case minzoom="15" shader="topo_allotments"/>
+			<apply_if nightMode="true" shader="" color_2="#00510e"/>
 		</case>
 
 		<!-- Buildings -->
@@ -1284,6 +1336,9 @@
 				<apply_if nightMode="true" color="#665228" />
 			</case>-->
 		</switch>
+		<case minzoom="12" tag="landuse" value="cemetery" shader="topo_cemetery" strokeWidth_2="1" color_2="#999999">
+			<case minzoom="15" shader="topo_cemetery"/>
+		</case>
 
 		<switch>
 			<switch>
@@ -1315,6 +1370,9 @@
 			<case tag="natural" value="wood"/>
 			<case tag="landuse" value="forest"/>
 			<apply color="$woodColor"/>
+			<apply_if minzoom="14" additional="leaf_type=broadleaved" shader="topo_wood_broadleaved"/>
+			<apply_if minzoom="14" additional="leaf_type=needleleaved" shader="topo_wood_needleleaved"/>
+			<apply_if minzoom="14" additional="leaf_type=mixed" shader="topo_wood_mixed"/>
 <!--			<apply cap_2="ROUND" color_2="#0C4228">
 				<case minzoom="14" maxzoom="14" strokeWidth_2="1" pathEffect_2="1_5"/>
 				<case minzoom="15" strokeWidth_2="1.5" pathEffect_2="1_8"/>
@@ -1340,6 +1398,10 @@
 				<apply_if nightMode="true" shader="" color="$wetlandColorNight"/>
 			</switch>
 			<apply_if minzoom="15" additional="intermittent=yes" strokeWidth_2="1" color_2="#7479ec" pathEffect_2="12_5"/>
+		</case>
+		<case minzoom="12" tag="natural" value="scrub">
+			<apply_if maxzoom="13" color="#b3e3b5"/>
+			<apply_if minzoom="14" shader="topo_scrub"/>
 		</case>
 
 		<switch>
