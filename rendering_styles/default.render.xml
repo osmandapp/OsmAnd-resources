@@ -1276,8 +1276,10 @@
 		<case attrColorValue="#333333"/>
 	</renderingAttribute>
 
-	<renderingConstant name="railwayRailColorDay" value="#888888"/>
-	<renderingConstant name="railwayRailColorNight" value="#999999"/>
+	<renderingAttribute name="railwayRailColor">
+		<case nightMode="true" attrColorValue="#999999"/>
+		<case attrColorValue="#888888"/>
+	</renderingAttribute>
 	<renderingAttribute name="litYesColor">
 		<case engine_v1="false">
 			<case nightMode="true" attrColorValue="#55aeae00"/>
@@ -2025,7 +2027,9 @@
 						<apply_if appMode="bicycle" order="-1"/>
 					</apply_if>
 				</switch>
-				<case tag="railway" value="" order="58"/>
+				<case tag="railway" value="" order="58">
+					<apply_if layer="1" order="88"/>
+				</case>
 				<case tag="route_bus" value="" order="90"/>
 				<case tag="route_share_taxi" value="" order="91"/>
 				<case tag="route_monorail" value="" order="92"/>
@@ -2037,7 +2041,6 @@
 				<case tag="route_bicycle" value="" order="98"/>
 				<case tag="route_mtb" value="" order="99"/>
 
-				<case layer="1" tag="railway" value="" order="88"/>
 				<case tag="railway" value="station"/>
 
 				<case tag="amenity" value="ferry_terminal"/>
@@ -9513,9 +9516,7 @@
 			<case maxzoom="12" strokeWidth="1:1"/>
 			<case maxzoom="13" strokeWidth="1:2" color_2="#ffffff" strokeWidth_2="1" pathEffect_2="8_12"/>
 			<case minzoom="14" strokeWidth="1:2" color_2="#ffffff" strokeWidth_2="1" pathEffect_2="0_11_8_1"/>
-			<apply color="$railwayRailColorDay">
-				<apply_if nightMode="true" color="$railwayRailColorNight"/>
-			</apply>
+			<apply color="$railwayRailColor"/>
 			<apply_if additional="service=spur" color="#b0b0b0" color_2="#eeeeee">
 				<apply_if nightMode="true" color="#666666" color_2="#999999"/>
 			</apply_if>
