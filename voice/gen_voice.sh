@@ -28,7 +28,7 @@ fi
 BOLD=$(tput bold)
 NORMAL=$(tput sgr0)
 
-CONFIG_FILE=$(readlink -m $1/config.p)
+CONFIG_FILE=$1/config.p
 TARGET_FILE=$4
 if [ -z $TARGET_FILE ]; then
 TARGET_FILE="$1"
