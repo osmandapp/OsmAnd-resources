@@ -459,17 +459,17 @@ interval(T, St, End, Step) :- interval(Init, St, End, Step), T is Init + Step, (
 
 interval(X, St, End) :- interval(X, St, End, 1).
 
-string(Ogg, A) :- voice_generation, interval(X, 1, 19), num_atom(X, A), atom_concat(A, '.ogg', Ogg).
-string(Ogg, A) :- voice_generation, interval(X, 20, 95, 5), num_atom(X, A), atom_concat(A, '.ogg', Ogg).
-string(Ogg, A) :- voice_generation, interval(X, 100, 140, 10), num_atom(X, A), atom_concat(A, '.ogg', Ogg).
-string(Ogg, A) :- voice_generation, interval(X, 150, 950, 50), num_atom(X, A), atom_concat(A, '.ogg', Ogg).
-string(Ogg, A) :- voice_generation, interval(X, 1000, 9000, 1000), num_atom(X, A), atom_concat(A, '.ogg', Ogg).
+string(Ogg, A) :- voice_generation, interval(X, 1, 19), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
+string(Ogg, A) :- voice_generation, interval(X, 20, 95, 5), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
+string(Ogg, A) :- voice_generation, interval(X, 100, 140, 10), atom_number(A, X),  atom_concat(A, '.ogg', Ogg).
+string(Ogg, A) :- voice_generation, interval(X, 150, 950, 50), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
+string(Ogg, A) :- voice_generation, interval(X, 1000, 9000, 1000), atom_number(A, X), atom_concat(A, '.ogg', Ogg).
 
-string(OggD, A) :- voice_generation, interval(X, 1, 19), num_atom(X, A), atom_concat(A, '.ogg', Ogg), decline_string(Ogg, 'gen', OggD).
-string(OggD, A) :- voice_generation, interval(X, 20, 95, 5), num_atom(X, A), atom_concat(A, '.ogg', Ogg), decline_string(Ogg, 'gen', OggD).
-string(OggD, A) :- voice_generation, interval(X, 100, 140, 10), num_atom(X, A), atom_concat(A, '.ogg', Ogg), decline_string(Ogg, 'gen', OggD).
-string(OggD, A) :- voice_generation, interval(X, 150, 950, 50), num_atom(X, A), atom_concat(A, '.ogg', Ogg), decline_string(Ogg, 'gen', OggD).
-string(OggD, A) :- voice_generation, interval(X, 1000, 9000, 1000), num_atom(X, A), atom_concat(A, '.ogg', Ogg), decline_string(Ogg, 'gen', OggD).
+string(OggD, A) :- voice_generation, interval(X, 1, 19), atom_number(A, X), atom_concat(A, '.ogg', Ogg), decline_string(Ogg, 'gen', OggD).
+string(OggD, A) :- voice_generation, interval(X, 20, 95, 5), atom_number(A, X),  atom_concat(A, '.ogg', Ogg), decline_string(Ogg, 'gen', OggD).
+string(OggD, A) :- voice_generation, interval(X, 100, 140, 10), atom_number(A, X), atom_concat(A, '.ogg', Ogg), decline_string(Ogg, 'gen', OggD).
+string(OggD, A) :- voice_generation, interval(X, 150, 950, 50), atom_number(A, X), atom_concat(A, '.ogg', Ogg), decline_string(Ogg, 'gen', OggD).
+string(OggD, A) :- voice_generation, interval(X, 1000, 9000, 1000), atom_number(A, X),  atom_concat(A, '.ogg', Ogg), decline_string(Ogg, 'gen', OggD).
 
 % Nominative is the default
 dist(X, Y) :- dist(X, 'nom', Y).
