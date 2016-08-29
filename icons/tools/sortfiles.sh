@@ -827,6 +827,8 @@ mycpname craft_carpenter craft_carpenter.png
 mycpname craft_sawmill craft_sawmill.png
 mycpname craft_pottery craft_pottery.png
 mycpname craft_winery craft_winery.png
+mycpname craft_metal_construction craft_metal_construction.png
+mycpname craft_window_construction craft_window_construction.png
 
 mygroup finance money_bank2.png
 mycp amenity atm money_atm.png
