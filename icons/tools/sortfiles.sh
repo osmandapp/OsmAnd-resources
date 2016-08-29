@@ -678,7 +678,7 @@ mycp sport gymnastics sport_gymnasium.png
 mycp sport handball sport_handball.png
 mycpname ice_hockey sport_ice_hockey.png
 mycpname field_hockey sport_field_hockey.png
-mycp sport horse_racing sport_horse_racing.png
+mycp sport equestrian sport_horse_racing.png
 mycp sport motor sport_motorracing.png
 mycpname sport_free_flying sport_free_flying.png
 mycp sport rugby_league sport_rugby_league.png
