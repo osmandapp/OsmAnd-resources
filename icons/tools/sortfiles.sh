@@ -695,6 +695,7 @@ mycp sport swimming sport_swimming_outdoor.png
 mycp sport table_tennis sport_table_tennis.png
 mycp sport tennis sport_tennis.png
 mycp sport volleyball sport_volleyball.png
+mycpname beachvolleyball sport_beachvolleyball.png
 mycpname pitch sport_pitch.png
 mycpname swimming_pool sport_swimming_outdoor.png
 mycpname leisure_track sport_leisure_track.png
