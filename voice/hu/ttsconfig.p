@@ -319,6 +319,7 @@ time(Sec) -- [H] :- not(tts), S is round(Sec/300.0) * 5, hours(S, H), St is S mo
 distance(Dist, Y) -- D :- measure('km-m'), distance_km(Dist, Y) -- D.
 distance(Dist, Y) -- D :- measure('mi-f'), distance_mi_f(Dist, Y) -- D.
 distance(Dist, Y) -- D :- measure('mi-y'), distance_mi_y(Dist, Y) -- D.
+distance(Dist, Y) -- D :- measure('mi-m'), distance_mi_m(Dist, Y) -- D.
 
 %%% distance measure km/m
 distance_km(Dist, nom) -- [ X, 'meters_nom.ogg']                  :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
@@ -359,6 +360,18 @@ distance_mi_y(Dist, nom) -- ['around.ogg', X, 'miles_nom.ogg']    :- Dist < 1609
 distance_mi_y(Dist, acc) -- ['around.ogg', X, 'miles_acc.ogg']    :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
 distance_mi_y(Dist, nom) -- [ X, 'miles_nom.ogg']                 :-               D is round(Dist/1609.3),            dist(D, X).
 distance_mi_y(Dist, acc) -- [ X, 'miles_acc.ogg']                 :-               D is round(Dist/1609.3),            dist(D, X).
+
+%%% distance measure mi/m
+distance_mi_m(Dist, nom) -- [ X, 'meters_nom.ogg']                :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
+distance_mi_m(Dist, acc) -- [ X, 'meters_acc.ogg']                :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
+distance_mi_m(Dist, nom) -- [ X, 'meters_nom.ogg']                :- Dist < 1300,  D is round(2*Dist/100.0)*50,        dist(D, X).
+distance_mi_m(Dist, acc) -- [ X, 'meters_acc.ogg']                :- Dist < 1300,  D is round(2*Dist/100.0)*50,        dist(D, X).
+distance_mi_m(Dist, nom) -- ['around_1_mile_nom.ogg']             :- Dist < 2414.
+distance_mi_m(Dist, acc) -- ['around_1_mile_acc.ogg']             :- Dist < 2414.
+distance_mi_m(Dist, nom) -- ['around.ogg', X, 'miles_nom.ogg']    :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
+distance_mi_m(Dist, acc) -- ['around.ogg', X, 'miles_acc.ogg']    :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
+distance_mi_m(Dist, nom) -- [ X, 'miles_nom.ogg']                 :-               D is round(Dist/1609.3),            dist(D, X).
+distance_mi_m(Dist, acc) -- [ X, 'miles_acc.ogg']                 :-               D is round(Dist/1609.3),            dist(D, X).
 
 
 interval(St, St, End, _Step) :- St =< End.
