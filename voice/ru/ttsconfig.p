@@ -316,6 +316,7 @@ plural_mn(_D, 'minutes.ogg').
 distance(Dist) -- D :- measure('km-m'), distance_km(Dist) -- D.
 distance(Dist) -- D :- measure('mi-f'), distance_mi_f(Dist) -- D.
 distance(Dist) -- D :- measure('mi-y'), distance_mi_y(Dist) -- D.
+distance(Dist) -- D :- measure('mi-m'), distance_mi_m(Dist) -- D.
 
 %%% distance measure km/m
 distance_km(Dist) -- []                        :- Dist < 1.
@@ -337,6 +338,14 @@ distance_mi_y(Dist) -- [ X, 'yardov.ogg']                 :- Dist < 100,   D is 
 distance_mi_y(Dist) -- [ X, 'yardov.ogg']                 :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
 distance_mi_y(Dist) -- ['around_1_mile.ogg']             :- Dist < 2414.
 distance_mi_y(Dist) -- [ X, M]                 :-               D is round(Dist/1609.3),            dist(D, X), plural_mi(D, M).
+
+%%% distance measure mi/m
+distance_mi_m(Dist) -- []                      :- Dist < 1.
+distance_mi_m(Dist) -- [ X, Km]                :- Dist < 100,    D is round(Dist), dist(D, X), plural_mt(D, Km).
+distance_mi_m(Dist) -- [ X, Km]                :- Dist < 1300,   D is round(Dist/10.0)*10, dist(D, X), plural_mt(D, Km).
+distance_mi_m(Dist) -- ['around_1_mile.ogg']   :- Dist < 2414.
+distance_mi_m(Dist) -- [ X, M]                 :-                D is round(Dist/1609.3),           dist(D, X), plural_mi(D, M).
+
 
 plural_mt(D, 'metr.ogg') :- 1 is D mod 10, R100 is D mod 100,(R100 > 20; R100 < 10).
 plural_mt(D, 'metra.ogg') :- Mod is D mod 10, Mod < 5,  Mod > 1, R100 is D mod 100, (R100 > 20; R100 < 10).
