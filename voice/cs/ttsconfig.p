@@ -416,10 +416,10 @@ distance_mi_y(Dist, locative) --   [ X, 'miles_locative.ogg']                   
 %%% distance measure mi/m
 distance_mi_m(Dist, workaround) -- ['farther_workaround.ogg', X, 'meters_accusative.ogg']                    :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
 distance_mi_m(Dist, accusative) -- [ X, 'meters_accusative.ogg']                :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
-distance_mi_mDist, locative) --    [ X, 'meters_locative.ogg']                  :- Dist < 100,   D is round(Dist/10.0)*10,           dist_loc(D, X).
-distance_mi_mDist, workaround) --  ['farther_workaround.ogg', X, 'meters_accusative.ogg']                    :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
-distance_mi_mDist, accusative) --  [ X, 'meters_accusative.ogg']                :- Dist < 1300,  D is round(2*Dist/100.0)*50,        dist(D, X).
-distance_mi_mDist, locative) --    [ X, 'meters_locative.ogg']                  :- Dist < 1300,  D is round(2*Dist/100.0)*50,        dist_loc(D, X).
+distance_mi_m(Dist, locative) --   [ X, 'meters_locative.ogg']                  :- Dist < 100,   D is round(Dist/10.0)*10,           dist_loc(D, X).
+distance_mi_m(Dist, workaround) -- ['farther_workaround.ogg', X, 'meters_accusative.ogg']                    :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
+distance_mi_m(Dist, accusative) -- [ X, 'meters_accusative.ogg']                :- Dist < 1300,  D is round(2*Dist/100.0)*50,        dist(D, X).
+distance_mi_m(Dist, locative) --   [ X, 'meters_locative.ogg']                  :- Dist < 1300,  D is round(2*Dist/100.0)*50,        dist_loc(D, X).
 distance_mi_m(Dist, accusative) -- ['around_1_mile_accusative.ogg']             :- Dist < 2414.
 distance_mi_m(Dist, locative) --   ['around_1_mile_locative.ogg']               :- Dist < 2414.
 distance_mi_m(Dist, accusative) -- ['around.ogg', X, 'miles_accusative.ogg']    :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
