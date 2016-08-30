@@ -113,7 +113,6 @@ string('off_route.ogg', 'Letértél a tervezett útvonalról ').
 string('back_on_route.ogg', 'Ön visszatér az útvonalon ').
 
 % STREET NAME PREPOSITIONS
-string('comma.ogg', ', ').
 string('onto.ogg', 'irányába ').
 string('on.ogg', ', ezen: ').
 string('to.ogg', ', eddig: ').
@@ -155,9 +154,9 @@ string('minutes.ogg', 'perc ').
 
 %% COMMAND BUILDING / WORD ORDER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg', T] :- distance(Dist, nom) -- D, time(Time) -- T.
+route_new_calc(Dist, Time) -- ['route_is.ogg', D, ', ', 'time.ogg', T] :- distance(Dist, nom) -- D, time(Time) -- T.
 route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
-route_recalc(Dist, Time) -- ['route_calculate.ogg', 'comma.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist, nom) -- D, time(Time) -- T.
+route_recalc(Dist, Time) -- ['route_calculate.ogg', ', ', 'distance.ogg', D, ', ', 'time.ogg', T] :- distance(Dist, nom) -- D, time(Time) -- T.
 
 turn('left', ['left.ogg']).
 turn('left_sh', ['left_sh.ogg']).
@@ -184,19 +183,19 @@ to_street(_Street, []) :- not(tts).
 % assemble_street_name(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
 % assemble_street_name(voice(['', Name, _], _), Name). % not necessary
 % Next 2 lines for Name taking precedence over Dest...
-%assemble_street_name(voice([Ref, '', Dest], _), [C1, 'comma.ogg', Dest, 'toward.ogg']) :- atom_concat(Ref, ' ', C1).
+%assemble_street_name(voice([Ref, '', Dest], _), [C1, ', ', Dest, 'toward.ogg']) :- atom_concat(Ref, ' ', C1).
 %assemble_street_name(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
 % ...or next 3 lines for Dest taking precedence over Name
 assemble_street_name(voice([Ref, Name, ''], _), Concat) :- atom_concat(Ref, ' ', C1), atom_concat(C1, Name, Concat).
 assemble_street_name(voice(['', Name, Dest], _), [C1, 'toward.ogg', Dest]) :- atom_concat(Name, ' ', C1).
-assemble_street_name(voice([Ref, _, Dest], _), [C1, 'comma.ogg', Dest, 'toward.ogg']) :- atom_concat(Ref, ' ', C1).
+assemble_street_name(voice([Ref, _, Dest], _), [C1, ', ', Dest, 'toward.ogg']) :- atom_concat(Ref, ' ', C1).
 
 turn_street('', []).
 turn_street(voice(['','',''],_), []).
-turn_street(voice(['', '', D], _), ['comma.ogg', D, 'toward.ogg']) :- tts.
+turn_street(voice(['', '', D], _), [', ', D, 'toward.ogg']) :- tts.
 turn_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
 turn_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, '', _],[R, _, _]), assemble_street_name(Street, SName).
-turn_street(Street, ['comma.ogg', SName, 'onto.ogg']) :- tts, not(Street = voice([R, S, _],[R, S, _])), assemble_street_name(Street, SName).
+turn_street(Street, [', ', SName, 'onto.ogg']) :- tts, not(Street = voice([R, S, _],[R, S, _])), assemble_street_name(Street, SName).
 turn_street(_Street, []) :- not(tts).
 
 follow_street('', []).
