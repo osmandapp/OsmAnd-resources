@@ -430,6 +430,7 @@ distance(Dist) -- D :- distance(Dist, 'nom') -- D.
 distance(Dist, Case) -- D :- measure('km-m'), distance_km(Dist, Case) -- D.
 distance(Dist, Case) -- D :- measure('mi-f'), distance_mi_f(Dist, Case) -- D.
 distance(Dist, Case) -- D :- measure('mi-y'), distance_mi_y(Dist, Case) -- D.
+distance(Dist, Case) -- D :- measure('mi-m'), distance_mi_m(Dist, Case) -- D.
 
 %%% distance measure km/m
 distance_km(Dist, Case) -- [ X, Unit]                   :- Dist < 100,   !, D is round(Dist/10.0)*10,           dist(D, Case, X), decline_string('meters.ogg', Case, Unit).
@@ -452,6 +453,13 @@ distance_mi_y(Dist, Case) -- [ X, Unit]                 :- Dist < 1300,  !, D is
 distance_mi_y(Dist, Case) -- [Unit]                     :- Dist < 2414,  !,                                        decline_string('around_1_mile.ogg', Case, Unit).
 distance_mi_y(Dist, Case) -- ['around.ogg', X, Unit]    :- Dist < 16093, !, D is round(Dist/1609.3),            dist(D, Case, X), decline_string('miles.ogg', Case, Unit).
 distance_mi_y(Dist, Case) -- [ X, Unit]                 :-               !, D is round(Dist/1609.3),            dist(D, Case, X), decline_string('miles.ogg', Case, Unit).
+
+%%% distance measure mi/m
+distance_mi_m(Dist, Case) -- [ X, Unit]                 :- Dist < 100,   !, D is round(Dist/10.0)*10,           dist(D, Case, X), decline_string('meters.ogg', Case, Unit).
+distance_mi_m(Dist, Case) -- [ X, Unit]                 :- Dist < 1300,  !, D is round(2*Dist/100.0)*50,        dist(D, Case, X), decline_string('meters.ogg', Case, Unit).
+distance_mi_m(Dist, Case) -- [Unit]                     :- Dist < 2414,  !,                                        decline_string('around_1_mile.ogg', Case, Unit).
+distance_mi_m(Dist, Case) -- ['around.ogg', X, Unit]    :- Dist < 16093, !, D is round(Dist/1609.3),            dist(D, Case, X), decline_string('miles.ogg', Case, Unit).
+distance_mi_m(Dist, Case) -- [ X, Unit]                 :-               !, D is round(Dist/1609.3),            dist(D, Case, X), decline_string('miles.ogg', Case, Unit).
 
 
 interval(St, St, End, _Step) :- St =< End.
