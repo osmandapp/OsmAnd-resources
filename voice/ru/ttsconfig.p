@@ -333,7 +333,7 @@ distance_mi_f(Dist) -- ['around_1_mile.ogg']             :- Dist < 2414.
 distance_mi_f(Dist) -- [ X, M]                 :-               D is round(Dist/1609.3),            dist(D, X), plural_mi(D, M).
 
 %%% distance measure mi/y
-distance_mi_y(Dist) -- [ X, 'yardov.ogg']                 :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
+distance_mi_y(Dist) -- [ X, 'yardov.ogg']                 :- Dist < 100,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
 distance_mi_y(Dist) -- [ X, 'yardov.ogg']                 :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
 distance_mi_y(Dist) -- ['around_1_mile.ogg']             :- Dist < 2414.
 distance_mi_y(Dist) -- [ X, M]                 :-               D is round(Dist/1609.3),            dist(D, X), plural_mi(D, M).

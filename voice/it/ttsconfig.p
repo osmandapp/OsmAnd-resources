@@ -388,8 +388,8 @@ distance_mi_f(Dist, nominativ) -- [ X, 'miles_nominativ.ogg']                 :-
 distance_mi_f(Dist, dativ) --     [ X, 'miles_dativ.ogg']                     :-               D is round(Dist/1609.3),            dist(D, X).
 
 %%% distance measure mi/y
-distance_mi_y(Dist, nominativ) -- [ X, 'yards_nominativ.ogg']                 :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
-distance_mi_y(Dist, dativ) --     [ X, 'yards_dativ.ogg']                     :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
+distance_mi_y(Dist, nominativ) -- [ X, 'yards_nominativ.ogg']                 :- Dist < 100,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
+distance_mi_y(Dist, dativ) --     [ X, 'yards_dativ.ogg']                     :- Dist < 100,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
 distance_mi_y(Dist, nominativ) -- [ X, 'yards_nominativ.ogg']                 :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
 distance_mi_y(Dist, dativ) --     [ X, 'yards_dativ.ogg']                     :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
 distance_mi_y(Dist, nominativ) -- ['around_1_mile_nominativ.ogg']             :- Dist < 2414.

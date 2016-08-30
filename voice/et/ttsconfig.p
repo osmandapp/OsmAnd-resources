@@ -447,7 +447,7 @@ distance_mi_f(Dist, Case) -- ['around.ogg', X, Unit]    :- Dist < 16093, !, D is
 distance_mi_f(Dist, Case) -- [ X, Unit]                 :-               !, D is round(Dist/1609.3),            dist(D, Case, X), decline_string('miles.ogg', Case, Unit).
 
 %%% distance measure mi/y
-distance_mi_y(Dist, Case) -- [ X, Unit]                 :- Dist < 241,   !, D is round(Dist/10.0/0.9144)*10,    dist(D, Case, X), decline_string('yards.ogg', Case, Unit).
+distance_mi_y(Dist, Case) -- [ X, Unit]                 :- Dist < 100,   !, D is round(Dist/10.0/0.9144)*10,    dist(D, Case, X), decline_string('yards.ogg', Case, Unit).
 distance_mi_y(Dist, Case) -- [ X, Unit]                 :- Dist < 1300,  !, D is round(2*Dist/100.0/0.9144)*50, dist(D, Case, X), decline_string('yards.ogg', Case, Unit).
 distance_mi_y(Dist, Case) -- [Unit]                     :- Dist < 2414,  !,                                        decline_string('around_1_mile.ogg', Case, Unit).
 distance_mi_y(Dist, Case) -- ['around.ogg', X, Unit]    :- Dist < 16093, !, D is round(Dist/1609.3),            dist(D, Case, X), decline_string('miles.ogg', Case, Unit).

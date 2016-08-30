@@ -349,8 +349,8 @@ distance_mi_f(Dist, nom) -- [ X, 'miles_nom.ogg']                 :-            
 distance_mi_f(Dist, acc) -- [ X, 'miles_acc.ogg']                 :-               D is round(Dist/1609.3),            dist(D, X).
 
 %%% distance measure mi/y
-distance_mi_y(Dist, nom) -- [ X, 'yards_nom.ogg']                 :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
-distance_mi_y(Dist, acc) -- [ X, 'yards_acc.ogg']                 :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
+distance_mi_y(Dist, nom) -- [ X, 'yards_nom.ogg']                 :- Dist < 100,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
+distance_mi_y(Dist, acc) -- [ X, 'yards_acc.ogg']                 :- Dist < 100,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
 distance_mi_y(Dist, nom) -- [ X, 'yards_nom.ogg']                 :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
 distance_mi_y(Dist, acc) -- [ X, 'yards_acc.ogg']                 :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
 distance_mi_y(Dist, nom) -- ['around_1_mile_nom.ogg']             :- Dist < 2414.

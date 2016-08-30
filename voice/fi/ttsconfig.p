@@ -341,8 +341,8 @@ distance_mi_f(Dist, metrin) -- [ X, 'miles_metrin.ogg']                 :-      
 distance_mi_f(Dist, metria) -- [ X, 'miles_metri.ogg']                 :-               D is round(Dist/1609.3),            dist(D, X).
 
 %%% distance measure mi/y
-distance_mi_y(Dist, metrin) -- [ X, 'yards_metrin.ogg']                 :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
-distance_mi_y(Dist, metria) -- [ X, 'yards_metri.ogg']                 :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
+distance_mi_y(Dist, metrin) -- [ X, 'yards_metrin.ogg']                 :- Dist < 100,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
+distance_mi_y(Dist, metria) -- [ X, 'yards_metri.ogg']                 :- Dist < 100,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
 distance_mi_y(Dist, metrin) -- [ X, 'yards_metrin.ogg']                 :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
 distance_mi_y(Dist, metria) -- [ X, 'yards_metri.ogg']                 :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
 distance_mi_y(Dist, metrin) -- ['around_1_mile_metrin.ogg']             :- Dist < 2414.
