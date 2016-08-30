@@ -117,7 +117,7 @@ string('reached_poi.ogg', 'projeli jste bodem zájmu ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'překračujete povolenou rychlost ').
-string('exceed_limit.ogg', 'povolenou rychlost ').
+string('exceed_limit.ogg', 'povolená rychlost ').
 string('attention.ogg', 'pozor, ').
 string('speed_camera.ogg', 'rychlostní radar ').
 string('border_control.ogg', 'hraniční kontrola ').
@@ -128,8 +128,8 @@ string('stop.ogg', 'značka stop ').
 string('pedestrian_crosswalk.ogg', 'přechod pro chodce ').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'g p s signal lost ').
-string('location_recovered.ogg', 'g p s signal recovered ').
+string('location_lost.ogg', 'ztráta g p s signálu ').
+string('location_recovered.ogg', 'g p s signál nalezen ').
 string('off_route.ogg', 'odchylujete se z trasy o ').
 string('back_on_route.ogg', 'vrátili jste se zpět na trasu ').
 
