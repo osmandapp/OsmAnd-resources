@@ -389,10 +389,10 @@ distance_mi_f(Dist, nominativ) -- [ X, 'tenths_of_a_mile_nominativ.ogg']      :-
 distance_mi_f(Dist, dativ) --     [ X, 'tenths_of_a_mile_dativ.ogg']          :- Dist < 1529,  D is round(Dist/161.0),             dist(D, X).
 distance_mi_f(Dist, nominativ) -- ['around_1_mile_nominativ.ogg']             :- Dist < 2414.
 distance_mi_f(Dist, dativ) --     ['around_1_mile_dativ.ogg']                 :- Dist < 2414.
-distance_mi_f(Dist, nominativ) -- ['around.ogg', X, 'miles_nominativ.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
-distance_mi_f(Dist, dativ) --     ['around.ogg', X, 'miles_dativ.ogg']        :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
-distance_mi_f(Dist, nominativ) -- [ X, 'miles_nominativ.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
-distance_mi_f(Dist, dativ) --     [ X, 'miles_dativ.ogg']                     :-               D is round(Dist/1609.0),            dist(D, X).
+distance_mi_f(Dist, nominativ) -- ['around.ogg', X, 'miles_nominativ.ogg']    :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
+distance_mi_f(Dist, dativ) --     ['around.ogg', X, 'miles_dativ.ogg']        :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
+distance_mi_f(Dist, nominativ) -- [ X, 'miles_nominativ.ogg']                 :-               D is round(Dist/1609.3),            dist(D, X).
+distance_mi_f(Dist, dativ) --     [ X, 'miles_dativ.ogg']                     :-               D is round(Dist/1609.3),            dist(D, X).
 
 %%% distance measure mi/y
 distance_mi_y(Dist, nominativ) -- [ X, 'yards_nominativ.ogg']                 :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
@@ -401,10 +401,10 @@ distance_mi_y(Dist, nominativ) -- [ X, 'yards_nominativ.ogg']                 :-
 distance_mi_y(Dist, dativ) --     [ X, 'yards_dativ.ogg']                     :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
 distance_mi_y(Dist, nominativ) -- ['around_1_mile_nominativ.ogg']             :- Dist < 2414.
 distance_mi_y(Dist, dativ) --     ['around_1_mile_dativ.ogg']                 :- Dist < 2414.
-distance_mi_y(Dist, nominativ) -- ['around.ogg', X, 'miles_nominativ.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
-distance_mi_y(Dist, dativ) --     ['around.ogg', X, 'miles_dativ.ogg']        :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
-distance_mi_y(Dist, nominativ) -- [ X, 'miles_nominativ.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
-distance_mi_y(Dist, dativ) --     [ X, 'miles_dativ.ogg']                     :-               D is round(Dist/1609.0),            dist(D, X).
+distance_mi_y(Dist, nominativ) -- ['around.ogg', X, 'miles_nominativ.ogg']    :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
+distance_mi_y(Dist, dativ) --     ['around.ogg', X, 'miles_dativ.ogg']        :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
+distance_mi_y(Dist, nominativ) -- [ X, 'miles_nominativ.ogg']                 :-               D is round(Dist/1609.3),            dist(D, X).
+distance_mi_y(Dist, dativ) --     [ X, 'miles_dativ.ogg']                     :-               D is round(Dist/1609.3),            dist(D, X).
 
 
 interval(St, St, End, _Step) :- St =< End.

@@ -343,10 +343,10 @@ distance_mi_f(Dist, nom) -- [ X, 'tenths_of_a_mile_nom.ogg']      :- Dist < 1529
 distance_mi_f(Dist, acc) -- [ X, 'tenths_of_a_mile_acc.ogg']      :- Dist < 1529,  D is round(Dist/161.0),             dist(D, X).
 distance_mi_f(Dist, nom) -- ['around_1_mile_nom.ogg']             :- Dist < 2414.
 distance_mi_f(Dist, acc) -- ['around_1_mile_acc.ogg']             :- Dist < 2414.
-distance_mi_f(Dist, nom) -- ['around.ogg', X, 'miles_nom.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
-distance_mi_f(Dist, acc) -- ['around.ogg', X, 'miles_acc.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
-distance_mi_f(Dist, nom) -- [ X, 'miles_nom.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
-distance_mi_f(Dist, acc) -- [ X, 'miles_acc.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
+distance_mi_f(Dist, nom) -- ['around.ogg', X, 'miles_nom.ogg']    :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
+distance_mi_f(Dist, acc) -- ['around.ogg', X, 'miles_acc.ogg']    :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
+distance_mi_f(Dist, nom) -- [ X, 'miles_nom.ogg']                 :-               D is round(Dist/1609.3),            dist(D, X).
+distance_mi_f(Dist, acc) -- [ X, 'miles_acc.ogg']                 :-               D is round(Dist/1609.3),            dist(D, X).
 
 %%% distance measure mi/y
 distance_mi_y(Dist, nom) -- [ X, 'yards_nom.ogg']                 :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
@@ -355,10 +355,10 @@ distance_mi_y(Dist, nom) -- [ X, 'yards_nom.ogg']                 :- Dist < 1300
 distance_mi_y(Dist, acc) -- [ X, 'yards_acc.ogg']                 :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
 distance_mi_y(Dist, nom) -- ['around_1_mile_nom.ogg']             :- Dist < 2414.
 distance_mi_y(Dist, acc) -- ['around_1_mile_acc.ogg']             :- Dist < 2414.
-distance_mi_y(Dist, nom) -- ['around.ogg', X, 'miles_nom.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
-distance_mi_y(Dist, acc) -- ['around.ogg', X, 'miles_acc.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
-distance_mi_y(Dist, nom) -- [ X, 'miles_nom.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
-distance_mi_y(Dist, acc) -- [ X, 'miles_acc.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
+distance_mi_y(Dist, nom) -- ['around.ogg', X, 'miles_nom.ogg']    :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
+distance_mi_y(Dist, acc) -- ['around.ogg', X, 'miles_acc.ogg']    :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
+distance_mi_y(Dist, nom) -- [ X, 'miles_nom.ogg']                 :-               D is round(Dist/1609.3),            dist(D, X).
+distance_mi_y(Dist, acc) -- [ X, 'miles_acc.ogg']                 :-               D is round(Dist/1609.3),            dist(D, X).
 
 
 interval(St, St, End, _Step) :- St =< End.

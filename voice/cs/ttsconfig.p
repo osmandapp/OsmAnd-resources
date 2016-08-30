@@ -395,10 +395,10 @@ distance_mi_f(Dist, accusative) -- [ X, 'tenths_of_a_mile_accusative.ogg']      
 distance_mi_f(Dist, locative) --   [ X, 'tenths_of_a_mile_locative.ogg']        :- Dist < 1529,  D is round(Dist/161.0),             dist(D, X).
 distance_mi_f(Dist, accusative) -- ['around_1_mile_accusative.ogg']             :- Dist < 2414.
 distance_mi_f(Dist, locative) --   ['around_1_mile_locative.ogg']               :- Dist < 2414.
-distance_mi_f(Dist, accusative) -- ['around.ogg', X, 'miles_accusative.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
-distance_mi_f(Dist, locative) --   ['around.ogg', X, 'miles_locative.ogg']      :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
-distance_mi_f(Dist, accusative) -- [ X, 'miles_accusative.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
-distance_mi_f(Dist, locative) --   [ X, 'miles_locative.ogg']                   :-               D is round(Dist/1609.0),            dist(D, X).
+distance_mi_f(Dist, accusative) -- ['around.ogg', X, 'miles_accusative.ogg']    :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
+distance_mi_f(Dist, locative) --   ['around.ogg', X, 'miles_locative.ogg']      :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
+distance_mi_f(Dist, accusative) -- [ X, 'miles_accusative.ogg']                 :-               D is round(Dist/1609.3),            dist(D, X).
+distance_mi_f(Dist, locative) --   [ X, 'miles_locative.ogg']                   :-               D is round(Dist/1609.3),            dist(D, X).
 
 %%% distance measure mi/y
 distance_mi_y(Dist, accusative) -- [ X, 'yards_accusative.ogg']                 :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
@@ -407,10 +407,10 @@ distance_mi_y(Dist, accusative) -- [ X, 'yards_accusative.ogg']                 
 distance_mi_y(Dist, locative) --   [ X, 'yards_locative.ogg']                   :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
 distance_mi_y(Dist, accusative) -- ['around_1_mile_accusative.ogg']             :- Dist < 2414.
 distance_mi_y(Dist, locative) --   ['around_1_mile_locative.ogg']               :- Dist < 2414.
-distance_mi_y(Dist, accusative) -- ['around.ogg', X, 'miles_accusative.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
-distance_mi_y(Dist, locative) --   ['around.ogg', X, 'miles_locative.ogg']      :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
-distance_mi_y(Dist, accusative) -- [ X, 'miles_accusative.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
-distance_mi_y(Dist, locative) --   [ X, 'miles_locative.ogg']                   :-               D is round(Dist/1609.0),            dist(D, X).
+distance_mi_y(Dist, accusative) -- ['around.ogg', X, 'miles_accusative.ogg']    :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
+distance_mi_y(Dist, locative) --   ['around.ogg', X, 'miles_locative.ogg']      :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
+distance_mi_y(Dist, accusative) -- [ X, 'miles_accusative.ogg']                 :-               D is round(Dist/1609.3),            dist(D, X).
+distance_mi_y(Dist, locative) --   [ X, 'miles_locative.ogg']                   :-               D is round(Dist/1609.3),            dist(D, X).
 
 
 interval(St, St, End, _Step) :- St =< End.
