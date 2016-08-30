@@ -296,6 +296,7 @@ time(Sec) -- [H] :- not(tts), S is round(Sec/300.0) * 5, hours(S, H), St is S mo
 distance(Dist) -- D :- measure('km-m'), distance_km(Dist) -- D.
 distance(Dist) -- D :- measure('mi-f'), distance_mi_f(Dist) -- D.
 distance(Dist) -- D :- measure('mi-y'), distance_mi_y(Dist) -- D.
+distance(Dist) -- D :- measure('mi-m'), distance_mi_m(Dist) -- D.
 
 %%% distance measure km/m
 distance_km(Dist) -- ['meters.ogg', X]                   :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
@@ -318,6 +319,13 @@ distance_mi_y(Dist) -- ['yards.ogg', X]                  :- Dist < 1300,  D is r
 distance_mi_y(Dist) -- ['around_1_mile.ogg']             :- Dist < 2414.
 distance_mi_y(Dist) -- ['around.ogg', 'miles.ogg', X]    :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
 distance_mi_y(Dist) -- ['miles.ogg', X]                  :-               D is round(Dist/1609.3),            dist(D, X).
+
+%%% distance measure mi/m
+distance_mi_m(Dist) -- ['meters.ogg', X]                 :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
+distance_mi_m(Dist) -- ['meters.ogg', X]                 :- Dist < 1300,  D is round(2*Dist/100.0)*50,        dist(D, X).
+distance_mi_m(Dist) -- ['around_1_mile.ogg']             :- Dist < 2414.
+distance_mi_m(Dist) -- ['around.ogg', 'miles.ogg', X]    :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
+distance_mi_m(Dist) -- ['miles.ogg', X]                  :-               D is round(Dist/1609.3),            dist(D, X).
 
 
 interval(St, St, End, _Step) :- St =< End.
