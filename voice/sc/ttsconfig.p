@@ -367,6 +367,7 @@ time(Sec) -- [H] :- not(tts), S is round(Sec/300.0) * 5, hours(S, H), St is S mo
 distance(Dist, Y) -- D :- measure('km-m'), distance_km(Dist, Y) -- D.
 distance(Dist, Y) -- D :- measure('mi-f'), distance_mi_f(Dist, Y) -- D.
 distance(Dist, Y) -- D :- measure('mi-y'), distance_mi_y(Dist, Y) -- D.
+distance(Dist, Y) -- D :- measure('mi-m'), distance_mi_m(Dist, Y) -- D.
 
 %%% distance measure km/m
 distance_km(Dist, nominativ) -- [ X, 'meters_nominativ.ogg']                  :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
@@ -405,6 +406,18 @@ distance_mi_y(Dist, nominativ) -- ['around.ogg', X, 'miles_nominativ.ogg']    :-
 distance_mi_y(Dist, dativ) --     ['around.ogg', X, 'miles_dativ.ogg']        :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
 distance_mi_y(Dist, nominativ) -- [ X, 'miles_nominativ.ogg']                 :-               D is round(Dist/1609.3),            dist(D, X).
 distance_mi_y(Dist, dativ) --     [ X, 'miles_dativ.ogg']                     :-               D is round(Dist/1609.3),            dist(D, X).
+
+%%% distance measure mi/m
+distance_mi_m(Dist, nominativ) -- [ X, 'meters_nominativ.ogg']                :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
+distance_mi_m(Dist, dativ) --     [ X, 'meters_dativ.ogg']                    :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
+distance_mi_m(Dist, nominativ) -- [ X, 'meters_nominativ.ogg']                :- Dist < 1300,  D is round(2*Dist/100.0)*50,        dist(D, X).
+distance_mi_m(Dist, dativ) --     [ X, 'meters_dativ.ogg']                    :- Dist < 1300,  D is round(2*Dist/100.0)*50,        dist(D, X).
+distance_mi_m(Dist, nominativ) -- ['around_1_mile_nominativ.ogg']             :- Dist < 2414.
+distance_mi_m(Dist, dativ) --     ['around_1_mile_dativ.ogg']                 :- Dist < 2414.
+distance_mi_m(Dist, nominativ) -- ['around.ogg', X, 'miles_nominativ.ogg']    :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
+distance_mi_m(Dist, dativ) --     ['around.ogg', X, 'miles_dativ.ogg']        :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
+distance_mi_m(Dist, nominativ) -- [ X, 'miles_nominativ.ogg']                 :-               D is round(Dist/1609.3),            dist(D, X).
+distance_mi_m(Dist, dativ) --     [ X, 'miles_dativ.ogg']                     :-               D is round(Dist/1609.3),            dist(D, X).
 
 
 interval(St, St, End, _Step) :- St =< End.
