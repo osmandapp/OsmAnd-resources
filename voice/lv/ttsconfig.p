@@ -349,8 +349,8 @@ distance_mi_y(Dist, 2) -- [ X, 'miles_2.ogg']                 :-               D
 %%% distance measure mi/m
 distance_mi_m(Dist, 1) -- [ X, 'meters_1.ogg']                :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
 distance_mi_m(Dist, 2) -- [ X, 'meters_2.ogg']                :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
-distance_mi_m(Dist, 1) -- [ X, 'meters_1.ogg']                :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
-distance_mi_m(Dist, 2) -- [ X, 'meters_2.ogg']                 :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
+distance_mi_m(Dist, 1) -- [ X, 'meters_1.ogg']                :- Dist < 1300,  D is round(2*Dist/100.0)*50,        dist(D, X).
+distance_mi_m(Dist, 2) -- [ X, 'meters_2.ogg']                :- Dist < 1300,  D is round(2*Dist/100.0)*50,        dist(D, X).
 distance_mi_m(Dist, 1) -- ['around_1_mile_1.ogg']             :- Dist < 2414.
 distance_mi_m(Dist, 2) -- ['around_1_mile_2.ogg']             :- Dist < 2414.
 distance_mi_m(Dist, 1) -- ['around.ogg', X, 'miles_1.ogg']    :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
