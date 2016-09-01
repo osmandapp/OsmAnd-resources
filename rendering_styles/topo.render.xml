@@ -9,6 +9,8 @@
 		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="moreDetailed" name="More details" description="More details on map" type="boolean" possibleValues=""
 		category="details"/>
+	<renderingProperty attr="surfaceIntegrity" name="Surface integral rendering" description="Surface integral rendering" type="boolean" possibleValues=""
+		category="details"/>
 	<renderingProperty attr="noPolygons" name="Hide polygons" description="Make all areal land features on map transparent"
 		type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="noAdminboundaries" name="Hide boundaries" description="Suppress display of admin levels 5-9"
@@ -130,11 +132,13 @@
 <!-- Motorway -->
 	<renderingAttribute name="motorwayRoadColor">
 		<case additional="bridge=yes" attrColorValue="#eeeeee"/>
+		<case surfaceIntegrity="true" attrColorValue="#ffffff"/>
 		<case attrColorValue="#FB5734">
 			<apply_if nightMode="true" attrColorValue="#cf692d"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="motorwayRoadLowZoomColor">
+		<case surfaceIntegrity="true" attrColorValue="#ffffff"/>
 		<case attrColorValue="#FB5734">
 			<apply_if nightMode="true" attrColorValue="#cf692d"/>
 		</case>
@@ -148,11 +152,13 @@
 <!-- Trunk  -->
 	<renderingAttribute name="trunkRoadColor">
 		<case additional="bridge=yes" attrColorValue="#eeeeee"/>
+		<case surfaceIntegrity="true" attrColorValue="#ffffff"/>
 		<case attrColorValue="#FB5734">
 			<apply_if nightMode="true" attrColorValue="#cf692d"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="trunkRoadLowZoomColor">
+		<case surfaceIntegrity="true" attrColorValue="#ffffff"/>
 		<case attrColorValue="#FB5734">
 			<apply_if nightMode="true" attrColorValue="#cf692d"/>
 		</case>
@@ -165,6 +171,7 @@
 <!-- Primary  -->
 	<renderingAttribute name="primaryRoadColor">
 		<case additional="bridge=yes" attrColorValue="#eeeeee"/>
+		<case surfaceIntegrity="true" attrColorValue="#ffffff"/>
 		<case attrColorValue="#FF9067">
 			<apply_if nightMode="true" attrColorValue="#d19a66"/>
 		</case>
@@ -180,11 +187,13 @@
 <!-- Secondary  -->
 	<renderingAttribute name="secondaryRoadColor">
 		<case additional="bridge=yes" attrColorValue="#eeeeee"/>
+		<case surfaceIntegrity="true" attrColorValue="#ffffff"/>
 		<case attrColorValue="#FFA14B">
 			<apply_if nightMode="true" attrColorValue="#d19a66"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="secondaryRoadLowZoomColor">
+		<case surfaceIntegrity="true" attrColorValue="#ffffff"/>
 		<case attrColorValue="#FFA14B">
 			<apply_if nightMode="true" attrColorValue="#d19a66"/>
 		</case>
@@ -197,11 +206,13 @@
 <!-- Tertiary  -->
 	<renderingAttribute name="tertiaryRoadColor">
 		<case additional="bridge=yes" attrColorValue="#eeeeee"/>
+		<case surfaceIntegrity="true" attrColorValue="#ffffff"/>
 		<case attrColorValue="#FFC073">
 			<apply_if nightMode="true" attrColorValue="#d7bc6e"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="tertiaryRoadLowZoomColor">
+		<case surfaceIntegrity="true" attrColorValue="#ffffff"/>
 		<case attrColorValue="#FFC073">
 			<apply_if nightMode="true" attrColorValue="#c5ac90"/>
 		</case>
@@ -214,6 +225,7 @@
 
 	<renderingAttribute name="unclassifiedRoadColor">
 		<case additional="bridge=yes" attrColorValue="#eeeeee"/>
+		<case surfaceIntegrity="true" attrColorValue="#ffffff"/>
 		<case attrColorValue="#FFDDB2">
 			<apply_if nightMode="true" attrColorValue="#9f9f9f"/>
 		</case>
@@ -590,6 +602,8 @@
 			<case tag="osmand" value="file_routeline"/>
 			<case tag="admin_level" value="" order="62"/>
 			<case tag="contour" value="" order="15"/>
+			<case tag="power" value="line" order="96"/>
+			<case tag="power" value="minor_line" order="96"/>
 			<switch>
 				<case tag="highway" value="motorway" order="57">
 					<apply_if layer="1" order="87"/>
@@ -1233,6 +1247,18 @@
 		<case minzoom="12" maxzoom="12" tag="place" value="farm" icon="place_town_dot"/>
 
 		<case minzoom="16" tag="junction" value="yes" icon=""/>
+
+		<case minzoom="14" tag="power" value="tower">
+			<case maxzoom="14" icon="power_tower_small2" iconVisibleSize="3"/>
+			<case maxzoom="16" icon="power_tower_small" iconVisibleSize="3"/>
+			<case minzoom="17" icon="power_tower_square" iconVisibleSize="7"/>
+		</case>
+		<case minzoom="15" tag="aerialway" value="pylon" icon="aerialway_pylon_small" iconVisibleSize="4">
+			<apply_if moreDetailed="false" maxzoom="15" icon=""/>
+		</case>
+		<case minzoom="16" tag="power" value="pole" icon="barrier_small_black_4">
+			<apply_if nightMode="true" icon="barrier_small_white_4"/>
+		</case>
 
 	</point>
 
@@ -1902,18 +1928,27 @@
 		</case>
 
 
-		<case minzoom="12" tag="man_made" value="cutline" color="#888888">
+		<case minzoom="12" tag="man_made" value="cutline" color="#ffffff">
 			<switch moreDetailed="true">
-				<case maxzoom="12" strokeWidth="0.3:0.3" pathEffect="6_2"/>
-				<case maxzoom="13" strokeWidth="0.8:0.8" pathEffect="8_3"/>
+				<case maxzoom="12" strokeWidth="0.3:0.3"/>
+				<case maxzoom="13" strokeWidth="0.8:0.8"/>
 			</switch>
-			<case minzoom="14" maxzoom="14" strokeWidth="1.3:1.3" pathEffect="10_3"/>
-			<case minzoom="15" maxzoom="15" strokeWidth="2:2" pathEffect="14_4"/>
-			<case minzoom="16" maxzoom="16" strokeWidth="2.5:2.5" pathEffect="19_5"/>
-			<case minzoom="17" maxzoom="17" strokeWidth="3:3" pathEffect="19_5"/>
-			<case minzoom="18" strokeWidth="4:4" pathEffect="19_5"/>
+			<case minzoom="14" maxzoom="14" strokeWidth="1.3:1.3"/>
+			<case minzoom="15" maxzoom="15" strokeWidth="2:2"/>
+			<case minzoom="16" maxzoom="16" strokeWidth="2.5:2.5"/>
+			<case minzoom="17" maxzoom="17" strokeWidth="3:3"/>
+			<case minzoom="18" strokeWidth="4:4"/>
 <!--			<apply_if nightMode="true" color="#004333" color_2="$null"/>-->
 		</case>
+
+		<switch color="#000000">
+			<case minzoom="13" tag="power" value="line">
+				<case maxzoom="14" strokeWidth="0.6"/>
+				<case minzoom="15" strokeWidth="0.9"/>
+			</case>
+			<case minzoom="15" tag="power" value="minor_line" strokeWidth="0.3"/>
+			<apply_if nightMode="true" color="#777777"/>
+		</switch>
 
 		<switch>
 			<switch minzoom="13">
