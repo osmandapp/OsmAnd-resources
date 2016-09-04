@@ -100,7 +100,7 @@ string('exceed_limit.ogg', 'sebességhatár ').
 string('attention.ogg', 'figyelem, ').
 string('speed_camera.ogg', 'traffipax ').
 string('border_control.ogg', 'határellenőrzés ').
-string('railroad_crossing.ogg', 'vasúti átjáróhoz ').
+string('railroad_crossing.ogg', 'vasúti átjáróhoz közeledik ').
 string('traffic_calming.ogg', 'forgalomlassító ').
 string('toll_booth.ogg', 'fizetőkapu ').
 string('stop.ogg', 'stop tábla ').
@@ -110,7 +110,7 @@ string('pedestrian_crosswalk.ogg', 'gyalogos zebra ').
 string('location_lost.ogg', 'nem található dzsípíesz jel ').
 string('location_recovered.ogg', 'pozíció meghatározva').
 string('off_route.ogg', 'Letért a tervezett útvonalról ').
-string('back_on_route.ogg', 'Ön visszatér az útvonalon ').
+string('back_on_route.ogg', 'Ön visszatér az útvonalra ').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'irányába ').
