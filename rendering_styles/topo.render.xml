@@ -126,7 +126,7 @@
 
 	<renderingConstant name="waterwayDirectionIcon" value="arrow_triangle_darkblue"/>
 	<renderingAttribute name="waterwayArrowsColor">
-		<case attrColorValue="#FFB000"/>
+		<case attrColorValue="#140657"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="osmandHighwayIntegrity0Color">
@@ -554,11 +554,11 @@
 	</renderingAttribute>
 	<renderingAttribute name="contourLineColor50m">
 		<case engine_v1="false" attrColorValue="#35bd6819"/>
-		<case attrColorValue="#77bd6819"/>
+		<case attrColorValue="#889C5615"/>
 	</renderingAttribute>
 	<renderingAttribute name="contourLineColor100m">
 		<case engine_v1="false" attrColorValue="#359C5615"/>
-		<case attrColorValue="#889C5615"/>
+		<case attrColorValue="#aa9C5615"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="buildingColor">
@@ -577,6 +577,24 @@
 		<case attrColorValue="#a1eca6"/>
 	</renderingAttribute>
 
+	<renderingAttribute name="heathColor">
+		<case attrColorValue="#EBFFE4"/>
+	</renderingAttribute>
+	<renderingAttribute name="meadowColor">
+		<case attrColorValue="#EBFFE4"/>
+	</renderingAttribute>
+	<renderingAttribute name="recreationGroundColor">
+		<case attrColorValue="#EBFFE4"/>
+	</renderingAttribute>
+	<renderingAttribute name="grassColor">
+		<case attrColorValue="#EBFFE4"/>
+	</renderingAttribute>
+	<renderingAttribute name="farmlandColor">
+		<case attrColorValue="#FFF8E9"/>
+	</renderingAttribute>
+	<renderingAttribute name="farmyardColor">
+		<case attrColorValue="#EDDFCB"/>
+	</renderingAttribute>
 
 	<renderingConstant name="buildingTextHaloRadiusDay" value="1"/>
 	<renderingConstant name="buildingTextHaloColorDay" value="#ddf1eae4"/>
@@ -785,6 +803,7 @@
 			<case tag="disused:building" value="no" order="-1"/>
 			<case tag="disused:building" value=""/>
 			<case tag="landuse" value="cemetery" order="10"/>
+			<case tag="landuse" value="quarry" order="5"/>
 			<case tag="" value="" order="5"/>
 		</switch>
 
@@ -879,6 +898,7 @@
 			<case tag="highway" value="bridleway" order="37"/>
 			<case tag="railway" value="" order="58">
 				<apply_if layer="1" order="88"/>
+				<apply_if layer="-1" order="11"/>
 			</case>
 			<case tag="man_made" value="cutline" order="11"/>
 			<case tag="waterway" value="" order="8">
@@ -1387,19 +1407,20 @@
 				<case minzoom="9" tag="landuse" value="forest" textOrder="201"/>
 				<case minzoom="13" tag="natural" value="wetland" textOrder="238"/>
 				<case minzoom="17" tag="natural" value="scrub" textOrder="244"/>
-<!--
+
+				<case minzoom="15" tag="landuse" value="orchard" textOrder="239"/>
+
 				<case minzoom="14" tag="natural" value="heath" textOrder="245"/>
 				<case minzoom="14" tag="landuse" value="meadow" textOrder="243"/>
+				<case minzoom="17" tag="landuse" value="village_green" textOrder="243"/>
+				<case minzoom="16" tag="landuse" value="plant_nursery" textOrder="239"/>
 				<case minzoom="15" tag="landuse" value="recreation_ground" textOrder="242"/>
-				<case minzoom="14" tag="landuse" value="conservation" textOrder="246"/>
-				<case minzoom="15" tag="landuse" value="orchard" textOrder="239"/>
-				<case minzoom="15" tag="landuse" value="plant_nursery" textOrder="239"/>
-				<case minzoom="15" tag="landuse" value="greenhouse_horticulture" textOrder="239"/>
-				<case minzoom="15" tag="landuse" value="vineyard" textOrder="240"/>
-				<case minzoom="17" tag="landuse" value="grass" textOrder="247"/>
 				<case minzoom="15" tag="landuse" value="farmland" textOrder="248"/>
-				<case minzoom="15" tag="landuse" value="farm" textOrder="241"/>
+				<case minzoom="17" tag="landuse" value="grass" textOrder="247"/>
 				<case minzoom="14" tag="natural" value="grassland" textOrder="250"/>
+				<case minzoom="15" tag="landuse" value="vineyard" textOrder="240"/>
+				<case minzoom="15" tag="landuse" value="greenhouse_horticulture" textOrder="239"/>
+<!--				<case minzoom="14" tag="landuse" value="conservation" textOrder="246"/>
 				<case minzoom="9" tag="leisure" value="nature_reserve" textOrder="87"/>
 				<case minzoom="9" tag="boundary" value="national_park" textOrder="88" textOnPath="true"/>
 				<case minzoom="8" tag="boundary" value="protected_area" textOrder="88"/>
@@ -1587,11 +1608,6 @@
 				</switch>
 			</apply>
 		</case>
-		<case minzoom="10" tag="landuse" value="allotments" color="$landuseAllotmentsColor" color_2="#8fbda0" strokeWidth_2=":1">
-<!--			<case minzoom="13" maxzoom="14" shader="allotments_small"/>-->
-			<case minzoom="14" shader="topo_allotments"/>
-			<apply_if nightMode="true" shader="" color_2="#00510e"/>
-		</case>
 
 		<!-- Buildings -->
 		<switch hideBuildings="false" minzoom="15">
@@ -1742,6 +1758,40 @@
 				<case minzoom="15" strokeWidth_2="1.5" pathEffect_2="1_8"/>
 			</apply>-->
 		</switch>
+		<case minzoom="10" tag="landuse" value="allotments" color="$landuseAllotmentsColor" color_2="#8fbda0" strokeWidth_2=":1">
+<!--			<case minzoom="13" maxzoom="14" shader="allotments_small"/>-->
+			<case minzoom="14" shader="topo_allotments"/>
+			<apply_if nightMode="true" shader="" color_2="#00510e"/>
+		</case>
+		<case minzoom="12" tag="landuse" value="orchard" color="#bbeca1" color_2="#499720">
+			<case minzoom="14" shader="topo_orchard"/>
+			<apply_if nightMode="true" shader="" color_2="#00510e"/>
+		</case>
+		<switch minzoom="6">
+			<case tag="natural" value="heath"/>
+			<case minzoom="6" tag="natural" value="grassland"/>
+			<case minzoom="6" tag="landuse" value="meadow"/>
+			<case minzoom="12" tag="landuse" value="grass"/>
+			<case minzoom="12" tag="landuse" value="grassland"/>
+			<apply_if maxzoom="13" color="$heathColor"/>
+			<apply_if minzoom="14" shader="topo_heath"/>
+		</switch>
+		<case minzoom="12" tag="landuse" value="recreation_ground" color="$recreationGroundColor"/>
+		<case minzoom="6" tag="landuse" value="farmland" color="$farmlandColor"/>
+		<case minzoom="6" tag="landuse" value="village_green" color="$grassColor"/>
+		<case minzoom="12" tag="landuse" value="plant_nursery">
+			<apply_if maxzoom="12" color="#d5ffbe"/>
+			<apply_if minzoom="13" shader="topo_plant_nursery"/>
+		</case>
+		<case minzoom="12" tag="landuse" value="vineyard">
+			<apply_if maxzoom="13" color="#bbeca1"/>
+			<apply_if minzoom="14" shader="topo_vineyard"/>
+		</case>
+
+		<case minzoom="12" tag="landuse" value="farmyard" color="$farmyardColor"/>
+
+		<case minzoom="11" tag="landuse" value="quarry" color="#E2D5CE" color_2="#6F6357" strokeWidth_2="2" pathEffect_2="2_2"/>
+
 		<case minzoom="10" tag="natural" value="wetland">
 			<case additional="wetland=tidalflat" shader="wetland_tidalflat">
 				<apply_if nightMode="true" shader="" color="#323b69"/>
