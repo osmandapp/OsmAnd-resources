@@ -1129,13 +1129,19 @@
 		<case nightMode="true" attrColorValue="#aaaaaa"/>
 		<case attrColorValue="#666666"/>
 	</renderingAttribute>
-	<renderingConstant name="landuseIndustrialColorDay" value="#cfc0c8"/>
-	<renderingConstant name="landuseIndustrialColorNight" value="#302d2d"/>
-	<renderingConstant name="landuseResidentialColorDay" value="#d0d0d0"/>
-	<renderingConstant name="landuseResidentialColorNight" value="#3b3b3b"/>
+	<renderingAttribute name="landuseIndustrialColor">
+		<case nightMode="true" attrColorValue="#302d2d"/>
+		<case attrColorValue="#cfc0c8"/>
+	</renderingAttribute>
+	<renderingAttribute name="landuseResidentialColor">
+		<case nightMode="true" attrColorValue="#3b3b3b"/>
+		<case attrColorValue="#d0d0d0"/>
+	</renderingAttribute>
 	<renderingConstant name="landuseResidentialRuralColorDay" value="#cdd5cd"/>
-	<renderingConstant name="landuseRailwayColorDay" value="#dfd1d6"/>
-	<renderingConstant name="landuseRailwayColorNight" value="#3b3b3b"/>
+	<renderingAttribute name="landuseRailwayColor">
+		<case nightMode="true" attrColorValue="#3b3b3b"/>
+		<case attrColorValue="#dfd1d6"/>
+	</renderingAttribute>
 <!--	<renderingConstant name="landusePrisonColorDay" value="#dfd1d6"/>-->
 	<renderingConstant name="landusePrisonColorNight" value="#3b3b3b"/>
 	<renderingConstant name="landuseCommercialColorDay" value="#efc8c8"/>
@@ -1153,8 +1159,10 @@
 		<case nightMode="true" attrColorValue="#3b3b3b"/>
 		<case attrColorValue="#bde3cb"/>
 	</renderingAttribute>
-	<renderingConstant name="landuseGaragesColorDay" value="#cdc6bf"/>
-	<renderingConstant name="landuseGaragesColorNight" value="#362d2d"/>
+	<renderingAttribute name="landuseGaragesColor">
+		<case nightMode="true" attrColorValue="#362d2d"/>
+		<case attrColorValue="#cdc6bf"/>
+	</renderingAttribute>
 	<renderingConstant name="leisureResortColorDay" value="#b0b6fdb6"/>
 	<renderingConstant name="leisureResortColorNight" value="#362d2d"/>
 	<renderingConstant name="themeparkColorDay" value="#66f2caea"/>
@@ -1401,7 +1409,10 @@
 	<renderingConstant name="landuseManmadeTextHaloRadiusDay" value="1"/>
 	<renderingConstant name="landuseManmadeTextColorDay" value="#000000"/>
 	<renderingConstant name="landuseManmadeFadedTextColorDay" value="#525252"/>
-	<renderingConstant name="landuseManmadeTextHaloColorDay" value="#aaf1eae4"/>
+	<renderingAttribute name="landuseManmadeTextHaloColor">
+		<case nightMode="true" attrColorValue="#77777777"/>
+		<case attrColorValue="#aaf1eae4"/>
+	</renderingAttribute>
 
 	<renderingConstant name="textHaloRadiusDay" value="1"/>
 	<renderingConstant name="textHaloRadiusNight" value="2"/>
@@ -4719,7 +4730,7 @@
 				<apply_if engine_v1="true" textDy="10"/>
 			</switch>
 
-			<switch textSize="12" textHaloRadius="$landuseManmadeTextHaloRadiusDay" textHaloColor="$landuseManmadeTextHaloColorDay" textWrapWidth="20" textOrder="144">
+			<switch textSize="12" textHaloRadius="$landuseManmadeTextHaloRadiusDay" textHaloColor="$landuseManmadeTextHaloColor" textWrapWidth="20" textOrder="144">
 				<switch>
 					<case minzoom="14" tag="landuse" value="cemetery"/>
 					<case minzoom="15" tag="landuse" value="industrial"/>
@@ -4751,7 +4762,7 @@
 					<apply textColor="$landuseManmadeFadedTextColorDay"/>
 				</switch>
 				<apply_if engine_v1="true" textDy="9"/>
-				<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#77777777"/>
+				<apply_if nightMode="true" textColor="#ffffff"/>
 				<apply_if moreDetailed="false" maxzoom="15" disable="true"/>
 			</switch>
 
@@ -6017,7 +6028,7 @@
 		</case>
 		<case minzoom="17" tag="historic" value="rune_stone" icon="historic_rune_stone" shield="historic_rune_stone_shield"/>
 
-		<switch minzoom="16">
+<!--		<switch minzoom="16">
 			<case tag="abandoned:place" value=""/>
 			<case tag="abandoned:landuse" value=""/>
 			<switch minzoom="17">
@@ -6025,11 +6036,11 @@
 				<case tag="disused:building" value=""/>
 				<case tag="building" value="collapsed"/>
 			</switch>
-			<apply icon="landuse_abandoned" shield="abandoned_shield" iconOrder="128">
+			<apply icon="abandoned_poi" shield="abandoned_shield" iconOrder="128">
 				<apply_if maxzoom="17" iconVisibleSize="23" intersectionSizeFactor="1.6"/>
 				<apply_if minzoom="18" maxzoom="18" iconVisibleSize="25" intersectionSizeFactor="1.7"/>
 			</apply>
-		</switch>
+		</switch>-->
 		<case hideBuildings="false" minzoom="16" tag="building" value="" additional="object_type=node" icon="building_map" shield="building_shield" iconOrder="128" iconVisibleSize="14" intersectionSizeFactor="0.8">
 			<apply_if moreDetailed="true" iconVisibleSize="10" intersectionSizeFactor="0.6"/>
 		</case>
@@ -7684,26 +7695,18 @@
 
 			<!-- Built-up areas -->
 			<switch>
-				<case minzoom="6" tag="landuse" value="residential" color="$landuseResidentialColorDay">
+				<case minzoom="6" tag="landuse" value="residential" color="$landuseResidentialColor">
 					<apply_if additional="residential=rural" color="$landuseResidentialRuralColorDay"/>
-					<apply_if nightMode="true" color="$landuseResidentialColorNight"/>
 				</case>
-				<case minzoom="11" tag="landuse" value="industrial" color="$landuseIndustrialColorDay">
-					<apply_if nightMode="true" color="$landuseIndustrialColorNight"/>
-				</case>
-				<case minzoom="12" tag="landuse" value="railway" color="$landuseRailwayColorDay">
-					<apply_if nightMode="true" color="$landuseRailwayColorNight"/>
-				</case>
-				<case minzoom="14" tag="landuse" value="garages" color="$landuseGaragesColorDay">
-					<apply_if nightMode="true" color="$landuseGaragesColorNight"/>
-				</case>
+				<case minzoom="11" tag="landuse" value="industrial" color="$landuseIndustrialColor"/>
+				<case minzoom="12" tag="landuse" value="railway" color="$landuseRailwayColor"/>
+				<case minzoom="14" tag="landuse" value="garages" color="$landuseGaragesColor"/>
 				<switch>
 					<case minzoom="12" tag="abandoned:landuse" value="industrial"/>
 					<case minzoom="11" tag="abandoned:landuse" value="railway"/>
 					<case minzoom="11" tag="abandoned:landuse" value="residential"/>
 					<case minzoom="11" tag="abandoned:landuse" value="garages"/>
 					<switch>
-						<case minzoom="12" tag="landuse" value="abandoned"/>
 						<case minzoom="12" tag="abandoned:landuse" value=""/>
 						<case minzoom="11" tag="abandoned:place" value="" strokeWidth_2="0.5" color_2="#44444444">
 							<apply_if nightMode="true" color_2="#77aaaaaa"/>
