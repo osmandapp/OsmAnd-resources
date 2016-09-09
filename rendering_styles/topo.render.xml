@@ -5,6 +5,12 @@
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
 	<renderingProperty attr="transportStops" name="Transport stops" description="Public transport stops"
 		type="boolean" possibleValues="" category="transport"/>
+	<renderingProperty attr="contourLines" name="Show contour lines" description="Select minimum zoom level to display in map if available. Separate contour file may be needed."
+		type="string" possibleValues="disabled,16,15,14,13,12,11" defaultValueDescription="default13" category="details"/>
+	<renderingProperty attr="horseRoutes" name="Horse routes" description="Horse routes"
+		type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="hikingRoutesOSMC" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces"
+		type="string" possibleValues="walkingRoutesOSMC,walkingRoutesScopeOSMC" defaultValueDescription="disabled" category="routes"/>
 	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
 		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="moreDetailed" name="More details" description="More details on map" type="boolean" possibleValues=""
@@ -129,34 +135,6 @@
 	<renderingAttribute name="waterwayArrowsColor">
 		<case attrColorValue="#140657"/>
 	</renderingAttribute>
-
-<!--	<renderingAttribute name="osmandHighwayIntegrity0Color">
-		<case attrColorValue="#FB753C"/>
-	</renderingAttribute>
-	<renderingAttribute name="osmandHighwayIntegrity1Color">
-		<case attrColorValue="#FBA078"/>
-	</renderingAttribute>
-	<renderingAttribute name="osmandHighwayIntegrity2Color">
-		<case attrColorValue="#FBBFA6"/>
-	</renderingAttribute>
-	<renderingAttribute name="osmandHighwayIntegrity3Color">
-		<case attrColorValue="#FBD5C5"/>
-	</renderingAttribute>
-	<renderingAttribute name="osmandHighwayIntegrity4Color">
-		<case attrColorValue="#FBE2D7"/>
-	</renderingAttribute>
-	<renderingAttribute name="osmandHighwayIntegrity5Color">
-		<case attrColorValue="#FBE2D7"/>
-	</renderingAttribute>
-	<renderingAttribute name="osmandHighwayIntegrity6Color">
-		<case attrColorValue="#FBF0EE"/>
-	</renderingAttribute>
-	<renderingAttribute name="osmandHighwayIntegrity7Color">
-		<case attrColorValue="#FBF0EE"/>
-	</renderingAttribute>
-	<renderingAttribute name="osmandHighwayIntegrity8Color">
-		<case attrColorValue="#FBF2EE"/>
-	</renderingAttribute>-->
 
 <!-- Motorway -->
 	<renderingAttribute name="motorwayRoadColor">
@@ -473,7 +451,7 @@
 			</apply>
 		</case>
 		<case nightMode="true" attrColorValue="$null"/>
-		<case attrColorValue="$null"/>
+		<case attrColorValue="#cccccc"/>
 	</renderingAttribute>
 	<renderingConstant name="trackStrokeWidth" value="1:1"/>
 	<renderingConstant name="trackLowZoomStrokeWidth" value="1:0.5"/>
@@ -737,6 +715,47 @@
 	<renderingConstant name="boundaryNationalParkColor" value="#a0800080"/>
 	<renderingConstant name="boundaryNationalParkColor2" value="#5009dd09"/>
 
+	<renderingAttribute name="osmcBlackColor">
+		<case engine_v1="true" attrColorValue="#66000000"/>
+		<case attrColorValue="#44000000"/>
+	</renderingAttribute>
+	<renderingAttribute name="osmcBlueColor">
+		<case engine_v1="true" attrColorValue="#660000ff"/>
+		<case attrColorValue="#440000ff"/>
+	</renderingAttribute>
+	<renderingAttribute name="osmcGreenColor">
+		<case engine_v1="true" attrColorValue="#6600ff00"/>
+		<case attrColorValue="#4400ff00"/>
+	</renderingAttribute>
+	<renderingAttribute name="osmcRedColor">
+		<case engine_v1="true" attrColorValue="#66ff0000"/>
+		<case attrColorValue="#44ff0000"/>
+	</renderingAttribute>
+	<renderingAttribute name="osmcYellowColor">
+		<case engine_v1="true" attrColorValue="#99ffff00"/>
+		<case attrColorValue="#44ffff00"/>
+	</renderingAttribute>
+	<renderingAttribute name="osmcOrangeColor">
+		<case engine_v1="true" attrColorValue="#88ffba00"/>
+		<case attrColorValue="#66ffba00"/>
+	</renderingAttribute>
+	<renderingAttribute name="osmcBrownColor">
+		<case engine_v1="true" attrColorValue="#66705409"/>
+		<case attrColorValue="#44705409"/>
+	</renderingAttribute>
+	<renderingAttribute name="osmcPurpleColor">
+		<case engine_v1="true" attrColorValue="#66ab00d6"/>
+		<case attrColorValue="#44ab00d6"/>
+	</renderingAttribute>
+	<renderingAttribute name="osmcDefaultColor">
+		<case engine_v1="true" attrColorValue="#660058a2"/>
+		<case attrColorValue="#280058a2"/>
+	</renderingAttribute>
+	<renderingAttribute name="horseRouteDefaultColor">
+		<case engine_v1="true" attrColorValue="#8000ad88"/>
+		<case attrColorValue="#3500ad88"/>
+	</renderingAttribute>
+
 	<renderingAttribute name="textOrderPopulation">
 		<case additional="population_rounded=1500000000" attrIntValue="6"/>
 		<case additional="population_rounded=400000000" attrIntValue="7"/>
@@ -821,6 +840,10 @@
 			<!-- point has order 128 -->
 			<case tag="" value=""/>
 			<case tag="natural" value=""/>
+			<case tag="natural" value="peak">
+				<apply_if additional="ele_limit=200" maxzoom="12" order="-1"/>
+				<apply_if additional="ele_limit=500" maxzoom="11" order="-1"/>
+			</case>
 			<case tag="abandoned:place" value=""/>
 			<case tag="osmand" value="file_waypoint"/>
 			<case tag="osmand" value="fav"/>
@@ -863,6 +886,7 @@
 				<case tag="waterway" value="weir"/>-->
 				<apply order="10"/>
 			</switch>
+			<case tag="natural" value="volcano"/>
 			<case tag="natural" value="water" order="9"/>
 			<case tag="waterway" value="riverbank" order="9"/>
 			<case tag="natural" value="wetland" order="6"/>
@@ -899,7 +923,7 @@
 			<case tag="osmand" value="file_trackline"/>
 			<case tag="osmand" value="file_routeline"/>
 			<case tag="admin_level" value="" order="62"/>
-			<case tag="contour" value="" order="15"/>
+			<case tag="contour" value="" order="9"/>
 			<case tag="power" value="line" order="96"/>
 			<case tag="power" value="minor_line" order="96"/>
 			<switch>
@@ -983,16 +1007,21 @@
 				<apply_if layer="-1" order="11"/>
 			</case>
 			<case tag="man_made" value="cutline" order="11"/>
+			<case tag="natural" value="volcano"/>
 			<case tag="waterway" value="" order="8">
 				<apply_if layer="1" order="68"/>
 <!--				<apply_if OSMMapperAssistant="false" layer="-1" maxzoom="17" order="-1"/>-->
 				<apply_if layer="-1" order="-1"/>
 			</case>
-			<case appMode="car" maxzoom="17" tag="barrier" value="hedge" order="-1"/>
-
-			<case tag="barrier" value="" order="20">
-				<apply_if appMode="car" layer="-1" order="-1"/>
-			</case>
+			<case tag="network_iwn" value="" order="94"/>
+			<case tag="network_nwn" value="" order="95"/>
+			<case tag="network_rwn" value="" order="96"/>
+			<case tag="network_lwn" value="" order="97"/>
+			<switch hikingRoutesOSMC="walkingRoutesScopeOSMC" order="99">
+				<case tag="route_hiking" value=""/>
+				<case tag="route_foot" value=""/>
+				<case tag="route_walking" value=""/>
+			</switch>
 		</switch>
 
 	</order>
@@ -1078,6 +1107,349 @@
 				<case minzoom="18" textSize="18"/>
 			</apply>
 		</switch>
+				<switch minzoom="12" textMinDistance="101" textOnPath="false" textColor="#00ffffff" textSize="11" textOrder="43">
+					<switch minzoom="12" textOrder="44">
+						<case tag="route_hiking" value="" nameTag="osmc_text" nameTag2="hiking_route_ref" textSize="13"/>
+						<case tag="route_foot" value="" nameTag="osmc_text" nameTag2="foot_route_ref" textSize="13"/>
+						<case tag="route_walking" value="" nameTag="osmc_text" nameTag2="walking_route_ref" textSize="13"/>
+						<case tag="route_hiking" value="" nameTag="hiking_route_ref" textSize="13"/>
+						<case tag="route_foot" value="" nameTag="foot_route_ref" textSize="13"/>
+						<case tag="route_walking" value="" nameTag="walking_route_ref" textSize="13"/>
+						<case tag="route_horse" value="" nameTag="horse_route_ref" textSize="13"/>
+						<case minzoom="17" tag="route_hiking" value="" nameTag="hiking_route_name" textOrder="10"/>
+						<case minzoom="17" tag="route_foot" value="" nameTag="foot_route_name" textOrder="10"/>
+						<case minzoom="17" tag="route_walking" value="" nameTag="walking_route_name" textOrder="10"/>
+						<case minzoom="13" tag="route_horse" value="" nameTag="horse_route_name" textOrder="8"/>
+						<apply>
+							<switch>
+								<case hikingRoutesOSMC="walkingRoutesOSMC" textColor="#0078ff" textHaloColor="#ccebf4ff">
+									<apply_if nightMode="true" textHaloColor="#aa0800a0"/>
+								</case>
+								<case hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="#0078ff" textHaloColor="#ccebf4ff">
+									<apply_if nightMode="true" textHaloColor="#aa0800a0"/>
+								</case>
+								<case horseRoutes="true" textColor="#00745b" textHaloColor="#ccffffff">
+									<apply_if nightMode="true" textHaloColor="#00745b"/>
+								</case>
+								<apply textMinDistance="100" textBold="true" textHaloRadius="2" textWrapWidth="30"/>
+								<apply_if nightMode="true" textColor="#ffffff"/>
+							</switch>
+						</apply>
+					</switch>
+				</switch>
+				<switch minzoom="12" textMinDistance="101" textOnPath="false" textColor="#00ffffff" textSize="12" textOrder="43">
+					<switch hikingRoutesOSMC="walkingRoutesOSMC">
+						<case minzoom="12" tag="route_hiking" value="" nameTag="osmc_stub_name"/>
+						<case minzoom="12" tag="route_foot" value="" nameTag="osmc_stub_name"/>
+						<case minzoom="12" tag="route_walking" value="" nameTag="osmc_stub_name"/>
+					</switch>
+					<switch hikingRoutesOSMC="walkingRoutesScopeOSMC">
+						<case minzoom="12" tag="route_hiking" value="" nameTag="osmc_stub_name"/>
+						<case minzoom="12" tag="route_foot" value="" nameTag="osmc_stub_name"/>
+						<case minzoom="12" tag="route_walking" value="" nameTag="osmc_stub_name"/>
+					</switch>
+					<switch horseRoutes="true">
+						<case minzoom="12" horseRoutes="true" tag="route_horse" value="" nameTag="osmc_stub_name"/>
+					</switch>
+					<apply>
+						<switch>
+							<case additional="osmc_background=black" textShield="osmc_black_bg"/>
+							<case additional="osmc_background=black_circle" textShield="osmc_black_circle_bg"/>
+							<case additional="osmc_background=blue" textShield="osmc_blue_bg"/>
+							<case additional="osmc_background=blue_circle" textShield="osmc_blue_circle_bg"/>
+							<case additional="osmc_background=blue_frame" textShield="osmc_blue_frame_bg"/>
+							<case additional="osmc_background=blue_round" textShield="osmc_blue_round_bg"/>
+							<case additional="osmc_background=brown" textShield="osmc_brown_bg"/>
+							<case additional="osmc_background=green" textShield="osmc_green_bg"/>
+							<case additional="osmc_background=green_frame" textShield="osmc_green_frame_bg"/>
+							<case additional="osmc_background=green_round" textShield="osmc_green_round_bg"/>
+							<case additional="osmc_background=orange" textShield="osmc_orange_bg"/>
+							<case additional="osmc_background=purple" textShield="osmc_purple_bg"/>
+							<case additional="osmc_background=red" textShield="osmc_red_bg"/>
+							<case additional="osmc_background=red_circle" textShield="osmc_red_circle_bg"/>
+							<case additional="osmc_background=red_frame" textShield="osmc_red_frame_bg"/>
+							<case additional="osmc_background=red_round" textShield="osmc_red_round_bg"/>
+							<case additional="osmc_background=white" textShield="osmc_white_bg"/>
+							<case additional="osmc_background=white_circle" textShield="osmc_white_circle_bg"/>
+							<case additional="osmc_background=white_round" textShield="osmc_white_round_bg"/>
+							<case additional="osmc_background=yellow" textShield="osmc_yellow_bg"/>
+							<case additional="osmc_background=yellow_circle" textShield="osmc_yellow_circle_bg"/>
+							<case additional="osmc_background=yellow_frame" textShield="osmc_yellow_frame_bg"/>
+							<case additional="osmc_background" textShield="osmc_white_bg"/>
+							<apply>
+								<switch>
+									<case additional="osmc_foreground=black_arch" icon="osmc_black_arch"/>
+									<case additional="osmc_foreground=black_backslash" icon="osmc_black_backslash"/>
+									<case additional="osmc_foreground=black_bar" icon="osmc_black_bar"/>
+									<case additional="osmc_foreground=black_bicycle" icon="osmc_black_bicycle"/>
+									<case additional="osmc_foreground=black_bowl" icon="osmc_black_bowl"/>
+									<case additional="osmc_foreground=black_circle" icon="osmc_black_circle"/>
+									<case additional="osmc_foreground=black_circle_arrow" icon="osmc_black_circle_arrow"/>
+									<case additional="osmc_foreground=black_corner" icon="osmc_black_corner"/>
+									<case additional="osmc_foreground=black_cross" icon="osmc_black_cross"/>
+									<case additional="osmc_foreground=black_diamond" icon="osmc_black_diamond"/>
+									<case additional="osmc_foreground=black_diamond_line" icon="osmc_black_diamond_line"/>
+									<case additional="osmc_foreground=black_dot" icon="osmc_black_dot"/>
+									<case additional="osmc_foreground=black_drop_line" icon="osmc_black_drop_line"/>
+									<case additional="osmc_foreground=black_fork" icon="osmc_black_fork"/>
+									<case additional="osmc_foreground=black_hiker" icon="osmc_black_hiker"/>
+									<case additional="osmc_foreground=black_house" icon="osmc_black_house"/>
+									<case additional="osmc_foreground=black_l" icon="osmc_black_l"/>
+									<case additional="osmc_foreground=black_m" icon="osmc_black_m"/>
+									<case additional="osmc_foreground=black_lower" icon="osmc_black_lower"/>
+									<case additional="osmc_foreground=black_pointer" icon="osmc_black_pointer"/>
+									<case additional="osmc_foreground=black_pointer_line" icon="osmc_black_pointer_line"/>
+									<case additional="osmc_foreground=black_rectangle" icon="osmc_black_rectangle"/>
+									<case additional="osmc_foreground=black_rectangle_line" icon="osmc_black_rectangle_line"/>
+									<case additional="osmc_foreground=black_slash" icon="osmc_black_slash"/>
+									<case additional="osmc_foreground=black_stripe" icon="osmc_black_stripe"/>
+									<case additional="osmc_foreground=black_t" icon="osmc_black_t"/>
+									<case additional="osmc_foreground=black_triangle" icon="osmc_black_triangle"/>
+									<case additional="osmc_foreground=black_triangle_line" icon="osmc_black_triangle_line"/>
+									<case additional="osmc_foreground=black_triangle_turned" icon="osmc_black_triangle_turned"/>
+									<case additional="osmc_foreground=black_turned_t" icon="osmc_black_turned_t"/>
+									<case additional="osmc_foreground=black_upper" icon="osmc_black_upper"/>
+									<case additional="osmc_foreground=black_x" icon="osmc_black_x"/>
+
+									<case additional="osmc_foreground=blue_arch" icon="osmc_blue_arch"/>
+									<case additional="osmc_foreground=blue_backslash" icon="osmc_blue_backslash"/>
+									<case additional="osmc_foreground=blue_bar" icon="osmc_blue_bar"/>
+									<case additional="osmc_foreground=blue_bicycle" icon="osmc_blue_bicycle"/>
+									<case additional="osmc_foreground=blue_bowl" icon="osmc_blue_bowl"/>
+									<case additional="osmc_foreground=blue_circle" icon="osmc_blue_circle"/>
+									<case additional="osmc_foreground=blue_circle_arrow" icon="osmc_blue_circle_arrow"/>
+									<case additional="osmc_foreground=blue_corner" icon="osmc_blue_corner"/>
+									<case additional="osmc_foreground=blue_cross" icon="osmc_blue_cross"/>
+									<case additional="osmc_foreground=blue_diamond" icon="osmc_blue_diamond"/>
+									<case additional="osmc_foreground=blue_diamond_line" icon="osmc_blue_diamond_line"/>
+									<case additional="osmc_foreground=blue_dot" icon="osmc_blue_dot"/>
+									<case additional="osmc_foreground=blue_drop_line" icon="osmc_blue_drop_line"/>
+									<case additional="osmc_foreground=blue_fork" icon="osmc_blue_fork"/>
+									<case additional="osmc_foreground=blue_hiker" icon="osmc_blue_hiker"/>
+									<case additional="osmc_foreground=blue_house" icon="osmc_blue_house"/>
+									<case additional="osmc_foreground=blue_l" icon="osmc_blue_l"/>
+									<case additional="osmc_foreground=blue_m" icon="osmc_blue_m"/>
+									<case additional="osmc_foreground=blue_lower" icon="osmc_blue_lower"/>
+									<case additional="osmc_foreground=blue_pointer" icon="osmc_blue_pointer"/>
+									<case additional="osmc_foreground=blue_pointer_line" icon="osmc_blue_pointer_line"/>
+									<case additional="osmc_foreground=blue_rectangle" icon="osmc_blue_rectangle"/>
+									<case additional="osmc_foreground=blue_rectangle_line" icon="osmc_blue_rectangle_line"/>
+									<case additional="osmc_foreground=blue_slash" icon="osmc_blue_slash"/>
+									<case additional="osmc_foreground=blue_stripe" icon="osmc_blue_stripe"/>
+									<case additional="osmc_foreground=blue_t" icon="osmc_blue_t"/>
+									<case additional="osmc_foreground=blue_triangle" icon="osmc_blue_triangle"/>
+									<case additional="osmc_foreground=blue_triangle_line" icon="osmc_blue_triangle_line"/>
+									<case additional="osmc_foreground=blue_triangle_turned" icon="osmc_blue_triangle_turned"/>
+									<case additional="osmc_foreground=blue_turned_t" icon="osmc_blue_turned_t"/>
+									<case additional="osmc_foreground=blue_upper" icon="osmc_blue_upper"/>
+									<case additional="osmc_foreground=blue_x" icon="osmc_blue_x"/>
+
+									<case additional="osmc_foreground=green_arch" icon="osmc_green_arch"/>
+									<case additional="osmc_foreground=green_backslash" icon="osmc_green_backslash"/>
+									<case additional="osmc_foreground=green_bar" icon="osmc_green_bar"/>
+									<case additional="osmc_foreground=green_bicycle" icon="osmc_green_bicycle"/>
+									<case additional="osmc_foreground=green_bowl" icon="osmc_green_bowl"/>
+									<case additional="osmc_foreground=green_circle" icon="osmc_green_circle"/>
+									<case additional="osmc_foreground=green_circle_arrow" icon="osmc_green_circle_arrow"/>
+									<case additional="osmc_foreground=green_corner" icon="osmc_green_corner"/>
+									<case additional="osmc_foreground=green_cross" icon="osmc_green_cross"/>
+									<case additional="osmc_foreground=green_diamond" icon="osmc_green_diamond"/>
+									<case additional="osmc_foreground=green_diamond_line" icon="osmc_green_diamond_line"/>
+									<case additional="osmc_foreground=green_dot" icon="osmc_green_dot"/>
+									<case additional="osmc_foreground=green_drop_line" icon="osmc_green_drop_line"/>
+									<case additional="osmc_foreground=green_fork" icon="osmc_green_fork"/>
+									<case additional="osmc_foreground=green_hiker" icon="osmc_green_hiker"/>
+									<case additional="osmc_foreground=green_house" icon="osmc_green_house"/>
+									<case additional="osmc_foreground=green_l" icon="osmc_green_l"/>
+									<case additional="osmc_foreground=green_m" icon="osmc_green_m"/>
+									<case additional="osmc_foreground=green_lower" icon="osmc_green_lower"/>
+									<case additional="osmc_foreground=green_pointer" icon="osmc_green_pointer"/>
+									<case additional="osmc_foreground=green_pointer_line" icon="osmc_green_pointer_line"/>
+									<case additional="osmc_foreground=green_rectangle" icon="osmc_green_rectangle"/>
+									<case additional="osmc_foreground=green_rectangle_line" icon="osmc_green_rectangle_line"/>
+									<case additional="osmc_foreground=green_slash" icon="osmc_green_slash"/>
+									<case additional="osmc_foreground=green_stripe" icon="osmc_green_stripe"/>
+									<case additional="osmc_foreground=green_t" icon="osmc_green_t"/>
+									<case additional="osmc_foreground=green_triangle" icon="osmc_green_triangle"/>
+									<case additional="osmc_foreground=green_triangle_line" icon="osmc_green_triangle_line"/>
+									<case additional="osmc_foreground=green_triangle_turned" icon="osmc_green_triangle_turned"/>
+									<case additional="osmc_foreground=green_turned_t" icon="osmc_green_turned_t"/>
+									<case additional="osmc_foreground=green_upper" icon="osmc_green_upper"/>
+									<case additional="osmc_foreground=green_x" icon="osmc_green_x"/>
+
+									<case additional="osmc_foreground=orange_arch" icon="osmc_orange_arch"/>
+									<case additional="osmc_foreground=orange_backslash" icon="osmc_orange_backslash"/>
+									<case additional="osmc_foreground=orange_bar" icon="osmc_orange_bar"/>
+									<case additional="osmc_foreground=orange_bicycle" icon="osmc_orange_bicycle"/>
+									<case additional="osmc_foreground=orange_bowl" icon="osmc_orange_bowl"/>
+									<case additional="osmc_foreground=orange_circle" icon="osmc_orange_circle"/>
+									<case additional="osmc_foreground=orange_circle_arrow" icon="osmc_orange_circle_arrow"/>
+									<case additional="osmc_foreground=orange_corner" icon="osmc_orange_corner"/>
+									<case additional="osmc_foreground=orange_cross" icon="osmc_orange_cross"/>
+									<case additional="osmc_foreground=orange_diamond" icon="osmc_orange_diamond"/>
+									<case additional="osmc_foreground=orange_diamond_line" icon="osmc_orange_diamond_line"/>
+									<case additional="osmc_foreground=orange_dot" icon="osmc_orange_dot"/>
+									<case additional="osmc_foreground=orange_drop_line" icon="osmc_orange_drop_line"/>
+									<case additional="osmc_foreground=orange_fork" icon="osmc_orange_fork"/>
+									<case additional="osmc_foreground=orange_hiker" icon="osmc_orange_hiker"/>
+									<case additional="osmc_foreground=orange_house" icon="osmc_orange_house"/>
+									<case additional="osmc_foreground=orange_l" icon="osmc_orange_l"/>
+									<case additional="osmc_foreground=orange_m" icon="osmc_orange_m"/>
+									<case additional="osmc_foreground=orange_lower" icon="osmc_orange_lower"/>
+									<case additional="osmc_foreground=orange_pointer" icon="osmc_orange_pointer"/>
+									<case additional="osmc_foreground=orange_pointer_line" icon="osmc_orange_pointer_line"/>
+									<case additional="osmc_foreground=orange_rectangle" icon="osmc_orange_rectangle"/>
+									<case additional="osmc_foreground=orange_rectangle_line" icon="osmc_orange_rectangle_line"/>
+									<case additional="osmc_foreground=orange_slash" icon="osmc_orange_slash"/>
+									<case additional="osmc_foreground=orange_stripe" icon="osmc_orange_stripe"/>
+									<case additional="osmc_foreground=orange_t" icon="osmc_orange_t"/>
+									<case additional="osmc_foreground=orange_triangle" icon="osmc_orange_triangle"/>
+									<case additional="osmc_foreground=orange_triangle_line" icon="osmc_orange_triangle_line"/>
+									<case additional="osmc_foreground=orange_triangle_turned" icon="osmc_orange_triangle_turned"/>
+									<case additional="osmc_foreground=orange_turned_t" icon="osmc_orange_turned_t"/>
+									<case additional="osmc_foreground=orange_upper" icon="osmc_orange_upper"/>
+									<case additional="osmc_foreground=orange_x" icon="osmc_orange_x"/>
+
+									<case additional="osmc_foreground=red_arch" icon="osmc_red_arch"/>
+									<case additional="osmc_foreground=red_backslash" icon="osmc_red_backslash"/>
+									<case additional="osmc_foreground=red_bar" icon="osmc_red_bar"/>
+									<case additional="osmc_foreground=red_bicycle" icon="osmc_red_bicycle"/>
+									<case additional="osmc_foreground=red_bowl" icon="osmc_red_bowl"/>
+									<case additional="osmc_foreground=red_circle" icon="osmc_red_circle"/>
+									<case additional="osmc_foreground=red_circle_arrow" icon="osmc_red_circle_arrow"/>
+									<case additional="osmc_foreground=red_corner" icon="osmc_red_corner"/>
+									<case additional="osmc_foreground=red_cross" icon="osmc_red_cross"/>
+									<case additional="osmc_foreground=red_diamond" icon="osmc_red_diamond"/>
+									<case additional="osmc_foreground=red_diamond_line" icon="osmc_red_diamond_line"/>
+									<case additional="osmc_foreground=red_dot" icon="osmc_red_dot"/>
+									<case additional="osmc_foreground=red_drop_line" icon="osmc_red_drop_line"/>
+									<case additional="osmc_foreground=red_fork" icon="osmc_red_fork"/>
+									<case additional="osmc_foreground=red_hiker" icon="osmc_red_hiker"/>
+									<case additional="osmc_foreground=red_house" icon="osmc_red_house"/>
+									<case additional="osmc_foreground=red_l" icon="osmc_red_l"/>
+									<case additional="osmc_foreground=red_m" icon="osmc_red_m"/>
+									<case additional="osmc_foreground=red_lower" icon="osmc_red_lower"/>
+									<case additional="osmc_foreground=red_pointer" icon="osmc_red_pointer"/>
+									<case additional="osmc_foreground=red_pointer_line" icon="osmc_red_pointer_line"/>
+									<case additional="osmc_foreground=red_rectangle" icon="osmc_red_rectangle"/>
+									<case additional="osmc_foreground=red_rectangle_line" icon="osmc_red_rectangle_line"/>
+									<case additional="osmc_foreground=red_slash" icon="osmc_red_slash"/>
+									<case additional="osmc_foreground=red_stripe" icon="osmc_red_stripe"/>
+									<case additional="osmc_foreground=red_t" icon="osmc_red_t"/>
+									<case additional="osmc_foreground=red_triangle" icon="osmc_red_triangle"/>
+									<case additional="osmc_foreground=red_triangle_line" icon="osmc_red_triangle_line"/>
+									<case additional="osmc_foreground=red_triangle_turned" icon="osmc_red_triangle_turned"/>
+									<case additional="osmc_foreground=red_turned_t" icon="osmc_red_turned_t"/>
+									<case additional="osmc_foreground=red_upper" icon="osmc_red_upper"/>
+									<case additional="osmc_foreground=red_x" icon="osmc_red_x"/>
+
+									<case additional="osmc_foreground=white_arch" icon="osmc_white_arch"/>
+									<case additional="osmc_foreground=white_backslash" icon="osmc_white_backslash"/>
+									<case additional="osmc_foreground=white_bar" icon="osmc_white_bar"/>
+									<case additional="osmc_foreground=white_bicycle" icon="osmc_white_bicycle"/>
+									<case additional="osmc_foreground=white_bowl" icon="osmc_white_bowl"/>
+									<case additional="osmc_foreground=white_circle" icon="osmc_white_circle"/>
+									<case additional="osmc_foreground=white_circle_arrow" icon="osmc_white_circle_arrow"/>
+									<case additional="osmc_foreground=white_corner" icon="osmc_white_corner"/>
+									<case additional="osmc_foreground=white_cross" icon="osmc_white_cross"/>
+									<case additional="osmc_foreground=white_diamond" icon="osmc_white_diamond"/>
+									<case additional="osmc_foreground=white_diamond_line" icon="osmc_white_diamond_line"/>
+									<case additional="osmc_foreground=white_dot" icon="osmc_white_dot"/>
+									<case additional="osmc_foreground=white_drop_line" icon="osmc_white_drop_line"/>
+									<case additional="osmc_foreground=white_fork" icon="osmc_white_fork"/>
+									<case additional="osmc_foreground=white_hiker" icon="osmc_white_hiker"/>
+									<case additional="osmc_foreground=white_house" icon="osmc_white_house"/>
+									<case additional="osmc_foreground=white_l" icon="osmc_white_l"/>
+									<case additional="osmc_foreground=white_m" icon="osmc_white_m"/>
+									<case additional="osmc_foreground=white_lower" icon="osmc_white_lower"/>
+									<case additional="osmc_foreground=white_pointer" icon="osmc_white_pointer"/>
+									<case additional="osmc_foreground=white_pointer_line" icon="osmc_white_pointer_line"/>
+									<case additional="osmc_foreground=white_rectangle" icon="osmc_white_rectangle"/>
+									<case additional="osmc_foreground=white_rectangle_line" icon="osmc_white_rectangle_line"/>
+									<case additional="osmc_foreground=white_slash" icon="osmc_white_slash"/>
+									<case additional="osmc_foreground=white_stripe" icon="osmc_white_stripe"/>
+									<case additional="osmc_foreground=white_t" icon="osmc_white_t"/>
+									<case additional="osmc_foreground=white_triangle" icon="osmc_white_triangle"/>
+									<case additional="osmc_foreground=white_triangle_line" icon="osmc_white_triangle_line"/>
+									<case additional="osmc_foreground=white_triangle_turned" icon="osmc_white_triangle_turned"/>
+									<case additional="osmc_foreground=white_turned_t" icon="osmc_white_turned_t"/>
+									<case additional="osmc_foreground=white_upper" icon="osmc_white_upper"/>
+									<case additional="osmc_foreground=white_x" icon="osmc_white_x"/>
+
+									<case additional="osmc_foreground=yellow_arch" icon="osmc_yellow_arch"/>
+									<case additional="osmc_foreground=yellow_backslash" icon="osmc_yellow_backslash"/>
+									<case additional="osmc_foreground=yellow_bar" icon="osmc_yellow_bar"/>
+									<case additional="osmc_foreground=yellow_bicycle" icon="osmc_yellow_bicycle"/>
+									<case additional="osmc_foreground=yellow_bowl" icon="osmc_yellow_bowl"/>
+									<case additional="osmc_foreground=yellow_circle" icon="osmc_yellow_circle"/>
+									<case additional="osmc_foreground=yellow_circle_arrow" icon="osmc_yellow_circle_arrow"/>
+									<case additional="osmc_foreground=yellow_corner" icon="osmc_yellow_corner"/>
+									<case additional="osmc_foreground=yellow_cross" icon="osmc_yellow_cross"/>
+									<case additional="osmc_foreground=yellow_diamond" icon="osmc_yellow_diamond"/>
+									<case additional="osmc_foreground=yellow_diamond_line" icon="osmc_yellow_diamond_line"/>
+									<case additional="osmc_foreground=yellow_dot" icon="osmc_yellow_dot"/>
+									<case additional="osmc_foreground=yellow_drop_line" icon="osmc_yellow_drop_line"/>
+									<case additional="osmc_foreground=yellow_fork" icon="osmc_yellow_fork"/>
+									<case additional="osmc_foreground=yellow_hiker" icon="osmc_yellow_hiker"/>
+									<case additional="osmc_foreground=yellow_house" icon="osmc_yellow_house"/>
+									<case additional="osmc_foreground=yellow_l" icon="osmc_yellow_l"/>
+									<case additional="osmc_foreground=yellow_m" icon="osmc_yellow_m"/>
+									<case additional="osmc_foreground=yellow_lower" icon="osmc_yellow_lower"/>
+									<case additional="osmc_foreground=yellow_pointer" icon="osmc_yellow_pointer"/>
+									<case additional="osmc_foreground=yellow_pointer_line" icon="osmc_yellow_pointer_line"/>
+									<case additional="osmc_foreground=yellow_rectangle" icon="osmc_yellow_rectangle"/>
+									<case additional="osmc_foreground=yellow_rectangle_line" icon="osmc_yellow_rectangle_line"/>
+									<case additional="osmc_foreground=yellow_slash" icon="osmc_yellow_slash"/>
+									<case additional="osmc_foreground=yellow_stripe" icon="osmc_yellow_stripe"/>
+									<case additional="osmc_foreground=yellow_t" icon="osmc_yellow_t"/>
+									<case additional="osmc_foreground=yellow_triangle" icon="osmc_yellow_triangle"/>
+									<case additional="osmc_foreground=yellow_triangle_line" icon="osmc_yellow_triangle_line"/>
+									<case additional="osmc_foreground=yellow_triangle_turned" icon="osmc_yellow_triangle_turned"/>
+									<case additional="osmc_foreground=yellow_turned_t" icon="osmc_yellow_turned_t"/>
+									<case additional="osmc_foreground=yellow_upper" icon="osmc_yellow_upper"/>
+									<case additional="osmc_foreground=yellow_x" icon="osmc_yellow_x"/>
+
+									<case additional="osmc_foreground=ammonit" icon="osmc_ammonit"/>
+									<case additional="osmc_foreground=black_horse" icon="osmc_black_horse"/>
+									<case additional="osmc_foreground=black_red_diamond" icon="osmc_black_red_diamond"/>
+									<case additional="osmc_foreground=blue_grape" icon="osmc_blue_grape"/>
+									<case additional="osmc_foreground=blue_wheelchair" icon="osmc_blue_wheelchair"/>
+									<case additional="osmc_foreground=brown_bar" icon="osmc_brown_bar"/>
+									<case additional="osmc_foreground=brown_dot" icon="osmc_brown_dot"/>
+									<case additional="osmc_foreground=brown_x" icon="osmc_brown_x"/>
+									<case additional="osmc_foreground=green_z" icon="osmc_green_z"/>
+									<case additional="osmc_foreground=heart" icon="osmc_heart"/>
+									<case additional="osmc_foreground=mine" icon="osmc_mine"/>
+									<case additional="osmc_foreground=purple_bar" icon="osmc_purple_bar"/>
+									<case additional="osmc_foreground=purple_diamond" icon="osmc_purple_diamond"/>
+									<case additional="osmc_foreground=purple_dot" icon="osmc_purple_dot"/>
+									<case additional="osmc_foreground=purple_l" icon="osmc_purple_l"/>
+									<case additional="osmc_foreground=purple_m" icon="osmc_purple_m"/>
+									<case additional="osmc_foreground=purple_pointer" icon="osmc_purple_pointer"/>
+									<case additional="osmc_foreground=purple_rectangle" icon="osmc_purple_rectangle"/>
+									<case additional="osmc_foreground=purple_stripe" icon="osmc_purple_stripe"/>
+									<case additional="osmc_foreground=red_blue_diamond" icon="osmc_red_blue_diamond"/>
+									<case additional="osmc_foreground=red_diamond_green_grape" icon="osmc_red_diamond_green_grape"/>
+									<case additional="osmc_foreground=red_diamond_yellow_grape" icon="osmc_red_diamond_yellow_grape"/>
+									<case additional="osmc_foreground=red_grape" icon="osmc_red_grape"/>
+									<case additional="osmc_foreground=red_wheelchair" icon="osmc_red_wheelchair"/>
+									<case additional="osmc_foreground=shell_modern" icon="osmc_shell_modern"/>
+									<case additional="osmc_foreground=tower" icon="osmc_tower"/>
+									<case additional="osmc_foreground=white_black_diamond" icon="osmc_white_black_diamond"/>
+									<case additional="osmc_foreground=white_red_diamond" icon="osmc_white_red_diamond"/>
+									<case additional="osmc_foreground=white_shell" icon="osmc_white_shell"/>
+									<case additional="osmc_foreground=white_wheelchair" icon="osmc_white_wheelchair"/>
+									<case additional="osmc_foreground=wolfshook" icon="osmc_wolfshook"/>
+									<case additional="osmc_foreground=yellow_hexagon" icon="osmc_yellow_hexagon"/>
+									<case additional="osmc_foreground=yellow_mz" icon="osmc_yellow_mz"/>
+									<case additional="osmc_foreground=yellow_sg" icon="osmc_yellow_sg"/>
+									<case additional="osmc_foreground=yellow_shell" icon="osmc_yellow_shell"/>
+								</switch>
+							</apply>
+						</switch>
+					</apply>
+				</switch>
+
 		<switch minzoom="14" textColor="$railwayTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="$railwayTextHaloColor" textOrder="251">
 			<case tag="railway" value="rail"/>
 <!--			<case tag="railway" value="tram"/>
@@ -1139,6 +1511,44 @@
 			</apply>
 			<apply textHaloRadius="$textHaloRadiusDay"/>
 			<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight"/>
+		</switch>
+
+		<switch textColor="#654321" textDy="7" textWrapWidth="25" textHaloColor="#ffffff" textHaloRadius="$textHaloRadiusDay" textItalic="true" textBold="true">
+			<switch>
+				<case minzoom="12" tag="natural" value="peak" textOrder="80">
+					<case maxzoom="12" nameTag="ele" textSize="11" intersectionMargin="15"/>
+					<case minzoom="13" maxzoom="13" nameTag="" nameTag2="ele" textSize="12"/>
+					<case minzoom="13" maxzoom="13" nameTag="ele" textSize="12"/>
+					<case minzoom="14" maxzoom="14" nameTag="" nameTag2="ele" textSize="12"/>
+					<case minzoom="14" maxzoom="14" nameTag="ele" textSize="12"/>
+					<case minzoom="15" maxzoom="16" nameTag="" nameTag2="ele" textSize="13"/>
+					<case minzoom="15" maxzoom="16" nameTag="ele" textSize="13"/>
+					<case minzoom="17" nameTag="" nameTag2="ele" textSize="15"/>
+					<case minzoom="17" nameTag="ele" textSize="15"/>
+				</case>
+				<case minzoom="11" tag="natural" value="volcano" nameTag2="ele" textOrder="79" textHaloColor="#99ffd6c0">
+					<case maxzoom="12" textSize="12"/>
+					<case minzoom="13" textSize="13"/>
+					<apply_if nightMode="true" textColor="#ffcc9b" textHaloColor="#77772105"/>
+				</case>
+				<apply_if additional="ele_limit=200" textOrder="83"/>
+				<apply_if additional="ele_limit=500" textOrder="82"/>
+				<apply_if additional="ele_limit=1000" textOrder="81"/>
+				<apply_if additional="ele_limit=1500" textOrder="80"/>
+				<apply_if additional="ele_limit=2000" textOrder="79"/>
+				<apply_if additional="ele_limit=2500" textOrder="78"/>
+				<apply_if additional="ele_limit=3000" textOrder="77"/>
+				<apply_if additional="ele_limit=3500" textOrder="76"/>
+				<apply_if additional="ele_limit=4000" textOrder="75"/>
+				<apply_if additional="ele_limit=4500" textOrder="74"/>
+				<apply_if additional="ele_limit=5000" textOrder="73"/>
+				<apply_if additional="ele_limit=5500" textOrder="72"/>
+				<apply_if additional="ele_limit=6000" textOrder="71"/>
+				<apply_if additional="ele_limit=6500" textOrder="70"/>
+				<apply_if additional="ele_limit=7000" textOrder="69"/>
+				<apply_if additional="ele_limit=7500" textOrder="68"/>
+				<apply_if additional="ele_limit=9000" textOrder="67"/>
+			</switch>
 		</switch>
 
 		<switch textColor="$waterTextColorDay" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$waterTextHaloColorDay" textItalic="true">
@@ -1355,11 +1765,16 @@
 					<case minzoom="$placeHamletMinZoom" tag="place" value="farm" nameTag="" textOrder="109"/>
 					<case minzoom="12" tag="place" value="plot" nameTag="" textOrder="108"/>
 					<case minzoom="12" tag="place" value="municipality" nameTag="" textOrder="107"/>
-					<case minzoom="13" tag="place" value="isolated_dwelling" nameTag="" textOrder="111"/>
-					<case minzoom="$placeLocalityMinZoom" tag="place" value="locality" nameTag="" textOrder="112"/>
 					<apply textSize="13"/>
 					<apply_if minzoom="16" textSize="15"/>
-				<apply_if minzoom="17" textSize="16"/>
+					<apply_if minzoom="17" textSize="16"/>
+				</switch>
+				<switch>
+					<case minzoom="13" tag="place" value="isolated_dwelling" nameTag="" textOrder="111"/>
+					<case minzoom="$placeLocalityMinZoom" tag="place" value="locality" nameTag="" textOrder="112"/>
+					<apply textSize="12"/>
+					<apply_if minzoom="16" textSize="13"/>
+					<apply_if minzoom="17" textSize="14"/>
 				</switch>
 				<case minzoom="11" tag="place" value="island" nameTag="" textSize="14" textOrder="113">
 					<apply_if minzoom="16" textSize="16"/>
@@ -1464,7 +1879,7 @@
 	<!--			<apply textOrder="111"/>-->
 			</switch>
 
-		<switch tag="contour" value="" textOnPath="false" textBold="true" textOrder="255" textHaloColor="#aaffffff" textHaloRadius="1">
+		<switch tag="contour" value="" textOnPath="false" textBold="true" textOrder="255" textHaloColor="#aaffffff" textHaloRadius="1" intersectionMargin="20">
 			<case minzoom="13" contourLines="11"/>
 			<case minzoom="13" contourLines="12"/>
 			<case minzoom="13" contourLines="13"/>
@@ -1608,27 +2023,67 @@
 	<point>
 		<!-- Location dots -->
 		<switch>
-			<case tag="place" value="city"/>
-			<apply_if minzoom="6" maxzoom="16" icon="place_city_dot" iconVisibleSize="12" intersectionSizeFactor="0.9" iconOrder="99"/>
-			<apply_if additional="capital=yes" iconVisibleSize="1" iconOrder="97">
-				<case minzoom="5" maxzoom="5" icon="place_capital_dot_small">
-					<apply_if nightMode="true" icon="place_capital_dot_small_night"/>
-				</case>
-				<case minzoom="6" maxzoom="16" icon="place_capital_dot">
-					<apply_if nightMode="true" icon="place_capital_dot_night"/>
-				</case>
-			</apply_if>
-		</switch>
+			<switch>
+				<case tag="place" value="city"/>
+				<apply_if minzoom="6" maxzoom="16" icon="place_city_dot" iconVisibleSize="12" intersectionSizeFactor="0.9" iconOrder="99"/>
+				<apply_if additional="capital=yes" iconVisibleSize="1" iconOrder="97">
+					<case minzoom="5" maxzoom="5" icon="place_capital_dot_small">
+						<apply_if nightMode="true" icon="place_capital_dot_small_night"/>
+					</case>
+					<case minzoom="6" maxzoom="16" icon="place_capital_dot">
+						<apply_if nightMode="true" icon="place_capital_dot_night"/>
+					</case>
+				</apply_if>
+			</switch>
 
-		<case minzoom="7" tag="place" value="town" icon="place_town_dot" iconVisibleSize="24"/>
-		<case minzoom="11" maxzoom="12" tag="place" value="village" icon="place_town_dot"/>
-		<case minzoom="11" maxzoom="12" tag="place" value="hamlet" icon="place_town_dot"/>
-		<case minzoom="12" maxzoom="12" tag="place" value="farm" icon="place_town_dot"/>
+			<case minzoom="7" tag="place" value="town" icon="place_town_dot" iconVisibleSize="24"/>
+			<case minzoom="11" maxzoom="12" tag="place" value="village" icon="place_town_dot"/>
+			<case minzoom="11" maxzoom="12" tag="place" value="hamlet" icon="place_town_dot"/>
+			<case minzoom="12" maxzoom="12" tag="place" value="farm" icon="place_town_dot"/>
+			<apply iconOrder="$textOrderPopulation"/>
+		</switch>
 
 		<case minzoom="16" tag="junction" value="yes" icon=""/>
 
+		<switch>
+			<case minzoom="11" tag="natural" value="peak" iconOrder="65">
+				<case maxzoom="12" icon="natural_peak" shield="peakvolcano_white_shield" iconVisibleSize="25" intersectionSizeFactor="2"/>
+				<case minzoom="13" icon="natural_peak_big" shield="peakvolcano_big_white_shield"/>
+				<apply_if nightMode="true" shield="">
+					<case minzoom="11" maxzoom="14" icon="natural_peak_night"/>
+					<case minzoom="15" icon="natural_peak_night_big"/>
+				</apply_if>
+			</case>
+			<case minzoom="10" tag="natural" value="volcano" iconOrder="50">
+				<case maxzoom="14" icon="natural_volcano_map" shield="peakvolcano_shield">
+					<case additional="status=active" icon="natural_volcano_active" shield="volcano_active_shield"/>
+				</case>
+				<case minzoom="15" icon="natural_volcano_big" shield="peakvolcano_big_shield">
+					<case additional="status=active" icon="natural_volcano_active_big" shield="volcano_active_big_shield"/>
+				</case>
+				<apply_if nightMode="true" shield=""/>
+			</case>
+			<apply_if additional="ele_limit=200" iconOrder="68"/>
+			<apply_if additional="ele_limit=500" iconOrder="67"/>
+			<apply_if additional="ele_limit=1000" iconOrder="66"/>
+			<apply_if additional="ele_limit=1500" iconOrder="65"/>
+			<apply_if additional="ele_limit=2000" iconOrder="64"/>
+			<apply_if additional="ele_limit=2500" iconOrder="63"/>
+			<apply_if additional="ele_limit=3000" iconOrder="62"/>
+			<apply_if additional="ele_limit=3500" iconOrder="61"/>
+			<apply_if additional="ele_limit=4000" iconOrder="60"/>
+			<apply_if additional="ele_limit=4500" iconOrder="59"/>
+			<apply_if additional="ele_limit=5000" iconOrder="58"/>
+			<apply_if additional="ele_limit=5500" iconOrder="57"/>
+			<apply_if additional="ele_limit=6000" iconOrder="56"/>
+			<apply_if additional="ele_limit=6500" iconOrder="55"/>
+			<apply_if additional="ele_limit=7000" iconOrder="54"/>
+			<apply_if additional="ele_limit=7500" iconOrder="53"/>
+			<apply_if additional="ele_limit=9000" iconOrder="52"/>
+		</switch>
+
 		<case minzoom="13" tag="power" value="tower">
-			<case moreDetailed="true" maxzoom="13" icon="power_tower_small2" iconVisibleSize="2"/>
+			<case moreDetailed="true" maxzoom="13" icon="barrier_small_black_4" iconVisibleSize="2"/>
 			<case minzoom="14" maxzoom="14" icon="power_tower_small2" iconVisibleSize="2"/>
 			<case minzoom="15" maxzoom="16" icon="power_tower_small" iconVisibleSize="3"/>
 			<case minzoom="17" icon="power_tower_square" iconVisibleSize="7"/>
@@ -1682,7 +2137,7 @@
 <!--					<case minzoom="14" tag="barrier" value="bollard" icon="barrier_bollard" shield="barrier_bollard_shield"/>-->
 					<case minzoom="14" tag="barrier" value="block" icon="barrier_block" shield="barrier_block_white_shield"/>
 					<case minzoom="14" tag="barrier" value="debris" icon="barrier_debris" shield="barrier_debris_white_shield"/>
-					<case minzoom="15" tag="barrier" value="log" icon="barrier_log" shield="barrier_log_white_shield"/>
+					<case minzoom="14" tag="barrier" value="log" icon="barrier_log" shield="barrier_log_white_shield"/>
 					<apply_if minzoom="14" maxzoom="14" icon="barrier_small_black_bold_2" shield="" iconVisibleSize="0">
 <!--						<apply_if nightMode="true" icon="barrier_small_white_4"/>-->
 					</apply_if>
@@ -1727,6 +2182,73 @@
 				<case minzoom="19" icon="entrance_service" shield="barrier_entrance_small_shield"/>
 			</switch>
 			<apply iconOrder="129"/>
+		</switch>
+
+		<switch iconOrder="71">
+			<case minzoom="13" tag="building" value="tower" icon="man_made_tower" shield="tower_shield"/>
+			<case minzoom="16" tag="man_made" value="antenna" icon="man_made_antenna" shield="antenna_shield"/>
+			<case minzoom="15" tag="man_made" value="mast" icon="man_made_mast" shield="mast_shield"/>
+			<case minzoom="13" tag="man_made" value="tower" additional="tower:type=communication" icon="communication_tower" shield="tower_communications_shield"/>
+			<case minzoom="15" tag="man_made" value="tower" additional="tower:type=lighting" icon="lighting_tower" shield="tower_lighting_shield"/>
+			<case minzoom="14" tag="man_made" value="tower" additional="tower:type=observation" icon="observation_tower" shield="observatory_shield"/>
+			<case minzoom="13" tag="man_made" value="tower" additional="tower:type=cooling" icon="cooling_tower" shield="tower_cooling_shield"/>
+			<case minzoom="14" tag="man_made" value="tower" additional="tower:type=bell_tower" icon="bell_tower" shield="tower_bell_tower_shield"/>
+			<case minzoom="14" tag="man_made" value="tower" icon="man_made_tower" shield="tower_shield"/>
+		</switch>
+		<case minzoom="14" tag="natural" value="cave_entrance" icon="natural_cave_entrance" shield="cave_white_shield" iconOrder="85"/>
+		<switch>
+			<case minzoom="15" tag="man_made" value="adit" icon="man_made_adit"/>
+			<apply shield="white_gray_square_shield" iconOrder="60">
+				<apply_if nightMode="true" shield="gray_gray_square_shield"/>
+			</apply>
+		</switch>
+		<case minzoom="16" tag="man_made" value="kiln" icon="kiln" shield="kiln_shield"/>
+		<case minzoom="19" tag="man_made" value="street_cabinet" icon="street_cabinet" shield="street_cabinet_shield"/>
+		<case minzoom="15" tag="man_made" value="cairn" icon="cairn" shield="cairn_shield"/>
+		<case minzoom="14" tag="amenity" value="hunting_stand" icon="amenity_hunting_stand" shield="hunting_stand_shield"/>
+		<case minzoom="14" tag="man_made" value="telescope" icon="telescope" shield="telescope_shield">
+			<apply_if additional="telescope:type=optical" icon="telescope_type_optical" shield="telescope_optical_shield"/>
+		</case>
+		<case minzoom="14" tag="man_made" value="observatory" icon="man_made_observatory" shield="observatory_shield">
+			<apply_if additional="observatory:type=astronomical" icon="astronomical_observatory" shield="astronomical_observatory_shield"/>
+		</case>
+		<case minzoom="15" tag="man_made" value="chimney" icon="man_made_chimney" shield="chimney_shield" iconOrder="100"/>
+		<case minzoom="18" tag="railway" value="buffer_stop" icon="railway_buffer_stop" shield="railway_buffer_stop_shield" iconOrder="100"/>
+		<case minzoom="16" tag="man_made" value="windmill" icon="man_made_windmill" shield="windmill_shield"/>
+		<case minzoom="16" tag="man_made" value="watermill" icon="watermill" shield="white_gray_square_shield">
+			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
+		</case>
+		<case minzoom="18" tag="man_made" value="water_tap" icon="water_tap" shield="white_gray_square_shield">
+			<apply_if nightMode="true" shield="gray_gray_square_shield"/>
+		</case>
+		<case minzoom="15" tag="man_made" value="mineshaft" icon="man_made_mineshaft" shield="mineshaft_shield">
+			<apply_if moreDetailed="false" maxzoom="15" icon=""/>
+		</case>
+		<case minzoom="16" tag="power" value="substation" icon="power_substation" shield="power_substation_shield"/>
+		<case minzoom="16" tag="power" value="transformer" icon="power_transformer" shield="transformer_shield"/>
+		<case minzoom="16" tag="man_made" value="monitoring_station" icon="radar" shield="monitoring_station_radar_shield"/>
+		<case minzoom="15" tag="man_made" value="survey_point" icon="man_made_survey_point" shield="survey_point_shield"/>
+		<case minzoom="15" tag="man_made" value="water_tower" icon="man_made_water_tower" shield="water_tower_shield"/>
+		<case minzoom="15" tag="man_made" value="petroleum_well" icon="man_made_petroleum_well" shield="petroleum_well_shield"/>
+		<case minzoom="16" tag="man_made" value="crane" icon="crane" shield="crane_shield"/>
+		<case minzoom="18" tag="man_made" value="ventilation_shaft" icon="ventilation_shaft" shield="ventilation_shaft_shield"/>
+		<case minzoom="17" tag="man_made" value="pumping_station" icon="pumping_station" shield="pumping_station_shield"/>
+
+		<switch>
+			<case minzoom="14" tag="power" value="plant" icon="topo_power_plant" shield="topo_power_plant_shield"/>
+			<case minzoom="14" tag="power" value="generator" icon="power_generator" shield="power_generator_shield"/>
+			<apply>
+				<case additional="generator:source=coal" icon="generator_source_coal" shield="generator_coal_shield"/>
+				<case additional="generator:source=gas" icon="generator_source_gas" shield="generator_gas_shield"/>
+				<case additional="generator:source=nuclear" icon="generator_source_nuclear" shield="generator_nuclear_shield"/>
+				<case additional="generator:source=solar" icon="generator_source_solar" shield="generator_solar_shield"/>
+				<case additional="generator:source=hydro" icon="generator_source_hydro" shield="generator_hydro_shield"/>
+				<case additional="generator:source=wind" icon="generator_source_wind" shield="generator_wind_shield"/>
+				<case additional="generator:source=geothermal" icon="generator_source_geothermal" shield="generator_geothermal_shield"/>
+				<case additional="generator:source=oil" icon="generator_source_oil" shield="generator_oil_shield"/>
+				<case additional="generator:source=diesel" icon="generator_source_diesel" shield="generator_oil_shield"/>
+			</apply>
+			<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 		</switch>
 
 	</point>
@@ -2053,6 +2575,12 @@
 				<apply_if minzoom="15" shader="diagonal_gray_large_shader"/>
 				<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
 			</apply>
+		</switch>
+		<switch minzoom="13">
+			<case tag="power" value="plant" color="#bbbbbb"/>
+			<case tag="power" value="generator" color="#bbbbbb"/>
+			<case tag="power" value="substation" color="#bbbbbb"/>
+			<apply_if nightMode="true" color="#132c4e"/>
 		</switch>
 
 		<case minzoom="10" tag="natural" value="wetland">
@@ -2565,12 +3093,16 @@
 						</case>
 					</switch>
 					<apply>
-						<switch alpineHiking="true">
-							<case additional="sac_scale=mountain_hiking" color_5="$sacScaleColorT2" pathEffect_5=""/>
-							<case additional="sac_scale=demanding_mountain_hiking" color_5="$sacScaleColorT3" pathEffect_5="10_3"/>
-							<case additional="sac_scale=alpine_hiking" color_5="$sacScaleColorT4" pathEffect_5=""/>
-							<case additional="sac_scale=demanding_alpine_hiking" color_5="$sacScaleColorT5" pathEffect_5="10_3"/>
-							<case additional="sac_scale=difficult_alpine_hiking" color_5="$sacScaleColorT6" pathEffect_5="3_3"/>
+						<switch alpineHiking="true" minzoom="12" cap_3="BUTT">
+							<case additional="sac_scale=mountain_hiking" color_3="$sacScaleColorT2" pathEffect_3=""/>
+							<case additional="sac_scale=demanding_mountain_hiking" color_3="$sacScaleColorT3" pathEffect_3="10_3"/>
+							<case additional="sac_scale=alpine_hiking" color_3="$sacScaleColorT4" pathEffect_3=""/>
+							<case additional="sac_scale=demanding_alpine_hiking" color_3="$sacScaleColorT5" pathEffect_3="10_3"/>
+							<case additional="sac_scale=difficult_alpine_hiking" color_3="$sacScaleColorT6" pathEffect_3="3_3"/>
+							<apply_if maxzoom="14" strokeWidth_3="2:2" strokeWidth_4="1"/>
+							<apply_if minzoom="15" maxzoom="17" strokeWidth_3="3:3" strokeWidth_4="1.5:1.5"/>
+							<apply_if minzoom="18" strokeWidth_3="4:4" strokeWidth_4="1.5:1.5"/>
+							<apply color_4="$trackSubstrateColor"/> <!-- Substrate -->
 						</switch>
 					</apply>
 					<apply_if surfaceIntegrity="true" minzoom="12">
@@ -2632,7 +3164,6 @@
 				</apply_if>
 			</switch>
 			<apply_if engine_v1="true" onewayArrowsColor="$trackPathHighwayOnewayArrowsColor"/>
-			<apply color_4="$trackSubstrateColor"/> <!-- Substrate -->
 			<apply_if engine_v1="false" minzoom="17"> <!-- for new OpenGL engine only -->
 				<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
 				<apply_if additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
@@ -2855,6 +3386,72 @@
 				</case>
 			</apply>
 			<apply_if minzoom="15" pathIcon="stroke_lightorange_left" pathIconStep="100"/>
+		</switch>
+
+		<switch>
+			<switch hikingRoutesOSMC="walkingRoutesOSMC" minzoom="12" color="$osmcDefaultColor">
+				<case tag="route_hiking" value=""/>
+				<case tag="route_foot" value=""/>
+				<case tag="route_walking" value=""/>
+			</switch>
+			<switch horseRoutes="true" minzoom="12" color="$horseRouteDefaultColor">
+				<case tag="route_horse" value=""/>
+			</switch>
+			<apply>
+				<case additional="osmc_waycolor=black" color="$osmcBlackColor"/>
+				<case additional="osmc_waycolor=blue" color="$osmcBlueColor"/>
+				<case additional="osmc_waycolor=green" color="$osmcGreenColor"/>
+				<case additional="osmc_waycolor=orange" color="$osmcOrangeColor"/>
+				<case additional="osmc_waycolor=red" color="$osmcRedColor"/>
+				<case additional="osmc_waycolor=yellow" color="$osmcYellowColor"/>
+				<case additional="osmc_waycolor=brown" color="$osmcBrownColor"/>
+				<case additional="osmc_waycolor=purple" color="$osmcPurpleColor"/>
+			</apply>
+			<apply_if minzoom="12" maxzoom="12" strokeWidth="3.5:3.5"/>
+			<apply_if minzoom="13" maxzoom="13" strokeWidth="4.5:4.5"/>
+			<apply_if minzoom="14" maxzoom="14" strokeWidth="6:6"/>
+			<apply_if minzoom="15" maxzoom="15" strokeWidth="8:8"/>
+			<apply_if minzoom="16" maxzoom="16" strokeWidth="10:10"/>
+			<apply_if minzoom="17" maxzoom="17" strokeWidth="11:11"/>
+			<apply_if minzoom="18" strokeWidth="13:13"/>
+			<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" color="$null"/>
+		</switch>
+		<switch hikingRoutesOSMC="walkingRoutesScopeOSMC" cap="ROUND">
+			<case minzoom="12" tag="network_iwn" value="" color="#d94545">
+				<apply_if maxzoom="12" strokeWidth="6"/>
+				<apply_if minzoom="13" maxzoom="13" strokeWidth="8"/>
+				<apply_if minzoom="14" maxzoom="14" strokeWidth="10"/>
+				<apply_if minzoom="15" maxzoom="16" strokeWidth="12"/>
+				<apply_if minzoom="17" strokeWidth="14"/>
+			</case>
+			<case minzoom="12" tag="network_nwn" value="" color="#0000ff">
+				<apply_if maxzoom="12" strokeWidth="3"/>
+				<apply_if minzoom="13" maxzoom="13" strokeWidth="4"/>
+				<apply_if minzoom="14" maxzoom="14" strokeWidth="7"/>
+				<apply_if minzoom="15" maxzoom="16" strokeWidth="9"/>
+				<apply_if minzoom="17" strokeWidth="11"/>
+			</case>
+			<case minzoom="13" tag="network_rwn" value="" color="#ff6600">
+				<apply_if maxzoom="13" strokeWidth="3"/>
+				<apply_if minzoom="14" maxzoom="14" strokeWidth="5"/>
+				<apply_if minzoom="15" maxzoom="16" strokeWidth="7"/>
+				<apply_if minzoom="17" strokeWidth="9"/>
+			</case>
+			<case minzoom="13" tag="network_lwn" value="" color="#00D783">
+				<apply_if maxzoom="13" strokeWidth="1.5"/>
+				<apply_if minzoom="14" maxzoom="14" strokeWidth="2.8"/>
+				<apply_if minzoom="15" maxzoom="16" strokeWidth="3.5"/>
+				<apply_if minzoom="17" strokeWidth="5"/>
+			</case>
+		</switch>
+		<switch hikingRoutesOSMC="walkingRoutesScopeOSMC" color="#77ae27b3">
+			<case tag="route_hiking" value=""/>
+			<case tag="route_foot" value=""/>
+			<case tag="route_walking" value=""/>
+			<apply_if maxzoom="13" strokeWidth="1.5"/>
+			<apply_if minzoom="14" maxzoom="14" strokeWidth="2.8"/>
+			<apply_if minzoom="15" maxzoom="16" strokeWidth="3.5"/>
+			<apply_if minzoom="17" strokeWidth="5"/>
 		</switch>
 
 		<!-- Admin levels (boundaries) -->

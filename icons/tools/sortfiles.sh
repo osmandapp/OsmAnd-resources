@@ -951,6 +951,8 @@ mycpname ventilation_shaft poi_ventilation_shaft.png
 mycpname pumping_station poi_pumping_station.png
 mycpname mdf poi_mdf.png
 
+mycpname topo_power_plant poi_topo_power_plant.png
+
 mygroup military poi_military_bunker.png
 
 
