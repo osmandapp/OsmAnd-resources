@@ -167,6 +167,10 @@ mycp barrier small_black_1 functional-icons_point_black_1.png  #scale 0.25
 mycp barrier small_black_2 functional-icons_point_black_2.png  #scale 0.25
 mycp barrier small_black_3 functional-icons_point_black_3.png  #scale 0.25
 mycp barrier small_black_4 functional-icons_point_black_4.png  #scale 0.25
+mycp barrier small_black_bold_1 functional-icons_point_black_bold_1.png  #scale 0.25
+mycp barrier small_black_bold_2 functional-icons_point_black_bold_2.png  #scale 0.25
+mycp barrier small_black_bold_3 functional-icons_point_black_bold_3.png  #scale 0.25
+mycp barrier small_black_bold_4 functional-icons_point_black_bold_4.png  #scale 0.25
 mycp barrier small_white_1 functional-icons_point_white_1.png  #scale 0.25
 mycp barrier small_white_2 functional-icons_point_white_2.png  #scale 0.25
 mycp barrier small_white_3 functional-icons_point_white_3.png  #scale 0.25
@@ -175,6 +179,10 @@ mycp barrier small_red_1 functional-icons_point_red_1.png  #scale 0.25
 mycp barrier small_red_2 functional-icons_point_red_2.png  #scale 0.25
 mycp barrier small_red_3 functional-icons_point_red_3.png  #scale 0.25
 mycp barrier small_red_4 functional-icons_point_red_4.png  #scale 0.25
+mycp barrier small_red_bold_1 functional-icons_point_red_bold_1.png  #scale 0.25
+mycp barrier small_red_bold_2 functional-icons_point_red_bold_2.png  #scale 0.25
+mycp barrier small_red_bold_3 functional-icons_point_red_bold_3.png  #scale 0.25
+mycp barrier small_red_bold_4 functional-icons_point_red_bold_4.png  #scale 0.25
 
 ## Emergency + Health
 mygroup emergency emergency_emergency_phone.png
