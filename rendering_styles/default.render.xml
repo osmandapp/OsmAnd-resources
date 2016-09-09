@@ -1790,11 +1790,7 @@
 				<case tag="fixme_tag" value="yes"/>
 				<case tag="note_tag" value="yes"/>
 				<case tag="abandoned:place" value=""/>
-				<case tag="barrier" value="">
-					<apply hideUnderground="true" layer="-1" order="-1"/>
-					<apply hideUnderground="true" additional="indoor=yes" order="-1"/>
-					<apply hideUnderground="true" additional="covered=yes" order="-1"/>
-				</case>
+				<case tag="barrier" value=""/>
 				<switch appMode="pedestrian" tag="barrier" maxzoom="17" order="-1">
 					<case value="" minzoom="14" maxzoom="15"/>
 					<case value="block"/>
@@ -1818,6 +1814,11 @@
 				<case tag="place" value="quarter"/>
 				<case tag="osmand" value="file_waypoint"/>
 				<case tag="osmand" value="fav"/>
+				<apply_if hideUnderground="true">
+					<apply_if layer="-1" order="-1"/>
+					<apply_if additional="indoor=yes" order="-1"/>
+					<apply_if additional="covered=yes" order="-1"/>
+				</apply_if>
 
 			</switch>
 
@@ -1841,11 +1842,11 @@
 						</switch>
 					</apply_if>
 				</case>
-				<switch hideUnderground="true" layer="-1">
+<!--				<switch hideUnderground="true" layer="-1">
 					<case tag="public_transport" value="platform"/>
 					<case tag="public_transport" value="station"/>
 					<apply order="-1"/>
-				</switch>
+				</switch>-->
 				<switch appMode="car" maxzoom="18" layer="-1">
 					<case tag="public_transport" value="platform"/>
 					<case tag="public_transport" value="station"/>
@@ -1863,6 +1864,11 @@
 				<case tag="man_made" value="groyne"/>
 				<case tag="man_made" value="bridge"/>
 				<case tag="building:part" value="" order="10"/>
+				<apply_if hideUnderground="true">
+					<apply_if layer="-1" order="-1"/>
+					<apply_if additional="indoor=yes" order="-1"/>
+					<apply_if additional="covered=yes" order="-1"/>
+				</apply_if>
 			</switch>
 			<switch cycle="true" point="false" objectType="3" order="5">
 				<switch>
@@ -1885,7 +1891,7 @@
 					<case tag="waterway" value="dam"/>
 					<case tag="waterway" value="weir"/>
 					<apply order="10"/>
-					<apply_if hideUnderground="true" layer="-1" order="-1"/>
+<!--					<apply_if hideUnderground="true" layer="-1" order="-1"/>-->
 				</switch>
 				<case tag="highway" value="services"/>
 				<case tag="landuse" value="military" order="8"/>
@@ -1981,6 +1987,11 @@
 				<case tag="fixme_tag" value="yes" order="11"/>
 				<case tag="note_tag" value="yes"/>
 				<case tag="" value="" order="5"/>
+				<apply_if hideUnderground="true">
+					<apply_if layer="-1" order="-1"/>
+					<apply_if additional="indoor=yes" order="-1"/>
+					<apply_if additional="covered=yes" order="-1"/>
+				</apply_if>
 			</switch>
 
 			<!-- Line 11-100 -->
@@ -1988,11 +1999,8 @@
 				<!-- default line -->
 				<case layer="-1" tag="" value="" order="12"/>
 				<case tag="" value="" order="13"/>
-				<switch hideUnderground="true" layer="-1">
-					<case tag="public_transport" value="platform"/>
-					<case tag="public_transport" value="station"/>
-					<apply order="-1"/>
-				</switch>
+				<case tag="public_transport" value="platform"/>
+				<case tag="public_transport" value="station"/>
 
 				<switch appMode="car">
 					<case tag="railway" value="" order="36">
@@ -2012,15 +2020,12 @@
 				<case tag="power" value="line" order="96"/>
 				<case tag="power" value="minor_line" order="96"/>
 				<switch order="58">
-					<switch>
-						<case tag="railway" value="rail" additional="network=rer"/>
-						<case tag="railway" value="subway">
-							<apply_if subwayMode="false" maxzoom="16" order="-1"/>
-							<apply_if subwayMode="false" moreDetailed="true" minzoom="16" maxzoom="16" order="58"/>
-							<apply_if subwayMode="true" order="90"/>
-						</case>
-						<apply_if hideUnderground="true" subwayMode="false" layer="-1" order="-1"/>
-					</switch>
+					<case tag="railway" value="rail" additional="network=rer"/>
+					<case tag="railway" value="subway">
+						<apply_if subwayMode="false" maxzoom="16" order="-1"/>
+						<apply_if subwayMode="false" moreDetailed="true" minzoom="16" maxzoom="16" order="58"/>
+						<apply_if subwayMode="true" order="90"/>
+					</case>
 					<switch>
 						<case tag="railway" value="rail">
 							<apply_if maxzoom="14" order="50"/>
@@ -2038,7 +2043,6 @@
 						<case tag="railway" value="abandoned"/>
 						<case tag="railway" value="construction"/>
 						<case tag="railway" value="disused"/>
-						<apply_if hideUnderground="true" layer="-1" order="-1"/>
 					</switch>
 					<apply_if layer="-1" order="11"/>
 					<apply_if subwayMode="false" layer="-1" minzoom="9" maxzoom="18">
@@ -2081,7 +2085,6 @@
 					<apply_if OSMMapperAssistant="false" layer="-1" maxzoom="17" order="-1"/>
 					<apply_if layer="-1" appMode="car" order="-1"/>
 					<apply_if maxzoom="15" layer="-1" appMode="bicycle" order="-1"/>
-					<apply_if hideUnderground="true" layer="-1" order="-1"/>
 				</case>
 				<case tag="attraction" value="water_slide"/>
 				<case tag="attraction" value="roller_coaster"/>
@@ -2171,7 +2174,7 @@
 						<case tag="highway" value="escape" order="51">
 							<apply_if appMode="car" order="80"/>
 						</case>
-						<apply_if appMode="pedestrian" hideUnderground="true" layer="-1" order="-1"/>
+<!--						<apply_if appMode="pedestrian" hideUnderground="true" layer="-1" order="-1"/>-->
 					</switch>
 					<case tag="highway" value="pedestrian" order="50">
 						<apply_if appMode="pedestrian" order="58"/>
@@ -2250,8 +2253,8 @@
 							<apply_if appMode="default" moreDetailed="false" maxzoom="15" order="-1"/>
 						</apply_if>
 					</case>
-					<apply_if hideUnderground="true" additional="tunnel=yes" order="-1"/>
-					<apply_if hideUnderground="true" additional="indoor=yes" order="-1"/>
+<!--					<apply_if hideUnderground="true" additional="tunnel=yes" order="-1"/>
+					<apply_if hideUnderground="true" additional="indoor=yes" order="-1"/>-->
 					<apply_if appMode="car">
 						<case layer="0" maxzoom="18" order="-1"/>
 						<case layer="-1" maxzoom="18" order="-1"/>
@@ -2275,9 +2278,9 @@
 
 				<case tag="barrier" value="" order="20">
 					<apply_if appMode="car" layer="-1" order="-1"/>
-					<apply_if hideUnderground="true" layer="-1" order="-1"/>
+<!--					<apply_if hideUnderground="true" layer="-1" order="-1"/>
 					<apply_if hideUnderground="true" additional="covered=yes" order="-1"/>
-					<apply_if hideUnderground="true" additional="indoor=yes" order="-1"/>
+					<apply_if hideUnderground="true" additional="indoor=yes" order="-1"/>-->
 				</case>
 				<case tag="man_made" value="dyke" order="10"/>
 				<case tag="man_made" value="reinforced_slope"/>
@@ -2297,8 +2300,15 @@
 				<case tag="osmand" value="file_trackline"/>
 				<case tag="osmand" value="file_routeline"/>
 			</switch>
-			<apply_if hideOverground="true" minzoom="15" layer="0" order="-1"/>
-			<apply_if hideOverground="true" minzoom="15" layer="1" order="-1"/>
+			<apply_if hideOverground="true" minzoom="15">
+				<apply_if layer="0" order="-1"/>
+				<apply_if layer="1" order="-1"/>
+			</apply_if>
+			<apply_if hideUnderground="true">
+				<apply_if layer="-1" order="-1"/>
+				<apply_if additional="indoor=yes" order="-1"/>
+				<apply_if additional="covered=yes" order="-1"/>
+			</apply_if>
 		</switch>
 	</order>
 
