@@ -366,10 +366,10 @@
 
 	<renderingAttribute name="pedestrianRoadShadowColor">
 		<case appMode="car" attrColorValue="#cccccc"/>
-		<case attrColorValue="#000000">
+		<case attrColorValue="#004AC3">
 			<apply_if nightMode="true" attrColorValue="#ffffff"/>
 		</case>
-		<apply_if appMode="pedestrian" attrColorValue="#004AC3"/>
+<!--		<apply_if appMode="pedestrian" attrColorValue="#004AC3"/>-->
 	</renderingAttribute>
 	<renderingAttribute name="serviceRoadColor">
 		<case surfaceIntegrity="true" minzoom="12" attrColorValue="#DFE2E5">
@@ -618,13 +618,17 @@
 		<case attrColorValue="#EBFFE4"/>
 	</renderingAttribute>
 	<renderingAttribute name="grassColor">
-		<case attrColorValue="#f4ffef"/>
+		<case attrColorValue="#E5FFE8"/>
 	</renderingAttribute>
 	<renderingAttribute name="farmlandColor">
 		<case attrColorValue="#FFF8E9"/>
 	</renderingAttribute>
 	<renderingAttribute name="farmyardColor">
 		<case attrColorValue="#EEE5D9"/>
+	</renderingAttribute>
+	<renderingAttribute name="gardenColor">
+		<case nightMode="true" attrColorValue="#004333"/>
+		<case attrColorValue="#C6F5A8"/>
 	</renderingAttribute>
 
 	<renderingConstant name="buildingTextHaloRadiusDay" value="2"/>
@@ -643,7 +647,7 @@
 	<renderingConstant name="landuseManmadeFadedTextColorDay" value="#525252"/>
 	<renderingAttribute name="landuseManmadeTextHaloColor">
 		<case nightMode="true" attrColorValue="#77777777"/>
-		<case attrColorValue="#ccffffff"/>
+		<case attrColorValue="#ffffff"/>
 	</renderingAttribute>
 	<renderingAttribute name="historicTextColor">
 		<case nightMode="true" attrColorValue="#ffe7c2"/>
@@ -651,7 +655,11 @@
 	</renderingAttribute>
 	<renderingAttribute name="historicTextHaloColor">
 		<case nightMode="true" attrColorValue="#88644e2c"/>
-		<case attrColorValue="#f1eae4"/>
+		<case attrColorValue="#ffffff"/>
+	</renderingAttribute>
+	<renderingAttribute name="tourismAttractionTextColor">
+		<case nightMode="true" attrColorValue="#ffd7c2"/>
+		<case attrColorValue="#734a08"/>
 	</renderingAttribute>
 
 	<renderingConstant name="black" value="#000000"/>
@@ -809,21 +817,18 @@
 	</renderingAttribute>
 
 	<renderingConstant name="placeCityVillageTextColorDay" value="#000000"/>
-	<renderingConstant name="placeSuburbLocalityTextColorDay" value="#000000"/>
-	<renderingConstant name="placeCityVillageTextColorDay" value="#000000"/>
-	<renderingConstant name="placeSuburbLocalityTextColorDay" value="#222222"/>
+	<renderingConstant name="placeSuburbTextColorDay" value="#000000"/>
 	<renderingConstant name="placeTextHaloRadiusDay" value="1:1"/>
-	<renderingConstant name="placeCityVillageTextHaloColorDay" value="#eeffffff"/>
+	<renderingConstant name="placeCityVillageTextHaloColorDay" value="#ffffff"/>
 	<renderingConstant name="placeHamletMinZoom" value="12"/>
 	<renderingConstant name="placeSuburbMinZoom" value="12"/>
 	<renderingConstant name="placeNeighbourhoodMinZoom" value="13"/>
-	<renderingConstant name="placeLocalityMinZoom" value="13"/>
 	<renderingConstant name="landuseManmadeFadedTextColorDay" value="#525252"/>
 	<renderingConstant name="woodTextColorDay" value="#000000"/>
 	<renderingConstant name="parkTextColorDay" value="#004300"/>
 	<renderingConstant name="forestTextColorDay" value="#388738"/>
 	<renderingConstant name="highwayTrackTextHaloRadiusDay" value="1"/>
-	<renderingConstant name="highwayTrackTextHaloColorDay" value="#aaffffff"/>
+	<renderingConstant name="highwayTrackTextHaloColorDay" value="#ffffff"/>
 
 	<renderingAttribute name="accessPrivateColor">
 		<case nightMode="true" attrColorValue="#e78d8d"/>
@@ -849,6 +854,10 @@
 			<case tag="osmand" value="fav"/>
 			<case tag="barrier" value="">
 				<apply_if moreDetailed="false" maxzoom="14" order="-1"/>
+			</case>
+			<case maxzoom="18" tag="historic" value="memorial">
+				<apply_if additional="memorial=stolperstein" order="-1"/>
+				<apply_if additional="memorial=plaque" order="-1"/>
 			</case>
 		</switch>
 
@@ -891,6 +900,12 @@
 			<case tag="waterway" value="riverbank" order="9"/>
 			<case tag="natural" value="wetland" order="6"/>
 			<case tag="natural" value="scrub" order="7"/>
+			<case tag="natural" value="crater"/>
+			<case tag="natural" value="volcano"/>
+			<case tag="natural" value="sinkhole"/>
+			<case tag="natural" value="hot_spring"/>
+			<case tag="natural" value="geyser"/>
+			<case tag="leisure" value="park" order="4"/>
 			<case tag="building" value="no" order="-1"/>
 			<case tag="man_made" value="storage_tank"/>
 			<case tag="man_made" value="silo"/>
@@ -906,6 +921,7 @@
 			<case tag="disused:building" value="no" order="-1"/>
 			<case tag="disused:building" value=""/>
 			<case tag="landuse" value="cemetery" order="10"/>
+			<case tag="landuse" value="construction" order="10"/>
 			<case tag="landuse" value="quarry" order="10"/>
 			<case tag="landuse" value="military" order="100"/>
 			<case tag="abandoned:place" value="" order="100"/>
@@ -1006,8 +1022,17 @@
 				<apply_if layer="1" order="88"/>
 				<apply_if layer="-1" order="11"/>
 			</case>
-			<case tag="man_made" value="cutline" order="11"/>
+			<case tag="man_made" value="cutline" order="8"/>
+			<case tag="barrier" value="" order="20"/>
 			<case tag="natural" value="volcano"/>
+			<case tag="natural" value="cliff"/>
+			<case tag="natural" value="slope"/>
+			<case tag="natural" value="earth_bank"/>
+			<case tag="natural" value="crater"/>
+			<case tag="natural" value="volcano"/>
+			<case tag="natural" value="strait"/>
+			<case tag="natural" value="fjord"/>
+			<case tag="waterway" value="waterfall" order="98"/>
 			<case tag="waterway" value="" order="8">
 				<apply_if layer="1" order="68"/>
 <!--				<apply_if OSMMapperAssistant="false" layer="-1" maxzoom="17" order="-1"/>-->
@@ -1526,11 +1551,22 @@
 					<case minzoom="17" nameTag="" nameTag2="ele" textSize="15"/>
 					<case minzoom="17" nameTag="ele" textSize="15"/>
 				</case>
-				<case minzoom="11" tag="natural" value="volcano" nameTag2="ele" textOrder="79" textHaloColor="#99ffd6c0">
+				<case minzoom="11" tag="natural" value="volcano" nameTag2="ele" textOrder="79" textHaloColor="#ffffff">
 					<case maxzoom="12" textSize="12"/>
 					<case minzoom="13" textSize="13"/>
 					<apply_if nightMode="true" textColor="#ffcc9b" textHaloColor="#77772105"/>
 				</case>
+				<case minzoom="16" textSize="12" tag="natural" value="cave_entrance" textOrder="236"/>
+				<case minzoom="14" textSize="12" tag="natural" value="ridge" textItalic="false" textOnPath="true" textDy="0" textOrder="77"/>
+				<case minzoom="13" textSize="12" tag="natural" value="valley" textOnPath="true" textOrder="77">
+					<apply_if minzoom="15" textSize="15"/>
+				</case>
+				<case minzoom="16" textSize="12" tag="waterway" value="rapids" textOnPath="true"/>
+				<case minzoom="15" textSize="12" tag="natural" value="saddle" nameTag="" nameTag2="ele"/>
+				<case minzoom="13" textSize="14" tag="natural" value="crater" textColor="#4e0d0d" textDy="-4"/>
+				<case minzoom="16" textSize="14" tag="natural" value="sinkhole" textColor="#4e0d0d"/>
+				<case minzoom="14" tag="mountain_pass" value="yes" nameTag="" nameTag2="ele"/>
+				<case minzoom="14" tag="mountain_pass" value="yes" nameTag="ele"/>
 				<apply_if additional="ele_limit=200" textOrder="83"/>
 				<apply_if additional="ele_limit=500" textOrder="82"/>
 				<apply_if additional="ele_limit=1000" textOrder="81"/>
@@ -1754,7 +1790,7 @@
 		</switch>
 
 		<switch textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColorDay" intersectionMargin="15">
-			<switch textColor="$placeSuburbLocalityTextColorDay">
+			<switch textColor="$placeSuburbTextColorDay">
 				<case minzoom="$placeSuburbMinZoom" maxzoom="17" tag="place" value="suburb" nameTag="" textSize="15" textItalic="true" textOrder="37" intersectionMargin="25">
 					<apply_if minzoom="16" textSize="17"/>
 				</case>
@@ -1769,16 +1805,16 @@
 					<apply_if minzoom="16" textSize="15"/>
 					<apply_if minzoom="17" textSize="16"/>
 				</switch>
-				<switch>
-					<case minzoom="13" tag="place" value="isolated_dwelling" nameTag="" textOrder="111"/>
-					<case minzoom="$placeLocalityMinZoom" tag="place" value="locality" nameTag="" textOrder="112"/>
-					<apply textSize="12"/>
-					<apply_if minzoom="16" textSize="13"/>
-					<apply_if minzoom="17" textSize="14"/>
-				</switch>
 				<case minzoom="11" tag="place" value="island" nameTag="" textSize="14" textOrder="113">
 					<apply_if minzoom="16" textSize="16"/>
 				</case>
+			</switch>
+			<switch>
+				<case minzoom="13" tag="place" value="isolated_dwelling" nameTag="" textOrder="111"/>
+				<case minzoom="13" tag="place" value="locality" nameTag="" textOrder="112"/>
+				<apply textSize="12" textColor="#777777"/>
+				<apply_if minzoom="16" textSize="13"/>
+				<apply_if minzoom="17" textSize="14"/>
 			</switch>
 			<case minzoom="13" tag="place" value="allotments" nameTag="" textOrder="110" textColor="$landuseManmadeFadedTextColorDay"/>
 			<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
@@ -1879,7 +1915,7 @@
 	<!--			<apply textOrder="111"/>-->
 			</switch>
 
-		<switch tag="contour" value="" textOnPath="false" textBold="true" textOrder="255" textHaloColor="#aaffffff" textHaloRadius="1" intersectionMargin="20">
+		<switch tag="contour" value="" textOnPath="false" textBold="true" textOrder="255" textHaloColor="#bbffffff" textHaloRadius="1" intersectionMargin="20">
 			<case minzoom="13" contourLines="11"/>
 			<case minzoom="13" contourLines="12"/>
 			<case minzoom="13" contourLines="13"/>
@@ -1902,12 +1938,69 @@
 				</case>
 			</apply>
 		</switch>
-		<switch textSize="12" nameTag="" textColor="$historicTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="$historicTextHaloColor" textWrapWidth="20" textOrder="158">
-				<case minzoom="17" tag="barrier" value="city_wall" textOnPath="true" textColor="#ffffff" textHaloColor="#7b7463"/>
-				<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight"/>
+			<!-- Tourism and Entertainment -->
+			<switch textSize="12" nameTag="" textColor="$historicTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffffff" textWrapWidth="20" textOrder="155">
+				<case minzoom="18" tag="tourism" value="artwork" nameTag=""/>
+				<case minzoom="17" tag="tourism" value="picnic_site"/>
+				<case minzoom="17" tag="leisure" value="picnic_table"/>
+				<case minzoom="17" tag="tourism" value="museum" textOrder="132"/>
+				<case minzoom="17" tag="tourism" value="information" nameTag=""/>
+				<case minzoom="17" tag="tourism" value="viewpoint"/>
+				<case minzoom="17" tag="tourism" value="theme_park" textOrder="153"/>
+				<case minzoom="17" tag="tourism" value="zoo" textOrder="152"/>
+				<case minzoom="17" tag="tourism" value="aquarium" textOrder="152"/>
+
+				<case minzoom="16" tag="natural" value="beach"/>
+				<case minzoom="16" tag="leisure" value="beach_resort"/>
+				<apply_if engine_v1="true" textDy="9"/>
+				<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffe7c2" textHaloColor="#88644e2c"/>
 			</switch>
 
-		<switch textSize="12" textColor="$forestTextColorDay" textWrapWidth="20" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ccffffff" nameTag="">
+		<!-- Historic -->
+		<switch textSize="12" nameTag="" textColor="$historicTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffffff" textWrapWidth="20" textOrder="158">
+			<switch>
+				<case minzoom="17" tag="historic" value="aircraft"/>
+				<case minzoom="16" tag="historic" value="castle" nameTag=""/>
+				<case minzoom="18" tag="historic" value="cannon"/>
+				<case minzoom="16" tag="historic" value="monument"/>
+				<case minzoom="16" tag="historic" value="technical_monument"/>
+				<case minzoom="18" tag="historic" value="tomb"/>
+				<case minzoom="17" tag="historic" value="memorial"/>
+				<case minzoom="16" tag="historic" value="battlefield"/>
+				<case minzoom="16" tag="historic" value="ruins"/>
+				<case minzoom="16" tag="historic" value="archaeological_site"/>
+				<case minzoom="16" tag="historic" value="wreck"/>
+				<case minzoom="17" tag="historic" value="ship"/>
+				<case minzoom="15" tag="amenity" value="monastery"/>
+				<case minzoom="17" tag="historic" value="wayside_cross"/>
+				<case minzoom="17" tag="historic" value="wayside_shrine"/>
+				<case minzoom="16" tag="historic" value="mine"/>
+				<case minzoom="16" tag="historic" value="boundary_stone"/>
+				<case minzoom="17" tag="historic" value="milestone"/>
+				<case minzoom="17" tag="historic" value="rune_stone" textSize="11"/>
+				<case minzoom="16" tag="building" value="pyramid" textOrder="80"/>
+				<case minzoom="15" tag="landuse" value="religious"/>
+				<case minzoom="16" tag="geological" value="palaeontological_site"/>
+				<case minzoom="15" tag="historic" value="quarry"/>
+				<apply_if engine_v1="true" textDy="9"/>
+			</switch>
+			<case minzoom="17" tag="barrier" value="city_wall" textOnPath="true" textColor="#ffffff" textHaloColor="#7b7463"/>
+			<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight"/>
+		</switch>
+		<switch textColor="$tourismAttractionTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffffff" textWrapWidth="16" intersectionMargin="25">
+			<switch>
+				<case minzoom="16" tag="historic" value="city_gate" textSize="12" textOrder="85"/>
+				<case minzoom="16" tag="tourism" value="attraction" textSize="13" textOrder="84">
+					<apply_if maxzoom="15" textSize="12" textWrapWidth="15"/>
+				</case>
+				<case minzoom="16" tag="attraction" value="big_wheel" textSize="12" textOrder="84"/>
+				<apply_if moreDetailed="false" maxzoom="15" disable="true"/>
+			</switch>
+			<apply_if engine_v1="true" textDy="9"/>
+			<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textHaloColor="#88641500"/>
+		</switch>
+
+		<switch textSize="12" textColor="$forestTextColorDay" textWrapWidth="20" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffffff" nameTag="">
 			<switch textItalic="true">
 				<case minzoom="13" tag="natural" value="wood" textOrder="202"/>
 				<case minzoom="9" tag="landuse" value="forest" textOrder="201"/>
@@ -1931,11 +2024,15 @@
 				<case minzoom="9" tag="boundary" value="national_park" textOrder="88" textOnPath="true"/>
 				<case minzoom="8" tag="boundary" value="protected_area" textOrder="88"/>
 				<case minzoom="18" tag="natural" value="tree" textSize="11" textDy="5" textOrder="252"/>
-				<case minzoom="18" tag="natural" value="stone" textSize="11" textDy="4"/>
 				<case minzoom="9" tag="natural" value="reef"/>-->
+				<case minzoom="18" tag="natural" value="stone" textSize="11" textDy="4"/>
+				<case minzoom="14" tag="leisure" value="garden" textOrder="168"/>
+				<case minzoom="12" tag="leisure" value="park" textOrder="103"/>
+				<case minzoom="14" tag="leisure" value="common" textOrder="169"/>
 				<apply_if engine_v1="false" textDy="0"/>
 			</switch>
 		</switch>
+
 		<switch textSize="12" textHaloRadius="$landuseManmadeTextHaloRadiusDay" textHaloColor="$landuseManmadeTextHaloColor" textWrapWidth="20" textOrder="144">
 			<switch>
 				<case minzoom="14" tag="landuse" value="cemetery"/>
@@ -2081,6 +2178,75 @@
 			<apply_if additional="ele_limit=7500" iconOrder="53"/>
 			<apply_if additional="ele_limit=9000" iconOrder="52"/>
 		</switch>
+		<case minzoom="14" tag="natural" value="saddle" icon="natural_saddle" shield="saddle_white_shield" iconOrder="66"/>
+		<case minzoom="15" tag="natural" value="sinkhole" icon="natural_sinkhole" shield="sinkhole_white_shield">
+			<apply_if nightMode="true" shield=""/>
+		</case>
+		<case minzoom="12" tag="mountain_pass" value="yes" icon="mountain_pass" shield="mountain_pass_white_shield" iconOrder="65">
+			<apply_if moreDetailed="false" maxzoom="13" icon=""/>
+		</case>
+		<case minzoom="17" tag="natural" value="stone" icon="natural_stone" shield="stone_shield">
+			<apply_if nightMode="true" shield=""/>
+		</case>
+		<case minzoom="16" tag="tourism" value="information" icon="tourism_information" iconOrder="86" shield="information_shield">
+			<case additional="information=office" icon="information_office" shield="information_office_shield"/>
+			<case additional="information=audioguide" icon="information_audioguide" shield="information_audioguide_shield"/>
+			<case additional="information=board" icon="information_board" shield="information_board_shield"/>
+			<case additional="information=guidepost" icon="information_guidepost" shield="information_guidepost_shield"/>
+			<case additional="information=map" icon="information_map" shield="information_map_shield"/>
+			<case additional="information=terminal" icon="information_terminal" shield="information_terminal_shield"/>
+		</case>
+		<case minzoom="16" tag="amenity" value="monastery" icon="amenity_monastery" shield="white_brown_square_100_shield" iconOrder="70"/>
+
+		<switch shield="white_brown_square_100_shield">
+			<switch iconOrder="70">
+<!--				<case minzoom="18" tag="tourism" value="artwork" icon="tourism_artwork" iconOrder="69"/>-->
+				<case minzoom="16" tag="tourism" value="museum" icon="tourism_museum"/>
+				<case minzoom="16" tag="historic" value="ship" icon="historic_ship"/>
+				<case minzoom="16" tag="historic" value="boundary_stone" icon="historic_boundary_stone"/>
+				<case minzoom="17" tag="historic" value="milestone" icon="historic_milestone"/>
+				<case minzoom="15" tag="tourism" value="theme_park" icon="tourism_theme_park"/>
+<!--				<case minzoom="15" tag="tourism" value="zoo" icon="zoo"/>-->
+				<case minzoom="16" tag="historic" value="aircraft" icon="historic_aircraft"/>
+			</switch>
+			<case minzoom="15" tag="attraction" value="big_wheel" icon="attraction_big_wheel"/>
+
+			<case minzoom="16" tag="natural" value="beach" icon="beach" iconOrder="79"/>
+			<case minzoom="16" tag="leisure" value="beach_resort" icon="leisure_beach_resort" iconOrder="79"/>
+
+			<switch iconOrder="70">
+				<case minzoom="15" tag="historic" value="castle" icon="historic_castle"/>
+				<case minzoom="16" tag="historic" value="tomb" icon="tomb" iconOrder="85"/>
+				<case minzoom="16" tag="historic" value="ruins" icon="historic_ruins" intersectionSizeFactor="1.5" iconVisibleSize="20"/>
+				<case minzoom="16" tag="historic" value="wreck" icon="wreck"/>
+				<case minzoom="16" tag="historic" value="wayside_cross" icon="historic_wayside_cross"/>
+				<case minzoom="16" tag="historic" value="wayside_shrine" icon="historic_wayside_shrine"/>
+			</switch>
+			<switch>
+				<case minzoom="16" tag="historic" value="memorial" icon="historic_memorial" iconOrder="70">
+					<apply_if additional="memorial=stolperstein" icon="memorial_stolperstein" iconOrder="120"/>
+					<apply_if additional="memorial=plaque" icon="memorial_plaque" iconOrder="120"/>
+				</case>
+				<case minzoom="16" tag="historic" value="monument" icon="monument" iconVisibleSize="32" iconOrder="85"/>
+				<apply_if additional="memorial=bust" icon="memorial_bust"/>
+				<apply_if additional="memorial=obelisk" icon="memorial_obelisk"/>
+				<apply_if additional="memorial=column" icon="memorial_obelisk"/>
+				<apply_if additional="memorial=statue" icon="memorial_statue"/>
+				<apply_if additional="memorial=stele" icon="memorial_stele"/>
+				<apply_if additional="memorial=war_memorial" icon="memorial_war"/>
+			</switch>
+			<case minzoom="14" tag="building" value="pyramid" icon="building_pyramid" iconOrder="5"/>
+<!--			<case minzoom="16" tag="historic" value="battlefield" icon="historic_battlefield"/>-->
+			<case minzoom="16" tag="historic" value="technical_monument" icon="technical_monument" iconOrder="85"/>
+			<case minzoom="16" tag="historic" value="archaeological_site" icon="historic_archaeological_site" iconVisibleSize="24" iconOrder="85"/>
+			<case minzoom="16" tag="geological" value="palaeontological_site" icon="palaeontological_site" iconOrder="85"/>
+			<case minzoom="15" tag="historic" value="mine" icon="historic_mine"/>
+<!--			<apply_if nightMode="true" shield="gray_brown_square_shield"/>-->
+			<apply_if moreDetailed="false" maxzoom="15" icon=""/>
+		</switch>
+		<case minzoom="14" tag="tourism" value="viewpoint" icon="tourism_viewpoint" shield="viewpoint_white_shield" iconOrder="85"/>
+		<case minzoom="18" tag="historic" value="cannon" icon="historic_cannon" iconOrder="70"/>
+		<case minzoom="17" tag="historic" value="rune_stone" icon="historic_rune_stone" shield="historic_rune_stone_shield"/>
 
 		<case minzoom="13" tag="power" value="tower">
 			<case moreDetailed="true" maxzoom="13" icon="barrier_small_black_4" iconVisibleSize="2"/>
@@ -2154,8 +2320,8 @@
 						<apply_if minzoom="15" maxzoom="15" icon="barrier_small_red_bold_1"/>
 					</switch>
 				</apply_if>
-				<apply_if hideAccess="false" minzoom="16" additional="access=private" icon_2="access_private"/>
-				<apply_if hideAccess="false" minzoom="16" additional="access=no" icon_2="access_private"/>
+				<apply_if hideAccess="false" minzoom="16" additional="access=private" icon_2="access_private_red"/>
+				<apply_if hideAccess="false" minzoom="16" additional="access=no" icon_2="access_private_red"/>
 			</switch>
 
 		</switch>
@@ -2189,11 +2355,11 @@
 			<case minzoom="16" tag="man_made" value="antenna" icon="man_made_antenna" shield="antenna_shield"/>
 			<case minzoom="15" tag="man_made" value="mast" icon="man_made_mast" shield="mast_shield"/>
 			<case minzoom="13" tag="man_made" value="tower" additional="tower:type=communication" icon="communication_tower" shield="tower_communications_shield"/>
-			<case minzoom="15" tag="man_made" value="tower" additional="tower:type=lighting" icon="lighting_tower" shield="tower_lighting_shield"/>
+			<case minzoom="14" tag="man_made" value="tower" additional="tower:type=lighting" icon="lighting_tower" shield="tower_lighting_shield"/>
 			<case minzoom="14" tag="man_made" value="tower" additional="tower:type=observation" icon="observation_tower" shield="observatory_shield"/>
-			<case minzoom="13" tag="man_made" value="tower" additional="tower:type=cooling" icon="cooling_tower" shield="tower_cooling_shield"/>
-			<case minzoom="14" tag="man_made" value="tower" additional="tower:type=bell_tower" icon="bell_tower" shield="tower_bell_tower_shield"/>
-			<case minzoom="14" tag="man_made" value="tower" icon="man_made_tower" shield="tower_shield"/>
+			<case minzoom="13" tag="man_made" value="tower" additional="tower:type=cooling" icon="cooling_tower" shield="tower_cooling_white_shield"/>
+			<case minzoom="14" tag="man_made" value="tower" additional="tower:type=bell_tower" icon="bell_tower" shield="tower_bell_tower_white_shield"/>
+			<case minzoom="14" tag="man_made" value="tower" icon="man_made_tower" shield="tower_white_shield"/>
 		</switch>
 		<case minzoom="14" tag="natural" value="cave_entrance" icon="natural_cave_entrance" shield="cave_white_shield" iconOrder="85"/>
 		<switch>
@@ -2224,8 +2390,8 @@
 		<case minzoom="15" tag="man_made" value="mineshaft" icon="man_made_mineshaft" shield="mineshaft_shield">
 			<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 		</case>
-		<case minzoom="16" tag="power" value="substation" icon="power_substation" shield="power_substation_shield"/>
-		<case minzoom="16" tag="power" value="transformer" icon="power_transformer" shield="transformer_shield"/>
+		<case minzoom="17" tag="power" value="substation" icon="power_substation" shield="power_substation_shield"/>
+		<case minzoom="18" tag="power" value="transformer" icon="power_transformer" shield="transformer_shield"/>
 		<case minzoom="16" tag="man_made" value="monitoring_station" icon="radar" shield="monitoring_station_radar_shield"/>
 		<case minzoom="15" tag="man_made" value="survey_point" icon="man_made_survey_point" shield="survey_point_shield"/>
 		<case minzoom="15" tag="man_made" value="water_tower" icon="man_made_water_tower" shield="water_tower_shield"/>
@@ -2235,8 +2401,8 @@
 		<case minzoom="17" tag="man_made" value="pumping_station" icon="pumping_station" shield="pumping_station_shield"/>
 
 		<switch>
-			<case minzoom="14" tag="power" value="plant" icon="topo_power_plant" shield="topo_power_plant_shield"/>
-			<case minzoom="14" tag="power" value="generator" icon="power_generator" shield="power_generator_shield"/>
+			<case minzoom="15" tag="power" value="plant" icon="topo_power_plant" shield="topo_power_plant_shield"/>
+			<case minzoom="16" tag="power" value="generator" icon="power_generator" shield="power_generator_shield"/>
 			<apply>
 				<case additional="generator:source=coal" icon="generator_source_coal" shield="generator_coal_shield"/>
 				<case additional="generator:source=gas" icon="generator_source_gas" shield="generator_gas_shield"/>
@@ -2255,190 +2421,386 @@
 
 	<polygon>
 		<switch>
-			<switch minzoom="12">
-				<case tag="area:highway" value="motorway"/>
-				<case tag="area:highway" value="trunk"/>
-				<case tag="area:highway" value="primary"/>
-				<case tag="area:highway" value="secondary"/>
-				<case tag="area:highway" value="tertiary"/>
-				<case tag="area:highway" value="road"/>
-				<case tag="area:highway" value="unclassified"/>
-				<case tag="area:highway" value="residential"/>
-				<case tag="man_made" value="bridge"/>
-				<apply color="$primaryResidentialHighwayAreaColor" color_2="$primaryResidentialHighwayAreaShadowColor" strokeWidth_2="$highwayShadowRadius"/>
-			</switch>
-			<switch minzoom="14">
-				<case tag="area:highway" value="pedestrian"/>
-				<case tag="area:highway" value="footway"/>
-				<apply_if minzoom="16" surfaceIntegrity="false">
-					<switch>
-						<case additional="surface=sett"/>
-						<case additional="surface=cobblestone"/>
-						<case additional="surface=paving_stones"/>
-						<apply>
-							<switch>
-								<case appMode="pedestrian" shader="$pedestrianModePavingStonesShader">
-									<apply_if nightMode="true" shader="$pedestrianModePavingStonesShaderNight"/>
-								</case>
-								<case shader="paving_stones">
-									<apply_if nightMode="true" shader="paving_stones_night"/>
-								</case>
-							</switch>
-						</apply>
-					</switch>
-				</apply_if>
-				<apply_if minzoom="14">
-					<case color="$pedestrianRoadColor" color_2="$pedestrianRoadShadowColor" strokeWidth_2=":1"/>
-					<case nightMode="true" color="#727272"/>
-				</apply_if>
-				<apply_if appMode="car" shader="" color="#f0e0d8" color_2="#44aaaaaa">
-					<apply_if nightMode="true" color="#353535" color_2="#77666666"/>
-				</apply_if>
-			</switch>
-			<switch minzoom="14">
-				<case tag="area:highway" value="service"/>
-<!--				<case tag="highway" value="rest_area"/>-->
-				<apply color="$serviceHighwayAreaColor" color_2="$serviceHighwayAreaShadowColor" strokeWidth_2="$highwayShadowRadius"/>
-			</switch>
 			<switch>
-				<case minzoom="16" tag="area:highway" value="track"/>
-				<apply color="#e7e7e7" color_2="#444444" pathEffect_2="8_2" strokeWidth_2=":1">
-					<apply_if nightMode="true" color="#6b5432"/>
-				</apply>
-			</switch>
-<!--			<apply_if showAccess="true" minzoom="16">
+				<switch minzoom="12">
+					<case tag="area:highway" value="motorway"/>
+					<case tag="area:highway" value="trunk"/>
+					<case tag="area:highway" value="primary"/>
+					<case tag="area:highway" value="secondary"/>
+					<case tag="area:highway" value="tertiary"/>
+					<case tag="area:highway" value="road"/>
+					<case tag="area:highway" value="unclassified"/>
+					<case tag="area:highway" value="residential"/>
+					<case tag="man_made" value="bridge"/>
+					<apply color="$primaryResidentialHighwayAreaColor" color_2="$primaryResidentialHighwayAreaShadowColor" strokeWidth_2="$highwayShadowRadius"/>
+				</switch>
+				<switch minzoom="14">
+					<case tag="area:highway" value="pedestrian"/>
+					<case tag="area:highway" value="footway"/>
+					<apply_if minzoom="16" surfaceIntegrity="false">
+						<switch>
+							<case additional="surface=sett"/>
+							<case additional="surface=cobblestone"/>
+							<case additional="surface=paving_stones"/>
+							<apply>
+								<switch>
+									<case appMode="pedestrian" shader="$pedestrianModePavingStonesShader">
+										<apply_if nightMode="true" shader="$pedestrianModePavingStonesShaderNight"/>
+									</case>
+									<case shader="paving_stones">
+										<apply_if nightMode="true" shader="paving_stones_night"/>
+									</case>
+								</switch>
+							</apply>
+						</switch>
+					</apply_if>
+					<apply_if minzoom="14">
+						<case color="$pedestrianRoadColor" color_2="$pedestrianRoadShadowColor" strokeWidth_2=":1"/>
+						<case nightMode="true" color="#727272"/>
+					</apply_if>
+					<apply_if appMode="car" shader="" color="#f0e0d8" color_2="#44aaaaaa">
+						<apply_if nightMode="true" color="#353535" color_2="#77666666"/>
+					</apply_if>
+				</switch>
+				<switch minzoom="14">
+					<case tag="area:highway" value="service"/>
+	<!--				<case tag="highway" value="rest_area"/>-->
+					<apply color="$serviceHighwayAreaColor" color_2="$serviceHighwayAreaShadowColor" strokeWidth_2="$highwayShadowRadius"/>
+				</switch>
 				<switch>
-					<case additional="access=private" color_2="$accessPrivateColor"/>
-					<case additional="access=no" color_2="$accessPrivateColor"/>
-					<case additional="access=destination" color_2="$accessDestinationColor"/>
-					<case additional="access=permissive" color_2="$accessPermissiveColor"/>
-					<case additional="access=agricultural" color_2="$accessAgriculturalColor"/>
-					<case additional="access=forestry" color_2="$accessForestryColor"/>
-					<case additional="access=customers" color_2="$accessCustomersColor"/>
-					<case additional="access=delivery" color_2="$accessDeliveryColor"/>
-					<case additional="access=emergency" color_2="$accessEmergencyColor"/>
-					<case additional="ski=no" color_2="$accessSkiNoColor"/>
-					<apply cap_2="ROUND">
-						<case maxzoom="16" strokeWidth_2="3.7:3.7" pathEffect_2="1_11"/>
-						<case maxzoom="17" strokeWidth_2="4.5:4.5" pathEffect_2="1_13"/>
-						<case maxzoom="18" strokeWidth_2="5:5" pathEffect_2="1_17"/>
-						<case minzoom="19" strokeWidth_2="6.5:6.5" pathEffect_2="1_21"/>
+					<case minzoom="16" tag="area:highway" value="track"/>
+					<apply color="#e7e7e7" color_2="#444444" pathEffect_2="8_2" strokeWidth_2=":1">
+						<apply_if nightMode="true" color="#6b5432"/>
 					</apply>
 				</switch>
-			</apply_if>-->
-		</switch>
+			</switch>
 
-		<!-- Buildings -->
-		<switch hideBuildings="false" minzoom="15">
-			<switch coloredBuildings="true">
+			<!-- Buildings -->
+			<switch hideBuildings="false" minzoom="15">
+				<switch coloredBuildings="true">
+					<switch>
+						<case tag="building" value="garage"/>
+						<case tag="building" value="industrial"/>
+						<case tag="building" value="transportation"/>
+						<case tag="building" value="warehouse"/>
+						<case tag="building" value="hangar"/>
+						<case tag="building" value="factory"/>
+						<case tag="building" value="manufacture"/>
+						<case tag="building" value="farm_auxiliary"/>
+						<case tag="building" value="shed"/>
+						<case tag="building" value="barn"/>
+						<case tag="building" value="greenhouse"/>
+						<case tag="man_made" value="storage_tank"/>
+						<case tag="man_made" value="silo"/>
+						<case tag="man_made" value="reservoir_covered"/>
+						<case tag="man_made" value="chimney"/>
+						<apply color="$buildingIndustrialColor"/>
+					</switch>
+	<!--				<switch>
+						<case tag="building" value="residential"/>
+						<case tag="building" value="house"/>
+						<case tag="building" value="hut"/>
+						<case tag="building" value="cabin"/>
+						<case tag="building" value="detached"/>
+						<case tag="building" value="farm"/>
+						<case tag="building" value="hotel"/>
+						<apply color="$buildingResidentialColor"/>
+					</switch>
+					<switch>
+						<case tag="building" value="hospital"/>
+						<case tag="building" value="civic"/>
+						<case tag="building" value="hall"/>
+						<case tag="building" value="administrative"/>
+						<case tag="building" value="public"/>
+						<case tag="building" value="school"/>
+						<case tag="building" value="kindergarten"/>
+						<case tag="building" value="university"/>
+						<case tag="building" value="college"/>
+						<apply color="$buildingEducationalColor"/>
+					</switch>
+					<switch>
+						<case tag="building" value="commercial"/>
+						<case tag="building" value="retail"/>
+						<case tag="building" value="shop"/>
+						<case tag="building" value="supermarket"/>
+						<apply color="$buildingCommercialColor"/>
+					</switch>
+					<switch>
+						<case tag="building" value="place_of_worship"/>
+						<case tag="building" value="basilica"/>
+						<case tag="building" value="castle_tower"/>
+						<case tag="historic" value="city_gate"/>
+						<apply strokeWidth_2="$attractionStrokeWidth" color="$churchColor" color_2="$attractionStrokeColor"/>
+					</switch>
+					<switch>
+						<case tag="military" value="bunker"/>
+						<case tag="military" value="barracks"/>
+						<apply color="$buildingMilitaryColor"/>
+					</switch>-->
+					<apply>
+						<switch>
+							<case additional="ruins=yes"/>
+							<apply strokeWidth_2="3" color="#99ababab" color_2="#000000" pathEffect_2="9_3"/>
+							<apply_if nightMode="true" color="#494949" color_2="#ffffff"/>
+							<apply_if maxzoom="15" moreDetailed="true" strokeWidth_2="$buildingStrokeWidth"/>
+						</switch>
+					</apply>
+					<apply_if minzoom="16" strokeWidth_2="$buildingStrokeWidth"/>
+				</switch>
 				<switch>
-					<case tag="building" value="garage"/>
-					<case tag="building" value="industrial"/>
-					<case tag="building" value="transportation"/>
-					<case tag="building" value="warehouse"/>
-					<case tag="building" value="hangar"/>
-					<case tag="building" value="factory"/>
-					<case tag="building" value="manufacture"/>
-					<case tag="building" value="farm_auxiliary"/>
-					<case tag="building" value="shed"/>
-					<case tag="building" value="barn"/>
-					<case tag="building" value="greenhouse"/>
+					<case tag="building" value="collapsed"/>
+					<case tag="building" value="disused"/>
+					<case tag="abandoned:building" value=""/>
+					<case tag="disused:building" value=""/>
+					<apply_if color="$buildingAbandonedColor" color_2="$buildingAbandonedStrokeColor" pathEffect_2="4_5" strokeWidth_2="1"/>
+				</switch>
+				<switch>
+					<case tag="building" value=""/>
+					<case tag="historic" value="city_gate"/>
 					<case tag="man_made" value="storage_tank"/>
 					<case tag="man_made" value="silo"/>
 					<case tag="man_made" value="reservoir_covered"/>
 					<case tag="man_made" value="chimney"/>
-					<apply color="$buildingIndustrialColor"/>
-				</switch>
-<!--				<switch>
-					<case tag="building" value="residential"/>
-					<case tag="building" value="house"/>
-					<case tag="building" value="hut"/>
-					<case tag="building" value="cabin"/>
-					<case tag="building" value="detached"/>
-					<case tag="building" value="farm"/>
-					<case tag="building" value="hotel"/>
-					<apply color="$buildingResidentialColor"/>
-				</switch>
-				<switch>
-					<case tag="building" value="hospital"/>
-					<case tag="building" value="civic"/>
-					<case tag="building" value="hall"/>
-					<case tag="building" value="administrative"/>
-					<case tag="building" value="public"/>
-					<case tag="building" value="school"/>
-					<case tag="building" value="kindergarten"/>
-					<case tag="building" value="university"/>
-					<case tag="building" value="college"/>
-					<apply color="$buildingEducationalColor"/>
-				</switch>
-				<switch>
-					<case tag="building" value="commercial"/>
-					<case tag="building" value="retail"/>
-					<case tag="building" value="shop"/>
-					<case tag="building" value="supermarket"/>
-					<apply color="$buildingCommercialColor"/>
-				</switch>
-				<switch>
-					<case tag="building" value="place_of_worship"/>
-					<case tag="building" value="basilica"/>
-					<case tag="building" value="castle_tower"/>
-					<case tag="historic" value="city_gate"/>
-					<apply strokeWidth_2="$attractionStrokeWidth" color="$churchColor" color_2="$attractionStrokeColor"/>
-				</switch>
-				<switch>
+					<case tag="man_made" value="tower"/>
 					<case tag="military" value="bunker"/>
 					<case tag="military" value="barracks"/>
-					<apply color="$buildingMilitaryColor"/>
-				</switch>-->
-				<apply>
-					<switch>
-						<case additional="ruins=yes"/>
-						<apply strokeWidth_2="3" color="#99ababab" color_2="#000000" pathEffect_2="9_3"/>
-						<apply_if nightMode="true" color="#494949" color_2="#ffffff"/>
-						<apply_if maxzoom="15" moreDetailed="true" strokeWidth_2="$buildingStrokeWidth"/>
-					</switch>
-				</apply>
-				<apply_if minzoom="16" strokeWidth_2="$buildingStrokeWidth"/>
+					<apply color="$buildingColor"/>
+					<apply>
+						<switch>
+							<case additional="ruins=yes"/>
+							<apply color="#99ababab" color_2="#000000" pathEffect_2="9_3"/>
+							<apply_if nightMode="true" color="#494949" color_2="#aaaaaa"/>
+						</switch>
+					</apply>
+					<apply_if minzoom="16" strokeWidth_2="$buildingStrokeWidth"/>
+				</switch>
+	<!--			<case tag="building" value="construction" color="#aaa279" color_2="#666666" pathEffect_2="8_4">
+					<apply_if minzoom="16" strokeWidth_2="$buildingStrokeWidth"/>
+					<apply_if nightMode="true" color="#494921" color_2="#aaaaaa"/>
+				</case>
+				<case tag="building" value="pyramid" color="#be865d" color_2="#000000" strokeWidth_2="0.7">
+					<apply_if nightMode="true" color="#665228" />
+				</case>-->
 			</switch>
-			<switch>
-				<case tag="building" value="collapsed"/>
-				<case tag="building" value="disused"/>
-				<case tag="abandoned:building" value=""/>
-				<case tag="disused:building" value=""/>
-				<apply_if color="$buildingAbandonedColor" color_2="$buildingAbandonedStrokeColor" pathEffect_2="4_5" strokeWidth_2="1"/>
-			</switch>
-			<switch>
-				<case tag="building" value=""/>
-				<case tag="historic" value="city_gate"/>
-				<case tag="man_made" value="storage_tank"/>
-				<case tag="man_made" value="silo"/>
-				<case tag="man_made" value="reservoir_covered"/>
-				<case tag="man_made" value="chimney"/>
-				<case tag="man_made" value="tower"/>
-				<case tag="military" value="bunker"/>
-				<case tag="military" value="barracks"/>
-				<apply color="$buildingColor"/>
-				<apply>
-					<switch>
-						<case additional="ruins=yes"/>
-						<apply color="#99ababab" color_2="#000000" pathEffect_2="9_3"/>
-						<apply_if nightMode="true" color="#494949" color_2="#aaaaaa"/>
-					</switch>
-				</apply>
-				<apply_if minzoom="16" strokeWidth_2="$buildingStrokeWidth"/>
-			</switch>
-<!--			<case tag="building" value="construction" color="#aaa279" color_2="#666666" pathEffect_2="8_4">
-				<apply_if minzoom="16" strokeWidth_2="$buildingStrokeWidth"/>
-				<apply_if nightMode="true" color="#494921" color_2="#aaaaaa"/>
+			<case minzoom="12" tag="landuse" value="cemetery" shader="topo_cemetery_small" strokeWidth_2="0.5" color_2="#222222">
+				<case minzoom="13" shader="topo_cemetery"/>
 			</case>
-			<case tag="building" value="pyramid" color="#be865d" color_2="#000000" strokeWidth_2="0.7">
-				<apply_if nightMode="true" color="#665228" />
+			<case minzoom="14" tag="landuse" value="construction" shader="topo_construction" strokeWidth_2="0.5" color_2="#222222"/>
+
+			<case minzoom="11" tag="leisure" value="beach_resort" color="#e6d4a9" strokeWidth_2="1" color_2="#ad862b">
+				<apply_if nightMode="true" color="#494336"/>
+			</case>
+
+			<case minzoom="11" tag="natural" value="beach" shader="beach3"/>
+			<case minzoom="11" tag="natural" value="sand" shader="sand_shader">
+				<apply_if nightMode="true" shader="" color="#41390f"/>
+			</case>
+			<switch minzoom="13">
+			<!-- Special nature with shaders -->
+				<case tag="natural" value="scree"/>
+				<case tag="geological" value="moraine"/>
+				<apply shader="scree">
+					<apply_if nightMode="true" shader="" color="#33444444"/>
+				</apply>
+			</switch>
+			<case minzoom="14" tag="natural" value="fell" shader="fell2">
+				<case nightMode="true" shader="" color="#33555555"/>
+			</case>
+			<case minzoom="13" tag="natural" value="bare_rock" shader="bare_rock">
+				<case nightMode="true" shader="" color="#55555555"/>
+			</case>
+
+			<switch minzoom="6">
+				<case tag="natural" value="wood"/>
+				<case tag="landuse" value="forest"/>
+				<apply color="$woodColor"/>
+				<apply_if minzoom="14" additional="leaf_type=broadleaved" shader="topo_wood_broadleaved"/>
+				<apply_if minzoom="14" additional="leaf_type=needleleaved" shader="topo_wood_needleleaved"/>
+				<apply_if minzoom="14" additional="leaf_type=mixed" shader="topo_wood_mixed"/>
+	<!--			<apply cap_2="ROUND" color_2="#0C4228">
+					<case minzoom="14" maxzoom="14" strokeWidth_2="1" pathEffect_2="1_5"/>
+					<case minzoom="15" strokeWidth_2="1.5" pathEffect_2="1_8"/>
+				</apply>-->
+			</switch>
+			<case minzoom="10" tag="landuse" value="allotments" color="$landuseAllotmentsColor" color_2="#8fbda0" strokeWidth_2=":1">
+	<!--			<case minzoom="13" maxzoom="14" shader="allotments_small"/>-->
+				<case minzoom="14" shader="topo_allotments"/>
+				<apply_if nightMode="true" shader="" color_2="#00510e"/>
+			</case>
+			<case minzoom="12" tag="landuse" value="orchard" color="#bbeca1" color_2="#499720">
+				<case minzoom="14" shader="topo_orchard"/>
+				<apply_if nightMode="true" shader="" color_2="#00510e"/>
+			</case>
+			<switch minzoom="6">
+				<case tag="natural" value="grassland"/>
+				<case tag="landuse" value="meadow"/>
+				<case minzoom="12" tag="landuse" value="grassland"/>
+				<apply_if maxzoom="13" color="$grassColor"/>
+				<apply_if minzoom="14" shader="topo_grassland"/>
+			</switch>
+			<switch minzoom="11">
+				<case tag="landuse" value="grass"/>
+				<case tag="natural" value="heath"/>
+				<apply color="$grassColor"/>
+			</switch>
+
+	<!--		<case minzoom="10" tag="natural" value="heath" color="$grassColor">
+				<apply_if minzoom="14" shader="topo_heath"/>
+				<apply_if nightMode="true" shader=""/>
 			</case>-->
+			<case minzoom="6" tag="landuse" value="residential" color="#BBBBBB">
+				<apply>
+					<switch minzoom="11" additional="residential=rural">
+	<!--					 <case maxzoom="13" color="#393536">
+							<apply_if nightMode="true" color="222222"/>
+						 </case>-->
+						 <case maxzoom="14" color="#666666">
+							<apply_if nightMode="true" color="#3b3b3b"/>
+						 </case>
+						 <case minzoom="15" color="#ABABAB">
+							<apply_if nightMode="true" color="#3b3b3b"/>
+						 </case>
+					</switch>
+					<switch minzoom="11" additional="residential=urban">
+	<!--					 <case maxzoom="13" color="#E95923">
+							<apply_if nightMode="true" color="222222"/>
+						 </case>-->
+						 <case maxzoom="14" color="#FFA577">
+							<apply_if nightMode="true" color="#3b3b3b"/>
+						 </case>
+						 <case minzoom="15" color="#F2D3B6">
+							<apply_if nightMode="true" color="#3b3b3b"/>
+						 </case>
+					</switch>
+				</apply>
+			</case>
+					<case minzoom="11" tag="landuse" value="industrial" color="$landuseIndustrialColor"/>
+					<case minzoom="12" tag="landuse" value="railway" color="$landuseRailwayColor"/>
+					<case minzoom="14" tag="landuse" value="garages" color="$landuseGaragesColor"/>
+
+
+			<case minzoom="12" tag="landuse" value="recreation_ground" color="$recreationGroundColor"/>
+			<case minzoom="6" tag="landuse" value="farmland" color="$farmlandColor"/>
+			<case minzoom="6" tag="landuse" value="village_green" color="$grassColor"/>
+			<case minzoom="12" tag="landuse" value="plant_nursery">
+				<apply_if maxzoom="12" color="#d5ffbe"/>
+				<apply_if minzoom="13" shader="topo_plant_nursery"/>
+			</case>
+			<case minzoom="12" tag="landuse" value="vineyard">
+				<apply_if maxzoom="13" color="#bbeca1"/>
+				<apply_if minzoom="14" shader="topo_vineyard"/>
+			</case>
+
+			<case minzoom="12" tag="landuse" value="farmyard" color="$farmyardColor"/>
+			<case minzoom="12" tag="leisure" value="garden" color="$gardenColor"/>
+			<case minzoom="8" tag="leisure" value="park" color="$gardenColor"/>
+
+			<case minzoom="11" tag="landuse" value="quarry" color="#E2D5CE" color_2="#6F6357" strokeWidth_2="2" pathEffect_2="2_2">
+				<case additional="resource=peat" shader="topo_quarry_peat"/>
+				<case additional="resource=salt" shader="topo_quarry_salt" color_2="#1a7fc7"/>
+			</case>
+
+			<case minzoom="10" tag="abandoned:landuse" value="military" shader="diagonal_dustygray_small_shader" color_2="#AD9696" strokeWidth_2="1.5">
+				<apply_if minzoom="14" shader="diagonal_dustygray_shader"/>
+	<!--			<apply_if nightMode="true" color_2="#84ffa0c0"/>-->
+			</case>
+
+			<switch>
+				<case minzoom="12" tag="abandoned:landuse" value="industrial"/>
+				<case minzoom="11" tag="abandoned:landuse" value="railway"/>
+				<case minzoom="11" tag="abandoned:landuse" value="residential"/>
+				<case minzoom="11" tag="abandoned:landuse" value="garages"/>
+				<switch>
+					<case minzoom="12" tag="abandoned:landuse" value=""/>
+					<case minzoom="11" tag="abandoned:place" value="">
+						<apply_if nightMode="true" color_2="#77aaaaaa"/>
+					</case>
+				</switch>
+				<apply shader="diagonal_gray_shader" strokeWidth_2="0.5" color_2="#454545">
+					<apply_if minzoom="15" shader="diagonal_gray_large_shader"/>
+					<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
+				</apply>
+			</switch>
+			<switch minzoom="13">
+				<case tag="power" value="plant" color="#bbbbbb"/>
+				<case tag="power" value="generator" color="#bbbbbb"/>
+				<case tag="power" value="substation" color="#bbbbbb"/>
+				<apply_if nightMode="true" color="#132c4e"/>
+			</switch>
+
+			<case minzoom="14" tag="barrier" value="city_wall">
+				<case maxzoom="14" strokeWidth_2="1:1"/>
+				<case maxzoom="15" strokeWidth_2="2:2"/>
+				<case maxzoom="16" strokeWidth_2="3.5:3.5"/>
+				<case minzoom="17" strokeWidth_2="4.5:4.5"/>
+				<apply color="#77999999" color_2="#888888" cap_2="SQUARE">
+					<apply_if nightMode="true" color="#77444444" color_2="#885454"/>
+				</apply>
+			</case>
+			<apply>
+				<switch hideAccess="false" minzoom="13">
+					<case additional="access=private"/>
+					<case additional="access=no"/>
+					<apply color_2="$accessPrivateColor"/>
+					<apply_if maxzoom="14" strokeWidth_2="1:1" pathEffect_2="2_2"/>
+					<apply_if minzoom="15" strokeWidth_2="2:2" pathEffect_2="4_3"/>
+				</switch>
+			</apply>
 		</switch>
-		<case minzoom="12" tag="landuse" value="cemetery" shader="topo_cemetery_small" strokeWidth_2="1" color_2="#999999">
-			<case minzoom="13" shader="topo_cemetery"/>
+
+		<switch minzoom="11">
+			<case tag="natural" value="crater"/>
+			<case tag="natural" value="volcano"/>
+			<case minzoom="15" tag="natural" value="sinkhole"/>
+			<apply color="#22653f3f" color_2="#886a6a">
+				<apply_if nightMode="true" color="#224e1111" color_2="#452121"/>
+			</apply>
+			<apply>
+				<case maxzoom="11" strokeWidth_2="0.5"/>
+				<case maxzoom="12" strokeWidth_2="0.7"/>
+				<case maxzoom="13" strokeWidth_2="1:1"/>
+				<case maxzoom="14" strokeWidth_2="1.5:1.5"/>
+				<case maxzoom="15" strokeWidth_2="2:2"/>
+				<case minzoom="16" strokeWidth_2="2.3:2.3"/>
+			</apply>
+		</switch>
+
+		<case minzoom="10" tag="landuse" value="military" shader="diagonal_red_small_shader" color_2="#ad0b0b" strokeWidth_2="1.5">
+			<apply_if minzoom="14" shader="diagonal_red_shader"/>
 		</case>
 
+		<case minzoom="10" tag="natural" value="wetland">
+			<case additional="wetland=tidalflat" shader="wetland_tidalflat">
+				<apply_if nightMode="true" shader="" color="#323b69"/>
+			</case>
+			<switch>
+				<case additional="wetland=bog" shader="wetland_bog"/>
+				<case additional="wetland=marsh" shader="wetland_marsh"/>
+				<case additional="wetland=swamp" shader="wetland_swamp"/>
+				<case additional="wetland=reedbed" shader="wetland_reedbed"/>
+				<case additional="wetland=mangrove" shader="wetland_mangrove"/>
+				<case additional="wetland=wet_meadow" shader="wetland_wet_meadow"/>
+				<case additional="wetland=string_bog" shader="wetland_string_bog"/>
+				<case additional="wetland=saltmarsh" shader="wetland_saltmarsh"/>
+				<case additional="wetland=fen" shader="wetland_fen"/>
+				<case additional="wetland=palsa_bog" shader="wetland_palsa_bog"/>
+<!--				<case additional="wetland=mud" shader="mud2"/>-->
+				<case shader="wetland"/>
+				<apply_if nightMode="true" shader="" color="$wetlandColorNight"/>
+			</switch>
+			<apply_if minzoom="15" additional="intermittent=yes" strokeWidth_2="1" color_2="#7479ec" pathEffect_2="12_5"/>
+		</case>
+
+		<case minzoom="12" tag="natural" value="scrub">
+			<apply_if maxzoom="13" color="#b3e3b5"/>
+			<apply_if minzoom="14" shader="topo_scrub"/>
+		</case>
+
+		<switch>
+			<case tag="place" value="island"/>
+			<case tag="natural" value="land"/>
+			<apply color="$defaultColor"/>
+		</switch>
 		<switch>
 			<switch>
 				<case minzoom="1" tag="natural" value="coastline"/>
@@ -2463,156 +2825,6 @@
 			<case minzoom="10" tag="waterway" value="dock" color_2="#aa8387d5" strokeWidth_2="3"/>
 			<apply color="$waterColor"/>
 			<apply_if additional="intermittent=yes" strokeWidth_2="1:0" color_2="#7479ec" pathEffect_2="7_5"/>
-		</switch>
-
-		<switch minzoom="6">
-			<case tag="natural" value="wood"/>
-			<case tag="landuse" value="forest"/>
-			<apply color="$woodColor"/>
-			<apply_if minzoom="14" additional="leaf_type=broadleaved" shader="topo_wood_broadleaved"/>
-			<apply_if minzoom="14" additional="leaf_type=needleleaved" shader="topo_wood_needleleaved"/>
-			<apply_if minzoom="14" additional="leaf_type=mixed" shader="topo_wood_mixed"/>
-<!--			<apply cap_2="ROUND" color_2="#0C4228">
-				<case minzoom="14" maxzoom="14" strokeWidth_2="1" pathEffect_2="1_5"/>
-				<case minzoom="15" strokeWidth_2="1.5" pathEffect_2="1_8"/>
-			</apply>-->
-		</switch>
-		<case minzoom="10" tag="landuse" value="allotments" color="$landuseAllotmentsColor" color_2="#8fbda0" strokeWidth_2=":1">
-<!--			<case minzoom="13" maxzoom="14" shader="allotments_small"/>-->
-			<case minzoom="14" shader="topo_allotments"/>
-			<apply_if nightMode="true" shader="" color_2="#00510e"/>
-		</case>
-		<case minzoom="12" tag="landuse" value="orchard" color="#bbeca1" color_2="#499720">
-			<case minzoom="14" shader="topo_orchard"/>
-			<apply_if nightMode="true" shader="" color_2="#00510e"/>
-		</case>
-		<switch minzoom="6">
-			<case tag="natural" value="grassland"/>
-			<case tag="landuse" value="meadow"/>
-			<case minzoom="12" tag="landuse" value="grassland"/>
-			<apply_if maxzoom="13" color="$grassColor"/>
-			<apply_if minzoom="14" shader="topo_grassland"/>
-		</switch>
-		<switch minzoom="11">
-			<case tag="landuse" value="grass"/>
-			<case tag="natural" value="heath"/>
-			<apply color="$grassColor"/>
-		</switch>
-
-<!--		<case minzoom="10" tag="natural" value="heath" color="$grassColor">
-			<apply_if minzoom="14" shader="topo_heath"/>
-			<apply_if nightMode="true" shader=""/>
-		</case>-->
-		<case minzoom="6" tag="landuse" value="residential" color="#BBBBBB">
-			<apply>
-				<switch minzoom="11" additional="residential=rural">
-<!--					 <case maxzoom="13" color="#393536">
-						<apply_if nightMode="true" color="222222"/>
-					 </case>-->
-					 <case maxzoom="14" color="#666666">
-						<apply_if nightMode="true" color="#3b3b3b"/>
-					 </case>
-					 <case minzoom="15" color="#ABABAB">
-						<apply_if nightMode="true" color="#3b3b3b"/>
-					 </case>
-				</switch>
-				<switch minzoom="11" additional="residential=urban">
-<!--					 <case maxzoom="13" color="#E95923">
-						<apply_if nightMode="true" color="222222"/>
-					 </case>-->
-					 <case maxzoom="14" color="#FFA577">
-						<apply_if nightMode="true" color="#3b3b3b"/>
-					 </case>
-					 <case minzoom="15" color="#F2D3B6">
-						<apply_if nightMode="true" color="#3b3b3b"/>
-					 </case>
-				</switch>
-			</apply>
-		</case>
-				<case minzoom="11" tag="landuse" value="industrial" color="$landuseIndustrialColor"/>
-				<case minzoom="12" tag="landuse" value="railway" color="$landuseRailwayColor"/>
-				<case minzoom="14" tag="landuse" value="garages" color="$landuseGaragesColor"/>
-
-
-		<case minzoom="12" tag="landuse" value="recreation_ground" color="$recreationGroundColor"/>
-		<case minzoom="6" tag="landuse" value="farmland" color="$farmlandColor"/>
-		<case minzoom="6" tag="landuse" value="village_green" color="$grassColor"/>
-		<case minzoom="12" tag="landuse" value="plant_nursery">
-			<apply_if maxzoom="12" color="#d5ffbe"/>
-			<apply_if minzoom="13" shader="topo_plant_nursery"/>
-		</case>
-		<case minzoom="12" tag="landuse" value="vineyard">
-			<apply_if maxzoom="13" color="#bbeca1"/>
-			<apply_if minzoom="14" shader="topo_vineyard"/>
-		</case>
-
-		<case minzoom="12" tag="landuse" value="farmyard" color="$farmyardColor"/>
-
-		<case minzoom="11" tag="landuse" value="quarry" color="#E2D5CE" color_2="#6F6357" strokeWidth_2="2" pathEffect_2="2_2">
-			<case additional="resource=peat" shader="topo_quarry_peat"/>
-			<case additional="resource=salt" shader="topo_quarry_salt" color_2="#1a7fc7"/>
-		</case>
-		<case minzoom="10" tag="landuse" value="military" shader="diagonal_red_small_shader" color_2="#ad0b0b" strokeWidth_2="1:1">
-			<apply_if minzoom="14" shader="diagonal_red_shader"/>
-		</case>
-		<case minzoom="10" tag="abandoned:landuse" value="military" shader="diagonal_dustygray_small_shader" color_2="#AD9696" strokeWidth_2="1:1">
-			<apply_if minzoom="14" shader="diagonal_dustygray_shader"/>
-<!--			<apply_if nightMode="true" color_2="#84ffa0c0"/>-->
-		</case>
-
-		<switch>
-			<case minzoom="12" tag="abandoned:landuse" value="industrial"/>
-			<case minzoom="11" tag="abandoned:landuse" value="railway"/>
-			<case minzoom="11" tag="abandoned:landuse" value="residential"/>
-			<case minzoom="11" tag="abandoned:landuse" value="garages"/>
-			<switch>
-				<case minzoom="12" tag="abandoned:landuse" value=""/>
-				<case minzoom="11" tag="abandoned:place" value="">
-					<apply_if nightMode="true" color_2="#77aaaaaa"/>
-				</case>
-			</switch>
-			<apply shader="diagonal_gray_shader" strokeWidth_2="0.5" color_2="#454545">
-				<apply_if minzoom="15" shader="diagonal_gray_large_shader"/>
-				<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
-			</apply>
-		</switch>
-		<switch minzoom="13">
-			<case tag="power" value="plant" color="#bbbbbb"/>
-			<case tag="power" value="generator" color="#bbbbbb"/>
-			<case tag="power" value="substation" color="#bbbbbb"/>
-			<apply_if nightMode="true" color="#132c4e"/>
-		</switch>
-
-		<case minzoom="10" tag="natural" value="wetland">
-			<case additional="wetland=tidalflat" shader="wetland_tidalflat">
-				<apply_if nightMode="true" shader="" color="#323b69"/>
-			</case>
-			<switch>
-				<case additional="wetland=bog" shader="wetland_bog"/>
-				<case additional="wetland=marsh" shader="wetland_marsh"/>
-				<case additional="wetland=swamp" shader="wetland_swamp"/>
-				<case additional="wetland=reedbed" shader="wetland_reedbed"/>
-				<case additional="wetland=mangrove" shader="wetland_mangrove"/>
-				<case additional="wetland=wet_meadow" shader="wetland_wet_meadow"/>
-				<case additional="wetland=string_bog" shader="wetland_string_bog"/>
-				<case additional="wetland=saltmarsh" shader="wetland_saltmarsh"/>
-				<case additional="wetland=fen" shader="wetland_fen"/>
-				<case additional="wetland=palsa_bog" shader="wetland_palsa_bog"/>
-<!--				<case additional="wetland=mud" shader="mud2"/>-->
-				<case shader="wetland"/>
-				<apply_if nightMode="true" shader="" color="$wetlandColorNight"/>
-			</switch>
-			<apply_if minzoom="15" additional="intermittent=yes" strokeWidth_2="1" color_2="#7479ec" pathEffect_2="12_5"/>
-		</case>
-		<case minzoom="12" tag="natural" value="scrub">
-			<apply_if maxzoom="13" color="#b3e3b5"/>
-			<apply_if minzoom="14" shader="topo_scrub"/>
-		</case>
-
-		<switch>
-			<case tag="place" value="island"/>
-			<case tag="natural" value="land"/>
-			<apply color="$defaultColor"/>
 		</switch>
 
 	</polygon>
@@ -2996,19 +3208,6 @@
 					</switch>
 				</switch>
 			</apply>
-<!--			<apply hideAccess="false" cap_3="BUTT">
-				<switch minzoom="13">
-					<case additional="access=private" color_3="$accessPrivateColor"/>
-					<case additional="access=no" color_3="$accessPrivateColor"/>-->
-<!--					<case additional="access=destination" color_3="$accessDestinationColor"/>
-					<case additional="access=permissive" color_3="$accessPermissiveColor"/>
-					<case additional="access=agricultural" color_3="$accessAgriculturalColor"/>
-					<case additional="access=forestry" color_3="$accessForestryColor"/>
-					<case additional="access=customers" color_3="$accessCustomersColor"/>
-					<case additional="access=delivery" color_3="$accessDeliveryColor"/>
-					<case additional="access=emergency" color_3="$accessEmergencyColor"/>-->
-<!--				</switch>
-			</apply>-->
 			<apply_if moreDetailed="true" minzoom="13" maxzoom="13" pathEffect_3="1_3"/>
 			<apply_if moreDetailed="true" minzoom="14" maxzoom="14" pathEffect_3="2_6"/>
 			<apply_if minzoom="15" maxzoom="15" pathEffect_3="2_8"/>
@@ -3239,12 +3438,12 @@
 			<apply_if additional="service=spur" color="#666666">
 				<apply_if nightMode="true" color="#666666"/>
 			</apply_if>
-			<apply_if additional="electrified=yes" color_3="$railwayRailColor">
-				<apply_if additional="service=spur" color_3="#666666"/>
+			<apply_if additional="electrified=yes" color__2="$railwayRailColor">
+				<apply_if additional="service=spur" color__2="#666666"/>
 				<switch minzoom="12">
-					<case maxzoom="12" strokeWidth_3="2:4" pathEffect_3="1_10"/>
-					<case maxzoom="13" strokeWidth_3="4:4" pathEffect_3="1_15"/>
-					<case minzoom="14" strokeWidth_3="4:8" pathEffect_3="1_20"/>
+					<case maxzoom="12" strokeWidth__2="2:4" pathEffect__2="1_10"/>
+					<case maxzoom="13" strokeWidth__2="4:4" pathEffect__2="1_15"/>
+					<case minzoom="14" strokeWidth__2="4:8" pathEffect__2="1_20"/>
 				</switch>
 			</apply_if>
 		</case>
@@ -3271,6 +3470,62 @@
 			<case minzoom="15" tag="power" value="minor_line" strokeWidth="0.3"/>
 			<apply_if nightMode="true" color="#777777"/>
 		</switch>
+
+		<!-- Barriers -->
+		<switch minzoom="13">
+			<case tag="barrier" value="yes"/>
+			<case tag="barrier" value="fence"/>
+			<case tag="barrier" value="jersey_barrier"/>
+			<case tag="barrier" value="wall"/>
+			<case tag="barrier" value="retaining_wall">
+				<apply_if minzoom="16" pathIcon="stroke_darkgreen" pathIconStep="15"/>
+			</case>
+			<case tag="barrier" value="bollard"/>
+			<case tag="barrier" value="cycle_barrier"/>
+			<case tag="barrier" value="block"/>
+			<case tag="barrier" value="cattle_grid"/>
+			<case tag="barrier" value="toll_booth"/>
+			<case tag="military" value="checkpoint"/>
+			<case tag="barrier" value="entrance"/>
+			<case tag="barrier" value="gate"/>
+			<case tag="barrier" value="lift_gate"/>
+			<case tag="barrier" value="stile"/>
+			<case tag="barrier" value="horse_stile"/>
+			<case tag="barrier" value="kissing_gate"/>
+			<case tag="barrier" value="sally_port"/>
+			<case tag="barrier" value="turnstile"/>
+			<case tag="barrier" value="kent_carriage_gap"/>
+			<case tag="waterway" value="rapids" pathEffect="2_2"/>
+			<apply>
+				<case moreDetailed="true" maxzoom="15" strokeWidth="0.7"/>
+				<case minzoom="16" strokeWidth="1"/>
+			</apply>
+			<apply color="#333333">
+				<apply_if nightMode="true" color="#999999"/>
+			</apply>
+		</switch>
+		<case minzoom="16" tag="barrier" value="embankment" color="#33ffffff" color_0="#77999999" color__1="#44000000" strokeWidth="2:2" strokeWidth_0="3:3" cap="ROUND" cap_0="ROUND">
+			<case maxzoom="16" strokeWidth__1="4:4" pathEffect__1="1_7"/>
+			<case maxzoom="17" strokeWidth__1="7:7" pathEffect__1="1_12"/>
+			<case minzoom="18" strokeWidth__1="9:9" pathEffect__1="1_16"/>
+			<apply_if nightMode="true" color="#99111111" color__1="#66ffffff"/>
+		</case>
+
+		<case minzoom="16" tag="barrier" value="hedge" color="#aed1a0" strokeWidth="1.5:1.5">
+			<apply_if nightMode="true" color="#285926"/>
+		</case>
+
+		<case minzoom="16" tag="barrier" value="ditch" color="#768c8c" strokeWidth="1:1">
+			<apply_if nightMode="true" color="#5f6767"/>
+		</case>
+		<case minzoom="14" tag="barrier" value="city_wall">
+			<case maxzoom="14" strokeWidth="2:2"/>
+			<case maxzoom="15" strokeWidth="3:3"/>
+			<case minzoom="16" strokeWidth="4.5:4.5"/>
+			<apply color="#888888">
+				<apply_if nightMode="true" color="#885454"/>
+			</apply>
+		</case>
 
 		<switch>
 			<switch minzoom="13">
@@ -3386,6 +3641,51 @@
 				</case>
 			</apply>
 			<apply_if minzoom="15" pathIcon="stroke_lightorange_left" pathIconStep="100"/>
+		</switch>
+
+		<switch engine_v1="false" strokeWidth="0.5">
+			 <case minzoom="14" tag="natural" value="cliff" color="#148c14" pathIcon="stroke_darkgreen" pathIconStep="10"/>
+			 <case minzoom="16" tag="natural" value="slope" color="#aab88600" pathIcon="stroke_brown_right" pathIconStep="10"/>
+			 <case minzoom="16" tag="natural" value="earth_bank" color="#88949494" pathIcon="stroke_gray" pathIconStep="10"/>
+		</switch>
+
+		<switch strokeWidth="0.5">
+			<case minzoom="14" tag="natural" value="cliff" color="#148c14" color_2="#005300">
+				<apply_if nightMode="true" color="#6d8a6d" color_2="#6d8a6d"/>
+			</case>
+			<case minzoom="16" tag="natural" value="slope" color="#b88600" color_2="#b88600">
+				<apply_if nightMode="true" color="#aab88600" color_2="#aab88600"/>
+			</case>
+			<case minzoom="16" tag="natural" value="earth_bank" color="#88949494" color_2="#949494">
+				<apply_if nightMode="true" color="#995e5e5e" color_2="#5e5e5e"/>
+			</case>
+			<apply maxzoom="16" strokeWidth_2="2.5:2.5" pathEffect_2="1_7"/>
+			<apply minzoom="17" maxzoom="17" strokeWidth_2="4:4" pathEffect_2="1_9"/>
+			<apply minzoom="18" strokeWidth_2="5.5:5.5" pathEffect_2="1_13"/>
+		</switch>
+		<case minzoom="11" tag="natural" value="ridge" color="#000000" color_2="#000000">
+			<case maxzoom="11" strokeWidth="1"/>
+			<case maxzoom="12" strokeWidth="1.5"/>
+			<case maxzoom="13" strokeWidth="1.5" strokeWidth_2="2.1:2.1" pathEffect_2="1_23"/>
+			<case maxzoom="14" strokeWidth="2" strokeWidth_2="2.5:2.5" pathEffect_2="1_27"/>
+			<case maxzoom="15" strokeWidth="1.3:1.3" strokeWidth_2="2.7:2.7" pathEffect_2="1_32"/>
+			<case minzoom="16" strokeWidth="1.5:1.5" strokeWidth_2="2.8:2.8" pathEffect_2="1_37"/>
+			<apply_if nightMode="true" color="#666666" color_2="#999999"/>
+		</case>
+		<switch minzoom="11">
+			<case tag="natural" value="crater"/>
+			<case tag="natural" value="volcano"/>
+			<apply>
+				<case maxzoom="11" strokeWidth="0.5"/>
+				<case maxzoom="12" strokeWidth="0.7"/>
+				<case maxzoom="13" strokeWidth="1:1"/>
+				<case maxzoom="14" strokeWidth="1.5:1.5"/>
+				<case maxzoom="15" strokeWidth="2:2"/>
+				<case minzoom="16" strokeWidth="2.3:2.3"/>
+			</apply>
+			<apply color="#886a6a">
+				<apply_if nightMode="true" color="#452121"/>
+			</apply>
 		</switch>
 
 		<switch>

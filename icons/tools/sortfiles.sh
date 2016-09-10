@@ -224,6 +224,7 @@ mycp osm_note dot_2 overlays_osm_note_dot_2.png
 mycp drinking_water yes_map overlays_drinking_water_yes.png
 mycp drinking_water no_map overlays_drinking_water_no.png
 mycpname access_private overlays_access_private.png
+mycpname access_private_red overlays_access_private_red.png
 
 
 ## Traffic + Transportation
