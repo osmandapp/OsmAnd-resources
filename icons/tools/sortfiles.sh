@@ -103,6 +103,7 @@ mycp natural peak_night functional-icons_peak_night.png  #For night orienteering
 mycp natural saddle poi_saddle.png
 mycp natural sinkhole poi_sinkhole.png
 mycp natural spring water_spring.png  #scale 0.375
+mycpname topo_spring topo_topo_spring.png  #scale 0.375
 mycp natural stone poi_stone.png  #scale 0.375
 mycp natural tree_broadleaved functional-icons_tree_broadleaved.png
 mycp natural tree_cypress functional-icons_tree_cypress.png
@@ -183,6 +184,8 @@ mycp barrier small_red_bold_1 functional-icons_point_red_bold_1.png  #scale 0.25
 mycp barrier small_red_bold_2 functional-icons_point_red_bold_2.png  #scale 0.25
 mycp barrier small_red_bold_3 functional-icons_point_red_bold_3.png  #scale 0.25
 mycp barrier small_red_bold_4 functional-icons_point_red_bold_4.png  #scale 0.25
+mycp barrier small_brown_bold_1 functional-icons_point_brown_bold_1.png  #scale 0.25
+mycp barrier small_brown_bold_2 functional-icons_point_brown_bold_2.png  #scale 0.25
 
 ## Emergency + Health
 mygroup emergency emergency_emergency_phone.png
@@ -952,7 +955,7 @@ mycpname ventilation_shaft poi_ventilation_shaft.png
 mycpname pumping_station poi_pumping_station.png
 mycpname mdf poi_mdf.png
 
-mycpname topo_power_plant poi_topo_power_plant.png
+mycpname topo_power_plant topo_topo_power_plant.png
 
 mygroup military poi_military_bunker.png
 
