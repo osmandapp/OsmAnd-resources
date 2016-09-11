@@ -638,7 +638,7 @@
 
 	<renderingAttribute name="attractionColor">
 <!--		<case nightMode="true" attrColorValue="#3b3b3b"/>-->
-		<case attrColorValue="#41ffe4a4"/>
+		<case attrColorValue="#41ffc6a4"/>
 	</renderingAttribute>
 	<renderingAttribute name="attractionStrokeColor">
 		<case nightMode="true" attrColorValue="#999999"/>
@@ -871,6 +871,8 @@
 				<apply_if additional="memorial=stolperstein" order="-1"/>
 				<apply_if additional="memorial=plaque" order="-1"/>
 			</case>
+			<case tag="waterway" value="waterfall"/>
+			<case tag="waterway" value="rapids"/>
 		</switch>
 
 
@@ -1610,13 +1612,12 @@
 				<case minzoom="8" tag="natural" value="bay" textWrapWidth="17" textOrder="179" nameTag=""/>
 				<case minzoom="8" tag="natural" value="strait" textOnPath="true" textWrapWidth="25" textOrder="180"/>
 				<case minzoom="11" tag="natural" value="fjord" textOnPath="true" textWrapWidth="25" textOrder="181"/>
-
-					<case minzoom="13" tag="waterway" value="stream" textOnPath="true" textOrder="206"/>
-					<case minzoom="13" tag="waterway" value="wadi" textOnPath="true" textOrder="213"/>
-					<case minzoom="11" tag="waterway" value="river" textOnPath="true" textMinDistance="80" textOrder="184"/>
-					<case minzoom="13" tag="waterway" value="canal" textOnPath="true" textMinDistance="80" textOrder="185"/>
-					<case minzoom="15" tag="waterway" value="ditch" textOnPath="true" textOrder="210"/>
-					<case minzoom="15" tag="waterway" value="drain" textOnPath="true" textOrder="211"/>
+				<case minzoom="13" tag="waterway" value="stream" textOnPath="true" textOrder="206"/>
+				<case minzoom="13" tag="waterway" value="wadi" textOnPath="true" textOrder="213"/>
+				<case minzoom="11" tag="waterway" value="river" textOnPath="true" textMinDistance="80" textOrder="184"/>
+				<case minzoom="13" tag="waterway" value="canal" textOnPath="true" textMinDistance="80" textOrder="185"/>
+				<case minzoom="15" tag="waterway" value="ditch" textOnPath="true" textOrder="210"/>
+				<case minzoom="15" tag="waterway" value="drain" textOnPath="true" textOrder="211"/>
 
 				<case minzoom="13" tag="landuse" value="water" nameTag="" textWrapWidth="20" textOrder="218"/>
 				<case minzoom="13" tag="landuse" value="reservoir" nameTag="" textWrapWidth="20" textOrder="218"/>
@@ -2058,6 +2059,7 @@
 				<case minzoom="15" tag="power" value="generator" nameTag="">
 					<apply_if additional="generator:source=wind" nameTag2="height"/>
 				</case>
+				<case minzoom="15" tag="waterway" value="waterfall" nameTag2="height" textDy="7" textWrapWidth="20" textOnPath="true" textOrder="217"/>
 				<case minzoom="16" tag="natural" value="spring" textDy="7" textWrapWidth="20" textOrder="214"/>
 				<case minzoom="16" tag="highway" value="services"/>
 				<apply textColor="$landuseManmadeTextColorDay"/>
@@ -2378,18 +2380,17 @@
 				<case minzoom="15" tag="man_made" value="water_well" icon="man_made_water_well"/>
 				<apply_if nightMode="true" shield="gray_gray_square_shield"/>
 			</switch>-->
-			<case minzoom="14" tag="natural" value="spring" icon="topo_spring" shield="topo_spring_shield" iconVisibleSize="14"/>
-<!--				<apply_if nightMode="true" shield="gray_blue_square_shield"/>
-			</case>-->
-<!--			<case minzoom="14" tag="natural" value="hot_spring" icon="natural_hot_spring" shield="white_blue_square_shield">
-				<apply_if nightMode="true" shield="gray_blue_square_shield"/>
+			<case minzoom="14" tag="natural" value="spring" icon="topo_spring" shield="topo_spring_shield" iconVisibleSize="14" iconOrder="40">
+				<apply_if maxzoom="16" additional="drinking_water=no" icon=""/>
 			</case>
+
+<!--			<case minzoom="14" tag="natural" value="hot_spring" icon="natural_hot_spring" shield="white_blue_square_shield"/>
 			<case minzoom="14" tag="natural" value="geyser" icon="natural_geyser" shield="white_blue_square_shield">
-				<apply_if nightMode="true" shield="gray_blue_square_shield"/>
 			</case>-->
-			<apply_if minzoom="16" additional="drinking_water=yes" icon_2="drinking_water_yes_map"/>
-			<apply_if minzoom="16" additional="drinking_water=no" icon_2="drinking_water_no_map"/>
+			<apply_if minzoom="16" additional="drinking_water=yes" icon_2="topo_drinking_water_yes_map"/>
+			<apply_if minzoom="16" additional="drinking_water=no" icon_2="topo_drinking_water_no_map"/>
 		</switch>
+		<case minzoom="15" tag="waterway" value="waterfall" icon="topo_waterfall" shield="topo_waterfall_shield"/>
 
 		<switch iconOrder="71">
 			<case minzoom="13" tag="building" value="tower" icon="man_made_tower" shield="tower_shield"/>
@@ -3740,15 +3741,28 @@
 
 		<switch engine_v1="false" strokeWidth="0.5">
 			 <case minzoom="14" tag="natural" value="cliff" color="#148c14" pathIcon="stroke_darkgreen" pathIconStep="10"/>
-			 <case minzoom="16" tag="natural" value="slope" color="#aab88600" pathIcon="stroke_brown_right" pathIconStep="10"/>
+			 <case minzoom="16" tag="natural" value="slope" color="$contourLineColor" pathIcon="stroke_brown_right" pathIconStep="10"/>
 			 <case minzoom="16" tag="natural" value="earth_bank" color="#88949494" pathIcon="stroke_gray" pathIconStep="10"/>
+		</switch>
+		<switch minzoom="16">
+			<case tag="waterway" value="waterfall"/>
+			<apply_if engine_v1="true">
+				<case maxzoom="16" strokeWidth="3.5:3.5" pathEffect="1_7"/>
+				<case maxzoom="17" strokeWidth="4.5:4.5" pathEffect="1_9"/>
+				<case minzoom="18" strokeWidth="6.5:6.5" pathEffect="1_13"/>
+				<apply color="#6c6ce2" color_2="#3f3f3f" strokeWidth_2="0.3"/>
+				<apply_if nightMode="true" color="#9dbde1" color_2="#9dbde1" />
+			</apply_if>
+			<apply_if engine_v1="false" color="#3c3c90" strokeWidth="0.6" pathIcon="stroke_gray" pathIconStep="13">
+				<apply_if nightMode="true" color="#9dbde1"/>
+			</apply_if>
 		</switch>
 
 		<switch strokeWidth="1">
 			<case minzoom="14" tag="natural" value="cliff" color="#148c14" color_2="#005300">
 				<apply_if nightMode="true" color="#6d8a6d" color_2="#6d8a6d"/>
 			</case>
-			<case minzoom="16" tag="natural" value="slope" color="#b88600" color_2="#b88600">
+			<case minzoom="16" tag="natural" value="slope" color="$contourLineColor" color_2="#b88600">
 				<apply_if nightMode="true" color="#aab88600" color_2="#aab88600"/>
 			</case>
 			<case minzoom="16" tag="natural" value="earth_bank" color="#88949494" color_2="#949494">

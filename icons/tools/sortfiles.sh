@@ -120,6 +120,7 @@ mycp natural volcano_map functional-icons_volcano.png  #Is poi_peak.png with col
 mycpname volcano poi_volcano_active.png
 mycp waterway rapids barrier_rapids.png  #scale 0.375
 mycpname waterfall water_waterfall.png  #scale 0.375
+mycpname topo_waterfall topo_topo_waterfall.png  #scale 0.375
 mycpname dam water_dam.png
 mycpname weir water_weir.png
 mycpname stream water_stream.png
@@ -226,6 +227,8 @@ mycp osm_note dot overlays_osm_note_dot.png
 mycp osm_note dot_2 overlays_osm_note_dot_2.png
 mycp drinking_water yes_map overlays_drinking_water_yes.png
 mycp drinking_water no_map overlays_drinking_water_no.png
+mycpname topo_drinking_water_yes_map overlays_topo_drinking_water_yes.png
+mycpname topo_drinking_water_no_map overlays_topo_drinking_water_no.png
 mycpname access_private overlays_access_private.png
 mycpname access_private_red overlays_access_private_red.png
 
