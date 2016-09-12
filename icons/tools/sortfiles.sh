@@ -248,6 +248,7 @@ mycpname crossing_uncontrolled_map functional-icons_highway_crossing_uncontrolle
 mycpname crossing_unmarked_map functional-icons_highway_crossing_unmarked.png
 
 mycpname ford transport_ford.png
+mycpname topo_ford topo_topo_ford.png
 mycp highway milestone functional-icons_milestone.png
 mycp highway mini_roundabout transport_miniroundabout_anticlockwise.png
 mycp highway noexit functional-icons_noexit.png
@@ -306,6 +307,7 @@ mycp harbour yes poi_harbour.png
 mycpname historic_milestone tourist_historic_milestone.png
 mycpname runway transport_runway.png
 mycpname ford_stepping_stones transport_ford_stepping_stones.png
+mycpname topo_ford_stepping_stones topo_topo_ford_stepping_stones.png
 mycpname traffic_mirror poi_traffic_mirror.png
 
 mygroup fuel transport_fuel.png
@@ -504,6 +506,7 @@ mycpname aerialway_rope_tow transport_aerialway_rope_tow.png
 
 mycp aeroway aerodrome_abandoned functional-icons_aerodrome_abandoned.png
 mycp aeroway aerodrome transport_aerodrome.png
+mycpname topo_aerodrome topo_topo_aerodrome.png
 mycp aeroway airport transport_airport.png
 mycp aeroway gate transport_airport_gate.png
 mycp aeroway helipad transport_helicopter_pad.png
@@ -976,6 +979,7 @@ mycp amenity food_court food_food_court.png
 mycp amenity pub food_pub.png
 mycp amenity restaurant food_restaurant.png
 mycp man_made water_well food_water_well.png
+mycpname topo_water_well topo_topo_water_well.png
 mycpname water_point food_water_point.png
 
 ## Seamarks
