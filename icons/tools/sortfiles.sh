@@ -505,6 +505,7 @@ mycpname aerialway_gondola transport_aerialway_gondola.png
 mycpname aerialway_rope_tow transport_aerialway_rope_tow.png
 
 mycp aeroway aerodrome_abandoned functional-icons_aerodrome_abandoned.png
+mycpname topo_aerodrome_abandoned topo_topo_aerodrome_abandoned.png
 mycp aeroway aerodrome transport_aerodrome.png
 mycpname topo_aerodrome topo_topo_aerodrome.png
 mycp aeroway airport transport_airport.png
@@ -770,6 +771,7 @@ mycp amenity fountain_night functional-icons_fountain2_night.png
 mycp amenity monastery place_of_worship_monastery.png
 mycpname historic_monastery place_of_worship_monastery.png
 mycp amenity place_of_worship place_of_worship_unknown.png
+mycpname topo_religion_unknown topo_topo_religion_unknown.png
 mycp amenity post_box amenity_post_box.png
 mycp amenity post_office amenity_post_office2.png
 mycp amenity prison amenity_prison.png
@@ -779,11 +781,16 @@ mycp amenity toilets amenity_toilets.png
 mycp amenity vehicle_ramp amenity_vehicle_ramp.png
 mycpname service_tyres amenity_service_tyres.png
 mycp religion christian place_of_worship_christian3.png
+mycpname topo_christian topo_topo_christian.png
 mycp religion jewish place_of_worship_jewish3.png
+mycpname topo_jewish topo_topo_jewish.png
 mycp religion muslim place_of_worship_islamic3.png
+mycpname topo_muslim topo_topo_muslim.png
 mycp religion sikh place_of_worship_sikh3.png
 mycp religion buddhist place_of_worship_buddhist3.png
+mycpname topo_buddhist topo_topo_buddhist.png
 mycp religion hindu place_of_worship_hindu3.png
+mycpname topo_hindu topo_topo_hindu.png
 mycp religion shinto place_of_worship_shinto3.png
 mycp religion taoist place_of_worship_taoist.png
 mycpname brothel amenity_brothel.png
