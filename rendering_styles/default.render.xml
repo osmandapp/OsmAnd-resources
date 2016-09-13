@@ -1429,7 +1429,10 @@
 	<renderingConstant name="aerialwayTextColorDay" value="#000000"/>
 	<renderingConstant name="aerialwayTextHaloColorDay" value="#77f1eae4"/>
 
-	<renderingConstant name="accomodationTextColorDay" value="#0066ff"/>
+	<renderingAttribute name="accomodationTextColor">
+		<case nightMode="true" attrColorValue="#bbe4ff"/>
+		<case attrColorValue="#0066ff"/>
+	</renderingAttribute>
 	<renderingConstant name="accomodationTextHaloColorDay" value="#f1eae4"/>
 	<renderingAttribute name="tourismAttractionTextColor">
 		<case nightMode="true" attrColorValue="#ffd7c2"/>
@@ -1982,7 +1985,9 @@
 					<case tag="abandoned:aeroway" value="runway"/>
 					<case tag="aeroway" value="runway"/>
 					<case tag="abandoned:aeroway" value="aerodrome"/>
-					<case tag="aeroway" value="aerodrome" ignorePolygonArea="true"/>
+					<case tag="aeroway" value="aerodrome" ignorePolygonArea="true">
+						<apply_if additional="aerodrome:type=military" order="6"/>
+					</case>
 					<case tag="aeroway" value="apron"/>
 					<case tag="aeroway" value="terminal"/>
 					<case tag="aeroway" value="helipad"/>
@@ -5099,7 +5104,7 @@
 			</switch>
 
 			<!-- Accommodation -->
-			<switch textSize="12" nameTag="" textColor="$accomodationTextColorDay" textHaloRadius="$textHaloRadiusDay" textHaloColor="$accomodationTextHaloColorDay" textWrapWidth="25" textOrder="161">
+			<switch textSize="12" nameTag="" textColor="$accomodationTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="$accomodationTextHaloColorDay" textWrapWidth="25" textOrder="161">
 				<switch>
 					<case minzoom="16" tag="tourism" value="camp_site"/>
 					<case minzoom="16" tag="tourism" value="caravan_site"/>
@@ -5118,7 +5123,7 @@
 					<apply_if engine_v1="true" textDy="9"/>
 				</switch>
 				<case minzoom="16" tag="leisure" value="resort"/>
-				<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#bbe4ff" textHaloColor="#55234ca7"/>
+				<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textHaloColor="#55234ca7"/>
 			</switch>
 
 			<!-- Tourism and Entertainment -->
@@ -7585,13 +7590,13 @@
 			<switch minzoom="15" color="#bababa">
 				<case tag="public_transport" value="platform"/>
 				<apply_if nightMode="true" color="#685454"/>
-	<!--			<groupFilter appMode="car" layer="-1" disable="true"/> does not works properly due to relation issue -->
 			</switch>
 
 			<!-- Aeroway -->
 			<switch minzoom="12">
 				<case tag="aeroway" value="aerodrome" color="#80cccccc">
-					<apply_if nightMode="true" color="#80a0a0a9"/>
+				<apply_if additional="aerodrome:type=military" shader="danger" color_2="#c8ffa0c0" strokeWidth_2="1:1"/>
+					<apply_if nightMode="true" shader="danger_night" color="#80a0a0a9"/>
 				</case>
 				<case tag="abandoned:aeroway" value="aerodrome" shader="diagonal_gray_shader">
 					<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
@@ -7944,7 +7949,6 @@
 						<case additional="access=private"/>
 						<case appMode="bicycle" additional="bicycle=no"/>
 						<apply color_2="$accessPrivateColor" strokeWidth_2="3" pathEffect_2="1_7" cap_2="ROUND"/>
-						<apply_if nightMode="true" color_2="$accessPrivateColor"/>
 					</switch>
 				</apply>
 			</switch>
@@ -9747,7 +9751,6 @@
 				<case additional="access=private"/>
 				<case appMode="bicycle" additional="bicycle=no"/>
 				<apply color_2="$accessPrivateColor" strokeWidth_2="3" pathEffect_2="1_7" cap_2="ROUND"/>
-				<apply_if nightMode="true" color_2="$accessPrivateColor"/>
 			</switch>
 			<apply_if maxzoom="13" strokeWidth="0.6"/>
 			<apply_if minzoom="14" maxzoom="15" strokeWidth="1.5:1.5"/>

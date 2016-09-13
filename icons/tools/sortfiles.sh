@@ -553,18 +553,31 @@ mycpname barrier_log barrier_log.png
 ## Accommodation
 mygroup accomodation accommodation_hotel.png
 mycp amenity shelter accommodation_shelter2.png
+mycpname topo_shelter topo_topo_shelter.png
 mycp tourism alpine_hut accommodation_alpinehut.png
+mycpname topo_alpine_hut topo_topo_alpine_hut.png
 mycpname cabin accommodation_cabin.png
+mycpname topo_cabin topo_topo_cabin.png
 mycpname lean_to accommodation_lean_to.png
+mycpname topo_lean_to topo_topo_lean_to.png
 mycp tourism apartment accommodation_apartment.png
+mycpname topo_apartment topo_topo_apartment.png
 mycp tourism camp_site accommodation_camping.png
+mycpname topo_camp_site topo_topo_camp_site.png
 mycp tourism caravan_site accommodation_caravan_park.png
+mycpname topo_caravan_site topo_topo_caravan_site.png
 mycp tourism chalet accommodation_chalet.png
+mycpname topo_chalet topo_topo_chalet.png
 mycp tourism guest_house accommodation_bed_and_breakfast.png
+mycpname topo_guest_house topo_topo_guest_house.png
 mycp tourism hostel accommodation_hostel.png
+mycpname topo_hostel topo_topo_hostel.png
 mycp tourism hotel accommodation_hotel.png
+mycpname topo_hotel topo_topo_hotel.png
 mycp tourism motel accommodation_motel.png
+mycpname topo_motel topo_topo_motel.png
 mycpname wilderness_hut accommodation_wilderness_hut.png
+mycpname topo_wilderness_hut topo_topo_wilderness_hut.png
 mycpname summer_camp accommodation_summer_camp.png
 
 
