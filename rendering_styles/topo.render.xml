@@ -1018,6 +1018,8 @@
 				<case tag="aerialway" value=""/>
 				<case tag="aeroway" value=""/>
 				<case tag="abandoned:aeroway" value=""/>
+				<case tag="railway" value="station"/>
+				<case tag="abandoned:railway" value="station"/>
 			</switch>
 
 
@@ -1033,6 +1035,7 @@
 				<case tag="barrier" value="city_wall"/>
 				<case tag="man_made" value="reinforced_slope"/>
 				<case tag="barrier" value="wall"/>
+				<case tag="railway" value="station" ignorePolygonArea="true"/>
 			</switch>
 			<switch cycle="true" point="false" objectType="3" order="5">
 				<switch>
@@ -1101,6 +1104,7 @@
 				<case tag="aeroway" value="apron"/>
 				<case tag="aeroway" value="terminal"/>
 				<case tag="aeroway" value="helipad"/>
+				<case tag="railway" value="station" ignorePolygonArea="true"/>
 				<case tag="" value="" order="5"/>
 			</switch>
 
@@ -1232,6 +1236,7 @@
 				<case tag="aerialway" value="station" order="96"/>
 				<case tag="aeroway" value="runway"/>
 				<case tag="aeroway" value="" order="32"/>
+				<case tag="railway" value="station"/>
 				<switch hikingRoutesOSMC="walkingRoutesScopeOSMC" order="99">
 					<case tag="route_hiking" value=""/>
 					<case tag="route_foot" value=""/>
@@ -2395,6 +2400,16 @@
 		<case minzoom="16" tag="man_made" value="pier" textSize="11" textColor="#1f62ae" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ccffffff" textOnPath="true" textWrapWidth="30" textOrder="175">
 <!--			<apply_if nightMode="true" textColor="#a3c8ff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#66002357"/>-->
 		</case>
+		<switch minzoom="13">
+			<case tag="railway" value="station" nameTag="" textSize="11" textOrder="49" textColor="#000000"/>
+			<case minzoom="16" tag="abandoned:railway" value="station" textOrder="227" textColor="#8a8a8a">
+				<apply_if nightMode="true" textHaloColor="#22ffffff"/>
+			</case>
+			<apply textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textBold="true"/>
+			<apply_if minzoom="15" textSize="13"/>
+			<apply_if maxzoom="14" engine_v1="true" textDy="6"/>
+			<apply_if minzoom="15" engine_v1="true" textDy="10"/>
+		</switch>
 
 		<case minzoom="15" tag="landuse" value="military" textSize="12" nameTag="" textColor="#990d2a" textHaloColor="#eeffffff" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20" textOrder="145">
 			<apply_if nightMode="true" textColor="#ffd3dc" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77724456"/>
@@ -2635,6 +2650,18 @@
 		<case minzoom="16" tag="power" value="pole" icon="barrier_small_black_4">
 			<apply_if nightMode="true" icon="barrier_small_white_4"/>
 		</case>
+		<case minzoom="12" tag="railway" value="station">
+			<apply icon="topo_railway_station_small" iconVisibleSize="8"/>
+<!--			<apply_if additional="disused=yes" icon="railway_station_small_disused"/>
+			<apply_if additional="station=subway" icon="railway_station_subway_small"/>-->
+		</case>
+
+<!--		<case minzoom="13" tag="abandoned:railway" value="station">
+			<case maxzoom="15" icon="railway_station_small_disused"/>
+			<case minzoom="16" icon="railway_station_disused" shield="white_gray_square_shield">
+				<apply_if nightMode="true" shield="gray_gray_square_shield"/>
+			</case>
+		</case>-->
 
 		<switch minzoom="10" tag="aeroway" value="aerodrome">
 			<case additional="abandoned=yes">
@@ -3184,6 +3211,12 @@
 					<case additional="resource=salt" shader="topo_quarry_salt" color_2="#1a7fc7"/>
 					<case color="#3398725D"/>
 				</case>
+				<switch minzoom="11" color="#d4aaaa" color_2="#000000" strokeWidth_2="0.4">
+					<case tag="railway" value="station"/>
+					<case tag="aerialway" value="station"/>
+					<case tag="amenity" value="ferry_terminal"/>
+<!--					<apply_if nightMode="true" color="#685454"/>-->
+				</switch>
 
 				<case minzoom="10" tag="abandoned:landuse" value="military" shader="diagonal_dustygray_small_shader" color_2="#AD9696" strokeWidth_2="1.5">
 					<apply_if minzoom="14" shader="diagonal_dustygray_shader"/>

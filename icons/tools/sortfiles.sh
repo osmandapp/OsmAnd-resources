@@ -382,6 +382,7 @@ mycp railway platform transport_train_station2.png
 mycp railway station_disused functional-icons_train_station_disused.png
 mycp railway station_small_disused functional-icons_railway_station_small_disused.png
 mycp railway station_small functional-icons_railway_station_small.png  #scale 0.375
+mycpname topo_railway_station_small functional-icons_topo_railway_station_small.png
 mycp railway station_subway_map transport_station_subway.png
 mycp railway station_subway_small functional-icons_railway_station_subway_small.png  #scale 0.375
 mycp railway station transport_train_station.png
