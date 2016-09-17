@@ -94,6 +94,7 @@ mycp stroke brown_right functional-icons_brown_right_stroke.png
 ## Natural
 mygroup natural poi_peak2.png
 mycp natural cave_entrance poi_cave.png
+mycpname topo_cave topo_topo_cave.png
 mycp natural geyser water_geyser.png  #scale 0.375
 mycp natural hot_spring water_hot_spring.png  #scale 0.375
 mycp natural peak_big poi_peak_big.png
