@@ -348,7 +348,9 @@ mycp amenity bus_station transport_bus_station2.png
 mycpname public_transport_station transport_bus_station.png
 mycpname public_transport_stop_position transport_bus_stop2.png
 mycp highway bus_stop transport_bus_stop.png
+mycpname topo_bus_stop topo_topo_bus_stop.png
 mycp highway bus_stop_small functional-icons_bus_stop_small.png
+mycpname topo_bus_stop_small topo_topo_bus_stop_small.png
 mycp highway bus_stop_round_small functional-icons_bus_stop_round_small.png
 mycp highway bus_stop_round_big functional-icons_bus_stop_round_big.png
 mycp highway bus_stop_round_small_night functional-icons_bus_stop_round_small_night.png
@@ -377,6 +379,7 @@ mycp waterway dock transport_dock.png
 
 mycpname halt_small functional-icons_halt_small.png  #scale 0.25
 mycpname halt_small_2 functional-icons_halt_small_2.png  #scale 0.25
+mycpname topo_railway_halt_small functional-icons_topo_railway_halt_small.png
 mycpname halt transport_halt.png  #scale 0.25
 mycpname level_crossing_map functional-icons_level_crossing.png  #scale 0.5
 mycpname level_crossing poi_level_crossing.png  #scale 0.5
