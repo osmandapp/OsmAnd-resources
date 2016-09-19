@@ -243,7 +243,8 @@ mygroup water_transport transport_ferry_terminal.png
 mygroup bicycle_transport shopping_bicycle.png
 mygroup aerialway_transport transport_aerialway_station.png
 mycp highway crossing_bg functional-icons_highway_crossing_bg.png
-mycp highway crossing transport_zebra_crossing2.png
+# mycp highway crossing transport_zebra_crossing2.png
+mycpname highway_crossing functional-icons_highway_crossing.png
 mycpname crossing_traffic_signals_map functional-icons_highway_crossing_traffic_signals.png
 mycpname crossing_uncontrolled_map functional-icons_highway_crossing_uncontrolled.png
 mycpname crossing_unmarked_map functional-icons_highway_crossing_unmarked.png
