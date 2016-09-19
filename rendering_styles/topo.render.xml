@@ -1071,6 +1071,8 @@
 				<case tag="natural" value="hot_spring"/>
 				<case tag="natural" value="geyser"/>
 				<case tag="leisure" value="park" order="4"/>
+				<case tag="leisure" value="nature_reserve" order="9"/>
+				<case tag="boundary" value="protected_area" order="9"/>
 				<case tag="building" value="no" order="-1"/>
 				<case tag="man_made" value="storage_tank"/>
 				<case tag="man_made" value="silo"/>
@@ -1240,6 +1242,7 @@
 				<case tag="aeroway" value="runway"/>
 				<case tag="aeroway" value="" order="32"/>
 				<case tag="railway" value="station"/>
+				<case tag="boundary" value="" order="62"/>
 				<switch hikingRoutesOSMC="walkingRoutesScopeOSMC" order="99">
 					<case tag="route_hiking" value=""/>
 					<case tag="route_foot" value=""/>
@@ -2291,11 +2294,11 @@
 				<case minzoom="14" tag="natural" value="grassland" textOrder="250"/>
 				<case minzoom="15" tag="landuse" value="vineyard" textOrder="240"/>
 				<case minzoom="15" tag="landuse" value="greenhouse_horticulture" textOrder="239"/>
-<!--				<case minzoom="14" tag="landuse" value="conservation" textOrder="246"/>
+				<case minzoom="14" tag="landuse" value="conservation" textOrder="246"/>
 				<case minzoom="9" tag="leisure" value="nature_reserve" textOrder="87"/>
 				<case minzoom="9" tag="boundary" value="national_park" textOrder="88" textOnPath="true"/>
 				<case minzoom="8" tag="boundary" value="protected_area" textOrder="88"/>
-				<case minzoom="18" tag="natural" value="tree" textSize="11" textDy="5" textOrder="252"/>
+<!--				<case minzoom="18" tag="natural" value="tree" textSize="11" textDy="5" textOrder="252"/>
 				<case minzoom="9" tag="natural" value="reef"/>-->
 				<case minzoom="18" tag="natural" value="stone" textSize="11" textDy="4"/>
 				<case minzoom="14" tag="leisure" value="garden" textOrder="168"/>
@@ -2305,8 +2308,8 @@
 			</switch>
 		</switch>
 		<switch minzoom="15" textColor="#000000" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffffff" textOrder="73">
-			<case tag="highway" value="bus_stop"/>
-			<case tag="public_transport" value="platform"/>
+			<case tag="highway" value="bus_stop" nameTag=""/>
+			<case tag="public_transport" value="platform" nameTag=""/>
 			<apply maxzoom="16" textSize="11"/>
 			<apply minzoom="17" textSize="12"/>
 			<apply_if engine_v1="true" textDy="9"/>
@@ -3233,11 +3236,23 @@
 					<apply_if minzoom="17" strokeWidth_2="1.5:1.5"/>
 				</switch>
 
+				<switch>
+					<case minzoom="6" tag="leisure" value="nature_reserve"/>
+					<case minzoom="8" tag="boundary" value="protected_area"/>
+					<apply color_2="#4400ae3d">
+						<case maxzoom="13" strokeWidth_2="2:2" pathEffect_2="10_5"/>
+						<case minzoom="14" strokeWidth_2="3.5:3.5" pathEffect_2="13_8"/>
+					</apply>
+				</switch>
 				<case minzoom="11" tag="landuse" value="quarry" color_2="#6F6357" strokeWidth_2="2" pathEffect_2="2_2">
 					<case additional="resource=peat" shader="topo_quarry_peat"/>
 					<case additional="resource=salt" shader="topo_quarry_salt" color_2="#1a7fc7"/>
 					<case color="#3398725D"/>
 				</case>
+<!--				<case minzoom="12" tag="historic" value="quarry" shader="quarry3_abandoned">
+					<apply_if nightMode="true" shader="quarry3_abandoned_night"/>
+				</case>-->
+
 				<switch minzoom="11" color="#d4aaaa" color_2="#000000" strokeWidth_2="0.4">
 					<case tag="railway" value="station"/>
 					<case tag="aerialway" value="station"/>
@@ -3376,11 +3391,6 @@
 				</switch>
 
 				<switch>
-					<case tag="place" value="island"/>
-					<case tag="natural" value="land"/>
-					<apply color="$defaultColor"/>
-				</switch>
-				<switch>
 					<switch>
 						<case minzoom="1" tag="natural" value="coastline"/>
 						<switch>
@@ -3416,6 +3426,12 @@
 				</switch>
 			</apply>
 		</switch>
+		<switch>
+			<case tag="place" value="island"/>
+			<case tag="natural" value="land"/>
+			<apply color="$defaultColor"/>
+		</switch>
+
 		<switch minzoom="16">
 			<case tag="barrier" value="fence"/>
 			<case tag="barrier" value="wall"/>
