@@ -94,6 +94,7 @@ mycp stroke brown_right functional-icons_brown_right_stroke.png
 ## Natural
 mygroup natural poi_peak2.png
 mycp natural cave_entrance poi_cave.png
+mycpname topo_cave topo_topo_cave.png
 mycp natural geyser water_geyser.png  #scale 0.375
 mycp natural hot_spring water_hot_spring.png  #scale 0.375
 mycp natural peak_big poi_peak_big.png
@@ -242,12 +243,14 @@ mygroup water_transport transport_ferry_terminal.png
 mygroup bicycle_transport shopping_bicycle.png
 mygroup aerialway_transport transport_aerialway_station.png
 mycp highway crossing_bg functional-icons_highway_crossing_bg.png
-mycp highway crossing transport_zebra_crossing2.png
+# mycp highway crossing transport_zebra_crossing2.png
+mycpname highway_crossing functional-icons_highway_crossing.png
 mycpname crossing_traffic_signals_map functional-icons_highway_crossing_traffic_signals.png
 mycpname crossing_uncontrolled_map functional-icons_highway_crossing_uncontrolled.png
 mycpname crossing_unmarked_map functional-icons_highway_crossing_unmarked.png
 
 mycpname ford transport_ford.png
+mycpname topo_ford topo_topo_ford.png
 mycp highway milestone functional-icons_milestone.png
 mycp highway mini_roundabout transport_miniroundabout_anticlockwise.png
 mycp highway noexit functional-icons_noexit.png
@@ -306,6 +309,7 @@ mycp harbour yes poi_harbour.png
 mycpname historic_milestone tourist_historic_milestone.png
 mycpname runway transport_runway.png
 mycpname ford_stepping_stones transport_ford_stepping_stones.png
+mycpname topo_ford_stepping_stones topo_topo_ford_stepping_stones.png
 mycpname traffic_mirror poi_traffic_mirror.png
 
 mygroup fuel transport_fuel.png
@@ -344,7 +348,9 @@ mycp amenity bus_station transport_bus_station2.png
 mycpname public_transport_station transport_bus_station.png
 mycpname public_transport_stop_position transport_bus_stop2.png
 mycp highway bus_stop transport_bus_stop.png
+mycpname topo_bus_stop topo_topo_bus_stop.png
 mycp highway bus_stop_small functional-icons_bus_stop_small.png
+mycpname topo_bus_stop_small topo_topo_bus_stop_small.png
 mycp highway bus_stop_round_small functional-icons_bus_stop_round_small.png
 mycp highway bus_stop_round_big functional-icons_bus_stop_round_big.png
 mycp highway bus_stop_round_small_night functional-icons_bus_stop_round_small_night.png
@@ -373,6 +379,7 @@ mycp waterway dock transport_dock.png
 
 mycpname halt_small functional-icons_halt_small.png  #scale 0.25
 mycpname halt_small_2 functional-icons_halt_small_2.png  #scale 0.25
+mycpname topo_railway_halt_small functional-icons_topo_railway_halt_small.png
 mycpname halt transport_halt.png  #scale 0.25
 mycpname level_crossing_map functional-icons_level_crossing.png  #scale 0.5
 mycpname level_crossing poi_level_crossing.png  #scale 0.5
@@ -380,6 +387,7 @@ mycp railway platform transport_train_station2.png
 mycp railway station_disused functional-icons_train_station_disused.png
 mycp railway station_small_disused functional-icons_railway_station_small_disused.png
 mycp railway station_small functional-icons_railway_station_small.png  #scale 0.375
+mycpname topo_railway_station_small functional-icons_topo_railway_station_small.png
 mycp railway station_subway_map transport_station_subway.png
 mycp railway station_subway_small functional-icons_railway_station_subway_small.png  #scale 0.375
 mycp railway station transport_train_station.png
@@ -503,7 +511,9 @@ mycpname aerialway_gondola transport_aerialway_gondola.png
 mycpname aerialway_rope_tow transport_aerialway_rope_tow.png
 
 mycp aeroway aerodrome_abandoned functional-icons_aerodrome_abandoned.png
+mycpname topo_aerodrome_abandoned topo_topo_aerodrome_abandoned.png
 mycp aeroway aerodrome transport_aerodrome.png
+mycpname topo_aerodrome topo_topo_aerodrome.png
 mycp aeroway airport transport_airport.png
 mycp aeroway gate transport_airport_gate.png
 mycp aeroway helipad transport_helicopter_pad.png
@@ -549,18 +559,31 @@ mycpname barrier_log barrier_log.png
 ## Accommodation
 mygroup accomodation accommodation_hotel.png
 mycp amenity shelter accommodation_shelter2.png
+mycpname topo_shelter topo_topo_shelter.png
 mycp tourism alpine_hut accommodation_alpinehut.png
+mycpname topo_alpine_hut topo_topo_alpine_hut.png
 mycpname cabin accommodation_cabin.png
+mycpname topo_cabin topo_topo_cabin.png
 mycpname lean_to accommodation_lean_to.png
+mycpname topo_lean_to topo_topo_lean_to.png
 mycp tourism apartment accommodation_apartment.png
+mycpname topo_apartment topo_topo_apartment.png
 mycp tourism camp_site accommodation_camping.png
+mycpname topo_camp_site topo_topo_camp_site.png
 mycp tourism caravan_site accommodation_caravan_park.png
+mycpname topo_caravan_site topo_topo_caravan_site.png
 mycp tourism chalet accommodation_chalet.png
+mycpname topo_chalet topo_topo_chalet.png
 mycp tourism guest_house accommodation_bed_and_breakfast.png
+mycpname topo_guest_house topo_topo_guest_house.png
 mycp tourism hostel accommodation_hostel.png
+mycpname topo_hostel topo_topo_hostel.png
 mycp tourism hotel accommodation_hotel.png
+mycpname topo_hotel topo_topo_hotel.png
 mycp tourism motel accommodation_motel.png
+mycpname topo_motel topo_topo_motel.png
 mycpname wilderness_hut accommodation_wilderness_hut.png
+mycpname topo_wilderness_hut topo_topo_wilderness_hut.png
 mycpname summer_camp accommodation_summer_camp.png
 
 
@@ -767,6 +790,7 @@ mycp amenity fountain_night functional-icons_fountain2_night.png
 mycp amenity monastery place_of_worship_monastery.png
 mycpname historic_monastery place_of_worship_monastery.png
 mycp amenity place_of_worship place_of_worship_unknown.png
+mycpname topo_religion_unknown topo_topo_religion_unknown.png
 mycp amenity post_box amenity_post_box.png
 mycp amenity post_office amenity_post_office2.png
 mycp amenity prison amenity_prison.png
@@ -776,11 +800,16 @@ mycp amenity toilets amenity_toilets.png
 mycp amenity vehicle_ramp amenity_vehicle_ramp.png
 mycpname service_tyres amenity_service_tyres.png
 mycp religion christian place_of_worship_christian3.png
+mycpname topo_christian topo_topo_christian.png
 mycp religion jewish place_of_worship_jewish3.png
+mycpname topo_jewish topo_topo_jewish.png
 mycp religion muslim place_of_worship_islamic3.png
+mycpname topo_muslim topo_topo_muslim.png
 mycp religion sikh place_of_worship_sikh3.png
 mycp religion buddhist place_of_worship_buddhist3.png
+mycpname topo_buddhist topo_topo_buddhist.png
 mycp religion hindu place_of_worship_hindu3.png
+mycpname topo_hindu topo_topo_hindu.png
 mycp religion shinto place_of_worship_shinto3.png
 mycp religion taoist place_of_worship_taoist.png
 mycpname brothel amenity_brothel.png
@@ -976,6 +1005,7 @@ mycp amenity food_court food_food_court.png
 mycp amenity pub food_pub.png
 mycp amenity restaurant food_restaurant.png
 mycp man_made water_well food_water_well.png
+mycpname topo_water_well topo_topo_water_well.png
 mycpname water_point food_water_point.png
 
 ## Seamarks
@@ -1709,6 +1739,7 @@ mycpname religion shopping_religion.png
 mycpname games shopping_games.png
 mycpname doors shopping_doors.png
 mycpname sewing shopping_sewing.png
+mycpname spices shopping_spices.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
