@@ -1740,6 +1740,7 @@ mycpname games shopping_games.png
 mycpname doors shopping_doors.png
 mycpname sewing shopping_sewing.png
 mycpname spices shopping_spices.png
+mycpname shop_craft shopping_craft.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
