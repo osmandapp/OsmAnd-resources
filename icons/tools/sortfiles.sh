@@ -2188,6 +2188,9 @@ mycpname aerodrome_type_military additional_aerodrome_type_military.png
 mycpname telescope_type_optical additional_telescope_type_optical.png
 mycpname telescope_type_radio additional_telescope_type_radio.png
 
+#Additional category
+mycpname payment_type additional_category_payment_type.png
+
 #Xmas
 mygroup xmas xmas_tree.png
 mycpname xmas_event xmas_event.png
