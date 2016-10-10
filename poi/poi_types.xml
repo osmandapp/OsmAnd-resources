@@ -57,7 +57,7 @@
 	<poi_additional name="access_agricultural" tag="access" value="agricultural"/>
 	<poi_additional name="start_date" tag="start_date" type="text"/>
 	<poi_additional_category name="wheelchair_accessibility">
-		<poi_additional name="wheelchair" tag="wheelchair" value="yes"/>
+		<poi_additional name="wheelchair_yes" tag="wheelchair" value="yes"/>
 		<poi_additional name="wheelchair_no" tag="wheelchair" value="no"/>
 		<poi_additional name="wheelchair_limited" tag="wheelchair" value="limited"/>
 		<poi_additional name="wheelchair_designated" tag="wheelchair" value="designated"/>
@@ -1849,12 +1849,12 @@
 			</poi_type>
 		</poi_category>
 		<poi_category name="education" default_tag="amenity">
-			<poi_type name="college" tag="amenity" value="college"/>
-			<poi_type name="driving_school" tag="amenity" value="driving_school"/>
-			<poi_type name="kindergarten" tag="amenity" value="kindergarten"/>
-			<poi_type name="library" tag="amenity" value="library"/>
-			<poi_type name="school" tag="amenity" value="school"/>
-			<poi_type name="training" tag="amenity" value="training">
+			<poi_type name="college" tag="amenity" value="college" excluded_poi_additional_category="fee,payment_type"/>
+			<poi_type name="driving_school" tag="amenity" value="driving_school" excluded_poi_additional_category="fee,payment_type"/>
+			<poi_type name="kindergarten" tag="amenity" value="kindergarten" excluded_poi_additional_category="fee,payment_type,internet_access_type"/>
+			<poi_type name="library" tag="amenity" value="library" excluded_poi_additional_category="fee,payment_type"/>
+			<poi_type name="school" tag="amenity" value="school" excluded_poi_additional_category="fee,payment_type,internet_access_type"/>
+			<poi_type name="training" tag="amenity" value="training" excluded_poi_additional_category="fee,payment_type,internet_access_type">
 				<poi_additional name="training_language" tag="training" value="language"/>
 				<poi_additional name="training_music" tag="training" value="music"/>
 				<poi_additional name="training_dance" tag="training" value="dance"/>
@@ -1867,14 +1867,14 @@
 				<poi_additional name="training_aviation" tag="training" value="aviation"/>
 				<poi_additional name="training_hairdressing" tag="training" value="hairdressing"/>
 			</poi_type>
-			<poi_type name="dojo" tag="amenity" value="dojo"/>
-			<poi_type name="animal_training" tag="amenity" value="animal_training">
+			<poi_type name="dojo" tag="amenity" value="dojo" excluded_poi_additional_category="fee,payment_type,internet_access_type"/>
+			<poi_type name="animal_training" tag="amenity" value="animal_training" excluded_poi_additional_category="fee,payment_type,internet_access_type">
 				<poi_additional_category name="animal_training_type">
 					<poi_additional name="animal_training_dog" tag="animal_training" value="dog"/>
 					<poi_additional name="animal_training_horse" tag="animal_training" value="horse"/>
 				</poi_additional_category>
 			</poi_type>
-			<poi_type name="university" tag="amenity" value="university"/>
+			<poi_type name="university" tag="amenity" value="university" excluded_poi_additional_category="fee,payment_type"/>
 			<poi_reference name="educational_institution"/>
 		</poi_category>
 		<poi_category name="administrative" default_tag="amenity" excluded_poi_additional_category="payment_type,fee,internet_access_type">
@@ -1926,7 +1926,7 @@
 				<poi_additional name="rural" tag="residential" value="rural"/>
 			</poi_type>
 		</poi_category>
-		<poi_category name="healthcare" default_tag="healthcare" top="true" excluded_poi_additional_category="fee">
+		<poi_category name="healthcare" default_tag="healthcare" top="true" excluded_poi_additional_category="fee,payment_type">
 			<poi_type name="pharmacy" tag="amenity" value="pharmacy" poi_additional_category="drive_through">
 				<poi_additional_category name="pharmacy_dispensing">
 					<poi_additional name="dispensing_yes" tag="dispensing" value="yes"/>
@@ -1939,7 +1939,7 @@
 			<poi_type name="first_aid" tag="amenity" value="first_aid"/>
 			<poi_type name="dentist" tag="amenity" value="dentist"/>
 			<poi_type name="social_facility" tag="amenity" value="social_facility"/>
-			<poi_type name="baby_hatch" tag="amenity" value="baby_hatch"/>
+			<poi_type name="baby_hatch" tag="amenity" value="baby_hatch" excluded_poi_additional_category="internet_access_type,wheelchair_accessibility"/>
 			<poi_type name="veterinary" tag="amenity" value="veterinary"/>
 			<poi_reference name="ambulance_station"/>
 <!--			<poi_type name="sanatorium" tag="amenity" value="sanatorium"/>-->
@@ -1970,9 +1970,9 @@
 			<poi_type name="healthcare_rehabilitation" tag="healthcare" value="rehabilitation"/>
 			<poi_type name="speech_therapist" tag="healthcare" value="speech_therapist"/>
 			<poi_type name="paediatrics" tag="healthcare" value="paediatrics"/>
-			<poi_type name="healthcare_yes" tag="healthcare" value="yes"/>
-			<poi_type name="health_amenity_type_first_aid_kit" tag="health_amenity:type" value="first_aid_kit"/>
-			<poi_type name="health_amenity_type_scales" tag="health_amenity:type" value="scales"/>
+			<poi_type name="healthcare_yes" tag="healthcare" value="yes" excluded_poi_additional_category="internet_access_type"/>
+			<poi_type name="health_amenity_type_first_aid_kit" tag="health_amenity:type" value="first_aid_kit" excluded_poi_additional_category="internet_access_type,wheelchair_accessibility"/>
+			<poi_type name="health_amenity_type_scales" tag="health_amenity:type" value="scales" excluded_poi_additional_category="internet_access_type,wheelchair_accessibility"/>
 			<poi_type name="health_facility_type_office" tag="health_facility:type" value="office">
 				<poi_additional name="office_physician" tag="office" value="physician"/>
 				<poi_additional name="office_therapist" tag="office" value="therapist"/>
@@ -2544,22 +2544,22 @@
 					<poi_additional name="theatre_genre_shadow_play" tag="theatre_genre" value="shadow_play"/>
 				</poi_additional_category>
 			</poi_type>
-			<poi_type name="bandstand" tag="leisure" value="bandstand"/>
+			<poi_type name="bandstand" tag="leisure" value="bandstand" excluded_poi_additional_category="payment_type,fee,internet_access,wheelchair_accessibility"/>
 			<poi_reference name="museum"/>
-			<poi_type name="gallery" tag="tourism" value="gallery"/>
-			<poi_type name="dance_floor" tag="leisure" value="dance"/>
-			<poi_type name="events_venue" tag="amenity" value="events_venue"/>
+			<poi_type name="gallery" tag="tourism" value="gallery" excluded_poi_additional_category="payment_type"/>
+			<poi_type name="dance_floor" tag="leisure" value="dance" excluded_poi_additional_category="payment_type"/>
+			<poi_type name="events_venue" tag="amenity" value="events_venue" excluded_poi_additional_category="payment_type"/>
 			<poi_reference name="zoo"/>
 			<poi_reference name="beach_resort"/>
 			<poi_type name="dog_park" tag="leisure" value="dog_park" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility"/>
-			<poi_type name="leisure_fishing" tag="leisure" value="fishing"/>
+			<poi_type name="leisure_fishing" tag="leisure" value="fishing" excluded_poi_additional_category="payment_type,fee,internet_access"/>
 			<poi_type name="hunting_stand" tag="amenity" value="hunting_stand" excluded_poi_additional_category="wheelchair_accessibility"/>
 			<poi_type name="harbour" tag="harbour" value="yes" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility"/>
-			<poi_type name="marina" tag="leisure" value="marina" poi_additional_category="toilets"/>
+			<poi_type name="marina" tag="leisure" value="marina" poi_additional_category="toilets" excluded_poi_additional_category="payment_type"/>
 			<poi_reference name="slipway"/>
-			<poi_type name="miniature_golf" tag="leisure" value="miniature_golf"/>
+			<poi_type name="miniature_golf" tag="leisure" value="miniature_golf" excluded_poi_additional_category="payment_type,fee"/>
 			<poi_type name="playground" tag="leisure" value="playground" excluded_poi_additional_category="payment_type,fee"/>
-			<poi_type name="bench" tag="amenity" value="bench" excluded_poi_additional_category="payment_type,fee">
+			<poi_type name="bench" tag="amenity" value="bench" excluded_poi_additional_category="payment_type,fee,internet_access">
 				<poi_additional name="seats" tag="seats" type="text"/>
 				<poi_additional name="backrest_yes" tag="backrest" value="yes"/>
 				<poi_additional name="backrest_no" tag="backrest" value="no"/>
@@ -2569,17 +2569,17 @@
 			<poi_type name="fitness_centre" tag="leisure" value="fitness_centre"/>
 			<poi_reference name="theme_park"/>
 			<poi_reference name="beach"/>
-			<poi_type name="water_park" tag="leisure" value="water_park"/>
-			<poi_type name="park" tag="leisure" value="park"/>
-			<poi_type name="recreation_ground" tag="landuse" value="recreation_ground" no_edit="true"/>
+			<poi_type name="water_park" tag="leisure" value="water_park" excluded_poi_additional_category="payment_type"/>
+			<poi_type name="park" tag="leisure" value="park" excluded_poi_additional_category="payment_type,fee"/>
+			<poi_type name="recreation_ground" tag="landuse" value="recreation_ground" no_edit="true" excluded_poi_additional_category="payment_type,fee"/>
 			<poi_type name="village_green" tag="landuse" value="village_green" name_only="true" no_edit="true" excluded_poi_additional_category="payment_type,fee"/>
 			<poi_reference name="nature_reserve"/>
 			<poi_reference name="picnic_site"/>
 			<poi_reference name="firepit"/>
 			<poi_reference name="picnic_table"/>
-			<poi_type name="trail_riding_station" tag="tourism" value="trail_riding_station"/>
-			<poi_type name="sauna" tag="amenity" value="sauna"/>
-			<poi_type name="tanning_salon" tag="leisure" value="tanning_salon"/>
+			<poi_type name="trail_riding_station" tag="tourism" value="trail_riding_station" excluded_poi_additional_category="payment_type,internet_access,wheelchair_accessibility"/>
+			<poi_type name="sauna" tag="amenity" value="sauna" excluded_poi_additional_category="payment_type,fee,internet_access"/>
+			<poi_type name="tanning_salon" tag="leisure" value="tanning_salon" excluded_poi_additional_category="payment_type,fee,internet_access"/>
 			<poi_reference name="stadium"/>
 			<poi_reference name="sports_centre"/>
 			<poi_reference name="golf_course"/>
@@ -2588,10 +2588,10 @@
 			<poi_reference name="leisure_track"/>
 			<poi_reference name="studio"/>
 			<poi_type name="brothel" tag="amenity" value="brothel"/>
-			<poi_type name="love_hotel" tag="amenity" value="love_hotel"/>
-			<poi_type name="horse_riding" tag="leisure" value="horse_riding"/>
+			<poi_type name="love_hotel" tag="amenity" value="love_hotel" excluded_poi_additional_category="fee"/>
+			<poi_type name="horse_riding" tag="leisure" value="horse_riding" excluded_poi_additional_category="payment_type,internet_access"/>
 			<poi_type name="leisure_common" tag="leisure" value="common" no_edit="true" excluded_poi_additional_category="payment_type,fee"/>
-			<poi_type name="garden" tag="leisure" value="garden" name_only="true" no_edit="true"/>
+			<poi_type name="garden" tag="leisure" value="garden" name_only="true" no_edit="true" excluded_poi_additional_category="payment_type,fee,internet_access,wheelchair_accessibility"/>
 			<poi_type name="hackerspace" tag="leisure" value="hackerspace"/>
 		</poi_category>
 		<poi_category name="sustenance" default_tag="amenity" top="true" excluded_poi_additional_category="fee">
