@@ -230,8 +230,8 @@ mycp drinking_water yes_map overlays_drinking_water_yes.png
 mycp drinking_water no_map overlays_drinking_water_no.png
 mycpname topo_drinking_water_yes_map overlays_topo_drinking_water_yes.png
 mycpname topo_drinking_water_no_map overlays_topo_drinking_water_no.png
-mycpname access_private overlays_access_private.png
-mycpname access_private_red overlays_access_private_red.png
+mycpname access_private_overlay overlays_access_private.png
+mycpname access_private_red_overlay overlays_access_private_red.png
 
 
 ## Traffic + Transportation
