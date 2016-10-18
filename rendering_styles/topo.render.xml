@@ -17,7 +17,7 @@
 		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="moreDetailed" name="More details" description="More details on map" type="boolean" possibleValues=""
 		category="details"/>
-	<renderingProperty attr="surfaceIntegrity" name="Surface integral rendering" description="Surface integral rendering" type="boolean" possibleValues=""
+	<renderingProperty attr="surfaceIntegrity" name="Road surface integrity" description="Surface integral rendering" type="boolean" possibleValues=""
 		category="details"/>
 	<renderingProperty attr="hideUnderground" name="Hide underground objects" description="Hide underground objects"
 		type="boolean" possibleValues="" category="hide"/>
@@ -32,6 +32,7 @@
 		type="string" possibleValues="red,orange,lightblue,blue,purple,translucent_red,translucent_orange,translucent_lightblue,translucent_blue,translucent_purple" defaultValueDescription="default"/>
 	<renderingProperty attr="currentTrackWidth" name="Current GPX width" description="Width of the currently recording track"
 		type="string" possibleValues="thin,medium,bold" defaultValueDescription="default"/>
+	<renderingProperty attr="contourColorScheme" name="Color scheme of contours" description="Color scheme of contours" type="string" possibleValues="light_brown,brown,dark_brown" defaultValueDescription="default"/>
 
 	<renderingProperty attr="engine_v1" type="boolean"/>
 	<renderingAttribute name="defaultColor">
@@ -580,19 +581,46 @@
 	<renderingConstant name="landuseResidentialRuralColorDay" value="#cdd5cd"/>
 -->
 	<renderingAttribute name="contourLineColor">
-		<case noPolygons="true" attrColorValue="#44FFEAD6"/>
-		<case engine_v1="false" attrColorValue="#35bd6819"/>
-		<case attrColorValue="#44bd6819"/>
+		<case contourColorScheme="light_brown" attrColorValue="#119C5615">
+			<apply_if noPolygons="true" attrColorValue="#44FFEAD6"/>
+		</case>
+		<case contourColorScheme="brown" attrColorValue="#44bd6819">
+			<apply_if noPolygons="true" attrColorValue="#44C39F7D"/>
+		</case>
+		<case contourColorScheme="dark_brown" attrColorValue="#22522D0B">
+			<apply_if noPolygons="true" attrColorValue="#4437250B"/>
+		</case>
+		<case attrColorValue="#44bd6819">
+			<apply_if noPolygons="true" attrColorValue="#44FFEAD6"/>
+		</case>
 	</renderingAttribute>
 	<renderingAttribute name="contourLineColor50m">
-		<case noPolygons="true" attrColorValue="#88FFEAD6"/>
-		<case engine_v1="false" attrColorValue="#35bd6819"/>
-		<case attrColorValue="#889C5615"/>
+		<case contourColorScheme="light_brown" attrColorValue="#339C5615">
+			<apply_if noPolygons="true" attrColorValue="#88FFEAD6"/>
+		</case>
+		<case contourColorScheme="brown" attrColorValue="#889C5615">
+			<apply_if noPolygons="true" attrColorValue="#88C39F7D"/>
+		</case>
+		<case contourColorScheme="dark_brown" attrColorValue="#55522D0B">
+			<apply_if noPolygons="true" attrColorValue="#8837250B"/>
+		</case>
+		<case attrColorValue="#889C5615">
+			<apply_if noPolygons="true" attrColorValue="#88FFEAD6"/>
+		</case>
 	</renderingAttribute>
 	<renderingAttribute name="contourLineColor100m">
-		<case noPolygons="true" attrColorValue="#AAFFEAD6"/>
-		<case engine_v1="false" attrColorValue="#359C5615"/>
-		<case attrColorValue="#aa9C5615"/>
+		<case contourColorScheme="light_brown" attrColorValue="#559C5615">
+			<apply_if noPolygons="true" attrColorValue="#AAFFEAD6"/>
+		</case>
+		<case contourColorScheme="brown" attrColorValue="#aa9C5615">
+			<apply_if noPolygons="true" attrColorValue="#AAC39F7D"/>
+		</case>
+		<case contourColorScheme="dark_brown" attrColorValue="#66522D0B">
+			<apply_if noPolygons="true" attrColorValue="#aa37250B"/>
+		</case>
+		<case attrColorValue="#aa9C5615">
+			<apply_if noPolygons="true" attrColorValue="#AAFFEAD6"/>
+		</case>
 	</renderingAttribute>
 
 	<renderingAttribute name="buildingColor">
