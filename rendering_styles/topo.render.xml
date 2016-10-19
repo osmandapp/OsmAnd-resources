@@ -1056,7 +1056,12 @@
 				<case tag="railway" value="station">
 					<apply_if additional="station=subway" order="-1"/>
 				</case>
-				<case tag="railway" value="halt"/>
+				<switch>
+					<case tag="railway" value="halt"/>
+					<case tag="public_transport" value="platform"/>
+					<apply_if layer="-1" order="-1"/>
+				</switch>
+				
 				<case tag="abandoned:railway" value="station"/>
 			</switch>
 
@@ -1073,7 +1078,12 @@
 				<case tag="barrier" value="city_wall"/>
 				<case tag="man_made" value="reinforced_slope"/>
 				<case tag="barrier" value="wall"/>
-				<case tag="railway" value="station" ignorePolygonArea="true"/>
+				<switch>
+					<case tag="public_transport" value="platform"/>
+					<case tag="railway" value="halt"/>
+					<case tag="railway" value="station" ignorePolygonArea="true"/>
+					<apply_if layer="-1" order="-1"/>
+				</switch>
 			</switch>
 			<switch cycle="true" point="false" objectType="3" order="5">
 				<switch>
@@ -1248,7 +1258,9 @@
 					<apply_if noPolygons="true" order="-1"/>
 				</case>
 				<case tag="man_made" value="reinforced_slope"/>
-				<case tag="barrier" value="" order="20"/>
+				<case tag="barrier" value="" order="20">
+					<apply_if layer="-1" order="-1"/>
+				</case>
 				<case tag="natural" value="volcano"/>
 				<case tag="natural" value="cliff"/>
 				<case tag="natural" value="slope"/>
