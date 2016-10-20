@@ -319,6 +319,7 @@ mycp amenity fuel_lpg transport_fuel_lpg.png
 mycp amenity fuel transport_fuel.png
 mycpname aeroway_fuel transport_aeroway_fuel.png
 mycpname turning_circle transport_turning_circle.png
+mycpname waterway_fuel transport_waterway_fuel.png
 
 mygroup parking transport_parking.png
 mycp amenity parking transport_parking.png
