@@ -847,6 +847,7 @@ mycpname recycling_container amenity_recycling_container.png
 mycpname barbecue amenity_barbecue.png
 mycpname public_bookcase amenity_public_bookcase.png
 mycpname internet_cafe amenity_internet_cafe.png
+mycpname feeding_place amenity_feeding_place.png
 
 mygroup craft craft_tailor.png
 mycpname craft_beekeeper craft_beekeeper.png
