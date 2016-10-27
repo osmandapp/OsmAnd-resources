@@ -1004,6 +1004,7 @@ mycp amenity bar food_bar.png
 mycp amenity biergarten food_biergarten.png
 mycp amenity cafe food_cafe.png
 mycp amenity drinking_water food_drinkingtap.png
+mycpname topo_drinking_water topo_topo_drinking_water.png
 mycp amenity fast_food food_fastfood.png
 mycp amenity food_court food_food_court.png
 mycp amenity pub food_pub.png
