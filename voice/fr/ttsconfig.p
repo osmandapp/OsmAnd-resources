@@ -36,10 +36,10 @@ string('after.ogg', 'dans ').
 string('in.ogg', 'à ').
 
 string('left.ogg', 'tournez à gauche ').
-string('left_sh.ogg', 'tournez immédiatement à gauche ').
+string('left_sh.ogg', 'virez à gauche ').
 string('left_sl.ogg', 'tournez légèrement à gauche ').
 string('right.ogg', 'tournez à droite ').
-string('right_sh.ogg', 'tournez immédiatement à droite ').
+string('right_sh.ogg', 'virez à droite ').
 string('right_sl.ogg', 'tournez légèrement à droite ').
 string('left_keep.ogg', 'serrez à gauche ').
 string('right_keep.ogg', 'serrez à droite ').
@@ -47,7 +47,7 @@ string('left_bear.ogg', 'serrez à gauche ').   % in English the same as left_ke
 string('right_bear.ogg', 'serrez à droite ').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
-string('prepare_make_uturn.ogg', 'préparez vous à faire demi tour').
+string('prepare_make_uturn.ogg', 'préparez vous à faire demi-tour').
 string('make_uturn.ogg', ' faites demi-tour ').
 string('make_uturn_wp.ogg', 'Dès que possible, faites demi-tour ').
 
@@ -90,28 +90,28 @@ string('reached_intermediate.ogg', "vous êtes arrivé à l''étape").
 % NEARBY POINTS
 string('and_arrive_waypoint.ogg', "et arrivez à l''étape G P X ").
 string('reached_waypoint.ogg', "vous êtes arrivé à l''étape G P X ").
-string('and_arrive_favorite.ogg', "et arrivez à l''étape favotite ").
-string('reached_favorite.ogg', "vous êtes arrivé à l''étape favorite ").
-string('and_arrive_poi.ogg', "et arrivez à l''étape POI ").
-string('reached_poi.ogg', "vous êtes arrivé à l''étape POI ").
+string('and_arrive_favorite.ogg', "et arrivez à l''étape Favoris ").
+string('reached_favorite.ogg', "vous êtes arrivé à l''étape Favoris ").
+string('and_arrive_poi.ogg', "et arrivez à l''étape P O I ").
+string('reached_poi.ogg', "vous êtes arrivé à l''étape P O I ").
 
 % ATTENTION
 %string('exceed_limit.ogg', 'vous dépassez la limite de vitesse ').
 string('exceed_limit.ogg', 'limite de vitesse ').
 string('attention.ogg', 'attention , ').
 string('speed_camera.ogg', 'radar de vitesse ').
-string('border_control.ogg', 'contrôle des frontières ').
+string('border_control.ogg', 'douane ').
 string('railroad_crossing.ogg', 'passage à niveau ').
-string('traffic_calming.ogg', 'apaisement de la circulation ').
-string('toll_booth.ogg', 'cabine de péage ').
+string('traffic_calming.ogg', 'ralentisseur ').
+string('toll_booth.ogg', 'péage ').
 string('stop.ogg', 'panneau stop ').
-string('pedestrian_crosswalk.ogg', 'passage pour piétons ').
+string('pedestrian_crosswalk.ogg', 'passage piéton ').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'Position perdue ').
-string('location_recovered.ogg', 'Position retrouvée ').
+string('location_lost.ogg', 'Signal G P S perdu ').
+string('location_recovered.ogg', 'Signal G P S retrouvé ').
 string('off_route.ogg', "vous avez dévié de l''itinéraire depuis").
-string('back_on_route.ogg', 'vous êtes de retour sur la route ').
+string('back_on_route.ogg', 'vous êtes de retour sur l''itinéraire ').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'sur ').
@@ -128,7 +128,7 @@ string('kilometers.ogg', 'kilomètres ').
 string('feet.ogg', 'pieds ').
 string('1_tenth_of_a_mile.ogg', 'un dixième de mile').
 string('tenths_of_a_mile.ogg', 'dixièmes de un mile ').
-string('around_1_mile.ogg', 'environ 1 mile ').
+string('around_1_mile.ogg', 'environ un mile ').
 string('miles.ogg', 'miles ').
 string('yards.ogg', 'yards ').
 
