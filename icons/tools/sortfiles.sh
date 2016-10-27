@@ -934,6 +934,7 @@ mycp man_made observatory poi_observatory.png
 mycpname observation_tower poi_observatory.png
 mycp man_made petroleum_well poi_petroleum_well.png
 mycp man_made survey_point poi_survey_point.png
+mycpname topo_survey_point topo_topo_survey_point.png
 mycp man_made tower poi_tower.png
 mycpname bell_tower poi_tower_bell_tower.png
 mycpname communication_tower poi_tower_communications2.png
@@ -941,6 +942,7 @@ mycpname cooling_tower poi_tower_cooling.png
 mycpname lighting_tower poi_tower_lighting.png
 mycp man_made water_tower poi_water_tower.png
 mycp man_made windmill poi_windmill.png
+mycpname topo_windmill topo_topo_windmill.png
 mycp no icon functional-icons_no_icon.png
 mycpname generator_source_coal power_generator_coal.png
 mycpname generator_source_gas power_generator_gas.png
@@ -982,6 +984,7 @@ mycpname storage_tank poi_storage_tank.png
 mycpname wastewater_plant poi_wastewater_plant.png
 mycpname water_works poi_water_works.png
 mycpname watermill poi_watermill.png
+mycpname topo_watermill topo_topo_watermill.png
 mycpname monitoring_station poi_monitoring_station.png
 mycpname dolphin poi_dolphin.png
 mycpname street_cabinet poi_street_cabinet.png
