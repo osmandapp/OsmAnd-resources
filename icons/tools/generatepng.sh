@@ -104,6 +104,7 @@ generatePngs() {
 
        generateElements 'shaders'
        generateElements 'shields'
+       generateElements 'shields_big'
        generateElements 'road_shields'
        generateElements 'osmc_bg'
 
@@ -151,6 +152,7 @@ generatePngs() {
        generatePngs 'education' '#555555' '#ff8f00'
        generatePngs 'poi' '#3f3f3f' '#ff8f00'
        generatePngs 'topo' '#000000' '#ff8f00'
+       generatePngs 'topo_big' '#000000' '#ff8f00' '' x2
        generatePngs 'additional' '#3f3f3f' '#ff8f00'
        generatePngs 'additional_category' '#3f3f3f' '#ff8f00'
        generatePngs 'power' '#3f3f3f' '#ff8f00'

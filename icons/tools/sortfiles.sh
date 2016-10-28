@@ -660,8 +660,10 @@ mycp historic cannon tourist_cannon.png
 mycp historic castle tourist_castle2.png
 mycpname city_gate barrier_sally_port.png
 mycp historic memorial tourist_memorial.png
+mycpname topo_memorial topo_topo_memorial.png
 mycp historic mine poi_mine_abandoned.png
 mycpname monument tourist_monument2.png
+mycpname topo_monument topo_topo_monument.png
 mycp historic ruins tourist_ruin.png
 mycp historic rune_stone tourist_rune_stone.png
 mycp historic ship tourist_ship.png
@@ -924,9 +926,13 @@ mycp highway street_lamp_lit functional-icons_street_lamp_lit.png
 mycp man_made adit poi_adit.png
 mycp man_made antenna poi_antenna.png
 mycp man_made chimney poi_chimney.png
+mycpname topo_chimney topo_big_topo_chimney.png
 mycpname crane poi_crane.png
 mycp man_made mast poi_mast.png
+mycpname topo_mast topo_big_topo_mast.png
 mycp man_made mineshaft poi_mine.png
+mycpname topo_mine topo_topo_mine.png
+mycpname topo_mine_abandoned topo_topo_mine_abandoned.png
 mycpname radar poi_monitoring_station_radar.png
 mycpname astronomical_observatory poi_observatory_astronomical.png
 mycpname telescope poi_telescope.png
@@ -936,13 +942,15 @@ mycp man_made petroleum_well poi_petroleum_well.png
 mycp man_made survey_point poi_survey_point.png
 mycpname topo_survey_point topo_topo_survey_point.png
 mycp man_made tower poi_tower.png
+mycpname topo_tower topo_big_topo_tower.png
 mycpname bell_tower poi_tower_bell_tower.png
 mycpname communication_tower poi_tower_communications2.png
+mycpname topo_communication_tower topo_big_topo_communication_tower.png
 mycpname cooling_tower poi_tower_cooling.png
 mycpname lighting_tower poi_tower_lighting.png
 mycp man_made water_tower poi_water_tower.png
 mycp man_made windmill poi_windmill.png
-mycpname topo_windmill topo_topo_windmill.png
+mycpname topo_windmill topo_big_topo_windmill.png
 mycp no icon functional-icons_no_icon.png
 mycpname generator_source_coal power_generator_coal.png
 mycpname generator_source_gas power_generator_gas.png
@@ -963,6 +971,7 @@ mycp power tower_small2 functional-icons_power_tower_small2.png
 mycpname power_generator power_generator.png
 mycp railway buffer_stop poi_buffer_stop.png
 mycpname power_transformer power_transformer_small.png
+mycpname topo_transformer topo_big_topo_transformer.png
 mycpname works poi_works.png
 mycpname military_bunker poi_military_bunker.png
 mycpname abandoned_poi poi_abandoned_poi.png

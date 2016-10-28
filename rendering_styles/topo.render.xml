@@ -2456,27 +2456,23 @@
 				<case minzoom="16" tag="historic" value="wayside_cross"/>
 				<apply icon="cross" shield="cross_white_shield" iconOrder="95"/>
 			</switch>
-			<switch>
-				<case minzoom="16" tag="historic" value="memorial" icon="historic_memorial" iconOrder="70">
-					<apply_if additional="memorial=stolperstein" icon="memorial_stolperstein" iconOrder="120"/>
-					<apply_if additional="memorial=plaque" icon="memorial_plaque" iconOrder="120"/>
-				</case>
-				<case minzoom="16" tag="historic" value="monument" icon="monument" iconVisibleSize="32" iconOrder="85"/>
-				<apply_if additional="memorial=bust" icon="memorial_bust"/>
-				<apply_if additional="memorial=obelisk" icon="memorial_obelisk"/>
-				<apply_if additional="memorial=column" icon="memorial_obelisk"/>
-				<apply_if additional="memorial=statue" icon="memorial_statue"/>
-				<apply_if additional="memorial=stele" icon="memorial_stele"/>
-				<apply_if additional="memorial=war_memorial" icon="memorial_war"/>
-			</switch>
 			<case minzoom="14" tag="building" value="pyramid" icon="building_pyramid" iconOrder="5"/>
 <!--			<case minzoom="16" tag="historic" value="battlefield" icon="historic_battlefield"/>-->
 			<case minzoom="16" tag="historic" value="technical_monument" icon="technical_monument" iconOrder="85"/>
 			<case minzoom="16" tag="historic" value="archaeological_site" icon="historic_archaeological_site" iconVisibleSize="24" iconOrder="85"/>
 			<case minzoom="16" tag="geological" value="palaeontological_site" icon="palaeontological_site" iconOrder="85"/>
-			<case minzoom="15" tag="historic" value="mine" icon="historic_mine"/>
 			<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 		</switch>
+		<case minzoom="16" tag="historic" value="memorial" icon="topo_memorial" shield="topo_memorial_shield" iconOrder="70"/>
+<!--					<apply_if additional="memorial=stolperstein" icon="memorial_stolperstein" iconOrder="120"/>
+					<apply_if additional="memorial=plaque" icon="memorial_plaque" iconOrder="120"/>-->
+		<case minzoom="16" tag="historic" value="monument" icon="topo_monument" shield="topo_monument_shield" iconOrder="85"/>
+<!--				<apply_if additional="memorial=bust" icon="memorial_bust"/>
+				<apply_if additional="memorial=obelisk" icon="memorial_obelisk"/>
+				<apply_if additional="memorial=column" icon="memorial_obelisk"/>
+				<apply_if additional="memorial=statue" icon="memorial_statue"/>
+				<apply_if additional="memorial=stele" icon="memorial_stele"/>
+				<apply_if additional="memorial=war_memorial" icon="memorial_war"/>-->
 		<case minzoom="14" tag="tourism" value="viewpoint" icon="tourism_viewpoint" shield="viewpoint_white_shield" iconOrder="85"/>
 		<case minzoom="18" tag="historic" value="cannon" icon="historic_cannon" iconOrder="70"/>
 		<case minzoom="17" tag="historic" value="rune_stone" icon="historic_rune_stone" shield="historic_rune_stone_shield"/>
@@ -2675,21 +2671,26 @@
 		<case minzoom="15" tag="waterway" value="waterfall" icon="topo_waterfall" shield="topo_waterfall_shield"/>
 
 		<switch iconOrder="71">
-			<case minzoom="13" tag="building" value="tower" icon="man_made_tower" shield="tower_shield"/>
-			<case minzoom="16" tag="man_made" value="antenna" icon="man_made_antenna" shield="antenna_shield"/>
-			<case minzoom="15" tag="man_made" value="mast" icon="man_made_mast" shield="mast_shield"/>
-			<case minzoom="13" tag="man_made" value="tower" additional="tower:type=communication" icon="communication_tower" shield="tower_communications_shield"/>
+			<case minzoom="13" tag="building" value="tower" icon="topo_tower" shield="topo_tower_shield" iconVisibleSize="16"/>
+			<case minzoom="16" tag="man_made" value="antenna" icon="topo_mast" shield="topo_tower_shield"/>
+			<case minzoom="15" tag="man_made" value="mast" icon="topo_mast" shield="topo_tower_shield"/>
+			<case minzoom="13" tag="man_made" value="tower" additional="tower:type=communication" icon="topo_communication_tower" shield="topo_communication_tower_shield"/>
 			<case minzoom="14" tag="man_made" value="tower" additional="tower:type=lighting" icon="lighting_tower" shield="tower_lighting_shield"/>
 			<case minzoom="14" tag="man_made" value="tower" additional="tower:type=observation" icon="observation_tower" shield="observatory_shield"/>
 			<case minzoom="13" tag="man_made" value="tower" additional="tower:type=cooling" icon="cooling_tower" shield="tower_cooling_white_shield"/>
 			<case minzoom="14" tag="man_made" value="tower" additional="tower:type=bell_tower" icon="bell_tower" shield="tower_bell_tower_white_shield"/>
-			<case minzoom="14" tag="man_made" value="tower" icon="man_made_tower" shield="tower_white_shield"/>
+			<case minzoom="14" tag="man_made" value="tower" icon="topo_tower" shield="topo_tower_shield"/>
 		</switch>
 		<case minzoom="14" tag="natural" value="cave_entrance" icon="topo_cave" shield="topo_cave_shield" iconOrder="85"/>
-		<switch>
-			<case minzoom="15" tag="man_made" value="adit" icon="man_made_adit"/>
-			<apply shield="white_gray_square_shield" iconOrder="60"/>
+		<switch minzoom="15">
+			<case tag="man_made" value="adit"/>
+			<case tag="man_made" value="mineshaft"/>
+			<apply icon="topo_mine" shield="topo_mine_shield" iconOrder="60"/>
+			<apply_if additional="abandoned=yes" icon="topo_mine_abandoned" shield="topo_mine_abandoned_shield" iconOrder="60"/>
+			<apply_if additional="disused=yes" icon="topo_mine_abandoned" shield="topo_mine_abandoned_shield" iconOrder="60"/>
+			<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 		</switch>
+		<case minzoom="15" tag="historic" value="mine" icon="topo_mine_abandoned" shield="topo_mine_abandoned_shield"/>
 		<case minzoom="16" tag="man_made" value="kiln" icon="kiln" shield="kiln_shield"/>
 		<case minzoom="19" tag="man_made" value="street_cabinet" icon="street_cabinet" shield="street_cabinet_shield"/>
 		<case minzoom="15" tag="man_made" value="cairn" icon="cairn" shield="cairn_shield"/>
@@ -2700,16 +2701,13 @@
 		<case minzoom="14" tag="man_made" value="observatory" icon="man_made_observatory" shield="observatory_shield">
 			<apply_if additional="observatory:type=astronomical" icon="astronomical_observatory" shield="astronomical_observatory_shield"/>
 		</case>
-		<case minzoom="15" tag="man_made" value="chimney" icon="man_made_chimney" shield="chimney_shield" iconOrder="100"/>
+		<case minzoom="15" tag="man_made" value="chimney" icon="topo_chimney" shield="topo_chimney_shield" iconOrder="100"/>
 		<case minzoom="18" tag="railway" value="buffer_stop" icon="railway_buffer_stop" shield="railway_buffer_stop_shield" iconOrder="100"/>
 		<case minzoom="16" tag="man_made" value="windmill" icon="topo_windmill" shield="topo_windmill_shield"/>
 		<case minzoom="16" tag="man_made" value="watermill" icon="topo_watermill" shield="topo_watermill_shield"/>
 		<case minzoom="18" tag="man_made" value="water_tap" icon="water_tap" shield="white_gray_square_shield"/>
-		<case minzoom="15" tag="man_made" value="mineshaft" icon="man_made_mineshaft" shield="mineshaft_shield">
-			<apply_if moreDetailed="false" maxzoom="15" icon=""/>
-		</case>
 		<case minzoom="17" tag="power" value="substation" icon="power_substation" shield="power_substation_shield"/>
-		<case minzoom="18" tag="power" value="transformer" icon="power_transformer" shield="transformer_shield"/>
+		<case minzoom="18" tag="power" value="transformer" icon="topo_transformer" shield="topo_communication_tower_shield"/>
 		<case minzoom="16" tag="man_made" value="monitoring_station" icon="radar" shield="monitoring_station_radar_shield"/>
 		<case minzoom="15" tag="man_made" value="survey_point" icon="topo_survey_point" shield="topo_survey_point_shield"/>
 		<case minzoom="15" tag="man_made" value="water_tower" icon="man_made_water_tower" shield="water_tower_shield"/>
@@ -3384,7 +3382,7 @@
 					<switch minzoom="11">
 						<case tag="highway" value="tertiary"/>
 						<case tag="highway" value="tertiary_link"/>
-						<apply shadowRadius="$highwayShadowRadius"/>
+						<apply shadowRadius="$highwayShadowRadius" shadowColor="$tertiaryRoadShadowColor"/>
 						<apply color="$tertiaryRoadColor" color__1="$tertiaryRoadColor" cap="ROUND">
 							<case maxzoom="13">
 								<apply>
@@ -3393,7 +3391,7 @@
 									<apply_if minzoom="13" maxzoom="13" strokeWidth="1.6:1.6" strokeWidth_3="1.6:1.6"/>
 								</apply>
 							</case>
-							<case minzoom="14" color_0="#000000" shadowColor="$tertiaryRoadShadowColor">
+							<case minzoom="14" color_0="#000000">
 								<case maxzoom="14" strokeWidth="3:3" strokeWidth_3="3:3"/>
 								<case maxzoom="15" strokeWidth="4:4" strokeWidth_3="4:4"/>
 								<case maxzoom="16" strokeWidth="5:5" strokeWidth_3="5:5"/>
