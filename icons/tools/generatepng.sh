@@ -126,6 +126,7 @@ generatePngs() {
        generatePngs 'skimap' '#000000' '#ff8f00' '' x2
 
        generatePngs 'functional-icons' '#777777' '#ff8f00' '' '' '' nomx
+       generatePngs 'functional-icons-x2' '#777777' '#ff8f00' '' x2 '' nomx
        generatePngs 'subway' '#777777' '#ff8f00' '' x2 '' nomx
 
        generatePngs 'water' '#0092DA' '#ff8f00'
@@ -151,8 +152,8 @@ generatePngs() {
        generatePngs 'money' '#555555' '#ff8f00'
        generatePngs 'education' '#555555' '#ff8f00'
        generatePngs 'poi' '#3f3f3f' '#ff8f00'
-       generatePngs 'topo' '#000000' '#ff8f00'
-       generatePngs 'topo_big' '#000000' '#ff8f00' '' x2
+       generatePngs 'topo' '#000000' '#000000' '' '' '' nomx
+       generatePngs 'topo_big' '#000000' '#000000' '' x2 '' nomx
        generatePngs 'additional' '#3f3f3f' '#ff8f00'
        generatePngs 'additional_category' '#3f3f3f' '#ff8f00'
        generatePngs 'power' '#3f3f3f' '#ff8f00'

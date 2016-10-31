@@ -107,10 +107,12 @@ mycp natural spring water_spring.png  #scale 0.375
 mycpname topo_spring topo_topo_spring.png  #scale 0.375
 mycp natural stone poi_stone.png  #scale 0.375
 mycp natural tree_broadleaved functional-icons_tree_broadleaved.png
+mycpname topo_tree_broadleaved functional-icons-x2_topo_tree_broadleaved.png
 mycp natural tree_cypress functional-icons_tree_cypress.png
 mycp natural tree functional-icons_tree.png  #scale 0.25
 mycp natural tree_leafless functional-icons_tree_leafless.png
 mycp natural tree_needleleaved functional-icons_tree_needleleaved.png
+mycpname topo_tree_needleleaved functional-icons-x2_topo_tree_needleleaved.png
 mycp natural tree_palm functional-icons_tree_palm.png
 mycpname tree_dot functional-icons_tree.png
 mycpname tree poi_tree.png
