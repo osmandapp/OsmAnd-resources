@@ -651,6 +651,7 @@ mycp amenity theatre tourist_theatre.png
 mycpname hackerspace entertainment_hackerspace.png
 mycpname leisure_common entertainment_leisure_common.png
 mycpname love_hotel entertainment_love_hotel.png
+mycpname gambling entertainment_gambling.png
 
 
 ## Historic
@@ -1677,7 +1678,7 @@ mycpname ice_cream food_ice_cream.png
 mycp shop jewelry shopping_jewelry2.png
 mycp shop kiosk shopping_kiosk.png
 mycp shop laundry shopping_laundrette.png
-mycp shop mall shopping_department_store.png
+mycp shop mall shopping_mall.png
 mycp shop mobile_phone shopping_mobile_phone.png
 mycp shop motorcycle shopping_motorcycle.png
 mycp shop musical_instrument shopping_musical_instrument.png
@@ -1760,6 +1761,13 @@ mycpname doors shopping_doors.png
 mycpname sewing shopping_sewing.png
 mycpname spices shopping_spices.png
 mycpname shop_craft shopping_craft.png
+mycpname party shopping_party.png
+mycpname deli shopping_deli.png
+mycpname electrical shopping_electrical.png
+mycpname locksmith shopping_locksmith.png
+mycpname lighting shopping_lighting.png
+mycpname lottery shopping_lottery.png
+mycpname e_cigarette shopping_e_cigarette.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
