@@ -688,6 +688,7 @@ mycpname memorial_war tourist_war_memorial.png
 mycpname historic_manor tourist_historic_manor.png
 mycpname historic_stone tourist_historic_stone.png
 mycpname prison_camp tourist_prison_camp.png
+mycpname locomotive tourist_locomotive.png
 
 ## Special POI icons
 mycp special_poi big_ben special_poi_big_ben.png
