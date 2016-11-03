@@ -1682,6 +1682,7 @@ mycp shop laundry shopping_laundrette.png
 mycp shop mall shopping_mall.png
 mycp shop mobile_phone shopping_mobile_phone.png
 mycp shop motorcycle shopping_motorcycle.png
+mycpname motorcycle_repair shopping_motorcycle_repair.png
 mycp shop musical_instrument shopping_musical_instrument.png
 mycp shop optician shopping_opticians.png
 mycp shop pet shopping_pet2.png
@@ -1769,6 +1770,8 @@ mycpname locksmith shopping_locksmith.png
 mycpname lighting shopping_lighting.png
 mycpname lottery shopping_lottery.png
 mycpname e_cigarette shopping_e_cigarette.png
+mycpname nutrition_supplements shopping_nutrition_supplements.png
+mycpname photo_studio shopping_photo_studio.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
