@@ -203,6 +203,7 @@ mycp emergency phone emergency_emergency_phone.png
 mycpname emergency_access_point emergency_emergency_access_point.png
 mycpname defibrillator emergency_defibrillator.png
 mycpname ambulance_station emergency_ambulance_station.png
+mycpname fire_extinguisher emergency_fire_extinguisher.png
 
 mygroup healthcare health_pharmacy.png
 mycp amenity dentist health_dentist.png
@@ -214,6 +215,7 @@ mycp amenity pharmacy health_pharmacy2.png
 mycp amenity veterinary health_veterinary.png
 mycpname social_facility health_nursing_home.png
 mycpname sanatorium health_sanatorium.png
+mycpname health_amenity_type_first_aid_kit health_health_amenity_type_first_aid_kit.png
 
 ## Overlays
 mycp hazard yes overlays_hazard.png
