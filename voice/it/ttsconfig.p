@@ -32,7 +32,7 @@ string('distance.ogg', 'distanza ').
 
 % LEFT/RIGHT
 %string('prepare.ogg', 'Prepararsi ').
-string('after.ogg', 'dopo ').
+string('after.ogg', 'fra ').
 string('in.ogg', 'fra ').
 
 string('left.ogg', 'girare a sinistra').
