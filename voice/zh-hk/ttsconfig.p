@@ -7,7 +7,7 @@ version(103).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
-language('zh').
+language('zh-hk').
 % fest_language(' ').
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
@@ -24,121 +24,120 @@ language('zh').
 %% STRINGS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
-string('route_is1.ogg', '行程').
-string('route_is2.ogg', ' 遠').
-string('route_calculate.ogg', '路线重新计算').
-string('distance.ogg', ', 距离').
+string('route_is1.ogg', '路程').
+string('route_is2.ogg', '遠').
+string('route_calculate.ogg', '已重新計算路綫').
+string('distance.ogg', '距離').
 
 % LEFT/RIGHT
-string('after.ogg', ' 後 ').
-string('in.ogg', '在 ').
+string('prepare.ogg', '請準備').
+string('after.ogg', '後').
+string('in.ogg', '在').
 
-string('left.ogg', '左轉 ').
-string('left_sh.ogg', '向左急轉 ').
-string('left_sl.ogg', '稍向左轉 ').
-string('right.ogg', '右轉 ').
-string('right_sh.ogg', '向右急轉 ').
-string('right_sl.ogg', '稍向右轉 ').
-string('left_keep.ogg', '靠左 ').
-string('right_keep.ogg', '靠右 ').
-string('left_bear.ogg', '靠左 ').    % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', '靠右 ').   % in English the same as right_keep, may be different in other languages
+string('left.ogg', '左轉').
+string('left_sh.ogg', '向左急轉').
+string('left_sl.ogg', '稍向左轉').
+string('right.ogg', '右轉').
+string('right_sh.ogg', '向右急轉').
+string('right_sl.ogg', '稍向右轉').
+string('left_keep.ogg', '靠左').
+string('right_keep.ogg', '靠右').
+string('left_bear.ogg', '靠左').    % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', '靠右').   % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
-string('prepare_make_uturn.ogg', ' 後迴轉 ').
-string('make_uturn1.ogg', ' 後請迴轉').
-string('make_uturn2.ogg', '請迴轉 ').
-string('make_uturn_wp.ogg', '可能的話, 請迴轉 ').
+string('prepare_make_uturn.ogg', '準備掉頭').
+string('make_uturn1.ogg', '後請掉頭').
+string('make_uturn2.ogg', '請掉頭').
+string('make_uturn_wp.ogg', '可能的話, 請掉頭').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', ' 後進入圓環 ').
-string('roundabout.ogg', ' 後進入圓環, 然後在 ').
-string('then.ogg', ', 然後 ').
-string('and.ogg', '和 ').
-string('take.ogg', '在 ').
-string('exit.ogg', ' 出口離開').
+string('prepare_roundabout.ogg', '後進入迴旋處').
+string('roundabout.ogg', '後進入迴旋處, 然後在').
+string('then.ogg', ', 然後').
+string('and.ogg', '同').
+string('take.ogg', '在').
+string('exit.ogg', '出口離開').
 
-string('1st.ogg', '第一個 ').
-string('2nd.ogg', '第二個 ').
-string('3rd.ogg', '第三個 ').
-string('4th.ogg', '第四個 ').
-string('5th.ogg', '第五個 ').
-string('6th.ogg', '第六個 ').
-string('7th.ogg', '第七個 ').
-string('8th.ogg', '第八個 ').
-string('9th.ogg', '第九個 ').
-string('10th.ogg', '第十個 ').
-string('11th.ogg', '第十一個 ').
-string('12th.ogg', '第十二個 ').
-string('13th.ogg', '第十三個 ').
-string('14th.ogg', '第十四個 ').
-string('15th.ogg', '第十五個 ').
-string('16th.ogg', '第十六個 ').
-string('17th.ogg', '第十七個 ').
+string('1st.ogg', '第一個').
+string('2nd.ogg', '第二個').
+string('3rd.ogg', '第三個').
+string('4th.ogg', '第四個').
+string('5th.ogg', '第五個').
+string('6th.ogg', '第六個').
+string('7th.ogg', '第七個').
+string('8th.ogg', '第八個').
+string('9th.ogg', '第九個').
+string('10th.ogg', '第十個').
+string('11th.ogg', '第十一個').
+string('12th.ogg', '第十二個').
+string('13th.ogg', '第十三個').
+string('14th.ogg', '第十四個').
+string('15th.ogg', '第十五個').
+string('16th.ogg', '第十六個').
+string('17th.ogg', '第十七個').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', '直直往前開 ').
-string('follow.ogg', '沿著馬路往前 ').
+string('go_ahead.ogg', '一直向前行').
+string('follow.ogg', '繼續向前行').
 
 % ARRIVE
-string('and_arrive_destination.ogg', '然後可達終點 ').
-string('reached_destination.ogg','抵達終點 ').
-string('and_arrive_intermediate.ogg', '並通過點到達 ').
-string('reached_intermediate.ogg', '你已經達到你通過點 ').
+string('and_arrive_destination.ogg', '並到達目的地').
+string('reached_destination.ogg','你已到達目的地').
+string('and_arrive_intermediate.ogg', '並到達中途點').
+string('reached_intermediate.ogg', '你已到達中途點').
 
 % NEARBY POINTS
-string('and_arrive_waypoint.ogg', '並通過點到達  GPX').
-string('reached_waypoint.ogg', '你已經達到你通過點  GPX').
-string('and_arrive_favorite.ogg', 'and pass favorite ').
-string('reached_favorite.ogg', 'you are passing favorite ').
-string('and_arrive_poi.ogg', 'and pass POI ').
-string('reached_poi.ogg', 'you are passing POI ').
+string('and_arrive_waypoint.ogg', '並到達GPX航點').
+string('reached_waypoint.ogg', '你已到達GPX航點').
+string('and_arrive_favorite.ogg', '並到達收藏點').
+string('reached_favorite.ogg', '你已到達收藏點').
+string('and_arrive_poi.ogg', '並到達興趣點').
+string('reached_poi.ogg', '你已到達興趣點').
 
 % ATTENTION
-%string('exceed_limit.ogg', '你超速 ').
-string('exceed_limit.ogg', '速度极限 ').
+string('exceed_limit.ogg', '你已超速').
 string('attention.ogg', '注意, ').
-string('speed_camera.ogg', '測速照相機 ').
-string('border_control.ogg', '邊境控制 ').
-string('railroad_crossing.ogg', '鐵路道口 ').
-string('traffic_calming.ogg', '交通鎮定 ').
-string('toll_booth.ogg', '收費站 ').
-string('stop.ogg', '停止標誌 ').
-string('pedestrian_crosswalk.ogg', '人行橫道 ').
+string('speed_camera.ogg', '快相機').
+string('border_control.ogg', '邊境管制').
+string('railroad_crossing.ogg', '鐵路平交道').
+string('traffic_calming.ogg', '減低交通流量措施').
+string('toll_booth.ogg', '收費站').
+string('stop.ogg', '停止標誌').
+string('pedestrian_crosswalk.ogg', '行人過路處').
 
 % OTHER PROMPTS
-string('location_lost.ogg', '接收不到 g p s 信號 ').
-string('location_recovered.ogg', 'g p s 信號恢復 ').
-string('off_route.ogg', '你已經偏離路線 ').
-string('back_on_route.ogg', '你回來的路線 ').
+string('location_lost.ogg', '接收不到GPS訊號').
+string('location_recovered.ogg', 'GPS訊號已恢復').
+string('off_route.ogg', '你已偏離原來路線').
+string('back_on_route.ogg', '你已返回原來路線').
 
 % STREET NAME PREPOSITIONS
-string('onto.ogg', '到 ').
-string('on.ogg', '到 ').
-string('to.ogg', '到 ').
-string('toward.ogg', '往 ').
+string('onto.ogg', '到').
+string('on.ogg', '到').
+string('to.ogg', '到').
+string('toward.ogg', '向').
 
 % DISTANCE UNIT SUPPORT
-string('meters.ogg', ' 公尺').
-string('around_1_kilometer.ogg', '約 1 公里 ').
-string('around.ogg', '約 ').
-string('kilometers.ogg', ' 公里 ').
+string('meters.ogg', '公尺').
+string('around_1_kilometer.ogg', '約一公里').
+string('around.ogg', '約').
+string('kilometers.ogg', '公里').
 
-string('feet.ogg', '尺 ').
-string('1_tenth_of_a_mile.ogg', '一英里的十分之一').
-string('tenths_of_a_mile.ogg', '零点一英里').
-string('around_1_mile.ogg', '大约一英里（1.6公里）').
+string('feet.ogg', '英呎').
+string('1_tenth_of_a_mile.ogg', '零點一英里').
+string('tenths_of_a_mile.ogg', '零點一英里').
+string('around_1_mile.ogg', '約一英里').
 string('miles.ogg', '英里').
-
-string('yards.ogg', 'yards ').
+string('yards.ogg', '英碼').
 
 % TIME SUPPORT
-string('time.ogg', '所需时间').
-string('1_hour.ogg', '一小时').
-string('hours.ogg', '小时').
-string('less_a_minute.ogg', '不到一分钟').
-string('1_minute.ogg', '1分钟').
-string('minutes.ogg', '分钟').
+string('time.ogg', '所需時間').
+string('1_hour.ogg', '一小時').
+string('hours.ogg', '小時').
+string('less_a_minute.ogg', '不到一分鐘').
+string('1_minute.ogg', '一分鐘').
+string('minutes.ogg', '分鐘').
 
 
 %% COMMAND BUILDING / WORD ORDER
