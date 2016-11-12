@@ -111,7 +111,7 @@ string('pedestrian_crosswalk.ogg', 'passage piéton ').
 string('location_lost.ogg', 'Signal G P S perdu ').
 string('location_recovered.ogg', 'Signal G P S retrouvé ').
 string('off_route.ogg', "vous avez dévié de l''itinéraire depuis").
-string('back_on_route.ogg', 'vous êtes de retour sur l''itinéraire ').
+string('back_on_route.ogg', "vous êtes de retour sur l''itinéraire ").
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'sur ').
