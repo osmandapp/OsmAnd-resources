@@ -39,7 +39,7 @@ string('left_sh.ogg', '左を鋭角に曲ってください。').
 string('left_sl.ogg', '左をゆるやかに曲ってください。').
 string('right.ogg', '右に曲ってください。').
 string('right_sh.ogg', '右を鋭角に曲ってください。').
-string('right_sh.ogg', '右をゆるやかに曲ってください。').
+string('right_sl.ogg', '右をゆるやかに曲ってください。').
 string('left_keep.ogg', '左に寄ってください。').
 string('right_keep.ogg', '右に寄ってください。').
 string('left_bear.ogg', '左に寄ってください。').   % in English the same as left_keep, may be different in other languages
