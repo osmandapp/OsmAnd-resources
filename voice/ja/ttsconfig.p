@@ -35,11 +35,11 @@ string('after.ogg', 'の後、').
 string('in.ogg', 'で ').
 
 string('left.ogg', '左に曲ってください。').
-string('left_sh.ogg', '左を鋭角に曲ってください。').
-string('left_sl.ogg', '左をゆるやかに曲ってください。').
+string('left_sh.ogg', '大きく左手前に曲ってください。').
+string('left_sl.ogg', '斜め左に曲ってください。').
 string('right.ogg', '右に曲ってください。').
-string('right_sh.ogg', '右を鋭角に曲ってください。').
-string('right_sh.ogg', '右をゆるやかに曲ってください。').
+string('right_sh.ogg', '大きく右手前に曲ってください。').
+string('right_sl.ogg', '斜め右に曲ってください。').
 string('left_keep.ogg', '左に寄ってください。').
 string('right_keep.ogg', '右に寄ってください。').
 string('left_bear.ogg', '左に寄ってください。').   % in English the same as left_keep, may be different in other languages
@@ -79,7 +79,7 @@ string('th.ogg', '番目').
 
 % STRAIGHT/FOLLOW
 string('go_ahead.ogg', '直進してください。').
-string('follow.ogg', 'Follow the course of the road for').
+string('follow.ogg', '道なりに').
 
 % ARRIVE
 string('and_arrive_destination.ogg', '目的地です。').
@@ -110,8 +110,8 @@ string('pedestrian_crosswalk.ogg', '横断歩道 ').
 % OTHER PROMPTS
 string('location_lost.ogg', 'GPS信号が受信できません。').
 string('location_recovered.ogg', 'GPS信号が回復しました。').
-string('off_route.ogg', '前から道が違います。').
-string('back_on_route.ogg', 'あなたが戻ってルート上です ').
+string('off_route.ogg', 'ルートから外れました。').
+string('back_on_route.ogg', 'ルートに復帰しました。').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'に、').
