@@ -1817,6 +1817,8 @@ mycpname dog_park entertainment_dog_park.png
 mycpname ski_resort entertainment_ski_resort.png
 mycpname bandstand entertainment_bandstand.png
 
+## Club
+mycpname club_sport club_sport.png
 
 # mygroup custom_id icons8 #TODO
 mygroup user_defined icons8_user.png
