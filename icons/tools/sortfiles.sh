@@ -501,6 +501,11 @@ mycpname subway_bucharest subway_subway_bucharest.png
 mycpname subway_losangeles subway_subway_losangeles.png
 mycpname subway_sofia subway_subway_sofia.png
 mycpname subway_taipei subway_subway_taipei.png
+mycpname subway_santiago subway_subway_santiago.png
+mycpname subway_valparaiso subway_subway_valparaiso.png
+mycpname subway_seoul subway_subway_seoul.png
+mycpname subway_philadelphia subway_subway_philadelphia.png
+mycpname subway_philadelphia_patco subway_subway_philadelphia_patco.png
 
 mycp aerialway station_small functional-icons_aerialway_station_small.png  #scale 0.25
 mycp aerialway station transport_aerialway_station.png  #scale 0.375
