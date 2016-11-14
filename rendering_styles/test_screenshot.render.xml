@@ -1,11 +1,60 @@
-<renderingStyle name="Depends-template" depends="default" defaultColor="#f1eae4" version="1">
+<renderingStyle name="Depends-template" depends="default" defaultColor="#e5e4e3" version="1">
 
 	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
 
+	<renderingAttribute name="defaultColor">
+		<!-- next line should should make background transparent for underlays to be visible, but this curretnly does not work as desired -->
+		<!-- To change default color completely you should do that also for tag="place" value="island" and tag="natural" value="land" (search this file) -->
+		<case noPolygons="true" attrColorValue="#e5e4e3"/>
+		<case attrColorValue="#e5e4e3">
+			<apply_if nightMode="true" attrColorValue="#002a2a"/>
+		</case>
+	</renderingAttribute>
+
 	<renderingConstant name="null" value="#00000000"/>
 
-	<renderingConstant name="landuseCommercialColorDay" value="#ff0000"/>
-	<renderingConstant name="landuseRetailColorDay" value="#ff0000"/>
+	<!-- Жилые -->
+	<renderingConstant name="landuseResidentialColor" value="#e5e4e3"/>
+
+	<!-- Цвет зданий -->
+	<renderingAttribute name="buildingColor">
+		<case nightMode="true" attrColorValue="#cccbca"/>
+		<case attrColorValue="#cccbca"/>
+	</renderingAttribute>
+
+	<!-- Цвет пешеходных линий -->
+	<renderingAttribute name="footwayColor">
+		<case attrColorValue="#b3b1b1">
+			<apply_if nightMode="true" attrColorValue="#b3b1b1"/>
+		</case>
+	</renderingAttribute>
+	<renderingConstant name="footwayStrokeWidth" value="1"/>
+
+    <!-- Стройка -->
+    <renderingAttribute name="landuseConstructionColor">
+		<case nightMode="true" attrColorValue="#b3b2b1"/>
+		<case attrColorValue="#b3b2b1"/>
+	</renderingAttribute>
+	<renderingConstant name="landuseCommercialColorDay" value="#e5e4e3"/>
+	<renderingConstant name="landuseRetailColorDay" value="#e5e4e3"/>
+    
+    <!-- Парки -->
+	<renderingConstant name="parkColorDay" value="#aed1a0"/>
+	<renderingConstant name="parkStrokeColorDay" value="#b6d9af"/>
+	<renderingConstant name="parkColorNight" value="#000000"/>
+
+	<!-- Forest -->
+	<renderingAttribute name="woodColor">
+		<case attrColorValue="#aed1a0">
+			<apply_if nightMode="true" attrColorValue="#001122"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="forestColor">
+		<case attrColorValue="#9dd57c">
+			<apply_if nightMode="true" attrColorValue="#001122"/>
+		</case>
+	</renderingAttribute>
+
 
 </renderingStyle>
