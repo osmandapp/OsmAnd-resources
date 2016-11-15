@@ -53,10 +53,10 @@
 		<!-- <attribute name="relaxNodesIfStartDistSmallCoeff" value="2.5"/>  -->
 		<!-- New ROUTING API -->
 
-<!--		<parameter id="bike_type" name="Bike type" description="Bike type" type="numeric" values="0,1,2" valueDescriptions="City bike,Balance,Fast bike"/>-->
+		<parameter id="bike_type" name="Bike type" description="Bike type" type="numeric" values="0,1,2" valueDescriptions="City bike,Balance,Fast bike"/>
 
-		<parameter id="prefer_main_highways" name="Prefer main highways" description="Prefer main highways" type="boolean"/>
-		<parameter id="avoid_traffic_signals" name="Less Traffic Signals - Less Main Roads" description="Avoid Traffic Signals" type="boolean"/>
+<!--		<parameter id="prefer_main_highways" name="Prefer main highways" description="Prefer main highways" type="boolean"/>
+		<parameter id="avoid_traffic_signals" name="Less Traffic Signals - Less Main Roads" description="Avoid Traffic Signals" type="boolean"/>-->
 		<parameter id="avoid_unpaved" name="Avoid unpaved roads" description="Avoid unpaved roads" type="boolean"/>
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_stairs" name="Avoid stairs" description="Avoid stairs" type="boolean"/>
@@ -156,7 +156,7 @@
 			<select value="1"  t="highway" v="steps"/>
 			<select value="3"  t="route"   v="ferry"/>
 			<select value="5"  t="bicycle" v="dismount"/>
-			<if param="prefer_main_highways">
+			<eq value1="2" value2=":bike_type">
 				<select value="19" t="highway" v="motorway"/>
 				<select value="19" t="highway" v="motorway_link"/>
 				<select value="19" t="highway" v="trunk"/>
@@ -178,13 +178,13 @@
 				<select value="22" t="highway" v="track"/>
 				<select value="13" t="highway" v="path"/>
 				<select value="11" t="highway" v="footway"/>
-			</if>
+			</eq>
 			<select value="5" t="highway" v="motorway"/>
 			<select value="5" t="highway" v="motorway_link"/>
 			<select value="5" t="highway" v="trunk"/>
 			<select value="5" t="highway" v="trunk_link"/>
 
-			<if param="avoid_traffic_signals">
+			<eq value1="0" value2=":bike_type">
 				<select value="7" t="highway" v="primary"/>
 				<select value="7" t="highway" v="primary_link"/>
 				<select value="9" t="highway" v="secondary"/>
@@ -197,7 +197,7 @@
 				<select value="22" t="highway" v="track"/>
 				<select value="19" t="highway" v="path"/>
 				<select value="18.8" t="highway" v="footway"/>
-			</if>
+			</eq>
 
 
 			<select value="8" t="highway" v="primary"/>
@@ -335,11 +335,11 @@
 				<select value="-1" t="barrier" v="border_control"/>
 			</if>
 
-			<if param="avoid_traffic_signals">
+			<eq value1="0" value2=":bike_type">
 				<select value="45" t="crossing" v="traffic_signals"/>
 				<select value="45" t="crossing" v="island;traffic_signals"/>
 				<select value="48" t="highway" v="traffic_signals"/>
-			</if>
+			</eq>
 
 			<select value="2" t="crossing" v="traffic_signals"/>
 			<select value="5" t="crossing" v="uncontrolled"/>
