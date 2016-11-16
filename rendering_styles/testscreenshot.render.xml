@@ -297,14 +297,14 @@
 
 
     <!-- Трамвайные и жд пути  -->
-    <renderingConstant name="routeTramColor" value="#ff8800"/>
+	<renderingConstant name="routeTramColor" value="#ff8800"/>
 	<renderingConstant name="routeTramColorNight" value="#0000ff"/>
 	<renderingConstant name="routeTrainColor" value="#8c3f01"/>
 	<renderingConstant name="routeTrainColorNight" value="#cb6e23"/>
 
 
-    <!-- Парковки -->
-    <renderingConstant name="parkingColorDay" value="$defaultColor"/>
+	<!-- Парковки -->
+	<renderingConstant name="parkingColorDay" value="$defaultColor"/>
 	<renderingConstant name="parkingColorNight" value="#36455a"/>
 	<renderingConstant name="parkingPrivateColorDay" value="#77f6eeb7"/>
 	<renderingConstant name="parkingPrivateColorNight" value="#7741536c"/>
@@ -312,12 +312,15 @@
 	<renderingConstant name="parkingCustomersColorNight" value="#7741536c"/>
 	<renderingConstant name="bicycleParkingColorDay" value="#f6eeb7"/>
 	<renderingConstant name="bicycleParkingColorNight" value="#36455a"/>
-    
-    <!-- Спортивные площадки, футбольные поля -->
-    <renderingConstant name="golfCourseColorDay" value="#b5e3b5"/>
-	<renderingConstant name="golfCourseColorDayStroke" value="#9db487"/>
 
-	<!-- Вело трек -->
+	<!-- Спортивные площадки -->
+	<renderingConstant name="golfCourseColorDay" value="#b5e3b5"/>
+	<renderingConstant name="golfCourseColorDayStroke" value="#9db487"/>
+	<!-- Футбольные поля -->
+	<renderingConstant name="pitchColorDay" value="$defaultColor"/>
+	<renderingConstant name="pitchColorDayStroke" value="#b3b1b1"/>
+
+	<!-- Спортивный трек -->
 	<renderingConstant name="leisureTrackColorDay" value="#ffffff"/>
 	<renderingConstant name="leisureTrackColorNight" value="#33599682"/>
 
@@ -325,48 +328,8 @@
 	<renderingConstant name="leisureTrackColorDayStroke" value="$defaultColor"/>
 	<renderingConstant name="leisureTrackColorNightStroke" value="#599682"/>
 
-    <!-- Футбольные поля -->
-	<renderingConstant name="pitchColorDay" value="$defaultColor"/>
-	<renderingConstant name="pitchColorDayStroke" value="#b3b1b1"/>
 
-	<!-- Спортивные стадионы -->
-	<polygon>
-		<switch>
-				<case minzoom="13" tag="leisure" value="stadium" color="$defaultColor"/>
-				<case minzoom="13" tag="leisure" value="sports_centre" color="$defaultColor"/>
-				<apply_if nightMode="true" color="#04382c"/>
-			</switch>
-	</polygon>
-
-	<!-- Aeroway -->
-			<switch minzoom="12">
-				<case tag="aeroway" value="aerodrome" color="$defaultColor">
-				<apply_if additional="aerodrome:type=military" shader="danger" color_2="#c8ffa0c0" strokeWidth_2="1:1"/>
-					<apply_if nightMode="true" shader="danger_night" color="#80a0a0a9"/>
-				</case>
-				<case tag="abandoned:aeroway" value="aerodrome" shader="diagonal_gray_shader">
-					<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
-				</case>
-			</switch>
-			<case minzoom="14" tag="aeroway" value="terminal" color="#cc99ff" color_2="#66444444" strokeWidth_2="0.5" >
-				<apply_if nightMode="true" color="#7951a2" color_2="#a0a0a0"/>
-			</case>
-			<case minzoom="13" tag="aeroway" value="apron" color="#cccbca">
-				<apply_if nightMode="true" color="#887c88"/>
-			</case>
-			<switch minzoom="13">
-				<case tag="aeroway" value="runway" color="#bbbbcc">
-					<apply_if nightMode="true" color="#90909e"/>
-				</case>
-				<case tag="abandoned:aeroway" value="runway" color="#77bbbbbb">
-					<apply_if nightMode="true" color="#99909090"/>
-				</case>
-			</switch>
-			<case minzoom="18" tag="aeroway" value="helipad" color="#55aaaaaa" color_2="#999999" strokeWidth_2="0.5">
-				<apply_if nightMode="true" color="#88555555" color_2="#666666"/>
-			</case>	
-
-    <order>
+	<order>
 		<!-- Point 101-200 -->
 		<switch area="false" point="true" objectType="1" order="128">
 		</switch>
@@ -384,12 +347,19 @@
 	</order>
 
 	<polygon>
+
+		<!-- Спортивные стадионы -->
+		<switch>
+			<case minzoom="13" tag="leisure" value="stadium" color="$defaultColor"/>
+			<case minzoom="13" tag="leisure" value="sports_centre" color="$defaultColor"/>
+			<apply_if nightMode="true" color="#04382c"/>
+		</switch>
 		<!-- Кладбища -->
 		<case minzoom="12" tag="landuse" value="cemetery" color="$woodColor"/>
 
 		<!-- Зоопарк shader="zoo_shader" -->
 		<case minzoom="12" tag="tourism" value="zoo" color="$woodColor">
-				<apply_if nightMode="true" shader="" color="#5d8358"/>
+			<apply_if nightMode="true" shader="" color="#5d8358"/>
 		</case>
 
 		<!-- Сады и тд shader="allotments_small" -->
@@ -401,8 +371,35 @@
 
 		<!-- Дикий кустарник shader="scrub" -->
 		<case minzoom="12" tag="natural" value="scrub" color="$woodColor"/>
+
+		<!-- Aeroway -->
+		<switch minzoom="12">
+			<case tag="aeroway" value="aerodrome" color="$defaultColor">
+			<apply_if additional="aerodrome:type=military" shader="danger" color_2="#c8ffa0c0" strokeWidth_2="1:1"/>
+				<apply_if nightMode="true" shader="danger_night" color="#80a0a0a9"/>
+			</case>
+			<case tag="abandoned:aeroway" value="aerodrome" shader="diagonal_gray_shader">
+				<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
+			</case>
+		</switch>
+		<case minzoom="14" tag="aeroway" value="terminal" color="#cc99ff" color_2="#66444444" strokeWidth_2="0.5" >
+			<apply_if nightMode="true" color="#7951a2" color_2="#a0a0a0"/>
+		</case>
+		<case minzoom="13" tag="aeroway" value="apron" color="#cccbca">
+			<apply_if nightMode="true" color="#887c88"/>
+		</case>
+		<switch minzoom="13">
+			<case tag="aeroway" value="runway" color="#bbbbcc">
+				<apply_if nightMode="true" color="#90909e"/>
+			</case>
+			<case tag="abandoned:aeroway" value="runway" color="#77bbbbbb">
+				<apply_if nightMode="true" color="#99909090"/>
+			</case>
+		</switch>
+		<case minzoom="18" tag="aeroway" value="helipad" color="#55aaaaaa" color_2="#999999" strokeWidth_2="0.5">
+			<apply_if nightMode="true" color="#88555555" color_2="#666666"/>
+		</case>
 	</polygon>
 
-   
 
 </renderingStyle>
