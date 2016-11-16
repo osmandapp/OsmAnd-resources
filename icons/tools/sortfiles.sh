@@ -514,6 +514,8 @@ mycpname subway_cleveland subway_subway_cleveland.png
 mycpname subway_miami subway_subway_miami.png
 mycpname subway_newyork_path subway_subway_newyork_path.png
 mycpname subway_puerto_rico subway_subway_puerto_rico.png
+mycpname subway_mexico subway_subway_mexico.png
+mycpname subway_sanpaulo subway_subway_sanpaulo.png
 
 mycp aerialway station_small functional-icons_aerialway_station_small.png  #scale 0.25
 mycp aerialway station transport_aerialway_station.png  #scale 0.375
