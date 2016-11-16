@@ -16,19 +16,26 @@
 
 
 	<!-- Жилые landuse-->
-	<renderingConstant name="landuseResidentialColor" value="#e5e4e3"/>
+	<renderingConstant name="landuseResidentialColor" value="$defaultColor"/>
 
 	<!-- Сельская местность -->
     <renderingAttribute name="landuseResidentialRuralColor">
 		<case nightMode="true" attrColorValue="#3B3E3B"/>
-		<case attrColorValue="#e5e4e3"/>
+		<case attrColorValue="$defaultColor"/>
 	</renderingAttribute>
+	
+	<!-- Фермы -->
+    <renderingConstant name="farmColorDay" value="#DCE2AA"/>
 
-	<!-- Земля под сады и огороды -->
+	<!-- Земля под сады и огороды bde3cb -->
     <renderingAttribute name="landuseAllotmentsColor">
 		<case nightMode="true" attrColorValue="#3b3b3b"/>
-		<case attrColorValue="#bde3cb"/>
+		<case attrColorValue="$defaultColor"/>
 	</renderingAttribute>
+
+	<!-- Места для прогулок -->
+	<renderingConstant name="leisureCommonColorDay" value="$woodColor"/>
+
 
 	<!-- Цвет зданий -->
 	<renderingAttribute name="buildingColor">
@@ -37,22 +44,13 @@
 	</renderingAttribute>
 
 
-	<!-- Цвет пешеходных линий -->
-	<renderingAttribute name="footwayColor">
-		<case attrColorValue="#b3b1b1">
-			<apply_if nightMode="true" attrColorValue="#b3b1b1"/>
-		</case>
-	</renderingAttribute>
-	<renderingConstant name="footwayStrokeWidth" value="1"/>
-
-
     <!-- Стройка -->
     <renderingAttribute name="landuseConstructionColor">
 		<case nightMode="true" attrColorValue="#b3b2b1"/>
-		<case attrColorValue="#e5e4e3"/>
+		<case attrColorValue="$defaultColor"/>
 	</renderingAttribute>
-	<renderingConstant name="landuseCommercialColorDay" value="#e5e4e3"/>
-	<renderingConstant name="landuseRetailColorDay" value="#e5e4e3"/>
+	<renderingConstant name="landuseCommercialColorDay" value="$defaultColor"/>
+	<renderingConstant name="landuseRetailColorDay" value="$defaultColor"/>
  
     <!-- Здания заброшенные -->
     <renderingAttribute name="buildingAbandonedColor">
@@ -63,7 +61,7 @@
     <!-- Industrila - площади -->
     <renderingAttribute name="landuseIndustrialColor">
 		<case nightMode="true" attrColorValue="#302d2d"/>
-		<case attrColorValue="#e5e4e3"/>
+		<case attrColorValue="$defaultColor"/>
 	</renderingAttribute>
 
 
@@ -81,7 +79,6 @@
 	
 	<!-- Больницы - #f0f0d8 -->
 	<renderingConstant name="amenityHospitalColorDay" value="#e5e4e3"/>
-
 
 
     <!-- Стадионы, зоны отдыха #b0b6fdb6 -->
@@ -118,34 +115,97 @@
 	<!-- Национальные парки -->	 
 	<renderingConstant name="boundaryNationalParkColor" value="#000000"/>
 
+ 
+	<!-- Цвет пешеходных линий -->
+	<renderingAttribute name="footwayColor">
+		<case attrColorValue="#b3b1b1">
+			<apply_if nightMode="true" attrColorValue="#b3b1b1"/>
+		</case>
+	</renderingAttribute>
+	<renderingConstant name="footwayStrokeWidth" value="1"/>
 
-	<!-- Кладбища -->
-	<polygon>
-		<case minzoom="12" tag="landuse" value="cemetery" color="$woodColor"/>
-	</polygon>
 
-    
+
 <!-- Дороги -->
+
+    <!-- Trunk  -->
+	<renderingAttribute name="trunkRoadColor">
+		<case roadStyle="orange" attrColorValue="#ffae4b">
+			<apply_if nightMode="true" attrColorValue="#cf692d"/>
+		</case>
+		<case attrColorValue="#ff8095">
+			<apply_if nightMode="true" attrColorValue="#cb5662"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="trunkRoadLowZoomColor">
+		<case roadStyle="orange" attrColorValue="#ffae4b">
+			<apply_if nightMode="true" attrColorValue="#cf692d"/>
+		</case>
+		<case attrColorValue="#ff8095">
+			<apply_if nightMode="true" attrColorValue="#cb5662"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="trunkRoadShadowColor">
+		<case roadStyle="boldOutline" attrColorValue="#000000">
+			<apply_if nightMode="true" attrColorValue="$null"/>
+		</case>
+		<case showAccess="true" additional="motorroad=yes" attrColorValue="#5f5fff"/>
+		<case attrColorValue="#b35968">
+			<case streetLighting="true" attrColorValue="#555555"/>
+			<apply_if nightMode="true" attrColorValue="$null"/>
+		</case>
+		<apply_if additional="construction=yes" attrColorValue="$null"/>
+	</renderingAttribute>
+
+
+    <!-- Primary  -->
+	<renderingAttribute name="primaryRoadColor">
+		<case roadStyle="orange" attrColorValue="#f8de93">
+			<apply_if nightMode="true" attrColorValue="#d19a66"/>
+		</case>
+		<case attrColorValue="#ffaa80">
+			<apply_if nightMode="true" attrColorValue="#c7675a"/>
+		</case>
+	</renderingAttribute>
+
+	<renderingAttribute name="primaryRoadLowZoomColor">
+		<case roadStyle="orange" attrColorValue="#f8de93">
+			<apply_if nightMode="true" attrColorValue="#d19a66"/>
+		</case>
+		<case roadStyle="germanRoadAtlas" attrColorValue="#ff80a0">
+			<apply_if nightMode="true" attrColorValue="#ff80a0">
+				<apply_if appMode="car" attrColorValue="#cc6882"/>
+			</apply_if>
+		</case>
+		<case roadStyle="americanRoadAtlas" attrColorValue="#ff827c">
+			<apply_if nightMode="true" attrColorValue="#be4841"/>
+		</case>
+		<case roadStyle="highContrastRoads" attrColorValue="#c00828">
+			<apply_if nightMode="true" attrColorValue="#c00828"/>
+		</case>
+		<case attrColorValue="#ffaa80">
+			<apply_if nightMode="true" attrColorValue="#c7675a"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="primaryRoadShadowColor">
+		<case roadStyle="boldOutline" attrColorValue="#000000">
+			<apply_if nightMode="true" attrColorValue="$null"/>
+		</case>
+		<case showAccess="true" additional="motorroad=yes" attrColorValue="#5f5fff"/>
+		<case attrColorValue="#b37759">
+			<case streetLighting="true" attrColorValue="#555555"/>
+		</case>
+	</renderingAttribute>
 
     <!-- Secondary - Важная дорога -->
 	<renderingAttribute name="secondaryRoadColor">
 		<case roadStyle="orange" attrColorValue="#f8de93">
 			<apply_if nightMode="true" attrColorValue="#d19a66"/>
 		</case>
-		<case roadStyle="germanRoadAtlas" attrColorValue="#ffd080">
-			<apply_if nightMode="true" attrColorValue="#ffd080">
-				<apply_if appMode="car" attrColorValue="#cca568"/>
-			</apply_if>
-		</case>
-		<case roadStyle="highContrastRoads" attrColorValue="#ff8000">
-			<apply_if nightMode="true" attrColorValue="#ff8000"/>
-		</case>
 		<case attrColorValue="#ffd080">
 			<apply_if nightMode="true" attrColorValue="#c99870"/>
 		</case>
 	</renderingAttribute>
-
-	<!-- Secondary - Важная дорога - Большой зум #ffd080 -->
 	<renderingAttribute name="secondaryRoadLowZoomColor">
 		<case roadStyle="orange" attrColorValue="#f8de93">
 			<apply_if nightMode="true" attrColorValue="#d19a66"/>
@@ -159,14 +219,7 @@
 			<apply_if nightMode="true" attrColorValue="$null"/>
 		</case>
 		<case showAccess="true" additional="motorroad=yes" attrColorValue="#5f5fff"/>
-		<case roadStyle="orange" attrColorValue="#a35e27">
-			<apply_if nightMode="true" attrColorValue="#b8a56d"/>
-		</case>
-		<case roadStyle="germanRoadAtlas" attrColorValue="#767676">
-			<apply_if nightMode="true" attrColorValue="#464646"/>
-			<!-- NOTE: Touring view's <renderingConstant name="shadowColorLowZoom" value="#262626"/> still ignored here for now -->
-		</case>
-		<case attrColorValue="#77464646">
+		<case attrColorValue="#bb999999">
 			<case streetLighting="true" attrColorValue="#444444">
 				<apply_if nightMode="true" attrColorValue="#ffffff"/>
 			</case>
@@ -251,7 +304,7 @@
 
 
     <!-- Парковки -->
-    <renderingConstant name="parkingColorDay" value="#e5e4e3"/>
+    <renderingConstant name="parkingColorDay" value="$defaultColor"/>
 	<renderingConstant name="parkingColorNight" value="#36455a"/>
 	<renderingConstant name="parkingPrivateColorDay" value="#77f6eeb7"/>
 	<renderingConstant name="parkingPrivateColorNight" value="#7741536c"/>
@@ -269,26 +322,25 @@
 	<renderingConstant name="leisureTrackColorNight" value="#33599682"/>
 
 	<!-- Обводка трека -->
-	<renderingConstant name="leisureTrackColorDayStroke" value="#e5e4e3"/>
+	<renderingConstant name="leisureTrackColorDayStroke" value="$defaultColor"/>
 	<renderingConstant name="leisureTrackColorNightStroke" value="#599682"/>
 
     <!-- Футбольные поля -->
-	<renderingConstant name="pitchColorDay" value="#e5e4e3"/>
+	<renderingConstant name="pitchColorDay" value="$defaultColor"/>
 	<renderingConstant name="pitchColorDayStroke" value="#b3b1b1"/>
 
 	<!-- Спортивные стадионы -->
 	<polygon>
 		<switch>
-				<case minzoom="13" tag="leisure" value="stadium" color="#e5e4e3"/>
-				<case minzoom="13" tag="leisure" value="sports_centre" color="#e5e4e3"/>
-				<!-- use semi-ransparent shader to better show area details: filter minzoom="10" color="#a0ffa0c0" color_2="#ffa0c0" strokeWidth_2=":2" tag="landuse" value="military"/ -->
+				<case minzoom="13" tag="leisure" value="stadium" color="$defaultColor"/>
+				<case minzoom="13" tag="leisure" value="sports_centre" color="$defaultColor"/>
 				<apply_if nightMode="true" color="#04382c"/>
 			</switch>
 	</polygon>
 
 	<!-- Aeroway -->
 			<switch minzoom="12">
-				<case tag="aeroway" value="aerodrome" color="#e5e4e3">
+				<case tag="aeroway" value="aerodrome" color="$defaultColor">
 				<apply_if additional="aerodrome:type=military" shader="danger" color_2="#c8ffa0c0" strokeWidth_2="1:1"/>
 					<apply_if nightMode="true" shader="danger_night" color="#80a0a0a9"/>
 				</case>
@@ -330,5 +382,27 @@
 			<case maxzoom="14" tag="railway" value="tram" order="-1"/>
 		</switch>
 	</order>
+
+	<polygon>
+		<!-- Кладбища -->
+		<case minzoom="12" tag="landuse" value="cemetery" color="$woodColor"/>
+
+		<!-- Зоопарк shader="zoo_shader" -->
+		<case minzoom="12" tag="tourism" value="zoo" color="$woodColor">
+				<apply_if nightMode="true" shader="" color="#5d8358"/>
+		</case>
+
+		<!-- Сады и тд shader="allotments_small" -->
+		<case minzoom="10" tag="landuse" value="allotments" color="$landuseAllotmentsColor" color_2="#8fbda0" strokeWidth_2=":1">
+			  <case minzoom="13" maxzoom="14" color="$landuseAllotmentsColor"/>
+			  <case minzoom="15" color="$landuseAllotmentsColor"/>
+			  <apply_if nightMode="true" shader="" color_2="#00510e"/>
+		</case>
+
+		<!-- Дикий кустарник shader="scrub" -->
+		<case minzoom="12" tag="natural" value="scrub" color="$woodColor"/>
+	</polygon>
+
+   
 
 </renderingStyle>
