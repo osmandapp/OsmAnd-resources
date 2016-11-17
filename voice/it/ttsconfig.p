@@ -52,7 +52,7 @@ string('make_uturn2.ogg', 'Si prega di tornare indietro ').
 string('make_uturn_wp.ogg', 'Quando possibile, fare inversione a u').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'a entrare in una rotonda').
+string('prepare_roundabout.ogg', 'entrare in una rotonda').
 string('roundabout.ogg', 'entrare nella rotonda, ').
 string('then.ogg', ', poi').
 string('and.ogg', 'e').
