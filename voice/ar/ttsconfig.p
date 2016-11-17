@@ -57,16 +57,16 @@ string('take.ogg', ' اتخاذ').
 string('exit.ogg', ' خروج').
 
 string('1st.ogg', ' الأول').
-string('2nd.ogg', ' ثانيا').
-string('3rd.ogg', ' ثلث').
-string('4th.ogg', ' رابع').
-string('5th.ogg', ' خامس').
+string('2nd.ogg', ' الثاني').
+string('3rd.ogg', ' الثالث').
+string('4th.ogg', ' الرابع').
+string('5th.ogg', ' الخامس').
 string('6th.ogg', ' السادس').
-string('7th.ogg', ' سابع').
-string('8th.ogg', ' ثامن').
-string('9th.ogg', ' التاسع منه').
+string('7th.ogg', ' السابع').
+string('8th.ogg', ' الثامن').
+string('9th.ogg', ' التاسع').
 string('10th.ogg', ' العاشر').
-string('11th.ogg', ' الحاديه عشر').
+string('11th.ogg', ' الحادي عشر').
 string('12th.ogg', ' الثاني عشر').
 string('13th.ogg', ' الثالث عشر').
 string('14th.ogg', ' الرابع عشر').
