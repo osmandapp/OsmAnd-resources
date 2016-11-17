@@ -51,6 +51,14 @@
 	</renderingAttribute>
 	<renderingConstant name="landuseCommercialColorDay" value="$defaultColor"/>
 	<renderingConstant name="landuseRetailColorDay" value="$defaultColor"/>
+    
+
+    <!-- Brownfield -->  
+	<renderingConstant name="brownfieldColorDay" value="$defaultColor"/>
+
+	<!-- Свалка -->
+	<renderingConstant name="landuseLandfillColorDay" value="$defaultColor"/>
+
  
     <!-- Здания заброшенные -->
     <renderingAttribute name="buildingAbandonedColor">
@@ -77,6 +85,30 @@
 		<case attrColorValue="#ff8800"/>
 	</renderingAttribute>
 
+	<!-- Гаражи -->
+	<renderingAttribute name="landuseGaragesColor">
+		<case nightMode="true" attrColorValue="#362d2d"/>
+		<case attrColorValue="$defaultColor"/>
+	</renderingAttribute>
+
+	<!-- Церкви -->
+	<renderingAttribute name="churchColor">
+		<case nightMode="true" attrColorValue="#685454"/>
+		<case attrColorValue="#000000"/>
+	</renderingAttribute>
+
+	<!-- Достопримечательности -->
+	<renderingAttribute name="attractionColor">
+		<case nightMode="true" attrColorValue="#3b3b3b"/>
+		<case attrColorValue="$defaultColor"/>
+	</renderingAttribute>
+	<renderingAttribute name="attractionStrokeColor">
+		<case nightMode="true" attrColorValue="#999999"/>
+		<case attrColorValue="#000000"/>
+	</renderingAttribute>
+	<renderingConstant name="attractionStrokeWidth" value="0.25"/>
+	<renderingConstant name="attractionStrokeWidth2" value="0"/>
+
 
 	<!-- Школы - #f0f0d8 -->
     <renderingConstant name="amenityEducationalColorDay" value="#e5e4e3"/>
@@ -88,7 +120,7 @@
 
 
     <!-- Стадионы, зоны отдыха #b0b6fdb6 -->
-    <renderingConstant name="leisureResortColorDay" value="#000000"/>
+    <renderingConstant name="leisureResortColorDay" value="$defaultColor"/>
 	<renderingConstant name="leisureResortColorNight" value="#000000"/>
 
     <!-- Парки -->
@@ -96,15 +128,15 @@
 	<renderingConstant name="parkStrokeColorDay" value="#b6d9af"/>
 	<renderingConstant name="parkColorNight" value="#000000"/>
 
-    
+    <!-- Парки под застройку -->
+	<renderingConstant name="greenfieldColorDay" value="$defaultColor"/>
+
     <!-- Открытые зеленые пространства - Пример на территории аэропорта cfeca8-->
 	<renderingConstant name="recreationGroundColorDay" value="#e5e4e3"/>
-
 
 	<!-- Трава -->
 	<renderingConstant name="grasslandColorDay" value="$woodColor"/>
     <renderingConstant name="grassColorDay" value="$woodColor"/>
-
 
 	<!-- Лес - Старый цвет мой: aed1a0 -->
 	<renderingAttribute name="woodColor">
@@ -120,6 +152,13 @@
 	
 	<!-- Национальные парки -->	 
 	<renderingConstant name="boundaryNationalParkColor" value="#000000"/>
+	
+	<!-- Вода #acd8f3 -->	 
+    <renderingAttribute name="waterColor">
+		<case nightMode="true" attrColorValue="#330099"/>
+		<case attrColorValue="#68CBED"/>
+	</renderingAttribute>
+	<renderingConstant name="waterwayDirectionIcon" value="arrow_blue_big_night"/>
 
  
 	<!-- Цвет пешеходных линий -->
@@ -390,8 +429,8 @@
 	<renderingConstant name="bicycleParkingColorNight" value="#36455a"/>
 
 	<!-- Спортивные площадки -->
-	<renderingConstant name="golfCourseColorDay" value="#b5e3b5"/>
-	<renderingConstant name="golfCourseColorDayStroke" value="#9db487"/>
+	<renderingConstant name="golfCourseColorDay" value="$woodColor"/>
+	<renderingConstant name="golfCourseColorDayStroke" value="$woodColor"/>
 	<!-- Футбольные поля -->
 	<renderingConstant name="pitchColorDay" value="$defaultColor"/>
 	<renderingConstant name="pitchColorDayStroke" value="#b3b1b1"/>
@@ -475,6 +514,23 @@
 		<case minzoom="18" tag="aeroway" value="helipad" color="#55aaaaaa" color_2="#999999" strokeWidth_2="0.5">
 			<apply_if nightMode="true" color="#88555555" color_2="#666666"/>
 		</case>
+
+		<!-- Территория плодового сада shader="orchard" -->
+		<case minzoom="12" tag="landuse" value="orchard" color="$woodColor">
+			<case minzoom="15" shader="orchard2">
+			<case additional="trees=olive_trees" shader="orchard_olive"/>
+			<case additional="trees=apple_trees" shader="orchard_apple"/>
+			<case additional="trees=almond_trees" shader="orchard_almond"/>
+			<case additional="trees=oil_palms" shader="orchard_oil_palms"/>
+			<case additional="trees=orange_trees" shader="orchard_orange"/>
+			<case additional="trees=banana_plants" shader="orchard_banana"/>
+			</case>
+		</case>
+
+		<!-- Заводы, ТЭЦ -->
+		<case tag="power" value="plant" color="$defaultColor"/>
+				<case tag="power" value="generator" color="$defaultColor"/>
+				<case tag="power" value="substation" color="$defaultColor"/>
 	</polygon>
 
 
