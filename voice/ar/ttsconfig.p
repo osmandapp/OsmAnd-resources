@@ -49,11 +49,11 @@ string('make_uturn.ogg', ' جعل بدوره U').
 string('make_uturn_wp.ogg', ' عندما يكون ذلك ممكنا، يرجى تقديم بدوره U').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', ' إدخال دوار').
-string('roundabout.ogg', ' دخول دوار،').
+string('prepare_roundabout.ogg', ' استعد للدخول في المسار الدائري في').
+string('roundabout.ogg', ' أُدخُل في المسار الدائري ثم أُسلُك').
 string('then.ogg', ' ، ثم').
 string('and.ogg', ' و').
-string('take.ogg', ' اتخاذ').
+string('take.ogg', ' أُسلُك').
 string('exit.ogg', ' المخرج').
 
 string('1st.ogg', ' الأول').
