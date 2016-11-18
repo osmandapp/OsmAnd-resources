@@ -37,7 +37,7 @@ string('left.ogg', ' انعطف لليسار').
 string('left_sh.ogg', ' اتجه إلى اليسار بشكل حاد').
 string('left_sl.ogg', ' اتجه إلى اليسار قليلا').
 string('right.ogg', ' انعطف يمينا').
-string('right_sh.ogg', ' tيمينا بشكل حاد ').
+string('right_sh.ogg', ' يمينا بشكل حاد').
 string('right_sl.ogg', ' يمينا قليلا').
 string('left_keep.ogg', ' الزم اليسار').
 string('right_keep.ogg', ' الزم اليمين').
@@ -54,16 +54,16 @@ string('roundabout.ogg', ' دخول دوار،').
 string('then.ogg', ' ، ثم').
 string('and.ogg', ' و').
 string('take.ogg', ' اتخاذ').
-string('exit.ogg', ' خروج').
+string('exit.ogg', ' المخرج').
 
 string('1st.ogg', ' الأول').
-string('2nd.ogg', ' ثانيا').
-string('3rd.ogg', ' ثلث').
-string('4th.ogg', ' رابع').
-string('5th.ogg', ' خامس').
+string('2nd.ogg', ' الثاني').
+string('3rd.ogg', ' الثالث').
+string('4th.ogg', ' الرابع').
+string('5th.ogg', ' الخامس').
 string('6th.ogg', ' السادس').
-string('7th.ogg', ' سابع').
-string('8th.ogg', ' ثامن').
+string('7th.ogg', ' السابع').
+string('8th.ogg', ' الثامن').
 string('9th.ogg', ' التاسع منه').
 string('10th.ogg', ' العاشر').
 string('11th.ogg', ' الحاديه عشر').
