@@ -518,6 +518,10 @@ mycpname subway_mexico subway_subway_mexico.png
 mycpname subway_sanpaulo subway_subway_sanpaulo.png
 mycpname subway_caracas subway_subway_caracas.png
 mycpname subway_yokohama subway_subway_yokohama.png
+mycpname subway_yokohama_minatomirai subway_subway_yokohama_minatomirai.png
+mycpname subway_sapporo subway_subway_sapporo.png
+mycpname subway_medellin subway_subway_medellin.png
+mycpname subway_monterrey subway_subway_monterrey.png
 
 mycp aerialway station_small functional-icons_aerialway_station_small.png  #scale 0.25
 mycp aerialway station transport_aerialway_station.png  #scale 0.375
