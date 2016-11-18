@@ -192,6 +192,11 @@
 		<case attrColorValue="#f1eae4"/>
 	</renderingAttribute>
 
+	<!-- Ferry #7777FF -->
+	<renderingAttribute name="routeFerryColor">
+		<case attrColorValue="#7777FF"/>
+	</renderingAttribute>
+
 
 <!-- Дороги -->
 
@@ -452,7 +457,6 @@
 	<renderingConstant name="leisureTrackColorDayStroke" value="$defaultColor"/>
 	<renderingConstant name="leisureTrackColorNightStroke" value="#599682"/>
 
-
 	<order>
 		<!-- Point 101-200 -->
 		<switch area="false" point="true" objectType="1" order="128">
@@ -500,8 +504,16 @@
 			<case minzoom="13" tag="leisure" value="sports_centre" color="$defaultColor"/>
 			<apply_if nightMode="true" color="#04382c"/>
 		</switch>
-		<!-- Кладбища -->
+		<!-- Кладбища 
 		<case minzoom="12" tag="landuse" value="cemetery" color="$woodColor"/>
+        -->
+        <case minzoom="12" tag="landuse" value="cemetery" shader="cemetery_small">
+			   <case minzoom="15" shader="cemetery">
+			   <case additional="religion=christian" shader="cemetery_christian"/>
+			   <case additional="religion=muslim" shader="cemetery_muslim"/>
+			   <case additional="religion=jewish" shader="cemetery_jewish"/>
+			   </case>
+		</case>
 
 		<!-- Зоопарк shader="zoo_shader" -->
 		<case minzoom="12" tag="tourism" value="zoo" color="$woodColor">
@@ -563,6 +575,8 @@
 				<case tag="power" value="generator" color="$defaultColor"/>
 				<case tag="power" value="substation" color="$defaultColor"/>
 	</polygon>
+	
 
+	
 
 </renderingStyle>
