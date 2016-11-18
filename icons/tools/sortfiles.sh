@@ -517,6 +517,7 @@ mycpname subway_puerto_rico subway_subway_puerto_rico.png
 mycpname subway_mexico subway_subway_mexico.png
 mycpname subway_sanpaulo subway_subway_sanpaulo.png
 mycpname subway_caracas subway_subway_caracas.png
+mycpname subway_yokohama subway_subway_yokohama.png
 
 mycp aerialway station_small functional-icons_aerialway_station_small.png  #scale 0.25
 mycp aerialway station transport_aerialway_station.png  #scale 0.375
