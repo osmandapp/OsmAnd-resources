@@ -106,7 +106,7 @@ string('border_control.ogg', 'Grenzkontrolle ').
 string('railroad_crossing.ogg', 'Bahnübergang ').
 string('traffic_calming.ogg', 'Verkehrsberuhigung ').
 string('toll_booth.ogg', 'Mautstelle ').
-string('stop.ogg', 'Stoppzeichen ').
+string('stop.ogg', 'Stoppschild ').
 string('pedestrian_crosswalk.ogg', 'Fusgängerübergang ').
 
 % OTHER PROMPTS
