@@ -277,7 +277,7 @@
 		<case roadStyle="orange" attrColorValue="#f8de93">
 			<apply_if nightMode="true" attrColorValue="#d19a66"/>
 		</case>
-		<case attrColorValue="#ffaa80">
+		<case attrColorValue="#ff9966">
 			<apply_if nightMode="true" attrColorValue="#c7675a"/>
 		</case>
 	</renderingAttribute>
@@ -286,7 +286,7 @@
 		<case roadStyle="orange" attrColorValue="#f8de93">
 			<apply_if nightMode="true" attrColorValue="#d19a66"/>
 		</case>	
-		<case attrColorValue="#ffaa80">
+		<case attrColorValue="#ff9966">
 			<apply_if nightMode="true" attrColorValue="#c7675a"/>
 		</case>
 	</renderingAttribute>
@@ -431,6 +431,36 @@
 		<case attrColorValue="#969696"/>
 	</renderingAttribute>
 
+    <!-- Пешеходные #ececec $defaultColor -->
+	<renderingAttribute name="pedestrianRoadColor">
+		<case appMode="car" attrColorValue="#f7d4d4">
+			<apply_if nightMode="true" attrColorValue="#412e2e"/>
+		</case>
+		<case appMode="pedestrian" attrColorValue="#dddde8">
+			<apply_if nightMode="true" attrColorValue="#727285"/>
+		</case>
+		<case roadStyle="highContrastRoads" attrColorValue="#fff3ba">
+			<apply_if additional="construction=yes" attrColorValue="#f9dd76"/>
+			<apply_if nightMode="true" attrColorValue="#b0a781"/>
+		</case>
+		<case attrColorValue="#ffffff">
+			<apply_if additional="construction=yes" attrColorValue="#cccccc"/>
+			<apply_if nightMode="true" attrColorValue="#727272"/>
+		</case>
+	</renderingAttribute>
+
+	<renderingAttribute name="pedestrianRoadShadowColor">
+		<case appMode="car" attrColorValue="#44444444">
+			<apply_if nightMode="true" attrColorValue="$null"/>
+		</case>
+		<case roadStyle="boldOutline" attrColorValue="#000000">
+			<apply_if nightMode="true" attrColorValue="$null"/>
+		</case>
+		<case attrColorValue="#b8b8cc">
+			<apply_if nightMode="true" attrColorValue="#999999"/>
+		</case>
+	</renderingAttribute>
+
 
 
     <!-- Трамвайные и жд пути  -->
@@ -443,11 +473,14 @@
 	<!-- Парковки -->
 	<renderingConstant name="parkingColorDay" value="$defaultColor"/>
 	<renderingConstant name="parkingColorNight" value="#36455a"/>
-	<renderingConstant name="parkingPrivateColorDay" value="#77f6eeb7"/>
+
+	<renderingConstant name="parkingPrivateColorDay" value="$defaultColor"/>
 	<renderingConstant name="parkingPrivateColorNight" value="#7741536c"/>
-	<renderingConstant name="parkingCustomersColorDay" value="#77f6eeb7"/>
+
+	<renderingConstant name="parkingCustomersColorDay" value="$defaultColor"/>
 	<renderingConstant name="parkingCustomersColorNight" value="#7741536c"/>
-	<renderingConstant name="bicycleParkingColorDay" value="#f6eeb7"/>
+
+	<renderingConstant name="bicycleParkingColorDay" value="$defaultColor"/>
 	<renderingConstant name="bicycleParkingColorNight" value="#36455a"/>
 
 	<!-- Спортивные площадки -->
@@ -570,6 +603,14 @@
 					<apply_if nightMode="true" color="#002a2a"/>
 				</apply>
 		</switch>
+
+	    <!-- Protected Area #4400ae3d -->
+		<case minzoom="8" tag="boundary" value="protected_area" shader="protected_area">
+					<apply color_2="$defaultColor">
+						<case maxzoom="13" strokeWidth_2="2:2" pathEffect_2="10_5"/>
+						<case minzoom="14" strokeWidth_2="3.5:3.5" pathEffect_2="13_8"/>
+					</apply>
+		</case>
 
 	</polygon>
 
