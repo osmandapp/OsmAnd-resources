@@ -462,12 +462,67 @@
 	</renderingAttribute>
 
 
-
     <!-- Трамвайные и жд пути  -->
 	<renderingConstant name="routeTramColor" value="#ff8800"/>
 	<renderingConstant name="routeTramColorNight" value="#0000ff"/>
 	<renderingConstant name="routeTrainColor" value="#8c3f01"/>
 	<renderingConstant name="routeTrainColorNight" value="#cb6e23"/>
+
+	<renderingConstant name="subwayLineDefaultColorDay" value="#a24141"/>
+	<renderingConstant name="subwayLineDefaultColorNight" value="#7b0000"/>
+
+	<renderingAttribute name="subwayLineShadowColor">
+		<case nightMode="true" attrColorValue="#aa000000"/>
+		<case attrColorValue="#f1eae4"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="subwayRedColor">
+		<case attrColorValue="#ff0000"/>
+	</renderingAttribute>
+	<renderingAttribute name="subwayBrownColor">
+		<case nightMode="true" attrColorValue="#b46100"/>
+		<case attrColorValue="#ba7007"/>
+	</renderingAttribute>
+	<renderingAttribute name="subwayOrangeColor">
+		<case nightMode="true" attrColorValue="#ffb631"/>
+		<case attrColorValue="#ff7200"/>
+	</renderingAttribute>
+	<renderingAttribute name="subwayDarkyellowColor">
+		<case nightMode="true" attrColorValue="#737812"/>
+		<case attrColorValue="#afb61c"/>
+	</renderingAttribute>
+	<renderingAttribute name="subwayYellowColor">
+		<case nightMode="true" attrColorValue="#f3e615"/>
+		<case attrColorValue="#ffff00"/>
+	</renderingAttribute>
+	<renderingAttribute name="subwayLightgreenColor">
+		<case nightMode="true" attrColorValue="#95ff79"/>
+		<case attrColorValue="#6cb52b"/>
+	</renderingAttribute>
+	<renderingAttribute name="subwayGreenColor">
+		<case nightMode="true" attrColorValue="#38c012"/>
+		<case attrColorValue="#00842b"/>
+	</renderingAttribute>
+	<renderingAttribute name="subwayLightblueColor">
+		<case nightMode="true" attrColorValue="#7fe5ff"/>
+		<case attrColorValue="#2ec6ff"/>
+	</renderingAttribute>
+	<renderingAttribute name="subwayBlueColor">
+		<case nightMode="true" attrColorValue="#6d74ff"/>
+		<case attrColorValue="#4e4eff"/>
+	</renderingAttribute>
+	<renderingAttribute name="subwayPurpleColor">
+		<case nightMode="true" attrColorValue="#cd5efb"/>
+		<case attrColorValue="#a71de1"/>
+	</renderingAttribute>
+	<renderingAttribute name="subwayGrayColor">
+		<case nightMode="true" attrColorValue="#c6c6c6"/>
+		<case attrColorValue="#808080"/>
+	</renderingAttribute>
+	<renderingAttribute name="subwayBlackColor">
+		<case nightMode="true" attrColorValue="#000000"/>
+		<case attrColorValue="#333333"/>
+	</renderingAttribute>
 
 
 	<!-- Парковки -->
@@ -513,6 +568,9 @@
 		<!-- Line 11-100 -->
 		<switch area="false" objectType="2" order="80">
 			<case maxzoom="14" tag="railway" value="tram" order="-1"/>
+			<case subwayMode="false" maxzoom="18" tag="railway" value="rail" additional="network=rer" order="-1"/>
+			<case subwayMode="false" maxzoom="18" tag="railway" value="rail" additional="route=subway" order="-1"/>
+			<case subwayMode="false" maxzoom="18" tag="railway" value="subway" order="-1"/>
 		</switch>
 	</order>
 
@@ -626,24 +684,47 @@
 
 	<line>
         <!-- Subway -->
-		<switch>
-			<case minzoom="11" tag="railway" value="subway" order="-1">
+		<switch subwayMode="true">
+			<case minzoom="11" tag="railway" value="subway">
 				<apply color="#999999" strokeWidth="1:1"/>
 				<apply_if subwayMode="false">
 					<apply_if additional="tunnel=yes" pathEffect="5_3"/>
 					<apply_if additional="bridge=yes" color__1="#000000" strokeWidth__1="3.5:3.5" color_0="#ffffff" strokeWidth_0="2.5:3"/>
 				</apply_if>
 			</case>
-			<case subwayMode="true" minzoom="11" tag="railway" value="rail" additional="route=subway">
+			<case minzoom="11" tag="railway" value="rail" additional="route=subway">
 				<apply color="#999999" strokeWidth="1:1"/>
 			</case>
-			<case subwayMode="true" minzoom="11" tag="railway" value="rail" additional="network=rer">
+			<case minzoom="11" tag="railway" value="rail" additional="network=rer">
 				<apply pathEffect="" cap="ROUND" color_2="#ffffff">
 					<apply_if nightMode="true" color_2="#333333"/>
 				</apply>
 			</case>
-			<apply_if subwayMode="true" minzoom="11" color="$subwayLineDefaultColorDay" cap="ROUND"> <!-- color for subway lines without tag="colo(u)r" -->
+			<apply_if minzoom="11" color="$subwayLineDefaultColorDay" cap="ROUND"> <!-- color for subway lines without tag="colo(u)r" -->
 				<apply_if nightMode="true" color="$subwayLineDefaultColorNight"/>
+			</apply_if>
+			<apply_if pathEffect="">
+				<case additional="color_red" color="$subwayRedColor"/>
+				<case additional="color_brown" color="$subwayBrownColor"/>
+				<case additional="color_orange" color="$subwayOrangeColor"/>
+				<case additional="color_darkyellow" color="$subwayDarkyellowColor"/>
+				<case additional="color_yellow" color="$subwayYellowColor" color__1="#b0b200"/>
+				<case additional="color_lightgreen" color="$subwayLightgreenColor"/>
+				<case additional="color_green" color="$subwayGreenColor"/>
+				<case additional="color_lightblue" color="$subwayLightblueColor"/>
+				<case additional="color_blue" color="$subwayBlueColor"/>
+				<case additional="color_purple" color="$subwayPurpleColor"/>
+				<case additional="color_gray" color="$subwayGrayColor"/>
+				<case additional="color_black" color="$subwayBlackColor">
+					<case nightMode="true" color__1="#cccccc"/>
+				</case>
+				<apply_if minzoom="11" maxzoom="11" strokeWidth="1.5:1.5" strokeWidth__1="2:2" strokeWidth_2="0.7" shadowColor="$subwayLineShadowColor" shadowRadius="4"/>
+				<apply_if minzoom="12" maxzoom="12" strokeWidth="2:2" strokeWidth__1="2.5:2.5" strokeWidth_2="0.8" shadowColor="$subwayLineShadowColor" shadowRadius="5"/>
+				<apply_if minzoom="13" maxzoom="13" strokeWidth="2.8:2.8" strokeWidth__1="3.2:3.2" strokeWidth_2="0.9" shadowColor="$subwayLineShadowColor" shadowRadius="6.5"/>
+				<apply_if minzoom="14" maxzoom="14" strokeWidth="2.5:2.5" strokeWidth__1="3.5:3.5" strokeWidth_2="0.9" shadowColor="$subwayLineShadowColor" shadowRadius="7.5"/>
+				<apply_if minzoom="15" maxzoom="16" strokeWidth="2.5:2.5" strokeWidth__1="3.5:3.5" strokeWidth_2="1" shadowColor="$subwayLineShadowColor" shadowRadius="7.5"/>
+				<apply_if minzoom="17" maxzoom="18" strokeWidth="3:3" strokeWidth__1="4:4" strokeWidth_2="1.2:1.2"/>
+				<apply_if minzoom="19" strokeWidth="3.5:3.5" strokeWidth__1="5:5" strokeWidth_2="2:2"/>
 			</apply_if>
 		</switch>
 	</line>
