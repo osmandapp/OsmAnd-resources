@@ -27,12 +27,6 @@
 	<!-- Фермы -->
     <renderingConstant name="farmColorDay" value="#DCE2AA"/>
 
-	<!-- Земля под сады и огороды bde3cb -->
-    <renderingAttribute name="landuseAllotmentsColor">
-		<case nightMode="true" attrColorValue="#3b3b3b"/>
-		<case attrColorValue="$defaultColor"/>
-	</renderingAttribute>
-
 	<!-- Места для прогулок -->
 	<renderingConstant name="leisureCommonColorDay" value="$woodColor"/>
 
@@ -118,7 +112,6 @@
 	<!-- Больницы - #f0f0d8 -->
 	<renderingConstant name="amenityHospitalColorDay" value="#e5e4e3"/>
 
-
     <!-- Стадионы, зоны отдыха #b0b6fdb6 -->
     <renderingConstant name="leisureResortColorDay" value="$defaultColor"/>
 	<renderingConstant name="leisureResortColorNight" value="#000000"/>
@@ -194,7 +187,7 @@
 
 	<!-- Ferry #7777FF -->
 	<renderingAttribute name="routeFerryColor">
-		<case attrColorValue="#000000"/>
+		<case attrColorValue="#53A3BE"/>
 	</renderingAttribute>
 
 
@@ -356,7 +349,6 @@
 		</case>
 	</renderingAttribute>
 
-
     <!-- Белые 1 -->
     <renderingAttribute name="serviceRoadColor">
 		<case roadStyle="highContrastRoads" attrColorValue="#fff3ba">
@@ -478,10 +470,11 @@
 
 		<!-- Спортивные стадионы -->
 		<switch>
-			<case minzoom="13" tag="leisure" value="stadium" color="$defaultColor"/>
-			<case minzoom="13" tag="leisure" value="sports_centre" color="$defaultColor"/>
+			<case minzoom="13" tag="leisure" value="stadium" color="$defaultColor" strokeWidth_2="1" color_2="#888888"/>
+			<case minzoom="13" tag="leisure" value="sports_centre" color="$defaultColor" strokeWidth_2="1" color_2="#888888"/>
 			<apply_if nightMode="true" color="#04382c"/>
 		</switch>
+
 		<!-- Кладбища 
 		<case minzoom="12" tag="landuse" value="cemetery" color="$woodColor"/>
         -->
@@ -499,10 +492,10 @@
 		</case>
 
 		<!-- Сады и тд shader="allotments_small" -->
-		<case minzoom="10" tag="landuse" value="allotments" color="$landuseAllotmentsColor" color_2="#8fbda0" strokeWidth_2=":1">
-			  <case minzoom="13" maxzoom="14" color="$landuseAllotmentsColor"/>
-			  <case minzoom="15" color="$landuseAllotmentsColor"/>
-			  <apply_if nightMode="true" shader="" color_2="#00510e"/>
+    		<case minzoom="10" tag="landuse" value="allotments">
+			<case minzoom="13" maxzoom="14" shader="allotments_small_transp"/>
+			<case minzoom="15" shader="allotments_transp"/>
+			<apply_if nightMode="true" shader="" attrColorValue="#3b3b3b"/>
 		</case>
 
 		<!-- Дикий кустарник shader="scrub" -->
