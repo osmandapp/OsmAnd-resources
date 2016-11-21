@@ -112,6 +112,18 @@
 	<!-- Больницы - #f0f0d8 -->
 	<renderingConstant name="amenityHospitalColorDay" value="#e5e4e3"/>
 
+	<!-- Лес - Старый цвет мой: aed1a0 -->
+	<renderingAttribute name="woodColor">
+		<case attrColorValue="#8ED081">
+			<apply_if nightMode="true" attrColorValue="#001122"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="forestColor">
+		<case attrColorValue="$woodColor">
+			<apply_if nightMode="true" attrColorValue="#001122"/>
+		</case>
+	</renderingAttribute>
+
     <!-- Стадионы, зоны отдыха #b0b6fdb6 -->
     <renderingConstant name="leisureResortColorDay" value="$defaultColor"/>
 	<renderingConstant name="leisureResortColorNight" value="#000000"/>
@@ -131,17 +143,12 @@
 	<renderingConstant name="grasslandColorDay" value="$woodColor"/>
     <renderingConstant name="grassColorDay" value="$woodColor"/>
 
-	<!-- Лес - Старый цвет мой: aed1a0 -->
-	<renderingAttribute name="woodColor">
-		<case attrColorValue="#8ED081">
-			<apply_if nightMode="true" attrColorValue="#001122"/>
-		</case>
+    <!-- Сад #cfeca8 -->
+    <renderingAttribute name="gardenColor">
+		<case nightMode="true" attrColorValue="#004333"/>
+		<case attrColorValue="$woodColor"/>
 	</renderingAttribute>
-	<renderingAttribute name="forestColor">
-		<case attrColorValue="$woodColor">
-			<apply_if nightMode="true" attrColorValue="#001122"/>
-		</case>
-	</renderingAttribute>
+
 	
 	<!-- Национальные парки -->	 
 	<renderingConstant name="boundaryNationalParkColor" value="#000000"/>
@@ -161,6 +168,15 @@
 		</case>
 	</renderingAttribute>
 	<renderingConstant name="footwayStrokeWidth" value="1"/>
+
+	<!-- Велодорожки #0000ff -->
+	<renderingAttribute name="cyclewayColor">
+		<case attrColorValue="#809bff">
+			<apply_if nightMode="true" attrColorValue="#3670FF">
+				<apply_if appMode="bicycle" attrColorValue="#00FFFF"/>
+			</apply_if>
+		</case>
+	</renderingAttribute>
 
 	<!-- Лесные дороги -->
 	<renderingAttribute name="trackColor">
@@ -545,6 +561,16 @@
 		<case tag="power" value="plant" color="$defaultColor"/>
 		<case tag="power" value="generator" color="$defaultColor"/>
 		<case tag="power" value="substation" color="$defaultColor"/>
+
+		<!-- Остров #f1eae4 -->
+		<switch>
+				<case tag="place" value="island"/>
+				<case tag="natural" value="land"/>
+				<apply color="$defaultColor">
+					<apply_if nightMode="true" color="#002a2a"/>
+				</apply>
+		</switch>
+
 	</polygon>
 
 
