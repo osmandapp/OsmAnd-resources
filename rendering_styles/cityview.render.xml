@@ -507,6 +507,7 @@
 		<switch area="true" point="false" objectType="3" order="5">
 		</switch>
 		<switch cycle="true" point="false" objectType="3" order="5">
+			<case tag="boundary" value="protected_area" order="-1"/>
 		</switch>
 
 		<!-- Line 11-100 -->
@@ -597,20 +598,28 @@
 
 		<!-- Остров #f1eae4 -->
 		<switch>
-				<case tag="place" value="island"/>
-				<case tag="natural" value="land"/>
-				<apply color="$defaultColor">
-					<apply_if nightMode="true" color="#002a2a"/>
-				</apply>
+			<case tag="place" value="island"/>
+			<case tag="natural" value="land"/>
+			<apply color="$defaultColor">
+				<apply_if nightMode="true" color="#002a2a"/>
+			</apply>
 		</switch>
 
-	    <!-- Protected Area #4400ae3d -->
-		<case minzoom="8" tag="boundary" value="protected_area" shader="protected_area">
-					<apply color_2="$defaultColor">
-						<case maxzoom="13" strokeWidth_2="2:2" pathEffect_2="10_5"/>
-						<case minzoom="14" strokeWidth_2="3.5:3.5" pathEffect_2="13_8"/>
-					</apply>
-		</case>
+		<switch minzoom="10">
+			<switch>
+				<case tag="landuse" value="military"/>
+				<case tag="military" value="danger_area"/>
+				<apply shader="military_transp">
+					<apply_if nightMode="true" shader="military_transp_night"/>
+				</apply>
+			</switch>
+			<case tag="abandoned:landuse" value="military" shader="military_abandoned">
+				<apply_if nightMode="true" shader="military_abandoned_night"/>
+			</case>
+			<apply color_2="#c8ffa0c0" strokeWidth_2="1.5">
+				<apply_if nightMode="true" color_2="#84ffa0c0"/>
+			</apply>
+		</switch>
 
 	</polygon>
 
