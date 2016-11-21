@@ -27,14 +27,20 @@
 	<!-- Фермы -->
     <renderingConstant name="farmColorDay" value="#DCE2AA"/>
 
+	<!-- Земля под сады и огороды bde3cb -->
+    <renderingAttribute name="landuseAllotmentsColor">
+		<case nightMode="true" attrColorValue="#3b3b3b"/>
+		<case attrColorValue="$defaultColor"/>
+	</renderingAttribute>
+
 	<!-- Места для прогулок -->
 	<renderingConstant name="leisureCommonColorDay" value="$woodColor"/>
 
 
-	<!-- Цвет зданий -->
+	<!-- Цвет зданий #cccbca -->
 	<renderingAttribute name="buildingColor">
 		<case nightMode="true" attrColorValue="#cccbca"/>
-		<case attrColorValue="#cccbca"/>
+		<case attrColorValue="#d1cecb"/>
 	</renderingAttribute>
 
 
@@ -112,6 +118,20 @@
 	<!-- Больницы - #f0f0d8 -->
 	<renderingConstant name="amenityHospitalColorDay" value="#e5e4e3"/>
 
+
+	<!-- Лес - Старый цвет мой: aed1a0 -->
+	<renderingAttribute name="woodColor">
+		<case attrColorValue="#8ED081">
+			<apply_if nightMode="true" attrColorValue="#001122"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="forestColor">
+		<case attrColorValue="$woodColor">
+			<apply_if nightMode="true" attrColorValue="#001122"/>
+		</case>
+	</renderingAttribute>
+
+
     <!-- Стадионы, зоны отдыха #b0b6fdb6 -->
     <renderingConstant name="leisureResortColorDay" value="$defaultColor"/>
 	<renderingConstant name="leisureResortColorNight" value="#000000"/>
@@ -131,17 +151,12 @@
 	<renderingConstant name="grasslandColorDay" value="$woodColor"/>
     <renderingConstant name="grassColorDay" value="$woodColor"/>
 
-	<!-- Лес - Старый цвет мой: aed1a0 -->
-	<renderingAttribute name="woodColor">
-		<case attrColorValue="#8ED081">
-			<apply_if nightMode="true" attrColorValue="#001122"/>
-		</case>
+    <!-- Сад #cfeca8 -->
+    <renderingAttribute name="gardenColor">
+		<case nightMode="true" attrColorValue="#004333"/>
+		<case attrColorValue="$woodColor"/>
 	</renderingAttribute>
-	<renderingAttribute name="forestColor">
-		<case attrColorValue="$woodColor">
-			<apply_if nightMode="true" attrColorValue="#001122"/>
-		</case>
-	</renderingAttribute>
+
 	
 	<!-- Национальные парки -->	 
 	<renderingConstant name="boundaryNationalParkColor" value="#000000"/>
@@ -187,7 +202,7 @@
 
 	<!-- Ferry #7777FF -->
 	<renderingAttribute name="routeFerryColor">
-		<case attrColorValue="#53A3BE"/>
+		<case attrColorValue="#5fbad9"/>
 	</renderingAttribute>
 
 
@@ -349,6 +364,7 @@
 		</case>
 	</renderingAttribute>
 
+
     <!-- Белые 1 -->
     <renderingAttribute name="serviceRoadColor">
 		<case roadStyle="highContrastRoads" attrColorValue="#fff3ba">
@@ -464,26 +480,47 @@
 		<switch area="false" objectType="2" order="80">
 			<case maxzoom="14" tag="railway" value="tram" order="-1"/>
 		</switch>
+
+        <!-- Subway -->
+		<switch>
+			<case minzoom="11" tag="railway" value="subway" order="-1">
+				<apply color="#999999" strokeWidth="1:1"/>
+				<apply_if subwayMode="false">
+					<apply_if additional="tunnel=yes" pathEffect="5_3"/>
+					<apply_if additional="bridge=yes" color__1="#000000" strokeWidth__1="3.5:3.5" color_0="#ffffff" strokeWidth_0="2.5:3"/>
+				</apply_if>
+			</case>
+			<case subwayMode="true" minzoom="11" tag="railway" value="rail" additional="route=subway">
+				<apply color="#999999" strokeWidth="1:1"/>
+			</case>
+			<case subwayMode="true" minzoom="11" tag="railway" value="rail" additional="network=rer">
+				<apply pathEffect="" cap="ROUND" color_2="#ffffff">
+					<apply_if nightMode="true" color_2="#333333"/>
+				</apply>
+			</case>
+			<apply_if subwayMode="true" minzoom="11" color="$subwayLineDefaultColorDay" cap="ROUND"> <!-- color for subway lines without tag="colo(u)r" -->
+				<apply_if nightMode="true" color="$subwayLineDefaultColorNight"/>
+			</apply_if>
+		</switch>
 	</order>
 
 	<polygon>
 
 		<!-- Спортивные стадионы -->
 		<switch>
-			<case minzoom="13" tag="leisure" value="stadium" color="$defaultColor" strokeWidth_2="1" color_2="#888888"/>
-			<case minzoom="13" tag="leisure" value="sports_centre" color="$defaultColor" strokeWidth_2="1" color_2="#888888"/>
+			<case minzoom="13" tag="leisure" value="stadium" color="$defaultColor"/>
+			<case minzoom="13" tag="leisure" value="sports_centre" color="$defaultColor"/>
 			<apply_if nightMode="true" color="#04382c"/>
 		</switch>
-
 		<!-- Кладбища 
 		<case minzoom="12" tag="landuse" value="cemetery" color="$woodColor"/>
         -->
-	       <case minzoom="12" tag="landuse" value="cemetery" shader="cemetery_small_transp">
-			<case minzoom="15" shader="cemetery_transp">
-<!--			<case additional="religion=christian" shader="cemetery_christian"/>
-			<case additional="religion=muslim" shader="cemetery_muslim"/>
-			<case additional="religion=jewish" shader="cemetery_jewish"/>-->
-			</case>
+        <case minzoom="12" tag="landuse" value="cemetery" shader="cemetery_small">
+			   <case minzoom="15" shader="cemetery">
+			   <case additional="religion=christian" shader="cemetery_christian"/>
+			   <case additional="religion=muslim" shader="cemetery_muslim"/>
+			   <case additional="religion=jewish" shader="cemetery_jewish"/>
+			   </case>
 		</case>
 
 		<!-- Зоопарк shader="zoo_shader" -->
@@ -492,10 +529,10 @@
 		</case>
 
 		<!-- Сады и тд shader="allotments_small" -->
-    		<case minzoom="10" tag="landuse" value="allotments">
-			<case minzoom="13" maxzoom="14" shader="allotments_small_transp"/>
-			<case minzoom="15" shader="allotments_transp"/>
-			<apply_if nightMode="true" shader="" attrColorValue="#3b3b3b"/>
+		<case minzoom="10" tag="landuse" value="allotments" color="$landuseAllotmentsColor" color_2="#8fbda0" strokeWidth_2=":1">
+			  <case minzoom="13" maxzoom="14" color="$landuseAllotmentsColor"/>
+			  <case minzoom="15" color="$landuseAllotmentsColor"/>
+			  <apply_if nightMode="true" shader="" color_2="#00510e"/>
 		</case>
 
 		<!-- Дикий кустарник shader="scrub" -->
@@ -543,33 +580,21 @@
 
 		<!-- Заводы, ТЭЦ -->
 		<case tag="power" value="plant" color="$defaultColor"/>
-		<case tag="power" value="generator" color="$defaultColor"/>
-		<case tag="power" value="substation" color="$defaultColor"/>
-	</polygon>
+				<case tag="power" value="generator" color="$defaultColor"/>
+				<case tag="power" value="substation" color="$defaultColor"/>
 
 
-	<line>
-        <!-- Subway -->
+		<!-- Остров #f1eae4 -->
 		<switch>
-			<case minzoom="11" tag="railway" value="subway" order="-1">
-				<apply color="#999999" strokeWidth="1:1"/>
-				<apply_if subwayMode="false">
-					<apply_if additional="tunnel=yes" pathEffect="5_3"/>
-					<apply_if additional="bridge=yes" color__1="#000000" strokeWidth__1="3.5:3.5" color_0="#ffffff" strokeWidth_0="2.5:3"/>
-				</apply_if>
-			</case>
-			<case subwayMode="true" minzoom="11" tag="railway" value="rail" additional="route=subway">
-				<apply color="#999999" strokeWidth="1:1"/>
-			</case>
-			<case subwayMode="true" minzoom="11" tag="railway" value="rail" additional="network=rer">
-				<apply pathEffect="" cap="ROUND" color_2="#ffffff">
-					<apply_if nightMode="true" color_2="#333333"/>
+				<case tag="place" value="island"/>
+				<case tag="natural" value="land"/>
+				<apply color="$defaultColor">
+					<apply_if nightMode="true" color="#002a2a"/>
 				</apply>
-			</case>
-			<apply_if subwayMode="true" minzoom="11" color="$subwayLineDefaultColorDay" cap="ROUND"> <!-- color for subway lines without tag="colo(u)r" -->
-				<apply_if nightMode="true" color="$subwayLineDefaultColorNight"/>
-			</apply_if>
 		</switch>
-	</line>
+	</polygon>
+	
+
+	
 
 </renderingStyle>
