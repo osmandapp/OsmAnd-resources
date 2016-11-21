@@ -472,28 +472,6 @@
 		<switch area="false" objectType="2" order="80">
 			<case maxzoom="14" tag="railway" value="tram" order="-1"/>
 		</switch>
-
-        <!-- Subway -->
-		<switch>
-			<case minzoom="11" tag="railway" value="subway" order="-1">
-				<apply color="#999999" strokeWidth="1:1"/>
-				<apply_if subwayMode="false">
-					<apply_if additional="tunnel=yes" pathEffect="5_3"/>
-					<apply_if additional="bridge=yes" color__1="#000000" strokeWidth__1="3.5:3.5" color_0="#ffffff" strokeWidth_0="2.5:3"/>
-				</apply_if>
-			</case>
-			<case subwayMode="true" minzoom="11" tag="railway" value="rail" additional="route=subway">
-				<apply color="#999999" strokeWidth="1:1"/>
-			</case>
-			<case subwayMode="true" minzoom="11" tag="railway" value="rail" additional="network=rer">
-				<apply pathEffect="" cap="ROUND" color_2="#ffffff">
-					<apply_if nightMode="true" color_2="#333333"/>
-				</apply>
-			</case>
-			<apply_if subwayMode="true" minzoom="11" color="$subwayLineDefaultColorDay" cap="ROUND"> <!-- color for subway lines without tag="colo(u)r" -->
-				<apply_if nightMode="true" color="$subwayLineDefaultColorNight"/>
-			</apply_if>
-		</switch>
 	</order>
 
 	<polygon>
@@ -507,12 +485,12 @@
 		<!-- Кладбища 
 		<case minzoom="12" tag="landuse" value="cemetery" color="$woodColor"/>
         -->
-        <case minzoom="12" tag="landuse" value="cemetery" shader="cemetery_small">
-			   <case minzoom="15" shader="cemetery">
-			   <case additional="religion=christian" shader="cemetery_christian"/>
-			   <case additional="religion=muslim" shader="cemetery_muslim"/>
-			   <case additional="religion=jewish" shader="cemetery_jewish"/>
-			   </case>
+	       <case minzoom="12" tag="landuse" value="cemetery" shader="cemetery_small_transp">
+			<case minzoom="15" shader="cemetery_transp">
+<!--			<case additional="religion=christian" shader="cemetery_christian"/>
+			<case additional="religion=muslim" shader="cemetery_muslim"/>
+			<case additional="religion=jewish" shader="cemetery_jewish"/>-->
+			</case>
 		</case>
 
 		<!-- Зоопарк shader="zoo_shader" -->
@@ -572,11 +550,33 @@
 
 		<!-- Заводы, ТЭЦ -->
 		<case tag="power" value="plant" color="$defaultColor"/>
-				<case tag="power" value="generator" color="$defaultColor"/>
-				<case tag="power" value="substation" color="$defaultColor"/>
+		<case tag="power" value="generator" color="$defaultColor"/>
+		<case tag="power" value="substation" color="$defaultColor"/>
 	</polygon>
-	
 
-	
+
+	<line>
+        <!-- Subway -->
+		<switch>
+			<case minzoom="11" tag="railway" value="subway" order="-1">
+				<apply color="#999999" strokeWidth="1:1"/>
+				<apply_if subwayMode="false">
+					<apply_if additional="tunnel=yes" pathEffect="5_3"/>
+					<apply_if additional="bridge=yes" color__1="#000000" strokeWidth__1="3.5:3.5" color_0="#ffffff" strokeWidth_0="2.5:3"/>
+				</apply_if>
+			</case>
+			<case subwayMode="true" minzoom="11" tag="railway" value="rail" additional="route=subway">
+				<apply color="#999999" strokeWidth="1:1"/>
+			</case>
+			<case subwayMode="true" minzoom="11" tag="railway" value="rail" additional="network=rer">
+				<apply pathEffect="" cap="ROUND" color_2="#ffffff">
+					<apply_if nightMode="true" color_2="#333333"/>
+				</apply>
+			</case>
+			<apply_if subwayMode="true" minzoom="11" color="$subwayLineDefaultColorDay" cap="ROUND"> <!-- color for subway lines without tag="colo(u)r" -->
+				<apply_if nightMode="true" color="$subwayLineDefaultColorNight"/>
+			</apply_if>
+		</switch>
+	</line>
 
 </renderingStyle>
