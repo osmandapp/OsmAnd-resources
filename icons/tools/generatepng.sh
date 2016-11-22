@@ -164,7 +164,7 @@ generatePngs() {
 
        generatePngs 'shopping' '#a734c2' '#ff8f00'
 
-       generatePngs 'landuse' '#3f3f3f' '#ff8f00'
+       generatePngs 'landuse' '#6dba00' '#ff8f00'
 
        generatePngs 'entertainment'  '#6dba00' '#ff8f00'
 
