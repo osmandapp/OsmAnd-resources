@@ -1,9 +1,10 @@
-﻿% for turbo-prolog
+%%% !!! THIS IS GENERATED FILE !!! Modify ttsconfig.p
+% for turbo-prolog
 :- op('--', xfy, 500).
 % for swi-prolog
 :- op(500, xfy,'--').
 
-version(103).
+version(0).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
@@ -143,9 +144,9 @@ string('minutes.ogg', '分钟').
 
 %% COMMAND BUILDING / WORD ORDER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'route_is2.ogg', ', ', 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+route_new_calc(Dist, Time) -- ['route_is1.ogg', D, 'route_is2.ogg', 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 route_recalc(_Dist, _Time) -- ['route_calculate.ogg'] :- appMode('car').
-route_recalc(Dist, Time) -- ['route_calculate.ogg', ', ', 'distance.ogg', D, ', ', 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 turn('left', ['left.ogg']).
 turn('left_sh', ['left_sh.ogg']).
@@ -296,7 +297,6 @@ time(Sec) -- [H] :- not(tts), S is round(Sec/300.0) * 5, hours(S, H), St is S mo
 distance(Dist) -- D :- measure('km-m'), distance_km(Dist) -- D.
 distance(Dist) -- D :- measure('mi-f'), distance_mi_f(Dist) -- D.
 distance(Dist) -- D :- measure('mi-y'), distance_mi_y(Dist) -- D.
-distance(Dist) -- D :- measure('mi-m'), distance_mi_m(Dist) -- D.
 
 %%% distance measure km/m
 distance_km(Dist) -- [ X, 'meters.ogg']                  :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
@@ -310,22 +310,15 @@ distance_mi_f(Dist) -- [ X, 'feet.ogg']                  :- Dist < 160,   D is r
 distance_mi_f(Dist) -- ['1_tenth_of_a_mile.ogg']         :- Dist < 241.
 distance_mi_f(Dist) -- [ X, 'tenths_of_a_mile.ogg']      :- Dist < 1529,  D is round(Dist/161.0),             dist(D, X).
 distance_mi_f(Dist) -- ['around_1_mile.ogg']             :- Dist < 2414.
-distance_mi_f(Dist) -- ['around.ogg', X, 'miles.ogg']    :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
-distance_mi_f(Dist) -- [ X, 'miles.ogg']                 :-               D is round(Dist/1609.3),            dist(D, X).
+distance_mi_f(Dist) -- ['around.ogg', X, 'miles.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
+distance_mi_f(Dist) -- [ X, 'miles.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
 
 %%% distance measure mi/y
-distance_mi_y(Dist) -- [ X, 'yards.ogg']                 :- Dist < 100,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
+distance_mi_y(Dist) -- [ X, 'yards.ogg']                 :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
 distance_mi_y(Dist) -- [ X, 'yards.ogg']                 :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
 distance_mi_y(Dist) -- ['around_1_mile.ogg']             :- Dist < 2414.
-distance_mi_y(Dist) -- ['around.ogg', X, 'miles.ogg']    :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
-distance_mi_y(Dist) -- [ X, 'miles.ogg']                 :-               D is round(Dist/1609.3),            dist(D, X).
-
-%%% distance measure mi/m
-distance_mi_m(Dist) -- [ X, 'meters.ogg']                :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
-distance_mi_m(Dist) -- [ X, 'meters.ogg']                :- Dist < 1300,  D is round(2*Dist/100.0)*50,        dist(D, X).
-distance_mi_m(Dist) -- ['around_1_mile.ogg']             :- Dist < 2414.
-distance_mi_m(Dist) -- ['around.ogg', X, 'miles.ogg']    :- Dist < 16093, D is round(Dist/1609.3),            dist(D, X).
-distance_mi_m(Dist) -- [ X, 'miles.ogg']                 :-               D is round(Dist/1609.3),            dist(D, X).
+distance_mi_y(Dist) -- ['around.ogg', X, 'miles.ogg']    :- Dist < 16093, D is round(Dist/1609.0),            dist(D, X).
+distance_mi_y(Dist) -- [ X, 'miles.ogg']                 :-               D is round(Dist/1609.0),            dist(D, X).
 
 
 interval(St, St, End, _Step) :- St =< End.
