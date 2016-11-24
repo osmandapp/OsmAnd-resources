@@ -1015,6 +1015,10 @@
 	<renderingConstant name="woodNeedleleavedShader" value="wood_needleleaved"/>
 	<renderingConstant name="woodMixedShader" value="wood_mixed"/>
 
+	<renderingConstant name="forestBroadleavedShader" value="forest_broadleaved"/>
+	<renderingConstant name="forestNeedleleavedShader" value="forest_needleleaved"/>
+	<renderingConstant name="forestMixedShader" value="forest_mixed"/>
+
 	<!-- Open nature -->
 	<renderingConstant name="openNatureColorNight" value="#004333"/>
 	<renderingConstant name="shaderColorNight" value="#334433"/>
@@ -1171,6 +1175,10 @@
 	<renderingAttribute name="landuseAllotmentsColor">
 		<case nightMode="true" attrColorValue="#3b3b3b"/>
 		<case attrColorValue="#bde3cb"/>
+	</renderingAttribute>
+	<renderingAttribute name="landuseAllotmentsStrokeColor">
+		<case nightMode="true" attrColorValue="#00510e"/>
+		<case attrColorValue="#8fbda0"/>
 	</renderingAttribute>
 	<renderingAttribute name="landuseGaragesColor">
 		<case nightMode="true" attrColorValue="#362d2d"/>
@@ -7902,9 +7910,9 @@
 					<apply_if minzoom="15" additional="leaf_type=mixed" shader="$woodMixedShader"/>
 				</case>
 				<case tag="landuse" value="forest" color="$forestColor">
-					<apply_if minzoom="15" additional="leaf_type=broadleaved" shader="forest_broadleaved"/>
-					<apply_if minzoom="15" additional="leaf_type=needleleaved" shader="forest_needleleaved"/>
-					<apply_if minzoom="15" additional="leaf_type=mixed" shader="forest_mixed"/>
+					<apply_if minzoom="15" additional="leaf_type=broadleaved" shader="$forestBroadleavedShader"/>
+					<apply_if minzoom="15" additional="leaf_type=needleleaved" shader="$forestNeedleleavedShader"/>
+					<apply_if minzoom="15" additional="leaf_type=mixed" shader="$forestMixedShader"/>
 				</case>
 				<apply>
 					<switch>
@@ -8077,10 +8085,10 @@
 				<apply color="$amenityHospitalColorDay" color_2="#d4a89e" strokeWidth_2=":1"/>
 				<apply_if nightMode="true" color="$amenityHospitalColorNight" color_2="$amenityEducationalStrokeColorNight"/>
 			</switch>
-			<case minzoom="10" tag="landuse" value="allotments" color="$landuseAllotmentsColor" color_2="#8fbda0" strokeWidth_2=":1">
+			<case minzoom="10" tag="landuse" value="allotments" color="$landuseAllotmentsColor" color_2="$landuseAllotmentsStrokeColor" strokeWidth_2=":1">
 				<case minzoom="13" maxzoom="14" shader="allotments_small"/>
 				<case minzoom="15" shader="allotments_shader"/>
-				<apply_if nightMode="true" shader="" color_2="#00510e"/>
+				<apply_if nightMode="true" shader=""/>
 			</case>
 			<switch>
 				<case minzoom="12" tag="landuse" value="retail"/>
