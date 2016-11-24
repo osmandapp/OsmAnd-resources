@@ -18,13 +18,13 @@
 	<renderingConstant name="null" value="#00000000"/>
 
 	<!-- Жилые landuse-->
-	<renderingConstant name="landuseResidentialColor" value="$defaultColor"/>
+<!--	<renderingConstant name="landuseResidentialColor" value="$defaultColor"/>-->
 
 	<!-- Сельская местность -->
-	<renderingAttribute name="landuseResidentialRuralColor">
+<!--	<renderingAttribute name="landuseResidentialRuralColor">
 		<case nightMode="true" attrColorValue="#3B3E3B"/>
 		<case attrColorValue="$defaultColor"/>
-	</renderingAttribute>
+	</renderingAttribute>-->
 	
 	<!-- Фермы -->
 	<renderingConstant name="farmColorDay" value="#DCE2AA"/>
@@ -551,10 +551,14 @@
 		</case>
 
 		<!-- Сады и тд shader="allotments_small" -->
-    		<case minzoom="10" tag="landuse" value="allotments" shader="" color_2="$landuseAllotmentsStrokeColor" strokeWidth_2="1.5">
+    		<case minzoom="10" tag="landuse" value="allotments" shader="" color_2="$landuseAllotmentsStrokeColor" strokeWidth_2="1">
 <!--			<case minzoom="13" maxzoom="14" shader="allotments_small_transp"/>
 			<case minzoom="15" shader="allotments_transp"/>
 			<apply_if nightMode="true" shader="" attrColorValue="#3b3b3b"/>-->
+		</case>
+
+		<case minzoom="6" tag="landuse" value="residential" color="$null">
+			<apply_if additional="named=yes" strokeWidth_2="1" color_2="#BBBBBB"/>
 		</case>
 
 		<!-- Дикий кустарник shader="scrub" -->
@@ -589,16 +593,7 @@
 		</case>
 
 		<!-- Территория плодового сада shader="orchard" -->
-		<case minzoom="12" tag="landuse" value="orchard" color="$woodColor">
-			<case minzoom="15" shader="orchard2">
-			<case additional="trees=olive_trees" shader="orchard_olive"/>
-			<case additional="trees=apple_trees" shader="orchard_apple"/>
-			<case additional="trees=almond_trees" shader="orchard_almond"/>
-			<case additional="trees=oil_palms" shader="orchard_oil_palms"/>
-			<case additional="trees=orange_trees" shader="orchard_orange"/>
-			<case additional="trees=banana_plants" shader="orchard_banana"/>
-			</case>
-		</case>
+		<case minzoom="12" tag="landuse" value="orchard" color="$woodColor"/>
 
 		<!-- Заводы, ТЭЦ -->
 		<case tag="power" value="plant" color="$defaultColor"/>
@@ -631,9 +626,10 @@
 		</switch>
 
 		<switch minzoom="6">
-			<case tag="natural" value="wood" shader="wood_broadleaved3"/>
-			<case tag="landuse" value="forest" shader="wood_broadleaved3"/>
+			<case tag="natural" value="wood"/>
+			<case tag="landuse" value="forest"/>
 			<apply color="$woodColor"/>
+			<apply_if minzoom="16" shader="wood_broadleaved3"/>
 			<apply_if minzoom="16" additional="leaf_type=needleleaved" shader="wood_needleleaved3"/>
 			<apply_if minzoom="16" additional="leaf_type=mixed" shader="wood_mixed3"/>
 			<apply_if nightMode="true" shader=""/>
