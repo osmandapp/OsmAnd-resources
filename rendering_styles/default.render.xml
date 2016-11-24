@@ -4490,10 +4490,10 @@
 					<case additional="population_rounded=200" textOrder="42"/>
 					<case additional="population_rounded=100" textOrder="43"/>
 				</apply_if>
-				<!--<apply_if additional="population_rounded=" textOrder="$textOrderPopulation"/> --><!--  additional="population_rounded=" here is needed because renderingAtribute="textOrderPopulation" returns "0" when there is no population tag. And we can't include additional empty "case" in it because it is used more than 1 time on elements with different default textOrder -->
+				<!--<apply_if additional="population_rounded=" textOrder="$textOrderPopulation"/>--> <!--  additional="population_rounded=" here is needed because renderingAtribute="textOrderPopulation" returns "0" when there is no population tag. And we can't include additional empty "case" in it because it is used more than 1 time on elements with different default textOrder -->
 			</case>
 
-			<switch minzoom="5" textSize="13" textColor="$placeStateProvinceTextColor" textWrapWidth="20" textHaloRadius="$textHaloRadiusDay" textHaloColor="$placeStateProvinceTextHaloColor">
+			<switch minzoom="5" textSize="13" textColor="$placeStateProvinceTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="$placeStateProvinceTextHaloColor">
 				<switch engine_v1="true">
 					<case maxzoom="10" tag="place" value="state">
 						<case maxzoom="5" nameTag="" textOrder="24"/>
@@ -4523,12 +4523,10 @@
 					<case minzoom="6" nameTag="" textOrder="33"/>
 				</switch>
 				<case minzoom="9" maxzoom="12" tag="place" value="county" nameTag="" textSize="13" textItalic="true" textOrder="63"/>
-				<apply textItalic="true"/>
+				<apply textItalic="true" textWrapWidth="15"/>
 				<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight"/>
 <!--				<apply_if additional="population_rounded=" textOrder="$textOrderPopulation"/>-->
 			</switch>
-
-			<!-- county not really useful here: filter minzoom="9" textSize="13" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="county" nameTag=""/ -->
 
 			<switch minzoom="3" textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColorDay" textBold="true">
 				<case minzoom="5" tag="place" value="city" nameTag="" intersectionMargin="25" textOrder="32">
@@ -4783,8 +4781,11 @@
 				<case minzoom="2" tag="place" value="ocean" textWrapWidth="17" textOrder="3">
 					<apply_if minzoom="3" textWrapWidth="20"/>
 				</case>
-				<case minzoom="5" tag="place" value="sea" textWrapWidth="20" textOrder="33"/>
-				<case minzoom="6" tag="natural" value="water" nameTag="" textWrapWidth="17" textOrder="178" intersectionSizeFactor="1.7"/>
+				<switch>
+					<case minzoom="5" tag="place" value="sea" textWrapWidth="20" textOrder="33"/>
+					<case minzoom="6" tag="natural" value="water" nameTag="" textWrapWidth="17" textOrder="178" intersectionSizeFactor="1.7"/>
+					<apply_if minzoom="6" textSize="13"/>
+				</switch>
 				<case minzoom="8" tag="natural" value="bay" textWrapWidth="17" textOrder="179" nameTag=""/>
 				<case minzoom="8" tag="natural" value="strait" textOnPath="true" textWrapWidth="25" textOrder="180"/>
 				<case minzoom="11" tag="natural" value="fjord" textOnPath="true" textWrapWidth="25" textOrder="181"/>
