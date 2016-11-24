@@ -25,7 +25,7 @@ fest_language('').
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
 string('route_is.ogg', ' يبلغ طول هذه الرحلة ').
-string('route_calculate.ogg', ' الطريق حساب').
+string('route_calculate.ogg', ' إعادة حِساب طول المَسافة').
 string('distance.ogg', ' المسافات').
 
 % LEFT/RIGHT
@@ -33,10 +33,10 @@ string('distance.ogg', ' المسافات').
 string('after.ogg', ' بعد').
 string('in.ogg', ' في ').
 
-string('left.ogg', ' انعطف لليسار').
-string('left_sh.ogg', ' اتجه إلى اليسار بشكل حاد').
-string('left_sl.ogg', ' اتجه إلى اليسار قليلا').
-string('right.ogg', ' انعطف يمينا').
+string('left.ogg', ' انعطِفْ الى اليسار').
+string('left_sh.ogg', ' اتجِهْ الى اليسار بشكل حاد').
+string('left_sl.ogg', ' اتجِهْ الى اليسار قليلا').
+string('right.ogg', ' انعطِفْ يمينا').
 string('right_sh.ogg', ' يمينا بشكل حاد').
 string('right_sl.ogg', ' يمينا قليلا').
 string('left_keep.ogg', ' الزم اليسار').
@@ -45,26 +45,26 @@ string('left_bear.ogg', ' الزم اليسار').    % in English the same as l
 string('right_bear.ogg', ' الزم اليمين').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
-string('make_uturn.ogg', ' جعل بدوره U').
-string('make_uturn_wp.ogg', ' عندما يكون ذلك ممكنا، يرجى تقديم بدوره U').
+string('make_uturn.ogg', ' إلْتَف إلى الوراء').
+string('make_uturn_wp.ogg', ' عندما يكون ذلك ممكنا، يرجى الالْتِفافُ إلى الوراء').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', ' استعد للدخول في المسار الدائري في').
-string('roundabout.ogg', ' أُدخُل في المسار الدائري ثم أُسلُك').
-string('then.ogg', ' ، ثم').
+string('prepare_roundabout.ogg', ' استعِدْ للدُخول في المسار الدَّائِري').
+string('roundabout.ogg', ' أُدخُلْ في المسار الدَّائري ثُمَّ').
+string('then.ogg', ' ، ثُمَّ').
 string('and.ogg', ' و').
-string('take.ogg', ' أُسلُك').
-string('exit.ogg', ' المخرج').
+string('take.ogg', ' أُسلُكْ').
+string('exit.ogg', ' مَخرَج').
 
-string('1st.ogg', ' الأول').
-string('2nd.ogg', ' الثاني').
-string('3rd.ogg', ' الثالث').
-string('4th.ogg', ' الرابع').
-string('5th.ogg', ' الخامس').
-string('6th.ogg', ' السادس').
-string('7th.ogg', ' السابع').
-string('8th.ogg', ' الثامن').
-string('9th.ogg', ' التاسع منه').
+string('1st.ogg', ' أَولَ').
+string('2nd.ogg', ' ثاني').
+string('3rd.ogg', ' ثالث').
+string('4th.ogg', ' رابع').
+string('5th.ogg', ' خامس').
+string('6th.ogg', ' سادس').
+string('7th.ogg', ' سابع').
+string('8th.ogg', ' ثامن').
+string('9th.ogg', ' تاسع').
 string('10th.ogg', ' العاشر').
 string('11th.ogg', ' الحاديه عشر').
 string('12th.ogg', ' الثاني عشر').
@@ -75,13 +75,13 @@ string('16th.ogg', ' سادس عشر').
 string('17th.ogg', ' السابع عشر').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', ' اتجه مباشرة الى الأمام').
-string('follow.ogg', ' يستمر ل').  % 'Follow the course of the road for' perceived as too chatty by many users
+string('go_ahead.ogg', ' اتجِهْ مُباشَرَةً الى الأَمام').
+string('follow.ogg', ' استمِرْ لـ').  % 'Follow the course of the road for' perceived as too chatty by many users
 
 % ARRIVE
-string('and_arrive_destination.ogg', ' وتصل إلى وجهتك').
+string('and_arrive_destination.ogg', ' وتصل إلى وِجهتِكَ').
 string('reached_destination.ogg', ' لقد وصلتَ الى وجهتك').
-string('and_arrive_intermediate.ogg', ' وتصل الى وجهتك الثانوية').
+string('and_arrive_intermediate.ogg', ' وسوفَ تَصِلُ إلى وِجْهَتِك').
 string('reached_intermediate.ogg', ' لقد وصلت الى المرحلة الثانوية').
 
 % NEARBY POINTS
