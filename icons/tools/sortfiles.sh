@@ -522,6 +522,11 @@ mycpname subway_yokohama_minatomirai subway_subway_yokohama_minatomirai.png
 mycpname subway_sapporo subway_subway_sapporo.png
 mycpname subway_medellin subway_subway_medellin.png
 mycpname subway_monterrey subway_subway_monterrey.png
+mycpname subway_warsaw subway_subway_warsaw.png
+mycpname subway_lisbon subway_subway_lisbon.png
+mycpname subway_fukuoka subway_subway_fukuoka.png
+mycpname subway_suzhou subway_subway_suzhou.png
+mycpname subway_shanghai subway_subway_shanghai.png
 
 mycp aerialway station_small functional-icons_aerialway_station_small.png  #scale 0.25
 mycp aerialway station transport_aerialway_station.png  #scale 0.375
