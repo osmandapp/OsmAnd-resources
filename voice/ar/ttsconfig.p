@@ -24,7 +24,7 @@ fest_language('').
 %% STRINGS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
-string('route_is.ogg', ' وتعد هذه الرحلة ').
+string('route_is.ogg', ' يبلغ طول هذه الرحلة ').
 string('route_calculate.ogg', ' الطريق حساب').
 string('distance.ogg', ' المسافات').
 
@@ -49,11 +49,11 @@ string('make_uturn.ogg', ' جعل بدوره U').
 string('make_uturn_wp.ogg', ' عندما يكون ذلك ممكنا، يرجى تقديم بدوره U').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', ' إدخال دوار').
-string('roundabout.ogg', ' دخول دوار،').
+string('prepare_roundabout.ogg', ' استعد للدخول في المسار الدائري في').
+string('roundabout.ogg', ' أُدخُل في المسار الدائري ثم أُسلُك').
 string('then.ogg', ' ، ثم').
 string('and.ogg', ' و').
-string('take.ogg', ' اتخاذ').
+string('take.ogg', ' أُسلُك').
 string('exit.ogg', ' المخرج').
 
 string('1st.ogg', ' الأول').
@@ -75,14 +75,14 @@ string('16th.ogg', ' سادس عشر').
 string('17th.ogg', ' السابع عشر').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', ' الذهاب مباشرة إلى الأمام').
+string('go_ahead.ogg', ' اتجه مباشرة الى الأمام').
 string('follow.ogg', ' يستمر ل').  % 'Follow the course of the road for' perceived as too chatty by many users
 
 % ARRIVE
 string('and_arrive_destination.ogg', ' وتصل إلى وجهتك').
-string('reached_destination.ogg', ' كنت قد وصلت وجهتك').
-string('and_arrive_intermediate.ogg', ' وتصل إلى وجهتها المتوسطة بك').
-string('reached_intermediate.ogg', ' كنت قد وصلت وجهة المتوسطة بك').
+string('reached_destination.ogg', ' لقد وصلتَ الى وجهتك').
+string('and_arrive_intermediate.ogg', ' وتصل الى وجهتك الثانوية').
+string('reached_intermediate.ogg', ' لقد وصلت الى المرحلة الثانوية').
 
 % NEARBY POINTS
 string('and_arrive_waypoint.ogg', ' وتمر GPX إحداثية').
@@ -93,22 +93,22 @@ string('and_arrive_poi.ogg', ' وتمر البوي').
 string('reached_poi.ogg', ' يتم تمرير البوي').
 
 % ATTENTION
-%string('exceed_limit.ogg', 'you are exceeding the speed limit ').
+%string('exceed_limit.ogg', 'لقد تجاوزت الحد الأقصى للسرعة ').
 string('exceed_limit.ogg', ' الحد الأقصى للسرعة').
 string('attention.ogg', ' انتباه،').
-string('speed_camera.ogg', ' كاميرا السرعة').
-string('border_control.ogg', ' سيطرة النظام').
-string('railroad_crossing.ogg', ' تقاطع سكه حديديه').
+string('speed_camera.ogg', ' رادار مراقبة السرعة').
+string('border_control.ogg', ' نقطة مراقبة الحدود').
+string('railroad_crossing.ogg', ' نقطة لعبور القطارات').
 string('traffic_calming.ogg', ' تخفيف الازدحام').
 string('toll_booth.ogg', ' عدد كشك').
 string('stop.ogg', ' لافتة توقف').
-string('pedestrian_crosswalk.ogg', ' المشاة المشاة').
+string('pedestrian_crosswalk.ogg', ' ممر للراجلين').
 
 % OTHER PROMPTS
 string('location_lost.ogg', ' إشارة GPS فقدت').
 string('location_recovered.ogg', ' إشارة GPS تعافت').
-string('off_route.ogg', ' كنت قد قبالة الطريق لل').
-string('back_on_route.ogg', ' كنت مرة أخرى على الطريق').
+string('off_route.ogg', ' لقد انحرفت عن المسار بحوالي').
+string('back_on_route.ogg', ' لقد عدت الى الطريق من جديد').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', ' على').
@@ -117,10 +117,10 @@ string('to.ogg', ' إلى').
 string('toward.ogg', ' باتجاه').
 
 % DISTANCE UNIT SUPPORT
-string('meters.ogg', ' متر').
+string('meters.ogg', ' أمتار').
 string('around_1_kilometer.ogg', ' حوالي 1 كيلو متر').
-string('around.ogg', ' حول').
-string('kilometers.ogg', ' كم').
+string('around.ogg', ' حوالي').
+string('kilometers.ogg', ' كيلومترات').
 
 string('feet.ogg', ' أقدام').
 string('1_tenth_of_a_mile.ogg', ' عشر ميل').
@@ -136,7 +136,7 @@ string('1_hour.ogg', ' ساعة واحدة').
 string('hours.ogg', ' ساعات').
 string('less_a_minute.ogg', ' أقل من دقيقة').
 string('1_minute.ogg', ' دقيقة واحدة').
-string('minutes.ogg', ' دقيقة').
+string('minutes.ogg', ' دقائق').
 
 
 %% COMMAND BUILDING / WORD ORDER
