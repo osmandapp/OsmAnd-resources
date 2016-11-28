@@ -166,6 +166,7 @@
 	</renderingAttribute>
 
 	<renderingConstant name="placeCityVillageTextColorDay" value="#000000"/>
+	<renderingConstant name="placeCityVillageTextHaloColorDay" value="$defaultColor"/>
 	<renderingConstant name="placeSuburbLocalityTextColorDay" value="#222222"/>
 	<renderingConstant name="placeTextHaloRadiusDay" value=":1"/>
 	<renderingConstant name="placeTextHaloColorDay" value="#bbfddb8f"/>
@@ -745,31 +746,35 @@
 				<case maxzoom="5" nameTag="ref" textOrder="25"/>
 				<case minzoom="6" nameTag="" textOrder="33"/>
 			</switch>
+			<apply textItalic="true" textWrapWidth="15"/>
 			<apply_if textColor="#635700" textHaloRadius="$textHaloRadiusDay" textHaloColor="$defaultTextHaloColorDay">
 				<apply_if nightMode="true" textColor="#fffccc" textHaloColor="#77777545"/>
 			</apply_if>
 		</switch>
 
 
-		<switch minzoom="3" textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay" textBold="true">
+		<switch minzoom="3" textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColorDay" textBold="true">
 			<case minzoom="5" tag="place" value="city" nameTag="" intersectionMargin="25" textOrder="32">
 				<case minzoom="6" maxzoom="7" textSize="17"/>
 				<case minzoom="8" textSize="20"/>
-				<apply_if additional="population_rounded=" textOrder="$textOrderPopulation"/>-->
-				<apply_if engine_v1="false"> <!-- Workaround for bug in OpenGL engine. Delete when fixed https://trello.com/c/WjuVi6UC/502-population-case-additional-renderingattribute-opengl -->
-					<case additional="population_rounded=1500000000" textOrder="6"/>
-					<case additional="population_rounded=400000000" textOrder="7"/>
-					<case additional="population_rounded=200000000" textOrder="8"/>
-					<case additional="population_rounded=100000000" textOrder="9"/>
-					<case additional="population_rounded=50000000" textOrder="10"/>
-					<case additional="population_rounded=25000000" textOrder="11"/>
-					<case additional="population_rounded=20000000" textOrder="12"/>
-					<case additional="population_rounded=15000000" textOrder="13"/>
-					<case additional="population_rounded=12000000" textOrder="14"/>
-					<case additional="population_rounded=9000000" textOrder="15"/>
-					<case additional="population_rounded=7000000" textOrder="16"/>
-					<case additional="population_rounded=5000000" textOrder="17"/>
-					<case additional="population_rounded=3000000" textOrder="18"/>
+<!--				<apply_if additional="population_rounded=" textOrder="$textOrderPopulation"/>-->
+				<apply>
+					<switch>
+						<case additional="population_rounded=1500000000" textOrder="6"/>
+						<case additional="population_rounded=400000000" textOrder="7"/>
+						<case additional="population_rounded=200000000" textOrder="8"/>
+						<case additional="population_rounded=100000000" textOrder="9"/>
+						<case additional="population_rounded=50000000" textOrder="10"/>
+						<case additional="population_rounded=25000000" textOrder="11"/>
+						<case additional="population_rounded=20000000" textOrder="12"/>
+						<case additional="population_rounded=15000000" textOrder="13"/>
+						<case additional="population_rounded=12000000" textOrder="14"/>
+						<case additional="population_rounded=9000000" textOrder="15"/>
+						<case additional="population_rounded=7000000" textOrder="16"/>
+						<case additional="population_rounded=5000000" textOrder="17"/>
+						<case additional="population_rounded=3000000" textOrder="18"/>
+						<apply_if maxzoom="5" textSize="13"/>
+					</switch>
 					<case additional="population_rounded=2000000" textOrder="19"/>
 					<case additional="population_rounded=1000000" textOrder="20"/>
 					<case additional="population_rounded=700000" textOrder="21"/>
@@ -786,9 +791,8 @@
 					<case additional="population_rounded=500" textOrder="41"/>
 					<case additional="population_rounded=200" textOrder="42"/>
 					<case additional="population_rounded=100" textOrder="43"/>
-				</apply_if>
-
-				<apply_if additional="capital=yes" textOrder="11">
+				</apply>
+				<apply_if additional="capital=yes" textOrder="15">
 					<switch>
 						<case maxzoom="5" textSize="13" textOrder="25"/>
 						<case maxzoom="7" textSize="20"/>
@@ -816,13 +820,13 @@
 			</case>
 
 			<switch>
-				<case minzoom="9" tag="place" value="town" textSize="16" textOrder="36" nameTag="" intersectionMargin="15"/>
+				<case minzoom="8" tag="place" value="town" textSize="16" textOrder="36" nameTag="" intersectionMargin="15"/>
 				<case minzoom="11" tag="place" value="village" textSize="14" textOrder="40" nameTag="" intersectionMargin="15">
 					<apply_if minzoom="16" textSize="16"/>
 					<apply_if minzoom="17" textSize="17"/>
 				</case>
-				<apply_if additional="population_rounded=" textOrder="$textOrderPopulation"/>
-				<apply_if engine_v1="false"> <!-- Workaround for bug in OpenGL engine. Delete when fixed https://trello.com/c/WjuVi6UC/502-population-case-additional-renderingattribute-opengl -->
+<!--				<apply_if additional="population_rounded=" textOrder="$textOrderPopulation"/>-->
+				<apply>
 					<case additional="population_rounded=1500000000" textOrder="6"/>
 					<case additional="population_rounded=400000000" textOrder="7"/>
 					<case additional="population_rounded=200000000" textOrder="8"/>
@@ -852,27 +856,10 @@
 					<case additional="population_rounded=500" textOrder="41"/>
 					<case additional="population_rounded=200" textOrder="42"/>
 					<case additional="population_rounded=100" textOrder="43"/>
-				</apply_if>
+				</apply>
 			</switch>
-			<apply_if nightMode="true" textColor="$defaultTextColorNight" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77444444"/>
+			<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77444444"/>
 			<apply_if engine_v1="false" textDy="-3"/>
-		</switch>
-
-		<switch minzoom="3" textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay" textBold="true">
-			<case minzoom="6" tag="place" value="city" nameTag="" intersectionMargin="20">
-				<case additional="capital=yes">
-					<case maxzoom="7" textSize="20" textOrder="2"/>
-					<case minzoom="8" textSize="22" textOrder="3"/>
-				</case>
-				<case maxzoom="7" textSize="17" textOrder="3"/>
-				<case minzoom="8" textSize="20" textOrder="4"/>
-			</case>
-			<case minzoom="9" tag="place" value="town" nameTag="" textSize="16" textOrder="5" intersectionMargin="20"/>
-			<case minzoom="11" tag="place" value="village" nameTag="" textSize="14" textOrder="10">
-				<apply_if minzoom="16" textSize="16"/>
-				<apply_if minzoom="17" textSize="17"/>
-			</case>
-			<apply_if nightMode="true" textColor="$defaultTextColorNight" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77444444"/>
 		</switch>
 
 		<switch textColor="$placeSuburbLocalityTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay" intersectionMargin="15">
@@ -942,7 +929,7 @@
 				<case tag="building" value="" nameTag="" nameTag2="addr:housenumber"/>
 				<apply_if maxzoom="17" textSize="13" textMinDistance="40"/>
 				<apply_if minzoom="18" textSize="15"/>
-				<apply textDy="7" textWrapWidth="20" textOrder="16"/>
+				<apply textDy="7" textWrapWidth="20" textOrder="66"/>
 				<apply textColor="#404040" textHaloColor="$buildingTextHaloColorDay">
 					<apply_if nightMode="true" textColor="$defaultTextColorNight" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77666666"/>
 				</apply>
@@ -950,7 +937,7 @@
 			<switch minzoom="18">
 				<case tag="addr:housenumber" value="" nameTag="addr:housenumber"/>
 				<case tag="addr:housenumber" value="" nameTag=""/>
-				<apply textColor="#404040" textWrapWidth="25" textOrder="17" textDy="7" textSize="15" intersectionSizeFactor="1.4"/>
+				<apply textColor="#404040" textWrapWidth="25" textOrder="67" textDy="7" textSize="15" intersectionSizeFactor="1.4"/>
 				<apply textColor="#404040" textHaloColor="$buildingTextHaloColorDay">
 					<apply_if nightMode="true" textColor="$defaultTextColorNight" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77666666"/>
 				</apply>
@@ -962,16 +949,16 @@
 
 		<!-- Highway text -->
 		<switch textHaloRadius="$textHaloRadiusDay" textOnPath="true" nameTag="">
-			<case tag="highway" value="motorway" textHaloColor="$motorwayRoadColor" textOrder="50"/>
-			<case tag="highway" value="motorway_link" textHaloColor="$motorwayRoadColor" textOrder="51"/>
-			<case tag="highway" value="trunk" textHaloColor="$trunkRoadColor" textOrder="53"/>
-			<case tag="highway" value="trunk_link" textHaloColor="$trunkRoadColor" textOrder="54"/>
-			<case tag="highway" value="primary" textHaloColor="$primaryRoadColor" textOrder="56"/>
-			<case tag="area:highway" value="primary" textHaloColor="$primaryRoadColor" textWrapWidth="25" textOrder="57"/>
-			<case tag="highway" value="primary_link" textHaloColor="$primaryRoadColor" textOrder="58"/>
-			<case tag="highway" value="secondary" textHaloColor="$secondaryRoadColor" textOrder="60"/>
-			<case tag="area:highway" value="secondary" textHaloColor="$secondaryRoadColor" textWrapWidth="25" textOrder="61"/>
-			<case tag="highway" value="secondary_link" textHaloColor="$secondaryRoadColor" textOrder="62"/>
+			<case tag="highway" value="motorway" textHaloColor="$motorwayRoadColor" textOrder="100"/>
+			<case tag="highway" value="motorway_link" textHaloColor="$motorwayRoadColor" textOrder="101"/>
+			<case tag="highway" value="trunk" textHaloColor="$trunkRoadColor" textOrder="103"/>
+			<case tag="highway" value="trunk_link" textHaloColor="$trunkRoadColor" textOrder="104"/>
+			<case tag="highway" value="primary" textHaloColor="$primaryRoadColor" textOrder="106"/>
+			<case tag="area:highway" value="primary" textHaloColor="$primaryRoadColor" textWrapWidth="25" textOrder="107"/>
+			<case tag="highway" value="primary_link" textHaloColor="$primaryRoadColor" textOrder="108"/>
+			<case tag="highway" value="secondary" textHaloColor="$secondaryRoadColor" textOrder="110"/>
+			<case tag="area:highway" value="secondary" textHaloColor="$secondaryRoadColor" textWrapWidth="25" textOrder="111"/>
+			<case tag="highway" value="secondary_link" textHaloColor="$secondaryRoadColor" textOrder="112"/>
 			<apply_if minzoom="13">
 				<case maxzoom="13" textSize="12"/>
 				<case maxzoom="14" textSize="13"/>
@@ -984,9 +971,9 @@
 		</switch>
 
 		<switch textHaloRadius="$textHaloRadiusDay" textOnPath="true" textHaloColor="$tertiaryRoadColor" nameTag="">
-			<case tag="highway" value="tertiary" textOrder="94"/>
-			<case tag="area:highway" value="tertiary" textWrapWidth="25" textOrder="95"/>
-			<case tag="highway" value="tertiary_link" textOrder="96"/>
+			<case tag="highway" value="tertiary" textOrder="144"/>
+			<case tag="area:highway" value="tertiary" textWrapWidth="25" textOrder="145"/>
+			<case tag="highway" value="tertiary_link" textOrder="146"/>
 			<apply_if minzoom="14">
 				<case maxzoom="14" textSize="12"/>
 				<case maxzoom="15" textSize="13"/>
@@ -999,7 +986,7 @@
 
 		<switch>
 			<switch>
-				<switch textHaloRadius="$textHaloRadiusDay" textOrder="125">
+				<switch textHaloRadius="$textHaloRadiusDay" textOrder="175">
 					<case tag="highway" value="road"/>
 					<case tag="area:highway" value="road" textWrapWidth="25"/>
 					<case tag="highway" value="unclassified"/>
@@ -1010,9 +997,9 @@
 					<apply_if nightMode="true" textBold="true"/>
 				</switch>
 				<switch textHaloRadius="$textHaloRadiusDay">
-					<case tag="highway" value="service" textOrder="128"/>
-					<case tag="area:highway" value="service" textOrder="129" textWrapWidth="25"/>
-					<case tag="highway" value="living_street" textOrder="130"/>
+					<case tag="highway" value="service" textOrder="178"/>
+					<case tag="area:highway" value="service" textOrder="179" textWrapWidth="25"/>
+					<case tag="highway" value="living_street" textOrder="180"/>
 					<apply_if nightMode="true"/>
 				</switch>
 				<apply textColor="#222222" textHaloColor="$residentialRoadColor">
@@ -1020,8 +1007,8 @@
 				</apply>
 			</switch>
 			<switch textHaloRadius="$textHaloRadiusDay" textHaloColor="$pedestrianRoadModeColorDay">
-				<case tag="highway" value="pedestrian" textOrder="126"/>
-				<case tag="area:highway" value="pedestrian" textWrapWidth="25" textOrder="63"/>
+				<case tag="highway" value="pedestrian" textOrder="176"/>
+				<case tag="area:highway" value="pedestrian" textWrapWidth="25" textOrder="113"/>
 				<apply textColor="#000000">
 					<apply_if nightMode="true" textColor="$defaultTextColorNight" textHaloRadius="$textHaloRadiusNight" textHaloColor="$pedestrianRoadModeColorNight"/>
 				</apply>
@@ -1037,11 +1024,11 @@
 
 		<switch minzoom="14">
 			<switch nameTag="">
-				<case tag="highway" value="track" textOrder="188"/>
-				<case tag="highway" value="steps" textOrder="194"/>
+				<case tag="highway" value="track" textOrder="238"/>
+				<case tag="highway" value="steps" textOrder="244"/>
 			</switch>
-			<case tag="highway" value="path" nameTag="" textOrder="193"/>
-			<case tag="highway" value="footway" nameTag="" textOrder="190"/>
+			<case tag="highway" value="path" nameTag="" textOrder="243"/>
+			<case tag="highway" value="footway" nameTag="" textOrder="240"/>
 			<apply nameTag="" textColor="#000000" textHaloRadius="$highwayTrackTextHaloRadiusDay" textHaloColor="#fddb8f" textOnPath="true"/>
 			<apply_if minzoom="15">
 				<case maxzoom="15" textSize="13"/>
@@ -1051,8 +1038,8 @@
 				<apply_if nightMode="true" textColor="$defaultTextColorNight" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 			</apply_if>
 		</switch>
-		<switch minzoom="15" textOrder="15" nameTag="">
-			<case tag="area:highway" value="footway" textOrder="191" textWrapWidth="25"/>
+		<switch minzoom="15" textOrder="65" nameTag="">
+			<case tag="area:highway" value="footway" textOrder="241" textWrapWidth="25"/>
 			<apply>
 				<case maxzoom="15" textSize="13"/>
 				<case maxzoom="16" textSize="14"/>
@@ -1063,7 +1050,7 @@
 			<apply_if nightMode="true" textColor="$defaultTextColorNight" textHaloRadius="$textHaloRadiusNight" textHaloColor="$pedestrianRoadModeColorNight"/>
 		</switch>
 
-		<switch textSize="12" textColor="$landuseManmadeTextColorDay" textHaloRadius="$landuseManmadeTextHaloRadiusDay" textHaloColor="$landuseManmadeTextHaloColorDay" textWrapWidth="20" textOrder="200">
+		<switch textSize="12" textColor="$landuseManmadeTextColorDay" textHaloRadius="$landuseManmadeTextHaloRadiusDay" textHaloColor="$landuseManmadeTextHaloColorDay" textWrapWidth="20" textOrder="250">
 			<switch>
 				<case minzoom="15" tag="landuse" value="industrial"/>
 				<case minzoom="15" tag="landuse" value="garages"/>
@@ -1091,7 +1078,7 @@
 		<switch>
 			<case minzoom="15" tag="landuse" value="military"/>
 			<case minzoom="15" tag="seamark:type" value="military_area"/>
-			<apply textSize="12" textColor="#990d2a" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffd9e6" textWrapWidth="20" textOrder="10"/>
+			<apply textSize="12" textColor="#990d2a" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffd9e6" textWrapWidth="20" textOrder="60"/>
 			<apply_if nightMode="true" textColor="#ffd3dc" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77724456"/>
 		</switch>
 		<switch textHaloRadius="$textHaloRadiusDay" textSize="13" textColor="#ff0255" textBold="true" textWrapWidth="20">
@@ -1100,11 +1087,11 @@
 		</switch>
 		<switch textSize="12" textColor="$naturalTextColor" textWrapWidth="20" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ccfddb8f" nameTag="">
 			<switch textItalic="true">
-				<case minzoom="16" tag="natural" value="wood" textOrder="10"/>
-				<case minzoom="17" tag="natural" value="wetland" textOrder="20"/>
-				<case minzoom="16" tag="landuse" value="forest" textOrder="10"/>
-				<case minzoom="12" tag="leisure" value="nature_reserve" textOrder="10"/>
-				<case minzoom="12" tag="boundary" value="national_park" textOrder="11" textOnPath="true"/>
+				<case minzoom="16" tag="natural" value="wood" textOrder="60"/>
+				<case minzoom="17" tag="natural" value="wetland" textOrder="70"/>
+				<case minzoom="16" tag="landuse" value="forest" textOrder="60"/>
+				<case minzoom="12" tag="leisure" value="nature_reserve" textOrder="60"/>
+				<case minzoom="12" tag="boundary" value="national_park" textOrder="61" textOnPath="true"/>
 				<case minzoom="9" tag="natural" value="reef"/>
 				<case minzoom="14" textSize="12" tag="natural" value="ridge" textOnPath="true" textDy="0"/>
 			</switch>
@@ -1150,54 +1137,54 @@
 		<switch textColor="#654321" textDy="7" textWrapWidth="25" textHaloColor="#aafddb8f" textHaloRadius="$textHaloRadiusDay" textItalic="true">
 			<switch>
 				<case minzoom="12" tag="natural" value="peak">
-					<case maxzoom="13" nameTag="ele" textSize="11" textOrder="10"/>
-					<case maxzoom="14" nameTag="" nameTag2="ele" textSize="12" textOrder="10"/>
-					<case maxzoom="16" nameTag="" nameTag2="ele" textSize="13" textOrder="15"/>
-					<case minzoom="17" nameTag="" nameTag2="ele" textSize="16" textOrder="15"/>
+					<case maxzoom="13" nameTag="ele" textSize="11" textOrder="60"/>
+					<case maxzoom="14" nameTag="" nameTag2="ele" textSize="12" textOrder="60"/>
+					<case maxzoom="16" nameTag="" nameTag2="ele" textSize="13" textOrder="65"/>
+					<case minzoom="17" nameTag="" nameTag2="ele" textSize="16" textOrder="65"/>
 				</case>
 				<case minzoom="14" textSize="12" tag="natural" value="ridge" textOnPath="true" textDy="0"/>
 				<case minzoom="13" textSize="14" tag="natural" value="crater" textColor="#4e0d0d" textDy="-4"/>
 				<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffcc9b" textHaloColor="#77464234"/>
 			</switch>
-			<case minzoom="11" tag="natural" value="volcano" nameTag2="ele" textOrder="3" textHaloColor="#99ffd6c0">
+			<case minzoom="11" tag="natural" value="volcano" nameTag2="ele" textOrder="53" textHaloColor="#99ffd6c0">
 				<case maxzoom="12" textSize="12"/>
 				<case minzoom="13" textSize="13"/>
 				<apply_if nightMode="true" textColor="#ffcc9b" textHaloColor="#77464234"/>
 			</case>
 			<apply_if engine_v1="false" textDy="0"/>
 		</switch>
-		<case minzoom="9" tag="natural" value="cape" textSize="12" textColor="#510060" textHaloColor="#55fbe2ff" textDy="7" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textItalic="true" textOrder="90">
+		<case minzoom="9" tag="natural" value="cape" textSize="12" textColor="#510060" textHaloColor="#55fbe2ff" textDy="7" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textItalic="true" textOrder="140">
 			<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#fadcff" textHaloColor="#55570067"/>
 		</case>
 
 		<!-- Water -->
 		<switch textColor="$waterTextColorDay" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$waterTextHaloColorDay" textSize="12" textItalic="true">
-			<case minzoom="2" tag="place" value="ocean" textWrapWidth="20" textOrder="3"/>
-			<case minzoom="5" tag="place" value="sea" textWrapWidth="20" textOrder="33"/>
-			<case minzoom="6" tag="natural" value="water" textWrapWidth="17" textOrder="178" intersectionSizeFactor="1.4">
+			<case minzoom="2" tag="place" value="ocean" textWrapWidth="20" textOrder="53"/>
+			<case minzoom="5" tag="place" value="sea" textWrapWidth="20" textOrder="83"/>
+			<case minzoom="6" tag="natural" value="water" textWrapWidth="17" textOrder="228" intersectionSizeFactor="1.4">
 				<case engine_v1="true" textDy="13"/>
 			</case>
-			<case minzoom="8" tag="seamark:type" value="sea_area" textWrapWidth="20" textOrder="178"/>
-			<case minzoom="8" tag="natural" value="bay" textWrapWidth="17" textOrder="179"/>
-			<case minzoom="8" tag="natural" value="strait" textOnPath="true" textWrapWidth="25" textOrder="180"/>
-			<case minzoom="11" tag="natural" value="fjord" textOnPath="true" textWrapWidth="25" textOrder="181"/>
-			<case minzoom="13" tag="waterway" value="stream" textOnPath="true" textOrder="206"/>
-			<case minzoom="13" tag="waterway" value="wadi" textOnPath="true" textOrder="213"/>
-			<case minzoom="11" tag="waterway" value="river" textOnPath="true" textMinDistance="80" textOrder="184"/>
-			<case minzoom="13" tag="waterway" value="canal" textOnPath="true" textMinDistance="80" textOrder="185"/>
-			<case minzoom="15" tag="waterway" value="ditch" textOnPath="true" textOrder="210"/>
-			<case minzoom="15" tag="waterway" value="drain" textOnPath="true" textOrder="211"/>
+			<case minzoom="8" tag="seamark:type" value="sea_area" textWrapWidth="20" textOrder="228"/>
+			<case minzoom="8" tag="natural" value="bay" textWrapWidth="17" textOrder="229"/>
+			<case minzoom="8" tag="natural" value="strait" textOnPath="true" textWrapWidth="25" textOrder="230"/>
+			<case minzoom="11" tag="natural" value="fjord" textOnPath="true" textWrapWidth="25" textOrder="231"/>
+			<case minzoom="13" tag="waterway" value="stream" textOnPath="true" textOrder="256"/>
+			<case minzoom="13" tag="waterway" value="wadi" textOnPath="true" textOrder="263"/>
+			<case minzoom="11" tag="waterway" value="river" textOnPath="true" textMinDistance="80" textOrder="234"/>
+			<case minzoom="13" tag="waterway" value="canal" textOnPath="true" textMinDistance="80" textOrder="235"/>
+			<case minzoom="15" tag="waterway" value="ditch" textOnPath="true" textOrder="260"/>
+			<case minzoom="15" tag="waterway" value="drain" textOnPath="true" textOrder="261"/>
 <!--			<case minzoom="15" tag="waterway" value="lock_gate" textDy="7" textWrapWidth="30" textOrder="15"/>-->
 			<!-- not a conventional tag: case minzoom="15" textDy="7" textWrapWidth="30" tag="waterway" value="lock" textOrder="15"/ -->
-			<case minzoom="16" tag="natural" value="spring" textDy="7" textWrapWidth="20" textOrder="214"/>
-			<case minzoom="16" tag="natural" value="hot_spring" textDy="7" textWrapWidth="20" textOrder="215"/>
-			<case minzoom="16" tag="natural" value="geyser" textDy="7" textWrapWidth="20" textOrder="216"/>
+			<case minzoom="16" tag="natural" value="spring" textDy="7" textWrapWidth="20" textOrder="254"/>
+			<case minzoom="16" tag="natural" value="hot_spring" textDy="7" textWrapWidth="20" textOrder="254"/>
+			<case minzoom="16" tag="natural" value="geyser" textDy="7" textWrapWidth="20" textOrder="254"/>
 			<case minzoom="17" tag="man_made" value="breakwater" textWrapWidth="20" textOnPath="true" textOrder="255"/>
 			<case minzoom="17" tag="man_made" value="groyne" textWrapWidth="20" textOnPath="true" textOrder="255"/>
 			<switch minzoom="15">
 				<case tag="waterway" value="waterfall" nameTag2="height"/>
 				<case tag="seamark:type" value="waterfall" nameTag2="height"/>
-				<apply textDy="7" textWrapWidth="20" textOnPath="true" textOrder="217"/>
+				<apply textDy="7" textWrapWidth="20" textOnPath="true" textOrder="255"/>
 			</switch>
 			<switch minzoom="17">
 				<case tag="waterway" value="rapids"/>
@@ -1242,7 +1229,7 @@
 				<case minzoom="18" tag="seamark:type" value="mooring" nameTag="name"/>
 				<case minzoom="18" tag="seamark:type" value="mooring" nameTag="seamark:name"/>
 				<case minzoom="18" tag="seamark:type" value="pile" nameTag="seamark:name"/>
-				<switch minzoom="16" textOnPath="true" textOrder="80">
+				<switch minzoom="16" textOnPath="true" textOrder="130">
 					<case tag="seamark:type" value="lock_basin"/>
 					<case tag="seamark:type" value="lock_basin_part"/>
 					<case minzoom="17" tag="seamark:type" value="gate"/>
@@ -1253,32 +1240,32 @@
 			</switch>
 			<switch> <!-- for big icons -->
 				<switch>
-					<case minzoom="11" tag="seamark:type" value="light_major" nameTag="name" nameTag2="seamark:light:character" textOrder="10"/>
-					<case minzoom="11" tag="seamark:type" value="light_major" nameTag="seamark:name" nameTag2="seamark:light:character" textOrder="10"/>
-					<case minzoom="13" tag="seamark:type" value="light_minor" textOrder="15"/>
-					<case minzoom="13" tag="man_made" value="lighthouse" textOrder="20"/>
+					<case minzoom="11" tag="seamark:type" value="light_major" nameTag="name" nameTag2="seamark:light:character" textOrder="60"/>
+					<case minzoom="11" tag="seamark:type" value="light_major" nameTag="seamark:name" nameTag2="seamark:light:character" textOrder="60"/>
+					<case minzoom="13" tag="seamark:type" value="light_minor" textOrder="65"/>
+					<case minzoom="13" tag="man_made" value="lighthouse" textOrder="70"/>
 				</switch>
-				<case minzoom="12" tag="seamark:type" value="fog_signal" textOrder="20"/>
-				<case minzoom="12" tag="seamark:type" value="radar_transponder" textOrder="21"/>
-				<case minzoom="12" tag="seamark:type" value="radio_station" textOrder="21"/>
-				<case minzoom="12" tag="seamark:type" value="radar_station" textOrder="21"/>
-				<case minzoom="17" tag="seamark:type" value="signal_station_traffic" nameTag="seamark:name" nameTag2="seamark:signal_station_traffic:category_name" textOrder="21"/>
-				<case minzoom="17" tag="seamark:type" value="signal_station_traffic" nameTag="seamark:signal_station_traffic:category_name" textOrder="21"/>
-				<case minzoom="17" tag="seamark:type" value="signal_station_warning" nameTag="seamark:name" nameTag2="seamark:signal_station_warning:category_name" textOrder="21"/>
-				<case minzoom="17" tag="seamark:type" value="signal_station_warning" nameTag="seamark:signal_station_warning:category_name" textOrder="21"/>
-				<case minzoom="12" tag="seamark:type" value="platform" textOrder="22"/>
+				<case minzoom="12" tag="seamark:type" value="fog_signal" textOrder="70"/>
+				<case minzoom="12" tag="seamark:type" value="radar_transponder" textOrder="71"/>
+				<case minzoom="12" tag="seamark:type" value="radio_station" textOrder="71"/>
+				<case minzoom="12" tag="seamark:type" value="radar_station" textOrder="71"/>
+				<case minzoom="17" tag="seamark:type" value="signal_station_traffic" nameTag="seamark:name" nameTag2="seamark:signal_station_traffic:category_name" textOrder="71"/>
+				<case minzoom="17" tag="seamark:type" value="signal_station_traffic" nameTag="seamark:signal_station_traffic:category_name" textOrder="71"/>
+				<case minzoom="17" tag="seamark:type" value="signal_station_warning" nameTag="seamark:name" nameTag2="seamark:signal_station_warning:category_name" textOrder="71"/>
+				<case minzoom="17" tag="seamark:type" value="signal_station_warning" nameTag="seamark:signal_station_warning:category_name" textOrder="71"/>
+				<case minzoom="12" tag="seamark:type" value="platform" textOrder="72"/>
 				<apply_if engine_v1="true" textDy="19"/>
 				<apply_if engine_v1="false" textDy="-10"/>
 			</switch>
 			<switch textBold="true">
-				<switch minzoom="10" tag="seamark:type" value="harbour" textOrder="2" textHaloColor="#88d4ecff">
+				<switch minzoom="10" tag="seamark:type" value="harbour" textOrder="52" textHaloColor="#88d4ecff">
 					<case nameTag="seamark:name"/>
 					<case nameTag=""/>
 				</switch>
-				<case minzoom="12" tag="waterway" value="dock" textOrder="9"/>
-				<case minzoom="16" tag="seamark:type" value="building" textOrder="13" textBold="false"/>
-				<case minzoom="16" tag="seamark:type" value="rescue_station" textOrder="13" textBold="false"/>
-				<case minzoom="16" tag="seamark:type" value="hulk" textOrder="14" textBold="false"/>
+				<case minzoom="12" tag="waterway" value="dock" textOrder="59"/>
+				<case minzoom="16" tag="seamark:type" value="building" textOrder="63" textBold="false"/>
+				<case minzoom="16" tag="seamark:type" value="rescue_station" textOrder="63" textBold="false"/>
+				<case minzoom="16" tag="seamark:type" value="hulk" textOrder="64" textBold="false"/>
 				<apply_if engine_v1="true" textDy="15"/>
 			</switch>
 			<apply>
@@ -1311,15 +1298,15 @@
 			</switch>
 
 			<switch minzoom="11" textColor="#0400ab" textWrapWidth="19" textHaloColor="#88ffffff" textHaloRadius="2">
-				<case minzoom="13" tag="seamark:type" value="landmark" textOrder="9" nameTag="seamark:name"/>
-				<case minzoom="13" tag="seamark:type" value="landmark" textOrder="9" nameTag=""/>
-				<case minzoom="17" tag="seamark:type" value="pylon" textOrder="9"/>
-				<case minzoom="13" tag="seamark:type" value="production_area" textOrder="9"/>
-				<case minzoom="16" tag="seamark:type" value="marine_farm" textOrder="9"/>
+				<case minzoom="13" tag="seamark:type" value="landmark" textOrder="59" nameTag="seamark:name"/>
+				<case minzoom="13" tag="seamark:type" value="landmark" textOrder="59" nameTag=""/>
+				<case minzoom="17" tag="seamark:type" value="pylon" textOrder="59"/>
+				<case minzoom="13" tag="seamark:type" value="production_area" textOrder="59"/>
+				<case minzoom="16" tag="seamark:type" value="marine_farm" textOrder="59"/>
 				<apply_if engine_v1="true" textDy="8"/>
 				<apply_if nightMode="true" textColor="#eaf6ff" textHaloColor="#5545a5e2"/>
 			</switch>
-			<switch textColor="#8c0000" textWrapWidth="19" textHaloColor="#99ffc9c9" textHaloRadius="2" textOrder="11">
+			<switch textColor="#8c0000" textWrapWidth="19" textHaloColor="#99ffc9c9" textHaloRadius="2" textOrder="61">
 				<case minzoom="13" tag="seamark:type" value="restricted_area" nameTag="seamark:name" nameTag2="seamark:restricted_area:information"/>
 				<case minzoom="13" tag="seamark:type" value="restricted_area" nameTag="seamark:restricted_area:information" nameTag2="seamark:name"/>
 				<case minzoom="13" tag="seamark:type" value="obstruction" nameTag="seamark:name"/>
@@ -1359,7 +1346,7 @@
 			</switch>
 			<switch>
 				<case minzoom="16" tag="seamark:type" value="pilot_boarding" textDy="14"/>
-				<case minzoom="16" tag="seamark:type" value="bridge" textDy="14" textOrder="5" intersectionSizeFactor="0.5">
+				<case minzoom="16" tag="seamark:type" value="bridge" textDy="14" textOrder="55" intersectionSizeFactor="0.5">
 					<case additional="seamark:bridge:category=opening" nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height_closed"/>
 					<case additional="seamark:bridge:category=lifting" nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height_closed"/>
 					<case nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height"/>
@@ -1373,7 +1360,7 @@
 			</apply>
 			<apply_if nightMode="true" textColor="#f3e1ff" textHaloColor="#5545a5e2"/>
 		</switch>
-		<switch minzoom="17" textSize="10" textColor="#5a0461" textWrapWidth="7" textHaloColor="#33ffffff" textHaloRadius="1" textDy="10" textOrder="100">
+		<switch minzoom="17" textSize="10" textColor="#5a0461" textWrapWidth="7" textHaloColor="#33ffffff" textHaloRadius="1" textDy="10" textOrder="150">
 			<case tag="seamark:type" value="distance_mark" nameTag="seamark:distance_mark:distance" nameTag2="seamark:distance_mark:units"/>
 			<case minzoom="18" tag="seamark:type" value="seabed_area" nameTag="seamark:name" nameTag2="name"/>
 			<case minzoom="18" tag="seamark:type" value="seabed_area" nameTag="name" nameTag2="seamark:name"/>
@@ -1403,7 +1390,7 @@
 	<!-- Seamarks -->
 		<switch>
 			<!-- Buoys -->
-			<switch iconVisibleSize="9" intersectionSizeFactor="0.6" iconOrder="50" icon_shift_py="-0.8">
+			<switch iconVisibleSize="9" intersectionSizeFactor="0.6" iconOrder="100" icon_shift_py="-0.8">
 				<case minzoom="12" tag="seamark:type" value="buoy_lateral" icon="seamark_buoy_red_pillar">
 					<case additional="seamark:buoy_lateral:colour=red" icon="seamark_buoy_red_pillar">
 						<case additional="seamark:buoy_lateral:shape=conical" icon="seamark_buoy_red_conical"/>
@@ -1621,7 +1608,7 @@
 			</switch>
 
 			<!-- Beacons -->
-			<switch iconVisibleSize="9" intersectionSizeFactor="0.6" iconOrder="50" icon_shift_py="-0.8">
+			<switch iconVisibleSize="9" intersectionSizeFactor="0.6" iconOrder="100" icon_shift_py="-0.8">
 				<case minzoom="12" tag="seamark:type" value="beacon_lateral" icon="seamark_beacon_pile">
 					<switch>
 						<case additional="seamark:beacon_lateral:shape=stake" icon="seamark_beacon_stake"/>
@@ -1846,30 +1833,30 @@
 		<case minzoom="12" maxzoom="13" tag="seamark:type" value="platform" icon="seamark_platform_small" iconVisibleSize="14" intersectionSizeFactor="0.9"/>
 		<switch>
 			<switch>
-				<case minzoom="9" maxzoom="10" tag="seamark:type" value="light_major" icon="seamark_light_major_small" iconOrder="10"/>
+				<case minzoom="9" maxzoom="10" tag="seamark:type" value="light_major" icon="seamark_light_major_small" iconOrder="60"/>
 			</switch>
 			<switch>
-				<case minzoom="11" tag="seamark:type" value="light_major" icon="seamark_light_major" iconOrder="10" iconVisibleSize="20" intersectionSizeFactor="0.7"/>
+				<case minzoom="11" tag="seamark:type" value="light_major" icon="seamark_light_major" iconOrder="60" iconVisibleSize="20" intersectionSizeFactor="0.7"/>
 				<switch minzoom="12">
 					<case tag="seamark:type" value="light_minor"/>
 					<case tag="man_made" value="lighthouse"/>
-					<apply icon="seamark_light_minor" iconVisibleSize="16" intersectionSizeFactor="0.6" iconOrder="15"/>
+					<apply icon="seamark_light_minor" iconVisibleSize="16" intersectionSizeFactor="0.6" iconOrder="65"/>
 				</switch>
-				<case minzoom="12" tag="seamark:type" value="fog_signal" icon="seamark_fog_signal" iconVisibleSize="16" intersectionSizeFactor="0.5" iconOrder="20" icon_2="seamark_fog_signal_additional_center_big"/>
-				<case minzoom="12" tag="seamark:type" value="radar_transponder" icon="seamark_radar_transponder" iconVisibleSize="20" intersectionSizeFactor="0.6" iconOrder="21"/>
-				<case minzoom="12" tag="seamark:type" value="signal_station_traffic" icon="seamark_radio_station" icon_5="seamark_signal_station_additional" iconVisibleSize="20" intersectionSizeFactor="0.6" iconOrder="21"/>
-				<case minzoom="12" tag="seamark:type" value="signal_station_warning" icon="seamark_radio_station" icon_5="seamark_signal_station_additional" iconVisibleSize="20" intersectionSizeFactor="0.6" iconOrder="21"/>
-				<case minzoom="12" tag="seamark:type" value="radio_station" icon="seamark_radio_station" icon_4="seamark_radar_transponder_additional_big" iconVisibleSize="20" intersectionSizeFactor="0.6" iconOrder="21">
+				<case minzoom="12" tag="seamark:type" value="fog_signal" icon="seamark_fog_signal" iconVisibleSize="16" intersectionSizeFactor="0.5" iconOrder="70" icon_2="seamark_fog_signal_additional_center_big"/>
+				<case minzoom="12" tag="seamark:type" value="radar_transponder" icon="seamark_radar_transponder" iconVisibleSize="20" intersectionSizeFactor="0.6" iconOrder="71"/>
+				<case minzoom="12" tag="seamark:type" value="signal_station_traffic" icon="seamark_radio_station" icon_5="seamark_signal_station_additional" iconVisibleSize="20" intersectionSizeFactor="0.6" iconOrder="71"/>
+				<case minzoom="12" tag="seamark:type" value="signal_station_warning" icon="seamark_radio_station" icon_5="seamark_signal_station_additional" iconVisibleSize="20" intersectionSizeFactor="0.6" iconOrder="71"/>
+				<case minzoom="12" tag="seamark:type" value="radio_station" icon="seamark_radio_station" icon_4="seamark_radar_transponder_additional_big" iconVisibleSize="20" intersectionSizeFactor="0.6" iconOrder="71">
 					<apply_if nightMode="true" icon_4="seamark_radar_transponder_additional_big_night"/>
 				</case>
-				<case minzoom="12" tag="seamark:type" value="radar_station" icon="seamark_radio_station" icon_4="seamark_radar_station_additional" iconVisibleSize="20" intersectionSizeFactor="0.6" iconOrder="21">
+				<case minzoom="12" tag="seamark:type" value="radar_station" icon="seamark_radio_station" icon_4="seamark_radar_station_additional" iconVisibleSize="20" intersectionSizeFactor="0.6" iconOrder="71">
 					<apply_if nightMode="true" icon_4="seamark_radar_station_additional_night"/>
 					<apply_if additional="seamark:radar_station:category=surveillance" icon_5="seamark_radar_station_surveillance_additional">
 						<apply_if nightMode="true" icon_5="seamark_radar_station_surveillance_additional_night"/>
 					</apply_if>
 					<apply_if additional="seamark:radar_station:category=coast" icon_5="seamark_radar_station_coast_additional"/>
 				</case>
-				<case minzoom="14" tag="seamark:type" value="platform" icon="seamark_platform" iconVisibleSize="20" intersectionSizeFactor="0.7" iconOrder="22">
+				<case minzoom="14" tag="seamark:type" value="platform" icon="seamark_platform" iconVisibleSize="20" intersectionSizeFactor="0.7" iconOrder="72">
 					<apply_if additional="seamark:platform:category=production" icon_3="seamark_platform_production_additional"/>
 					<apply_if additional="seamark:platform:category=oil" icon_3="seamark_platform_production_additional"/>
 					<apply_if additional="seamark:platform:category=fpso" icon_3="seamark_platform_fpso_additional"/>
@@ -1953,7 +1940,7 @@
 			</apply>
 		</switch>
 		<switch>
-			<case minzoom="11" tag="seamark:type" value="landmark" icon="seamark_landmark_tower" iconOrder="8" icon_shift_py="-0.5">
+			<case minzoom="11" tag="seamark:type" value="landmark" icon="seamark_landmark_tower" iconOrder="58" icon_shift_py="-0.5">
 				<case additional="seamark:landmark:function=mosque" icon="seamark_landmark_mosque"/>
 				<case additional="seamark:landmark:category=tower" icon="seamark_landmark_tower">
 					<case additional="seamark:landmark:function=church" icon="seamark_landmark_tower_church_additional" icon_2="seamark_landmark_church"/>
@@ -2077,7 +2064,7 @@
 		</switch>
 
 		<switch>
-			<case minzoom="16" tag="seamark:type" value="mooring" iconOrder="106" iconVisibleSize="28" intersectionSizeFactor="0.8">
+			<case minzoom="16" tag="seamark:type" value="mooring" iconOrder="156" iconVisibleSize="28" intersectionSizeFactor="0.8">
 				<case additional="seamark:mooring:category=dolphin" icon="seamark_mooring_dolphin" iconVisibleSize="13" intersectionSizeFactor="0.4"/> <!-- add bw colour -->
 				<case additional="seamark:mooring:category=deviation_dolphin" icon="seamark_mooring_deviationdolphin"/>
 				<case additional="seamark:mooring:category=bollard" icon="seamark_mooring_bollard" iconVisibleSize="13" intersectionSizeFactor="0.4"/>
@@ -2109,9 +2096,9 @@
 				</case>
 			</case>
 		</switch>
-		<case minzoom="16" tag="seamark:type" value="pile" icon="seamark_mooring_pile" iconVisibleSize="13" intersectionSizeFactor="0.4" iconOrder="106"/>
+		<case minzoom="16" tag="seamark:type" value="pile" icon="seamark_mooring_pile" iconVisibleSize="13" intersectionSizeFactor="0.4" iconOrder="156"/>
 
-		<switch minzoom="16" tag="seamark:type" value="notice" iconOrder="101" iconVisibleSize="26" intersectionSizeFactor="0.7">
+		<switch minzoom="16" tag="seamark:type" value="notice" iconOrder="151" iconVisibleSize="26" intersectionSizeFactor="0.7">
 			<switch>    <!--  prohibition -->
 				<case additional="seamark:notice:category=no_entry" icon="seamark_notice_prohibition_noentry"/>
 				<case additional="seamark:notice:category=closed_area" icon="seamark_notice_prohibition_closedarea"/>
@@ -2149,7 +2136,7 @@
 					</apply_if>
 				</switch>
 			</switch>
-			<switch iconOrder="102"> <!--  regulation -->
+			<switch iconOrder="152"> <!--  regulation -->
 				<switch>
 					<case additional="seamark:notice:category=move_to_left" icon="seamark_notice_regulation_movetoleft"/>
 					<case additional="seamark:notice:category=move_to_right" icon="seamark_notice_regulation_movetoright"/>
@@ -2160,7 +2147,7 @@
 					<case additional="seamark:notice:category=cross_to_port" icon="seamark_notice_regulation_crosstoport"/>
 					<case additional="seamark:notice:category=cross_to_starboard" icon="seamark_notice_regulation_crosstostarboard"/>
 					<case additional="seamark:notice:category=stop" icon="seamark_notice_regulation_stop"/>
-					<case additional="seamark:notice:category=speed_limit" icon="seamark_notice_regulation_speedlimit" iconOrder="100"/>
+					<case additional="seamark:notice:category=speed_limit" icon="seamark_notice_regulation_speedlimit" iconOrder="150"/>
 					<case additional="seamark:notice:category=sound_horn" icon="seamark_notice_regulation_soundhorn"/>
 					<case additional="seamark:notice:category=keep_lookout" icon="seamark_notice_regulation_keeplookout"/>
 					<case additional="seamark:notice:category=give_way_junction" icon="seamark_notice_regulation_givewayjunction"/>
@@ -2174,7 +2161,7 @@
 					</apply_if>
 				</switch>
 			</switch>
-			<switch iconOrder="103">  <!-- restriction -->
+			<switch iconOrder="153">  <!-- restriction -->
 				<switch>
 					<case additional="seamark:notice:category=limited_depth" icon="seamark_notice_restriction_limiteddepth"/>
 					<case additional="seamark:notice:category=limited_headroom" icon="seamark_notice_restriction_limitedheadroom"/>
@@ -2189,7 +2176,7 @@
 					</apply_if>
 				</switch>
 			</switch>
-			<switch iconOrder="104">   <!-- recommendation -->
+			<switch iconOrder="154">   <!-- recommendation -->
 				<case additional="seamark:notice:category=channel_two_way" icon="seamark_notice_recommendation_channeltwoway"/>
 				<case additional="seamark:notice:category=channel_one_way" icon="seamark_notice_recommendation_channeloneway"/>
 				<case additional="seamark:notice:category=opening_to_right" icon="seamark_notice_recommendation_openingtoright"/>
@@ -2201,7 +2188,7 @@
 					<apply_if additional="seamark:notice:2:function" icon__1="seamark_notice_information_bg_plus"/>
 				</switch>
 			</switch>
-			<switch iconOrder="105">  <!-- information -->
+			<switch iconOrder="155">  <!-- information -->
 				<case additional="seamark:notice:category=entry_permitted" icon="seamark_notice_information_entrypermitted"/>
 				<switch>
 					<case additional="seamark:notice:category=overhead_cable" icon="seamark_notice_information_overheadcable"/>
@@ -2351,7 +2338,7 @@
 			</apply>
 		</switch>
 
-		<case minzoom="9" tag="seamark:type" value="harbour" icon="seamark_harbour_default" iconOrder="7">
+		<case minzoom="9" tag="seamark:type" value="harbour" icon="seamark_harbour_default" iconOrder="57">
 			<case maxzoom="10" icon="seamark_harbour_default_small" iconVisibleSize="20" intersectionSizeFactor="0.8">
 				<apply_if nightMode="true" shield="seamark_harbour_default_small_night_shield"/>
 			</case>
@@ -2398,14 +2385,14 @@
 		<case minzoom="14" tag="seamark:type" value="anchor_berth" icon="seamark_anchor_berth"/>
 		<case minzoom="15" tag="seamark:type" value="berth" icon="seamark_berth"/>
 
-		<switch minzoom="11" iconVisibleSize="27" intersectionSizeFactor="0.8" iconOrder="20">
+		<switch minzoom="11" iconVisibleSize="27" intersectionSizeFactor="0.8" iconOrder="70">
 			<case tag="waterway" value="lock_gate"/>
 			<case tag="seamark:type" value="gate" additional="seamark:gate:category=lock"/>
 			<apply icon="seamark_lock_gate" shield="seamark_white_black_round_shield"/>
 		</switch>
 		<case minzoom="12" tag="seamark:type" value="gate" icon="seamark_gate" shield="seamark_white_black_round_shield"/>
 
-		<case minzoom="15" tag="seamark:type" value="bridge" icon="seamark_bridge_fixed" iconOrder="19">
+		<case minzoom="15" tag="seamark:type" value="bridge" icon="seamark_bridge_fixed" iconOrder="69">
 			<case additional="seamark:bridge:category=fixed" icon="seamark_bridge_fixed"/>
 			<case additional="seamark:bridge:category=opening" icon="seamark_bridge_opening"/>
 			<case additional="seamark:bridge:category=lifting" icon="seamark_bridge_lifting"/>
@@ -2484,7 +2471,7 @@
 
 		<case minzoom="14" tag="seamark:type" value="seaplane_landing_area" icon="seamark_seaplane_landing_area"/>
 
-		<case minzoom="13" tag="seamark:type" value="restricted_area" iconOrder="30">
+		<case minzoom="13" tag="seamark:type" value="restricted_area" iconOrder="80">
 			<case additional="seamark:restricted_area:category=kite_surfing" icon="seamark_restricted_area_kite_surfing"/>
 			<case additional="seamark:restricted_area:category=swimming" icon="seamark_restricted_area_swimming"/>
 			<case additional="seamark:restricted_area:category=fish_sanctuary" icon="seamark_restricted_area_fish_sanctuary"/>
@@ -2578,7 +2565,7 @@
 			<case additional="seamark:obstruction:category=construction" icon="seamark_obstruction_construction"/>
 		</case>
 
-		<case minzoom="16" tag="seamark:type" value="distance_mark" icon="seamark_distance_mark" iconOrder="100">
+		<case minzoom="16" tag="seamark:type" value="distance_mark" icon="seamark_distance_mark" iconOrder="150">
 			<case additional="seamark:distance_mark:category=not_installed"/>
 			<switch>
 				<case additional="seamark:distance_mark:category=installed"/>
@@ -2593,7 +2580,7 @@
 			<case additional="seamark:hulk:category=restaurant" icon_2="seamark_hulk_restaurant_additional"/>
 		</case>
 
-		<case minzoom="16" tag="seamark:type" value="marine_farm" icon="seamark_marine_farm" iconOrder="40">
+		<case minzoom="16" tag="seamark:type" value="marine_farm" icon="seamark_marine_farm" iconOrder="90">
 			<case additional="seamark:marine_farm:category=fish" icon_2="seamark_marine_farm_fish_additional"/>
 			<case additional="seamark:marine_farm:category=crustaceans" icon_2="seamark_marine_farm_crustaceans_additional"/>
 			<case additional="seamark:marine_farm:category=oysters_mussels" icon_2="seamark_marine_farm_oysters_mussels_additional"/>
@@ -2634,7 +2621,7 @@
 			<case additional="seamark:rock:water_level=awash" icon="seamark_rock_awash"/>
 		</case>
 
-		<case minzoom="11" tag="natural" value="peak" iconOrder="65">
+		<case minzoom="11" tag="natural" value="peak" iconOrder="115">
 			<case maxzoom="11" icon="natural_peak" shield="peakvolcano_shield" iconVisibleSize="25" intersectionSizeFactor="2"/>
 			<case maxzoom="14" icon="natural_peak" shield="peakvolcano_shield"/>
 			<case minzoom="15" icon="natural_peak_big" shield="peakvolcano_big_shield"/>
@@ -2644,7 +2631,7 @@
 			</apply_if>
 		</case>
 
-		<case minzoom="10" tag="natural" value="volcano" iconOrder="50">
+		<case minzoom="10" tag="natural" value="volcano" iconOrder="100">
 			<case maxzoom="14" icon="natural_volcano_map" shield="peakvolcano_shield">
 				<case additional="status=active" icon="natural_volcano_active" shield="natural_volcano_active_shield"/>
 			</case>
@@ -2653,7 +2640,7 @@
 			</case>
 			<apply_if nightMode="true" shield=""/>
 		</case>
-		<case minzoom="17" tag="man_made" value="chimney" icon="man_made_chimney" shield="chimney_shield" iconOrder="100"/>
+		<case minzoom="17" tag="man_made" value="chimney" icon="man_made_chimney" shield="chimney_shield" iconOrder="150"/>
 		<case minzoom="16" tag="man_made" value="windmill" icon="man_made_windmill" shield="windmill_shield"/>
 		<case minzoom="15" tag="man_made" value="observatory" icon="man_made_observatory" shield="observatory_shield">
 			<apply_if additional="observatory:type=astronomical" icon="astronomical_observatory" shield="astronomical_observatory_shield"/>
@@ -2661,7 +2648,7 @@
 
 		<case minzoom="16" tag="man_made" value="monitoring_station" icon="man_made_monitoring_station_radar" shield="monitoring_station_radar_shield"/>
 		<case minzoom="16" tag="man_made" value="mast" icon="man_made_mast" shield="mast_shield"/>
-		<switch iconOrder="71">
+		<switch iconOrder="121">
 			<case minzoom="16" tag="man_made" value="water_tower" icon="man_made_water_tower" shield="water_tower_shield"/>
 			<switch minzoom="16" tag="man_made" value="tower">
 				<case additional="tower:type=communication" icon="communication_tower" shield="tower_communications_shield"/>
@@ -2690,21 +2677,112 @@
 		<!-- Location dots -->
 
 		<switch>
-			<case tag="place" value="city"/>
-			<apply_if minzoom="6" maxzoom="16" icon="place_city_dot" iconVisibleSize="12" intersectionSizeFactor="0.9" iconOrder="99"/>
-			<apply_if additional="capital=yes" iconVisibleSize="1" iconOrder="99">
-				<case minzoom="5" maxzoom="5" icon="place_capital_dot_small">
-					<apply_if nightMode="true" icon="place_capital_dot_small_night"/>
-				</case>
-				<case minzoom="6" maxzoom="16" icon="place_capital_dot">
-					<apply_if nightMode="true" icon="place_capital_dot_night"/>
-				</case>
-			</apply_if>
+			<switch>
+				<case minzoom="5" tag="place" value="city"/>
+				<apply_if minzoom="6" maxzoom="16" icon="place_city_dot" iconVisibleSize="22" intersectionSizeFactor="0.9" iconOrder="32"/>
+				<apply>
+					<switch>
+						<switch>
+							<case additional="population_rounded=1500000000" iconOrder="6"/>
+							<case additional="population_rounded=400000000" iconOrder="7"/>
+							<case additional="population_rounded=200000000" iconOrder="8"/>
+							<case additional="population_rounded=100000000" iconOrder="9"/>
+							<case additional="population_rounded=50000000" iconOrder="10"/>
+							<case additional="population_rounded=25000000" iconOrder="11"/>
+							<case additional="population_rounded=20000000" iconOrder="12"/>
+							<case additional="population_rounded=15000000" iconOrder="13"/>
+							<case additional="population_rounded=12000000" iconOrder="14"/>
+							<case additional="population_rounded=9000000" iconOrder="15"/>
+							<case additional="population_rounded=7000000" iconOrder="16"/>
+							<case additional="population_rounded=5000000" iconOrder="17"/>
+							<case additional="population_rounded=3000000" iconOrder="18"/>
+							<apply_if maxzoom="5" icon="place_city_dot" iconVisibleSize="1" intersectionSizeFactor="0.9"/>
+						</switch>
+						<case additional="population_rounded=2000000" iconOrder="19"/>
+						<case additional="population_rounded=1000000" iconOrder="20"/>
+						<case additional="population_rounded=700000" iconOrder="21"/>
+						<case additional="population_rounded=400000" iconOrder="22"/>
+						<case additional="population_rounded=200000" iconOrder="32"/>
+						<case additional="population_rounded=100000" iconOrder="33"/>
+						<case additional="population_rounded=70000" iconOrder="34"/>
+						<case additional="population_rounded=40000" iconOrder="35"/>
+						<case additional="population_rounded=20000" iconOrder="36"/>
+						<case additional="population_rounded=10000" iconOrder="37"/>
+						<case additional="population_rounded=5000" iconOrder="38"/>
+						<case additional="population_rounded=2500" iconOrder="39"/>
+						<case additional="population_rounded=1000" iconOrder="40"/>
+						<case additional="population_rounded=500" iconOrder="41"/>
+						<case additional="population_rounded=200" iconOrder="42"/>
+						<case additional="population_rounded=100" iconOrder="43"/>
+					</switch>
+				</apply>
+				<apply_if additional="capital=yes" iconVisibleSize="1" iconOrder="15">
+					<switch>
+						<case minzoom="5" maxzoom="5" icon="place_capital_dot_small" iconOrder="25">
+							<apply_if nightMode="true" icon="place_capital_dot_small_night"/>
+						</case>
+						<case minzoom="6" maxzoom="16" icon="place_capital_dot">
+							<apply_if nightMode="true" icon="place_capital_dot_night"/>
+						</case>
+						<apply>
+							<case additional="population_rounded=20000000" iconOrder="15"/>
+							<case additional="population_rounded=15000000" iconOrder="15"/>
+							<case additional="population_rounded=12000000" iconOrder="16"/>
+							<case additional="population_rounded=9000000" iconOrder="16"/>
+							<case additional="population_rounded=7000000" iconOrder="17"/>
+							<case additional="population_rounded=5000000" iconOrder="17"/>
+							<case additional="population_rounded=3000000" iconOrder="18"/>
+							<case additional="population_rounded=2000000" iconOrder="18"/>
+							<case additional="population_rounded=1000000" iconOrder="19"/>
+							<case additional="population_rounded=700000" iconOrder="20"/>
+							<case additional="population_rounded=400000" iconOrder="21"/>
+							<case additional="population_rounded=200000" iconOrder="22"/>
+							<case additional="population_rounded=100000" iconOrder="23"/>
+							<case additional="population_rounded=70000" iconOrder="23"/>
+							<case additional="population_rounded=40000" iconOrder="23"/>
+							<case additional="population_rounded=20000" iconOrder="23"/>
+						</apply>
+					</switch>
+				</apply_if>
+			</switch>
+			<switch>
+				<case minzoom="7" tag="place" value="town" icon="place_town_dot" iconVisibleSize="24" iconOrder="36"/>
+				<case minzoom="11" maxzoom="12" tag="place" value="village" icon="place_town_dot"/>
+				<case minzoom="11" maxzoom="12" tag="place" value="hamlet" icon="place_town_dot" iconOrder="42"/>
+				<case minzoom="12" maxzoom="12" tag="place" value="farm" icon="place_town_dot"/>
+				<apply>
+					<case additional="population_rounded=1500000000" iconOrder="6"/>
+					<case additional="population_rounded=400000000" iconOrder="7"/>
+					<case additional="population_rounded=200000000" iconOrder="8"/>
+					<case additional="population_rounded=100000000" iconOrder="9"/>
+					<case additional="population_rounded=50000000" iconOrder="10"/>
+					<case additional="population_rounded=25000000" iconOrder="11"/>
+					<case additional="population_rounded=20000000" iconOrder="12"/>
+					<case additional="population_rounded=15000000" iconOrder="13"/>
+					<case additional="population_rounded=12000000" iconOrder="14"/>
+					<case additional="population_rounded=9000000" iconOrder="15"/>
+					<case additional="population_rounded=7000000" iconOrder="16"/>
+					<case additional="population_rounded=5000000" iconOrder="17"/>
+					<case additional="population_rounded=3000000" iconOrder="18"/>
+					<case additional="population_rounded=2000000" iconOrder="19"/>
+					<case additional="population_rounded=1000000" iconOrder="20"/>
+					<case additional="population_rounded=700000" iconOrder="21"/>
+					<case additional="population_rounded=400000" iconOrder="22"/>
+					<case additional="population_rounded=200000" iconOrder="32"/>
+					<case additional="population_rounded=100000" iconOrder="33"/>
+					<case additional="population_rounded=70000" iconOrder="34"/>
+					<case additional="population_rounded=40000" iconOrder="35"/>
+					<case additional="population_rounded=20000" iconOrder="36"/>
+					<case additional="population_rounded=10000" iconOrder="37"/>
+					<case additional="population_rounded=5000" iconOrder="38"/>
+					<case additional="population_rounded=2500" iconOrder="39"/>
+					<case additional="population_rounded=1000" iconOrder="40"/>
+					<case additional="population_rounded=500" iconOrder="41"/>
+					<case additional="population_rounded=200" iconOrder="42"/>
+					<case additional="population_rounded=100" iconOrder="43"/>
+				</apply>
+			</switch>
 		</switch>
-
-		<case minzoom="7" tag="place" value="town" icon="place_town_dot" iconVisibleSize="24"/>
-		<case minzoom="11" maxzoom="12" tag="place" value="village" icon="place_town_dot"/>
-		<case minzoom="11" maxzoom="12" tag="place" value="hamlet" icon="place_town_dot"/>
 
 	</point>
 
