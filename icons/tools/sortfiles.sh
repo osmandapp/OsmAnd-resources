@@ -192,7 +192,8 @@ mycp barrier small_brown_bold_1 functional-icons_point_brown_bold_1.png  #scale 
 mycp barrier small_brown_bold_2 functional-icons_point_brown_bold_2.png  #scale 0.25
 
 ## Emergency + Health
-mygroup emergency emergency_emergency_phone.png
+mygroup emergency emergency_ambulance_station.png
+mygroup emergency_infrastructure emergency_emergency_phone.png
 mycp amenity fire_station emergency_firestation4.png
 mycp amenity police emergency_police3.png
 mycp emergency fire_hydrant emergency_fire_hydrant.png
