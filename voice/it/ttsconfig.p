@@ -117,7 +117,7 @@ string('back_on_route.ogg', 'si torna sulla rotta ').
 string('onto.ogg', 'su ').
 string('on.ogg', 'in ').
 string('to.ogg', 'fino a ').
-string('toward.ogg', 'su ').
+string('toward.ogg', 'verso ').
  
 % Utility: toLowerCaseStr(OldString,NewString)
 toLowerCaseStr(L1,L1):-  var(L1), !.
