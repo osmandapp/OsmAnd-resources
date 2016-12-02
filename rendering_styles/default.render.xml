@@ -664,7 +664,50 @@
 		</case>
 	</renderingAttribute>
 
-	<renderingAttribute name="mainHighwayOnewayArrowsColor">
+	<!-- Oneway arrows -->
+	<renderingAttribute name="motorwayHighwayOnewayArrowsColor">
+		<case roadStyle="highContrastRoads" attrColorValue="#000000"/>
+		<case roadStyle="orange" attrColorValue="#000000"/>
+		<case attrColorValue="#484dc1">
+			<apply_if nightMode="true" attrColorValue="#000000"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="trunkHighwayOnewayArrowsColor">
+		<case roadStyle="highContrastRoads" attrColorValue="#000000"/>
+		<case roadStyle="orange" attrColorValue="#000000"/>
+		<case attrColorValue="#484dc1">
+			<apply_if nightMode="true" attrColorValue="#000000"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="primaryHighwayOnewayArrowsColor">
+		<case roadStyle="highContrastRoads" attrColorValue="#000000"/>
+		<case roadStyle="orange" attrColorValue="#000000"/>
+		<case attrColorValue="#484dc1">
+			<apply_if nightMode="true" attrColorValue="#000000"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="secondaryHighwayOnewayArrowsColor">
+		<case roadStyle="highContrastRoads" attrColorValue="#000000"/>
+		<case roadStyle="orange" attrColorValue="#000000"/>
+		<case attrColorValue="#484dc1">
+			<apply_if nightMode="true" attrColorValue="#000000"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="tertiaryHighwayOnewayArrowsColor">
+		<case roadStyle="highContrastRoads" attrColorValue="#000000"/>
+		<case roadStyle="orange" attrColorValue="#000000"/>
+		<case attrColorValue="#484dc1">
+			<apply_if nightMode="true" attrColorValue="#000000"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="residentialHighwayOnewayArrowsColor">
+		<case roadStyle="highContrastRoads" attrColorValue="#000000"/>
+		<case roadStyle="orange" attrColorValue="#000000"/>
+		<case attrColorValue="#484dc1">
+			<apply_if nightMode="true" attrColorValue="#000000"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="serviceHighwayOnewayArrowsColor">
 		<case roadStyle="highContrastRoads" attrColorValue="#000000"/>
 		<case roadStyle="orange" attrColorValue="#000000"/>
 		<case attrColorValue="#484dc1">
@@ -8715,6 +8758,7 @@
 								</case>
 								<case shadowRadius="$highwayShadowRadius"/>
 							</apply>
+							<apply onewayArrowsColor="$motorwayHighwayOnewayArrowsColor"/>>
 							<apply_if roadStyle="americanRoadAtlas" shadowRadius=":0">
 								<case maxzoom="14" strokeWidth__2="9:9"/>
 								<case maxzoom="15" strokeWidth__2="10:10"/>
@@ -8740,6 +8784,7 @@
 								<case minzoom="19" strokeWidth__2="13:13"/>
 							</apply_if>
 						</case>
+						<apply onewayArrowsColor="$trunkHighwayOnewayArrowsColor"/>>
 						<apply>
 							<case roadStyle="germanRoadAtlas" shadowRadius=":0">
 								<case maxzoom="14" strokeWidth__2="9:9"/>
@@ -8753,8 +8798,12 @@
 						<apply_if roadStyle="orange" shadowRadius="2"/>
 					</switch>
 					<switch>
-						<case tag="highway" value="primary" color="$primaryRoadColor" color__1="$primaryRoadColor" shadowColor="$primaryRoadShadowColor"/>
-						<case tag="highway" value="secondary" color="$secondaryRoadColor" color__1="$secondaryRoadColor" shadowColor="$secondaryRoadShadowColor"/>
+						<case tag="highway" value="primary" color="$primaryRoadColor" color__1="$primaryRoadColor" shadowColor="$primaryRoadShadowColor">
+							<apply_if engine_v1="true" onewayArrowsColor="$primaryHighwayOnewayArrowsColor"/>
+						</case>
+						<case tag="highway" value="secondary" color="$secondaryRoadColor" color__1="$secondaryRoadColor" shadowColor="$secondaryRoadShadowColor">
+							<apply_if engine_v1="true" onewayArrowsColor="$secondaryHighwayOnewayArrowsColor"/>
+						</case>
 						<apply>
 							<case engine_v1="true" shadowRadius=":1">
 								<apply_if showAccess="true" additional="motorroad=yes" shadowRadius=":2"/>
@@ -8804,8 +8853,12 @@
 				</switch>
 				<switch>
 					<switch>
-						<case tag="highway" value="motorway_link" color="$motorwayRoadColor" color__1="$motorwayRoadColor" shadowColor="$motorwayRoadShadowColor"/>
-						<case tag="highway" value="trunk_link" color="$trunkRoadColor" color__1="$trunkRoadColor" shadowColor="$trunkRoadShadowColor"/>
+						<case tag="highway" value="motorway_link" color="$motorwayRoadColor" color__1="$motorwayRoadColor" shadowColor="$motorwayRoadShadowColor">
+							<apply_if engine_v1="true" onewayArrowsColor="$motorwayHighwayOnewayArrowsColor"/>
+						</case>
+						<case tag="highway" value="trunk_link" color="$trunkRoadColor" color__1="$trunkRoadColor" shadowColor="$trunkRoadShadowColor">
+							<apply_if engine_v1="true" onewayArrowsColor="$trunkHighwayOnewayArrowsColor"/>
+						</case>
 						<apply>
 							<case engine_v1="true" shadowRadius=":1">
 								<apply_if showAccess="true" additional="motorroad=yes" shadowRadius=":2"/>
@@ -8823,8 +8876,12 @@
 						<apply_if roadStyle="orange" shadowRadius="2"/>
 					</switch>
 					<switch>
-						<case tag="highway" value="primary_link" color="$primaryRoadColor" color__1="$primaryRoadColor" shadowColor="$primaryRoadShadowColor"/>
-						<case tag="highway" value="secondary_link" color="$secondaryRoadColor" color__1="$secondaryRoadColor" shadowColor="$secondaryRoadShadowColor"/>
+						<case tag="highway" value="primary_link" color="$primaryRoadColor" color__1="$primaryRoadColor" shadowColor="$primaryRoadShadowColor">
+							<apply_if engine_v1="true" onewayArrowsColor="$primaryHighwayOnewayArrowsColor"/>
+						</case>
+						<case tag="highway" value="secondary_link" color="$secondaryRoadColor" color__1="$secondaryRoadColor" shadowColor="$secondaryRoadShadowColor">
+							<apply_if engine_v1="true" onewayArrowsColor="$secondaryHighwayOnewayArrowsColor"/>
+						</case>
 						<apply>
 							<case engine_v1="true" shadowRadius=":1">
 								<apply_if showAccess="true" additional="motorroad=yes" shadowRadius=":2"/>
@@ -8890,7 +8947,7 @@
 					<case maxzoom="18" strokeWidth="5:5" strokeWidth_0="5:5" pathEffect="7_12" strokeWidth__1="5.7:6.7"/>
 					<case minzoom="19" strokeWidth="6:6" strokeWidth_0="6:6" pathEffect="7_12" strokeWidth__1="6.8:7.7"/>
 				</apply_if>
-				<apply_if engine_v1="true" onewayArrowsColor="$mainHighwayOnewayArrowsColor"/>
+<!--				<apply_if engine_v1="true" onewayArrowsColor="$mainHighwayOnewayArrowsColor"/>-->
 				<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
 					<apply_if additional="oneway=yes" pathIcon="oneway_blue_big" pathIconStep="70"/>
 					<apply_if additional="oneway=-1" pathIcon="oneway_blue_reverse_big" pathIconStep="70"/>
@@ -8937,6 +8994,7 @@
 								</apply_if>
 							</case>
 						</apply>
+						<apply_if engine_v1="true" onewayArrowsColor="$tertiaryHighwayOnewayArrowsColor"/>
 						<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
 							<apply_if maxzoom="16" additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
 							<apply_if minzoom="17" additional="oneway=yes" pathIcon="oneway_blue_big" pathIconStep="70"/>
@@ -8985,6 +9043,7 @@
 								<apply_if nightMode="true" color_0="#ffffff"/>
 							</apply_if>
 						</apply>
+						<apply_if engine_v1="true" onewayArrowsColor="$residentialHighwayOnewayArrowsColor"/>
 						<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
 							<apply_if maxzoom="16" additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
 							<apply_if minzoom="17" additional="oneway=yes" pathIcon="oneway_blue_big" pathIconStep="70"/>
@@ -9059,6 +9118,7 @@
 							<apply_if nightMode="true" color_0="#ffffff"/>
 						</apply_if>
 					</apply>
+					<apply_if engine_v1="true" onewayArrowsColor="$serviceHighwayOnewayArrowsColor"/>
 					<apply_if engine_v1="false" minzoom="16"> <!-- for new OpenGL engine only -->
 						<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
 						<apply_if additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
@@ -9105,7 +9165,7 @@
 						</apply_if>
 					</apply>
 				</switch>
-				<apply_if engine_v1="true" onewayArrowsColor="$mainHighwayOnewayArrowsColor"/>
+<!--				<apply_if engine_v1="true" onewayArrowsColor="$mainHighwayOnewayArrowsColor"/>-->
 
 				<!-- Assign strokeWidth and pathEffect for surface, smoothness and access -->
 				<apply_if moreDetailed="true" minzoom="14" maxzoom="14" strokeWidth_2="1:1" strokeWidth_3="1:1"/>
