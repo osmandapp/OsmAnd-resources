@@ -2,27 +2,27 @@
 <renderingStyle name="default" depends="" defaultColor="#f1eae4" version="1">
 
 	<!--  Documentation of the rendering syntax:
-	Elements:
-		<switch> :  Old convention <group>, bundles (groups) a section of <case>, <apply>, and further <switch> levels
-		<case>   :  Old convention <filter>, is the analog of (if...else)
-		<apply> and <apply_if> (synonym) :  Old convention <groupFilter>, specifies additional conditions/assignments to their parent filter
+		Elements:
+			<switch> :  Old convention <group>, bundles (groups) a section of <case>, <apply>, and further <switch> levels
+			<case>   :  Old convention <filter>, is the analog of (if...else)
+			<apply> and <apply_if> (synonym) :  Old convention <groupFilter>, specifies additional conditions/assignments to their parent filter
 
-		- <switch> and <case> can be top level elements, <apply> cannot
+			- <switch> and <case> can be top level elements, <apply> cannot
 
-	<switch> element :
-		1. A <switch> (or <group>, logically the same) on the top level propagates all its attributes like e.g. strokeWidth to the <case> level (unless overwritten there)
-		2. If <switch> has <case> or <switch> children, it tests these in their order with (if...else), and returns "true" when/if the first test succeeds (all others are not executed any more). If one succeeds, also all <applies> are executed in their specified order.
-		3. If <switch> does not have <case> or <switch>, but only <apply> children, all of these are executed, and "true" is returned.
-		4. All highest (top level) occurrences of <case> elements must contain tag/value attributes! A nested sequence from the top level like <switch><switch><case tag="" value=""></switch></switch> is possible, though.
+		<switch> element :
+			1. A <switch> (or <group>, logically the same) on the top level propagates all its attributes like e.g. strokeWidth to the <case> level (unless overwritten there)
+			2. If <switch> has <case> or <switch> children, it tests these in their order with (if...else), and returns "true" when/if the first test succeeds (all others are not executed any more). If one succeeds, also all <applies> are executed in their specified order.
+			3. If <switch> does not have <case> or <switch>, but only <apply> children, all of these are executed, and "true" is returned.
+			4. All highest (top level) occurrences of <case> elements must contain tag/value attributes! A nested sequence from the top level like <switch><switch><case tag="" value=""></switch></switch> is possible, though.
 
-	<case> element :
-		1. <case> works exactly like <switch> when executing its children, but the difference is it first evaluates itself.
-			A DIFFERENCE vs. <switch> is that if <case> matches, it always returns "true", while for <switch> this depends on a match of one of its children.
-		2. <case> is the only logical element which can return "true" on the top level. A top level <switch> must contain at least one <case>.
+		<case> element :
+			1. <case> works exactly like <switch> when executing its children, but the difference is it first evaluates itself.
+				A DIFFERENCE vs. <switch> is that if <case> matches, it always returns "true", while for <switch> this depends on a match of one of its children.
+			2. <case> is the only logical element which can return "true" on the top level. A top level <switch> must contain at least one <case>.
 
-	<apply> element :
-		1. <apply> evaluates its children just like <switch>, but it always returns "true", however nothing below evaluates this return value any more.
-		2. <apply> is only executed if at least one <case> applies
+		<apply> element :
+			1. <apply> evaluates its children just like <switch>, but it always returns "true", however nothing below evaluates this return value any more.
+			2. <apply> is only executed if at least one <case> applies
 	-->
 
 	<!--	nameTag is input parameter.
@@ -134,7 +134,7 @@
 	<renderingProperty attr="currentTrackWidth" name="Current GPX width" description="Width of the currently recording track"
 		type="string" possibleValues="thin,medium,bold" defaultValueDescription="default"/>
 
-<!--	<renderingProperty attr="levelNumber" name="Levels" description="" type="string" possibleValues="-5,-4,-3,-2,-1,0,1,2,3,4,5"/>-->
+	<!--	<renderingProperty attr="levelNumber" name="Levels" description="" type="string" possibleValues="-5,-4,-3,-2,-1,0,1,2,3,4,5"/>-->
 
 	<!--
 	<renderingProperty attr="showRoadMaps" name="Roads-only maps" description="Select how to show maps that have only road information"
@@ -266,7 +266,7 @@
 
 
 	<!-- roadColors="Modified Mapnik" -->
-<!-- Motorway  -->
+	<!-- Motorway  -->
 	<renderingAttribute name="motorwayRoadColor">
 		<case roadStyle="orange" attrColorValue="#ffae4b">
 			<apply_if nightMode="true" attrColorValue="#cf692d"/>
@@ -325,7 +325,7 @@
 		<case showAccess="true" additional="motorroad=yes" attrFloatValue="1:1"/>
 		<case attrFloatValue="0.6:0.4"/>
 	</renderingAttribute>
-<!-- Trunk  -->
+	<!-- Trunk  -->
 	<renderingAttribute name="trunkRoadColor">
 		<case roadStyle="orange" attrColorValue="#ffae4b">
 			<apply_if nightMode="true" attrColorValue="#cf692d"/>
@@ -384,7 +384,7 @@
 		</case>
 		<apply_if additional="construction=yes" attrColorValue="$null"/>
 	</renderingAttribute>
-<!-- Primary  -->
+	<!-- Primary  -->
 	<renderingAttribute name="primaryRoadColor">
 		<case roadStyle="orange" attrColorValue="#f8de93">
 			<apply_if nightMode="true" attrColorValue="#d19a66"/>
@@ -438,7 +438,7 @@
 			<case streetLighting="true" attrColorValue="#555555"/>
 		</case>
 	</renderingAttribute>
-<!-- Secondary  -->
+	<!-- Secondary  -->
 	<renderingAttribute name="secondaryRoadColor">
 		<case roadStyle="orange" attrColorValue="#f8de93">
 			<apply_if nightMode="true" attrColorValue="#d19a66"/>
@@ -489,7 +489,7 @@
 			</case>
 		</case>
 	</renderingAttribute>
-<!-- Tertiary  -->
+	<!-- Tertiary  -->
 	<renderingAttribute name="tertiaryRoadColor">
 		<case roadStyle="orange" attrColorValue="#fffcb8">
 			<apply_if additional="construction=yes" attrColorValue="#DFC255"/>
@@ -1208,7 +1208,7 @@
 		<case nightMode="true" attrColorValue="#3b3b3b"/>
 		<case attrColorValue="#dfd1d6"/>
 	</renderingAttribute>
-<!--	<renderingConstant name="landusePrisonColorDay" value="#dfd1d6"/>-->
+	<!--	<renderingConstant name="landusePrisonColorDay" value="#dfd1d6"/>-->
 	<renderingConstant name="landusePrisonColorNight" value="#3b3b3b"/>
 	<renderingConstant name="landuseCommercialColorDay" value="#efc8c8"/>
 	<renderingConstant name="landuseCommercialColorNight" value="#3b3b3b"/>
@@ -1935,7 +1935,7 @@
 						</switch>
 					</apply_if>
 				</case>
-<!--				<switch hideUnderground="true" layer="-1">
+				<!-- <switch hideUnderground="true" layer="-1">
 					<case tag="public_transport" value="platform"/>
 					<case tag="public_transport" value="station"/>
 					<apply order="-1"/>
@@ -2080,7 +2080,7 @@
 				<case tag="hazard" value="" order="11"/>
 				<case tag="fixme_tag" value="yes" order="11"/>
 				<case tag="note_tag" value="yes"/>
-<!--				<case tag="indoor" value="room"/>
+				<!-- <case tag="indoor" value="room"/>
 				<case tag="indoor" value="area" order="3"/>-->
 				<case tag="" value="" order="5"/>
 				<apply_if hideUnderground="true">
@@ -2347,7 +2347,7 @@
 							<apply_if appMode="default" moreDetailed="false" maxzoom="15" order="-1"/>
 						</apply_if>
 					</case>
-<!--					<apply_if hideUnderground="true" additional="tunnel=yes" order="-1"/>
+					<!-- <apply_if hideUnderground="true" additional="tunnel=yes" order="-1"/>
 					<apply_if hideUnderground="true" additional="indoor=yes" order="-1"/>-->
 					<apply_if appMode="car">
 						<case layer="0" maxzoom="18" order="-1"/>
@@ -2373,7 +2373,7 @@
 
 				<case tag="barrier" value="" order="20">
 					<apply_if appMode="car" layer="-1" order="-1"/>
-<!--					<apply_if hideUnderground="true" layer="-1" order="-1"/>
+					<!-- <apply_if hideUnderground="true" layer="-1" order="-1"/>
 					<apply_if hideUnderground="true" additional="covered=yes" order="-1"/>
 					<apply_if hideUnderground="true" additional="indoor=yes" order="-1"/>-->
 				</case>
@@ -2392,7 +2392,7 @@
 				<case hideUnderground="true" tag="lit_pedestrian_layer-1" value="" order="-1"/>
 				<case appMode="car" tag="lit_pedestrian_layer-1" value="" order="-1"/>
 				<case tag="building:part" value=""/>
-<!--				<case tag="indoor" value="wall"/>-->
+				<!-- <case tag="indoor" value="wall"/>-->
 				<case tag="osmand" value="file_trackline"/>
 				<case tag="osmand" value="file_routeline"/>
 			</switch>
@@ -4339,7 +4339,7 @@
 							<case tag="highway" value="rest_area"/>
 							<apply_if engine_v1="false" textDy="0"/>
 						</switch>
-<!--						<case tag="highway" value="construction" textColor="$serviceTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="#99bdff" textOrder="223"/>-->
+						<!-- <case tag="highway" value="construction" textColor="$serviceTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="#99bdff" textOrder="223"/>-->
 						<case tag="highway" value="proposed" textColor="$serviceTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="$serviceRoadColor" textOrder="253"/>
 						<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight"/>
 					</switch>
@@ -4577,14 +4577,14 @@
 				<case minzoom="9" maxzoom="12" tag="place" value="county" nameTag="" textSize="13" textItalic="true" textOrder="63"/>
 				<apply textItalic="true" textWrapWidth="15"/>
 				<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight"/>
-<!--				<apply_if additional="population_rounded=" textOrder="$textOrderPopulation"/>-->
+			<!-- <apply_if additional="population_rounded=" textOrder="$textOrderPopulation"/>-->
 			</switch>
 
 			<switch minzoom="3" textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColorDay" textBold="true">
 				<case minzoom="5" tag="place" value="city" nameTag="" intersectionMargin="25" textOrder="32">
 					<case minzoom="6" maxzoom="7" textSize="17"/>
 					<case minzoom="8" textSize="20"/>
-<!--					<apply_if additional="population_rounded=" textOrder="$textOrderPopulation"/>-->
+					<!-- <apply_if additional="population_rounded=" textOrder="$textOrderPopulation"/>-->
 					<apply>
 						<switch>
 							<case additional="population_rounded=1500000000" textOrder="6"/>
@@ -4930,7 +4930,7 @@
 					<case minzoom="17" tag="natural" value="scrub" textOrder="244"/>
 					<case minzoom="12" tag="natural" value="wetland" textOrder="238"/>
 					<case minzoom="14" tag="natural" value="heath" textOrder="245"/>
-<!--					<case minzoom="14" tag="natural" value="mud" textOrder="245"/>-->
+					<!-- <case minzoom="14" tag="natural" value="mud" textOrder="245"/>-->
 					<case minzoom="9" tag="landuse" value="forest" textOrder="201"/>
 					<case minzoom="14" tag="landuse" value="meadow" textOrder="243"/>
 					<case minzoom="15" tag="landuse" value="recreation_ground" textOrder="242"/>
@@ -5108,7 +5108,7 @@
 
 			<switch subwayMode="true">
 				<switch minzoom="12" tag="railway" value="station" nameTag="">
-<!--					<case additional="route=subway"/>-->
+					<!-- <case additional="route=subway"/>-->
 					<case additional="network=rer"/>
 					<case additional="station=subway"/>
 					<apply_if maxzoom="12" textSize="12"/>
@@ -5498,7 +5498,7 @@
 						<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77444444"/>
 					</apply>
 				</switch>
-	<!--			<apply textOrder="111"/>-->
+				<!--	<apply textOrder="111"/>-->
 			</switch>
 
 			<!-- Food and Drink -->
@@ -6221,7 +6221,7 @@
 			</switch>
 			<case minzoom="17" tag="historic" value="rune_stone" icon="historic_rune_stone" shield="historic_rune_stone_shield"/>
 
-	<!--		<switch minzoom="16">
+			<!-- <switch minzoom="16">
 				<case tag="abandoned:place" value=""/>
 				<case tag="abandoned:landuse" value=""/>
 				<switch minzoom="17">
@@ -6398,7 +6398,7 @@
 				<apply_if nightMode="true" shield="gray_blue_round_big_shield"/>
 			</case>
 
-	<!--		<switch minzoom="15" tag="public_transport" value="platform" iconVisibleSize="7">
+			<!-- <switch minzoom="15" tag="public_transport" value="platform" iconVisibleSize="7">
 				<case maxzoom="16" icon="highway_bus_stop_small"/>
 				<case minzoom="17" icon="amenity_bus_station" shield="white_blue_square_big_shield" intersectionMargin="3">
 					<switch>
@@ -6461,7 +6461,7 @@
 				<case additional="subway_region=athens" icon="subway_athens"/>
 				<case additional="subway_region=italy" icon="subway_italy"/>
 				<case additional="subway_region=italy_catania" icon="subway_italy_catania"/>
-	<!--			<case additional="subway_region=italy_brescia" icon="subway_italy_brescia"/>-->
+				<!-- <case additional="subway_region=italy_brescia" icon="subway_italy_brescia"/>-->
 				<case additional="subway_region=rotterdam" icon="subway_rotterdam"/>
 				<case additional="subway_region=amsterdam" icon="subway_amsterdam"/>
 				<case additional="subway_region=brussels" icon="subway_brussels"/>
@@ -6473,7 +6473,7 @@
 				<case additional="subway_region=manila" icon="subway_manila"/>
 				<case additional="subway_region=kolkata" icon="subway_kolkata"/>
 				<case additional="subway_region=delhi" icon="subway_delhi"/>
-	<!--			<case additional="subway_region=bangkok" icon="subway_bangkok"/>-->
+				<!-- <case additional="subway_region=bangkok" icon="subway_bangkok"/>-->
 				<case additional="subway_region=tehran" icon="subway_tehran"/>
 				<case additional="subway_region=chicago" icon="subway_chicago"/>
 				<case additional="subway_region=newyork" icon="subway_newyork"/>
@@ -7392,10 +7392,10 @@
 				<case maxzoom="17" icon="osm_note_dot_2"/>
 			</switch>
 			<case minzoom="16" tag="note_tag" value="yes" icon="note_tag_yes" icon_shift_px="-0.5" icon_shift_py="-0.5"/>
-<!--			<case minzoom="16" tag="description_tag" value="yes" icon="note_tag_yes"/>-->
+			<!--<case minzoom="16" tag="description_tag" value="yes" icon="note_tag_yes"/>-->
 		</switch>
 
-<!--		<switch minzoom="12">
+		<!-- <switch minzoom="12">
 			<case tag="lcn_ref" value=""/>
 			<case tag="rcn_ref" value=""/>
 			<case tag="ncn_ref" value=""/>
@@ -7522,7 +7522,7 @@
 
 		<!-- Icons for subwayMode (colored rings) -->
 		<switch subwayMode="true" minzoom="12" maxzoom="14" tag="railway" value="station" icon="railway_subway_station_small_default" shield="white_round_small_shield" iconVisibleSize="2" iconOrder="33">
-<!--			<case additional="route=subway"/>-->
+			<!-- <case additional="route=subway"/>-->
 			<case additional="station=subway"/>
 			<case additional="network=rer"/>
 			<apply_if nightMode="true" icon="railway_subway_station_small_default2"/>
@@ -7563,7 +7563,7 @@
 			<apply_if nightMode="true" shield="darkgray_round_small_shield"/>
 		</switch>
 		<switch hideIcons="false" minzoom="12" tag="railway" value="station" iconOrder="70">
-<!--			<case maxzoom="12" icon="railway_station_small_2" iconVisibleSize="10"/>-->
+			<!-- <case maxzoom="12" icon="railway_station_small_2" iconVisibleSize="10"/>-->
 			<case minzoom="13" maxzoom="14" icon="railway_station_small" iconVisibleSize="10" intersectionSizeFactor="0.8">
 				<apply_if additional="disused=yes" icon="railway_station_small_disused"/>
 				<apply_if additional="station=subway" icon="railway_station_subway_small"/>
@@ -7599,7 +7599,7 @@
 					<case additional="subway_region=athens" icon="subway_athens"/>
 					<case additional="subway_region=italy" icon="subway_italy"/>
 					<case additional="subway_region=italy_catania" icon="subway_italy_catania"/>
-<!--					<case additional="subway_region=italy_brescia" icon="subway_italy_brescia"/>-->
+					<!-- <case additional="subway_region=italy_brescia" icon="subway_italy_brescia"/>-->
 					<case additional="subway_region=rotterdam" icon="subway_rotterdam"/>
 					<case additional="subway_region=amsterdam" icon="subway_amsterdam"/>
 					<case additional="subway_region=brussels" icon="subway_brussels"/>
@@ -7611,7 +7611,7 @@
 					<case additional="subway_region=manila" icon="subway_manila"/>
 					<case additional="subway_region=kolkata" icon="subway_kolkata"/>
 					<case additional="subway_region=delhi" icon="subway_delhi"/>
-	<!--				<case additional="subway_region=bangkok" icon="subway_bangkok"/>-->
+					<!-- <case additional="subway_region=bangkok" icon="subway_bangkok"/>-->
 					<case additional="subway_region=tehran" icon="subway_tehran"/>
 					<case additional="subway_region=chicago" icon="subway_chicago"/>
 					<case additional="subway_region=newyork" icon="subway_newyork"/>
@@ -7676,7 +7676,7 @@
 					</apply_if>
 				</case>
 			</case>
-<!--			<apply iconOrder="19"/>-->
+			<!-- <apply iconOrder="19"/>-->
 		</switch>
 		<case tag="osmand_change" value="delete"/> <!-- OSMC will break if delete -->
 	</point>
@@ -8333,7 +8333,7 @@
 			</case>
 
 			<switch>
-<!--				<case minzoom="12" tag="natural" value="mud" color="#d6cbc6">
+				<!-- <case minzoom="12" tag="natural" value="mud" color="#d6cbc6">
 					<apply_if minzoom="13" shader="mud2"/>
 				</case>-->
 				<case minzoom="12" tag="natural" value="scrub" shader="scrub"/>
@@ -8551,7 +8551,7 @@
 		<case moreDetailed="true" minzoom="17" tag="building:part" value="" strokeWidth_2="0.5" color_2="#999999">
 			<apply_if nightMode="true" color_2="#808080"/>
 		</case>
-<!--		<case tag="indoor" value="room" color="#eeeeee" strokeWidth_2="2" color_2="#777777"/>
+		<!-- <case tag="indoor" value="room" color="#eeeeee" strokeWidth_2="2" color_2="#777777"/>
 		<case tag="indoor" value="area" color="$white"/>-->
 		<case tag="osmand_change" value="delete"/> <!-- OSMC will break if delete -->
 	</polygon>
@@ -8947,7 +8947,7 @@
 					<case maxzoom="18" strokeWidth="5:5" strokeWidth_0="5:5" pathEffect="7_12" strokeWidth__1="5.7:6.7"/>
 					<case minzoom="19" strokeWidth="6:6" strokeWidth_0="6:6" pathEffect="7_12" strokeWidth__1="6.8:7.7"/>
 				</apply_if>
-<!--				<apply_if engine_v1="true" onewayArrowsColor="$mainHighwayOnewayArrowsColor"/>-->
+				<!-- <apply_if engine_v1="true" onewayArrowsColor="$mainHighwayOnewayArrowsColor"/>-->
 				<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
 					<apply_if additional="oneway=yes" pathIcon="oneway_blue_big" pathIconStep="70"/>
 					<apply_if additional="oneway=-1" pathIcon="oneway_blue_reverse_big" pathIconStep="70"/>
@@ -9064,7 +9064,7 @@
 				<switch minzoom="13">
 					<switch>
 						<case tag="highway" value="service"/>
-<!--						<case tag="highway" value="services"/>
+						<!-- <case tag="highway" value="services"/>
 						<case tag="highway" value="rest_area"/>-->
 						<case tag="highway" value="living_street"/>
 						<!-- pedestrian roads are forbidden for cars and cyclists: show them like that in car and bicycle mode -->
@@ -9165,7 +9165,7 @@
 						</apply_if>
 					</apply>
 				</switch>
-<!--				<apply_if engine_v1="true" onewayArrowsColor="$mainHighwayOnewayArrowsColor"/>-->
+				<!-- <apply_if engine_v1="true" onewayArrowsColor="$mainHighwayOnewayArrowsColor"/>-->
 
 				<!-- Assign strokeWidth and pathEffect for surface, smoothness and access -->
 				<apply_if moreDetailed="true" minzoom="14" maxzoom="14" strokeWidth_2="1:1" strokeWidth_3="1:1"/>
@@ -9219,7 +9219,7 @@
 						</apply_if>
 						<apply>
 							<switch alpineHiking="true">
-<!--								<case additional="sac_scale=hiking" color_5="$sacScaleColorT1" pathEffect_5="10_3"/>-->
+								<!-- <case additional="sac_scale=hiking" color_5="$sacScaleColorT1" pathEffect_5="10_3"/>-->
 								<case additional="sac_scale=mountain_hiking" color_5="$sacScaleColorT2" pathEffect_5=""/>
 								<case additional="sac_scale=demanding_mountain_hiking" color_5="$sacScaleColorT3" pathEffect_5="10_3"/>
 								<case additional="sac_scale=alpine_hiking" color_5="$sacScaleColorT4" pathEffect_5=""/>
@@ -9227,7 +9227,7 @@
 								<case additional="sac_scale=difficult_alpine_hiking" color_5="$sacScaleColorT6" pathEffect_5="3_3"/>
 							</switch>
 							<switch alpineHiking="false">
-<!--								<filter additional="sac_scale=hiking" pathEffect_5="10_3"/>-->
+								<!-- <filter additional="sac_scale=hiking" pathEffect_5="10_3"/>-->
 								<case additional="sac_scale=mountain_hiking" pathEffect_5="5_5"/>
 								<case additional="sac_scale=demanding_mountain_hiking" pathEffect_5="2_6"/>
 								<case additional="sac_scale=alpine_hiking" pathEffect_5="2_6"/>
@@ -9265,7 +9265,7 @@
 							<case appMode="pedestrian">
 								<case minzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="0.9" pathEffect_5=""/>
 							</case>
-<!--							<case maxzoom="15" strokeWidth=""/>-->
+							<!-- <case maxzoom="15" strokeWidth=""/>-->
 						</switch>
 						<case minzoom="16" strokeWidth_4="1.4:1.4" strokeWidth_5="$footwayStrokeWidth" pathEffect_5="4_2">
 							<switch>
@@ -9435,7 +9435,7 @@
 							<case additional="vehicle=yes"/>
 							<case additional="motor_vehicle=yes"/>
 							<case additional="motorcar=yes"/>
-<!--	We need to restore surface color when particular transport access is "yes". This can't be done another way because we can't go through 2 switches (showAccess and showSurfaces). Though not perfect solution.  -->
+							<!--	We need to restore surface color when particular transport access is "yes". This can't be done another way because we can't go through 2 switches (showAccess and showSurfaces). Though not perfect solution.  -->
 							<apply_if showSurfaces="true" color_3="$surfaceColor" cap_3="SQUARE"/>
 						</switch>
 					</switch>
@@ -10365,7 +10365,7 @@
 			<apply_if minzoom="17" strokeWidth="5"/>
 		</switch>
 
-<!--		<switch minzoom="16">
+		<!-- <switch minzoom="16">
 			<case tag="hazard" value=""/>
 			<apply>
 				<case maxzoom="16" strokeWidth="7:7" shadowRadius="3"/>
@@ -10470,7 +10470,7 @@
 				<apply color="$boundaryNationalParkColor2" color_0="$boundaryNationalParkColor" strokeWidth_0="0.6" pathEffect="4_1" pathEffect_0="4_1"/>
 			</case>
 		</switch>
-<!--		<case tag="indoor" value="wall" color="#777777" strokeWidth="2"/>
+		<!-- <case tag="indoor" value="wall" color="#777777" strokeWidth="2"/>
 		<case minzoom="19" tag="door" value="hinged" color="#ffffff" strokeWidth="7"/>-->
 		<case tag="osmand_change" value="delete"/> <!-- OSMC will break if delete -->
 	</line>
