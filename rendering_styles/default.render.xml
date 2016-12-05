@@ -1216,11 +1216,22 @@
 	<renderingConstant name="landuseRetailColorNight" value="#3b3b3b"/>
 	<renderingConstant name="landuseLandfillColorDay" value="#9d9d6c"/>
 	<renderingConstant name="landuseLandfillColorNight" value="#3b3b3b"/>
-	<renderingConstant name="amenityEducationalColorDay" value="#f0f0d8"/>
-	<renderingConstant name="amenityEducationalColorNight" value="#3b3b3b"/>
-	<renderingConstant name="amenityEducationalStrokeColorNight" value="#d4a89e"/>
-	<renderingConstant name="amenityHospitalColorDay" value="#f0f0d8"/>
-	<renderingConstant name="amenityHospitalColorNight" value="#3b3b3b"/>
+	<renderingAttribute name="amenityEducationalColor">
+		<case nightMode="true" attrColorValue="#3b3b3b"/>
+		<case attrColorValue="#f0f0d8"/>
+	</renderingAttribute>
+	<renderingAttribute name="amenityEducationalStrokeColor">
+		<case nightMode="true" attrColorValue="#d4a89e"/>
+		<case attrColorValue="#d4a89e"/>
+	</renderingAttribute>
+	<renderingAttribute name="amenityHospitalColor">
+		<case nightMode="true" attrColorValue="#3b3b3b"/>
+		<case attrColorValue="#f0f0d8"/>
+	</renderingAttribute>
+	<renderingAttribute name="amenityHospitalStrokeColor">
+		<case nightMode="true" attrColorValue="#d4a89e"/>
+		<case attrColorValue="#d4a89e"/>
+	</renderingAttribute>
 	<renderingAttribute name="landuseAllotmentsColor">
 		<case nightMode="true" attrColorValue="#3b3b3b"/>
 		<case attrColorValue="#bde3cb"/>
@@ -8140,15 +8151,12 @@
 				<case tag="amenity" value="training"/>
 				<case tag="amenity" value="college"/>
 				<case tag="amenity" value="university"/>
-				<apply color="$amenityEducationalColorDay" color_2="#d4a89e" strokeWidth_2=":1">
-					<apply_if nightMode="true" color="$amenityEducationalColorNight" color_2="$amenityEducationalStrokeColorNight"/>
-				</apply>
+				<apply color="$amenityEducationalColor" color_2="$amenityEducationalStrokeColor" strokeWidth_2=":1"/>
 			</switch>
 			<switch minzoom="15">
 				<case tag="amenity" value="hospital"/>
 				<case tag="amenity" value="clinic"/>
-				<apply color="$amenityHospitalColorDay" color_2="#d4a89e" strokeWidth_2=":1"/>
-				<apply_if nightMode="true" color="$amenityHospitalColorNight" color_2="$amenityEducationalStrokeColorNight"/>
+				<apply color="$amenityHospitalColor" color_2="$amenityHospitalStrokeColor" strokeWidth_2=":1"/>
 			</switch>
 			<case minzoom="10" tag="landuse" value="allotments" color="$landuseAllotmentsColor" color_2="$landuseAllotmentsStrokeColor" strokeWidth_2=":1">
 				<case minzoom="13" maxzoom="14" shader="allotments_small"/>
