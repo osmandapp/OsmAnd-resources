@@ -148,23 +148,23 @@
 	<!-- Educational -->
 	<renderingAttribute name="amenityEducationalColor">
 		<case nightMode="true" attrColorValue="#3b3b3b"/>
-		<case attrColorValue="#000000"/>
+		<case attrColorValue="#e5dfda"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="amenityEducationalStrokeColor">
 		<case nightMode="true" attrColorValue="#d4a89e"/>
-		<case attrColorValue="#000000"/>
+		<case attrColorValue="#e5dfda"/>
 	</renderingAttribute>
 
 
 	<!-- Hospital -->
 	<renderingAttribute name="amenityHospitalColor">
 		<case nightMode="true" attrColorValue="#3b3b3b"/>
-		<case attrColorValue="#f0f0d8"/>
+		<case attrColorValue="#e5e3da"/>
 	</renderingAttribute>
 	<renderingAttribute name="amenityHospitalStrokeColor">
 		<case nightMode="true" attrColorValue="#d4a89e"/>
-		<case attrColorValue="#d4a89e"/>
+		<case attrColorValue="#e0e0d5"/>
 	</renderingAttribute>
 
 	<!-- Playground -->
@@ -697,12 +697,16 @@
 		<!-- Кладбища
 		<case minzoom="12" tag="landuse" value="cemetery" color="$woodColor"/>
         -->
-	       <case minzoom="12" tag="landuse" value="cemetery" shader="cemetery_small_2" color_0="$woodColor">
-			<case minzoom="15" shader="cemetery_2">
+	    <case minzoom="12" tag="landuse" value="cemetery" shader="cemetery_small_2" color_0="$woodColor">
+			<case minzoom="15" shader="cemetery_2" color_0="#8cd474">
 			<case additional="religion=christian" shader="cemetery_christian_2"/>
 			<case additional="religion=muslim" shader="cemetery_muslim_2"/>
 			<case additional="religion=jewish" shader="cemetery_jewish_2"/>
 			</case>
+			<apply_if nightMode="true" shader=""/>
+		</case>
+
+		 <case minzoom="15" tag="landuse" value="meadow" color_0="#91d47b">
 			<apply_if nightMode="true" shader=""/>
 		</case>
 
@@ -712,7 +716,7 @@
 		</case>
 
 		<!-- Сады и тд shader="allotments_small" -->
-    		<case minzoom="10" tag="landuse" value="allotments" color="$landuseAllotmentsColor" color_2="$landuseAllotmentsStrokeColor" strokeWidth_2="1"/>
+    	<case minzoom="10" tag="landuse" value="allotments" color="$landuseAllotmentsColor" color_2="$landuseAllotmentsStrokeColor" strokeWidth_2="1"/>
 
 		<case minzoom="6" tag="landuse" value="residential" color="$null">
 			<apply_if additional="named=yes" strokeWidth_2="1" color_2="#AAAAAA">
@@ -792,6 +796,15 @@
 			<apply_if minzoom="16" additional="leaf_type=needleleaved" shader="wood_needleleaved3"/>
 			<apply_if minzoom="16" additional="leaf_type=mixed" shader="wood_mixed3"/>
 			<apply_if nightMode="true" shader=""/>
+		</switch>
+
+		<switch minzoom="15">
+			<case tag="amenity" value="kindergarten"/>
+			<case tag="amenity" value="school"/>
+			<case tag="amenity" value="training"/>
+			<case tag="amenity" value="college"/>
+			<case tag="amenity" value="university"/>
+			<apply color="$amenityEducationalColor" color_2="$amenityEducationalStrokeColor" strokeWidth_2=":1"/>
 		</switch>
 
     <!-- Educational 
