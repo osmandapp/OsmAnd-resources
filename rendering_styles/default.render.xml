@@ -539,6 +539,20 @@
 			</case>
 		</case>
 	</renderingAttribute>
+	<renderingAttribute name="tertiaryRoadLowZoomShadowColor">
+		<case roadStyle="boldOutline" attrColorValue="#000000">
+			<apply_if nightMode="true" attrColorValue="$null"/>
+		</case>
+		<case showAccess="true" additional="motorroad=yes" attrColorValue="#5f5fff"/>
+		<case roadStyle="germanRoadAtlas" attrColorValue="#767676">
+			<apply_if nightMode="true" attrColorValue="#464646"/>
+		</case>
+		<case attrColorValue="#969696">
+			<case streetLighting="true" minzoom="14" attrColorValue="#444444">
+				<apply_if nightMode="true" attrColorValue="#ffffff"/>
+			</case>
+		</case>
+	</renderingAttribute>
 	<renderingAttribute name="residentialRoadColor">
 		<case roadStyle="highContrastRoads" attrColorValue="#ffe778">
 			<apply_if nightMode="true" attrColorValue="#ceba61"/>
@@ -1076,16 +1090,20 @@
 	<renderingConstant name="grasslandColorDay" value="#cfeca8"/>
 	<renderingConstant name="lavaColorDay" value="#ffe7ff"/>
 	<renderingConstant name="desertColorDay" value="#fff7bf"/>
-	<renderingConstant name="farmColorDay" value="#f6e3c7"/>
-	<renderingConstant name="farmColorNight" value="#004333"/>
+	<renderingAttribute name="farmColor">
+		<case nightMode="true" attrColorValue="#004333"/>
+		<case attrColorValue="#f6e3c7"/>
+	</renderingAttribute>
 	<renderingAttribute name="farmyardColor">
 		<case nightMode="true" attrColorValue="#004333"/>
 		<case attrColorValue="#ddbf92"/>
 	</renderingAttribute>
 	<renderingConstant name="greenfieldColorDay" value="#9d9d6c"/>
 	<renderingConstant name="grassColorDay" value="#cfeca8"/>
-	<renderingConstant name="meadowColorDay" value="#cfeca8"/>
-	<renderingConstant name="meadowColorNight" value="#004333"/>
+	<renderingAttribute name="meadowColor">
+		<case nightMode="true" attrColorValue="#004333"/>
+		<case attrColorValue="#cfeca8"/>
+	</renderingAttribute>
 	<renderingConstant name="brownfieldColorDay" value="#9d9d6c"/>
 	<renderingConstant name="recreationGroundColorDay" value="#cfeca8"/>
 	<renderingConstant name="recreationGroundColorDayStroke" value="#b0b6fdb6"/>
@@ -8091,13 +8109,9 @@
 			<switch minzoom="6">
 				<case tag="landuse" value="farm"/>
 				<case tag="landuse" value="farmland"/>
-				<apply color="$farmColorDay">
-					<apply_if nightMode="true" color="$farmColorNight"/>
-				</apply>
+				<apply color="$farmColor"/>
 			</switch>
-			<case minzoom="6" tag="landuse" value="meadow" color="$meadowColorDay">
-				<apply_if nightMode="true" color="$meadowColorNight"/>
-			</case>
+			<case minzoom="6" tag="landuse" value="meadow" color="$meadowColor"/>
 
 			<!-- Built-up areas -->
 			<switch>
@@ -9001,12 +9015,11 @@
 						</apply>
 						<apply color="$tertiaryRoadColor" color__1="$tertiaryRoadColor" cap="ROUND">
 							<case maxzoom="13">
-								<apply color="$tertiaryRoadLowZoomColor">
+								<apply color="$tertiaryRoadLowZoomColor" shadowColor="$tertiaryRoadLowZoomShadowColor">
 									<apply_if minzoom="11" maxzoom="11" strokeWidth="1.3:1.3"/>
 									<apply_if minzoom="12" maxzoom="12" strokeWidth="1.4:1.4"/>
 									<apply_if minzoom="13" maxzoom="13" strokeWidth="1.6:1.6"/>
 								</apply>
-								<apply_if nightMode="false" shadowColor="$tertiaryRoadShadowColor"/>
 							</case>
 							<case minzoom="14" color_0="#000000" shadowColor="$tertiaryRoadShadowColor">
 								<case maxzoom="14" strokeWidth="3:3"/>
