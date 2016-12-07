@@ -673,6 +673,13 @@
 		<case attrColorValue="$defaultColor"/>
 	</renderingAttribute>
 
+	<renderingConstant name="forestTextColorDay" value="#388738"/>
+	<renderingAttribute name="textHaloRadius">
+		<case nightMode="true" attrIntValue="2"/>
+		<case attrIntValue="1"/>
+	</renderingAttribute>
+
+
 	<order>
 		<!-- Point 101-200 -->
 		<switch area="false" point="true" objectType="1" order="128">
@@ -686,6 +693,10 @@
 			<case tag="boundary" value="protected_area" order="-1"/>
 			<case tag="landuse" value="residential" order="10"/>
 			<case tag="landuse" value="cemetery" order="7"/>
+			<switch>
+				<case tag="natural" value="wood"/>
+				<apply addPoint="1"/>
+			</switch>
 		</switch>
 
 		<!-- Line 11-100 -->
@@ -706,9 +717,17 @@
 		</switch>
 	</order>
 
+	<text>
+		<switch textSize="12" textColor="$forestTextColorDay" textWrapWidth="20" textHaloRadius="$textHaloRadius" textHaloColor="#ccffffff" nameTag="" textItalic="true">
+			<case minzoom="12" tag="natural" value="wood" textOrder="202" textDy="8"/>
+		</switch>
+	</text>
+
 	<point>
 		<!-- LEP -->
 		<case minzoom="14" maxzoom="14" tag="power" value="tower"/>
+
+		<case minzoom="12" tag="natural" value="wood" icon="wood" shield="white_green_square_big_shield"/>
 	</point>
 
 	<polygon>
