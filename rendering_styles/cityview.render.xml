@@ -687,15 +687,15 @@
 		</switch>
 
 		<!-- Polygon 1-10 -->
-		<switch area="true" point="false" objectType="3" order="5">
+		<switch area="true" point="false" addPoint="1" objectType="3" order="5">
 		</switch>
-		<switch cycle="true" point="false" objectType="3" order="5">
+		<switch cycle="true" point="false" addPoint="1" objectType="3" order="5">
 			<case tag="boundary" value="protected_area" order="-1"/>
 			<case tag="landuse" value="residential" order="10"/>
 			<case tag="landuse" value="cemetery" order="7"/>
 			<switch>
 				<case tag="natural" value="wood"/>
-				<apply addPoint="1"/>
+				<case tag="landuse" value="forest"/>
 			</switch>
 		</switch>
 
@@ -720,6 +720,7 @@
 	<text>
 		<switch textSize="12" textColor="$forestTextColorDay" textWrapWidth="20" textHaloRadius="$textHaloRadius" textHaloColor="#ccffffff" nameTag="" textItalic="true">
 			<case minzoom="12" tag="natural" value="wood" textOrder="202" textDy="8"/>
+			<case minzoom="12" tag="landuse" value="forest" textOrder="202" textDy="8"/>
 		</switch>
 	</text>
 
@@ -727,7 +728,12 @@
 		<!-- LEP -->
 		<case minzoom="14" maxzoom="14" tag="power" value="tower"/>
 
-		<case minzoom="12" tag="natural" value="wood" icon="wood" shield="white_green_square_big_shield"/>
+		<switch minzoom="12">
+			<case tag="natural" value="wood"/>
+			<case tag="landuse" value="forest"/>
+			<apply icon="wood" shield="white_green_square_big_shield"/>
+			<apply_if textLength="0" icon=""/>
+		</switch>
 	</point>
 
 	<polygon>
