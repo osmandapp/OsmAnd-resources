@@ -142,7 +142,6 @@ endsWithString(A1,A2) :- atom_codes(A1,S1),atom_codes(A2,S2),reverseStr(S1,[],R1
 
 isMale(Street) :-  endsWithString(Street, 'via').
 isMale(Street) :-  endsWithString(Street, 'rotonda').
-isMale(Street) :-  endsWithString(Street, 'damm'). % da controllare e tradurre 
 isMale(Street) :-  endsWithString(Street, 'piazza').
 isMale(Street) :-  endsWithString(Street, 'mercato').
 isMale(Street) :-  endsWithString(Street, 'marciapiede').
@@ -155,6 +154,7 @@ isFemale(Street) :-  endsWithString(Street, 'chaussee'). % da tradurre
 isFemale(Street) :-  endsWithString(Street, 'vicolo').
 isFemale(Street) :-  endsWithString(Street, 'zeile'). % da tradurre
 isFemale(Street) :-  endsWithString(Street, 'viale').
+isFemale(Street) :-  endsWithString(Street, 'diga').
 isFemale(Street) :-  endsWithString(Street, '0').
 isFemale(Street) :-  endsWithString(Street, '1').
 isFemale(Street) :-  endsWithString(Street, '2').
