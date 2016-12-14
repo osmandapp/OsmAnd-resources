@@ -139,6 +139,7 @@ mycpname basin water_reservoir.png
 mycpname ridge poi_ridge.png
 mycpname strait poi_strait.png
 mycpname fjord poi_fjord.png
+mycpname cliff poi_cliff.png
 
 ## Location dots
 mygroup administrative poi_boundary_administrative.png
