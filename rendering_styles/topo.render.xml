@@ -600,7 +600,7 @@
 		<case attrColorValue="#EEE5D9"/>
 	</renderingAttribute>
 	<renderingAttribute name="gardenColor">
-		<case attrColorValue="#C6F5A8"/>
+		<case attrColorValue="#82a1ff60"/>
 	</renderingAttribute>
 
 	<renderingConstant name="buildingTextHaloRadiusDay" value="2"/>
@@ -966,14 +966,17 @@
 				<case tag="waterway" value="riverbank" order="9"/>
 				<case tag="natural" value="wetland" order="6"/>
 				<case tag="natural" value="scrub" order="7"/>
+				<case tag="natural" value="wood" order="7"/>
+				<case tag="landuse" value="forest" order="7"/>
 				<case tag="natural" value="crater"/>
 				<case tag="natural" value="volcano"/>
 				<case tag="natural" value="sinkhole"/>
 				<case tag="natural" value="hot_spring"/>
 				<case tag="natural" value="geyser"/>
-				<case tag="leisure" value="park" order="10"/>
+				<case tag="leisure" value="park"/>
 				<case tag="leisure" value="nature_reserve" order="9"/>
 				<case tag="boundary" value="protected_area" order="9"/>
+				<case tag="boundary" value="forestry_compartment" order="9"/>
 				<case tag="building" value="no" order="-1"/>
 				<case tag="man_made" value="storage_tank"/>
 				<case tag="man_made" value="silo"/>
@@ -990,7 +993,7 @@
 				<case tag="disused:building" value="no" order="-1"/>
 				<case tag="disused:building" value=""/>
 				<case tag="building" value="proposed" order="-1"/>
-				<case tag="tourism" value="attraction"/>
+				<case tag="tourism" value="attraction" order="6"/>
 				<case tag="landuse" value="cemetery" order="10"/>
 				<case tag="landuse" value="construction" order="10"/>
 				<case tag="landuse" value="quarry" order="10"/>
@@ -1023,7 +1026,7 @@
 				<case tag="osmand" value="file_trackline"/>
 				<case tag="osmand" value="file_routeline"/>
 				<case tag="admin_level" value="" order="62"/>
-				<case tag="contour" value="" order="9"/>
+				<case tag="contour" value="" order="11"/>
 				<case tag="power" value="line" order="96"/>
 				<case tag="power" value="minor_line" order="96"/>
 				<switch>
@@ -2006,6 +2009,7 @@
 					<case minzoom="13" textSize="12" tag="natural" value="valley" textOnPath="true" textOrder="77">
 						<apply_if minzoom="15" textSize="15"/>
 					</case>
+					<case minzoom="15" textSize="12" tag="natural" value="cliff" textOnPath="true" textHaloRadius="3" textDy="0" textOrder="77"/>
 					<case minzoom="15" textSize="12" tag="natural" value="saddle" nameTag="" nameTag2="ele"/>
 					<case minzoom="13" textSize="14" tag="natural" value="crater" textColor="#4e0d0d" textDy="-4"/>
 					<case minzoom="14" textSize="12" tag="mountain_pass" value="yes" nameTag="" nameTag2="ele" textBold="false"/>
@@ -2032,6 +2036,7 @@
 			<case minzoom="13" tag="natural" value="glacier" textSize="12" textWrapWidth="20" textOrder="81"/>
 
 			<case minzoom="9" tag="natural" value="cape" textSize="12" textColor="#333333" textHaloColor="$waterTextHaloColorDay" textWrapWidth="25" textHaloRadius="1" textItalic="true" textOrder="237">
+			
 				<apply_if engine_v1="true" textDy="9"/>
 			</case>
 			<!-- Aeroway -->
@@ -2133,12 +2138,12 @@
 			<switch textSize="12" nameTag="" textColor="$historicTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffffff" textWrapWidth="20" textOrder="158">
 				<switch>
 					<case minzoom="17" tag="historic" value="aircraft"/>
-					<case minzoom="16" tag="historic" value="castle" nameTag=""/>
+					<case minzoom="16" tag="historic" value="castle" nameTag="" textOrder="157"/>
 					<case minzoom="18" tag="historic" value="cannon"/>
-					<case minzoom="16" tag="historic" value="monument"/>
+					<case minzoom="16" tag="historic" value="monument" textOrder="158"/>
 					<case minzoom="16" tag="historic" value="technical_monument"/>
 					<case minzoom="18" tag="historic" value="tomb"/>
-					<case minzoom="17" tag="historic" value="memorial"/>
+					<case minzoom="17" tag="historic" value="memorial" textOrder="158"/>
 					<case minzoom="16" tag="historic" value="battlefield"/>
 					<case minzoom="16" tag="historic" value="ruins"/>
 					<case minzoom="16" tag="historic" value="archaeological_site"/>
@@ -2193,8 +2198,11 @@
 					<case minzoom="15" tag="landuse" value="greenhouse_horticulture" textOrder="239"/>
 					<case minzoom="14" tag="landuse" value="conservation" textOrder="246"/>
 					<case minzoom="9" maxzoom="14" tag="leisure" value="nature_reserve" textOrder="270"/>
-					<case minzoom="9" maxzoom="14" tag="boundary" value="national_park" textOrder="270" textOnPath="true"/>
-					<case minzoom="8" maxzoom="14" tag="boundary" value="protected_area" textOrder="270"/>
+					<case minzoom="9" maxzoom="17" tag="boundary" value="national_park" textOrder="270" textOnPath="true"/>
+					<case minzoom="8" maxzoom="17" tag="boundary" value="protected_area" textOrder="270"/>
+					<case minzoom="13" tag="boundary" value="forestry_compartment" nameTag="ref" textOrder="88">
+						<apply_if maxzoom="13" textSize="11"/>
+					</case>
 					<case minzoom="18" tag="natural" value="tree" textSize="11" textDy="5" textOrder="252"/>
 <!--					<case minzoom="9" tag="natural" value="reef"/>-->
 					<case minzoom="18" tag="natural" value="stone" textSize="11" textDy="4"/>
@@ -2248,7 +2256,7 @@
 					<case minzoom="15" tag="power" value="generator" nameTag="">
 						<apply_if additional="generator:source=wind" nameTag2="height"/>
 					</case>
-					<case minzoom="15" tag="waterway" value="waterfall" nameTag2="height" textDy="7" textWrapWidth="20" textOnPath="true" textOrder="217"/>
+					<case minzoom="15" tag="waterway" value="waterfall" nameTag2="height" textDy="0" textWrapWidth="20" textOnPath="true" textOrder="217"/>
 					<case minzoom="16" tag="natural" value="spring" textDy="7" textWrapWidth="20" textOrder="214"/>
 					<case minzoom="17" tag="amenity" value="drinking_water" textDy="7" textWrapWidth="20" textOrder="214"/>
 					<case minzoom="18" tag="man_made" value="water_well"/>
@@ -2535,9 +2543,9 @@
 			<case additional="information=map" icon="information_map" shield="information_map_shield"/>
 			<case additional="information=terminal" icon="information_terminal" shield="information_terminal_shield"/>
 		</case>
-		<case minzoom="16" tag="amenity" value="monastery" icon="amenity_monastery" shield="white_brown_square_100_shield" iconOrder="70"/>
+		<case minzoom="16" tag="amenity" value="monastery" icon="amenity_monastery" shield="white_brown_square_big_shield" iconOrder="70"/>
 
-		<switch shield="white_brown_square_100_shield">
+		<switch shield="white_brown_square_big_shield">
 			<switch iconOrder="70">
 <!--				<case minzoom="18" tag="tourism" value="artwork" icon="tourism_artwork" iconOrder="69"/>-->
 				<case minzoom="16" tag="tourism" value="museum" icon="tourism_museum"/>
@@ -2553,13 +2561,13 @@
 			<case minzoom="16" tag="natural" value="beach" icon="beach" iconOrder="79"/>
 			<case minzoom="16" tag="leisure" value="beach_resort" icon="leisure_beach_resort" iconOrder="79"/>
 
-			<switch iconOrder="70">
-				<case minzoom="15" tag="historic" value="castle" icon="historic_castle"/>
+			<switch iconOrder="158">
 				<case minzoom="16" tag="historic" value="tomb" icon="tomb" iconOrder="85"/>
 				<case minzoom="16" tag="historic" value="ruins" icon="historic_ruins" intersectionSizeFactor="1.5" iconVisibleSize="20"/>
 				<case minzoom="16" tag="historic" value="wreck" icon="wreck"/>
 				<case minzoom="16" tag="historic" value="wayside_shrine" icon="historic_wayside_shrine"/>
 			</switch>
+			<case minzoom="15" tag="historic" value="castle" icon="historic_castle" iconOrder="157"/>
 			<switch minzoom="15">
 				<case tag="man_made" value="cross"/>
 				<case minzoom="16" tag="historic" value="wayside_cross"/>
@@ -2572,10 +2580,10 @@
 			<case minzoom="16" tag="geological" value="palaeontological_site" icon="palaeontological_site" iconOrder="85"/>
 			<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 		</switch>
-		<case minzoom="16" tag="historic" value="memorial" icon="topo_memorial" shield="topo_memorial_shield" iconOrder="70"/>
+		<case minzoom="16" tag="historic" value="memorial" icon="topo_memorial" shield="topo_memorial_shield" iconOrder="158"/>
 <!--					<apply_if additional="memorial=stolperstein" icon="memorial_stolperstein" iconOrder="120"/>
 					<apply_if additional="memorial=plaque" icon="memorial_plaque" iconOrder="120"/>-->
-		<case minzoom="16" tag="historic" value="monument" icon="topo_monument" shield="topo_monument_shield" iconOrder="85"/>
+		<case minzoom="16" tag="historic" value="monument" icon="topo_monument" shield="topo_monument_shield" iconOrder="158"/>
 <!--				<apply_if additional="memorial=bust" icon="memorial_bust"/>
 				<apply_if additional="memorial=obelisk" icon="memorial_obelisk"/>
 				<apply_if additional="memorial=column" icon="memorial_obelisk"/>
@@ -3088,6 +3096,8 @@
 					<apply_if maxzoom="16" strokeWidth_2="1:1"/>
 					<apply_if minzoom="17" strokeWidth_2="1.5:1.5"/>
 				</switch>
+
+				<case minzoom="8" tag="boundary" value="forestry_compartment"/>
 
 				<switch>
 					<case minzoom="6" tag="leisure" value="nature_reserve"/>
@@ -3929,7 +3939,7 @@
 		</switch>
 
 
-		<case minzoom="12" tag="man_made" value="cutline" color="#ffffff">
+		<case minzoom="12" tag="man_made" value="cutline" color="#ffffff" cap="ROUND">
 			<switch moreDetailed="true">
 				<case maxzoom="12" strokeWidth="0.5:0.5"/>
 				<case maxzoom="13" strokeWidth="0.8:0.8"/>
