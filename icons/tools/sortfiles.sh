@@ -114,6 +114,7 @@ mycp natural tree_leafless functional-icons_tree_leafless.png
 mycp natural tree_needleleaved functional-icons_tree_needleleaved.png
 mycpname topo_tree_needleleaved functional-icons-x2_topo_tree_needleleaved.png
 mycp natural tree_palm functional-icons_tree_palm.png
+mycpname topo_tree_palm functional-icons-x2_topo_tree_palm.png
 mycpname tree_dot functional-icons_tree.png
 mycpname tree poi_tree.png
 mycp natural volcano_active_big functional-icons_volcano_active_big.png
