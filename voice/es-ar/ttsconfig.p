@@ -7,7 +7,7 @@ version(103).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
-language('es-ar').
+language('es_AR').
 % fest_language('').
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:

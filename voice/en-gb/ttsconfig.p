@@ -7,7 +7,7 @@ version(103).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
-language('en-gb').
+language('en_GB').
 %% This file should be identical with en-tts, except: railroad->railway, pedestrian crosswalk->pedestrian crossing, (kilo)meter(s)->(kilo)metre(s)
 fest_language('cmu_us_awb_arctic_clunits').
 
