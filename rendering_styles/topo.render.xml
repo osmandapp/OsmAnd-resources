@@ -976,6 +976,8 @@
 				<case tag="natural" value="hot_spring"/>
 				<case tag="natural" value="geyser"/>
 				<case tag="leisure" value="park"/>
+				<case tag="landuse" value="greenfield" order="7"/>
+				<case  tag="landuse" value="brownfield" order="7"/>
 				<case tag="leisure" value="nature_reserve" order="9"/>
 				<case tag="boundary" value="protected_area" order="9"/>
 				<case tag="boundary" value="forestry_compartment" order="9"/>
@@ -3094,6 +3096,9 @@
 					<case minzoom="8" tag="leisure" value="park" color="$gardenColor"/>
 					<case minzoom="12" tag="leisure" value="stadium" color="#F0F7F0" color_2="#777777" strokeWidth_2="1"/>
 
+					<case minzoom="15" tag="landuse" value="greenfield"/>
+					<case minzoom="15" tag="landuse" value="brownfield"/>
+
 					<switch>
 						<!-- Tourism -->
 						<case minzoom="13" tag="tourism" value="attraction"/>
@@ -3292,7 +3297,7 @@
 			<apply color="$defaultColor"/>
 		</switch>
 
-		<switch minzoom="13">
+<!--		<switch minzoom="13">
 			<case tag="barrier" value="fence"/>
 			<case tag="barrier" value="wall"/>
 			<apply color="$null" color_2="#333333"/>
@@ -3300,7 +3305,7 @@
 				<case moreDetailed="true" maxzoom="15" strokeWidth_2="0.7"/>
 				<case minzoom="16" strokeWidth_2="1"/>
 			</apply>
-		</switch>
+		</switch>-->
 		<case minzoom="14" tag="barrier" value="city_wall">
 			<case maxzoom="14" strokeWidth_2="1:1"/>
 			<case maxzoom="15" strokeWidth_2="2:2"/>
@@ -4053,6 +4058,15 @@
 				<case minzoom="16" strokeWidth="1"/>
 			</apply>
 			<apply color="#333333"/>
+			<apply>
+				<switch>
+					<case additional="access=private"/>
+					<case additional="access=no"/>
+					<apply color_2="$accessPrivateColor"/>
+					<apply_if maxzoom="14" strokeWidth_2="1:1" pathEffect_2="2_2"/>
+					<apply_if minzoom="15" strokeWidth_2="2:2" pathEffect_2="4_3"/>
+				</switch>
+			</apply>
 		</switch>
 		<case minzoom="16" tag="barrier" value="embankment" color="#33ffffff" color_0="#77999999" color__1="#44000000" strokeWidth="2:2" strokeWidth_0="3:3" cap="ROUND" cap_0="ROUND">
 			<case maxzoom="16" strokeWidth__1="4:4" pathEffect__1="1_7"/>
