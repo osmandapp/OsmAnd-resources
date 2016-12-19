@@ -79,7 +79,7 @@ string('17th.ogg', 'siebzehnte ').
 
 % STRAIGHT/FOLLOW
 string('go_ahead.ogg', 'Weiter geradeaus ').
-string('follow1.ogg', 'Dem Strasenverlauf ').
+string('follow1.ogg', 'Dem Straßenverlauf ').
 string('follow2.ogg', 'folgen ').
 
 % ARRIVE
