@@ -35,6 +35,7 @@
 	<renderingProperty attr="currentTrackWidth" name="Current GPX width" description="Width of the currently recording track"
 		type="string" possibleValues="thin,medium,bold" defaultValueDescription="default"/>
 	<renderingProperty attr="contourColorScheme" name="Contour lines color scheme" description="Contour lines color scheme" type="string" possibleValues="light_brown,brown,dark_brown" defaultValueDescription="default"/>
+	<renderingProperty attr="contourWidth" name="Contour lines width" description="Contour lines width" type="string" possibleValues="thin,medium" defaultValueDescription="default"/>
 
 	<renderingProperty attr="engine_v1" type="boolean"/>
 	<renderingAttribute name="defaultColor">
@@ -569,7 +570,7 @@
 		<case minzoom="16" attrColorValue="#777777"/>
 	</renderingAttribute>
 	<renderingAttribute name="buildingAbandonedColor">
-		<case attrColorValue="#EDE8EB"/>
+		<case attrColorValue="#44EDE8EB"/>
 	</renderingAttribute>
 	<renderingAttribute name="buildingAbandonedStrokeColor">
 		<case attrColorValue="#000000"/>
@@ -990,9 +991,9 @@
 				<case tag="man_made" value="reinforced_slope"/>
 				<case tag="building" value="" order="10"/>
 				<case tag="abandoned:building" value="no" order="-1"/>
-				<case tag="abandoned:building" value=""/>
+				<case tag="abandoned:building" value="" order="10"/>
 				<case tag="disused:building" value="no" order="-1"/>
-				<case tag="disused:building" value=""/>
+				<case tag="disused:building" value="" order="10"/>
 				<case tag="building" value="proposed" order="-1"/>
 				<case tag="tourism" value="attraction" order="6"/>
 				<case tag="landuse" value="cemetery" order="10"/>
@@ -4183,25 +4184,30 @@
 				<switch>
 					<case minzoom="13" additional="contourtype=10m" color="$contourLineColor"/>
 					<case minzoom="12" additional="contourtype=20m" color="$contourLineColor"/>
-<!--					<apply_if maxzoom="12" strokeWidth="1"/>-->
-					<apply_if minzoom="12" strokeWidth="1.5"/>
+					<apply>
+						<case contourWidth="thin" strokeWidth="0.5"/>
+						<case contourWidth="medium" strokeWidth="1"/>
+						<case strokeWidth="1"/>
+					</apply>
 				</switch>
-				<case minzoom="11" additional="contourtype=50m" color="$contourLineColor50m">
-					<apply_if minzoom="12" strokeWidth="1.5"/>
-<!--					<apply_if minzoom="13" strokeWidth="2"/>-->
-				</case>
-				<case minzoom="11" additional="contourtype=100m" color="$contourLineColor100m">
-					<apply_if minzoom="12" strokeWidth="1.5"/>
-<!--					<apply_if minzoom="13" maxzoom="13" strokeWidth="2"/>
-					<apply_if minzoom="14" strokeWidth="2"/>-->
-				</case>
+				<switch minzoom="11">
+					<case additional="contourtype=50m" color="$contourLineColor50m"/>
+					<case additional="contourtype=100m" color="$contourLineColor100m"/>
+					<apply>
+						<case contourWidth="thin" strokeWidth="1"/>
+						<case contourWidth="medium" strokeWidth="1.3"/>
+						<case strokeWidth="1.5"/>
+					</apply>
+				</switch>
 			</apply>
 			<apply_if minzoom="15" pathIcon="stroke_lightorange_left" pathIconStep="100"/>
 		</switch>
 
 		<switch engine_v1="false" strokeWidth="0.5">
 			 <case minzoom="14" tag="natural" value="cliff" color="#148c14" pathIcon="stroke_darkgreen" pathIconStep="10"/>
-			 <case minzoom="16" tag="natural" value="slope" color="$contourLineColor" pathIcon="stroke_brown_right" pathIconStep="10"/>
+			 <case minzoom="16" tag="natural" value="slope" color="#44bd6819" pathIcon="stroke_brown_right" pathIconStep="10">
+				<apply_if noPolygons="true" color="#44C39F7D"/>
+			 </case>
 			 <case minzoom="16" tag="natural" value="earth_bank" color="#88949494" pathIcon="stroke_gray" pathIconStep="10"/>
 		</switch>
 		<switch minzoom="16">
