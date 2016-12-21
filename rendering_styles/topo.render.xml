@@ -912,6 +912,7 @@
 				<case tag="railway" value="station" ignorePolygonAsPointArea="true">
 					<apply_if additional="station=subway" order="-1"/>
 				</case>
+				<case tag="railway" value="yard" ignorePolygonAsPointArea="true"/>
 				<switch>
 					<case tag="railway" value="halt" ignorePolygonAsPointArea="true"/>
 					<case tag="public_transport" value="platform" ignorePolygonAsPointArea="true"/>
@@ -938,6 +939,7 @@
 					<case tag="public_transport" value="platform"/>
 					<case tag="railway" value="halt"/>
 					<case tag="railway" value="station" ignorePolygonArea="true"/>
+					<case tag="railway" value="yard" ignorePolygonArea="true"/>
 					<apply_if layer="-1" order="-1"/>
 				</switch>
 			</switch>
@@ -1017,6 +1019,7 @@
 				<case tag="aeroway" value="terminal"/>
 				<case tag="aeroway" value="helipad"/>
 				<case tag="railway" value="station" ignorePolygonArea="true"/>
+				<case tag="railway" value="yard" ignorePolygonArea="true"/>
 				<case tag="" value="" order="5"/>
 			</switch>
 
@@ -2346,6 +2349,7 @@
 			<case minzoom="16" tag="man_made" value="pier" textSize="11" textColor="#1f62ae" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ccffffff" textOnPath="true" textWrapWidth="30" textOrder="175"/>
 			<switch minzoom="13">
 				<case tag="railway" value="station" nameTag="" textSize="11" textOrder="49" textColor="#000000"/>
+				<case minzoom="14" tag="railway" value="yard" nameTag="" textSize="11" textOrder="49" textColor="#000000"/>
 				<case tag="railway" value="halt" nameTag="" textSize="11" textOrder="50" textColor="#000000"/>
 				<case minzoom="16" tag="abandoned:railway" value="station" textOrder="227" textColor="#8a8a8a"/>
 				<apply textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textBold="true"/>
@@ -2665,11 +2669,13 @@
 		<case minzoom="12" tag="railway" value="halt">
 			<apply icon="topo_railway_halt_small" iconVisibleSize="6"/>
 		</case>
-		<case minzoom="12" tag="railway" value="station">
+		<switch>
+			<case minzoom="12" tag="railway" value="station"/>
+			<case minzoom="13" tag="railway" value="yard"/>
 			<apply icon="topo_railway_station_small" iconVisibleSize="8"/>
 <!--			<apply_if additional="disused=yes" icon="railway_station_small_disused"/>
 			<apply_if additional="station=subway" icon="railway_station_subway_small"/>-->
-		</case>
+		</switch>
 
 <!--		<case minzoom="13" tag="abandoned:railway" value="station">
 			<case maxzoom="15" icon="railway_station_small_disused"/>
