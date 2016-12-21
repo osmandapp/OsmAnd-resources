@@ -7,7 +7,7 @@ version(103).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
-language(ru).
+language('ru').
 fest_language(msu_ru_nsh_clunits).
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
