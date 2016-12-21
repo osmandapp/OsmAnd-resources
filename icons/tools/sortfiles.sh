@@ -391,6 +391,7 @@ mycpname topo_railway_halt_small functional-icons_topo_railway_halt_small.png
 mycpname halt transport_halt.png  #scale 0.25
 mycpname level_crossing_map functional-icons_level_crossing.png  #scale 0.5
 mycpname level_crossing poi_level_crossing.png  #scale 0.5
+mycpname railway_yard transport_railway_yard.png  #scale 0.25
 mycp railway platform transport_train_station2.png
 mycp railway station_disused functional-icons_train_station_disused.png
 mycp railway station_small_disused functional-icons_railway_station_small_disused.png
@@ -702,6 +703,7 @@ mycp historic mine poi_mine_abandoned.png
 mycpname monument tourist_monument2.png
 mycpname topo_monument topo_topo_monument.png
 mycp historic ruins tourist_ruin.png
+mycpname topo_ruins topo_topo_ruins.png
 mycp historic rune_stone tourist_rune_stone.png
 mycp historic ship tourist_ship.png
 mycp historic wayside_cross tourist_wayside_cross.png
