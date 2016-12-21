@@ -1815,6 +1815,7 @@
 					</apply_if>
 					<apply_if maxzoom="12" appMode="pedestrian" moreDetailed="false" order="-1"/>
 				</case>
+				<case tag="railway" value="yard"/>
 				<case maxzoom="12" tag="abandoned:railway" value="station" order="-1"/>
 				<case tag="railway" value="buffer_stop"/>
 				<case tag="railway" value="halt">
@@ -1983,7 +1984,7 @@
 				<case tag="leisure" value="nature_reserve" order="9"/>
 				<case tag="military" value="danger_area" order="8"/>
 				<case tag="railway" value="" order="4"/>
-				<case tag="railway" value="station" order="5">
+				<case tag="railway" value="station">
 					<apply_if maxzoom="12">
 						<switch>
 							<case additional="disused=yes"/>
@@ -1991,6 +1992,7 @@
 						</switch>
 					</apply_if>
 				</case>
+				<case tag="railway" value="yard"/>
 				<!-- <switch hideUnderground="true" layer="-1">
 					<case tag="public_transport" value="platform"/>
 					<case tag="public_transport" value="station"/>
@@ -2068,6 +2070,7 @@
 				</case>
 				<case tag="amenity" value="fountain"/>
 				<case tag="railway" value="station" ignorePolygonArea="true" ignorePolygonAsPointArea="true"/>
+				<case tag="railway" value="yard" ignorePolygonArea="true" ignorePolygonAsPointArea="true"/>
 				<case tag="aerialway" value="station" ignorePolygonArea="true" ignorePolygonAsPointArea="true"/>
 				<case tag="public_transport" value="platform" order="5" ignorePolygonAsPointArea="true"/>
 				<case tag="leisure" value="nature_reserve" order="9"/>
@@ -5178,7 +5181,7 @@
 					<apply_if nightMode="true" textColor="#d4d4ff" textHaloRadius="2" textHaloColor="#994563a7"/>
 				</switch>
 
-				<apply_if engine_v1="true" textDy="9"/>
+				<apply_if engine_v1="true" textDy="3"/>
 				<apply>
 					<switch>
 						<case publicTransportMode="true"/>
@@ -5230,6 +5233,7 @@
 			</switch>
 			<switch minzoom="14">
 				<case tag="railway" value="station" nameTag="" textOrder="70" textColor="$railwayPOITextColorDay"/>
+				<case minzoom="16" tag="railway" value="yard" nameTag="" textOrder="75" textColor="$railwayPOITextColorDay"/>
 				<case minzoom="16" tag="abandoned:railway" value="station" textOrder="227" textColor="#8a8a8a">
 					<apply_if nightMode="true" textHaloColor="#22ffffff"/>
 				</case>
@@ -5244,8 +5248,7 @@
 						</case>
 					</switch>
 				</apply_if>
-				<apply_if maxzoom="14" engine_v1="true" textDy="6"/>
-				<apply_if minzoom="15" engine_v1="true" textDy="10"/>
+				<apply_if minzoom="15" engine_v1="true" textDy="4"/>
 			</switch>
 			<switch>
 				<case minzoom="17" tag="railway" value="subway_entrance" nameTag="" textSize="13" textColor="$subwayEntranceTextColor" textHaloColor="#ffffff" textHaloRadius="$textHaloRadius" textBold="true" textWrapWidth="25" textOrder="75"/>
@@ -7780,7 +7783,11 @@
 			</case>
 			<!-- <apply iconOrder="19"/>-->
 		</switch>
-		<case tag="osmand_change" value="delete"/> <!-- OSMC will break if delete -->
+		<case minzoom="16" tag="railway" value="yard" icon="railway_yard" shield="white_blue_square_big_shield" iconVisibleSize="14">
+			<apply_if nightMode="true" shield="gray_gray_square_big_shield"/>
+		</case>
+
+		<case tag="osmand_change" value="delete"/> <!-- OSM Live will break if delete -->
 	</point>
 
 
@@ -8168,6 +8175,7 @@
 				<case minzoom="11" tag="landuse" value="industrial" color="$landuseIndustrialColor"/>
 				<case minzoom="11" tag="landuse" value="port" color="$landuseIndustrialColor"/>
 				<case minzoom="12" tag="landuse" value="railway" color="$landuseRailwayColor"/>
+				<case minzoom="12" tag="railway" value="yard" color="$landuseRailwayColor"/>
 				<case minzoom="14" tag="landuse" value="garages" color="$landuseGaragesColor"/>
 				<switch>
 					<case minzoom="12" tag="abandoned:landuse" value="industrial"/>
