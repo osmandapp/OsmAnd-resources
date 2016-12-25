@@ -80,35 +80,35 @@ string('follow.ogg', ' استمِرْ لـ').  % 'Follow the course of the road 
 
 % ARRIVE
 string('and_arrive_destination.ogg', ' وتصل إلى وِجهتِكَ').
-string('reached_destination.ogg', ' لقد وصلتَ الى وجهتك').
+string('reached_destination.ogg', ' لقد وَصَلْتَ الى وجهتك').
 string('and_arrive_intermediate.ogg', ' وسوفَ تَصِلُ إلى وِجْهَتِك').
-string('reached_intermediate.ogg', ' لقد وصلت الى المرحلة الثانوية').
+string('reached_intermediate.ogg', ' لقد وَصَلْتَ الى المرحلة الثانوية').
 
 % NEARBY POINTS
 string('and_arrive_waypoint.ogg', ' وتمر GPX إحداثية').
-string('reached_waypoint.ogg', ' يتم تمرير GPX إحداثية').
+string('reached_waypoint.ogg', ' لقد وَصَلْتَ إلى مَرْحَلة جي بي إكْسْ').
 string('and_arrive_favorite.ogg', ' وتمر المفضلة').
 string('reached_favorite.ogg', ' يتم تمرير المفضل').
-string('and_arrive_poi.ogg', ' وتمر البوي').
+string('and_arrive_poi.ogg', ' و سوف تَصِلُ إلى نُقطَتِكَ المُفَضَّلَة').
 string('reached_poi.ogg', ' يتم تمرير البوي').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'لقد تجاوزت الحد الأقصى للسرعة ').
 string('exceed_limit.ogg', ' الحد الأقصى للسرعة').
 string('attention.ogg', ' انتباه،').
-string('speed_camera.ogg', ' رادار مراقبة السرعة').
-string('border_control.ogg', ' نقطة مراقبة الحدود').
+string('speed_camera.ogg', ' هُنَاكَ رادارٌ لِمُرَاقَبَةِ السُّرْعَة').
+string('border_control.ogg', ' هُنَاكَ نُقْطَةٌ لِمُراقَبَةِ الحُدود').
 string('railroad_crossing.ogg', ' نقطة لعبور القطارات').
-string('traffic_calming.ogg', ' تخفيف الازدحام').
-string('toll_booth.ogg', ' عدد كشك').
-string('stop.ogg', ' لافتة توقف').
-string('pedestrian_crosswalk.ogg', ' ممر للراجلين').
+string('traffic_calming.ogg', ' مُمَهِّلْ').
+string('toll_booth.ogg', ' رَسْمُ مُرورٍ لِلطُّرُقِ').
+string('stop.ogg', ' لاَفِتَةُ تَوَقُّفْ').
+string('pedestrian_crosswalk.ogg', ' مَمَرٌّ لِلرَّاجِلِين').
 
 % OTHER PROMPTS
 string('location_lost.ogg', ' إشارة GPS فقدت').
 string('location_recovered.ogg', ' إشارة GPS تعافت').
-string('off_route.ogg', ' لقد انحرفت عن المسار بحوالي').
-string('back_on_route.ogg', ' لقد عدت الى الطريق من جديد').
+string('off_route.ogg', ' لَقَدْ إِنْحَرَفْتَ عَنِ المَسَارِ بِـ').
+string('back_on_route.ogg', ' لقد عُدْتَ إِلى الطريقِ من جديد').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', ' على').
