@@ -1685,20 +1685,34 @@
 
 	<renderingConstant name="subwayTextDefaultHaloColorNight" value="#667b0000"/>
 
-	<renderingConstant name="routeBusColor" value="#ff0000"/>
-	<renderingConstant name="routeBusColorNight" value="#ff0000"/>
-	<renderingConstant name="routeShareTaxiColor" value="#f620cb"/>
-	<renderingConstant name="routeShareTaxiColorNight" value="#f620cb"/>
-	<renderingConstant name="routeTrolleybusColor" value="#920071"/>
-	<renderingConstant name="routeTrolleybusColorNight" value="#920071"/>
-	<renderingConstant name="routeTramColor" value="#0000ff"/>
-	<renderingConstant name="routeTramColorNight" value="#0000ff"/>
-	<renderingConstant name="routeTrainColor" value="#8c3f01"/>
-	<renderingConstant name="routeTrainColorNight" value="#cb6e23"/>
-	<renderingConstant name="routeLightrailColor" value="#009100"/>
-	<renderingConstant name="routeLightrailColorNight" value="#009100"/>
-	<renderingConstant name="routeFunicularColor" value="#3880a9"/>
-	<renderingConstant name="routeFunicularColorNight" value="#3880a9"/>
+	<renderingAttribute name="routeBusColor">
+		<case nightMode="true" attrColorValue="#ff0000"/>
+		<case attrColorValue="#ff0000"/>
+	</renderingAttribute>
+	<renderingAttribute name="routeShareTaxiColor">
+		<case nightMode="true" attrColorValue="#f620cb"/>
+		<case attrColorValue="#f620cb"/>
+	</renderingAttribute>
+	<renderingAttribute name="routeTrolleybusColor">
+		<case nightMode="true" attrColorValue="#920071"/>
+		<case attrColorValue="#920071"/>
+	</renderingAttribute>
+	<renderingAttribute name="routeTramColor">
+		<case nightMode="true" attrColorValue="#0000ff"/>
+		<case attrColorValue="#0000ff"/>
+	</renderingAttribute>
+	<renderingAttribute name="routeTrainColor">
+		<case nightMode="true" attrColorValue="#cb6e23"/>
+		<case attrColorValue="#8c3f01"/>
+	</renderingAttribute>
+	<renderingAttribute name="routeLightrailColor">
+		<case nightMode="true" attrColorValue="#009100"/>
+		<case attrColorValue="#009100"/>
+	</renderingAttribute>
+	<renderingAttribute name="routeFunicularColor">
+		<case nightMode="true" attrColorValue="#3880a9"/>
+		<case attrColorValue="#3880a9"/>
+	</renderingAttribute>
 
 	<renderingAttribute name="routeFerryColor">
 		<case attrColorValue="#7777FF"/>
@@ -2212,7 +2226,7 @@
 							<apply_if moreDetailed="false" maxzoom="16" order="-1"/>
 						</switch>
 					</switch>
-					<apply_if layer="-1" order="20"/>
+					<apply_if subwayMode="false" layer="-1" order="20"/>
 					<apply_if subwayMode="false" layer="-1" minzoom="9" maxzoom="18">
 						<apply_if appMode="car" order="-1"/>
 						<apply_if appMode="bicycle" order="-1"/>
@@ -4524,9 +4538,7 @@
 					</switch>
 					<switch tramTrainRoutes="true">
 						<case tag="route_tram" value="" nameTag="tram_ref" textHaloColor="$routeTramColor"/>
-						<case tag="route_train" value="" nameTag="train_ref" textHaloColor="$routeTrainColor">
-							<apply_if nightMode="true" textHaloColor="$routeTrainColorNight"/>
-						</case>
+						<case tag="route_train" value="" nameTag="train_ref" textHaloColor="$routeTrainColor"/>
 						<case tag="route_light_rail" value="" nameTag="lightrail_ref" textHaloColor="$routeLightrailColor"/>
 						<case tag="route_monorail" value="" nameTag="monorail_ref" textHaloColor="$routeLightrailColor"/>
 						<case tag="route_funicular" value="" nameTag="funicular_ref" textHaloColor="$routeFunicularColor"/>
@@ -4668,7 +4680,7 @@
 			<!-- <apply_if additional="population_rounded=" textOrder="$textOrderPopulation"/>-->
 			</switch>
 
-			<switch minzoom="3" textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColorDay" textBold="true">
+			<switch minzoom="3" textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColorDay" textBold="true" textDy="-6">
 				<case minzoom="5" tag="place" value="city" nameTag="" intersectionMargin="25" textOrder="32">
 					<case minzoom="6" maxzoom="7" textSize="17"/>
 					<case minzoom="8" textSize="20"/>
@@ -4775,7 +4787,6 @@
 					</apply_if>
 				</switch>
 				<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#77444444"/>
-				<apply_if engine_v1="false" textDy="-3"/>
 			</switch>
 
 			<switch textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColorDay" intersectionMargin="15">
@@ -4914,7 +4925,7 @@
 			</switch>
 			<case minzoom="9" tag="natural" value="cape" textSize="12" textColor="#510060" textHaloColor="#55fbe2ff" textWrapWidth="25" textHaloRadius="$textHaloRadius" textItalic="true" textOrder="237">
 				<apply_if nightMode="true" textColor="#fadcff" textHaloColor="#55570067"/>
-				<apply_if engine_v1="true" textDy="9"/>
+				<apply_if engine_v1="true" textDy="-8"/>
 			</case>
 
 			<!-- Water -->
@@ -9939,12 +9950,8 @@
 
 		<switch minzoom="11" cap="ROUND">
 			<switch publicTransportMode="true">
-				<case tag="route_bus" value="" color="$routeBusColor">
-					<apply_if nightMode="true" color="$routeBusColorNight"/>
-				</case>
-				<case tag="route_share_taxi" value="" color="$routeShareTaxiColor">
-					<apply_if nightMode="true" color="$routeShareTaxiColorNight"/>
-				</case>
+				<case tag="route_bus" value="" color="$routeBusColor"/>
+				<case tag="route_share_taxi" value="" color="$routeShareTaxiColor"/>
 				<apply>
 					<case maxzoom="11" strokeWidth="0.8"/>
 					<case maxzoom="12" strokeWidth="1:1"/>
@@ -9966,18 +9973,11 @@
 				<case maxzoom="16" strokeWidth="4:4"/>
 				<case maxzoom="17" strokeWidth="4.2:4.2"/>
 				<case minzoom="18" strokeWidth="5:5"/>
-				<apply_if nightMode="true" color="$routeTrolleybusColorNight"/>
 			</case>
 			<switch tramTrainRoutes="true">
-				<case tag="route_tram" value="" color="$routeTramColor">
-					<apply_if nightMode="true" color="$routeTramColorNight"/>
-				</case>
-				<case tag="route_light_rail" value="" color="$routeLightrailColor">
-					<apply_if nightMode="true" color="$routeLightrailColorNight"/>
-				</case>
-				<case tag="route_funicular" value="" color="$routeFunicularColor">
-					<apply_if nightMode="true" color="$routeFunicularColorNight"/>
-				</case>
+				<case tag="route_tram" value="" color="$routeTramColor"/>
+/				<case tag="route_light_rail" value="" color="$routeLightrailColor"/>
+				<case tag="route_funicular" value="" color="$routeFunicularColor"/>
 				<case tag="route_monorail" value="" color="$routeLightrailColor" cap="ROUND">
 					<apply_if minzoom="11" maxzoom="11" pathEffect="1_1"/>
 					<apply_if minzoom="12" maxzoom="12" pathEffect="1_3"/>
@@ -9987,7 +9987,6 @@
 					<apply_if minzoom="16" maxzoom="16" pathEffect="1_9"/>
 					<apply_if minzoom="17" maxzoom="17" pathEffect="1_13"/>
 					<apply_if minzoom="18" pathEffect="1_15"/>
-					<apply_if nightMode="true" color="$routeLightrailColorNight"/>
 				</case>
 				<apply_if minzoom="11" maxzoom="11" strokeWidth="0.9"/>
 				<apply_if minzoom="12" maxzoom="12" strokeWidth="1.25:1.25"/>
@@ -10006,7 +10005,7 @@
 				<case maxzoom="16" strokeWidth="4.7:4.7" strokeWidth_2="4:4" pathEffect_2="24_24"/>
 				<case maxzoom="17" strokeWidth="5.5:5.5" strokeWidth_2="4.7:4.7" pathEffect_2="26_26"/>
 				<case minzoom="18" strokeWidth="6.5:6.5" strokeWidth_2="5.5:5.5" pathEffect_2="28_28"/>
-				<apply_if nightMode="true" color="$routeTrainColorNight" color_2="#ffffff"/>
+				<apply_if nightMode="true" color_2="#ffffff"/>
 			</case>
 		</switch>
 
