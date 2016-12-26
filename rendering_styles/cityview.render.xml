@@ -53,14 +53,14 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="buildingStrokeColor">
-		<case nightMode="true" attrColorValue="#999999"/>
+		<case nightMode="true" attrColorValue="#50000000"/>
 		<case attrColorValue="#000000"/>
 	</renderingAttribute>
     <renderingConstant name="buildingStrokeWidth" value="0.25"/>
 
 
 
-	<!-- Industrial -->
+	<!-- Industrial, Construction -->
 	<renderingAttribute name="buildingIndustrialColor">
 		<case nightMode="true" attrColorValue="#514c59"/>
 		<case attrColorValue="#ccc9c6"/>
@@ -69,6 +69,10 @@
 	<renderingAttribute name="buildingConstructionColor">
 		<case nightMode="true" attrColorValue="$null"/>
 		<case attrColorValue="$null"/>
+	</renderingAttribute>
+	<renderingAttribute name="landuseConstructionStrokeColor">
+		<case nightMode="true" attrColorValue="#aaaaaa"/>
+		<case attrColorValue="#666666"/>
 	</renderingAttribute>
 
 
@@ -172,7 +176,7 @@
 	<!-- Hospital -->
 	<renderingAttribute name="amenityHospitalColor">
 		<case nightMode="true" attrColorValue="#3b3b3b"/>
-		<case attrColorValue="#e5e3da"/>
+		<case attrColorValue="#e5dfda"/>
 	</renderingAttribute>
 	<renderingAttribute name="amenityHospitalStrokeColor">
 		<case nightMode="true" attrColorValue="$null"/>
@@ -426,13 +430,13 @@
 	<renderingAttribute name="tertiaryRoadColor">
 		<case attrColorValue="#ffffff">
 			<apply_if additional="construction=yes" attrColorValue="#D6CF2A"/>
-			<apply_if nightMode="true" attrColorValue="#336666"/>
+			<apply_if nightMode="true" attrColorValue="#2e4d4d"/>
 		</case>
 	</renderingAttribute>
 
 	<renderingAttribute name="tertiaryRoadLowZoomColor">
 		<case attrColorValue="#ffffff">
-			<apply_if nightMode="true" attrColorValue="#336666"/>
+			<apply_if nightMode="true" attrColorValue="$tertiaryRoadColor"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="tertiaryRoadShadowColor">
@@ -456,7 +460,7 @@
 	<renderingAttribute name="serviceRoadColor">
 		<case attrColorValue="#ffffff">
 			<apply_if additional="construction=yes" attrColorValue="#cccccc"/>
-			<apply_if nightMode="true" attrColorValue="#336666"/>
+			<apply_if nightMode="true" attrColorValue="$tertiaryRoadColor"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="serviceRoadShadowColor">
@@ -468,7 +472,7 @@
 	<renderingAttribute name="serviceDrivewayRoadColor">
 		<case attrColorValue="#ffffff">
 			<apply_if additional="construction=yes" attrColorValue="#cccccc"/>
-			<apply_if nightMode="true" attrColorValue="#336666"/>
+			<apply_if nightMode="true" attrColorValue="$tertiaryRoadColor"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="serviceDrivewayRoadShadowColor">
@@ -481,7 +485,7 @@
 	<renderingAttribute name="residentialRoadColor">
 		<case attrColorValue="#ffffff">
 			<apply_if additional="construction=yes" attrColorValue="#cccccc"/>
-			<apply_if nightMode="true" attrColorValue="#336666"/>
+			<apply_if nightMode="true" attrColorValue="$tertiaryRoadColor"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="residentialRoadLowZoom1ShadowColor">
@@ -503,13 +507,9 @@
 		<case appMode="pedestrian" attrColorValue="#dddde8">
 			<apply_if nightMode="true" attrColorValue="#727285"/>
 		</case>
-		<case roadStyle="highContrastRoads" attrColorValue="#fff3ba">
-			<apply_if additional="construction=yes" attrColorValue="#f9dd76"/>
-			<apply_if nightMode="true" attrColorValue="#b0a781"/>
-		</case>
 		<case attrColorValue="#f5f1ed">
 			<apply_if additional="construction=yes" attrColorValue="#0000000"/>
-			<apply_if nightMode="true" attrColorValue="#727272"/>
+			<apply_if nightMode="true" attrColorValue="$tertiaryRoadColor"/>
 		</case>
 	</renderingAttribute>
 
@@ -875,6 +875,13 @@
 			<apply_if minzoom="16" additional="leaf_type=mixed" shader="wood_mixed3"/>
 			<apply_if nightMode="true" shader=""/>
 		</switch>
+
+		<case minzoom="12" tag="landuse" value="construction" color="$landuseConstructionColor">
+				<apply_if minzoom="16" color_2="$landuseConstructionStrokeColor" pathEffect_2="8_4" strokeWidth_2="0.5"/>
+				<apply_if additional="abandoned=yes" shader="diagonal_gray_shader">
+					<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
+				</apply_if>
+		</case>
 
     <!-- Educational 
 		<switch minzoom="14">
