@@ -246,10 +246,10 @@
 	<renderingConstant name="boundaryNationalParkColor" value="#000000"/>
 
 	<!-- Meadow -->
-	<renderingAttribute name="meadowColor">
-		<case nightMode="true" attrColorValue="#004333"/>
+<!--	<renderingAttribute name="meadowColor">
+		<case nightMode="true" attrColorValue="#ff4333"/>
 		<case attrColorValue="$woodColor"/>
-	</renderingAttribute>
+	</renderingAttribute>-->
 
 	<!-- Вода #acd8f3 -->
 	<renderingAttribute name="waterColor">
@@ -734,6 +734,21 @@
 	</renderingAttribute>
 
 
+<!-- ######################################################################## -->
+	<renderingAttribute name="accessPrivateColor">
+		<case nightMode="true" attrColorValue="#B45D5D"/>
+		<case attrColorValue="#feb3b3"/>
+	</renderingAttribute>
+	<renderingAttribute name="accessDestinationColor">
+		<case nightMode="true" attrColorValue="#7CA1B9"/>
+		<case attrColorValue="#8db8d3"/>
+	</renderingAttribute>
+	<renderingAttribute name="accessPermissiveColor">
+		<case nightMode="true" attrColorValue="#73B667"/>
+		<case attrColorValue="#9afb87"/>
+	</renderingAttribute>
+
+
 	<order>
 		<!-- Point 101-200 -->
 		<switch area="false" point="true" objectType="1" order="128">
@@ -772,11 +787,12 @@
 	</order>
 
 	<text>
-		<switch textSize="12" textColor="$forestTextColorDay" textWrapWidth="20" textHaloRadius="$textHaloRadius" textHaloColor="#ccffffff" nameTag="" textItalic="true">
-			<case minzoom="12" tag="natural" value="wood" textOrder="202" textDy="8"/>
-			<case minzoom="12" tag="landuse" value="forest" textOrder="202" textDy="8"/>
+		<switch textSize="12" textColor="$forestTextColorDay" textWrapWidth="20" textHaloRadius="$textHaloRadius" textHaloColor="#ccffffff" nameTag="" textItalic="true" textOrder="202" textDy="3">
+			<case minzoom="12" tag="natural" value="wood"/>
+			<case minzoom="12" tag="landuse" value="forest"/>
+			<apply_if nightMode="true" textColor="#9fe39f" textHaloColor="#aa444444"/>
 		</switch>
-	</text>
+	</text>-->
 
 	<point>
 		<!-- LEP -->
@@ -785,7 +801,7 @@
 		<switch minzoom="12">
 			<case tag="natural" value="wood"/>
 			<case tag="landuse" value="forest"/>
-			<apply icon="wood" shield="white_green_square_big_shield"/>
+			<apply icon="wood" shield="wood_shield"/>
 			<apply_if textLength="0" icon=""/>
 		</switch>
 	</point>
@@ -808,12 +824,12 @@
 				<apply_if additional="religion=muslim" shader="cemetery_muslim_2"/>
 				<apply_if additional="religion=jewish" shader="cemetery_jewish_2"/>
 			</case>
-			<apply_if nightMode="true" shader=""/>
+			<apply_if nightMode="true" shader="" color_0="$woodColor"/>
 		</case>
 
-		 <case minzoom="15" tag="landuse" value="meadow" color_0="#91d47b">
+<!--		 <case minzoom="15" tag="landuse" value="meadow" color_0="#91d47b">
 			<apply_if nightMode="true" shader=""/>
-		</case>
+		</case>-->
 
 		<!-- Зоопарк shader="zoo_shader" -->
 		<case minzoom="12" tag="tourism" value="zoo" color="$woodColor">
