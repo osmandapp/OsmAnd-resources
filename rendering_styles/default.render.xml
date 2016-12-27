@@ -1251,12 +1251,18 @@
 	</renderingAttribute>
 	<!--	<renderingConstant name="landusePrisonColorDay" value="#dfd1d6"/>-->
 	<renderingConstant name="landusePrisonColorNight" value="#3b3b3b"/>
-	<renderingConstant name="landuseCommercialColorDay" value="#efc8c8"/>
-	<renderingConstant name="landuseCommercialColorNight" value="#3b3b3b"/>
-	<renderingConstant name="landuseRetailColorDay" value="#efd0c8"/>
-	<renderingConstant name="landuseRetailColorNight" value="#3b3b3b"/>
-	<renderingConstant name="landuseLandfillColorDay" value="#9d9d6c"/>
-	<renderingConstant name="landuseLandfillColorNight" value="#3b3b3b"/>
+	<renderingAttribute name="landuseCommercialColor">
+		<case nightMode="true" attrColorValue="#3b3b3b"/>
+		<case attrColorValue="#efc8c8"/>
+	</renderingAttribute>
+	<renderingAttribute name="landuseRetailColor">
+		<case nightMode="true" attrColorValue="#3b3b3b"/>
+		<case attrColorValue="#efd0c8"/>
+	</renderingAttribute>
+	<renderingAttribute name="landuseLandfillColor">
+		<case nightMode="true" attrColorValue="#3b3b3b"/>
+		<case attrColorValue="#9d9d6c"/>
+	</renderingAttribute>
 	<renderingAttribute name="amenityEducationalColor">
 		<case nightMode="true" attrColorValue="#3b3b3b"/>
 		<case attrColorValue="#f0f0d8"/>
@@ -8247,15 +8253,12 @@
 					</switch>
 				</apply>
 			</case>
-			<case minzoom="12" tag="landuse" value="commercial" color="$landuseCommercialColorDay">
-				<apply_if nightMode="true" color="$landuseCommercialColorNight"/>
-			</case>
+			<case minzoom="12" tag="landuse" value="commercial" color="$landuseCommercialColor"/>
 
 			<switch>
 				<case minzoom="12" tag="landuse" value="landfill"/>
 				<case minzoom="13" tag="man_made" value="spoil_heap"/>
-				<apply color="$landuseLandfillColorDay"/>
-				<apply_if nightMode="true" color="$landuseLandfillColorNight"/>
+				<apply color="$landuseLandfillColor"/>
 			</switch>
 			<switch minzoom="15">
 				<case tag="amenity" value="kindergarten"/>
@@ -8279,8 +8282,7 @@
 				<case minzoom="12" tag="landuse" value="retail"/>
 				<case minzoom="13" tag="highway" value="services"/>
 				<case minzoom="15" tag="highway" value="rest_area"/>
-				<apply color="$landuseRetailColorDay"/>
-				<apply_if nightMode="true" color="$landuseRetailColorNight"/>
+				<apply color="$landuseRetailColor"/>
 			</switch>
 			<switch minzoom="12">
 				<case tag="leisure" value="resort"/>
