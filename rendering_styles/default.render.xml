@@ -1291,12 +1291,18 @@
 		<case nightMode="true" attrColorValue="#362d2d"/>
 		<case attrColorValue="#cdc6bf"/>
 	</renderingAttribute>
-	<renderingConstant name="leisureResortColorDay" value="#b0b6fdb6"/>
-	<renderingConstant name="leisureResortColorNight" value="#362d2d"/>
-	<renderingConstant name="themeparkColorDay" value="#66f2caea"/>
-	<renderingConstant name="themeparkStrokeColorDay" value="#734a08"/>
-	<renderingConstant name="themeparkColorNight" value="#3b3b3b"/>
-	<renderingConstant name="themeparkStrokeColorNight" value="#734a08"/>
+	<renderingAttribute name="leisureResortColor">
+		<case nightMode="true" attrColorValue="#362d2d"/>
+		<case attrColorValue="#b0b6fdb6"/>
+	</renderingAttribute>
+	<renderingAttribute name="themeparkColor">
+		<case nightMode="true" attrColorValue="#3b3b3b"/>
+		<case attrColorValue="#66f2caea"/>
+	</renderingAttribute>
+	<renderingAttribute name="themeparkStrokeColor">
+		<case nightMode="true" attrColorValue="#734a08"/>
+		<case attrColorValue="#734a08"/>
+	</renderingAttribute>
 
 	<renderingConstant name="surfaceGroundColor" value="#cc9900"/>
 	<renderingConstant name="surfaceSandColor" value="#ffd700"/>
@@ -1356,8 +1362,10 @@
 	<renderingConstant name="pedestrianModePavingStonesShader" value="paving_stones_pedestrian"/>
 	<renderingConstant name="pedestrianModePavingStonesShaderNight" value="paving_stones_pedestrian_night"/>
 
-	<renderingConstant name="subwayLineDefaultColorDay" value="#a24141"/>
-	<renderingConstant name="subwayLineDefaultColorNight" value="#7b0000"/>
+	<renderingAttribute name="subwayLineDefaultColor">
+		<case nightMode="true" attrColorValue="#7b0000"/>
+		<case attrColorValue="#a24141"/>
+	</renderingAttribute>
 
 	<renderingAttribute name="subwayLineShadowColor">
 		<case nightMode="true" attrColorValue="#aa000000"/>
@@ -8286,9 +8294,7 @@
 			</switch>
 			<switch minzoom="12">
 				<case tag="leisure" value="resort"/>
-				<apply color="$leisureResortColorDay">
-					<apply_if nightMode="true" color="$leisureResortColorNight"/>
-				</apply>
+				<apply color="$leisureResortColor"/>
 			</switch>
 			<switch>
 				<case minzoom="12" tag="railway" value="station" color="#dfd1d6"/>
@@ -8306,8 +8312,7 @@
 			<case minzoom="12" tag="tourism" value="theme_park">
 				<case maxzoom="15" strokeWidth_2=":1"/>
 				<case minzoom="16" strokeWidth_2=":2"/>
-				<apply color="$themeparkColorDay" color_2="$themeparkStrokeColorDay" pathEffect_2="9_3"/>
-				<apply_if nightMode="true" color="$themeparkColorNight" color_2="$themeparkStrokeColorNight"/>
+				<apply color="$themeparkColor" color_2="$themeparkStrokeColor" pathEffect_2="9_3"/>
 			</case>
 			<switch minzoom="15" pathEffect_2="10_3">
 				<switch>
@@ -9922,9 +9927,7 @@
 					<apply_if nightMode="true" color_2="#333333"/>
 				</apply>
 			</case>
-			<apply_if subwayMode="true" minzoom="11" color="$subwayLineDefaultColorDay" cap="ROUND"> <!-- color for subway lines without tag="colo(u)r" -->
-				<apply_if nightMode="true" color="$subwayLineDefaultColorNight"/>
-			</apply_if>
+			<apply_if subwayMode="true" minzoom="11" color="$subwayLineDefaultColor" cap="ROUND"/> <!-- color for subway lines without tag="colo(u)r" -->
 			<apply_if subwayMode="true" pathEffect="">
 				<case additional="color_red" color="$subwayRedColor"/>
 				<case additional="color_brown" color="$subwayBrownColor"/>
