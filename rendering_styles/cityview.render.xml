@@ -225,8 +225,11 @@
 	<!-- Парки под застройку -->
 	<renderingConstant name="greenfieldColorDay" value="$defaultColor"/>
 
-	<!-- Открытые зеленые пространства - Пример на территории аэропорта cfeca8-->
-	<renderingConstant name="recreationGroundColorDay" value="#e5e4e3"/>
+	<!-- Recreation Ground -->
+	<renderingConstant name="recreationGroundColorDay" value="$woodColor"/>
+	<renderingConstant name="recreationGroundColorDayStroke" value="#b0b6fdb6"/>
+
+	<renderingConstant name="openNatureColorNight" value="$woodColor"/>
 
 	<!-- Трава -->
 	<renderingConstant name="grasslandColorDay" value="$woodColor"/>
@@ -522,18 +525,23 @@
 			<apply_if nightMode="true" attrColorValue="$tertiaryRoadColor"/>
 		</case>
 	</renderingAttribute>
-	<renderingAttribute name="residentialRoadLowZoom1ShadowColor">
-		<case attrColorValue="#30000000"/>
-	</renderingAttribute>
-
-	<renderingAttribute name="residentialRoadLowZoom2ShadowColor">
-		<case attrColorValue="#30000000"/>
-	</renderingAttribute>
 
 	<renderingAttribute name="residentialRoadShadowColor">
 		<case showAccess="true" additional="motorroad=yes" attrColorValue="#5f5fff"/>
 		<case attrColorValue="#30000000">
-			<apply_if nightMode="true" attrColorValue="$null"/>
+			<apply_if nightMode="true" attrColorValue="#20000000"/>
+		</case>
+	</renderingAttribute>
+
+	<renderingAttribute name="residentialRoadLowZoom1ShadowColor">
+		<case attrColorValue="#30000000">
+			<apply_if nightMode="true" attrColorValue="#20000000"/>
+		</case>
+	</renderingAttribute>
+
+	<renderingAttribute name="residentialRoadLowZoom2ShadowColor">
+		<case attrColorValue="#30000000">
+			<apply_if nightMode="true" attrColorValue="#20000000"/>
 		</case>
 	</renderingAttribute>
 
@@ -547,7 +555,7 @@
 		</case>
 		<case attrColorValue="#f5f1ed">
 			<apply_if additional="construction=yes" attrColorValue="#0000000"/>
-			<apply_if nightMode="true" attrColorValue="$tertiaryRoadColor"/>
+			<apply_if nightMode="true" attrColorValue="#263b40"/>
 		</case>
 	</renderingAttribute>
 
@@ -612,14 +620,16 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="trackPathHighwayOnewayArrowsColor">
-			<case attrColorValue="#a6a5a4">
+		<case attrColorValue="#a6a5a4">
 			<apply_if nightMode="true" attrColorValue="#dddddd"/>
 		</case>
 	</renderingAttribute>
 
     <!-- Water arrow direction -->
 	<renderingAttribute name="waterwayArrowsColor">
-		<case attrColorValue="#4798b3"/>
+		<case attrColorValue="#4798b3">
+			<apply_if nightMode="true" attrColorValue="#0a2340"/>
+		</case>
 	</renderingAttribute>
 
 
@@ -701,12 +711,12 @@
 
 	<!-- Футбольные поля -->
 	<renderingAttribute name="pitchColor">
-		<case nightMode="true" attrColorValue="$defaultColor"/>
-		<case attrColorValue="$defaultColor"/>
+		<case nightMode="true" attrColorValue="$woodColor"/>
+		<case attrColorValue="$woodColor"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="pitchColorStroke">
-		<case nightMode="true" attrColorValue="$defaultColor"/>
+		<case nightMode="true" attrColorValue="$null"/>
 		<case attrColorValue="$defaultColor"/>
 	</renderingAttribute>
 
@@ -950,7 +960,7 @@
 
 		<!-- Aeroway -->
 		<switch minzoom="12">
-			<case tag="aeroway" value="aerodrome" color="$defaultColor">
+			<case tag="aeroway" value="aerodrome" color="#d9d5d2">
 			<apply_if additional="aerodrome:type=military" shader="danger" color_2="#c8ffa0c0" strokeWidth_2="1:1"/>
 				<apply_if nightMode="true" shader="danger_night" color="#80a0a0a9"/>
 			</case>
@@ -961,7 +971,7 @@
 		<case minzoom="14" tag="aeroway" value="terminal" color="#cc99ff" color_2="#66444444" strokeWidth_2="0.5" >
 			<apply_if nightMode="true" color="#7951a2" color_2="#a0a0a0"/>
 		</case>
-		<case minzoom="13" tag="aeroway" value="apron" color="#cccbca">
+		<case minzoom="13" tag="aeroway" value="apron" color="#d9d5d2">
 			<apply_if nightMode="true" color="#887c88"/>
 		</case>
 		<switch minzoom="13">
