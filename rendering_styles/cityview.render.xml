@@ -351,7 +351,7 @@
 	</renderingAttribute>
 
 
-    <!-- Дороги -->
+    <!-- Roads -->
 
 	<!-- Motorway  -->
 	<renderingAttribute name="motorwayRoadColor">
@@ -406,13 +406,13 @@
 	<!-- Primary  -->
 	<renderingAttribute name="primaryRoadColor">
 		<case attrColorValue="#ffa347">
-			<apply_if nightMode="true" attrColorValue="#ffac59"/>
+			<apply_if nightMode="true" attrColorValue="#c17853"/>
 		</case>
 	</renderingAttribute>
 
 	<renderingAttribute name="primaryRoadLowZoomColor">
 		<case attrColorValue="#ffa347">
-			<apply_if nightMode="true" attrColorValue="#ffac59"/>
+			<apply_if nightMode="true" attrColorValue="#c17853"/>
 		</case>
 	</renderingAttribute>
 
@@ -488,7 +488,7 @@
 	<renderingAttribute name="serviceRoadColor">
 		<case attrColorValue="#ffffff">
 			<apply_if additional="construction=yes" attrColorValue="#cccccc"/>
-			<apply_if nightMode="true" attrColorValue="$tertiaryRoadColor"/>
+			<apply_if nightMode="true" attrColorValue="#263b40"/>
 		</case>
 	</renderingAttribute>
 
@@ -783,7 +783,7 @@
 	</renderingAttribute>
 
 	 <renderingAttribute name="tertiaryTextColor">
-    	<case nightMode="true" attrColorValue="#b8dee5"/>
+    	<case nightMode="true" attrColorValue="#a3c5cc"/>
 		<case attrColorValue="$black"/>
 	</renderingAttribute>
 
@@ -1043,6 +1043,20 @@
 
 
 	<line>
+		<!-- Tram -->
+		<switch minzoom="13">
+				<case tag="railway" value="tram" color="#444444">
+					<apply_if maxzoom="14" strokeWidth="0.8" strokeWidth__1="1:1"/>
+					<apply_if minzoom="15" strokeWidth="1:1" strokeWidth__1="2:2"/>
+					<apply_if nightMode="true" color="#80ffffff" color__1="#40000000"/>
+				</case>
+				<case tag="railway" value="light_rail" minzoom="13" color="#666666" strokeWidth="1:1"/>
+				<apply_if additional="tunnel=yes" pathEffect="5_3">
+					<apply_if maxzoom="14" strokeWidth="0.6"/>
+					<apply_if minzoom="15" strokeWidth="1:1"/>
+				</apply_if>
+		</switch>
+
         <!-- Subway -->
 		<switch subwayMode="true">
 			<case minzoom="11" tag="railway" value="subway">
