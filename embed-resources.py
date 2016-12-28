@@ -64,10 +64,12 @@ class OsmAndCoreResourcesPacker(object):
 
         # For each resource in collection, pack it
         for (idx, resource) in enumerate(resources):
+            if "hdpi" in resource[0]:
+                continue
             originalSize = os.path.getsize(resource[0])
             with open(resource[0], "rb") as resourceFile:
                 resourceContent = resourceFile.read()
-
+                
             if not resource[0].endswith(".png"):
                 packedContent = zlib.compress(resourceContent, 9)
             else:
