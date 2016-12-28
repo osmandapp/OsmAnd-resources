@@ -1234,6 +1234,10 @@
 		<case nightMode="true" attrColorValue="#494921"/>
 		<case attrColorValue="#aaa279"/>
 	</renderingAttribute>
+	<renderingAttribute name="buildingProposedColor">
+		<case nightMode="true" attrColorValue="#77685454"/>
+		<case attrColorValue="#33bca9a9"/>
+	</renderingAttribute>
 	<renderingConstant name="buildingStrokeWidth" value="0.25"/>
 	<renderingAttribute name="buildingStrokeColor">
 		<case nightMode="true" attrColorValue="#999999"/>
@@ -1594,8 +1598,16 @@
 
 	<renderingConstant name="towerCommunicationMinZoom" value="15"/>
 
+	<renderingAttribute name="buildingTextColor">
+		<case nightMode="true" attrColorValue="#ffffff"/>
+		<case attrColorValue="#404040"/>
+	</renderingAttribute>
+
 	<renderingConstant name="buildingTextHaloRadiusDay" value="1"/>
-	<renderingConstant name="buildingTextHaloColorDay" value="#ddf1eae4"/>
+	<renderingAttribute name="buildingTextHaloColor">
+		<case nightMode="true" attrColorValue="#aa555555"/>
+		<case attrColorValue="#ddf1eae4"/>
+	</renderingAttribute>
 
 	<renderingConstant name="waterTextHaloRadiusDay" value="1"/>
 
@@ -5030,7 +5042,7 @@
 				<case minzoom="13" tag="landuse" value="water" nameTag="" textWrapWidth="20" textOrder="218"/>
 				<case minzoom="13" tag="landuse" value="reservoir" nameTag="" textWrapWidth="20" textOrder="218"/>
 				<case minzoom="13" tag="landuse" value="basin" textWrapWidth="20" textOrder="218"/>
-				<case minzoom="17" tag="leisure" value="swimming_pool" textWrapWidth="20" textOrder="218"/>
+				<case minzoom="17" tag="leisure" value="swimming_pool" textWrapWidth="20" textOrder="218" textDy="5"/>
 				<case minzoom="16" tag="landuse" value="salt_pond" textWrapWidth="20" textOrder="218"/>
 				<case minzoom="13" tag="natural" value="glacier" textWrapWidth="20" textOrder="81"/>
 				<case minzoom="17" tag="man_made" value="breakwater" textWrapWidth="20" textOnPath="true" textOrder="255"/>
@@ -5621,9 +5633,7 @@
 					<apply_if maxzoom="17" textSize="13" textMinDistance="40" intersectionMargin="20"/>
 					<apply_if minzoom="18" textSize="15"/>
 					<apply_if engine_v1="true" textDy="7"/>
-					<apply textColor="#404040" textHaloColor="$buildingTextHaloColorDay" textWrapWidth="20" textOrder="135">
-						<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#aa444444"/>
-					</apply>
+					<apply textColor="$buildingTextColor" textHaloColor="$buildingTextHaloColor" textWrapWidth="20" textOrder="135"/>
 				</switch>
 				<switch>
 					<case minzoom="16" tag="addr:housenumber" value="" nameTag="" nameTag2="addr:housenumber"/>
@@ -5641,9 +5651,7 @@
 						<case maxzoom="17" textSize="14"/>
 						<case minzoom="18" textSize="15"/>
 					</apply_if>
-					<apply textColor="#404040" textHaloColor="$buildingTextHaloColorDay" textWrapWidth="25" textOrder="136">
-						<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#aa555555"/>
-					</apply>
+					<apply textColor="$buildingTextColor" textHaloColor="$buildingTextHaloColor" textWrapWidth="25" textOrder="136"/>
 				</switch>
 				<switch>
 					<case minzoom="18" tag="addr:flats" value="" textWrapWidth="20" textOrder="137" textColor="#555555">
@@ -6418,7 +6426,7 @@
 				<case tag="amenity" value="dentist" icon="amenity_dentist"/>
 				<case tag="emergency" value="ambulance_station" icon="ambulance_station"/>
 				<case tag="amenity" value="social_facility" icon="social_facility"/>
-				<apply_if nightMode="true" shield="gray_red_square_big_shield"/>
+				<apply_if nightMode="true" shield="gray_red_square_big_shield" iconVisibleSize="36"/>
 			</switch>
 			<case minzoom="16" tag="amenity" value="fire_station" icon="amenity_fire_station" iconVisibleSize="26" shield="white_red_round_big_shield" iconOrder="85">
 				<apply_if nightMode="true" shield="gray_red_round_big_shield"/>
@@ -6427,7 +6435,7 @@
 				<case tag="amenity" value="hospital"/>
 				<case tag="amenity" value="clinic"/>
 				<apply icon="amenity_hospital" iconVisibleSize="26" shield="white_red_round_big_shield" iconOrder="79"/>
-				<apply_if nightMode="true" shield="gray_red_round_big_shield"/>
+				<apply_if nightMode="true" shield="gray_red_round_big_shield" iconVisibleSize="24"/>
 				<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 			</switch>
 			<case minzoom="16" tag="amenity" value="pharmacy" icon="amenity_pharmacy" iconVisibleSize="26" shield="white_red_square_big_shield">
@@ -6506,7 +6514,7 @@
 				<case minzoom="16" tag="amenity" value="motorcycle_parking" icon="amenity_motorcycle_parking" iconVisibleSize="32" iconOrder="80">
 					<case additional="fee=yes" icon="amenity_motorcycle_parking_paid"/>
 				</case>
-				<apply_if nightMode="true" shield="gray_blue_square_big_shield"/>
+				<apply_if nightMode="true" shield="gray_blue_square_big_shield" iconVisibleSize="50"/>
 			</switch>
 
 			<switch minzoom="17">
@@ -6738,7 +6746,7 @@
 					<apply_if minzoom="16" additional="drinking_water=yes" icon_2="drinking_water_yes_map"/>
 					<apply_if minzoom="16" additional="drinking_water=no" icon_2="drinking_water_no_map"/>
 				</switch>
-				<apply_if nightMode="true" shield="gray_blue_square_big_shield"/>
+				<apply_if nightMode="true" shield="gray_blue_square_big_shield" iconVisibleSize="45"/>
 			</switch>
 
 			<!-- Tourism, Entertainment -->
@@ -6823,7 +6831,7 @@
 				<case minzoom="16" tag="historic" value="archaeological_site" icon="historic_archaeological_site" iconVisibleSize="26" iconOrder="85"/>
 				<case minzoom="16" tag="geological" value="palaeontological_site" icon="palaeontological_site" iconOrder="85"/>
 				<case minzoom="15" tag="historic" value="mine" icon="historic_mine"/>
-				<apply_if nightMode="true" shield="gray_brown_square_big_shield"/>
+				<apply_if nightMode="true" shield="gray_brown_square_big_shield" iconVisibleSize="40"/>
 				<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 			</switch>
 			<case minzoom="17" tag="historic" value="cannon" icon="historic_cannon" iconOrder="70"/>
@@ -6886,7 +6894,7 @@
 				<case minzoom="17" tag="leisure" value="miniature_golf" icon="leisure_miniature_golf"/>
 				<case minzoom="17" tag="amenity" value="sauna" icon="amenity_sauna" iconOrder="95"/>
 				<case minzoom="17" tag="leisure" value="tanning_salon" icon="tanning_salon"/>
-				<apply_if nightMode="true" shield="gray_green_square_big_shield"/>
+				<apply_if nightMode="true" shield="gray_green_square_big_shield" iconVisibleSize="55" intersectionSizeFactor="3.5"/>
 			</switch>
 
 			<switch minzoom="16">
@@ -6976,11 +6984,10 @@
 				<case minzoom="18" tag="office" value="parish" icon="parish"/>
 				<case minzoom="18" tag="office" value="publisher" icon="publisher"/>
 				<case minzoom="17" tag="amenity" value="bbq" icon="barbecue" shield="white_gray_square_big_shield" iconOrder="100"/>
-				<apply_if nightMode="true" shield="gray_gray_square_big_shield"/>
 				<case minzoom="18" tag="amenity" value="public_bookcase" icon="public_bookcase"/>
 				<case minzoom="17" tag="amenity" value="internet_cafe" icon="internet_cafe"/>
-
 				<case minzoom="17" tag="club" value="sport" icon="club_sport"/>
+				<apply_if nightMode="true" shield="gray_gray_square_big_shield" iconVisibleSize="24"/>
 			</switch>
 			<case minzoom="16" tag="amenity" value="hunting_stand" icon="amenity_hunting_stand" shield="hunting_stand_shield"/>
 			<case minzoom="17" tag="amenity" value="feeding_place" icon="feeding_place" shield="feeding_place_shield"/>
@@ -6993,7 +7000,7 @@
 				<case additional="religion=hindu" icon="religion_hindu"/>
 				<case additional="religion=shinto" icon="religion_shinto"/>
 				<case additional="religion=taoist" icon="religion_taoist"/>
-				<apply_if nightMode="true" shield="gray_gray_square_big_shield" iconVisibleSize="22"/>
+				<apply_if nightMode="true" shield="gray_gray_square_big_shield" iconVisibleSize="30"/>
 			</case>
 
 			<case minzoom="15" tag="amenity" value="monastery" icon="amenity_monastery" shield="white_gray_square_big_shield" iconVisibleSize="22" iconOrder="70">
@@ -7009,7 +7016,7 @@
 				<case minzoom="17" tag="amenity" value="payment_terminal" icon="payment_terminal"/>
 				<case minzoom="17" tag="amenity" value="bank" icon="amenity_bank"/>
 				<case minzoom="17" tag="amenity" value="bureau_de_change" icon="amenity_bureau_de_change"/>
-				<apply_if nightMode="true" shield="gray_gray_square_big_shield"/>
+				<apply_if nightMode="true" shield="gray_gray_square_big_shield" iconVisibleSize="44"/>
 			</switch>
 
 			<switch iconOrder="75" shield="white_gray_square_big_shield">
@@ -7020,7 +7027,7 @@
 				<case minzoom="17" tag="amenity" value="public_building" icon="amenity_public_building" iconOrder="74"/>
 				<case minzoom="17" tag="amenity" value="community_centre" icon="amenity_public_building" iconOrder="74"/>
 				<case minzoom="17" tag="amenity" value="social_centre" icon="amenity_public_building"/>
-				<apply_if nightMode="true" shield="gray_gray_square_big_shield"/>
+				<apply_if nightMode="true" shield="gray_gray_square_big_shield" iconVisibleSize="24"/>
 			</switch>
 
 			<switch iconOrder="75" shield="white_gray_square_big_shield" iconVisibleSize="32">
@@ -7030,7 +7037,7 @@
 				<case minzoom="16" tag="amenity" value="college" icon="amenity_college"/>
 				<case minzoom="16" tag="amenity" value="university" icon="amenity_university"/>
 				<case minzoom="17" tag="amenity" value="library" icon="amenity_library"/>
-				<apply_if nightMode="true" shield="gray_gray_square_big_shield"/>
+				<apply_if nightMode="true" shield="gray_gray_square_big_shield" iconVisibleSize="44"/>
 			</switch>
 
 			<case minzoom="17" tag="man_made" value="chimney" icon="man_made_chimney" shield="chimney_shield" iconOrder="100"/>
@@ -7141,7 +7148,7 @@
 					<apply_if minzoom="17" additional="drinking_water=yes" icon_2="drinking_water_yes_map"/>
 					<apply_if minzoom="17" additional="drinking_water=no" icon_2="drinking_water_no_map"/>
 				</switch>
-				<apply_if nightMode="true" shield="gray_orange_square_big_shield"/>
+				<apply_if nightMode="true" shield="gray_orange_square_big_shield" iconVisibleSize="34"/>
 			</switch>
 
 			<!-- Shops -->
@@ -7279,7 +7286,7 @@
 				<case minzoom="17" tag="shop" value="wine" icon="wine" iconVisibleSize="32"/>
 				<case minzoom="17" tag="amenity" value="vending_machine" icon="amenity_vending_machine"/>
 				<apply_if moreDetailed="false" maxzoom="15" icon=""/>
-				<apply_if nightMode="true" shield="gray_purple_square_big_shield"/>
+				<apply_if nightMode="true" shield="gray_purple_square_big_shield" iconVisibleSize="34"/>
 			</switch>
 
 			<switch shield="white_gray_square_big_shield">
@@ -8056,11 +8063,10 @@
 			</switch>
 			<case tag="building" value="construction" color="$buildingConstructionColor" color_2="#666666" pathEffect_2="8_4">
 				<apply_if minzoom="16" strokeWidth_2="$buildingStrokeWidth"/>
-				<apply_if nightMode="true" color_2="#aaaaaa"/>
 			</case>
-			<case tag="building" value="proposed" color="#33bca9a9" color_2="#666666" pathEffect_2="8_4">
+			<case tag="building" value="proposed" color="$buildingProposedColor" color_2="#666666" pathEffect_2="8_4">
 				<apply_if minzoom="16" strokeWidth_2="0.7"/>
-				<apply_if nightMode="true" color="#77685454" color_2="#aaaaaa"/>
+				<apply_if nightMode="true" color_2="#aaaaaa"/>
 			</case>
 			<case tag="building" value="pyramid" color="#be865d" color_2="#000000" strokeWidth_2="0.7">
 				<apply_if nightMode="true" color="#665228" />
