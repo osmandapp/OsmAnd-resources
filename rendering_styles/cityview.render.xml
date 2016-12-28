@@ -261,7 +261,11 @@
 	<renderingConstant name="boundaryNationalParkColor" value="#000000"/>
 
 	<!-- Meadow -->
-    <renderingAttribute name="meadowColor">
+	<renderingAttribute name="meadowColor">
+		<case nightMode="true" attrColorValue="$woodColor"/>
+		<case attrColorValue="#91d47b"/>
+	</renderingAttribute>
+	<renderingAttribute name="heathColor">
 		<case nightMode="true" attrColorValue="$woodColor"/>
 		<case attrColorValue="#91d47b"/>
 	</renderingAttribute>
@@ -523,6 +527,12 @@
 		</case>
 	</renderingAttribute>
 
+	<renderingAttribute name="roadRoadColor">
+		<case attrColorValue="#ececec">
+			<apply_if nightMode="true" attrColorValue="#555555"/>
+		</case>
+	</renderingAttribute>
+
 	<!-- Residential Road -->
 	<renderingAttribute name="residentialRoadColor">
 		<case attrColorValue="#ffffff">
@@ -570,6 +580,11 @@
 		</case>
 		<case attrColorValue="#30000000">
 			<apply_if nightMode="true" attrColorValue="$null"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="constructionHighwayBGColor">
+		<case attrColorValue="#ffffff">
+			<apply_if nightMode="true" attrColorValue="$defaultColor"/>
 		</case>
 	</renderingAttribute>
 
@@ -840,7 +855,17 @@
 		</case>
 		<case attrColorValue="$serviceRoadColor">
 			<apply_if additional="construction=yes" attrColorValue="#cccccc"/>
-			<apply_if nightMode="true" attrColorValue="#6f6f6f"/>
+			<apply_if nightMode="true" attrColorValue="$serviceRoadColor"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="serviceDrivewayTextHaloColor">
+		<case roadStyle="highContrastRoads" attrColorValue="#fff3ba">
+			<apply_if additional="construction=yes" attrColorValue="#F9DD76"/>
+			<apply_if nightMode="true" attrColorValue="#b0a781"/>
+		</case>
+		<case attrColorValue="$serviceDrivewayRoadColor">
+			<apply_if additional="construction=yes" attrColorValue="#cccccc"/>
+			<apply_if nightMode="true" attrColorValue="$tertiaryRoadColor"/>
 		</case>
 	</renderingAttribute>
 
@@ -913,15 +938,7 @@
 			<case subwayMode="false" maxzoom="18" tag="railway" value="rail" additional="network=rer" order="-1"/>
 			<case subwayMode="false" maxzoom="18" tag="railway" value="rail" additional="route=subway" order="-1"/>
 			<case subwayMode="false" maxzoom="18" tag="railway" value="subway" order="-1"/>
-			<switch>
-				<case tag="railway" value="abandoned"/>
-				<case tag="railway" value="disused"/>
-				<case tag="railway" value="preserved"/>
-				<case tag="railway" value="narrow_gauge"/>
-				<case tag="railway" value="construction"/>
-				<apply order="-1"/>
-			</switch>
-			<case tag="natural" value="heath" order="-1"/>
+<!--			<case tag="natural" value="heath" order="-1"/>-->
 		</switch>
 	</order>
 

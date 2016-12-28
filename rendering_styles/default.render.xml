@@ -1152,7 +1152,11 @@
 	<!-- Open nature -->
 	<renderingConstant name="openNatureColorNight" value="#004333"/>
 	<renderingConstant name="shaderColorNight" value="#334433"/>
-	<renderingConstant name="heathColorDay" value="#ffffc0"/>
+	<renderingAttribute name="heathColor">
+		<case attrColorValue="#ffffc0">
+			<apply_if nightMode="true" attrColorValue="$openNatureColorNight"/>
+		</case>
+	</renderingAttribute>
 	<renderingConstant name="wetlandColorNight" value="#1b3238"/>
 	<renderingConstant name="grasslandColorDay" value="#cfeca8"/>
 	<renderingConstant name="lavaColorDay" value="#ffe7ff"/>
@@ -1555,6 +1559,16 @@
 		<case attrColorValue="$black"/>
 	</renderingAttribute>
 	<renderingAttribute name="serviceTextHaloColor">
+		<case roadStyle="highContrastRoads" attrColorValue="#fff3ba">
+			<apply_if additional="construction=yes" attrColorValue="#F9DD76"/>
+			<apply_if nightMode="true" attrColorValue="#b0a781"/>
+		</case>
+		<case attrColorValue="#ececec">
+			<apply_if additional="construction=yes" attrColorValue="#cccccc"/>
+			<apply_if nightMode="true" attrColorValue="#6f6f6f"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="serviceDrivewayTextHaloColor">
 		<case roadStyle="highContrastRoads" attrColorValue="#fff3ba">
 			<apply_if additional="construction=yes" attrColorValue="#F9DD76"/>
 			<apply_if nightMode="true" attrColorValue="#b0a781"/>
@@ -2305,7 +2319,8 @@
 							<case tag="railway" value="abandoned"/>
 							<case tag="railway" value="construction"/>
 							<case tag="railway" value="disused"/>
-							<apply_if moreDetailed="false" maxzoom="16" order="-1"/>
+							<case tag="railway" value="preserved"/>
+							<apply_if moreDetailed="false" maxzoom="17" order="-1"/>
 						</switch>
 					</switch>
 					<apply_if subwayMode="false" layer="-1" order="20"/>
@@ -4507,9 +4522,7 @@
 
 				<switch minzoom="14">
 					<switch>
-						<switch textColor="$residentialTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$residentialTextHaloColor"><!-- $highwayResidentialTextHaloColorDay-->
-							<case tag="highway" value="road" textOrder="120"/>
-							<case tag="area:highway" value="road" textBold="true" textItalic="true" textWrapWidth="25" textOrder="121"/>
+						<switch textColor="$residentialTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$residentialTextHaloColor">
 							<case tag="highway" value="unclassified" textOrder="122"/>
 							<case tag="area:highway" value="unclassified" textBold="true" textItalic="true" intersectsWith="any" textWrapWidth="25" textOrder="123"/>
 							<case tag="highway" value="residential" textOrder="124"/>
@@ -4517,8 +4530,21 @@
 							<case tag="man_made" value="bridge" textOrder="125"/>
 							<apply_if nightMode="true" textBold="true"/>
 						</switch>
+						<switch textColor="$residentialTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$roadRoadColor">
+							<case tag="highway" value="road" textOrder="120"/>
+							<case tag="area:highway" value="road" textBold="true" textItalic="true" textWrapWidth="25" textOrder="121"/>
+						</switch>
 						<switch textColor="$serviceTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$serviceTextHaloColor">
-							<case tag="highway" value="service" textOrder="128"/>
+							<case tag="highway" value="service" textOrder="128">
+								<apply>
+									<switch>
+										<case additional="service=driveway"/>
+										<case additional="service=parking_aisle"/>
+										<case additional="service=alley"/>
+										<apply textHaloColor="$serviceDrivewayTextHaloColor"/>
+									</switch>
+								</apply>
+							</case>
 							<case tag="area:highway" value="service" textBold="true" textItalic="true" textWrapWidth="25" textOrder="129"/>
 							<case tag="highway" value="living_street" textOrder="130"/>
 							<case tag="highway" value="escape" textOrder="130"/>
@@ -8194,7 +8220,7 @@
 
 			<!-- Open nature, night color 004333 -->
 			<switch>
-				<case minzoom="6" tag="natural" value="heath" color="$heathColorDay"/>
+				<case minzoom="6" tag="natural" value="heath" color="$heathColor"/>
 				<case minzoom="6" tag="natural" value="grassland" color="$grasslandColorDay"/>
 				<case minzoom="6" tag="natural" value="lava" color="$lavaColorDay"/>
 				 <!-- desert is disputed because not well defined and little verifiable -->
