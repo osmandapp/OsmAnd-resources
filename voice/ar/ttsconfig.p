@@ -39,10 +39,10 @@ string('left_sl.ogg', ' اتجِهْ الى اليسار قليلا').
 string('right.ogg', ' انعطِفْ يمينا').
 string('right_sh.ogg', ' يمينا بشكل حاد').
 string('right_sl.ogg', ' يمينا قليلا').
-string('left_keep.ogg', ' الزم اليسار').
-string('right_keep.ogg', ' الزم اليمين').
-string('left_bear.ogg', ' الزم اليسار').    % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', ' الزم اليمين').  % in English the same as right_keep, may be different in other languages
+string('left_keep.ogg', ' إِلْزِمِ اليسار').
+string('right_keep.ogg', ' إِلْزِمِ اليمين').
+string('left_bear.ogg', ' إِلْزِمِ اليسار').    % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', ' إِلْزِمِ اليمين').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
 string('make_uturn.ogg', ' إلْتَف إلى الوراء').
@@ -53,7 +53,7 @@ string('prepare_roundabout.ogg', ' استعِدْ للدُخول في المسا
 string('roundabout.ogg', ' أُدخُلْ في المسار الدَّائري ثُمَّ').
 string('then.ogg', ' ، ثُمَّ').
 string('and.ogg', ' و').
-string('take.ogg', ' أُسلُكْ').
+string('take.ogg', ' أُسْلُكْ').
 string('exit.ogg', ' مَخرَج').
 
 string('1st.ogg', ' أَولَ').
@@ -105,8 +105,8 @@ string('stop.ogg', ' لاَفِتَةُ تَوَقُّفْ').
 string('pedestrian_crosswalk.ogg', ' مَمَرٌّ لِلرَّاجِلِين').
 
 % OTHER PROMPTS
-string('location_lost.ogg', ' إشارة GPS فقدت').
-string('location_recovered.ogg', ' إشارة GPS تعافت').
+string('location_lost.ogg', ' إشارَةُ الجي بي أَس فُقِدَتْ').
+string('location_recovered.ogg', ' تَعافَتْ إشارَةُ الجي بي أَسْ').
 string('off_route.ogg', ' لَقَدْ إِنْحَرَفْتَ عَنِ المَسَارِ بِـ').
 string('back_on_route.ogg', ' لقد عُدْتَ إِلى الطريقِ من جديد').
 
@@ -118,7 +118,7 @@ string('toward.ogg', ' باتجاه').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', ' أمتار').
-string('around_1_kilometer.ogg', ' حوالي 1 كيلو متر').
+string('around_1_kilometer.ogg', ' حوالي كيلو متر واحد').
 string('around.ogg', ' حوالي').
 string('kilometers.ogg', ' كيلومترات').
 
@@ -131,7 +131,7 @@ string('miles.ogg', ' اميال').
 string('yards.ogg', ' ياردة').
 
 % TIME SUPPORT
-string('time.ogg', ' الوقت هو').
+string('time.ogg', ' تَبْلُغُ المُدَّةُ الزمنيةُ للْوُصول').
 string('1_hour.ogg', ' ساعة واحدة').
 string('hours.ogg', ' ساعات').
 string('less_a_minute.ogg', ' أقل من دقيقة').
