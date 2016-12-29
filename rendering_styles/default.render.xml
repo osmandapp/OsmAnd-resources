@@ -2294,8 +2294,14 @@
 				<switch order="58">
 					<case tag="railway" value="rail" additional="network=rer"/>
 					<case tag="railway" value="subway">
-						<apply_if subwayMode="false" maxzoom="16" order="-1"/>
-						<apply_if subwayMode="false" moreDetailed="true" minzoom="16" maxzoom="16" order="58"/>
+						<apply_if subwayMode="false">
+							<switch>
+								<case moreDetailed="true" maxzoom="17"/>
+								<case maxzoom="19"/>
+								<apply order="-1"/>
+							</switch>
+						</apply_if>
+						<apply_if subwayMode="false" moreDetailed="true" minzoom="18" order="58"/>
 						<apply_if subwayMode="true" order="90"/>
 					</case>
 					<switch>
@@ -2319,8 +2325,8 @@
 							<case tag="railway" value="preserved"/>
 							<apply_if moreDetailed="false" maxzoom="17" order="-1"/>
 						</switch>
+						<apply_if subwayMode="false" layer="-1" order="20"/>
 					</switch>
-					<apply_if subwayMode="false" layer="-1" order="20"/>
 					<apply_if subwayMode="false" layer="-1" minzoom="9" maxzoom="18">
 						<apply_if appMode="car" order="-1"/>
 						<apply_if appMode="bicycle" order="-1"/>
@@ -4500,7 +4506,6 @@
 						<case maxzoom="17" textSize="17"/>
 						<case minzoom="18" textSize="19"/>
 					</apply_if>
-					<apply_if nightMode="true" textBold="true"/>
 				</switch>
 
 				<switch minzoom="14" textHaloRadius="$textHaloRadius" textColor="$tertiaryTextColor" textOnPath="true" textHaloColor="$tertiaryRoadColor" nameTag="">
@@ -4514,7 +4519,6 @@
 						<case maxzoom="17" textSize="16"/>
 						<case minzoom="18" textSize="18"/>
 					</apply>
-					<apply_if nightMode="true" textBold="true"/>
 				</switch>
 
 				<switch minzoom="14">
@@ -4525,7 +4529,6 @@
 							<case tag="highway" value="residential" textOrder="124"/>
 							<case tag="area:highway" value="residential" textBold="true" textItalic="true" textOrder="125" textWrapWidth="25" intersectsWith="any"/>
 							<case tag="man_made" value="bridge" textOrder="125"/>
-							<apply_if nightMode="true" textBold="true"/>
 						</switch>
 						<switch textColor="$residentialTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$roadRoadColor">
 							<case tag="highway" value="road" textOrder="120"/>
@@ -5208,8 +5211,8 @@
 				<case minzoom="17" tag="waterway" value="fuel" nameTag="brand" textWrapWidth="20"/>
 				<case minzoom="17" tag="waterway" value="fuel" nameTag="operator" textWrapWidth="20"/>
 				<case minzoom="17" tag="amenity" value="charging_station" textWrapWidth="20"/>
-				<case minzoom="17" tag="amenity" value="parking" nameTag="" textWrapWidth="20"/>
-				<case minzoom="18" tag="amenity" value="parking_entrance" textWrapWidth="20"/>
+				<case minzoom="17" tag="amenity" value="parking" nameTag="" textWrapWidth="20" iconOrder="151"/>
+				<case minzoom="18" tag="amenity" value="parking_entrance" textWrapWidth="20" iconOrder="152"/>
 				<case minzoom="18" tag="amenity" value="bicycle_parking" nameTag="" textWrapWidth="20"/>
 				<case minzoom="17" tag="amenity" value="motorcycle_parking" nameTag="" textWrapWidth="20"/>
 				<case minzoom="17" tag="amenity" value="taxi" textWrapWidth="20"/>
@@ -5367,8 +5370,8 @@
 					<apply_if nightMode="true" textHaloColor="#22ffffff"/>
 				</case>
 				<apply textWrapWidth="25" textHaloRadius="$textHaloRadius" textBold="true"/>
-				<apply_if subwayMode="false" maxzoom="14" textSize="12"/>
-				<apply_if minzoom="15" textSize="13"/>
+				<apply_if maxzoom="16" textSize="12"/>
+				<apply_if minzoom="17" textSize="13"/>
 				<apply_if nightMode="true" textColor="#d4d4ff" textHaloColor="#994563a7"/>
 				<apply_if>
 					<switch>
@@ -5427,20 +5430,22 @@
 			<!-- Accommodation -->
 			<switch textSize="12" nameTag="" textColor="$accomodationTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$accomodationTextHaloColorDay" textWrapWidth="25" textOrder="161">
 				<switch>
-					<case minzoom="16" tag="tourism" value="camp_site"/>
-					<case minzoom="16" tag="tourism" value="caravan_site"/>
-					<case minzoom="16" tag="tourism" value="alpine_hut"/>
-					<case minzoom="16" tag="tourism" value="cabin"/>
-					<case minzoom="16" tag="tourism" value="lean_to"/>
 					<case minzoom="17" tag="tourism" value="apartment"/>
-					<case minzoom="17" tag="tourism" value="chalet"/>
 					<case minzoom="17" tag="tourism" value="guest_house"/>
 					<case minzoom="17" tag="tourism" value="hostel"/>
 					<case minzoom="17" tag="tourism" value="hotel"/>
 					<case minzoom="17" tag="tourism" value="motel"/>
-					<case minzoom="16" tag="tourism" value="wilderness_hut"/>
-					<case minzoom="17" tag="amenity" value="shelter"/>
-					<case minzoom="17" tag="leisure" value="summer_camp"/>
+					<switch textOrder="162">
+						<case minzoom="16" tag="tourism" value="camp_site"/>
+						<case minzoom="16" tag="tourism" value="caravan_site"/>
+						<case minzoom="17" tag="tourism" value="chalet"/>
+						<case minzoom="16" tag="tourism" value="alpine_hut"/>
+						<case minzoom="16" tag="tourism" value="cabin"/>
+						<case minzoom="16" tag="tourism" value="lean_to"/>
+						<case minzoom="16" tag="tourism" value="wilderness_hut"/>
+						<case minzoom="17" tag="amenity" value="shelter"/>
+						<case minzoom="17" tag="leisure" value="summer_camp"/>
+					</switch>
 					<apply_if engine_v1="true" textDy="9"/>
 				</switch>
 				<case minzoom="16" tag="leisure" value="resort"/>
@@ -5449,7 +5454,7 @@
 
 			<!-- Tourism and Entertainment -->
 			<switch textSize="12" nameTag="" textColor="$tourismTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$tourismTextHaloColorDay" textWrapWidth="20" textOrder="155">
-				<case minzoom="18" tag="tourism" value="artwork" nameTag=""/>
+				<case minzoom="18" tag="tourism" value="artwork" nameTag="" textOrder="155"/>
 				<case minzoom="17" tag="tourism" value="picnic_site"/>
 				<case minzoom="17" tag="leisure" value="picnic_table"/>
 				<case minzoom="17" tag="tourism" value="museum" textOrder="132"/>
@@ -5458,16 +5463,17 @@
 				<case minzoom="16" tag="tourism" value="theme_park" textOrder="153"/>
 				<case minzoom="15" tag="tourism" value="zoo" textOrder="152"/>
 				<case minzoom="16" tag="tourism" value="aquarium" textOrder="152"/>
-
-				<case minzoom="17" tag="amenity" value="arts_centre"/>
-				<case minzoom="17" tag="amenity" value="casino"/>
-				<case minzoom="17" tag="amenity" value="cinema"/>
-				<case minzoom="17" tag="amenity" value="theatre" textOrder="132"/>
-				<case minzoom="17" tag="amenity" value="nightclub"/>
-				<case minzoom="17" tag="amenity" value="stripclub"/>
-				<case minzoom="17" tag="amenity" value="studio"/>
-				<case minzoom="17" tag="amenity" value="brothel"/>
-				<case minzoom="17" tag="amenity" value="gambling"/>
+				<switch textOrder="154">
+					<case minzoom="17" tag="amenity" value="arts_centre"/>
+					<case minzoom="17" tag="amenity" value="casino"/>
+					<case minzoom="17" tag="amenity" value="cinema" textOrder="132"/>
+					<case minzoom="17" tag="amenity" value="theatre" textOrder="132"/>
+					<case minzoom="17" tag="amenity" value="nightclub"/>
+					<case minzoom="17" tag="amenity" value="stripclub"/>
+				</switch>
+				<case minzoom="17" tag="amenity" value="studio" textOrder="156"/>
+				<case minzoom="17" tag="amenity" value="brothel" textOrder="156"/>
+				<case minzoom="17" tag="amenity" value="gambling" textOrder="156"/>
 				<case minzoom="16" tag="natural" value="beach"/>
 				<case minzoom="16" tag="leisure" value="beach_resort"/>
 				<switch minzoom="18">
@@ -5492,27 +5498,30 @@
 				<switch>
 					<case minzoom="17" tag="historic" value="aircraft"/>
 					<case minzoom="16" tag="historic" value="castle" nameTag=""/>
-					<case minzoom="18" tag="historic" value="cannon"/>
-					<case minzoom="16" tag="historic" value="monument"/>
+					<case minzoom="18" tag="historic" value="cannon" textOrder="159"/>
+					<case minzoom="16" tag="historic" value="monument" textOrder="154"/>
 					<case minzoom="16" tag="historic" value="technical_monument"/>
 					<case minzoom="17" tag="historic" value="locomotive"/>
-					<case minzoom="18" tag="historic" value="tomb"/>
-					<case minzoom="17" tag="historic" value="memorial"/>
+					<case minzoom="18" tag="historic" value="tomb" textOrder="159"/>
+					<case minzoom="17" tag="historic" value="memorial" textOrder="157">
+						<apply_if additional="memorial=stolperstein" icon="memorial_stolperstein" textOrder="186"/>
+						<apply_if additional="memorial=plaque" icon="memorial_plaque" textOrder="186"/>
+					</case>
 					<case minzoom="16" tag="historic" value="battlefield"/>
 					<case minzoom="16" tag="historic" value="ruins"/>
-					<case minzoom="16" tag="historic" value="archaeological_site"/>
+					<case minzoom="16" tag="historic" value="archaeological_site" iconOrder="163"/>
 					<case minzoom="16" tag="historic" value="wreck"/>
 					<case minzoom="17" tag="historic" value="ship"/>
 					<case minzoom="15" tag="amenity" value="monastery"/>
 					<case minzoom="17" tag="historic" value="wayside_cross"/>
 					<case minzoom="17" tag="historic" value="wayside_shrine"/>
 					<case minzoom="16" tag="historic" value="mine"/>
-					<case minzoom="16" tag="historic" value="boundary_stone"/>
-					<case minzoom="17" tag="historic" value="milestone"/>
+					<case minzoom="16" tag="historic" value="boundary_stone" iconOrder="159"/>
+					<case minzoom="17" tag="historic" value="milestone" iconOrder="159"/>
 					<case minzoom="17" tag="historic" value="rune_stone" textSize="11"/>
-					<case minzoom="16" tag="building" value="pyramid" textOrder="80"/>
+					<case minzoom="16" tag="building" value="pyramid" textOrder="154"/>
 					<case minzoom="15" tag="landuse" value="religious"/>
-					<case minzoom="16" tag="geological" value="palaeontological_site"/>
+					<case minzoom="16" tag="geological" value="palaeontological_site" iconOrder="163"/>
 					<case minzoom="15" tag="historic" value="quarry"/>
 					<apply_if engine_v1="true" textDy="9"/>
 				</switch>
@@ -5544,11 +5553,11 @@
 				<case minzoom="17" tag="amenity" value="school" textOrder="133"/>
 				<case minzoom="17" tag="amenity" value="college" textOrder="133"/>
 				<case minzoom="16" tag="amenity" value="university" textOrder="133"/>
-				<case minzoom="17" tag="amenity" value="training" textOrder="133"/>
+				<case minzoom="17" tag="amenity" value="training" textOrder="171"/>
 
-				<case minzoom="18" tag="amenity" value="bench"/>
+				<case minzoom="18" tag="amenity" value="bench" textOrder="172"/>
 				<case minzoom="17" tag="amenity" value="fountain"/>
-				<case minzoom="17" tag="amenity" value="telephone"/>
+				<case minzoom="18" tag="amenity" value="telephone"/>
 				<case minzoom="17" tag="amenity" value="car_wash"/>
 				<case minzoom="18" tag="amenity" value="vehicle_ramp"/>
 				<case minzoom="17" tag="amenity" value="vehicle_inspection"/>
@@ -5572,37 +5581,37 @@
 
 			<!-- Office -->
 			<switch textSize="12" nameTag="" textColor="$otherAmenitiesTextColorDay" textHaloColor="$otherAmenitiesTextHaloColorDay" textHaloRadius="$textHaloRadius" textWrapWidth="20" textOrder="172">
-				<case minzoom="17" tag="office" value="travel_agent"/>
-				<case minzoom="18" tag="office" value="employment_agency"/>
-				<case minzoom="18" tag="office" value="insurance"/>
-				<case minzoom="18" tag="office" value="research"/>
-				<case minzoom="18" tag="office" value="it"/>
-				<case minzoom="18" tag="shop" value="estate_agent"/>
-				<case minzoom="18" tag="office" value="company"/>
-				<case minzoom="18" tag="office" value="advertising_agency"/>
-				<case minzoom="18" tag="office" value="lawyer"/>
-				<case minzoom="18" tag="office" value="administrative"/>
-				<case minzoom="18" tag="office" value="ngo"/>
-				<case minzoom="18" tag="office" value="political_party"/>
-				<case minzoom="18" tag="office" value="telecommunication"/>
 				<case minzoom="18" tag="office" value="accountant"/>
+				<case minzoom="18" tag="office" value="administrative"/>
+				<case minzoom="18" tag="office" value="advertising_agency"/>
 				<case minzoom="18" tag="office" value="architect"/>
 				<case minzoom="18" tag="office" value="camping"/>
-				<case minzoom="18" tag="office" value="educational_institution"/>
-				<case minzoom="18" tag="office" value="foundation"/>
-				<case minzoom="18" tag="office" value="guide"/>
-				<case minzoom="18" tag="office" value="newspaper"/>
-				<case minzoom="18" tag="office" value="quango"/>
-				<case minzoom="18" tag="office" value="tax_advisor"/>
+				<case minzoom="18" tag="office" value="company"/>
 				<case minzoom="18" tag="office" value="consulting"/>
 				<case minzoom="18" tag="office" value="cooperative"/>
+				<case minzoom="18" tag="office" value="educational_institution"/>
+				<case minzoom="18" tag="office" value="employment_agency"/>
 				<case minzoom="18" tag="office" value="financial"/>
 				<case minzoom="18" tag="office" value="forestry"/>
+				<case minzoom="18" tag="office" value="foundation"/>
+				<case minzoom="18" tag="office" value="government"/>
+				<case minzoom="18" tag="office" value="guide"/>
+				<case minzoom="18" tag="office" value="insurance"/>
+				<case minzoom="18" tag="office" value="it"/>
+				<case minzoom="18" tag="office" value="lawyer"/>
 				<case minzoom="18" tag="office" value="logistics"/>
+				<case minzoom="18" tag="office" value="newspaper"/>
+				<case minzoom="18" tag="office" value="ngo"/>
 				<case minzoom="18" tag="office" value="notary"/>
 				<case minzoom="18" tag="office" value="parish"/>
+				<case minzoom="18" tag="office" value="political_party"/>
 				<case minzoom="18" tag="office" value="publisher"/>
-				<case minzoom="18" tag="office" value="government"/>
+				<case minzoom="18" tag="office" value="quango"/>
+				<case minzoom="18" tag="office" value="research"/>
+				<case minzoom="18" tag="office" value="tax_advisor"/>
+				<case minzoom="18" tag="office" value="telecommunication" textOrder="159"/>
+				<case minzoom="17" tag="office" value="travel_agent"/>
+				<case minzoom="18" tag="shop" value="estate_agent"/>
 				<apply_if engine_v1="true" textDy="9"/>
 				<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#aa555555"/>
 			</switch>
@@ -5721,9 +5730,9 @@
 				<case minzoom="17" tag="amenity" value="bar"/>
 				<case minzoom="17" tag="amenity" value="biergarten"/>
 				<case minzoom="17" tag="amenity" value="ice_cream"/>
-				<case minzoom="18" tag="amenity" value="drinking_water"/>
-				<case minzoom="18" tag="man_made" value="water_well"/>
-				<case minzoom="17" tag="amenity" value="water_point"/>
+				<case minzoom="18" tag="amenity" value="drinking_water" textOrder="171"/>
+				<case minzoom="18" tag="man_made" value="water_well" textOrder="171"/>
+				<case minzoom="17" tag="amenity" value="water_point" textOrder="171"/>
 				<apply_if engine_v1="true" textDy="9"/>
 				<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#5574542F"/>
 			</switch>
@@ -5741,7 +5750,7 @@
 				<case minzoom="17" tag="shop" value="bicycle"/>
 				<case minzoom="17" tag="shop" value="books"/>
 				<case minzoom="17" tag="shop" value="beverages"/>
-				<case minzoom="17" tag="shop" value="boutique"/>
+				<case minzoom="17" tag="shop" value="boutique" textOrder="158"/>
 				<case minzoom="17" tag="shop" value="butcher"/>
 				<case minzoom="17" tag="shop" value="camera"/>
 				<case minzoom="17" tag="shop" value="candles"/>
@@ -5749,7 +5758,7 @@
 				<case minzoom="17" tag="shop" value="car_repair"/>
 				<case minzoom="17" tag="shop" value="car_parts"/>
 				<case minzoom="17" tag="shop" value="carpet"/>
-				<case minzoom="17" tag="shop" value="clothes"/>
+				<case minzoom="17" tag="shop" value="clothes" textOrder="159"/>
 				<case minzoom="17" tag="shop" value="charity"/>
 				<case minzoom="17" tag="shop" value="cheese"/>
 				<case minzoom="17" tag="shop" value="chemist"/>
@@ -5757,14 +5766,14 @@
 				<case minzoom="17" tag="shop" value="coffee"/>
 				<case minzoom="17" tag="shop" value="computer"/>
 				<case minzoom="17" tag="shop" value="confectionery"/>
-				<case minzoom="17" tag="shop" value="convenience"/>
+				<case minzoom="17" tag="shop" value="convenience" textOrder="157"/>
 				<case minzoom="17" tag="shop" value="cosmetics"/>
 				<case minzoom="17" tag="shop" value="copyshop"/>
 				<case minzoom="17" tag="shop" value="craft"/>
 				<case minzoom="17" tag="shop" value="curtain"/>
 				<case minzoom="17" tag="shop" value="dairy"/>
 				<case minzoom="17" tag="shop" value="deli"/>
-				<case minzoom="16" tag="shop" value="department_store"/>
+				<case minzoom="16" tag="shop" value="department_store" textOrder="158"/>
 				<case minzoom="17" tag="shop" value="dive"/>
 				<case minzoom="17" tag="shop" value="doityourself"/>
 				<case minzoom="17" tag="shop" value="doors"/>
@@ -5789,8 +5798,7 @@
 				<case minzoom="18" tag="shop" value="gift"/>
 				<case minzoom="17" tag="shop" value="glaziery"/>
 				<case minzoom="17" tag="shop" value="greengrocer"/>
-				<case minzoom="17" tag="shop" value="hairdresser"/>
-				<case minzoom="17" tag="shop" value="massage"/>
+				<case minzoom="17" tag="shop" value="hairdresser" textOrder="159"/>
 				<case minzoom="17" tag="shop" value="hardware"/>
 				<case minzoom="17" tag="shop" value="hearing_aids"/>
 				<case minzoom="17" tag="shop" value="herbalist"/>
@@ -5808,7 +5816,8 @@
 				<case minzoom="17" tag="shop" value="locksmith"/>
 				<case minzoom="17" tag="shop" value="lottery"/>
 				<case minzoom="16" tag="shop" value="mall"/>
-				<case minzoom="16" tag="amenity" value="marketplace"/>
+				<case minzoom="16" tag="amenity" value="marketplace" textOrder="157"/>
+				<case minzoom="17" tag="shop" value="massage" textOrder="159"/>
 				<case minzoom="17" tag="shop" value="medical_supply"/>
 				<case minzoom="17" tag="shop" value="mobile_phone"/>
 				<case minzoom="17" tag="shop" value="model"/>
@@ -5818,7 +5827,7 @@
 				<case minzoom="17" tag="shop" value="musical_instrument"/>
 				<case minzoom="17" tag="shop" value="newsagent"/>
 				<case minzoom="17" tag="shop" value="nutrition_supplements"/>
-				<case minzoom="17" tag="shop" value="optician"/>
+				<case minzoom="17" tag="shop" value="optician" textOrder="159"/>
 				<case minzoom="17" tag="shop" value="paint"/>
 				<case minzoom="17" tag="shop" value="party"/>
 				<case minzoom="17" tag="shop" value="pastry"/>
@@ -5835,10 +5844,10 @@
 				<case minzoom="17" tag="shop" value="scuba_diving"/>
 				<case minzoom="17" tag="shop" value="second_hand"/>
 				<case minzoom="17" tag="shop" value="sewing"/>
-				<case minzoom="17" tag="shop" value="shoes"/>
+				<case minzoom="17" tag="shop" value="shoes" textOrder="158"/>
 				<case minzoom="17" tag="shop" value="sports"/>
 				<case minzoom="17" tag="shop" value="stationery"/>
-				<case minzoom="16" tag="shop" value="supermarket"/>
+				<case minzoom="16" tag="shop" value="supermarket" textOrder="157"/>
 				<case minzoom="17" tag="shop" value="spices"/>
 				<case minzoom="17" tag="shop" value="tableware"/>
 				<case minzoom="17" tag="shop" value="tattoo"/>
@@ -5916,15 +5925,15 @@
 					<case minzoom="17" tag="sport" value="model_aerodrome"/>
 					<case minzoom="17" tag="sport" value="multi"/>
 
-					<case minzoom="15" tag="leisure" value="stadium"/>
+					<case minzoom="15" tag="leisure" value="stadium" textOrder="165"/>
 					<case minzoom="17" tag="leisure" value="playground"/>
 					<case minzoom="17" tag="leisure" value="fitness_station"/>
 					<case minzoom="16" tag="leisure" value="horse_riding"/>
 					<case minzoom="16" tag="leisure" value="water_park"/>
-					<case minzoom="17" tag="amenity" value="sauna"/>
+					<case minzoom="17" tag="amenity" value="sauna" textOrder="167"/>
 					<case minzoom="18" tag="leisure" value="tanning_salon"/>
-					<case minzoom="16" tag="leisure" value="sports_centre"/>
-					<case minzoom="17" tag="leisure" value="fitness_centre"/>
+					<case minzoom="16" tag="leisure" value="sports_centre" textOrder="166"/>
+					<case minzoom="17" tag="leisure" value="fitness_centre" textOrder="166"/>
 					<case minzoom="16" tag="leisure" value="ice_rink"/>
 					<case minzoom="17" tag="leisure" value="fishing"/>
 					<case minzoom="17" tag="leisure" value="bird_hide"/>
@@ -6058,7 +6067,7 @@
 		<!-- Car profile priority icons -->
 		<switch appMode="car" iconOrder="80">
 			<switch hideIcons="false">
-				<case minzoom="16" tag="emergency" value="phone" icon="emergency_phone" shield="white_red_square_big_shield">
+				<case minzoom="18" tag="emergency" value="phone" icon="emergency_phone" shield="white_red_square_big_shield">
 					<apply_if nightMode="true" shield="gray_red_square_big_shield"/>
 				</case>
 				<case moreDetailed="true" minzoom="16" tag="highway" value="traffic_signals" icon="highway_traffic_signals_map" shield="traffic_signals_shield"/>
@@ -6125,7 +6134,7 @@
 					<apply_if nightMode="true" shield="gray_blue_square_big_shield"/>
 				</switch>
 				<switch shield="white_gray_square_big_shield">
-					<case minzoom="15" tag="barrier" value="border_control" icon="barrier_border_control" iconOrder="40"/>
+					<case minzoom="15" tag="barrier" value="border_control" icon="barrier_border_control" iconOrder="140"/>
 					<case minzoom="16" tag="shop" value="car_repair" icon="shop_car_repair">
 						<case additional="service=tyres" icon="service_tyres"/>
 					</case>
@@ -6139,7 +6148,7 @@
 					<apply_if nightMode="true" shield="gray_gray_square_big_shield"/>
 				</switch>
 			</switch>
-			<switch moreDetailed="true" minzoom="17" iconOrder="128">
+			<switch moreDetailed="true" minzoom="17" iconOrder="162">
 				<case tag="barrier" value="block" icon="barrier_block" shield="barrier_block_shield"/>
 				<case tag="barrier" value="debris" icon="barrier_debris" shield="barrier_debris_shield"/>
 				<case tag="barrier" value="log" icon="barrier_log" shield="barrier_log_shield"/>
@@ -6214,12 +6223,12 @@
 					<apply_if nightMode="true" shield=""/>
 				</switch>
 				<case maxzoom="18" tag="amenity" value="parking" icon="no_icon"/>
-				<case minzoom="16" tag="emergency" value="phone" icon="emergency_phone" shield="white_red_square_big_shield">
+				<case minzoom="18" tag="emergency" value="phone" icon="emergency_phone" shield="white_red_square_big_shield">
 					<apply_if nightMode="true" shield="gray_red_square_big_shield"/>
 				</case>
 			</switch>
-			<case minzoom="16" tag="barrier" value="cycle_barrier" icon="barrier_cycle_barrier" shield="barrier_cycle_barrier_shield"/>
-			<switch minzoom="18" iconOrder="128">
+			<case minzoom="16" tag="barrier" value="cycle_barrier" icon="barrier_cycle_barrier" shield="barrier_cycle_barrier_shield" iconOrder="162"/>
+			<switch minzoom="18" iconOrder="162">
 				<case tag="barrier" value="gate" icon="barrier_gate" shield="barrier_gate_shield"/>
 				<case tag="barrier" value="lift_gate" icon="barrier_lift_gate" shield="barrier_lift_gate_shield"/>
 				<case tag="barrier" value="swing_gate" icon="barrier_swing_gate" shield="barrier_swing_gate_shield"/>
@@ -6296,7 +6305,7 @@
 				<case minzoom="16" tag="emergency" value="phone" icon="emergency_phone" shield="white_red_square_big_shield">
 					<apply_if nightMode="true" shield="gray_red_square_big_shield"/>
 				</case>
-				<switch shield="white_gray_square_big_shield">
+				<switch shield="white_gray_square_big_shield" iconOrder="162">
 					<case minzoom="17" tag="barrier" value="entrance" icon="barrier_entrance"/>
 					<apply_if nightMode="true" shield="gray_gray_square_big_shield"/>
 				</switch>
@@ -6509,11 +6518,11 @@
 			<switch shield="white_blue_square_big_shield">
 				<case minzoom="18" tag="highway" value="speed_camera" icon="highway_speed_camera" iconOrder="70"/>
 				<case minzoom="15" tag="highway" value="services" icon="highway_services" iconOrder="60"/>
-				<case minzoom="15" tag="amenity" value="fuel" icon="amenity_fuel" iconVisibleSize="22" iconOrder="81"/>
+				<case minzoom="15" tag="amenity" value="fuel" icon="amenity_fuel" iconVisibleSize="22" iconOrder="150"/>
 				<case minzoom="16" tag="waterway" value="fuel" icon="waterway_fuel"/>
-				<case minzoom="16" tag="amenity" value="charging_station" icon="amenity_charging_station" iconOrder="81"/>
+				<case minzoom="16" tag="amenity" value="charging_station" icon="amenity_charging_station" iconOrder="150"/>
 				<case minzoom="16" tag="amenity" value="taxi" icon="amenity_taxi" iconOrder="81"/>
-				<case minzoom="16" tag="amenity" value="parking" icon="amenity_parking" iconVisibleSize="38" iconOrder="86">
+				<case minzoom="16" tag="amenity" value="parking" icon="amenity_parking" iconVisibleSize="38" iconOrder="151">
 					<case additional="parking=multi-storey" icon="parking_multi_storey">
 						<case additional="fee=yes" icon="amenity_parking_multi_storey_paid"/>
 					</case>
@@ -6759,13 +6768,13 @@
 
 
 			<!-- Accommodation -->
-			<switch iconOrder="85" shield="white_blue_square_big_shield" iconVisibleSize="32">
+			<switch iconOrder="161" shield="white_blue_square_big_shield" iconVisibleSize="32">
 				<case minzoom="16" tag="tourism" value="apartment" icon="tourism_apartment"/>
 				<case minzoom="16" tag="tourism" value="guest_house" icon="tourism_guest_house"/>
 				<case minzoom="16" tag="tourism" value="hostel" icon="tourism_hostel"/>
 				<case minzoom="16" tag="tourism" value="hotel" icon="tourism_hotel"/>
 				<case minzoom="16" tag="tourism" value="motel" icon="tourism_motel"/>
-				<switch>
+				<switch iconOrder="162">
 					<case minzoom="14" tag="tourism" value="camp_site" icon="tourism_camp_site"/>
 					<case minzoom="14" tag="tourism" value="caravan_site" icon="tourism_caravan_site"/>
 					<case minzoom="16" tag="tourism" value="chalet" icon="tourism_chalet"/>
@@ -6798,17 +6807,13 @@
 				<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 			</switch>
 			<switch shield="white_brown_square_big_shield" iconVisibleSize="22">
-				<switch iconOrder="70">
-					<case minzoom="18" tag="tourism" value="artwork" icon="tourism_artwork" iconOrder="69">
+				<switch iconOrder="132">
+					<case minzoom="18" tag="tourism" value="artwork" icon="tourism_artwork" iconOrder="155">
 						<apply_if additional="artwork_type=statue" icon="memorial_statue"/>
 					</case>
 					<case minzoom="16" tag="tourism" value="museum" icon="tourism_museum"/>
-					<case minzoom="16" tag="historic" value="ship" icon="historic_ship"/>
-					<case minzoom="16" tag="historic" value="boundary_stone" icon="historic_boundary_stone"/>
-					<case minzoom="17" tag="historic" value="milestone" icon="historic_milestone"/>
 					<case minzoom="15" tag="tourism" value="theme_park" icon="tourism_theme_park"/>
 					<case minzoom="14" tag="tourism" value="zoo" icon="zoo" iconOrder="152"/>
-					<case minzoom="16" tag="historic" value="aircraft" icon="historic_aircraft"/>
 				</switch>
 				<switch minzoom="18">
 					<case tag="attraction" value="amusement_ride" icon="attraction_amusement_ride"/>
@@ -6828,27 +6833,33 @@
 				<case minzoom="16" tag="natural" value="beach" icon="beach" iconOrder="79"/>
 				<case minzoom="16" tag="leisure" value="beach_resort" icon="leisure_beach_resort" iconOrder="79"/>
 
-				<case minzoom="16" tag="amenity" value="arts_centre" icon="amenity_arts_centre" iconVisibleSize="32" iconOrder="85"/>
-				<case minzoom="16" tag="amenity" value="casino" icon="amenity_casino" iconVisibleSize="32"/>
-				<case minzoom="16" tag="amenity" value="cinema" icon="amenity_cinema" iconVisibleSize="24" iconOrder="70"/>
-				<case minzoom="16" tag="amenity" value="theatre" icon="amenity_theatre" iconVisibleSize="24" iconOrder="70"/>
-				<case minzoom="16" tag="amenity" value="nightclub" icon="amenity_nightclub" iconVisibleSize="32"/>
-				<case minzoom="16" tag="amenity" value="stripclub" icon="amenity_nightclub" iconVisibleSize="32"/>
+				<switch iconOrder="154">
+					<case minzoom="16" tag="amenity" value="arts_centre" icon="amenity_arts_centre" iconVisibleSize="32"/>
+					<case minzoom="16" tag="amenity" value="casino" icon="amenity_casino" iconVisibleSize="32"/>
+					<case minzoom="16" tag="amenity" value="cinema" icon="amenity_cinema" iconVisibleSize="24" iconOrder="132"/>
+					<case minzoom="16" tag="amenity" value="theatre" icon="amenity_theatre" iconVisibleSize="24" iconOrder="132"/>
+					<case minzoom="16" tag="amenity" value="nightclub" icon="amenity_nightclub" iconVisibleSize="32"/>
+					<case minzoom="16" tag="amenity" value="stripclub" icon="amenity_nightclub" iconVisibleSize="32"/>
+				</switch>
 
-				<switch iconOrder="70">
+				<switch iconOrder="158">
 					<case minzoom="15" tag="historic" value="castle" icon="historic_castle"/>
-					<case minzoom="16" tag="historic" value="tomb" icon="tomb" iconOrder="85"/>
+					<case minzoom="16" tag="historic" value="tomb" icon="tomb" iconOrder="159"/>
 					<case minzoom="16" tag="historic" value="ruins" icon="historic_ruins" intersectionSizeFactor="1.5" iconVisibleSize="25"/>
 					<case minzoom="16" tag="historic" value="wreck" icon="wreck"/>
 					<case minzoom="16" tag="historic" value="wayside_cross" icon="historic_wayside_cross"/>
 					<case minzoom="16" tag="historic" value="wayside_shrine" icon="historic_wayside_shrine"/>
+					<case minzoom="16" tag="historic" value="aircraft" icon="historic_aircraft"/>
+					<case minzoom="16" tag="historic" value="ship" icon="historic_ship"/>
+					<case minzoom="16" tag="historic" value="boundary_stone" icon="historic_boundary_stone" iconOrder="159"/>
+					<case minzoom="17" tag="historic" value="milestone" icon="historic_milestone" iconOrder="159"/>
 				</switch>
 				<switch>
-					<case minzoom="16" tag="historic" value="memorial" icon="historic_memorial" iconOrder="70">
-						<apply_if additional="memorial=stolperstein" icon="memorial_stolperstein" iconOrder="120"/>
-						<apply_if additional="memorial=plaque" icon="memorial_plaque" iconOrder="120"/>
+					<case minzoom="16" tag="historic" value="memorial" icon="historic_memorial" iconOrder="157">
+						<apply_if additional="memorial=stolperstein" icon="memorial_stolperstein" iconOrder="186"/>
+						<apply_if additional="memorial=plaque" icon="memorial_plaque" iconOrder="186"/>
 					</case>
-					<case minzoom="16" tag="historic" value="monument" icon="monument" iconVisibleSize="32" iconOrder="85"/>
+					<case minzoom="16" tag="historic" value="monument" icon="monument" iconVisibleSize="32" iconOrder="154"/>
 					<apply_if additional="memorial=bust" icon="memorial_bust"/>
 					<apply_if additional="memorial=obelisk" icon="memorial_obelisk"/>
 					<apply_if additional="memorial=column" icon="memorial_obelisk"/>
@@ -6856,26 +6867,26 @@
 					<apply_if additional="memorial=stele" icon="memorial_stele"/>
 					<apply_if additional="memorial=war_memorial" icon="memorial_war"/>
 				</switch>
-				<case minzoom="14" tag="building" value="pyramid" icon="building_pyramid" iconOrder="5"/>
-				<case minzoom="16" tag="historic" value="battlefield" icon="historic_battlefield"/>
-				<case minzoom="16" tag="historic" value="locomotive" icon="locomotive" iconOrder="85"/>
-				<case minzoom="17" tag="historic" value="technical_monument" icon="technical_monument" iconOrder="85"/>
-				<case minzoom="16" tag="historic" value="archaeological_site" icon="historic_archaeological_site" iconVisibleSize="26" iconOrder="85"/>
-				<case minzoom="16" tag="geological" value="palaeontological_site" icon="palaeontological_site" iconOrder="85"/>
+				<case minzoom="14" tag="building" value="pyramid" icon="building_pyramid" iconOrder="154"/>
+				<case minzoom="16" tag="historic" value="battlefield" icon="historic_battlefield" iconOrder="158"/>
+				<case minzoom="16" tag="historic" value="locomotive" icon="locomotive" iconOrder="158"/>
+				<case minzoom="17" tag="historic" value="technical_monument" icon="technical_monument" iconOrder="158"/>
+				<case minzoom="16" tag="historic" value="archaeological_site" icon="historic_archaeological_site" iconVisibleSize="26" iconOrder="163"/>
+				<case minzoom="16" tag="geological" value="palaeontological_site" icon="palaeontological_site" iconOrder="163"/>
 				<case minzoom="15" tag="historic" value="mine" icon="historic_mine"/>
 				<apply_if nightMode="true" shield="gray_brown_square_big_shield" iconVisibleSize="40"/>
 				<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 			</switch>
-			<case minzoom="17" tag="historic" value="cannon" icon="historic_cannon" iconOrder="70"/>
+			<case minzoom="17" tag="historic" value="cannon" icon="historic_cannon" iconOrder="159"/>
 
 			<!-- Sport, leisure -->
-			<case minzoom="16" tag="leisure" value="horse_riding" icon="equestrian" shield="white_gray_square_big_shield">
+			<case minzoom="16" tag="leisure" value="horse_riding" icon="equestrian" shield="white_gray_square_big_shield" iconOrder="166">
 				<apply_if nightMode="true" shield="gray_gray_square_big_shield"/>
 			</case>
-			<case minzoom="17" tag="leisure" value="playground" icon="leisure_playground" iconOrder="75" iconVisibleSize="40" intersectionSizeFactor="2.5"/>
-			<case minzoom="17" tag="leisure" value="fitness_station" icon="fitness_station"/>
-			<switch iconOrder="75" shield="white_green_square_big_shield" iconVisibleSize="40" intersectionSizeFactor="2.5">
-				<case minzoom="15" tag="leisure" value="stadium" icon="sport_stadium" iconOrder="70">
+			<case minzoom="17" tag="leisure" value="playground" icon="leisure_playground" iconOrder="166" iconVisibleSize="40" intersectionSizeFactor="2.5"/>
+			<case minzoom="17" tag="leisure" value="fitness_station" icon="fitness_station" iconOrder="166"/>
+			<switch iconOrder="166" shield="white_green_square_big_shield" iconVisibleSize="40" intersectionSizeFactor="2.5">
+				<case minzoom="15" tag="leisure" value="stadium" icon="sport_stadium" iconOrder="165">
 					<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 				</case>
 				<case minzoom="16" tag="sport" value="equestrian" icon="equestrian"/>
@@ -6924,15 +6935,15 @@
 				<case minzoom="16" tag="leisure" value="fishing" icon="leisure_fishing"/>
 				<case minzoom="17" tag="leisure" value="bird_hide" icon="leisure_bird_hide"/>
 				<case minzoom="17" tag="leisure" value="miniature_golf" icon="leisure_miniature_golf"/>
-				<case minzoom="17" tag="amenity" value="sauna" icon="amenity_sauna" iconOrder="95"/>
+				<case minzoom="17" tag="amenity" value="sauna" icon="amenity_sauna" iconOrder="167"/>
 				<case minzoom="17" tag="leisure" value="tanning_salon" icon="tanning_salon"/>
 				<apply_if nightMode="true" shield="gray_green_square_big_shield" iconVisibleSize="55" intersectionSizeFactor="3.5"/>
 			</switch>
 
 			<switch minzoom="16">
-				<case tag="leisure" value="sports_centre" icon="leisure_sports_centre" iconOrder="75"/>
+				<case tag="leisure" value="sports_centre" icon="leisure_sports_centre"/>
 				<case minzoom="17" tag="leisure" value="fitness_centre" icon="fitness_centre"/>
-				<apply shield="white_green_square_big_shield" iconVisibleSize="32"/>
+				<apply shield="white_green_square_big_shield" iconVisibleSize="32" iconOrder="166"/>
 				<apply_if nightMode="true" shield="gray_green_square_big_shield"/>
 			</switch>
 
@@ -6940,7 +6951,7 @@
 			<case minzoom="16" tag="geocache" value="" icon="geocache_not_found"/>
 
 			<!-- Other amenities -->
-			<case minzoom="17" tag="amenity" value="bench" icon="bench" shield="bench_shield" iconOrder="70"/>
+			<case minzoom="17" tag="amenity" value="bench" icon="bench" shield="bench_shield" iconOrder="172"/>
 
 			<case minzoom="17" tag="amenity" value="recycling">
 				<case minzoom="17" additional="recycling_type=centre" icon="recycling_centre" shield="white_gray_square_big_shield">
@@ -6962,8 +6973,8 @@
 			<case minzoom="17" tag="amenity" value="post_office" icon="amenity_post_office" shield="white_gray_square_big_shield">
 				<apply_if nightMode="true" shield="gray_gray_square_big_shield"/>
 			</case>
-			<switch shield="white_gray_square_big_shield">
-				<case minzoom="17" tag="amenity" value="telephone" icon="amenity_telephone"/>
+			<switch shield="white_gray_square_big_shield" iconOrder="171">
+				<case minzoom="18" tag="amenity" value="telephone" icon="amenity_telephone"/>
 				<case minzoom="17" tag="amenity" value="post_box" icon="amenity_post_box"/>
 				<case minzoom="17" tag="amenity" value="post_office" icon="amenity_post_office"/>
 				<case minzoom="17" tag="amenity" value="prison" icon="amenity_prison"/>
@@ -6976,45 +6987,47 @@
 					<case additional="self_service=yes" icon="car_wash_self_service"/>
 				</case>
 				<case minzoom="17" tag="amenity" value="vehicle_ramp" icon="amenity_vehicle_ramp"/>
-				<case minzoom="17" tag="amenity" value="studio" icon="studio"/>
-				<case minzoom="17" tag="amenity" value="brothel" icon="brothel"/>
-				<case minzoom="17" tag="amenity" value="gambling" icon="gambling"/>
+				<case minzoom="17" tag="amenity" value="studio" icon="studio" iconOrder="156"/>
+				<case minzoom="17" tag="amenity" value="brothel" icon="brothel" iconOrder="156"/>
+				<case minzoom="17" tag="amenity" value="gambling" icon="gambling" iconOrder="156"/>
 				<case minzoom="17" tag="amenity" value="watering_place" icon="watering_place"/>
 				<case minzoom="17" tag="amenity" value="animal_shelter" icon="animal_shelter"/>
 				<case minzoom="16" tag="landuse" value="animal_keeping" icon="animal_keeping"/>
 				<case minzoom="17" tag="amenity" value="bicycle_repair_station" icon="bicycle_repair_station">
 					<apply_if appMode="bicycle" iconOrder="60"/>
 				</case>
-				<case minzoom="17" tag="office" value="travel_agent" icon="travel_agent"/>
-				<case minzoom="18" tag="office" value="employment_agency" icon="employment_agency"/>
-				<case minzoom="18" tag="office" value="insurance" icon="insurance"/>
-				<case minzoom="18" tag="office" value="research" icon="research"/>
-				<case minzoom="18" tag="office" value="it" icon="it"/>
-				<case minzoom="18" tag="shop" value="estate_agent" icon="estate_agent"/>
-				<case minzoom="18" tag="office" value="company" icon="company"/>
-				<case minzoom="18" tag="office" value="advertising_agency" icon="advertising_agency"/>
-				<case minzoom="18" tag="office" value="lawyer" icon="lawyer"/>
-				<case minzoom="18" tag="office" value="administrative" icon="office_administrative"/>
-				<case minzoom="18" tag="office" value="ngo" icon="ngo"/>
-				<case minzoom="18" tag="office" value="political_party" icon="political_party"/>
-				<case minzoom="18" tag="office" value="telecommunication" icon="office_telecommunication"/>
-				<case minzoom="18" tag="office" value="accountant" icon="accountant"/>
-				<case minzoom="18" tag="office" value="architect" icon="architect"/>
-				<case minzoom="18" tag="office" value="camping" icon="office_camping"/>
-				<case minzoom="18" tag="office" value="educational_institution" icon="educational_institution"/>
-				<case minzoom="18" tag="office" value="foundation" icon="office_foundation"/>
-				<case minzoom="18" tag="office" value="guide" icon="guide"/>
-				<case minzoom="18" tag="office" value="newspaper" icon="newspaper"/>
-				<case minzoom="18" tag="office" value="quango" icon="quango"/>
-				<case minzoom="18" tag="office" value="tax_advisor" icon="tax_advisor"/>
-				<case minzoom="18" tag="office" value="consulting" icon="consulting"/>
-				<case minzoom="18" tag="office" value="cooperative" icon="cooperative"/>
-				<case minzoom="18" tag="office" value="financial" icon="financial"/>
-				<case minzoom="18" tag="office" value="forestry" icon="forestry"/>
-				<case minzoom="18" tag="office" value="logistics" icon="logistics"/>
-				<case minzoom="18" tag="office" value="notary" icon="notary"/>
-				<case minzoom="18" tag="office" value="parish" icon="parish"/>
-				<case minzoom="18" tag="office" value="publisher" icon="publisher"/>
+				<switch iconOrder="172">
+					<case minzoom="18" tag="office" value="accountant" icon="accountant"/>
+					<case minzoom="18" tag="office" value="administrative" icon="office_administrative"/>
+					<case minzoom="18" tag="office" value="advertising_agency" icon="advertising_agency"/>
+					<case minzoom="18" tag="office" value="architect" icon="architect"/>
+					<case minzoom="18" tag="office" value="camping" icon="office_camping"/>
+					<case minzoom="18" tag="office" value="company" icon="company"/>
+					<case minzoom="18" tag="office" value="consulting" icon="consulting"/>
+					<case minzoom="18" tag="office" value="cooperative" icon="cooperative"/>
+					<case minzoom="18" tag="office" value="educational_institution" icon="educational_institution"/>
+					<case minzoom="18" tag="office" value="employment_agency" icon="employment_agency"/>
+					<case minzoom="18" tag="office" value="financial" icon="financial"/>
+					<case minzoom="18" tag="office" value="forestry" icon="forestry"/>
+					<case minzoom="18" tag="office" value="foundation" icon="office_foundation"/>
+					<case minzoom="18" tag="office" value="guide" icon="guide"/>
+					<case minzoom="18" tag="office" value="insurance" icon="insurance"/>
+					<case minzoom="18" tag="office" value="it" icon="it"/>
+					<case minzoom="18" tag="office" value="lawyer" icon="lawyer"/>
+					<case minzoom="18" tag="office" value="logistics" icon="logistics"/>
+					<case minzoom="18" tag="office" value="newspaper" icon="newspaper"/>
+					<case minzoom="18" tag="office" value="ngo" icon="ngo"/>
+					<case minzoom="18" tag="office" value="notary" icon="notary"/>
+					<case minzoom="18" tag="office" value="parish" icon="parish"/>
+					<case minzoom="18" tag="office" value="political_party" icon="political_party"/>
+					<case minzoom="18" tag="office" value="publisher" icon="publisher"/>
+					<case minzoom="18" tag="office" value="quango" icon="quango"/>
+					<case minzoom="18" tag="office" value="research" icon="research"/>
+					<case minzoom="18" tag="office" value="tax_advisor" icon="tax_advisor"/>
+					<case minzoom="18" tag="office" value="telecommunication" icon="office_telecommunication" iconOrder="159"/>
+					<case minzoom="17" tag="office" value="travel_agent" icon="travel_agent"/>
+					<case minzoom="18" tag="shop" value="estate_agent" icon="estate_agent"/>
+				</switch>
 				<case minzoom="17" tag="amenity" value="bbq" icon="barbecue" shield="white_gray_square_big_shield" iconOrder="100"/>
 				<case minzoom="18" tag="amenity" value="public_bookcase" icon="public_bookcase"/>
 				<case minzoom="17" tag="amenity" value="internet_cafe" icon="internet_cafe"/>
@@ -7043,7 +7056,7 @@
 			<case minzoom="19" tag="emergency" value="fire_hydrant" icon="emergency_fire_hydrant"/>
 			<case minzoom="13" tag="military" value="nuclear_explosion_site" icon="military_nuclear_explosion_site" shield="nuclear_explosion_site_shield" iconOrder="128"/>
 
-			<switch shield="white_gray_square_big_shield" iconVisibleSize="32" iconOrder="96">
+			<switch shield="white_gray_square_big_shield" iconVisibleSize="32" iconOrder="171">
 				<case minzoom="17" tag="amenity" value="atm" icon="amenity_atm"/>
 				<case minzoom="17" tag="amenity" value="payment_terminal" icon="payment_terminal"/>
 				<case minzoom="17" tag="amenity" value="bank" icon="amenity_bank"/>
@@ -7062,10 +7075,10 @@
 				<apply_if nightMode="true" shield="gray_gray_square_big_shield" iconVisibleSize="24"/>
 			</switch>
 
-			<switch iconOrder="75" shield="white_gray_square_big_shield" iconVisibleSize="32">
+			<switch iconOrder="133" shield="white_gray_square_big_shield" iconVisibleSize="32">
 				<case minzoom="16" tag="amenity" value="kindergarten" icon="kindergarten"/>
 				<case minzoom="16" tag="amenity" value="school" icon="amenity_school"/>
-				<case minzoom="16" tag="amenity" value="training" icon="training"/>
+				<case minzoom="16" tag="amenity" value="training" icon="training" iconOrder="171"/>
 				<case minzoom="16" tag="amenity" value="college" icon="amenity_college"/>
 				<case minzoom="16" tag="amenity" value="university" icon="amenity_university"/>
 				<case minzoom="17" tag="amenity" value="library" icon="amenity_library"/>
@@ -7165,26 +7178,26 @@
 
 			<!-- Food and Drink -->
 			<switch shield="white_orange_square_big_shield" iconVisibleSize="24">
-				<case minzoom="16" tag="amenity" value="restaurant" icon="amenity_restaurant" iconVisibleSize="32" iconOrder="95"/>
-				<case minzoom="16" tag="amenity" value="cafe" icon="amenity_cafe" iconVisibleSize="40" iconOrder="96"/>
-				<case minzoom="16" tag="amenity" value="fast_food" icon="amenity_fast_food" iconVisibleSize="32" iconOrder="97"/>
-				<case minzoom="16" tag="amenity" value="food_court" icon="amenity_food_court"/>
-				<case minzoom="16" tag="amenity" value="pub" icon="amenity_pub" iconVisibleSize="32"/>
-				<case minzoom="16" tag="amenity" value="bar" icon="amenity_bar" iconVisibleSize="32"/>
-				<case minzoom="16" tag="amenity" value="biergarten" icon="amenity_biergarten"/>
-				<case minzoom="16" tag="amenity" value="ice_cream" icon="ice_cream"/>
-				<switch>
+				<case minzoom="16" tag="amenity" value="restaurant" icon="amenity_restaurant" iconVisibleSize="32" iconOrder="159"/>
+				<case minzoom="16" tag="amenity" value="cafe" icon="amenity_cafe" iconVisibleSize="40" iconOrder="160"/>
+				<case minzoom="16" tag="amenity" value="fast_food" icon="amenity_fast_food" iconVisibleSize="32" iconOrder="159"/>
+				<case minzoom="16" tag="amenity" value="food_court" icon="amenity_food_court" iconOrder="158"/>
+				<case minzoom="16" tag="amenity" value="pub" icon="amenity_pub" iconVisibleSize="32" iconOrder="159"/>
+				<case minzoom="16" tag="amenity" value="bar" icon="amenity_bar" iconVisibleSize="32" iconOrder="159"/>
+				<case minzoom="16" tag="amenity" value="biergarten" icon="amenity_biergarten" iconOrder="159"/>
+				<case minzoom="16" tag="amenity" value="ice_cream" icon="ice_cream" iconOrder="159"/>
+				<switch iconOrder="171">
 					<case minzoom="17" tag="amenity" value="drinking_water" icon="amenity_drinking_water"/>
 					<case minzoom="16" tag="man_made" value="water_well" icon="man_made_water_well"/>
 					<case minzoom="16" tag="amenity" value="water_point" icon="water_point"/>
 					<apply_if minzoom="17" additional="drinking_water=yes" icon_2="drinking_water_yes_map"/>
 					<apply_if minzoom="17" additional="drinking_water=no" icon_2="drinking_water_no_map"/>
 				</switch>
-				<apply_if nightMode="true" shield="gray_orange_square_big_shield" iconVisibleSize="34"/>
+				<apply_if nightMode="true" shield="gray_orange_square_big_shield" iconVisibleSize="54"/>
 			</switch>
 
 			<!-- Shops -->
-			<switch shield="white_purple_square_big_shield" iconVisibleSize="24">
+			<switch shield="white_purple_square_big_shield" iconVisibleSize="24" iconOrder="160">
 				<case minzoom="17" tag="shop" value="alcohol" icon="shop_alcohol" iconVisibleSize="32"/>
 				<case minzoom="17" tag="shop" value="art" icon="art"/>
 				<case minzoom="17" tag="shop" value="baby_goods" icon="shop_baby_goods"/>
@@ -7196,7 +7209,7 @@
 				<case minzoom="17" tag="shop" value="beverages" icon="beverages" iconVisibleSize="32"/>
 				<case minzoom="17" tag="shop" value="bicycle" icon="shop_bicycle"/>
 				<case minzoom="17" tag="shop" value="books" icon="shop_books" iconOrder="99"/>
-				<case minzoom="17" tag="shop" value="boutique" icon="boutique" iconVisibleSize="32" iconOrder="99"/>
+				<case minzoom="17" tag="shop" value="boutique" icon="boutique" iconVisibleSize="32" iconOrder="158"/>
 				<case minzoom="17" tag="shop" value="butcher" icon="shop_butcher" iconVisibleSize="32"/>
 				<case minzoom="17" tag="shop" value="camera" icon="photo"/>
 				<case minzoom="17" tag="shop" value="candles" icon="candles"/>
@@ -7205,18 +7218,17 @@
 					<case additional="service=tyres" icon="service_tyres"/>
 				</case>
 				<case minzoom="16" tag="shop" value="car_parts" icon="shop_car_parts"/>
-				<case minzoom="17" tag="shop" value="clothes" icon="shop_clothes" iconVisibleSize="32" iconOrder="100">
+				<case minzoom="17" tag="shop" value="clothes" icon="shop_clothes" iconVisibleSize="32" iconOrder="159">
 					<case additional="clothes:children=yes" icon="clothes_children"/>
 				</case>
 				<case minzoom="17" tag="shop" value="chemist" icon="chemist"/>
 				<case minzoom="17" tag="shop" value="cosmetics" icon="cosmetics"/>
-				<case minzoom="17" tag="shop" value="shoes" icon="shop_shoes" iconVisibleSize="32" iconOrder="99"/>
 				<case minzoom="17" tag="shop" value="carpet" icon="carpet"/>
 				<case minzoom="17" tag="shop" value="chocolate" icon="chocolate"/>
 				<case minzoom="17" tag="shop" value="coffee" icon="coffee"/>
 				<case minzoom="17" tag="shop" value="computer" icon="shop_computer"/>
 				<case minzoom="17" tag="shop" value="confectionery" icon="shop_confectionery"/>
-				<case minzoom="16" tag="shop" value="convenience" icon="shop_convenience" iconVisibleSize="22" iconOrder="85"/>
+				<case minzoom="16" tag="shop" value="convenience" icon="shop_convenience" iconVisibleSize="22" iconOrder="157"/>
 				<case minzoom="17" tag="shop" value="copyshop" icon="shop_copyshop"/>
 				<case minzoom="17" tag="shop" value="charity" icon="charity"/>
 				<case minzoom="17" tag="shop" value="cheese" icon="cheese"/>
@@ -7224,7 +7236,7 @@
 				<case minzoom="17" tag="shop" value="curtain" icon="curtain"/>
 				<case minzoom="17" tag="shop" value="dairy" icon="shop_dairy"/>
 				<case minzoom="17" tag="shop" value="deli" icon="deli"/>
-				<case minzoom="15" tag="shop" value="department_store" icon="shop_department_store" iconVisibleSize="32" iconOrder="75"/>
+				<case minzoom="15" tag="shop" value="department_store" icon="shop_department_store" iconVisibleSize="32" iconOrder="158"/>
 				<case minzoom="17" tag="shop" value="dive" icon="dive"/>
 				<case minzoom="17" tag="shop" value="doityourself" icon="shop_doityourself" iconVisibleSize="32"/>
 				<case minzoom="17" tag="shop" value="doors" icon="doors"/>
@@ -7249,8 +7261,7 @@
 				<case minzoom="17" tag="shop" value="gift" icon="shop_gift" iconVisibleSize="32"/>
 				<case minzoom="17" tag="shop" value="glaziery" icon="glaziery"/>
 				<case minzoom="17" tag="shop" value="greengrocer" icon="shop_greengrocer" iconVisibleSize="32"/>
-				<case minzoom="17" tag="shop" value="hairdresser" icon="shop_hairdresser" iconVisibleSize="32" iconOrder="102"/>
-				<case minzoom="17" tag="shop" value="massage" icon="massage" iconVisibleSize="32" iconOrder="102"/>
+				<case minzoom="17" tag="shop" value="hairdresser" icon="shop_hairdresser" iconVisibleSize="32" iconOrder="159"/>
 				<case minzoom="17" tag="shop" value="hardware" icon="shop_hardware" iconVisibleSize="32"/>
 				<case minzoom="17" tag="shop" value="hearing_aids" icon="shop_hearing_aids" iconVisibleSize="32"/>
 				<case minzoom="17" tag="shop" value="herbalist" icon="herbalist"/>
@@ -7267,8 +7278,9 @@
 				<case minzoom="17" tag="shop" value="lighting" icon="lighting"/>
 				<case minzoom="17" tag="shop" value="locksmith" icon="locksmith"/>
 				<case minzoom="17" tag="shop" value="lottery" icon="lottery"/>
-				<case minzoom="15" tag="shop" value="mall" icon="shop_mall" iconVisibleSize="22" iconOrder="75"/>
-				<case minzoom="15" tag="amenity" value="marketplace" icon="amenity_marketplace" iconVisibleSize="32" iconOrder="75"/>
+				<case minzoom="15" tag="shop" value="mall" icon="shop_mall" iconVisibleSize="22" iconOrder="157"/>
+				<case minzoom="15" tag="amenity" value="marketplace" icon="amenity_marketplace" iconVisibleSize="32" iconOrder="157"/>
+				<case minzoom="17" tag="shop" value="massage" icon="massage" iconVisibleSize="32" iconOrder="159"/>
 				<case minzoom="17" tag="shop" value="medical_supply" icon="medical_supply"/>
 				<case minzoom="17" tag="shop" value="mobile_phone" icon="shop_mobile_phone" iconVisibleSize="32"/>
 				<case minzoom="17" tag="shop" value="model" icon="model"/>
@@ -7278,7 +7290,7 @@
 				<case minzoom="17" tag="shop" value="musical_instrument" icon="shop_musical_instrument"/>
 				<case minzoom="17" tag="shop" value="newsagent" icon="newsagent"/>
 				<case minzoom="17" tag="shop" value="nutrition_supplements" icon="nutrition_supplements"/>
-				<case minzoom="17" tag="shop" value="optician" icon="shop_optician" iconOrder="97"/>
+				<case minzoom="17" tag="shop" value="optician" icon="shop_optician" iconOrder="159"/>
 				<case minzoom="17" tag="shop" value="outdoor" icon="outdoor"/>
 				<case minzoom="17" tag="shop" value="paint" icon="paint"/>
 				<case minzoom="17" tag="shop" value="party" icon="party"/>
@@ -7295,9 +7307,10 @@
 				<case minzoom="17" tag="shop" value="second_hand" icon="second_hand"/>
 				<case minzoom="17" tag="shop" value="sewing" icon="sewing"/>
 				<case minzoom="17" tag="shop" value="scuba_diving" icon="scuba_diving_shop"/>
+				<case minzoom="17" tag="shop" value="shoes" icon="shop_shoes" iconVisibleSize="32" iconOrder="158"/>
 				<case minzoom="17" tag="shop" value="sports" icon="shop_sports"/>
 				<case minzoom="17" tag="shop" value="stationery" icon="stationery"/>
-				<case minzoom="15" tag="shop" value="supermarket" icon="shop_supermarket" iconVisibleSize="22" iconOrder="75"/>
+				<case minzoom="15" tag="shop" value="supermarket" icon="shop_supermarket" iconVisibleSize="22" iconOrder="157"/>
 				<case minzoom="17" tag="shop" value="spices" icon="spices"/>
 				<case minzoom="17" tag="shop" value="tableware" icon="tableware"/>
 				<case minzoom="17" tag="shop" value="tattoo" icon="tattoo"/>
@@ -7318,7 +7331,7 @@
 				<case minzoom="17" tag="shop" value="wine" icon="wine" iconVisibleSize="32"/>
 				<case minzoom="17" tag="amenity" value="vending_machine" icon="amenity_vending_machine"/>
 				<apply_if moreDetailed="false" maxzoom="15" icon=""/>
-				<apply_if nightMode="true" shield="gray_purple_square_big_shield" iconVisibleSize="34"/>
+				<apply_if nightMode="true" shield="gray_purple_square_big_shield" iconVisibleSize="54"/>
 			</switch>
 
 			<switch shield="white_gray_square_big_shield">
@@ -7440,7 +7453,7 @@
 
 		<!-- Barriers -->
 		<switch>
-			<switch iconOrder="128">
+			<switch iconOrder="162">
 				<switch>
 					<case minzoom="16" tag="barrier" value="gate" icon="barrier_gate" shield="barrier_gate_shield"/>
 					<case minzoom="16" tag="barrier" value="yes" icon="barrier_gate" shield="barrier_gate_shield"/>
