@@ -169,7 +169,7 @@ if __name__=='__main__':
         [r'routing/routing\.xml', r'routing/routing.xml'],
 
         # Fonts:
-        [r'rendering_styles/fonts/([^/]*?)/([^/]*?)\.(ttf)', r'map/fonts/\1/\2.\3'],
+        # [r'rendering_styles/fonts/([^/]*?)/([^/]*?)\.(ttf)', r'map/fonts/\1/\2.\3'],
         [r'rendering_styles/fonts/([^/]*?)\.(ttf)', r'map/fonts/\1.\2'],
 
         # Misc resources
