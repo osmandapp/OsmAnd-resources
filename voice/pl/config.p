@@ -98,7 +98,7 @@ string('attention.ogg', 'uwaga, ').
 string('speed_camera.ogg', 'fotoradar ').
 string('border_control.ogg', 'kontrola graniczna ').
 string('railroad_crossing.ogg', 'przejazd kolejowy ').
-string('traffic_calming.ogg', 'próg zwalniający ').
+string('traffic_calming.ogg', 'spowolnienie ruchu ').
 string('toll_booth.ogg', 'punkt pobierania opłat ').
 string('stop.ogg', 'znak stop ').
 string('pedestrian_crosswalk.ogg', 'przejście dla pieszych ').
