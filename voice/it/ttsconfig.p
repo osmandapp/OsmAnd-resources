@@ -196,7 +196,7 @@ string('yards_dativ.ogg', 'iarda ').
 
 % TIME SUPPORT
 string('time.ogg','il tempo è ').
-string('1_hour.ogg', 'un ora ').
+string('1_hour.ogg', "un''ora ").
 string('hours.ogg', 'ore ').
 string('less_a_minute.ogg', 'meno di un minuto ').
 string('1_minute.ogg', 'un minuto ').
