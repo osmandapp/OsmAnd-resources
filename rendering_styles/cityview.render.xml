@@ -139,6 +139,19 @@
 		<case attrColorValue="#cfc0c8"/>
 	</renderingAttribute>
 
+		<!-- Заводы, ТЭЦ -->
+	<renderingAttribute name="powerLanduseColor">
+		<case nightMode="true" attrColorValue="#132c4e"/>
+		<case attrColorValue="#bbbbbb"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="landuseMilitaryColor0">
+		<case nightMode="true" attrColorValue="#42fea0bf"/>
+		<case attrColorValue="#63fea0bf"/>
+	</renderingAttribute>
+	<renderingConstant name="landuseMilitaryShaderDay" value="danger"/>
+	<renderingConstant name="landuseMilitaryShaderNight" value="danger_night"/>
+
 	<!-- Railway -->
 	<renderingAttribute name="landuseRailwayColor">
 		<case nightMode="true" attrColorValue="#3b3b3b"/>
@@ -1060,11 +1073,6 @@
 		<switch area="true" point="false" addPoint="true" objectType="3" order="5">
 		</switch>
 		<switch cycle="true" point="false" addPoint="true" objectType="3" order="5">
-<!--			<case tag="boundary" value="protected_area" order="-1"/>
-			<switch>
-				<case tag="natural" value="wood"/>
-				<case tag="landuse" value="forest"/>
-			</switch>-->
 		</switch>
 
 		<!-- Line 11-100 -->
@@ -1081,8 +1089,6 @@
 	</text>
 
 	<point>
-		<!-- LEP -->
-		<case minzoom="14" maxzoom="14" tag="power" value="tower"/>
 	</point>
 
 	<polygon>
@@ -1126,54 +1132,11 @@
 			<apply_if nightMode="true" shader="" color="$shaderColorNight"/>
 		</case>
 
-		<!-- Заводы, ТЭЦ -->
-		<case tag="power" value="plant" color="$defaultColor"/>
-		<case tag="power" value="generator" color="$defaultColor"/>
-		<case tag="power" value="substation" color="$defaultColor"/>
-
-		<switch minzoom="9">
-			<switch>
-				<case tag="landuse" value="military"/>
-				<case tag="military" value="danger_area" maxzoom="16"/>
-				<apply shader="military_transp">
-					<apply_if nightMode="true" shader="military_transp_night"/>
-				</apply>
-			</switch>
-			<case tag="abandoned:landuse" value="military" shader="military_abandoned">
-				<apply_if nightMode="true" shader="military_abandoned_night"/>
-			</case>
-			<apply color_2="#c8ffa0c0" strokeWidth_2="1.5">
-				<apply_if nightMode="true" color_2="#84ffa0c0"/>
-			</apply>
-		</switch>
-
-
-		<case minzoom="12" tag="landuse" value="construction" color="$landuseConstructionColor">
-			<apply_if minzoom="16" color_2="$landuseConstructionStrokeColor" pathEffect_2="8_4" strokeWidth_2="0.5"/>
-			<apply_if additional="abandoned=yes" shader="diagonal_gray_shader">
-				<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
-			</apply_if>
-		</case>
-
-    <!-- Educational -->
-		<switch minzoom="16">
-			<case tag="amenity" value="kindergarten"/>
-			<case tag="amenity" value="school"/>
-			<case tag="amenity" value="training"/>
-			<case tag="amenity" value="college"/>
-			<case tag="amenity" value="university"/>
-			<apply color="$amenityEducationalColor" color_2="#d4a89e" strokeWidth_2=":1">
-				<apply_if nightMode="true" color="$amenityEducationalColor" color_2="$amenityEducationalStrokeColor"/>
-			</apply>
-		</switch>
-	
-
 	</polygon>
-
 
 	<line>
 		<!-- Tram -->
-		<switch minzoom="13">
+<!--		<switch minzoom="13">
 				<case tag="railway" value="tram" color="#444444">
 					<apply_if maxzoom="14" strokeWidth="0.8" strokeWidth__1="1:1"/>
 					<apply_if minzoom="15" strokeWidth="1:1" strokeWidth__1="2:2"/>
@@ -1184,12 +1147,7 @@
 					<apply_if maxzoom="14" strokeWidth="0.6"/>
 					<apply_if minzoom="15" strokeWidth="1:1"/>
 				</apply_if>
-		</switch>
-
-        <!-- Subway -->
-
-		<!-- Power line -->
-	    <case minzoom="14" maxzoom="14" tag="power" value="line" strokeWidth="0"/>
+		</switch>-->
 
 	</line>
 

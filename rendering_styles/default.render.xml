@@ -1324,10 +1324,17 @@
 		<case nightMode="true" attrColorValue="#888888"/>
 		<case attrColorValue="#AAAAAA"/>
 	</renderingAttribute>
-
+	<renderingAttribute name="powerLanduseColor">
+		<case attrColorValue="$landuseIndustrialColor"/>
+	</renderingAttribute>
 	<renderingAttribute name="landuseRailwayColor">
 		<case attrColorValue="$defaultColor"/>
 	</renderingAttribute>
+	<renderingAttribute name="landuseMilitaryColor0">
+		<case attrColorValue="$null"/>
+	</renderingAttribute>
+	<renderingConstant name="landuseMilitaryShaderDay" value="military_transp"/>
+	<renderingConstant name="landuseMilitaryShaderNight" value="military_transp_night"/>
 	<!--	<renderingConstant name="landusePrisonColorDay" value="#dfd1d6"/>-->
 	<renderingConstant name="landusePrisonColorNight" value="#3b3b3b"/>
 	<renderingAttribute name="landuseCommercialColor">
@@ -2018,6 +2025,9 @@
 				<case tag="man_made" value="tower"/>
 				<case tag="man_made" value="monitoring_station"/>
 				<case tag="man_made" value=""/>
+				<case tag="power" value="tower">
+					<apply_if moreDetailed="false" maxzoom="14" order="-1"/>
+				</case>
 				<case tag="natural" value="strait"/>
 				<case tag="natural" value="fjord"/>
 				<case tag="natural" value="hot_spring"/>
@@ -2315,8 +2325,12 @@
 				<case tag="leisure" value="track" additional="area=false" order="96"/>
 				<case tag="aerialway" value="" order="96"/>
 				<case tag="aerialway" value="station" order="96"/>
-				<case tag="power" value="line" order="96"/>
-				<case tag="power" value="minor_line" order="96"/>
+				<case tag="power" value="line" order="96">
+					<apply_if moreDetailed="false" maxzoom="14" order="-1"/>
+				</case>
+				<case tag="power" value="minor_line" order="96">
+					<apply_if moreDetailed="false" maxzoom="16" order="-1"/>
+				</case>
 				<switch order="58">
 					<case tag="railway" value="rail" additional="network=rer"/>
 <!--					<case tag="railway" value="rail" additional="route=subway"/>-->
@@ -8173,7 +8187,7 @@
 			<!-- Aeroway -->
 			<switch minzoom="12">
 				<case tag="aeroway" value="aerodrome" color="$aerodromeColor">
-				<apply_if additional="aerodrome:type=military" shader="danger" color_2="#c8ffa0c0" strokeWidth_2="1:1"/>
+				<apply_if additional="aerodrome:type=military" shader="danger" color_0="$landuseMilitaryColor0" color_2="#c8ffa0c0" strokeWidth_2="1:1"/>
 					<apply_if nightMode="true" shader="danger_night" color="#80a0a0a9"/>
 				</case>
 				<case tag="abandoned:aeroway" value="aerodrome" shader="diagonal_gray_shader">
@@ -8479,7 +8493,7 @@
 				<apply color="$attractionColor" strokeWidth_2="$attractionStrokeWidth2" color_2="$attractionStrokeColor"/>
 			</switch>
 			<case minzoom="12" tag="landuse" value="construction" color="$landuseConstructionColor">
-				<apply_if minzoom="15" color_2="$landuseConstructionStrokeColor" pathEffect_2="8_4" strokeWidth_2="0.5"/>
+				<apply_if minzoom="16" color_2="$landuseConstructionStrokeColor" pathEffect_2="8_4" strokeWidth_2="0.5"/>
 				<apply_if additional="abandoned=yes" shader="diagonal_gray_shader">
 					<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
 				</apply_if>
@@ -8490,10 +8504,10 @@
 				<apply strokeWidth_2="1"/>
 			</switch>
 			<switch minzoom="13">
-				<case tag="power" value="plant" color="#bbbbbb"/>
-				<case tag="power" value="generator" color="#bbbbbb"/>
-				<case tag="power" value="substation" color="#bbbbbb"/>
-				<apply_if nightMode="true" color="#132c4e"/>
+				<case tag="power" value="plant"/>
+				<case tag="power" value="generator"/>
+				<case tag="power" value="substation"/>
+				<apply color="$powerLanduseColor"/>
 			</switch>
 
 			<switch minzoom="13">
@@ -8748,8 +8762,8 @@
 			</switch>
 
 			<switch minzoom="10">
-				<case tag="landuse" value="military" shader="danger">
-					<apply_if nightMode="true" shader="danger_night"/>
+				<case tag="landuse" value="military" shader="$landuseMilitaryShaderDay" color_0="$landuseMilitaryColor0">
+					<apply_if nightMode="true" shader="$landuseMilitaryShaderNight"/>
 				</case>
 				<case tag="abandoned:landuse" value="military" shader="military_abandoned">
 					<apply_if nightMode="true" shader="military_abandoned_night"/>
