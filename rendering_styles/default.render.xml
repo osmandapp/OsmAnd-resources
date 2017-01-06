@@ -1124,6 +1124,12 @@
 	<renderingConstant name="forestNeedleleavedShader" value="wood_needleleaved3"/>
 	<renderingConstant name="forestMixedShader" value="wood_mixed3"/>
 
+	<renderingAttribute name="landuseLoggingColor">
+		<case attrColorValue="#d9e0c3">
+			<apply_if nightMode="true" attrColorValue="#003838"/>
+		</case>
+	</renderingAttribute>
+
 	<!-- Open nature -->
 	<renderingConstant name="openNatureColorNight" value="$woodColor"/>
 	<renderingConstant name="shaderColorNight" value="#334433"/>
@@ -1344,6 +1350,7 @@
 	</renderingAttribute>
 	<renderingAttribute name="landuseRetailColor">
 		<case nightMode="true" attrColorValue="$defaultColor"/>
+		<case moreDetailed="true" attrColorValue="#F1E7E4"/>
 		<case attrColorValue="$defaultColor"/>
 	</renderingAttribute>
 	<renderingAttribute name="landuseLandfillColor">
@@ -8273,12 +8280,12 @@
 
 			<!-- Forest, wood -->
 			<switch minzoom="6">
-				<case tag="natural" value="wood">
+				<case tag="natural" value="wood" color="$woodColor" color_0="$woodColor">
 					<apply_if minzoom="16" additional="leaf_type=broadleaved" shader="$woodBroadleavedShader"/>
 					<apply_if minzoom="16" additional="leaf_type=needleleaved" shader="$woodNeedleleavedShader"/>
 					<apply_if minzoom="16" additional="leaf_type=mixed" shader="$woodMixedShader"/>
 				</case>
-				<case tag="landuse" value="forest" color="$forestColor">
+				<case tag="landuse" value="forest" color="$woodColor" color_0="$woodColor">
 					<apply_if minzoom="16" additional="leaf_type=broadleaved" shader="$forestBroadleavedShader"/>
 					<apply_if minzoom="16" additional="leaf_type=needleleaved" shader="$forestNeedleleavedShader"/>
 					<apply_if minzoom="16" additional="leaf_type=mixed" shader="$forestMixedShader"/>
@@ -8287,9 +8294,9 @@
 					<switch>
 						<case additional="wood:damage=windfall" shader="wood_windfall"/>
 						<case additional="wood:damage=dead_wood" shader="wood_dead_wood"/>
+						<apply color_0="$landuseLoggingColor"/>
 					</switch>
 				</apply>
-				<apply color="$woodColor" color_0="$woodColor"/>
 				<apply_if nightMode="true" shader=""/>
 			</switch>
 
@@ -8660,9 +8667,9 @@
 					<case minzoom="16" strokeWidth_2="2.3:2.3"/>
 				</apply>
 			</switch>
-			<case minzoom="12" tag="landuse" value="logging" color="#d9e0c3">
+			<case minzoom="12" tag="landuse" value="logging" color="$landuseLoggingColor">
 				<apply_if minzoom="14" shader="logging_shader"/>
-				<apply_if nightMode="true" shader="" color="#003838"/>
+				<apply_if nightMode="true" shader=""/>
 			</case>
 			<switch minzoom="14">
 			<!-- Special nature with shaders -->
