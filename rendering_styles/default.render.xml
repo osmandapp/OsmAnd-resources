@@ -1107,11 +1107,14 @@
 
 	<!-- Forest -->
 	<renderingAttribute name="woodColor">
-		<case nightMode="true" attrColorValue="#004d39"/>
-		<case attrColorValue="#87cc70"/>
+		<case attrColorValue="#87cc70">
+			<apply_if nightMode="true" attrColorValue="#004d39"/>
+		</case>
 	</renderingAttribute>
 	<renderingAttribute name="forestColor">
-		<case attrColorValue="$woodColor"/>
+		<case attrColorValue="$woodColor">
+			<apply_if nightMode="true" attrColorValue="$woodColor"/>
+		</case>
 	</renderingAttribute>
 	<renderingConstant name="woodBroadleavedShader" value="wood_broadleaved3"/>
 	<renderingConstant name="woodNeedleleavedShader" value="wood_needleleaved3"/>
@@ -1121,25 +1124,13 @@
 	<renderingConstant name="forestNeedleleavedShader" value="wood_needleleaved3"/>
 	<renderingConstant name="forestMixedShader" value="wood_mixed3"/>
 
-	<renderingAttribute name="landuseLoggingColor">
-		<case attrColorValue="#d9e0c3">
-			<apply_if nightMode="true" attrColorValue="#003838"/>
-		</case>
-	</renderingAttribute>
-
 	<!-- Open nature -->
 	<renderingConstant name="openNatureColorNight" value="$woodColor"/>
 	<renderingConstant name="shaderColorNight" value="#334433"/>
 	<renderingConstant name="wetlandColorNight" value="#1b3238"/>
-	<renderingAttribute name="grasslandColor">
-		<case attrColorValue="$woodColor"/>
-	</renderingAttribute>
-	<renderingAttribute name="lavaColor">
-		<case attrColorValue="#ffe7ff"/>
-	</renderingAttribute>
-	<renderingAttribute name="desertColor">
-		<case attrColorValue="#fff7bf"/>
-	</renderingAttribute>
+	<renderingConstant name="grasslandColorDay" value="$woodColor"/>
+	<renderingConstant name="lavaColorDay" value="#ffe7ff"/>
+	<renderingConstant name="desertColorDay" value="#fff7bf"/>
 	<renderingAttribute name="farmColor">
 		<case nightMode="true" attrColorValue="#004333"/>
 		<case attrColorValue="#DCE2AA"/>
@@ -1148,34 +1139,26 @@
 		<case nightMode="true" attrColorValue="#004333"/>
 		<case attrColorValue="#ddbf92"/>
 	</renderingAttribute>
-	<renderingAttribute name="greenfieldColor">
-		<case attrColorValue="$defaultColor"/>
-	</renderingAttribute>
-	<renderingAttribute name="grassColor">
-		<case attrColorValue="$woodColor"/>
-	</renderingAttribute>
+	<renderingConstant name="greenfieldColorDay" value="$defaultColor"/>
+	<renderingConstant name="grassColorDay" value="$woodColor"/>
 	<renderingAttribute name="heathColor">
 		<case nightMode="true" attrColorValue="$woodColor"/>
+		<case moreDetailed="true" attrColorValue="#d7ebba"/>
 		<case attrColorValue="#91d47b"/>
 	</renderingAttribute>
 	<renderingAttribute name="meadowColor">
 		<case nightMode="true" attrColorValue="$woodColor"/>
+		<case moreDetailed="true" attrColorValue="#bfe58a"/>
 		<case attrColorValue="#91d47b"/>
 	</renderingAttribute>
-	<renderingAttribute name="brownfieldColor">
-		<case attrColorValue="$defaultColor"/>
-	</renderingAttribute>
-	<renderingAttribute name="recreationGroundColor">
-		<case attrColorValue="#b0b6fdb6"/>
-	</renderingAttribute>
-	<renderingConstant name="recreationGroundColorDayStroke" value=""/>
-	<renderingAttribute name="conservationColor">
-		<case attrColorValue="#cfeca8"/>
-	</renderingAttribute>
-	<renderingAttribute name="villageGreenColor">
-		<case attrColorValue="#cfeca8"/>
-	</renderingAttribute>
+	<renderingConstant name="brownfieldColorDay" value="$defaultColor"/>
+	<renderingConstant name="recreationGroundColorDay" value="$woodColor"/>
+	<renderingConstant name="recreationGroundColorDayStroke" value="#b0b6fdb6"/>
+	<renderingConstant name="conservationColorDay" value="#cfeca8"/>
+	<renderingConstant name="villageGreenColorDay" value="#cfeca8"/>
 	<renderingAttribute name="parkColor">
+		<case nightMode="true" attrColorValue="$woodColor"/>
+		<case moreDetailed="true" attrColorValue="#7ee587"/>
 		<case attrColorValue="$woodColor"/>
 	</renderingAttribute>
 	<renderingAttribute name="parkStrokeColor">
@@ -1183,9 +1166,7 @@
 		<case attrColorValue="#9db487"/>
 	</renderingAttribute>
 
-	<renderingAttribute name="golfCourseColor">
-		<case attrColorValue="$woodColor"/>
-	</renderingAttribute>
+	<renderingConstant name="golfCourseColorDay" value="$woodColor"/>
 	<renderingConstant name="golfCourseColorDayStroke" value="$woodColor"/>
 	<renderingAttribute name="leisureTrackColor">
 		<case nightMode="true" attrColorValue="$pedestrianRoadColor"/>
@@ -1202,9 +1183,7 @@
 		<case nightMode="true" attrColorValue="$null"/>
 		<case attrColorValue="$defaultColor"/>
 	</renderingAttribute>
-	<renderingAttribute name="playgroundColor">
-		<case attrColorValue="$defaultColor"/>
-	</renderingAttribute>
+	<renderingConstant name="playgroundColorDay" value="$defaultColor"/>
 
 
 	<renderingAttribute name="stadiumColor">
@@ -1222,12 +1201,10 @@
 		<case attrColorValue="#888888"/>
 	</renderingAttribute>
 
-	<renderingAttribute name="leisureCommonColor">
-		<case attrColorValue="$woodColor"/>
-	</renderingAttribute>
-
+	<renderingConstant name="leisureCommonColorDay" value="$woodColor"/>
 	<renderingAttribute name="gardenColor">
 		<case nightMode="true" attrColorValue="#004333"/>
+		<case moreDetailed="true" attrColorValue="#c0e5a1"/>
 		<case attrColorValue="$woodColor"/>
 	</renderingAttribute>
 
@@ -1238,14 +1215,17 @@
 
 	<renderingAttribute name="buildingIndustrialColor">
 		<case nightMode="true" attrColorValue="#514c59"/>
+		<case moreDetailed="true" attrColorValue="#bf9c86"/>
 		<case attrColorValue="#ccc9c6"/>
 	</renderingAttribute>
 	<renderingAttribute name="buildingResidentialColor">
 		<case nightMode="true" attrColorValue="#685e49"/>
+		<case moreDetailed="true" attrColorValue="#bf9c86"/>
 		<case attrColorValue="#b8b39e"/>
 	</renderingAttribute>
 	<renderingAttribute name="buildingEducationalColor">
 		<case nightMode="true" attrColorValue="#56636b"/>
+		<case moreDetailed="true" attrColorValue="#d9d6a7"/>
 		<case attrColorValue="#a4b0b7"/>
 	</renderingAttribute>
 	<renderingAttribute name="buildingCommercialColor">
@@ -1279,8 +1259,9 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="churchColor">
-		<case nightMode="true" attrColorValue="#000000"/>
-		<case attrColorValue="#E4D6D2"/>
+		<case nightMode="true" attrColorValue="#685454"/>
+		<case moreDetailed="true" attrColorValue="#EEB1B7"/>
+		<case attrColorValue="$buildingColor"/>
 	</renderingAttribute>
 	<renderingAttribute name="attractionColor">
 		<case nightMode="true" attrColorValue="#101e21"/>
@@ -1294,7 +1275,6 @@
 	<renderingConstant name="attractionStrokeWidth2" value="0"/>
 
 	<renderingAttribute name="aerodromeColor">
-		<case nightMode="true" attrColorValue="#80a0a0a9"/>
 		<case attrColorValue="#d9d5d2"/>
 	</renderingAttribute>
 	<renderingAttribute name="apronColor">
@@ -1332,6 +1312,7 @@
 
 	<renderingAttribute name="landuseConstructionColor">
 		<case nightMode="true" attrColorValue="$null"/>
+		<case moreDetailed="true" attrColorValue="#D1AA92"/>
 		<case attrColorValue="$defaultColor"/>
 	</renderingAttribute>
 	<renderingAttribute name="landuseConstructionStrokeColor">
@@ -1344,6 +1325,7 @@
 	</renderingAttribute>
 	<renderingAttribute name="landuseResidentialColor">
 		<case nightMode="true" attrColorValue="$null"/>
+		<case moreDetailed="true" attrColorValue="#DADDD8"/>
 		<case attrColorValue="$null"/>
 	</renderingAttribute>
 	<renderingAttribute name="landuseResidentialRuralColor">
@@ -1354,9 +1336,13 @@
 		<case attrColorValue="#AAAAAA"/>
 	</renderingAttribute>
 	<renderingAttribute name="powerLanduseColor">
+		<case nightMode="true" attrColorValue="$defaultColor"/>
+		<case moreDetailed="true" attrColorValue="#cfcbc8"/>
 		<case attrColorValue="$landuseIndustrialColor"/>
 	</renderingAttribute>
 	<renderingAttribute name="landuseRailwayColor">
+		<case nightMode="true" attrColorValue="$defaultColor"/>
+		<case moreDetailed="true" attrColorValue="#e0ddda"/>
 		<case attrColorValue="$defaultColor"/>
 	</renderingAttribute>
 	<renderingAttribute name="landuseMilitaryColor0">
@@ -1373,27 +1359,31 @@
 	</renderingAttribute>
 	<renderingAttribute name="landuseRetailColor">
 		<case nightMode="true" attrColorValue="$defaultColor"/>
-		<case moreDetailed="true" attrColorValue="#F1E7E4"/>
 		<case attrColorValue="$defaultColor"/>
 	</renderingAttribute>
 	<renderingAttribute name="landuseLandfillColor">
 		<case nightMode="true" attrColorValue="#101e21"/>
+		<case moreDetailed="true" attrColorValue="#d9c9bd"/>
 		<case attrColorValue="#d9d5d2"/>
 	</renderingAttribute>
 	<renderingAttribute name="amenityEducationalColor">
 		<case nightMode="true" attrColorValue="#101e21"/>
+		<case moreDetailed="true" attrColorValue="#f4f1bb"/>
 		<case attrColorValue="#e5dfda"/>
 	</renderingAttribute>
 	<renderingAttribute name="amenityEducationalStrokeColor">
 		<case nightMode="true" attrColorValue="#1f3a40"/>
+		<case moreDetailed="true" attrColorValue="#b3b089"/>
 		<case attrColorValue="#e5dfda"/>
 	</renderingAttribute>
 	<renderingAttribute name="amenityHospitalColor">
 		<case nightMode="true" attrColorValue="#101e21"/>
+		<case moreDetailed="true" attrColorValue="#f7c1bb"/>
 		<case attrColorValue="#e5dfda"/>
 	</renderingAttribute>
 	<renderingAttribute name="amenityHospitalStrokeColor">
 		<case nightMode="true" attrColorValue="$null"/>
+		<case moreDetailed="true" attrColorValue="#b38c88"/>
 		<case attrColorValue="#e0e0d5"/>
 	</renderingAttribute>
 	<renderingAttribute name="landuseAllotmentsColor">
@@ -1405,8 +1395,8 @@
 		<case attrColorValue="#DCE2AA"/>
 	</renderingAttribute>
 	<renderingAttribute name="landuseGaragesColor">
-		<case nightMode="true" attrColorValue="#101e21"/>
-		<case attrColorValue="#d9d5d2"/>
+		<case nightMode="true" attrColorValue="#362d2d"/>
+		<case attrColorValue="$defaultColor"/>
 	</renderingAttribute>
 	<renderingAttribute name="leisureResortColor">
 		<case nightMode="true" attrColorValue="#000000"/>
@@ -1599,7 +1589,7 @@
 		</case>
 		<case attrColorValue="#ffffff">
 			<apply_if additional="construction=yes" attrColorValue="#cccccc"/>
-			<apply_if nightMode="true" attrColorValue="#37555c"/>
+			<apply_if nightMode="true" attrColorValue="$tertiaryRoadColor"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="pedestrianTextColor">
@@ -1631,7 +1621,7 @@
 		</case>
 		<case attrColorValue="$serviceDrivewayRoadColor">
 			<apply_if additional="construction=yes" attrColorValue="#cccccc"/>
-			<apply_if nightMode="true" attrColorValue="#37555c"/>
+			<apply_if nightMode="true" attrColorValue="$tertiaryRoadColor"/>
 		</case>
 	</renderingAttribute>
 	<renderingConstant name="highwayTrackTextHaloRadiusDay" value="1"/>
@@ -2533,11 +2523,11 @@
 							<apply_if layer="1" order="81"/>
 							<apply_if layer="-1" order="22"/>
 						</case>
-						<case tag="highway" value="service" order="50">
+						<case tag="highway" value="service" order="51">
 							<apply_if layer="1" order="81"/>
 							<apply_if layer="-1" order="21"/>
 						</case>
-						<case tag="highway" value="living_street" order="49">
+						<case tag="highway" value="living_street" order="50">
 							<apply_if layer="1" order="80"/>
 							<apply_if layer="-1" order="21"/>
 						</case>
@@ -2545,7 +2535,7 @@
 							<apply_if appMode="car" order="80"/>
 						</case>
 					</switch>
-					<case tag="highway" value="pedestrian" order="49">
+					<case tag="highway" value="pedestrian" order="50">
 						<apply_if appMode="pedestrian" order="58"/>
 						<apply_if layer="1" order="80"/>
 						<apply_if layer="-1" order="21"/>
@@ -4869,7 +4859,7 @@
 			<!-- <apply_if additional="population_rounded=" textOrder="$textOrderPopulation"/>-->
 			</switch>
 
-			<switch minzoom="3" textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColorDay" textBold="true" textDy="-4">
+			<switch minzoom="3" textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColorDay" textBold="true" textDy="-6">
 				<case minzoom="5" tag="place" value="city" nameTag="" intersectionMargin="25" textOrder="32">
 					<case minzoom="6" maxzoom="7" textSize="17"/>
 					<case minzoom="8" textSize="20"/>
@@ -4911,7 +4901,7 @@
 
 					<apply_if additional="capital=yes" textOrder="15">
 						<switch>
-							<case maxzoom="5" textSize="13" textOrder="25" textDy="0"/>
+							<case maxzoom="5" textSize="13" textOrder="25"/>
 							<case maxzoom="7" textSize="20"/>
 							<case minzoom="8" textSize="22"/>
 							<apply>
@@ -8227,9 +8217,8 @@
 			<!-- Aeroway -->
 			<switch minzoom="12">
 				<case tag="aeroway" value="aerodrome" color="$aerodromeColor">
-					<apply_if additional="aerodrome:type=military" shader="danger" color_0="$landuseMilitaryColor0" color_2="#c8ffa0c0" strokeWidth_2="1:1">
-						<apply_if nightMode="true" shader="danger_night"/>
-					</apply_if>
+				<apply_if additional="aerodrome:type=military" shader="danger" color_0="$landuseMilitaryColor0" color_2="#c8ffa0c0" strokeWidth_2="1:1"/>
+					<apply_if nightMode="true" shader="danger_night" color="#80a0a0a9"/>
 				</case>
 				<case tag="abandoned:aeroway" value="aerodrome" shader="diagonal_gray_shader">
 					<apply_if nightMode="true" shader="diagonal_lightgray_shader"/>
@@ -8304,12 +8293,12 @@
 
 			<!-- Forest, wood -->
 			<switch minzoom="6">
-				<case tag="natural" value="wood" color="$woodColor" color_0="$woodColor">
+				<case tag="natural" value="wood">
 					<apply_if minzoom="16" additional="leaf_type=broadleaved" shader="$woodBroadleavedShader"/>
 					<apply_if minzoom="16" additional="leaf_type=needleleaved" shader="$woodNeedleleavedShader"/>
 					<apply_if minzoom="16" additional="leaf_type=mixed" shader="$woodMixedShader"/>
 				</case>
-				<case tag="landuse" value="forest" color="$woodColor" color_0="$woodColor">
+				<case tag="landuse" value="forest" color="$forestColor">
 					<apply_if minzoom="16" additional="leaf_type=broadleaved" shader="$forestBroadleavedShader"/>
 					<apply_if minzoom="16" additional="leaf_type=needleleaved" shader="$forestNeedleleavedShader"/>
 					<apply_if minzoom="16" additional="leaf_type=mixed" shader="$forestMixedShader"/>
@@ -8318,29 +8307,29 @@
 					<switch>
 						<case additional="wood:damage=windfall" shader="wood_windfall"/>
 						<case additional="wood:damage=dead_wood" shader="wood_dead_wood"/>
-						<apply color_0="$landuseLoggingColor"/>
 					</switch>
 				</apply>
+				<apply color="$woodColor" color_0="$woodColor"/>
 				<apply_if nightMode="true" shader=""/>
 			</switch>
 
 			<!-- Open nature, night color 004333 -->
 			<switch>
 				<case minzoom="6" tag="natural" value="heath" color="$heathColor"/>
-				<case minzoom="6" tag="natural" value="grassland" color="$grasslandColor"/>
-				<case minzoom="6" tag="natural" value="lava" color="$lavaColor"/>
+				<case minzoom="6" tag="natural" value="grassland" color="$grasslandColorDay"/>
+				<case minzoom="6" tag="natural" value="lava" color="$lavaColorDay"/>
 				 <!-- desert is disputed because not well defined and little verifiable -->
-				<case minzoom="6" tag="natural" value="desert" color="$desertColor"/>
+				<case minzoom="6" tag="natural" value="desert" color="$desertColorDay"/>
 				<!-- field is unofficial -->
-				<case minzoom="6" tag="landuse" value="greenfield" color="$greenfieldColor"/>
-				<case minzoom="6" tag="landuse" value="grass" color="$grassColor"/>
-				<case minzoom="6" tag="landuse" value="brownfield" color="$brownfieldColor"/>
-				<case minzoom="6" tag="landuse" value="conservation" color="$conservationColor"/>
-				<case minzoom="12" tag="landuse" value="recreation_ground" color="$recreationGroundColor"/>
-				<case minzoom="6" tag="landuse" value="village_green" color="$villageGreenColor"/>
-				<case minzoom="15" tag="leisure" value="playground" color="$playgroundColor"/>
-				<case minzoom="12" tag="leisure" value="common" color="$leisureCommonColor"/>
-				<case minzoom="14" tag="leisure" value="dog_park" color="$leisureCommonColor"/>
+				<case minzoom="6" tag="landuse" value="greenfield" color="$greenfieldColorDay"/>
+				<case minzoom="6" tag="landuse" value="grass" color="$grassColorDay"/>
+				<case minzoom="6" tag="landuse" value="brownfield" color="$brownfieldColorDay"/>
+				<case minzoom="6" tag="landuse" value="conservation" color="$conservationColorDay"/>
+				<case minzoom="12" tag="landuse" value="recreation_ground" color="$recreationGroundColorDay"/>
+				<case minzoom="6" tag="landuse" value="village_green" color="$villageGreenColorDay"/>
+				<case minzoom="15" tag="leisure" value="playground" color="$playgroundColorDay"/>
+				<case minzoom="12" tag="leisure" value="common" color="$leisureCommonColorDay"/>
+				<case minzoom="14" tag="leisure" value="dog_park" color="$leisureCommonColorDay"/>
 				<apply_if nightMode="true" color="$openNatureColorNight"/>
 			</switch>
 			<case minzoom="8" tag="leisure" value="park">
@@ -8348,7 +8337,7 @@
 			</case>
 
 			<switch>
-				<case minzoom="8" tag="leisure" value="golf_course" strokeWidth_2=":1" color="$golfCourseColor" color_2="$golfCourseColorDayStroke">
+				<case minzoom="8" tag="leisure" value="golf_course" strokeWidth_2=":1" color="$golfCourseColorDay" color_2="$golfCourseColorDayStroke">
 					<apply_if nightMode="true" color="$openNatureColorNight"/>
 				</case>
 				<case minzoom="14" tag="leisure" value="pitch">
@@ -8691,9 +8680,9 @@
 					<case minzoom="16" strokeWidth_2="2.3:2.3"/>
 				</apply>
 			</switch>
-			<case minzoom="12" tag="landuse" value="logging" color="$landuseLoggingColor">
+			<case minzoom="12" tag="landuse" value="logging" color="#d9e0c3">
 				<apply_if minzoom="14" shader="logging_shader"/>
-				<apply_if nightMode="true" shader=""/>
+				<apply_if nightMode="true" shader="" color="#003838"/>
 			</case>
 			<switch minzoom="14">
 			<!-- Special nature with shaders -->
@@ -9611,7 +9600,6 @@
 
 					<!-- Tunnels -->
 					<apply_if hideOverground="false" additional="tunnel=yes" minzoom="16" color__1="#000000" strokeWidth__1="$trackBridgeWidth" pathEffect__1="$trackTunnelPathEffect" color_0="#ffffff" strokeWidth_0="$trackBridgeInnerWidth">
-						<apply_if tag="highway" value="footway" color_5="$null"/>
 						<apply_if nightMode="true" color__1="#ffffff" color_0="#000000"/>
 					</apply_if>
 					<apply_if hideOverground="false">
@@ -9619,7 +9607,6 @@
 							<case additional="covered=yes"/>
 							<case additional="indoor=yes"/>
 							<apply pathEffect__1="4_2" color__1="#000000" color_0="#dddddd" strokeWidth__1="$trackBridgeWidth" strokeWidth_0="$trackBridgeInnerWidth"/>
-							<apply_if tag="highway" value="footway" color_5="$null"/>
 							<apply_if nightMode="true" color__1="#ffffff" color_0="#000000"/>
 						</switch>
 					</apply_if>
