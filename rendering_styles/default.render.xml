@@ -1121,10 +1121,20 @@
 	<renderingConstant name="forestNeedleleavedShader" value="wood_needleleaved3"/>
 	<renderingConstant name="forestMixedShader" value="wood_mixed3"/>
 
+	<renderingAttribute name="landuseOrchardColor">
+		<case nightMode="true" attrColorValue="$woodColor"/>
+		<case moreDetailed="true" attrColorValue="#9ed88f"/>
+		<case attrColorValue="$woodColor"/>
+	</renderingAttribute>
+	<renderingAttribute name="landuseVineyardColor">
+		<case nightMode="true" attrColorValue="$woodColor"/>
+		<case moreDetailed="true" attrColorValue="#9ed88f"/>
+		<case attrColorValue="$woodColor"/>
+	</renderingAttribute>
+
 	<renderingAttribute name="landuseLoggingColor">
-		<case attrColorValue="#d9e0c3">
-			<apply_if nightMode="true" attrColorValue="#003838"/>
-		</case>
+		<case nightMode="true" attrColorValue="#003838"/>
+		<case attrColorValue="#d9e0c3"/>
 	</renderingAttribute>
 
 	<!-- Open nature -->
@@ -1183,7 +1193,7 @@
 	</renderingAttribute>
 	<renderingAttribute name="parkColor">
 		<case nightMode="true" attrColorValue="$woodColor"/>
-		<case moreDetailed="true" attrColorValue="#7ee587"/>
+		<case moreDetailed="true" attrColorValue="#ADE5A1"/>
 		<case attrColorValue="$woodColor"/>
 	</renderingAttribute>
 	<renderingAttribute name="parkStrokeColor">
@@ -1192,6 +1202,7 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="golfCourseColor">
+		<case moreDetailed="true" attrColorValue="#ADE5A1"/>
 		<case attrColorValue="$woodColor"/>
 	</renderingAttribute>
 	<renderingConstant name="golfCourseColorDayStroke" value="$woodColor"/>
@@ -1204,10 +1215,12 @@
 	</renderingAttribute>
 	<renderingAttribute name="pitchColor">
 		<case nightMode="true" attrColorValue="$woodColor"/>
+		<case moreDetailed="true" attrColorValue="#ADE5A1"/>
 		<case attrColorValue="$woodColor"/>
 	</renderingAttribute>
 	<renderingAttribute name="pitchColorStroke">
 		<case nightMode="true" attrColorValue="$null"/>
+		<case moreDetailed="true" attrColorValue="#66666666"/>
 		<case attrColorValue="$defaultColor"/>
 	</renderingAttribute>
 	<renderingAttribute name="playgroundColor">
@@ -8339,11 +8352,13 @@
 			<!-- Forest, wood -->
 			<switch minzoom="6">
 				<case tag="natural" value="wood" color="$woodColor" color_0="$woodColor">
+					<apply_if minzoom="16" shader="$woodMixedShader"/>
 					<apply_if minzoom="16" additional="leaf_type=broadleaved" shader="$woodBroadleavedShader"/>
 					<apply_if minzoom="16" additional="leaf_type=needleleaved" shader="$woodNeedleleavedShader"/>
 					<apply_if minzoom="16" additional="leaf_type=mixed" shader="$woodMixedShader"/>
 				</case>
 				<case tag="landuse" value="forest" color="$woodColor" color_0="$woodColor">
+					<apply_if minzoom="16" shader="$forestMixedShader"/>
 					<apply_if minzoom="16" additional="leaf_type=broadleaved" shader="$forestBroadleavedShader"/>
 					<apply_if minzoom="16" additional="leaf_type=needleleaved" shader="$forestNeedleleavedShader"/>
 					<apply_if minzoom="16" additional="leaf_type=mixed" shader="$forestMixedShader"/>
@@ -8674,12 +8689,13 @@
 				<!-- <case minzoom="12" tag="natural" value="mud" color="#d6cbc6">
 					<apply_if minzoom="13" shader="mud2"/>
 				</case>-->
-				<case minzoom="12" tag="landuse" value="plant_nursery" shader="plant_nursery_small">
-					<apply_if minzoom="15" shader="plant_nursery"/>
+				<case minzoom="12" tag="landuse" value="plant_nursery" shader="plant_nursery_small" color_0="#f0f6e3cf">
+					<apply_if minzoom="18" shader="plant_nursery"/>
 				</case>
 				<case minzoom="12" tag="landuse" value="greenhouse_horticulture" shader="greenhouse_horticulture"/>
-				<case minzoom="12" tag="landuse" value="vineyard" shader="vineyard2_small">
-					<apply_if minzoom="15" shader="vineyard2"/>
+				<case minzoom="12" tag="landuse" value="vineyard" color="$landuseVineyardColor">
+					<apply_if moreDetailed="true" color="$landuseVineyardColor"/>
+					<apply_if moreDetailed="true" minzoom="18" shader="topo_vineyard" color_0="$landuseVineyardColor"/>
 				</case>
 				<case minzoom="12" tag="landuse" value="cemetery" shader="cemetery_small_2" color_0="$woodColor">
 					<case minzoom="15" shader="cemetery_2" color_0="#8cd474">
@@ -8694,12 +8710,17 @@
 					<case additional="religion=muslim" shader="cemetery_muslim"/>
 					<case additional="religion=jewish" shader="cemetery_jewish"/>
 				</case>
+				<case minzoom="12" tag="natural" value="scrub" color="$woodColor">
+					<apply_if moreDetailed="true" minzoom="12" color="#b6dcb3"/>
+					<apply_if moreDetailed="true" minzoom="14" color_0="#b6dcb3" shader="scrub"/>
+				</case>
+				<case minzoom="12" tag="landuse" value="orchard" color="$landuseOrchardColor">
+					<apply_if moreDetailed="true" minzoom="14" maxzoom="15" color_0="#9ed88f" shader="plant_nursery_small"/>
+					<apply_if moreDetailed="true" minzoom="16" color_0="#9ed88f" shader="orchard3"/>
+				</case>
 				<apply_if nightMode="true" shader="" color="$shaderColorNight"/>
 			</switch>
 			<switch>
-				<case minzoom="12" tag="natural" value="scrub"/>
-				<case minzoom="12" tag="landuse" value="orchard" color="$woodColor"/>
-				<apply color="$woodColor"/>
 			</switch>
 			<case nightMode="false" minzoom="12" tag="landuse" value="aquaculture" shader="aquaculture"/>
 			<case minzoom="4" tag="natural" value="glacier">
