@@ -176,34 +176,34 @@ street_is_female(voice([Ref, Name, Dest],_)) :- isFemale(Ref).
 street_is_nothing(voice([Ref, Name, Dest],_)) :- not(isMale(Name)), not(isFemale(Name)).
 
 % DISTANCE UNIT SUPPORT
-string('meters_nominativ.ogg', 'meter ').
-string('meters_dativ.ogg', 'metern ').
-string('around_1_kilometer_nominativ.ogg', 'zirka einen Kilometer ').
-string('around_1_kilometer_dativ.ogg', 'zirka einem Kilometer ').
+string('meters_nominativ.ogg', 'Meter').
+string('meters_dativ.ogg', 'Metern').
+string('around_1_kilometer_nominativ.ogg', 'zirka einen Kilometer').
+string('around_1_kilometer_dativ.ogg', 'zirka einem Kilometer').
 string('around.ogg', 'zirka ').
-string('kilometers_nominativ.ogg', 'Kilometer ').
-string('kilometers_dativ.ogg', 'Kilometern ').
+string('kilometers_nominativ.ogg', 'Kilometer').
+string('kilometers_dativ.ogg', 'Kilometern').
 
-string('feet_nominativ.ogg', 'fuss ').
-string('feet_dativ.ogg', 'fuss ').
-string('1_tenth_of_a_mile_nominativ.ogg', 'eine zehntel meile ').
-string('1_tenth_of_a_mile_dativ.ogg', 'einer zehntel meile ').
-string('tenths_of_a_mile_nominativ.ogg', 'zehntel meilen ').
-string('tenths_of_a_mile_dativ.ogg', 'zehntel meilen ').
-string('around_1_mile_nominativ.ogg', 'zirka eine meile ').
-string('around_1_mile_dativ.ogg', 'zirka einer meile ').
-string('miles_nominativ.ogg', 'meilen ').
-string('miles_dativ.ogg', 'meilen ').
+string('feet_nominativ.ogg', 'Fuss').
+string('feet_dativ.ogg', 'Fuss').
+string('1_tenth_of_a_mile_nominativ.ogg', 'eine Zehntel Meile').
+string('1_tenth_of_a_mile_dativ.ogg', 'einer Zehntel Meile').
+string('tenths_of_a_mile_nominativ.ogg', 'Zehntel Meilen').
+string('tenths_of_a_mile_dativ.ogg', 'Zehntel Meilen').
+string('around_1_mile_nominativ.ogg', 'zirka eine Meile').
+string('around_1_mile_dativ.ogg', 'zirka einer Meile').
+string('miles_nominativ.ogg', 'Meilen').
+string('miles_dativ.ogg', 'Meilen').
 
-string('yards_nominativ.ogg', 'yards ').
-string('yards_dativ.ogg', 'yards ').
+string('yards_nominativ.ogg', 'Yards').
+string('yards_dativ.ogg', 'Yards').
 
 % TIME SUPPORT
-string('time.ogg', ', Zeit  ').
+string('time.ogg', ', Zeit ').
 string('1_hour.ogg', 'eine Stunde ').
 string('hours.ogg', 'Stunden ').
-string('less_a_minute.ogg', 'unter einer Minute ').
-string('1_minute.ogg', 'eine Minute ').
+string('less_a_minute.ogg', 'unter einer Minute').
+string('1_minute.ogg', 'eine Minute').
 string('minutes.ogg', 'Minuten').
 
 
