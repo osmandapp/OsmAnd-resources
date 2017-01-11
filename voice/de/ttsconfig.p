@@ -28,36 +28,36 @@ language('de').
 % ROUTE CALCULATED
 string('route_is1.ogg', 'Die berechnete Strecke ist ').
 string('route_is2.ogg', 'lang ').
-string('route_calculate.ogg', 'Route neu berechnet ').
+string('route_calculate.ogg', 'Route neu berechnet').
 string('distance.ogg', ', Die Entfernung beträgt ').
 
 % LEFT/RIGHT
 string('prepare.ogg', 'Demnächst ').  % Demnächst sounds better then Vorbereiten zum
 string('after.ogg', 'nach ').
 
-string('left.ogg', 'links abbiegen ').
-string('left_sh.ogg', 'scharf links abbiegen ').
-string('left_sl.ogg', 'leicht links abbiegen ').
-string('right.ogg', 'rechts abbiegen ').
-string('right_sh.ogg', 'scharf rechts abbiegen ').
-string('right_sl.ogg', 'leicht rechts abbiegen ').
-string('left_keep.ogg', 'links halten ').
-string('right_keep.ogg', 'rechts halten ').
-string('left_bear.ogg', 'links halten ').    % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'rechts halten ').  % in English the same as right_keep, may be different in other languages
+string('left.ogg', 'links abbiegen').
+string('left_sh.ogg', 'scharf links abbiegen').
+string('left_sl.ogg', 'leicht links abbiegen').
+string('right.ogg', 'rechts abbiegen').
+string('right_sh.ogg', 'scharf rechts abbiegen').
+string('right_sl.ogg', 'leicht rechts abbiegen').
+string('left_keep.ogg', 'links halten').
+string('right_keep.ogg', 'rechts halten').
+string('left_bear.ogg', 'links halten').    % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'rechts halten').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
-string('make_uturn1.ogg', 'wenden ').
-string('make_uturn2.ogg', 'Bitte wenden ').
-string('make_uturn_wp.ogg', 'Wenn möglich, bitte wenden ').
+string('make_uturn1.ogg', 'wenden').
+string('make_uturn2.ogg', 'Bitte wenden').
+string('make_uturn_wp.ogg', 'Wenn möglich, bitte wenden').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'einbiegen in Kreisverkehr ').
+string('prepare_roundabout.ogg', 'einbiegen in Kreisverkehr').
 string('roundabout.ogg', 'in den Kreisverkehr einfahren, ').
-string('then.ogg', 'dann ').
+string('then.ogg', ', dann ').
 string('and.ogg', 'und ').
 string('take.ogg', 'nehmen Sie die ').
-string('exit.ogg', 'Ausfahrt ').
+string('exit.ogg', 'Ausfahrt').
 
 string('1st.ogg', 'erste ').
 string('2nd.ogg', 'zweite ').
@@ -78,20 +78,20 @@ string('16th.ogg', 'sechzehnte ').
 string('17th.ogg', 'siebzehnte ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Weiter geradeaus ').
+string('go_ahead.ogg', 'Weiter geradeaus').
 string('follow1.ogg', 'Dem Strassenverlauf ').
-string('follow2.ogg', 'folgen ').
+string('follow2.ogg', 'folgen').
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'dann haben Sie Ihr Ziel ').
 string('reached_destination.ogg', 'Ziel ').
 string('and_arrive_intermediate.ogg', 'dann haben Sie Ihr Zwischenziel ').
 string('reached_intermediate.ogg', 'Zwischenziel ').
-string('reached.ogg', 'erreicht ').
+string('reached.ogg', 'erreicht').
 
 % NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'dann passieren Sie Weegpunkt ').
-string('reached_waypoint.ogg', 'Sie passieren Weegpunkt ').
+string('and_arrive_waypoint.ogg', 'dann passieren Sie Wegpunkt ').
+string('reached_waypoint.ogg', 'Sie passieren Wegpunkt ').
 string('and_arrive_favorite.ogg', 'dann passieren Sie Favorit ').
 string('reached_favorite.ogg', 'Sie passieren Favorit ').
 string('and_arrive_poi.ogg', 'dann passieren Sie P O I ').
@@ -101,19 +101,19 @@ string('reached_poi.ogg', 'Sie passieren P O I ').
 %string('exceed_limit.ogg', 'Sie überschreiten die Höchstgeschwindigkeit ').
 string('exceed_limit.ogg', 'Tempolimit ').
 string('attention.ogg', 'Achtung, ').
-string('speed_camera.ogg', 'Geschwindigkeitskontrolle ').
-string('border_control.ogg', 'Grenzkontrolle ').
-string('railroad_crossing.ogg', 'Bahnübergang ').
-string('traffic_calming.ogg', 'Verkehrsberuhigung ').
-string('toll_booth.ogg', 'Mautstelle ').
-string('stop.ogg', 'Stoppschild ').
-string('pedestrian_crosswalk.ogg', 'Fusgängerübergang ').
+string('speed_camera.ogg', 'Geschwindigkeitskontrolle').
+string('border_control.ogg', 'Grenzkontrolle').
+string('railroad_crossing.ogg', 'Bahnübergang').
+string('traffic_calming.ogg', 'Verkehrsberuhigung').
+string('toll_booth.ogg', 'Mautstelle').
+string('stop.ogg', 'Stoppschild').
+string('pedestrian_crosswalk.ogg', 'Fusgängerübergang').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'GPS Signal verloren ').   % maybe change to "tschie pie es" because of pronounciation
-string('location_recovered.ogg', 'GPS Signal gefunden ').  % maybe change to "tschie pie es" because of pronounciation
+string('location_lost.ogg', 'GPS Signal verloren').   % maybe change to "tschie pie es" because of pronounciation
+string('location_recovered.ogg', 'GPS Signal gefunden').  % maybe change to "tschie pie es" because of pronounciation
 string('off_route.ogg', 'Sie weichen von der Route ab seit ').  % possibly "Sie verlassen die Route seit "
-string('back_on_route.ogg', 'Sie sind zurück auf der Route ').
+string('back_on_route.ogg', 'Sie sind zurück auf der Route').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'auf ').  % possibly "Richtung", better grammar, but is also misleading is some cases
