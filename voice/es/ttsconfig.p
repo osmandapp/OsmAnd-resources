@@ -24,9 +24,9 @@ language('es').
 %% STRINGS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
-string('route_is.ogg', 'La ruta tiene').
-string('route_calculate.ogg', 'Ruta recalculada ').
-string('distance.ogg', ', distancia').
+string('route_is.ogg', 'La ruta tiene ').
+string('route_calculate.ogg', 'Ruta recalculada').
+string('distance.ogg', ', distancia ').
 
 % LEFT/RIGHT
 %string('prepare.ogg', 'Prepárate para').
@@ -50,44 +50,44 @@ string('make_uturn_wp.ogg', 'Cuando puedas, da la vuelta').
 
 % ROUNDABOUTS
 %string('prepare_roundabout.ogg', 'Prepárate para entrar en la rotonda después de').
-string('prepare_roundabout.ogg', 'entra en la rotonda ').
+string('prepare_roundabout.ogg', 'entra en la rotonda').
 string('roundabout.ogg', 'entra en la rotonda').
 string('then.ogg', ', luego').
-string('and.ogg', 'y').
-string('take.ogg', 'toma la').
+string('and.ogg', ' y ').
+string('take.ogg', 'toma la ').
 string('exit.ogg', 'salida').
 
-string('1st.ogg', 'primera').
-string('2nd.ogg', 'segunda').
-string('3rd.ogg', 'tercera').
-string('4th.ogg', 'cuarta').
-string('5th.ogg', 'quinta').
-string('6th.ogg', 'sexta').
-string('7th.ogg', 'séptima').
-string('8th.ogg', 'octava').
-string('9th.ogg', 'novena').
-string('10th.ogg', 'décima').
-string('11th.ogg', 'undécima').
-string('12th.ogg', 'duodécima').
-string('13th.ogg', 'decimotercera').
-string('14th.ogg', 'decimocuarta').
-string('15th.ogg', 'decimoquinta').
-string('16th.ogg', 'decimosexta').
-string('17th.ogg', 'decimoséptima').
+string('1st.ogg', 'primera ').
+string('2nd.ogg', 'segunda ').
+string('3rd.ogg', 'tercera ').
+string('4th.ogg', 'cuarta ').
+string('5th.ogg', 'quinta ').
+string('6th.ogg', 'sexta ').
+string('7th.ogg', 'séptima ').
+string('8th.ogg', 'octava ').
+string('9th.ogg', 'novena ').
+string('10th.ogg', 'décima ').
+string('11th.ogg', 'undécima ').
+string('12th.ogg', 'duodécima ').
+string('13th.ogg', 'decimotercera ').
+string('14th.ogg', 'decimocuarta ').
+string('15th.ogg', 'decimoquinta ').
+string('16th.ogg', 'decimosexta ').
+string('17th.ogg', 'decimoséptima ').
 
 % STRAIGHT/FOLLOW
 string('go_ahead.ogg', 'Continúa recto').
-string('follow.ogg', 'Sigue la vía durante').
+string('follow.ogg', 'Sigue la vía durante ').
 
 % ARRIVE
-string('and_arrive_destination.ogg', 'y llegarás a tu destino').
-string('reached_destination.ogg','has llegado a tu destino').
-string('and_arrive_intermediate.ogg', 'y llegarás a tu punto intermedio').
-string('reached_intermediate.ogg', 'has llegado a tu punto intermedio').
+string('and_arrive_destination.ogg', 'y llegarás a tu destino ').
+string('reached_destination.ogg','has llegado a tu destino ').
+string('and_arrive_intermediate.ogg', 'y llegarás a tu punto intermedio ').
+string('reached_intermediate.ogg', 'has llegado a tu punto intermedio ').
 
 % NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'y pasarás tu punto G P X intermedio').
-string('reached_waypoint.ogg', 'estás pasando tu punto G P X intermedio').
+string('and_arrive_waypoint.ogg', 'y pasarás tu punto G P X intermedio ').
+string('reached_waypoint.ogg', 'estás pasando tu punto G P X intermedio ').
 string('and_arrive_favorite.ogg', 'y pasarás tu favorito ').
 string('reached_favorite.ogg', 'estás pasando tu punto favorito ').
 string('and_arrive_poi.ogg', 'y pasarás el P D I ').
@@ -97,17 +97,17 @@ string('reached_poi.ogg', 'estás pasando el P D I ').
 %string('exceed_limit.ogg', 'estás excediendo el límite de velocidad ').
 string('exceed_limit.ogg', 'límite de velocidad ').
 string('attention.ogg', 'atención, ').
-string('speed_camera.ogg', 'radar de velocidad ').
-string('border_control.ogg', 'control fronterizo ').
-string('railroad_crossing.ogg', 'paso a nivel ').
-string('traffic_calming.ogg', 'badén ').
-string('toll_booth.ogg', 'cabina de peaje ').
-string('stop.ogg', 'señal de ESTOP ').
-string('pedestrian_crosswalk.ogg', 'paso de peatones ').
+string('speed_camera.ogg', 'radar de velocidad').
+string('border_control.ogg', 'control fronterizo').
+string('railroad_crossing.ogg', 'paso a nivel').
+string('traffic_calming.ogg', 'badén').
+string('toll_booth.ogg', 'cabina de peaje').
+string('stop.ogg', 'señal de ESTOP').
+string('pedestrian_crosswalk.ogg', 'paso de peatones').
 
 % OTHER PROMPTS
 string('location_lost.ogg', 'señal g p s perdida').
-string('location_recovered.ogg', 'señal g p s encontrada ').
+string('location_recovered.ogg', 'señal g p s encontrada').
 string('off_route.ogg', 'te has desviado de la ruta').
 string('back_on_route.ogg', 'has regresado a la ruta').
 
@@ -134,9 +134,9 @@ string('yards.ogg', 'yardas').
 string('time.ogg', 'tiempo necesario ').
 string('1_hour.ogg', 'una hora ').
 string('hours.ogg', 'horas ').
-string('less_a_minute.ogg', 'menos de un minuto ').
-string('1_minute.ogg', 'un minuto ').
-string('minutes.ogg', 'minutos ').
+string('less_a_minute.ogg', 'menos de un minuto').
+string('1_minute.ogg', 'un minuto').
+string('minutes.ogg', 'minutos').
 
 % SPECIAL NUMBERS
 string('20_and.ogg', 'veinti').
