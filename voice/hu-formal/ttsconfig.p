@@ -25,38 +25,38 @@ language('hu').
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
 string('route_is.ogg', 'Az útvonal  ').
-string('route_calculate.ogg', 'Újratervezés ').
-string('distance.ogg', 'a távolság').
+string('route_calculate.ogg', 'Újratervezés').
+string('distance.ogg', 'a távolság ').
 
 % LEFT/RIGHT
 string('prepare.ogg', ' ').
 string('after.ogg', 'múlva ').
 
-string('left.ogg', 'forduljon balra ').
-string('left_sh.ogg', 'forduljon élesen balra ').
-string('left_sl.ogg', 'forduljon enyhén balra ').
-string('right.ogg', 'forduljon jobbra ').
-string('right_sh.ogg', 'forduljon élesen jobbra ').
-string('right_sl.ogg', 'forduljon enyhén jobbra ').
-string('left_keep.ogg', 'tartson balra ').
-string('right_keep.ogg', 'tartson jobbra ').
-string('left_bear.ogg', 'tartson balra ').    % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'tartson jobbra ').  % in English the same as right_keep, may be different in other languages
+string('left.ogg', 'forduljon balra').
+string('left_sh.ogg', 'forduljon élesen balra').
+string('left_sl.ogg', 'forduljon enyhén balra').
+string('right.ogg', 'forduljon jobbra').
+string('right_sh.ogg', 'forduljon élesen jobbra').
+string('right_sl.ogg', 'forduljon enyhén jobbra').
+string('left_keep.ogg', 'tartson balra').
+string('right_keep.ogg', 'tartson jobbra').
+string('left_bear.ogg', 'tartson balra').    % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'tartson jobbra').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
-string('prepare_make_uturn.ogg', 'Készüljön fel a visszafordulásra ').
+string('prepare_make_uturn.ogg', 'Készüljön fel a visszafordulásra').
 string('make_uturn1.ogg', 'múlva forduljon vissza ').
-string('make_uturn2.ogg', 'Forduljon vissza ').
-string('make_uturn_wp.ogg', 'Forduljon vissza, amint lehet ').
+string('make_uturn2.ogg', 'Forduljon vissza').
+string('make_uturn_wp.ogg', 'Forduljon vissza, amint lehet').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'múlva hajtson be a körforgalomba ').
 string('roundabout.ogg', 'múlva a körforgalomból ').
 string('roundabout2.ogg', 'kijáraton hajtson ki').
 string('then.ogg', 'majd ').
-string('and.ogg', ' és').
+string('and.ogg', ' és ').
 string('take.ogg', 'hajtson ki ').
-string('exit.ogg', 'kijáraton ').
+string('exit.ogg', 'kijáraton').
 
 string('1st.ogg', 'az első ').
 string('2nd.ogg', 'a második ').
@@ -77,7 +77,7 @@ string('16th.ogg', 'a tizenhatodik ').
 string('17th.ogg', 'a tizenhetedik ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Haladjon tovább egyenesen ').
+string('go_ahead.ogg', 'Haladjon tovább egyenesen').
 string('follow1.ogg', 'Menjen tovább ').
 
 % ARRIVE
@@ -98,19 +98,19 @@ string('reached_poi.ogg', 'megérkezett a POI ponthoz ').
 %string('exceed_limit.ogg', 'Túllépte a sebességhatárt ').
 string('exceed_limit.ogg', 'sebességhatár ').
 string('attention.ogg', 'figyelem, ').
-string('speed_camera.ogg', 'traffipax ').
-string('border_control.ogg', 'határellenőrzés ').
-string('railroad_crossing.ogg', 'vasúti átjáróhoz közeledik ').
-string('traffic_calming.ogg', 'forgalomlassító ').
-string('toll_booth.ogg', 'fizetőkapu ').
-string('stop.ogg', 'stop tábla ').
-string('pedestrian_crosswalk.ogg', 'gyalogos zebra ').
+string('speed_camera.ogg', 'traffipax').
+string('border_control.ogg', 'határellenőrzés').
+string('railroad_crossing.ogg', 'vasúti átjáróhoz közeledik').
+string('traffic_calming.ogg', 'forgalomlassító').
+string('toll_booth.ogg', 'fizetőkapu').
+string('stop.ogg', 'stop tábla').
+string('pedestrian_crosswalk.ogg', 'gyalogos zebra').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'nem található dzsípíesz jel ').
+string('location_lost.ogg', 'nem található dzsípíesz jel').
 string('location_recovered.ogg', 'pozíció meghatározva').
 string('off_route.ogg', 'Letért a tervezett útvonalról ').
-string('back_on_route.ogg', 'Ön visszatér az útvonalra ').
+string('back_on_route.ogg', 'Ön visszatér az útvonalra').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'irányába ').
@@ -119,37 +119,37 @@ string('to.ogg', ', eddig: ').
 string('toward.ogg', ', felé ').
 
 % DISTANCE UNIT SUPPORT
-string('meters_nom.ogg', 'méter ').
-string('meters_acc.ogg', 'métert ').
-string('1_kilometer_nom.ogg', '1 kilométer ').
-string('1_kilometer_acc.ogg', '1 kilométert ').
-string('1_5_kilometer_nom.ogg', 'másfél kilométer ').
-string('1_5_kilometer_acc.ogg', 'másfél kilométert ').
+string('meters_nom.ogg', 'méter').
+string('meters_acc.ogg', 'métert').
+string('1_kilometer_nom.ogg', '1 kilométer').
+string('1_kilometer_acc.ogg', '1 kilométert').
+string('1_5_kilometer_nom.ogg', 'másfél kilométer').
+string('1_5_kilometer_acc.ogg', 'másfél kilométert').
 string('around.ogg', '  ').
-string('kilometers_nom.ogg', 'kilométer ').
-string('kilometers_acc.ogg', 'kilométert ').
+string('kilometers_nom.ogg', 'kilométer').
+string('kilometers_acc.ogg', 'kilométert').
 
-string('feet_nom.ogg', 'láb ').
-string('feet_acc.ogg', 'lábnyit ').
-string('1_tenth_of_a_mile_nom.ogg', 'egytized mérföld ').
-string('1_tenth_of_a_mile_acc.ogg', 'egytized mérföldet ').
-string('tenths_of_a_mile_nom.ogg', 'tized mérföld ').
-string('tenths_of_a_mile_acc.ogg', 'tized mérföldet ').
-string('around_1_mile_nom.ogg', 'körülbelül egy mérföld ').
-string('around_1_mile_acc.ogg', 'körülbelül egy mérföldet ').
-string('miles_nom.ogg', 'mérföld ').
-string('miles_acc.ogg', 'mérföldet ').
+string('feet_nom.ogg', 'láb').
+string('feet_acc.ogg', 'lábnyit').
+string('1_tenth_of_a_mile_nom.ogg', 'egytized mérföld').
+string('1_tenth_of_a_mile_acc.ogg', 'egytized mérföldet').
+string('tenths_of_a_mile_nom.ogg', 'tized mérföld').
+string('tenths_of_a_mile_acc.ogg', 'tized mérföldet').
+string('around_1_mile_nom.ogg', 'körülbelül egy mérföld').
+string('around_1_mile_acc.ogg', 'körülbelül egy mérföldet').
+string('miles_nom.ogg', 'mérföld').
+string('miles_acc.ogg', 'mérföldet').
 
-string('yards_nom.ogg', 'yard ').
-string('yards_acc.ogg', 'yardot ').
+string('yards_nom.ogg', 'yard').
+string('yards_acc.ogg', 'yardot').
 
 % TIME SUPPORT
 string('time.ogg', ', a menetidő ').
 string('1_hour.ogg', 'egy óra ').
 string('hours.ogg', 'óra ').
-string('less_a_minute.ogg', 'kevesebb, mint egy perc ').
-string('1_minute.ogg', 'egy perc ').
-string('minutes.ogg', 'perc ').
+string('less_a_minute.ogg', 'kevesebb, mint egy perc').
+string('1_minute.ogg', 'egy perc').
+string('minutes.ogg', 'perc').
 
 
 %% COMMAND BUILDING / WORD ORDER

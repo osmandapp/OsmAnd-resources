@@ -31,20 +31,20 @@ string('distance.ogg', ', jej długość to ').
 % LEFT/RIGHT
 string('after.ogg', 'za ').
 
-string('left.ogg', 'skręć w lewo ').
-string('left_sh.ogg', 'skręć ostro w lewo ').
-string('left_sl.ogg', 'skręć lekko w lewo ').
-string('right.ogg', 'skręć w prawo ').
-string('right_sh.ogg', 'skręć ostro w prawo ').
-string('right_sl.ogg', 'skręć lekko w prawo ').
-string('left_keep.ogg', 'trzymaj się lewej strony ').
-string('right_keep.ogg', 'trzymaj się prawej strony ').
-string('left_bear.ogg', 'trzymaj się lewej strony ').    % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'trzymaj się prawej strony ').  % in English the same as right_keep, may be different in other languages
+string('left.ogg', 'skręć w lewo').
+string('left_sh.ogg', 'skręć ostro w lewo').
+string('left_sl.ogg', 'skręć lekko w lewo').
+string('right.ogg', 'skręć w prawo').
+string('right_sh.ogg', 'skręć ostro w prawo').
+string('right_sl.ogg', 'skręć lekko w prawo').
+string('left_keep.ogg', 'trzymaj się lewej strony').
+string('right_keep.ogg', 'trzymaj się prawej strony').
+string('left_bear.ogg', 'trzymaj się lewej strony').    % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'trzymaj się prawej strony').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
-string('make_uturn.ogg', 'Zawróć ').
-string('make_uturn_wp.ogg', 'Jeśli to możliwe, zawróć ').
+string('make_uturn.ogg', 'Zawróć').
+string('make_uturn_wp.ogg', 'Jeśli to możliwe, zawróć').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Przygotuj się do wjazdu na rondo ').
@@ -52,7 +52,7 @@ string('roundabout.ogg', 'wjedź na rondo, ').
 string('then.ogg', ', następnie ').
 string('and.ogg', 'i ').
 string('take.ogg', 'wybierz ').
-string('exit.ogg', 'zjazd ').
+string('exit.ogg', 'zjazd').
 
 string('1st.ogg', 'pierwszy ').
 string('2nd.ogg', 'drugi ').
@@ -73,7 +73,7 @@ string('16th.ogg', 'szesnasty ').
 string('17th.ogg', 'siedemnasty ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Prosto ').
+string('go_ahead.ogg', 'Prosto').
 string('follow.ogg', 'Prosto przez ').
 
 % ARRIVE
@@ -94,19 +94,19 @@ string('reached_poi.ogg', 'mijasz POI ').
 %string('exceed_limit.ogg', 'przekraczasz dozwoloną prędkość ').
 string('exceed_limit.ogg', 'ograniczenie prędkości ').
 string('attention.ogg', 'uwaga, ').
-string('speed_camera.ogg', 'fotoradar ').
-string('border_control.ogg', 'kontrola graniczna ').
-string('railroad_crossing.ogg', 'przejazd kolejowy ').
-string('traffic_calming.ogg', 'próg zwalniający ').
-string('toll_booth.ogg', 'punkt pobierania opłat ').
-string('stop.ogg', 'znak stop ').
-string('pedestrian_crosswalk.ogg', 'przejście dla pieszych ').
+string('speed_camera.ogg', 'fotoradar').
+string('border_control.ogg', 'kontrola graniczna').
+string('railroad_crossing.ogg', 'przejazd kolejowy').
+string('traffic_calming.ogg', 'próg zwalniający').
+string('toll_booth.ogg', 'punkt pobierania opłat').
+string('stop.ogg', 'znak stop').
+string('pedestrian_crosswalk.ogg', 'przejście dla pieszych').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'Utracono sygnał GPS ').
-string('location_recovered.ogg', 'Odzyskano sygnał GPS ').
+string('location_lost.ogg', 'Utracono sygnał GPS').
+string('location_recovered.ogg', 'Odzyskano sygnał GPS').
 string('off_route.ogg', 'znajdowałeś się poza trasą przez ').
-string('back_on_route.ogg', 'wróciłeś na trasę ').
+string('back_on_route.ogg', 'wróciłeś na trasę').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'w ').
@@ -115,26 +115,26 @@ string('to.ogg', 'do ').
 string('toward.ogg', 'w kierunku ').
 
 % DISTANCE UNIT SUPPORT
-string('meters.ogg', 'metrów ').
-string('around_1_kilometer.ogg', 'około jeden kilometr ').
+string('meters.ogg', 'metrów').
+string('around_1_kilometer.ogg', 'około jeden kilometr').
 string('around.ogg', 'około ').
-string('kilometers.ogg', 'kilometrów ').
+string('kilometers.ogg', 'kilometrów').
 
-string('feet.ogg', 'stóp ').
+string('feet.ogg', 'stóp').
 string('1_tenth_of_a_mile.ogg', 'jedną dziesiątą mili').
 string('tenths_of_a_mile.ogg', 'dziesiątych mili').
 string('around_1_mile.ogg', 'około jedną milę ').
-string('miles.ogg', 'mil ').
+string('miles.ogg', 'mil').
 
-string('yards.ogg', 'jardów ').
+string('yards.ogg', 'jardów').
 
 % TIME SUPPORT
 string('time.ogg', ', przewidywany czas to ').
 string('1_hour.ogg', 'jedna godzina ').
 string('hours.ogg', 'godzin ').
-string('less_a_minute.ogg', 'mniej niż minuta ').
-string('1_minute.ogg', 'jedna minuta ').
-string('minutes.ogg', 'minut ').
+string('less_a_minute.ogg', 'mniej niż minuta').
+string('1_minute.ogg', 'jedna minuta').
+string('minutes.ogg', 'minut').
 
 
 %% COMMAND BUILDING / WORD ORDER

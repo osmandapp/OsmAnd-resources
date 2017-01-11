@@ -32,28 +32,28 @@ string('distance.ogg', '. umbali ').
 string('after.ogg', ' baada ya ').
 string('in.ogg', 'katika ').
 
-string('left.ogg', 'geuka upande wa kushoto ').
-string('left_sh.ogg', 'geuka sana upande wa kushoto ').
-string('left_sl.ogg', 'geuka kiasi upande wa kushoto ').
-string('right.ogg', 'geuka upande wa kulia ').
-string('right_sh.ogg', 'geuka sana upande wa kulia ').
-string('right_sl.ogg', 'geuka kiasi upande wa kulia ').
-string('left_keep.ogg', 'kaa upande wa kushoto ').
-string('right_keep.ogg', 'kaa upande wa kulia ').
-string('left_bear.ogg', 'kaa upande wa kushoto ').  % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'kaa upande wa kulia ').   % in English the same as right_keep, may be different in other languages
+string('left.ogg', 'geuka upande wa kushoto').
+string('left_sh.ogg', 'geuka sana upande wa kushoto').
+string('left_sl.ogg', 'geuka kiasi upande wa kushoto').
+string('right.ogg', 'geuka upande wa kulia').
+string('right_sh.ogg', 'geuka sana upande wa kulia').
+string('right_sl.ogg', 'geuka kiasi upande wa kulia').
+string('left_keep.ogg', 'kaa upande wa kushoto').
+string('right_keep.ogg', 'kaa upande wa kulia').
+string('left_bear.ogg', 'kaa upande wa kushoto').  % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'kaa upande wa kulia').   % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
 string('prepare_make_uturn.ogg', 'Tayarisha kugeuka nyuma baada ya ').
 string('make_uturn1.ogg', ' geuka nyuma ').
-string('make_uturn2.ogg', 'Tafandali geuka kwa u turn ').
-string('make_uturn_wp.ogg', 'wakati inawezekana, tafadhali kufanya u-kugeuka ').
+string('make_uturn2.ogg', 'Tafandali geuka kwa u turn').
+string('make_uturn_wp.ogg', 'wakati inawezekana, tafadhali kufanya u-kugeuka').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Tayarisha kuingia mzunguko baada ya ').
-string('roundabout.ogg', ' ingia mzunguko, na uchukue upande wa ').
+string('roundabout.ogg', ' ingia mzunguko, na uchukue upande wa').
 string('then.ogg', ', kisha ').
-string('and.ogg', 'na ').
+string('and.ogg', ' na ').
 string('take.ogg', 'chukua upande wa ').
 string('exit.ogg', 'kutoka').
 
@@ -76,7 +76,7 @@ string('16th.ogg', 'kumi na sita ').
 string('17th.ogg', 'kumi na saba ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Endelea moja kwa moja mbele ').
+string('go_ahead.ogg', 'Endelea moja kwa moja mbele').
 string('follow.ogg', 'Endesha kwa ').
 
 % ARRIVE
@@ -86,8 +86,8 @@ string('and_arrive_intermediate.ogg', 'na kufika katika yako kupitia-uhakika ').
 string('reached_intermediate.ogg', 'wewe na kufikiwa yako kupitia-uhakika ').
 
 % NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'na kufika katika yako kupitia-uhakika GPX').
-string('reached_waypoint.ogg', 'wewe na kufikiwa yako kupitia-uhakika GPX').
+string('and_arrive_waypoint.ogg', 'na kufika katika yako kupitia-uhakika GPX ').
+string('reached_waypoint.ogg', 'wewe na kufikiwa yako kupitia-uhakika GPX ').
 string('and_arrive_favorite.ogg', 'and pass favorite ').
 string('reached_favorite.ogg', 'you are passing favorite ').
 string('and_arrive_poi.ogg', 'and pass POI ').
@@ -97,19 +97,19 @@ string('reached_poi.ogg', 'you are passing POI ').
 %string('exceed_limit.ogg', 'wewe ni mno kikomo kasi ').
 string('exceed_limit.ogg', 'kikomo kasi ').
 string('attention.ogg', 'attention, ').
-string('speed_camera.ogg', 'kamera kasi ').
-string('border_control.ogg', 'mpaka kudhibiti ').
-string('railroad_crossing.ogg', 'reli kuvuka ').
-string('traffic_calming.ogg', 'kutuliza trafiki ').
-string('toll_booth.ogg', 'toll kibanda ').
-string('stop.ogg', 'kuacha ishara ').
-string('pedestrian_crosswalk.ogg', 'kuvuka pedestrian ').
+string('speed_camera.ogg', 'kamera kasi').
+string('border_control.ogg', 'mpaka kudhibiti').
+string('railroad_crossing.ogg', 'reli kuvuka').
+string('traffic_calming.ogg', 'kutuliza trafiki').
+string('toll_booth.ogg', 'toll kibanda').
+string('stop.ogg', 'kuacha ishara').
+string('pedestrian_crosswalk.ogg', 'kuvuka pedestrian').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'g p s ishara waliopotea ').
-string('location_recovered.ogg', 'g p s signal restored ').
+string('location_lost.ogg', 'g p s ishara waliopotea').
+string('location_recovered.ogg', 'g p s signal restored').
 string('off_route.ogg', 'una jitenga na njia ').
-string('back_on_route.ogg', 'wewe ni nyuma juu ya njia ').
+string('back_on_route.ogg', 'wewe ni nyuma juu ya njia').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'kwenye ').
@@ -119,23 +119,23 @@ string('toward.ogg', 'kuelekea ').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'mita').
-string('around_1_kilometer.ogg', 'umbali wa kilomita moja ').
+string('around_1_kilometer.ogg', 'umbali wa kilomita moja').
 string('around.ogg', 'kuhusu ').
-string('kilometers1.ogg', ' kilomita ').
-string('kilometers2.ogg', ' kilometa ').
+string('kilometers1.ogg', ' kilomita').
+string('kilometers2.ogg', ' kilometa').
 
-string('feet.ogg', 'futi ').
+string('feet.ogg', 'futi').
 string('1_tenth_of_a_mile.ogg', 'moja ya kumi ya maili').
 string('tenths_of_a_mile.ogg', 'sehemu ya kumi ya maili').
 string('around_1_mile.ogg', 'kuhusu maili moja').
-string('miles.ogg', 'maili ').
+string('miles.ogg', 'maili').
 
-string('yards.ogg', 'yardi ').
+string('yards.ogg', 'yardi').
 
 % TIME SUPPORT
-string('time.ogg', 'wakati zinahitajika').
-string('1_hour.ogg', 'saa moja').
-string('hours.ogg', 'masaa').
+string('time.ogg', 'wakati zinahitajika ').
+string('1_hour.ogg', 'saa moja ').
+string('hours.ogg', 'masaa ').
 string('less_a_minute.ogg', 'chini ya dakika moja').
 string('1_minute.ogg', 'dakika moja').
 string('minutes.ogg', 'dakika ').

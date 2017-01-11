@@ -25,7 +25,7 @@ fest_language('Italian').
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
 string('route_is1.ogg', 'Il percorso calcolato è ').
-string('route_is2.ogg', 'lungo ').
+string('route_is2.ogg', 'lungo').
 string('route_calculate.ogg', 'Ricalcolo percorso').
 string('distance.ogg', 'distanza ').
 

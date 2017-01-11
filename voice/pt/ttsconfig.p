@@ -24,46 +24,46 @@ language('pt').
 %% STRINGS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
-string('route_is.ogg', 'A rota tem ').
-string('route_calculate.ogg', 'Rota recalculada. ').
+string('route_is.ogg', 'A rota tem').
+string('route_calculate.ogg', 'Rota recalculada').
 string('distance.ogg', ' Distância de ').
 
 % LEFT/RIGHT
 string('after.ogg', 'depois de ').
 string('in.ogg', 'após ').
 
-string('left.ogg', 'vire à esquerda ').
-string('left_sh.ogg', 'vire acentuadamente à esquerda ').
-string('left_sl.ogg', 'vire levemente à esquerda ').
-string('right.ogg', 'vire à direita ').
-string('right_sh.ogg', 'vire acentuadamente à direita ').
-string('right_sl.ogg', 'vire levemente à direita ').
-string('left_keep.ogg', 'mantenha-se à esquerda ').
-string('right_keep.ogg', 'mantenha-se à direita ').
-string('left_bear.ogg', 'mantenha-se à esquerda ').   % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'mantenha-se à direita ').   % in English the same as right_keep, may be different in other languages
+string('left.ogg', 'vire à esquerda').
+string('left_sh.ogg', 'vire acentuadamente à esquerda').
+string('left_sl.ogg', 'vire levemente à esquerda').
+string('right.ogg', 'vire à direita').
+string('right_sh.ogg', 'vire acentuadamente à direita').
+string('right_sl.ogg', 'vire levemente à direita').
+string('left_keep.ogg', 'mantenha-se à esquerda').
+string('right_keep.ogg', 'mantenha-se à direita').
+string('left_bear.ogg', 'mantenha-se à esquerda').   % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'mantenha-se à direita').   % in English the same as right_keep, may be different in other languages
 
-string('left_imp.ogg', 'virar à esquerda ').
-string('left_sh_imp.ogg', 'virar acentuadamente à esquerda ').
-string('left_sl_imp.ogg', 'virar levemente à esquerda ').
-string('right_imp.ogg', 'virar à direita ').
-string('right_sh_imp.ogg', 'virar acentuadamente à direita ').
-string('right_sl_imp.ogg', 'virar levemente à direita ').
+string('left_imp.ogg', 'virar à esquerda').
+string('left_sh_imp.ogg', 'virar acentuadamente à esquerda').
+string('left_sl_imp.ogg', 'virar levemente à esquerda').
+string('right_imp.ogg', 'virar à direita').
+string('right_sh_imp.ogg', 'virar acentuadamente à direita').
+string('right_sl_imp.ogg', 'virar levemente à direita').
 string('left_keep_imp.ogg', 'manter-se à esquerda').
 string('right_keep_imp.ogg', 'manter-se à direita').
 
 % U-TURNS
-string('make_uturn.ogg', 'faça um retorno ').
-string('make_uturn_imp.ogg', 'retornar ').
-string('make_uturn_wp.ogg', 'Retorne quando possível ').
+string('make_uturn.ogg', 'faça um retorno').
+string('make_uturn_imp.ogg', 'retornar').
+string('make_uturn_wp.ogg', 'Retorne quando possível').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Prepare-se para a rotunda ').
-string('roundabout.ogg', 'entre na rotunda ').
+string('prepare_roundabout.ogg', 'Prepare-se para a rotunda').
+string('roundabout.ogg', 'entre na rotunda').
 string('then.ogg', 'então ').
-string('and.ogg', 'e ').
+string('and.ogg', ' e ').
 string('take.ogg', 'saia na ').
-string('exit.ogg', 'saída ').
+string('exit.ogg', 'saída').
 
 string('1st.ogg', 'primeira ').
 string('2nd.ogg', 'segunda ').
@@ -84,7 +84,7 @@ string('16th.ogg', 'décima sexta ').
 string('17th.ogg', 'décima sétima ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Siga em frente ').
+string('go_ahead.ogg', 'Siga em frente').
 string('follow.ogg', 'Siga o caminho por ').
 
 % ARRIVE
@@ -105,17 +105,17 @@ string('reached_poi.ogg', 'chegou ao POI ').
 %string('exceed_limit.ogg', 'a exceder o limite de velocidade ').
 string('exceed_limit.ogg', 'limite de velocidade ').
 string('attention.ogg', 'atenção! ').
-string('speed_camera.ogg', 'radar ').
-string('border_control.ogg', 'alfândega ').
-string('railroad_crossing.ogg', 'Cruzamento de linha férrea ').
-string('traffic_calming.ogg', 'obstáculo ').
-string('toll_booth.ogg', 'portagem ').
-string('stop.ogg', 'pare ').
-string('pedestrian_crosswalk.ogg', 'passeio de pedestres ').
+string('speed_camera.ogg', 'radar').
+string('border_control.ogg', 'alfândega').
+string('railroad_crossing.ogg', 'Cruzamento de linha férrea').
+string('traffic_calming.ogg', 'obstáculo').
+string('toll_booth.ogg', 'portagem').
+string('stop.ogg', 'pare').
+string('pedestrian_crosswalk.ogg', 'passeio de pedestres').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'sem sinal g p s ').
-string('location_recovered.ogg', 'sinal g p s recuperado ').
+string('location_lost.ogg', 'sem sinal g p s').
+string('location_recovered.ogg', 'sinal g p s recuperado').
 string('off_route.ogg', 'desviou-se da rota por ').
 string('back_on_route.ogg', 'retornou ao percurso').
 
@@ -126,26 +126,26 @@ string('to.ogg', 'para ').
 string('toward.ogg', 'em direção a ').
 
 % DISTANCE UNIT SUPPORT
-string('meters.ogg', 'metros ').
-string('around_1_kilometer.ogg', 'cerca de um quilómetro ').
+string('meters.ogg', 'metros').
+string('around_1_kilometer.ogg', 'cerca de um quilómetro').
 string('around.ogg', 'cerca de ').
-string('kilometers.ogg', 'quilómetros ').
+string('kilometers.ogg', 'quilómetros').
 
-string('feet.ogg', 'pés ').
-string('1_tenth_of_a_mile.ogg', 'um décimo de milha ').
-string('tenths_of_a_mile.ogg', 'décimos de milha ').
-string('around_1_mile.ogg', 'cerca de uma milha ').
-string('miles.ogg', 'milhas ').
+string('feet.ogg', 'pés').
+string('1_tenth_of_a_mile.ogg', 'um décimo de milha').
+string('tenths_of_a_mile.ogg', 'décimos de milha').
+string('around_1_mile.ogg', 'cerca de uma milha').
+string('miles.ogg', 'milhas').
 
-string('yards.ogg', 'jardas ').
+string('yards.ogg', 'jardas').
 
 % TIME SUPPORT
 string('time.ogg', 'tempo estimado de ').
 string('1_hour.ogg', 'uma hora ').
 string('hours.ogg', 'horas ').
-string('less_a_minute.ogg', 'menos de um minuto ').
-string('1_minute.ogg', 'um minuto ').
-string('minutes.ogg', 'minutos ').
+string('less_a_minute.ogg', 'menos de um minuto').
+string('1_minute.ogg', 'um minuto').
+string('minutes.ogg', 'minutos').
 
 
 %% COMMAND BUILDING / WORD ORDER

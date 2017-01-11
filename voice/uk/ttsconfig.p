@@ -31,27 +31,27 @@ string('distance.ogg', 'відстань ').
 string('after.ogg', 'за ').
 string('in.ogg', 'в' ).
 
-string('left.ogg', 'поверніть ліворуч ').
-string('left_sh.ogg', 'поверніть різко ліворуч ').
-string('left_sl.ogg', 'поверніть плавно ліворуч ').
-string('right.ogg', 'поверніть праворуч ').
-string('right_sh.ogg', 'поверніть різко праворуч ').
-string('right_sl.ogg', 'поверніть плавно праворуч ').
-string('left_keep.ogg', 'тримайтесь лівіше ').
-string('right_keep.ogg', 'тримайтесь правіше ').
-string('left_bear.ogg', 'тримайтесь лівіше ').    % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'тримайтесь правіше ').  % in English the same as right_keep, may be different in other languages
+string('left.ogg', 'поверніть ліворуч').
+string('left_sh.ogg', 'поверніть різко ліворуч').
+string('left_sl.ogg', 'поверніть плавно ліворуч').
+string('right.ogg', 'поверніть праворуч').
+string('right_sh.ogg', 'поверніть різко праворуч').
+string('right_sl.ogg', 'поверніть плавно праворуч').
+string('left_keep.ogg', 'тримайтесь лівіше').
+string('right_keep.ogg', 'тримайтесь правіше').
+string('left_bear.ogg', 'тримайтесь лівіше').    % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'тримайтесь правіше').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
-string('make_uturn.ogg', 'Розверніться ').
-string('make_uturn_wp.ogg', 'При можливості розверніться ').
+string('make_uturn.ogg', 'Розверніться').
+string('make_uturn_wp.ogg', 'При можливості розверніться').
 
 % ROUNDABOUTS
-string('roundabout.ogg', 'коло ').
+string('roundabout.ogg', 'коло').
 string('then.ogg', 'потім ').
-string('and.ogg', 'і ').
+string('and.ogg', ' і ').
 string('take.ogg', 'виберіть ').
-string('exit.ogg', 'з_їзд ').
+string('exit.ogg', 'з_їзд').
 
 string('1th.ogg', 'перший ').
 string('2th.ogg', 'другий ') :- google_gen, voice .
@@ -73,7 +73,7 @@ string('16th.ogg', 'шістнадцятий ').
 string('17th.ogg', 'сімнадцятий ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Далі прямо ').
+string('go_ahead.ogg', 'Далі прямо').
 string('go_ahead_m.ogg', 'Продовжуйте рух ').
 
 % ARRIVE
@@ -94,17 +94,17 @@ string('reached_poi.ogg', 'ви прибули до точки інтересу 
 %string('exceed_limit.ogg', 'Перевищуєте швидкість ').
 string('exceed_limit.ogg', 'обмеження швидкості ').
 string('attention.ogg', 'Увага, ').
-string('speed_camera.ogg', 'швидкість камери ').
-string('border_control.ogg', 'прикордонний контроль ').
-string('railroad_crossing.ogg', 'залізничний переїзд ').
-string('traffic_calming.ogg', 'трафіку заспокійливий ').
-string('toll_booth.ogg', 'платних стенд ').
-string('stop.ogg', 'знак зупинки ').
-string('pedestrian_crosswalk.ogg', 'пішохідного переходу ').
+string('speed_camera.ogg', 'швидкість камери').
+string('border_control.ogg', 'прикордонний контроль').
+string('railroad_crossing.ogg', 'залізничний переїзд').
+string('traffic_calming.ogg', 'трафіку заспокійливий').
+string('toll_booth.ogg', 'платних стенд').
+string('stop.ogg', 'знак зупинки').
+string('pedestrian_crosswalk.ogg', 'пішохідного переходу').
 
 % OTHER PROMPTS
 string('location_lost.ogg', 'втрачено сигнал GPS').
-string('location_recovered.ogg', 'Відновлено сигнал GPS ').
+string('location_recovered.ogg', 'Відновлено сигнал GPS').
 string('off_route.ogg', 'Ви відхилились від маршруту на ').
 string('back_on_route.ogg', 'Ви повернулись на дорогу.').
 
@@ -115,22 +115,22 @@ string('to.ogg', 'до ').
 string('toward.ogg', 'до ').
 
 % DISTANCE UNIT SUPPORT
-string('metrov.ogg', 'метрів ').
-string('kilometr.ogg', 'кілометр ').
-string('kilometra.ogg', 'кілометри ').
-string('kilometrov.ogg', 'кілометрів ').
-string('around_1_kilometer.ogg', 'близько одного кілометра ').
+string('metrov.ogg', 'метрів').
+string('kilometr.ogg', 'кілометр').
+string('kilometra.ogg', 'кілометри').
+string('kilometrov.ogg', 'кілометрів').
+string('around_1_kilometer.ogg', 'близько одного кілометра').
 string('around.ogg', 'близько ').
 
-string('footov.ogg', 'футів ').
-string('around_1_mile.ogg', 'близько однієї милі ').
-string('1_tenth_of_a_mile.ogg', 'одна десята милі ').
-string('tenths_of_a_mile.ogg', ' десятих милі ').
-string('1mile.ogg', 'миля ').
-string('2mili.ogg', 'милі ').
-string('5mil.ogg', 'миль ').
+string('footov.ogg', 'футів').
+string('around_1_mile.ogg', 'близько однієї милі').
+string('1_tenth_of_a_mile.ogg', 'одна десята милі').
+string('tenths_of_a_mile.ogg', ' десятих милі').
+string('1mile.ogg', 'миля').
+string('2mili.ogg', 'милі').
+string('5mil.ogg', 'миль').
 
-string('yardov.ogg', 'ярдів ').
+string('yardov.ogg', 'ярдів').
 
 % TIME SUPPORT
 string('time.ogg', 'час ').
@@ -138,9 +138,9 @@ string('less_a_minute.ogg', 'менше хвилини  ').
 string('hour.ogg', 'година ').
 string('hours_a.ogg', 'години ').
 string('hours_ov.ogg', 'годин ').
-string('minute.ogg', 'хвилина ').
-string('minute_y.ogg', 'хвилини ').
-string('minutes.ogg', 'хвилин ').
+string('minute.ogg', 'хвилина').
+string('minute_y.ogg', 'хвилини').
+string('minutes.ogg', 'хвилин').
 
 
 %% COMMAND BUILDING / WORD ORDER

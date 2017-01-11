@@ -25,40 +25,40 @@ language('nl').
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
 string('route_is1.ogg', 'De berekende afstand is ').
-string('route_is2.ogg', 'lang ').
-string('route_calculate.ogg', 'Afstand is opnieuw berekend ').
+string('route_is2.ogg', 'lang').
+string('route_calculate.ogg', 'Afstand is opnieuw berekend').
 string('distance.ogg', ', de nieuwe afstand is ').
 
 % LEFT/RIGHT
-string('prepare.ogg', 'Verder op  ').
+string('prepare.ogg', 'Verder op ').
 % Verder op should officially be spelled as verderop but is not pronounced correctly
 % by tts voices when spelled that way. Please leave it like this.
 string('after.ogg', 'Na ').
 
-string('left.ogg', 'links afslaan ').
-string('left_sh.ogg', 'scherpe bocht naar links ').
-string('left_sl.ogg', 'links afbuigen  ').
-string('right.ogg', 'rechts afslaan ').
-string('right_sh.ogg', 'scherpe bocht naar rechts ').
-string('right_sl.ogg', 'rechts afbuigen ').
-string('left_keep.ogg', 'links aanhouden ').
-string('right_keep.ogg', 'rechts aanhouden ').
-string('left_bear.ogg', 'links aanhouden ').    % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'rechts aanhouden ').  % in English the same as right_keep, may be different in other languages
+string('left.ogg', 'links afslaan').
+string('left_sh.ogg', 'scherpe bocht naar links').
+string('left_sl.ogg', 'links afbuigen').
+string('right.ogg', 'rechts afslaan').
+string('right_sh.ogg', 'scherpe bocht naar rechts').
+string('right_sl.ogg', 'rechts afbuigen').
+string('left_keep.ogg', 'links aanhouden').
+string('right_keep.ogg', 'rechts aanhouden').
+string('left_bear.ogg', 'links aanhouden').    % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'rechts aanhouden').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
 string('prepare_make_uturn.ogg', 'Keer om na ').
 string('make_uturn1.ogg', 'omkeren ').
-string('make_uturn2.ogg', 'keer nu om ').
-string('make_uturn_wp.ogg', 'Indien mogelijk, nu omkeren ').
+string('make_uturn2.ogg', 'keer nu om').
+string('make_uturn_wp.ogg', 'Indien mogelijk, nu omkeren').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Neem de rotonde na ').
-string('roundabout.ogg', ' de rotonde oprijden en neem dan de ').
+string('roundabout.ogg', 'de rotonde oprijden en neem dan de ').
 string('then.ogg', 'dan ').
-string('and.ogg', 'en ').
-string('take.ogg', 'Neem de  ').
-string('exit.ogg', 'afslag ').
+string('and.ogg', ' en ').
+string('take.ogg', 'Neem de ').
+string('exit.ogg', 'afslag').
 
 string('1st.ogg', 'eerste ').
 string('2nd.ogg', 'tweede ').
@@ -79,9 +79,9 @@ string('16th.ogg', 'zestiende ').
 string('17th.ogg', 'zeventiende ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Deze weg blijven volgen ').
+string('go_ahead.ogg', 'Deze weg blijven volgen').
 string('follow1.ogg', 'De weg  ').
-string('follow2.ogg', 'volgen ').
+string('follow2.ogg', 'volgen').
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'dan heb je je bestemming ').
@@ -102,46 +102,46 @@ string('reached_poi.ogg', 'je hebt je POI ').
 %string('exceed_limit.ogg', 'je overschrijdt de maximumsnelheid ').
 string('exceed_limit.ogg', 'maximumsnelheid ').
 string('attention.ogg', 'let op , ').
-string('speed_camera.ogg', 'snelheidscontrole ').
-string('border_control.ogg', 'grenscontrole ').
-string('railroad_crossing.ogg', 'spoorweg overgang ').
-string('traffic_calming.ogg', 'verkeersdrempel ').
-string('toll_booth.ogg', 'tol poort ').
+string('speed_camera.ogg', 'snelheidscontrole').
+string('border_control.ogg', 'grenscontrole').
+string('railroad_crossing.ogg', 'spoorweg overgang').
+string('traffic_calming.ogg', 'verkeersdrempel').
+string('toll_booth.ogg', 'tol poort').
 % de spatie is nodig voor een betere uitspraak
-string('stop.ogg', 'stop teken ').
-string('pedestrian_crosswalk.ogg', 'zebra ').
+string('stop.ogg', 'stop teken').
+string('pedestrian_crosswalk.ogg', 'zebra').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'G P S  signaal verloren ').
-string('location_recovered.ogg', 'g p s signaal hersteld ').
+string('location_lost.ogg', 'G P S  signaal verloren').
+string('location_recovered.ogg', 'g p s signaal hersteld').
 string('off_route.ogg', 'je bent afgeweken van de route vanaf ').
-string('back_on_route.ogg', 'je bent weer op de route ').
+string('back_on_route.ogg', 'je bent weer op de route').
 
 % STREET NAME PREPOSITIONS
-string('onto.ogg', 'naar  ').
+string('onto.ogg', 'naar ').
 string('toward.ogg', 'richting  ').
 
 % DISTANCE UNIT SUPPORT
-string('meters.ogg', 'meter ').
-string('around_1_kilometer.ogg', 'ongeveer een kilometer  ').
+string('meters.ogg', 'meter').
+string('around_1_kilometer.ogg', 'ongeveer een kilometer').
 string('around.ogg', 'ongeveer ').
-string('kilometers.ogg', 'Kilometer ').
+string('kilometers.ogg', 'kilometer').
 
 string('feet.ogg', 'voet ').
-string('1_tenth_of_a_mile.ogg', 'een tiende mijl ').
-string('tenths_of_a_mile.ogg', 'tiende mijl ').
-string('around_1_mile.ogg', 'ongeveer een mijl ').
-string('miles.ogg', 'mijlen ').
+string('1_tenth_of_a_mile.ogg', 'een tiende mijl').
+string('tenths_of_a_mile.ogg', 'tiende mijl').
+string('around_1_mile.ogg', 'ongeveer een mijl').
+string('miles.ogg', 'mijlen').
 
-string('yards.ogg', 'yards ').
+string('yards.ogg', 'yards').
 
 % TIME SUPPORT
 string('time.ogg', ', tijd tot bestemming ').
 string('1_hour.ogg', 'een uur ').
 string('hours.ogg', 'uur ').
-string('less_a_minute.ogg', 'minder dan een minuut ').
-string('1_minute.ogg', 'een minuut ').
-string('minutes.ogg', 'minuten ').
+string('less_a_minute.ogg', 'minder dan een minuut').
+string('1_minute.ogg', 'een minuut').
+string('minutes.ogg', 'minuten').
 
 
 %% COMMAND BUILDING / WORD ORDER

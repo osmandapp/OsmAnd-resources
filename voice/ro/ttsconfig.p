@@ -25,33 +25,33 @@ language('ro').
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
 string('route_is.ogg', 'Lungimea traseului este de ').
-string('route_calculate.ogg', 'Traseu recalculat ').
+string('route_calculate.ogg', 'Traseu recalculat').
 string('distance.ogg', ', distanța ').
 
 % LEFT/RIGHT
 string('after.ogg', 'peste ').
 string('in.ogg', 'la ').
 
-string('left.ogg', 'virați la stânga ').
-string('left_sh.ogg', 'virați brusc la stânga ').
-string('left_sl.ogg', 'virați ușor la stânga ').
-string('right.ogg', 'virați la dreapta ').
-string('right_sh.ogg', 'virați brusc la dreapta ').
-string('right_sl.ogg', 'virați ușor la dreapta ').
-string('left_keep.ogg', 'încadrați-vă pe partea stângă ').
-string('right_keep.ogg', 'încadrați-vă pe partea dreaptă ').
-string('left_bear.ogg', 'încadrați-vă pe partea stângă ').    % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'încadrați-vă pe partea dreaptă ').  % in English the same as right_keep, may be different in other languages
+string('left.ogg', 'virați la stânga').
+string('left_sh.ogg', 'virați brusc la stânga').
+string('left_sl.ogg', 'virați ușor la stânga').
+string('right.ogg', 'virați la dreapta').
+string('right_sh.ogg', 'virați brusc la dreapta').
+string('right_sl.ogg', 'virați ușor la dreapta').
+string('left_keep.ogg', 'încadrați-vă pe partea stângă').
+string('right_keep.ogg', 'încadrați-vă pe partea dreaptă').
+string('left_bear.ogg', 'încadrați-vă pe partea stângă').    % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'încadrați-vă pe partea dreaptă').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
 %string('prepare_make_uturn.ogg', 'Pregătiți-vă să întoarceți peste ').
 string('make_uturn1.ogg', 'Întoarceți peste ').
-string('make_uturn2.ogg', 'Întoarceți ').
-string('make_uturn_wp.ogg', 'Întoarceți când aveți posibilitatea ').
+string('make_uturn2.ogg', 'Întoarceți').
+string('make_uturn_wp.ogg', 'Întoarceți când aveți posibilitatea').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Pregătiți-vă să intrați în sensul giratoriu peste ').
-string('roundabout.ogg', ' veți intra în sensul giratoriu pe care-l veți părăsi pe la ').
+string('roundabout.ogg', ' veți intra în sensul giratoriu pe care-l veți părăsi pe la').
 string('then.ogg', ', apoi ').
 string('and.ogg', 'și').
 string('take.ogg', 'Luați-o pe ').
@@ -76,7 +76,7 @@ string('16th.ogg', 'a șaisprezecea ').
 string('17th.ogg', 'a șaptesprezecea ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Mergeți înainte ').
+string('go_ahead.ogg', 'Mergeți înainte').
 string('follow.ogg', 'Urmăriți drumul principal ').
 
 % ARRIVE
@@ -86,8 +86,8 @@ string('and_arrive_intermediate.ogg', 'și ajungeți la punctul intermediar ').
 string('reached_intermediate.ogg', 'Ați ajuns la punctul intermediar ').
 
 % NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'și ajungeți la punctul intermediar GPX').
-string('reached_waypoint.ogg', 'Ați ajuns la punctul intermediar GPX').
+string('and_arrive_waypoint.ogg', 'și ajungeți la punctul intermediar GPX ').
+string('reached_waypoint.ogg', 'Ați ajuns la punctul intermediar GPX ').
 string('and_arrive_favorite.ogg', 'and pass favorite ').
 string('reached_favorite.ogg', 'you are passing favorite ').
 string('and_arrive_poi.ogg', 'and pass POI ').
@@ -97,19 +97,19 @@ string('reached_poi.ogg', 'you are passing POI ').
 %string('exceed_limit.ogg', 'limita de viteză depăşită').
 string('exceed_limit.ogg', 'limita de viteză ').
 string('attention.ogg', 'atenţie, ').
-string('speed_camera.ogg', 'camera de viteza ').
-string('border_control.ogg', 'controlul la frontieră ').
-string('railroad_crossing.ogg', 'Trecere de cale ferată ').
-string('traffic_calming.ogg', 'calmant trafic ').
-string('toll_booth.ogg', 'cabina de taxare ').
-string('stop.ogg', 'opri semn ').
-string('pedestrian_crosswalk.ogg', 'trecere de pietoni ').
+string('speed_camera.ogg', 'camera de viteza').
+string('border_control.ogg', 'controlul la frontieră').
+string('railroad_crossing.ogg', 'Trecere de cale ferată').
+string('traffic_calming.ogg', 'calmant trafic').
+string('toll_booth.ogg', 'cabina de taxare').
+string('stop.ogg', 'opri semn').
+string('pedestrian_crosswalk.ogg', 'trecere de pietoni').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'semnal gipies pierdut ').
-string('location_recovered.ogg', 'semnal gipies recuperat ').
-string('off_route.ogg', 'aţi deviat de la rută').
-string('back_on_route.ogg', 'sunteți din nou pe ruta ').
+string('location_lost.ogg', 'semnal gipies pierdut').
+string('location_recovered.ogg', 'semnal gipies recuperat').
+string('off_route.ogg', 'aţi deviat de la rută ').
+string('back_on_route.ogg', 'sunteți din nou pe ruta').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'pe ').
@@ -120,23 +120,23 @@ string('toward.ogg', 'spre ').
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', ' metri').
 string('meters_de.ogg', ' de metri').
-string('around_1_kilometer.ogg', 'circa un kilometru ').
+string('around_1_kilometer.ogg', 'circa un kilometru').
 string('around.ogg', 'circa ').
-string('kilometers.ogg', 'kilometri ').
-string('kilometers_de.ogg', ' de kilometri ').
+string('kilometers.ogg', 'kilometri').
+string('kilometers_de.ogg', ' de kilometri').
 
 string('feet.ogg', ' de picioare').
 string('1_tenth_of_a_mile.ogg', ' zecime de milă').
 string('tenths_of_a_mile.ogg', ' zecimi de milă').
-string('around_1_mile.ogg', 'circa o milă ').
-string('miles.ogg', ' de mile ').
+string('around_1_mile.ogg', 'circa o milă').
+string('miles.ogg', ' de mile').
 
 string('yards.ogg', 'iarzi').
 
 % TIME SUPPORT
-string('time.ogg', 'timpul necesar').
-string('1_hour.ogg', 'o oră').
-string('hours.ogg', 'ore').
+string('time.ogg', 'timpul necesar ').
+string('1_hour.ogg', 'o oră ').
+string('hours.ogg', 'ore ').
 string('less_a_minute.ogg', 'Mai puțin de un minut').
 string('1_minute.ogg', 'un minut').
 string('minutes.ogg', 'minute').

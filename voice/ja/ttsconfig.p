@@ -128,10 +128,10 @@ string('kilometers.ogg', 'キロ、').
 string('feet.ogg', 'フィート').
 string('1_tenth_of_a_mile.ogg', 'one tenth of a mile').
 string('tenths_of_a_mile.ogg', 'tenths of a mile').
-string('around_1_mile.ogg', 'about 1 mile ').
-string('miles.ogg', 'miles ').
+string('around_1_mile.ogg', 'about 1 mile').
+string('miles.ogg', 'miles').
 
-string('yards.ogg', 'yards ').
+string('yards.ogg', 'yards').
 
 % TIME SUPPORT
 string('jikan.ogg', '時間').

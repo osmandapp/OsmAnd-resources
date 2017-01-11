@@ -44,15 +44,15 @@ string('right_bear.ogg', 'sa držte vpravo').    % in English the same as right_
 
 % U-TURNS
 string('prepare_make_uturn.ogg', 'sa budete otáčať naspäť').
-string('make_uturn1.ogg', 'sa otočte naspäť').
+string('make_uturn1.ogg', 'sa otočte naspäť ').
 string('make_uturn2.ogg', 'otočte sa naspäť').
 string('make_uturn_wp.ogg', 'keď to bude možné, otočte sa naspäť').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'vojdete do kruhového objazdu').
-string('roundabout.ogg', ' vojdite do kruhového objazdu ').
+string('roundabout.ogg', ' vojdite do kruhového objazdu').
 string('then.ogg', ', potom ').
-string('and.ogg', 'a ').
+string('and.ogg', ' a ').
 string('take1.ogg', 'opustite ho cez ').
 string('exit.ogg', 'výjazd').
 string('take2.ogg', 'choďte cez ').
@@ -76,18 +76,18 @@ string('16th.ogg', 'šestnásty ').
 string('17th.ogg', 'sedemnásty ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Pokračujte rovno ').
+string('go_ahead.ogg', 'Pokračujte rovno').
 string('follow.ogg', 'Pokračujte ').
 
 % ARRIVE
-string('and_arrive_destination.ogg', 'a dorazíte do cieľa').
-string('reached_destination.ogg', 'dorazili ste do cieľa').
-string('and_arrive_intermediate.ogg', 'a prejdete Vaším prechodným bodom').
-string('reached_intermediate.ogg', 'dorazili ste k Vášmu prechodnému bodu').
+string('and_arrive_destination.ogg', 'a dorazíte do cieľa ').
+string('reached_destination.ogg', 'dorazili ste do cieľa ').
+string('and_arrive_intermediate.ogg', 'a prejdete Vaším prechodným bodom ').
+string('reached_intermediate.ogg', 'dorazili ste k Vášmu prechodnému bodu ').
 
 % NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'a prejdete prechodným bodom GPX').
-string('reached_waypoint.ogg', 'dorazili ste k prechodnému bodu GPX').
+string('and_arrive_waypoint.ogg', 'a prejdete prechodným bodom GPX ').
+string('reached_waypoint.ogg', 'dorazili ste k prechodnému bodu GPX ').
 string('and_arrive_favorite.ogg', 'a prejdete obľúbeným bodom ').
 string('reached_favorite.ogg', 'dorazili ste k obľúbenému bodu ').
 string('and_arrive_poi.ogg', 'a prejdete bodom záujmu ').
@@ -119,22 +119,22 @@ string('toward.ogg', 'smerom na ').
 
 % DISTANCE UNIT SUPPORT
 string('around.ogg', 'približne ').
-string('meters.ogg', 'metrov ').
-string('kilometer.ogg', 'jeden kilometer ').
-string('kilometers2.ogg', 'dva kilometre ').
-string('kilometers3_4.ogg', 'kilometre ').
-string('kilometers5.ogg', 'kilometrov ').
+string('meters.ogg', 'metrov').
+string('kilometer.ogg', 'jeden kilometer').
+string('kilometers2.ogg', 'dva kilometre').
+string('kilometers3_4.ogg', 'kilometre').
+string('kilometers5.ogg', 'kilometrov').
 
-string('feet.ogg', 'stôp ').
-string('1_tenth_of_a_mile.ogg', 'desatinu míle ').
-string('half_a_mile.ogg', 'menej ako pol míle ').
-string('tenths_of_a_mile.ogg', 'desatín míle ').
-string('mile.ogg', 'jednu míľu ').
-string('miles2.ogg', 'dve míle ').
-string('miles3_4.ogg', 'míle ').
-string('miles5.ogg', 'míľ ').
+string('feet.ogg', 'stôp').
+string('1_tenth_of_a_mile.ogg', 'desatinu míle').
+string('half_a_mile.ogg', 'menej ako pol míle').
+string('tenths_of_a_mile.ogg', 'desatín míle').
+string('mile.ogg', 'jednu míľu').
+string('miles2.ogg', 'dve míle').
+string('miles3_4.ogg', 'míle').
+string('miles5.ogg', 'míľ').
 
-string('yards.ogg', 'yardov ').
+string('yards.ogg', 'yardov').
 
 % TIME SUPPORT
 string('time.ogg', 'doba potrebná').

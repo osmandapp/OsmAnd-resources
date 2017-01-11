@@ -32,27 +32,27 @@ string('distance.ogg', ', resan är ').
 string('after.ogg', 'Om ').
 string('in.ogg', 'i ').
 
-string('left.ogg', 'sväng vänster ').
-string('left_sh.ogg', 'sväng skarpt vänster ').
-string('left_sl.ogg', 'sväng svagt vänster ').
-string('right.ogg', 'sväng höger ').
-string('right_sh.ogg', 'sväng skarpt höger ').
-string('right_sl.ogg', 'sväng lätt höger ').
-string('left_keep.ogg', 'håll åt vänster ').
-string('right_keep.ogg', 'håll åt höger ').
-string('left_bear.ogg', 'håll åt vänster ').    % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'håll åt höger ').  % in English the same as right_keep, may be different in other languages
+string('left.ogg', 'sväng vänster').
+string('left_sh.ogg', 'sväng skarpt vänster').
+string('left_sl.ogg', 'sväng svagt vänster').
+string('right.ogg', 'sväng höger').
+string('right_sh.ogg', 'sväng skarpt höger').
+string('right_sl.ogg', 'sväng lätt höger').
+string('left_keep.ogg', 'håll åt vänster').
+string('right_keep.ogg', 'håll åt höger').
+string('left_bear.ogg', 'håll åt vänster').  % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'håll åt höger').   % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
 %string('prepare_make_uturn.ogg', 'Förbered för en u-sväng om ').
-string('make_uturn.ogg', ' gör en u-sväng ').
-string('make_uturn_wp.ogg', 'Gör en u-sväng så snart som möjligt ').
+string('make_uturn.ogg', ' gör en u-sväng').
+string('make_uturn_wp.ogg', 'Gör en u-sväng så snart som möjligt').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Det kommer en rondell om ').
-string('roundabout.ogg', ' kör in i rondellen och ta ').
+string('roundabout.ogg', ' kör in i rondellen och ta').
 string('then.ogg', ', sedan ').
-string('and.ogg', 'och ').
+string('and.ogg', ' och ').
 string('take.ogg', 'ta den ').
 string('exit.ogg', 'utfarten').
 
@@ -75,18 +75,18 @@ string('16th.ogg', 'sextonde ').
 string('17th.ogg', 'sjuttonde ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Kör rakt fram ').
+string('go_ahead.ogg', 'Kör rakt fram').
 string('follow.ogg', 'Följ den här vägen ').
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'och du är framme ').
 string('reached_destination.ogg','du är framme ').
-string('and_arrive_intermediate.ogg', 'och anländer till din via-punkt').
-string('reached_intermediate.ogg', 'du har nått din via-punkt').
+string('and_arrive_intermediate.ogg', 'och anländer till din via-punkt ').
+string('reached_intermediate.ogg', 'du har nått din via-punkt ').
 
 % NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'och anländer till din via-punkt GPX').
-string('reached_waypoint.ogg', 'du har nått din via-punkt GPX').
+string('and_arrive_waypoint.ogg', 'och anländer till din via-punkt GPX ').
+string('reached_waypoint.ogg', 'du har nått din via-punkt GPX ').
 string('and_arrive_favorite.ogg', 'and pass favorite ').
 string('reached_favorite.ogg', 'you are passing favorite ').
 string('and_arrive_poi.ogg', 'and pass POI ').
@@ -96,19 +96,19 @@ string('reached_poi.ogg', 'you are passing POI ').
 %string('exceed_limit.ogg', 'du överskrider hastighetsgränsen ').
 string('exceed_limit.ogg', 'hastighetsbegränsning ').
 string('attention.ogg', 'uppmärksamhet, ').
-string('speed_camera.ogg', 'fartkamera ').
-string('border_control.ogg', 'gränskontroll ').
-string('railroad_crossing.ogg', 'järnvägskorsning ').
-string('traffic_calming.ogg', 'trafik lugnande ').
-string('toll_booth.ogg', 'vägtullen ').
-string('stop.ogg', 'Stopp skylt ').
-string('pedestrian_crosswalk.ogg', 'fotgängare övergångsställe ').
+string('speed_camera.ogg', 'fartkamera').
+string('border_control.ogg', 'gränskontroll').
+string('railroad_crossing.ogg', 'järnvägskorsning').
+string('traffic_calming.ogg', 'trafik lugnande').
+string('toll_booth.ogg', 'vägtullen').
+string('stop.ogg', 'Stopp skylt').
+string('pedestrian_crosswalk.ogg', 'fotgängare övergångsställe').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'GPS-signalen borttappad ').
-string('location_recovered.ogg', 'GPS-signalen återvinnas ').
+string('location_lost.ogg', 'GPS-signalen borttappad').
+string('location_recovered.ogg', 'GPS-signalen återvinnas').
 string('off_route.ogg', 'du har avvikit från rutten ').
-string('back_on_route.ogg', 'du är tillbaka på vägen ').
+string('back_on_route.ogg', 'du är tillbaka på vägen').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'på ').
@@ -118,25 +118,25 @@ string('toward.ogg', 'mot ').
 
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'meter').
-string('around_1_kilometer.ogg', 'ungefär en kilometer ').
+string('around_1_kilometer.ogg', 'ungefär en kilometer').
 string('around.ogg', 'ungefär ').
-string('kilometers.ogg', ' kilometer ').
+string('kilometers.ogg', ' kilometer').
 
-string('feet.ogg', 'fod ').
+string('feet.ogg', 'fod').
 string('1_tenth_of_a_mile.ogg', 'en tiondel av en mil').
 string('tenths_of_a_mile.ogg', 'tiondelar av en mil').
-string('around_1_mile.ogg', 'cirka en mil ').
-string('miles.ogg', 'miles ').
+string('around_1_mile.ogg', 'cirka en mil').
+string('miles.ogg', 'miles').
 
-string('yards.ogg', 'yards ').
+string('yards.ogg', 'yards').
 
 % TIME SUPPORT
 string('time.ogg', 'tid som behövs ').
 string('1_hour.ogg', 'en timme ').
 string('hours.ogg', 'timmar ').
-string('less_a_minute.ogg', 'mindre än en minut ').
-string('1_minute.ogg', 'en minut ').
-string('minutes.ogg', 'minuter ').
+string('less_a_minute.ogg', 'mindre än en minut').
+string('1_minute.ogg', 'en minut').
+string('minutes.ogg', 'minuter').
 
 
 %% COMMAND BUILDING / WORD ORDER

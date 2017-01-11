@@ -25,35 +25,35 @@ language('sl').
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
 string('route_is.ogg', 'Pot bo dolga ').
-string('route_calculate.ogg', 'Izračunana je nova pot ').
+string('route_calculate.ogg', 'Izračunana je nova pot').
 string('distance.ogg', 'razdalja ').
 
 % LEFT/RIGHT
 string('after.ogg', 'Čez ').
 string('in.ogg', 'na ').
 
-string('left.ogg', 'zavijte levo ').
-string('left_sh.ogg', 'zavijte ostro levo ').
+string('left.ogg', 'zavijte levo').
+string('left_sh.ogg', 'zavijte ostro levo').
 string('left_sl.ogg', 'zavijte rahlo levo').
-string('right.ogg', 'zavijte desno ').
-string('right_sh.ogg', 'zavijte ostro desno ').
-string('right_sl.ogg', 'zavijte rahlo desno ').
-string('left_keep.ogg', 'držite se levo ').
-string('right_keep.ogg', 'držite se desno ').
-string('left_bear.ogg', 'držite se levo ').    % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'držite se desno ').  % in English the same as right_keep, may be different in other languages
+string('right.ogg', 'zavijte desno').
+string('right_sh.ogg', 'zavijte ostro desno').
+string('right_sl.ogg', 'zavijte rahlo desno').
+string('left_keep.ogg', 'držite se levo').
+string('right_keep.ogg', 'držite se desno').
+string('left_bear.ogg', 'držite se levo').    % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'držite se desno').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
-string('make_uturn.ogg', ' obrnite nazaj ').
-string('make_uturn_wp.ogg', 'Čim bo mogoče, obrnite nazaj ').
+string('make_uturn.ogg', 'obrnite nazaj').
+string('make_uturn_wp.ogg', 'Čim bo mogoče, obrnite nazaj').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Pripravite se na krožišče čez ').
-string('roundabout.ogg', 'zapeljite v krožišče, nato pa uporabite ').
+string('roundabout.ogg', 'zapeljite v krožišče, nato pa uporabite').
 string('then.ogg', ', nato ').
-string('and.ogg', 'in ').
+string('and.ogg', ' in ').
 string('take.ogg', 'Uporabite ').
-string('exit.ogg', ' izvoz ').
+string('exit.ogg', 'izvoz').
 
 string('1st.ogg', 'prvi ').
 string('2nd.ogg', 'drugi ').
@@ -74,18 +74,18 @@ string('16th.ogg', 'šestnajsti ').
 string('17th.ogg', 'sedemnajsti ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Pojdite naravnost naprej ').
+string('go_ahead.ogg', 'Pojdite naravnost naprej').
 string('follow.ogg', 'Nadaljujte po cesti še ').
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'in prispete na cilj ').
 string('reached_destination.ogg','prispeli ste na cilj ').
 string('and_arrive_intermediate.ogg', 'in prispete na vmesni cilj ').
-string('reached_intermediate.ogg', 'Prispeli ste na vmesni cilj').
+string('reached_intermediate.ogg', 'Prispeli ste na vmesni cilj ').
 
 % NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'in prispete na vmesni cilj GE PE X').
-string('reached_waypoint.ogg', 'Prispeli ste na vmesni cilj GE PE X').
+string('and_arrive_waypoint.ogg', 'in prispete na vmesni cilj GE PE X ').
+string('reached_waypoint.ogg', 'Prispeli ste na vmesni cilj GE PE X ').
 string('and_arrive_favorite.ogg', 'and pass favorite ').
 string('reached_favorite.ogg', 'you are passing favorite ').
 string('and_arrive_poi.ogg', 'and pass POI ').
@@ -96,18 +96,18 @@ string('reached_poi.ogg', 'you are passing POI ').
 string('exceed_limit.ogg', 'omejitev hitrosti ').
 string('attention.ogg', 'pozor, ').
 string('speed_camera.ogg', 'hitrost kamere').
-string('border_control.ogg', 'nadzor meje ').
-string('railroad_crossing.ogg', 'železniški prehod ').
-string('traffic_calming.ogg', 'umirjanje prometa ').
-string('toll_booth.ogg', 'cestnine stojnica ').
-string('stop.ogg', 'stop znak ').
-string('pedestrian_crosswalk.ogg', 'prehod za pešce ').
+string('border_control.ogg', 'nadzor meje').
+string('railroad_crossing.ogg', 'železniški prehod').
+string('traffic_calming.ogg', 'umirjanje prometa').
+string('toll_booth.ogg', 'cestnine stojnica').
+string('stop.ogg', 'stop znak').
+string('pedestrian_crosswalk.ogg', 'prehod za pešce').
 
 % OTHER PROMPTS
 string('location_lost.ogg', 'Izgubljen signal GE PE ES').
-string('location_recovered.ogg', 'Ujet signal GE PE ES ').
+string('location_recovered.ogg', 'Ujet signal GE PE ES').
 string('off_route.ogg', 'ste oddaljil od poti ').
-string('back_on_route.ogg', 'ste spet na poti ').
+string('back_on_route.ogg', 'ste spet na poti').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'na  ').
@@ -117,28 +117,28 @@ string('toward.ogg', 'proti ').
 
 % DISTANCE UNIT SUPPORT
 %% TODO: general slovenian 4 plural forms: 101&1001 kilometer, 102&1002 kilometra, 103&104 kilometre...
-string('meters.ogg', 'metrov ').
-string('around_1_kilometer.ogg', 'približno en kilometer ').
-string('around_2_kilometers.ogg', 'približno 2 kilometra ').
+string('meters.ogg', 'metrov').
+string('around_1_kilometer.ogg', 'približno en kilometer').
+string('around_2_kilometers.ogg', 'približno 2 kilometra').
 string('around.ogg', 'približno ').
-string('kilometers1.ogg', 'kilometre ').
-string('kilometers2.ogg', 'kilometrov ').
+string('kilometers1.ogg', 'kilometre').
+string('kilometers2.ogg', 'kilometrov').
 
-string('feet.ogg', 'čevljev ').
+string('feet.ogg', 'čevljev').
 string('1_tenth_of_a_mile.ogg', 'desetina milje').
 string('tenths_of_a_mile.ogg', 'desetink milje').
 string('around_1_mile.ogg', 'približno eno miljo').
-string('miles.ogg', 'milj ').
+string('miles.ogg', 'milj').
 
-string('yards.ogg', 'jardov ').
+string('yards.ogg', 'jardov').
 
 % TIME SUPPORT
-string('time.ogg', 'potreben čas').
+string('time.ogg', 'potreben čas ').
 string('1_hour.ogg', 'eno uro ').
 string('hours.ogg', 'ur ').
-string('less_a_minute.ogg', 'manj kot minuto ').
-string('1_minute.ogg', 'eno minuto ').
-string('minutes.ogg', 'minut ').
+string('less_a_minute.ogg', 'manj kot minuto').
+string('1_minute.ogg', 'eno minuto').
+string('minutes.ogg', 'minut').
 
 
 %% COMMAND BUILDING / WORD ORDER

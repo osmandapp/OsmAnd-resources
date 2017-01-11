@@ -25,7 +25,7 @@ language('lv').
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
 string('route_is.ogg', 'Brauciens ir ').
-string('route_calculate.ogg', 'Maršruts ir pārēķināts ').
+string('route_calculate.ogg', 'Maršruts ir pārēķināts').
 string('distance.ogg', ', attālums ir ').
 
 % LEFT/RIGHT
@@ -33,31 +33,31 @@ string('distance.ogg', ', attālums ir ').
 string('after.ogg', 'Pēc ').
 string('in.ogg', ' ').
 
-string('left.ogg', 'griezties pa kreisi ').
-string('left_sh.ogg', 'strauji pagriezties pa kreisi ').
-string('left_sl.ogg', 'pagriezties pa kreisi ').
-string('right.ogg', 'griezties pa labi ').
-string('right_sh.ogg', 'strauji pagriezties pa labi ').
-string('right_sl.ogg', 'pagriezties pa labi ').
-string('left_keep.ogg', 'turēties pa kreisi ').
-string('right_keep.ogg', 'turēties pa labi ').
-string('left_bear.ogg', 'turēties pa kreisi ').  % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'turēties pa labi ').   % in English the same as right_keep, may be different in other languages
+string('left.ogg', 'griezties pa kreisi').
+string('left_sh.ogg', 'strauji pagriezties pa kreisi').
+string('left_sl.ogg', 'pagriezties pa kreisi').
+string('right.ogg', 'griezties pa labi').
+string('right_sh.ogg', 'strauji pagriezties pa labi').
+string('right_sl.ogg', 'pagriezties pa labi').
+string('left_keep.ogg', 'turēties pa kreisi').
+string('right_keep.ogg', 'turēties pa labi').
+string('left_bear.ogg', 'turēties pa kreisi').  % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'turēties pa labi').   % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
 %string('prepare_make_uturn.ogg', 'Gatavojaties apgriezties pēc ').
-string('make_uturn.ogg', ' apgriežaties ').
-string('make_uturn_wp.ogg', 'Apgriežaties pie pirmās iespējas ').
+string('make_uturn.ogg', ' apgriežaties').
+string('make_uturn_wp.ogg', 'Apgriežaties pie pirmās iespējas').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Sagatvojaties lokveida kustībai pēc ').
-string('roundabout.ogg', ' iebrauciet lokveida krustojumā, un tad brauciet ').
+string('roundabout.ogg', ' iebrauciet lokveida krustojumā, un tad brauciet').
 string('then.ogg', 'tad ').
-string('and.ogg', 'un ').
+string('and.ogg', ' un ').
 string('take.ogg', ' ').
 string('exit.ogg', 'pagriezienā ').
-string('exit2.ogg', 'izbrauciet ').
-string('exit3.ogg', 'izbrauktuvē ').
+string('exit2.ogg', 'izbrauciet').
+string('exit3.ogg', 'izbrauktuvē').
 
 string('1st.ogg', 'pirmajā ').
 string('2nd.ogg', 'otrajā ').
@@ -78,7 +78,7 @@ string('16th.ogg', 'sešpadsmitajā ').
 string('17th.ogg', 'septiņpadsmitajā ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Dodaties taisni uz priekšu ').
+string('go_ahead.ogg', 'Dodaties taisni uz priekšu').
 string('follow.ogg', 'Brauciet pa ceļu ').
 
 % ARRIVE
@@ -99,19 +99,19 @@ string('reached_poi.ogg', 'you are passing POI ').
 %string('exceed_limit.ogg', 'Jums ir ātruma pārsniegšanu ').
 string('exceed_limit.ogg', 'ātruma ierobežojums ').
 string('attention.ogg', 'uzmanība, ').
-string('speed_camera.ogg', 'ātruma kameru ').
-string('border_control.ogg', 'robežkontrole ').
-string('railroad_crossing.ogg', 'dzelzceļš šķērsojums ').
-string('traffic_calming.ogg', 'satiksmes intensitātes ').
-string('toll_booth.ogg', 'nodevu stends ').
-string('stop.ogg', 'Stop zīmi ').
-string('pedestrian_crosswalk.ogg', 'gājēju gājēju pāreja ').
+string('speed_camera.ogg', 'ātruma kameru').
+string('border_control.ogg', 'robežkontrole').
+string('railroad_crossing.ogg', 'dzelzceļš šķērsojums').
+string('traffic_calming.ogg', 'satiksmes intensitātes').
+string('toll_booth.ogg', 'nodevu stends').
+string('stop.ogg', 'Stop zīmi').
+string('pedestrian_crosswalk.ogg', 'gājēju gājēju pāreja').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'pazudis g p s signāls ').
-string('location_recovered.ogg', 'g p s signāls Atgūtā ').
+string('location_lost.ogg', 'pazudis g p s signāls').
+string('location_recovered.ogg', 'g p s signāls Atgūtā').
 string('off_route.ogg', 'jūs esat novirzījušies no maršruta ').
-string('back_on_route.ogg', 'Jums ir atpakaļ maršrutā ').
+string('back_on_route.ogg', 'Jums ir atpakaļ maršrutā').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'uz ').
@@ -120,35 +120,35 @@ string('to.ogg', 'uz ').
 string('toward.ogg', 'pret ').
 
 % DISTANCE UNIT SUPPORT
-string('meters_1.ogg', 'meteriem ').
-string('meters_2.ogg', 'meteri ').
-string('around_1_kilometer_1.ogg', 'aptuveni viena kilometera ').
-string('around_1_kilometer_2.ogg', 'aptuveni 1 kilometrs ').
+string('meters_1.ogg', 'meteriem').
+string('meters_2.ogg', 'meteri').
+string('around_1_kilometer_1.ogg', 'aptuveni viena kilometera').
+string('around_1_kilometer_2.ogg', 'aptuveni 1 kilometrs').
 string('around.ogg', 'aptuveni ').
-string('kilometers_1.ogg', 'kilometriem ').
-string('kilometers_2.ogg', 'kilometri ').
+string('kilometers_1.ogg', 'kilometriem').
+string('kilometers_2.ogg', 'kilometri').
 
-string('feet_1.ogg', 'pēdas ').
-string('feet_2.ogg', 'pēdas ').
-string('1_tenth_of_a_mile_1.ogg', 'desmitā jūdze ').
-string('1_tenth_of_a_mile_2.ogg', 'desmitā jūdze ').
-string('tenths_of_a_mile_1.ogg', 'desmitdaļas jūdze ').
-string('tenths_of_a_mile_2.ogg', 'desmitdaļas jūdze ').
-string('around_1_mile_1.ogg', 'apmēram vienu jūdzi ').
-string('around_1_mile_2.ogg', 'apmēram vienu jūdzi ').
-string('miles_1.ogg', 'jūdzes ').
-string('miles_2.ogg', 'jūdzes ').
+string('feet_1.ogg', 'pēdas').
+string('feet_2.ogg', 'pēdas').
+string('1_tenth_of_a_mile_1.ogg', 'desmitā jūdze').
+string('1_tenth_of_a_mile_2.ogg', 'desmitā jūdze').
+string('tenths_of_a_mile_1.ogg', 'desmitdaļas jūdze').
+string('tenths_of_a_mile_2.ogg', 'desmitdaļas jūdze').
+string('around_1_mile_1.ogg', 'apmēram vienu jūdzi').
+string('around_1_mile_2.ogg', 'apmēram vienu jūdzi').
+string('miles_1.ogg', 'jūdzes').
+string('miles_2.ogg', 'jūdzes').
 
-string('yards_1.ogg', 'yards ').
+string('yards_1.ogg', 'yards').
 string('yards_2.ogg', 'yards ').
 
 % TIME SUPPORT
 string('time.ogg', ', laiks ').
 string('1_hour.ogg', 'vienu stundu ').
 string('hours.ogg', 'laiks ').
-string('less_a_minute.ogg', 'mazāk nekā vienu minūti ').
-string('1_minute.ogg', 'viena minūtes ').
-string('minutes.ogg', 'minūtes ').
+string('less_a_minute.ogg', 'mazāk nekā vienu minūti').
+string('1_minute.ogg', 'viena minūtes').
+string('minutes.ogg', 'minūtes').
 
 
 %% COMMAND BUILDING / WORD ORDER

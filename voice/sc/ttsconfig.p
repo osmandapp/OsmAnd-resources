@@ -25,7 +25,7 @@ fest_language('Sardinian').
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
 string('route_is1.ogg', 'Su biàgiu est ').
-string('route_is2.ogg', 'longu ').
+string('route_is2.ogg', 'longu').
 string('route_calculate.ogg', 'Ricàlculu àndala').
 string('distance.ogg', 'distàntzia ').
 
@@ -40,51 +40,51 @@ string('left_sl.ogg', 'bortare de pagu a manca').
 string('right.ogg', 'bortare a destra').
 string('right_sh.ogg', 'luego a destra').
 string('right_sl.ogg', 'bortare de pagu a destra').
-string('left_keep.ogg', 'mantènnere sa manca ').
+string('left_keep.ogg', 'mantènnere sa manca').
 string('right_keep.ogg', 'mantènnere sa destra ').
-string('left_bear.ogg', 'mantènnere sa manca ').    % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'mantènnere sa destra ').  % in English the same as right_keep, may be different in other languages
+string('left_bear.ogg', 'mantènnere sa manca').    % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'mantènnere sa destra').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
 string('make_uturn1.ogg', 'faghide una furriadura a u ').
-string('make_uturn2.ogg', 'Preparade·bos a una furriadura a U ').
+string('make_uturn2.ogg', 'Preparade·bos a una furriadura a U').
 string('make_uturn_wp.ogg', 'In su primu momentu possìbile, fàghere una furriada a u').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'a intrare in una rutunda').
-string('roundabout.ogg', 'intrade in sa rutunda ').
+string('roundabout.ogg', 'intrade in sa rutunda').
 string('then.ogg', ', pustis').
-string('and.ogg', 'e').
-string('take.ogg', 'pigade sa').
+string('and.ogg', ' e ').
+string('take.ogg', 'pigade sa ').
 string('exit.ogg', 'essida').
 
-string('1st.ogg', 'prima').
-string('2nd.ogg', 'segunda').
-string('3rd.ogg', 'terza').
-string('4th.ogg', 'cuarta').
-string('5th.ogg', 'cuinta').
-string('6th.ogg', 'sesta').
-string('7th.ogg', 'sètima').
-string('8th.ogg', 'otava').
-string('9th.ogg', 'nona').
-string('10th.ogg', 'dètzima').
-string('11th.ogg', 'undighèsima').
-string('12th.ogg', 'doighèsima').
-string('13th.ogg', 'treighèsima').
-string('14th.ogg', 'batordighèsima').
-string('15th.ogg', 'bindighèsima').
-string('16th.ogg', 'seighèsima').
-string('17th.ogg', 'deghesetèsima').
+string('1st.ogg', 'prima ').
+string('2nd.ogg', 'segunda ').
+string('3rd.ogg', 'terza ').
+string('4th.ogg', 'cuarta ').
+string('5th.ogg', 'cuinta ').
+string('6th.ogg', 'sesta ').
+string('7th.ogg', 'sètima ').
+string('8th.ogg', 'otava ').
+string('9th.ogg', 'nona ').
+string('10th.ogg', 'dètzima ').
+string('11th.ogg', 'undighèsima ').
+string('12th.ogg', 'doighèsima ').
+string('13th.ogg', 'treighèsima ').
+string('14th.ogg', 'batordighèsima ').
+string('15th.ogg', 'bindighèsima ').
+string('16th.ogg', 'seighèsima ').
+string('17th.ogg', 'deghesetèsima ').
 
 % STRAIGHT/FOLLOW
 string('go_ahead.ogg', 'Sighide deretu').
-string('follow.ogg', 'Sighide pro').
+string('follow.ogg', 'Sighide pro ').
 
 % ARRIVE
-string('and_arrive_destination.ogg', 'e ais a arribare a destinatzione').
-string('reached_destination.ogg','arribadu a destinatzione').
-string('and_arrive_intermediate.ogg', 'e ais a arribare a su puntu mesanu').
-string('reached_intermediate.ogg', 'arrivati al punto intermedio').
+string('and_arrive_destination.ogg', 'e ais a arribare a destinatzione ').
+string('reached_destination.ogg','arribadu a destinatzione ').
+string('and_arrive_intermediate.ogg', 'e ais a arribare a su puntu mesanu ').
+string('reached_intermediate.ogg', 'arrivati al punto intermedio ').
 
 % NEARBY POINTS
 string('and_arrive_waypoint.ogg', 'e arribades a su puntu mesanu ').
@@ -92,25 +92,25 @@ string('reached_waypoint.ogg', 'arribadu a su puntu mesanu ').
 string('and_arrive_favorite.ogg', 'e arriverai al preferito ').
 string('reached_favorite.ogg', 'arribadu a su prefèrridu ').
 string('and_arrive_poi.ogg', 'e ais a arribare a su puntu de interesse ').
-string('reached_poi.ogg', 'arribadu a su puntu de interesse').
+string('reached_poi.ogg', 'arribadu a su puntu de interesse ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'Barigadu su lìmite de lestresa').
 string('exceed_limit.ogg', 'lìmite de lestresa ').
 string('attention.ogg', 'atentzione, ').
-string('speed_camera.ogg', 'Autovelox ').
-string('border_control.ogg', 'Dogana ').
-string('railroad_crossing.ogg', 'Coladòrgiu a livellu ').
-string('traffic_calming.ogg', 'Minimadore de lestresa ').
-string('toll_booth.ogg', 'Casellu ').
-string('stop.ogg', 'Stop ').
-string('pedestrian_crosswalk.ogg', 'Atraessamentu pedonale ').
+string('speed_camera.ogg', 'Autovelox').
+string('border_control.ogg', 'Dogana').
+string('railroad_crossing.ogg', 'Coladòrgiu a livellu').
+string('traffic_calming.ogg', 'Minimadore de lestresa').
+string('toll_booth.ogg', 'Casellu').
+string('stop.ogg', 'Stop').
+string('pedestrian_crosswalk.ogg', 'Atraessamentu pedonale').
 
 % OTHER PROMPTS
 string('location_lost.ogg', 'Sinnale GPS pèrdidu').
-string('location_recovered.ogg', 'Sinnale GPS torradu ').
-string('off_route.ogg', "Seis essidos dae s''àndala").
-string('back_on_route.ogg', 'si torna sulla rotta ').
+string('location_recovered.ogg', 'Sinnale GPS torradu').
+string('off_route.ogg', "Seis essidos dae s''àndala ").
+string('back_on_route.ogg', 'si torna sulla rotta').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'in ').
@@ -180,35 +180,35 @@ street_is_female(voice([Ref, Name, Dest],_)) :- isFemale(Ref).
 street_is_nothing(voice([Ref, Name, Dest],_)) :- not(isMale(Name)), not(isFemale(Name)).
 
 % DISTANCE UNIT SUPPORT
-string('meters_nominativ.ogg', 'metros ').
-string('meters_dativ.ogg', 'metros ').
-string('around_1_kilometer_nominativ.ogg', 'pagu prus o mancu unu chilòmetru ').
-string('around_1_kilometer_dativ.ogg', 'pagu prus o mancu unu chilòmetru ').
+string('meters_nominativ.ogg', 'metros').
+string('meters_dativ.ogg', 'metros').
+string('around_1_kilometer_nominativ.ogg', 'pagu prus o mancu unu chilòmetru').
+string('around_1_kilometer_dativ.ogg', 'pagu prus o mancu unu chilòmetru').
 string('around.ogg', 'pagu prus o mancu ').
-string('kilometers_nominativ.ogg', 'chilòmetros ').
-string('kilometers_dativ.ogg', 'chilòmetros ').
+string('kilometers_nominativ.ogg', 'chilòmetros').
+string('kilometers_dativ.ogg', 'chilòmetros').
 
-string('feet_nominativ.ogg', 'pedes ').
-string('feet_dativ.ogg', 'pedes ').
-string('1_tenth_of_a_mile_nominativ.ogg', 'unu dètzimu de mìgliu ').
-string('1_tenth_of_a_mile_dativ.ogg', 'unu dètzimu de mìgliu ').
-string('tenths_of_a_mile_nominativ.ogg', 'detzimos de mìgliu ').
-string('tenths_of_a_mile_dativ.ogg', 'detzimos de mìgliu ').
-string('around_1_mile_nominativ.ogg', 'circa un miglio ').
-string('around_1_mile_dativ.ogg', 'circa un miglio ').
+string('feet_nominativ.ogg', 'pedes').
+string('feet_dativ.ogg', 'pedes').
+string('1_tenth_of_a_mile_nominativ.ogg', 'unu dètzimu de mìgliu').
+string('1_tenth_of_a_mile_dativ.ogg', 'unu dètzimu de mìgliu').
+string('tenths_of_a_mile_nominativ.ogg', 'detzimos de mìgliu').
+string('tenths_of_a_mile_dativ.ogg', 'detzimos de mìgliu').
+string('around_1_mile_nominativ.ogg', 'circa un miglio').
+string('around_1_mile_dativ.ogg', 'circa un miglio').
 string('miles_nominativ.ogg', 'mìglios').
-string('miles_dativ.ogg', 'mìglios ').
+string('miles_dativ.ogg', 'mìglios').
 
-string('yards_nominativ.ogg', 'iardas ').
-string('yards_dativ.ogg', 'iardas ').
+string('yards_nominativ.ogg', 'iardas').
+string('yards_dativ.ogg', 'iardas').
 
 % TIME SUPPORT
 string('time.ogg', 'tempus netzessàriu ').
 string('1_hour.ogg', 'un ora ').
 string('hours.ogg', 'oras ').
-string('less_a_minute.ogg', 'de mancu de unu minutu ').
-string('1_minute.ogg', 'unu minutu ').
-string('minutes.ogg', 'minutos ').
+string('less_a_minute.ogg', 'de mancu de unu minutu').
+string('1_minute.ogg', 'unu minutu').
+string('minutes.ogg', 'minutos').
 
 %% COMMAND BUILDING / WORD ORDER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
