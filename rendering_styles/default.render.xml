@@ -1123,12 +1123,12 @@
 
 	<renderingAttribute name="landuseOrchardColor">
 		<case nightMode="true" attrColorValue="$woodColor"/>
-		<case moreDetailed="true" attrColorValue="#9ed88f"/>
+		<case moreDetailed="true" attrColorValue="#A6E595"/>
 		<case attrColorValue="$woodColor"/>
 	</renderingAttribute>
 	<renderingAttribute name="landuseVineyardColor">
 		<case nightMode="true" attrColorValue="$woodColor"/>
-		<case moreDetailed="true" attrColorValue="#9ed88f"/>
+		<case moreDetailed="true" attrColorValue="#A6E595"/>
 		<case attrColorValue="$woodColor"/>
 	</renderingAttribute>
 
@@ -1271,6 +1271,11 @@
 		<case attrColorValue="#d6d3d0"/>
 	</renderingAttribute>
 	<renderingAttribute name="buildingEducationalColor">
+		<case nightMode="true" attrColorValue="#56636b"/>
+		<case moreDetailed="true" attrColorValue="#d9d9b6"/>
+		<case attrColorValue="#a4b0b7"/>
+	</renderingAttribute>
+	<renderingAttribute name="buildingHospitalColor">
 		<case nightMode="true" attrColorValue="#56636b"/>
 		<case moreDetailed="true" attrColorValue="#d9d9b6"/>
 		<case attrColorValue="#a4b0b7"/>
@@ -8176,6 +8181,9 @@
 				</switch>
 				<switch>
 					<case tag="building" value="hospital"/>
+					<apply color="$buildingHospitalColor"/>
+				</switch>
+				<switch>
 					<case tag="building" value="civic"/>
 					<case tag="building" value="hall"/>
 					<case tag="building" value="administrative"/>
@@ -8694,8 +8702,8 @@
 				</case>
 				<case minzoom="12" tag="landuse" value="greenhouse_horticulture" shader="greenhouse_horticulture"/>
 				<case minzoom="12" tag="landuse" value="vineyard" color="$landuseVineyardColor">
-					<apply_if moreDetailed="true" color="$landuseVineyardColor"/>
-					<apply_if moreDetailed="true" minzoom="18" shader="topo_vineyard" color_0="$landuseVineyardColor"/>
+					<apply_if moreDetailed="true" minzoom="14" maxzoom="15" color_0="$landuseVineyardColor" shader="plant_nursery_small"/>
+					<apply_if moreDetailed="true" minzoom="16" color_0="$landuseVineyardColor" shader="vineyard3"/>
 				</case>
 				<case minzoom="12" tag="landuse" value="cemetery" shader="cemetery_small_2" color_0="$woodColor">
 					<case minzoom="15" shader="cemetery_2" color_0="#8cd474">
@@ -8716,7 +8724,7 @@
 				</case>
 				<case minzoom="12" tag="landuse" value="orchard" color="$landuseOrchardColor">
 					<apply_if moreDetailed="true" minzoom="14" maxzoom="15" color_0="#9ed88f" shader="plant_nursery_small"/>
-					<apply_if moreDetailed="true" minzoom="16" color_0="#9ed88f" shader="orchard3"/>
+					<apply_if moreDetailed="true" minzoom="16" color_0="$landuseOrchardColor" shader="orchard3"/>
 				</case>
 				<apply_if nightMode="true" shader="" color="$shaderColorNight"/>
 			</switch>
