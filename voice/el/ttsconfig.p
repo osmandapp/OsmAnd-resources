@@ -25,7 +25,7 @@ language('el').
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
 string('route_is.ogg', 'Το ταξίδι είναι ').
-string('route_calculate.ogg', 'Επαναϋπολογισμός διαδρομής ').
+string('route_calculate.ogg', 'Επαναϋπολογισμός διαδρομής').
 string('distance.ogg', ', απόσταση ').
 
 % LEFT/RIGHT
@@ -33,28 +33,28 @@ string('distance.ogg', ', απόσταση ').
 string('after.ogg', 'μετά από ').
 string('in.ogg', 'σε ').
 
-string('left.ogg', 'στρίψτε αριστερά ').
-string('left_sh.ogg', 'στρίψτε κλειστά αριστερά ').
-string('left_sl.ogg', 'στρίψτε λοξά αριστερά ').
-string('right.ogg', 'στρίψτε δεξιά ').
-string('right_sh.ogg', 'στρίψτε κλειστά δεξιά ').
-string('right_sl.ogg', 'στρίψτε λοξά δεξιά ').
-string('left_keep.ogg', 'μείνετε αριστερά ').
-string('right_keep.ogg', 'μείνετε δεξιά ').
-string('left_bear.ogg', 'μείνετε αριστερά ').  % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'μείνετε δεξιά ').    % in English the same as right_keep, may be different in other languages
+string('left.ogg', 'στρίψτε αριστερά').
+string('left_sh.ogg', 'στρίψτε κλειστά αριστερά').
+string('left_sl.ogg', 'στρίψτε λοξά αριστερά').
+string('right.ogg', 'στρίψτε δεξιά').
+string('right_sh.ogg', 'στρίψτε κλειστά δεξιά').
+string('right_sl.ogg', 'στρίψτε λοξά δεξιά').
+string('left_keep.ogg', 'μείνετε αριστερά').
+string('right_keep.ogg', 'μείνετε δεξιά').
+string('left_bear.ogg', 'μείνετε αριστερά').  % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'μείνετε δεξιά').    % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
-string('make_uturn.ogg', 'κάντε αναστροφή ').
-string('make_uturn_wp.ogg', 'Όταν είναι δυνατόν, κάντε αναστροφή ').
+string('make_uturn.ogg', 'κάντε αναστροφή').
+string('make_uturn_wp.ogg', 'Όταν είναι δυνατόν, κάντε αναστροφή').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Προετοιμαστείτε να μπείτε σε κυκλικό κόμβο μετά από ').
-string('roundabout.ogg', 'μπείτε στον κυκλικό κόμβο, και βγείτε στην ').
+string('prepare_roundabout.ogg', 'Προετοιμαστείτε να μπείτε σε κυκλικό κόμβο μετά από').
+string('roundabout.ogg', 'μπείτε στον κυκλικό κόμβο, και βγείτε στην').
 string('then.ogg', ', και ').
-string('and.ogg', 'και ').
+string('and.ogg', ' και ').
 string('take.ogg', 'βγείτε στην ').
-string('exit.ogg', 'έξοδο ').
+string('exit.ogg', 'έξοδο').
 
 string('1st.ogg', 'πρώτη ').
 string('2nd.ogg', 'δεύτερη ').
@@ -75,7 +75,7 @@ string('16th.ogg', 'δέκατη έκτη ').
 string('17th.ogg', 'δέκατη έβδομη ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Προχωρείστε ευθεία ').
+string('go_ahead.ogg', 'Προχωρείστε ευθεία').
 string('follow.ogg', 'Ακολουθήστε τον δρόμο για ').
 
 % ARRIVE
@@ -85,8 +85,8 @@ string('and_arrive_intermediate.ogg', 'και φτάσατε στο ενδιάμ
 string('reached_intermediate.ogg', 'φτάσατε στο ενδιάμεσο σημείο ').
 
 % NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'και φτάσατε στο σημείο GPX').
-string('reached_waypoint.ogg', 'φτάσατε στο σημείο GPX').
+string('and_arrive_waypoint.ogg', 'και φτάσατε στο σημείο GPX ').
+string('reached_waypoint.ogg', 'φτάσατε στο σημείο GPX ').
 string('and_arrive_favorite.ogg', 'and pass favorite ').
 string('reached_favorite.ogg', 'you are passing favorite ').
 string('and_arrive_poi.ogg', 'and pass POI ').
@@ -96,47 +96,47 @@ string('reached_poi.ogg', 'you are passing POI ').
 %string('exceed_limit.ogg', 'έχετε υπερβεί το όριο ταχύτητας ').
 string('exceed_limit.ogg', 'όριο ταχύτητας ').
 string('attention.ogg', 'προσοχή , ').
-string('speed_camera.ogg', 'κάμερα ταχύτητας ').
-string('border_control.ogg', 'τον έλεγχο των συνόρων ').
-string('railroad_crossing.ogg', 'σιδηρόδρομος διάβαση ').
-string('traffic_calming.ogg', 'ήπιας κυκλοφορίας ').
-string('toll_booth.ogg', 'διόδια ').
-string('stop.ogg', 'σήμα στοπ ').
-string('pedestrian_crosswalk.ogg', 'διάβαση πεζών πεζών ').
+string('speed_camera.ogg', 'κάμερα ταχύτητας').
+string('border_control.ogg', 'τον έλεγχο των συνόρων').
+string('railroad_crossing.ogg', 'σιδηρόδρομος διάβαση').
+string('traffic_calming.ogg', 'ήπιας κυκλοφορίας').
+string('toll_booth.ogg', 'διόδια').
+string('stop.ogg', 'σήμα στοπ').
+string('pedestrian_crosswalk.ogg', 'διάβαση πεζών πεζών').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'Το σήμα gps χάθηκε ').
-string('location_recovered.ogg', 'gps σήμα ανακτηθεί ').
+string('location_lost.ogg', 'Το σήμα gps χάθηκε').
+string('location_recovered.ogg', 'gps σήμα ανακτηθεί').
 string('off_route.ogg', 'έχετε παρεκκλίνει από τη διαδρομή ').
-string('back_on_route.ogg', 'είστε πίσω στη διαδρομή ').
+string('back_on_route.ogg', 'είστε πίσω στη διαδρομή').
 
 % STREET NAME PREPOSITIONS
-string('onto.ogg', 'στην  ').
-string('on.ogg', 'στην  ').
-string('to.ogg', 'στην  ').
+string('onto.ogg', 'στην ').
+string('on.ogg', 'στην ').
+string('to.ogg', 'στην ').
 string('toward.ogg', 'προς ').
 
 % DISTANCE UNIT SUPPORT
-string('meters.ogg', 'μέτρα ').
-string('around_1_kilometer.ogg', 'περίπου ένα χιλιόμετρο ').
+string('meters.ogg', 'μέτρα').
+string('around_1_kilometer.ogg', 'περίπου ένα χιλιόμετρο').
 string('around.ogg', 'περίπου ').
-string('kilometers.ogg', 'χιλιόμετρα ').
+string('kilometers.ogg', 'χιλιόμετρα').
 
-string('feet.ogg', 'πόδια ').
+string('feet.ogg', 'πόδια').
 string('1_tenth_of_a_mile.ogg', 'ένα δέκατο του μιλίου').
 string('tenths_of_a_mile.ogg', 'δέκατα του μιλίου').
-string('around_1_mile.ogg', 'περίπου ένα μίλι ').
-string('miles.ogg', 'μίλια ').
+string('around_1_mile.ogg', 'περίπου ένα μίλι').
+string('miles.ogg', 'μίλια').
 
-string('yards.ogg', 'γιάρδες ').
+string('yards.ogg', 'γιάρδες').
 
 % TIME SUPPORT
 string('time.ogg', 'χρόνος που απαιτείται ').
 string('1_hour.ogg', 'μία ώρα ').
 string('hours.ogg', 'ώρες ').
-string('less_a_minute.ogg', 'λιγότερο από ένα λεπτό ').
-string('1_minute.ogg', 'ένα λεπτό ').
-string('minutes.ogg', 'λεπτά ').
+string('less_a_minute.ogg', 'λιγότερο από ένα λεπτό').
+string('1_minute.ogg', 'ένα λεπτό').
+string('minutes.ogg', 'λεπτά').
 
 
 %% COMMAND BUILDING / WORD ORDER

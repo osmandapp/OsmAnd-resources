@@ -24,7 +24,7 @@ language('hi').
 %% STRINGS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
-string('route_is.ogg', 'अंतर ').
+string('route_is.ogg', 'अंतर').
 string('route_is2.ogg', ' है').
 string('route_calculate.ogg', 'मार्ग पुनर्गणना,').
 string('distance.ogg', ', अंतर ').
@@ -34,31 +34,31 @@ string('distance.ogg', ', अंतर ').
 string('after.ogg', ' के बाद ').
 string('in.ogg', ' में').
 
-string('mudiye.ogg', ' मुडिये').
-string('left.ogg', ' बाये ').
-string('left_sh.ogg', ' तेजी से बाये ').
-string('left_sl.ogg', ' हलके से बाये ').
-string('right.ogg', ' दायने ').
-string('right_sh.ogg', ' तेजी से दायने ').
-string('right_sl.ogg', ' हलके से दायने ').
+string('mudiye.ogg', 'मुडिये').
+string('left.ogg', 'बाये ').
+string('left_sh.ogg', 'तेजी से बाये ').
+string('left_sl.ogg', 'हलके से बाये ').
+string('right.ogg', 'दायने ').
+string('right_sh.ogg', 'तेजी से दायने ').
+string('right_sl.ogg', 'हलके से दायने ').
 string('left_keep.ogg', 'बाये रहे  ').
 string('right_keep.ogg', 'दायने रहे ').
-string('left_bear.ogg',  'बाये रहे  ').    % in English the same as left_keep, may be different in other languages
+string('left_bear.ogg', 'बाये रहे  ').     % in English the same as left_keep, may be different in other languages
 string('right_bear.ogg', 'दायने रहे ').    % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
 string('prepare_make_uturn.ogg', 'के बाद वापस मुडने के लिये तयार रहे ').
-string('make_uturn.ogg', ' के बाद वापस मुडिये ').
-string('make_uturn2.ogg', ' वापस मुडिये ').
-string('make_uturn_wp.ogg', ' जब संभव हो तब वापस मुडिये ').
+string('make_uturn.ogg', 'के बाद वापस मुडिये ').
+string('make_uturn2.ogg', 'वापस मुडिये ').
+string('make_uturn_wp.ogg', 'जब संभव हो तब वापस मुडिये ').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'के बाद वापस मुडने के लिये तयार रहे ').
-string('roundabout.ogg', ' के बाद वापस मुडिये और बाहर जाने का ').
+string('roundabout.ogg', 'के बाद वापस मुडिये और बाहर जाने का ').
 string('then.ogg', 'और फिर ').
-string('and.ogg', 'और ').
+string('and.ogg', ' और ').
 string('take.ogg', 'बाहर जाने का ').
-string('exit.ogg', 'मार्ग चुने ').
+string('exit.ogg', 'मार्ग चुने').
 
 string('1st.ogg', 'पहला ').
 string('2nd.ogg', 'दूसरा ').
@@ -100,19 +100,19 @@ string('reached_poi.ogg', 'you are passing POI ').
 %string('exceed_limit.ogg', 'आप गति सीमा से अधिक कर रहे हैं ').
 string('exceed_limit.ogg', 'गति सीमा ').
 string('attention.ogg', 'ध्यान ').
-string('speed_camera.ogg', 'गति कैमरा ').
-string('border_control.ogg', 'सीमा नियंत्रण ').
-string('railroad_crossing.ogg', 'रेलमार्ग पारगमन ').
-string('traffic_calming.ogg', 'ट्रैफिक नियंत्रण करना ').
-string('toll_booth.ogg', 'टोल बूथ ').
-string('stop.ogg', 'रुकने का संकेत ').
-string('pedestrian_crosswalk.ogg', 'पैदल चलने वालों का मार्ग ').
+string('speed_camera.ogg', 'गति कैमरा').
+string('border_control.ogg', 'सीमा नियंत्रण').
+string('railroad_crossing.ogg', 'रेलमार्ग पारगमन').
+string('traffic_calming.ogg', 'ट्रैफिक नियंत्रण करना').
+string('toll_booth.ogg', 'टोल बूथ').
+string('stop.ogg', 'रुकने का संकेत').
+string('pedestrian_crosswalk.ogg', 'पैदल चलने वालों का मार्ग').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'जी पी एस सिग्नल नही ').
+string('location_lost.ogg', 'जी पी एस सिग्नल नही').
 string('location_recovered.ogg', 'जीपीएस संकेत बहाल').
 string('off_route.ogg', 'आप मार्ग से भटक गए हैं ').
-string('back_on_route.ogg', 'आप मार्ग पर वापस आ रहे हैं ').
+string('back_on_route.ogg', 'आप मार्ग पर वापस आ रहे हैं').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'पर ').
@@ -121,26 +121,26 @@ string('to.ogg', 'पर ').
 string('toward.ogg', 'toward ').
 
 % DISTANCE UNIT SUPPORT
-string('meters.ogg', ' मीटर ').
-string('around_1_kilometer.ogg', 'साधारण 1 किलोमीटर ').
+string('meters.ogg', 'मीटर ').
+string('around_1_kilometer.ogg', 'साधारण 1 किलोमीटर').
 string('around.ogg', 'साधारण ').
-string('kilometers.ogg', ' किलोमीटर ').
+string('kilometers.ogg', 'किलोमीटर').
 
 string('feet.ogg', 'पैर').
 string('1_tenth_of_a_mile.ogg', 'एक मील का दसवां').
 string('tenths_of_a_mile.ogg', 'एक मील का दसवां').
-string('around_1_mile.ogg', 'के बारे में 1 मील ').
-string('miles.ogg', 'मील ').
+string('around_1_mile.ogg', 'के बारे में 1 मील').
+string('miles.ogg', 'मील').
 
-string('yards.ogg', 'गज की दूरी पर ').
+string('yards.ogg', 'गज की दूरी पर').
 
 % TIME SUPPORT
 string('time.ogg', 'समय की जरूरत ').
 string('1_hour.ogg', 'एक घंटे ').
 string('hours.ogg', 'घंटे ').
-string('less_a_minute.ogg', 'कम से कम एक मिनट ').
-string('1_minute.ogg', 'एक मिनट ').
-string('minutes.ogg', 'मिनट ').
+string('less_a_minute.ogg', 'कम से कम एक मिनट').
+string('1_minute.ogg', 'एक मिनट').
+string('minutes.ogg', 'मिनट').
 
 
 %% COMMAND BUILDING / WORD ORDER

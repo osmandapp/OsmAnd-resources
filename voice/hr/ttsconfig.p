@@ -33,26 +33,26 @@ string('distance.ogg', 'udaljenost ').
 string('after.ogg', 'nakon ').
 string('in.ogg', ' ').
 
-string('left.ogg', 'skrenite lijevo ').
-string('left_sh.ogg', 'skrenite oštro ulijevo ').
-string('left_sl.ogg', 'skrenite blago ulijevo ').
-string('right.ogg', 'skrenite desno ').
-string('right_sh.ogg', 'skrenite oštro udesno ').
-string('right_sl.ogg', 'skrenite blago udesno ').
+string('left.ogg', 'skrenite lijevo').
+string('left_sh.ogg', 'skrenite oštro ulijevo').
+string('left_sl.ogg', 'skrenite blago ulijevo').
+string('right.ogg', 'skrenite desno').
+string('right_sh.ogg', 'skrenite oštro udesno').
+string('right_sl.ogg', 'skrenite blago udesno').
 string('left_keep.ogg', 'držite se lijeve strane').
 string('right_keep.ogg', 'držite se desne strane').
 string('left_bear.ogg', 'držite se lijeve strane').   % in English the same as left_keep, may be different in other languages
 string('right_bear.ogg', 'držite se desne strane').   % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
-string('make_uturn.ogg', 'Napravite polukružno skretanje ').
-string('make_uturn_wp.ogg', 'Kada je moguće, molim napravite polukružno skretanje ').
+string('make_uturn.ogg', 'Napravite polukružno skretanje').
+string('make_uturn_wp.ogg', 'Kada je moguće, molim napravite polukružno skretanje').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Pripremite se na ulazak u kružni tok ').
+string('prepare_roundabout.ogg', 'Pripremite se na ulazak u kružni tok').
 string('roundabout.ogg', 'uđite u kružni tok, ').
 string('then.ogg', ', onda ').
-string('and.ogg', 'i ').
+string('and.ogg', ' i ').
 string('take.ogg', 'skrenite ').
 string('exit.ogg', 'izlaz ').
 
@@ -75,7 +75,7 @@ string('16th.ogg', 'šesnaesti ').
 string('17th.ogg', 'sedamnaesti ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Idite ravno naprijed ').
+string('go_ahead.ogg', 'Idite ravno naprijed').
 string('follow.ogg', 'Pratite cestu ').
 
 % ARRIVE
@@ -96,19 +96,19 @@ string('reached_poi.ogg', 'ste u prolazu POI ').
 %string('exceed_limit.ogg', 'prekoračili ste dozvoljenu brzinu ').
 string('exceed_limit.ogg', 'ograničenje brzine ').
 string('attention.ogg', 'Pažnja, ').
-string('speed_camera.ogg', 'brzina kamere ').
-string('border_control.ogg', 'granična kontrola ').
-string('railroad_crossing.ogg', 'prijelaz preko pruge ').
-string('traffic_calming.ogg', 'promet smiruje ').
-string('toll_booth.ogg', 'naplatne kućice ').
-string('stop.ogg', 'znak stop ').
-string('pedestrian_crosswalk.ogg', 'pješačka zebra ').
+string('speed_camera.ogg', 'brzina kamere').
+string('border_control.ogg', 'granična kontrola').
+string('railroad_crossing.ogg', 'prijelaz preko pruge').
+string('traffic_calming.ogg', 'promet smiruje').
+string('toll_booth.ogg', 'naplatne kućice').
+string('stop.ogg', 'znak stop').
+string('pedestrian_crosswalk.ogg', 'pješačka zebra').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'g p s signal je izgubljen ').
-string('location_recovered.ogg', 'g p s signal je ponovno pronađen ').
-string('off_route.ogg', 'you have been off the route for').
-string('back_on_route.ogg', 'ti si natrag na ruti ').
+string('location_lost.ogg', 'g p s signal je izgubljen').
+string('location_recovered.ogg', 'g p s signal je ponovno pronađen').
+string('off_route.ogg', 'you have been off the route for ').
+string('back_on_route.ogg', 'ti si natrag na ruti').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'u ').
@@ -117,25 +117,25 @@ string('to.ogg', 'u ').
 string('toward.ogg', 'prema ').
 
 % DISTANCE UNIT SUPPORT
-string('meters.ogg', 'metara ').
-string('around_1_kilometer.ogg', 'približno 1 kilometar ').
-string('around.ogg', 'približno ').
-string('kilometers.ogg', 'kilometara ').
+string('meters.ogg', 'metara').
+string('around_1_kilometer.ogg', 'približno 1 kilometar').
+string('around.ogg', 'približno').
+string('kilometers.ogg', 'kilometara').
 
-string('feet.ogg', 'stopa ').
-string('1_tenth_of_a_mile.ogg', 'jedna desetina milje ').
-string('tenths_of_a_mile.ogg', 'desetine milje ').
-string('around_1_mile.ogg', 'približno jedna milja ').
-string('miles.ogg', 'milja ').
-string('yards.ogg', 'jarda ').
+string('feet.ogg', 'stopa').
+string('1_tenth_of_a_mile.ogg', 'jedna desetina milje').
+string('tenths_of_a_mile.ogg', 'desetine milje').
+string('around_1_mile.ogg', 'približno jedna milja').
+string('miles.ogg', 'milja').
+string('yards.ogg', 'jarda').
 
 % TIME SUPPORT
 string('time.ogg', 'vrijeme je ').
 string('1_hour.ogg', 'jedan sat ').
 string('hours.ogg', 'sati ').
-string('less_a_minute.ogg', 'manje od jedne minute ').
-string('1_minute.ogg', 'jedna minuta ').
-string('minutes.ogg', 'minuta ').
+string('less_a_minute.ogg', 'manje od jedne minute').
+string('1_minute.ogg', 'jedna minuta').
+string('minutes.ogg', 'minuta').
 
 
 %% COMMAND BUILDING / WORD ORDER

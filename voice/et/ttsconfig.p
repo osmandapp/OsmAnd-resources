@@ -35,31 +35,31 @@ string('distance.ogg', 'Tee-pikkus on ').
 string('after.ogg', 'pärast ').
 string('in.ogg', ' ').
 
-string('left.ogg', 'keerake vasakule ').
-string('left_sh.ogg', 'keerake järsult vasakule ').
-string('left_sl.ogg', 'keerake pisut vasakule ').
-string('right.ogg', 'keerake paremale ').
-string('right_sh.ogg', 'keerake järsult paremale ').
-string('right_sl.ogg', 'keerake pisut paremale ').
-string('left_keep.ogg', 'hoidke vasakule ').
-string('right_keep.ogg', 'hoidke paremale ').
-string('left_bear.ogg', 'hoidke vasakule ').   % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'hoidke paremale ').  % in English the same as right_keep, may be different in other languages
+string('left.ogg', 'keerake vasakule').
+string('left_sh.ogg', 'keerake järsult vasakule').
+string('left_sl.ogg', 'keerake pisut vasakule').
+string('right.ogg', 'keerake paremale').
+string('right_sh.ogg', 'keerake järsult paremale').
+string('right_sl.ogg', 'keerake pisut paremale').
+string('left_keep.ogg', 'hoidke vasakule').
+string('right_keep.ogg', 'hoidke paremale').
+string('left_bear.ogg', 'hoidke vasakule').   % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'hoidke paremale').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
-string('make_uturn.ogg', 'Keerake tagasi ').
-string('make_uturn_inf.ogg', 'keerame tagasi ').
-string('make_uturn_wp.ogg', 'Kui võimalik, keerake tagasi ').
+string('make_uturn.ogg', 'Keerake tagasi').
+string('make_uturn_inf.ogg', 'keerame tagasi').
+string('make_uturn_wp.ogg', 'Kui võimalik, keerake tagasi').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Valmistuge sõitma ring-ristmikule ').
-string('prepare_walk_roundabout.ogg', 'Valmistuge kõndima ring-ristmikule ').
-string('roundabout.ogg', 'sõitke ring-ristmikule ').
-string('walk_roundabout.ogg', 'kõndige ring-ristmikule ').
+string('prepare_roundabout.ogg', 'Valmistuge sõitma ring-ristmikule').
+string('prepare_walk_roundabout.ogg', 'Valmistuge kõndima ring-ristmikule').
+string('roundabout.ogg', 'sõitke ring-ristmikule').
+string('walk_roundabout.ogg', 'kõndige ring-ristmikule').
 string('then.ogg', ', siis ').
-string('and.ogg', 'ja ').
+string('and.ogg', ' ja ').
 string('take.ogg', 'valige ').
-string('exit.ogg', 'välja-sõit ').
+string('exit.ogg', 'välja-sõit').
 
 string('1st.ogg', 'esimene ').
 string('2nd.ogg', 'teine ').
@@ -80,7 +80,7 @@ string('16th.ogg', 'kuueteistkümnes ').
 string('17th.ogg', 'seitsmeteistkümnes ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Liikuge otse ').
+string('go_ahead.ogg', 'Liikuge otse').
 string('follow.ogg', 'Jätkake ').
 
 % ARRIVE
@@ -101,20 +101,20 @@ string('reached_poi.ogg', 'you are passing POI ').
 %string('exceed_limit.ogg', 'Ületate piir-kiirust.').
 string('exceed_limit.ogg', 'piir-kiirust ').
 string('attention.ogg', 'Tähelepanu! ').
-string('speed_camera.ogg', 'kiiruskaamera ').
-string('border_control.ogg', 'piirikontrolli ').
-string('railroad_crossing.ogg', 'raudteeülesõit ').
-string('traffic_calming.ogg', 'liikluse rahunemine ').
-string('toll_booth.ogg', 'tolliputka ').
-string('stop.ogg', 'stoppmärk ').
-string('pedestrian_crosswalk.ogg', 'jalakäijate ülekäigurada ').
+string('speed_camera.ogg', 'kiiruskaamera').
+string('border_control.ogg', 'piirikontrolli').
+string('railroad_crossing.ogg', 'raudteeülesõit').
+string('traffic_calming.ogg', 'liikluse rahunemine').
+string('toll_booth.ogg', 'tolliputka').
+string('stop.ogg', 'stoppmärk').
+string('pedestrian_crosswalk.ogg', 'jalakäijate ülekäigurada').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'Geepe-essi levi pole. ').
-string('location_recovered.ogg', 'Geepe-essi levi taastus. ').
+string('location_lost.ogg', 'Geepe-essi levi pole.').
+string('location_recovered.ogg', 'Geepe-essi levi taastus.').
 string('you_are.ogg', 'Olete ').
 string('off_route.ogg', 'plaanitud teest kõrvale kaldunud ').
-string('back_on_route.ogg', 'olete tagasi liinil ').
+string('back_on_route.ogg', 'olete tagasi liinil').
 
 % STREET NAME PREPOSITIONS
 % TODO:
@@ -161,39 +161,39 @@ string('to.ogg', 'to ').
 string('toward.ogg', 'suunas').
 
 % DISTANCE UNIT SUPPORT
-string('meters.ogg', 'meetrit ').
-string('around_1_kilometer.ogg', 'umbes üks kilomeeter ').
-string('around.ogg', 'ligikaudu ').
-string('kilometers.ogg', 'kilomeetrit ').
+string('meters.ogg', 'meetrit').
+string('around_1_kilometer.ogg', 'umbes üks kilomeeter').
+string('around.ogg', 'ligikaudu').
+string('kilometers.ogg', 'kilomeetrit').
 
-string('feet.ogg', 'jalga ').
-string('1_tenth_of_a_mile.ogg', 'üks kümnendik miili ').
-string('tenths_of_a_mile.ogg', 'kümnendikku miili ').
-string('around_1_mile.ogg', 'umbes üks miil ').
-string('miles.ogg', 'miili ').
+string('feet.ogg', 'jalga').
+string('1_tenth_of_a_mile.ogg', 'üks kümnendik miili').
+string('tenths_of_a_mile.ogg', 'kümnendikku miili').
+string('around_1_mile.ogg', 'umbes üks miil').
+string('miles.ogg', 'miili').
 
-string('yards.ogg', 'jardi ').
+string('yards.ogg', 'jardi').
 
 % Distance units in genitive case
-string('of_meters.ogg', 'meetri ').
-string('of_around_1_kilometer.ogg', 'umbes ühe kilomeetri ').
-string('of_kilometers.ogg', 'kilomeetri ').
+string('of_meters.ogg', 'meetri').
+string('of_around_1_kilometer.ogg', 'umbes ühe kilomeetri').
+string('of_kilometers.ogg', 'kilomeetri').
 
-string('of_feet.ogg', 'jala ').
-string('of_1_tenth_of_a_mile.ogg', 'ühe kümnendiku miili ').
-string('of_tenths_of_a_mile.ogg', 'kümnendiku miili ').
-string('of_around_1_mile.ogg', 'umbes ühe miili ').
-string('of_miles.ogg', 'miili ').
+string('of_feet.ogg', 'jala').
+string('of_1_tenth_of_a_mile.ogg', 'ühe kümnendiku miili').
+string('of_tenths_of_a_mile.ogg', 'kümnendiku miili').
+string('of_around_1_mile.ogg', 'umbes ühe miili').
+string('of_miles.ogg', 'miili').
 
-string('of_yards.ogg', 'jardi ').
+string('of_yards.ogg', 'jardi').
 
 % TIME SUPPORT
 string('time.ogg', 'aeg ').
 string('1_hour.ogg', 'üks tund ').
 string('hours.ogg', 'tundi ').
-string('less_a_minute.ogg', 'vähem kui minut ').
-string('1_minute.ogg', 'üks minut ').
-string('minutes.ogg', 'minutit ').
+string('less_a_minute.ogg', 'vähem kui minut').
+string('1_minute.ogg', 'üks minut').
+string('minutes.ogg', 'minutit').
 
 % Numbers in the genitive case.
 string('of_1.ogg', 'ühe').

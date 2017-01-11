@@ -25,7 +25,7 @@ language('fi').
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
 string('route_is.ogg', 'Matkan pituus on ').
-string('route_calculate.ogg', 'Reitin uudelleenlaskenta ').
+string('route_calculate.ogg', 'Reitin uudelleenlaskenta').
 string('distance.ogg', ', etäisyys ').
 
 % LEFT/RIGHT
@@ -36,28 +36,28 @@ string('get.ogg', 'päästä  ').
 string('now.ogg', 'nyt,  ').
 
    % Vasempaan/vasemmalle and oikeaan/oikealle are interchangeable in normal speech but the Finnish military standard in directions is VASEMPAAN and OIKEALLE. We should also do this as it makes it much easier to distinguish in noise.
-string('left.ogg', 'käänny vasempaan ').
-string('left_sh.ogg', 'käänny jyrkästi vasempaan ').
-string('left_sl.ogg', 'käänny loivasti vasempaan ').
-string('right.ogg', 'käänny oikealle ').
-string('right_sh.ogg', 'käänny jyrkästi oikealle ').
-string('right_sl.ogg', 'käänny loivasti oikealle ').
-string('left_keep.ogg', 'pidä vasen ').
-string('right_keep.ogg', 'pidä oikea ').
-string('left_bear.ogg', 'pidä vasen ').    % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'pidä oikea ').   % in English the same as right_keep, may be different in other languages
+string('left.ogg', 'käänny vasempaan').
+string('left_sh.ogg', 'käänny jyrkästi vasempaan').
+string('left_sl.ogg', 'käänny loivasti vasempaan').
+string('right.ogg', 'käänny oikealle').
+string('right_sh.ogg', 'käänny jyrkästi oikealle').
+string('right_sl.ogg', 'käänny loivasti oikealle').
+string('left_keep.ogg', 'pidä vasen').
+string('right_keep.ogg', 'pidä oikea').
+string('left_bear.ogg', 'pidä vasen').    % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'pidä oikea').   % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
-%string('prepare_make_uturn.ogg', 'Valmistaudu kääntymään takaisin ').
-string('make_uturn1.ogg', 'Käänny takaisin ').
-string('make_uturn2.ogg', 'Nyt, käänny takaisin ').
-string('make_uturn_wp.ogg', 'Käänny takaisin, kun mahdollista ').
+%string('prepare_make_uturn.ogg', 'Valmistaudu kääntymään takaisin').
+string('make_uturn1.ogg', 'Käänny takaisin').
+string('make_uturn2.ogg', 'Nyt, käänny takaisin').
+string('make_uturn_wp.ogg', 'Käänny takaisin, kun mahdollista').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Valmistaudu ajamaan liikenneympyrään ').
-string('roundabout.ogg', 'Aja liikenneympyrään ').
+string('prepare_roundabout.ogg', 'Valmistaudu ajamaan liikenneympyrään').
+string('roundabout.ogg', 'Aja liikenneympyrään').
 string('then.ogg', 'sitten ').
-string('and.ogg', 'ja ').
+string('and.ogg', ' ja ').
 string('take.ogg', 'päästä ja ota ').
 string('exit.ogg', 'liittymä ').
 string('take2.ogg', 'Nyt, ota ').
@@ -81,18 +81,18 @@ string('16th.ogg', 'kuudestoista ').
 string('17th.ogg', 'seitsemästoista ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Jatka suoraan ').
+string('go_ahead.ogg', 'Jatka suoraan').
 string('follow.ogg', 'Seuraa tietä ').
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'ja olet perillä ').
 string('reached_destination.ogg', 'olet perillä ').
-string('and_arrive_intermediate.ogg', 'ja saavut välietappiin').
-string('reached_intermediate.ogg', 'olet välietapissa').
+string('and_arrive_intermediate.ogg', 'ja saavut välietappiin ').
+string('reached_intermediate.ogg', 'olet välietapissa ').
 
 % NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'ja saavut reittipisteeseen').
-string('reached_waypoint.ogg', 'olet reittipisteessä').
+string('and_arrive_waypoint.ogg', 'ja saavut reittipisteeseen ').
+string('reached_waypoint.ogg', 'olet reittipisteessä ').
 string('and_arrive_favorite.ogg', 'and pass favorite ').
 string('reached_favorite.ogg', 'you are passing favorite ').
 string('and_arrive_poi.ogg', 'and pass POI ').
@@ -103,18 +103,18 @@ string('reached_poi.ogg', 'you are passing POI ').
 string('exceed_limit.ogg', 'nopeusrajoituksen ').
 string('attention.ogg', 'huomio, ').
 string('speed_camera.ogg', 'nopeuskamera').
-string('border_control.ogg', 'rajavalvonta ').
-string('railroad_crossing.ogg', 'tasoristeys ').
-string('traffic_calming.ogg', 'liikenne rauhoittava ').
-string('toll_booth.ogg', 'tietullien ').
-string('stop.ogg', 'Stop-merkki ').
-string('pedestrian_crosswalk.ogg', 'suojatie ').
+string('border_control.ogg', 'rajavalvonta').
+string('railroad_crossing.ogg', 'tasoristeys').
+string('traffic_calming.ogg', 'liikenne rauhoittava').
+string('toll_booth.ogg', 'tietullien').
+string('stop.ogg', 'Stop-merkki').
+string('pedestrian_crosswalk.ogg', 'suojatie').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'GPS-signaali katosi ').
-string('location_recovered.ogg', 'GPS-signaali palautui ').
+string('location_lost.ogg', 'GPS-signaali katosi').
+string('location_recovered.ogg', 'GPS-signaali palautui').
 string('off_route.ogg', 'olet poikennut reitiltä ').
-string('back_on_route.ogg', 'olet taas reitillä ').
+string('back_on_route.ogg', 'olet taas reitillä').
 
 % STREET NAME PREPOSITIONS
 % In Finnish, street names would have to be inflected:
@@ -127,35 +127,35 @@ string('to.ogg', ' ').
 string('toward.ogg', 'kohti').
 
 % DISTANCE UNIT SUPPORT
-string('meters_metrin.ogg', 'metrin ').
-string('meters_metri.ogg', 'metriä ').
-string('around_1_kilometer_metrin.ogg', 'noin 1 kilometrin ').
-string('around_1_kilometer_metri.ogg', 'noin 1 kilometri ').
+string('meters_metrin.ogg', 'metrin').
+string('meters_metri.ogg', 'metriä').
+string('around_1_kilometer_metrin.ogg', 'noin 1 kilometrin').
+string('around_1_kilometer_metri.ogg', 'noin 1 kilometri').
 string('around.ogg', 'noin').  % Note: do not put space after word "noin" because for some reason the SVOX Finnish Satu Voice announces the number wrong if there is a space
-string('kilometers_metrin.ogg', 'kilometrin ').
-string('kilometers_metri.ogg', 'kilometriä ').
+string('kilometers_metrin.ogg', 'kilometrin').
+string('kilometers_metri.ogg', 'kilometriä').
 
-string('feet_metrin.ogg', 'jalkaa ').
-string('feet_metri.ogg', 'jalkaa ').
-string('1_tenth_of_a_mile_metrin.ogg', 'mailin kymmenyksen ').
-string('1_tenth_of_a_mile_metri.ogg', 'mailin kymmenys ').
-string('tenths_of_a_mile_metrin.ogg', 'mailin kymmenyksen ').
-string('tenths_of_a_mile_metri.ogg', 'mailin kymmenystä ').
-string('around_1_mile_metrin.ogg', 'noin yhden mailin ').
-string('around_1_mile_metri.ogg', 'noin yksi maili ').
-string('miles_metrin.ogg', 'mailin ').
-string('miles_metri.ogg', 'maili ').
+string('feet_metrin.ogg', 'jalkaa').
+string('feet_metri.ogg', 'jalkaa').
+string('1_tenth_of_a_mile_metrin.ogg', 'mailin kymmenyksen').
+string('1_tenth_of_a_mile_metri.ogg', 'mailin kymmenys').
+string('tenths_of_a_mile_metrin.ogg', 'mailin kymmenyksen').
+string('tenths_of_a_mile_metri.ogg', 'mailin kymmenystä').
+string('around_1_mile_metrin.ogg', 'noin yhden mailin').
+string('around_1_mile_metri.ogg', 'noin yksi maili').
+string('miles_metrin.ogg', 'mailin').
+string('miles_metri.ogg', 'maili').
 
-string('yards_metrin.ogg', 'jaardin ').
-string('yards_metri.ogg', 'jaardi ').
+string('yards_metrin.ogg', 'jaardin').
+string('yards_metri.ogg', 'jaardi').
 
 % TIME SUPPORT
 string('time.ogg', ', aikaa ').
 string('1_hour.ogg', 'yksi tunti ').
 string('hours.ogg', 'tuntia ').
-string('less_a_minute.ogg', 'alle minuutti ').
-string('1_minute.ogg', 'minuutti ').
-string('minutes.ogg', 'minuuttia ').
+string('less_a_minute.ogg', 'alle minuutti').
+string('1_minute.ogg', 'minuutti').
+string('minutes.ogg', 'minuuttia').
 
 
 %% COMMAND BUILDING / WORD ORDER

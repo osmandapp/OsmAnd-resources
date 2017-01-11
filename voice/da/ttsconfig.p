@@ -25,35 +25,35 @@ language('da').
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
 string('route_is.ogg', 'Ruten er ').
-string('route_calculate.ogg', 'Ruten genberegnes ').
+string('route_calculate.ogg', 'Ruten genberegnes').
 string('distance.ogg', 'afstanden er ').
 
 % LEFT/RIGHT
 string('prepare.ogg', 'Forbered at ').
 string('after.ogg', 'om ').
 
-string('left.ogg', 'drej til venstre ').
-string('left_sh.ogg', 'drej skarpt til venstre ').
-string('left_sl.ogg', 'drej svagt til venstre ').
-string('right.ogg', 'drej til højre ').
-string('right_sh.ogg', 'drej skarpt til højre ').
-string('right_sl.ogg', 'drej svagt til højre ').
-string('left_keep.ogg', 'hold til venstre ').
-string('right_keep.ogg', 'hold til højre ').
-string('left_bear.ogg', 'til venstre ').   % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'til højre ').    % in English the same as right_keep, may be different in other languages
+string('left.ogg', 'drej til venstre').
+string('left_sh.ogg', 'drej skarpt til venstre').
+string('left_sl.ogg', 'drej svagt til venstre').
+string('right.ogg', 'drej til højre').
+string('right_sh.ogg', 'drej skarpt til højre').
+string('right_sl.ogg', 'drej svagt til højre').
+string('left_keep.ogg', 'hold til venstre').
+string('right_keep.ogg', 'hold til højre').
+string('left_bear.ogg', 'til venstre').   % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'til højre').    % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
-string('make_uturn.ogg', 'Foretag en U vending ').
+string('make_uturn.ogg', 'Foretag en U vending').
 string('make_uturn_wp.ogg', 'Foretag en U vending når det bliver muligt').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Forbered at køre ind i rundkørslen ').
+string('prepare_roundabout.ogg', 'Forbered at køre ind i rundkørslen').
 string('roundabout.ogg', 'kør ind i rundkørslen, ').
 string('then.ogg', 'og derefter ').
-string('and.ogg', 'og ').
+string('and.ogg', ' og ').
 string('take.ogg', 'tag den ').
-string('exit.ogg', 'afkørsel ').
+string('exit.ogg', 'afkørsel').
 
 string('1st.ogg', 'første ').
 string('2nd.ogg', 'anden ').
@@ -74,7 +74,7 @@ string('16th.ogg', 'sekstende ').
 string('17th.ogg', 'syttende ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Fortsæt ligeud ').
+string('go_ahead.ogg', 'Fortsæt ligeud').
 string('follow.ogg', 'Følg vejen ').
 
 % ARRIVE
@@ -95,18 +95,18 @@ string('reached_poi.ogg', 'du har nået interessepunktet ').
 %string('exceed_limit.ogg', 'Hastighedsgrænsen er overskredet ').
 string('exceed_limit.ogg', 'Hastighedsgrænse ').
 string('attention.ogg', 'Advarsel, ').
-string('speed_camera.ogg', 'fartkamera ').
-string('border_control.ogg', 'grænsekontrol ').
-string('railroad_crossing.ogg', 'jernbaneoverskæring ').
-string('traffic_calming.ogg', 'trafikdæmpning ').
-string('toll_booth.ogg', 'betalingsanlæg ').
-string('stop.ogg', 'stopskilt ').
-string('pedestrian_crosswalk.ogg', 'fodgængerovergang ').
+string('speed_camera.ogg', 'fartkamera').
+string('border_control.ogg', 'grænsekontrol').
+string('railroad_crossing.ogg', 'jernbaneoverskæring').
+string('traffic_calming.ogg', 'trafikdæmpning').
+string('toll_booth.ogg', 'betalingsanlæg').
+string('stop.ogg', 'stopskilt').
+string('pedestrian_crosswalk.ogg', 'fodgængerovergang').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'g p s signal mistet ').
-string('location_recovered.ogg', 'g p s signal fundet ').
-string('off_route.ogg', 'du er kørt væk fra ruten ').
+string('location_lost.ogg', 'g p s signal mistet').
+string('location_recovered.ogg', 'g p s signal fundet').
+string('off_route.ogg', 'du er kørt væk fra ruten').
 string('back_on_route.ogg', 'du er vendt tilbage til ruten').
 
 % STREET NAME PREPOSITIONS
@@ -116,25 +116,25 @@ string('to.ogg', 'til ').
 string('toward.ogg', 'imod ').
 
 % DISTANCE UNIT SUPPORT
-string('meters.ogg', 'meter ').
-string('around_1_kilometer.ogg', 'omkring 1 kilometer ').
+string('meters.ogg', 'meter').
+string('around_1_kilometer.ogg', 'omkring 1 kilometer').
 string('around.ogg', 'omkring ').
-string('kilometers.ogg', 'kilometer ').
+string('kilometers.ogg', 'kilometer').
 
 string('feet.ogg', 'fod ').
-string('1_tenth_of_a_mile.ogg', 'en tiendedel af en mil ').
-string('tenths_of_a_mile.ogg', 'tiendedele af en mil ').
-string('around_1_mile.ogg', 'omkring 1 mil ').
-string('miles.ogg', 'mil ').
+string('1_tenth_of_a_mile.ogg', 'en tiendedel af en mil').
+string('tenths_of_a_mile.ogg', 'tiendedele af en mil').
+string('around_1_mile.ogg', 'omkring 1 mil').
+string('miles.ogg', 'mil').
 
-string('yards.ogg', 'yards ').
+string('yards.ogg', 'yards').
 
 % TIME SUPPORT
 string('time.ogg', 'tiden er ').
 string('1_hour.ogg', 'en time ').
 string('hours.ogg', 'timer ').
-string('less_a_minute.ogg', 'mindre end et minut ').
-string('1_minute.ogg', 'et minut ').
+string('less_a_minute.ogg', 'mindre end et minut').
+string('1_minute.ogg', 'et minut').
 string('minutes.ogg', 'minutter').
 
 

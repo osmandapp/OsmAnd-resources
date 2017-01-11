@@ -26,7 +26,7 @@ language('fr').
 %% STRINGS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
-string('route_is.ogg', "l''itinéraire fait  ").
+string('route_is.ogg', "l''itinéraire fait ").
 string('route_calculate.ogg', "recalcul de l''itinéraire").
 string('distance.ogg', ", l''itinéraire fait ").
 
@@ -35,29 +35,29 @@ string('distance.ogg', ", l''itinéraire fait ").
 string('after.ogg', 'dans ').
 string('in.ogg', 'à ').
 
-string('left.ogg', 'tournez à gauche ').
-string('left_sh.ogg', 'virez à gauche ').
-string('left_sl.ogg', 'tournez légèrement à gauche ').
-string('right.ogg', 'tournez à droite ').
-string('right_sh.ogg', 'virez à droite ').
-string('right_sl.ogg', 'tournez légèrement à droite ').
-string('left_keep.ogg', 'serrez à gauche ').
-string('right_keep.ogg', 'serrez à droite ').
-string('left_bear.ogg', 'serrez à gauche ').   % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'serrez à droite ').  % in English the same as right_keep, may be different in other languages
+string('left.ogg', 'tournez à gauche').
+string('left_sh.ogg', 'virez à gauche').
+string('left_sl.ogg', 'tournez légèrement à gauche').
+string('right.ogg', 'tournez à droite').
+string('right_sh.ogg', 'virez à droite').
+string('right_sl.ogg', 'tournez légèrement à droite').
+string('left_keep.ogg', 'serrez à gauche').
+string('right_keep.ogg', 'serrez à droite').
+string('left_bear.ogg', 'serrez à gauche').   % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'serrez à droite').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
 string('prepare_make_uturn.ogg', 'préparez vous à faire demi-tour').
-string('make_uturn.ogg', ' faites demi-tour ').
-string('make_uturn_wp.ogg', 'Dès que possible, faites demi-tour ').
+string('make_uturn.ogg', ' faites demi-tour').
+string('make_uturn_wp.ogg', 'Dès que possible, faites demi-tour').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'Préparez vous à entrer dans le rond-point dans ').
 string('roundabout.ogg', ' entrez dans le rond-point et prenez la ').
 string('then.ogg', ', puis ').
-string('and.ogg', 'et ').
+string('and.ogg', ' et ').
 string('take.ogg', 'prenez la ').
-string('exit.ogg', 'sortie ').
+string('exit.ogg', 'sortie').
 
 string('1st.ogg', '1ère  ').
 string('2nd.ogg', '2ème  ').
@@ -78,14 +78,14 @@ string('16th.ogg', '16ème ').
 string('17th.ogg', '17ème ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Continuez tout droit ').
+string('go_ahead.ogg', 'Continuez tout droit').
 string('follow.ogg', 'Continuez pendant ').
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'et arrivez à destination ').
 string('reached_destination.ogg','vous êtes arrivé à destination ').
 string('and_arrive_intermediate.ogg', "et arrivez à l''étape "). % !!! no apostrophe
-string('reached_intermediate.ogg', "vous êtes arrivé à l''étape").
+string('reached_intermediate.ogg', "vous êtes arrivé à l''étape ").
 
 % NEARBY POINTS
 string('and_arrive_waypoint.ogg', "et arrivez à l''étape G P X ").
@@ -99,19 +99,19 @@ string('reached_poi.ogg', "vous êtes arrivé à l''étape P O I ").
 %string('exceed_limit.ogg', 'vous dépassez la limite de vitesse ').
 string('exceed_limit.ogg', 'limite de vitesse ').
 string('attention.ogg', 'attention , ').
-string('speed_camera.ogg', 'radar de vitesse ').
-string('border_control.ogg', 'douane ').
-string('railroad_crossing.ogg', 'passage à niveau ').
-string('traffic_calming.ogg', 'ralentisseur ').
-string('toll_booth.ogg', 'péage ').
-string('stop.ogg', 'panneau stop ').
-string('pedestrian_crosswalk.ogg', 'passage piéton ').
+string('speed_camera.ogg', 'radar de vitesse').
+string('border_control.ogg', 'douane').
+string('railroad_crossing.ogg', 'passage à niveau').
+string('traffic_calming.ogg', 'ralentisseur').
+string('toll_booth.ogg', 'péage').
+string('stop.ogg', 'panneau stop').
+string('pedestrian_crosswalk.ogg', 'passage piéton').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'Signal G P S perdu ').
-string('location_recovered.ogg', 'Signal G P S retrouvé ').
-string('off_route.ogg', "vous avez dévié de l''itinéraire depuis").
-string('back_on_route.ogg', "vous êtes de retour sur l''itinéraire ").
+string('location_lost.ogg', 'Signal G P S perdu').
+string('location_recovered.ogg', 'Signal G P S retrouvé').
+string('off_route.ogg', "vous avez dévié de l''itinéraire depuis ").
+string('back_on_route.ogg', "vous êtes de retour sur l''itinéraire").
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'sur ').
@@ -120,24 +120,24 @@ string('to.ogg', 'vers ').
 string('toward.ogg', 'vers ').
 
 % DISTANCE UNIT SUPPORT
-string('meters.ogg', 'mètres ').
+string('meters.ogg', 'mètres').
 string('around_1_kilometer.ogg', 'environ 1 kilomètre ').
 string('around.ogg', 'environ ').
-string('kilometers.ogg', 'kilomètres ').
+string('kilometers.ogg', 'kilomètres').
 
 string('feet.ogg', 'pieds ').
 string('1_tenth_of_a_mile.ogg', 'un dixième de mile').
-string('tenths_of_a_mile.ogg', 'dixièmes de un mile ').
-string('around_1_mile.ogg', 'environ un mile ').
-string('miles.ogg', 'miles ').
-string('yards.ogg', 'yards ').
+string('tenths_of_a_mile.ogg', 'dixièmes de un mile').
+string('around_1_mile.ogg', 'environ un mile').
+string('miles.ogg', 'miles').
+string('yards.ogg', 'yards').
 
 % TIME SUPPORT
 string('time.ogg', 'durée du trajet ').
 string('1_hour.ogg', 'une heure ').
 string('hours.ogg', 'heures ').
-string('less_a_minute.ogg', "moins d''une minute ").
-string('1_minute.ogg', 'une minute ').
+string('less_a_minute.ogg', "moins d''une minute").
+string('1_minute.ogg', 'une minute').
 string('minutes.ogg', 'minutes').
 
 

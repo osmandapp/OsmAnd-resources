@@ -119,7 +119,7 @@ string('toward.ogg', 'hacia ').
 % DISTANCE UNIT SUPPORT
 string('meters.ogg', 'metros').
 string('around_1_kilometer.ogg', 'aproximadamente un kilómetro').
-string('around.ogg', 'aproximadamente').
+string('around.ogg', 'aproximadamente ').
 string('kilometers.ogg', 'kilómetros').
 
 string('feet.ogg', 'pies').

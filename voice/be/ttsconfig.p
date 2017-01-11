@@ -31,7 +31,7 @@ string('distance.ogg', 'працягласьць ').
 % LEFT/RIGHT
 %string('prepare_after.ogg', 'Падрыхтуйцеся, праз ').
 string('after.ogg', 'Праз ').
-string('in.ogg', 'у ').
+string('in.ogg', ' у ').
 
 string('left.ogg', 'павярніце налева.').
 string('left_sh.ogg', 'павярніце крута налева.').
@@ -39,19 +39,19 @@ string('left_sl.ogg', 'павярніце наўскос улева.').
 string('right.ogg', 'павярніце направа.').
 string('right_sh.ogg', 'павярніце крута направа.').
 string('right_sl.ogg', 'павярніце наўскос управа.').
-string('left_keep.ogg', 'трымайцеся левага боку ').
-string('right_keep.ogg', 'трымайцеся правага боку ').
-string('left_bear.ogg', 'трымайцеся левага боку ').    % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'трымайцеся правага боку ').  % in English the same as right_keep, may be different in other languages
+string('left_keep.ogg', 'трымайцеся левага боку').
+string('right_keep.ogg', 'трымайцеся правага боку').
+string('left_bear.ogg', 'трымайцеся левага боку').    % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'трымайцеся правага боку').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
 string('make_uturn.ogg', 'Развярніцеся.').
-string('make_uturn_2.ogg', 'Развярніцеся ').
+string('make_uturn_2.ogg', 'Развярніцеся').
 string('make_uturn_wp.ogg', 'Развярніцеся дзе будзе магчымасьць.').
 
 % ROUNDABOUTS
-string('roundabout.ogg', 'на коле ').
-string('then.ogg', 'потым ').
+string('roundabout.ogg', 'на коле').
+string('then.ogg', ' потым ').
 string('take.ogg', 'выбирайце ').
 string('exit.ogg', 'выезд.').
 
@@ -74,17 +74,17 @@ string('16th.ogg', 'шаснаццаты ').
 string('17th.ogg', 'сямнаццаты ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Рухайцеся наўпрост ').
+string('go_ahead.ogg', 'Рухайцеся наўпрост').
 
 % ARRIVE
-string('and_arrive_destination.ogg', 'і вы дабраліся.').
-string('and_arrive_intermediate.ogg', 'і вы ў выбраным Вамі пункце.').
-string('reached_intermediate.ogg', 'Вы ў выбраным Вамі пункце.').
-string('reached_destination.ogg','Вы дабраліся.').
+string('and_arrive_destination.ogg', 'і вы дабраліся ').
+string('and_arrive_intermediate.ogg', 'і вы ў выбраным Вамі пункце ').
+string('reached_intermediate.ogg', 'Вы ў выбраным Вамі пункце ').
+string('reached_destination.ogg','Вы дабраліся ').
 
 % NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'і вы на правільным маршруце.').
-string('reached_waypoint.ogg', 'Вы на правільным маршруце.').
+string('and_arrive_waypoint.ogg', 'і вы на правільным маршруце ').
+string('reached_waypoint.ogg', 'Вы на правільным маршруце ').
 string('and_arrive_favorite.ogg', 'and pass favorite ').
 string('reached_favorite.ogg', 'you are passing favorite ').
 string('and_arrive_poi.ogg', 'and pass POI ').
@@ -94,12 +94,12 @@ string('reached_poi.ogg', 'you are passing POI ').
 %string('exceed_limit.ogg', 'Вы перавысілі хуткасьць !').
 string('exceed_limit.ogg', 'перавышаная хуткасць ').
 string('attention.ogg', 'Увага !').
-string('speed_camera.ogg', 'хуткасць камеры ').
-string('border_control.ogg', 'пагранічны кантроль ').
-string('railroad_crossing.ogg', 'чыгуначны пераезд ').
-string('traffic_calming.ogg', 'трафіку заспакаяльны ').
-string('toll_booth.ogg', 'платных стэнд ').
-string('stop.ogg', 'знак прыпынку ').
+string('speed_camera.ogg', 'хуткасць камеры').
+string('border_control.ogg', 'пагранічны кантроль').
+string('railroad_crossing.ogg', 'чыгуначны пераезд').
+string('traffic_calming.ogg', 'трафіку заспакаяльны').
+string('toll_booth.ogg', 'платных стэнд').
+string('stop.ogg', 'знак прыпынку').
 string('pedestrian_crosswalk.ogg', 'пешаходнага пераходу').
 
 % OTHER PROMPTS
@@ -118,16 +118,16 @@ string('toward.ogg', 'да ').
 
 % DISTANCE UNIT SUPPORT
 string('metrau.ogg', 'мэтраў').
-string('kilametar.ogg', 'кілямэтар ').
-string('kilametry.ogg', 'кілямэтры ').
-string('kilametrau.ogg', 'кілямэтраў ').
-string('around_1_kilometer.ogg', 'недзе адзін кілямэтар ').
+string('kilametar.ogg', 'кілямэтар').
+string('kilametry.ogg', 'кілямэтры').
+string('kilametrau.ogg', 'кілямэтраў').
+string('around_1_kilometer.ogg', 'недзе адзін кілямэтар').
 string('around.ogg', 'каля ').
 
 string('futau.ogg', 'футаў').
-string('around_1_mile.ogg', 'недзе адну мілю ').
-string('1_tenth_of_a_mile.ogg', 'каля адной дзясятай мілі ').
-string('tenths_of_a_mile.ogg', 'дзясятых мілі ').
+string('around_1_mile.ogg', 'недзе адну мілю').
+string('1_tenth_of_a_mile.ogg', 'каля адной дзясятай мілі').
+string('tenths_of_a_mile.ogg', 'дзясятых мілі').
 string('milu.ogg', 'мілю').
 string('mili.ogg', 'мілі').
 string('milau.ogg', 'міляў').
@@ -140,9 +140,9 @@ string('less_a_minute.ogg', 'менш за хвіліну.').
 string('hour.ogg', 'гадзіна ').
 string('hours_y.ogg', 'гадзіны ').
 string('hours_au.ogg', 'гадзінаў ').
-string('minute.ogg', 'хвіліна ').
-string('minute_y.ogg', 'хвіліны ').
-string('minute_au.ogg', 'хвілінаў ').
+string('minute.ogg', 'хвіліна').
+string('minute_y.ogg', 'хвіліны').
+string('minute_au.ogg', 'хвілінаў').
 
 
 %% COMMAND BUILDING / WORD ORDER

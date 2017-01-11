@@ -33,32 +33,32 @@ string('distance.ogg', '. cesta je dlouhá ').
 string('after.ogg', 'po ').
 string('in.ogg', 'v ').
 
-string('left.ogg', 'odbočte vlevo ').
-string('left_sh.ogg', 'odbočte ostře vlevo ').
-string('left_sl.ogg', 'odbočte mírně vlevo ').
-string('right.ogg', 'odbočte vpravo ').
-string('right_sh.ogg', 'odbočte ostře vpravo ').
-string('right_sl.ogg', 'odbočte mírně vpravo ').
-string('left_keep.ogg', 'držte se vlevo ').
-string('right_keep.ogg', 'držte se vpravo ').
-string('left_bear.ogg', 'se držte vlevo ').    % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'se držte vpravo ').  % in English the same as right_keep, may be different in other languages
+string('left.ogg', 'odbočte vlevo').
+string('left_sh.ogg', 'odbočte ostře vlevo').
+string('left_sl.ogg', 'odbočte mírně vlevo').
+string('right.ogg', 'odbočte vpravo').
+string('right_sh.ogg', 'odbočte ostře vpravo').
+string('right_sl.ogg', 'odbočte mírně vpravo').
+string('left_keep.ogg', 'držte se vlevo').
+string('right_keep.ogg', 'držte se vpravo').
+string('left_bear.ogg', 'se držte vlevo').    % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'se držte vpravo').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
-%string('prepare_make_uturn.ogg', 'se budete otáčet zpět ').
-string('make_uturn.ogg', 'se otočte zpět ').
-string('make_uturn2.ogg', 'otočte se zpět ').
-string('make_uturn_wp.ogg', 'vraťte se jakmile to bude možné ').
+%string('prepare_make_uturn.ogg', 'se budete otáčet zpět').
+string('make_uturn.ogg', 'se otočte zpět').
+string('make_uturn2.ogg', 'otočte se zpět').
+string('make_uturn_wp.ogg', 'vraťte se jakmile to bude možné').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'přijedete na kruhový objezd ').
-string('roundabout.ogg', 'vjeďte na kruhový objezd ').
+string('prepare_roundabout.ogg', 'přijedete na kruhový objezd').
+string('roundabout.ogg', 'vjeďte na kruhový objezd').
 string('then.ogg', ', pak ').
-string('and.ogg', 'a ').
+string('and.ogg', ' a ').
 string('take.ogg', 'a zvolte ').
 string('take2.ogg', 'vyjeďte ').
-string('exit.ogg', 'výjezd ').
-string('exit2.ogg', 'výjezdem ').
+string('exit.ogg', 'výjezd').
+string('exit2.ogg', 'výjezdem').
 
 string('1st.ogg', 'první ').
 string('2nd.ogg', 'druhý ').
@@ -97,7 +97,7 @@ string('16th_inst.ogg', 'šestnáctým ').
 string('17th_inst.ogg', 'sedmnáctým ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'pokračujte rovně ').
+string('go_ahead.ogg', 'pokračujte rovně').
 string('go_ahead_m.ogg', 'pokračujte ').
 
 % ARRIVE
@@ -118,19 +118,19 @@ string('reached_poi.ogg', 'projeli jste bodem zájmu ').
 %string('exceed_limit.ogg', 'překračujete povolenou rychlost ').
 string('exceed_limit.ogg', 'povolená rychlost ').
 string('attention.ogg', 'pozor, ').
-string('speed_camera.ogg', 'rychlostní radar ').
-string('border_control.ogg', 'hraniční kontrola ').
-string('railroad_crossing.ogg', 'železniční přejezd ').
-string('traffic_calming.ogg', 'retardér ').
-string('toll_booth.ogg', 'mýtná brána ').
-string('stop.ogg', 'značka stop ').
-string('pedestrian_crosswalk.ogg', 'přechod pro chodce ').
+string('speed_camera.ogg', 'rychlostní radar').
+string('border_control.ogg', 'hraniční kontrola').
+string('railroad_crossing.ogg', 'železniční přejezd').
+string('traffic_calming.ogg', 'retardér').
+string('toll_booth.ogg', 'mýtná brána').
+string('stop.ogg', 'značka stop').
+string('pedestrian_crosswalk.ogg', 'přechod pro chodce').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'ztráta g p s signálu ').
-string('location_recovered.ogg', 'g p s signál nalezen ').
-string('off_route.ogg', 'odchylujete se z trasy o ').
-string('back_on_route.ogg', 'vrátili jste se zpět na trasu ').
+string('location_lost.ogg', 'ztráta g p s signálu').
+string('location_recovered.ogg', 'g p s signál nalezen').
+string('off_route.ogg', 'odchylujete se z trasy o').
+string('back_on_route.ogg', 'vrátili jste se zpět na trasu').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'na ').
@@ -139,35 +139,35 @@ string('to.ogg', 'na ').
 string('toward.ogg', 'k ').
 
 % DISTANCE UNIT SUPPORT
-string('meters_accusative.ogg', 'metrů ').
-string('around_1_kilometer_accusative.ogg', 'přibližně jeden kilometr ').
+string('meters_accusative.ogg', 'metrů').
+string('around_1_kilometer_accusative.ogg', 'přibližně jeden kilometr').
 string('around.ogg', 'přibližně ').
-string('kilometers_accusative2.ogg', 'dva kilometry ').
-string('kilometers_accusative3_4.ogg', 'kilometry ').
-string('kilometers_accusative5.ogg', 'kilometrů ').
+string('kilometers_accusative2.ogg', 'dva kilometry').
+string('kilometers_accusative3_4.ogg', 'kilometry').
+string('kilometers_accusative5.ogg', 'kilometrů').
 
-string('meters_locative.ogg', 'metrech ').
-string('around_1_kilometer_locative.ogg', 'přibližně jednom kilometru ').
-string('kilometers_locative.ogg', 'kilometrech ').
-string('kilometers_locative2.ogg', 'dvou kilometrech ').
+string('meters_locative.ogg', 'metrech').
+string('around_1_kilometer_locative.ogg', 'přibližně jednom kilometru').
+string('kilometers_locative.ogg', 'kilometrech').
+string('kilometers_locative2.ogg', 'dvou kilometrech').
 
 string('farther_workaround.ogg', 'dál ').
 string('around_workaround.ogg', 'dál přibližně ').
 
-string('feet_accusative.ogg', 'stop ').
-string('1_tenth_of_a_mile_accusative.ogg', 'desetinu míle ').
-string('tenths_of_a_mile_accusative.ogg', 'desetiny míle ').
-string('around_1_mile_accusative.ogg', 'přibližně jednu míli ').
-string('miles_accusative.ogg', 'mil ').
+string('feet_accusative.ogg', 'stop').
+string('1_tenth_of_a_mile_accusative.ogg', 'desetinu míle').
+string('tenths_of_a_mile_accusative.ogg', 'desetiny míle').
+string('around_1_mile_accusative.ogg', 'přibližně jednu míli').
+string('miles_accusative.ogg', 'mil').
 
-string('feet_locative.ogg', 'stopách ').
-string('1_tenth_of_a_mile_locative.ogg', 'desetině míle ').
-string('tenths_of_a_mile_locative.ogg', 'desetinách míle ').
-string('around_1_mile_locative.ogg', 'přibližně jedné míli ').
-string('miles_locative.ogg', 'mílích ').
+string('feet_locative.ogg', 'stopách').
+string('1_tenth_of_a_mile_locative.ogg', 'desetině míle').
+string('tenths_of_a_mile_locative.ogg', 'desetinách míle').
+string('around_1_mile_locative.ogg', 'přibližně jedné míli').
+string('miles_locative.ogg', 'mílích').
 
-string('yards_accusative.ogg', 'yardů ').
-string('yards_locative.ogg', 'yardech ').
+string('yards_accusative.ogg', 'yardů').
+string('yards_locative.ogg', 'yardech').
 
 % TIME SUPPORT
 string('time.ogg', 'potřebná doba ').
@@ -175,11 +175,11 @@ string('1_hour.ogg', 'jedna hodina ').
 string('2_hours.ogg', 'dvě hodiny ').
 string('3_4_hours.ogg', 'hodiny ').
 string('hours.ogg', 'hodin ').
-string('less_a_minute.ogg', 'méně než jedna minuta ').
-string('1_minute.ogg', 'jedna minuta ').
-string('2_minutes.ogg', 'dvě minuty ').
-string('3_4_minutes.ogg', 'minuty ').
-string('minutes.ogg', 'minut ').
+string('less_a_minute.ogg', 'méně než jedna minuta').
+string('1_minute.ogg', 'jedna minuta').
+string('2_minutes.ogg', 'dvě minuty').
+string('3_4_minutes.ogg', 'minuty').
+string('minutes.ogg', 'minut').
 
 
 %% COMMAND BUILDING / WORD ORDER
