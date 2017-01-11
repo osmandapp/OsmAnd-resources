@@ -47,71 +47,71 @@ string('left_bear.ogg', 'tenersi sulla sinistra').  % in English the same as lef
 string('right_bear.ogg', 'tenersi sulla destra').   % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
-string('make_uturn1.ogg', 'torna indietro ').
-string('make_uturn2.ogg', 'Si prega di tornare indietro ').
+string('make_uturn1.ogg', 'torna indietro').
+string('make_uturn2.ogg', 'Si prega di tornare indietro').
 string('make_uturn_wp.ogg', 'Quando possibile, fare inversione a u').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'entrare in una rotonda').
 string('roundabout.ogg', 'entrare nella rotonda, ').
 string('then.ogg', ', poi').
-string('and.ogg', 'e').
-string('take.ogg', 'prendere la').
+string('and.ogg', ' e ').
+string('take.ogg', 'prendere la ').
 string('exit.ogg', 'uscita').
 
-string('1st.ogg', 'prima').
-string('2nd.ogg', 'seconda').
-string('3rd.ogg', 'terza').
-string('4th.ogg', 'quarta').
-string('5th.ogg', 'quinta').
-string('6th.ogg', 'sesta').
-string('7th.ogg', 'settima').
-string('8th.ogg', 'ottava').
-string('9th.ogg', 'nona').
-string('10th.ogg', 'decima').
-string('11th.ogg', 'undicesima').
-string('12th.ogg', 'dodicesima').
-string('13th.ogg', 'tredicesima').
-string('14th.ogg', 'quattordicesima').
-string('15th.ogg', 'quindicesima').
-string('16th.ogg', 'sedicesima').
-string('17th.ogg', 'diciassettesima').
+string('1st.ogg', 'prima ').
+string('2nd.ogg', 'seconda ').
+string('3rd.ogg', 'terza ').
+string('4th.ogg', 'quarta ').
+string('5th.ogg', 'quinta ').
+string('6th.ogg', 'sesta ').
+string('7th.ogg', 'settima ').
+string('8th.ogg', 'ottava ').
+string('9th.ogg', 'nona ').
+string('10th.ogg', 'decima ').
+string('11th.ogg', 'undicesima ').
+string('12th.ogg', 'dodicesima ').
+string('13th.ogg', 'tredicesima ').
+string('14th.ogg', 'quattordicesima ').
+string('15th.ogg', 'quindicesima ').
+string('16th.ogg', 'sedicesima ').
+string('17th.ogg', 'diciassettesima ').
 
 % STRAIGHT/FOLLOW
 string('go_ahead.ogg', 'Proseguire diritti').
 string('follow.ogg', 'Seguire la strada per').
 
 % ARRIVE
-string('and_arrive_destination.ogg', 'e arriveremo a destinazione').
-string('reached_destination.ogg','arrivati a destinazione').
-string('and_arrive_intermediate.ogg', 'e arriveremo al punto intermedio').
-string('reached_intermediate.ogg', 'arrivati al punto intermedio').
+string('and_arrive_destination.ogg', 'e arriveremo a destinazione ').
+string('reached_destination.ogg','arrivati a destinazione ').
+string('and_arrive_intermediate.ogg', 'e arriveremo al punto intermedio ').
+string('reached_intermediate.ogg', 'arrivati al punto intermedio ').
 
 % NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'e arriveremo al vostro punto GPX intermedio').
-string('reached_waypoint.ogg', 'arrivati al vostro punto GPX intermedio').
+string('and_arrive_waypoint.ogg', 'e arriveremo al vostro punto GPX intermedio ').
+string('reached_waypoint.ogg', 'arrivati al vostro punto GPX intermedio ').
 string('and_arrive_favorite.ogg', 'e arriverai al preferito ').
 string('reached_favorite.ogg', 'preferito raggiunto ').
 string('and_arrive_poi.ogg', 'e arriverai al P D I ').
-string('reached_poi.ogg', 'P D I raggiunto').
+string('reached_poi.ogg', 'P D I raggiunto ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'Limite di velocità superato').
 string('exceed_limit.ogg', 'Limite di velocità ').
 string('attention.ogg', 'attenzione, ').
-string('speed_camera.ogg', 'Autovelox ').
-string('border_control.ogg', 'Dogana ').
-string('railroad_crossing.ogg', 'Passaggio a livello ').
-string('traffic_calming.ogg', 'Dosso rallentatore ').
-string('toll_booth.ogg', 'Casello ').
-string('stop.ogg', 'Stop ').
-string('pedestrian_crosswalk.ogg', 'Attraversamento pedonale ').
+string('speed_camera.ogg', 'Autovelox').
+string('border_control.ogg', 'Dogana').
+string('railroad_crossing.ogg', 'Passaggio a livello').
+string('traffic_calming.ogg', 'Dosso rallentatore').
+string('toll_booth.ogg', 'Casello').
+string('stop.ogg', 'Stop').
+string('pedestrian_crosswalk.ogg', 'Attraversamento pedonale').
 
 % OTHER PROMPTS
 string('location_lost.ogg', 'Segnale g p s perso').
-string('location_recovered.ogg', 'Segnale g p s ripristinato ').
+string('location_recovered.ogg', 'Segnale g p s ripristinato').
 string('off_route.ogg', 'Avete deviato dal percorso').
-string('back_on_route.ogg', 'si torna sulla rotta ').
+string('back_on_route.ogg', 'si torna sulla rotta').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'su ').
@@ -172,35 +172,35 @@ street_is_female(voice([Ref, Name, Dest],_)) :- isFemale(Ref).
 street_is_nothing(voice([Ref, Name, Dest],_)) :- not(isMale(Name)), not(isFemale(Name)).
 
 % DISTANCE UNIT SUPPORT
-string('meters_nominativ.ogg', 'metri ').
-string('meters_dativ.ogg', 'metri ').
-string('around_1_kilometer_nominativ.ogg', 'circa un chilometro ').
-string('around_1_kilometer_dativ.ogg', 'circa un chilometro ').
+string('meters_nominativ.ogg', 'metri').
+string('meters_dativ.ogg', 'metri').
+string('around_1_kilometer_nominativ.ogg', 'circa un chilometro').
+string('around_1_kilometer_dativ.ogg', 'circa un chilometro').
 string('around.ogg', 'circa ').
-string('kilometers_nominativ.ogg', 'chilometri ').
-string('kilometers_dativ.ogg', 'chilometri ').
+string('kilometers_nominativ.ogg', 'chilometri').
+string('kilometers_dativ.ogg', 'chilometri').
 
-string('feet_nominativ.ogg', 'piedi ').
-string('feet_dativ.ogg', 'piedi ').
-string('1_tenth_of_a_mile_nominativ.ogg', 'un decimo di miglio ').
-string('1_tenth_of_a_mile_dativ.ogg', 'un decimo di miglio ').
-string('tenths_of_a_mile_nominativ.ogg', 'decimi di miglio ').
-string('tenths_of_a_mile_dativ.ogg', 'decimi di miglio ').
-string('around_1_mile_nominativ.ogg', 'circa un miglio ').
-string('around_1_mile_dativ.ogg', 'circa un miglio ').
-string('miles_nominativ.ogg', 'miglia ').
-string('miles_dativ.ogg', 'miglia ').
+string('feet_nominativ.ogg', 'piedi').
+string('feet_dativ.ogg', 'piedi').
+string('1_tenth_of_a_mile_nominativ.ogg', 'un decimo di miglio').
+string('1_tenth_of_a_mile_dativ.ogg', 'un decimo di miglio').
+string('tenths_of_a_mile_nominativ.ogg', 'decimi di miglio').
+string('tenths_of_a_mile_dativ.ogg', 'decimi di miglio').
+string('around_1_mile_nominativ.ogg', 'circa un miglio').
+string('around_1_mile_dativ.ogg', 'circa un miglio').
+string('miles_nominativ.ogg', 'miglia').
+string('miles_dativ.ogg', 'miglia').
 
-string('yards_nominativ.ogg', 'iarda ').
-string('yards_dativ.ogg', 'iarda ').
+string('yards_nominativ.ogg', 'iarda').
+string('yards_dativ.ogg', 'iarda').
 
 % TIME SUPPORT
 string('time.ogg', 'il tempo è ').
 string('1_hour.ogg', "un''ora ").
 string('hours.ogg', 'ore ').
-string('less_a_minute.ogg', 'meno di un minuto ').
-string('1_minute.ogg', 'un minuto ').
-string('minutes.ogg', 'minuti ').
+string('less_a_minute.ogg', 'meno di un minuto').
+string('1_minute.ogg', 'un minuto').
+string('minutes.ogg', 'minuti').
 
 
 %% COMMAND BUILDING / WORD ORDER
