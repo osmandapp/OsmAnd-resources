@@ -33,28 +33,28 @@ string('distance.ogg', 'distance ').
 string('after.ogg', 'after ').
 string('in.ogg', 'in ').
 
-string('left.ogg', 'turn left ').
-string('left_sh.ogg', 'turn sharply left ').
-string('left_sl.ogg', 'turn slightly left ').
-string('right.ogg', 'turn right ').
-string('right_sh.ogg', 'turn sharply right ').
-string('right_sl.ogg', 'turn slightly right ').
-string('left_keep.ogg', 'keep left ').
-string('right_keep.ogg', 'keep right ').
-string('left_bear.ogg', 'keep left ').    % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'keep right ').  % in English the same as right_keep, may be different in other languages
+string('left.ogg', 'turn left').
+string('left_sh.ogg', 'turn sharply left').
+string('left_sl.ogg', 'turn slightly left').
+string('right.ogg', 'turn right').
+string('right_sh.ogg', 'turn sharply right').
+string('right_sl.ogg', 'turn slightly right').
+string('left_keep.ogg', 'keep left').
+string('right_keep.ogg', 'keep right').
+string('left_bear.ogg', 'keep left').    % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'keep right').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
-string('make_uturn.ogg', 'Make a U turn ').
-string('make_uturn_wp.ogg', 'When possible, please make a U turn ').
+string('make_uturn.ogg', 'Make a U turn').
+string('make_uturn_wp.ogg', 'When possible, please make a U turn').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'enter a roundabout ').
+string('prepare_roundabout.ogg', 'enter a roundabout').
 string('roundabout.ogg', 'enter the roundabout, ').
 string('then.ogg', ', then ').
-string('and.ogg', 'and ').
+string('and.ogg', ' and ').
 string('take.ogg', 'take the ').
-string('exit.ogg', 'exit ').
+string('exit.ogg', 'exit').
 
 string('1st.ogg', 'first ').
 string('2nd.ogg', 'second ').
@@ -75,8 +75,8 @@ string('16th.ogg', 'sixteenth ').
 string('17th.ogg', 'seventeenth ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Go straight ahead ').
-string('follow.ogg', 'Continue for').  % 'Follow the course of the road for' perceived as too chatty by many users
+string('go_ahead.ogg', 'Go straight ahead').
+string('follow.ogg', 'Continue for ').  % 'Follow the course of the road for' perceived as too chatty by many users
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'and arrive at your destination ').
@@ -96,19 +96,19 @@ string('reached_poi.ogg', 'you are passing POI ').
 %string('exceed_limit.ogg', 'you are exceeding the speed limit ').
 string('exceed_limit.ogg', 'speed limit ').
 string('attention.ogg', 'attention, ').
-string('speed_camera.ogg', 'speed cam ').
-string('border_control.ogg', 'border control ').
-string('railroad_crossing.ogg', 'railroad crossing ').
-string('traffic_calming.ogg', 'traffic calming ').
-string('toll_booth.ogg', 'toll booth ').
-string('stop.ogg', 'stop sign ').
-string('pedestrian_crosswalk.ogg', 'pedestrian crosswalk ').
+string('speed_camera.ogg', 'speed cam').
+string('border_control.ogg', 'border control').
+string('railroad_crossing.ogg', 'railroad crossing').
+string('traffic_calming.ogg', 'traffic calming').
+string('toll_booth.ogg', 'toll booth').
+string('stop.ogg', 'stop sign').
+string('pedestrian_crosswalk.ogg', 'pedestrian crosswalk').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'g p s signal lost ').
-string('location_recovered.ogg', 'g p s signal recovered ').
+string('location_lost.ogg', 'g p s signal lost').
+string('location_recovered.ogg', 'g p s signal recovered').
 string('off_route.ogg', 'you have been off the route for').
-string('back_on_route.ogg', 'you are back on the route ').
+string('back_on_route.ogg', 'you are back on the route').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'onto ').
@@ -117,26 +117,26 @@ string('to.ogg', 'to ').
 string('toward.ogg', 'toward ').
 
 % DISTANCE UNIT SUPPORT
-string('meters.ogg', 'meters ').
-string('around_1_kilometer.ogg', 'about 1 kilometer ').
+string('meters.ogg', 'meters').
+string('around_1_kilometer.ogg', 'about 1 kilometer').
 string('around.ogg', 'about ').
-string('kilometers.ogg', 'kilometers ').
+string('kilometers.ogg', 'kilometers').
 
-string('feet.ogg', 'feet ').
+string('feet.ogg', 'feet').
 string('1_tenth_of_a_mile.ogg', 'one tenth of a mile').
 string('tenths_of_a_mile.ogg', 'tenths of a mile').
-string('around_1_mile.ogg', 'about 1 mile ').
-string('miles.ogg', 'miles ').
+string('around_1_mile.ogg', 'about 1 mile').
+string('miles.ogg', 'miles').
 
-string('yards.ogg', 'yards ').
+string('yards.ogg', 'yards').
 
 % TIME SUPPORT
 string('time.ogg', 'time is ').
 string('1_hour.ogg', 'one hour ').
 string('hours.ogg', 'hours ').
-string('less_a_minute.ogg', 'less than a minute ').
-string('1_minute.ogg', 'one minute ').
-string('minutes.ogg', 'minutes ').
+string('less_a_minute.ogg', 'less than a minute').
+string('1_minute.ogg', 'one minute').
+string('minutes.ogg', 'minutes').
 
 
 %% COMMAND BUILDING / WORD ORDER
