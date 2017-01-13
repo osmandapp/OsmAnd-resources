@@ -919,10 +919,6 @@
 
 	<poi_additional name="min_age" tag="min_age" type="text"/>
 
-	<poi_additional name="organic_yes" tag="organic" value="yes"/>
-	<poi_additional name="organic_no" tag="organic" value="no"/>
-	<poi_additional name="organic_only" tag="organic" value="only"/>
-
 	<poi_additional name="fire_operator" tag="fire_operator" type="text"/>
 
 	<poi_additional name="tower_construction_lattice" tag="tower:construction" value="lattice"/>
@@ -933,11 +929,17 @@
 
 		<poi_category name="shop" default_tag="shop" excluded_poi_additional_category="fee">
 			<poi_filter name="shop_food" top="true">
-				<poi_type name="convenience" tag="shop" value="convenience"/>
-				<poi_type name="supermarket" tag="shop" value="supermarket" poi_additional_category="drive_through"/>
+				<poi_type name="convenience" tag="shop" value="convenience" poi_additional_category="organic"/>
+				<poi_type name="supermarket" tag="shop" value="supermarket" poi_additional_category="drive_through">
+					<poi_additional_category name="organic">
+						<poi_additional name="organic_yes" tag="organic" value="yes"/>
+						<poi_additional name="organic_no" tag="organic" value="no"/>
+						<poi_additional name="organic_only" tag="organic" value="only"/>
+					</poi_additional_category>
+				</poi_type>
 			</poi_filter>
 			<poi_type name="alcohol" tag="shop" value="alcohol"/>
-			<poi_type name="bakery" tag="shop" value="bakery" poi_additional_category="drive_through"/>
+			<poi_type name="bakery" tag="shop" value="bakery" poi_additional_category="drive_through,organic"/>
 			<poi_type name="beverages" tag="shop" value="beverages"/>
 			<poi_type name="butcher" tag="shop" value="butcher"/>
 			<poi_type name="cheese" tag="shop" value="cheese"/>
@@ -945,9 +947,9 @@
 			<poi_type name="coffee" tag="shop" value="coffee"/>
 			<poi_type name="confectionery" tag="shop" value="confectionery"/>
 			<poi_type name="dairy" tag="shop" value="dairy"/>
-			<poi_type name="deli" tag="shop" value="deli"/>
-			<poi_type name="farm" tag="shop" value="farm"/>
-			<poi_type name="greengrocer" tag="shop" value="greengrocer"/>
+			<poi_type name="deli" tag="shop" value="deli" poi_additional_category="organic"/>
+			<poi_type name="farm" tag="shop" value="farm" poi_additional_category="organic"/>
+			<poi_type name="greengrocer" tag="shop" value="greengrocer" poi_additional_category="organic"/>
 			<poi_type name="honey" tag="shop" value="honey"/>
 			<poi_type name="ice_cream" tag="amenity" value="ice_cream" poi_additional_category="outdoor_seating"/>
 			<poi_type name="mall" tag="shop" value="mall"/>
@@ -1037,7 +1039,7 @@
 			<poi_type name="carpet" tag="shop" value="carpet"/>
 			<poi_type name="charity" tag="shop" value="charity"/>
 			<poi_type name="chemist" tag="shop" value="chemist"/>
-			<poi_type name="clothes" tag="shop" value="clothes"> <!-- "clothes" tag converted from clothes=value to clothes:value=yes during map processing. See rendering_types.xml -->
+			<poi_type name="clothes" tag="shop" value="clothes" poi_additional_category="organic"> <!-- "clothes" tag converted from clothes=value to clothes:value=yes during map processing. See rendering_types.xml -->
 				<poi_additional_category name="clothes_type">
 					<poi_additional name="clothes_children" tag="clothes:children" value="yes"/>
 					<poi_additional name="clothes_women" tag="clothes:women" value="yes"/>
@@ -1120,7 +1122,7 @@
 			<poi_type name="locksmith" tag="shop" value="locksmith"/>
 			<poi_type name="lottery" tag="shop" value="lottery"/>
 			<poi_type name="mall" tag="shop" value="mall" exclude_poi_additional_category="payment_type"/>
-			<poi_type name="marketplace" tag="amenity" value="marketplace" exclude_poi_additional_category="payment_type"/>
+			<poi_type name="marketplace" tag="amenity" value="marketplace" poi_additional_category="organic" exclude_poi_additional_category="payment_type"/>
 			<poi_type name="medical_supply" tag="shop" value="medical_supply"/>
 			<poi_type name="mobile_phone" tag="shop" value="mobile_phone"/>
 			<poi_type name="model" tag="shop" value="model"/>
@@ -2651,7 +2653,7 @@
 		</poi_category>
 		<poi_category name="sustenance" default_tag="amenity" top="true" excluded_poi_additional_category="fee">
 			<poi_filter name="cafe_and_restaurant" top="true">
-				<poi_type name="cafe" tag="amenity" value="cafe" poi_additional_category="takeaway,diet">
+				<poi_type name="cafe" tag="amenity" value="cafe" poi_additional_category="takeaway,diet,organic">
 					<poi_additional_category name="dish" icon="cuisine">
 						<poi_additional name="cuisine_pizza" tag="cuisine" value="pizza" top="true"/>
 						<poi_additional name="cuisine_burger" tag="cuisine" value="burger" top="true"/>
@@ -2829,7 +2831,7 @@
 						<poi_additional name="smoking_dedicated" tag="smoking" value="dedicated"/>
 					</poi_additional_category>
 				</poi_type>
-				<poi_type name="restaurant" tag="amenity" value="restaurant" poi_additional_category="microbrewery,takeaway,outdoor_seating,smoking,dish,cuisine">
+				<poi_type name="restaurant" tag="amenity" value="restaurant" poi_additional_category="microbrewery,takeaway,outdoor_seating,smoking,dish,cuisine,organic">
 					<poi_additional_category name="delivery">
 						<poi_additional name="delivery_filter_yes" tag="delivery_filter" value="yes" no_edit="true" filter_only="true"/>
 					</poi_additional_category>
@@ -2849,7 +2851,7 @@
 				</poi_type>
 				<poi_type name="food_court" tag="amenity" value="food_court"/>
 			</poi_filter>
-			<poi_type name="fast_food" tag="amenity" value="fast_food" poi_additional_category="delivery,outdoor_seating,drive_in,smoking,diet,dish,cuisine">
+			<poi_type name="fast_food" tag="amenity" value="fast_food" poi_additional_category="delivery,outdoor_seating,drive_in,smoking,diet,dish,cuisine,organic">
 				<poi_additional_category name="drive_through">
 					<poi_additional name="drive_through_yes" tag="drive_through" value="yes"/>
 				</poi_additional_category>
