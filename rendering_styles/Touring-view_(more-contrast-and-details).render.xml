@@ -43,8 +43,9 @@
 		Areas (night view collapses areas to groups for more homogeneity):
 		- defaultColorNight:             002a2a (middle ground between open lighter nature and darker forests)
 		- forestColorNight:              001122
-		- openNatureColorNight nature:   004333 (i.e. non-forest)
+		- openNatureColorNight:          004333 (i.e. non-forest)
 		- shaderColorNight:              334433 (replaces vegetation shaders, parks, sports areas, etc.)
+		- specialNatureColorNight        61592c (used for special areas like desert, lava, beaches)
 		- waterColorNight:               330099
 		- builtUpAreasColorNight:        3b3b3b
 		- buldingColorNight:             685454
@@ -274,9 +275,11 @@
 	<!-- Area colors -->
 
 	<!-- constants for night colors, as they often collapse several different day features -->
+	<renderingConstant name="defaultColorNight" value="#002a2a"/>
 	<renderingConstant name="forestColorNight" value="#001122"/>
 	<renderingConstant name="openNatureColorNight" value="#004333"/>
 	<renderingConstant name="shaderColorNight" value="#334433"/>
+	<renderingConstant name="specialNatureColorNight" value="#61592c"/>
 	<renderingConstant name="waterColorNight" value="#330099"/>
 	<renderingConstant name="builtUpAreasColorNight" value="#3b3b3b"/>
 	<renderingConstant name="buildingColorNight" value="#685454"/>
@@ -284,7 +287,7 @@
 	<renderingAttribute name="defaultColor">
 		<case noPolygons="true" attrColorValue="#00555555"/>
 		<case attrColorValue="#f1eae4">
-			<apply_if nightMode="true" attrColorValue="#002a2a"/>
+			<apply_if nightMode="true" attrColorValue="$defaultColorNight"/>
 		</case>
 	</renderingAttribute>
 
@@ -298,11 +301,11 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="desertColor">
-		<case nightMode="true" attrColorValue="#61592c"/>
+		<case nightMode="true" attrColorValue="$specialNatureColorNight"/>
 		<case attrColorValue="#fff7bf"/>
 	</renderingAttribute>
 	<renderingAttribute name="lavaColor">
-		<case nightMode="true" attrColorValue="#61592c"/>
+		<case nightMode="true" attrColorValue="$specialNatureColorNight"/>
 		<case attrColorValue="#ffe7ff"/>
 	</renderingAttribute>
 	<renderingAttribute name="meadowColor">
@@ -380,24 +383,6 @@
 		<case nightMode="true" attrColorValue="$buildingColorNight"/>
 		<case attrColorValue="#bca9a9"/>
 	</renderingAttribute>
-
-	<renderingAttribute name="parkingColor">
-		<case nightMode="true" attrColorValue="#36455a"/>
-		<case attrColorValue="#f6eeb7"/>
-	</renderingAttribute>
-	<renderingAttribute name="parkingPrivateColor">
-		<case nightMode="true" attrColorValue="#7741536c"/>
-		<case attrColorValue="#77f6eeb7"/>
-	</renderingAttribute>
-	<renderingAttribute name="parkingCustomersColor">
-		<case nightMode="true" attrColorValue="#7741536c"/>
-		<case attrColorValue="#77f6eeb7"/>
-	</renderingAttribute>
-	<renderingAttribute name="bicycleParkingColor">
-		<case nightMode="true" attrColorValue="#36455a"/>
-		<case attrColorValue="#f6eeb7"/>
-	</renderingAttribute>
-
 	<renderingAttribute name="stadiumColor">
 		<case nightMode="true" attrColorValue="$buildingColorNight"/>
 		<case attrColorValue="#33cc99"/>
@@ -405,6 +390,7 @@
 	<renderingAttribute name="stadiumStrokeColor">
 		<case attrColorValue="$null"/>
 	</renderingAttribute>
+
 	<renderingAttribute name="sportsCentreColor">
 		<case nightMode="true" attrColorValue="$shaderColorNight"/>
 		<case attrColorValue="#33cc99"/>
@@ -445,6 +431,7 @@
 		<case attrColorValue="#9db487"/>
 	</renderingAttribute>
 	<renderingAttribute name="playgroundColor">
+		<case nightMode="true" attrColorValue="$shaderColorNight"/>
 		<case attrColorValue="#add9d9"/>
 	</renderingAttribute>
 	<renderingAttribute name="themeparkColor">
@@ -453,6 +440,23 @@
 	</renderingAttribute>
 	<renderingAttribute name="themeparkStrokeColor">
 		<case attrColorValue="#734a08"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="parkingColor">
+		<case nightMode="true" attrColorValue="#36455a"/>
+		<case attrColorValue="#f6eeb7"/>
+	</renderingAttribute>
+	<renderingAttribute name="parkingPrivateColor">
+		<case nightMode="true" attrColorValue="#7741536c"/>
+		<case attrColorValue="#77f6eeb7"/>
+	</renderingAttribute>
+	<renderingAttribute name="parkingCustomersColor">
+		<case nightMode="true" attrColorValue="#7741536c"/>
+		<case attrColorValue="#77f6eeb7"/>
+	</renderingAttribute>
+	<renderingAttribute name="bicycleParkingColor">
+		<case nightMode="true" attrColorValue="#36455a"/>
+		<case attrColorValue="#f6eeb7"/>
 	</renderingAttribute>
 
 

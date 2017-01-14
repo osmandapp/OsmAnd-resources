@@ -280,7 +280,7 @@
 	</renderingAttribute>
 
 
-	<!-- filter does not work for renderingConstant - the last one will be used, but better use separate depends Rendering style -->
+	<!-- filter does not work for renderingConstant - the last one will be used, but better use separate dependent Rendering style -->
 
 
 	<!-- roadColors="Modified Mapnik" -->
@@ -1139,6 +1139,9 @@
 
 	<!-- Open nature -->
 	<renderingConstant name="openNatureColorNight" value="$woodColor"/>
+	<renderingAttribute name="specialNatureColorNight">
+		<case attrColorValue="$openNatureColorNight"/>
+	</renderingAttribute>
 	<renderingConstant name="shaderColorNight" value="#1b3638"/>
 	<renderingConstant name="wetlandColorNight" value="#1b3238"/>
 	<renderingAttribute name="grasslandColor">
@@ -1146,9 +1149,11 @@
 		<case attrColorValue="$woodColor"/>
 	</renderingAttribute>
 	<renderingAttribute name="lavaColor">
+		<case nightMode="true" attrColorValue="$specialNatureColorNight"/>
 		<case attrColorValue="#ffe7ff"/>
 	</renderingAttribute>
 	<renderingAttribute name="desertColor">
+		<case nightMode="true" attrColorValue="$specialNatureColorNight"/>
 		<case attrColorValue="#fff7bf"/>
 	</renderingAttribute>
 	<renderingAttribute name="farmColor">
@@ -1204,6 +1209,7 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="golfCourseColor">
+		<case nightMode="true" attrColorValue="$shaderColorNight"/>
 		<case moreDetailed="true" attrColorValue="#ADE5A1"/>
 		<case attrColorValue="$woodColor"/>
 	</renderingAttribute>
@@ -8413,7 +8419,7 @@
 					<apply_if minzoom="16" additional="leaf_type=needleleaved" shader="$woodNeedleleavedShader"/>
 					<apply_if minzoom="16" additional="leaf_type=mixed" shader="$woodMixedShader"/>
 				</case>
-				<case tag="landuse" value="forest" color="$woodColor" color_0="$woodColor">
+				<case tag="landuse" value="forest" color="$forestColor" color_0="$forestColor">
 					<apply_if minzoom="16" shader="$forestMixedShader"/>
 					<apply_if minzoom="16" additional="leaf_type=broadleaved" shader="$forestBroadleavedShader"/>
 					<apply_if minzoom="16" additional="leaf_type=needleleaved" shader="$forestNeedleleavedShader"/>
@@ -8433,29 +8439,35 @@
 			<switch>
 				<case minzoom="6" tag="natural" value="heath" color="$heathColor"/>
 				<case minzoom="6" tag="natural" value="grassland" color="$grasslandColor"/>
-				<case minzoom="6" tag="natural" value="lava" color="$lavaColor"/>
-				 <!-- desert is disputed because not well defined and little verifiable -->
-				<case minzoom="6" tag="natural" value="desert" color="$desertColor"/>
-				<!-- field is unofficial -->
 				<case minzoom="6" tag="landuse" value="greenfield" color="$greenfieldColor"/>
 				<case minzoom="6" tag="landuse" value="grass" color="$grassColor"/>
 				<case minzoom="6" tag="landuse" value="brownfield" color="$brownfieldColor"/>
 				<case minzoom="6" tag="landuse" value="conservation" color="$conservationColor"/>
-				<case minzoom="12" tag="landuse" value="recreation_ground" color="$recreationGroundColor"/>
-				<case minzoom="6" tag="landuse" value="village_green" color="$villageGreenColor"/>
-				<case minzoom="15" tag="leisure" value="playground" color="$playgroundColor"/>
 				<case minzoom="12" tag="leisure" value="common" color="$leisureCommonColor"/>
 				<case minzoom="14" tag="leisure" value="dog_park" color="$leisureCommonColor"/>
 				<apply_if nightMode="true" color="$openNatureColorNight"/>
 			</switch>
+
+			<!-- Some areas which must remain distinguishable in some dependent renderers at night -->
+			<switch>
+				<case minzoom="6" tag="landuse" value="village_green" color="$villageGreenColor"/>
+				<case minzoom="12" tag="landuse" value="recreation_ground" color="$recreationGroundColor"/>
+				<case minzoom="15" tag="leisure" value="playground" color="$playgroundColor"/>
+				<apply_if nightMode="true" color="$shaderColorNight"/>
+			</switch>
+
+			<!-- Special nature, with their own special night color in some dependent renderers -->
+			<switch>
+				<case minzoom="6" tag="natural" value="desert" color="$desertColor"/>
+				<case minzoom="6" tag="natural" value="lava" color="$lavaColor"/>
+			</switch>
+
 			<case minzoom="8" tag="leisure" value="park">
 				<apply color="$parkColor" color_2="$parkStrokeColor" strokeWidth_2=":1"/>
 			</case>
 
 			<switch>
-				<case minzoom="8" tag="leisure" value="golf_course" strokeWidth_2=":1" color="$golfCourseColor" color_2="$golfCourseColorDayStroke">
-					<apply_if nightMode="true" color="$openNatureColorNight"/>
-				</case>
+				<case minzoom="8" tag="leisure" value="golf_course" strokeWidth_2=":1" color="$golfCourseColor" color_2="$golfCourseColorDayStroke"/>
 				<case minzoom="14" tag="leisure" value="pitch">
 					<case moreDetailed="true" color="$pitchColor" color_2="$pitchColorStroke" strokeWidth_2=":1"/>
 					<case minzoom="15" color="$pitchColor" color_2="$pitchColorStroke" strokeWidth_2=":1"/>
