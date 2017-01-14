@@ -40,13 +40,14 @@
 
 	<!--
 	NIGHT VIEW CONCEPT: Main colors for night renderer, by Hardy Mueller, 2011-07-04, reworked to more grey/green pattern 2013-11-30:
-		Areas:
-		- default:        002a2a (middle ground between open lighter nature and darker forests)
-		- forest:         001122
-		- other open (non-forest) nature: 004333 (vegetation shaders replaced by 334433)
-		- water:          330099
-		- built-up areas: 3b3b3b
-		- buildings:      685454
+		Areas (night view collapses areas to groups for more homogeneity):
+		- defaultColorNight:             002a2a (middle ground between open lighter nature and darker forests)
+		- forestColorNight:              001122
+		- openNatureColorNight nature:   004333 (i.e. non-forest)
+		- shaderColorNight:              334433 (replaces vegetation shaders)
+		- waterColorNight:               330099
+		- builtUpAreasColorNight:        3b3b3b
+		- buldingColorNight:             685454
 		Roads:
 		- road brightness levels aligned with road priority!
 		- 'white' roads: 9f9f9f to darken high density areas sufficiently
@@ -271,92 +272,99 @@
 	<renderingConstant name="null" value="#00000000"/>
 
 	<!-- Area colors -->
+
+	<!-- constants for night colors, as they often collapse several different day features -->
+	<renderingConstant name="forestColorNight" value="#001122"/>
+	<renderingConstant name="openNatureColorNight" value="#004333"/>
+	<renderingConstant name="shaderColorNight" value="#334433"/>
+	<renderingConstant name="waterColorNight" value="#330099"/>
+	<renderingConstant name="builtUpAreasColorNight" value="#3b3b3b"/>
+	<renderingConstant name="buildingColorNight" value="#685454"/>
+
 	<renderingAttribute name="defaultColor">
 		<case noPolygons="true" attrColorValue="#00555555"/>
 		<case attrColorValue="#f1eae4">
 			<apply_if nightMode="true" attrColorValue="#002a2a"/>
 		</case>
 	</renderingAttribute>
-	<renderingConstant name="openNatureColorNight" value="#004333"/>
-	<renderingConstant name="shaderColorNight" value="#334433"/>
 
 	<renderingAttribute name="woodColor">
-		<case nightMode="true" attrColorValue="#001122"/>
+		<case nightMode="true" attrColorValue="$forestColorNight"/>
 		<case attrColorValue="#aed1a0"/>
 	</renderingAttribute>
 	<renderingAttribute name="forestColor">
-		<case nightMode="true" attrColorValue="#001122"/>
+		<case nightMode="true" attrColorValue="$forestColorNight"/>
 		<case attrColorValue="#9dd57c"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="meadowColor">
-		<case nightMode="true" attrColorValue="#004333"/>
+		<case nightMode="true" attrColorValue="$openNatureColorNight"/>
 		<case attrColorValue="#cfeca8"/>
 	</renderingAttribute>
 	<renderingAttribute name="heathColor">
-		<case attrColorValue="#ffffc0">
-			<apply_if nightMode="true" attrColorValue="$openNatureColorNight"/>
-		</case>
+		<case nightMode="true" attrColorValue="$openNatureColorNight"/>
+		<case attrColorValue="#d6d99f"/>
 	</renderingAttribute>
 	<renderingAttribute name="grasslandColor">
+		<case nightMode="true" attrColorValue="$openNatureColorNight"/>
 		<case attrColorValue="#cfeca8"/>
 	</renderingAttribute>
 	<renderingAttribute name="grassColor">
+		<case nightMode="true" attrColorValue="$openNatureColorNight"/>
 		<case attrColorValue="#cfeca8"/>
 	</renderingAttribute>
 	<renderingAttribute name="gardenColor">
-		<case nightMode="true" attrColorValue="#004333"/>
+		<case nightMode="true" attrColorValue="$openNatureColorNight"/>
 		<case attrColorValue="#cfeca8"/>
 	</renderingAttribute>
 	<renderingAttribute name="greenfieldColor">
-		<case attrColorValue="#9d9d6c"/>
+		<case nightMode="true" attrColorValue="$openNatureColorNight"/>
+		<case attrColorValue="#a5a574"/>
 	</renderingAttribute>
 	<renderingAttribute name="brownfieldColor">
-		<case attrColorValue="#9d9d6c"/>
+		<case nightMode="true" attrColorValue="$openNatureColorNight"/>
+		<case attrColorValue="#a5a574"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="waterColor">
-		<case nightMode="true" attrColorValue="#330099"/>
-		<case attrColorValue="#b5d0d0"/>
-	</renderingAttribute>
-
-	<renderingAttribute name="buildingColor">
-		<case nightMode="true" attrColorValue="#685454"/>
-		<case attrColorValue="#bca9a9"/>
+		<case nightMode="true" attrColorValue="$waterColorNight"/>
+		<case attrColorValue="#b5d0ff"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="landuseConstructionColor">
+		<case nightMode="true" attrColorValue="#727272"/>
 		<case attrColorValue="#ffffff"/>
 	</renderingAttribute>
 	<renderingAttribute name="landuseConstructionStrokeColor">
-		<case nightMode="true" attrColorValue="#ff6600"/>
 		<case attrColorValue="#ff6600"/>
 	</renderingAttribute>
-	<renderingAttribute name="landuseGaragesColor">
-		<case nightMode="true" attrColorValue="#362d2d"/>
-		<case attrColorValue="#cdc6bf"/>
-	</renderingAttribute>
+
 	<renderingAttribute name="landuseRailwayColor">
-		<case nightMode="true" attrColorValue="#3b3b3b"/>
+		<case nightMode="true" attrColorValue="$builtUpAreasColorNight"/>
 		<case attrColorValue="#dfd1d6"/>
 	</renderingAttribute>
 	<renderingAttribute name="landuseCommercialColor">
-		<case nightMode="true" attrColorValue="#3b3b3b"/>
+		<case nightMode="true" attrColorValue="$builtUpAreasColorNight"/>
 		<case attrColorValue="#efc8c8"/>
 	</renderingAttribute>
-
-	<renderingAttribute name="landuseRetailColor">
-		<case nightMode="true" attrColorValue="#3b3b3b"/>
-		<case attrColorValue="#efd0c8"/>
-	</renderingAttribute>
-	<renderingAttribute name="churchColor">
-		<case nightMode="true" attrColorValue="#685454"/>
-		<case attrColorValue="#bca9a9"/>
-	</renderingAttribute>
 	<renderingAttribute name="attractionColor">
-		<case nightMode="true" attrColorValue="#3b3b3b"/>
+		<case nightMode="true" attrColorValue="$builtUpAreasColorNight"/>
 		<case attrColorValue="#f2caea"/>
 	</renderingAttribute>
+	<renderingAttribute name="landuseRetailColor">
+		<case nightMode="true" attrColorValue="$builtUpAreasColorNight"/>
+		<case attrColorValue="#efd0c8"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="buildingColor">
+		<case nightMode="true" attrColorValue="$buildingColorNight"/>
+		<case attrColorValue="#bca9a9"/>
+	</renderingAttribute>
+	<renderingAttribute name="churchColor">
+		<case nightMode="true" attrColorValue="$buildingColorNight"/>
+		<case attrColorValue="#bca9a9"/>
+	</renderingAttribute>
+
 	<renderingAttribute name="parkingColor">
 		<case nightMode="true" attrColorValue="#36455a"/>
 		<case attrColorValue="#f6eeb7"/>
@@ -373,6 +381,7 @@
 		<case nightMode="true" attrColorValue="#36455a"/>
 		<case attrColorValue="#f6eeb7"/>
 	</renderingAttribute>
+
 	<renderingAttribute name="stadiumColor">
 		<case nightMode="true" attrColorValue="#04382c"/>
 		<case attrColorValue="#33cc99"/>
@@ -400,7 +409,10 @@
 		<case attrColorValue="#b0b6fdb6"/>
 	</renderingAttribute>
 
-	<renderingConstant name="black" value="#000000"/>
+
+	<!-- Text colors -->
+	<!-- no modification for now -->
+<!--	<renderingConstant name="black" value="#000000"/>
 	<renderingConstant name="white" value="#ffffff"/>
 
 	 <renderingAttribute name="tertiaryTextColor">
@@ -438,13 +450,12 @@
 		<case nightMode="true" attrColorValue="#8EAAEB"/>
 		<case attrColorValue="#2375aa"/>
 	</renderingAttribute>
+
 	<renderingAttribute name="waterTextHaloColor">
 		<case nightMode="true" attrColorValue="#9939528B"/>
 		<case attrColorValue="#99ddf1fd"/>
 	</renderingAttribute>
-
-	<!-- Text colors -->
-	<!-- no modification for now -->
+-->
 
 
 	<order>
@@ -499,14 +510,15 @@
 			</groupFilter>
 			<groupFilter nightMode="true" color_2="$shadowColorNight"/>
 		</group>
-		<case minzoom="12" tag="landuse" value="cemetery" shader="cemetery_small">
+
+		<!-- case minzoom="12" tag="landuse" value="cemetery" shader="cemetery_small">
 			<case minzoom="15" shader="cemetery">
 				<case additional="religion=christian" shader="cemetery_christian"/>
 				<case additional="religion=muslim" shader="cemetery_muslim"/>
 				<case additional="religion=jewish" shader="cemetery_jewish"/>
 			</case>
 			<apply_if nightMode="true" shader="" color="$shaderColorNight"/>
-		</case>
+		</case -->
 
 	</polygon>
 
