@@ -41,11 +41,10 @@
 	<!--
 	NIGHT VIEW CONCEPT: Main colors for night renderer, by Hardy Mueller, 2011-07-04, reworked to more grey/green pattern 2013-11-30:
 		Areas (night view collapses areas to groups for more homogeneity):
-		- defaultColorNight:             002a2a (middle ground between open lighter nature and darker forests)
+		- defaultColorNight:             002a2a (middle brightness between lighter open nature and darker forests)
 		- forestColorNight:              001122
-		- openNatureColorNight:          004333 (i.e. non-forest)
-		- shaderColorNight:              334433 (replaces vegetation shaders, parks, sports areas, etc.)
-		- specialNatureColorNight        393104 (used for special areas like desert, lava, beaches)
+		- openNatureColorNight:          004333 (i.e. non-forest/low vegetation)
+		- shaderColorNight:              334433 (replaces vegetation shaders, and special interest areas like parks, sports areas, etc.)
 		- waterColorNight:               330099
 		- builtUpAreasColorNight:        3b3b3b
 		- buldingColorNight:             685454
@@ -272,14 +271,13 @@
 
 	<renderingConstant name="null" value="#00000000"/>
 
-	<!-- Area colors for touring relevant area features -->
+	<!-- Area colors for touring relevant area features, this also ensures they are always displayed -->
 
 	<!-- constants for night colors, as they often collapse several different day features -->
 	<renderingConstant name="defaultColorNight" value="#002a2a"/>
 	<renderingConstant name="forestColorNight" value="#001122"/>
 	<renderingConstant name="openNatureColorNight" value="#004333"/>
 	<renderingConstant name="shaderColorNight" value="#334433"/>
-	<renderingConstant name="specialNatureColorNight" value="#393104"/>
 	<renderingConstant name="waterColorNight" value="#330099"/>
 	<renderingConstant name="builtUpAreasColorNight" value="#3b3b3b"/>
 	<renderingConstant name="buildingColorNight" value="#685454"/>
@@ -291,22 +289,24 @@
 		</case>
 	</renderingAttribute>
 
+	<!-- Wooded areas, forest -->
 	<renderingAttribute name="woodColor">
 		<case nightMode="true" attrColorValue="$forestColorNight"/>
 		<case attrColorValue="#aed1a0"/>
 	</renderingAttribute>
 	<renderingAttribute name="forestColor">
 		<case nightMode="true" attrColorValue="$forestColorNight"/>
-		<!-- case attrColorValue="#9dd57c"/ -->
+		<!-- case attrColorValue="#9dd57c"/ rather intennsive, obscures visibility inside to some degree-->
 		<case attrColorValue="#aed1a0"/>
 	</renderingAttribute>
 
+	<!-- Open nature (low vegetation) -->
 	<renderingAttribute name="desertColor">
-		<case nightMode="true" attrColorValue="$specialNatureColorNight"/>
+		<case nightMode="true" attrColorValue="$openNatureColorNight"/>
 		<case attrColorValue="#fff7bf"/>
 	</renderingAttribute>
 	<renderingAttribute name="lavaColor">
-		<case nightMode="true" attrColorValue="$specialNatureColorNight"/>
+		<case nightMode="true" attrColorValue="$openNatureColorNight"/>
 		<case attrColorValue="#ffe7ff"/>
 	</renderingAttribute>
 	<renderingAttribute name="meadowColor">
@@ -342,19 +342,13 @@
 		<case attrColorValue="#e7ebca"/>
 	</renderingAttribute>
 
+	<!-- Water -->
 	<renderingAttribute name="waterColor">
 		<case nightMode="true" attrColorValue="$waterColorNight"/>
 		<case attrColorValue="#b5d0ff"/>
 	</renderingAttribute>
 
-	<renderingAttribute name="landuseConstructionColor">
-		<case nightMode="true" attrColorValue="#727272"/>
-		<case attrColorValue="#ffffff"/>
-	</renderingAttribute>
-	<renderingAttribute name="landuseConstructionStrokeColor">
-		<case attrColorValue="#ff6600"/>
-	</renderingAttribute>
-
+	<!-- Built-up areas -->
 	<renderingAttribute name="landuseResidentialColor">
 		<case nightMode="true" attrColorValue="$builtUpAreasColorNight"/>
 		<case attrColorValue="#d9ddd7"/>
@@ -384,6 +378,16 @@
 		<case attrColorValue="#f2caea"/>
 	</renderingAttribute>
 
+	<!-- Construction is special case, use conventional white/orange warning effect -->
+	<renderingAttribute name="landuseConstructionColor">
+		<case nightMode="true" attrColorValue="#727272"/>
+		<case attrColorValue="#ffffff"/>
+	</renderingAttribute>
+	<renderingAttribute name="landuseConstructionStrokeColor">
+		<case attrColorValue="#ff6600"/>
+	</renderingAttribute>
+
+	<!-- Buildings -->
 	<renderingAttribute name="buildingColor">
 		<case nightMode="true" attrColorValue="$buildingColorNight"/>
 		<case attrColorValue="#bca9a9"/>
@@ -400,6 +404,7 @@
 		<case attrColorValue="$null"/>
 	</renderingAttribute>
 
+	<!-- Special interest areas which must remain distinguishable from open nature at night -->
 	<renderingAttribute name="sportsCentreColor">
 		<case nightMode="true" attrColorValue="$shaderColorNight"/>
 		<case attrColorValue="#33cc99"/>
@@ -427,7 +432,6 @@
 		<case nightMode="true" attrColorValue="$shaderColorNight"/>
 		<case attrColorValue="#b0b6fdb6"/>
 	</renderingAttribute>
-
 	<renderingAttribute name="villageGreenColor">
 		<case nightMode="true" attrColorValue="$shaderColorNight"/>
 		<case attrColorValue="#cfeca8"/>
@@ -451,6 +455,7 @@
 		<case attrColorValue="#734a08"/>
 	</renderingAttribute>
 
+	<!-- Parking areas -->
 	<renderingAttribute name="parkingColor">
 		<case nightMode="true" attrColorValue="#36455a"/>
 		<case attrColorValue="#f6eeb7"/>
@@ -567,16 +572,6 @@
 			</groupFilter>
 			<groupFilter nightMode="true" color_2="$shadowColorNight"/>
 		</group>
-
-		<!-- case minzoom="12" tag="landuse" value="cemetery" shader="cemetery_small">
-			<case minzoom="15" shader="cemetery">
-				<case additional="religion=christian" shader="cemetery_christian"/>
-				<case additional="religion=muslim" shader="cemetery_muslim"/>
-				<case additional="religion=jewish" shader="cemetery_jewish"/>
-			</case>
-			<apply_if nightMode="true" shader="" color="$shaderColorNight"/>
-		</case -->
-
 	</polygon>
 
 

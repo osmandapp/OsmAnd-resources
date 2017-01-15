@@ -1139,9 +1139,6 @@
 
 	<!-- Open nature -->
 	<renderingConstant name="openNatureColorNight" value="$woodColor"/>
-	<renderingAttribute name="specialNatureColorNight">
-		<case attrColorValue="$openNatureColorNight"/>
-	</renderingAttribute>
 	<renderingConstant name="shaderColorNight" value="#1b3638"/>
 	<renderingConstant name="wetlandColorNight" value="#1b3238"/>
 	<renderingAttribute name="grasslandColor">
@@ -1149,11 +1146,11 @@
 		<case attrColorValue="$woodColor"/>
 	</renderingAttribute>
 	<renderingAttribute name="lavaColor">
-		<case nightMode="true" attrColorValue="$specialNatureColorNight"/>
+		<case nightMode="true" attrColorValue="$openNatureColorNight"/>
 		<case attrColorValue="#ffe7ff"/>
 	</renderingAttribute>
 	<renderingAttribute name="desertColor">
-		<case nightMode="true" attrColorValue="$specialNatureColorNight"/>
+		<case nightMode="true" attrColorValue="$openNatureColorNight"/>
 		<case attrColorValue="#fff7bf"/>
 	</renderingAttribute>
 	<renderingAttribute name="farmColor">
@@ -2021,13 +2018,14 @@
 
 	<!--
 	NIGHT VIEW CONCEPT: Main colors for night renderer, by Hardy Mueller, 2011-07-04, reworked to more grey/green pattern 2013-11-30:
-		Areas:
-		- default:        002a2a (middle ground between open lighter nature and darker forests)
-		- forest:         001122
-		- other open (non-forest) nature: 004333 (vegetation shaders replaced by 334433)
-		- water:          330099
-		- built-up areas: 3b3b3b
-		- buildings:      685454
+		Areas (night view collapses areas to groups for more homogeneity):
+		- defaultColorNight:             002a2a (middle brightness between lighter open nature and darker forests)
+		- forestColorNight:              001122
+		- openNatureColorNight:          004333 (i.e. non-forest/low vegetation)
+		- shaderColorNight:              334433 (replaces vegetation shaders, and special interest areas like parks, sports areas, etc.)
+		- waterColorNight:               330099
+		- builtUpAreasColorNight:        3b3b3b
+		- buldingColorNight:             685454
 		Roads:
 		- road brightness levels aligned with road priority!
 		- 'white' roads: 9f9f9f to darken high density areas sufficiently
@@ -8435,7 +8433,7 @@
 				<apply_if nightMode="true" shader=""/>
 			</switch>
 
-			<!-- Open nature, night color 004333 -->
+			<!-- Open nature, night color $openNatureColorNight -->
 			<switch>
 				<case minzoom="6" tag="natural" value="heath" color="$heathColor"/>
 				<case minzoom="6" tag="natural" value="grassland" color="$grasslandColor"/>
@@ -8448,7 +8446,7 @@
 				<apply_if nightMode="true" color="$openNatureColorNight"/>
 			</switch>
 
-			<!-- Some areas which must remain distinguishable in some dependent renderers at night -->
+			<!-- Some areas which must remain distinguishable from open nature in some dependent renderers at night (use $shaderColorNight) -->
 			<switch>
 				<case minzoom="6" tag="landuse" value="village_green" color="$villageGreenColor"/>
 				<case minzoom="12" tag="landuse" value="recreation_ground" color="$recreationGroundColor"/>
@@ -8456,7 +8454,7 @@
 				<apply_if nightMode="true" color="$shaderColorNight"/>
 			</switch>
 
-			<!-- Special nature, with their own special night color in some dependent renderers -->
+			<!-- Areas which have their own inherent night color definition in some dependent renderers -->
 			<switch>
 				<case minzoom="6" tag="natural" value="desert" color="$desertColor"/>
 				<case minzoom="6" tag="natural" value="lava" color="$lavaColor"/>
