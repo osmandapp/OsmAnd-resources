@@ -198,7 +198,7 @@ mygroup emergency emergency_ambulance_station.png
 mygroup emergency_infrastructure emergency_emergency_phone.png
 mycp amenity fire_station emergency_firestation4.png
 mycp amenity police emergency_police3.png
-mycp emergency fire_hydrant emergency_fire_hydrant.png
+mycp emergency fire_hydrant emergency_small_shield_fire_hydrant.png
 mycpname fire_hydrant_type_underground emergency_fire_hydrant_underground.png
 mycpname fire_hydrant_type_pillar emergency_fire_hydrant.png
 mycpname suction_point emergency_suction_point.png
@@ -256,15 +256,15 @@ mycpname crossing_traffic_signals_map functional-icons_highway_crossing_traffic_
 mycpname crossing_uncontrolled_map functional-icons_highway_crossing_uncontrolled.png
 mycpname crossing_unmarked_map functional-icons_highway_crossing_unmarked.png
 
-mycpname ford transport_ford.png
+mycpname ford transport_small_shield_ford.png
 mycpname topo_ford topo_topo_ford.png
 mycp highway milestone functional-icons_milestone.png
-mycp highway mini_roundabout transport_miniroundabout_anticlockwise.png
+mycp highway mini_roundabout transport_small_shield_miniroundabout_anticlockwise.png
 mycp highway noexit functional-icons_noexit.png
 mycpname deadlock poi_noexit.png
 mycp highway passing_place functional-icons_passing_place.png
 mycp highway speed_camera transport_speedcamera.png
-mycp highway steps transport_highway_steps.png
+mycp highway steps transport_small_shield_highway_steps.png
 mycp highway traffic_signals_map functional-icons_traffic_lights.png
 mycp highway traffic_signals transport_traffic_lights.png
 mycpname motorway_junction transport_motorway_junction.png
@@ -315,7 +315,7 @@ mycp skimap arrow_2triangles_white_small_nobg skimap_arrow_2triangles_white_smal
 mycp harbour yes poi_harbour.png
 mycpname historic_milestone tourist_historic_milestone.png
 mycpname runway transport_runway.png
-mycpname ford_stepping_stones transport_ford_stepping_stones.png
+mycpname ford_stepping_stones transport_small_shield_ford_stepping_stones.png
 mycpname topo_ford_stepping_stones topo_topo_ford_stepping_stones.png
 mycpname traffic_mirror poi_traffic_mirror.png
 
@@ -551,9 +551,10 @@ mycpname aerialway_rope_tow transport_aerialway_rope_tow.png
 mycp aeroway aerodrome_abandoned functional-icons_aerodrome_abandoned.png
 mycpname topo_aerodrome_abandoned topo_topo_aerodrome_abandoned.png
 mycp aeroway aerodrome transport_aerodrome.png
+mycpname aeroway_aerodrome_small transport_small_shield_aerodrome.png
 mycpname topo_aerodrome topo_topo_aerodrome.png
 mycp aeroway airport transport_airport.png
-mycp aeroway gate transport_airport_gate.png
+mycp aeroway gate transport_small_shield_airport_gate.png
 mycp aeroway helipad transport_helicopter_pad.png
 mycpname aeroway_terminal transport_airport_terminal.png
 
@@ -644,16 +645,16 @@ mycp attraction water_slide entertainment_water_slide.png
 mycp tourism aquarium tourist_aquarium.png
 mycp tourism artwork tourist_artwork.png
 mycp tourism attraction tourist_attraction.png
-mycp tourism information tourist_information.png
-mycpname information_office tourist_information_office.png
-mycpname information_board tourist_information_board.png
-mycpname information_guidepost tourist_information_guidepost.png
-mycpname information_map tourist_information_map.png
-mycpname information_terminal tourist_information_terminal.png
-mycpname information_audioguide tourist_information_audioguide.png
+mycp tourism information tourist_small_shield_information.png
+mycpname information_office tourist_small_shield_information_office.png
+mycpname information_board tourist_small_shield_information_board.png
+mycpname information_guidepost tourist_small_shield_information_guidepost.png
+mycpname information_map tourist_small_shield_information_map.png
+mycpname information_terminal tourist_small_shield_information_terminal.png
+mycpname information_audioguide tourist_small_shield_information_audioguide.png
 mycp tourism museum tourist_museum.png
-mycp tourism picnic_site tourist_picnic.png
-mycpname picnic_table tourist_picnic_table.png
+mycp tourism picnic_site tourist_small_shield_picnic.png
+mycpname picnic_table tourist_small_shield_picnic_table.png
 mycp tourism theme_park tourist_theme_park.png
 mycp tourism viewpoint tourist_view_point.png
 mycp tourism zoo tourist_zoo.png
@@ -694,17 +695,17 @@ mygroup historic tourist_archaeological2.png
 mycp historic archaeological_site tourist_archaeological2.png
 mycp historic battlefield tourist_battlefield.png
 mycp historic boundary_stone tourist_boundary_stone.png
-mycp historic cannon tourist_cannon.png
+mycp historic cannon tourist_small_shield_cannon.png
 mycp historic castle tourist_castle2.png
 mycpname city_gate barrier_sally_port.png
 mycp historic memorial tourist_memorial.png
 mycpname topo_memorial topo_topo_memorial.png
-mycp historic mine poi_mine_abandoned.png
+mycp historic mine tourist_mine_abandoned.png
 mycpname monument tourist_monument2.png
 mycpname topo_monument topo_topo_monument.png
 mycp historic ruins tourist_ruin.png
 mycpname topo_ruins topo_topo_ruins.png
-mycp historic rune_stone tourist_rune_stone.png
+mycp historic rune_stone tourist_small_shield_rune_stone.png
 mycp historic ship tourist_ship.png
 mycp historic wayside_cross tourist_wayside_cross.png
 mycp historic wayside_shrine tourist_wayside_shrine.png
@@ -828,7 +829,7 @@ mygroup internet_access amenity_internet_access.png
 mycp amenity car_wash amenity_car_wash.png
 mycpname car_wash_self_service amenity_car_wash_self_service.png
 mycpname vehicle_inspection amenity_vehicle_inspection.png
-mycp amenity fountain water_fountain2.png
+mycp amenity fountain water_small_shield_fountain2.png
 mycp amenity fountain_night functional-icons_fountain2_night.png
 mycp amenity monastery place_of_worship_monastery.png
 mycpname historic_monastery place_of_worship_monastery.png
@@ -841,7 +842,7 @@ mycp amenity recycling amenity_recycling.png
 mycp amenity telephone amenity_telephone.png
 mycp amenity toilets amenity_toilets.png
 mycp amenity vehicle_ramp amenity_vehicle_ramp.png
-mycpname service_tyres amenity_service_tyres.png
+mycpname service_tyres shop_service_tyres.png
 mycp religion christian place_of_worship_christian3.png
 mycpname topo_christian topo_topo_christian.png
 mycp religion jewish place_of_worship_jewish3.png

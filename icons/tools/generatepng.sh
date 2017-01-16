@@ -129,19 +129,23 @@ generatePngs() {
        generatePngs 'functional-icons-x2' '#777777' '#ff8f00' '' x2 '' nomx
        generatePngs 'subway' '#777777' '#ff8f00' '' x2 '' nomx
 
-       generatePngs 'water' '#0092DA' '#ff8f00'
+       generatePngs 'water' '#ffffff' '#ff8f00' #0092DA
+       generatePngs 'water_small_shield' '#0092DA' '#ff8f00'
 
-       generatePngs 'emergency' '#DA0092' '#ff8f00'
-       generatePngs 'health' '#DA0092' '#ff8f00'
+       generatePngs 'emergency' '#ffffff' '#ff8f00' #DA0092
+       generatePngs 'emergency_small_shield' '#DA0092' '#ff8f00'
+       generatePngs 'health' '#ffffff' '#ff8f00' #DA0092
 
        generatePngs 'transport' '#ffffff' '#ff8f00' #0092DA
+       generatePngs 'transport_small_shield' '#0092DA' '#ff8f00'
 
        generatePngs 'barrier' '#444444' '#ff8f00'
 
        generatePngs 'accommodation' '#ffffff' '#ff8f00' #0092DA
 
-       generatePngs 'tourist' '#593906' '#ff8f00'
-       generatePngs 'special_poi' '#a62b00' '#a62b00' '' '' '' nomx
+       generatePngs 'tourist' '#ffffff' '#ff8f00' #593906
+       generatePngs 'tourist_small_shield' '#593906' '#ff8f00'
+       generatePngs 'special_poi' '#a62b00' '#FFF5F1' '' '' '' nomx 
 
        generatePngs 'sport'  '#39AC39' '#ff8f00'
 
