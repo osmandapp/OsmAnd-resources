@@ -134,11 +134,11 @@ generatePngs() {
        generatePngs 'emergency' '#DA0092' '#ff8f00'
        generatePngs 'health' '#DA0092' '#ff8f00'
 
-       generatePngs 'transport' '#0092DA' '#ff8f00'
+       generatePngs 'transport' '#ffffff' '#ff8f00' #0092DA
 
        generatePngs 'barrier' '#444444' '#ff8f00'
 
-       generatePngs 'accommodation' '#0092DA' '#ff8f00'
+       generatePngs 'accommodation' '#ffffff' '#ff8f00' #0092DA
 
        generatePngs 'tourist' '#593906' '#ff8f00'
        generatePngs 'special_poi' '#a62b00' '#a62b00' '' '' '' nomx
@@ -162,7 +162,7 @@ generatePngs() {
 
        generatePngs 'food' '#8f6732' '#ff8f00'
 
-       generatePngs 'shopping' '#a734c2' '#ff8f00'
+       generatePngs 'shopping' '#ffffff' '#ff8f00' #a734c2
 
        generatePngs 'landuse' '#6dba00' '#ff8f00'
 
