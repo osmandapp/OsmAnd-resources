@@ -42,9 +42,9 @@ mycpname beach tourist_beach2.png                     # Keep shaders with backgr
 #mycp natural scrub landuse_scrub.png                     # Keep shaders with background color, cannot be replaced by icons!
 #mycp natural swamp landuse_swamp.png                     # Keep shaders with background color, cannot be replaced by icons!
 mycpname zoo tourist_zoo.png                         # Keep shaders with background color, cannot be replaced by icons!
-mycpname military_danger_area poi_danger_area.png
-mycpname military_nuclear_explosion_site poi_nuclear_explosion_site.png
-mycpname glacier poi_peak2.png                       # Keep shaders with background color, cannot be replaced by icons!
+mycpname military_danger_area poi_colored_danger_area.png
+mycpname military_nuclear_explosion_site poi_colored_nuclear_explosion_site.png
+mycpname glacier poi_colored_peak2.png                       # Keep shaders with background color, cannot be replaced by icons!
 mycpname landfill landuse_landfill.png
 mycpname wetland landuse_wetland.png
 mycpname cemetery landuse_cemetery.png
@@ -55,7 +55,7 @@ mycpname construction landuse_construction.png
 mycpname garages landuse_garages.png
 mycpname quarry landuse_quarry.png
 mycpname allotments landuse_allotments.png
-mycpname place_allotments poi_hamlet.png
+mycpname place_allotments poi_colored_hamlet.png
 mycpname village_green landuse_village_green.png
 mycpname recreation_ground landuse_recreation_ground.png
 mycpname residential landuse_residential.png
@@ -92,20 +92,20 @@ mycp stroke white functional-icons_white_stroke.png
 mycp stroke brown_right functional-icons_brown_right_stroke.png
 
 ## Natural
-mygroup natural poi_peak2.png
+mygroup natural poi_colored_peak2.png
 mycp natural cave_entrance poi_cave.png
 mycpname topo_cave topo_topo_cave.png
 mycp natural geyser water_geyser.png  #scale 0.375
 mycp natural hot_spring water_hot_spring.png  #scale 0.375
-mycp natural peak_big poi_peak_big.png
-mycp natural peak poi_peak.png
+mycp natural peak_big poi_colored_peak_big.png
+mycp natural peak poi_colored_peak.png
 mycp natural peak_night_big functional-icons_peak_night_big.png  #For night orienteering use orange similar to contour lines (=day version with color #CC6600)  #scale 0.5
 mycp natural peak_night functional-icons_peak_night.png  #For night orienteering use orange similar to contour lines (=day version with color #CC6600)  #scale 0.5
-mycp natural saddle poi_saddle.png
-mycp natural sinkhole poi_sinkhole.png
+mycp natural saddle poi_colored_saddle.png
+mycp natural sinkhole poi_colored_sinkhole.png
 mycp natural spring water_spring.png  #scale 0.375
 mycpname topo_spring topo_topo_spring.png  #scale 0.375
-mycp natural stone poi_stone.png  #scale 0.375
+mycp natural stone poi_colored_stone.png  #scale 0.375
 mycp natural tree_broadleaved functional-icons_tree_broadleaved.png
 mycpname topo_tree_broadleaved functional-icons-x2_topo_tree_broadleaved.png
 mycp natural tree_cypress functional-icons_tree_cypress.png
@@ -116,12 +116,12 @@ mycpname topo_tree_needleleaved functional-icons-x2_topo_tree_needleleaved.png
 mycp natural tree_palm functional-icons_tree_palm.png
 mycpname topo_tree_palm functional-icons-x2_topo_tree_palm.png
 mycpname tree_dot functional-icons_tree.png
-mycpname tree poi_tree.png
+mycpname tree poi_colored_tree.png
 mycp natural volcano_active_big functional-icons_volcano_active_big.png
 mycp natural volcano_active functional-icons_volcano_active.png
 mycp natural volcano_big functional-icons_volcano_big.png
-mycp natural volcano_map functional-icons_volcano.png  #Is poi_peak.png with color #D40000  #scale 0.5
-mycpname volcano poi_volcano_active.png
+mycp natural volcano_map functional-icons_volcano.png  #Is poi_colored_peak.png with color #D40000  #scale 0.5
+mycpname volcano poi_colored_volcano_active.png
 mycp waterway rapids barrier_rapids.png  #scale 0.375
 mycpname waterfall water_waterfall.png  #scale 0.375
 mycpname topo_waterfall topo_topo_waterfall.png  #scale 0.375
@@ -131,19 +131,19 @@ mycpname stream water_stream.png
 mycpname river water_river.png
 mycpname water water_water.png
 mycpname canal water_canal.png
-mycpname crater poi_crater.png
-mycpname cape poi_cape.png
-mycpname bay poi_bay.png
-mycpname reef poi_reef.png
+mycpname crater poi_colored_crater.png
+mycpname cape poi_colored_cape.png
+mycpname bay poi_colored_bay.png
+mycpname reef poi_colored_reef.png
 mycpname reservoir water_reservoir.png
 mycpname basin water_reservoir.png
-mycpname ridge poi_ridge.png
-mycpname strait poi_strait.png
-mycpname fjord poi_fjord.png
-mycpname cliff poi_cliff.png
+mycpname ridge poi_colored_ridge.png
+mycpname strait poi_colored_strait.png
+mycpname fjord poi_colored_fjord.png
+mycpname cliff poi_colored_cliff.png
 
 ## Location dots
-mygroup administrative poi_boundary_administrative.png
+mygroup administrative poi_colored_boundary_administrative.png
 mycp place city_dot_night functional-icons_city_night.png  #scale 0.375
 mycp place city_dot_small functional-icons_city_small.png  #scale 0.375
 mycp place city_dot_small_night functional-icons_city_small_night.png  #scale 0.375
@@ -154,20 +154,20 @@ mycp place capital_dot functional-icons_capital.png  #scale 0.375
 mycp place capital_dot_small functional-icons_capital_small.png  #scale 0.375
 mycp place town_dot_night functional-icons_town_night.png  #scale 0.25
 mycp place town_dot functional-icons_town.png  #scale .25
-mycp place city poi_city.png  #scale 0.375
-mycp place town poi_town.png
-mycpname hamlet poi_hamlet.png
-mycpname village poi_village.png
-mycpname locality poi_place_locality.png
-mycpname suburb poi_suburb.png
-mycpname neighbourhood poi_suburb.png
-mycpname isolated_dwelling poi_isolated_dwelling.png
-mycpname neighborhood poi_place_neighborhood.png
-mycpname island poi_island.png
-mycpname country poi_country.png
-mycpname quarter poi_quarter.png
-mycpname place_farm poi_place_farm.png
-mycpname islet poi_islet.png
+mycp place city poi_colored_city.png  #scale 0.375
+mycp place town poi_colored_town.png
+mycpname hamlet poi_colored_hamlet.png
+mycpname village poi_colored_village.png
+mycpname locality poi_colored_place_locality.png
+mycpname suburb poi_colored_suburb.png
+mycpname neighbourhood poi_colored_suburb.png
+mycpname isolated_dwelling poi_colored_isolated_dwelling.png
+mycpname neighborhood poi_colored_place_neighborhood.png
+mycpname island poi_colored_island.png
+mycpname country poi_colored_country.png
+mycpname quarter poi_colored_quarter.png
+mycpname place_farm poi_colored_place_farm.png
+mycpname islet poi_colored_islet.png
 
 ## Barrier dots
 mycp barrier small_black_1 functional-icons_point_black_1.png  #scale 0.25
@@ -198,7 +198,7 @@ mygroup emergency emergency_ambulance_station.png
 mygroup emergency_infrastructure emergency_emergency_phone.png
 mycp amenity fire_station emergency_firestation4.png
 mycp amenity police emergency_police3.png
-mycp emergency fire_hydrant emergency_small_shield_fire_hydrant.png
+mycp emergency fire_hydrant emergency_colored_fire_hydrant.png
 mycpname fire_hydrant_type_underground emergency_fire_hydrant_underground.png
 mycpname fire_hydrant_type_pillar emergency_fire_hydrant.png
 mycpname suction_point emergency_suction_point.png
@@ -256,15 +256,15 @@ mycpname crossing_traffic_signals_map functional-icons_highway_crossing_traffic_
 mycpname crossing_uncontrolled_map functional-icons_highway_crossing_uncontrolled.png
 mycpname crossing_unmarked_map functional-icons_highway_crossing_unmarked.png
 
-mycpname ford transport_small_shield_ford.png
+mycpname ford transport_colored_ford.png
 mycpname topo_ford topo_topo_ford.png
 mycp highway milestone functional-icons_milestone.png
-mycp highway mini_roundabout transport_small_shield_miniroundabout_anticlockwise.png
+mycp highway mini_roundabout transport_colored_miniroundabout_anticlockwise.png
 mycp highway noexit functional-icons_noexit.png
-mycpname deadlock poi_noexit.png
+mycpname deadlock poi_colored_noexit.png
 mycp highway passing_place functional-icons_passing_place.png
 mycp highway speed_camera transport_speedcamera.png
-mycp highway steps transport_small_shield_highway_steps.png
+mycp highway steps transport_colored_highway_steps.png
 mycp highway traffic_signals_map functional-icons_traffic_lights.png
 mycp highway traffic_signals transport_traffic_lights.png
 mycpname motorway_junction transport_motorway_junction.png
@@ -312,12 +312,12 @@ mycp skimap arrow_2triangles_white_nobg skimap_arrow_2triangles_white_nobg.png
 mycp skimap arrow_2triangles_black_small skimap_arrow_2triangles_black_small.png
 mycp skimap arrow_2triangles_black_small_nobg skimap_arrow_2triangles_black_small_nobg.png
 mycp skimap arrow_2triangles_white_small_nobg skimap_arrow_2triangles_white_small_nobg.png
-mycp harbour yes poi_harbour.png
+mycp harbour yes poi_colored_harbour.png
 mycpname historic_milestone tourist_historic_milestone.png
 mycpname runway transport_runway.png
-mycpname ford_stepping_stones transport_small_shield_ford_stepping_stones.png
+mycpname ford_stepping_stones transport_colored_ford_stepping_stones.png
 mycpname topo_ford_stepping_stones topo_topo_ford_stepping_stones.png
-mycpname traffic_mirror poi_traffic_mirror.png
+mycpname traffic_mirror poi_colored_traffic_mirror.png
 
 mygroup fuel transport_fuel.png
 mygroup filling_station transport_fuel.png
@@ -382,7 +382,7 @@ mycp leisure marina_private transport_marina_private.png
 mycp leisure slipway transport_slipway.png
 mycp man_made lighthouse transport_lighthouse.png
 mycp waterway lock_gate_small functional-icons_lock_gate.png  #scale 0.5
-mycpname lock_gate poi_lock_gate.png  #scale 0.25
+mycpname lock_gate poi_colored_lock_gate.png  #scale 0.25
 mycp waterway dock transport_dock.png
 
 mycpname halt_small functional-icons_halt_small.png  #scale 0.25
@@ -390,7 +390,7 @@ mycpname halt_small_2 functional-icons_halt_small_2.png  #scale 0.25
 mycpname topo_railway_halt_small functional-icons_topo_railway_halt_small.png
 mycpname halt transport_halt.png  #scale 0.25
 mycpname level_crossing_map functional-icons_level_crossing.png  #scale 0.5
-mycpname level_crossing poi_level_crossing.png  #scale 0.5
+mycpname level_crossing poi_colored_level_crossing.png  #scale 0.5
 mycpname railway_yard transport_railway_yard.png  #scale 0.25
 mycp railway platform transport_train_station2.png
 mycp railway station_disused functional-icons_train_station_disused.png
@@ -411,7 +411,7 @@ mycpname funicular transport_funicular.png
 mycpname escape_lane transport_escape_lane.png
 
 mycpname subway_entrance_map functional-icons_subway_entrance_map.png
-mycpname subway_entrance poi_subway_entrance.png
+mycpname subway_entrance poi_colored_subway_entrance.png
 mycpname subway_entrance transport_subway_entrance.png
 mycp railway subway_entrance_red functional-icons_subway_entrance_red.png
 mycp railway subway_entrance_brown functional-icons_subway_entrance_brown.png
@@ -551,10 +551,10 @@ mycpname aerialway_rope_tow transport_aerialway_rope_tow.png
 mycp aeroway aerodrome_abandoned functional-icons_aerodrome_abandoned.png
 mycpname topo_aerodrome_abandoned topo_topo_aerodrome_abandoned.png
 mycp aeroway aerodrome transport_aerodrome.png
-mycpname aeroway_aerodrome_small transport_small_shield_aerodrome.png
+mycpname aeroway_aerodrome_small transport_colored_aerodrome.png
 mycpname topo_aerodrome topo_topo_aerodrome.png
 mycp aeroway airport transport_airport.png
-mycp aeroway gate transport_small_shield_airport_gate.png
+mycp aeroway gate transport_colored_airport_gate.png
 mycp aeroway helipad transport_helicopter_pad.png
 mycpname aeroway_terminal transport_airport_terminal.png
 
@@ -585,7 +585,7 @@ mycp entrance yes barrier_entrance2.png
 mycpname entrance_exit_map functional-icons_entrance_exit.png
 mycpname entrance_main_map functional-icons_entrance3.png
 mycpname entrance_service functional-icons_entrance_service.png
-mycpname entrance_exit poi_entrance_exit.png
+mycpname entrance_exit poi_colored_entrance_exit.png
 mycpname entrance_main barrier_entrance2.png
 mycp amenity parking_entrance transport_parking_entrance.png
 mycp building entrance barrier_entrance.png
@@ -645,16 +645,16 @@ mycp attraction water_slide entertainment_water_slide.png
 mycp tourism aquarium tourist_aquarium.png
 mycp tourism artwork tourist_artwork.png
 mycp tourism attraction tourist_attraction.png
-mycp tourism information tourist_small_shield_information.png
-mycpname information_office tourist_small_shield_information_office.png
-mycpname information_board tourist_small_shield_information_board.png
-mycpname information_guidepost tourist_small_shield_information_guidepost.png
-mycpname information_map tourist_small_shield_information_map.png
-mycpname information_terminal tourist_small_shield_information_terminal.png
-mycpname information_audioguide tourist_small_shield_information_audioguide.png
+mycp tourism information tourist_colored_information.png
+mycpname information_office tourist_colored_information_office.png
+mycpname information_board tourist_colored_information_board.png
+mycpname information_guidepost tourist_colored_information_guidepost.png
+mycpname information_map tourist_colored_information_map.png
+mycpname information_terminal tourist_colored_information_terminal.png
+mycpname information_audioguide tourist_colored_information_audioguide.png
 mycp tourism museum tourist_museum.png
-mycp tourism picnic_site tourist_small_shield_picnic.png
-mycpname picnic_table tourist_small_shield_picnic_table.png
+mycp tourism picnic_site tourist_colored_picnic.png
+mycpname picnic_table tourist_colored_picnic_table.png
 mycp tourism theme_park tourist_theme_park.png
 mycp tourism viewpoint tourist_view_point.png
 mycp tourism zoo tourist_zoo.png
@@ -695,7 +695,7 @@ mygroup historic tourist_archaeological2.png
 mycp historic archaeological_site tourist_archaeological2.png
 mycp historic battlefield tourist_battlefield.png
 mycp historic boundary_stone tourist_boundary_stone.png
-mycp historic cannon tourist_small_shield_cannon.png
+mycp historic cannon tourist_colored_cannon.png
 mycp historic castle tourist_castle2.png
 mycpname city_gate barrier_sally_port.png
 mycp historic memorial tourist_memorial.png
@@ -705,7 +705,7 @@ mycpname monument tourist_monument2.png
 mycpname topo_monument topo_topo_monument.png
 mycp historic ruins tourist_ruin.png
 mycpname topo_ruins topo_topo_ruins.png
-mycp historic rune_stone tourist_small_shield_rune_stone.png
+mycp historic rune_stone tourist_colored_rune_stone.png
 mycp historic ship tourist_ship.png
 mycp historic wayside_cross tourist_wayside_cross.png
 mycp historic wayside_shrine tourist_wayside_shrine.png
@@ -760,7 +760,7 @@ mycp sport gymnastics sport_gymnasium.png
 mycp sport handball sport_handball.png
 mycpname ice_hockey sport_ice_hockey.png
 mycpname field_hockey sport_field_hockey.png
-mycp sport equestrian sport_horse_racing.png
+mycpname equestrian sport_horse_racing.png
 mycp sport motor sport_motorracing.png
 mycpname sport_free_flying sport_free_flying.png
 mycp sport rugby_league sport_rugby_league.png
@@ -810,16 +810,16 @@ mycp leisure bird_hide entertainment_bird_hide.png
 mycp leisure fishing sport_fishing.png  #used shop=fish turned by 45 degrees for now
 mycp leisure ice_rink sport_iceskating.png
 mycp leisure miniature_golf sport_miniature_golf.png
-mycp leisure playground sport_playground.png
+mycp leisure playground sport_colored_playground.png
 mycp leisure sports_centre sport_leisure_centre2.png
 mycp leisure water_park entertainment_water_slide.png
 mycp amenity sauna sport_sauna.png
 mycpname fitness_station sport_fitness_station.png
 mycpname tanning_salon sport_tanning_salon.png
 
-mygroup geocache poi_point_of_interest.png
-mycp geocache not_found poi_point_of_interest.png
-mycp geocache found poi_point_of_interest.png
+mygroup geocache poi_colored_point_of_interest.png
+mycp geocache not_found poi_colored_point_of_interest.png
+mycp geocache found poi_colored_point_of_interest.png
 
 
 ## Other amenities
@@ -829,7 +829,7 @@ mygroup internet_access amenity_internet_access.png
 mycp amenity car_wash amenity_car_wash.png
 mycpname car_wash_self_service amenity_car_wash_self_service.png
 mycpname vehicle_inspection amenity_vehicle_inspection.png
-mycp amenity fountain water_small_shield_fountain2.png
+mycp amenity fountain water_colored_fountain2.png
 mycp amenity fountain_night functional-icons_fountain2_night.png
 mycp amenity monastery place_of_worship_monastery.png
 mycpname historic_monastery place_of_worship_monastery.png
@@ -838,11 +838,11 @@ mycpname topo_religion_unknown topo_topo_religion_unknown.png
 mycp amenity post_box amenity_post_box.png
 mycp amenity post_office amenity_post_office2.png
 mycp amenity prison amenity_prison.png
-mycp amenity recycling amenity_recycling.png
+mycp amenity recycling amenity_colored_recycling.png
 mycp amenity telephone amenity_telephone.png
 mycp amenity toilets amenity_toilets.png
 mycp amenity vehicle_ramp amenity_vehicle_ramp.png
-mycpname service_tyres shop_service_tyres.png
+mycpname service_tyres shopping_service_tyres.png
 mycp religion christian place_of_worship_christian3.png
 mycpname topo_christian topo_topo_christian.png
 mycp religion jewish place_of_worship_jewish3.png
@@ -860,10 +860,10 @@ mycpname brothel amenity_brothel.png
 mycpname smoking_area amenity_smoking_area.png
 mycpname studio amenity_studio.png
 mycpname waste_basket amenity_waste_bin.png
-mycpname waste_basket2 amenity_waste_basket.png
-mycpname waste_disposal amenity_waste_disposal.png
+mycpname waste_basket2 amenity_colored_waste_basket.png
+mycpname waste_disposal amenity_colored_waste_disposal.png
 mycpname shower amenity_shower.png
-mycpname bench amenity_bench.png
+mycpname bench amenity_colored_bench.png
 mycpname dry_cleaning amenity_dry_cleaning.png
 mycpname massage amenity_massage.png
 mycpname funeral_directors amenity_funeral_directors.png
@@ -886,11 +886,11 @@ mycpname amenity_vacuum_cleaner amenity_vacuum_cleaner.png
 mycpname bicycle_repair_station amenity_bicycle_repair_station.png
 mycpname water_tap amenity_water_tap.png
 mycpname recycling_centre amenity_recycling_centre.png
-mycpname recycling_container amenity_recycling_container.png
+mycpname recycling_container amenity_colored_recycling_container.png
 mycpname barbecue amenity_barbecue.png
 mycpname public_bookcase amenity_public_bookcase.png
 mycpname internet_cafe amenity_internet_cafe.png
-mycpname feeding_place amenity_feeding_place.png
+mycpname feeding_place amenity_colored_feeding_place.png
 mycpname animal_keeping amenity_animal_keeping.png
 mycpname coworking_space amenity_coworking.png
 
@@ -956,43 +956,43 @@ mycpname training_yoga education_training_yoga.png
 
 ## Man made
 mygroup man_made power_generator_wind2.png
-mygroup transport_construction poi_bridge.png
-mygroup water_supply poi_water_tower.png
+mygroup transport_construction poi_colored_bridge.png
+mygroup water_supply poi_colored_water_tower.png
 mygroup power power_generator.png
 mygroup communication amenity_telephone.png
 mygroup trash_disposal amenity_waste_disposal.png
-mycpname bridge poi_bridge.png
-mycpname tunnel poi_tunnel.png
-mycp amenity hunting_stand poi_hunting_stand.png
+mycpname bridge poi_colored_bridge.png
+mycpname tunnel poi_colored_tunnel.png
+mycp amenity hunting_stand poi_colored_hunting_stand.png
 mycp highway street_lamp functional-icons_street_lamp.png
 mycp highway street_lamp_lit functional-icons_street_lamp_lit.png
 mycp man_made adit poi_adit.png
-mycp man_made antenna poi_antenna.png
-mycp man_made chimney poi_chimney.png
+mycp man_made antenna poi_colored_antenna.png
+mycp man_made chimney poi_colored_chimney.png
 mycpname topo_chimney topo_big_topo_chimney.png
-mycpname crane poi_crane.png
-mycp man_made mast poi_mast.png
+mycpname crane poi_colored_crane.png
+mycp man_made mast poi_colored_mast.png
 mycpname topo_mast topo_big_topo_mast.png
-mycp man_made mineshaft poi_mine.png
+mycp man_made mineshaft poi_colored_mine.png
 mycpname topo_mine topo_topo_mine.png
 mycpname topo_mine_abandoned topo_topo_mine_abandoned.png
-mycpname radar poi_monitoring_station_radar.png
-mycpname astronomical_observatory poi_observatory_astronomical.png
-mycpname telescope poi_telescope.png
-mycp man_made observatory poi_observatory.png
-mycpname observation_tower poi_observatory.png
-mycp man_made petroleum_well poi_petroleum_well.png
-mycp man_made survey_point poi_survey_point.png
+mycpname radar poi_colored_monitoring_station_radar.png
+mycpname astronomical_observatory poi_colored_observatory_astronomical.png
+mycpname telescope poi_colored_telescope.png
+mycp man_made observatory poi_colored_observatory.png
+mycpname observation_tower poi_colored_observatory.png
+mycp man_made petroleum_well poi_colored_petroleum_well.png
+mycp man_made survey_point poi_colored_survey_point.png
 mycpname topo_survey_point topo_topo_survey_point.png
-mycp man_made tower poi_tower.png
+mycp man_made tower poi_colored_tower.png
 mycpname topo_tower topo_big_topo_tower.png
-mycpname bell_tower poi_tower_bell_tower.png
-mycpname communication_tower poi_tower_communications2.png
+mycpname bell_tower poi_colored_tower_bell_tower.png
+mycpname communication_tower poi_colored_tower_communications2.png
 mycpname topo_communication_tower topo_big_topo_communication_tower.png
-mycpname cooling_tower poi_tower_cooling.png
-mycpname lighting_tower poi_tower_lighting.png
-mycp man_made water_tower poi_water_tower.png
-mycp man_made windmill poi_windmill.png
+mycpname cooling_tower poi_colored_tower_cooling.png
+mycpname lighting_tower poi_colored_tower_lighting.png
+mycp man_made water_tower poi_colored_water_tower.png
+mycp man_made windmill poi_colored_windmill.png
 mycpname topo_windmill topo_big_topo_windmill.png
 mycp no icon functional-icons_no_icon.png
 mycpname generator_source_coal power_generator_coal.png
@@ -1007,48 +1007,48 @@ mycpname generator_source_wind power_generator_wind.png
 mycpname power_generator power_generator.png
 mycpname power_plant power_plant.png
 mycp power substation power_transformer2.png
-mycp power tower poi_power_tower.png
+mycp power tower poi_colored_power_tower.png
 mycp power tower_square functional-icons_power_tower.png
 mycp power tower_small functional-icons_power_tower_small.png
 mycp power tower_small2 functional-icons_power_tower_small2.png
 mycpname power_generator power_generator.png
-mycp railway buffer_stop poi_buffer_stop.png
+mycp railway buffer_stop poi_colored_buffer_stop.png
 mycpname power_transformer power_transformer_small.png
 mycpname topo_transformer topo_big_topo_transformer.png
-mycpname works poi_works.png
-mycpname military_bunker poi_military_bunker.png
-mycpname abandoned_poi poi_abandoned_poi.png
-mycpname surveillance poi_surveillance.png
-mycpname pier poi_pier.png
-mycpname beacon poi_beacon.png
-mycpname breakwater poi_breakwater.png
-mycpname military_range poi_military_range.png
+mycpname works poi_colored_works.png
+mycpname military_bunker poi_colored_military_bunker.png
+mycpname abandoned_poi poi_colored_abandoned_poi.png
+mycpname surveillance poi_colored_surveillance.png
+mycpname pier poi_colored_pier.png
+mycpname beacon poi_colored_beacon.png
+mycpname breakwater poi_colored_breakwater.png
+mycpname military_range poi_colored_military_range.png
 mycpname power_cable_distribution_cabinet power_cable_distribution_cabinet.png
-mycpname kiln poi_kiln.png
-mycpname cairn poi_cairn.png
-mycpname groyne poi_groyne.png
-mycpname military_naval_base poi_military_naval_base.png
+mycpname kiln poi_colored_kiln.png
+mycpname cairn poi_colored_cairn.png
+mycpname groyne poi_colored_groyne.png
+mycpname military_naval_base poi_colored_military_naval_base.png
 mycpname building_map functional-icons_building_map.png
-mycpname square poi_square.png
-mycpname building poi_building.png
-mycpname cross poi_cross.png
-mycpname storage_tank poi_storage_tank.png
-mycpname wastewater_plant poi_wastewater_plant.png
-mycpname water_works poi_water_works.png
+mycpname square poi_colored_square.png
+mycpname building poi_colored_building.png
+mycpname cross poi_colored_cross.png
+mycpname storage_tank poi_colored_storage_tank.png
+mycpname wastewater_plant poi_colored_wastewater_plant.png
+mycpname water_works poi_colored_water_works.png
 mycpname watermill poi_watermill.png
 mycpname topo_watermill topo_topo_watermill.png
-mycpname monitoring_station poi_monitoring_station.png
-mycpname dolphin poi_dolphin.png
-mycpname street_cabinet poi_street_cabinet.png
-mycpname sanitary_dump_station poi_sanitary_dump_station.png
-mycpname spoil_heap poi_spoil_heap.png
-mycpname ventilation_shaft poi_ventilation_shaft.png
-mycpname pumping_station poi_pumping_station.png
-mycpname mdf poi_mdf.png
+mycpname monitoring_station poi_colored_monitoring_station.png
+mycpname dolphin poi_colored_dolphin.png
+mycpname street_cabinet poi_colored_street_cabinet.png
+mycpname sanitary_dump_station poi_colored_sanitary_dump_station.png
+mycpname spoil_heap poi_colored_spoil_heap.png
+mycpname ventilation_shaft poi_colored_ventilation_shaft.png
+mycpname pumping_station poi_colored_pumping_station.png
+mycpname mdf poi_colored_mdf.png
 
 mycpname topo_power_plant topo_topo_power_plant.png
 
-mygroup military poi_military_bunker.png
+mygroup military poi_colored_military_bunker.png
 
 
 ## Food and Drink
@@ -1859,7 +1859,7 @@ mycpname club_sport club_sport.png
 mygroup user_defined icons8_user.png
 mygroup user_defined_other icons8_user.png
 mygroup osmwiki icons8_wikipedia.png
-mycpname wiki_place poi_wikipedia2.png
+mycpname wiki_place poi_colored_wikipedia2.png
 mygroup name_finder icons8_web_search.png
 mycp osmand waypoint functional-icons_waypoint.png
 mycp osmand fav functional-icons_fav.png
@@ -2181,8 +2181,8 @@ mycpname beauty_salon_nails additional_beauty_salon_nails.png
 mycpname historic_yes tourist_archaeological2.png
 mycpname lit_yes additional_lit_yes.png
 mycpname lit_no additional_lit_no.png
-mycpname elevator_yes poi_elevator.png
-mycpname elevator poi_elevator.png
+mycpname elevator_yes poi_colored_elevator.png
+mycpname elevator poi_colored_elevator.png
 mycpname theatre_genre_comedy additional_comedy.png
 mycpname temperature additional_temperature.png
 mycpname conveying_yes additional_conveying_yes.png

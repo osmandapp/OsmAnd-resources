@@ -8,7 +8,7 @@ BASEFOLDER=`dirname $BASEFOLDER`
 
 FOLDERS=(big-xxhdpi big-xhdpi big-hdpi big-mdpi xxhdpi xhdpi hdpi mdpi)
 FOLDERS_NOMX=(xxhdpi xhdpi hdpi mdpi) # no icons used in osmand interface (search, poi overlay)
-SIZES=(72 48 36 24 48 32 24 16)
+SIZES=(72 48 36 24 42 28 21 14)
 SIZESx2=(72 48 36 24 96 64 48 32)
 SIZESx4=(72 48 36 24 192 128 96 64)
 
@@ -147,15 +147,18 @@ generatePngs() {
        generatePngs 'tourist_small_shield' '#593906' '#ff8f00'
        generatePngs 'special_poi' '#a62b00' '#FFF5F1' '' '' '' nomx 
 
-       generatePngs 'sport'  '#39AC39' '#ff8f00'
+       generatePngs 'sport' '#ffffff' '#ff8f00' #39AC39
+       generatePngs 'sport_small_shield' '#39AC39' '#ff8f00'
 
-       generatePngs 'amenity' '#555555' '#ff8f00'
-       generatePngs 'office' '#555555' '#ff8f00'
+       generatePngs 'amenity' '#ffffff' '#ff8f00' #555555
+       generatePngs 'amenity_small_shield' '#555555' '#ff8f00'
+       generatePngs 'office' '#ffffff' '#ff8f00' #555555
        generatePngs 'craft' '#637394' '#ff8f00'
        generatePngs 'place_of_worship' '#333333' '#ff8f00'
-       generatePngs 'money' '#555555' '#ff8f00'
-       generatePngs 'education' '#555555' '#ff8f00'
-       generatePngs 'poi' '#3f3f3f' '#ff8f00'
+       generatePngs 'money' '#ffffff' '#ff8f00' #555555
+       generatePngs 'education' '#ffffff' '#ff8f00' #555555
+       generatePngs 'poi' '#ffffff' '#ff8f00' #3f3f3f
+       generatePngs 'poi_colored' '#3f3f3f' '#ff8f00'
        generatePngs 'topo' '#000000' '#000000' '' '' '' nomx
        generatePngs 'topo_big' '#000000' '#000000' '' x2 '' nomx
        generatePngs 'additional' '#3f3f3f' '#ff8f00'
@@ -164,7 +167,7 @@ generatePngs() {
 
        generatePngs 'club' '#555555' '#ff8f00'
 
-       generatePngs 'food' '#8f6732' '#ff8f00'
+       generatePngs 'food' '#ffffff' '#ff8f00' #8f6732
 
        generatePngs 'shopping' '#ffffff' '#ff8f00' #a734c2
 
