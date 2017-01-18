@@ -36,7 +36,7 @@ cp ../no-svg/drawable-xxhdpi/* ../../rendering_styles/style-icons/drawable-xxhdp
 
 mygroup landuse landuse_coniferous.png
 mycpname grass landuse_grass.png
-mycpname forest landuse_forest.png               # Keep shaders with background color, cannot be replaced by icons!
+mycpname forest landuse_colored_forest.png               # Keep shaders with background color, cannot be replaced by icons!
 mycpname wood landuse_forest.png
 mycpname beach tourist_beach2.png                     # Keep shaders with background color, cannot be replaced by icons!
 #mycp natural scrub landuse_scrub.png                     # Keep shaders with background color, cannot be replaced by icons!
@@ -45,7 +45,7 @@ mycpname zoo tourist_zoo.png                         # Keep shaders with backgro
 mycpname military_danger_area poi_colored_danger_area.png
 mycpname military_nuclear_explosion_site poi_colored_nuclear_explosion_site.png
 mycpname glacier poi_colored_peak2.png                       # Keep shaders with background color, cannot be replaced by icons!
-mycpname landfill landuse_landfill.png
+mycpname landfill landuse_colored_landfill.png
 mycpname wetland landuse_wetland.png
 mycpname cemetery landuse_cemetery.png
 mycpname grave_yard landuse_cemetery.png
@@ -64,7 +64,7 @@ mycpname retail landuse_retail.png
 mycpname religious landuse_religious.png
 mycpname orchard landuse_orchard.png
 mycpname vineyard landuse_vineyard.png
-mycpname garden landuse_garden.png
+mycpname garden landuse_colored_garden.png
 mycpname farmland landuse_farmland.png
 mycpname nature_reserve landuse_nature_reserve.png
 mycpname logging landuse_logging.png
@@ -410,7 +410,7 @@ mycpname subway_station transport_subway_station.png
 mycpname funicular transport_funicular.png
 mycpname escape_lane transport_escape_lane.png
 
-mycpname subway_entrance_map functional-icons_subway_entrance_map.png
+mycpname subway_entrance_map subway_subway_entrance_map.png
 mycpname subway_entrance poi_colored_subway_entrance.png
 mycpname subway_entrance transport_subway_entrance.png
 mycp railway subway_entrance_red functional-icons_subway_entrance_red.png
@@ -1846,7 +1846,7 @@ mycpname parish office_parish.png
 mycpname publisher office_publisher.png
 
 ## Entertainment
-mycpname park entertainment_park.png
+mycpname park entertainment_colored_park.png
 mycpname dance_floor entertainment_dance_floor.png
 mycpname dog_park entertainment_dog_park.png
 mycpname ski_resort entertainment_ski_resort.png
