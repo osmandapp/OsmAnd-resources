@@ -129,35 +129,36 @@ generatePngs() {
        generatePngs 'functional-icons-x2' '#777777' '#ff8f00' '' x2 '' nomx
        generatePngs 'subway' '#777777' '#ff8f00' '' x2 '' nomx
 
-       generatePngs 'water' '#ffffff' '#ff8f00' #0092DA
+       generatePngs 'water' '#ffffff' '#ff8f00'
        generatePngs 'water_colored' '#0092DA' '#ff8f00'
 
-       generatePngs 'emergency' '#ffffff' '#ff8f00' #DA0092
+       generatePngs 'emergency' '#ffffff' '#ff8f00'
        generatePngs 'emergency_colored' '#DA0092' '#ff8f00'
        generatePngs 'health' '#ffffff' '#ff8f00' #DA0092
 
-       generatePngs 'transport' '#ffffff' '#ff8f00' #0092DA
+       generatePngs 'transport' '#ffffff' '#ff8f00'
        generatePngs 'transport_colored' '#0092DA' '#ff8f00'
 
-       generatePngs 'barrier' '#444444' '#ff8f00'
+       generatePngs 'barrier' '#ffffff' '#ff8f00'
+       generatePngs 'barrier_colored' '#444444' '#ff8f00'
 
-       generatePngs 'accommodation' '#ffffff' '#ff8f00' #0092DA
+       generatePngs 'accommodation' '#ffffff' '#ff8f00'
 
-       generatePngs 'tourist' '#ffffff' '#ff8f00' #593906
+       generatePngs 'tourist' '#ffffff' '#ff8f00'
        generatePngs 'tourist_colored' '#593906' '#ff8f00'
        generatePngs 'special_poi' '#a62b00' '#FFF5F1' '' '' '' nomx 
 
-       generatePngs 'sport' '#ffffff' '#ff8f00' #39AC39
+       generatePngs 'sport' '#ffffff' '#ff8f00'
        generatePngs 'sport_colored' '#39AC39' '#ff8f00'
 
-       generatePngs 'amenity' '#ffffff' '#ff8f00' #555555
+       generatePngs 'amenity' '#ffffff' '#ff8f00'
        generatePngs 'amenity_colored' '#555555' '#ff8f00'
-       generatePngs 'office' '#ffffff' '#ff8f00' #555555
-       generatePngs 'craft' '#637394' '#ff8f00'
+       generatePngs 'office' '#ffffff' '#ff8f00'
+       generatePngs 'craft' '#ffffff' '#ff8f00'
        generatePngs 'place_of_worship' '#333333' '#ff8f00'
-       generatePngs 'money' '#ffffff' '#ff8f00' #555555
-       generatePngs 'education' '#ffffff' '#ff8f00' #555555
-       generatePngs 'poi' '#ffffff' '#ff8f00' #3f3f3f
+       generatePngs 'money' '#ffffff' '#ff8f00'
+       generatePngs 'education' '#ffffff' '#ff8f00'
+       generatePngs 'poi' '#ffffff' '#ff8f00'
        generatePngs 'poi_colored' '#3f3f3f' '#ff8f00'
        generatePngs 'topo' '#000000' '#000000' '' '' '' nomx
        generatePngs 'topo_big' '#000000' '#000000' '' x2 '' nomx
@@ -165,16 +166,16 @@ generatePngs() {
        generatePngs 'additional_category' '#3f3f3f' '#ff8f00'
        generatePngs 'power' '#3f3f3f' '#ff8f00'
 
-       generatePngs 'club' '#555555' '#ff8f00'
+       generatePngs 'club' '#ffffff' '#ff8f00' #555555
 
        generatePngs 'food' '#ffffff' '#ff8f00' #8f6732
 
        generatePngs 'shopping' '#ffffff' '#ff8f00' #a734c2
 
-       generatePngs 'landuse' '#ffffff' '#ff8f00' #6dba00
+       generatePngs 'landuse' '#ffffff' '#ff8f00'
        generatePngs 'landuse_colored' '#6dba00' '#ff8f00'
 
-       generatePngs 'entertainment' '#ffffff' '#ff8f00' #6dba00
+       generatePngs 'entertainment' '#ffffff' '#ff8f00'
        generatePngs 'entertainment_colored' '#6dba00' '#ff8f00'
 
        generatePngs 'icons8' '#777777' '#ff8f00' neg

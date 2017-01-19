@@ -1138,7 +1138,9 @@
 	</renderingAttribute>
 
 	<!-- Open nature -->
-	<renderingConstant name="openNatureColorNight" value="$woodColor"/>
+	<renderingAttribute name="openNatureColorNight">
+		<case attrColorValue="$woodColor"/>
+	</renderingAttribute>
 	<renderingConstant name="shaderColorNight" value="#1b3638"/>
 	<renderingConstant name="wetlandColorNight" value="#1b3238"/>
 	<renderingAttribute name="grasslandColor">
@@ -1320,7 +1322,7 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="churchColor">
-		<case nightMode="true" attrColorValue="#685454"/>
+		<case nightMode="true" attrColorValue="$buildingColor"/>
 		<case attrColorValue="#CCB297"/>
 	</renderingAttribute>
 	<renderingAttribute name="attractionColor">
@@ -1404,7 +1406,7 @@
 		<case attrColorValue="$null"/>
 	</renderingAttribute>
 	<renderingAttribute name="landuseResidentialNamedStrokeColor">
-		<case nightMode="true" attrColorValue="#888888"/>
+		<case nightMode="true" attrColorValue="#444444"/>
 		<case attrColorValue="#AAAAAA"/>
 	</renderingAttribute>
 	<renderingAttribute name="powerLanduseColor">
@@ -5505,8 +5507,6 @@
 				</switch>
 				<case minzoom="17" tag="railway" value="subway_entrance" nameTag2="ref" textSize="13"/>
 				<apply textColor="$subwayTextDefaultColor" textWrapWidth="25" textHaloRadius="$textHaloRadius" textBold="true" textOrder="1"/>
-				<apply_if maxzoom="14" engine_v1="true" textDy="5"/>
-				<apply_if minzoom="15" engine_v1="true" textDy="8"/>
 				<apply_if additional="color_red" textColor="$subwayTextRedColor"/>
 				<apply_if additional="color_brown" textColor="$subwayTextBrownColor"/>
 				<apply_if additional="color_orange" textColor="$subwayTextOrangeColor"/>
@@ -6595,16 +6595,19 @@
 				<case tag="natural" value="wood" iconVisibleSize="24"/>
 				<case tag="landuse" value="forest"/>
 				<apply icon="wood" shield="wood_shield"/>
+				<apply_if nightMode="true" shield=""/>
 				<apply_if textLength="0" icon=""/>
 			</switch>
 			<switch minzoom="12" iconVisibleSize="24">
 				<case tag="leisure" value="park"/>
 				<apply icon="park" shield="park_shield"/>
+				<apply_if nightMode="true" shield=""/>
 				<apply_if textLength="0" icon=""/>
 			</switch>
 			<switch minzoom="13">
 				<case tag="leisure" value="garden" iconVisibleSize="24"/>
 				<apply icon="garden" shield="garden_shield"/>
+				<apply_if nightMode="true" shield=""/>
 				<apply_if textLength="0" icon=""/>
 			</switch>
 
@@ -7144,7 +7147,7 @@
 			<case minzoom="17" tag="amenity" value="bench" icon="bench" shield="bench_shield" iconOrder="172"/>
 
 			<case minzoom="17" tag="amenity" value="recycling" iconVisibleSize="24">
-				<case minzoom="17" additional="recycling_type=centre" icon="recycling_centre" shield="gray_round_shield">
+				<case minzoom="17" additional="recycling_type=centre" icon="recycling_centre_map" shield="gray_round_shield">
 					<apply_if nightMode="true" shield="gray_round_night_shield"/>
 				</case>
 				<case minzoom="19" additional="recycling_type=container" icon="recycling_container" shield="recycling_container_shield"/>
@@ -7241,7 +7244,7 @@
 			</case>
 
 			<case minzoom="15" tag="amenity" value="monastery" icon="amenity_monastery" iconVisibleSize="22" iconOrder="70">
-<!--				<apply_if nightMode="true" shield="gray_round_night_shield"/>-->
+				<apply_if nightMode="true" shield="lightgray_round_night_shield"/>
 				<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 			</case>
 

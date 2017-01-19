@@ -37,7 +37,7 @@ cp ../no-svg/drawable-xxhdpi/* ../../rendering_styles/style-icons/drawable-xxhdp
 mygroup landuse landuse_coniferous.png
 mycpname grass landuse_grass.png
 mycpname forest landuse_colored_forest.png               # Keep shaders with background color, cannot be replaced by icons!
-mycpname wood landuse_forest.png
+mycpname wood landuse_colored_forest.png
 mycpname beach tourist_beach2.png                     # Keep shaders with background color, cannot be replaced by icons!
 #mycp natural scrub landuse_scrub.png                     # Keep shaders with background color, cannot be replaced by icons!
 #mycp natural swamp landuse_swamp.png                     # Keep shaders with background color, cannot be replaced by icons!
@@ -122,7 +122,7 @@ mycp natural volcano_active functional-icons_volcano_active.png
 mycp natural volcano_big functional-icons_volcano_big.png
 mycp natural volcano_map functional-icons_volcano.png  #Is poi_colored_peak.png with color #D40000  #scale 0.5
 mycpname volcano poi_colored_volcano_active.png
-mycp waterway rapids barrier_rapids.png  #scale 0.375
+mycp waterway rapids barrier_colored_rapids.png  #scale 0.375
 mycpname waterfall water_waterfall.png  #scale 0.375
 mycpname topo_waterfall topo_topo_waterfall.png  #scale 0.375
 mycpname dam water_dam.png
@@ -560,39 +560,39 @@ mycpname aeroway_terminal transport_airport_terminal.png
 
 
 ## Barrier
-mygroup barrier barrier_bollard.png
-mycp barrier block barrier_blocks.png
-mycp barrier bollard barrier_bollard.png
+mygroup barrier barrier_colored_bollard.png
+mycp barrier block barrier_colored_blocks.png
+mycp barrier bollard barrier_colored_bollard.png
 mycp barrier border_control barrier_border_control.png
-mycp barrier bump_gate barrier_bump_gate.png
-mycp barrier bus_trap barrier_bus_trap.png
-mycp barrier cattle_grid barrier_cattle_grid2.png
-mycp barrier chain barrier_chain.png
-mycp barrier cycle_barrier barrier_cycle_barrier2.png
-mycp barrier entrance barrier_entrance.png
-mycp barrier gate barrier_gate.png
-mycp barrier height_restrictor barrier_height_restrictor.png
-mycp barrier kissing_gate barrier_kissing_gate.png
-mycp barrier lift_gate barrier_lift_gate.png
-mycp barrier motorcycle_barrier barrier_cycle_barrier.png
-mycp barrier sally_port barrier_sally_port.png
-mycp barrier stile barrier_stile.png
-mycp barrier swing_gate barrier_swing_gate.png
-mycpname toll_booth barrier_toll_booth.png
-mycpname military_checkpoint barrier_military_checkpoint.png
-mycp barrier turnstile barrier_turnstile.png
-mycp entrance yes barrier_entrance2.png
+mycp barrier bump_gate barrier_colored_bump_gate.png
+mycp barrier bus_trap barrier_colored_bus_trap.png
+mycp barrier cattle_grid barrier_colored_cattle_grid2.png
+mycp barrier chain barrier_colored_chain.png
+mycp barrier cycle_barrier barrier_colored_cycle_barrier2.png
+mycp barrier entrance barrier_colored_entrance.png
+mycp barrier gate barrier_colored_gate.png
+mycp barrier height_restrictor barrier_colored_height_restrictor.png
+mycp barrier kissing_gate barrier_colored_kissing_gate.png
+mycp barrier lift_gate barrier_colored_lift_gate.png
+mycp barrier motorcycle_barrier barrier_colored_cycle_barrier.png
+mycp barrier sally_port barrier_colored_sally_port.png
+mycp barrier stile barrier_colored_stile.png
+mycp barrier swing_gate barrier_colored_swing_gate.png
+mycpname toll_booth barrier_colored_toll_booth.png
+mycpname military_checkpoint barrier_colored_military_checkpoint.png
+mycp barrier turnstile barrier_colored_turnstile.png
+mycp entrance yes barrier_colored_entrance2.png
 mycpname entrance_exit_map functional-icons_entrance_exit.png
 mycpname entrance_main_map functional-icons_entrance3.png
 mycpname entrance_service functional-icons_entrance_service.png
 mycpname entrance_exit poi_colored_entrance_exit.png
-mycpname entrance_main barrier_entrance2.png
+mycpname entrance_main barrier_colored_entrance2.png
 mycp amenity parking_entrance transport_parking_entrance.png
-mycp building entrance barrier_entrance.png
-mycpname barrier_debris barrier_debris.png
-mycpname barrier_horse_stile barrier_horse_stile.png
-mycpname barrier_jersey_barrier barrier_jersey_barrier.png
-mycpname barrier_log barrier_log.png
+mycp building entrance barrier_colored_entrance.png
+mycpname barrier_colored_debris barrier_colored_debris.png
+mycpname barrier_colored_horse_stile barrier_colored_horse_stile.png
+mycpname barrier_colored_jersey_barrier barrier_colored_jersey_barrier.png
+mycpname barrier_colored_log barrier_colored_log.png
 
 
 ## Accommodation
@@ -689,7 +689,6 @@ mycpname leisure_common entertainment_leisure_common.png
 mycpname love_hotel entertainment_love_hotel.png
 mycpname gambling entertainment_gambling.png
 
-
 ## Historic
 mygroup historic tourist_archaeological2.png
 mycp historic archaeological_site tourist_archaeological2.png
@@ -697,7 +696,7 @@ mycp historic battlefield tourist_battlefield.png
 mycp historic boundary_stone tourist_boundary_stone.png
 mycp historic cannon tourist_colored_cannon.png
 mycp historic castle tourist_castle2.png
-mycpname city_gate barrier_sally_port.png
+mycpname city_gate barrier_colored_sally_port.png
 mycp historic memorial tourist_memorial.png
 mycpname topo_memorial topo_topo_memorial.png
 mycp historic mine tourist_mine_abandoned.png
@@ -885,7 +884,7 @@ mycpname compressed_air amenity_compressed_air.png
 mycpname amenity_vacuum_cleaner amenity_vacuum_cleaner.png
 mycpname bicycle_repair_station amenity_bicycle_repair_station.png
 mycpname water_tap amenity_water_tap.png
-mycpname recycling_centre amenity_recycling_centre.png
+mycpname recycling_centre_map amenity_recycling_centre_map.png
 mycpname recycling_container amenity_colored_recycling_container.png
 mycpname barbecue amenity_barbecue.png
 mycpname public_bookcase amenity_public_bookcase.png
