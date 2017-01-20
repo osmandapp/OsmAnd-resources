@@ -314,6 +314,7 @@ mycp skimap arrow_2triangles_black_small_nobg skimap_arrow_2triangles_black_smal
 mycp skimap arrow_2triangles_white_small_nobg skimap_arrow_2triangles_white_small_nobg.png
 mycp harbour yes poi_colored_harbour.png
 mycpname historic_milestone tourist_historic_milestone.png
+mycpname topo_milestone topo_topo_milestone.png
 mycpname runway transport_runway.png
 mycpname ford_stepping_stones transport_colored_ford_stepping_stones.png
 mycpname topo_ford_stepping_stones topo_topo_ford_stepping_stones.png
@@ -370,6 +371,7 @@ mycpname ferry_terminal_small functional-icons_ferry_terminal_small.png
 mycp amenity taxi transport_taxi_rank.png
 mycp highway services transport_services.png
 mycp mountain pass poi_mountain_pass.png
+mycpname topo_mountain pass topo_topo_mountain_pass.png
 
 mycp amenity bicycle_rental transport_rental_bicycle.png
 mycp amenity boat_sharing transport_boat_sharing.png
@@ -634,6 +636,7 @@ mygroup attraction tourist_attraction.png
 mycp attraction amusement_ride tourist_amusement_ride.png
 mycp attraction animal tourist_animal.png
 mycp attraction big_wheel tourist_big_wheel.png
+mycpname topo_big_wheel topo_topo_big_wheel.png
 mycp attraction carousel tourist_carousel.png
 mycp attraction maze tourist_maze.png
 mycp attraction roller_coaster tourist_roller_coaster.png
@@ -657,6 +660,7 @@ mycp tourism picnic_site tourist_colored_picnic.png
 mycpname picnic_table tourist_colored_picnic_table.png
 mycp tourism theme_park tourist_theme_park.png
 mycp tourism viewpoint tourist_view_point.png
+mycpname topo_viewpoint topo_topo_view_point.png
 mycp tourism zoo tourist_zoo.png
 mycpname city_wall tourist_city_wall.png
 mycpname clock tourist_clock.png
@@ -692,10 +696,13 @@ mycpname gambling entertainment_gambling.png
 ## Historic
 mygroup historic tourist_archaeological2.png
 mycp historic archaeological_site tourist_archaeological2.png
+mycpname topo_archaeological_site topo_topo_archaeological2.png
 mycp historic battlefield tourist_battlefield.png
 mycp historic boundary_stone tourist_boundary_stone.png
+mycpname topo_boundary_stone topo_topo_boundary_stone.png
 mycp historic cannon tourist_colored_cannon.png
 mycp historic castle tourist_castle2.png
+mycpname topo_castle topo_topo_castle2.png
 mycpname city_gate barrier_colored_sally_port.png
 mycp historic memorial tourist_memorial.png
 mycpname topo_memorial topo_topo_memorial.png
@@ -706,14 +713,22 @@ mycp historic ruins tourist_ruin.png
 mycpname topo_ruins topo_topo_ruins.png
 mycp historic rune_stone tourist_colored_rune_stone.png
 mycp historic ship tourist_ship.png
+mycpname topo_ship topo_topo_ship.png
 mycp historic wayside_cross tourist_wayside_cross.png
+mycpname topo_wayside_shrine topo_topo_wayside_shrine.png
 mycp historic wayside_shrine tourist_wayside_shrine.png
 mycpname wreck tourist_wreck.png
+mycpname topo_wreck topo_topo_wreck.png
 mycpname palaeontological_site tourist_palaeontological_site.png
+mycpname topo_palaeontological_site topo_topo_palaeontological_site.png
 mycp building pyramid tourist_pyramid.png
+mycpname topo_building_pyramid topo_topo_pyramid.png
 mycpname tomb tourist_tomb.png
+mycpname topo_tomb topo_topo_tomb.png
 mycpname historic_aircraft tourist_historic_aircraft.png
+mycpname topo_aircraft topo_topo_aircraft.png
 mycpname technical_monument tourist_technical_monument.png
+mycpname topo_technical_monument topo_topo_technical_monument.png
 mycpname memorial_stolperstein tourist_memorial_stolperstein.png
 mycpname memorial_bust tourist_bust.png
 mycpname memorial_obelisk tourist_obelisk.png
