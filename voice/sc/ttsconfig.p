@@ -32,7 +32,7 @@ string('distance.ogg', 'distàntzia ').
 
 % LEFT/RIGHT
 string('after.ogg', 'pustis de ').
-string('in.ogg', 'fra ').
+string('in.ogg', 'intre ').
 
 string('left.ogg', 'bortare a manca').
 string('left_sh.ogg', 'luego a manca').
