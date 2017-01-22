@@ -92,6 +92,8 @@
 	<renderingProperty attr="contourLines" name="Show contour lines" description="Select minimum zoom level to display in map if available. Separate contour file may be needed."
 		type="string" possibleValues="disabled,16,15,14,13,12,11" defaultValueDescription="default13" category="details"/>
 	<renderingProperty attr="contourColorScheme" name="Contour lines color scheme" description="Contour lines color scheme" type="string" possibleValues="light_brown,brown,dark_brown" defaultValueDescription="default"/>
+	<renderingProperty attr="hlCycleRoutes" name="Highlight cycle routes" description="Make cycle route highlighting more visible"
+		type="boolean" possibleValues="" category="details"/>
 	<renderingProperty attr="coloredBuildings" name="Colored buildings" description="Buildings colored by type"
 		type="boolean" possibleValues="" category="details"/>
 	<renderingProperty attr="streetLighting" name="Street lighting" description="Show street lighting"
@@ -10578,14 +10580,26 @@
 
 		<switch minzoom="11">
 			<case showCycleRoutes="true" tag="route_bicycle" value="">
-				<case maxzoom="11" strokeWidth="2.5:2.5"/>
-				<case maxzoom="12" strokeWidth="3.5:3.5"/>
-				<case maxzoom="13" strokeWidth="4:4"/>
-				<case maxzoom="14" strokeWidth="4.5:4.5"/>
-				<case maxzoom="15" strokeWidth="6:6"/>
-				<case maxzoom="16" strokeWidth="7.5:7.5"/>
-				<case maxzoom="17" strokeWidth="9:9"/>
-				<case minzoom="18" strokeWidth="12:12"/>
+				<case hlCycleRoutes="true">
+					<case maxzoom="11" strokeWidth="5:5"/>
+					<case maxzoom="12" strokeWidth="7:7"/>
+					<case maxzoom="13" strokeWidth="8:8"/>
+					<case maxzoom="14" strokeWidth="9:9"/>
+					<case maxzoom="15" strokeWidth="12:12"/>
+					<case maxzoom="16" strokeWidth="15:15"/>
+					<case maxzoom="17" strokeWidth="18:18"/>
+					<case minzoom="18" strokeWidth="24:24"/>
+				</case>
+				<case hlCycleRoutes="false">
+					<case maxzoom="11" strokeWidth="2.5:2.5"/>
+					<case maxzoom="12" strokeWidth="3.5:3.5"/>
+					<case maxzoom="13" strokeWidth="4:4"/>
+					<case maxzoom="14" strokeWidth="4.5:4.5"/>
+					<case maxzoom="15" strokeWidth="6:6"/>
+					<case maxzoom="16" strokeWidth="7.5:7.5"/>
+					<case maxzoom="17" strokeWidth="9:9"/>
+					<case minzoom="18" strokeWidth="12:12"/>
+				</case>
 				<apply_if minzoom="13" color="$cycleRouteColor" cap="BUTT"/>
 			</case>
 			<case showMtbRoutes="true" tag="route_mtb" value="">
@@ -10692,14 +10706,26 @@
 					<case additional="network=ncn" color="$cycleRoutencnColor"/>
 					<case additional="network=icn" color="$cycleRouteicnColor"/>
 					<apply>
-						<case maxzoom="11" strokeWidth="2.5:2.5"/>
-						<case maxzoom="12" strokeWidth="3.5:3.5"/>
-						<case maxzoom="13" strokeWidth="4:4"/>
-						<case maxzoom="14" strokeWidth="4.5:4.5"/>
-						<case maxzoom="15" strokeWidth="6:6"/>
-						<case maxzoom="16" strokeWidth="7.5:7.5"/>
-						<case maxzoom="17" strokeWidth="9:9"/>
-						<case minzoom="18" strokeWidth="12:12"/>
+						<case hlCycleRoutes="true">
+							<case maxzoom="11" strokeWidth="5:5"/>
+							<case maxzoom="12" strokeWidth="7:7"/>
+							<case maxzoom="13" strokeWidth="8:8"/>
+							<case maxzoom="14" strokeWidth="9:9"/>
+							<case maxzoom="15" strokeWidth="12:12"/>
+							<case maxzoom="16" strokeWidth="15:15"/>
+							<case maxzoom="17" strokeWidth="18:18"/>
+							<case minzoom="18" strokeWidth="24:24"/>
+						</case>
+						<case hlCycleRoutes="false">
+							<case maxzoom="11" strokeWidth="2.5:2.5"/>
+							<case maxzoom="12" strokeWidth="3.5:3.5"/>
+							<case maxzoom="13" strokeWidth="4:4"/>
+							<case maxzoom="14" strokeWidth="4.5:4.5"/>
+							<case maxzoom="15" strokeWidth="6:6"/>
+							<case maxzoom="16" strokeWidth="7.5:7.5"/>
+							<case maxzoom="17" strokeWidth="9:9"/>
+							<case minzoom="18" strokeWidth="12:12"/>
+						</case>
 					</apply>
 				</switch>
 			</apply_if>
