@@ -13,6 +13,8 @@
 		type="string" possibleValues="red,orange,yellow,lightgreen,green,lightblue,blue,purple,translucent_red,translucent_orange,translucent_yellow,translucent_lightgreen,translucent_green,translucent_lightblue,translucent_blue,translucent_purple" defaultValueDescription="default"/>
 	<renderingProperty attr="currentTrackWidth" name="Current GPX width" description="Width of the currently recording track"
 		type="string" possibleValues="thin,medium,bold" defaultValueDescription="default"/>
+	<renderingProperty attr="noPolygons" name="Hide polygons" description="Make all areal land features on map transparent"
+		type="boolean" possibleValues="" category="hide"/>
 
 	<renderingAttribute name="gpxColor"> <!-- deprecated -->
 		<case attrColorValue="#b400ffff"/>
@@ -30,12 +32,6 @@
 		<case minzoom="14" attrIntValue="3" shadowColor="#464646"/>
 		<case minzoom="8" maxzoom="13" attrIntValue="3" shadowColor="#969696"/>
 		<case attrIntValue="0"/>
-	</renderingAttribute>
-
-	<renderingAttribute name="route">
-		<case color="#ccaa0088" strokeWidth="11:8" color_3="#ffde5b" strokeWidth_3="5:7">
-			<apply_if nightMode="true" color="#ccff4400"/>
-		</case>
 	</renderingAttribute>
 
 	<renderingAttribute name="gpx">
@@ -96,7 +92,7 @@
 
 	<renderingAttribute name="defaultColor">
 		<!-- next line should should make background transparent for underlays to be visible, but this curretnly does not work as desired -->
-<!--		<case noPolygons="true" attrColorValue="#00555555"/>-->
+		<case noPolygons="true" attrColorValue="#00555555"/>
 		<case attrColorValue="#fddb8f">
 			<apply_if nightMode="true" attrColorValue="#464234"/>
 		</case>
@@ -3019,8 +3015,6 @@
 			<switch>
 				<case minzoom="4" tag="natural" value="water"/>
 				<case minzoom="10" tag="waterway" value="riverbank"/>
-				<case minzoom="1" tag="natural" value="coastline"/>
-				<case minzoom="4" tag="natural" value="bay"/>
 				<switch>
 					<case minzoom="10" tag="waterway" value="dock"/>
 					<case minzoom="7" tag="landuse" value="reservoir"/>
@@ -3047,6 +3041,11 @@
 			<apply_if additional="intermittent=yes" strokeWidth_2="1:0" color_2="#7479ec" pathEffect_2="7_5"/>
 		</switch>
 		<switch>
+			<case minzoom="1" tag="natural" value="coastline"/>
+			<case minzoom="4" tag="natural" value="bay"/>
+			<apply_if noPolygons="true" color="#00555555"/>
+		</switch>
+		<switch>
 			<switch minzoom="12">
 				<case tag="waterway" value="dam"/>
 				<case tag="seamark:type" value="dam"/>
@@ -3068,6 +3067,7 @@
 			<apply color="#fddb8f">
 				<apply_if nightMode="true" color="#464234"/>
 			</apply>
+			<apply_if noPolygons="true" nightMode="false" color="#00555555"/>
 		</switch>
 	</polygon>
 
