@@ -316,6 +316,17 @@
 		<case engine_v1="false" attrColorValue="#15ea7300"/>
 		<case attrColorValue="#2aea7300"/>
 	</renderingAttribute>
+
+	<renderingAttribute name="contourLineDepthColor100m">
+		<case attrColorValue="#66282F6A"/>
+	</renderingAttribute>
+	<renderingAttribute name="contourLineDepthColor50m">
+		<case attrColorValue="#45374091"/>
+	</renderingAttribute>
+	<renderingAttribute name="contourLineDepthColor20m">
+		<case attrColorValue="#334955C1"/>
+	</renderingAttribute>
+
 	<renderingAttribute name="whiteColor">
 		<case attrColorValue="#88ffffff"/>
 	</renderingAttribute>
@@ -1107,7 +1118,7 @@
 			<apply_if nightMode="true" textColor="$naturalTextColor" textHaloRadius="$textHaloRadiusNight" textHaloColor="#88464234"/>
 		</switch>
 
-		<switch tag="contour" value="" textOnPath="true">
+		<switch tag="contour" value="elevation" textOnPath="true">
 			<case minzoom="13" contourLines="11"/>
 			<case minzoom="13" contourLines="12"/>
 			<case minzoom="13" contourLines="13"/>
@@ -1129,6 +1140,31 @@
 					<apply_if nightMode="true" textColor="#bbbbbb" textHaloRadius=":1" textHaloColor="#77777777"/>
 				</case>
 			</apply>
+		</switch>
+
+		<switch tag="contour" value="depth" textOnPath="true">
+			<case minzoom="6" maxzoom="10" additional="contourtype=1000m" textColor="#000000" textSize="10" textMinDistance="600" textOnPath="false">
+				<apply_if nightMode="true" textColor="#aaaaaa" textHaloRadius=":1" textHaloColor="#66777777"/>
+			</case>
+			<case minzoom="7" maxzoom="10" additional="contourtype=200m" textColor="#000000" textSize="10" textMinDistance="600">
+				<apply_if nightMode="true" textColor="#aaaaaa" textHaloRadius=":1" textHaloColor="#66777777"/>
+			</case>
+			<case minzoom="11">
+				<apply>
+					<case additional="contourtype=100m" textColor="#444444" textSize="12">
+						<apply_if nightMode="true" textColor="#bbbbbb" textHaloRadius=":1" textHaloColor="#77777777"/>
+					</case>
+					<case minzoom="10" additional="contourtype=50m" textColor="#333333" textSize="10">
+						<apply_if nightMode="true" textColor="#aaaaaa" textHaloRadius=":1" textHaloColor="#66777777"/>
+					</case>
+					<case additional="contourtype=20m" textColor="#333333" textSize="10">
+						<apply_if nightMode="true" textColor="#999999" textHaloRadius=":1" textHaloColor="#22777777"/>
+					</case>
+					<case additional="contourtype=10m" textColor="#555555" textSize="9">
+						<apply_if nightMode="true" textColor="#888888" textHaloRadius=":1" textHaloColor="#22777777"/>
+					</case>
+				</apply>
+			</case>
 		</switch>
 
 		<switch textColor="#000000" textWrapWidth="20">
@@ -3045,8 +3081,8 @@
 			<case minzoom="1" tag="natural" value="coastline"/>
 			<case minzoom="4" tag="natural" value="bay"/>
 			<apply_if noPolygons="true" color="#00555555"/>
-<!--			<apply color="$waterwayColorDay"/>
-			<apply_if noPolygons="true" nightMode="false" color="#00555555" color_2="#555555" strokeWidth_2="1"/>-->
+			<apply color="$waterwayColorDay"/>
+			<apply_if noPolygons="true" nightMode="false" color="#00555555" color_2="#555555" strokeWidth_2="1"/>
 		</switch>
 		<switch>
 			<switch minzoom="12">
@@ -3653,6 +3689,26 @@
 				<case additional="contourtype=50m" minzoom="16" color="$contourLineColor50m" strokeWidth="1.5"/>
 				<case additional="contourtype=100m" color="$contourLineColor50m" strokeWidth="2"/>
 			</apply>
+			<apply_if minzoom="15" pathIcon="stroke_lightorange_left" pathIconStep="100"/>
+		</switch>
+
+		<switch tag="contour" value="depth">
+<!--			<case minzoom="11"/>
+			<case minzoom="12"/>
+			<case minzoom="13"/>
+			<case minzoom="14" contourLines=""/>
+			<case minzoom="14"/>
+			<case minzoom="15"/>-->
+			<case minzoom="5" maxzoom="10" additional="contourtype=1000m" color="$contourLineDepthColor100m" strokeWidth="1"/>
+			<case minzoom="7" maxzoom="10" additional="contourtype=200m" color="$contourLineDepthColor100m" strokeWidth="1"/>
+			<case minzoom="11">
+				<apply strokeWidth="1">
+					<case additional="contourtype=10m" color="$contourLineDepthColor20m"/>
+					<case additional="contourtype=20m" color="$contourLineDepthColor20m"/>
+					<case additional="contourtype=50m" color="$contourLineDepthColor50m"/>
+					<case additional="contourtype=100m" color="$contourLineDepthColor100m"/>
+				</apply>
+			</case>
 			<apply_if minzoom="15" pathIcon="stroke_lightorange_left" pathIconStep="100"/>
 		</switch>
 
