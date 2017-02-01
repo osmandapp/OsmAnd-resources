@@ -25,7 +25,7 @@ fest_language('').
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
 string('route_is.ogg', ' يبلغ طول هذه الرحلة ').
-string('route_calculate.ogg', 'إعادة حِساب طول المَسافة').
+string('route_calculate.ogg', ' إعادة حِساب طول المَسافة').
 string('distance.ogg', ' المسافات').
 
 % LEFT/RIGHT
@@ -33,28 +33,28 @@ string('distance.ogg', ' المسافات').
 string('after.ogg', ' بعد').
 string('in.ogg', ' في ').
 
-string('left.ogg', 'انعطِفْ الى اليسار').
-string('left_sh.ogg', 'اتجِهْ الى اليسار بشكل حاد').
-string('left_sl.ogg', 'اتجِهْ الى اليسار قليلا').
-string('right.ogg', 'انعطِفْ يمينا').
-string('right_sh.ogg', 'يمينا بشكل حاد').
-string('right_sl.ogg', 'يمينا قليلا').
-string('left_keep.ogg', 'الزم اليسار').
-string('right_keep.ogg', 'الزم اليمين').
-string('left_bear.ogg', 'الزم اليسار').    % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'الزم اليمين').   % in English the same as right_keep, may be different in other languages
+string('left.ogg', ' انعطِفْ الى اليسار').
+string('left_sh.ogg', ' اتجِهْ الى اليسار بشكل حاد').
+string('left_sl.ogg', ' اتجِهْ الى اليسار قليلا').
+string('right.ogg', ' انعطِفْ يمينا').
+string('right_sh.ogg', ' يمينا بشكل حاد').
+string('right_sl.ogg', ' يمينا قليلا').
+string('left_keep.ogg', ' إِلْزِمِ اليسار').
+string('right_keep.ogg', ' إِلْزِمِ اليمين').
+string('left_bear.ogg', ' إِلْزِمِ اليسار').    % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', ' إِلْزِمِ اليمين').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
-string('make_uturn.ogg', 'إلْتَف إلى الوراء').
-string('make_uturn_wp.ogg', 'عندما يكون ذلك ممكنا، يرجى الالْتِفافُ إلى الوراء').
+string('make_uturn.ogg', ' إلْتَف إلى الوراء').
+string('make_uturn_wp.ogg', ' عندما يكون ذلك ممكنا، يرجى الالْتِفافُ إلى الوراء').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'استعِدْ للدُخول في المسار الدَّائِري').
-string('roundabout.ogg', 'أُدخُلْ في المسار الدَّائري ثُمَّ').
+string('prepare_roundabout.ogg', ' استعِدْ للدُخول في المسار الدَّائِري').
+string('roundabout.ogg', ' أُدخُلْ في المسار الدَّائري ثُمَّ').
 string('then.ogg', ' ، ثُمَّ').
-string('and.ogg', ' و ').
-string('take.ogg', ' أُسلُكْ').
-string('exit.ogg', 'مَخرَج').
+string('and.ogg', ' و').
+string('take.ogg', ' أُسْلُكْ').
+string('exit.ogg', ' مَخرَج').
 
 string('1st.ogg', ' أَولَ').
 string('2nd.ogg', ' ثاني').
@@ -75,40 +75,40 @@ string('16th.ogg', ' سادس عشر').
 string('17th.ogg', ' السابع عشر').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'اتجِهْ مُباشَرَةً الى الأَمام').
+string('go_ahead.ogg', ' اتجِهْ مُباشَرَةً الى الأَمام').
 string('follow.ogg', ' استمِرْ لـ').  % 'Follow the course of the road for' perceived as too chatty by many users
 
 % ARRIVE
 string('and_arrive_destination.ogg', ' وتصل إلى وِجهتِكَ').
-string('reached_destination.ogg', ' لقد وصلتَ الى وجهتك').
+string('reached_destination.ogg', ' لقد وَصَلْتَ الى وجهتك').
 string('and_arrive_intermediate.ogg', ' وسوفَ تَصِلُ إلى وِجْهَتِك').
-string('reached_intermediate.ogg', ' لقد وصلت الى المرحلة الثانوية').
+string('reached_intermediate.ogg', ' لقد وَصَلْتَ الى المرحلة الثانوية').
 
 % NEARBY POINTS
 string('and_arrive_waypoint.ogg', ' وتمر GPX إحداثية').
-string('reached_waypoint.ogg', ' يتم تمرير GPX إحداثية').
+string('reached_waypoint.ogg', ' لقد وَصَلْتَ إلى مَرْحَلة جي بي إكْسْ').
 string('and_arrive_favorite.ogg', ' وتمر المفضلة').
 string('reached_favorite.ogg', ' يتم تمرير المفضل').
-string('and_arrive_poi.ogg', ' وتمر البوي').
+string('and_arrive_poi.ogg', ' و سوف تَصِلُ إلى نُقطَتِكَ المُفَضَّلَة').
 string('reached_poi.ogg', ' يتم تمرير البوي').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'لقد تجاوزت الحد الأقصى للسرعة ').
 string('exceed_limit.ogg', ' الحد الأقصى للسرعة').
 string('attention.ogg', ' انتباه،').
-string('speed_camera.ogg', 'رادار مراقبة السرعة').
-string('border_control.ogg', 'نقطة مراقبة الحدود').
-string('railroad_crossing.ogg', 'نقطة لعبور القطارات').
-string('traffic_calming.ogg', 'تخفيف الازدحام').
-string('toll_booth.ogg', 'عدد كشك').
-string('stop.ogg', 'لافتة توقف').
-string('pedestrian_crosswalk.ogg', 'ممر للراجلين').
+string('speed_camera.ogg', ' هُنَاكَ رادارٌ لِمُرَاقَبَةِ السُّرْعَة').
+string('border_control.ogg', ' هُنَاكَ نُقْطَةٌ لِمُراقَبَةِ الحُدود').
+string('railroad_crossing.ogg', ' نقطة لعبور القطارات').
+string('traffic_calming.ogg', ' مُمَهِّلْ').
+string('toll_booth.ogg', ' رَسْمُ مُرورٍ لِلطُّرُقِ').
+string('stop.ogg', ' لاَفِتَةُ تَوَقُّفْ').
+string('pedestrian_crosswalk.ogg', ' مَمَرٌّ لِلرَّاجِلِين').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'إشارة GPS فقدت').
-string('location_recovered.ogg', 'إشارة GPS تعافت').
-string('off_route.ogg', ' لقد انحرفت عن المسار بحوالي').
-string('back_on_route.ogg', 'لقد عدت الى الطريق من جديد').
+string('location_lost.ogg', ' إشارَةُ الجي بي أَس فُقِدَتْ').
+string('location_recovered.ogg', ' تَعافَتْ إشارَةُ الجي بي أَسْ').
+string('off_route.ogg', ' لَقَدْ إِنْحَرَفْتَ عَنِ المَسَارِ بِـ').
+string('back_on_route.ogg', ' لقد عُدْتَ إِلى الطريقِ من جديد').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', ' على').
@@ -117,26 +117,26 @@ string('to.ogg', ' إلى').
 string('toward.ogg', ' باتجاه').
 
 % DISTANCE UNIT SUPPORT
-string('meters.ogg', 'أمتار').
-string('around_1_kilometer.ogg', 'حوالي 1 كيلو متر').
+string('meters.ogg', ' أمتار').
+string('around_1_kilometer.ogg', ' حوالي كيلو متر واحد').
 string('around.ogg', ' حوالي').
-string('kilometers.ogg', 'كيلومترات').
+string('kilometers.ogg', ' كيلومترات').
 
-string('feet.ogg', 'أقدام').
-string('1_tenth_of_a_mile.ogg', 'عشر ميل').
-string('tenths_of_a_mile.ogg', '1/10 ميل').
-string('around_1_mile.ogg', 'حوالي 1 ميل').
-string('miles.ogg', 'اميال').
+string('feet.ogg', ' أقدام').
+string('1_tenth_of_a_mile.ogg', ' عشر ميل').
+string('tenths_of_a_mile.ogg', ' 1/10 ميل').
+string('around_1_mile.ogg', ' حوالي 1 ميل').
+string('miles.ogg', ' اميال').
 
-string('yards.ogg', 'ياردة').
+string('yards.ogg', ' ياردة').
 
 % TIME SUPPORT
-string('time.ogg', ' الوقت هو').
+string('time.ogg', ' تَبْلُغُ المُدَّةُ الزمنيةُ للْوُصول').
 string('1_hour.ogg', ' ساعة واحدة').
 string('hours.ogg', ' ساعات').
-string('less_a_minute.ogg', 'أقل من دقيقة').
-string('1_minute.ogg', 'دقيقة واحدة').
-string('minutes.ogg', 'دقائق').
+string('less_a_minute.ogg', ' أقل من دقيقة').
+string('1_minute.ogg', ' دقيقة واحدة').
+string('minutes.ogg', ' دقائق').
 
 
 %% COMMAND BUILDING / WORD ORDER
@@ -360,4 +360,3 @@ dist(D, ['700.ogg'|L]) :-  D < 800, Ts is D - 700, !, dist(Ts, L).
 dist(D, ['800.ogg'|L]) :-  D < 900, Ts is D - 800, !, dist(Ts, L).
 dist(D, ['900.ogg'|L]) :-  D < 1000, Ts is D - 900, !, dist(Ts, L).
 dist(D, ['1000.ogg'|L]):- Ts is D - 1000, !, dist(Ts, L).
-
