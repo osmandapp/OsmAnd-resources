@@ -112,6 +112,7 @@ string('off_route.ogg', 'te has desviado de la ruta').
 string('back_on_route.ogg', 'has regresado a la ruta').
 
 % STREET NAME PREPOSITIONS
+string('onto.ogg', 'en dirección a ').
 string('on.ogg', 'en ').
 string('to.ogg', 'hacia ').
 string('toward.ogg', 'hacia ').
@@ -174,7 +175,7 @@ turn_street(voice(['','',''],_), []).
 turn_street(voice(['', '', D], _), ['toward.ogg', D]) :- tts.
 turn_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
 turn_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, '', _],[R, _, _]), assemble_street_name(Street, SName).
-turn_street(Street, ['on.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), assemble_street_name(Street, SName).
+turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), assemble_street_name(Street, SName).
 turn_street(_Street, []) :- not(tts).
 
 follow_street('', []).
