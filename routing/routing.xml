@@ -449,7 +449,7 @@
 		<!-- New ROUTING API -->
 
 		<parameter id="bike_type" name="Bike type" description="Bike type" type="numeric" values="0,1,2" valueDescriptions="City bike (safety),Balance,Fast bike (speed)"/>
-		<parameter id="route_smoothness_factor" name="Route smoothness factor" description="More plains - more hills" type="numeric" values="0,1,2" valueDescriptions="More plains,Balance,More hills"/>
+		<parameter id="relief_smoothness_factor" name="Relief smoothness factor" description="More plains or more hills" type="numeric" values="0,1,2" valueDescriptions="More plains,Balance,More hills"/>
 
 <!--		<parameter id="prefer_main_highways" name="Prefer main highways" description="Prefer main highways" type="boolean"/>
 		<parameter id="avoid_traffic_signals" name="Less Traffic Signals - Less Main Roads" description="Avoid Traffic Signals" type="boolean"/>-->
@@ -458,7 +458,7 @@
 		<parameter id="avoid_stairs" name="Avoid stairs" description="Avoid stairs" type="boolean"/>
 		<parameter id="avoid_borders" name="Avoid border crossing" description="Avoid crossing a border into another country" type="boolean"/>
 		<parameter id="allow_motorway" name="Allow motorways" description="Allow motorways" type="boolean"/>
-		<parameter id="height_obstacles" name="Use elevation data" description="Use elevation data" type="boolean"/>
+		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM for routing" type="boolean"/>
 
 		<way attribute="access">
 			<select value="-1" t="osmand_change" v="delete"/>
@@ -623,7 +623,7 @@
 
 		<way attribute="obstacle_srtm_alt_speed">
 			<if param="height_obstacles">
-				<eq value1="0" value2=":route_smoothness_factor">
+				<eq value1="0" value2=":relief_smoothness_factor">
 					<gt value1="3" value2=":incline">
 						<select value="2"/>
 					</gt>
@@ -638,7 +638,7 @@
 					</gt>
 					<select value="74"/>
 				</eq>
-				<eq value1="2" value2=":route_smoothness_factor">
+				<eq value1="2" value2=":relief_smoothness_factor">
 					<gt value1="0" value2=":incline">
 						<select value="128"/>
 					</gt>
