@@ -147,6 +147,11 @@
 		<case attrColorValue="#140657"/>
 	</renderingAttribute>
 
+	<renderingConstant name="highwayOnewayIcon" value="arrow_triangle_black"/>
+	<renderingConstant name="highwayOnewayIconBig" value="arrow_triangle_black_big"/>
+	<renderingConstant name="highwayOnewayReverseIcon" value="arrow_triangle_reverse_black"/>
+	<renderingConstant name="highwayOnewayReverseIconBig" value="arrow_triangle_reverse_black_big"/>
+
 	<renderingAttribute name="highwaySurfaceIntegrityDefaultColor">
 		<case attrColorValue="#DFE2E5"/>
 	</renderingAttribute>
@@ -887,7 +892,7 @@
 				<case tag="abandoned:landuse" value="" order="9"/>
 				<case tag="abandoned:aeroway" value="runway"/>
 				<case tag="aeroway" value="runway"/>
-				<case tag="abandoned:aeroway" value="aerodrome"/>
+				<case tag="abandoned:aeroway" value="aerodrome" order="10"/>
 				<case tag="aerialway" value="station" ignorePolygonArea="true"/>
 				<case tag="aeroway" value="aerodrome" ignorePolygonArea="true">
 					<apply_if additional="aerodrome:type=military" order="6"/>
@@ -3386,8 +3391,8 @@
 						<case minzoom="19" strokeWidth="6:6" strokeWidth_0="6:6" pathEffect="7_12" strokeWidth__1="6.8:7.7"/>
 					</apply_if>
 					<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
-						<apply_if additional="oneway=yes" pathIcon="oneway_blue_big" pathIconStep="70"/>
-						<apply_if additional="oneway=-1" pathIcon="oneway_blue_reverse_big" pathIconStep="70"/>
+						<apply_if additional="oneway=yes" pathIcon="$highwayOnewayIcon" pathIconStep="70"/>
+						<apply_if additional="oneway=-1" pathIcon="$highwayOnewayReverseIcon" pathIconStep="70"/>
 					</apply_if>
 				</switch>
 
@@ -3430,10 +3435,10 @@
 							</apply_if>
 						</apply>
 						<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
-							<apply_if maxzoom="16" additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
-							<apply_if minzoom="17" additional="oneway=yes" pathIcon="oneway_blue_big" pathIconStep="70"/>
-							<apply_if maxzoom="16" additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
-							<apply_if minzoom="17" additional="oneway=-1" pathIcon="oneway_blue_reverse_big" pathIconStep="70"/>
+							<apply_if maxzoom="16" additional="oneway=yes" pathIcon="$highwayOnewayIcon" pathIconStep="70"/>
+							<apply_if minzoom="17" additional="oneway=yes" pathIcon="$highwayOnewayIconBig" pathIconStep="70"/>
+							<apply_if maxzoom="16" additional="oneway=-1" pathIcon="$highwayOnewayReverseIcon" pathIconStep="70"/>
+							<apply_if minzoom="17" additional="oneway=-1" pathIcon="$highwayOnewayReverseIconBig" pathIconStep="70"/>
 						</apply_if>
 					</switch>
 					<switch minzoom="12">
@@ -3471,10 +3476,10 @@
 							</apply_if>
 						</apply>
 						<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
-							<apply_if maxzoom="16" additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
-							<apply_if minzoom="17" additional="oneway=yes" pathIcon="oneway_blue_big" pathIconStep="70"/>
-							<apply_if maxzoom="16" additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
-							<apply_if minzoom="17" additional="oneway=-1" pathIcon="oneway_blue_reverse_big" pathIconStep="70"/>
+							<apply_if maxzoom="16" additional="oneway=yes" pathIcon="$highwayOnewayIcon" pathIconStep="70"/>
+							<apply_if minzoom="17" additional="oneway=yes" pathIcon="$highwayOnewayIconBig" pathIconStep="70"/>
+							<apply_if maxzoom="16" additional="oneway=-1" pathIcon="$highwayOnewayReverseIcon" pathIconStep="70"/>
+							<apply_if minzoom="17" additional="oneway=-1" pathIcon="$highwayOnewayReverseIconBig" pathIconStep="70"/>
 						</apply_if>
 					</switch>
 					<apply_if additional="construction=yes" cap="BUTT" shadowRadius="0" color_0="$constructionHighwayBGColor">
@@ -3534,8 +3539,8 @@
 						</apply_if>
 					</apply>
 					<apply_if engine_v1="false" minzoom="16"> <!-- for new OpenGL engine only -->
-						<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
-						<apply_if additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
+						<apply_if additional="oneway=yes" pathIcon="$highwayOnewayIcon" pathIconStep="70"/>
+						<apply_if additional="oneway=-1" pathIcon="$highwayOnewayReverseIcon" pathIconStep="70"/>
 					</apply_if>
 					<apply_if surfaceIntegrity="true" additional="bridge=yes" shadowRadius="0"/>
 					<apply_if additional="construction=yes" cap="BUTT" shadowRadius="0" color_0="$constructionHighwayBGColor">
@@ -3748,8 +3753,8 @@
 			</switch>
 			<apply_if engine_v1="true" onewayArrowsColor="$trackPathHighwayOnewayArrowsColor"/>
 			<apply_if engine_v1="false" minzoom="17"> <!-- for new OpenGL engine only -->
-				<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
-				<apply_if additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
+				<apply_if additional="oneway=yes" pathIcon="$highwayOnewayIcon" pathIconStep="70"/>
+				<apply_if additional="oneway=-1" pathIcon="$highwayOnewayReverseIcon" pathIconStep="70"/>
 			</apply_if>
 			<apply>
 				<switch hideAccess="false" minzoom="13">
