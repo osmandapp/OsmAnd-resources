@@ -2917,23 +2917,33 @@
 					<switch minzoom="6">
 						<case tag="natural" value="wood"/>
 						<case tag="landuse" value="forest"/>
-						<apply color="$woodColor"/>
-						<apply_if minzoom="14" additional="leaf_type=broadleaved" shader="topo_wood_broadleaved"/>
-						<apply_if minzoom="14" additional="leaf_type=needleleaved" shader="topo_wood_needleleaved"/>
-						<apply_if minzoom="14" additional="leaf_type=mixed" shader="topo_wood_mixed"/>
-						<apply_if additional="wood:damage=windfall" shader="topo_windfall"/>
-						<apply_if additional="wood:damage=dead_wood" shader="topo_dead_wood"/>
-						<apply_if additional="wood:density=very_sparse" shader="topo_wood_density_sparse"/>
-						<apply_if additional="wood:density=sparse" shader="topo_wood_density_sparse"/>
-						<apply_if additional="wood:age=very_young" shader="topo_wood_age_young"/>
-						<apply_if additional="wood:age=young" shader="topo_wood_age_young"/>
-			<!--			<apply cap_2="ROUND" color_2="#0C4228">
-							<case minzoom="14" maxzoom="14" strokeWidth_2="1" pathEffect_2="1_5"/>
-							<case minzoom="15" strokeWidth_2="1.5" pathEffect_2="1_8"/>
-						</apply>-->
+						<apply color="$woodColor" color_0="$woodColor"/>
+						<apply_if maxzoom="13">
+							<switch>
+								<case additional="wood:age=very_young"/>
+								<case additional="wood:age=young"/>
+								<case additional="wood:density=very_sparse"/>
+								<case additional="wood:density=sparse"/>
+								<apply color="#c5ecb8"/>
+							</switch>
+						</apply_if>
+						<apply_if minzoom="14">
+							<apply_if additional="leaf_type=broadleaved" shader="topo_wood_broadleaved"/>
+							<apply_if additional="leaf_type=needleleaved" shader="topo_wood_needleleaved"/>
+							<apply_if additional="leaf_type=mixed" shader="topo_wood_mixed"/>
+							<apply_if additional="wood:age=very_young" shader="topo_wood_age_young" color_0="#c5ecb8"/>
+							<apply_if additional="wood:age=young" shader="topo_wood_age_young" color_0="#c5ecb8"/>
+							<apply_if additional="wood:density=very_sparse" shader="topo_wood_density_sparse" color_0="#c5ecb8"/>
+							<apply_if additional="wood:density=sparse" shader="topo_wood_density_sparse" color_0="#c5ecb8"/>
+							<apply_if additional="wood:damage=windfall" shader="topo_windfall" color_0="#fbfde6"/>
+							<apply_if additional="wood:damage=dead_wood" shader="topo_dead_wood" color_0="#fbfde6"/>
+						</apply_if>
 					</switch>
+					<case minzoom="12" tag="natural" value="scrub">
+						<apply_if maxzoom="13" color="#b3e3b5"/>
+						<apply_if minzoom="14" shader="topo_scrub"/>
+					</case>
 					<case minzoom="10" tag="landuse" value="allotments" color="$landuseAllotmentsColor" color_2="#8fbda0" strokeWidth_2=":1">
-			<!--			<case minzoom="13" maxzoom="14" shader="allotments_small"/>-->
 						<case minzoom="14" shader="topo_allotments"/>
 					</case>
 					<case minzoom="12" tag="landuse" value="orchard" color="#bbeca1" color_2="#499720">
@@ -3145,10 +3155,6 @@
 						<apply_if minzoom="15" additional="intermittent=yes" strokeWidth_2="1" color_2="#7479ec" pathEffect_2="12_5"/>
 					</case>
 
-					<case minzoom="12" tag="natural" value="scrub">
-						<apply_if maxzoom="13" color="#b3e3b5"/>
-						<apply_if minzoom="14" shader="topo_scrub"/>
-					</case>
 
 					<switch>
 						<case minzoom="13" tag="waterway" value="dam" strokeWidth_2="1:1"/>
