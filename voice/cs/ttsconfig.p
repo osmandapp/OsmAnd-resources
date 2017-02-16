@@ -142,15 +142,15 @@ string('toward.ogg', 've směru ').
 % DISTANCE UNIT SUPPORT
 string('meters_accusative.ogg', 'metrů').
 string('around_1_kilometer_accusative.ogg', 'přibližně jeden kilometr').
+string('around_2_kilometers_accusative.ogg', 'přibližně dva kilometry').
 string('around.ogg', 'přibližně ').
-string('kilometers_accusative2.ogg', 'dva kilometry').
 string('kilometers_accusative3_4.ogg', 'kilometry').
 string('kilometers_accusative5.ogg', 'kilometrů').
 
 string('meters_locative.ogg', 'metrech').
 string('around_1_kilometer_locative.ogg', 'přibližně jednom kilometru').
+string('around_2_kilometers_locative.ogg', 'přibližně dvou kilometrech').
 string('kilometers_locative.ogg', 'kilometrech').
-string('kilometers_locative2.ogg', 'dvou kilometrech').
 
 string('farther_workaround.ogg', 'dál ').
 string('around_workaround.ogg', 'dál přibližně ').
@@ -376,8 +376,9 @@ distance_km(Dist, locative) --   [ X, 'meters_locative.ogg']                    
 distance_km(Dist, workaround) -- ['around_1_kilometer_accusative.ogg']          :- Dist < 1500.
 distance_km(Dist, accusative) -- ['around_1_kilometer_accusative.ogg']          :- Dist < 1500.
 distance_km(Dist, locative) --   ['around_1_kilometer_locative.ogg']            :- Dist < 1500.
-distance_km(Dist, accusative) -- ['around.ogg', X, 'kilometers_accusative2.ogg']                :- Dist < 2500.
-distance_km(Dist, locative)   -- ['around.ogg', X, 'kilometers_locative2.ogg']                  :- Dist < 2500.
+distance_km(Dist, workaround) -- ['around_2_kilometers_accusative.ogg']         :- Dist < 2500.
+distance_km(Dist, accusative) -- ['around_2_kilometers_accusative.ogg']         :- Dist < 2500.
+distance_km(Dist, locative)   -- ['around_2_kilometers_locative.ogg']           :- Dist < 2500.
 distance_km(Dist, workaround) -- ['around_workaround.ogg', X, 'kilometers_accusative3_4.ogg']   :- Dist < 4500, D is round(Dist/1000.0),            dist(D, X).
 distance_km(Dist, accusative) -- ['around.ogg', X, 'kilometers_accusative3_4.ogg'] :- Dist < 4500, D is round(Dist/1000.0),            dist(D, X).
 distance_km(Dist, locative) --   ['around.ogg', X, 'kilometers_locative.ogg']   :- Dist < 4500, D is round(Dist/1000.0),            dist_loc(D, X).
