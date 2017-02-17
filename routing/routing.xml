@@ -305,6 +305,11 @@
 			<select t="access" v="delivery" value="0.15"/>
 			<select t="access" v="customers" value="0.15"/>
 
+			<select value="0.3" t="smoothness" v="very_bad"/>
+			<select value="0.15" t="smoothness" v="horrible"/>
+			<select value="0.1" t="smoothness" v="very_horrible"/>
+			<select value="0.05" t="smoothness" v="impassable"/>
+
 			<select value="1.1" t="highway" v="motorway"/>
 			<!-- make links slightly smaller so in connections they will not be used -->
 			<select value="1" t="highway" v="motorway_link"/>
@@ -326,11 +331,6 @@
 			<select value="0.7" t="highway" v="residential"/>
 
 			<select value="0.5" t="highway" v="track"/>
-
-			<select value="0.3" t="smoothness" v="very_bad"/>
-			<select value="0.15" t="smoothness" v="horrible"/>
-			<select value="0.1" t="smoothness" v="very_horrible"/>
-			<select value="0.05" t="smoothness" v="impassable"/>
 
 			<select value="0.5" t="highway" v="service"/>
 			<select value="0.5" t="highway" v="living_street"/>
@@ -525,7 +525,7 @@
 			<select value="1" t="highway" v="road"/>
 			<select value="1" t="highway" v="residential"/>
 			<select value="1" t="highway" v="cycleway"/>
-			<select value="1" t="route" v="bicycle"/>
+			<select value="1" t="route_bicycle"/>
 			<select value="1" t="highway" v="unclassified"/>
 			<select value="1" t="highway" v="service"/>
 			<select value="1" t="highway" v="track"/>
@@ -574,7 +574,7 @@
 				<select value="17.2" t="highway" v="residential"/>
 				<select value="18" t="highway" v="unclassified"/>
 				<select value="35" t="highway" v="cycleway"/>
-				<select value="25" t="route" v="bicycle"/>
+				<select value="25" t="route_bicycle"/>
 				<if param="avoid_unpaved">
 					<select value="7" t="highway" v="track"/>
 					<select value="6" t="highway" v="footway"/>
@@ -590,6 +590,8 @@
 			<select value="5" t="highway" v="trunk_link"/>
 
 			<eq value1="0" value2=":driving_style">
+				<select value="24" t="route_bicycle"/>
+				<select value="23" t="highway" v="cycleway"/>
 				<select value="7" t="highway" v="primary"/>
 				<select value="7" t="highway" v="primary_link"/>
 				<select value="9" t="highway" v="secondary"/>
@@ -597,13 +599,12 @@
 				<select value="13" t="highway" v="tertiary"/>
 				<select value="13" t="highway" v="tertiary_link"/>
 				<select value="22" t="highway" v="residential"/>
-				<select value="21" t="highway" v="cycleway"/>
-				<select value="20" t="route" v="bicycle"/>
 				<select value="22" t="highway" v="track"/>
 				<select value="19" t="highway" v="path"/>
 				<select value="18.8" t="highway" v="footway"/>
 			</eq>
 
+			<select value="24.0" t="route_bicycle"/>
 			<select value="8" t="highway" v="primary"/>
 			<select value="8" t="highway" v="primary_link"/>
 			<select value="10.5" t="highway" v="secondary"/>
@@ -613,7 +614,6 @@
 			<select value="18.9" t="highway" v="road"/>
 			<select value="23.5" t="highway" v="residential"/>
 			<select value="22.0" t="highway" v="cycleway"/>
-			<select value="20.0" t="route" v="bicycle"/>
 			<select value="23" t="highway" v="unclassified"/>
 			<select value="11" t="highway" v="service"/>
 			<select value="19.0" t="highway" v="track"/>
@@ -703,10 +703,12 @@
 				<select value="0.1" t="surface" v="mud"/>
 				<select value="0.1" t="surface" v="pebblestone"/>
 				<select value="0.1" t="surface" v="sand"/>
+				<select value="0.1" t="mtb:scale" v="1"/>
+				<select value="0.1" t="mtb:scale" v="2"/>
 <!--				<select value="0.6" t="surface" v="wood"/>-->
 			</if>
 
-			<select value="1" t="bicycle" v="dismount"/>
+			<select value="0.5" t="bicycle" v="dismount"/>
 			<select value="0.5" t="cycleway" v="sidepath"/>
 			<select value="0.45" t="footway" v="sidewalk"/>
 			<select value="1.3" t="tracktype" v="grade1"/>
@@ -714,7 +716,13 @@
 			<select value="1.0" t="tracktype" v="grade3"/>
 			<select value="0.7" t="tracktype" v="grade4"/>
 			<select value="0.5" t="tracktype" v="grade5"/>
-			<select value="0.65" t="surface" v="cobblestone"/>
+			<select value="0.1" t="sac_scale" v="mountain_hiking"/>
+			<select value="0.3" t="mtb:scale" v="1"/>
+			<select value="0.2" t="mtb:scale" v="2"/>
+			<select value="0.1" t="mtb:scale" v="3"/>
+			<select value="0.05" t="mtb:scale" v="4"/>
+			<select value="1.7" t="route_bicycle"/>
+			<select value="1.5" t="highway" v="cycleway"/>
 			<select value="1.5" t="cycleway" v="lane"/>
 			<select value="1.5" t="cycleway" v="opposite_lane"/>
 			<select value="1.1" t="cycleway" v="share_busway"/>
@@ -722,19 +730,14 @@
 			<select value="1.5" t="cycleway" v="opposite_track"/>
 			<select value="0.8" t="cycleway" v="shared"/>
 			<select value="0.8" t="cycleway" v="shared_lane"/>
+			<select value="1.29" t="bicycle" v="official"/>
+			<select value="1.29" t="bicycle" v="designated"/>
 			<select value="1.1" t="bridge" v="yes"/>
-			<select value="1.0" t="highway" v="primary"/>
-			<select value="1.0" t="highway" v="secondary"/>
-			<select value="1.0" t="highway" v="tertiary"/>
-			<select value="1.0" t="highway" v="residential"/>
 			<select value="1.35" t="surface" v="asphalt"/>
 			<select value="1.35" t="surface" v="paved"/>
 			<select value="1.35" t="surface" v="concrete"/>
 			<select value="1.30" t="surface" v="paving_stones"/>
-			<select value="1.0" t="highway" v="cycleway"/>
-			<select value="0.9" t="route" v="bicycle"/>
-			<select value="1.29" t="bicycle" v="official"/>
-			<select value="1.29" t="bicycle" v="designated"/>
+			<select value="0.65" t="surface" v="cobblestone"/>
 			<select value="1.2" t="bicycle" v="yes"/>
 			<select value="0.9" t="surface" v="gravel"/>
 			<select value="0.8" t="surface" v="unpaved"/>
@@ -752,26 +755,34 @@
 				<select value="0.1" t="highway" v="track"/>
 				<select value="0.1" t="highway" v="path"/>
 			</if>
+			<select value="1.2" t="smoothness" v="excellent"/>
+			<select value="1.0" t="smoothness" v="good"/>
+			<select value="0.9" t="smoothness" v="intermediate"/>
+			<select value="0.8" t="smoothness" v="bad"/>
+			<select value="0.6" t="smoothness" v="very_bad"/>
+			<select value="0.5" t="smoothness" v="horrible"/>
+			<select value="0.4" t="smoothness" v="very_horrible"/>
+			<select value="0.1" t="smoothness" v="impassable"/>
 			<select value="0.76" t="highway" v="footway"/>
+			<select value="1.0" t="highway" v="primary"/>
+			<select value="1.0" t="highway" v="secondary"/>
+			<select value="1.0" t="highway" v="tertiary"/>
+			<select value="1.0" t="highway" v="residential"/>
 			<select value="1.0" t="highway" v="unclassified"/>
 			<select value="1.0" t="highway" v="road"/>
 			<select value="1.0" t="highway" v="service"/>
 			<select value="0.75" t="highway" v="track"/>
 			<select value="0.6" t="highway" v="path"/>
+			<eq value1="2" value2=":driving_style">
+				<select value="1.4" t="highway" v="motorway"/>
+				<select value="1.3" t="highway" v="motorway_link"/>
+				<select value="1.4" t="highway" v="trunk"/>
+				<select value="1.3" t="highway" v="trunk_link"/>
+			</eq>
 			<select value="0.5" t="highway" v="motorway"/>
 			<select value="0.5" t="highway" v="motorway_link"/>
 			<select value="0.5" t="highway" v="trunk"/>
 			<select value="0.5" t="highway" v="trunk_link"/>
-
-			<select value="0.6" t="smoothness" v="very_bad"/>
-			<select value="0.5" t="smoothness" v="horrible"/>
-			<select value="0.4" t="smoothness" v="very_horrible"/>
-			<select value="0.1" t="smoothness" v="impassable"/>
-			<select value="0.1" t="sac_scale" v="mountain_hiking"/>
-			<select value="0.3" t="mtb:scale" v="1"/>
-			<select value="0.2" t="mtb:scale" v="2"/>
-			<select value="0.1" t="mtb:scale" v="3"/>
-			<select value="0.05" t="mtb:scale" v="4"/>
 
 		</way>
 
