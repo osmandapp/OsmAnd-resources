@@ -11,7 +11,7 @@
 		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="hikingRoutesOSMC" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces"
 		type="string" possibleValues="walkingRoutesOSMC,walkingRoutesScopeOSMC" defaultValueDescription="disabled" category="routes"/>
-<!--	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show cycle routes (*cn_networks) in bicycle mode" type="boolean" possibleValues="" category="routes"/>-->
+	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show cycle routes (*cn_networks) in bicycle mode" type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="showMtbRoutes" name="Show MTB routes" description="Show mountain bike routes (*cn_networks) in bicycle mode" type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
 		type="boolean" possibleValues="" category="routes"/>
@@ -567,10 +567,18 @@
 	<renderingConstant name="railwayTextHaloColor" value="#aaffffff"/>
 
 	<renderingAttribute name="boundaryColorInner">
-		<case attrColorValue="#2a000000"/>
+		<case minzoom="12" attrColorValue="#aa0002B4"/>
+		<case attrColorValue="#2a0002B4"/>
+	</renderingAttribute>
+	<renderingAttribute name="boundaryLowLevelColorInner">
+		<case attrColorValue="#100002B4"/>
 	</renderingAttribute>
 	<renderingAttribute name="boundaryColorOuter">
-		<case attrColorValue="#10323232"/>
+		<case minzoom="12" attrColorValue="#500002B4"/>
+		<case attrColorValue="#100002B4"/>
+	</renderingAttribute>
+	<renderingAttribute name="boundaryLowLevelColorOuter">
+		<case attrColorValue="#100002B4"/>
 	</renderingAttribute>
 	<renderingConstant name="boundaryNationalParkColor" value="#a0800080"/>
 	<renderingConstant name="boundaryNationalParkColor2" value="#5009dd09"/>
@@ -2261,7 +2269,7 @@
 			<apply_if hideAccess="false" additional="access=no" textColor="$accessPrivateColor"/>
 		</switch>
 		<!-- Cycling: texts for the cycle networks -->
-		<switch minzoom="14" textHaloColor="#ddffffff" textHaloRadius="$textHaloRadiusDay" textWrapWidth="30">
+		<switch showCycleRoutes="true" minzoom="14" textHaloColor="#ddffffff" textHaloRadius="$textHaloRadiusDay" textWrapWidth="30">
 			<!-- routes -->
 			<case tag="route_bicycle" value="" nameTag="bicycle_ref" nameTag2="bicycle_name" textOrder="43" textColor="$cycleRouteTextColor"/>
 			<case tag="route_bicycle" value="" nameTag="bicycle_name" textOrder="43" textColor="$cycleRouteTextColor"/>
@@ -2299,7 +2307,12 @@
 				<case minzoom="18" textSize="12" textWrapWidth="30"/>
 			</case>
 		</switch>
-
+		<switch>
+			<case minzoom="9" tag="admin_level" value="2"/>
+			<case minzoom="10" tag="admin_level" value="3"/>
+			<case minzoom="10" tag="admin_level" value="4"/>
+			<apply textSize="10" textHaloRadius="2" textColor="#ffffff" textBold="true" textOnPath="true" textHaloColor="$boundaryColorInner"/>
+		</switch>
 	</text>
 
 	<point>
@@ -4216,7 +4229,7 @@
 			<apply color="#886a6a"/>
 		</switch>
 		<switch minzoom="11">
-			<case appMode="bicycle" tag="route_bicycle" value="">
+			<case showCycleRoutes="true" tag="route_bicycle" value="">
 				<case maxzoom="11" strokeWidth="4:4"/>
 				<case maxzoom="12" strokeWidth="6:6"/>
 				<case maxzoom="13" strokeWidth="7:7"/>
@@ -4322,7 +4335,7 @@
 					</switch>
 				</apply>
 			</case>
-			<apply_if appMode="bicycle">
+			<apply_if showCycleRoutes="true">
 				<switch>
 					<case additional="network=lcn" color="$cycleRoutelcnColor"/>
 					<case additional="network=rcn" color="$cycleRoutercnColor"/>
@@ -4419,7 +4432,7 @@
 				<case maxzoom="3" strokeWidth="0.9" strokeWidth_0="0.8"/>
 				<case maxzoom="4" strokeWidth="1:1" strokeWidth_0="0.8"/>
 				<case maxzoom="5" strokeWidth="2:2" strokeWidth_0="1"/>
-				<case maxzoom="6" strokeWidth="3:3" strokeWidth_0="1"/>
+				<case maxzoom="6" strokeWidth="3:3" strokeWidth_0="1.3"/>
 				<case maxzoom="8" strokeWidth="4:4" strokeWidth_0="1:1"/>
 				<case minzoom="9" strokeWidth="6:6" strokeWidth_0="1:1"/>
 			</apply>
@@ -4445,7 +4458,7 @@
 				<case tag="admin_level" value="8" minzoom="12" pathEffect="5_1" pathEffect_0="5_1"/>
 				<case tag="admin_level" value="9" minzoom="13" pathEffect="4_1" pathEffect_0="4_1"/>
 				<case tag="admin_level" value="10" minzoom="13" pathEffect="4_1" pathEffect_0="4_1"/>
-				<apply color="$boundaryColorOuter" color_0="$boundaryColorInner" strokeWidth="3:3" strokeWidth_0="0.6"/>
+				<apply color="$boundaryLowLevelColorOuter" color_0="$boundaryLowLevelColorInner" strokeWidth="3:3" strokeWidth_0="0.6"/>
 			</switch>
 			<case tag="boundary" value="national_park" minzoom="7">
 				<case maxzoom="9" strokeWidth="1.5:1.5"/>
