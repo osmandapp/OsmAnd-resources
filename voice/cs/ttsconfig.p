@@ -31,7 +31,7 @@ string('distance.ogg', '. cesta je dlouhá ').
 % LEFT/RIGHT
 %string('prepare.ogg', 'budete odbočovat ').
 string('after.ogg', 'po ').
-string('in.ogg', 'v ').
+string('in.ogg', 'po ').
 
 string('left.ogg', 'odbočte vlevo').
 string('left_sh.ogg', 'odbočte ostře vlevo').
@@ -48,7 +48,7 @@ string('right_bear.ogg', 'se držte vpravo').  % in English the same as right_ke
 %string('prepare_make_uturn.ogg', 'se budete otáčet zpět').
 string('make_uturn.ogg', 'se otočte zpět').
 string('make_uturn2.ogg', 'otočte se zpět').
-string('make_uturn_wp.ogg', 'vraťte se jakmile to bude možné').
+string('make_uturn_wp.ogg', 'otočte se, jakmile to bude možné').
 
 % ROUNDABOUTS
 string('prepare_roundabout.ogg', 'přijedete na kruhový objezd').
@@ -116,40 +116,41 @@ string('reached_poi.ogg', 'projeli jste bodem zájmu ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'překračujete povolenou rychlost ').
-string('exceed_limit.ogg', 'povolená rychlost ').
+string('exceed_limit.ogg', 'rychlostní limit ').
 string('attention.ogg', 'pozor, ').
-string('speed_camera.ogg', 'rychlostní radar').
+string('speed_camera.ogg', 'měření rychlosti').
 string('border_control.ogg', 'hraniční kontrola').
 string('railroad_crossing.ogg', 'železniční přejezd').
-string('traffic_calming.ogg', 'retardér').
+string('traffic_calming.ogg', 'zpomalovač').
 string('toll_booth.ogg', 'mýtná brána').
-string('stop.ogg', 'značka stop').
+string('stop.ogg', 'stopka').
 string('pedestrian_crosswalk.ogg', 'přechod pro chodce').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'ztráta g p s signálu').
-string('location_recovered.ogg', 'g p s signál nalezen').
-string('off_route.ogg', 'odchylujete se z trasy o').
+string('location_lost.ogg', 'signál G.P.S. ztracen').
+string('location_recovered.ogg', 'signál G.P.S. obnoven').
+string('off_route.ogg', 'nacházíte se ').
+string('off_route2.ogg', ' mimo trasu').
 string('back_on_route.ogg', 'vrátili jste se zpět na trasu').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'na ').
 string('on.ogg', 'na ').
 string('to.ogg', 'na ').
-string('toward.ogg', 'k ').
+string('toward.ogg', 've směru ').
 
 % DISTANCE UNIT SUPPORT
 string('meters_accusative.ogg', 'metrů').
 string('around_1_kilometer_accusative.ogg', 'přibližně jeden kilometr').
+string('around_2_kilometers_accusative.ogg', 'přibližně dva kilometry').
 string('around.ogg', 'přibližně ').
-string('kilometers_accusative2.ogg', 'dva kilometry').
 string('kilometers_accusative3_4.ogg', 'kilometry').
 string('kilometers_accusative5.ogg', 'kilometrů').
 
 string('meters_locative.ogg', 'metrech').
 string('around_1_kilometer_locative.ogg', 'přibližně jednom kilometru').
+string('around_2_kilometers_locative.ogg', 'přibližně dvou kilometrech').
 string('kilometers_locative.ogg', 'kilometrech').
-string('kilometers_locative2.ogg', 'dvou kilometrech').
 
 string('farther_workaround.ogg', 'dál ').
 string('around_workaround.ogg', 'dál přibližně ').
@@ -166,8 +167,8 @@ string('tenths_of_a_mile_locative.ogg', 'desetinách míle').
 string('around_1_mile_locative.ogg', 'přibližně jedné míli').
 string('miles_locative.ogg', 'mílích').
 
-string('yards_accusative.ogg', 'yardů').
-string('yards_locative.ogg', 'yardech').
+string('yards_accusative.ogg', 'jardů').
+string('yards_locative.ogg', 'jardech').
 
 % TIME SUPPORT
 string('time.ogg', 'potřebná doba ').
@@ -260,7 +261,7 @@ reached_poi(D) -- ['reached_poi.ogg'|Ds] :- name(D, Ds).
 
 location_lost -- ['location_lost.ogg'].
 location_recovered -- ['location_recovered.ogg'].
-off_route(Dist) -- ['off_route.ogg', D] :- distance(Dist, accusative) -- D.
+off_route(Dist) -- ['off_route.ogg', D, 'off_route2.ogg'] :- distance(Dist, accusative) -- D.
 back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
@@ -375,8 +376,9 @@ distance_km(Dist, locative) --   [ X, 'meters_locative.ogg']                    
 distance_km(Dist, workaround) -- ['around_1_kilometer_accusative.ogg']          :- Dist < 1500.
 distance_km(Dist, accusative) -- ['around_1_kilometer_accusative.ogg']          :- Dist < 1500.
 distance_km(Dist, locative) --   ['around_1_kilometer_locative.ogg']            :- Dist < 1500.
-distance_km(Dist, accusative) -- ['kilometers_accusative2.ogg']                 :- Dist < 2500.
-distance_km(Dist, locative)   -- ['kilometers_locative2.ogg']                   :- Dist < 2500.
+distance_km(Dist, workaround) -- ['around_2_kilometers_accusative.ogg']         :- Dist < 2500.
+distance_km(Dist, accusative) -- ['around_2_kilometers_accusative.ogg']         :- Dist < 2500.
+distance_km(Dist, locative)   -- ['around_2_kilometers_locative.ogg']           :- Dist < 2500.
 distance_km(Dist, workaround) -- ['around_workaround.ogg', X, 'kilometers_accusative3_4.ogg']   :- Dist < 4500, D is round(Dist/1000.0),            dist(D, X).
 distance_km(Dist, accusative) -- ['around.ogg', X, 'kilometers_accusative3_4.ogg'] :- Dist < 4500, D is round(Dist/1000.0),            dist(D, X).
 distance_km(Dist, locative) --   ['around.ogg', X, 'kilometers_locative.ogg']   :- Dist < 4500, D is round(Dist/1000.0),            dist_loc(D, X).
