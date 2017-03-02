@@ -1173,7 +1173,7 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="landuseLoggingColor">
-		<case nightMode="true" attrColorValue="#003838"/>
+		<case nightMode="true" attrColorValue="$null"/>
 		<case attrColorValue="#d9e0c3"/>
 	</renderingAttribute>
 
@@ -2444,6 +2444,7 @@
 					<case tag="aeroway" value="terminal"/>
 					<case tag="aeroway" value="helipad"/>
 				</switch>
+				<case tag="wood:lost" value="" order="6"/>
 				<case tag="abandoned:aeroway" value="aerodrome" order="10"/>
 				<case tag="aeroway" value="aerodrome" ignorePolygonArea="true">
 					<apply_if additional="aerodrome:type=military" order="6"/>
@@ -5326,6 +5327,9 @@
 						<case minzoom="14" tag="landuse" value="allotments"/>
 						<case minzoom="12" tag="landuse" value="quarry"/>
 						<case minzoom="13" tag="landuse" value="landfill"/>
+						<case minzoom="16" tag="landuse" value="logging"/>
+						<case minzoom="16" tag="wood:lost" value="dead_wood"/>
+						<case minzoom="16" tag="wood:lost" value="windfall"/>
 						<case minzoom="13" tag="man_made" value="spoil_heap"/>
 						<case minzoom="16" tag="power" value="substation"/>
 						<case minzoom="18" tag="power" value="transformer"/>
@@ -8461,6 +8465,12 @@
 			</switch>
 
 			<!-- Forest, wood -->
+			<switch minzoom="14">
+				<case tag="wood:lost" value="dead_wood" shader="wood_dead_wood"/>
+				<case tag="wood:lost" value="windfall" shader="wood_windfall"/>
+				<apply color_0="$landuseLoggingColor"/>
+				<apply_if nightMode="true" shader="" color_0="$null"/>
+			</switch>
 			<switch minzoom="6">
 				<case tag="natural" value="wood" color="$woodColor" color_0="$woodColor">
 					<apply_if minzoom="16" shader="$woodMixedShader"/>
@@ -8476,8 +8486,8 @@
 				</case>
 				<apply>
 					<switch>
-						<case additional="wood:damage=windfall" shader="wood_windfall"/>
 						<case additional="wood:damage=dead_wood" shader="wood_dead_wood"/>
+						<case additional="wood:damage=windfall" shader="wood_windfall"/>
 						<apply color_0="$landuseLoggingColor"/>
 					</switch>
 				</apply>
