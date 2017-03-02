@@ -390,6 +390,9 @@
 <!--		<case nightMode="true" attrColorValue="#330099"/>-->
 		<case attrColorValue="#1A7DC3"/>
 	</renderingAttribute>
+	<renderingAttribute name="waterwayTunnelColor">
+		<case attrColorValue="#B0CCDF"/>
+	</renderingAttribute>
 	<renderingAttribute name="woodColor">
 		<case attrColorValue="#8AD96A"/>
 	</renderingAttribute>
@@ -1057,7 +1060,7 @@
 				<case tag="waterway" value="" order="8">
 					<apply_if layer="1" order="68"/>
 	<!--				<apply_if OSMMapperAssistant="false" layer="-1" maxzoom="17" order="-1"/>-->
-					<apply_if layer="-1" order="-1"/>
+					<apply_if layer="-1" maxzoom="16" order="-1"/>
 				</case>
 				<case tag="route_bicycle" value="" order="98"/>
 				<case tag="route_mtb" value="" order="99"/>
@@ -4045,16 +4048,8 @@
 
 		<switch>
 			<switch minzoom="13">
-				<case tag="waterway" value="stream">
-					<case additional="tunnel=yes" pathEffect_2="4_2">
-						<case maxzoom="13" strokeWidth_2="0.6"/>
-						<case maxzoom="14" strokeWidth_2="0.9"/>
-						<case maxzoom="16" strokeWidth_2="1:1"/>
-						<case maxzoom="17" strokeWidth_2="1.2:1.2"/>
-						<case minzoom="18" strokeWidth_2="1.7:1.7"/>
-					</case>
-				</case>
-				<case tag="waterway" value="wadi">
+				<case tag="waterway" value="stream"/>
+/				<case tag="waterway" value="wadi">
 					<case maxzoom="13" pathEffect="4.5_3"/>
 					<case maxzoom="14" pathEffect="6_4"/>
 					<case maxzoom="16" pathEffect="8_5"/>
@@ -4084,13 +4079,6 @@
 				<apply>
 					<case maxzoom="9" strokeWidth="0.6"/>
 					<case maxzoom="12" strokeWidth="1:1"/>
-					<case additional="tunnel=yes" minzoom="13" pathEffect_2="4_2">
-						<case maxzoom="13" strokeWidth_2="0.7"/>
-						<case maxzoom="14" strokeWidth_2="1.5:1.5"/>
-						<case maxzoom="16" strokeWidth_2="2:2"/>
-						<case maxzoom="17" strokeWidth_2="4:4"/>
-						<case minzoom="18" strokeWidth_2="5:5"/>
-					</case>
 					<apply_if minzoom="13" maxzoom="13" strokeWidth="1.5:1.5"/>
 					<apply_if minzoom="14" maxzoom="14" strokeWidth="2.5:2.5"/>
 					<apply_if minzoom="15" maxzoom="16" strokeWidth="3:3"/>
@@ -4103,13 +4091,6 @@
 				<case tag="waterway" value="ditch"/>
 				<case tag="waterway" value="drain"/>
 				<apply>
-					<case additional="tunnel=yes" pathEffect_2="3_1.6">
-						<case maxzoom="13" strokeWidth_2="0.3"/>
-						<case maxzoom="14" strokeWidth_2="0.4"/>
-						<case maxzoom="16" strokeWidth_2="0.5"/>
-						<case maxzoom="17" strokeWidth_2="0.6"/>
-						<case minzoom="18" strokeWidth_2="0.9"/>
-					</case>
 					<apply_if minzoom="13" maxzoom="13" strokeWidth="1"/>
 					<apply_if minzoom="14" maxzoom="14" strokeWidth="1.3"/>
 					<apply_if minzoom="15" maxzoom="16" strokeWidth="1:1"/>
@@ -4127,6 +4108,7 @@
 			<apply_if engine_v1="true" onewayArrowsColor="$waterwayArrowsColor"/>
 			<!-- Waterway color -->
 			<apply color="$waterwayColor"/>
+			<apply_if additional="tunnel=yes" minzoom="17" color="$waterwayTunnelColor" pathEffect="4_2"/>
 		</switch>
 
 		<switch tag="contour" value="elevation">
