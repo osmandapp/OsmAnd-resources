@@ -458,8 +458,16 @@
 		<!-- <attribute name="relaxNodesIfStartDistSmallCoeff" value="2.5"/>  -->
 		<!-- New ROUTING API -->
 
-		<parameter id="driving_style" name="Driving style" description="Safe, fast or balanced driving" type="numeric" values="0,1,2" valueDescriptions="Safety,Balance,Speed"/>
+<!--		<parameter id="driving_style" name="Driving style" description="Safe, fast or balanced driving" type="numeric" values="0,1,2" valueDescriptions="Safety,Balance,Speed"/>-->
 		<parameter id="relief_smoothness_factor" name="Relief smoothness factor" description="More plains or more hills" type="numeric" values="0,1,2" valueDescriptions="More plains,Balance,More hills"/>
+
+		<parameter id="driving_style_safety" name="Safety" description="" type="boolean"/>
+		<parameter id="driving_style_balance" name="Balance" description="" type="boolean"/>
+		<parameter id="driving_style_speed" name="Speed" description="" type="boolean"/>
+
+		<parameter id="relief_smoothness_factor_plains" name="More plains" description="" type="boolean"/>
+		<parameter id="relief_smoothness_factor_balance" name="Balance" description="" type="boolean"/>
+		<parameter id="relief_smoothness_factor_hills" name="More hills" description="" type="boolean"/>
 
 <!--		<parameter id="prefer_main_highways" name="Prefer main highways" description="Prefer main highways" type="boolean"/>
 		<parameter id="avoid_traffic_signals" name="Less Traffic Signals - Less Main Roads" description="Avoid Traffic Signals" type="boolean"/>-->
@@ -581,7 +589,7 @@
 				<select value="4" t="highway" v="footway"/>
 				<select value="3" t="highway" v="path"/>
 			</if>
-			<eq value1="2" value2=":driving_style">
+			<if param="driving_style_speed">
 				<select value="19" t="highway" v="motorway"/>
 				<select value="19" t="highway" v="motorway_link"/>
 				<select value="19" t="highway" v="trunk"/>
@@ -600,13 +608,13 @@
 				<select value="8.5" t="highway" v="track"/>
 				<select value="7" t="highway" v="footway"/>
 				<select value="6" t="highway" v="path"/>
-			</eq>
+			</if>
 			<select value="5" t="highway" v="motorway"/>
 			<select value="5" t="highway" v="motorway_link"/>
 			<select value="5" t="highway" v="trunk"/>
 			<select value="5" t="highway" v="trunk_link"/>
 
-			<eq value1="0" value2=":driving_style">
+			<if param="driving_style_safety">
 				<select value="23" t="highway" v="cycleway"/>
 				<select value="23" t="bicycle" v="designated"/>
 				<select value="7" t="highway" v="primary"/>
@@ -619,7 +627,7 @@
 				<select value="22" t="highway" v="track"/>
 				<select value="19" t="highway" v="path"/>
 				<select value="18.8" t="highway" v="footway"/>
-			</eq>
+			</if>
 
 			<select value="24.0" t="route_bicycle"/>
 			<select value="8" t="highway" v="primary"/>
@@ -673,7 +681,7 @@
 					<select value="2" t="highway" v="path"/>
 					<select value="2" t="highway" v="track"/>
 				</gt>
-				<eq value1="0" value2=":relief_smoothness_factor">
+				<if param="relief_smoothness_factor_plains">
 					<gt value1="3" value2=":incline">
 						<select value="2"/>
 					</gt>
@@ -687,8 +695,8 @@
 						<select value="50"/>
 					</gt>
 					<select value="74"/>
-				</eq>
-				<eq value1="2" value2=":relief_smoothness_factor">
+				</if>
+				<if param="relief_smoothness_factor_hills">
 					<gt value1="0" value2=":incline">
 						<select value="128"/>
 					</gt>
@@ -705,7 +713,7 @@
 						<select value="8"/>
 					</gt>
 					<select value="2"/>
-				</eq>
+				</if>
 				<gt value1="3" value2=":incline">
 					<select value="2"/>
 				</gt>
@@ -832,12 +840,12 @@
 			<select value="1.0" t="highway" v="service"/>
 			<select value="0.75" t="highway" v="track"/>
 			<select value="0.6" t="highway" v="path"/>
-			<eq value1="2" value2=":driving_style">
+			<if param="driving_style_speed">
 				<select value="1.4" t="highway" v="motorway"/>
 				<select value="1.3" t="highway" v="motorway_link"/>
 				<select value="1.4" t="highway" v="trunk"/>
 				<select value="1.3" t="highway" v="trunk_link"/>
-			</eq>
+			</if>
 			<select value="0.5" t="highway" v="motorway"/>
 			<select value="0.5" t="highway" v="motorway_link"/>
 			<select value="0.5" t="highway" v="trunk"/>
@@ -858,9 +866,9 @@
 			<select value="20" t="crossing" v="traffic_signals"/>
 			<select value="15" t="highway" v="stop"/>
 			<select value="7"  t="highway" v="give_way"/>
-			<eq value1="0" value2=":driving_style">
+			<if param="driving_style_safety">
 				<select value="300" t="ford"/>
-			</eq>
+			</if>
 			<select value="200" t="ford"/>
 			<select value="25" t="railway" v="crossing"/>
 			<select value="25" t="railway" v="level_crossing"/>
@@ -870,11 +878,11 @@
 			<if param="avoid_borders">
 				<select value="-1" t="barrier" v="border_control"/>
 			</if>
-			<eq value1="0" value2=":driving_style">
+			<if param="driving_style_safety">
 				<select value="45" t="crossing" v="traffic_signals"/>
 				<select value="45" t="crossing" v="island;traffic_signals"/>
 				<select value="48" t="highway" v="traffic_signals"/>
-			</eq>
+			</if>
 			<select value="2" t="crossing" v="traffic_signals"/>
 			<select value="5" t="crossing" v="uncontrolled"/>
 			<select value="13" t="crossing" v="island;traffic_signals"/>
@@ -907,7 +915,7 @@
 		</point>
 
 		<way attribute="penalty_transition">
-			<eq value1="1" value2=":driving_style">
+			<if param="driving_style_balance">
 				<select value="1" t="highway" v="trunk"/>
 				<select value="2" t="highway" v="trunk_link"/>
 				<select value="3" t="highway" v="primary"/>
@@ -923,8 +931,8 @@
 				<select value="30" t="highway" v="footway"/>
 				<select value="40" t="highway" v="path"/>
 				<select value="41"/>
-			</eq>
-			<eq value1="2" value2=":driving_style">
+			</if>
+			<if param="driving_style_speed">
 				<select value="3" t="highway" v="trunk"/>
 				<select value="4" t="highway" v="trunk_link"/>
 				<select value="7" t="highway" v="primary"/>
@@ -940,7 +948,7 @@
 				<select value="87" t="highway" v="footway"/>
 				<select value="87" t="highway" v="path"/>
 				<select value="90"/>
-			</eq>
+			</if>
 		</way>
 
 	</routingProfile>
