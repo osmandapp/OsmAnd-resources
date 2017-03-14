@@ -659,7 +659,9 @@ mycpname information_terminal tourist_colored_information_terminal.png
 mycpname information_audioguide tourist_colored_information_audioguide.png
 mycp tourism museum tourist_museum.png
 mycp tourism picnic_site tourist_colored_picnic.png
+mycpname topo_picnic_site topo_topo_picnic_site.png
 mycpname picnic_table tourist_colored_picnic_table.png
+mycpname topo_picnic_table topo_topo_picnic_table.png
 mycp tourism theme_park tourist_theme_park.png
 mycp tourism viewpoint tourist_view_point.png
 mycpname topo_viewpoint topo_topo_view_point.png
@@ -901,6 +903,7 @@ mycpname compressed_air amenity_compressed_air.png
 mycpname amenity_vacuum_cleaner amenity_vacuum_cleaner.png
 mycpname bicycle_repair_station amenity_bicycle_repair_station.png
 mycpname water_tap amenity_water_tap.png
+mycpname topo_water_tap topo_topo_water_tap.png
 mycpname recycling_centre_map amenity_recycling_centre_map.png
 mycpname recycling_container amenity_colored_recycling_container.png
 mycpname barbecue amenity_barbecue.png
