@@ -98,6 +98,8 @@
 		type="boolean" possibleValues="" category="details"/>
 	<renderingProperty attr="OSMMapperAssistant" name="OSM mapper assistant" description="Show fixme and other features to help OSM mappers"
 		type="boolean" possibleValues="" category="details"/>
+	<renderingProperty attr="depthContours" name="Depth contours" description="Show depth contours and points"
+		type="boolean" possibleValues="" category="details"/>
 
 	<renderingProperty attr="noAdminboundaries" name="Hide boundaries" description="Suppress display of admin levels 5-9"
 		type="boolean" possibleValues="" category="hide"/>
@@ -913,6 +915,19 @@
 			<apply_if nightMode="true" attrColorValue="#35ea7300"/>
 		</case>
 <!--		<case engine_v1="false" attrColorValue="#15ea7300"/>-->
+	</renderingAttribute>
+
+	<renderingAttribute name="contourLineDepthColor100m">
+		<case nightMode="true" attrColorValue="#361DC8"/>
+		<case attrColorValue="#40282F6A"/>
+	</renderingAttribute>
+	<renderingAttribute name="contourLineDepthColor50m">
+		<case nightMode="true" attrColorValue="#321BB9"/>
+		<case attrColorValue="#30374091"/>
+	</renderingAttribute>
+	<renderingAttribute name="contourLineDepthColor20m">
+		<case nightMode="true" attrColorValue="#281694"/>
+		<case attrColorValue="#244955C1"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="cycleRoutelcnColor">
@@ -1825,6 +1840,11 @@
 	<renderingConstant name="railwayTextHaloColorDay" value="#aaf1eae4"/>
 	<renderingConstant name="aerialwayTextColorDay" value="#000000"/>
 	<renderingConstant name="aerialwayTextHaloColorDay" value="#77f1eae4"/>
+
+	<renderingAttribute name="depthTextColor">
+		<case nightMode="true" attrColorValue="#aaaaaaaa"/>
+		<case attrColorValue="#333333"/>
+	</renderingAttribute>
 
 	<renderingAttribute name="accomodationTextColor">
 		<case nightMode="true" attrColorValue="#bbe4ff"/>
@@ -6266,6 +6286,27 @@
 			<apply_if engine_v1="true" textDy="9"/>
 			<apply_if nightMode="true" textHaloColor="#88641500"/>
 		</switch>
+
+		<switch depthContours="true" minzoom="6" tag="contour" value="depth" textColor="$depthTextColor">
+			<case maxzoom="10" additional="contourtype=1000m" textSize="10" textMinDistance="600"/>
+			<case minzoom="7" maxzoom="10" additional="contourtype=200m" textSize="10" textMinDistance="600"/>
+			<case minzoom="11">
+				<apply>
+					<case additional="contourtype=100m" textSize="10"/>
+					<case additional="contourtype=50m" textSize="10"/>
+					<case additional="contourtype=20m" textSize="10"/>
+					<case additional="contourtype=10m" textSize="9"/>
+				</apply>
+			</case>
+		</switch>
+
+		<case depthContours="true" minzoom="6" tag="point" value="depth" textColor="$depthTextColor" textSize="10" textOrder="128">
+			<apply_if maxzoom="7" intersectionMargin="10">
+				<apply_if engine_v1="false" intersectionMargin="30"/>
+			</apply_if>
+			<apply_if minzoom="10" maxzoom="10" intersectionMargin="7"/>
+			<apply_if engine_v1="true" textDy="-11"/>
+		</case>
 	</text>
 
 
@@ -10062,6 +10103,20 @@
 				<case additional="contourtype=50m" minzoom="14" color="$contourLineColor50m" strokeWidth="1.3"/>
 				<case additional="contourtype=100m" color="$contourLineColor100m" strokeWidth="1.8"/>
 			</apply>
+			<apply_if minzoom="15" pathIcon="stroke_lightorange_left" pathIconStep="100"/>
+		</switch>
+
+		<switch depthContours="true" tag="contour" value="depth" strokeWidth="1">
+			<case minzoom="5" maxzoom="10" additional="contourtype=1000m" color="$contourLineDepthColor100m"/>
+			<case minzoom="7" maxzoom="10" additional="contourtype=200m" color="$contourLineDepthColor100m"/>
+			<case minzoom="11">
+				<apply>
+					<case additional="contourtype=10m" color="$contourLineDepthColor20m"/>
+					<case additional="contourtype=20m" color="$contourLineDepthColor20m"/>
+					<case additional="contourtype=50m" color="$contourLineDepthColor50m"/>
+					<case additional="contourtype=100m" color="$contourLineDepthColor100m"/>
+				</apply>
+			</case>
 			<apply_if minzoom="15" pathIcon="stroke_lightorange_left" pathIconStep="100"/>
 		</switch>
 
