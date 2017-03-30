@@ -17,6 +17,7 @@
 		type="string" possibleValues="thin,medium,bold" defaultValueDescription="default"/>
 	<renderingProperty attr="noPolygons" name="Hide polygons" description="Make all areal land features on map transparent"
 		type="boolean" possibleValues="" category="hide"/>
+<!--	<renderingProperty attr="legend" name="Legend" type="boolean" possibleValues=""/>-->
 
 	<renderingAttribute name="gpxColor"> <!-- deprecated -->
 		<case attrColorValue="#b400ffff"/>
@@ -1174,11 +1175,12 @@
 			<apply_if engine_v1="true" textDy="-11"/>
 		</case>
 
-		<switch textColor="#000000" textWrapWidth="20">
+		<switch textColor="#000000">
 			<case tag="osmand_legend" value="header" textOrder="1" nameTag="" textBold="true" textDy="-11" textHaloRadius=":1" textHaloColor="$defaultTextHaloColorDay">
 				<case minzoom="16" maxzoom="16" textSize="18"/>
-				<case minzoom="17" maxzoom="17" textSize="19" textWrapWidth="30"/>
-				<case minzoom="18" textSize="20" textWrapWidth="30"/>
+				<case minzoom="17" maxzoom="17" textSize="19"/>
+				<case minzoom="18" textSize="20"/>
+				<apply legend="false" textWrapWidth="30"/>
 			</case>
 			<case tag="osmand_legend" value="element" textOrder="5" textHaloRadius="$textHaloRadiusDay" textHaloColor="$defaultTextHaloColorDay" nameTag="">
 				<case minzoom="17" maxzoom="17" textSize="11"/>
@@ -1255,7 +1257,7 @@
 		</switch>
 
 		<!-- Seamarks -->
-		<switch minzoom="11" textColor="#0400ab" textWrapWidth="19" textHaloColor="#5576cbea" textHaloRadius="2">
+		<switch minzoom="11" textColor="#0400ab" textHaloColor="#5576cbea" textHaloRadius="2">
 			<switch nameTag="seamark:name" nameTag2="seamark:light:character">
 				<switch textItalic="true">
 					<case minzoom="15" tag="seamark:type" value="buoy_lateral"/>
@@ -1286,6 +1288,8 @@
 					<case tag="seamark:type" value="lock_basin_part"/>
 					<case minzoom="17" tag="seamark:type" value="gate"/>
 				</switch>
+				<apply textWrapWidth="19"/>
+				<apply legend="true" textWrapWidth="30"/>
 				<apply_if engine_v1="true" textDy="9">
 					<apply_if engine_v1="false" textDy="7"/>
 				</apply_if>
