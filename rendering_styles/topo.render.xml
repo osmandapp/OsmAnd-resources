@@ -1944,9 +1944,12 @@
 					</case>
 					<case minzoom="16" textSize="12" tag="natural" value="cave_entrance" textOrder="236"/>
 					<case minzoom="14" textSize="12" tag="natural" value="ridge" textItalic="false" textOnPath="true" textOrder="77"/>
-					<case minzoom="13" textSize="12" tag="natural" value="valley" textOnPath="true" textOrder="77">
+					<switch minzoom="13">
+						<case tag="natural" value="valley"/>
+						<case tag="waterway" value="drystream"/>
+						<apply textSize="12" textOnPath="true" textOrder="77"/>
 						<apply_if minzoom="15" textSize="15"/>
-					</case>
+					</switch>
 					<case minzoom="15" textSize="12" tag="natural" value="cliff" textOnPath="true" textHaloRadius="3" textOrder="77"/>
 					<case minzoom="15" textSize="12" tag="natural" value="saddle" nameTag="" nameTag2="ele"/>
 					<case minzoom="13" textSize="14" tag="natural" value="crater" textColor="#4e0d0d"/>
@@ -3980,11 +3983,13 @@
 			<case minzoom="17" maxzoom="17" strokeWidth="3:3"/>
 			<case minzoom="18" strokeWidth="4:4"/>
 		</case>
-		<switch minzoom="13" tag="natural" value="valley">
-			<case maxzoom="14" strokeWidth="2"/>
-			<case minzoom="15" maxzoom="16" strokeWidth="3"/>
-			<case minzoom="16" strokeWidth="4"/>
-			<apply color="#66666666">
+		<switch minzoom="13">
+			<case tag="natural" value="valley"/>
+			<case minzoom="14" tag="waterway" value="drystream"/>
+			<apply_if maxzoom="14" strokeWidth="2"/>
+			<apply_if minzoom="15" maxzoom="16" strokeWidth="3"/>
+			<apply_if minzoom="16" strokeWidth="4"/>
+			<apply color="#55666666">
 				<apply_if nightMode="true" color="#66aaaaaa"/>
 			</apply>
 		</switch>
