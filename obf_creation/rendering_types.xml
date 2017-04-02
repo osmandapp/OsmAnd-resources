@@ -47,7 +47,7 @@
 	<entity_convert pattern="tag_transform" from_tag="landuse" from_value="pedestrian" if_not_tag1="area" to_tag1="area:highway" to_value1="pedestrian" to_tag2="area" to_value2="yes" apply_to="node,way"/>
 <!--	<entity_convert pattern="tag_transform" from_tag="highway" if_not_tag1="highway" if_not_value1="rest_area" if_not_tag2="highway" if_not_value2=if_tag1="area" if_value1="yes" to_tag1="area:highway"/>-->
 	<entity_convert pattern="tag_transform" from_tag="area" from_value="no" to_tag1="area" to_value1="false"/>
-	<type tag="area" value="false" minzoom="13" additional="true" poi="false"/>
+	<type tag="area" value="false" minzoom="13" additional="true" poi="false" notosm="true"/>
 
 	<entity_convert pattern="split" from_tag="natural" from_value="coastline" if_tag1="place" if_value1="island" to_tag1="natural" to_value1="coastline"/>
 <!--	<entity_convert pattern="tag_transform" from_tag="natural" from_value="coastline" if_tag1="place" if_value1="island"/>-->
@@ -82,7 +82,7 @@
 	<type tag="service" value="alley" minzoom="13" additional="true"/>
 
 	<type tag="access" value="no" minzoom="13" additional="true"/>
-	<entity_convert pattern="tag_transform" from_tag="access" from_value="false" to_tag1="access" to_value1="no"/>
+	<entity_convert pattern="tag_transform" from_tag="access" from_value="false" to_tag1="access" to_value1="no" notosm="true"/>
 	<type tag="access" value="private" minzoom="13" additional="true"/>
 	<type tag="access" value="yes" minzoom="13" additional="true" poi="false"/>
 	<entity_convert pattern="tag_transform" from_tag="access" from_value="true" to_tag1="access" to_value1="yes"/>
@@ -189,7 +189,7 @@
 	<type tag="toll:bicycle" value="yes" minzoom="11" additional="true" poi="false"/>
 	<type tag="toll:bicycle" value="no" minzoom="11" additional="true" poi="false"/>
 
-	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="."/>
+	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="." notosm="true"/>
 	<entity_convert pattern="tag_transform" from_tag="maxspeed:advised" to_tag1="maxspeed:advisory"/>
 
 	<entity_convert pattern="tag_transform" from_tag="seasonal" from_value="fall" to_tag1="seasonal" to_value1="autumn" map="no"/>
@@ -505,7 +505,7 @@
 	<type tag="abandoned:place" value="isolated_dwelling" minzoom="11"/>
 	<type tag="abandoned:place" value="farm" minzoom="11"/>
 	<type tag="abandoned:place" value="locality" minzoom="11"/>
-	<entity_convert pattern="tag_transform" from_tag="abandoned:place" to_tag1="abandoned:place" to_tag2="abandoned_poi" to_value2="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="abandoned:place" to_tag1="abandoned:place" to_tag2="abandoned_poi" to_value2="yes" notosm="true"/>
 	<entity_convert pattern="tag_transform" from_tag="place" if_tag1="abandoned" if_value1="yes" to_tag1="abandoned:place" to_tag2="abandoned_poi" to_value2="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="abandoned:place" from_value="yes" to_tag1="abandoned:place" to_value1="hamlet" to_tag2="abandoned_poi" to_value2="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="abandoned:place" from_value="locality" to_tag1="place" to_value1="locality" to_tag2="abandoned_poi" to_value2="yes"/>
@@ -518,7 +518,7 @@
 	<type tag="abandoned:landuse" value="military" minzoom="11"/>
 	<entity_convert pattern="tag_transform" from_tag="landuse" from_value="abandoned" to_tag1="abandoned:landuse" to_value1="industrial" to_tag2="abandoned_poi" to_value2="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="landuse" if_tag1="abandoned" if_value1="yes" to_tag1="abandoned:landuse" to_tag2="abandoned_poi" to_value2="yes"/>
-	<entity_convert pattern="tag_transform" from_tag="abandoned:landuse" to_tag1="abandoned:landuse" to_tag2="abandoned_poi" to_value2="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="abandoned:landuse" to_tag1="abandoned:landuse" to_tag2="abandoned_poi" to_value2="yes" notosm="true"/>
 	<type tag="abandoned:building" minzoom="15"/>
 	<type tag="abandoned:building" value="no" minzoom="15"/>
 	<entity_convert pattern="tag_transform" from_tag="abandoned:building" if_not_tag1="abandoned:building" if_not_value1="no" to_tag1="abandoned:building" to_tag2="abandoned_poi" to_value2="yes"/>
@@ -527,7 +527,7 @@
 	<entity_convert pattern="tag_transform" from_tag="disused:building" if_not_tag1="disused:building" if_not_value1="no" to_tag1="disused:building" to_tag2="abandoned_poi" to_value2="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="building" if_tag1="abandoned" if_value1="yes" to_tag1="abandoned:building" to_tag2="abandoned_poi" to_value2="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="aeroway" if_tag1="abandoned" if_value1="yes" to_tag1="abandoned:aeroway" to_tag2="abandoned_poi" to_value2="yes"/>
-	<entity_convert pattern="tag_transform" from_tag="abandoned:aeroway" to_tag1="abandoned:aeroway" to_tag2="abandoned_poi" to_value2="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="abandoned:aeroway" to_tag1="abandoned:aeroway" to_tag2="abandoned_poi" to_value2="yes" notosm="true"/>
 	<type tag="abandoned:aeroway" value="aerodrome" minzoom="11" nameTags="ref"/>
 	<type tag="abandoned:aeroway" value="runway" minzoom="11" nameTags="ref"/>
 	<type tag="abandoned:railway" value="station" minzoom="11"/>
@@ -1839,13 +1839,13 @@
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="nwn" if_not_tag1="route" to_tag1="network" to_value1="nwn" to_tag2="route_hiking" to_value2="" apply_to="way,relation"/>
 
 		<!-- for compatibility -->
-		<type tag="icn_network" value="icn" minzoom="11" relation="true"/>
+		<type tag="icn_network" value="icn" minzoom="11" relation="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="icn" to_tag1="network" to_value1="icn" to_tag2="icn_network" to_value2="icn"/>
-		<type tag="lcn_network" value="lcn" minzoom="11" relation="true"/>
+		<type tag="lcn_network" value="lcn" minzoom="11" relation="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="lcn" to_tag1="network" to_value1="lcn" to_tag2="lcn_network" to_value2="lcn"/>
-		<type tag="ncn_network" value="ncn" minzoom="11" relation="true"/>
+		<type tag="ncn_network" value="ncn" minzoom="11" relation="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="ncn" to_tag1="network" to_value1="ncn" to_tag2="ncn_network" to_value2="ncn"/>
-		<type tag="rcn_network" value="rcn" minzoom="11" relation="true" order="80"/>
+		<type tag="rcn_network" value="rcn" minzoom="11" relation="true" order="80" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="rcn" to_tag1="network" to_value1="rcn" to_tag2="rcn_network" to_value2="rcn"/>
 
 		<type tag="network" value="icn" minzoom="11" additional="true" relation="true"/>
@@ -4062,24 +4062,24 @@
 	</category>
 
 	<category name="special_poi">
-		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="en:Big Ben" to_tag1="wikipedia" to_value1="en:Big Ben" to_tag2="special_poi" to_value2="big_ben" poi="no"/>
-		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="de:Brandenburger Tor" to_tag1="wikipedia" to_value1="de:Brandenburger Tor" to_tag2="special_poi" to_value2="brandenburg_gate" poi="no"/>
-		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="http://en.wikipedia.org/wiki/Chichén_Itzá" to_tag1="wikipedia" to_value1="http://en.wikipedia.org/wiki/Chichén_Itzá" to_tag2="special_poi" to_value2="chichen_itza" poi="no"/>
-		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="it:Colosseo" to_tag1="wikipedia" to_value1="it:Colosseo" to_tag2="special_poi" to_value2="colosseum" poi="no"/>
-		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="fr:Tour Eiffel" to_tag1="wikipedia" to_value1="fr:Tour Eiffel" to_tag2="special_poi" to_value2="eiffel_tower" poi="no"/>
-		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="ca:Temple Expiatori de la Sagrada Família" to_tag1="wikipedia" to_value1="ca:Temple Expiatori de la Sagrada Família" to_tag2="special_poi" to_value2="sagrada_familia" poi="no"/>
-		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="en:Statue of Liberty" to_tag1="wikipedia" to_value1="en:Statue of Liberty" to_tag2="special_poi" to_value2="statue_of_liberty" poi="no"/>
-		<entity_convert pattern="tag_transform" from_tag="wikipedia:en" from_value="Taj Mahal" to_tag1="wikipedia:en" to_value1="Taj Mahal" to_tag2="special_poi" to_value2="taj_mahal" poi="no"/>
-		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="en:United States Capitol" to_tag1="wikipedia" to_value1="en:United States Capitol" to_tag2="special_poi" to_value2="us_capitol" poi="no"/>
-		<type tag="special_poi" value="big_ben" minzoom="14" />
-		<type tag="special_poi" value="brandenburg_gate" minzoom="14" />
-		<type tag="special_poi" value="chichen_itza" minzoom="14" />
-		<type tag="special_poi" value="colosseum" minzoom="14" />
-		<type tag="special_poi" value="eiffel_tower" minzoom="14" />
-		<type tag="special_poi" value="sagrada_familia" minzoom="14" />
-		<type tag="special_poi" value="statue_of_liberty" minzoom="14" />
-		<type tag="special_poi" value="taj_mahal" minzoom="14" />
-		<type tag="special_poi" value="us_capitol" minzoom="14" />
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="en:Big Ben" to_tag1="wikipedia" to_value1="en:Big Ben" to_tag2="special_poi" to_value2="big_ben" poi="no" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="de:Brandenburger Tor" to_tag1="wikipedia" to_value1="de:Brandenburger Tor" to_tag2="special_poi" to_value2="brandenburg_gate" poi="no" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="http://en.wikipedia.org/wiki/Chichén_Itzá" to_tag1="wikipedia" to_value1="http://en.wikipedia.org/wiki/Chichén_Itzá" to_tag2="special_poi" to_value2="chichen_itza" poi="no" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="it:Colosseo" to_tag1="wikipedia" to_value1="it:Colosseo" to_tag2="special_poi" to_value2="colosseum" poi="no" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="fr:Tour Eiffel" to_tag1="wikipedia" to_value1="fr:Tour Eiffel" to_tag2="special_poi" to_value2="eiffel_tower" poi="no" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="ca:Temple Expiatori de la Sagrada Família" to_tag1="wikipedia" to_value1="ca:Temple Expiatori de la Sagrada Família" to_tag2="special_poi" to_value2="sagrada_familia" poi="no" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="en:Statue of Liberty" to_tag1="wikipedia" to_value1="en:Statue of Liberty" to_tag2="special_poi" to_value2="statue_of_liberty" poi="no" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia:en" from_value="Taj Mahal" to_tag1="wikipedia:en" to_value1="Taj Mahal" to_tag2="special_poi" to_value2="taj_mahal" poi="no" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="wikipedia" from_value="en:United States Capitol" to_tag1="wikipedia" to_value1="en:United States Capitol" to_tag2="special_poi" to_value2="us_capitol" poi="no" notosm="true"/>
+		<type tag="special_poi" value="big_ben" minzoom="14" notosm="true"/>
+		<type tag="special_poi" value="brandenburg_gate" minzoom="14" notosm="true"/>
+		<type tag="special_poi" value="chichen_itza" minzoom="14" notosm="true"/>
+		<type tag="special_poi" value="colosseum" minzoom="14" notosm="true"/>
+		<type tag="special_poi" value="eiffel_tower" minzoom="14" notosm="true"/>
+		<type tag="special_poi" value="sagrada_familia" minzoom="14" notosm="true"/>
+		<type tag="special_poi" value="statue_of_liberty" minzoom="14" notosm="true"/>
+		<type tag="special_poi" value="taj_mahal" minzoom="14" notosm="true"/>
+		<type tag="special_poi" value="us_capitol" minzoom="14" notosm="true"/>
 	</category>
 
 	<category name="historic">
@@ -4213,7 +4213,7 @@
 		<type tag="landuse" value="reservoir" minzoom="6"/>
 		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="water" to_tag1="landuse" to_value1="reservoir"/>
 		<type tag="landuse" value="residential" minzoom="6" order="110"/>
-		<type tag="named" value="yes" minzoom="6" additional="true"/>
+		<type tag="named" value="yes" minzoom="6" additional="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="residential" if_tag1="name" to_tag1="landuse" to_value1="residential" to_tag2="named" to_value2="yes"/>
 		<type tag="residential" value="rural" minzoom="10" additional="true"/>
 		<type tag="residential" value="urban" minzoom="10" additional="true"/>
@@ -4341,10 +4341,10 @@
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="marsh" to_tag1="wetland"/>
 		<type tag="natural" value="wood" minzoom="6" order="61"/>
 		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="wood" to_tag1="natural" />
-		<type tag="contour" value="elevation" minzoom="11"/>
-		<type tag="contour" value="depth" minzoom="3"/>
-		<type tag="point" value="depth" minzoom="6"/>
-		<type tag="elevation" additional="text" minzoom="15" />
+		<type tag="contour" value="elevation" minzoom="11" notosm="true"/>
+		<type tag="contour" value="depth" minzoom="3" notosm="true"/>
+		<type tag="point" value="depth" minzoom="6" notosm="true"/>
+		<type tag="elevation" additional="text" minzoom="15" notosm="true"/>
 		<type tag="leisure" value="nature_reserve" minzoom="6" order="49"/>
 
 		<type tag="leaf_type" value="broadleaved" minzoom="12" additional="true"/>
@@ -4920,35 +4920,35 @@
 		<type tag="amenity" value="townhall" minzoom="15" />
 		<type tag="amenity" value="public_building" minzoom="15" />
 		<type tag="office" value="government" minzoom="15" />
-		<type tag="population_rounded" value="1500000000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="400000000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="200000000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="100000000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="50000000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="25000000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="20000000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="15000000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="12000000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="9000000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="7000000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="5000000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="3000000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="2000000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="1000000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="700000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="400000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="200000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="100000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="70000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="40000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="20000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="10000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="5000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="2500" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="1000" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="500" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="200" minzoom="3" additional="true"/>
-		<type tag="population_rounded" value="100" minzoom="3" additional="true"/>
+		<type tag="population_rounded" value="1500000000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="400000000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="200000000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="100000000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="50000000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="25000000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="20000000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="15000000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="12000000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="9000000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="7000000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="5000000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="3000000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="2000000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="1000000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="700000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="400000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="200000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="100000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="70000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="40000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="20000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="10000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="5000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="2500" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="1000" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="500" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="200" minzoom="3" additional="true" notosm="true"/>
+		<type tag="population_rounded" value="100" minzoom="3" additional="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="population" if_less_tag1="population" if_less_value1="1500000000" to_tag1="population" to_tag2="population_rounded" to_value2="1500000000"/>
 		<entity_convert pattern="tag_transform" from_tag="population" if_less_tag1="population" if_less_value1="400000000" to_tag1="population" to_tag2="population_rounded" to_value2="400000000"/>
 		<entity_convert pattern="tag_transform" from_tag="population" if_less_tag1="population" if_less_value1="200000000" to_tag1="population" to_tag2="population_rounded" to_value2="200000000"/>
