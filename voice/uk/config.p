@@ -8,7 +8,7 @@ version(0).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
-language(uk).
+language('uk').
 
 % IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 %
@@ -32,38 +32,38 @@ string('distance.ogg', 'відстань ').
 string('after.ogg', 'за ').
 string('in.ogg', 'в' ).
 
-string('left.ogg', 'поверніть ліворуч ').
-string('left_sh.ogg', 'поверніть різко ліворуч ').
-string('left_sl.ogg', 'поверніть плавно ліворуч ').
-string('right.ogg', 'поверніть праворуч ').
-string('right_sh.ogg', 'поверніть різко праворуч ').
-string('right_sl.ogg', 'поверніть плавно праворуч ').
-string('left_keep.ogg', 'тримайтесь лівіше ').
-string('right_keep.ogg', 'тримайтесь правіше ').
-string('left_bear.ogg', 'тримайтесь лівіше ').    % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'тримайтесь правіше ').  % in English the same as right_keep, may be different in other languages
+string('left.ogg', 'поверніть ліворуч').
+string('left_sh.ogg', 'поверніть різко ліворуч').
+string('left_sl.ogg', 'поверніть плавно ліворуч').
+string('right.ogg', 'поверніть праворуч').
+string('right_sh.ogg', 'поверніть різко праворуч').
+string('right_sl.ogg', 'поверніть плавно праворуч').
+string('left_keep.ogg', 'тримайтесь лівіше').
+string('right_keep.ogg', 'тримайтесь правіше').
+string('left_bear.ogg', 'тримайтесь лівіше').    % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'тримайтесь правіше').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
-string('make_uturn.ogg', 'Розверніться ').
-string('make_uturn_wp.ogg', 'При можливості розверніться ').
+string('make_uturn.ogg', 'Розверніться').
+string('make_uturn_wp.ogg', 'При можливості розверніться').
 
 % ROUNDABOUTS
-string('roundabout.ogg', 'коло ').
+string('roundabout.ogg', 'коло').
 string('then.ogg', 'потім ').
-string('and.ogg', 'і ').
+string('and.ogg', ' і ').
 string('take.ogg', 'виберіть ').
-string('exit.ogg', 'з_їзд ').
+string('exit.ogg', 'зїзд').
 
 string('1th.ogg', 'перший ').
 string('2th.ogg', 'другий ') :- google_gen, voice .
 string('2th.ogg', 'другий ') :- not(google_gen).
 string('3th.ogg', 'третій ').
 string('4th.ogg', 'четвертий ').
-string('5th.ogg', 'п_ятий ').
+string('5th.ogg', 'пятий ').
 string('6th.ogg', 'шостий ').
 string('7th.ogg', 'сьомий ').
 string('8th.ogg', 'восьмий ').
-string('9th.ogg', 'дев_ятий ').
+string('9th.ogg', 'девятий ').
 string('10th.ogg', 'десятий ').
 string('11th.ogg', 'одинадцятий ').
 string('12th.ogg', 'дванадцятий ').
@@ -74,7 +74,7 @@ string('16th.ogg', 'шістнадцятий ').
 string('17th.ogg', 'сімнадцятий ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'Далі прямо ').
+string('go_ahead.ogg', 'Далі прямо').
 string('go_ahead_m.ogg', 'Продовжуйте рух ').
 
 % ARRIVE
@@ -95,17 +95,17 @@ string('reached_poi.ogg', 'ви прибули до точки інтересу 
 %string('exceed_limit.ogg', 'Перевищуєте швидкість ').
 string('exceed_limit.ogg', 'обмеження швидкості ').
 string('attention.ogg', 'Увага, ').
-string('speed_camera.ogg', 'швидкість камери ').
-string('border_control.ogg', 'прикордонний контроль ').
-string('railroad_crossing.ogg', 'залізничний переїзд ').
-string('traffic_calming.ogg', 'трафіку заспокійливий ').
-string('toll_booth.ogg', 'платних стенд ').
-string('stop.ogg', 'знак зупинки ').
-string('pedestrian_crosswalk.ogg', 'пішохідного переходу ').
+string('speed_camera.ogg', 'швидкість камери').
+string('border_control.ogg', 'прикордонний контроль').
+string('railroad_crossing.ogg', 'залізничний переїзд').
+string('traffic_calming.ogg', 'трафіку заспокійливий').
+string('toll_booth.ogg', 'платних стенд').
+string('stop.ogg', 'знак зупинки').
+string('pedestrian_crosswalk.ogg', 'пішохідного переходу').
 
 % OTHER PROMPTS
 string('location_lost.ogg', 'втрачено сигнал GPS').
-string('location_recovered.ogg', 'Відновлено сигнал GPS ').
+string('location_recovered.ogg', 'Відновлено сигнал GPS').
 string('off_route.ogg', 'Ви відхилились від маршруту на ').
 string('back_on_route.ogg', 'Ви повернулись на дорогу.').
 
@@ -116,22 +116,22 @@ string('to.ogg', 'до ').
 string('toward.ogg', 'до ').
 
 % DISTANCE UNIT SUPPORT
-string('metrov.ogg', 'метрів ').
-string('kilometr.ogg', 'кілометр ').
-string('kilometra.ogg', 'кілометри ').
-string('kilometrov.ogg', 'кілометрів ').
-string('around_1_kilometer.ogg', 'близько одного кілометра ').
+string('metrov.ogg', 'метрів').
+string('kilometr.ogg', 'кілометр').
+string('kilometra.ogg', 'кілометри').
+string('kilometrov.ogg', 'кілометрів').
+string('around_1_kilometer.ogg', 'близько одного кілометра').
 string('around.ogg', 'близько ').
 
-string('footov.ogg', 'футів ').
-string('around_1_mile.ogg', 'близько однієї милі ').
-string('1_tenth_of_a_mile.ogg', 'одна десята милі ').
-string('tenths_of_a_mile.ogg', ' десятих милі ').
-string('1mile.ogg', 'миля ').
-string('2mili.ogg', 'милі ').
-string('5mil.ogg', 'миль ').
+string('footov.ogg', 'футів').
+string('around_1_mile.ogg', 'близько однієї милі').
+string('1_tenth_of_a_mile.ogg', 'одна десята милі').
+string('tenths_of_a_mile.ogg', ' десятих милі').
+string('1mile.ogg', 'миля').
+string('2mili.ogg', 'милі').
+string('5mil.ogg', 'миль').
 
-string('yardov.ogg', 'ярдів ').
+string('yardov.ogg', 'ярдів').
 
 % TIME SUPPORT
 string('time.ogg', 'час ').
@@ -139,16 +139,16 @@ string('less_a_minute.ogg', 'менше хвилини  ').
 string('hour.ogg', 'година ').
 string('hours_a.ogg', 'години ').
 string('hours_ov.ogg', 'годин ').
-string('minute.ogg', 'хвилина ').
-string('minute_y.ogg', 'хвилини ').
-string('minutes.ogg', 'хвилин ').
+string('minute.ogg', 'хвилина').
+string('minute_y.ogg', 'хвилини').
+string('minutes.ogg', 'хвилин').
 
 
 %% COMMAND BUILDING / WORD ORDER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-route_new_calc(Dist, Time) -- ['route_is.ogg', D, 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+route_new_calc(Dist, Time) -- ['route_is.ogg', D, ', ', 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 route_recalc(Dist, Time) -- ['route_calculate.ogg'] :- appMode('car').
-route_recalc(Dist, Time) -- ['route_calculate.ogg', 'distance.ogg', D, 'and.ogg', 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
+route_recalc(Dist, Time) -- ['route_calculate.ogg', ', ', 'distance.ogg', D, 'and.ogg', 'time.ogg', T] :- distance(Dist) -- D, time(Time) -- T.
 
 turn('left', ['left.ogg']).
 turn('left_sh', ['left_sh.ogg']).
@@ -347,6 +347,7 @@ plural_mn(_D, '5minutes.ogg').
 distance(Dist) -- D :- measure('km-m'), distance_km(Dist) -- D.
 distance(Dist) -- D :- measure('mi-f'), distance_mi_f(Dist) -- D.
 distance(Dist) -- D :- measure('mi-y'), distance_mi_y(Dist) -- D.
+distance(Dist) -- D :- measure('mi-m'), distance_mi_m(Dist) -- D.
 
 %%% distance measure km/m
 distance_km(Dist) -- [ X, 'metriv.ogg']                  :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
@@ -354,19 +355,24 @@ distance_km(Dist) -- [ X, 'metriv.ogg']                  :- Dist < 1000,  D is r
 distance_km(Dist) -- ['around_1_kilometer.ogg']          :- Dist < 1500.
 distance_km(Dist) -- [ X, Km]              :-               D is round(Dist/1000.0),            dist(D, X), plural_km(D, Km).
 
-
 %%% distance measure mi/f
 distance_mi_f(Dist) -- [ X, 'footov.ogg']                :- Dist < 160,   D is round(2*Dist/100.0/0.3048)*50, dist(D, X).
 distance_mi_f(Dist) -- ['1_tenth_of_a_mile.ogg']         :- Dist < 241.
 distance_mi_f(Dist) -- [ X, 'tenths_of_a_mile.ogg']      :- Dist < 1529,  D is round(Dist/161.0),             dist(D, X).
 distance_mi_f(Dist) -- ['around_1_mile.ogg']             :- Dist < 2414.
-distance_mi_f(Dist) -- [ X, M]                           :- D is round(Dist/1609.0),            dist(D, X), plural_mi(D, M).
+distance_mi_f(Dist) -- [ X, M]                           :- D is round(Dist/1609.3),            dist(D, X), plural_mi(D, M).
 
 %%% distance measure mi/y
-distance_mi_y(Dist) -- [ X, 'yardov.ogg']                :- Dist < 241,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
+distance_mi_y(Dist) -- [ X, 'yardov.ogg']                :- Dist < 100,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
 distance_mi_y(Dist) -- [ X, 'yardov.ogg']                :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
 distance_mi_y(Dist) -- ['around_1_mile.ogg']             :- Dist < 2414.
-distance_mi_y(Dist) -- [ X, M]                           :- D is round(Dist/1609.0),            dist(D, X), plural_mi(D, M).
+distance_mi_y(Dist) -- [ X, M]                           :- D is round(Dist/1609.3),            dist(D, X), plural_mi(D, M).
+
+%%% distance measure mi/m
+distance_mi_m(Dist) -- [ X, 'metriv.ogg']                :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
+distance_mi_m(Dist) -- [ X, 'metriv.ogg']                :- Dist < 1300,  D is round(2*Dist/100.0)*50,        dist(D, X).
+distance_mi_m(Dist) -- ['around_1_mile.ogg']             :- Dist < 2414.
+distance_mi_m(Dist) -- [ X, M]                           :- D is round(Dist/1609.3),            dist(D, X), plural_mi(D, M).
 
 
 plural_km(D, 'kilometr.ogg') :- 1 is D mod 10, R100 is D mod 100,(R100 > 20; R100 < 10).
