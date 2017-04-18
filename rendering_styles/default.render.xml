@@ -961,7 +961,12 @@
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteTextColor">
 		<case attrColorValue="#0000ff">
-			<apply_if nightMode="true" attrColorValue="#849DE7"/>
+			<apply_if nightMode="true" attrColorValue="#D9E6FF"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="cycleRouteTextHaloColor">
+		<case attrColorValue="#ddffffff">
+			<apply_if nightMode="true" attrColorValue="#dd1D1787"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="mtbRouteTextColor">
@@ -5500,34 +5505,41 @@
 			</case>
 
 			<!-- Cycling: texts for the cycle networks -->
-			<switch appMode="bicycle" minzoom="14" textHaloColor="#ddffffff" textHaloRadius="$textHaloRadius" textWrapWidth="30">
-				<!-- routes -->
-				<case tag="route_bicycle" value="" nameTag="bicycle_ref" nameTag2="bicycle_name" textOrder="43" textColor="$cycleRouteTextColor"/>
-				<case tag="route_bicycle" value="" nameTag="bicycle_name" textOrder="43" textColor="$cycleRouteTextColor"/>
-				<case tag="route_bicycle" value="" nameTag="mtb:name" textOrder="43" textColor="$cycleRouteTextColor"/>
-				<case tag="route_mtb" value="" nameTag="mtb_ref" nameTag2="mtb:name" textOrder="43" textColor="$mtbRouteTextColor"/>
-				<case tag="route_mtb" value="" nameTag="mtb:name" textOrder="43" textColor="$mtbRouteTextColor"/>
-				<switch showCycleRoutes="true" textColor="$cycleRouteTextColor">
-					<case tag="lcn_ref" value="" textOrder="9"/>
-					<case tag="rcn_ref" value="" textOrder="8"/>
-					<case tag="ncn_ref" value="" textOrder="7"/>
-					<case tag="icn_ref" value="" textOrder="7"/>
+			<switch textHaloColor="$cycleRouteTextHaloColor" textWrapWidth="30">
+				<switch appMode="bicycle" minzoom="14" textHaloRadius="$textHaloRadius">
+					<!-- routes -->
+					<case tag="route_bicycle" value="" nameTag="bicycle_ref" nameTag2="bicycle_name" textOrder="43" textColor="$cycleRouteTextColor"/>
+					<case tag="route_bicycle" value="" nameTag="bicycle_name" textOrder="43" textColor="$cycleRouteTextColor"/>
+					<case tag="route_bicycle" value="" nameTag="mtb:name" textOrder="43" textColor="$cycleRouteTextColor"/>
+					<case tag="route_mtb" value="" nameTag="mtb_ref" nameTag2="mtb:name" textOrder="43" textColor="$mtbRouteTextColor"/>
+					<case tag="route_mtb" value="" nameTag="mtb:name" textOrder="43" textColor="$mtbRouteTextColor"/>
+					<apply_if showCycleRoutes="true">
+						<case additional="network=lcn" nameTag="lcn_ref" textOnPath="false" textOrder="9"/>
+						<case additional="network=rcn" nameTag="rcn_ref" textOnPath="false" textOrder="8"/>
+						<case additional="network=ncn" nameTag="ncn_ref" textOnPath="false" textOrder="7"/>
+						<case additional="network=icn" nameTag="icn_ref" textOnPath="false" textOrder="7"/>
+					</apply_if>
+					<apply>
+						<case maxzoom="12" textSize="14"/>
+						<case maxzoom="15" textSize="16"/>
+						<case maxzoom="16" textSize="17"/>
+						<case maxzoom="17" textSize="18"/>
+						<case minzoom="18" textSize="21"/>
+					</apply>
+					<apply_if legend="true" textOnPath="true"/>
 				</switch>
-				<apply_if showCycleRoutes="true">
-					<case additional="network=lcn" nameTag="lcn_ref" textOnPath="false" textOrder="9"/>
-					<case additional="network=rcn" nameTag="rcn_ref" textOnPath="false" textOrder="8"/>
-					<case additional="network=ncn" nameTag="ncn_ref" textOnPath="false" textOrder="7"/>
-					<case additional="network=icn" nameTag="icn_ref" textOnPath="false" textOrder="7"/>
-				</apply_if>
-				<apply>
-					<case maxzoom="12" textSize="14"/>
-					<case maxzoom="15" textSize="16"/>
-					<case maxzoom="16" textSize="17"/>
-					<case maxzoom="17" textSize="18"/>
-					<case minzoom="18" textSize="21"/>
-				</apply>
-				<apply_if nightMode="true" textHaloColor="#99111111"/>
-				<apply_if legend="true" textOnPath="true"/>
+				<switch showCycleRoutes="true" minzoom="11" textColor="$cycleRouteTextColor" textBold="true" textHaloRadius="4">
+					<case tag="lcn_ref" value="" textOrder="37"/>
+					<case tag="rcn_ref" value="" textOrder="38"/>
+					<case tag="ncn_ref" value="" textOrder="39"/>
+					<case tag="icn_ref" value="" textOrder="39"/>
+					<apply_if minzoom="11" maxzoom="12" textSize="10"/>
+					<apply_if minzoom="13" maxzoom="13" textSize="12"/>
+					<apply_if minzoom="14" maxzoom="15" textSize="14"/>
+					<apply_if minzoom="16" maxzoom="17" textSize="17"/>
+					<apply_if minzoom="18" textSize="21"/>
+					<apply_if engine_v1="true" textDy="-8"/>
+				</switch>
 			</switch>
 
 			<!-- Railroad, public transport -->
