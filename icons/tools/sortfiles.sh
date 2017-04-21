@@ -971,6 +971,7 @@ mycp amenity university education_university.png
 mycpname driving_school education_driving_school.png
 mycpname training education_training.png
 mycpname training_yoga education_training_yoga.png
+mycpname music_school education_music_school.png
 
 
 ## Man made
