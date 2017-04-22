@@ -52,7 +52,7 @@ string('make_uturn.ogg', ' faites demi-tour').
 string('make_uturn_wp.ogg', 'Dès que possible, faites demi-tour').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Préparez vous à entrer dans le rond-point dans ').
+string('prepare_roundabout.ogg', 'Entrez dans le rond-point dans ').
 string('roundabout.ogg', ' entrez dans le rond-point et prenez la ').
 string('then.ogg', ', puis ').
 string('and.ogg', ' et ').
