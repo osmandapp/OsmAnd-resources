@@ -353,7 +353,9 @@
 		</case>
 		<apply_if additional="construction=yes" attrColorValue="$null"/>
 	</renderingAttribute>
-	<renderingAttribute name="highwayShadowRadius"> <!-- OpenGL engine only for now -->
+	<renderingConstant name="motorwayShadowRadius" value=":2"/>
+	<renderingConstant name="motorwayShadowRadius_v2" value="1:1"/>
+	<renderingAttribute name="highwayShadowRadius"> <!-- OpenGL engine only for now (bug in engine_v1 - does not works)-->
 		<case showAccess="true" additional="motorroad=yes" attrFloatValue="1:1"/>
 		<case additional="winter_road=yes" attrFloatValue="1:1"/>
 		<case attrFloatValue="0.6:0.4"/>
@@ -9176,12 +9178,13 @@
 							<case maxzoom="10" strokeWidth__2="4.5:4.5"/>
 							<case minzoom="11" strokeWidth__2="5:5"/>
 						</apply_if>
+						<apply_if engine_v1="true" shadowRadius="$motorwayShadowRadius"/>
+						<apply_if engine_v1="false" shadowRadius="$motorwayShadowRadius_v2"/>
 						<apply>
-							<case engine_v1="true" shadowRadius=":2">
+							<case engine_v1="true">
 								<apply_if showAccess="true" additional="motorroad=yes" shadowRadius=":2"/>
 								<apply_if additional="winter_road=yes" shadowRadius="3"/>
 							</case>
-							<case shadowRadius="1:1"/>
 						</apply>
 					</case>
 					<case tag="highway" value="trunk" color="$trunkRoadLowZoomColor" color__2="$trunkRoadShadowColor" shadowColor="$trunkRoadShadowColor">
@@ -9320,14 +9323,15 @@
 				<switch>
 					<switch>
 						<case tag="highway" value="motorway" color="$motorwayRoadColor" color__1="$motorwayRoadColor" color__2="$motorwayRoadShadowColor" shadowColor="$motorwayRoadShadowColor">
+							<apply_if engine_v1="true" shadowRadius="$motorwayShadowRadius"/>
+							<apply_if engine_v1="false" shadowRadius="$motorwayShadowRadius_v2"/>
 							<apply>
-								<case engine_v1="true" shadowRadius=":2">
+								<case engine_v1="true">
 									<apply_if showAccess="true" additional="motorroad=yes" shadowRadius=":2"/>
 									<apply_if additional="winter_road=yes" shadowRadius="3"/>
 								</case>
-								<case shadowRadius="1:1"/>
 							</apply>
-							<apply onewayArrowsColor="$motorwayHighwayOnewayArrowsColor"/>>
+							<apply onewayArrowsColor="$motorwayHighwayOnewayArrowsColor"/>
 							<apply_if roadStyle="americanRoadAtlas" shadowRadius=":0">
 								<case maxzoom="14" strokeWidth__2="9:9"/>
 								<case maxzoom="15" strokeWidth__2="10:10"/>
