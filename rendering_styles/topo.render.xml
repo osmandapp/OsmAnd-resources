@@ -15,7 +15,9 @@
 	<renderingProperty attr="showMtbRoutes" name="Show MTB routes" description="Show mountain bike routes (*cn_networks) in bicycle mode" type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
 		type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="moreDetailed" name="More details" description="More details on map" type="boolean" possibleValues=""
+<!--	<renderingProperty attr="moreDetailed" name="More details" description="More details on map" type="boolean" possibleValues=""
+		category="details"/>-->
+	<renderingProperty attr="lessDetailed" name="Less detailed" description="Less details on map" type="boolean" possibleValues=""
 		category="details"/>
 	<renderingProperty attr="surfaceIntegrity" name="Road surface integrity" description="Surface integral rendering" type="boolean" possibleValues=""
 		category="details"/>
@@ -114,7 +116,7 @@
 	</renderingAttribute>
 	<renderingAttribute name="polygonMinSizeToDisplay">
 	<!-- Minimum polygon size in pixels -->
-		<case moreDetailed="true" attrIntValue="10"/>
+		<case lessDetailed="false" attrIntValue="10"/>
 		<case attrIntValue="75"/>
 	</renderingAttribute>
 
@@ -126,7 +128,7 @@
 
 	<renderingAttribute name="roadsDensityLimitPerTile">
 	<!-- Number of roads to display per tile -->
-		<case moreDetailed="true" attrIntValue="55"/>
+		<case lessDetailed="false" attrIntValue="55"/>
 		<case appMode="pedestrian" attrIntValue="40"/>
 		<case appMode="bicycle" attrIntValue="40"/>
 		<case attrIntValue="40"/>
@@ -789,7 +791,7 @@
 				<case tag="osmand" value="file_waypoint"/>
 				<case tag="osmand" value="fav"/>
 				<case tag="barrier" value="">
-					<apply_if moreDetailed="false" maxzoom="14" order="-1"/>
+					<apply_if lessDetailed="true" maxzoom="14" order="-1"/>
 				</case>
 				<case tag="tourism" value="attraction"/>
 				<case maxzoom="18" tag="historic" value="memorial">
@@ -1026,7 +1028,7 @@
 							<apply_if layer="1" order="99"/>
 						</apply_if>
 						<apply_if layer="-1" order="20"/>
-						<apply_if appMode="default" moreDetailed="false" maxzoom="15" order="-1"/>
+						<apply_if appMode="default" lessDetailed="true" maxzoom="15" order="-1"/>
 					</case>
 					<apply_if maxzoom="13" additional="construction=yes" order="-1"/>
 				</switch>
@@ -2112,7 +2114,7 @@
 						<apply_if maxzoom="15" textSize="12" textWrapWidth="15"/>
 					</case>
 					<case minzoom="16" tag="attraction" value="big_wheel" textSize="12" textOrder="84"/>
-					<apply_if moreDetailed="false" maxzoom="15" disable="true"/>
+					<apply_if lessDetailed="true" maxzoom="15" disable="true"/>
 				</switch>
 				<apply_if engine_v1="true" textDy="1"/>
 			</switch>
@@ -2231,7 +2233,7 @@
 					<apply textColor="$landuseManmadeFadedTextColorDay"/>
 				</switch>
 <!--				<apply_if engine_v1="true" textDy="9"/>-->
-				<apply_if moreDetailed="false" maxzoom="15" disable="true"/>
+				<apply_if lessDetailed="true" maxzoom="15" disable="true"/>
 			</switch>
 			<switch textSize="11" nameTag="" textColor="#444444" textHaloRadius="$textHaloRadiusDay" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="17" textOrder="162">
 				<case minzoom="16" tag="aerialway" value="station" nameTag="" textOrder="101"/>
@@ -2279,7 +2281,7 @@
 			</switch>
 
 			<case minzoom="15" tag="landuse" value="military" textSize="12" nameTag="" textColor="#990d2a" textHaloColor="#eeffffff" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20" textOrder="145">
-				<apply_if moreDetailed="false" maxzoom="13" disable="true"/>
+				<apply_if lessDetailed="true" maxzoom="13" disable="true"/>
 			</case>
 			<switch>
 				<case minzoom="13" tag="abandoned:place" value="" textOrder="226"/>
@@ -2489,7 +2491,7 @@
 		<case minzoom="14" tag="natural" value="saddle" icon="natural_saddle" shield="topo_saddle_shield" iconOrder="66"/>
 		<case minzoom="15" tag="natural" value="sinkhole" icon="natural_sinkhole" shield="topo_sinkhole_shield"/>
 		<case minzoom="12" tag="mountain_pass" value="yes" icon="topo_mountain_pass" shield="topo_mountain_pass_shield" iconOrder="65">
-			<apply_if moreDetailed="false" maxzoom="13" icon=""/>
+			<apply_if lessDetailed="true" maxzoom="13" icon=""/>
 		</case>
 		<case minzoom="17" tag="natural" value="stone" icon="natural_stone" shield="stone_shield"/>
 		<case minzoom="14" tag="ford" value="yes" icon="topo_ford" shield="topo_ford_shield"/>
@@ -2537,7 +2539,7 @@
 			<case minzoom="16" tag="historic" value="technical_monument" icon="topo_technical_monument" iconOrder="85"/>
 			<case minzoom="16" tag="historic" value="archaeological_site" icon="topo_archaeological_site" iconVisibleSize="24" iconOrder="85"/>
 			<case minzoom="16" tag="geological" value="palaeontological_site" icon="topo_palaeontological_site" iconOrder="85"/>
-			<apply_if moreDetailed="false" maxzoom="15" icon=""/>
+			<apply_if lessDetailed="true" maxzoom="15" icon=""/>
 		</switch>
 		<case minzoom="16" tag="historic" value="ruins" icon="topo_ruins" shield="topo_ruins_shield" iconOrder="158"/>
 		<case minzoom="16" tag="historic" value="memorial" icon="topo_memorial" shield="topo_memorial_shield" iconOrder="158"/>
@@ -2606,13 +2608,13 @@
 		</case>
 
 		<case minzoom="13" tag="power" value="tower">
-			<case moreDetailed="true" maxzoom="13" icon="barrier_small_black_4" iconVisibleSize="2"/>
+			<case lessDetailed="false" maxzoom="13" icon="barrier_small_black_4" iconVisibleSize="2"/>
 			<case minzoom="14" maxzoom="14" icon="power_tower_small2" iconVisibleSize="2"/>
 			<case minzoom="15" maxzoom="16" icon="power_tower_small" iconVisibleSize="3"/>
 			<case minzoom="17" icon="power_tower_square" iconVisibleSize="7"/>
 		</case>
 		<case minzoom="15" tag="aerialway" value="pylon" icon="aerialway_pylon_small" iconVisibleSize="4">
-			<apply_if moreDetailed="false" maxzoom="15" icon=""/>
+			<apply_if lessDetailed="true" maxzoom="15" icon=""/>
 		</case>
 		<case minzoom="16" tag="power" value="pole" icon="barrier_small_black_4"/>
 		<case minzoom="12" tag="railway" value="halt">
@@ -2654,7 +2656,7 @@
 		<case minzoom="13" tag="aerialway" value="station" icon="railway_subway_station_small_black" shield="white_round_small_shield" iconOrder="10"/>
 
 		<case minzoom="16" tag="building" value="" additional="object_type=node" icon="building_map" shield="building_shield" iconOrder="128" iconVisibleSize="14" intersectionSizeFactor="0.8">
-			<apply_if moreDetailed="true" iconVisibleSize="10" intersectionSizeFactor="0.6"/>
+			<apply_if lessDetailed="false" iconVisibleSize="10" intersectionSizeFactor="0.6"/>
 		</case>
 
 		<!-- Car profile priority icons -->
@@ -2814,7 +2816,7 @@
 			<apply icon="topo_mine" shield="topo_mine_shield" iconOrder="60"/>
 			<apply_if additional="abandoned=yes" icon="topo_mine_abandoned" shield="topo_mine_abandoned_shield" iconOrder="60"/>
 			<apply_if additional="disused=yes" icon="topo_mine_abandoned" shield="topo_mine_abandoned_shield" iconOrder="60"/>
-			<apply_if moreDetailed="false" maxzoom="15" icon=""/>
+			<apply_if lessDetailed="true" maxzoom="15" icon=""/>
 		</switch>
 		<case minzoom="15" tag="historic" value="mine" icon="topo_mine_abandoned" shield="topo_mine_abandoned_shield"/>
 		<case minzoom="16" tag="man_made" value="kiln" icon="kiln" shield="kiln_shield"/>
@@ -2856,7 +2858,7 @@
 				<case additional="generator:source=oil" icon="generator_source_oil" shield="generator_oil_shield"/>
 				<case additional="generator:source=diesel" icon="generator_source_diesel" shield="generator_oil_shield"/>
 			</apply>
-			<apply_if moreDetailed="false" maxzoom="15" icon=""/>
+			<apply_if lessDetailed="true" maxzoom="15" icon=""/>
 		</switch>
 
 	</point>
@@ -3284,7 +3286,7 @@
 			<case tag="barrier" value="wall"/>
 			<apply color="$null" color_2="#333333"/>
 			<apply>
-				<case moreDetailed="true" maxzoom="15" strokeWidth_2="0.7"/>
+				<case lessDetailed="false" maxzoom="15" strokeWidth_2="0.7"/>
 				<case minzoom="16" strokeWidth_2="1"/>
 			</apply>
 		</switch>-->
@@ -3462,7 +3464,7 @@
 							</apply_if>
 						</apply>
 						<!-- Smoothness, surface, access -->
-	<!--					<apply_if moreDetailed="true" minzoom="14" maxzoom="14" strokeWidth_2="1.9:1.9" strokeWidth_3="1.9:1.9"/>
+	<!--					<apply_if lessDetailed="false" minzoom="14" maxzoom="14" strokeWidth_2="1.9:1.9" strokeWidth_3="1.9:1.9"/>
 						<apply_if minzoom="15" maxzoom="15" strokeWidth_2="2.5:2.5" strokeWidth_3="2.5:2.5"/>
 						<apply_if minzoom="16" maxzoom="16" strokeWidth_2="3:3" strokeWidth_3="3:3"/>
 						<apply_if minzoom="17" maxzoom="17" strokeWidth_2="4:4" strokeWidth_3="4:4"/>
@@ -3535,7 +3537,7 @@
 							<case tag="highway" value="residential" color="$residentialRoadColor" color__1="$residentialRoadColor"/>
 						</switch>
 						<apply cap="ROUND" color_0="#000000">
-							<case moreDetailed="true" minzoom="12" maxzoom="12" strokeWidth="0.9" shadowColor="$residentialRoadLowZoom1ShadowColor"/>
+							<case lessDetailed="false" minzoom="12" maxzoom="12" strokeWidth="0.9" shadowColor="$residentialRoadLowZoom1ShadowColor"/>
 							<case minzoom="13" maxzoom="13" strokeWidth="1:1" strokeWidth_3="1:1" shadowColor="$residentialRoadLowZoom2ShadowColor"/>
 							<case minzoom="14" maxzoom="14" strokeWidth="1.5:1.5" strokeWidth_3="1.5:1.5" shadowColor="$residentialRoadLowZoom2ShadowColor"/>
 							<switch>
@@ -3554,7 +3556,7 @@
 							<apply_if additional="covered=yes" pathEffect="7_2" pathEffect__2="1_1" cap="BUTT"/>
 							<!-- Bridges -->
 							<apply_if additional="bridge=yes" minzoom="12" color_0="$mainHighwayBridgeShadowColor" shadowRadius="0" cap="SQUARE" cap_0="BUTT">
-								<case moreDetailed="true" maxzoom="12" strokeWidth_0="1.8:2.5"/>
+								<case lessDetailed="false" maxzoom="12" strokeWidth_0="1.8:2.5"/>
 								<case maxzoom="13" strokeWidth_0="2.5:2.5"/>
 								<case maxzoom="14" strokeWidth_0="2.8:2.8"/>
 								<case maxzoom="15" strokeWidth_0="4.5:4.5"/>
@@ -3603,7 +3605,7 @@
 						<apply color="$pedestrianRoadColor" shadowColor="$pedestrianRoadShadowColor" shadowRadius="1:1"/>
 					</switch>
 					<apply cap="ROUND" color_0="#000000">
-						<switch moreDetailed="true">
+						<switch lessDetailed="false">
 							<case maxzoom="13" strokeWidth="0.7" strokeWidth_3="0.7" shadowRadius=":1"/>
 							<case minzoom="14" maxzoom="14" strokeWidth="1:1" strokeWidth_3="1:1" shadowRadius=":1">
 	<!--							<apply_if tag="highway" value="pedestrian" shadowColor="$pedestrianRoadShadowColor"/>-->
@@ -3617,8 +3619,8 @@
 						<apply_if additional="tunnel=yes" pathEffect="4_4" cap="BUTT"/>
 						<apply_if additional="covered=yes" pathEffect="7_2" pathEffect__2="1_1" cap="BUTT"/>
 						<apply_if minzoom="13" additional="bridge=yes" color_0="$mainHighwayBridgeShadowColor" shadowRadius="0" cap="SQUARE" cap_0="BUTT">
-							<case moreDetailed="true" maxzoom="13" strokeWidth_0="1.3:1.7"/>
-							<case moreDetailed="true" minzoom="14" maxzoom="14" strokeWidth_0="1.5:2"/>
+							<case lessDetailed="false" maxzoom="13" strokeWidth_0="1.3:1.7"/>
+							<case lessDetailed="false" minzoom="14" maxzoom="14" strokeWidth_0="1.5:2"/>
 							<case minzoom="15" maxzoom="15" strokeWidth_0="3.5:4.5"/>
 							<case minzoom="16" maxzoom="16" strokeWidth_0="4.5:6"/>
 							<case minzoom="17" maxzoom="17" strokeWidth_0="5.5:6.5"/>
@@ -3692,9 +3694,9 @@
 					</switch>
 				</switch>
 			</apply>
-			<apply_if moreDetailed="true" minzoom="13" maxzoom="13" pathEffect_3="1_3"/>
-			<apply_if moreDetailed="true" minzoom="14" maxzoom="14" pathEffect_3="2_6"/>
-			<apply_if moreDetailed="false" minzoom="13" maxzoom="14" color_3="$null"/>
+			<apply_if lessDetailed="false" minzoom="13" maxzoom="13" pathEffect_3="1_3"/>
+			<apply_if lessDetailed="false" minzoom="14" maxzoom="14" pathEffect_3="2_6"/>
+			<apply_if lessDetailed="true" minzoom="13" maxzoom="14" color_3="$null"/>
 			<apply_if minzoom="15" maxzoom="15" pathEffect_3="2_8"/>
 			<apply_if minzoom="16" maxzoom="16" pathEffect_3="2_11"/>
 			<apply_if minzoom="17" maxzoom="17" pathEffect_3="2_13"/>
@@ -3708,7 +3710,7 @@
 				<switch>
 					<switch strokeWidth="0.1">
 						<case minzoom="12" tag="highway" value="track">
-							<case moreDetailed="true" maxzoom="13" strokeWidth_5="$trackLowZoomStrokeWidth" pathEffect_5=""/>
+							<case lessDetailed="false" maxzoom="13" strokeWidth_5="$trackLowZoomStrokeWidth" pathEffect_5=""/>
 							<case minzoom="14" strokeWidth_4="1.5:1.2" strokeWidth_5="$trackStrokeWidth"/>
 							<apply minzoom="15" strokeWidth_4="1.6:1.6"/>
 							<apply color_4="$null" color_5="$trackColor"/>
@@ -3730,7 +3732,7 @@
 						</case>
 						<case minzoom="12" tag="highway" value="path">
 							<case appMode="bicycle" minzoom="14" additional="bicycle=designated" color_5="$cyclewayColor" pathEffect_5="4_2" strokeWidth_5="1:1"/>
-							<case moreDetailed="true" maxzoom="14" color_5="$pathColor" pathEffect_5="$pathPathEffect">
+							<case lessDetailed="false" maxzoom="14" color_5="$pathColor" pathEffect_5="$pathPathEffect">
 								<case maxzoom="12" strokeWidth_5="$pathLowZoomStrokeWidth" color_5="$pathLowZoomColor" pathEffect_5="$pathLowZoomPathEffect"/>
 								<case maxzoom="13" strokeWidth_5="$pathLowZoomStrokeWidth" color_5="$pathLowZoomColor" pathEffect_5="$pathLowZoomPathEffect"/>
 								<case maxzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="$pathStrokeWidth"/>
@@ -3744,14 +3746,14 @@
 							</apply_if>
 						</case>
 						<case minzoom="13" tag="highway" value="footway" color_5="$footwayColor">
-							<switch minzoom="13" maxzoom="13">
-								<case moreDetailed="true">
+							<switch minzoom="13" maxzoom="14">
+								<case lessDetailed="false">
 									<case layer="1" strokeWidth_5="0.6"/>
 									<case maxzoom="13" strokeWidth_4="1.4:1.4" strokeWidth_5="$footwayLowZoomStrokeWidth" pathEffect_5=""/>
 									<case minzoom="14" maxzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="$footwayLowZoomStrokeWidth" pathEffect_5="2_2"/>
 								</case>
 							</switch>
-							<case minzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="$footwayStrokeWidth" pathEffect_5="2_2"/>
+							<case minzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="$footwayStrokeWidth" pathEffect_5="2_2"/>
 							<apply_if surfaceIntegrity="true">
 								<apply_if minzoom="12" pathEffect_5="10_3"/>
 								<apply_if additional="trail_visibility=bad" color_5="#888888"/>
@@ -3761,7 +3763,7 @@
 						</case>
 						<case minzoom="13" tag="highway" value="cycleway">
 							<case appMode="bicycle">
-								<apply_if moreDetailed="true" maxzoom="13" strokeWidth_5="0.7"/>
+								<apply_if lessDetailed="false" maxzoom="13" strokeWidth_5="0.7"/>
 								<apply minzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="1:1"/>
 							</case>
 							<case minzoom="14" strokeWidth_4="1.3:1.3" strokeWidth_5="$cyclewayStrokeWidth"/>
@@ -3813,7 +3815,7 @@
 					</apply_if>-->
 				</switch>
 				<case minzoom="15" tag="highway" value="steps" strokeWidth="0.1">
-					<case moreDetailed="true" maxzoom="15">
+					<case lessDetailed="false" maxzoom="15">
 						<case layer="1" strokeWidth_4="1.7:1.7" strokeWidth_5="1.7:1.7"/>
 						<case strokeWidth_4="2:2" strokeWidth_5="2:2"/> <!-- If we remove this and let <order> to decide when to hide steps, layer="1" will be also hidden which is undesirable.-->
 					</case>
@@ -3981,7 +3983,7 @@
 
 
 		<case minzoom="12" tag="man_made" value="cutline" color="#ffffff" cap="ROUND">
-			<switch moreDetailed="true">
+			<switch lessDetailed="false">
 				<case maxzoom="12" strokeWidth="0.5:0.5"/>
 				<case maxzoom="13" strokeWidth="0.8:0.8"/>
 			</switch>
@@ -4071,7 +4073,7 @@
 			<case tag="barrier" value="kent_carriage_gap"/>
 			<case tag="waterway" value="rapids" pathEffect="2_2"/>
 			<apply>
-				<case moreDetailed="true" maxzoom="15" strokeWidth="0.7"/>
+				<case lessDetailed="false" maxzoom="15" strokeWidth="0.7"/>
 				<case minzoom="16" strokeWidth="1"/>
 			</apply>
 			<apply color="#333333"/>
@@ -4266,8 +4268,8 @@
 			<case minzoom="16" strokeWidth="1.5:1.5" strokeWidth_2="2.8:2.8" pathEffect_2="1_37"/>
 		</case>
 		<case noPolygons="false" minzoom="14" tag="natural" value="tree_row" color="#277c27" color_2="#ffffff" cap="ROUND" cap_2="ROUND">
-			<case moreDetailed="true" maxzoom="14" strokeWidth="1:1" pathEffect="1_4" strokeWidth_2="0.5:0.5" pathEffect_2="1_5"/>
-			<case moreDetailed="true" minzoom="15" maxzoom="15" strokeWidth="1.3:1.3" pathEffect="1_6" strokeWidth_2="0.8:0.8" pathEffect_2="1_6"/>
+			<case lessDetailed="false" maxzoom="14" strokeWidth="1:1" pathEffect="1_4" strokeWidth_2="0.5:0.5" pathEffect_2="1_5"/>
+			<case lessDetailed="false" minzoom="15" maxzoom="15" strokeWidth="1.3:1.3" pathEffect="1_6" strokeWidth_2="0.8:0.8" pathEffect_2="1_6"/>
 			<case minzoom="16" maxzoom="16" strokeWidth="1.6:1.6" pathEffect="1_8" strokeWidth_2="0.8:0.8" pathEffect_2="1_8"/>
 			<case minzoom="17" maxzoom="17" strokeWidth="2.2:2.2" pathEffect="1_10" strokeWidth_2="1.6:1.6" pathEffect_2="1_10"/>
 			<case minzoom="18" strokeWidth="2.8:2.8" pathEffect="1_15" strokeWidth_2="1.8:1.8" pathEffect_2="1_15"/>
