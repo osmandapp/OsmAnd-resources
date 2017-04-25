@@ -25,7 +25,7 @@ language('sk').
 % ROUTE CALCULATED
 string('route_is.ogg', 'Cesta je dlhá ').
 string('route_calculate.ogg', 'Cesta prepočítaná').
-string('distance.ogg', ', vzdialenosť ').
+string('distance.ogg', 'vzdialenosť ').
 
 % LEFT/RIGHT
 string('after.ogg', 'čoskoro o ').
