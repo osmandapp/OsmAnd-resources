@@ -790,10 +790,10 @@
 	</renderingAttribute>
 	<renderingAttribute name="trackColor">
 		<case maxzoom="13" attrColorValue="#569D37">
-			<apply_if nightMode="true" attrColorValue="#006655"/>
+			<apply_if nightMode="true" attrColorValue="#4F7A73"/>
 		</case>
-		<case attrColorValue="#69995f">
-			<apply_if nightMode="true" attrColorValue="#006655"/>
+		<case attrColorValue="#628F59">
+			<apply_if nightMode="true" attrColorValue="#4F7A73"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="trackSubstrateColor">
@@ -811,6 +811,7 @@
 	<renderingConstant name="trackWithSurfaceStrokeWidth" value="1:1"/>
 	<renderingConstant name="trackLowZoomStrokeWidth" value="0.7"/>
 	<renderingConstant name="trackLowZoomStrokeWidth2" value="1.1"/>
+	<renderingConstant name="trackPathEffect" value="7_2"/>
 	<renderingConstant name="trackBridgeWidth" value="4:2.5"/>
 	<renderingConstant name="trackBridgeInnerWidth" value="3:2"/>
 	<renderingConstant name="trackTunnelPathEffect" value="3_3"/>
@@ -834,7 +835,7 @@
 			<case contourLines="15"/>
 			<case contourLines="16"/>
 			<apply attrColorValue="#77000000"/>
-			<apply_if nightMode="true" attrColorValue="#70ffffff"/>
+			<apply_if nightMode="true" attrColorValue="#718269"/>
 		</switch>
 		<case attrColorValue="#33000000">
 			<apply_if nightMode="true" attrColorValue="#26ffffff"/>
@@ -2769,7 +2770,7 @@
 						<case tag="highway" value="footway" order="37">
 							<apply_if minzoom="14" appMode="pedestrian" order="60"/>
 							<apply_if appMode="bicycle" moreDetailed="false">
-								<apply_if minzoom="15" maxzoom="15" order="-1"/>
+								<apply_if minzoom="14" maxzoom="14" order="-1"/>
 								<apply_if additional="bicycle=designated" minzoom="15" maxzoom="15" order="60"/>
 							</apply_if>
 							<apply_if additional="footway=crossing" order="90"/>
@@ -9765,12 +9766,13 @@
 							<apply pathEffect_5=""/>
 						</switch>
 						<case minzoom="14" strokeWidth_4="1.2:1.2" strokeWidth_5="$trackStrokeWidth">
+							<case addMode="bicycle" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
 							<case showSurfaces="true" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
 							<case showSurfaceGrade="true" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
 						</case>
 						<apply minzoom="15" strokeWidth_4="1.6:1.6"/>
 						<apply_if additional="winter_road=yes" minzoom="11" strokeWidth_4="1.6:1.6"/>
-						<apply color_4="$null" color_5="$trackColor" pathEffect_5="4_2"/>
+						<apply color_4="$null" color_5="$trackColor" pathEffect_5="$trackPathEffect"/>
 						<apply>
 							<!-- Dash pattern: solid(100%), long-dashed(77%), short-dashed(63%), dash-dotted(50%), dotted(50%), dotted2(40%), short-dashed-narrow-spaced(66%) for not-specified -->
 							<case additional="tracktype=grade1" pathEffect_5=""/>
@@ -9841,17 +9843,16 @@
 						<switch minzoom="12" maxzoom="15">
 							<case moreDetailed="true">
 								<case layer="1" strokeWidth_5="0.6"/>
-								<case maxzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="0.6" pathEffect_5="">
+								<case maxzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="0.7" pathEffect_5="">
 									<apply_if appMode="pedestrian" strokeWidth_5="0.9"/>
 								</case>
-								<case minzoom="15" maxzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="0.9" pathEffect_5="4_2">
+								<case minzoom="15" maxzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="0.5:1" pathEffect_5="4_2">
 									<apply_if appMode="pedestrian" strokeWidth_5="1:1"/>
 								</case>
 							</case>
 							<case appMode="pedestrian">
 								<case minzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="0.9" pathEffect_5=""/>
 							</case>
-							<!-- <case maxzoom="15" strokeWidth=""/>-->
 						</switch>
 						<case minzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="$footwayStrokeWidth" pathEffect_5="4_2">
 							<switch>
