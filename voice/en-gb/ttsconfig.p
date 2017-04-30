@@ -26,7 +26,7 @@ fest_language('cmu_us_awb_arctic_clunits').
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
 string('route_is.ogg', 'The trip is ').
-string('route_calculate.ogg', 'Route recalculated').
+string('route_calculate.ogg', 'route recalculated').
 string('distance.ogg', 'distance ').
 
 % LEFT/RIGHT
