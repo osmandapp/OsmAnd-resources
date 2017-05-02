@@ -18,7 +18,7 @@ language('pt_BR').
 % (X) Other prompts: gps lost, off route, back to route
 % (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 % (X) Distance unit support (meters / feet / yard)
-% (N/A) Special grammar: (please specify which)
+% (X) Special grammar: (imperative form of some verbs (*_imp versions))
 
 
 %% STRINGS
@@ -40,8 +40,8 @@ string('right_sh.ogg', 'vire acentuadamente à direita').
 string('right_sl.ogg', 'vire levemente à direita').
 string('left_keep.ogg', 'mantenha-se à esquerda').
 string('right_keep.ogg', 'mantenha-se à direita').
-string('left_bear.ogg', 'mantenha-se à esquerda').   % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'mantenha-se à direita').   % in English the same as right_keep, may be different in other languages
+string('left_bear.ogg', 'vire à esquerda').   % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'vire à direita').   % in English the same as right_keep, may be different in other languages
 
 string('left_imp.ogg', 'virar à esquerda').
 string('left_sh_imp.ogg', 'virar acentuadamente à esquerda').
@@ -85,7 +85,7 @@ string('17th.ogg', 'décima sétima ').
 
 % STRAIGHT/FOLLOW
 string('go_ahead.ogg', 'Siga em frente').
-string('follow.ogg', 'Siga o caminho por ').
+string('follow.ogg', 'Continue por ').
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'e chegue ao destino ').
@@ -105,17 +105,18 @@ string('reached_poi.ogg', 'chegou ao POI ').
 %string('exceed_limit.ogg', 'excesso de velocidade ').
 string('exceed_limit.ogg', 'limite de velocidade ').
 string('attention.ogg', 'atenção! ').
+string('a_frente.ogg', ' à frente'). % pequena diferenciação do inglês, para indicar que o objeto se encontra à frente
 string('speed_camera.ogg', 'radar').
 string('border_control.ogg', 'alfândega').
 string('railroad_crossing.ogg', 'cruzamento de linha férrea').
 string('traffic_calming.ogg', 'obstáculo').
 string('toll_booth.ogg', 'pedágio').
-string('stop.ogg', 'pare').
+string('stop.ogg', 'sinal de pare').
 string('pedestrian_crosswalk.ogg', 'passeio de pedestres').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'sem sinal gps').
-string('location_recovered.ogg', 'sinal gps recuperado').
+string('location_lost.ogg', 'sem sinal GPS').
+string('location_recovered.ogg', 'sinal GPS recuperado').
 string('off_route.ogg', 'desviou-se da rota por ').
 string('back_on_route.ogg', 'retornou ao percurso').
 
@@ -240,7 +241,7 @@ back_on_route -- ['back_on_route.ogg'].
 
 % TRAFFIC WARNINGS
 speed_alarm(MaxSpeed, _Speed) -- ['exceed_limit.ogg', I] :- pnumber(MaxSpeed, I).
-attention(Type) -- ['attention.ogg', W] :- warning(Type, W).
+attention(Type) -- [W, 'a_frente.ogg'] :- warning(Type, W). % the order differs from en
 warning('SPEED_CAMERA', 'speed_camera.ogg').
 warning('SPEED_LIMIT', '').
 warning('BORDER_CONTROL', 'border_control.ogg').
