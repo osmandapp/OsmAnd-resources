@@ -3,7 +3,7 @@
 % for swi-prolog
 :- op(500, xfy,'--').
 
-version(103).
+version(104).
 tts :- version(X), X > 99.
 voice :- version(X), X < 99.
 
@@ -24,30 +24,30 @@ language('uk').
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
 string('route_is.ogg', 'Довжина маршруту ').
-string('route_calculate.ogg', 'Маршрут перелічується').
+string('route_calculate.ogg', 'Перерахунок маршруту').
 string('distance.ogg', 'відстань ').
 
 % LEFT/RIGHT
-string('after.ogg', 'за ').
+string('after.ogg', 'після ').
 string('in.ogg', 'в' ).
 
 string('left.ogg', 'поверніть ліворуч').
-string('left_sh.ogg', 'поверніть різко ліворуч').
-string('left_sl.ogg', 'поверніть плавно ліворуч').
+string('left_sh.ogg', 'різко поверніть ліворуч').
+string('left_sl.ogg', 'плавно поверніть ліворуч').
 string('right.ogg', 'поверніть праворуч').
-string('right_sh.ogg', 'поверніть різко праворуч').
-string('right_sl.ogg', 'поверніть плавно праворуч').
-string('left_keep.ogg', 'тримайтесь лівіше').
-string('right_keep.ogg', 'тримайтесь правіше').
-string('left_bear.ogg', 'тримайтесь лівіше').    % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'тримайтесь правіше').  % in English the same as right_keep, may be different in other languages
+string('right_sh.ogg', 'різко поверніть праворуч').
+string('right_sl.ogg', 'плавно поверніть праворуч').
+string('left_keep.ogg', 'тримайтеся лівіше').
+string('right_keep.ogg', 'тримайтеся правіше').
+string('left_bear.ogg', 'тримайтеся лівіше').    % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'тримайтеся правіше').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
 string('make_uturn.ogg', 'Розверніться').
 string('make_uturn_wp.ogg', 'При можливості розверніться').
 
 % ROUNDABOUTS
-string('roundabout.ogg', 'коло').
+string('roundabout.ogg', 'кругове перехрестя').
 string('then.ogg', 'потім ').
 string('and.ogg', ' і ').
 string('take.ogg', 'виберіть ').
@@ -83,30 +83,30 @@ string('reached_intermediate.ogg', 'ви прибули до проміжног�
 string('reached_destination.ogg','ви прибули до пункту призначення ').
 
 % NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'і ви прибудете до точки GPX ').
-string('reached_waypoint.ogg', 'ви прибули до GPX ').
-string('and_arrive_favorite.ogg', 'і ви прибудете до точки улюблений ').
-string('reached_favorite.ogg', 'ви прибули до улюблений ').
-string('and_arrive_poi.ogg', ' і ви прибудете до точки інтересу ').
-string('reached_poi.ogg', 'ви прибули до точки інтересу ').
+string('and_arrive_waypoint.ogg', 'і ви прибудете до проміжної точки ').
+string('reached_waypoint.ogg', 'ви прибули до проміжної точки ').
+string('and_arrive_favorite.ogg', 'і ви прибудете до вибраної точки ').
+string('reached_favorite.ogg', 'ви прибули до вибраної точки ').
+string('and_arrive_poi.ogg', ' і ви прибудете до точки POI ').
+string('reached_poi.ogg', 'ви прибули до точки POI ').
 
 % ATTENTION
-%string('exceed_limit.ogg', 'Перевищуєте швидкість ').
+%string('exceed_limit.ogg', 'Перевищення швидкості ').
 string('exceed_limit.ogg', 'обмеження швидкості ').
 string('attention.ogg', 'Увага, ').
-string('speed_camera.ogg', 'швидкість камери').
+string('speed_camera.ogg', 'камера контролю швидкості').
 string('border_control.ogg', 'прикордонний контроль').
 string('railroad_crossing.ogg', 'залізничний переїзд').
-string('traffic_calming.ogg', 'трафіку заспокійливий').
-string('toll_booth.ogg', 'платних стенд').
+string('traffic_calming.ogg', 'трафік помірний').
+string('toll_booth.ogg', 'місце оплати проїзду').
 string('stop.ogg', 'знак зупинки').
-string('pedestrian_crosswalk.ogg', 'пішохідного переходу').
+string('pedestrian_crosswalk.ogg', 'пішохідний перехід').
 
 % OTHER PROMPTS
 string('location_lost.ogg', 'втрачено сигнал GPS').
 string('location_recovered.ogg', 'Відновлено сигнал GPS').
 string('off_route.ogg', 'Ви відхилились від маршруту на ').
-string('back_on_route.ogg', 'Ви повернулись на дорогу.').
+string('back_on_route.ogg', 'Ви повернулись на маршрут.').
 
 % STREET NAME PREPOSITIONS
 string('on.ogg', 'по ').
@@ -119,11 +119,11 @@ string('metrov.ogg', 'метрів').
 string('kilometr.ogg', 'кілометр').
 string('kilometra.ogg', 'кілометри').
 string('kilometrov.ogg', 'кілометрів').
-string('around_1_kilometer.ogg', 'близько одного кілометра').
-string('around.ogg', 'близько ').
+string('around_1_kilometer.ogg', 'приблизно одного кілометру').
+string('around.ogg', 'приблизно ').
 
 string('footov.ogg', 'футів').
-string('around_1_mile.ogg', 'близько однієї милі').
+string('around_1_mile.ogg', 'приблизно однієї милі').
 string('1_tenth_of_a_mile.ogg', 'одна десята милі').
 string('tenths_of_a_mile.ogg', ' десятих милі').
 string('1mile.ogg', 'миля').
