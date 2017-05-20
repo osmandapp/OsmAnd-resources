@@ -97,7 +97,7 @@ string('attention.ogg', 'Увага, ').
 string('speed_camera.ogg', 'камера контролю швидкості').
 string('border_control.ogg', 'прикордонний контроль').
 string('railroad_crossing.ogg', 'залізничний переїзд').
-string('traffic_calming.ogg', 'трафік помірний').
+string('traffic_calming.ogg', 'заспокоювач трафіку').
 string('toll_booth.ogg', 'місце оплати проїзду').
 string('stop.ogg', 'знак зупинки').
 string('pedestrian_crosswalk.ogg', 'пішохідний перехід').
