@@ -999,6 +999,7 @@
 		<!-- NEW ROUTING API -->
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_motorway" name="Avoid motorways" description="Avoid motorways" type="boolean"/>
+		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean"/>
 
 		<way attribute="access">
 			<select value="-1" t="osmand_change" v="delete"/>
@@ -1060,6 +1061,39 @@
 		<way attribute="speed" type="speed">
 			<select value="4" t="highway" v="steps"/>
 			<select value="5"/>
+		</way>
+
+		<way attribute="obstacle_srtm_alt_speed">
+			<if param="height_obstacles">
+				<gt value1="-60" value2=":incline">
+					<select value="35"/>
+				</gt>
+				<gt value1="-25" value2=":incline">
+					<select value="30"/>
+				</gt>
+				<gt value1="-17" value2=":incline">
+					<select value="17"/>
+				</gt>
+				<gt value1="-9" value2=":incline">
+					<select value="5"/>
+				</gt>
+				<gt value1="-3" value2=":incline">
+					<select value="1"/>
+				</gt>
+				<gt value1="3" value2=":incline">
+					<select value="1"/>
+				</gt>
+				<gt value1="7" value2=":incline">
+					<select value="4"/>
+				</gt>
+				<gt value1="13" value2=":incline">
+					<select value="8"/>
+				</gt>
+				<gt value1="25" value2=":incline">
+					<select value="10"/>
+				</gt>
+				<select value="15"/>
+			</if>
 		</way>
 
 		<way attribute="priority">
