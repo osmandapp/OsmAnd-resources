@@ -1577,21 +1577,28 @@
 
 		<switch minzoom="14">
 			<switch nameTag="">
-				<case tag="highway" value="track" textOrder="188"/>
 				<case tag="area:highway" value="track" textWrapWidth="25" textOrder="189"/>
-				<case tag="highway" value="cycleway" textOrder="196"/>
 				<case tag="cycleway" value="lane" textOrder="197"/>
 				<case tag="cycleway" value="track" textOrder="197"/>
 				<case tag="cycleway" value="opposite_lane" textOrder="197"/>
 				<case tag="cycleway" value="share_busway" textOrder="197"/>
 				<case tag="cycleway" value="opposite" textOrder="197"/>
 				<case tag="highway" value="steps" textOrder="194"/>
-				<case tag="highway" value="bridleway" textOrder="195"/>
 <!--				<case tag="highway" value="raceway" textOrder="192"/>-->
 				<apply maxzoom="14" textSize="12"/>
 			</switch>
-			<case tag="highway" value="path" textOrder="193" nameTag=""/>
-			<apply nameTag="" textColor="#000000" textHaloRadius="$highwayTrackTextHaloRadiusDay" textHaloColor="$highwayTrackTextHaloColorDay" textOnPath="true"/>
+			<switch>
+				<case tag="highway" value="track" textOrder="188"/>
+				<case tag="highway" value="cycleway" textOrder="196"/>
+				<case tag="highway" value="path" textOrder="193"/>
+				<case tag="highway" value="bridleway" textOrder="195"/>
+				<apply>
+					<case nameTag="" nameTag2="ref"/>
+					<case nameTag="ref"/>
+					<apply maxzoom="14" textSize="12"/>
+				</apply>
+			</switch>
+			<apply textColor="#000000" textHaloRadius="$highwayTrackTextHaloRadiusDay" textHaloColor="$highwayTrackTextHaloColorDay" textOnPath="true"/>
 			<apply_if minzoom="15">
 				<case maxzoom="15" textSize="13"/>
 				<case maxzoom="16" textSize="14"/>
