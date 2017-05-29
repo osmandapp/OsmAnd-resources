@@ -1872,6 +1872,7 @@ mycpname dance_floor entertainment_dance_floor.png
 mycpname dog_park entertainment_dog_park.png
 mycpname ski_resort entertainment_ski_resort.png
 mycpname bandstand entertainment_bandstand.png
+mycpname stands entertainment_stands.png
 
 ## Club
 mycpname club_sport club_sport.png
