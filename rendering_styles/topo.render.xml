@@ -912,6 +912,7 @@
 				<case tag="landuse" value="construction" order="10"/>
 				<case tag="landuse" value="quarry" order="10"/>
 				<case tag="landuse" value="military" order="9"/>
+				<case tag="military" value="danger_area" order="9"/>
 				<case tag="historic" value="archaeological_site" order="9"/>
 				<case tag="geological" value="palaeontological_site" order="9"/>
 				<case tag="abandoned:place" value="" order="9"/>
@@ -2298,9 +2299,12 @@
 				<apply_if minzoom="15" textSize="13"/>
 			</switch>
 
-			<case minzoom="15" tag="landuse" value="military" textSize="12" nameTag="" textColor="#990d2a" textHaloColor="#eeffffff" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20" textOrder="145">
+			<switch>
+				<case minzoom="15" tag="landuse" value="military"/>
+				<case minzoom="15" tag="military" value="danger_area"/>
+				<apply textSize="12" nameTag="" textColor="#990d2a" textHaloColor="#eeffffff" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20" textOrder="145"/>
 				<apply_if lessDetailed="true" maxzoom="13" disable="true"/>
-			</case>
+			</switch>
 			<switch>
 				<case minzoom="13" tag="abandoned:place" value="" textOrder="226"/>
 				<case minzoom="15" tag="abandoned:landuse" value="" textOrder="227"/>
@@ -3251,10 +3255,13 @@
 					</switch>
 
 				</switch>
-		
-				<case minzoom="10" tag="landuse" value="military" shader="diagonal_red_small_shader" color_2="#ad0b0b" strokeWidth_2="1.5">
+
+				<switch>
+					<case minzoom="10" tag="landuse" value="military"/>
+					<case minzoom="10" tag="military" value="danger_area"/>
+					<apply shader="diagonal_red_small_shader" color_2="#ad0b0b" strokeWidth_2="1.5"/>
 					<apply_if minzoom="14" shader="diagonal_red_shader"/>
-				</case>
+				</switch>
 
 				<case minzoom="10" tag="landuse" value="basin" additional="basin=detention" color="#337ad1ed" strokeWidth_2="1:0" color_2="#7479ec" pathEffect_2="7_5"/>
 				<switch hideWaterPolygons="false">
