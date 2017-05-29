@@ -682,7 +682,8 @@ mycpname nwn_ref tourist_nwn_ref.png
 mycpname rwn_ref tourist_rwn_ref.png
 mycpname lwn_ref tourist_lwn_ref.png
 mycpname gallery tourist_gallery.png
-mycpname firepit tourist_firepit.png
+mycpname firepit tourist_colored_firepit.png
+mycpname topo_firepit topo_topo_firepit.png
 
 ## Entertainment
 mygroup entertainment tourist_cinema3.png
