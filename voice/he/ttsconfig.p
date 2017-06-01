@@ -36,7 +36,7 @@ string('in.ogg', 'in ').
 string('left.ogg', 'turn_left-e').
 string('left_sh.ogg', 'turn_sharp_left-e').
 string('left_sl.ogg', 'turn_slight_left-e').
-string('right.ogg', 'turn_right-e ).
+string('right.ogg', 'turn_right-e').
 string('right_sh.ogg', 'turn_sharp_right-e').
 string('right_sl.ogg', 'turn_slight_right-e').
 string('left_keep.ogg', 'keep_right-e').
