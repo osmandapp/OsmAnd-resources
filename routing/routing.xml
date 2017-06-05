@@ -677,7 +677,7 @@
 				<select value="22" t="highway" v="residential"/>
 				<select value="22" t="highway" v="track"/>
 				<select value="19" t="highway" v="path"/>
-				<select value="18.8" t="highway" v="footway"/>
+				<select value="18" t="highway" v="footway"/>
 			</if>
 
 			<select value="24.0" t="route_bicycle"/>
@@ -929,7 +929,12 @@
 			<select value="1.6" t="highway" v="cycleway"/>
 			<select value="1.8" t="bicycle" v="official"/>
 			<select value="1.8" t="bicycle" v="designated"/> 
-			<select value="1.4" t="bicycle" v="yes"/>
+			<select value="1.25" t="bicycle" v="yes"/>
+			<!-- the value for bicycle=yes needs to be smaller than the
+ 			values for paved and asphalt. Reason: Often you have areas with
+			several paths that are tagged bicycle=yes, but only some of these
+			paths are also tagged paved. In that case, the paved paths should
+ 			get a higher priority.-->
 
 			<select value="1.1" t="surface" v="compacted"/>
 			<select value="1.1" t="surface" v="fine_gravel"/>
@@ -987,9 +992,6 @@
 			<select value="20" t="crossing" v="traffic_signals"/>
 			<select value="15" t="highway" v="stop"/>
 			<select value="7"  t="highway" v="give_way"/>
-			<if param="driving_style_safety">
-				<select value="300" t="ford"/>
-			</if>
 			<select value="200" t="ford"/>
 			<select value="25" t="railway" v="crossing"/>
 			<select value="25" t="railway" v="level_crossing"/>
@@ -1002,7 +1004,7 @@
 			<if param="driving_style_safety">
 				<select value="16" t="crossing" v="traffic_signals"/>
 				<select value="16" t="crossing" v="island;traffic_signals"/>
-				<select value="40" t="highway" v="traffic_signals"/>
+				<select value="30" t="highway" v="traffic_signals"/>
 			</if>
 			<!-- Lines above: These values are only a workaround. They apply until 
 			one issue is resolved: The triple counting of traffic lights at main
@@ -1011,7 +1013,7 @@
 			leads to routing errors. The above is only a compromise to minimize
 			those errors.-->
 			
-			<select value="5" t="crossing" v="traffic_signals"/>
+			<select value="9" t="crossing" v="traffic_signals"/>
 			<select value="1" t="crossing" v="uncontrolled"/>
 			<select value="3" t="crossing" v="unmarked"/>
 			<select value="1" t="crossing" v="island"/>
