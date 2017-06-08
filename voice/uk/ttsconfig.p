@@ -115,11 +115,11 @@ string('to.ogg', 'до ').
 string('toward.ogg', 'до ').
 
 % DISTANCE UNIT SUPPORT
-string('metrov.ogg', 'метрів').
+string('metriv.ogg', 'метрів').
 string('kilometr.ogg', 'кілометр').
-string('kilometra.ogg', 'кілометри').
-string('kilometrov.ogg', 'кілометрів').
-string('around_1_kilometer.ogg', 'приблизно одного кілометру').
+string('kilometry.ogg', 'кілометри').
+string('kilometriv.ogg', 'кілометрів').
+string('around_1_kilometer.ogg', 'біля одного кілометру').
 string('around.ogg', 'приблизно ').
 
 string('footov.ogg', 'футів').
