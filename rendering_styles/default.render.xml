@@ -188,7 +188,7 @@
 		color_2 - text color
 		strokeWidth_3 - text shadow radius
 		color_3 - text shadow color -->
-		<case color="#000000" strokeWidth=":1.3" shadowRadius=":1.5" shadowColor="$defaultColor" strokeWidth_2="" color_2="#000000" strokeWidth_3="1" color_3="$defaultColor"/>
+		<case color="#000000" strokeWidth="1.5" shadowRadius="1" shadowColor="$defaultColor" strokeWidth_2="" color_2="#000000" strokeWidth_3="1" color_3="$defaultColor"/>
 		<apply_if nightMode="true" color="#999999" color_2="#999999"/>
 	</renderingAttribute>
 
@@ -4929,7 +4929,7 @@
 					</apply_if>
 				</switch>
 				<switch minzoom="15" nameTag="" textOnPath="true">
-					<case tag="highway" value="footway" textOrder="190" textColor="#000000">
+					<case tag="highway" value="footway" textOrder="190" textColor="#000000" textHaloColor="$highwayTrackTextHaloColorDay">
 						<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#77777777"/>
 					</case>
 					<case tag="area:highway" value="footway" textOrder="191" textColor="$pedestrianTextColor" textHaloColor="$pedestrianRoadColor"/>
@@ -6047,6 +6047,7 @@
 						<case maxzoom="17" textSize="14"/>
 						<case minzoom="18" textSize="15"/>
 					</apply_if>
+					<apply_if engine_v1="true" textDy="8"/>
 					<apply textColor="$buildingTextColor" textHaloColor="$buildingTextHaloColor" textWrapWidth="25" textOrder="136"/>
 				</switch>
 				<switch>
@@ -6058,13 +6059,14 @@
 						</switch>
 						<apply_if engine_v1="true" textDy="7"/>
 					</case>
-					<switch minzoom="19">
-						<case tag="entrance" value="" nameTag="" nameTag2="ref"/>
-						<case tag="entrance" value="" nameTag="addr:flats"/>
-						<case tag="entrance" value="" nameTag="ref" nameTag2="addr:flats"/>
+					<switch minzoom="18">
+						<case maxzoom="18" tag="entrance" value="" nameTag="ref"/>
+						<case tag="entrance" value="" nameTag="addr:housenumber"/>
+						<case minzoom="19" tag="entrance" value="" nameTag="ref" nameTag2="addr:flats"/>
+						<case minzoom="19" tag="entrance" value="" nameTag="addr:flats"/>
+						<case minzoom="19" tag="entrance" value="" nameTag="" nameTag2="ref"/>
 						<case tag="highway" value="elevator"/>
 						<apply textSize="12" textColor="#555555" textWrapWidth="15"/>
-						<apply_if engine_v1="true" textDy="3"/>
 					</switch>
 					<apply textHaloColor="#ddffffff">
 						<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#77444444"/>
@@ -8537,7 +8539,6 @@
 			<switch minzoom="11" color="#d4aaaa" color_2="#000000" strokeWidth_2="0.4">
 				<case tag="railway" value="station"/>
 				<case tag="aerialway" value="station"/>
-				<case tag="amenity" value="ferry_terminal"/>
 				<apply_if nightMode="true" color="#685454"/>
 			</switch>
 			<case minzoom="11" tag="public_transport" value="station" color="#d4aaaa">
@@ -8547,6 +8548,7 @@
 				<case tag="public_transport" value="platform"/>
 				<apply_if nightMode="true" color="#685454"/>
 			</switch>
+			<case minzoom="11" tag="amenity" value="ferry_terminal" color="$null" color_2="#33000000" strokeWidth_2="0.4"/>
 
 			<!-- Aeroway -->
 			<switch minzoom="12">
