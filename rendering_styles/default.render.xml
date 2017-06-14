@@ -180,7 +180,15 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="rulerCircle">
-		<case color="#000000" strokeWidth=":1.3" strokeWidth_2="" shadowRadius=":1.5" shadowColor="$defaultColor" color_2="#000000"/>
+		<!-- color - circle color
+		strokeWidth - circle width
+		shadowRadius - circle shadow radius
+		shadowColor - circle shadow color
+		strokeWidth_2 - dummy for text color
+		color_2 - text color
+		strokeWidth_3 - text shadow radius
+		color_3 - text shadow color -->
+		<case color="#000000" strokeWidth=":1.3" shadowRadius=":1.5" shadowColor="$defaultColor" strokeWidth_2="" color_2="#000000" strokeWidth_3="1" color_3="$defaultColor"/>
 		<apply_if nightMode="true" color="#999999" color_2="#999999"/>
 	</renderingAttribute>
 
@@ -5518,7 +5526,7 @@
 			</switch>
 
 			<!-- Emergency and Health -->
-			<switch textSize="12" textColor="#da0092" textHaloRadius="$textHaloRadius" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="25" textOrder="131">
+			<switch textSize="12" nameTag="" nameTag2="addr:housenumber" textColor="#da0092" textHaloRadius="$textHaloRadius" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="25" textOrder="131">
 				<case minzoom="17" tag="amenity" value="police" iconOrder="85"/>
 				<case minzoom="16" tag="amenity" value="fire_station" iconOrder="85"/>
 
@@ -5532,11 +5540,11 @@
 				<case minzoom="16" tag="emergency" value="ambulance_station"/>
 				<case minzoom="16" tag="amenity" value="social_facility"/>
 				<apply_if nightMode="true" textColor="#ffd4f0" textHaloColor="#AA663956"/>
-				<apply_if engine_v1="true" textDy="9"/>
+				<apply_if engine_v1="true" textDy="5"/>
 			</switch>
 
 			<!-- Traffic, transportation and orientation -->
-			<switch textSize="12" textColor="#0066ff" textHaloRadius="$textHaloRadius" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="25" textOrder="150">
+			<switch textSize="12" nameTag="" nameTag2="addr:housenumber" textColor="#0066ff" textHaloRadius="$textHaloRadius" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="25" textOrder="150">
 				<case minzoom="17" tag="amenity" value="fuel" nameTag="" textWrapWidth="20"/>
 				<case minzoom="17" tag="amenity" value="fuel" nameTag="brand" textWrapWidth="20"/>
 				<case minzoom="17" tag="amenity" value="fuel" nameTag="operator" textWrapWidth="20"/>
@@ -5559,7 +5567,7 @@
 				<case minzoom="14" tag="mountain_pass" value="yes" nameTag="" nameTag2="ele"/>
 				<case minzoom="14" tag="mountain_pass" value="yes" nameTag="ele"/>
 				<apply_if nightMode="true" textColor="#b9d5ff" textHaloColor="#88355777"/>
-				<apply_if engine_v1="true" textDy="9"/>
+				<apply_if engine_v1="true" textDy="5"/>
 			</switch>
 
 			<case minzoom="3" tag="route" value="ferry" nameTag2="ref" textSize="14" textColor="$routeFerryColor" textHaloRadius="$textHaloRadius" textHaloColor="#eef1eae4" textWrapWidth="35" textOnPath="true" textOrder="163">
@@ -5570,7 +5578,7 @@
 				<apply textColor="#0000bb" textHaloRadius="$textHaloRadius" textHaloColor="#ccffffff" textWrapWidth="30">
 					<apply_if nightMode="true" textColor="#a3c8ff" textHaloColor="#66002357"/>
 				</apply>
-				<apply_if engine_v1="true" textDy="8"/>
+				<apply_if engine_v1="true" textDy="5"/>
 			</switch>
 			<case minzoom="16" tag="man_made" value="pier" textSize="11" textColor="#1f62ae" textHaloRadius="$textHaloRadius" textHaloColor="#ccffffff" textOnPath="true" textWrapWidth="30" textOrder="175">
 				<apply_if nightMode="true" textColor="#a3c8ff" textHaloColor="#aa002357"/>
@@ -5665,7 +5673,7 @@
 			</switch>
 
 			<switch subwayMode="true">
-				<switch minzoom="12" tag="railway" value="station" nameTag="">
+				<switch minzoom="12" tag="railway" value="station" nameTag="" nameTag2="addr:housenumber">
 					<!-- <case additional="route=subway"/>-->
 					<case additional="network=rer"/>
 					<case additional="station=subway"/>
@@ -5703,8 +5711,8 @@
 				</apply_if>
 			</switch>
 			<switch minzoom="14">
-				<case tag="railway" value="station" nameTag="" textOrder="70" textColor="$railwayPOITextColorDay"/>
-				<case minzoom="16" tag="railway" value="yard" nameTag="" textOrder="75" textColor="$railwayPOITextColorDay"/>
+				<case tag="railway" value="station" nameTag="" nameTag2="addr:housenumber" textOrder="70" textColor="$railwayPOITextColorDay"/>
+				<case minzoom="16" tag="railway" value="yard" nameTag="" nameTag2="addr:housenumber" textOrder="75" textColor="$railwayPOITextColorDay"/>
 				<case minzoom="16" tag="abandoned:railway" value="station" textOrder="227" textColor="#8a8a8a">
 					<apply_if nightMode="true" textHaloColor="#22ffffff"/>
 				</case>
@@ -5742,7 +5750,7 @@
 				<apply_if nightMode="true" textColor="#c7e4ff" textHaloColor="#99444444"/>
 			</switch>
 			<switch minzoom="11">
-				<case tag="aeroway" value="aerodrome" nameTag="" textOrder="65"/>
+				<case tag="aeroway" value="aerodrome" nameTag="" nameTag2="addr:housenumber" textOrder="65"/>
 				<case minzoom="16" tag="abandoned:aeroway" value="aerodrome" nameTag="" textOrder="228"/>
 				<apply>
 					<switch>
@@ -5767,7 +5775,7 @@
 			</switch>
 
 			<!-- Accommodation -->
-			<switch textSize="12" nameTag="" textColor="$accomodationTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$accomodationTextHaloColorDay" textWrapWidth="25" textOrder="161">
+			<switch textSize="12" nameTag="" nameTag2="addr:housenumber" textColor="$accomodationTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$accomodationTextHaloColorDay" textWrapWidth="25" textOrder="161">
 				<switch>
 					<case minzoom="17" tag="tourism" value="apartment"/>
 					<case minzoom="17" tag="tourism" value="guest_house"/>
@@ -5785,14 +5793,14 @@
 						<case minzoom="17" tag="amenity" value="shelter"/>
 						<case minzoom="17" tag="leisure" value="summer_camp"/>
 					</switch>
-					<apply_if engine_v1="true" textDy="9"/>
+					<apply_if engine_v1="true" textDy="5"/>
 				</switch>
 				<case minzoom="16" tag="leisure" value="resort"/>
 				<apply_if nightMode="true" textHaloColor="#55234ca7"/>
 			</switch>
 
 			<!-- Tourism and Entertainment -->
-			<switch textSize="12" nameTag="" textColor="$tourismTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$tourismTextHaloColorDay" textWrapWidth="20" textOrder="155">
+			<switch textSize="12" nameTag="" nameTag2="addr:housenumber" textColor="$tourismTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$tourismTextHaloColorDay" textWrapWidth="20" textOrder="155">
 				<case minzoom="18" tag="tourism" value="artwork" nameTag="" textOrder="155"/>
 				<case minzoom="17" tag="tourism" value="picnic_site"/>
 				<case minzoom="17" tag="leisure" value="picnic_table"/>
@@ -5829,12 +5837,12 @@
 					<case tag="attraction" value="train"/>
 					<case tag="attraction" value="water_slide" textOnPath="true"/>
 				</switch>
-				<apply_if engine_v1="true" textDy="9"/>
+				<apply_if engine_v1="true" textDy="5"/>
 				<apply_if nightMode="true" textColor="#ffe7c2" textHaloColor="#aa4B3B21"/>
 			</switch>
 
 			<!-- Historic -->
-			<switch textSize="12" nameTag="" textColor="$historicTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$historicTextHaloColor" textWrapWidth="20" textOrder="158">
+			<switch textSize="12" nameTag="" nameTag2="addr:housenumber" textColor="$historicTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$historicTextHaloColor" textWrapWidth="20" textOrder="158">
 				<switch>
 					<case minzoom="17" tag="historic" value="aircraft"/>
 					<case minzoom="16" tag="historic" value="castle" nameTag=""/>
@@ -5863,15 +5871,15 @@
 					<case minzoom="15" tag="landuse" value="religious"/>
 					<case minzoom="16" tag="geological" value="palaeontological_site" textOrder="163"/>
 					<case minzoom="15" tag="historic" value="quarry"/>
-					<apply_if engine_v1="true" textDy="9"/>
+					<apply_if engine_v1="true" textDy="5"/>
 				</switch>
 				<case minzoom="17" tag="barrier" value="city_wall" textOnPath="true" textColor="#ffffff" textHaloColor="#aa4B3B21"/>
 			</switch>
 
 			<!-- Other Amenities -->
-			<switch textSize="12" nameTag="" textColor="$otherAmenitiesTextColorDay" textHaloColor="$otherAmenitiesTextHaloColorDay" textHaloRadius="$textHaloRadius" textWrapWidth="20" textOrder="171">
+			<switch textSize="12" nameTag="" nameTag2="addr:housenumber" textColor="$otherAmenitiesTextColorDay" textHaloColor="$otherAmenitiesTextHaloColorDay" textHaloRadius="$textHaloRadius" textWrapWidth="20" textOrder="171">
 				<case minzoom="17" tag="amenity" value="prison"/>
-				<case minzoom="16" tag="amenity" value="place_of_worship" nameTag="" textOrder="132"/>
+				<case minzoom="16" tag="amenity" value="place_of_worship" textOrder="132"/>
 
 				<case minzoom="17" tag="amenity" value="bank"/>
 				<case minzoom="17" tag="amenity" value="atm"/>
@@ -5921,12 +5929,12 @@
 				<case minzoom="17" tag="amenity" value="bicycle_repair_station"/>
 				<case minzoom="18" tag="man_made" value="water_well" textOrder="171"/>
 				<case minzoom="17" tag="amenity" value="water_point" textOrder="171"/>
-				<apply_if engine_v1="true" textDy="9"/>
+				<apply_if engine_v1="true" textDy="5"/>
 				<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#aa74734f"/>
 			</switch>
 
 			<!-- Office -->
-			<switch textSize="12" nameTag="" textColor="$otherAmenitiesTextColorDay" textHaloColor="$otherAmenitiesTextHaloColorDay" textHaloRadius="$textHaloRadius" textWrapWidth="20" textOrder="172">
+			<switch textSize="12" nameTag="" nameTag2="addr:housenumber" textColor="$otherAmenitiesTextColorDay" textHaloColor="$otherAmenitiesTextHaloColorDay" textHaloRadius="$textHaloRadius" textWrapWidth="20" textOrder="172">
 				<case minzoom="18" tag="office" value="accountant"/>
 				<case minzoom="18" tag="office" value="administrative"/>
 				<case minzoom="18" tag="office" value="advertising_agency"/>
@@ -5958,7 +5966,7 @@
 				<case minzoom="18" tag="office" value="telecommunication" textOrder="159"/>
 				<case minzoom="17" tag="office" value="travel_agent"/>
 				<case minzoom="18" tag="shop" value="estate_agent"/>
-				<apply_if engine_v1="true" textDy="9"/>
+				<apply_if engine_v1="true" textDy="5"/>
 				<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#aa555555"/>
 			</switch>
 
@@ -5971,7 +5979,7 @@
 				<apply_if engine_v1="true" textDy="9"/>
 				<apply_if nightMode="true" textColor="#eeeeee" textHaloColor="#77555555"/>
 			</case>
-			<switch textSize="11" nameTag="" textColor="#444444" textHaloRadius="$textHaloRadius" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="17" textOrder="162">
+			<switch textSize="11" nameTag="" nameTag2="addr:housenumber" textColor="#444444" textHaloRadius="$textHaloRadius" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="17" textOrder="162">
 				<case minzoom="17" tag="man_made" value="windmill" textSize="12"/>
 				<case minzoom="17" tag="man_made" value="watermill" textSize="12"/>
 				<case minzoom="19" tag="man_made" value="water_tap"/>
@@ -6004,7 +6012,7 @@
 				<case minzoom="18" tag="barrier" value="" nameTag="" nameTag2="ref"/>
 				<case minzoom="17" tag="military" value="checkpoint" nameTag="ref"/>
 				<case minzoom="17" tag="military" value="checkpoint" nameTag="" nameTag2="ref"/>
-				<apply_if engine_v1="true" textDy="9"/>
+				<apply_if engine_v1="true" textDy="5"/>
 				<apply_if nightMode="true" textColor="#eeeeee" textHaloColor="#aa555555"/>
 			</switch>
 
@@ -6016,8 +6024,8 @@
 					<case tag="abandoned:building" value=""/>
 					<case tag="disused:building" value=""/>
 					<case tag="building" value="" nameTag="" nameTag2="addr:housenumber"/>
-					<case tag="building" value="" nameTag="addr:housenumber" />
 					<case tag="building" value="" nameTag="addr:housename" nameTag2="addr:housenumber"/>
+					<case tag="building" value="" nameTag="addr:housenumber" />
 					<apply_if maxzoom="17" textSize="13" textMinDistance="40" intersectionMargin="20"/>
 					<apply_if minzoom="18" textSize="15"/>
 					<!-- <apply_if engine_v1="true" textDy="7"/> -->
@@ -6051,9 +6059,9 @@
 						<apply_if engine_v1="true" textDy="7"/>
 					</case>
 					<switch minzoom="19">
-						<case tag="entrance" value="" nameTag="ref"/>
-						<case tag="entrance" value="" nameTag="addr:flats"/>
 						<case tag="entrance" value="" nameTag="" nameTag2="ref"/>
+						<case tag="entrance" value="" nameTag="addr:flats"/>
+						<case tag="entrance" value="" nameTag="ref" nameTag2="addr:flats"/>
 						<case tag="highway" value="elevator"/>
 						<apply textSize="12" textColor="#555555" textWrapWidth="15"/>
 						<apply_if engine_v1="true" textDy="3"/>
@@ -6066,7 +6074,7 @@
 			</switch>
 
 			<!-- Food and Drink -->
-			<switch textSize="12" textColor="$foodTextColorDay" textHaloColor="$foodTextHaloColorDay" textHaloRadius="$textHaloRadius" textWrapWidth="20" textOrder="159">
+			<switch textSize="12" nameTag="" nameTag2="addr:housenumber" textColor="$foodTextColorDay" textHaloColor="$foodTextHaloColorDay" textHaloRadius="$textHaloRadius" textWrapWidth="20" textOrder="159">
 				<case minzoom="17" tag="amenity" value="restaurant"/>
 				<case minzoom="17" tag="amenity" value="cafe"/>
 				<case minzoom="17" tag="amenity" value="fast_food"/>
@@ -6076,11 +6084,12 @@
 				<case minzoom="17" tag="amenity" value="biergarten"/>
 				<case minzoom="17" tag="amenity" value="ice_cream"/>
 				<case minzoom="18" tag="amenity" value="drinking_water" textOrder="171"/>
+				<apply_if engine_v1="true" textDy="5"/>
 				<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#5574542F"/>
 			</switch>
 
 			<!-- Shops -->
-			<switch textSize="12" textColor="$shopsTextColorDay" textHaloColor="$shopsTextHaloColorDay" textHaloRadius="$textHaloRadius" textWrapWidth="15" textOrder="160">
+			<switch textSize="12" nameTag="" nameTag2="addr:housenumber" textColor="$shopsTextColorDay" textHaloColor="$shopsTextHaloColorDay" textHaloRadius="$textHaloRadius" textWrapWidth="15" textOrder="160">
 				<case minzoom="17" tag="shop" value="alcohol"/>
 				<case minzoom="17" tag="shop" value="antiques"/>
 				<case minzoom="17" tag="shop" value="art"/>
@@ -6158,7 +6167,7 @@
 				<case minzoom="17" tag="shop" value="lighting"/>
 				<case minzoom="17" tag="shop" value="locksmith"/>
 				<case minzoom="17" tag="shop" value="lottery"/>
-				<case minzoom="16" tag="shop" value="mall"/>
+				<case minzoom="16" tag="shop" value="mall" textOrder="156"/>
 				<case minzoom="16" tag="amenity" value="marketplace" textOrder="157"/>
 				<case minzoom="17" tag="shop" value="medical_supply"/>
 				<case minzoom="17" tag="shop" value="mobile_phone"/>
@@ -6209,8 +6218,7 @@
 				<case minzoom="17" tag="shop" value="weapons"/>
 				<case minzoom="17" tag="shop" value="window_blind"/>
 				<case minzoom="17" tag="shop" value=""/>
-<!--				<case minzoom="17" tag="shop" value="wine"/>-->
-				
+				<apply_if engine_v1="true" textDy="5"/>
 				<apply_if nightMode="true" textColor="#ffe0ff" textHaloColor="#556f3f6e"/>
 			</switch>
 
@@ -6223,7 +6231,7 @@
 			</switch>
 
 			<!-- Sport + Leisure -->
-			<switch textSize="12" textColor="$sportTextColorDay" textWrapWidth="19" textHaloColor="$sportTextHaloColorDay" textHaloRadius="$textHaloRadius" textOrder="166">
+			<switch textSize="12" nameTag="" nameTag2="addr:housenumber" textColor="$sportTextColorDay" textWrapWidth="19" textHaloColor="$sportTextHaloColorDay" textHaloRadius="$textHaloRadius" textOrder="166">
 				<switch>
 					<case minzoom="17" tag="sport" value="american_football"/>
 					<case minzoom="17" tag="sport" value="equestrian"/>
@@ -6361,7 +6369,8 @@
 				<apply_if engine_v1="true" textDy="7"/>
 			</switch>
 			<apply_if additional="tourism=yes" nameTag="">
-				<apply intersectionMargin="15" textOrder="83" textSize="13" textColor="$tourismAttractionTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$tourismAttractionTextHaloColorDay" textWrapWidth="20" textBold="true" textDy="9"/>
+				<apply intersectionMargin="15" textOrder="83" textSize="13" textColor="$tourismAttractionTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$tourismAttractionTextHaloColorDay" textWrapWidth="20" textBold="true"/>
+				<apply_if engine_v1="true" textDy="5"/>
 				<apply_if maxzoom="16" textWrapWidth="16"/>
 				<apply_if nightMode="true" textHaloColor="#88641500"/>
 				<apply_if moreDetailed="false" maxzoom="15" disable="true"/>
@@ -7673,7 +7682,7 @@
 					<case minzoom="17" tag="shop" value="lighting" icon="lighting"/>
 					<case minzoom="17" tag="shop" value="locksmith" icon="locksmith"/>
 					<case minzoom="17" tag="shop" value="lottery" icon="lottery"/>
-					<case minzoom="15" tag="shop" value="mall" icon="shop_mall" iconVisibleSize="22" iconOrder="157"/>
+					<case minzoom="15" tag="shop" value="mall" icon="shop_mall" iconVisibleSize="22" iconOrder="156"/>
 					<case minzoom="15" tag="amenity" value="marketplace" icon="amenity_marketplace" iconVisibleSize="32" iconOrder="157"/>
 					<case minzoom="17" tag="shop" value="medical_supply" icon="medical_supply"/>
 					<case minzoom="17" tag="shop" value="mobile_phone" icon="shop_mobile_phone" iconVisibleSize="32"/>
