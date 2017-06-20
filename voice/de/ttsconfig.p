@@ -83,18 +83,18 @@ string('follow1.ogg', 'Dem Strassenverlauf ').
 string('follow2.ogg', 'folgen').
 
 % ARRIVE
-string('and_arrive_destination.ogg', 'dann haben Sie Ihr Ziel ').
+string('and_arrive_destination.ogg', ', dann haben Sie Ihr Ziel ').
 string('reached_destination.ogg', 'Ziel ').
-string('and_arrive_intermediate.ogg', 'dann haben Sie Ihr Zwischenziel ').
+string('and_arrive_intermediate.ogg', ', dann haben Sie Ihr Zwischenziel ').
 string('reached_intermediate.ogg', 'Zwischenziel ').
 string('reached.ogg', 'erreicht').
 
 % NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'dann passieren Sie Wegpunkt ').
+string('and_arrive_waypoint.ogg', ', dann passieren Sie Wegpunkt ').
 string('reached_waypoint.ogg', 'Sie passieren Wegpunkt ').
-string('and_arrive_favorite.ogg', 'dann passieren Sie Favorit ').
+string('and_arrive_favorite.ogg', ', dann passieren Sie Favorit ').
 string('reached_favorite.ogg', 'Sie passieren Favorit ').
-string('and_arrive_poi.ogg', 'dann passieren Sie P O I ').
+string('and_arrive_poi.ogg', ', dann passieren Sie P O I ').
 string('reached_poi.ogg', 'Sie passieren P O I ').
 
 % ATTENTION
