@@ -119,6 +119,7 @@ generatePngs() {
 
        generatePngs 'seamark' '#777777' '#777777' '' x2 '' nomx
        generatePngs 'seamark_small' '#777777' '#777777' '' '' '' nomx
+       generatePngs 'seamark_small_poi' '#777777' '#ff8f00'
        generatePngs 'seamark_big' '#777777' '#777777' '' '' x4 nomx
        generateElements 'seamark_shields'
        generateElements 'seamark_shields_x4'

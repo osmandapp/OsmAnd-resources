@@ -388,6 +388,7 @@ mycp leisure slipway transport_slipway.png
 mycp man_made lighthouse transport_lighthouse.png
 mycp waterway lock_gate_small functional-icons_lock_gate.png  #scale 0.5
 mycpname lock_gate poi_colored_lock_gate.png  #scale 0.25
+mycpname lock_basin seamark_small_poi_lock_basin.png  #scale 0.25
 mycp waterway dock transport_dock.png
 
 mycpname halt_small functional-icons_halt_small.png  #scale 0.25
