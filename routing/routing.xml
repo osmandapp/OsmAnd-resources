@@ -483,7 +483,7 @@
 		</point>
 	</routingProfile>
 
-	<routingProfile name="bicycle" baseProfile="bicycle" restrictionsAware="true" minDefaultSpeed="2" maxDefaultSpeed="37"
+	<routingProfile name="bicycle" baseProfile="bicycle" restrictionsAware="true" minDefaultSpeed="2" maxDefaultSpeed="33"
 			leftTurn="4" rightTurn="2" followSpeedLimitations="false" onewayAware="true" heuristicCoefficient="1.4">
 		<!-- <attribute name="relaxNodesIfStartDistSmallCoeff" value="2.5"/>  -->
 		<!-- New ROUTING API -->
@@ -559,7 +559,7 @@
 			<select value="-1" t="sac_scale" v="difficult_alpine_hiking"/>
 			<select value="-1" t="mtb:scale" v="5"/>
 			<select value="-1" t="mtb:scale" v="6"/>
-			<!-- vehicle=no is now in line 577 -->
+			<!-- vehicle=no is now further down (for various reasons) -->
 			<select value="1" t="vehicle" v="agricultural"/>
 			<select value="1" t="vehicle" v="forestry"/>
 			<select value="1"  t="vehicle" v="yes"/>
@@ -574,6 +574,9 @@
 			<select value="1"  t="access" v="yes"/>
 			<select value="1"  t="access" v="permissive"/>
 			
+			<select value="1" t="highway" v="cycleway"/>
+			<select value="1" t="route_bicycle"/>
+			<!-- Two lines above: These have to be before the vehicle=no command -->
 			<select value="-1" t="vehicle" v="no"/>
 			<select value="-1" t="crossing" v="no"/>
 
@@ -585,8 +588,6 @@
 			<select value="1" t="highway" v="tertiary_link"/>
 			<select value="1" t="highway" v="road"/>
 			<select value="1" t="highway" v="residential"/>
-			<select value="1" t="highway" v="cycleway"/>
-			<select value="1" t="route_bicycle"/>
 			<select value="1" t="highway" v="unclassified"/>
 			<select value="1" t="highway" v="service"/>
 			<select value="1" t="highway" v="track"/>
@@ -620,25 +621,7 @@
 		<way attribute="speed" type="speed">
 			<select value="1.3" t="highway" v="steps"/>
 			<select value="3" t="route"   v="ferry"/>
-			<select value="5" t="bicycle" v="dismount"/>
-			<!-- Line above: I have moved this further down, into the
-			rules for driving_style_speed. It makes sense there.
- 			For the other two driving styles, it is a better
-			solution not to set a fixed value here for
-			bicycle=designated. Because even with bicycle=designated
-			a way can be unpaved. www.openstreetmap.org/way/294000641
-			Osmand should still be able to downgrade these ways in
-			"avoid unpaved" mode. We are making this possible by
-			not setting a fixed value here for bicycle=designated.
-			And we are not loosing anything, because when not in "avoid
-			unpaved mode" bicycle=designated will always get a big
-			upgrade later which leads to values of 34 or more.-->
-			<!-- Lines above: These lines should be deleted here
-			and moved further down. They contain downgrades
-			for the "avoid unpaved" mode. In that mode, Osmand
-			should check if a path or track is paved, asphalt,
-			etc. Only if no tag like "asphalt" has been found,
-			then paths / tracks etc should be downgraded.-->
+			<select value="6" t="bicycle" v="dismount"/>
 			<if param="driving_style_speed">
 				<select value="19" t="highway" v="motorway"/>
 				<select value="19" t="highway" v="motorway_link"/>
@@ -650,12 +633,19 @@
 				<select value="19" t="highway" v="secondary_link"/>
 				<select value="19" t="highway" v="tertiary"/>
 				<select value="19" t="highway" v="tertiary_link"/>
-				<select value="17.2" t="highway" v="residential"/>
+				<select value="21" t="route_bicycle"/>
+				<!-- Line above: Command should be moved up here, to be applied more
+				often. If a residential way is marked route bicycle, this higher value will
+				now apply. The same for all the categories that follow. This makes
+				sense even in speed style, because if you stay away from main roads,
+				you avoid traffic lights (and thus save time). So main roads will be
+				avoided if there is an official cycle route nearby (should be fast). --> 
+				<!-- Line above: Is there a possibility to EXCLUDE this command if avoid unpaved is set? -->
+				<select value="19" t="highway" v="residential"/>
 				<select value="18" t="highway" v="unclassified"/>
-				<select value="35" t="highway" v="cycleway"/>
-				<select value="35" t="path_bicycle_designated"/>
-				<select value="25" t="route_bicycle"/>
-				<select value="26" t="bicycle" v="designated"/>
+				<select value="33" t="highway" v="cycleway"/>
+				<select value="33" t="path_bicycle_designated"/>
+				<select value="28" t="bicycle" v="designated"/>
 				<select value="8.5" t="highway" v="track"/>
 				<select value="7" t="highway" v="footway"/>
 				<select value="6" t="highway" v="path"/>
@@ -665,38 +655,61 @@
 			<select value="7" t="highway" v="trunk"/>
 			<select value="7" t="highway" v="trunk_link"/>
 
+			<select value="20" t="cycleway" v="sidepath"/>
+			<!-- Line above: This tag is used for cycleways along main
+			roads. These need to be downgraded before the 31 kmh
+			for bicycle designated are set. -->
+			<select value="31" t="bicycle" v="designated"/>
+			<!-- Lines above: Sorry - I made a mistake in the former version. It makes sense to set
+			a fixed value here for bicycle=designated.  Otherwise there would be one major error:
+			The combination of designated AND asphalt (frequently found ) would get a much
+			lower value than just designated alone. -->
+
 			<if param="driving_style_safety">
-				<select value="23" t="highway" v="cycleway"/>
-				<select value="23" t="bicycle" v="designated"/>
 				<select value="7" t="highway" v="primary"/>
 				<select value="7" t="highway" v="primary_link"/>
 				<select value="9" t="highway" v="secondary"/>
 				<select value="9" t="highway" v="secondary_link"/>
-				<select value="13" t="highway" v="tertiary"/>
-				<select value="13" t="highway" v="tertiary_link"/>
-				<select value="22" t="highway" v="residential"/>
+				<select value="14" t="highway" v="tertiary"/>
+				<select value="14" t="highway" v="tertiary_link"/>
+				<select value="18" t="highway" v="residential"/>
+				<select value="24" t="highway" v="cycleway"/>
+				<select value="27" t="route_bicycle"/>
+				<!-- The integration of "bicycle routes" offers great possibilities.
+				But still there are many examples where Osmand can even find
+				a better alternative. Now, three choices  help to combine the
+				strengths of the existing routing with bicycle routes:
+				First, if a path, track or footway is a cycle route, it gets a big upgrade.
+				Second, bicycle routes that lead over main roads are not upgraded. They
+				are normally not especially safe or attractive. Example: In Berlin, one
+				cycle route is on "Heerstrasse" which is not good for cycling at all. And
+				for some cycle routes in Berlin and Vienna there are better alternatives.
+				Third, there are even some unpaved bicycle routes. These get a downgrade
+				later. And if a bicycle route has no surface tag, there is a slight risk that
+				it is unpaved. Therefore, it will be downgraded a little bit. --> 
 				<select value="22" t="highway" v="track"/>
-				<select value="19" t="highway" v="path"/>
-				<select value="18" t="highway" v="footway"/>
+				<select value="20" t="highway" v="path"/>
+				<select value="19" t="highway" v="footway"/>
 			</if>
 
-			<select value="24.0" t="route_bicycle"/>
-			<select value="8" t="highway" v="primary"/>
-			<select value="8" t="highway" v="primary_link"/>
-			<select value="10.5" t="highway" v="secondary"/>
-			<select value="10.5" t="highway" v="secondary_link"/>
-			<select value="13.5" t="highway" v="tertiary"/>
-			<select value="13.5" t="highway" v="tertiary_link"/>
-			<select value="18.9" t="highway" v="road"/>
-			<select value="23.5" t="highway" v="residential"/>
-			<select value="22.0" t="highway" v="cycleway"/>
+			<select value="10" t="highway" v="primary"/>
+			<select value="10" t="highway" v="primary_link"/>
+			<select value="13" t="highway" v="secondary"/>
+			<select value="13" t="highway" v="secondary_link"/>
+			<select value="18" t="highway" v="tertiary"/>
+			<select value="18" t="highway" v="tertiary_link"/>
+			<select value="25.0" t="route_bicycle"/>
+			<select value="23" t="highway" v="residential"/>
+			<select value="24" t="highway" v="cycleway"/>
 			<select value="23" t="highway" v="unclassified"/>
 			<select value="11" t="highway" v="service"/>
-			<select value="19.0" t="highway" v="track"/>
-			<select value="14" t="highway" v="path"/>
-			<select value="23" t="highway" v="living_street"/>
+			<select value="22" t="highway" v="track"/>
+			<select value="19" t="highway" v="path"/>
+			<select value="15" t="highway" v="footway"/>
+			<select value="19" t="highway" v="road"/>
+			<select value="24" t="highway" v="living_street"/>
 			<select value="8" t="highway" v="pedestrian"/>
-			<select value="10" t="highway" v="footway"/>
+
 			<select value="10"  t="highway" v="byway"/>
 			<select value="2" t="highway" v="platform"/>
 			<select value="2" t="highway" v="services"/>
@@ -784,7 +797,7 @@
 			<select value="0.1" t="bicycle" v="private"/>
 			<select value="0.2" t="bicycle" v="destination"/>
 <!--			<select value="0.05" t="access" v="private"/>-->
-			<select value="0.4" t="indoor" v="yes"/>
+			<select value="0.3" t="indoor" v="yes"/>
 			<select value="0.1" t="barrier" v="debris"/>
 			<select value="0.1" t="bicycle" v="use_sidepath"/>
 
@@ -819,9 +832,9 @@
 <!--				<select value="0.6" t="surface" v="wood"/>-->
 			</if>
 
-			<select value="0.5" t="bicycle" v="dismount"/>
-			<select value="0.5" t="cycleway" v="sidepath"/>
-			<select value="0.45" t="footway" v="sidewalk"/>
+			<select value="1.0" t="bicycle" v="dismount"/>
+			<select value="1.0" t="cycleway" v="sidepath"/>
+			<select value="0.3" t="footway" v="sidewalk"/>
 			<!-- Following lines: I would suggest to change
 			the order, according to the following scheme:
 			
@@ -900,7 +913,6 @@
 			<select value="1.0" t="highway" v="primary"/>
 			<select value="1.0" t="highway" v="secondary"/>
 			<select value="1.0" t="highway" v="tertiary"/>
-			<select value="1.0" t="highway" v="residential"/>
 			<select value="1.0" t="highway" v="service"/>
 
 			<select value="1.35" t="surface" v="asphalt"/>
@@ -918,23 +930,25 @@
 			</if>
 
 
-			<select value="1.3" t="route_bicycle"/> 
-			<!-- Bicycle routes should not get a factor here that is
-			too high. They are already defined with 23 kmh (see
-			above). So 1.3 leads to a value of 30 kmh already. And
-			they are not as perfect as the name implies. One 
-			example in Berlin: One bicycle route goes along the
-			"Heerstrasse" which is not good for cycling at all.
-			Osmand is normally able to find better routes! -->
-			<select value="1.6" t="highway" v="cycleway"/>
+			<select value="1.25" t="highway" v="cycleway"/>
+			<!-- I have downgraded cycleways here and upgraded their
+			kmh value at the same time. First, cycleways with
+			asphalt yes should get a slight upgrade (there are also
+			cycleways with compacted). Second, the end value for
+			cycleways should be lower than the value for paths and
+			footways with bicycle designated. Cycleways are often
+			along main roads, whereas the attractive ways for
+			bicycles (in parks or along rivers) are normally tagged
+			bicycle=designated or yes. -->
+
 			<select value="1.8" t="bicycle" v="official"/>
 			<select value="1.8" t="bicycle" v="designated"/> 
-			<select value="1.25" t="bicycle" v="yes"/>
+			<select value="1.3" t="bicycle" v="yes"/>
 			<!-- the value for bicycle=yes needs to be smaller than the
  			values for paved and asphalt. Reason: Often you have areas with
-			several paths that are tagged bicycle=yes, but only some of these
+			several paths that are tagged bicycle yes, but only some of these
 			paths are also tagged paved. In that case, the paved paths should
- 			get a higher priority.-->
+ 			get a higher priority. -->
 
 			<select value="1.1" t="surface" v="compacted"/>
 			<select value="1.1" t="surface" v="fine_gravel"/>
@@ -959,11 +973,28 @@
 			<select value="0.75" t="surface" v="ground"/>
 			<select value="0.5" t="surface" v="mud"/>
 			<select value="0.5" t="smoothness" v="very_bad"/>
+			<select value="1.2" t="route_bicycle"/> 
+			<!-- If a part of a bicycle route has a surface tag, it will have
+			been upgraded or downgraded up to this point. The value
+			1.2 here is applied to all bicycle routes with no surface tag. -->
+			<select value="1.25" t="highway" v="residential"/>
+			<!-- New: The factor for residential is better placed here, so that we can
+			first downgrade all residential that are tagged with a bad surface.
+			Overpass shows many cases of residential with sand, unpaved, etc.
+			And: Even in big cities, the surface of residential is often not tagged
+			at all. So residential roads that have no surface tag, now get a slightly
+			lower value than those with asphalt or paved. The value of 1.25 is
+			right because it should be close to the 1.35 for paved. Reason: Many 
+			residential roads still have no surface tag at all. Most of them are 
+			asphalt (but we do not know for sure). So, they should be downgraded
+			a bit (to take into account that they might be unpaved), but not too much
+			(because most of them will still be paved). -->
 
-			<select value="1.0" t="highway" v="unclassified"/>
+			<select value="1.25" t="highway" v="living_street"/>
+			<select value="1.25" t="highway" v="unclassified"/>
 			<select value="1.0" t="highway" v="road"/>
-			<select value="0.76" t="highway" v="footway"/>
-			<select value="0.75" t="highway" v="track"/>
+			<select value="0.75" t="highway" v="footway"/>
+			<select value="0.7" t="highway" v="track"/>
 			<select value="0.6" t="highway" v="path"/>
 
 			<if param="driving_style_speed">
@@ -1002,9 +1033,9 @@
 				<select value="-1" t="barrier" v="border_control"/>
 			</if>
 			<if param="driving_style_safety">
-				<select value="16" t="crossing" v="traffic_signals"/>
-				<select value="16" t="crossing" v="island;traffic_signals"/>
-				<select value="30" t="highway" v="traffic_signals"/>
+				<select value="17" t="crossing" v="traffic_signals"/>
+				<select value="17" t="crossing" v="island;traffic_signals"/>
+				<select value="27" t="highway" v="traffic_signals"/>
 			</if>
 			<!-- Lines above: These values are only a workaround. They apply until 
 			one issue is resolved: The triple counting of traffic lights at main
@@ -1285,4 +1316,3 @@
 		</way>
 	</routingProfile>
 </osmand_routing_config>
-
