@@ -658,11 +658,17 @@
 			<!-- Line above: This tag is used for cycleways along main
 			roads. These need to be downgraded before the 31 kmh
 			for bicycle designated are set. -->
-			<select value="31" t="bicycle" v="designated"/>
-			<!-- Lines above: Sorry - I made a mistake in the former version. It makes sense to set
-			a fixed value here for bicycle=designated.  Otherwise there would be one major error:
-			The combination of designated AND asphalt (frequently found ) would get a much
-			lower value than just designated alone. -->
+			
+			<ifnot param="avoid_unpaved">
+				<select value="31" t="bicycle" v="designated"/>
+			</ifnot>
+			
+			<!-- Lines above: This fixed value for bicycle=designated will not be applied in 
+			"avoid unpaved" mode. Reason: The kmh value that we set here is fixed, it can not
+			be downgraded later. Generally, it makes sense to set a fixed value here for
+			bicycle=designated.  Otherwise there would be one major error: The combination of
+			designated AND asphalt (frequently found ) would get a much lower value than just
+			designated alone. -->
 
 			<if param="driving_style_safety">
 				<select value="7" t="highway" v="primary"/>
