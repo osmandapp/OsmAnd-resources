@@ -723,90 +723,157 @@
 		</way>
 
 		<way attribute="obstacle_srtm_alt_speed">
+
 			<if param="height_obstacles">
+
 				<gt value1="-100" value2=":incline">
-					<select value="-1" t="surface" v="cobblestone"/>
-					<select value="-1" t="osmand_highway_integrity_brouting_low" v="yes"/>
-					<select value="-1" t="highway" v="path"/>
-					<select value="-1" t="highway" v="track"/>
-					<select value="-1" t="highway" v="footway"/>
+                	                <select value="-1"/>
+                        	</gt>
+				<!-- Above: Downhill between 100 and 60 is so steep that it should probably
+				be excluded in any case, even in hilly mode and for paved roads.-->
+
+				<gt value1="-60" value2=":incline">
+					<select value="400" t="surface" v="cobblestone"/>
+                                        <select value="300" t="surface" v="paved"/>
+                                        <select value="300" t="surface" v="asphalt"/>
+                                        <select value="300" t="surface" v="concrete"/>
+                                        <select value="400" t="osmand_highway_integrity_brouting_low" v="yes"/>
+                                        <select value="400" t="highway" v="path"/>
+                                        <select value="400" t="highway" v="track"/>
+                                        <select value="400" t="highway" v="footway"/>
+                                        <select value="330"/>
 				</gt>
-				<gt value1="-25" value2=":incline">
-					<select value="170" t="surface" v="cobblestone"/>
-					<select value="1" t="surface" v="paved"/>
-					<select value="1" t="surface" v="asphalt"/>
-					<select value="1" t="surface" v="concrete"/>
-					<select value="180" t="osmand_highway_integrity_brouting_low" v="yes"/>
-					<select value="180" t="highway" v="path"/>
-					<select value="170" t="highway" v="track"/>
-					<select value="180" t="highway" v="footway"/>
-				</gt>
-				<gt value1="-17" value2=":incline">
-					<select value="140" t="surface" v="cobblestone"/>
-					<select value="1" t="surface" v="paved"/>
-					<select value="1" t="surface" v="asphalt"/>
-					<select value="1" t="surface" v="concrete"/>
-					<select value="150" t="osmand_highway_integrity_brouting_low" v="yes"/>
-					<select value="150" t="highway" v="path"/>
-					<select value="140" t="highway" v="track"/>
-					<select value="150" t="highway" v="footway"/>
-				</gt>
-				<gt value1="-9" value2=":incline">
-					<select value="1" t="surface" v="paved"/>
-					<select value="1" t="surface" v="asphalt"/>
-					<select value="1" t="surface" v="concrete"/>
-					<select value="30" t="osmand_highway_integrity_brouting_low" v="yes"/>
-					<select value="30" t="highway" v="path"/>
-					<select value="25" t="highway" v="track"/>
+				<!-- Lines above: This is still so steep, that a high penalty makes sense in any mode, and
+                                even on paved surface. Maybe the values need some refinement.-->
+
+				<gt value1="-40" value2=":incline">
+                                        <select value="200" t="surface" v="cobblestone"/>
+					<select value="100" t="surface" v="paved"/>
+                                        <select value="100" t="surface" v="asphalt"/>
+                                        <select value="100" t="surface" v="concrete"/>
+                                        <select value="200" t="osmand_highway_integrity_brouting_low" v="yes"/>
+                                        <select value="200" t="highway" v="path"/>
+                                        <select value="200" t="highway" v="track"/>
+                                        <select value="200" t="highway" v="footway"/>
+                                        <select value="150"/>
 				</gt>
 
+				<gt value1="-25" value2=":incline">
+					<select value="140" t="surface" v="cobblestone"/>
+					<select value="40" t="surface" v="paved"/>
+					<select value="40" t="surface" v="asphalt"/>
+					<select value="40" t="surface" v="concrete"/>
+					<select value="150" t="osmand_highway_integrity_brouting_low" v="yes"/>
+					<select value="150" t="highway" v="path"/>
+					<select value="150" t="highway" v="track"/>
+					<select value="150" t="highway" v="footway"/>
+                                        <select value="60"/>
+				</gt>
+
+				<gt value1="-20" value2=":incline">
+					<select value="40" t="surface" v="cobblestone"/>
+					<select value="1" t="surface" v="paved"/>
+					<select value="1" t="surface" v="asphalt"/>
+					<select value="1" t="surface" v="concrete"/>
+					<select value="80" t="osmand_highway_integrity_brouting_low" v="yes"/>
+					<select value="80" t="highway" v="path"/>
+					<select value="80" t="highway" v="track"/>
+                                        <select value="1"/>
+				</gt>
+
+				<gt value1="-9" value2=":incline">
+					<select value="0.1" t="surface" v="paved"/>
+					<select value="0.1" t="surface" v="asphalt"/>
+					<select value="0.1" t="surface" v="concrete"/>
+					<select value="30" t="osmand_highway_integrity_brouting_low" v="yes"/>
+					<select value="30" t="highway" v="path"/>
+					<select value="30" t="highway" v="track"/>
+                                        <select value="0.1"/>
+				</gt>
+
+
+			
 				<if param="relief_smoothness_factor_more_plains">
 					<gt value1="4" value2=":incline">
+						<select value="3"/>
+					</gt>
+					<gt value1="8" value2=":incline">
 						<select value="5"/>
 					</gt>
-					<gt value1="7" value2=":incline">
-						<select value="7"/>
-					</gt>
 					<gt value1="15" value2=":incline">
-						<select value="9"/>
+						<select value="35"/>
 					</gt>
 					<gt value1="25" value2=":incline">
-						<select value="12"/>
+						<select value="120"/>
 					</gt>
-					<select value="4"/>
-				</if>
-				<if param="relief_smoothness_factor_hills">
-					<gt value1="4" value2=":incline">
-						<select value="2.5"/>
+					<gt value1="30" value2=":incline">
+						<select value="240"/>
 					</gt>
-					<gt value1="7" value2=":incline">
-						<select value="3.5"/>
-					</gt>
-					<gt value1="15" value2=":incline">
-						<select value="4.5"/>
-					</gt>
-					<gt value1="25" value2=":incline">
-						<select value="6"/>
+					<gt value1="35" value2=":incline">
+						<select value="480"/>
 					</gt>
 					<select value="1"/>
 				</if>
 
-				<gt value1="4" value2=":incline">
-					<select value="3.5"/>
-				</gt>
-				<gt value1="7" value2=":incline">
-					<select value="4.5"/>
-				</gt>
-				<gt value1="15" value2=":incline">
-					<select value="6"/>
-				</gt>
-				<gt value1="25" value2=":incline">
-					<select value="8"/>
-				</gt>
-				<select value="1.5"/>
+				<if param="relief_smoothness_factor_hills">
+
+					<gt value1="1" value2=":incline">
+						<select value="0.1"/>
+					</gt>
+					<gt value1="8" value2=":incline">
+						<select value="0.3"/>
+					</gt>
+					<gt value1="15" value2=":incline">
+						<select value="4"/>
+					</gt>
+					<gt value1="25" value2=":incline">
+						<select value="70"/>
+					</gt>
+					<!-- Incline above 25 per cent should get a high penalty, even
+					in hills mode: The steepest incline at the Tour de France in
+					2015 was 27 per cent. That was the peak value, while the
+					average value of that incline was 10 per cent. Most 
+					famous Tour de France inclines only have average values
+					of 10 to 15 per cent.
+					The higher inclines need much higher penalties, because 
+					they could appear only once in a longer route. So if you really want
+					to make a difference for this one incline, it needs a high (single)
+					penalty. An incline of 10 per cent can appear many times, and will
+					get a penalty many times, so even a low penalty can make a difference.-->
+
+					<gt value1="30" value2=":incline">
+						<select value="140"/>
+					</gt>
+
+					<gt value1="35" value2=":incline">
+						<select value="280"/>
+					</gt>
+					<select value="0.1"/>
+				</if>
+
+					<gt value1="4" value2=":incline">
+						<select value="2"/>
+					</gt>
+					<gt value1="8" value2=":incline">
+						<select value="4"/>
+					</gt>
+					<gt value1="15" value2=":incline">
+						<select value="30"/>
+					</gt>
+					<gt value1="25" value2=":incline">
+						<select value="90"/>
+					</gt>
+					<gt value1="30" value2=":incline">
+						<select value="180"/>
+					</gt>
+					<gt value1="35" value2=":incline">
+						<select value="360"/>
+					</gt>
+					<select value="1"/>
+
+
 			</if>
 		</way>
-
 		<way attribute="priority">
 			<select value="0.1" t="bicycle" v="private"/>
 			<select value="0.2" t="bicycle" v="destination"/>
