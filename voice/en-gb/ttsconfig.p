@@ -88,8 +88,8 @@ string('reached_intermediate.ogg', 'you have reached your intermediate destinati
 % NEARBY POINTS
 string('and_arrive_waypoint.ogg', 'and pass GPX waypoint ').
 string('reached_waypoint.ogg', 'you are passing GPX waypoint ').
-string('and_arrive_favorite.ogg', 'and pass favorite ').
-string('reached_favorite.ogg', 'you are passing favorite ').
+string('and_arrive_favorite.ogg', 'and pass favourite ').
+string('reached_favorite.ogg', 'you are passing favourite ').
 string('and_arrive_poi.ogg', 'and pass POI ').
 string('reached_poi.ogg', 'you are passing POI ').
 
@@ -97,11 +97,11 @@ string('reached_poi.ogg', 'you are passing POI ').
 %string('exceed_limit.ogg', 'you are exceeding the speed limit ').
 string('exceed_limit.ogg', 'speed limit ').
 string('attention.ogg', 'attention, ').
-string('speed_camera.ogg', 'speed cam').
+string('speed_camera.ogg', 'speed camera').
 string('border_control.ogg', 'border control').
 string('railroad_crossing.ogg', 'railway crossing').
 string('traffic_calming.ogg', 'traffic calming').
-string('toll_booth.ogg', 'toll booth').
+string('toll_booth.ogg', 'toll barrier').
 string('stop.ogg', 'stop sign').
 string('pedestrian_crosswalk.ogg', 'pedestrian crossing').
 
