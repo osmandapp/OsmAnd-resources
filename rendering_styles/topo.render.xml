@@ -329,6 +329,12 @@
 	<renderingAttribute name="serviceHighwayAreaShadowColor">
 		<case attrColorValue="#000000"/>
 	</renderingAttribute>
+	<renderingAttribute name="racewayColor">
+		<case attrColorValue="#ececec"/>
+	</renderingAttribute>
+	<renderingAttribute name="racewayStrokeColor">
+		<case attrColorValue="#9F4408"/>
+	</renderingAttribute>
 
 	<renderingConstant name="highwayShadowRadius" value="1:1"/>
 	<renderingAttribute name="mainHighwayOnewayArrowsColor">
@@ -1069,6 +1075,7 @@
 						<apply_if layer="-1" order="20"/>
 						<apply_if appMode="default" lessDetailed="true" maxzoom="15" order="-1"/>
 					</case>
+					<case tag="highway" value="raceway"/>
 					<apply_if maxzoom="13" additional="construction=yes" order="-1"/>
 				</switch>
 				<case tag="highway" value="bridleway" order="37"/>
@@ -1627,7 +1634,7 @@
 				<case tag="cycleway" value="share_busway" textOrder="197"/>
 				<case tag="cycleway" value="opposite" textOrder="197"/>
 				<case tag="highway" value="steps" textOrder="194"/>
-<!--				<case tag="highway" value="raceway" textOrder="192"/>-->
+				<case tag="highway" value="raceway" textOrder="192"/>
 				<apply maxzoom="14" textSize="12"/>
 			</switch>
 			<switch>
@@ -3680,6 +3687,18 @@
 								<apply_if surfaceIntegrity="true" color="$serviceRoadColor"/>
 							</switch>
 						</apply>
+					</switch>
+					<switch minzoom="14" tag="highway" value="raceway">
+						<case maxzoom="14" strokeWidth="1:1" shadowRadius="1"/>
+						<case maxzoom="15" strokeWidth="1.5:1.5" shadowRadius="1"/>
+						<case maxzoom="16" strokeWidth="2.5:2.5" shadowRadius="2"/>
+						<case maxzoom="17" strokeWidth="4:4" shadowRadius="2"/>
+						<case minzoom="18" strokeWidth="5:5" shadowRadius="2"/>
+						<apply color="$racewayColor" cap="ROUND" shadowColor="$racewayStrokeColor"/>
+						<apply_if minzoom="17"> <!-- for new OpenGL engine only -->
+							<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
+							<apply_if additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
+						</apply_if>
 					</switch>
 					<switch>
 						<case tag="highway" value="pedestrian" color__1="$pedestrianRoadColor"/>
