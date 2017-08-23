@@ -374,7 +374,7 @@ mycpname ferry_terminal_small functional-icons_ferry_terminal_small.png
 mycp amenity taxi transport_taxi_rank.png
 mycp highway services transport_services.png
 mycp mountain pass poi_mountain_pass.png
-mycpname topo_mountain pass topo_topo_mountain_pass.png
+mycpname topo_mountain_pass topo_topo_mountain_pass.png
 
 mycp amenity bicycle_rental transport_rental_bicycle.png
 mycp amenity boat_sharing transport_boat_sharing.png
