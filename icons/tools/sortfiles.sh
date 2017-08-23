@@ -378,6 +378,7 @@ mycpname topo_mountain pass topo_topo_mountain_pass.png
 
 mycp amenity bicycle_rental transport_rental_bicycle.png
 mycp amenity boat_sharing transport_boat_sharing.png
+mycpname boat_rental transport_boat_rental.png
 mycp amenity car_rental transport_rental_car.png
 mycp amenity car_sharing transport_car_share.png
 mycp amenity ski_rental transport_ski_rental.png
