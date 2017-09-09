@@ -30,7 +30,7 @@ string('distance.ogg', ', etäisyys ').
 
 % LEFT/RIGHT
 %string('prepare.ogg', 'Valmistaudu ').
-string('after.ogg', 'nach ').
+string('after.ogg', '').
 string('in.ogg', ' ').
 string('get.ogg', 'päästä  ').
 string('now.ogg', 'nyt,  ').
@@ -86,27 +86,26 @@ string('follow.ogg', 'Seuraa tietä ').
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'ja olet perillä ').
-string('reached_destination.ogg', 'olet perillä ').
+string('reached_destination.ogg', 'olet perillä, ').
 string('and_arrive_intermediate.ogg', 'ja saavut välietappiin ').
 string('reached_intermediate.ogg', 'olet välietapissa ').
 
 % NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'ja saavut reittipisteeseen ').
-string('reached_waypoint.ogg', 'olet reittipisteessä ').
-string('and_arrive_favorite.ogg', 'and pass favorite ').
-string('reached_favorite.ogg', 'you are passing favorite ').
-string('and_arrive_poi.ogg', 'and pass POI ').
-string('reached_poi.ogg', 'you are passing POI ').
+string('and_arrive_waypoint.ogg', 'ja ohitat reittipisteen ').
+string('reached_waypoint.ogg', 'ohitat reittipisteen ').
+string('and_arrive_favorite.ogg', 'ja ohitat suosikin ').
+string('reached_favorite.ogg', 'ohitat suosikin ').
+string('and_arrive_poi.ogg', 'ja ohitat POIn ').
+string('reached_poi.ogg', 'ohitat POIn ').
 
 % ATTENTION
-%string('exceed_limit.ogg', 'ylitit nopeusrajoituksen ').
-string('exceed_limit.ogg', 'nopeusrajoituksen ').
+string('exceed_limit.ogg', 'nopeusrajoitus on ').
 string('attention.ogg', 'huomio, ').
 string('speed_camera.ogg', 'nopeuskamera').
 string('border_control.ogg', 'rajavalvonta').
 string('railroad_crossing.ogg', 'tasoristeys').
-string('traffic_calming.ogg', 'liikenne rauhoittava').
-string('toll_booth.ogg', 'tietullien').
+string('traffic_calming.ogg', 'nopeushidaste').
+string('toll_booth.ogg', 'tietulli').
 string('stop.ogg', 'Stop-merkki').
 string('pedestrian_crosswalk.ogg', 'suojatie').
 
@@ -211,12 +210,12 @@ make_ut(Dist, Street) --  ['make_uturn1.ogg', D, 'get.ogg'  | Sgen] :- distance(
 make_ut(Street) -- ['make_uturn2.ogg' | Sgen] :- turn_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
-prepare_roundabout(Dist, _Exit, _Street) -- ['after.ogg', D , 'prepare_roundabout.ogg'] :- distance(Dist, metrin) -- D.
+prepare_roundabout(Dist, _Exit, _Street) -- ['after.ogg', D , 'get.ogg', 'prepare_roundabout.ogg'] :- distance(Dist, metrin) -- D.
 roundabout(Dist, _Angle, Exit, Street) -- ['roundabout.ogg', D, 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist, metrin) -- D, nth(Exit, E), turn_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- ['take2.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 
 go_ahead -- ['go_ahead.ogg'].
-go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen]:- distance(Dist, metria) -- D, onto_street(Street, Sgen).
+go_ahead(Dist, Street) -- ['follow.ogg', D | Sgen] :- distance(Dist, metria) -- D, follow_street(Street, Sgen).
 
 then -- ['then.ogg'].
 name(D, [D]) :- tts.
