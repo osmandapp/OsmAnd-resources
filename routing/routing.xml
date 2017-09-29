@@ -65,6 +65,7 @@
 		<parameter id="avoid_shuttle_train" name="Avoid Shuttle Trains" description="Avoid Shuttle Trains" type="boolean"/>
 		<parameter id="avoid_motorway" name="Avoid motorways" description="Avoid motorways" type="boolean"/>
 		<parameter id="avoid_borders" name="Avoid border crossing" description="Avoid crossing a border into another country" type="boolean"/>
+		<parameter id="avoid_ice_roads_fords" name="Avoid ice roads, fords" description="Avoid ice roads and fords" type="boolean"/>
 		<parameter id="allow_private" name="Allow private access" description="Allow access to private areas" type="boolean"/>
 		<parameter id="weight" name="Weight" description="Weight" type="numeric" values="0,1500,3000,3500,5000,7500,10000,15000,20000,40000" valueDescriptions="-,1.5t,3t,3.5t,5t,7.5t,10t,15t,20t,40t"/>
 		<parameter id="height" name="Height" description="Height" type="numeric" values="0,1.5,2,2.5,3,3.5,4" valueDescriptions="-,1.5m,2m,2.5m,3m,3.5m,4m"/>
@@ -75,6 +76,15 @@
 			<select value="-1" t="construction" v="yes"/>
 			<select value="-1" t="highway" v="motorway">
 				<if param="avoid_motorway"/>
+			</select>
+			<select value="-1" t="ice_road" v="yes">
+				<if param="avoid_ice_roads_fords"/>
+			</select>
+			<select value="-1" t="winter_road" v="yes">
+				<if param="avoid_ice_roads_fords"/>
+			</select>
+			<select value="-1" t="ford" v="yes">
+				<if param="avoid_ice_roads_fords"/>
 			</select>
 			<select value="-1" t="toll" v="yes">
 				<if param="avoid_toll"/>
