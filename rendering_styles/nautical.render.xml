@@ -1436,12 +1436,6 @@
 				</switch>
 				<switch>
 					<case minzoom="16" tag="seamark:type" value="pilot_boarding"/>
-					<case minzoom="16" tag="seamark:type" value="bridge" textOrder="55" intersectionSizeFactor="0.5">
-						<case additional="seamark:bridge:category=opening" nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height_closed"/>
-						<case additional="seamark:bridge:category=lifting" nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height_closed"/>
-						<case nameTag="seamark:name" nameTag2="seamark:bridge:clearance_height"/>
-					</case>
-<!--					<apply_if engine_v1="false" textDy="-1"/>-->
 				</switch>
 				<apply textColor="#471c62" textWrapWidth="26" textHaloColor="#aae8d5ee" textHaloRadius="2">
 					<case maxzoom="12" textSize="12"/>
@@ -1449,6 +1443,19 @@
 					<case minzoom="16" textSize="14"/>
 				</apply>
 				<apply_if nightMode="true" textColor="#f3e1ff" textHaloColor="#5545a5e2"/>
+			</switch>
+			<switch>
+				<switch>
+					<case minzoom="16" tag="seamark:type" value="pilot_boarding"/>
+					<switch minzoom="16" tag="seamark:type" value="bridge" textOrder="55" intersectionSizeFactor="0.5">
+						<case additional="seamark:bridge:category=opening" nameTag="seamark:bridge:clearance_height_closed"/>
+						<case additional="seamark:bridge:category=lifting" nameTag="seamark:bridge:clearance_height_closed" nameTag2="seamark:bridge:clearance_height_open"/>
+						<case additional="seamark:bridge:category=fixed" nameTag="seamark:bridge:clearance_height"/>
+					</switch>
+				</switch>
+				<apply textColor="#333333" textWrapWidth="26" textHaloColor="#ffffff" textHaloRadius="1" textSize="11"/>
+				<apply_if engine_v1="true" textDy="-24"/>
+<!--				<apply_if nightMode="true" textColor="#f3e1ff" textHaloColor="#5545a5e2"/>-->
 			</switch>
 			<switch minzoom="17" textSize="10" textColor="#5a0461" textWrapWidth="7" textHaloColor="#33ffffff" textHaloRadius="1" textOrder="150">
 				<case tag="seamark:type" value="distance_mark" nameTag="seamark:distance_mark:distance" nameTag2="seamark:distance_mark:units"/>
@@ -2501,12 +2508,12 @@
 			</switch>
 			<case minzoom="12" tag="seamark:type" value="gate" icon="seamark_gate" shield="seamark_white_black_round_shield"/>
 
-			<case minzoom="15" tag="seamark:type" value="bridge" icon="seamark_bridge_fixed" iconOrder="69">
-				<case additional="seamark:bridge:category=fixed" icon="seamark_bridge_fixed"/>
+			<case minzoom="15" tag="seamark:type" value="bridge" icon="seamark_bridge" iconOrder="69">
+<!--				<case additional="seamark:bridge:category=fixed" icon="seamark_bridge_fixed"/>
 				<case additional="seamark:bridge:category=opening" icon="seamark_bridge_opening"/>
 				<case additional="seamark:bridge:category=lifting" icon="seamark_bridge_lifting"/>
 				<case additional="seamark:bridge:category=bascule" icon="seamark_bridge_opening"/>
-				<case additional="seamark:bridge:category=suspension" icon="seamark_bridge_suspension"/>
+				<case additional="seamark:bridge:category=suspension" icon="seamark_bridge_suspension"/>-->
 				<apply shield="seamark_white_black_round_shield"/>
 			</case>
 		
