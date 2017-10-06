@@ -5391,7 +5391,16 @@
 					<case minzoom="16" textSize="12" tag="natural" value="cave_entrance" textOrder="236"/>
 					<case minzoom="14" textSize="12" tag="natural" value="ridge" textOnPath="true" textDy="0" textOrder="77"/>
 					<case minzoom="16" textSize="12" tag="natural" value="cliff" textOnPath="true" textHaloRadius="3" textDy="0" textOrder="77"/>
-					<case minzoom="13" textSize="12" tag="natural" value="valley" textOnPath="true" textOrder="77" textDy="0"/>
+					<case minzoom="11" textSize="16" tag="natural" value="valley" textOnPath="true" textOrder="1" textDy="0"/>
+					<case minzoom="14" textSize="12" tag="natural" value="arete" textOnPath="true" textDy="0" textOrder="77"/>
+					<case minzoom="16" textSize="12" tag="natural" value="dale" textOnPath="true" textDy="0" textOrder="77"/>
+					<case minzoom="16" textSize="12" tag="natural" value="gorge" textOnPath="true" textDy="0" textOrder="77"/>
+					<case minzoom="16" textSize="12" tag="natural" value="couloir" textOnPath="true" textDy="0" textOrder="77"/>
+					<case minzoom="10" textSize="16" tag="natural" value="mountain_range" textOrder="1"/>
+					<case minzoom="10" textSize="16" tag="natural" value="massif" textOrder="1"/>
+					<case minzoom="9" textSize="12" tag="place" value="region">
+					  <case tag="region:type" value="mountain_area" textOrder="1"/>
+					</case>
 					<case minzoom="14" textSize="12" tag="waterway" value="drystream" textOnPath="true" textOrder="77" textDy="0"/>
 					<case minzoom="16" textSize="12" tag="waterway" value="rapids" textOnPath="true"/>
 					<case minzoom="15" textSize="12" tag="natural" value="saddle" nameTag="" nameTag2="ele"/>
@@ -5534,7 +5543,7 @@
 				all have boundary=national_park: National forests with landuse=forest, Wilderness with leisure=nature_reserve, NatPark just boundary=national_park (protected_areas need not be rendered for this) -->
 				<switch textSize="12" textColor="$forestTextColorDay" textWrapWidth="20" textHaloRadius="$textHaloRadius" textHaloColor="#ccffffff" nameTag="">
 					<switch textItalic="true">
-						<case minzoom="12" tag="natural" value="wood" textOrder="202" textDy="8"/>
+				<case minzoom="12" tag="natural" value="wood" textOrder="202" textDy="8"/>
 						<case minzoom="17" tag="natural" value="scrub" textOrder="244"/>
 						<case minzoom="12" tag="natural" value="wetland" textOrder="238"/>
 						<case minzoom="14" tag="natural" value="heath" textOrder="245"/>
@@ -10421,15 +10430,19 @@
 			<apply minzoom="17" maxzoom="17" strokeWidth_2="4:4" pathEffect_2="1_9"/>
 			<apply minzoom="18" strokeWidth_2="5.5:5.5" pathEffect_2="1_13"/>
 		</switch>
-		<case minzoom="11" tag="natural" value="ridge" color="#666666" color_2="#000000">
-			<case maxzoom="11" strokeWidth="0.4"/>
-			<case maxzoom="12" strokeWidth="0.5"/>
-			<case maxzoom="13" strokeWidth="0.8" strokeWidth_2="1.1:1.1" pathEffect_2="1_23"/>
-			<case maxzoom="14" strokeWidth="1" strokeWidth_2="1.5:1.5" pathEffect_2="1_27"/>
-			<case maxzoom="15" strokeWidth="1.3:1.3" strokeWidth_2="1.7:1.7" pathEffect_2="1_32"/>
-			<case minzoom="16" strokeWidth="1.5:1.5" strokeWidth_2="1.8:1.8" pathEffect_2="1_37"/>
-			<apply_if nightMode="true" color="#666666" color_2="#999999"/>
-		</case>
+		<switch minzoom="9" strokeWidth="0.1" color="$null">
+  		<case tag="natural" value="valley"/>
+  		<case tag="natural" value="ridge"/>
+  		<case tag="natural" value="arete"/>
+  		<case tag="natural" value="dale"/>
+  		<case tag="natural" value="gorge"/>
+  		<case tag="natural" value="couloir"/>
+  		<case tag="natural" value="mountain_range"/>
+  		<case tag="natural" value="massif"/>
+  		<case tag="place" value="region">
+        <case tag="region:type" value="mountain_area"/>
+			</case>
+		</switch>
 		<switch minzoom="11">
 			<case tag="natural" value="crater"/>
 			<case tag="natural" value="volcano"/>
@@ -11153,7 +11166,6 @@
 		</switch>-->
 
 		<switch minzoom="13">
-			<case tag="natural" value="valley"/>
 			<case minzoom="14" tag="waterway" value="drystream"/>
 			<apply_if maxzoom="14" strokeWidth="2"/>
 			<apply_if minzoom="15" maxzoom="16" strokeWidth="3"/>
@@ -11255,7 +11267,7 @@
 				<apply color="$boundaryNationalParkColor2" color_0="$boundaryNationalParkColor" strokeWidth_0="0.6" pathEffect="4_1" pathEffect_0="4_1"/>
 			</case>
 		</switch>
-		<!-- <case tag="indoor" value="wall" color="#777777" strokeWidth="2"/>
+- <case tag="indoor" value="wall" color="#777777" strokeWidth="2"/>
 		<case minzoom="19" tag="door" value="hinged" color="#ffffff" strokeWidth="7"/>-->
 		<case tag="osmand_change" value="delete"/> <!-- OSM Live will break if delete -->
 	</line>
