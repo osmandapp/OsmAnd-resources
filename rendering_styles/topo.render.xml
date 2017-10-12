@@ -846,6 +846,7 @@
 				<case tag="aerialway" value="station" ignorePolygonAsPointArea="true"/>
 				<case tag="aerialway" value=""/>
 				<case tag="aeroway" value=""/>
+				<case tag="region:type" value="mountain_area"/>
 				<case tag="abandoned:aeroway" value=""/>
 				<case tag="railway" value="station" ignorePolygonAsPointArea="true">
 					<apply_if additional="station=subway" order="-1"/>
@@ -918,6 +919,7 @@
 				<case tag="natural" value="sinkhole"/>
 				<case tag="natural" value="hot_spring"/>
 				<case tag="natural" value="geyser"/>
+				<case tag="region:type" value="mountain_area"/>
 				<case tag="leisure" value="park"/>
 				<case tag="leisure" value="resort" order="8"/>
 				<case tag="landuse" value="greenfield" order="7"/>
@@ -2017,15 +2019,18 @@
 						<case minzoom="13" textSize="13"/>
 					</case>
 					<case minzoom="16" textSize="12" tag="natural" value="cave_entrance" textOrder="236"/>
-					<case minzoom="14" textSize="12" tag="natural" value="ridge" textItalic="false" textOnPath="true" textOrder="77"/>
+					<case minzoom="14" textSize="12" tag="natural" value="ridge" textItalic="false" textOnPath="true" textOrder="43"/>
 					<switch minzoom="13">
 						<case tag="natural" value="valley"/>
 						<case tag="waterway" value="drystream"/>
-						<apply textSize="12" textOnPath="true" textOrder="77"/>
+						<apply textSize="12" textOnPath="true" textOrder="43"/>
 						<apply_if minzoom="15" textSize="15"/>
 					</switch>
-					<case minzoom="15" textSize="12" tag="natural" value="cliff" textOnPath="true" textHaloRadius="3" textOrder="77"/>
+					<case minzoom="15" textSize="12" tag="natural" value="cliff" textOnPath="true" textHaloRadius="3" textOrder="43"/>
 					<case minzoom="15" textSize="12" tag="natural" value="saddle" nameTag="" nameTag2="ele"/>
+					<case minzoom="13" textSize="12" tag="natural" value="gorge" textOnPath="true" textOrder="44" textDy="0"/>
+					<case minzoom="13" textSize="12" tag="natural" value="couloir" textOnPath="true" textOrder="44" textDy="0"/>
+					<case minzoom="10" textSize="13" tag="region:type" value="mountain_area" textOrder="43"/>
 					<case minzoom="13" textSize="14" tag="natural" value="crater" textColor="#4e0d0d"/>
 					<case minzoom="14" textSize="12" tag="mountain_pass" value="yes" nameTag="" nameTag2="ele" textBold="false"/>
 					<case minzoom="14" textSize="12" tag="mountain_pass" value="yes" nameTag="ele" textBold="false"/>
@@ -4305,6 +4310,12 @@
 			<!-- Waterway color -->
 			<apply color="$waterwayColor"/>
 			<apply_if additional="tunnel=yes" minzoom="17" color="$waterwayTunnelColor" pathEffect="4_2"/>
+		</switch>
+
+		<switch minzoom="13">
+			<case tag="natural" value="gorge"/>
+			<case tag="natural" value="couloir"/>
+			<apply strokeWidth="1" color="$null"/>
 		</switch>
 
 		<case minzoom="17" tag="man_made" value="pipeline">
