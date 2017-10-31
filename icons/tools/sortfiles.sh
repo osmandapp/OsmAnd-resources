@@ -98,6 +98,8 @@ mycpname topo_cave topo_topo_cave.png
 mycp natural geyser water_geyser.png  #scale 0.375
 mycp natural hot_spring water_hot_spring.png  #scale 0.375
 mycp natural peak_big poi_colored_peak_big.png
+mycpname natural_peak_cross poi_colored_peak_cross.png
+mycpname natural_peak_cross_big poi_colored_peak_cross_big.png
 mycp natural peak poi_colored_peak.png
 mycp natural peak_night_big functional-icons_peak_night_big.png  #For night orienteering use orange similar to contour lines (=day version with color #CC6600)  #scale 0.5
 mycp natural peak_night functional-icons_peak_night.png  #For night orienteering use orange similar to contour lines (=day version with color #CC6600)  #scale 0.5
