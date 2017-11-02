@@ -2545,7 +2545,9 @@
 				<case tag="attraction" value="train"/>
 				<case tag="attraction" value="log_flume"/>
 				<case tag="building" value="no" order="-1"/>
-				<case tag="amenity" value="place_of_worship" ignorePolygonAsPointArea="true"/>
+				<case tag="amenity" value="place_of_worship" ignorePolygonAsPointArea="true">
+					<apply_if moreDetailed="true" ignorePolygonArea="true"/>
+				</case>
 				<case hideProposed="true" tag="building" value="proposed" order="-1"/>
 				<switch>
 					<case tag="man_made" value="storage_tank"/>
@@ -5969,8 +5971,10 @@
 			<!-- Other Amenities -->
 			<switch textSize="12" nameTag="" textColor="$otherAmenitiesTextColorDay" textHaloColor="$otherAmenitiesTextHaloColorDay" textHaloRadius="$textHaloRadius" textWrapWidth="20" textOrder="171">
 				<case minzoom="17" tag="amenity" value="prison"/>
-				<case minzoom="16" tag="amenity" value="place_of_worship" textOrder="132"/>
-
+				<switch tag="amenity" value="place_of_worship">
+					<case minzoom="14" moreDetailed="true" textOrder="70"/>
+					<case minzoom="16" textOrder="132"/>
+				</switch>
 				<case minzoom="17" tag="amenity" value="bank"/>
 				<case minzoom="17" tag="amenity" value="atm"/>
 				<case minzoom="17" tag="amenity" value="payment_terminal"/>
@@ -7553,18 +7557,21 @@
 				</switch>
 				<case minzoom="16" tag="amenity" value="hunting_stand" icon="amenity_hunting_stand" shield="hunting_stand_shield"/>
 				<case minzoom="17" tag="amenity" value="feeding_place" icon="feeding_place" shield="feeding_place_shield"/>
-				<case minzoom="16" tag="amenity" value="place_of_worship" icon="amenity_place_of_worship" iconVisibleSize="11" iconOrder="132" intersectionSizeFactor="0.8">
-					<case additional="religion=christian" icon="religion_christian"/>
-					<case additional="religion=jewish" icon="religion_jewish"/>
-					<case additional="religion=muslim" icon="religion_muslim"/>
-					<case additional="religion=sikh" icon="religion_sikh"/>
-					<case additional="religion=buddhist" icon="religion_buddhist"/>
-					<case additional="religion=hindu" icon="religion_hindu"/>
-					<case additional="religion=shinto" icon="religion_shinto"/>
-					<case additional="religion=taoist" icon="religion_taoist"/>
+				<switch tag="amenity" value="place_of_worship" icon="amenity_place_of_worship" iconVisibleSize="11" intersectionSizeFactor="0.8">
+					<case minzoom="14" moreDetailed="true" iconOrder="10"/>
+					<case minzoom="16" iconOrder="132"/>
+					<apply>
+						<case additional="religion=christian" icon="religion_christian"/>
+						<case additional="religion=jewish" icon="religion_jewish"/>
+						<case additional="religion=muslim" icon="religion_muslim"/>
+						<case additional="religion=sikh" icon="religion_sikh"/>
+						<case additional="religion=buddhist" icon="religion_buddhist"/>
+						<case additional="religion=hindu" icon="religion_hindu"/>
+						<case additional="religion=shinto" icon="religion_shinto"/>
+						<case additional="religion=taoist" icon="religion_taoist"/>
+					</apply>
 					<apply_if nightMode="true" shield="lightgray_round_night_shield" iconVisibleSize="30"/>
-				</case>
-
+				</switch>
 				<case minzoom="15" tag="amenity" value="monastery" icon="amenity_monastery" iconVisibleSize="22" iconOrder="70">
 					<apply_if nightMode="true" shield="lightgray_round_night_shield"/>
 					<apply_if moreDetailed="false" maxzoom="15" icon=""/>
@@ -8974,7 +8981,9 @@
 				<!-- Tourism -->
 				<case minzoom="13" tag="tourism" value="attraction"/>
 				<case minzoom="16" tag="tourism" value="artwork"/>
-				<case minzoom="15" tag="amenity" value="place_of_worship">
+				<switch tag="amenity" value="place_of_worship">
+					<case minzoom="14" moreDetailed="true"/>
+					<case minzoom="15" moreDetailed="false"/>
 					<apply>
 						<switch>
 							<case additional="ruins=yes"/>
@@ -8986,7 +8995,7 @@
 							<apply_if minzoom="16" pathEffect_2="9_3"/>
 						</switch>
 					</apply>
-				</case>
+				</switch>
 				<case minzoom="13" tag="amenity" value="monastery"/>
 				<case minzoom="13" tag="historic" value="memorial"/>
 				<case minzoom="13" tag="landuse" value="religious"/>
