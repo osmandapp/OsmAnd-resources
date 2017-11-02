@@ -111,6 +111,8 @@
 		type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideProposed" name="Hide proposed objects" description="Hide proposed objects"
 		type="boolean" possibleValues="" category="hide"/>
+	<renderingProperty attr="hideConstruction" name="Objects under construction" description="Hide objects under construction"
+		type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideIcons" name="Hide map icons" description="Hide map icons"
 		type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideUnderground" name="Hide underground objects" description="Hide underground objects"
@@ -2961,6 +2963,14 @@
 				<apply_if additional="indoor=yes" order="-1"/>
 				<apply_if additional="covered=yes" order="-1"/>
 			</apply_if>
+			<apply_if additional="construction=yes" hideConstruction="true" cap="BUTT" order="-1"/>
+			<switch hideConstruction="true" order="-1">
+				<case tag="building" value="construction"/>
+				<case tag="highway" value="construction"/>
+				<case tag="landuse" value="construction"/>
+				<case tag="railway" value="construction"/>
+				<case tag="construction:leisure" value=""/>
+			</switch>
 		</switch>
 	</order>
 
