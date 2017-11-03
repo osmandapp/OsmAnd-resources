@@ -27,35 +27,35 @@ fest_language('cmu_us_awb_arctic_clunits').
 % ROUTE CALCULATED
 string('route_is.ogg', 'مسافتِ مسیر ').
 string('route_calculate.ogg', 'مسیرِ جدید محاسبه شد').
-string('distance.ogg', 'مسافت').
+string('distance.ogg', 'مسافت ').
 
 % LEFT/RIGHT
 %string('prepare.ogg', 'آماده باشید ').
 string('after.ogg', 'بعد از ').
 string('in.ogg', 'بعد از ').
 
-string('left.ogg', 'از سمتِ چپ برانید ').
-string('left_sh.ogg', 'سریعا به چپ بپیچید ').
-string('left_sl.ogg', 'به آرامی به چپ بپیچید ').
-string('right.ogg', 'از سمتِ راست برانید ').
-string('right_sh.ogg', 'سریعا به راست بپیچید ').
-string('right_sl.ogg', 'به آرامی به راست بپیچید ').
-string('left_keep.ogg', 'مسیرِ سمتِ چپ را دنبال کنید').
-string('right_keep.ogg', 'مسیرِ سمتِ راست را دنبال کنید').
-string('left_bear.ogg', 'مسیرِ سمتِ چپ را دنبال کنید').     % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'مسیرِ سمتِ راست را دنبال کنید').  % in English the same as right_keep, may be different in other languages
+string('left.ogg', 'به سمتِ چپ بپیچید').
+string('left_sh.ogg', 'گردش به چپ').
+string('left_sl.ogg', 'به سمتِ چپ بپیچید').
+string('right.ogg', 'به سمتِ راست بپیچید').
+string('right_sh.ogg', 'گردش به راست').
+string('right_sl.ogg', 'به سمتِ راست بپیچید').
+string('left_keep.ogg', 'از سمتِ چپِ مسیرْ حرکت کنید').
+string('right_keep.ogg', 'از سمتِ راستِ مسیرْ حرکت کنید').
+string('left_bear.ogg', 'از سمتِ چپِ مسیرْ حرکت کنید').     % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'از سمتِ راستِ مسیرْ حرکت کنید').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
-string('make_uturn.ogg', 'حالا دور بزنید ').
-string('make_uturn_wp.ogg', 'در اولین زمانِ ممکن دور بزنید ').
+string('make_uturn.ogg', 'دور بزنید').
+string('make_uturn_wp.ogg', 'در اولین زمانِ ممکن دور بزنید').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'به میدان نزدیک میشوید بعد از ').
-string('roundabout.ogg', 'واردِ میدان شوید بعد از, ').
-string('then.ogg', ', سپس ').
-string('and.ogg', 'و ').
+string('prepare_roundabout.ogg', 'به میدانْ نزدیک میشوید ').
+string('roundabout.ogg', 'واردِ میدان شوید').
+string('then.ogg', 'سپس ').
+string('and.ogg', ' و ').
 string('take.ogg', 'وارد شوید به ').
-string('exit.ogg', 'خروج ').
+string('exit.ogg', 'خروجی').
 
 string('1st.ogg', 'اولین ').
 string('2nd.ogg', 'دومین ').
@@ -76,67 +76,67 @@ string('16th.ogg', 'شانزدهمین ').
 string('17th.ogg', 'هفدهمین ').
 
 % STRAIGHT/FOLLOW
-string('go_ahead.ogg', 'مستقیم حرکت کنید ').
-string('follow.ogg', 'این جاده را دنبال نمایید').
+string('go_ahead.ogg', 'مستقیم حرکت کنید').
+string('follow.ogg', 'مسیر را ادامه دهید برای').
 
 % ARRIVE
-string('and_arrive_destination.ogg', 'و شما به مقصدِ خود خواهید رسید ').
+string('and_arrive_destination.ogg', 'و به مقصدِ خود خواهید رسید ').
 string('reached_destination.ogg','به مقصد رسیدید ').
-string('and_arrive_intermediate.ogg', 'به ایستگاهِ بینِ راهی که مشخص کرده بودید خواهید رسید ').
+string('and_arrive_intermediate.ogg', 'و به مقصدِ بین راهی خود خواهید رسید ').
 string('reached_intermediate.ogg', 'به ایستگاهِ بین راهیِ مشخص شده رسیدید ').
 
 % NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'به ایستگاهِ جی پیی ایکسی که تعیین کرده بودید خواهید رسید ').
-string('reached_waypoint.ogg', 'به ایستگاهِ بینِ راهیِ فایلِِ جی پیی ایکس رسیدید ').
-string('and_arrive_favorite.ogg', 'به ایستگاهِ جی پیی ایکسی که تعیین کرده بودید خواهید رسید ').
+string('and_arrive_waypoint.ogg', 'و به نقطۀ GPX که تعیین کرده بودید خواهید رسید ').
+string('reached_waypoint.ogg', 'به نقطۀ GPX که تعیین کرده بودید رسیدید ').
+string('and_arrive_favorite.ogg', 'و به نقطۀ برگزیده که تعیین کرده بودید خواهید رسید').
 string('reached_favorite.ogg', 'شما در حال عبور مورد علاقه ').
-string('and_arrive_poi.ogg', 'به ایستگاهِ جی پیی ایکسی که تعیین کرده بودید خواهید رسید  ').
-string('reached_poi.ogg', 'شما در حال عبور POI ').
+string('and_arrive_poi.ogg', 'و به موقعیتی که تعیین کرده بودید خواهید رسید').
+string('reached_poi.ogg', ' به موقعیتی که تعیین کرده بودید رسیدید').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'سرعتِ شما بیش از حدِ مجاز است').
 string('exceed_limit.ogg', 'محدودیت سرعت ').
 string('attention.ogg', 'توجه, ').
-string('speed_camera.ogg', 'دوربین سرعت ').
-string('border_control.ogg', 'کنترل مرزی ').
-string('railroad_crossing.ogg', 'عبور راه آهن ').
-string('traffic_calming.ogg', 'آرام بخش ترافیک ').
-string('toll_booth.ogg', 'غرفه تلفات ').
-string('stop.ogg', 'نشان ایست ').
-string('pedestrian_crosswalk.ogg', 'عابر پیاده ').
+string('speed_camera.ogg', 'دوربین کنترل سرعت').
+string('border_control.ogg', 'کنترل مرزی').
+string('railroad_crossing.ogg', 'تقاطع با راه آهن').
+string('traffic_calming.ogg', 'سرعت گیر').
+string('toll_booth.ogg', 'باجهٔ عوارضی').
+string('stop.ogg', 'ایست').
+string('pedestrian_crosswalk.ogg', 'گذرگاه عابر پیاده').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'قطعِ سیگنالِ جی پیی اس ').
-string('location_recovered.ogg', 'اتصال به ماهواره یِ جی پیی اس ').
+string('location_lost.ogg', 'قطعِ سیگنالِ GPS').
+string('location_recovered.ogg', 'سیگنالِ  GPS متصل شد').
 string('off_route.ogg', 'از مسیرِ تعیین شده خارج شدید').
-string('back_on_route.ogg', 'شما به مسیر بازگشت').
+string('back_on_route.ogg', 'به مسیر بازگشتید').
 
 % STREET NAME PREPOSITIONS
-string('onto.ogg', 'به سمت ').
+string('onto.ogg', 'به سَمْتِ').
 string('on.ogg', 'در ').
-string('to.ogg', 'ِِدرون ').
-string('toward.ogg', 'ِسمت ').
+string('to.ogg', 'ِِبه').
+string('toward.ogg', 'ِسَمْتِ').
 
 % DISTANCE UNIT SUPPORT
-string('meters.ogg', 'متر ').
-string('around_1_kilometer.ogg', 'حدودِ یک کیلومتر ').
-string('around.ogg', 'بعد از ').
-string('kilometers.ogg', 'کیلومتر ').
+string('meters.ogg', 'متر').
+string('around_1_kilometer.ogg', 'حدودِ یک کیلومتر').
+string('around.ogg', 'حدودِ').
+string('kilometers.ogg', 'کیلومتر').
 
-string('feet.ogg', 'فوت ').
-string('1_tenth_of_a_mile.ogg', 'یک دهمِ فوت').
-string('tenths_of_a_mile.ogg', 'ده مایل').
-string('around_1_mile.ogg', 'حدودِ یک مایل ').
-string('miles.ogg', 'مایل ').
+string('feet.ogg', 'فوت').
+string('1_tenth_of_a_mile.ogg', 'یک دهمِ مایل').
+string('tenths_of_a_mile.ogg', 'دهمِ مایل').
+string('around_1_mile.ogg', 'حدودِ یک مایل').
+string('miles.ogg', 'مایل').
 
-string('yards.ogg', 'یارد ').
+string('yards.ogg', 'یارد').
 
 % TIME SUPPORT
 string('time.ogg', 'زمان ').
 string('1_hour.ogg', 'یک ساعت ').
 string('hours.ogg', 'ساعت ').
-string('less_a_minute.ogg', 'کمتر از یک دقیقه ').
-string('1_minute.ogg', 'یک دقیقه ').
+string('less_a_minute.ogg', 'کمتر از یک دقیقه').
+string('1_minute.ogg', 'یک دقیقه').
 string('minutes.ogg', 'دقیقه').
 
 
