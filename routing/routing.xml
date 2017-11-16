@@ -23,29 +23,226 @@
 
 	<!-- HELP INFORMATION ABOUT FILE -->
 	<!--
-	   Description of blocks:
-	     1) <way attribute="access">
-	        Defines acceptable roads for routingProfile. Value of -1 means way impassable,
-	        value of 1 means way passable.
-	     2) <way attribute="speed" type="speed">
-	        Defines speed limits on roads in km/h (if it is not specified on the road via maxspeed tag)
-	     3) <way attribute="priority">
-	     	Priority is a preference multiplicator for the road type (consider it is an accelerator of the road)
-	     4) <point attribute="obstacle">
-	        Obstacle defines a point of the road and whether it can be passed by the vehicle.
-	        Penalty is measured in seconds, a value of -1 means the obstacle cannot be passed and a value of 0 means "no penalty"!
-	        For routing engine.
-             5) <point attribute="obstacle_time">
-                Penalty for crossing a feature on the road. It is measured in seconds.
-                Only for visual effect (ETA).
-	     		
-	   The order of specialization matters only how it was supplied :
-	      short_way, avoid_ferries, avoid_toll, avoid_motorway, avoid_unpaved
-	   
-	   Conditional values (based on parameters) can be specified as:
-	      <select value="x" t="y" v="z">
-                <if param="parameter id"/>
-              </select>
+	
+		If you want to tweak the routing engine, read this carefully.
+		
+    Deploying your own routing.xml
+    ==============================
+		
+		When you finish editing this document (or want to test on your Android device), copy this file over to:
+		sdcard/Android/data/net.osmand.plus/files/
+		
+		Restart OsmAnd (e.g. by swiping it away in the recent app view) to activate the new routing.xml;
+		
+    Overview of the document
+    ------------------------
+	
+		The document contains many big blocks, each describing a single profile.
+		OsmAnd has three default profiles: car, bicycle and foot.
+		
+		Some others are described here as well but are hidden by default.
+		These profiles can be enabled using the 'OsmAnd development plugin'
+		
+	## Routing profile 
+		
+		For starters, a profile can have a few parameter declarations, to finetune the profile:
+		
+		<parameter name="some_toggle" ... />
+		<parameter name="some_other_preference" ... />
+		
+        (Details on parameters are given later on)
+		
+		A profile block contains at least the following segments:
+		1) access                 (which determines if a road can be taken)
+   		2) speed                  (which determines what max speed a road allows)
+    	
+    	A profile block might also contain following segments:
+    	3) oneway                 (which determines in which direction a road can be taken)
+    	4) priority               (which determines how nice the road is to drive on)
+    	5) obstacle               (which determines the delay of an obstacle, in seconds for the routing engine)	
+    	6) obstacle_time          (which determines the delay of an obstacle, in seconds for the human)
+    	7) penalty_transition     (which determines the penalty of transitioning from one road surface to another)
+
+    ## Block overviews
+        
+    ### 1) Access (specified on ways, obligated, -1 or 1)
+        
+        Access states whether or not a road _can_ be taken by your mode of transport.
+        E.g. a pedestrian is not allowed on a motorway; neither can a car follow a small path.
+        
+        These values are specified included in a `way`-tag with the attribute `access`:
+        
+        <way attribute="access">
+        
+            ... statements ...
+            
+        </way>
+        
+        Depending on the key-value pairs of a way, a value of either `-1` or `1` is selected.
+        `-1` indicates that a road is _not_ accessible
+        `1` indicates that the road can be taken
+           
+        E.g., for a pedestrian are motorways not allowed:    
+        <select value="-1" t="highway" v="motorway"/>
+        
+        There is no obligation to check against a value. The presence of a key can be enough to check against
+        <select value="-1" t="bollard"/>
+        
+        At last, a default might be given, by not specifying a key:
+        <select value="1"/>
+        
+        The first matching clause is used.
+        
+               
+    ## 2) Speed (specified on ways, obligated, in km/h)
+    
+        The speed block gives, for each way, the maxspeed in km/h.
+        If an explicit `max_speed` is given on the way, the `speed` block is ignored.
+       
+        
+    ## 3) Oneway (specified on ways)
+    
+        The oneway block specifies if the routing should respect the drawing order.
+        In the most simple case, going both ways is allowed. For these ways, the value "0" is given:
+       
+        <select value="0" t="oneway" v="no" />
+        
+        If the navigation should follow the line in the drawing direction, "1" is the value of choice:
+        
+        <select value="1" t="oneway" v="1"/>
+        
+        And if, for some reason, you want to go against the oneway, the value of "-1" should be specified:
+        
+        <select value="-1" t="oneway" v="-1"/>
+            
+        
+    ## 4) Priority (specified on ways, between 0 and 1)
+    
+        Priority is a preference multiplicator (between 0 and 1), which can only be used to _de_prioritize routes.
+        The formula used is 
+        `minimum(speed * multiplier, speed)`
+
+
+    ## 5) Obstacle (specified on points, penalty time in seconds or -1 if blocked)
+    
+        This block evaluates points encountered on the road.
+        The block specifies if this obstacle can be passed and eventually a penalty for passing it.
+        
+        A value of "-1" is given if the obstacle can not be passed;
+        A value of "0" is given if the obstacle can be passed without problem.
+        A penalty in seconds is given if the obstacle slows you down. (E.g. a kerb might slow dow 
+        
+        This value is only used by the routing engine
+        
+
+        E.g. a kerb is a showstopper for a wheelchair
+        <routingProfile name="wheelchair">
+            <point attribute="obstacle>
+                <select value="-1" t="barrier" v="kerb" />
+            </point>
+        </routingProfile>    
+        
+        
+        E.g. a kerb causes a slight delay for cyclists
+        <routingProfile name="bicycle">
+            <point attribute="obstacle>
+                <select value="5" t="barrier" v="kerb" />
+            </point>
+        </routingProfile>  
+        
+
+    ## 6) Obstacle_time (specified on points, penalty time in seconds)
+
+        Gives a slowdown time for an obstacle in seconds.
+        In contract to `obstacle`, this value is only used to calculate an ETA and show it on the UI once the route is calculated.
+        In other words, the values here do not influence routing.
+        
+        
+
+    ## 7) Penalty_transition (specified on ways, penalty time in seconds)
+
+        When driving a car, changing from a motorway to a trunk slows you down: you should already slow down 500 meters before the trunk.
+        This has a penalty which is taken into account by (only) the navigation algorithm.
+        This is done by taking the difference between two penalties.
+        The formula used is `minimum(0, penalty_new_way - penalty_current_way)`.
+        
+        E.g. 
+        <way attribute="penalty_transition">
+            <select value="0" t="highway" v="motorway"/>
+            <select value="5" t="highway" v="motorway_link"/>
+            <select value="20" t="highway" v="tertiary"/>
+        </way>
+        
+        
+        This means that, going from a `motorway_link` to a `tertiary`, the penalty given will be
+        `minimum(0, 20 - 5)` or `15 seconds`.
+        
+        On the other hand, going from motorway to motorway incurs no penalty, neither does going from a motorway_link to a motorway.
+
+    ## 8) obstacle_srtm_alt_speed (specified on ways, in km/h)
+    
+        This block is used to give alternative speeds, based on the incline of a road, based on BRouter.
+        However, as the author of the document is guessing a lot and has no experience using this router, he is kindly asking someone else to document this process.
+
+                
+   ## Working with parameters and conditionals
+        
+        A profile can be tuned further with parameters, to suit the need of each owner.
+        These toggles could be a preference for a fast route over a comfortable one, the desire to avoid borders, ...
+        
+    ### Declaring parameters
+        
+         Parameters are declared on top of the routing profile, each in their own tag.
+        
+        Such a tag could be:        
+            <parameter id="some_parameter"       (The name of the variable. You'll use this a lot)
+                 group="some_group_name"       (The name the group, used for grouping similar settings in a nice radiobox-UI)
+                 name="Some routing option"    (How this is presented to the user)
+                 description="This routing options uses this or that feature"
+                                               (A description that is shown to the user)
+                 type="boolean"/>              (The type of the toggle. Supported values are `boolean` and `numeric`
+                 
+        In the document, traces of `type="numeric"` are found as well. TODO: figure out how to use them.
+   
+    ### Setting parameters via OsmAnd UI
+        
+        The UI of OsmAnd automatically picks up those settings, if this document is deployed.
+        Just declaring a boolean option is enough to show a checkbox in the navigation settings.
+        
+        Toggle the checkbox to see your custom profile in action!
+        The appearing extra toggle is also usefull to see the activation of your custom routing.xml.
+        
+    ### Using parameters in the routing engine
+        
+        The boolean options can be tested with an if-tag:
+        
+        <if param="some_parameter">
+            ... some select statements ...
+        </if>
+        
+        Analogously, ifnot can be used as well
+        
+        <ifnot param="some_parameter">
+            ... selections ...
+        </ifnot>
+        
+        E.g. if you cycle often with a cart, and that cart doesn't like `sett`-pavements, a toggle for this could be added:
+        
+        <routingProfile name="bicycle" ... >
+        
+        <parameter id="avoid_sett"
+            name="Avoid streets with sett"
+            description="Prefers asphalt, paving stones and concrete surfaces. Ideal if driving with a cycling cart"
+            type="boolean"/> 
+        
+        </routingProfile>
+        
+        
+        # TODO experiment with <gt value1="" value2="param">, <if value=":key"> and <gt value1="" value2=":key">
+        
+ 
+
+	-->
 	-->
 	<routingProfile name="car" baseProfile="car" restrictionsAware="true" minDefaultSpeed="45.0" maxDefaultSpeed="130.0"
 			leftTurn="5" rightTurn="5" roundaboutTurn="5" onewayAware="true">
