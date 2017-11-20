@@ -2447,6 +2447,7 @@
 				<case tag="historic" value="ruins"/>
 				<case tag="historic" value="ship"/>
 				<case tag="barrier" value="city_wall"/>
+				<case tag="barrier" value="castle_wall"/>
 				<case tag="barrier" value="wall"/>
 				<case tag="man_made" value="reinforced_slope"/>
 				<case tag="man_made" value="breakwater"/>
@@ -5985,7 +5986,11 @@
 					<apply_if hideHouseNumbers="false" nameTag2="addr:housenumber"/>
 					<apply_if engine_v1="true" textDy="5"/>
 				</switch>
-				<case minzoom="17" tag="barrier" value="city_wall" textOnPath="true" textColor="#ffffff" textHaloColor="#aa4B3B21"/>
+				<switch minzoom="17">
+					<case tag="barrier" value="city_wall"/>
+					<case tag="barrier" value="castle_wall"/>
+					<apply textOnPath="true" textColor="#ffffff" textHaloColor="#aa4B3B21"/>
+				</switch>
 			</switch>
 
 			<!-- Other Amenities -->
@@ -9097,6 +9102,15 @@
 					<apply_if nightMode="true" color="#77444444" color_2="#885454"/>
 				</apply>
 			</case>
+			<case minzoom="14" tag="barrier" value="castle_wall">
+				<case maxzoom="14" strokeWidth_2="1"/>
+				<case maxzoom="15" strokeWidth_2="1:"/>
+				<case maxzoom="16" strokeWidth_2="1.5:1.4"/>
+				<case minzoom="17" strokeWidth_2="2.5:2.5"/>
+				<apply color="#77999999" color_2="#888888" cap_2="SQUARE">
+					<apply_if nightMode="true" color="#77444444" color_2="#885454"/>
+				</apply>
+			</case>
 			<switch minzoom="16">
 				<case tag="barrier" value="wall"/>
 				<apply color="#44999999" color_2="#333333" strokeWidth_2="0.7"/>
@@ -10455,6 +10469,15 @@
 			<case maxzoom="14" strokeWidth="2:2"/>
 			<case maxzoom="15" strokeWidth="3:3"/>
 			<case minzoom="16" strokeWidth="4.5:4.5"/>
+			<apply color="#888888">
+				<apply_if nightMode="true" color="#885454"/>
+			</apply>
+		</case>
+		<case minzoom="14" tag="barrier" value="castle_wall">
+			<case maxzoom="14" strokeWidth="1"/>
+			<case maxzoom="15" strokeWidth="1:"/>
+			<case maxzoom="16" strokeWidth="1.5:1.4"/>
+			<case minzoom="17" strokeWidth="2.5:2.5"/>
 			<apply color="#888888">
 				<apply_if nightMode="true" color="#885454"/>
 			</apply>
