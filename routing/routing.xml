@@ -128,7 +128,7 @@
     
         Priority is a preference multiplicator (between 0 and 1), which can only be used to _de_prioritize routes.
         The formula used is 
-        `minimum(speed * multiplier, speed)`
+        `minimum(speed * multiplier, maxDefaultSpeed)`; where maxDefaultSpeed is the maximum allowed speed on the route; and speed is the earlier calculated speed
 
 
     ## 5) Obstacle (specified on points, penalty time in seconds or -1 if blocked)
@@ -172,7 +172,7 @@
         When driving a car, changing from a motorway to a trunk slows you down: you should already slow down 500 meters before the trunk.
         This has a penalty which is taken into account by (only) the navigation algorithm.
         This is done by taking the difference between two penalties.
-        The formula used is `minimum(0, penalty_new_way - penalty_current_way)`.
+        The formula used is `maximum(0, penalty_new_way - penalty_current_way)`.
         
         E.g. 
         <way attribute="penalty_transition">
@@ -183,15 +183,13 @@
         
         
         This means that, going from a `motorway_link` to a `tertiary`, the penalty given will be
-        `minimum(0, 20 - 5)` or `15 seconds`.
+        `maximum(0, 20 - 5)` or `15 seconds`.
         
         On the other hand, going from motorway to motorway incurs no penalty, neither does going from a motorway_link to a motorway.
 
-    ## 8) obstacle_srtm_alt_speed (specified on ways, in km/h)
+    ## 8) obstacle_srtm_alt_speed (specified on ways, in seconds of penalty)
     
-        This block is used to give alternative speeds, based on the incline of a road, based on BRouter.
-        However, as the author of the document is guessing a lot and has no experience using this router, he is kindly asking someone else to document this process.
-
+	What the fuck does this block?
                 
    ## Working with parameters and conditionals
         
@@ -247,7 +245,13 @@
         
         
         # TODO experiment with <gt value1="" value2="param">, <if value=":key"> and <gt value1="" value2=":key">
-        
+       
+    Miscellaneous
+    --------------
+
+
+	osmand_highway_integrity_brouting represents how good a way is for a bicycle.
+	Mostly it merges smoothness, surface and tracktype into one value.
  
 
 	-->
