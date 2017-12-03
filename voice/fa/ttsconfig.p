@@ -31,18 +31,18 @@ string('distance.ogg', 'مسافت ').
 % LEFT/RIGHT
 %string('prepare.ogg', 'آماده باشید ').
 string('after.ogg', 'بعد از ').
-string('in.ogg', 'بعد از ').
+string('in.ogg', 'پس از ').
 
 string('left.ogg', 'به سمتِ چپ بپیچید').
-string('left_sh.ogg', 'گردش به چپ').
+string('left_sh.ogg', 'گردش به چپ کنید').
 string('left_sl.ogg', 'به سمتِ چپ بپیچید').
 string('right.ogg', 'به سمتِ راست بپیچید').
-string('right_sh.ogg', 'گردش به راست').
+string('right_sh.ogg', 'گردش به راست کنید').
 string('right_sl.ogg', 'به سمتِ راست بپیچید').
 string('left_keep.ogg', 'از سمتِ چپِ مسیرْ حرکت کنید').
 string('right_keep.ogg', 'از سمتِ راستِ مسیرْ حرکت کنید').
-string('left_bear.ogg', 'از سمتِ چپِ مسیرْ حرکت کنید').     % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', 'از سمتِ راستِ مسیرْ حرکت کنید').  % in English the same as right_keep, may be different in other languages
+string('left_bear.ogg', 'به سمتِ چپ حرکت کنید').     % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', 'به سمتِ راست حرکت کنید').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
 string('make_uturn.ogg', 'دور بزنید').
@@ -96,13 +96,13 @@ string('reached_poi.ogg', ' به موقعیتی که تعیین کرده بود�
 %string('exceed_limit.ogg', 'سرعتِ شما بیش از حدِ مجاز است').
 string('exceed_limit.ogg', 'محدودیت سرعت ').
 string('attention.ogg', 'توجه, ').
-string('speed_camera.ogg', 'دوربین کنترل سرعت').
-string('border_control.ogg', 'کنترل مرزی').
+string('speed_camera.ogg', 'دوربینِ کنترلِ سرعت').
+string('border_control.ogg', 'کنترلِ مرزی').
 string('railroad_crossing.ogg', 'تقاطع با راه آهن').
 string('traffic_calming.ogg', 'سرعت گیر').
 string('toll_booth.ogg', 'باجهٔ عوارضی').
-string('stop.ogg', 'ایست').
-string('pedestrian_crosswalk.ogg', 'گذرگاه عابر پیاده').
+string('stop.ogg', 'نشانِ ایست').
+string('pedestrian_crosswalk.ogg', 'گذرگاهِ عابرِ پیاده').
 
 % OTHER PROMPTS
 string('location_lost.ogg', 'قطعِ سیگنالِ GPS').
@@ -131,7 +131,7 @@ string('miles.ogg', 'مایل').
 string('yards.ogg', 'یارد').
 
 % TIME SUPPORT
-string('time.ogg', 'زمان ').
+string('time.ogg', 'زمانْ').
 string('1_hour.ogg', 'یک ساعت ').
 string('hours.ogg', 'ساعت ').
 string('less_a_minute.ogg', 'کمتر از یک دقیقه').
