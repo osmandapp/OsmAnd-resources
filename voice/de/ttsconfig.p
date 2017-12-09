@@ -367,6 +367,8 @@ distance(Dist, Y) -- D :- measure('mi-y'), distance_mi_y(Dist, Y) -- D.
 distance(Dist, Y) -- D :- measure('mi-m'), distance_mi_m(Dist, Y) -- D.
 
 %%% distance measure km/m
+distance_km(Dist, nominativ) -- [ X, 'meters_nominativ.ogg']                  :- Dist < 17,    D is round(Dist),                   dist(D, X).
+distance_km(Dist, dativ) --     [ X, 'meters_dativ.ogg']                      :- Dist < 17,    D is round(Dist),                   dist(D, X).
 distance_km(Dist, nominativ) -- [ X, 'meters_nominativ.ogg']                  :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
 distance_km(Dist, dativ) --     [ X, 'meters_dativ.ogg']                      :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
 distance_km(Dist, nominativ) -- [ X, 'meters_nominativ.ogg']                  :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
@@ -393,6 +395,8 @@ distance_mi_f(Dist, nominativ) -- [ X, 'miles_nominativ.ogg']                 :-
 distance_mi_f(Dist, dativ) --     [ X, 'miles_dativ.ogg']                     :-               D is round(Dist/1609.3),            dist(D, X).
 
 %%% distance measure mi/y
+distance_mi_y(Dist, nominativ) -- [ X, 'yards_nominativ.ogg']                 :- Dist < 17,    D is round(Dist/0.9144),            dist(D, X).
+distance_mi_y(Dist, dativ) --     [ X, 'yards_dativ.ogg']                     :- Dist < 17,    D is round(Dist/0.9144),            dist(D, X).
 distance_mi_y(Dist, nominativ) -- [ X, 'yards_nominativ.ogg']                 :- Dist < 100,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
 distance_mi_y(Dist, dativ) --     [ X, 'yards_dativ.ogg']                     :- Dist < 100,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
 distance_mi_y(Dist, nominativ) -- [ X, 'yards_nominativ.ogg']                 :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
@@ -405,6 +409,8 @@ distance_mi_y(Dist, nominativ) -- [ X, 'miles_nominativ.ogg']                 :-
 distance_mi_y(Dist, dativ) --     [ X, 'miles_dativ.ogg']                     :-               D is round(Dist/1609.3),            dist(D, X).
 
 %%% distance measure mi/m
+distance_mi_m(Dist, nominativ) -- [ X, 'meters_nominativ.ogg']                :- Dist < 17,    D is round(Dist),                   dist(D, X).
+distance_mi_m(Dist, dativ) --     [ X, 'meters_dativ.ogg']                    :- Dist < 17,    D is round(Dist),                   dist(D, X).
 distance_mi_m(Dist, nominativ) -- [ X, 'meters_nominativ.ogg']                :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
 distance_mi_m(Dist, dativ) --     [ X, 'meters_dativ.ogg']                    :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
 distance_mi_m(Dist, nominativ) -- [ X, 'meters_nominativ.ogg']                :- Dist < 1300,  D is round(2*Dist/100.0)*50,        dist(D, X).
