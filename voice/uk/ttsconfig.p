@@ -52,14 +52,14 @@ string('roundabout.ogg', 'кругове перехрестя').
 string('then.ogg', 'потім ').
 string('and.ogg', ' і ').
 string('take.ogg', 'виберіть ').
-string('exit.ogg', 'з_їзд').
+string('exit.ogg', "з''їзд").
 
 string('1th.ogg', 'перший ').
 string('2th.ogg', 'другий ') :- google_gen, voice .
 string('2th.ogg', 'другий ') :- not(google_gen).
 string('3th.ogg', 'третій ').
 string('4th.ogg', 'четвертий ').
-string('5th.ogg', 'п_ятий ').
+string('5th.ogg', "п''ятий ").
 string('6th.ogg', 'шостий ').
 string('7th.ogg', 'сьомий ').
 string('8th.ogg', 'восьмий ').
@@ -69,7 +69,7 @@ string('11th.ogg', 'одинадцятий ').
 string('12th.ogg', 'дванадцятий ').
 string('13th.ogg', 'тринадцятий ').
 string('14th.ogg', 'чотирнадцятий ').
-string('15th.ogg', 'п_ятнадцятий ').
+string('15th.ogg', "п''ятнадцятий ").
 string('16th.ogg', 'шістнадцятий ').
 string('17th.ogg', 'сімнадцятий ').
 
@@ -197,10 +197,10 @@ make_ut(Dist, Street) --  ['in.ogg', D, 'make_uturn.ogg'| Sgen] :- distance(Dist
 make_ut(Street) -- ['make_uturn.ogg'| Sgen] :- turn_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
-% prepare_roundabout(Dist, _Exit, Street) -- ['after.ogg', D, 'roundabout.ogg'] :- distance(Dist) -- D.
-prepare_roundabout(Dist, _Exit, _Street) -- ['after.ogg', D, 'roundabout.ogg', E] :- distance(Dist) -- D, toexitn(Exit, E).
-roundabout(Dist, _Angle, Exit, Street) -- ['in.ogg', D, 'roundabout.ogg', E | Sgen] :- distance(Dist) -- D, exitn(Exit, E), turn_street(Street, Sgen).
-roundabout(_Angle, Exit, Street) -- ['roundabout.ogg', E| Sgen] :- exitn(Exit, E), turn_street(Street, Sgen).
+prepare_roundabout(Dist, _Exit, Street) -- ['after.ogg', D, 'roundabout.ogg'] :- distance(Dist) -- D.
+% prepare_roundabout(Dist, _Exit, _Street) -- ['after.ogg', D, 'roundabout.ogg', E] :- distance(Dist) -- D, toexitn(Exit, E).
+roundabout(Dist, _Angle, Exit, Street) -- ['after.ogg', D, 'roundabout.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
+roundabout(_Angle, Exit, Street) -- ['roundabout.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 
 go_ahead -- ['go_ahead.ogg'].
 go_ahead(Dist, Street) -- ['go_ahead_m.ogg', D | Sgen] :- distance(Dist) -- D, follow_street(Street, Sgen).
