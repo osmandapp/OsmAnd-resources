@@ -861,6 +861,7 @@ mycpname historic_monastery place_of_worship_monastery.png
 mycp amenity place_of_worship place_of_worship_unknown.png
 mycpname topo_religion_unknown topo_topo_religion_unknown.png
 mycp amenity post_box amenity_post_box.png
+mycpname letter_box amenity_letter_box.png
 mycp amenity post_office amenity_post_office2.png
 mycp amenity prison amenity_prison.png
 mycp amenity recycling amenity_colored_recycling.png
