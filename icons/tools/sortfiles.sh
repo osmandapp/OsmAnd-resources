@@ -953,6 +953,8 @@ mycpname craft_window_construction craft_window_construction.png
 mygroup finance money_bank2.png
 mycp amenity atm money_atm.png
 mycpname payment_terminal money_payment_terminal.png
+mycpname payment_centre money_payment_centre.png
+mycpname money_transfer money_money_transfer.png
 mycp amenity bank money_bank2.png
 mycp amenity bureau_de_change money_currency_exchange.png
 mycp bitcoin yes money_bitcoin.png
