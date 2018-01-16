@@ -315,6 +315,8 @@ distance(Dist, Y) -- D :- measure('mi-y'), distance_mi_y(Dist, Y) -- D.
 distance(Dist, Y) -- D :- measure('mi-m'), distance_mi_m(Dist, Y) -- D.
 
 %%% distance measure km/m
+distance_km(Dist, metrin) -- [ X, 'meters_metrin.ogg']                  :- Dist < 17,    D is round(Dist),                   dist(D, X).
+distance_km(Dist, metria) -- [ X, 'meters_metri.ogg']                  :- Dist < 17,    D is round(Dist),                   dist(D, X).
 distance_km(Dist, metrin) -- [ X, 'meters_metrin.ogg']                  :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
 distance_km(Dist, metria) -- [ X, 'meters_metri.ogg']                  :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
 distance_km(Dist, metrin) -- [ X, 'meters_metrin.ogg']                  :- Dist < 1000,  D is round(2*Dist/100.0)*50,        dist(D, X).
@@ -341,6 +343,8 @@ distance_mi_f(Dist, metrin) -- [ X, 'miles_metrin.ogg']                 :-      
 distance_mi_f(Dist, metria) -- [ X, 'miles_metri.ogg']                 :-               D is round(Dist/1609.3),            dist(D, X).
 
 %%% distance measure mi/y
+distance_mi_y(Dist, metrin) -- [ X, 'yards_metrin.ogg']                 :- Dist < 17,    D is round(Dist/0.9144),            dist(D, X).
+distance_mi_y(Dist, metria) -- [ X, 'yards_metri.ogg']                 :- Dist < 17,    D is round(Dist/0.9144),            dist(D, X).
 distance_mi_y(Dist, metrin) -- [ X, 'yards_metrin.ogg']                 :- Dist < 100,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
 distance_mi_y(Dist, metria) -- [ X, 'yards_metri.ogg']                 :- Dist < 100,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
 distance_mi_y(Dist, metrin) -- [ X, 'yards_metrin.ogg']                 :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
@@ -353,6 +357,8 @@ distance_mi_y(Dist, metrin) -- [ X, 'miles_metrin.ogg']                 :-      
 distance_mi_y(Dist, metria) -- [ X, 'miles_metri.ogg']                 :-               D is round(Dist/1609.3),            dist(D, X).
 
 %%% distance measure mi/m
+distance_mi_m(Dist, metrin) -- [ X, 'meters_metrin.ogg']                :- Dist < 17,    D is round(Dist),                   dist(D, X).
+distance_mi_m(Dist, metria) -- [ X, 'meters_metri.ogg']                :- Dist < 17,    D is round(Dist),                   dist(D, X).
 distance_mi_m(Dist, metrin) -- [ X, 'meters_metrin.ogg']                :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
 distance_mi_m(Dist, metria) -- [ X, 'meters_metri.ogg']                :- Dist < 100,   D is round(Dist/10.0)*10,           dist(D, X).
 distance_mi_m(Dist, metrin) -- [ X, 'meters_metrin.ogg']                :- Dist < 1300,  D is round(2*Dist/100.0)*50,        dist(D, X).

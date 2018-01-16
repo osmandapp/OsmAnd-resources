@@ -319,6 +319,7 @@ distance(Dist) -- D :- measure('mi-m'), distance_mi_m(Dist) -- D.
 
 %%% distance measure km/m
 % Dist = vzdialenost v metroch.
+distance_km(Dist) -- [ X, 'meters.ogg']                     :- Dist < 17,    D is round(Dist),                      dist(D, X).
 distance_km(Dist) -- [ X, 'meters.ogg']                     :- Dist < 100,   D is round(Dist/10.0)*10,              dist(D, X).
 distance_km(Dist) -- [ X, 'meters.ogg']                     :- Dist < 1000,  D is round(2*Dist/100.0)*50,           dist(D, X).
 distance_km(Dist) -- [ 'kilometer.ogg']                     :- Dist < 1500.
@@ -341,6 +342,7 @@ distance_mi_f(Dist) -- [ X, 'miles3_4.ogg']              :- Dist < 8045,  D is r
 distance_mi_f(Dist) -- [ X, 'miles5.ogg']                :-               D is round(Dist/1609.3),            dist(D, X).
 
 %%% distance measure mi/y
+distance_mi_y(Dist) -- [ X, 'yards.ogg']                 :- Dist < 17,    D is round(Dist/0.9144),            dist(D, X).
 distance_mi_y(Dist) -- [ X, 'yards.ogg']                 :- Dist < 100,   D is round(Dist/10.0/0.9144)*10,    dist(D, X).
 distance_mi_y(Dist) -- [ X, 'yards.ogg']                 :- Dist < 1300,  D is round(2*Dist/100.0/0.9144)*50, dist(D, X).
 distance_mi_y(Dist) -- ['mile.ogg']                      :- Dist < 2414.
@@ -349,6 +351,7 @@ distance_mi_y(Dist) -- [ X, 'miles3_4.ogg']              :- Dist < 8045,  D is r
 distance_mi_y(Dist) -- [ X, 'miles5.ogg']                :-               D is round(Dist/1609.3),            dist(D, X).
 
 %%% distance measure mi/m
+distance_mi_m(Dist) -- [ X, 'meters.ogg']                :- Dist < 17,    D is round(Dist),                   dist(D, X).
 distance_mi_m(Dist) -- [ X, 'meters.ogg']                :- Dist < 100,   D is round(Dist/10.0)*10,              dist(D, X).
 distance_mi_m(Dist) -- [ X, 'meters.ogg']                :- Dist < 1300,  D is round(2*Dist/100.0)*50,           dist(D, X).
 distance_mi_m(Dist) -- ['mile.ogg']                      :- Dist < 2414.
