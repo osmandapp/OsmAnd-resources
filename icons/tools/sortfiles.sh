@@ -328,6 +328,7 @@ mycpname traffic_mirror poi_colored_traffic_mirror.png
 mygroup fuel transport_fuel.png
 mygroup filling_station transport_fuel.png
 mycpname charging_station transport_charging_station.png
+mycpname charging_station_filter transport_charging_station.png
 mycp amenity fuel_lpg transport_fuel_lpg.png
 mycp amenity fuel transport_fuel.png
 mycpname aeroway_fuel transport_aeroway_fuel.png
