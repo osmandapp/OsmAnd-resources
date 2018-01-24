@@ -1843,6 +1843,7 @@ mycpname e_cigarette shopping_e_cigarette.png
 mycpname nutrition_supplements shopping_nutrition_supplements.png
 mycpname photo_studio shopping_photo_studio.png
 mycpname frozen_food shopping_frozen_food.png
+mycpname agrarian shopping_agrarian.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
