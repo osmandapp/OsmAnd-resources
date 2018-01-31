@@ -1845,6 +1845,7 @@ mycpname photo_studio shopping_photo_studio.png
 mycpname frozen_food shopping_frozen_food.png
 mycpname agrarian shopping_agrarian.png
 mycpname shop_fireplace shopping_fireplace.png
+mycpname shop_boat shopping_boat.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
