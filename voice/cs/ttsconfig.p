@@ -134,10 +134,10 @@ string('off_route2.ogg', ' mimo trasu').
 string('back_on_route.ogg', 'vrátili jste se zpět na trasu').
 
 % STREET NAME PREPOSITIONS
-string('onto.ogg', 'na ').
-string('on.ogg', 'na ').
-string('to.ogg', 'na ').
-string('toward.ogg', 've směru ').
+string('onto.ogg', 'na: ').
+string('on.ogg', 'na: ').
+string('to.ogg', 'na: ').
+string('toward.ogg', 've směru: ').
 
 % DISTANCE UNIT SUPPORT
 string('meters_accusative.ogg', 'metrů').
@@ -171,7 +171,7 @@ string('yards_accusative.ogg', 'jardů').
 string('yards_locative.ogg', 'jardech').
 
 % TIME SUPPORT
-string('time.ogg', 'potřebná doba ').
+string('time.ogg', 'potřebná doba: ').
 string('1_hour.ogg', 'jedna hodina ').
 string('2_hours.ogg', 'dvě hodiny ').
 string('3_4_hours.ogg', 'hodiny ').
