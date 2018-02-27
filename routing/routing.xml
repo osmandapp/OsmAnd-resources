@@ -224,26 +224,26 @@
 	E.g.:
 
 
-  		<gt value1="-60" value2=":incline">
+  		<gt value1="-60" value2="$incline">
   			<select value="35"/>
   		</gt>
-  		<gt value1="-17" value2=":incline">
+  		<gt value1="-17" value2="$incline">
   			<select value="10"/>
   		</gt>
-  		<gt value1="-3" value2=":incline">
+  		<gt value1="-3" value2="$incline">
   			<select value="1"/>
   		</gt>
-  		<gt value1="3" value2=":incline">
+  		<gt value1="3" value2="$incline">
   			<select value="0"/>
   		</gt>
 
-  		<gt value1="17" value2=":incline">
-  			<select value="1"/>
-  		</gt>
-  		<gt value1="13" value2=":incline">
+  		<gt value1="13" value2="$incline">
   			<select value="8"/>
   		</gt>
-  		<gt value1="25" value2=":incline">
+  		<gt value1="17" value2="$incline">
+  			<select value="1"/>
+  		</gt>
+  		<gt value1="25" value2="$incline">
   			<select value="10"/>
   		</gt>
   		<select value="15"/>
@@ -326,20 +326,21 @@
         
     ### Using numeric parameters in the routing engine   
 
-	# TODO Wait for knowledgeable people
-
 	Numeric values can be used to compare to other values. For this, a `gt` (greater-then) tag is used.
 	The `gt`-tag acts just like an if-test.
 
-	For example, if the height of your car is set, you'll want to compare it with the `maxheight`-tag given to some ways.
+	For example, if the height of your car is set, you'll want to compare it with the `maxheight`-tag given to some ways. This is done with a `gt` tag:
 
 	
 	<gt value1=":height" value2="$maxweight" type="height"/>
 		<select value="-1" t="maxweight" />
  	</gt>
 
+	To call a value, use either ':' or '$' as prefix. Use ':' for the parameters that you defined and '$' for tags loaded from the obf-file (the file containing the data from OSM). (Note: actually it doesn't matter which symbol is used. ':height' and '$height' will both call the same parameter. But for clarity, stick to this idiom).
 
-        # TODO experiment with <gt value1="" value2="param">, <if value=":key"> and <gt value1="" value2=":key">
+	The `type` gives a hint on how to parse the values. If the type is `height`, '1' will be interpreted as '1 meter'.
+	For a type `height`, '1' will be interpreted as one ton (1000 kg)
+
        
     Miscellaneous
     +++++++++++++
@@ -351,6 +352,8 @@
 
 
 	-->
+
+
 	<routingProfile name="car" baseProfile="car" restrictionsAware="true" minDefaultSpeed="45.0" maxDefaultSpeed="130.0"
 			leftTurn="5" rightTurn="5" roundaboutTurn="10" onewayAware="true">
 	    <!--
@@ -1044,74 +1047,74 @@
 
 		<way attribute="obstacle_srtm_alt_speed">
 			<if param="height_obstacles">
-				<gt value1="-100" value2=":incline">
+				<gt value1="-100" value2="$incline">
 					<select value="-1" t="osmand_highway_integrity_brouting_low" v="yes"/>
 					<select value="-1" t="highway" v="path"/>
 					<select value="-1" t="highway" v="track"/>
 				</gt>
-				<gt value1="-25" value2=":incline">
+				<gt value1="-25" value2="$incline">
 					<select value="180" t="osmand_highway_integrity_brouting_low" v="yes"/>
 					<select value="180" t="highway" v="path"/>
 					<select value="170" t="highway" v="track"/>
 				</gt>
-				<gt value1="-17" value2=":incline">
+				<gt value1="-17" value2="$incline">
 					<select value="150" t="osmand_highway_integrity_brouting_low" v="yes"/>
 					<select value="150" t="highway" v="path"/>
 					<select value="140" t="highway" v="track"/>
 				</gt>
-				<gt value1="-9" value2=":incline">
+				<gt value1="-9" value2="$incline">
 					<select value="30" t="osmand_highway_integrity_brouting_low" v="yes"/>
 					<select value="30" t="highway" v="path"/>
 					<select value="25" t="highway" v="track"/>
 				</gt>
-				<gt value1="-3" value2=":incline">
+				<gt value1="-3" value2="$incline">
 					<select value="2" t="osmand_highway_integrity_brouting_low" v="yes"/>
 					<select value="2" t="highway" v="path"/>
 					<select value="2" t="highway" v="track"/>
 				</gt>
 				<if param="relief_smoothness_factor_more_plains">
-					<gt value1="3" value2=":incline">
+					<gt value1="3" value2="$incline">
 						<select value="2"/>
 					</gt>
-					<gt value1="7" value2=":incline">
+					<gt value1="7" value2="$incline">
 						<select value="12"/>
 					</gt>
-					<gt value1="13" value2=":incline">
+					<gt value1="13" value2="$incline">
 						<select value="30"/>
 					</gt>
-					<gt value1="25" value2=":incline">
+					<gt value1="25" value2="$incline">
 						<select value="50"/>
 					</gt>
 					<select value="74"/>
 				</if>
 				<if param="relief_smoothness_factor_hills">
-					<gt value1="0" value2=":incline">
+					<gt value1="0" value2="$incline">
 						<select value="128"/>
 					</gt>
-					<gt value1="3" value2=":incline">
+					<gt value1="3" value2="$incline">
 						<select value="64"/>
 					</gt>
-					<gt value1="7" value2=":incline">
+					<gt value1="7" value2="$incline">
 						<select value="17"/>
 					</gt>
-					<gt value1="13" value2=":incline">
+					<gt value1="13" value2="$incline">
 						<select value="10"/>
 					</gt>
-					<gt value1="25" value2=":incline">
+					<gt value1="25" value2="$incline">
 						<select value="8"/>
 					</gt>
 					<select value="2"/>
 				</if>
-				<gt value1="3" value2=":incline">
+				<gt value1="3" value2="$incline">
 					<select value="2"/>
 				</gt>
-				<gt value1="7" value2=":incline">
+				<gt value1="7" value2="$incline">
 					<select value="8"/>
 				</gt>
-				<gt value1="13" value2=":incline">
+				<gt value1="13" value2="$incline">
 					<select value="16"/>
 				</gt>
-				<gt value1="25" value2=":incline">
+				<gt value1="25" value2="$incline">
 					<select value="32"/>
 				</gt>
 				<select value="48"/>
@@ -1533,31 +1536,31 @@
 
 		<way attribute="obstacle_srtm_alt_speed">
 			<if param="height_obstacles">
-				<gt value1="-60" value2=":incline">
+				<gt value1="-60" value2="$incline">
 					<select value="35"/>
 				</gt>
-				<gt value1="-25" value2=":incline">
+				<gt value1="-25" value2="$incline">
 					<select value="30"/>
 				</gt>
-				<gt value1="-17" value2=":incline">
+				<gt value1="-17" value2="$incline">
 					<select value="17"/>
 				</gt>
-				<gt value1="-9" value2=":incline">
+				<gt value1="-9" value2="$incline">
 					<select value="5"/>
 				</gt>
-				<gt value1="-3" value2=":incline">
+				<gt value1="-3" value2="$incline">
 					<select value="1"/>
 				</gt>
-				<gt value1="3" value2=":incline">
+				<gt value1="3" value2="$incline">
 					<select value="1"/>
 				</gt>
-				<gt value1="7" value2=":incline">
+				<gt value1="7" value2="$incline">
 					<select value="4"/>
 				</gt>
-				<gt value1="13" value2=":incline">
+				<gt value1="13" value2="$incline">
 					<select value="8"/>
 				</gt>
-				<gt value1="25" value2=":incline">
+				<gt value1="25" value2="$incline">
 					<select value="10"/>
 				</gt>
 				<select value="15"/>
