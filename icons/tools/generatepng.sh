@@ -128,7 +128,7 @@ generatePngs() {
 
        generatePngs 'functional-icons' '#777777' '#ff8f00' '' '' '' nomx
        generatePngs 'functional-icons-x2' '#777777' '#ff8f00' '' x2 '' nomx
-       generatePngs 'subway' '#777777' '#ff8f00' '' x2 '' nomx
+       generatePngs 'subway' '#777777' '#ff8f00' '' x2 ''
 
        generatePngs 'water' '#ffffff' '#ff8f00'
        generatePngs 'water_colored' '#0092DA' '#ff8f00'
