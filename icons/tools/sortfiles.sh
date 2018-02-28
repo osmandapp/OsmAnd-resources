@@ -1738,6 +1738,7 @@ mycpname hifi shopping_hifi.png
 mycp shop fashion shopping_clothes.png
 mycp shop fishing shopping_tackle.png
 mycp shop florist shopping_florist.png
+mycpname flooring shopping_flooring.png
 mycp shop furniture shopping_furniture.png
 mycp shop garden_centre shopping_garden_centre.png
 mycpname shop_yes shopping_general.png
