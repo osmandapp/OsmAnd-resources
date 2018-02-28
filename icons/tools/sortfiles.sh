@@ -1849,6 +1849,7 @@ mycpname agrarian shopping_agrarian.png
 mycpname shop_fireplace shopping_fireplace.png
 mycpname shop_boat shopping_boat.png
 mycpname cannabis shopping_cannabis.png
+mycpname pottery shopping_pottery.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
