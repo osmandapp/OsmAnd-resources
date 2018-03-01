@@ -79,7 +79,8 @@
 		type="boolean" possibleValues="" category="transport"/>
 	<renderingProperty attr="subwayMode" name="Subway mode" description="Subway rendering mode"
 		type="boolean" possibleValues="" category="transport"/>
-
+	<renderingProperty attr="whiteWaterSports" name="Whitewater sports" description="Whitewater sports"
+		type="boolean" possibleValues="" category="routes"/>
 
 	<renderingProperty attr="moreDetailed" name="More details" description="More details on map" type="boolean" possibleValues=""
 		category="details"/>
@@ -8527,6 +8528,12 @@
 			<case minzoom="16" tag="railway" value="yard" icon="railway_yard" shield="blue_round_shield" iconVisibleSize="14">
 				<apply_if nightMode="true" shield="blue_round_night_shield"/>
 			</case>
+			<switch whiteWaterSports="true" minzoom="14" iconOrder="20">
+				<case tag="whitewater" value="put_in" icon="put_in"/>
+				<case tag="whitewater" value="egress" icon="egress"/>
+				<case tag="whitewater" value="put_in;egress" icon="put_in_egress"/>
+			</switch>
+
 			<apply_if legend="true" iconVisibleSize="0"/>
 		</switch>
 
@@ -10707,6 +10714,21 @@
 			<apply color="$waterColor" color_2="#ffffff">
 				<apply_if nightMode="true" color_2="#7340D9"/>
 			</apply>
+			<apply_if whiteWaterSports="true">
+				<switch>
+					<case additional="whitewater:section_grade=0" color_2="#EE00BFFF" onewayArrowsColor="#0080AB"/>
+					<case additional="whitewater:section_grade=1" color_2="#EE7FFF00" onewayArrowsColor="#438600"/>
+					<case additional="whitewater:section_grade=2" color_2="#EEFFE455" onewayArrowsColor="#9D8C34"/>
+					<case additional="whitewater:section_grade=3" color_2="#EEFFA500" onewayArrowsColor="#9E6600"/>
+					<case additional="whitewater:section_grade=4" color_2="#EEFF0000" onewayArrowsColor="#800000"/>
+					<case additional="whitewater:section_grade=5" color_2="#EEBF3EFF" onewayArrowsColor="#611F81"/>
+					<case additional="whitewater:section_grade=6" color_2="#EE000000" onewayArrowsColor="#B2B2B2"/>
+					<apply_if maxzoom="13" strokeWidth_2="6"/>
+					<apply_if minzoom="14" maxzoom="15" strokeWidth_2="10"/>
+					<apply_if minzoom="16" maxzoom="17" strokeWidth_2="14"/>
+					<apply_if minzoom="18" strokeWidth_2="18"/>
+				</switch>
+			</apply_if>
 		</switch>
 
 		<switch>

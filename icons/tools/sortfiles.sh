@@ -570,6 +570,10 @@ mycp aeroway helipad transport_helicopter_pad.png
 mycpname aeroway_terminal transport_airport_terminal.png
 mycpname spaceport transport_spaceport.png
 
+mycpname put_in functional-icons-x2_whitewater_put_in.png
+mycpname egress functional-icons-x2_whitewater_egress.png
+mycpname put_in_egress functional-icons-x2_whitewater_put_in_egress.png
+
 
 ## Barrier
 mygroup barrier barrier_colored_bollard.png
