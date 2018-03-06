@@ -125,6 +125,7 @@ mycp natural volcano_big functional-icons_volcano_big.png
 mycp natural volcano_map functional-icons_volcano.png  #Is poi_colored_peak.png with color #D40000  #scale 0.5
 mycpname volcano poi_colored_volcano_active.png
 mycp waterway rapids barrier_colored_rapids.png  #scale 0.375
+mycpname rapid_white barrier_rapid.png  #scale 0.375
 mycpname waterfall water_waterfall.png  #scale 0.375
 mycpname topo_waterfall topo_topo_waterfall.png  #scale 0.375
 mycpname dam water_dam.png

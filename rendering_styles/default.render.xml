@@ -1243,6 +1243,50 @@
 		<case attrColorValue="#aa000000"/>
 	</renderingAttribute>
 
+	<renderingAttribute name="whitewaterSectionGrade0Color">
+		<case attrColorValue="#EE00A3FF"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade1Color">
+		<case attrColorValue="#EE7FFF00"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade2Color">
+		<case attrColorValue="#EEFFE455"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade3Color">
+		<case attrColorValue="#EEFFA500"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade4Color">
+		<case attrColorValue="#EEFF0000"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade5Color">
+		<case attrColorValue="#EEBF3EFF"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade6Color">
+		<case attrColorValue="#EE494949"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="whitewaterRapidGrade0Color">
+		<case attrColorValue="#0078BA"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterRapidGrade1Color">
+		<case attrColorValue="#53A600"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterRapidGrade2Color">
+		<case attrColorValue="#D2BC47"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterRapidGrade3Color">
+		<case attrColorValue="#CF8500"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterRapidGrade4Color">
+		<case attrColorValue="#B10000"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterRapidGrade5Color">
+		<case attrColorValue="#822AAD"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterRapidGrade6Color">
+		<case attrColorValue="#777777"/>
+	</renderingAttribute>
+
 	<renderingAttribute name="boundaryColorInner">
 		<case nightMode="true" attrColorValue="#44b27db3"/>
 		<case attrColorValue="#50800080"/>
@@ -2337,7 +2381,7 @@
 				<case tag="natural" value=""/>
 				<case tag="region:type" value="mountain_area"/>
 				<case tag="waterway" value="waterfall"/>
-				<case tag="waterway" value="rapids"/>
+				<case tag="whitewater" value="rapid"/>
 				<case tag="waterway" value=""/>
 				<switch>
 					<case tag="shop" value="car_repair"/>
@@ -2589,7 +2633,7 @@
 
 				<case tag="man_made" value="petroleum_well"/>
 				<case tag="man_made" value="reinforced_slope"/>
-				<case tag="waterway" value="rapids"/>
+				<case tag="whitewater" value="rapid"/>
 				<switch order="5">
 					<case tag="natural" value="water"/>
 					<case tag="natural" value="wood"/>
@@ -5447,7 +5491,11 @@
 					  <apply_if maxzoom="10" moreDetailed="true" textOrder="6"/> <!-- Only if region:type is available at z10- -->
 					</switch>
 					<case minzoom="14" textSize="12" tag="waterway" value="drystream" textOnPath="true" textOrder="77" textDy="0"/>
-					<case minzoom="16" textSize="12" tag="waterway" value="rapids" textOnPath="true"/>
+					<switch>
+						<case minzoom="16" textSize="12" tag="whitewater" value="rapid" nameTag="whitewater:rapid_name" textOnPath="true"/>
+						<case minzoom="16" textSize="12" tag="whitewater" value="rapid" nameTag="" nameTag2="whitewater:rapid_name" textOnPath="true"/>
+						<apply_if whiteWaterSports="true" textOrder="10"/>
+					</switch>
 					<case minzoom="15" textSize="12" tag="natural" value="saddle" nameTag="" nameTag2="ele"/>
 					<case minzoom="13" textSize="14" tag="natural" value="crater" textColor="#4e0d0d"/>
 					<case hidePOILabels="false" minzoom="16" textSize="14" tag="natural" value="sinkhole" textColor="#4e0d0d"/>
@@ -5509,7 +5557,9 @@
 					<case hidePOILabels="false" minzoom="17" tag="natural" value="spring" textDy="7" textWrapWidth="20" textOrder="214"/>
 					<case hidePOILabels="false" minzoom="16" tag="natural" value="hot_spring" textDy="7" textWrapWidth="20" textOrder="215"/>
 					<case hidePOILabels="false" minzoom="16" tag="natural" value="geyser" textDy="7" textWrapWidth="20" textOrder="216"/>
-					<case hidePOILabels="false" minzoom="15" tag="waterway" value="waterfall" nameTag2="height" textDy="7" textWrapWidth="20" textOnPath="true" textOrder="217"/>
+					<case hidePOILabels="false" minzoom="15" tag="waterway" value="waterfall" nameTag2="height" textDy="7" textWrapWidth="20" textOnPath="true" textOrder="217">
+						<apply_if whiteWaterSports="true" textOrder="11"/>
+					</case>
 
 					<case minzoom="13" tag="landuse" value="water" nameTag="" textWrapWidth="20" textOrder="218"/>
 					<case minzoom="13" tag="landuse" value="reservoir" nameTag="" textWrapWidth="20" textOrder="218"/>
@@ -6969,12 +7019,25 @@
 				<case minzoom="19" tag="man_made" value="street_cabinet" icon="street_cabinet" shield="street_cabinet_shield"/>
 				<case minzoom="16" tag="man_made" value="cairn" icon="cairn" shield="cairn_shield"/>
 				<case minzoom="16" tag="man_made" value="cross" icon="cross" shield="cross_shield"/>
-				<case minzoom="16" tag="waterway" value="rapids" icon="waterway_rapids" shield="rapids_shield"/>
+				<switch minzoom="16" tag="whitewater" value="rapid">
+					<case whiteWaterSports="true" icon="rapid_white" iconOrder="10">
+						<apply_if additional="whitewater:rapid_grade=0" shield="whitewater_rapid_grade0_shield"/>
+						<apply_if additional="whitewater:rapid_grade=1" shield="whitewater_rapid_grade1_shield"/>
+						<apply_if additional="whitewater:rapid_grade=2" shield="whitewater_rapid_grade2_shield"/>
+						<apply_if additional="whitewater:rapid_grade=3" shield="whitewater_rapid_grade3_shield"/>
+						<apply_if additional="whitewater:rapid_grade=4" shield="whitewater_rapid_grade4_shield"/>
+						<apply_if additional="whitewater:rapid_grade=5" shield="whitewater_rapid_grade5_shield"/>
+						<apply_if additional="whitewater:rapid_grade=6" shield="whitewater_rapid_grade6_shield"/>
+					</case>
+					<case icon="waterway_rapids" shield="rapids_shield"/>
+				</switch>
 				<switch shield="blue_round_shield">
 					<case minzoom="14" tag="natural" value="hot_spring" icon="natural_hot_spring"/>
 					<case minzoom="14" tag="natural" value="geyser" icon="natural_geyser"/>
 					<case minzoom="15" tag="natural" value="spring" icon="natural_spring"/>
-					<case minzoom="14" tag="waterway" value="waterfall" icon="waterfall"/>
+					<case minzoom="14" tag="waterway" value="waterfall" icon="waterfall">
+						<apply_if whiteWaterSports="true" textOrder="10"/>
+					</case>
 					<apply_if minzoom="16" additional="drinking_water=yes" icon_2="drinking_water_yes_map"/>
 					<apply_if nightMode="true" shield="blue_round_night_shield"/>
 				</switch>
@@ -10526,7 +10589,7 @@
 			<case tag="barrier" value="sally_port"/>
 			<case tag="barrier" value="turnstile"/>
 			<case tag="barrier" value="kent_carriage_gap"/>
-			<case tag="waterway" value="rapids" pathEffect="2_2"/>
+			<case tag="whitewater" value="rapid" pathEffect="2_2"/>
 			<apply>
 				<case moreDetailed="true" maxzoom="15" strokeWidth="0.2"/>
 				<case minzoom="16" strokeWidth="0.6"/>
@@ -10716,19 +10779,43 @@
 			</apply>
 			<apply_if whiteWaterSports="true">
 				<switch>
-					<case additional="whitewater:section_grade=0" color_2="#EE00BFFF" onewayArrowsColor="#0080AB"/>
-					<case additional="whitewater:section_grade=1" color_2="#EE7FFF00" onewayArrowsColor="#438600"/>
-					<case additional="whitewater:section_grade=2" color_2="#EEFFE455" onewayArrowsColor="#9D8C34"/>
-					<case additional="whitewater:section_grade=3" color_2="#EEFFA500" onewayArrowsColor="#9E6600"/>
-					<case additional="whitewater:section_grade=4" color_2="#EEFF0000" onewayArrowsColor="#800000"/>
-					<case additional="whitewater:section_grade=5" color_2="#EEBF3EFF" onewayArrowsColor="#611F81"/>
-					<case additional="whitewater:section_grade=6" color_2="#EE000000" onewayArrowsColor="#B2B2B2"/>
+					<case additional="whitewater:section_grade=0" color_2="$whitewaterSectionGrade0Color" onewayArrowsColor="#0080AB"/>
+					<case additional="whitewater:section_grade=1" color_2="$whitewaterSectionGrade1Color" onewayArrowsColor="#438600"/>
+					<case additional="whitewater:section_grade=2" color_2="$whitewaterSectionGrade2Color" onewayArrowsColor="#9D8C34"/>
+					<case additional="whitewater:section_grade=3" color_2="$whitewaterSectionGrade3Color" onewayArrowsColor="#9E6600"/>
+					<case additional="whitewater:section_grade=4" color_2="$whitewaterSectionGrade4Color" onewayArrowsColor="#800000"/>
+					<case additional="whitewater:section_grade=5" color_2="$whitewaterSectionGrade5Color" onewayArrowsColor="#611F81"/>
+					<case additional="whitewater:section_grade=6" color_2="$whitewaterSectionGrade6Color" onewayArrowsColor="#B2B2B2"/>
 					<apply_if maxzoom="13" strokeWidth_2="6"/>
 					<apply_if minzoom="14" maxzoom="15" strokeWidth_2="10"/>
 					<apply_if minzoom="16" maxzoom="17" strokeWidth_2="14"/>
 					<apply_if minzoom="18" strokeWidth_2="18"/>
 				</switch>
 			</apply_if>
+			<apply_if whiteWaterSports="true">
+				<switch>
+					<case additional="whitewater:rapid_grade=0" color_3="$whitewaterRapidGrade0Color"/>
+					<case additional="whitewater:rapid_grade=1" color_3="$whitewaterRapidGrade1Color"/>
+					<case additional="whitewater:rapid_grade=2" color_3="$whitewaterRapidGrade2Color"/>
+					<case additional="whitewater:rapid_grade=3" color_3="$whitewaterRapidGrade3Color"/>
+					<case additional="whitewater:rapid_grade=4" color_3="$whitewaterRapidGrade4Color"/>
+					<case additional="whitewater:rapid_grade=5" color_3="$whitewaterRapidGrade5Color"/>
+					<case additional="whitewater:rapid_grade=6" color_3="$whitewaterRapidGrade6Color"/>
+					<apply_if maxzoom="13" strokeWidth_3="6" pathEffect_3="1_9"/>
+					<apply_if minzoom="14" maxzoom="15" strokeWidth_3="10" pathEffect_3="1_15"/>
+					<apply_if minzoom="16" maxzoom="17" strokeWidth_3="14" pathEffect_3="1_22"/>
+					<apply_if minzoom="18" strokeWidth_3="18" pathEffect_3="1_30"/>
+					<apply cap_3="ROUND"/>
+				</switch>
+			</apply_if>
+		</switch>
+
+		<switch minzoom="14" whiteWaterSports="true">
+			<case tag="whitewater" value="portage_way"/>
+			<apply_if maxzoom="15" strokeWidth="3" pathEffect="6_3"/>
+			<apply_if minzoom="16" maxzoom="16" strokeWidth="4" pathEffect="8_4"/>
+			<apply_if minzoom="17" maxzoom="18" strokeWidth="6" pathEffect="10_5"/>
+			<apply color="#EE003CB0"/>
 		</switch>
 
 		<switch>
