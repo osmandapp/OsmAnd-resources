@@ -574,6 +574,7 @@ mycpname spaceport transport_spaceport.png
 mycpname put_in functional-icons-x2_whitewater_put_in.png
 mycpname egress functional-icons-x2_whitewater_egress.png
 mycpname put_in_egress functional-icons-x2_whitewater_put_in_egress.png
+mycpname whitewater_hazard functional-icons-x2_whitewater_hazard.png
 
 
 ## Barrier
