@@ -332,7 +332,7 @@
 	For example, if the height of your car is set, you'll want to compare it with the `maxheight`-tag given to some ways. This is done with a `gt` tag:
 
 	
-	<gt value1=":height" value2="$maxweight" type="height"/>
+	<gt value1=":height" value2="$maxweight" type="height">
 		<select value="-1" t="maxweight" />
  	</gt>
 
@@ -383,27 +383,29 @@
 			<select value="-1" t="highway" v="construction"/>
 			<select value="-1" t="construction" v="yes"/>
 
-			<select value="-1" t="highway" v="motorway">
-				<if param="avoid_motorway"/>
-			</select>
-			<select value="-1" t="ice_road" v="yes">
-				<if param="avoid_ice_roads_fords"/>
-			</select>
-			<select value="-1" t="winter_road" v="yes">
-				<if param="avoid_ice_roads_fords"/>
-			</select>
-			<select value="-1" t="ford" v="yes">
-				<if param="avoid_ice_roads_fords"/>
-			</select>
-			<select value="-1" t="toll" v="yes">
-				<if param="avoid_toll"/>
-			</select>
-			<select value="-1" t="route" v="ferry">
-				<if param="avoid_ferries"/>
-			</select>
-			<select value="-1" t="route" v="shuttle_train">
-				<if param="avoid_shuttle_train"/>
-			</select>
+
+			<if param="avoid_motorway">
+				<select value="-1" t="highway" v="motorway"/>
+			</if>
+			<if param="avoid_ice_roads_fords">
+				<select value="-1" t="ice_road" v="yes" />
+			</if>
+			<if param="avoid_ice_roads_fords">
+				<select value="-1" t="winter_road" v="yes" />
+			</if>
+			<if param="avoid_ice_roads_fords">
+				<select value="-1" t="ford" v="yes"/>
+			</if>
+			<if param="avoid_toll">
+				<select value="-1" t="toll" v="yes"/>
+			</if>
+			<if param="avoid_ferries">
+				<select value="-1" t="route" v="ferry"/>
+			</if>
+			<if param="avoid_shuttle_train">
+				<select value="-1" t="route" v="shuttle_train"/>
+			</if>
+
 			<if param="avoid_unpaved">
 				<select value="-1" t="highway" v="track"/>
 				<select value="-1" t="surface" v="unpaved"/>
@@ -486,12 +488,13 @@
 			<select value="-1" t="barrier" v="debris"/>
 			<select value="-1" t="barrier" v="block"/>
 
-			<select value="-1" t="maxweight">
-				<gt value1=":weight" value2="$maxweight" type="weight"/>
-			</select>
-			<select value="-1" t="maxheight">
-				<gt value1=":height" value2="$maxheight" type="length"/>
-			</select>
+			<gt value1=":weight" value2="$maxweight" type="weight">
+				<select value="-1" t="maxweight" />
+			</gt>
+			
+			<gt value1=":height" value2="$maxheight" type="length">
+				<select value="-1" t="maxheight"/>
+			</gt>
 
 			<select value="1" t="highway" v="motorway"/>
 			<select value="1" t="highway" v="motorway_link"/>
@@ -712,9 +715,9 @@
 			</if>
 
 			<!-- Some barrier nodes are combined with maxheight, e.g. height_restrictor or underground parking entrances. -->
-			<select value="-1" t="maxheight">
-				<gt value1=":height" value2="$maxheight" type="length"/>
-			</select>
+			<gt value1=":height" value2="$maxheight" type="length">
+				<select value="-1" t="maxheight" />
+			</gt>
 
 			<!-- If access for a car is explicitly marked, the barrier is passable,
 			     with a slight penalty.
@@ -846,12 +849,12 @@
  			These have already been excluded above (which is the right choice). -->
 
 			</if>
-			<select value="-1" t="route" v="ferry">
-				<if param="avoid_ferries"/>
-			</select>
-			<select value="-1" t="highway" v="steps">
-				<if param="avoid_stairs"/>
-			</select>
+			<if param="avoid_ferries">
+				<select value="-1" t="route" v="ferry" />
+			</if>
+			<if param="avoid_stairs">
+				<select value="-1" t="highway" v="steps"/>
+			</if>
 			<select value="-1" t="highway" v="motorway"/>
 			<select value="-1" t="highway" v="motorway_link"/>
 			<select value="-1" t="motorroad" v="yes"/>
@@ -1475,6 +1478,7 @@
 				<select value="-1" t="highway" v="trunk"/>
 				<select value="-1" t="highway" v="trunk_link"/>
 			</if>
+<<<<<<< HEAD
 
 			<select value="-1" t="highway" v="steps">
 				<if param="avoid_stairs"/>
@@ -1483,6 +1487,11 @@
 			<select value="-1" t="route" v="ferry">
 				<if param="avoid_ferries"/>
 			</select>
+=======
+			<if param="avoid_ferries">
+				<select value="-1" t="route" v="ferry"/>
+			</if>
+>>>>>>> Uniformization of select queries with if/gt
 			<select value="-1" t="foot" v="no"/>
 			<select value="1"  t="foot" v="yes"/>
 			<select value="1"  t="foot" v="permissive"/>
