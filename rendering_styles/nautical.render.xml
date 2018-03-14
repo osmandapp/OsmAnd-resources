@@ -7,6 +7,8 @@
 		type="boolean" possibleValues="" category="hide"/>
 <!--	<renderingProperty attr="noPolygons" name="Hide polygons" description="Make all areal land features on map transparent"
 		type="boolean" possibleValues="" category="hide"/>-->
+	<renderingProperty attr="whiteWaterSports" name="Whitewater sports" description="Whitewater sports"
+		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="contourLines" name="Show contour lines" description="Select minimum zoom level to display in map if available. Separate contour file may be needed."
 		type="string" possibleValues="16,15,14,13,12,11" defaultValueDescription="default" category="details"/>
 	<renderingProperty attr="depthContours" name="Depth contours" description="Show depth contours and points"
@@ -418,6 +420,55 @@
 		<case nightMode="true" attrColorValue="#aa666666"/>
 		<case attrColorValue="#aa000000"/>
 	</renderingAttribute>
+
+	<renderingAttribute name="whitewaterSectionGrade0Color">
+		<case attrColorValue="#EE00A3FF"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade1Color">
+		<case attrColorValue="#EE7FFF00"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade2Color">
+		<case attrColorValue="#EEFFE455"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade3Color">
+		<case attrColorValue="#EEFFA500"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade4Color">
+		<case attrColorValue="#EEFF0000"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade5Color">
+		<case attrColorValue="#EEBF3EFF"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade6Color">
+		<case nightMode="true" attrColorValue="#111111"/>
+		<case attrColorValue="#EE494949"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="whitewaterRapidGrade0Color">
+		<case attrColorValue="#0078BA"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterRapidGrade1Color">
+		<case attrColorValue="#53A600"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterRapidGrade2Color">
+		<case nightMode="true" attrColorValue="#B5A23D"/>
+		<case attrColorValue="#D2BC47"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterRapidGrade3Color">
+		<case nightMode="true" attrColorValue="#B47400"/>
+		<case attrColorValue="#CF8500"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterRapidGrade4Color">
+		<case attrColorValue="#B10000"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterRapidGrade5Color">
+		<case attrColorValue="#822AAD"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterRapidGrade6Color">
+		<case nightMode="true" attrColorValue="#555555"/>
+		<case attrColorValue="#888888"/>
+	</renderingAttribute>
+
 	<renderingAttribute name="textOrderPopulation">
 		<case additional="population_rounded=1500000000" attrIntValue="6"/>
 		<case additional="population_rounded=400000000" attrIntValue="7"/>
@@ -458,6 +509,7 @@
 			<case tag="natural" value=""/>
 			<case tag="waterway" value="waterfall"/>
 			<case tag="whitewater" value="rapid"/>
+			<case tag="whitewater" value="hazard"/>
 			<case tag="waterway" value="lock_gate"/>
 			<case tag="waterway" value=""/>
 			<case tag="natural" value="strait"/>
@@ -1153,6 +1205,18 @@
 <!--				<apply_if engine_v1="true" textDy="5"/>-->
 				<apply_if nightMode="true" textColor="$defaultTextColorNight" textHaloColor="#77464234"/>
 			</switch>
+			<switch minzoom="16">
+				<case tag="seamark:type" value="rapids"/>
+				<case tag="whitewater" value="put_in" textDy="-4"/>
+				<case tag="whitewater" value="egress" textDy="-4"/>
+				<case tag="whitewater" value="put_in;egress" textDy="-4"/>
+				<case tag="whitewater" value="rapid" nameTag="whitewater:rapid_name" textOnPath="true"/>
+				<case tag="whitewater" value="rapid" nameTag="" nameTag2="whitewater:rapid_name" textOnPath="true"/>
+				<apply textSize="12" textColor="#0400ab" textHaloColor="$defaultColor" textHaloRadius="1"/>
+				<apply_if nightMode="true" textColor="$defaultTextColorNight"/>
+				<apply_if whiteWaterSports="true" textOrder="10"/>
+			</switch>
+			<case whiteWaterSports="true" minzoom="16" textSize="12" tag="whitewater" value="hazard" textOrder="12"/>
 
 			<switch>
 				<case minzoom="15" tag="landuse" value="military"/>
@@ -2713,11 +2777,26 @@
 
 			<case minzoom="15" tag="seamark:type" value="radar_reflector" icon="seamark_radar_reflector"/>
 
-			<switch minzoom="15">
-				<case tag="seamark:type" value="rapids"/>
-				<case tag="whitewater" value="rapid"/>
-				<apply icon="waterway_rapids" shield="rapids_shield"/>
+			<case minzoom="15" tag="seamark:type" value="rapids" icon="waterway_rapids" shield="rapids_shield"/>
+			<switch minzoom="16" tag="whitewater" value="rapid">
+				<case whiteWaterSports="true" icon="rapid_white" iconOrder="10">
+					<apply_if additional="whitewater:rapid_grade=0" shield="whitewater_rapid_grade0_shield"/>
+					<apply_if additional="whitewater:rapid_grade=1" shield="whitewater_rapid_grade1_shield"/>
+					<apply_if additional="whitewater:rapid_grade=2" shield="whitewater_rapid_grade2_shield"/>
+					<apply_if additional="whitewater:rapid_grade=3" shield="whitewater_rapid_grade3_shield"/>
+					<apply_if additional="whitewater:rapid_grade=4" shield="whitewater_rapid_grade4_shield"/>
+					<apply_if additional="whitewater:rapid_grade=5" shield="whitewater_rapid_grade5_shield"/>
+					<apply_if additional="whitewater:rapid_grade=6" shield="whitewater_rapid_grade6_shield"/>
+				</case>
+				<case icon="waterway_rapids" shield="rapids_shield"/>
 			</switch>
+			<case whiteWaterSports="true" minzoom="14" tag="whitewater" value="hazard" icon="whitewater_hazard" iconOrder="12"/>
+			<switch whiteWaterSports="true" minzoom="14" iconOrder="20">
+				<case tag="whitewater" value="put_in" icon="put_in"/>
+				<case tag="whitewater" value="egress" icon="egress"/>
+				<case tag="whitewater" value="put_in;egress" icon="put_in_egress"/>
+			</switch>
+
 			<case minzoom="14" tag="waterway" value="waterfall" icon="seamark_waterfall" shield="seamark_waterfall_shield" iconVisibleSize="25" intersectionSizeFactor="0.7"/>
 
 			<case minzoom="15" tag="seamark:type" value="rescue_station" icon="seamark_rescue_station"/>
@@ -3707,6 +3786,37 @@
 			<apply color="$waterwayColor" color_2="#fddb8f">
 				<apply_if nightMode="true" color_2="#7340D9"/>
 			</apply>
+			<apply_if whiteWaterSports="true">
+				<switch>
+					<case additional="whitewater:section_grade=0" color_2="$whitewaterSectionGrade0Color" onewayArrowsColor="#0080AB"/>
+					<case additional="whitewater:section_grade=1" color_2="$whitewaterSectionGrade1Color" onewayArrowsColor="#438600"/>
+					<case additional="whitewater:section_grade=2" color_2="$whitewaterSectionGrade2Color" onewayArrowsColor="#9D8C34"/>
+					<case additional="whitewater:section_grade=3" color_2="$whitewaterSectionGrade3Color" onewayArrowsColor="#9E6600"/>
+					<case additional="whitewater:section_grade=4" color_2="$whitewaterSectionGrade4Color" onewayArrowsColor="#800000"/>
+					<case additional="whitewater:section_grade=5" color_2="$whitewaterSectionGrade5Color" onewayArrowsColor="#611F81"/>
+					<case additional="whitewater:section_grade=6" color_2="$whitewaterSectionGrade6Color" onewayArrowsColor="#B2B2B2"/>
+					<apply_if maxzoom="13" strokeWidth_2="6"/>
+					<apply_if minzoom="14" maxzoom="15" strokeWidth_2="10"/>
+					<apply_if minzoom="16" maxzoom="17" strokeWidth_2="14"/>
+					<apply_if minzoom="18" strokeWidth_2="18"/>
+				</switch>
+			</apply_if>
+			<apply_if whiteWaterSports="true">
+				<switch>
+					<case additional="whitewater:rapid_grade=0" color_3="$whitewaterRapidGrade0Color"/>
+					<case additional="whitewater:rapid_grade=1" color_3="$whitewaterRapidGrade1Color"/>
+					<case additional="whitewater:rapid_grade=2" color_3="$whitewaterRapidGrade2Color"/>
+					<case additional="whitewater:rapid_grade=3" color_3="$whitewaterRapidGrade3Color"/>
+					<case additional="whitewater:rapid_grade=4" color_3="$whitewaterRapidGrade4Color"/>
+					<case additional="whitewater:rapid_grade=5" color_3="$whitewaterRapidGrade5Color"/>
+					<case additional="whitewater:rapid_grade=6" color_3="$whitewaterRapidGrade6Color"/>
+					<apply_if maxzoom="13" strokeWidth_3="6" pathEffect_3="1_9"/>
+					<apply_if minzoom="14" maxzoom="15" strokeWidth_3="10" pathEffect_3="1_15"/>
+					<apply_if minzoom="16" maxzoom="17" strokeWidth_3="14" pathEffect_3="1_22"/>
+					<apply_if minzoom="18" strokeWidth_3="18" pathEffect_3="1_30"/>
+					<apply cap_3="ROUND"/>
+				</switch>
+			</apply_if>
 			<apply>
 				<switch>
 					<case additional="boat=no"/>
@@ -3751,11 +3861,13 @@
 		<switch minzoom="15">
 			<case tag="seamark:type" value="gate"/>
 			<case tag="waterway" value="lock_gate"/>
-			<case minzoom="16" tag="whitewater" value="rapid" pathEffect="1_12" cap="ROUND"/>
-			<apply color="#777777">
+			<case minzoom="15" tag="whitewater" value="rapid" pathEffect="1_12" cap="ROUND"/>
+			<case minzoom="15" tag="seamark:type" value="rapids" pathEffect="1_12" cap="ROUND"/>
+			<apply color="#555555">
+				<case maxzoom="15" strokeWidth="1:1"/>
 				<case maxzoom="17" strokeWidth="2:2"/>
-				<case minzoom="18" strokeWidth="4:4"/>
-				<apply_if nightMode="true" color="#aaaaaa"/>
+				<case minzoom="18" strokeWidth="3:3"/>
+				<apply_if nightMode="true" color="#555555"/>
 			</apply>
 		</switch>
 
