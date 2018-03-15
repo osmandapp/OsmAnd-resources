@@ -93,7 +93,7 @@ string('reached_poi.ogg', 'mijasz POI ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'przekraczasz dozwoloną prędkość ').
-string('exceed_limit.ogg', 'ograniczenie prędkości ').
+string('exceed_limit.ogg', 'ograniczenie prędkości do ').
 string('attention.ogg', 'uwaga, ').
 string('speed_camera.ogg', 'fotoradar ').
 string('border_control.ogg', 'kontrola graniczna ').
