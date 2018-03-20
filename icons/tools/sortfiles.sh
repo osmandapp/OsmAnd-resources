@@ -1890,6 +1890,7 @@ mycpname logistics office_logistics.png
 mycpname notary office_notary.png
 mycpname parish office_parish.png
 mycpname publisher office_publisher.png
+mycpname water_utility office_water_utility.png
 
 ## Entertainment
 mycpname park entertainment_colored_park.png
