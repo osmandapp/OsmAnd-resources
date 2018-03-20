@@ -1891,6 +1891,7 @@ mycpname notary office_notary.png
 mycpname parish office_parish.png
 mycpname publisher office_publisher.png
 mycpname water_utility office_water_utility.png
+mycpname energy_supplier office_energy_supplier.png
 
 ## Entertainment
 mycpname park entertainment_colored_park.png
