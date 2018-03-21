@@ -2318,6 +2318,8 @@ mycpname motorcycle_repair_no additional_motorcycle_repair_no.png
 mycpname motorcycle_repair_yes additional_motorcycle_repair_yes.png
 mycpname motorcycle_sales_no additional_motorcycle_sales_no.png
 mycpname motorcycle_sales_yes additional_motorcycle_sales_yes.png
+mycpname delivery_yes additional_delivery_yes.png
+mycpname delivery_no additional_delivery_no.png
 
 #Additional category
 mycpname payment_type additional_category_payment_type.png
