@@ -711,6 +711,8 @@ mycpname hackerspace entertainment_hackerspace.png
 mycpname leisure_common entertainment_leisure_common.png
 mycpname love_hotel entertainment_love_hotel.png
 mycpname gambling entertainment_gambling.png
+mycpname adult_gaming_centre entertainment_gambling.png
+mycpname amusement_arcade entertainment_amusement_arcade.png
 
 ## Historic
 mygroup historic tourist_archaeological2.png
