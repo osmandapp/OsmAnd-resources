@@ -3903,8 +3903,10 @@
 					<switch strokeWidth="0.1">
 						<case minzoom="12" tag="highway" value="track">
 							<case lessDetailed="false" maxzoom="13" strokeWidth_5="$trackLowZoomStrokeWidth" pathEffect_5=""/>
-							<case minzoom="14" strokeWidth_4="1.5:1.2" strokeWidth_5="$trackStrokeWidth"/>
-							<apply minzoom="15" strokeWidth_4="1.6:1.6"/>
+							<case minzoom="14" strokeWidth_5="$trackStrokeWidth"/>
+							<apply_if lessDetailed="false" maxzoom="13" strokeWidth_4="2:2"/>
+							<apply_if minzoom="14" maxzoom="14" strokeWidth_4="2:2"/>
+							<apply_if minzoom="15" strokeWidth_4="2.6:2.6"/>
 							<apply color_4="$null" color_5="$trackColor" pathEffect_5="$trackPathEffect"/>
 							<apply_if surfaceIntegrity="false">
 								<!-- Dash pattern: solid(100%), long-dashed(77%), short-dashed(63%), dash-dotted(50%), dotted(50%), dotted2(40%), short-dashed-narrow-spaced(66%) for not-specified -->
@@ -3924,12 +3926,13 @@
 						</case>
 						<case minzoom="12" tag="highway" value="path">
 							<case appMode="bicycle" minzoom="14" additional="bicycle=designated" color_5="$cyclewayColor" pathEffect_5="4_2" strokeWidth_5="1:1"/>
-							<case lessDetailed="false" maxzoom="14" color_5="$pathColor" pathEffect_5="$pathPathEffect">
+							<case lessDetailed="false" maxzoom="14" strokeWidth_4="1.4:1.4" color_5="$pathColor" pathEffect_5="$pathPathEffect">
 								<case maxzoom="12" strokeWidth_5="$pathLowZoomStrokeWidth" color_5="$pathLowZoomColor" pathEffect_5="$pathLowZoomPathEffect"/>
 								<case maxzoom="13" strokeWidth_5="$pathLowZoomStrokeWidth" color_5="$pathLowZoomColor" pathEffect_5="$pathLowZoomPathEffect"/>
-								<case maxzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="$pathStrokeWidth"/>
+								<case strokeWidth_5="$pathStrokeWidth"/>
 							</case>
-							<case minzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="$pathStrokeWidth" color_5="$pathColor" pathEffect_5="$pathPathEffect"/>
+							<case minzoom="15" strokeWidth_5="$pathStrokeWidth" color_5="$pathColor" pathEffect_5="$pathPathEffect"/>
+							<apply_if minzoom="15" strokeWidth_4="1.6:1.6"/>
 							<apply_if surfaceIntegrity="true">
 								<apply_if minzoom="12" pathEffect_5="8_3"/>
 								<apply_if additional="trail_visibility=bad" color_5="#888888"/>
@@ -3938,14 +3941,14 @@
 							</apply_if>
 						</case>
 						<case minzoom="13" tag="highway" value="footway" color_5="$footwayColor">
-							<switch minzoom="13" maxzoom="14">
+							<switch maxzoom="14">
 								<case lessDetailed="false">
 									<case layer="1" strokeWidth_5="0.6"/>
 									<case maxzoom="13" strokeWidth_4="1.4:1.4" strokeWidth_5="$footwayLowZoomStrokeWidth" pathEffect_5=""/>
 									<case minzoom="14" maxzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="$footwayLowZoomStrokeWidth" pathEffect_5="2_2"/>
 								</case>
 							</switch>
-							<case minzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="$footwayStrokeWidth" pathEffect_5="2_2"/>
+							<case minzoom="15" strokeWidth_4="1.6:1.6" strokeWidth_5="$footwayStrokeWidth" pathEffect_5="2_2"/>
 							<apply_if surfaceIntegrity="true">
 								<apply_if minzoom="12" pathEffect_5="10_3"/>
 								<apply_if additional="trail_visibility=bad" color_5="#888888"/>
@@ -3955,23 +3958,18 @@
 						</case>
 						<case minzoom="13" tag="highway" value="cycleway">
 							<case appMode="bicycle">
-								<apply_if lessDetailed="false" maxzoom="13" strokeWidth_5="0.7"/>
-								<apply minzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="1:1"/>
+								<apply_if lessDetailed="false" maxzoom="13" strokeWidth_4="1:1" strokeWidth_5="0.7"/>
+								<apply_if minzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="1:1"/>
 							</case>
-							<case minzoom="14" strokeWidth_4="1.3:1.3" strokeWidth_5="$cyclewayStrokeWidth"/>
+							<case minzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="$cyclewayStrokeWidth"/>
 							<apply color_5="$cyclewayColor"/>
 						</case>
-						<case minzoom="12" tag="highway" value="bridleway">
-<!--							<case horseRoutes="true" maxzoom="15">
-								<case maxzoom="12" strokeWidth_4="1.5" strokeWidth_5="1.3"/>
-								<case minzoom="13" strokeWidth_4="1.8:1.8" strokeWidth_5="1.7"/>
-							</case>-->
+						<case minzoom="12" tag="highway" value="bridleway" color_5="$bridlewayColor" pathEffect_5="6_2">
 							<case lessDetailed="false" maxzoom="13">
 								<case maxzoom="12" strokeWidth_4="0.9" strokeWidth_5="0.8"/>
 								<case minzoom="13" strokeWidth_4="1.2:1.2" strokeWidth_5="1"/>
 							</case>
 							<case minzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="$bridlewayStrokeWidth"/>
-							<apply color_5="$bridlewayColor" pathEffect_5="6_2"/>
 						</case>
 					</switch>
 					<apply>
@@ -4092,7 +4090,7 @@
 					</switch>
 				</switch>
 			</apply>
-			<apply noPolygons="true" color_4="$trackSubstrateColor"/> <!-- Substrate -->
+			<apply_if noPolygons="true" color_4="$trackSubstrateColor"/> <!-- Substrate -->
 
 		</switch>
 
