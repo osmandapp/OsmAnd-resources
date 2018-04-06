@@ -14,7 +14,7 @@ language('sl').
 %
 % (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
 % (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
-% (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM
+% (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM; TUNNEL
 % (X) Other prompts: gps lost, off route, back to route
 % (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 % (X) Distance unit support (meters / feet / yard)
@@ -102,6 +102,7 @@ string('traffic_calming.ogg', 'umirjanje prometa').
 string('toll_booth.ogg', 'cestnine stojnica').
 string('stop.ogg', 'stop znak').
 string('pedestrian_crosswalk.ogg', 'prehod za pešce').
+string('tunnel.ogg', 'predor').
 
 % OTHER PROMPTS
 string('location_lost.ogg', 'Izgubljen signal GE PE ES').
@@ -234,7 +235,8 @@ warning('TOLL_BOOTH', 'toll_booth.ogg').
 warning('STOP', 'stop.ogg').
 warning('PEDESTRIAN', 'pedestrian_crosswalk.ogg').
 warning('MAXIMUM', '').
-warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'RAILWAY'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'PEDESTRIAN'; Type = 'MAXIMUM').
+warning('TUNNEL', 'tunnel.ogg').
+warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'RAILWAY'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'PEDESTRIAN'; Type = 'MAXIMUM'; Type = 'TUNNEL').
 
 
 %% 
