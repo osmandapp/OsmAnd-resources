@@ -233,7 +233,6 @@ warning('STOP', 'stop.ogg').
 warning('PEDESTRIAN', 'pedestrian_crosswalk.ogg').
 warning('MAXIMUM', '').
 warning('TUNNEL', 'tunnel.ogg').
-warning('TUNNEL', 'tunnel.ogg').
 warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'RAILWAY'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'PEDESTRIAN'; Type = 'MAXIMUM'; Type = 'TUNNEL').
 
 
