@@ -2301,6 +2301,7 @@
 				<case tag="aerialway" value="platter"/>
 				<case tag="aerialway" value="magic_carpet"/>
 				<case tag="aerialway" value="rope_tow"/>
+				<case tag="aerialway" value="zip_line"/>
 				<apply nameTag="" textOnPath="true">
 					<case maxzoom="14" textSize="12"/>
 					<case maxzoom="15" textSize="13"/>
@@ -4158,14 +4159,38 @@
 		</switch>
 
 		<switch minzoom="13">
-			<case tag="aerialway" value="magic_carpet" color="#bababa" strokeWidth="1:1"/>
-			<case tag="aerialway" value="rope_tow" color="#bababa" strokeWidth="1:1" pathEffect="24_3"/>
+			<switch>
+				<case tag="aerialway" value="magic_carpet" color="#999999" strokeWidth="1:1"/>
+				<case tag="aerialway" value="rope_tow" color="#999999" strokeWidth="1:1" pathEffect="24_3"/>
+				<case tag="aerialway" value="zip_line" color="#999999" strokeWidth="1:1" pathEffect="15_3"/>
+				<case tag="aerialway" value="chair_lift">
+					<apply_if color="#666666" color_2="#333333">
+						<case maxzoom="13" strokeWidth="1" strokeWidth_2="1.5:1.5" pathEffect_2="1_2_1_11"/>
+						<case maxzoom="14" strokeWidth="1:1" strokeWidth_2="2:2" pathEffect_2="1_2_1_15"/>
+						<case maxzoom="15" strokeWidth="1.5:1.5" strokeWidth_2="2.3:2.3" pathEffect_2="1_2_1_19"/>
+						<case maxzoom="16" strokeWidth="1.5:1.5" strokeWidth_2="2.5:2.5" pathEffect_2="1_2_1_24"/>
+						<case maxzoom="17" strokeWidth="1.9:1.9" strokeWidth_2="2.5:2.5" pathEffect_2="1_2_1_29"/>
+						<case minzoom="18" strokeWidth="2:2" strokeWidth_2="3:3" pathEffect_2="1_2_1_37"/>
+						<apply_if nightMode="true" color="#999999" color_2="#eeeeee"/>
+					</apply_if>
+				</case>
+				<apply_if engine_v1="false" minzoom="14" pathIcon="oneway_blue_big" pathIconStep="70"> <!-- for new OpenGL engine only -->
+					<apply_if additional="oneway=-1" pathIcon="oneway_reverse_blue_big" pathIconStep="70"/>
+					<apply_if additional="oneway=no" pathIcon=""/>
+				</apply_if>
+			</switch>
 			<case minzoom="15" tag="aerialway" value="goods" color="#4e2c07" color_2="#222222" pathEffect_2="1_24" strokeWidth="0.5" strokeWidth_2="1.4:1.4"/>
 			<switch>
-				<case tag="aerialway" value="drag_lift"/>
-				<case tag="aerialway" value="t-bar"/>
-				<case tag="aerialway" value="j-bar"/>
-				<case tag="aerialway" value="platter"/>
+				<switch>
+					<case tag="aerialway" value="drag_lift"/>
+					<case tag="aerialway" value="t-bar"/>
+					<case tag="aerialway" value="j-bar"/>
+					<case tag="aerialway" value="platter"/>
+					<apply_if engine_v1="false" minzoom="14" pathIcon="oneway_blue_big" pathIconStep="70"> <!-- for new OpenGL engine only -->
+						<apply_if additional="oneway=-1" pathIcon="oneway_reverse_blue_big" pathIconStep="70"/>
+						<apply_if additional="oneway=no" pathIcon=""/>
+					</apply_if>
+				</switch>
 				<case tag="aerialway" value="mixed_lift" cap_2="ROUND"/>
 				<case tag="aerialway" value="gondola" cap_2="SQUARE"/>
 				<case tag="aerialway" value="cable_car" cap_2="ROUND"/>
@@ -4178,17 +4203,6 @@
 					<case minzoom="18" strokeWidth="2:2" strokeWidth_2="3:3" pathEffect_2="1_37"/>
 				</apply_if>
 			</switch>
-			<case tag="aerialway" value="chair_lift">
-				<apply_if color="#666666" color_2="#333333">
-					<case maxzoom="13" strokeWidth="1" strokeWidth_2="1.5:1.5" pathEffect_2="1_2_1_11"/>
-					<case maxzoom="14" strokeWidth="1:1" strokeWidth_2="2:2" pathEffect_2="1_2_1_15"/>
-					<case maxzoom="15" strokeWidth="1.5:1.5" strokeWidth_2="2.3:2.3" pathEffect_2="1_2_1_19"/>
-					<case maxzoom="16" strokeWidth="1.5:1.5" strokeWidth_2="2.5:2.5" pathEffect_2="1_2_1_24"/>
-					<case maxzoom="17" strokeWidth="1.9:1.9" strokeWidth_2="2.5:2.5" pathEffect_2="1_2_1_29"/>
-					<case minzoom="18" strokeWidth="2:2" strokeWidth_2="3:3" pathEffect_2="1_2_1_37"/>
-					<apply_if nightMode="true" color="#999999" color_2="#eeeeee"/>
-				</apply_if>
-			</case>
 			<apply onewayArrowsColor="#000000"/>
 		</switch>
 
