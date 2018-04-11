@@ -1286,6 +1286,10 @@
 	<renderingAttribute name="whitewaterRapidGrade6Color">
 		<case attrColorValue="#888888"/>
 	</renderingAttribute>
+	<renderingAttribute name="viaFerrataColor">
+		<case nightMode="true" attrColorValue="#888888"/>
+		<case attrColorValue="#555555"/>
+	</renderingAttribute>
 
 	<renderingAttribute name="boundaryColorInner">
 		<case nightMode="true" attrColorValue="#44b27db3"/>
@@ -2295,6 +2299,7 @@
 				<case tag="public_transport" value=""/>
 				<case tag="highway" value="crossing"/>
 				<case tag="highway" value="steps"/>
+				<case tag="highway" value="via_ferrata"/>
 				<case tag="ford" value="yes"/>
 				<case tag="ford" value="stepping_stones"/>
 				<case tag="flood_prone" value=""/>
@@ -2962,6 +2967,10 @@
 						<case layer="1" maxzoom="16" order="34"/>
 					</apply_if>
 				</switch>
+
+				<case tag="highway" value="via_ferrata">
+					<apply_if moreDetailed="false" maxzoom="15" order="-1"/>
+				</case>
 
 				<case tag="highway" value="raceway"/>
 				<case tag="abandoned:highway" value=""/>
@@ -5035,6 +5044,7 @@
 						<case tag="highway" value="path" nameTag="ref" textOrder="193"/>
 						<case tag="highway" value="bridleway" nameTag="" textOrder="195"/>
 						<case tag="highway" value="bridleway" nameTag="ref" textOrder="195"/>
+						<case tag="highway" value="via_ferrata"/>
 						<apply>
 							<case nameTag="" nameTag2="ref"/>
 							<case nameTag="ref"/>
@@ -7179,6 +7189,7 @@
 					</apply_if>
 				</case>
 				<case minzoom="18" tag="highway" value="steps" icon="highway_steps" shield="highway_steps_shield" iconVisibleSize="8"/>
+				<case minzoom="16" tag="highway" value="via_ferrata" icon="via_ferrata" shield="via_ferrata_shield"/>
 				<switch shield="blue_round_shield">
 					<case minzoom="18" tag="highway" value="speed_camera" icon="highway_speed_camera" iconOrder="70"/>
 					<case minzoom="15" tag="highway" value="services" icon="highway_services" iconOrder="60"/>
@@ -10661,6 +10672,22 @@
 			<apply color="#888888">
 				<apply_if nightMode="true" color="#885454"/>
 			</apply>
+		</case>
+
+		<case minzoom="14" tag="highway" value="via_ferrata" color="$viaFerrataColor" color_2="$viaFerrataColor" pathEffect="1_1" pathEffect_2="1_5">
+			<apply>
+				<switch>
+					<case additional="bridge=yes" color__1="$white" color__2="$black"/>
+					<case additional="tunnel=yes" color__1="$white" color__2="#444444" pathEffect__1="6_4" pathEffect__2="6_4"/>
+					<apply_if nightMode="true" color__1="$defaultColor" color__2="#999999"/>
+				</switch>
+			</apply>
+			<apply_if maxzoom="15" strokeWidth="1" strokeWidth_2="1.5:1.5" strokeWidth__1="2:2" strokeWidth__2="2.5:2.5"/>
+			<apply_if minzoom="16" strokeWidth="1:1" strokeWidth_2="3:3" strokeWidth__1="3.5:3.5" strokeWidth__2="4:4" pathEffect="2_2" pathEffect_2="2_10"/>
+			<apply_if engine_v1="false" minzoom="15">
+				<apply_if additional="oneway=yes" pathIcon="oneway_blue_big" pathIconStep="70"/>
+				<apply_if additional="oneway=-1" pathIcon="oneway_reverse_blue_big" pathIconStep="70"/>
+			</apply_if>
 		</case>
 
 		<switch engine_v1="false" minzoom="16" strokeWidth="0.5">
