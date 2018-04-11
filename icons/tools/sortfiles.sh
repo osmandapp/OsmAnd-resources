@@ -787,6 +787,7 @@ mycp sport billiard sport_snooker.png
 mycp sport bmx sport_bmx.png
 mycp sport canoe sport_canoe.png
 mycp sport climbing sport_hillclimbing.png
+mycpname sport_climbing_adventure sport_climbing_adventure.png
 mycp sport cricket sport_cricket.png
 mycp sport cycling sport_cycling.png
 mycp sport diving sport_diving.png
