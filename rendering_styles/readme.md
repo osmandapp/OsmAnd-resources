@@ -7,8 +7,8 @@ Rendering styles
 * offroad.render.xml
 * Touring-view_(more-contrast-and-details).render.xml : (Android/iOS, default dependent)
 * topo.render.xml : (Android/iOS, default independent) Contrast style designed primarily for nature hiking, trekking and cycling. Good readability in complex external lighting. Key features: contrast roads and natural objects, different types of routes, contour lines with advanced settings, more details at corresponding zoom levels than "default" style. "Surface integrity" option allows you distinguish between roads with different surface quality. No night mode.
-
 * UniRS.render.xml : (Android/iOS, default dependent)
+
 **Special:**
 * skimap.render.xml : (Android/iOS, default dependent). Style for skiing. Key features: renders pistes, aerial ways and other ski features in a convenient way. Less distracting secondary map objects.
 * nautical.render.xml : (Android/iOS, default independent) Style for marine and river navigation. Key features: buoys, lighthouses, water navigation lines and marks, harbours, seamark services, depth contours.
