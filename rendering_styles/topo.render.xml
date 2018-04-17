@@ -880,6 +880,7 @@
 				<case tag="railway" value="yard" ignorePolygonAsPointArea="true"/>
 				<switch>
 					<case tag="railway" value="halt" ignorePolygonAsPointArea="true"/>
+					<case tag="railway" value="tram_stop" ignorePolygonAsPointArea="true"/>
 					<case tag="public_transport" value="platform" ignorePolygonAsPointArea="true"/>
 					<apply_if layer="-1" order="-1"/>
 				</switch>
@@ -907,6 +908,7 @@
 				<switch>
 					<case tag="public_transport" value="platform"/>
 					<case tag="railway" value="halt"/>
+					<case tag="railway" value="tram_stop"/>
 					<case tag="railway" value="station" ignorePolygonArea="true"/>
 					<case tag="railway" value="yard" ignorePolygonArea="true"/>
 					<apply_if layer="-1" order="-1"/>
@@ -1706,6 +1708,14 @@
 
 		<case minzoom="16" tag="man_made" value="reinforced_slope" color="#d6d6d6"/>
 		<case minzoom="18" tag="man_made" value="pipeline" textSize="10" textColor="#333333" textHaloRadius="2" textHaloColor="#ccffffff" textOnPath="true" textWrapWidth="30" textOrder="230"/>
+		<switch minzoom="3">
+			<case tag="natural" value="coastline"/>
+			<case tag="natural" value="land"/>
+			<apply textSize="14" textColor="#883287" textWrapWidth="35" textHaloRadius="2" textHaloColor="#aaffffff"/>
+			<apply_if nightMode="true" textColor="#ffb9fe" textHaloColor="#77333333"/>
+		</switch>
+
+		<case minzoom="1" maxzoom="2" tag="place" value="continent" textSize="13" textColor="$placeCountryTextColor" textHaloColor="$placeCountryTextHaloColor" textHaloRadius="3" textBold="true" textWrapWidth="15" textOrder="1"/>
 
 		<case minzoom="3" tag="place" value="country" nameTag="" textColor="$placeCountryTextColor" textHaloColor="$placeCountryTextHaloColor" textHaloRadius="3" textWrapWidth="15" textOrder="5">
 			<case maxzoom="3" textSize="12"/>
@@ -2414,6 +2424,7 @@
 				<case tag="railway" value="station" nameTag="" textSize="11" textOrder="49" textColor="#000000"/>
 				<case minzoom="14" tag="railway" value="yard" nameTag="" textSize="11" textOrder="49" textColor="#000000"/>
 				<case tag="railway" value="halt" nameTag="" textSize="11" textOrder="50" textColor="#000000"/>
+				<case minzoom="16" tag="railway" value="tram_stop" nameTag="" textSize="11" textOrder="50" textColor="#000000"/>
 				<case minzoom="16" tag="abandoned:railway" value="station" textOrder="227" textColor="#8a8a8a"/>
 				<apply textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textBold="true"/>
 				<apply_if minzoom="15" textSize="13"/>
@@ -2759,9 +2770,11 @@
 			<apply_if lessDetailed="true" maxzoom="15" icon=""/>
 		</case>
 		<case minzoom="16" tag="power" value="pole" icon="barrier_small_black_4"/>
-		<case minzoom="12" tag="railway" value="halt">
+		<switch>
+			<case minzoom="12" tag="railway" value="halt"/>
+			<case minzoom="15" tag="railway" value="tram_stop"/>
 			<apply icon="topo_railway_halt_small" iconVisibleSize="6"/>
-		</case>
+		</switch>
 		<switch>
 			<case minzoom="12" tag="railway" value="station"/>
 			<case minzoom="13" tag="railway" value="yard"/>
@@ -4210,6 +4223,14 @@
 			<apply onewayArrowsColor="#000000"/>
 		</switch>
 
+		<switch>
+			<case tag="public_transport" value="platform"/>
+			<case tag="railway" value="halt"/>
+			<case tag="railway" value="tram_stop"/>
+			<apply_if minzoom="16" color="#555555" color_2="#CCCCCC" strokeWidth="2:2" strokeWidth_2="1:1">
+				<apply_if minzoom="18" strokeWidth="3:3" strokeWidth_2="2:2"/>
+			</apply_if>
+		</switch>
 
 		<case minzoom="12" tag="man_made" value="cutline" color="#ffffff" cap="ROUND">
 			<switch lessDetailed="false">
