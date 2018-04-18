@@ -325,6 +325,8 @@ mycpname runway transport_runway.png
 mycpname ford_stepping_stones transport_colored_ford_stepping_stones.png
 mycpname topo_ford_stepping_stones topo_topo_ford_stepping_stones.png
 mycpname traffic_mirror poi_colored_traffic_mirror.png
+mycpname via_ferrata_map functional-icons_via_ferrata.png
+mycpname via_ferrata sport_via_ferrata.png
 
 mygroup fuel transport_fuel.png
 mygroup filling_station transport_fuel.png
