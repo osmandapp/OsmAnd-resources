@@ -28,8 +28,8 @@ string('route_calculate.ogg', 'Cesta prepočítaná').
 string('distance.ogg', 'vzdialenosť ').
 
 % LEFT/RIGHT
-string('after.ogg', 'čoskoro o ').
-string('in.ogg', 'o ').
+string('after.ogg', 'Čoskoro o ').
+string('in.ogg', 'O ').
 
 string('left.ogg', 'zahnite doľava').
 string('left_sh.ogg', 'zahnite prudko doľava').
@@ -44,7 +44,7 @@ string('right_bear.ogg', 'sa držte vpravo').    % in English the same as right_
 
 % U-TURNS
 string('prepare_make_uturn.ogg', 'sa budete otáčať naspäť').
-string('make_uturn1.ogg', 'sa otočte naspäť ').
+string('make_uturn1.ogg', 'sa otočte naspäť').
 string('make_uturn2.ogg', 'otočte sa naspäť').
 string('make_uturn_wp.ogg', 'keď to bude možné, otočte sa naspäť').
 
@@ -113,10 +113,10 @@ string('off_route.ogg', 'Idete odchylne od trasy už ').
 string('back_on_route.ogg', 'Vrátili ste sa na trasu.').
 
 % STREET NAME PREPOSITIONS
-string('onto.ogg', 'na cestu ').
-string('on.ogg', 'po ').
-string('to.ogg', 'k ').
-string('toward.ogg', 'smerom na ').
+string('onto.ogg', ' na cestu ').
+string('on.ogg', ' po ').
+string('to.ogg', ' k ').
+string('toward.ogg', ' smerom na ').
 
 % DISTANCE UNIT SUPPORT
 string('around.ogg', 'približne ').
@@ -138,7 +138,7 @@ string('miles5.ogg', 'míľ').
 string('yards.ogg', 'yardov').
 
 % TIME SUPPORT
-string('time.ogg', 'doba potrebná').
+string('time.ogg', 'doba potrebná ').
 string('hours1.ogg', 'jedna hodina ').
 string('hours2.ogg', 'dve hodiny ').
 string('hours3_4.ogg', 'hodiny ').
