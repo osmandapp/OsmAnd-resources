@@ -286,6 +286,7 @@
 	<type tag="tunnel" value="yes" minzoom="12" additional="true" routing="no"/>
 	<type tag="man_made" value="bridge" minzoom="12" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge:name" if_tag1="bridge" to_tag1="name" routing="no" />
+	<entity_convert pattern="tag_transform" from_tag="bridge_ref" to_tag1="bridge:ref"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge" from_value="yes" if_not_tag1="man_made" to_tag1="man_made" to_value1="bridge" to_tag2="layer" to_value2="1" to_tag3="bridge" to_value3="yes" routing="no" />
 	<entity_convert pattern="tag_transform" from_tag="bridge" from_value="viaduct" if_not_tag1="man_made" to_tag1="man_made" to_value1="bridge" to_tag2="layer" to_value2="1" to_tag3="bridge" to_value3="yes" to_tag4="bridge:structure" to_value4="viaduct" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge" from_value="aqueduct" if_not_tag1="man_made" to_tag1="man_made" to_value1="bridge" to_tag2="layer" to_value2="1" to_tag3="bridge" to_value3="yes" to_tag4="bridge:structure" to_value4="aqueduct" routing="no"/>
@@ -3146,6 +3147,7 @@
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="bulgaria" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="sofia"/>
 			<!-- Warsaw -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="poland" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="Metro Warszawskie" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="warsaw"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="poland" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="warsaw"/>
 			<!-- Lisbon -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="portugal" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="Metropolitano de Lisboa" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="lisbon"/>
 
@@ -4370,6 +4372,7 @@
 		<entity_convert pattern="tag_transform" from_tag="volcano" from_value="yes" to_tag1="natural" to_value1="volcano"/>
 		<type tag="natural" value="crater" minzoom="10" />
 		<type tag="natural" value="cave_entrance" minzoom="10" nameTags="ele" />
+		<type tag="natural" value="crevasse" minzoom="10" />
 		<type tag="natural" value="sand" minzoom="6" />
 		<type tag="natural" value="scree" minzoom="6" />
 		<type tag="natural" value="sinkhole" minzoom="13" />
@@ -4557,7 +4560,8 @@
 		<entity_convert pattern="tag_transform" from_tag="cuisine" from_value="pancakes" to_tag1="cuisine" to_value1="pancake" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cuisine" from_value="snackbar" to_tag1="cuisine" to_value1="snack" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cuisine" from_value="snacks" to_tag1="cuisine" to_value1="snack" map="no"/>
-		<entity_convert pattern="tag_transform" from_tag="cuisine" from_value="subs" to_tag1="cuisine" to_value1="sub" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cuisine" from_value="subs" to_tag1="cuisine" to_value1="sandwich" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cuisine" from_value="sub" to_tag1="cuisine" to_value1="sandwich" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cuisine" from_value="philippine" to_tag1="cuisine" to_value1="filipino" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cuisine" from_value="smoothies" to_tag1="cuisine" to_value1="smoothie" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cuisine" from_value="texmex" to_tag1="cuisine" to_value1="tex-mex" map="no"/>
@@ -5230,6 +5234,17 @@
 		<type tag="via_ferrata_scale" value="4" minzoom="12" additional="true"/>
 		<type tag="via_ferrata_scale" value="5" minzoom="12" additional="true"/>
 		<type tag="via_ferrata_scale" value="6" minzoom="12" additional="true"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="1+" to_tag1="via_ferrata_scale" to_value1="2"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="2+" to_tag1="via_ferrata_scale" to_value1="3"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="2-" to_tag1="via_ferrata_scale" to_value1="1"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="3+" to_tag1="via_ferrata_scale" to_value1="4"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="3-" to_tag1="via_ferrata_scale" to_value1="2"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="4+" to_tag1="via_ferrata_scale" to_value1="5"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="4-" to_tag1="via_ferrata_scale" to_value1="3"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="5+" to_tag1="via_ferrata_scale" to_value1="6"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="5-" to_tag1="via_ferrata_scale" to_value1="4"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="6+" to_tag1="via_ferrata_scale" to_value1="6"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="6-" to_tag1="via_ferrata_scale" to_value1="5"/>
 	</category>
 
 	<category name="legend">

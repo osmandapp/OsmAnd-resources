@@ -79,8 +79,6 @@
 		type="boolean" possibleValues="" category="transport"/>
 	<renderingProperty attr="subwayMode" name="Subway mode" description="Subway rendering mode"
 		type="boolean" possibleValues="" category="transport"/>
-	<renderingProperty attr="whiteWaterSports" name="Whitewater sports" description="Whitewater sports"
-		type="boolean" possibleValues="" category="routes"/>
 
 	<renderingProperty attr="moreDetailed" name="More details" description="More details on map" type="boolean" possibleValues=""
 		category="details"/>
@@ -132,6 +130,8 @@
 	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
 		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="horseRoutes" name="Horse routes" description="Horse routes"
+		type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="whiteWaterSports" name="Whitewater sports" description="Whitewater sports"
 		type="boolean" possibleValues="" category="routes"/>
 
 	<renderingProperty attr="roadStyle" name="Road style" description="Road style"
@@ -1298,29 +1298,51 @@
 		<case nightMode="true" attrColorValue="#146813"/>
 		<case attrColorValue="#77007C1A"/>
 	</renderingAttribute>
+	<renderingAttribute name="viaFerrataScale0OnewayColor">
+		<case attrColorValue="#ffffff"/>
+	</renderingAttribute>
 	<renderingAttribute name="viaFerrataScale1Color">
 		<case nightMode="true" attrColorValue="#2938ad"/>
 		<case attrColorValue="#770926FF"/>
+	</renderingAttribute>
+	<renderingAttribute name="viaFerrataScale1OnewayColor">
+		<case attrColorValue="#ffffff"/>
 	</renderingAttribute>
 	<renderingAttribute name="viaFerrataScale2Color">
 		<case nightMode="true" attrColorValue="#7b1c18"/>
 		<case attrColorValue="#88FF0000"/>
 	</renderingAttribute>
+	<renderingAttribute name="viaFerrataScale2OnewayColor">
+		<case attrColorValue="#ffffff"/>
+	</renderingAttribute>
 	<renderingAttribute name="viaFerrataScale3Color">
-		<case nightMode="true" attrColorValue="#73755a"/>
+		<case nightMode="true" attrColorValue="#88B40093"/>
 		<case attrColorValue="#88B40093"/>
 	</renderingAttribute>
+	<renderingAttribute name="viaFerrataScale3OnewayColor">
+		<case attrColorValue="#ffffff"/>
+	</renderingAttribute>
 	<renderingAttribute name="viaFerrataScale4Color">
-		<case nightMode="true" attrColorValue="#88d1962a"/>
+		<case nightMode="true" attrColorValue="#88FF9109"/>
 		<case attrColorValue="#AAFF9109"/>
 	</renderingAttribute>
+	<renderingAttribute name="viaFerrataScale4OnewayColor">
+		<case attrColorValue="#ffffff"/>
+	</renderingAttribute>
 	<renderingAttribute name="viaFerrataScale5Color">
-		<case nightMode="true" attrColorValue="#a59600"/>
+		<case nightMode="true" attrColorValue="#aaa59600"/>
 		<case attrColorValue="#AAffde00"/>
 	</renderingAttribute>
+	<renderingAttribute name="viaFerrataScale5OnewayColor">
+		<case attrColorValue="#0000ff"/>
+	</renderingAttribute>
 	<renderingAttribute name="viaFerrataScale6Color">
-		<case nightMode="true" attrColorValue="#a54908"/>
+		<case nightMode="true" attrColorValue="#66B08E61"/>
 		<case attrColorValue="#99864C05"/>
+	</renderingAttribute>
+	<renderingAttribute name="viaFerrataScale6OnewayColor">
+		<case nightMode="true" attrColorValue="#000000"/>
+		<case attrColorValue="#ffffff"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="boundaryColorInner">
@@ -2626,6 +2648,9 @@
 				<case tag="natural" value="crater"/>
 				<case tag="natural" value="volcano"/>
 				<case tag="natural" value="sinkhole"/>
+				<case tag="natural" value="crevasse">
+					<apply_if moreDetailed="false" maxzoom="16" order="-1"/>
+				</case>
 				<case tag="natural" value="hot_spring"/>
 				<case tag="natural" value="geyser"/>
 				<case tag="region:type" value="mountain_area"/>
@@ -2805,6 +2830,9 @@
 				<case tag="natural" value="volcano"/>
 				<case tag="natural" value="strait"/>
 				<case tag="natural" value="fjord"/>
+				<case tag="natural" value="crevasse">
+					<apply_if moreDetailed="false" maxzoom="16" order="-1"/>
+				</case>
 				<case tag="waterway" value="waterfall" order="98"/>
 
 				<case tag="waterway" value="dam"/>
@@ -2812,9 +2840,9 @@
 				<case tag="waterway" value="wadi" order="9"/>
 				<case tag="waterway" value="" order="9">
 					<apply_if layer="1" order="68"/>
-					<apply_if OSMMapperAssistant="false" layer="-1" maxzoom="17" order="-1"/>
-					<apply_if layer="-1" appMode="car" order="-1"/>
-					<apply_if maxzoom="15" layer="-1" appMode="bicycle" order="-1"/>
+					<apply_if OSMMapperAssistant="false" additional="tunnel=yes" maxzoom="17" order="-1"/>
+					<apply_if additional="tunnel=yes" appMode="car" order="-1"/>
+					<apply_if maxzoom="15" additional="tunnel=yes" appMode="bicycle" order="-1"/>
 				</case>
 				<case tag="attraction" value="water_slide"/>
 				<case tag="attraction" value="roller_coaster"/>
@@ -5555,6 +5583,7 @@
 					<case whiteWaterSports="true" minzoom="16" textSize="12" tag="whitewater" value="hazard" textOrder="12" textDy="0"/>
 					<case minzoom="15" textSize="12" tag="natural" value="saddle" nameTag="" nameTag2="ele"/>
 					<case minzoom="13" textSize="14" tag="natural" value="crater" textColor="#4e0d0d"/>
+					<case minzoom="14" textSize="14" tag="natural" value="crevasse" textColor="#4e0d0d"/>
 					<case hidePOILabels="false" minzoom="16" textSize="14" tag="natural" value="sinkhole" textColor="#4e0d0d"/>
 					<apply_if nightMode="true" textColor="#ffcc9b" textHaloColor="#774d2803"/>
 				</switch>
@@ -5719,6 +5748,7 @@
 						<case minzoom="9" tag="boundary" value="national_park" textOrder="88" textOnPath="true"/>
 						<case minzoom="8" tag="boundary" value="protected_area" textOrder="88"/>
 						<case minzoom="13" tag="boundary" value="forestry_compartment" nameTag="ref" textOrder="88"/>
+						<case minzoom="13" tag="boundary" value="forestry_compartment" nameTag="" textOrder="88"/>
 						<case hidePOILabels="false" minzoom="18" tag="natural" value="tree" textSize="11" textDy="5" textOrder="252"/>
 						<case hidePOILabels="false" minzoom="18" tag="natural" value="stone" textSize="11" textDy="4"/>
 						<case minzoom="17" tag="natural" value="rock" textSize="11" textDy="4"/>
@@ -7221,7 +7251,7 @@
 					</apply_if>
 				</case>
 				<case minzoom="18" tag="highway" value="steps" icon="highway_steps" shield="highway_steps_shield" iconVisibleSize="8"/>
-				<case minzoom="16" tag="highway" value="via_ferrata" icon="via_ferrata" shield="via_ferrata_shield"/>
+				<case minzoom="16" tag="highway" value="via_ferrata" icon="via_ferrata_map" shield="via_ferrata_shield"/>
 				<switch shield="blue_round_shield">
 					<case minzoom="18" tag="highway" value="speed_camera" icon="highway_speed_camera" iconOrder="70"/>
 					<case minzoom="15" tag="highway" value="services" icon="highway_services" iconOrder="60"/>
@@ -9408,6 +9438,9 @@
 					<case minzoom="16" strokeWidth_2="2.3:2.3"/>
 				</apply>
 			</switch>
+			<case minzoom="16" tag="natural" value="crevasse" color="#22653f3f" color_2="#886a6a" strokeWidth_2="1">
+				<apply_if nightMode="true" color="#224e1111" color_2="#452121"/>
+			</case>
 			<case minzoom="12" tag="landuse" value="logging" color_0="$landuseLoggingColor">
 				<apply_if minzoom="15" shader="logging_shader"/>
 				<apply_if minzoom="15" additional="logging=selective_cutting" shader="logging_selective_cutting_shader"/>
@@ -10714,13 +10747,13 @@
 					<apply_if nightMode="true" color="$defaultColor" color__1="#999999"/>
 				</switch>
 			</apply>
-			<apply_if additional="via_ferrata_scale=0" color__2="$viaFerrataScale0Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt"/>
-			<apply_if additional="via_ferrata_scale=1" color__2="$viaFerrataScale1Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt"/>
-			<apply_if additional="via_ferrata_scale=2" color__2="$viaFerrataScale2Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt"/>
-			<apply_if additional="via_ferrata_scale=3" color__2="$viaFerrataScale3Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt"/>
-			<apply_if additional="via_ferrata_scale=4" color__2="$viaFerrataScale4Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt"/>
-			<apply_if additional="via_ferrata_scale=5" color__2="$viaFerrataScale5Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt"/>
-			<apply_if additional="via_ferrata_scale=6" color__2="$viaFerrataScale6Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt"/>
+			<apply_if additional="via_ferrata_scale=0" color__2="$viaFerrataScale0Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt" onewayArrowsColor="$viaFerrataScale0OnewayColor"/>
+			<apply_if additional="via_ferrata_scale=1" color__2="$viaFerrataScale1Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt" onewayArrowsColor="$viaFerrataScale1OnewayColor"/>
+			<apply_if additional="via_ferrata_scale=2" color__2="$viaFerrataScale2Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt" onewayArrowsColor="$viaFerrataScale2OnewayColor"/>
+			<apply_if additional="via_ferrata_scale=3" color__2="$viaFerrataScale3Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt" onewayArrowsColor="$viaFerrataScale3OnewayColor"/>
+			<apply_if additional="via_ferrata_scale=4" color__2="$viaFerrataScale4Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt" onewayArrowsColor="$viaFerrataScale4OnewayColor"/>
+			<apply_if additional="via_ferrata_scale=5" color__2="$viaFerrataScale5Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt" onewayArrowsColor="$viaFerrataScale5OnewayColor"/>
+			<apply_if additional="via_ferrata_scale=6" color__2="$viaFerrataScale6Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt" onewayArrowsColor="$viaFerrataScale6OnewayColor"/>
 			<apply_if maxzoom="15" strokeWidth_2="1" strokeWidth_3="1.5:1.5" strokeWidth="2:2" strokeWidth__1="2.5:2.5" strokeWidth__2="2.5:2.5"/>
 			<apply_if minzoom="16" strokeWidth_2="1:1" strokeWidth_3="3:3" strokeWidth="3.5:3.5" strokeWidth__1="4:4" strokeWidth__2="4:4" pathEffect_2="2_2" pathEffect_3="2_10"/>
 			<apply_if engine_v1="false" minzoom="15">
@@ -10767,6 +10800,10 @@
 				<apply_if nightMode="true" color="#452121"/>
 			</apply>
 		</switch>
+
+		<case minzoom="16" tag="natural" value="crevasse" strokeWidth="1" color="#886a6a">
+			<apply_if nightMode="true" color="#452121"/>
+		</case>
 
 		<switch minzoom="16">
 			<case tag="waterway" value="waterfall"/>
