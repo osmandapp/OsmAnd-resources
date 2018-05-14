@@ -699,6 +699,7 @@ mycpname lwn_ref tourist_lwn_ref.png
 mycpname gallery tourist_gallery.png
 mycpname firepit tourist_colored_firepit.png
 mycpname topo_firepit topo_topo_firepit.png
+mycpname checkpoint_hiking tourist_checkpoint_hiking.png
 
 ## Entertainment
 mygroup entertainment tourist_cinema3.png
