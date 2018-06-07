@@ -361,6 +361,31 @@
 		<case attrColorValue="#aa000000"/>
 	</renderingAttribute>
 
+	<renderingAttribute name="routeBusColor">
+		<case nightMode="true" attrColorValue="#ff0000"/>
+		<case attrColorValue="#ff0000"/>
+	</renderingAttribute>
+	<renderingAttribute name="routeShareTaxiColor">
+		<case nightMode="true" attrColorValue="#f620cb"/>
+		<case attrColorValue="#f620cb"/>
+	</renderingAttribute>
+	<renderingAttribute name="routeTrolleybusColor">
+		<case nightMode="true" attrColorValue="#920071"/>
+		<case attrColorValue="#920071"/>
+	</renderingAttribute>
+	<renderingAttribute name="routeTramColor">
+		<case nightMode="true" attrColorValue="#0000ff"/>
+		<case attrColorValue="#0000ff"/>
+	</renderingAttribute>
+	<renderingAttribute name="routeTrainColor">
+		<case nightMode="true" attrColorValue="#cb6e23"/>
+		<case attrColorValue="#8c3f01"/>
+	</renderingAttribute>
+	<renderingAttribute name="routeLightrailColor">
+		<case nightMode="true" attrColorValue="#009100"/>
+		<case attrColorValue="#009100"/>
+	</renderingAttribute>
+
 	<renderingConstant name="textHaloRadiusDay" value="2"/>
 	<renderingConstant name="textHaloRadiusNight" value="2"/>
 
@@ -461,6 +486,7 @@
 				<case tag="natural" value="coastline"/>
 				<case tag="natural" value="land"/>
 				<case tag="place" value="island"/>
+				<case tag="place" value="islet"/>
 			</switch>
 			<case cycle="true" tag="leisure" value="nature_reserve" order="9"/>
 			<case tag="leisure" value="nature_reserve" order="9"/>
@@ -541,7 +567,7 @@
 
 			<case layer="1" tag="waterway" value="" order="68"/>
 			<case tag="waterway" value="" order="9">
-				<apply_if layer="-1" order="-1"/>
+				<apply_if additional="tunnel=yes" order="-1"/>
 			</case>
 			<case tag="waterway" value="waterfall"/>
 
@@ -868,7 +894,7 @@
 				<apply_if nightMode="true" textColor="#ffb9fe" textHaloColor="#77333333"/>
 			</switch>
 
-			<switch textSize="12" textColor="#204800" textHaloColor="#d3e6c4" textWrapWidth="20" textItalic="true" textOrder="144">
+			<switch textSize="12" textColor="#204800" textHaloColor="#d3e6c4" textWrapWidth="20" textItalic="true" textOrder="144" nameTag="">
 				<case minzoom="14" tag="landuse" value="cemetery"/>
 				<case minzoom="14" tag="landuse" value="graveyard"/>
 				<case minzoom="14" tag="landuse" value="forest"/>
@@ -886,7 +912,7 @@
 				<case minzoom="15" textSize="12" textColor="#990d2a" textWrapWidth="20" tag="military" value="danger_area" textOrder="146"/>
 				<apply_if nightMode="true" textColor="#ffd3dc" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77724456"/>
 			</switch>
-			<switch textSize="13" textColor="#330000" textHaloColor="#bbffffff" textWrapWidth="25" textOrder="134">
+			<switch textSize="13" textColor="#330000" textHaloColor="#bbffffff" textWrapWidth="25" textOrder="134" nameTag="">
 				<case minzoom="16" tag="amenity" value="place_of_worship"/>
 				<case minzoom="14" tag="amenity" value="monastery"/>
 				<case minzoom="14" tag="historic" value="monastery"/>
@@ -1090,9 +1116,12 @@
 					<apply_if minzoom="16" textSize="15"/>
 					<apply_if minzoom="17" textSize="16"/>
 				</switch>
-				<case minzoom="11" tag="place" value="island" nameTag="" textSize="14" textOrder="113">
+				<switch minzoom="11">
+					<case tag="place" value="island"/>
+					<case minzoom="13" tag="place" value="islet"/>
+					<apply textItalic="true" nameTag="" textSize="14" textOrder="113"/>
 					<apply_if minzoom="16" textSize="16"/>
-				</case>
+				</switch>
 				<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 				<apply_if engine_v1="false" textDy="-5"/>
 				<apply_if additional="population_rounded=" textOrder="$textOrderPopulation"/>
@@ -1889,6 +1918,7 @@
 			</case>
 			<switch>
 				<case tag="place" value="island"/>
+				<case tag="place" value="islet"/>
 				<case tag="natural" value="land"/>
 				<apply color="#ffffff">
 					<apply_if nightMode="true" color="#000000"/>
@@ -2136,7 +2166,7 @@
 				</switch>
 				<apply_if additional="construction=yes" pathEffect="8_4" cap="BUTT"/>
 				<apply_if additional="oneway=yes" pathIcon="oneway_blue_big" pathIconStep="70"/>
-				<apply_if additional="oneway=-1" pathIcon="oneway_blue_reverse_big" pathIconStep="70"/>
+				<apply_if additional="oneway=-1" pathIcon="oneway_reverse_blue_big" pathIconStep="70"/>
 			</switch>
 
 			<switch minzoom="10">
@@ -2169,8 +2199,8 @@
 				<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
 					<apply_if maxzoom="16" additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
 					<apply_if minzoom="17" additional="oneway=yes" pathIcon="oneway_blue_big" pathIconStep="70"/>
-					<apply_if maxzoom="16" additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
-					<apply_if minzoom="17" additional="oneway=-1" pathIcon="oneway_blue_reverse_big" pathIconStep="70"/>
+					<apply_if maxzoom="16" additional="oneway=-1" pathIcon="oneway_reverse_blue" pathIconStep="70"/>
+					<apply_if minzoom="17" additional="oneway=-1" pathIcon="oneway_reverse_blue_big" pathIconStep="70"/>
 				</apply_if>
 			</switch>
 
@@ -2216,8 +2246,8 @@
 				<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
 					<apply_if maxzoom="16" additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
 					<apply_if minzoom="17" additional="oneway=yes" pathIcon="oneway_blue_big" pathIconStep="70"/>
-					<apply_if maxzoom="16" additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
-					<apply_if minzoom="17" additional="oneway=-1" pathIcon="oneway_blue_reverse_big" pathIconStep="70"/>
+					<apply_if maxzoom="16" additional="oneway=-1" pathIcon="oneway_reverse_blue" pathIconStep="70"/>
+					<apply_if minzoom="17" additional="oneway=-1" pathIcon="oneway_reverse_blue_big" pathIconStep="70"/>
 				</apply_if>
 			</switch>
 
@@ -2267,7 +2297,7 @@
 				</apply_if>
 				<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
 					<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
-					<apply additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
+					<apply additional="oneway=-1" pathIcon="oneway_reverse_blue" pathIconStep="70"/>
 				</apply_if>
 			</switch>
 			<apply onewayArrowsColor="$mainHighwayOnewayArrowsColor"/>
@@ -2304,7 +2334,7 @@
 			<apply_if hideAccess="false" additional="access=private" disable="true"/>
 			<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
 				<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
-				<apply additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
+				<apply additional="oneway=-1" pathIcon="oneway_reverse_blue" pathIconStep="70"/>
 			</apply_if>
 		</switch>
 
@@ -2406,7 +2436,7 @@
 			<apply_if noPolygons="true" shadowRadius=":1" shadowColor="#999999"/>
 			<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
 				<apply_if additional="oneway=yes" pathIcon="oneway_blue" pathIconStep="70"/>
-				<apply additional="oneway=-1" pathIcon="oneway_blue_reverse" pathIconStep="70"/>
+				<apply additional="oneway=-1" pathIcon="oneway_reverse_blue" pathIconStep="70"/>
 			</apply_if>
 		</switch>
 

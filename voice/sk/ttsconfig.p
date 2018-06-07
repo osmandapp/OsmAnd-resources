@@ -14,7 +14,7 @@ language('sk').
 %
 % (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
 % (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
-% (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM
+% (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM; TUNNEL
 % (X) Other prompts: gps lost, off route, back to route
 % (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 % (X) Distance unit support (meters / feet / yard)
@@ -28,8 +28,8 @@ string('route_calculate.ogg', 'Cesta prepočítaná').
 string('distance.ogg', 'vzdialenosť ').
 
 % LEFT/RIGHT
-string('after.ogg', 'čoskoro o ').
-string('in.ogg', 'o ').
+string('after.ogg', 'Čoskoro o ').
+string('in.ogg', 'O ').
 
 string('left.ogg', 'zahnite doľava').
 string('left_sh.ogg', 'zahnite prudko doľava').
@@ -44,7 +44,7 @@ string('right_bear.ogg', 'sa držte vpravo').    % in English the same as right_
 
 % U-TURNS
 string('prepare_make_uturn.ogg', 'sa budete otáčať naspäť').
-string('make_uturn1.ogg', 'sa otočte naspäť ').
+string('make_uturn1.ogg', 'sa otočte naspäť').
 string('make_uturn2.ogg', 'otočte sa naspäť').
 string('make_uturn_wp.ogg', 'keď to bude možné, otočte sa naspäť').
 
@@ -104,6 +104,7 @@ string('traffic_calming.ogg', 'spomaľovač').
 string('toll_booth.ogg', 'mýtna búdka').
 string('stop.ogg', 'značka stop').
 string('pedestrian_crosswalk.ogg', 'priechod pre chodcov').
+string('tunnel.ogg', 'tunel').
 
 % OTHER PROMPTS
 string('location_lost.ogg', 'Strata signálu GPS').
@@ -112,10 +113,10 @@ string('off_route.ogg', 'Idete odchylne od trasy už ').
 string('back_on_route.ogg', 'Vrátili ste sa na trasu.').
 
 % STREET NAME PREPOSITIONS
-string('onto.ogg', 'na cestu ').
-string('on.ogg', 'po ').
-string('to.ogg', 'k ').
-string('toward.ogg', 'smerom na ').
+string('onto.ogg', ' na cestu ').
+string('on.ogg', ' po ').
+string('to.ogg', ' k ').
+string('toward.ogg', ' smerom na ').
 
 % DISTANCE UNIT SUPPORT
 string('around.ogg', 'približne ').
@@ -137,7 +138,7 @@ string('miles5.ogg', 'míľ').
 string('yards.ogg', 'yardov').
 
 % TIME SUPPORT
-string('time.ogg', 'doba potrebná').
+string('time.ogg', 'doba potrebná ').
 string('hours1.ogg', 'jedna hodina ').
 string('hours2.ogg', 'dve hodiny ').
 string('hours3_4.ogg', 'hodiny ').
@@ -241,7 +242,8 @@ warning('TOLL_BOOTH', 'toll_booth.ogg').
 warning('STOP', 'stop.ogg').
 warning('PEDESTRIAN', 'pedestrian_crosswalk.ogg').
 warning('MAXIMUM', '').
-warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'RAILWAY'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'PEDESTRIAN'; Type = 'MAXIMUM').
+warning('TUNNEL', 'tunnel.ogg').
+warning(Type, '') :- not(Type = 'SPEED_CAMERA'; Type = 'SPEED_LIMIT'; Type = 'BORDER_CONTROL'; Type = 'RAILWAY'; Type = 'TRAFFIC_CALMING'; Type = 'TOLL_BOOTH'; Type = 'STOP'; Type = 'PEDESTRIAN'; Type = 'MAXIMUM'; Type = 'TUNNEL').
 
 
 %%

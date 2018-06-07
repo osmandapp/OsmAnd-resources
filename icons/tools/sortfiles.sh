@@ -125,6 +125,7 @@ mycp natural volcano_big functional-icons_volcano_big.png
 mycp natural volcano_map functional-icons_volcano.png  #Is poi_colored_peak.png with color #D40000  #scale 0.5
 mycpname volcano poi_colored_volcano_active.png
 mycp waterway rapids barrier_colored_rapids.png  #scale 0.375
+mycpname rapid_white barrier_rapid.png  #scale 0.375
 mycpname waterfall water_waterfall.png  #scale 0.375
 mycpname topo_waterfall topo_topo_waterfall.png  #scale 0.375
 mycpname dam water_dam.png
@@ -324,10 +325,13 @@ mycpname runway transport_runway.png
 mycpname ford_stepping_stones transport_colored_ford_stepping_stones.png
 mycpname topo_ford_stepping_stones topo_topo_ford_stepping_stones.png
 mycpname traffic_mirror poi_colored_traffic_mirror.png
+mycpname via_ferrata_map functional-icons_via_ferrata.png
+mycpname via_ferrata sport_via_ferrata.png
 
 mygroup fuel transport_fuel.png
 mygroup filling_station transport_fuel.png
 mycpname charging_station transport_charging_station.png
+mycpname electricity_combined_charging transport_charging_station.png
 mycpname charging_station_filter transport_charging_station.png
 mycp amenity fuel_lpg transport_fuel_lpg.png
 mycp amenity fuel transport_fuel.png
@@ -569,6 +573,11 @@ mycp aeroway helipad transport_helicopter_pad.png
 mycpname aeroway_terminal transport_airport_terminal.png
 mycpname spaceport transport_spaceport.png
 
+mycpname put_in functional-icons-x2_whitewater_put_in.png
+mycpname egress functional-icons-x2_whitewater_egress.png
+mycpname put_in_egress functional-icons-x2_whitewater_put_in_egress.png
+mycpname whitewater_hazard functional-icons-x2_whitewater_hazard.png
+
 
 ## Barrier
 mygroup barrier barrier_colored_bollard.png
@@ -690,6 +699,7 @@ mycpname lwn_ref tourist_lwn_ref.png
 mycpname gallery tourist_gallery.png
 mycpname firepit tourist_colored_firepit.png
 mycpname topo_firepit topo_topo_firepit.png
+mycpname checkpoint_hiking tourist_checkpoint_hiking.png
 
 ## Entertainment
 mygroup entertainment tourist_cinema3.png
@@ -704,6 +714,8 @@ mycpname hackerspace entertainment_hackerspace.png
 mycpname leisure_common entertainment_leisure_common.png
 mycpname love_hotel entertainment_love_hotel.png
 mycpname gambling entertainment_gambling.png
+mycpname adult_gaming_centre entertainment_gambling.png
+mycpname amusement_arcade entertainment_amusement_arcade.png
 
 ## Historic
 mygroup historic tourist_archaeological2.png
@@ -778,6 +790,7 @@ mycp sport billiard sport_snooker.png
 mycp sport bmx sport_bmx.png
 mycp sport canoe sport_canoe.png
 mycp sport climbing sport_hillclimbing.png
+mycpname sport_climbing_adventure sport_climbing_adventure.png
 mycp sport cricket sport_cricket.png
 mycp sport cycling sport_cycling.png
 mycp sport diving sport_diving.png
@@ -983,7 +996,7 @@ mycpname driving_school education_driving_school.png
 mycpname training education_training.png
 mycpname training_yoga education_training_yoga.png
 mycpname music_school education_music_school.png
-
+mycpname language_school education_language_school.png
 
 ## Man made
 mygroup man_made power_generator_wind2.png
@@ -1737,6 +1750,7 @@ mycpname hifi shopping_hifi.png
 mycp shop fashion shopping_clothes.png
 mycp shop fishing shopping_tackle.png
 mycp shop florist shopping_florist.png
+mycpname flooring shopping_flooring.png
 mycp shop furniture shopping_furniture.png
 mycp shop garden_centre shopping_garden_centre.png
 mycpname shop_yes shopping_general.png
@@ -1847,6 +1861,8 @@ mycpname agrarian shopping_agrarian.png
 mycpname shop_fireplace shopping_fireplace.png
 mycpname shop_boat shopping_boat.png
 mycpname cannabis shopping_cannabis.png
+mycpname pottery shopping_pottery.png
+mycpname outpost shopping_outpost.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
@@ -1880,6 +1896,8 @@ mycpname logistics office_logistics.png
 mycpname notary office_notary.png
 mycpname parish office_parish.png
 mycpname publisher office_publisher.png
+mycpname water_utility office_water_utility.png
+mycpname energy_supplier office_energy_supplier.png
 
 ## Entertainment
 mycpname park entertainment_colored_park.png
@@ -2306,6 +2324,10 @@ mycpname motorcycle_repair_no additional_motorcycle_repair_no.png
 mycpname motorcycle_repair_yes additional_motorcycle_repair_yes.png
 mycpname motorcycle_sales_no additional_motorcycle_sales_no.png
 mycpname motorcycle_sales_yes additional_motorcycle_sales_yes.png
+mycpname delivery_yes additional_delivery_yes.png
+mycpname delivery_no additional_delivery_no.png
+mycpname architect_name additional_architect_name.png
+mycpname start_date additional_start_date.png
 
 #Additional category
 mycpname payment_type additional_category_payment_type.png

@@ -44,6 +44,7 @@
 	<!-- ORDER of entity_convert matters so it is better to group them sequentially -->
 	<entity_convert pattern="tag_transform" from_tag="area" from_value="true" to_tag1="area" to_value1="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="area:highway" if_not_tag1="area" to_tag1="area:highway" to_tag2="area" to_value2="yes" apply_to="way"/>
+	<entity_convert pattern="tag_transform" from_tag="highway" if_tag1="type" if_value1="multipolygon" to_tag1="area:highway" to_tag2="area" to_value2="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="landuse" from_value="pedestrian" if_not_tag1="area" to_tag1="area:highway" to_value1="pedestrian" to_tag2="area" to_value2="yes" apply_to="node,way"/>
 <!--	<entity_convert pattern="tag_transform" from_tag="highway" if_not_tag1="highway" if_not_value1="rest_area" if_not_tag2="highway" if_not_value2=if_tag1="area" if_value1="yes" to_tag1="area:highway"/>-->
 	<entity_convert pattern="tag_transform" from_tag="area" from_value="no" to_tag1="area" to_value1="false"/>
@@ -285,6 +286,7 @@
 	<type tag="tunnel" value="yes" minzoom="12" additional="true" routing="no"/>
 	<type tag="man_made" value="bridge" minzoom="12" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge:name" if_tag1="bridge" to_tag1="name" routing="no" />
+	<entity_convert pattern="tag_transform" from_tag="bridge_ref" to_tag1="bridge:ref"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge" from_value="yes" if_not_tag1="man_made" to_tag1="man_made" to_value1="bridge" to_tag2="layer" to_value2="1" to_tag3="bridge" to_value3="yes" routing="no" />
 	<entity_convert pattern="tag_transform" from_tag="bridge" from_value="viaduct" if_not_tag1="man_made" to_tag1="man_made" to_value1="bridge" to_tag2="layer" to_value2="1" to_tag3="bridge" to_value3="yes" to_tag4="bridge:structure" to_value4="viaduct" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge" from_value="aqueduct" if_not_tag1="man_made" to_tag1="man_made" to_value1="bridge" to_tag2="layer" to_value2="1" to_tag3="bridge" to_value3="yes" to_tag4="bridge:structure" to_value4="aqueduct" routing="no"/>
@@ -660,6 +662,9 @@
 		<entity_convert pattern="tag_transform" from_tag="road_ref_*" if_region_name="$us" if_starts_with_tag1="road_ref_*" if_starts_with_value1="cr" to_substr1="2" to_tag1="road_ref_*" seq="1:10" apply_to="way,relation" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="road_ref_*" if_region_name="$us" if_starts_with_tag1="road_ref_*" if_starts_with_value1="cr-" to_substr1="3" to_tag1="road_ref_*" seq="1:10" apply_to="way,relation" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="road_ref_*" if_region_name="$us" if_tag1="road_us_county_network_*" if_value1="yes" to_tag1="road_ref_*" to_tag2="road_shield_shape_*" to_value2="pentagon_up" to_tag3="road_shield_color_*" to_value3="blue" to_tag4="road_shield_text_color_*" to_value4="yellow" to_tag5="road_us_state_network_*" to_value5="no" seq="1:10" apply_to="way,relation" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="road_network_*" from_value="us:i:business:loop" if_region_name="$us" to_tag1="road_network_*" to_value1="us:i" to_tag2="road_modifier_*" to_value2="business" seq="1:10" apply_to="way,relation" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="road_network_*" from_value="us:i:business:spur" if_region_name="$us" to_tag1="road_network_*" to_value1="us:i" to_tag2="road_modifier_*" to_value2="business" seq="1:10" apply_to="way,relation" notosm="true"/>
+
 
 		<entity_convert pattern="tag_transform" from_tag="road_us_state_network_*" if_region_name="$us" if_starts_with_tag1="road_ref_*" if_starts_with_value1="cr" seq="1:10" apply_to="way,relation" notosm="true"/>
 
@@ -1254,6 +1259,7 @@
 		<entity_convert pattern="tag_transform" from_tag="road_ref_*" if_region_name="$australia-oceania" if_starts_with_tag1="road_ref_*" if_starts_with_value1="b" to_tag1="road_ref_*" to_tag2="road_shield_color_*" to_value2="green" to_tag3="road_shield_text_color_*" to_value3="yellow" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="road_ref_*" if_region_name="$australia-oceania" if_starts_with_tag1="road_ref_*" if_starts_with_value1="c" to_tag1="road_ref_*" to_tag2="road_shield_color_*" to_value2="green" to_tag3="road_shield_text_color_*" to_value3="yellow" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="road_ref_*" if_region_name="$australia-oceania" if_starts_with_tag1="road_ref_*" if_starts_with_value1="mr" to_tag1="road_ref_*" to_tag2="road_shield_color_*" to_value2="white" to_tag3="road_shield_shape_*" to_value3="tall_hexagon" to_tag4="road_shield_text_color_*" to_value4="darkblue" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="road_ref_*" if_region_name="$australia-oceania" if_tag1="road_network_*" if_value1="mr" to_tag1="road_ref_*" to_tag2="road_shield_color_*" to_value2="white" to_tag3="road_shield_shape_*" to_value3="tall_hexagon" to_tag4="road_shield_text_color_*" to_value4="darkblue" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="road_ref_*" if_region_name="$australia-oceania" if_starts_with_tag1="road_ref_*" if_starts_with_value1="mr" to_tag1="road_ref_*" to_substr1="2" seq="1:10" apply_to="way" notosm="true"/>
 
 		<entity_convert pattern="tag_transform" from_tag="road_ref_*" if_region_name="$georgia" if_starts_with_tag1="road_ref_*" if_starts_with_value1="ს" if_tag1="highway" if_value1="motorway" to_tag1="road_ref_*" to_tag2="road_shield_color_*" to_value2="green" to_tag3="road_shield_order_*" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
@@ -2866,8 +2872,11 @@
 		<type tag="waterway" value="drain" minzoom="13"/>
 		<type tag="waterway" value="drystream" minzoom="13"/>
 		<type tag="waterway" value="lock_gate" minzoom="15"/>
-		<type tag="waterway" value="rapids" minzoom="13"/>
-		<entity_convert pattern="tag_transform" from_tag="whitewater" from_value="rapid" to_tag1="waterway" to_value1="rapids"/>
+		<type tag="whitewater" value="rapid" minzoom="13" nameTags="whitewater:rapid_name"/>
+		<type tag="waterway" value="rapids" minzoom="13"/> <!-- compatibility until 3.0 -->
+		<entity_convert pattern="tag_transform" from_tag="waterway" from_value="rapids" to_tag1="whitewater" to_value1="rapid" to_tag2="waterway" to_value2="rapids"/> <!-- to_tag2 is for compatibility until 3.0 -->
+		<type tag="whitewater" value="hazard" minzoom="13"/>
+		<entity_convert pattern="tag_transform" from_tag="waterway" from_value="hazard" to_tag1="whitewater" to_value1="hazard"/>
 		<type tag="waterway" value="riverbank" minzoom="8"/>
 		<type tag="waterway" value="river" minzoom="5"/>
 		<entity_convert pattern="tag_transform" from_tag="waterway" from_value="river" apply_to="node" routing="no"/>
@@ -2899,8 +2908,7 @@
 		<type tag="railway" value="station" minzoom="12" order="1" />
 		<type tag="railway" value="yard" minzoom="12" order="1"/>
 		<type tag="public_transport" value="stop_area" minzoom="13" order="1" nameTags="name" relation="true"/>
-		<type tag="railway" value="subway_entrance" minzoom="13" order="1" nameTags="name" /> 
-		
+		<type tag="railway" value="subway_entrance" minzoom="13" order="1" nameTags="name" />
 
 		<entity_convert pattern="tag_transform" from_tag="railway:preserved" from_value="yes" to_tag1="railway" to_value1="preserved"/>
 
@@ -3140,6 +3148,7 @@
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="bulgaria" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="sofia"/>
 			<!-- Warsaw -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="poland" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="Metro Warszawskie" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="warsaw"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="poland" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="warsaw"/>
 			<!-- Lisbon -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="portugal" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="Metropolitano de Lisboa" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="lisbon"/>
 
@@ -3378,6 +3387,7 @@
 		<type tag="aerialway" value="rope_tow" minzoom="13" />
 		<type tag="aerialway" value="station" minzoom="13"/>
 		<type tag="aerialway" value="t-bar" minzoom="13" />
+		<type tag="aerialway" value="zip_line" minzoom="13"/>
 	</category>
 
 	<category name="power">
@@ -3484,7 +3494,7 @@
 		<type tag="man_made" value="chimney" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="chimney" to_tag1="man_made" to_value1="chimney"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="tower" to_tag1="man_made" to_value1="tower"/>
-		<type tag="man_made" value="conveyor" minzoom="15" />
+		<type tag="man_made" value="goods_conveyor" minzoom="15" />
 		<type tag="man_made" value="crane" minzoom="15" />
 		<type tag="man_made" value="ventilation_shaft" minzoom="15" />
 		<type tag="man_made" value="pumping_station" minzoom="15" />
@@ -3510,6 +3520,7 @@
 		<type tag="tower:type" value="communication" additional="true" minzoom="13" />
 		<type tag="tower:type" value="lighting" additional="true" minzoom="15" />
 		<type tag="tower:type" value="observation" additional="true" minzoom="14" />
+		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="cooling_tower" to_tag1="man_made" to_value1="tower" to_tag2="tower:type" to_value2="cooling_tower"/>
 		<type tag="tower:type" value="cooling" additional="true" minzoom="13" />
 		<type tag="tower:type" value="bell_tower" additional="true" minzoom="14" />
 		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="communications_tower" to_tag1="man_made" to_value1="tower" to_tag2="tower:type" to_value2="communication"/>
@@ -3681,6 +3692,9 @@
 		<entity_convert pattern="tag_transform" from_tag="service" from_value="parts" to_tag1="service:parts" to_value1="yes" map="no"/>
 		<type tag="shop" value="carpet" minzoom="15" />
 		<type tag="shop" value="car_repair" minzoom="15"/>
+		<entity_convert pattern="tag_transform" from_tag="service:vehicle:tires" to_tag1="service:vehicle:tyres"/>
+		<entity_convert pattern="tag_transform" from_tag="service:vehicle:repairs" to_tag1="service:vehicle:car_repair"/>
+		<entity_convert pattern="tag_transform" from_tag="service:vehicle:inspection" to_tag1="service:vehicle:diagnostics"/>
 		<type tag="shop" value="charity" minzoom="15" />
 		<type tag="shop" value="cheese" minzoom="15" />
 		<type tag="shop" value="chemist" minzoom="15" />
@@ -3766,6 +3780,7 @@
 		<type tag="shop" value="fireplace" minzoom="15" />
 		<type tag="shop" value="fishing" minzoom="15" />
 		<type tag="shop" value="florist" minzoom="15" />
+		<type tag="shop" value="flooring" minzoom="15" />
 		<type tag="shop" value="frame" minzoom="15" />
 		<type tag="shop" value="free_flying" minzoom="15" />
 		<type tag="shop" value="frozen_food" minzoom="15" />
@@ -3818,6 +3833,7 @@
 		<type tag="shop" value="optician" minzoom="15" />
 		<type tag="shop" value="organic" minzoom="15" />
 		<type tag="shop" value="outdoor" minzoom="15" />
+		<type tag="shop" value="outpost" minzoom="15" />
 		<type tag="shop" value="paint" minzoom="15" />
 		<type tag="shop" value="party" minzoom="15" />
 		<type tag="shop" value="pasta" minzoom="15" />
@@ -3827,6 +3843,7 @@
 		<type tag="shop" value="pet" minzoom="15" />
 		<type tag="shop" value="photo" minzoom="15" />
 		<type tag="shop" value="photo_studio" minzoom="15" />
+		<type tag="shop" value="pottery" minzoom="15" />
 		<type tag="shop" value="pyrotechnics" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="shop" from_value="fireworks" to_tag1="shop" to_value1="pyrotechnics"/>
 		<type tag="shop" value="seafood" minzoom="15" />
@@ -3836,6 +3853,7 @@
 		<type tag="shop" value="religion" minzoom="15" />
 		<type tag="shop" value="second_hand" minzoom="15" />
 		<type tag="shop" value="sewing" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="shop" from_value="haberdashery" to_tag1="shop" to_value1="sewing"/>
 		<type tag="shop" value="ship_chandler" minzoom="15" />
 		<type tag="shop" value="scuba_diving" minzoom="15" />
 		<type tag="shop" value="swimming_pool" minzoom="15" />
@@ -3920,6 +3938,7 @@
 		<type tag="craft" value="beekeeper" minzoom="15" />
 		<type tag="craft" value="blacksmith" minzoom="15" />
 		<type tag="craft" value="brewery" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="brewery" from_value="yes" to_tag1="microbrewery" to_value1="yes"/>
 		<type tag="craft" value="boatbuilder" minzoom="15" />
 		<type tag="craft" value="bookbinder" minzoom="15" />
 		<type tag="craft" value="carpenter" minzoom="15" />
@@ -4343,7 +4362,7 @@
 		<type tag="natural" value="bare_rock" minzoom="10" />
 		<type tag="natural" value="rock" minzoom="10" />
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="bedrock" to_tag1="natural" to_value1="bare_rock"/>
-		<entity_convert pattern="tag_transform" from_tag="natural" from_value="rock" to_tag1="natural" to_value1="bare_rock" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="natural" from_value="rock" to_tag1="natural" to_value1="bare_rock" apply_to="way" poi="no"/>
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="rocks" to_tag1="natural" to_value1="bare_rock"/>
 		<type tag="natural" value="ridge" minzoom="6" />
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="arete" to_tag1="natural" to_value1="ridge"/>
@@ -4354,6 +4373,7 @@
 		<entity_convert pattern="tag_transform" from_tag="volcano" from_value="yes" to_tag1="natural" to_value1="volcano"/>
 		<type tag="natural" value="crater" minzoom="10" />
 		<type tag="natural" value="cave_entrance" minzoom="10" nameTags="ele" />
+		<type tag="natural" value="crevasse" minzoom="10" />
 		<type tag="natural" value="sand" minzoom="6" />
 		<type tag="natural" value="scree" minzoom="6" />
 		<type tag="natural" value="sinkhole" minzoom="13" />
@@ -4541,7 +4561,8 @@
 		<entity_convert pattern="tag_transform" from_tag="cuisine" from_value="pancakes" to_tag1="cuisine" to_value1="pancake" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cuisine" from_value="snackbar" to_tag1="cuisine" to_value1="snack" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cuisine" from_value="snacks" to_tag1="cuisine" to_value1="snack" map="no"/>
-		<entity_convert pattern="tag_transform" from_tag="cuisine" from_value="subs" to_tag1="cuisine" to_value1="sub" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cuisine" from_value="subs" to_tag1="cuisine" to_value1="sandwich" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cuisine" from_value="sub" to_tag1="cuisine" to_value1="sandwich" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cuisine" from_value="philippine" to_tag1="cuisine" to_value1="filipino" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cuisine" from_value="smoothies" to_tag1="cuisine" to_value1="smoothie" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cuisine" from_value="texmex" to_tag1="cuisine" to_value1="tex-mex" map="no"/>
@@ -4626,6 +4647,32 @@
 		<entity_convert pattern="tag_transform" from_tag="fuel" from_value="electric" to_tag1="fuel:electricity" to_value1="yes"/>
 		<type tag="amenity" value="charging_station" minzoom="13" />
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="ev_charging" to_tag1="amenity" to_value1="charging_station"/>
+
+		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="charging_station" to_tag1="amenity" to_value1="charging_station" to_tag2="osmand_electricity_combined" to_value2="charging" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="fuel:electricity" from_value="yes" if_tag1="amenity" if_value1="fuel" to_tag1="fuel:electricity" to_value1="yes" to_tag2="osmand_electricity_combined" to_value2="charging" map="no"/>
+
+		<entity_convert pattern="tag_transform" from_tag="socket:cee_blue" if_not_tag1="socket:cee_blue" if_not_value1="0" if_not_tag2="socket:cee_blue" if_not_value2="no" to_tag1="socket:cee_blue" to_tag2="osmand_socket_cee_blue" to_value2="yes" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="socket:cee_red_16a" if_not_tag1="socket:cee_red_16a" if_not_value1="0" if_not_tag2="socket:cee_red_16a" if_not_value2="no" to_tag1="socket:cee_red_16a" to_tag2="osmand_socket_cee_red_16a" to_value2="yes" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="socket:cee_red_32a" if_not_tag1="socket:cee_red_32a" if_not_value1="0" if_not_tag2="socket:cee_red_32a" if_not_value2="no" to_tag1="socket:cee_red_32a" to_tag2="osmand_socket_cee_red_32a" to_value2="yes" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="socket:cee_red_64a" if_not_tag1="socket:cee_red_64a" if_not_value1="0" if_not_tag2="socket:cee_red_64a" if_not_value2="no" to_tag1="socket:cee_red_64a" to_tag2="osmand_socket_cee_red_64a" to_value2="yes" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="socket:cee_red_125a" if_not_tag1="socket:cee_red_125a" if_not_value1="0" if_not_tag2="socket:cee_red_125a" if_not_value2="no" to_tag1="socket:cee_red_125a" to_tag2="osmand_socket_cee_red_125a" to_value2="yes" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="socket:type1" if_not_tag1="socket:type1" if_not_value1="0" if_not_tag2="socket:type1" if_not_value2="no" to_tag1="socket:type1" to_tag2="osmand_socket_type1" to_value2="yes" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="socket:type1_combo" if_not_tag1="socket:type1_combo" if_not_value1="0" if_not_tag2="socket:type1_combo" if_not_value2="no" to_tag1="socket:type1_combo" to_tag2="osmand_socket_type1_combo" to_value2="yes" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="socket:type2" if_not_tag1="socket:type2" if_not_value1="0" if_not_tag2="socket:type2" if_not_value2="no" to_tag1="socket:type2" to_tag2="osmand_socket_type2" to_value2="yes" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="socket:type2_combo" if_not_tag1="socket:type2_combo" if_not_value1="0" if_not_tag2="socket:type2_combo" if_not_value2="no" to_tag1="socket:type2_combo" to_tag2="osmand_socket_type2_combo" to_value2="yes" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="socket:type3" if_not_tag1="socket:type3" if_not_value1="0" if_not_tag2="socket:type3" if_not_value2="no" to_tag1="socket:type3" to_tag2="osmand_socket_type3" to_value2="yes" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="socket:chademo" if_not_tag1="socket:chademo" if_not_value1="0" if_not_tag2="socket:chademo" if_not_value2="no" to_tag1="socket:chademo" to_tag2="osmand_socket_chademo" to_value2="yes" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="socket:tesla_standard" if_not_tag1="socket:tesla_standard" if_not_value1="0" if_not_tag2="socket:tesla_standard" if_not_value2="no" to_tag1="socket:tesla_standard" to_tag2="osmand_socket_tesla_standard" to_value2="yes" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="socket:tesla_supercharger" if_not_tag1="socket:tesla_supercharger" if_not_value1="0" if_not_tag2="socket:tesla_supercharger" if_not_value2="no" to_tag1="socket:tesla_supercharger" to_tag2="osmand_socket_tesla_supercharger" to_value2="yes" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="socket:tesla_roadster" if_not_tag1="socket:tesla_roadster" if_not_value1="0" if_not_tag2="socket:tesla_roadster" if_not_value2="no" to_tag1="socket:tesla_roadster" to_tag2="osmand_socket_tesla_roadster" to_value2="yes" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="socket:nema_5_15" if_not_tag1="socket:nema_5_15" if_not_value1="0" if_not_tag2="socket:nema_5_15" if_not_value2="no" to_tag1="socket:nema_5_15" to_tag2="osmand_socket_nema_5_15" to_value2="yes" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="socket:nema_5_20" if_not_tag1="socket:nema_5_20" if_not_value1="0" if_not_tag2="socket:nema_5_20" if_not_value2="no" to_tag1="socket:nema_5_20" to_tag2="osmand_socket_nema_5_20" to_value2="yes" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="socket:nema_14_30" if_not_tag1="socket:nema_14_30" if_not_value1="0" if_not_tag2="socket:nema_14_30" if_not_value2="no" to_tag1="socket:nema_14_30" to_tag2="osmand_socket_nema_14_30" to_value2="yes" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="socket:nema_14_50" if_not_tag1="socket:nema_14_50" if_not_value1="0" if_not_tag2="socket:nema_14_50" if_not_value2="no" to_tag1="socket:nema_14_50" to_tag2="osmand_socket_nema_14_50" to_value2="yes" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="socket:schuko" if_not_tag1="socket:schuko" if_not_value1="0" if_not_tag2="socket:schuko" if_not_value2="no" to_tag1="socket:schuko" to_tag2="osmand_socket_schuko" to_value2="yes" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="socket:bs1363" if_not_tag1="socket:bs1363" if_not_value1="0" if_not_tag2="socket:bs1363" if_not_value2="no" to_tag1="socket:bs1363" to_tag2="osmand_socket_bs1363" to_value2="yes" map="no" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="socket:as3112" if_not_tag1="socket:as3112" if_not_value1="0" if_not_tag2="socket:as3112" if_not_value2="no" to_tag1="socket:as3112" to_tag2="osmand_socket_as3112" to_value2="yes" map="no" routing="no"/>
+
 		<type tag="waterway" value="fuel" minzoom="13" nameTags="name,brand,operator"/>
 		<type tag="amenity" value="vehicle_inspection" minzoom="15" />
 		<type tag="amenity" value="vehicle_ramp" minzoom="15" />
@@ -4636,6 +4683,21 @@
 		<type tag="amenity" value="compressed_air" minzoom="15" />
 		<type tag="service" value="tyres" additional="true" minzoom="15" />
 		<!-- TODO: implement better way of doing this -->
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="tyres" if_tag1="shop" if_value1="car" to_tag1="service:vehicle:tyres" to_value1="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="repair" if_tag1="shop" if_value1="car" to_tag1="service:vehicle:car_repair" to_value1="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="dealer" if_tag1="shop" if_value1="car" to_tag1="service:vehicle:new_car_sales" to_value1="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="parts" if_tag1="shop" if_value1="car" to_tag1="service:vehicle:car_parts" to_value1="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="electrical" if_tag1="shop" if_value1="car" to_tag1="service:vehicle:electrical" to_value1="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="tyres" if_tag1="shop" if_value1="car_repair" to_tag1="service:vehicle:tyres" to_value1="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="repair" if_tag1="shop" if_value1="car_repair" to_tag1="service:vehicle:car_repair" to_value1="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="dealer" if_tag1="shop" if_value1="car_repair" to_tag1="service:vehicle:new_car_sales" to_value1="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="parts" if_tag1="shop" if_value1="car_repair" to_tag1="service:vehicle:car_parts" to_value1="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="electrical" if_tag1="shop" if_value1="car_repair" to_tag1="service:vehicle:electrical" to_value1="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="tyres" if_tag1="shop" if_value1="car_parts" to_tag1="service:vehicle:tyres" to_value1="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="repair" if_tag1="shop" if_value1="car_parts" to_tag1="service:vehicle:car_repair" to_value1="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="dealer" if_tag1="shop" if_value1="car_parts" to_tag1="service:vehicle:new_car_sales" to_value1="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="parts" if_tag1="shop" if_value1="car_parts" to_tag1="service:vehicle:car_parts" to_value1="yes" map="no"/>
+		<entity_convert pattern="tag_transform" from_tag="service" from_value="electrical" if_tag1="shop" if_value1="car_parts" to_tag1="service:vehicle:electrical" to_value1="yes" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="service" from_value="tyres" to_tag1="service:tyres" to_value1="yes" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="service" from_value="dealer" to_tag1="service:dealer" to_value1="yes" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="service" from_value="repair" to_tag1="service:repair" to_value1="yes" map="no"/>
@@ -4815,6 +4877,8 @@
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="bench" if_tag1="leisure" to_tag1="bench" to_value1="yes"/>
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="bench" to_tag1="amenity" to_value1="bench"/>
 		<type tag="amenity" value="gambling" minzoom="15" />
+		<type tag="leisure" value="amusement_arcade" minzoom="15" />
+		<type tag="leisure" value="adult_gaming_centre" minzoom="15" />
 	</category>
 
 	<category name="service">
@@ -4825,7 +4889,7 @@
 		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="amenity" if_value1="post_office" to_tag1="ref_post" map="no"/>
 		<type tag="amenity" value="letter_box" minzoom="15" nameTags="post:housenumber,post:flats"/>
 		<type tag="amenity" value="crematorium" minzoom="15" />
-		<type tag="amenity" value="mortuary" minzoom="15" />
+		<type tag="amenity" value="mortuary" minzoom="15" order="100"/>
 		<type tag="amenity" value="shelter" minzoom="15" />
 		<type tag="amenity" value="telephone" minzoom="15" />
 		<type tag="amenity" value="recycling" minzoom="15" />
@@ -4914,6 +4978,37 @@
 	<type tag="osmand_highway_integrity" value="8" minzoom="11" additional="true" notosm="true"/>
 	<type tag="osmand_highway_integrity" value="9" minzoom="11" additional="true" notosm="true"/>
 	<type tag="osmand_highway_integrity" value="10" minzoom="11" additional="true" notosm="true"/>
+
+	<type tag="whitewater:section_grade" value="0" minzoom="11" additional="true"/>
+	<type tag="whitewater:section_grade" value="1" minzoom="11" additional="true"/>
+	<type tag="whitewater:section_grade" value="2" minzoom="11" additional="true"/>
+	<type tag="whitewater:section_grade" value="3" minzoom="11" additional="true"/>
+	<type tag="whitewater:section_grade" value="4" minzoom="11" additional="true"/>
+	<type tag="whitewater:section_grade" value="5" minzoom="11" additional="true"/>
+	<type tag="whitewater:section_grade" value="6" minzoom="11" additional="true"/>
+	<type tag="whitewater:rapid_grade" value="0" minzoom="11" additional="true"/>
+	<type tag="whitewater:rapid_grade" value="1" minzoom="11" additional="true"/>
+	<type tag="whitewater:rapid_grade" value="2" minzoom="11" additional="true"/>
+	<type tag="whitewater:rapid_grade" value="3" minzoom="11" additional="true"/>
+	<type tag="whitewater:rapid_grade" value="4" minzoom="11" additional="true"/>
+	<type tag="whitewater:rapid_grade" value="5" minzoom="11" additional="true"/>
+	<type tag="whitewater:rapid_grade" value="6" minzoom="11" additional="true"/>
+	<entity_convert pattern="tag_transform" from_tag="whitewater:section_grade" from_value="1+" to_tag1="whitewater:section_grade" to_value1="2"/>
+	<entity_convert pattern="tag_transform" from_tag="whitewater:section_grade" from_value="2+" to_tag1="whitewater:section_grade" to_value1="3"/>
+	<entity_convert pattern="tag_transform" from_tag="whitewater:section_grade" from_value="3+" to_tag1="whitewater:section_grade" to_value1="4"/>
+	<entity_convert pattern="tag_transform" from_tag="whitewater:section_grade" from_value="4-5" to_tag1="whitewater:section_grade" to_value1="5"/>
+	<entity_convert pattern="tag_transform" from_tag="whitewater:section_grade" from_value="1-2" to_tag1="whitewater:section_grade" to_value1="2"/>
+	<entity_convert pattern="tag_transform" from_tag="whitewater:section_grade" from_value="2-" to_tag1="whitewater:section_grade" to_value1="2"/>
+	<entity_convert pattern="tag_transform" from_tag="whitewater:rapid_grade" from_value="1+" to_tag1="whitewater:rapid_grade" to_value1="2"/>
+	<entity_convert pattern="tag_transform" from_tag="whitewater:rapid_grade" from_value="2+" to_tag1="whitewater:rapid_grade" to_value1="3"/>
+	<entity_convert pattern="tag_transform" from_tag="whitewater:rapid_grade" from_value="3+" to_tag1="whitewater:rapid_grade" to_value1="4"/>
+	<entity_convert pattern="tag_transform" from_tag="whitewater:rapid_grade" from_value="4+" to_tag1="whitewater:rapid_grade" to_value1="5"/>
+	<entity_convert pattern="tag_transform" from_tag="whitewater:rapid_grade" from_value="5+" to_tag1="whitewater:rapid_grade" to_value1="6"/>
+	<entity_convert pattern="tag_transform" from_tag="whitewater:rapid_grade" if_not_tag1="whitewater" if_not_value1="rapid" to_tag1="whitewater:rapid_grade" to_tag2="whitewater" to_value2="rapid"/>
+	<type tag="whitewater" value="put_in" minzoom="11"/>
+	<type tag="whitewater" value="egress" minzoom="11"/>
+	<type tag="whitewater" value="put_in;egress" minzoom="11"/>
+	<type tag="whitewater" value="portage_way" minzoom="11"/>
 
 	<!-- administrative place-->
 	<category name="administrative">
@@ -5036,7 +5131,7 @@
 		<type tag="boundary" value="civil" minzoom="6" />
 		<type tag="boundary" value="political" minzoom="6" />
 		<type tag="boundary" value="maritime" minzoom="6" />
-		<type tag="boundary" value="national_park" minzoom="6" relation="true"/>
+		<type tag="boundary" value="national_park" minzoom="6" nameTags="name" relation="true"/>
 		<type tag="boundary" value="protected_area" minzoom="6" relation="true"/>
 		<type tag="boundary" value="forestry_compartment" minzoom="10" relation="true"/>
 		<entity_convert pattern="tag_transform" from_tag="boundary" from_value="forest_compartment" to_tag1="boundary" to_value1="forestry_compartment"/>
@@ -5077,6 +5172,7 @@
 		<type tag="sport" value="canoe" minzoom="15" />
 		<type tag="sport" value="chess" minzoom="15" />
 		<type tag="sport" value="climbing" minzoom="15" />
+		<type tag="sport" value="climbing_adventure" minzoom="15" />
 		<type tag="sport" value="cricket" minzoom="15" />
 		<type tag="sport" value="cricket_nets" minzoom="15" />
 		<type tag="sport" value="croquet" minzoom="15" />
@@ -5130,6 +5226,26 @@
 		<entity_convert pattern="tag_transform" from_tag="sport" from_value="yoga" if_not_tag1="amenity" to_tag1="amenity" to_value1="training" to_tag2="training" to_value2="yoga"/>
 		<entity_convert pattern="tag_transform" from_tag="sport" from_value="martial_arts" if_not_tag1="amenity" to_tag1="amenity" to_value1="training" to_tag2="training" to_value2="martial_art"/>
 		<type tag="golf" value="hole" minzoom="15" nameTags="ref,par"/>
+
+		<type tag="highway" value="via_ferrata" minzoom="12"/>
+		<type tag="via_ferrata_scale" value="0" minzoom="12" additional="true"/>
+		<type tag="via_ferrata_scale" value="1" minzoom="12" additional="true"/>
+		<type tag="via_ferrata_scale" value="2" minzoom="12" additional="true"/>
+		<type tag="via_ferrata_scale" value="3" minzoom="12" additional="true"/>
+		<type tag="via_ferrata_scale" value="4" minzoom="12" additional="true"/>
+		<type tag="via_ferrata_scale" value="5" minzoom="12" additional="true"/>
+		<type tag="via_ferrata_scale" value="6" minzoom="12" additional="true"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="1+" to_tag1="via_ferrata_scale" to_value1="2"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="2+" to_tag1="via_ferrata_scale" to_value1="3"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="2-" to_tag1="via_ferrata_scale" to_value1="1"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="3+" to_tag1="via_ferrata_scale" to_value1="4"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="3-" to_tag1="via_ferrata_scale" to_value1="2"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="4+" to_tag1="via_ferrata_scale" to_value1="5"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="4-" to_tag1="via_ferrata_scale" to_value1="3"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="5+" to_tag1="via_ferrata_scale" to_value1="6"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="5-" to_tag1="via_ferrata_scale" to_value1="4"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="6+" to_tag1="via_ferrata_scale" to_value1="6"/>
+		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="6-" to_tag1="via_ferrata_scale" to_value1="5"/>
 	</category>
 
 	<category name="legend">
@@ -5470,7 +5586,7 @@
 		<routing_type tag="public_transport" mode="register"/>
 		<routing_type tag="railway" value="platform" tag2="public_transport" value2="platform" mode="replace"/>
 		<routing_type tag="highway" value="platform" tag2="public_transport" value2="platform" mode="replace"/>
-		
+
 		<routing_type tag="int_ref" mode="text" base="true"/>
 		<routing_type tag="name" mode="text" base="true"/>
 		<routing_type tag="ref" mode="text" base="true"/>
