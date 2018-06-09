@@ -972,6 +972,7 @@ mycpname money_transfer money_money_transfer.png
 mycp amenity bank money_bank2.png
 mycp amenity bureau_de_change money_currency_exchange.png
 mycp bitcoin yes money_bitcoin.png
+mycpname money_lender money_money_lender.png
 
 mygroup office amenity_public_building2.png
 mycp amenity community_centre amenity_public_building.png
@@ -1863,6 +1864,7 @@ mycpname shop_boat shopping_boat.png
 mycpname cannabis shopping_cannabis.png
 mycpname pottery shopping_pottery.png
 mycpname outpost shopping_outpost.png
+mycpname appliance shopping_appliance.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
