@@ -25,7 +25,7 @@ language('cs').
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
 string('route_is.ogg', 'cesta je dlouhá ').
-string('route_calculate.ogg', 'přepočítávám').
+string('route_calculate.ogg', 'cesta přepočtena').
 string('distance.ogg', '. cesta je dlouhá ').
 
 % LEFT/RIGHT
@@ -33,12 +33,12 @@ string('distance.ogg', '. cesta je dlouhá ').
 string('after.ogg', 'po ').
 string('in.ogg', 'po ').
 
-string('left.ogg', 'odbočte vlevo').
-string('left_sh.ogg', 'odbočte ostře vlevo').
-string('left_sl.ogg', 'odbočte mírně vlevo').
-string('right.ogg', 'odbočte vpravo').
-string('right_sh.ogg', 'odbočte ostře vpravo').
-string('right_sl.ogg', 'odbočte mírně vpravo').
+string('left.ogg', 'odbočte doleva').
+string('left_sh.ogg', 'odbočte ostře doleva').
+string('left_sl.ogg', 'odbočte mírně doleva').
+string('right.ogg', 'odbočte doprava').
+string('right_sh.ogg', 'odbočte ostře doprava').
+string('right_sl.ogg', 'odbočte mírně doprava').
 string('left_keep.ogg', 'držte se vlevo').
 string('right_keep.ogg', 'držte se vpravo').
 string('left_bear.ogg', 'se držte vlevo').    % in English the same as left_keep, may be different in other languages
@@ -121,7 +121,8 @@ string('attention.ogg', 'pozor, ').
 string('speed_camera.ogg', 'měření rychlosti').
 string('border_control.ogg', 'hraniční kontrola').
 string('railroad_crossing.ogg', 'železniční přejezd').
-string('traffic_calming.ogg', 'zpomalovač').
+%není jen zpomalovač, ale i šikana a ochranný ostrůvek; viz issue #5605
+string('traffic_calming.ogg', 'zklidnění dopravy').
 string('toll_booth.ogg', 'mýtná brána').
 string('stop.ogg', 'stopka').
 string('pedestrian_crosswalk.ogg', 'přechod pro chodce').
