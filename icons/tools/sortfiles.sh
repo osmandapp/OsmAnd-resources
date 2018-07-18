@@ -225,12 +225,13 @@ mycpname sanatorium health_sanatorium.png
 mycpname health_amenity_type_first_aid_kit health_health_amenity_type_first_aid_kit.png
 
 ## Overlays
-mycp hazard yes overlays_hazard.png
-mycp hazard nuclear overlays_hazard_nuclear.png
-mycp hazard erosion overlays_hazard_erosion.png
-mycp hazard slippery_road overlays_hazard_slippery_road.png
-mycp hazard flood overlays_hazard_flood.png
-mycp hazard avalanche overlays_hazard_avalanche.png
+mycpname hazard_yes functional-icons_hazard.png
+mycpname hazard_nuclear functional-icons_hazard_nuclear.png
+mycpname hazard_erosion functional-icons_hazard_erosion.png
+mycpname hazard_slippery_road functional-icons_hazard_slippery_road.png
+mycpname hazard_flood functional-icons_hazard_flood.png
+mycpname hazard_avalanche functional-icons_hazard_avalanche.png
+mycpname hazard_minefield functional-icons_hazard_avalanche.png
 mycp fixme_tag yes overlays_fixme.png
 mycp fixme_tag_lowzoom yes overlays_fixme_dot.png
 mycp fixme_tag_lowzoom2 yes overlays_fixme_dot_2.png
