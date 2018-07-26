@@ -1,143 +1,146 @@
 
+// IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
+//
+// (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
+// (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
+// (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM; TUNNEL
+// (X) Other prompts: gps lost, off route, back to route
+// (X) Street name and prepositions (onto / on / to) and street destination (toward) support
+// (X) Distance unit support (meters / feet / yard)
+// (X) Special grammar: distance(nominative/dative), street name (male/female/nothing)
+
 var dictionary = {};
 var metricConst;
 var tts;
-
 //// STRINGS
 ////////////////////////////////////////////////////////////////
 // ROUTE CALCULATED
+dictionary["route_is1"] = "Il percorso calcolato è ";
+dictionary["route_is2"] = "lungo";
+dictionary["route_calculate"] = "Ricalcolo percorso";
+dictionary["distance"] = "distanza ";
 
-dictionary["route_is1"] = "Die berechnete Strecke ist ";
-dictionary["route_is2"] = "lang ";
-dictionary["route_calculate"] = "Route neu berechnet";
-dictionary["distance"] = ", Die Entfernung beträgt ";
 
 // LEFT/RIGHT
-dictionary["prepare"] = "Demnächst ";  // Demnächst sounds better then Vorbereiten zum
-dictionary["after"] = "nach ";
+//dictionary["prepare"] = "Prepararsi ";
+dictionary["after"] = "fra ";
+dictionary["in"] = "fra ";
 
-dictionary["left"] = "links abbiegen";
-dictionary["left_sh"] = "scharf links abbiegen";
-dictionary["left_sl"] = "leicht links abbiegen";
-dictionary["right"] = "rechts abbiegen";
-dictionary["right_sh"] = "scharf rechts abbiegen";
-dictionary["right_sl"] = "leicht rechts abbiegen";
-dictionary["left_keep"] = "links halten";
-dictionary["right_keep"] = "rechts halten";
-dictionary["left_bear"] = "links halten";    // in English the same as left_keep, may be different in other languages
-dictionary["right_bear"] = "rechts halten";  // in English the same as right_keep, may be different in other languages
+dictionary["left"] = "girare a sinistra";
+dictionary["left_sh"] = "girare stretto a sinistra";
+dictionary["left_sl"] = "girare leggermente a sinistra";
+dictionary["right"] = "girare a destra";
+dictionary["right_sh"] = "girare stretto a destra";
+dictionary["right_sl"] = "girare leggermente a destra";
+dictionary["left_keep"] = "tenersi sulla sinistra";
+dictionary["right_keep"] = "tenersi sulla destra";
+dictionary["left_bear"] = "tenersi sulla sinistra";  // in English the same as left_keep, may be different in other languages
+dictionary["right_bear"] = "tenersi sulla destra";   // in English the same as right_keep, may be different in other languages
 
 // U-TURNS
-dictionary["make_uturn1"] = "wenden";
-dictionary["make_uturn2"] = "Bitte wenden";
-dictionary["make_uturn_wp"] = "Wenn möglich, bitte wenden";
+dictionary["make_uturn1"] = "torna indietro";
+dictionary["make_uturn2"] = "Si prega di tornare indietro";
+dictionary["make_uturn_wp"] = "Quando possibile, fare inversione a u";
 
 // ROUNDABOUTS
-dictionary["prepare_roundabout"] = "einbiegen in Kreisverkehr";
-dictionary["roundabout"] = "in den Kreisverkehr einfahren, ";
-dictionary["then"] = ", dann ";
-dictionary["and"] = "und ";
-dictionary["take"] = "nehmen Sie die ";
-dictionary["exit"] = "Ausfahrt";
+dictionary["prepare_roundabout"] = "entrare in una rotonda";
+dictionary["roundabout"] = "entrare nella rotonda, ";
+dictionary["then"] = ", poi";
+dictionary["and"] = " e ";
+dictionary["take"] = "prendere la ";
+dictionary["exit"] = "uscita";
 
-dictionary["1st"] = "erste ";
-dictionary["2nd"] = "zweite ";
-dictionary["3rd"] = "dritte ";
-dictionary["4th"] = "vierte ";
-dictionary["5th"] = "fünfte ";
-dictionary["6th"] = "sechste ";
-dictionary["7th"] = "siebte ";
-dictionary["8th"] = "achte ";
-dictionary["9th"] = "neunte ";
-dictionary["10th"] = "zehnte ";
-dictionary["11th"] = "elfte ";
-dictionary["12th"] = "zwölfte ";
-dictionary["13th"] = "dreizehnte ";
-dictionary["14th"] = "vierzehnte ";
-dictionary["15th"] = "fünfzehnte ";
-dictionary["16th"] = "sechzehnte ";
-dictionary["17th"] = "siebzehnte ";
+dictionary["1st"] = "prima ";
+dictionary["2nd"] = "seconda ";
+dictionary["3rd"] = "terza ";
+dictionary["4th"] = "quarta ";
+dictionary["5th"] = "quinta ";
+dictionary["6th"] = "sesta ";
+dictionary["7th"] = "settima ";
+dictionary["8th"] = "ottava ";
+dictionary["9th"] = "nona ";
+dictionary["10th"] = "decima ";
+dictionary["11th"] = "undicesima ";
+dictionary["12th"] = "dodicesima ";
+dictionary["13th"] = "tredicesima ";
+dictionary["14th"] = "quattordicesima ";
+dictionary["15th"] = "quindicesima ";
+dictionary["16th"] = "sedicesima ";
+dictionary["17th"] = "diciassettesima ";
 
 // STRAIGHT/FOLLOW
-dictionary["go_ahead"] = "Weiter geradeaus";
-dictionary["follow1"] = "Dem Strassenverlauf ";
-dictionary["follow2"] = "folgen";
+dictionary["go_ahead"] = "Proseguire diritti";
+dictionary["follow"] = "Seguire la strada per";
 
 // ARRIVE
-dictionary["and_arrive_destination"] = ", dann haben Sie Ihr Ziel ";
-dictionary["reached_destination"] = "Ziel ";
-dictionary["and_arrive_intermediate"] = ", dann haben Sie Ihr Zwischenziel ";
-dictionary["reached_intermediate"] = "Zwischenziel ";
-dictionary["reached"] = "erreicht";
+dictionary["and_arrive_destination"] = "e arriveremo a destinazione ";
+dictionary["reached_destination"] = "arrivati a destinazione ";
+dictionary["and_arrive_intermediate"] = "e arriveremo al punto intermedio ";
+dictionary["reached_intermediate"] = "arrivati al punto intermedio ";
 
 // NEARBY POINTS
-dictionary["and_arrive_waypoint"] = ", dann passieren Sie Wegpunkt ";
-dictionary["reached_waypoint"] = "Sie passieren Wegpunkt ";
-dictionary["and_arrive_favorite"] = ", dann passieren Sie Favorit ";
-dictionary["reached_favorite"] = "Sie passieren Favorit ";
-dictionary["and_arrive_poi"] = ", dann passieren Sie P O I ";
-dictionary["reached_poi"] = "Sie passieren P O I ";
+dictionary["and_arrive_waypoint"] = "e arriveremo al vostro punto GPX intermedio ";
+dictionary["reached_waypoint"] = "arrivati al vostro punto GPX intermedio ";
+dictionary["and_arrive_favorite"] = "e arriverai al preferito ";
+dictionary["reached_favorite"] = "preferito raggiunto ";
+dictionary["and_arrive_poi"] = "e arriverai al P D I ";
+dictionary["reached_poi"] = "P D I raggiunto ";
 
 // ATTENTION
-//dictionary["exceed_limit"] = "Sie überschreiten die Höchstgeschwindigkeit ";
-dictionary["exceed_limit"] = "Tempolimit ";
-dictionary["attention"] = "Achtung, ";
-dictionary["speed_camera"] = "Geschwindigkeitskontrolle";
-dictionary["border_control"] = "Grenzkontrolle";
-dictionary["railroad_crossing"] = "Bahnübergang";
-dictionary["traffic_calming"] = "Verkehrsberuhigung";
-dictionary["toll_booth"] = "Mautstelle";
-dictionary["stop"] = "Stoppschild";
-dictionary["pedestrian_crosswalk"] = "Fusgängerübergang";
-dictionary["tunnel"] = "Tunnel";
+//dictionary["exceed_limit"] = "Limite di velocità superato";
+dictionary["exceed_limit"] = "Limite di velocità ";
+dictionary["attention"] = "attenzione, ";
+dictionary["speed_camera"] = "Autovelox";
+dictionary["border_control"] = "Dogana";
+dictionary["railroad_crossing"] = "Passaggio a livello";
+dictionary["traffic_calming"] = "Dosso rallentatore";
+dictionary["toll_booth"] = "Casello";
+dictionary["stop"] = "Stop";
+dictionary["pedestrian_crosswalk"] = "Attraversamento pedonale";
+dictionary["tunnel"] = "galleria";
 
 // OTHER PROMPTS
-dictionary["location_lost"] = "GPS Signal verloren"   // maybe change to "tschie pie es"; because of pronounciation
-dictionary["location_recovered"] = "GPS Signal gefunden"  // maybe change to "tschie pie es"; because of pronounciation
-dictionary["off_route"] = "Sie weichen von der Route ab seit "  // possibly "Sie verlassen die Route seit ";
-dictionary["back_on_route"] = "Sie sind zurück auf der Route";
+dictionary["location_lost"] = "Segnale g p s perso";
+dictionary["location_recovered"] = "Segnale g p s ripristinato";
+dictionary["off_route"] = "Avete deviato dal percorso";
+dictionary["back_on_route"] = "si torna sulla rotta";
 
 // STREET NAME PREPOSITIONS
-dictionary["onto"] = "auf "  // possibly "Richtung";, better grammar, but is also misleading is some cases
-dictionary["on"] = "auf "    // is used if you turn together with your current street, i.e. street name does not change. "mit " or "entlang" are possible alternatives, "auf" seems to be adequate in most instances. "über"; is wrong here.
-dictionary["to"] = "bis ";
-dictionary["toward"] = "Richtung " // "zu "; gives wrong results in many cases
-
+dictionary["onto"] = "su ";
+dictionary["on"] = "in ";
+dictionary["to"] = "fino a ";
+dictionary["toward"] = "verso ";
+ 
 // DISTANCE UNIT SUPPORT
-dictionary["meters_nominativ"] = "Meter";
-dictionary["meters_dativ"] = "Metern";
-dictionary["around_1_kilometer_nominativ"] = "zirka einen Kilometer";
-dictionary["around_1_kilometer_dativ"] = "zirka einem Kilometer";
-dictionary["around"] = "zirka ";
-dictionary["kilometers_nominativ"] = "Kilometer";
-dictionary["kilometers_dativ"] = "Kilometern";
+dictionary["meters_nominativ"] = "metri";
+dictionary["meters_dativ"] = "metri";
+dictionary["around_1_kilometer_nominativ"] = "circa un chilometro";
+dictionary["around_1_kilometer_dativ"] = "circa un chilometro";
+dictionary["around"] = "circa ";
+dictionary["kilometers_nominativ"] = "chilometri";
+dictionary["kilometers_dativ"] = "chilometri";
 
-dictionary["feet_nominativ"] = "Fuss";
-dictionary["feet_dativ"] = "Fuss";
-dictionary["1_tenth_of_a_mile_nominativ"] = "eine Zehntel Meile";
-dictionary["1_tenth_of_a_mile_dativ"] = "einer Zehntel Meile";
-dictionary["tenths_of_a_mile_nominativ"] = "Zehntel Meilen";
-dictionary["tenths_of_a_mile_dativ"] = "Zehntel Meilen";
-dictionary["around_1_mile_nominativ"] = "zirka eine Meile";
-dictionary["around_1_mile_dativ"] = "zirka einer Meile";
-dictionary["miles_nominativ"] = "Meilen";
-dictionary["miles_dativ"] = "Meilen";
+dictionary["feet_nominativ"] = "piedi";
+dictionary["feet_dativ"] = "piedi";
+dictionary["1_tenth_of_a_mile_nominativ"] = "un decimo di miglio";
+dictionary["1_tenth_of_a_mile_dativ"] = "un decimo di miglio";
+dictionary["tenths_of_a_mile_nominativ"] = "decimi di miglio";
+dictionary["tenths_of_a_mile_dativ"] = "decimi di miglio";
+dictionary["around_1_mile_nominativ"] = "circa un miglio";
+dictionary["around_1_mile_dativ"] = "circa un miglio";
+dictionary["miles_nominativ"] = "miglia";
+dictionary["miles_dativ"] = "miglia";
 
-dictionary["yards_nominativ"] = "Yards";
-dictionary["yards_dativ"] = "Yards";
+dictionary["yards_nominativ"] = "iarda";
+dictionary["yards_dativ"] = "iarda";
 
 // TIME SUPPORT
-dictionary["time"] = ", Zeit ";
-dictionary["1_hour"] = "eine Stunde ";
-dictionary["hours"] = "Stunden ";
-dictionary["less_a_minute"] = "unter einer Minute";
-dictionary["1_minute"] = "eine Minute";
-dictionary["minutes"] = "Minuten";
-
-dictionary["die"] = "die";
-dictionary["den"] = "den";
-dictionary["zur"] = "zur";
-dictionary["zum"] = "zum";
+dictionary["time"] = "il tempo è ";
+dictionary["1_hour"] = "un''ora ";
+dictionary["hours"] = "ore ";
+dictionary["less_a_minute"] = "meno di un minuto";
+dictionary["1_minute"] = "un minuto";
+dictionary["minutes"] = "minuti";
 
 
 //// COMMAND BUILDING / WORD ORDER
@@ -162,7 +165,7 @@ function isFeminine(streetName) {
 }
 
 function isMasculine(streetName) {
-	var endings = ["weg","ring","damm","platz","markt","steig","pfad"];
+	var endings = ["strada","strada","autostrada","chaussee", "vicolo","zeile", "viale","diga","0","1","2","3","4","5","6","7","8","9",];
 	for (str in endings) {
 		if (streetName["toStreetName"].endsWith(str)) {
 			return true;
@@ -173,8 +176,7 @@ function isMasculine(streetName) {
 }
 
 function route_new_calc(dist, timeVal) {
-	// route_new_calc(Dist, Time) -- ['route_is1', D, 'route_is2', ', ', 'time', T, '. '] :- distance(Dist, nominativ) -- D, time(Time) -- T.
-	return dictionary["route_is1"] + " " + distance(dist, "nominativ") + " " + dictionary["route_is2"] + " " + dictionary["time"] + " " + time(timeVal) + ". ";
+	return dictionary["route_is1"] + dictionary["route_is2"] + " " + distance(dist, "nominativ") + " " + dictionary["route_is2"] + " " + dictionary["time"] + " " + time(timeVal) + ". ";
 }
 
 function distance(dist, declension) {
@@ -259,26 +261,19 @@ function time(seconds) {
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + " " + distance(dist, "nominativ") + " " + dictionary["time"] + " " + time(seconds) + ". ";
+	return dictionary["route_calculate"] + " " + dictionary["distance"] + " " + distance(dist, "nominativ") + " " + dictionary["time"] + " " + time(seconds) + ". ";
 }
 
 function go_ahead(dist, streetName) {
-	// go_ahead(Dist, Street) -- ['follow1.ogg', D, 'follow2.ogg'| Sgen]:- distance(Dist, nominativ) -- D, follow_street(Street, Sgen).
+	// go_ahead(Dist, Street) -- ['follow1', D, 'follow2'| Sgen]:- distance(Dist, nominativ) -- D, follow_street(Street, Sgen).
 	if (dist == -1) {
 		return dictionary["go_ahead"];
 	} else {
-		return dictionary["follow1"] + " " + distance(dist, "nominativ") + " " + dictionary["follow2"] + " " + follow_street(streetName);
+		return dictionary["follow"] + " " + distance(dist, "nominativ") + " " + dictionary["follow2"] + " " + follow_street(streetName);
 	}
 }
 
 function follow_street(streetName) {
-
-// follow_street(Street, ['on', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
-// follow_street(Street, ['on', SName]) :- tts, Street = voice([R, '', _],[R, _, _]), assemble_street_name(Street, SName).
-// follow_street(Street, ['to', 'zur ', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), street_is_female(Street), assemble_street_name(Street, SName).
-// follow_street(Street, ['to', 'zum ', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), street_is_male(Street), assemble_street_name(Street, SName). // Most Refs are female, hence this check only after female check
-// follow_street(Street, ['to', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), street_is_nothing(Street), assemble_street_name(Street, SName).
-
 	if ((streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || Object.keys(streetName).length == 0) {
 		return "";
 	} else if (streetName["toStreetName"] === "" && streetName["toRef"] === "") {
@@ -286,17 +281,16 @@ function follow_street(streetName) {
 	} else if (streetName["toRef"] === streetName["fromRef"] && (streetName["toStreetName"] === streetName["fromStreetName"] || streetName["toStreetName"] === "")) {
 		return dictionary["on"] + " " + assemble_street_name(streetName);
 	} else if (!(streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"])) {
-		var preposition = isFeminine(streetName) ? dictionary["zur"] : isMasculine(streetName) ? dictionary["zum"] : "";
-		return dictionary["to"] + " " + preposition + " " + assemble_street_name(streetName);
+		return dictionary["to"] + " " + assemble_street_name(streetName);
 	}
 }
 
 function turn(turnType, dist, streetName) {
-	// turn(Turn, Dist, Street) -- ['after.ogg', D, M, ' '| Sgen] :- distance(Dist, dativ) -- D, turn(Turn, M), turn_street(Street, Sgen).
+	// turn(Turn, Dist, Street) -- ['after', D, M, ' '| Sgen] :- distance(Dist, dativ) -- D, turn(Turn, M), turn_street(Street, Sgen).
 	if (dist == -1) {
 		return getTurnType(turnType) + " " + turn_street(streetName);
 	} else {
-		return dictionary["after"] + " " + distance(dist, "dativ") + " " + getTurnType(turnType) + " " + turn_street(streetName); 
+		return dictionary["in"] + " " + distance(dist, "dativ") + " " + getTurnType(turnType) + " " + turn_street(streetName); 
 	}
 	// turn(Turn, Dist, Street) -- ["in", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
 // turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
@@ -351,7 +345,7 @@ function roundabout(dist, angle, exit, streetName) {
 	if (dist == -1) {
 		return dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	} else {
-		return dictionary["after"] + " " + distance(dist, "dativ") + " " + dictionary["roundabout"] + " " + dictionary["and"] + " " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
+		return dictionary["in"] + " " + distance(dist, "dativ") + " " + dictionary["roundabout"] + " " + dictionary["then"] + " " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	}
 
 }
@@ -369,8 +363,7 @@ function turn_street(streetName) {
 	} else if (streetName["toStreetName"] === "" && streetName["toRef"] === "") {
 		return dictionary["toward"] + " " + streetName["toDest"];
 	} else if (streetName["toStreetName"] != "" && streetName["toRef"] != "") {
-		var article = isMasculine(streetName) ? dictionary["den"] : isFeminine(streetName) ? dictionary["die"] : "";
-		return dictionary["onto"] + " " + article + " " + assemble_street_name(streetName);
+		return dictionary["onto"] + " " + assemble_street_name(streetName);
 	}
 	return "";
 }
@@ -439,7 +432,7 @@ function make_ut(dist, streetName) {
 	if (dist == -1) {
 		return dictionary["make_uturn2"] + " " + turn_street(streetName);
 	} else {
-		return dictionary["after"] + " " + distance(dist, "dativ") + " " + dictionary["make_uturn1"] + " " + turn_street(streetName);
+		return dictionary["in"] + " " + distance(dist, "dativ") + " " + dictionary["make_uturn1"] + " " + turn_street(streetName);
 	}
 }
 
@@ -456,17 +449,17 @@ function bear_right(streetName) {
 function prepare_make_ut(dist, streetName) {
 	// prepare_make_ut(Dist, Street) -- ['prepare', 'after', D, 'make_uturn2' | Sgen] :- distance(Dist, dativ) -- D, turn_street(Street, Sgen).
 
-	return dictionary["prepare"] + " " + dictionary["after"] + " " + distance(dist, "dativ") + " " + dictionary["make_uturn2"] + " " + turn_street(streetName);
+	return dictionary["after"] + " " + distance(dist, "dativ") + " " + dictionary["make_uturn1"] + " " + turn_street(streetName);
 }
 
 function prepare_turn(turnType, dist, streetName) {
 	// prepare_turn(Turn, Dist, Street) -- ['prepare', 'after', D, M | Sgen] :- distance(Dist, dativ) -- D, turn(Turn, M), turn_street(Street, Sgen).
-	return dictionary["prepare"] + " " + dictionary["after"] + " " + distance(dist, "dativ") + " " + getTurnType(turnType) + " " + turn_street(streetName);
+	return dictionary["after"] + " " + distance(dist, "dativ") + " " + getTurnType(turnType) + " " + turn_street(streetName);
 }
 
 function prepare_roundabout(dist, exit, streetName) {
 // prepare_roundabout(Dist, _Exit, _Street) -- ["after", D , "prepare_roundabout"] :- distance(Dist) -- D.
-	return dictionary["prepare"] + " " + dictionary["after"] + " " + distance(dist, "dativ") + " " + dictionary["prepare_roundabout"]; 
+	return dictionary["after"] + " " + distance(dist, "dativ") + " " + dictionary["prepare_roundabout"]; 
 }
 
 // reached_destination(D) -- ["reached_destination"|Ds] :- name(D, Ds).
@@ -485,12 +478,12 @@ function prepare_roundabout(dist, exit, streetName) {
 // off_route(Dist) -- ["off_route", D] :- distance(Dist) -- D.
 // back_on_route -- ["back_on_route"].
 function and_arrive_destination(dest) {
-	return dictionary["and_arrive_destination"] + " " + dest + " " + dictionary["reached"];
+	return dictionary["and_arrive_destination"] + " " + dest;
 }
 
 function and_arrive_intermediate(dest) {
 	// and_arrive_intermediate(D) -- ["and_arrive_intermediate"|Ds] :- name(D, Ds).
-	return dictionary["and_arrive_intermediate"] + " " + dest + " " + dictionary["reached"];
+	return dictionary["and_arrive_intermediate"] + " " + dest + " ";
 }
 
 function and_arrive_waypoint(dest) {
@@ -506,7 +499,7 @@ function and_arrive_poi(dest) {
 }
 
 function reached_destination(dest) {
-	return dictionary["reached_destination"] + " " + dest + " " + dictionary["reached"];
+	return dictionary["reached_destination"] + " " + dest + " ";
 }
 
 function reached_waypoint(dest) {
@@ -514,7 +507,7 @@ function reached_waypoint(dest) {
 }
 
 function reached_intermediate(dest) {
-	return dictionary["reached_intermediate"] + " " + dest + " " + dictionary["reached"];
+	return dictionary["reached_intermediate"] + " " + dest + " ";
 }
 
 function reached_favorite(dest) {

@@ -10,6 +10,7 @@
 // (N/A) Special grammar: (please specify which)
 
 var metricConst;
+var tts;
 var dictionary = {};
 //// STRINGS
 ////////////////////////////////////////////////////////////////
@@ -139,6 +140,10 @@ dictionary["minutes"] = "minuten";
 ////////////////////////////////////////////////////////////////
 function setMetricConst(metrics) {
 	metricConst = metrics;
+}
+
+function setMode(mode) {
+	tts = mode;
 }
 
 function route_new_calc(dist, timeVal) {

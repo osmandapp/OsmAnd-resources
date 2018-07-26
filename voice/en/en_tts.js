@@ -10,6 +10,8 @@
 // (N/A) Special grammar: (please specify which)
 var metricConst;
 var dictionary = {};
+// TODO set this as a boolena flag to determine if we need to return tts prompts or ogg file names
+var tts;
 //// STRINGS
 ////////////////////////////////////////////////////////////////
 // ROUTE CALCULATED
@@ -133,6 +135,9 @@ function setMetricConst(metrics) {
 	metricConst = metrics;
 }
 
+function setMode(mode) {
+	tts = mode;
+}
 
 function route_new_calc(dist, timeVal) {
 	return dictionary["route_is"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(timeVal) + ". ";

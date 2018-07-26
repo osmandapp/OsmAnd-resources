@@ -1,4 +1,5 @@
 var metricConst;
+var tts;
 var dictionary = {};
 
 //// STRINGS
@@ -124,6 +125,10 @@ dictionary["minutes"] = "minutes";
 ////////////////////////////////////////////////////////////////
 function setMetricConst(metrics) {
 	metricConst = metrics;
+}
+
+function setMode(mode) {
+	tts = mode;
 }
 
 

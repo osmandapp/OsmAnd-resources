@@ -11,6 +11,7 @@
 
 var metricConst;
 var dictionary = {};
+var tts;
 //// STRINGS
 ////////////////////////////////////////////////////////////////
 // ROUTE CALCULATED
@@ -137,6 +138,10 @@ dictionary["20_and"] = "veinti";
 ////////////////////////////////////////////////////////////////
 function setMetricConst(metrics) {
 	metricConst = metrics;
+}
+
+function setMode(mode) {
+	tts = mode;
 }
 
 function route_new_calc(dist, timeVal) {
