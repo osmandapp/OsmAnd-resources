@@ -8,138 +8,126 @@
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
 // (N/A) Special grammar: (please specify which)
-
 var metricConst;
-var tts;
 var dictionary = {};
+// TODO set this as a boolena flag to determine if we need to return tts prompts or file names
+var tts;
 
 //// STRINGS
 ////////////////////////////////////////////////////////////////
 // ROUTE CALCULATED
-dictionary["route_is"] = "Маршрут составляет ";
-dictionary["route_calculate"] = "Маршрут пересчитывается";
-dictionary["distance"] = "расстояние ";
+dictionary["route_is"] = "Długość trasy to ";
+dictionary["route_calculate"] = "Nowa trasa wyznaczona";
+dictionary["distance"] = ", jej długość to ";
 
 // LEFT/RIGHT
-dictionary["prepare"] = "Приготовьтесь ";
-dictionary["after"] = "через ";
+dictionary["after"] = "za ";
 
-dictionary["left"] = "поверните налево";
-dictionary["left_sh"] = "резко поверните налево";
-dictionary["left_sl"] = "плавно поверните налево";
-dictionary["right"] = "поверните направо";
-dictionary["right_sh"] = "резко поверните направо";
-dictionary["right_sl"] = "плавно поверните направо";
-dictionary["left_keep"] = "держитесь левее";
-dictionary["right_keep"] = "держитесь правее";
-dictionary["left_bear"] = "держитесь левее";    // in English the same as left_keep, may be different in other languages
-dictionary["right_bear"] = "держитесь правее";  // in English the same as right_keep, may be different in other languages
+dictionary["left"] = "skręć w lewo";
+dictionary["left_sh"] = "skręć ostro w lewo";
+dictionary["left_sl"] = "skręć lekko w lewo";
+dictionary["right"] = "skręć w prawo";
+dictionary["right_sh"] = "skręć ostro w prawo";
+dictionary["right_sl"] = "skręć lekko w prawo";
+dictionary["left_keep"] = "trzymaj się lewej strony";
+dictionary["right_keep"] = "trzymaj się prawej strony";
+dictionary["left_bear"] = "trzymaj się lewej strony";    // in English the same as left_keep, may be different in other languages
+dictionary["right_bear"] = "trzymaj się prawej strony";  // in English the same as right_keep, may be different in other languages
 
 // U-TURNS
-dictionary["make_uturn"] = "Выполните разворот";
-dictionary["make_uturn_wp"] = "При возможности, выполните разворот";
+dictionary["make_uturn"] = "Zawróć";
+dictionary["make_uturn_wp"] = "Jeśli to możliwe, zawróć";
 
 // ROUNDABOUTS
-dictionary["prepare_roundabout"] = "Приготовьтесь въехать на кольцо ";
-dictionary["roundabout"] = "въедьте на кольцо, ";
-dictionary["then"] = " затем ";
-dictionary["and"] = " и ";
-dictionary["take"] = "выполните ";
-dictionary["exit"] = "съезд";
+dictionary["prepare_roundabout"] = "Przygotuj się do wjazdu na rondo ";
+dictionary["roundabout"] = "wjedź na rondo, ";
+dictionary["then"] = ", następnie ";
+dictionary["and"] = "i ";
+dictionary["take"] = "wybierz ";
+dictionary["exit"] = "zjazd";
 
-dictionary["1na"] = "одна ";
-dictionary["2ve"] = "две ";
-
-dictionary["1th"] = "первый ";
-dictionary["2th"] = "второй ";
-dictionary["3th"] = "третий ";
-dictionary["4th"] = "четвертый ";
-dictionary["5th"] = "пятый ";
-dictionary["6th"] = "шестой ";
-dictionary["7th"] = "седьмой ";
-dictionary["8th"] = "восьмой ";
-dictionary["9th"] = "девятый ";
-dictionary["10th"] = "десятый ";
-dictionary["11th"] = "одиннадцатый ";
-dictionary["12th"] = "двенадцатый ";
-dictionary["13th"] = "тринадцатый ";
-dictionary["14th"] = "четырнадцатый ";
-dictionary["15th"] = "пятнадцатый ";
-dictionary["16th"] = "шестнадцатый ";
-dictionary["17th"] = "семнадцатый ";
+dictionary["1st"] = "pierwszy ";
+dictionary["2nd"] = "drugi ";
+dictionary["3rd"] = "trzeci ";
+dictionary["4th"] = "czwarty ";
+dictionary["5th"] = "piąty ";
+dictionary["6th"] = "szósty ";
+dictionary["7th"] = "siódmy ";
+dictionary["8th"] = "ósmy";
+dictionary["9th"] = "dziewiąty ";
+dictionary["10th"] = "dziesiąty ";
+dictionary["11th"] = "jedenasty ";
+dictionary["12th"] = "dwunasty ";
+dictionary["13th"] = "trzynasty ";
+dictionary["14th"] = "czternasty ";
+dictionary["15th"] = "piętnasty ";
+dictionary["16th"] = "szesnasty ";
+dictionary["17th"] = "siedemnasty ";
 
 // STRAIGHT/FOLLOW
-dictionary["go_ahead"] = "Продолжайте движение прямо";
-dictionary["follow"] = "Продолжайте движение ";
+dictionary["go_ahead"] = "Prosto";
+dictionary["follow"] = "Prosto przez ";
 
 // ARRIVE
-dictionary["and_arrive_destination"] = "и вы прибудете в пункт назначения ";
-dictionary["reached_destination"] = "вы прибыли в пункт назначения ";
-dictionary["and_arrive_intermediate"] = "и вы прибудете в промежуточный пункт ";
-dictionary["reached_intermediate"] = "вы прибыли в промежуточный пункт ";
+dictionary["and_arrive_destination"] = ", następnie dotrzesz do celu podróży ";
+dictionary["reached_destination"] = "jesteś u celu podróży ";
+dictionary["and_arrive_intermediate"] = ", następnie dotrzesz do punktu pośredniego ";
+dictionary["reached_intermediate"] = "jesteś przy punkcie pośrednim ";
 
 // NEARBY POINTS
-dictionary["and_arrive_waypoint"] = "и вы подъедете к ДЖИ-ПИ-ИКС точке ";
-dictionary["reached_waypoint"] = "вы проезжаете ДЖИ-ПИ-ИКС точку ";
-dictionary["and_arrive_favorite"] = "и вы подъедете к точке из избранного ";
-dictionary["reached_favorite"] = "вы проезжаете точку из избранного ";
-dictionary["and_arrive_poi"] = "и вы подъедете к точке ПОИ ";
-dictionary["reached_poi"] = "вы проезжаете точку ПОИ ";
+dictionary["and_arrive_waypoint"] = ", następnie miniesz punkt GPX ";
+dictionary["reached_waypoint"] = "mijasz punkt GPX ";
+dictionary["and_arrive_favorite"] = ", następnie miniesz ulubiony punkt ";
+dictionary["reached_favorite"] = "mijasz ulubiony punkt ";
+dictionary["and_arrive_poi"] = ", następnie miniesz POI ";
+dictionary["reached_poi"] = "mijasz POI ";
 
 // ATTENTION
-//dictionary["exceed_limit"] = "Вы превысили допустимую скорость ";
-dictionary["exceed_limit"] = "ограничение скорости ";
-dictionary["attention"] = "Внимание, ";
-dictionary["speed_camera"] = "камера";
-dictionary["border_control"] = "пограничный пункт";
-dictionary["railroad_crossing"] = "железная дорога";
-dictionary["traffic_calming"] = "искуственная неровность";
-dictionary["toll_booth"] = "пункт оплаты проезда";
-dictionary["stop"] = "знак Стоп";
-dictionary["pedestrian_crosswalk"] = "пешеходный переход";
-dictionary["tunnel"] = "тоннель";
+//dictionary["exceed_limit"] = "przekraczasz dozwoloną prędkość ";
+dictionary["exceed_limit"] = "ograniczenie prędkości do ";
+dictionary["attention"] = "uwaga, ";
+dictionary["speed_camera"] = "fotoradar";
+dictionary["border_control"] = "kontrola graniczna";
+dictionary["railroad_crossing"] = "przejazd kolejowy";
+dictionary["traffic_calming"] = "próg zwalniający";
+dictionary["toll_booth"] = "punkt pobierania opłat";
+dictionary["stop"] = "znak stop";
+dictionary["pedestrian_crosswalk"] = "przejście dla pieszych";
+dictionary["tunnel"] = "tunel";
 
 // OTHER PROMPTS
-dictionary["location_lost"] = "потерян сигнал ДЖИ-ПИ-ЭС";
-dictionary["location_recovered"] = "ДЖИ-ПИ-ЭС сигнал восстановлен";
-dictionary["off_route"] = "Вы отклонились от маршрута на ";
-dictionary["back_on_route"] = "Вы вернулись на маршрут";
+dictionary["location_lost"] = "Utracono sygnał GPS";
+dictionary["location_recovered"] = "Odzyskano sygnał GPS";
+dictionary["off_route"] = "znajdowałeś się poza trasą przez ";
+dictionary["back_on_route"] = "wróciłeś na trasę";
 
 // STREET NAME PREPOSITIONS
-dictionary["on"] = "по ";
-dictionary["onto"] = "на ";
-dictionary["to"] = "до ";
-dictionary["toward"] = "к ";
+dictionary["onto"] = "w ";
+dictionary["on"] = "na ";
+dictionary["to"] = "do ";
+dictionary["toward"] = "w kierunku ";
 
 // DISTANCE UNIT SUPPORT
-dictionary["metr"] = "метр";
-dictionary["metra"] = "метра";
-dictionary["metrov"] = "метров";
-dictionary["kilometr"] = "километр";
-dictionary["kilometra"] = "километра";
-dictionary["kilometrov"] = "километров";
-//dictionary["around_1_kilometer"] = "около одного километра";
-dictionary["around"] = "примерно ";
+dictionary["meters"] = "metrów";
+dictionary["around_1_kilometer"] = "około jeden kilometr";
+dictionary["around"] = "około ";
+dictionary["kilometers"] = "kilometrów";
 
-dictionary["footov"] = "футов";
-dictionary["around_1_mile"] = "около одной мили";
-dictionary["1_tenth_of_a_mile"] = "одна десятая мили";
-dictionary["tenths_of_a_mile"] = " десятых мили";
-dictionary["1mile"] = "миля";
-dictionary["2mili"] = "мили";
-dictionary["5mil"] = "миль";
+dictionary["feet"] = "stóp";
+dictionary["1_tenth_of_a_mile"] = "jedną dziesiątą mili";
+dictionary["tenths_of_a_mile"] = "dziesiątych mili";
+dictionary["around_1_mile"] = "około jedną milę ";
+dictionary["miles"] = "mil";
 
-dictionary["yardov"] = "ярдов";
+dictionary["yards"] = "jardów";
 
 // TIME SUPPORT
-dictionary["time"] = "время ";
-dictionary["hour"] = "час ";
-dictionary["hours_a"] = "часа ";
-dictionary["hours_ov"] = "часов ";
-dictionary["less_a_minute"] = "менее минуты";
-dictionary["minute"] = "минута";
-dictionary["minute_i"] = "минуты";
-dictionary["minutes"] = "минут";
+dictionary["time"] = ", przewidywany czas to ";
+dictionary["1_hour"] = "jedna godzina ";
+dictionary["hours"] = "godzin ";
+dictionary["less_a_minute"] = "mniej niż minuta";
+dictionary["1_minute"] = "jedna minuta";
+dictionary["minutes"] = "minut";
 
 
 //// COMMAND BUILDING / WORD ORDER
@@ -156,54 +144,26 @@ function route_new_calc(dist, timeVal) {
 	return dictionary["route_is"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(timeVal) + ". ";
 }
 
-function plural_mt(dist) {
-	if (distance % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
-		return dictionary["metr"];
-	} else if (dist % 10 < 5 && dist % 10 > 1 && (dist % 100 > 20 || dist % 100 < 10 )) {
-		return dictionary["metra"];
-	} else {
-		return dictionary["metrov"];
-	}
-}
-
-function plural_km(dist) {
-	if (distance % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
-		return dictionary["kilometr"];
-	} else if (dist % 10 < 5 && dist % 10 > 1 && (dist % 100 > 20 || dist % 100 < 10 )) {
-		return dictionary["kilometra"];
-	} else {
-		return dictionary["kilometrov"];
-	}
-}
-
-function plural_mi(dist) {
-	if (distance % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
-		return dictionary["1mile"];
-	} else if (dist % 10 < 5 && dist % 10 > 1 && (dist % 100 > 20 || dist % 100 < 10 )) {
-		return dictionary["2mili"];
-	} else {
-		return dictionary["5mil"];
-	}
-}
-
-
 function distance(dist) {
 	switch (metricConst) {
 		case "km-m":
-			if (dist < 100) {
-				return Math.round(dist).toString() + " " + plural_mt(dist);
+			if (dist < 17 ) {
+				return Math.round(dist).toString() + " " + dictionary["meters"];
+			} else if (dist < 100) {
+				return Math.round((2*dist/100.0)*50).toString() + " " + dictionary["meters"];
 			} else if (dist < 1000) {
-				var distance = Math.round((dist/10.0)*10);
-				return distance.toString() + " " + plural_mt(distance);
+				return Math.round((2*dist/100.0)*50).toString() + " " + dictionary["meters"];
 			} else if (dist < 1500) {
-				return dictionary["around"] + " 1 " + dictionary["kilometr"];
+				return dictionary["around_1_kilometer"];
+			} else if (dist < 10000) {
+				return dictionary["around"] + " " + Math.round(dist/1000.0).toString() + " " + dictionary["kilometers"];
 			} else {
-				return Math.round(dist/1000.0).toString() + " " + plural_km(dist/1000.0);
+				return Math.round(dist/1000.0).toString() + " " + dictionary["kilometers"];
 			}
 			break;
 		case "mi-f":
 			if (dist < 160) {
-				return Math.round((2*dist/100.0/0.3048)*50).toString(); + " " + dictionary["footov"];
+				return Math.round((2*dist/100.0/0.3048)*50).toString(); + " " + dictionary["feet"];
 			} else if (dist < 241) {
 				return dictionary["1_tenth_of_a_mile"];
 			} else if (dist < 1529) {
@@ -213,55 +173,39 @@ function distance(dist) {
 			} else if (dist < 16093) {
 				return dictionary["around"] + " " + Math.round(dist/1609.3).toString() + " " + dictionary["miles"];
 			} else {
-				return Math.round(dist/1609.3).toString() + " " + plural_mi(dist/1609.3);
+				return Math.round(dist/1609.3).toString() + " " + dictionary["miles"];
 			}
 			break;
 		case "mi-m":
-			if (dist < 100) {
-				return Math.round(dist).toString() + " " + plural_mt(dist);
+			if (dist < 17) {
+				return Math.round(dist).toString() + " " + dictionary["meters"];
+			} else if (dist < 100) {
+				return Math.round((2*dist/100.0)*50).toString() + " " + dictionary["meters"];
 			} else if (dist < 1300) {
-				var distance = Math.round((Dist/10.0)*10);
-				return distance.toString() + " " + plural_mt(distance);
+				return Math.round(dist/1609.3).toString() + " " + dictionary["meters"]; 
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
+			} else if (dist < 16093) {
+				return dictionary["around"] + " " + Math.round(dist/1609.3).toString() + " " + dictionary["miles"];
 			} else {
-				return Math.round(dist/1609.3).toString() + " " + plural_mi(dist/1609.3);
+				return Math.round(dist/1609.3).toString() + " " + dictionary["miles"];
 			}
 			break;
 		case "mi/y":
 			if (dist < 17) {
-				return Math.round(dist/0.9144).toString() + " " + dictionary["yardov"];
+				return Math.round(dist/0.9144).toString() + " " + dictionary["yards"];
 			} else if (dist < 100) {
-				return Math.round((dist/10.0/0.9144)*10).toString() + " " + dictionary["yardov"];
+				return Math.round((dist/10.0/0.9144)*10).toString() + " " + dictionary["yards"];
 			} else if (dist < 1300) {
 				return Math.round((2*dist/100.0/0.9144)*50).toString() + " " + dictionary["yards"]; 
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
+			} else if (dist < 16093) {
+				return dictionary["around"] + " " + Math.round(dist/1609.3).toString() + " " + dictionary["miles"];
 			} else {
-				return Math.round(dist/1609.3).toString() + " " + plural_mi(dist/1609.3);
+				return Math.round(dist/1609.3).toString() + " " + dictionary["miles"];
 			}
 			break;
-	}
-}
-
-function plural_hs(time) {
-	if (time % 10 == 1 && (time % 100 > 20 || time % 100 < 10)) {
-		return dictionary["hour"];
-	} else if (time % 10 > 1 && time % 10 < 5 && (time % 100 > 20 || time % 100 < 10)) {
-		return dictionary["hours_a"];
-	} else {
-		return dictionary["hours_ov"];
-	}
-}
-
-
-function plural_mn(time) {
-	if (time % 10 == 1 && (time % 100 > 20 || time % 100 < 10)) {
-		return dictionary["minute"];
-	} else if (time % 10 > 1 && time % 10 < 5 && (time % 100 > 20 || time % 100 < 10)) {
-		return dictionary["minute_i"];
-	} else {
-		return dictionary["minutes"];
 	}
 }
 
@@ -269,10 +213,14 @@ function time(seconds) {
 	var minutes = Math.round(seconds/60.0);
 	if (seconds < 30) {
 		return dictionary["less_a_minute"];
-	} else if (minutes % 60 == 1 || minutes < 60) {
-		return minutes + " " + plural_mn(minutes);
+	} else if (minutes % 60 == 1) {
+		return dictionary["1_minute"];
+	} else if (minutes < 60.0) {
+		return minutes.toString() + " " + dictionary["minutes"];
+	} else if (minutes < 120) {
+		return dictionary["1_hour"];
 	} else  {
-		return Math.round(minutes/60).toString() + " " + plural_hs(minutes/60);
+		return Math.round(minutes/60).toString() + " " + dictionary["hours"];
 	}
 }
 
@@ -301,8 +249,8 @@ function follow_street(streetName) {
 		return "";
 	} else if (streetName["toStreetName"] === "" && streetName["toRef"] === "") {
 		return dictionary["to"] + " " + streetName["toDest"];
-	} else if ((streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"]) 
-		|| (streetName["toStreetName"] === "" && streetName["toRef"] === streetName["fromRef"])) {
+	} else if (streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"] || 
+			(streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == "")) {
 		return dictionary["on"] + " " + assemble_street_name(streetName);
 	} else if (!(streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"])) {
 		return dictionary["to"] + " " + assemble_street_name(streetName);
@@ -315,7 +263,7 @@ function turn(turnType, dist, streetName) {
 	} else {
 		return dictionary["after"] + " " + distance(dist) + " " + getTurnType(turnType) + " " + turn_street(streetName); 
 	}
-	// turn(Turn, Dist, Street) -- ["after", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
+	// turn(Turn, Dist, Street) -- ["in", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
 // turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
 }
 
@@ -363,9 +311,8 @@ function then() {
 }
 
 function roundabout(dist, angle, exit, streetName) {
-
-// roundabout(Dist, _Angle, Exit, Street) -- ['after', D, 'roundabout', 'and', 'take', E, 'exit' | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
-// roundabout(_Angle, Exit, Street) -- ['take', E, 'exit' | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
+	// roundabout(Dist, _Angle, Exit, Street) -- ["in", D, "roundabout", "and", "take", E, "exit" | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
+// roundabout(_Angle, Exit, Street) -- ["take", E, "exit" | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 	if (dist == -1) {
 		return dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	} else {
@@ -387,7 +334,8 @@ function turn_street(streetName) {
 		return dictionary["toward"] + " " + streetName["toDest"];
 	} else if (streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"]) {
 		return dictionary["on"] + " " + assemble_street_name(streetName);
-	} else if (streetName["toStreetName"] === "" && streetName["toRef"] === streetName["fromRef"]) {
+	} else if ((streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"]) 
+		|| (streetName["toStreetName"] === "" && streetName["toRef"] === streetName["fromRef"])) {
 		return dictionary["on"] + " " + assemble_street_name(streetName);
 	} else if (!(streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"])) {
 		return dictionary["onto"] + " " + assemble_street_name(streetName);
@@ -417,11 +365,11 @@ function assemble_street_name(streetName) {
 function nth(exit) {
 	switch (exit) {
 		case (1):
-			return dictionary["1th"];
+			return dictionary["1st"];
 		case (2):
-			return dictionary["2th"];
+			return dictionary["2nd"];
 		case (3):
-			return dictionary["3th"];
+			return dictionary["3rd"];
 		case (4):
 			return dictionary["4th"];
 		case (5):
@@ -454,7 +402,7 @@ function nth(exit) {
 }
 
 function make_ut(dist, streetName) {
-	// make_ut(Dist, Street) --  ["after", D, "make_uturn" | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
+	// make_ut(Dist, Street) --  ["in", D, "make_uturn" | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
 // make_ut(Street) -- ["make_uturn" | Sgen] :- turn_street(Street, Sgen).
 	if (dist == -1) {
 		return dictionary["make_uturn"] + " " + turn_street(streetName);
@@ -484,8 +432,8 @@ function prepare_turn(turnType, dist, streetName) {
 }
 
 function prepare_roundabout(dist, exit, streetName) {
-// prepare_roundabout(Dist, _Exit, _Street) -- ['prepare_roundabout', 'after', D, 'and', 'take', E, 'exit' | Sgen] :- distance(Dist) -- D, nth(_Exit, E), turn_street(_Street, Sgen).
-	return dictionary["prepare_roundabout"] + " " + dictionary["after"] + " " + distance(dist) + " " + dictionary["and"] + " " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"]; 
+// prepare_roundabout(Dist, _Exit, _Street) -- ["after", D , "prepare_roundabout"] :- distance(Dist) -- D.
+	return dictionary["after"] + " " + distance(dist) + " " + dictionary["prepare_roundabout"]; 
 }
 
 // reached_destination(D) -- ["reached_destination"|Ds] :- name(D, Ds).
@@ -615,5 +563,3 @@ function getAttentionString(type) {
 			break;
 	}
 }
-
-
