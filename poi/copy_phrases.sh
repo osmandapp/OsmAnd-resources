@@ -14,3 +14,7 @@ cp -f ../../android/OsmAnd/res/values-ru/phrases.xml phrases/ru/
 cp -f ../../android/OsmAnd/res/values-sk/phrases.xml phrases/sk/
 cp -f ../../android/OsmAnd/res/values-sl/phrases.xml phrases/sl/
 cp -f ../../android/OsmAnd/res/values-fa/phrases.xml phrases/fa/
+cp -f ../../android/OsmAnd/res/values-my/phrases.xml phrases/my/
+cp -f ../../android/OsmAnd/res/values-ar/phrases.xml phrases/ar/
+cp -f ../../android/OsmAnd/res/values-nl/phrases.xml phrases/nl/
+cp -f ../../android/OsmAnd/res/values-cs/phrases.xml phrases/cs/
