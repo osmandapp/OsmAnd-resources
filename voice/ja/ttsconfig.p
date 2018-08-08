@@ -31,51 +31,49 @@ string('time.ogg', '時間は、').
 
 % LEFT/RIGHT
 %string('prepare.ogg', 'Prepare to ').
-string('after.ogg', 'の後、').
-string('in.ogg', 'で ').
+string('after.ogg', '先、').
+string('in.ogg', '先、').
 
-string('left.ogg', '左に曲ってください。').
-string('left_sh.ogg', '大きく左手前に曲ってください。').
-string('left_sl.ogg', '斜め左に曲ってください。').
-string('right.ogg', '右に曲ってください。').
-string('right_sh.ogg', '大きく右手前に曲ってください。').
-string('right_sl.ogg', '斜め右に曲ってください。').
-string('left_keep.ogg', '左に寄ってください。').
-string('right_keep.ogg', '右に寄ってください。').
-string('left_bear.ogg', '左に寄ってください。').   % in English the same as left_keep, may be different in other languages
-string('right_bear.ogg', '右に寄ってください。').  % in English the same as right_keep, may be different in other languages
+string('left.ogg', '左方向です。').
+string('left_sh.ogg', '手前左方向です。').
+string('left_sl.ogg', '斜め左方向です。').
+string('right.ogg', '右方向です。').
+string('right_sh.ogg', '手前右方向です。').
+string('right_sl.ogg', '斜め右方向です。').
+string('left_keep.ogg', '分岐を左方向です。').
+string('right_keep.ogg', '分岐を右方向です。').
+string('left_bear.ogg', '左方向です。').   % in English the same as left_keep, may be different in other languages
+string('right_bear.ogg', '右方向です。').  % in English the same as right_keep, may be different in other languages
 
 % U-TURNS
 string('make_uturn.ogg', 'Uターンをしてください。').
 string('make_uturn_wp.ogg', '可能ならUターンをしてください。').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'ラウンドアバウトがあります。').
-string('roundabout.ogg', 'ロータリーがあります。').
-string('then.ogg', ' そして、').
+string('prepare_roundabout.ogg', 'ロータリーがあります。').
+%string('roundabout.ogg', 'ロータリーがあります。').
+string('then.ogg', 'その先、').
 %string('and.ogg', 'and ').
 string('take.ogg', 'ロータリーの').
-string('exit.ogg', 'の出口を出てください。').
+string('exit.ogg', 'の出口です。').
 
-string('1.ogg', '1').
-string('2.ogg', '2').
-string('3.ogg', '3').
-string('4.ogg', '4').
-string('5.ogg', '5').
-string('6.ogg', '6').
-string('7.ogg', '7').
-string('8.ogg', '8').
-string('9.ogg', '9').
-string('10.ogg', '10').
-string('11.ogg', '11').
-string('12.ogg', '12').
-string('13.ogg', '13').
-string('14.ogg', '14').
-string('15.ogg', '15').
-string('16.ogg', '16').
-string('17.ogg', '17').
-
-string('th.ogg', '番目').
+string('1st.ogg', '1番目').
+string('2nd.ogg', '2番目').
+string('3rd.ogg', '3番目').
+string('4th.ogg', '4番目').
+string('5th.ogg', '5番目').
+string('6th.ogg', '6番目').
+string('7th.ogg', '7番目').
+string('8th.ogg', '8番目').
+string('9th.ogg', '9番目').
+string('10th.ogg', '10番目').
+string('11th.ogg', '11番目').
+string('12th.ogg', '12番目').
+string('13th.ogg', '13番目').
+string('14th.ogg', '14番目').
+string('15th.ogg', '15番目').
+string('16th.ogg', '16番目').
+string('17th.ogg', '17番目').
 
 % STRAIGHT/FOLLOW
 string('go_ahead.ogg', '直進してください。').
@@ -98,9 +96,9 @@ string('reached_poi.ogg', 'you are passing POI ').
 % ATTENTION
 %string('exceed_limit.ogg', 'スピードオーバーです。').
 string('exceed_limit.ogg', '制限速度 ').
-string('attention.ogg', '注意が必要です。').
+string('attention.ogg', 'ご注意下さい。').
 string('speed_camera.ogg', 'スピードカメラ ').
-string('border_control.ogg', '国境警備隊 ').
+string('border_control.ogg', '税関 ').
 string('railroad_crossing.ogg', '踏切 ').
 string('traffic_calming.ogg', '交通静穏化 ').
 string('toll_booth.ogg', '料金所 ').
@@ -109,22 +107,22 @@ string('pedestrian_crosswalk.ogg', '横断歩道 ').
 string('tunnel.ogg', 'トンネル').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'GPS信号が受信できません。').
+string('location_lost.ogg', 'GPS信号を失いました。').
 string('location_recovered.ogg', 'GPS信号が回復しました。').
 string('off_route.ogg', 'ルートから外れました。').
 string('back_on_route.ogg', 'ルートに復帰しました。').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'に、').
-string('on.ogg', 'に ').
-string('to.ogg', 'まで、').
-string('toward.ogg', '向かって ').
+string('on.ogg', 'に、').
+string('to.ogg', '方面、').
+string('toward.ogg', '方面、').
 
 % DISTANCE UNIT SUPPORT
-string('meters.ogg', 'メートル、').
-string('around_1_kilometer.ogg', 'およそ、1キロ、').
+string('meters.ogg', 'メートル').
+string('around_1_kilometer.ogg', 'およそ 1キロ').
 string('around.ogg', 'およそ、').
-string('kilometers.ogg', 'キロ、').
+string('kilometers.ogg', 'キロ').
 
 string('feet.ogg', 'フィート').
 string('1_tenth_of_a_mile.ogg', 'one tenth of a mile').
@@ -183,22 +181,22 @@ assemble_street_name(voice([Ref, _, Dest], _), [C1, 'toward.ogg', Dest]) :- atom
 turn_street('', []).
 turn_street(voice(['','',''],_), []).
 turn_street(voice(['', '', D], _), ['toward.ogg', D]) :- tts.
-turn_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
-turn_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, '', _],[R, _, _]), assemble_street_name(Street, SName).
-turn_street(Street, ['onto.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), assemble_street_name(Street, SName).
+turn_street(Street, [SName, 'on.ogg']) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
+turn_street(Street, [SName, 'on.ogg']) :- tts, Street = voice([R, '', _],[R, _, _]), assemble_street_name(Street, SName).
+turn_street(Street, [SName, 'onto.ogg']) :- tts, not(Street = voice([R, S, _],[R, S, _])), assemble_street_name(Street, SName).
 turn_street(_Street, []) :- not(tts).
 
 follow_street('', []).
 follow_street(voice(['','',''],_), []).
 follow_street(voice(['', '', D], _), ['to.ogg', D]) :- tts.
-follow_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
-follow_street(Street, ['on.ogg', SName]) :- tts, Street = voice([R, '', _],[R, _, _]), assemble_street_name(Street, SName).
-follow_street(Street, ['to.ogg', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), assemble_street_name(Street, SName).
+follow_street(Street, [SName, 'on.ogg']) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
+follow_street(Street, [SName, 'on.ogg']) :- tts, Street = voice([R, '', _],[R, _, _]), assemble_street_name(Street, SName).
+follow_street(Street, [SName, 'to.ogg']) :- tts, not(Street = voice([R, S, _],[R, S, _])), assemble_street_name(Street, SName).
 follow_street(_Street, []) :- not(tts).
 
-prepare_turn(Turn, Dist, Street) -- [D, 'after.ogg', M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
-turn(Turn, Dist, Street) -- [D, 'in.ogg', M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
-turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
+prepare_turn(Turn, Dist, Street) -- [D, 'after.ogg', M | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen), turn(Turn, M). 
+turn(Turn, Dist, Street) -- [D, 'in.ogg', M | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen), turn(Turn, M).
+turn(Turn, Street) -- [M | Sgen] :- turn_street(Street, Sgen), turn(Turn, M).
 
 prepare_make_ut(Dist, Street) -- [D, 'after.ogg', 'make_uturn.ogg' | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
 make_ut(Dist, Street) --  [D, 'in.ogg', 'make_uturn.ogg' | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
@@ -206,7 +204,7 @@ make_ut(Street) -- ['make_uturn.ogg' | Sgen] :- turn_street(Street, Sgen).
 make_ut_wp -- ['make_uturn_wp.ogg'].
 
 prepare_roundabout(Dist, _Exit, _Street) -- [D, 'after.ogg', 'prepare_roundabout.ogg'] :- distance(Dist) -- D.
-roundabout(Dist, _Angle, Exit, Street) -- [D, 'in.ogg', 'roundabout.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
+roundabout(Dist, _Angle, Exit, Street) -- [D, 'in.ogg', 'take.ogg', E, 'exit.ogg' | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
 roundabout(_Angle, Exit, Street) -- ['take.ogg', E, 'exit.ogg' | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 
 go_ahead -- ['go_ahead.ogg'].
