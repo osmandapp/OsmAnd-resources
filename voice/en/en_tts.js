@@ -125,7 +125,7 @@ function populateDictionary(tts) {
 // TIME SUPPORT
 	dictionary["time"] = tts ? "time is " : "time.ogg";
 	dictionary["1_hour"] = tts ? "one hour " : "1_hour.ogg";
-	dictionary["hours"] = "hours "
+    dictionary["hours"] = tts ? "hours " : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "less than a minute" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "one minute" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "minutes" : "minutes.ogg";
@@ -238,7 +238,7 @@ function hours(minutes) {
 		return dictionary["1_hour"];
 	} else {
 		var hours = minutes / 60;
-		return Math.floor(hours).toString() + " " + dictionary["hours"]; 
+        return Math.floor(hours).toString() + (!tts ? ".ogg " : " ") + dictionary["hours"]; 
 	}
 }
 
@@ -660,43 +660,43 @@ function ogg_dist(distance) {
 	if (distance == 0) {
 		return "";
 	} else if (distance < 20) {
-		return Math.round(distance).toString() + ".ogg";
+		return Math.floor(distance).toString() + ".ogg ";
 	} else if (distance < 1000 && (distance % 50) == 0) {
-		return (distance % 50).toString() + ".ogg";
+		return (distance % 50).toString() + ".ogg ";
 	} else if (distance < 30) {
-		return "20.ogg" + ogg_dist(distance - 20);
+		return "20.ogg " + ogg_dist(distance - 20);
 	} else if (distance < 40) {
-		return "30.ogg" + ogg_dist(distance - 30);
+		return "30.ogg " + ogg_dist(distance - 30);
 	} else if (distance < 50) {
-		return "40.ogg" + ogg_dist(distance - 40);
+		return "40.ogg " + ogg_dist(distance - 40);
 	} else if (distance < 60) {
-		return "50.ogg" + ogg_dist(distance - 50);
+		return "50.ogg " + ogg_dist(distance - 50);
 	} else if (distance < 70) {
-		return "60.ogg" + ogg_dist(distance - 60);
+		return "60.ogg " + ogg_dist(distance - 60);
 	} else if (distance < 80) {
-		return "70.ogg"+ ogg_dist(distance - 70);
+		return "70.ogg "+ ogg_dist(distance - 70);
 	} else if (distance < 90) {
-		return "80.ogg" + ogg_dist(distance - 80);
+		return "80.ogg " + ogg_dist(distance - 80);
 	} else if (distance < 100) {
-		return "90.ogg" + ogg_dist(distance - 90);
+		return "90.ogg " + ogg_dist(distance - 90);
 	} else if (distance < 200) {
-		return "100.ogg" + ogg_dist(distance - 100);
+		return "100.ogg " + ogg_dist(distance - 100);
 	} else if (distance < 300) {
-		return "200.ogg" + ogg_dist(distance - 200);
+		return "200.ogg " + ogg_dist(distance - 200);
 	} else if (distance < 400) {
-		return "300.ogg"+ ogg_dist(distance - 300);
+		return "300.ogg "+ ogg_dist(distance - 300);
 	} else if (distance < 500) {
-		return "400.ogg" + ogg_dist(distance - 400);
+		return "400.ogg " + ogg_dist(distance - 400);
 	} else if (distance < 600) {
-		return "500.ogg" + ogg_dist(distance - 500);
+		return "500.ogg " + ogg_dist(distance - 500);
 	} else if (distance < 700) {
-		return "600.ogg" + ogg_dist(distance - 600);
+		return "600.ogg " + ogg_dist(distance - 600);
 	} else if (distance < 800) {
-		return "700.ogg" + ogg_dist(distance - 700);
+		return "700.ogg " + ogg_dist(distance - 700);
 	} else if (distance < 900) {
-		return "800.ogg" + ogg_dist(distance - 800);
+		return "800.ogg " + ogg_dist(distance - 800);
 	} else if (distance < 1000) {
-		return "900.ogg" + ogg_dist(distance - 900);
+		return "900.ogg " + ogg_dist(distance - 900);
 	} else {
 		return ogg_dist(distance/1000) + "1000.ogg " + ogg_dist(distance % 1000);
 	}
