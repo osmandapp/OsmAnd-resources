@@ -8,13 +8,10 @@
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
 // (N/A) Special grammar: (please specify which)
-var metricConst = "km-m";
+var metricConst;
 var dictionary = {};
 // TODO set this as a boolena flag to determine if we need to return tts prompts or ogg file names
 var tts;
-setMode(false);
-print(distance(89750));
-print(time(55800));
 //// STRINGS
 ////////////////////////////////////////////////////////////////
 // ROUTE CALCULATED
