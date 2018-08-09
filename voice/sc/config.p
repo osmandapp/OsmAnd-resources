@@ -168,7 +168,7 @@ isFemale(Street) :-  endsWithString(Street, 'zero').
 isFemale(Street) :-  endsWithString(Street, 'una').
 isFemale(Street) :-  endsWithString(Street, 'duas').
 isFemale(Street) :-  endsWithString(Street, 'tres').
-isFemale(Street) :-  endsWithString(Street, 'batoro').
+isFemale(Street) :-  endsWithString(Street, 'bàtoro').
 isFemale(Street) :-  endsWithString(Street, 'chimbe').
 isFemale(Street) :-  endsWithString(Street, 'ses').
 isFemale(Street) :-  endsWithString(Street, 'sete').
