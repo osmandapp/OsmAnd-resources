@@ -164,16 +164,16 @@ isFemale(Street) :-  endsWithString(Street, 'chaussee'). % da tradurre
 isFemale(Street) :-  endsWithString(Street, 'gùturu').
 isFemale(Street) :-  endsWithString(Street, 'zeile'). % da tradurre
 isFemale(Street) :-  endsWithString(Street, 'viale').
-isFemale(Street) :-  endsWithString(Street, '0').
-isFemale(Street) :-  endsWithString(Street, '1').
-isFemale(Street) :-  endsWithString(Street, '2').
-isFemale(Street) :-  endsWithString(Street, '3').
-isFemale(Street) :-  endsWithString(Street, '4').
-isFemale(Street) :-  endsWithString(Street, '5').
-isFemale(Street) :-  endsWithString(Street, '6').
-isFemale(Street) :-  endsWithString(Street, '7').
-isFemale(Street) :-  endsWithString(Street, '8').
-isFemale(Street) :-  endsWithString(Street, '9').
+isFemale(Street) :-  endsWithString(Street, 'zero').
+isFemale(Street) :-  endsWithString(Street, 'una').
+isFemale(Street) :-  endsWithString(Street, 'duas').
+isFemale(Street) :-  endsWithString(Street, 'tres').
+isFemale(Street) :-  endsWithString(Street, 'batoro').
+isFemale(Street) :-  endsWithString(Street, 'chimbe').
+isFemale(Street) :-  endsWithString(Street, 'ses').
+isFemale(Street) :-  endsWithString(Street, 'sete').
+isFemale(Street) :-  endsWithString(Street, 'oto').
+isFemale(Street) :-  endsWithString(Street, 'noe').
 
 street_is_male(voice([Ref, Name, Dest],_)) :- isMale(Name).
 street_is_female(voice([Ref, Name, Dest],_)) :- isFemale(Name).
