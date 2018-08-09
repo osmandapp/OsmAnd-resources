@@ -352,6 +352,48 @@ message TransportRoute {
    // point, line or outer polygon coordinates
    // 0, 0 split geometry (for not connected segments)
    optional bytes geometry = 17;
+
+   repeated TransportRouteSchedule scheduleTrip = 18;
+}
+
+message TransportRouteSchedule {
+	// 10-seconds based intervals between stops arrivals;
+	repeated uint32 avgStopIntervals = 1;	
+
+	// optional 10-seconds based (0, if non-provided or less < 10 seconds)
+	repeated uint32 avgWaitIntervals = 2;
+
+	// 10-seconds delta based intervals for trips departing from first stop
+	// 1st trip is diff from 00:00:00
+	repeated uint32 tripIntervals = 3;
+
+	// exceptions	
+	repeated TransportRouteScheduleException exceptions = 8;
+}
+
+message TransportRouteScheduleException {
+    // provided if exception applicable to the trips
+    repeated uint32 tripIndexes = 1;
+
+	// provided if exception applicable to the stop
+    repeated uint32 stopIndexes = 2;
+
+    // indicates whether the trip or stop available in certain restriction (default true)
+	optional bool available = 3;
+
+    // if 1 number is provided, the delay is applicable to all trips/stops, otherwise it has numbers for each route or stop
+    // delay is measured in X * 10 seconds
+    repeated uint32 delayArrival = 5;
+
+    repeated int32 deltaWaitInterval = 6;
+
+
+    // day of week exceptions, Monday - 0, Sunday - 6
+    repeated uint32 dayOfWeekRestriction = 7;
+
+    // day of year exceptions 01.01.2000 - 0, 01.02.2000 - 1
+    repeated uint32 dayOfYearRestriction = 8;
+
 }
 
 message TransportRouteStop {
