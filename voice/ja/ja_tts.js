@@ -178,7 +178,7 @@ function distance(dist) {
 			} else if (dist < 241) {
 				return dictionary["1_tenth_of_a_mile"];
 			} else if (dist < 1529) {
-				return tts ? Math.round(dist/161.0).toString() + " " + dictionary["tenths_of_a_mile"] : ogg_dist(dist/161.0) + " tenths_of_a_mile.ogg";
+				return (tts ? Math.round(dist/161.0).toString() : ogg_dist((2*dist/100.0/0.3048)*5)) + " " + dictionary["tenths_of_a_mile"];
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
 			} else if (dist < 16093) {
