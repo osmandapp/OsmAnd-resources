@@ -481,7 +481,7 @@ function prepare_turn(turnType, dist, streetName) {
 
 function prepare_roundabout(dist, exit, streetName) {
 // prepare_roundabout(Dist, _Exit, _Street) -- ["after", D , "prepare_roundabout"] :- distance(Dist) -- D.
-	return distance(dist) dictionary["after"] + " " + dictionary["prepare_roundabout"]; 
+	return distance(dist) + dictionary["after"] + " " + dictionary["prepare_roundabout"]; 
 }
 
 // reached_destination(D) -- ["reached_destination"|Ds] :- name(D, Ds).
