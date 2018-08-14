@@ -190,29 +190,29 @@ function setMode(mode) {
 
 function route_new_calc(dist, timeVal) {
 	// route_new_calc(Dist, Time) -- ['route_is1', D, 'route_is2', ', ', 'time', T, '. '] :- distance(Dist, nominativ) -- D, time(Time) -- T.
-	return dictionary["route_is"] + " " + distance(dist, "accusative") + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : "");
+	return dictionary["route_is"] + " " + distance(dist, "accusative", false) + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : "");
 }
 
 function distance(dist, declension, isWorkaround) {
-	var accusative = declension.equals("accusative");
+	var accusative = declension === "accusative";
 	switch (metricConst) {
 		case "km-m":
 			if (dist < 17 ) {
 				return (tts ? Math.round(dist).toString() : ogg_dist(dist)) + " " + dictionary["meters_" + declension];
 			} else if (dist < 100) {
-				return isWorkaround ? dictionary["farther_workaround"] + " " : "" + (tts ? Math.round((dist/10.0)*10).toString() : ogg_dist((dist/10.0)*10)) + " " + dictionary["meters_" + declension];
+				return (isWorkaround ? dictionary["farther_workaround"] + " " : "") + (tts ? Math.round((dist/10.0)*10).toString() : ogg_dist((dist/10.0)*10)) + " " + dictionary["meters_" + declension];
 			} else if (dist < 1000) {
-				return isWorkaround ? dictionary["farther_workaround"] + " " : "" + (tts ? Math.round((2*dist/100.0)*50).toString() : ogg_dist((2*dist/100.0)*50)) + " " + dictionary["meters_" + declension];
+				return (isWorkaround ? dictionary["farther_workaround"] + " " : "") + (tts ? Math.round((2*dist/100.0)*50).toString() : ogg_dist((2*dist/100.0)*50)) + " " + dictionary["meters_" + declension];
 			} else if (dist < 1500) {
 				return dictionary["around_1_kilometer_" + declension];
 			} else if (dist < 2500) {
 				return dictionary["around_2_kilometers_" + declension];
 			} else if (dist < 4500) {
-				return isWorkaround ? dictionary["around_workaround"] + " " : "" + dictionary["kilometers_" + declension + accusative ? "3_4" : ""];
+				return (isWorkaround ? dictionary["around_workaround"] + " " : "") + dictionary["kilometers_" + declension + (accusative ? "3_4" : "")];
 			} else if (dist < 10000) {
-				return isWorkaround ? dictionary["around_workaround"] + " " : "" + (tts ? Math.round(dist/1000.0).toString() : ogg_dist(dist/1000.0)) + " " + dictionary["kilometers_" + declension + accusative ? "5" : ""];
+				return (isWorkaround ? dictionary["around_workaround"] + " " : "") + (tts ? Math.round(dist/1000.0).toString() : ogg_dist(dist/1000.0)) + " " + dictionary["kilometers_" + declension + (accusative ? "5" : "")];
 			} else {
-				return isWorkaround ? dictionary["farther_workaround"] + " " : "" + (tts ? Math.round(dist/1000.0).toString() : ogg_dist(dist/1000.0)) + " " + dictionary["kilometers_" + declension + accusative ? "5" : ""];
+				return (isWorkaround ? dictionary["farther_workaround"] + " " : "") + (tts ? Math.round(dist/1000.0).toString() : ogg_dist(dist/1000.0)) + " " + dictionary["kilometers_" + declension + (accusative ? "5" : "")];
 			}
 			break;
 		case "mi-f":
@@ -234,9 +234,9 @@ function distance(dist, declension, isWorkaround) {
 			if (dist < 17) {
 				return (tts ? Math.round(dist).toString() : ogg_dist(dist)) + " " + dictionary["meters_" + declension];
 			} else if (dist < 100) {
-				return isWorkaround ? dictionary["farther_workaround"] + " " : "" + (tts ? Math.round((dist/10.0)*10).toString() : ogg_dist((dist/10.0)*10)) + " " + dictionary["meters_" + declension];
+				return (isWorkaround ? dictionary["farther_workaround"] + " " : "") + (tts ? Math.round((dist/10.0)*10).toString() : ogg_dist((dist/10.0)*10)) + " " + dictionary["meters_" + declension];
 			} else if (dist < 1000) {
-				return isWorkaround ? dictionary["farther_workaround"] + " " : "" + (tts ? Math.round((2*dist/100.0)*50).toString() : ogg_dist((2*dist/100.0)*50)) + " " + dictionary["meters_" + declension];
+				return (isWorkaround ? dictionary["farther_workaround"] + " " : "") + (tts ? Math.round((2*dist/100.0)*50).toString() : ogg_dist((2*dist/100.0)*50)) + " " + dictionary["meters_" + declension];
 			} else if (dist < 1300) {
 				return (tts ? Math.round((2*dist/100.0)*50).toString() : ogg_dist((2*dist/100.0)*50)) + " " + dictionary["meters_" + declension]; 
 			} else if (dist < 2414) {
@@ -310,14 +310,14 @@ function hours(minutes) {
 
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + " " + dictionary["distance"] + " " + distance(dist, "accusative") + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : "");
+	return dictionary["route_calculate"] + " " + dictionary["distance"] + " " + distance(dist, "accusative", false) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : "");
 }
 
 function go_ahead(dist, streetName) {
 	if (dist == -1) {
 		return dictionary["go_ahead"];
 	} else {
-		return dictionary["follow"] + " " + distance(dist, "workaround") + " " + follow_street(streetName);
+		return dictionary["follow"] + " " + distance(dist, "accusative", true) + " " + follow_street(streetName);
 	}
 	
 // go_ahead(Dist, Street) -- ["follow", D | Sgen] :- distance(Dist) -- D, follow_street(Street, Sgen).
@@ -346,7 +346,7 @@ function turn(turnType, dist, streetName) {
 	if (dist == -1) {
 		return getTurnType(turnType) + " " + turn_street(streetName);
 	} else {
-		return dictionary["after"] + " " + distance(dist) + " " + getTurnType(turnType) + " " + turn_street(streetName); 
+		return dictionary["after"] + " " + distance(dist, "locative", false) + " " + getTurnType(turnType) + " " + turn_street(streetName); 
 	}
 	// turn(Turn, Dist, Street) -- ["in", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
 // turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
@@ -401,7 +401,7 @@ function roundabout(dist, angle, exit, streetName) {
 	if (dist == -1) {
 		return dictionary["take2"] + " " + nth(exit, "_inst") + " " + dictionary["exit2"] + " " + turn_street(streetName);
 	} else {
-		return dictionary["in"] + " " + distance(dist, "locative") + " " + dictionary["roundabout"] + " " + dictionary["take"] + " " + nth(exit, "") + " " + dictionary["exit"] + " " + turn_street(streetName);
+		return dictionary["in"] + " " + distance(dist, "locative", false) + " " + dictionary["roundabout"] + " " + dictionary["take"] + " " + nth(exit, "") + " " + dictionary["exit"] + " " + turn_street(streetName);
 	}
 
 }
@@ -492,7 +492,7 @@ function make_ut(dist, streetName) {
 	if (dist == -1) {
 		return dictionary["make_uturn2"] + " " + turn_street(streetName);
 	} else {
-		return dictionary["in"] + " " + distance(dist, "locative") + " " + dictionary["make_uturn"] + " " + turn_street(streetName);
+		return dictionary["in"] + " " + distance(dist, "locative", false) + " " + dictionary["make_uturn"] + " " + turn_street(streetName);
 	}
 }
 
@@ -508,17 +508,17 @@ function bear_right(streetName) {
 
 function prepare_make_ut(dist, streetName) {
 	// prepare_make_ut(Dist, Street) -- ["after", D, "make_uturn" | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
-	return dictionary["after"] + " " + distance(dist, "locative") + " " + dictionary["make_uturn"] + " " + turn_street(streetName);
+	return dictionary["after"] + " " + distance(dist, "locative", false) + " " + dictionary["make_uturn"] + " " + turn_street(streetName);
 }
 
 function prepare_turn(turnType, dist, streetName) {
 	// prepare_turn(Turn, Dist, Street) -- ["after", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
-	return dictionary["after"] + " " + distance(dist, "locative") + " " + getTurnType(turnType) + " " + turn_street(streetName);
+	return dictionary["after"] + " " + distance(dist, "locative", false) + " " + getTurnType(turnType) + " " + turn_street(streetName);
 }
 
 function prepare_roundabout(dist, exit, streetName) {
 // prepare_roundabout(Dist, _Exit, _Street) -- ["after", D , "prepare_roundabout"] :- distance(Dist) -- D.
-	return dictionary["after"] + " " + distance(dist, "locative") + " " + dictionary["prepare_roundabout"]; 
+	return dictionary["after"] + " " + distance(dist, "locative", false) + " " + dictionary["prepare_roundabout"]; 
 }
 
 // reached_destination(D) -- ["reached_destination"|Ds] :- name(D, Ds).
@@ -586,7 +586,7 @@ function location_recovered() {
 }
 
 function off_route(dist) {
-	return dictionary["off_route1"] + " " + distance(dist, "accusative") + " " + dictionary["off_route2"];
+	return dictionary["off_route1"] + " " + distance(dist, "accusative", false) + " " + dictionary["off_route2"];
 }
 
 function back_on_route() {
