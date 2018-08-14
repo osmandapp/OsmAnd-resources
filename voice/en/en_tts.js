@@ -200,7 +200,7 @@ function distance(dist) {
 			} else if (dist < 1300) {
 				return (tts ? Math.round((2*dist/100.0/0.9144)*50).toString() : ogg_dist((2*dist/10.0/0.9144)*10)) + " " + dictionary["yards"]; 
 			} else if (dist < 2414) {
-				return tts ? dictionary["around_1_mile"] : "around_1_mile.ogg";
+				return dictionary["around_1_mile"];
 			} else if (dist < 16093) {
 				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
 			} else {
@@ -527,7 +527,7 @@ function back_on_route() {
 
 function make_ut_wp() {
 	// make_ut_wp -- ["make_uturn_wp"].
-	return dictionary["make_ut_wp"];
+	return dictionary["make_uturn_wp"];
 }
 
 

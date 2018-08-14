@@ -554,7 +554,7 @@ function back_on_route() {
 }
 
 function make_ut_wp() {
-	return dictionary["make_ut_wp"];
+	return dictionary["make_uturn_wp"];
 }
 
 
