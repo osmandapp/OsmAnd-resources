@@ -15,8 +15,8 @@ var tts;
 ////////////////////////////////////////////////////////////////
 // ROUTE CALCULATED
 function populateDictionary(tts) {
-	dictionary["route_is1"] = tts ? tts ? "Su biàgiu est " : "route_is1.ogg" : "route_is.ogg";
-	dictionary["route_is2"] = tts ? tts ? "longu " : "route_is2.ogg" : "route_is.ogg";
+	dictionary["route_is1"] = tts ? "Su biàgiu est " : "route_is1.ogg";
+	dictionary["route_is2"] = tts ? "longu " : "route_is2.ogg";
 	dictionary["route_calculate"] = tts ? "Ricàlculu àndala" : "route_calculate.ogg";
 	dictionary["distance"] = tts ? "distàntzia " : "distance.ogg";
 
