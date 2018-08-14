@@ -231,7 +231,7 @@ function distance(dist) {
 				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + plural_mi(dist/1609.3);
 			}
 			break;
-		case "mi/y":
+		case "mi-y":
 			if (dist < 17) {
 				return (tts ? Math.round(dist/0.9144).toString() : ogg_dist(dist/0.9144)) + " " + dictionary["yardov"];
 			} else if (dist < 100) {
@@ -270,13 +270,24 @@ function plural_mn(time) {
 
 function time(seconds) {
 	var minutes = Math.round(seconds/60.0);
+	var oggMinutes = Math.round(((seconds/300.0) * 5));
 	if (seconds < 30) {
 		return dictionary["less_a_minute"];
-	} else if (minutes % 60 == 1 || minutes < 60) {
-		return minutes + " " + plural_mn(minutes);
-	} else  {
-		return Math.round(minutes/60).toString() + " " + plural_hs(minutes/60);
+	} else if (minutes % 60 == 0 && tts) {
+		return hours(minutes);
+	} else if (tts){
+		return hours(minutes) + " " + (minutes % 60).toString() + plural_mn(minutes % 60);
+	} else if (!tts && seconds < 300) {
+		minutes.toString() + ".ogg " + plural_mn(minutes); 
+	} else if (!tts && minutes % 60 > 0) {
+		return hours(oggMinutes) + " " + (oggMinutes % 60).toString() + ".ogg " + plural_mn(oggMinutes % 60);
+	} else if (!tts) {
+		return hours(oggMinutes);
 	}
+}
+
+function hours(minutes) {
+	return minutes < 60 ? "" : Math.floor(minutes/60) + tts ? " " : ".ogg " + plural_hs(minutes/60);
 }
 
 function route_recalc(dist, seconds) {
