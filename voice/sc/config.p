@@ -83,17 +83,17 @@ string('follow.ogg', 'Sighide pro').
 
 % ARRIVE
 string('and_arrive_destination.ogg', 'e ais a arribare a destinatzione').
-string('reached_destination.ogg','arribadu a destinatzione').
+string('reached_destination.ogg','arribados a destinatzione').
 string('and_arrive_intermediate.ogg', 'e ais a arribare a su puntu mesanu').
-string('reached_intermediate.ogg', 'arrivati al punto intermedio').
+string('reached_intermediate.ogg', 'arribados a su puntu mesanu').
 
 % NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'e arribades a su puntu mesanu ').
-string('reached_waypoint.ogg', 'arribadu a su puntu mesanu ').
-string('and_arrive_favorite.ogg', 'e arriverai al preferito ').
-string('reached_favorite.ogg', 'arribadu a su prefèrridu ').
+string('and_arrive_waypoint.ogg', 'e ais a arribare a su puntu mesanu ').
+string('reached_waypoint.ogg', 'arribados a su puntu mesanu ').
+string('and_arrive_favorite.ogg', 'e ais a arribare a su preferidu ').
+string('reached_favorite.ogg', 'arribados a su preferidu ').
 string('and_arrive_poi.ogg', 'e ais a arribare a su puntu de interesse ').
-string('reached_poi.ogg', 'arribadu a su puntu de interesse').
+string('reached_poi.ogg', 'arribados a su puntu de interesse').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'Barigadu su lìmite de lestresa').
@@ -110,8 +110,8 @@ string('pedestrian_crosswalk.ogg', 'Atraessamentu pedonale ').
 % OTHER PROMPTS
 string('location_lost.ogg', 'Sinnale GPS pèrdidu').
 string('location_recovered.ogg', 'Sinnale GPS torradu ').
-string('off_route.ogg', "Seis essidos dae s''àndala").
-string('back_on_route.ogg', 'si torna sulla rotta ').
+string('off_route.ogg', "Seis essidos dae s'àndala").
+string('back_on_route.ogg', 'seis torrados in s'àndala ').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'in ').
@@ -164,16 +164,16 @@ isFemale(Street) :-  endsWithString(Street, 'chaussee'). % da tradurre
 isFemale(Street) :-  endsWithString(Street, 'gùturu').
 isFemale(Street) :-  endsWithString(Street, 'zeile'). % da tradurre
 isFemale(Street) :-  endsWithString(Street, 'viale').
-isFemale(Street) :-  endsWithString(Street, '0').
-isFemale(Street) :-  endsWithString(Street, '1').
-isFemale(Street) :-  endsWithString(Street, '2').
-isFemale(Street) :-  endsWithString(Street, '3').
-isFemale(Street) :-  endsWithString(Street, '4').
-isFemale(Street) :-  endsWithString(Street, '5').
-isFemale(Street) :-  endsWithString(Street, '6').
-isFemale(Street) :-  endsWithString(Street, '7').
-isFemale(Street) :-  endsWithString(Street, '8').
-isFemale(Street) :-  endsWithString(Street, '9').
+isFemale(Street) :-  endsWithString(Street, 'zero').
+isFemale(Street) :-  endsWithString(Street, 'una').
+isFemale(Street) :-  endsWithString(Street, 'duas').
+isFemale(Street) :-  endsWithString(Street, 'tres').
+isFemale(Street) :-  endsWithString(Street, 'bàtoro').
+isFemale(Street) :-  endsWithString(Street, 'chimbe').
+isFemale(Street) :-  endsWithString(Street, 'ses').
+isFemale(Street) :-  endsWithString(Street, 'sete').
+isFemale(Street) :-  endsWithString(Street, 'oto').
+isFemale(Street) :-  endsWithString(Street, 'noe').
 
 street_is_male(voice([Ref, Name, Dest],_)) :- isMale(Name).
 street_is_female(voice([Ref, Name, Dest],_)) :- isFemale(Name).
@@ -195,8 +195,8 @@ string('1_tenth_of_a_mile_nominativ.ogg', 'unu dètzimu de mìgliu ').
 string('1_tenth_of_a_mile_dativ.ogg', 'unu dètzimu de mìgliu ').
 string('tenths_of_a_mile_nominativ.ogg', 'detzimos de mìgliu ').
 string('tenths_of_a_mile_dativ.ogg', 'detzimos de mìgliu ').
-string('around_1_mile_nominativ.ogg', 'circa un miglio ').
-string('around_1_mile_dativ.ogg', 'circa un miglio ').
+string('around_1_mile_nominativ.ogg', 'pagu prus o mancu unu mìgliu ').
+string('around_1_mile_dativ.ogg', 'pagu prus o mancu unu mìgliu ').
 string('miles_nominativ.ogg', 'mìglios').
 string('miles_dativ.ogg', 'mìglios ').
 
