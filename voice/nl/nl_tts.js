@@ -200,7 +200,7 @@ function distance(dist) {
 				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
 			}
 			break;
-		case "mi/y":
+		case "mi-y":
 			if (dist < 17) {
 				return (tts ? Math.round(dist/0.9144).toString() : ogg_dist(dist/0.9144)) + " " + dictionary["yards"];
 			} else if (dist < 100) {
@@ -535,7 +535,7 @@ function back_on_route() {
 
 function make_ut_wp() {
 	// make_ut_wp -- ["make_uturn_wp"].
-	return dictionary["make_ut_wp"];
+	return dictionary["make_uturn_wp"];
 }
 
 
