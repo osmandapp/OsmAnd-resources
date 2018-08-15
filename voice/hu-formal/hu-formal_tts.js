@@ -1,4 +1,5 @@
 
+
 // IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 //
 // (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
@@ -15,41 +16,40 @@ var tts;
 //// STRINGS
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
-	// ROUTE CALCULATED
-	dictionary["route_is"] = tts ? "Az útvonal " : "route_is.ogg";
+	dictionary["route_is"] = tts ? "Az útvonal  " : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Újratervezés" : "route_calculate.ogg";
 	dictionary["distance"] = tts ? "a távolság " : "distance.ogg";
-	
+
 	// LEFT/RIGHT
 	dictionary["prepare"] = tts ? " " : "prepare.ogg";
 	dictionary["after"] = tts ? "múlva " : "after.ogg";
-	
-	dictionary["left"] = tts ? "fordulj balra" : "left.ogg";
-	dictionary["left_sh"] = tts ? "fordulj élesen balra" : "left_sh.ogg";
-	dictionary["left_sl"] = tts ? "fordulj enyhén balra" : "left_sl.ogg";
-	dictionary["right"] = tts ? "fordulj jobbra" : "right.ogg";
-	dictionary["right_sh"] = tts ? "fordulj élesen jobbra" : "right_sh.ogg";
-	dictionary["right_sl"] = tts ? "fordulj enyhén jobbra" : "right_sl.ogg";
-	dictionary["left_keep"] = tts ? "tarts balra" : "left_keep.ogg";
-	dictionary["right_keep"] = tts ? "tarts jobbra" : "right_keep.ogg";
-	dictionary["left_bear"] = tts ? "tarts balra" : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
-	dictionary["right_bear"] = tts ? "tarts jobbra" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
-	
+
+	dictionary["left"] = tts ? "forduljon balra" : "left.ogg";
+	dictionary["left_sh"] = tts ? "forduljon élesen balra" : "left_sh.ogg";
+	dictionary["left_sl"] = tts ? "forduljon enyhén balra" : "left_sl.ogg";
+	dictionary["right"] = tts ? "forduljon jobbra" : "right.ogg";
+	dictionary["right_sh"] = tts ? "forduljon élesen jobbra" : "right_sh.ogg";
+	dictionary["right_sl"] = tts ? "forduljon enyhén jobbra" : "right_sl.ogg";
+	dictionary["left_keep"] = tts ? "tartson balra" : "left_keep.ogg";
+	dictionary["right_keep"] = tts ? "tartson jobbra" : "right_keep.ogg";
+	dictionary["left_bear"] = tts ? "tartson balra" : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
+	dictionary["right_bear"] = tts ? "tartson jobbra" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
+
 	// U-TURNS
-	dictionary["prepare_make_uturn"] = tts ? "Készülj fel a visszafordulásra " : "prepare_make_uturn.ogg";
-	dictionary["make_uturn1"] = tts ? "múlva fordulj vissza " : "make_uturn1.ogg";
-	dictionary["make_uturn2"] = tts ? "Fordulj vissza" : "make_uturn2.ogg";
-	dictionary["make_uturn_wp"] = tts ? "Fordulj vissza, amint lehet" : "make_uturn_wp.ogg";
-	
+	dictionary["prepare_make_uturn"] = tts ? "Készüljön fel a visszafordulásra" : "prepare_make_uturn.ogg";
+	dictionary["make_uturn1"] = tts ? "múlva forduljon vissza " : "make_uturn1.ogg";
+	dictionary["make_uturn2"] = tts ? "Forduljon vissza" : "make_uturn2.ogg";
+	dictionary["make_uturn_wp"] = tts ? "Forduljon vissza, amint lehet" : "make_uturn_wp.ogg";
+
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? "múlva hajts be a körforgalomba " : "prepare_roundabout.ogg";
+	dictionary["prepare_roundabout"] = tts ? "múlva hajtson be a körforgalomba " : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "múlva a körforgalomból " : "roundabout.ogg";
-	dictionary["roundabout2"] = tts ? "kijáraton hajts ki" : "roundabout2.ogg";
+	dictionary["roundabout2"] = tts ? "kijáraton hajtson ki" : "roundabout2.ogg";
 	dictionary["then"] = tts ? "majd " : "then.ogg";
 	dictionary["and"] = tts ? " és " : "and.ogg";
-	dictionary["take"] = tts ? "hajts ki " : "take.ogg";
-	dictionary["exit"] = tts ? "kijáraton " : "exit.ogg";
-	
+	dictionary["take"] = tts ? "hajtson ki " : "take.ogg";
+	dictionary["exit"] = tts ? "kijáraton" : "exit.ogg";
+
 	dictionary["1st"] = tts ? "az első " : "1st.ogg";
 	dictionary["2nd"] = tts ? "a második " : "2nd.ogg";
 	dictionary["3rd"] = tts ? "a harmadik " : "3rd.ogg";
@@ -67,50 +67,50 @@ function populateDictionary(tts) {
 	dictionary["15th"] = tts ? "a tizenötödik " : "15th.ogg";
 	dictionary["16th"] = tts ? "a tizenhatodik " : "16th.ogg";
 	dictionary["17th"] = tts ? "a tizenhetedik " : "17th.ogg";
-	
+
 	// STRAIGHT/FOLLOW
-	dictionary["go_ahead"] = tts ? "Haladj tovább egyenesen" : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "Menj tovább " : "follow.ogg";
-	
+	dictionary["go_ahead"] = tts ? "Haladjon tovább egyenesen" : "go_ahead.ogg";
+	dictionary["follow1"] = tts ? "Menjen tovább " : "follow1.ogg";
+
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "és megérkezel az uticélhoz " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "megérkeztél az uticélhoz " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "és megérkezel a köztes célponthoz " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "megérkeztél a köztes célponthoz " : "reached_intermediate.ogg";
-	
+	dictionary["and_arrive_destination"] = tts ? "és megérkezik az uticélhoz. " : "and_arrive_destination.ogg";
+	dictionary["reached_destination.ogg"] = tts ? "megérkezett az uticélhoz " : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "és megérkezik a köztes célponthoz. " : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "megérkezett a köztes célponthoz " : "reached_intermediate.ogg";
+
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "és megérkezel a köztes GPX útponthoz " : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "megérkeztél a köztes GPX útponthoz " : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "és megérkezel a kedvencedhez " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "megérkeztél a kedvenc útponthoz " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "és megérkezel a POI-hoz " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "megérkeztél a POI-hoz " : "reached_poi.ogg";
-	
+	dictionary["and_arrive_waypoint"] = tts ? "és megérkezik a köztes GPX útponthoz " : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "megérkezett a köztes GPX útponthoz " : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "és megérkezik a kedvencéhez " : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "megérkezett a kedvenc útponthoz " : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "és megérkezik a POI ponthoz " : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "megérkezett a POI ponthoz " : "reached_poi.ogg";
+
 	// ATTENTION
-	//dictionary["exceed_limit"] = tts ? "Túllépted a sebességhatárt " : "exceed_limit.ogg";
+	//dictionary["exceed_limit"] = tts ? "Túllépte a sebességhatárt " : "exceed_limit.ogg";
 	dictionary["exceed_limit"] = tts ? "sebességhatár " : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "figyelem, " : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "traffipax" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "határellenőrzés" : "border_control.ogg";
-	dictionary["railroad_crossing"] = tts ? "vasúti átjáró" : "railroad_crossing.ogg";
+	dictionary["railroad_crossing"] = tts ? "vasúti átjáróhoz közeledik" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "forgalomlassító" : "traffic_calming.ogg";
 	dictionary["toll_booth"] = tts ? "fizetőkapu" : "toll_booth.ogg";
 	dictionary["stop"] = tts ? "stop tábla" : "stop.ogg";
-	dictionary["pedestrian_crosswalk"] = tts ? "gyalogos átkelő" : "pedestrian_crosswalk.ogg";
+	dictionary["pedestrian_crosswalk"] = tts ? "gyalogos zebra" : "pedestrian_crosswalk.ogg";
 	dictionary["tunnel"] = tts ? "alagút" : "tunnel.ogg";
-	
+
 	// OTHER PROMPTS
 	dictionary["location_lost"] = tts ? "nem található dzsípíesz jel" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "pozíció meghatározva" : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "Letértél a tervezett útvonalról " : "off_route.ogg";
-	dictionary["back_on_route"] = tts ? "Ön visszatér az útvonalon" : "back_on_route.ogg";
-	
+	dictionary["off_route"] = tts ? "Letért a tervezett útvonalról " : "off_route.ogg";
+	dictionary["back_on_route"] = tts ? "Ön visszatér az útvonalra" : "back_on_route.ogg";
+
 	// STREET NAME PREPOSITIONS
 	dictionary["onto"] = tts ? "irányába " : "onto.ogg";
 	dictionary["on"] = tts ? ", ezen: " : "on.ogg";
 	dictionary["to"] = tts ? ", eddig: " : "to.ogg";
 	dictionary["toward"] = tts ? ", felé " : "toward.ogg";
-	
+
 	// DISTANCE UNIT SUPPORT
 	dictionary["meters_nom"] = tts ? "méter" : "meters_nom.ogg";
 	dictionary["meters_acc"] = tts ? "métert" : "meters_acc.ogg";
@@ -118,10 +118,10 @@ function populateDictionary(tts) {
 	dictionary["1_kilometer_acc"] = tts ? "1 kilométert" : "1_kilometer_acc.ogg";
 	dictionary["1_5_kilometer_nom"] = tts ? "másfél kilométer" : "1_5_kilometer_nom.ogg";
 	dictionary["1_5_kilometer_acc"] = tts ? "másfél kilométert" : "1_5_kilometer_acc.ogg";
-	dictionary["around"] = tts ? " " : "around.ogg";
+	dictionary["around"] = tts ? "  " : "around.ogg";
 	dictionary["kilometers_nom"] = tts ? "kilométer" : "kilometers_nom.ogg";
 	dictionary["kilometers_acc"] = tts ? "kilométert" : "kilometers_acc.ogg";
-	
+
 	dictionary["feet_nom"] = tts ? "láb" : "feet_nom.ogg";
 	dictionary["feet_acc"] = tts ? "lábnyit" : "feet_acc.ogg";
 	dictionary["1_tenth_of_a_mile_nom"] = tts ? "egytized mérföld" : "1_tenth_of_a_mile_nom.ogg";
@@ -132,10 +132,10 @@ function populateDictionary(tts) {
 	dictionary["around_1_mile_acc"] = tts ? "körülbelül egy mérföldet" : "around_1_mile_acc.ogg";
 	dictionary["miles_nom"] = tts ? "mérföld" : "miles_nom.ogg";
 	dictionary["miles_acc"] = tts ? "mérföldet" : "miles_acc.ogg";
-	
+
 	dictionary["yards_nom"] = tts ? "yard" : "yards_nom.ogg";
 	dictionary["yards_acc"] = tts ? "yardot" : "yards_acc.ogg";
-	
+
 	// TIME SUPPORT
 	dictionary["time"] = tts ? ", a menetidő " : "time.ogg";
 	dictionary["1_hour"] = tts ? "egy óra " : "1_hour.ogg";
@@ -144,6 +144,7 @@ function populateDictionary(tts) {
 	dictionary["1_minute"] = tts ? "egy perc" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "perc" : "minutes.ogg";
 }
+
 
 //// COMMAND BUILDING / WORD ORDER
 ////////////////////////////////////////////////////////////////
@@ -265,7 +266,7 @@ function go_ahead(dist, streetName) {
 	if (dist == -1) {
 		return dictionary["go_ahead"];
 	} else {
-		return dictionary["follow"] + " " + distance(dist, "acc") + " " + follow_street(streetName);
+		return dictionary["follow1"] + " " + distance(dist, "acc") + " " + follow_street(streetName);
 	}
 	
 // go_ahead(Dist, Street) -- ["follow", D | Sgen] :- distance(Dist) -- D, follow_street(Street, Sgen).
