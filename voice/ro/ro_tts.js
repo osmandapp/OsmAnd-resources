@@ -1,4 +1,3 @@
-﻿
 // IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 //
 // (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
@@ -8,132 +7,133 @@
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
 // (N/A) Special grammar: (please specify which)
+
+
 var metricConst;
 var dictionary = {};
 var tts;
-
 //// STRINGS
 ////////////////////////////////////////////////////////////////
+// ROUTE CALCULATED
 function populateDictionary(tts) {
-	// ROUTE CALCULATED
-	dictionary["route_is1"] = tts ? "行程" : "route_is1.ogg";
-	dictionary["route_is2"] = tts ? " 遠" : "route_is2.ogg";
-	dictionary["route_calculate"] = tts ? "路线重新计算" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? ", 距离" : "distance.ogg";
-	
+	dictionary["route_is"] = tts ? "Lungimea traseului este de " : "route_is.ogg";
+	dictionary["route_calculate"] = tts ? "Traseu recalculat" : "route_calculate.ogg";
+	dictionary["distance"] = tts ? ", distanța " : "distance.ogg";
+
 	// LEFT/RIGHT
-	dictionary["after"] = tts ? " 後 " : "after.ogg";
-	dictionary["in"] = tts ? "在 " : "in.ogg";
-	
-	dictionary["left"] = tts ? "左轉 " : "left.ogg";
-	dictionary["left_sh"] = tts ? "向左急轉 " : "left_sh.ogg";
-	dictionary["left_sl"] = tts ? "稍向左轉 " : "left_sl.ogg";
-	dictionary["right"] = tts ? "右轉 " : "right.ogg";
-	dictionary["right_sh"] = tts ? "向右急轉 " : "right_sh.ogg";
-	dictionary["right_sl"] = tts ? "稍向右轉 " : "right_sl.ogg";
-	dictionary["left_keep"] = tts ? "靠左 " : "left_keep.ogg";
-	dictionary["right_keep"] = tts ? "靠右 " : "right_keep.ogg";
-	dictionary["left_bear"] = tts ? "靠左 " : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
-	dictionary["right_bear"] = tts ? "靠右 " : "right_bear.ogg";   // in English the same as right_keep, may be different in other languages
-	
+	dictionary["after"] = tts ? "peste " : "after.ogg";
+	dictionary["in"] = tts ? "la " : "in.ogg";
+
+	dictionary["left"] = tts ? "virați la stânga" : "left.ogg";
+	dictionary["left_sh"] = tts ? "virați brusc la stânga" : "left_sh.ogg";
+	dictionary["left_sl"] = tts ? "virați ușor la stânga" : "left_sl.ogg";
+	dictionary["right"] = tts ? "virați la dreapta" : "right.ogg";
+	dictionary["right_sh"] = tts ? "virați brusc la dreapta" : "right_sh.ogg";
+	dictionary["right_sl"] = tts ? "virați ușor la dreapta" : "right_sl.ogg";
+	dictionary["left_keep"] = tts ? "încadrați-vă pe partea stângă" : "left_keep.ogg";
+	dictionary["right_keep"] = tts ? "încadrați-vă pe partea dreaptă" : "right_keep.ogg";
+	dictionary["left_bear"] = tts ? "încadrați-vă pe partea stângă" : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
+	dictionary["right_bear"] = tts ? "încadrați-vă pe partea dreaptă" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
+
 	// U-TURNS
-	dictionary["prepare_make_uturn"] = tts ? " 後迴轉 " : "prepare_make_uturn.ogg";
-	dictionary["make_uturn1"] = tts ? " 後請迴轉" : "make_uturn1.ogg";
-	dictionary["make_uturn2"] = tts ? "請迴轉 " : "make_uturn2.ogg";
-	dictionary["make_uturn_wp"] = tts ? "可能的話, 請迴轉 " : "make_uturn_wp.ogg";
-	
+	//dictionary["prepare_make_uturn"] = tts ? "Pregătiți-vă să întoarceți peste " : "prepare_make_uturn.ogg";
+	dictionary["make_uturn1"] = tts ? "Întoarceți peste " : "make_uturn1.ogg";
+	dictionary["make_uturn2"] = tts ? "Întoarceți" : "make_uturn2.ogg";
+	dictionary["make_uturn_wp"] = tts ? "Întoarceți când aveți posibilitatea" : "make_uturn_wp.ogg";
+
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? " 後進入圓環 " : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? " 後進入圓環, 然後在 " : "roundabout.ogg";
-	dictionary["then"] = tts ? ", 然後 " : "then.ogg";
-	dictionary["and"] = tts ? "和 " : "and.ogg";
-	dictionary["take"] = tts ? "在 " : "take.ogg";
-	dictionary["exit"] = tts ? " 出口離開" : "exit.ogg";
-	
-	dictionary["1st"] = tts ? "第一個 " : "1st.ogg";
-	dictionary["2nd"] = tts ? "第二個 " : "2nd.ogg";
-	dictionary["3rd"] = tts ? "第三個 " : "3rd.ogg";
-	dictionary["4th"] = tts ? "第四個 " : "4th.ogg";
-	dictionary["5th"] = tts ? "第五個 " : "5th.ogg";
-	dictionary["6th"] = tts ? "第六個 " : "6th.ogg";
-	dictionary["7th"] = tts ? "第七個 " : "7th.ogg";
-	dictionary["8th"] = tts ? "第八個 " : "8th.ogg";
-	dictionary["9th"] = tts ? "第九個 " : "9th.ogg";
-	dictionary["10th"] = tts ? "第十個 " : "10th.ogg";
-	dictionary["11th"] = tts ? "第十一個 " : "11th.ogg";
-	dictionary["12th"] = tts ? "第十二個 " : "12th.ogg";
-	dictionary["13th"] = tts ? "第十三個 " : "13th.ogg";
-	dictionary["14th"] = tts ? "第十四個 " : "14th.ogg";
-	dictionary["15th"] = tts ? "第十五個 " : "15th.ogg";
-	dictionary["16th"] = tts ? "第十六個 " : "16th.ogg";
-	dictionary["17th"] = tts ? "第十七個 " : "17th.ogg";
-	
+	dictionary["prepare_roundabout"] = tts ? "Pregătiți-vă să intrați în sensul giratoriu peste " : "prepare_roundabout.ogg";
+	dictionary["roundabout"] = tts ? " veți intra în sensul giratoriu pe care-l veți părăsi pe la" : "roundabout.ogg";
+	dictionary["then"] = tts ? ", apoi " : "then.ogg";
+	dictionary["and"] = tts ? "și" : "and.ogg";
+	dictionary["take"] = tts ? "Luați-o pe " : "take.ogg";
+	dictionary["exit"] = tts ? "ieșire" : "exit.ogg";
+
+	dictionary["1st"] = tts ? "prima " : "1st.ogg";
+	dictionary["2nd"] = tts ? "a doua " : "2nd.ogg";
+	dictionary["3rd"] = tts ? "a treia " : "3rd.ogg";
+	dictionary["4th"] = tts ? "a patra " : "4th.ogg";
+	dictionary["5th"] = tts ? "a cincea " : "5th.ogg";
+	dictionary["6th"] = tts ? "a șasea " : "6th.ogg";
+	dictionary["7th"] = tts ? "a șaptea " : "7th.ogg";
+	dictionary["8th"] = tts ? "a opta " : "8th.ogg";
+	dictionary["9th"] = tts ? "a noua " : "9th.ogg";
+	dictionary["10th"] = tts ? "a zecea " : "10th.ogg";
+	dictionary["11th"] = tts ? "a unsprezecea " : "11th.ogg";
+	dictionary["12th"] = tts ? "a douăsprezecea " : "12th.ogg";
+	dictionary["13th"] = tts ? "a treisprezecea " : "13th.ogg";
+	dictionary["14th"] = tts ? "a paisprezecea " : "14th.ogg";
+	dictionary["15th"] = tts ? "a cinsprezecea " : "15th.ogg";
+	dictionary["16th"] = tts ? "a șaisprezecea " : "16th.ogg";
+	dictionary["17th"] = tts ? "a șaptesprezecea " : "17th.ogg";
+
 	// STRAIGHT/FOLLOW
-	dictionary["go_ahead"] = tts ? "直直往前開 " : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "沿著馬路往前 " : "follow.ogg";
-	
+	dictionary["go_ahead"] = tts ? "Mergeți înainte" : "go_ahead.ogg";
+	dictionary["follow"] = tts ? "Urmăriți drumul principal " : "follow.ogg";
+
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "然後可達終點 " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "抵達終點 " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "並通過點到達 " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "你已經達到你通過點 " : "reached_intermediate.ogg";
-	
+	dictionary["and_arrive_destination"] = tts ? "și ajungeți la destinație " : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "Ați ajuns la destinație " : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "și ajungeți la punctul intermediar " : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "Ați ajuns la punctul intermediar " : "reached_intermediate.ogg";
+
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "並通過點到達  GPX" : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "你已經達到你通過點  GPX" : "reached_waypoint.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "și ajungeți la punctul intermediar GPX " : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "Ați ajuns la punctul intermediar GPX " : "reached_waypoint.ogg";
 	dictionary["and_arrive_favorite"] = tts ? "and pass favorite " : "and_arrive_favorite.ogg";
 	dictionary["reached_favorite"] = tts ? "you are passing favorite " : "reached_favorite.ogg";
 	dictionary["and_arrive_poi"] = tts ? "and pass POI " : "and_arrive_poi.ogg";
 	dictionary["reached_poi"] = tts ? "you are passing POI " : "reached_poi.ogg";
-	
-	// ATTENTION
-	//dictionary["exceed_limit"] = tts ? "你超速 " : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "速度极限 " : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "注意, " : "attention.ogg";
-	dictionary["speed_camera"] = tts ? "測速照相機 " : "speed_camera.ogg";
-	dictionary["border_control"] = tts ? "邊境控制 " : "border_control.ogg";
-	dictionary["railroad_crossing"] = tts ? "鐵路道口 " : "railroad_crossing.ogg";
-	dictionary["traffic_calming"] = tts ? "交通鎮定 " : "traffic_calming.ogg";
-	dictionary["toll_booth"] = tts ? "收費站 " : "toll_booth.ogg";
-	dictionary["stop"] = tts ? "停止標誌 " : "stop.ogg";
-	dictionary["pedestrian_crosswalk"] = tts ? "人行橫道 " : "pedestrian_crosswalk.ogg";
-	dictionary["tunnel"] = tts ? "隧道" : "tunnel.ogg";
-	
-	// OTHER PROMPTS
-	dictionary["location_lost"] = tts ? "接收不到 g p s 信號 " : "location_lost.ogg";
-	dictionary["location_recovered"] = tts ? "g p s 信號恢復 " : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "你已經偏離路線 " : "off_route.ogg";
-	dictionary["back_on_route"] = tts ? "你回來的路線 " : "back_on_route.ogg";
-	
-	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "到 " : "onto.ogg";
-	dictionary["on"] = tts ? "到 " : "on.ogg";
-	dictionary["to"] = tts ? "到 " : "to.ogg";
-	dictionary["toward"] = tts ? "往 " : "toward.ogg";
-	
-	// DISTANCE UNIT SUPPORT
-	dictionary["meters"] = tts ? " 公尺" : "meters.ogg";
-	dictionary["around_1_kilometer"] = tts ? "約 1 公里 " : "around_1_kilometer.ogg";
-	dictionary["around"] = tts ? "約 " : "around.ogg";
-	dictionary["kilometers"] = tts ? " 公里 " : "kilometers.ogg";
-	
-	dictionary["feet"] = tts ? "尺 " : "feet.ogg";
-	dictionary["1_tenth_of_a_mile"] = tts ? "一英里的十分之一" : "1_tenth_of_a_mile.ogg";
-	dictionary["tenths_of_a_mile"] = tts ? "零点一英里" : "tenths_of_a_mile.ogg";
-	dictionary["around_1_mile"] = tts ? "大约一英里（1.6公里）" : "around_1_mile.ogg";
-	dictionary["miles"] = tts ? "英里" : "miles.ogg";
-	
-	dictionary["yards"] = tts ? "yards " : "yards.ogg";
-	
-	// TIME SUPPORT
-	dictionary["time"] = tts ? "所需时间" : "time.ogg";
-	dictionary["1_hour"] = tts ? "一小时" : "1_hour.ogg";
-	dictionary["hours"] = tts ? "小时" : "hours.ogg";
-	dictionary["less_a_minute"] = tts ? "不到一分钟" : "less_a_minute.ogg";
-	dictionary["1_minute"] = tts ? "1分钟" : "1_minute.ogg";
-	dictionary["minutes"] = tts ? "分钟" : "minutes.ogg";
-}
 
+	// ATTENTION
+	//dictionary["exceed_limit"] = tts ? "limita de viteză depăşită" : "exceed_limit.ogg";
+	dictionary["exceed_limit"] = tts ? "limita de viteză " : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "atenţie, " : "attention.ogg";
+	dictionary["speed_camera"] = tts ? "camera de viteza" : "speed_camera.ogg";
+	dictionary["border_control"] = tts ? "controlul la frontieră" : "border_control.ogg";
+	dictionary["railroad_crossing"] = tts ? "Trecere de cale ferată" : "railroad_crossing.ogg";
+	dictionary["traffic_calming"] = tts ? "calmant trafic" : "traffic_calming.ogg";
+	dictionary["toll_booth"] = tts ? "cabina de taxare" : "toll_booth.ogg";
+	dictionary["stop"] = tts ? "opri semn" : "stop.ogg";
+	dictionary["pedestrian_crosswalk"] = tts ? "trecere de pietoni" : "pedestrian_crosswalk.ogg";
+	dictionary["tunnel"] = tts ? "tunel" : "tunnel.ogg";
+
+	// OTHER PROMPTS
+	dictionary["location_lost"] = tts ? "semnal gipies pierdut" : "location_lost.ogg";
+	dictionary["location_recovered"] = tts ? "semnal gipies recuperat" : "location_recovered.ogg";
+	dictionary["off_route"] = tts ? "aţi deviat de la rută " : "off_route.ogg";
+	dictionary["back_on_route"] = tts ? "sunteți din nou pe ruta" : "back_on_route.ogg";
+
+	// STREET NAME PREPOSITIONS
+	dictionary["onto"] = tts ? "pe " : "onto.ogg";
+	dictionary["to"] = tts ? "a" : "to.ogg";
+	dictionary["on"] = tts ? "pe  " : "to.ogg";
+	dictionary["toward"] = tts ? "spre " : "toward.ogg";
+
+	// DISTANCE UNIT SUPPORT
+	dictionary["meters"] = tts ? " metri" : "meters.ogg";
+	dictionary["meters_de"] = tts ? " de metri" : "meters_de.ogg";
+	dictionary["around_1_kilometer"] = tts ? "circa un kilometru" : "around_1_kilometer.ogg";
+	dictionary["around"] = tts ? "circa " : "around.ogg";
+	dictionary["kilometers"] = tts ? "kilometri" : "kilometers.ogg";
+	dictionary["kilometers_de"] = tts ? " de kilometri" : "kilometers_de.ogg";
+
+	dictionary["feet"] = tts ? " de picioare" : "feet.ogg";
+	dictionary["1_tenth_of_a_mile"] = tts ? " zecime de milă" : "1_tenth_of_a_mile.ogg";
+	dictionary["tenths_of_a_mile"] = tts ? " zecimi de milă" : "tenths_of_a_mile.ogg";
+	dictionary["around_1_mile"] = tts ? "circa o milă" : "around_1_mile.ogg";
+	dictionary["miles"] = tts ? " de mile" : "miles.ogg";
+
+	dictionary["yards"] = tts ? "iarzi" : "yards.ogg";
+
+	// TIME SUPPORT
+	dictionary["time"] = tts ? "timpul necesar " : "time.ogg";
+	dictionary["1_hour"] = tts ? "o oră " : "1_hour.ogg";
+	dictionary["hours"] = tts ? "ore " : "hours.ogg";
+	dictionary["less_a_minute"] = tts ? "Mai puțin de un minut" : "less_a_minute.ogg";
+	dictionary["1_minute"] = tts ? "un minut" : "1_minute.ogg";
+	dictionary["minutes"] = tts ? "minute" : "minutes.ogg";
+}
 
 //// COMMAND BUILDING / WORD ORDER
 ////////////////////////////////////////////////////////////////
@@ -147,9 +147,8 @@ function setMode(mode) {
 }
 
 function route_new_calc(dist, timeVal) {
-	return dictionary["route_is1"] + " " + distance(dist) + " " + dictionary["route_is2"] + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : "");
+	return dictionary["route_is"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : "");
 }
-
 
 function distance(dist) {
 	switch (metricConst) {
@@ -206,7 +205,7 @@ function distance(dist) {
 			} else if (dist < 1300) {
 				return (tts ? Math.round((2*dist/100.0/0.9144)*50).toString() : ogg_dist((2*dist/10.0/0.9144)*10)) + " " + dictionary["yards"]; 
 			} else if (dist < 2414) {
-				return tts ? dictionary["around_1_mile"] : "around_1_mile.ogg";
+				return dictionary["around_1_mile"];
 			} else if (dist < 16093) {
 				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
 			} else {
@@ -339,7 +338,7 @@ function roundabout(dist, angle, exit, streetName) {
 	if (dist == -1) {
 		return dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	} else {
-		return dictionary["in"] + " " + distance(dist) + " " + dictionary["roundabout"] + " " + dictionary["and"] + " " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
+		return dictionary["in"] + " " + distance(dist) + " " + dictionary["roundabout"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	}
 
 }
@@ -351,7 +350,7 @@ function turn_street(streetName) {
 // turn_street(Street, ["on", SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
 // turn_street(Street, ["on", SName]) :- tts, Street = voice([R, "", _],[R, _, _]), assemble_street_name(Street, SName).
 // turn_street(Street, ["onto", SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), assemble_street_name(Street, SName).
-	if ((streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || Object.keys(streetName).length == 0 || !tts) {
+	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || !tts) {
 		return "";
 	} else if (streetName["toStreetName"] === "" && streetName["toRef"] === "") {
 		return dictionary["toward"] + " " + streetName["toDest"];
@@ -446,7 +445,7 @@ function bear_right(streetName) {
 
 function prepare_make_ut(dist, streetName) {
 	// prepare_make_ut(Dist, Street) -- ["after", D, "make_uturn" | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
-	return dictionary["after"] + " " + distance(dist) + " " + dictionary["make_uturn"] + " " + turn_street(streetName);
+	return dictionary["after"] + " " + distance(dist) + " " + dictionary["make_uturn1"] + " " + turn_street(streetName);
 }
 
 function prepare_turn(turnType, dist, streetName) {

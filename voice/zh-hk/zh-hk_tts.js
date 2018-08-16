@@ -1,4 +1,3 @@
-﻿
 // IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 //
 // (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
@@ -15,125 +14,122 @@ var tts;
 //// STRINGS
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
-	// ROUTE CALCULATED
-	dictionary["route_is1"] = tts ? "行程" : "route_is1.ogg";
-	dictionary["route_is2"] = tts ? " 遠" : "route_is2.ogg";
-	dictionary["route_calculate"] = tts ? "路线重新计算" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? ", 距离" : "distance.ogg";
-	
-	// LEFT/RIGHT
-	dictionary["after"] = tts ? " 後 " : "after.ogg";
-	dictionary["in"] = tts ? "在 " : "in.ogg";
-	
-	dictionary["left"] = tts ? "左轉 " : "left.ogg";
-	dictionary["left_sh"] = tts ? "向左急轉 " : "left_sh.ogg";
-	dictionary["left_sl"] = tts ? "稍向左轉 " : "left_sl.ogg";
-	dictionary["right"] = tts ? "右轉 " : "right.ogg";
-	dictionary["right_sh"] = tts ? "向右急轉 " : "right_sh.ogg";
-	dictionary["right_sl"] = tts ? "稍向右轉 " : "right_sl.ogg";
-	dictionary["left_keep"] = tts ? "靠左 " : "left_keep.ogg";
-	dictionary["right_keep"] = tts ? "靠右 " : "right_keep.ogg";
-	dictionary["left_bear"] = tts ? "靠左 " : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
-	dictionary["right_bear"] = tts ? "靠右 " : "right_bear.ogg";   // in English the same as right_keep, may be different in other languages
-	
-	// U-TURNS
-	dictionary["prepare_make_uturn"] = tts ? " 後迴轉 " : "prepare_make_uturn.ogg";
-	dictionary["make_uturn1"] = tts ? " 後請迴轉" : "make_uturn1.ogg";
-	dictionary["make_uturn2"] = tts ? "請迴轉 " : "make_uturn2.ogg";
-	dictionary["make_uturn_wp"] = tts ? "可能的話, 請迴轉 " : "make_uturn_wp.ogg";
-	
-	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? " 後進入圓環 " : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? " 後進入圓環, 然後在 " : "roundabout.ogg";
-	dictionary["then"] = tts ? ", 然後 " : "then.ogg";
-	dictionary["and"] = tts ? "和 " : "and.ogg";
-	dictionary["take"] = tts ? "在 " : "take.ogg";
-	dictionary["exit"] = tts ? " 出口離開" : "exit.ogg";
-	
-	dictionary["1st"] = tts ? "第一個 " : "1st.ogg";
-	dictionary["2nd"] = tts ? "第二個 " : "2nd.ogg";
-	dictionary["3rd"] = tts ? "第三個 " : "3rd.ogg";
-	dictionary["4th"] = tts ? "第四個 " : "4th.ogg";
-	dictionary["5th"] = tts ? "第五個 " : "5th.ogg";
-	dictionary["6th"] = tts ? "第六個 " : "6th.ogg";
-	dictionary["7th"] = tts ? "第七個 " : "7th.ogg";
-	dictionary["8th"] = tts ? "第八個 " : "8th.ogg";
-	dictionary["9th"] = tts ? "第九個 " : "9th.ogg";
-	dictionary["10th"] = tts ? "第十個 " : "10th.ogg";
-	dictionary["11th"] = tts ? "第十一個 " : "11th.ogg";
-	dictionary["12th"] = tts ? "第十二個 " : "12th.ogg";
-	dictionary["13th"] = tts ? "第十三個 " : "13th.ogg";
-	dictionary["14th"] = tts ? "第十四個 " : "14th.ogg";
-	dictionary["15th"] = tts ? "第十五個 " : "15th.ogg";
-	dictionary["16th"] = tts ? "第十六個 " : "16th.ogg";
-	dictionary["17th"] = tts ? "第十七個 " : "17th.ogg";
-	
-	// STRAIGHT/FOLLOW
-	dictionary["go_ahead"] = tts ? "直直往前開 " : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "沿著馬路往前 " : "follow.ogg";
-	
-	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "然後可達終點 " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "抵達終點 " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "並通過點到達 " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "你已經達到你通過點 " : "reached_intermediate.ogg";
-	
-	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "並通過點到達  GPX" : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "你已經達到你通過點  GPX" : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "and pass favorite " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "you are passing favorite " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "and pass POI " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "you are passing POI " : "reached_poi.ogg";
-	
-	// ATTENTION
-	//dictionary["exceed_limit"] = tts ? "你超速 " : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "速度极限 " : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "注意, " : "attention.ogg";
-	dictionary["speed_camera"] = tts ? "測速照相機 " : "speed_camera.ogg";
-	dictionary["border_control"] = tts ? "邊境控制 " : "border_control.ogg";
-	dictionary["railroad_crossing"] = tts ? "鐵路道口 " : "railroad_crossing.ogg";
-	dictionary["traffic_calming"] = tts ? "交通鎮定 " : "traffic_calming.ogg";
-	dictionary["toll_booth"] = tts ? "收費站 " : "toll_booth.ogg";
-	dictionary["stop"] = tts ? "停止標誌 " : "stop.ogg";
-	dictionary["pedestrian_crosswalk"] = tts ? "人行橫道 " : "pedestrian_crosswalk.ogg";
-	dictionary["tunnel"] = tts ? "隧道" : "tunnel.ogg";
-	
-	// OTHER PROMPTS
-	dictionary["location_lost"] = tts ? "接收不到 g p s 信號 " : "location_lost.ogg";
-	dictionary["location_recovered"] = tts ? "g p s 信號恢復 " : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "你已經偏離路線 " : "off_route.ogg";
-	dictionary["back_on_route"] = tts ? "你回來的路線 " : "back_on_route.ogg";
-	
-	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "到 " : "onto.ogg";
-	dictionary["on"] = tts ? "到 " : "on.ogg";
-	dictionary["to"] = tts ? "到 " : "to.ogg";
-	dictionary["toward"] = tts ? "往 " : "toward.ogg";
-	
-	// DISTANCE UNIT SUPPORT
-	dictionary["meters"] = tts ? " 公尺" : "meters.ogg";
-	dictionary["around_1_kilometer"] = tts ? "約 1 公里 " : "around_1_kilometer.ogg";
-	dictionary["around"] = tts ? "約 " : "around.ogg";
-	dictionary["kilometers"] = tts ? " 公里 " : "kilometers.ogg";
-	
-	dictionary["feet"] = tts ? "尺 " : "feet.ogg";
-	dictionary["1_tenth_of_a_mile"] = tts ? "一英里的十分之一" : "1_tenth_of_a_mile.ogg";
-	dictionary["tenths_of_a_mile"] = tts ? "零点一英里" : "tenths_of_a_mile.ogg";
-	dictionary["around_1_mile"] = tts ? "大约一英里（1.6公里）" : "around_1_mile.ogg";
-	dictionary["miles"] = tts ? "英里" : "miles.ogg";
-	
-	dictionary["yards"] = tts ? "yards " : "yards.ogg";
-	
-	// TIME SUPPORT
-	dictionary["time"] = tts ? "所需时间" : "time.ogg";
-	dictionary["1_hour"] = tts ? "一小时" : "1_hour.ogg";
-	dictionary["hours"] = tts ? "小时" : "hours.ogg";
-	dictionary["less_a_minute"] = tts ? "不到一分钟" : "less_a_minute.ogg";
-	dictionary["1_minute"] = tts ? "1分钟" : "1_minute.ogg";
-	dictionary["minutes"] = tts ? "分钟" : "minutes.ogg";
-}
+	dictionary["route_is1"] = tts ? "路程" : "route_is1.ogg";
+	dictionary["route_is2"] = tts ? "遠" : "route_is2.ogg";
+	dictionary["route_calculate"] = tts ? "已重新計算路綫" : "route_calculate.ogg";
+	dictionary["distance"] = tts ? "距離" : "distance.ogg";
 
+	// LEFT/RIGHT
+	dictionary["prepare"] = tts ? "請準備" : "prepare.ogg";
+	dictionary["after"] = tts ? "後" : "after.ogg";
+	dictionary["in"] = tts ? "在" : "in.ogg";
+
+	dictionary["left"] = tts ? "左轉" : "left.ogg";
+	dictionary["left_sh"] = tts ? "向左急轉" : "left_sh.ogg";
+	dictionary["left_sl"] = tts ? "稍向左轉" : "left_sl.ogg";
+	dictionary["right"] = tts ? "右轉" : "right.ogg";
+	dictionary["right_sh"] = tts ? "向右急轉" : "right_sh.ogg";
+	dictionary["right_sl"] = tts ? "稍向右轉" : "right_sl.ogg";
+	dictionary["left_keep"] = tts ? "靠左" : "left_keep.ogg";
+	dictionary["right_keep"] = tts ? "靠右" : "right_keep.ogg";
+	dictionary["left_bear"] = tts ? "靠左" : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
+	dictionary["right_bear"] = tts ? "靠右" : "right_bear.ogg";   // in English the same as right_keep, may be different in other languages
+
+	// U-TURNS
+	dictionary["prepare_make_uturn"] = tts ? "準備掉頭" : "prepare_make_uturn.ogg";
+	dictionary["make_uturn1"] = tts ? "後請掉頭" : "make_uturn1.ogg";
+	dictionary["make_uturn2"] = tts ? "請掉頭" : "make_uturn2.ogg";
+	dictionary["make_uturn_wp"] = tts ? "可能的話, 請掉頭" : "make_uturn_wp.ogg";
+
+	// ROUNDABOUTS
+	dictionary["prepare_roundabout"] = tts ? "後進入迴旋處" : "prepare_roundabout.ogg";
+	dictionary["roundabout"] = tts ? "後進入迴旋處, 然後在" : "roundabout.ogg";
+	dictionary["then"] = tts ? ", 然後" : "then.ogg";
+	dictionary["and"] = tts ? "同" : "and.ogg";
+	dictionary["take"] = tts ? "在" : "take.ogg";
+	dictionary["exit"] = tts ? "出口離開" : "exit.ogg";
+
+	dictionary["1st"] = tts ? "第一個" : "1st.ogg";
+	dictionary["2nd"] = tts ? "第二個" : "2nd.ogg";
+	dictionary["3rd"] = tts ? "第三個" : "3rd.ogg";
+	dictionary["4th"] = tts ? "第四個" : "4th.ogg";
+	dictionary["5th"] = tts ? "第五個" : "5th.ogg";
+	dictionary["6th"] = tts ? "第六個" : "6th.ogg";
+	dictionary["7th"] = tts ? "第七個" : "7th.ogg";
+	dictionary["8th"] = tts ? "第八個" : "8th.ogg";
+	dictionary["9th"] = tts ? "第九個" : "9th.ogg";
+	dictionary["10th"] = tts ? "第十個" : "10th.ogg";
+	dictionary["11th"] = tts ? "第十一個" : "11th.ogg";
+	dictionary["12th"] = tts ? "第十二個" : "12th.ogg";
+	dictionary["13th"] = tts ? "第十三個" : "13th.ogg";
+	dictionary["14th"] = tts ? "第十四個" : "14th.ogg";
+	dictionary["15th"] = tts ? "第十五個" : "15th.ogg";
+	dictionary["16th"] = tts ? "第十六個" : "16th.ogg";
+	dictionary["17th"] = tts ? "第十七個" : "17th.ogg";
+
+	// STRAIGHT/FOLLOW
+	dictionary["go_ahead"] = tts ? "一直向前行" : "go_ahead.ogg";
+	dictionary["follow"] = tts ? "繼續向前行" : "follow.ogg";
+
+	// ARRIVE
+	dictionary["and_arrive_destination"] = tts ? "並到達目的地" : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "你已到達目的地" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "並到達中途點" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "你已到達中途點" : "reached_intermediate.ogg";
+
+	// NEARBY POINTS
+	dictionary["and_arrive_waypoint"] = tts ? "並到達GPX航點" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "你已到達GPX航點" : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "並到達收藏點" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "你已到達收藏點" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "並到達興趣點" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "你已到達興趣點" : "reached_poi.ogg";
+
+	// ATTENTION
+	dictionary["exceed_limit"] = tts ? "你已超速" : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "注意, " : "attention.ogg";
+	dictionary["speed_camera"] = tts ? "快相機" : "speed_camera.ogg";
+	dictionary["border_control"] = tts ? "邊境管制" : "border_control.ogg";
+	dictionary["railroad_crossing"] = tts ? "鐵路平交道" : "railroad_crossing.ogg";
+	dictionary["traffic_calming"] = tts ? "減低交通流量措施" : "traffic_calming.ogg";
+	dictionary["toll_booth"] = tts ? "收費站" : "toll_booth.ogg";
+	dictionary["stop"] = tts ? "停止標誌" : "stop.ogg";
+	dictionary["pedestrian_crosswalk"] = tts ? "行人過路處" : "pedestrian_crosswalk.ogg";
+	dictionary["tunnel"] = tts ? "隧道" : "tunnel.ogg";
+
+	// OTHER PROMPTS
+	dictionary["location_lost"] = tts ? "接收不到GPS訊號" : "location_lost.ogg";
+	dictionary["location_recovered"] = tts ? "GPS訊號已恢復" : "location_recovered.ogg";
+	dictionary["off_route"] = tts ? "你已偏離原來路線" : "off_route.ogg";
+	dictionary["back_on_route"] = tts ? "你已返回原來路線" : "back_on_route.ogg";
+
+	// STREET NAME PREPOSITIONS
+	dictionary["onto"] = tts ? "到" : "onto.ogg";
+	dictionary["on"] = tts ? "到" : "on.ogg";
+	dictionary["to"] = tts ? "到" : "to.ogg";
+	dictionary["toward"] = tts ? "向" : "toward.ogg";
+
+	// DISTANCE UNIT SUPPORT
+	dictionary["meters"] = tts ? "公尺" : "meters.ogg";
+	dictionary["around_1_kilometer"] = tts ? "約一公里" : "around_1_kilometer.ogg";
+	dictionary["around"] = tts ? "約" : "around.ogg";
+	dictionary["kilometers"] = tts ? "公里" : "kilometers.ogg";
+
+	dictionary["feet"] = tts ? "英呎" : "feet.ogg";
+	dictionary["1_tenth_of_a_mile"] = tts ? "零點一英里" : "1_tenth_of_a_mile.ogg";
+	dictionary["tenths_of_a_mile"] = tts ? "零點一英里" : "tenths_of_a_mile.ogg";
+	dictionary["around_1_mile"] = tts ? "約一英里" : "around_1_mile.ogg";
+	dictionary["miles"] = tts ? "英里" : "miles.ogg";
+	dictionary["yards"] = tts ? "英碼" : "yards.ogg";
+
+	// TIME SUPPORT
+	dictionary["time"] = tts ? "所需時間" : "time.ogg";
+	dictionary["1_hour"] = tts ? "一小時" : "1_hour.ogg";
+	dictionary["hours"] = tts ? "小時" : "hours.ogg";
+	dictionary["less_a_minute"] = tts ? "不到一分鐘" : "less_a_minute.ogg";
+	dictionary["1_minute"] = tts ? "一分鐘" : "1_minute.ogg";
+	dictionary["minutes"] = tts ? "分鐘" : "minutes.ogg";
+}
 
 //// COMMAND BUILDING / WORD ORDER
 ////////////////////////////////////////////////////////////////

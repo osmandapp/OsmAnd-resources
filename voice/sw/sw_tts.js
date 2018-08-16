@@ -1,4 +1,3 @@
-﻿
 // IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 //
 // (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
@@ -8,130 +7,131 @@
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
 // (N/A) Special grammar: (please specify which)
+
+
 var metricConst;
 var dictionary = {};
 var tts;
-
 //// STRINGS
 ////////////////////////////////////////////////////////////////
+// ROUTE CALCULATED
 function populateDictionary(tts) {
-	// ROUTE CALCULATED
-	dictionary["route_is1"] = tts ? "行程" : "route_is1.ogg";
-	dictionary["route_is2"] = tts ? " 遠" : "route_is2.ogg";
-	dictionary["route_calculate"] = tts ? "路线重新计算" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? ", 距离" : "distance.ogg";
-	
+	dictionary["route_is"] = tts ? "Safani ni urefu wa " : "route_is.ogg";
+	dictionary["route_calculate"] = tts ? "njia ya re-mahesabu" : "route_calculate.ogg";
+	dictionary["distance"] = tts ? ". umbali " : "distance.ogg";
+
 	// LEFT/RIGHT
-	dictionary["after"] = tts ? " 後 " : "after.ogg";
-	dictionary["in"] = tts ? "在 " : "in.ogg";
-	
-	dictionary["left"] = tts ? "左轉 " : "left.ogg";
-	dictionary["left_sh"] = tts ? "向左急轉 " : "left_sh.ogg";
-	dictionary["left_sl"] = tts ? "稍向左轉 " : "left_sl.ogg";
-	dictionary["right"] = tts ? "右轉 " : "right.ogg";
-	dictionary["right_sh"] = tts ? "向右急轉 " : "right_sh.ogg";
-	dictionary["right_sl"] = tts ? "稍向右轉 " : "right_sl.ogg";
-	dictionary["left_keep"] = tts ? "靠左 " : "left_keep.ogg";
-	dictionary["right_keep"] = tts ? "靠右 " : "right_keep.ogg";
-	dictionary["left_bear"] = tts ? "靠左 " : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
-	dictionary["right_bear"] = tts ? "靠右 " : "right_bear.ogg";   // in English the same as right_keep, may be different in other languages
-	
+	dictionary["after"] = tts ? " baada ya " : "after.ogg";
+	dictionary["in"] = tts ? "katika " : "in.ogg";
+
+	dictionary["left"] = tts ? "geuka upande wa kushoto" : "left.ogg";
+	dictionary["left_sh"] = tts ? "geuka sana upande wa kushoto" : "left_sh.ogg";
+	dictionary["left_sl"] = tts ? "geuka kiasi upande wa kushoto" : "left_sl.ogg";
+	dictionary["right"] = tts ? "geuka upande wa kulia" : "right.ogg";
+	dictionary["right_sh"] = tts ? "geuka sana upande wa kulia" : "right_sh.ogg";
+	dictionary["right_sl"] = tts ? "geuka kiasi upande wa kulia" : "right_sl.ogg";
+	dictionary["left_keep"] = tts ? "kaa upande wa kushoto" : "left_keep.ogg";
+	dictionary["right_keep"] = tts ? "kaa upande wa kulia" : "right_keep.ogg";
+	dictionary["left_bear"] = tts ? "kaa upande wa kushoto" : "left_bear.ogg";  // in English the same as left_keep, may be different in other languages
+	dictionary["right_bear"] = tts ? "kaa upande wa kulia" : "right_bear.ogg";   // in English the same as right_keep, may be different in other languages
+
 	// U-TURNS
-	dictionary["prepare_make_uturn"] = tts ? " 後迴轉 " : "prepare_make_uturn.ogg";
-	dictionary["make_uturn1"] = tts ? " 後請迴轉" : "make_uturn1.ogg";
-	dictionary["make_uturn2"] = tts ? "請迴轉 " : "make_uturn2.ogg";
-	dictionary["make_uturn_wp"] = tts ? "可能的話, 請迴轉 " : "make_uturn_wp.ogg";
-	
+	dictionary["prepare_make_uturn"] = tts ? "Tayarisha kugeuka nyuma baada ya " : "prepare_make_uturn.ogg";
+	dictionary["make_uturn1"] = tts ? " geuka nyuma " : "make_uturn1.ogg";
+	dictionary["make_uturn2"] = tts ? "Tafandali geuka kwa u turn" : "make_uturn2.ogg";
+	dictionary["make_uturn_wp"] = tts ? "wakati inawezekana, tafadhali kufanya u-kugeuka" : "make_uturn_wp.ogg";
+
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? " 後進入圓環 " : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? " 後進入圓環, 然後在 " : "roundabout.ogg";
-	dictionary["then"] = tts ? ", 然後 " : "then.ogg";
-	dictionary["and"] = tts ? "和 " : "and.ogg";
-	dictionary["take"] = tts ? "在 " : "take.ogg";
-	dictionary["exit"] = tts ? " 出口離開" : "exit.ogg";
-	
-	dictionary["1st"] = tts ? "第一個 " : "1st.ogg";
-	dictionary["2nd"] = tts ? "第二個 " : "2nd.ogg";
-	dictionary["3rd"] = tts ? "第三個 " : "3rd.ogg";
-	dictionary["4th"] = tts ? "第四個 " : "4th.ogg";
-	dictionary["5th"] = tts ? "第五個 " : "5th.ogg";
-	dictionary["6th"] = tts ? "第六個 " : "6th.ogg";
-	dictionary["7th"] = tts ? "第七個 " : "7th.ogg";
-	dictionary["8th"] = tts ? "第八個 " : "8th.ogg";
-	dictionary["9th"] = tts ? "第九個 " : "9th.ogg";
-	dictionary["10th"] = tts ? "第十個 " : "10th.ogg";
-	dictionary["11th"] = tts ? "第十一個 " : "11th.ogg";
-	dictionary["12th"] = tts ? "第十二個 " : "12th.ogg";
-	dictionary["13th"] = tts ? "第十三個 " : "13th.ogg";
-	dictionary["14th"] = tts ? "第十四個 " : "14th.ogg";
-	dictionary["15th"] = tts ? "第十五個 " : "15th.ogg";
-	dictionary["16th"] = tts ? "第十六個 " : "16th.ogg";
-	dictionary["17th"] = tts ? "第十七個 " : "17th.ogg";
-	
+	dictionary["prepare_roundabout"] = tts ? "Tayarisha kuingia mzunguko baada ya " : "prepare_roundabout.ogg";
+	dictionary["roundabout"] = tts ? " ingia mzunguko, na uchukue upande wa" : "roundabout.ogg";
+	dictionary["then"] = tts ? ", kisha " : "then.ogg";
+	dictionary["and"] = tts ? " na " : "and.ogg";
+	dictionary["take"] = tts ? "chukua upande wa " : "take.ogg";
+	dictionary["exit"] = tts ? "kutoka" : "exit.ogg";
+
+	dictionary["1st"] = tts ? "kwanza " : "1st.ogg";
+	dictionary["2nd"] = tts ? "pili " : "2nd.ogg";
+	dictionary["3rd"] = tts ? "tatu " : "3rd.ogg";
+	dictionary["4th"] = tts ? "nne " : "4th.ogg";
+	dictionary["5th"] = tts ? "tano " : "5th.ogg";
+	dictionary["6th"] = tts ? "sita " : "6th.ogg";
+	dictionary["7th"] = tts ? "saba " : "7th.ogg";
+	dictionary["8th"] = tts ? "nane " : "8th.ogg";
+	dictionary["9th"] = tts ? "tisa " : "9th.ogg";
+	dictionary["10th"] = tts ? "kumi " : "10th.ogg";
+	dictionary["11th"] = tts ? "kumi na moja " : "11th.ogg";
+	dictionary["12th"] = tts ? "kumi na mbili " : "12th.ogg";
+	dictionary["13th"] = tts ? "kumi na tatu " : "13th.ogg";
+	dictionary["14th"] = tts ? "kumi na nne " : "14th.ogg";
+	dictionary["15th"] = tts ? "kumi na tano " : "15th.ogg";
+	dictionary["16th"] = tts ? "kumi na sita " : "16th.ogg";
+	dictionary["17th"] = tts ? "kumi na saba " : "17th.ogg";
+
 	// STRAIGHT/FOLLOW
-	dictionary["go_ahead"] = tts ? "直直往前開 " : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "沿著馬路往前 " : "follow.ogg";
-	
+	dictionary["go_ahead"] = tts ? "Endelea moja kwa moja mbele" : "go_ahead.ogg";
+	dictionary["follow"] = tts ? "Endesha kwa " : "follow.ogg";
+
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "然後可達終點 " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "抵達終點 " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "並通過點到達 " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "你已經達到你通過點 " : "reached_intermediate.ogg";
-	
+	dictionary["and_arrive_destination"] = tts ? "na ufike kifiko " : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "umefika " : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "na kufika katika yako kupitia-uhakika " : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "wewe na kufikiwa yako kupitia-uhakika " : "reached_intermediate.ogg";
+
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "並通過點到達  GPX" : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "你已經達到你通過點  GPX" : "reached_waypoint.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "na kufika katika yako kupitia-uhakika GPX " : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "wewe na kufikiwa yako kupitia-uhakika GPX " : "reached_waypoint.ogg";
 	dictionary["and_arrive_favorite"] = tts ? "and pass favorite " : "and_arrive_favorite.ogg";
 	dictionary["reached_favorite"] = tts ? "you are passing favorite " : "reached_favorite.ogg";
 	dictionary["and_arrive_poi"] = tts ? "and pass POI " : "and_arrive_poi.ogg";
 	dictionary["reached_poi"] = tts ? "you are passing POI " : "reached_poi.ogg";
-	
+
 	// ATTENTION
-	//dictionary["exceed_limit"] = tts ? "你超速 " : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "速度极限 " : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "注意, " : "attention.ogg";
-	dictionary["speed_camera"] = tts ? "測速照相機 " : "speed_camera.ogg";
-	dictionary["border_control"] = tts ? "邊境控制 " : "border_control.ogg";
-	dictionary["railroad_crossing"] = tts ? "鐵路道口 " : "railroad_crossing.ogg";
-	dictionary["traffic_calming"] = tts ? "交通鎮定 " : "traffic_calming.ogg";
-	dictionary["toll_booth"] = tts ? "收費站 " : "toll_booth.ogg";
-	dictionary["stop"] = tts ? "停止標誌 " : "stop.ogg";
-	dictionary["pedestrian_crosswalk"] = tts ? "人行橫道 " : "pedestrian_crosswalk.ogg";
-	dictionary["tunnel"] = tts ? "隧道" : "tunnel.ogg";
-	
+	//dictionary["exceed_limit"] = tts ? "wewe ni mno kikomo kasi " : "exceed_limit.ogg";
+	dictionary["exceed_limit"] = tts ? "kikomo kasi " : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "attention, " : "attention.ogg";
+	dictionary["speed_camera"] = tts ? "kamera kasi" : "speed_camera.ogg";
+	dictionary["border_control"] = tts ? "mpaka kudhibiti" : "border_control.ogg";
+	dictionary["railroad_crossing"] = tts ? "reli kuvuka" : "railroad_crossing.ogg";
+	dictionary["traffic_calming"] = tts ? "kutuliza trafiki" : "traffic_calming.ogg";
+	dictionary["toll_booth"] = tts ? "toll kibanda" : "toll_booth.ogg";
+	dictionary["stop"] = tts ? "kuacha ishara" : "stop.ogg";
+	dictionary["pedestrian_crosswalk"] = tts ? "kuvuka pedestrian" : "pedestrian_crosswalk.ogg";
+	dictionary["tunnel"] = tts ? "tunnel" : "tunnel.ogg";
+
 	// OTHER PROMPTS
-	dictionary["location_lost"] = tts ? "接收不到 g p s 信號 " : "location_lost.ogg";
-	dictionary["location_recovered"] = tts ? "g p s 信號恢復 " : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "你已經偏離路線 " : "off_route.ogg";
-	dictionary["back_on_route"] = tts ? "你回來的路線 " : "back_on_route.ogg";
-	
+	dictionary["location_lost"] = tts ? "g p s ishara waliopotea" : "location_lost.ogg";
+	dictionary["location_recovered"] = tts ? "g p s signal restored" : "location_recovered.ogg";
+	dictionary["off_route"] = tts ? "una jitenga na njia " : "off_route.ogg";
+	dictionary["back_on_route"] = tts ? "wewe ni nyuma juu ya njia" : "back_on_route.ogg";
+
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "到 " : "onto.ogg";
-	dictionary["on"] = tts ? "到 " : "on.ogg";
-	dictionary["to"] = tts ? "到 " : "to.ogg";
-	dictionary["toward"] = tts ? "往 " : "toward.ogg";
-	
+	dictionary["onto"] = tts ? "kwenye " : "onto.ogg";
+	dictionary["on"] = tts ? "kwenye " : "on.ogg";
+	dictionary["to"] = tts ? "kwenye " : "to.ogg";
+	dictionary["toward"] = tts ? "kuelekea " : "toward.ogg";
+
 	// DISTANCE UNIT SUPPORT
-	dictionary["meters"] = tts ? " 公尺" : "meters.ogg";
-	dictionary["around_1_kilometer"] = tts ? "約 1 公里 " : "around_1_kilometer.ogg";
-	dictionary["around"] = tts ? "約 " : "around.ogg";
-	dictionary["kilometers"] = tts ? " 公里 " : "kilometers.ogg";
-	
-	dictionary["feet"] = tts ? "尺 " : "feet.ogg";
-	dictionary["1_tenth_of_a_mile"] = tts ? "一英里的十分之一" : "1_tenth_of_a_mile.ogg";
-	dictionary["tenths_of_a_mile"] = tts ? "零点一英里" : "tenths_of_a_mile.ogg";
-	dictionary["around_1_mile"] = tts ? "大约一英里（1.6公里）" : "around_1_mile.ogg";
-	dictionary["miles"] = tts ? "英里" : "miles.ogg";
-	
-	dictionary["yards"] = tts ? "yards " : "yards.ogg";
-	
+	dictionary["meters"] = tts ? "mita" : "meters.ogg";
+	dictionary["around_1_kilometer"] = tts ? "umbali wa kilomita moja" : "around_1_kilometer.ogg";
+	dictionary["around"] = tts ? "kuhusu " : "around.ogg";
+	dictionary["kilometers1"] = tts ? " kilomita" : "kilometers1.ogg";
+	dictionary["kilometers2"] = tts ? " kilometa" : "kilometers2.ogg";
+
+	dictionary["feet"] = tts ? "futi" : "feet.ogg";
+	dictionary["1_tenth_of_a_mile"] = tts ? "moja ya kumi ya maili" : "1_tenth_of_a_mile.ogg";
+	dictionary["tenths_of_a_mile"] = tts ? "sehemu ya kumi ya maili" : "tenths_of_a_mile.ogg";
+	dictionary["around_1_mile"] = tts ? "kuhusu maili moja" : "around_1_mile.ogg";
+	dictionary["miles"] = tts ? "maili" : "miles.ogg";
+
+	dictionary["yards"] = tts ? "yardi" : "yards.ogg";
+
 	// TIME SUPPORT
-	dictionary["time"] = tts ? "所需时间" : "time.ogg";
-	dictionary["1_hour"] = tts ? "一小时" : "1_hour.ogg";
-	dictionary["hours"] = tts ? "小时" : "hours.ogg";
-	dictionary["less_a_minute"] = tts ? "不到一分钟" : "less_a_minute.ogg";
-	dictionary["1_minute"] = tts ? "1分钟" : "1_minute.ogg";
-	dictionary["minutes"] = tts ? "分钟" : "minutes.ogg";
+	dictionary["time"] = tts ? "wakati zinahitajika " : "time.ogg";
+	dictionary["1_hour"] = tts ? "saa moja " : "1_hour.ogg";
+	dictionary["hours"] = tts ? "masaa " : "hours.ogg";
+	dictionary["less_a_minute"] = tts ? "chini ya dakika moja" : "less_a_minute.ogg";
+	dictionary["1_minute"] = tts ? "dakika moja" : "1_minute.ogg";
+	dictionary["minutes"] = tts ? "dakika " : "minutes.ogg";
 }
 
 
@@ -147,70 +147,69 @@ function setMode(mode) {
 }
 
 function route_new_calc(dist, timeVal) {
-	return dictionary["route_is1"] + " " + distance(dist) + " " + dictionary["route_is2"] + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : "");
+	return dictionary["route_is"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : "");
 }
-
 
 function distance(dist) {
 	switch (metricConst) {
 		case "km-m":
 			if (dist < 17 ) {
-				return (tts ? Math.round(dist).toString() : ogg_dist(dist)) + " " + dictionary["meters"];
+				return dictionary["meters"] + " " + (tts ? Math.round(dist).toString() : ogg_dist(dist));
 			} else if (dist < 100) {
-				return (tts ? Math.round((dist/10.0)*10).toString() : ogg_dist((dist/10.0)*10)) + " " + dictionary["meters"];
+				return dictionary["meters"] + " " + (tts ? Math.round((dist/10.0)*10).toString() : ogg_dist((dist/10.0)*10));
 			} else if (dist < 1000) {
-				return (tts ? Math.round((2*dist/100.0)*50).toString() : ogg_dist((2*dist/100.0)*50)) + " " + dictionary["meters"];
+				return dictionary["meters"] + " " + (tts ? Math.round((2*dist/100.0)*50).toString() : ogg_dist((2*dist/100.0)*50));
 			} else if (dist < 1500) {
 				return dictionary["around_1_kilometer"];
 			} else if (dist < 10000) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1000.0).toString() : ogg_dist(dist/1000.0)) + " " + dictionary["kilometers"];
+				return dictionary["around"] + " " + dictionary["kilometers1"] + " " + (tts ? Math.round(dist/1000.0).toString() : ogg_dist(dist/1000.0));
 			} else {
-				return (tts ? Math.round(dist/1000.0).toString() : ogg_dist(dist/1000.0)) + " " + dictionary["kilometers"];
+				return dictionary["kilometers2"] + " " + (tts ? Math.round(dist/1000.0).toString() : ogg_dist(dist/1000.0)) ;
 			}
 			break;
 		case "mi-f":
 			if (dist < 160) {
-				return (tts ? Math.round((2*dist/100.0/0.3048)*50).toString() : ogg_dist((2*dist/100.0/0.3048)*5)) + " " + dictionary["feet"];
+				return dictionary["feet"] + " " + (tts ? Math.round((2*dist/100.0/0.3048)*50).toString() : ogg_dist((2*dist/100.0/0.3048)*5));
 			} else if (dist < 241) {
 				return dictionary["1_tenth_of_a_mile"];
 			} else if (dist < 1529) {
-				return (tts ? Math.round(dist/161.0).toString() : ogg_dist(dist/161.0)) + " " + dictionary["tenths_of_a_mile"];
+				return  dictionary["tenths_of_a_mile"] + " " + (tts ? Math.round(dist/161.0).toString() : ogg_dist(dist/161.0));
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
 			} else if (dist < 16093) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
+				return dictionary["around"] + " " + " " + dictionary["miles"] (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3));
 			} else {
-				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
+				
 			}
 			break;
 		case "mi-m":
-			if (dist < 17) {
-				return (tts ? Math.round(dist).toString() : ogg_dist(dist)) + " " + dictionary["meters"];
+			if (dist < 17 ) {
+				return dictionary["meters"] + " " + (tts ? Math.round(dist).toString() : ogg_dist(dist));
 			} else if (dist < 100) {
-				return (tts ? Math.round((dist/10.0)*10).toString() : ogg_dist((dist/10.0)*10)) + " " + dictionary["meters"];
+				return dictionary["meters"] + " " + (tts ? Math.round((dist/10.0)*10).toString() : ogg_dist((dist/10.0)*10));
 			} else if (dist < 1300) {
-				return (tts ? Math.round((2*dist/100.0)*50).toString() : ogg_dist((2*dist/100.0)*50)) + " " + dictionary["meters"];
+				return  dictionary["meters"] + " " + (tts ? Math.round((2*dist/100.0)*50).toString() : ogg_dist((2*dist/100.0)*50));
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
 			} else if (dist < 16093) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
+				return dictionary["around"] + " " + " " + dictionary["miles"] (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3));
 			} else {
-				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
+				return dictionary["miles"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3));
 			}
 			break;
 		case "mi-y":
 			if (dist < 17) {
-				return (tts ? Math.round(dist/0.9144).toString() : ogg_dist(dist/0.9144)) + " " + dictionary["yards"];
+				return  dictionary["yards"] + " " + (tts ? Math.round(dist/0.9144).toString() : ogg_dist(dist/0.9144));
 			} else if (dist < 100) {
-				return (tts ? Math.round((dist/10.0/0.9144)*10).toString() : ogg_dist((dist/10.0/0.9144)*10)) + " " + dictionary["yards"];
+				return dictionary["yards"] + " " + (tts ? Math.round((dist/10.0/0.9144)*10).toString() : ogg_dist((dist/10.0/0.9144)*10));
 			} else if (dist < 1300) {
-				return (tts ? Math.round((2*dist/100.0/0.9144)*50).toString() : ogg_dist((2*dist/10.0/0.9144)*10)) + " " + dictionary["yards"]; 
+				return dictionary["yards"] + " " + (tts ? Math.round((2*dist/100.0/0.9144)*50).toString() : ogg_dist((2*dist/10.0/0.9144)*10)); 
 			} else if (dist < 2414) {
-				return tts ? dictionary["around_1_mile"] : "around_1_mile.ogg";
+				return dictionary["around_1_mile"];
 			} else if (dist < 16093) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
+				return dictionary["around"] + " " + " " + dictionary["miles"] (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3));
 			} else {
-				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
+				return dictionary["miles"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3));
 			}
 			break;
 	}
@@ -339,7 +338,7 @@ function roundabout(dist, angle, exit, streetName) {
 	if (dist == -1) {
 		return dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	} else {
-		return dictionary["in"] + " " + distance(dist) + " " + dictionary["roundabout"] + " " + dictionary["and"] + " " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
+		return dictionary["in"] + " " + distance(dist) + " " + dictionary["roundabout"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	}
 
 }
@@ -351,7 +350,7 @@ function turn_street(streetName) {
 // turn_street(Street, ["on", SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
 // turn_street(Street, ["on", SName]) :- tts, Street = voice([R, "", _],[R, _, _]), assemble_street_name(Street, SName).
 // turn_street(Street, ["onto", SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), assemble_street_name(Street, SName).
-	if ((streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || Object.keys(streetName).length == 0 || !tts) {
+	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || !tts) {
 		return "";
 	} else if (streetName["toStreetName"] === "" && streetName["toRef"] === "") {
 		return dictionary["toward"] + " " + streetName["toDest"];
@@ -428,9 +427,9 @@ function make_ut(dist, streetName) {
 	// make_ut(Dist, Street) --  ["in", D, "make_uturn" | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
 // make_ut(Street) -- ["make_uturn" | Sgen] :- turn_street(Street, Sgen).
 	if (dist == -1) {
-		return dictionary["make_uturn2"] + " " + turn_street(streetName);
+		return dictionary["make_uturn1"] + " " + turn_street(streetName);
 	} else {
-		return dictionary["in"] + " " + distance(dist) + " " + dictionary["make_uturn1"] + " " + turn_street(streetName);
+		return dictionary["in"] + " " + distance(dist) + " " + dictionary["make_uturn2"] + " " + turn_street(streetName);
 	}
 }
 

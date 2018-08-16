@@ -1,4 +1,3 @@
-﻿
 // IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 //
 // (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
@@ -7,136 +6,141 @@
 // (X) Other prompts: gps lost, off route, back to route
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
-// (N/A) Special grammar: (please specify which)
-var metricConst;
-var dictionary = {};
-var tts;
+// (X) Special grammar: (imperative form of some verbs (*_imp versions))
 
+var dictionary = {};
+var metricConst;
+var tts;
 //// STRINGS
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
-	// ROUTE CALCULATED
-	dictionary["route_is1"] = tts ? "行程" : "route_is1.ogg";
-	dictionary["route_is2"] = tts ? " 遠" : "route_is2.ogg";
-	dictionary["route_calculate"] = tts ? "路线重新计算" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? ", 距离" : "distance.ogg";
-	
+	dictionary["route_is"] = tts ? "A rota tem " : "route_is.ogg";
+	dictionary["route_calculate"] = tts ? "Rota recalculada" : "route_calculate.ogg";
+	dictionary["distance"] = tts ? " Distância de " : "distance.ogg";
+
 	// LEFT/RIGHT
-	dictionary["after"] = tts ? " 後 " : "after.ogg";
-	dictionary["in"] = tts ? "在 " : "in.ogg";
-	
-	dictionary["left"] = tts ? "左轉 " : "left.ogg";
-	dictionary["left_sh"] = tts ? "向左急轉 " : "left_sh.ogg";
-	dictionary["left_sl"] = tts ? "稍向左轉 " : "left_sl.ogg";
-	dictionary["right"] = tts ? "右轉 " : "right.ogg";
-	dictionary["right_sh"] = tts ? "向右急轉 " : "right_sh.ogg";
-	dictionary["right_sl"] = tts ? "稍向右轉 " : "right_sl.ogg";
-	dictionary["left_keep"] = tts ? "靠左 " : "left_keep.ogg";
-	dictionary["right_keep"] = tts ? "靠右 " : "right_keep.ogg";
-	dictionary["left_bear"] = tts ? "靠左 " : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
-	dictionary["right_bear"] = tts ? "靠右 " : "right_bear.ogg";   // in English the same as right_keep, may be different in other languages
-	
+	dictionary["after"] = tts ? "depois de " : "after.ogg";
+	dictionary["in"] = tts ? "após " : "in.ogg";
+
+	dictionary["left"] = tts ? "vire à esquerda" : "left.ogg";
+	dictionary["left_sh"] = tts ? "vire acentuadamente à esquerda" : "left_sh.ogg";
+	dictionary["left_sl"] = tts ? "vire levemente à esquerda" : "left_sl.ogg";
+	dictionary["right"] = tts ? "vire à direita" : "right.ogg";
+	dictionary["right_sh"] = tts ? "vire acentuadamente à direita" : "right_sh.ogg";
+	dictionary["right_sl"] = tts ? "vire levemente à direita" : "right_sl.ogg";
+	dictionary["left_keep"] = tts ? "mantenha-se à esquerda" : "left_keep.ogg";
+	dictionary["right_keep"] = tts ? "mantenha-se à direita" : "right_keep.ogg";
+	dictionary["left_bear"] = tts ? "vire à esquerda" : "left_bear.ogg";   // in English the same as left_keep, may be different in other languages
+	dictionary["right_bear"] = tts ? "vire à direita" : "right_bear.ogg";   // in English the same as right_keep, may be different in other languages
+
+	dictionary["left_imp"] = tts ? "virar à esquerda" : "left_imp.ogg";
+	dictionary["left_sh_imp"] = tts ? "virar acentuadamente à esquerda" : "left_sh_imp.ogg";
+	dictionary["left_sl_imp"] = tts ? "virar levemente à esquerda" : "left_sl_imp.ogg";
+	dictionary["right_imp"] = tts ? "virar à direita" : "right_imp.ogg";
+	dictionary["right_sh_imp"] = tts ? "virar acentuadamente à direita" : "right_sh_imp.ogg";
+	dictionary["right_sl_imp"] = tts ? "virar levemente à direita" : "right_sl_imp.ogg";
+	dictionary["left_keep_imp"] = tts ? "manter-se à esquerda" : "left_keep_imp.ogg";
+	dictionary["right_keep_imp"] = tts ? "manter-se à direita" : "right_keep_imp.ogg";
+
 	// U-TURNS
-	dictionary["prepare_make_uturn"] = tts ? " 後迴轉 " : "prepare_make_uturn.ogg";
-	dictionary["make_uturn1"] = tts ? " 後請迴轉" : "make_uturn1.ogg";
-	dictionary["make_uturn2"] = tts ? "請迴轉 " : "make_uturn2.ogg";
-	dictionary["make_uturn_wp"] = tts ? "可能的話, 請迴轉 " : "make_uturn_wp.ogg";
-	
+	dictionary["make_uturn"] = tts ? "faça um retorno" : "make_uturn.ogg";
+	dictionary["make_uturn_imp"] = tts ? "retornar" : "make_uturn_imp.ogg";
+	dictionary["make_uturn_wp"] = tts ? "Retorne quando possível" : "make_uturn_wp.ogg";
+
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? " 後進入圓環 " : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? " 後進入圓環, 然後在 " : "roundabout.ogg";
-	dictionary["then"] = tts ? ", 然後 " : "then.ogg";
-	dictionary["and"] = tts ? "和 " : "and.ogg";
-	dictionary["take"] = tts ? "在 " : "take.ogg";
-	dictionary["exit"] = tts ? " 出口離開" : "exit.ogg";
-	
-	dictionary["1st"] = tts ? "第一個 " : "1st.ogg";
-	dictionary["2nd"] = tts ? "第二個 " : "2nd.ogg";
-	dictionary["3rd"] = tts ? "第三個 " : "3rd.ogg";
-	dictionary["4th"] = tts ? "第四個 " : "4th.ogg";
-	dictionary["5th"] = tts ? "第五個 " : "5th.ogg";
-	dictionary["6th"] = tts ? "第六個 " : "6th.ogg";
-	dictionary["7th"] = tts ? "第七個 " : "7th.ogg";
-	dictionary["8th"] = tts ? "第八個 " : "8th.ogg";
-	dictionary["9th"] = tts ? "第九個 " : "9th.ogg";
-	dictionary["10th"] = tts ? "第十個 " : "10th.ogg";
-	dictionary["11th"] = tts ? "第十一個 " : "11th.ogg";
-	dictionary["12th"] = tts ? "第十二個 " : "12th.ogg";
-	dictionary["13th"] = tts ? "第十三個 " : "13th.ogg";
-	dictionary["14th"] = tts ? "第十四個 " : "14th.ogg";
-	dictionary["15th"] = tts ? "第十五個 " : "15th.ogg";
-	dictionary["16th"] = tts ? "第十六個 " : "16th.ogg";
-	dictionary["17th"] = tts ? "第十七個 " : "17th.ogg";
-	
+	dictionary["prepare_roundabout"] = tts ? "Prepare-se para entrar na rotatória" : "prepare_roundabout.ogg";
+	dictionary["roundabout"] = tts ? "entre na rotatória e " : "roundabout.ogg";
+	dictionary["then"] = tts ? "então " : "then.ogg";
+	dictionary["and"] = tts ? " e " : "and.ogg";
+	dictionary["take"] = tts ? "pegue a " : "take.ogg";
+	dictionary["exit"] = tts ? "saída" : "exit.ogg";
+
+	dictionary["1st"] = tts ? "primeira " : "1st.ogg";
+	dictionary["2nd"] = tts ? "segunda " : "2nd.ogg";
+	dictionary["3rd"] = tts ? "terceira " : "3rd.ogg";
+	dictionary["4th"] = tts ? "quarta " : "4th.ogg";
+	dictionary["5th"] = tts ? "quinta " : "5th.ogg";
+	dictionary["6th"] = tts ? "sexta " : "6th.ogg";
+	dictionary["7th"] = tts ? "sétima " : "7th.ogg";
+	dictionary["8th"] = tts ? "oitava " : "8th.ogg";
+	dictionary["9th"] = tts ? "nona " : "9th.ogg";
+	dictionary["10th"] = tts ? "décima " : "10th.ogg";
+	dictionary["11th"] = tts ? "décima primeira " : "11th.ogg";
+	dictionary["12th"] = tts ? "décima segunda " : "12th.ogg";
+	dictionary["13th"] = tts ? "décima terceira " : "13th.ogg";
+	dictionary["14th"] = tts ? "décima quarta " : "14th.ogg";
+	dictionary["15th"] = tts ? "décima quinta " : "15th.ogg";
+	dictionary["16th"] = tts ? "décima sexta " : "16th.ogg";
+	dictionary["17th"] = tts ? "décima sétima " : "17th.ogg";
+
 	// STRAIGHT/FOLLOW
-	dictionary["go_ahead"] = tts ? "直直往前開 " : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "沿著馬路往前 " : "follow.ogg";
-	
+	dictionary["go_ahead"] = tts ? "Siga em frente" : "go_ahead.ogg";
+	dictionary["follow"] = tts ? "Continue por " : "follow.ogg";
+
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "然後可達終點 " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "抵達終點 " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "並通過點到達 " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "你已經達到你通過點 " : "reached_intermediate.ogg";
-	
+	dictionary["and_arrive_destination"] = tts ? "e chegue ao destino " : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "chegou ao destino " : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "e chegue ao ponto intermediário " : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "chegou ao ponto intermediário " : "reached_intermediate.ogg";
+
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "並通過點到達  GPX" : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "你已經達到你通過點  GPX" : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "and pass favorite " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "you are passing favorite " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "and pass POI " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "you are passing POI " : "reached_poi.ogg";
-	
+	dictionary["and_arrive_waypoint"] = tts ? "e chegue ao ponto GPX " : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "chegou ao ponto GPX " : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "e chegue ao favorito " : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "chegou ao favorito " : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "e chegue ao POI " : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "chegou ao POI " : "reached_poi.ogg";
+
 	// ATTENTION
-	//dictionary["exceed_limit"] = tts ? "你超速 " : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "速度极限 " : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "注意, " : "attention.ogg";
-	dictionary["speed_camera"] = tts ? "測速照相機 " : "speed_camera.ogg";
-	dictionary["border_control"] = tts ? "邊境控制 " : "border_control.ogg";
-	dictionary["railroad_crossing"] = tts ? "鐵路道口 " : "railroad_crossing.ogg";
-	dictionary["traffic_calming"] = tts ? "交通鎮定 " : "traffic_calming.ogg";
-	dictionary["toll_booth"] = tts ? "收費站 " : "toll_booth.ogg";
-	dictionary["stop"] = tts ? "停止標誌 " : "stop.ogg";
-	dictionary["pedestrian_crosswalk"] = tts ? "人行橫道 " : "pedestrian_crosswalk.ogg";
-	dictionary["tunnel"] = tts ? "隧道" : "tunnel.ogg";
-	
+	//dictionary["exceed_limit"] = tts ? "excesso de velocidade " : "exceed_limit.ogg";
+	dictionary["exceed_limit"] = tts ? "limite de velocidade " : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "atenção! " : "attention.ogg";
+	dictionary["a_frente"] = tts ? " à frente" : "a_frente.ogg"; // pequena diferenciação do inglês, para indicar que o objeto se encontra à frente
+	dictionary["speed_camera"] = tts ? "radar" : "speed_camera.ogg";
+	dictionary["border_control"] = tts ? "alfândega" : "border_control.ogg";
+	dictionary["railroad_crossing"] = tts ? "cruzamento de linha férrea" : "railroad_crossing.ogg";
+	dictionary["traffic_calming"] = tts ? "obstáculo" : "traffic_calming.ogg";
+	dictionary["toll_booth"] = tts ? "pedágio" : "toll_booth.ogg";
+	dictionary["stop"] = tts ? "sinal de pare" : "stop.ogg";
+	dictionary["pedestrian_crosswalk"] = tts ? "passeio de pedestres" : "pedestrian_crosswalk.ogg";
+	dictionary["tunnel"] = tts ? "túnel" : "tunnel.ogg";
+
 	// OTHER PROMPTS
-	dictionary["location_lost"] = tts ? "接收不到 g p s 信號 " : "location_lost.ogg";
-	dictionary["location_recovered"] = tts ? "g p s 信號恢復 " : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "你已經偏離路線 " : "off_route.ogg";
-	dictionary["back_on_route"] = tts ? "你回來的路線 " : "back_on_route.ogg";
-	
+	dictionary["location_lost"] = tts ? "sem sinal GPS" : "location_lost.ogg";
+	dictionary["location_recovered"] = tts ? "sinal GPS recuperado" : "location_recovered.ogg";
+	dictionary["off_route"] = tts ? "desviou-se da rota por " : "off_route.ogg";
+	dictionary["back_on_route"] = tts ? "retornou ao percurso" : "back_on_route.ogg";
+
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "到 " : "onto.ogg";
-	dictionary["on"] = tts ? "到 " : "on.ogg";
-	dictionary["to"] = tts ? "到 " : "to.ogg";
-	dictionary["toward"] = tts ? "往 " : "toward.ogg";
-	
+	dictionary["onto"] = tts ? "para " : "onto.ogg";
+	dictionary["on"] = tts ? "em " : "on.ogg";
+	dictionary["to"] = tts ? "em direção a " : "to.ogg";
+	dictionary["toward"] = tts ? "em direção a " : "toward.ogg";
+
 	// DISTANCE UNIT SUPPORT
-	dictionary["meters"] = tts ? " 公尺" : "meters.ogg";
-	dictionary["around_1_kilometer"] = tts ? "約 1 公里 " : "around_1_kilometer.ogg";
-	dictionary["around"] = tts ? "約 " : "around.ogg";
-	dictionary["kilometers"] = tts ? " 公里 " : "kilometers.ogg";
-	
-	dictionary["feet"] = tts ? "尺 " : "feet.ogg";
-	dictionary["1_tenth_of_a_mile"] = tts ? "一英里的十分之一" : "1_tenth_of_a_mile.ogg";
-	dictionary["tenths_of_a_mile"] = tts ? "零点一英里" : "tenths_of_a_mile.ogg";
-	dictionary["around_1_mile"] = tts ? "大约一英里（1.6公里）" : "around_1_mile.ogg";
-	dictionary["miles"] = tts ? "英里" : "miles.ogg";
-	
-	dictionary["yards"] = tts ? "yards " : "yards.ogg";
-	
+	dictionary["meters"] = tts ? "metros" : "meters.ogg";
+	dictionary["around_1_kilometer"] = tts ? "cerca de um quilômetro" : "around_1_kilometer.ogg";
+	dictionary["around"] = tts ? "cerca de " : "around.ogg";
+	dictionary["kilometers"] = tts ? "quilômetros" : "kilometers.ogg";
+
+	dictionary["feet"] = tts ? "pés" : "feet.ogg";
+	dictionary["1_tenth_of_a_mile"] = tts ? "um décimo de milha" : "1_tenth_of_a_mile.ogg";
+	dictionary["tenths_of_a_mile"] = tts ? "décimos de milha" : "tenths_of_a_mile.ogg";
+	dictionary["around_1_mile"] = tts ? "cerca de uma milha" : "around_1_mile.ogg";
+	dictionary["miles"] = tts ? "milhas" : "miles.ogg";
+
+	dictionary["yards"] = tts ? "jardas" : "yards.ogg";
+
 	// TIME SUPPORT
-	dictionary["time"] = tts ? "所需时间" : "time.ogg";
-	dictionary["1_hour"] = tts ? "一小时" : "1_hour.ogg";
-	dictionary["hours"] = tts ? "小时" : "hours.ogg";
-	dictionary["less_a_minute"] = tts ? "不到一分钟" : "less_a_minute.ogg";
-	dictionary["1_minute"] = tts ? "1分钟" : "1_minute.ogg";
-	dictionary["minutes"] = tts ? "分钟" : "minutes.ogg";
+	dictionary["time"] = tts ? "tempo estimado de " : "time.ogg";
+	dictionary["1_hour"] = tts ? "uma hora " : "1_hour.ogg";
+	dictionary["hours"] = tts ? "horas " : "hours.ogg";
+	dictionary["less_a_minute"] = tts ? "menos de um minuto" : "less_a_minute.ogg";
+	dictionary["1_minute"] = tts ? "um minuto" : "1_minute.ogg";
+	dictionary["minutes"] = tts ? "minutos" : "minutes.ogg";
 }
 
 
-//// COMMAND BUILDING / WORD ORDER
-////////////////////////////////////////////////////////////////
 function setMetricConst(metrics) {
 	metricConst = metrics;
 }
@@ -147,9 +151,8 @@ function setMode(mode) {
 }
 
 function route_new_calc(dist, timeVal) {
-	return dictionary["route_is1"] + " " + distance(dist) + " " + dictionary["route_is2"] + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : "");
+	return dictionary["route_is"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : "");
 }
-
 
 function distance(dist) {
 	switch (metricConst) {
@@ -248,7 +251,7 @@ function hours(minutes) {
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + " " + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : "");
+	return dictionary["route_calculate"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : "");
 }
 
 function go_ahead(dist, streetName) {
@@ -324,6 +327,35 @@ function  getTurnType(turnType) {
 			break;
 		case "right_keep":
 			return dictionary["right_keep"];
+			break;
+	}
+}
+
+function  getTurnTypeImp(turnType) {
+	switch (turnType) {
+		case "left":
+			return dictionary["left_imp"];
+			break;
+		case "left_sh":
+			return dictionary["left_sh_imp"];
+			break;
+		case "left_sl":
+			return dictionary["left_sl_imp"];
+			break;
+		case "right":
+			return dictionary["right_imp"];
+			break;
+		case "right_sh":
+			return dictionary["right_sh_imp"];
+			break;
+		case "right_sl":
+			return dictionary["right_sl_imp"];
+			break;
+		case "left_keep":
+			return dictionary["left_keep_imp"];
+			break;
+		case "right_keep":
+			return dictionary["right_keep_imp"];
 			break;
 	}
 }
@@ -428,9 +460,9 @@ function make_ut(dist, streetName) {
 	// make_ut(Dist, Street) --  ["in", D, "make_uturn" | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
 // make_ut(Street) -- ["make_uturn" | Sgen] :- turn_street(Street, Sgen).
 	if (dist == -1) {
-		return dictionary["make_uturn2"] + " " + turn_street(streetName);
+		return dictionary["make_uturn"] + " " + turn_street(streetName);
 	} else {
-		return dictionary["in"] + " " + distance(dist) + " " + dictionary["make_uturn1"] + " " + turn_street(streetName);
+		return dictionary["in"] + " " + distance(dist) + " " + dictionary["make_uturn"] + " " + turn_street(streetName);
 	}
 }
 
@@ -446,12 +478,11 @@ function bear_right(streetName) {
 
 function prepare_make_ut(dist, streetName) {
 	// prepare_make_ut(Dist, Street) -- ["after", D, "make_uturn" | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
-	return dictionary["after"] + " " + distance(dist) + " " + dictionary["make_uturn"] + " " + turn_street(streetName);
+	return dictionary["after"] + " " + distance(dist) + " " + dictionary["make_uturn_imp"] + " " + turn_street(streetName);
 }
 
 function prepare_turn(turnType, dist, streetName) {
-	// prepare_turn(Turn, Dist, Street) -- ["after", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
-	return dictionary["after"] + " " + distance(dist) + " " + getTurnType(turnType) + " " + turn_street(streetName);
+	return dictionary["after"] + " " + distance(dist) + " " + getTurnTypeImp(turnType) + " " + turn_street(streetName);
 }
 
 function prepare_roundabout(dist, exit, streetName) {
