@@ -264,8 +264,6 @@ function time(seconds) {
 		return Math.floor(seconds/60).toString() + ".ogg" + " " + dictionary["minutes5"];
 	} else if (!tts && seconds < 21 * 3600 && minutes % 60 < 3) {
 		return hours(minutes);
-	} else if (!tts && oggMinutes % 60 > 0) {
-		return hours(oggMinutes) + " " + (oggMinutes % 60).toString() + ".ogg " + dictionary["minutes"];
 	} else if (!tss && seconds < 21 * 3600) {
 		var st = minutes % 60;
 		var stx = Math.round(st/5.0) * 5;
