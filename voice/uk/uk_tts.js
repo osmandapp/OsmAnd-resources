@@ -130,8 +130,10 @@ function populateDictionary(tts) {
 	dictionary["time"] = tts ? "час " : "time.ogg";
 	dictionary["less_a_minute"] = tts ? "менше хвилини  " : "less_a_minute.ogg";
 	dictionary["hour"] = tts ? "година " : "hour.ogg";
+	dictionary["1_hour"] = tts ? "одна година " : "hour.ogg";
 	dictionary["hours_a"] = tts ? "години " : "hours_a.ogg";
 	dictionary["hours_ov"] = tts ? "годин " : "hours_ov.ogg";
+	dictionary["1_minute"] = tts ? "одна хвилина " : "minute.ogg";
 	dictionary["minute"] = tts ? "хвилина" : "minute.ogg";
 	dictionary["minute_y"] = tts ? "хвилини" : "minute_y.ogg";
 	dictionary["minutes"] = tts ? "хвилин" : "minutes.ogg";
@@ -179,6 +181,37 @@ function plural_mi(dist) {
 		return dictionary["2mili"];
 	} else {
 		return dictionary["5mil"];
+	}
+}
+
+function time(seconds) {
+	var minutes = Math.round(seconds/60.0);
+	var oggMinutes = Math.round(((seconds/300.0) * 5));
+	if (seconds < 30) {
+		return dictionary["less_a_minute"];
+	} else if (minutes % 60 == 0 && tts) {
+		return hours(minutes);
+	} else if (minutes % 60 == 1 && tts) {
+		return hours(minutes) + " " + dictionary["1_minute"];
+	} else if (tts) {
+		return hours(minutes) + " " + (minutes % 60).toString() + " " + plural_mn(minutes % 60);
+	} else if (!tts && seconds < 300) {
+		return minutes.toString() + ".ogg "  + plural_mn(minutes);
+	} else if (!tts && oggMinutes % 60 > 0) {
+		return hours(oggMinutes) + " " + (oggMinutes % 60).toString() + ".ogg " + plural_mn(oggMinutes % 60);
+	} else if (!tts) {
+		return hours(oggMinutes);
+	}
+}
+
+function hours(minutes) {
+	if (minutes < 60) {
+		return "";
+	} else if (minutes < 120) {
+		return dictionary["1_hour"];
+	} else {
+		var hours = minutes / 60;
+        return Math.floor(hours).toString() + (!tts ? ".ogg " : " ") + plural_hs(Math.floor(hours)); 
 	}
 }
 
@@ -246,9 +279,9 @@ function plural_hs(time) {
 	if (time % 10 == 1 && (time % 100 > 20 || time % 100 < 10)) {
 		return dictionary["hour"];
 	} else if (time % 10 > 1 && time % 10 < 5 && (time % 100 > 20 || time % 100 < 10)) {
-		return dictionary["2hours"];
+		return dictionary["hours_a"];
 	} else {
-		return dictionary["5hours"];
+		return dictionary["hours_ov"];
 	}
 }
 
@@ -257,33 +290,10 @@ function plural_mn(time) {
 	if (time % 10 == 1 && (time % 100 > 20 || time % 100 < 10)) {
 		return dictionary["minute"];
 	} else if (time % 10 > 1 && time % 10 < 5 && (time % 100 > 20 || time % 100 < 10)) {
-		return dictionary["2minutes"];
+		return dictionary["minute_y"];
 	} else {
-		return dictionary["5minutes"];
+		return dictionary["minutes"];
 	}
-}
-
-
-function time(seconds) {
-	var minutes = Math.round(seconds/60.0);
-	var oggMinutes = Math.round(((seconds/300.0) * 5));
-	if (seconds < 30) {
-		return dictionary["less_a_minute"];
-	} else if (minutes % 60 == 0 && tts) {
-		return hours(minutes);
-	} else if (tts){
-		return hours(minutes) + " " + (minutes % 60).toString() + plural_mn(minutes % 60);
-	} else if (!tts && seconds < 300) {
-		minutes.toString() + ".ogg " + plural_mn(minutes); 
-	} else if (!tts && minutes % 60 > 0) {
-		return hours(oggMinutes) + " " + (oggMinutes % 60).toString() + ".ogg " + plural_mn(oggMinutes % 60);
-	} else if (!tts) {
-		return hours(oggMinutes);
-	}
-}
-
-function hours(minutes) {
-	return minutes < 60 ? "" : Math.floor(minutes/60) + tts ? " " : ".ogg " + plural_hs(minutes/60);
 }
 
 function route_recalc(dist, seconds) {
