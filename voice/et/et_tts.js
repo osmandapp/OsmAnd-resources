@@ -717,7 +717,7 @@ function ogg_dist(distance, declension) {
 	} else if (distance < 20) {
 		return decline_string(Math.floor(distance).toString(), declension) + ".ogg ";
 	} else if (distance < 1000 && (distance % 50) == 0) {
-		return decline_string((distance % 50).toString(), declension) + ".ogg ";
+		return decline_string(distance.toString(), declension) + ".ogg ";
 	} else if (distance < 30) {
 		return decline_string("20.ogg", declension) + " " + ogg_dist(distance - 20);
 	} else if (distance < 40) {

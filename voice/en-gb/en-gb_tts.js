@@ -576,7 +576,7 @@ function ogg_dist(distance) {
 	} else if (distance < 20) {
 		return Math.floor(distance).toString() + ".ogg ";
 	} else if (distance < 1000 && (distance % 50) == 0) {
-		return (distance % 50).toString() + ".ogg ";
+		return distance.toString() + ".ogg ";
 	} else if (distance < 30) {
 		return "20.ogg " + ogg_dist(distance - 20);
 	} else if (distance < 40) {
