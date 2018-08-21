@@ -30,7 +30,7 @@ string('distance.ogg', ', resan är ').
 
 % LEFT/RIGHT
 string('after.ogg', 'Om ').
-string('in.ogg', 'i ').
+string('in.ogg', 'Om ').
 
 string('left.ogg', 'sväng vänster').
 string('left_sh.ogg', 'sväng skarpt vänster').
@@ -49,7 +49,7 @@ string('make_uturn.ogg', ' gör en u-sväng').
 string('make_uturn_wp.ogg', 'Gör en u-sväng så snart som möjligt').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Det kommer en rondell om ').
+string('prepare_roundabout.ogg', 'kommer det en rondell').
 string('roundabout.ogg', ' kör in i rondellen och ta').
 string('then.ogg', ', sedan ').
 string('and.ogg', ' och ').
@@ -81,40 +81,40 @@ string('follow.ogg', 'Följ den här vägen ').
 % ARRIVE
 string('and_arrive_destination.ogg', 'och du är framme ').
 string('reached_destination.ogg','du är framme ').
-string('and_arrive_intermediate.ogg', 'och anländer till din via-punkt ').
+string('and_arrive_intermediate.ogg', 'och anländ till din via-punkt ').
 string('reached_intermediate.ogg', 'du har nått din via-punkt ').
 
 % NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'och anländer till din via-punkt GPX ').
-string('reached_waypoint.ogg', 'du har nått din via-punkt GPX ').
-string('and_arrive_favorite.ogg', 'and pass favorite ').
-string('reached_favorite.ogg', 'you are passing favorite ').
-string('and_arrive_poi.ogg', 'and pass POI ').
-string('reached_poi.ogg', 'you are passing POI ').
+string('and_arrive_waypoint.ogg', 'och passera din GPX-via-punkt ').
+string('reached_waypoint.ogg', 'du passerar din GPX-via-punkt ').
+string('and_arrive_favorite.ogg', 'och passera favoriten ').
+string('reached_favorite.ogg', 'du passerar favoriten ').
+string('and_arrive_poi.ogg', 'och passera intressepunkten ').
+string('reached_poi.ogg', 'du passerar intressepunkten ').
 
 % ATTENTION
 %string('exceed_limit.ogg', 'du överskrider hastighetsgränsen ').
 string('exceed_limit.ogg', 'hastighetsbegränsning ').
-string('attention.ogg', 'uppmärksamhet, ').
+string('attention.ogg', 'se upp för ').
 string('speed_camera.ogg', 'fartkamera').
 string('border_control.ogg', 'gränskontroll').
 string('railroad_crossing.ogg', 'järnvägskorsning').
-string('traffic_calming.ogg', 'trafik lugnande').
-string('toll_booth.ogg', 'vägtullen').
-string('stop.ogg', 'Stopp skylt').
-string('pedestrian_crosswalk.ogg', 'fotgängare övergångsställe').
+string('traffic_calming.ogg', 'långsammare trafik').
+string('toll_booth.ogg', 'vägtull').
+string('stop.ogg', 'stoppskylt').
+string('pedestrian_crosswalk.ogg', 'övergångsställe för fotgängare').
 string('tunnel.ogg', 'tunnel').
 
 % OTHER PROMPTS
 string('location_lost.ogg', 'GPS-signalen borttappad').
-string('location_recovered.ogg', 'GPS-signalen återvinnas').
+string('location_recovered.ogg', 'GPS-signalen återvunnen').
 string('off_route.ogg', 'du har avvikit från rutten ').
-string('back_on_route.ogg', 'du är tillbaka på vägen').
+string('back_on_route.ogg', 'du är tillbaka på rutten').
 
 % STREET NAME PREPOSITIONS
 string('onto.ogg', 'på ').
 string('on.ogg', 'på ').
-string('to.ogg', 'på ').
+string('to.ogg', 'till ').
 string('toward.ogg', 'mot ').
 
 % DISTANCE UNIT SUPPORT
