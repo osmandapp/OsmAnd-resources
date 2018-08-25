@@ -94,7 +94,7 @@ function populateDictionary(tts) {
 	dictionary["traffic_calming"] = tts ? "ήπιας κυκλοφορίας" : "traffic_calming.ogg";
 	dictionary["toll_booth"] = tts ? "διόδια" : "toll_booth.ogg";
 	dictionary["stop"] = tts ? "σήμα στοπ" : "stop.ogg";
-	dictionary["pedestrian_crosswalk"] = tts ? "διάβαση πεζών πεζών" : "pedestrian_crosswalk.ogg";
+	dictionary["pedestrian_crosswalk"] = tts ? "διάβαση πεζών" : "pedestrian_crosswalk.ogg";
 	dictionary["tunnel"] = tts ? "σήραγγα" : "tunnel.ogg";
 
 	// OTHER PROMPTS
