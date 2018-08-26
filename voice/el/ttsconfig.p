@@ -102,7 +102,7 @@ string('railroad_crossing.ogg', 'σιδηρόδρομος διάβαση').
 string('traffic_calming.ogg', 'ήπιας κυκλοφορίας').
 string('toll_booth.ogg', 'διόδια').
 string('stop.ogg', 'σήμα στοπ').
-string('pedestrian_crosswalk.ogg', 'διάβαση πεζών πεζών').
+string('pedestrian_crosswalk.ogg', 'διάβαση πεζών').
 string('tunnel.ogg', 'σήραγγα').
 
 % OTHER PROMPTS
