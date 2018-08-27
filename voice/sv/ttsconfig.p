@@ -95,7 +95,7 @@ string('reached_poi.ogg', 'du passerar intressepunkten ').
 % ATTENTION
 %string('exceed_limit.ogg', 'du överskrider hastighetsgränsen ').
 string('exceed_limit.ogg', 'hastighetsbegränsning ').
-string('attention.ogg', 'se upp för ').
+string('attention.ogg', 'observera ').
 string('speed_camera.ogg', 'fartkamera').
 string('border_control.ogg', 'gränskontroll').
 string('railroad_crossing.ogg', 'järnvägskorsning').
