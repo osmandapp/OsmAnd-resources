@@ -23,8 +23,8 @@ function populateDictionary(tts) {
 	dictionary["right"] = tts ? "rechts abbiegen" : "right.ogg";
 	dictionary["right_sh"] = tts ? "scharf rechts abbiegen" : "right_sh.ogg";
 	dictionary["right_sl"] = tts ? "leicht rechts abbiegen" : "right_sl.ogg";
-	dictionary["left_keep"] = tts ? "links halten" : "left_keep.ogg";
-	dictionary["right_keep"] = tts ? "rechts halten" : "right_keep.ogg";
+	dictionary["left_keep"] = tts ? "links einordnen" : "left_keep.ogg"; //"left_keep"/"right_keep" is a turn type aiding lane selection
+	dictionary["right_keep"] = tts ? "rechts einordnen" : "right_keep.ogg";
 	dictionary["left_bear"] = tts ? "links halten" : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
 	dictionary["right_bear"] = tts ? "rechts halten" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
 	
