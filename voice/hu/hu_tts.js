@@ -376,7 +376,7 @@ function turn_street(streetName) {
 	return "";
 }
 
-ffunction assemble_street_name(streetName) {
+function assemble_street_name(streetName) {
 // assemble_street_name(voice([Ref, Name, ""], _), Concat) :- atom_concat(Ref, " ", C1), atom_concat(C1, Name, Concat).
 // assemble_street_name(voice(["", Name, Dest], _), [C1, "toward", Dest]) :- atom_concat(Name, " ", C1).
 // assemble_street_name(voice([Ref, _, Dest], _), [C1, "toward", Dest]) :- atom_concat(Ref, " ", C1).
@@ -385,8 +385,7 @@ ffunction assemble_street_name(streetName) {
 	} else if (streetName["toRef"] === "") {
 		return streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	} else if (streetName["toRef"] != "") {
-		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
-	}
+		return streetName["toRef"] + " " + streetName["toDest"] + " " + dictionary["toward"];
 }
 
 function nth(exit) {
