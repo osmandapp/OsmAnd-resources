@@ -4,6 +4,8 @@ set(OsmAndCore_ResourcesBundle_src
 	"${CMAKE_CURRENT_BINARY_DIR}/gen/EmbeddedResourcesBundle.cpp"
 )
 
+set_source_files_properties(${OsmAndCore_ResourcesBundle_src} PROPERTIES GENERATED TRUE)
+
 if (CMAKE_HOST_WIN32 AND NOT CYGWIN)
 	add_custom_target(OsmAndCore_ResourcesBundle_VerifyPackagingList
 		bash
@@ -13,6 +15,7 @@ if (CMAKE_HOST_WIN32 AND NOT CYGWIN)
 		COMMENT "Verifying packaging list...")
 
 	add_custom_command(OUTPUT ${OsmAndCore_ResourcesBundle_src}
+		PRE_BUILD
 		COMMAND bash ARGS --login "${CMAKE_CURRENT_LIST_DIR}/embed-resources.sh" "${CMAKE_CURRENT_BINARY_DIR}"
 		DEPENDS
 			"${CMAKE_CURRENT_LIST_DIR}/embed-resources.list"
@@ -28,6 +31,7 @@ else()
 		COMMENT "Verifying packaging list...")
 
 	add_custom_command(OUTPUT ${OsmAndCore_ResourcesBundle_src}
+		PRE_BUILD
 		COMMAND "${CMAKE_CURRENT_LIST_DIR}/embed-resources.sh" "${CMAKE_CURRENT_BINARY_DIR}"
 		DEPENDS
 			"${CMAKE_CURRENT_LIST_DIR}/embed-resources.list"
