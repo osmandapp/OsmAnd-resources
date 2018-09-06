@@ -141,7 +141,7 @@ if __name__=='__main__':
         #[r'rendering_styles/style-icons/drawable-mdpi/h_((?:[^/]*?shield[^/]*?)|(?:[^/]*?osmc[^/]*?))\.png', r'[ddf=1.0]map/shields/\1.png'],
         #[r'rendering_styles/style-icons/drawable-mdpi/h_([^/]*?)\.png', r'[ddf=1.0]map/shaders/\1.png'],
         #[r'rendering_styles/style-icons/drawable-mdpi/mm_([^/]*?)\.png', r'[ddf=1.0]map/icons/\1.png'],
-        [r'rendering_styles/style-icons/drawable-mdpi/mx_([^/]*?)\.png', r'[ddf=1.0]map/largeIcons/\1.png'],
+        #[r'rendering_styles/style-icons/drawable-mdpi/mx_([^/]*?)\.png', r'[ddf=1.0]map/largeIcons/\1.png'],
 
         # Map icons (Android hdpi == 1.5 ddf):
         # [r'rendering_styles/style-icons/drawable-hdpi/h_((?:[^/]*?shield[^/]*?)|(?:[^/]*?osmc[^/]*?))\.png', r'[ddf=1.5]map/shields/\1.png'],
