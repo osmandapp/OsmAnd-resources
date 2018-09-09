@@ -34,8 +34,6 @@ if (EXISTS ${OsmAndCore_ResourcesCppIndex_src})
 	   	set(OsmAndCore_ResourcesBundle_src ${listVar})
 	   	set_source_files_properties(${OsmAndCore_ResourcesBundle_src} PROPERTIES GENERATED TRUE)
 
-	    message("========== ${OsmAndCore_ResourcesBundle_src}")
-
 		add_custom_command(OUTPUT ${OsmAndCore_ResourcesBundle_src}
 			PRE_BUILD
 			COMMAND "${CMAKE_CURRENT_LIST_DIR}/embed-resources.sh" "${CMAKE_CURRENT_BINARY_DIR}"

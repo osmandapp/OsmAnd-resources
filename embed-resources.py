@@ -86,7 +86,6 @@ class OsmAndCoreResourcesPacker(object):
 
             # For each resource in collection, pack it
             for (index, resource) in enumerate(resources):
-                idx += 1
                 # if "hdpi" in resource[0]:
                 #    continue
                 originalSize = os.path.getsize(resource[0])
@@ -125,6 +124,7 @@ class OsmAndCoreResourcesPacker(object):
                 outputFile.write("\n")
 
                 print("Packed '%s'(%d bytes) as '%s'(4+%d bytes)..." % (resource[0], originalSize, resource[1], packedSize))
+                idx += 1
 
             # Write footer of the file and close it
             outputFile.write("} // extern \"C\"\n")
