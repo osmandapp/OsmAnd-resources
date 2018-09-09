@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import glob
 import os
 import zlib
 import re
@@ -19,46 +20,111 @@ class OsmAndCoreResourcesListGenerator(object):
         return
 
     # -------------------------------------------------------------------------
-    def generate(self, workroot, rules, outputFilename):
-    	# Open output file
+    def generate(self, workingDir, resourcesPath, rules, listName, listExt, indexFilepath):
+        generalOutputFilename = resourcesPath + "/" + listName + "." + listExt
+        # Open general output file
         try:
-            outputFile = open(outputFilename, "w")
+            generalOutputFile = open(generalOutputFilename, "w")
         except IOError:
-            print("Failed to open '%s' for writing" % (outputFilename))
+            print("Failed to open '%s' for writing" % (generalOutputFilename))
             return False
+
+        # Open index file
+        try:
+            indexOutputFile = open(indexFilepath, "w")
+        except IOError:
+            print("Failed to open '%s' for writing" % (indexFilepath))
+            return False
+
+        # Open cpp index file
+        cppIndexFilepath = resourcesPath + "/embed-resources-cpp.index"
+        try:
+            cppIndexOutputFile = open(cppIndexFilepath, "w")
+        except IOError:
+            print("Failed to open '%s' for writing" % (cppIndexFilepath))
+            return False
+
+        for f in glob.glob(workingDir + "/gen/EmbeddedResourcesBundle_*"):
+            os.remove(f)
 
         # List all files
         print("Looking for files...")
         filenames = []
-        for path, dirs, files in os.walk(workroot):
-        	if path.startswith('.') or os.path.basename(path).startswith('.'):
-        		print("Ignoring '%s'" % (path))
-        		continue
-        	print("Listing '%s' with %d files" % (path, len(files)))
-        	for filename in files:
-        		filepath = os.path.join(path, filename)
-        		filenames.append(os.path.relpath(filepath, workroot))
+        for path, dirs, files in os.walk(resourcesPath):
+            if path.startswith('.') or os.path.basename(path).startswith('.'):
+                print("Ignoring '%s'" % (path))
+                continue
+            print("Listing '%s' with %d files" % (path, len(files)))
+            for filename in files:
+                filepath = os.path.join(path, filename)
+                filenames.append(os.path.relpath(filepath, resourcesPath))
         print("Found %d files to test" % (len(filenames)))
 
         # Apply each rule to each file entry
+        pngLimit = 20 # max files in single list
+        listIndex = 0
+        pngCounter = 0
+        outputFilename = None
+        outputFile = None
         for rule in rules:
-        	print("Processing rule '%s' => '%s' rule:" % (rule[0], rule[1]))
-        	processed = []
-        	for filename in filenames:
-        		if re.match(rule[0], filename) == None:
-        			continue
-        		listname = re.sub(rule[0], rule[1], filename)
-        		processed.append(filename)
-        		outputFile.write("/%s:%s\n" % (filename, listname))
+            print("Processing rule '%s' => '%s' rule:" % (rule[0], rule[1]))
+            processed = []
+            for filename in filenames:
+                if re.match(rule[0], filename) == None:
+                    continue
+                listname = re.sub(rule[0], rule[1], filename)
+                processed.append(filename)
 
-        		print("\t '%s' => '%s'" % (filename, listname))
-        	print("\t%d processed" % (len(processed)))
-        	filenames[:] = [filename for filename in filenames if not filename in processed]
+                createNewFile = False
+                if (filename.endswith('.png')):
+                    if (pngCounter == 0) or (pngCounter > pngLimit):
+                        pngCounter = 1
+                        createNewFile = True
+                    else:
+                        pngCounter += 1
+                else:
+                    pngCounter = 0
+                    createNewFile = True
+
+                if (createNewFile):
+                    listIndex += 1
+                    if (outputFile):
+                        outputFile.flush()
+                        outputFile.close()
+                    outputFilename = resourcesPath + "/" + listName + "_" + str(listIndex) + "." + listExt
+                    indexOutputFile.write("%s\n" % (outputFilename))
+                    outputCppFilename = workingDir + "/gen/EmbeddedResourcesBundle_" + str(listIndex) + ".cpp"
+                    cppIndexOutputFile.write("%s\n" % (outputCppFilename))
+                    # Open output file
+                    try:
+                        outputFile = open(outputFilename, "w")
+                    except IOError:
+                        print("Failed to open '%s' for writing" % (outputFilename))
+                        return False
+
+                outputFile.write("/%s:%s\n" % (filename, listname))
+                generalOutputFile.write("/%s:%s\n" % (filename, listname))
+
+                print("\t '%s' => '%s'" % (filename, listname))
+            print("\t%d processed" % (len(processed)))
+            filenames[:] = [filename for filename in filenames if not filename in processed]
 
         print("%d unmatched" % (len(filenames)))
 
-        outputFile.flush()
-        outputFile.close()
+        if (outputFile):
+            outputFile.flush()
+            outputFile.close()
+
+        indexOutputFile.flush()
+        indexOutputFile.close()
+
+        outputCppFilename = workingDir + "/gen/EmbeddedResourcesBundle_total.cpp"
+        cppIndexOutputFile.write("%s" % (outputCppFilename))
+        cppIndexOutputFile.flush()
+        cppIndexOutputFile.close()
+
+        generalOutputFile.flush()
+        generalOutputFile.close()
 
         return True
 
@@ -72,6 +138,15 @@ if __name__=='__main__':
     print("OsmAnd root path:      %s" % (rootPath))
     resourcesPath = rootPath + "/resources"
     print("OsmAnd resources path: %s" % (resourcesPath))
+
+    workingDir = os.getcwd()
+    if len(sys.argv) >= 2:
+        workingDir = sys.argv[1]
+    print("Working in: %s" % (workingDir))
+
+    resourcesListName = "embed-resources"
+    resourcesListExt = "list"
+    resourcesListFilename = resourcesListName + "." + resourcesListExt
 
     # Check if should regenerate. Regeneration is needed in following cases:
     #  - stamp (git commit hash of the HEAD) differs from current HEAD
@@ -91,8 +166,8 @@ if __name__=='__main__':
             universal_newlines=True).strip()
         os.chdir(oldcwd)
         lastProcessedCommitHash = ""
-        if os.path.exists(resourcesPath + "/.embed-resources.stamp"):
-            with open(resourcesPath + "/.embed-resources.stamp", "r") as stampFile:
+        if os.path.exists(resourcesPath + "/." + resourcesListName + ".stamp"):
+            with open(resourcesPath + "/." + resourcesListName + ".stamp", "r") as stampFile:
                 lastProcessedCommitHash = stampFile.read().strip()
             if currentHeadCommitHash != lastProcessedCommitHash:
                 shouldRegenerate = True
@@ -105,16 +180,16 @@ if __name__=='__main__':
             print("Current HEAD commit:   " + currentHeadCommitHash)
             print("Will regenerate resources list...")
     if not shouldRegenerate:
-        if not os.path.exists(resourcesPath + "/embed-resources.list"):
+        if not os.path.exists(resourcesPath + "/" + resourcesListFilename):
             shouldRegenerate = True
             print("Resources list missing, will regenerate...")
     if not shouldRegenerate:
-        if os.path.getmtime(os.path.realpath(__file__)) > os.path.getmtime(resourcesPath + "/embed-resources.list"):
+        if os.path.getmtime(os.path.realpath(__file__)) > os.path.getmtime(resourcesPath + "/" + resourcesListFilename):
             shouldRegenerate = True
             print("List generation script is newer than generated list, will regenerate resources list...")
-    if not shouldRegenerate and os.path.exists(resourcesPath + "/embed-resources.list"):
+    if not shouldRegenerate and os.path.exists(resourcesPath + "/" + resourcesListFilename):
         currentResourcesList = list()
-        with open(resourcesPath + "/embed-resources.list") as currentResourcesListFile:
+        with open(resourcesPath + "/" + resourcesListFilename) as currentResourcesListFile:
             currentResourcesList = currentResourcesListFile.readlines()
         for resourceListLine in currentResourcesList:
             resourceFileName = resourceListLine.split(':')[0]
@@ -122,13 +197,16 @@ if __name__=='__main__':
                 shouldRegenerate = True
                 print("Missing resource file '%s', will regenerate resources list..." % (resourceFileName))
                 break
-            elif os.path.getmtime(resourcesPath + resourceFileName) > os.path.getmtime(resourcesPath + "/embed-resources.list"):
+            elif os.path.getmtime(resourcesPath + resourceFileName) > os.path.getmtime(resourcesPath + "/" + resourcesListFilename):
                 shouldRegenerate = True
                 print("Resource file '%s' is newer than list, will regenerate resources list..." % (resourceFileName))
                 break
     if not shouldRegenerate:
         print("Resources list is up-to-date")
         sys.exit(0)
+
+    for f in glob.glob(resourcesPath + "/" + resourcesListName + "_*"):
+        os.remove(f)
 
     rules = [
         # Map styles and related:
@@ -140,7 +218,7 @@ if __name__=='__main__':
         # Map icons (Android mdpi == 1.0 ddf):
         [r'rendering_styles/style-icons/drawable-mdpi/h_((?:[^/]*?shield[^/]*?)|(?:[^/]*?osmc[^/]*?))\.png', r'[ddf=1.0]map/shields/\1.png'],
         [r'rendering_styles/style-icons/drawable-mdpi/h_([^/]*?)\.png', r'[ddf=1.0]map/shaders/\1.png'],
-        #[r'rendering_styles/style-icons/drawable-mdpi/mm_([^/]*?)\.png', r'[ddf=1.0]map/icons/\1.png'],
+        [r'rendering_styles/style-icons/drawable-mdpi/mm_([^/]*?)\.png', r'[ddf=1.0]map/icons/\1.png'],
         #[r'rendering_styles/style-icons/drawable-mdpi/mx_([^/]*?)\.png', r'[ddf=1.0]map/largeIcons/\1.png'],
 
         # Map icons (Android hdpi == 1.5 ddf):
@@ -177,16 +255,16 @@ if __name__=='__main__':
         [r'misc/([^/]*?)', r'misc/\1'],
     ]
 
-    resourcesListFilename = resourcesPath + "/embed-resources.list"
+    resourcesIndexFilepath = resourcesPath + "/" + resourcesListName + ".index"
     generator = OsmAndCoreResourcesListGenerator()
-    ok = generator.generate(resourcesPath, rules, resourcesListFilename)
+    ok = generator.generate(workingDir, resourcesPath, rules, resourcesListName, resourcesListExt, resourcesIndexFilepath)
 
     if not ok:
-    	sys.exit(-1)
+        sys.exit(-1)
 
     # Update stamp (if development build)
     if currentHeadCommitHash:
-        with open(resourcesPath + "/.embed-resources.stamp", "w") as stampFile:
+        with open(resourcesPath + "/." + resourcesListName + ".stamp", "w") as stampFile:
             stampFile.write(currentHeadCommitHash)
 
     sys.exit(0)

@@ -1,10 +1,12 @@
 project(OsmAndCore_ResourcesBundle)
 
-set(OsmAndCore_ResourcesBundle_src
-	"${CMAKE_CURRENT_BINARY_DIR}/gen/EmbeddedResourcesBundle.cpp"
-)
-
+set(OsmAndCore_ResourcesBundle_src "")
 set_source_files_properties(${OsmAndCore_ResourcesBundle_src} PROPERTIES GENERATED TRUE)
+
+set(OsmAndCore_ResourcesCppIndex_src 
+	"${CMAKE_CURRENT_LIST_DIR}/embed-resources-cpp.index")
+#file(WRITE ${OsmAndCore_ResourcesCppIndex_src} "${CMAKE_CURRENT_BINARY_DIR}/gen/EmbeddedResourcesBundle_total.cpp")
+set_source_files_properties(${OsmAndCore_ResourcesCppIndex_src} PROPERTIES GENERATED TRUE)
 
 if (CMAKE_HOST_WIN32 AND NOT CYGWIN)
 	add_custom_target(OsmAndCore_ResourcesBundle_VerifyPackagingList
@@ -14,11 +16,15 @@ if (CMAKE_HOST_WIN32 AND NOT CYGWIN)
 		WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
 		COMMENT "Verifying packaging list...")
 
+	file(STRINGS ${OsmAndCore_ResourcesCppIndex_src} OsmAndCore_ResourcesBundle_src)
+	set_source_files_properties(${OsmAndCore_ResourcesBundle_src} PROPERTIES GENERATED TRUE)
+
 	add_custom_command(OUTPUT ${OsmAndCore_ResourcesBundle_src}
 		PRE_BUILD
 		COMMAND bash ARGS --login "${CMAKE_CURRENT_LIST_DIR}/embed-resources.sh" "${CMAKE_CURRENT_BINARY_DIR}"
 		DEPENDS
-			"${CMAKE_CURRENT_LIST_DIR}/embed-resources.list"
+			"${CMAKE_CURRENT_LIST_DIR}/embed-resources-cpp.index"
+			"${CMAKE_CURRENT_LIST_DIR}/embed-resources.index"
 			"${CMAKE_CURRENT_LIST_DIR}/embed-resources.sh"
 			"${CMAKE_CURRENT_LIST_DIR}/embed-resources.py"
 		WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
@@ -30,11 +36,15 @@ else()
 		WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
 		COMMENT "Verifying packaging list...")
 
+	file(STRINGS ${OsmAndCore_ResourcesCppIndex_src} OsmAndCore_ResourcesBundle_src)
+	set_source_files_properties(${OsmAndCore_ResourcesBundle_src} PROPERTIES GENERATED TRUE)
+
 	add_custom_command(OUTPUT ${OsmAndCore_ResourcesBundle_src}
 		PRE_BUILD
 		COMMAND "${CMAKE_CURRENT_LIST_DIR}/embed-resources.sh" "${CMAKE_CURRENT_BINARY_DIR}"
 		DEPENDS
-			"${CMAKE_CURRENT_LIST_DIR}/embed-resources.list"
+			"${CMAKE_CURRENT_LIST_DIR}/embed-resources-cpp.index"
+			"${CMAKE_CURRENT_LIST_DIR}/embed-resources.index"
 			"${CMAKE_CURRENT_LIST_DIR}/embed-resources.sh"
 			"${CMAKE_CURRENT_LIST_DIR}/embed-resources.py"
 		WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
