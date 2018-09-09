@@ -58,7 +58,7 @@ class OsmAndCoreResourcesListGenerator(object):
         print("Found %d files to test" % (len(filenames)))
 
         # Apply each rule to each file entry
-        pngLimit = 20 # max files in single list
+        pngLimit = 200 # max files in single list
         listIndex = 0
         pngCounter = 0
         outputFilename = None
