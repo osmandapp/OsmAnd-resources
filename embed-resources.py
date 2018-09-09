@@ -177,6 +177,9 @@ if __name__=='__main__':
         workingDir = sys.argv[1]
     print("Working in: %s" % (workingDir))
 
+    for f in glob.glob(workingDir + "/gen/EmbeddedResourcesBundle_*"):
+        os.remove(f)
+
     # Embedded resources
     with open(resourcesPath + "/embed-resources.index", "r") as embedResourcesListFileIndex:
         embedResourcesListIndex = embedResourcesListFileIndex.readlines()

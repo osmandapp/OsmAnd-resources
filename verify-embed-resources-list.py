@@ -20,7 +20,7 @@ class OsmAndCoreResourcesListGenerator(object):
         return
 
     # -------------------------------------------------------------------------
-    def generate(self, workingDir, resourcesPath, rules, listName, listExt, indexFilepath):
+    def generate(self, resourcesPath, rules, listName, listExt, indexFilepath):
         generalOutputFilename = resourcesPath + "/" + listName + "." + listExt
         # Open general output file
         try:
@@ -43,9 +43,6 @@ class OsmAndCoreResourcesListGenerator(object):
         except IOError:
             print("Failed to open '%s' for writing" % (cppIndexFilepath))
             return False
-
-        for f in glob.glob(workingDir + "/gen/EmbeddedResourcesBundle_*"):
-            os.remove(f)
 
         # List all files
         print("Looking for files...")
@@ -93,7 +90,7 @@ class OsmAndCoreResourcesListGenerator(object):
                         outputFile.close()
                     outputFilename = resourcesPath + "/" + listName + "_" + str(listIndex) + "." + listExt
                     indexOutputFile.write("%s\n" % (outputFilename))
-                    outputCppFilename = workingDir + "/gen/EmbeddedResourcesBundle_" + str(listIndex) + ".cpp"
+                    outputCppFilename = "/gen/EmbeddedResourcesBundle_" + str(listIndex) + ".cpp"
                     cppIndexOutputFile.write("%s\n" % (outputCppFilename))
                     # Open output file
                     try:
@@ -118,7 +115,7 @@ class OsmAndCoreResourcesListGenerator(object):
         indexOutputFile.flush()
         indexOutputFile.close()
 
-        outputCppFilename = workingDir + "/gen/EmbeddedResourcesBundle_total.cpp"
+        outputCppFilename = "/gen/EmbeddedResourcesBundle_total.cpp"
         cppIndexOutputFile.write("%s" % (outputCppFilename))
         cppIndexOutputFile.flush()
         cppIndexOutputFile.close()
@@ -138,11 +135,6 @@ if __name__=='__main__':
     print("OsmAnd root path:      %s" % (rootPath))
     resourcesPath = rootPath + "/resources"
     print("OsmAnd resources path: %s" % (resourcesPath))
-
-    workingDir = os.getcwd()
-    if len(sys.argv) >= 2:
-        workingDir = sys.argv[1]
-    print("Working in: %s" % (workingDir))
 
     resourcesListName = "embed-resources"
     resourcesListExt = "list"
@@ -257,7 +249,7 @@ if __name__=='__main__':
 
     resourcesIndexFilepath = resourcesPath + "/" + resourcesListName + ".index"
     generator = OsmAndCoreResourcesListGenerator()
-    ok = generator.generate(workingDir, resourcesPath, rules, resourcesListName, resourcesListExt, resourcesIndexFilepath)
+    ok = generator.generate(resourcesPath, rules, resourcesListName, resourcesListExt, resourcesIndexFilepath)
 
     if not ok:
         sys.exit(-1)
