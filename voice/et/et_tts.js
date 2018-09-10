@@ -509,9 +509,9 @@ function assemble_street_name(streetName) {
 	if (streetName["toDest"] === "") {
 		return streetName["toRef"] + " " + streetName["toStreetName"];
 	} else if (streetName["toRef"] === "") {
-		return streetName["toStreetName"] + dictionary["toward"] + streetName["toDest"];
+		return streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	} else if (streetName["toRef"] != "") {
-		return streetName["toRef"] + dictionary["toward"] + streetName["toDest"];
+		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	}
 }
 

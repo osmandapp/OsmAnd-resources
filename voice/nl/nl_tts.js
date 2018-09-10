@@ -369,21 +369,15 @@ function turn_street(streetName) {
 }
 
 function assemble_street_name(streetName) {
-	// // assemble_street_name(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
-// // assemble_street_name(voice(["", Name, _], _), Name). // not necessary
-// // Next 2 lines for Name taking precedence over Dest...
-// //assemble_street_name(voice([Ref, "", Dest], _), [C1, "toward", Dest]) :- atom_concat(Ref, " ", C1).
-// //assemble_street_name(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, " ", C1), atom_concat(C1, Name, Concat).
-// // ...or next 3 lines for Dest taking precedence over Name
 // assemble_street_name(voice([Ref, Name, ""], _), Concat) :- atom_concat(Ref, " ", C1), atom_concat(C1, Name, Concat).
 // assemble_street_name(voice(["", Name, Dest], _), [C1, "toward", Dest]) :- atom_concat(Name, " ", C1).
 // assemble_street_name(voice([Ref, _, Dest], _), [C1, "toward", Dest]) :- atom_concat(Ref, " ", C1).
 	if (streetName["toDest"] === "") {
 		return streetName["toRef"] + " " + streetName["toStreetName"];
 	} else if (streetName["toRef"] === "") {
-		return streetName["toStreetName"] + dictionary["toward"] + streetName["toDest"];
+		return streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	} else if (streetName["toRef"] != "") {
-		return streetName["toRef"] + dictionary["onto"] + streetName["toDest"];
+		return streetName["toRef"] + " " + dictionary["onto"] + " " + streetName["toDest"];
 	}
 }
 

@@ -23,8 +23,8 @@ function populateDictionary(tts) {
 	dictionary["right"] = tts ? "rechts abbiegen" : "right.ogg";
 	dictionary["right_sh"] = tts ? "scharf rechts abbiegen" : "right_sh.ogg";
 	dictionary["right_sl"] = tts ? "leicht rechts abbiegen" : "right_sl.ogg";
-	dictionary["left_keep"] = tts ? "links halten" : "left_keep.ogg";
-	dictionary["right_keep"] = tts ? "rechts halten" : "right_keep.ogg";
+	dictionary["left_keep"] = tts ? "links einordnen" : "left_keep.ogg"; //"left_keep"/"right_keep" is a turn type aiding lane selection
+	dictionary["right_keep"] = tts ? "rechts einordnen" : "right_keep.ogg";
 	dictionary["left_bear"] = tts ? "links halten" : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
 	dictionary["right_bear"] = tts ? "rechts halten" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
 	
@@ -157,7 +157,7 @@ function setMode(mode) {
 function isFeminine(streetName) {
 	var endings = ["strasse","straße","bahn","chaussee","gasse","zeile","allee","tangente","spange","0","1","2","3","4","5","6","7","8","9"];
 	for (str in endings) {
-		if (streetName["toRef"].endsWith(str) || streetName["toStreetName"].endsWith(str)) {
+		if (streetName["toRef"].toLowerCase().endsWith(str) || streetName["toStreetName"].toLowerCase().endsWith(str)) {
 			return true;
 		}
 	}
@@ -167,7 +167,7 @@ function isFeminine(streetName) {
 function isMasculine(streetName) {
 	var endings = ["weg","ring","damm","platz","markt","steig","pfad"];
 	for (str in endings) {
-		if (streetName["toStreetName"].endsWith(str)) {
+		if (streetName["toStreetName"].toLowerCase().endsWith(str)) {
 			return true;
 		}
 	}
@@ -376,19 +376,24 @@ function roundabout(dist, angle, exit, streetName) {
 }
 
 function turn_street(streetName) {
-	
-
-// turn_street(voice(['', '', D], _), ['toward', D]) :- tts.
-// turn_street(Street, ['onto', 'die ', SName]) :- tts, not(Street = voice(['', '', D], _)), street_is_female(Street), assemble_street_name(Street, SName).
-// turn_street(Street, ['onto', 'den ', SName]) :- tts, not(Street = voice(['', '', D], _)), street_is_male(Street), assemble_street_name(Street, SName). // Most Refs are female, hence this check only after female check
-// turn_street(Street, ['onto', SName]) :- tts, not(Street = voice(['', '', D], _)), street_is_nothing(Street), assemble_street_name(Street, SName).
-
-	if ((streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || Object.keys(streetName).length == 0 || !tts) {
+	// turn_street("", []).
+// turn_street(voice(["","",""],_), []).
+// turn_street(voice(["", "", D], _), ["toward", D]) :- tts.
+// turn_street(Street, ["on", SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
+// turn_street(Street, ["on", SName]) :- tts, Street = voice([R, "", _],[R, _, _]), assemble_street_name(Street, SName).
+// turn_street(Street, ["onto", SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), assemble_street_name(Street, SName).
+	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || !tts) {
 		return "";
-	} else if (streetName["toStreetName"] === "" && streetName["toRef"] === "") {
+	} 
+	var article = isMasculine(streetName) ? dictionary["den"] : isFeminine(streetName) ? dictionary["die"] : "";
+	if (streetName["toStreetName"] === "" && streetName["toRef"] === "") {
 		return dictionary["toward"] + " " + streetName["toDest"];
-	} else if (streetName["toStreetName"] != "" && streetName["toRef"] != "") {
-		var article = isMasculine(streetName) ? dictionary["den"] : isFeminine(streetName) ? dictionary["die"] : "";
+	} else if (streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"]) {
+		return dictionary["on"] + " " + article + " " + assemble_street_name(streetName);
+	} else if ((streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"]) 
+		|| (streetName["toStreetName"] === "" && streetName["toRef"] === streetName["fromRef"])) {
+		return dictionary["on"] + " " + article + " " + assemble_street_name(streetName);
+	} else if (!(streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"])) {
 		return dictionary["onto"] + " " + article + " " + assemble_street_name(streetName);
 	}
 	return "";
@@ -401,9 +406,9 @@ function assemble_street_name(streetName) {
 	if (streetName["toDest"] === "") {
 		return streetName["toRef"] + " " + streetName["toStreetName"];
 	} else if (streetName["toRef"] === "") {
-		return streetName["toStreetName"] + dictionary["toward"] + streetName["toDest"];
+		return streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	} else if (streetName["toRef"] != "") {
-		return streetName["toRef"] + dictionary["toward"] + streetName["toDest"];
+		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	}
 }
 
