@@ -156,9 +156,9 @@ function distance(dist) {
 			if (dist < 17 ) {
 				return dictionary["meters"] + " " + (tts ? Math.round(dist).toString() : ogg_dist(dist));
 			} else if (dist < 100) {
-				return dictionary["meters"] + " " + (tts ? Math.round((dist/10.0)*10).toString() : ogg_dist((dist/10.0)*10));
+				return dictionary["meters"] + " " + (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10));
 			} else if (dist < 1000) {
-				return dictionary["meters"] + " " + (tts ? Math.round((2*dist/100.0)*50).toString() : ogg_dist((2*dist/100.0)*50));
+				return dictionary["meters"] + " " + (tts ? (Math.round(2*dist/100.0)*50).toString() : ogg_dist(Math.round(2*dist/100.0)*50));
 			} else if (dist < 1500) {
 				return dictionary["around_1_kilometer"];
 			} else if (dist < 10000) {
@@ -169,7 +169,7 @@ function distance(dist) {
 			break;
 		case "mi-f":
 			if (dist < 160) {
-				return dictionary["feet"] + " " + (tts ? Math.round((2*dist/100.0/0.3048)*50).toString() : ogg_dist((2*dist/100.0/0.3048)*5));
+				return dictionary["feet"] + " " + (tts ? (Math.round(2*dist/100.0/0.3048)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.3048)*50));
 			} else if (dist < 241) {
 				return dictionary["1_tenth_of_a_mile"];
 			} else if (dist < 1529) {
@@ -186,9 +186,9 @@ function distance(dist) {
 			if (dist < 17 ) {
 				return dictionary["meters"] + " " + (tts ? Math.round(dist).toString() : ogg_dist(dist));
 			} else if (dist < 100) {
-				return dictionary["meters"] + " " + (tts ? Math.round((dist/10.0)*10).toString() : ogg_dist((dist/10.0)*10));
+				return dictionary["meters"] + " " + (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10));
 			} else if (dist < 1300) {
-				return  dictionary["meters"] + " " + (tts ? Math.round((2*dist/100.0)*50).toString() : ogg_dist((2*dist/100.0)*50));
+				return  dictionary["meters"] + " " + (tts ? (Math.round(2*dist/100.0)*50).toString() : ogg_dist(Math.round(2*dist/100.0)*50));
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
 			} else if (dist < 16093) {
@@ -201,9 +201,9 @@ function distance(dist) {
 			if (dist < 17) {
 				return  dictionary["yards"] + " " + (tts ? Math.round(dist/0.9144).toString() : ogg_dist(dist/0.9144));
 			} else if (dist < 100) {
-				return dictionary["yards"] + " " + (tts ? Math.round((dist/10.0/0.9144)*10).toString() : ogg_dist((dist/10.0/0.9144)*10));
+				return dictionary["yards"] + " " + (tts ? (Math.round(dist/10.0/0.9144)*10).toString() : ogg_dist(Math.round(dist/10.0/0.9144)*10));
 			} else if (dist < 1300) {
-				return dictionary["yards"] + " " + (tts ? Math.round((2*dist/100.0/0.9144)*50).toString() : ogg_dist((2*dist/10.0/0.9144)*10)); 
+				return dictionary["yards"] + " " + (tts ? (Math.round(2*dist/100.0/0.9144)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.9144)*50)); 
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
 			} else if (dist < 16093) {

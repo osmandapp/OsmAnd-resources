@@ -196,7 +196,7 @@ function distance(dist) {
 			if (dist < 100) {
 				return (tts ? Math.round(dist).toString() : ogg_dist(dist)) + " " + plural_mt(dist);
 			} else if (dist < 1000) {
-				var distance = Math.round((dist/10.0)*10);
+				var distance = Math.round(dist/10.0)*10;
 				return (tts ? distance.toString() : ogg_dist(distance)) + " " + plural_mt(distance);
 			} else if (dist < 1500) {
 				return dictionary["around"] + " 1 " + dictionary["kilometr"];
@@ -206,7 +206,7 @@ function distance(dist) {
 			break;
 		case "mi-f":
 			if (dist < 160) {
-				return (tts ? Math.round((2*dist/100.0/0.3048)*50).toString() : ogg_dist((2*dist/100.0/0.3048)*50)) + " " + dictionary["footov"];
+				return (tts ? (Math.round(2*dist/100.0/0.3048)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.3048)*50)) + " " + dictionary["footov"];
 			} else if (dist < 241) {
 				return dictionary["1_tenth_of_a_mile"];
 			} else if (dist < 1529) {
@@ -223,7 +223,7 @@ function distance(dist) {
 			if (dist < 100) {
 				return (tts ? Math.round(dist).toString() : ogg_dist(dist)) + " " + plural_mt(dist);
 			} else if (dist < 1300) {
-				var distance = Math.round((Dist/10.0)*10);
+				var distance = Math.round(Dist/10.0)*10;
 				return (tts ? distance.toString() : ogg_dist(distance)) + " " + plural_mt(distance);
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
@@ -235,9 +235,9 @@ function distance(dist) {
 			if (dist < 17) {
 				return (tts ? Math.round(dist/0.9144).toString() : ogg_dist(dist/0.9144)) + " " + dictionary["yardov"];
 			} else if (dist < 100) {
-				return (tts ? Math.round((dist/10.0/0.9144)*10).toString() : ogg_dist((dist/10.0/0.9144)*10)) + " " + dictionary["yardov"];
+				return (tts ? (Math.round(dist/10.0/0.9144)*10).toString() : ogg_dist(Math.round(dist/10.0/0.9144)*10)) + " " + dictionary["yardov"];
 			} else if (dist < 1300) {
-				return (tts ? Math.round((2*dist/100.0/0.9144)*50).toString() : ogg_dist((2*dist/100.0/0.9144)*50)) + " " + dictionary["yards"]; 
+				return (tts ? (Math.round(2*dist/100.0/0.9144)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.9144)*50)) + " " + dictionary["yards"]; 
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
 			} else {
