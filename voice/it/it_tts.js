@@ -155,12 +155,11 @@ function setMode(mode) {
 	tts = mode;
 	populateDictionary(mode);
 }
-
 	
 function isFeminine(streetName) {
 	var endings = ["strasse","straße","bahn","chaussee","gasse","zeile","allee","tangente","spange","0","1","2","3","4","5","6","7","8","9"];
-	for (str in endings) {
-		if (streetName["toRef"].endsWith(str) || streetName["toStreetName"].endsWith(str)) {
+	for (var i = 0; i < endings.length; i++) {
+		if (streetName["toRef"].toLowerCase().indexOf(endings[i]) !== -1 || streetName["toStreetName"].toLowerCase().indexOf(endings[i]) !== -1) {
 			return true;
 		}
 	}
@@ -169,8 +168,8 @@ function isFeminine(streetName) {
 
 function isMasculine(streetName) {
 	var endings = ["strada","strada","autostrada","chaussee", "vicolo","zeile", "viale","diga","0","1","2","3","4","5","6","7","8","9",];
-	for (str in endings) {
-		if (streetName["toStreetName"].endsWith(str)) {
+	for (var i = 0; i < endings.length; i++) {
+		if (streetName["toStreetName"].toLowerCase().indexOf(endings[i]) !== -1) {
 			return true;
 		}
 	}

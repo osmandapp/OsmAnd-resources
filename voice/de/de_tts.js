@@ -156,8 +156,8 @@ function setMode(mode) {
 	
 function isFeminine(streetName) {
 	var endings = ["strasse","straße","bahn","chaussee","gasse","zeile","allee","tangente","spange","0","1","2","3","4","5","6","7","8","9"];
-	for (str in endings) {
-		if (streetName["toRef"].toLowerCase().endsWith(str) || streetName["toStreetName"].toLowerCase().endsWith(str)) {
+	for (var i = 0; i < endings.length; i++) {
+		if (streetName["toRef"].toLowerCase().indexOf(endings[i]) !== -1 || streetName["toStreetName"].toLowerCase().indexOf(endings[i]) !== -1) {
 			return true;
 		}
 	}
@@ -166,14 +166,14 @@ function isFeminine(streetName) {
 
 function isMasculine(streetName) {
 	var endings = ["weg","ring","damm","platz","markt","steig","pfad"];
-	for (str in endings) {
-		if (streetName["toStreetName"].toLowerCase().endsWith(str)) {
+	for (var i = 0; i < endings.length; i++) {
+		if (streetName["toStreetName"].toLowerCase().indexOf(endings[i]) !== -1) {
 			return true;
 		}
 	}
 	return false;
-
 }
+
 
 function route_new_calc(dist, timeVal) {
 	// route_new_calc(Dist, Time) -- ['route_is1', D, 'route_is2', ', ', 'time', T, '. '] :- distance(Dist, nominativ) -- D, time(Time) -- T.
