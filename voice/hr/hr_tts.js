@@ -210,7 +210,7 @@ function distance(dist) {
 	}
 }
 
-function time(seconds) {
+ffunction time(seconds) {
 	var minutes = Math.round(seconds/60.0);
 	var oggMinutes = Math.round(((seconds/300.0) * 5));
 	if (seconds < 30) {
@@ -220,11 +220,11 @@ function time(seconds) {
 	} else if (minutes % 60 == 1 && tts) {
 		return hours(minutes) + " " + dictionary["1_minute"];
 	} else if (tts) {
-		return hours(minutes) + " " + (minutes % 60).toString() + " " + dictionary["minutes"];
+		return hours(minutes) + " " + (minutes % 60) + " " + dictionary["minutes"];
 	} else if (!tts && seconds < 300) {
-		return minutes.toString() + ".ogg " + dictionary["minutes"];
+		return ogg_dist(minutes) + dictionary["minutes"];
 	} else if (!tts && oggMinutes % 60 > 0) {
-		return hours(oggMinutes) + " " + (oggMinutes % 60).toString() + ".ogg " + dictionary["minutes"];
+		return hours(oggMinutes) + " " + ogg_dist(oggMinutes % 60) + dictionary["minutes"];
 	} else if (!tts) {
 		return hours(oggMinutes);
 	}
@@ -236,8 +236,8 @@ function hours(minutes) {
 	} else if (minutes < 120) {
 		return dictionary["1_hour"];
 	} else {
-		var hours = minutes / 60;
-        return Math.floor(hours).toString() + (!tts ? ".ogg " : " ") + dictionary["hours"]; 
+		var hours = Math.floor(minutes / 60);
+        return  (tts ? hours.toString() : ogg_dist(hours)) + " " + dictionary["hours"]; 
 	}
 }
 
