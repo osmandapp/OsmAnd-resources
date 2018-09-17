@@ -46,14 +46,20 @@ if (EXISTS ${OsmAndCore_ResourcesCppIndex_src})
 			COMMENT "Embedding resources...")
 	endif()
 
+	# this is the "object library" target: compiles the sources only once
+	add_library(objlib OBJECT ${OsmAndCore_ResourcesBundle_src})
+
+	# shared libraries need PIC
+	set_property(TARGET objlib PROPERTY POSITION_INDEPENDENT_CODE 1)
+
 	if (CMAKE_SHARED_LIBS_ALLOWED_ON_TARGET)
-		add_library(OsmAndCore_ResourcesBundle_shared SHARED
-			${OsmAndCore_ResourcesBundle_src})
+		add_library(OsmAndCore_ResourcesBundle_shared SHARED $<TARGET_OBJECTS:objlib>)
+		#add_library(OsmAndCore_ResourcesBundle_shared SHARED ${OsmAndCore_ResourcesBundle_src})
 	endif()
 
 	if (CMAKE_STATIC_LIBS_ALLOWED_ON_TARGET)
-		add_library(OsmAndCore_ResourcesBundle_static STATIC
-			${OsmAndCore_ResourcesBundle_src})
+		add_library(OsmAndCore_ResourcesBundle_static STATIC $<TARGET_OBJECTS:objlib>)
+		#add_library(OsmAndCore_ResourcesBundle_static STATIC ${OsmAndCore_ResourcesBundle_src})
 #		if (CMAKE_COMPILER_FAMILY STREQUAL "msvc")
 #			target_link_libraries(OsmAndCore_ResourcesBundle_static
 #				LINK_PUBLIC
