@@ -1921,6 +1921,7 @@ mycpname hazard_slippery_road poi_hazard_slippery_road.png
 mycpname hazard_flood poi_hazard_flood.png
 mycpname hazard_avalanche poi_hazard_avalanche.png
 mycpname hazard_minefield poi_hazard_avalanche.png
+mycpname hazard poi_hazard.png
 
 # mygroup custom_id icons8 #TODO
 mygroup user_defined icons8_user.png
