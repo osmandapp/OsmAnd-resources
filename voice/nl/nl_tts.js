@@ -80,7 +80,7 @@ function populateDictionary(tts) {
 	dictionary["reached_destination"] = tts ? "je hebt je Bestemming " : "reached_destination.ogg";
 	dictionary["and_arrive_intermediate"] = tts ? "en dan heb je je routepunt " : "and_arrive_intermediate.ogg";
 	dictionary["reached_intermediate"] = tts ? "je hebt je routepunt " : "reached_intermediate.ogg";
-	dictionary["reached"] = tts ? "bereikt  " : "reached.ogg";
+	dictionary["reached"] = tts ? "bereikt" : "reached.ogg";
 	
 	// NEARBY POINTS
 	dictionary["and_arrive_waypoint"] = tts ? "en dan heb je je GPX routepunt " : "and_arrive_waypoint.ogg";
@@ -471,44 +471,44 @@ function prepare_roundabout(dist, exit, streetName) {
 // off_route(Dist) -- ["off_route", D] :- distance(Dist) -- D.
 // back_on_route -- ["back_on_route"].
 function and_arrive_destination(dest) {
-	return dictionary["and_arrive_destination"] + " " + dest;
+	return dictionary["and_arrive_destination"] + " " + dest + " " + dictionary["reached"];
 }
 
 function and_arrive_intermediate(dest) {
 	// and_arrive_intermediate(D) -- ["and_arrive_intermediate"|Ds] :- name(D, Ds).
-	return dictionary["and_arrive_intermediate"] + " " + dest;
+	return dictionary["and_arrive_intermediate"] + " " + dest + " " + dictionary["reached"];
 }
 
 function and_arrive_waypoint(dest) {
-	return dictionary["and_arrive_waypoint"] + " " + dest;
+	return dictionary["and_arrive_waypoint"] + " " + dest + " " + dictionary["reached"];
 }
 
 function and_arrive_favorite(dest) {
-	return dictionary["and_arrive_favorite"] + " " + dest;
+	return dictionary["and_arrive_favorite"] + " " + dest + " " + dictionary["reached"];
 }
 
 function and_arrive_poi(dest) {
-	return dictionary["and_arrive_poi"] + " " + dest;
+	return dictionary["and_arrive_poi"] + " " + dest + " " + dictionary["reached"];
 }
 
 function reached_destination(dest) {
-	return dictionary["reached_destination"] + " " + dest;
+	return dictionary["reached_destination"] + " " + dest + " " + dictionary["reached"];
 }
 
 function reached_waypoint(dest) {
-	return dictionary["reached_waypoint"] + " " + dest;
+	return dictionary["reached_waypoint"] + " " + dest + " " + dictionary["reached"];
 }
 
 function reached_intermediate(dest) {
-	return dictionary["reached_intermediate"] + " " + dest;
+	return dictionary["reached_intermediate"] + " " + dest + " " + dictionary["reached"];
 }
 
 function reached_favorite(dest) {
-	return dictionary["reached_favorite"] + " " + dest;
+	return dictionary["reached_favorite"] + " " + dest + " " + dictionary["reached"];
 }
 
 function reached_poi(dest) {
-	return dictionary["reached_poi"] + " " + dest;
+	return dictionary["reached_poi"] + " " + dest + " " + dictionary["reached"];
 }
 
 function location_lost() {
