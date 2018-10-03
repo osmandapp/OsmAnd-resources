@@ -144,6 +144,8 @@ mycpname ridge poi_colored_ridge.png
 mycpname strait poi_colored_strait.png
 mycpname fjord poi_colored_fjord.png
 mycpname cliff poi_colored_cliff.png
+mycpname hill poi_colored_hill.png
+mycpname hill_night functional-icons_hill_night.png
 
 ## Location dots
 mygroup administrative poi_colored_boundary_administrative.png
