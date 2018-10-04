@@ -287,7 +287,7 @@ function go_ahead(dist, streetName) {
 	if (dist == -1) {
 		return dictionary["go_ahead"];
 	} else {
-		return dictionary["follow"] + " " + distance(dist, "nominativ") + " " + dictionary["follow2"] + " " + follow_street(streetName);
+		return dictionary["follow"] + " " + distance(dist, "nominativ") + " " + follow_street(streetName);
 	}
 }
 
