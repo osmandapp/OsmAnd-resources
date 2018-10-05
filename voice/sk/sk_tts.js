@@ -173,9 +173,9 @@ function distance(dist) {
 				return (tts ? Math.round((dist/1000.0)).toString() : ogg_dist((dist/1000.0))) + " " + dictionary["kilometers3_4"];
 			} else if (tts) {
 				return Math.round(dist/1000.0).toString() + " " + dictionary["kilometers5"];
-			} else if (!tss && Math.round(dist/1000.0) < 20) {
+			} else if (!tts && Math.round(dist/1000.0) < 20) {
 				return ogg_dist(Math.round(dist/1000.0)) + " " + dictionary["kilometers5"];	
-			} else if (!tss && (Math.round((dist/5000.0) * 5)) < 100) {
+			} else if (!tts && (Math.round((dist/5000.0) * 5)) < 100) {
 				return dictionary["around"] + " " + ogg_dist(Math.round((dist/5000.0) * 5)) + " " + dictionary["kilometers5"];
 			} else if (!tts && (Math.round((dist/50000.0) * 50)) < 1000) {
 				return dictionary["around"] + " " + ogg_dist(Math.round((dist/50000.0) * 50)) + " " + dictionary["kilometers5"];
@@ -264,7 +264,7 @@ function time(seconds) {
 		return Math.floor(seconds/60).toString() + ".ogg" + " " + dictionary["minutes5"];
 	} else if (!tts && seconds < 21 * 3600 && minutes % 60 < 3) {
 		return hours(minutes);
-	} else if (!tss && seconds < 21 * 3600) {
+	} else if (!tts && seconds < 21 * 3600) {
 		var st = minutes % 60;
 		var stx = Math.round(st/5.0) * 5;
 		return hours(minutes) + " " + stx.toString() + ".ogg" + " " + dictionary["minutes5"];
