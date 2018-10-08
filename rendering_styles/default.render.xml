@@ -1721,6 +1721,11 @@
 		<case moreDetailed="true" attrColorValue="#C3B47C"/>
 		<case attrColorValue="#d9d5d2"/>
 	</renderingAttribute>
+	<renderingAttribute name="spoilHeapColor">
+		<case nightMode="true" attrColorValue="#66101e21"/>
+		<case moreDetailed="true" attrColorValue="#66C3B47C"/>
+		<case attrColorValue="#66d9d5d2"/>
+	</renderingAttribute>
 	<renderingAttribute name="amenityEducationalColor">
 		<case nightMode="true" attrColorValue="#19202e"/>
 		<case moreDetailed="true" attrColorValue="#f2f2cb"/>
@@ -2700,7 +2705,7 @@
 				<case tag="abandoned:place" value="" order="10"/>
 				<case tag="abandoned:landuse" value="" order="10"/>
 				<case tag="landuse" value="landfill" order="6"/>
-				<case tag="man_made" value="spoil_heap" order="4"/>
+				<case tag="man_made" value="spoil_heap"/>
 
 				<case tag="man_made" value="petroleum_well"/>
 				<case tag="man_made" value="reinforced_slope"/>
@@ -9211,9 +9216,12 @@
 
 			<switch>
 				<case minzoom="12" tag="landuse" value="landfill"/>
-				<case minzoom="13" tag="man_made" value="spoil_heap"/>
 				<apply color="$landuseLandfillColor"/>
 			</switch>
+			<case minzoom="14" tag="man_made" value="spoil_heap">
+				<apply_if moreDetailed="true" color="$spoilHeapColor"/>
+				<apply_if moreDetailed="false" minzoom="16" color="$spoilHeapColor"/>
+			</case>
 			<switch minzoom="15">
 				<case tag="amenity" value="kindergarten"/>
 				<case tag="amenity" value="school"/>
