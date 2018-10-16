@@ -1863,6 +1863,7 @@ mycpname cannabis shopping_cannabis.png
 mycpname pottery shopping_pottery.png
 mycpname outpost shopping_outpost.png
 mycpname appliance shopping_appliance.png
+mycpname shoe_repair shopping_shoe_repair.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
