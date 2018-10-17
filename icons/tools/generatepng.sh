@@ -28,16 +28,17 @@ done
 
 generateElements() {
   TYPE=$1
+  echo $TYPE
   for FILE in $SVGFOLDER$1/*.svg; do
       FILENAME=${FILE##/*/}
-      if [[ $FILENAME == _* ]]; then
+      if [[ $FILENAME == _* ]] || [[ $FILENAME == "*.svg" ]]; then
         continue;
       fi
       FILENAME=${FILENAME%.*}
-      rsvg -f png ${FILE} -x 1 -y 1 ${OUTPUTFOLDER}mdpi/${FILENAME}.png
-      rsvg -f png ${FILE} -x 1.5 -y 1.5 ${OUTPUTFOLDER}hdpi/${FILENAME}.png
-      rsvg -f png ${FILE} -x 2 -y 2 ${OUTPUTFOLDER}xhdpi/${FILENAME}.png
-      rsvg -f png ${FILE} -x 3 -y 3 ${OUTPUTFOLDER}xxhdpi/${FILENAME}.png
+      rsvg-convert -f png ${FILE} -x 1 -y 1 -o ${OUTPUTFOLDER}mdpi/${FILENAME}.png
+      rsvg-convert -f png ${FILE} -x 1.5 -y 1.5 -o ${OUTPUTFOLDER}hdpi/${FILENAME}.png
+      rsvg-convert -f png ${FILE} -x 2 -y 2 -o ${OUTPUTFOLDER}xhdpi/${FILENAME}.png
+      rsvg-convert -f png ${FILE} -x 3 -y 3 -o ${OUTPUTFOLDER}xxhdpi/${FILENAME}.png
   done
 }
 
