@@ -2019,10 +2019,22 @@
 			<apply_if nightMode="true" attrColorValue="#bb002a2a"/>
 		</case>
 	</renderingAttribute>
-	<renderingConstant name="placeCityVillageTextColorDay" value="#000000"/>
-	<renderingConstant name="placeSuburbHamletTextColorDay" value="#222222"/>
+	<renderingAttribute name="placeCityVillageTextColor">
+		<case attrColorValue="#000000">
+			<apply_if nightMode="true" attrColorValue="#E5E5E5"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="placeCityVillageTextHaloColor">
+		<case attrColorValue="#ccebe7e4">
+			<apply_if nightMode="true" attrColorValue="#77444444"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="placeSuburbHamletTextColor">
+		<case attrColorValue="#222222">
+			<apply_if nightMode="true" attrColorValue="#E5E5E5"/>
+		</case>
+	</renderingAttribute>
 	<renderingConstant name="placeTextHaloRadiusDay" value="1:1"/>
-	<renderingConstant name="placeCityVillageTextHaloColorDay" value="#ccebe7e4"/>
 	<renderingConstant name="placeHamletMinZoom" value="12"/>
 	<renderingConstant name="placeSuburbMinZoom" value="12"/>
 	<renderingConstant name="placeNeighbourhoodMinZoom" value="13"/>
@@ -2050,8 +2062,15 @@
 		<case attrColorValue="#BB55B4D4"/>
 	</renderingAttribute>
 	<renderingConstant name="landuseManmadeTextHaloRadiusDay" value="1"/>
-	<renderingConstant name="landuseManmadeTextColorDay" value="#000000"/>
-	<renderingConstant name="landuseManmadeFadedTextColorDay" value="#525252"/>
+	<renderingConstant name="Day" value=""/>
+	<renderingAttribute name="landuseManmadeTextColor">
+		<case nightMode="true" attrColorValue="#E5E5E5"/>
+		<case attrColorValue="#000000"/>
+	</renderingAttribute>
+	<renderingAttribute name="landuseManmadeFadedTextColor">
+		<case nightMode="true" attrColorValue="#E5E5E5"/>
+		<case attrColorValue="#525252"/>
+	</renderingAttribute>
 	<renderingAttribute name="landuseManmadeTextHaloColor">
 		<case nightMode="true" attrColorValue="#77777777"/>
 		<case attrColorValue="#aaf1eae4"/>
@@ -5334,7 +5353,7 @@
 			<!-- <apply_if additional="population_rounded=" textOrder="$textOrderPopulation"/>-->
 			</switch>
 
-			<switch minzoom="3" textColor="$placeCityVillageTextColorDay" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColorDay" textBold="true" textDy="-4">
+			<switch minzoom="3" textColor="$placeCityVillageTextColor" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColor" textBold="true" textDy="-4">
 				<case minzoom="5" tag="place" value="city" nameTag="" intersectionMargin="25" textOrder="32">
 					<case minzoom="6" maxzoom="7" textSize="17"/>
 					<case minzoom="8" textSize="20"/>
@@ -5440,12 +5459,11 @@
 						<case additional="population_rounded=100" textOrder="43"/>
 					</apply_if>
 				</switch>
-				<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#77444444"/>
 			</switch>
 
-			<switch textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColorDay" intersectionMargin="15">
+			<switch textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColor" intersectionMargin="15">
 				<switch>
-					<case minzoom="$placeSuburbMinZoom" maxzoom="17" tag="place" value="suburb" nameTag="" textColor="$placeSuburbHamletTextColorDay" textSize="15" textItalic="true" textOrder="37" intersectionMargin="15">
+					<case minzoom="$placeSuburbMinZoom" maxzoom="17" tag="place" value="suburb" nameTag="" textColor="$placeSuburbHamletTextColor" textSize="15" textItalic="true" textOrder="37" intersectionMargin="15">
 						<apply_if minzoom="16" textSize="17"/>
 					</case>
 					<switch>
@@ -5456,7 +5474,7 @@
 						<case minzoom="12" tag="place" value="plot" nameTag="" textOrder="108"/>
 						<case minzoom="12" tag="place" value="municipality" nameTag="" textOrder="107"/>
 						<case minzoom="13" tag="place" value="isolated_dwelling" nameTag="" textOrder="111"/>
-						<apply textSize="13" textColor="$placeSuburbHamletTextColorDay"/>
+						<apply textSize="13" textColor="$placeSuburbHamletTextColor"/>
 						<apply_if minzoom="16" textSize="15"/>
 						<apply_if minzoom="17" textSize="16"/>
 					</switch>
@@ -5466,12 +5484,11 @@
 						<apply_if minzoom="17" textSize="16"/>
 					</case>
 				</switch>
-				<case minzoom="13" tag="place" value="allotments" nameTag="" textOrder="110" textColor="$landuseManmadeFadedTextColorDay">
+				<case minzoom="13" tag="place" value="allotments" nameTag="" textOrder="110" textColor="$landuseManmadeFadedTextColor">
 					<apply textSize="12"/>
 					<apply_if minzoom="16" textSize="14"/>
 					<apply_if minzoom="17" textSize="15"/>
 				</case>
-				<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#77777777"/>
 				<apply_if engine_v1="false" textDy="-5"/>
 				<apply_if additional="population_rounded=" textOrder="$textOrderPopulation"/>
 				<apply_if engine_v1="false"> <!-- Workaround for bug in OpenGL engine. Delete when fixed https://trello.com/c/WjuVi6UC/502-population-case-additional-renderingattribute-opengl -->
@@ -5513,8 +5530,7 @@
 					<apply_if minzoom="13" textOrder="37"/>
 				</case>
 				<case minzoom="13" tag="place" value="islet"/>
-				<apply textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColorDay" intersectionMargin="15" textItalic="true" nameTag="" textSize="14"/>
-				<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#77777777"/>
+				<apply textWrapWidth="20" textColor="$placeCityVillageTextColor" extHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColor" intersectionMargin="15" textItalic="true" nameTag="" textSize="14"/>
 			</switch>
 
 			<!-- Natural -->
@@ -5716,7 +5732,7 @@
 							<apply_if additional="generator:source=wind" nameTag2="height"/>
 						</case>
 						<case minzoom="16" tag="highway" value="services"/>
-						<apply textColor="$landuseManmadeTextColorDay"/>
+						<apply textColor="$landuseManmadeTextColor"/>
 					</switch>
 					<switch>
 						<case minzoom="15" tag="landuse" value="construction" nameTag=""/>
@@ -5734,10 +5750,10 @@
 						<case hidePOILabels="false" minzoom="19" tag="highway" value="traffic_mirror"/>
 						<case minzoom="15" tag="landuse" value="greenfield" textHaloColor="$brownfieldTextHaloColor"/>
 						<case minzoom="15" tag="landuse" value="brownfield" textHaloColor="$brownfieldTextHaloColor"/>
-						<apply textColor="$landuseManmadeFadedTextColorDay"/>
+						<apply textColor="$landuseManmadeFadedTextColor"/>
 					</switch>
 					<apply_if engine_v1="true" textDy="9"/>
-					<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#77000000"/>
+					<apply_if nightMode="true" textHaloColor="#77000000"/>
 					<apply_if moreDetailed="false" maxzoom="15" disable="true"/>
 				</switch>
 
