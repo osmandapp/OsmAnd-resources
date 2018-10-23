@@ -89,8 +89,8 @@ function populateDictionary(tts) {
 	dictionary["tunnel"] = tts ? "tunnel" : "tunnel.ogg";
 	
 	// OTHER PROMPTS
-	dictionary["location_lost"] = tts ? "Signal G P S perdu" : "location_lost.ogg";
-	dictionary["location_recovered"] = tts ? "Signal G P S retrouvé" : "location_recovered.ogg";
+	dictionary["location_lost"] = tts ? "Signal satellite perdu" : "location_lost.ogg";
+	dictionary["location_recovered"] = tts ? "Signal satellite retrouvé" : "location_recovered.ogg";
 	dictionary["off_route"] = tts ? "vous avez dévié de l''itinéraire depuis " : "off_route.ogg";
 	dictionary["back_on_route"] = tts ? "vous êtes de retour sur l''itinéraire" : "back_on_route.ogg";
 	
