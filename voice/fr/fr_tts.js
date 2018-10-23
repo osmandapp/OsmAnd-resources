@@ -6,9 +6,9 @@ var dictionary = {};
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	dictionary["route_is"] = tts ? "l''itinéraire fait " : "route_is.ogg";
-	dictionary["route_calculate"] = tts ? "recalcul de l''itinéraire" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? ", l''itinéraire fait " : "distance.ogg";
+	dictionary["route_is"] = tts ? "l'itinéraire fait " : "route_is.ogg";
+	dictionary["route_calculate"] = tts ? "recalcul de l'itinéraire" : "route_calculate.ogg";
+	dictionary["distance"] = tts ? ", l'itinéraire fait " : "distance.ogg";
 	
 	// LEFT/RIGHT
 	//dictionary["prepare"] = tts ? "préparez vous à " : "prepare.ogg";
@@ -64,16 +64,16 @@ function populateDictionary(tts) {
 	// ARRIVE
 	dictionary["and_arrive_destination"] = tts ? "et arrivez à destination " : "and_arrive_destination.ogg";
 	dictionary["reached_destination"] = tts ? "vous êtes arrivé à destination " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "et arrivez à l''étape " : "and_arrive_intermediate.ogg"; // !!! no apostrophe
-	dictionary["reached_intermediate"] = tts ? "vous êtes arrivé à l''étape " : "reached_intermediate.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "et arrivez à l'étape " : "and_arrive_intermediate.ogg"; // !!! no apostrophe
+	dictionary["reached_intermediate"] = tts ? "vous êtes arrivé à l'étape " : "reached_intermediate.ogg";
 	
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "et arrivez à l''étape G P X " : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "vous êtes arrivé à l''étape G P X " : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "et arrivez à l''étape Favoris " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "vous êtes arrivé à l''étape Favoris " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "et arrivez à l''étape P O I " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "vous êtes arrivé à l''étape P O I " : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "et arrivez à l'étape G P X " : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "vous êtes arrivé à l'étape G P X " : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "et arrivez à l'étape Favoris " : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "vous êtes arrivé à l'étape Favoris " : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "et arrivez à l'étape P O I " : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "vous êtes arrivé à l'étape P O I " : "reached_poi.ogg";
 	
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "vous dépassez la limite de vitesse " : "exceed_limit.ogg";
@@ -91,8 +91,8 @@ function populateDictionary(tts) {
 	// OTHER PROMPTS
 	dictionary["location_lost"] = tts ? "Signal satellite perdu" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "Signal satellite retrouvé" : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "vous avez dévié de l''itinéraire depuis " : "off_route.ogg";
-	dictionary["back_on_route"] = tts ? "vous êtes de retour sur l''itinéraire" : "back_on_route.ogg";
+	dictionary["off_route"] = tts ? "vous avez dévié de l'itinéraire depuis " : "off_route.ogg";
+	dictionary["back_on_route"] = tts ? "vous êtes de retour sur l'itinéraire" : "back_on_route.ogg";
 	
 	// STREET NAME PREPOSITIONS
 	dictionary["onto"] = tts ? "sur " : "onto.ogg";
@@ -117,7 +117,7 @@ function populateDictionary(tts) {
 	dictionary["time"] = tts ? "durée du trajet " : "time.ogg";
 	dictionary["1_hour"] = tts ? "une heure " : "1_hour.ogg";
 	dictionary["hours"] = tts ? "heures " : "hours.ogg";
-	dictionary["less_a_minute"] = tts ? "moins d''une minute" : "less_a_minute.ogg";
+	dictionary["less_a_minute"] = tts ? "moins d'une minute" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "une minute" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "minutes" : "minutes.ogg";
 }
