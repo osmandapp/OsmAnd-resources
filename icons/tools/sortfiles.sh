@@ -1117,6 +1117,7 @@ mycp seamark buoy_conical seamark_buoy_conical.png
 mycp seamark buoy_barrel seamark_buoy_barrel.png
 mycp seamark buoy_can seamark_buoy_can.png
 mycp seamark buoy_spherical seamark_buoy_spherical.png
+mycpname seamark_buoy_pillar seamark_buoy_pillar.png
 
 mycp seamark buoy_blackredblack_conical seamark_buoy_blackredblack_conical.png
 mycp seamark buoy_blackredblack_pillar seamark_buoy_blackredblack_pillar.png
