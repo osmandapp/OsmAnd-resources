@@ -106,7 +106,7 @@ mycp natural peak_night functional-icons_peak_night.png  #For night orienteering
 mycp natural saddle poi_colored_saddle.png
 mycp natural sinkhole poi_colored_sinkhole.png
 mycp natural spring water_spring.png  #scale 0.375
-mycpname topo_spring topo_topo_spring.png  #scale 0.375
+mycpname topo_spring topo_water_spring.png  #scale 0.375
 mycp natural stone poi_colored_stone.png  #scale 0.375
 mycp natural tree_broadleaved functional-icons_tree_broadleaved.png
 mycpname topo_tree_broadleaved functional-icons-x2_topo_tree_broadleaved.png
@@ -127,7 +127,7 @@ mycpname volcano poi_colored_volcano_active.png
 mycp waterway rapids barrier_colored_rapids.png  #scale 0.375
 mycpname rapid_white barrier_rapid.png  #scale 0.375
 mycpname waterfall water_waterfall.png  #scale 0.375
-mycpname topo_waterfall topo_topo_waterfall.png  #scale 0.375
+mycpname topo_waterfall topo_water_waterfall.png  #scale 0.375
 mycpname dam water_dam.png
 mycpname weir water_weir.png
 mycpname stream water_stream.png
@@ -235,8 +235,8 @@ mycp osm_note dot overlays_osm_note_dot.png
 mycp osm_note dot_2 overlays_osm_note_dot_2.png
 mycp drinking_water yes_map overlays_drinking_water_yes.png
 mycp drinking_water no_map overlays_drinking_water_no.png
-mycpname topo_drinking_water_yes_map overlays_topo_drinking_water_yes.png
-mycpname topo_drinking_water_no_map overlays_topo_drinking_water_no.png
+mycpname topo_drinking_water_yes_map overlays_water_drinking_water_yes.png
+mycpname topo_drinking_water_no_map overlays_water_drinking_water_no.png
 mycpname access_private_overlay overlays_access_private.png
 mycpname access_private_red_overlay overlays_access_private_red.png
 
@@ -923,7 +923,7 @@ mycpname compressed_air amenity_compressed_air.png
 mycpname amenity_vacuum_cleaner amenity_vacuum_cleaner.png
 mycpname bicycle_repair_station amenity_bicycle_repair_station.png
 mycpname water_tap amenity_water_tap.png
-mycpname topo_water_tap topo_topo_water_tap.png
+mycpname topo_water_tap topo_water_water_tap.png
 mycpname recycling_centre_map amenity_recycling_centre_map.png
 mycpname recycling_container amenity_colored_recycling_container.png
 mycpname barbecue amenity_barbecue.png
@@ -1102,13 +1102,13 @@ mycp amenity bar food_bar.png
 mycp amenity biergarten food_biergarten.png
 mycp amenity cafe food_cafe.png
 mycp amenity drinking_water food_drinkingtap.png
-mycpname topo_drinking_water topo_topo_drinking_water.png
+mycpname topo_drinking_water topo_water_drinking_water.png
 mycp amenity fast_food food_fastfood.png
 mycp amenity food_court food_food_court.png
 mycp amenity pub food_pub.png
 mycp amenity restaurant food_restaurant.png
 mycp man_made water_well food_water_well.png
-mycpname topo_water_well topo_topo_water_well.png
+mycpname topo_water_well topo_water_water_well.png
 mycpname water_point food_water_point.png
 
 ## Seamarks
