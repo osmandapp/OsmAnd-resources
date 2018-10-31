@@ -1088,8 +1088,9 @@ mycpname spoil_heap poi_colored_spoil_heap.png
 mycpname ventilation_shaft poi_colored_ventilation_shaft.png
 mycpname pumping_station poi_colored_pumping_station.png
 mycpname mdf poi_colored_mdf.png
-
 mycpname topo_power_plant topo_topo_power_plant.png
+mycpname pipeline_substation poi_colored_pipeline_substation.png
+
 
 mygroup military poi_colored_military_bunker.png
 

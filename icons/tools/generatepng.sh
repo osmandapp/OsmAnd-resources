@@ -186,4 +186,4 @@ generatePngs() {
        generatePngs 'xmas' '#aa2001' '#ff8f00'
 
        generatePngs 'overlays' '#777777' '#777777' '' x2 '' nomx
-       generatePngs 'overlays_water' '#0F5CF0' '#0F5CF0' '' x2 '' nomx
+       generatePngs 'overlays_water' '#777777' '#777777' '' x2 '' nomx
