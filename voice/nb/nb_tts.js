@@ -15,7 +15,7 @@ var tts;
 ////////////////////////////////////////////////////////////////
 // ROUTE CALCULATED
 function populateDictionary(tts) {
-	dictionary["route_is"] = tts ? tts ? "Turen er " : "route_is.ogg" : "route_is.ogg";
+	dictionary["route_is"] = tts ? "Turen er " : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Ruten beregnet på nytt" : "route_calculate.ogg";
 	dictionary["distance"] = tts ? "avstand " : "distance.ogg";
 
