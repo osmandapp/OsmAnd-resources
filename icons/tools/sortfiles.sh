@@ -90,6 +90,9 @@ mycp stroke gray_triangle functional-icons_gray_stroke_triangle.png
 mycp stroke lightorange_left functional-icons_lightorange_left_stroke.png
 mycp stroke white functional-icons_white_stroke.png
 mycp stroke brown_right functional-icons_brown_right_stroke.png
+mycpname stroke_brown_left functional-icons_brown_left_stroke.png
+mycpname stroke_dark_brown_left functional-icons_dark_brown_left_stroke.png
+mycpname stroke_light_brown_left functional-icons_light_brown_left_stroke.png
 
 ## Natural
 mygroup natural poi_colored_peak2.png
