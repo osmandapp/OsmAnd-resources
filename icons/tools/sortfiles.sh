@@ -628,7 +628,7 @@ mycp tourism apartment accommodation_apartment.png
 mycpname topo_apartment topo_topo_apartment.png
 mycp tourism camp_site accommodation_camping.png
 mycpname topo_camp_site topo_topo_camp_site.png
-mycp tourism caravan_site accommodation_caravan_park.png
+mycpname tourism_caravan_site accommodation_caravan.png
 mycpname topo_caravan_site topo_topo_caravan_site.png
 mycp tourism chalet accommodation_chalet.png
 mycpname topo_chalet topo_topo_chalet.png
