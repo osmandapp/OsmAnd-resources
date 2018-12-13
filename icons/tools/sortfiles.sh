@@ -1879,6 +1879,7 @@ mycpname pottery shopping_pottery.png
 mycpname outpost shopping_outpost.png
 mycpname appliance shopping_appliance.png
 mycpname shoe_repair shopping_shoe_repair.png
+mycpname shop_wholesale shopping_wholesale.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
