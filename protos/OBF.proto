@@ -414,12 +414,22 @@ message TransportStop {
    
    required uint32 name = 6; // index in message table
    optional uint32 name_en = 7; // index in message table
+   repeated TransportStopExit exits = 9;
    
    repeated uint32 routes = 16; // -shift to transport route containing that stop 
    								// TransportStop.Message.start -  sizeof(TransportStop.Message.length) - routes[i] 
    								//				= TransportRoute.Message.start - sizeof(TransportRoute.Message.length)
    								// message is started when body is started 
- 
+
+}
+
+message TransportStopExit {
+   required sint32 dx = 1; // delta x
+   required sint32 dy = 2; // delta y
+   required uint32 name = 5;
+   optional uint32 name_en = 6;
+   repeated uint32 attributeTagIds = 7;
+   repeated string attributeValues = 8;
 }
 
 message TransportStopsTree {
@@ -432,7 +442,8 @@ message TransportStopsTree {
    repeated TransportStopsTree subtrees = 7;
    
    repeated TransportStop leafs = 8;
-   
+
+
    // written as last
    optional uint64 baseId = 16;
 }
