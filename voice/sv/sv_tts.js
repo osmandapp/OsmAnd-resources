@@ -91,7 +91,7 @@ function populateDictionary(tts) {
 	dictionary["speed_camera"] = tts ? "fartkamera" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "gränskontroll" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "järnvägskorsning" : "railroad_crossing.ogg";
-	dictionary["traffic_calming"] = tts ? "långsammare trafik" : "traffic_calming.ogg";
+	dictionary["traffic_calming"] = tts ? "farthinder" : "traffic_calming.ogg";
 	dictionary["toll_booth"] = tts ? "vägtull" : "toll_booth.ogg";
 	dictionary["stop"] = tts ? "stoppskylt" : "stop.ogg";
 	dictionary["pedestrian_crosswalk"] = tts ? "övergångsställe för fotgängare" : "pedestrian_crosswalk.ogg";
