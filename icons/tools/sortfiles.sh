@@ -229,6 +229,7 @@ mycpname social_facility health_nursing_home.png
 mycpname sanatorium health_sanatorium.png
 mycpname health_amenity_type_first_aid_kit health_health_amenity_type_first_aid_kit.png
 mycpname laboratory health_laboratory.png
+mycpname blood_donation health_blood_donation.png
 
 ## Overlays
 mycp fixme_tag yes overlays_fixme.png
