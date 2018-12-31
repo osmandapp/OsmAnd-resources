@@ -101,7 +101,7 @@ function populateDictionary(tts) {
 	dictionary["toll_booth"] = tts ? "tol poort" : "toll_booth.ogg";
 	// de spatie is nodig voor een betere uitspraak
 	dictionary["stop"] = tts ? "stop teken" : "stop.ogg";
-	dictionary["pedestrian_crosswalk"] = tts ? "zebra" : "pedestrian_crosswalk.ogg";
+	dictionary["pedestrian_crosswalk"] = tts ? "zebra pad" : "pedestrian_crosswalk.ogg";
 	dictionary["tunnel"] = tts ? "tunnel" : "tunnel.ogg";
 	
 	// OTHER PROMPTS
