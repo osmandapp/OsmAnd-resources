@@ -267,6 +267,7 @@ mycp highway milestone functional-icons_milestone.png
 mycp highway mini_roundabout transport_colored_miniroundabout_anticlockwise.png
 mycp highway noexit functional-icons_noexit.png
 mycpname deadlock poi_colored_noexit.png
+mycpname toll_gantry transport_colored_toll_gantry.png
 mycp highway passing_place functional-icons_passing_place.png
 mycp highway speed_camera transport_speedcamera.png
 mycp highway steps transport_colored_highway_steps.png
