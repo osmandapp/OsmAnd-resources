@@ -25,10 +25,10 @@ language('et').
 %% STRINGS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ROUTE CALCULATED
-string('route_is.ogg', 'Tee-kond on ').
+string('route_is.ogg', 'Teekond on ').
 string('long.ogg', 'pikk, '). % Comma!
 string('route_calculate.ogg', 'Mõtlesin ümber.').
-string('distance.ogg', 'Tee-pikkus on ').
+string('distance.ogg', 'Teepikkus on ').
 
 % LEFT/RIGHT
 %string('prepare.ogg', 'Valmistuge ').
@@ -52,14 +52,14 @@ string('make_uturn_inf.ogg', 'keerame tagasi').
 string('make_uturn_wp.ogg', 'Kui võimalik, keerake tagasi').
 
 % ROUNDABOUTS
-string('prepare_roundabout.ogg', 'Valmistuge sõitma ring-ristmikule').
-string('prepare_walk_roundabout.ogg', 'Valmistuge kõndima ring-ristmikule').
-string('roundabout.ogg', 'sõitke ring-ristmikule').
-string('walk_roundabout.ogg', 'kõndige ring-ristmikule').
+string('prepare_roundabout.ogg', 'Valmistuge sõitma ringristmikule').
+string('prepare_walk_roundabout.ogg', 'Valmistuge kõndima ringristmikule').
+string('roundabout.ogg', 'sõitke ringristmikule').
+string('walk_roundabout.ogg', 'kõndige ringristmikule').
 string('then.ogg', ', siis ').
 string('and.ogg', ' ja ').
 string('take.ogg', 'valige ').
-string('exit.ogg', 'välja-sõit').
+string('exit.ogg', 'väljasõit').
 
 string('1st.ogg', 'esimene ').
 string('2nd.ogg', 'teine ').
@@ -86,32 +86,32 @@ string('follow.ogg', 'Jätkake ').
 % ARRIVE
 string('and_arrive_destination.ogg', 'ja jõuate sihtkohta ').
 string('reached_destination.ogg', 'Oletegi kohal: ').
-string('and_arrive_intermediate.ogg', 'ja jõuate tee-tähiseni ').
-string('reached_intermediate.ogg', 'Tee-tähis ').
+string('and_arrive_intermediate.ogg', 'ja jõuate teetähiseni ').
+string('reached_intermediate.ogg', 'Teetähis ').
 
 % NEARBY POINTS
-string('and_arrive_waypoint.ogg', 'ja jõuate tee-tähiseni ').   % NB! Is "GPX" necessary here?
-string('reached_waypoint.ogg', 'Tee-tähis ').                   % NB! And here?
-string('and_arrive_favorite.ogg', 'and pass favorite ').
-string('reached_favorite.ogg', 'you are passing favorite ').
-string('and_arrive_poi.ogg', 'and pass POI ').
-string('reached_poi.ogg', 'you are passing POI ').
+string('and_arrive_waypoint.ogg', 'ja jõuate teetähiseni ').   % NB! Is "GPX" necessary here?
+string('reached_waypoint.ogg', 'Teetähis ').                   % NB! And here?
+string('and_arrive_favorite.ogg', 'ja möödute lemmikust ').
+string('reached_favorite.ogg', 'te möödute lemmikust ').
+string('and_arrive_poi.ogg', 'ja mööduge huvipunktist ').
+string('reached_poi.ogg', 'te möödute huvipunktist ').
 
 % ATTENTION
-%string('exceed_limit.ogg', 'Ületate piir-kiirust.').
-string('exceed_limit.ogg', 'piir-kiirust ').
+%string('exceed_limit.ogg', 'Ületate piirkiirust.').
+string('exceed_limit.ogg', 'piirkiirust ').
 string('attention.ogg', 'Tähelepanu! ').
 string('speed_camera.ogg', 'kiiruskaamera').
 string('border_control.ogg', 'piirikontrolli').
 string('railroad_crossing.ogg', 'raudteeülesõit').
-string('traffic_calming.ogg', 'liikluse rahunemine').
+string('traffic_calming.ogg', 'kiirustõke').
 string('toll_booth.ogg', 'tolliputka').
 string('stop.ogg', 'stoppmärk').
-string('pedestrian_crosswalk.ogg', 'jalakäijate ülekäigurada').
+string('pedestrian_crosswalk.ogg', 'ülekäigurada').
 
 % OTHER PROMPTS
-string('location_lost.ogg', 'Geepe-essi levi pole.').
-string('location_recovered.ogg', 'Geepe-essi levi taastus.').
+string('location_lost.ogg', 'GPS levi pole.').
+string('location_recovered.ogg', 'GPS levi taastus.').
 string('you_are.ogg', 'Olete ').
 string('off_route.ogg', 'plaanitud teest kõrvale kaldunud ').
 string('back_on_route.ogg', 'olete tagasi liinil').
@@ -155,9 +155,9 @@ string('onto_street.ogg', 'tänavale ').
 string('on_street.ogg', 'tänaval ').
 string('to_street.ogg', 'tänavani ').
 
-string('onto.ogg', 'onto ').
-string('on.ogg', 'on ').
-string('to.ogg', 'to ').
+string('onto.ogg', 'teele ').
+string('on.ogg', 'teel ').
+string('to.ogg', 'teele ').
 string('toward.ogg', 'suunas').
 
 % DISTANCE UNIT SUPPORT
