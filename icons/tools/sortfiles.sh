@@ -1002,6 +1002,7 @@ mycpname training education_training.png
 mycpname training_yoga education_training_yoga.png
 mycpname music_school education_music_school.png
 mycpname language_school education_language_school.png
+mycpname childcare education_childcare.png
 
 ## Man made
 mygroup man_made power_generator_wind2.png
