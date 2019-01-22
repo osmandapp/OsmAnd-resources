@@ -502,10 +502,6 @@
 
 			<!-- introduce special tag motorcycle ! --><!-- What is special in it? It is a defined value and used in the database -->
 			<!-- <select value="-1" t="motorcycle" v="no"/>-->
-			<select value="-1" t="barrier" v="bollard"/>
-			<select value="-1" t="barrier" v="chain"/>
-			<select value="-1" t="barrier" v="debris"/>
-			<select value="-1" t="barrier" v="block"/>
 
 			<select value="-1" t="maxweight">
 				<gt value1=":weight" value2="$maxweight" type="weight"/>
@@ -793,6 +789,15 @@
 			<select value="0"  t="access" v="yes"/>
 			<select value="0"  t="access" v="permissive"/>
 			<select value="0"  t="access" v="customers"/>
+			<if param="allow_private">
+				<select value="1" t="bollard" v="removable"/>
+				<select value="1" t="bollard" v="rising"/>
+			</if>
+			<select value="-1" t="barrier" v="bollard"/>
+			<select value="-1" t="barrier" v="chain"/>
+			<select value="-1" t="barrier" v="debris"/>
+			<select value="-1" t="barrier" v="block"/>
+
 			<if param="short_way">
 				<select value="0" t="barrier" v="cattle_grid"/>
 				<select value="0" t="barrier" v="border_control"/>
@@ -817,7 +822,6 @@
 			<if param="allow_private">
 				<select value="300" t="barrier" v="gate"/>
 			</if>
-
 			<select value="10" t="traffic_calming"/>
 			<!-- New introduction to not drive through city -->
 			<select value="15" t="highway" v="traffic_signals"/>
