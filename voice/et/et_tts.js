@@ -18,10 +18,10 @@ function populateDictionary(tts) {
 	//// STRINGS
 	////////////////////////////////////////////////////////////////
 	// ROUTE CALCULATED
-	dictionary["route_is"] = tts ? "Tee-kond on " : "route_is.ogg";
+	dictionary["route_is"] = tts ? "Teekond on " : "route_is.ogg";
 	dictionary["long"] = tts ? "pikk, " : "long.ogg"; // Comma!
 	dictionary["route_calculate"] = tts ? "Mõtlesin ümber." : "route_calculate.ogg";
-	dictionary["distance"] = tts ? "Tee-pikkus on " : "distance.ogg";
+	dictionary["distance"] = tts ? "Teepikkus on " : "distance.ogg";
 
 	// LEFT/RIGHT
 	//dictionary["prepare"] = tts ? "Valmistuge " : "prepare.ogg";
@@ -45,10 +45,10 @@ function populateDictionary(tts) {
 	dictionary["make_uturn_wp"] = tts ? "Kui võimalik, keerake tagasi" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? "Valmistuge sõitma ring-ristmikule" : "prepare_roundabout.ogg";
-	dictionary["prepare_walk_roundabout"] = tts ? "Valmistuge kõndima ring-ristmikule" : "prepare_walk_roundabout.ogg";
-	dictionary["roundabout"] = tts ? "sõitke ring-ristmikule" : "roundabout.ogg";
-	dictionary["walk_roundabout"] = tts ? "kõndige ring-ristmikule" : "walk_roundabout.ogg";
+	dictionary["prepare_roundabout"] = tts ? "Valmistuge sõitma ringristmikule" : "prepare_roundabout.ogg";
+	dictionary["prepare_walk_roundabout"] = tts ? "Valmistuge kõndima ringristmikule" : "prepare_walk_roundabout.ogg";
+	dictionary["roundabout"] = tts ? "sõitke ringristmikule" : "roundabout.ogg";
+	dictionary["walk_roundabout"] = tts ? "kõndige ringristmikule" : "walk_roundabout.ogg";
 	dictionary["then"] = tts ? ", siis " : "then.ogg";
 	dictionary["and"] = tts ? " ja " : "and.ogg";
 	dictionary["take"] = tts ? "valige " : "take.ogg";
@@ -79,12 +79,12 @@ function populateDictionary(tts) {
 	// ARRIVE
 	dictionary["and_arrive_destination"] = tts ? "ja jõuate sihtkohta " : "and_arrive_destination.ogg";
 	dictionary["reached_destination"] = tts ? "Oletegi kohal: " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "ja jõuate tee-tähiseni " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "Tee-tähis " : "reached_intermediate.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "ja jõuate teetähiseni " : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "Teetähis " : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "ja jõuate tee-tähiseni " : "and_arrive_waypoint.ogg";   // NB! Is "GPX" necessary here?
-	dictionary["reached_waypoint"] = tts ? "Tee-tähis " : "reached_waypoint.ogg";                   // NB! And here?
+	dictionary["and_arrive_waypoint"] = tts ? "ja jõuate teetähiseni " : "and_arrive_waypoint.ogg";   // NB! Is "GPX" necessary here?
+	dictionary["reached_waypoint"] = tts ? "Teetähis " : "reached_waypoint.ogg";                   // NB! And here?
 	dictionary["and_arrive_favorite"] = tts ? "and pass favorite " : "and_arrive_favorite.ogg";
 	dictionary["reached_favorite"] = tts ? "you are passing favorite " : "reached_favorite.ogg";
 	dictionary["and_arrive_poi"] = tts ? "and pass POI " : "and_arrive_poi.ogg";
@@ -92,20 +92,20 @@ function populateDictionary(tts) {
 
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "Ületate piir-kiirust." : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "piir-kiirust " : "exceed_limit.ogg";
+	dictionary["exceed_limit"] = tts ? "piirkiirust " : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "Tähelepanu! " : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "kiiruskaamera" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "piirikontrolli" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "raudteeülesõit" : "railroad_crossing.ogg";
-	dictionary["traffic_calming"] = tts ? "liikluse rahunemine" : "traffic_calming.ogg";
+	dictionary["traffic_calming"] = tts ? "kiirustõke" : "traffic_calming.ogg";
 	dictionary["toll_booth"] = tts ? "tolliputka" : "toll_booth.ogg";
 	dictionary["stop"] = tts ? "stoppmärk" : "stop.ogg";
 	dictionary["pedestrian_crosswalk"] = tts ? "jalakäijate ülekäigurada" : "pedestrian_crosswalk.ogg";
 	dictionary["tunnel"] = tts ? "tunnel" : "tunnel.ogg";
 
 	// OTHER PROMPTS
-	dictionary["location_lost"] = tts ? "Geepe-essi levi pole." : "location_lost.ogg";
-	dictionary["location_recovered"] = tts ? "Geepe-essi levi taastus." : "location_recovered.ogg";
+	dictionary["location_lost"] = tts ? "GPS-i levi pole." : "location_lost.ogg";
+	dictionary["location_recovered"] = tts ? "GPS-i levi taastus." : "location_recovered.ogg";
 	dictionary["you_are"] = tts ? "Olete " : "you_are.ogg";
 	dictionary["off_route"] = tts ? "plaanitud teest kõrvale kaldunud " : "off_route.ogg";
 	dictionary["back_on_route"] = tts ? "olete tagasi liinil" : "back_on_route.ogg";
@@ -149,9 +149,9 @@ function populateDictionary(tts) {
 	dictionary["on_street"] = tts ? "tänaval " : "on_street.ogg";
 	dictionary["to_street"] = tts ? "tänavani " : "to_street.ogg";
 
-	dictionary["onto"] = tts ? "onto " : "onto.ogg";
-	dictionary["on"] = tts ? "on " : "on.ogg";
-	dictionary["to"] = tts ? "to " : "to.ogg";
+	dictionary["onto"] = tts ? "teele " : "onto.ogg";
+	dictionary["on"] = tts ? "teel " : "on.ogg";
+	dictionary["to"] = tts ? "teele " : "to.ogg";
 	dictionary["toward"] = tts ? "suunas" : "toward.ogg";
 
 	// DISTANCE UNIT SUPPORT
