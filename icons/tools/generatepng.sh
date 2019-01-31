@@ -28,16 +28,17 @@ done
 
 generateElements() {
   TYPE=$1
+  echo $TYPE
   for FILE in $SVGFOLDER$1/*.svg; do
       FILENAME=${FILE##/*/}
-      if [[ $FILENAME == _* ]]; then
+      if [[ $FILENAME == _* ]] || [[ $FILENAME == "*.svg" ]]; then
         continue;
       fi
       FILENAME=${FILENAME%.*}
-      rsvg -f png ${FILE} -x 1 -y 1 ${OUTPUTFOLDER}mdpi/${FILENAME}.png
-      rsvg -f png ${FILE} -x 1.5 -y 1.5 ${OUTPUTFOLDER}hdpi/${FILENAME}.png
-      rsvg -f png ${FILE} -x 2 -y 2 ${OUTPUTFOLDER}xhdpi/${FILENAME}.png
-      rsvg -f png ${FILE} -x 3 -y 3 ${OUTPUTFOLDER}xxhdpi/${FILENAME}.png
+      rsvg-convert -f png ${FILE} -x 1 -y 1 -o ${OUTPUTFOLDER}mdpi/${FILENAME}.png
+      rsvg-convert -f png ${FILE} -x 1.5 -y 1.5 -o ${OUTPUTFOLDER}hdpi/${FILENAME}.png
+      rsvg-convert -f png ${FILE} -x 2 -y 2 -o ${OUTPUTFOLDER}xhdpi/${FILENAME}.png
+      rsvg-convert -f png ${FILE} -x 3 -y 3 -o ${OUTPUTFOLDER}xxhdpi/${FILENAME}.png
   done
 }
 
@@ -163,6 +164,7 @@ generatePngs() {
        generatePngs 'poi_colored' '#3f3f3f' '#ff8f00'
        generatePngs 'topo' '#000000' '#000000' '' '' '' nomx
        generatePngs 'topo_big' '#000000' '#000000' '' x2 '' nomx
+       generatePngs 'topo_water' '#000000' '#0F5CF0' '' '' '' nomx
        generatePngs 'additional' '#3f3f3f' '#ff8f00'
        generatePngs 'additional_category' '#3f3f3f' '#ff8f00'
        generatePngs 'power' '#3f3f3f' '#ff8f00'
@@ -184,3 +186,4 @@ generatePngs() {
        generatePngs 'xmas' '#aa2001' '#ff8f00'
 
        generatePngs 'overlays' '#777777' '#777777' '' x2 '' nomx
+       generatePngs 'overlays_water' '#777777' '#777777' '' x2 '' nomx

@@ -379,7 +379,7 @@
 	-->
 
 	<routingProfile name="car" baseProfile="car" restrictionsAware="true" minDefaultSpeed="45.0" maxDefaultSpeed="130.0"
-			leftTurn="5" rightTurn="5" roundaboutTurn="10" onewayAware="true">
+			leftTurn="5" rightTurn="5" roundaboutTurn="5" onewayAware="true">
 	    <!--
 		<attribute name="heuristicCoefficient" value="1.5" />
 
@@ -407,9 +407,6 @@
 			<select value="-1" t="highway" v="construction"/>
 			<select value="-1" t="construction" v="yes"/>
 
-			<select value="-1" t="highway" v="motorway">
-				<if param="avoid_motorway"/>
-			</select>
 			<select value="-1" t="ice_road" v="yes">
 				<if param="avoid_ice_roads_fords"/>
 			</select>
@@ -505,10 +502,6 @@
 
 			<!-- introduce special tag motorcycle ! --><!-- What is special in it? It is a defined value and used in the database -->
 			<!-- <select value="-1" t="motorcycle" v="no"/>-->
-			<select value="-1" t="barrier" v="bollard"/>
-			<select value="-1" t="barrier" v="chain"/>
-			<select value="-1" t="barrier" v="debris"/>
-			<select value="-1" t="barrier" v="block"/>
 
 			<select value="-1" t="maxweight">
 				<gt value1=":weight" value2="$maxweight" type="weight"/>
@@ -569,6 +562,11 @@
 				<select value="25"/>
 			</if>
 			
+			<if param="avoid_motorway">
+				<select value="3000" t="highway" v="motorway"/>
+				<select value="3000" t="motorroad" v="yes"/>
+				<select value="2900" t="highway" v="motorway_link"/>
+			</if>
 			<select value="0" t="highway" v="motorway"/>
 			<select value="10" t="highway" v="motorway_link"/>
 			<select value="10" t="highway" v="trunk"/>
@@ -579,7 +577,7 @@
 			<select value="110" t="highway" v="secondary_link"/>
 			<select value="130" t="highway" v="tertiary"/>
 			<select value="139" t="highway" v="tertiary_link"/>
-			<select value="185" t="highway" v="residential"/>
+			<select value="177" t="highway" v="residential"/>
 			<select value="230" t="highway" v="service"/>
 			<select value="200"/>
 			
@@ -791,6 +789,15 @@
 			<select value="0"  t="access" v="yes"/>
 			<select value="0"  t="access" v="permissive"/>
 			<select value="0"  t="access" v="customers"/>
+			<if param="allow_private">
+				<select value="1" t="bollard" v="removable"/>
+				<select value="1" t="bollard" v="rising"/>
+			</if>
+			<select value="-1" t="barrier" v="bollard"/>
+			<select value="-1" t="barrier" v="chain"/>
+			<select value="-1" t="barrier" v="debris"/>
+			<select value="-1" t="barrier" v="block"/>
+
 			<if param="short_way">
 				<select value="0" t="barrier" v="cattle_grid"/>
 				<select value="0" t="barrier" v="border_control"/>
@@ -815,11 +822,10 @@
 			<if param="allow_private">
 				<select value="300" t="barrier" v="gate"/>
 			</if>
-			<select value="-1" t="barrier"/>
-
 			<select value="10" t="traffic_calming"/>
 			<!-- New introduction to not drive through city -->
 			<select value="15" t="highway" v="traffic_signals"/>
+			<select value="5"  t="highway" v="give_way"/>
 
 			<select value="25" t="ford"/>
 		</point>
@@ -845,7 +851,7 @@
 		<parameter id="avoid_stairs" name="Avoid stairs" description="Avoid stairs" type="boolean"/>
 		<parameter id="avoid_borders" name="Avoid border crossing" description="Avoid crossing a border into another country" type="boolean"/>
 		<parameter id="allow_motorway" name="Allow motorways" description="Allow motorways" type="boolean"/>
-		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean"/>
+		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean" default="false"/>
 
 		<way attribute="access">
 			<select value="-1" t="osmand_change" v="delete"/>
@@ -1482,8 +1488,14 @@
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_motorway" name="Avoid motorways" description="Avoid motorways" type="boolean"/>
 		<parameter id="avoid_stairs" name="Avoid stairs" description="Avoid stairs" type="boolean"/>
-		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean"/>
+		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean" default="true"/>
 
+    <way attribute="area">
+      <select value="1"  t="railway" v="platform"/> 
+      <select value="1"  t="public_transport" v="platform"/> 
+      <select value="0"/>
+    </way>
+    
 		<way attribute="access">
 			<select value="-1" t="osmand_change" v="delete"/>
 			<select value="-1" t="highway" v="proposed"/>

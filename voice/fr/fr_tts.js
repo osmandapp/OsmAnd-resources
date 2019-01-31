@@ -6,9 +6,9 @@ var dictionary = {};
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	dictionary["route_is"] = tts ? "l''itinéraire fait " : "route_is.ogg";
-	dictionary["route_calculate"] = tts ? "recalcul de l''itinéraire" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? ", l''itinéraire fait " : "distance.ogg";
+	dictionary["route_is"] = tts ? "l'itinéraire fait " : "route_is.ogg";
+	dictionary["route_calculate"] = tts ? "recalcul de l'itinéraire" : "route_calculate.ogg";
+	dictionary["distance"] = tts ? ", l'itinéraire fait " : "distance.ogg";
 	
 	// LEFT/RIGHT
 	//dictionary["prepare"] = tts ? "préparez vous à " : "prepare.ogg";
@@ -32,8 +32,8 @@ function populateDictionary(tts) {
 	dictionary["make_uturn_wp"] = tts ? "Dès que possible, faites demi-tour" : "make_uturn_wp.ogg";
 	
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? "Entrez dans le rond-point dans " : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? " entrez dans le rond-point et prenez la " : "roundabout.ogg";
+	dictionary["prepare_roundabout"] = tts ? "entrez dans le rond-point " : "prepare_roundabout.ogg";
+	dictionary["roundabout"] = tts ? " entrez dans le rond-point " : "roundabout.ogg";
 	dictionary["then"] = tts ? ", puis " : "then.ogg";
 	dictionary["and"] = tts ? " et " : "and.ogg";
 	dictionary["take"] = tts ? "prenez la " : "take.ogg";
@@ -64,16 +64,16 @@ function populateDictionary(tts) {
 	// ARRIVE
 	dictionary["and_arrive_destination"] = tts ? "et arrivez à destination " : "and_arrive_destination.ogg";
 	dictionary["reached_destination"] = tts ? "vous êtes arrivé à destination " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "et arrivez à l''étape " : "and_arrive_intermediate.ogg"; // !!! no apostrophe
-	dictionary["reached_intermediate"] = tts ? "vous êtes arrivé à l''étape " : "reached_intermediate.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "et arrivez à l'étape " : "and_arrive_intermediate.ogg"; // !!! no apostrophe
+	dictionary["reached_intermediate"] = tts ? "vous êtes arrivé à l'étape " : "reached_intermediate.ogg";
 	
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "et arrivez à l''étape G P X " : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "vous êtes arrivé à l''étape G P X " : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "et arrivez à l''étape Favoris " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "vous êtes arrivé à l''étape Favoris " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "et arrivez à l''étape P O I " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "vous êtes arrivé à l''étape P O I " : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "et arrivez à l'étape G P X " : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "vous êtes arrivé à l'étape G P X " : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "et arrivez à l'étape Favoris " : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "vous êtes arrivé à l'étape Favoris " : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "et arrivez à l'étape P O I " : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "vous êtes arrivé à l'étape P O I " : "reached_poi.ogg";
 	
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "vous dépassez la limite de vitesse " : "exceed_limit.ogg";
@@ -89,10 +89,10 @@ function populateDictionary(tts) {
 	dictionary["tunnel"] = tts ? "tunnel" : "tunnel.ogg";
 	
 	// OTHER PROMPTS
-	dictionary["location_lost"] = tts ? "Signal G P S perdu" : "location_lost.ogg";
-	dictionary["location_recovered"] = tts ? "Signal G P S retrouvé" : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "vous avez dévié de l''itinéraire depuis " : "off_route.ogg";
-	dictionary["back_on_route"] = tts ? "vous êtes de retour sur l''itinéraire" : "back_on_route.ogg";
+	dictionary["location_lost"] = tts ? "Signal satellite perdu" : "location_lost.ogg";
+	dictionary["location_recovered"] = tts ? "Signal satellite retrouvé" : "location_recovered.ogg";
+	dictionary["off_route"] = tts ? "vous avez dévié de l'itinéraire depuis " : "off_route.ogg";
+	dictionary["back_on_route"] = tts ? "vous êtes de retour sur l'itinéraire" : "back_on_route.ogg";
 	
 	// STREET NAME PREPOSITIONS
 	dictionary["onto"] = tts ? "sur " : "onto.ogg";
@@ -117,7 +117,7 @@ function populateDictionary(tts) {
 	dictionary["time"] = tts ? "durée du trajet " : "time.ogg";
 	dictionary["1_hour"] = tts ? "une heure " : "1_hour.ogg";
 	dictionary["hours"] = tts ? "heures " : "hours.ogg";
-	dictionary["less_a_minute"] = tts ? "moins d''une minute" : "less_a_minute.ogg";
+	dictionary["less_a_minute"] = tts ? "moins d'une minute" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "une minute" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "minutes" : "minutes.ogg";
 }
@@ -145,9 +145,9 @@ function distance(dist) {
 			if (dist < 17 ) {
 				return (tts ? Math.round(dist).toString() : ogg_dist(dist)) + " " + dictionary["meters"];
 			} else if (dist < 100) {
-				return (tts ? Math.round((dist/10.0)*10).toString() : ogg_dist((dist/10.0)*10)) + " " + dictionary["meters"];
+				return (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10)) + " " + dictionary["meters"];
 			} else if (dist < 1000) {
-				return (tts ? Math.round((2*dist/100.0)*50).toString() : ogg_dist((2*dist/100.0)*50)) + " " + dictionary["meters"];
+				return (tts ? (Math.round(2*dist/100.0)*50).toString() : ogg_dist(Math.round(2*dist/100.0)*50)) + " " + dictionary["meters"];
 			} else if (dist < 1500) {
 				return dictionary["around_1_kilometer"];
 			} else if (dist < 10000) {
@@ -158,7 +158,7 @@ function distance(dist) {
 			break;
 		case "mi-f":
 			if (dist < 160) {
-				return (tts ? Math.round((2*dist/100.0/0.3048)*50).toString() : ogg_dist((2*dist/100.0/0.3048)*5)) + " " + dictionary["feet"];
+				return (tts ? (Math.round(2*dist/100.0/0.3048)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.3048)*50)) + " " + dictionary["feet"];
 			} else if (dist < 241) {
 				return dictionary["1_tenth_of_a_mile"];
 			} else if (dist < 1529) {
@@ -175,9 +175,9 @@ function distance(dist) {
 			if (dist < 17) {
 				return (tts ? Math.round(dist).toString() : ogg_dist(dist)) + " " + dictionary["meters"];
 			} else if (dist < 100) {
-				return (tts ? Math.round((dist/10.0)*10).toString() : ogg_dist((dist/10.0)*10)) + " " + dictionary["meters"];
+				return (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10)) + " " + dictionary["meters"];
 			} else if (dist < 1300) {
-				return (tts ? Math.round((2*dist/100.0)*50).toString() : ogg_dist((2*dist/100.0)*50)) + " " + dictionary["meters"];
+				return (tts ? (Math.round(2*dist/100.0)*50).toString() : ogg_dist(Math.round(2*dist/100.0)*50)) + " " + dictionary["meters"];
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
 			} else if (dist < 16093) {
@@ -190,11 +190,11 @@ function distance(dist) {
 			if (dist < 17) {
 				return (tts ? Math.round(dist/0.9144).toString() : ogg_dist(dist/0.9144)) + " " + dictionary["yards"];
 			} else if (dist < 100) {
-				return (tts ? Math.round((dist/10.0/0.9144)*10).toString() : ogg_dist((dist/10.0/0.9144)*10)) + " " + dictionary["yards"];
+				return (tts ? (Math.round(dist/10.0/0.9144)*10).toString() : ogg_dist((dist/10.0/0.9144)*10)) + " " + dictionary["yards"];
 			} else if (dist < 1300) {
-				return (tts ? Math.round((2*dist/100.0/0.9144)*50).toString() : ogg_dist((2*dist/10.0/0.9144)*10)) + " " + dictionary["yards"]; 
+				return (tts ? (Math.round(2*dist/100.0/0.9144)*50).toString() : ogg_dist((2*dist/10.0/0.9144)*10)) + " " + dictionary["yards"]; 
 			} else if (dist < 2414) {
-				return tts ? dictionary["around_1_mile"] : "around_1_mile.ogg";
+				return dictionary["around_1_mile"];
 			} else if (dist < 16093) {
 				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
 			} else {
@@ -214,11 +214,11 @@ function time(seconds) {
 	} else if (minutes % 60 == 1 && tts) {
 		return hours(minutes) + " " + dictionary["1_minute"];
 	} else if (tts) {
-		return hours(minutes) + " " + (minutes % 60).toString() + " " + dictionary["minutes"];
+		return hours(minutes) + " " + (minutes % 60) + " " + dictionary["minutes"];
 	} else if (!tts && seconds < 300) {
-		return minutes.toString() + ".ogg " + dictionary["minutes"];
+		return ogg_dist(minutes) + dictionary["minutes"];
 	} else if (!tts && oggMinutes % 60 > 0) {
-		return hours(oggMinutes) + " " + (oggMinutes % 60).toString() + ".ogg " + dictionary["minutes"];
+		return hours(oggMinutes) + " " + ogg_dist(oggMinutes % 60) + dictionary["minutes"];
 	} else if (!tts) {
 		return hours(oggMinutes);
 	}
@@ -230,8 +230,8 @@ function hours(minutes) {
 	} else if (minutes < 120) {
 		return dictionary["1_hour"];
 	} else {
-		var hours = minutes / 60;
-        return Math.floor(hours).toString() + (!tts ? ".ogg " : " ") + dictionary["hours"]; 
+		var hours = Math.floor(minutes / 60);
+        return  (tts ? hours.toString() : ogg_dist(hours)) + " " + dictionary["hours"]; 
 	}
 }
 
@@ -355,21 +355,15 @@ function turn_street(streetName) {
 }
 
 function assemble_street_name(streetName) {
-	// // assemble_street_name(voice([Ref, Name, Dest], [_CurrentRef, _CurrentName, _CurrentDest]), _).
-// // assemble_street_name(voice(["", Name, _], _), Name). // not necessary
-// // Next 2 lines for Name taking precedence over Dest...
-// //assemble_street_name(voice([Ref, "", Dest], _), [C1, "toward", Dest]) :- atom_concat(Ref, " ", C1).
-// //assemble_street_name(voice([Ref, Name, _], _), Concat) :- atom_concat(Ref, " ", C1), atom_concat(C1, Name, Concat).
-// // ...or next 3 lines for Dest taking precedence over Name
 // assemble_street_name(voice([Ref, Name, ""], _), Concat) :- atom_concat(Ref, " ", C1), atom_concat(C1, Name, Concat).
 // assemble_street_name(voice(["", Name, Dest], _), [C1, "toward", Dest]) :- atom_concat(Name, " ", C1).
 // assemble_street_name(voice([Ref, _, Dest], _), [C1, "toward", Dest]) :- atom_concat(Ref, " ", C1).
 	if (streetName["toDest"] === "") {
 		return streetName["toRef"] + " " + streetName["toStreetName"];
 	} else if (streetName["toRef"] === "") {
-		return streetName["toStreetName"] + dictionary["toward"] + streetName["toDest"];
+		return streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	} else if (streetName["toRef"] != "") {
-		return streetName["toRef"] + dictionary["toward"] + streetName["toDest"];
+		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	}
 }
 
@@ -581,7 +575,7 @@ function ogg_dist(distance) {
 	} else if (distance < 20) {
 		return Math.floor(distance).toString() + ".ogg ";
 	} else if (distance < 1000 && (distance % 50) == 0) {
-		return (distance % 50).toString() + ".ogg ";
+		return distance.toString() + ".ogg ";
 	} else if (distance < 30) {
 		return "20.ogg " + ogg_dist(distance - 20);
 	} else if (distance < 40) {

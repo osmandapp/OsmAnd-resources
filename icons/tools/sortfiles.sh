@@ -90,6 +90,9 @@ mycp stroke gray_triangle functional-icons_gray_stroke_triangle.png
 mycp stroke lightorange_left functional-icons_lightorange_left_stroke.png
 mycp stroke white functional-icons_white_stroke.png
 mycp stroke brown_right functional-icons_brown_right_stroke.png
+mycpname stroke_brown_left functional-icons_brown_left_stroke.png
+mycpname stroke_dark_brown_left functional-icons_dark_brown_left_stroke.png
+mycpname stroke_light_brown_left functional-icons_light_brown_left_stroke.png
 
 ## Natural
 mygroup natural poi_colored_peak2.png
@@ -106,7 +109,7 @@ mycp natural peak_night functional-icons_peak_night.png  #For night orienteering
 mycp natural saddle poi_colored_saddle.png
 mycp natural sinkhole poi_colored_sinkhole.png
 mycp natural spring water_spring.png  #scale 0.375
-mycpname topo_spring topo_topo_spring.png  #scale 0.375
+mycpname topo_spring topo_water_spring.png  #scale 0.375
 mycp natural stone poi_colored_stone.png  #scale 0.375
 mycp natural tree_broadleaved functional-icons_tree_broadleaved.png
 mycpname topo_tree_broadleaved functional-icons-x2_topo_tree_broadleaved.png
@@ -127,7 +130,7 @@ mycpname volcano poi_colored_volcano_active.png
 mycp waterway rapids barrier_colored_rapids.png  #scale 0.375
 mycpname rapid_white barrier_rapid.png  #scale 0.375
 mycpname waterfall water_waterfall.png  #scale 0.375
-mycpname topo_waterfall topo_topo_waterfall.png  #scale 0.375
+mycpname topo_waterfall topo_water_waterfall.png  #scale 0.375
 mycpname dam water_dam.png
 mycpname weir water_weir.png
 mycpname stream water_stream.png
@@ -144,6 +147,8 @@ mycpname ridge poi_colored_ridge.png
 mycpname strait poi_colored_strait.png
 mycpname fjord poi_colored_fjord.png
 mycpname cliff poi_colored_cliff.png
+mycpname hill poi_colored_hill.png
+mycpname hill_night functional-icons_hill_night.png
 
 ## Location dots
 mygroup administrative poi_colored_boundary_administrative.png
@@ -223,6 +228,8 @@ mycp amenity veterinary health_veterinary.png
 mycpname social_facility health_nursing_home.png
 mycpname sanatorium health_sanatorium.png
 mycpname health_amenity_type_first_aid_kit health_health_amenity_type_first_aid_kit.png
+mycpname laboratory health_laboratory.png
+mycpname blood_donation health_blood_donation.png
 
 ## Overlays
 mycp fixme_tag yes overlays_fixme.png
@@ -233,8 +240,8 @@ mycp osm_note dot overlays_osm_note_dot.png
 mycp osm_note dot_2 overlays_osm_note_dot_2.png
 mycp drinking_water yes_map overlays_drinking_water_yes.png
 mycp drinking_water no_map overlays_drinking_water_no.png
-mycpname topo_drinking_water_yes_map overlays_topo_drinking_water_yes.png
-mycpname topo_drinking_water_no_map overlays_topo_drinking_water_no.png
+mycpname topo_drinking_water_yes_map overlays_water_drinking_water_yes.png
+mycpname topo_drinking_water_no_map overlays_water_drinking_water_no.png
 mycpname access_private_overlay overlays_access_private.png
 mycpname access_private_red_overlay overlays_access_private_red.png
 
@@ -260,6 +267,7 @@ mycp highway milestone functional-icons_milestone.png
 mycp highway mini_roundabout transport_colored_miniroundabout_anticlockwise.png
 mycp highway noexit functional-icons_noexit.png
 mycpname deadlock poi_colored_noexit.png
+mycpname toll_gantry transport_colored_toll_gantry.png
 mycp highway passing_place functional-icons_passing_place.png
 mycp highway speed_camera transport_speedcamera.png
 mycp highway steps transport_colored_highway_steps.png
@@ -623,7 +631,7 @@ mycp tourism apartment accommodation_apartment.png
 mycpname topo_apartment topo_topo_apartment.png
 mycp tourism camp_site accommodation_camping.png
 mycpname topo_camp_site topo_topo_camp_site.png
-mycp tourism caravan_site accommodation_caravan_park.png
+mycpname tourism_caravan_site accommodation_caravan.png
 mycpname topo_caravan_site topo_topo_caravan_site.png
 mycp tourism chalet accommodation_chalet.png
 mycpname topo_chalet topo_topo_chalet.png
@@ -921,7 +929,7 @@ mycpname compressed_air amenity_compressed_air.png
 mycpname amenity_vacuum_cleaner amenity_vacuum_cleaner.png
 mycpname bicycle_repair_station amenity_bicycle_repair_station.png
 mycpname water_tap amenity_water_tap.png
-mycpname topo_water_tap topo_topo_water_tap.png
+mycpname topo_water_tap topo_water_water_tap.png
 mycpname recycling_centre_map amenity_recycling_centre_map.png
 mycpname recycling_container amenity_colored_recycling_container.png
 mycpname barbecue amenity_barbecue.png
@@ -994,6 +1002,7 @@ mycpname training education_training.png
 mycpname training_yoga education_training_yoga.png
 mycpname music_school education_music_school.png
 mycpname language_school education_language_school.png
+mycpname childcare education_childcare.png
 
 ## Man made
 mygroup man_made power_generator_wind2.png
@@ -1086,8 +1095,9 @@ mycpname spoil_heap poi_colored_spoil_heap.png
 mycpname ventilation_shaft poi_colored_ventilation_shaft.png
 mycpname pumping_station poi_colored_pumping_station.png
 mycpname mdf poi_colored_mdf.png
-
 mycpname topo_power_plant topo_topo_power_plant.png
+mycpname pipeline_substation poi_colored_pipeline_substation.png
+
 
 mygroup military poi_colored_military_bunker.png
 
@@ -1100,13 +1110,13 @@ mycp amenity bar food_bar.png
 mycp amenity biergarten food_biergarten.png
 mycp amenity cafe food_cafe.png
 mycp amenity drinking_water food_drinkingtap.png
-mycpname topo_drinking_water topo_topo_drinking_water.png
+mycpname topo_drinking_water topo_water_drinking_water.png
 mycp amenity fast_food food_fastfood.png
 mycp amenity food_court food_food_court.png
 mycp amenity pub food_pub.png
 mycp amenity restaurant food_restaurant.png
 mycp man_made water_well food_water_well.png
-mycpname topo_water_well topo_topo_water_well.png
+mycpname topo_water_well topo_water_water_well.png
 mycpname water_point food_water_point.png
 
 ## Seamarks
@@ -1115,6 +1125,7 @@ mycp seamark buoy_conical seamark_buoy_conical.png
 mycp seamark buoy_barrel seamark_buoy_barrel.png
 mycp seamark buoy_can seamark_buoy_can.png
 mycp seamark buoy_spherical seamark_buoy_spherical.png
+mycpname seamark_buoy_pillar seamark_buoy_pillar.png
 
 mycp seamark buoy_blackredblack_conical seamark_buoy_blackredblack_conical.png
 mycp seamark buoy_blackredblack_pillar seamark_buoy_blackredblack_pillar.png
@@ -1157,6 +1168,9 @@ mycp seamark buoy_redwhite_pillar_vertical seamark_buoy_redwhite_pillar_vertical
 mycp seamark buoy_redwhite_spherical_vertical seamark_buoy_redwhite_spherical_vertical.png
 mycp seamark buoy_redwhite_spar_vertical seamark_buoy_redwhite_spar_vertical.png
 mycp seamark buoy_redwhite_spar_horizontal seamark_buoy_redwhite_spar_horizontal.png
+mycpname seamark_buoy_redgreen_spherical_horizontal seamark_buoy_redgreen_spherical_horizontal.png
+mycpname seamark_buoy_redgreen_spar_horizontal seamark_buoy_redgreen_spar_horizontal.png
+mycpname seamark_buoy_redwhite_pillar_horizontal seamark_buoy_redwhite_pillar_horizontal.png
 
 mycp seamark buoy_blackyellowblack_can seamark_buoy_blackyellowblack_can.png
 mycp seamark buoy_blackyellowblack_conical seamark_buoy_blackyellowblack_conical.png
@@ -1182,6 +1196,9 @@ mycp seamark buoy_redgreenred_spherical_horizontal seamark_buoy_redgreenred_sphe
 
 mycp seamark buoy_redwhiteredwhite_spar_horizontal seamark_buoy_redwhiteredwhite_spar_horizontal.png
 mycp seamark buoy_redwhiteredwhite_can_horizontal seamark_buoy_redwhiteredwhite_can_horizontal.png
+mycpname seamark_buoy_redgreenredgreen_spar_horizontal seamark_buoy_redgreenredgreen_spar_horizontal.png
+mycpname seamark_buoy_redgreenredgreen_spherical_horizontal seamark_buoy_redgreenredgreen_spherical_horizontal.png
+mycpname seamark_buoy_redwhitered_can_horizontal seamark_buoy_redwhitered_can_horizontal.png
 
 mycp seamark buoy_whiteredwhitered_spar_horizontal seamark_buoy_whiteredwhitered_spar_horizontal.png
 mycp seamark buoy_whitegreenwhitegreen_spar_horizontal seamark_buoy_whitegreenwhitegreen_spar_horizontal.png
@@ -1195,6 +1212,8 @@ mycp seamark buoy_greenredgreen_can_horizontal seamark_buoy_greenredgreen_can_ho
 mycp seamark buoy_greenredgreen_pillar_horizontal seamark_buoy_greenredgreen_pillar_horizontal.png
 mycp seamark buoy_greenredgreen_spar_horizontal seamark_buoy_greenredgreen_spar_horizontal.png
 mycp seamark buoy_greenredgreen_spherical_horizontal seamark_buoy_greenredgreen_spherical_horizontal.png
+mycp seamark buoy_greenred_spar_horizontal seamark_buoy_greenred_spar_horizontal.png
+mycp seamark buoy_greenred_spherical_horizontal seamark_buoy_greenred_spherical_horizontal.png
 
 mycp seamark beacon_pile seamark_beacon_pile.png
 mycp seamark beacon_stake seamark_beacon_stake.png
@@ -1310,6 +1329,7 @@ mycp seamark topmark_oblique_red_cylinder seamark_topmark_oblique_red_cylinder.p
 mycp seamark topmark_oblique_red_rhombus seamark_topmark_oblique_red_rhombus.png
 mycp seamark topmark_oblique_red_sphere seamark_topmark_oblique_red_sphere.png
 mycp seamark topmark_oblique_red_xshape seamark_topmark_oblique_red_xshape.png
+mycpname seamark_topmark_oblique_red_conepointupoversphere seamark_topmark_oblique_green_conepointupoversphere.png
 
 mycp seamark topmark_oblique_green_board seamark_topmark_oblique_green_board.png
 mycp seamark topmark_oblique_green_conepointdown seamark_topmark_oblique_green_conepointdown.png
@@ -1317,6 +1337,7 @@ mycp seamark topmark_oblique_green_conepointup seamark_topmark_oblique_green_con
 mycp seamark topmark_oblique_green_cylinder seamark_topmark_oblique_green_cylinder.png
 mycp seamark topmark_oblique_green_sphere seamark_topmark_oblique_green_sphere.png
 mycp seamark topmark_oblique_green_xshape seamark_topmark_oblique_green_xshape.png
+mycpname seamark_topmark_oblique_red_cylinderoversphere seamark_topmark_oblique_red_cylinderoversphere.png
 
 mycp seamark topmark_oblique_black_conepointdown seamark_topmark_oblique_black_conepointdown.png
 mycp seamark topmark_oblique_black_conepointup seamark_topmark_oblique_black_conepointup.png
@@ -1861,6 +1882,8 @@ mycpname cannabis shopping_cannabis.png
 mycpname pottery shopping_pottery.png
 mycpname outpost shopping_outpost.png
 mycpname appliance shopping_appliance.png
+mycpname shoe_repair shopping_shoe_repair.png
+mycpname shop_wholesale shopping_wholesale.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
@@ -1921,6 +1944,7 @@ mycpname hazard_slippery_road poi_hazard_slippery_road.png
 mycpname hazard_flood poi_hazard_flood.png
 mycpname hazard_avalanche poi_hazard_avalanche.png
 mycpname hazard_minefield poi_hazard_avalanche.png
+mycpname hazard poi_hazard.png
 
 # mygroup custom_id icons8 #TODO
 mygroup user_defined icons8_user.png

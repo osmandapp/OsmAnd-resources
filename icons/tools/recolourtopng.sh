@@ -13,4 +13,4 @@ BASEFOLDER=`pwd`;
 popd  > /dev/null
 BASEFOLDER=`dirname $BASEFOLDER`
 
-${BASEFOLDER}/tools/recolour.sh $1 $2 $3 $4 | rsvg -f png -w ${5} -h ${5} /dev/stdin ${6}.png
+${BASEFOLDER}/tools/recolour.sh $1 $2 $3 $4 | rsvg-convert -f png -w ${5} -h ${5} /dev/stdin -o ${6}.png

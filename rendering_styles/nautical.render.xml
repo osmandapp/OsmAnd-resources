@@ -469,38 +469,6 @@
 		<case attrColorValue="#888888"/>
 	</renderingAttribute>
 
-	<renderingAttribute name="textOrderPopulation">
-		<case additional="population_rounded=1500000000" attrIntValue="6"/>
-		<case additional="population_rounded=400000000" attrIntValue="7"/>
-		<case additional="population_rounded=200000000" attrIntValue="8"/>
-		<case additional="population_rounded=100000000" attrIntValue="9"/>
-		<case additional="population_rounded=50000000" attrIntValue="10"/>
-		<case additional="population_rounded=25000000" attrIntValue="11"/>
-		<case additional="population_rounded=20000000" attrIntValue="12"/>
-		<case additional="population_rounded=15000000" attrIntValue="13"/>
-		<case additional="population_rounded=12000000" attrIntValue="14"/>
-		<case additional="population_rounded=9000000" attrIntValue="15"/>
-		<case additional="population_rounded=7000000" attrIntValue="16"/>
-		<case additional="population_rounded=5000000" attrIntValue="17"/>
-		<case additional="population_rounded=3000000" attrIntValue="18"/>
-		<case additional="population_rounded=2000000" attrIntValue="19"/>
-		<case additional="population_rounded=1000000" attrIntValue="20"/>
-		<case additional="population_rounded=700000" attrIntValue="21"/>
-		<case additional="population_rounded=400000" attrIntValue="22"/>
-		<case additional="population_rounded=200000" attrIntValue="32"/>
-		<case additional="population_rounded=100000" attrIntValue="33"/>
-		<case additional="population_rounded=70000" attrIntValue="34"/>
-		<case additional="population_rounded=40000" attrIntValue="35"/>
-		<case additional="population_rounded=20000" attrIntValue="36"/>
-		<case additional="population_rounded=10000" attrIntValue="37"/>
-		<case additional="population_rounded=5000" attrIntValue="38"/>
-		<case additional="population_rounded=2500" attrIntValue="39"/>
-		<case additional="population_rounded=1000" attrIntValue="40"/>
-		<case additional="population_rounded=500" attrIntValue="41"/>
-		<case additional="population_rounded=200" attrIntValue="42"/>
-		<case additional="population_rounded=100" attrIntValue="43"/>
-	</renderingAttribute>
-
 
 	<order>
 	<!-- Point -->
@@ -542,9 +510,9 @@
 				<case tag="natural" value="coastline"/>
 				<case tag="natural" value="land"/>
 				<case tag="place" value="island"/>
+				<case tag="place" value="islet"/>
 				<case tag="" value=""/>
 			</switch>
-<!--			<case tag="natural" value="coastline" order="90"/>-->
 			<case tag="military" value="danger_area" order="8"/>
 			<case tag="railway" value="" order="4"/>
 			<case tag="historic" value="ship"/>
@@ -630,6 +598,7 @@
 				<case additional="service=spur" order="-1"/>
 			</case>
 			<case tag="amenity" value="ferry_terminal"/>
+
 			<case tag="natural" value="cliff"/>
 			<case tag="natural" value="crater"/>
 			<case tag="natural" value="strait"/>
@@ -768,6 +737,10 @@
 						<case layer="1" order="90"/>
 						<case maxzoom="16" order="-1"/>
 					</case>
+					<case tag="highway" value="cycleway" order="37">
+						<case layer="1" order="90"/>
+						<case maxzoom="16" order="-1"/>
+					</case>
 					<apply_if maxzoom="15" layer="1" order="40"/>
 				</switch>
 				<case tag="highway" value="steps" order="38">
@@ -888,7 +861,6 @@
 				<case minzoom="5" tag="place" value="city" nameTag="" intersectionMargin="25" textOrder="32">
 					<case minzoom="6" maxzoom="7" textSize="17"/>
 					<case minzoom="8" textSize="20"/>
-	<!--				<apply_if additional="population_rounded=" textOrder="$textOrderPopulation"/>-->
 					<apply>
 						<switch>
 							<case additional="population_rounded=1500000000" textOrder="6"/>
@@ -956,7 +928,6 @@
 						<apply_if minzoom="16" textSize="16"/>
 						<apply_if minzoom="17" textSize="17"/>
 					</case>
-	<!--				<apply_if additional="population_rounded=" textOrder="$textOrderPopulation"/>-->
 					<apply>
 						<case additional="population_rounded=1500000000" textOrder="6"/>
 						<case additional="population_rounded=400000000" textOrder="7"/>
@@ -1009,13 +980,9 @@
 					<apply_if minzoom="16" textSize="15"/>
 					<apply_if minzoom="17" textSize="16"/>
 				</switch>
-				<case minzoom="11" tag="place" value="island" nameTag="" textSize="14" textOrder="113">
-					<apply_if minzoom="16" textSize="16"/>
-				</case>
 			<apply_if nightMode="true" textColor="$defaultTextColorNight" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 				<apply_if engine_v1="false" textDy="-5"/>
-				<apply_if additional="population_rounded=" textOrder="$textOrderPopulation"/>
-				<apply_if engine_v1="false"> <!-- Workaround for bug in OpenGL engine. Delete when fixed https://trello.com/c/WjuVi6UC/502-population-case-additional-renderingattribute-opengl -->
+				<apply>
 					<case additional="population_rounded=1500000000" textOrder="6"/>
 					<case additional="population_rounded=400000000" textOrder="7"/>
 					<case additional="population_rounded=200000000" textOrder="8"/>
@@ -1045,7 +1012,17 @@
 					<case additional="population_rounded=500" textOrder="41"/>
 					<case additional="population_rounded=200" textOrder="42"/>
 					<case additional="population_rounded=100" textOrder="43"/>
-				</apply_if>
+				</apply>
+			</switch>
+			<switch minzoom="11">
+				<case tag="place" value="island">
+					<apply_if maxzoom="12" textOrder="6"/>
+					<apply_if minzoom="13" textOrder="37"/>
+				</case>
+				<case minzoom="13" tag="place" value="islet"/>
+				<apply textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColorDay" intersectionMargin="15" textItalic="true" nameTag="" textSize="14"/>
+				<apply_if minzoom="16" textSize="16"/>
+				<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#77777777"/>
 			</switch>
 
 			<switch textHaloRadius="$buildingTextHaloRadiusDay">
@@ -1160,6 +1137,7 @@
 				</switch>
 				<case tag="highway" value="path" nameTag="" textOrder="243"/>
 				<case tag="highway" value="footway" nameTag="" textOrder="240"/>
+				<case tag="highway" value="cycleway" nameTag="" textOrder="244"/>
 				<apply nameTag="" textColor="#000000" textHaloRadius="$highwayTrackTextHaloRadiusDay" textHaloColor="#fddb8f" textOnPath="true"/>
 				<apply_if minzoom="15">
 					<case maxzoom="15" textSize="13"/>
@@ -1572,7 +1550,7 @@
 			<switch>
 				<!-- Buoys -->
 				<switch iconVisibleSize="9" intersectionSizeFactor="0.6" iconOrder="100" icon_shift_py="-0.8">
-					<case minzoom="12" tag="seamark:type" value="buoy_lateral" icon="seamark_buoy_red_pillar">
+					<case minzoom="12" tag="seamark:type" value="buoy_lateral" icon="seamark_buoy_pillar">
 						<case additional="seamark:buoy_lateral:colour=red" icon="seamark_buoy_red_pillar">
 							<case additional="seamark:buoy_lateral:shape=conical" icon="seamark_buoy_red_conical"/>
 							<case additional="seamark:buoy_lateral:shape=barrel" icon="seamark_buoy_red_barrel"/>
@@ -1589,7 +1567,7 @@
 							<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_green_spar"/>
 							<case additional="seamark:buoy_lateral:shape=spherical" icon="seamark_buoy_green_spherical"/>
 						</case>
-						<case additional="seamark:buoy_lateral:colour=yellow" icon="seamark_buoy_yellow_can">
+						<case additional="seamark:buoy_lateral:colour=yellow" icon="seamark_buoy_yellow_pillar">
 							<case additional="seamark:buoy_lateral:shape=conical" icon="seamark_buoy_yellow_conical"/>
 							<case additional="seamark:buoy_lateral:shape=can" icon="seamark_buoy_yellow_can"/>
 							<case additional="seamark:buoy_lateral:shape=barrel" icon="seamark_buoy_yellow_barrel"/>
@@ -1599,6 +1577,7 @@
 						</case>
 						<case additional="seamark:buoy_lateral:colour=white" icon="seamark_buoy_white_conical">
 							<case additional="seamark:buoy_lateral:shape=conical" icon="seamark_buoy_white_conical"/>
+							<case additional="seamark:buoy_lateral:shape=spherical" icon="seamark_buoy_white_spherical"/>
 						</case>
 						<case additional="seamark:buoy_lateral:colour=red;green;red" icon="seamark_buoy_redgreenred_pillar_horizontal">
 							<case additional="seamark:buoy_lateral:colour_pattern=horizontal">
@@ -1608,14 +1587,35 @@
 								<case additional="seamark:buoy_lateral:shape=spherical" icon="seamark_buoy_redgreenred_spherical_horizontal"/>
 							</case>
 						</case>
+						<case additional="seamark:buoy_lateral:colour=green;red" icon="seamark_buoy_greenred_spar_horizontal">
+							<case additional="seamark:buoy_lateral:colour_pattern=horizontal">
+								<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_greenred_spar_horizontal"/>
+								<case additional="seamark:buoy_lateral:shape=spherical" icon="seamark_buoy_greenred_spherical_horizontal"/>
+							</case>
+						</case>
 						<case additional="seamark:buoy_lateral:colour=red;white;red;white" icon="seamark_buoy_redwhiteredwhite_spar_horizontal">
 							<case additional="seamark:buoy_lateral:colour_pattern=horizontal">
 								<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_redwhiteredwhite_spar_horizontal"/>
 								<case additional="seamark:buoy_lateral:shape=can" icon="seamark_buoy_redwhiteredwhite_can_horizontal"/>
 							</case>
 						</case>
+						<case additional="seamark:buoy_lateral:colour=red;green;red;green" icon="seamark_buoy_redgreenredgreen_spar_horizontal">
+							<case additional="seamark:buoy_lateral:colour_pattern=horizontal">
+								<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_redgreenredgreen_spar_horizontal"/>
+								<case additional="seamark:buoy_lateral:shape=spherical" icon="seamark_buoy_redgreenredgreen_spherical_horizontal"/>
+							</case>
+						</case>
+						<case additional="seamark:buoy_lateral:colour=red;green" icon="seamark_buoy_redgreen_spar_horizontal">
+							<case additional="seamark:buoy_lateral:colour_pattern=horizontal">
+								<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_redgreen_spar_horizontal"/>
+								<case additional="seamark:buoy_lateral:shape=spherical" icon="seamark_buoy_redgreen_spherical_horizontal"/>
+							</case>
+						</case>
 						<case additional="seamark:buoy_lateral:colour=white;red;white;red" icon="seamark_buoy_whiteredwhitered_spar_horizontal">
 							<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_whiteredwhitered_spar_horizontal"/>
+						</case>
+						<case additional="seamark:buoy_lateral:colour=red;white;red" icon="seamark_buoy_redwhitered_can_horizontal">
+							<case additional="seamark:buoy_lateral:shape=can" icon="seamark_buoy_redwhitered_can_horizontal"/>
 						</case>
 						<case additional="seamark:buoy_lateral:colour=green;white;green;white" icon="seamark_buoy_greenwhitegreenwhite_conical_horizontal">
 							<case additional="seamark:buoy_lateral:colour_pattern=horizontal">
@@ -1637,6 +1637,7 @@
 						</case>
 						<case additional="seamark:buoy_lateral:colour=red;white" icon="seamark_buoy_redwhite_spar_horizontal">
 							<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_redwhite_spar_horizontal"/>
+							<case additional="seamark:buoy_lateral:shape=pillar" icon="seamark_buoy_redwhite_pillar_horizontal"/>
 						</case>
 						<case additional="seamark:buoy_lateral:colour=green;white" icon="seamark_buoy_greenwhite_spar_horizontal">
 							<case additional="seamark:buoy_lateral:shape=spar" icon="seamark_buoy_greenwhite_spar_horizontal"/>
@@ -1780,6 +1781,12 @@
 						</case>
 						<case additional="seamark:topmark:shape=2 cones point together" icon__1="seamark_topmark_oblique_black_2conespointtogether">
 							<case additional="seamark:topmark:colour=yellow" icon__1="seamark_topmark_oblique_yellow_2conespointtogether"/>
+						</case>
+						<case additional="seamark:topmark:shape=cone, point up over sphere">
+							<case additional="seamark:topmark:colour=green" icon__1="seamark_topmark_oblique_green_conepointupoversphere"/>
+						</case>
+						<case additional="seamark:topmark:shape=cylinder over sphere">
+							<case additional="seamark:topmark:colour=red" icon__1="seamark_topmark_oblique_red_cylinderoversphere"/>
 						</case>
 						<case additional="seamark:topmark:shape=2 cones base together" icon__1="seamark_topmark_oblique_black_2conesbasetogether"/>
 						<case additional="seamark:topmark:shape=2 cones up" icon__1="seamark_topmark_oblique_black_2conesup"/>
@@ -3256,6 +3263,7 @@
 
 		<switch>
 			<case tag="place" value="island"/>
+			<case tag="place" value="islet"/>
 			<case tag="natural" value="land"/>
 			<apply color="$defaultColor"/>
 			<apply_if legend="true" color="#ffffff"/>
@@ -3676,6 +3684,7 @@
 			</case>
 			<case tag="highway" value="path" color="$pathColor" strokeWidth="$pathStrokeWidth" pathEffect="$pathPathEffect"/>
 			<case tag="highway" value="footway" color="$footwayColor" strokeWidth="$footwayStrokeWidth" pathEffect="4_2"/>
+			<case tag="highway" value="cycleway" color="$footwayColor" strokeWidth="$footwayStrokeWidth" pathEffect="4_2"/>
 			<case tag="highway" value="steps" color="$footwayColor" strokeWidth="2:2" pathEffect="1_2"/>
 
 			<!-- Bridges -->
