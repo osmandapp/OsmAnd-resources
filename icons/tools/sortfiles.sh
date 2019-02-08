@@ -205,7 +205,7 @@ mycp barrier small_brown_bold_2 functional-icons_point_brown_bold_2.png  #scale 
 mygroup emergency emergency_ambulance_station.png
 mygroup emergency_infrastructure emergency_emergency_phone.png
 mycp amenity fire_station emergency_firestation4.png
-mycp amenity police emergency_police3.png
+mycp amenity police amenity_police2.png
 mycp emergency fire_hydrant emergency_colored_fire_hydrant.png
 mycpname fire_hydrant_type_underground emergency_fire_hydrant_underground.png
 mycpname fire_hydrant_type_pillar emergency_fire_hydrant.png
