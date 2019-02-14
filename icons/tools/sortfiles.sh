@@ -2367,6 +2367,7 @@ mycpname start_date additional_start_date.png
 
 #Additional category
 mycpname payment_type additional_category_payment_type.png
+mycpname park_ride additional_category_park_ride.png
 
 #Xmas
 mygroup xmas xmas_tree.png
