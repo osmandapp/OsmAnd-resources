@@ -260,6 +260,8 @@ mycpname highway_crossing_map functional-icons_highway_crossing.png
 mycpname crossing_traffic_signals_map functional-icons_highway_crossing_traffic_signals.png
 mycpname crossing_uncontrolled_map functional-icons_highway_crossing_uncontrolled.png
 mycpname crossing_unmarked_map functional-icons_highway_crossing_unmarked.png
+mycpname stop functional-icons_stop.png
+mycpname give_way functional-icons_give_way.png
 
 mycpname ford transport_colored_ford.png
 mycpname topo_ford topo_topo_ford.png
