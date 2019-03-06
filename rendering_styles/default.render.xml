@@ -1928,6 +1928,7 @@
 		<case additional="surface=gravel" attrColorValue="$surfaceGravelColor" attrStringValue="surface_gravel"/>
 		<case additional="surface=fine_gravel" attrColorValue="$surfaceFineGravelColor" attrStringValue="surface_fine_gravel"/>
 		<case additional="surface=compacted" attrColorValue="$surfaceCompactedColor" attrStringValue="surface_compacted"/>
+		<case additional="surface=undefined" attrColorValue="$surfaceUndefinedColor" attrStringValue="surface_undefined"/> <!-- Used in route details info -->
 
 		<case attrColorValue="$null"/>
 	</renderingAttribute>
@@ -1936,10 +1937,82 @@
 	<renderingConstant name="surfaceGradeGoodColor" value="#7debff"/>
 	<renderingConstant name="surfaceGradeIntermediateColor" value="#b1f3ff"/>
 	<renderingConstant name="surfaceGradeBadColor" value="#febcbc"/>
-	<renderingConstant name="surfaceGradeVery_badColor" value="#fea9a9"/>
+	<renderingConstant name="surfaceGradeVeryBadColor" value="#fea9a9"/>
 	<renderingConstant name="surfaceGradeHorribleColor" value="#ff7f7f"/>
-	<renderingConstant name="surfaceGradeVery_horribleColor" value="#fe5050"/>
+	<renderingConstant name="surfaceGradeVeryHorribleColor" value="#fe5050"/>
 	<renderingConstant name="surfaceGradeImpassableColor" value="#ff1111"/>
+
+	<renderingAttribute name="smoothnessColor"> <!-- Used in route details info -->
+		<case additional="smoothness=excellent" attrColorValue="$surfaceGradeExcellentColor" attrStringValue="smoothness_excellent"/>
+		<case additional="smoothness=good" attrColorValue="$surfaceGradeGoodColor" attrStringValue="smoothness_good"/>
+		<case additional="smoothness=intermediate" attrColorValue="$surfaceGradeIntermediateColor" attrStringValue="smoothness_intermediate"/>
+		<case additional="smoothness=bad" attrColorValue="$surfaceGradeBadColor" attrStringValue="smoothness_bad"/>
+		<case additional="smoothness=very_bad" attrColorValue="$surfaceGradeVeryBadColor" attrStringValue="smoothness_very_bad"/>
+		<case additional="smoothness=horrible" attrColorValue="$surfaceGradeHorribleColor" attrStringValue="smoothness_horrible"/>
+		<case additional="smoothness=very_horrible" attrColorValue="$surfaceGradeVeryHorribleColor" attrStringValue="smoothness_very_horrible"/>
+		<case additional="smoothness=impassable" attrColorValue="$surfaceGradeImpassableColor" attrStringValue="smoothness_impassable"/>
+		<case additional="smoothness=undefined" attrColorValue="#e8e8e8" attrStringValue="smoothness_undefined"/>
+	</renderingAttribute>
+
+
+	<renderingAttribute name="roadClassColor"> <!-- Used in route details info -->
+		<case tag="highway" value="motorway" attrStringValue="highway_class_motorway"/>
+		<case tag="highway" value="motorway_link" attrStringValue="highway_class_motorway"/>
+		<case tag="highway" value="trunk" attrStringValue="highway_class_state_road"/>
+		<case tag="highway" value="trunk_link" attrStringValue="highway_class_state_road"/>
+		<case tag="highway" value="primary" attrStringValue="highway_class_state_road"/>
+		<case tag="highway" value="primary_link" attrStringValue="highway_class_state_road"/>
+		<case tag="highway" value="secondary" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="secondary_link" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="tertiary" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="tertiary_link" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="unclassified" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="residential" attrStringValue="highway_class_street"/>
+		<case tag="highway" value="living_street" attrStringValue="highway_class_street"/>
+		<case tag="highway" value="service" attrStringValue="highway_class_service"/>
+		<case tag="highway" value="pedestrian" attrStringValue="highway_class_footway"/>
+		<case tag="highway" value="track" attrStringValue="highway_class_track"/>
+		<case tag="highway" value="road" attrStringValue="highway_class_undefined"/>
+		<case tag="highway" value="footway" attrStringValue="highway_class_footway"/>
+		<case tag="highway" value="bridleway" attrStringValue="highway_class_bridleway"/>
+		<case tag="highway" value="steps" attrStringValue="highway_class_steps"/>
+		<case tag="highway" value="path" attrStringValue="highway_class_path"/>
+		<case tag="highway" value="cycleway" attrStringValue="highway_class_cycleway"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_motorway">
+		<case attrColorValue="$motorwayRoadColor"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_state_road">
+		<case attrColorValue="$primaryRoadColor"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_road">
+		<case attrColorValue="$tertiaryRoadColor"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_street">
+		<case attrColorValue="#C1B9D1"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_service">
+		<case attrColorValue="#E3DAF6"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_footway">
+		<case attrColorValue="$footwayColor"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_track">
+		<case attrColorValue="$trackColor"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_bridleway">
+		<case attrColorValue="$bridlewayColor"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_steps">
+		<case attrColorValue="$footwayColor"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_path">
+		<case attrColorValue="$pathColor"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_cycleway">
+		<case attrColorValue="$cyclewayColor"/>
+	</renderingAttribute>
+
 
 	<renderingAttribute name="subwayLineDefaultColor">
 		<case nightMode="true" attrColorValue="#7b0000"/>
@@ -10648,9 +10721,9 @@
 				<case additional="smoothness=intermediate" color_2="$surfaceGradeIntermediateColor"/>
 
 				<case additional="smoothness=bad" color_2="$surfaceGradeBadColor"/>
-				<case additional="smoothness=very_bad" color_2="$surfaceGradeVery_badColor"/>
+				<case additional="smoothness=very_bad" color_2="$surfaceGradeVeryBadColor"/>
 				<case additional="smoothness=horrible" color_2="$surfaceGradeHorribleColor"/>
-				<case additional="smoothness=very_horrible" color_2="$surfaceGradeVery_horribleColor"/>
+				<case additional="smoothness=very_horrible" color_2="$surfaceGradeVeryHorribleColor"/>
 				<case additional="smoothness=impassable" color_2="$surfaceGradeImpassableColor"/>
 			</apply_if>
 			<apply>
