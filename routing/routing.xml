@@ -1693,12 +1693,45 @@
 	</routingProfile>
 
 	<routingProfile name="boat" restrictionsAware="true" minDefaultSpeed="5.0" maxDefaultSpeed="20.0" onewayAware="true">
+	
+		<parameter id="allow_intermediate" name="Allow intermediate routes" description="More difficult routes with steeper sections. Generally some obstacles that should be avoided." type="boolean" default="true"/>
+		<parameter id="allow_advanced" name="Allow advanced routes" description="Difficult routes, with dangerous obstacles and steep sections." type="boolean" default="false"/>	
+		<parameter id="allow_expert" name="Allow expert routes" description="Extremely difficult routes, with dangerous obstacles and surroundings." type="boolean" default="false"/>	
+		
+		<parameter id="difficulty_preference" name="Prefered difficulty" description="Prefer routes of this difficulty, although routing over harder or easier pistes is still possible if shorter." type="numeric" values="0,1,2,3,4" valueDescriptions="No preference,Beginner,Intermediate,Advanced,Expert" default="1"/>
+
+		<parameter id="freeride_policy" name="Off-piste" description="Freerides and offpiste are unofficial routes and passages. Typically ungroomed, unmainted by the officials and not checked in the evening. Enter at own risk." type="numeric" values="0,1,2,3,4" valueDescriptions="Do not go offpiste,Only if necessary,Allow,Prefer offpiste" default="0"/>
+		
+			
 		<way attribute="access">
 			<select value="-1" t="osmand_change" v="delete"/>
 			<select value="-1" t="access" v="no"/>
 			<select value="-1" t="access" v="private"/>
-			<select value="1" t="piste:type"/>
+
+
+			<!-- Some ski pistes have a 'decorative' area around them to indictate the width etc. Disable routing for the decorative part-->
+			<select value="-1" t="area" v="yes"/>
+
+            <!-- Allow any aerialway -->
 			<select value="1" t="aerialway"/>
+
+
+            <!-- Beginner and novice routes are always allowed, the others have a settings param: -->
+            <ifnot param="allow_intermediate">	
+    			<select value="-1" t="piste:difficulty" value="intermediate"/>
+            </ifnot>
+            <ifnot param="allow_advanced">	
+    			<select value="-1" t="piste:difficulty" v="advanced"/>
+            </ifnot>
+            <ifnot param="allow_expert">	
+    			<select value="-1" t="piste:difficulty" v="expert"/>
+            </ifnot>
+            
+            <gt value1="0" value2=":freeride_policy">	
+    			<select value="-1" t="piste:difficulty" v="freeride"/>
+            </gt>
+            
+			<select value="1" t="piste:type" v="downhill"/>
 
 			<select value="-1"/>
 		</way>
@@ -1714,11 +1747,36 @@
 		</way>
 
 		<way attribute="speed" type="speed">
+		
+		
+		    <select value="3" t="piste:type" v="hike"/>	
+		    <select value="3" t="piste:type" v="connection"/>		
+		    
+		    <select value="1" t="aerialway" v="magic_carpet"/>		    
+		    <select value="1" t="aerialway" v="rope-tow"/>		    
+		    <select value="5" t="aerialway" v="platter"/>		    
+		    <select value="5" t="aerialway" v="j-bar"/>		    
+		    <select value="5" t="aerialway" v="t-bar"/>		    
+		    <select value="15" t="aerialway" v="mixed_lift"/>		    
+		    <select value="15" t="aerialway" v="chair_lift"/>		    
+		    <select value="25" t="aerialway" v="cable_car"/>		    
+		    <select value="25" t="aerialway" v="gondola"/>		    
+
+		    
+		        
+	    	    
+	    	<!-- It's difficult to go fast on a novice slope. Lots of new skiers, no steepness at all... -->
+		    <select value="15" t="piste:difficulty" v="novice"/>
+		    
+
 			<select value="40"/>
 		</way>
 
 		<way attribute="priority">
-			<select value="1"/>
+		    <select value="2" t="piste:difficulty" v="freeride"/>
+
+		
+			<select value="0.1"/>
 		</way>
 
 		<point attribute="obstacle">
@@ -1728,6 +1786,19 @@
 			<select value="0"  t="access" v="permissive"/>
 			<select value="0"  t="access" v="customers"/>
 		</point>
+		
+	    <point attribute="obstacle_time">
+			<select value="120"  t="aerialway" v="station"/>
+        </point>
+        
+        <point attribute="obstacle">
+			<select value="120"  t="aerialway" v="station"/>
+        </point>
+		
+		
+		
+		
+       
 	</routingProfile>
 
   <routingProfile name="public_transport" >
@@ -1748,21 +1819,6 @@
 
       
       
-      <!-- 
-      <point attribute="obstacle">
-        <select value="-1" t="access" v="no"/>
-        <select value="-1"  t="access" v="private"/>
-        <select value="0"  t="access" v="yes"/>
-        <select value="0"  t="access" v="permissive"/>
-        <select value="0"  t="access" v="customers"/>
-      </point>
-      <way attribute="priority">
-          <select value="2"  t="waterway" v="fairway"/>
-          <select value="1"  t="waterway" v="river"/>
-          <select value="1"  t="waterway" v="canal"/>
-          <select value="0.7"/>
-      </way>
--->
   </routingProfile>
 
 </osmand_routing_config>
