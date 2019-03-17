@@ -224,26 +224,26 @@
 	E.g.:
 
 
-  		<gt value1="-60" value2="$incline">
+  		<gt value1="-60" value2=":incline">
   			<select value="35"/>
   		</gt>
-  		<gt value1="-17" value2="$incline">
+  		<gt value1="-17" value2=":incline">
   			<select value="10"/>
   		</gt>
-  		<gt value1="-3" value2="$incline">
+  		<gt value1="-3" value2=":incline">
   			<select value="1"/>
   		</gt>
-  		<gt value1="3" value2="$incline">
+  		<gt value1="3" value2=":incline">
   			<select value="0"/>
   		</gt>
 
-  		<gt value1="13" value2="$incline">
+  		<gt value1="13" value2=":incline">
   			<select value="8"/>
   		</gt>
-  		<gt value1="17" value2="$incline">
+  		<gt value1="17" value2=":incline">
   			<select value="1"/>
   		</gt>
-  		<gt value1="25" value2="$incline">
+  		<gt value1="25" value2=":incline">
   			<select value="10"/>
   		</gt>
   		<select value="15"/>
@@ -1692,7 +1692,7 @@
 		</way>
 	</routingProfile>
 
-	<routingProfile name="boat" restrictionsAware="true" minDefaultSpeed="5.0" maxDefaultSpeed="20.0" onewayAware="true">
+	<routingProfile name="boat" restrictionsAware="true" minDefaultSpeed="5.0" maxDefaultSpeed="20.0" onewayAware="true" baseProfile="boat">
 		<way attribute="access">
 			<select value="-1" t="osmand_change" v="delete"/>
 			<select value="-1" t="access" v="no"/>
@@ -1745,39 +1745,75 @@
 		</point>
 	</routingProfile>
 
-  <routingProfile name="public_transport" >
+  <!-- max default speed is max speed for any transort, min speed is pedestrian speed -->
+  <routingProfile name="public_transport" minDefaultSpeed="4.0" maxDefaultSpeed="80.0" baseProfile="public_transport">
+
       <!-- maximum distance to walk to find start / end public transport stop -->
       <attribute name="walkRadius" value = "1500" />
       <!-- maximum distance to walk to find transport stop to change transport -->
       <attribute name="walkChangeRadius" value = "300" />
-      <attribute name="maxNumberOfChanges" value = "5" />
       <!-- Max route time is 3 hours around 10 000 seconds -->
       <attribute name="maxRouteTime" value = "10000" />
       <!-- find alternatives routes within N seconds delay to the fastest route, 15 minutes -->
       <attribute name="delayForAlternativesRoutes" value = "900" />
-
-      <attribute name="defaultWalkSpeed" value = "1" />
-      <attribute name="defaultTravelSpeed" value = "10" />
-      <attribute name="defaultStopTime" value = "30" />
-      <attribute name="defaultChangeTime" value = "300" />
-
+      <!-- default value for max number of changes -->
+      <attribute name="maxNumberOfChanges" value = "4" />
       
-      
-      <!-- 
+
+      <parameter id="max_num_changes" name="Number of changes" description="Specify max number of changes" type="numeric" values="0,1,2,3,4" valueDescriptions="0,1,2,3,"/>
+      <parameter id="avoid_train" name="Avoid trains" description="Avoid trains" type="boolean"/>
+      <parameter id="avoid_subway" name="Avoid subways" description="Avoid subways and monorails" type="boolean"/>
+      <parameter id="avoid_ferry" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
+      <parameter id="avoid_tram" name="Avoid trams" description="Avoid trams" type="boolean"/>
+      <parameter id="avoid_bus" name="Avoid buses" description="Avoid buses, trolleybuses" type="boolean"/>
+
+
       <point attribute="obstacle">
-        <select value="-1" t="access" v="no"/>
-        <select value="-1"  t="access" v="private"/>
-        <select value="0"  t="access" v="yes"/>
-        <select value="0"  t="access" v="permissive"/>
-        <select value="0"  t="access" v="customers"/>
+        <select value="30" t="time" v="stop"/>
+        <select value="150" t="time" v="change"/>
+        <select value="150" t="time" v="boarding"/>
       </point>
-      <way attribute="priority">
-          <select value="2"  t="waterway" v="fairway"/>
-          <select value="1"  t="waterway" v="river"/>
-          <select value="1"  t="waterway" v="canal"/>
-          <select value="0.7"/>
+
+      <way attribute="speed" type="speed">
+        <select value="0" t="route" v="train">
+            <if param="avoid_train"/>
+        </select>
+        <select value="80"  t="route" v="train"/>
+        
+        <select value="0" t="route" v="subway">
+            <if param="avoid_subway"/>
+        </select>
+        <select value="60"  t="route" v="subway"/>
+        <select value="0" t="route" v="monorail">
+            <if param="avoid_subway"/>
+        </select>
+        <select value="50"  t="route" v="monorail"/>
+        
+        <select value="0" t="route" v="tram">
+            <if param="avoid_tram"/>
+        </select>
+        <select value="40"  t="route" v="tram"/>
+        
+        <select value="0" t="route" v="bus">
+            <if param="avoid_bus"/>
+        </select>
+        <select value="30"  t="route" v="bus"/>
+        
+        <select value="0" t="route" v="trolleybus">
+            <if param="avoid_bus"/>
+        </select>
+        <select value="30"  t="route" v="trolleybus"/>
+
+        <select value="30"  t="route" v="aerialway"/>
+
+        <select value="0" t="route" v="ferry">
+            <if param="avoid_ferry"/>
+        </select>
+        <select value="30"  t="route" v="ferry"/>
+        <select value="4"  t="route" v="walk"/>
       </way>
--->
+      
+      
   </routingProfile>
 
 </osmand_routing_config>
