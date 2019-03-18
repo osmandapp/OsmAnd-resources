@@ -1695,17 +1695,17 @@
 	<routingProfile name="boat" minDefaultSpeed="5.0" maxDefaultSpeed="100.0" onewayAware="true">
 
 		<!--<parameter id="piste_type" name="Type of piste" description="Type of wintersport piste" type="numeric" values="0,1,2" valueDescriptions="Downhill,Ski touring,Nordic (classic or skating)" default="0"/> -->
-		<parameter id="piste_type_downhill" group="Piste type" name="Downhill" type="boolean" default="true"/>
-		<parameter id="piste_type_classic" group="Piste type" name="Nordic (classic)" type="boolean" default="true"/>
-		<parameter id="piste_type_skating" group="Piste type" name="Nordic (skating or free style)" type="boolean" default="true"/>
-		<parameter id="piste_type_skitour" group="Piste type" name="Skitour" type="boolean" default="true"/>
+		<parameter id="piste_type_downhill" group="Piste type" name="Alpine/downhill ski" type="boolean" default="true"/>
+		<parameter id="piste_type_nordic" group="Piste type" name="Cross country/nordic ski" type="boolean"/>
+		<parameter id="piste_type_skitour" group="Piste type" name="Ski touring" type="boolean"/>
+		<parameter id="piste_type_sled" group="Piste type" name="Sled" type="boolean"/>
 	
 		<parameter id="allow_intermediate" name="Allow intermediate routes" description="More difficult routes with steeper sections. Generally some obstacles that should be avoided." type="boolean" default="true"/>
 		<parameter id="allow_advanced" name="Allow advanced routes" description="Difficult routes, with dangerous obstacles and steep sections." type="boolean" default="false"/>
 		<parameter id="allow_expert" name="Allow expert routes" description="Extremely difficult routes, with dangerous obstacles and surroundings." type="boolean" default="false"/>
 
-		<!-- <parameter id="allow_skating_only" name="Allow skating only routes" description="Routes groomed for free style or skating only" type="boolean" default="true"/>
-		<parameter id="allow_classic_only" name="Allow classic only routes" description="Routes groomed for classic style only" type="boolean" default="true"/> -->
+		<parameter id="allow_skating_only" name="Allow skating only routes" description="Routes groomed for free style or skating only without classic trails." type="boolean" default="true"/>
+		<parameter id="allow_classic_only" name="Allow classic only routes" description="Routes groomed for classic style only without skating trails. This includes routes groomed by a smaller snowmobile with looser piste and tracks made manually by skiers." type="boolean" default="true"/>
 		
 		<parameter id="difficulty_preference" name="Prefered difficulty" description="Prefer routes of this difficulty, although routing over harder or easier pistes is still possible if shorter." type="numeric" values="0,1,2,3,4" valueDescriptions="No preference,Beginner,Intermediate,Advanced,Expert" default="1"/>
 
@@ -1745,13 +1745,15 @@
 				<select value="1" t="piste:type" v="downhill"/>
 			</if>
 
-			<ifnot param="piste_type_classic">
+			<ifnot param="allow_classic_only">
 				<select value="-1" t="piste:grooming" v="classic"/>
+				<select value="-1" t="piste:grooming" v="scooter"/>
+				<select value="-1" t="piste:grooming" v="backcountry"/>
 			</ifnot>
-			<ifnot param="piste_type_skating">
+			<ifnot param="allow_skating_only">
 				<select value="-1" t="piste:grooming" v="skating"/>
 			</ifnot>
-			<if param="piste_type_classic">
+			<if param="piste_type_nordic">
 				<select value="1" t="piste:type" v="nordic"/>
 			</if>
 			<if param="piste_type_skating">
@@ -1760,6 +1762,10 @@
 
 			<if param="piste_type_skitour">
 				<select value="1" t="piste:type" v="skitour"/>
+			</if>
+
+			<if param="piste_type_sled">
+				<select value="1" t="piste:type" v="sled"/>
 			</if>
 
 			<select value="-1"/>
