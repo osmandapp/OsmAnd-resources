@@ -1694,14 +1694,18 @@
 
 	<routingProfile name="boat" minDefaultSpeed="5.0" maxDefaultSpeed="100.0" onewayAware="true">
 
-		<parameter id="piste_type" name="Type of piste" description="Type of wintersport piste" type="numeric" values="0,1,2" valueDescriptions="Downhill,Ski touring,Nordic (classic or skating)" default="0"/>
+		<!--<parameter id="piste_type" name="Type of piste" description="Type of wintersport piste" type="numeric" values="0,1,2" valueDescriptions="Downhill,Ski touring,Nordic (classic or skating)" default="0"/> -->
+		<parameter id="piste_type_downhill" group="Piste type" name="Downhill" type="boolean" default="true"/>
+		<parameter id="piste_type_classic" group="Piste type" name="Nordic (classic)" type="boolean" default="true"/>
+		<parameter id="piste_type_skating" group="Piste type" name="Nordic (skating or free style)" type="boolean" default="true"/>
+		<parameter id="piste_type_skitour" group="Piste type" name="Skitour" type="boolean" default="true"/>
 	
 		<parameter id="allow_intermediate" name="Allow intermediate routes" description="More difficult routes with steeper sections. Generally some obstacles that should be avoided." type="boolean" default="true"/>
 		<parameter id="allow_advanced" name="Allow advanced routes" description="Difficult routes, with dangerous obstacles and steep sections." type="boolean" default="false"/>
 		<parameter id="allow_expert" name="Allow expert routes" description="Extremely difficult routes, with dangerous obstacles and surroundings." type="boolean" default="false"/>
 
-		<parameter id="allow_skating_only" name="Allow skating only routes" description="Routes groomed for free style or skating only" type="boolean" default="true"/>
-		<parameter id="allow_classic_only" name="Allow classic only routes" description="Routes groomed for classic style only" type="boolean" default="true"/>
+		<!-- <parameter id="allow_skating_only" name="Allow skating only routes" description="Routes groomed for free style or skating only" type="boolean" default="true"/>
+		<parameter id="allow_classic_only" name="Allow classic only routes" description="Routes groomed for classic style only" type="boolean" default="true"/> -->
 		
 		<parameter id="difficulty_preference" name="Prefered difficulty" description="Prefer routes of this difficulty, although routing over harder or easier pistes is still possible if shorter." type="numeric" values="0,1,2,3,4" valueDescriptions="No preference,Beginner,Intermediate,Advanced,Expert" default="1"/>
 
@@ -1712,14 +1716,6 @@
 			<select value="-1" t="osmand_change" v="delete"/>
 			<select value="-1" t="access" v="no"/>
 			<select value="-1" t="access" v="private"/>
-
-			<gt value1="0" value2=":piste_type">
-				<!-- Some ski pistes have a 'decorative' area around them to indictate the width etc. Disable routing for the decorative part-->
-				<select value="-1" t="area" v="yes"/>
-
-				<!-- Allow any aerialway -->
-				<select value="1" t="aerialway"/>
-			</gt>
 
             <select value="1" t="piste:type" v="connection"/>
             <select value="1" t="piste:type" v="hike"/>
@@ -1736,32 +1732,35 @@
             </ifnot>
             
             <gt value1="0" value2=":freeride_policy">
-                <select t="piste:difficulty" v="freeride" value="-1"/>
+                <select value="-1" t="piste:difficulty" v="freeride"/>
             </gt>
 
-			<gt value1=":piste_type" value2="2">
-				<gt value1="2" value2=":piste_type">
-					<ifnot param="allow_skating_only">
-						<select value="-1" t="piste:grooming" v="skating"/>
-					</ifnot>
-					<ifnot param="allow_classic_only">
-						<select value="-1" t="piste:grooming" v="classic"/>
-					</ifnot>
-					<select value="1" t="piste:type" v="nordic"/>
-				</gt>
-			</gt>
+			<if param="piste_type_downhill">
+				<!-- Some ski pistes have a 'decorative' area around them to indictate the width etc. Disable routing for the decorative part-->
+				<select value="-1" t="area" v="yes"/>
 
-			<gt value1="1" value2=":piste_type">
-				<gt value1="1" value2=":piste_type">
-					<select value="1" t="piste:type" v="skitour"/>
-				</gt>
-			</gt>
+				<!-- Allow any aerialway -->
+				<select value="1" t="aerialway"/>
 
-			<gt value1="0" value2=":piste_type">
-				<gt value1="0" value2=":piste_type">
-					<select value="1" t="piste:type" v="downhill"/>
-				</gt>
-			</gt>
+				<select value="1" t="piste:type" v="downhill"/>
+			</if>
+
+			<ifnot param="piste_type_classic">
+				<select value="-1" t="piste:grooming" v="classic"/>
+			</ifnot>
+			<ifnot param="piste_type_skating">
+				<select value="-1" t="piste:grooming" v="skating"/>
+			</ifnot>
+			<if param="piste_type_classic">
+				<select value="1" t="piste:type" v="nordic"/>
+			</if>
+			<if param="piste_type_skating">
+				<select value="1" t="piste:type" v="nordic"/>
+			</if>
+
+			<if param="piste_type_skitour">
+				<select value="1" t="piste:type" v="skitour"/>
+			</if>
 
 			<select value="-1"/>
 		</way>
@@ -1778,34 +1777,28 @@
 			<select value="0" t="piste:type" v="hike"/>
 			<select value="0" t="piste:type" v="nordic"/>
 			<select value="0" t="piste:type" v="skitour"/>
-
+			
 			<select value="1"/>
 		</way>
 
 		<way attribute="speed" type="speed">
-		
-		
-		    <select value="3" t="piste:type" v="hike"/>	
+		    <select value="3" t="piste:type" v="hike"/>
 		    <select value="3" t="piste:type" v="connection"/>
 		    <select value="6" t="piste:type" v="nordic"/>
-		    
-		    
-		    <select value="1" t="aerialway" v="magic_carpet"/>		    
-		    <select value="1" t="aerialway" v="rope-tow"/>		    
-		    <select value="5" t="aerialway" v="platter"/>		    
-		    <select value="5" t="aerialway" v="j-bar"/>		    
-		    <select value="5" t="aerialway" v="t-bar"/>		    
-		    <select value="15" t="aerialway" v="mixed_lift"/>		    
-		    <select value="15" t="aerialway" v="chair_lift"/>		    
-		    <select value="25" t="aerialway" v="cable_car"/>		    
-		    <select value="25" t="aerialway" v="gondola"/>		    
+		    <select value="6" t="piste:type" v="skitour"/>
 
-		    
-		        
-	    	    
+		    <select value="1" t="aerialway" v="magic_carpet"/>
+		    <select value="1" t="aerialway" v="rope-tow"/>
+			<select value="5" t="aerialway" v="platter"/>
+		    <select value="5" t="aerialway" v="j-bar"/>
+		    <select value="5" t="aerialway" v="t-bar"/>
+			<select value="15" t="aerialway" v="mixed_lift"/>
+			<select value="15" t="aerialway" v="chair_lift"/>
+			<select value="25" t="aerialway" v="cable_car"/>
+			<select value="25" t="aerialway" v="gondola"/>
+
 	    	<!-- It's difficult to go fast on a novice slope. Lots of new skiers, no steepness at all... -->
 		    <select value="15" t="piste:difficulty" v="novice"/>
-		    
             
 			<select value="30"/>
 		</way>
