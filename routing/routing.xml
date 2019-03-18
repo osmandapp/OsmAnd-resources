@@ -854,6 +854,7 @@
 		<parameter id="avoid_stairs" name="Avoid stairs" description="Avoid stairs" type="boolean"/>
 		<parameter id="avoid_borders" name="Avoid border crossing" description="Avoid crossing a border into another country" type="boolean"/>
 		<parameter id="allow_motorway" name="Allow motorways" description="Allow motorways" type="boolean"/>
+		<parameter id="avoid_sett" name="Avoid sett and cobblestone" description="Tries to avoid streets and paths which are paved with sett and cobblestone." type="boolean" default="false"/>
 		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean" default="false"/>
 
 		<way attribute="access">
@@ -1188,6 +1189,12 @@
 				<select value="0.1" t="mtb:scale" v="2"/>
 				<select value="0.1" t="class:bicycle:mtb" v="-1"/>
 <!--				<select value="0.6" t="surface" v="wood"/>-->
+			</if>
+			
+			<if param="avoid_sett">
+			    <select value="0.01" t="surface" v="sett"/>
+			    <select value="0.01" t="surface" v="cobblestone"/>
+			    <select value="0.01" t="surface" v="unhewn_cobblestone"/>
 			</if>
 			
 			<select value="1.0" t="bicycle" v="dismount"/>
