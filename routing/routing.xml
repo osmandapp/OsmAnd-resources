@@ -1693,25 +1693,22 @@
 	</routingProfile>
 
 	<routingProfile name="boat" minDefaultSpeed="5.0" maxDefaultSpeed="100.0" onewayAware="true">
-
-		<!--<parameter id="piste_type" name="Type of piste" description="Type of wintersport piste" type="numeric" values="0,1,2" valueDescriptions="Downhill,Ski touring,Nordic (classic or skating)" default="0"/> -->
 		<parameter id="piste_type_downhill" group="Piste type" name="Alpine/downhill ski" type="boolean" default="true"/>
 		<parameter id="piste_type_nordic" group="Piste type" name="Cross country/nordic ski" type="boolean"/>
 		<parameter id="piste_type_skitour" group="Piste type" name="Ski touring" type="boolean"/>
 		<parameter id="piste_type_sled" group="Piste type" name="Sled" type="boolean"/>
-	
+
 		<parameter id="allow_intermediate" name="Allow intermediate routes" description="More difficult routes with steeper sections. Generally some obstacles that should be avoided." type="boolean" default="true"/>
 		<parameter id="allow_advanced" name="Allow advanced routes" description="Difficult routes, with dangerous obstacles and steep sections." type="boolean" default="false"/>
 		<parameter id="allow_expert" name="Allow expert routes" description="Extremely difficult routes, with dangerous obstacles and surroundings." type="boolean" default="false"/>
 
 		<parameter id="allow_skating_only" name="Allow skating only routes" description="Routes groomed for free style or skating only without classic trails." type="boolean" default="true"/>
 		<parameter id="allow_classic_only" name="Allow classic only routes" description="Routes groomed for classic style only without skating trails. This includes routes groomed by a smaller snowmobile with looser piste and tracks made manually by skiers." type="boolean" default="true"/>
-		
+
 		<parameter id="difficulty_preference" name="Prefered difficulty" description="Prefer routes of this difficulty, although routing over harder or easier pistes is still possible if shorter." type="numeric" values="0,1,2,3,4" valueDescriptions="No preference,Beginner,Intermediate,Advanced,Expert" default="1"/>
 
 		<parameter id="freeride_policy" name="Off-piste" description="Freerides and offpiste are unofficial routes and passages. Typically ungroomed, unmainted by the officials and not checked in the evening. Enter at own risk." type="numeric" values="0,1,2,3" valueDescriptions="Do not go offpiste,Only if necessary,Allow,Prefer offpiste" default="0"/>
-		
-			
+
 		<way attribute="access">
 			<select value="-1" t="osmand_change" v="delete"/>
 			<select value="-1" t="access" v="no"/>
@@ -1730,7 +1727,7 @@
             <ifnot param="allow_expert">	
     			<select value="-1" t="piste:difficulty" v="expert"/>
             </ifnot>
-            
+
             <gt value1="0" value2=":freeride_policy">
                 <select value="-1" t="piste:difficulty" v="freeride"/>
             </gt>
@@ -1771,7 +1768,6 @@
 			<select value="-1"/>
 		</way>
 
-
 		<way attribute="oneway">
 			<select value="1" t="piste:oneway" v="yes"/>
 			<select value="0" t="piste:oneway" v="no"/>
@@ -1783,15 +1779,16 @@
 			<select value="0" t="piste:type" v="hike"/>
 			<select value="0" t="piste:type" v="nordic"/>
 			<select value="0" t="piste:type" v="skitour"/>
-			
+
 			<select value="1"/>
 		</way>
 
 		<way attribute="speed" type="speed">
 		    <select value="3" t="piste:type" v="hike"/>
 		    <select value="3" t="piste:type" v="connection"/>
-		    <select value="6" t="piste:type" v="nordic"/>
-		    <select value="6" t="piste:type" v="skitour"/>
+		    <select value="7" t="piste:type" v="nordic"/>
+		    <select value="7" t="piste:type" v="skitour"/>
+		    <select value="10" t="piste:type" v="sled"/>
 
 		    <select value="1" t="aerialway" v="magic_carpet"/>
 		    <select value="1" t="aerialway" v="rope-tow"/>
@@ -1805,32 +1802,27 @@
 
 	    	<!-- It's difficult to go fast on a novice slope. Lots of new skiers, no steepness at all... -->
 		    <select value="15" t="piste:difficulty" v="novice"/>
-            
+
 			<select value="30"/>
 		</way>
 
-
         <way attribute="priority">
-        
             <select value="1" t="piste:type" v="connection"/>
             <select value="1" t="highway" v="aerialway"/>
-        
+
             <gt value1=":freeride_policy" value2="3">
                 <select t="piste:difficulty" v="freeride" value="2"/> <!-- High priority -->
             </gt>
-            
+
             <gt value1=":freeride_policy" value2="2">
                 <select t="piste:difficulty" v="freeride" value="1"/> <!-- No special priority -->
             </gt>
-		    
+
 		    <gt value1=":freeride_policy" value2="1">
                 <select t="piste:difficulty" v="freeride" value="0.5"/> <!-- Only if necessary -->
             </gt>
-            
-            
-            
+
             <select t="piste:difficulty" v="novice" value="0.5"/>  <!-- Never prefer novice routes - there are novices on them! -->
-                
 
             <gt value1=":difficulty_preference" value2="4">
                 <!-- Prefer expert -->
@@ -1864,16 +1856,11 @@
                 <select t="piste:difficulty" v="intermediate" value="1.2"/> 
                 <select t="piste:difficulty" v="beginner" value="1.8"/>  
             </gt>
-            
-            <!-- :difficulty_preference == 0 means no special preference-->
-            
-            
-            
-         
-            <select value="1"/>
-        
-        </way>
 
+            <!-- :difficulty_preference == 0 means no special preference-->
+
+            <select value="1"/>
+        </way>
 
 		<point attribute="obstacle">
 			<select value="-1" t="access" v="no"/>
@@ -1882,19 +1869,14 @@
 			<select value="0"  t="access" v="permissive"/>
 			<select value="0"  t="access" v="customers"/>
 		</point>
-		
+
 	    <point attribute="obstacle_time">
 			<select value="120"  t="aerialway" v="station"/>
         </point>
-        
+
         <point attribute="obstacle">
 			<select value="120"  t="aerialway" v="station"/>
         </point>
-		
-		
-		
-		
-       
 	</routingProfile>
 
   <routingProfile name="public_transport" >
