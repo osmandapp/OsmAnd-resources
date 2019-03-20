@@ -1774,23 +1774,23 @@
 			<select value="-1" t="access" v="no"/>
 			<select value="-1" t="access" v="private"/>
 
-            <select value="1" t="piste:type" v="connection"/>
-            <select value="1" t="piste:type" v="hike"/>
+			<select value="1" t="piste:type" v="connection"/>
+			<select value="1" t="piste:type" v="hike"/>
 
-            <!-- Beginner and novice routes are always allowed, the others have a settings param: -->
-            <ifnot param="allow_intermediate">	
+			<!-- Beginner and novice routes are always allowed, the others have a settings param: -->
+			<ifnot param="allow_intermediate">
 				<select value="-1" t="piste:difficulty" v="intermediate"/>
-            </ifnot>
-            <ifnot param="allow_advanced">	
-    			<select value="-1" t="piste:difficulty" v="advanced"/>
-            </ifnot>
-            <ifnot param="allow_expert">	
-    			<select value="-1" t="piste:difficulty" v="expert"/>
-            </ifnot>
+			</ifnot>
+			<ifnot param="allow_advanced">
+				<select value="-1" t="piste:difficulty" v="advanced"/>
+			</ifnot>
+			<ifnot param="allow_expert">
+				<select value="-1" t="piste:difficulty" v="expert"/>
+			</ifnot>
 
-            <gt value1="0" value2=":freeride_policy">
-                <select value="-1" t="piste:difficulty" v="freeride"/>
-            </gt>
+			<gt value1="0" value2=":freeride_policy">
+				<select value="-1" t="piste:difficulty" v="freeride"/>
+			</gt>
 
 			<if param="piste_type_downhill">
 				<!-- Some ski pistes have a 'decorative' area around them to indictate the width etc. Disable routing for the decorative part-->
@@ -1835,7 +1835,7 @@
 			<select value="0" t="oneway" v="no"/>
 			<select value="-1" t="oneway" v="-1"/>
 
-		    <select value="0" t="piste:type" v="connection"/>
+			<select value="0" t="piste:type" v="connection"/>
 			<select value="0" t="piste:type" v="hike"/>
 			<select value="0" t="piste:type" v="nordic"/>
 			<select value="0" t="piste:type" v="skitour"/>
@@ -1844,83 +1844,82 @@
 		</way>
 
 		<way attribute="speed" type="speed">
-		    <select value="3" t="piste:type" v="hike"/>
-		    <select value="3" t="piste:type" v="connection"/>
-		    <select value="7" t="piste:type" v="nordic"/>
-		    <select value="7" t="piste:type" v="skitour"/>
-		    <select value="10" t="piste:type" v="sled"/>
+			<select value="3" t="piste:type" v="hike"/>
+			<select value="3" t="piste:type" v="connection"/>
+			<select value="7" t="piste:type" v="nordic"/>
+			<select value="7" t="piste:type" v="skitour"/>
+			<select value="10" t="piste:type" v="sled"/>
 
-		    <select value="1" t="aerialway" v="magic_carpet"/>
-		    <select value="1" t="aerialway" v="rope-tow"/>
+			<select value="1" t="aerialway" v="magic_carpet"/>
+			<select value="1" t="aerialway" v="rope-tow"/>
 			<select value="5" t="aerialway" v="platter"/>
-		    <select value="5" t="aerialway" v="j-bar"/>
-		    <select value="5" t="aerialway" v="t-bar"/>
+			<select value="5" t="aerialway" v="j-bar"/>
+			<select value="5" t="aerialway" v="t-bar"/>
 			<select value="15" t="aerialway" v="mixed_lift"/>
 			<select value="15" t="aerialway" v="chair_lift"/>
 			<select value="25" t="aerialway" v="cable_car"/>
 			<select value="25" t="aerialway" v="gondola"/>
 
-	    	<!-- It's difficult to go fast on a novice slope. Lots of new skiers, no steepness at all... -->
-		    <select value="15" t="piste:difficulty" v="novice"/>
+			<!-- It's difficult to go fast on a novice slope. Lots of new skiers, no steepness at all... -->
+			<select value="15" t="piste:difficulty" v="novice"/>
 
 			<select value="30"/>
 		</way>
 
-        <way attribute="priority">
-            <select value="1" t="piste:type" v="connection"/>
-            <select value="1" t="highway" v="aerialway"/>
+		<way attribute="priority">
+			<select value="1" t="piste:type" v="connection"/>
+			<select value="1" t="highway" v="aerialway"/>
 
-            <gt value1=":freeride_policy" value2="3">
-                <select t="piste:difficulty" v="freeride" value="2"/> <!-- High priority -->
-            </gt>
+			<gt value1=":freeride_policy" value2="3">
+				<select t="piste:difficulty" v="freeride" value="2"/> <!-- High priority -->
+			</gt>
 
-            <gt value1=":freeride_policy" value2="2">
-                <select t="piste:difficulty" v="freeride" value="1"/> <!-- No special priority -->
-            </gt>
+			<gt value1=":freeride_policy" value2="2">
+				<select t="piste:difficulty" v="freeride" value="1"/> <!-- No special priority -->
+			</gt>
 
-		    <gt value1=":freeride_policy" value2="1">
-                <select t="piste:difficulty" v="freeride" value="0.5"/> <!-- Only if necessary -->
-            </gt>
+			<gt value1=":freeride_policy" value2="1">
+				<select t="piste:difficulty" v="freeride" value="0.5"/> <!-- Only if necessary -->
+			</gt>
 
-            <select t="piste:difficulty" v="novice" value="0.5"/>  <!-- Never prefer novice routes - there are novices on them! -->
+			<select t="piste:difficulty" v="novice" value="0.5"/>  <!-- Never prefer novice routes - there are novices on them! -->
 
-            <gt value1=":difficulty_preference" value2="4">
-                <!-- Prefer expert -->
-                <select t="piste:difficulty" v="expert" value="1.8"/>
-                <select t="piste:difficulty" v="advanced" value="1.5"/>  
-                <select t="piste:difficulty" v="intermediate" value="1.2"/> 
-                <select t="piste:difficulty" v="beginner" value="1"/>  
-            </gt>
-            
-            
-            <gt value1=":difficulty_preference" value2="3">
-                <!-- Prefer advanced -->
-                <select t="piste:difficulty" v="expert" value="1.2"/>
-                <select t="piste:difficulty" v="advanced" value="1.8"/>  
-                <select t="piste:difficulty" v="intermediate" value="1.5"/> 
-                <select t="piste:difficulty" v="beginner" value="1.2"/>  
-            </gt>
-            
-            <gt value1=":difficulty_preference" value2="2">
-                <!-- Prefer intermediate -->
-                <select t="piste:difficulty" v="expert" value="1"/>
-                <select t="piste:difficulty" v="advanced" value="1.2"/>  
-                <select t="piste:difficulty" v="intermediate" value="1.8"/> 
-                <select t="piste:difficulty" v="beginner" value="1.5"/>  
-            </gt>
-            
-            <gt value1=":difficulty_preference" value2="1">
-                <!-- Prefer beginner -->
-                <select t="piste:difficulty" v="expert" value="0.5"/>
-                <select t="piste:difficulty" v="advanced" value="1"/>  
-                <select t="piste:difficulty" v="intermediate" value="1.2"/> 
-                <select t="piste:difficulty" v="beginner" value="1.8"/>  
-            </gt>
+			<gt value1=":difficulty_preference" value2="4">
+				<!-- Prefer expert -->
+				<select t="piste:difficulty" v="expert" value="1.8"/>
+				<select t="piste:difficulty" v="advanced" value="1.5"/>
+				<select t="piste:difficulty" v="intermediate" value="1.2"/>
+				<select t="piste:difficulty" v="beginner" value="1"/>
+			</gt>
 
-            <!-- :difficulty_preference == 0 means no special preference-->
+			<gt value1=":difficulty_preference" value2="3">
+				<!-- Prefer advanced -->
+				<select t="piste:difficulty" v="expert" value="1.2"/>
+				<select t="piste:difficulty" v="advanced" value="1.8"/>
+				<select t="piste:difficulty" v="intermediate" value="1.5"/>
+				<select t="piste:difficulty" v="beginner" value="1.2"/>
+			</gt>
 
-            <select value="1"/>
-        </way>
+			<gt value1=":difficulty_preference" value2="2">
+				<!-- Prefer intermediate -->
+				<select t="piste:difficulty" v="expert" value="1"/>
+				<select t="piste:difficulty" v="advanced" value="1.2"/>
+				<select t="piste:difficulty" v="intermediate" value="1.8"/>
+				<select t="piste:difficulty" v="beginner" value="1.5"/>
+			</gt>
+
+			<gt value1=":difficulty_preference" value2="1">
+				<!-- Prefer beginner -->
+				<select t="piste:difficulty" v="expert" value="0.5"/>
+				<select t="piste:difficulty" v="advanced" value="1"/>
+				<select t="piste:difficulty" v="intermediate" value="1.2"/>
+				<select t="piste:difficulty" v="beginner" value="1.8"/>
+			</gt>
+
+			<!-- :difficulty_preference == 0 means no special preference-->
+
+			<select value="1"/>
+		</way>
 
 		<point attribute="obstacle">
 			<select value="-1" t="access" v="no"/>
@@ -1930,13 +1929,13 @@
 			<select value="0"  t="access" v="customers"/>
 		</point>
 
-	    <point attribute="obstacle_time">
+		<point attribute="obstacle_time">
 			<select value="120"  t="aerialway" v="station"/>
-        </point>
+		</point>
 
-        <point attribute="obstacle">
+		<point attribute="obstacle">
 			<select value="120"  t="aerialway" v="station"/>
-        </point>
+		</point>
 	</routingProfile>
 
   <!-- max default speed is max speed for any transort, min speed is pedestrian speed -->
