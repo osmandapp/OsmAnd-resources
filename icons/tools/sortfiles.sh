@@ -1069,6 +1069,7 @@ mycpname power_transformer power_transformer_small.png
 mycpname topo_transformer topo_big_topo_transformer.png
 mycpname works poi_colored_works.png
 mycpname military_bunker poi_colored_military_bunker.png
+mycpname topo_bunker topo_topo_bunker.png
 mycpname abandoned_poi poi_colored_abandoned_poi.png
 mycpname surveillance poi_colored_surveillance.png
 mycpname pier poi_colored_pier.png
