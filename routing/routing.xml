@@ -1767,6 +1767,7 @@
       <parameter id="avoid_ferry" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
       <parameter id="avoid_tram" name="Avoid trams" description="Avoid trams" type="boolean"/>
       <parameter id="avoid_bus" name="Avoid buses" description="Avoid buses, trolleybuses" type="boolean"/>
+      <parameter id="avoid_share_taxi" name="Avoid share taxis" description="Avoid share taxis" type="boolean"/>
 
 
       <point attribute="obstacle">
@@ -1780,16 +1781,29 @@
             <if param="avoid_train"/>
         </select>
         <select value="80"  t="route" v="train"/>
-        
+         
+        <!-- Subway or similar --> 
         <select value="0" t="route" v="subway">
             <if param="avoid_subway"/>
         </select>
         <select value="60"  t="route" v="subway"/>
+        
         <select value="0" t="route" v="monorail">
             <if param="avoid_subway"/>
         </select>
         <select value="50"  t="route" v="monorail"/>
+
+         <select value="0" t="route" v="light_rail">
+            <if param="avoid_subway"/>
+        </select>
+        <select value="50"  t="route" v="light_rail"/>
+
+        <select value="0" t="route" v="funicular">
+            <if param="avoid_subway"/>
+        </select>
+        <select value="50"  t="route" v="funicular"/>
         
+        <!-- Tram, bus, trolleybus, share-taxi -->
         <select value="0" t="route" v="tram">
             <if param="avoid_tram"/>
         </select>
@@ -1805,8 +1819,13 @@
         </select>
         <select value="30"  t="route" v="trolleybus"/>
 
-        <select value="30"  t="route" v="aerialway"/>
+        <select value="0" t="route" v="share_taxi">
+            <if param="avoid_share_taxi"/>
+        </select>
+        <select value="40"  t="route" v="share_taxi"/>
 
+        <select value="30"  t="route" v="aerialway"/>
+        <!-- Ferry -->
         <select value="0" t="route" v="ferry">
             <if param="avoid_ferry"/>
         </select>
