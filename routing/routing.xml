@@ -51,7 +51,7 @@
 		Some others are described here as well but are hidden by default.
 		These profiles can be enabled using the 'OsmAnd development plugin'
 		
-	## Routing profile 
+	  ## Routing profile 
 		
 		For starters, a profile can have a few parameter declarations, to finetune the profile:
 		
@@ -72,11 +72,11 @@
 	    	7) penalty_transition     (which determines the penalty of transitioning from one highway to another, often a high-level road to a lower level road)
 
 
-	The routing time of a segment is the sum of values calculated by these blocks, as the following formula indicates:
+	 The routing time of a segment is the sum of values calculated by these blocks, as the following formula indicates:
 	
 		distance/minimum(maxDefaultSpeed, speed*priority) + height penalty + obstacle penalties + turn penalties + ....
 		
-	Where `maxDefaultSpeed` is defined by the XML (in the header of the profile), whereas max_speed can be given explicitly by the road or implicitly by law 
+	 Where `maxDefaultSpeed` is defined by the XML (in the header of the profile), whereas max_speed can be given explicitly by the road or implicitly by law 
 
 
     ## Block overviews
@@ -135,29 +135,27 @@
     ## 4) Priority (specified on ways, between 0 and 1)
     
         Priority is a preference multiplicator (between 0 and 1), which can only be used to _de_prioritize routes.
-	The default value is 1 (= no effect).
+	 The default value is 1 (= no effect).
         The formula used is 
         `speed_routing = minimum(speed * priority multiplier, maxDefaultSpeed)`;
 
-	The main usage of priority is to discourage certain routes (e.g. based on bad smoothness of the road).
-	If a given priority equals `0.5`, the speed will be halved and the road will be discouraged.
+	 The main usage of priority is to discourage certain routes (e.g. based on bad smoothness of the road).
+	 If a given priority equals `0.5`, the speed will be halved and the road will be discouraged.
 
-	On the other hand, a value >1 can be used to promote a route. However, there is an upperbound for this value.
-	The 'speed*priority' can never grow above the maxDefaultSpeed.
+	 On the other hand, a value >1 can be used to promote a route. However, there is an upperbound for this value.
+	 The 'speed*priority' can never grow above the maxDefaultSpeed.
 
-	For example:
+	 For example:
+    The bicycle profile has a maxDefaultSpeed of `33`.
+    The speed on a residential road is `23`.
 
-	The bicycle profile has a maxDefaultSpeed of `33`.
+	 Consider that we want to promote this road, because it is marked as a `cycle_street`; and we give it a priority of 2.
+	 Is this priority of 2 effective more effective then say 1.5?
 
-	The speed on a residential road is `23`.
+	 The maximum effective factor is given by `maxDefaultSpeed/speed`, which equals `33/23 = 1.43`.
+	 In other words, every priority factor bigger than 1.43 has no extra benefit for this case.
 
-	Consider that we want to promote this road, because it is marked as a `cycle_street`; and we give it a priority of 2.
-	Is this priority of 2 effective more effective then say 1.5?
-
-	The maximum effective factor is given by `maxDefaultSpeed/speed`, which equals `33/23 = 1.43`.
-	In other words, every priority factor bigger than 1.43 has no extra benefit for this case.
-
-	Thus, a factor between 0 and 1 is always effective; but a factor above 1 is not guaranteed to have an effect.
+	 Thus, a factor between 0 and 1 is always effective; but a factor above 1 is not guaranteed to have an effect.
 
 
 
@@ -219,9 +217,9 @@
 
     ## 8) obstacle_srtm_alt_speed (specified on ways, in seconds of penalty for each height meter)
     
-	Specifies a penalty for steep ways. Optional. Note that the value of a key can be used as value. For more info about this, see the section about parameters.
+	 Specifies a penalty for steep ways. Optional. Note that the value of a key can be used as value. For more info about this, see the section about parameters.
 
-	E.g.:
+	 E.g.:
 
 
   		<gt value1="-60" value2=":incline">
@@ -248,7 +246,7 @@
   		</gt>
   		<select value="15"/>
 
-	has the following meaning:
+	 has the following meaning:
 
 		-60% and less => 35 seconds per height metre
 		[-17% till -60%) => 17 seconds per height metre
@@ -257,10 +255,10 @@
 		[3% till 17) => 1 seconds per height metre
 		... etc
 
-	A negative select value (seconds per height metre) means "impassable"
+	 A negative select value (seconds per height metre) means "impassable"
 
-	If the incline of a way be 20%, then the penalty per height metre is 10 seconds.
-	If the part of the way has for example 9 height meters, then the penalty for this part will be 10*9 = 90 seconds.
+	 If the incline of a way be 20%, then the penalty per height metre is 10 seconds.
+	 If the part of the way has for example 9 height meters, then the penalty for this part will be 10*9 = 90 seconds.
 
                 
    ## Working with parameters and conditionals
@@ -282,9 +280,9 @@
                  
     #### Numeric parameters
 
-	Numeric parameters are declared just as a boolean parameter; but require some additional tags.
+	 Numeric parameters are declared just as a boolean parameter; but require some additional tags.
 
-	<parameter id="height" name="Height" description="height" 	(Same as boolean tags)
+	 <parameter id="height" name="Height" description="height" 	(Same as boolean tags)
 		type="numeric" 						(This is a different type. Who would have guessed it?)
 		values="0,1.5,2,2.5,3,3.5,4" 				(The actual values, comma seperated. Floats and ints are allowed)
 		valueDescriptions="-,1.5m,2m,2.5m,3m,3.5m,4m		(How each option is shown within the GUI)
@@ -326,61 +324,56 @@
         
     ### Using numeric parameters in the routing engine   
 
-	Numeric values can be used to compare to other values. For this, a `gt` (greater-then) tag is used.
-	The `gt`-tag acts just like an if-test.
+	 Numeric values can be used to compare to other values. For this, a `gt` (greater-then) tag is used.
+	 The `gt`-tag acts just like an if-test.
 
-	For example, if the height of your car is set, you'll want to compare it with the `maxheight`-tag given to some ways. This is done with a `gt` tag:
+	 For example, if the height of your car is set, you'll want to compare it with the `maxheight`-tag given to some ways. This is done with a `gt` tag:
 
 	
-	<gt value1=":height" value2="$maxweight" type="height">
+	 <gt value1=":height" value2="$maxweight" type="height">
 		<select value="-1" t="maxweight" />
- 	</gt>
+ 	  </gt>
 
-	To call a value, use either ':' or '$' as prefix. Use ':' for the parameters that you defined and '$' for tags loaded from the obf-file (the file containing the data from OSM).
+	 To call a value, use either ':' or '$' as prefix. Use ':' for the parameters that you defined and '$' for tags loaded from the obf-file (the file containing the data from OSM).
 
-	The `type` gives a hint on how to parse the values. If the type is `height`, '1' will be interpreted as '1 meter'.
-	For a type `height`, '1' will be interpreted as one ton (1000 kg)
-
-
-       
+	 The `type` gives a hint on how to parse the values. If the type is `height`, '1' will be interpreted as '1 meter'.
+	 For a type `height`, '1' will be interpreted as one ton (1000 kg)
+    
     Miscellaneous
     +++++++++++++
 
 
-	osmand_highway_integrity_brouting represents how good a way is for a bicycle.
-	Mostly it merges smoothness, surface and tracktype into one value. It is calculated internally?
+	 osmand_highway_integrity_brouting represents how good a way is for a bicycle.
+	 Mostly it merges smoothness, surface and tracktype into one value. It is calculated internally?
 
-	### Alternative notation for <if><select /></if> and <gt><select /></gt>
+	 ### Alternative notation for <if><select /></if> and <gt><select /></gt>
 
-	A different but equivalent format for if- and gt-tags exists: the <if> can be placed inside a <select>
-	However, it is considered bad style (so don't use it).
+	 A different but equivalent format for if- and gt-tags exists: the <if> can be placed inside a <select>
+	 However, it is considered bad style (so don't use it).
 
-	In other words:
+	 In other words:
 
-	<if param="x">
+	 <if param="x">
 		<select value="..."/>
-	</if>
+	 </if>
 
-	is totally equivalent to:
+	 is totally equivalent to:
 
-	<select value="...">
-		<if param="x"/> (Deprecated notation)
-	</select>.
+	 <select value="...">
+	 	 <if param="x"/> (Deprecated notation)
+	 </select>.
 
-	However, we recommend *not to use this format*. The if as outer tags are clearer, and support multiple selects:
+	 However, we recommend *not to use this format*. The if as outer tags are clearer, and support multiple selects:
 
-	<if param="$x">
+	 <if param="$x">
 		<select value="1" t="y" v="z"/>
 		<select value="0" t="w" v="a"/>
 		...
-	</if>
-
-
+	 </if>
 	-->
 
-	<routingProfile name="car" baseProfile="car" restrictionsAware="true" minDefaultSpeed="45.0" maxDefaultSpeed="130.0"
-			leftTurn="5" rightTurn="5" roundaboutTurn="5" onewayAware="true">
-	    <!--
+  <routingProfile name="car" baseProfile="car" restrictionsAware="true" minDefaultSpeed="45.0" maxDefaultSpeed="130.0" leftTurn="5" rightTurn="5" roundaboutTurn="5" onewayAware="true">
+	 <!--
 		<attribute name="heuristicCoefficient" value="1.5" />
 
 		-->
@@ -437,7 +430,7 @@
 				<select value="-1" t="surface" v="mud"/>
 				<select value="-1" t="surface" v="pebblestone"/>
 				<select value="-1" t="surface" v="sand"/>
-<!--				<select value="-1" t="surface" v="wood"/>-->
+        <!--<select value="-1" t="surface" v="wood"/>-->
 				<select value="-1" t="smoothness" v="very_bad"/>
 				<select value="-1" t="smoothness" v="horrible"/>
 				<select value="-1" t="smoothness" v="very_horrible"/>
@@ -801,7 +794,8 @@
 			<select value="-1" t="barrier" v="turnstile"/>
 			<select value="-1" t="barrier" v="bus_trap"/>
 			<select value="-1" t="barrier" v="block"/>
-
+      <select value="-1" t="barrier" v="cycle_barrier"/>
+      
 			<if param="short_way">
 				<select value="0" t="barrier" v="cattle_grid"/>
 				<select value="0" t="barrier" v="border_control"/>
@@ -834,13 +828,12 @@
 		</point>
 	</routingProfile>
 
-	<routingProfile name="bicycle" baseProfile="bicycle" restrictionsAware="true" minDefaultSpeed="2" maxDefaultSpeed="33"
-			leftTurn="4" rightTurn="2" followSpeedLimitations="false" onewayAware="true" heuristicCoefficient="1.4">
+	<routingProfile name="bicycle" baseProfile="bicycle" restrictionsAware="true" minDefaultSpeed="2" maxDefaultSpeed="33" leftTurn="4" rightTurn="2" followSpeedLimitations="false" onewayAware="true" heuristicCoefficient="1.4">
 		<!-- <attribute name="relaxNodesIfStartDistSmallCoeff" value="2.5"/>  -->
 		<!-- New ROUTING API -->
 
-<!--		<parameter id="driving_style" name="Driving style" description="Safe, fast or balanced driving" type="numeric" values="0,1,2" valueDescriptions="Safety,Balance,Speed"/>-->
-<!--		<parameter id="relief_smoothness_factor" name="Relief smoothness factor" description="More plains or more hills" type="numeric" values="0,1,2" valueDescriptions="More plains,Balance,More hills"/>-->
+    <!--<parameter id="driving_style" name="Driving style" description="Safe, fast or balanced driving" type="numeric" values="0,1,2" valueDescriptions="Safety,Balance,Speed"/>-->
+    <!--<parameter id="relief_smoothness_factor" name="Relief smoothness factor" description="More plains or more hills" type="numeric" values="0,1,2" valueDescriptions="More plains,Balance,More hills"/>-->
 
 		<parameter id="driving_style_safety" group="driving_style" name="Safety" description="" type="boolean"/>
 		<parameter id="driving_style_balance" group="driving_style" name="Balance" description="" type="boolean" default="true"/>
@@ -1154,7 +1147,7 @@
 		<way attribute="priority">
 			<select value="0.1" t="bicycle" v="private"/>
 			<select value="0.2" t="bicycle" v="destination"/>
-<!--			<select value="0.05" t="access" v="private"/>-->
+      <!--	<select value="0.05" t="access" v="private"/>-->
 			<select value="0.3" t="indoor" v="yes"/>
 			<select value="0.1" t="barrier" v="debris"/>
 			<select value="0.1" t="bicycle" v="use_sidepath"/>
@@ -1169,7 +1162,8 @@
 				<select value="0.1" t="osmand_highway_integrity_brouting" v="9"/>
 				<select value="0.05" t="osmand_highway_integrity_brouting" v="10"/>
 
-<!--				<select value="0.4" t="tracktype" v="grade2"/>
+        <!--		
+        <select value="0.4" t="tracktype" v="grade2"/>
 				<select value="0.1" t="tracktype" v="grade3"/>
 				<select value="0.1" t="tracktype" v="grade4"/>
 				<select value="0.1" t="tracktype" v="grade5"/>
@@ -1183,11 +1177,12 @@
 				<select value="0.1" t="surface" v="ground"/>
 				<select value="0.1" t="surface" v="mud"/>
 				<select value="0.1" t="surface" v="pebblestone"/>
-				<select value="0.1" t="surface" v="sand"/>-->
+				<select value="0.1" t="surface" v="sand"/>
+        -->
 				<select value="0.1" t="mtb:scale" v="1"/>
 				<select value="0.1" t="mtb:scale" v="2"/>
 				<select value="0.1" t="class:bicycle:mtb" v="-1"/>
-<!--				<select value="0.6" t="surface" v="wood"/>-->
+        <!--	<select value="0.6" t="surface" v="wood"/>-->
 			</if>
 			
 			<select value="1.0" t="bicycle" v="dismount"/>
@@ -1480,11 +1475,9 @@
 				<select value="90"/>
 			</if>
 		</way>
-
 	</routingProfile>
 
-	<routingProfile name="pedestrian" baseProfile="pedestrian" restrictionsAware="false" minDefaultSpeed="3" maxDefaultSpeed="5"
-			leftTurn="0" rightTurn="0" followSpeedLimitations="false" onewayAware="false">
+	<routingProfile name="pedestrian" baseProfile="pedestrian" restrictionsAware="false" minDefaultSpeed="3" maxDefaultSpeed="5" leftTurn="0" rightTurn="0" followSpeedLimitations="false" onewayAware="false">
 
 		<attribute name="heuristicCoefficient" value="1.2" />
 		<!-- NEW ROUTING API -->
@@ -1667,6 +1660,7 @@
 
 		</point>
 	</routingProfile>
+
 	<routingProfile name="geocoding" baseProfile="car" restrictionsAware="true" minDefaultSpeed="10.0" maxDefaultSpeed="10.0">
 		<way attribute="access">
 			<select value="1" t="highway" v="motorway"/>
@@ -1812,8 +1806,6 @@
         <select value="30"  t="route" v="ferry"/>
         <select value="4"  t="route" v="walk"/>
       </way>
-      
-      
   </routingProfile>
 
 </osmand_routing_config>
