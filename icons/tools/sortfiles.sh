@@ -1100,6 +1100,7 @@ mycpname pumping_station poi_colored_pumping_station.png
 mycpname mdf poi_colored_mdf.png
 mycpname topo_power_plant topo_topo_power_plant.png
 mycpname pipeline_substation poi_colored_pipeline_substation.png
+mycpname flare poi_colored_flare.png
 
 
 mygroup military poi_colored_military_bunker.png
