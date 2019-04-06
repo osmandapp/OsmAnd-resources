@@ -88,6 +88,8 @@
 		type="boolean" possibleValues="" category="details"/>
 	<renderingProperty attr="showAccess" name="Show access restrictions" description="Show access restrictions"
 		type="boolean" possibleValues="" category="details"/>
+	<renderingProperty attr="showLez" name="Show Low Emission Zones" description="Show Low Emission zones on the map. Does not affect routing."
+		   type="boolean" possibleValues="" category="details"/>
 	<renderingProperty attr="contourLines" name="Show contour lines" description="Select minimum zoom level to display in map if available. Separate contour file may be needed."
 		type="string" possibleValues="disabled,16,15,14,13,12,11" defaultValueDescription="default13" category="details"/>
 	<renderingProperty attr="contourColorScheme" name="Contour lines color scheme" description="Contour lines color scheme" type="string" possibleValues="light_brown,brown,dark_brown" defaultValueDescription="default"/>
@@ -1399,7 +1401,7 @@
 	</renderingAttribute>
 	<renderingConstant name="boundaryNationalParkColor" value="$null"/>
 	<renderingConstant name="boundaryNationalParkColor2" value="#500AED0A"/>
-
+	
 	<!-- Forest -->
 	<renderingAttribute name="woodColor">
 		<case nightMode="true" attrColorValue="#192e33"/>
@@ -1751,6 +1753,10 @@
 		<case nightMode="true" attrColorValue="#84EC94B2"/>
 		<case attrColorValue="#d1fc86ae"/>
 	</renderingAttribute>
+		
+	<renderingConstant name="lezShader" value="diagonal_gray_shader"/>
+	<renderingConstant name="lezStrokeColor" value="#666666"/>
+	
 	<!--	<renderingConstant name="landusePrisonColorDay" value="#dfd1d6"/>-->
 	<renderingConstant name="landusePrisonColorNight" value="#3b3b3b"/>
 	<renderingAttribute name="landuseCommercialColor">
@@ -2841,6 +2847,7 @@
 				<case tag="harbour" value="yes"/>
 				<case tag="waterway" value="dock"/>
 				<case tag="waterway" value="wadi"/>
+				<case tag="boundary" value="low_emission_zone" order="7" />
 
 				<switch>
 					<case tag="natural" value="beach"/>
@@ -3090,6 +3097,7 @@
 					<apply order="34"/>
 				</case>
 
+				
 				<case tag="administrative" value="" order="62"/>
 				<case tag="boundary" value="" order="62"/>
 				<case tag="addr:interpolation" value=""/>
@@ -9184,6 +9192,11 @@
 			</case>
 		</switch>
 
+		<switch showLez="true" minzoom="11">
+			<case tag="boundary" value="low_emission_zone" shader="$lezShader" color_2="$lezStrokeColor" strokeWidth_2="1:1"/>
+			
+		</switch>
+		
 	    <!-- for 'no polygons' -->
 		<switch noPolygons="false">
 			<!-- Polygon railway -->
