@@ -42,7 +42,7 @@ function populateDictionary(tts) {
 
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "kommer det en rondell" : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? " kör in i rondellen och ta" : "roundabout.ogg";
+	dictionary["roundabout"] = tts ? " kör in i rondellen" : "roundabout.ogg";
 	dictionary["then"] = tts ? ", sedan " : "then.ogg";
 	dictionary["and"] = tts ? " och " : "and.ogg";
 	dictionary["take"] = tts ? "ta den " : "take.ogg";

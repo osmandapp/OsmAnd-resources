@@ -556,9 +556,9 @@
 			</if>
 			
 			<if param="avoid_motorway">
-				<select value="3000" t="highway" v="motorway"/>
-				<select value="3000" t="motorroad" v="yes"/>
-				<select value="2900" t="highway" v="motorway_link"/>
+				<select value="100" t="highway" v="motorway"/>
+				<select value="100" t="motorroad" v="yes"/>
+				<select value="90" t="highway" v="motorway_link"/>
 			</if>
 			<select value="0" t="highway" v="motorway"/>
 			<select value="10" t="highway" v="motorway_link"/>
@@ -666,6 +666,12 @@
 			<select value="0.15" t="smoothness" v="horrible"/>
 			<select value="0.1" t="smoothness" v="very_horrible"/>
 			<select value="0.05" t="smoothness" v="impassable"/>
+
+			<if param="avoid_motorway">
+				<select value="0.1" t="highway" v="motorway"/>
+				<select value="0.1" t="motorroad" v="yes"/>
+				<select value="0.1" t="highway" v="motorway_link"/>
+			</if>
 
 			<select value="1.1" t="highway" v="motorway"/>
 			<!-- make links slightly smaller so in connections they will not be used -->
@@ -1493,12 +1499,12 @@
 		<parameter id="avoid_stairs" name="Avoid stairs" description="Avoid stairs" type="boolean"/>
 		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean" default="true"/>
 
-    <way attribute="area">
-      <select value="1"  t="railway" v="platform"/> 
-      <select value="1"  t="public_transport" v="platform"/> 
-      <select value="0"/>
-    </way>
-    
+		<way attribute="area">
+			<select value="1"  t="railway" v="platform"/>
+			<select value="1"  t="public_transport" v="platform"/>
+			<select value="0"/>
+		</way>
+
 		<way attribute="access">
 			<select value="-1" t="osmand_change" v="delete"/>
 			<select value="-1" t="highway" v="proposed"/>
@@ -1629,6 +1635,9 @@
 			<select value="0.9" t="highway" v="primary"/>
 			<select value="0.9" t="highway" v="primary_link"/>
 			<select value="0.9" t="highway" v="secondary"/>
+			<select value="0.9" t="highway" v="secondary_link"/>
+			<select value="0.9" t="highway" v="tertiary"/>
+			<select value="0.9" t="highway" v="tertiary_link"/>
 			<select value="1"   t="route"   v="ferry"/>
 			<select value="1.2" t="highway" v="steps"/>
 			<select value="1.2" t="highway" v="living_street"/>
