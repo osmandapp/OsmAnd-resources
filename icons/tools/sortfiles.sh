@@ -216,6 +216,8 @@ mycpname defibrillator emergency_defibrillator.png
 mycpname ambulance_station emergency_ambulance_station.png
 mycpname fire_extinguisher emergency_fire_extinguisher.png
 mycpname life_ring emergency_life_ring.png
+mycpname rescue_box emergency_rescue_box.png
+mycpname topo_rescue_box topo_emergency_rescue_box.png
 
 mygroup healthcare health_pharmacy.png
 mycp amenity dentist health_dentist.png
