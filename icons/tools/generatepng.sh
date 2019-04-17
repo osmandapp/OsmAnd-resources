@@ -165,6 +165,7 @@ generatePngs() {
        generatePngs 'topo' '#000000' '#000000' '' '' '' nomx
        generatePngs 'topo_big' '#000000' '#000000' '' x2 '' nomx
        generatePngs 'topo_water' '#000000' '#0F5CF0' '' '' '' nomx
+       generatePngs 'topo_emergency' '#000000' '#DA0092' '' '' '' nomx
        generatePngs 'additional' '#3f3f3f' '#ff8f00'
        generatePngs 'additional_category' '#3f3f3f' '#ff8f00'
        generatePngs 'power' '#3f3f3f' '#ff8f00'
