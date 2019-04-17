@@ -86,6 +86,8 @@
 		type="boolean" possibleValues="" category="details"/>
 	<renderingProperty attr="showSurfaceGrade" name="Road quality" description="Show road quality"
 		type="boolean" possibleValues="" category="details"/>
+    <renderingProperty attr="showClimbingCrags" name="Show climbing crags 0" description="Show climbing crags"
+		type="boolean" possibleValues="" category="details"/>
 	<renderingProperty attr="showAccess" name="Show access restrictions" description="Show access restrictions"
 		type="boolean" possibleValues="" category="details"/>
 	<renderingProperty attr="contourLines" name="Show contour lines" description="Select minimum zoom level to display in map if available. Separate contour file may be needed."
@@ -1389,6 +1391,8 @@
 		<case attrColorValue="#ffffff"/>
 	</renderingAttribute>
 
+    <renderingConstant name="climbingCragShader" value="topo_quarry_salt"/>
+	
 	<renderingAttribute name="boundaryColorInner">
 		<case nightMode="true" attrColorValue="#44b27db3"/>
 		<case attrColorValue="#50800080"/>
@@ -2923,6 +2927,8 @@
 				<case tag="hazard" value="" order="11"/>
 				<case tag="fixme_tag" value="yes" order="11"/>
 				<case tag="note_tag" value="yes"/>
+				<case tag="climbing" value="crag" order="20"/>
+
 				<!-- <case tag="indoor" value="room"/>
 				<case tag="indoor" value="area" order="3"/>-->
 				<case tag="" value="" order="5"/>
@@ -9904,6 +9910,10 @@
 		<case moreDetailed="true" minzoom="17" tag="building:part" value="" strokeWidth_2="0.5" color_2="#999999">
 			<apply_if nightMode="true" color_2="#808080"/>
 		</case>
+
+
+		<case tag="climbing" value="crag" shader="$climbingCragShader" strokeWidth_2="2.5" color_2="#1a7fc7"/>
+
 		<!-- <case tag="indoor" value="room" color="#eeeeee" strokeWidth_2="2" color_2="#777777"/>
 		<case tag="indoor" value="area" color="$white"/>-->
 		<case tag="osmand_change" value="delete"/> <!-- OSMC will break if delete -->
