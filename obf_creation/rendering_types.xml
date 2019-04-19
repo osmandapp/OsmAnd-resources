@@ -4385,7 +4385,7 @@
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="beach" to_tag1="natural" to_value1="beach"/>
 		<entity_convert pattern="tag_transform" from_tag="beach" from_value="pebble" to_tag1="beach" to_value1="shingle"/>
 		<entity_convert pattern="tag_transform" from_tag="surface" from_value="sand" if_tag1="natural" if_value1="beach" to_tag1="beach" to_value1="sand"/>
-		<type tag="natural" value="cliff" minzoom="12" />
+		<type tag="natural" value="cliff" minzoom="12" order="55" />
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="cliff" if_tag1="waterway" if_value1="waterfall" poi="no"/>
 		<type tag="natural" value="slope" minzoom="12" />
 		<type tag="natural" value="earth_bank" minzoom="12" />
@@ -4402,7 +4402,7 @@
 		<type tag="natural" value="lava" minzoom="6" />
 		<type tag="natural" value="peak" minzoom="10" nameTags="ele" />
 		<type tag="natural" value="hill" minzoom="13" nameTags="ele" />
-		<type tag="natural" value="bare_rock" minzoom="10" />
+		<type tag="natural" value="bare_rock" minzoom="10" order="55"/>
 		<type tag="natural" value="rock" minzoom="10" />
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="bedrock" to_tag1="natural" to_value1="bare_rock"/>
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="rock" to_tag1="natural" to_value1="bare_rock" apply_to="way" poi="no"/>
@@ -5235,6 +5235,7 @@
 		<type tag="sport" value="canoe" minzoom="15" />
 		<type tag="sport" value="chess" minzoom="15" />
 		<type tag="sport" value="climbing" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="sport" from_value="rock_climbing" to_tag1="sport" to_value1="climbing"/>
 		<type tag="sport" value="climbing_adventure" minzoom="15" />
 		<type tag="sport" value="cricket" minzoom="15" />
 		<type tag="sport" value="cricket_nets" minzoom="15" />
@@ -5309,6 +5310,13 @@
 		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="5-" to_tag1="via_ferrata_scale" to_value1="4"/>
 		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="6+" to_tag1="via_ferrata_scale" to_value1="6"/>
 		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="6-" to_tag1="via_ferrata_scale" to_value1="5"/>
+
+		<type tag="climbing_crag" value="crag" minzoom="13" additional="true" relation="true"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing" from_value="crag" if_not_tag1="sport" to_tag1="climbing_crag" to_value1="crag" to_tag2="sport" to_value2="climbing"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing" from_value="crag" to_tag1="climbing_crag" to_value1="crag"/>
+
+		<entity_convert pattern="tag_transform" from_tag="climbing" from_value="boulder" if_not_tag1="natural" to_tag1="natural" to_value1="stone"/>
+
 	</category>
 
 	<category name="legend">
