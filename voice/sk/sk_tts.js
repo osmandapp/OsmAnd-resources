@@ -281,7 +281,7 @@ function hours(minutes) {
 	} else if (minutes < 180) {
 		return dictionary["hours2"];
 	} else if (minutes < 300) {
-		return Math.floor(minutes/60).toString() + (!tts ? ".ogg " : " ") + dictionary["3_4_hours"];
+		return Math.floor(minutes/60).toString() + (!tts ? ".ogg " : " ") + dictionary["hours3_4"];
 	} else if (tts) {
 		return Math.floor(minutes/60).toString() + " " + dictionary["hours5"];
 	} else if (!tts && minutes < 21 * 60) {
