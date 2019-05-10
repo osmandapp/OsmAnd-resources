@@ -1013,6 +1013,7 @@
 					<apply_if lessDetailed="true" maxzoom="15" order="-1"/>
 				</case>
 				<case tag="glacial" value="crevasse_zone" order="10"/>
+				<case tag="natural" value="stone"/>
 
 				<case tag="natural" value="sinkhole"/>
 				<case tag="natural" value="hot_spring"/>
@@ -1020,6 +1021,7 @@
 				<case tag="region:type" value="mountain_area"/>
 				<case tag="leisure" value="park"/>
 				<case tag="leisure" value="resort" order="8"/>
+				<case tag="sport" value="climbing" order="9"/>
 				<case tag="landuse" value="greenfield" order="7"/>
 				<case tag="landuse" value="brownfield" order="7"/>
 				<case tag="leisure" value="nature_reserve" order="9"/>
@@ -2278,7 +2280,8 @@
 				<case minzoom="16" tag="natural" value="beach"/>
 				<case minzoom="16" tag="leisure" value="beach_resort"/>
 				<case minzoom="16" tag="leisure" value="water_park"/>
-				<apply_if engine_v1="true" textDy="1"/>
+				<case minzoom="17" tag="sport" value="climbing"/>
+				<apply_if engine_v1="true" textDy="2"/>
 			</switch>
 			<!-- Accommodation -->
 			<switch textSize="12" nameTag="" textColor="$accomodationTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffffff" textWrapWidth="25" textOrder="161">
@@ -2516,6 +2519,7 @@
 				<case minzoom="17" tag="military" value="checkpoint" nameTag="ref"/>
 				<case minzoom="17" tag="military" value="checkpoint" nameTag="" nameTag2="ref"/>
 				<case minzoom="17" tag="military" value="bunker"/>
+				<case minzoom="18" tag="emergency" value="rescue_box" textColor="#DA0092" textOrder="71"/>
 				<apply_if engine_v1="true" textDy="1"/>
 			</switch>
 			<case minzoom="16" tag="man_made" value="pier" textSize="11" textColor="#1f62ae" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ccffffff" textOnPath="true" textWrapWidth="30" textOrder="175"/>
@@ -2568,10 +2572,10 @@
 				</apply>
 			</switch>
 			<switch showCycleRoutes="true" minzoom="11" textColor="$cycleRouteTextColor" textBold="true" textHaloRadius="4">
-				<case tag="lcn_ref" value="" textOrder="37"/>
-				<case tag="rcn_ref" value="" textOrder="38"/>
-				<case tag="ncn_ref" value="" textOrder="39"/>
-				<case tag="icn_ref" value="" textOrder="39"/>
+				<case tag="lcn_ref" value="" nameTag="lcn_ref" textOrder="37"/>
+				<case tag="rcn_ref" value="" nameTag="rcn_ref" textOrder="38"/>
+				<case tag="ncn_ref" value="" nameTag="ncn_ref" textOrder="39"/>
+				<case tag="icn_ref" value="" nameTag="icn_ref" textOrder="39"/>
 				<apply_if minzoom="11" maxzoom="12" textSize="10"/>
 				<apply_if minzoom="13" maxzoom="13" textSize="12"/>
 				<apply_if minzoom="14" maxzoom="15" textSize="14"/>
@@ -2742,6 +2746,9 @@
 			<apply_if additional="ele_limit=7500" iconOrder="53"/>
 			<apply_if additional="ele_limit=9000" iconOrder="52"/>
 		</switch>
+
+		<case minzoom="17" tag="emergency" value="rescue_box" icon="topo_rescue_box" shield="topo_rescue_box_shield" iconOrder="71"/>
+
 		<case minzoom="14" tag="natural" value="hill" icon="hill" shield="hill_shield" iconOrder="70"/>
 
 		<case minzoom="14" tag="natural" value="saddle" icon="natural_saddle" shield="topo_saddle_shield" iconOrder="66"/>
@@ -2754,6 +2761,8 @@
 			<case minzoom="16" tag="natural" value="rock"/>
 			<apply icon="natural_stone" shield="stone_shield"/>
 		</switch>
+		<case minzoom="16" tag="sport" value="climbing" icon="sport_climbing" shield="green_round_shield"/>
+
 		<case minzoom="14" tag="ford" value="yes" icon="topo_ford" shield="topo_ford_shield"/>
 		<case minzoom="14" tag="ford" value="stepping_stones" icon="topo_ford_stepping_stones" shield="topo_ford_stepping_stones_shield"/>
 
@@ -3256,6 +3265,14 @@
 					<case minzoom="15" tag="geological" value="outcrop" strokeWidth_2="1" color="#22653f3f" color_2="#886a6a"/>
 					<case minzoom="14" tag="natural" value="fell" shader="fell2" color_0="$grassColor"/>
 					<case minzoom="13" tag="natural" value="bare_rock" shader="topo_bare_rock" color_0="#FAFAFA"/>
+					<case minzoom="16" tag="natural" value="stone" color="#ABABAB"/>
+
+					<switch minzoom="15">
+						<case tag="sport" value="climbing" additional="climbing_crag=crag"/>
+						<apply_if maxzoom="17" strokeWidth_2="3" pathEffect_2="5_2"/>
+						<apply_if minzoom="18" strokeWidth_2="4" pathEffect_2="6_3"/>
+						<apply color="$null" color_2="#66903A33"/>
+					</switch>
 
 					<case minzoom="6" tag="natural" value="desert" color="$desertColor"/>
 
