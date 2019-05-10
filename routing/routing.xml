@@ -26,8 +26,8 @@
 	
 		If you want to tweak the routing engine, read this carefully.
 		
-    Deploying your own routing.xml
-    ==============================
+		Deploying your own routing.xml
+		==============================
 		
 		When you finish editing this document (or want to test on your Android device), copy this file over to your device.
 
@@ -42,8 +42,8 @@
 		
 		Restart OsmAnd (e.g. by swiping it away in the recent app view) to activate the new routing.xml;
 		
-    Overview of the document
-    ++++++++++++++++++++++++
+		Overview of the document
+		++++++++++++++++++++++++
 	
 		The document contains many big blocks, each describing a single profile.
 		OsmAnd has three default profiles: car, bicycle and foot.
@@ -51,177 +51,177 @@
 		Some others are described here as well but are hidden by default.
 		These profiles can be enabled using the 'OsmAnd development plugin'
 		
-	  ## Routing profile 
+		## Routing profile 
 		
 		For starters, a profile can have a few parameter declarations, to finetune the profile:
 		
 		<parameter name="some_toggle" ... />
 		<parameter name="some_other_preference" ... />
 		
-        (Details on parameters are given later on)
+		(Details on parameters are given later on)
 		
 		A profile block contains at least the following segments:
-		1) access                 (which determines if a road can be taken)
-   		2) speed                  (which determines what max speed a road allows)
-    	
-    	A profile block might also contain following segments:
-	    	3) oneway                 (which determines in which direction a road can be taken)
-	    	4) priority               (which determines how nice the road is to drive on)
-	    	5) obstacle               (which determines the delay of an obstacle, in seconds for the routing engine)	
-	    	6) obstacle_time          (which determines the delay of an obstacle, in seconds for the human)
-	    	7) penalty_transition     (which determines the penalty of transitioning from one highway to another, often a high-level road to a lower level road)
+		1) access				 (which determines if a road can be taken)
+   		2) speed				  (which determines what max speed a road allows)
+
+		A profile block might also contain following segments:
+		3) oneway				 (which determines in which direction a road can be taken)
+		4) priority			   (which determines how nice the road is to drive on)
+		5) obstacle			   (which determines the delay of an obstacle, in seconds for the routing engine)	
+			6) obstacle_time		  (which determines the delay of an obstacle, in seconds for the human)
+			7) penalty_transition	 (which determines the penalty of transitioning from one highway to another, often a high-level road to a lower level road)
 
 
-	 The routing time of a segment is the sum of values calculated by these blocks, as the following formula indicates:
+		The routing time of a segment is the sum of values calculated by these blocks, as the following formula indicates:
 	
 		distance/minimum(maxDefaultSpeed, speed*priority) + height penalty + obstacle penalties + turn penalties + ....
 		
-	 Where `maxDefaultSpeed` is defined by the XML (in the header of the profile), whereas max_speed can be given explicitly by the road or implicitly by law 
+		Where `maxDefaultSpeed` is defined by the XML (in the header of the profile), whereas max_speed can be given explicitly by the road or implicitly by law 
 
 
-    ## Block overviews
-        
-    ### 1) Access (specified on ways, obligated, -1 or 1)
-        
-        Access states whether or not a road _can_ be taken by your mode of transport.
-        E.g. a pedestrian is not allowed on a motorway; neither can a car follow a small path.
-        
-        These values are specified included in a `way`-tag with the attribute `access`:
-        
-        <way attribute="access">
-        
-            ... statements ...
-            
-        </way>
-        
-        Depending on the key-value pairs of a way, a value of either `-1` or `1` is selected.
-        `-1` indicates that a road is _not_ accessible
-        `1` indicates that the road can be taken
-           
-        E.g., for a pedestrian are motorways not allowed:    
-        <select value="-1" t="highway" v="motorway"/>
-        
-        There is no obligation to check against a value. The presence of a key can be enough to check against
-        <select value="-1" t="bollard"/>
-        
-        At last, a default might be given, by not specifying a key:
-        <select value="1"/>
-        
-        The first matching clause is used.
-        
-               
-    ## 2) Speed (specified on ways, obligated, in km/h)
-    
-        The speed block gives, for each type of road, the maxspeed in km/h.
-        If an explicit `maxspeed` tag is given on the way, the default speeds in the `speed` block are ignored.
-       
-        
-    ## 3) Oneway (specified on ways)
-    
-        The oneway block specifies if the routing should respect the drawing order (direction) or a way.
-        In the most simple case, going in both directions is allowed. For these ways, the value "0" is given:
-       
-        <select value="0" t="oneway" v="no" />
-        
-        If the navigation should follow the line in the drawing direction, "1" is the value of choice:
-        
-        <select value="1" t="oneway" v="1"/>
-        
-        And if, for some reason, you want to go against the drawing diretion, the value of "-1" should be specified:
-        
-        <select value="-1" t="oneway" v="-1"/>
-            
-        
-    ## 4) Priority (specified on ways, between 0 and 1)
-    
-         Priority is a preference multiplicator (between 0 and 1), which can only be used to _de_prioritize routes.
-	 The default value is 1 (= no effect).
-         The formula used is 
-         `speed_routing = minimum(speed * priority multiplier, maxDefaultSpeed)`;
+		## Block overviews
+		
+		### 1) Access (specified on ways, obligated, -1 or 1)
+		
+		Access states whether or not a road _can_ be taken by your mode of transport.
+		E.g. a pedestrian is not allowed on a motorway; neither can a car follow a small path.
+		
+		These values are specified included in a `way`-tag with the attribute `access`:
+		
+		<way attribute="access">
+		
+			... statements ...
+			
+		</way>
+		
+		Depending on the key-value pairs of a way, a value of either `-1` or `1` is selected.
+		`-1` indicates that a road is _not_ accessible
+		`1` indicates that the road can be taken
+		   
+		E.g., for a pedestrian are motorways not allowed:	
+		<select value="-1" t="highway" v="motorway"/>
+		
+		There is no obligation to check against a value. The presence of a key can be enough to check against
+		<select value="-1" t="bollard"/>
+		
+		At last, a default might be given, by not specifying a key:
+		<select value="1"/>
+		
+		The first matching clause is used.
+		
+			   
+		## 2) Speed (specified on ways, obligated, in km/h)
+	
+		The speed block gives, for each type of road, the maxspeed in km/h.
+		If an explicit `maxspeed` tag is given on the way, the default speeds in the `speed` block are ignored.
+	   
+		
+		## 3) Oneway (specified on ways)
+	
+		The oneway block specifies if the routing should respect the drawing order (direction) or a way.
+		In the most simple case, going in both directions is allowed. For these ways, the value "0" is given:
+	   
+		<select value="0" t="oneway" v="no" />
+		
+		If the navigation should follow the line in the drawing direction, "1" is the value of choice:
+		
+		<select value="1" t="oneway" v="1"/>
+		
+		And if, for some reason, you want to go against the drawing diretion, the value of "-1" should be specified:
+		
+		<select value="-1" t="oneway" v="-1"/>
+			
+		
+		## 4) Priority (specified on ways, between 0 and 1)
+	
+		 Priority is a preference multiplicator (between 0 and 1), which can only be used to _de_prioritize routes.
+		The default value is 1 (= no effect).
+		 The formula used is 
+		 `speed_routing = minimum(speed * priority multiplier, maxDefaultSpeed)`;
 
-	 The main usage of priority is to discourage certain roads (e.g. based on bad smoothness of the road).
-	 If a given priority equals `0.5`, the speed will be halved and the road will be discouraged.
+		The main usage of priority is to discourage certain roads (e.g. based on bad smoothness of the road).
+		If a given priority equals `0.5`, the speed will be halved and the road will be discouraged.
+		
 
-	 On the other hand, a value >1 can be used to promote a route. However, there is an upperbound for this value.
-	 The 'speed*priority' can never grow above the maxDefaultSpeed.
+		On the other hand, a value >1 can be used to promote a route. However, there is an upperbound for this value. The 'speed*priority' can never grow above the maxDefaultSpeed.
 
-	 For example:
-         The bicycle profile has a maxDefaultSpeed of `33`.
-         The speed on a residential road is `23`.
+	 	For example:
+		 The bicycle profile has a maxDefaultSpeed of `33`.
+		 The speed on a residential road is `23`.
 
-	 Consider that we want to promote this road, because it is marked as a `cycle_street`; and we give it a priority of 2.
-	 Is this priority of 2 more effective than say 1.5?
+		Consider that we want to promote this road, because it is marked as a `cycle_street`; and we give it a priority of 2.
+		Is this priority of 2 more effective than say 1.5?
 
-	 The maximum effective factor is given by `maxDefaultSpeed/speed`, which equals `33/23 = 1.43`.
-	 In other words, every priority factor bigger than 1.43 has no extra benefit for this case.
+		The maximum effective factor is given by `maxDefaultSpeed/speed`, which equals `33/23 = 1.43`.
+		In other words, every priority factor bigger than 1.43 has no extra benefit for this case.
 
-	 Thus, a factor between 0 and 1 is always effective; but a factor above 1 is not guaranteed to have an effect.
-
-
-
-    ## 5) Obstacle (specified on points, penalty time in seconds or -1 if blocked)
-    
-        This block evaluates points encountered on the road.
-        The block specifies if this obstacle can be passed and eventually a penalty for passing it.
-        
-        A value of "-1" is given if the obstacle can not be passed.
-        A value of "0" is given if the obstacle can be passed without problem and delay.
-        A penalty in seconds is given if the obstacle slows you down (e.g. a kerb might slow down a car and bicycle).
-        
-        This value is only used by the routing engine.
-        
-        E.g. a kerb is a showstopper for a wheelchair
-        <routingProfile name="wheelchair">
-            <point attribute="obstacle>
-                <select value="-1" t="barrier" v="kerb" />
-            </point>
-        </routingProfile>    
-        
-        
-        E.g. a kerb causes a slight delay for cyclists
-        <routingProfile name="bicycle">
-            <point attribute="obstacle>
-                <select value="5" t="barrier" v="kerb" />
-            </point>
-        </routingProfile>  
-        
-
-    ## 6) Obstacle_time (specified on points, penalty time in seconds)
-
-        Gives a slowdown time for an obstacle in seconds.
-        In contract to `obstacle`, this value is only used to calculate an ETA and show it on the UI once the route is calculated.
-        In other words, the values here do not influence routing.
-        
-        
-
-    ## 7) Penalty_transition (specified on ways, penalty time in seconds)
-
-        When driving a car, changing from a motorway to a trunk slows you down:
-        you should already slow down 500 meters before the trunk.
-        This has a penalty which is taken into account by (only) the navigation algorithm.
-        This is done by taking the difference between two penalties.
-        The formula used is `maximum(0, penalty_new_way - penalty_current_way)`.
-        
-        E.g. 
-        <way attribute="penalty_transition">
-            <select value="0" t="highway" v="motorway"/>
-            <select value="5" t="highway" v="motorway_link"/>
-            <select value="20" t="highway" v="tertiary"/>
-        </way>
-                
-        This means that, going from a `motorway_link` to a `tertiary`, the penalty given will be
-        `maximum(0, 20 - 5)` or `15 seconds`.
-        
-        On the other hand, going from motorway to motorway incurs no penalty,
-        neither does going from a motorway_link to a motorway.
+		Thus, a factor between 0 and 1 is always effective; but a factor above 1 is not guaranteed to have an effect.
 
 
-    ## 8) obstacle_srtm_alt_speed (specified on ways, in seconds of penalty for each height meter)
-    
-	 Specifies a penalty for steep ways. Optional. Note that the value of a key can be used as value.
-         For more info about this, see the section about parameters.
 
-	 E.g.:
+		## 5) Obstacle (specified on points, penalty time in seconds or -1 if blocked)
+	
+		This block evaluates points encountered on the road.
+		The block specifies if this obstacle can be passed and eventually a penalty for passing it.
+		
+		A value of "-1" is given if the obstacle can not be passed.
+		A value of "0" is given if the obstacle can be passed without problem and delay.
+		A penalty in seconds is given if the obstacle slows you down (e.g. a kerb might slow down a car and bicycle).
+		
+		This value is only used by the routing engine.
+		
+		E.g. a kerb is a showstopper for a wheelchair
+		<routingProfile name="wheelchair">
+			<point attribute="obstacle>
+				<select value="-1" t="barrier" v="kerb" />
+			</point>
+		</routingProfile>	
+		
+		
+		E.g. a kerb causes a slight delay for cyclists
+		<routingProfile name="bicycle">
+			<point attribute="obstacle>
+				<select value="5" t="barrier" v="kerb" />
+			</point>
+		</routingProfile>  
+		
+
+		## 6) Obstacle_time (specified on points, penalty time in seconds)
+
+		Gives a slowdown time for an obstacle in seconds.
+		In contract to `obstacle`, this value is only used to calculate an ETA and show it on the UI once the route is calculated.
+		In other words, the values here do not influence routing.
+		
+		
+
+		## 7) Penalty_transition (specified on ways, penalty time in seconds)
+
+		When driving a car, changing from a motorway to a trunk slows you down:
+		you should already slow down 500 meters before the trunk.
+		This has a penalty which is taken into account by (only) the navigation algorithm.
+		This is done by taking the difference between two penalties.
+		The formula used is `maximum(0, penalty_new_way - penalty_current_way)`.
+		
+		E.g. 
+		<way attribute="penalty_transition">
+			<select value="0" t="highway" v="motorway"/>
+			<select value="5" t="highway" v="motorway_link"/>
+			<select value="20" t="highway" v="tertiary"/>
+		</way>
+				
+		This means that, going from a `motorway_link` to a `tertiary`, the penalty given will be
+		`maximum(0, 20 - 5)` or `15 seconds`.
+		
+		On the other hand, going from motorway to motorway incurs no penalty,
+		neither does going from a motorway_link to a motorway.
+
+
+		## 8) obstacle_srtm_alt_speed (specified on ways, in seconds of penalty for each height meter)
+	
+		Specifies a penalty for steep ways. Optional. Note that the value of a key can be used as value.
+		 For more info about this, see the section about parameters.
+
+		E.g.:
   		<gt value1="-60" value2=":incline">
   			<select value="35"/>
   		</gt>
@@ -246,7 +246,7 @@
   		</gt>
   		<select value="15"/>
 
-	 has the following meaning:
+		has the following meaning:
 
 		-60% and less => 35 seconds per height metre
 		[-17% till -60%) => 17 seconds per height metre
@@ -256,125 +256,125 @@
 		[13% till 17) => 1 seconds per height metre
 		... etc
 
-	 A negative select value (seconds per height metre) means "impassable".
+		A negative select value (seconds per height metre) means "impassable".
 
-	 If the incline of a way is 20%, then the penalty per height metre is 10 seconds.
-	 If the part of the way has for example 9 height meters, then the penalty for this part will be 10*9 = 90 seconds.
+		If the incline of a way is 20%, then the penalty per height metre is 10 seconds.
+		If the part of the way has for example 9 height meters, then the penalty for this part will be 10*9 = 90 seconds.
 
-                
-   ## Working with parameters and conditionals
-        
-        A profile can be tuned further with parameters, to suit the need of each user.
-        These toggles could be a preference for a fast route over a comfortable one, the desire to avoid borders, ...
-        
-    ### Declaring parameters
-        
-        Parameters are declared on top of the routing profile, each in their own tag.
-        
-        Such a tag could be:        
-            <parameter id="some_parameter"     (The name of the variable. You'll use this a lot.)
-                 group="some_group_name"       (The name the group, used for grouping similar settings in a nice radiobox-UI)
-                 name="Some routing option"    (How this is presented to the user)
-                 description="This routing options uses this or that feature"
-                                               (A description that is shown to the user)
-                 type="boolean"/>              (The type of the toggle. Supported values are `boolean` and `numeric`.)
-                 
-    #### Numeric parameters
+				
+		## Working with parameters and conditionals
+		
+		A profile can be tuned further with parameters, to suit the need of each user.
+		These toggles could be a preference for a fast route over a comfortable one, the desire to avoid borders, ...
+		
+		### Declaring parameters
+		
+		Parameters are declared on top of the routing profile, each in their own tag.
+		
+		Such a tag could be:		
+			<parameter id="some_parameter"	 (The name of the variable. You'll use this a lot.)
+				 group="some_group_name"	   (The name the group, used for grouping similar settings in a nice radiobox-UI)
+				 name="Some routing option"	(How this is presented to the user)
+				 description="This routing options uses this or that feature"
+											   (A description that is shown to the user)
+				 type="boolean"/>			  (The type of the toggle. Supported values are `boolean` and `numeric`.)
+				 
+		#### Numeric parameters
 
-	 Numeric parameters are declared just as a boolean parameter; but require some additional tags.
+		Numeric parameters are declared just as a boolean parameter; but require some additional tags.
 
-	 <parameter id="height" name="Height" description="height" 	(Same as boolean tags)
+		<parameter id="height" name="Height" description="height" 	(Same as boolean tags)
 		type="numeric" 						(This is a different type. Who would have guessed it?)
 		values="0,1.5,2,2.5,3,3.5,4" 				(The actual values, comma seperated. Floats and ints are allowed)
 		valueDescriptions="-,1.5m,2m,2.5m,3m,3.5m,4m		(How each option is shown within the GUI)
 		/>
 
    
-    ### Setting parameters via OsmAnd UI
-        
-        The UI of OsmAnd automatically picks up those settings, if this document is deployed.
-        Just declaring a boolean option is enough to show a checkbox in the navigation settings.
-        
-        Toggle the checkbox to see your custom profile in action!
-        The appearing extra toggle is also useful to see the activation of your custom routing.xml.
-        
-    ### Using boolean parameters in the routing engine
-        
-        The boolean options can be tested with an if-tag:
-        
-        <if param="some_parameter">
-            ... some select statements ...
-        </if>
-        
-        Analogously, ifnot can be used as well
-        
-        <ifnot param="some_parameter">
-            ... selections ...
-        </ifnot>
-        
-        E.g. if you cycle often with a cart, and that cart doesn't like `sett`-pavements, a toggle for this could be added:
-        
-        <routingProfile name="bicycle" ... >
-        
-        <parameter id="avoid_sett"
-            name="Avoid streets with sett"
-            description="Prefers asphalt, paving stones and concrete surfaces. Ideal if driving with a cycling cart"
-            type="boolean"/> 
-        
-        </routingProfile>
-        
-    ### Using numeric parameters in the routing engine   
+		### Setting parameters via OsmAnd UI
+		
+		The UI of OsmAnd automatically picks up those settings, if this document is deployed.
+		Just declaring a boolean option is enough to show a checkbox in the navigation settings.
+		
+		Toggle the checkbox to see your custom profile in action!
+		The appearing extra toggle is also useful to see the activation of your custom routing.xml.
+		
+		### Using boolean parameters in the routing engine
+		
+		The boolean options can be tested with an if-tag:
+		
+		<if param="some_parameter">
+			... some select statements ...
+		</if>
+		
+		Analogously, ifnot can be used as well
+		
+		<ifnot param="some_parameter">
+			... selections ...
+		</ifnot>
+		
+		E.g. if you cycle often with a cart, and that cart doesn't like `sett`-pavements, a toggle for this could be added:
+		
+		<routingProfile name="bicycle" ... >
+		
+		<parameter id="avoid_sett"
+			name="Avoid streets with sett"
+			description="Prefers asphalt, paving stones and concrete surfaces. Ideal if driving with a cycling cart"
+			type="boolean"/> 
+		
+		</routingProfile>
+		
+		### Using numeric parameters in the routing engine   
 
-	 Numeric values can be used to compare to other values. For this, a `gt` (greater-then) tag is used.
-	 The `gt`-tag acts just like an if-test. 
-	 It will also include the specified number: `<gt value1=":a" value2="3">` means `if parameter a is 3 or higher`
+		Numeric values can be used to compare to other values. For this, a `gt` (greater-then) tag is used.
+		The `gt`-tag acts just like an if-test. 
+		It will also include the specified number: `<gt value1=":a" value2="3">` means `if parameter a is 3 or higher`
 
-	 For example, if the height of your car is set, you'll want to compare it with the `maxheight`-tag given to some ways. This is done with a `gt` tag:
+		For example, if the height of your car is set, you'll want to compare it with the `maxheight`-tag given to some ways. This is done with a `gt` tag:
 
 	
-	 <gt value1=":height" value2="$maxweight" type="height">
-		<select value="-1" t="maxweight" />
- 	  </gt>
+		<gt value1=":height" value2="$maxweight" type="height">
+			<select value="-1" t="maxweight" />
+		</gt>
 
-	 To call a value, use either ':' or '$' as prefix. Use ':' for the parameters that you defined
-         and '$' for tags loaded from the obf-file (the file containing the data from OSM).
+		To call a value, use either ':' or '$' as prefix. Use ':' for the parameters that you defined
+		 and '$' for tags loaded from the obf-file (the file containing the data from OSM).
 
-	 The `type` gives a hint on how to parse the values. If the type is `height`, '1' will be interpreted as '1 meter'.
-	 For a type `height`, '1' will be interpreted as one ton (1000 kg).
-    
-    Miscellaneous
-    +++++++++++++
+		The `type` gives a hint on how to parse the values. If the type is `height`, '1' will be interpreted as '1 meter'.
+		For a type `height`, '1' will be interpreted as one ton (1000 kg).
+	
+		Miscellaneous
+		+++++++++++++
 
-	 osmand_highway_integrity_brouting represents how good a way is for a bicycle.
-	 Mostly it merges smoothness, surface and tracktype into one value. It is calculated internally?
+		osmand_highway_integrity_brouting represents how good a way is for a bicycle.
+		Mostly it merges smoothness, surface and tracktype into one value. It is calculated internally?
 
-	 ### Alternative notation for <if><select /></if> and <gt><select /></gt>
+		### Alternative notation for <if><select /></if> and <gt><select /></gt>
 
-	 A different but equivalent format for if- and gt-tags exists: the <if> can be placed inside a <select>
-	 However, it is considered bad style (so don't use it).
+		A different but equivalent format for if- and gt-tags exists: the <if> can be placed inside a <select>
+		However, it is considered bad style (so don't use it).
 
-	 In other words:
+		In other words:
 
-	 <if param="x">
-		<select value="..."/>
-	 </if>
+		<if param="x">
+			<select value="..."/>
+		</if>
 
-	 is totally equivalent to:
+		is totally equivalent to:
 
-	 <select value="...">
-	 	 <if param="x"/> (Deprecated notation)
-	 </select>.
+		<select value="...">
+			<if param="x"/> (Deprecated notation)
+		</select>.
 
-	 However, we recommend *not to use this format*. The if as outer tags are clearer, and support multiple selects:
+		However, we recommend *not to use this format*. The if as outer tags are clearer, and support multiple selects:
 
-	 <if param="$x">
-		<select value="1" t="y" v="z"/>
-		<select value="0" t="w" v="a"/>
-		...
-	 </if>
+		<if param="$x">
+			<select value="1" t="y" v="z"/>
+			<select value="0" t="w" v="a"/>
+			...
+	 	</if>
 	-->
 
-  <routingProfile name="car" baseProfile="car" restrictionsAware="true" minDefaultSpeed="45.0" maxDefaultSpeed="130.0" leftTurn="5" rightTurn="5" roundaboutTurn="5" onewayAware="true">
+	<routingProfile name="car" baseProfile="car" restrictionsAware="true" minDefaultSpeed="45.0" maxDefaultSpeed="130.0" leftTurn="5" rightTurn="5" roundaboutTurn="5" onewayAware="true">
 	 <!--
 		<attribute name="heuristicCoefficient" value="1.5" />
 
@@ -428,7 +428,7 @@
 				<select value="-1" t="surface" v="mud"/>
 				<select value="-1" t="surface" v="pebblestone"/>
 				<select value="-1" t="surface" v="sand"/>
-        <!--<select value="-1" t="surface" v="wood"/>-->
+		<!--<select value="-1" t="surface" v="wood"/>-->
 				<select value="-1" t="smoothness" v="very_bad"/>
 				<select value="-1" t="smoothness" v="horrible"/>
 				<select value="-1" t="smoothness" v="very_horrible"/>
@@ -604,7 +604,7 @@
 			<select value="45" t="highway" v="tertiary_link"/>
 			
 			<!-- Some values of "abutters" mean the road is inside a place,
-			     so cap the speed even if it is a high level road (below). -->
+				 so cap the speed even if it is a high level road (below). -->
 			<!--
 			<select value="30" t="abutters" v="residential"/>
 			<select value="30" t="abutters" v="commercial"/>
@@ -613,7 +613,7 @@
 			<select value="30" t="abutters" v="mixed"/>
 			-->
 			<!-- roads with speeds lower than 50 and those that we want to ignore abutters
-			     must be placed before the "abutters" block below. -->
+				 must be placed before the "abutters" block below. -->
 			
 			<!-- lowest form of grid network, usually 90% of urban roads -->
 			<select value="35" t="highway" v="unclassified"/>
@@ -732,9 +732,9 @@
 			</select>
 
 			<!-- If access for a car is explicitly marked, the barrier is passable,
-			     with a slight penalty.
-			     If no access for a car is explicitly marked, the barrier is impassable.
-			     Evaluate the keys in descending order of the specificity in the access hierarchy. -->
+				 with a slight penalty.
+				 If no access for a car is explicitly marked, the barrier is impassable.
+				 Evaluate the keys in descending order of the specificity in the access hierarchy. -->
 			<select value="-1" t="motorcar" v="no"/>
 			<select value="-1" t="motorcar" v="agricultural"/>
 			<select value="-1" t="motorcar" v="forestry"/>
@@ -795,8 +795,8 @@
 			<select value="-1" t="barrier" v="turnstile"/>
 			<select value="-1" t="barrier" v="bus_trap"/>
 			<select value="-1" t="barrier" v="block"/>
-      <select value="-1" t="barrier" v="cycle_barrier"/>
-      
+	  <select value="-1" t="barrier" v="cycle_barrier"/>
+	  
 			<if param="short_way">
 				<select value="0" t="barrier" v="cattle_grid"/>
 				<select value="0" t="barrier" v="border_control"/>
@@ -833,8 +833,8 @@
 		<!-- <attribute name="relaxNodesIfStartDistSmallCoeff" value="2.5"/>  -->
 		<!-- New ROUTING API -->
 
-    <!--<parameter id="driving_style" name="Driving style" description="Safe, fast or balanced driving" type="numeric" values="0,1,2" valueDescriptions="Safety,Balance,Speed"/>-->
-    <!--<parameter id="relief_smoothness_factor" name="Relief smoothness factor" description="More plains or more hills" type="numeric" values="0,1,2" valueDescriptions="More plains,Balance,More hills"/>-->
+		<!--<parameter id="driving_style" name="Driving style" description="Safe, fast or balanced driving" type="numeric" values="0,1,2" valueDescriptions="Safety,Balance,Speed"/>-->
+		<!--<parameter id="relief_smoothness_factor" name="Relief smoothness factor" description="More plains or more hills" type="numeric" values="0,1,2" valueDescriptions="More plains,Balance,More hills"/>-->
 
 		<parameter id="driving_style_safety" group="driving_style" name="Safety" description="" type="boolean"/>
 		<parameter id="driving_style_balance" group="driving_style" name="Balance" description="" type="boolean" default="true"/>
@@ -1149,7 +1149,7 @@
 		<way attribute="priority">
 			<select value="0.1" t="bicycle" v="private"/>
 			<select value="0.2" t="bicycle" v="destination"/>
-      <!--	<select value="0.05" t="access" v="private"/>-->
+	  		<!--	<select value="0.05" t="access" v="private"/>-->
 			<select value="0.3" t="indoor" v="yes"/>
 			<select value="0.1" t="barrier" v="debris"/>
 			<select value="0.1" t="bicycle" v="use_sidepath"/>
@@ -1164,8 +1164,8 @@
 				<select value="0.1" t="osmand_highway_integrity_brouting" v="9"/>
 				<select value="0.05" t="osmand_highway_integrity_brouting" v="10"/>
 
-        <!--		
-        <select value="0.4" t="tracktype" v="grade2"/>
+		<!--		
+		<select value="0.4" t="tracktype" v="grade2"/>
 				<select value="0.1" t="tracktype" v="grade3"/>
 				<select value="0.1" t="tracktype" v="grade4"/>
 				<select value="0.1" t="tracktype" v="grade5"/>
@@ -1180,17 +1180,17 @@
 				<select value="0.1" t="surface" v="mud"/>
 				<select value="0.1" t="surface" v="pebblestone"/>
 				<select value="0.1" t="surface" v="sand"/>
-        -->
+		-->
 				<select value="0.1" t="mtb:scale" v="1"/>
 				<select value="0.1" t="mtb:scale" v="2"/>
 				<select value="0.1" t="class:bicycle:mtb" v="-1"/>
-        <!--	<select value="0.6" t="surface" v="wood"/>-->
+		<!--	<select value="0.6" t="surface" v="wood"/>-->
 			</if>
 			
 			<if param="avoid_sett">
-			    <select value="0.01" t="surface" v="sett"/>
-			    <select value="0.01" t="surface" v="cobblestone"/>
-			    <select value="0.01" t="surface" v="unhewn_cobblestone"/>
+				<select value="0.01" t="surface" v="sett"/>
+				<select value="0.01" t="surface" v="cobblestone"/>
+				<select value="0.01" t="surface" v="unhewn_cobblestone"/>
 			</if>
 			
 			<select value="1.0" t="bicycle" v="dismount"/>
@@ -1425,8 +1425,8 @@
 			<select value="240" t="route" v="ferry"/>
 			<select value="200" t="ford" v="yes"/>
 
-      <!-- ignore bicycle=no on highway=crossing -->
-      <select value="0" t="highway" v="crossing"/>
+			<!-- ignore bicycle=no on highway=crossing -->
+			<select value="0" t="highway" v="crossing"/>
 
 			<select value="-1" t="bicycle" v="no"/>
 			<select value="0"  t="bicycle" v="yes"/>
@@ -1452,7 +1452,7 @@
 		</point>
 
 		<way attribute="penalty_transition">
-<!--			<if param="driving_style_balance">
+			<!-- <if param="driving_style_balance">
 				<select value="1" t="highway" v="trunk"/>
 				<select value="2" t="highway" v="trunk_link"/>
 				<select value="3" t="highway" v="primary"/>
@@ -1935,92 +1935,91 @@
 		</point>
 	</routingProfile>
 
-  <!-- max default speed is max speed for any transort, min speed is pedestrian speed -->
-  <routingProfile name="public_transport" minDefaultSpeed="4.0" maxDefaultSpeed="80.0" baseProfile="public_transport">
-      <!-- maximum distance to walk to find start / end public transport stop -->
-      <attribute name="walkRadius" value = "1500" />
-      <!-- maximum distance to walk to find transport stop to change transport -->
-      <attribute name="walkChangeRadius" value = "300" />
-      <!-- Max route time is 3 hours around 10 000 seconds -->
-      <attribute name="maxRouteTime" value = "10000" />
-      <!-- find alternatives routes within N seconds delay to the fastest route, 15 minutes -->
-      <attribute name="delayForAlternativesRoutes" value = "900" />
-      <!-- default value for max number of changes -->
-      <attribute name="maxNumberOfChanges" value = "4" />
-      
+	<!-- max default speed is max speed for any transort, min speed is pedestrian speed -->
+	<routingProfile name="public_transport" minDefaultSpeed="4.0" maxDefaultSpeed="80.0" baseProfile="public_transport">
+		<!-- maximum distance to walk to find start / end public transport stop -->
+		<attribute name="walkRadius" value = "1500" />
+		<!-- maximum distance to walk to find transport stop to change transport -->
+		<attribute name="walkChangeRadius" value = "300" />
+		<!-- Max route time is 3 hours around 10 000 seconds -->
+		<attribute name="maxRouteTime" value = "10000" />
+		<!-- find alternatives routes within N seconds delay to the fastest route, 15 minutes -->
+		<attribute name="delayForAlternativesRoutes" value = "900" />
+		<!-- default value for max number of changes -->
+		<attribute name="maxNumberOfChanges" value = "4" />
+	
 
-      <parameter id="max_num_changes" name="Number of changes" description="Specify max number of changes" type="numeric" values="0,1,2,3" valueDescriptions="0,1,2,3"/>
-      <parameter id="avoid_train" name="Avoid trains" description="Avoid trains" type="boolean"/>
-      <parameter id="avoid_subway" name="Avoid subways" description="Avoid subways and monorails" type="boolean"/>
-      <parameter id="avoid_ferry" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
-      <parameter id="avoid_tram" name="Avoid trams" description="Avoid trams" type="boolean"/>
-      <parameter id="avoid_bus" name="Avoid buses" description="Avoid buses, trolleybuses" type="boolean"/>
-      <parameter id="avoid_share_taxi" name="Avoid share taxis" description="Avoid share taxis" type="boolean"/>
+		<parameter id="max_num_changes" name="Number of changes" description="Specify max number of changes" type="numeric" values="0,1,2,3" valueDescriptions="0,1,2,3"/>
+		<parameter id="avoid_train" name="Avoid trains" description="Avoid trains" type="boolean"/>
+		<parameter id="avoid_subway" name="Avoid subways" description="Avoid subways and monorails" type="boolean"/>
+		<parameter id="avoid_ferry" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
+		<parameter id="avoid_tram" name="Avoid trams" description="Avoid trams" type="boolean"/>
+		<parameter id="avoid_bus" name="Avoid buses" description="Avoid buses, trolleybuses" type="boolean"/>
+		<parameter id="avoid_share_taxi" name="Avoid share taxis" description="Avoid share taxis" type="boolean"/>
 
 
-      <point attribute="obstacle">
-        <select value="30" t="time" v="stop"/>
-        <select value="150" t="time" v="change"/>
-        <select value="150" t="time" v="boarding"/>
-      </point>
+		<point attribute="obstacle">
+			<select value="30" t="time" v="stop"/>
+			<select value="150" t="time" v="change"/>
+			<select value="150" t="time" v="boarding"/>
+		</point>
 
-      <way attribute="speed" type="speed">
-        <select value="0" t="route" v="train">
-            <if param="avoid_train"/>
-        </select>
-        <select value="80"  t="route" v="train"/>
-         
-        <!-- Subway or similar --> 
-        <select value="0" t="route" v="subway">
-            <if param="avoid_subway"/>
-        </select>
-        <select value="60"  t="route" v="subway"/>
-        
-        <select value="0" t="route" v="monorail">
-            <if param="avoid_subway"/>
-        </select>
-        <select value="50"  t="route" v="monorail"/>
+		<way attribute="speed" type="speed">
+			<select value="0" t="route" v="train">
+				<if param="avoid_train"/>
+			</select>
+			<select value="80"  t="route" v="train"/>
+		 
+			<!-- Subway or similar --> 
+			<select value="0" t="route" v="subway">
+				<if param="avoid_subway"/>
+			</select>
+			<select value="60"  t="route" v="subway"/>
+		
+			<select value="0" t="route" v="monorail">
+				<if param="avoid_subway"/>
+			</select>
+			<select value="50"  t="route" v="monorail"/>
 
-         <select value="0" t="route" v="light_rail">
-            <if param="avoid_subway"/>
-        </select>
-        <select value="50"  t="route" v="light_rail"/>
+		 	<select value="0" t="route" v="light_rail">
+				<if param="avoid_subway"/>
+			</select>
+			<select value="50"  t="route" v="light_rail"/>
 
-        <select value="0" t="route" v="funicular">
-            <if param="avoid_subway"/>
-        </select>
-        <select value="50"  t="route" v="funicular"/>
-        
-        <!-- Tram, bus, trolleybus, share-taxi -->
-        <select value="0" t="route" v="tram">
-            <if param="avoid_tram"/>
-        </select>
-        <select value="40"  t="route" v="tram"/>
-        
-        <select value="0" t="route" v="bus">
-            <if param="avoid_bus"/>
-        </select>
-        <select value="30"  t="route" v="bus"/>
-        
-        <select value="0" t="route" v="trolleybus">
-            <if param="avoid_bus"/>
-        </select>
-        <select value="30"  t="route" v="trolleybus"/>
+			<select value="0" t="route" v="funicular">
+				<if param="avoid_subway"/>
+			</select>
+			<select value="50"  t="route" v="funicular"/>
+		
+			<!-- Tram, bus, trolleybus, share-taxi -->
+			<select value="0" t="route" v="tram">
+				<if param="avoid_tram"/>
+			</select>
+			<select value="40"  t="route" v="tram"/>
+		
+			<select value="0" t="route" v="bus">
+				<if param="avoid_bus"/>
+			</select>
+			<select value="30"  t="route" v="bus"/>
 
-        <select value="0" t="route" v="share_taxi">
-            <if param="avoid_share_taxi"/>
-        </select>
-        <select value="40"  t="route" v="share_taxi"/>
+			<select value="0" t="route" v="trolleybus">
+				<if param="avoid_bus"/>
+			</select>
+			<select value="30"  t="route" v="trolleybus"/>
 
-        <select value="30"  t="route" v="aerialway"/>
-        <!-- Ferry -->
-        <select value="0" t="route" v="ferry">
-            <if param="avoid_ferry"/>
-        </select>
-        <select value="30"  t="route" v="ferry"/>
-        <select value="4"  t="route" v="walk"/>
-      </way>
-  </routingProfile>
+			<select value="0" t="route" v="share_taxi">
+				<if param="avoid_share_taxi"/>
+			</select>
+			<select value="40"  t="route" v="share_taxi"/>
 
+			<select value="30"  t="route" v="aerialway"/>
+			<!-- Ferry -->
+			<select value="0" t="route" v="ferry">
+				<if param="avoid_ferry"/>
+			</select>
+			<select value="30"  t="route" v="ferry"/>
+			<select value="4"  t="route" v="walk"/>
+		</way>
+	</routingProfile>
 </osmand_routing_config>
 
