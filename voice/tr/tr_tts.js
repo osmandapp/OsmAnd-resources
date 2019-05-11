@@ -331,9 +331,9 @@ function roundabout(dist, angle, exit, streetName) {
 	// roundabout(Dist, _Angle, Exit, Street) -- ["in", D, "roundabout", "and", "take", E, "exit" | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
 // roundabout(_Angle, Exit, Street) -- ["take", E, "exit" | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 	if (dist == -1) {
-		return dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
+		return nth(exit) + " " + dictionary["take"] + " " + dictionary["exit"] + " " + turn_street(streetName);
 	} else {
-		return distance(dist)  + " " + dictionary["in"] + " " + dictionary["roundabout"] + " " + dictionary["and"] + " " + nth(exit) + " " + dictionary["take"] + " " + dictionary["exit"] + " " + turn_street(streetName);
+		return distance(dist)  + " " + dictionary["in"] + " " + dictionary["roundabout"] + " " + dictionary["after"] + " " + nth(exit) + " " + dictionary["take"] + " " + dictionary["exit"] + " " + turn_street(streetName);
 	}
 
 }
