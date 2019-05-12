@@ -174,7 +174,7 @@ function distance(dist) {
 			} else if (tts) {
 				return Math.round(dist/1000.0).toString() + " " + dictionary["kilometers5"];
 			} else if (!tts && Math.round(dist/1000.0) < 20) {
-				return ogg_dist(Math.round(dist/1000.0)) + " " + dictionary["kilometers5"];	
+				return ogg_dist(Math.round(dist/1000.0)) + " " + dictionary["kilometers5"];
 			} else if (!tts && (Math.round((dist/5000.0) * 5)) < 100) {
 				return dictionary["around"] + " " + ogg_dist(Math.round((dist/5000.0) * 5)) + " " + dictionary["kilometers5"];
 			} else if (!tts && (Math.round((dist/50000.0) * 50)) < 1000) {
@@ -225,7 +225,7 @@ function distance(dist) {
 			} else if (dist < 100) {
 				return (tts ? (Math.round(dist/10.0/0.9144)*10).toString() : ogg_dist(Math.round(dist/10.0/0.9144)*10)) + " " + dictionary["yards"];
 			} else if (dist < 1300) {
-				return (tts ? (Math.round(2*dist/100.0/0.9144)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.9144)*50)) + " " + dictionary["yards"]; 
+				return (tts ? (Math.round(2*dist/100.0/0.9144)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.9144)*50)) + " " + dictionary["yards"];
 			} else if (dist < 2414) {
 				return dictionary["mile"];
 			} else if (dist < 4022) {
@@ -240,8 +240,7 @@ function distance(dist) {
 }
 
 function time(seconds) {
-	var minutes = Math.round(seconds/60.0);
-	var oggMinutes = Math.round(((seconds/300.0) * 5));
+	var minutes = Math.round(seconds/60);
 	if (seconds < 45) {
 		return dictionary["less_a_minute"];
 	} else if (minutes % 60 == 0 && tts) {
@@ -254,22 +253,21 @@ function time(seconds) {
 		return hours(minutes) + " " + (minutes % 60).toString() + " " + dictionary["minutes3_4"];
 	} else if (tts) {
 		return hours(minutes) + " " + (minutes % 60).toString() + " " + dictionary["minutes5"];
-	} else if (!tts && seconds < 90) {
+	} else if (!tts && minutes == 1) {
 		return dictionary["minutes1"];
-	} else if (!tts && seconds < 150) {
+	} else if (!tts && minutes == 2) {
 		return dictionary["minutes2"];
-	} else if (!tts && seconds < 270) {
+	} else if (!tts && minutes < 5) {
 		return minutes.toString() + ".ogg " + dictionary["minutes3_4"];
-	} else if (!tts && seconds < 21*60) {
-		return Math.floor(seconds/60).toString() + ".ogg" + " " + dictionary["minutes5"];
-	} else if (!tts && seconds < 21 * 3600 && minutes % 60 < 3) {
+	} else if (!tts && minutes < 21) {
+		return minutes.toString() + ".ogg" + " " + dictionary["minutes5"];
+	} else if (!tts && minutes < 21 * 60 && minutes % 60 < 3) {
 		return hours(minutes);
-	} else if (!tts && seconds < 21 * 3600) {
-		var st = minutes % 60;
-		var stx = Math.round(st/5.0) * 5;
-		return hours(minutes) + " " + stx.toString() + ".ogg" + " " + dictionary["minutes5"];
+	} else if (!tts && minutes < 21 * 60) {
+		var min5 = Math.round((minutes % 60) / 5) * 5;
+		return hours(minutes) + " " + min5.toString() + ".ogg" + " " + dictionary["minutes5"];
 	} else if (!tts) {
-		return dictionary["around"] + " " + hours(Math.round(seconds/18000) * 300);
+		return dictionary["around"] + " " + hours(minutes);
 	}
 }
 
@@ -281,13 +279,13 @@ function hours(minutes) {
 	} else if (minutes < 180) {
 		return dictionary["hours2"];
 	} else if (minutes < 300) {
-		return Math.floor(minutes/60).toString() + (!tts ? ".ogg " : " ") + dictionary["hours3_4"];
+		return Math.floor(minutes / 60).toString() + (!tts ? ".ogg " : " ") + dictionary["hours3_4"];
 	} else if (tts) {
-		return Math.floor(minutes/60).toString() + " " + dictionary["hours5"];
+		return Math.floor(minutes / 60).toString() + " " + dictionary["hours5"];
 	} else if (!tts && minutes < 21 * 60) {
-		return Math.floor(minutes/60).toString() + ".ogg" + " " + dictionary["hours5"];
+		return Math.floor(minutes / 60).toString() + ".ogg" + " " + dictionary["hours5"];
 	} else if (!tts) {
-		return Math.floor(Math.round((minutes/300.0) * 5)) + ".ogg" + " " + dictionary["hours5"];
+		return (Math.round(minutes / 300) * 5).toString() + ".ogg" + " " + dictionary["hours5"];
 	} 
 }
 
@@ -316,7 +314,7 @@ function follow_street(streetName) {
 		return "";
 	} else if (streetName["toStreetName"] === "" && streetName["toRef"] === "") {
 		return dictionary["to"] + " " + streetName["toDest"];
-	} else if (streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"] || 
+	} else if (streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"] ||
 			(streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == "")) {
 		return dictionary["on"] + " " + assemble_street_name(streetName);
 	} else if (!(streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"])) {
@@ -328,14 +326,14 @@ function turn(turnType, dist, streetName) {
 	if (dist == -1) {
 		return getTurnType(turnType) + " " + turn_street(streetName);
 	} else {
-		return dictionary["in"] + " " + distance(dist) + " " + getTurnType(turnType) + " " + turn_street(streetName); 
+		return dictionary["in"] + " " + distance(dist) + " " + getTurnType(turnType) + " " + turn_street(streetName);
 	}
-	// turn(Turn, Dist, Street) -- ["in", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
+// turn(Turn, Dist, Street) -- ["in", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
 // turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
 }
 
-function  getTurnType(turnType) {
-	// turn("left", ).
+function getTurnType(turnType) {
+// turn("left", ).
 // turn("left_sh", ["left_sh"]).
 // turn("left_sl", ["left_sl"]).
 // turn("right", ["right"]).
@@ -343,7 +341,7 @@ function  getTurnType(turnType) {
 // turn("right_sl", ["right_sl"]).
 // turn("left_keep", ["left_keep"]).
 // turn("right_keep", ["right_keep"]).
-// // Note: turn("left_keep"/"right_keep",[]) is a turn type aiding lane selection, while bear_left()/bear_right() is triggered as brief "turn-after-next" preparation sounding always after a "..., then...". In some languages turn(l/r_keep) may not differ from bear_l/r:
+// Note: turn("left_keep"/"right_keep",[]) is a turn type aiding lane selection, while bear_left()/bear_right() is triggered as brief "turn-after-next" preparation sounding always after a "..., then...". In some languages turn(l/r_keep) may not differ from bear_l/r:
 	switch (turnType) {
 		case "left":
 			return dictionary["left"];
@@ -378,7 +376,7 @@ function then() {
 }
 
 function roundabout(dist, angle, exit, streetName) {
-	// roundabout(Dist, _Angle, Exit, Street) -- ["in", D, "roundabout", "and", "take", E, "exit" | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
+// roundabout(Dist, _Angle, Exit, Street) -- ["in", D, "roundabout", "and", "take", E, "exit" | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
 // roundabout(_Angle, Exit, Street) -- ["take", E, "exit" | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 	if (dist == -1) {
 		return dictionary["take2"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
@@ -389,7 +387,7 @@ function roundabout(dist, angle, exit, streetName) {
 }
 
 function turn_street(streetName) {
-	// turn_street("", []).
+// turn_street("", []).
 // turn_street(voice(["","",""],_), []).
 // turn_street(voice(["", "", D], _), ["toward", D]) :- tts.
 // turn_street(Street, ["on", SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
@@ -401,8 +399,8 @@ function turn_street(streetName) {
 		return dictionary["toward"] + " " + streetName["toDest"];
 	} else if (streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"]) {
 		return dictionary["on"] + " " + assemble_street_name(streetName);
-	} else if ((streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"]) 
-		|| (streetName["toStreetName"] === "" && streetName["toRef"] === streetName["fromRef"])) {
+	} else if ((streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"])
+			|| (streetName["toStreetName"] === "" && streetName["toRef"] === streetName["fromRef"])) {
 		return dictionary["on"] + " " + assemble_street_name(streetName);
 	} else if (!(streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"])) {
 		return dictionary["onto"] + " " + assemble_street_name(streetName);
@@ -463,7 +461,7 @@ function nth(exit) {
 }
 
 function make_ut(dist, streetName) {
-	// make_ut(Dist, Street) --  ["in", D, "make_uturn" | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
+// make_ut(Dist, Street) --  ["in", D, "make_uturn" | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
 // make_ut(Street) -- ["make_uturn" | Sgen] :- turn_street(Street, Sgen).
 	if (dist == -1) {
 		return dictionary["make_uturn2"] + " " + turn_street(streetName);
@@ -493,7 +491,7 @@ function prepare_turn(turnType, dist, streetName) {
 }
 
 function prepare_roundabout(dist, exit, streetName) {
-// prepare_roundabout(Dist, _Exit, _Street) -- ["after", D , "prepare_roundabout"] :- distance(Dist) -- D.
+	// prepare_roundabout(Dist, _Exit, _Street) -- ["after", D , "prepare_roundabout"] :- distance(Dist) -- D.
 	return dictionary["after"] + " " + distance(dist) + " " + dictionary["prepare_roundabout"]; 
 }
 
