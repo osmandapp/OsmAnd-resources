@@ -205,7 +205,7 @@ mycp barrier small_brown_bold_2 functional-icons_point_brown_bold_2.png  #scale 
 mygroup emergency emergency_ambulance_station.png
 mygroup emergency_infrastructure emergency_emergency_phone.png
 mycp amenity fire_station emergency_firestation4.png
-mycp amenity police emergency_police3.png
+mycp amenity police amenity_police2.png
 mycp emergency fire_hydrant emergency_colored_fire_hydrant.png
 mycpname fire_hydrant_type_underground emergency_fire_hydrant_underground.png
 mycpname fire_hydrant_type_pillar emergency_fire_hydrant.png
@@ -216,6 +216,8 @@ mycpname defibrillator emergency_defibrillator.png
 mycpname ambulance_station emergency_ambulance_station.png
 mycpname fire_extinguisher emergency_fire_extinguisher.png
 mycpname life_ring emergency_life_ring.png
+mycpname rescue_box emergency_rescue_box.png
+mycpname topo_rescue_box topo_emergency_rescue_box.png
 
 mygroup healthcare health_pharmacy.png
 mycp amenity dentist health_dentist.png
@@ -260,6 +262,8 @@ mycpname highway_crossing_map functional-icons_highway_crossing.png
 mycpname crossing_traffic_signals_map functional-icons_highway_crossing_traffic_signals.png
 mycpname crossing_uncontrolled_map functional-icons_highway_crossing_uncontrolled.png
 mycpname crossing_unmarked_map functional-icons_highway_crossing_unmarked.png
+mycpname stop functional-icons_stop.png
+mycpname give_way functional-icons_give_way.png
 
 mycpname ford transport_colored_ford.png
 mycpname topo_ford topo_topo_ford.png
@@ -1067,6 +1071,7 @@ mycpname power_transformer power_transformer_small.png
 mycpname topo_transformer topo_big_topo_transformer.png
 mycpname works poi_colored_works.png
 mycpname military_bunker poi_colored_military_bunker.png
+mycpname topo_bunker topo_topo_bunker.png
 mycpname abandoned_poi poi_colored_abandoned_poi.png
 mycpname surveillance poi_colored_surveillance.png
 mycpname pier poi_colored_pier.png
@@ -1097,6 +1102,7 @@ mycpname pumping_station poi_colored_pumping_station.png
 mycpname mdf poi_colored_mdf.png
 mycpname topo_power_plant topo_topo_power_plant.png
 mycpname pipeline_substation poi_colored_pipeline_substation.png
+mycpname flare poi_colored_flare.png
 
 
 mygroup military poi_colored_military_bunker.png
@@ -2367,6 +2373,7 @@ mycpname start_date additional_start_date.png
 
 #Additional category
 mycpname payment_type additional_category_payment_type.png
+mycpname park_ride additional_category_park_ride.png
 
 #Xmas
 mygroup xmas xmas_tree.png

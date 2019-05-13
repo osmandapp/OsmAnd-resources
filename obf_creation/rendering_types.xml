@@ -451,6 +451,12 @@
 	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-5" if_tag2="highway" if_value2="steps" to_tag1="lit_pedestrian_layer-1" apply_to="way" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" if_tag1="layer" if_value1="-5" if_tag2="highway" if_value2="path" to_tag1="lit_pedestrian_layer-1" apply_to="way" poi="no"/>
 
+	<type tag="ramp" value="yes" minzoom="15" additional="true"/>
+	<type tag="ramp" value="no" minzoom="15" additional="true"/>
+	<type tag="ramp:bicycle" value="yes" minzoom="15" additional="true"/>
+	<type tag="ramp:stroller" value="yes" minzoom="15" additional="true"/>
+	<type tag="ramp:wheelchair" value="yes" minzoom="15" additional="true"/>
+
 	<type tag="name" additional="text" order="40"/>
 	<type tag="name:en" additional="text" order="45"/>
 	<type tag="name" additional="text" lang="true" order="50"/>
@@ -564,6 +570,7 @@
 
 	<type tag="parking" value="multi-storey" minzoom="15" additional="true"/>
 	<type tag="parking" value="underground" minzoom="15" additional="true"/>
+	<entity_convert pattern="tag_transform" from_tag="park_ride" from_value="subway" to_tag1="park_ride" to_value1="metro" map="no"/>
 
 	<type tag="bicycle_parking" value="stands" minzoom="15" additional="true"/>
 	<type tag="bicycle_parking" value="wall_loops" minzoom="15" additional="true"/>
@@ -1702,6 +1709,7 @@
 		<type tag="highway" value="motorway_junction" minzoom="13" nameTags="ref"/>
 		<type tag="junction" value="yes" minzoom="13"/>
 		<entity_convert pattern="tag_transform" from_tag="junction" from_value="circular" to_tag1="junction" to_value1="roundabout" map="no" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="junction" from_value="roundabout" to_tag1="oneway" to_value1="yes" poi="no" routing="no"/>
 
 		<type tag="highway" value="bus_stop" minzoom="14"/>
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="bus_stop" if_tag1="public_transport" if_value1="platform"/> <!-- Remove highway=bus_stop (obsolete tag) if used with p_t=platform -->
@@ -1990,10 +1998,6 @@
 		<entity_convert pattern="tag_transform" from_tag="name" if_tag1="piste:type" if_not_tag1="piste:name" to_tag1="piste:name" apply_to="way,relation"/>
 		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="piste:type" to_tag1="piste_ref" apply_to="way,relation"/>
 
-<!--		<type tag="site" value="piste" minzoom="11" relation="true" order="90"/>
-		<type tag="piste_site_name" minzoom="11" additional="text" order="91" relation="true"/>
-		<entity_convert pattern="tag_transform" from_tag="name" if_tag1="site" if_value1="piste" to_tag1="piste_site_name" apply_to="relation"/>-->
-
 		<type tag="piste_nordic_red" minzoom="14" additional="text" order="90" relation="true" notosm="true"/>
 		<type tag="piste_nordic_brown" minzoom="14" additional="text" order="90" relation="true" notosm="true"/>
 		<type tag="piste_nordic_orange" minzoom="14" additional="text" order="90" relation="true" notosm="true"/>
@@ -2030,6 +2034,7 @@
 		<type tag="piste:type" value="snow_park" minzoom="11" nameTags="piste:name" relation="true"/>
 		<type tag="piste:type" value="playground" minzoom="11" nameTags="piste:name" relation="true"/>
 		<type tag="piste:type" value="ice_skate" minzoom="11" nameTags="piste:name" relation="true"/>
+		<type tag="piste:type" value="connection" minzoom="11" nameTags="piste:name" relation="true"/>
 		<type tag="piste:difficulty" value="novice" minzoom="11" additional="true" relation="true"/>
 		<type tag="piste:difficulty" value="easy" minzoom="11" additional="true" relation="true"/>
 		<type tag="piste:difficulty" value="intermediate" minzoom="11" additional="true" relation="true"/>
@@ -2120,7 +2125,7 @@
 		<entity_convert pattern="tag_transform" from_tag="surface" from_value="brick" to_tag1="surface" to_value1="cobblestone"/>
 		<entity_convert pattern="tag_transform" from_tag="surface" from_value="bricks" to_tag1="surface" to_value1="cobblestone"/>
 		<entity_convert pattern="tag_transform" from_tag="surface" from_value="laterite" to_tag1="surface" to_value1="cobblestone"/>
-		<entity_convert pattern="tag_transform" from_tag="surface" from_value="unhewn_cobblestone" to_tag1="surface" to_value1="cobblestone"/>
+		<entity_convert pattern="tag_transform" from_tag="surface" from_value="unhewn_cobblestone" to_tag1="surface" to_value1="cobblestone" routing="no"/>
 		<type tag="surface" value="paving_stones" minzoom="14" additional="true"/>
 		<entity_convert pattern="tag_transform" from_tag="surface" from_value="paving_stones:20" to_tag1="surface" to_value1="paving_stones"/>
 		<entity_convert pattern="tag_transform" from_tag="surface" from_value="paving_stones:30" to_tag1="surface" to_value1="paving_stones"/>
@@ -3414,10 +3419,10 @@
 		<entity_convert pattern="tag_transform" from_tag="power" from_value="station" to_tag1="power" to_value1="substation"/>
 		<entity_convert pattern="tag_transform" from_tag="power" from_value="sub_station" to_tag1="power" to_value1="substation"/>
 		<type tag="power" value="transformer" minzoom="15"/>
+		<type tag="generator:source" value="biomass" minzoom="12" additional="true"/>
 		<type tag="generator:source" value="coal" minzoom="12" additional="true"/>
 		<type tag="generator:source" value="gas" minzoom="12" additional="true"/>
 		<entity_convert pattern="tag_transform" from_tag="generator:source" from_value="biogas" to_tag1="generator:source" to_value1="gas"/>
-		<entity_convert pattern="tag_transform" from_tag="generator:source" from_value="biomass" to_tag1="generator:source" to_value1="gas"/>
 		<type tag="generator:source" value="solar" minzoom="12" additional="true"/>
 		<type tag="generator:source" value="hydro" minzoom="12" additional="true"/>
 		<entity_convert pattern="tag_transform" from_tag="generator:source" from_value="water" to_tag1="generator:source" to_value1="hydro"/>
@@ -3546,6 +3551,7 @@
 		<type tag="man_made" value="antenna" minzoom="14"/>
 		<type tag="man_made" value="mast" minzoom="13"/>
 		<entity_convert pattern="tag_transform" from_tag="tower:type" from_value="mast" if_not_tag1="man_made" if_not_value1="mast" to_tag1="man_made" to_value1="mast"/>
+		<type tag="man_made" value="flare" minzoom="13"/>
 		<type tag="man_made" value="telephone_exchange" minzoom="15" />
 		<type tag="man_made" value="watermill" minzoom="15" />
 		<type tag="man_made" value="water_tower" minzoom="15" />
@@ -3631,6 +3637,7 @@
 		<type tag="office" value="architect" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="architect_office" to_tag1="office" to_value1="architect"/>
 		<type tag="office" value="company" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="office" from_value="yes" to_tag1="office" to_value1="company"/>
 		<type tag="office" value="educational_institution" minzoom="15" />
 		<type tag="office" value="employment_agency" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="government" to_tag1="office"/>
@@ -4037,6 +4044,7 @@
 		<entity_convert pattern="tag_transform" from_tag="emergency" from_value="defibrillator" if_tag1="amenity" to_tag1="defibrillator" to_value1="yes" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="emergency" from_value="defibrillator" if_tag1="leisure" to_tag1="defibrillator" to_value1="yes" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="emergency" from_value="defibrillator" if_tag1="tourism" to_tag1="defibrillator" to_value1="yes" map="no"/>
+		<type tag="emergency" value="rescue_box" minzoom="15" />
 	</category>
 
 
@@ -4074,6 +4082,7 @@
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="hut" to_tag1="tourism" to_value1="cabin"/>
 		<type tag="tourism" value="camp_site" minzoom="11" order="80" />
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="camping" to_tag1="tourism" to_value1="camp_site"/>
+		<entity_convert pattern="tag_transform" from_tag="maxtents" to_tag1="capacity:tents"/>
 		<type tag="leisure" value="summer_camp" minzoom="11" order="80" />
 		<type tag="tourism" value="gallery" minzoom="6"/>
 		<type tag="tourism" value="caravan_site" minzoom="13" order="80" />
@@ -4376,7 +4385,7 @@
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="beach" to_tag1="natural" to_value1="beach"/>
 		<entity_convert pattern="tag_transform" from_tag="beach" from_value="pebble" to_tag1="beach" to_value1="shingle"/>
 		<entity_convert pattern="tag_transform" from_tag="surface" from_value="sand" if_tag1="natural" if_value1="beach" to_tag1="beach" to_value1="sand"/>
-		<type tag="natural" value="cliff" minzoom="12" />
+		<type tag="natural" value="cliff" minzoom="12" order="55" />
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="cliff" if_tag1="waterway" if_value1="waterfall" poi="no"/>
 		<type tag="natural" value="slope" minzoom="12" />
 		<type tag="natural" value="earth_bank" minzoom="12" />
@@ -4393,7 +4402,7 @@
 		<type tag="natural" value="lava" minzoom="6" />
 		<type tag="natural" value="peak" minzoom="10" nameTags="ele" />
 		<type tag="natural" value="hill" minzoom="13" nameTags="ele" />
-		<type tag="natural" value="bare_rock" minzoom="10" />
+		<type tag="natural" value="bare_rock" minzoom="10" order="55"/>
 		<type tag="natural" value="rock" minzoom="10" />
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="bedrock" to_tag1="natural" to_value1="bare_rock"/>
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="rock" to_tag1="natural" to_value1="bare_rock" apply_to="way" poi="no"/>
@@ -4405,6 +4414,11 @@
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="arete" to_tag1="natural" to_value1="ridge"/>
 		<type tag="natural" value="saddle" minzoom="10" nameTags="ele" />
 		<type tag="rtsa_scale" additional="text" minzoom="10" />
+		<entity_convert pattern="tag_transform" from_tag="rtsa_scale" from_value="нк" to_tag1="rtsa_scale" to_value1="н/к"/>
+		<entity_convert pattern="tag_transform" from_tag="rtsa_scale" from_value="н/к-1А" to_tag1="rtsa_scale" to_value1="н/к*"/>
+		<entity_convert pattern="tag_transform" from_tag="rtsa_scale" from_value="1А-1Б" to_tag1="rtsa_scale" to_value1="1А*"/>
+		<entity_convert pattern="tag_transform" from_tag="rtsa_scale" from_value="1Б-2А" to_tag1="rtsa_scale" to_value1="1Б*"/>
+		<entity_convert pattern="tag_transform" from_tag="rtsa_scale" from_value="2А-2Б" to_tag1="rtsa_scale" to_value1="2А*"/>
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="waterfall" to_tag1="waterway"/>
 		<type tag="natural" value="cape" minzoom="9" />
 		<type tag="natural" value="volcano" minzoom="10" nameTags="ele" />
@@ -5221,6 +5235,7 @@
 		<type tag="sport" value="canoe" minzoom="15" />
 		<type tag="sport" value="chess" minzoom="15" />
 		<type tag="sport" value="climbing" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="sport" from_value="rock_climbing" to_tag1="sport" to_value1="climbing"/>
 		<type tag="sport" value="climbing_adventure" minzoom="15" />
 		<type tag="sport" value="cricket" minzoom="15" />
 		<type tag="sport" value="cricket_nets" minzoom="15" />
@@ -5295,6 +5310,13 @@
 		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="5-" to_tag1="via_ferrata_scale" to_value1="4"/>
 		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="6+" to_tag1="via_ferrata_scale" to_value1="6"/>
 		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="6-" to_tag1="via_ferrata_scale" to_value1="5"/>
+
+		<type tag="climbing_crag" value="crag" minzoom="13" additional="true" relation="true"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing" from_value="crag" if_not_tag1="sport" to_tag1="climbing_crag" to_value1="crag" to_tag2="sport" to_value2="climbing"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing" from_value="crag" to_tag1="climbing_crag" to_value1="crag"/>
+
+		<entity_convert pattern="tag_transform" from_tag="climbing" from_value="boulder" if_not_tag1="natural" to_tag1="natural" to_value1="stone"/>
+
 	</category>
 
 	<category name="legend">
@@ -5633,6 +5655,26 @@
 		<routing_type tag="waterway" value="waterfall" mode="register" base="true"/>
 		<routing_type tag="waterway" value="fairway" mode="register" base="true"/>
 		<routing_type tag="seamark:type" value="fairway" mode="register" base="true" />
+		
+		
+		<routing_type tag="aerialway" value="cable_car" mode="register" base="true"/>
+		<routing_type tag="aerialway" value="gondola" mode="register" base="true"/>
+		<routing_type tag="aerialway" value="chair_lift" mode="register" base="true"/>
+		<routing_type tag="aerialway" value="mixed_lift" mode="register" base="true"/>
+		<routing_type tag="aerialway" value="t-bar" mode="register" base="true"/>
+		<routing_type tag="aerialway" value="j-bar" mode="register" base="true"/>
+		<routing_type tag="aerialway" value="platter" mode="register" base="true"/>
+		<routing_type tag="aerialway" value="rope-tow" mode="register" base="true"/>
+		<routing_type tag="aerialway" value="magic_carpet" mode="register" base="true"/>
+		<routing_type tag="aerialway" value="station" mode="register" base="true"/>
+
+
+		<routing_type tag="piste:type" mode="register" base="true"/>
+		<routing_type tag="piste:difficulty" mode="amend" base="true"/>
+		<routing_type tag="piste:grooming" mode="amend" base="true"/>
+		<routing_type tag="piste:oneway" mode="amend" base="true"/>
+		<routing_type tag="piste:name" mode="text" base="true"/>
+		
 
 		<routing_type tag="public_transport" mode="register"/>
 		<routing_type tag="railway" value="platform" tag2="public_transport" value2="platform" mode="replace"/>

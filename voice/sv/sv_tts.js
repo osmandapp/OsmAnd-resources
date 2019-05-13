@@ -42,7 +42,7 @@ function populateDictionary(tts) {
 
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "kommer det en rondell" : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? " kör in i rondellen och ta" : "roundabout.ogg";
+	dictionary["roundabout"] = tts ? " kör in i rondellen" : "roundabout.ogg";
 	dictionary["then"] = tts ? ", sedan " : "then.ogg";
 	dictionary["and"] = tts ? " och " : "and.ogg";
 	dictionary["take"] = tts ? "ta den " : "take.ogg";
@@ -124,7 +124,7 @@ function populateDictionary(tts) {
 	dictionary["yards"] = tts ? "yards" : "yards.ogg";
 
 	// TIME SUPPORT
-	dictionary["time"] = tts ? "tid som behövs " : "time.ogg";
+	dictionary["time"] = tts ? "lång som beräknas ta " : "time.ogg";
 	dictionary["1_hour"] = tts ? "en timme " : "1_hour.ogg";
 	dictionary["hours"] = tts ? "timmar " : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "mindre än en minut" : "less_a_minute.ogg";
