@@ -1943,13 +1943,13 @@ mycpname hazard_erosion_map functional-icons_hazard_erosion.png
 mycpname hazard_slippery_road_map functional-icons_hazard_slippery_road.png
 mycpname hazard_flood_map functional-icons_hazard_flood.png
 mycpname hazard_avalanche_map functional-icons_hazard_avalanche.png
-mycpname hazard_minefield_map functional-icons_hazard_minefield.png
+mycpname hazard_minefield_map functional-icons_hazard_avalanche.png
 mycpname hazard_nuclear poi_hazard_nuclear.png
 mycpname hazard_erosion poi_hazard_erosion.png
 mycpname hazard_slippery_road poi_hazard_slippery_road.png
 mycpname hazard_flood poi_hazard_flood.png
 mycpname hazard_avalanche poi_hazard_avalanche.png
-mycpname hazard_minefield poi_hazard_minefield.png
+mycpname hazard_minefield poi_hazard_avalanche.png
 mycpname hazard poi_hazard.png
 
 # mygroup custom_id icons8 #TODO

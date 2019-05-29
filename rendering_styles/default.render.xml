@@ -326,16 +326,16 @@
 			<!-- strokeWidth - route line -->
 			<!-- strokeWidth_2 - route line shadow -->
 			<!-- strokeWidth_3 - route line shield -->
-			<apply_if maxzoom="14" strokeWidth="9" strokeWidth_2="12" strokeWidth_3="14"/>
-			<apply_if minzoom="15" maxzoom="15" strokeWidth="10" strokeWidth_2="12" strokeWidth_3="14"/>
-			<apply_if minzoom="16" strokeWidth="12" strokeWidth_2="14" strokeWidth_3="14"/>
+			<apply_if maxzoom="14" strokeWidth="8" strokeWidth_2="9" strokeWidth_3="14"/>
+			<apply_if minzoom="15" maxzoom="15" strokeWidth="10" strokeWidth_2="12" strokeWidth_3="16"/>
+			<apply_if minzoom="16" strokeWidth="12" strokeWidth_2="14" strokeWidth_3="18"/>
 		</apply>
 	</renderingAttribute>
 
 	<renderingAttribute name="walkingRouteLine">
 		<case pathEffect="5_3" color="#407ef5"/>
 		<apply>
-			<apply_if maxzoom="14" strokeWidth="9" strokeWidth_2="12"/>
+			<apply_if maxzoom="14" strokeWidth="8" strokeWidth_2="9"/>
 			<apply_if minzoom="15" maxzoom="15" strokeWidth="10" strokeWidth_2="12"/>
 			<apply_if minzoom="16" strokeWidth="12" strokeWidth_2="14"/>
 		</apply>
@@ -630,6 +630,7 @@
 			<apply_if nightMode="true" attrColorValue="#37555c"/>
 		</case>
 	</renderingAttribute>
+
 	<renderingAttribute name="tertiaryRoadLowZoomColor">
 		<case roadStyle="germanRoadAtlas" attrColorValue="#ffff80">
 			<apply_if nightMode="true" attrColorValue="#ffff80">
@@ -1825,49 +1826,111 @@
 		<case attrColorValue="#734a08"/>
 	</renderingAttribute>
 
-	<renderingConstant name="surfaceGroundColor" value="#cc9900"/>
-	<renderingConstant name="surfaceSandColor" value="#ffd700"/>
-	<renderingConstant name="surfaceGrassColor" value="#1fbe1f"/>
-	<renderingConstant name="surfaceGrass_paverColor" value="#a7bef8"/>
-	<renderingConstant name="surfaceDirtColor" value="#a9820f"/>
-	<renderingConstant name="surfaceMudColor" value="#765902"/>
-	<renderingConstant name="surfaceIceColor" value="#9feeef"/>
-	<renderingConstant name="surfaceSaltColor" value="#7eded8"/>
-
-	<renderingConstant name="surfacePavedColor" value="#a7cdf8"/>
+	<renderingAttribute name="surfaceAsphaltColor">
+		<case nightMode="true" attrColorValue="#eae6f3"/>
+		<case attrColorValue="#6f687e"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceConcreteColor">
+		<case attrColorValue="#a7cdf8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceUnpavedColor">
+		<case attrColorValue="#cc9900"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfacePavedColor">
+		<case attrColorValue="#a7cdf8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceCompactedColor">
+		<case nightMode="true" attrColorValue="#c5c5dc"/>
+		<case attrColorValue="#cbcbe8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceFineGravelColor">
+		<case nightMode="true" attrColorValue="#c5c5dc"/>
+		<case attrColorValue="#cbcbe8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfacePavingStonesColor">
+		<case attrColorValue="#a7cdf8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceSettColor">
+		<case attrColorValue="#a7cdf8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceCobblestoneColor">
+		<case attrColorValue="#a7cdf8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfacePebblestoneColor">
+		<case attrColorValue="#a7cdf8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceStoneColor">
+		<case attrColorValue="#a7cdf8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceMetalColor">
+		<case attrColorValue="#a7cdf8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceGrassPaverColor">
+		<case attrColorValue="#a7bef8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceWoodColor">
+		<case attrColorValue="#a7cdf8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceGravelColor">
+		<case nightMode="true" attrColorValue="#c5c5dc"/>
+		<case attrColorValue="#cbcbe8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceGroundColor">
+		<case attrColorValue="#cc9900"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceDirtColor">
+		<case attrColorValue="#a9820f"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceMudColor">
+		<case attrColorValue="#765902"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceGrassColor">
+		<case attrColorValue="#1fbe1f"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceSandColor">
+		<case attrColorValue="#ffd700"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceSaltColor">
+		<case attrColorValue="#7eded8"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceSnowColor">
+		<case attrColorValue="#9feeef"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceIceColor">
+		<case attrColorValue="#9feeef"/>
+	</renderingAttribute>
+	<renderingAttribute name="surfaceUndefinedColor">
+		<case attrColorValue="#e8e8e8"/>
+	</renderingAttribute>
 
 	<renderingAttribute name="surfaceColor"> <!-- This attribute is needed because of motorcar=yes,foot=yes,bicycle=yes access types (see showAccess="true" section). After <case motorcar=yes> we need to restore surface color (because access and surface uses the same color_3 line layer). Downside: renderingAttribute can't be used inside another renderingAttribute. Upside: custom surface types can be added via dependent rendering style without too much copying of code. -->
-		<case additional="surface=unpaved" attrColorValue="$surfaceGroundColor"/>
-		<case additional="surface=sand" attrColorValue="$surfaceSandColor"/>
-		<case additional="surface=grass" attrColorValue="$surfaceGrassColor"/>
-		<case additional="surface=grass_paver" attrColorValue="$surfaceGrass_paverColor"/>
-		<case additional="surface=ground" attrColorValue="$surfaceGroundColor"/>
-		<case additional="surface=dirt" attrColorValue="$surfaceDirtColor"/>
-		<case additional="surface=mud" attrColorValue="$surfaceMudColor"/>
-		<case additional="surface=ice" attrColorValue="$surfaceIceColor"/>
-		<case additional="surface=salt" attrColorValue="$surfaceSaltColor"/>
-		<case additional="surface=snow" attrColorValue="$surfaceIceColor"/>
+		<case additional="surface=unpaved" attrColorValue="$surfaceUnpavedColor" attrStringValue="surface_unpaved"/>
+		<case additional="surface=sand" attrColorValue="$surfaceSandColor" attrStringValue="surface_sand"/>
+		<case additional="surface=grass" attrColorValue="$surfaceGrassColor" attrStringValue="surface_grass"/>
+		<case additional="surface=grass_paver" attrColorValue="$surfaceGrassPaverColor" attrStringValue="surface_grass_paver"/>
+		<case additional="surface=ground" attrColorValue="$surfaceGroundColor" attrStringValue="surface_ground"/>
+		<case additional="surface=dirt" attrColorValue="$surfaceDirtColor" attrStringValue="surface_dirt"/>
+		<case additional="surface=mud" attrColorValue="$surfaceMudColor" attrStringValue="surface_mud"/>
+		<case additional="surface=ice" attrColorValue="$surfaceIceColor" attrStringValue="surface_ice"/>
+		<case additional="surface=salt" attrColorValue="$surfaceSaltColor" attrStringValue="surface_salt"/>
+		<case additional="surface=snow" attrColorValue="$surfaceSnowColor" attrStringValue="surface_snow"/>
 
-		<case additional="surface=asphalt" attrColorValue="#6f687e">
-			<apply_if nightMode="true" attrColorValue="#eae6f3"/>
-		</case>
-		<case additional="surface=paved" attrColorValue="$surfacePavedColor"/>
-		<case additional="surface=concrete" attrColorValue="$surfacePavedColor"/>
-		<case additional="surface=sett" attrColorValue="$surfacePavedColor"/>
-		<case additional="surface=cobblestone" attrColorValue="$surfacePavedColor"/>
-		<case additional="surface=paving_stones" attrColorValue="$surfacePavedColor"/>
+		<case additional="surface=asphalt" attrColorValue="$surfaceAsphaltColor" attrStringValue="surface_asphalt"/>
+		<case additional="surface=paved" attrColorValue="$surfacePavedColor" attrStringValue="surface_paved"/>
+		<case additional="surface=concrete" attrColorValue="$surfaceConcreteColor" attrStringValue="surface_concrete"/>
+		<case additional="surface=sett" attrColorValue="$surfaceSettColor" attrStringValue="surface_sett"/>
+		<case additional="surface=cobblestone" attrColorValue="$surfaceCobblestoneColor" attrStringValue="surface_cobblestone"/>
+		<case additional="surface=paving_stones" attrColorValue="$surfacePavingStonesColor" attrStringValue="surface_paving_stones"/>
 
-		<case additional="surface=pebblestone" attrColorValue="$surfacePavedColor"/>
-		<case additional="surface=stone" attrColorValue="$surfacePavedColor"/>
-		<case additional="surface=metal" attrColorValue="$surfacePavedColor"/>
-		<case additional="surface=wood" attrColorValue="$surfacePavedColor"/>
-		<switch>
-			<case additional="surface=gravel"/>
-			<case additional="surface=fine_gravel"/>
-			<case additional="surface=compacted"/>
-			<apply attrColorValue="#cbcbe8"/>
-			<apply_if nightMode="true" attrColorValue="#c5c5dc"/>
-		</switch>
+		<case additional="surface=pebblestone" attrColorValue="$surfacePebblestoneColor" attrStringValue="surface_pebblestone"/>
+		<case additional="surface=stone" attrColorValue="$surfaceStoneColor" attrStringValue="surface_stone"/>
+		<case additional="surface=metal" attrColorValue="$surfaceMetalColor" attrStringValue="surface_metal"/>
+		<case additional="surface=wood" attrColorValue="$surfaceWoodColor" attrStringValue="surface_wood"/>
+		<case additional="surface=gravel" attrColorValue="$surfaceGravelColor" attrStringValue="surface_gravel"/>
+		<case additional="surface=fine_gravel" attrColorValue="$surfaceFineGravelColor" attrStringValue="surface_fine_gravel"/>
+		<case additional="surface=compacted" attrColorValue="$surfaceCompactedColor" attrStringValue="surface_compacted"/>
+		<case additional="surface=undefined" attrColorValue="$surfaceUndefinedColor" attrStringValue="surface_undefined"/> <!-- Used in route details info -->
+
 		<case attrColorValue="$null"/>
 	</renderingAttribute>
 
@@ -1875,10 +1938,96 @@
 	<renderingConstant name="surfaceGradeGoodColor" value="#7debff"/>
 	<renderingConstant name="surfaceGradeIntermediateColor" value="#b1f3ff"/>
 	<renderingConstant name="surfaceGradeBadColor" value="#febcbc"/>
-	<renderingConstant name="surfaceGradeVery_badColor" value="#fea9a9"/>
+	<renderingConstant name="surfaceGradeVeryBadColor" value="#fea9a9"/>
 	<renderingConstant name="surfaceGradeHorribleColor" value="#ff7f7f"/>
-	<renderingConstant name="surfaceGradeVery_horribleColor" value="#fe5050"/>
+	<renderingConstant name="surfaceGradeVeryHorribleColor" value="#fe5050"/>
 	<renderingConstant name="surfaceGradeImpassableColor" value="#ff1111"/>
+
+	<renderingAttribute name="smoothnessColor"> <!-- Used in route details info -->
+		<case additional="smoothness=excellent" attrColorValue="$surfaceGradeExcellentColor" attrStringValue="smoothness_excellent"/>
+		<case additional="smoothness=good" attrColorValue="$surfaceGradeGoodColor" attrStringValue="smoothness_good"/>
+		<case additional="smoothness=intermediate" attrColorValue="$surfaceGradeIntermediateColor" attrStringValue="smoothness_intermediate"/>
+		<case additional="smoothness=bad" attrColorValue="$surfaceGradeBadColor" attrStringValue="smoothness_bad"/>
+		<case additional="smoothness=very_bad" attrColorValue="$surfaceGradeVeryBadColor" attrStringValue="smoothness_very_bad"/>
+		<case additional="smoothness=horrible" attrColorValue="$surfaceGradeHorribleColor" attrStringValue="smoothness_horrible"/>
+		<case additional="smoothness=very_horrible" attrColorValue="$surfaceGradeVeryHorribleColor" attrStringValue="smoothness_very_horrible"/>
+		<case additional="smoothness=impassable" attrColorValue="$surfaceGradeImpassableColor" attrStringValue="smoothness_impassable"/>
+		<case additional="smoothness=undefined" attrColorValue="#e8e8e8" attrStringValue="smoothness_undefined"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="steepnessColor"> <!-- Used in route details info -->
+		<case additional="steepness=-100_-20" attrColorValue="#028306"/>
+		<case additional="steepness=-19_-16" attrColorValue="#2c8f1e"/>
+		<case additional="steepness=-15_-12" attrColorValue="#559b36"/>
+		<case additional="steepness=-11_-8" attrColorValue="#7fa74e"/>
+		<case additional="steepness=-7_-4" attrColorValue="#aab467"/>
+		<case additional="steepness=-3-0" attrColorValue="#d3c07f"/>
+		<case additional="steepness=1-4" attrColorValue="#ffcc99"/>
+		<case additional="steepness=5-8" attrColorValue="#f2ad82"/>
+		<case additional="steepness=9-12" attrColorValue="#e48e6a"/>
+		<case additional="steepness=13-16" attrColorValue="#d76e53"/>
+		<case additional="steepness=17-20" attrColorValue="#c94e3b"/>
+		<case additional="steepness=21-100" attrColorValue="#bb2e23"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="roadClassColor"> <!-- Used in route details info -->
+		<case tag="highway" value="motorway" attrStringValue="highway_class_motorway"/>
+		<case tag="highway" value="motorway_link" attrStringValue="highway_class_motorway"/>
+		<case tag="highway" value="trunk" attrStringValue="highway_class_state_road"/>
+		<case tag="highway" value="trunk_link" attrStringValue="highway_class_state_road"/>
+		<case tag="highway" value="primary" attrStringValue="highway_class_state_road"/>
+		<case tag="highway" value="primary_link" attrStringValue="highway_class_state_road"/>
+		<case tag="highway" value="secondary" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="secondary_link" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="tertiary" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="tertiary_link" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="unclassified" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="residential" attrStringValue="highway_class_street"/>
+		<case tag="highway" value="living_street" attrStringValue="highway_class_street"/>
+		<case tag="highway" value="service" attrStringValue="highway_class_service"/>
+		<case tag="highway" value="pedestrian" attrStringValue="highway_class_footway"/>
+		<case tag="highway" value="track" attrStringValue="highway_class_track"/>
+		<case tag="highway" value="road" attrStringValue="highway_class_undefined"/>
+		<case tag="highway" value="footway" attrStringValue="highway_class_footway"/>
+		<case tag="highway" value="bridleway" attrStringValue="highway_class_bridleway"/>
+		<case tag="highway" value="steps" attrStringValue="highway_class_steps"/>
+		<case tag="highway" value="path" attrStringValue="highway_class_path"/>
+		<case tag="highway" value="cycleway" attrStringValue="highway_class_cycleway"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_motorway">
+		<case attrColorValue="$motorwayRoadColor"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_state_road">
+		<case attrColorValue="$primaryRoadColor"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_road">
+		<case attrColorValue="$tertiaryRoadColor"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_street">
+		<case attrColorValue="#C1B9D1"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_service">
+		<case attrColorValue="#E3DAF6"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_footway">
+		<case attrColorValue="$footwayColor"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_track">
+		<case attrColorValue="$trackColor"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_bridleway">
+		<case attrColorValue="$bridlewayColor"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_steps">
+		<case attrColorValue="$footwayColor"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_path">
+		<case attrColorValue="$pathColor"/>
+	</renderingAttribute>
+	<renderingAttribute name="highway_class_cycleway">
+		<case attrColorValue="$cyclewayColor"/>
+	</renderingAttribute>
+
 
 	<renderingAttribute name="subwayLineDefaultColor">
 		<case nightMode="true" attrColorValue="#7b0000"/>
@@ -2502,6 +2651,7 @@
 					<apply_if appMode="car" maxzoom="17" order="-1"/>
 				</case>
 				<case tag="craft" value=""/>
+				<case moreDetailed="false" maxzoom="15" tag="tourism" value="caravan_site" order="-1"/>
 				<case tag="tourism" value="">
 					<apply_if appMode="car" maxzoom="17" order="-1"/>
 				</case>
@@ -2646,7 +2796,7 @@
 				<case tag="highway" value="rest_area"/>
 				<case tag="landuse" value="military" order="8"/>
 				<case tag="military" value="danger_area" order="8"/>
-				<!--				<case tag="landuse" value="residential" order="10"/>-->
+<!--				<case tag="landuse" value="residential" order="10"/>-->
 				<case tag="landuse" value="cemetery" order="5"/>
 				<case tag="amenity" value="motorcycle_parking">
 					<apply_if appMode="pedestrian" maxzoom="17" order="-1"/>
@@ -2682,6 +2832,7 @@
 				</switch>
 				<case tag="leisure" value="outdoor_seating" order="10"/>
 				<case tag="leisure" value="nature_reserve" order="9"/>
+				<case tag="sport" value="climbing" order="9"/>
 				<case tag="boundary" value="protected_area" order="9">
 					<apply_if moreDetailed="false" maxzoom="13" order="-1"/>
 				</case>
@@ -2699,6 +2850,7 @@
 				<case tag="natural" value="crater"/>
 				<case tag="natural" value="volcano"/>
 				<case tag="natural" value="sinkhole"/>
+				<case tag="natural" value="stone"/>
 				<case tag="natural" value="crevasse">
 					<apply_if moreDetailed="false" maxzoom="16" order="-1"/>
 				</case>
@@ -2815,8 +2967,8 @@
 				</case>
 				<switch order="58">
 					<case tag="railway" value="rail" additional="network=rer"/>
-		<!--					<case tag="railway" value="rail" additional="route=subway"/>-->
-					<case tag="railway" value="subway">
+<!--					<case tag="railway" value="rail" additional="route=subway"/>-->
+					<case tag="railway" value="subway" additional="tunnel=yes">
 						<apply_if subwayMode="false">
 							<switch>
 								<case moreDetailed="true" maxzoom="17"/>
@@ -2825,6 +2977,17 @@
 							</switch>
 						</apply_if>
 						<apply_if subwayMode="false" moreDetailed="true" minzoom="18" order="58"/>
+						<apply_if subwayMode="true" order="90"/>
+					</case>
+					<case tag="railway" value="subway">
+						<apply_if subwayMode="false">
+							<switch>
+								<case moreDetailed="true" maxzoom="15"/>
+								<case maxzoom="16"/>
+								<apply order="-1"/>
+							</switch>
+						</apply_if>
+						<apply_if subwayMode="false" moreDetailed="true" minzoom="16" order="58"/>
 						<apply_if subwayMode="true" order="90"/>
 					</case>
 					<switch>
@@ -5859,6 +6022,9 @@
 				<case minzoom="16" tag="amenity" value="dentist" textOrder="147"/>
 				<case minzoom="16" tag="amenity" value="nursing_home"/>
 				<case minzoom="16" tag="emergency" value="ambulance_station"/>
+				<case minzoom="18" tag="emergency" value="phone"/>
+				<case minzoom="19" tag="emergency" value="fire_hydrant"/>
+				<case minzoom="18" tag="emergency" value="rescue_box"/>
 				<case minzoom="16" tag="highway" value="emergency_access_point" textOrder="157"/>
 				<case minzoom="16" tag="amenity" value="social_facility"/>
 				<case minzoom="16" tag="healthcare" value="laboratory"/>
@@ -5940,10 +6106,10 @@
 					<apply_if legend="true" textOnPath="true"/>
 				</switch>
 				<switch showCycleRoutes="true" legend="false" minzoom="11" textColor="$cycleRouteTextColor" textBold="true" textHaloRadius="4">
-					<case tag="lcn_ref" value="" textOrder="37"/>
-					<case tag="rcn_ref" value="" textOrder="38"/>
-					<case tag="ncn_ref" value="" textOrder="39"/>
-					<case tag="icn_ref" value="" textOrder="39"/>
+					<case tag="lcn_ref" value="" nameTag="lcn_ref" textOrder="37"/>
+					<case tag="rcn_ref" value="" nameTag="rcn_ref" textOrder="38"/>
+					<case tag="ncn_ref" value="" nameTag="ncn_ref" textOrder="39"/>
+					<case tag="icn_ref" value="" nameTag="icn_ref" textOrder="39"/>
 					<apply_if minzoom="11" maxzoom="12" textSize="10"/>
 					<apply_if minzoom="13" maxzoom="13" textSize="12"/>
 					<apply_if minzoom="14" maxzoom="15" textSize="14"/>
@@ -5955,7 +6121,7 @@
 
 			<!-- Railroad, public transport -->
 			<switch hidePOILabels="false" textColor="$railwayPOITextColorDay" textWrapWidth="25" textHaloRadius="$textHaloRadius" textBold="true" nameTag="">
-				<switch minzoom="15" maxzoom="15" textSize="12" textColor="$publicTransportModeStopTextColor" textHaloColor="$publicTransportModeStopTextHaloColor" textOrder="1">
+				<switch minzoom="14" maxzoom="15" textSize="12" textColor="$publicTransportModeStopTextColor" textHaloColor="$publicTransportModeStopTextHaloColor" textOrder="1">
 					<case publicTransportMode="true" tag="public_transport" value="platform" textOnPath="true"/>
 					<case tramTrainRoutes="true" tag="public_transport" value="platform" textOnPath="true"/>
 					<case publicTransportMode="true" tag="amenity" value="bus_station"/>
@@ -6357,6 +6523,7 @@
 				<case minzoom="17" tag="man_made" value="tower" nameTag=""/>
 				<case minzoom="17" tag="man_made" value="antenna" nameTag=""/>
 				<case minzoom="17" tag="man_made" value="mast" nameTag=""/>
+				<case minzoom="17" tag="man_made" value="flare" nameTag=""/>
 				<case minzoom="17" tag="man_made" value="monitoring_station"/>
 				<case minzoom="18" tag="man_made" value="chimney" nameTag="" nameTag2="height"/>
 				<case minzoom="16" tag="man_made" value="petroleum_well"/>
@@ -6403,6 +6570,7 @@
 					<case tag="building" value="" nameTag="" nameTag2="addr:housenumber"/>
 					<case hideHouseNumbers="true" tag="building" value="" nameTag="addr:housename"/>
 					<case tag="building" value="" nameTag="addr:housename" nameTag2="addr:housenumber"/>
+					<case hideHouseNumbers="false" tag="building" value="" nameTag="addr:housenumber" nameTag2="addr:housename"/>
 					<case hideHouseNumbers="false" tag="building" value="" nameTag="addr:housenumber" />
 					<apply_if maxzoom="17" textSize="13" textMinDistance="40" intersectionMargin="20"/>
 					<apply_if minzoom="18" textSize="15"/>
@@ -6752,7 +6920,7 @@
 				<case tag="historic" value=""/>
 				<case tag="office" value=""/>
 				<case tag="man_made" value=""/>
-			<!--				<case tag="shop" value=""/>-->
+<!--				<case tag="shop" value=""/>-->
 				<case tag="tourism" value=""/>
 				<apply textColor="#ffffff" textSize="11" textHaloRadius="2" textHaloColor="#886c003d" textWrapWidth="20" intersectionSizeFactor="0.7"/>
 				<apply_if nightMode="true" textColor="#6c003d" textHaloColor="#ffffff"/>
@@ -7254,7 +7422,7 @@
 				</switch>
 
 				<switch>
-					<case minzoom="18" tag="natural" value="stone"/>
+					<case minzoom="17" tag="natural" value="stone"/>
 					<case minzoom="17" tag="natural" value="rock"/>
 					<apply icon="natural_stone" shield="stone_shield"/>
 					<apply_if nightMode="true" shield=""/>
@@ -7291,6 +7459,7 @@
 					<case tag="amenity" value="social_facility" icon="social_facility"/>
 					<case tag="healthcare" value="laboratory" icon="laboratory"/>
 					<case tag="healthcare" value="blood_donation" icon="blood_donation"/>
+					<case minzoom="17" tag="emergency" value="rescue_box" icon="rescue_box"/>
 					<apply_if nightMode="true" shield="red_round_night_shield" iconVisibleSize="36"/>
 				</switch>
 				<case minzoom="16" tag="amenity" value="fire_station" icon="amenity_fire_station" iconVisibleSize="26" shield="red_round_shield" iconOrder="85">
@@ -8021,6 +8190,8 @@
 						</case>
 					</apply_if>
 				</switch>
+
+				<case minzoom="15" tag="man_made" value="flare" icon="flare" shield="flare_shield" iconOrder="162"/>
 
 				<case minzoom="16" tag="man_made" value="petroleum_well" icon="man_made_petroleum_well" shield="petroleum_well_shield"/>
 				<case minzoom="18" tag="man_made" value="crane" icon="crane" shield="crane_shield"/>
@@ -9593,6 +9764,16 @@
 			<case minzoom="14" tag="natural" value="bare_rock" shader="bare_rock" color="#99100000">
 				<case nightMode="true" shader="" color="#55555555"/>
 			</case>
+			<case minzoom="16" tag="natural" value="stone" color="#ABABAB">
+				<apply_if nightMode="true" color="#595959"/>
+			</case>
+
+			<switch moreDetailed="true" minzoom="15">
+				<case tag="sport" value="climbing" additional="climbing_crag=crag"/>
+				<apply_if maxzoom="17" strokeWidth_2="3" pathEffect_2="5_2"/>
+				<apply_if minzoom="18" strokeWidth_2="4" pathEffect_2="6_3"/>
+				<apply color="$null" color_2="#66903A33"/>
+			</switch>
 			<case minzoom="6" tag="natural" value="reef" shader="reef" color="#99100000" strokeWidth_2="1" color_2="#99109f68" pathEffect_2="3_3">
 				<case additional="reef=coral" shader="reef_coral"/>
 				<case additional="reef=rock" shader="reef_rock"/>
@@ -10574,9 +10755,9 @@
 				<case additional="smoothness=intermediate" color_2="$surfaceGradeIntermediateColor"/>
 
 				<case additional="smoothness=bad" color_2="$surfaceGradeBadColor"/>
-				<case additional="smoothness=very_bad" color_2="$surfaceGradeVery_badColor"/>
+				<case additional="smoothness=very_bad" color_2="$surfaceGradeVeryBadColor"/>
 				<case additional="smoothness=horrible" color_2="$surfaceGradeHorribleColor"/>
-				<case additional="smoothness=very_horrible" color_2="$surfaceGradeVery_horribleColor"/>
+				<case additional="smoothness=very_horrible" color_2="$surfaceGradeVeryHorribleColor"/>
 				<case additional="smoothness=impassable" color_2="$surfaceGradeImpassableColor"/>
 			</apply_if>
 			<apply>
