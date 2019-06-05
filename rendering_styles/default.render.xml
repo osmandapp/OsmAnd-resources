@@ -2538,7 +2538,10 @@
 				</case>
 				<case tag="railway" value=""/>
 				<case tag="place" value=""/>
-				<case tag="public_transport" value="platform"/>
+				<case tag="public_transport" value="platform">
+					<apply_if additional="disused=yes" order="60"/>
+					<apply_if maxzoom="16" additional="disused=yes" order="-1"/>
+				</case>
 				<case tag="public_transport" value="station"/>
 				<case tag="public_transport" value=""/>
 				<case tag="highway" value="crossing"/>
@@ -6121,6 +6124,9 @@
 
 			<!-- Railroad, public transport -->
 			<switch hidePOILabels="false" textColor="$railwayPOITextColorDay" textWrapWidth="25" textHaloRadius="$textHaloRadius" textBold="true" nameTag="">
+				<case minzoom="17" tag="public_transport" value="platform" additional="disused=yes" textColor="#999999" textSize="12" textOnPath="true">
+					<apply_if nightMode="true" textColor="#dddddd" textHaloColor="$publicTransportModeStopTextHaloColorNight"/>
+				</case>
 				<switch minzoom="15" maxzoom="15" textSize="12" textColor="$publicTransportModeStopTextColor" textHaloColor="$publicTransportModeStopTextHaloColor" textOrder="1">
 					<case publicTransportMode="true" tag="public_transport" value="platform" textOnPath="true"/>
 					<case tramTrainRoutes="true" tag="public_transport" value="platform" textOnPath="true"/>
@@ -8728,6 +8734,10 @@
 				<case tag="tourism" value="" icon="stub_tourism" iconOrder="153"/>
 			</switch>
 
+			<case minzoom="17" tag="public_transport" value="platform" additional="disused=yes" icon="highway_bus_stop" shield="gray_square_shield">
+				<apply_if nightMode="true" shield="gray_square_night_shield"/>
+			</case>
+
 			<!-- Public transport mode icons -->
 			<switch>
 				<case tag="highway" value="bus_stop"/>
@@ -9202,9 +9212,14 @@
 				<apply_if nightMode="true" color="#685454"/>
 			</case>
 			<switch minzoom="15" color="#44888888">
-				<case tag="public_transport" value="platform"/>
-				<case tag="amenity" value="bus_station"/>
-				<apply_if nightMode="true" color="#685454"/>
+				<case tag="public_transport" value="platform">
+					<apply_if additional="disused=yes">
+						<apply_if nightMode="true" color="#88666666"/>
+					</apply_if>
+				</case>
+				<case tag="amenity" value="bus_station">
+					<apply_if nightMode="true" color="#685454"/>
+				</case>
 			</switch>
 			<case minzoom="11" tag="amenity" value="ferry_terminal" color="$null" color_2="#33000000" strokeWidth_2="0.4"/>
 
@@ -11457,11 +11472,19 @@
 			<case tag="railway" value="halt"/>
 			<apply_if minzoom="16" color="#888888" strokeWidth="2:2" strokeWidth_2="1:1" color_2="#bababa">
 				<apply_if minzoom="18" strokeWidth="3:3" strokeWidth_2="2:2"/>
+				<apply_if additional="disused=yes" color="#aaaaaa" color_2="#bbbbbb">
+					<apply_if nightMode="true" color="#50888888" color_2="#10bababa"/>
+				</apply_if>
 			</apply_if>
-			<apply_if layer="-1" color="#44888888" color_2="#bababa" pathEffect="20_3" pathEffect_2="20_3"/>
+			<apply_if layer="-1" color="#44888888" color_2="#bababa" pathEffect="20_3" pathEffect_2="20_3">
+				<apply_if additional="disused=yes" color="#30888888">
+					<apply_if nightMode="true" color_2="#10bababa"/>
+				</apply_if>
+			</apply_if>
 			<apply_if appMode="bicycle">
 				<apply_if layer="-1" color="#25888888" color_2="#25bababa" pathEffect="20_3" pathEffect_2="20_3">
 					<apply_if nightMode="true" color="#10888888" color_2="#10bababa"/>
+					<apply_if additional="disused=yes" color="#07888888"/>
 				</apply_if>
 			</apply_if>
 			<apply_if appMode="car" layer="-1" disable="true"/>
