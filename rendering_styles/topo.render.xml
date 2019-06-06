@@ -942,7 +942,10 @@
 				<switch>
 					<case tag="railway" value="halt" ignorePolygonAsPointArea="true"/>
 					<case tag="railway" value="tram_stop" ignorePolygonAsPointArea="true"/>
-					<case tag="public_transport" value="platform" ignorePolygonAsPointArea="true"/>
+					<case tag="public_transport" value="platform" ignorePolygonAsPointArea="true">
+						<apply_if additional="disused=yes" order="60"/>
+						<apply_if maxzoom="16" additional="disused=yes" order="-1"/>
+					</case>
 					<apply_if layer="-1" order="-1"/>
 				</switch>
 				
@@ -1045,6 +1048,7 @@
 				<case tag="disused:building" value="no" order="-1"/>
 				<case tag="disused:building" value="" order="10"/>
 				<case tag="building" value="proposed" order="-1"/>
+				<case tag="public_transport" value="platform" order="9" ignorePolygonAsPointArea="true"/>
 				<case tag="tourism" value="attraction" order="7"/>
 				<case tag="amenity" value="place_of_worship" ignorePolygonAsPointArea="true"/>
 				<case tag="landuse" value="cemetery" order="10"/>
@@ -1244,6 +1248,7 @@
 				<case tag="aeroway" value="runway"/>
 				<case tag="aeroway" value="" order="32"/>
 				<case tag="railway" value="station"/>
+				<case tag="public_transport" value="platform"/>
 				<case tag="boundary" value="" order="62"/>
 				<case tag="contour" value="elevation" order="11">
 					<apply_if contourDensity="medium_w" additional="contourtype=10m" order="-1"/>
@@ -2400,7 +2405,9 @@
 				<case tag="amenity" value="bus_station" nameTag="" textBold="true" textOrder="30"/>
 				<case tag="public_transport" value="station" nameTag="" textBold="true" textOrder="30"/>
 				<case tag="highway" value="bus_stop" nameTag="" textOrder="73"/>
-				<case tag="public_transport" value="platform" nameTag="" textOrder="73"/>
+				<case tag="public_transport" value="platform" nameTag="" textOrder="73">
+					<apply_if additional="disused=yes" textColor="#888888"/>
+				</case>
 				<apply maxzoom="16" textSize="11"/>
 				<apply minzoom="17" textSize="12"/>
 				<apply_if engine_v1="true" minzoom="16" textDy="9"/>
@@ -3492,9 +3499,9 @@
 						<case tag="amenity" value="ferry_terminal"/>
 					</switch>
 					<case minzoom="11" tag="public_transport" value="station" color="#d4aaaa"/>
-					<switch minzoom="15" color="#bababa">
-						<case tag="public_transport" value="platform"/>
-					</switch>
+					<case minzoom="15" tag="public_transport" value="platform" color="#bababa">
+						<apply_if additional="disused=yes" color="#44888888"/>
+					</case>
 
 					<case minzoom="11" tag="amenity" value="prison" shader="prison" color_2="#aaaaaa" strokeWidth_2="1:1"/>
 
@@ -4361,6 +4368,7 @@
 			<apply_if minzoom="16" color="#555555" color_2="#CCCCCC" strokeWidth="2:2" strokeWidth_2="1:1">
 				<apply_if minzoom="18" strokeWidth="3:3" strokeWidth_2="2:2"/>
 			</apply_if>
+			<apply_if additional="disused=yes" color="#aaaaaa" color_2="#bbbbbb"/>
 		</switch>
 
 		<case minzoom="12" tag="man_made" value="cutline" color="#ffffff" cap="ROUND">
