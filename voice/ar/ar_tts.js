@@ -6,7 +6,7 @@
 // (X) Other prompts: gps lost, off route, back to route
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
-// ( ) Special grammar: agreement of number and singular/dual/plural form of unit
+// (X) Special grammar: agreement of number and singular/dual/plural form of unit
 // ( ) Special grammar: agreement of number and unit gender
 // ( ) Special grammar: nominative vs. genitive/accussative distinction
 // (X) Special grammar: word order with ordinal numbers
@@ -296,15 +296,25 @@ function time(seconds) {
 	} else if (minutes % 60 == 0 && tts) {
 		return hours(minutes);
 	} else if (minutes % 60 == 1 && tts) {
-		return hours(minutes) + " " + dictionary["1_minute"];
+		return hours(minutes) + " " + dictionary["and"] + " " + dictionary["1_minute"];
+	} else if (minutes % 60 == 2 && tts) {
+		return hours(minutes) + " " + dictionary["and"] + " " + dictionary["2_minutes"];
+	} else if (minutes % 60 > 2 && minutes % 60 < 11 && tts) {
+		return hours(minutes) + " " + dictionary["and"] + " " + dictionary["minutes"];
 	} else if (tts) {
-		return hours(minutes) + " " + (minutes % 60) + " " + dictionary["minutes"];
+		return hours(minutes) + " " + (minutes % 60) + " " + dictionary["minute"];
 	} else if (!tts && seconds < 300) {
 		return ogg_dist(minutes) + dictionary["minutes"];
-	} else if (!tts && oggMinutes % 60 > 0) {
-		return hours(oggMinutes) + " " + ogg_dist(oggMinutes % 60) + dictionary["minutes"];
-	} else if (!tts) {
+	} else if (!tts && oggMinutes % 60 == 0) {
 		return hours(oggMinutes);
+	} else if (!tts && oggMinutes % 60 == 1) {
+		return hours(oggMinutes) + " " + dictionary["and"] + " " + dictionary["1_minute"]; 
+	} else if (!tts && oggMinutes % 60 == 2) {
+		return hours(oggMinutes) + " " + dictionary["and"] + " " + dictionary["2_minutes"]; 
+	} else if (!tts && oggMinutes % 60 > 2 && oggMinutes < 11) {
+		return hours(oggMinutes) + " " + ogg_dist(oggMinutes % 60) + dictionary["minutes"];
+	} else {
+		return hours(oggMinutes) + " " + ogg_dist(oggMinutes % 60) + dictionary["minute"];
 	}
 }
 
@@ -313,9 +323,14 @@ function hours(minutes) {
 		return "";
 	} else if (minutes < 120) {
 		return dictionary["1_hour"];
+	} else if (minutes < 180) {
+		return dictionary["2_hours"];
 	} else {
 		var hrs = Math.floor(minutes / 60);
-        return  (tts ? hrs.toString() : ogg_dist(hrs)) + " " + dictionary["hours"];
+		if (hrs < 11)
+        	return  (tts ? hrs.toString() : ogg_dist(hrs)) + " " + dictionary["hours"];
+		else
+        	return  (tts ? hrs.toString() : ogg_dist(hrs)) + " " + dictionary["hour"];
 	}
 }
 
