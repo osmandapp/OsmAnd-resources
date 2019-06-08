@@ -6,7 +6,13 @@
 // (X) Other prompts: gps lost, off route, back to route
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
-// (N/A) Special grammar: (please specify which)
+// ( ) Special grammar: agreement of number and singular/dual/plural form of unit
+// ( ) Special grammar: agreement of number and unit gender
+// ( ) Special grammar: nominative vs. genitive/accussative distinction
+// (X) Special grammar: word order with ordinal numbers
+
+/* jshint -W069 */
+
 var metricConst;
 var dictionary = {};
 var tts;
@@ -44,10 +50,10 @@ function populateDictionary(tts) {
 	dictionary["roundabout"] = tts ? "أُدخُلْ في المسار الدَّائري، ثُمَّ" : "roundabout.ogg";
 	dictionary["then"] = tts ? "، ثُمَّ" : "then.ogg";
 	dictionary["and"] = tts ? "و" : "and.ogg";
-	dictionary["take"] = tts ? "أُسْلُكْ" : "take.ogg";
-	dictionary["exit"] = tts ? "المَخرَج" : "exit.ogg";
+	dictionary["take"] = tts ? "أُسْلُكِ" : "take.ogg";
+	dictionary["exit"] = tts ? "المَخرَجَ" : "exit.ogg";
 
-	dictionary["1st"] = tts ? "الأَولَ" : "1st.ogg";
+	dictionary["1st"] = tts ? "الأَوَّل" : "1st.ogg";
 	dictionary["2nd"] = tts ? "الثاني" : "2nd.ogg";
 	dictionary["3rd"] = tts ? "الثالث" : "3rd.ogg";
 	dictionary["4th"] = tts ? "الرابع" : "4th.ogg";
@@ -132,8 +138,12 @@ function populateDictionary(tts) {
 	dictionary["miles"] = tts ? "اميال" : "miles.ogg";
 
 	dictionary["yard"] = tts ? "ياردة" : "yard.ogg";
+	dictionary["1_yard"] = tts ? "ياردة واحِدة" : "1_yard.ogg";
 	dictionary["2_yards"] = tts ? "ياردتَين" : "2_yards.ogg";
 	dictionary["yards"] = tts ? "ياردات" : "yards.ogg";
+
+	dictionary["less_than"] = tts ? "أقلّ من" : "yards.ogg";
+	dictionary["50_gen"] = tts ? "خمسين" : "50_gen.ogg";
 
 	// TIME SUPPORT
 	dictionary["time"] = tts ? "تَبْلُغُ المُدَّةُ الزمنيةُ للْوُصول" : "time.ogg";
@@ -162,7 +172,8 @@ function route_new_calc(dist, timeVal) {
 
 function distance(dist) {
 	var kms = Math.round(dist/1000.0);
-	var mls = Math.round(dist/1609.34);
+	var mls = Math.round(dist/1609.3);
+    var ft =  Math.round(2*dist/100.0/0.3048)*50;
 	switch (metricConst) {
 		case "km-m":
 			if (dist < 1.5) {
@@ -182,24 +193,22 @@ function distance(dist) {
 			} else if (dist < 2500) {
 				return dictionary["around_2_kilometers"];
 			} else if (dist < 10500) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1000.0).toString() : ogg_dist(dist/1000.0)) + " " + dictionary["kilometers"];
-			} else if (kms == 101) {
-				return (tts ? "100" : ogg_dist(100)) + " " + dictionary["kilometer"] + " " + dictionary["and"] + " " + dictionary["kilometer"];
-			} else if (kms == 102) {
-				return (tts ? "100" : ogg_dist(100)) + " " + dictionary["kilometer"] + " " + dictionary["and"] + " " + dictionary["2_kilometers"];
-			} else if (kms == 1001) {
-				return (tts ? "1000" : ogg_dist(1000)) + " " + dictionary["kilometer"] + " " + dictionary["and"] + " " + dictionary["kilometer"];
-			} else if (kms == 1002) {
-				return (tts ? "1000" : ogg_dist(1000)) + " " + dictionary["kilometer"] + " " + dictionary["and"] + " " + dictionary["2_kilometers"];
+				return dictionary["around"] + " " + (tts ? kms.toString() : ogg_dist(dist/1000.0)) + " " + dictionary["kilometers"];
+			} else if (kms % 100 == 1) {
+				return (tts ? (kms - 1).toString() : ogg_dist(kms - 1)) + " " + dictionary["kilometer"] + " " + dictionary["and"] + " " + dictionary["kilometer"];
+			} else if (kms % 100 == 2) {
+				return (tts ? (kms - 2).toString() : ogg_dist(kms - 2)) + " " + dictionary["kilometer"] + " " + dictionary["and"] + " " + dictionary["2_kilometers"];
 			} else if (kms % 100 > 2 && kms % 100 < 11) {
 				return (tts ? kms.toString() : ogg_dist(kms)) + " " + dictionary["kilometers"];
 			} else {
 				return (tts ? kms.toString() : ogg_dist(kms)) + " " + dictionary["kilometer"];
 			}
 		case "mi-f":
-			if (dist < 160) {
-				return (tts ? (Math.round(2*dist/100.0/0.3048)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.3048)*50)) + " " + dictionary["feet"];
-			} else if (dist < 241) {
+			if (ft < 50) {
+				return dictionary["less_than"] + " " + dictionary["50_gen"] + " " + dictionary["foot"];
+			} else if (ft < 500) {
+				return (tts ? ft.toString() : ogg_dist(ft)) + " " + dictionary["foot"];
+			} else if (ft < 800) {
 				return dictionary["1_tenth_of_a_mile"];
 			} else if (dist < 401) {
 				return dictionary["2_tenths_of_a_mile"];
@@ -210,9 +219,15 @@ function distance(dist) {
 			} else if (dist < 4024) {
 				return dictionary["around_2_miles"];
 			} else if (dist < 16898) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
+				return dictionary["around"] + " " + (tts ? mls.toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
+			} else if (mls % 100 == 1) {
+				return (tts ? (mls - 1).toString() : ogg_dist(mls - 1)) + " " + dictionary["mile"] + " " + dictionary["and"] + " " + dictionary["mile"];
+			} else if (mls % 100 == 2) {
+				return (tts ? (mls - 2).toString() : ogg_dist(mls - 2)) + " " + dictionary["mile"] + " " + dictionary["and"] + " " + dictionary["2_miles"];
+			} else if (mls % 100 > 2 && mls % 100 < 11) {
+				return (tts ? mls.toString() : ogg_dist(mls)) + " " + dictionary["miles"];
 			} else {
-				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["mile"];
+				return (tts ? mls.toString() : ogg_dist(mls)) + " " + dictionary["mile"];
 			}
 		case "mi-m":
 			if (dist < 1.5) {
@@ -232,25 +247,43 @@ function distance(dist) {
 			} else if (dist < 4024) {
 				return dictionary["around_2_miles"];
 			} else if (dist < 16898) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
+				return dictionary["around"] + " " + (tts ? mls.toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
+			} else if (mls % 100 == 1) {
+				return (tts ? (mls - 1).toString() : ogg_dist(mls - 1)) + " " + dictionary["mile"] + " " + dictionary["and"] + " " + dictionary["mile"];
+			} else if (mls % 100 == 2) {
+				return (tts ? (mls - 2).toString() : ogg_dist(mls - 2)) + " " + dictionary["mile"] + " " + dictionary["and"] + " " + dictionary["2_miles"];
+			} else if (mls % 100 > 2 && mls % 100 < 11) {
+				return (tts ? mls.toString() : ogg_dist(mls)) + " " + dictionary["miles"];
 			} else {
-				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["mile"];
+				return (tts ? mls.toString() : ogg_dist(mls)) + " " + dictionary["mile"];
 			}
 		case "mi-y":
-			if (dist < 17) {
+			if (dist < 2) {
+				return dictionary["1_yard"];
+			} else if (dist < 3) {
+				return dictionary["2_yards"];
+			} else if (dist < 10) {
 				return (tts ? Math.round(dist/0.9144).toString() : ogg_dist(dist/0.9144)) + " " + dictionary["yards"];
-			} else if (dist < 100) {
-				return (tts ? (Math.round(dist/10.0/0.9144)*10).toString() : ogg_dist((dist/10.0/0.9144)*10)) + " " + dictionary["yards"];
+			} else if (dist < 17) {
+				return (tts ? Math.round(dist/0.9144).toString() : ogg_dist(dist/0.9144)) + " " + dictionary["yard"];
+			} else if (dist < 97) {
+				return (tts ? (Math.round(dist/10.0/0.9144)*10).toString() : ogg_dist((dist/10.0/0.9144)*10)) + " " + dictionary["yard"];
 			} else if (dist < 1300) {
-				return (tts ? (Math.round(2*dist/100.0/0.9144)*50).toString() : ogg_dist((2*dist/10.0/0.9144)*10)) + " " + dictionary["yards"];
+				return (tts ? (Math.round(2*dist/100.0/0.9144)*50).toString() : ogg_dist((2*dist/10.0/0.9144)*10)) + " " + dictionary["yard"];
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
 			} else if (dist < 4024) {
 				return dictionary["around_2_miles"];
 			} else if (dist < 16898) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
+				return dictionary["around"] + " " + (tts ? mls.toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
+			} else if (mls % 100 == 1) {
+				return (tts ? (mls - 1).toString() : ogg_dist(mls - 1)) + " " + dictionary["mile"] + " " + dictionary["and"] + " " + dictionary["mile"];
+			} else if (mls % 100 == 2) {
+				return (tts ? (mls - 2).toString() : ogg_dist(mls - 2)) + " " + dictionary["mile"] + " " + dictionary["and"] + " " + dictionary["2_miles"];
+			} else if (mls % 100 > 2 && mls % 100 < 11) {
+				return (tts ? mls.toString() : ogg_dist(mls)) + " " + dictionary["miles"];
 			} else {
-				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["mile"];
+				return (tts ? mls.toString() : ogg_dist(mls)) + " " + dictionary["mile"];
 			}
 	}
 }
