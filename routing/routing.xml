@@ -68,8 +68,8 @@
 		3) oneway				 (which determines in which direction a road can be taken)
 		4) priority			   (which determines how nice the road is to drive on)
 		5) obstacle			   (which determines the delay of an obstacle, in seconds for the routing engine)	
-			6) obstacle_time		  (which determines the delay of an obstacle, in seconds for the human)
-			7) penalty_transition	 (which determines the penalty of transitioning from one highway to another, often a high-level road to a lower level road)
+		6) obstacle_time		  (which determines the delay of an obstacle, in seconds for the human)
+		7) penalty_transition	 (which determines the penalty of transitioning from one highway to another, often a high-level road to a lower level road)
 
 
 		The routing time of a segment is the sum of values calculated by these blocks, as the following formula indicates:
@@ -795,7 +795,7 @@
 			<select value="-1" t="barrier" v="turnstile"/>
 			<select value="-1" t="barrier" v="bus_trap"/>
 			<select value="-1" t="barrier" v="block"/>
-	  <select value="-1" t="barrier" v="cycle_barrier"/>
+			<select value="-1" t="barrier" v="cycle_barrier"/>
 	  
 			<if param="short_way">
 				<select value="0" t="barrier" v="cattle_grid"/>
@@ -1673,6 +1673,19 @@
 			<select value="0"  t="access" v="permissive"/>
 
 		</point>
+
+		<way attribute="penalty_transition">
+			<select value="0" t="route"   v="ferry"/>
+			<select value="0" t="highway" v="steps"/>
+			<select value="0" t="highway" v="living_street"/>
+			<select value="0" t="highway" v="pedestrian"/>
+			<select value="0" t="highway" v="footway"/>
+			<select value="0" t="sidewalk" v="yes"/>
+			<select value="0" t="foot" v="yes"/>
+			<!-- give highway penalty to use mostly footways if available-->
+			<select value="150"/>
+			
+		</way>
 	</routingProfile>
 
 	<routingProfile name="geocoding" baseProfile="car" restrictionsAware="true" minDefaultSpeed="10.0" maxDefaultSpeed="10.0">
