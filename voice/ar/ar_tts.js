@@ -294,30 +294,31 @@ function distance(dist) {
 function time(seconds) {
 	var minutes = Math.round(seconds/60.0);
 	var oggMinutes = Math.round((seconds/300.0) * 5);
+	var hrs = Math.floor(seconds / 3600);
 	if (seconds < 30) {
 		return dictionary["less_a_minute"];
 	} else if (minutes % 60 == 0 && tts) {
 		return hours(minutes);
 	} else if (minutes % 60 == 1 && tts) {
-		return hours(minutes) + " " + dictionary["and"] + " " + dictionary["1_minute"];
+		return hours(minutes) + " " + (hrs ? dictionary["and"] : "") + " " + dictionary["1_minute"];
 	} else if (minutes % 60 == 2 && tts) {
-		return hours(minutes) + " " + dictionary["and"] + " " + dictionary["2_minutes"];
+		return hours(minutes) + " " + (hrs ? dictionary["and"] : "") + " " + dictionary["2_minutes"];
 	} else if (minutes % 60 > 2 && minutes % 60 < 11 && tts) {
-		return hours(minutes) + " " + dictionary["and"] + " " + dictionary["minutes"];
+		return hours(minutes) + " " + (hrs ? dictionary["and"] : "") + " " + (minutes % 60) + " " + dictionary["minutes"];
 	} else if (tts) {
-		return hours(minutes) + " " + (minutes % 60) + " " + dictionary["minute"];
+		return hours(minutes) + " " + (hrs ? dictionary["and"] : "") + " " + (minutes % 60) + " " + dictionary["minute"];
 	} else if (!tts && seconds < 300) {
 		return ogg_dist(minutes) + dictionary["minutes"];
 	} else if (!tts && oggMinutes % 60 == 0) {
 		return hours(oggMinutes);
 	} else if (!tts && oggMinutes % 60 == 1) {
-		return hours(oggMinutes) + " " + dictionary["and"] + " " + dictionary["1_minute"]; 
+		return hours(oggMinutes) + " " + (hrs ? dictionary["and"] : "") + " " + dictionary["1_minute"]; 
 	} else if (!tts && oggMinutes % 60 == 2) {
-		return hours(oggMinutes) + " " + dictionary["and"] + " " + dictionary["2_minutes"]; 
+		return hours(oggMinutes) + " " + (hrs ? dictionary["and"] : "") + " " + dictionary["2_minutes"]; 
 	} else if (!tts && oggMinutes % 60 > 2 && oggMinutes < 11) {
-		return hours(oggMinutes) + " " + ogg_dist(oggMinutes % 60) + dictionary["minutes"];
+		return hours(oggMinutes) + " " + (hrs ? dictionary["and"] : "") + " " + ogg_dist(oggMinutes % 60) + dictionary["minutes"];
 	} else {
-		return hours(oggMinutes) + " " + ogg_dist(oggMinutes % 60) + dictionary["minute"];
+		return hours(oggMinutes) + " " + (hrs ? dictionary["and"] : "") + " " + ogg_dist(oggMinutes % 60) + dictionary["minute"];
 	}
 }
 
