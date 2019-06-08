@@ -17,13 +17,16 @@ var metricConst;
 var dictionary = {};
 var tts;
 
+var NOM = 1;
+var GEN_ACC = 2;
+
 //// STRINGS
 ////////////////////////////////////////////////////////////////
 // ROUTE CALCULATED
 function populateDictionary(tts) {
-	dictionary["route_is"] = tts ? "يبلغُ طول هذه الرحلة" : "route_is.ogg";
-	dictionary["route_calculate"] = tts ? "إعادة حِساب طول المَسافة" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? "المَسافةُ" : "distance.ogg";
+	dictionary["route_is"] = tts ? "تَبْلُغُ المَسافة" : "route_is.ogg";
+	dictionary["route_calculate"] = tts ? "تمّتْ إعادة حِساب الطريق" : "route_calculate.ogg";
+	dictionary["distance"] = tts ? "تَبْلُغُ المَسافة" : "distance.ogg";
 
 	// LEFT/RIGHT
 	//dictionary["prepare"] = tts ? "Prepare to " : "prepare.ogg";
@@ -146,7 +149,7 @@ function populateDictionary(tts) {
 	dictionary["50_gen"] = tts ? "خمسين" : "50_gen.ogg";
 
 	// TIME SUPPORT
-	dictionary["time"] = tts ? "تَبْلُغُ المُدَّةُ الزمنيةُ للْوُصول" : "time.ogg";
+	dictionary["time"] = tts ? "تَبْلُغُ مُدَّةُ السَفَر" : "time.ogg";
 	dictionary["1_hour"] = tts ? "ساعة واحدة" : "1_hour.ogg";
 	dictionary["2_hours"] = tts ? "ساعتَين" : "2_hours.ogg";
 	dictionary["hours"] = tts ? "ساعات" : "hours.ogg";
@@ -167,7 +170,7 @@ function setMode(mode) {
 }
 
 function route_new_calc(dist, timeVal) {
-	return dictionary["route_is"] + " " + distance(dist) +  (tts ? "، " : " ") + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : "");
+	return dictionary["route_is"] + " " + distance(dist) + (tts ? "، " : " ") + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : "");
 }
 
 function distance(dist) {
@@ -335,7 +338,7 @@ function hours(minutes) {
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + " " + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : "");
+	return dictionary["route_calculate"] + (tts ? "، " : " ") + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : "");
 }
 
 function go_ahead(dist, streetName) {
