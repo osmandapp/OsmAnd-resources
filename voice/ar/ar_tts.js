@@ -145,8 +145,8 @@ function populateDictionary(tts) {
 	dictionary["2_yards"] = tts ? "ياردتَين" : "2_yards.ogg";
 	dictionary["yards"] = tts ? "ياردات" : "yards.ogg";
 
-	dictionary["less_than"] = tts ? "أقلّ من" : "yards.ogg";
-	dictionary["50_gen"] = tts ? "خمسين" : "50_gen.ogg";
+	dictionary["less_than"] = tts ? "أقلّ من" : "less_than.ogg";
+	dictionary["more_than"] = tts ? "أَكثر من" : "more_than.ogg";
 
 	// TIME SUPPORT
 	dictionary["time"] = tts ? "تَبْلُغُ مُدَّةُ السَفَر" : "time.ogg";
@@ -158,6 +158,238 @@ function populateDictionary(tts) {
 	dictionary["1_minute"] = tts ? "دقيقة واحدة" : "1_minute.ogg";
 	dictionary["2_minutes"] = tts ? "دقيقتَين" : "2_minutes.ogg";
 	dictionary["minutes"] = tts ? "دقائق" : "minutes.ogg";
+
+	// NUMBERS
+	dictionary["0_m_nom"] = ""; // \
+	dictionary["0_m_gen"] = ""; //  \
+	dictionary["0_m_acc"] = ""; //   \
+	dictionary["0_f_nom"] = ""; //    \
+	dictionary["0_f_gen"] = ""; //     } save some decision making in num_str()
+	dictionary["0_f_acc"] = ""; //    /
+	dictionary["0_nom"] = "";   //   /
+	dictionary["0_gen"] = "";   //  /
+	dictionary["0_acc"] = "";   // /
+	dictionary["1_m_nom"] = tts ? "أَحدُ" : "1_m_nom.ogg";
+	dictionary["1_m_gen"] = tts ? "أَحدَ" : "1_m_gen.ogg";
+	dictionary["1_m_acc"] = dictionary["1_m_gen"];
+	dictionary["1_f_nom"] = tts ? "إحدى" : "1_f_nom.ogg";
+	dictionary["1_f_acc"] = dictionary["1_f_gen"] = dictionary["1_f_nom"];
+	dictionary["alt_1_m"] = tts ? "واحِد" : "1_m.ogg";  // is this even needed?
+	dictionary["alt_1_f"] = tts ? "واحِدة" : "1_f.ogg"; //
+	dictionary["2_m_nom"] = tts ? "اثنان" : "2_m_nom.ogg";
+	dictionary["2_m_gen"] = tts ? "اثنَين" : "2_m_gen.ogg";
+	dictionary["2_m_acc"] = dictionary["2_m_gen"];
+	dictionary["2_f_nom"] = tts ? "اثنتان" : "2_f_nom.ogg";
+	dictionary["2_f_gen"] = tts ? "اثنتَين" : "2_f_gen.ogg";
+	dictionary["2_f_acc"] = dictionary["2_f_gen"];
+	dictionary["3_m_nom"] = tts ? "ثلاثةُ" : "3_m_nom.ogg";
+	dictionary["3_m_gen"] = tts ? "ثلاثةِ" : "3_m_gen.ogg";
+	dictionary["3_m_acc"] = tts ? "ثلاثةَ" : "3_m_acc.ogg";
+	dictionary["3_f_nom"] = tts ? "ثلاثُ" : "3_f_nom.ogg";
+	dictionary["3_f_gen"] = tts ? "ثلاثِ" : "3_f_gen.ogg";
+	dictionary["3_f_acc"] = tts ? "ثلاثَ" : "3_f_acc.ogg";
+	dictionary["4_m_nom"] = tts ? "أَربعةُ" : "4_m_nom.ogg";
+	dictionary["4_m_gen"] = tts ? "أَربعةِ" : "4_m_gen.ogg";
+	dictionary["4_m_acc"] = tts ? "أَربعةَ" : "4_m_acc.ogg";
+	dictionary["4_f_nom"] = tts ? "أَربعُ" : "4_f_nom.ogg";
+	dictionary["4_f_gen"] = tts ? "أَربعِ" : "4_f_gen.ogg";
+	dictionary["4_f_acc"] = tts ? "أَربعَ" : "4_f_acc.ogg";
+	dictionary["5_m_nom"] = tts ? "خمسةُ" : "5_m_nom.ogg";
+	dictionary["5_m_gen"] = tts ? "خمسةِ" : "5_m_gen.ogg";
+	dictionary["5_m_acc"] = tts ? "خمسةَ" : "5_m_acc.ogg";
+	dictionary["5_f_nom"] = tts ? "خمسُ" : "5_f_nom.ogg";
+	dictionary["5_f_gen"] = tts ? "خمسِ" : "5_f_gen.ogg";
+	dictionary["5_f_acc"] = tts ? "خمسَ" : "5_f_acc.ogg";
+	dictionary["6_m_nom"] = tts ? "ستّةُ" : "6_m_nom.ogg";
+	dictionary["6_m_gen"] = tts ? "ستّةِ" : "6_m_gen.ogg";
+	dictionary["6_m_acc"] = tts ? "ستّةَ" : "6_m_acc.ogg";
+	dictionary["6_f_nom"] = tts ? "ستُّ" : "6_f_nom.ogg";
+	dictionary["6_f_gen"] = tts ? "ستِّ" : "6_f_gen.ogg";
+	dictionary["6_f_acc"] = tts ? "ستَّ" : "6_f_acc.ogg";
+	dictionary["7_m_nom"] = tts ? "سبعةُ" : "7_m_nom.ogg";
+	dictionary["7_m_gen"] = tts ? "سبعةِ" : "7_m_gen.ogg";
+	dictionary["7_m_acc"] = tts ? "سبعةَ" : "7_m_acc.ogg";
+	dictionary["7_f_nom"] = tts ? "سبعُ" : "7_f_nom.ogg";
+	dictionary["7_f_gen"] = tts ? "سبعِ" : "7_f_gen.ogg";
+	dictionary["7_f_acc"] = tts ? "سبعَ" : "7_f_acc.ogg";
+	dictionary["8_m_nom"] = tts ? "ثمانيةُ" : "8_m_nom.ogg";
+	dictionary["8_m_gen"] = tts ? "ثمانيةِ" : "8_m_gen.ogg";
+	dictionary["8_m_acc"] = tts ? "ثمانيةَ" : "8_m_acc.ogg";
+	dictionary["8_f_nom"] = tts ? "ثماني" : "8_f_nom.ogg";
+	dictionary["8_f_gen"] = dictionary["8_f_nom"];
+	dictionary["8_f_acc"] = tts ? "ثمانيَ" : "8_f_acc.ogg";
+	dictionary["9_m_nom"] = tts ? "تسعةُ" : "9_m_nom.ogg";
+	dictionary["9_m_gen"] = tts ? "تسعةِ" : "9_m_gen.ogg";
+	dictionary["9_m_acc"] = tts ? "تسعةَ" : "9_m_acc.ogg";
+	dictionary["9_f_nom"] = tts ? "تسعُ" : "9_f_nom.ogg";
+	dictionary["9_f_gen"] = tts ? "تسعِ" : "9_f_gen.ogg";
+	dictionary["9_f_acc"] = tts ? "تسعَ" : "9_f_acc.ogg";
+	dictionary["10_m_nom"] = tts ? "عشرةُ" : "10_m_nom.ogg";
+	dictionary["10_m_gen"] = tts ? "عشرةِ" : "10_m_gen.ogg";
+	dictionary["10_m_acc"] = tts ? "عشرةَ" : "10_m_acc.ogg";
+	dictionary["10_f_nom"] = tts ? "عشرُ" : "10_f_nom.ogg";
+	dictionary["10_f_gen"] = tts ? "عشرِ" : "10_f_gen.ogg";
+	dictionary["10_f_acc"] = tts ? "عشرَ" : "10_f_acc.ogg";
+	dictionary["11_m_nom"] = tts ? "أَحدَ عشرَ" : "11_m_nom.ogg";
+	dictionary["11_m_acc"] = dictionary["11_m_gen"] = dictionary["11_m_nom"];
+	dictionary["11_f_nom"] = tts ? "إحدى عشْرَةَ" : "11_f_nom.ogg";
+	dictionary["11_f_acc"] = dictionary["11_f_gen"] = dictionary["11_f_nom"];
+	dictionary["12_m_nom"] = tts ? "اثنا عشرَ" : "12_m_nom.ogg";
+	dictionary["12_m_gen"] = tts ? "اثنَي عشرَ" : "12_m_gen.ogg";
+	dictionary["12_m_acc"] = dictionary["12_m_gen"];
+	dictionary["12_f_nom"] = tts ? "اثنتا عشْرَةَ" : "12_f_nom.ogg";
+	dictionary["12_f_gen"] = tts ? "اثنتَي عشْرَةَ" : "12_f_gen.ogg";
+	dictionary["12_f_acc"] = dictionary["12_f_gen"];
+	dictionary["13_m_nom"] = tts ? "ثلاثةَ عشرَ" : "13_m_nom.ogg";
+	dictionary["13_m_acc"] = dictionary["13_m_gen"] = dictionary["13_m_nom"];
+	dictionary["13_f_nom"] = tts ? "ثلاثَ عشْرَةَ" : "13_f_nom.ogg";
+	dictionary["13_f_acc"] = dictionary["13_f_gen"] = dictionary["13_f_nom"];
+	dictionary["14_m_nom"] = tts ? "أَربعةَ عشرَ" : "14_m_nom.ogg";
+	dictionary["14_m_acc"] = dictionary["14_m_gen"] = dictionary["14_m_nom"];
+	dictionary["14_f_nom"] = tts ? "أَربعَ عشْرَةَ" : "14_f_nom.ogg";
+	dictionary["14_f_acc"] = dictionary["14_f_gen"] = dictionary["14_f_nom"];
+	dictionary["15_m_nom"] = tts ? "خمسةَ عشرَ" : "15_m_nom.ogg";
+	dictionary["15_m_acc"] = dictionary["15_m_gen"] = dictionary["15_m_nom"];
+	dictionary["15_f_nom"] = tts ? "خمسَ عشْرَةَ" : "15_f_nom.ogg";
+	dictionary["15_f_acc"] = dictionary["15_f_gen"] = dictionary["15_f_nom"];
+	dictionary["16_m_nom"] = tts ? "ستّةَ عشرَ" : "16_m_nom.ogg";
+	dictionary["16_m_acc"] = dictionary["16_m_gen"] = dictionary["16_m_nom"];
+	dictionary["16_f_nom"] = tts ? "ستَّ عشْرَةَ" : "16_f_nom.ogg";
+	dictionary["16_f_acc"] = dictionary["16_f_gen"] = dictionary["16_f_nom"];
+	dictionary["17_m_nom"] = tts ? "سبعةَ عشرَ" : "17_m_nom.ogg";
+	dictionary["17_m_acc"] = dictionary["17_m_gen"] = dictionary["17_m_nom"];
+	dictionary["17_f_nom"] = tts ? "سبعَ عشْرَةَ" : "17_f_nom.ogg";
+	dictionary["17_f_acc"] = dictionary["17_f_gen"] = dictionary["17_f_nom"];
+	dictionary["18_m_nom"] = tts ? "ثمانةَ عشرَ" : "18_m_nom.ogg";
+	dictionary["18_m_acc"] = dictionary["18_m_gen"] = dictionary["18_m_nom"];
+	dictionary["18_f_nom"] = tts ? "ثمانيَ عشْرَةَ" : "18_f_nom.ogg";
+	dictionary["18_f_acc"] = dictionary["18_f_gen"] = dictionary["18_f_nom"];
+	dictionary["19_m_nom"] = tts ? "تسعةَ عشرَ" : "19_m_nom.ogg";
+	dictionary["19_m_acc"] = dictionary["19_m_gen"] = dictionary["19_m_nom"];
+	dictionary["19_f_nom"] = tts ? "تسعَ عشْرَةَ" : "19_f_nom.ogg";
+	dictionary["19_f_acc"] = dictionary["19_f_gen"] = dictionary["19_f_nom"];
+	dictionary["20_nom"] = tts ? "عِشْرون" : "20_nom.ogg";
+	dictionary["20_gen"] = tts ? "عِشْرين" : "20_gen.ogg";
+	dictionary["20_acc"] = dictionary["20_gen"];
+	dictionary["30_nom"] = tts ? "ثلاثون" : "30_nom.ogg";
+	dictionary["30_gen"] = tts ? "ثلاثين" : "30_gen.ogg";
+	dictionary["30_acc"] = dictionary["30_gen"];
+	dictionary["40_nom"] = tts ? "أَربعون" : "40_nom.ogg";
+	dictionary["40_gen"] = tts ? "أَربعين" : "40_gen.ogg";
+	dictionary["40_acc"] = dictionary["40_gen"];
+	dictionary["50_nom"] = tts ? "خمسون" : "50_nom.ogg";
+	dictionary["50_gen"] = tts ? "خمسين" : "50_gen.ogg";
+	dictionary["50_acc"] = dictionary["50_gen"];
+	dictionary["60_nom"] = tts ? "ستّون" : "60_nom.ogg";
+	dictionary["60_gen"] = tts ? "ستّين" : "60_gen.ogg";
+	dictionary["60_acc"] = dictionary["60_gen"];
+	dictionary["70_nom"] = tts ? "سبعون" : "70_nom.ogg";
+	dictionary["70_gen"] = tts ? "سبعين" : "70_gen.ogg";
+	dictionary["70_acc"] = dictionary["70_gen"];
+	dictionary["80_nom"] = tts ? "ثمانون" : "80_nom.ogg";
+	dictionary["80_gen"] = tts ? "ثمانين" : "80_gen.ogg";
+	dictionary["80_acc"] = dictionary["80_gen"];
+	dictionary["90_nom"] = tts ? "تسعون" : "90_nom.ogg";
+	dictionary["90_gen"] = tts ? "تسعين" : "90_gen.ogg";
+	dictionary["90_acc"] = dictionary["90_gen"];
+	dictionary["100"] = tts ? "مئة" : "100.ogg";
+	dictionary["100_nom"] = tts ? "مئةُ" : "100_nom.ogg"; // \
+	dictionary["100_gen"] = tts ? "مئةِ" : "100_gen.ogg"; //  } for idaafa only
+	dictionary["100_acc"] = tts ? "مئةَ" : "100_acc.ogg"; // /
+	dictionary["200_nom"] = tts ? "مئتان" : "200_nom.ogg";
+	dictionary["200_gen"] = tts ? "مئتَين" : "200_gen.ogg";
+	dictionary["200_acc"] = dictionary["200_gen"];
+	dictionary["200_nom_id"] = tts ? "مئتا" : "200_nom_id.ogg"; // \
+	dictionary["200_gen_id"] = tts ? "مئتَي" : "200_gen_id.ogg"; //  } for idaafa only
+	dictionary["200_acc_id"] = dictionary["200_gen_id"];        // /
+	dictionary["300_nom"] = tts ? "ثلاثُمئة" : "300_nom.ogg";
+	dictionary["300_gen"] = tts ? "ثلاثِمئة" : "300_gen.ogg";
+	dictionary["300_acc"] = tts ? "ثلاثَمئة" : "300_acc.ogg";
+	dictionary["400_nom"] = tts ? "أَربعُمئة" : "400_nom.ogg";
+	dictionary["400_gen"] = tts ? "أَربعِمئة" : "400_gen.ogg";
+	dictionary["400_acc"] = tts ? "أَربعَمئة" : "400_acc.ogg";
+	dictionary["500_nom"] = tts ? "خمسُمئة" : "500_nom.ogg";
+	dictionary["500_gen"] = tts ? "خمسِمئة" : "500_gen.ogg";
+	dictionary["500_acc"] = tts ? "خمسَمئة" : "500_acc.ogg";
+	dictionary["600_nom"] = tts ? "ستُّمئة" : "600_nom.ogg";
+	dictionary["600_gen"] = tts ? "ستِّمئة" : "600_gen.ogg";
+	dictionary["600_acc"] = tts ? "ستَّمئة" : "600_acc.ogg";
+	dictionary["700_nom"] = tts ? "سبعُمئة" : "700_nom.ogg";
+	dictionary["700_gen"] = tts ? "سبعِمئة" : "700_gen.ogg";
+	dictionary["700_acc"] = tts ? "سبعَمئة" : "700_acc.ogg";
+	dictionary["800_nom"] = tts ? "ثمانيمئة" : "800_nom.ogg";
+	dictionary["800_gen"] = dictionary["800_nom"];
+	dictionary["800_acc"] = tts ? "ثمانيَمئة" : "800_acc.ogg";
+	dictionary["900_nom"] = tts ? "تسعةُمئة" : "900_nom.ogg";
+	dictionary["900_gen"] = tts ? "تسعةِمئة" : "900_gen.ogg";
+	dictionary["900_acc"] = tts ? "تسعةَمئة" : "900_acc.ogg";
+	dictionary["1000"] = tts ? "أَلْف" : "1000.ogg";
+	dictionary["1000_nom"] = tts ? "أَلْفُ" : "1000_nom.ogg";
+	dictionary["1000_gen"] = tts ? "أَلْفِ" : "1000_gen.ogg";
+	dictionary["1000_acc"] = tts ? "أَلْفَ" : "1000_acc.ogg";
+	dictionary["2000_nom"] = tts ? "مئتان" : "2000_nom.ogg";
+	dictionary["2000_gen"] = tts ? "مئتَين" : "2000_gen.ogg";
+	dictionary["2000_acc"] = dictionary["2000_gen"];
+	dictionary["2000_nom_id"] = tts ? "أَلْفَا" : "2000_nom_id.ogg"; // \
+	dictionary["2000_gen_id"] = tts ? "أَلْفَي" : "2000_gen_id.ogg"; //  } for idaafa only
+	dictionary["2000_acc_id"] = dictionary["2000_gen_id"];        // /
+	dictionary["3000_nom"] = tts ? "ثلاثةُ آلاف" : "3000_nom.ogg";
+	dictionary["3000_gen"] = tts ? "ثلاثةِ آلاف" : "3000_gen.ogg";
+	dictionary["3000_acc"] = tts ? "ثلاثةَ آلاف" : "3000_acc.ogg";
+	dictionary["4000_nom"] = tts ? "أَربعةُ آلاف" : "4000_nom.ogg";
+	dictionary["4000_gen"] = tts ? "أَربعةِ آلاف" : "4000_gen.ogg";
+	dictionary["4000_acc"] = tts ? "أَربعةَ آلاف" : "4000_acc.ogg";
+	dictionary["5000_nom"] = tts ? "خمسةُ آلاف" : "5000_nom.ogg";
+	dictionary["5000_gen"] = tts ? "خمسةِ آلاف" : "5000_gen.ogg";
+	dictionary["5000_acc"] = tts ? "خمسةَ آلاف" : "5000_acc.ogg";
+	dictionary["6000_nom"] = tts ? "ستّةُ آلاف" : "6000_nom.ogg";
+	dictionary["6000_gen"] = tts ? "ستّةِ آلاف" : "6000_gen.ogg";
+	dictionary["6000_acc"] = tts ? "ستّةَ آلاف" : "6000_acc.ogg";
+	dictionary["7000_nom"] = tts ? "سبعةُ آلاف" : "7000_nom.ogg";
+	dictionary["7000_gen"] = tts ? "سبعةِ آلاف" : "7000_gen.ogg";
+	dictionary["7000_acc"] = tts ? "سبعةَ آلاف" : "7000_acc.ogg";
+	dictionary["8000_nom"] = tts ? "ثمانيةُ آلاف" : "8000_nom.ogg";
+	dictionary["8000_gen"] = tts ? "ثمانيةِ آلاف" : "8000_gen.ogg";
+	dictionary["8000_acc"] = tts ? "ثمانيةَ آلاف" : "8000_acc.ogg";
+	dictionary["9000_nom"] = tts ? "تسعةُ آلاف" : "9000_nom.ogg";
+	dictionary["9000_gen"] = tts ? "تسعةِ آلاف" : "9000_gen.ogg";
+	dictionary["9000_acc"] = tts ? "تسعةَ آلاف" : "9000_acc.ogg";
+	dictionary["10000_nom"] = tts ? "عشرةُ آلاف" : "10000_nom.ogg";
+	dictionary["10000_gen"] = tts ? "عشرةِ آلاف" : "10000_gen.ogg";
+	dictionary["10000_acc"] = tts ? "عشرةَ آلاف" : "10000_acc.ogg";
+}
+
+function num_str(number, gender /*of the object being counted*/, grm_case) {
+	
+	//deal with the special cases (idaafas) first
+	if (number > 10000)
+		return dictionary["more_than"] + " " + dictionary["10000_gen"];
+	if (number == 2000)
+		return dictionary["2000_"+grm_case+"_id"];
+	if (number == 1000)
+		return dictionary["1000_"+grm_case];
+	if (number == 200)
+		return dictionary["200_"+grm_case+"_id"];
+	if (number == 1000)
+		return dictionary["100_"+grm_case];
+
+	var teens = 0;
+	var thousands = Math.floor(number / 1000) * 1000;
+	var hundreds  = Math.floor((number - thousands) / 1000) * 100;
+	var tens      = Math.floor((number - thousands - hundreds) / 10) * 10;
+	var ones      = Math.floor(number - thousands - hundreds - tens);
+	if (tens == 10 && ones)
+		teens = tens + ones;
+
+	if (teens)
+		return   dictionary[thousands.toString()+"_"+grm_case]
+			   + ((thousands && hundreds) ? dictionary["and"] : "") + dictionary[hundreds.toString()+"_"+grm_case]
+			   + ((thousands || hundreds) ? dictionary["and"] : "") + dictionary[teens.toString()+"_"+gender+"_"+grm_case];
+	else
+		return   dictionary[thousands.toString()+"_"+grm_case]
+			   + ((thousands && hundreds) ? dictionary["and"] : "") + dictionary[hundreds.toString()+"_"+grm_case]
+			   + (((thousands || hundreds) && ones) ? dictionary["and"] : "") + dictionary[ones.toString()+"_"+gender+"_"+grm_case]
+			   + (((thousands || hundreds || ones) && tens) ? dictionary["and"] : "") + dictionary[tens.toString()+"_"+grm_case];
 }
 
 function setMetricConst(metrics) {
@@ -170,10 +402,10 @@ function setMode(mode) {
 }
 
 function route_new_calc(dist, timeVal) {
-	return dictionary["route_is"] + " " + distance(dist) + (tts ? "، " : " ") + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : "");
+	return dictionary["route_is"] + " " + distance(dist, "acc") + (tts ? "، " : " ") + dictionary["time"] + " " + time(timeVal, "acc") + (tts ? ". " : "");
 }
 
-function distance(dist) {
+function distance(dist, grm_case) {
 	var kms = Math.round(dist/1000.0);
 	var mls = Math.round(dist/1609.3);
     var ft =  Math.round(2*dist/100.0/0.3048)*50;
@@ -291,10 +523,11 @@ function distance(dist) {
 	}
 }
 
-function time(seconds) {
+function time(seconds, grm_case) {
 	var minutes = Math.round(seconds/60.0);
 	var oggMinutes = Math.round((seconds/300.0) * 5);
 	var hrs = Math.floor(seconds / 3600);
+	
 	if (seconds < 30) {
 		return dictionary["less_a_minute"];
 	} else if (minutes % 60 == 0 && tts) {
