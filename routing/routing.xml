@@ -829,7 +829,7 @@
 		</point>
 	</routingProfile>
 
-	<routingProfile name="bicycle" baseProfile="bicycle" restrictionsAware="true" minDefaultSpeed="2" maxDefaultSpeed="33" leftTurn="4" rightTurn="2" followSpeedLimitations="false" onewayAware="true" heuristicCoefficient="1.4">
+	<routingProfile name="bicycle" baseProfile="bicycle" restrictionsAware="true" minDefaultSpeed="10" maxDefaultSpeed="33" leftTurn="4" rightTurn="2" followSpeedLimitations="false" onewayAware="true" heuristicCoefficient="1.4">
 		<!-- <attribute name="relaxNodesIfStartDistSmallCoeff" value="2.5"/>  -->
 		<!-- New ROUTING API -->
 
@@ -1489,7 +1489,7 @@
 		</way>
 	</routingProfile>
 
-	<routingProfile name="pedestrian" baseProfile="pedestrian" restrictionsAware="false" minDefaultSpeed="3" maxDefaultSpeed="5" leftTurn="0" rightTurn="0" followSpeedLimitations="false" onewayAware="false">
+	<routingProfile name="pedestrian" baseProfile="pedestrian" restrictionsAware="false" minDefaultSpeed="4" maxDefaultSpeed="10" leftTurn="0" rightTurn="0" followSpeedLimitations="false" onewayAware="false">
 
 		<attribute name="heuristicCoefficient" value="1.2" />
 		<!-- NEW ROUTING API -->
@@ -1570,8 +1570,9 @@
 
 
 		<way attribute="speed" type="speed">
-			<select value="4" t="highway" v="steps"/>
-			<select value="5"/>
+			<!-- do not decrease speed for steps -->
+			<!-- <select value="1" t="highway" v="steps"/> -->
+			<!-- for other roads minDefaultSpeed is used -->
 		</way>
 
 		<way attribute="obstacle_srtm_alt_speed">
@@ -1747,6 +1748,7 @@
 		<way attribute="speed" type="speed">
 			<select value="10"  t="waterway" v="river"/>
 			<select value="10"  t="waterway" v="canal"/>
+			<!-- for other channels minDefaultSpeed is used -->
 		</way>
 
 		<way attribute="priority">
@@ -1765,7 +1767,7 @@
 		</point>
 	</routingProfile>
 
-	<routingProfile name="ski" minDefaultSpeed="5.0" maxDefaultSpeed="100.0" onewayAware="true" baseProfile="ski">
+	<routingProfile name="ski" minDefaultSpeed="5.0" maxDefaultSpeed="150.0" onewayAware="true" baseProfile="ski">
 		<parameter id="piste_type_downhill" group="piste_type" name="Alpine/downhill ski" description="Slopes for alpine or downhill skiing and access to ski lifts." type="boolean" default="true"/>
 		<parameter id="piste_type_nordic" group="piste_type" name="Cross country/nordic ski" description="Trails for nordic or cross-country skiing." type="boolean"/>
 		<parameter id="piste_type_skitour" group="piste_type" name="Ski touring" description="Routes for ski touring." type="boolean"/>
