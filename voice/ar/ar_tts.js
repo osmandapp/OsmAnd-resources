@@ -8,7 +8,7 @@
 // (X) Distance unit support (meters / feet / yard)
 // (X) Special grammar: agreement of number and singular/dual/plural form of unit
 // (X) Special grammar: agreement of number and unit gender
-// (X) Special grammar: nominative vs. genitive/accussative distinction
+// (X) Special grammar: nominative vs. genitive/accusative distinction
 // (X) Special grammar: word order with ordinal numbers
 
 /* jshint -W069 */
@@ -16,9 +16,6 @@
 var metricConst;
 var dictionary = {};
 var tts;
-
-var NOM = 1;
-var GEN_ACC = 2;
 
 //// STRINGS
 ////////////////////////////////////////////////////////////////
@@ -33,16 +30,16 @@ function populateDictionary(tts) {
 	dictionary["after"] = tts ? "بعدَ" : "after.ogg";
 	dictionary["in"] = tts ? "في" : "in.ogg";
 
-	dictionary["left"] = tts ? "انعطِفْ إلى اليسار" : "left.ogg";
-	dictionary["left_sh"] = tts ? "اتجِهْ إلى اليسار بشكل حاد" : "left_sh.ogg";
-	dictionary["left_sl"] = tts ? "اتجِهْ إلى اليسار قليلا" : "left_sl.ogg";
-	dictionary["right"] = tts ? "انعطِفْ إلى اليمين" : "right.ogg";
-	dictionary["right_sh"] = tts ? "اتجِهْ إلى اليمين بشكل حاد" : "right_sh.ogg";
-	dictionary["right_sl"] = tts ? "اتجِهْ إلى اليمين قليلا" : "right_sl.ogg";
-	dictionary["left_keep"] = tts ? "إِلْزِمِ اليسار" : "left_keep.ogg";
-	dictionary["right_keep"] = tts ? "إِلْزِمِ اليمين" : "right_keep.ogg";
-	dictionary["left_bear"] = tts ? "إِلْزِمِ اليسار" : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
-	dictionary["right_bear"] = tts ? "إِلْزِمِ اليمين" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
+	dictionary["left"] = tts ? "اِنعطِفْ إلى اليسار" : "left.ogg";
+	dictionary["left_sh"] = tts ? "اِتجِهْ إلى اليسار بشكل حاد" : "left_sh.ogg";
+	dictionary["left_sl"] = tts ? "اِتجِهْ إلى اليسار قليلا" : "left_sl.ogg";
+	dictionary["right"] = tts ? "اِنعطِفْ إلى اليمين" : "right.ogg";
+	dictionary["right_sh"] = tts ? "اِتجِهْ إلى اليمين بشكل حاد" : "right_sh.ogg";
+	dictionary["right_sl"] = tts ? "اِتجِهْ إلى اليمين قليلا" : "right_sl.ogg";
+	dictionary["left_keep"] = tts ? "اِلْزَمِ اليسار" : "left_keep.ogg";
+	dictionary["right_keep"] = tts ? "اِلْزَمِ اليمين" : "right_keep.ogg";
+	dictionary["left_bear"] = tts ? "اِلْزَمِ اليسار" : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
+	dictionary["right_bear"] = tts ? "اِلْزَمِ اليمين" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
 
 	// U-TURNS
 	dictionary["make_uturn"] = tts ? "إلْتَف إلى الوراء" : "make_uturn.ogg";
@@ -52,7 +49,7 @@ function populateDictionary(tts) {
 	dictionary["prepare_roundabout"] = tts ? "استعِدْ للدُخول في المسار الدَّائِري" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "أُدخُلْ في المسار الدَّائري، ثُمَّ" : "roundabout.ogg";
 	dictionary["then"] = tts ? "، ثُمَّ" : "then.ogg";
-	dictionary["and"] = tts ? "و" : "and.ogg";
+	dictionary["and"] = tts ? "وَ" : "and.ogg";
 	dictionary["take"] = tts ? "أُسْلُكِ" : "take.ogg";
 	dictionary["exit"] = tts ? "المَخرَجَ" : "exit.ogg";
 
@@ -76,13 +73,13 @@ function populateDictionary(tts) {
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "اتجِهْ مُباشَرَةً إلى الأَمام" : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "استمِرْ لـ" : "follow.ogg";  // 'Follow the course of the road for' perceived as too chatty by many users
+	dictionary["follow"] = tts ? "استمْرِرْ لـ" : "follow.ogg";  // 'Follow the course of the road for' perceived as too chatty by many users
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "وتَصِلُ إلى وِجهتِكَ" : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "لقد وَصَلْتَ إلى وِجهتِكَ" : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "وتَصِلُ إلى وِجهتِكَ الوسيطة" : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "لقد وَصَلْتَ إلى وِجهتِكَ الوسيطة" : "reached_intermediate.ogg";
+	dictionary["and_arrive_destination"] = tts ? "وتَصِلُ إلى وِجهَتِكَ" : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "لقد وَصَلْتَ إلى وِجهَتِكَ" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "وتَصِلُ إلى وِجهَتِكَ الوسيطة" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "لقد وَصَلْتَ إلى وِجهَتِكَ الوسيطة" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
 	dictionary["and_arrive_waypoint"] = tts ? "وتمر GPX إحداثية" : "and_arrive_waypoint.ogg";
@@ -94,7 +91,7 @@ function populateDictionary(tts) {
 
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "لقد تجاوزت الحد الأقصى للسرعة " : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "الحد الأقصى للسرعة" : "exceed_limit.ogg";
+	dictionary["exceed_limit"] = tts ? "الحدُّ الأقصى للسرعة" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "انتباه،" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "هُنَاكَ رادارٌ لِمُرَاقَبَةِ السُّرْعَة" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "هُنَاكَ نُقْطَةٌ لِمُراقَبَةِ الحُدود" : "border_control.ogg";
@@ -138,6 +135,7 @@ function populateDictionary(tts) {
 	dictionary["mile"] = tts ? "ميل" : "mile.ogg";
 	dictionary["2_miles"] = tts ? "ميلَين" : "2_miles.ogg";
 	dictionary["around_1_mile"] = tts ? "حوالي ميل واحِد" : "around_1_mile.ogg";
+	dictionary["around_2_miles"] = tts ? "حوالي ميلَيْنِ" : "around_2_miles.ogg";
 	dictionary["miles"] = tts ? "اميال" : "miles.ogg";
 
 	dictionary["yard"] = tts ? "ياردة" : "yard.ogg";
@@ -152,6 +150,7 @@ function populateDictionary(tts) {
 	dictionary["time"] = tts ? "تَبْلُغُ مُدَّةُ السَفَر" : "time.ogg";
 	dictionary["1_hour"] = tts ? "ساعة واحدة" : "1_hour.ogg";
 	dictionary["2_hours"] = tts ? "ساعتَين" : "2_hours.ogg";
+	dictionary["hour"] = tts ? "ساعة" : "hour.ogg";
 	dictionary["hours"] = tts ? "ساعات" : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "أقلّ من دقيقة" : "less_a_minute.ogg";
 	dictionary["minute"] = tts ? "دقيقة" : "minute.ogg";
@@ -176,11 +175,11 @@ function populateDictionary(tts) {
 	dictionary["1_f_acc"] = dictionary["1_f_gen"] = dictionary["1_f_nom"];
 	dictionary["alt_1_m"] = tts ? "واحِد" : "1_m.ogg";  // is this even needed?
 	dictionary["alt_1_f"] = tts ? "واحِدة" : "1_f.ogg"; //
-	dictionary["2_m_nom"] = tts ? "اثنان" : "2_m_nom.ogg";
-	dictionary["2_m_gen"] = tts ? "اثنَين" : "2_m_gen.ogg";
+	dictionary["2_m_nom"] = tts ? "اِثنان" : "2_m_nom.ogg";
+	dictionary["2_m_gen"] = tts ? "اِثنَين" : "2_m_gen.ogg";
 	dictionary["2_m_acc"] = dictionary["2_m_gen"];
-	dictionary["2_f_nom"] = tts ? "اثنتان" : "2_f_nom.ogg";
-	dictionary["2_f_gen"] = tts ? "اثنتَين" : "2_f_gen.ogg";
+	dictionary["2_f_nom"] = tts ? "اِثنتان" : "2_f_nom.ogg";
+	dictionary["2_f_gen"] = tts ? "اِثنتَين" : "2_f_gen.ogg";
 	dictionary["2_f_acc"] = dictionary["2_f_gen"];
 	dictionary["3_m_nom"] = tts ? "ثلاثةُ" : "3_m_nom.ogg";
 	dictionary["3_m_gen"] = tts ? "ثلاثةِ" : "3_m_gen.ogg";
@@ -200,12 +199,12 @@ function populateDictionary(tts) {
 	dictionary["5_f_nom"] = tts ? "خمسُ" : "5_f_nom.ogg";
 	dictionary["5_f_gen"] = tts ? "خمسِ" : "5_f_gen.ogg";
 	dictionary["5_f_acc"] = tts ? "خمسَ" : "5_f_acc.ogg";
-	dictionary["6_m_nom"] = tts ? "ستّةُ" : "6_m_nom.ogg";
-	dictionary["6_m_gen"] = tts ? "ستّةِ" : "6_m_gen.ogg";
-	dictionary["6_m_acc"] = tts ? "ستّةَ" : "6_m_acc.ogg";
-	dictionary["6_f_nom"] = tts ? "ستُّ" : "6_f_nom.ogg";
-	dictionary["6_f_gen"] = tts ? "ستِّ" : "6_f_gen.ogg";
-	dictionary["6_f_acc"] = tts ? "ستَّ" : "6_f_acc.ogg";
+	dictionary["6_m_nom"] = tts ? "سِتّةُ" : "6_m_nom.ogg";
+	dictionary["6_m_gen"] = tts ? "سِتّةِ" : "6_m_gen.ogg";
+	dictionary["6_m_acc"] = tts ? "سِتّةَ" : "6_m_acc.ogg";
+	dictionary["6_f_nom"] = tts ? "سِتُّ" : "6_f_nom.ogg";
+	dictionary["6_f_gen"] = tts ? "سِتِّ" : "6_f_gen.ogg";
+	dictionary["6_f_acc"] = tts ? "سِتَّ" : "6_f_acc.ogg";
 	dictionary["7_m_nom"] = tts ? "سبعةُ" : "7_m_nom.ogg";
 	dictionary["7_m_gen"] = tts ? "سبعةِ" : "7_m_gen.ogg";
 	dictionary["7_m_acc"] = tts ? "سبعةَ" : "7_m_acc.ogg";
@@ -252,9 +251,9 @@ function populateDictionary(tts) {
 	dictionary["15_m_acc"] = dictionary["15_m_gen"] = dictionary["15_m_nom"];
 	dictionary["15_f_nom"] = tts ? "خمسَ عشْرَةَ" : "15_f_nom.ogg";
 	dictionary["15_f_acc"] = dictionary["15_f_gen"] = dictionary["15_f_nom"];
-	dictionary["16_m_nom"] = tts ? "ستّةَ عشرَ" : "16_m_nom.ogg";
+	dictionary["16_m_nom"] = tts ? "سِتّةَ عشرَ" : "16_m_nom.ogg";
 	dictionary["16_m_acc"] = dictionary["16_m_gen"] = dictionary["16_m_nom"];
-	dictionary["16_f_nom"] = tts ? "ستَّ عشْرَةَ" : "16_f_nom.ogg";
+	dictionary["16_f_nom"] = tts ? "سِتَّ عشْرَةَ" : "16_f_nom.ogg";
 	dictionary["16_f_acc"] = dictionary["16_f_gen"] = dictionary["16_f_nom"];
 	dictionary["17_m_nom"] = tts ? "سبعةَ عشرَ" : "17_m_nom.ogg";
 	dictionary["17_m_acc"] = dictionary["17_m_gen"] = dictionary["17_m_nom"];
@@ -280,8 +279,8 @@ function populateDictionary(tts) {
 	dictionary["50_nom"] = tts ? "خمسون" : "50_nom.ogg";
 	dictionary["50_gen"] = tts ? "خمسين" : "50_gen.ogg";
 	dictionary["50_acc"] = dictionary["50_gen"];
-	dictionary["60_nom"] = tts ? "ستّون" : "60_nom.ogg";
-	dictionary["60_gen"] = tts ? "ستّين" : "60_gen.ogg";
+	dictionary["60_nom"] = tts ? "سِتّون" : "60_nom.ogg";
+	dictionary["60_gen"] = tts ? "سِتّين" : "60_gen.ogg";
 	dictionary["60_acc"] = dictionary["60_gen"];
 	dictionary["70_nom"] = tts ? "سبعون" : "70_nom.ogg";
 	dictionary["70_gen"] = tts ? "سبعين" : "70_gen.ogg";
@@ -297,7 +296,7 @@ function populateDictionary(tts) {
 	dictionary["100_gen"] = tts ? "مئةِ" : "100_gen.ogg"; //  } for idaafa only
 	dictionary["100_acc"] = tts ? "مئةَ" : "100_acc.ogg"; // /
 	dictionary["200_nom"] = tts ? "مئتان" : "200_nom.ogg";
-	dictionary["200_gen"] = tts ? "مئتَين" : "200_gen.ogg";
+	dictionary["200_gen"] = tts ? "مئتَيْنِ" : "200_gen.ogg";
 	dictionary["200_acc"] = dictionary["200_gen"];
 	dictionary["200_nom_id"] = tts ? "مئتا" : "200_nom_id.ogg"; // \
 	dictionary["200_gen_id"] = tts ? "مئتَي" : "200_gen_id.ogg"; //  } for idaafa only
@@ -311,9 +310,9 @@ function populateDictionary(tts) {
 	dictionary["500_nom"] = tts ? "خمسُمئة" : "500_nom.ogg";
 	dictionary["500_gen"] = tts ? "خمسِمئة" : "500_gen.ogg";
 	dictionary["500_acc"] = tts ? "خمسَمئة" : "500_acc.ogg";
-	dictionary["600_nom"] = tts ? "ستُّمئة" : "600_nom.ogg";
-	dictionary["600_gen"] = tts ? "ستِّمئة" : "600_gen.ogg";
-	dictionary["600_acc"] = tts ? "ستَّمئة" : "600_acc.ogg";
+	dictionary["600_nom"] = tts ? "سِتُّمئة" : "600_nom.ogg";
+	dictionary["600_gen"] = tts ? "سِتِّمئة" : "600_gen.ogg";
+	dictionary["600_acc"] = tts ? "سِتَّمئة" : "600_acc.ogg";
 	dictionary["700_nom"] = tts ? "سبعُمئة" : "700_nom.ogg";
 	dictionary["700_gen"] = tts ? "سبعِمئة" : "700_gen.ogg";
 	dictionary["700_acc"] = tts ? "سبعَمئة" : "700_acc.ogg";
@@ -327,8 +326,8 @@ function populateDictionary(tts) {
 	dictionary["1000_nom"] = tts ? "أَلْفُ" : "1000_nom.ogg";
 	dictionary["1000_gen"] = tts ? "أَلْفِ" : "1000_gen.ogg";
 	dictionary["1000_acc"] = tts ? "أَلْفَ" : "1000_acc.ogg";
-	dictionary["2000_nom"] = tts ? "مئتان" : "2000_nom.ogg";
-	dictionary["2000_gen"] = tts ? "مئتَين" : "2000_gen.ogg";
+	dictionary["2000_nom"] = tts ? "ألفان" : "2000_nom.ogg";
+	dictionary["2000_gen"] = tts ? "ألفَيْنِ" : "2000_gen.ogg";
 	dictionary["2000_acc"] = dictionary["2000_gen"];
 	dictionary["2000_nom_id"] = tts ? "أَلْفَا" : "2000_nom_id.ogg"; // \
 	dictionary["2000_gen_id"] = tts ? "أَلْفَي" : "2000_gen_id.ogg"; //  } for idaafa only
@@ -342,9 +341,9 @@ function populateDictionary(tts) {
 	dictionary["5000_nom"] = tts ? "خمسةُ آلاف" : "5000_nom.ogg";
 	dictionary["5000_gen"] = tts ? "خمسةِ آلاف" : "5000_gen.ogg";
 	dictionary["5000_acc"] = tts ? "خمسةَ آلاف" : "5000_acc.ogg";
-	dictionary["6000_nom"] = tts ? "ستّةُ آلاف" : "6000_nom.ogg";
-	dictionary["6000_gen"] = tts ? "ستّةِ آلاف" : "6000_gen.ogg";
-	dictionary["6000_acc"] = tts ? "ستّةَ آلاف" : "6000_acc.ogg";
+	dictionary["6000_nom"] = tts ? "سِتّةُ آلاف" : "6000_nom.ogg";
+	dictionary["6000_gen"] = tts ? "سِتّةِ آلاف" : "6000_gen.ogg";
+	dictionary["6000_acc"] = tts ? "سِتّةَ آلاف" : "6000_acc.ogg";
 	dictionary["7000_nom"] = tts ? "سبعةُ آلاف" : "7000_nom.ogg";
 	dictionary["7000_gen"] = tts ? "سبعةِ آلاف" : "7000_gen.ogg";
 	dictionary["7000_acc"] = tts ? "سبعةَ آلاف" : "7000_acc.ogg";
@@ -383,13 +382,19 @@ function num_str(number, gender /*of the object being counted*/, grm_case) {
 
 	if (teens)
 		return   dictionary[thousands.toString()+"_"+grm_case]
-			   + ((thousands && hundreds) ? dictionary["and"] : "") + dictionary[hundreds.toString()+"_"+grm_case]
-			   + ((thousands || hundreds) ? dictionary["and"] : "") + dictionary[teens.toString()+"_"+gender+"_"+grm_case];
-	else
+			   + ((thousands && hundreds) ? " " + dictionary["and"] + " " : "") + dictionary[hundreds.toString()+"_"+grm_case]
+			   + ((thousands || hundreds) ? " " + dictionary["and"] + " " : "") + dictionary[teens.toString()+"_"+gender+"_"+grm_case];
+
+	if (tens == 10)
 		return   dictionary[thousands.toString()+"_"+grm_case]
-			   + ((thousands && hundreds) ? dictionary["and"] : "") + dictionary[hundreds.toString()+"_"+grm_case]
-			   + (((thousands || hundreds) && ones) ? dictionary["and"] : "") + dictionary[ones.toString()+"_"+gender+"_"+grm_case]
-			   + (((thousands || hundreds || ones) && tens) ? dictionary["and"] : "") + dictionary[tens.toString()+"_"+grm_case];
+			   + ((thousands && hundreds) ? " " + dictionary["and"] + " " : "") + dictionary[hundreds.toString()+"_"+grm_case]
+			   + (((thousands || hundreds) && ones) ? " " + dictionary["and"] + " " : "") + dictionary[ones.toString()+"_"+gender+"_"+grm_case]
+			   + (((thousands || hundreds || ones) && tens) ? " " + dictionary["and"] + " " : "") + dictionary[tens.toString()+"_"+gender+"_"+grm_case];
+
+	return   dictionary[thousands.toString()+"_"+grm_case]
+		   + ((thousands && hundreds) ? " " + dictionary["and"] + " " : "") + dictionary[hundreds.toString()+"_"+grm_case]
+		   + (((thousands || hundreds) && ones) ? " " + dictionary["and"] + " " : "") + dictionary[ones.toString()+"_"+gender+"_"+grm_case]
+		   + (((thousands || hundreds || ones) && tens) ? " " + dictionary["and"] + " " : "") + dictionary[tens.toString()+"_"+grm_case];
 }
 
 function setMetricConst(metrics) {
@@ -525,24 +530,24 @@ function time(seconds, grm_case) {
 	if (minutes % 60 == 0 && tts)
 		return hours(minutes, grm_case);
 	if (minutes % 60 == 1 && tts)
-		return hours(minutes, grm_case) + " " + (hrs ? dictionary["and"] : "") + " " + dictionary["1_minute"];
+		return hours(minutes, grm_case) + (hrs ? " " + dictionary["and"] + " " : "") + dictionary["1_minute"];
 	if (minutes % 60 == 2 && tts)
-		return hours(minutes, grm_case) + " " + (hrs ? dictionary["and"] : "") + " " + dictionary["2_minutes"];
+		return hours(minutes, grm_case) + (hrs ? " " + dictionary["and"] + " " : "") + dictionary["2_minutes"];
 	if (minutes % 60 > 2 && minutes % 60 < 11 && tts)
-		return hours(minutes, grm_case) + " " + (hrs ? dictionary["and"] : "") + " " + num_str(minutes % 60, "f", grm_case) + " " + dictionary["minutes"];
+		return hours(minutes, grm_case) + (hrs ? " " + dictionary["and"] + " " : "") + num_str(minutes % 60, "f", grm_case) + " " + dictionary["minutes"];
 	if (tts)
-		return hours(minutes, grm_case) + " " + (hrs ? dictionary["and"] : "") + " " + num_str(minutes % 60, "f", grm_case) + " " + dictionary["minute"];
+		return hours(minutes, grm_case) + (hrs ? " " + dictionary["and"] + " " : "") + num_str(minutes % 60, "f", grm_case) + " " + dictionary["minute"];
 	if (!tts && seconds < 300)
 		return ogg_dist(minutes) + dictionary["minutes"];
 	if (!tts && oggMinutes % 60 == 0)
 		return hours(oggMinutes, grm_case);
 	if (!tts && oggMinutes % 60 == 1)
-		return hours(oggMinutes, grm_case) + " " + (hrs ? dictionary["and"] : "") + " " + dictionary["1_minute"]; 
+		return hours(oggMinutes, grm_case) + (hrs ? " " + dictionary["and"] + " " : "") + dictionary["1_minute"]; 
 	if (!tts && oggMinutes % 60 == 2)
-		return hours(oggMinutes, grm_case) + " " + (hrs ? dictionary["and"] : "") + " " + dictionary["2_minutes"]; 
+		return hours(oggMinutes, grm_case) + (hrs ? " " + dictionary["and"] + " " : "") + dictionary["2_minutes"]; 
 	if (!tts && oggMinutes % 60 > 2 && oggMinutes < 11)
-		return hours(oggMinutes, grm_case) + " " + (hrs ? dictionary["and"] : "") + " " + ogg_dist(oggMinutes % 60) + dictionary["minutes"];
-	return hours(oggMinutes, grm_case) + " " + (hrs ? dictionary["and"] : "") + " " + ogg_dist(oggMinutes % 60) + dictionary["minute"];
+		return hours(oggMinutes, grm_case) + (hrs ? " " + dictionary["and"] + " " : "") + ogg_dist(oggMinutes % 60) + dictionary["minutes"];
+	return hours(oggMinutes, grm_case) + (hrs ? " " + dictionary["and"] + " " : "") + ogg_dist(oggMinutes % 60) + dictionary["minute"];
 }
 
 function hours(minutes, grm_case) {
