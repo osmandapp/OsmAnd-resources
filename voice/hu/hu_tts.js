@@ -300,40 +300,13 @@ function turn(turnType, dist, streetName) {
 }
 
 function getTurnType(turnType) {
-	// turn("left", ).
-// turn("left_sh", ["left_sh"]).
-// turn("left_sl", ["left_sl"]).
-// turn("right", ["right"]).
-// turn("right_sh", ["right_sh"]).
-// turn("right_sl", ["right_sl"]).
-// turn("left_keep", ["left_keep"]).
-// turn("right_keep", ["right_keep"]).
-// // Note: turn("left_keep"/"right_keep",[]) is a turn type aiding lane selection, while bear_left()/bear_right() is triggered as brief "turn-after-next" preparation sounding always after a "..., then...". In some languages turn(l/r_keep) may not differ from bear_l/r:
-	switch (turnType) {
-		case "left":
-			return dictionary["left"];
-			break;
-		case "left_sh":
-			return dictionary["left_sh"];
-			break;
-		case "left_sl":
-			return dictionary["left_sl"];
-			break;
-		case "right":
-			return dictionary["right"];
-			break;
-		case "right_sh":
-			return dictionary["right_sh"];
-			break;
-		case "right_sl":
-			return dictionary["right_sl"];
-			break;
-		case "left_keep":
-			return dictionary["left_keep"];
-			break;
-		case "right_keep":
-			return dictionary["right_keep"];
-			break;
+// Note: turn("left_keep"/"right_keep",[]) is a turn type aiding lane selection, while bear_left()/bear_right() is triggered as brief "turn-after-next" preparation sounding always after a "..., then...". In some languages turn(l/r_keep) may not differ from bear_l/r:
+
+	var directions = ["left",  "left_sh",  "left_sl",  "left_keep",
+			  "right", "right_sh", "right_sl", "right_keep"];
+	
+	if (directions.includes(turnType)) {
+		return dictionary[turnType];
 	}
 }
 
@@ -396,35 +369,11 @@ function nth(exit) {
 			return dictionary["2nd"];
 		case (3):
 			return dictionary["3rd"];
-		case (4):
-			return dictionary["4th"];
-		case (5):
-			return dictionary["5th"];
-		case (6):
-			return dictionary["6th"];
-		case (7):
-			return dictionary["7th"];
-		case (8):
-			return dictionary["8th"];
-		case (9):
-			return dictionary["9th"];
-		case (10):
-			return dictionary["10th"];
-		case (11):
-			return dictionary["11th"];
-		case (12):
-			return dictionary["12th"];
-		case (13):
-			return dictionary["13th"];
-		case (14):
-			return dictionary["14th"];
-		case (15):
-			return dictionary["15th"];
-		case (16):
-			return dictionary["16th"];
-		case (17):
-			return dictionary["17th"];
-	}
+		default:
+		  var key= exit + "th";
+		  if (key in dictionary) {
+		    return dictionary[key];
+		  }
 }
 
 function make_ut(dist, streetName) {
