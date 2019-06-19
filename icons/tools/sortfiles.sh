@@ -772,6 +772,7 @@ mycpname prison_camp tourist_prison_camp.png
 mycpname locomotive tourist_locomotive.png
 mycpname outcrop tourist_outcrop.png
 mycpname topo_outcrop topo_topo_outcrop.png
+mycpname charcoal_pile tourist_charcoal_pile.png
 
 ## Special POI icons
 mycp special_poi big_ben special_poi_big_ben.png
