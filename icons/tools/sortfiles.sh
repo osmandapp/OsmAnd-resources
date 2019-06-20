@@ -756,7 +756,7 @@ mycpname topo_building_pyramid topo_topo_pyramid.png
 mycpname tomb tourist_tomb.png
 mycpname topo_tomb topo_topo_tomb.png
 mycpname historic_aircraft tourist_historic_aircraft.png
-mycpname topo_aircraft topo_topo_aircraft.png
+mycpname topo_aircraft topo_topo_historic_aircraft.png
 mycpname technical_monument tourist_technical_monument.png
 mycpname topo_technical_monument topo_topo_technical_monument.png
 mycpname memorial_stolperstein tourist_memorial_stolperstein.png
@@ -773,6 +773,10 @@ mycpname locomotive tourist_locomotive.png
 mycpname outcrop tourist_outcrop.png
 mycpname topo_outcrop topo_topo_outcrop.png
 mycpname charcoal_pile tourist_charcoal_pile.png
+mycpname topo_charcoal_pile topo_charcoal_pile.png
+mycpname historic_tank tourist_historic_tank.png
+mycpname topo_tank topo_topo_historic_tank.png
+
 
 ## Special POI icons
 mycp special_poi big_ben special_poi_big_ben.png
