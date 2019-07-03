@@ -91,7 +91,7 @@ function populateDictionary(tts) {
 	
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "pokračujte rovně" : "go_ahead.ogg";
-	dictionary["go_ahead_m"] = tts ? "pokračujte " : "go_ahead_m.ogg";
+	dictionary["follow"] = tts ? "pokračujte " : "go_ahead_m.ogg";
 	
 	// ARRIVE
 	dictionary["and_arrive_destination"] = tts ? "a dorazíte do cíle " : "and_arrive_destination.ogg";
