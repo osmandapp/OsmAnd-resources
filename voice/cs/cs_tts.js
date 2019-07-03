@@ -208,7 +208,7 @@ function distance(dist, declension, isWorkaround) {
 			} else if (dist < 2500) {
 				return dictionary["around_2_kilometers_" + declension];
 			} else if (dist < 4500) {
-				return (isWorkaround ? dictionary["around_workaround"] + " " : "") + dictionary["kilometers_" + declension + (accusative ? "3_4" : "")];
+				return (isWorkaround ? dictionary["around_workaround"] + " " : "") + (tts ? Math.round(dist/1000.0).toString() : ogg_dist(dist/1000.0)) + " " + dictionary["kilometers_" + declension + (accusative ? "3_4" : "")];
 			} else if (dist < 10000) {
 				return (isWorkaround ? dictionary["around_workaround"] + " " : "") + (tts ? Math.round(dist/1000.0).toString() : ogg_dist(dist/1000.0)) + " " + dictionary["kilometers_" + declension + (accusative ? "5" : "")];
 			} else {
