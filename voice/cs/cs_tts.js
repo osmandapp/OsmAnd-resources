@@ -91,7 +91,7 @@ function populateDictionary(tts) {
 	
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "pokračujte rovně" : "go_ahead.ogg";
-	dictionary["go_ahead_m"] = tts ? "pokračujte " : "go_ahead_m.ogg";
+	dictionary["follow"] = tts ? "pokračujte " : "go_ahead_m.ogg";
 	
 	// ARRIVE
 	dictionary["and_arrive_destination"] = tts ? "a dorazíte do cíle " : "and_arrive_destination.ogg";
@@ -208,7 +208,7 @@ function distance(dist, declension, isWorkaround) {
 			} else if (dist < 2500) {
 				return dictionary["around_2_kilometers_" + declension];
 			} else if (dist < 4500) {
-				return (isWorkaround ? dictionary["around_workaround"] + " " : "") + dictionary["kilometers_" + declension + (accusative ? "3_4" : "")];
+				return (isWorkaround ? dictionary["around_workaround"] + " " : "") + (tts ? Math.round(dist/1000.0).toString() : ogg_dist(dist/1000.0)) + " " + dictionary["kilometers_" + declension + (accusative ? "3_4" : "")];
 			} else if (dist < 10000) {
 				return (isWorkaround ? dictionary["around_workaround"] + " " : "") + (tts ? Math.round(dist/1000.0).toString() : ogg_dist(dist/1000.0)) + " " + dictionary["kilometers_" + declension + (accusative ? "5" : "")];
 			} else {
