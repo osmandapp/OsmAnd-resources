@@ -1923,7 +1923,7 @@
 		<case attrColorValue="#e8e8e8"/>
 	</renderingAttribute>
 
-	<renderingAttribute name="surfaceColor"> <!-- This attribute is needed because of motorcar=yes,foot=yes,bicycle=yes access types (see showAccess="true" section). After <case motorcar=yes> we need to restore surface color (because access and surface uses the same color_3 line layer). Downside: renderingAttribute can't be used inside another renderingAttribute. Upside: custom surface types can be added via dependent rendering style without too much copying of code. -->
+	<renderingAttribute name="routeInfo_surfaceColor"> <!-- This attribute is needed because of motorcar=yes,foot=yes,bicycle=yes access types (see showAccess="true" section). After <case motorcar=yes> we need to restore surface color (because access and surface uses the same color_3 line layer). Downside: renderingAttribute can't be used inside another renderingAttribute. Upside: custom surface types can be added via dependent rendering style without too much copying of code. -->
 		<case additional="surface=unpaved" attrColorValue="$surfaceUnpavedColor" attrStringValue="surface_unpaved"/>
 		<case additional="surface=sand" attrColorValue="$surfaceSandColor" attrStringValue="surface_sand"/>
 		<case additional="surface=grass" attrColorValue="$surfaceGrassColor" attrStringValue="surface_grass"/>
@@ -1963,7 +1963,7 @@
 	<renderingConstant name="surfaceGradeVeryHorribleColor" value="#fe5050"/>
 	<renderingConstant name="surfaceGradeImpassableColor" value="#ff1111"/>
 
-	<renderingAttribute name="smoothnessColor"> <!-- Used in route details info -->
+	<renderingAttribute name="routeInfo_smoothnessColor"> <!-- Used in route details info -->
 		<case additional="smoothness=excellent" attrColorValue="$surfaceGradeExcellentColor" attrStringValue="smoothness_excellent"/>
 		<case additional="smoothness=good" attrColorValue="$surfaceGradeGoodColor" attrStringValue="smoothness_good"/>
 		<case additional="smoothness=intermediate" attrColorValue="$surfaceGradeIntermediateColor" attrStringValue="smoothness_intermediate"/>
@@ -1975,7 +1975,7 @@
 		<case additional="smoothness=undefined" attrColorValue="#e8e8e8" attrStringValue="smoothness_undefined"/>
 	</renderingAttribute>
 
-	<renderingAttribute name="steepnessColor"> <!-- Used in route details info -->
+	<renderingAttribute name="routeInfo_steepnessColor"> <!-- Used in route details info -->
 		<case additional="steepness=-100_-20" attrColorValue="#028306"/>
 		<case additional="steepness=-19_-16" attrColorValue="#2c8f1e"/>
 		<case additional="steepness=-15_-12" attrColorValue="#559b36"/>
@@ -1990,64 +1990,30 @@
 		<case additional="steepness=21-100" attrColorValue="#bb2e23"/>
 	</renderingAttribute>
 
-	<renderingAttribute name="roadClassColor"> <!-- Used in route details info -->
-		<case tag="highway" value="motorway" attrStringValue="highway_class_motorway"/>
-		<case tag="highway" value="motorway_link" attrStringValue="highway_class_motorway"/>
-		<case tag="highway" value="trunk" attrStringValue="highway_class_state_road"/>
-		<case tag="highway" value="trunk_link" attrStringValue="highway_class_state_road"/>
-		<case tag="highway" value="primary" attrStringValue="highway_class_state_road"/>
-		<case tag="highway" value="primary_link" attrStringValue="highway_class_state_road"/>
-		<case tag="highway" value="secondary" attrStringValue="highway_class_road"/>
-		<case tag="highway" value="secondary_link" attrStringValue="highway_class_road"/>
-		<case tag="highway" value="tertiary" attrStringValue="highway_class_road"/>
-		<case tag="highway" value="tertiary_link" attrStringValue="highway_class_road"/>
-		<case tag="highway" value="unclassified" attrStringValue="highway_class_road"/>
-		<case tag="highway" value="residential" attrStringValue="highway_class_street"/>
-		<case tag="highway" value="living_street" attrStringValue="highway_class_street"/>
-		<case tag="highway" value="service" attrStringValue="highway_class_service"/>
-		<case tag="highway" value="pedestrian" attrStringValue="highway_class_footway"/>
-		<case tag="highway" value="track" attrStringValue="highway_class_track"/>
+	<renderingAttribute name="routeInfo_roadClassColor"> <!-- Used in route details info -->
+		<case tag="highway" value="motorway" attrColorValue="$motorwayRoadColor" attrStringValue="highway_class_motorway"/>
+		<case tag="highway" value="motorway_link" attrColorValue="$motorwayRoadColor" attrStringValue="highway_class_motorway"/>
+		<case tag="highway" value="trunk"  attrColorValue="$primaryRoadColor" attrStringValue="highway_class_state_road"/>
+		<case tag="highway" value="trunk_link"  attrColorValue="$primaryRoadColor" attrStringValue="highway_class_state_road"/>
+		<case tag="highway" value="primary"  attrColorValue="$primaryRoadColor" attrStringValue="highway_class_state_road"/>
+		<case tag="highway" value="primary_link"  attrColorValue="$primaryRoadColor" attrStringValue="highway_class_state_road"/>
+		<case tag="highway" value="secondary" attrColorValue="$tertiaryRoadColor" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="secondary_link" attrColorValue="$tertiaryRoadColor" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="tertiary" attrColorValue="$tertiaryRoadColor" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="tertiary_link" attrColorValue="$tertiaryRoadColor" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="unclassified" attrColorValue="$tertiaryRoadColor" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="residential" attrColorValue="#C1B9D1" attrStringValue="highway_class_street"/>
+		<case tag="highway" value="living_street" attrColorValue="#C1B9D1" attrStringValue="highway_class_street"/>
+		<case tag="highway" value="service" attrColorValue="#E3DAF6" attrStringValue="highway_class_service"/>
+		<case tag="highway" value="pedestrian" attrColorValue="$footwayColor" attrStringValue="highway_class_footway"/>
+		<case tag="highway" value="track" attrColorValue="$trackColor" attrStringValue="highway_class_track"/>
 		<case tag="highway" value="road" attrStringValue="highway_class_undefined"/>
-		<case tag="highway" value="footway" attrStringValue="highway_class_footway"/>
-		<case tag="highway" value="bridleway" attrStringValue="highway_class_bridleway"/>
-		<case tag="highway" value="steps" attrStringValue="highway_class_steps"/>
-		<case tag="highway" value="path" attrStringValue="highway_class_path"/>
-		<case tag="highway" value="cycleway" attrStringValue="highway_class_cycleway"/>
+		<case tag="highway" value="footway"  attrColorValue="$footwayColor" attrStringValue="highway_class_footway"/>
+		<case tag="highway" value="bridleway" attrColorValue="$bridlewayColor" attrStringValue="highway_class_bridleway"/>
+		<case tag="highway" value="steps" attrColorValue="$footwayColor" attrStringValue="highway_class_steps"/>
+		<case tag="highway" value="path" attrColorValue="$pathColor" attrStringValue="highway_class_path"/>
+		<case tag="highway" value="cycleway" attrColorValue="$cyclewayColor" attrStringValue="highway_class_cycleway"/>
 	</renderingAttribute>
-	<renderingAttribute name="highway_class_motorway">
-		<case attrColorValue="$motorwayRoadColor"/>
-	</renderingAttribute>
-	<renderingAttribute name="highway_class_state_road">
-		<case attrColorValue="$primaryRoadColor"/>
-	</renderingAttribute>
-	<renderingAttribute name="highway_class_road">
-		<case attrColorValue="$tertiaryRoadColor"/>
-	</renderingAttribute>
-	<renderingAttribute name="highway_class_street">
-		<case attrColorValue="#C1B9D1"/>
-	</renderingAttribute>
-	<renderingAttribute name="highway_class_service">
-		<case attrColorValue="#E3DAF6"/>
-	</renderingAttribute>
-	<renderingAttribute name="highway_class_footway">
-		<case attrColorValue="$footwayColor"/>
-	</renderingAttribute>
-	<renderingAttribute name="highway_class_track">
-		<case attrColorValue="$trackColor"/>
-	</renderingAttribute>
-	<renderingAttribute name="highway_class_bridleway">
-		<case attrColorValue="$bridlewayColor"/>
-	</renderingAttribute>
-	<renderingAttribute name="highway_class_steps">
-		<case attrColorValue="$footwayColor"/>
-	</renderingAttribute>
-	<renderingAttribute name="highway_class_path">
-		<case attrColorValue="$pathColor"/>
-	</renderingAttribute>
-	<renderingAttribute name="highway_class_cycleway">
-		<case attrColorValue="$cyclewayColor"/>
-	</renderingAttribute>
-
 
 	<renderingAttribute name="subwayLineDefaultColor">
 		<case nightMode="true" attrColorValue="#7b0000"/>
@@ -10872,7 +10838,7 @@
 							<case additional="motor_vehicle=yes"/>
 							<case additional="motorcar=yes"/>
 							<!--	We need to restore surface color when particular transport access is "yes". This can't be done another way because we can't go through 2 switches (showAccess and showSurfaces). Though not perfect solution.  -->
-							<apply_if showSurfaces="true" color_3="$surfaceColor" cap_3="SQUARE"/>
+							<apply_if showSurfaces="true" color_3="$routeInfo_surfaceColor" cap_3="SQUARE"/>
 						</switch>
 					</switch>
 					<switch appMode="pedestrian" minzoom="15">
@@ -10885,7 +10851,7 @@
 							<apply color_2="$null"/>
 						</switch>
 						<case additional="foot=yes">
-							<apply_if showSurfaces="true" color_3="$surfaceColor" cap_3="SQUARE"/>
+							<apply_if showSurfaces="true" color_3="$routeInfo_surfaceColor" cap_3="SQUARE"/>
 						</case>
 					</switch>
 					<switch appMode="bicycle" minzoom="15">
@@ -10898,7 +10864,7 @@
 							<apply color_2="$null"/>
 						</switch>
 						<case additional="bicycle=yes">
-							<apply_if showSurfaces="true" color_3="$surfaceColor" cap_3="SQUARE"/>
+							<apply_if showSurfaces="true" color_3="$routeInfo_surfaceColor" cap_3="SQUARE"/>
 						</case>
 					</switch>
 					<switch minzoom="15">
@@ -10920,7 +10886,7 @@
 					<apply_if minzoom="18" maxzoom="18" pathEffect_3="1_17"/>
 					<apply_if minzoom="19" pathEffect_3="1_20"/>
 				</switch>
-				<case showSurfaces="true" minzoom="14" cap_3="SQUARE" color_3="$surfaceColor">
+				<case showSurfaces="true" minzoom="14" cap_3="SQUARE" color_3="$routeInfo_surfaceColor">
 					<apply_if moreDetailed="true" maxzoom="14" pathEffect_3="3_11"/>
 					<apply_if minzoom="15" maxzoom="15" pathEffect_3="5_13"/>
 					<apply_if minzoom="16" maxzoom="16" pathEffect_3="5_15"/>
