@@ -269,6 +269,7 @@ mycpname ford transport_colored_ford.png
 mycpname topo_ford topo_topo_ford.png
 mycp highway milestone functional-icons_milestone.png
 mycp highway mini_roundabout transport_colored_miniroundabout_anticlockwise.png
+mycpname mini_roundabout_lhn transport_colored_miniroundabout_clockwise.png
 mycp highway noexit functional-icons_noexit.png
 mycpname deadlock poi_colored_noexit.png
 mycpname toll_gantry transport_colored_toll_gantry.png
