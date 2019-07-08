@@ -1923,7 +1923,7 @@
 		<case attrColorValue="#e8e8e8"/>
 	</renderingAttribute>
 
-	<renderingAttribute name="routeInfo_surfaceColor"> <!-- This attribute is needed because of motorcar=yes,foot=yes,bicycle=yes access types (see showAccess="true" section). After <case motorcar=yes> we need to restore surface color (because access and surface uses the same color_3 line layer). Downside: renderingAttribute can't be used inside another renderingAttribute. Upside: custom surface types can be added via dependent rendering style without too much copying of code. -->
+	<renderingAttribute name="routeInfo_surface"> <!-- This attribute is needed because of motorcar=yes,foot=yes,bicycle=yes access types (see showAccess="true" section). After <case motorcar=yes> we need to restore surface color (because access and surface uses the same color_3 line layer). Downside: renderingAttribute can't be used inside another renderingAttribute. Upside: custom surface types can be added via dependent rendering style without too much copying of code. -->
 		<case additional="surface=unpaved" attrColorValue="$surfaceUnpavedColor" attrStringValue="surface_unpaved"/>
 		<case additional="surface=sand" attrColorValue="$surfaceSandColor" attrStringValue="surface_sand"/>
 		<case additional="surface=grass" attrColorValue="$surfaceGrassColor" attrStringValue="surface_grass"/>
@@ -1963,7 +1963,7 @@
 	<renderingConstant name="surfaceGradeVeryHorribleColor" value="#fe5050"/>
 	<renderingConstant name="surfaceGradeImpassableColor" value="#ff1111"/>
 
-	<renderingAttribute name="routeInfo_smoothnessColor"> <!-- Used in route details info -->
+	<renderingAttribute name="routeInfo_smoothness"> <!-- Used in route details info -->
 		<case additional="smoothness=excellent" attrColorValue="$surfaceGradeExcellentColor" attrStringValue="smoothness_excellent"/>
 		<case additional="smoothness=good" attrColorValue="$surfaceGradeGoodColor" attrStringValue="smoothness_good"/>
 		<case additional="smoothness=intermediate" attrColorValue="$surfaceGradeIntermediateColor" attrStringValue="smoothness_intermediate"/>
@@ -1975,7 +1975,7 @@
 		<case additional="smoothness=undefined" attrColorValue="#e8e8e8" attrStringValue="smoothness_undefined"/>
 	</renderingAttribute>
 
-	<renderingAttribute name="routeInfo_steepnessColor"> <!-- Used in route details info -->
+	<renderingAttribute name="routeInfo_steepness"> <!-- Used in route details info -->
 		<case additional="steepness=-100_-20" attrColorValue="#028306" attrStringValue="-100_-20"/>
 		<case additional="steepness=-19_-16" attrColorValue="#2c8f1e" attrStringValue="-19_-16"/>
 		<case additional="steepness=-15_-12" attrColorValue="#559b36" attrStringValue="-15_-12"/>
@@ -1990,7 +1990,7 @@
 		<case additional="steepness=21_100" attrColorValue="#bb2e23" attrStringValue="21_100"/>
 	</renderingAttribute>
 
-	<renderingAttribute name="routeInfo_roadClassColor"> <!-- Used in route details info -->
+	<renderingAttribute name="routeInfo_roadClass"> <!-- Used in route details info -->
 		<case tag="highway" value="motorway" attrColorValue="$motorwayRoadColor" attrStringValue="highway_class_motorway"/>
 		<case tag="highway" value="motorway_link" attrColorValue="$motorwayRoadColor" attrStringValue="highway_class_motorway"/>
 		<case tag="highway" value="trunk"  attrColorValue="$primaryRoadColor" attrStringValue="highway_class_state_road"/>
@@ -10838,7 +10838,7 @@
 							<case additional="motor_vehicle=yes"/>
 							<case additional="motorcar=yes"/>
 							<!--	We need to restore surface color when particular transport access is "yes". This can't be done another way because we can't go through 2 switches (showAccess and showSurfaces). Though not perfect solution.  -->
-							<apply_if showSurfaces="true" color_3="$routeInfo_surfaceColor" cap_3="SQUARE"/>
+							<apply_if showSurfaces="true" color_3="$routeInfo_surface" cap_3="SQUARE"/>
 						</switch>
 					</switch>
 					<switch appMode="pedestrian" minzoom="15">
@@ -10851,7 +10851,7 @@
 							<apply color_2="$null"/>
 						</switch>
 						<case additional="foot=yes">
-							<apply_if showSurfaces="true" color_3="$routeInfo_surfaceColor" cap_3="SQUARE"/>
+							<apply_if showSurfaces="true" color_3="$routeInfo_surface" cap_3="SQUARE"/>
 						</case>
 					</switch>
 					<switch appMode="bicycle" minzoom="15">
@@ -10864,7 +10864,7 @@
 							<apply color_2="$null"/>
 						</switch>
 						<case additional="bicycle=yes">
-							<apply_if showSurfaces="true" color_3="$routeInfo_surfaceColor" cap_3="SQUARE"/>
+							<apply_if showSurfaces="true" color_3="$routeInfo_surface" cap_3="SQUARE"/>
 						</case>
 					</switch>
 					<switch minzoom="15">
@@ -10886,7 +10886,7 @@
 					<apply_if minzoom="18" maxzoom="18" pathEffect_3="1_17"/>
 					<apply_if minzoom="19" pathEffect_3="1_20"/>
 				</switch>
-				<case showSurfaces="true" minzoom="14" cap_3="SQUARE" color_3="$routeInfo_surfaceColor">
+				<case showSurfaces="true" minzoom="14" cap_3="SQUARE" color_3="$routeInfo_surface">
 					<apply_if moreDetailed="true" maxzoom="14" pathEffect_3="3_11"/>
 					<apply_if minzoom="15" maxzoom="15" pathEffect_3="5_13"/>
 					<apply_if minzoom="16" maxzoom="16" pathEffect_3="5_15"/>

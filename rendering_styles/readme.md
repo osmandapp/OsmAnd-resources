@@ -13,9 +13,7 @@ Rendering styles
 * nautical.render.xml : (Android/iOS, default independent) Style for marine and river navigation. Key features: buoys, lighthouses, water navigation lines and marks, harbours, seamark services, depth contours.
 
 **Examples and deprecated:**
-* Depends-template.render.xml : Template for dependent style
 * standalone-template.render.xml : Template for standalone style
-* Topo-map-assimilation.render.xml
 * regions.render.xml
-* hud.render.xml
+* Topo-map-assimilation.render.xml
 * UniRS.render.xml 
