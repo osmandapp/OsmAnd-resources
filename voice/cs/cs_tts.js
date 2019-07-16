@@ -580,7 +580,7 @@ function location_recovered() {
 }
 
 function off_route(dist) {
-	return dictionary["off_route1"] + " " + distance(dist, "accusative", false) + " " + dictionary["off_route2"];
+	return dictionary["off_route"] + " " + distance(dist, "accusative", false) + " " + dictionary["off_route2"];
 }
 
 function back_on_route() {
