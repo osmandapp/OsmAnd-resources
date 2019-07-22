@@ -87,6 +87,8 @@
 		type="boolean" possibleValues="" category="details"/>
 	<renderingProperty attr="showAccess" name="Show access restrictions" description="Show access restrictions"
 		type="boolean" possibleValues="" category="details"/>
+	<renderingProperty attr="showLez" name="Show Low Emission Zones" description="Show Low Emission zones on the map. Does not affect routing."
+		type="boolean" possibleValues="" category="details"/>
 	<renderingProperty attr="contourLines" name="Show contour lines" description="Select minimum zoom level to display in map if available. Separate contour file may be needed."
 		type="string" possibleValues="disabled,16,15,14,13,12,11" defaultValueDescription="default13" category="details"/>
 	<renderingProperty attr="contourColorScheme" name="Contour lines color scheme" description="Contour lines color scheme" type="string" possibleValues="light_brown,brown,dark_brown" defaultValueDescription="default"/>
@@ -2860,6 +2862,7 @@
 				<case tag="boundary" value="forestry_compartment" order="9">
 					<apply_if moreDetailed="false" maxzoom="14" order="-1"/>
 				</case>
+				<case tag="boundary" value="low_emission_zone" order="255" />
 				<case tag="harbour" value="yes"/>
 				<case tag="waterway" value="dock"/>
 				<case tag="waterway" value="wadi"/>
@@ -9841,12 +9844,16 @@
 					<!-- <case nightMode="true" shader="nr3_night"/>-->
 					<apply_if maxzoom="9" strokeWidth_2="0.5"/>
 				</case>
-				<case minzoom="8" tag="boundary" value="protected_area">
-					<apply color_2="#4400ae3d">
+				<switch>
+					<case showLez="true" minzoom="11" tag="boundary" value="low_emission_zone" color_2="#9900ae3d">
+						<apply maxzoom="16" shader="lez"/>
+					</case>
+					<case minzoom="8" tag="boundary" value="protected_area" color_2="#4400ae3d"/>
+					<apply>
 						<case maxzoom="13" strokeWidth_2="2:2" pathEffect_2="10_5"/>
 						<case minzoom="14" strokeWidth_2="3.5:3.5" pathEffect_2="13_8"/>
 					</apply>
-				</case>
+				</switch>
 				<switch minzoom="12">
 					<case tag="landuse" value="quarry" shader="quarry3" color_0="#c4c2c1">
 						<apply_if nightMode="true" shader="quarry3night" color_0="#585858"/>
