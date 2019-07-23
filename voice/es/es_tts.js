@@ -33,8 +33,8 @@ function populateDictionary(tts) {
 	dictionary["right_sl"] = tts ? "gira levemente a la derecha" : "right_sl.ogg";
 	dictionary["left_keep"] = tts ? "mantente a la izquierda" : "left_keep.ogg";
 	dictionary["right_keep"] = tts ? "mantente a la derecha" : "right_keep.ogg";
-	dictionary["left_bear"] = tts ? "mantente a la izquierda" : "left_bear.ogg";   // in English the same as left_keep, may be different in other languages
-	dictionary["right_bear"] = tts ? "mantente a la derecha" : "right_bear.ogg";    // in English the same as right_keep, may be different in other languages
+	dictionary["left_bear"] = tts ? "gira levemente a la izquierda" : "left_bear.ogg";   // in English the same as left_keep, may be different in other languages
+	dictionary["right_bear"] = tts ? "gira levemente a la derecha" : "right_bear.ogg";    // in English the same as right_keep, may be different in other languages
 	
 	// U-TURNS
 	dictionary["make_uturn"] = tts ? "Da la vuelta" : "make_uturn.ogg";
@@ -99,14 +99,14 @@ function populateDictionary(tts) {
 	dictionary["tunnel"] = tts ? "túnel" : "tunnel.ogg";
 	
 	// OTHER PROMPTS
-	dictionary["location_lost"] = tts ? "señal g p s perdida" : "location_lost.ogg";
-	dictionary["location_recovered"] = tts ? "señal g p s encontrada" : "location_recovered.ogg";
+	dictionary["location_lost"] = tts ? "señal G P S perdida" : "location_lost.ogg";
+	dictionary["location_recovered"] = tts ? "señal G P S encontrada" : "location_recovered.ogg";
 	dictionary["off_route"] = tts ? "te has desviado de la ruta" : "off_route.ogg";
 	dictionary["back_on_route"] = tts ? "has regresado a la ruta" : "back_on_route.ogg";
 	
 	// STREET NAME PREPOSITIONS
 	dictionary["onto"] = tts ? "en dirección a " : "onto.ogg";
-	dictionary["on"] = tts ? "en " : "on.ogg";
+	dictionary["on"] = tts ? "y continúa por " : "on.ogg";
 	dictionary["to"] = tts ? "hacia " : "to.ogg";
 	dictionary["toward"] = tts ? "hacia " : "toward.ogg";
 	
