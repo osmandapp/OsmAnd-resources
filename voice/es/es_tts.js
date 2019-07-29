@@ -43,7 +43,7 @@ function populateDictionary(tts) {
 	// ROUNDABOUTS
 	//dictionary["prepare_roundabout"] = tts ? "Prepárate para entrar en la rotonda después de" : "prepare_roundabout.ogg";
 	dictionary["prepare_roundabout"] = tts ? "entra en la rotonda" : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? "entra en la rotonda" : "roundabout.ogg";
+	dictionary["roundabout"] = tts ? "en la rotonda" : "roundabout.ogg";
 	dictionary["then"] = tts ? ", luego" : "then.ogg";
 	dictionary["and"] = tts ? " y " : "and.ogg";
 	dictionary["take"] = tts ? "toma la " : "take.ogg";
@@ -331,7 +331,7 @@ function roundabout(dist, angle, exit, streetName) {
 	if (dist == -1) {
 		return dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	} else {
-		return dictionary["after"] + " " + distance(dist) + " " + dictionary["roundabout"] + " " + dictionary["and"] + " " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
+		return dictionary["after"] + " " + distance(dist) + " " + dictionary["roundabout"] + " " + " " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	}
 
 }
