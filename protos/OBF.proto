@@ -419,11 +419,16 @@ message TransportStop {
    repeated TransportStopExit exits = 9;
    
    repeated uint32 routes = 16; // -shift to transport route containing that stop 
-   								// TransportStop.Message.start -  sizeof(TransportStop.Message.length) - routes[i] 
-   								//				= TransportRoute.Message.start - sizeof(TransportRoute.Message.length)
-   								// message is started when body is started 
+   				// TransportStop.Message.start -  sizeof(TransportStop.Message.length) - routes[i] 
+   				//				= TransportRoute.Message.start - sizeof(TransportRoute.Message.length)
+   				// message is started when body is started 
    repeated uint64 deletedRoutesIds = 20; // ids of routes that do not contain this stop anymore
-   repeated uint64 routesIds = 22; // ids of routes that contain this stop
+
+   // ids of [routes] that contain this stop
+   // - length and values correspond to [routes] array
+   // - old version (< 08/2019) files don't have them
+   // - default algorithm makes them sorted 
+   repeated uint64 routesIds = 22;
 
 }
 
