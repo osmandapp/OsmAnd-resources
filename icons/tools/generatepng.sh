@@ -148,7 +148,7 @@ generatePngs() {
 
        generatePngs 'tourist' '#ffffff' '#ff8f00'
        generatePngs 'tourist_colored' '#593906' '#ff8f00'
-       generatePngs 'special_poi' '#a62b00' '#FFF5F1' '' '' '' nomx 
+       generatePngs 'special_poi' '#a62b00' '#FFF5F1' '' '' '' nomx
 
        generatePngs 'sport' '#ffffff' '#ff8f00'
        generatePngs 'sport_colored' '#39AC39' '#ff8f00'

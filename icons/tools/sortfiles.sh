@@ -2377,6 +2377,18 @@ mycpname delivery_yes additional_delivery_yes.png
 mycpname delivery_no additional_delivery_no.png
 mycpname architect_name additional_architect_name.png
 mycpname start_date additional_start_date.png
+mycpname foot_yes additional_foot_yes.png
+mycpname foot_no additional_foot_no.png
+mycpname horse_no additional_horse_no.png
+mycpname bus_yes additional_bus_yes.png
+mycpname bicycle_no additional_bicycle_no.png
+mycpname hgv_yes additional_hgv_yes.png
+mycpname hgv_no additional_hgv_no.png
+mycpname mofa_yes additional_mofa_yes.png
+mycpname motorcar_no additional_motorcar_no.png
+mycpname motorcycle_no additional_motorcycle_no.png
+mycpname snowmobile_yes additional_snowmobile_yes.png
+mycpname snowmobile_no additional_snowmobile_no.png
 
 #Additional category
 mycpname payment_type additional_category_payment_type.png
