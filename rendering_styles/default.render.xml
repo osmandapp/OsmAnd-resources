@@ -5479,12 +5479,12 @@
 			</switch>
 			<!-- continent not really useful here: filter minzoom="2" maxzoom="2" textSize="14" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="continent"/ -->
 			<case minzoom="1" maxzoom="2" tag="place" value="continent" textSize="13" textColor="$placeCountryTextColor" textHaloColor="$placeCountryTextHaloColor" textHaloRadius="3" textBold="true" textWrapWidth="15" textOrder="1"/>
-
+			<!-- Country names -->
 			<!-- most countries are not tagged with ref: filter minzoom="2" maxzoom="2" textSize="14" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="country" nameTag="ref"/ -->
 			<case minzoom="3" tag="place" value="country" nameTag="" textColor="$placeCountryTextColor" textHaloColor="$placeCountryTextHaloColor" textHaloRadius="3" textWrapWidth="15" textOrder="5">
 				<case maxzoom="3" textSize="12"/>
-				<case maxzoom="4" textSize="14" textBold="true"/>
-				<case maxzoom="5" textSize="16" textBold="true"/>
+				<case maxzoom="4" textSize="12" textBold="true"/>
+				<case maxzoom="5" textSize="14" textBold="true"/>
 				<case minzoom="6" textSize="14" textBold="true" textOrder="32"/>
 				<apply_if maxzoom="6">
 					<case additional="population_rounded=1500000000" textOrder="6"/>
@@ -5519,7 +5519,7 @@
 				</apply_if>
 			</case>
 
-			<switch minzoom="5" textSize="13" textColor="$placeStateProvinceTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$placeStateProvinceTextHaloColor">
+			<switch minzoom="6" textSize="13" textColor="$placeStateProvinceTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$placeStateProvinceTextHaloColor">
 				<switch engine_v1="true">
 					<case maxzoom="10" tag="place" value="state">
 						<case maxzoom="5" nameTag="" textOrder="24"/>
@@ -5551,11 +5551,13 @@
 				<case minzoom="9" maxzoom="12" tag="place" value="county" nameTag="" textSize="13" textItalic="true" textOrder="63"/>
 				<apply textItalic="true" textWrapWidth="15"/>
 			</switch>
-
+			
 			<switch minzoom="3" textColor="$placeCityVillageTextColor" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColor" textBold="true" textDy="-4">
 				<case minzoom="5" tag="place" value="city" nameTag="" intersectionMargin="25" textOrder="32">
-					<case minzoom="6" maxzoom="7" textSize="17"/>
-					<case minzoom="8" textSize="20"/>
+					<apply_if additional="capital=yes" textColor="$placeCityVillageTextColor"/>
+					<case maxzoom="5" textSize="13" textColor="$placeStateProvinceTextColor" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColor"/>
+					<case minzoom="6" maxzoom="7" textSize="14"/>
+					<case minzoom="8" textSize="18"/>
 					<apply>
 						<switch>
 							<case additional="population_rounded=1500000000" textOrder="6"/>
@@ -5593,7 +5595,7 @@
 
 					<apply_if additional="capital=yes" textOrder="15">
 						<switch>
-							<case maxzoom="5" textSize="13" textOrder="25" textDy="0"/>
+							<case maxzoom="5" textSize="13" textOrder="25" textDy="-2"/>
 							<case maxzoom="7" textSize="20"/>
 							<case minzoom="8" textSize="22"/>
 							<apply>
@@ -10106,7 +10108,7 @@
 				<apply cap="ROUND"/>
 			</switch>
 
-			<switch minzoom="7" maxzoom="13">
+			<switch minzoom="6" maxzoom="13">
 				<case tag="highway" value="primary">
 					<apply_if maxzoom="6" strokeWidth="0.4"/>
 					<apply_if minzoom="7" strokeWidth="0.9"/>
@@ -11225,7 +11227,7 @@
 				<apply_if minzoom="17" maxzoom="17" strokeWidth="1.4:1.4"/>
 				<apply_if minzoom="18" strokeWidth="2:2"/>
 			</switch>
-			<switch minzoom="5">
+			<switch minzoom="6">
 				<case tag="waterway" value="river">
 					<apply minzoom="13" pathIcon="$waterwayDirectionIcon">
 						<case maxzoom="13" pathIconStep="130"/>
@@ -12029,7 +12031,7 @@
 			<apply_if nightMode="true" color="#808080"/>
 		</case>
 
-		<!-- Admin levels (boundaries) -->
+    <!-- Admin levels (boundaries) -->
 		<switch minzoom="2">
 			<!-- does admin_level=0 exist?? -->
 			<case tag="admin_level" value="0"/>
