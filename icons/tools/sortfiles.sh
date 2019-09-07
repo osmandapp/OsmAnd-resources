@@ -1110,7 +1110,8 @@ mycpname mdf poi_colored_mdf.png
 mycpname topo_power_plant topo_topo_power_plant.png
 mycpname pipeline_substation poi_colored_pipeline_substation.png
 mycpname flare poi_colored_flare.png
-
+mycpname cellar_entrance poi_cellar_entrance.png
+mycpname topo_cellar_entrance topo_cellar_entrance.png
 
 mygroup military poi_colored_military_bunker.png
 
