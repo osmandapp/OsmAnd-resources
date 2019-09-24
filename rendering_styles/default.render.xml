@@ -2968,33 +2968,37 @@
 			<switch area="false" objectType="2" order="80">
 				<!-- default line -->
 				<case layer="-1" tag="" value="" order="12"/>
+				<case additional="layer=-2" tag="" value="" order="11"/>
 				<case tag="" value="" order="13"/>
 				<case tag="public_transport" value="platform"/>
 				<case tag="public_transport" value="station"/>
 
 				<switch appMode="car">
 					<case tag="railway" value="" order="36">
-						<case layer="1" order="71"/>
+						<apply_if layer="1" order="91"/>
+						<apply_if additional="layer=2" order="92"/>
+						<apply_if additional="layer=3" order="93"/>
 					</case>
-					<switch layer="-1">
+					<switch>
 						<case tag="public_transport" value="platform"/>
 						<case tag="public_transport" value="station"/>
-						<apply order="10"/>
+						<apply_if layer="-1" order="10"/>
+						<apply_if additional="layer=-2" order="10"/>
 					</switch>
-					<case tag="public_transport" value="" order="36"/>
+					<case tag="public_transport" value="" order="63"/>
 				</switch>
-				<case tag="public_transport" value="" order="58"/>
+				<case tag="public_transport" value="" order="85"/>
 				<!-- Over buildings -->
-				<case tag="leisure" value="track" additional="area=false" order="96"/>
-				<case tag="aerialway" value="" order="96"/>
-				<case tag="aerialway" value="station" order="96"/>
-				<case tag="power" value="line" order="96">
+				<case tag="leisure" value="track" additional="area=false" order="175"/>
+				<case tag="aerialway" value="" order="175"/>
+				<case tag="aerialway" value="station" order="175"/>
+				<case tag="power" value="line" order="175">
 					<apply_if moreDetailed="false" maxzoom="14" order="-1"/>
 				</case>
-				<case tag="power" value="minor_line" order="96">
+				<case tag="power" value="minor_line" order="175">
 					<apply_if moreDetailed="false" maxzoom="16" order="-1"/>
 				</case>
-				<switch order="58">
+				<switch order="86">
 					<case tag="railway" value="rail" additional="network=rer"/>
 					<!--<case tag="railway" value="rail" additional="route=subway"/>-->
 					<case tag="railway" value="subway" additional="tunnel=yes">
@@ -3005,8 +3009,8 @@
 								<apply order="-1"/>
 							</switch>
 						</apply_if>
-						<apply_if subwayMode="false" moreDetailed="true" minzoom="18" order="58"/>
-						<apply_if subwayMode="true" order="90"/>
+						<apply_if subwayMode="false" moreDetailed="true" minzoom="18" order="86"/>
+						<apply_if subwayMode="true" order="177"/>
 					</case>
 					<case tag="railway" value="subway">
 						<apply_if subwayMode="false">
@@ -3016,50 +3020,56 @@
 								<apply order="-1"/>
 							</switch>
 						</apply_if>
-						<apply_if subwayMode="false" moreDetailed="true" minzoom="16" order="58"/>
-						<apply_if subwayMode="true" order="90"/>
+						<apply_if subwayMode="false" moreDetailed="true" minzoom="16" order="86"/>
+						<apply_if subwayMode="true" order="177"/>
 					</case>
 					<switch>
 						<case tag="railway" value="rail">
-							<apply_if maxzoom="14" order="50"/>
+							<apply_if maxzoom="14" order="77"/>
 							<apply_if additional="service=spur">
 								<case maxzoom="12" order="-1"/>
-								<case minzoom="13" order="40"/>
+								<case minzoom="13" order="67"/>
 							</apply_if>
 						</case>
-						<case tag="railway" value="tram">
-							<apply_if minzoom="18" order="100"/>
-						</case>
+<!--						<case tag="railway" value="tram">
+							<apply_if minzoom="18" order="178"/>
+						</case>-->
 						<case tag="railway" value="light_rail"/>
 						<case tag="railway" value="monorail"/>
 						<case tag="railway" value="funicular"/>
 						<apply_if subwayMode="false" layer="-1" order="20"/>
-						<apply_if layer="1" order="88"/>
+						<apply_if subwayMode="false" additional="layer=-2" order="20"/>
+						<apply_if layer="1" order="108"/>
+						<apply_if additional="layer=2" order="138"/>
+						<apply_if additional="layer=3" order="167"/>
 					</switch>
 					<switch>
 						<case tag="railway" value="construction"/>
 						<case tag="railway" value="preserved"/>
 						<apply_if moreDetailed="false" maxzoom="18" order="-1"/>
 					</switch>
-					<apply_if subwayMode="false" layer="-1" minzoom="9" maxzoom="18">
-						<apply_if appMode="car" order="-1"/>
-						<apply_if appMode="bicycle" order="-1"/>
-					</apply_if>
+					<apply_if subwayMode="false" appMode="car" layer="-1" minzoom="9" maxzoom="18" order="-1"/>
+					<apply_if subwayMode="false" appMode="bicycle" layer="-1" minzoom="9" maxzoom="18" order="-1"/>
+					<apply_if subwayMode="false" appMode="car" additional="layer=-2" minzoom="9" maxzoom="18" order="-1"/>
+					<apply_if subwayMode="false" appMode="bicycle" additional="layer=-2" minzoom="9" maxzoom="18" order="-1"/>
 				</switch>
-				<case tag="railway" value="" order="58">
-					<apply_if layer="1" order="88"/>
-					<apply_if layer="-1" order="20"/>
+				<case tag="railway" value="" order="86">
+					<apply_if layer="1" order="108"/>
+					<apply_if additional="layer=2" order="138"/>
+					<apply_if additional="layer=3" order="167"/>
+					<apply_if layer="-1" order="44"/>
+					<apply_if additional="layer=-2" order="19"/>
 				</case>
-				<case tag="route_bus" value="" order="100"/>
-				<case tag="route_share_taxi" value="" order="99"/>
-				<case tag="route_monorail" value="" order="92"/>
-				<case tag="route_funicular" value="" order="93"/>
-				<case tag="route_light_rail" value="" order="94"/>
-				<case tag="route_train" value="" order="95"/>
-				<case tag="route_tram" value="" order="96"/>
-				<case tag="route_trolleybus" value="" order="97"/>
-				<case tag="route_bicycle" value="" order="98"/>
-				<case tag="route_mtb" value="" order="99"/>
+				<case tag="route_bus" value="" order="189"/>
+				<case tag="route_share_taxi" value="" order="188"/>
+				<case tag="route_monorail" value="" order="180"/>
+				<case tag="route_funicular" value="" order="181"/>
+				<case tag="route_light_rail" value="" order="182"/>
+				<case tag="route_train" value="" order="183"/>
+				<case tag="route_tram" value="" order="184"/>
+				<case tag="route_trolleybus" value="" order="185"/>
+				<case tag="route_bicycle" value="" order="186"/>
+				<case tag="route_mtb" value="" order="187"/>
 
 				<case tag="railway" value="station"/>
 
@@ -3077,13 +3087,15 @@
 				</case>
 				<case tag="geological" value="outcrop"/>
 
-				<case tag="waterway" value="waterfall" order="98"/>
+				<case tag="waterway" value="waterfall" order="180"/>
 
 				<case tag="waterway" value="dam"/>
 				<case tag="waterway" value="weir" order="19"/>
 				<case tag="waterway" value="wadi" order="9"/>
 				<case tag="waterway" value="" order="9">
-					<apply_if layer="1" order="68"/>
+					<apply_if layer="1" order="112"/>
+					<apply_if additional="layer=2" order="141"/>
+					<apply_if additional="layer=3" order="168"/>
 					<apply_if OSMMapperAssistant="false" additional="tunnel=yes" maxzoom="17" order="-1"/>
 					<apply_if additional="tunnel=yes" appMode="car" order="-1"/>
 					<apply_if maxzoom="15" additional="tunnel=yes" appMode="bicycle" order="-1"/>
@@ -3093,182 +3105,246 @@
 				<case tag="attraction" value="train"/>
 
 				<switch>
-					<case tag="lcn_ref" value="" order="94"/>
-					<case tag="rcn_ref" value="" order="95"/>
-					<case tag="ncn_ref" value="" order="96"/>
-					<case tag="icn_ref" value="" order="97"/>
-					<case tag="lwn_ref" value="" order="94"/>
-					<case tag="rwn_ref" value="" order="95"/>
-					<case tag="nwn_ref" value="" order="96"/>
-					<case tag="iwn_ref" value="" order="97"/>
-					<apply_if point="true" objectType="1" order="74"/>
+					<case tag="lcn_ref" value="" order="197"/>
+					<case tag="rcn_ref" value="" order="198"/>
+					<case tag="ncn_ref" value="" order="199"/>
+					<case tag="icn_ref" value="" order="200"/>
+					<case tag="lwn_ref" value="" order="201"/>
+					<case tag="rwn_ref" value="" order="202"/>
+					<case tag="nwn_ref" value="" order="203"/>
+					<case tag="iwn_ref" value="" order="204"/>
+					<apply_if point="true" objectType="1" order="100"/>
 				</switch>
 
-				<case tag="network_iwn" value="" order="94"/>
-				<case tag="network_nwn" value="" order="95"/>
-				<case tag="network_rwn" value="" order="96"/>
-				<case tag="network_lwn" value="" order="97"/>
-				<switch hikingRoutesOSMC="walkingRoutesScopeOSMC" order="99">
+				<case tag="network_iwn" value="" order="192"/>
+				<case tag="network_nwn" value="" order="193"/>
+				<case tag="network_rwn" value="" order="194"/>
+				<case tag="network_lwn" value="" order="195"/>
+				<switch hikingRoutesOSMC="walkingRoutesScopeOSMC" order="206">
 					<case tag="route_hiking" value=""/>
 					<case tag="route_foot" value=""/>
 					<case tag="route_walking" value=""/>
 				</switch>
-				<!-- Admin_levels under highways unless appMode=default -->
-				<case tag="admin_level" value="" order="62">
+				<case tag="admin_level" value="" order="207">
 					<case appMode="pedestrian"/>
 					<case appMode="bicycle"/>
 					<case appMode="car"/>
-					<apply order="34"/>
+					<apply order="66"/>
 				</case>
 
-				<case tag="administrative" value="" order="62"/>
-				<case tag="boundary" value="" order="62"/>
+				<case tag="administrative" value="" order="207"/>
+				<case tag="boundary" value="" order="207"/>
 				<case tag="addr:interpolation" value=""/>
 
 				<!-- Highways: 35-57, bridges 70-88 -->
 				<switch>
-					<switch>
-						<case tag="highway" value="motorway" order="57">
-							<apply_if layer="1" order="87"/>
-							<apply_if layer="-1" order="33"/>
-						</case>
-						<case tag="highway" value="motorway_link" order="44">
-							<apply_if layer="1" order="74"/>
-							<apply_if layer="-1" order="32"/>
-						</case>
-						<case tag="highway" value="trunk" order="56">
-							<apply_if layer="1" order="86"/>
-							<apply_if layer="-1" order="31"/>
-						</case>
-						<case tag="highway" value="trunk_link" order="43">
-							<apply_if layer="1" order="73"/>
-							<apply_if layer="-1" order="30"/>
-						</case>
-						<case tag="highway" value="primary" order="55">
-							<apply_if layer="1" order="85"/>
-							<apply_if layer="-1" order="29"/>
-						</case>
-						<case tag="highway" value="primary_link" order="42">
-							<apply_if layer="1" order="72"/>
-							<apply_if layer="-1" order="28"/>
-						</case>
-						<case tag="highway" value="secondary" order="54">
-							<apply_if layer="1" order="84"/>
-							<apply_if layer="-1" order="27"/>
-						</case>
-						<case tag="highway" value="secondary_link" order="41">
-							<apply_if layer="1" order="71"/>
-							<apply_if layer="-1" order="26"/>
-						</case>
-						<case tag="highway" value="tertiary" order="53">
-							<apply_if layer="1" order="83"/>
-							<apply_if layer="-1" order="25"/>
-						</case>
-						<case tag="highway" value="tertiary_link" order="40">
-							<apply_if layer="1" order="70"/>
-							<apply_if layer="-1" order="24"/>
-						</case>
-						<case tag="highway" value="road" order="52">
-							<apply_if layer="1" order="82"/>
-							<apply_if layer="-1" order="23"/>
-						</case>
-						<case tag="highway" value="unclassified" order="52">
-							<apply_if layer="1" order="82"/>
-							<apply_if layer="-1" order="23"/>
-						</case>
-						<case tag="highway" value="residential" order="51">
-							<apply_if layer="1" order="81"/>
-							<apply_if layer="-1" order="22"/>
-						</case>
-						<case tag="highway" value="service" order="50">
-							<apply_if layer="1" order="81"/>
-							<apply_if layer="-1" order="21"/>
-						</case>
-						<case tag="highway" value="living_street" order="49">
-							<apply_if layer="1" order="80"/>
-							<apply_if layer="-1" order="21"/>
-						</case>
-						<case tag="highway" value="escape" order="51">
-							<apply_if appMode="car" order="80"/>
-						</case>
-					</switch>
-					<case tag="highway" value="pedestrian" order="48">
-						<apply_if layer="1" order="80"/>
-						<apply_if layer="-1" order="21"/>
+					<case tag="highway" value="motorway" order="84">
+						<apply_if layer="1" order="107"/>
+						<apply_if additional="layer=2" order="137"/>
+						<apply_if additional="layer=3" order="165"/>
+						<apply_if layer="-1" order="62"/>
+						<apply_if additional="layer=-2" order="41"/>
+					</case>
+					<case tag="highway" value="motorway_link" order="71">
+						<apply_if layer="1" order="94"/>
+						<apply_if additional="layer=2" order="124"/>
+						<apply_if additional="layer=3" order="152"/>
+						<apply_if layer="-1" order="49"/>
+						<apply_if additional="layer=-2" order="25"/>
+					</case>
+					<case tag="highway" value="trunk" order="83">
+						<apply_if layer="1" order="106"/>
+						<apply_if additional="layer=2" order="136"/>
+						<apply_if additional="layer=3" order="164"/>
+						<apply_if layer="-1" order="61"/>
+						<apply_if additional="layer=-2" order="40"/>
+					</case>
+					<case tag="highway" value="trunk_link" order="70">
+						<apply_if layer="1" order="93"/>
+						<apply_if additional="layer=2" order="123"/>
+						<apply_if additional="layer=3" order="151"/>
+						<apply_if layer="-1" order="48"/>
+						<apply_if additional="layer=-2" order="24"/>
+					</case>
+					<case tag="highway" value="primary" order="82">
+						<apply_if layer="1" order="105"/>
+						<apply_if additional="layer=2" order="135"/>
+						<apply_if additional="layer=3" order="163"/>
+						<apply_if layer="-1" order="60"/>
+						<apply_if additional="layer=-2" order="39"/>
+					</case>
+					<case tag="highway" value="primary_link" order="69">
+						<apply_if layer="1" order="92"/>
+						<apply_if additional="layer=2" order="122"/>
+						<apply_if additional="layer=3" order="150"/>
+						<apply_if layer="-1" order="47"/>
+						<apply_if additional="layer=-2" order="23"/>
+					</case>
+					<case tag="highway" value="secondary" order="81">
+						<apply_if layer="1" order="104"/>
+						<apply_if additional="layer=2" order="134"/>
+						<apply_if additional="layer=3" order="162"/>
+						<apply_if layer="-1" order="59"/>
+						<apply_if additional="layer=-2" order="38"/>
+					</case>
+					<case tag="highway" value="secondary_link" order="68">
+						<apply_if layer="1" order="91"/>
+						<apply_if additional="layer=2" order="121"/>
+						<apply_if additional="layer=3" order="149"/>
+						<apply_if layer="-1" order="46"/>
+						<apply_if additional="layer=-2" order="22"/>
+					</case>
+					<case tag="highway" value="tertiary" order="80">
+						<apply_if layer="1" order="103"/>
+						<apply_if additional="layer=2" order="133"/>
+						<apply_if additional="layer=3" order="161"/>
+						<apply_if layer="-1" order="58"/>
+						<apply_if additional="layer=-2" order="37"/>
+					</case>
+					<case tag="highway" value="tertiary_link" order="67">
+						<apply_if layer="1" order="90"/>
+						<apply_if additional="layer=2" order="120"/>
+						<apply_if additional="layer=3" order="148"/>
+						<apply_if layer="-1" order="45"/>
+						<apply_if additional="layer=-2" order="21"/>
+					</case>
+					<case tag="highway" value="road" order="79">
+						<apply_if layer="1" order="102"/>
+						<apply_if additional="layer=2" order="132"/>
+						<apply_if additional="layer=3" order="160"/>
+						<apply_if layer="-1" order="57"/>
+						<apply_if additional="layer=-2" order="36"/>
+					</case>
+					<case tag="highway" value="unclassified" order="79">
+						<apply_if layer="1" order="102"/>
+						<apply_if additional="layer=2" order="132"/>
+						<apply_if additional="layer=3" order="160"/>
+						<apply_if layer="-1" order="57"/>
+						<apply_if additional="layer=-2" order="36"/>
+					</case>
+					<case tag="highway" value="residential" order="78">
+						<apply_if layer="1" order="101"/>
+						<apply_if additional="layer=2" order="131"/>
+						<apply_if additional="layer=3" order="159"/>
+						<apply_if layer="-1" order="56"/>
+						<apply_if additional="layer=-2" order="35"/>
+					</case>
+					<case tag="highway" value="service" order="78">
+						<apply_if layer="1" order="101"/>
+						<apply_if additional="layer=2" order="131"/>
+						<apply_if additional="layer=3" order="159"/>
+						<apply_if layer="-1" order="56"/>
+						<apply_if additional="layer=-2" order="35"/>
+					</case>
+					<case tag="highway" value="living_street" order="77">
+						<apply_if layer="1" order="100"/>
+						<apply_if additional="layer=2" order="130"/>
+						<apply_if additional="layer=3" order="158"/>
+						<apply_if layer="-1" order="55"/>
+						<apply_if additional="layer=-2" order="34"/>
+					</case>
+					<case tag="highway" value="escape" order="89">
+						<apply_if appMode="car" order="168"/>
+					</case>
+					<case tag="highway" value="pedestrian" order="76">
+						<apply_if layer="1" order="99"/>
+						<apply_if additional="layer=2" order="129"/>
+						<apply_if additional="layer=3" order="157"/>
+						<apply_if layer="-1" order="54"/>
+						<apply_if additional="layer=-2" order="33"/>
 					</case>
 					<apply_if maxzoom="13" additional="construction=yes" order="-1"/>
 				</switch>
-				<case tag="highway" value="proposed" order="45">
-					<apply_if layer="1" order="75"/>
-					<apply_if layer="-1" order="16"/>
+				<case tag="highway" value="proposed" order="75">
+					<apply_if layer="-1" order="44"/>
+					<apply_if additional="layer=-2" order="44"/>
 					<apply_if hideProposed="true" order="-1"/>
 				</case>
 
-				<case tag="ford" value="yes" order="80"/>
-				<case tag="ford" value="stepping_stones" order="80"/>
+				<case tag="ford" value="yes" order="74"/>
+				<case tag="ford" value="stepping_stones" order="74"/>
 
-				<case tag="highway" value="track" order="37">
-					<apply_if appMode="pedestrian" order="60"/>
-					<apply_if appMode="bicycle" order="61"/>
-					<apply_if layer="1" order="90"/>
+				<case tag="highway" value="track" order="64">
+					<apply_if appMode="pedestrian" order="85"/>
+					<apply_if appMode="bicycle" order="87"/>
+					<apply_if layer="1" order="89"/>
+					<apply_if additional="layer=2" order="119"/>
+					<apply_if additional="layer=3" order="147"/>
 					<apply_if layer="-1" order="20"/>
+					<apply_if additional="layer=-2" order="19"/>
 				</case>
-				<case tag="highway" value="cycleway" order="39">
-					<apply_if appMode="pedestrian" order="59"/>
-					<apply_if layer="1" order="70"/>
-					<apply_if layer="-1" order="20"/>
-					<apply_if appMode="bicycle" order="99">
-						<apply_if layer="1" order="99"/>
-					</apply_if>
+				<case tag="highway" value="cycleway" order="65">
+					<apply_if appMode="pedestrian" order="87"/>
+					<apply_if layer="1" order="109"/>
+					<apply_if additional="layer=2" order="139"/>
+					<apply_if additional="layer=3" order="146"/>
+					<apply_if layer="-1" order="42"/>
+					<apply_if additional="layer=-2" order="19"/>
+					<apply_if appMode="bicycle" order="177"/>
 					<apply_if appMode="default" moreDetailed="false" maxzoom="15" order="-1"/>
 				</case>
-				<case appMode="bicycle" tag="cycleway" value="" order="99">
-					<apply_if layer="1" order="144"/>
-					<apply_if layer="-1" order="20"/>
+				<case appMode="bicycle" tag="cycleway" value="" order="88">
+					<apply_if layer="1" order="109"/>
+					<apply_if additional="layer=2" order="139"/>
+					<apply_if additional="layer=3" order="167"/>
+					<apply_if layer="-1" order="42"/>
+					<apply_if additional="layer=-2" order="19"/>
 				</case>
 				<case appMode="default" tag="cycleway" value="" moreDetailed="false" maxzoom="15" order="-1"/>
-				<case appMode="bicycle" tag="bicycle_road" value="yes" order="99">
-					<apply_if layer="1" order="144"/>
+				<case appMode="bicycle" tag="bicycle_road" value="yes" order="87">
+					<apply_if layer="1" order="109"/>
+					<apply_if additional="layer=2" order="139"/>
+					<apply_if additional="layer=3" order="167"/>
 				</case>
 				<case appMode="default" tag="bicycle_road" value="yes" moreDetailed="false" maxzoom="15" order="-1"/>
 				<switch>
 					<switch>
-						<case tag="highway" value="path" order="37">
-							<apply_if minzoom="14" appMode="pedestrian" order="60"/>
-							<apply_if appMode="bicycle" order="60"/>
+						<case tag="highway" value="path" order="64">
+							<apply_if minzoom="14" appMode="pedestrian" order="86"/>
+							<apply_if appMode="bicycle" order="86"/>
 						</case>
-						<case tag="highway" value="footway" order="37">
-							<apply_if minzoom="14" appMode="pedestrian" order="60"/>
+						<case tag="highway" value="footway" order="64">
+							<apply_if minzoom="14" appMode="pedestrian" order="86"/>
 							<apply_if appMode="bicycle" moreDetailed="false">
 								<apply_if minzoom="14" maxzoom="14" order="-1"/>
-								<apply_if additional="bicycle=designated" minzoom="15" maxzoom="15" order="60"/>
+								<apply_if additional="bicycle=designated" minzoom="15" maxzoom="15" order="88"/>
 							</apply_if>
-							<apply_if additional="footway=crossing" order="90"/>
+							<apply_if additional="footway=crossing" order="85"/>
 						</case>
-						<case tag="highway" value="bridleway" order="37">
-							<apply_if minzoom="14" appMode="pedestrian" order="59"/>
+						<case tag="highway" value="bridleway" order="53">
+							<apply_if minzoom="14" appMode="pedestrian" order="87"/>
 						</case>
 						<apply_if layer="1" maxzoom="15" order="20"/>
-						<apply_if layer="1" minzoom="16" order="90"/>
-						<apply_if appMode="bicycle" layer="1" maxzoom="15" order="90"/>
+						<apply_if additional="layer=2" maxzoom="15" order="20"/>
+						<apply_if additional="layer=3" maxzoom="15" order="20"/>
+						<apply_if layer="1" minzoom="16" order="110"/>
+						<apply_if additional="layer=2" minzoom="16" order="140"/>
+						<apply_if additional="layer=3" minzoom="16" order="166"/>
+						<apply_if appMode="bicycle" layer="1" maxzoom="15" order="110"/>
+						<apply_if appMode="bicycle" additional="layer=2" maxzoom="15" order="140"/>
+						<apply_if appMode="bicycle" additional="layer=3" maxzoom="15" order="166"/>
 						<apply_if layer="-1" order="20"/>
+						<apply_if additional="layer=-2" order="19"/>
 					</switch>
-					<case tag="highway" value="steps" order="38">
+					<case tag="highway" value="steps" order="65">
 						<apply_if minzoom="14" appMode="pedestrian" order="61"/>
 						<apply_if appMode="default" moreDetailed="false">
 							<apply_if minzoom="15" maxzoom="15" order="-1"/>
 							<apply_if additional="conveying=yes" layer="-1" maxzoom="16" order="-1"/>
 						</apply_if>
-						<apply_if layer="1" order="91">
-							<apply_if maxzoom="15" order="40"/>
+						<apply_if layer="1" order="111">
+							<apply_if maxzoom="15" order="66"/>
 							<apply_if appMode="default" moreDetailed="false" maxzoom="15" order="-1"/>
 						</apply_if>
+						<apply_if additional="layer=2" order="140">
+						<apply_if additional="layer=3" order="166">
 						<apply_if layer="-1" order="20"/>
+						<apply_if additional="layer=-2" order="19"/>
 					</case>
 					<apply_if appMode="car">
 						<case layer="0" maxzoom="18" order="-1"/>
 						<case layer="-1" maxzoom="18" order="-1"/>
-						<case layer="1" maxzoom="16" order="34"/>
+						<case layer="1" maxzoom="16" order="89"/>
 					</apply_if>
 				</switch>
 
@@ -3279,13 +3355,13 @@
 				<case tag="highway" value="raceway"/>
 				<case tag="abandoned:highway" value=""/>
 
-				<case tag="natural" value="coastline_broken" order="35"/>
-				<case tag="natural" value="coastline_line" order="35"/>
-				<case tag="route" value="ferry" order="35"/>
+				<case tag="natural" value="coastline_broken" order="63"/>
+				<case tag="natural" value="coastline_line" order="63"/>
+				<case tag="route" value="ferry" order="63"/>
 
 				<case tag="abandoned:aeroway" value="runway"/>
 				<case tag="aeroway" value="runway"/>
-				<case tag="aeroway" value="" order="32"/>
+				<case tag="aeroway" value="" order="62"/>
 
 				<case tag="contour" value="elevation" order="15">
 					<apply_if contourDensity="medium_w" additional="contourtype=10m" order="-1"/>
@@ -3324,20 +3400,20 @@
 			</apply_if>
 			<apply_if hideUnderground="true">
 				<apply_if layer="-1" order="-1">
-					<apply_if tag="highway" value="motorway" order="33"/>
-					<apply_if tag="highway" value="motorway_link" order="32"/>
-					<apply_if tag="highway" value="trunk" order="31"/>
-					<apply_if tag="highway" value="trunk_link" order="30"/>
-					<apply_if tag="highway" value="primary" order="29"/>
-					<apply_if tag="highway" value="primary_link" order="28"/>
-					<apply_if tag="highway" value="secondary" order="27"/>
-					<apply_if tag="highway" value="secondary_link" order="26"/>
-					<apply_if tag="highway" value="tertiary" order="25"/>
-					<apply_if tag="highway" value="tertiary_link" order="24"/>
-					<apply_if tag="highway" value="unclassified" order="23"/>
-					<apply_if tag="highway" value="residential" order="22"/>
-					<apply_if tag="highway" value="service" order="21"/>
-					<apply_if tag="highway" value="living_street" order="21"/>
+					<apply_if tag="highway" value="motorway" order="62"/>
+					<apply_if tag="highway" value="motorway_link" order="49"/>
+					<apply_if tag="highway" value="trunk" order="61"/>
+					<apply_if tag="highway" value="trunk_link" order="48"/>
+					<apply_if tag="highway" value="primary" order="60"/>
+					<apply_if tag="highway" value="primary_link" order="47"/>
+					<apply_if tag="highway" value="secondary" order="59"/>
+					<apply_if tag="highway" value="secondary_link" order="46"/>
+					<apply_if tag="highway" value="tertiary" order="58"/>
+					<apply_if tag="highway" value="tertiary_link" order="45"/>
+					<apply_if tag="highway" value="unclassified" order="57"/>
+					<apply_if tag="highway" value="residential" order="57"/>
+					<apply_if tag="highway" value="service" order="56"/>
+					<apply_if tag="highway" value="living_street" order="56"/>
 				</apply_if>
 				<apply_if additional="indoor=yes" order="-1"/>
 				<apply_if additional="covered=yes" order="-1"/>
@@ -10716,6 +10792,8 @@
 						<switch minzoom="12" maxzoom="15">
 							<case moreDetailed="true">
 								<case layer="1" strokeWidth_5="0.6"/>
+								<case additional="layer=2" strokeWidth_5="0.6"/>
+								<case additional="layer=3" strokeWidth_5="0.6"/>
 								<case maxzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="0.7" pathEffect_5="">
 									<apply_if appMode="pedestrian" strokeWidth_5="0.9"/>
 								</case>
@@ -10742,14 +10820,14 @@
 						<case appMode="pedestrian" strokeWidth_4="2:2" strokeWidth_5="2:2" pathEffect_5="2_2"/>
 						<case moreDetailed="true" maxzoom="15">
 							<case layer="1" strokeWidth_4="1.7:1.7" strokeWidth_5="1.7:1.7"/>
+							<case additional="layer=2" strokeWidth_4="1.7:1.7" strokeWidth_5="1.7:1.7"/>
+							<case additional="layer=3" strokeWidth_4="1.7:1.7" strokeWidth_5="1.7:1.7"/>
 							<case strokeWidth_4="2:2" strokeWidth_5="2:2"/> <!-- If we remove this and let <order> to decide when to hide steps, layer="1" will be also hidden which is undesirable.-->
 						</case>
 						<case maxzoom="15" disable="true"/>
 						<case minzoom="16" strokeWidth_4="2:2" strokeWidth_5="2:2"/>
 						<apply color_5="$footwayColor" pathEffect_5="1_2"/>
-						<apply>
-							<case additional="conveying=yes" pathEffect_5="2_1"/>
-						</apply>
+						<apply_if additional="conveying=yes" pathEffect_5="2_1"/>
 					</case>
 
 					<case minzoom="12" tag="highway" value="bridleway">
@@ -11607,9 +11685,14 @@
 			<apply color="#35888888" color_2="#666666">
 				<apply_if nightMode="true" color="#99555555" color_2="#777777"/>
 			</apply>
-			<apply_if layer="1" color="#11888888" color_2="#22000000">
-				<apply_if nightMode="true" color="#22666666" color_2="#555555"/>
-			</apply_if>
+			<apply>
+				<switch>
+					<case layer="1" color="#11888888" color_2="#22000000"/>
+					<case additional="layer=2" color="#11888888" color_2="#22000000"/>
+					<case additional="layer=3" color="#11888888" color_2="#22000000"/>
+					<apply_if nightMode="true" color="#22666666" color_2="#555555"/>
+				</switch>
+			</apply>
 			<apply_if additional="bridge=yes" color__1="#777777" color="#ffffff" color_2="#666666">
 				<apply_if maxzoom="17" strokeWidth__1="3.5:3.5"/>
 				<apply_if minzoom="18" strokeWidth__1="4:4"/>
@@ -11632,12 +11715,18 @@
 				<case maxzoom="14" strokeWidth="6:6"/>
 				<case minzoom="15" strokeWidth="9:9"/>
 			</apply>
-			<apply_if layer="1" minzoom="13" color__1="#000000">
-				<case maxzoom="13" strokeWidth__1="3.5:5"/>
-				<case maxzoom="14" strokeWidth__1="6:8"/>
-				<case minzoom="15" strokeWidth__1="9:12"/>
-				<apply_if nightMode="true" color__1="#ffffff"/>
-			</apply_if>
+			<apply>
+				<switch minzoom="13">
+					<case layer="1"/>
+					<case additional="layer=2"/>
+					<case additional="layer=3"/>
+					<apply_if maxzoom="13" strokeWidth__1="3.5:5"/>
+					<apply_if minzoom="14" maxzoom="14" strokeWidth__1="6:8"/>
+					<apply_if minzoom="15" strokeWidth__1="9:12"/>
+					<apply color__1="#000000"/>
+					<apply_if nightMode="true" color__1="#ffffff"/>
+				</switch>
+			</apply>
 		</switch>
 
 		<case minzoom="12" tag="aeroway" value="taxiway" color="$taxiwayColor">
@@ -11645,12 +11734,18 @@
 			<case maxzoom="13" strokeWidth="0.9"/>
 			<case maxzoom="14" strokeWidth="1.5:1.5"/>
 			<case minzoom="15" strokeWidth="2.5:2.5"/>
-			<apply_if layer="1" minzoom="13" color__1="#000000">
-				<case maxzoom="13" strokeWidth__1="0.8:2.5"/>
-				<case maxzoom="14" strokeWidth__1="1.5:3"/>
-				<case minzoom="15" strokeWidth__1="2.5:4"/>
-				<apply_if nightMode="true" color__1="#ffffff"/>
-			</apply_if>
+			<apply>
+				<switch minzoom="13">
+					<case layer="1"/>
+					<case additional="layer=2"/>
+					<case additional="layer=3"/>
+					<apply_if maxzoom="13" strokeWidth__1="0.8:2.5"/>
+					<apply_if minzoom="14" maxzoom="14" strokeWidth__1="1.5:3"/>
+					<apply_if minzoom="15" strokeWidth__1="2.5:4"/>
+					<apply color__1="#000000"/>
+					<apply_if nightMode="true" color__1="#ffffff"/>
+				</switch>
+			</apply>
 		</case>
 
 		<case minzoom="15" tag="aeroway" value="parking_position" color="#66bbbbcc">
@@ -11738,9 +11833,15 @@
 				<case minzoom="19" strokeWidth="4" strokeWidth__1="8"/>
 			</apply>
 			<apply_if layer="-1" pathEffect="4_4" pathEffect__1="4_4"/>
-			<apply_if layer="1" color__1="#000000">
-				<apply_if nightMode="true" color__1="#cccccc"/>
-			</apply_if>
+			<apply>
+				<switch>
+					<case layer="1"/>
+					<case additional="layer=2"/>
+					<case additional="layer=3"/>
+					<apply color__1="#000000"/>
+					<apply_if nightMode="true" color__1="#cccccc"/>
+				</switch>
+			</apply>
 		</switch>
 		<case minzoom="18" tag="attraction" value="log_flume" strokeWidth="0.1"/>
 
