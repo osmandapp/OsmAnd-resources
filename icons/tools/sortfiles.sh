@@ -951,6 +951,7 @@ mycpname animal_keeping amenity_animal_keeping.png
 mycpname coworking_space amenity_coworking.png
 
 mygroup craft craft_tailor.png
+mycpname craft_default craft_craft_default.png
 mycpname craft_beekeeper craft_beekeeper.png
 mycpname craft_blacksmith craft_blacksmith.png
 mycpname craft_brewery craft_brewery.png
