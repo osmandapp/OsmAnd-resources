@@ -983,6 +983,7 @@ mycpname craft_builder craft_builder.png
 mycpname craft_photographer craft_photographer.png
 mycpname craft_caterer craft_caterer.png
 mycpname craft_electronics_repair craft_electronics_repair.png
+mycpname craft_gardener craft_gardener.png
 
 mygroup finance money_bank2.png
 mycp amenity atm money_atm.png
