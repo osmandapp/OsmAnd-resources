@@ -980,6 +980,7 @@ mycpname craft_winery craft_winery.png
 mycpname craft_metal_construction craft_metal_construction.png
 mycpname craft_window_construction craft_window_construction.png
 mycpname craft_builder craft_builder.png
+mycpname craft_photographer craft_photographer.png
 
 mygroup finance money_bank2.png
 mycp amenity atm money_atm.png
