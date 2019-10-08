@@ -291,11 +291,9 @@ function time(seconds) {
 function hours(minutes) {
 	if (minutes < 60) {
 		return "";
-	} else if (minutes < 120) {
-		return ogg_dist(1) + dictionary["hour"];
 	} else {
 		var hours = minutes / 60;
-        return (!tts ? ogg_dist(Math.floor(hours)) : Math.floor(hours).toString()) + " " + plural_hs(Math.floor(hours)); 
+        	return (!tts ? ogg_dist(Math.floor(hours)) : Math.floor(hours).toString()) + " " + plural_hs(Math.floor(hours)); 
 	}
 }
 
