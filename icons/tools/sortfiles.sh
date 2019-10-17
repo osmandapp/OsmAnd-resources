@@ -1905,6 +1905,7 @@ mycpname appliance shopping_appliance.png
 mycpname shoe_repair shopping_shoe_repair.png
 mycpname shop_wholesale shopping_wholesale.png
 mycpname health_food shopping_health_food.png
+mycpname pet_grooming shopping_pet_grooming.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png
