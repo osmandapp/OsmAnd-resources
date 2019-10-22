@@ -850,6 +850,7 @@
 		<parameter id="relief_smoothness_factor_plains" group="relief_smoothness_factor" name="Plains" description="" type="boolean" default="true"/>
 		<parameter id="relief_smoothness_factor_hills" group="relief_smoothness_factor" name="Hills" description="" type="boolean"/>
 		<parameter id="avoid_unpaved" name="Avoid unpaved roads" description="Avoid unpaved roads" type="boolean"/>
+		<parameter id="prefer_unpaved" name="Prefer unpaved roads" description="Prefer unpaved roads" type="boolean"/>
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_stairs" name="Avoid stairs" description="Avoid stairs" type="boolean"/>
 		<parameter id="avoid_borders" name="Avoid border crossing" description="Avoid crossing a border into another country" type="boolean"/>
@@ -1193,7 +1194,15 @@
 				<select value="0.03" t="class:bicycle" v="-3"/>
 				<!--select value="0.6" t="surface" v="wood"/>-->
 			</if>
-			
+
+			<if param="prefer_unpaved">
+				<select value="0.1" t="osmand_highway_integrity_brouting" v="0"/>
+				<select value="0.2" t="osmand_highway_integrity_brouting" v="1"/>
+				<select value="0.35" t="osmand_highway_integrity_brouting" v="2"/>
+				<select value="0.38" t="osmand_highway_integrity_brouting" v="3"/>
+				<select value="0.4" t="osmand_highway_integrity_brouting" v="4"/>
+			</if>
+
 			<if param="avoid_sett">
 				<select value="0.01" t="surface" v="sett"/>
 				<select value="0.01" t="surface" v="cobblestone"/>
@@ -1289,6 +1298,13 @@
 			<select value="1.0" t="highway" v="secondary"/>
 			<select value="1.0" t="highway" v="tertiary"/>
 			<select value="1.0" t="highway" v="service"/>
+
+			<if param="prefer_unpaved">
+				<select value="0.05" t="surface" v="asphalt"/>
+				<select value="0.1" t="surface" v="paved"/>
+				<select value="0.3" t="surface" v="concrete"/>
+				<select value="0.4" t="surface" v="paving_stones"/>
+			</if>
 
 			<select value="1.35" t="surface" v="asphalt"/>
 			<select value="1.35" t="surface" v="paved"/>
