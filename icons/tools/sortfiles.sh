@@ -427,11 +427,12 @@ mycp railway tram_stop_round_small functional-icons_blue_stop_round_small.png
 mycp railway tram_stop_round_small_night functional-icons_blue_stop_round_small_night.png
 mycp railway tram_stop transport_tram_stop.png
 mycpname tram_stop_small functional-icons_tram_stop_small.png
-mycpname subway_station transport_subway_station.png
+mycpname subway_station transport_subway_station2.png
 mycpname funicular transport_funicular.png
 mycpname escape_lane transport_escape_lane.png
 
 mycpname subway_entrance_map subway_subway_entrance_map.png
+mycpname barrier_entrance_2 barrier_entrance.png
 mycpname subway_entrance poi_colored_subway_entrance.png
 mycpname subway_entrance transport_subway_entrance.png
 mycp railway subway_entrance_red functional-icons_subway_entrance_red.png
