@@ -1229,6 +1229,7 @@
 						<apply_if layer="-1" order="20"/>
 						<apply_if additional="layer=-2" order="19"/>
 					</case>
+					<case tag="abandoned:highway" value=""/>
 					<case tag="highway" value="via_ferrata"/>
 					<case tag="highway" value="cycleway" order="65">
 						<apply_if appMode="pedestrian" order="87"/>
@@ -1424,6 +1425,15 @@
 				<case minzoom="18" textSize="18"/>
 			</apply>
 		</switch>
+		<case minzoom="16" tag="abandoned:highway" value="" textColor="#777777" textHaloRadius="$highwayTrackTextHaloRadiusDay" textHaloColor="$highwayTrackTextHaloColorDay" textOnPath="true" textOrder="225">
+			<apply>
+				<case maxzoom="16" textSize="14"/>
+				<case maxzoom="17" textSize="16"/>
+				<case minzoom="18" textSize="18"/>
+			</apply>
+			<apply_if nightMode="true" textColor="#888888" textHaloColor="#77777777"/>
+		</case>
+
 				<switch minzoom="12" textMinDistance="101" textOnPath="false" textColor="#00ffffff" textSize="11" textOrder="43">
 					<switch minzoom="12" textOrder="44">
 						<case tag="route_hiking" value="" nameTag="osmc_text" nameTag2="hiking_route_ref" textSize="13"/>
@@ -4006,7 +4016,7 @@
 						<apply color="$serviceRoadColor" color__1="$serviceRoadColor"/>
 						<apply shadowRadius="$highwayShadowRadius"/>
 						<apply shadowColor="$serviceRoadShadowColor"/>
-						<apply>
+						<apply cap="ROUND">
 							<switch>
 								<case additional="service=driveway"/>
 								<case additional="service=parking_aisle"/>
@@ -4030,9 +4040,42 @@
 					</switch>
 					<switch>
 						<case tag="highway" value="pedestrian" color__1="$pedestrianRoadColor"/>
-						<apply color="$pedestrianRoadColor" shadowColor="$pedestrianRoadShadowColor" shadowRadius="1:1"/>
+						<apply color="$pedestrianRoadColor" shadowColor="$pedestrianRoadShadowColor" shadowRadius="1:1" cap="ROUND"/>
 					</switch>
-					<apply cap="ROUND" color_0="#000000">
+					<switch minzoom="14">
+						<case tag="abandoned:highway" value="motorway"/>
+						<case tag="abandoned:highway" value="motorway_link"/>
+						<case tag="abandoned:highway" value="trunk"/>
+						<case tag="abandoned:highway" value="primary"/>
+						<case tag="abandoned:highway" value="secondary"/>
+						<case tag="abandoned:highway" value="tertiary"/>
+						<case tag="abandoned:highway" value="unclassified"/>
+						<case tag="abandoned:highway" value="residential"/>
+						<case tag="abandoned:highway" value="service"/>
+						<apply color="#55ffffff" pathEffect="20_7" shadowRadius="1" shadowColor="$residentialRoadShadowColor" cap="BUTT">
+							<switch>
+								<case minzoom="15" maxzoom="15" strokeWidth="2:2"/>
+								<case minzoom="16" maxzoom="16" strokeWidth="3.5:3.5"/>
+								<case minzoom="17" maxzoom="17" strokeWidth="5:5"/>
+								<case minzoom="18" maxzoom="18" strokeWidth="8:8"/>
+								<case minzoom="19" strokeWidth="9.5:9.5"/>
+								<apply_if nightMode="true" color="#33ffffff"/>
+							</switch>
+							<apply_if additional="tunnel=yes" pathEffect="4_4" cap="BUTT"/>
+							<apply_if additional="covered=yes" pathEffect="7_2" pathEffect__2="1_1" cap="BUTT"/>
+							<!-- Bridges -->
+							<apply_if additional="bridge=yes" minzoom="14" shadowRadius="0" color_0="#44333333" cap="BUTT" cap_0="BUTT">
+								<case maxzoom="15" strokeWidth_0="2.8:2.8"/>
+								<case maxzoom="16" strokeWidth_0="4:4"/>
+								<case maxzoom="17" strokeWidth_0="6:6"/>
+								<case maxzoom="18" strokeWidth_0="9:9"/>
+								<case minzoom="19" strokeWidth_0="11:11"/>
+							</apply_if>
+						</apply>
+					</switch>
+
+
+					<apply color_0="#000000">
 						<switch lessDetailed="false">
 							<case maxzoom="13" strokeWidth="0.7" strokeWidth_3="0.7" shadowRadius=":1"/>
 							<case minzoom="14" maxzoom="14" strokeWidth="1:1" strokeWidth_3="1:1" shadowRadius=":1">
@@ -4209,6 +4252,12 @@
 							</case>
 							<case minzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="$bridlewayStrokeWidth"/>
 						</case>
+						<switch minzoom="15">
+							<case tag="abandoned:highway" value="track"/>
+							<case tag="abandoned:highway" value="path"/>
+							<case tag="abandoned:highway" value="footway"/>
+							<apply color="$null" color_5="#55996600" strokeWidth_5="1" pathEffect_5="6_2"/>
+						</switch>
 					</switch>
 					<apply>
 						<switch alpineHiking="true" minzoom="12" cap_3="BUTT">
