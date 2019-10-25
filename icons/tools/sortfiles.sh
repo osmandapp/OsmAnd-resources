@@ -207,7 +207,7 @@ mygroup emergency_infrastructure emergency_emergency_phone.png
 mycp amenity fire_station emergency_firestation4.png
 mycp amenity police amenity_police2.png
 mycp emergency fire_hydrant emergency_colored_fire_hydrant.png
-mycpname fire_hydrant_type_underground emergency_fire_hydrant_underground.png
+mycpname fire_hydrant_type_underground emergency_colored_fire_hydrant_underground.png
 mycpname fire_hydrant_type_pillar emergency_fire_hydrant.png
 mycpname suction_point emergency_suction_point.png
 mycp emergency phone emergency_emergency_phone.png
