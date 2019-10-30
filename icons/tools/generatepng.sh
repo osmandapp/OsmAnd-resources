@@ -11,6 +11,7 @@ FOLDERS_NOMX=(xxhdpi xhdpi hdpi mdpi) # no icons used in osmand interface (searc
 SIZES=(72 48 36 24 42 28 21 14)
 SIZESx2=(72 48 36 24 96 64 48 32)
 SIZESx4=(72 48 36 24 192 128 96 64)
+SIZES_HALF=4
 
 FOLDERS_ORIG=("${FOLDERS[@]}")
 SIZES_ORIG=("${SIZES[@]}")
@@ -67,7 +68,6 @@ generatePngs() {
 
   if [ "$NO_MX" = 'nomx' ]
     then
-	let "SIZES_HALF=${#SIZES[@]} / 2"
 	SIZES=("${SIZES[@]:$SIZES_HALF}")
 	echo "nomx:"${SIZES[@]}
 	FOLDERS=("${FOLDERS_NOMX[@]}")
