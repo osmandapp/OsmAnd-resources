@@ -17,6 +17,8 @@
 		type="string" possibleValues="thin,medium,bold" defaultValueDescription="default"/>
 	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
+	<renderingProperty attr="baseAppMode" name="Default Rendering mode" description="Map optimization for respective User Profile based on base (parent) profile"
+		type="string" possibleValues="default, car, bicycle, pedestrian, public_transport, boat, ski"/>
 	<renderingProperty attr="transportStops" name="Transport stops" description="Public transport stops"
 		type="boolean" possibleValues="" category="transport"/>
 
@@ -509,7 +511,7 @@
 			<!-- default line -->
 			<case layer="-1" tag="" value="" order="11"/>
 			<case tag="" value="" order="12"/>
-			<switch appMode="car">
+			<switch baseAppMode="car">
 				<case layer="1" tag="railway" value="" order="71"/>
 				<case tag="railway" value="" order="36"/>
 				<switch layer="-1">
@@ -539,11 +541,11 @@
 			</case>
 			<case tag="waterway" value="waterfall"/>
 
-			<!-- Admin_levels under highways unless appMode=default -->
+			<!-- Admin_levels under highways unless baseAppMode=default -->
 			<case tag="admin_level" value="" order="62">
-				<apply_if appMode="pedestrian" order="34"/>
-				<apply_if appMode="bicycle" order="34"/>
-				<apply_if appMode="car" order="34"/>
+				<apply_if baseAppMode="pedestrian" order="34"/>
+				<apply_if baseAppMode="bicycle" order="34"/>
+				<apply_if baseAppMode="car" order="34"/>
 			</case>
 
 			<case tag="administrative" value="" order="62"/>
@@ -663,7 +665,7 @@
 					<apply_if additional="layer=-2" order="34"/>
 				</case>
 				<case tag="highway" value="pedestrian" order="76">
-					<apply_if appMode="pedestrian" order="82"/>
+					<apply_if baseAppMode="pedestrian" order="82"/>
 					<apply_if layer="1" order="99"/>
 					<apply_if additional="layer=2" order="129"/>
 					<apply_if additional="layer=3" order="157"/>
@@ -672,15 +674,15 @@
 				</case>
 
 				<case tag="highway" value="cycleway" order="65">
-					<apply_if appMode="pedestrian" order="87"/>
+					<apply_if baseAppMode="pedestrian" order="87"/>
 					<apply_if layer="1" order="109"/>
 					<apply_if additional="layer=2" order="139"/>
 					<apply_if additional="layer=3" order="146"/>
 					<apply_if layer="-1" order="42"/>
 					<apply_if additional="layer=-2" order="19"/>
-					<apply_if appMode="bicycle" order="177"/>
+					<apply_if baseAppMode="bicycle" order="177"/>
 				</case>
-				<case appMode="bicycle" tag="cycleway" value="" order="88">
+				<case baseAppMode="bicycle" tag="cycleway" value="" order="88">
 					<apply_if layer="1" order="109"/>
 					<apply_if additional="layer=2" order="139"/>
 					<apply_if additional="layer=3" order="167"/>
@@ -895,7 +897,7 @@
 			</switch>
 
 			<case minzoom="13" tag="highway" value="motorway_junction" textColor="#00008b" textHaloRadius="1" textWrapWidth="16" textMinDistance="10" textOrder="46">
-				<case appMode="car">
+				<case baseAppMode="car">
 					<case maxzoom="13" textSize="12" nameTag="ref"/>
 					<case minzoom="14" textSize="13" nameTag="" nameTag2="ref"/>
 				</case>
@@ -1608,8 +1610,8 @@
 			<apply_if minzoom="16" maxzoom="16" icon="barrier_small_red_2" iconVisibleSize="0" shield=""/>
 			<apply>
 				<switch> <!-- These barriers are passable by bicycle and pedestrian -->
-					<case appMode="bicycle"/>
-					<case appMode="pedestrian"/>
+					<case baseAppMode="bicycle"/>
+					<case baseAppMode="pedestrian"/>
 					<apply_if minzoom="16" maxzoom="16" icon="barrier_small_black_2"/>
 				</switch>
 			</apply>
