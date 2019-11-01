@@ -1194,10 +1194,22 @@
 
 	<poi_additional name="drinking_water_no" tag="drinking_water" value="no"/>
 
+	<poi_additional name="cash_withdrawal" tag="cash_withdrawal" type="text"/>
+	<poi_additional name="cash_withdrawal_operator" tag="cash_withdrawal:operator" type="text"/>
+	<poi_additional name="cash_withdrawal_type_checkout" tag="cash_withdrawal:type" value="checkout"/>
+	<poi_additional name="cash_withdrawal_type_self_checkout" tag="cash_withdrawal:type" value="self_checkout"/>
+	<poi_additional name="cash_withdrawal_limit" tag="cash_withdrawal:limit" type="text"/>
+	<poi_additional name="cash_withdrawal_currency" tag="cash_withdrawal:currency" type="text"/>
+	<poi_additional name="cash_withdrawal_purchase_required_yes" tag="cash_withdrawal:purchase_required" value="yes"/>
+	<poi_additional name="cash_withdrawal_purchase_required_no" tag="cash_withdrawal:purchase_required" value="no"/>
+	<poi_additional name="cash_withdrawal_fee_yes" tag="cash_withdrawal:fee" value="yes"/>
+	<poi_additional name="cash_withdrawal_fee_no" tag="cash_withdrawal:fee" value="no"/>
+	<poi_additional name="cash_withdrawal_purchase_minimum" tag="cash_withdrawal:purchase_minimum" type="text"/>
+	<poi_additional name="cash_withdrawal_foreign_cards" tag="cash_withdrawal:foreign_cards" type="text"/>
 
 		<poi_category name="shop" default_tag="shop" top="true" excluded_poi_additional_category="fee" poi_additional_category="bulk_purchase">
 			<poi_filter name="shop_food" top="true">
-				<poi_type name="convenience" tag="shop" value="convenience" poi_additional_category="organic"/>
+				<poi_type name="convenience" tag="shop" value="convenience" poi_additional_category="organic,cash_withdrawal_bank_card"/>
 				<poi_type name="supermarket" tag="shop" value="supermarket" poi_additional_category="drive_through">
 					<poi_additional_category name="organic">
 						<poi_additional name="organic_yes" tag="organic" value="yes"/>
@@ -1206,6 +1218,13 @@
 					<poi_additional_category name="bulk_purchase">
 						<poi_additional name="bulk_purchase_yes" tag="bulk_purchase" value="yes"/>
 						<poi_additional name="bulk_purchase_only" tag="bulk_purchase" value="only"/>
+					</poi_additional_category>
+					<poi_additional_category name="cash_withdrawal_bank_card">
+						<poi_additional name="cash_withdrawal_yes" tag="cash_withdrawal_yes" value="yes"/>
+						<poi_additional name="cash_withdrawal_postfinance_card" tag="cash_withdrawal" value="postfinance_card"/>
+						<poi_additional name="cash_withdrawal_migros_bank" tag="cash_withdrawal" value="migros_bank"/>
+						<poi_additional name="cash_withdrawal_girocard" tag="cash_withdrawal" value="girocard"/>
+						<poi_additional name="cash_withdrawal_postbank" tag="cash_withdrawal" value="postbank"/>
 					</poi_additional_category>
 				</poi_type>
 			</poi_filter>
@@ -1359,7 +1378,7 @@
 			<poi_type name="cosmetics" tag="shop" value="cosmetics"/>
 			<poi_type name="shop_craft" tag="shop" value="craft"/>
 			<poi_type name="curtain" tag="shop" value="curtain"/>
-			<poi_type name="department_store" tag="shop" value="department_store" exclude_poi_additional_category="payment_type"/>
+			<poi_type name="department_store" tag="shop" value="department_store" exclude_poi_additional_category="payment_type" poi_additional_category="cash_withdrawal_bank_card"/>
 			<poi_type name="dive" tag="shop" value="dive"/>
 			<poi_type name="doityourself" tag="shop" value="doityourself"/>
 			<poi_type name="doors" tag="shop" value="doors"/>
@@ -1394,7 +1413,7 @@
 			<poi_type name="hunting" tag="shop" value="hunting"/>
 			<poi_type name="interior_decoration" tag="shop" value="interior_decoration"/>
 			<poi_type name="jewelry" tag="shop" value="jewelry"/>
-			<poi_type name="kiosk" tag="shop" value="kiosk"/>
+			<poi_type name="kiosk" tag="shop" value="kiosk" poi_additional_category="cash_withdrawal_bank_card"/>
 			<poi_type name="kitchen" tag="shop" value="kitchen"/>
 			<poi_type name="leather" tag="shop" value="leather"/>
 			<poi_type name="lighting" tag="shop" value="lighting"/>
@@ -1427,7 +1446,7 @@
 			</poi_type>
 			<poi_type name="musical_instrument" tag="shop" value="musical_instrument"/>
 			<poi_type name="music" tag="shop" value="music"/>
-			<poi_type name="newsagent" tag="shop" value="newsagent"/>
+			<poi_type name="newsagent" tag="shop" value="newsagent" poi_additional_category="cash_withdrawal_bank_card"/>
 			<poi_type name="nutrition_supplements" tag="shop" value="nutrition_supplements"/>
 			<poi_type name="optician" tag="shop" value="optician"/>
 			<poi_type name="outdoor" tag="shop" value="outdoor"/>
@@ -1462,7 +1481,7 @@
 			<poi_type name="supermarket" tag="shop" value="supermarket"/>
 			<poi_type name="swimming_pool_shop" tag="shop" value="swimming_pool"/>
 			<poi_type name="tableware" tag="shop" value="tableware"/>
-			<poi_type name="ticket" tag="shop" value="ticket"/>
+			<poi_type name="ticket" tag="shop" value="ticket" poi_additional_category="cash_withdrawal_bank_card"/>
 			<poi_type name="tobacco" tag="shop" value="tobacco"/>
 			<poi_type name="toys" tag="shop" value="toys"/>
 			<poi_type name="trade" tag="shop" value="trade"/>
@@ -1602,7 +1621,7 @@
 				</poi_type>
 			</poi_filter>
 			<poi_filter name="filling_station" top="true" excluded_poi_additional_category="internet_access_type,fee">
-				<poi_type name="fuel" tag="amenity" value="fuel" poi_additional_category="self_service">
+				<poi_type name="fuel" tag="amenity" value="fuel" poi_additional_category="self_service,cash_withdrawal_bank_card">
 					<poi_additional_category name="fuel_type">
 						<poi_additional name="fuel_diesel" tag="fuel:diesel" top="true" value="yes"/>
 						<poi_additional name="fuel_lpg" tag="fuel:lpg" top="true" value="yes"/>
@@ -3613,7 +3632,7 @@
 			<poi_type name="funeral_directors" tag="shop" value="funeral_directors" excluded_poi_additional_category="payment_type,fee,internet_access_type"/>
 			<poi_reference name="bureau_de_change"/>
 			<poi_reference name="driving_school"/>
-			<poi_type name="post_office" tag="amenity" value="post_office" excluded_poi_additional_category="fee">
+			<poi_type name="post_office" tag="amenity" value="post_office" excluded_poi_additional_category="fee" poi_additional_category="cash_withdrawal_bank_card">
 				<poi_additional name="ref_post" tag="ref_post" type="text"/>
 			</poi_type>
 			<poi_type name="post_box" tag="amenity" value="post_box" excluded_poi_additional_category="payment_type,fee,drive_through,internet_access_type,opening_hours"/>
@@ -3811,7 +3830,7 @@
 		</poi_category>
 		<poi_category name="finance" default_tag="amenity" top="true" excluded_poi_additional_category="fee">
 			<poi_type name="bank" tag="amenity" value="bank" poi_additional_category="drive_through"/>
-			<poi_type name="atm" tag="amenity_atm" value="atm" poi_additional_category="drive_through" edit_tag="amenity" edit_value="atm" alt_edit_tag="atm" alt_edit_value="yes"/>
+			<poi_type name="atm" tag="amenity_atm" value="atm" poi_additional_category="drive_through,cash_withdrawal_bank_card" edit_tag="amenity" edit_value="atm" alt_edit_tag="atm" alt_edit_value="yes"/>
 			<poi_type name="payment_terminal" tag="amenity" value="payment_terminal"/>
 			<poi_type name="payment_centre" tag="amenity" value="payment_centre"/>
 			<poi_type name="money_lender" tag="shop" value="money_lender"/>
