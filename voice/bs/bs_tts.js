@@ -82,8 +82,8 @@ function populateDictionary(tts) {
 	dictionary["reached_intermediate"] = tts ? "stigli ste do međuodredišta" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "i proći ćete g p s tačku" : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "prolazite g p s tačku" : "reached_waypoint.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "i proći ćete g p x tačku" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "prolazite g p x tačku" : "reached_waypoint.ogg";
 	dictionary["and_arrive_favorite"] = tts ? "i proći ćete prethodno zabilježenu tačku" : "and_arrive_favorite.ogg";
 	dictionary["reached_favorite"] = tts ? "prolazite prethodno zabilježenu tačku" : "reached_favorite.ogg";
 	dictionary["and_arrive_poi"] = tts ? "i proći ćete tačku interesa" : "and_arrive_poi.ogg";
