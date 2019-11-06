@@ -871,6 +871,7 @@ mycp leisure water_park entertainment_water_slide.png
 mycp amenity sauna sport_sauna.png
 mycpname fitness_station sport_fitness_station.png
 mycpname tanning_salon sport_tanning_salon.png
+mycpname public_bath amenity_public_bath.png
 
 mygroup geocache poi_colored_point_of_interest.png
 mycp geocache not_found poi_colored_point_of_interest.png
