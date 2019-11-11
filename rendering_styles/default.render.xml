@@ -8370,18 +8370,21 @@
 				<switch iconOrder="162">
 					<case minzoom="16" tag="building" value="tower" icon="man_made_tower" shield="tower_shield"/>
 					<case minzoom="17" tag="man_made" value="antenna" icon="man_made_antenna" shield="antenna_shield"/>
-					<case minzoom="16" tag="man_made" value="mast" icon="man_made_mast" shield="mast_shield"/>
-					<switch minzoom="16" tag="man_made" value="tower">
-						<case additional="tower:type=communication" icon="communication_tower" shield="tower_communications_shield" iconVisibleSize="48"/>
-						<case additional="tower:type=lighting" icon="lighting_tower" shield="tower_lighting_shield">
-							<case streetLighting="true" shield="street_lamp_lit_yes_shield">
-								<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
-							</case>
+					<switch>
+						<case minzoom="16" tag="man_made" value="mast" icon="man_made_mast" shield="mast_shield"/>
+						<case minzoom="16" tag="man_made" value="tower" icon="man_made_tower" shield="tower_shield">
+							<apply_if additional="tower:type=cooling" icon="cooling_tower" shield="tower_cooling_shield"/>
+							<apply_if additional="tower:type=bell_tower" icon="bell_tower" shield="tower_bell_tower_shield"/>
 						</case>
-						<case additional="tower:type=observation" icon="observation_tower" shield="observatory_shield"/>
-						<case additional="tower:type=cooling" icon="cooling_tower" shield="tower_cooling_shield"/>
-						<case additional="tower:type=bell_tower" icon="bell_tower" shield="tower_bell_tower_shield"/>
-						<case icon="man_made_tower" shield="tower_shield"/>
+						<apply_if>
+							<case additional="tower:type=communication" icon="communication_tower" shield="tower_communications_shield" iconVisibleSize="48"/>
+							<case additional="tower:type=lighting" icon="lighting_tower" shield="tower_lighting_shield">
+								<case streetLighting="true" shield="street_lamp_lit_yes_shield">
+									<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
+								</case>
+							</case>
+							<case additional="tower:type=observation" icon="observation_tower" shield="observatory_shield"/>
+						</apply_if>
 					</switch>
 					<apply_if streetLighting="true" iconVisibleSize="14">
 						<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
