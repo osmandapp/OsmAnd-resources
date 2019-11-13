@@ -123,7 +123,9 @@
 	<renderingProperty attr="hideOverground" name="Hide overground objects" description="Hide overground objects"
 		type="boolean" possibleValues="" category="hide"/>
 
-	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show cycle routes (*cn_networks) in bicycle mode"
+	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show long distance cycle routes in bicycle mode"
+		type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="showCycleNodeNetworkRoutes" name="Show node network cycle routes" description="Show node network cycle routes in bicycle mode"
 		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="showMtbRoutes" name="Show MTB routes" description="Show mountain bike routes (*cn_networks) in bicycle mode"
 		type="boolean" possibleValues="" category="routes"/>
@@ -6253,11 +6255,17 @@
 					<case tag="route_bicycle" value="" nameTag="mtb:name" textOrder="43" textColor="$cycleRouteTextColor"/>
 					<case tag="route_mtb" value="" nameTag="mtb_ref" nameTag2="mtb:name" textOrder="43" textColor="$mtbRouteTextColor"/>
 					<case tag="route_mtb" value="" nameTag="mtb:name" textOrder="43" textColor="$mtbRouteTextColor"/>
-					<apply_if showCycleRoutes="true" legend="false">
-						<case additional="network=lcn" nameTag="lcn_ref" textOnPath="false" textOrder="9"/>
-						<case additional="network=rcn" nameTag="rcn_ref" textOnPath="false" textOrder="8"/>
-						<case additional="network=ncn" nameTag="ncn_ref" textOnPath="false" textOrder="7"/>
-						<case additional="network=icn" nameTag="icn_ref" textOnPath="false" textOrder="7"/>
+					<apply_if legend="false">
+						<switch>
+							<case showCycleRoutes="true"/>
+							<case showCycleNodeNetworkRoutes="true"/>
+							<apply>
+								<case additional="network=lcn" nameTag="lcn_ref" textOnPath="false" textOrder="9"/>
+								<case additional="network=rcn" nameTag="rcn_ref" textOnPath="false" textOrder="8"/>
+								<case additional="network=ncn" nameTag="ncn_ref" textOnPath="false" textOrder="7"/>
+								<case additional="network=icn" nameTag="icn_ref" textOnPath="false" textOrder="7"/>
+							</apply>
+						</switch>
 					</apply_if>
 					<apply>
 						<case maxzoom="12" textSize="14"/>
@@ -6268,7 +6276,7 @@
 					</apply>
 					<apply_if legend="true" textOnPath="true"/>
 				</switch>
-				<switch showCycleRoutes="true" legend="false" minzoom="11" textColor="$cycleRouteTextColor" textBold="true" textHaloRadius="4">
+				<switch minzoom="11" legend="false" textBold="true" textHaloRadius="4">
 					<case tag="lcn_ref" value="" nameTag="lcn_ref" textOrder="37"/>
 					<case tag="rcn_ref" value="" nameTag="rcn_ref" textOrder="38"/>
 					<case tag="ncn_ref" value="" nameTag="ncn_ref" textOrder="39"/>
@@ -6278,6 +6286,8 @@
 					<apply_if minzoom="14" maxzoom="15" textSize="14"/>
 					<apply_if minzoom="16" maxzoom="17" textSize="17"/>
 					<apply_if minzoom="18" textSize="21"/>
+					<apply_if showCycleRoutes="true" textColor="$cycleRouteTextColor"/>
+					<apply_if showCycleNodeNetworkRoutes="true" textColor="$cycleRouteTextColor"/>
 					<apply_if engine_v1="true" textDy="2"/>
 				</switch>
 			</switch>
@@ -11967,23 +11977,27 @@
 		</case>
 
 		<switch minzoom="11">
-			<case showCycleRoutes="true" tag="route_bicycle" value="">
-				<case maxzoom="11" strokeWidth="1:1"/>
-				<case maxzoom="12" strokeWidth="2:2"/>
-				<case maxzoom="13" strokeWidth="3:3"/>
-				<case maxzoom="14" strokeWidth="4:4"/>
-				<case maxzoom="15" strokeWidth="4:4"/>
-				<case maxzoom="16" strokeWidth="5:5"/>
-				<case maxzoom="17" strokeWidth="6:6"/>
-				<case minzoom="18" strokeWidth="7:7"/>
+			<switch>
+				<case showCycleRoutes="true" tag="route_bicycle" value=""/>
+				<case showCycleNodeNetworkRoutes="true" tag="route_bicycle" value=""/>
+				<apply>
+					<case maxzoom="11" strokeWidth="1:1"/>
+					<case maxzoom="12" strokeWidth="2:2"/>
+					<case maxzoom="13" strokeWidth="3:3"/>
+					<case maxzoom="14" strokeWidth="4:4"/>
+					<case maxzoom="15" strokeWidth="4:4"/>
+					<case maxzoom="16" strokeWidth="5:5"/>
+					<case maxzoom="17" strokeWidth="6:6"/>
+					<case minzoom="18" strokeWidth="7:7"/>
+				</apply>
 				<apply_if minzoom="13" color="$cycleRouteColor" cap="BUTT"/>
-			</case>
+			</switch>
 			<case showMtbRoutes="true" tag="route_mtb" value="">
 				<case maxzoom="13" strokeWidth="1.5:1.5" strokeWidth_2="1.5:1.5" strokeWidth__2="3:3"/>
 				<case maxzoom="14" strokeWidth="2:2" strokeWidth_2="2:2" strokeWidth__2="5:5"/>
 				<case maxzoom="16" strokeWidth="3:3" strokeWidth_2="3:3" strokeWidth__2="7:7"/>
 				<case maxzoom="17" strokeWidth="4:4" strokeWidth_2="4:4" strokeWidth__2="9:9" strokeWidth__1="9:9"/>
-				<case minzoom="18" strokeWidth="5:5" strokeWidth_2="5:5" strokeWidth__2="12:12"  strokeWidth__1="12:12"/>
+				<case minzoom="18" strokeWidth="5:5" strokeWidth_2="5:5" strokeWidth__2="12:12" strokeWidth__1="12:12"/>
 				<apply_if minzoom="13" color="$cycleRouteColor"/>
 				<apply>
 					<switch>
@@ -12075,13 +12089,31 @@
 					</switch>
 				</apply>
 			</case>
+			<apply_if showCycleNodeNetworkRoutes="true">
+				<switch>
+					<case additional="node_network=lcn" color="$cycleRoutelcnColor"/>
+					<case additional="node_network=rcn" color="$cycleRoutercnColor"/>
+					<case additional="node_network=ncn" color="$cycleRoutencnColor"/>
+					<case additional="node_network=icn" color="$cycleRouteicnColor"/>
+					<apply>
+						<case maxzoom="11" strokeWidth="1:1" pathEffect="8_1"/>
+						<case maxzoom="12" strokeWidth="2:2" pathEffect="11_1"/>
+						<case maxzoom="13" strokeWidth="3:3" pathEffect="15_2"/>
+						<case maxzoom="14" strokeWidth="4:4" pathEffect="20_2"/>
+						<case maxzoom="15" strokeWidth="4:4" pathEffect="25_2"/>
+						<case maxzoom="16" strokeWidth="5:5" pathEffect="32_3"/>
+						<case maxzoom="17" strokeWidth="6:6" pathEffect="40_3"/>
+						<case minzoom="18" strokeWidth="7:7" pathEffect="50_3"/>
+					</apply>
+				</switch>
+			</apply_if>
 			<apply_if showCycleRoutes="true">
 				<switch>
 					<case additional="network=lcn" color="$cycleRoutelcnColor"/>
 					<case additional="network=rcn" color="$cycleRoutercnColor"/>
 					<case additional="network=ncn" color="$cycleRoutencnColor"/>
 					<case additional="network=icn" color="$cycleRouteicnColor"/>
-					<apply >
+					<apply pathEffect="">
 						<case maxzoom="11" strokeWidth="1:1"/>
 						<case maxzoom="12" strokeWidth="2:2"/>
 						<case maxzoom="13" strokeWidth="3:3"/>
