@@ -8,7 +8,10 @@ BASEFOLDER=`dirname $BASEFOLDER`
 
 FOLDERS=(big-xxhdpi big-xhdpi big-hdpi big-mdpi xxhdpi xhdpi hdpi mdpi)
 FOLDERS_NOMX=(xxhdpi xhdpi hdpi mdpi) # no icons used in osmand interface (search, poi overlay)
-SIZES=(72 48 36 24 42 28 21 14)
+#
+SIZES=(72 48 36 24 36 24 18 12)
+#Old sizes for map icons
+#SIZES=(72 48 36 24 42 28 21 14)
 SIZESx2=(72 48 36 24 96 64 48 32)
 SIZESx4=(72 48 36 24 192 128 96 64)
 SIZES_HALF=4
@@ -29,6 +32,17 @@ done
 
 generateElements() {
   TYPE=$1
+  SCALE=$2
+  MDPI=1
+  HDPI=1.5
+  XHDPI=2
+  XXHDPI=3
+  if [ "$SCALE" == "0.5" ]; then
+    MDPI=0.5
+    HDPI=0.75
+    XHDPI=1
+    XXHDPI=1.5
+  fi
   echo $TYPE
   for FILE in $SVGFOLDER$1/*.svg; do
       FILENAME=${FILE##/*/}
@@ -36,10 +50,11 @@ generateElements() {
         continue;
       fi
       FILENAME=${FILENAME%.*}
-      rsvg-convert -f png ${FILE} -x 1 -y 1 -o ${OUTPUTFOLDER}mdpi/${FILENAME}.png
-      rsvg-convert -f png ${FILE} -x 1.5 -y 1.5 -o ${OUTPUTFOLDER}hdpi/${FILENAME}.png
-      rsvg-convert -f png ${FILE} -x 2 -y 2 -o ${OUTPUTFOLDER}xhdpi/${FILENAME}.png
-      rsvg-convert -f png ${FILE} -x 3 -y 3 -o ${OUTPUTFOLDER}xxhdpi/${FILENAME}.png
+      
+      rsvg-convert -f png ${FILE} -x $MDPI -y $MDPI -o ${OUTPUTFOLDER}mdpi/${FILENAME}.png
+      rsvg-convert -f png ${FILE} -x $HDPI -y $HDPI -o ${OUTPUTFOLDER}hdpi/${FILENAME}.png
+      rsvg-convert -f png ${FILE} -x $XHDPI -y $XHDPI -o ${OUTPUTFOLDER}xhdpi/${FILENAME}.png
+      rsvg-convert -f png ${FILE} -x $XXHDPI -y $XXHDPI -o ${OUTPUTFOLDER}xxhdpi/${FILENAME}.png
   done
 }
 
@@ -68,6 +83,7 @@ generatePngs() {
 
   if [ "$NO_MX" = 'nomx' ]
     then
+	#let "SIZES_HALF=${#SIZES[@]} / 2"
 	SIZES=("${SIZES[@]:$SIZES_HALF}")
 	echo "nomx:"${SIZES[@]}
 	FOLDERS=("${FOLDERS_NOMX[@]}")
@@ -108,6 +124,7 @@ generatePngs() {
        generateElements 'shields_big'
        generateElements 'road_shields'
        generateElements 'osmc_bg'
+       generateElements 'map-small' '0.5'
 
        generatePngs 'osmc_black' '#777777' '#777777' '' '' '' nomx
        generatePngs 'osmc_blue' '#777777' '#777777' '' '' '' nomx
