@@ -50,7 +50,11 @@ function populateDictionary(tts) {
 	
 	dictionary["1na"] = tts ? "одна " : "1na.ogg";
 	dictionary["2ve"] = tts ? "две " : "2ve.ogg";
-	
+	dictionary["poltora"] = tts ? "полтора " : "1_5.ogg";
+
+	dictionary["1"] = tts ? "1 " : "1.ogg";
+	dictionary["2"] = tts ? "2 " : "2.ogg";
+
 	dictionary["1th"] = tts ? "первый " : "1th.ogg";
 	dictionary["2th"] = tts ? "второй " : "2th.ogg";
 	dictionary["3th"] = tts ? "третий " : "3th.ogg";
@@ -195,11 +199,19 @@ function distance(dist) {
 		case "km-m":
 			if (dist < 100) {
 				return (tts ? Math.round(dist).toString() : ogg_dist(dist)) + " " + plural_mt(dist);
-			} else if (dist < 1000) {
+			} else if (dist < 750) {
 				var distance = Math.round(dist/10.0)*10;
 				return (tts ? distance.toString() : ogg_dist(distance)) + " " + plural_mt(distance);
-			} else if (dist < 1500) {
-				return dictionary["around"] + " 1 " + dictionary["kilometr"];
+			} else if ((dist >= 750 && dist < 950) || (dist >= 1050 && dist < 1250)) {
+				return dictionary["around"] + " " + dictionary["1"] + " " + dictionary["kilometr"];
+			} else if (dist >= 950 && dist < 1050) {
+				return dictionary["1"] + " " + dictionary["kilometr"];
+			} else if ((dist >= 1450 && dist < 1550)) {
+				return dictionary["poltora"] + " " + dictionary["kilometra"];
+			} else if ((dist >= 1250 && dist < 1450) || (dist >= 1550 &&dist < 1750)) {
+				return dictionary["around"] + " " + dictionary["poltora"] + " " + dictionary["kilometra"];
+			} else if (dist >= 1750 && dist < 2000) {
+				return dictionary["around"] + " " + dictionary["2"] + " " + dictionary["kilometra"];
 			} else {
 				return (tts ? Math.round(dist/1000.0).toString() : ogg_dist(dist/1000.0)) + " " + plural_km(dist/1000.0);
 			}
