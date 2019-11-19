@@ -9,6 +9,7 @@
 	<renderingProperty attr="horseRoutes" name="Horse routes" description="Horse routes" type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="hikingRoutesOSMC" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces" type="string" possibleValues="walkingRoutesOSMC,walkingRoutesScopeOSMC,walkingRoutesOSMCNodes" defaultValueDescription="disabled" category="routes"/>
 	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show cycle routes (*cn_networks) in bicycle mode" type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="showCycleNodeNetworkRoutes" name="Show node network cycle routes" description="Show node network cycle routes in bicycle mode" type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="showMtbRoutes" name="Show MTB routes" description="Show mountain bike routes (*cn_networks) in bicycle mode" type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
 		type="boolean" possibleValues="" category="routes"/>
@@ -580,7 +581,7 @@
 	<renderingConstant name="waterTextHaloRadiusDay" value="1"/>
 	<renderingConstant name="waterTextColorDay" value="#266579"/>
 	<renderingConstant name="waterTextHaloColorDay" value="#ffD2F4FF"/>
-	<renderingConstant name="textHaloRadiusDay" value="2"/>
+	<renderingConstant name="textHaloRadius" value="2"/>
 	<renderingConstant name="defaultTextHaloColorDay" value="#ffffff"/>
 
 	<renderingConstant name="landuseManmadeTextHaloRadiusDay" value="2"/>
@@ -1393,7 +1394,7 @@
 
 	<text>
 
-		<switch minzoom="14" textHaloRadius="$textHaloRadiusDay" textOnPath="true" nameTag="">
+		<switch minzoom="14" textHaloRadius="$textHaloRadius" textOnPath="true" nameTag="">
 			<case tag="area:highway" value="motorway" textColor="$motorwayTextColor" textHaloColor="$motorwayRoadColor" textOrder="50" textWrapWidth="25"/>
 			<case tag="highway" value="motorway" textColor="$motorwayTextColor" textHaloColor="$motorwayRoadColor" textOrder="50"/>
 			<case tag="highway" value="motorway_link" textColor="$motorwayTextColor" textHaloColor="$motorwayRoadColor" textOrder="51"/>
@@ -1414,7 +1415,7 @@
 				<case minzoom="18" textSize="19"/>
 			</apply>
 		</switch>
-		<switch minzoom="14" textHaloRadius="$textHaloRadiusDay" textColor="$tertiaryTextColor" textOnPath="true" textHaloColor="$tertiaryRoadColor" nameTag="">
+		<switch minzoom="14" textHaloRadius="$textHaloRadius" textColor="$tertiaryTextColor" textOnPath="true" textHaloColor="$tertiaryRoadColor" nameTag="">
 			<case tag="highway" value="tertiary" textOrder="94"/>
 			<case tag="area:highway" value="tertiary" textOrder="95" intersectsWith="any" textWrapWidth="25"/>
 			<case tag="highway" value="tertiary_link" textOrder="96"/>
@@ -1428,11 +1429,11 @@
 		</switch>
 
 		<switch minzoom="14">
-			<switch textColor="$unclassifiedTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="$unclassifiedRoadColor">
+			<switch textColor="$unclassifiedTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$unclassifiedRoadColor">
 				<case tag="highway" value="unclassified" textOrder="122"/>
 			</switch>
 			<switch>
-				<switch textColor="$residentialTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="$residentialRoadColor">
+				<switch textColor="$residentialTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$residentialRoadColor">
 <!--					<case tag="highway" value="road" textOrder="120"/>-->
 					<case tag="area:highway" value="road" textWrapWidth="25" textOrder="121"/>
 					<case tag="area:highway" value="unclassified" intersectsWith="any" textWrapWidth="25" textOrder="123"/>
@@ -1440,19 +1441,19 @@
 					<case tag="area:highway" value="residential" textOrder="125" textWrapWidth="25" intersectsWith="any"/>
 					<case tag="man_made" value="bridge" textOrder="125"/>
 				</switch>
-				<switch textColor="$serviceTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="$serviceRoadColor">
+				<switch textColor="$serviceTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$serviceRoadColor">
 					<case tag="highway" value="service" textOrder="128"/>
 					<case tag="area:highway" value="service" textWrapWidth="25" textOrder="129"/>
 					<case tag="highway" value="living_street" textOrder="130"/>
 					<case tag="highway" value="escape" textOrder="130"/>
 				</switch>
-<!--				<switch textHaloRadius="$textHaloRadiusDay" textColor="$serviceTextColor" textHaloColor="$serviceTextHaloColor" textOrder="130">
+<!--				<switch textHaloRadius="$textHaloRadius" textColor="$serviceTextColor" textHaloColor="$serviceTextHaloColor" textOrder="130">
 					<case tag="highway" value="rest_area"/>
 					<apply_if engine_v1="false" textDy="0"/>
 				</switch>
-				<case tag="highway" value="proposed" textColor="$serviceTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="$serviceRoadColor" textOrder="253"/>-->
+				<case tag="highway" value="proposed" textColor="$serviceTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$serviceRoadColor" textOrder="253"/>-->
 			</switch>
-			<switch textColor="$pedestrianTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="$pedestrianRoadColor" intersectionMargin="20">
+			<switch textColor="$pedestrianTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$pedestrianRoadColor" intersectionMargin="20">
 				<case tag="highway" value="pedestrian" textOrder="126"/>
 				<case tag="place" value="square" textOrder="63" textWrapWidth="25" intersectsWith="any"/>
 				<case tag="area:highway" value="pedestrian" textOrder="64" textWrapWidth="25" intersectsWith="any"/>
@@ -1846,7 +1847,7 @@
 					</apply>
 				</switch>
 
-		<switch minzoom="14" textColor="$railwayTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="$white" textOrder="251">
+		<switch minzoom="14" textColor="$railwayTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$white" textOrder="251">
 			<case tag="railway" value="rail"/>
 			<case tag="railway" value="tram"/>
 			<case minzoom="16" tag="railway" value="subway"/>
@@ -1914,7 +1915,7 @@
 				<case maxzoom="17" textSize="16"/>
 				<case minzoom="18" textSize="18"/>
 			</apply>
-			<apply textHaloRadius="$textHaloRadiusDay"/>
+			<apply textHaloRadius="$textHaloRadius"/>
 		</switch>
 
 		<case minzoom="16" tag="man_made" value="reinforced_slope" color="#d6d6d6"/>
@@ -1965,7 +1966,7 @@
 			</apply_if>
 		</case>
 
-		<switch minzoom="5" textSize="13" textColor="$placeStateProvinceTextColor" textWrapWidth="20" textHaloRadius="$textHaloRadiusDay" textHaloColor="$placeStateProvinceTextHaloColor">
+		<switch minzoom="5" textSize="13" textColor="$placeStateProvinceTextColor" textWrapWidth="20" textHaloRadius="$textHaloRadius" textHaloColor="$placeStateProvinceTextHaloColor">
 			<switch engine_v1="true">
 				<case maxzoom="10" tag="place" value="state">
 					<case maxzoom="5" nameTag="" textOrder="24"/>
@@ -2182,7 +2183,7 @@
 			<case tag="waterway" value="rapids" textOnPath="true"/>
 			<case tag="ford" value="yes"/>
 			<case tag="ford" value="stepping_stones"/>
-			<apply textSize="12" textDy="7" textColor="#222222" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffffff" textWrapWidth="16" textMinDistance="10"/>
+			<apply textSize="12" textDy="7" textColor="#222222" textHaloRadius="$textHaloRadius" textHaloColor="#ffffff" textWrapWidth="16" textMinDistance="10"/>
 		</switch>
 
 		<!-- Buildings -->
@@ -2255,7 +2256,7 @@
 		</switch>
 
 		<switch>
-			<switch textColor="#654321" textWrapWidth="25" textHaloColor="#ffffff" textHaloRadius="$textHaloRadiusDay" textItalic="true" textBold="true">
+			<switch textColor="#654321" textWrapWidth="25" textHaloColor="#ffffff" textHaloRadius="$textHaloRadius" textItalic="true" textBold="true">
 				<switch>
 					<case minzoom="12" tag="natural" value="peak" textOrder="80">
 						<case maxzoom="12" nameTag="ele" textSize="11" intersectionMargin="15"/>
@@ -2341,7 +2342,7 @@
 				</switch>
 				<case minzoom="14" tag="abandoned:aeroway" value="runway" nameTag2="ref" textColor="#333333" textOnPath="true" textMinDistance="50" textOrder="229"/>
 				<case minzoom="15" tag="aeroway" value="taxiway" nameTag="ref" textColor="#333333" textOnPath="true" textMinDistance="50" textOrder="231"/>
-				<apply textSize="12" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffffff"/>
+				<apply textSize="12" textHaloRadius="$textHaloRadius" textHaloColor="#ffffff"/>
 			</switch>
 			<switch minzoom="11">
 				<case tag="aeroway" value="aerodrome" nameTag="" textOrder="65"/>
@@ -2353,7 +2354,7 @@
 						<case additional="faa"/>
 						<case additional="large_aerodrome"/>
 						<case minzoom="15"/>
-						<apply textColor="#053274" textSize="12" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffffff" textOrder="45"/>
+						<apply textColor="#053274" textSize="12" textWrapWidth="25" textHaloRadius="$textHaloRadius" textHaloColor="#ffffff" textOrder="45"/>
 						<apply_if engine_v1="true" textDy="9"/>
 					</switch>
 				</apply>
@@ -2362,7 +2363,7 @@
 				<case minzoom="15" tag="aeroway" value="terminal" textOrder="66"/>
 				<case minzoom="17" tag="aeroway" value="apron" textOrder="232"/>
 				<case minzoom="17" tag="aeroway" value="helipad" textOrder="149"/>
-				<apply textSize="12" textColor="#333333" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffffff"/>
+				<apply textSize="12" textColor="#333333" textWrapWidth="25" textHaloRadius="$textHaloRadius" textHaloColor="#ffffff"/>
 				<apply_if engine_v1="true" textDy="9"/>
 			</switch>
 
@@ -2400,7 +2401,7 @@
 			</switch>
 
 			<!-- Tourism and Entertainment -->
-			<switch textSize="12" nameTag="" textColor="$historicTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffffff" textWrapWidth="20" textOrder="155">
+			<switch textSize="12" nameTag="" textColor="$historicTextColor" textHaloRadius="$textHaloRadius" textHaloColor="#ffffff" textWrapWidth="20" textOrder="155">
 				<case minzoom="16" tag="amenity" value="place_of_worship" nameTag="" textOrder="134"/>
 				<case minzoom="18" tag="tourism" value="artwork" nameTag="">
 					<apply_if additional="artwork_type=statue" icon="memorial_statue"/>
@@ -2421,7 +2422,7 @@
 				<apply_if engine_v1="true" textDy="2"/>
 			</switch>
 			<!-- Accommodation -->
-			<switch textSize="12" nameTag="" textColor="$accomodationTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffffff" textWrapWidth="25" textOrder="161">
+			<switch textSize="12" nameTag="" textColor="$accomodationTextColor" textHaloRadius="$textHaloRadius" textHaloColor="#ffffff" textWrapWidth="25" textOrder="161">
 				<switch>
 					<case minzoom="16" tag="tourism" value="camp_site"/>
 					<case minzoom="16" tag="tourism" value="caravan_site"/>
@@ -2443,7 +2444,7 @@
 			</switch>
 
 			<!-- Historic -->
-			<switch textSize="12" nameTag="" textColor="$historicTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffffff" textWrapWidth="20" textOrder="158">
+			<switch textSize="12" nameTag="" textColor="$historicTextColor" textHaloRadius="$textHaloRadius" textHaloColor="#ffffff" textWrapWidth="20" textOrder="158">
 				<switch>
 					<case minzoom="17" tag="historic" value="aircraft"/>
 					<case minzoom="17" tag="historic" value="tank"/>
@@ -2477,7 +2478,7 @@
 					<apply textOnPath="true" textColor="#ffffff" textHaloColor="#7b7463"/>
 				</switch>
 			</switch>
-			<switch textColor="$tourismAttractionTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffffff" textWrapWidth="16" intersectionMargin="25">
+			<switch textColor="$tourismAttractionTextColor" textHaloRadius="$textHaloRadius" textHaloColor="#ffffff" textWrapWidth="16" intersectionMargin="25">
 				<switch>
 					<case minzoom="16" tag="historic" value="city_gate" textSize="12" textOrder="85"/>
 					<case minzoom="16" tag="tourism" value="attraction" textSize="13" textOrder="84">
@@ -2489,7 +2490,7 @@
 				<apply_if engine_v1="true" textDy="1"/>
 			</switch>
 
-			<switch textSize="12" textColor="$forestTextColorDay" textWrapWidth="20" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffffff" nameTag="">
+			<switch textSize="12" textColor="$forestTextColorDay" textWrapWidth="20" textHaloRadius="$textHaloRadius" textHaloColor="#ffffff" nameTag="">
 				<switch textItalic="true">
 					<case minzoom="13" tag="natural" value="wood" textOrder="202" textDy="3" intersectionMargin="20"/>
 					<case minzoom="9" tag="landuse" value="forest" textOrder="201" textDy="3" intersectionMargin="20"/>
@@ -2534,7 +2535,7 @@
 					<apply_if engine_v1="false" textDy="0"/>
 				</switch>
 			</switch>
-			<switch minzoom="15" textColor="#000000" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffffff" textWrapWidth="20">
+			<switch minzoom="15" textColor="#000000" textHaloRadius="$textHaloRadius" textHaloColor="#ffffff" textWrapWidth="20">
 				<case tag="amenity" value="bus_station" nameTag="" textBold="true" textOrder="30"/>
 				<case tag="public_transport" value="station" nameTag="" textBold="true" textOrder="30"/>
 				<case tag="highway" value="bus_stop" nameTag="" textOrder="73"/>
@@ -2546,7 +2547,7 @@
 				<apply_if engine_v1="true" minzoom="16" textDy="9"/>
 			</switch>
 
-			<switch minzoom="14" textColor="#000000" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ffffff" textOrder="106">
+			<switch minzoom="14" textColor="#000000" textHaloRadius="$textHaloRadius" textHaloColor="#ffffff" textOrder="106">
 				<case tag="aerialway" value="cable_car"/>
 				<case tag="aerialway" value="gondola"/>
 				<case tag="aerialway" value="goods"/>
@@ -2624,7 +2625,7 @@
 <!--				<apply_if engine_v1="true" textDy="9"/>-->
 				<apply_if lessDetailed="true" maxzoom="15" disable="true"/>
 			</switch>
-			<switch textSize="11" nameTag="" textColor="#444444" textHaloRadius="$textHaloRadiusDay" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="25" textOrder="162">
+			<switch textSize="11" nameTag="" textColor="#444444" textHaloRadius="$textHaloRadius" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="25" textOrder="162">
 				<case minzoom="16" tag="aerialway" value="station" nameTag="" textOrder="101"/>
 				<case minzoom="17" tag="man_made" value="windmill" textSize="12"/>
 				<case minzoom="17" tag="man_made" value="watermill" textSize="12"/>
@@ -2664,21 +2665,21 @@
 				<case minzoom="18" tag="emergency" value="rescue_box" textColor="#DA0092" textOrder="71"/>
 				<apply_if engine_v1="true" textDy="1"/>
 			</switch>
-			<case minzoom="16" tag="man_made" value="pier" textSize="11" textColor="#1f62ae" textHaloRadius="$textHaloRadiusDay" textHaloColor="#ccffffff" textOnPath="true" textWrapWidth="30" textOrder="175"/>
+			<case minzoom="16" tag="man_made" value="pier" textSize="11" textColor="#1f62ae" textHaloRadius="$textHaloRadius" textHaloColor="#ccffffff" textOnPath="true" textWrapWidth="30" textOrder="175"/>
 			<switch minzoom="13">
 				<case tag="railway" value="station" nameTag="" textSize="11" textOrder="49" textColor="#000000"/>
 				<case minzoom="14" tag="railway" value="yard" nameTag="" textSize="11" textOrder="49" textColor="#000000"/>
 				<case tag="railway" value="halt" nameTag="" textSize="11" textOrder="50" textColor="#000000"/>
 				<case minzoom="16" tag="railway" value="tram_stop" nameTag="" textSize="11" textOrder="50" textColor="#000000"/>
 				<case minzoom="16" tag="abandoned:railway" value="station" textOrder="227" textColor="#8a8a8a"/>
-				<apply textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textBold="true"/>
+				<apply textWrapWidth="25" textHaloRadius="$textHaloRadius" textBold="true"/>
 				<apply_if minzoom="15" textSize="13"/>
 			</switch>
 
 			<switch>
 				<case minzoom="15" tag="landuse" value="military"/>
 				<case minzoom="15" tag="military" value="danger_area"/>
-				<apply textSize="12" nameTag="" textColor="#990d2a" textHaloColor="#eeffffff" textHaloRadius="$textHaloRadiusDay" textWrapWidth="20" textOrder="145"/>
+				<apply textSize="12" nameTag="" textColor="#990d2a" textHaloColor="#eeffffff" textHaloRadius="$textHaloRadius" textWrapWidth="20" textOrder="145"/>
 				<apply_if lessDetailed="true" maxzoom="13" disable="true"/>
 			</switch>
 			<switch>
@@ -2692,18 +2693,24 @@
 		</switch>
 		<!-- Cycling: texts for the cycle networks -->
 		<switch textHaloColor="$cycleRouteTextHaloColor" textWrapWidth="30">
-			<switch baseAppMode="bicycle" minzoom="14" textHaloRadius="2">
+			<switch baseAppMode="bicycle" minzoom="14" textHaloRadius="$textHaloRadius">
 				<!-- routes -->
-				<case tag="route_bicycle" value="" nameTag="bicycle_ref" textOrder="43" textColor="$cycleRouteTextColor" />
-<!--				<case tag="route_bicycle" value="" nameTag="bicycle_name" textOrder="43" textColor="$cycleRouteTextColor"/>-->
+				<case tag="route_bicycle" value="" nameTag="bicycle_ref" textOrder="43" textColor="$cycleRouteTextColor"/>
+				<!-- <case tag="route_bicycle" value="" nameTag="bicycle_name" textOrder="43" textColor="$cycleRouteTextColor"/>-->
 				<case tag="route_bicycle" value="" nameTag="mtb:name" textOrder="43" textColor="$cycleRouteTextColor"/>
 				<case tag="route_mtb" value="" nameTag="mtb_ref" nameTag2="mtb:name" textOrder="43" textColor="$mtbRouteTextColor"/>
 				<case tag="route_mtb" value="" nameTag="mtb:name" textOrder="43" textColor="$mtbRouteTextColor"/>
-				<apply_if showCycleRoutes="true">
-					<case additional="network=lcn" nameTag="lcn_ref" textOnPath="false" textOrder="9"/>
-					<case additional="network=rcn" nameTag="rcn_ref" textOnPath="false" textOrder="8"/>
-					<case additional="network=ncn" nameTag="ncn_ref" textOnPath="false" textOrder="7"/>
-					<case additional="network=icn" nameTag="icn_ref" textOnPath="false" textOrder="7"/>
+				<apply_if legend="false">
+					<switch>
+						<case showCycleRoutes="true"/>
+						<case showCycleNodeNetworkRoutes="true"/>
+						<apply>
+							<case additional="network=lcn" nameTag="lcn_ref" textOnPath="false" textOrder="9"/>
+							<case additional="network=rcn" nameTag="rcn_ref" textOnPath="false" textOrder="8"/>
+							<case additional="network=ncn" nameTag="ncn_ref" textOnPath="false" textOrder="7"/>
+							<case additional="network=icn" nameTag="icn_ref" textOnPath="false" textOrder="7"/>
+						</apply>
+					</switch>
 				</apply_if>
 				<apply>
 					<case maxzoom="12" textSize="14"/>
@@ -2712,8 +2719,9 @@
 					<case maxzoom="17" textSize="18"/>
 					<case minzoom="18" textSize="21"/>
 				</apply>
+				<apply_if legend="true" textOnPath="true"/>
 			</switch>
-			<switch showCycleRoutes="true" minzoom="11" textColor="$cycleRouteTextColor" textBold="true" textHaloRadius="4">
+			<switch minzoom="11" legend="false" textBold="true" textHaloRadius="4">
 				<case tag="lcn_ref" value="" nameTag="lcn_ref" textOrder="37"/>
 				<case tag="rcn_ref" value="" nameTag="rcn_ref" textOrder="38"/>
 				<case tag="ncn_ref" value="" nameTag="ncn_ref" textOrder="39"/>
@@ -2723,7 +2731,9 @@
 				<apply_if minzoom="14" maxzoom="15" textSize="14"/>
 				<apply_if minzoom="16" maxzoom="17" textSize="17"/>
 				<apply_if minzoom="18" textSize="21"/>
-				<apply_if engine_v1="true" textDy="-8"/>
+				<apply_if showCycleRoutes="true" textColor="$cycleRouteTextColor"/>
+				<apply_if showCycleNodeNetworkRoutes="true" textColor="$cycleRouteTextColor"/>
+				<apply_if engine_v1="true" textDy="2"/>
 			</switch>
 		</switch>
 		<switch textColor="#000000" textWrapWidth="20">
@@ -2732,7 +2742,7 @@
 				<case minzoom="17" maxzoom="17" textSize="19" textWrapWidth="30"/>
 				<case minzoom="18" textSize="20" textWrapWidth="30"/>
 			</case>
-			<case tag="osmand_legend" value="element" textOrder="5" textHaloRadius="$textHaloRadiusDay" textHaloColor="$defaultTextHaloColorDay" nameTag="">
+			<case tag="osmand_legend" value="element" textOrder="5" textHaloRadius="$textHaloRadius" textHaloColor="$defaultTextHaloColorDay" nameTag="">
 				<case minzoom="17" maxzoom="17" textSize="11"/>
 				<case minzoom="18" textSize="12" textWrapWidth="30"/>
 			</case>
@@ -4924,17 +4934,21 @@
 		</case>
 
 		<switch minzoom="11">
-			<case showCycleRoutes="true" tag="route_bicycle" value="">
-				<case maxzoom="11" strokeWidth="4:4"/>
-				<case maxzoom="12" strokeWidth="6:6"/>
-				<case maxzoom="13" strokeWidth="7:7"/>
-				<case maxzoom="14" strokeWidth="9:9"/>
-				<case maxzoom="15" strokeWidth="11:11"/>
-				<case maxzoom="16" strokeWidth="13:13"/>
-				<case maxzoom="17" strokeWidth="16:16"/>
-				<case minzoom="18" strokeWidth="20:20"/>
+			<switch>
+				<case showCycleRoutes="true" tag="route_bicycle" value=""/>
+				<case showCycleNodeNetworkRoutes="true" tag="route_bicycle" value=""/>
+				<apply>
+					<case maxzoom="11" strokeWidth="1:1"/>
+					<case maxzoom="12" strokeWidth="2:2"/>
+					<case maxzoom="13" strokeWidth="3:3"/>
+					<case maxzoom="14" strokeWidth="4:4"/>
+					<case maxzoom="15" strokeWidth="4:4"/>
+					<case maxzoom="16" strokeWidth="5:5"/>
+					<case maxzoom="17" strokeWidth="6:6"/>
+					<case minzoom="18" strokeWidth="7:7"/>
+				</apply>
 				<apply_if minzoom="13" color="$cycleRouteColor" cap="BUTT"/>
-			</case>
+			</switch>
 			<case showMtbRoutes="true" tag="route_mtb" value="">
 				<case maxzoom="13" strokeWidth="1.5:1.5" strokeWidth_2="1.5:1.5" strokeWidth__2="3:3"/>
 				<case maxzoom="14" strokeWidth="2:2" strokeWidth_2="2:2" strokeWidth__2="5:5"/>
@@ -5030,21 +5044,39 @@
 					</switch>
 				</apply>
 			</case>
+			<apply_if showCycleNodeNetworkRoutes="true">
+				<switch>
+					<case additional="node_network=lcn" color="$cycleRoutelcnColor"/>
+					<case additional="node_network=rcn" color="$cycleRoutercnColor"/>
+					<case additional="node_network=ncn" color="$cycleRoutencnColor"/>
+					<case additional="node_network=icn" color="$cycleRouteicnColor"/>
+					<apply>
+						<case maxzoom="11" strokeWidth="1:1" pathEffect="8_1"/>
+						<case maxzoom="12" strokeWidth="2:2" pathEffect="11_1"/>
+						<case maxzoom="13" strokeWidth="3:3" pathEffect="15_2"/>
+						<case maxzoom="14" strokeWidth="4:4" pathEffect="20_2"/>
+						<case maxzoom="15" strokeWidth="4:4" pathEffect="25_2"/>
+						<case maxzoom="16" strokeWidth="5:5" pathEffect="32_3"/>
+						<case maxzoom="17" strokeWidth="6:6" pathEffect="40_3"/>
+						<case minzoom="18" strokeWidth="7:7" pathEffect="50_3"/>
+					</apply>
+				</switch>
+			</apply_if>
 			<apply_if showCycleRoutes="true">
 				<switch>
 					<case additional="network=lcn" color="$cycleRoutelcnColor"/>
 					<case additional="network=rcn" color="$cycleRoutercnColor"/>
 					<case additional="network=ncn" color="$cycleRoutencnColor"/>
 					<case additional="network=icn" color="$cycleRouteicnColor"/>
-					<apply>
-						<case maxzoom="11" strokeWidth="4:4"/>
-						<case maxzoom="12" strokeWidth="6:6"/>
-						<case maxzoom="13" strokeWidth="7:7"/>
-						<case maxzoom="14" strokeWidth="9:9"/>
-						<case maxzoom="15" strokeWidth="11:11"/>
-						<case maxzoom="16" strokeWidth="13:13"/>
-						<case maxzoom="17" strokeWidth="16:16"/>
-						<case minzoom="18" strokeWidth="20:20"/>
+					<apply pathEffect="">
+						<case maxzoom="11" strokeWidth="1:1"/>
+						<case maxzoom="12" strokeWidth="2:2"/>
+						<case maxzoom="13" strokeWidth="3:3"/>
+						<case maxzoom="14" strokeWidth="4:4"/>
+						<case maxzoom="15" strokeWidth="4:4"/>
+						<case maxzoom="16" strokeWidth="5:5"/>
+						<case maxzoom="17" strokeWidth="6:6"/>
+						<case minzoom="18" strokeWidth="7:7"/>
 					</apply>
 				</switch>
 			</apply_if>
