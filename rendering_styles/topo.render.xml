@@ -7,7 +7,7 @@
 	<renderingProperty attr="transportStops" name="Transport stops" description="Public transport stops" type="boolean" possibleValues="" category="transport"/>
 	<renderingProperty attr="contourLines" name="Show contour lines" description="Select minimum zoom level to display in map if available. Separate contour file may be needed." type="string" possibleValues="disabled,16,15,14,13,12,11" defaultValueDescription="default13" category="details"/>
 	<renderingProperty attr="horseRoutes" name="Horse routes" description="Horse routes" type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="hikingRoutesOSMC" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces" type="string" possibleValues="walkingRoutesOSMC,walkingRoutesScopeOSMC" defaultValueDescription="disabled" category="routes"/>
+	<renderingProperty attr="hikingRoutesOSMC" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces" type="string" possibleValues="walkingRoutesOSMC,walkingRoutesScopeOSMC,walkingRoutesOSMCNodes" defaultValueDescription="disabled" category="routes"/>
 	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show cycle routes (*cn_networks) in bicycle mode" type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="showMtbRoutes" name="Show MTB routes" description="Show mountain bike routes (*cn_networks) in bicycle mode" type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
@@ -833,6 +833,32 @@
 		<case attrColorValue="#00D783"/>
 	</renderingAttribute>
 
+	<renderingAttribute name="iwnNodeTextColor">
+		<case attrColorValue="#d94545"/>
+	</renderingAttribute>
+	<renderingAttribute name="nwnNodeTextColor">
+		<case attrColorValue="#0000ff"/>
+	</renderingAttribute>
+	<renderingAttribute name="rwnNodeTextColor">
+		<case attrColorValue="#ff6600"/>
+	</renderingAttribute>
+	<renderingAttribute name="lwnNodeTextColor">
+		<case attrColorValue="#cf00d7"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="iwnNodeNetworkColor">
+		<case attrColorValue="#66d94545"/>
+	</renderingAttribute>
+	<renderingAttribute name="nwnNodeNetworkColor">
+		<case attrColorValue="#660000ff"/>
+	</renderingAttribute>
+	<renderingAttribute name="rwnNodeNetworkColor">
+		<case attrColorValue="#66ff6600"/>
+	</renderingAttribute>
+	<renderingAttribute name="lwnNodeNetworkColor">
+		<case attrColorValue="#66cf00d7"/>
+	</renderingAttribute>
+
 	<renderingAttribute name="routeBusColor">
 		<case attrColorValue="#ff0000"/>
 	</renderingAttribute>
@@ -1445,10 +1471,9 @@
 				<case maxzoom="17" textSize="16"/>
 				<case minzoom="18" textSize="18"/>
 			</apply>
-			<apply_if nightMode="true" textColor="#888888" textHaloColor="#77777777"/>
 		</case>
 
-				<switch minzoom="12" textMinDistance="101" textOnPath="false" textColor="#00ffffff" textSize="11" textOrder="43">
+				<switch minzoom="12" textMinDistance="101" textOnPath="false" textOrder="43">
 					<switch minzoom="12" textOrder="44">
 						<case tag="route_hiking" value="" nameTag="osmc_text" nameTag2="hiking_route_ref" textSize="13"/>
 						<case tag="route_foot" value="" nameTag="osmc_text" nameTag2="foot_route_ref" textSize="13"/>
@@ -1457,46 +1482,57 @@
 						<case tag="route_foot" value="" nameTag="foot_route_ref" textSize="13"/>
 						<case tag="route_walking" value="" nameTag="walking_route_ref" textSize="13"/>
 						<case tag="route_horse" value="" nameTag="horse_route_ref" textSize="13"/>
+						<case tag="route_piste" value="" nameTag="" textSize="13"/>
 <!--						<case minzoom="17" tag="route_hiking" value="" nameTag="hiking_route_name" textOrder="10"/>
 						<case minzoom="17" tag="route_foot" value="" nameTag="foot_route_name" textOrder="10"/>
 						<case minzoom="17" tag="route_walking" value="" nameTag="walking_route_name" textOrder="10"/>-->
 						<case minzoom="13" tag="route_horse" value="" nameTag="horse_route_name" textOrder="8"/>
 						<apply>
 							<switch>
-								<case hikingRoutesOSMC="walkingRoutesOSMC" textColor="#0078ff" textHaloColor="#ccebf4ff"/>
-								<case hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="#0078ff" textHaloColor="#ccebf4ff"/>
-								<case horseRoutes="true" textColor="#00745b" textHaloColor="#ccffffff"/>
+								<case hikingRoutesOSMC="walkingRoutesOSMC" textSize="11" textColor="#0078ff" textHaloColor="#ccebf4ff"/>
+								<case hikingRoutesOSMC="walkingRoutesScopeOSMC" textSize="11" textColor="#0078ff" textHaloColor="#ccebf4ff"/>
+								<case horseRoutes="true" textColor="#00745b" textSize="11" textHaloColor="#ccffffff"/>
 								<apply textMinDistance="100" textBold="true" textHaloRadius="2" textWrapWidth="30"/>
 							</switch>
 						</apply>
+						<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" disable="true"/>
 					</switch>
+					<switch minzoom="13">
+						<case tag="iwn_ref" value="">
+							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$iwnNodeTextColor"/>
+							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$iwnNodeTextColor"/>
+						</case>
+						<case tag="nwn_ref" value="">
+							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$nwnNodeTextColor"/>
+							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$nwnNodeTextColor"/>
+						</case>
+						<case tag="rwn_ref" value="">
+							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$rwnNodeTextColor"/>
+							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$rwnNodeTextColor"/>
+						</case>
+						<case tag="lwn_ref" value="">
+							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$lwnNodeTextColor"/>
+							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$lwnNodeTextColor"/>
+						</case>
+						<apply>
+							<switch>
+								<case hikingRoutesOSMC="walkingRoutesOSMC" textColor="#0078ff" textHaloColor="#ddebf4ff"/>
+								<case hikingRoutesOSMC="walkingRoutesScopeOSMC" textHaloColor="#ddebf4ff"/>
+								<case hikingRoutesOSMC="walkingRoutesOSMCNodes" textHaloColor="#ccffffff"/>
+								<apply_if maxzoom="13" textSize="13"/>
+								<apply_if minzoom="14" maxzoom="15" textSize="16"/>
+								<apply_if minzoom="16" textSize="20"/>
+								<apply_if minzoom="19" nameTag2="walking_route_name"/>
+								<apply_if minzoom="19" nameTag2="foot_route_name"/>
+								<apply_if minzoom="19" nameTag2="hiking_route_name"/>
+								<apply textOrder="5" textMinDistance="100" textBold="true" textHaloRadius="4" textWrapWidth="30"/>
+								<apply_if engine_v1="true" textDy="2"/>
+							</switch>
+						</apply>
+					</switch>
+					<apply_if legend="true" textOnPath="true"/>
 				</switch>
-				<switch minzoom="13">
-					<case tag="iwn_ref" value="">
-						<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$iwnColor"/>
-					</case>
-					<case tag="nwn_ref" value="">
-						<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$nwnColor"/>
-					</case>
-					<case tag="rwn_ref" value="">
-						<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$rwnTextColor"/>
-					</case>
-					<case tag="lwn_ref" value="">
-						<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$lwnColor"/>
-					</case>
-					<apply>
-						<switch>
-							<case hikingRoutesOSMC="walkingRoutesOSMC" textColor="#0078ff"/>
-							<case hikingRoutesOSMC="walkingRoutesScopeOSMC"/>
-							<apply_if maxzoom="13" textSize="13"/>
-							<apply_if minzoom="14" maxzoom="15" textSize="16"/>
-							<apply_if minzoom="16" textSize="20"/>
-							<apply textHaloColor="#ddebf4ff" textOrder="5" textMinDistance="100" textBold="true" textHaloRadius="4" textWrapWidth="30"/>
-							<apply_if engine_v1="true" textDy="-20"/>
-						</switch>
-					</apply>
-				</switch>
-				<switch minzoom="12" textMinDistance="101" textOnPath="false" textColor="#00ffffff" textSize="12" textOrder="43">
+				<switch minzoom="12" textMinDistance="101" textOnPath="false" textSize="12" textOrder="43">
 					<switch hikingRoutesOSMC="walkingRoutesOSMC">
 						<case minzoom="12" tag="route_hiking" value="" nameTag="osmc_stub_name"/>
 						<case minzoom="12" tag="route_foot" value="" nameTag="osmc_stub_name"/>
@@ -1510,6 +1546,7 @@
 					<switch horseRoutes="true">
 						<case minzoom="12" tag="route_horse" value="" nameTag="osmc_stub_name"/>
 					</switch>
+					<case minzoom="12" tag="piste:type" value="" additional="route=piste" nameTag="osmc_stub_name"/>
 					<apply>
 						<switch>
 							<case additional="osmc_background=black" textShield="osmc_black_bg"/>
@@ -1535,7 +1572,7 @@
 							<case additional="osmc_background=yellow_circle" textShield="osmc_yellow_circle_bg"/>
 							<case additional="osmc_background=yellow_frame" textShield="osmc_yellow_frame_bg"/>
 							<case additional="osmc_background" textShield="osmc_white_bg"/>
-							<apply>
+							<apply textColor="#00ffffff">
 								<switch>
 									<case additional="osmc_foreground=black_arch" icon="osmc_black_arch"/>
 									<case additional="osmc_foreground=black_backslash" icon="osmc_black_backslash"/>
@@ -3712,9 +3749,7 @@
 				<case minzoom="16" strokeWidth_2="1"/>
 			</apply>
 		</switch>-->
-		<case minzoom="16" tag="barrier" value="hedge" color="#aed1a0" color_2="#aed1a0" strokeWidth_2="1">
-			<apply_if nightMode="true" color_2="#285926"/>
-		</case>
+		<case minzoom="16" tag="barrier" value="hedge" color="#aed1a0" color_2="#aed1a0" strokeWidth_2="1"/>
 		<case minzoom="14" tag="barrier" value="city_wall">
 			<case maxzoom="14" strokeWidth_2="1:1"/>
 			<case maxzoom="15" strokeWidth_2="2:2"/>
@@ -4073,7 +4108,6 @@
 								<case minzoom="17" maxzoom="17" strokeWidth="5:5"/>
 								<case minzoom="18" maxzoom="18" strokeWidth="8:8"/>
 								<case minzoom="19" strokeWidth="9.5:9.5"/>
-								<apply_if nightMode="true" color="#33ffffff"/>
 							</switch>
 							<apply_if additional="tunnel=yes" pathEffect="4_4" cap="BUTT"/>
 							<apply_if additional="covered=yes" pathEffect="7_2" pathEffect__2="1_1" cap="BUTT"/>
@@ -4803,7 +4837,6 @@
 			<apply_if minzoom="16" maxzoom="16" strokeWidth__1="11:11" pathEffect__1="1_16"/>
 			<apply_if minzoom="17" maxzoom="17" strokeWidth__1="13:13" pathEffect__1="1_21"/>
 			<apply_if minzoom="18" strokeWidth__1="15:15" pathEffect__1="1_25"/>
-			<apply_if nightMode="true" color="#99111111" color__1="#66ffffff"/>
 			<apply_if engine_v1="false" color="$null" strokeWidth_0="2:2" />
 		</switch>
 
@@ -5023,10 +5056,15 @@
 				<case tag="route_foot" value=""/>
 				<case tag="route_walking" value=""/>
 			</switch>
+			<switch hikingRoutesOSMC="walkingRoutesOSMCNodes" minzoom="12">
+				<case tag="route_hiking" value=""/>
+				<case tag="route_foot" value=""/>
+				<case tag="route_walking" value=""/>
+			</switch>
 			<switch horseRoutes="true" minzoom="12" color="$horseRouteDefaultColor">
 				<case tag="route_horse" value=""/>
 			</switch>
-			<apply>
+			<apply_if hikingRoutesOSMC="walkingRoutesOSMC">
 				<case additional="osmc_waycolor=black" color="$osmcBlackColor"/>
 				<case additional="osmc_waycolor=blue" color="$osmcBlueColor"/>
 				<case additional="osmc_waycolor=green" color="$osmcGreenColor"/>
@@ -5035,15 +5073,30 @@
 				<case additional="osmc_waycolor=yellow" color="$osmcYellowColor"/>
 				<case additional="osmc_waycolor=brown" color="$osmcBrownColor"/>
 				<case additional="osmc_waycolor=purple" color="$osmcPurpleColor"/>
-			</apply>
-			<apply_if minzoom="12" maxzoom="12" strokeWidth="6:6"/>
-			<apply_if minzoom="13" maxzoom="13" strokeWidth="7:7"/>
-			<apply_if minzoom="14" maxzoom="14" strokeWidth="10:10"/>
-			<apply_if minzoom="15" maxzoom="15" strokeWidth="11:11"/>
-			<apply_if minzoom="16" maxzoom="16" strokeWidth="13:13"/>
-			<apply_if minzoom="17" maxzoom="17" strokeWidth="14:14"/>
-			<apply_if minzoom="18" strokeWidth="14:14"/>
+			</apply_if>
+			<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" minzoom="12">
+				<case additional="node_network_iwn=iwn" color="$iwnNodeNetworkColor"/>
+				<case additional="node_network_nwn=nwn" color="$nwnNodeNetworkColor"/>
+				<case additional="node_network_rwn=rwn" color="$rwnNodeNetworkColor"/>
+				<case additional="node_network_lwn=lwn" color="$lwnNodeNetworkColor"/>
+				<apply>
+					<case minzoom="12" maxzoom="12" pathEffect="11_1"/>
+					<case maxzoom="13" pathEffect="15_2"/>
+					<case maxzoom="14" pathEffect="20_2"/>
+					<case maxzoom="15" pathEffect="25_2"/>
+					<case maxzoom="16" pathEffect="32_3"/>
+					<case maxzoom="17" pathEffect="40_3"/>
+					<case minzoom="18" pathEffect="50_3"/>
+				</apply>
+			</apply_if>
 			<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" color="$null"/>
+			<apply_if minzoom="12" maxzoom="12" strokeWidth="3.5:3.5"/>
+			<apply_if minzoom="13" maxzoom="13" strokeWidth="4.5:4.5"/>
+			<apply_if minzoom="14" maxzoom="14" strokeWidth="6:6"/>
+			<apply_if minzoom="15" maxzoom="15" strokeWidth="8:8"/>
+			<apply_if minzoom="16" maxzoom="16" strokeWidth="10:10"/>
+			<apply_if minzoom="17" maxzoom="17" strokeWidth="11:11"/>
+			<apply_if minzoom="18" strokeWidth="13:13"/>
 		</switch>
 		<switch hikingRoutesOSMC="walkingRoutesScopeOSMC" cap="ROUND">
 			<case minzoom="12" tag="network_iwn" value="" color="$iwnColor">
