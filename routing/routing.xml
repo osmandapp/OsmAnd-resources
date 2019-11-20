@@ -899,6 +899,7 @@
 		<parameter id="avoid_stairs" name="Avoid stairs" description="Avoid stairs" type="boolean"/>
 		<parameter id="avoid_borders" name="Avoid border crossing" description="Avoid crossing a border into another country" type="boolean"/>
 		<parameter id="allow_motorway" name="Allow motorways" description="Allow motorways" type="boolean"/>
+		<parameter id="allow_private" name="Allow private access" description="Allow access to private areas" type="boolean"/>
 		<parameter id="avoid_sett" name="Avoid sett and cobblestone" description="Tries to avoid streets and paths which are paved with sett and cobblestone." type="boolean" default="false"/>
 		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean" default="false"/>
 
@@ -966,6 +967,9 @@
 			<select value="1"  t="vehicle" v="destination"/>
 			
 			<select value="-1" t="access" v="no"/>
+			<if param="allow_private">
+				<select value="1" t="access" v="private"/>
+			</if>
 			<select value="-1" t="access" v="private"/>
 			<select value="1" t="access" v="agricultural"/>
 			<select value="1" t="access" v="forestry"/>
@@ -1519,6 +1523,9 @@
 			<select value="0" t="access" v="forestry"/>
 			<select value="0"  t="access" v="yes"/>
 			<select value="0"  t="access" v="permissive"/>
+			<if param="allow_private">
+				<select value="180"  t="access" v="private"/>
+			</if>
 
 			<!--<select value="-1" t="crossing" v="no"/>-->
 
@@ -1569,6 +1576,7 @@
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_motorway" name="Avoid motorways" description="Avoid motorways" type="boolean"/>
 		<parameter id="avoid_stairs" name="Avoid stairs" description="Avoid stairs" type="boolean"/>
+		<parameter id="allow_private" name="Allow private access" description="Allow access to private areas" type="boolean"/>
 		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean" default="true"/>
 
 		<way attribute="area">
@@ -1606,6 +1614,9 @@
 			<select value="1"  t="foot" v="use_sidepath"/>
 
 			<select value="-1" t="access" v="no"/>
+			<if param="allow_private">
+				<select value="1"  t="access" v="private"/>
+			</if>
 			<select value="-1" t="access" v="private"/>
 			<select value="1"  t="access" v="yes"/>
 			<select value="1"  t="access" v="permissive"/>
@@ -1741,6 +1752,9 @@
 			<select value="0"  t="foot" v="official"/>
 
 			<select value="-1" t="access" v="no"/>
+			<if param="allow_private">
+				<select value="180"  t="access" v="private"/>
+			</if>
 			<select value="-1"  t="access" v="private"/>
 			<select value="120"  t="access" v="destination"/>
 
