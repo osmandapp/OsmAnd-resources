@@ -2512,7 +2512,7 @@
 					<case minzoom="14" tag="landuse" value="conservation" textOrder="246"/>
 					<case minzoom="12" tag="natural" value="fell" textOrder="250"/>
 					<case minzoom="7" tag="natural" value="desert" textSize="11"/>
-					<case minzoom="9" maxzoom="14" tag="leisure" value="nature_reserve" textOrder="270"/>
+					<case minzoom="9" maxzoom="17" tag="leisure" value="nature_reserve" textOrder="270"/>
 					<case minzoom="9" maxzoom="17" tag="boundary" value="national_park" textOrder="270" textOnPath="true"/>
 					<case minzoom="8" maxzoom="17" tag="boundary" value="protected_area" textOrder="270"/>
 					<switch minzoom="13" tag="boundary" value="forestry_compartment" textOrder="88" textDy="3">
@@ -2677,7 +2677,7 @@
 
 			<switch>
 				<case minzoom="15" tag="landuse" value="military"/>
-				<case minzoom="15" tag="military" value="danger_area"/>
+				<case minzoom="11" tag="military" value="danger_area"/>
 				<apply textSize="12" nameTag="" textColor="#990d2a" textHaloColor="#eeffffff" textHaloRadius="$textHaloRadius" textWrapWidth="20" textOrder="145"/>
 				<apply_if lessDetailed="true" maxzoom="13" disable="true"/>
 			</switch>
@@ -3570,13 +3570,18 @@
 						<apply strokeWidth_2="1" color_2="#55AFFCAF"/>
 					</case>
 
-					<switch>
-						<case minzoom="6" tag="leisure" value="nature_reserve"/>
-						<case minzoom="8" tag="boundary" value="protected_area"/>
-						<apply color_2="#4400ae3d">
-							<case maxzoom="13" strokeWidth_2="2:2" pathEffect_2="10_5"/>
-							<case minzoom="14" strokeWidth_2="3.5:3.5" pathEffect_2="13_8"/>
-						</apply>
+					<switch color="$null" color_2="#7754B265">
+						<switch minzoom="6">
+							<case tag="leisure" value="nature_reserve"/>
+							<case tag="boundary" value="national_park"/>
+							<apply_if maxzoom="13" strokeWidth_2="2:2"/>
+							<apply_if minzoom="14" strokeWidth_2="3.5:3.5"/>
+						</switch>
+						<switch minzoom="8">
+							<case tag="boundary" value="protected_area"/>
+							<apply_if maxzoom="13" strokeWidth_2="2:2" pathEffect_2="10_5"/>
+							<apply_if minzoom="14" strokeWidth_2="3.5:3.5" pathEffect_2="13_8"/>
+						</switch>
 					</switch>
 					<case minzoom="11" tag="landuse" value="quarry" color_2="#6F6357" strokeWidth_2="2" pathEffect_2="2_2">
 						<case additional="resource=peat" shader="topo_quarry_peat"/>
