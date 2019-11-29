@@ -1100,6 +1100,7 @@ mycpname building_map functional-icons_building_map.png
 mycpname square poi_colored_square.png
 mycpname building poi_colored_building.png
 mycpname cross poi_colored_cross.png
+mycpname grave poi_colored_grave.png
 mycpname storage_tank poi_colored_storage_tank.png
 mycpname wastewater_plant poi_colored_wastewater_plant.png
 mycpname water_works poi_colored_water_works.png
