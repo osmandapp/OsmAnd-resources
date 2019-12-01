@@ -15,9 +15,9 @@ var dictionary = {};
 ////////////////////////////////////////////////////////////////
 // ROUTE CALCULATED
 function populateDictionary(tts) {
-	dictionary["route_is"] = tts ? "Довжина маршруту " : "route_is.ogg";
-	dictionary["route_calculate"] = tts ? "Перерахунок маршруту" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? "відстань " : "distance.ogg";
+	dictionary["route_is"] = tts ? "Довжина маршруту - " : "route_is.ogg";
+	dictionary["route_calculate"] = tts ? "Перерахунок маршруту - " : "route_calculate.ogg";
+	dictionary["distance"] = tts ? "відстань - " : "distance.ogg";
 
 	// LEFT/RIGHT
 	dictionary["after"] = tts ? "після " : "after.ogg";
@@ -66,7 +66,7 @@ function populateDictionary(tts) {
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Далі прямо" : "go_ahead.ogg";
-	dictionary["go_ahead_m"] = tts ? "Продовжуйте рух " : "go_ahead_m.ogg";
+	dictionary["go_ahead_m"] = tts ? "Продовжуйте рух - " : "go_ahead_m.ogg";
 
 	// ARRIVE
 	dictionary["and_arrive_destination"] = tts ? "і ви прибудете до пункту призначення " : "and_arrive_destination.ogg";
@@ -109,10 +109,10 @@ function populateDictionary(tts) {
 
 	// DISTANCE UNIT SUPPORT
 
-	dictionary["metriv"] = tts ? "метрів" : "metriv.ogg";
+	dictionary["metriv"] = tts ? "м" : "metriv.ogg";
 	dictionary["kilometr"] = tts ? "кілометр" : "kilometr.ogg";
 	dictionary["kilometry"] = tts ? "кілометри" : "kilometry.ogg";
-	dictionary["kilometriv"] = tts ? "кілометрів" : "kilometriv.ogg";
+	dictionary["kilometriv"] = tts ? ", кілометрів" : "kilometriv.ogg";
 	dictionary["around_1_kilometer"] = tts ? "біля одного кілометру" : "around_1_kilometer.ogg";
 	dictionary["around"] = tts ? "приблизно " : "around.ogg";
 
@@ -127,12 +127,12 @@ function populateDictionary(tts) {
 	dictionary["yardov"] = tts ? "ярдів" : "yardov.ogg";
 
 	// TIME SUPPORT
-	dictionary["time"] = tts ? "час " : "time.ogg";
+	dictionary["time"] = tts ? "час - " : "time.ogg";
 	dictionary["less_a_minute"] = tts ? "менше хвилини  " : "less_a_minute.ogg";
-	dictionary["hour"] = tts ? "година " : "hour.ogg";
+	dictionary["hour"] = tts ? "год " : "hour.ogg";
 	dictionary["1_hour"] = tts ? "одна година " : "hour.ogg";
-	dictionary["hours_a"] = tts ? "години " : "hours_a.ogg";
-	dictionary["hours_ov"] = tts ? "годин " : "hours_ov.ogg";
+	dictionary["hours_a"] = tts ? "год " : "hours_a.ogg";
+	dictionary["hours_ov"] = tts ? "год " : "hours_ov.ogg";
 	dictionary["1_minute"] = tts ? "одна хвилина " : "minute.ogg";
 	dictionary["minute"] = tts ? "хвилина" : "minute.ogg";
 	dictionary["minute_y"] = tts ? "хвилини" : "minute_y.ogg";
@@ -675,4 +675,3 @@ function ogg_dist(distance) {
 		return ogg_dist(distance/1000) + "1000.ogg " + ogg_dist(distance % 1000);
 	}
 }
-
