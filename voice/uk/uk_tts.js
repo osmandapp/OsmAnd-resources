@@ -15,8 +15,8 @@ var dictionary = {};
 ////////////////////////////////////////////////////////////////
 // ROUTE CALCULATED
 function populateDictionary(tts) {
-	dictionary["route_is"] = tts ? "Довжина маршруту - " : "route_is.ogg";
-	dictionary["route_calculate"] = tts ? "Перерахунок маршруту - " : "route_calculate.ogg";
+	dictionary["route_is"] = tts ? "Довжина маршруту, " : "route_is.ogg";
+	dictionary["route_calculate"] = tts ? "Перерахунок маршруту, " : "route_calculate.ogg";
 	dictionary["distance"] = tts ? "відстань - " : "distance.ogg";
 
 	// LEFT/RIGHT
@@ -66,7 +66,7 @@ function populateDictionary(tts) {
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Далі прямо" : "go_ahead.ogg";
-	dictionary["go_ahead_m"] = tts ? "Продовжуйте рух - " : "go_ahead_m.ogg";
+	dictionary["go_ahead_m"] = tts ? "Продовжуйте рух, " : "go_ahead_m.ogg";
 
 	// ARRIVE
 	dictionary["and_arrive_destination"] = tts ? "і ви прибудете до пункту призначення " : "and_arrive_destination.ogg";
@@ -110,9 +110,9 @@ function populateDictionary(tts) {
 	// DISTANCE UNIT SUPPORT
 
 	dictionary["metriv"] = tts ? "м" : "metriv.ogg";
-	dictionary["kilometr"] = tts ? "кілометр" : "kilometr.ogg";
-	dictionary["kilometry"] = tts ? "кілометри" : "kilometry.ogg";
-	dictionary["kilometriv"] = tts ? ", кілометрів" : "kilometriv.ogg";
+	dictionary["kilometr"] = tts ? "км, " : "kilometr.ogg";
+	dictionary["kilometry"] = tts ? "км, " : "kilometry.ogg";
+	dictionary["kilometriv"] = tts ? "км, " : "kilometriv.ogg";
 	dictionary["around_1_kilometer"] = tts ? "біля одного кілометру" : "around_1_kilometer.ogg";
 	dictionary["around"] = tts ? "приблизно " : "around.ogg";
 
@@ -167,7 +167,7 @@ function plural_mt(dist) {
 function plural_km(dist) {
 	if (distance % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
 		return dictionary["kilometr"];
-	} else if (dist % 10 < 5 && dist % 10 > 1 && (dist % 100 > 20 || dist % 100 < 10 )) {
+	} else if (dist % 10 < 6 && dist % 10 > 1 && (dist % 100 > 20 || dist % 100 < 10 )) {
 		return dictionary["kilometry"];
 	} else {
 		return dictionary["kilometriv"];
