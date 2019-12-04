@@ -178,7 +178,7 @@ function isMasculine(streetName) {
 }
 
 function route_new_calc(dist, timeVal) {
-	return dictionary["route_is1"] + dictionary["route_is2"] + " " + distance(dist, "nominativ") + " " + dictionary["route_is2"] + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : "");
+	return dictionary["route_is1"] + dictionary["route_is2"] + " " + distance(dist, "nominativ") + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : "");
 }
 
 function distance(dist, declension) {
