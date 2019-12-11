@@ -2347,13 +2347,17 @@
 	<renderingConstant name="naturalHillIconMinZoom" value="14"/>
 	<renderingConstant name="campSiteIconMinZoom" value="14"/>
 	<renderingConstant name="caravanSiteIconMinZoom" value="14"/>
+	<renderingConstant name="picnicSiteIconMinZoom" value="15"/>
 	<renderingConstant name="chaletIconMinZoom" value="16"/>
 	<renderingConstant name="alpineHutIconMinZoom" value="13"/>
 	<renderingConstant name="cabinIconMinZoom" value="13"/>
 	<renderingConstant name="leanToIconMinZoom" value="13"/>
 	<renderingConstant name="wildernessHutIconMinZoom" value="13"/>
 	<renderingConstant name="shelterIconMinZoom" value="16"/>
-	
+	<renderingConstant name="hotelIconMinZoom" value="16"/>
+	<renderingConstant name="springIconMinZoom" value="16"/>
+	<renderingConstant name="waterfallIconMinZoom" value="14"/>
+
 	<renderingConstant name="naturalPeakTextMinZoom" value="12"/>
 	<renderingConstant name="naturalVolcanoTextMinZoom" value="11"/>
 	<renderingConstant name="naturalHillTextMinZoom" value="15"/>
@@ -2378,11 +2382,13 @@
 	<renderingConstant name="greenhouseHorticultureMinZoon" value="12"/>
 	<renderingConstant name="sandMinZoom" value="11"/>
 
+	<renderingConstant name="farmlandMinZoom" value="11"/>
+	<renderingConstant name="farmyardMinZoom" value="11"/>
+	<renderingConstant name="meadowMinZoom" value="12"/>
+	<renderingConstant name="landuseIndustrialMinZoom" value="11"/>
 	<renderingAttribute name="moreDetailedScrubColor">
 		<case attrColorValue="#ADE5A1"/>
 	</renderingAttribute>
-
-
 
 	<renderingAttribute name="buildingTextColor">
 		<case nightMode="true" attrColorValue="#7a9399"/>
@@ -7717,9 +7723,9 @@
 				<switch shield="blue_round_shield">
 					<case minzoom="14" tag="natural" value="hot_spring" icon="natural_hot_spring"/>
 					<case minzoom="14" tag="natural" value="geyser" icon="natural_geyser"/>
-					<case minzoom="16" tag="natural" value="spring" icon="natural_spring"/>
-					<case minzoom="14" tag="waterway" value="waterfall" icon="waterfall">
-						<apply_if whiteWaterSports="true" textOrder="10"/>
+					<case minzoom="$springIconMinZoom" tag="natural" value="spring" icon="natural_spring"/>
+					<case minzoom="$waterfallIconMinZoom" tag="waterway" value="waterfall" icon="waterfall">
+						<apply_if whiteWaterSports="true" iconOrder="10"/>
 					</case>
 					<apply_if minzoom="16" additional="drinking_water=yes" icon_2="drinking_water_yes_map"/>
 					<apply_if nightMode="true" shield="blue_round_night_shield"/>
@@ -8099,11 +8105,11 @@
 
 				<!-- Accommodation -->
 				<switch iconOrder="161" shield="blue_round_shield" iconVisibleSize="32">
-					<case minzoom="16" tag="tourism" value="apartment" icon="tourism_apartment"/>
-					<case minzoom="16" tag="tourism" value="guest_house" icon="tourism_guest_house"/>
-					<case minzoom="16" tag="tourism" value="hostel" icon="tourism_hostel"/>
-					<case minzoom="16" tag="tourism" value="hotel" icon="tourism_hotel"/>
-					<case minzoom="16" tag="tourism" value="motel" icon="tourism_motel"/>
+					<case minzoom="$hotelIconMinZoom" tag="tourism" value="apartment" icon="tourism_apartment"/>
+					<case minzoom="$hotelIconMinZoom" tag="tourism" value="guest_house" icon="tourism_guest_house"/>
+					<case minzoom="$hotelIconMinZoom" tag="tourism" value="hostel" icon="tourism_hostel"/>
+					<case minzoom="$hotelIconMinZoom" tag="tourism" value="hotel" icon="tourism_hotel"/>
+					<case minzoom="$hotelIconMinZoom" tag="tourism" value="motel" icon="tourism_motel"/>
 					<switch iconOrder="162">
 						<case minzoom="$campSiteIconMinZoom" tag="tourism" value="camp_site" icon="tourism_camp_site"/>
 						<case minzoom="$caravanSiteIconMinZoom" tag="tourism" value="caravan_site" icon="tourism_caravan_site"/>
@@ -8130,8 +8136,8 @@
 					<case additional="information=terminal" icon="information_terminal" shield="information_terminal_shield"/>
 				</case>
 				<switch>
-					<case minzoom="15" tag="tourism" value="picnic_site"/>
-					<case minzoom="15" tag="leisure" value="picnic_table"/>
+					<case minzoom="$picnicSiteIconMinZoom" tag="tourism" value="picnic_site"/>
+					<case minzoom="$picnicSiteIconMinZoom" tag="leisure" value="picnic_table"/>
 					<apply icon="tourism_picnic_site" shield="picnic_shield" iconOrder="85"/>
 					<apply_if nightMode="true" shield=""/>
 					<apply_if moreDetailed="false" maxzoom="15" icon=""/>
@@ -9753,14 +9759,14 @@
 				</apply>
 			</switch>
 
-			<case minzoom="11" tag="landuse" value="farmyard" color="$farmyardColor"/>
+			<case minzoom="$farmyardMinZoom" tag="landuse" value="farmyard" color="$farmyardColor"/>
 			<case minzoom="13" tag="landuse" value="animal_keeping" color="$farmyardColor"/>
-			<switch minzoom="11">
+			<switch minzoom="$farmlandMinZoom">
 				<case tag="landuse" value="farm"/>
 				<case tag="landuse" value="farmland"/>
 				<apply color="$farmColor"/>
 			</switch>
-			<case minzoom="12" tag="landuse" value="meadow" color="$meadowColor"/>
+			<case minzoom="$meadowMinZoom" tag="landuse" value="meadow" color="$meadowColor"/>
 
 			<!-- Built-up areas -->
 			<switch>
@@ -9768,7 +9774,7 @@
 					<apply_if additional="residential=rural" color="$landuseResidentialRuralColor"/>
 					<apply_if moreDetailed="false" additional="named=yes" strokeWidth_2="1" color_2="$landuseResidentialNamedStrokeColor"/>
 				</case>
-				<case minzoom="11" tag="landuse" value="industrial" color="$landuseIndustrialColor">
+				<case minzoom="$landuseIndustrialMinZoom" tag="landuse" value="industrial" color="$landuseIndustrialColor">
 					<apply_if additional="industrial=port" color="$portColor" color_2="#AAAAAA" strokeWidth_2="1"/>
 				</case>
 				<case minzoom="12" tag="harbour" value="yes" color="$null" color_2="#44999999" strokeWidth_2="2"/>
