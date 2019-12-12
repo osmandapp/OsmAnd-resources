@@ -22,23 +22,121 @@
 		</case>
 	</renderingAttribute>
 	<renderingProperty attr="engine_v1" type="boolean"/>
+	<renderingAttribute name="defaultColor">
+		<!-- next line should should make background transparent for underlays to be visible, but this curretnly does not work as desired -->
+		<!-- To change default color completely you should do that also for tag="place" value="island" and tag="natural" value="land" (search this file) -->
+		<case noPolygons="true" attrColorValue="#00ebe7e4"/>
+		<case attrColorValue="#ebe7e4">
+			<apply_if nightMode="true" attrColorValue="#121926"/>
+		</case>
+	</renderingAttribute>
+
+	<renderingAttribute name="polygonMinSizeToDisplay">
+		<!-- Minimum polygon size in pixels -->
+		<case moreDetailed="true" attrIntValue="7"/>
+		<case attrIntValue="50"/>
+	</renderingAttribute>
 
 	<renderingConstant name="placeVillageMinZoom" value="10"/>
 	<renderingConstant name="placeHamletMinZoom" value="10"/>
 	<renderingConstant name="placeLocalityMinZoom" value="10"/>
 	<renderingConstant name="placeIsolatedDwellingMinZoom" value="10"/>
+	
+	<renderingConstant name="naturalPeakTextMinZoom" value="10"/>
+	<renderingConstant name="naturalVolcanoTextMinZoom" value="10"/>
+	<renderingConstant name="naturalHillTextMinZoom" value="15"/>
+
+	<renderingConstant name="textHaloRadius" value="1"/>
 
 	<renderingConstant name="placeVillageIconMinZoom" value="10"/>
 	<renderingConstant name="placeVillageIconMaxZoom" value="12"/>
 	<renderingConstant name="placeHamletIconMinZoom" value="10"/>
 	<renderingConstant name="placeHamletIconMaxZoom" value="12"/>
 
+	<renderingConstant name="campSiteIconMinZoom" value="11"/>
+	<renderingConstant name="caravanSiteIconMinZoom" value="13"/>
+	<renderingConstant name="picnicSiteIconMinZoom" value="13"/>
+	<renderingConstant name="chaletIconMinZoom" value="15"/>
+	<renderingConstant name="alpineHutIconMinZoom" value="14"/>
+	<renderingConstant name="cabinIconMinZoom" value="15"/>
+	<renderingConstant name="leanToIconMinZoom" value="15"/>
+	<renderingConstant name="wildernessHutIconMinZoom" value="14"/>
+	<renderingConstant name="shelterIconMinZoom" value="15"/>
+	<renderingConstant name="hotelIconMinZoom" value="15"/>
+
+	<renderingConstant name="naturalPeakIconMinZoom" value="10"/>
+	<renderingConstant name="naturalVolcanoIconMinZoom" value="10"/>
+	<renderingConstant name="naturalHillIconMinZoom" value="13"/>
+
+	<renderingConstant name="springIconMinZoom" value="11"/>
+	<renderingConstant name="waterfallIconMinZoom" value="13"/>
+	<renderingConstant name="waterPointIconMinZoom" value="11"/>
+	<renderingConstant name="waterWellIconMinZoom" value="11"/>
+	<renderingConstant name="drinkingWaterIconMinZoom" value="11"/>
+
+	<renderingConstant name="unclassifiedMinZoom" value="11"/>
+	<renderingConstant name="serviceMinZoom" value="11"/>
+	<renderingConstant name="trackMinZoom" value="11"/>
+	<renderingConstant name="pathMinZoom" value="12"/>
+	<renderingConstant name="footwayMinZoom" value="12"/>
+	<renderingConstant name="cyclewayMinZoom" value="12"/>
+	<renderingConstant name="bridlewayMinZoom" value="11"/>
+
+	<renderingConstant name="streamMinZoom" value="10"/>
+	<renderingConstant name="ditchMinZoom" value="13"/>
+	<renderingConstant name="damMinZoom" value="12"/>
 
 	<order>
 	</order>
 
 
 	<text>
+		<switch textColor="#654321" textDy="7" textWrapWidth="25" textHaloColor="#aaf1eae4" textHaloRadius="$textHaloRadius" textItalic="true">
+			<switch>
+				<case minzoom="$naturalPeakTextMinZoom" tag="natural" value="peak" textOrder="80">
+					<case maxzoom="12" nameTag="" nameTag2="ele" textSize="11"/>
+					<case maxzoom="12" nameTag="ele" textSize="11" intersectionMargin="15"/>
+					<case minzoom="13" maxzoom="13" nameTag="" nameTag2="ele" textSize="11"/>
+					<case minzoom="13" maxzoom="13" nameTag="ele" textSize="12"/>
+					<case minzoom="14" maxzoom="14" nameTag="" nameTag2="ele" textSize="12"/>
+					<case minzoom="14" maxzoom="14" nameTag="ele" textSize="12"/>
+					<case minzoom="15" maxzoom="16" nameTag="" nameTag2="ele" textSize="13"/>
+					<case minzoom="15" maxzoom="16" nameTag="ele" textSize="13"/>
+					<case minzoom="17" nameTag="" nameTag2="ele" textSize="15"/>
+					<case minzoom="17" nameTag="ele" textSize="15"/>
+					<apply_if maxzoom="14" engine_v1="true" textDy="-2"/>
+					<apply_if minzoom="15" engine_v1="true" textDy="-1"/>
+				</case>
+				<case minzoom="$naturalHillTextMinZoom" tag="natural" value="hill" nameTag="" nameTag2="ele" textOrder="70" textSize="11"/>
+				<case hidePOILabels="false" minzoom="16" textSize="12" tag="natural" value="cave_entrance" textOrder="236"/>
+				<apply_if nightMode="true" textColor="#ffcc9b" textHaloColor="#774d2803"/>
+				<apply_if legend="true" textDy="0"/>
+			</switch>
+			<case minzoom="$naturalVolcanoTextMinZoom" tag="natural" value="volcano" nameTag2="ele" textOrder="79" textHaloColor="#99ffd6c0">
+				<case maxzoom="12" textSize="12"/>
+				<case minzoom="13" textSize="13"/>
+				<apply_if nightMode="true" textColor="#ffcc9b" textHaloColor="#77772105"/>
+			</case>
+			<apply_if engine_v1="false" textDy="0"/>
+			<apply_if additional="ele_limit=200" textOrder="83"/>
+			<apply_if additional="ele_limit=500" textOrder="82"/>
+			<apply_if additional="ele_limit=1000" textOrder="81"/>
+			<apply_if additional="ele_limit=1500" textOrder="80"/>
+			<apply_if additional="ele_limit=2000" textOrder="79"/>
+			<apply_if additional="ele_limit=2500" textOrder="78"/>
+			<apply_if additional="ele_limit=3000" textOrder="77"/>
+			<apply_if additional="ele_limit=3500" textOrder="76"/>
+			<apply_if additional="ele_limit=4000" textOrder="75"/>
+			<apply_if additional="ele_limit=4500" textOrder="74"/>
+			<apply_if additional="ele_limit=5000" textOrder="73"/>
+			<apply_if additional="ele_limit=5500" textOrder="72"/>
+			<apply_if additional="ele_limit=6000" textOrder="71"/>
+			<apply_if additional="ele_limit=6500" textOrder="70"/>
+			<apply_if additional="ele_limit=7000" textOrder="69"/>
+			<apply_if additional="ele_limit=7500" textOrder="68"/>
+			<apply_if additional="ele_limit=9000" textOrder="67"/>
+		</switch>
+
 	</text>
 
 
