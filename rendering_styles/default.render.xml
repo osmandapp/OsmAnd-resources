@@ -477,6 +477,8 @@
 		<case additional="winter_road=yes" attrFloatValue="1:1"/>
 		<case attrFloatValue="0.6:0.4"/>
 	</renderingAttribute>
+	<renderingConstant name="serviceLowZoomShadowRadius" value="0"/>
+
 	<!-- Trunk  -->
 	<renderingAttribute name="trunkRoadColor">
 		<case roadStyle="germanRoadAtlas" attrColorValue="#dcdcdc">
@@ -10188,6 +10190,7 @@
 					</case>
 					<case minzoom="8" tag="boundary" value="protected_area" color="$null" color_2="#4400ae3d"/>
 					<apply>
+						<case maxzoom="11" strokeWidth_2="1:1" pathEffect_2="6_3"/>
 						<case maxzoom="13" strokeWidth_2="2:2" pathEffect_2="10_5"/>
 						<case minzoom="14" strokeWidth_2="3.5:3.5" pathEffect_2="13_8"/>
 					</apply>
@@ -10848,13 +10851,13 @@
 						<case tag="highway" value="service"/>
 						<case tag="highway" value="living_street"/>
 						<apply color="$serviceRoadColor" color__1="$serviceRoadColor"/>
-						<apply minzoom="14">
+						<apply_if minzoom="14">
 							<case engine_v1="true" shadowRadius=":1">
 								<apply_if showAccess="true" additional="motorroad=yes" shadowRadius=":2"/>
 								<apply_if additional="winter_road=yes" shadowRadius="3"/>
 							</case>
 							<case shadowRadius="$highwayShadowRadius"/>
-						</apply>
+						</apply_if>
 						<apply minzoom="15" shadowColor="$serviceRoadShadowColor"/>
 						<apply>
 							<switch>
@@ -10874,8 +10877,8 @@
 					</switch>
 					<apply cap="ROUND" color_0="#000000">
 						<switch moreDetailed="true">
-							<case maxzoom="13" strokeWidth="0.7" shadowRadius="0"/>
-							<case minzoom="14" maxzoom="14" strokeWidth="1:1" shadowRadius=":1" shadowColor="$residentialRoadLowZoom2ShadowColor">
+							<case maxzoom="13" strokeWidth="0.7" shadowRadius="$serviceLowZoomShadowRadius"/>
+							<case maxzoom="14" strokeWidth="1:1" shadowRadius=":1" shadowColor="$residentialRoadLowZoom2ShadowColor">
 								<apply_if tag="highway" value="pedestrian" shadowColor="$pedestrianRoadShadowColor"/>
 							</case>
 						</switch>
