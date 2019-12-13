@@ -111,7 +111,7 @@ function populateDictionary(tts) {
 	dictionary["metr"] = tts ? "метр" : "metr.ogg";
 	dictionary["metry"] = tts ? "метри" : "metr.ogg";
 	dictionary["metriv"] = tts ? "метрів" : "metriv.ogg";
-	dictionary["kilometr"] = tts ? "кілометрів, " : "kilometr.ogg";
+	dictionary["kilometr"] = tts ? "кілометр, " : "kilometr.ogg";
 	dictionary["kilometry"] = tts ? "кілометри, " : "kilometry.ogg";
 	dictionary["kilometriv"] = tts ? "кілометрів, " : "kilometriv.ogg";
 	dictionary["around_1_kilometer"] = tts ? "біля одного кілометру" : "around_1_kilometer.ogg";
