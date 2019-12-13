@@ -2367,6 +2367,10 @@
 	<renderingConstant name="naturalPeakTextMinZoom" value="12"/>
 	<renderingConstant name="naturalVolcanoTextMinZoom" value="11"/>
 	<renderingConstant name="naturalHillTextMinZoom" value="15"/>
+	<renderingConstant name="naturalSandTextMinZoom" value="15"/>
+	<renderingConstant name="naturalScrubTextMinZoom" value="17"/>
+	<renderingConstant name="waterwayStreamTextMinZoom" value="13"/>
+	<renderingConstant name="wadiStreamTextMinZoom" value="13"/>
 
 	<renderingConstant name="tertiaryMinZoom" value="11"/>
 	<renderingConstant name="unclassifiedMinZoom" value="12"/>
@@ -2380,6 +2384,7 @@
 	<renderingConstant name="streamMinZoom" value="13"/>
 	<renderingConstant name="ditchMinZoom" value="13"/>
 	<renderingConstant name="damMinZoom" value="13"/>
+	<renderingConstant name="waterwayIntermittentMinZoom" value="13"/>
 
 	<renderingConstant name="wetlandMinZoom" value="10"/>
 	<renderingConstant name="scrubMinZoom" value="12"/>
@@ -6146,8 +6151,8 @@
 					<case minzoom="8" tag="natural" value="bay" textWrapWidth="17" textOrder="179" nameTag=""/>
 					<case minzoom="8" tag="natural" value="strait" textOnPath="true" textWrapWidth="25" textOrder="180" nameTag=""/>
 					<case minzoom="11" tag="natural" value="fjord" textOnPath="true" textWrapWidth="25" textOrder="181" nameTag=""/>
-					<case minzoom="13" tag="waterway" value="stream" textOnPath="true" textOrder="206" nameTag=""/>
-					<case minzoom="13" tag="waterway" value="wadi" textOnPath="true" textOrder="213" nameTag=""/>
+					<case minzoom="$waterwayStreamTextMinZoom" tag="waterway" value="stream" textOnPath="true" textOrder="206" nameTag=""/>
+					<case minzoom="$wadiStreamTextMinZoom" tag="waterway" value="wadi" textOnPath="true" textOrder="213" nameTag=""/>
 					<case minzoom="11" tag="waterway" value="river" textOnPath="true" textMinDistance="80" textOrder="184" nameTag=""/>
 					<case minzoom="13" tag="waterway" value="canal" textOnPath="true" textMinDistance="80" textOrder="185"/>
 					<case hidePOILabels="false" minzoom="17" tag="waterway" value="dock" textDy="7" textOrder="209"/>
@@ -6246,7 +6251,7 @@
 				<switch textSize="12" textColor="$forestTextColorDay" textWrapWidth="20" textHaloRadius="$textHaloRadius" textHaloColor="#ccffffff" nameTag="">
 					<switch textItalic="true">
 						<case minzoom="12" tag="natural" value="wood" textOrder="202" textDy="8"/>
-						<case minzoom="17" tag="natural" value="scrub" textOrder="244"/>
+						<case minzoom="$naturalScrubTextMinZoom" tag="natural" value="scrub" textOrder="244"/>
 						<case minzoom="12" tag="natural" value="wetland" textOrder="238"/>
 						<case minzoom="14" tag="natural" value="heath" textOrder="245"/>
 						<case minzoom="7" tag="natural" value="desert" textSize="11"/>
@@ -6295,7 +6300,7 @@
 					<apply_if nightMode="true" textColor="#9fe39f" textHaloColor="#aa444444"/>
 				</switch>
 				<switch textSize="12" textColor="$tourismTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$tourismTextHaloColorDay" textWrapWidth="20">
-					<case minzoom="15" tag="natural" value="sand" textOrder="255"/>
+					<case minzoom="$naturalSandTextMinZoom" tag="natural" value="sand" textOrder="255"/>
 					<apply_if nightMode="true" textColor="#ffe7c2" textHaloColor="#88644e2c"/>
 				</switch>
 				<apply_if showAccess="true">
@@ -10877,7 +10882,7 @@
 					</switch>
 					<apply cap="ROUND" color_0="#000000">
 						<switch moreDetailed="true">
-							<case maxzoom="13" strokeWidth="0.7" shadowRadius="$serviceLowZoomShadowRadius"/>
+							<case maxzoom="13" strokeWidth="0.7" shadowRadius="$serviceLowZoomShadowRadius" shadowColor="$residentialRoadLowZoom2ShadowColor"/>
 							<case maxzoom="14" strokeWidth="1:1" shadowRadius=":1" shadowColor="$residentialRoadLowZoom2ShadowColor">
 								<apply_if tag="highway" value="pedestrian" shadowColor="$pedestrianRoadShadowColor"/>
 							</case>
@@ -10969,7 +10974,7 @@
 							<apply pathEffect_5=""/>
 						</switch>
 						<case minzoom="14" strokeWidth_4="1.2:1.2" strokeWidth_5="$trackStrokeWidth">
-							<case addMode="bicycle" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
+							<case baseAppMode="bicycle" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
 							<case showSurfaces="true" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
 							<case showSurfaceGrade="true" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
 						</case>
@@ -11634,7 +11639,8 @@
 					<apply_if minzoom="18" strokeWidth="1.1:1.1"/>
 				</apply>
 			</switch>
-			<apply_if additional="intermittent=yes">
+			<apply_if minzoom="$waterwayIntermittentMinZoom" additional="intermittent=yes">
+				<case maxzoom="11" pathEffect="2.5_1.5"/>
 				<case maxzoom="13" pathEffect="4.5_3"/>
 				<case maxzoom="14" pathEffect="6_4"/>
 				<case maxzoom="16" pathEffect="8_5"/>
