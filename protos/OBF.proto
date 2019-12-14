@@ -117,17 +117,17 @@ message OsmAndMapIndex {
 
 message MapDataBlock {
 	// coordinates can take much space 4*4*count of data blocks=
-//   required sint32 left = 1; // delta encoded
-//   required sint32 right = 2; // delta encoded
-//   required sint32 top = 3; // delta encoded
-//   required sint32 bottom = 4; // delta encoded
-   
-   optional uint64 baseId = 10;
+//	required sint32 left = 1; // delta encoded
+//	required sint32 right = 2; // delta encoded
+//	required sint32 top = 3; // delta encoded
+//	required sint32 bottom = 4; // delta encoded
+	
+	optional uint64 baseId = 10;
 
-   // in future here can be optional raster tile
-   repeated MapData dataObjects = 12;
+	// in future here can be optional raster tile
+	repeated MapData dataObjects = 12;
 
-   optional StringTable stringTable = 15;
+	optional StringTable stringTable = 15;
 
 
 }
@@ -181,11 +181,11 @@ message OsmAndAddressIndex {
 		}
 		required CitiesType type = 2;
 
-    	// not mixed
-	    // the list of the cities and the blocks are synchronized by the order (so even empty block will be written)
-	    repeated CityIndex cities = 5;
+		// not mixed
+		// the list of the cities and the blocks are synchronized by the order (so even empty block will be written)
+		repeated CityIndex cities = 5;
 
-    	repeated CityBlockIndex blocks = 7;
+		repeated CityBlockIndex blocks = 7;
 	}
 
 	// encoded as fixed32 length delimited
@@ -195,40 +195,40 @@ message OsmAndAddressIndex {
 }
 
 message OsmAndAddressNameIndexData {
-    // shift to AddressNameIndexData starting from first OsmAndAddressNameIndexData message
-    // encoded as fixed32 length delimited
-    required IndexedStringTable table = 4;
+	// shift to AddressNameIndexData starting from first OsmAndAddressNameIndexData message
+	// encoded as fixed32 length delimited
+	required IndexedStringTable table = 4;
 
-    repeated AddressNameIndexData atom = 7;
-   	message AddressNameIndexData {
-   		// shift is measured from start (before length)
-   		repeated AddressNameIndexDataAtom atom = 4;
+	repeated AddressNameIndexData atom = 7;
+		message AddressNameIndexData {
+			// shift is measured from start (before length)
+			repeated AddressNameIndexDataAtom atom = 4;
 	}
 }
 
 
 
 message AddressNameIndexDataAtom {
-     optional string name = 1;
-     optional string nameEn = 2;
-     // 1 - city, 2 - postcode, 3 - village,  4 - street
-     required uint32 type = 3; 
+	 optional string name = 1;
+	 optional string nameEn = 2;
+	 // 1 - city, 2 - postcode, 3 - village,  4 - street
+	 required uint32 type = 3; 
 
-     // start mixed 
-     // shift from start AddressNameIndexData (!) to ...Index
-     repeated int32 shiftToIndex = 5;
-     // optional used in case of type=street
-     repeated int32 shiftToCityIndex = 6;
-     // coordinates v2.3
-     repeated uint32 xy16 = 7;
-     // end mixed
+	 // start mixed 
+	 // shift from start AddressNameIndexData (!) to ...Index
+	 repeated int32 shiftToIndex = 5;
+	 // optional used in case of type=street
+	 repeated int32 shiftToCityIndex = 6;
+	 // coordinates v2.3
+	 repeated uint32 xy16 = 7;
+	 // end mixed
 }
 
 
 message CityIndex {
 	// should be written the first (for city), for postcode is optional
-    optional uint32 city_type = 1; // 0-5 enum CityType
-    
+	optional uint32 city_type = 1; // 0-5 enum CityType
+	
 	required string name = 2;
 	optional string name_en = 3;
 	optional uint64 id = 4;
@@ -245,7 +245,7 @@ message CityIndex {
 
 message CityBlockIndex {
 
-    // shift from start cityBlockIndex to CityIndex 
+	// shift from start cityBlockIndex to CityIndex 
 	optional fixed32 shiftToCityIndex = 4;
 	
 	// city boundary
@@ -329,31 +329,31 @@ message BuildingIndex {
 ////////////////////////////
 
 message TransportRoutes {
-   repeated TransportRoute routes = 6; 
+	repeated TransportRoute routes = 6; 
 }
 
 message TransportRoute {
-   required uint64 id = 1;
-   
-   optional uint32 type = 3; // reference in string table
-   optional uint32 operator = 4; // reference in string table
-   optional string ref = 5;
-   optional uint32 name = 6; // reference in string table
-   optional uint32 name_en = 7; // reference in string table
-   optional uint32 distance = 8; // distance in meters
-   optional uint32 color = 9; // reference in string table
-   
-   repeated TransportRouteStop directStops = 15;
-   // deprecated (not used any more)
-   repeated TransportRouteStop reverseStops = 16;
+	required uint64 id = 1;
+	
+	optional uint32 type = 3; // reference in string table
+	optional uint32 operator = 4; // reference in string table
+	optional string ref = 5;
+	optional uint32 name = 6; // reference in string table
+	optional uint32 name_en = 7; // reference in string table
+	optional uint32 distance = 8; // distance in meters
+	optional uint32 color = 9; // reference in string table
+	
+	repeated TransportRouteStop directStops = 15;
+	// deprecated (not used any more)
+	repeated TransportRouteStop reverseStops = 16;
 
-   // array of delta x,y sint32 (CodedIinputStream) >> 5 (precision 31 >> 5)
-   // first x,y - 31 coordinates (>>5), next points is delta to previous
-   // point, line or outer polygon coordinates
-   // 0, 0 split geometry (for not connected segments)
-   optional bytes geometry = 17;
+	// array of delta x,y sint32 (CodedIinputStream) >> 5 (precision 31 >> 5)
+	// first x,y - 31 coordinates (>>5), next points is delta to previous
+	// point, line or outer polygon coordinates
+	// 0, 0 split geometry (for not connected segments)
+	optional bytes geometry = 17;
 
-   repeated TransportRouteSchedule scheduleTrip = 18;
+	repeated TransportRouteSchedule scheduleTrip = 18;
 }
 
 message TransportRouteSchedule {
@@ -373,90 +373,90 @@ message TransportRouteSchedule {
 }
 
 message TransportRouteScheduleException {
-    // provided if exception applicable to the trips
-    repeated uint32 tripIndexes = 1;
+	// provided if exception applicable to the trips
+	repeated uint32 tripIndexes = 1;
 
 	// provided if exception applicable to the stop
-    repeated uint32 stopIndexes = 2;
+	repeated uint32 stopIndexes = 2;
 
-    // indicates whether the trip or stop available in certain restriction (default true)
+	// indicates whether the trip or stop available in certain restriction (default true)
 	optional bool available = 3;
 
-    // if 1 number is provided, the delay is applicable to all trips/stops, otherwise it has numbers for each route or stop
-    // delay is measured in X * 10 seconds
-    repeated uint32 delayArrival = 5;
+	// if 1 number is provided, the delay is applicable to all trips/stops, otherwise it has numbers for each route or stop
+	// delay is measured in X * 10 seconds
+	repeated uint32 delayArrival = 5;
 
-    repeated int32 deltaWaitInterval = 6;
+	repeated int32 deltaWaitInterval = 6;
 
 
-    // day of week exceptions, Monday - 0, Sunday - 6
-    repeated uint32 dayOfWeekRestriction = 7;
+	// day of week exceptions, Monday - 0, Sunday - 6
+	repeated uint32 dayOfWeekRestriction = 7;
 
-    // day of year exceptions 01.01.2000 - 0, 01.02.2000 - 1
-    repeated uint32 dayOfYearRestriction = 8;
+	// day of year exceptions 01.01.2000 - 0, 01.02.2000 - 1
+	repeated uint32 dayOfYearRestriction = 8;
 
 }
 
 message TransportRouteStop {
-   required sint64 id = 1; // delta encoded to previous stop (first stop is delta to 0)
-   required sint32 dx = 2; // delta encoded to previous stop (24 zoom)
-   required sint32 dy = 3; // delta encoded to previous stop (24 zoom)
-   
-   required uint32 name = 6; // index in message table
-   optional uint32 name_en = 7; // index in message table
+	required sint64 id = 1; // delta encoded to previous stop (first stop is delta to 0)
+	required sint32 dx = 2; // delta encoded to previous stop (24 zoom)
+	required sint32 dy = 3; // delta encoded to previous stop (24 zoom)
+	
+	required uint32 name = 6; // index in message table
+	optional uint32 name_en = 7; // index in message table
 }
 
 message TransportStop {
-   required sint32 dx = 1; // delta encoded to parent (24 zoom) to left
-   required sint32 dy = 2; // delta encoded to parent (24 zoom) to top
+	required sint32 dx = 1; // delta encoded to parent (24 zoom) to left
+	required sint32 dy = 2; // delta encoded to parent (24 zoom) to top
 
-   required sint64 id = 5; // delta encoded to parent base id 
-   
-   required uint32 name = 6; // index in message table
-   optional uint32 name_en = 7; // index in message table
-   // array of bytes (array of pairs <raw var int>)
-   optional bytes additionalNamePairs = 8;
-   repeated TransportStopExit exits = 9;
-   
-   repeated uint32 routes = 16; // -shift to transport route containing that stop 
-   				// TransportStop.Message.start -  sizeof(TransportStop.Message.length) - routes[i] 
-   				//				= TransportRoute.Message.start - sizeof(TransportRoute.Message.length)
-   				// message is started when body is started 
-   repeated uint64 deletedRoutesIds = 20; // ids of routes that do not contain this stop anymore
+	required sint64 id = 5; // delta encoded to parent base id 
+	
+	required uint32 name = 6; // index in message table
+	optional uint32 name_en = 7; // index in message table
+	// array of bytes (array of pairs <raw var int>)
+	optional bytes additionalNamePairs = 8;
+	repeated TransportStopExit exits = 9;
+	
+	repeated uint32 routes = 16; // -shift to transport route containing that stop 
+					// TransportStop.Message.start -  sizeof(TransportStop.Message.length) - routes[i] 
+					//				= TransportRoute.Message.start - sizeof(TransportRoute.Message.length)
+					// message is started when body is started 
+	repeated uint64 deletedRoutesIds = 20; // ids of routes that do not contain this stop anymore
 
-   // ids of [routes] that contain this stop
-   // - length and values correspond to [routes] array
-   // - old version (< 08/2019) files don't have them
-   // - default algorithm makes them sorted 
-   repeated uint64 routesIds = 22;
+	// ids of [routes] that contain this stop
+	// - length and values correspond to [routes] array
+	// - old version (< 08/2019) files don't have them
+	// - default algorithm makes them sorted 
+	repeated uint64 routesIds = 22;
 
 }
 
 message TransportStopExit {
-   required sint32 dx = 1; // delta x
-   required sint32 dy = 2; // delta y
-   required uint32 ref = 3;
+	required sint32 dx = 1; // delta x
+	required sint32 dy = 2; // delta y
+	required uint32 ref = 3;
 }
 
 message TransportStopsTree {
-   required sint32 left = 1; // delta encoded (24 zoom)
-   required sint32 right = 2; // delta encoded (24 zoom)
-   required sint32 top = 3; // delta encoded (24 zoom)
-   required sint32 bottom = 4; // delta encoded (24 zoom)
-   
-   // encoded as fixed32 length delimited
-   repeated TransportStopsTree subtrees = 7;
-   
-   repeated TransportStop leafs = 8;
+	required sint32 left = 1; // delta encoded (24 zoom)
+	required sint32 right = 2; // delta encoded (24 zoom)
+	required sint32 top = 3; // delta encoded (24 zoom)
+	required sint32 bottom = 4; // delta encoded (24 zoom)
+	
+	// encoded as fixed32 length delimited
+	repeated TransportStopsTree subtrees = 7;
+	
+	repeated TransportStop leafs = 8;
 
 
-   // written as last
-   optional uint64 baseId = 16;
+	// written as last
+	optional uint64 baseId = 16;
 }
 			
 message OsmAndTransportIndex {
-    optional string name = 1;
-    	
+	optional string name = 1;
+		
 	// encoded as fixed32 length delimited
 	optional TransportRoutes routes = 3; // routes 
 
@@ -468,21 +468,21 @@ message OsmAndTransportIndex {
 }
 
 ////////////////////////////
-/////   POI messages   /////
+/////	POI messages	/////
 ////////////////////////////
 
 message OsmAndPoiIndex {
-    required string name = 1;
-    
-    required OsmAndTileBox boundaries = 2;
-    
-    repeated OsmAndCategoryTable categoriesTable = 3;
-    
-    // encoded as fixed32 length delimited
-    optional OsmAndPoiNameIndex nameIndex = 4;
+	required string name = 1;
+	
+	required OsmAndTileBox boundaries = 2;
+	
+	repeated OsmAndCategoryTable categoriesTable = 3;
+	
+	// encoded as fixed32 length delimited
+	optional OsmAndPoiNameIndex nameIndex = 4;
 
-    optional OsmAndSubtypesTable subtypesTable = 5;
-    
+	optional OsmAndSubtypesTable subtypesTable = 5;
+	
 	// encoded as fixed32 length delimited
 	repeated OsmAndPoiBox boxes = 6; // children 
 
@@ -492,39 +492,39 @@ message OsmAndPoiIndex {
 }
 
 message OsmAndPoiNameIndex {
-   // shift to OsmAndPoiNameIndexData starting from OsmAndPoiIndex message
-   // encoded as fixed32 length delimited
-   required IndexedStringTable table = 3;
+	// shift to OsmAndPoiNameIndexData starting from OsmAndPoiIndex message
+	// encoded as fixed32 length delimited
+	required IndexedStringTable table = 3;
 
-   repeated OsmAndPoiNameIndexData data = 5;
-   message OsmAndPoiNameIndexData {
-   		// can contain multiple data offsets
-   		repeated OsmAndPoiNameIndexDataAtom atoms = 3;
-   }
+	repeated OsmAndPoiNameIndexData data = 5;
+	message OsmAndPoiNameIndexData {
+		// can contain multiple data offsets
+		repeated OsmAndPoiNameIndexDataAtom atoms = 3;
+	}
 }
 
 message OsmAndPoiNameIndexDataAtom {
-   // fields do not preserve order define, they are repeating 
-   optional uint32 zoom = 2;
-   optional uint32 x = 3;
-   optional uint32 y = 4;
-   // shift to OsmAndPoiBoxData message from OsmAndPoiIndex.start
-   // message is started when body is started
-   optional fixed32 shiftTo = 14;
+	// fields do not preserve order define, they are repeating 
+	optional uint32 zoom = 2;
+	optional uint32 x = 3;
+	optional uint32 y = 4;
+	// shift to OsmAndPoiBoxData message from OsmAndPoiIndex.start
+	// message is started when body is started
+	optional fixed32 shiftTo = 14;
 }
 
 message OsmAndCategoryTable {
 	// general id of poi type is calculated  ((subcategory_order << 7) | category_order)
-    required string category = 1;
-    repeated string subcategories = 3;
+	required string category = 1;
+	repeated string subcategories = 3;
 }
 
 message OsmAndSubtypesTable {
 
-    // id calculated
-    // 1. if subtypes_order <= 31 : ( (subtypeValue << 5) | subtypes_order) << 1
-    // 2. if subtypes_order > 31  : ( (subtypeValue << 16) | subtypes_order) << 1 + 1    
-    repeated OsmAndPoiSubtype subtypes = 4;
+	// id calculated
+	// 1. if subtypes_order <= 31 : ( (subtypeValue << 5) | subtypes_order) << 1
+	// 2. if subtypes_order > 31  : ( (subtypeValue << 16) | subtypes_order) << 1 + 1	 
+	repeated OsmAndPoiSubtype subtypes = 4;
 }
 
 message OsmAndPoiSubtype {
@@ -539,26 +539,26 @@ message OsmAndPoiSubtype {
 
 
 message OsmAndPoiBox {
-   required uint32 zoom = 1; // delta encoded to parent
-   // size is one tile
-   required sint32 left = 2; // delta encoded (zoom)
-   required sint32 top = 3; // delta encoded (zoom)
-   
-   optional OsmAndPoiCategories categories = 4;
-    
-   // encoded as fixed32 length delimited
-   repeated OsmAndPoiBox subBoxes = 10;
-   
-   // must be the last
-   optional fixed32 shiftToData = 14; // shift to OsmAndPoiBoxData message from OsmAndPoiIndex.start
-                                      // message is started when body is started
+	required uint32 zoom = 1; // delta encoded to parent
+	// size is one tile
+	required sint32 left = 2; // delta encoded (zoom)
+	required sint32 top = 3; // delta encoded (zoom)
+	
+	optional OsmAndPoiCategories categories = 4;
+	
+	// encoded as fixed32 length delimited
+	repeated OsmAndPoiBox subBoxes = 10;
+	
+	// must be the last
+	optional fixed32 shiftToData = 14; // shift to OsmAndPoiBoxData message from OsmAndPoiIndex.start
+									  // message is started when body is started
 }
 
 message OsmAndPoiCategories {
-   // sorted categories
-   repeated uint32 categories = 3;
+	// sorted categories
+	repeated uint32 categories = 3;
 
-   repeated uint32 subcategories = 5;
+	repeated uint32 subcategories = 5;
 }
 
 message OsmAndPoiBoxData {
@@ -596,8 +596,8 @@ message OsmAndPoiBoxDataAtom {
  * a1,.. an - (ideally sorted) set of longs
  */
 message IdTable {
-   // diff between 2 ids
-   repeated sint64 routeId = 1;
+	// diff between 2 ids
+	repeated sint64 routeId = 1;
 }
 
 message RestrictionData {
@@ -611,11 +611,12 @@ message RestrictionData {
 message RouteData {
 	// array of delta x,y sint32 (CodedIinputStream) >> 5
 	// first x delta to Tree.left, y to delta Tree.top (next delta to previous)
-  	required bytes points = 1;
+	required bytes points = 1;
 
-  	// continuous array of pairs
-  	//  [pointIndex - int32, pointTypes - bytes]
-  	// bytes - array of raw var int types
+
+	// continuous array of pairs
+	//  [pointIndex - int32, pointTypes - bytes]
+	// bytes - array of raw var int types
 	optional bytes pointTypes = 4;
 
 	// continuous array of triples
@@ -627,7 +628,7 @@ message RouteData {
 
   	required int32 routeId = 12; // id internal
 
-    // repeated array<pair<tagId : raw_var_int, indexOfStringInParent : raw_var_int> >
+	// repeated array<pair<tagId : raw_var_int, indexOfStringInParent : raw_var_int> >
   	optional bytes stringNames = 14; // in parent block
 
 }
@@ -663,11 +664,11 @@ message OsmAndRoutingIndex {
 	}
 
 	message RouteDataBlock {
-	// coordinates can take much space 4*4*count of data blocks=
-	//   required sint32 left = 1; // delta encoded
-	//   required sint32 right = 2; // delta encoded
-	//   required sint32 top = 3; // delta encoded
-	//   required sint32 bottom = 4; // delta encoded
+		// coordinates can take much space 4*4*count of data blocks=
+		//	required sint32 left = 1; // delta encoded
+		//	required sint32 right = 2; // delta encoded
+		//	required sint32 top = 3; // delta encoded
+		//	required sint32 bottom = 4; // delta encoded
 		optional IdTable idTable = 5;
 		repeated RouteData dataObjects = 6;
 		repeated RestrictionData restrictions = 7;
