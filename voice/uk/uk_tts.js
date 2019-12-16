@@ -15,9 +15,9 @@ var dictionary = {};
 ////////////////////////////////////////////////////////////////
 // ROUTE CALCULATED
 function populateDictionary(tts) {
-	dictionary["route_is"] = tts ? "Довжина маршруту " : "route_is.ogg";
-	dictionary["route_calculate"] = tts ? "Перерахунок маршруту" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? "відстань " : "distance.ogg";
+	dictionary["route_is"] = tts ? "Довжина маршруту, " : "route_is.ogg";
+	dictionary["route_calculate"] = tts ? "Перерахунок маршруту, " : "route_calculate.ogg";
+	dictionary["distance"] = tts ? "відстань - " : "distance.ogg";
 
 	// LEFT/RIGHT
 	dictionary["after"] = tts ? "після " : "after.ogg";
@@ -66,7 +66,7 @@ function populateDictionary(tts) {
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Далі прямо" : "go_ahead.ogg";
-	dictionary["go_ahead_m"] = tts ? "Продовжуйте рух " : "go_ahead_m.ogg";
+	dictionary["go_ahead_m"] = tts ? "Продовжуйте рух, " : "go_ahead_m.ogg";
 
 	// ARRIVE
 	dictionary["and_arrive_destination"] = tts ? "і ви прибудете до пункту призначення " : "and_arrive_destination.ogg";
@@ -108,15 +108,24 @@ function populateDictionary(tts) {
 	dictionary["toward"] = tts ? "до " : "toward.ogg";
 
 	// DISTANCE UNIT SUPPORT
-
+	dictionary["metr"] = tts ? "метр" : "metr.ogg";
+	dictionary["metry"] = tts ? "метри" : "metr.ogg";
 	dictionary["metriv"] = tts ? "метрів" : "metriv.ogg";
-	dictionary["kilometr"] = tts ? "кілометр" : "kilometr.ogg";
-	dictionary["kilometry"] = tts ? "кілометри" : "kilometry.ogg";
-	dictionary["kilometriv"] = tts ? "кілометрів" : "kilometriv.ogg";
+	dictionary["kilometr"] = tts ? "кілометр, " : "kilometr.ogg";
+	dictionary["kilometry"] = tts ? "кілометри, " : "kilometry.ogg";
+	dictionary["kilometriv"] = tts ? "кілометрів, " : "kilometriv.ogg";
 	dictionary["around_1_kilometer"] = tts ? "біля одного кілометру" : "around_1_kilometer.ogg";
 	dictionary["around"] = tts ? "приблизно " : "around.ogg";
 
-	dictionary["footov"] = tts ? "футів" : "footov.ogg";
+	// Imperial units.
+	dictionary["foot"] = tts ? "фут" : "foot.ogg";
+	dictionary["footy"] = tts ? "фути" : "footy.ogg";
+	dictionary["footiv"] = tts ? "футів" : "footov.ogg";
+
+	dictionary["yard"] = tts ? "ярд" : "yard.ogg";
+	dictionary["yardy"] = tts ? "ярди" : "yardy.ogg";
+	dictionary["yardiv"] = tts ? "ярдів" : "yardiv.ogg";
+
 	dictionary["around_1_mile"] = tts ? "приблизно однієї милі" : "around_1_mile.ogg";
 	dictionary["1_tenth_of_a_mile"] = tts ? "одна десята милі" : "1_tenth_of_a_mile.ogg";
 	dictionary["tenths_of_a_mile"] = tts ? " десятих милі" : "tenths_of_a_mile.ogg";
@@ -124,15 +133,13 @@ function populateDictionary(tts) {
 	dictionary["2mili"] = tts ? "милі" : "2mili.ogg";
 	dictionary["5mil"] = tts ? "миль" : "5mil.ogg";
 
-	dictionary["yardov"] = tts ? "ярдів" : "yardov.ogg";
-
 	// TIME SUPPORT
-	dictionary["time"] = tts ? "час " : "time.ogg";
+	dictionary["time"] = tts ? "час - " : "time.ogg";
 	dictionary["less_a_minute"] = tts ? "менше хвилини  " : "less_a_minute.ogg";
-	dictionary["hour"] = tts ? "година " : "hour.ogg";
+	dictionary["hour"] = tts ? "год " : "hour.ogg";
 	dictionary["1_hour"] = tts ? "одна година " : "hour.ogg";
-	dictionary["hours_a"] = tts ? "години " : "hours_a.ogg";
-	dictionary["hours_ov"] = tts ? "годин " : "hours_ov.ogg";
+	dictionary["hours_a"] = tts ? "год " : "hours_a.ogg";
+	dictionary["hours_ov"] = tts ? "год " : "hours_ov.ogg";
 	dictionary["1_minute"] = tts ? "одна хвилина " : "minute.ogg";
 	dictionary["minute"] = tts ? "хвилина" : "minute.ogg";
 	dictionary["minute_y"] = tts ? "хвилини" : "minute_y.ogg";
@@ -155,17 +162,17 @@ function route_new_calc(dist, timeVal) {
 }
 
 function plural_mt(dist) {
-	if (distance % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
+	if (dist % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
 		return dictionary["metr"];
 	} else if (dist % 10 < 5 && dist % 10 > 1 && (dist % 100 > 20 || dist % 100 < 10 )) {
-		return dictionary["metra"];
+		return dictionary["metry"];
 	} else {
-		return dictionary["metrov"];
+		return dictionary["metriv"];
 	}
 }
 
 function plural_km(dist) {
-	if (distance % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
+	if (dist % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
 		return dictionary["kilometr"];
 	} else if (dist % 10 < 5 && dist % 10 > 1 && (dist % 100 > 20 || dist % 100 < 10 )) {
 		return dictionary["kilometry"];
@@ -174,8 +181,28 @@ function plural_km(dist) {
 	}
 }
 
+function plural_yd(dist) {
+	if (dist % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
+		return dictionary["yard"];
+	} else if (dist % 10 < 5 && dist % 10 > 1 && (dist % 100 > 20 || dist % 100 < 10 )) {
+		return dictionary["yardy"];
+	} else {
+		return dictionary["yardiv"];
+	}
+}
+
+function plural_ft(dist) {
+	if (dist % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
+		return dictionary["foot"];
+	} else if (dist % 10 < 5 && dist % 10 > 1 && (dist % 100 > 20 || dist % 100 < 10 )) {
+		return dictionary["footy"];
+	} else {
+		return dictionary["footiv"];
+	}
+}
+
 function plural_mi(dist) {
-	if (distance % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
+	if (dist % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
 		return dictionary["1mile"];
 	} else if (dist % 10 < 5 && dist % 10 > 1 && (dist % 100 > 20 || dist % 100 < 10 )) {
 		return dictionary["2mili"];
@@ -220,12 +247,12 @@ function distance(dist) {
 	switch (metricConst) {
 		case "km-m":
 			if (dist < 17) {
-				return (tts ? Math.round(dist).toString() : ogg_dist(dist)) + " " + dictionary["metriv"];
+				return (tts ? Math.round(dist).toString() : ogg_dist(dist)) + " " + plural_mt(dist);
 			} else if (dist < 100) {
-				return (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10)) + " " + dictionary["metriv"];
+				return (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10)) + " " + plural_mt(dist);
 			} else if (dist < 1000) {
 				var distance = Math.round(2*dist/100.0)*50;
-				return (tts ? distance.toString() : ogg_dist(distance)) + " " + dictionary["metriv"];
+				return (tts ? distance.toString() : ogg_dist(distance)) + " " + plural_mt(dist);
 			} else if (dist < 1500) {
 				return dictionary["around_1_kilometer"];
 			} else {
@@ -247,12 +274,12 @@ function distance(dist) {
 			break;
 		case "mi-m":
 			if (dist < 17) {
-				return (tts ? Math.round(dist).toString() : ogg_dist(dist)) + " " + dictionary["metriv"];
+				return (tts ? Math.round(dist).toString() : ogg_dist(dist)) + " " + plural_mt(dist);
 			} else if (dist < 100) {
-				return (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10)) + " " + dictionary["metriv"];
+				return (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10)) + " " + plural_mt(dist);
 			} else if (dist < 1300) {
 				var distance = Math.round(2*Dist/100.0)*50;
-				return (tts ? distance.toString() : ogg_dist(distance)) + " " + dictionary["metriv"];
+				return (tts ? distance.toString() : ogg_dist(distance)) + " " + plural_mt(dist);
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
 			} else {
@@ -261,11 +288,11 @@ function distance(dist) {
 			break;
 		case "mi-y":
 			if (dist < 17) {
-				return (tts ? Math.round(dist/0.9144).toString() : ogg_dist(dist/0.9144)) + " " + dictionary["yardov"];
+				return (tts ? Math.round(dist/0.9144).toString() : ogg_dist(dist/0.9144)) + " " + plural_yd(dist/0.9144);
 			} else if (dist < 100) {
-				return (tts ? (Math.round(dist/10.0/0.9144)*10).toString() : ogg_dist(Math.round(dist/10.0/0.9144)*10)) + " " + dictionary["yardov"];
+				return (tts ? (Math.round(dist/10.0/0.9144)*10).toString() : ogg_dist(Math.round(dist/10.0/0.9144)*10)) + " " + plural_yd(Math.round(dist/10.0/0.9144)*10);
 			} else if (dist < 1300) {
-				return (tts ? (Math.round(2*dist/100.0/0.9144)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.9144)*50)) + " " + dictionary["yardov"]; 
+				return (tts ? (Math.round(2*dist/100.0/0.9144)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.9144)*50)) + " " + plural_yd(Math.round(2*dist/100.0/0.9144)*50);
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
 			} else {
@@ -675,4 +702,3 @@ function ogg_dist(distance) {
 		return ogg_dist(distance/1000) + "1000.ogg " + ogg_dist(distance % 1000);
 	}
 }
-
