@@ -1,12 +1,16 @@
-// IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
+// IMPLEMENTED (X), PARTIAL (-) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 //
 // (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
 // (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
 // (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM; TUNNEL
 // (X) Other prompts: gps lost, off route, back to route
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
-// (X) Distance unit support (meters / feet / yard)
-// (N/A) Special grammar: (please specify which)
+// (-) Distance unit support (meters / feet / yard)
+//         Good support for meters/km, awful for mile/feet/yard
+// (-) Special grammar: 
+//         (X) Gendered numbering ( 2 hours - două ore / 2 km - doi km )
+//         (X) "de" preposition on numbers bigger than 20
+//         ( ) Added "and" between hours and minutes
 
 
 var metricConst;
@@ -112,17 +116,15 @@ function populateDictionary(tts) {
 
 	// DISTANCE UNIT SUPPORT
 	dictionary["meters"] = tts ? " metri" : "meters.ogg";
-	dictionary["meters_de"] = tts ? " de metri" : "meters_de.ogg";
 	dictionary["around_1_kilometer"] = tts ? "circa un kilometru" : "around_1_kilometer.ogg";
 	dictionary["around"] = tts ? "circa " : "around.ogg";
 	dictionary["kilometers"] = tts ? "kilometri" : "kilometers.ogg";
-	dictionary["kilometers_de"] = tts ? " de kilometri" : "kilometers_de.ogg";
 
-	dictionary["feet"] = tts ? " de picioare" : "feet.ogg";
+	dictionary["feet"] = tts ? " picioare" : "feet.ogg";
 	dictionary["1_tenth_of_a_mile"] = tts ? " zecime de milă" : "1_tenth_of_a_mile.ogg";
 	dictionary["tenths_of_a_mile"] = tts ? " zecimi de milă" : "tenths_of_a_mile.ogg";
 	dictionary["around_1_mile"] = tts ? "circa o milă" : "around_1_mile.ogg";
-	dictionary["miles"] = tts ? " de mile" : "miles.ogg";
+	dictionary["miles"] = tts ? " mile" : "miles.ogg";
 
 	dictionary["yards"] = tts ? "iarzi" : "yards.ogg";
 
@@ -133,6 +135,16 @@ function populateDictionary(tts) {
 	dictionary["less_a_minute"] = tts ? "Mai puțin de un minut" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "un minut" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "minute" : "minutes.ogg";
+    
+    // FEMININE FORM NUMBERS
+    dictionary["1_fem"] = tts ? "o " : "1_fem.ogg";
+    dictionary["2_fem"] = tts ? "două " : "2_fem.ogg";
+    dictionary["12_fem"] = tts ? "douăsprezece " : "12_fem.ogg";
+    dictionary["x1_fem"] = tts ? "una " : "x1_fem.ogg";
+    
+    //PREPOSITIONS
+    dictionary["of"] = tts ? "de" : "of.ogg";
+    dictionary["and"] = tts ? "și" : "and.ogg";
 }
 
 //// COMMAND BUILDING / WORD ORDER
@@ -240,6 +252,8 @@ function hours(minutes) {
 		return "";
 	} else if (minutes < 120) {
 		return dictionary["1_hour"];
+    } else if (minutes < 180) {
+        return 
 	} else {
 		var hours = Math.floor(minutes / 60);
         return  (tts ? hours.toString() : ogg_dist(hours)) + " " + dictionary["hours"]; 
@@ -415,6 +429,51 @@ function nth(exit) {
 		case (17):
 			return dictionary["17th"];
 	}
+}
+
+//This function should be used whenever you need to insert a number into the sentence
+function number_form(number, nounGender) {
+    var numeral = "";
+    
+    //Gender specific numeral formation
+    if (nounGender == "f") {
+        if (number == 1) {
+            numeral += dictionary["1_fem"];
+        } else if (number == 2) {
+            numeral += dictionary["2_fem"];
+        } else if (number == 12) {
+            numeral += dictionary["12_fem"];
+        } else if ((number % 10 == 1) && (number % 100 != 11)) {
+            numeral += (Math.round(number/10.0)*10).toString() + " " + dictionary["and"] + " " + dictionary["x1_fem"];
+        } else if ((number % 10 == 2) && (number % 100 != 12)) {
+            numeral += (Math.round(number/10.0)*10).toString() + " " + dictionary["and"] + " " + dictionary["2_fem"];
+        } else if (number % 100 == 12) {
+            numeral += (Math.round(number/100.0)*100).toString() + " " + dictionary["and"] + " " + dictionary["12_fem"];
+        } else {
+            numeral += number.toString();
+        }
+    } else if (nounGender == "n") {
+        if (number == 2) {
+            numeral += dictionary["2_fem"];
+        } else if (number == 12) {
+            numeral += dictionary["12_fem"];
+        } else if ((number % 10 == 2) && (number % 100 != 12)) {
+            numeral += (Math.round(number/10.0)*10).toString() + " " + dictionary["and"] + " " + dictionary["2_fem"];
+        } else if (number % 100 == 12) {
+            numeral += (Math.round(number/100.0)*100).toString() + " " + dictionary["and"] + " " + dictionary["12_fem"];
+        } else {
+            numeral += number.toString();
+        }
+    } else { //masculine or default
+        numeral += number.toString();
+    } 
+    
+    //"de" preposition adding
+    if ((number % 100 == 0) || (number % 100 > 19)) {
+        numeral += " " + dictionary["of"];
+    }
+    
+    return numeral;
 }
 
 function make_ut(dist, streetName) {
