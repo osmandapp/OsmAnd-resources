@@ -10,7 +10,7 @@
 // (-) Special grammar: 
 //         (X) Gendered numbering ( 2 hours - două ore / 2 km - doi km )
 //         (X) "de" preposition on numbers bigger than 20
-//         ( ) Added "and" between hours and minutes
+//         (X) Added "and" between hours and minutes
 
 
 var metricConst;
@@ -235,9 +235,9 @@ function time(seconds) {
 	} else if (minutes % 60 == 0 && tts) {
 		return hours(minutes);
 	} else if (minutes % 60 == 1 && tts) {
-		return hours(minutes) + " " + dictionary["1_minute"];
+		return hours(minutes) + " " + dictionary["and"] + " " + dictionary["1_minute"];
 	} else if (tts) {
-		return hours(minutes) + " " + number_form(minutes % 60, "n") + " " + dictionary["minutes"];
+		return hours(minutes) + " " + dictionary["and"] + " " + number_form(minutes % 60, "n") + " " + dictionary["minutes"];
 	} else if (!tts && seconds < 300) {
 		return ogg_dist(minutes) + dictionary["minutes"];
 	} else if (!tts && oggMinutes % 60 > 0) {
