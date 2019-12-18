@@ -235,9 +235,9 @@ function time(seconds) {
 	} else if (minutes % 60 == 0 && tts) {
 		return hours(minutes);
 	} else if (minutes % 60 == 1 && tts) {
-		return hours(minutes) + " " + dictionary["and"] + " " + dictionary["1_minute"];
+		return hours(minutes) + " " + dictionary["1_minute"];
 	} else if (tts) {
-		return hours(minutes) + " " + dictionary["and"] + " " + number_form(minutes % 60, "n") + " " + dictionary["minutes"];
+		return hours(minutes) + " " + number_form(minutes % 60, "n") + " " + dictionary["minutes"];
 	} else if (!tts && seconds < 300) {
 		return ogg_dist(minutes) + dictionary["minutes"];
 	} else if (!tts && oggMinutes % 60 > 0) {
@@ -251,10 +251,10 @@ function hours(minutes) {
 	if (minutes < 60) {
 		return "";
 	} else if (minutes < 120) {
-		return dictionary["1_hour"];
+		return dictionary["1_hour"] + " " + dictionary["and"];
 	} else {
 		var hours = Math.floor(minutes / 60);
-        return  (tts ? number_form(hours, "f") : ogg_dist(hours)) + " " + dictionary["hours"]; 
+        return  (tts ? number_form(hours, "f") : ogg_dist(hours)) + " " + dictionary["hours"] + " " + dictionary["and"]; 
 	}
 }
 
