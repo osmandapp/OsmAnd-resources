@@ -157,7 +157,8 @@ function setMode(mode) {
 function isFeminine(streetName) {
 	var endings = ["strasse","straße","bahn","chaussee","gasse","zeile","allee","tangente","spange","0","1","2","3","4","5","6","7","8","9"];
 	for (var i = 0; i < endings.length; i++) {
-		if (streetName["toRef"].toLowerCase().indexOf(endings[i]) !== -1 || streetName["toStreetName"].toLowerCase().indexOf(endings[i]) !== -1) {
+		//if (streetName["toRef"].toLowerCase().indexOf(endings[i]) !== -1 || streetName["toStreetName"].toLowerCase().indexOf(endings[i]) !== -1) {
+		if (streetName["toRef"].toLowerCase().endsWith(endings[i]) || streetName["toStreetName"].toLowerCase().endsWith(endings[i])) {
 			return true;
 		}
 	}
@@ -167,7 +168,8 @@ function isFeminine(streetName) {
 function isMasculine(streetName) {
 	var endings = ["weg","ring","damm","platz","markt","steig","pfad"];
 	for (var i = 0; i < endings.length; i++) {
-		if (streetName["toStreetName"].toLowerCase().indexOf(endings[i]) !== -1) {
+		//if (streetName["toStreetName"].toLowerCase().indexOf(endings[i]) !== -1) {
+		if (streetName["toStreetName"].toLowerCase().endsWith(endings[i])) {
 			return true;
 		}
 	}

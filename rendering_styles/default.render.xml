@@ -93,7 +93,7 @@
 	<renderingProperty attr="contourLines" name="Show contour lines" description="Select minimum zoom level to display in map if available. Separate contour file may be needed."
 		type="string" possibleValues="disabled,16,15,14,13,12,11" defaultValueDescription="default13" category="details"/>
 	<renderingProperty attr="contourColorScheme" name="Contour lines color scheme" description="Contour lines color scheme" type="string" possibleValues="white,yellow,green,light_brown,brown,dark_brown,red" defaultValueDescription="default"/>
-	<renderingProperty attr="contourWidth" name="Contour lines width" description="Contour lines width" type="string" possibleValues="thin,medium,bold" defaultValueDescription="default"/>
+	<renderingProperty attr="contourWidth" name="Contour lines width" description="Contour lines width" type="string" possibleValues="thin,medium,thick" defaultValueDescription="default"/>
 	<renderingProperty attr="contourDensity" name="Contour lines density" description="Contour lines density" type="string" possibleValues="low,medium_w,high" defaultValueDescription="default"/>
 	<renderingProperty attr="coloredBuildings" name="Colored buildings" description="Buildings colored by type"
 		type="boolean" possibleValues="" category="details"/>
@@ -927,7 +927,7 @@
 	</renderingAttribute>
 	<renderingAttribute name="waterwayArrowsColor">
 		<case attrColorValue="#4798b3">
-			<apply_if nightMode="true" attrColorValue="#0a2340"/>
+			<apply_if nightMode="true" attrColorValue="#19579F"/>
 		</case>
 	</renderingAttribute>
 
@@ -1009,7 +1009,7 @@
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="pathLowZoomColor">
-		<case attrColorValue="#606060">
+		<case attrColorValue="#888888">
 			<apply_if nightMode="true" attrColorValue="#787878"/>
 		</case>
 	</renderingAttribute>
@@ -1019,7 +1019,7 @@
 		</case>
 	</renderingAttribute>
 	<renderingConstant name="pathStrokeWidth" value="1.5"/>
-	<renderingConstant name="pathLowZoomStrokeWidth" value="0.8"/>
+	<renderingConstant name="pathLowZoomStrokeWidth" value="0.6"/>
 	<renderingConstant name="pathPathEffect" value="2_2"/>
 	<renderingConstant name="pathLowZoomPathEffect" value=""/>
 	<renderingConstant name="sacScaleColor" value="#e23cad"/>
@@ -2415,13 +2415,23 @@
 	<renderingConstant name="waterTextHaloRadiusDay" value="1"/>
 
 	<renderingAttribute name="waterTextColor">
-		<case nightMode="true" attrColorValue="#95e7ff"/>
+		<case nightMode="true" attrColorValue="#7FC4D9"/>
 		<case attrColorValue="#ffffff"/>
 	</renderingAttribute>
 	<renderingAttribute name="waterTextHaloColor">
 		<case nightMode="true" attrColorValue="#994563a7"/>
 		<case attrColorValue="#BB55B4D4"/>
 	</renderingAttribute>
+
+	<renderingAttribute name="glacierTextColor">
+		<case nightMode="true" attrColorValue="#73B3C6"/>
+		<case attrColorValue="#0090C1"/>
+	</renderingAttribute>
+	<renderingAttribute name="glacierTextHaloColor">
+		<case nightMode="true" attrColorValue="#994563a7"/>
+		<case attrColorValue="#AAF7FDFF"/>
+	</renderingAttribute>
+
 	<renderingConstant name="landuseManmadeTextHaloRadiusDay" value="1"/>
 	<renderingConstant name="Day" value=""/>
 	<renderingAttribute name="landuseManmadeTextColor">
@@ -6174,13 +6184,12 @@
 					<case minzoom="13" tag="landuse" value="basin" textWrapWidth="20" textOrder="218"/>
 					<case minzoom="17" tag="leisure" value="swimming_pool" textWrapWidth="20" textOrder="218" textDy="5"/>
 					<case minzoom="16" tag="landuse" value="salt_pond" textWrapWidth="20" textOrder="218"/>
-					<case minzoom="13" tag="natural" value="glacier" textWrapWidth="20" textOrder="81"/>
 					<case minzoom="17" tag="man_made" value="breakwater" textWrapWidth="20" textOnPath="true" textOrder="255"/>
 					<case minzoom="17" tag="man_made" value="groyne" textWrapWidth="20" textOnPath="true" textOrder="255"/>
 					<case minzoom="17" tag="landuse" value="aquaculture" textOrder="239"/>
 					<apply_if engine_v1="false" textDy="0"/>
 				</switch>
-
+				<case minzoom="13" tag="natural" value="glacier" nameTag="" textColor="$glacierTextColor" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$glacierTextHaloColor" textSize="12" textItalic="true" textWrapWidth="20" textOrder="81"/>
 				<!-- landuse -->
 				<switch>
 					<case minzoom="13" tag="abandoned:place" value="" textOrder="226"/>
@@ -10109,7 +10118,7 @@
 			<case nightMode="false" minzoom="12" tag="landuse" value="aquaculture" shader="aquaculture"/>
 			<case minzoom="4" tag="natural" value="glacier">
 				<apply color="#E4FDFF" color_2="#99ccff" pathEffect_2="7_4"><!-- shader="glacier2"-->
-					<apply_if nightMode="true" color="#1f2c2e" color_2="#497caf"/><!-- shader="glacier2night"-->
+					<apply_if nightMode="true" color="#1f2c2e" color_2="#3B638C"/><!-- shader="glacier2night"-->
 				</apply>
 				<apply_if maxzoom="8" strokeWidth_2="1"/>
 				<apply_if minzoom="9" strokeWidth_2="1.5"/>
@@ -11363,7 +11372,7 @@
 					<apply>
 						<case contourWidth="thin" strokeWidth="0.5"/>
 						<case contourWidth="medium" strokeWidth="1"/>
-						<case contourWidth="bold" strokeWidth="1.5"/>
+						<case contourWidth="thick" strokeWidth="1.5"/>
 						<case strokeWidth="0.5"/>
 					</apply>
 				</switch>
@@ -11372,7 +11381,7 @@
 					<apply>
 						<case contourWidth="thin" strokeWidth="0.6"/>
 						<case contourWidth="medium" strokeWidth="0.9"/>
-						<case contourWidth="bold" strokeWidth="1.3"/>
+						<case contourWidth="thick" strokeWidth="1.3"/>
 						<case strokeWidth="0.6"/>
 					</apply>
 				</switch>
@@ -11381,7 +11390,7 @@
 					<apply>
 						<case contourWidth="thin" strokeWidth="1"/>
 						<case contourWidth="medium" strokeWidth="1.3"/>
-						<case contourWidth="bold" strokeWidth="1.9"/>
+						<case contourWidth="thick" strokeWidth="1.9"/>
 						<case strokeWidth="1"/>
 					</apply>
 				</switch>
@@ -11516,7 +11525,8 @@
 			<apply minzoom="16" maxzoom="16" strokeWidth_2="2:2" pathEffect_2="1_7"/>
 			<apply minzoom="17" strokeWidth_2="4:4" pathEffect_2="1_12"/>
 		</switch>
-		<case minzoom="6" tag="natural" value="ridge" color="#666666" color_2="#000000" strokeWidth="1">
+		<case minzoom="6" tag="natural" value="ridge" color="#606060" color_2="#000000" strokeWidth="1">
+			<apply_if minzoom="13" strokeWidth="1:0.4"/>
 			<apply_if nightMode="true" color="#666666" color_2="#999999"/>
 		</case>
 		<switch minzoom="11">
