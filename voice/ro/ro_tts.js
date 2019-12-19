@@ -6,7 +6,7 @@
 // (X) Other prompts: gps lost, off route, back to route
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
-// (-) Special grammar: 
+// (X) Special grammar: 
 //         (X) Gendered numbering ( 2 hours - două ore / 2 km - doi km )
 //         (X) "de" preposition on numbers bigger than 20
 //         (X) Added "and" between hours and minutes
