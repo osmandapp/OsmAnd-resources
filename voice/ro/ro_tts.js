@@ -45,10 +45,9 @@ function populateDictionary(tts) {
 	dictionary["make_uturn_wp"] = tts ? "Întoarceți când aveți posibilitatea" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? "Pregătiți-vă să intrați în sensul giratoriu peste " : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? " veți intra în sensul giratoriu pe care-l veți părăsi pe la" : "roundabout.ogg";
+	dictionary["prepare_roundabout"] = tts ? "pregătiți-vă să intrați în sensul giratoriu" : "prepare_roundabout.ogg";
+	dictionary["roundabout"] = tts ? "veți intra în sensul giratoriu pe care-l veți părăsi pe la" : "roundabout.ogg";
 	dictionary["then"] = tts ? ", apoi " : "then.ogg";
-	dictionary["and"] = tts ? "și" : "and.ogg";
 	dictionary["take"] = tts ? "Luați-o pe " : "take.ogg";
 	dictionary["exit"] = tts ? "ieșire" : "exit.ogg";
 
@@ -109,7 +108,7 @@ function populateDictionary(tts) {
 
 	// STREET NAME PREPOSITIONS
 	dictionary["onto"] = tts ? "pe" : "onto.ogg";
-	dictionary["to"] = tts ? "a" : "to.ogg";
+	dictionary["to"] = tts ? "către" : "to.ogg";
 	dictionary["on"] = tts ? "pe" : "on.ogg";
 	dictionary["toward"] = tts ? "spre" : "toward.ogg";
 
