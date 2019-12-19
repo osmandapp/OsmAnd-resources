@@ -28,10 +28,10 @@ function populateDictionary(tts) {
 	dictionary["in"] = tts ? "în" : "in.ogg";
 
 	dictionary["left"] = tts ? "virați la stânga" : "left.ogg";
-	dictionary["left_sh"] = tts ? "virați brusc la stânga" : "left_sh.ogg";
+	dictionary["left_sh"] = tts ? "virați strâns la stânga" : "left_sh.ogg";
 	dictionary["left_sl"] = tts ? "virați ușor la stânga" : "left_sl.ogg";
 	dictionary["right"] = tts ? "virați la dreapta" : "right.ogg";
-	dictionary["right_sh"] = tts ? "virați brusc la dreapta" : "right_sh.ogg";
+	dictionary["right_sh"] = tts ? "virați strâns la dreapta" : "right_sh.ogg";
 	dictionary["right_sl"] = tts ? "virați ușor la dreapta" : "right_sl.ogg";
 	dictionary["left_keep"] = tts ? "încadrați-vă pe partea stângă" : "left_keep.ogg";
 	dictionary["right_keep"] = tts ? "încadrați-vă pe partea dreaptă" : "right_keep.ogg";
@@ -41,13 +41,13 @@ function populateDictionary(tts) {
 	// U-TURNS
 	dictionary["prepare_make_uturn"] = tts ? "Pregătiți-vă să întoarceți" : "prepare_make_uturn.ogg";
 	dictionary["make_uturn"] = tts ? "Întoarceți" : "make_uturn.ogg";
-	dictionary["make_uturn_wp"] = tts ? "Întoarceți când aveți posibilitatea" : "make_uturn_wp.ogg";
+	dictionary["make_uturn_wp"] = tts ? "Întoarceți atunci când este posibil" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "pregătiți-vă să intrați în sensul giratoriu" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "veți intra în sensul giratoriu pe care-l veți părăsi pe la" : "roundabout.ogg";
 	dictionary["then"] = tts ? ", apoi " : "then.ogg";
-	dictionary["take"] = tts ? "Luați-o pe " : "take.ogg";
+	dictionary["take"] = tts ? "ieșiți pe " : "take.ogg";
 	dictionary["exit"] = tts ? "ieșire" : "exit.ogg";
 
 	dictionary["1st"] = tts ? "prima " : "1st.ogg";
