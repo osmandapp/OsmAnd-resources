@@ -41,7 +41,7 @@ function populateDictionary(tts) {
 	// U-TURNS
 	dictionary["prepare_make_uturn"] = tts ? "Pregătiți-vă să întoarceți" : "prepare_make_uturn.ogg";
 	dictionary["make_uturn"] = tts ? "Întoarceți" : "make_uturn.ogg";
-	dictionary["make_uturn_wp"] = tts ? "Întoarceți atunci când este posibil" : "make_uturn_wp.ogg";
+	dictionary["make_uturn_wp"] = tts ? "Întoarceți când aveți posibilitatea" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "pregătiți-vă să intrați în sensul giratoriu" : "prepare_roundabout.ogg";
