@@ -35,7 +35,7 @@ fi
 
 # ./gen_voice.sh hr Croatian $ENGINE hr 1.1 yes          sounds really bad
 # ./gen_voice.sh lv Latvian $ENGINE lv 1.1 yes          sounds really bad
-# ./gen_voice.sh ro Romanian $ENGINE ro 1.1 yes  #        sounds really bad
+# ./gen_voice.sh ro Romanian $ENGINE ro 1.1 yes          sounds really bad
 # ./gen_voice.sh sw Swahili $ENGINE sw 1.1 yes          sounds really bad
 
 #./gen_voice.sh be Belarussian $ENGINE be 1.1 yes    not supported by Google API
