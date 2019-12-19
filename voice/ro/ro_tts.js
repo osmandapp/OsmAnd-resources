@@ -47,7 +47,7 @@ function populateDictionary(tts) {
 	dictionary["prepare_roundabout"] = tts ? "pregătiți-vă să intrați în sensul giratoriu" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "veți intra în sensul giratoriu pe care-l veți părăsi pe la" : "roundabout.ogg";
 	dictionary["then"] = tts ? ", apoi " : "then.ogg";
-	dictionary["take"] = tts ? "ieșiți pe " : "take.ogg";
+	dictionary["take"] = tts ? "luați-o pe " : "take.ogg";
 	dictionary["exit"] = tts ? "ieșire" : "exit.ogg";
 
 	dictionary["1st"] = tts ? "prima " : "1st.ogg";
