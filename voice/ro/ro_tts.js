@@ -90,12 +90,12 @@ function populateDictionary(tts) {
 	//dictionary["exceed_limit"] = tts ? "limita de viteză depăşită" : "exceed_limit.ogg";
 	dictionary["exceed_limit"] = tts ? "limita de viteză" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "atenţie, " : "attention.ogg";
-	dictionary["speed_camera"] = tts ? "camera de viteza" : "speed_camera.ogg";
-	dictionary["border_control"] = tts ? "controlul la frontieră" : "border_control.ogg";
-	dictionary["railroad_crossing"] = tts ? "Trecere de cale ferată" : "railroad_crossing.ogg";
-	dictionary["traffic_calming"] = tts ? "calmant trafic" : "traffic_calming.ogg";
-	dictionary["toll_booth"] = tts ? "cabina de taxare" : "toll_booth.ogg";
-	dictionary["stop"] = tts ? "opri semn" : "stop.ogg";
+	dictionary["speed_camera"] = tts ? "radar" : "speed_camera.ogg";
+	dictionary["border_control"] = tts ? "vamă" : "border_control.ogg";
+	dictionary["railroad_crossing"] = tts ? "trecere la nivel" : "railroad_crossing.ogg";
+	dictionary["traffic_calming"] = tts ? "denivelare pentru limitarea vitezei" : "traffic_calming.ogg";
+	dictionary["toll_booth"] = tts ? "taxă rutieră" : "toll_booth.ogg";
+	dictionary["stop"] = tts ? "Stop" : "stop.ogg";
 	dictionary["pedestrian_crosswalk"] = tts ? "trecere de pietoni" : "pedestrian_crosswalk.ogg";
 	dictionary["tunnel"] = tts ? "tunel" : "tunnel.ogg";
 
@@ -103,7 +103,7 @@ function populateDictionary(tts) {
 	dictionary["location_lost"] = tts ? "semnal gps pierdut" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "semnal gps recuperat" : "location_recovered.ogg";
 	dictionary["off_route"] = tts ? "aţi deviat de la rută" : "off_route.ogg";
-	dictionary["back_on_route"] = tts ? "sunteți din nou pe ruta" : "back_on_route.ogg";
+	dictionary["back_on_route"] = tts ? "sunteți din nou pe rută" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
 	dictionary["onto"] = tts ? "pe" : "onto.ogg";
