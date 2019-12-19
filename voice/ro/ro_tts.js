@@ -1,4 +1,4 @@
-// IMPLEMENTED (X), PARTIAL (-) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
+// IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 //
 // (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
 // (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
