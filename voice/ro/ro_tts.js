@@ -5,8 +5,7 @@
 // (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM; TUNNEL
 // (X) Other prompts: gps lost, off route, back to route
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
-// (-) Distance unit support (meters / feet / yard)
-//         Good support for meters/km, awful for mile/feet/yard
+// (X) Distance unit support (meters / feet / yard)
 // (-) Special grammar: 
 //         (X) Gendered numbering ( 2 hours - două ore / 2 km - doi km )
 //         (X) "de" preposition on numbers bigger than 20
@@ -22,11 +21,11 @@ var tts;
 function populateDictionary(tts) {
 	dictionary["route_is"] = tts ? "Lungimea traseului este de" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Traseu recalculat" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? ", distanța " : "distance.ogg";
+	dictionary["distance"] = tts ? ", distanța" : "distance.ogg";
 
 	// LEFT/RIGHT
-	dictionary["after"] = tts ? "peste " : "after.ogg";
-	dictionary["in"] = tts ? "la " : "in.ogg";
+	dictionary["after"] = tts ? "peste" : "after.ogg";
+	dictionary["in"] = tts ? "în" : "in.ogg";
 
 	dictionary["left"] = tts ? "virați la stânga" : "left.ogg";
 	dictionary["left_sh"] = tts ? "virați brusc la stânga" : "left_sh.ogg";
@@ -121,7 +120,7 @@ function populateDictionary(tts) {
 	dictionary["kilometers"] = tts ? "kilometri" : "kilometers.ogg";
 
 	dictionary["feet"] = tts ? "picioare" : "feet.ogg";
-	dictionary["1_tenth_of_a_mile"] = tts ? "zecime de milă" : "1_tenth_of_a_mile.ogg";
+	dictionary["1_tenth_of_a_mile"] = tts ? "o zecime de milă" : "1_tenth_of_a_mile.ogg";
 	dictionary["tenths_of_a_mile"] = tts ? "zecimi de milă" : "tenths_of_a_mile.ogg";
 	dictionary["around_1_mile"] = tts ? "circa o milă" : "around_1_mile.ogg";
 	dictionary["miles"] = tts ? "mile" : "miles.ogg";
@@ -181,47 +180,47 @@ function distance(dist) {
 			break;
 		case "mi-f":
 			if (dist < 160) {
-				return (tts ? (Math.round(2*dist/100.0/0.3048)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.3048)*50)) + " " + dictionary["feet"];
+				return (tts ? number_form(Math.round(2*dist/100.0/0.3048)*50) : ogg_dist(Math.round(2*dist/100.0/0.3048)*50)) + " " + dictionary["feet"];
 			} else if (dist < 241) {
 				return dictionary["1_tenth_of_a_mile"];
 			} else if (dist < 1529) {
-				return (tts ? Math.round(dist/161.0).toString() : ogg_dist(dist/161.0)) + " " + dictionary["tenths_of_a_mile"];
+				return (tts ? number_form(Math.round(dist/161.0)) : ogg_dist(dist/161.0)) + " " + dictionary["tenths_of_a_mile"];
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
 			} else if (dist < 16093) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
+				return dictionary["around"] + " " + (tts ? number_form(Math.round(dist/1609.3)) : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
 			} else {
-				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
+				return (tts ? number_form(Math.round(dist/1609.3)) : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
 			}
 			break;
 		case "mi-m":
 			if (dist < 17) {
-				return (tts ? Math.round(dist).toString() : ogg_dist(dist)) + " " + dictionary["meters"];
+				return (tts ? number_form(Math.round(dist)) : ogg_dist(dist)) + " " + dictionary["meters"];
 			} else if (dist < 100) {
-				return (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10)) + " " + dictionary["meters"];
+				return (tts ? number_form(Math.round(dist/10.0)*10) : ogg_dist(Math.round(dist/10.0)*10)) + " " + dictionary["meters"];
 			} else if (dist < 1300) {
-				return (tts ? (Math.round(2*dist/100.0)*50).toString() : ogg_dist(Math.round(2*dist/100.0)*50)) + " " + dictionary["meters"];
+				return (tts ? number_form(Math.round(2*dist/100.0)*50) : ogg_dist(Math.round(2*dist/100.0)*50)) + " " + dictionary["meters"];
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
 			} else if (dist < 16093) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
+				return dictionary["around"] + " " + (tts ? number_form(Math.round(dist/1609.3)) : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
 			} else {
-				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
+				return (tts ? number_form(Math.round(dist/1609.3)) : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
 			}
 			break;
 		case "mi-y":
 			if (dist < 17) {
-				return (tts ? Math.round(dist/0.9144).toString() : ogg_dist(dist/0.9144)) + " " + dictionary["yards"];
+				return (tts ? number_form(Math.round(dist/0.9144)) : ogg_dist(dist/0.9144)) + " " + dictionary["yards"];
 			} else if (dist < 100) {
-				return (tts ? (Math.round(dist/10.0/0.9144)*10).toString() : ogg_dist((dist/10.0/0.9144)*10)) + " " + dictionary["yards"];
+				return (tts ? number_form(Math.round(dist/10.0/0.9144)*10) : ogg_dist((dist/10.0/0.9144)*10)) + " " + dictionary["yards"];
 			} else if (dist < 1300) {
-				return (tts ? (Math.round(2*dist/100.0/0.9144)*50).toString() : ogg_dist((2*dist/10.0/0.9144)*10)) + " " + dictionary["yards"]; 
+				return (tts ? number_form(Math.round(2*dist/100.0/0.9144)*50) : ogg_dist((2*dist/10.0/0.9144)*10)) + " " + dictionary["yards"]; 
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
 			} else if (dist < 16093) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
+				return dictionary["around"] + " " + (tts ? number_form(Math.round(dist/1609.3)) : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
 			} else {
-				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
+				return (tts ? number_form(Math.round(dist/1609.3)) : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
 			}
 			break;
 	}
