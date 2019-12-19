@@ -35,8 +35,8 @@ function populateDictionary(tts) {
 	dictionary["right_sl"] = tts ? "virați ușor la dreapta" : "right_sl.ogg";
 	dictionary["left_keep"] = tts ? "încadrați-vă pe partea stângă" : "left_keep.ogg";
 	dictionary["right_keep"] = tts ? "încadrați-vă pe partea dreaptă" : "right_keep.ogg";
-	dictionary["left_bear"] = tts ? "încadrați-vă pe partea stângă" : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
-	dictionary["right_bear"] = tts ? "încadrați-vă pe partea dreaptă" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
+	dictionary["left_bear"] = tts ? "țineți stânga" : "left_bear.ogg";
+	dictionary["right_bear"] = tts ? "țineți dreapta" : "right_bear.ogg";
 
 	// U-TURNS
 	dictionary["prepare_make_uturn"] = tts ? "Pregătiți-vă să întoarceți" : "prepare_make_uturn.ogg";
@@ -70,21 +70,21 @@ function populateDictionary(tts) {
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Mergeți înainte" : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "Urmăriți drumul principal " : "follow.ogg";
+	dictionary["follow"] = tts ? "Mergeți tot înainte" : "follow.ogg";
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "și ajungeți la destinație " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "Ați ajuns la destinație " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "și ajungeți la punctul intermediar " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "Ați ajuns la punctul intermediar " : "reached_intermediate.ogg";
+	dictionary["and_arrive_destination"] = tts ? "și ajungeți la destinație" : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "Ați ajuns la destinație" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "și ajungeți la punctul intermediar" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "Ați ajuns la punctul intermediar" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "și ajungeți la punctul intermediar GPX " : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "Ați ajuns la punctul intermediar GPX " : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "and pass favorite " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "you are passing favorite " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "and pass POI " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "you are passing POI " : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "și treceți pe lângă punctul G P X intermediar" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "Ați ajuns la punctul G P X intermediar" : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "și treceți pe lângă marcajul favorit" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "Ați ajuns la marcajul favorit" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "și treceți pe lângă punctul de interes" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "Ați ajuns la punctul de interes" : "reached_poi.ogg";
 
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "limita de viteză depăşită" : "exceed_limit.ogg";
