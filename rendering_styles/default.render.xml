@@ -2357,6 +2357,10 @@
 	<renderingConstant name="wildernessHutIconMinZoom" value="14"/>
 	<renderingConstant name="shelterIconMinZoom" value="16"/>
 	<renderingConstant name="hotelIconMinZoom" value="16"/>
+	<renderingConstant name="towerIconMinZoom" value="16"/>
+	<renderingConstant name="mastIconMinZoom" value="16"/>
+	<renderingConstant name="barrierControlDotMinZoom" value="14"/>
+	<renderingConstant name="powerTowerIconMinZoom" value="14"/>
 
 	<renderingConstant name="springIconMinZoom" value="16"/>
 	<renderingConstant name="waterfallIconMinZoom" value="14"/>
@@ -2371,6 +2375,7 @@
 	<renderingConstant name="naturalScrubTextMinZoom" value="17"/>
 	<renderingConstant name="waterwayStreamTextMinZoom" value="13"/>
 	<renderingConstant name="wadiStreamTextMinZoom" value="13"/>
+	<renderingConstant name="landuseReservoirTextMinZoom" value="13"/>
 
 	<renderingConstant name="tertiaryMinZoom" value="11"/>
 	<renderingConstant name="unclassifiedMinZoom" value="12"/>
@@ -2380,6 +2385,7 @@
 	<renderingConstant name="footwayMinZoom" value="12"/>
 	<renderingConstant name="cyclewayMinZoom" value="13"/>
 	<renderingConstant name="bridlewayMinZoom" value="13"/>
+	<renderingConstant name="powerTowerLineMinZoom" value="14"/>
 
 	<renderingConstant name="streamMinZoom" value="13"/>
 	<renderingConstant name="ditchMinZoom" value="13"/>
@@ -2400,6 +2406,7 @@
 	<renderingAttribute name="moreDetailedScrubColor">
 		<case attrColorValue="#ADE5A1"/>
 	</renderingAttribute>
+	<renderingConstant name="landuseReservoirMinZoom" value="7"/>
 
 	<renderingAttribute name="buildingTextColor">
 		<case nightMode="true" attrColorValue="#7a9399"/>
@@ -6179,9 +6186,9 @@
 						<apply_if whiteWaterSports="true" textOrder="11"/>
 					</case>
 
-					<case minzoom="13" tag="landuse" value="water" nameTag="" textWrapWidth="20" textOrder="218"/>
-					<case minzoom="13" tag="landuse" value="reservoir" nameTag="" textWrapWidth="20" textOrder="218"/>
-					<case minzoom="13" tag="landuse" value="basin" textWrapWidth="20" textOrder="218"/>
+					<case minzoom="$landuseReservoirTextMinZoom" tag="landuse" value="water" nameTag="" textWrapWidth="20" textOrder="218"/>
+					<case minzoom="$landuseReservoirTextMinZoom" tag="landuse" value="reservoir" nameTag="" textWrapWidth="20" textOrder="218"/>
+					<case minzoom="$landuseReservoirTextMinZoom" tag="landuse" value="basin" textWrapWidth="20" textOrder="218"/>
 					<case minzoom="17" tag="leisure" value="swimming_pool" textWrapWidth="20" textOrder="218" textDy="5"/>
 					<case minzoom="16" tag="landuse" value="salt_pond" textWrapWidth="20" textOrder="218"/>
 					<case minzoom="17" tag="man_made" value="breakwater" textWrapWidth="20" textOnPath="true" textOrder="255"/>
@@ -8544,8 +8551,8 @@
 					<case minzoom="16" tag="building" value="tower" icon="man_made_tower" shield="tower_shield"/>
 					<case minzoom="17" tag="man_made" value="antenna" icon="man_made_antenna" shield="antenna_shield"/>
 					<switch>
-						<case minzoom="16" tag="man_made" value="mast" icon="man_made_mast" shield="mast_shield"/>
-						<case minzoom="16" tag="man_made" value="tower" icon="man_made_tower" shield="tower_shield">
+						<case minzoom="$mastIconMinZoom" tag="man_made" value="mast" icon="man_made_mast" shield="mast_shield"/>
+						<case minzoom="$towerIconMinZoom" tag="man_made" value="tower" icon="man_made_tower" shield="tower_shield">
 							<apply_if additional="tower:type=cooling" icon="cooling_tower" shield="tower_cooling_shield"/>
 							<apply_if additional="tower:type=bell_tower" icon="bell_tower" shield="tower_bell_tower_shield"/>
 						</case>
@@ -8927,9 +8934,9 @@
 						</apply_if>
 					</switch>
 					<switch>
-						<case minzoom="14" tag="barrier" value="toll_booth" icon="toll_booth" shield="barrier_toll_booth_shield"/>
-						<case minzoom="14" tag="military" value="checkpoint" icon="military_checkpoint" shield="military_checkpoint_shield"/>
-						<apply_if minzoom="14" maxzoom="14" icon="barrier_small_black_4" shield="" iconVisibleSize="0">
+						<case minzoom="$barrierControlDotMinZoom" tag="barrier" value="toll_booth" icon="toll_booth" shield="barrier_toll_booth_shield"/>
+						<case minzoom="$barrierControlDotMinZoom" tag="military" value="checkpoint" icon="military_checkpoint" shield="military_checkpoint_shield"/>
+						<apply_if maxzoom="14" icon="barrier_small_black_4" shield="" iconVisibleSize="0">
 							<apply_if nightMode="true" icon="barrier_small_white_4"/>
 						</apply_if>
 						<apply_if minzoom="15" maxzoom="15" icon="barrier_small_black_3" shield="" iconVisibleSize="0">
@@ -8939,7 +8946,7 @@
 							<apply_if nightMode="true" icon="barrier_small_white_2"/>
 						</apply_if>
 					</switch>
-					<case minzoom="14" tag="barrier" value="border_control">
+					<case minzoom="$barrierControlDotMinZoom" tag="barrier" value="border_control">
 						<apply_if maxzoom="14" icon="barrier_small_black_4" iconVisibleSize="0">
 							<apply_if nightMode="true" icon="barrier_small_white_4"/>
 						</apply_if>
@@ -9045,7 +9052,7 @@
 			</switch>
 
 			<case minzoom="18" tag="highway" value="elevator" icon="elevator" shield="elevator_shield"/>
-			<case minzoom="14" tag="power" value="tower">
+			<case minzoom="$powerTowerIconMinZoom" tag="power" value="tower">
 				<case maxzoom="14" icon="power_tower_small2" iconVisibleSize="3"/>
 				<case maxzoom="15" icon="power_tower_small" iconVisibleSize="3"/>
 				<case maxzoom="17" icon="power_tower_square" iconVisibleSize="7"/>
@@ -9653,9 +9660,9 @@
 						<case minzoom="4" tag="natural" value="water"/>
 						<case minzoom="10" tag="waterway" value="riverbank"/>
 						<switch>
-							<case minzoom="7" tag="landuse" value="reservoir"/>
-							<case minzoom="7" tag="landuse" value="water"/>
-							<case minzoom="10" tag="landuse" value="basin"/>
+							<case minzoom="$landuseReservoirMinZoom" tag="landuse" value="reservoir"/>
+							<case minzoom="$landuseReservoirMinZoom" tag="landuse" value="water"/>
+							<case minzoom="$landuseReservoirMinZoom" tag="landuse" value="basin"/>
 							<apply_if additional="abandoned=yes" strokeWidth_2="1:0" color_2="#7479ec" pathEffect_2="7_5"/>
 						</switch>
 						<case minzoom="11" tag="waterway" value="wadi" strokeWidth_2="1:0" color_2="#7479ec" pathEffect_2="7_5"/>
@@ -12032,7 +12039,7 @@
 
 		<!-- Man made -->
 		<switch color="#999999">
-			<case minzoom="14" tag="power" value="line">
+			<case minzoom="$powerTowerLineMinZoom" tag="power" value="line">
 				<case maxzoom="14" strokeWidth="0.6"/>
 				<case minzoom="15" strokeWidth="0.9"/>
 			</case>
