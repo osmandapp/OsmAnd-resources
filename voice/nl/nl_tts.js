@@ -250,7 +250,9 @@ function hours(minutes) {
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : "");
+	// Prompt shortened for brevity in Dutch (Issue #8146):
+	//return dictionary["route_calculate"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : "");
+	return dictionary["route_calculate"] + (tts ? ". " : "");
 }
 
 function go_ahead(dist, streetName) {
