@@ -18,7 +18,7 @@ function populateDictionary(tts) {
 	// ROUTE CALCULATED
 	dictionary["route_is1"] = tts ? "De berekende afstand is " : "route_is1.ogg";
 	dictionary["route_is2"] = tts ? "lang" : "route_is2.ogg";
-	dictionary["route_calculate"] = tts ? "Afstand is opnieuw berekend" : "route_calculate.ogg";
+	dictionary["route_calculate"] = tts ? "Nieuwe afstand berekend" : "route_calculate.ogg";
 	dictionary["distance"] = tts ? ", de nieuwe afstand is " : "distance.ogg";
 	
 	// LEFT/RIGHT
