@@ -368,6 +368,8 @@ mycpname bicycle_parking_tree transport_bicycle_parking_tree.png
 mycpname bicycle_parking_streetpod transport_bicycle_parking_streetpod.png
 mycp amenity motorcycle_parking transport_parking_motorcycle.png
 mycp amenity motorcycle_parking_paid transport_parking_motorcycle_paid.png
+mycpname parking_space transport_parking_space.png
+
 
 mygroup public_transport transport_bus_stop.png
 mycp amenity bus_station transport_bus_station2.png
