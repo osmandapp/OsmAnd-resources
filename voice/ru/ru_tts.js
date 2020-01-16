@@ -352,6 +352,26 @@ function turn(turnType, dist, streetName) {
 // turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
 }
 
+function take_exit(turnType, dist, exit, streetName) {
+	if (dist == -1) {
+		return getTurnType(turnType) + " " + dictionary["onto"] + " " + nth(exit) + " " + dictionary["exit"] + " "
+			+ take_exit_name(streetName)
+	} else {
+		return dictionary["after"] + " " + distance(dist) + " " + getTurnType(turnType) + " "
+			+ dictionary["onto"] + " " + nth(exit) + " " + dictionary["exit"] + " " + take_exit_name(streetName)
+	}
+}
+
+function take_exit_name(streetName) {
+	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || !tts) {
+		return "";
+	} else if (streetName["toDest"] != "") {
+		return dictionary["onto"] + " " + streetName["toStreetName"] + dictionary["toward"] + " " + streetName["toDest"];
+	} else {
+		return dictionary["onto"] + " " + streetName["toStreetName"]
+	}
+}
+
 function  getTurnType(turnType) {
 	// turn("left", ).
 // turn("left_sh", ["left_sh"]).
