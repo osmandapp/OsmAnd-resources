@@ -298,9 +298,9 @@ function take_exit_name(streetName) {
 	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || !tts) {
 		return "";
 	} else if (streetName["toDest"] != "") {
-      		return dictionary["onto"] + " " + streetName["toStreetName"] + dictionary["toward"] + " " + streetName["toDest"];
-    } else {
-      		return dictionary["onto"] + " " + streetName["toStreetName"]
+		return dictionary["onto"] + " " + streetName["toStreetName"] + dictionary["toward"] + " " + streetName["toDest"];
+	} else {
+		return dictionary["onto"] + " " + streetName["toStreetName"]
 	}
 }
 
