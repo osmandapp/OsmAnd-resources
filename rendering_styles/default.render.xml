@@ -110,6 +110,8 @@
 		type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideBuildings" name="Hide buildings" description="Hide buildings"
 		type="boolean" possibleValues="" category="hide"/>
+	<renderingProperty attr="hideWaterPolygons" name="Hide water" description="Hide water polygons"
+		type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideHouseNumbers" name="Hide house numbers" description="Hide house numbers"
 		type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideProposed" name="Hide proposed objects" description="Hide proposed objects"
@@ -9632,6 +9634,49 @@
 			</case>
 		</switch>
 
+		<!-- Water -->
+		<switch hideWaterPolygons="false">
+			<case minzoom="10" tag="landuse" value="basin" additional="basin=detention">
+				<apply strokeWidth_2="1:0" color_2="#7479ec" pathEffect_2="7_5"/>
+				<apply color="#44acd8f3"/>
+				<apply_if nightMode="true" color="#44330099" color_2="$waterStrokeColorNight"/>
+			</case>
+			<switch>
+				<switch>
+					<case minzoom="1" tag="natural" value="coastline"/> <!--  color_2="#2Aff7c00" strokeWidth_2=":1"-->
+					<case minzoom="4" tag="natural" value="water"/>
+					<case minzoom="10" tag="waterway" value="riverbank"/>
+					<switch>
+						<case minzoom="$landuseReservoirMinZoom" tag="landuse" value="reservoir"/>
+						<case minzoom="$landuseReservoirMinZoom" tag="landuse" value="water"/>
+						<case minzoom="$landuseReservoirMinZoom" tag="landuse" value="basin"/>
+						<apply_if additional="abandoned=yes" strokeWidth_2="1:0" color_2="#7479ec" pathEffect_2="7_5"/>
+					</switch>
+					<case minzoom="11" tag="waterway" value="wadi" strokeWidth_2="1:0" color_2="#7479ec" pathEffect_2="7_5"/>
+					<apply>
+						<case additional="salt=yes" shader="water_salt" color_0="#83CDE5">
+							<apply_if nightMode="true" shader="" color_0="$waterColor"/>
+						</case>
+					</apply>
+				</switch>
+				<switch>
+					<case minzoom="15" tag="leisure" value="swimming_pool"/>
+					<case minzoom="15" tag="landuse" value="salt_pond" shader="wetland_saltern">
+						<apply_if nightMode="true" shader="" color="$wetlandColorNight"/>
+					</case>
+					<case minzoom="16" tag="amenity" value="fountain"/>
+					<case minzoom="16" tag="natural" value="hot_spring"/>
+					<case minzoom="16" tag="natural" value="geyser"/>
+					<apply color_2="#7479ec" strokeWidth_2="1.3:0"/>
+				</switch>
+				<case minzoom="10" tag="waterway" value="dock" color_2="#aa8387d5" strokeWidth_2="3"/>
+				<apply color="$waterColor">
+					<apply_if nightMode="true" color_2="$waterStrokeColorNight"/>
+				</apply>
+			</switch>
+			<apply_if additional="intermittent=yes" strokeWidth_2="1:0" color_2="#7479ec" pathEffect_2="7_5"/>
+		</switch>
+
 	    <!-- for 'no polygons' -->
 		<switch noPolygons="false">
 			<!-- Polygon railway -->
@@ -9684,48 +9729,6 @@
 			</case>
 
 
-			<!-- Water -->
-			<switch>
-				<case minzoom="10" tag="landuse" value="basin" additional="basin=detention">
-					<apply strokeWidth_2="1:0" color_2="#7479ec" pathEffect_2="7_5"/>
-					<apply color="#44acd8f3"/>
-					<apply_if nightMode="true" color="#44330099" color_2="$waterStrokeColorNight"/>
-				</case>
-				<switch>
-					<switch>
-						<case minzoom="1" tag="natural" value="coastline"/> <!--  color_2="#2Aff7c00" strokeWidth_2=":1"-->
-						<case minzoom="4" tag="natural" value="water"/>
-						<case minzoom="10" tag="waterway" value="riverbank"/>
-						<switch>
-							<case minzoom="$landuseReservoirMinZoom" tag="landuse" value="reservoir"/>
-							<case minzoom="$landuseReservoirMinZoom" tag="landuse" value="water"/>
-							<case minzoom="$landuseReservoirMinZoom" tag="landuse" value="basin"/>
-							<apply_if additional="abandoned=yes" strokeWidth_2="1:0" color_2="#7479ec" pathEffect_2="7_5"/>
-						</switch>
-						<case minzoom="11" tag="waterway" value="wadi" strokeWidth_2="1:0" color_2="#7479ec" pathEffect_2="7_5"/>
-						<apply>
-							<case additional="salt=yes" shader="water_salt" color_0="#83CDE5">
-								<apply_if nightMode="true" shader="" color_0="$waterColor"/>
-							</case>
-						</apply>
-					</switch>
-					<switch>
-						<case minzoom="15" tag="leisure" value="swimming_pool"/>
-						<case minzoom="15" tag="landuse" value="salt_pond" shader="wetland_saltern">
-							<apply_if nightMode="true" shader="" color="$wetlandColorNight"/>
-						</case>
-						<case minzoom="16" tag="amenity" value="fountain"/>
-						<case minzoom="16" tag="natural" value="hot_spring"/>
-						<case minzoom="16" tag="natural" value="geyser"/>
-						<apply color_2="#7479ec" strokeWidth_2="1.3:0"/>
-					</switch>
-					<case minzoom="10" tag="waterway" value="dock" color_2="#aa8387d5" strokeWidth_2="3"/>
-					<apply color="$waterColor">
-						<apply_if nightMode="true" color_2="$waterStrokeColorNight"/>
-					</apply>
-				</switch>
-				<apply_if additional="intermittent=yes" strokeWidth_2="1:0" color_2="#7479ec" pathEffect_2="7_5"/>
-			</switch>
 			<case minzoom="4" tag="natural" value="bay"/>
 
 			<switch>
