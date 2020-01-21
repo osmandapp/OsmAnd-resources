@@ -205,3 +205,5 @@ generatePngs() {
 
        generatePngs 'overlays' '#777777' '#777777' '' x2 '' nomx
        generatePngs 'overlays_water' '#777777' '#777777' '' x2 '' nomx
+
+       generatePngs 'special' '#ffffff' '#ff8f00'
