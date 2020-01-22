@@ -2413,3 +2413,13 @@ mycpname xmas_market xmas_market.png
 mycpname xmas_pyramid xmas_pyramid.png
 mycpname xmas_shop xmas_shop.png
 mycpname xmas_tree xmas_tree.png
+
+#Special
+mycpname special_building special_building.png
+mycpname special_building special_building2.png
+mycpname special_flag_stroke special_flag_stroke.png
+mycpname special_flag special_flag.png
+mycpname special_house special_house.png
+mycpname special_marker special_marker.png
+mycpname special_star_stroked special_star_stroked.png
+mycpname special_star special_star.png
