@@ -126,11 +126,12 @@ function populateDictionary(tts) {
 	// TIME SUPPORT
 	dictionary["time"] = tts ? "time is " : "time.ogg";
 	dictionary["1_hour"] = tts ? "one hour " : "1_hour.ogg";
-    dictionary["hours"] = tts ? "hours " : "hours.ogg";
+    	dictionary["hours"] = tts ? "hours " : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "less than a minute" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "one minute" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "minutes" : "minutes.ogg";
 }
+
 
 //// COMMAND BUILDING / WORD ORDER
 ////////////////////////////////////////////////////////////////
@@ -454,9 +455,9 @@ function make_ut(dist, streetName) {
 	}
 }
 
+function bear_left(streetName) {
 // bear_left(_Street) -- ["left_bear"].
 // bear_right(_Street) -- ["right_bear"].
-function bear_left(streetName) {
 	return dictionary["left_bear"];
 }
 
@@ -479,21 +480,6 @@ function prepare_roundabout(dist, exit, streetName) {
 	return dictionary["after"] + " " + distance(dist) + " " + dictionary["prepare_roundabout"]; 
 }
 
-// reached_destination(D) -- ["reached_destination"|Ds] :- name(D, Ds).
-
-// reached_intermediate(D) -- ["reached_intermediate"|Ds] :- name(D, Ds).
-
-// and_arrive_waypoint(D) -- ["and_arrive_waypoint"|Ds] :- name(D, Ds).
-// reached_waypoint(D) -- ["reached_waypoint"|Ds] :- name(D, Ds).
-// and_arrive_favorite(D) -- ["and_arrive_favorite"|Ds] :- name(D, Ds).
-// reached_favorite(D) -- ["reached_favorite"|Ds] :- name(D, Ds).
-// and_arrive_poi(D) -- ["and_arrive_poi"|Ds] :- name(D, Ds).
-// reached_poi(D) -- ["reached_poi"|Ds] :- name(D, Ds).
-
-// location_lost -- ["location_lost"].
-// location_recovered -- ["location_recovered"].
-// off_route(Dist) -- ["off_route", D] :- distance(Dist) -- D.
-// back_on_route -- ["back_on_route"].
 function and_arrive_destination(dest) {
 	return dictionary["and_arrive_destination"] + " " + dest;
 }
@@ -504,50 +490,62 @@ function and_arrive_intermediate(dest) {
 }
 
 function and_arrive_waypoint(dest) {
+// and_arrive_waypoint(D) -- ["and_arrive_waypoint"|Ds] :- name(D, Ds).
 	return dictionary["and_arrive_waypoint"] + " " + dest;
 }
 
 function and_arrive_favorite(dest) {
+// and_arrive_favorite(D) -- ["and_arrive_favorite"|Ds] :- name(D, Ds).
 	return dictionary["and_arrive_favorite"] + " " + dest;
 }
 
 function and_arrive_poi(dest) {
+// and_arrive_poi(D) -- ["and_arrive_poi"|Ds] :- name(D, Ds).
 	return dictionary["and_arrive_poi"] + " " + dest;
 }
 
 function reached_destination(dest) {
+// reached_destination(D) -- ["reached_destination"|Ds] :- name(D, Ds).
 	return dictionary["reached_destination"] + " " + dest;
 }
 
 function reached_waypoint(dest) {
+// reached_waypoint(D) -- ["reached_waypoint"|Ds] :- name(D, Ds).
 	return dictionary["reached_waypoint"] + " " + dest;
 }
 
 function reached_intermediate(dest) {
+// reached_intermediate(D) -- ["reached_intermediate"|Ds] :- name(D, Ds).
 	return dictionary["reached_intermediate"] + " " + dest;
 }
 
 function reached_favorite(dest) {
+// reached_favorite(D) -- ["reached_favorite"|Ds] :- name(D, Ds).
 	return dictionary["reached_favorite"] + " " + dest;
 }
 
 function reached_poi(dest) {
+// reached_poi(D) -- ["reached_poi"|Ds] :- name(D, Ds).
 	return dictionary["reached_poi"] + " " + dest;
 }
 
 function location_lost() {
+// location_lost -- ["location_lost"].
 	return dictionary["location_lost"];
 }
 
 function location_recovered() {
+// location_recovered -- ["location_recovered"].
 	return dictionary["location_recovered"];
 }
 
 function off_route(dist) {
+// off_route(Dist) -- ["off_route", D] :- distance(Dist) -- D.
 	return dictionary["off_route"] + " " + distance(dist);
 }
 
 function back_on_route() {
+// back_on_route -- ["back_on_route"].
 	return dictionary["back_on_route"];
 }
 
@@ -555,7 +553,6 @@ function make_ut_wp() {
 // make_ut_wp -- ["make_uturn_wp"].
 	return dictionary["make_uturn_wp"];
 }
-
 
 // name(D, [D]) :- tts.
 // name(_D, []) :- not(tts).
@@ -619,8 +616,6 @@ function getAttentionString(type) {
 // warning("MAXIMUM", "").
 // warning("TUNNEL", "tunnel").
 // warning(Type, "") :- not(Type = "SPEED_CAMERA"; Type = "SPEED_LIMIT"; Type = "BORDER_CONTROL"; Type = "RAILWAY"; Type = "TRAFFIC_CALMING"; Type = "TOLL_BOOTH"; Type = "STOP"; Type = "PEDESTRIAN"; Type = "MAXIMUM"; Type = "TUNNEL").
-
-
 
 
 // //// command main method
