@@ -2,13 +2,23 @@
 // Translation by Alcides Martínez-Jara
 // Phonetics by Carmelo Noguera-Torres
 
+// IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
+//
+// (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
+// (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
+// (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM; TUNNEL
+// (X) Other prompts: gps lost, off route, back to route
+// (X) Street name and prepositions (onto / on / to) and street destination (toward) support
+// (X) Distance unit support (meters / feet / yard)
+// (N/A) Special grammar: (please specify which)
+
 var metricConst;
 var dictionary = {};
 var tts;
 //// STRINGS
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
-// ROUTE CALCULATED
+	// ROUTE CALCULATED
 	dictionary["route_is"] = tts ? "pe tapé orekó " : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "tapé puiajú " : "route_calculate.ogg";
 	dictionary["distance"] = tts ? ", mombirí " : "distance.ogg";
@@ -127,6 +137,7 @@ function populateDictionary(tts) {
 	// SPECIAL NUMBERS
 	dictionary["20_and"] = tts ? "mokoipá" : "20_and.ogg";
 }
+
 
 //// COMMAND BUILDING / WORD ORDER
 ////////////////////////////////////////////////////////////////
@@ -275,7 +286,7 @@ function turn(turnType, dist, streetName) {
 }
 
 function  getTurnType(turnType) {
-	// turn("left", ).
+// turn("left", ).
 // turn("left_sh", ["left_sh"]).
 // turn("left_sl", ["left_sl"]).
 // turn("right", ["right"]).
@@ -318,7 +329,7 @@ function then() {
 }
 
 function roundabout(dist, angle, exit, streetName) {
-	// roundabout(Dist, _Angle, Exit, Street) -- ["in", D, "roundabout", "and", "take", E, "exit" | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
+// roundabout(Dist, _Angle, Exit, Street) -- ["in", D, "roundabout", "and", "take", E, "exit" | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
 // roundabout(_Angle, Exit, Street) -- ["take", E, "exit" | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 	if (dist == -1) {
 		return dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
@@ -329,7 +340,7 @@ function roundabout(dist, angle, exit, streetName) {
 }
 
 function turn_street(streetName) {
-	// turn_street("", []).
+// turn_street("", []).
 // turn_street(voice(["","",""],_), []).
 // turn_street(voice(["", "", D], _), ["toward", D]) :- tts.
 // turn_street(Street, ["on", SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
@@ -403,7 +414,7 @@ function nth(exit) {
 }
 
 function make_ut(dist, streetName) {
-	// make_ut(Dist, Street) --  ["in", D, "make_uturn" | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
+// make_ut(Dist, Street) --  ["in", D, "make_uturn" | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
 // make_ut(Street) -- ["make_uturn" | Sgen] :- turn_street(Street, Sgen).
 	if (dist == -1) {
 		return dictionary["make_uturn"] + " " + turn_street(streetName);
@@ -513,7 +524,6 @@ function make_ut_wp() {
 	// make_ut_wp -- ["make_uturn_wp"].
 	return dictionary["make_uturn_wp"];
 }
-
 
 // name(D, [D]) :- tts.
 // name(_D, []) :- not(tts).
