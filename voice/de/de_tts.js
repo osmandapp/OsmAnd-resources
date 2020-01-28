@@ -161,12 +161,11 @@ function setMode(mode) {
 	tts = mode;
 	populateDictionary(mode);
 }
-
 	
 function isFeminine(streetName) {
 	var endings = ["strasse","straße","bahn","chaussee","gasse","zeile","allee","tangente","spange","0","1","2","3","4","5","6","7","8","9"];
 	for (var i = 0; i < endings.length; i++) {
-		//if (streetName["toRef"].toLowerCase().indexOf(endings[i]) !== -1 || streetName["toStreetName"].toLowerCase().indexOf(endings[i]) !== -1) {
+//if (streetName["toRef"].toLowerCase().indexOf(endings[i]) !== -1 || streetName["toStreetName"].toLowerCase().indexOf(endings[i]) !== -1) {
 		if (streetName["toRef"].toLowerCase().endsWith(endings[i]) || streetName["toStreetName"].toLowerCase().endsWith(endings[i])) {
 			return true;
 		}
@@ -177,14 +176,13 @@ function isFeminine(streetName) {
 function isMasculine(streetName) {
 	var endings = ["weg","ring","damm","platz","markt","steig","pfad"];
 	for (var i = 0; i < endings.length; i++) {
-		//if (streetName["toStreetName"].toLowerCase().indexOf(endings[i]) !== -1) {
+//if (streetName["toStreetName"].toLowerCase().indexOf(endings[i]) !== -1) {
 		if (streetName["toStreetName"].toLowerCase().endsWith(endings[i])) {
 			return true;
 		}
 	}
 	return false;
 }
-
 
 function route_new_calc(dist, timeVal) {
 // route_new_calc(Dist, Time) -- ['route_is1', D, 'route_is2', ', ', 'time', T, '. '] :- distance(Dist, nominativ) -- D, time(Time) -- T.
@@ -381,7 +379,6 @@ function roundabout(dist, angle, exit, streetName) {
 	} else {
 		return dictionary["after"] + " " + distance(dist, "dativ") + " " + dictionary["roundabout"] + dictionary["then"] + " " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	}
-
 }
 
 function turn_street(streetName) {
