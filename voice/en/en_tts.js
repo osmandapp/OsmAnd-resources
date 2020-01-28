@@ -15,8 +15,8 @@ var tts;
 
 //// STRINGS
 ////////////////////////////////////////////////////////////////
-	// ROUTE CALCULATED
 function populateDictionary(tts) {
+	// ROUTE CALCULATED
 	dictionary["route_is"] = tts ? tts ? "The trip is " : "route_is.ogg" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Route recalculated" : "route_calculate.ogg";
 	dictionary["distance"] = tts ? "distance " : "distance.ogg";
