@@ -99,6 +99,8 @@
 		type="boolean" possibleValues="" category="details"/>
 	<renderingProperty attr="streetLighting" name="Street lighting" description="Show street lighting"
 		type="boolean" possibleValues="" category="details"/>
+	<renderingProperty attr="streetLightingNight" name="Show only at night" description="Show street lighting only at night"
+		type="boolean" possibleValues="" category="details"/>
 	<renderingProperty attr="OSMMapperAssistant" name="OSM mapper assistant" description="Show fixme and other features to help OSM mappers"
 		type="boolean" possibleValues="" category="details"/>
 	<renderingProperty attr="depthContours" name="Depth contours" description="Show depth contours and points"
@@ -467,7 +469,9 @@
 		</case>
 		<case roadStyle="americanRoadAtlas" attrColorValue="#3977ba"/>
 		<case attrColorValue="#905d2e8c">
-			<case streetLighting="true" attrColorValue="#555555"/>
+			<case streetLighting="true">
+				<apply_if nightMode="false" streetLightingNight="false" attrColorValue="#555555"/>
+			</case>
 			<apply_if nightMode="true" attrColorValue="#AA7C2661"/>
 			<apply_if nightMode="true" minzoom="12" attrColorValue="#7C2661"/>
 		</case>
@@ -533,11 +537,15 @@
 			<apply_if nightMode="true" attrColorValue="#a72202"/>
 		</case>
 		<case attrColorValue="#969696">
-			<case streetLighting="true" attrColorValue="#555555"/>
+			<case streetLighting="true">
+				<apply_if nightMode="false" streetLightingNight="false" attrColorValue="#555555"/>
+			</case>
 			<apply_if nightMode="true" attrColorValue="$null"/>
 		</case>
 		<case attrColorValue="#90803d26">
-			<case streetLighting="true" attrColorValue="#555555"/>
+			<case streetLighting="true">
+				<apply_if nightMode="false" streetLightingNight="false" attrColorValue="#555555"/>
+			</case>
 			<apply_if nightMode="true" attrColorValue="$null"/>
 		</case>
 		<apply_if additional="construction=yes" attrColorValue="$null"/>
@@ -594,8 +602,10 @@
 		</case>
 		<case roadStyle="americanRoadAtlas" attrColorValue="#693431"/>
 		<case attrColorValue="#90805224">
+			<case streetLighting="true">
+				<apply_if nightMode="false" streetLightingNight="false" attrColorValue="#555555"/>
+			</case>
 			<apply_if nightMode="true" attrColorValue="#50000000"/>
-			<case streetLighting="true" attrColorValue="#555555"/>
 		</case>
 	</renderingAttribute>
 
@@ -644,7 +654,8 @@
 		</case>
 		<case attrColorValue="#9080792f">
 			<apply_if nightMode="true" attrColorValue="$null"/>
-			<case streetLighting="true" attrColorValue="#444444">
+			<case streetLighting="true">
+				<apply_if nightMode="false" streetLightingNight="false" attrColorValue="#444444"/>
 				<apply_if nightMode="true" attrColorValue="#ffffff"/>
 			</case>
 		</case>
@@ -696,7 +707,8 @@
 		</case>
 		<case attrColorValue="#30000000">
 			<apply_if nightMode="true" attrColorValue="#20000000"/>
-			<case streetLighting="true" minzoom="14" attrColorValue="#444444">
+			<case streetLighting="true" minzoom="14">
+				<apply_if nightMode="false" streetLightingNight="false" attrColorValue="#444444"/>
 				<apply_if nightMode="true" attrColorValue="#30000000"/>
 			</case>
 		</case>
@@ -714,7 +726,8 @@
 		</case>
 		<case attrColorValue="#30000000">
 		    <apply_if nightMode="true" attrColorValue="$null"/>
-			<case streetLighting="true" minzoom="14" attrColorValue="#444444">
+			<case streetLighting="true" minzoom="14">
+				<apply_if nightMode="false" streetLightingNight="false" attrColorValue="#444444"/>
 				<apply_if nightMode="true" attrColorValue="#ffffff"/>
 			</case>
 		</case>
@@ -820,10 +833,11 @@
 			<apply_if nightMode="true" attrColorValue="$null"/>
 		</case>
 		<case attrColorValue="#30000000">
-		    <apply_if nightMode="true" attrColorValue="#20000000"/>
-			<case streetLighting="true" minzoom="14" attrColorValue="#444444">
+			<case streetLighting="true" minzoom="14">
+				<apply_if nightMode="false" streetLightingNight="false" attrColorValue="#444444"/>
 				<apply_if nightMode="true" attrColorValue="#ffffff"/>
 			</case>
+			<apply_if nightMode="true" attrColorValue="#20000000"/>
 		</case>
 	</renderingAttribute>
 
@@ -2987,6 +3001,9 @@
 				<case tag="man_made" value="groyne"/>
 				<case tag="man_made" value="bridge" order="9"/>
 				<case tag="building:part" value="" order="10"/>
+				<case tag="lit" value="">
+					<apply_if nightMode="false" streetLightingNight="true" order="-1"/>
+				</case>
 				<apply_if hideOverground="true" minzoom="15">
 					<apply_if layer="0" order="-1"/>
 					<apply_if layer="1" order="-1"/>
@@ -3600,11 +3617,16 @@
 						<apply_if layer="3" order="-1"/>
 					</apply_if>
 				</switch>
-				<case tag="lit" value="" order="12"/>
+				<case tag="lit" value="" order="12">
+					<apply_if nightMode="false" streetLightingNight="true" order="-1"/>
+				</case>
 				<case tag="fixme_tag" value="yes" order="12"/>
 				<case tag="note_tag" value="yes"/>
 				<case hideUnderground="true" tag="lit_pedestrian_layer-1" value="" order="-1"/>
 				<case baseAppMode="car" tag="lit_pedestrian_layer-1" value="" order="-1"/>
+				<case tag="lit_pedestrian_layer-1" value="">
+					<apply_if nightMode="false" streetLightingNight="true" order="-1"/>
+				</case>
 				<!-- <case tag="indoor" value="wall"/>-->
 				<case tag="osmand" value="file_trackline"/>
 				<case tag="osmand" value="file_routeline"/>
@@ -7460,20 +7482,24 @@
 						<case additional="crossing=uncontrolled" icon="crossing_uncontrolled_map"/>
 						<case additional="crossing=traffic_signals" icon="crossing_traffic_signals_map" shield="highway_crossing_traffic_signals_shield" iconOrder="51"/>
 						<apply_if streetLighting="true">
-							<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
+							<case additional="lit_additional=yes">
+								<apply_if nightMode="false" streetLightingNight="false" shield="street_lamp_lit_yes_shield"/>
 								<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
 							</case>
-							<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
+							<case additional="lit_additional=no">
+								<apply_if nightMode="false" streetLightingNight="false" shield="street_lamp_lit_no_shield"/>
 								<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
 							</case>
 						</apply_if>
 					</case>
 					<case minzoom="15" tag="railway" value="level_crossing" icon="level_crossing_map">
 						<apply_if streetLighting="true">
-							<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
+							<case additional="lit_additional=yes">
+								<apply_if nightMode="false" streetLightingNight="false" shield="street_lamp_lit_yes_shield"/>
 								<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
 							</case>
-							<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
+							<case additional="lit_additional=no">
+								<apply_if nightMode="false" streetLightingNight="false" shield="street_lamp_lit_no_shield"/>
 								<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
 							</case>
 						</apply_if>
@@ -7562,10 +7588,12 @@
 					<case minzoom="16" tag="highway" value="steps" icon="highway_steps" shield="highway_steps_shield" iconVisibleSize="8"/>
 					<case minzoom="15" tag="railway" value="level_crossing" icon="level_crossing_map">
 						<apply_if streetLighting="true">
-							<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
+							<case additional="lit_additional=yes">
+								<apply_if nightMode="false" streetLightingNight="false" shield="street_lamp_lit_yes_shield"/>
 								<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
 							</case>
 							<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
+								<apply_if nightMode="false" streetLightingNight="false" shield="street_lamp_lit_no_shield"/>
 								<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
 							</case>
 						</apply_if>
@@ -7664,10 +7692,12 @@
 					</switch>
 					<case minzoom="15" tag="railway" value="level_crossing" icon="level_crossing_map">
 						<apply_if streetLighting="true">
-							<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
+							<case additional="lit_additional=yes">
+								<apply_if nightMode="false" streetLightingNight="false" shield="street_lamp_lit_yes_shield"/>
 								<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
 							</case>
 							<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
+								<apply_if nightMode="false" streetLightingNight="false" shield="street_lamp_lit_no_shield"/>
 								<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
 							</case>
 						</apply_if>
@@ -7930,10 +7960,12 @@
 					<case additional="crossing=traffic_signals" icon="crossing_traffic_signals_map" shield="highway_crossing_traffic_signals_shield" iconOrder="51"/>
 					<case additional="crossing=unmarked" icon="crossing_unmarked_map"/>
 					<apply_if streetLighting="true">
-						<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
+						<case additional="lit_additional=yes">
+							<apply_if nightMode="false" streetLightingNight="false" shield="street_lamp_lit_yes_shield"/>
 							<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
 						</case>
-						<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
+						<case additional="lit_additional=no">
+							<apply_if nightMode="false" streetLightingNight="false" shield="street_lamp_lit_no_shield"/>
 							<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
 						</case>
 					</apply_if>
@@ -8619,7 +8651,8 @@
 						<apply_if>
 							<case additional="tower:type=communication" icon="communication_tower" shield="tower_communications_shield" iconVisibleSize="48"/>
 							<case additional="tower:type=lighting" icon="lighting_tower" shield="tower_lighting_shield">
-								<case streetLighting="true" shield="street_lamp_lit_yes_shield">
+								<case streetLighting="true">
+									<apply_if nightMode="false" streetLightingNight="false" shield="street_lamp_lit_yes_shield"/>
 									<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
 								</case>
 							</case>
@@ -8627,10 +8660,12 @@
 						</apply_if>
 					</switch>
 					<apply_if streetLighting="true" iconVisibleSize="14">
-						<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
+						<case additional="lit_additional=yes">
+							<apply_if nightMode="false" streetLightingNight="false" shield="street_lamp_lit_yes_shield"/>
 							<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
 						</case>
-						<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
+						<case additional="lit_additional=no">
+							<apply_if nightMode="false" streetLightingNight="false" shield="street_lamp_lit_no_shield"/>
 							<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
 						</case>
 					</apply_if>
@@ -9128,12 +9163,14 @@
 
 			<switch streetLighting="true" minzoom="16" iconVisibleSize="10" intersectionSizeFactor="0.7">
 				<case tag="highway" value="street_lamp"/>
-				<case tag="light_source" value=""/>
+				<case nightMode="false" streetLightingNight="false" tag="light_source" value=""/>
 				<apply icon="highway_street_lamp">
-					<case additional="lit_additional=yes" icon="highway_street_lamp_lit" shield="street_lamp_lit_yes_shield">
+					<case additional="lit_additional=yes" icon="highway_street_lamp_lit">
+						<apply_if nightMode="false" streetLightingNight="false" shield="street_lamp_lit_yes_shield"/>
 						<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
 					</case>
-					<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
+					<case additional="lit_additional=no">
+						<apply_if nightMode="false" streetLightingNight="false" shield="street_lamp_lit_no_shield"/>
 						<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
 					</case>
 					<case shield="street_lamp_lit_yes_shield">
@@ -9267,10 +9304,12 @@
 				</case>
 				<case minzoom="15" tag="railway" value="level_crossing" icon="level_crossing_map">
 					<apply_if streetLighting="true">
-						<case additional="lit_additional=yes" shield="street_lamp_lit_yes_shield">
+						<case additional="lit_additional=yes">
+							<apply_if nightMode="false" streetLightingNight="false" shield="street_lamp_lit_yes_shield"/>
 							<apply_if nightMode="true" shield="street_lamp_lit_yes_night_shield"/>
 						</case>
-						<case additional="lit_additional=no" shield="street_lamp_lit_no_shield">
+						<case additional="lit_additional=no">
+							<apply_if nightMode="false" streetLightingNight="false" shield="street_lamp_lit_no_shield"/>
 							<apply_if nightMode="true" shield="street_lamp_lit_no_night_shield"/>
 						</case>
 					</apply_if>
