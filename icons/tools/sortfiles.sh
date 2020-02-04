@@ -218,6 +218,7 @@ mycpname fire_extinguisher emergency_fire_extinguisher.png
 mycpname life_ring emergency_life_ring.png
 mycpname rescue_box emergency_rescue_box.png
 mycpname topo_rescue_box topo_emergency_rescue_box.png
+mycpname mountain_rescue emergency_mountain_rescue.png
 
 mygroup healthcare health_pharmacy.png
 mycp amenity dentist health_dentist.png
@@ -1909,6 +1910,7 @@ mycpname shoe_repair shopping_shoe_repair.png
 mycpname shop_wholesale shopping_wholesale.png
 mycpname health_food shopping_health_food.png
 mycpname pet_grooming shopping_pet_grooming.png
+mycpname shop_security shopping_security.png
 
 ## Office
 mycpname estate_agent office_estate_agent.png

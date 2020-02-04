@@ -1,3 +1,13 @@
+// IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
+//
+// (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
+// (X) Announce nearby point names (destination / intermediate / GPX waypoint / favorites / POI)
+// (X) Attention prompts: SPEED_CAMERA; SPEED_LIMIT; BORDER_CONTROL; RAILWAY; TRAFFIC_CALMING; TOLL_BOOTH; STOP; PEDESTRIAN; MAXIMUM; TUNNEL
+// (X) Other prompts: gps lost, off route, back to route
+// (X) Street name and prepositions (onto / on / to) and street destination (toward) support
+// (X) Distance unit support (meters / feet / yard)
+// (X) Special grammar: distance(nominative/dative), street(male/female/nothing)
+// ( ) Support announcing highway exits
 
 var dictionary = {};
 var metricConst;
@@ -5,9 +15,8 @@ var tts;
 
 //// STRINGS
 ////////////////////////////////////////////////////////////////
-// ROUTE CALCULATED
 function populateDictionary(tts) {
-
+	// ROUTE CALCULATED
 	dictionary["route_is1"] = tts ? "Die berechnete Strecke ist " : "route_is1.ogg";
 	dictionary["route_is2"] = tts ? "lang " : "route_is2.ogg";
 	dictionary["route_calculate"] = tts ? "Route neu berechnet" : "route_calculate.ogg";
@@ -152,12 +161,11 @@ function setMode(mode) {
 	tts = mode;
 	populateDictionary(mode);
 }
-
 	
 function isFeminine(streetName) {
 	var endings = ["strasse","straße","bahn","chaussee","gasse","zeile","allee","tangente","spange","0","1","2","3","4","5","6","7","8","9"];
 	for (var i = 0; i < endings.length; i++) {
-		//if (streetName["toRef"].toLowerCase().indexOf(endings[i]) !== -1 || streetName["toStreetName"].toLowerCase().indexOf(endings[i]) !== -1) {
+//if (streetName["toRef"].toLowerCase().indexOf(endings[i]) !== -1 || streetName["toStreetName"].toLowerCase().indexOf(endings[i]) !== -1) {
 		if (streetName["toRef"].toLowerCase().endsWith(endings[i]) || streetName["toStreetName"].toLowerCase().endsWith(endings[i])) {
 			return true;
 		}
@@ -168,7 +176,7 @@ function isFeminine(streetName) {
 function isMasculine(streetName) {
 	var endings = ["weg","ring","damm","platz","markt","steig","pfad"];
 	for (var i = 0; i < endings.length; i++) {
-		//if (streetName["toStreetName"].toLowerCase().indexOf(endings[i]) !== -1) {
+//if (streetName["toStreetName"].toLowerCase().indexOf(endings[i]) !== -1) {
 		if (streetName["toStreetName"].toLowerCase().endsWith(endings[i])) {
 			return true;
 		}
@@ -176,9 +184,8 @@ function isMasculine(streetName) {
 	return false;
 }
 
-
 function route_new_calc(dist, timeVal) {
-	// route_new_calc(Dist, Time) -- ['route_is1', D, 'route_is2', ', ', 'time', T, '. '] :- distance(Dist, nominativ) -- D, time(Time) -- T.
+// route_new_calc(Dist, Time) -- ['route_is1', D, 'route_is2', ', ', 'time', T, '. '] :- distance(Dist, nominativ) -- D, time(Time) -- T.
 	return dictionary["route_is1"] + " " + distance(dist, "nominativ") + " " + dictionary["route_is2"] + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : "");
 }
 
@@ -284,7 +291,7 @@ function route_recalc(dist, seconds) {
 }
 
 function go_ahead(dist, streetName) {
-	// go_ahead(Dist, Street) -- ['follow1.ogg', D, 'follow2.ogg'| Sgen]:- distance(Dist, nominativ) -- D, follow_street(Street, Sgen).
+// go_ahead(Dist, Street) -- ['follow1.ogg', D, 'follow2.ogg'| Sgen]:- distance(Dist, nominativ) -- D, follow_street(Street, Sgen).
 	if (dist == -1) {
 		return dictionary["go_ahead"];
 	} else {
@@ -293,13 +300,11 @@ function go_ahead(dist, streetName) {
 }
 
 function follow_street(streetName) {
-
 // follow_street(Street, ['on', SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
 // follow_street(Street, ['on', SName]) :- tts, Street = voice([R, '', _],[R, _, _]), assemble_street_name(Street, SName).
 // follow_street(Street, ['to', 'zur ', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), street_is_female(Street), assemble_street_name(Street, SName).
 // follow_street(Street, ['to', 'zum ', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), street_is_male(Street), assemble_street_name(Street, SName). // Most Refs are female, hence this check only after female check
 // follow_street(Street, ['to', SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), street_is_nothing(Street), assemble_street_name(Street, SName).
-
 	if ((streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || Object.keys(streetName).length == 0 || !tts) {
 		return "";
 	} else if (streetName["toStreetName"] === "" && streetName["toRef"] === "") {
@@ -313,13 +318,13 @@ function follow_street(streetName) {
 }
 
 function turn(turnType, dist, streetName) {
-	// turn(Turn, Dist, Street) -- ['after.ogg', D, M, ' '| Sgen] :- distance(Dist, dativ) -- D, turn(Turn, M), turn_street(Street, Sgen).
+// turn(Turn, Dist, Street) -- ['after.ogg', D, M, ' '| Sgen] :- distance(Dist, dativ) -- D, turn(Turn, M), turn_street(Street, Sgen).
 	if (dist == -1) {
 		return getTurnType(turnType) + " " + turn_street(streetName);
 	} else {
 		return dictionary["after"] + " " + distance(dist, "dativ") + " " + getTurnType(turnType) + " " + turn_street(streetName); 
 	}
-	// turn(Turn, Dist, Street) -- ["in", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
+// turn(Turn, Dist, Street) -- ["in", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
 // turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
 }
 
@@ -345,7 +350,7 @@ function take_exit_name(streetName) {
 
 
 function  getTurnType(turnType) {
-	// turn("left", ).
+// turn("left", ).
 // turn("left_sh", ["left_sh"]).
 // turn("left_sl", ["left_sl"]).
 // turn("right", ["right"]).
@@ -383,23 +388,22 @@ function  getTurnType(turnType) {
 }
 
 function then() {
-	// then -- ["then"].
+// then -- ["then"].
 	return dictionary["then"];
 }
 
 function roundabout(dist, angle, exit, streetName) {
-	// roundabout(Dist, _Angle, Exit, Street) -- ["in", D, "roundabout", "and", "take", E, "exit" | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
+// roundabout(Dist, _Angle, Exit, Street) -- ["in", D, "roundabout", "and", "take", E, "exit" | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
 // roundabout(_Angle, Exit, Street) -- ["take", E, "exit" | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 	if (dist == -1) {
 		return dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	} else {
 		return dictionary["after"] + " " + distance(dist, "dativ") + " " + dictionary["roundabout"] + dictionary["then"] + " " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	}
-
 }
 
 function turn_street(streetName) {
-	// turn_street("", []).
+// turn_street("", []).
 // turn_street(voice(["","",""],_), []).
 // turn_street(voice(["", "", D], _), ["toward", D]) :- tts.
 // turn_street(Street, ["on", SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
@@ -475,7 +479,7 @@ function nth(exit) {
 }
 
 function make_ut(dist, streetName) {
-// 	make_ut(Dist, Street) --  ['after', D, 'make_uturn1' | Sgen] :- distance(Dist, dativ) -- D, turn_street(Street, Sgen).
+// make_ut(Dist, Street) --  ['after', D, 'make_uturn1' | Sgen] :- distance(Dist, dativ) -- D, turn_street(Street, Sgen).
 // make_ut(Street) -- ['make_uturn2' | Sgen] :- turn_street(Street, Sgen).
 	if (dist == -1) {
 		return dictionary["make_uturn2"] + " " + turn_street(streetName);
@@ -495,13 +499,13 @@ function bear_right(streetName) {
 }
 
 function prepare_make_ut(dist, streetName) {
-	// prepare_make_ut(Dist, Street) -- ['prepare', 'after', D, 'make_uturn2' | Sgen] :- distance(Dist, dativ) -- D, turn_street(Street, Sgen).
+// prepare_make_ut(Dist, Street) -- ['prepare', 'after', D, 'make_uturn2' | Sgen] :- distance(Dist, dativ) -- D, turn_street(Street, Sgen).
 
 	return dictionary["prepare"] + " " + dictionary["after"] + " " + distance(dist, "dativ") + " " + dictionary["make_uturn2"] + " " + turn_street(streetName);
 }
 
 function prepare_turn(turnType, dist, streetName) {
-	// prepare_turn(Turn, Dist, Street) -- ['prepare', 'after', D, M | Sgen] :- distance(Dist, dativ) -- D, turn(Turn, M), turn_street(Street, Sgen).
+// prepare_turn(Turn, Dist, Street) -- ['prepare', 'after', D, M | Sgen] :- distance(Dist, dativ) -- D, turn(Turn, M), turn_street(Street, Sgen).
 	return dictionary["prepare"] + " " + dictionary["after"] + " " + distance(dist, "dativ") + " " + getTurnType(turnType) + " " + turn_street(streetName);
 }
 
@@ -510,75 +514,72 @@ function prepare_roundabout(dist, exit, streetName) {
 	return dictionary["prepare"] + " " + dictionary["after"] + " " + distance(dist, "dativ") + " " + dictionary["prepare_roundabout"]; 
 }
 
-// reached_destination(D) -- ["reached_destination"|Ds] :- name(D, Ds).
-
-// reached_intermediate(D) -- ["reached_intermediate"|Ds] :- name(D, Ds).
-
-// and_arrive_waypoint(D) -- ["and_arrive_waypoint"|Ds] :- name(D, Ds).
-// reached_waypoint(D) -- ["reached_waypoint"|Ds] :- name(D, Ds).
-// and_arrive_favorite(D) -- ["and_arrive_favorite"|Ds] :- name(D, Ds).
-// reached_favorite(D) -- ["reached_favorite"|Ds] :- name(D, Ds).
-// and_arrive_poi(D) -- ["and_arrive_poi"|Ds] :- name(D, Ds).
-// reached_poi(D) -- ["reached_poi"|Ds] :- name(D, Ds).
-
-// location_lost -- ["location_lost"].
-// location_recovered -- ["location_recovered"].
-// off_route(Dist) -- ["off_route", D] :- distance(Dist) -- D.
-// back_on_route -- ["back_on_route"].
 function and_arrive_destination(dest) {
 	return dictionary["and_arrive_destination"] + " " + dest + " " + dictionary["reached"];
 }
 
 function and_arrive_intermediate(dest) {
-	// and_arrive_intermediate(D) -- ["and_arrive_intermediate"|Ds] :- name(D, Ds).
+// and_arrive_intermediate(D) -- ["and_arrive_intermediate"|Ds] :- name(D, Ds).
 	return dictionary["and_arrive_intermediate"] + " " + dest + " " + dictionary["reached"];
 }
 
 function and_arrive_waypoint(dest) {
+// and_arrive_waypoint(D) -- ["and_arrive_waypoint"|Ds] :- name(D, Ds).
 	return dictionary["and_arrive_waypoint"] + " " + dest;
 }
 
 function and_arrive_favorite(dest) {
+// and_arrive_favorite(D) -- ["and_arrive_favorite"|Ds] :- name(D, Ds).
 	return dictionary["and_arrive_favorite"] + " " + dest;
 }
 
 function and_arrive_poi(dest) {
+// and_arrive_poi(D) -- ["and_arrive_poi"|Ds] :- name(D, Ds).
 	return dictionary["and_arrive_poi"] + " " + dest;
 }
 
 function reached_destination(dest) {
+// reached_destination(D) -- ["reached_destination"|Ds] :- name(D, Ds).
 	return dictionary["reached_destination"] + " " + dest + " " + dictionary["reached"];
 }
 
 function reached_waypoint(dest) {
+// reached_waypoint(D) -- ["reached_waypoint"|Ds] :- name(D, Ds).
 	return dictionary["reached_waypoint"] + " " + dest;
 }
 
 function reached_intermediate(dest) {
+// reached_intermediate(D) -- ["reached_intermediate"|Ds] :- name(D, Ds).
 	return dictionary["reached_intermediate"] + " " + dest + " " + dictionary["reached"];
 }
 
 function reached_favorite(dest) {
+// reached_favorite(D) -- ["reached_favorite"|Ds] :- name(D, Ds).
 	return dictionary["reached_favorite"] + " " + dest;
 }
 
 function reached_poi(dest) {
+// reached_poi(D) -- ["reached_poi"|Ds] :- name(D, Ds).
 	return dictionary["reached_poi"] + " " + dest;
 }
 
 function location_lost() {
+// location_lost -- ["location_lost"].
 	return dictionary["location_lost"];
 }
 
 function location_recovered() {
+// location_recovered -- ["location_recovered"].
 	return dictionary["location_recovered"];
 }
 
 function off_route(dist) {
+// off_route(Dist) -- ["off_route", D] :- distance(Dist) -- D.
 	return dictionary["off_route"] + " " + distance(dist, "dativ");
 }
 
 function back_on_route() {
+// back_on_route -- ["back_on_route"].
 	return dictionary["back_on_route"];
 }
 
