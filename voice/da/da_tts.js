@@ -355,6 +355,27 @@ function turn_street(streetName) {
 	return "";
 }
 
+function take_exit(turnType, dist, exit, streetName) {
+	if (dist == -1) {
+		return getTurnType(turnType) + " " + dictionary["to"] + " " + nth(exit) + " " + dictionary["exit"] + " "
+			+ take_exit_name(streetName)
+	} else {
+		return dictionary["in"] + " " + distance(dist) + " " + getTurnType(turnType) + " "
+			+ dictionary["to"] + " " + nth(exit) + " " + dictionary["exit"] + " " + take_exit_name(streetName)
+	}
+}
+
+function take_exit_name(streetName) {
+	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || !tts) {
+		return "";
+	} else if (streetName["toDest"] != "") {
+		return dictionary["onto"] + " " + streetName["toStreetName"] + dictionary["toward"] + " " + streetName["toDest"];
+	} else {
+		return dictionary["onto"] + " " + streetName["toStreetName"]
+	}
+}
+
+
 function assemble_street_name(streetName) {
 // assemble_street_name(voice([Ref, Name, ""], _), Concat) :- atom_concat(Ref, " ", C1), atom_concat(C1, Name, Concat).
 // assemble_street_name(voice(["", Name, Dest], _), [C1, "toward", Dest]) :- atom_concat(Name, " ", C1).
