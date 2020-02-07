@@ -858,6 +858,7 @@ mycpname judo sport_judo.png
 mycpname rc_car sport_rc_car.png
 mycpname bandy sport_bandy.png
 mycpname sport_multi sport_multi.png
+mycpname dive_centre sport_dive_centre.png
 
 
 ## Leisure
