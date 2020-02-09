@@ -333,23 +333,34 @@ function turn(turnType, dist, streetName) {
 // turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
 }
 
-function take_exit(turnType, dist, exit, streetName) {
+function take_exit(turnType, dist, exitString, exitInt, streetName) {
 	if (dist == -1) {
-		return getTurnType(turnType) + " " + dictionary["to"] + " " + nth(exit) + " " + dictionary["exit"] + " "
-			+ take_exit_name(streetName)
+		return getTurnType(turnType) + " " + dictionary["to"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
 	} else {
-		return dictionary["in"] + " " + distance(dist) + " " + getTurnType(turnType) + " "
-			+ dictionary["to"] + " " + nth(exit) + " " + dictionary["exit"] + " " + take_exit_name(streetName)
+		return dictionary["in"] + " " + distance(dist) + " "
+			+ getTurnType(turnType) + " " + dictionary["to"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
 	}
 }
 
 function take_exit_name(streetName) {
-	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || !tts) {
+	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "") || !tts) {
 		return "";
 	} else if (streetName["toDest"] != "") {
 		return dictionary["onto"] + " " + streetName["toStreetName"] + dictionary["toward"] + " " + streetName["toDest"];
-	} else {
+	} else if (streetName["toStreetName"] != "") {
 		return dictionary["onto"] + " " + streetName["toStreetName"]
+	} else {
+		return "";
+	}
+}
+
+function getExitNumber(exitString, exitInt) {
+	if (!tts && exitInt > 0 && exitInt < 18) {
+			return nth(exitInt) + " " + dictionary["exit"];
+	} else if (tts) {
+			return  dictionary["exit"] + " " + exitString;
+	} else {
+			return dictionary["exit"];
 	}
 }
 

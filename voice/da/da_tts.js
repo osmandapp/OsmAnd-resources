@@ -281,6 +281,37 @@ function turn(turnType, dist, streetName) {
 	}
 }
 
+function take_exit(turnType, dist, exitString, exitInt, streetName) {
+	if (dist == -1) {
+		return getTurnType(turnType) + " " + dictionary["to"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
+	} else {
+		return dictionary["in"] + " " + distance(dist) + " "
+			+ getTurnType(turnType) + " " + dictionary["to"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
+	}
+}
+
+function take_exit_name(streetName) {
+	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "") || !tts) {
+		return "";
+	} else if (streetName["toDest"] != "") {
+		return dictionary["onto"] + " " + streetName["toStreetName"] + dictionary["toward"] + " " + streetName["toDest"];
+	} else if (streetName["toStreetName"] != "") {
+		return dictionary["onto"] + " " + streetName["toStreetName"]
+	} else {
+		return "";
+	}
+}
+
+function getExitNumber(exitString, exitInt) {
+	if (!tts && exitInt > 0 && exitInt < 18) {
+			return nth(exitInt) + " " + dictionary["exit"];
+	} else if (tts) {
+			return  dictionary["exit"] + " " + exitString;
+	} else {
+			return dictionary["exit"];
+	}
+}
+
 function  getTurnType(turnType) {
 	// turn("left", ).
 // turn("left_sh", ["left_sh"]).
@@ -356,27 +387,6 @@ function turn_street(streetName) {
 	}
 	return "";
 }
-
-function take_exit(turnType, dist, exit, streetName) {
-	if (dist == -1) {
-		return getTurnType(turnType) + " " + dictionary["to"] + " " + nth(exit) + " " + dictionary["exit"] + " "
-			+ take_exit_name(streetName)
-	} else {
-		return dictionary["in"] + " " + distance(dist) + " " + getTurnType(turnType) + " "
-			+ dictionary["to"] + " " + nth(exit) + " " + dictionary["exit"] + " " + take_exit_name(streetName)
-	}
-}
-
-function take_exit_name(streetName) {
-	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || !tts) {
-		return "";
-	} else if (streetName["toDest"] != "") {
-		return dictionary["onto"] + " " + streetName["toStreetName"] + dictionary["toward"] + " " + streetName["toDest"];
-	} else {
-		return dictionary["onto"] + " " + streetName["toStreetName"]
-	}
-}
-
 
 function assemble_street_name(streetName) {
 // assemble_street_name(voice([Ref, Name, ""], _), Concat) :- atom_concat(Ref, " ", C1), atom_concat(C1, Name, Concat).
