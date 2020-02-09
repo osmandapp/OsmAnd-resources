@@ -1,4 +1,3 @@
-
 // IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 //
 // (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
@@ -8,15 +7,17 @@
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
 // (X) Special grammar: nth(nominative/instrumental), distance(accusative/locative/workaround), special plural 1 2 3_4
+// (X) Support announcing highway exits
 
 
 var metricConst;
 var dictionary = {};
 var tts;
+
 //// STRINGS
 ////////////////////////////////////////////////////////////////
-// ROUTE CALCULATED
 function populateDictionary(tts) {
+	// ROUTE CALCULATED
 	dictionary["route_is"] = tts ? "cesta je dlouhá " : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "cesta přepočtena" : "route_calculate.ogg";
 	dictionary["distance"] = tts ? ". cesta je dlouhá " : "distance.ogg";

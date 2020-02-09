@@ -1,4 +1,3 @@
-
 // IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 //
 // (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
@@ -8,14 +7,17 @@
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
 // (N/A) Special grammar: (please specify which)
+// (X) Support announcing highway exits
+
 var metricConst;
 var dictionary = {};
 // TODO set this as a boolena flag to determine if we need to return tts prompts or ogg file names
 var tts;
+
 //// STRINGS
 ////////////////////////////////////////////////////////////////
-// ROUTE CALCULATED
 function populateDictionary(tts) {
+	// ROUTE CALCULATED
 	dictionary["route_is"] = tts ? tts ? "目的地まで " : "route_is.ogg" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "ルートを更新しました。" : "route_calculate.ogg";
 	dictionary["distance"] = tts ? "距離は " : "distance.ogg";

@@ -7,13 +7,16 @@
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
 // (N/A) Special grammar: (please specify which)
+// (X) Support announcing highway exits
+
 var metricConst;
 var dictionary = {};
 var tts;
+
 //// STRINGS
 ////////////////////////////////////////////////////////////////
-// ROUTE CALCULATED
 function populateDictionary(tts) {
+	// ROUTE CALCULATED
 	dictionary["route_is"] = tts ? "مسافتِ مسیر " : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "مسیرِ جدید محاسبه شد" : "route_calculate.ogg";
 	dictionary["distance"] = tts ? "مسافت " : "distance.ogg";

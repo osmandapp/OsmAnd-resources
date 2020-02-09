@@ -7,10 +7,12 @@
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
 // (X) Special grammar: distance(acc/nom), special plural, onto_pre/post
+// (X) Support announcing highway exits
 
 var metricConst;
 var dictionary = {};
 var tts;
+
 //// STRINGS
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {

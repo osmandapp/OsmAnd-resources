@@ -1,5 +1,3 @@
-
-
 // IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 //
 // (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
@@ -9,7 +7,7 @@
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
 // (X) Special grammar: special plural
-
+// (X) Support announcing highway exits
 
 var metricConst;
 var tts;
@@ -18,6 +16,7 @@ var dictionary = {};
 //// STRINGS
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
+	// ROUTE CALCULATED
 	dictionary["route_is"] = tts ? "Працягласьць маршруту " : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Шукаем новы маршрут." : "route_calculate.ogg";
 	dictionary["distance"] = tts ? "працягласьць " : "distance.ogg";

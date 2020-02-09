@@ -7,14 +7,16 @@
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
 // (N/A) Special grammar: (please specify which)
+// (X) Support announcing highway exits
 
 var metricConst;
 var dictionary = {};
 var tts;
+
 //// STRINGS
 ////////////////////////////////////////////////////////////////
-// ROUTE CALCULATED
 function populateDictionary(tts) {
+	// ROUTE CALCULATED
 	dictionary["route_is"] = tts ? "अंतर" : "route_is.ogg";
 	dictionary["route_is2"] = tts ? " है" : "route_is2.ogg";
 	dictionary["route_calculate"] = tts ? "मार्ग पुनर्गणना," : "route_calculate.ogg";

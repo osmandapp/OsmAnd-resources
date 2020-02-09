@@ -7,13 +7,16 @@
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
 // (X) Special grammar: (imperative form of some verbs (*_imp versions))
+// (X) Support announcing highway exits
 
 var dictionary = {};
 var metricConst;
 var tts;
+
 //// STRINGS
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
+	// ROUTE CALCULATED
 	dictionary["route_is"] = tts ? "A rota tem " : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Rota recalculada" : "route_calculate.ogg";
 	dictionary["distance"] = tts ? " Distância de " : "distance.ogg";

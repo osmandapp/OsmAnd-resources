@@ -10,15 +10,16 @@
 //         (X) Gendered numbering ( 2 hours - două ore / 2 km - doi km )
 //         (X) "de" preposition on numbers bigger than 20
 //         (X) Added "and" between hours and minutes
-
+// (X) Support announcing highway exits
 
 var metricConst;
 var dictionary = {};
 var tts;
+
 //// STRINGS
 ////////////////////////////////////////////////////////////////
-// ROUTE CALCULATED
 function populateDictionary(tts) {
+	// ROUTE CALCULATED
 	dictionary["route_is"] = tts ? "Lungimea traseului este de" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Traseu recalculat" : "route_calculate.ogg";
 	dictionary["distance"] = tts ? ", distanța" : "distance.ogg";

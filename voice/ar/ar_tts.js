@@ -10,6 +10,7 @@
 // (X) Special grammar: agreement of number and unit gender
 // (X) Special grammar: nominative vs. genitive/accusative distinction
 // (X) Special grammar: word order with ordinal numbers
+// (X) Support announcing highway exits
 
 /* jshint -W069 */
 
@@ -19,8 +20,8 @@ var tts;
 
 //// STRINGS
 ////////////////////////////////////////////////////////////////
-// ROUTE CALCULATED
 function populateDictionary(tts) {
+	// ROUTE CALCULATED
 	dictionary["route_is"] = tts ? "تَبْلُغُ المَسافة" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "تمّتْ إعادة حِساب الطريق" : "route_calculate.ogg";
 	dictionary["distance"] = tts ? "تَبْلُغُ المَسافة" : "distance.ogg";

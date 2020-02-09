@@ -7,6 +7,7 @@
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
 // (N/A) Special grammar: (please specify which)
+// (X) Support announcing highway exits
 
 var metricConst;
 var tts;

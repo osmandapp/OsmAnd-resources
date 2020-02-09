@@ -7,15 +7,16 @@
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
 // (X) Special grammar: special plural 1 2
-
+// (X) Support announcing highway exits
 
 var metricConst;
 var dictionary = {};
 var tts;
+
 //// STRINGS
 ////////////////////////////////////////////////////////////////
-// ROUTE CALCULATED
 function populateDictionary(tts) {
+	// ROUTE CALCULATED
 	dictionary["route_is"] = tts ? "Pot bo dolga " : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Izračunana je nova pot" : "route_calculate.ogg";
 	dictionary["distance"] = tts ? "razdalja " : "distance.ogg";

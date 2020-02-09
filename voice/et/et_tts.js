@@ -1,4 +1,3 @@
-
 // IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 //
 // (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
@@ -9,14 +8,15 @@
 // (X) Distance unit support (meters / feet / yard)
 // (X) Special grammar: distance(Case), special after(Dist), street name (nominative/genitive/allative/adessive/terminative)
 // TODO: connect street declination code into new v103 turn_street and follow_street code
+// (X) Support announcing highway exits
 
 var dictionary = {};
 var metricConst;
 var tts;
 
+//// STRINGS
+////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
-	//// STRINGS
-	////////////////////////////////////////////////////////////////
 	// ROUTE CALCULATED
 	dictionary["route_is"] = tts ? "Teekond on " : "route_is.ogg";
 	dictionary["long"] = tts ? "pikk, " : "long.ogg"; // Comma!

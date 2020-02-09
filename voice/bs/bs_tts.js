@@ -9,6 +9,7 @@
 // (X) Special grammar: plural forms for numbers 2-4
 // (X) Special grammar: word order with clitics ("onda se držite lijevo")
 // (X) Special grammar: grammatical gender and case for numbers ending with 1 and 2 ("udaljenost je jedna milja", "nakon jedne milje", "za jednu milju" etc.)
+// (X) Support announcing highway exits
 
 /* jshint -W069 */
 
@@ -18,8 +19,8 @@ var tts;
 
 //// STRINGS
 ////////////////////////////////////////////////////////////////
-// ROUTE CALCULATED
 function populateDictionary(tts) {
+	// ROUTE CALCULATED
 	dictionary["route_is"] = tts ? "ruta je" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "ruta preračunata" : "route_calculate.ogg";
 	dictionary["distance"] = tts ? "udaljenost je" : "distance.ogg";

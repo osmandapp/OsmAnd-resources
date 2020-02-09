@@ -7,15 +7,16 @@
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
 // (X) Special grammar: special plural, 1, 2, 3_4, 5+, accusative/locative/instrumental exists in the language but avoided in this file
+// (X) Support announcing highway exits
 
-//// STRINGS
-////////////////////////////////////////////////////////////////
-// ROUTE CALCULATED
 var metricConst;
 var dictionary = {};
 var tts;
 
+//// STRINGS
+////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
+	// ROUTE CALCULATED
 	dictionary["route_is"] = tts ? "Cesta je dlhá " : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Cesta prepočítaná" : "route_calculate.ogg";
 	dictionary["distance"] = tts ? "vzdialenosť " : "distance.ogg";

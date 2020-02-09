@@ -7,14 +7,16 @@
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
 // (X) Special grammar: distance(acc/nom), special plural, onto_pre/post
+// (X) Support announcing highway exits
 
 var metricConst;
 var dictionary = {};
 var tts;
+
 //// STRINGS
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
-		// ROUTE CALCULATED
+	// ROUTE CALCULATED
 	dictionary["route_is"] = tts ? "Az útvonal " : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Újratervezés" : "route_calculate.ogg";
 	dictionary["distance"] = tts ? "a távolság " : "distance.ogg";

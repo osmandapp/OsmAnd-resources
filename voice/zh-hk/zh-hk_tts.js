@@ -7,6 +7,8 @@
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
 // (N/A) Special grammar: (please specify which)
+// (X) Support announcing highway exits
+
 var metricConst;
 var dictionary = {};
 var tts;
@@ -14,6 +16,7 @@ var tts;
 //// STRINGS
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
+	// ROUTE CALCULATED
 	dictionary["route_is1"] = tts ? "路程" : "route_is1.ogg";
 	dictionary["route_is2"] = tts ? "遠" : "route_is2.ogg";
 	dictionary["route_calculate"] = tts ? "已重新計算路綫" : "route_calculate.ogg";
