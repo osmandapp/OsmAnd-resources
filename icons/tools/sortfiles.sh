@@ -871,7 +871,7 @@ mycp leisure miniature_golf sport_miniature_golf.png
 mycp leisure playground sport_colored_playground.png
 mycp leisure sports_centre sport_leisure_centre2.png
 mycp leisure water_park entertainment_water_slide.png
-mycp amenity sauna sport_sauna.png
+mycpname sauna sport_sauna.png
 mycpname fitness_station sport_fitness_station.png
 mycpname tanning_salon sport_tanning_salon.png
 
