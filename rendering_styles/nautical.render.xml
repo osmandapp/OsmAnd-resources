@@ -502,6 +502,7 @@
 			<case tag="seamark:type" value="rapids"/>
 			<case tag="seamark:type" value="waterfall"/>
 			<case tag="seamark:type" value="seabed_area"/>
+			<case tag="seamark:type" value="obstruction"/>
 			<case tag="seamark" value=""/>
 			<case tag="seamark:type" value="fishing_facility"/>
 		</switch>
@@ -626,6 +627,7 @@
 			<case tag="seamark:type" value="recommended_track" order="81"/>
 			<case tag="seamark:type" value="recommended_traffic_lane" order="81"/>
 			<case tag="seamark:type" value="navigation_line" order="81"/>
+			<case tag="seamark:type" value="obstruction"/>
 
 			<case tag="waterway" value="dam"/>
 			<case tag="waterway" value="weir" order="19"/>
@@ -1488,7 +1490,15 @@
 				<switch textColor="#8c0000" textWrapWidth="19" textHaloColor="#99ffc9c9" textHaloRadius="2" textOrder="61">
 					<case minzoom="13" tag="seamark:type" value="restricted_area" nameTag="seamark:name" nameTag2="seamark:restricted_area:information"/>
 					<case minzoom="13" tag="seamark:type" value="restricted_area" nameTag="seamark:restricted_area:information" nameTag2="seamark:name"/>
-					<case minzoom="13" tag="seamark:type" value="obstruction" nameTag="seamark:name"/>
+					<case minzoom="16" maxzoom="17" tag="seamark:type" value="obstruction" nameTag="seamark:name">
+						<apply_if additional="seamark:obstruction:category=stump" textDy="-13"/>
+					</case>
+					<case minzoom="18" tag="seamark:type" value="obstruction" nameTag="seamark:name" nameTag2="seamark:obstruction:water_level">
+						<apply_if additional="seamark:obstruction:category=stump" textDy="-13"/>
+					</case>
+					<case minzoom="18" tag="seamark:type" value="obstruction" nameTag="seamark:obstruction:water_level">
+						<apply_if additional="seamark:obstruction:category=stump" textDy="-13"/>
+					</case>
 					<case minzoom="13" tag="seamark:type" value="cable_area" nameTag="seamark:name"/>
 					<case minzoom="13" tag="seamark:type" value="precautionary_area" nameTag="seamark:name"/>
 					<case minzoom="15" tag="seamark:type" value="seaplane_landing_area" nameTag="seamark:name"/>
@@ -2805,6 +2815,7 @@
 				<case additional="seamark:obstruction:category=fish_haven" icon="seamark_restricted_area_fish_sanctuary"/>
 				<case additional="seamark:obstruction:category=boom" icon="seamark_obstruction_boom"/>
 				<case additional="seamark:obstruction:category=construction" icon="seamark_obstruction_construction"/>
+				<case minzoom="16" additional="seamark:obstruction:category=stump" icon="seamark_obstruction_stump" icon_shift_py="-0.8"/>
 			</case>
 
 			<case minzoom="15" tag="seamark:type" value="distance_mark" icon="seamark_distance_mark" iconOrder="150">
@@ -3959,6 +3970,15 @@
 				<case minzoom="16" strokeWidth="2:2"/>
 			</apply>
 		</switch>
+		<case minzoom="11" tag="seamark:type" value="obstruction" color="#ff0000">
+			<apply>
+				<case maxzoom="12" strokeWidth="1.5" pathEffect="2_2"/>
+				<case maxzoom="14" strokeWidth="2" pathEffect="2_3"/>
+				<case maxzoom="16" strokeWidth="3" pathEffect="2_4"/>
+				<case minzoom="17" strokeWidth="4" pathEffect="2_5"/>
+			</apply>
+			<apply_if nightMode="true" color="#aaff0000"/>
+		</case>
 
 		<switch>
 			<case tag="natural" value="strait"/>
