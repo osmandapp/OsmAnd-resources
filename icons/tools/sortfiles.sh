@@ -2428,3 +2428,13 @@ mycpname special_house special_house.png
 mycpname special_marker special_marker.png
 mycpname special_star_stroked special_star_stroked.png
 mycpname special_star special_star.png
+mycpname special_number_0 special_number_0.png
+mycpname special_number_1 special_number_1.png
+mycpname special_number_2 special_number_2.png
+mycpname special_number_3 special_number_3.png
+mycpname special_number_4 special_number_4.png
+mycpname special_number_5 special_number_5.png
+mycpname special_number_6 special_number_6.png
+mycpname special_number_7 special_number_7.png
+mycpname special_number_8 special_number_8.png
+mycpname special_number_9 special_number_9.png
