@@ -2438,3 +2438,7 @@ mycpname special_number_6 special_number_6.png
 mycpname special_number_7 special_number_7.png
 mycpname special_number_8 special_number_8.png
 mycpname special_number_9 special_number_9.png
+mycpname special_bookmark special_bookmark.png
+mycpname special_flag_finish special_flag_finish.png
+mycpname special_flag_start special_flag_start.png
+mycpname special_heart special_heart.png
