@@ -31,7 +31,7 @@ for (( i = 0 ; i < ${#FOLDERS[@]} ; i++ )) do
   mkdir -p ${OUTPUTFOLDER}/${FOLDERS[i]}
 done
 
-generateElements() {
+genMapIconsNoScale() {
   TYPE=$1
   SCALE=$2
   MDPI=1
@@ -59,7 +59,7 @@ generateElements() {
   done
 }
 
-generatePngsNoMX() {
+genMapIconsStdSize() {
   TYPE=$1
   COLOR=$2 # color for map icons(mm_*)
   if [ "$3" == 'x4' ]; then 
@@ -143,30 +143,40 @@ generatePngs() {
     done
 }
 
-       generateElements 'shaders'
-       generateElements 'shields'
-       generateElements 'shields_big'
-       generateElements 'road_shields'
-       generateElements 'osmc_bg'
-       generateElements 'map-small' '0.5'
+       genMapIconsNoScale 'shaders'
+       genMapIconsNoScale 'shields'
+       genMapIconsNoScale 'shields_big'
+       genMapIconsNoScale 'road_shields'
+       genMapIconsNoScale 'osmc_bg'
+       genMapIconsNoScale 'map-small' '0.5'
 
-       generatePngsNoMX 'osmc_black' '#'
-       generatePngsNoMX 'osmc_blue' '#'
-       generatePngsNoMX 'osmc_green' '#'
-       generatePngsNoMX 'osmc_orange' '#'
-       generatePngsNoMX 'osmc_red' '#'
-       generatePngsNoMX 'osmc_white' '#'
-       generatePngsNoMX 'osmc_yellow' '#'
-       generatePngsNoMX 'osmc_other' '#'
-       generatePngsNoMX 'functional-icons' '#ff8f00'
-       generatePngsNoMX 'functional-icons-x2' '#ff8f00' x2
+       genMapIconsStdSize 'osmc_black' '#'
+       genMapIconsStdSize 'osmc_blue' '#'
+       genMapIconsStdSize 'osmc_green' '#'
+       genMapIconsStdSize 'osmc_orange' '#'
+       genMapIconsStdSize 'osmc_red' '#'
+       genMapIconsStdSize 'osmc_white' '#'
+       genMapIconsStdSize 'osmc_yellow' '#'
+       genMapIconsStdSize 'osmc_other' '#'
+       genMapIconsStdSize 'functional-icons' '#ff8f00'
+       genMapIconsStdSize 'functional-icons-x2' '#ff8f00' x2
+
+       genMapIconsStdSize 'overlays' '#' x2
+       genMapIconsStdSize 'overlays_water' '#' x2
+
+       genMapIconsStdSize 'topo' '#000000'
+       genMapIconsStdSize 'topo_big' '#000000' x2
+       genMapIconsStdSize 'topo_water'  '#0F5CF0'
+       genMapIconsStdSize 'topo_emergency' '#DA0092'
+       genMapIconsStdSize 'special_poi' '#FFF5F1'
       
-       generatePngs 'seamark' '#777777' '#777777' '' x2 '' nomx
-       generatePngs 'seamark_small' '#777777' '#777777' '' '' '' nomx
+       genMapIconsNoScale 'seamark_shields'
+       genMapIconsNoScale 'seamark_shields_x4'
+       genMapIconsStdSize 'seamark' '#' x2
+       genMapIconsStdSize 'seamark_small' '#' x2
+       genMapIconsStdSize 'seamark_big' '#' x4
+
        generatePngs 'seamark_small_poi' '#777777' '#ff8f00'
-       generatePngs 'seamark_big' '#777777' '#777777' '' '' x4 nomx
-       generateElements 'seamark_shields'
-       generateElements 'seamark_shields_x4'
 
        generatePngs 'skimap' '#000000' '#ff8f00' '' x2
        generatePngs 'subway' '#777777' '#ff8f00' '' x2 ''
@@ -188,7 +198,6 @@ generatePngs() {
 
        generatePngs 'tourist' '#ffffff' '#ff8f00'
        generatePngs 'tourist_colored' '#593906' '#ff8f00'
-       generatePngs 'special_poi' '#a62b00' '#FFF5F1' '' '' '' nomx
 
        generatePngs 'sport' '#ffffff' '#ff8f00'
        generatePngs 'sport_colored' '#39AC39' '#ff8f00'
@@ -202,10 +211,6 @@ generatePngs() {
        generatePngs 'education' '#ffffff' '#ff8f00'
        generatePngs 'poi' '#ffffff' '#ff8f00'
        generatePngs 'poi_colored' '#3f3f3f' '#ff8f00'
-       generatePngs 'topo' '#000000' '#000000' '' '' '' nomx
-       generatePngs 'topo_big' '#000000' '#000000' '' x2 '' nomx
-       generatePngs 'topo_water' '#000000' '#0F5CF0' '' '' '' nomx
-       generatePngs 'topo_emergency' '#000000' '#DA0092' '' '' '' nomx
        generatePngs 'additional' '#3f3f3f' '#ff8f00'
        generatePngs 'additional_category' '#3f3f3f' '#ff8f00'
        generatePngs 'power' '#3f3f3f' '#ff8f00'
@@ -223,10 +228,5 @@ generatePngs() {
        generatePngs 'entertainment_colored' '#6dba00' '#ff8f00'
 
        generatePngs 'icons8' '#777777' '#ff8f00' neg
-
        generatePngs 'xmas' '#aa2001' '#ff8f00'
-
-       generatePngs 'overlays' '#777777' '#777777' '' x2 '' nomx
-       generatePngs 'overlays_water' '#777777' '#777777' '' x2 '' nomx
-
        generatePngs 'special' '#ffffff' '#ff8f00'
