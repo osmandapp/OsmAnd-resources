@@ -13,6 +13,8 @@ SIZES_ORIG=(72 48 36 24 36 24 18 12)
 #Old sizes for map icons
 #SIZES=(72 48 36 24 42 28 21 14)
 SIZES_NOMX=(36 24 18 12) 
+SIZES_NOMX2=(96 64 48 32) 
+SIZES_NOMX4=(192 128 96 64) 
 SIZESx2=(72 48 36 24 96 64 48 32)
 SIZESx4=(72 48 36 24 192 128 96 64)
 SIZES_HALF=4
@@ -60,7 +62,13 @@ generateElements() {
 generatePngsNoMX() {
   TYPE=$1
   COLOR=$2 # color for map icons(mm_*)
-  SIZES=("${SIZES_NOMX[@]}")
+  if [ "$3" == 'x4' ]; then 
+    SIZES=("${SIZES_NOMX4[@]}")
+  elif [ "$3" == 'x2' ]; then 
+    SIZES=("${SIZES_NOMX2[@]}")
+  else
+    SIZES=("${SIZES_NOMX[@]}")
+  fi
   FOLDERS=("${FOLDERS_NOMX[@]}")
   echo "Generate $TYPE, sizes: ${SIZES[@]}, folders: ${FOLDERS[@]}"
   for FILE in ${SVGFOLDER}${TYPE}/*.svg; do
@@ -150,6 +158,8 @@ generatePngs() {
        generatePngsNoMX 'osmc_white' '#'
        generatePngsNoMX 'osmc_yellow' '#'
        generatePngsNoMX 'osmc_other' '#'
+       generatePngsNoMX 'functional-icons' '#ff8f00'
+       generatePngsNoMX 'functional-icons-x2' '#ff8f00' x2
       
        generatePngs 'seamark' '#777777' '#777777' '' x2 '' nomx
        generatePngs 'seamark_small' '#777777' '#777777' '' '' '' nomx
@@ -159,9 +169,6 @@ generatePngs() {
        generateElements 'seamark_shields_x4'
 
        generatePngs 'skimap' '#000000' '#ff8f00' '' x2
-
-       generatePngs 'functional-icons' '#777777' '#ff8f00' '' '' '' nomx
-       generatePngs 'functional-icons-x2' '#777777' '#ff8f00' '' x2 '' nomx
        generatePngs 'subway' '#777777' '#ff8f00' '' x2 ''
 
        generatePngs 'water' '#ffffff' '#ff8f00'
