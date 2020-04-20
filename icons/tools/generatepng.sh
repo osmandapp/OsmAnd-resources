@@ -67,31 +67,28 @@ generatePngs() {
   X4_ICONS=$6
   NO_MX=$7
   echo "On : $TYPE : $X2_ICONS $X4_ICONS $NO_MX"
-  if [ "$X4_ICONS" = 'x4' ]
-    then
+  if [ "$X4_ICONS" = 'x4' ]; then
      SIZES=("${SIZESx4[@]}")
      echo " x4  ${SIZES[@]}"
     else
      SIZES=("${SIZES_ORIG[@]}")
      echo "     ${SIZES[@]} "
   fi
-  if [ "$X2_ICONS" = 'x2' ]
-    then
+  if [ "$X2_ICONS" = 'x2' ]; then
      SIZES=("${SIZESx2[@]}")
      echo " x2  ${SIZES[@]}"
   fi
 
-  if [ "$NO_MX" = 'nomx' ]
-    then
-	#let "SIZES_HALF=${#SIZES[@]} / 2"
-	SIZES=("${SIZES[@]:$SIZES_HALF}")
-	echo "nomx:"${SIZES[@]}
-	FOLDERS=("${FOLDERS_NOMX[@]}")
-	echo "     ${FOLDERS[@]}"
-    else
-	FOLDERS=("${FOLDERS_ORIG[@]}")
- 	echo "     ${FOLDERS[@]}"
- fi
+  if [ "$NO_MX" = 'nomx' ]; then
+      #let "SIZES_HALF=${#SIZES[@]} / 2"
+      SIZES=("${SIZES[@]:$SIZES_HALF}")
+      echo "nomx:"${SIZES[@]}
+      FOLDERS=("${FOLDERS_NOMX[@]}")
+      echo "     ${FOLDERS[@]}"
+  else
+      FOLDERS=("${FOLDERS_ORIG[@]}")
+      echo "     ${FOLDERS[@]}"
+  fi
   for FILE in $SVGFOLDER$1/*.svg; do
       FILENAME=${FILE##/*/}
       if [[ $FILENAME == _* ]]; then
