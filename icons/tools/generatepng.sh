@@ -6,18 +6,17 @@ BASEFOLDER=`pwd`;
 popd  > /dev/null
 BASEFOLDER=`dirname $BASEFOLDER`
 
-FOLDERS=(big-xxhdpi big-xhdpi big-hdpi big-mdpi xxhdpi xhdpi hdpi mdpi)
+FOLDERS_ORIG=(big-xxhdpi big-xhdpi big-hdpi big-mdpi xxhdpi xhdpi hdpi mdpi)
 FOLDERS_NOMX=(xxhdpi xhdpi hdpi mdpi) # no icons used in osmand interface (search, poi overlay)
 #
-SIZES=(72 48 36 24 36 24 18 12)
+SIZES_ORIG=(72 48 36 24 36 24 18 12)
 #Old sizes for map icons
 #SIZES=(72 48 36 24 42 28 21 14)
+SIZES_NOMX=(36 24 18 12) 
 SIZESx2=(72 48 36 24 96 64 48 32)
 SIZESx4=(72 48 36 24 192 128 96 64)
 SIZES_HALF=4
 
-FOLDERS_ORIG=("${FOLDERS[@]}")
-SIZES_ORIG=("${SIZES[@]}")
 
 SVGFOLDER=${BASEFOLDER}/svg/
 OUTPUTFOLDER=${BASEFOLDER}/png/
@@ -57,6 +56,26 @@ generateElements() {
       rsvg-convert -f png ${FILE} -x $XXHDPI -y $XXHDPI -o ${OUTPUTFOLDER}xxhdpi/${FILENAME}.png
   done
 }
+
+generatePngsNoMX() {
+  TYPE=$1
+  COLOR=$2 # color for map icons(mm_*)
+  SIZES=("${SIZES_NOMX[@]}")
+  FOLDERS=("${FOLDERS_NOMX[@]}")
+  echo "Generate $TYPE, sizes: ${SIZES[@]}, folders: ${FOLDERS[@]}"
+  for FILE in ${SVGFOLDER}${TYPE}/*.svg; do
+      FILENAME=${FILE##/*/}
+      if [[ $FILENAME == _* ]]; then
+        continue;
+      fi
+      FILENAME=${TYPE}_${FILENAME%.*}
+      for (( j = 0 ; j < ${#SIZES[@]}; j++ )) do
+        OUTF=${OUTPUTFOLDER}${FOLDERS[j]}/
+        ${BASEFOLDER}/tools/recolourtopng.sh "${FILE}" 'none' 'none' "$COLOR" ${SIZES[j]} ${OUTF}${FILENAME} #> /dev/null 2>&1        
+      done
+  done
+}
+
 
 generatePngs() {
   TYPE=$1
@@ -123,15 +142,15 @@ generatePngs() {
        generateElements 'osmc_bg'
        generateElements 'map-small' '0.5'
 
-       generatePngs 'osmc_black' '#777777' '#777777' '' '' '' nomx
-       generatePngs 'osmc_blue' '#777777' '#777777' '' '' '' nomx
-       generatePngs 'osmc_green' '#777777' '#777777' '' '' '' nomx
-       generatePngs 'osmc_orange' '#777777' '#777777' '' '' '' nomx
-       generatePngs 'osmc_red' '#777777' '#777777' '' '' '' nomx
-       generatePngs 'osmc_white' '#777777' '#777777' '' '' '' nomx
-       generatePngs 'osmc_yellow' '#777777' '#777777' '' '' '' nomx
-       generatePngs 'osmc_other' '#777777' '#777777' '' '' '' nomx
-
+       generatePngsNoMX 'osmc_black' '#'
+       generatePngsNoMX 'osmc_blue' '#'
+       generatePngsNoMX 'osmc_green' '#'
+       generatePngsNoMX 'osmc_orange' '#'
+       generatePngsNoMX 'osmc_red' '#'
+       generatePngsNoMX 'osmc_white' '#'
+       generatePngsNoMX 'osmc_yellow' '#'
+       generatePngsNoMX 'osmc_other' '#'
+      
        generatePngs 'seamark' '#777777' '#777777' '' x2 '' nomx
        generatePngs 'seamark_small' '#777777' '#777777' '' '' '' nomx
        generatePngs 'seamark_small_poi' '#777777' '#ff8f00'
