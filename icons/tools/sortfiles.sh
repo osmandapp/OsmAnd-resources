@@ -6,7 +6,7 @@ mygroup() {
  	cp ../png/xhdpi/${2}.png ../../rendering_styles/style-icons/drawable-xhdpi/mm_${1}.png
  	cp ../png/xxhdpi/${2}.png ../../rendering_styles/style-icons/drawable-xxhdpi/mm_${1}.png
 	cp ../png/xxhdpi/${2}.png ../../rendering_styles/style-icons/drawable-xxhdpi/mm_${1}.png
-	cp ../vd/${2}.xml ../../rendering_styles/style-icons/drawable/mx_${1}.xml
+	cp ../vd/${2}.xml ../../rendering_styles/drawable-mx/mx_${1}.xml
  	cp ../png/big-mdpi/${2}.png ../../rendering_styles/mx-png-icons/drawable-mdpi/mx_${1}.png
  	cp ../png/big-hdpi/${2}.png ../../rendering_styles/mx-png-icons/drawable-hdpi/mx_${1}.png
  	cp ../png/big-xhdpi/${2}.png ../../rendering_styles/mx-png-icons/drawable-xhdpi/mx_${1}.png
