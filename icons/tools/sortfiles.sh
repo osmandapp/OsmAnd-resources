@@ -1,10 +1,4 @@
 #!/bin/bash
-mkdir -p ../../rendering_styles/style-icons/
-mkdir -p ../../rendering_styles/mx-png-icons/drawable-mdpi
-mkdir -p ../../rendering_styles/mx-png-icons/drawable-hdpi
-mkdir -p ../../rendering_styles/mx-png-icons/drawable-xhdpi
-mkdir -p ../../rendering_styles/mx-png-icons/drawable-xxhdpi
-
 mygroup() {
  	echo "${2}.png   style-icons/mm_${1}.png"
  	cp ../png/mdpi/${2}.png ../../rendering_styles/style-icons/drawable-mdpi/mm_${1}.png
