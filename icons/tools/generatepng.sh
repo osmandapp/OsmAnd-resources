@@ -6,19 +6,12 @@ BASEFOLDER=`pwd`;
 popd  > /dev/null
 BASEFOLDER=`dirname $BASEFOLDER`
 
-FOLDERS_ORIG=(big-xxhdpi big-xhdpi big-hdpi big-mdpi xxhdpi xhdpi hdpi mdpi)
 FOLDERS_NOMX=(xxhdpi xhdpi hdpi mdpi) # no icons used in osmand interface (search, poi overlay)
-#
-SIZES_ORIG=(72 48 36 24 36 24 18 12)
-#Old sizes for map icons
-#SIZES=(72 48 36 24 42 28 21 14)
+FOLDERS_POI=(big-xxhdpi big-xhdpi big-hdpi big-mdpi) 
 SIZES_NOMX=(36 24 18 12) 
 SIZES_NOMX2=(96 64 48 32) 
 SIZES_NOMX4=(192 128 96 64) 
-SIZESx2=(72 48 36 24 96 64 48 32)
-SIZESx4=(72 48 36 24 192 128 96 64)
-SIZES_HALF=4
-
+SIZES_POI=(72 48 36 24) 
 
 SVGFOLDER=${BASEFOLDER}/svg/
 OUTPUTFOLDER=${BASEFOLDER}/png/
@@ -27,8 +20,11 @@ if [ ! -d "${OUTPUTFOLDER}" ]; then
   mkdir ${OUTPUTFOLDER}
 fi
 
-for (( i = 0 ; i < ${#FOLDERS[@]} ; i++ )) do
-  mkdir -p ${OUTPUTFOLDER}/${FOLDERS[i]}
+for (( i = 0 ; i < ${#FOLDERS_NOMX[@]} ; i++ )) do
+  mkdir -p ${OUTPUTFOLDER}/${FOLDERS_NOMX[i]}
+done
+for (( i = 0 ; i < ${#FOLDERS_POI[@]} ; i++ )) do
+  mkdir -p ${OUTPUTFOLDER}/${FOLDERS_POI[i]}
 done
 
 genMapIconsNoScale() {
@@ -61,16 +57,21 @@ genMapIconsNoScale() {
 
 genMapIconsStdSize() {
   TYPE=$1
-  COLOR=$2 # color for map icons(mm_*)
+  PCOLOR=$2 # color for map icons(mm_*)
+  FOLDERS=("${FOLDERS_NOMX[@]}")
+  NEG_PARAM=$4
   if [ "$3" == 'x4' ]; then 
     SIZES=("${SIZES_NOMX4[@]}")
   elif [ "$3" == 'x2' ]; then 
     SIZES=("${SIZES_NOMX2[@]}")
+  elif [ "$3" == 'poi' ]; then 
+    SIZES=("${SIZES_POI[@]}")
+    FOLDERS=("${FOLDERS_POI[@]}")
   else
     SIZES=("${SIZES_NOMX[@]}")
   fi
-  FOLDERS=("${FOLDERS_NOMX[@]}")
-  echo "Generate $TYPE, sizes: ${SIZES[@]}, folders: ${FOLDERS[@]}"
+  
+  echo "Generate $TYPE, sizes: ${SIZES[@]}, folders: ${FOLDERS[@]}, color $PCOLOR"
   for FILE in ${SVGFOLDER}${TYPE}/*.svg; do
       FILENAME=${FILE##/*/}
       if [[ $FILENAME == _* ]]; then
@@ -79,154 +80,105 @@ genMapIconsStdSize() {
       FILENAME=${TYPE}_${FILENAME%.*}
       for (( j = 0 ; j < ${#SIZES[@]}; j++ )) do
         OUTF=${OUTPUTFOLDER}${FOLDERS[j]}/
-        ${BASEFOLDER}/tools/recolourtopng.sh "${FILE}" 'none' 'none' "$COLOR" ${SIZES[j]} ${OUTF}${FILENAME} #> /dev/null 2>&1        
+        if [[ -z "$NEG_PARAM" ]]; then
+          ${BASEFOLDER}/tools/recolourtopng.sh "${FILE}" 'none' 'none' "$PCOLOR" ${SIZES[j]} ${OUTF}${FILENAME} #> /dev/null 2>&1        
+        else 
+          ${BASEFOLDER}/tools/recolourtopng.sh "${FILE}" "$PCOLOR" "$PCOLOR" '#ffffff'  ${SIZES[j]} ${OUTF}${FILENAME} > /dev/null 2>&1
+        fi 
       done
   done
 }
 
+generateBothMapPOIPng() {
+  TYPE="$1"
+  COLOR_MAP="$2" # color for map icons(mm_*)
+  COLOR_POI="$3" # color for osmand interface icons (poi layer,search) (mx_)
+  MAP_SCALE="$4" # x2, x4, empty
+  NEG="$5"
+  genMapIconsStdSize $TYPE "${COLOR_POI}" 'poi' "$NEG"
+  genMapIconsStdSize $TYPE "${COLOR_MAP}" "$MAP_SCALE" "$NEG"
+} 
 
-generatePngs() {
-  TYPE=$1
-  COLOR=$2 # color for map icons(mm_*)
-  COLOR2=$3 # color for osmand interface icons (poi layer,search) (mx_)
-  NEG=$4
-  X2_ICONS=$5
-  X4_ICONS=$6
-  NO_MX=$7
-  echo "On : $TYPE : $X2_ICONS $X4_ICONS $NO_MX"
-  if [ "$X4_ICONS" = 'x4' ]; then
-     SIZES=("${SIZESx4[@]}")
-     echo " x4  ${SIZES[@]}"
-    else
-     SIZES=("${SIZES_ORIG[@]}")
-     echo "     ${SIZES[@]} "
-  fi
-  if [ "$X2_ICONS" = 'x2' ]; then
-     SIZES=("${SIZESx2[@]}")
-     echo " x2  ${SIZES[@]}"
-  fi
+  genMapIconsNoScale 'shaders'
+  genMapIconsNoScale 'shields'
+  genMapIconsNoScale 'shields_big'
+  genMapIconsNoScale 'road_shields'
+  genMapIconsNoScale 'osmc_bg'
+  genMapIconsNoScale 'map-small' '0.5'
 
-  if [ "$NO_MX" = 'nomx' ]; then
-      #let "SIZES_HALF=${#SIZES[@]} / 2"
-      SIZES=("${SIZES[@]:$SIZES_HALF}")
-      echo "nomx:"${SIZES[@]}
-      FOLDERS=("${FOLDERS_NOMX[@]}")
-      echo "     ${FOLDERS[@]}"
-  else
-      FOLDERS=("${FOLDERS_ORIG[@]}")
-      echo "     ${FOLDERS[@]}"
-  fi
-  for FILE in $SVGFOLDER$1/*.svg; do
-      FILENAME=${FILE##/*/}
-      if [[ $FILENAME == _* ]]; then
-        continue;
-      fi
-      FILENAME=${TYPE}_${FILENAME%.*}
-      for (( j = 0 ; j < ${SIZES_HALF}; j++ )) do
-        OUTF=${OUTPUTFOLDER}${FOLDERS[j]}/
-        if [[ -z $NEG ]]; then
-         ${BASEFOLDER}/tools/recolourtopng.sh "${FILE}" 'none' 'none' $COLOR2 ${SIZES[j]} ${OUTF}${FILENAME} > /dev/null 2>&1
-        else
-         ${BASEFOLDER}/tools/recolourtopng.sh "${FILE}" $COLOR2 $COLOR2 '#ffffff'  ${SIZES[j]} ${OUTF}${FILENAME} > /dev/null 2>&1
-        fi
-        # convert ${OUTF}${FILENAME}.png \( +clone -background "#ffffff" -shadow 8000x2-0+0 \) +swap -background none -layers merge +repage -trim ${OUTF}${FILENAME}_glow.png
-      done
-      for (( j = ${SIZES_HALF} ; j < ${#SIZES[@]}; j++ )) do
-        OUTF=${OUTPUTFOLDER}${FOLDERS[j]}/
-        if [[ -z $NEG ]]; then
-          ${BASEFOLDER}/tools/recolourtopng.sh "${FILE}" 'none' 'none' $COLOR ${SIZES[j]} ${OUTF}${FILENAME} > /dev/null 2>&1
-        else
-          ${BASEFOLDER}/tools/recolourtopng.sh "${FILE}" $COLOR $COLOR '#ffffff'  ${SIZES[j]} ${OUTF}${FILENAME} > /dev/null 2>&1
-        fi
-      done
+  genMapIconsStdSize 'osmc_black' '#'
+  genMapIconsStdSize 'osmc_blue' '#'
+  genMapIconsStdSize 'osmc_green' '#'
+  genMapIconsStdSize 'osmc_orange' '#'
+  genMapIconsStdSize 'osmc_red' '#'
+  genMapIconsStdSize 'osmc_white' '#'
+  genMapIconsStdSize 'osmc_yellow' '#'
+  genMapIconsStdSize 'osmc_other' '#'
+  genMapIconsStdSize 'functional-icons' '#ff8f00'
+  genMapIconsStdSize 'functional-icons-x2' '#ff8f00' x2
 
-    done
-}
+  genMapIconsStdSize 'overlays' '#' x2
+  genMapIconsStdSize 'overlays_water' '#' x2
 
-       genMapIconsNoScale 'shaders'
-       genMapIconsNoScale 'shields'
-       genMapIconsNoScale 'shields_big'
-       genMapIconsNoScale 'road_shields'
-       genMapIconsNoScale 'osmc_bg'
-       genMapIconsNoScale 'map-small' '0.5'
-
-       genMapIconsStdSize 'osmc_black' '#'
-       genMapIconsStdSize 'osmc_blue' '#'
-       genMapIconsStdSize 'osmc_green' '#'
-       genMapIconsStdSize 'osmc_orange' '#'
-       genMapIconsStdSize 'osmc_red' '#'
-       genMapIconsStdSize 'osmc_white' '#'
-       genMapIconsStdSize 'osmc_yellow' '#'
-       genMapIconsStdSize 'osmc_other' '#'
-       genMapIconsStdSize 'functional-icons' '#ff8f00'
-       genMapIconsStdSize 'functional-icons-x2' '#ff8f00' x2
-
-       genMapIconsStdSize 'overlays' '#' x2
-       genMapIconsStdSize 'overlays_water' '#' x2
-
-       genMapIconsStdSize 'topo' '#000000'
-       genMapIconsStdSize 'topo_big' '#000000' x2
-       genMapIconsStdSize 'topo_water'  '#0F5CF0'
-       genMapIconsStdSize 'topo_emergency' '#DA0092'
-       genMapIconsStdSize 'special_poi' '#FFF5F1'
+  genMapIconsStdSize 'topo' '#000000'
+  genMapIconsStdSize 'topo_big' '#000000' x2
+  genMapIconsStdSize 'topo_water'  '#0F5CF0'
+  genMapIconsStdSize 'topo_emergency' '#DA0092'
+  genMapIconsStdSize 'special_poi' '#FFF5F1'
       
-       genMapIconsNoScale 'seamark_shields'
-       genMapIconsNoScale 'seamark_shields_x4'
-       genMapIconsStdSize 'seamark' '#' x2
-       genMapIconsStdSize 'seamark_small' '#' x2
-       genMapIconsStdSize 'seamark_big' '#' x4
+  genMapIconsNoScale 'seamark_shields'
+  genMapIconsNoScale 'seamark_shields_x4'
+  genMapIconsStdSize 'seamark' '#' x2
+  genMapIconsStdSize 'seamark_small' '#' x2
+  genMapIconsStdSize 'seamark_big' '#' x4
 
-       generatePngs 'seamark_small_poi' '#777777' '#ff8f00'
+  generateBothMapPOIPng 'seamark_small_poi' '#777777' '#ff8f00'
+  generateBothMapPOIPng 'skimap' '#000000' '#ff8f00' x2
+  generateBothMapPOIPng 'subway' '#777777' '#ff8f00' x2 
 
-       generatePngs 'skimap' '#000000' '#ff8f00' '' x2
-       generatePngs 'subway' '#777777' '#ff8f00' '' x2 ''
+  generateBothMapPOIPng 'water' '#ffffff' '#ff8f00'
+  generateBothMapPOIPng 'water_colored' '#0092DA' '#ff8f00'
 
-       generatePngs 'water' '#ffffff' '#ff8f00'
-       generatePngs 'water_colored' '#0092DA' '#ff8f00'
+  generateBothMapPOIPng 'emergency' '#ffffff' '#ff8f00'
+  generateBothMapPOIPng 'emergency_colored' '#DA0092' '#ff8f00'
+  generateBothMapPOIPng 'health' '#ffffff' '#ff8f00' #DA0092
 
-       generatePngs 'emergency' '#ffffff' '#ff8f00'
-       generatePngs 'emergency_colored' '#DA0092' '#ff8f00'
-       generatePngs 'health' '#ffffff' '#ff8f00' #DA0092
+  generateBothMapPOIPng 'transport' '#ffffff' '#ff8f00'
+  generateBothMapPOIPng 'transport_colored' '#0092DA' '#ff8f00'
 
-       generatePngs 'transport' '#ffffff' '#ff8f00'
-       generatePngs 'transport_colored' '#0092DA' '#ff8f00'
+  generateBothMapPOIPng 'barrier' '#ffffff' '#ff8f00'
+  generateBothMapPOIPng 'barrier_colored' '#444444' '#ff8f00'
 
-       generatePngs 'barrier' '#ffffff' '#ff8f00'
-       generatePngs 'barrier_colored' '#444444' '#ff8f00'
+  generateBothMapPOIPng 'accommodation' '#ffffff' '#ff8f00'
 
-       generatePngs 'accommodation' '#ffffff' '#ff8f00'
+  generateBothMapPOIPng 'tourist' '#ffffff' '#ff8f00'
+  generateBothMapPOIPng 'tourist_colored' '#593906' '#ff8f00'
 
-       generatePngs 'tourist' '#ffffff' '#ff8f00'
-       generatePngs 'tourist_colored' '#593906' '#ff8f00'
+  generateBothMapPOIPng 'sport' '#ffffff' '#ff8f00'
+  generateBothMapPOIPng 'sport_colored' '#39AC39' '#ff8f00'
 
-       generatePngs 'sport' '#ffffff' '#ff8f00'
-       generatePngs 'sport_colored' '#39AC39' '#ff8f00'
+  generateBothMapPOIPng 'amenity' '#ffffff' '#ff8f00'
+  generateBothMapPOIPng 'amenity_colored' '#555555' '#ff8f00'
+  generateBothMapPOIPng 'office' '#ffffff' '#ff8f00'
+  generateBothMapPOIPng 'craft' '#ffffff' '#ff8f00'
+  generateBothMapPOIPng 'place_of_worship' '#333333' '#ff8f00'
+  generateBothMapPOIPng 'money' '#ffffff' '#ff8f00'
+  generateBothMapPOIPng 'education' '#ffffff' '#ff8f00'
+  generateBothMapPOIPng 'poi' '#ffffff' '#ff8f00'
+  generateBothMapPOIPng 'poi_colored' '#3f3f3f' '#ff8f00'
+  generateBothMapPOIPng 'additional' '#3f3f3f' '#ff8f00'
+  generateBothMapPOIPng 'additional_category' '#3f3f3f' '#ff8f00'
+  generateBothMapPOIPng 'power' '#3f3f3f' '#ff8f00'
+  generateBothMapPOIPng 'club' '#ffffff' '#ff8f00' #555555
+  generateBothMapPOIPng 'food' '#ffffff' '#ff8f00' #8f6732
+  generateBothMapPOIPng 'shopping' '#ffffff' '#ff8f00' #a734c2
 
-       generatePngs 'amenity' '#ffffff' '#ff8f00'
-       generatePngs 'amenity_colored' '#555555' '#ff8f00'
-       generatePngs 'office' '#ffffff' '#ff8f00'
-       generatePngs 'craft' '#ffffff' '#ff8f00'
-       generatePngs 'place_of_worship' '#333333' '#ff8f00'
-       generatePngs 'money' '#ffffff' '#ff8f00'
-       generatePngs 'education' '#ffffff' '#ff8f00'
-       generatePngs 'poi' '#ffffff' '#ff8f00'
-       generatePngs 'poi_colored' '#3f3f3f' '#ff8f00'
-       generatePngs 'additional' '#3f3f3f' '#ff8f00'
-       generatePngs 'additional_category' '#3f3f3f' '#ff8f00'
-       generatePngs 'power' '#3f3f3f' '#ff8f00'
+  generateBothMapPOIPng 'landuse' '#ffffff' '#ff8f00'
+  generateBothMapPOIPng 'landuse_colored' '#6dba00' '#ff8f00'
 
-       generatePngs 'club' '#ffffff' '#ff8f00' #555555
+  generateBothMapPOIPng 'entertainment' '#ffffff' '#ff8f00'
+  generateBothMapPOIPng 'entertainment_colored' '#6dba00' '#ff8f00'
 
-       generatePngs 'food' '#ffffff' '#ff8f00' #8f6732
-
-       generatePngs 'shopping' '#ffffff' '#ff8f00' #a734c2
-
-       generatePngs 'landuse' '#ffffff' '#ff8f00'
-       generatePngs 'landuse_colored' '#6dba00' '#ff8f00'
-
-       generatePngs 'entertainment' '#ffffff' '#ff8f00'
-       generatePngs 'entertainment_colored' '#6dba00' '#ff8f00'
-
-       generatePngs 'icons8' '#777777' '#ff8f00' neg
-       generatePngs 'xmas' '#aa2001' '#ff8f00'
-       generatePngs 'special' '#ffffff' '#ff8f00'
+  generateBothMapPOIPng 'icons8' '#777777' '#ff8f00' '' neg
+  generateBothMapPOIPng 'xmas' '#aa2001' '#ff8f00'
+  generateBothMapPOIPng 'special' '#ffffff' '#ff8f00'
