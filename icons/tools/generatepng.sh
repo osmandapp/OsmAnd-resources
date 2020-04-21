@@ -15,10 +15,12 @@ SIZES_POI=(72 48 36 24)
 
 SVGFOLDER=${BASEFOLDER}/svg/
 OUTPUTFOLDER=${BASEFOLDER}/png/
+VDFOLDER=${BASEFOLDER}/vd/
+VDFOLDERSVG=${BASEFOLDER}/vd/svg/
 
-if [ ! -d "${OUTPUTFOLDER}" ]; then
-  mkdir ${OUTPUTFOLDER}
-fi
+mkdir -p ${OUTPUTFOLDER}
+mkdir -p ${VDFOLDERSVG}
+mkdir -p ${VDFOLDER}
 
 for (( i = 0 ; i < ${#FOLDERS_NOMX[@]} ; i++ )) do
   mkdir -p ${OUTPUTFOLDER}/${FOLDERS_NOMX[i]}
@@ -60,6 +62,15 @@ genMapIconsStdSize() {
   PCOLOR=$2 # color for map icons(mm_*)
   FOLDERS=("${FOLDERS_NOMX[@]}")
   NEG_PARAM=$4
+  FILL_COLOR='none'
+  STROKE_COLOR='none'
+  BG_COLOR="$PCOLOR"
+  if [[ ! -z "$4" ]]; then
+    FILL_COLOR="$PCOLOR"
+    STROKE_COLOR="$PCOLOR"
+    BG_COLOR="#ffffff"
+  fi 
+
   if [ "$3" == 'x4' ]; then 
     SIZES=("${SIZES_NOMX4[@]}")
   elif [ "$3" == 'x2' ]; then 
@@ -71,24 +82,28 @@ genMapIconsStdSize() {
     SIZES=("${SIZES_NOMX[@]}")
   fi
   
-  echo "Generate $TYPE, sizes: ${SIZES[@]}, folders: ${FOLDERS[@]}, color $PCOLOR"
+  echo "Generate $TYPE, sizes: ${SIZES[@]}, folders: ${FOLDERS[@]}, fill $FILL_COLOR, stroke $STROKE_COLOR, bg color $BG_COLOR "
+  rm ${VDFOLDERSVG}/* || true
   for FILE in ${SVGFOLDER}${TYPE}/*.svg; do
       FILENAME=${FILE##/*/}
       if [[ $FILENAME == _* ]]; then
         continue;
       fi
       FILENAME=${TYPE}_${FILENAME%.*}
+      # prepare vector icon
+      if [ "$3" == 'poi' ]; then 
+        RES_FILE=${VDFOLDERSVG}/${FILENAME}.svg
+        recolour "${FILE}" "$FILL_COLOR" "$STROKE_COLOR" "$BG_COLOR" > $RES_FILE 
+      fi 
       for (( j = 0 ; j < ${#SIZES[@]}; j++ )) do
         SZ=${SIZES[j]}
         RES_FILE=${OUTPUTFOLDER}${FOLDERS[j]}/${FILENAME}.png
-
-        if [[ -z "$NEG_PARAM" ]]; then
-          recolour "${FILE}" 'none' 'none' "$PCOLOR" | rsvg-convert -f png -w ${SZ} -h ${SZ} /dev/stdin -o ${RES_FILE} #> /dev/null 2>&1
-        else 
-          recolour "${FILE}" "$PCOLOR" "$PCOLOR" '#ffffff'| rsvg-convert -f png -w ${SZ} -h ${SZ} /dev/stdin -o ${RES_FILE} > /dev/null 2>&1
-        fi 
+        recolour "${FILE}" "$FILL_COLOR" "$STROKE_COLOR" "$BG_COLOR" | rsvg-convert -f png -w ${SZ} -h ${SZ} /dev/stdin -o ${RES_FILE} #> /dev/null 2>&1
       done
   done
+  if [ "$3" == 'poi' ]; then 
+    ${BASEFOLDER}/tools/SVGtoXML/vd-tool/bin/vd-tool -c -in ${VDFOLDERSVG} -out ${VDFOLDER} -widthDp 24 -heightDp 24
+  fi
 }
 
 recolour() {

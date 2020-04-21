@@ -1,0 +1,1 @@
+./vd-tool/bin/vd-tool -c -in svgs/ -out vectors/
