@@ -79,14 +79,44 @@ genMapIconsStdSize() {
       fi
       FILENAME=${TYPE}_${FILENAME%.*}
       for (( j = 0 ; j < ${#SIZES[@]}; j++ )) do
-        OUTF=${OUTPUTFOLDER}${FOLDERS[j]}/
+        SZ=${SIZES[j]}
+        RES_FILE=${OUTPUTFOLDER}${FOLDERS[j]}/${FILENAME}.png
+
         if [[ -z "$NEG_PARAM" ]]; then
-          ${BASEFOLDER}/tools/recolourtopng.sh "${FILE}" 'none' 'none' "$PCOLOR" ${SIZES[j]} ${OUTF}${FILENAME} #> /dev/null 2>&1        
+          recolour "${FILE}" 'none' 'none' "$PCOLOR" | rsvg-convert -f png -w ${SZ} -h ${SZ} /dev/stdin -o ${RES_FILE} #> /dev/null 2>&1
         else 
-          ${BASEFOLDER}/tools/recolourtopng.sh "${FILE}" "$PCOLOR" "$PCOLOR" '#ffffff'  ${SIZES[j]} ${OUTF}${FILENAME} > /dev/null 2>&1
+          recolour "${FILE}" "$PCOLOR" "$PCOLOR" '#ffffff'| rsvg-convert -f png -w ${SZ} -h ${SZ} /dev/stdin -o ${RES_FILE} > /dev/null 2>&1
         fi 
       done
   done
+}
+
+recolour() {
+    filename="$1"
+    fill="$2"
+    stroke="$3"
+    background="$4"
+sed_script=$(cat << EOF
+    s/fill:#111111;/fill:${fill};/g
+    s/fill:#111;/fill:${fill};/g
+    s/fill=\"#111111\"/fill=\"${fill}\"/g
+    s/fill=\"#111\"/fill=\"${fill}\"/g
+    s/fill=\"#333333\"/fill=\"${fill}\"/g
+    s/stroke:#eeeeee;/stroke:${stroke};/g
+    s/stroke:#eee;/stroke:${stroke};/g
+    s/stroke=\"#eeeeee\"/stroke=\"${stroke}\"/g
+    s/stroke=\"#333333\"/stroke=\"${stroke}\"/g
+    s/fill:white/fill:${background}/g
+    s/stroke:white/stroke:${background}/g
+    s/stroke=\"white\"/stroke=\"${background}\"/g
+    s/fill:#ffffff/fill:${background}/g
+    s/fill=\"#ffffff\"/fill=\"${background}\"/g
+    s/fill=\"white\"/fill=\"${background}\"/g
+    s/stroke:#ffffff/stroke:${background}/g
+    s/stroke=\"#ffffff\"/stroke=\"${background}\"/g
+EOF
+)
+    sed "$sed_script" $filename
 }
 
 generateBothMapPOIPng() {
