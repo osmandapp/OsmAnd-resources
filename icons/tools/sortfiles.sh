@@ -1,5 +1,10 @@
 #!/bin/bash
-
+mkdir -p ../../rendering_styles/style-icons/
+mkdir -p ../../rendering_styles/mx-png-icons/drawable-mdpi
+mkdir -p ../../rendering_styles/mx-png-icons/drawable-hdpi
+mkdir -p ../../rendering_styles/mx-png-icons/drawable-xhdpi
+mkdir -p ../../rendering_styles/mx-png-icons/drawable-xxhdpi
+mkdir -p ../../rendering_styles/mx-png-icons/drawable-xxhdpi
 mygroup() {
  	echo "${2}.png   style-icons/mm_${1}.png"
  	cp ../png/mdpi/${2}.png ../../rendering_styles/style-icons/drawable-mdpi/mm_${1}.png
@@ -8,10 +13,10 @@ mygroup() {
  	cp ../png/xxhdpi/${2}.png ../../rendering_styles/style-icons/drawable-xxhdpi/mm_${1}.png
 	cp ../png/xxhdpi/${2}.png ../../rendering_styles/style-icons/drawable-xxhdpi/mm_${1}.png
 	cp ../vd/${2}.xml ../../rendering_styles/style-icons/drawable/mx_${1}.xml
- 	# cp ../png/big-mdpi/${2}.png ../../rendering_styles/style-icons/drawable-mdpi/mx_${1}.png
- 	# cp ../png/big-hdpi/${2}.png ../../rendering_styles/style-icons/drawable-hdpi/mx_${1}.png
- 	# cp ../png/big-xhdpi/${2}.png ../../rendering_styles/style-icons/drawable-xhdpi/mx_${1}.png
- 	# cp ../png/big-xxhdpi/${2}.png ../../rendering_styles/style-icons/drawable-xxhdpi/mx_${1}.png
+ 	cp ../png/big-mdpi/${2}.png ../../rendering_styles/mx-png-icons/drawable-mdpi/mx_${1}.png
+ 	cp ../png/big-hdpi/${2}.png ../../rendering_styles/mx-png-icons/drawable-hdpi/mx_${1}.png
+ 	cp ../png/big-xhdpi/${2}.png ../../rendering_styles/mx-png-icons/drawable-xhdpi/mx_${1}.png
+ 	cp ../png/big-xxhdpi/${2}.png ../../rendering_styles/mx-png-icons/drawable-xxhdpi/mx_${1}.png
 }
 
 
