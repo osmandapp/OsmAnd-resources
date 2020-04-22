@@ -1,5 +1,7 @@
 #!/bin/bash
-mygroup() {
+icon_alias() {
+	# $1 icon target name in app
+	# $2 generated icon name from svg
  	echo "${2}.png   style-icons/mm_${1}.png"
  	cp ../png/mdpi/${2}.png ../../rendering_styles/style-icons/drawable-mdpi/mm_${1}.png
  	cp ../png/hdpi/${2}.png ../../rendering_styles/style-icons/drawable-hdpi/mm_${1}.png
@@ -15,11 +17,11 @@ mygroup() {
 
 
 mycp() {
-	mygroup ${1}_${2} $3
+	icon_alias ${1}_${2} $3
 }
 
-mycpname() {
-	mygroup ${1} ${2}
+cpnomx() {
+	icon_alias ${1} ${2}
 }
 
 
@@ -35,54 +37,54 @@ cp ../no-svg/drawable-hdpi/* ../../rendering_styles/style-icons/drawable-hdpi/
 cp ../no-svg/drawable-xhdpi/* ../../rendering_styles/style-icons/drawable-xhdpi/
 cp ../no-svg/drawable-xxhdpi/* ../../rendering_styles/style-icons/drawable-xxhdpi/
 
-mygroup landuse landuse_coniferous
-mycpname grass landuse_grass
-mycpname forest landuse_colored_forest               # Keep shaders with background color, cannot be replaced by icons!
-mycpname wood landuse_colored_forest
-mycpname beach tourist_beach2                     # Keep shaders with background color, cannot be replaced by icons!
+icon_alias landuse landuse_coniferous
+icon_alias grass landuse_grass
+icon_alias forest landuse_colored_forest               # Keep shaders with background color, cannot be replaced by icons!
+icon_alias wood landuse_colored_forest
+icon_alias beach tourist_beach2                     # Keep shaders with background color, cannot be replaced by icons!
 #mycp natural scrub landuse_scrub                     # Keep shaders with background color, cannot be replaced by icons!
 #mycp natural swamp landuse_swamp                     # Keep shaders with background color, cannot be replaced by icons!
-mycpname zoo tourist_zoo                         # Keep shaders with background color, cannot be replaced by icons!
-mycpname military_danger_area poi_colored_danger_area
-mycpname military_nuclear_explosion_site poi_colored_nuclear_explosion_site
-mycpname glacier poi_colored_peak2                       # Keep shaders with background color, cannot be replaced by icons!
-mycpname landfill landuse_colored_landfill
-mycpname wetland landuse_wetland
-mycpname cemetery landuse_cemetery
-mycpname grave_yard landuse_cemetery
-mycpname military_landuse landuse_military
-mycpname industrial landuse_industrial
-mycpname construction landuse_construction
-mycpname garages landuse_garages
-mycpname quarry landuse_quarry
-mycpname allotments landuse_allotments
-mycpname place_allotments poi_colored_hamlet
-mycpname village_green landuse_village_green
-mycpname recreation_ground landuse_recreation_ground
-mycpname residential landuse_residential
-mycpname commercial landuse_commercial
-mycpname retail landuse_retail
-mycpname religious landuse_religious
-mycpname orchard landuse_orchard
-mycpname vineyard landuse_vineyard
-mycpname garden landuse_colored_garden
-mycpname farmland landuse_farmland
-mycpname nature_reserve landuse_nature_reserve
-mycpname logging landuse_logging
-mycpname sand landuse_sand
-mycpname meadow landuse_meadow
-mycpname salt_pond landuse_salt_pond
-mycpname farmyard landuse_farmyard
-mycpname landuse_railway landuse_railway
-mycpname scrub landuse_scrub2
-mycpname heath landuse_heath
-mycpname grassland landuse_grassland
-mycpname greenfield landuse_greenfield
-mycpname brownfield landuse_brownfield
-mycpname protected_area landuse_protected_area
-mycpname plant_nursery landuse_plant_nursery
-mycpname greenhouse_horticulture landuse_greenhouse_horticulture
-mycpname aquaculture landuse_aquaculture
+icon_alias zoo tourist_zoo                         # Keep shaders with background color, cannot be replaced by icons!
+icon_alias military_danger_area poi_colored_danger_area
+icon_alias military_nuclear_explosion_site poi_colored_nuclear_explosion_site
+icon_alias glacier poi_colored_peak2                       # Keep shaders with background color, cannot be replaced by icons!
+icon_alias landfill landuse_colored_landfill
+icon_alias wetland landuse_wetland
+icon_alias cemetery landuse_cemetery
+icon_alias grave_yard landuse_cemetery
+icon_alias military_landuse landuse_military
+icon_alias industrial landuse_industrial
+icon_alias construction landuse_construction
+icon_alias garages landuse_garages
+icon_alias quarry landuse_quarry
+icon_alias allotments landuse_allotments
+icon_alias place_allotments poi_colored_hamlet
+icon_alias village_green landuse_village_green
+icon_alias recreation_ground landuse_recreation_ground
+icon_alias residential landuse_residential
+icon_alias commercial landuse_commercial
+icon_alias retail landuse_retail
+icon_alias religious landuse_religious
+icon_alias orchard landuse_orchard
+icon_alias vineyard landuse_vineyard
+icon_alias garden landuse_colored_garden
+icon_alias farmland landuse_farmland
+icon_alias nature_reserve landuse_nature_reserve
+icon_alias logging landuse_logging
+icon_alias sand landuse_sand
+icon_alias meadow landuse_meadow
+icon_alias salt_pond landuse_salt_pond
+icon_alias farmyard landuse_farmyard
+icon_alias landuse_railway landuse_railway
+icon_alias scrub landuse_scrub2
+icon_alias heath landuse_heath
+icon_alias grassland landuse_grassland
+icon_alias greenfield landuse_greenfield
+icon_alias brownfield landuse_brownfield
+icon_alias protected_area landuse_protected_area
+icon_alias plant_nursery landuse_plant_nursery
+icon_alias greenhouse_horticulture landuse_greenhouse_horticulture
+icon_alias aquaculture landuse_aquaculture
 
 mycp stroke black functional-icons_black_stroke
 mycp stroke darkgreen functional-icons_darkgreen_stroke
@@ -91,68 +93,68 @@ mycp stroke gray_triangle functional-icons_gray_stroke_triangle
 mycp stroke lightorange_left functional-icons_lightorange_left_stroke
 mycp stroke white functional-icons_white_stroke
 mycp stroke brown_right functional-icons_brown_right_stroke
-mycpname stroke_brown_left functional-icons_brown_left_stroke
-mycpname stroke_dark_brown_left functional-icons_dark_brown_left_stroke
-mycpname stroke_light_brown_left functional-icons_light_brown_left_stroke
+icon_alias stroke_brown_left functional-icons_brown_left_stroke
+icon_alias stroke_dark_brown_left functional-icons_dark_brown_left_stroke
+icon_alias stroke_light_brown_left functional-icons_light_brown_left_stroke
 
 ## Natural
-mygroup natural poi_colored_peak2
+icon_alias natural poi_colored_peak2
 mycp natural cave_entrance poi_cave
-mycpname topo_cave topo_topo_cave
+icon_alias topo_cave topo_topo_cave
 mycp natural geyser water_geyser  #scale 0.375
 mycp natural hot_spring water_hot_spring  #scale 0.375
 mycp natural peak_big poi_colored_peak_big
-mycpname natural_peak_cross poi_colored_peak_cross
-mycpname natural_peak_cross_big poi_colored_peak_cross_big
+icon_alias natural_peak_cross poi_colored_peak_cross
+icon_alias natural_peak_cross_big poi_colored_peak_cross_big
 mycp natural peak poi_colored_peak
 mycp natural peak_night_big functional-icons_peak_night_big  #For night orienteering use orange similar to contour lines (=day version with color #CC6600)  #scale 0.5
 mycp natural peak_night functional-icons_peak_night  #For night orienteering use orange similar to contour lines (=day version with color #CC6600)  #scale 0.5
 mycp natural saddle poi_colored_saddle
 mycp natural sinkhole poi_colored_sinkhole
 mycp natural spring water_spring  #scale 0.375
-mycpname topo_spring topo_water_spring  #scale 0.375
+icon_alias topo_spring topo_water_spring  #scale 0.375
 mycp natural stone poi_colored_stone  #scale 0.375
 mycp natural tree_broadleaved functional-icons_tree_broadleaved
-mycpname topo_tree_broadleaved functional-icons-x2_topo_tree_broadleaved
+icon_alias topo_tree_broadleaved functional-icons-x2_topo_tree_broadleaved
 mycp natural tree_cypress functional-icons_tree_cypress
 mycp natural tree functional-icons_tree  #scale 0.25
 mycp natural tree_leafless functional-icons_tree_leafless
 mycp natural tree_needleleaved functional-icons_tree_needleleaved
-mycpname topo_tree_needleleaved functional-icons-x2_topo_tree_needleleaved
+icon_alias topo_tree_needleleaved functional-icons-x2_topo_tree_needleleaved
 mycp natural tree_palm functional-icons_tree_palm
-mycpname topo_tree_palm functional-icons-x2_topo_tree_palm
-mycpname tree_dot functional-icons_tree
-mycpname tree poi_colored_tree
+icon_alias topo_tree_palm functional-icons-x2_topo_tree_palm
+icon_alias tree_dot functional-icons_tree
+icon_alias tree poi_colored_tree
 mycp natural volcano_active_big functional-icons_volcano_active_big
 mycp natural volcano_active functional-icons_volcano_active
 mycp natural volcano_big functional-icons_volcano_big
 mycp natural volcano_map functional-icons_volcano  #Is poi_colored_peak with color #D40000  #scale 0.5
-mycpname volcano poi_colored_volcano_active
+icon_alias volcano poi_colored_volcano_active
 mycp waterway rapids barrier_colored_rapids  #scale 0.375
-mycpname rapid_white barrier_rapid  #scale 0.375
-mycpname waterfall water_waterfall  #scale 0.375
-mycpname topo_waterfall topo_water_waterfall  #scale 0.375
-mycpname dam water_dam
-mycpname weir water_weir
-mycpname stream water_stream
-mycpname river water_river
-mycpname water water_water
-mycpname canal water_canal
-mycpname crater poi_colored_crater
-mycpname cape poi_colored_cape
-mycpname bay poi_colored_bay
-mycpname reef poi_colored_reef
-mycpname reservoir water_reservoir
-mycpname basin water_reservoir
-mycpname ridge poi_colored_ridge
-mycpname strait poi_colored_strait
-mycpname fjord poi_colored_fjord
-mycpname cliff poi_colored_cliff
-mycpname hill poi_colored_hill
-mycpname hill_night functional-icons_hill_night
+icon_alias rapid_white barrier_rapid  #scale 0.375
+icon_alias waterfall water_waterfall  #scale 0.375
+icon_alias topo_waterfall topo_water_waterfall  #scale 0.375
+icon_alias dam water_dam
+icon_alias weir water_weir
+icon_alias stream water_stream
+icon_alias river water_river
+icon_alias water water_water
+icon_alias canal water_canal
+icon_alias crater poi_colored_crater
+icon_alias cape poi_colored_cape
+icon_alias bay poi_colored_bay
+icon_alias reef poi_colored_reef
+icon_alias reservoir water_reservoir
+icon_alias basin water_reservoir
+icon_alias ridge poi_colored_ridge
+icon_alias strait poi_colored_strait
+icon_alias fjord poi_colored_fjord
+icon_alias cliff poi_colored_cliff
+icon_alias hill poi_colored_hill
+icon_alias hill_night functional-icons_hill_night
 
 ## Location dots
-mygroup administrative poi_colored_boundary_administrative
+icon_alias administrative poi_colored_boundary_administrative
 mycp place city_dot_night functional-icons_city_night  #scale 0.375
 mycp place city_dot_small functional-icons_city_small  #scale 0.375
 mycp place city_dot_small_night functional-icons_city_small_night  #scale 0.375
@@ -165,18 +167,18 @@ mycp place town_dot_night functional-icons_town_night  #scale 0.25
 mycp place town_dot functional-icons_town  #scale .25
 mycp place city poi_colored_city  #scale 0.375
 mycp place town poi_colored_town
-mycpname hamlet poi_colored_hamlet
-mycpname village poi_colored_village
-mycpname locality poi_colored_place_locality
-mycpname suburb poi_colored_suburb
-mycpname neighbourhood poi_colored_suburb
-mycpname isolated_dwelling poi_colored_isolated_dwelling
-mycpname neighborhood poi_colored_place_neighborhood
-mycpname island poi_colored_island
-mycpname country poi_colored_country
-mycpname quarter poi_colored_quarter
-mycpname place_farm poi_colored_place_farm
-mycpname islet poi_colored_islet
+icon_alias hamlet poi_colored_hamlet
+icon_alias village poi_colored_village
+icon_alias locality poi_colored_place_locality
+icon_alias suburb poi_colored_suburb
+icon_alias neighbourhood poi_colored_suburb
+icon_alias isolated_dwelling poi_colored_isolated_dwelling
+icon_alias neighborhood poi_colored_place_neighborhood
+icon_alias island poi_colored_island
+icon_alias country poi_colored_country
+icon_alias quarter poi_colored_quarter
+icon_alias place_farm poi_colored_place_farm
+icon_alias islet poi_colored_islet
 
 ## Barrier dots
 mycp barrier small_black_1 functional-icons_point_black_1  #scale 0.25
@@ -203,37 +205,37 @@ mycp barrier small_brown_bold_1 functional-icons_point_brown_bold_1  #scale 0.25
 mycp barrier small_brown_bold_2 functional-icons_point_brown_bold_2  #scale 0.25
 
 ## Emergency + Health
-mygroup emergency emergency_ambulance_station
-mygroup emergency_infrastructure emergency_emergency_phone
+icon_alias emergency emergency_ambulance_station
+icon_alias emergency_infrastructure emergency_emergency_phone
 mycp amenity fire_station emergency_firestation4
 mycp amenity police amenity_police2
 mycp emergency fire_hydrant emergency_colored_fire_hydrant
-mycpname fire_hydrant_type_underground emergency_fire_hydrant_underground
-mycpname fire_hydrant_type_pillar emergency_fire_hydrant
-mycpname suction_point emergency_suction_point
+icon_alias fire_hydrant_type_underground emergency_fire_hydrant_underground
+icon_alias fire_hydrant_type_pillar emergency_fire_hydrant
+icon_alias suction_point emergency_suction_point
 mycp emergency phone emergency_emergency_phone
-mycpname emergency_access_point emergency_emergency_access_point
-mycpname defibrillator emergency_defibrillator
-mycpname ambulance_station emergency_ambulance_station
-mycpname fire_extinguisher emergency_fire_extinguisher
-mycpname life_ring emergency_life_ring
-mycpname rescue_box emergency_rescue_box
-mycpname topo_rescue_box topo_emergency_rescue_box
-mycpname mountain_rescue emergency_mountain_rescue
+icon_alias emergency_access_point emergency_emergency_access_point
+icon_alias defibrillator emergency_defibrillator
+icon_alias ambulance_station emergency_ambulance_station
+icon_alias fire_extinguisher emergency_fire_extinguisher
+icon_alias life_ring emergency_life_ring
+icon_alias rescue_box emergency_rescue_box
+icon_alias topo_rescue_box topo_emergency_rescue_box
+icon_alias mountain_rescue emergency_mountain_rescue
 
-mygroup healthcare health_pharmacy
+icon_alias healthcare health_pharmacy
 mycp amenity dentist health_dentist
 mycp amenity doctors health_doctors3
 mycp amenity hospital health_hospital2
-mycpname clinic health_clinic
+icon_alias clinic health_clinic
 mycp amenity nursing_home health_nursing_home
 mycp amenity pharmacy health_pharmacy2
 mycp amenity veterinary health_veterinary
-mycpname social_facility health_nursing_home
-mycpname sanatorium health_sanatorium
-mycpname health_amenity_type_first_aid_kit health_health_amenity_type_first_aid_kit
-mycpname laboratory health_laboratory
-mycpname blood_donation health_blood_donation
+icon_alias social_facility health_nursing_home
+icon_alias sanatorium health_sanatorium
+icon_alias health_amenity_type_first_aid_kit health_health_amenity_type_first_aid_kit
+icon_alias laboratory health_laboratory
+icon_alias blood_donation health_blood_donation
 
 ## Overlays
 mycp fixme_tag yes overlays_fixme
@@ -244,53 +246,53 @@ mycp osm_note dot overlays_osm_note_dot
 mycp osm_note dot_2 overlays_osm_note_dot_2
 mycp drinking_water yes_map overlays_drinking_water_yes
 mycp drinking_water no_map overlays_drinking_water_no
-mycpname topo_drinking_water_yes_map overlays_water_drinking_water_yes
-mycpname topo_drinking_water_no_map overlays_water_drinking_water_no
-mycpname access_private_overlay overlays_access_private
-mycpname access_private_red_overlay overlays_access_private_red
+icon_alias topo_drinking_water_yes_map overlays_water_drinking_water_yes
+icon_alias topo_drinking_water_no_map overlays_water_drinking_water_no
+icon_alias access_private_overlay overlays_access_private
+icon_alias access_private_red_overlay overlays_access_private_red
 
 
 ## Traffic + Transportation
-mygroup transportation transport_taxi_rank
-mygroup road_obstacle transport_speedbump
-mygroup personal_transport shopping_car
-mygroup air_transport transport_aerodrome
-mygroup water_transport transport_ferry_terminal
-mygroup bicycle_transport shopping_bicycle
-mygroup aerialway_transport transport_aerialway_station
+icon_alias transportation transport_taxi_rank
+icon_alias road_obstacle transport_speedbump
+icon_alias personal_transport shopping_car
+icon_alias air_transport transport_aerodrome
+icon_alias water_transport transport_ferry_terminal
+icon_alias bicycle_transport shopping_bicycle
+icon_alias aerialway_transport transport_aerialway_station
 mycp highway crossing_bg functional-icons_highway_crossing_bg
-mycpname highway_crossing transport_zebra_crossing2
-mycpname highway_crossing_map functional-icons_highway_crossing
-mycpname crossing_traffic_signals_map functional-icons_highway_crossing_traffic_signals
-mycpname crossing_uncontrolled_map functional-icons_highway_crossing_uncontrolled
-mycpname crossing_unmarked_map functional-icons_highway_crossing_unmarked
-mycpname stop functional-icons_stop
-mycpname give_way functional-icons_give_way
+icon_alias highway_crossing transport_zebra_crossing2
+icon_alias highway_crossing_map functional-icons_highway_crossing
+icon_alias crossing_traffic_signals_map functional-icons_highway_crossing_traffic_signals
+icon_alias crossing_uncontrolled_map functional-icons_highway_crossing_uncontrolled
+icon_alias crossing_unmarked_map functional-icons_highway_crossing_unmarked
+icon_alias stop functional-icons_stop
+icon_alias give_way functional-icons_give_way
 
-mycpname ford transport_colored_ford
-mycpname topo_ford topo_topo_ford
+icon_alias ford transport_colored_ford
+icon_alias topo_ford topo_topo_ford
 mycp highway milestone functional-icons_milestone
 mycp highway mini_roundabout transport_colored_miniroundabout_anticlockwise
-mycpname mini_roundabout_lhn transport_colored_miniroundabout_clockwise
+icon_alias mini_roundabout_lhn transport_colored_miniroundabout_clockwise
 mycp highway noexit functional-icons_noexit
-mycpname deadlock poi_colored_noexit
-mycpname toll_gantry transport_colored_toll_gantry
+icon_alias deadlock poi_colored_noexit
+icon_alias toll_gantry transport_colored_toll_gantry
 mycp highway passing_place functional-icons_passing_place
 mycp highway speed_camera transport_speedcamera
 mycp highway steps transport_colored_highway_steps
 mycp highway traffic_signals_map functional-icons_traffic_lights
 mycp highway traffic_signals transport_traffic_lights
-mycpname motorway_junction transport_motorway_junction
-mycpname junction transport_junction
-mycpname rest_area transport_rest_area
-mycpname traffic_calming_bump transport_speedbump
-mycpname traffic_calming_rumble_strip transport_rumble_strip
-mycpname traffic_calming_chicane transport_chicane
-mycpname traffic_calming_choker transport_choker
-mycpname traffic_calming_cushion transport_cushion
-mycpname traffic_calming_hump transport_hump
-mycpname traffic_calming_island transport_traffic_island
-mycpname traffic_calming_table transport_table
+icon_alias motorway_junction transport_motorway_junction
+icon_alias junction transport_junction
+icon_alias rest_area transport_rest_area
+icon_alias traffic_calming_bump transport_speedbump
+icon_alias traffic_calming_rumble_strip transport_rumble_strip
+icon_alias traffic_calming_chicane transport_chicane
+icon_alias traffic_calming_choker transport_choker
+icon_alias traffic_calming_cushion transport_cushion
+icon_alias traffic_calming_hump transport_hump
+icon_alias traffic_calming_island transport_traffic_island
+icon_alias traffic_calming_table transport_table
 mycp oneway blue functional-icons_oneway_blue
 mycp oneway reverse_blue functional-icons_oneway_reverse_blue
 mycp oneway blue_big functional-icons_oneway_blue_big
@@ -298,9 +300,9 @@ mycp oneway reverse_blue_big functional-icons_oneway_reverse_blue_big
 mycp arrow blue_big functional-icons_arrow_blue_big
 mycp arrow blue_big_night functional-icons_arrow_blue_big_night
 mycp arrow triangle_black functional-icons_arrow_triangle_black
-mycpname arrow_triangle_black_reverse functional-icons_arrow_triangle_black_reverse
+icon_alias arrow_triangle_black_reverse functional-icons_arrow_triangle_black_reverse
 mycp arrow triangle_black_big functional-icons_arrow_triangle_black_big
-mycpname arrow_triangle_black_reverse_big functional-icons_arrow_triangle_black_reverse_big
+icon_alias arrow_triangle_black_reverse_big functional-icons_arrow_triangle_black_reverse_big
 mycp arrow triangle_black_small functional-icons_arrow_triangle_black_small
 mycp arrow triangle_black_nobg functional-icons_arrow_triangle_black_nobg
 mycp arrow triangle_black_big_nobg functional-icons_arrow_triangle_black_big_nobg
@@ -328,75 +330,75 @@ mycp skimap arrow_2triangles_black_small skimap_arrow_2triangles_black_small
 mycp skimap arrow_2triangles_black_small_nobg skimap_arrow_2triangles_black_small_nobg
 mycp skimap arrow_2triangles_white_small_nobg skimap_arrow_2triangles_white_small_nobg
 mycp harbour yes poi_colored_harbour
-mycpname historic_milestone tourist_historic_milestone
-mycpname topo_milestone topo_topo_milestone
-mycpname runway transport_runway
-mycpname ford_stepping_stones transport_colored_ford_stepping_stones
-mycpname topo_ford_stepping_stones topo_topo_ford_stepping_stones
-mycpname traffic_mirror poi_colored_traffic_mirror
-mycpname via_ferrata_map functional-icons_via_ferrata
-mycpname via_ferrata sport_via_ferrata
+icon_alias historic_milestone tourist_historic_milestone
+icon_alias topo_milestone topo_topo_milestone
+icon_alias runway transport_runway
+icon_alias ford_stepping_stones transport_colored_ford_stepping_stones
+icon_alias topo_ford_stepping_stones topo_topo_ford_stepping_stones
+icon_alias traffic_mirror poi_colored_traffic_mirror
+icon_alias via_ferrata_map functional-icons_via_ferrata
+icon_alias via_ferrata sport_via_ferrata
 
-mygroup fuel transport_fuel
-mygroup filling_station transport_fuel
-mycpname charging_station transport_charging_station
-mycpname electricity_combined_charging transport_charging_station
-mycpname charging_station_filter transport_charging_station
+icon_alias fuel transport_fuel
+icon_alias filling_station transport_fuel
+icon_alias charging_station transport_charging_station
+icon_alias electricity_combined_charging transport_charging_station
+icon_alias charging_station_filter transport_charging_station
 mycp amenity fuel_lpg transport_fuel_lpg
 mycp amenity fuel transport_fuel
-mycpname aeroway_fuel transport_aeroway_fuel
-mycpname turning_circle transport_turning_circle
-mycpname waterway_fuel transport_waterway_fuel
+icon_alias aeroway_fuel transport_aeroway_fuel
+icon_alias turning_circle transport_turning_circle
+icon_alias waterway_fuel transport_waterway_fuel
 
-mygroup parking transport_parking
+icon_alias parking transport_parking
 mycp amenity parking transport_parking
 mycp amenity parking_private transport_parking_private2
 mycp amenity parking_paid transport_parking_car_paid
-mycpname parking_multi_storey transport_parking_multi-storey
+icon_alias parking_multi_storey transport_parking_multi-storey
 mycp amenity parking_multi_storey_paid transport_parking_multi-storey_paid
-mycpname parking_underground transport_parking_underground
+icon_alias parking_underground transport_parking_underground
 mycp amenity parking_underground_paid transport_parking_underground_paid
-mycpname bicycle_parking transport_parking_bicycle
-mycpname bicycle_parking_stands transport_bicycle_parking_stands
-mycpname bicycle_parking_wall_loops transport_bicycle_parking_wall_loops
-mycpname bicycle_parking_rack transport_bicycle_parking_rack
-mycpname bicycle_parking_anchors transport_bicycle_parking_anchors
-mycpname bicycle_parking_building transport_bicycle_parking_building
-mycpname bicycle_parking_shed transport_bicycle_parking_building
-mycpname bicycle_parking_bollard transport_bicycle_parking_bollard
-mycpname bicycle_parking_informal transport_bicycle_parking_informal
-mycpname bicycle_parking_lockers transport_bicycle_parking_lockers
-mycpname bicycle_parking_tree transport_bicycle_parking_tree
-mycpname bicycle_parking_streetpod transport_bicycle_parking_streetpod
+icon_alias bicycle_parking transport_parking_bicycle
+icon_alias bicycle_parking_stands transport_bicycle_parking_stands
+icon_alias bicycle_parking_wall_loops transport_bicycle_parking_wall_loops
+icon_alias bicycle_parking_rack transport_bicycle_parking_rack
+icon_alias bicycle_parking_anchors transport_bicycle_parking_anchors
+icon_alias bicycle_parking_building transport_bicycle_parking_building
+icon_alias bicycle_parking_shed transport_bicycle_parking_building
+icon_alias bicycle_parking_bollard transport_bicycle_parking_bollard
+icon_alias bicycle_parking_informal transport_bicycle_parking_informal
+icon_alias bicycle_parking_lockers transport_bicycle_parking_lockers
+icon_alias bicycle_parking_tree transport_bicycle_parking_tree
+icon_alias bicycle_parking_streetpod transport_bicycle_parking_streetpod
 mycp amenity motorcycle_parking transport_parking_motorcycle
 mycp amenity motorcycle_parking_paid transport_parking_motorcycle_paid
-mycpname parking_space transport_parking_space
+icon_alias parking_space transport_parking_space
 
 
-mygroup public_transport transport_bus_stop
+icon_alias public_transport transport_bus_stop
 mycp amenity bus_station transport_bus_station2
-mycpname public_transport_station transport_bus_station
-mycpname public_transport_stop_position transport_bus_stop2
+icon_alias public_transport_station transport_bus_station
+icon_alias public_transport_stop_position transport_bus_stop2
 mycp highway bus_stop transport_bus_stop
-mycpname topo_bus_stop topo_topo_bus_stop
+icon_alias topo_bus_stop topo_topo_bus_stop
 mycp highway bus_stop_small bus_stop_small
-mycpname topo_bus_stop_small topo_topo_bus_stop_small
+icon_alias topo_bus_stop_small topo_topo_bus_stop_small
 mycp highway bus_stop_round_small functional-icons_bus_stop_round_small
 mycp highway bus_stop_round_big functional-icons_bus_stop_round_big
 mycp highway bus_stop_round_small_night functional-icons_bus_stop_round_small_night
 mycp highway bus_stop_round_big_night functional-icons_bus_stop_round_big_night
-mycpname bus_station_small functional-icons_bus_station_small
+icon_alias bus_station_small functional-icons_bus_station_small
 mycp public_transport platform transport_bus_stop
 mycp amenity ferry_terminal transport_ferry_terminal
-mycpname ferry_terminal_small ferry_terminal_small
+icon_alias ferry_terminal_small ferry_terminal_small
 mycp amenity taxi transport_taxi_rank
 mycp highway services transport_services
 mycp mountain pass poi_mountain_pass
-mycpname topo_mountain_pass topo_topo_mountain_pass
+icon_alias topo_mountain_pass topo_topo_mountain_pass
 
 mycp amenity bicycle_rental transport_rental_bicycle
 mycp amenity boat_sharing transport_boat_sharing
-mycpname boat_rental transport_boat_rental
+icon_alias boat_rental transport_boat_rental
 mycp amenity car_rental transport_rental_car
 mycp amenity car_sharing transport_car_share
 mycp amenity ski_rental transport_ski_rental
@@ -406,22 +408,22 @@ mycp leisure marina_private transport_marina_private
 mycp leisure slipway transport_slipway
 mycp man_made lighthouse transport_lighthouse
 mycp waterway lock_gate_small functional-icons_lock_gate  #scale 0.5
-mycpname lock_gate poi_colored_lock_gate  #scale 0.25
-mycpname lock_basin seamark_small_poi_lock_basin  #scale 0.25
+icon_alias lock_gate poi_colored_lock_gate  #scale 0.25
+icon_alias lock_basin seamark_small_poi_lock_basin  #scale 0.25
 mycp waterway dock transport_dock
 
-mycpname halt_small functional-icons_halt_small  #scale 0.25
-mycpname halt_small_2 functional-icons_halt_small_2  #scale 0.25
-mycpname topo_railway_halt_small functional-icons_topo_railway_halt_small
-mycpname halt transport_halt  #scale 0.25
-mycpname level_crossing_map functional-icons_level_crossing  #scale 0.5
-mycpname level_crossing poi_colored_level_crossing  #scale 0.5
-mycpname railway_yard transport_railway_yard  #scale 0.25
+icon_alias halt_small functional-icons_halt_small  #scale 0.25
+icon_alias halt_small_2 functional-icons_halt_small_2  #scale 0.25
+icon_alias topo_railway_halt_small functional-icons_topo_railway_halt_small
+icon_alias halt transport_halt  #scale 0.25
+icon_alias level_crossing_map functional-icons_level_crossing  #scale 0.5
+icon_alias level_crossing poi_colored_level_crossing  #scale 0.5
+icon_alias railway_yard transport_railway_yard  #scale 0.25
 mycp railway platform transport_train_station2
 mycp railway station_disused functional-icons_train_station_disused
 mycp railway station_small_disused railway_station_small_disused
 mycp railway station_small railway_station_small  #scale 0.375
-mycpname topo_railway_station_small functional-icons_topo_railway_station_small
+icon_alias topo_railway_station_small functional-icons_topo_railway_station_small
 mycp railway station_subway_map transport_station_subway
 mycp railway station_subway_small railway_station_subway_small  #scale 0.375
 mycp railway station transport_train_station
@@ -430,14 +432,14 @@ mycp railway tram_stop_round_big_night functional-icons_blue_stop_round_big_nigh
 mycp railway tram_stop_round_small functional-icons_blue_stop_round_small
 mycp railway tram_stop_round_small_night functional-icons_blue_stop_round_small_night
 mycp railway tram_stop transport_tram_stop
-mycpname tram_stop_small tram_stop_small
-mycpname subway_station transport_subway_station
-mycpname funicular transport_funicular
-mycpname escape_lane transport_escape_lane
+icon_alias tram_stop_small tram_stop_small
+icon_alias subway_station transport_subway_station
+icon_alias funicular transport_funicular
+icon_alias escape_lane transport_escape_lane
 
-mycpname subway_entrance_map subway_subway_entrance_map
-mycpname subway_entrance poi_colored_subway_entrance
-mycpname subway_entrance transport_subway_entrance
+icon_alias subway_entrance_map subway_subway_entrance_map
+icon_alias subway_entrance poi_colored_subway_entrance
+icon_alias subway_entrance transport_subway_entrance
 mycp railway subway_entrance_red functional-icons_subway_entrance_red
 mycp railway subway_entrance_brown functional-icons_subway_entrance_brown
 mycp railway subway_entrance_orange functional-icons_subway_entrance_orange
@@ -477,121 +479,121 @@ mycp railway subway_station_small_black functional-icons_subway_station_small_bl
 mycp railway subway_station_small_black2 functional-icons_subway_station_small_black2
 mycp railway subway_station_small_white functional-icons_subway_station_small_white
 
-mycpname subway_moscow subway_subway_moscow
-mycpname subway_samara subway_subway_samara
-mycpname subway_budapest subway_subway_budapest
-mycpname subway_spb subway_subway_spb
-mycpname subway_kazan subway_subway_kazan
-mycpname subway_baku subway_subway_baku
-mycpname subway_tbilisi subway_subway_tbilisi
-mycpname subway_yerevan subway_subway_yerevan
-mycpname subway_minsk subway_subway_minsk
-mycpname subway_nnovgorod subway_subway_nnovgorod
-mycpname subway_novosibirsk subway_subway_novosibirsk
-mycpname subway_yekaterinburg subway_subway_yekaterinburg
-mycpname subway_germany subway_subway_germany
-mycpname subway_wien subway_subway_wien
-mycpname subway_madrid subway_subway_madrid
-mycpname subway_paris subway_subway_paris
-mycpname subway_london subway_subway_london
-mycpname subway_barcelona subway_subway_barcelona
-mycpname subway_stockholm subway_subway_stockholm
-mycpname subway_praha subway_subway_praha
-mycpname subway_athens subway_subway_athens
-mycpname subway_italy subway_subway_italy
-mycpname subway_italy_catania subway_subway_italy_catania
-#mycpname subway_italy_brescia subway_subway_italy_brescia
-mycpname subway_rotterdam subway_subway_rotterdam
-mycpname subway_amsterdam subway_subway_amsterdam
-mycpname subway_brussels subway_subway_brussels
-mycpname subway_lyon subway_subway_lyon
-mycpname subway_chicago subway_subway_chicago
-mycpname subway_newyork subway_subway_newyork
-mycpname subway_tokyo subway_subway_tokyo
-mycpname subway_osaka subway_subway_osaka
-mycpname subway_nagoya subway_subway_nagoya
-mycpname subway_singapore subway_subway_singapore
-mycpname subway_kolkata subway_subway_kolkata
-mycpname subway_delhi subway_subway_delhi
-mycpname subway_tehran subway_subway_tehran
-mycpname subway_cairo subway_subway_cairo
-mycpname subway_riodejaneiro subway_subway_riodejaneiro
-mycpname subway_tashkent subway_subway_tashkent
-mycpname subway_almaty subway_subway_almaty
-mycpname subway_manila subway_subway_manila
-mycpname subway_toronto subway_subway_toronto
-mycpname subway_montreal subway_subway_montreal
-mycpname subway_kyiv subway_subway_kyiv
-mycpname subway_kharkiv subway_subway_kharkiv
-mycpname subway_buenosaires subway_subway_buenosaires
-mycpname subway_boston subway_subway_boston
-mycpname subway_washington subway_subway_washington
-mycpname subway_bucharest subway_subway_bucharest
-mycpname subway_losangeles subway_subway_losangeles
-mycpname subway_sofia subway_subway_sofia
-mycpname subway_taipei subway_subway_taipei
-mycpname subway_santiago subway_subway_santiago
-mycpname subway_valparaiso subway_subway_valparaiso
-mycpname subway_seoul subway_subway_seoul
-mycpname subway_philadelphia subway_subway_philadelphia
-mycpname subway_philadelphia_patco subway_subway_philadelphia_patco
-mycpname subway_istanbul subway_subway_istanbul
-mycpname subway_san_francisco subway_subway_san_francisco
-mycpname subway_atlanta subway_subway_atlanta
-mycpname subway_baltimore subway_subway_baltimore
-mycpname subway_cleveland subway_subway_cleveland
-mycpname subway_miami subway_subway_miami
-mycpname subway_newyork_path subway_subway_newyork_path
-mycpname subway_puerto_rico subway_subway_puerto_rico
-mycpname subway_mexico subway_subway_mexico
-mycpname subway_sanpaulo subway_subway_sanpaulo
-mycpname subway_caracas subway_subway_caracas
-mycpname subway_yokohama subway_subway_yokohama
-mycpname subway_yokohama_minatomirai subway_subway_yokohama_minatomirai
-mycpname subway_sapporo subway_subway_sapporo
-mycpname subway_medellin subway_subway_medellin
-mycpname subway_monterrey subway_subway_monterrey
-mycpname subway_warsaw subway_subway_warsaw
-mycpname subway_lisbon subway_subway_lisbon
-mycpname subway_fukuoka subway_subway_fukuoka
-mycpname subway_suzhou subway_subway_suzhou
-mycpname subway_shanghai subway_subway_shanghai
-mycpname subway_guangzhou subway_subway_guangzhou
+icon_alias subway_moscow subway_subway_moscow
+icon_alias subway_samara subway_subway_samara
+icon_alias subway_budapest subway_subway_budapest
+icon_alias subway_spb subway_subway_spb
+icon_alias subway_kazan subway_subway_kazan
+icon_alias subway_baku subway_subway_baku
+icon_alias subway_tbilisi subway_subway_tbilisi
+icon_alias subway_yerevan subway_subway_yerevan
+icon_alias subway_minsk subway_subway_minsk
+icon_alias subway_nnovgorod subway_subway_nnovgorod
+icon_alias subway_novosibirsk subway_subway_novosibirsk
+icon_alias subway_yekaterinburg subway_subway_yekaterinburg
+icon_alias subway_germany subway_subway_germany
+icon_alias subway_wien subway_subway_wien
+icon_alias subway_madrid subway_subway_madrid
+icon_alias subway_paris subway_subway_paris
+icon_alias subway_london subway_subway_london
+icon_alias subway_barcelona subway_subway_barcelona
+icon_alias subway_stockholm subway_subway_stockholm
+icon_alias subway_praha subway_subway_praha
+icon_alias subway_athens subway_subway_athens
+icon_alias subway_italy subway_subway_italy
+icon_alias subway_italy_catania subway_subway_italy_catania
+#icon_alias subway_italy_brescia subway_subway_italy_brescia
+icon_alias subway_rotterdam subway_subway_rotterdam
+icon_alias subway_amsterdam subway_subway_amsterdam
+icon_alias subway_brussels subway_subway_brussels
+icon_alias subway_lyon subway_subway_lyon
+icon_alias subway_chicago subway_subway_chicago
+icon_alias subway_newyork subway_subway_newyork
+icon_alias subway_tokyo subway_subway_tokyo
+icon_alias subway_osaka subway_subway_osaka
+icon_alias subway_nagoya subway_subway_nagoya
+icon_alias subway_singapore subway_subway_singapore
+icon_alias subway_kolkata subway_subway_kolkata
+icon_alias subway_delhi subway_subway_delhi
+icon_alias subway_tehran subway_subway_tehran
+icon_alias subway_cairo subway_subway_cairo
+icon_alias subway_riodejaneiro subway_subway_riodejaneiro
+icon_alias subway_tashkent subway_subway_tashkent
+icon_alias subway_almaty subway_subway_almaty
+icon_alias subway_manila subway_subway_manila
+icon_alias subway_toronto subway_subway_toronto
+icon_alias subway_montreal subway_subway_montreal
+icon_alias subway_kyiv subway_subway_kyiv
+icon_alias subway_kharkiv subway_subway_kharkiv
+icon_alias subway_buenosaires subway_subway_buenosaires
+icon_alias subway_boston subway_subway_boston
+icon_alias subway_washington subway_subway_washington
+icon_alias subway_bucharest subway_subway_bucharest
+icon_alias subway_losangeles subway_subway_losangeles
+icon_alias subway_sofia subway_subway_sofia
+icon_alias subway_taipei subway_subway_taipei
+icon_alias subway_santiago subway_subway_santiago
+icon_alias subway_valparaiso subway_subway_valparaiso
+icon_alias subway_seoul subway_subway_seoul
+icon_alias subway_philadelphia subway_subway_philadelphia
+icon_alias subway_philadelphia_patco subway_subway_philadelphia_patco
+icon_alias subway_istanbul subway_subway_istanbul
+icon_alias subway_san_francisco subway_subway_san_francisco
+icon_alias subway_atlanta subway_subway_atlanta
+icon_alias subway_baltimore subway_subway_baltimore
+icon_alias subway_cleveland subway_subway_cleveland
+icon_alias subway_miami subway_subway_miami
+icon_alias subway_newyork_path subway_subway_newyork_path
+icon_alias subway_puerto_rico subway_subway_puerto_rico
+icon_alias subway_mexico subway_subway_mexico
+icon_alias subway_sanpaulo subway_subway_sanpaulo
+icon_alias subway_caracas subway_subway_caracas
+icon_alias subway_yokohama subway_subway_yokohama
+icon_alias subway_yokohama_minatomirai subway_subway_yokohama_minatomirai
+icon_alias subway_sapporo subway_subway_sapporo
+icon_alias subway_medellin subway_subway_medellin
+icon_alias subway_monterrey subway_subway_monterrey
+icon_alias subway_warsaw subway_subway_warsaw
+icon_alias subway_lisbon subway_subway_lisbon
+icon_alias subway_fukuoka subway_subway_fukuoka
+icon_alias subway_suzhou subway_subway_suzhou
+icon_alias subway_shanghai subway_subway_shanghai
+icon_alias subway_guangzhou subway_subway_guangzhou
 
 mycp aerialway station_small functional-icons_aerialway_station_small  #scale 0.25
 mycp aerialway station transport_aerialway_station  #scale 0.375
-mycpname aerialway_cable_car transport_aerialway_cable_car
-mycpname aerialway_chair_lift transport_aerialway_chair_lift
-mycpname aerialway_pylon transport_aerialway_pylon
-mycpname aerialway_pylon_small functional-icons_aerialway_pylon_small
-mycpname aerialway_drag_lift transport_aerialway_drag_lift
-mycpname aerialway_platter transport_aerialway_platter
-mycpname aerialway_j_bar transport_aerialway_j_bar
-mycpname aerialway_t_bar transport_aerialway_t_bar
-mycpname aerialway_goods transport_aerialway_goods
-mycpname aerialway_magic_carpet transport_aerialway_magic_carpet
-mycpname aerialway_gondola transport_aerialway_gondola
-mycpname aerialway_rope_tow transport_aerialway_rope_tow
+icon_alias aerialway_cable_car transport_aerialway_cable_car
+icon_alias aerialway_chair_lift transport_aerialway_chair_lift
+icon_alias aerialway_pylon transport_aerialway_pylon
+icon_alias aerialway_pylon_small functional-icons_aerialway_pylon_small
+icon_alias aerialway_drag_lift transport_aerialway_drag_lift
+icon_alias aerialway_platter transport_aerialway_platter
+icon_alias aerialway_j_bar transport_aerialway_j_bar
+icon_alias aerialway_t_bar transport_aerialway_t_bar
+icon_alias aerialway_goods transport_aerialway_goods
+icon_alias aerialway_magic_carpet transport_aerialway_magic_carpet
+icon_alias aerialway_gondola transport_aerialway_gondola
+icon_alias aerialway_rope_tow transport_aerialway_rope_tow
 
 mycp aeroway aerodrome_abandoned functional-icons_aerodrome_abandoned
-mycpname topo_aerodrome_abandoned topo_topo_aerodrome_abandoned
+icon_alias topo_aerodrome_abandoned topo_topo_aerodrome_abandoned
 mycp aeroway aerodrome transport_aerodrome
-mycpname aeroway_aerodrome_small transport_colored_aerodrome
-mycpname topo_aerodrome topo_topo_aerodrome
+icon_alias aeroway_aerodrome_small transport_colored_aerodrome
+icon_alias topo_aerodrome topo_topo_aerodrome
 mycp aeroway airport transport_airport
 mycp aeroway gate transport_colored_airport_gate
 mycp aeroway helipad transport_helicopter_pad
-mycpname aeroway_terminal transport_airport_terminal
-mycpname spaceport transport_spaceport
+icon_alias aeroway_terminal transport_airport_terminal
+icon_alias spaceport transport_spaceport
 
-mycpname put_in functional-icons-x2_whitewater_put_in
-mycpname egress functional-icons-x2_whitewater_egress
-mycpname put_in_egress functional-icons-x2_whitewater_put_in_egress
-mycpname whitewater_hazard functional-icons-x2_whitewater_hazard
+icon_alias put_in functional-icons-x2_whitewater_put_in
+icon_alias egress functional-icons-x2_whitewater_egress
+icon_alias put_in_egress functional-icons-x2_whitewater_put_in_egress
+icon_alias whitewater_hazard functional-icons-x2_whitewater_hazard
 
 
 ## Barrier
-mygroup barrier barrier_colored_bollard
+icon_alias barrier barrier_colored_bollard
 mycp barrier block barrier_colored_blocks
 mycp barrier bollard barrier_colored_bollard
 mycp barrier border_control barrier_border_control
@@ -609,63 +611,63 @@ mycp barrier motorcycle_barrier barrier_colored_cycle_barrier
 mycp barrier sally_port barrier_colored_sally_port
 mycp barrier stile barrier_colored_stile
 mycp barrier swing_gate barrier_colored_swing_gate
-mycpname toll_booth barrier_colored_toll_booth
-mycpname military_checkpoint barrier_colored_military_checkpoint
+icon_alias toll_booth barrier_colored_toll_booth
+icon_alias military_checkpoint barrier_colored_military_checkpoint
 mycp barrier turnstile barrier_colored_turnstile
 mycp entrance yes barrier_colored_entrance2
-mycpname entrance_exit_map functional-icons_entrance_exit
-mycpname entrance_main_map functional-icons_entrance3
-mycpname entrance_service functional-icons_entrance_service
-mycpname entrance_exit poi_colored_entrance_exit
-mycpname entrance_main barrier_colored_entrance2
+icon_alias entrance_exit_map functional-icons_entrance_exit
+icon_alias entrance_main_map functional-icons_entrance3
+icon_alias entrance_service functional-icons_entrance_service
+icon_alias entrance_exit poi_colored_entrance_exit
+icon_alias entrance_main barrier_colored_entrance2
 mycp amenity parking_entrance transport_parking_entrance
 mycp building entrance barrier_colored_entrance
-mycpname barrier_colored_debris barrier_colored_debris
-mycpname barrier_colored_horse_stile barrier_colored_horse_stile
-mycpname barrier_colored_jersey_barrier barrier_colored_jersey_barrier
-mycpname barrier_colored_log barrier_colored_log
+icon_alias barrier_colored_debris barrier_colored_debris
+icon_alias barrier_colored_horse_stile barrier_colored_horse_stile
+icon_alias barrier_colored_jersey_barrier barrier_colored_jersey_barrier
+icon_alias barrier_colored_log barrier_colored_log
 
 
 ## Accommodation
-mygroup accomodation accommodation_hotel
+icon_alias accomodation accommodation_hotel
 mycp amenity shelter accommodation_shelter2
-mycpname topo_shelter topo_topo_shelter
+icon_alias topo_shelter topo_topo_shelter
 mycp tourism alpine_hut accommodation_alpinehut
-mycpname topo_alpine_hut topo_topo_alpine_hut
-mycpname cabin accommodation_cabin
-mycpname topo_cabin topo_topo_cabin
-mycpname lean_to accommodation_lean_to
-mycpname topo_lean_to topo_topo_lean_to
+icon_alias topo_alpine_hut topo_topo_alpine_hut
+icon_alias cabin accommodation_cabin
+icon_alias topo_cabin topo_topo_cabin
+icon_alias lean_to accommodation_lean_to
+icon_alias topo_lean_to topo_topo_lean_to
 mycp tourism apartment accommodation_apartment
-mycpname topo_apartment topo_topo_apartment
+icon_alias topo_apartment topo_topo_apartment
 mycp tourism camp_site accommodation_camping
-mycpname topo_camp_site topo_topo_camp_site
-mycpname tourism_caravan_site accommodation_caravan
-mycpname topo_caravan_site topo_topo_caravan_site
+icon_alias topo_camp_site topo_topo_camp_site
+icon_alias tourism_caravan_site accommodation_caravan
+icon_alias topo_caravan_site topo_topo_caravan_site
 mycp tourism chalet accommodation_chalet
-mycpname topo_chalet topo_topo_chalet
+icon_alias topo_chalet topo_topo_chalet
 mycp tourism guest_house accommodation_bed_and_breakfast
-mycpname topo_guest_house topo_topo_guest_house
+icon_alias topo_guest_house topo_topo_guest_house
 mycp tourism hostel accommodation_hostel
-mycpname topo_hostel topo_topo_hostel
+icon_alias topo_hostel topo_topo_hostel
 mycp tourism hotel accommodation_hotel
-mycpname topo_hotel topo_topo_hotel
+icon_alias topo_hotel topo_topo_hotel
 mycp tourism motel accommodation_motel
-mycpname topo_motel topo_topo_motel
-mycpname wilderness_hut accommodation_wilderness_hut
-mycpname topo_wilderness_hut topo_topo_wilderness_hut
-mycpname summer_camp accommodation_summer_camp
+icon_alias topo_motel topo_topo_motel
+icon_alias wilderness_hut accommodation_wilderness_hut
+icon_alias topo_wilderness_hut topo_topo_wilderness_hut
+icon_alias summer_camp accommodation_summer_camp
 
 
 ## Tourism
-mygroup sightseeing tourist_castle2
-mygroup tourism tourist_museum
-mygroup for_tourists tourist_view_point
-mygroup attraction tourist_attraction
+icon_alias sightseeing tourist_castle2
+icon_alias tourism tourist_museum
+icon_alias for_tourists tourist_view_point
+icon_alias attraction tourist_attraction
 mycp attraction amusement_ride tourist_amusement_ride
 mycp attraction animal tourist_animal
 mycp attraction big_wheel tourist_big_wheel
-mycpname topo_big_wheel topo_topo_big_wheel
+icon_alias topo_big_wheel topo_topo_big_wheel
 mycp attraction carousel tourist_carousel
 mycp attraction maze tourist_maze
 mycp attraction roller_coaster tourist_roller_coaster
@@ -678,110 +680,110 @@ mycp tourism aquarium tourist_aquarium
 mycp tourism artwork tourist_artwork
 mycp tourism attraction tourist_attraction
 mycp tourism information tourist_colored_information
-mycpname information_office tourist_colored_information_office
-mycpname information_board tourist_colored_information_board
-mycpname information_guidepost tourist_colored_information_guidepost
-mycpname information_map tourist_colored_information_map
-mycpname information_terminal tourist_colored_information_terminal
-mycpname information_audioguide tourist_colored_information_audioguide
+icon_alias information_office tourist_colored_information_office
+icon_alias information_board tourist_colored_information_board
+icon_alias information_guidepost tourist_colored_information_guidepost
+icon_alias information_map tourist_colored_information_map
+icon_alias information_terminal tourist_colored_information_terminal
+icon_alias information_audioguide tourist_colored_information_audioguide
 mycp tourism museum tourist_museum
 mycp tourism picnic_site tourist_colored_picnic
-mycpname topo_picnic_site topo_topo_picnic_site
-mycpname picnic_table tourist_colored_picnic_table
-mycpname topo_picnic_table topo_topo_picnic_table
+icon_alias topo_picnic_site topo_topo_picnic_site
+icon_alias picnic_table tourist_colored_picnic_table
+icon_alias topo_picnic_table topo_topo_picnic_table
 mycp tourism theme_park tourist_theme_park
 mycp tourism viewpoint tourist_view_point
-mycpname topo_viewpoint topo_topo_view_point
+icon_alias topo_viewpoint topo_topo_view_point
 mycp tourism zoo tourist_zoo
-mycpname city_wall tourist_city_wall
-mycpname clock tourist_clock
-mycpname route_hiking_iwn_poi tourist_route_hiking_iwn_poi
-mycpname route_hiking_nwn_poi tourist_route_hiking_nwn_poi
-mycpname route_hiking_rwn_poi tourist_route_hiking_rwn_poi
-mycpname route_hiking_lwn_poi tourist_route_hiking_lwn_poi
-mycpname icn_ref tourist_icn_ref
-mycpname ncn_ref tourist_ncn_ref
-mycpname rcn_ref tourist_rcn_ref
-mycpname lcn_ref tourist_lcn_ref
-mycpname iwn_ref tourist_iwn_ref
-mycpname nwn_ref tourist_nwn_ref
-mycpname rwn_ref tourist_rwn_ref
-mycpname lwn_ref tourist_lwn_ref
-mycpname gallery tourist_gallery
-mycpname firepit tourist_colored_firepit
-mycpname topo_firepit topo_topo_firepit
-mycpname checkpoint_hiking tourist_checkpoint_hiking
+icon_alias city_wall tourist_city_wall
+icon_alias clock tourist_clock
+icon_alias route_hiking_iwn_poi tourist_route_hiking_iwn_poi
+icon_alias route_hiking_nwn_poi tourist_route_hiking_nwn_poi
+icon_alias route_hiking_rwn_poi tourist_route_hiking_rwn_poi
+icon_alias route_hiking_lwn_poi tourist_route_hiking_lwn_poi
+icon_alias icn_ref tourist_icn_ref
+icon_alias ncn_ref tourist_ncn_ref
+icon_alias rcn_ref tourist_rcn_ref
+icon_alias lcn_ref tourist_lcn_ref
+icon_alias iwn_ref tourist_iwn_ref
+icon_alias nwn_ref tourist_nwn_ref
+icon_alias rwn_ref tourist_rwn_ref
+icon_alias lwn_ref tourist_lwn_ref
+icon_alias gallery tourist_gallery
+icon_alias firepit tourist_colored_firepit
+icon_alias topo_firepit topo_topo_firepit
+icon_alias checkpoint_hiking tourist_checkpoint_hiking
 
 ## Entertainment
-mygroup entertainment tourist_cinema3
-mygroup club tourist_night_club
+icon_alias entertainment tourist_cinema3
+icon_alias club tourist_night_club
 mycp amenity arts_centre tourist_art_gallery
 mycp amenity casino tourist_casino
 mycp amenity cinema tourist_cinema3
 mycp amenity nightclub tourist_night_club
 mycp amenity stripclub amenity_stripclub
 mycp amenity theatre tourist_theatre
-mycpname hackerspace entertainment_hackerspace
-mycpname leisure_common entertainment_leisure_common
-mycpname love_hotel entertainment_love_hotel
-mycpname gambling entertainment_gambling
-mycpname adult_gaming_centre entertainment_gambling
-mycpname amusement_arcade entertainment_amusement_arcade
-mycpname hookah_lounge entertainment_hookah_lounge
+icon_alias hackerspace entertainment_hackerspace
+icon_alias leisure_common entertainment_leisure_common
+icon_alias love_hotel entertainment_love_hotel
+icon_alias gambling entertainment_gambling
+icon_alias adult_gaming_centre entertainment_gambling
+icon_alias amusement_arcade entertainment_amusement_arcade
+icon_alias hookah_lounge entertainment_hookah_lounge
 
 ## Historic
-mygroup historic tourist_archaeological2
+icon_alias historic tourist_archaeological2
 mycp historic archaeological_site tourist_archaeological2
-mycpname topo_archaeological_site topo_topo_archaeological2
+icon_alias topo_archaeological_site topo_topo_archaeological2
 mycp historic battlefield tourist_battlefield
 mycp historic boundary_stone tourist_boundary_stone
-mycpname topo_boundary_stone topo_topo_boundary_stone
+icon_alias topo_boundary_stone topo_topo_boundary_stone
 mycp historic cannon tourist_colored_cannon
 mycp historic castle tourist_castle2
-mycpname topo_castle topo_topo_castle2
-mycpname city_gate barrier_colored_sally_port
+icon_alias topo_castle topo_topo_castle2
+icon_alias city_gate barrier_colored_sally_port
 mycp historic memorial tourist_memorial
-mycpname topo_memorial topo_topo_memorial
+icon_alias topo_memorial topo_topo_memorial
 mycp historic mine tourist_mine_abandoned
-mycpname monument tourist_monument2
-mycpname topo_monument topo_topo_monument
+icon_alias monument tourist_monument2
+icon_alias topo_monument topo_topo_monument
 mycp historic ruins tourist_ruin
-mycpname topo_ruins topo_topo_ruins
+icon_alias topo_ruins topo_topo_ruins
 mycp historic rune_stone tourist_colored_rune_stone
 mycp historic ship tourist_ship
-mycpname topo_ship topo_topo_ship
+icon_alias topo_ship topo_topo_ship
 mycp historic wayside_cross tourist_wayside_cross
-mycpname topo_wayside_shrine topo_topo_wayside_shrine
+icon_alias topo_wayside_shrine topo_topo_wayside_shrine
 mycp historic wayside_shrine tourist_wayside_shrine
-mycpname wreck tourist_wreck
-mycpname topo_wreck topo_topo_wreck
-mycpname palaeontological_site tourist_palaeontological_site
-mycpname topo_palaeontological_site topo_topo_palaeontological_site
+icon_alias wreck tourist_wreck
+icon_alias topo_wreck topo_topo_wreck
+icon_alias palaeontological_site tourist_palaeontological_site
+icon_alias topo_palaeontological_site topo_topo_palaeontological_site
 mycp building pyramid tourist_pyramid
-mycpname topo_building_pyramid topo_topo_pyramid
-mycpname tomb tourist_tomb
-mycpname topo_tomb topo_topo_tomb
-mycpname historic_aircraft tourist_historic_aircraft
-mycpname topo_aircraft topo_topo_historic_aircraft
-mycpname technical_monument tourist_technical_monument
-mycpname topo_technical_monument topo_topo_technical_monument
-mycpname memorial_stolperstein tourist_memorial_stolperstein
-mycpname memorial_bust tourist_bust
-mycpname memorial_obelisk tourist_obelisk
-mycpname memorial_plaque tourist_plaque
-mycpname memorial_statue tourist_statue
-mycpname memorial_stele tourist_stele
-mycpname memorial_war tourist_war_memorial
-mycpname historic_manor tourist_historic_manor
-mycpname historic_stone tourist_historic_stone
-mycpname prison_camp tourist_prison_camp
-mycpname locomotive tourist_locomotive
-mycpname outcrop tourist_outcrop
-mycpname topo_outcrop topo_topo_outcrop
-mycpname charcoal_pile tourist_charcoal_pile
-mycpname topo_charcoal_pile topo_charcoal_pile
-mycpname historic_tank tourist_historic_tank
-mycpname topo_tank topo_topo_historic_tank
+icon_alias topo_building_pyramid topo_topo_pyramid
+icon_alias tomb tourist_tomb
+icon_alias topo_tomb topo_topo_tomb
+icon_alias historic_aircraft tourist_historic_aircraft
+icon_alias topo_aircraft topo_topo_historic_aircraft
+icon_alias technical_monument tourist_technical_monument
+icon_alias topo_technical_monument topo_topo_technical_monument
+icon_alias memorial_stolperstein tourist_memorial_stolperstein
+icon_alias memorial_bust tourist_bust
+icon_alias memorial_obelisk tourist_obelisk
+icon_alias memorial_plaque tourist_plaque
+icon_alias memorial_statue tourist_statue
+icon_alias memorial_stele tourist_stele
+icon_alias memorial_war tourist_war_memorial
+icon_alias historic_manor tourist_historic_manor
+icon_alias historic_stone tourist_historic_stone
+icon_alias prison_camp tourist_prison_camp
+icon_alias locomotive tourist_locomotive
+icon_alias outcrop tourist_outcrop
+icon_alias topo_outcrop topo_topo_outcrop
+icon_alias charcoal_pile tourist_charcoal_pile
+icon_alias topo_charcoal_pile topo_charcoal_pile
+icon_alias historic_tank tourist_historic_tank
+icon_alias topo_tank topo_topo_historic_tank
 
 
 ## Special POI icons
@@ -796,7 +798,7 @@ mycp special_poi taj_mahal special_poi_taj_mahal
 mycp special_poi us_capitol special_poi_us_capitol
 
 ## Sport
-mygroup sport sport_swimming_outdoor
+icon_alias sport sport_swimming_outdoor
 mycp leisure stadium sport_stadium
 mycp sport 10pin sport_bowling
 mycp sport 9pin sport_bowling
@@ -809,18 +811,18 @@ mycp sport billiard sport_snooker
 mycp sport bmx sport_bmx
 mycp sport canoe sport_canoe
 mycp sport climbing sport_hillclimbing
-mycpname sport_climbing_adventure sport_climbing_adventure
+icon_alias sport_climbing_adventure sport_climbing_adventure
 mycp sport cricket sport_cricket
 mycp sport cycling sport_cycling
 mycp sport diving sport_diving
 mycp sport golf sport_golf
 mycp sport gymnastics sport_gymnasium
 mycp sport handball sport_handball
-mycpname ice_hockey sport_ice_hockey
-mycpname field_hockey sport_field_hockey
-mycpname equestrian sport_horse_racing
+icon_alias ice_hockey sport_ice_hockey
+icon_alias field_hockey sport_field_hockey
+icon_alias equestrian sport_horse_racing
 mycp sport motor sport_motorracing
-mycpname sport_free_flying sport_free_flying
+icon_alias sport_free_flying sport_free_flying
 mycp sport rugby_league sport_rugby_league
 mycp sport rugby_union sport_rugby_union
 mycp sport sailing sport_sailing
@@ -835,35 +837,35 @@ mycp sport swimming sport_swimming_outdoor
 mycp sport table_tennis sport_table_tennis
 mycp sport tennis sport_tennis
 mycp sport volleyball sport_volleyball
-mycpname beachvolleyball sport_beachvolleyball
-mycpname pitch sport_pitch
-mycpname swimming_pool sport_swimming_outdoor
-mycpname leisure_track sport_leisure_track
-mycpname ice_skating sport_iceskating
-mycpname orienteering sport_orienteering
-mycpname golf_course sport_golf
-mycpname horse_riding sport_horse_riding
-mycpname model_aerodrome sport_model_aerodrome
-mycpname american_football sport_american_football
-mycpname raceway sport_raceway
-mycpname fitness_centre sport_fitness_centre
-mycpname billiards sport_billiards
-mycpname chess sport_chess
-mycpname gaelic_games sport_gaelic_games
-mycpname running sport_running
-mycpname karting sport_karting
-mycpname badminton sport_badminton
-mycpname ice_stock sport_ice_stock
-mycpname korfball sport_korfball
-mycpname judo sport_judo
-mycpname rc_car sport_rc_car
-mycpname bandy sport_bandy
-mycpname sport_multi sport_multi
-mycpname dive_centre sport_dive_centre
+icon_alias beachvolleyball sport_beachvolleyball
+icon_alias pitch sport_pitch
+icon_alias swimming_pool sport_swimming_outdoor
+icon_alias leisure_track sport_leisure_track
+icon_alias ice_skating sport_iceskating
+icon_alias orienteering sport_orienteering
+icon_alias golf_course sport_golf
+icon_alias horse_riding sport_horse_riding
+icon_alias model_aerodrome sport_model_aerodrome
+icon_alias american_football sport_american_football
+icon_alias raceway sport_raceway
+icon_alias fitness_centre sport_fitness_centre
+icon_alias billiards sport_billiards
+icon_alias chess sport_chess
+icon_alias gaelic_games sport_gaelic_games
+icon_alias running sport_running
+icon_alias karting sport_karting
+icon_alias badminton sport_badminton
+icon_alias ice_stock sport_ice_stock
+icon_alias korfball sport_korfball
+icon_alias judo sport_judo
+icon_alias rc_car sport_rc_car
+icon_alias bandy sport_bandy
+icon_alias sport_multi sport_multi
+icon_alias dive_centre sport_dive_centre
 
 
 ## Leisure
-mygroup leisure sport_playground
+icon_alias leisure sport_playground
 mycp leisure beach_resort tourist_beach_resort
 mycp leisure bird_hide entertainment_bird_hide
 mycp leisure fishing sport_fishing  #used shop=fish turned by 45 degrees for now
@@ -872,135 +874,135 @@ mycp leisure miniature_golf sport_miniature_golf
 mycp leisure playground sport_colored_playground
 mycp leisure sports_centre sport_leisure_centre2
 mycp leisure water_park entertainment_water_slide
-mycpname sauna sport_sauna
-mycpname fitness_station sport_fitness_station
-mycpname tanning_salon sport_tanning_salon
+icon_alias sauna sport_sauna
+icon_alias fitness_station sport_fitness_station
+icon_alias tanning_salon sport_tanning_salon
 
-mygroup geocache poi_colored_point_of_interest
+icon_alias geocache poi_colored_point_of_interest
 mycp geocache not_found poi_colored_point_of_interest
 mycp geocache found poi_colored_point_of_interest
 
 
 ## Other amenities
-mygroup other amenity_post_office
-mygroup place_of_worship place_of_worship_unknown
-mygroup internet_access amenity_internet_access
+icon_alias other amenity_post_office
+icon_alias place_of_worship place_of_worship_unknown
+icon_alias internet_access amenity_internet_access
 mycp amenity car_wash amenity_car_wash
-mycpname car_wash_self_service amenity_car_wash_self_service
-mycpname vehicle_inspection amenity_vehicle_inspection
+icon_alias car_wash_self_service amenity_car_wash_self_service
+icon_alias vehicle_inspection amenity_vehicle_inspection
 mycp amenity fountain water_colored_fountain2
 mycp amenity fountain_night functional-icons_fountain2_night
 mycp amenity monastery place_of_worship_monastery
-mycpname historic_monastery place_of_worship_monastery
+icon_alias historic_monastery place_of_worship_monastery
 mycp amenity place_of_worship place_of_worship_unknown
-mycpname topo_religion_unknown topo_topo_religion_unknown
+icon_alias topo_religion_unknown topo_topo_religion_unknown
 mycp amenity post_box amenity_post_box
-mycpname letter_box amenity_letter_box
+icon_alias letter_box amenity_letter_box
 mycp amenity post_office amenity_post_office2
 mycp amenity prison amenity_prison
 mycp amenity recycling amenity_colored_recycling
 mycp amenity telephone amenity_telephone
 mycp amenity toilets amenity_toilets
 mycp amenity vehicle_ramp amenity_vehicle_ramp
-mycpname service_tyres shopping_service_tyres
+icon_alias service_tyres shopping_service_tyres
 mycp religion christian place_of_worship_christian3
-mycpname topo_christian topo_topo_christian
+icon_alias topo_christian topo_topo_christian
 mycp religion jewish place_of_worship_jewish3
-mycpname topo_jewish topo_topo_jewish
+icon_alias topo_jewish topo_topo_jewish
 mycp religion muslim place_of_worship_islamic3
-mycpname topo_muslim topo_topo_muslim
+icon_alias topo_muslim topo_topo_muslim
 mycp religion sikh place_of_worship_sikh3
 mycp religion buddhist place_of_worship_buddhist3
-mycpname topo_buddhist topo_topo_buddhist
+icon_alias topo_buddhist topo_topo_buddhist
 mycp religion hindu place_of_worship_hindu3
-mycpname topo_hindu topo_topo_hindu
+icon_alias topo_hindu topo_topo_hindu
 mycp religion shinto place_of_worship_shinto3
 mycp religion taoist place_of_worship_taoist
-mycpname brothel amenity_brothel
-mycpname smoking_area amenity_smoking_area
-mycpname studio amenity_studio
-mycpname waste_basket amenity_waste_bin
-mycpname waste_basket2 amenity_colored_waste_basket
-mycpname waste_disposal amenity_colored_waste_disposal
-mycpname shower amenity_shower
-mycpname bench amenity_colored_bench
-mycpname dry_cleaning amenity_dry_cleaning
-mycpname massage amenity_massage
-mycpname funeral_directors amenity_funeral_directors
-mycpname internet_access_wlan amenity_internet_access_wlan
-mycpname internet_access_wired amenity_internet_access_wired
+icon_alias brothel amenity_brothel
+icon_alias smoking_area amenity_smoking_area
+icon_alias studio amenity_studio
+icon_alias waste_basket amenity_waste_bin
+icon_alias waste_basket2 amenity_colored_waste_basket
+icon_alias waste_disposal amenity_colored_waste_disposal
+icon_alias shower amenity_shower
+icon_alias bench amenity_colored_bench
+icon_alias dry_cleaning amenity_dry_cleaning
+icon_alias massage amenity_massage
+icon_alias funeral_directors amenity_funeral_directors
+icon_alias internet_access_wlan amenity_internet_access_wlan
+icon_alias internet_access_wired amenity_internet_access_wired
 #! mycp amenity grave_yard place_of_worship_christian3  #already defined as icon in the shader section
-mycpname watering_place amenity_watering_place
-mycpname animal_shelter amenity_animal_shelter
-mycpname animal_boarding amenity_animal_boarding
-mycpname baby_hatch amenity_baby_hatch
-mycpname boat_storage amenity_boat_storage
-mycpname crematorium amenity_crematorium
-mycpname mortuary amenity_mortuary
-mycpname internet_access_yes amenity_internet_access_wlan
-mycpname customs amenity_customs
-mycpname dojo amenity_dojo
-mycpname social_centre amenity_social_centre
-mycpname compressed_air amenity_compressed_air
-mycpname amenity_vacuum_cleaner amenity_vacuum_cleaner
-mycpname bicycle_repair_station amenity_bicycle_repair_station
-mycpname water_tap amenity_water_tap
-mycpname topo_water_tap topo_water_water_tap
-mycpname recycling_centre_map amenity_recycling_centre_map
-mycpname recycling_container amenity_colored_recycling_container
-mycpname barbecue amenity_barbecue
-mycpname public_bookcase amenity_public_bookcase
-mycpname internet_cafe amenity_internet_cafe
-mycpname feeding_place amenity_colored_feeding_place
-mycpname animal_keeping amenity_animal_keeping
-mycpname coworking_space amenity_coworking
+icon_alias watering_place amenity_watering_place
+icon_alias animal_shelter amenity_animal_shelter
+icon_alias animal_boarding amenity_animal_boarding
+icon_alias baby_hatch amenity_baby_hatch
+icon_alias boat_storage amenity_boat_storage
+icon_alias crematorium amenity_crematorium
+icon_alias mortuary amenity_mortuary
+icon_alias internet_access_yes amenity_internet_access_wlan
+icon_alias customs amenity_customs
+icon_alias dojo amenity_dojo
+icon_alias social_centre amenity_social_centre
+icon_alias compressed_air amenity_compressed_air
+icon_alias amenity_vacuum_cleaner amenity_vacuum_cleaner
+icon_alias bicycle_repair_station amenity_bicycle_repair_station
+icon_alias water_tap amenity_water_tap
+icon_alias topo_water_tap topo_water_water_tap
+icon_alias recycling_centre_map amenity_recycling_centre_map
+icon_alias recycling_container amenity_colored_recycling_container
+icon_alias barbecue amenity_barbecue
+icon_alias public_bookcase amenity_public_bookcase
+icon_alias internet_cafe amenity_internet_cafe
+icon_alias feeding_place amenity_colored_feeding_place
+icon_alias animal_keeping amenity_animal_keeping
+icon_alias coworking_space amenity_coworking
 
-mygroup craft craft_tailor
-mycpname craft_default craft_craft_default
-mycpname craft_beekeeper craft_beekeeper
-mycpname craft_blacksmith craft_blacksmith
-mycpname craft_brewery craft_brewery
-mycpname craft_locksmith craft_locksmith
-mycpname craft_painter craft_painter
-mycpname craft_tailor craft_tailor
-mycpname craft_shoemaker craft_shoemaker
-mycpname craft_jeweller craft_jeweller
-mycpname craft_agricultural_engines craft_agricultural_engines
-mycpname craft_boatbuilder craft_boatbuilder
-mycpname craft_electrician craft_electrician
-mycpname craft_handicraft craft_handicraft
-mycpname craft_hvac craft_hvac
-mycpname craft_insulation craft_insulation
-mycpname craft_photographic_laboratory craft_photographic_laboratory
-mycpname craft_clockmaker craft_clockmaker
-mycpname craft_key_cutter craft_key_cutter
-mycpname craft_plasterer craft_plasterer
-mycpname craft_plumber craft_plumber
-mycpname craft_roofer craft_roofer
-mycpname craft_stonemason craft_stonemason
-mycpname craft_carpenter craft_carpenter
-mycpname craft_sawmill craft_sawmill
-mycpname craft_pottery craft_pottery
-mycpname craft_winery craft_winery
-mycpname craft_metal_construction craft_metal_construction
-mycpname craft_window_construction craft_window_construction
-mycpname craft_builder craft_builder
-mycpname craft_photographer craft_photographer
-mycpname craft_caterer craft_caterer
-mycpname craft_electronics_repair craft_electronics_repair
-mycpname craft_gardener craft_gardener
+icon_alias craft craft_tailor
+icon_alias craft_default craft_craft_default
+icon_alias craft_beekeeper craft_beekeeper
+icon_alias craft_blacksmith craft_blacksmith
+icon_alias craft_brewery craft_brewery
+icon_alias craft_locksmith craft_locksmith
+icon_alias craft_painter craft_painter
+icon_alias craft_tailor craft_tailor
+icon_alias craft_shoemaker craft_shoemaker
+icon_alias craft_jeweller craft_jeweller
+icon_alias craft_agricultural_engines craft_agricultural_engines
+icon_alias craft_boatbuilder craft_boatbuilder
+icon_alias craft_electrician craft_electrician
+icon_alias craft_handicraft craft_handicraft
+icon_alias craft_hvac craft_hvac
+icon_alias craft_insulation craft_insulation
+icon_alias craft_photographic_laboratory craft_photographic_laboratory
+icon_alias craft_clockmaker craft_clockmaker
+icon_alias craft_key_cutter craft_key_cutter
+icon_alias craft_plasterer craft_plasterer
+icon_alias craft_plumber craft_plumber
+icon_alias craft_roofer craft_roofer
+icon_alias craft_stonemason craft_stonemason
+icon_alias craft_carpenter craft_carpenter
+icon_alias craft_sawmill craft_sawmill
+icon_alias craft_pottery craft_pottery
+icon_alias craft_winery craft_winery
+icon_alias craft_metal_construction craft_metal_construction
+icon_alias craft_window_construction craft_window_construction
+icon_alias craft_builder craft_builder
+icon_alias craft_photographer craft_photographer
+icon_alias craft_caterer craft_caterer
+icon_alias craft_electronics_repair craft_electronics_repair
+icon_alias craft_gardener craft_gardener
 
-mygroup finance money_bank2
+icon_alias finance money_bank2
 mycp amenity atm money_atm
-mycpname payment_terminal money_payment_terminal
-mycpname payment_centre money_payment_centre
-mycpname money_transfer money_money_transfer
+icon_alias payment_terminal money_payment_terminal
+icon_alias payment_centre money_payment_centre
+icon_alias money_transfer money_money_transfer
 mycp amenity bank money_bank2
 mycp amenity bureau_de_change money_currency_exchange
 mycp bitcoin yes money_bitcoin
-mycpname money_lender money_money_lender
+icon_alias money_lender money_money_lender
 
-mygroup office amenity_public_building2
+icon_alias office amenity_public_building2
 mycp amenity community_centre amenity_public_building
 mycp amenity courthouse amenity_court
 mycp amenity embassy amenity_embassy
@@ -1008,150 +1010,150 @@ mycp amenity library amenity_library
 mycp amenity public_building amenity_public_building
 mycp amenity social_centre amenity_public_building
 mycp amenity townhall amenity_town_hall2
-mycpname register_office amenity_register_office
+icon_alias register_office amenity_register_office
 
-mygroup service amenity_service
-mygroup landuse landuse_landuse
+icon_alias service amenity_service
+icon_alias landuse landuse_landuse
 
 ## Education
-mygroup education education_university
+icon_alias education education_university
 mycp amenity college education_college
-mycpname kindergarten education_kindergarten
+icon_alias kindergarten education_kindergarten
 mycp amenity school education_school
 mycp amenity university education_university
-mycpname driving_school education_driving_school
-mycpname training education_training
-mycpname training_yoga education_training_yoga
-mycpname music_school education_music_school
-mycpname language_school education_language_school
-mycpname childcare education_childcare
+icon_alias driving_school education_driving_school
+icon_alias training education_training
+icon_alias training_yoga education_training_yoga
+icon_alias music_school education_music_school
+icon_alias language_school education_language_school
+icon_alias childcare education_childcare
 
 ## Man made
-mygroup man_made power_generator_wind2
-mygroup transport_construction poi_colored_bridge
-mygroup water_supply poi_colored_water_tower
-mygroup power power_generator
-mygroup communication amenity_telephone
-mygroup trash_disposal amenity_waste_disposal
-mycpname bridge poi_colored_bridge
-mycpname tunnel poi_colored_tunnel
+icon_alias man_made power_generator_wind2
+icon_alias transport_construction poi_colored_bridge
+icon_alias water_supply poi_colored_water_tower
+icon_alias power power_generator
+icon_alias communication amenity_telephone
+icon_alias trash_disposal amenity_waste_disposal
+icon_alias bridge poi_colored_bridge
+icon_alias tunnel poi_colored_tunnel
 mycp amenity hunting_stand poi_colored_hunting_stand
 mycp highway street_lamp functional-icons_street_lamp
 mycp highway street_lamp_lit functional-icons_street_lamp_lit
 mycp man_made adit poi_adit
 mycp man_made antenna poi_colored_antenna
 mycp man_made chimney poi_colored_chimney
-mycpname topo_chimney topo_big_topo_chimney
-mycpname crane poi_colored_crane
+icon_alias topo_chimney topo_big_topo_chimney
+icon_alias crane poi_colored_crane
 mycp man_made mast poi_colored_mast
-mycpname topo_mast topo_big_topo_mast
+icon_alias topo_mast topo_big_topo_mast
 mycp man_made mineshaft poi_colored_mine
-mycpname topo_mine topo_topo_mine
-mycpname topo_mine_abandoned topo_topo_mine_abandoned
-mycpname radar poi_colored_monitoring_station_radar
-mycpname astronomical_observatory poi_colored_observatory_astronomical
-mycpname telescope poi_colored_telescope
+icon_alias topo_mine topo_topo_mine
+icon_alias topo_mine_abandoned topo_topo_mine_abandoned
+icon_alias radar poi_colored_monitoring_station_radar
+icon_alias astronomical_observatory poi_colored_observatory_astronomical
+icon_alias telescope poi_colored_telescope
 mycp man_made observatory poi_colored_observatory
-mycpname observation_tower poi_colored_observatory
+icon_alias observation_tower poi_colored_observatory
 mycp man_made petroleum_well poi_colored_petroleum_well
 mycp man_made survey_point poi_colored_survey_point
-mycpname topo_survey_point topo_topo_survey_point
+icon_alias topo_survey_point topo_topo_survey_point
 mycp man_made tower poi_colored_tower
-mycpname topo_tower topo_big_topo_tower
-mycpname bell_tower poi_colored_tower_bell_tower
-mycpname communication_tower poi_colored_tower_communications2
-mycpname topo_communication_tower topo_big_topo_communication_tower
-mycpname cooling_tower poi_colored_tower_cooling
-mycpname lighting_tower poi_colored_tower_lighting
+icon_alias topo_tower topo_big_topo_tower
+icon_alias bell_tower poi_colored_tower_bell_tower
+icon_alias communication_tower poi_colored_tower_communications2
+icon_alias topo_communication_tower topo_big_topo_communication_tower
+icon_alias cooling_tower poi_colored_tower_cooling
+icon_alias lighting_tower poi_colored_tower_lighting
 mycp man_made water_tower poi_colored_water_tower
 mycp man_made windmill poi_colored_windmill
-mycpname topo_windmill topo_big_topo_windmill
+icon_alias topo_windmill topo_big_topo_windmill
 mycp no icon functional-icons_no_icon
-mycpname generator_source_coal power_generator_coal
-mycpname generator_source_gas power_generator_gas
-mycpname generator_source_geothermal power_generator_geothermal
-mycpname generator_source_nuclear power_generator_nuclear
-mycpname generator_source_oil power_generator_oil
-mycpname generator_source_diesel power_generator_diesel
-mycpname generator_source_solar power_generator_solar
-mycpname generator_source_hydro power_generator_water2
-mycpname generator_source_wind power_generator_wind
-mycpname power_generator power_generator
-mycpname power_plant power_plant
+icon_alias generator_source_coal power_generator_coal
+icon_alias generator_source_gas power_generator_gas
+icon_alias generator_source_geothermal power_generator_geothermal
+icon_alias generator_source_nuclear power_generator_nuclear
+icon_alias generator_source_oil power_generator_oil
+icon_alias generator_source_diesel power_generator_diesel
+icon_alias generator_source_solar power_generator_solar
+icon_alias generator_source_hydro power_generator_water2
+icon_alias generator_source_wind power_generator_wind
+icon_alias power_generator power_generator
+icon_alias power_plant power_plant
 mycp power substation power_transformer2
 mycp power tower poi_colored_power_tower
 mycp power tower_square functional-icons_power_tower
 mycp power tower_small functional-icons_power_tower_small
 mycp power tower_small2 functional-icons_power_tower_small2
-mycpname power_generator power_generator
+icon_alias power_generator power_generator
 mycp railway buffer_stop poi_colored_buffer_stop
-mycpname power_transformer power_transformer_small
-mycpname topo_transformer topo_big_topo_transformer
-mycpname works poi_colored_works
-mycpname military_bunker poi_colored_military_bunker
-mycpname topo_bunker topo_topo_bunker
-mycpname abandoned_poi poi_colored_abandoned_poi
-mycpname surveillance poi_colored_surveillance
-mycpname pier poi_colored_pier
-mycpname beacon poi_colored_beacon
-mycpname breakwater poi_colored_breakwater
-mycpname military_range poi_colored_military_range
-mycpname power_cable_distribution_cabinet power_cable_distribution_cabinet
-mycpname kiln poi_colored_kiln
-mycpname cairn poi_colored_cairn
-mycpname groyne poi_colored_groyne
-mycpname military_naval_base poi_colored_military_naval_base
-mycpname building_map functional-icons_building_map
-mycpname square poi_colored_square
-mycpname building poi_colored_building
-mycpname cross poi_colored_cross
-mycpname grave poi_colored_grave
-mycpname storage_tank poi_colored_storage_tank
-mycpname wastewater_plant poi_colored_wastewater_plant
-mycpname water_works poi_colored_water_works
-mycpname watermill poi_watermill
-mycpname topo_watermill topo_topo_watermill
-mycpname monitoring_station poi_colored_monitoring_station
-mycpname dolphin poi_colored_dolphin
-mycpname street_cabinet poi_colored_street_cabinet
-mycpname sanitary_dump_station poi_colored_sanitary_dump_station
-mycpname spoil_heap poi_colored_spoil_heap
-mycpname ventilation_shaft poi_colored_ventilation_shaft
-mycpname pumping_station poi_colored_pumping_station
-mycpname mdf poi_colored_mdf
-mycpname topo_power_plant topo_topo_power_plant
-mycpname pipeline_substation poi_colored_pipeline_substation
-mycpname flare poi_colored_flare
-mycpname cellar_entrance poi_cellar_entrance
-mycpname topo_cellar_entrance topo_cellar_entrance
+icon_alias power_transformer power_transformer_small
+icon_alias topo_transformer topo_big_topo_transformer
+icon_alias works poi_colored_works
+icon_alias military_bunker poi_colored_military_bunker
+icon_alias topo_bunker topo_topo_bunker
+icon_alias abandoned_poi poi_colored_abandoned_poi
+icon_alias surveillance poi_colored_surveillance
+icon_alias pier poi_colored_pier
+icon_alias beacon poi_colored_beacon
+icon_alias breakwater poi_colored_breakwater
+icon_alias military_range poi_colored_military_range
+icon_alias power_cable_distribution_cabinet power_cable_distribution_cabinet
+icon_alias kiln poi_colored_kiln
+icon_alias cairn poi_colored_cairn
+icon_alias groyne poi_colored_groyne
+icon_alias military_naval_base poi_colored_military_naval_base
+icon_alias building_map functional-icons_building_map
+icon_alias square poi_colored_square
+icon_alias building poi_colored_building
+icon_alias cross poi_colored_cross
+icon_alias grave poi_colored_grave
+icon_alias storage_tank poi_colored_storage_tank
+icon_alias wastewater_plant poi_colored_wastewater_plant
+icon_alias water_works poi_colored_water_works
+icon_alias watermill poi_watermill
+icon_alias topo_watermill topo_topo_watermill
+icon_alias monitoring_station poi_colored_monitoring_station
+icon_alias dolphin poi_colored_dolphin
+icon_alias street_cabinet poi_colored_street_cabinet
+icon_alias sanitary_dump_station poi_colored_sanitary_dump_station
+icon_alias spoil_heap poi_colored_spoil_heap
+icon_alias ventilation_shaft poi_colored_ventilation_shaft
+icon_alias pumping_station poi_colored_pumping_station
+icon_alias mdf poi_colored_mdf
+icon_alias topo_power_plant topo_topo_power_plant
+icon_alias pipeline_substation poi_colored_pipeline_substation
+icon_alias flare poi_colored_flare
+icon_alias cellar_entrance poi_cellar_entrance
+icon_alias topo_cellar_entrance topo_cellar_entrance
 
-mygroup military poi_colored_military_bunker
+icon_alias military poi_colored_military_bunker
 
 
 ## Food and Drink
-mygroup restaurants food_restaurant
-mygroup sustenance food_fastfood
-mygroup cafe_and_restaurant food_restaurant
+icon_alias restaurants food_restaurant
+icon_alias sustenance food_fastfood
+icon_alias cafe_and_restaurant food_restaurant
 mycp amenity bar food_bar
 mycp amenity biergarten food_biergarten
 mycp amenity cafe food_cafe
 mycp amenity drinking_water food_drinkingtap
-mycpname topo_drinking_water topo_water_drinking_water
+icon_alias topo_drinking_water topo_water_drinking_water
 mycp amenity fast_food food_fastfood
 mycp amenity food_court food_food_court
 mycp amenity pub food_pub
 mycp amenity restaurant food_restaurant
 mycp man_made water_well food_water_well
-mycpname topo_water_well topo_water_water_well
-mycpname water_point food_water_point
+icon_alias topo_water_well topo_water_water_well
+icon_alias water_point food_water_point
 
 ## Seamarks
-mygroup seamark icons8_sail_boat
+icon_alias seamark icons8_sail_boat
 mycp seamark buoy_conical seamark_buoy_conical
 mycp seamark buoy_barrel seamark_buoy_barrel
 mycp seamark buoy_can seamark_buoy_can
 mycp seamark buoy_spherical seamark_buoy_spherical
-mycpname seamark_buoy_pillar seamark_buoy_pillar
+icon_alias seamark_buoy_pillar seamark_buoy_pillar
 
 mycp seamark buoy_blackredblack_conical seamark_buoy_blackredblack_conical
 mycp seamark buoy_blackredblack_pillar seamark_buoy_blackredblack_pillar
@@ -1194,9 +1196,9 @@ mycp seamark buoy_redwhite_pillar_vertical seamark_buoy_redwhite_pillar_vertical
 mycp seamark buoy_redwhite_spherical_vertical seamark_buoy_redwhite_spherical_vertical
 mycp seamark buoy_redwhite_spar_vertical seamark_buoy_redwhite_spar_vertical
 mycp seamark buoy_redwhite_spar_horizontal seamark_buoy_redwhite_spar_horizontal
-mycpname seamark_buoy_redgreen_spherical_horizontal seamark_buoy_redgreen_spherical_horizontal
-mycpname seamark_buoy_redgreen_spar_horizontal seamark_buoy_redgreen_spar_horizontal
-mycpname seamark_buoy_redwhite_pillar_horizontal seamark_buoy_redwhite_pillar_horizontal
+icon_alias seamark_buoy_redgreen_spherical_horizontal seamark_buoy_redgreen_spherical_horizontal
+icon_alias seamark_buoy_redgreen_spar_horizontal seamark_buoy_redgreen_spar_horizontal
+icon_alias seamark_buoy_redwhite_pillar_horizontal seamark_buoy_redwhite_pillar_horizontal
 
 mycp seamark buoy_blackyellowblack_can seamark_buoy_blackyellowblack_can
 mycp seamark buoy_blackyellowblack_conical seamark_buoy_blackyellowblack_conical
@@ -1222,9 +1224,9 @@ mycp seamark buoy_redgreenred_spherical_horizontal seamark_buoy_redgreenred_sphe
 
 mycp seamark buoy_redwhiteredwhite_spar_horizontal seamark_buoy_redwhiteredwhite_spar_horizontal
 mycp seamark buoy_redwhiteredwhite_can_horizontal seamark_buoy_redwhiteredwhite_can_horizontal
-mycpname seamark_buoy_redgreenredgreen_spar_horizontal seamark_buoy_redgreenredgreen_spar_horizontal
-mycpname seamark_buoy_redgreenredgreen_spherical_horizontal seamark_buoy_redgreenredgreen_spherical_horizontal
-mycpname seamark_buoy_redwhitered_can_horizontal seamark_buoy_redwhitered_can_horizontal
+icon_alias seamark_buoy_redgreenredgreen_spar_horizontal seamark_buoy_redgreenredgreen_spar_horizontal
+icon_alias seamark_buoy_redgreenredgreen_spherical_horizontal seamark_buoy_redgreenredgreen_spherical_horizontal
+icon_alias seamark_buoy_redwhitered_can_horizontal seamark_buoy_redwhitered_can_horizontal
 
 mycp seamark buoy_whiteredwhitered_spar_horizontal seamark_buoy_whiteredwhitered_spar_horizontal
 mycp seamark buoy_whitegreenwhitegreen_spar_horizontal seamark_buoy_whitegreenwhitegreen_spar_horizontal
@@ -1355,7 +1357,7 @@ mycp seamark topmark_oblique_red_cylinder seamark_topmark_oblique_red_cylinder
 mycp seamark topmark_oblique_red_rhombus seamark_topmark_oblique_red_rhombus
 mycp seamark topmark_oblique_red_sphere seamark_topmark_oblique_red_sphere
 mycp seamark topmark_oblique_red_xshape seamark_topmark_oblique_red_xshape
-mycpname seamark_topmark_oblique_red_conepointupoversphere seamark_topmark_oblique_green_conepointupoversphere
+icon_alias seamark_topmark_oblique_red_conepointupoversphere seamark_topmark_oblique_green_conepointupoversphere
 
 mycp seamark topmark_oblique_green_board seamark_topmark_oblique_green_board
 mycp seamark topmark_oblique_green_conepointdown seamark_topmark_oblique_green_conepointdown
@@ -1363,7 +1365,7 @@ mycp seamark topmark_oblique_green_conepointup seamark_topmark_oblique_green_con
 mycp seamark topmark_oblique_green_cylinder seamark_topmark_oblique_green_cylinder
 mycp seamark topmark_oblique_green_sphere seamark_topmark_oblique_green_sphere
 mycp seamark topmark_oblique_green_xshape seamark_topmark_oblique_green_xshape
-mycpname seamark_topmark_oblique_red_cylinderoversphere seamark_topmark_oblique_red_cylinderoversphere
+icon_alias seamark_topmark_oblique_red_cylinderoversphere seamark_topmark_oblique_red_cylinderoversphere
 
 mycp seamark topmark_oblique_black_conepointdown seamark_topmark_oblique_black_conepointdown
 mycp seamark topmark_oblique_black_conepointup seamark_topmark_oblique_black_conepointup
@@ -1733,7 +1735,7 @@ mycp seamark wreck_hull_showing seamark_wreck_hull_showing
 mycp seamark power_line seamark_small_power_line
 mycp seamark submarine_cable seamark_small_submarine_cable
 
-mycpname seamark_obstruction_stump seamark_obstruction_stump
+icon_alias seamark_obstruction_stump seamark_obstruction_stump
 
 ## Skimap
 mycp skimap overlay_advanced skimap_overlay_advanced
@@ -1743,7 +1745,7 @@ mycp skimap overlay_extreme skimap_overlay_extreme
 mycp skimap overlay_freeride skimap_overlay_freeride
 mycp skimap overlay_intermediate skimap_overlay_intermediate
 mycp skimap overlay_novice skimap_overlay_novice
-mycpname piste skimap_piste
+icon_alias piste skimap_piste
 mycp piste downhill skimap_piste_downhill
 mycp piste hike skimap_piste_hike
 mycp piste nordic skimap_piste_nordic
@@ -1765,17 +1767,17 @@ mycp skimap gray_black_round_shield skimap_gray_black_round_shield
 mycp skimap white_black_round_shield skimap_white_black_round_shield
 
 ## Shops
-mygroup car_aid shopping_car
-mygroup food_shop shopping_convenience
-mygroup shop shopping_department_store
-mygroup shop_food shopping_convenience
+icon_alias car_aid shopping_car
+icon_alias food_shop shopping_convenience
+icon_alias shop shopping_department_store
+icon_alias shop_food shopping_convenience
 mycp amenity marketplace shopping_marketplace
 mycp amenity vending_machine shopping_vending_machine
 mycp shop alcohol shopping_alcohol
 mycp shop baby_goods shopping_baby
 mycp shop bakery shopping_bakery
 mycp shop bicycle shopping_bicycle
-mycpname beverages shopping_beverages
+icon_alias beverages shopping_beverages
 mycp shop books shopping_book2
 mycp shop boutique shopping_clothes
 mycp shop butcher shopping_butcher2
@@ -1791,32 +1793,32 @@ mycp shop copyshop shopping_copyshop
 mycp shop dairy shopping_dairy
 mycp shop department_store shopping_department_store
 mycp shop doityourself shopping_diy
-mycpname electronics shopping_electronics
-mycpname hifi shopping_hifi
+icon_alias electronics shopping_electronics
+icon_alias hifi shopping_hifi
 mycp shop fashion shopping_clothes
 mycp shop fishing shopping_tackle
 mycp shop florist shopping_florist
-mycpname flooring shopping_flooring
+icon_alias flooring shopping_flooring
 mycp shop furniture shopping_furniture
 mycp shop garden_centre shopping_garden_centre
-mycpname shop_yes shopping_general
+icon_alias shop_yes shopping_general
 mycp shop gift shopping_gift
 mycp shop greengrocer shopping_greengrocer
 mycp shop hairdresser shopping_hairdresser
 mycp shop hardware shopping_diy
 mycp shop hearing_aids shopping_hearing_aids
-mycpname ice_cream food_ice_cream
+icon_alias ice_cream food_ice_cream
 mycp shop jewelry shopping_jewelry2
 mycp shop kiosk shopping_kiosk
 mycp shop laundry shopping_laundrette
 mycp shop mall shopping_mall
 mycp shop mobile_phone shopping_mobile_phone
 mycp shop motorcycle shopping_motorcycle
-mycpname motorcycle_repair shopping_motorcycle_repair
+icon_alias motorcycle_repair shopping_motorcycle_repair
 mycp shop musical_instrument shopping_musical_instrument
 mycp shop optician shopping_opticians
 mycp shop pet shopping_pet2
-mycpname photo shopping_photo
+icon_alias photo shopping_photo
 mycp shop seafood shopping_fish
 mycp shop shoes shopping_shoes
 mycp shop sports shopping_sports
@@ -1825,167 +1827,167 @@ mycp shop ticket shopping_ticket
 mycp shop tobacco shopping_tobacco
 mycp shop toys shopping_toys
 mycp shop video shopping_video_rental
-mycpname wine shopping_wine
-mycpname outdoor shopping_outdoor
-mycpname tyres shopping_tyres
-mycpname cosmetics shopping_cosmetics
-mycpname leather shopping_leather
-mycpname medical_supply shopping_medical_supply
-mycpname cheese shopping_cheese
-mycpname chocolate shopping_chocolate
-mycpname coffee shopping_coffee
-mycpname farm shopping_farm
-mycpname tea shopping_tea
-mycpname pastry shopping_pastry
-mycpname antiques shopping_antiques
-mycpname bag shopping_bag
-mycpname bed shopping_bed
-mycpname boutique shopping_boutique
-mycpname bathroom_furnishing shopping_bathroom_furnishing
-mycpname camera shopping_camera
-mycpname carpet shopping_carpet
-mycpname chemist shopping_chemist
-mycpname curtain shopping_curtain
-mycpname fabric shopping_fabric
-mycpname bedding shopping_bedding
-mycpname erotic shopping_erotic
-mycpname fashion shopping_fashion
-mycpname frame shopping_frame
-mycpname free_flying shopping_free_flying
-mycpname furnace shopping_furnace
-mycpname gas shopping_gas
-mycpname glaziery shopping_glaziery
-mycpname herbalist shopping_herbalist
-mycpname houseware shopping_houseware
-mycpname hunting shopping_hunting
-mycpname beauty shopping_beauty
-mycpname interior_decoration shopping_interior_decoration
-mycpname art shopping_art
-mycpname model shopping_model
-mycpname music shopping_music
-mycpname newsagent shopping_newsagent
-mycpname paint shopping_paint
-mycpname radiotechnics shopping_radiotechnics
-mycpname scuba_diving_shop shopping_scuba_diving_shop
-mycpname stationery shopping_stationery
-mycpname tableware shopping_tableware
-mycpname trophy shopping_trophy
-mycpname trade shopping_trade
-mycpname vacuum_cleaner shopping_vacuum_cleaner
-mycpname tattoo shopping_tattoo
-mycpname perfumery shopping_perfumery
-mycpname pawnbroker shopping_pawnbroker
-mycpname second_hand shopping_second_hand
-mycpname honey shopping_honey
-mycpname charity shopping_charity
-mycpname energy shopping_energy
-mycpname variety_store shopping_variety_store
-mycpname kitchen shopping_kitchen
-mycpname video_games shopping_video_games
-mycpname pyrotechnics shopping_pyrotechnics
-mycpname weapons shopping_weapons
-mycpname window_blind shopping_window_blind
-mycpname watches shopping_watches
-mycpname candles shopping_candles
-mycpname religion shopping_religion
-mycpname games shopping_games
-mycpname doors shopping_doors
-mycpname sewing shopping_sewing
-mycpname spices shopping_spices
-mycpname shop_craft shopping_craft
-mycpname party shopping_party
-mycpname deli shopping_deli
-mycpname electrical shopping_electrical
-mycpname locksmith shopping_locksmith
-mycpname lighting shopping_lighting
-mycpname lottery shopping_lottery
-mycpname e_cigarette shopping_e_cigarette
-mycpname nutrition_supplements shopping_nutrition_supplements
-mycpname photo_studio shopping_photo_studio
-mycpname frozen_food shopping_frozen_food
-mycpname agrarian shopping_agrarian
-mycpname shop_fireplace shopping_fireplace
-mycpname shop_boat shopping_boat
-mycpname cannabis shopping_cannabis
-mycpname pottery shopping_pottery
-mycpname outpost shopping_outpost
-mycpname appliance shopping_appliance
-mycpname shoe_repair shopping_shoe_repair
-mycpname shop_wholesale shopping_wholesale
-mycpname health_food shopping_health_food
-mycpname pet_grooming shopping_pet_grooming
-mycpname shop_security shopping_security
+icon_alias wine shopping_wine
+icon_alias outdoor shopping_outdoor
+icon_alias tyres shopping_tyres
+icon_alias cosmetics shopping_cosmetics
+icon_alias leather shopping_leather
+icon_alias medical_supply shopping_medical_supply
+icon_alias cheese shopping_cheese
+icon_alias chocolate shopping_chocolate
+icon_alias coffee shopping_coffee
+icon_alias farm shopping_farm
+icon_alias tea shopping_tea
+icon_alias pastry shopping_pastry
+icon_alias antiques shopping_antiques
+icon_alias bag shopping_bag
+icon_alias bed shopping_bed
+icon_alias boutique shopping_boutique
+icon_alias bathroom_furnishing shopping_bathroom_furnishing
+icon_alias camera shopping_camera
+icon_alias carpet shopping_carpet
+icon_alias chemist shopping_chemist
+icon_alias curtain shopping_curtain
+icon_alias fabric shopping_fabric
+icon_alias bedding shopping_bedding
+icon_alias erotic shopping_erotic
+icon_alias fashion shopping_fashion
+icon_alias frame shopping_frame
+icon_alias free_flying shopping_free_flying
+icon_alias furnace shopping_furnace
+icon_alias gas shopping_gas
+icon_alias glaziery shopping_glaziery
+icon_alias herbalist shopping_herbalist
+icon_alias houseware shopping_houseware
+icon_alias hunting shopping_hunting
+icon_alias beauty shopping_beauty
+icon_alias interior_decoration shopping_interior_decoration
+icon_alias art shopping_art
+icon_alias model shopping_model
+icon_alias music shopping_music
+icon_alias newsagent shopping_newsagent
+icon_alias paint shopping_paint
+icon_alias radiotechnics shopping_radiotechnics
+icon_alias scuba_diving_shop shopping_scuba_diving_shop
+icon_alias stationery shopping_stationery
+icon_alias tableware shopping_tableware
+icon_alias trophy shopping_trophy
+icon_alias trade shopping_trade
+icon_alias vacuum_cleaner shopping_vacuum_cleaner
+icon_alias tattoo shopping_tattoo
+icon_alias perfumery shopping_perfumery
+icon_alias pawnbroker shopping_pawnbroker
+icon_alias second_hand shopping_second_hand
+icon_alias honey shopping_honey
+icon_alias charity shopping_charity
+icon_alias energy shopping_energy
+icon_alias variety_store shopping_variety_store
+icon_alias kitchen shopping_kitchen
+icon_alias video_games shopping_video_games
+icon_alias pyrotechnics shopping_pyrotechnics
+icon_alias weapons shopping_weapons
+icon_alias window_blind shopping_window_blind
+icon_alias watches shopping_watches
+icon_alias candles shopping_candles
+icon_alias religion shopping_religion
+icon_alias games shopping_games
+icon_alias doors shopping_doors
+icon_alias sewing shopping_sewing
+icon_alias spices shopping_spices
+icon_alias shop_craft shopping_craft
+icon_alias party shopping_party
+icon_alias deli shopping_deli
+icon_alias electrical shopping_electrical
+icon_alias locksmith shopping_locksmith
+icon_alias lighting shopping_lighting
+icon_alias lottery shopping_lottery
+icon_alias e_cigarette shopping_e_cigarette
+icon_alias nutrition_supplements shopping_nutrition_supplements
+icon_alias photo_studio shopping_photo_studio
+icon_alias frozen_food shopping_frozen_food
+icon_alias agrarian shopping_agrarian
+icon_alias shop_fireplace shopping_fireplace
+icon_alias shop_boat shopping_boat
+icon_alias cannabis shopping_cannabis
+icon_alias pottery shopping_pottery
+icon_alias outpost shopping_outpost
+icon_alias appliance shopping_appliance
+icon_alias shoe_repair shopping_shoe_repair
+icon_alias shop_wholesale shopping_wholesale
+icon_alias health_food shopping_health_food
+icon_alias pet_grooming shopping_pet_grooming
+icon_alias shop_security shopping_security
 
 ## Office
-mycpname estate_agent office_estate_agent
-mycpname insurance office_insurance
-mycpname research office_research
-mycpname travel_agent office_travel_agent
-mycpname it office_it
+icon_alias estate_agent office_estate_agent
+icon_alias insurance office_insurance
+icon_alias research office_research
+icon_alias travel_agent office_travel_agent
+icon_alias it office_it
 mycp office government office_government
-mycpname company office_company
-mycpname advertising_agency office_advertising_agency
-mycpname employment_agency office_employment_agency
-mycpname lawyer office_lawyer
-mycpname office_administrative office_administrative
-mycpname ngo office_ngo
-mycpname political_party office_political_party
-mycpname office_telecommunication office_telecommunication
-mycpname accountant office_accountant
-mycpname architect office_architect
-mycpname office_camping office_camping
-mycpname educational_institution office_educational_institution
-mycpname office_foundation office_foundation
-mycpname guide office_guide
-mycpname newspaper office_newspaper
-mycpname quango office_quango
-mycpname tax_advisor office_tax_advisor
-mycpname consulting office_consulting
-mycpname cooperative office_cooperative
-mycpname financial office_financial
-mycpname forestry office_forestry
-mycpname logistics office_logistics
-mycpname notary office_notary
-mycpname parish office_parish
-mycpname publisher office_publisher
-mycpname water_utility office_water_utility
-mycpname energy_supplier office_energy_supplier
+icon_alias company office_company
+icon_alias advertising_agency office_advertising_agency
+icon_alias employment_agency office_employment_agency
+icon_alias lawyer office_lawyer
+icon_alias office_administrative office_administrative
+icon_alias ngo office_ngo
+icon_alias political_party office_political_party
+icon_alias office_telecommunication office_telecommunication
+icon_alias accountant office_accountant
+icon_alias architect office_architect
+icon_alias office_camping office_camping
+icon_alias educational_institution office_educational_institution
+icon_alias office_foundation office_foundation
+icon_alias guide office_guide
+icon_alias newspaper office_newspaper
+icon_alias quango office_quango
+icon_alias tax_advisor office_tax_advisor
+icon_alias consulting office_consulting
+icon_alias cooperative office_cooperative
+icon_alias financial office_financial
+icon_alias forestry office_forestry
+icon_alias logistics office_logistics
+icon_alias notary office_notary
+icon_alias parish office_parish
+icon_alias publisher office_publisher
+icon_alias water_utility office_water_utility
+icon_alias energy_supplier office_energy_supplier
 
 ## Entertainment
-mycpname park entertainment_colored_park
-mycpname dance_floor entertainment_dance_floor
-mycpname dog_park entertainment_dog_park
-mycpname ski_resort entertainment_ski_resort
-mycpname bandstand entertainment_bandstand
-mycpname stands entertainment_stands
+icon_alias park entertainment_colored_park
+icon_alias dance_floor entertainment_dance_floor
+icon_alias dog_park entertainment_dog_park
+icon_alias ski_resort entertainment_ski_resort
+icon_alias bandstand entertainment_bandstand
+icon_alias stands entertainment_stands
 
 ## Club
-mycpname club_sport club_sport
+icon_alias club_sport club_sport
 
-mycpname hazard_yes functional-icons_hazard
-mycpname hazard_nuclear_map functional-icons_hazard_nuclear
-mycpname hazard_erosion_map functional-icons_hazard_erosion
-mycpname hazard_slippery_road_map functional-icons_hazard_slippery_road
-mycpname hazard_flood_map functional-icons_hazard_flood
-mycpname hazard_avalanche_map functional-icons_hazard_avalanche
-mycpname hazard_minefield_map functional-icons_hazard_minefield
-mycpname hazard_nuclear poi_hazard_nuclear
-mycpname hazard_erosion poi_hazard_erosion
-mycpname hazard_slippery_road poi_hazard_slippery_road
-mycpname hazard_flood poi_hazard_flood
-mycpname hazard_avalanche poi_hazard_avalanche
-mycpname hazard_minefield poi_hazard_minefield
-mycpname hazard poi_hazard
+icon_alias hazard_yes functional-icons_hazard
+icon_alias hazard_nuclear_map functional-icons_hazard_nuclear
+icon_alias hazard_erosion_map functional-icons_hazard_erosion
+icon_alias hazard_slippery_road_map functional-icons_hazard_slippery_road
+icon_alias hazard_flood_map functional-icons_hazard_flood
+icon_alias hazard_avalanche_map functional-icons_hazard_avalanche
+icon_alias hazard_minefield_map functional-icons_hazard_minefield
+icon_alias hazard_nuclear poi_hazard_nuclear
+icon_alias hazard_erosion poi_hazard_erosion
+icon_alias hazard_slippery_road poi_hazard_slippery_road
+icon_alias hazard_flood poi_hazard_flood
+icon_alias hazard_avalanche poi_hazard_avalanche
+icon_alias hazard_minefield poi_hazard_minefield
+icon_alias hazard poi_hazard
 
-# mygroup custom_id icons8 #TODO
-mygroup user_defined icons8_user
-mygroup user_defined_other icons8_user
-mygroup osmwiki icons8_wikipedia
-mycpname wiki_place poi_colored_wikipedia2
-mygroup name_finder icons8_web_search
+icon_# alias custom_id icons8 #TODO
+icon_alias user_defined icons8_user
+icon_alias user_defined_other icons8_user
+icon_alias osmwiki icons8_wikipedia
+icon_alias wiki_place poi_colored_wikipedia2
+icon_alias name_finder icons8_web_search
 mycp osmand waypoint functional-icons_waypoint
 mycp osmand fav functional-icons_fav
-mygroup null icons8_worldwide_location
+icon_alias null icons8_worldwide_location
 
 mycp stub amenity functional-icons_stub_amenity
 mycp stub club functional-icons_stub_club
@@ -1999,470 +2001,470 @@ mycp stub shop functional-icons_stub_shop
 mycp stub tourism functional-icons_stub_tourism
 
 #OSMC
-mycpname osmc_black_arch osmc_black_osmc_black_arch
-mycpname osmc_black_backslash osmc_black_osmc_black_backslash
-mycpname osmc_black_bar osmc_black_osmc_black_bar
-mycpname osmc_black_bicycle osmc_black_osmc_black_bicycle
-mycpname osmc_black_bowl osmc_black_osmc_black_bowl
-mycpname osmc_black_circle osmc_black_osmc_black_circle
-mycpname osmc_black_circle_arrow osmc_black_osmc_black_circle_arrow
-mycpname osmc_black_corner osmc_black_osmc_black_corner
-mycpname osmc_black_cross osmc_black_osmc_black_cross
-mycpname osmc_black_diamond osmc_black_osmc_black_diamond
-mycpname osmc_black_diamond_line osmc_black_osmc_black_diamond_line
-mycpname osmc_black_dot osmc_black_osmc_black_dot
-mycpname osmc_black_drop_line osmc_black_osmc_black_drop_line
-mycpname osmc_black_fork osmc_black_osmc_black_fork
-mycpname osmc_black_hiker osmc_black_osmc_black_hiker
-mycpname osmc_black_house osmc_black_osmc_black_house
-mycpname osmc_black_l osmc_black_osmc_black_l
-mycpname osmc_black_m osmc_black_osmc_black_m
-mycpname osmc_black_lower osmc_black_osmc_black_lower
-mycpname osmc_black_pointer osmc_black_osmc_black_pointer
-mycpname osmc_black_pointer_line osmc_black_osmc_black_pointer_line
-mycpname osmc_black_rectangle osmc_black_osmc_black_rectangle
-mycpname osmc_black_rectangle_line osmc_black_osmc_black_rectangle_line
-mycpname osmc_black_slash osmc_black_osmc_black_slash
-mycpname osmc_black_stripe osmc_black_osmc_black_stripe
-mycpname osmc_black_t osmc_black_osmc_black_t
-mycpname osmc_black_triangle osmc_black_osmc_black_triangle
-mycpname osmc_black_triangle_line osmc_black_osmc_black_triangle_line
-mycpname osmc_black_triangle_turned osmc_black_osmc_black_triangle_turned
-mycpname osmc_black_turned_t osmc_black_osmc_black_turned_t
-mycpname osmc_black_upper osmc_black_osmc_black_upper
-mycpname osmc_black_x osmc_black_osmc_black_x
+icon_alias osmc_black_arch osmc_black_osmc_black_arch
+icon_alias osmc_black_backslash osmc_black_osmc_black_backslash
+icon_alias osmc_black_bar osmc_black_osmc_black_bar
+icon_alias osmc_black_bicycle osmc_black_osmc_black_bicycle
+icon_alias osmc_black_bowl osmc_black_osmc_black_bowl
+icon_alias osmc_black_circle osmc_black_osmc_black_circle
+icon_alias osmc_black_circle_arrow osmc_black_osmc_black_circle_arrow
+icon_alias osmc_black_corner osmc_black_osmc_black_corner
+icon_alias osmc_black_cross osmc_black_osmc_black_cross
+icon_alias osmc_black_diamond osmc_black_osmc_black_diamond
+icon_alias osmc_black_diamond_line osmc_black_osmc_black_diamond_line
+icon_alias osmc_black_dot osmc_black_osmc_black_dot
+icon_alias osmc_black_drop_line osmc_black_osmc_black_drop_line
+icon_alias osmc_black_fork osmc_black_osmc_black_fork
+icon_alias osmc_black_hiker osmc_black_osmc_black_hiker
+icon_alias osmc_black_house osmc_black_osmc_black_house
+icon_alias osmc_black_l osmc_black_osmc_black_l
+icon_alias osmc_black_m osmc_black_osmc_black_m
+icon_alias osmc_black_lower osmc_black_osmc_black_lower
+icon_alias osmc_black_pointer osmc_black_osmc_black_pointer
+icon_alias osmc_black_pointer_line osmc_black_osmc_black_pointer_line
+icon_alias osmc_black_rectangle osmc_black_osmc_black_rectangle
+icon_alias osmc_black_rectangle_line osmc_black_osmc_black_rectangle_line
+icon_alias osmc_black_slash osmc_black_osmc_black_slash
+icon_alias osmc_black_stripe osmc_black_osmc_black_stripe
+icon_alias osmc_black_t osmc_black_osmc_black_t
+icon_alias osmc_black_triangle osmc_black_osmc_black_triangle
+icon_alias osmc_black_triangle_line osmc_black_osmc_black_triangle_line
+icon_alias osmc_black_triangle_turned osmc_black_osmc_black_triangle_turned
+icon_alias osmc_black_turned_t osmc_black_osmc_black_turned_t
+icon_alias osmc_black_upper osmc_black_osmc_black_upper
+icon_alias osmc_black_x osmc_black_osmc_black_x
 
-mycpname osmc_blue_arch osmc_blue_osmc_blue_arch
-mycpname osmc_blue_backslash osmc_blue_osmc_blue_backslash
-mycpname osmc_blue_bar osmc_blue_osmc_blue_bar
-mycpname osmc_blue_bicycle osmc_blue_osmc_blue_bicycle
-mycpname osmc_blue_bowl osmc_blue_osmc_blue_bowl
-mycpname osmc_blue_circle osmc_blue_osmc_blue_circle
-mycpname osmc_blue_circle_arrow osmc_blue_osmc_blue_circle_arrow
-mycpname osmc_blue_corner osmc_blue_osmc_blue_corner
-mycpname osmc_blue_cross osmc_blue_osmc_blue_cross
-mycpname osmc_blue_diamond osmc_blue_osmc_blue_diamond
-mycpname osmc_blue_diamond_line osmc_blue_osmc_blue_diamond_line
-mycpname osmc_blue_dot osmc_blue_osmc_blue_dot
-mycpname osmc_blue_drop_line osmc_blue_osmc_blue_drop_line
-mycpname osmc_blue_fork osmc_blue_osmc_blue_fork
-mycpname osmc_blue_hiker osmc_blue_osmc_blue_hiker
-mycpname osmc_blue_house osmc_blue_osmc_blue_house
-mycpname osmc_blue_l osmc_blue_osmc_blue_l
-mycpname osmc_blue_m osmc_blue_osmc_blue_m
-mycpname osmc_blue_lower osmc_blue_osmc_blue_lower
-mycpname osmc_blue_pointer osmc_blue_osmc_blue_pointer
-mycpname osmc_blue_pointer_line osmc_blue_osmc_blue_pointer_line
-mycpname osmc_blue_rectangle osmc_blue_osmc_blue_rectangle
-mycpname osmc_blue_rectangle_line osmc_blue_osmc_blue_rectangle_line
-mycpname osmc_blue_slash osmc_blue_osmc_blue_slash
-mycpname osmc_blue_stripe osmc_blue_osmc_blue_stripe
-mycpname osmc_blue_t osmc_blue_osmc_blue_t
-mycpname osmc_blue_triangle osmc_blue_osmc_blue_triangle
-mycpname osmc_blue_triangle_line osmc_blue_osmc_blue_triangle_line
-mycpname osmc_blue_triangle_turned osmc_blue_osmc_blue_triangle_turned
-mycpname osmc_blue_turned_t osmc_blue_osmc_blue_turned_t
-mycpname osmc_blue_upper osmc_blue_osmc_blue_upper
-mycpname osmc_blue_x osmc_blue_osmc_blue_x
+icon_alias osmc_blue_arch osmc_blue_osmc_blue_arch
+icon_alias osmc_blue_backslash osmc_blue_osmc_blue_backslash
+icon_alias osmc_blue_bar osmc_blue_osmc_blue_bar
+icon_alias osmc_blue_bicycle osmc_blue_osmc_blue_bicycle
+icon_alias osmc_blue_bowl osmc_blue_osmc_blue_bowl
+icon_alias osmc_blue_circle osmc_blue_osmc_blue_circle
+icon_alias osmc_blue_circle_arrow osmc_blue_osmc_blue_circle_arrow
+icon_alias osmc_blue_corner osmc_blue_osmc_blue_corner
+icon_alias osmc_blue_cross osmc_blue_osmc_blue_cross
+icon_alias osmc_blue_diamond osmc_blue_osmc_blue_diamond
+icon_alias osmc_blue_diamond_line osmc_blue_osmc_blue_diamond_line
+icon_alias osmc_blue_dot osmc_blue_osmc_blue_dot
+icon_alias osmc_blue_drop_line osmc_blue_osmc_blue_drop_line
+icon_alias osmc_blue_fork osmc_blue_osmc_blue_fork
+icon_alias osmc_blue_hiker osmc_blue_osmc_blue_hiker
+icon_alias osmc_blue_house osmc_blue_osmc_blue_house
+icon_alias osmc_blue_l osmc_blue_osmc_blue_l
+icon_alias osmc_blue_m osmc_blue_osmc_blue_m
+icon_alias osmc_blue_lower osmc_blue_osmc_blue_lower
+icon_alias osmc_blue_pointer osmc_blue_osmc_blue_pointer
+icon_alias osmc_blue_pointer_line osmc_blue_osmc_blue_pointer_line
+icon_alias osmc_blue_rectangle osmc_blue_osmc_blue_rectangle
+icon_alias osmc_blue_rectangle_line osmc_blue_osmc_blue_rectangle_line
+icon_alias osmc_blue_slash osmc_blue_osmc_blue_slash
+icon_alias osmc_blue_stripe osmc_blue_osmc_blue_stripe
+icon_alias osmc_blue_t osmc_blue_osmc_blue_t
+icon_alias osmc_blue_triangle osmc_blue_osmc_blue_triangle
+icon_alias osmc_blue_triangle_line osmc_blue_osmc_blue_triangle_line
+icon_alias osmc_blue_triangle_turned osmc_blue_osmc_blue_triangle_turned
+icon_alias osmc_blue_turned_t osmc_blue_osmc_blue_turned_t
+icon_alias osmc_blue_upper osmc_blue_osmc_blue_upper
+icon_alias osmc_blue_x osmc_blue_osmc_blue_x
 
-mycpname osmc_green_arch osmc_green_osmc_green_arch
-mycpname osmc_green_backslash osmc_green_osmc_green_backslash
-mycpname osmc_green_bar osmc_green_osmc_green_bar
-mycpname osmc_green_bicycle osmc_green_osmc_green_bicycle
-mycpname osmc_green_bowl osmc_green_osmc_green_bowl
-mycpname osmc_green_circle osmc_green_osmc_green_circle
-mycpname osmc_green_circle_arrow osmc_green_osmc_green_circle_arrow
-mycpname osmc_green_corner osmc_green_osmc_green_corner
-mycpname osmc_green_cross osmc_green_osmc_green_cross
-mycpname osmc_green_diamond osmc_green_osmc_green_diamond
-mycpname osmc_green_diamond_line osmc_green_osmc_green_diamond_line
-mycpname osmc_green_dot osmc_green_osmc_green_dot
-mycpname osmc_green_drop_line osmc_green_osmc_green_drop_line
-mycpname osmc_green_fork osmc_green_osmc_green_fork
-mycpname osmc_green_hiker osmc_green_osmc_green_hiker
-mycpname osmc_green_house osmc_green_osmc_green_house
-mycpname osmc_green_l osmc_green_osmc_green_l
-mycpname osmc_green_m osmc_green_osmc_green_m
-mycpname osmc_green_lower osmc_green_osmc_green_lower
-mycpname osmc_green_pointer osmc_green_osmc_green_pointer
-mycpname osmc_green_pointer_line osmc_green_osmc_green_pointer_line
-mycpname osmc_green_rectangle osmc_green_osmc_green_rectangle
-mycpname osmc_green_rectangle_line osmc_green_osmc_green_rectangle_line
-mycpname osmc_green_slash osmc_green_osmc_green_slash
-mycpname osmc_green_stripe osmc_green_osmc_green_stripe
-mycpname osmc_green_t osmc_green_osmc_green_t
-mycpname osmc_green_triangle osmc_green_osmc_green_triangle
-mycpname osmc_green_triangle_line osmc_green_osmc_green_triangle_line
-mycpname osmc_green_triangle_turned osmc_green_osmc_green_triangle_turned
-mycpname osmc_green_turned_t osmc_green_osmc_green_turned_t
-mycpname osmc_green_upper osmc_green_osmc_green_upper
-mycpname osmc_green_x osmc_green_osmc_green_x
+icon_alias osmc_green_arch osmc_green_osmc_green_arch
+icon_alias osmc_green_backslash osmc_green_osmc_green_backslash
+icon_alias osmc_green_bar osmc_green_osmc_green_bar
+icon_alias osmc_green_bicycle osmc_green_osmc_green_bicycle
+icon_alias osmc_green_bowl osmc_green_osmc_green_bowl
+icon_alias osmc_green_circle osmc_green_osmc_green_circle
+icon_alias osmc_green_circle_arrow osmc_green_osmc_green_circle_arrow
+icon_alias osmc_green_corner osmc_green_osmc_green_corner
+icon_alias osmc_green_cross osmc_green_osmc_green_cross
+icon_alias osmc_green_diamond osmc_green_osmc_green_diamond
+icon_alias osmc_green_diamond_line osmc_green_osmc_green_diamond_line
+icon_alias osmc_green_dot osmc_green_osmc_green_dot
+icon_alias osmc_green_drop_line osmc_green_osmc_green_drop_line
+icon_alias osmc_green_fork osmc_green_osmc_green_fork
+icon_alias osmc_green_hiker osmc_green_osmc_green_hiker
+icon_alias osmc_green_house osmc_green_osmc_green_house
+icon_alias osmc_green_l osmc_green_osmc_green_l
+icon_alias osmc_green_m osmc_green_osmc_green_m
+icon_alias osmc_green_lower osmc_green_osmc_green_lower
+icon_alias osmc_green_pointer osmc_green_osmc_green_pointer
+icon_alias osmc_green_pointer_line osmc_green_osmc_green_pointer_line
+icon_alias osmc_green_rectangle osmc_green_osmc_green_rectangle
+icon_alias osmc_green_rectangle_line osmc_green_osmc_green_rectangle_line
+icon_alias osmc_green_slash osmc_green_osmc_green_slash
+icon_alias osmc_green_stripe osmc_green_osmc_green_stripe
+icon_alias osmc_green_t osmc_green_osmc_green_t
+icon_alias osmc_green_triangle osmc_green_osmc_green_triangle
+icon_alias osmc_green_triangle_line osmc_green_osmc_green_triangle_line
+icon_alias osmc_green_triangle_turned osmc_green_osmc_green_triangle_turned
+icon_alias osmc_green_turned_t osmc_green_osmc_green_turned_t
+icon_alias osmc_green_upper osmc_green_osmc_green_upper
+icon_alias osmc_green_x osmc_green_osmc_green_x
 
-mycpname osmc_orange_arch osmc_orange_osmc_orange_arch
-mycpname osmc_orange_backslash osmc_orange_osmc_orange_backslash
-mycpname osmc_orange_bar osmc_orange_osmc_orange_bar
-mycpname osmc_orange_bicycle osmc_orange_osmc_orange_bicycle
-mycpname osmc_orange_bowl osmc_orange_osmc_orange_bowl
-mycpname osmc_orange_circle osmc_orange_osmc_orange_circle
-mycpname osmc_orange_circle_arrow osmc_orange_osmc_orange_circle_arrow
-mycpname osmc_orange_corner osmc_orange_osmc_orange_corner
-mycpname osmc_orange_cross osmc_orange_osmc_orange_cross
-mycpname osmc_orange_diamond osmc_orange_osmc_orange_diamond
-mycpname osmc_orange_diamond_line osmc_orange_osmc_orange_diamond_line
-mycpname osmc_orange_dot osmc_orange_osmc_orange_dot
-mycpname osmc_orange_drop_line osmc_orange_osmc_orange_drop_line
-mycpname osmc_orange_fork osmc_orange_osmc_orange_fork
-mycpname osmc_orange_hiker osmc_orange_osmc_orange_hiker
-mycpname osmc_orange_house osmc_orange_osmc_orange_house
-mycpname osmc_orange_l osmc_orange_osmc_orange_l
-mycpname osmc_orange_m osmc_orange_osmc_orange_m
-mycpname osmc_orange_lower osmc_orange_osmc_orange_lower
-mycpname osmc_orange_pointer osmc_orange_osmc_orange_pointer
-mycpname osmc_orange_pointer_line osmc_orange_osmc_orange_pointer_line
-mycpname osmc_orange_rectangle osmc_orange_osmc_orange_rectangle
-mycpname osmc_orange_rectangle_line osmc_orange_osmc_orange_rectangle_line
-mycpname osmc_orange_slash osmc_orange_osmc_orange_slash
-mycpname osmc_orange_stripe osmc_orange_osmc_orange_stripe
-mycpname osmc_orange_t osmc_orange_osmc_orange_t
-mycpname osmc_orange_triangle osmc_orange_osmc_orange_triangle
-mycpname osmc_orange_triangle_line osmc_orange_osmc_orange_triangle_line
-mycpname osmc_orange_triangle_turned osmc_orange_osmc_orange_triangle_turned
-mycpname osmc_orange_turned_t osmc_orange_osmc_orange_turned_t
-mycpname osmc_orange_upper osmc_orange_osmc_orange_upper
-mycpname osmc_orange_x osmc_orange_osmc_orange_x
+icon_alias osmc_orange_arch osmc_orange_osmc_orange_arch
+icon_alias osmc_orange_backslash osmc_orange_osmc_orange_backslash
+icon_alias osmc_orange_bar osmc_orange_osmc_orange_bar
+icon_alias osmc_orange_bicycle osmc_orange_osmc_orange_bicycle
+icon_alias osmc_orange_bowl osmc_orange_osmc_orange_bowl
+icon_alias osmc_orange_circle osmc_orange_osmc_orange_circle
+icon_alias osmc_orange_circle_arrow osmc_orange_osmc_orange_circle_arrow
+icon_alias osmc_orange_corner osmc_orange_osmc_orange_corner
+icon_alias osmc_orange_cross osmc_orange_osmc_orange_cross
+icon_alias osmc_orange_diamond osmc_orange_osmc_orange_diamond
+icon_alias osmc_orange_diamond_line osmc_orange_osmc_orange_diamond_line
+icon_alias osmc_orange_dot osmc_orange_osmc_orange_dot
+icon_alias osmc_orange_drop_line osmc_orange_osmc_orange_drop_line
+icon_alias osmc_orange_fork osmc_orange_osmc_orange_fork
+icon_alias osmc_orange_hiker osmc_orange_osmc_orange_hiker
+icon_alias osmc_orange_house osmc_orange_osmc_orange_house
+icon_alias osmc_orange_l osmc_orange_osmc_orange_l
+icon_alias osmc_orange_m osmc_orange_osmc_orange_m
+icon_alias osmc_orange_lower osmc_orange_osmc_orange_lower
+icon_alias osmc_orange_pointer osmc_orange_osmc_orange_pointer
+icon_alias osmc_orange_pointer_line osmc_orange_osmc_orange_pointer_line
+icon_alias osmc_orange_rectangle osmc_orange_osmc_orange_rectangle
+icon_alias osmc_orange_rectangle_line osmc_orange_osmc_orange_rectangle_line
+icon_alias osmc_orange_slash osmc_orange_osmc_orange_slash
+icon_alias osmc_orange_stripe osmc_orange_osmc_orange_stripe
+icon_alias osmc_orange_t osmc_orange_osmc_orange_t
+icon_alias osmc_orange_triangle osmc_orange_osmc_orange_triangle
+icon_alias osmc_orange_triangle_line osmc_orange_osmc_orange_triangle_line
+icon_alias osmc_orange_triangle_turned osmc_orange_osmc_orange_triangle_turned
+icon_alias osmc_orange_turned_t osmc_orange_osmc_orange_turned_t
+icon_alias osmc_orange_upper osmc_orange_osmc_orange_upper
+icon_alias osmc_orange_x osmc_orange_osmc_orange_x
 
-mycpname osmc_red_arch osmc_red_osmc_red_arch
-mycpname osmc_red_backslash osmc_red_osmc_red_backslash
-mycpname osmc_red_bar osmc_red_osmc_red_bar
-mycpname osmc_red_bicycle osmc_red_osmc_red_bicycle
-mycpname osmc_red_bowl osmc_red_osmc_red_bowl
-mycpname osmc_red_circle osmc_red_osmc_red_circle
-mycpname osmc_red_circle_arrow osmc_red_osmc_red_circle_arrow
-mycpname osmc_red_corner osmc_red_osmc_red_corner
-mycpname osmc_red_cross osmc_red_osmc_red_cross
-mycpname osmc_red_diamond osmc_red_osmc_red_diamond
-mycpname osmc_red_diamond_line osmc_red_osmc_red_diamond_line
-mycpname osmc_red_dot osmc_red_osmc_red_dot
-mycpname osmc_red_drop_line osmc_red_osmc_red_drop_line
-mycpname osmc_red_fork osmc_red_osmc_red_fork
-mycpname osmc_red_hiker osmc_red_osmc_red_hiker
-mycpname osmc_red_house osmc_red_osmc_red_house
-mycpname osmc_red_l osmc_red_osmc_red_l
-mycpname osmc_red_m osmc_red_osmc_red_m
-mycpname osmc_red_lower osmc_red_osmc_red_lower
-mycpname osmc_red_pointer osmc_red_osmc_red_pointer
-mycpname osmc_red_pointer_line osmc_red_osmc_red_pointer_line
-mycpname osmc_red_rectangle osmc_red_osmc_red_rectangle
-mycpname osmc_red_rectangle_line osmc_red_osmc_red_rectangle_line
-mycpname osmc_red_slash osmc_red_osmc_red_slash
-mycpname osmc_red_stripe osmc_red_osmc_red_stripe
-mycpname osmc_red_t osmc_red_osmc_red_t
-mycpname osmc_red_triangle osmc_red_osmc_red_triangle
-mycpname osmc_red_triangle_line osmc_red_osmc_red_triangle_line
-mycpname osmc_red_triangle_turned osmc_red_osmc_red_triangle_turned
-mycpname osmc_red_turned_t osmc_red_osmc_red_turned_t
-mycpname osmc_red_upper osmc_red_osmc_red_upper
-mycpname osmc_red_x osmc_red_osmc_red_x
+icon_alias osmc_red_arch osmc_red_osmc_red_arch
+icon_alias osmc_red_backslash osmc_red_osmc_red_backslash
+icon_alias osmc_red_bar osmc_red_osmc_red_bar
+icon_alias osmc_red_bicycle osmc_red_osmc_red_bicycle
+icon_alias osmc_red_bowl osmc_red_osmc_red_bowl
+icon_alias osmc_red_circle osmc_red_osmc_red_circle
+icon_alias osmc_red_circle_arrow osmc_red_osmc_red_circle_arrow
+icon_alias osmc_red_corner osmc_red_osmc_red_corner
+icon_alias osmc_red_cross osmc_red_osmc_red_cross
+icon_alias osmc_red_diamond osmc_red_osmc_red_diamond
+icon_alias osmc_red_diamond_line osmc_red_osmc_red_diamond_line
+icon_alias osmc_red_dot osmc_red_osmc_red_dot
+icon_alias osmc_red_drop_line osmc_red_osmc_red_drop_line
+icon_alias osmc_red_fork osmc_red_osmc_red_fork
+icon_alias osmc_red_hiker osmc_red_osmc_red_hiker
+icon_alias osmc_red_house osmc_red_osmc_red_house
+icon_alias osmc_red_l osmc_red_osmc_red_l
+icon_alias osmc_red_m osmc_red_osmc_red_m
+icon_alias osmc_red_lower osmc_red_osmc_red_lower
+icon_alias osmc_red_pointer osmc_red_osmc_red_pointer
+icon_alias osmc_red_pointer_line osmc_red_osmc_red_pointer_line
+icon_alias osmc_red_rectangle osmc_red_osmc_red_rectangle
+icon_alias osmc_red_rectangle_line osmc_red_osmc_red_rectangle_line
+icon_alias osmc_red_slash osmc_red_osmc_red_slash
+icon_alias osmc_red_stripe osmc_red_osmc_red_stripe
+icon_alias osmc_red_t osmc_red_osmc_red_t
+icon_alias osmc_red_triangle osmc_red_osmc_red_triangle
+icon_alias osmc_red_triangle_line osmc_red_osmc_red_triangle_line
+icon_alias osmc_red_triangle_turned osmc_red_osmc_red_triangle_turned
+icon_alias osmc_red_turned_t osmc_red_osmc_red_turned_t
+icon_alias osmc_red_upper osmc_red_osmc_red_upper
+icon_alias osmc_red_x osmc_red_osmc_red_x
 
-mycpname osmc_white_arch osmc_white_osmc_white_arch
-mycpname osmc_white_backslash osmc_white_osmc_white_backslash
-mycpname osmc_white_bar osmc_white_osmc_white_bar
-mycpname osmc_white_bicycle osmc_white_osmc_white_bicycle
-mycpname osmc_white_bowl osmc_white_osmc_white_bowl
-mycpname osmc_white_circle osmc_white_osmc_white_circle
-mycpname osmc_white_circle_arrow osmc_white_osmc_white_circle_arrow
-mycpname osmc_white_corner osmc_white_osmc_white_corner
-mycpname osmc_white_cross osmc_white_osmc_white_cross
-mycpname osmc_white_diamond osmc_white_osmc_white_diamond
-mycpname osmc_white_diamond_line osmc_white_osmc_white_diamond_line
-mycpname osmc_white_dot osmc_white_osmc_white_dot
-mycpname osmc_white_drop_line osmc_white_osmc_white_drop_line
-mycpname osmc_white_fork osmc_white_osmc_white_fork
-mycpname osmc_white_hiker osmc_white_osmc_white_hiker
-mycpname osmc_white_house osmc_white_osmc_white_house
-mycpname osmc_white_l osmc_white_osmc_white_l
-mycpname osmc_white_m osmc_white_osmc_white_m
-mycpname osmc_white_lower osmc_white_osmc_white_lower
-mycpname osmc_white_pointer osmc_white_osmc_white_pointer
-mycpname osmc_white_pointer_line osmc_white_osmc_white_pointer_line
-mycpname osmc_white_rectangle osmc_white_osmc_white_rectangle
-mycpname osmc_white_rectangle_line osmc_white_osmc_white_rectangle_line
-mycpname osmc_white_slash osmc_white_osmc_white_slash
-mycpname osmc_white_stripe osmc_white_osmc_white_stripe
-mycpname osmc_white_t osmc_white_osmc_white_t
-mycpname osmc_white_triangle osmc_white_osmc_white_triangle
-mycpname osmc_white_triangle_line osmc_white_osmc_white_triangle_line
-mycpname osmc_white_triangle_turned osmc_white_osmc_white_triangle_turned
-mycpname osmc_white_turned_t osmc_white_osmc_white_turned_t
-mycpname osmc_white_upper osmc_white_osmc_white_upper
-mycpname osmc_white_x osmc_white_osmc_white_x
+icon_alias osmc_white_arch osmc_white_osmc_white_arch
+icon_alias osmc_white_backslash osmc_white_osmc_white_backslash
+icon_alias osmc_white_bar osmc_white_osmc_white_bar
+icon_alias osmc_white_bicycle osmc_white_osmc_white_bicycle
+icon_alias osmc_white_bowl osmc_white_osmc_white_bowl
+icon_alias osmc_white_circle osmc_white_osmc_white_circle
+icon_alias osmc_white_circle_arrow osmc_white_osmc_white_circle_arrow
+icon_alias osmc_white_corner osmc_white_osmc_white_corner
+icon_alias osmc_white_cross osmc_white_osmc_white_cross
+icon_alias osmc_white_diamond osmc_white_osmc_white_diamond
+icon_alias osmc_white_diamond_line osmc_white_osmc_white_diamond_line
+icon_alias osmc_white_dot osmc_white_osmc_white_dot
+icon_alias osmc_white_drop_line osmc_white_osmc_white_drop_line
+icon_alias osmc_white_fork osmc_white_osmc_white_fork
+icon_alias osmc_white_hiker osmc_white_osmc_white_hiker
+icon_alias osmc_white_house osmc_white_osmc_white_house
+icon_alias osmc_white_l osmc_white_osmc_white_l
+icon_alias osmc_white_m osmc_white_osmc_white_m
+icon_alias osmc_white_lower osmc_white_osmc_white_lower
+icon_alias osmc_white_pointer osmc_white_osmc_white_pointer
+icon_alias osmc_white_pointer_line osmc_white_osmc_white_pointer_line
+icon_alias osmc_white_rectangle osmc_white_osmc_white_rectangle
+icon_alias osmc_white_rectangle_line osmc_white_osmc_white_rectangle_line
+icon_alias osmc_white_slash osmc_white_osmc_white_slash
+icon_alias osmc_white_stripe osmc_white_osmc_white_stripe
+icon_alias osmc_white_t osmc_white_osmc_white_t
+icon_alias osmc_white_triangle osmc_white_osmc_white_triangle
+icon_alias osmc_white_triangle_line osmc_white_osmc_white_triangle_line
+icon_alias osmc_white_triangle_turned osmc_white_osmc_white_triangle_turned
+icon_alias osmc_white_turned_t osmc_white_osmc_white_turned_t
+icon_alias osmc_white_upper osmc_white_osmc_white_upper
+icon_alias osmc_white_x osmc_white_osmc_white_x
 
-mycpname osmc_yellow_arch osmc_yellow_osmc_yellow_arch
-mycpname osmc_yellow_backslash osmc_yellow_osmc_yellow_backslash
-mycpname osmc_yellow_bar osmc_yellow_osmc_yellow_bar
-mycpname osmc_yellow_bicycle osmc_yellow_osmc_yellow_bicycle
-mycpname osmc_yellow_bowl osmc_yellow_osmc_yellow_bowl
-mycpname osmc_yellow_circle osmc_yellow_osmc_yellow_circle
-mycpname osmc_yellow_circle_arrow osmc_yellow_osmc_yellow_circle_arrow
-mycpname osmc_yellow_corner osmc_yellow_osmc_yellow_corner
-mycpname osmc_yellow_cross osmc_yellow_osmc_yellow_cross
-mycpname osmc_yellow_diamond osmc_yellow_osmc_yellow_diamond
-mycpname osmc_yellow_diamond_line osmc_yellow_osmc_yellow_diamond_line
-mycpname osmc_yellow_dot osmc_yellow_osmc_yellow_dot
-mycpname osmc_yellow_drop_line osmc_yellow_osmc_yellow_drop_line
-mycpname osmc_yellow_fork osmc_yellow_osmc_yellow_fork
-mycpname osmc_yellow_hiker osmc_yellow_osmc_yellow_hiker
-mycpname osmc_yellow_house osmc_yellow_osmc_yellow_house
-mycpname osmc_yellow_l osmc_yellow_osmc_yellow_l
-mycpname osmc_yellow_m osmc_yellow_osmc_yellow_m
-mycpname osmc_yellow_lower osmc_yellow_osmc_yellow_lower
-mycpname osmc_yellow_pointer osmc_yellow_osmc_yellow_pointer
-mycpname osmc_yellow_pointer_line osmc_yellow_osmc_yellow_pointer_line
-mycpname osmc_yellow_rectangle osmc_yellow_osmc_yellow_rectangle
-mycpname osmc_yellow_rectangle_line osmc_yellow_osmc_yellow_rectangle_line
-mycpname osmc_yellow_slash osmc_yellow_osmc_yellow_slash
-mycpname osmc_yellow_stripe osmc_yellow_osmc_yellow_stripe
-mycpname osmc_yellow_t osmc_yellow_osmc_yellow_t
-mycpname osmc_yellow_triangle osmc_yellow_osmc_yellow_triangle
-mycpname osmc_yellow_triangle_line osmc_yellow_osmc_yellow_triangle_line
-mycpname osmc_yellow_triangle_turned osmc_yellow_osmc_yellow_triangle_turned
-mycpname osmc_yellow_turned_t osmc_yellow_osmc_yellow_turned_t
-mycpname osmc_yellow_upper osmc_yellow_osmc_yellow_upper
-mycpname osmc_yellow_x osmc_yellow_osmc_yellow_x
+icon_alias osmc_yellow_arch osmc_yellow_osmc_yellow_arch
+icon_alias osmc_yellow_backslash osmc_yellow_osmc_yellow_backslash
+icon_alias osmc_yellow_bar osmc_yellow_osmc_yellow_bar
+icon_alias osmc_yellow_bicycle osmc_yellow_osmc_yellow_bicycle
+icon_alias osmc_yellow_bowl osmc_yellow_osmc_yellow_bowl
+icon_alias osmc_yellow_circle osmc_yellow_osmc_yellow_circle
+icon_alias osmc_yellow_circle_arrow osmc_yellow_osmc_yellow_circle_arrow
+icon_alias osmc_yellow_corner osmc_yellow_osmc_yellow_corner
+icon_alias osmc_yellow_cross osmc_yellow_osmc_yellow_cross
+icon_alias osmc_yellow_diamond osmc_yellow_osmc_yellow_diamond
+icon_alias osmc_yellow_diamond_line osmc_yellow_osmc_yellow_diamond_line
+icon_alias osmc_yellow_dot osmc_yellow_osmc_yellow_dot
+icon_alias osmc_yellow_drop_line osmc_yellow_osmc_yellow_drop_line
+icon_alias osmc_yellow_fork osmc_yellow_osmc_yellow_fork
+icon_alias osmc_yellow_hiker osmc_yellow_osmc_yellow_hiker
+icon_alias osmc_yellow_house osmc_yellow_osmc_yellow_house
+icon_alias osmc_yellow_l osmc_yellow_osmc_yellow_l
+icon_alias osmc_yellow_m osmc_yellow_osmc_yellow_m
+icon_alias osmc_yellow_lower osmc_yellow_osmc_yellow_lower
+icon_alias osmc_yellow_pointer osmc_yellow_osmc_yellow_pointer
+icon_alias osmc_yellow_pointer_line osmc_yellow_osmc_yellow_pointer_line
+icon_alias osmc_yellow_rectangle osmc_yellow_osmc_yellow_rectangle
+icon_alias osmc_yellow_rectangle_line osmc_yellow_osmc_yellow_rectangle_line
+icon_alias osmc_yellow_slash osmc_yellow_osmc_yellow_slash
+icon_alias osmc_yellow_stripe osmc_yellow_osmc_yellow_stripe
+icon_alias osmc_yellow_t osmc_yellow_osmc_yellow_t
+icon_alias osmc_yellow_triangle osmc_yellow_osmc_yellow_triangle
+icon_alias osmc_yellow_triangle_line osmc_yellow_osmc_yellow_triangle_line
+icon_alias osmc_yellow_triangle_turned osmc_yellow_osmc_yellow_triangle_turned
+icon_alias osmc_yellow_turned_t osmc_yellow_osmc_yellow_turned_t
+icon_alias osmc_yellow_upper osmc_yellow_osmc_yellow_upper
+icon_alias osmc_yellow_x osmc_yellow_osmc_yellow_x
 
-mycpname osmc_ammonit osmc_other_osmc_ammonit
-mycpname osmc_black_horse osmc_other_osmc_black_horse
-mycpname osmc_black_red_diamond osmc_other_osmc_black_red_diamond
-mycpname osmc_blue_grape osmc_other_osmc_blue_grape
-mycpname osmc_blue_wheelchair osmc_other_osmc_blue_wheelchair
-mycpname osmc_brown_bar osmc_other_osmc_brown_bar
-mycpname osmc_brown_dot osmc_other_osmc_brown_dot
-mycpname osmc_brown_x osmc_other_osmc_brown_x
-mycpname osmc_green_wheelchair osmc_other_osmc_green_wheelchair
-mycpname osmc_green_z osmc_other_osmc_green_z
-mycpname osmc_heart osmc_other_osmc_heart
-mycpname osmc_mine osmc_other_osmc_mine
-mycpname osmc_purple_bar osmc_other_osmc_purple_bar
-mycpname osmc_purple_diamond osmc_other_osmc_purple_diamond
-mycpname osmc_purple_dot osmc_other_osmc_purple_dot
-mycpname osmc_purple_l osmc_other_osmc_purple_l
-mycpname osmc_purple_m osmc_other_osmc_purple_m
-mycpname osmc_purple_pointer osmc_other_osmc_purple_pointer
-mycpname osmc_purple_rectangle osmc_other_osmc_purple_rectangle
-mycpname osmc_purple_stripe osmc_other_osmc_purple_stripe
-mycpname osmc_red_blue_diamond osmc_other_osmc_red_blue_diamond
-mycpname osmc_red_diamond_green_grape osmc_other_osmc_red_diamond_green_grape
-mycpname osmc_red_diamond_yellow_grape osmc_other_osmc_red_diamond_yellow_grape
-mycpname osmc_red_grape osmc_other_osmc_red_grape
-mycpname osmc_red_wheelchair osmc_other_osmc_red_wheelchair
-mycpname osmc_shell_modern osmc_other_osmc_shell_modern
-mycpname osmc_tower osmc_other_osmc_tower
-mycpname osmc_white_black_diamond osmc_other_osmc_white_black_diamond
-mycpname osmc_white_red_diamond osmc_other_osmc_white_red_diamond
-mycpname osmc_white_shell osmc_other_osmc_white_shell
-mycpname osmc_white_wheelchair osmc_other_osmc_white_wheelchair
-mycpname osmc_wolfshook osmc_other_osmc_wolfshook
-mycpname osmc_yellow_hexagon osmc_other_osmc_yellow_hexagon
-mycpname osmc_yellow_mz osmc_other_osmc_yellow_mz
-mycpname osmc_yellow_sg osmc_other_osmc_yellow_sg
-mycpname osmc_yellow_shell osmc_other_osmc_yellow_shell
+icon_alias osmc_ammonit osmc_other_osmc_ammonit
+icon_alias osmc_black_horse osmc_other_osmc_black_horse
+icon_alias osmc_black_red_diamond osmc_other_osmc_black_red_diamond
+icon_alias osmc_blue_grape osmc_other_osmc_blue_grape
+icon_alias osmc_blue_wheelchair osmc_other_osmc_blue_wheelchair
+icon_alias osmc_brown_bar osmc_other_osmc_brown_bar
+icon_alias osmc_brown_dot osmc_other_osmc_brown_dot
+icon_alias osmc_brown_x osmc_other_osmc_brown_x
+icon_alias osmc_green_wheelchair osmc_other_osmc_green_wheelchair
+icon_alias osmc_green_z osmc_other_osmc_green_z
+icon_alias osmc_heart osmc_other_osmc_heart
+icon_alias osmc_mine osmc_other_osmc_mine
+icon_alias osmc_purple_bar osmc_other_osmc_purple_bar
+icon_alias osmc_purple_diamond osmc_other_osmc_purple_diamond
+icon_alias osmc_purple_dot osmc_other_osmc_purple_dot
+icon_alias osmc_purple_l osmc_other_osmc_purple_l
+icon_alias osmc_purple_m osmc_other_osmc_purple_m
+icon_alias osmc_purple_pointer osmc_other_osmc_purple_pointer
+icon_alias osmc_purple_rectangle osmc_other_osmc_purple_rectangle
+icon_alias osmc_purple_stripe osmc_other_osmc_purple_stripe
+icon_alias osmc_red_blue_diamond osmc_other_osmc_red_blue_diamond
+icon_alias osmc_red_diamond_green_grape osmc_other_osmc_red_diamond_green_grape
+icon_alias osmc_red_diamond_yellow_grape osmc_other_osmc_red_diamond_yellow_grape
+icon_alias osmc_red_grape osmc_other_osmc_red_grape
+icon_alias osmc_red_wheelchair osmc_other_osmc_red_wheelchair
+icon_alias osmc_shell_modern osmc_other_osmc_shell_modern
+icon_alias osmc_tower osmc_other_osmc_tower
+icon_alias osmc_white_black_diamond osmc_other_osmc_white_black_diamond
+icon_alias osmc_white_red_diamond osmc_other_osmc_white_red_diamond
+icon_alias osmc_white_shell osmc_other_osmc_white_shell
+icon_alias osmc_white_wheelchair osmc_other_osmc_white_wheelchair
+icon_alias osmc_wolfshook osmc_other_osmc_wolfshook
+icon_alias osmc_yellow_hexagon osmc_other_osmc_yellow_hexagon
+icon_alias osmc_yellow_mz osmc_other_osmc_yellow_mz
+icon_alias osmc_yellow_sg osmc_other_osmc_yellow_sg
+icon_alias osmc_yellow_shell osmc_other_osmc_yellow_shell
 
 # Additional
-mycpname cuisine additional_cuisine
-mycpname website additional_website
-mycpname email additional_email
-mycpname facebook additional_facebook
-mycpname twitter additional_twitter
-mycpname youtube additional_youtube
-mycpname vk additional_vk
-mycpname fee_yes additional_fee_yes
-mycpname fee_no additional_fee_no
-mycpname ele additional_ele
-mycpname width additional_width
-mycpname height additional_height
-mycpname abandoned additional_abandoned
-mycpname disused additional_disused
-mycpname drinking_water_yes additional_drinking_water_yes
-mycpname drinking_water_no additional_drinking_water_no
-mycpname seasonal_no additional_seasonal_no
-mycpname seasonal_yes additional_seasonal_yes
-mycpname seasonal_summer additional_seasonal_summer
-mycpname seasonal_winter additional_seasonal_winter
-mycpname route_bus_ref transport_bus_stop
-mycpname route_tram_ref additional_tram
-mycpname route_trolleybus_ref additional_trolleybus
-mycpname route_train_ref transport_train_station2
-mycpname route_share_taxi_ref additional_share_taxi
-mycpname route_railway_ref transport_train_station
-mycpname route_ferry_ref transport_ferry_terminal
-mycpname route_funicular_ref transport_funicular
-mycpname route_monorail_ref additional_monorail
-mycpname route_light_rail_ref additional_light_rail
-mycpname shop_yes shopping_convenience
-mycpname beauty_salon_nails additional_beauty_salon_nails
-mycpname historic_yes tourist_archaeological2
-mycpname lit_yes additional_lit_yes
-mycpname lit_no additional_lit_no
-mycpname elevator_yes poi_colored_elevator
-mycpname elevator poi_colored_elevator
-mycpname theatre_genre_comedy additional_comedy
-mycpname temperature additional_temperature
-mycpname conveying_yes additional_conveying_yes
-mycpname shoes_women additional_shoes_women
-mycpname shoes_children additional_shoes_children
-mycpname shoes_men shopping_shoes
-mycpname cargo_vehicle additional_cargo_vehicle
-mycpname cargo_passengers additional_cargo_passengers
-mycpname bridge_movable_lift additional_bridge_movable_lift
-mycpname bridge_structure_arch additional_bridge_structure_arch
-mycpname bridge_structure_beam additional_bridge_structure_beam
-mycpname bridge_structure_suspension additional_bridge_structure_suspension
-mycpname bridge_type_movable additional_bridge_type_movable
-mycpname building_type_basilica additional_building_type_basilica
-mycpname building_type_cathedral additional_building_type_cathedral
-mycpname building_type_chapel additional_building_type_chapel
-mycpname building_type_church additional_building_type_church
-mycpname building_type_monastery additional_building_type_monastery
-mycpname building_type_mosque additional_building_type_mosque
-mycpname building_type_pyramid additional_building_type_pyramid
-mycpname building_type_synagogue additional_building_type_synagogue
-mycpname tourism_yes additional_tourism_yes
-mycpname supervised_yes additional_supervised_yes
-mycpname supervised_no additional_supervised_no
-mycpname access_no additional_access_no
-mycpname access_private additional_access_private
-mycpname smoking_yes additional_smoking_yes
-mycpname smoking_no additional_smoking_no
-mycpname covered_yes additional_covered_yes
-mycpname covered_no additional_covered_no
-mycpname male_yes additional_male_yes
-mycpname male_no additional_male_no
-mycpname female_yes additional_female_yes
-mycpname female_no additional_female_no
-mycpname wheelchair_yes additional_wheelchair
-mycpname wheelchair_designated additional_wheelchair
-mycpname wheelchair_no additional_wheelchair_no
-mycpname bench_yes additional_bench_yes
-mycpname bench_no additional_bench_no
-mycpname bin_yes additional_bin_yes
-mycpname bin_no additional_bin_no
-mycpname surface_sand additional_surface_sand
-mycpname recycling_container amenity_waste_disposal
-mycpname recycling_centre additional_recycling_centre
-mycpname crossing_traffic_signals additional_crossing_traffic_lights
-mycpname crossing_unmarked additional_crossing_unmarked
-mycpname crossing_uncontrolled additional_crossing_uncontrolled
-mycpname vending_parking_tickets additional_vending_parking_tickets
-mycpname vending_cigarettes additional_vending_cigarettes
-mycpname vending_excrement_bags additional_vending_excrement_bags
-mycpname vending_public_transport_tickets additional_vending_public_transport_tickets
-mycpname vending_drinks additional_vending_drinks
-mycpname vending_sweets additional_vending_sweets
-mycpname vending_parcel_pickup_mail_in additional_vending_parcel_pickup_mail_in
-mycpname vending_condoms additional_vending_condoms
-mycpname vending_stamps additional_vending_stamps
-mycpname product_brick additional_product_brick
-mycpname backrest_yes additional_backrest_yes
-mycpname backrest_no additional_backrest_no
-mycpname construction_yes additional_construction_yes
-mycpname atm_yes additional_atm_yes
-mycpname atm_no additional_atm_no
-mycpname compressed_air_yes additional_compressed_air_yes
-mycpname compressed_air_no additional_compressed_air_no
-mycpname car_wash_yes additional_car_wash_yes
-mycpname car_wash_no additional_car_wash_no
-mycpname vacuum_cleaner_yes additional_vacuum_cleaner_yes
-mycpname button_operated_yes additional_button_operated_yes
-mycpname button_operated_no additional_button_operated_no
-mycpname shop_additional_yes additional_shop_additional_yes
-mycpname salt_yes additional_salt_yes
-mycpname dispensing_yes additional_dispensing_yes
-mycpname dispensing_no additional_dispensing_no
-mycpname aerodrome_type_military additional_aerodrome_type_military
-mycpname telescope_type_optical additional_telescope_type_optical
-mycpname telescope_type_radio additional_telescope_type_radio
-mycpname motorcycle_clothes_no additional_motorcycle_clothes_no
-mycpname motorcycle_clothes_yes additional_motorcycle_clothes_yes
-mycpname motorcycle_parts_no additional_motorcycle_parts_no
-mycpname motorcycle_parts_yes additional_motorcycle_parts_yes
-mycpname motorcycle_rental_no additional_motorcycle_rental_no
-mycpname motorcycle_rental_yes additional_motorcycle_rental_yes
-mycpname motorcycle_repair_no additional_motorcycle_repair_no
-mycpname motorcycle_repair_yes additional_motorcycle_repair_yes
-mycpname motorcycle_sales_no additional_motorcycle_sales_no
-mycpname motorcycle_sales_yes additional_motorcycle_sales_yes
-mycpname delivery_yes additional_delivery_yes
-mycpname delivery_no additional_delivery_no
-mycpname architect_name additional_architect_name
-mycpname start_date additional_start_date
-mycpname foot_yes additional_foot_yes
-mycpname foot_no additional_foot_no
-mycpname horse_no additional_horse_no
-mycpname bus_yes additional_bus_yes
-mycpname bicycle_no additional_bicycle_no
-mycpname hgv_yes additional_hgv_yes
-mycpname hgv_no additional_hgv_no
-mycpname mofa_yes additional_mofa_yes
-mycpname motorcar_no additional_motorcar_no
-mycpname motorcycle_no additional_motorcycle_no
-mycpname snowmobile_yes additional_snowmobile_yes
-mycpname snowmobile_no additional_snowmobile_no
+icon_alias cuisine additional_cuisine
+icon_alias website additional_website
+icon_alias email additional_email
+icon_alias facebook additional_facebook
+icon_alias twitter additional_twitter
+icon_alias youtube additional_youtube
+icon_alias vk additional_vk
+icon_alias fee_yes additional_fee_yes
+icon_alias fee_no additional_fee_no
+icon_alias ele additional_ele
+icon_alias width additional_width
+icon_alias height additional_height
+icon_alias abandoned additional_abandoned
+icon_alias disused additional_disused
+icon_alias drinking_water_yes additional_drinking_water_yes
+icon_alias drinking_water_no additional_drinking_water_no
+icon_alias seasonal_no additional_seasonal_no
+icon_alias seasonal_yes additional_seasonal_yes
+icon_alias seasonal_summer additional_seasonal_summer
+icon_alias seasonal_winter additional_seasonal_winter
+icon_alias route_bus_ref transport_bus_stop
+icon_alias route_tram_ref additional_tram
+icon_alias route_trolleybus_ref additional_trolleybus
+icon_alias route_train_ref transport_train_station2
+icon_alias route_share_taxi_ref additional_share_taxi
+icon_alias route_railway_ref transport_train_station
+icon_alias route_ferry_ref transport_ferry_terminal
+icon_alias route_funicular_ref transport_funicular
+icon_alias route_monorail_ref additional_monorail
+icon_alias route_light_rail_ref additional_light_rail
+icon_alias shop_yes shopping_convenience
+icon_alias beauty_salon_nails additional_beauty_salon_nails
+icon_alias historic_yes tourist_archaeological2
+icon_alias lit_yes additional_lit_yes
+icon_alias lit_no additional_lit_no
+icon_alias elevator_yes poi_colored_elevator
+icon_alias elevator poi_colored_elevator
+icon_alias theatre_genre_comedy additional_comedy
+icon_alias temperature additional_temperature
+icon_alias conveying_yes additional_conveying_yes
+icon_alias shoes_women additional_shoes_women
+icon_alias shoes_children additional_shoes_children
+icon_alias shoes_men shopping_shoes
+icon_alias cargo_vehicle additional_cargo_vehicle
+icon_alias cargo_passengers additional_cargo_passengers
+icon_alias bridge_movable_lift additional_bridge_movable_lift
+icon_alias bridge_structure_arch additional_bridge_structure_arch
+icon_alias bridge_structure_beam additional_bridge_structure_beam
+icon_alias bridge_structure_suspension additional_bridge_structure_suspension
+icon_alias bridge_type_movable additional_bridge_type_movable
+icon_alias building_type_basilica additional_building_type_basilica
+icon_alias building_type_cathedral additional_building_type_cathedral
+icon_alias building_type_chapel additional_building_type_chapel
+icon_alias building_type_church additional_building_type_church
+icon_alias building_type_monastery additional_building_type_monastery
+icon_alias building_type_mosque additional_building_type_mosque
+icon_alias building_type_pyramid additional_building_type_pyramid
+icon_alias building_type_synagogue additional_building_type_synagogue
+icon_alias tourism_yes additional_tourism_yes
+icon_alias supervised_yes additional_supervised_yes
+icon_alias supervised_no additional_supervised_no
+icon_alias access_no additional_access_no
+icon_alias access_private additional_access_private
+icon_alias smoking_yes additional_smoking_yes
+icon_alias smoking_no additional_smoking_no
+icon_alias covered_yes additional_covered_yes
+icon_alias covered_no additional_covered_no
+icon_alias male_yes additional_male_yes
+icon_alias male_no additional_male_no
+icon_alias female_yes additional_female_yes
+icon_alias female_no additional_female_no
+icon_alias wheelchair_yes additional_wheelchair
+icon_alias wheelchair_designated additional_wheelchair
+icon_alias wheelchair_no additional_wheelchair_no
+icon_alias bench_yes additional_bench_yes
+icon_alias bench_no additional_bench_no
+icon_alias bin_yes additional_bin_yes
+icon_alias bin_no additional_bin_no
+icon_alias surface_sand additional_surface_sand
+icon_alias recycling_container amenity_waste_disposal
+icon_alias recycling_centre additional_recycling_centre
+icon_alias crossing_traffic_signals additional_crossing_traffic_lights
+icon_alias crossing_unmarked additional_crossing_unmarked
+icon_alias crossing_uncontrolled additional_crossing_uncontrolled
+icon_alias vending_parking_tickets additional_vending_parking_tickets
+icon_alias vending_cigarettes additional_vending_cigarettes
+icon_alias vending_excrement_bags additional_vending_excrement_bags
+icon_alias vending_public_transport_tickets additional_vending_public_transport_tickets
+icon_alias vending_drinks additional_vending_drinks
+icon_alias vending_sweets additional_vending_sweets
+icon_alias vending_parcel_pickup_mail_in additional_vending_parcel_pickup_mail_in
+icon_alias vending_condoms additional_vending_condoms
+icon_alias vending_stamps additional_vending_stamps
+icon_alias product_brick additional_product_brick
+icon_alias backrest_yes additional_backrest_yes
+icon_alias backrest_no additional_backrest_no
+icon_alias construction_yes additional_construction_yes
+icon_alias atm_yes additional_atm_yes
+icon_alias atm_no additional_atm_no
+icon_alias compressed_air_yes additional_compressed_air_yes
+icon_alias compressed_air_no additional_compressed_air_no
+icon_alias car_wash_yes additional_car_wash_yes
+icon_alias car_wash_no additional_car_wash_no
+icon_alias vacuum_cleaner_yes additional_vacuum_cleaner_yes
+icon_alias button_operated_yes additional_button_operated_yes
+icon_alias button_operated_no additional_button_operated_no
+icon_alias shop_additional_yes additional_shop_additional_yes
+icon_alias salt_yes additional_salt_yes
+icon_alias dispensing_yes additional_dispensing_yes
+icon_alias dispensing_no additional_dispensing_no
+icon_alias aerodrome_type_military additional_aerodrome_type_military
+icon_alias telescope_type_optical additional_telescope_type_optical
+icon_alias telescope_type_radio additional_telescope_type_radio
+icon_alias motorcycle_clothes_no additional_motorcycle_clothes_no
+icon_alias motorcycle_clothes_yes additional_motorcycle_clothes_yes
+icon_alias motorcycle_parts_no additional_motorcycle_parts_no
+icon_alias motorcycle_parts_yes additional_motorcycle_parts_yes
+icon_alias motorcycle_rental_no additional_motorcycle_rental_no
+icon_alias motorcycle_rental_yes additional_motorcycle_rental_yes
+icon_alias motorcycle_repair_no additional_motorcycle_repair_no
+icon_alias motorcycle_repair_yes additional_motorcycle_repair_yes
+icon_alias motorcycle_sales_no additional_motorcycle_sales_no
+icon_alias motorcycle_sales_yes additional_motorcycle_sales_yes
+icon_alias delivery_yes additional_delivery_yes
+icon_alias delivery_no additional_delivery_no
+icon_alias architect_name additional_architect_name
+icon_alias start_date additional_start_date
+icon_alias foot_yes additional_foot_yes
+icon_alias foot_no additional_foot_no
+icon_alias horse_no additional_horse_no
+icon_alias bus_yes additional_bus_yes
+icon_alias bicycle_no additional_bicycle_no
+icon_alias hgv_yes additional_hgv_yes
+icon_alias hgv_no additional_hgv_no
+icon_alias mofa_yes additional_mofa_yes
+icon_alias motorcar_no additional_motorcar_no
+icon_alias motorcycle_no additional_motorcycle_no
+icon_alias snowmobile_yes additional_snowmobile_yes
+icon_alias snowmobile_no additional_snowmobile_no
 
 #Additional category
-mycpname payment_type additional_category_payment_type
-mycpname park_ride additional_category_park_ride
+icon_alias payment_type additional_category_payment_type
+icon_alias park_ride additional_category_park_ride
 
 #Xmas
-mygroup xmas xmas_tree
-mycpname xmas_event xmas_event
-mycpname xmas_market xmas_market
-mycpname xmas_pyramid xmas_pyramid
-mycpname xmas_shop xmas_shop
-mycpname xmas_tree xmas_tree
+icon_alias xmas xmas_tree
+icon_alias xmas_event xmas_event
+icon_alias xmas_market xmas_market
+icon_alias xmas_pyramid xmas_pyramid
+icon_alias xmas_shop xmas_shop
+icon_alias xmas_tree xmas_tree
 
 #Special
-mycpname special_building special_building
-mycpname special_building special_building2
-mycpname special_flag_stroke special_flag_stroke
-mycpname special_flag special_flag
-mycpname special_house special_house
-mycpname special_marker special_marker
-mycpname special_star_stroked special_star_stroked
-mycpname special_star special_star
-mycpname special_number_0 special_number_0
-mycpname special_number_1 special_number_1
-mycpname special_number_2 special_number_2
-mycpname special_number_3 special_number_3
-mycpname special_number_4 special_number_4
-mycpname special_number_5 special_number_5
-mycpname special_number_6 special_number_6
-mycpname special_number_7 special_number_7
-mycpname special_number_8 special_number_8
-mycpname special_number_9 special_number_9
-mycpname special_bookmark special_bookmark
-mycpname special_flag_finish special_flag_finish
-mycpname special_flag_start special_flag_start
-mycpname special_heart special_heart
-mycpname special_bicycle special_bicycle
-mycpname special_camper special_camper
-mycpname special_campervan special_campervan
-mycpname special_helicopter special_helicopter
-mycpname special_horse special_horse
-mycpname special_monowheel special_monowheel
-mycpname special_motorcycle special_motorcycle
-mycpname special_offroad special_offroad
-mycpname special_openstreetmap special_openstreetmap
-mycpname special_personal_transporter special_personal_transporter
-mycpname special_pickup_truck special_pickup_truck
-mycpname special_sail_boat special_sail_boat
-mycpname special_scooter special_scooter
-mycpname special_shuttle_bus special_shuttle_bus
-mycpname special_ski_touring special_ski_touring
-mycpname special_skiing special_skiing
-mycpname special_snowmobile special_snowmobile
-mycpname special_subway special_subway
-mycpname special_taxi special_taxi
-mycpname special_trekking special_trekking
-mycpname special_truck special_truck
-mycpname special_utv special_utv
-mycpname special_wagon special_wagon
+icon_alias special_building special_building
+icon_alias special_building special_building2
+icon_alias special_flag_stroke special_flag_stroke
+icon_alias special_flag special_flag
+icon_alias special_house special_house
+icon_alias special_marker special_marker
+icon_alias special_star_stroked special_star_stroked
+icon_alias special_star special_star
+icon_alias special_number_0 special_number_0
+icon_alias special_number_1 special_number_1
+icon_alias special_number_2 special_number_2
+icon_alias special_number_3 special_number_3
+icon_alias special_number_4 special_number_4
+icon_alias special_number_5 special_number_5
+icon_alias special_number_6 special_number_6
+icon_alias special_number_7 special_number_7
+icon_alias special_number_8 special_number_8
+icon_alias special_number_9 special_number_9
+icon_alias special_bookmark special_bookmark
+icon_alias special_flag_finish special_flag_finish
+icon_alias special_flag_start special_flag_start
+icon_alias special_heart special_heart
+icon_alias special_bicycle special_bicycle
+icon_alias special_camper special_camper
+icon_alias special_campervan special_campervan
+icon_alias special_helicopter special_helicopter
+icon_alias special_horse special_horse
+icon_alias special_monowheel special_monowheel
+icon_alias special_motorcycle special_motorcycle
+icon_alias special_offroad special_offroad
+icon_alias special_openstreetmap special_openstreetmap
+icon_alias special_personal_transporter special_personal_transporter
+icon_alias special_pickup_truck special_pickup_truck
+icon_alias special_sail_boat special_sail_boat
+icon_alias special_scooter special_scooter
+icon_alias special_shuttle_bus special_shuttle_bus
+icon_alias special_ski_touring special_ski_touring
+icon_alias special_skiing special_skiing
+icon_alias special_snowmobile special_snowmobile
+icon_alias special_subway special_subway
+icon_alias special_taxi special_taxi
+icon_alias special_trekking special_trekking
+icon_alias special_truck special_truck
+icon_alias special_utv special_utv
+icon_alias special_wagon special_wagon
