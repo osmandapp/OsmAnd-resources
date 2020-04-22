@@ -83,6 +83,7 @@ genMapIconsStdSize() {
   fi
   
   echo "Generate $TYPE, sizes: ${SIZES[@]}, folders: ${FOLDERS[@]}, fill $FILL_COLOR, stroke $STROKE_COLOR, bg color $BG_COLOR "
+  rm ${VDFOLDERSVG}/* || true
   for FILE in ${SVGFOLDER}${TYPE}/*.svg; do
       FILENAME=${FILE##/*/}
       if [[ $FILENAME == _* ]]; then
