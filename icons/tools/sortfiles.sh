@@ -8,20 +8,21 @@ icon_alias() {
  	cp ../png/xhdpi/${2}.png ../../rendering_styles/style-icons/drawable-xhdpi/mm_${1}.png
  	cp ../png/xxhdpi/${2}.png ../../rendering_styles/style-icons/drawable-xxhdpi/mm_${1}.png
 	cp ../png/xxhdpi/${2}.png ../../rendering_styles/style-icons/drawable-xxhdpi/mm_${1}.png
-	cp ../vd/${2}.xml ../../rendering_styles/drawable-mx/mx_${1}.xml
- 	cp ../png/big-mdpi/${2}.png ../../rendering_styles/mx-png-icons/drawable-mdpi/mx_${1}.png
- 	cp ../png/big-hdpi/${2}.png ../../rendering_styles/mx-png-icons/drawable-hdpi/mx_${1}.png
- 	cp ../png/big-xhdpi/${2}.png ../../rendering_styles/mx-png-icons/drawable-xhdpi/mx_${1}.png
- 	cp ../png/big-xxhdpi/${2}.png ../../rendering_styles/mx-png-icons/drawable-xxhdpi/mx_${1}.png
+	if [ -z "$3" ]; then
+		cp ../vd/${2}.xml ../../rendering_styles/drawable-mx/mx_${1}.xml
+ 		cp ../png/big-mdpi/${2}.png ../../rendering_styles/mx-png-icons/drawable-mdpi/mx_${1}.png
+ 		cp ../png/big-hdpi/${2}.png ../../rendering_styles/mx-png-icons/drawable-hdpi/mx_${1}.png
+ 		cp ../png/big-xhdpi/${2}.png ../../rendering_styles/mx-png-icons/drawable-xhdpi/mx_${1}.png
+ 		cp ../png/big-xxhdpi/${2}.png ../../rendering_styles/mx-png-icons/drawable-xxhdpi/mx_${1}.png
+	fi
 }
 
-
-mycp() {
-	icon_alias ${1}_${2} $3
+icon_no_mx() {
+	icon_alias ${1} ${1} --no-mx
 }
 
-cpnomx() {
-	icon_alias ${1} ${2}
+icon() {
+	icon_alias ${1} ${1}
 }
 
 
@@ -42,8 +43,8 @@ icon_alias grass landuse_grass
 icon_alias forest landuse_colored_forest               # Keep shaders with background color, cannot be replaced by icons!
 icon_alias wood landuse_colored_forest
 icon_alias beach tourist_beach2                     # Keep shaders with background color, cannot be replaced by icons!
-#mycp natural scrub landuse_scrub                     # Keep shaders with background color, cannot be replaced by icons!
-#mycp natural swamp landuse_swamp                     # Keep shaders with background color, cannot be replaced by icons!
+#icon_alias natural_scrub landuse_scrub                     # Keep shaders with background color, cannot be replaced by icons!
+#icon_alias natural_swamp landuse_swamp                     # Keep shaders with background color, cannot be replaced by icons!
 icon_alias zoo tourist_zoo                         # Keep shaders with background color, cannot be replaced by icons!
 icon_alias military_danger_area poi_colored_danger_area
 icon_alias military_nuclear_explosion_site poi_colored_nuclear_explosion_site
@@ -86,51 +87,51 @@ icon_alias plant_nursery landuse_plant_nursery
 icon_alias greenhouse_horticulture landuse_greenhouse_horticulture
 icon_alias aquaculture landuse_aquaculture
 
-mycp stroke black functional-icons_black_stroke
-mycp stroke darkgreen functional-icons_darkgreen_stroke
-mycp stroke gray functional-icons_gray_stroke
-mycp stroke gray_triangle functional-icons_gray_stroke_triangle
-mycp stroke lightorange_left functional-icons_lightorange_left_stroke
-mycp stroke white functional-icons_white_stroke
-mycp stroke brown_right functional-icons_brown_right_stroke
+icon_alias stroke_black functional-icons_black_stroke
+icon_alias stroke_darkgreen functional-icons_darkgreen_stroke
+icon_alias stroke_gray functional-icons_gray_stroke
+icon_alias stroke_gray_triangle functional-icons_gray_stroke_triangle
+icon_alias stroke_lightorange_left functional-icons_lightorange_left_stroke
+icon_alias stroke_white functional-icons_white_stroke
+icon_alias stroke_brown_right functional-icons_brown_right_stroke
 icon_alias stroke_brown_left functional-icons_brown_left_stroke
 icon_alias stroke_dark_brown_left functional-icons_dark_brown_left_stroke
 icon_alias stroke_light_brown_left functional-icons_light_brown_left_stroke
 
 ## Natural
 icon_alias natural poi_colored_peak2
-mycp natural cave_entrance poi_cave
+icon_alias natural_cave_entrance poi_cave
 icon_alias topo_cave topo_topo_cave
-mycp natural geyser water_geyser  #scale 0.375
-mycp natural hot_spring water_hot_spring  #scale 0.375
-mycp natural peak_big poi_colored_peak_big
+icon_alias natural_geyser water_geyser  #scale 0.375
+icon_alias natural_hot_spring water_hot_spring  #scale 0.375
+icon_alias natural_peak_big poi_colored_peak_big
 icon_alias natural_peak_cross poi_colored_peak_cross
 icon_alias natural_peak_cross_big poi_colored_peak_cross_big
-mycp natural peak poi_colored_peak
-mycp natural peak_night_big functional-icons_peak_night_big  #For night orienteering use orange similar to contour lines (=day version with color #CC6600)  #scale 0.5
-mycp natural peak_night functional-icons_peak_night  #For night orienteering use orange similar to contour lines (=day version with color #CC6600)  #scale 0.5
-mycp natural saddle poi_colored_saddle
-mycp natural sinkhole poi_colored_sinkhole
-mycp natural spring water_spring  #scale 0.375
+icon_alias natural_peak poi_colored_peak
+icon_alias natural_peak_night_big functional-icons_peak_night_big  #For night orienteering use orange similar to contour lines (=day version with color #CC6600)  #scale 0.5
+icon_alias natural_peak_night functional-icons_peak_night  #For night orienteering use orange similar to contour lines (=day version with color #CC6600)  #scale 0.5
+icon_alias natural_saddle poi_colored_saddle
+icon_alias natural_sinkhole poi_colored_sinkhole
+icon_alias natural_spring water_spring  #scale 0.375
 icon_alias topo_spring topo_water_spring  #scale 0.375
-mycp natural stone poi_colored_stone  #scale 0.375
-mycp natural tree_broadleaved functional-icons_tree_broadleaved
+icon_alias natural_stone poi_colored_stone  #scale 0.375
+icon_alias natural_tree_broadleaved functional-icons_tree_broadleaved
 icon_alias topo_tree_broadleaved functional-icons-x2_topo_tree_broadleaved
-mycp natural tree_cypress functional-icons_tree_cypress
-mycp natural tree functional-icons_tree  #scale 0.25
-mycp natural tree_leafless functional-icons_tree_leafless
-mycp natural tree_needleleaved functional-icons_tree_needleleaved
+icon_alias natural_tree_cypress functional-icons_tree_cypress
+icon_alias natural_tree functional-icons_tree  #scale 0.25
+icon_alias natural_tree_leafless functional-icons_tree_leafless
+icon_alias natural_tree_needleleaved functional-icons_tree_needleleaved
 icon_alias topo_tree_needleleaved functional-icons-x2_topo_tree_needleleaved
-mycp natural tree_palm functional-icons_tree_palm
+icon_alias natural_tree_palm functional-icons_tree_palm
 icon_alias topo_tree_palm functional-icons-x2_topo_tree_palm
 icon_alias tree_dot functional-icons_tree
 icon_alias tree poi_colored_tree
-mycp natural volcano_active_big functional-icons_volcano_active_big
-mycp natural volcano_active functional-icons_volcano_active
-mycp natural volcano_big functional-icons_volcano_big
-mycp natural volcano_map functional-icons_volcano  #Is poi_colored_peak with color #D40000  #scale 0.5
+icon_alias natural_volcano_active_big functional-icons_volcano_active_big
+icon_alias natural_volcano_active functional-icons_volcano_active
+icon_alias natural_volcano_big functional-icons_volcano_big
+icon_alias natural_volcano_map functional-icons_volcano  #Is poi_colored_peak with color #D40000  #scale 0.5
 icon_alias volcano poi_colored_volcano_active
-mycp waterway rapids barrier_colored_rapids  #scale 0.375
+icon_alias waterway_rapids barrier_colored_rapids  #scale 0.375
 icon_alias rapid_white barrier_rapid  #scale 0.375
 icon_alias waterfall water_waterfall  #scale 0.375
 icon_alias topo_waterfall topo_water_waterfall  #scale 0.375
@@ -155,18 +156,18 @@ icon_alias hill_night functional-icons_hill_night
 
 ## Location dots
 icon_alias administrative poi_colored_boundary_administrative
-mycp place city_dot_night functional-icons_city_night  #scale 0.375
-mycp place city_dot_small functional-icons_city_small  #scale 0.375
-mycp place city_dot_small_night functional-icons_city_small_night  #scale 0.375
-mycp place city_dot functional-icons_city  #scale 0.375
-mycp place capital_dot_night functional-icons_capital_night  #scale 0.375
-mycp place capital_dot_small_night functional-icons_capital_small_night  #scale 0.375
-mycp place capital_dot functional-icons_capital  #scale 0.375
-mycp place capital_dot_small functional-icons_capital_small  #scale 0.375
-mycp place town_dot_night functional-icons_town_night  #scale 0.25
-mycp place town_dot functional-icons_town  #scale .25
-mycp place city poi_colored_city  #scale 0.375
-mycp place town poi_colored_town
+icon_alias place_city_dot_night functional-icons_city_night  #scale 0.375
+icon_alias place_city_dot_small functional-icons_city_small  #scale 0.375
+icon_alias place_city_dot_small_night functional-icons_city_small_night  #scale 0.375
+icon_alias place_city_dot functional-icons_city  #scale 0.375
+icon_alias place_capital_dot_night functional-icons_capital_night  #scale 0.375
+icon_alias place_capital_dot_small_night functional-icons_capital_small_night  #scale 0.375
+icon_alias place_capital_dot functional-icons_capital  #scale 0.375
+icon_alias place_capital_dot_small functional-icons_capital_small  #scale 0.375
+icon_alias place_town_dot_night functional-icons_town_night  #scale 0.25
+icon_alias place_town_dot functional-icons_town  #scale .25
+icon_alias place_city poi_colored_city  #scale 0.375
+icon_alias place_town poi_colored_town
 icon_alias hamlet poi_colored_hamlet
 icon_alias village poi_colored_village
 icon_alias locality poi_colored_place_locality
@@ -181,39 +182,39 @@ icon_alias place_farm poi_colored_place_farm
 icon_alias islet poi_colored_islet
 
 ## Barrier dots
-mycp barrier small_black_1 functional-icons_point_black_1  #scale 0.25
-mycp barrier small_black_2 functional-icons_point_black_2  #scale 0.25
-mycp barrier small_black_3 functional-icons_point_black_3  #scale 0.25
-mycp barrier small_black_4 functional-icons_point_black_4  #scale 0.25
-mycp barrier small_black_bold_1 functional-icons_point_black_bold_1  #scale 0.25
-mycp barrier small_black_bold_2 functional-icons_point_black_bold_2  #scale 0.25
-mycp barrier small_black_bold_3 functional-icons_point_black_bold_3  #scale 0.25
-mycp barrier small_black_bold_4 functional-icons_point_black_bold_4  #scale 0.25
-mycp barrier small_white_1 functional-icons_point_white_1  #scale 0.25
-mycp barrier small_white_2 functional-icons_point_white_2  #scale 0.25
-mycp barrier small_white_3 functional-icons_point_white_3  #scale 0.25
-mycp barrier small_white_4 functional-icons_point_white_4  #scale 0.25
-mycp barrier small_red_1 functional-icons_point_red_1  #scale 0.25
-mycp barrier small_red_2 functional-icons_point_red_2  #scale 0.25
-mycp barrier small_red_3 functional-icons_point_red_3  #scale 0.25
-mycp barrier small_red_4 functional-icons_point_red_4  #scale 0.25
-mycp barrier small_red_bold_1 functional-icons_point_red_bold_1  #scale 0.25
-mycp barrier small_red_bold_2 functional-icons_point_red_bold_2  #scale 0.25
-mycp barrier small_red_bold_3 functional-icons_point_red_bold_3  #scale 0.25
-mycp barrier small_red_bold_4 functional-icons_point_red_bold_4  #scale 0.25
-mycp barrier small_brown_bold_1 functional-icons_point_brown_bold_1  #scale 0.25
-mycp barrier small_brown_bold_2 functional-icons_point_brown_bold_2  #scale 0.25
+icon_alias barrier_small_black_1 functional-icons_point_black_1  #scale 0.25
+icon_alias barrier_small_black_2 functional-icons_point_black_2  #scale 0.25
+icon_alias barrier_small_black_3 functional-icons_point_black_3  #scale 0.25
+icon_alias barrier_small_black_4 functional-icons_point_black_4  #scale 0.25
+icon_alias barrier_small_black_bold_1 functional-icons_point_black_bold_1  #scale 0.25
+icon_alias barrier_small_black_bold_2 functional-icons_point_black_bold_2  #scale 0.25
+icon_alias barrier_small_black_bold_3 functional-icons_point_black_bold_3  #scale 0.25
+icon_alias barrier_small_black_bold_4 functional-icons_point_black_bold_4  #scale 0.25
+icon_alias barrier_small_white_1 functional-icons_point_white_1  #scale 0.25
+icon_alias barrier_small_white_2 functional-icons_point_white_2  #scale 0.25
+icon_alias barrier_small_white_3 functional-icons_point_white_3  #scale 0.25
+icon_alias barrier_small_white_4 functional-icons_point_white_4  #scale 0.25
+icon_alias barrier_small_red_1 functional-icons_point_red_1  #scale 0.25
+icon_alias barrier_small_red_2 functional-icons_point_red_2  #scale 0.25
+icon_alias barrier_small_red_3 functional-icons_point_red_3  #scale 0.25
+icon_alias barrier_small_red_4 functional-icons_point_red_4  #scale 0.25
+icon_alias barrier_small_red_bold_1 functional-icons_point_red_bold_1  #scale 0.25
+icon_alias barrier_small_red_bold_2 functional-icons_point_red_bold_2  #scale 0.25
+icon_alias barrier_small_red_bold_3 functional-icons_point_red_bold_3  #scale 0.25
+icon_alias barrier_small_red_bold_4 functional-icons_point_red_bold_4  #scale 0.25
+icon_alias barrier_small_brown_bold_1 functional-icons_point_brown_bold_1  #scale 0.25
+icon_alias barrier_small_brown_bold_2 functional-icons_point_brown_bold_2  #scale 0.25
 
 ## Emergency + Health
 icon_alias emergency emergency_ambulance_station
 icon_alias emergency_infrastructure emergency_emergency_phone
-mycp amenity fire_station emergency_firestation4
-mycp amenity police amenity_police2
-mycp emergency fire_hydrant emergency_colored_fire_hydrant
+icon_alias amenity_fire_station emergency_firestation4
+icon_alias amenity_police amenity_police2
+icon_alias emergency_fire_hydrant emergency_colored_fire_hydrant
 icon_alias fire_hydrant_type_underground emergency_fire_hydrant_underground
 icon_alias fire_hydrant_type_pillar emergency_fire_hydrant
 icon_alias suction_point emergency_suction_point
-mycp emergency phone emergency_emergency_phone
+icon_alias emergency_phone emergency_emergency_phone
 icon_alias emergency_access_point emergency_emergency_access_point
 icon_alias defibrillator emergency_defibrillator
 icon_alias ambulance_station emergency_ambulance_station
@@ -224,13 +225,13 @@ icon_alias topo_rescue_box topo_emergency_rescue_box
 icon_alias mountain_rescue emergency_mountain_rescue
 
 icon_alias healthcare health_pharmacy
-mycp amenity dentist health_dentist
-mycp amenity doctors health_doctors3
-mycp amenity hospital health_hospital2
+icon_alias amenity_dentist health_dentist
+icon_alias amenity_doctors health_doctors3
+icon_alias amenity_hospital health_hospital2
 icon_alias clinic health_clinic
-mycp amenity nursing_home health_nursing_home
-mycp amenity pharmacy health_pharmacy2
-mycp amenity veterinary health_veterinary
+icon_alias amenity_nursing_home health_nursing_home
+icon_alias amenity_pharmacy health_pharmacy2
+icon_alias amenity_veterinary health_veterinary
 icon_alias social_facility health_nursing_home
 icon_alias sanatorium health_sanatorium
 icon_alias health_amenity_type_first_aid_kit health_health_amenity_type_first_aid_kit
@@ -238,14 +239,14 @@ icon_alias laboratory health_laboratory
 icon_alias blood_donation health_blood_donation
 
 ## Overlays
-mycp fixme_tag yes overlays_fixme
-mycp fixme_tag_lowzoom yes overlays_fixme_dot
-mycp fixme_tag_lowzoom2 yes overlays_fixme_dot_2
-mycp note_tag yes overlays_note
-mycp osm_note dot overlays_osm_note_dot
-mycp osm_note dot_2 overlays_osm_note_dot_2
-mycp drinking_water yes_map overlays_drinking_water_yes
-mycp drinking_water no_map overlays_drinking_water_no
+icon_alias fixme_tag_yes overlays_fixme
+icon_alias fixme_tag_lowzoom_yes overlays_fixme_dot
+icon_alias fixme_tag_lowzoom2_yes overlays_fixme_dot_2
+icon_alias note_tag_yes overlays_note
+icon_alias osm_note_dot overlays_osm_note_dot
+icon_alias osm_note_dot_2 overlays_osm_note_dot_2
+icon_alias drinking_water_yes_map overlays_drinking_water_yes
+icon_alias drinking_water_no_map overlays_drinking_water_no
 icon_alias topo_drinking_water_yes_map overlays_water_drinking_water_yes
 icon_alias topo_drinking_water_no_map overlays_water_drinking_water_no
 icon_alias access_private_overlay overlays_access_private
@@ -260,7 +261,7 @@ icon_alias air_transport transport_aerodrome
 icon_alias water_transport transport_ferry_terminal
 icon_alias bicycle_transport shopping_bicycle
 icon_alias aerialway_transport transport_aerialway_station
-mycp highway crossing_bg functional-icons_highway_crossing_bg
+icon_alias highway_crossing_bg functional-icons_highway_crossing_bg
 icon_alias highway_crossing transport_zebra_crossing2
 icon_alias highway_crossing_map functional-icons_highway_crossing
 icon_alias crossing_traffic_signals_map functional-icons_highway_crossing_traffic_signals
@@ -271,17 +272,17 @@ icon_alias give_way functional-icons_give_way
 
 icon_alias ford transport_colored_ford
 icon_alias topo_ford topo_topo_ford
-mycp highway milestone functional-icons_milestone
-mycp highway mini_roundabout transport_colored_miniroundabout_anticlockwise
+icon_alias highway_milestone functional-icons_milestone
+icon_alias highway_mini_roundabout transport_colored_miniroundabout_anticlockwise
 icon_alias mini_roundabout_lhn transport_colored_miniroundabout_clockwise
-mycp highway noexit functional-icons_noexit
+icon_alias highway_noexit functional-icons_noexit
 icon_alias deadlock poi_colored_noexit
 icon_alias toll_gantry transport_colored_toll_gantry
-mycp highway passing_place functional-icons_passing_place
-mycp highway speed_camera transport_speedcamera
-mycp highway steps transport_colored_highway_steps
-mycp highway traffic_signals_map functional-icons_traffic_lights
-mycp highway traffic_signals transport_traffic_lights
+icon_alias highway_passing_place functional-icons_passing_place
+icon_alias highway_speed_camera transport_speedcamera
+icon_alias highway_steps transport_colored_highway_steps
+icon_alias highway_traffic_signals_map functional-icons_traffic_lights
+icon_alias highway_traffic_signals transport_traffic_lights
 icon_alias motorway_junction transport_motorway_junction
 icon_alias junction transport_junction
 icon_alias rest_area transport_rest_area
@@ -293,43 +294,43 @@ icon_alias traffic_calming_cushion transport_cushion
 icon_alias traffic_calming_hump transport_hump
 icon_alias traffic_calming_island transport_traffic_island
 icon_alias traffic_calming_table transport_table
-mycp oneway blue functional-icons_oneway_blue
-mycp oneway reverse_blue functional-icons_oneway_reverse_blue
-mycp oneway blue_big functional-icons_oneway_blue_big
-mycp oneway reverse_blue_big functional-icons_oneway_reverse_blue_big
-mycp arrow blue_big functional-icons_arrow_blue_big
-mycp arrow blue_big_night functional-icons_arrow_blue_big_night
-mycp arrow triangle_black functional-icons_arrow_triangle_black
+icon_alias oneway_blue functional-icons_oneway_blue
+icon_alias oneway_reverse_blue functional-icons_oneway_reverse_blue
+icon_alias oneway_blue_big functional-icons_oneway_blue_big
+icon_alias oneway_reverse_blue_big functional-icons_oneway_reverse_blue_big
+icon_alias arrow_blue_big functional-icons_arrow_blue_big
+icon_alias arrow_blue_big_night functional-icons_arrow_blue_big_night
+icon_alias arrow_triangle_black functional-icons_arrow_triangle_black
 icon_alias arrow_triangle_black_reverse functional-icons_arrow_triangle_black_reverse
-mycp arrow triangle_black_big functional-icons_arrow_triangle_black_big
+icon_alias arrow_triangle_black_big functional-icons_arrow_triangle_black_big
 icon_alias arrow_triangle_black_reverse_big functional-icons_arrow_triangle_black_reverse_big
-mycp arrow triangle_black_small functional-icons_arrow_triangle_black_small
-mycp arrow triangle_black_nobg functional-icons_arrow_triangle_black_nobg
-mycp arrow triangle_black_big_nobg functional-icons_arrow_triangle_black_big_nobg
-mycp arrow triangle_black_small_nobg functional-icons_arrow_triangle_black_small_nobg
-mycp arrow triangle_white_nobg functional-icons_arrow_triangle_white_nobg
-mycp arrow triangle_white_big_nobg functional-icons_arrow_triangle_white_big_nobg
-mycp arrow triangle_white_small_nobg functional-icons_arrow_triangle_white_small_nobg
-mycp arrow triangle_blue functional-icons_arrow_triangle_blue
-mycp arrow triangle_blue_big functional-icons_arrow_triangle_blue_big
-mycp arrow triangle_blue_small functional-icons_arrow_triangle_blue_small
-mycp arrow triangle_darkblue functional-icons_arrow_triangle_darkblue
-mycp arrow triangle_darkblue_big functional-icons_arrow_triangle_darkblue_big
-mycp arrow triangle_darkblue_small functional-icons_arrow_triangle_darkblue_small
-mycp arrow 2triangles_black functional-icons_arrow_2triangles_black
-mycp arrow 2triangles_white functional-icons_arrow_2triangles_white
-mycp arrow triangle_white2 functional-icons_arrow_triangle_white2
-mycp arrow triangle_black2 functional-icons_arrow_triangle_black2
-mycp skimap arrow_2triangles_black skimap_arrow_2triangles_black
-mycp skimap arrow_2triangles_black_big skimap_arrow_2triangles_black_big
-mycp skimap arrow_2triangles_black_big_nobg skimap_arrow_2triangles_black_big_nobg
-mycp skimap arrow_2triangles_white_big_nobg skimap_arrow_2triangles_white_big_nobg
-mycp skimap arrow_2triangles_black_nobg skimap_arrow_2triangles_black_nobg
-mycp skimap arrow_2triangles_white_nobg skimap_arrow_2triangles_white_nobg
-mycp skimap arrow_2triangles_black_small skimap_arrow_2triangles_black_small
-mycp skimap arrow_2triangles_black_small_nobg skimap_arrow_2triangles_black_small_nobg
-mycp skimap arrow_2triangles_white_small_nobg skimap_arrow_2triangles_white_small_nobg
-mycp harbour yes poi_colored_harbour
+icon_alias arrow_triangle_black_small functional-icons_arrow_triangle_black_small
+icon_alias arrow_triangle_black_nobg functional-icons_arrow_triangle_black_nobg
+icon_alias arrow_triangle_black_big_nobg functional-icons_arrow_triangle_black_big_nobg
+icon_alias arrow_triangle_black_small_nobg functional-icons_arrow_triangle_black_small_nobg
+icon_alias arrow_triangle_white_nobg functional-icons_arrow_triangle_white_nobg
+icon_alias arrow_triangle_white_big_nobg functional-icons_arrow_triangle_white_big_nobg
+icon_alias arrow_triangle_white_small_nobg functional-icons_arrow_triangle_white_small_nobg
+icon_alias arrow_triangle_blue functional-icons_arrow_triangle_blue
+icon_alias arrow_triangle_blue_big functional-icons_arrow_triangle_blue_big
+icon_alias arrow_triangle_blue_small functional-icons_arrow_triangle_blue_small
+icon_alias arrow_triangle_darkblue functional-icons_arrow_triangle_darkblue
+icon_alias arrow_triangle_darkblue_big functional-icons_arrow_triangle_darkblue_big
+icon_alias arrow_triangle_darkblue_small functional-icons_arrow_triangle_darkblue_small
+icon_alias arrow_2triangles_black functional-icons_arrow_2triangles_black
+icon_alias arrow_2triangles_white functional-icons_arrow_2triangles_white
+icon_alias arrow_triangle_white2 functional-icons_arrow_triangle_white2
+icon_alias arrow_triangle_black2 functional-icons_arrow_triangle_black2
+icon_alias skimap_arrow_2triangles_black skimap_arrow_2triangles_black
+icon_alias skimap_arrow_2triangles_black_big skimap_arrow_2triangles_black_big
+icon_alias skimap_arrow_2triangles_black_big_nobg skimap_arrow_2triangles_black_big_nobg
+icon_alias skimap_arrow_2triangles_white_big_nobg skimap_arrow_2triangles_white_big_nobg
+icon_alias skimap_arrow_2triangles_black_nobg skimap_arrow_2triangles_black_nobg
+icon_alias skimap_arrow_2triangles_white_nobg skimap_arrow_2triangles_white_nobg
+icon_alias skimap_arrow_2triangles_black_small skimap_arrow_2triangles_black_small
+icon_alias skimap_arrow_2triangles_black_small_nobg skimap_arrow_2triangles_black_small_nobg
+icon_alias skimap_arrow_2triangles_white_small_nobg skimap_arrow_2triangles_white_small_nobg
+icon_alias harbour_yes poi_colored_harbour
 icon_alias historic_milestone tourist_historic_milestone
 icon_alias topo_milestone topo_topo_milestone
 icon_alias runway transport_runway
@@ -344,20 +345,20 @@ icon_alias filling_station transport_fuel
 icon_alias charging_station transport_charging_station
 icon_alias electricity_combined_charging transport_charging_station
 icon_alias charging_station_filter transport_charging_station
-mycp amenity fuel_lpg transport_fuel_lpg
-mycp amenity fuel transport_fuel
+icon_alias amenity_fuel_lpg transport_fuel_lpg
+icon_alias amenity_fuel transport_fuel
 icon_alias aeroway_fuel transport_aeroway_fuel
 icon_alias turning_circle transport_turning_circle
 icon_alias waterway_fuel transport_waterway_fuel
 
 icon_alias parking transport_parking
-mycp amenity parking transport_parking
-mycp amenity parking_private transport_parking_private2
-mycp amenity parking_paid transport_parking_car_paid
+icon_alias amenity_parking transport_parking
+icon_alias amenity_parking_private transport_parking_private2
+icon_alias amenity_parking_paid transport_parking_car_paid
 icon_alias parking_multi_storey transport_parking_multi-storey
-mycp amenity parking_multi_storey_paid transport_parking_multi-storey_paid
+icon_alias amenity_parking_multi_storey_paid transport_parking_multi-storey_paid
 icon_alias parking_underground transport_parking_underground
-mycp amenity parking_underground_paid transport_parking_underground_paid
+icon_alias amenity_parking_underground_paid transport_parking_underground_paid
 icon_alias bicycle_parking transport_parking_bicycle
 icon_alias bicycle_parking_stands transport_bicycle_parking_stands
 icon_alias bicycle_parking_wall_loops transport_bicycle_parking_wall_loops
@@ -370,47 +371,47 @@ icon_alias bicycle_parking_informal transport_bicycle_parking_informal
 icon_alias bicycle_parking_lockers transport_bicycle_parking_lockers
 icon_alias bicycle_parking_tree transport_bicycle_parking_tree
 icon_alias bicycle_parking_streetpod transport_bicycle_parking_streetpod
-mycp amenity motorcycle_parking transport_parking_motorcycle
-mycp amenity motorcycle_parking_paid transport_parking_motorcycle_paid
+icon_alias amenity_motorcycle_parking transport_parking_motorcycle
+icon_alias amenity_motorcycle_parking_paid transport_parking_motorcycle_paid
 icon_alias parking_space transport_parking_space
 
 
 icon_alias public_transport transport_bus_stop
-mycp amenity bus_station transport_bus_station2
+icon_alias amenity_bus_station transport_bus_station2
 icon_alias public_transport_station transport_bus_station
 icon_alias public_transport_stop_position transport_bus_stop2
-mycp highway bus_stop transport_bus_stop
+icon_alias highway_bus_stop transport_bus_stop
 icon_alias topo_bus_stop topo_topo_bus_stop
-mycp highway bus_stop_small bus_stop_small
+icon_alias highway_bus_stop_small bus_stop_small
 icon_alias topo_bus_stop_small topo_topo_bus_stop_small
-mycp highway bus_stop_round_small functional-icons_bus_stop_round_small
-mycp highway bus_stop_round_big functional-icons_bus_stop_round_big
-mycp highway bus_stop_round_small_night functional-icons_bus_stop_round_small_night
-mycp highway bus_stop_round_big_night functional-icons_bus_stop_round_big_night
+icon_alias highway_bus_stop_round_small functional-icons_bus_stop_round_small
+icon_alias highway_bus_stop_round_big functional-icons_bus_stop_round_big
+icon_alias highway_bus_stop_round_small_night functional-icons_bus_stop_round_small_night
+icon_alias highway_bus_stop_round_big_night functional-icons_bus_stop_round_big_night
 icon_alias bus_station_small functional-icons_bus_station_small
-mycp public_transport platform transport_bus_stop
-mycp amenity ferry_terminal transport_ferry_terminal
+icon_alias public_transport_platform transport_bus_stop
+icon_alias amenity_ferry_terminal transport_ferry_terminal
 icon_alias ferry_terminal_small ferry_terminal_small
-mycp amenity taxi transport_taxi_rank
-mycp highway services transport_services
-mycp mountain pass poi_mountain_pass
+icon_alias amenity_taxi transport_taxi_rank
+icon_alias highway_services transport_services
+icon_alias mountain_pass poi_mountain_pass
 icon_alias topo_mountain_pass topo_topo_mountain_pass
 
-mycp amenity bicycle_rental transport_rental_bicycle
-mycp amenity boat_sharing transport_boat_sharing
+icon_alias amenity_bicycle_rental transport_rental_bicycle
+icon_alias amenity_boat_sharing transport_boat_sharing
 icon_alias boat_rental transport_boat_rental
-mycp amenity car_rental transport_rental_car
-mycp amenity car_sharing transport_car_share
-mycp amenity ski_rental transport_ski_rental
+icon_alias amenity_car_rental transport_rental_car
+icon_alias amenity_car_sharing transport_car_share
+icon_alias amenity_ski_rental transport_ski_rental
 
-mycp leisure marina transport_marina
-mycp leisure marina_private transport_marina_private
-mycp leisure slipway transport_slipway
-mycp man_made lighthouse transport_lighthouse
-mycp waterway lock_gate_small functional-icons_lock_gate  #scale 0.5
+icon_alias leisure_marina transport_marina
+icon_alias leisure_marina_private transport_marina_private
+icon_alias leisure_slipway transport_slipway
+icon_alias man_made_lighthouse transport_lighthouse
+icon_alias waterway_lock_gate_small functional-icons_lock_gate  #scale 0.5
 icon_alias lock_gate poi_colored_lock_gate  #scale 0.25
 icon_alias lock_basin seamark_small_poi_lock_basin  #scale 0.25
-mycp waterway dock transport_dock
+icon_alias waterway_dock transport_dock
 
 icon_alias halt_small functional-icons_halt_small  #scale 0.25
 icon_alias halt_small_2 functional-icons_halt_small_2  #scale 0.25
@@ -419,19 +420,19 @@ icon_alias halt transport_halt  #scale 0.25
 icon_alias level_crossing_map functional-icons_level_crossing  #scale 0.5
 icon_alias level_crossing poi_colored_level_crossing  #scale 0.5
 icon_alias railway_yard transport_railway_yard  #scale 0.25
-mycp railway platform transport_train_station2
-mycp railway station_disused functional-icons_train_station_disused
-mycp railway station_small_disused railway_station_small_disused
-mycp railway station_small railway_station_small  #scale 0.375
+icon_alias railway_platform transport_train_station2
+icon_alias railway_station_disused functional-icons_train_station_disused
+icon_alias railway_station_small_disused railway_station_small_disused
+icon_alias railway_station_small railway_station_small  #scale 0.375
 icon_alias topo_railway_station_small functional-icons_topo_railway_station_small
-mycp railway station_subway_map transport_station_subway
-mycp railway station_subway_small railway_station_subway_small  #scale 0.375
-mycp railway station transport_train_station
-mycp railway tram_stop_round_big functional-icons_blue_stop_round_big
-mycp railway tram_stop_round_big_night functional-icons_blue_stop_round_big_night
-mycp railway tram_stop_round_small functional-icons_blue_stop_round_small
-mycp railway tram_stop_round_small_night functional-icons_blue_stop_round_small_night
-mycp railway tram_stop transport_tram_stop
+icon_alias railway_station_subway_map transport_station_subway
+icon_alias railway_station_subway_small railway_station_subway_small  #scale 0.375
+icon_alias railway_station transport_train_station
+icon_alias railway_tram_stop_round_big functional-icons_blue_stop_round_big
+icon_alias railway_tram_stop_round_big_night functional-icons_blue_stop_round_big_night
+icon_alias railway_tram_stop_round_small functional-icons_blue_stop_round_small
+icon_alias railway_tram_stop_round_small_night functional-icons_blue_stop_round_small_night
+icon_alias railway_tram_stop transport_tram_stop
 icon_alias tram_stop_small tram_stop_small
 icon_alias subway_station transport_subway_station
 icon_alias funicular transport_funicular
@@ -440,44 +441,44 @@ icon_alias escape_lane transport_escape_lane
 icon_alias subway_entrance_map subway_subway_entrance_map
 icon_alias subway_entrance poi_colored_subway_entrance
 icon_alias subway_entrance transport_subway_entrance
-mycp railway subway_entrance_red functional-icons_subway_entrance_red
-mycp railway subway_entrance_brown functional-icons_subway_entrance_brown
-mycp railway subway_entrance_orange functional-icons_subway_entrance_orange
-mycp railway subway_entrance_darkyellow functional-icons_subway_entrance_darkyellow
-mycp railway subway_entrance_yellow functional-icons_subway_entrance_yellow
-mycp railway subway_entrance_lightgreen functional-icons_subway_entrance_lightgreen
-mycp railway subway_entrance_green functional-icons_subway_entrance_green
-mycp railway subway_entrance_lightblue functional-icons_subway_entrance_lightblue
-mycp railway subway_entrance_blue functional-icons_subway_entrance_blue
-mycp railway subway_entrance_purple functional-icons_subway_entrance_purple
-mycp railway subway_entrance_gray functional-icons_subway_entrance_gray
-mycp railway subway_entrance_black functional-icons_subway_entrance_black
+icon_alias railway_subway_entrance_red functional-icons_subway_entrance_red
+icon_alias railway_subway_entrance_brown functional-icons_subway_entrance_brown
+icon_alias railway_subway_entrance_orange functional-icons_subway_entrance_orange
+icon_alias railway_subway_entrance_darkyellow functional-icons_subway_entrance_darkyellow
+icon_alias railway_subway_entrance_yellow functional-icons_subway_entrance_yellow
+icon_alias railway_subway_entrance_lightgreen functional-icons_subway_entrance_lightgreen
+icon_alias railway_subway_entrance_green functional-icons_subway_entrance_green
+icon_alias railway_subway_entrance_lightblue functional-icons_subway_entrance_lightblue
+icon_alias railway_subway_entrance_blue functional-icons_subway_entrance_blue
+icon_alias railway_subway_entrance_purple functional-icons_subway_entrance_purple
+icon_alias railway_subway_entrance_gray functional-icons_subway_entrance_gray
+icon_alias railway_subway_entrance_black functional-icons_subway_entrance_black
 
-mycp railway subway_station_small_default functional-icons_subway_station_small_default
-mycp railway subway_station_small_default2 functional-icons_subway_station_small_default2
-mycp railway subway_station_small_red functional-icons_subway_station_small_red
-mycp railway subway_station_small_brown functional-icons_subway_station_small_brown
-mycp railway subway_station_small_orange functional-icons_subway_station_small_orange
-mycp railway subway_station_small_orange2 functional-icons_subway_station_small_orange2
-mycp railway subway_station_small_darkyellow functional-icons_subway_station_small_darkyellow
-mycp railway subway_station_small_darkyellow2 functional-icons_subway_station_small_darkyellow2
-mycp railway subway_station_small_yellow functional-icons_subway_station_small_yellow
-mycp railway subway_station_small_yellow2 functional-icons_subway_station_small_yellow2
-mycp railway subway_station_small_lightgreen functional-icons_subway_station_small_lightgreen
-mycp railway subway_station_small_lightgreen2 functional-icons_subway_station_small_lightgreen2
-mycp railway subway_station_small_green functional-icons_subway_station_small_green
-mycp railway subway_station_small_green2 functional-icons_subway_station_small_green2
-mycp railway subway_station_small_lightblue functional-icons_subway_station_small_lightblue
-mycp railway subway_station_small_lightblue2 functional-icons_subway_station_small_lightblue2
-mycp railway subway_station_small_blue functional-icons_subway_station_small_blue
-mycp railway subway_station_small_blue2 functional-icons_subway_station_small_blue2
-mycp railway subway_station_small_purple functional-icons_subway_station_small_purple
-mycp railway subway_station_small_purple2 functional-icons_subway_station_small_purple2
-mycp railway subway_station_small_gray functional-icons_subway_station_small_gray
-mycp railway subway_station_small_gray2 functional-icons_subway_station_small_gray2
-mycp railway subway_station_small_black functional-icons_subway_station_small_black
-mycp railway subway_station_small_black2 functional-icons_subway_station_small_black2
-mycp railway subway_station_small_white functional-icons_subway_station_small_white
+icon_alias railway_subway_station_small_default functional-icons_subway_station_small_default
+icon_alias railway_subway_station_small_default2 functional-icons_subway_station_small_default2
+icon_alias railway_subway_station_small_red functional-icons_subway_station_small_red
+icon_alias railway_subway_station_small_brown functional-icons_subway_station_small_brown
+icon_alias railway_subway_station_small_orange functional-icons_subway_station_small_orange
+icon_alias railway_subway_station_small_orange2 functional-icons_subway_station_small_orange2
+icon_alias railway_subway_station_small_darkyellow functional-icons_subway_station_small_darkyellow
+icon_alias railway_subway_station_small_darkyellow2 functional-icons_subway_station_small_darkyellow2
+icon_alias railway_subway_station_small_yellow functional-icons_subway_station_small_yellow
+icon_alias railway_subway_station_small_yellow2 functional-icons_subway_station_small_yellow2
+icon_alias railway_subway_station_small_lightgreen functional-icons_subway_station_small_lightgreen
+icon_alias railway_subway_station_small_lightgreen2 functional-icons_subway_station_small_lightgreen2
+icon_alias railway_subway_station_small_green functional-icons_subway_station_small_green
+icon_alias railway_subway_station_small_green2 functional-icons_subway_station_small_green2
+icon_alias railway_subway_station_small_lightblue functional-icons_subway_station_small_lightblue
+icon_alias railway_subway_station_small_lightblue2 functional-icons_subway_station_small_lightblue2
+icon_alias railway_subway_station_small_blue functional-icons_subway_station_small_blue
+icon_alias railway_subway_station_small_blue2 functional-icons_subway_station_small_blue2
+icon_alias railway_subway_station_small_purple functional-icons_subway_station_small_purple
+icon_alias railway_subway_station_small_purple2 functional-icons_subway_station_small_purple2
+icon_alias railway_subway_station_small_gray functional-icons_subway_station_small_gray
+icon_alias railway_subway_station_small_gray2 functional-icons_subway_station_small_gray2
+icon_alias railway_subway_station_small_black functional-icons_subway_station_small_black
+icon_alias railway_subway_station_small_black2 functional-icons_subway_station_small_black2
+icon_alias railway_subway_station_small_white functional-icons_subway_station_small_white
 
 icon_alias subway_moscow subway_subway_moscow
 icon_alias subway_samara subway_subway_samara
@@ -560,8 +561,8 @@ icon_alias subway_suzhou subway_subway_suzhou
 icon_alias subway_shanghai subway_subway_shanghai
 icon_alias subway_guangzhou subway_subway_guangzhou
 
-mycp aerialway station_small functional-icons_aerialway_station_small  #scale 0.25
-mycp aerialway station transport_aerialway_station  #scale 0.375
+icon_alias aerialway_station_small functional-icons_aerialway_station_small  #scale 0.25
+icon_alias aerialway_station transport_aerialway_station  #scale 0.375
 icon_alias aerialway_cable_car transport_aerialway_cable_car
 icon_alias aerialway_chair_lift transport_aerialway_chair_lift
 icon_alias aerialway_pylon transport_aerialway_pylon
@@ -575,14 +576,14 @@ icon_alias aerialway_magic_carpet transport_aerialway_magic_carpet
 icon_alias aerialway_gondola transport_aerialway_gondola
 icon_alias aerialway_rope_tow transport_aerialway_rope_tow
 
-mycp aeroway aerodrome_abandoned functional-icons_aerodrome_abandoned
+icon_alias aeroway_aerodrome_abandoned functional-icons_aerodrome_abandoned
 icon_alias topo_aerodrome_abandoned topo_topo_aerodrome_abandoned
-mycp aeroway aerodrome transport_aerodrome
+icon_alias aeroway_aerodrome transport_aerodrome
 icon_alias aeroway_aerodrome_small transport_colored_aerodrome
 icon_alias topo_aerodrome topo_topo_aerodrome
-mycp aeroway airport transport_airport
-mycp aeroway gate transport_colored_airport_gate
-mycp aeroway helipad transport_helicopter_pad
+icon_alias aeroway_airport transport_airport
+icon_alias aeroway_gate transport_colored_airport_gate
+icon_alias aeroway_helipad transport_helicopter_pad
 icon_alias aeroway_terminal transport_airport_terminal
 icon_alias spaceport transport_spaceport
 
@@ -594,34 +595,34 @@ icon_alias whitewater_hazard functional-icons-x2_whitewater_hazard
 
 ## Barrier
 icon_alias barrier barrier_colored_bollard
-mycp barrier block barrier_colored_blocks
-mycp barrier bollard barrier_colored_bollard
-mycp barrier border_control barrier_border_control
-mycp barrier bump_gate barrier_colored_bump_gate
-mycp barrier bus_trap barrier_colored_bus_trap
-mycp barrier cattle_grid barrier_colored_cattle_grid2
-mycp barrier chain barrier_colored_chain
-mycp barrier cycle_barrier barrier_colored_cycle_barrier2
-mycp barrier entrance barrier_colored_entrance
-mycp barrier gate barrier_colored_gate
-mycp barrier height_restrictor barrier_colored_height_restrictor
-mycp barrier kissing_gate barrier_colored_kissing_gate
-mycp barrier lift_gate barrier_colored_lift_gate
-mycp barrier motorcycle_barrier barrier_colored_cycle_barrier
-mycp barrier sally_port barrier_colored_sally_port
-mycp barrier stile barrier_colored_stile
-mycp barrier swing_gate barrier_colored_swing_gate
+icon_alias barrier_block barrier_colored_blocks
+icon_alias barrier_bollard barrier_colored_bollard
+icon_alias barrier_border_control barrier_border_control
+icon_alias barrier_bump_gate barrier_colored_bump_gate
+icon_alias barrier_bus_trap barrier_colored_bus_trap
+icon_alias barrier_cattle_grid barrier_colored_cattle_grid2
+icon_alias barrier_chain barrier_colored_chain
+icon_alias barrier_cycle_barrier barrier_colored_cycle_barrier2
+icon_alias barrier_entrance barrier_colored_entrance
+icon_alias barrier_gate barrier_colored_gate
+icon_alias barrier_height_restrictor barrier_colored_height_restrictor
+icon_alias barrier_kissing_gate barrier_colored_kissing_gate
+icon_alias barrier_lift_gate barrier_colored_lift_gate
+icon_alias barrier_motorcycle_barrier barrier_colored_cycle_barrier
+icon_alias barrier_sally_port barrier_colored_sally_port
+icon_alias barrier_stile barrier_colored_stile
+icon_alias barrier_swing_gate barrier_colored_swing_gate
 icon_alias toll_booth barrier_colored_toll_booth
 icon_alias military_checkpoint barrier_colored_military_checkpoint
-mycp barrier turnstile barrier_colored_turnstile
-mycp entrance yes barrier_colored_entrance2
+icon_alias barrier_turnstile barrier_colored_turnstile
+icon_alias entrance_yes barrier_colored_entrance2
 icon_alias entrance_exit_map functional-icons_entrance_exit
 icon_alias entrance_main_map functional-icons_entrance3
 icon_alias entrance_service functional-icons_entrance_service
 icon_alias entrance_exit poi_colored_entrance_exit
 icon_alias entrance_main barrier_colored_entrance2
-mycp amenity parking_entrance transport_parking_entrance
-mycp building entrance barrier_colored_entrance
+icon_alias amenity_parking_entrance transport_parking_entrance
+icon_alias building_entrance barrier_colored_entrance
 icon_alias barrier_colored_debris barrier_colored_debris
 icon_alias barrier_colored_horse_stile barrier_colored_horse_stile
 icon_alias barrier_colored_jersey_barrier barrier_colored_jersey_barrier
@@ -630,29 +631,29 @@ icon_alias barrier_colored_log barrier_colored_log
 
 ## Accommodation
 icon_alias accomodation accommodation_hotel
-mycp amenity shelter accommodation_shelter2
+icon_alias amenity_shelter accommodation_shelter2
 icon_alias topo_shelter topo_topo_shelter
-mycp tourism alpine_hut accommodation_alpinehut
+icon_alias tourism_alpine_hut accommodation_alpinehut
 icon_alias topo_alpine_hut topo_topo_alpine_hut
 icon_alias cabin accommodation_cabin
 icon_alias topo_cabin topo_topo_cabin
 icon_alias lean_to accommodation_lean_to
 icon_alias topo_lean_to topo_topo_lean_to
-mycp tourism apartment accommodation_apartment
+icon_alias tourism_apartment accommodation_apartment
 icon_alias topo_apartment topo_topo_apartment
-mycp tourism camp_site accommodation_camping
+icon_alias tourism_camp_site accommodation_camping
 icon_alias topo_camp_site topo_topo_camp_site
 icon_alias tourism_caravan_site accommodation_caravan
 icon_alias topo_caravan_site topo_topo_caravan_site
-mycp tourism chalet accommodation_chalet
+icon_alias tourism_chalet accommodation_chalet
 icon_alias topo_chalet topo_topo_chalet
-mycp tourism guest_house accommodation_bed_and_breakfast
+icon_alias tourism_guest_house accommodation_bed_and_breakfast
 icon_alias topo_guest_house topo_topo_guest_house
-mycp tourism hostel accommodation_hostel
+icon_alias tourism_hostel accommodation_hostel
 icon_alias topo_hostel topo_topo_hostel
-mycp tourism hotel accommodation_hotel
+icon_alias tourism_hotel accommodation_hotel
 icon_alias topo_hotel topo_topo_hotel
-mycp tourism motel accommodation_motel
+icon_alias tourism_motel accommodation_motel
 icon_alias topo_motel topo_topo_motel
 icon_alias wilderness_hut accommodation_wilderness_hut
 icon_alias topo_wilderness_hut topo_topo_wilderness_hut
@@ -664,37 +665,37 @@ icon_alias sightseeing tourist_castle2
 icon_alias tourism tourist_museum
 icon_alias for_tourists tourist_view_point
 icon_alias attraction tourist_attraction
-mycp attraction amusement_ride tourist_amusement_ride
-mycp attraction animal tourist_animal
-mycp attraction big_wheel tourist_big_wheel
+icon_alias attraction_amusement_ride tourist_amusement_ride
+icon_alias attraction_animal tourist_animal
+icon_alias attraction_big_wheel tourist_big_wheel
 icon_alias topo_big_wheel topo_topo_big_wheel
-mycp attraction carousel tourist_carousel
-mycp attraction maze tourist_maze
-mycp attraction roller_coaster tourist_roller_coaster
-mycp attraction slide tourist_slide
-mycp attraction summer_toboggan tourist_summer_toboggan
-mycp attraction swing_carousel tourist_swing_carousel
-mycp attraction train tourist_train
-mycp attraction water_slide entertainment_water_slide
-mycp tourism aquarium tourist_aquarium
-mycp tourism artwork tourist_artwork
-mycp tourism attraction tourist_attraction
-mycp tourism information tourist_colored_information
+icon_alias attraction_carousel tourist_carousel
+icon_alias attraction_maze tourist_maze
+icon_alias attraction_roller_coaster tourist_roller_coaster
+icon_alias attraction_slide tourist_slide
+icon_alias attraction_summer_toboggan tourist_summer_toboggan
+icon_alias attraction_swing_carousel tourist_swing_carousel
+icon_alias attraction_train tourist_train
+icon_alias attraction_water_slide entertainment_water_slide
+icon_alias tourism_aquarium tourist_aquarium
+icon_alias tourism_artwork tourist_artwork
+icon_alias tourism_attraction tourist_attraction
+icon_alias tourism_information tourist_colored_information
 icon_alias information_office tourist_colored_information_office
 icon_alias information_board tourist_colored_information_board
 icon_alias information_guidepost tourist_colored_information_guidepost
 icon_alias information_map tourist_colored_information_map
 icon_alias information_terminal tourist_colored_information_terminal
 icon_alias information_audioguide tourist_colored_information_audioguide
-mycp tourism museum tourist_museum
-mycp tourism picnic_site tourist_colored_picnic
+icon_alias tourism_museum tourist_museum
+icon_alias tourism_picnic_site tourist_colored_picnic
 icon_alias topo_picnic_site topo_topo_picnic_site
 icon_alias picnic_table tourist_colored_picnic_table
 icon_alias topo_picnic_table topo_topo_picnic_table
-mycp tourism theme_park tourist_theme_park
-mycp tourism viewpoint tourist_view_point
+icon_alias tourism_theme_park tourist_theme_park
+icon_alias tourism_viewpoint tourist_view_point
 icon_alias topo_viewpoint topo_topo_view_point
-mycp tourism zoo tourist_zoo
+icon_alias tourism_zoo tourist_zoo
 icon_alias city_wall tourist_city_wall
 icon_alias clock tourist_clock
 icon_alias route_hiking_iwn_poi tourist_route_hiking_iwn_poi
@@ -717,12 +718,12 @@ icon_alias checkpoint_hiking tourist_checkpoint_hiking
 ## Entertainment
 icon_alias entertainment tourist_cinema3
 icon_alias club tourist_night_club
-mycp amenity arts_centre tourist_art_gallery
-mycp amenity casino tourist_casino
-mycp amenity cinema tourist_cinema3
-mycp amenity nightclub tourist_night_club
-mycp amenity stripclub amenity_stripclub
-mycp amenity theatre tourist_theatre
+icon_alias amenity_arts_centre tourist_art_gallery
+icon_alias amenity_casino tourist_casino
+icon_alias amenity_cinema tourist_cinema3
+icon_alias amenity_nightclub tourist_night_club
+icon_alias amenity_stripclub amenity_stripclub
+icon_alias amenity_theatre tourist_theatre
 icon_alias hackerspace entertainment_hackerspace
 icon_alias leisure_common entertainment_leisure_common
 icon_alias love_hotel entertainment_love_hotel
@@ -733,33 +734,33 @@ icon_alias hookah_lounge entertainment_hookah_lounge
 
 ## Historic
 icon_alias historic tourist_archaeological2
-mycp historic archaeological_site tourist_archaeological2
+icon_alias historic_archaeological_site tourist_archaeological2
 icon_alias topo_archaeological_site topo_topo_archaeological2
-mycp historic battlefield tourist_battlefield
-mycp historic boundary_stone tourist_boundary_stone
+icon_alias historic_battlefield tourist_battlefield
+icon_alias historic_boundary_stone tourist_boundary_stone
 icon_alias topo_boundary_stone topo_topo_boundary_stone
-mycp historic cannon tourist_colored_cannon
-mycp historic castle tourist_castle2
+icon_alias historic_cannon tourist_colored_cannon
+icon_alias historic_castle tourist_castle2
 icon_alias topo_castle topo_topo_castle2
 icon_alias city_gate barrier_colored_sally_port
-mycp historic memorial tourist_memorial
+icon_alias historic_memorial tourist_memorial
 icon_alias topo_memorial topo_topo_memorial
-mycp historic mine tourist_mine_abandoned
+icon_alias historic_mine tourist_mine_abandoned
 icon_alias monument tourist_monument2
 icon_alias topo_monument topo_topo_monument
-mycp historic ruins tourist_ruin
+icon_alias historic_ruins tourist_ruin
 icon_alias topo_ruins topo_topo_ruins
-mycp historic rune_stone tourist_colored_rune_stone
-mycp historic ship tourist_ship
+icon_alias historic_rune_stone tourist_colored_rune_stone
+icon_alias historic_ship tourist_ship
 icon_alias topo_ship topo_topo_ship
-mycp historic wayside_cross tourist_wayside_cross
+icon_alias historic_wayside_cross tourist_wayside_cross
 icon_alias topo_wayside_shrine topo_topo_wayside_shrine
-mycp historic wayside_shrine tourist_wayside_shrine
+icon_alias historic_wayside_shrine tourist_wayside_shrine
 icon_alias wreck tourist_wreck
 icon_alias topo_wreck topo_topo_wreck
 icon_alias palaeontological_site tourist_palaeontological_site
 icon_alias topo_palaeontological_site topo_topo_palaeontological_site
-mycp building pyramid tourist_pyramid
+icon_alias building_pyramid tourist_pyramid
 icon_alias topo_building_pyramid topo_topo_pyramid
 icon_alias tomb tourist_tomb
 icon_alias topo_tomb topo_topo_tomb
@@ -787,56 +788,56 @@ icon_alias topo_tank topo_topo_historic_tank
 
 
 ## Special POI icons
-mycp special_poi big_ben special_poi_big_ben
-mycp special_poi brandenburg_gate special_poi_brandenburg_gate
-mycp special_poi chichen_itza special_poi_chichen_itza
-mycp special_poi colosseum special_poi_colosseum
-mycp special_poi eiffel_tower special_poi_eiffel_tower
-mycp special_poi sagrada_familia special_poi_sagrada_familia
-mycp special_poi statue_of_liberty special_poi_statue_of_liberty
-mycp special_poi taj_mahal special_poi_taj_mahal
-mycp special_poi us_capitol special_poi_us_capitol
+icon_alias special_poi_big_ben special_poi_big_ben
+icon_alias special_poi_brandenburg_gate special_poi_brandenburg_gate
+icon_alias special_poi_chichen_itza special_poi_chichen_itza
+icon_alias special_poi_colosseum special_poi_colosseum
+icon_alias special_poi_eiffel_tower special_poi_eiffel_tower
+icon_alias special_poi_sagrada_familia special_poi_sagrada_familia
+icon_alias special_poi_statue_of_liberty special_poi_statue_of_liberty
+icon_alias special_poi_taj_mahal special_poi_taj_mahal
+icon_alias special_poi_us_capitol special_poi_us_capitol
 
 ## Sport
 icon_alias sport sport_swimming_outdoor
-mycp leisure stadium sport_stadium
-mycp sport 10pin sport_bowling
-mycp sport 9pin sport_bowling
-mycp sport archery sport_archery
-mycp sport athletics sport_athletics
-mycp sport baseball sport_baseball2
-mycp sport base sport_basejumping
-mycp sport basketball sport_basketball
-mycp sport billiard sport_snooker
-mycp sport bmx sport_bmx
-mycp sport canoe sport_canoe
-mycp sport climbing sport_hillclimbing
+icon_alias leisure_stadium sport_stadium
+icon_alias sport_10pin sport_bowling
+icon_alias sport_9pin sport_bowling
+icon_alias sport_archery sport_archery
+icon_alias sport_athletics sport_athletics
+icon_alias sport_baseball sport_baseball2
+icon_alias sport_base sport_basejumping
+icon_alias sport_basketball sport_basketball
+icon_alias sport_billiard sport_snooker
+icon_alias sport_bmx sport_bmx
+icon_alias sport_canoe sport_canoe
+icon_alias sport_climbing sport_hillclimbing
 icon_alias sport_climbing_adventure sport_climbing_adventure
-mycp sport cricket sport_cricket
-mycp sport cycling sport_cycling
-mycp sport diving sport_diving
-mycp sport golf sport_golf
-mycp sport gymnastics sport_gymnasium
-mycp sport handball sport_handball
+icon_alias sport_cricket sport_cricket
+icon_alias sport_cycling sport_cycling
+icon_alias sport_diving sport_diving
+icon_alias sport_golf sport_golf
+icon_alias sport_gymnastics sport_gymnasium
+icon_alias sport_handball sport_handball
 icon_alias ice_hockey sport_ice_hockey
 icon_alias field_hockey sport_field_hockey
 icon_alias equestrian sport_horse_racing
-mycp sport motor sport_motorracing
+icon_alias sport_motor sport_motorracing
 icon_alias sport_free_flying sport_free_flying
-mycp sport rugby_league sport_rugby_league
-mycp sport rugby_union sport_rugby_union
-mycp sport sailing sport_sailing
-mycp sport scuba_diving sport_scuba_diving  #derived from NPS public library
-mycp sport shooting sport_shooting
-mycp sport skateboard sport_skateboard
-mycp sport skiing sport_skiing_downhill
-mycp sport soccer sport_soccer
-mycp sport stadium sport_stadium
-mycp sport surfing sport_surfing
-mycp sport swimming sport_swimming_outdoor
-mycp sport table_tennis sport_table_tennis
-mycp sport tennis sport_tennis
-mycp sport volleyball sport_volleyball
+icon_alias sport_rugby_league sport_rugby_league
+icon_alias sport_rugby_union sport_rugby_union
+icon_alias sport_sailing sport_sailing
+icon_alias sport_scuba_diving sport_scuba_diving  #derived from NPS public library
+icon_alias sport_shooting sport_shooting
+icon_alias sport_skateboard sport_skateboard
+icon_alias sport_skiing sport_skiing_downhill
+icon_alias sport_soccer sport_soccer
+icon_alias sport_stadium sport_stadium
+icon_alias sport_surfing sport_surfing
+icon_alias sport_swimming sport_swimming_outdoor
+icon_alias sport_table_tennis sport_table_tennis
+icon_alias sport_tennis sport_tennis
+icon_alias sport_volleyball sport_volleyball
 icon_alias beachvolleyball sport_beachvolleyball
 icon_alias pitch sport_pitch
 icon_alias swimming_pool sport_swimming_outdoor
@@ -866,58 +867,58 @@ icon_alias dive_centre sport_dive_centre
 
 ## Leisure
 icon_alias leisure sport_playground
-mycp leisure beach_resort tourist_beach_resort
-mycp leisure bird_hide entertainment_bird_hide
-mycp leisure fishing sport_fishing  #used shop=fish turned by 45 degrees for now
-mycp leisure ice_rink sport_iceskating
-mycp leisure miniature_golf sport_miniature_golf
-mycp leisure playground sport_colored_playground
-mycp leisure sports_centre sport_leisure_centre2
-mycp leisure water_park entertainment_water_slide
+icon_alias leisure_beach_resort tourist_beach_resort
+icon_alias leisure_bird_hide entertainment_bird_hide
+icon_alias leisure_fishing sport_fishing  #used shop=fish turned by 45 degrees for now
+icon_alias leisure_ice_rink sport_iceskating
+icon_alias leisure_miniature_golf sport_miniature_golf
+icon_alias leisure_playground sport_colored_playground
+icon_alias leisure_sports_centre sport_leisure_centre2
+icon_alias leisure_water_park entertainment_water_slide
 icon_alias sauna sport_sauna
 icon_alias fitness_station sport_fitness_station
 icon_alias tanning_salon sport_tanning_salon
 
 icon_alias geocache poi_colored_point_of_interest
-mycp geocache not_found poi_colored_point_of_interest
-mycp geocache found poi_colored_point_of_interest
+icon_alias geocache_not_found poi_colored_point_of_interest
+icon_alias geocache_found poi_colored_point_of_interest
 
 
 ## Other amenities
 icon_alias other amenity_post_office
 icon_alias place_of_worship place_of_worship_unknown
 icon_alias internet_access amenity_internet_access
-mycp amenity car_wash amenity_car_wash
+icon_alias amenity_car_wash amenity_car_wash
 icon_alias car_wash_self_service amenity_car_wash_self_service
 icon_alias vehicle_inspection amenity_vehicle_inspection
-mycp amenity fountain water_colored_fountain2
-mycp amenity fountain_night functional-icons_fountain2_night
-mycp amenity monastery place_of_worship_monastery
+icon_alias amenity_fountain water_colored_fountain2
+icon_alias amenity_fountain_night functional-icons_fountain2_night
+icon_alias amenity_monastery place_of_worship_monastery
 icon_alias historic_monastery place_of_worship_monastery
-mycp amenity place_of_worship place_of_worship_unknown
+icon_alias amenity_place_of_worship place_of_worship_unknown
 icon_alias topo_religion_unknown topo_topo_religion_unknown
-mycp amenity post_box amenity_post_box
+icon_alias amenity_post_box amenity_post_box
 icon_alias letter_box amenity_letter_box
-mycp amenity post_office amenity_post_office2
-mycp amenity prison amenity_prison
-mycp amenity recycling amenity_colored_recycling
-mycp amenity telephone amenity_telephone
-mycp amenity toilets amenity_toilets
-mycp amenity vehicle_ramp amenity_vehicle_ramp
+icon_alias amenity_post_office amenity_post_office2
+icon_alias amenity_prison amenity_prison
+icon_alias amenity_recycling amenity_colored_recycling
+icon_alias amenity_telephone amenity_telephone
+icon_alias amenity_toilets amenity_toilets
+icon_alias amenity_vehicle_ramp amenity_vehicle_ramp
 icon_alias service_tyres shopping_service_tyres
-mycp religion christian place_of_worship_christian3
+icon_alias religion_christian place_of_worship_christian3
 icon_alias topo_christian topo_topo_christian
-mycp religion jewish place_of_worship_jewish3
+icon_alias religion_jewish place_of_worship_jewish3
 icon_alias topo_jewish topo_topo_jewish
-mycp religion muslim place_of_worship_islamic3
+icon_alias religion_muslim place_of_worship_islamic3
 icon_alias topo_muslim topo_topo_muslim
-mycp religion sikh place_of_worship_sikh3
-mycp religion buddhist place_of_worship_buddhist3
+icon_alias religion_sikh place_of_worship_sikh3
+icon_alias religion_buddhist place_of_worship_buddhist3
 icon_alias topo_buddhist topo_topo_buddhist
-mycp religion hindu place_of_worship_hindu3
+icon_alias religion_hindu place_of_worship_hindu3
 icon_alias topo_hindu topo_topo_hindu
-mycp religion shinto place_of_worship_shinto3
-mycp religion taoist place_of_worship_taoist
+icon_alias religion_shinto place_of_worship_shinto3
+icon_alias religion_taoist place_of_worship_taoist
 icon_alias brothel amenity_brothel
 icon_alias smoking_area amenity_smoking_area
 icon_alias studio amenity_studio
@@ -931,7 +932,7 @@ icon_alias massage amenity_massage
 icon_alias funeral_directors amenity_funeral_directors
 icon_alias internet_access_wlan amenity_internet_access_wlan
 icon_alias internet_access_wired amenity_internet_access_wired
-#! mycp amenity grave_yard place_of_worship_christian3  #already defined as icon in the shader section
+#! icon_alias amenity_grave_yard place_of_worship_christian3  #already defined as icon in the shader section
 icon_alias watering_place amenity_watering_place
 icon_alias animal_shelter amenity_animal_shelter
 icon_alias animal_boarding amenity_animal_boarding
@@ -993,23 +994,23 @@ icon_alias craft_electronics_repair craft_electronics_repair
 icon_alias craft_gardener craft_gardener
 
 icon_alias finance money_bank2
-mycp amenity atm money_atm
+icon_alias amenity_atm money_atm
 icon_alias payment_terminal money_payment_terminal
 icon_alias payment_centre money_payment_centre
 icon_alias money_transfer money_money_transfer
-mycp amenity bank money_bank2
-mycp amenity bureau_de_change money_currency_exchange
-mycp bitcoin yes money_bitcoin
+icon_alias amenity_bank money_bank2
+icon_alias amenity_bureau_de_change money_currency_exchange
+icon_alias bitcoin_yes money_bitcoin
 icon_alias money_lender money_money_lender
 
 icon_alias office amenity_public_building2
-mycp amenity community_centre amenity_public_building
-mycp amenity courthouse amenity_court
-mycp amenity embassy amenity_embassy
-mycp amenity library amenity_library
-mycp amenity public_building amenity_public_building
-mycp amenity social_centre amenity_public_building
-mycp amenity townhall amenity_town_hall2
+icon_alias amenity_community_centre amenity_public_building
+icon_alias amenity_courthouse amenity_court
+icon_alias amenity_embassy amenity_embassy
+icon_alias amenity_library amenity_library
+icon_alias amenity_public_building amenity_public_building
+icon_alias amenity_social_centre amenity_public_building
+icon_alias amenity_townhall amenity_town_hall2
 icon_alias register_office amenity_register_office
 
 icon_alias service amenity_service
@@ -1017,10 +1018,10 @@ icon_alias landuse landuse_landuse
 
 ## Education
 icon_alias education education_university
-mycp amenity college education_college
+icon_alias amenity_college education_college
 icon_alias kindergarten education_kindergarten
-mycp amenity school education_school
-mycp amenity university education_university
+icon_alias amenity_school education_school
+icon_alias amenity_university education_university
 icon_alias driving_school education_driving_school
 icon_alias training education_training
 icon_alias training_yoga education_training_yoga
@@ -1037,38 +1038,38 @@ icon_alias communication amenity_telephone
 icon_alias trash_disposal amenity_waste_disposal
 icon_alias bridge poi_colored_bridge
 icon_alias tunnel poi_colored_tunnel
-mycp amenity hunting_stand poi_colored_hunting_stand
-mycp highway street_lamp functional-icons_street_lamp
-mycp highway street_lamp_lit functional-icons_street_lamp_lit
-mycp man_made adit poi_adit
-mycp man_made antenna poi_colored_antenna
-mycp man_made chimney poi_colored_chimney
+icon_alias amenity_hunting_stand poi_colored_hunting_stand
+icon_alias highway_street_lamp functional-icons_street_lamp
+icon_alias highway_street_lamp_lit functional-icons_street_lamp_lit
+icon_alias man_made_adit poi_adit
+icon_alias man_made_antenna poi_colored_antenna
+icon_alias man_made_chimney poi_colored_chimney
 icon_alias topo_chimney topo_big_topo_chimney
 icon_alias crane poi_colored_crane
-mycp man_made mast poi_colored_mast
+icon_alias man_made_mast poi_colored_mast
 icon_alias topo_mast topo_big_topo_mast
-mycp man_made mineshaft poi_colored_mine
+icon_alias man_made_mineshaft poi_colored_mine
 icon_alias topo_mine topo_topo_mine
 icon_alias topo_mine_abandoned topo_topo_mine_abandoned
 icon_alias radar poi_colored_monitoring_station_radar
 icon_alias astronomical_observatory poi_colored_observatory_astronomical
 icon_alias telescope poi_colored_telescope
-mycp man_made observatory poi_colored_observatory
+icon_alias man_made_observatory poi_colored_observatory
 icon_alias observation_tower poi_colored_observatory
-mycp man_made petroleum_well poi_colored_petroleum_well
-mycp man_made survey_point poi_colored_survey_point
+icon_alias man_made_petroleum_well poi_colored_petroleum_well
+icon_alias man_made_survey_point poi_colored_survey_point
 icon_alias topo_survey_point topo_topo_survey_point
-mycp man_made tower poi_colored_tower
+icon_alias man_made_tower poi_colored_tower
 icon_alias topo_tower topo_big_topo_tower
 icon_alias bell_tower poi_colored_tower_bell_tower
 icon_alias communication_tower poi_colored_tower_communications2
 icon_alias topo_communication_tower topo_big_topo_communication_tower
 icon_alias cooling_tower poi_colored_tower_cooling
 icon_alias lighting_tower poi_colored_tower_lighting
-mycp man_made water_tower poi_colored_water_tower
-mycp man_made windmill poi_colored_windmill
+icon_alias man_made_water_tower poi_colored_water_tower
+icon_alias man_made_windmill poi_colored_windmill
 icon_alias topo_windmill topo_big_topo_windmill
-mycp no icon functional-icons_no_icon
+icon_alias no_icon functional-icons_no_icon
 icon_alias generator_source_coal power_generator_coal
 icon_alias generator_source_gas power_generator_gas
 icon_alias generator_source_geothermal power_generator_geothermal
@@ -1080,13 +1081,13 @@ icon_alias generator_source_hydro power_generator_water2
 icon_alias generator_source_wind power_generator_wind
 icon_alias power_generator power_generator
 icon_alias power_plant power_plant
-mycp power substation power_transformer2
-mycp power tower poi_colored_power_tower
-mycp power tower_square functional-icons_power_tower
-mycp power tower_small functional-icons_power_tower_small
-mycp power tower_small2 functional-icons_power_tower_small2
+icon_alias power_substation power_transformer2
+icon_alias power_tower poi_colored_power_tower
+icon_alias power_tower_square functional-icons_power_tower
+icon_alias power_tower_small functional-icons_power_tower_small
+icon_alias power_tower_small2 functional-icons_power_tower_small2
 icon_alias power_generator power_generator
-mycp railway buffer_stop poi_colored_buffer_stop
+icon_alias railway_buffer_stop poi_colored_buffer_stop
 icon_alias power_transformer power_transformer_small
 icon_alias topo_transformer topo_big_topo_transformer
 icon_alias works poi_colored_works
@@ -1134,699 +1135,699 @@ icon_alias military poi_colored_military_bunker
 icon_alias restaurants food_restaurant
 icon_alias sustenance food_fastfood
 icon_alias cafe_and_restaurant food_restaurant
-mycp amenity bar food_bar
-mycp amenity biergarten food_biergarten
-mycp amenity cafe food_cafe
-mycp amenity drinking_water food_drinkingtap
+icon_alias amenity_bar food_bar
+icon_alias amenity_biergarten food_biergarten
+icon_alias amenity_cafe food_cafe
+icon_alias amenity_drinking_water food_drinkingtap
 icon_alias topo_drinking_water topo_water_drinking_water
-mycp amenity fast_food food_fastfood
-mycp amenity food_court food_food_court
-mycp amenity pub food_pub
-mycp amenity restaurant food_restaurant
-mycp man_made water_well food_water_well
+icon_alias amenity_fast_food food_fastfood
+icon_alias amenity_food_court food_food_court
+icon_alias amenity_pub food_pub
+icon_alias amenity_restaurant food_restaurant
+icon_alias man_made_water_well food_water_well
 icon_alias topo_water_well topo_water_water_well
 icon_alias water_point food_water_point
 
 ## Seamarks
 icon_alias seamark icons8_sail_boat
-mycp seamark buoy_conical seamark_buoy_conical
-mycp seamark buoy_barrel seamark_buoy_barrel
-mycp seamark buoy_can seamark_buoy_can
-mycp seamark buoy_spherical seamark_buoy_spherical
+icon_alias seamark_buoy_conical seamark_buoy_conical
+icon_alias seamark_buoy_barrel seamark_buoy_barrel
+icon_alias seamark_buoy_can seamark_buoy_can
+icon_alias seamark_buoy_spherical seamark_buoy_spherical
 icon_alias seamark_buoy_pillar seamark_buoy_pillar
 
-mycp seamark buoy_blackredblack_conical seamark_buoy_blackredblack_conical
-mycp seamark buoy_blackredblack_pillar seamark_buoy_blackredblack_pillar
-mycp seamark buoy_blackredblack_spar seamark_buoy_blackredblack_spar
-mycp seamark buoy_blackredblack_spherical seamark_buoy_blackredblack_spherical
+icon_alias seamark_buoy_blackredblack_conical seamark_buoy_blackredblack_conical
+icon_alias seamark_buoy_blackredblack_pillar seamark_buoy_blackredblack_pillar
+icon_alias seamark_buoy_blackredblack_spar seamark_buoy_blackredblack_spar
+icon_alias seamark_buoy_blackredblack_spherical seamark_buoy_blackredblack_spherical
 
-mycp seamark buoy_red_conical seamark_buoy_red_conical
-mycp seamark buoy_red_barrel seamark_buoy_red_barrel
-mycp seamark buoy_red_can seamark_buoy_red_can
-mycp seamark buoy_red_pillar seamark_buoy_red_pillar
-mycp seamark buoy_red_spar seamark_buoy_red_spar
-mycp seamark buoy_red_spherical seamark_buoy_red_spherical
-mycp seamark buoy_green_conical seamark_buoy_green_conical
-mycp seamark buoy_green_barrel seamark_buoy_green_barrel
-mycp seamark buoy_green_can seamark_buoy_green_can
-mycp seamark buoy_green_pillar seamark_buoy_green_pillar
-mycp seamark buoy_green_spar seamark_buoy_green_spar
-mycp seamark buoy_green_spherical seamark_buoy_green_spherical
-mycp seamark buoy_orange_spherical seamark_buoy_orange_spherical
-mycp seamark buoy_yellow_conical seamark_buoy_yellow_conical
-mycp seamark buoy_yellow_barrel seamark_buoy_yellow_barrel
-mycp seamark buoy_yellow_can seamark_buoy_yellow_can
-mycp seamark buoy_yellow_pillar seamark_buoy_yellow_pillar
-mycp seamark buoy_yellow_spar seamark_buoy_yellow_spar
-mycp seamark buoy_yellow_spherical seamark_buoy_yellow_spherical
-mycp seamark buoy_yellow_super_buoy seamark_buoy_yellow_super_buoy
-mycp seamark buoy_white_conical seamark_buoy_white_conical
-mycp seamark buoy_white_barrel seamark_buoy_white_barrel
-mycp seamark buoy_white_can seamark_buoy_white_can
-mycp seamark buoy_white_pillar seamark_buoy_white_pillar
-mycp seamark buoy_white_spar seamark_buoy_white_spar
-mycp seamark buoy_white_spherical seamark_buoy_white_spherical
-mycp seamark buoy_white_super_buoy seamark_buoy_white_super_buoy
+icon_alias seamark_buoy_red_conical seamark_buoy_red_conical
+icon_alias seamark_buoy_red_barrel seamark_buoy_red_barrel
+icon_alias seamark_buoy_red_can seamark_buoy_red_can
+icon_alias seamark_buoy_red_pillar seamark_buoy_red_pillar
+icon_alias seamark_buoy_red_spar seamark_buoy_red_spar
+icon_alias seamark_buoy_red_spherical seamark_buoy_red_spherical
+icon_alias seamark_buoy_green_conical seamark_buoy_green_conical
+icon_alias seamark_buoy_green_barrel seamark_buoy_green_barrel
+icon_alias seamark_buoy_green_can seamark_buoy_green_can
+icon_alias seamark_buoy_green_pillar seamark_buoy_green_pillar
+icon_alias seamark_buoy_green_spar seamark_buoy_green_spar
+icon_alias seamark_buoy_green_spherical seamark_buoy_green_spherical
+icon_alias seamark_buoy_orange_spherical seamark_buoy_orange_spherical
+icon_alias seamark_buoy_yellow_conical seamark_buoy_yellow_conical
+icon_alias seamark_buoy_yellow_barrel seamark_buoy_yellow_barrel
+icon_alias seamark_buoy_yellow_can seamark_buoy_yellow_can
+icon_alias seamark_buoy_yellow_pillar seamark_buoy_yellow_pillar
+icon_alias seamark_buoy_yellow_spar seamark_buoy_yellow_spar
+icon_alias seamark_buoy_yellow_spherical seamark_buoy_yellow_spherical
+icon_alias seamark_buoy_yellow_super_buoy seamark_buoy_yellow_super_buoy
+icon_alias seamark_buoy_white_conical seamark_buoy_white_conical
+icon_alias seamark_buoy_white_barrel seamark_buoy_white_barrel
+icon_alias seamark_buoy_white_can seamark_buoy_white_can
+icon_alias seamark_buoy_white_pillar seamark_buoy_white_pillar
+icon_alias seamark_buoy_white_spar seamark_buoy_white_spar
+icon_alias seamark_buoy_white_spherical seamark_buoy_white_spherical
+icon_alias seamark_buoy_white_super_buoy seamark_buoy_white_super_buoy
 
-mycp seamark buoy_whiteyellow_spherical_cross seamark_buoy_whiteyellow_spherical_cross
+icon_alias seamark_buoy_whiteyellow_spherical_cross seamark_buoy_whiteyellow_spherical_cross
 
-mycp seamark buoy_yellow_installation seamark_buoy_yellow_installation
+icon_alias seamark_buoy_yellow_installation seamark_buoy_yellow_installation
 
-mycp seamark buoy_redwhite_pillar_vertical seamark_buoy_redwhite_pillar_vertical
-mycp seamark buoy_redwhite_spherical_vertical seamark_buoy_redwhite_spherical_vertical
-mycp seamark buoy_redwhite_spar_vertical seamark_buoy_redwhite_spar_vertical
-mycp seamark buoy_redwhite_spar_horizontal seamark_buoy_redwhite_spar_horizontal
+icon_alias seamark_buoy_redwhite_pillar_vertical seamark_buoy_redwhite_pillar_vertical
+icon_alias seamark_buoy_redwhite_spherical_vertical seamark_buoy_redwhite_spherical_vertical
+icon_alias seamark_buoy_redwhite_spar_vertical seamark_buoy_redwhite_spar_vertical
+icon_alias seamark_buoy_redwhite_spar_horizontal seamark_buoy_redwhite_spar_horizontal
 icon_alias seamark_buoy_redgreen_spherical_horizontal seamark_buoy_redgreen_spherical_horizontal
 icon_alias seamark_buoy_redgreen_spar_horizontal seamark_buoy_redgreen_spar_horizontal
 icon_alias seamark_buoy_redwhite_pillar_horizontal seamark_buoy_redwhite_pillar_horizontal
 
-mycp seamark buoy_blackyellowblack_can seamark_buoy_blackyellowblack_can
-mycp seamark buoy_blackyellowblack_conical seamark_buoy_blackyellowblack_conical
-mycp seamark buoy_blackyellowblack_pillar seamark_buoy_blackyellowblack_pillar
-mycp seamark buoy_blackyellowblack_spar seamark_buoy_blackyellowblack_spar
-mycp seamark buoy_blackyellow_can seamark_buoy_blackyellow_can
-mycp seamark buoy_blackyellow_conical seamark_buoy_blackyellow_conical
-mycp seamark buoy_blackyellow_pillar seamark_buoy_blackyellow_pillar
-mycp seamark buoy_blackyellow_spar seamark_buoy_blackyellow_spar
-mycp seamark buoy_yellowblack_can seamark_buoy_yellowblack_can
-mycp seamark buoy_yellowblack_conical seamark_buoy_yellowblack_conical
-mycp seamark buoy_yellowblack_pillar seamark_buoy_yellowblack_pillar
-mycp seamark buoy_yellowblack_spar seamark_buoy_yellowblack_spar
-mycp seamark buoy_yellowblackyellow_can seamark_buoy_yellowblackyellow_can
-mycp seamark buoy_yellowblackyellow_conical seamark_buoy_yellowblackyellow_conical
-mycp seamark buoy_yellowblackyellow_pillar seamark_buoy_yellowblackyellow_pillar
-mycp seamark buoy_yellowblackyellow_spar seamark_buoy_yellowblackyellow_spar
+icon_alias seamark_buoy_blackyellowblack_can seamark_buoy_blackyellowblack_can
+icon_alias seamark_buoy_blackyellowblack_conical seamark_buoy_blackyellowblack_conical
+icon_alias seamark_buoy_blackyellowblack_pillar seamark_buoy_blackyellowblack_pillar
+icon_alias seamark_buoy_blackyellowblack_spar seamark_buoy_blackyellowblack_spar
+icon_alias seamark_buoy_blackyellow_can seamark_buoy_blackyellow_can
+icon_alias seamark_buoy_blackyellow_conical seamark_buoy_blackyellow_conical
+icon_alias seamark_buoy_blackyellow_pillar seamark_buoy_blackyellow_pillar
+icon_alias seamark_buoy_blackyellow_spar seamark_buoy_blackyellow_spar
+icon_alias seamark_buoy_yellowblack_can seamark_buoy_yellowblack_can
+icon_alias seamark_buoy_yellowblack_conical seamark_buoy_yellowblack_conical
+icon_alias seamark_buoy_yellowblack_pillar seamark_buoy_yellowblack_pillar
+icon_alias seamark_buoy_yellowblack_spar seamark_buoy_yellowblack_spar
+icon_alias seamark_buoy_yellowblackyellow_can seamark_buoy_yellowblackyellow_can
+icon_alias seamark_buoy_yellowblackyellow_conical seamark_buoy_yellowblackyellow_conical
+icon_alias seamark_buoy_yellowblackyellow_pillar seamark_buoy_yellowblackyellow_pillar
+icon_alias seamark_buoy_yellowblackyellow_spar seamark_buoy_yellowblackyellow_spar
 
-mycp seamark buoy_redgreenred_pillar_horizontal seamark_buoy_redgreenred_pillar_horizontal
-mycp seamark buoy_redgreenred_can_horizontal seamark_buoy_redgreenred_can_horizontal
-mycp seamark buoy_redgreenred_spar_horizontal seamark_buoy_redgreenred_spar_horizontal
-mycp seamark buoy_redgreenred_spherical_horizontal seamark_buoy_redgreenred_spherical_horizontal
+icon_alias seamark_buoy_redgreenred_pillar_horizontal seamark_buoy_redgreenred_pillar_horizontal
+icon_alias seamark_buoy_redgreenred_can_horizontal seamark_buoy_redgreenred_can_horizontal
+icon_alias seamark_buoy_redgreenred_spar_horizontal seamark_buoy_redgreenred_spar_horizontal
+icon_alias seamark_buoy_redgreenred_spherical_horizontal seamark_buoy_redgreenred_spherical_horizontal
 
-mycp seamark buoy_redwhiteredwhite_spar_horizontal seamark_buoy_redwhiteredwhite_spar_horizontal
-mycp seamark buoy_redwhiteredwhite_can_horizontal seamark_buoy_redwhiteredwhite_can_horizontal
+icon_alias seamark_buoy_redwhiteredwhite_spar_horizontal seamark_buoy_redwhiteredwhite_spar_horizontal
+icon_alias seamark_buoy_redwhiteredwhite_can_horizontal seamark_buoy_redwhiteredwhite_can_horizontal
 icon_alias seamark_buoy_redgreenredgreen_spar_horizontal seamark_buoy_redgreenredgreen_spar_horizontal
 icon_alias seamark_buoy_redgreenredgreen_spherical_horizontal seamark_buoy_redgreenredgreen_spherical_horizontal
 icon_alias seamark_buoy_redwhitered_can_horizontal seamark_buoy_redwhitered_can_horizontal
 
-mycp seamark buoy_whiteredwhitered_spar_horizontal seamark_buoy_whiteredwhitered_spar_horizontal
-mycp seamark buoy_whitegreenwhitegreen_spar_horizontal seamark_buoy_whitegreenwhitegreen_spar_horizontal
-mycp seamark buoy_greenwhite_spar_horizontal seamark_buoy_greenwhite_spar_horizontal
+icon_alias seamark_buoy_whiteredwhitered_spar_horizontal seamark_buoy_whiteredwhitered_spar_horizontal
+icon_alias seamark_buoy_whitegreenwhitegreen_spar_horizontal seamark_buoy_whitegreenwhitegreen_spar_horizontal
+icon_alias seamark_buoy_greenwhite_spar_horizontal seamark_buoy_greenwhite_spar_horizontal
 
-mycp seamark buoy_greenwhitegreenwhite_conical_horizontal seamark_buoy_greenwhitegreenwhite_conical_horizontal
-mycp seamark buoy_greenwhitegreenwhite_spar_horizontal seamark_buoy_greenwhitegreenwhite_spar_horizontal
+icon_alias seamark_buoy_greenwhitegreenwhite_conical_horizontal seamark_buoy_greenwhitegreenwhite_conical_horizontal
+icon_alias seamark_buoy_greenwhitegreenwhite_spar_horizontal seamark_buoy_greenwhitegreenwhite_spar_horizontal
 
-mycp seamark buoy_greenredgreen_conical_horizontal seamark_buoy_greenredgreen_conical_horizontal
-mycp seamark buoy_greenredgreen_can_horizontal seamark_buoy_greenredgreen_can_horizontal
-mycp seamark buoy_greenredgreen_pillar_horizontal seamark_buoy_greenredgreen_pillar_horizontal
-mycp seamark buoy_greenredgreen_spar_horizontal seamark_buoy_greenredgreen_spar_horizontal
-mycp seamark buoy_greenredgreen_spherical_horizontal seamark_buoy_greenredgreen_spherical_horizontal
-mycp seamark buoy_greenred_spar_horizontal seamark_buoy_greenred_spar_horizontal
-mycp seamark buoy_greenred_spherical_horizontal seamark_buoy_greenred_spherical_horizontal
+icon_alias seamark_buoy_greenredgreen_conical_horizontal seamark_buoy_greenredgreen_conical_horizontal
+icon_alias seamark_buoy_greenredgreen_can_horizontal seamark_buoy_greenredgreen_can_horizontal
+icon_alias seamark_buoy_greenredgreen_pillar_horizontal seamark_buoy_greenredgreen_pillar_horizontal
+icon_alias seamark_buoy_greenredgreen_spar_horizontal seamark_buoy_greenredgreen_spar_horizontal
+icon_alias seamark_buoy_greenredgreen_spherical_horizontal seamark_buoy_greenredgreen_spherical_horizontal
+icon_alias seamark_buoy_greenred_spar_horizontal seamark_buoy_greenred_spar_horizontal
+icon_alias seamark_buoy_greenred_spherical_horizontal seamark_buoy_greenred_spherical_horizontal
 
-mycp seamark beacon_pile seamark_beacon_pile
-mycp seamark beacon_stake seamark_beacon_stake
-mycp seamark beacon_tower seamark_beacon_tower
-mycp seamark beacon_cairn seamark_beacon_cairn
-mycp seamark beacon_pillar seamark_beacon_pillar
-mycp seamark beacon_perch_port seamark_beacon_perch_port
-mycp seamark beacon_perch_starboard seamark_beacon_perch_starboard
+icon_alias seamark_beacon_pile seamark_beacon_pile
+icon_alias seamark_beacon_stake seamark_beacon_stake
+icon_alias seamark_beacon_tower seamark_beacon_tower
+icon_alias seamark_beacon_cairn seamark_beacon_cairn
+icon_alias seamark_beacon_pillar seamark_beacon_pillar
+icon_alias seamark_beacon_perch_port seamark_beacon_perch_port
+icon_alias seamark_beacon_perch_starboard seamark_beacon_perch_starboard
 
-mycp seamark beacon_red_perch_port seamark_beacon_red_perch_port
-mycp seamark beacon_green_perch_port seamark_beacon_green_perch_port
-mycp seamark beacon_red_perch_starboard seamark_beacon_red_perch_starboard
-mycp seamark beacon_green_perch_starboard seamark_beacon_green_perch_starboard
+icon_alias seamark_beacon_red_perch_port seamark_beacon_red_perch_port
+icon_alias seamark_beacon_green_perch_port seamark_beacon_green_perch_port
+icon_alias seamark_beacon_red_perch_starboard seamark_beacon_red_perch_starboard
+icon_alias seamark_beacon_green_perch_starboard seamark_beacon_green_perch_starboard
 
-mycp seamark beacon_black_pillar seamark_beacon_black_pillar
-mycp seamark beacon_green_pillar seamark_beacon_green_pillar
-mycp seamark beacon_green_stake seamark_beacon_green_stake
-mycp seamark beacon_green_tower seamark_beacon_green_tower
-mycp seamark beacon_greenwhitegreenwhite_stake seamark_beacon_greenwhitegreenwhite_stake
-mycp seamark beacon_greenwhitegreenwhite_tower seamark_beacon_greenwhitegreenwhite_tower
-mycp seamark beacon_greenwhite_stake seamark_beacon_greenwhite_stake
-mycp seamark beacon_greenwhite_tower seamark_beacon_greenwhite_tower
-mycp seamark beacon_red_pillar seamark_beacon_red_pillar
-mycp seamark beacon_red_stake seamark_beacon_red_stake
-mycp seamark beacon_red_tower seamark_beacon_red_tower
-mycp seamark beacon_redwhite_stake seamark_beacon_redwhite_stake
-mycp seamark beacon_redwhite_tower seamark_beacon_redwhite_tower
-mycp seamark beacon_whitegreen_stake seamark_beacon_whitegreen_stake
-mycp seamark beacon_whitegreen_tower seamark_beacon_whitegreen_tower
-mycp seamark beacon_whitegreenwhitegreen_tower seamark_beacon_whitegreenwhitegreen_tower
-mycp seamark beacon_whitered_stake seamark_beacon_whitered_stake
-mycp seamark beacon_whitered_tower seamark_beacon_whitered_tower
+icon_alias seamark_beacon_black_pillar seamark_beacon_black_pillar
+icon_alias seamark_beacon_green_pillar seamark_beacon_green_pillar
+icon_alias seamark_beacon_green_stake seamark_beacon_green_stake
+icon_alias seamark_beacon_green_tower seamark_beacon_green_tower
+icon_alias seamark_beacon_greenwhitegreenwhite_stake seamark_beacon_greenwhitegreenwhite_stake
+icon_alias seamark_beacon_greenwhitegreenwhite_tower seamark_beacon_greenwhitegreenwhite_tower
+icon_alias seamark_beacon_greenwhite_stake seamark_beacon_greenwhite_stake
+icon_alias seamark_beacon_greenwhite_tower seamark_beacon_greenwhite_tower
+icon_alias seamark_beacon_red_pillar seamark_beacon_red_pillar
+icon_alias seamark_beacon_red_stake seamark_beacon_red_stake
+icon_alias seamark_beacon_red_tower seamark_beacon_red_tower
+icon_alias seamark_beacon_redwhite_stake seamark_beacon_redwhite_stake
+icon_alias seamark_beacon_redwhite_tower seamark_beacon_redwhite_tower
+icon_alias seamark_beacon_whitegreen_stake seamark_beacon_whitegreen_stake
+icon_alias seamark_beacon_whitegreen_tower seamark_beacon_whitegreen_tower
+icon_alias seamark_beacon_whitegreenwhitegreen_tower seamark_beacon_whitegreenwhitegreen_tower
+icon_alias seamark_beacon_whitered_stake seamark_beacon_whitered_stake
+icon_alias seamark_beacon_whitered_tower seamark_beacon_whitered_tower
 
-mycp seamark beacon_blackyellowblack_tower seamark_beacon_blackyellowblack_tower
-mycp seamark beacon_yellowblackyellow_tower seamark_beacon_yellowblackyellow_tower
-mycp seamark beacon_blackyellow_tower seamark_beacon_blackyellow_tower
-mycp seamark beacon_yellowblack_tower seamark_beacon_yellowblack_tower
-mycp seamark beacon_blackyellowblack_stake seamark_beacon_blackyellowblack_stake
-mycp seamark beacon_yellowblackyellow_stake seamark_beacon_yellowblackyellow_stake
-mycp seamark beacon_blackyellow_stake seamark_beacon_blackyellow_stake
-mycp seamark beacon_yellowblack_stake seamark_beacon_yellowblack_stake
+icon_alias seamark_beacon_blackyellowblack_tower seamark_beacon_blackyellowblack_tower
+icon_alias seamark_beacon_yellowblackyellow_tower seamark_beacon_yellowblackyellow_tower
+icon_alias seamark_beacon_blackyellow_tower seamark_beacon_blackyellow_tower
+icon_alias seamark_beacon_yellowblack_tower seamark_beacon_yellowblack_tower
+icon_alias seamark_beacon_blackyellowblack_stake seamark_beacon_blackyellowblack_stake
+icon_alias seamark_beacon_yellowblackyellow_stake seamark_beacon_yellowblackyellow_stake
+icon_alias seamark_beacon_blackyellow_stake seamark_beacon_blackyellow_stake
+icon_alias seamark_beacon_yellowblack_stake seamark_beacon_yellowblack_stake
 
-mycp seamark beacon_blackredblack_tower seamark_beacon_blackredblack_tower
-mycp seamark beacon_blackredblack_stake seamark_beacon_blackredblack_stake
-mycp seamark beacon_blackredblack_pile seamark_beacon_blackredblack_pile
+icon_alias seamark_beacon_blackredblack_tower seamark_beacon_blackredblack_tower
+icon_alias seamark_beacon_blackredblack_stake seamark_beacon_blackredblack_stake
+icon_alias seamark_beacon_blackredblack_pile seamark_beacon_blackredblack_pile
 
-mycp seamark beacon_yellow_tower seamark_beacon_yellow_tower
-mycp seamark beacon_yellow_stake seamark_beacon_yellow_stake
-mycp seamark beacon_yellow_pile seamark_beacon_yellow_pile
+icon_alias seamark_beacon_yellow_tower seamark_beacon_yellow_tower
+icon_alias seamark_beacon_yellow_stake seamark_beacon_yellow_stake
+icon_alias seamark_beacon_yellow_pile seamark_beacon_yellow_pile
 
-mycp seamark beacon_white_tower seamark_beacon_white_tower
-mycp seamark beacon_white_stake seamark_beacon_white_stake
-mycp seamark beacon_white_pile seamark_beacon_white_pile
+icon_alias seamark_beacon_white_tower seamark_beacon_white_tower
+icon_alias seamark_beacon_white_stake seamark_beacon_white_stake
+icon_alias seamark_beacon_white_pile seamark_beacon_white_pile
 
-mycp seamark beacon_black_tower seamark_beacon_black_tower
+icon_alias seamark_beacon_black_tower seamark_beacon_black_tower
 
-mycp seamark beacon_whiteredwhiteorange_pile seamark_beacon_whiteredwhiteorange_pile
+icon_alias seamark_beacon_whiteredwhiteorange_pile seamark_beacon_whiteredwhiteorange_pile
 
-mycp seamark beacon_redwhite_tower_vertical seamark_beacon_redwhite_tower_vertical
-mycp seamark beacon_redwhite_pole_vertical seamark_beacon_redwhite_pole_vertical
+icon_alias seamark_beacon_redwhite_tower_vertical seamark_beacon_redwhite_tower_vertical
+icon_alias seamark_beacon_redwhite_pole_vertical seamark_beacon_redwhite_pole_vertical
 
-mycp seamark light_float_red seamark_light_float_red
-mycp seamark light_float_green seamark_light_float_green
-mycp seamark light_float_redwhite_vertical seamark_light_float_redwhite_vertical
+icon_alias seamark_light_float_red seamark_light_float_red
+icon_alias seamark_light_float_green seamark_light_float_green
+icon_alias seamark_light_float_redwhite_vertical seamark_light_float_redwhite_vertical
 
-mycp seamark light_minor seamark_light_minor
-mycp seamark light_major seamark_light_major
-mycp seamark light_major_small seamark_light_major_small
-mycp seamark light_vessel seamark_light_vessel
+icon_alias seamark_light_minor seamark_light_minor
+icon_alias seamark_light_major seamark_light_major
+icon_alias seamark_light_major_small seamark_light_major_small
+icon_alias seamark_light_vessel seamark_light_vessel
 
-mycp seamark fog_signal seamark_fog_signal
-mycp seamark radar_transponder seamark_radar_transponder
-mycp seamark radio_station seamark_radio_station
-mycp seamark platform seamark_platform
-mycp seamark platform_small seamark_small_platform_small
+icon_alias seamark_fog_signal seamark_fog_signal
+icon_alias seamark_radar_transponder seamark_radar_transponder
+icon_alias seamark_radio_station seamark_radio_station
+icon_alias seamark_platform seamark_platform
+icon_alias seamark_platform_small seamark_small_platform_small
 
-mycp seamark landmark_tower seamark_big_landmark_tower
-mycp seamark landmark_windmotor seamark_big_landmark_windmotor
-mycp seamark landmark_mast seamark_big_landmark_mast
-mycp seamark landmark_chimney seamark_big_landmark_chimney
-mycp seamark landmark_monument seamark_big_landmark_monument
-mycp seamark landmark_flagstaff seamark_big_landmark_flagstaff
-mycp seamark landmark_water_tower seamark_big_landmark_water_tower
-mycp seamark landmark_dish_aerial seamark_big_landmark_dish_aerial
-mycp seamark landmark_windsock seamark_big_landmark_windsock
-mycp seamark landmark_cemetery seamark_big_landmark_cemetery
-mycp seamark landmark_cross seamark_big_landmark_cross
-mycp seamark landmark_statue seamark_big_landmark_statue
-mycp seamark landmark_minaret seamark_big_landmark_minaret
-mycp seamark landmark_spire_big seamark_big_landmark_spire_big
-mycp seamark landmark_dome_big seamark_big_landmark_dome_big
-mycp seamark landmark_cairn seamark_big_landmark_cairn
+icon_alias seamark_landmark_tower seamark_big_landmark_tower
+icon_alias seamark_landmark_windmotor seamark_big_landmark_windmotor
+icon_alias seamark_landmark_mast seamark_big_landmark_mast
+icon_alias seamark_landmark_chimney seamark_big_landmark_chimney
+icon_alias seamark_landmark_monument seamark_big_landmark_monument
+icon_alias seamark_landmark_flagstaff seamark_big_landmark_flagstaff
+icon_alias seamark_landmark_water_tower seamark_big_landmark_water_tower
+icon_alias seamark_landmark_dish_aerial seamark_big_landmark_dish_aerial
+icon_alias seamark_landmark_windsock seamark_big_landmark_windsock
+icon_alias seamark_landmark_cemetery seamark_big_landmark_cemetery
+icon_alias seamark_landmark_cross seamark_big_landmark_cross
+icon_alias seamark_landmark_statue seamark_big_landmark_statue
+icon_alias seamark_landmark_minaret seamark_big_landmark_minaret
+icon_alias seamark_landmark_spire_big seamark_big_landmark_spire_big
+icon_alias seamark_landmark_dome_big seamark_big_landmark_dome_big
+icon_alias seamark_landmark_cairn seamark_big_landmark_cairn
 
-mycp seamark landmark_communication_additional seamark_big_landmark_communication_additional
-mycp seamark landmark_church seamark_big_landmark_church
-mycp seamark landmark_tower_church_additional seamark_big_landmark_tower_church_additional
-mycp seamark landmark_dome seamark_big_landmark_dome
-mycp seamark landmark_mosque seamark_big_landmark_mosque
-mycp seamark landmark_spire seamark_big_landmark_spire
+icon_alias seamark_landmark_communication_additional seamark_big_landmark_communication_additional
+icon_alias seamark_landmark_church seamark_big_landmark_church
+icon_alias seamark_landmark_tower_church_additional seamark_big_landmark_tower_church_additional
+icon_alias seamark_landmark_dome seamark_big_landmark_dome
+icon_alias seamark_landmark_mosque seamark_big_landmark_mosque
+icon_alias seamark_landmark_spire seamark_big_landmark_spire
 
-mycp seamark harbour_default seamark_harbour_default
-mycp seamark harbour_default_small seamark_harbour_default_small
-mycp seamark harbour_marina seamark_harbour_marina
-mycp seamark harbour_fishing seamark_harbour_fishing
-mycp seamark harbour_container seamark_harbour_container
-mycp seamark harbour_shipyard seamark_harbour_shipyard
-mycp seamark harbour_ferry seamark_harbour_ferry
+icon_alias seamark_harbour_default seamark_harbour_default
+icon_alias seamark_harbour_default_small seamark_harbour_default_small
+icon_alias seamark_harbour_marina seamark_harbour_marina
+icon_alias seamark_harbour_fishing seamark_harbour_fishing
+icon_alias seamark_harbour_container seamark_harbour_container
+icon_alias seamark_harbour_shipyard seamark_harbour_shipyard
+icon_alias seamark_harbour_ferry seamark_harbour_ferry
 
-mycp seamark topmark_oblique_red_board seamark_topmark_oblique_red_board
-mycp seamark topmark_oblique_red_conepointdown seamark_topmark_oblique_red_conepointdown
-mycp seamark topmark_oblique_red_conepointup seamark_topmark_oblique_red_conepointup
-mycp seamark topmark_oblique_red_cylinder seamark_topmark_oblique_red_cylinder
-mycp seamark topmark_oblique_red_rhombus seamark_topmark_oblique_red_rhombus
-mycp seamark topmark_oblique_red_sphere seamark_topmark_oblique_red_sphere
-mycp seamark topmark_oblique_red_xshape seamark_topmark_oblique_red_xshape
+icon_alias seamark_topmark_oblique_red_board seamark_topmark_oblique_red_board
+icon_alias seamark_topmark_oblique_red_conepointdown seamark_topmark_oblique_red_conepointdown
+icon_alias seamark_topmark_oblique_red_conepointup seamark_topmark_oblique_red_conepointup
+icon_alias seamark_topmark_oblique_red_cylinder seamark_topmark_oblique_red_cylinder
+icon_alias seamark_topmark_oblique_red_rhombus seamark_topmark_oblique_red_rhombus
+icon_alias seamark_topmark_oblique_red_sphere seamark_topmark_oblique_red_sphere
+icon_alias seamark_topmark_oblique_red_xshape seamark_topmark_oblique_red_xshape
 icon_alias seamark_topmark_oblique_red_conepointupoversphere seamark_topmark_oblique_green_conepointupoversphere
 
-mycp seamark topmark_oblique_green_board seamark_topmark_oblique_green_board
-mycp seamark topmark_oblique_green_conepointdown seamark_topmark_oblique_green_conepointdown
-mycp seamark topmark_oblique_green_conepointup seamark_topmark_oblique_green_conepointup
-mycp seamark topmark_oblique_green_cylinder seamark_topmark_oblique_green_cylinder
-mycp seamark topmark_oblique_green_sphere seamark_topmark_oblique_green_sphere
-mycp seamark topmark_oblique_green_xshape seamark_topmark_oblique_green_xshape
+icon_alias seamark_topmark_oblique_green_board seamark_topmark_oblique_green_board
+icon_alias seamark_topmark_oblique_green_conepointdown seamark_topmark_oblique_green_conepointdown
+icon_alias seamark_topmark_oblique_green_conepointup seamark_topmark_oblique_green_conepointup
+icon_alias seamark_topmark_oblique_green_cylinder seamark_topmark_oblique_green_cylinder
+icon_alias seamark_topmark_oblique_green_sphere seamark_topmark_oblique_green_sphere
+icon_alias seamark_topmark_oblique_green_xshape seamark_topmark_oblique_green_xshape
 icon_alias seamark_topmark_oblique_red_cylinderoversphere seamark_topmark_oblique_red_cylinderoversphere
 
-mycp seamark topmark_oblique_black_conepointdown seamark_topmark_oblique_black_conepointdown
-mycp seamark topmark_oblique_black_conepointup seamark_topmark_oblique_black_conepointup
-mycp seamark topmark_oblique_black_cylinder seamark_topmark_oblique_black_cylinder
-mycp seamark topmark_oblique_black_rhombus seamark_topmark_oblique_black_rhombus
-mycp seamark topmark_oblique_black_sphere seamark_topmark_oblique_black_sphere
-mycp seamark topmark_oblique_black_xshape seamark_topmark_oblique_black_xshape
+icon_alias seamark_topmark_oblique_black_conepointdown seamark_topmark_oblique_black_conepointdown
+icon_alias seamark_topmark_oblique_black_conepointup seamark_topmark_oblique_black_conepointup
+icon_alias seamark_topmark_oblique_black_cylinder seamark_topmark_oblique_black_cylinder
+icon_alias seamark_topmark_oblique_black_rhombus seamark_topmark_oblique_black_rhombus
+icon_alias seamark_topmark_oblique_black_sphere seamark_topmark_oblique_black_sphere
+icon_alias seamark_topmark_oblique_black_xshape seamark_topmark_oblique_black_xshape
 
-mycp seamark topmark_oblique_yellow_conepointdown seamark_topmark_oblique_yellow_conepointdown
-mycp seamark topmark_oblique_yellow_conepointup seamark_topmark_oblique_yellow_conepointup
-mycp seamark topmark_oblique_yellow_cylinder seamark_topmark_oblique_yellow_cylinder
-mycp seamark topmark_oblique_yellow_rhombus seamark_topmark_oblique_yellow_rhombus
-mycp seamark topmark_oblique_yellow_sphere seamark_topmark_oblique_yellow_sphere
-mycp seamark topmark_oblique_yellow_xshape seamark_topmark_oblique_yellow_xshape
+icon_alias seamark_topmark_oblique_yellow_conepointdown seamark_topmark_oblique_yellow_conepointdown
+icon_alias seamark_topmark_oblique_yellow_conepointup seamark_topmark_oblique_yellow_conepointup
+icon_alias seamark_topmark_oblique_yellow_cylinder seamark_topmark_oblique_yellow_cylinder
+icon_alias seamark_topmark_oblique_yellow_rhombus seamark_topmark_oblique_yellow_rhombus
+icon_alias seamark_topmark_oblique_yellow_sphere seamark_topmark_oblique_yellow_sphere
+icon_alias seamark_topmark_oblique_yellow_xshape seamark_topmark_oblique_yellow_xshape
 
-mycp seamark topmark_oblique_redwhitered_board seamark_topmark_oblique_redwhitered_board
-mycp seamark topmark_oblique_redwhitered_conepointdown seamark_topmark_oblique_redwhitered_conepointdown
-mycp seamark topmark_oblique_redwhitered_cylinder seamark_topmark_oblique_redwhitered_cylinder
+icon_alias seamark_topmark_oblique_redwhitered_board seamark_topmark_oblique_redwhitered_board
+icon_alias seamark_topmark_oblique_redwhitered_conepointdown seamark_topmark_oblique_redwhitered_conepointdown
+icon_alias seamark_topmark_oblique_redwhitered_cylinder seamark_topmark_oblique_redwhitered_cylinder
 
-mycp seamark topmark_oblique_whitered_board_border seamark_topmark_oblique_whitered_board_border
+icon_alias seamark_topmark_oblique_whitered_board_border seamark_topmark_oblique_whitered_board_border
 
-mycp seamark topmark_oblique_black_2conesbasetogether seamark_topmark_oblique_black_2conesbasetogether
-mycp seamark topmark_oblique_black_2conesdown seamark_topmark_oblique_black_2conesdown
-mycp seamark topmark_oblique_black_2conespointtogether seamark_topmark_oblique_black_2conespointtogether
-mycp seamark topmark_oblique_black_2conesup seamark_topmark_oblique_black_2conesup
-mycp seamark topmark_oblique_black_2spheres seamark_topmark_oblique_black_2spheres
-mycp seamark topmark_oblique_yellow_2conespointtogether seamark_topmark_oblique_yellow_2conespointtogether
+icon_alias seamark_topmark_oblique_black_2conesbasetogether seamark_topmark_oblique_black_2conesbasetogether
+icon_alias seamark_topmark_oblique_black_2conesdown seamark_topmark_oblique_black_2conesdown
+icon_alias seamark_topmark_oblique_black_2conespointtogether seamark_topmark_oblique_black_2conespointtogether
+icon_alias seamark_topmark_oblique_black_2conesup seamark_topmark_oblique_black_2conesup
+icon_alias seamark_topmark_oblique_black_2spheres seamark_topmark_oblique_black_2spheres
+icon_alias seamark_topmark_oblique_yellow_2conespointtogether seamark_topmark_oblique_yellow_2conespointtogether
 
-mycp seamark topmark_vertical_black_2conesbasetogether seamark_topmark_vertical_black_2conesbasetogether
-mycp seamark topmark_vertical_black_2conesdown seamark_topmark_vertical_black_2conesdown
-mycp seamark topmark_vertical_black_2conespointtogether seamark_topmark_vertical_black_2conespointtogether
-mycp seamark topmark_vertical_black_2conesup seamark_topmark_vertical_black_2conesup
+icon_alias seamark_topmark_vertical_black_2conesbasetogether seamark_topmark_vertical_black_2conesbasetogether
+icon_alias seamark_topmark_vertical_black_2conesdown seamark_topmark_vertical_black_2conesdown
+icon_alias seamark_topmark_vertical_black_2conespointtogether seamark_topmark_vertical_black_2conespointtogether
+icon_alias seamark_topmark_vertical_black_2conesup seamark_topmark_vertical_black_2conesup
 
-mycp seamark topmark_vertical_black_2spheres seamark_topmark_vertical_black_2spheres
-mycp seamark topmark_vertical_black_conepointdown seamark_topmark_vertical_black_conepointdown
-mycp seamark topmark_vertical_black_conepointup seamark_topmark_vertical_black_conepointup
-mycp seamark topmark_vertical_black_cylinder seamark_topmark_vertical_black_cylinder
-mycp seamark topmark_vertical_black_rhombus seamark_topmark_vertical_black_rhombus
-mycp seamark topmark_vertical_black_sphere seamark_topmark_vertical_black_sphere
-mycp seamark topmark_vertical_black_xshape seamark_topmark_vertical_black_xshape
+icon_alias seamark_topmark_vertical_black_2spheres seamark_topmark_vertical_black_2spheres
+icon_alias seamark_topmark_vertical_black_conepointdown seamark_topmark_vertical_black_conepointdown
+icon_alias seamark_topmark_vertical_black_conepointup seamark_topmark_vertical_black_conepointup
+icon_alias seamark_topmark_vertical_black_cylinder seamark_topmark_vertical_black_cylinder
+icon_alias seamark_topmark_vertical_black_rhombus seamark_topmark_vertical_black_rhombus
+icon_alias seamark_topmark_vertical_black_sphere seamark_topmark_vertical_black_sphere
+icon_alias seamark_topmark_vertical_black_xshape seamark_topmark_vertical_black_xshape
 
-mycp seamark topmark_vertical_green_board seamark_topmark_vertical_green_board
-mycp seamark topmark_vertical_green_conepointdown seamark_topmark_vertical_green_conepointdown
-mycp seamark topmark_vertical_green_conepointup seamark_topmark_vertical_green_conepointup
-mycp seamark topmark_vertical_green_cylinder seamark_topmark_vertical_green_cylinder
-mycp seamark topmark_vertical_green_sphere seamark_topmark_vertical_green_sphere
-mycp seamark topmark_vertical_green_xshape seamark_topmark_vertical_green_xshape
+icon_alias seamark_topmark_vertical_green_board seamark_topmark_vertical_green_board
+icon_alias seamark_topmark_vertical_green_conepointdown seamark_topmark_vertical_green_conepointdown
+icon_alias seamark_topmark_vertical_green_conepointup seamark_topmark_vertical_green_conepointup
+icon_alias seamark_topmark_vertical_green_cylinder seamark_topmark_vertical_green_cylinder
+icon_alias seamark_topmark_vertical_green_sphere seamark_topmark_vertical_green_sphere
+icon_alias seamark_topmark_vertical_green_xshape seamark_topmark_vertical_green_xshape
 
-mycp seamark topmark_vertical_greenwhite_rhombus_vertical seamark_topmark_vertical_greenwhite_rhombus_vertical
+icon_alias seamark_topmark_vertical_greenwhite_rhombus_vertical seamark_topmark_vertical_greenwhite_rhombus_vertical
 
-mycp seamark topmark_vertical_red_board seamark_topmark_vertical_red_board
-mycp seamark topmark_vertical_red_conepointdown seamark_topmark_vertical_red_conepointdown
-mycp seamark topmark_vertical_red_conepointup seamark_topmark_vertical_red_conepointup
-mycp seamark topmark_vertical_red_cylinder seamark_topmark_vertical_red_cylinder
-mycp seamark topmark_vertical_red_rhombus seamark_topmark_vertical_red_rhombus
-mycp seamark topmark_vertical_red_sphere seamark_topmark_vertical_red_sphere
-mycp seamark topmark_vertical_red_xshape seamark_topmark_vertical_red_xshape
+icon_alias seamark_topmark_vertical_red_board seamark_topmark_vertical_red_board
+icon_alias seamark_topmark_vertical_red_conepointdown seamark_topmark_vertical_red_conepointdown
+icon_alias seamark_topmark_vertical_red_conepointup seamark_topmark_vertical_red_conepointup
+icon_alias seamark_topmark_vertical_red_cylinder seamark_topmark_vertical_red_cylinder
+icon_alias seamark_topmark_vertical_red_rhombus seamark_topmark_vertical_red_rhombus
+icon_alias seamark_topmark_vertical_red_sphere seamark_topmark_vertical_red_sphere
+icon_alias seamark_topmark_vertical_red_xshape seamark_topmark_vertical_red_xshape
 
-mycp seamark topmark_vertical_redwhitered_board seamark_topmark_vertical_redwhitered_board
-mycp seamark topmark_vertical_redwhitered_conepointdown seamark_topmark_vertical_redwhitered_conepointdown
-mycp seamark topmark_vertical_redwhitered_cylinder seamark_topmark_vertical_redwhitered_cylinder
+icon_alias seamark_topmark_vertical_redwhitered_board seamark_topmark_vertical_redwhitered_board
+icon_alias seamark_topmark_vertical_redwhitered_conepointdown seamark_topmark_vertical_redwhitered_conepointdown
+icon_alias seamark_topmark_vertical_redwhitered_cylinder seamark_topmark_vertical_redwhitered_cylinder
 
-mycp seamark topmark_vertical_whitered_board_border seamark_topmark_vertical_whitered_board_border
-mycp seamark topmark_vertical_whitered_conepointdown_border seamark_topmark_vertical_whitered_conepointdown_border
+icon_alias seamark_topmark_vertical_whitered_board_border seamark_topmark_vertical_whitered_board_border
+icon_alias seamark_topmark_vertical_whitered_conepointdown_border seamark_topmark_vertical_whitered_conepointdown_border
 
-mycp seamark topmark_vertical_whitegreen_rhombus_border seamark_topmark_vertical_whitegreen_rhombus_border
+icon_alias seamark_topmark_vertical_whitegreen_rhombus_border seamark_topmark_vertical_whitegreen_rhombus_border
 
-mycp seamark topmark_vertical_whiteblack_board_border seamark_topmark_vertical_whiteblack_board_border
+icon_alias seamark_topmark_vertical_whiteblack_board_border seamark_topmark_vertical_whiteblack_board_border
 
-mycp seamark topmark_vertical_whiteblackwhite_rhombus_vertical seamark_topmark_vertical_whiteblackwhite_rhombus_vertical
+icon_alias seamark_topmark_vertical_whiteblackwhite_rhombus_vertical seamark_topmark_vertical_whiteblackwhite_rhombus_vertical
 
-mycp seamark topmark_vertical_yellow_2conespointtogether seamark_topmark_vertical_yellow_2conespointtogether
-mycp seamark topmark_vertical_yellow_conepointdown seamark_topmark_vertical_yellow_conepointdown
-mycp seamark topmark_vertical_yellow_conepointup seamark_topmark_vertical_yellow_conepointup
-mycp seamark topmark_vertical_yellow_cylinder seamark_topmark_vertical_yellow_cylinder
-mycp seamark topmark_vertical_yellow_rhombus seamark_topmark_vertical_yellow_rhombus
-mycp seamark topmark_vertical_yellow_sphere seamark_topmark_vertical_yellow_sphere
-mycp seamark topmark_vertical_yellow_xshape seamark_topmark_vertical_yellow_xshape
-mycp seamark topmark_vertical_yellow_cross seamark_topmark_vertical_yellow_cross
+icon_alias seamark_topmark_vertical_yellow_2conespointtogether seamark_topmark_vertical_yellow_2conespointtogether
+icon_alias seamark_topmark_vertical_yellow_conepointdown seamark_topmark_vertical_yellow_conepointdown
+icon_alias seamark_topmark_vertical_yellow_conepointup seamark_topmark_vertical_yellow_conepointup
+icon_alias seamark_topmark_vertical_yellow_cylinder seamark_topmark_vertical_yellow_cylinder
+icon_alias seamark_topmark_vertical_yellow_rhombus seamark_topmark_vertical_yellow_rhombus
+icon_alias seamark_topmark_vertical_yellow_sphere seamark_topmark_vertical_yellow_sphere
+icon_alias seamark_topmark_vertical_yellow_xshape seamark_topmark_vertical_yellow_xshape
+icon_alias seamark_topmark_vertical_yellow_cross seamark_topmark_vertical_yellow_cross
 
-mycp seamark topmark_vertical_black_2conesbasetogether_big seamark_big_topmark_vertical_black_2conesbasetogether_big
-mycp seamark topmark_vertical_black_2conesdown_big seamark_big_topmark_vertical_black_2conesdown_big
-mycp seamark topmark_vertical_black_2conespointtogether_big seamark_big_topmark_vertical_black_2conespointtogether_big
-mycp seamark topmark_vertical_black_2conesup_big seamark_big_topmark_vertical_black_2conesup_big
+icon_alias seamark_topmark_vertical_black_2conesbasetogether_big seamark_big_topmark_vertical_black_2conesbasetogether_big
+icon_alias seamark_topmark_vertical_black_2conesdown_big seamark_big_topmark_vertical_black_2conesdown_big
+icon_alias seamark_topmark_vertical_black_2conespointtogether_big seamark_big_topmark_vertical_black_2conespointtogether_big
+icon_alias seamark_topmark_vertical_black_2conesup_big seamark_big_topmark_vertical_black_2conesup_big
 
-mycp seamark topmark_vertical_black_2spheres_big seamark_big_topmark_vertical_black_2spheres_big
-mycp seamark topmark_vertical_black_conepointdown_big seamark_big_topmark_vertical_black_conepointdown_big
-mycp seamark topmark_vertical_black_conepointup_big seamark_big_topmark_vertical_black_conepointup_big
-mycp seamark topmark_vertical_black_cylinder_big seamark_big_topmark_vertical_black_cylinder_big
-mycp seamark topmark_vertical_black_rhombus_big seamark_big_topmark_vertical_black_rhombus_big
-mycp seamark topmark_vertical_black_sphere_big seamark_big_topmark_vertical_black_sphere_big
-mycp seamark topmark_vertical_black_xshape_big seamark_big_topmark_vertical_black_xshape_big
+icon_alias seamark_topmark_vertical_black_2spheres_big seamark_big_topmark_vertical_black_2spheres_big
+icon_alias seamark_topmark_vertical_black_conepointdown_big seamark_big_topmark_vertical_black_conepointdown_big
+icon_alias seamark_topmark_vertical_black_conepointup_big seamark_big_topmark_vertical_black_conepointup_big
+icon_alias seamark_topmark_vertical_black_cylinder_big seamark_big_topmark_vertical_black_cylinder_big
+icon_alias seamark_topmark_vertical_black_rhombus_big seamark_big_topmark_vertical_black_rhombus_big
+icon_alias seamark_topmark_vertical_black_sphere_big seamark_big_topmark_vertical_black_sphere_big
+icon_alias seamark_topmark_vertical_black_xshape_big seamark_big_topmark_vertical_black_xshape_big
 
-mycp seamark fog_signal_additional_big seamark_big_fog_signal_additional_big
-mycp seamark fog_signal_additional_big_night seamark_big_fog_signal_additional_big_night
-mycp seamark fog_signal_additional_center_big seamark_big_fog_signal_additional_center_big
-mycp seamark fog_signal_additional_center_big_night seamark_big_fog_signal_additional_center_big_night
-mycp seamark fog_signal_additional seamark_fog_signal_additional
-mycp seamark fog_signal_additional_night seamark_fog_signal_additional_night
+icon_alias seamark_fog_signal_additional_big seamark_big_fog_signal_additional_big
+icon_alias seamark_fog_signal_additional_big_night seamark_big_fog_signal_additional_big_night
+icon_alias seamark_fog_signal_additional_center_big seamark_big_fog_signal_additional_center_big
+icon_alias seamark_fog_signal_additional_center_big_night seamark_big_fog_signal_additional_center_big_night
+icon_alias seamark_fog_signal_additional seamark_fog_signal_additional
+icon_alias seamark_fog_signal_additional_night seamark_fog_signal_additional_night
 
-mycp seamark radar_reflector_additional seamark_radar_reflector_additional
-mycp seamark radar_reflector_additional_night seamark_radar_reflector_additional_night
-mycp seamark radar_reflector_additional_big seamark_big_radar_reflector_additional_big
-mycp seamark radar_reflector_additional_big_night seamark_big_radar_reflector_additional_big_night
-mycp seamark radar_reflector_additional_center_big seamark_big_radar_reflector_additional_center_big
-mycp seamark radar_reflector_additional_center_big_night seamark_big_radar_reflector_additional_center_big_night
-mycp seamark radar_transponder_additional seamark_radar_transponder_additional
-mycp seamark radar_transponder_additional_night seamark_radar_transponder_additional_night
-mycp seamark radar_transponder_additional_big seamark_big_radar_transponder_additional_big
-mycp seamark radar_transponder_additional_big_night seamark_big_radar_transponder_additional_big_night
-mycp seamark radar_transponder_additional_center_big seamark_big_radar_transponder_additional_center_big
-mycp seamark radar_transponder_additional_center_big_night seamark_big_radar_transponder_additional_center_big_night
-mycp seamark radio_station_ais_additional seamark_big_radio_station_ais_additional
-mycp seamark radio_station_omnidirectional_additional seamark_big_radio_station_omnidirectional_additional
-mycp seamark radio_station_aeronautical_additional seamark_big_radio_station_aeronautical_additional
-mycp seamark radio_station_dgps_additional seamark_big_radio_station_dgps_additional
-mycp seamark radio_station_vais_additional seamark_big_radio_station_vais_additional
-mycp seamark signal_station_additional seamark_big_signal_station_additional
-mycp seamark radar_station_additional seamark_big_radar_station_additional
-mycp seamark radar_station_additional_night seamark_big_radar_station_additional_night
-mycp seamark radar_station_coast_additional seamark_big_radar_station_coast_additional
-mycp seamark radar_station_surveillance_additional seamark_big_radar_station_surveillance_additional
-mycp seamark radar_station_surveillance_additional_night seamark_big_radar_station_surveillance_additional_night
+icon_alias seamark_radar_reflector_additional seamark_radar_reflector_additional
+icon_alias seamark_radar_reflector_additional_night seamark_radar_reflector_additional_night
+icon_alias seamark_radar_reflector_additional_big seamark_big_radar_reflector_additional_big
+icon_alias seamark_radar_reflector_additional_big_night seamark_big_radar_reflector_additional_big_night
+icon_alias seamark_radar_reflector_additional_center_big seamark_big_radar_reflector_additional_center_big
+icon_alias seamark_radar_reflector_additional_center_big_night seamark_big_radar_reflector_additional_center_big_night
+icon_alias seamark_radar_transponder_additional seamark_radar_transponder_additional
+icon_alias seamark_radar_transponder_additional_night seamark_radar_transponder_additional_night
+icon_alias seamark_radar_transponder_additional_big seamark_big_radar_transponder_additional_big
+icon_alias seamark_radar_transponder_additional_big_night seamark_big_radar_transponder_additional_big_night
+icon_alias seamark_radar_transponder_additional_center_big seamark_big_radar_transponder_additional_center_big
+icon_alias seamark_radar_transponder_additional_center_big_night seamark_big_radar_transponder_additional_center_big_night
+icon_alias seamark_radio_station_ais_additional seamark_big_radio_station_ais_additional
+icon_alias seamark_radio_station_omnidirectional_additional seamark_big_radio_station_omnidirectional_additional
+icon_alias seamark_radio_station_aeronautical_additional seamark_big_radio_station_aeronautical_additional
+icon_alias seamark_radio_station_dgps_additional seamark_big_radio_station_dgps_additional
+icon_alias seamark_radio_station_vais_additional seamark_big_radio_station_vais_additional
+icon_alias seamark_signal_station_additional seamark_big_signal_station_additional
+icon_alias seamark_radar_station_additional seamark_big_radar_station_additional
+icon_alias seamark_radar_station_additional_night seamark_big_radar_station_additional_night
+icon_alias seamark_radar_station_coast_additional seamark_big_radar_station_coast_additional
+icon_alias seamark_radar_station_surveillance_additional seamark_big_radar_station_surveillance_additional
+icon_alias seamark_radar_station_surveillance_additional_night seamark_big_radar_station_surveillance_additional_night
 
-mycp seamark platform_production_additional seamark_platform_production_additional
-mycp seamark platform_fpso_additional seamark_platform_fpso_additional
+icon_alias seamark_platform_production_additional seamark_platform_production_additional
+icon_alias seamark_platform_fpso_additional seamark_platform_fpso_additional
 
-mycp seamark separation_line_arrow seamark_separation_line_arrow
-mycp seamark separation_line_arrow_night seamark_separation_line_arrow_night
-mycp seamark separation_line_arrow_small seamark_separation_line_arrow_small
-mycp seamark separation_line_arrow_small_night seamark_separation_line_arrow_small_night
+icon_alias seamark_separation_line_arrow seamark_separation_line_arrow
+icon_alias seamark_separation_line_arrow_night seamark_separation_line_arrow_night
+icon_alias seamark_separation_line_arrow_small seamark_separation_line_arrow_small
+icon_alias seamark_separation_line_arrow_small_night seamark_separation_line_arrow_small_night
 
-mycp seamark gate seamark_gate
-mycp seamark lock_gate seamark_lock_gate
+icon_alias seamark_gate seamark_gate
+icon_alias seamark_lock_gate seamark_lock_gate
 
-mycp seamark hulk seamark_hulk
-mycp seamark hulk_restaurant_additional seamark_hulk_restaurant_additional
+icon_alias seamark_hulk seamark_hulk
+icon_alias seamark_hulk_restaurant_additional seamark_hulk_restaurant_additional
 
-mycp seamark anchorage seamark_anchorage
-mycp seamark anchorage_small_craft seamark_anchorage_small_craft
-mycp seamark anchorage_tanker seamark_anchorage_tanker
-mycp seamark anchor_berth seamark_anchor_berth
-mycp seamark berth seamark_berth
+icon_alias seamark_anchorage seamark_anchorage
+icon_alias seamark_anchorage_small_craft seamark_anchorage_small_craft
+icon_alias seamark_anchorage_tanker seamark_anchorage_tanker
+icon_alias seamark_anchor_berth seamark_anchor_berth
+icon_alias seamark_berth seamark_berth
 
-mycp seamark bridge seamark_bridge
-mycp seamark bridge_opening seamark_bridge_opening
-mycp seamark bridge_lifting seamark_bridge_lifting
-mycp seamark bridge_suspension seamark_bridge_suspension
+icon_alias seamark_bridge seamark_bridge
+icon_alias seamark_bridge_opening seamark_bridge_opening
+icon_alias seamark_bridge_lifting seamark_bridge_lifting
+icon_alias seamark_bridge_suspension seamark_bridge_suspension
 
-mycp seamark building seamark_building
-mycp seamark building_church seamark_building_church
-mycp seamark building_customs seamark_building_customs
-mycp seamark building_harbour_master seamark_building_harbour_master
-mycp seamark building_water_police_station seamark_building_water_police_station
+icon_alias seamark_building seamark_building
+icon_alias seamark_building_church seamark_building_church
+icon_alias seamark_building_customs seamark_building_customs
+icon_alias seamark_building_harbour_master seamark_building_harbour_master
+icon_alias seamark_building_water_police_station seamark_building_water_police_station
 
-mycp seamark notice_prohibition_bg seamark_notice_prohibition_bg
-mycp seamark notice_prohibition_bg_plus seamark_notice_prohibition_bg_plus
-mycp seamark notice_prohibition_bg_night seamark_notice_prohibition_bg_night
-mycp seamark notice_prohibition_bg_plus_night seamark_notice_prohibition_bg_plus_night
-mycp seamark notice_prohibition_noentry seamark_notice_prohibition_noentry
-mycp seamark notice_prohibition_closedarea seamark_notice_prohibition_closedarea
-mycp seamark notice_prohibition_noovertaking seamark_notice_prohibition_noovertaking
-mycp seamark notice_prohibition_noconvoyovertaking seamark_notice_prohibition_noconvoyovertaking
-mycp seamark notice_prohibition_nopassing seamark_notice_prohibition_nopassing
-mycp seamark notice_prohibition_noconvoypassing seamark_notice_prohibition_noconvoypassing
-mycp seamark notice_prohibition_noberthing seamark_notice_prohibition_noberthing
-mycp seamark notice_prohibition_noanchoring seamark_notice_prohibition_noanchoring
-mycp seamark notice_prohibition_nomooring seamark_notice_prohibition_nomooring
-mycp seamark notice_prohibition_noturning seamark_notice_prohibition_noturning
-mycp seamark notice_prohibition_nowash seamark_notice_prohibition_nowash
-mycp seamark notice_prohibition_nopassageleft seamark_notice_prohibition_nopassageleft
-mycp seamark notice_prohibition_nopassageright seamark_notice_prohibition_nopassageright
-mycp seamark notice_prohibition_nomotorcraft seamark_notice_prohibition_nomotorcraft
-mycp seamark notice_prohibition_nosportcraft seamark_notice_prohibition_nosportcraft
-mycp seamark notice_prohibition_nowaterskiing seamark_notice_prohibition_nowaterskiing
-mycp seamark notice_prohibition_nosailingcraft seamark_notice_prohibition_nosailingcraft
-mycp seamark notice_prohibition_nounpoweredcraft seamark_notice_prohibition_nounpoweredcraft
-mycp seamark notice_prohibition_nosailboards seamark_notice_prohibition_nosailboards
-mycp seamark notice_prohibition_nohighspeeds seamark_notice_prohibition_nohighspeeds
-mycp seamark notice_prohibition_nolaunchingbeaching seamark_notice_prohibition_nolaunchingbeaching
-mycp seamark notice_prohibition_nowaterbikes seamark_notice_prohibition_nowaterbikes
+icon_alias seamark_notice_prohibition_bg seamark_notice_prohibition_bg
+icon_alias seamark_notice_prohibition_bg_plus seamark_notice_prohibition_bg_plus
+icon_alias seamark_notice_prohibition_bg_night seamark_notice_prohibition_bg_night
+icon_alias seamark_notice_prohibition_bg_plus_night seamark_notice_prohibition_bg_plus_night
+icon_alias seamark_notice_prohibition_noentry seamark_notice_prohibition_noentry
+icon_alias seamark_notice_prohibition_closedarea seamark_notice_prohibition_closedarea
+icon_alias seamark_notice_prohibition_noovertaking seamark_notice_prohibition_noovertaking
+icon_alias seamark_notice_prohibition_noconvoyovertaking seamark_notice_prohibition_noconvoyovertaking
+icon_alias seamark_notice_prohibition_nopassing seamark_notice_prohibition_nopassing
+icon_alias seamark_notice_prohibition_noconvoypassing seamark_notice_prohibition_noconvoypassing
+icon_alias seamark_notice_prohibition_noberthing seamark_notice_prohibition_noberthing
+icon_alias seamark_notice_prohibition_noanchoring seamark_notice_prohibition_noanchoring
+icon_alias seamark_notice_prohibition_nomooring seamark_notice_prohibition_nomooring
+icon_alias seamark_notice_prohibition_noturning seamark_notice_prohibition_noturning
+icon_alias seamark_notice_prohibition_nowash seamark_notice_prohibition_nowash
+icon_alias seamark_notice_prohibition_nopassageleft seamark_notice_prohibition_nopassageleft
+icon_alias seamark_notice_prohibition_nopassageright seamark_notice_prohibition_nopassageright
+icon_alias seamark_notice_prohibition_nomotorcraft seamark_notice_prohibition_nomotorcraft
+icon_alias seamark_notice_prohibition_nosportcraft seamark_notice_prohibition_nosportcraft
+icon_alias seamark_notice_prohibition_nowaterskiing seamark_notice_prohibition_nowaterskiing
+icon_alias seamark_notice_prohibition_nosailingcraft seamark_notice_prohibition_nosailingcraft
+icon_alias seamark_notice_prohibition_nounpoweredcraft seamark_notice_prohibition_nounpoweredcraft
+icon_alias seamark_notice_prohibition_nosailboards seamark_notice_prohibition_nosailboards
+icon_alias seamark_notice_prohibition_nohighspeeds seamark_notice_prohibition_nohighspeeds
+icon_alias seamark_notice_prohibition_nolaunchingbeaching seamark_notice_prohibition_nolaunchingbeaching
+icon_alias seamark_notice_prohibition_nowaterbikes seamark_notice_prohibition_nowaterbikes
 
-mycp seamark notice_regulation_bg seamark_notice_regulation_bg
-mycp seamark notice_regulation_bg_plus seamark_notice_regulation_bg_plus
-mycp seamark notice_regulation_bg_night seamark_notice_regulation_bg_night
-mycp seamark notice_regulation_bg_plus_night seamark_notice_regulation_bg_plus_night
-mycp seamark notice_regulation_crosstoport seamark_notice_regulation_crosstoport
-mycp seamark notice_regulation_crosstostarboard seamark_notice_regulation_crosstostarboard
-mycp seamark notice_regulation_givewaycrossing seamark_notice_regulation_givewaycrossing
-mycp seamark notice_regulation_givewayjunction seamark_notice_regulation_givewayjunction
-mycp seamark notice_regulation_keeplookout seamark_notice_regulation_keeplookout
-mycp seamark notice_regulation_keeptoport seamark_notice_regulation_keeptoport
-mycp seamark notice_regulation_keeptostarboard seamark_notice_regulation_keeptostarboard
-mycp seamark notice_regulation_makeradiocontact seamark_notice_regulation_makeradiocontact
-mycp seamark notice_regulation_movetoleft seamark_notice_regulation_movetoleft
-mycp seamark notice_regulation_movetoport seamark_notice_regulation_movetoport
-mycp seamark notice_regulation_movetoright seamark_notice_regulation_movetoright
-mycp seamark notice_regulation_movetostarboard seamark_notice_regulation_movetostarboard
-mycp seamark notice_regulation_speedlimit seamark_notice_regulation_speedlimit
-mycp seamark notice_regulation_soundhorn seamark_notice_regulation_soundhorn
-mycp seamark notice_regulation_stop seamark_notice_regulation_stop
+icon_alias seamark_notice_regulation_bg seamark_notice_regulation_bg
+icon_alias seamark_notice_regulation_bg_plus seamark_notice_regulation_bg_plus
+icon_alias seamark_notice_regulation_bg_night seamark_notice_regulation_bg_night
+icon_alias seamark_notice_regulation_bg_plus_night seamark_notice_regulation_bg_plus_night
+icon_alias seamark_notice_regulation_crosstoport seamark_notice_regulation_crosstoport
+icon_alias seamark_notice_regulation_crosstostarboard seamark_notice_regulation_crosstostarboard
+icon_alias seamark_notice_regulation_givewaycrossing seamark_notice_regulation_givewaycrossing
+icon_alias seamark_notice_regulation_givewayjunction seamark_notice_regulation_givewayjunction
+icon_alias seamark_notice_regulation_keeplookout seamark_notice_regulation_keeplookout
+icon_alias seamark_notice_regulation_keeptoport seamark_notice_regulation_keeptoport
+icon_alias seamark_notice_regulation_keeptostarboard seamark_notice_regulation_keeptostarboard
+icon_alias seamark_notice_regulation_makeradiocontact seamark_notice_regulation_makeradiocontact
+icon_alias seamark_notice_regulation_movetoleft seamark_notice_regulation_movetoleft
+icon_alias seamark_notice_regulation_movetoport seamark_notice_regulation_movetoport
+icon_alias seamark_notice_regulation_movetoright seamark_notice_regulation_movetoright
+icon_alias seamark_notice_regulation_movetostarboard seamark_notice_regulation_movetostarboard
+icon_alias seamark_notice_regulation_speedlimit seamark_notice_regulation_speedlimit
+icon_alias seamark_notice_regulation_soundhorn seamark_notice_regulation_soundhorn
+icon_alias seamark_notice_regulation_stop seamark_notice_regulation_stop
 
-mycp seamark notice_restriction_channeldistanceleft seamark_notice_restriction_channeldistanceleft
-mycp seamark notice_restriction_channeldistanceright seamark_notice_restriction_channeldistanceright
-mycp seamark notice_restriction_limiteddepth seamark_notice_restriction_limiteddepth
-mycp seamark notice_restriction_limitedheadroom seamark_notice_restriction_limitedheadroom
-mycp seamark notice_restriction_limitedwidth seamark_notice_restriction_limitedwidth
+icon_alias seamark_notice_restriction_channeldistanceleft seamark_notice_restriction_channeldistanceleft
+icon_alias seamark_notice_restriction_channeldistanceright seamark_notice_restriction_channeldistanceright
+icon_alias seamark_notice_restriction_limiteddepth seamark_notice_restriction_limiteddepth
+icon_alias seamark_notice_restriction_limitedheadroom seamark_notice_restriction_limitedheadroom
+icon_alias seamark_notice_restriction_limitedwidth seamark_notice_restriction_limitedwidth
 
-mycp seamark notice_recommendation_channeltwoway seamark_notice_recommendation_channeltwoway
-mycp seamark notice_recommendation_channeloneway seamark_notice_recommendation_channeloneway
-mycp seamark notice_recommendation_openingtoleft seamark_notice_recommendation_openingtoleft
-mycp seamark notice_recommendation_openingtoright seamark_notice_recommendation_openingtoright
-mycp seamark notice_recommendation_proceedtoleft seamark_notice_recommendation_proceedtoleft
-mycp seamark notice_recommendation_proceedtoright seamark_notice_recommendation_proceedtoright
+icon_alias seamark_notice_recommendation_channeltwoway seamark_notice_recommendation_channeltwoway
+icon_alias seamark_notice_recommendation_channeloneway seamark_notice_recommendation_channeloneway
+icon_alias seamark_notice_recommendation_openingtoleft seamark_notice_recommendation_openingtoleft
+icon_alias seamark_notice_recommendation_openingtoright seamark_notice_recommendation_openingtoright
+icon_alias seamark_notice_recommendation_proceedtoleft seamark_notice_recommendation_proceedtoleft
+icon_alias seamark_notice_recommendation_proceedtoright seamark_notice_recommendation_proceedtoright
 
-mycp seamark notice_information_bg seamark_notice_information_bg
-mycp seamark notice_information_bg_plus seamark_notice_information_bg_plus
-mycp seamark notice_information_entrypermitted seamark_notice_information_entrypermitted
-mycp seamark notice_information_overheadcable seamark_notice_information_overheadcable
-mycp seamark notice_information_weir seamark_notice_information_weir
-mycp seamark notice_information_ferrynonindependent seamark_notice_information_ferrynonindependent
-mycp seamark notice_information_ferryindependent seamark_notice_information_ferryindependent
-mycp seamark notice_information_berthingpermitted seamark_notice_information_berthingpermitted
-mycp seamark notice_information_berthingunmarkedpushing seamark_notice_information_berthingunmarkedpushing
-mycp seamark notice_information_berthingmarkedpushing1 seamark_notice_information_berthingmarkedpushing1
-mycp seamark notice_information_berthingmarkedpushing2 seamark_notice_information_berthingmarkedpushing2
-mycp seamark notice_information_berthingmarkedpushing3 seamark_notice_information_berthingmarkedpushing3
-mycp seamark notice_information_berthingunmarkednonpushing seamark_notice_information_berthingunmarkednonpushing
-mycp seamark notice_information_berthingmarkednonpushing1 seamark_notice_information_berthingmarkednonpushing1
-mycp seamark notice_information_berthingmarkednonpushing2 seamark_notice_information_berthingmarkednonpushing2
-mycp seamark notice_information_berthingmarkednonpushing3 seamark_notice_information_berthingmarkednonpushing3
-mycp seamark notice_information_berthingunmarked seamark_notice_information_berthingunmarked
-mycp seamark notice_information_berthingmarked1 seamark_notice_information_berthingmarked1
-mycp seamark notice_information_berthingmarked2 seamark_notice_information_berthingmarked2
-mycp seamark notice_information_berthingmarked3 seamark_notice_information_berthingmarked3
-mycp seamark notice_information_anchoringpermitted seamark_notice_information_anchoringpermitted
-mycp seamark notice_information_mooringpermitted seamark_notice_information_mooringpermitted
-mycp seamark notice_information_vehicleloadingberth seamark_notice_information_vehicleloadingberth
-mycp seamark notice_information_turningarea seamark_notice_information_turningarea
-mycp seamark notice_information_secondarywaterwaycrossing seamark_notice_information_secondarywaterwaycrossing
-mycp seamark notice_information_secondarywaterwayright seamark_notice_information_secondarywaterwayright
-mycp seamark notice_information_secondarywaterwayleft seamark_notice_information_secondarywaterwayleft
-mycp seamark notice_information_mainwaterwayleftsecondaryahead seamark_notice_information_mainwaterwayleftsecondaryahead
-mycp seamark notice_information_mainwaterwayrightsecondaryleft seamark_notice_information_mainwaterwayrightsecondaryleft
-mycp seamark notice_information_mainwaterwayleftsecondaryright seamark_notice_information_mainwaterwayleftsecondaryright
-mycp seamark notice_information_mainwaterwayrightsecondaryahead seamark_notice_information_mainwaterwayrightsecondaryahead
-mycp seamark notice_information_mainwaterwayleftsecondaryaheadright seamark_notice_information_mainwaterwayleftsecondaryaheadright
-mycp seamark notice_information_mainwaterwayrightsecondaryaheadleft seamark_notice_information_mainwaterwayrightsecondaryaheadleft
-mycp seamark notice_information_mainwaterwaycrossing seamark_notice_information_mainwaterwaycrossing
-mycp seamark notice_information_mainwaterwayjunction seamark_notice_information_mainwaterwayjunction
-mycp seamark notice_information_mainwaterwayaheadright seamark_notice_information_mainwaterwayaheadright
-mycp seamark notice_information_mainwaterwayaheadleft seamark_notice_information_mainwaterwayaheadleft
-mycp seamark notice_information_mainwaterwayaheadrightsecondaryleft seamark_notice_information_mainwaterwayaheadrightsecondaryleft
-mycp seamark notice_information_mainwaterwayaheadleftsecondaryright seamark_notice_information_mainwaterwayaheadleftsecondaryright
-mycp seamark notice_information_prohibitionends seamark_notice_information_prohibitionends
-mycp seamark notice_information_drinkingwater seamark_notice_information_drinkingwater
-mycp seamark notice_information_telephone seamark_notice_information_telephone
-mycp seamark notice_information_motorcraftpermitted seamark_notice_information_motorcraftpermitted
-mycp seamark notice_information_sportcraftpermitted seamark_notice_information_sportcraftpermitted
-mycp seamark notice_information_waterskiingpermitted seamark_notice_information_waterskiingpermitted
-mycp seamark notice_information_sailingcraftpermitted seamark_notice_information_sailingcraftpermitted
-mycp seamark notice_information_unpoweredcraftpermitted seamark_notice_information_unpoweredcraftpermitted
-mycp seamark notice_information_sailboardspermitted seamark_notice_information_sailboardspermitted
-mycp seamark notice_information_highspeedspermitted seamark_notice_information_highspeedspermitted
-mycp seamark notice_information_launchingbeachingpermitted seamark_notice_information_launchingbeachingpermitted
-mycp seamark notice_information_radioinformation seamark_notice_information_radioinformation
-mycp seamark notice_information_waterbikespermitted seamark_notice_information_waterbikespermitted
+icon_alias seamark_notice_information_bg seamark_notice_information_bg
+icon_alias seamark_notice_information_bg_plus seamark_notice_information_bg_plus
+icon_alias seamark_notice_information_entrypermitted seamark_notice_information_entrypermitted
+icon_alias seamark_notice_information_overheadcable seamark_notice_information_overheadcable
+icon_alias seamark_notice_information_weir seamark_notice_information_weir
+icon_alias seamark_notice_information_ferrynonindependent seamark_notice_information_ferrynonindependent
+icon_alias seamark_notice_information_ferryindependent seamark_notice_information_ferryindependent
+icon_alias seamark_notice_information_berthingpermitted seamark_notice_information_berthingpermitted
+icon_alias seamark_notice_information_berthingunmarkedpushing seamark_notice_information_berthingunmarkedpushing
+icon_alias seamark_notice_information_berthingmarkedpushing1 seamark_notice_information_berthingmarkedpushing1
+icon_alias seamark_notice_information_berthingmarkedpushing2 seamark_notice_information_berthingmarkedpushing2
+icon_alias seamark_notice_information_berthingmarkedpushing3 seamark_notice_information_berthingmarkedpushing3
+icon_alias seamark_notice_information_berthingunmarkednonpushing seamark_notice_information_berthingunmarkednonpushing
+icon_alias seamark_notice_information_berthingmarkednonpushing1 seamark_notice_information_berthingmarkednonpushing1
+icon_alias seamark_notice_information_berthingmarkednonpushing2 seamark_notice_information_berthingmarkednonpushing2
+icon_alias seamark_notice_information_berthingmarkednonpushing3 seamark_notice_information_berthingmarkednonpushing3
+icon_alias seamark_notice_information_berthingunmarked seamark_notice_information_berthingunmarked
+icon_alias seamark_notice_information_berthingmarked1 seamark_notice_information_berthingmarked1
+icon_alias seamark_notice_information_berthingmarked2 seamark_notice_information_berthingmarked2
+icon_alias seamark_notice_information_berthingmarked3 seamark_notice_information_berthingmarked3
+icon_alias seamark_notice_information_anchoringpermitted seamark_notice_information_anchoringpermitted
+icon_alias seamark_notice_information_mooringpermitted seamark_notice_information_mooringpermitted
+icon_alias seamark_notice_information_vehicleloadingberth seamark_notice_information_vehicleloadingberth
+icon_alias seamark_notice_information_turningarea seamark_notice_information_turningarea
+icon_alias seamark_notice_information_secondarywaterwaycrossing seamark_notice_information_secondarywaterwaycrossing
+icon_alias seamark_notice_information_secondarywaterwayright seamark_notice_information_secondarywaterwayright
+icon_alias seamark_notice_information_secondarywaterwayleft seamark_notice_information_secondarywaterwayleft
+icon_alias seamark_notice_information_mainwaterwayleftsecondaryahead seamark_notice_information_mainwaterwayleftsecondaryahead
+icon_alias seamark_notice_information_mainwaterwayrightsecondaryleft seamark_notice_information_mainwaterwayrightsecondaryleft
+icon_alias seamark_notice_information_mainwaterwayleftsecondaryright seamark_notice_information_mainwaterwayleftsecondaryright
+icon_alias seamark_notice_information_mainwaterwayrightsecondaryahead seamark_notice_information_mainwaterwayrightsecondaryahead
+icon_alias seamark_notice_information_mainwaterwayleftsecondaryaheadright seamark_notice_information_mainwaterwayleftsecondaryaheadright
+icon_alias seamark_notice_information_mainwaterwayrightsecondaryaheadleft seamark_notice_information_mainwaterwayrightsecondaryaheadleft
+icon_alias seamark_notice_information_mainwaterwaycrossing seamark_notice_information_mainwaterwaycrossing
+icon_alias seamark_notice_information_mainwaterwayjunction seamark_notice_information_mainwaterwayjunction
+icon_alias seamark_notice_information_mainwaterwayaheadright seamark_notice_information_mainwaterwayaheadright
+icon_alias seamark_notice_information_mainwaterwayaheadleft seamark_notice_information_mainwaterwayaheadleft
+icon_alias seamark_notice_information_mainwaterwayaheadrightsecondaryleft seamark_notice_information_mainwaterwayaheadrightsecondaryleft
+icon_alias seamark_notice_information_mainwaterwayaheadleftsecondaryright seamark_notice_information_mainwaterwayaheadleftsecondaryright
+icon_alias seamark_notice_information_prohibitionends seamark_notice_information_prohibitionends
+icon_alias seamark_notice_information_drinkingwater seamark_notice_information_drinkingwater
+icon_alias seamark_notice_information_telephone seamark_notice_information_telephone
+icon_alias seamark_notice_information_motorcraftpermitted seamark_notice_information_motorcraftpermitted
+icon_alias seamark_notice_information_sportcraftpermitted seamark_notice_information_sportcraftpermitted
+icon_alias seamark_notice_information_waterskiingpermitted seamark_notice_information_waterskiingpermitted
+icon_alias seamark_notice_information_sailingcraftpermitted seamark_notice_information_sailingcraftpermitted
+icon_alias seamark_notice_information_unpoweredcraftpermitted seamark_notice_information_unpoweredcraftpermitted
+icon_alias seamark_notice_information_sailboardspermitted seamark_notice_information_sailboardspermitted
+icon_alias seamark_notice_information_highspeedspermitted seamark_notice_information_highspeedspermitted
+icon_alias seamark_notice_information_launchingbeachingpermitted seamark_notice_information_launchingbeachingpermitted
+icon_alias seamark_notice_information_radioinformation seamark_notice_information_radioinformation
+icon_alias seamark_notice_information_waterbikespermitted seamark_notice_information_waterbikespermitted
 
-mycp seamark notice_addition_leftboard seamark_notice_addition_leftboard
-mycp seamark notice_addition_lefttriangle seamark_notice_addition_lefttriangle
-mycp seamark notice_addition_topboard seamark_notice_addition_topboard
-mycp seamark notice_addition_toptriangle seamark_notice_addition_toptriangle
-mycp seamark notice_addition_rightboard seamark_notice_addition_rightboard
-mycp seamark notice_addition_righttriangle seamark_notice_addition_righttriangle
-mycp seamark notice_addition_bottomboard seamark_notice_addition_bottomboard
-mycp seamark notice_addition_bottomtriangle seamark_notice_addition_bottomtriangle
+icon_alias seamark_notice_addition_leftboard seamark_notice_addition_leftboard
+icon_alias seamark_notice_addition_lefttriangle seamark_notice_addition_lefttriangle
+icon_alias seamark_notice_addition_topboard seamark_notice_addition_topboard
+icon_alias seamark_notice_addition_toptriangle seamark_notice_addition_toptriangle
+icon_alias seamark_notice_addition_rightboard seamark_notice_addition_rightboard
+icon_alias seamark_notice_addition_righttriangle seamark_notice_addition_righttriangle
+icon_alias seamark_notice_addition_bottomboard seamark_notice_addition_bottomboard
+icon_alias seamark_notice_addition_bottomtriangle seamark_notice_addition_bottomtriangle
 
-mycp seamark notice_impact_banktobank seamark_notice_impact_banktobank
-mycp seamark notice_impact_downstream seamark_notice_impact_downstream
-mycp seamark notice_impact_leftbank seamark_notice_impact_leftbank
-mycp seamark notice_impact_rightbank seamark_notice_impact_rightbank
-mycp seamark notice_impact_upstream seamark_notice_impact_upstream
-mycp seamark notice_impact_upstreamdownstream seamark_notice_impact_upstreamdownstream
-mycp seamark notice_impact_upstreamdownstreamleftbank seamark_notice_impact_upstreamdownstreamleftbank
-mycp seamark notice_impact_upstreamdownstreamrightbank seamark_notice_impact_upstreamdownstreamrightbank
-mycp seamark notice_impact_downstreamleftbank seamark_notice_impact_downstreamleftbank
+icon_alias seamark_notice_impact_banktobank seamark_notice_impact_banktobank
+icon_alias seamark_notice_impact_downstream seamark_notice_impact_downstream
+icon_alias seamark_notice_impact_leftbank seamark_notice_impact_leftbank
+icon_alias seamark_notice_impact_rightbank seamark_notice_impact_rightbank
+icon_alias seamark_notice_impact_upstream seamark_notice_impact_upstream
+icon_alias seamark_notice_impact_upstreamdownstream seamark_notice_impact_upstreamdownstream
+icon_alias seamark_notice_impact_upstreamdownstreamleftbank seamark_notice_impact_upstreamdownstreamleftbank
+icon_alias seamark_notice_impact_upstreamdownstreamrightbank seamark_notice_impact_upstreamdownstreamrightbank
+icon_alias seamark_notice_impact_downstreamleftbank seamark_notice_impact_downstreamleftbank
 
-mycp seamark notice_orientation_0 seamark_notice_orientation_0
-mycp seamark notice_orientation_45 seamark_notice_orientation_45
-mycp seamark notice_orientation_90 seamark_notice_orientation_90
-mycp seamark notice_orientation_135 seamark_notice_orientation_135
-mycp seamark notice_orientation_180 seamark_notice_orientation_180
-mycp seamark notice_orientation_225 seamark_notice_orientation_225
-mycp seamark notice_orientation_270 seamark_notice_orientation_270
-mycp seamark notice_orientation_315 seamark_notice_orientation_315
+icon_alias seamark_notice_orientation_0 seamark_notice_orientation_0
+icon_alias seamark_notice_orientation_45 seamark_notice_orientation_45
+icon_alias seamark_notice_orientation_90 seamark_notice_orientation_90
+icon_alias seamark_notice_orientation_135 seamark_notice_orientation_135
+icon_alias seamark_notice_orientation_180 seamark_notice_orientation_180
+icon_alias seamark_notice_orientation_225 seamark_notice_orientation_225
+icon_alias seamark_notice_orientation_270 seamark_notice_orientation_270
+icon_alias seamark_notice_orientation_315 seamark_notice_orientation_315
 
-mycp seamark mooring_bollard seamark_mooring_bollard
-mycp seamark mooring_deviationdolphin seamark_mooring_deviationdolphin
-mycp seamark mooring_dolphin seamark_mooring_dolphin
-mycp seamark mooring_pile seamark_mooring_pile
-mycp seamark mooring_pylon seamark_mooring_pylon
-mycp seamark mooring_wall seamark_mooring_wall
-mycp seamark mooring_additional_for_buoy seamark_mooring_additional_for_buoy
+icon_alias seamark_mooring_bollard seamark_mooring_bollard
+icon_alias seamark_mooring_deviationdolphin seamark_mooring_deviationdolphin
+icon_alias seamark_mooring_dolphin seamark_mooring_dolphin
+icon_alias seamark_mooring_pile seamark_mooring_pile
+icon_alias seamark_mooring_pylon seamark_mooring_pylon
+icon_alias seamark_mooring_wall seamark_mooring_wall
+icon_alias seamark_mooring_additional_for_buoy seamark_mooring_additional_for_buoy
 
-mycp seamark small_craft_facility_boat_hoist seamark_big_small_craft_facility_boat_hoist
-mycp seamark small_craft_facility_boatyard seamark_big_small_craft_facility_boatyard
-mycp seamark small_craft_facility_chandler seamark_big_small_craft_facility_chandler
-mycp seamark small_craft_facility_electricity seamark_big_small_craft_facility_electricity
-mycp seamark small_craft_facility_fuel_station seamark_big_small_craft_facility_fuel_station
-mycp seamark small_craft_facility_laundrette seamark_big_small_craft_facility_laundrette
-mycp seamark small_craft_facility_nautical_club seamark_big_small_craft_facility_nautical_club
-mycp seamark small_craft_facility_public_inn seamark_big_small_craft_facility_public_inn
-mycp seamark small_craft_facility_pump_out seamark_big_small_craft_facility_pump_out
-mycp seamark small_craft_facility_pump_out2 seamark_big_small_craft_facility_pump_out2
-mycp seamark small_craft_facility_restaurant seamark_big_small_craft_facility_restaurant
-mycp seamark small_craft_facility_showers seamark_big_small_craft_facility_showers
-mycp seamark small_craft_facility_slipway seamark_big_small_craft_facility_slipway
-mycp seamark small_craft_facility_toilets seamark_big_small_craft_facility_toilets
-mycp seamark small_craft_facility_toilets2 seamark_big_small_craft_facility_toilets2
-mycp seamark small_craft_facility_visitor_berth seamark_big_small_craft_facility_visitor_berth
-mycp seamark small_craft_facility_visitors_mooring seamark_big_small_craft_facility_visitors_mooring
-mycp seamark small_craft_facility_water_tap seamark_big_small_craft_facility_water_tap
-mycp seamark small_craft_facility_shield2 seamark_big_small_craft_facility_shield2
+icon_alias seamark_small_craft_facility_boat_hoist seamark_big_small_craft_facility_boat_hoist
+icon_alias seamark_small_craft_facility_boatyard seamark_big_small_craft_facility_boatyard
+icon_alias seamark_small_craft_facility_chandler seamark_big_small_craft_facility_chandler
+icon_alias seamark_small_craft_facility_electricity seamark_big_small_craft_facility_electricity
+icon_alias seamark_small_craft_facility_fuel_station seamark_big_small_craft_facility_fuel_station
+icon_alias seamark_small_craft_facility_laundrette seamark_big_small_craft_facility_laundrette
+icon_alias seamark_small_craft_facility_nautical_club seamark_big_small_craft_facility_nautical_club
+icon_alias seamark_small_craft_facility_public_inn seamark_big_small_craft_facility_public_inn
+icon_alias seamark_small_craft_facility_pump_out seamark_big_small_craft_facility_pump_out
+icon_alias seamark_small_craft_facility_pump_out2 seamark_big_small_craft_facility_pump_out2
+icon_alias seamark_small_craft_facility_restaurant seamark_big_small_craft_facility_restaurant
+icon_alias seamark_small_craft_facility_showers seamark_big_small_craft_facility_showers
+icon_alias seamark_small_craft_facility_slipway seamark_big_small_craft_facility_slipway
+icon_alias seamark_small_craft_facility_toilets seamark_big_small_craft_facility_toilets
+icon_alias seamark_small_craft_facility_toilets2 seamark_big_small_craft_facility_toilets2
+icon_alias seamark_small_craft_facility_visitor_berth seamark_big_small_craft_facility_visitor_berth
+icon_alias seamark_small_craft_facility_visitors_mooring seamark_big_small_craft_facility_visitors_mooring
+icon_alias seamark_small_craft_facility_water_tap seamark_big_small_craft_facility_water_tap
+icon_alias seamark_small_craft_facility_shield2 seamark_big_small_craft_facility_shield2
 
-mycp seamark restricted_area_kite_surfing seamark_small_restricted_area_kite_surfing
-mycp seamark restricted_area_swimming seamark_small_restricted_area_swimming
-mycp seamark restricted_area_fish_sanctuary seamark_small_restricted_area_fish_sanctuary
-mycp seamark restricted_area_water_skiing seamark_small_restricted_area_water_skiing
-mycp seamark restriction_fishing seamark_restriction_fishing
-mycp seamark restriction_drilling seamark_restriction_drilling
-mycp seamark restriction_to_be_avoided seamark_restriction_to_be_avoided
-mycp seamark restriction_discharging seamark_restriction_discharging
-mycp seamark restriction_exploration_development seamark_restriction_exploration_development
+icon_alias seamark_restricted_area_kite_surfing seamark_small_restricted_area_kite_surfing
+icon_alias seamark_restricted_area_swimming seamark_small_restricted_area_swimming
+icon_alias seamark_restricted_area_fish_sanctuary seamark_small_restricted_area_fish_sanctuary
+icon_alias seamark_restricted_area_water_skiing seamark_small_restricted_area_water_skiing
+icon_alias seamark_restriction_fishing seamark_restriction_fishing
+icon_alias seamark_restriction_drilling seamark_restriction_drilling
+icon_alias seamark_restriction_to_be_avoided seamark_restriction_to_be_avoided
+icon_alias seamark_restriction_discharging seamark_restriction_discharging
+icon_alias seamark_restriction_exploration_development seamark_restriction_exploration_development
 
-mycp seamark obstruction_foul_ground seamark_small_obstruction_foul_ground
-mycp seamark obstruction_boom seamark_small_obstruction_boom
-mycp seamark obstruction_construction seamark_small_obstruction_construction
+icon_alias seamark_obstruction_foul_ground seamark_small_obstruction_foul_ground
+icon_alias seamark_obstruction_boom seamark_small_obstruction_boom
+icon_alias seamark_obstruction_construction seamark_small_obstruction_construction
 
-mycp seamark distance_mark seamark_small_distance_mark
-mycp seamark distance_mark_installed seamark_small_distance_mark_installed
+icon_alias seamark_distance_mark seamark_small_distance_mark
+icon_alias seamark_distance_mark_installed seamark_small_distance_mark_installed
 
-mycp seamark fishing_facility seamark_fishing_facility
+icon_alias seamark_fishing_facility seamark_fishing_facility
 
-mycp seamark marine_farm seamark_marine_farm
-mycp seamark marine_farm_crustaceans_additional seamark_marine_farm_crustaceans_additional
-mycp seamark marine_farm_fish_additional seamark_marine_farm_fish_additional
-mycp seamark marine_farm_oysters_mussels_additional seamark_marine_farm_oysters_mussels_additional
-mycp seamark marine_farm_seaweed_additional seamark_marine_farm_seaweed_additional
+icon_alias seamark_marine_farm seamark_marine_farm
+icon_alias seamark_marine_farm_crustaceans_additional seamark_marine_farm_crustaceans_additional
+icon_alias seamark_marine_farm_fish_additional seamark_marine_farm_fish_additional
+icon_alias seamark_marine_farm_oysters_mussels_additional seamark_marine_farm_oysters_mussels_additional
+icon_alias seamark_marine_farm_seaweed_additional seamark_marine_farm_seaweed_additional
 
-mycp seamark pilot_boarding seamark_pilot_boarding
-mycp seamark pylon seamark_pylon
-mycp seamark pylon_power seamark_pylon_power
-mycp seamark radar_reflector seamark_radar_reflector
-mycp seamark waterfall seamark_waterfall
-mycp seamark rescue_station seamark_rescue_station
-mycp seamark seaplane_landing_area seamark_small_seaplane_landing_area
+icon_alias seamark_pilot_boarding seamark_pilot_boarding
+icon_alias seamark_pylon seamark_pylon
+icon_alias seamark_pylon_power seamark_pylon_power
+icon_alias seamark_radar_reflector seamark_radar_reflector
+icon_alias seamark_waterfall seamark_waterfall
+icon_alias seamark_rescue_station seamark_rescue_station
+icon_alias seamark_seaplane_landing_area seamark_small_seaplane_landing_area
 
-mycp seamark rock_awash seamark_rock_awash
-mycp seamark rock_covers seamark_rock_covers
-mycp seamark rock_submerged seamark_rock_submerged
+icon_alias seamark_rock_awash seamark_rock_awash
+icon_alias seamark_rock_covers seamark_rock_covers
+icon_alias seamark_rock_submerged seamark_rock_submerged
 
-mycp seamark waterway_gauge seamark_waterway_gauge
+icon_alias seamark_waterway_gauge seamark_waterway_gauge
 
-mycp seamark wreck seamark_wreck
-mycp seamark wreck_hull_showing seamark_wreck_hull_showing
+icon_alias seamark_wreck seamark_wreck
+icon_alias seamark_wreck_hull_showing seamark_wreck_hull_showing
 
-mycp seamark power_line seamark_small_power_line
-mycp seamark submarine_cable seamark_small_submarine_cable
+icon_alias seamark_power_line seamark_small_power_line
+icon_alias seamark_submarine_cable seamark_small_submarine_cable
 
 icon_alias seamark_obstruction_stump seamark_obstruction_stump
 
 ## Skimap
-mycp skimap overlay_advanced skimap_overlay_advanced
-mycp skimap overlay_easy skimap_overlay_easy
-mycp skimap overlay_expert skimap_overlay_expert
-mycp skimap overlay_extreme skimap_overlay_extreme
-mycp skimap overlay_freeride skimap_overlay_freeride
-mycp skimap overlay_intermediate skimap_overlay_intermediate
-mycp skimap overlay_novice skimap_overlay_novice
+icon_alias skimap_overlay_advanced skimap_overlay_advanced
+icon_alias skimap_overlay_easy skimap_overlay_easy
+icon_alias skimap_overlay_expert skimap_overlay_expert
+icon_alias skimap_overlay_extreme skimap_overlay_extreme
+icon_alias skimap_overlay_freeride skimap_overlay_freeride
+icon_alias skimap_overlay_intermediate skimap_overlay_intermediate
+icon_alias skimap_overlay_novice skimap_overlay_novice
 icon_alias piste skimap_piste
-mycp piste downhill skimap_piste_downhill
-mycp piste hike skimap_piste_hike
-mycp piste nordic skimap_piste_nordic
-mycp piste nordic_black skimap_piste_nordic_black
-mycp piste nordic_blue skimap_piste_nordic_blue
-mycp piste nordic_brown skimap_piste_nordic_brown
-mycp piste nordic_darkyellow skimap_piste_nordic_darkyellow
-mycp piste nordic_gray skimap_piste_nordic_gray
-mycp piste nordic_green skimap_piste_nordic_green
-mycp piste nordic_lightblue skimap_piste_nordic_lightblue
-mycp piste nordic_lightgreen skimap_piste_nordic_lightgreen
-mycp piste nordic_orange skimap_piste_nordic_orange
-mycp piste nordic_purple skimap_piste_nordic_purple
-mycp piste nordic_red skimap_piste_nordic_red
-mycp piste nordic_yellow skimap_piste_nordic_yellow
-mycp piste skitour skimap_piste_skitour
-mycp piste sled skimap_piste_sled
-mycp skimap gray_black_round_shield skimap_gray_black_round_shield
-mycp skimap white_black_round_shield skimap_white_black_round_shield
+icon_alias piste_downhill skimap_piste_downhill
+icon_alias piste_hike skimap_piste_hike
+icon_alias piste_nordic skimap_piste_nordic
+icon_alias piste_nordic_black skimap_piste_nordic_black
+icon_alias piste_nordic_blue skimap_piste_nordic_blue
+icon_alias piste_nordic_brown skimap_piste_nordic_brown
+icon_alias piste_nordic_darkyellow skimap_piste_nordic_darkyellow
+icon_alias piste_nordic_gray skimap_piste_nordic_gray
+icon_alias piste_nordic_green skimap_piste_nordic_green
+icon_alias piste_nordic_lightblue skimap_piste_nordic_lightblue
+icon_alias piste_nordic_lightgreen skimap_piste_nordic_lightgreen
+icon_alias piste_nordic_orange skimap_piste_nordic_orange
+icon_alias piste_nordic_purple skimap_piste_nordic_purple
+icon_alias piste_nordic_red skimap_piste_nordic_red
+icon_alias piste_nordic_yellow skimap_piste_nordic_yellow
+icon_alias piste_skitour skimap_piste_skitour
+icon_alias piste_sled skimap_piste_sled
+icon_alias skimap_gray_black_round_shield skimap_gray_black_round_shield
+icon_alias skimap_white_black_round_shield skimap_white_black_round_shield
 
 ## Shops
 icon_alias car_aid shopping_car
 icon_alias food_shop shopping_convenience
 icon_alias shop shopping_department_store
 icon_alias shop_food shopping_convenience
-mycp amenity marketplace shopping_marketplace
-mycp amenity vending_machine shopping_vending_machine
-mycp shop alcohol shopping_alcohol
-mycp shop baby_goods shopping_baby
-mycp shop bakery shopping_bakery
-mycp shop bicycle shopping_bicycle
+icon_alias amenity_marketplace shopping_marketplace
+icon_alias amenity_vending_machine shopping_vending_machine
+icon_alias shop_alcohol shopping_alcohol
+icon_alias shop_baby_goods shopping_baby
+icon_alias shop_bakery shopping_bakery
+icon_alias shop_bicycle shopping_bicycle
 icon_alias beverages shopping_beverages
-mycp shop books shopping_book2
-mycp shop boutique shopping_clothes
-mycp shop butcher shopping_butcher2
-mycp shop car_parts shopping_car_parts
-mycp shop car_repair shopping_car_repair
-mycp shop car shopping_car
-mycp shop clothes shopping_clothes
-mycp clothes children shopping_clothes_children
-mycp shop computer shopping_computer
-mycp shop confectionery shopping_confectionery
-mycp shop convenience shopping_convenience
-mycp shop copyshop shopping_copyshop
-mycp shop dairy shopping_dairy
-mycp shop department_store shopping_department_store
-mycp shop doityourself shopping_diy
+icon_alias shop_books shopping_book2
+icon_alias shop_boutique shopping_clothes
+icon_alias shop_butcher shopping_butcher2
+icon_alias shop_car_parts shopping_car_parts
+icon_alias shop_car_repair shopping_car_repair
+icon_alias shop_car shopping_car
+icon_alias shop_clothes shopping_clothes
+icon_alias clothes_children shopping_clothes_children
+icon_alias shop_computer shopping_computer
+icon_alias shop_confectionery shopping_confectionery
+icon_alias shop_convenience shopping_convenience
+icon_alias shop_copyshop shopping_copyshop
+icon_alias shop_dairy shopping_dairy
+icon_alias shop_department_store shopping_department_store
+icon_alias shop_doityourself shopping_diy
 icon_alias electronics shopping_electronics
 icon_alias hifi shopping_hifi
-mycp shop fashion shopping_clothes
-mycp shop fishing shopping_tackle
-mycp shop florist shopping_florist
+icon_alias shop_fashion shopping_clothes
+icon_alias shop_fishing shopping_tackle
+icon_alias shop_florist shopping_florist
 icon_alias flooring shopping_flooring
-mycp shop furniture shopping_furniture
-mycp shop garden_centre shopping_garden_centre
+icon_alias shop_furniture shopping_furniture
+icon_alias shop_garden_centre shopping_garden_centre
 icon_alias shop_yes shopping_general
-mycp shop gift shopping_gift
-mycp shop greengrocer shopping_greengrocer
-mycp shop hairdresser shopping_hairdresser
-mycp shop hardware shopping_diy
-mycp shop hearing_aids shopping_hearing_aids
+icon_alias shop_gift shopping_gift
+icon_alias shop_greengrocer shopping_greengrocer
+icon_alias shop_hairdresser shopping_hairdresser
+icon_alias shop_hardware shopping_diy
+icon_alias shop_hearing_aids shopping_hearing_aids
 icon_alias ice_cream food_ice_cream
-mycp shop jewelry shopping_jewelry2
-mycp shop kiosk shopping_kiosk
-mycp shop laundry shopping_laundrette
-mycp shop mall shopping_mall
-mycp shop mobile_phone shopping_mobile_phone
-mycp shop motorcycle shopping_motorcycle
+icon_alias shop_jewelry shopping_jewelry2
+icon_alias shop_kiosk shopping_kiosk
+icon_alias shop_laundry shopping_laundrette
+icon_alias shop_mall shopping_mall
+icon_alias shop_mobile_phone shopping_mobile_phone
+icon_alias shop_motorcycle shopping_motorcycle
 icon_alias motorcycle_repair shopping_motorcycle_repair
-mycp shop musical_instrument shopping_musical_instrument
-mycp shop optician shopping_opticians
-mycp shop pet shopping_pet2
+icon_alias shop_musical_instrument shopping_musical_instrument
+icon_alias shop_optician shopping_opticians
+icon_alias shop_pet shopping_pet2
 icon_alias photo shopping_photo
-mycp shop seafood shopping_fish
-mycp shop shoes shopping_shoes
-mycp shop sports shopping_sports
-mycp shop supermarket shopping_supermarket
-mycp shop ticket shopping_ticket
-mycp shop tobacco shopping_tobacco
-mycp shop toys shopping_toys
-mycp shop video shopping_video_rental
+icon_alias shop_seafood shopping_fish
+icon_alias shop_shoes shopping_shoes
+icon_alias shop_sports shopping_sports
+icon_alias shop_supermarket shopping_supermarket
+icon_alias shop_ticket shopping_ticket
+icon_alias shop_tobacco shopping_tobacco
+icon_alias shop_toys shopping_toys
+icon_alias shop_video shopping_video_rental
 icon_alias wine shopping_wine
 icon_alias outdoor shopping_outdoor
 icon_alias tyres shopping_tyres
@@ -1924,7 +1925,7 @@ icon_alias insurance office_insurance
 icon_alias research office_research
 icon_alias travel_agent office_travel_agent
 icon_alias it office_it
-mycp office government office_government
+icon_alias office_government office_government
 icon_alias company office_company
 icon_alias advertising_agency office_advertising_agency
 icon_alias employment_agency office_employment_agency
@@ -1985,20 +1986,20 @@ icon_alias user_defined_other icons8_user
 icon_alias osmwiki icons8_wikipedia
 icon_alias wiki_place poi_colored_wikipedia2
 icon_alias name_finder icons8_web_search
-mycp osmand waypoint functional-icons_waypoint
-mycp osmand fav functional-icons_fav
+icon_alias osmand_waypoint functional-icons_waypoint
+icon_alias osmand_fav functional-icons_fav
 icon_alias null icons8_worldwide_location
 
-mycp stub amenity functional-icons_stub_amenity
-mycp stub club functional-icons_stub_club
-mycp stub craft functional-icons_stub_craft
-mycp stub emergency functional-icons_stub_emergency
-mycp stub healthcare functional-icons_stub_healthcare
-mycp stub historic functional-icons_stub_historic
-mycp stub office functional-icons_stub_office
-mycp stub man_made functional-icons_stub_man_made
-mycp stub shop functional-icons_stub_shop
-mycp stub tourism functional-icons_stub_tourism
+icon_alias stub_amenity functional-icons_stub_amenity
+icon_alias stub_club functional-icons_stub_club
+icon_alias stub_craft functional-icons_stub_craft
+icon_alias stub_emergency functional-icons_stub_emergency
+icon_alias stub_healthcare functional-icons_stub_healthcare
+icon_alias stub_historic functional-icons_stub_historic
+icon_alias stub_office functional-icons_stub_office
+icon_alias stub_man_made functional-icons_stub_man_made
+icon_alias stub_shop functional-icons_stub_shop
+icon_alias stub_tourism functional-icons_stub_tourism
 
 #OSMC
 icon_alias osmc_black_arch osmc_black_osmc_black_arch
