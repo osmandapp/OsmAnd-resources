@@ -2451,3 +2451,4 @@ icon special_trekking
 icon special_truck
 icon special_utv
 icon special_wagon
+icon custom_category
