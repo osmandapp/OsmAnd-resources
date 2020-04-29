@@ -21,6 +21,8 @@ VDFOLDERSVG=${BASEFOLDER}/vd/svg/
 mkdir -p ${OUTPUTFOLDER}
 mkdir -p ${VDFOLDERSVG}
 mkdir -p ${VDFOLDER}
+mkdir -p ${VDFOLDER}/map
+mkdir -p ${VDFOLDER}/poi
 
 for (( i = 0 ; i < ${#FOLDERS_NOMX[@]} ; i++ )) do
   mkdir -p ${OUTPUTFOLDER}/${FOLDERS_NOMX[i]}
@@ -70,7 +72,7 @@ genMapIconsStdSize() {
     STROKE_COLOR="$PCOLOR"
     BG_COLOR="#ffffff"
   fi 
-
+  VDFOLDEROUT=${VDFOLDER}/map
   if [ "$3" == 'x4' ]; then 
     SIZES=("${SIZES_NOMX4[@]}")
   elif [ "$3" == 'x2' ]; then 
@@ -78,6 +80,7 @@ genMapIconsStdSize() {
   elif [ "$3" == 'poi' ]; then 
     SIZES=("${SIZES_POI[@]}")
     FOLDERS=("${FOLDERS_POI[@]}")
+    VDFOLDEROUT=${VDFOLDER}/poi
   else
     SIZES=("${SIZES_NOMX[@]}")
   fi
@@ -100,7 +103,7 @@ genMapIconsStdSize() {
         recolour "${FILE}" "$FILL_COLOR" "$STROKE_COLOR" "$BG_COLOR" | rsvg-convert -f png -w ${SZ} -h ${SZ} /dev/stdin -o ${RES_FILE} #> /dev/null 2>&1
       done
   done
-  ${BASEFOLDER}/tools/SVGtoXML/vd-tool/bin/vd-tool -c -in ${VDFOLDERSVG} -out ${VDFOLDER} -widthDp ${SIZES[3]} -heightDp ${SIZES[3]}  
+  ${BASEFOLDER}/tools/SVGtoXML/vd-tool/bin/vd-tool -c -in ${VDFOLDERSVG} -out ${VDFOLDEROUT} -widthDp ${SIZES[3]} -heightDp ${SIZES[3]}  
 }
 
 recolour() {

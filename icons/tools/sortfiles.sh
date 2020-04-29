@@ -1,19 +1,21 @@
 #!/bin/bash
+STYLE_ICONS_FOLDER=$STYLE_ICONS_FOLDER/map-icons-png
 icon_alias() {
 	# $1 icon target name in app
 	# $2 generated icon name from svg
  	echo "${2}.png   style-icons/mm_${1}.png"
- 	cp ../png/mdpi/${2}.png ../../rendering_styles/style-icons/drawable-mdpi/mm_${1}.png
- 	cp ../png/hdpi/${2}.png ../../rendering_styles/style-icons/drawable-hdpi/mm_${1}.png
- 	cp ../png/xhdpi/${2}.png ../../rendering_styles/style-icons/drawable-xhdpi/mm_${1}.png
- 	cp ../png/xxhdpi/${2}.png ../../rendering_styles/style-icons/drawable-xxhdpi/mm_${1}.png
-	cp ../png/xxhdpi/${2}.png ../../rendering_styles/style-icons/drawable-xxhdpi/mm_${1}.png
+ 	cp ../png/mdpi/${2}.png $STYLE_ICONS_FOLDER/map-icons-png/drawable-mdpi/mm_${1}.png
+ 	cp ../png/hdpi/${2}.png $STYLE_ICONS_FOLDER/map-icons-png/drawable-hdpi/mm_${1}.png
+ 	cp ../png/xhdpi/${2}.png $STYLE_ICONS_FOLDER/map-icons-png/drawable-xhdpi/mm_${1}.png
+ 	cp ../png/xxhdpi/${2}.png $STYLE_ICONS_FOLDER/map-icons-png/drawable-xxhdpi/mm_${1}.png
+	cp ../png/xxhdpi/${2}.png $STYLE_ICONS_FOLDER/map-icons-png/drawable-xxhdpi/mm_${1}.png
+	cp ../vd/map/${2}.xml $STYLE_ICONS_FOLDER/map-icons-vector/drawable-xxhdpi/mm_${1}.xml
 	if [ -z "$3" ]; then
-		cp ../vd/${2}.xml ../../rendering_styles/drawable-mx/mx_${1}.xml
- 		cp ../png/big-mdpi/${2}.png ../../rendering_styles/mx-png-icons/drawable-mdpi/mx_${1}.png
- 		cp ../png/big-hdpi/${2}.png ../../rendering_styles/mx-png-icons/drawable-hdpi/mx_${1}.png
- 		cp ../png/big-xhdpi/${2}.png ../../rendering_styles/mx-png-icons/drawable-xhdpi/mx_${1}.png
- 		cp ../png/big-xxhdpi/${2}.png ../../rendering_styles/mx-png-icons/drawable-xxhdpi/mx_${1}.png
+		cp ../vd/poi/${2}.xml $STYLE_ICONS_FOLDER/poi-icons-vector/mx_${1}.xml
+ 		cp ../png/big-mdpi/${2}.png $STYLE_ICONS_FOLDER/poi-icons-png/drawable-mdpi/mx_${1}.png
+ 		cp ../png/big-hdpi/${2}.png $STYLE_ICONS_FOLDER/poi-icons-png/drawable-hdpi/mx_${1}.png
+ 		cp ../png/big-xhdpi/${2}.png $STYLE_ICONS_FOLDER/poi-icons-png/drawable-xhdpi/mx_${1}.png
+ 		cp ../png/big-xxhdpi/${2}.png $STYLE_ICONS_FOLDER/poi-icons-png/drawable-xxhdpi/mx_${1}.png
 	fi
 }
 
@@ -28,15 +30,15 @@ icon() {
 
 
 ## Shaders ! # copy all shaders untouched
-cp ../png/mdpi/h_* ../../rendering_styles/style-icons/drawable-mdpi/
-cp ../png/hdpi/h_* ../../rendering_styles/style-icons/drawable-hdpi/
-cp ../png/xhdpi/h_* ../../rendering_styles/style-icons/drawable-xhdpi/
-cp ../png/xxhdpi/h_* ../../rendering_styles/style-icons/drawable-xxhdpi/
+cp ../png/mdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-mdpi/
+cp ../png/hdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-hdpi/
+cp ../png/xhdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-xhdpi/
+cp ../png/xxhdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-xxhdpi/
 
-cp ../no-svg/drawable-mdpi/* ../../rendering_styles/style-icons/drawable-mdpi/
-cp ../no-svg/drawable-hdpi/* ../../rendering_styles/style-icons/drawable-hdpi/
-cp ../no-svg/drawable-xhdpi/* ../../rendering_styles/style-icons/drawable-xhdpi/
-cp ../no-svg/drawable-xxhdpi/* ../../rendering_styles/style-icons/drawable-xxhdpi/
+cp ../no-svg/drawable-mdpi/* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-mdpi/
+cp ../no-svg/drawable-hdpi/* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-hdpi/
+cp ../no-svg/drawable-xhdpi/* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-xhdpi/
+cp ../no-svg/drawable-xxhdpi/* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-xxhdpi/
 
 icon_alias landuse landuse_coniferous
 icon_alias grass landuse_grass
