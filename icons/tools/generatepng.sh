@@ -63,7 +63,6 @@ genMapIconsNoScale() {
 }
 
 genMapIconsStdSize() {
-  return 0;
   TYPE=$1
   PCOLOR=$2 # color for map icons(mm_*)
   FOLDERS=("${FOLDERS_NOMX[@]}")
