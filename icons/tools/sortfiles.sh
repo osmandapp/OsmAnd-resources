@@ -9,7 +9,7 @@ icon_alias() {
  	cp ../png/xhdpi/${2}.png $STYLE_ICONS_FOLDER/map-icons-png/drawable-xhdpi/mm_${1}.png
  	cp ../png/xxhdpi/${2}.png $STYLE_ICONS_FOLDER/map-icons-png/drawable-xxhdpi/mm_${1}.png
 	cp ../png/xxhdpi/${2}.png $STYLE_ICONS_FOLDER/map-icons-png/drawable-xxhdpi/mm_${1}.png
-	cp ../vd/map/${2}.xml $STYLE_ICONS_FOLDER/map-icons-vector/drawable-xxhdpi/mm_${1}.xml
+	cp ../vd/map/${2}.xml $STYLE_ICONS_FOLDER/map-icons-vector/mm_${1}.xml
 	if [ -z "$3" ]; then
 		cp ../vd/poi/${2}.xml $STYLE_ICONS_FOLDER/poi-icons-vector/mx_${1}.xml
  		cp ../png/big-mdpi/${2}.png $STYLE_ICONS_FOLDER/poi-icons-png/drawable-mdpi/mx_${1}.png
