@@ -45,21 +45,25 @@ genMapIconsNoScale() {
     XXHDPI=1.5
   fi
   echo $TYPE
+  VDFOLDEROUT=${VDFOLDER}/shaders
+  rm -f ${VDFOLDERSVG}/* || true
   for FILE in $SVGFOLDER$1/*.svg; do
       FILENAME=${FILE##/*/}
       if [[ $FILENAME == _* ]] || [[ $FILENAME == "*.svg" ]]; then
         continue;
       fi
       FILENAME=${FILENAME%.*}
-      
+      cp ${FILE} ${VDFOLDERSVG}/${FILENAME}.svg
       rsvg-convert -f png ${FILE} -x $MDPI -y $MDPI -o ${OUTPUTFOLDER}mdpi/${FILENAME}.png
       rsvg-convert -f png ${FILE} -x $HDPI -y $HDPI -o ${OUTPUTFOLDER}hdpi/${FILENAME}.png
       rsvg-convert -f png ${FILE} -x $XHDPI -y $XHDPI -o ${OUTPUTFOLDER}xhdpi/${FILENAME}.png
       rsvg-convert -f png ${FILE} -x $XXHDPI -y $XXHDPI -o ${OUTPUTFOLDER}xxhdpi/${FILENAME}.png
   done
+  ${BASEFOLDER}/tools/SVGtoXML/vd-tool/bin/vd-tool -c -in ${VDFOLDERSVG} -out ${VDFOLDEROUT}
 }
 
 genMapIconsStdSize() {
+  return 0;
   TYPE=$1
   PCOLOR=$2 # color for map icons(mm_*)
   FOLDERS=("${FOLDERS_NOMX[@]}")
@@ -87,7 +91,7 @@ genMapIconsStdSize() {
   
   echo "Generate $TYPE, sizes: ${SIZES[@]}, folders: ${FOLDERS[@]}, fill $FILL_COLOR, stroke $STROKE_COLOR, bg color $BG_COLOR "
   # delete previous input svg icons 
-  rm ${VDFOLDERSVG}/* || true
+  rm -f ${VDFOLDERSVG}/* || true
   for FILE in ${SVGFOLDER}${TYPE}/*.svg; do
       FILENAME=${FILE##/*/}
       if [[ $FILENAME == _* ]]; then

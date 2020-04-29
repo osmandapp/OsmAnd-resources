@@ -33,6 +33,7 @@ icon() {
 
 
 ## Shaders ! # copy all shaders untouched
+$COPY_CMD $CF ../vd/shaders/h_*.xml $STYLE_ICONS_FOLDER/map-shaders-vector/
 $COPY_CMD $CF ../png/mdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-mdpi/
 $COPY_CMD $CF ../png/hdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-hdpi/
 $COPY_CMD $CF ../png/xhdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-xhdpi/
@@ -42,6 +43,7 @@ $COPY_CMD $CF ../no-svg/drawable-mdpi/* $STYLE_ICONS_FOLDER/map-shaders-png/draw
 $COPY_CMD $CF ../no-svg/drawable-hdpi/* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-hdpi/
 $COPY_CMD $CF ../no-svg/drawable-xhdpi/* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-xhdpi/
 $COPY_CMD $CF ../no-svg/drawable-xxhdpi/* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-xxhdpi/
+
 
 icon_alias landuse landuse_coniferous
 icon_alias grass landuse_grass
