@@ -1,5 +1,5 @@
 #!/bin/bash
-STYLE_ICONS_FOLDER=$STYLE_ICONS_FOLDER/map-icons-png
+STYLE_ICONS_FOLDER=../../rendering_styles/style-icons/
 icon_alias() {
 	# $1 icon target name in app
 	# $2 generated icon name from svg
