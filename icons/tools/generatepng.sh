@@ -92,19 +92,15 @@ genMapIconsStdSize() {
       fi
       FILENAME=${TYPE}_${FILENAME%.*}
       # prepare vector icon
-      if [ "$3" == 'poi' ]; then 
-        RES_FILE=${VDFOLDERSVG}/${FILENAME}.svg
-        recolour "${FILE}" "$FILL_COLOR" "$STROKE_COLOR" "$BG_COLOR" > $RES_FILE 
-      fi 
+      COLOURED_SVG=${VDFOLDERSVG}/${FILENAME}.svg
+      recolour "${FILE}" "$FILL_COLOR" "$STROKE_COLOR" "$BG_COLOR" > $COLOURED_SVG 
       for (( j = 0 ; j < ${#SIZES[@]}; j++ )) do
         SZ=${SIZES[j]}
         RES_FILE=${OUTPUTFOLDER}${FOLDERS[j]}/${FILENAME}.png
         recolour "${FILE}" "$FILL_COLOR" "$STROKE_COLOR" "$BG_COLOR" | rsvg-convert -f png -w ${SZ} -h ${SZ} /dev/stdin -o ${RES_FILE} #> /dev/null 2>&1
       done
   done
-  if [ "$3" == 'poi' ]; then 
-    ${BASEFOLDER}/tools/SVGtoXML/vd-tool/bin/vd-tool -c -in ${VDFOLDERSVG} -out ${VDFOLDER} -widthDp 24 -heightDp 24
-  fi
+  ${BASEFOLDER}/tools/SVGtoXML/vd-tool/bin/vd-tool -c -in ${VDFOLDERSVG} -out ${VDFOLDER} -widthDp ${SIZES[3]} -heightDp ${SIZES[3]}  
 }
 
 recolour() {
