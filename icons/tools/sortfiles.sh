@@ -13,7 +13,7 @@ icon_alias() {
  	$COPY_CMD $CF ../png/xxhdpi/${2}.png $STYLE_ICONS_FOLDER/map-icons-png/drawable-xxhdpi/mm_${1}.png
 	$COPY_CMD $CF ../png/xxhdpi/${2}.png $STYLE_ICONS_FOLDER/map-icons-png/drawable-xxhdpi/mm_${1}.png
 	$COPY_CMD $CF ../vd/map/${2}.xml $STYLE_ICONS_FOLDER/map-icons-vector/mm_${1}.xml
-	if [ -z "$3" ]; then
+	if [ -z "$3" ] && [ -f ../vd/poi/${2}.xml ] ; then
 		$COPY_CMD $CF ../vd/poi/${2}.xml $STYLE_ICONS_FOLDER/poi-icons-vector/mx_${1}.xml
  		$COPY_CMD $CF ../png/big-mdpi/${2}.png $STYLE_ICONS_FOLDER/poi-icons-png/drawable-mdpi/mx_${1}.png
  		$COPY_CMD $CF ../png/big-hdpi/${2}.png $STYLE_ICONS_FOLDER/poi-icons-png/drawable-hdpi/mx_${1}.png
