@@ -23,6 +23,7 @@ mkdir -p ${VDFOLDERSVG}
 mkdir -p ${VDFOLDER}
 mkdir -p ${VDFOLDER}/map
 mkdir -p ${VDFOLDER}/poi
+mkdir -p ${VDFOLDER}/sahders
 
 for (( i = 0 ; i < ${#FOLDERS_NOMX[@]} ; i++ )) do
   mkdir -p ${OUTPUTFOLDER}/${FOLDERS_NOMX[i]}
@@ -99,7 +100,7 @@ genMapIconsStdSize() {
       FILENAME=${TYPE}_${FILENAME%.*}
       # prepare vector icon
       COLOURED_SVG=${VDFOLDERSVG}/${FILENAME}.svg
-      if [ "$PCOLOR" == "#" ]; then 
+      if [ ! "$PCOLOR" == "#" ]; then 
         recolour "${FILE}" "$FILL_COLOR" "$STROKE_COLOR" "$BG_COLOR" > "$COLOURED_SVG"
       else
         cp "$FILE" "$COLOURED_SVG"
