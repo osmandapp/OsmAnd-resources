@@ -23,7 +23,7 @@ mkdir -p ${VDFOLDERSVG}
 mkdir -p ${VDFOLDER}
 mkdir -p ${VDFOLDER}/map
 mkdir -p ${VDFOLDER}/poi
-mkdir -p ${VDFOLDER}/sahders
+mkdir -p ${VDFOLDER}/shaders
 
 for (( i = 0 ; i < ${#FOLDERS_NOMX[@]} ; i++ )) do
   mkdir -p ${OUTPUTFOLDER}/${FOLDERS_NOMX[i]}
