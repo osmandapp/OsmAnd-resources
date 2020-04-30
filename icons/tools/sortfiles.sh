@@ -33,7 +33,7 @@ icon() {
 
 
 ## Shaders ! # copy all shaders untouched
-$COPY_CMD $CF ../vd/shaders/h_*.xml $STYLE_ICONS_FOLDER/map-shaders-vector/
+$COPY_CMD $CF ../vd/map/h_*.xml $STYLE_ICONS_FOLDER/map-shaders-vector/
 $COPY_CMD $CF ../png/mdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-mdpi/
 $COPY_CMD $CF ../png/hdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-hdpi/
 $COPY_CMD $CF ../png/xhdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-xhdpi/

@@ -23,7 +23,6 @@ mkdir -p ${VDFOLDERSVG}
 mkdir -p ${VDFOLDER}
 mkdir -p ${VDFOLDER}/map
 mkdir -p ${VDFOLDER}/poi
-mkdir -p ${VDFOLDER}/shaders
 
 for (( i = 0 ; i < ${#FOLDERS_NOMX[@]} ; i++ )) do
   mkdir -p ${OUTPUTFOLDER}/${FOLDERS_NOMX[i]}
@@ -39,12 +38,6 @@ genMapIconsNoScale() {
   HDPI=1.5
   XHDPI=2
   XXHDPI=3
-  if [ "$SCALE" == "0.5" ]; then
-    MDPI=0.5
-    HDPI=0.75
-    XHDPI=1
-    XXHDPI=1.5
-  fi
   echo $TYPE
   VDFOLDEROUT=${VDFOLDER}/shaders
   rm -f ${VDFOLDERSVG}/* || true
@@ -157,7 +150,7 @@ generateBothMapPOIPng() {
   genMapIconsNoScale 'shields_big'
   genMapIconsNoScale 'road_shields'
   genMapIconsNoScale 'osmc_bg'
-  genMapIconsNoScale 'map-small' '0.5'
+  genMapIconsNoScale 'map-small'
 
   genMapIconsStdSize 'osmc_black' '#'
   genMapIconsStdSize 'osmc_blue' '#'
