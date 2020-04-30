@@ -107,7 +107,7 @@ genMapIconsStdSize() {
       for (( j = 0 ; j < ${#SIZES[@]}; j++ )) do
         SZ=${SIZES[j]}
         RES_FILE=${OUTPUTFOLDER}${FOLDERS[j]}/${FILENAME}.png
-        rsvg-convert -f png -w ${SZ} -h ${SZ} /dev/stdin -o ${RES_FILE} "$COLOURED_SVG" #> /dev/null 2>&1
+        rsvg-convert -f png "$COLOURED_SVG" -w ${SZ} -h ${SZ}  -o ${RES_FILE} #> /dev/null 2>&1
       done
   done
   ${BASEFOLDER}/tools/SVGtoXML/vd-tool/bin/vd-tool -c -in ${VDFOLDERSVG} -out ${VDFOLDEROUT} -widthDp ${SIZES[3]} -heightDp ${SIZES[3]}  
