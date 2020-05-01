@@ -145,6 +145,10 @@ generateBothMapPOIPng() {
   genMapIconsStdSize $TYPE "${COLOR_MAP}" "$MAP_SCALE" "$NEG"
 } 
 
+  ### UNCOMMENT to generate only 1 category
+  # generateBothMapPOIPng 'transport' '#ffffff' '#ff8f00'
+  # exit 0;
+
   genMapIconsNoScale 'shaders'
   genMapIconsNoScale 'shields'
   genMapIconsNoScale 'shields_big'

@@ -30,7 +30,11 @@ icon() {
 	icon_alias ${1} ${1}
 }
 
-
+### UNCOMMENT TO COPY ONLY COUPLE OF ICONS
+# icon_alias transportation transport_taxi_rank
+# icon_alias road_obstacle transport_speedbump
+# icon_alias personal_transport shopping_car
+# exit 0;
 
 ## Shaders ! # copy all shaders untouched
 $COPY_CMD $CF ../vd/map/h_*.xml $STYLE_ICONS_FOLDER/map-shaders-vector/
