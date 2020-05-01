@@ -6,14 +6,14 @@ COPY_CMD=cp
 icon_alias() {
 	# $1 icon target name in app
 	# $2 generated icon name from svg
- 	echo "${2}.png   style-icons/mm_${1}.png"
+ 	# echo "${2}.png   style-icons/mm_${1}.png"
  	$COPY_CMD $CF ../png/mdpi/${2}.png $STYLE_ICONS_FOLDER/map-icons-png/drawable-mdpi/mm_${1}.png
 	$COPY_CMD $CF ../png/hdpi/${2}.png $STYLE_ICONS_FOLDER/map-icons-png/drawable-hdpi/mm_${1}.png
  	$COPY_CMD $CF ../png/xhdpi/${2}.png $STYLE_ICONS_FOLDER/map-icons-png/drawable-xhdpi/mm_${1}.png
  	$COPY_CMD $CF ../png/xxhdpi/${2}.png $STYLE_ICONS_FOLDER/map-icons-png/drawable-xxhdpi/mm_${1}.png
 	$COPY_CMD $CF ../png/xxhdpi/${2}.png $STYLE_ICONS_FOLDER/map-icons-png/drawable-xxhdpi/mm_${1}.png
 	$COPY_CMD $CF ../vd/map/${2}.xml $STYLE_ICONS_FOLDER/map-icons-vector/mm_${1}.xml
-	if [ -z "$3" ]; then
+	if [ -z "$3" ] && [ -f ../vd/poi/${2}.xml ] ; then
 		$COPY_CMD $CF ../vd/poi/${2}.xml $STYLE_ICONS_FOLDER/poi-icons-vector/mx_${1}.xml
  		$COPY_CMD $CF ../png/big-mdpi/${2}.png $STYLE_ICONS_FOLDER/poi-icons-png/drawable-mdpi/mx_${1}.png
  		$COPY_CMD $CF ../png/big-hdpi/${2}.png $STYLE_ICONS_FOLDER/poi-icons-png/drawable-hdpi/mx_${1}.png
@@ -45,7 +45,6 @@ $COPY_CMD $CF ../no-svg/drawable-xhdpi/* $STYLE_ICONS_FOLDER/map-shaders-png/dra
 $COPY_CMD $CF ../no-svg/drawable-xxhdpi/* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-xxhdpi/
 
 
-icon_alias landuse landuse_coniferous
 icon_alias grass landuse_grass
 icon_alias forest landuse_colored_forest               # Keep shaders with background color, cannot be replaced by icons!
 icon_alias wood landuse_colored_forest
@@ -151,7 +150,7 @@ icon_alias canal water_canal
 icon_alias crater poi_colored_crater
 icon_alias cape poi_colored_cape
 icon_alias bay poi_colored_bay
-icon_alias reef poi_colored_reef
+icon_alias reef water_reef
 icon_alias reservoir water_reservoir
 icon_alias basin water_reservoir
 icon_alias ridge poi_colored_ridge
@@ -219,7 +218,7 @@ icon_alias amenity_fire_station emergency_firestation4
 icon_alias amenity_police amenity_police2
 icon_alias emergency_fire_hydrant emergency_colored_fire_hydrant
 icon_alias fire_hydrant_type_underground emergency_fire_hydrant_underground
-icon_alias fire_hydrant_type_pillar emergency_fire_hydrant
+icon_alias fire_hydrant_type_pillar emergency_colored_fire_hydrant
 icon_alias suction_point emergency_suction_point
 icon_alias emergency_phone emergency_emergency_phone
 icon_alias emergency_access_point emergency_emergency_access_point
@@ -268,7 +267,7 @@ icon_alias air_transport transport_aerodrome
 icon_alias water_transport transport_ferry_terminal
 icon_alias bicycle_transport shopping_bicycle
 icon_alias aerialway_transport transport_aerialway_station
-icon_alias highway_crossing_bg functional-icons_highway_crossing_bg
+# icon_alias highway_crossing_bg functional-icons_highway_crossing_bg # Missing
 icon_alias highway_crossing transport_zebra_crossing2
 icon_alias highway_crossing_map functional-icons_highway_crossing
 icon_alias crossing_traffic_signals_map functional-icons_highway_crossing_traffic_signals
@@ -339,7 +338,7 @@ icon_alias skimap_arrow_2triangles_black_small_nobg skimap_arrow_2triangles_blac
 icon_alias skimap_arrow_2triangles_white_small_nobg skimap_arrow_2triangles_white_small_nobg
 icon_alias harbour_yes poi_colored_harbour
 icon_alias historic_milestone tourist_historic_milestone
-icon_alias topo_milestone topo_topo_milestone
+icon_alias topo_milestone topo_topo_historic_milestone # ? functional-icons_milestone
 icon_alias runway transport_runway
 icon_alias ford_stepping_stones transport_colored_ford_stepping_stones
 icon_alias topo_ford_stepping_stones topo_topo_ford_stepping_stones
@@ -899,7 +898,7 @@ icon_alias amenity_car_wash amenity_car_wash
 icon_alias car_wash_self_service amenity_car_wash_self_service
 icon_alias vehicle_inspection amenity_vehicle_inspection
 icon_alias amenity_fountain water_colored_fountain2
-icon_alias amenity_fountain_night functional-icons_fountain2_night
+# icon_alias amenity_fountain_night functional-icons_fountain2_night # Missing
 icon_alias amenity_monastery place_of_worship_monastery
 icon_alias historic_monastery place_of_worship_monastery
 icon_alias amenity_place_of_worship place_of_worship_unknown
@@ -1042,7 +1041,7 @@ icon_alias transport_construction poi_colored_bridge
 icon_alias water_supply poi_colored_water_tower
 icon_alias power power_generator
 icon_alias communication amenity_telephone
-icon_alias trash_disposal amenity_waste_disposal
+icon_alias trash_disposal amenity_colored_waste_disposal
 icon_alias bridge poi_colored_bridge
 icon_alias tunnel poi_colored_tunnel
 icon_alias amenity_hunting_stand poi_colored_hunting_stand
@@ -1358,7 +1357,7 @@ icon seamark_topmark_oblique_red_cylinder
 icon seamark_topmark_oblique_red_rhombus 
 icon seamark_topmark_oblique_red_sphere 
 icon seamark_topmark_oblique_red_xshape 
-icon seamark_topmark_oblique_red_conepointupoversphere 
+# icon seamark_topmark_oblique_red_conepointupoversphere # Missing
 icon seamark_topmark_oblique_red_cylinderoversphere 
 
 icon seamark_topmark_oblique_green_board 
@@ -1696,11 +1695,11 @@ icon seamark_restriction_to_be_avoided
 icon seamark_restriction_discharging 
 icon seamark_restriction_exploration_development 
 
-icon seamark_obstruction_foul_ground 
-icon seamark_obstruction_boom 
-icon seamark_obstruction_construction 
-icon seamark_distance_mark 
-icon seamark_distance_mark_installed 
+icon_alias seamark_obstruction_foul_ground seamark_small_obstruction_foul_ground
+icon_alias seamark_obstruction_boom seamark_small_obstruction_boom
+icon_alias seamark_obstruction_construction seamark_small_obstruction_construction
+icon_alias seamark_distance_mark seamark_small_distance_mark
+icon_alias seamark_distance_mark_installed seamark_small_distance_mark_installed
 icon seamark_fishing_facility 
 icon seamark_marine_farm 
 icon seamark_marine_farm_crustaceans_additional 
@@ -1713,7 +1712,7 @@ icon seamark_pylon_power
 icon seamark_radar_reflector 
 icon seamark_waterfall 
 icon seamark_rescue_station 
-icon seamark_seaplane_landing_area 
+icon_alias seamark_seaplane_landing_area seamark_small_seaplane_landing_area
 
 icon seamark_rock_awash 
 icon seamark_rock_covers 
@@ -1721,8 +1720,8 @@ icon seamark_rock_submerged
 icon seamark_waterway_gauge 
 icon seamark_wreck 
 icon seamark_wreck_hull_showing 
-icon seamark_power_line 
-icon seamark_submarine_cable 
+icon_alias seamark_power_line seamark_small_power_line
+icon_alias seamark_submarine_cable seamark_small_submarine_cable
 icon seamark_obstruction_stump 
 
 ## Skimap
@@ -1969,7 +1968,7 @@ icon_alias hazard_avalanche poi_hazard_avalanche
 icon_alias hazard_minefield poi_hazard_minefield
 icon_alias hazard poi_hazard
 
-icon_# alias custom_id icons8 #TODO
+# icon_alias custom_id icons8 
 icon_alias user_defined icons8_user
 icon_alias user_defined_other icons8_user
 icon_alias osmwiki icons8_wikipedia
@@ -2339,7 +2338,7 @@ icon_alias bench_no additional_bench_no
 icon_alias bin_yes additional_bin_yes
 icon_alias bin_no additional_bin_no
 icon_alias surface_sand additional_surface_sand
-icon_alias recycling_container amenity_waste_disposal
+icon_alias recycling_container amenity_colored_waste_disposal
 icon_alias recycling_centre additional_recycling_centre
 icon_alias crossing_traffic_signals additional_crossing_traffic_lights
 icon_alias crossing_unmarked additional_crossing_unmarked

@@ -39,7 +39,7 @@ genMapIconsNoScale() {
   XHDPI=2
   XXHDPI=3
   echo $TYPE
-  VDFOLDEROUT=${VDFOLDER}/shaders
+  VDFOLDEROUT=${VDFOLDER}/map
   rm -f ${VDFOLDERSVG}/* || true
   for FILE in $SVGFOLDER$1/*.svg; do
       FILENAME=${FILE##/*/}
