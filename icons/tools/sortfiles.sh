@@ -45,7 +45,6 @@ $COPY_CMD $CF ../no-svg/drawable-xhdpi/* $STYLE_ICONS_FOLDER/map-shaders-png/dra
 $COPY_CMD $CF ../no-svg/drawable-xxhdpi/* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-xxhdpi/
 
 
-icon_alias landuse landuse_coniferous
 icon_alias grass landuse_grass
 icon_alias forest landuse_colored_forest               # Keep shaders with background color, cannot be replaced by icons!
 icon_alias wood landuse_colored_forest
@@ -219,7 +218,7 @@ icon_alias amenity_fire_station emergency_firestation4
 icon_alias amenity_police amenity_police2
 icon_alias emergency_fire_hydrant emergency_colored_fire_hydrant
 icon_alias fire_hydrant_type_underground emergency_fire_hydrant_underground
-icon_alias fire_hydrant_type_pillar emergency_fire_hydrant
+icon_alias fire_hydrant_type_pillar emergency_colored_fire_hydrant
 icon_alias suction_point emergency_suction_point
 icon_alias emergency_phone emergency_emergency_phone
 icon_alias emergency_access_point emergency_emergency_access_point
@@ -268,7 +267,7 @@ icon_alias air_transport transport_aerodrome
 icon_alias water_transport transport_ferry_terminal
 icon_alias bicycle_transport shopping_bicycle
 icon_alias aerialway_transport transport_aerialway_station
-icon_alias highway_crossing_bg functional-icons_highway_crossing_bg
+# icon_alias highway_crossing_bg functional-icons_highway_crossing_bg # Missing
 icon_alias highway_crossing transport_zebra_crossing2
 icon_alias highway_crossing_map functional-icons_highway_crossing
 icon_alias crossing_traffic_signals_map functional-icons_highway_crossing_traffic_signals
@@ -339,7 +338,7 @@ icon_alias skimap_arrow_2triangles_black_small_nobg skimap_arrow_2triangles_blac
 icon_alias skimap_arrow_2triangles_white_small_nobg skimap_arrow_2triangles_white_small_nobg
 icon_alias harbour_yes poi_colored_harbour
 icon_alias historic_milestone tourist_historic_milestone
-icon_alias topo_milestone topo_topo_milestone
+icon_alias topo_milestone topo_topo_historic_milestone # ? functional-icons_milestone
 icon_alias runway transport_runway
 icon_alias ford_stepping_stones transport_colored_ford_stepping_stones
 icon_alias topo_ford_stepping_stones topo_topo_ford_stepping_stones
@@ -899,7 +898,7 @@ icon_alias amenity_car_wash amenity_car_wash
 icon_alias car_wash_self_service amenity_car_wash_self_service
 icon_alias vehicle_inspection amenity_vehicle_inspection
 icon_alias amenity_fountain water_colored_fountain2
-icon_alias amenity_fountain_night functional-icons_fountain2_night
+# icon_alias amenity_fountain_night functional-icons_fountain2_night # Missing
 icon_alias amenity_monastery place_of_worship_monastery
 icon_alias historic_monastery place_of_worship_monastery
 icon_alias amenity_place_of_worship place_of_worship_unknown
@@ -1358,7 +1357,7 @@ icon seamark_topmark_oblique_red_cylinder
 icon seamark_topmark_oblique_red_rhombus 
 icon seamark_topmark_oblique_red_sphere 
 icon seamark_topmark_oblique_red_xshape 
-icon seamark_topmark_oblique_red_conepointupoversphere 
+# icon seamark_topmark_oblique_red_conepointupoversphere # Missing
 icon seamark_topmark_oblique_red_cylinderoversphere 
 
 icon seamark_topmark_oblique_green_board 
