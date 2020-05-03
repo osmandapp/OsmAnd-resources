@@ -152,7 +152,7 @@ generateBothMapPOIPng() {
   genMapIconsNoScale 'shaders'
   genMapIconsNoScale 'shields'
   genMapIconsNoScale 'shields_big'
-   genMapIconsNoScale 'road_shields'
+  genMapIconsNoScale 'road_shields'
   genMapIconsNoScale 'osmc_bg'
   genMapIconsNoScale 'map-small'
 
