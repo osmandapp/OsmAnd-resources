@@ -216,7 +216,7 @@ generateBothMapPOIPng() {
   generateBothMapPOIPng 'education' '#ffffff' '#ff8f00'
   generateBothMapPOIPng 'poi' '#ffffff' '#ff8f00'
   generateBothMapPOIPng 'poi_colored' '#3f3f3f' '#ff8f00'
-  generateBothMapPOIPng 'additional' '#3f3f3f' '#ff8f00'
+  enerateBothMapPOIPng 'additional' '#3f3f3f' '#ff8f00'
   generateBothMapPOIPng 'additional_category' '#3f3f3f' '#ff8f00'
   generateBothMapPOIPng 'power' '#3f3f3f' '#ff8f00'
   generateBothMapPOIPng 'club' '#ffffff' '#ff8f00' #555555
