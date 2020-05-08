@@ -359,6 +359,22 @@ message TransportRoute {
 	repeated TransportRouteSchedule scheduleTrip = 18;
 }
 
+message IncompleteTransportRoutes {
+	repeated IncompleteTransportRoute routes = 6; 
+}
+
+message IncompleteTransportRoute {
+	required uint64 id = 1;
+	optional uint32 type = 3; // reference in string table
+	optional uint32 operator = 4; // reference in string table
+	optional uint32 ref = 5; // reference in string table
+	// optional uint32 name = 6; 
+	
+	required uint32 routeRef = 7; // shift from OsmAndTransportIndex to the route in TransportRoute section
+	
+	repeated uint32 missingStops = 8;  // shift from OsmAndTransportIndex to stops that are missing
+}
+
 message TransportRouteSchedule {
 	// array of raw var int
 	// 10-seconds based intervals between stops arrivals;
@@ -466,8 +482,10 @@ message OsmAndTransportIndex {
 	// encoded as fixed32 length delimited
 	optional TransportStopsTree stops = 6;
 	
+	optional IncompleteTransportRoutes incompleteRoutes = 8;
 	
 	required StringTable stringTable = 9;
+	
 }
 
 ////////////////////////////
