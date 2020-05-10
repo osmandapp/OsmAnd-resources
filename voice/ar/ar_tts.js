@@ -408,7 +408,7 @@ function setMode(mode) {
 }
 
 function route_new_calc(dist, timeVal) {
-	return dictionary["route_is"] + " " + distance(dist, "acc") + (tts ? "، " : " ") + dictionary["time"] + " " + time(timeVal, "acc") + (tts ? ". " : "");
+	return dictionary["route_is"] + " " + distance(dist, "acc") + (tts ? "، " : " ") + dictionary["time"] + " " + time(timeVal, "acc") + (tts ? ". " : " ");
 }
 
 function distance(dist, grm_case) {
@@ -565,7 +565,7 @@ function hours(minutes, grm_case) {
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + (tts ? "، " : " ") + dictionary["distance"] + " " + distance(dist, "acc") + " " + dictionary["time"] + " " + time(seconds, "acc") + (tts ? ". " : "");
+	return dictionary["route_calculate"] + (tts ? "، " : " ") + dictionary["distance"] + " " + distance(dist, "acc") + " " + dictionary["time"] + " " + time(seconds, "acc") + (tts ? ". " : " ");
 }
 
 function go_ahead(dist, streetName) {
@@ -618,9 +618,9 @@ function take_exit_name(streetName) {
 	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "") || !tts) {
 		return "";
 	} else if (streetName["toDest"] != "") {
-		return ", " + streetName["toStreetName"] + dictionary["toward"] + " " + streetName["toDest"];
+		return (tts ? ", " : " ") + streetName["toStreetName"] + dictionary["toward"] + " " + streetName["toDest"];
 	} else if (streetName["toStreetName"] != "") {
-		return ", " + streetName["toStreetName"]
+		return (tts ? ", " : " ") + streetName["toStreetName"]
 	} else {
 		return "";
 	}

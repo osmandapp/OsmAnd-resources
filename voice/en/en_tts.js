@@ -145,7 +145,7 @@ function setMode(mode) {
 }
 
 function route_new_calc(dist, timeVal) {
-	return dictionary["route_is"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : "");
+	return dictionary["route_is"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : " ");
 }
 
 function distance(dist) {
@@ -245,7 +245,7 @@ function hours(minutes) {
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + ", " + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : "");
+	return dictionary["route_calculate"] + (tts ? ", " : " ") + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
 }
 
 function go_ahead(dist, streetName) {
@@ -282,7 +282,7 @@ function turn(turnType, dist, streetName) {
 	if (dist == -1) {
 		return getTurnType(turnType) + " " + turn_street(streetName);
 	} else {
-		return dictionary["in"] + " " + distance(dist) + ", " + getTurnType(turnType) + " " + turn_street(streetName); 
+		return dictionary["in"] + " " + distance(dist) + (tts ? ", " : " ") + getTurnType(turnType) + " " + turn_street(streetName); 
 	}
 }
 
@@ -290,7 +290,7 @@ function take_exit(turnType, dist, exitString, exitInt, streetName) {
 	if (dist == -1) {
 		return getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
 	} else {
-		return dictionary["in"] + " " + distance(dist) + ", "
+		return dictionary["in"] + " " + distance(dist) + (tts ? ", " : " ")
 			+ getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
 	}
 }
@@ -299,9 +299,9 @@ function take_exit_name(streetName) {
 	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "") || !tts) {
 		return "";
 	} else if (streetName["toDest"] != "") {
-		return ", " + streetName["toStreetName"] + dictionary["toward"] + " " + streetName["toDest"];
+		return (tts ? ", " : " ") + streetName["toStreetName"] + dictionary["toward"] + " " + streetName["toDest"];
 	} else if (streetName["toStreetName"] != "") {
-		return ", " + streetName["toStreetName"]
+		return (tts ? ", " : " ") + streetName["toStreetName"]
 	} else {
 		return "";
 	}
@@ -357,7 +357,7 @@ function  getTurnType(turnType) {
 
 function then() {
 // then -- ["then"].
-	return ", " + dictionary["then"];
+	return (tts ? ", " : " ") + dictionary["then"];
 }
 
 function roundabout(dist, angle, exit, streetName) {
@@ -471,7 +471,7 @@ function prepare_make_ut(dist, streetName) {
 
 function prepare_turn(turnType, dist, streetName) {
 // prepare_turn(Turn, Dist, Street) -- ["after", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
-	return dictionary["after"] + " " + distance(dist) + ", " + getTurnType(turnType) + " " + turn_street(streetName);
+	return dictionary["after"] + " " + distance(dist) + (tts ? ", " : " ") + getTurnType(turnType) + " " + turn_street(streetName);
 }
 
 function prepare_roundabout(dist, exit, streetName) {
