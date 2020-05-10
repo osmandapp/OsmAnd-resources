@@ -424,7 +424,7 @@ function distance(dist, grm_case) {
 			if (dist < 11)
 				return (tts ? num_str(Math.floor(dist), "m", grm_case) : ogg_dist(dist)) + " " + dictionary["meters"];
 			if (dist < 17 )
-				return (tts ? num_str(Math.round(dist), "m", grm_case) : ogg_dist(dist)) + " " + dictionary["meter"];
+				return (tts ? num_str(Math.round(dist), "m", grm_case) : ogg_dist(Math.round(dist))) + " " + dictionary["meter"];
 			if (dist < 100)
 				return (tts ? num_str(Math.round(dist/10.0)*10, "m", grm_case) : ogg_dist(Math.round(dist/10.0)*10)) + " " + dictionary["meter"];
 			if (dist < 1000)
@@ -434,7 +434,7 @@ function distance(dist, grm_case) {
 			if (dist < 2500)
 				return dictionary["around_2_kilometers"];
 			if (dist < 10500)
-				return dictionary["around"] + " " + (tts ? num_str(kms, "m", "gen") : ogg_dist(dist/1000.0)) + " " + dictionary["kilometers"];
+				return dictionary["around"] + " " + (tts ? num_str(kms, "m", "gen") : ogg_dist(Math.round(dist/1000.0))) + " " + dictionary["kilometers"];
 			if (kms % 100 == 1)
 				return (tts ? num_str(kms - 1, "m", grm_case) : ogg_dist(kms - 1)) + " " + dictionary["kilometer"] + " " + dictionary["and"] + " " + dictionary["kilometer"];
 			if (kms % 100 == 2)
@@ -452,13 +452,13 @@ function distance(dist, grm_case) {
 			if (dist < 401)
 				return dictionary["2_tenths_of_a_mile"];
 			if (dist < 1529)
-				return (tts ? num_str(Math.round(dist/161.0), "m", grm_case) : ogg_dist(dist/161.0)) + " " + dictionary["tenths_of_a_mile"];
+				return (tts ? num_str(Math.round(dist/161.0), "m", grm_case) : ogg_dist(Math.round(dist/161.0))) + " " + dictionary["tenths_of_a_mile"];
 			if (dist < 2414)
 				return dictionary["around_1_mile"];
 			if (dist < 4024)
 				return dictionary["around_2_miles"];
 			if (dist < 16898)
-				return dictionary["around"] + " " + (tts ? num_str(mls, "m", "gen") : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
+				return dictionary["around"] + " " + (tts ? num_str(mls, "m", "gen") : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["miles"];
 			if (mls % 100 == 1)
 				return (tts ? num_str(mls - 1, "m", grm_case) : ogg_dist(mls - 1)) + " " + dictionary["mile"] + " " + dictionary["and"] + " " + dictionary["mile"];
 			if (mls % 100 == 2)
@@ -474,7 +474,7 @@ function distance(dist, grm_case) {
 			if (dist < 11)
 				return (tts ? num_str(Math.floor(dist), "m", grm_case) : ogg_dist(dist)) + " " + dictionary["meters"];
 			if (dist < 17 )
-				return (tts ? num_str(Math.round(dist), "m", grm_case) : ogg_dist(dist)) + " " + dictionary["meter"];
+				return (tts ? num_str(Math.round(dist), "m", grm_case) : ogg_dist(Math.round(dist))) + " " + dictionary["meter"];
 			if (dist < 100)
 				return (tts ? num_str(Math.round(dist/10.0)*10, "m", grm_case) : ogg_dist(Math.round(dist/10.0)*10)) + " " + dictionary["meter"];
 			if (dist < 1300)
@@ -484,7 +484,7 @@ function distance(dist, grm_case) {
 			if (dist < 4024)
 				return dictionary["around_2_miles"];
 			if (dist < 16898)
-				return dictionary["around"] + " " + (tts ? num_str(mls, "m", "gen") : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
+				return dictionary["around"] + " " + (tts ? num_str(mls, "m", "gen") : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["miles"];
 			if (mls % 100 == 1)
 				return (tts ? num_str(mls - 1, "m", grm_case) : ogg_dist(mls - 1)) + " " + dictionary["mile"] + " " + dictionary["and"] + " " + dictionary["mile"];
 			if (mls % 100 == 2)
@@ -498,19 +498,19 @@ function distance(dist, grm_case) {
 			if (dist < 3)
 				return dictionary["2_yards"];
 			if (dist < 10)
-				return (tts ? num_str(Math.round(dist/0.9144), "f", grm_case) : ogg_dist(dist/0.9144)) + " " + dictionary["yards"];
+				return (tts ? num_str(Math.round(dist/0.9144), "f", grm_case) : ogg_dist(Math.round(dist/0.9144))) + " " + dictionary["yards"];
 			if (dist < 17)
-				return (tts ? num_str(Math.round(dist/0.9144), "f", grm_case) : ogg_dist(dist/0.9144)) + " " + dictionary["yard"];
+				return (tts ? num_str(Math.round(dist/0.9144), "f", grm_case) : ogg_dist(Math.round(dist/0.9144))) + " " + dictionary["yard"];
 			if (dist < 97)
-				return (tts ? num_str(Math.round(dist/10.0/0.9144)*10, "f", grm_case) : ogg_dist((dist/10.0/0.9144)*10)) + " " + dictionary["yard"];
+				return (tts ? num_str(Math.round(dist/10.0/0.9144)*10, "f", grm_case) : ogg_dist(Math.round(dist/10.0/0.9144)*10)) + " " + dictionary["yard"];
 			if (dist < 1300)
-				return (tts ? num_str(Math.round(2*dist/100.0/0.9144)*50, "f", grm_case) : ogg_dist((2*dist/10.0/0.9144)*10)) + " " + dictionary["yard"];
+				return (tts ? num_str(Math.round(2*dist/100.0/0.9144)*50, "f", grm_case) : ogg_dist(Math.round(2*dist/100.0/0.9144)*50)) + " " + dictionary["yard"];
 			if (dist < 2414)
 				return dictionary["around_1_mile"];
 			if (dist < 4024)
 				return dictionary["around_2_miles"];
 			if (dist < 16898)
-				return dictionary["around"] + " " + (tts ? num_str(mls, "m", "gen") : ogg_dist(dist/1609.3)) + " " + dictionary["miles"];
+				return dictionary["around"] + " " + (tts ? num_str(mls, "m", "gen") : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["miles"];
 			if (mls % 100 == 1)
 				return (tts ? num_str(mls - 1, "m", grm_case) : ogg_dist(mls - 1)) + " " + dictionary["mile"] + " " + dictionary["and"] + " " + dictionary["mile"];
 			if (mls % 100 == 2)

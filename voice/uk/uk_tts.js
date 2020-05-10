@@ -249,7 +249,7 @@ function distance(dist) {
 	switch (metricConst) {
 		case "km-m":
 			if (dist < 17) {
-				return (tts ? Math.round(dist).toString() : ogg_dist(dist)) + " " + plural_mt(dist);
+				return (tts ? Math.round(dist).toString() : ogg_dist(Math.round(dist))) + " " + plural_mt(dist);
 			} else if (dist < 100) {
 				return (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10)) + " " + plural_mt(dist);
 			} else if (dist < 1000) {
@@ -258,7 +258,7 @@ function distance(dist) {
 			} else if (dist < 1500) {
 				return dictionary["around_1_kilometer"];
 			} else {
-				return (tts ? Math.round(dist/1000.0).toString() : ogg_dist(dist/1000.0)) + " " + plural_km(dist/1000.0);
+				return (tts ? Math.round(dist/1000.0).toString() : ogg_dist(Math.round(dist/1000.0))) + " " + plural_km(dist/1000.0);
 			}
 			break;
 		case "mi-f":
@@ -267,16 +267,16 @@ function distance(dist) {
 			} else if (dist < 241) {
 				return dictionary["1_tenth_of_a_mile"];
 			} else if (dist < 1529) {
-				return (tts ? Math.round(dist/161.0).toString() : ogg_dist(dist/161.0)) + " " + dictionary["tenths_of_a_mile"];
+				return (tts ? Math.round(dist/161.0).toString() : ogg_dist(Math.round(dist/161.0))) + " " + dictionary["tenths_of_a_mile"];
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
 			} else {
-				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + plural_mi(dist/1609.3);
+				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + plural_mi(dist/1609.3);
 			}
 			break;
 		case "mi-m":
 			if (dist < 17) {
-				return (tts ? Math.round(dist).toString() : ogg_dist(dist)) + " " + plural_mt(dist);
+				return (tts ? Math.round(dist).toString() : ogg_dist(Math.round(dist))) + " " + plural_mt(dist);
 			} else if (dist < 100) {
 				return (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10)) + " " + plural_mt(dist);
 			} else if (dist < 1300) {
@@ -285,12 +285,12 @@ function distance(dist) {
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
 			} else {
-				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + plural_mi(dist/1609.3);
+				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + plural_mi(dist/1609.3);
 			}
 			break;
 		case "mi-y":
 			if (dist < 17) {
-				return (tts ? Math.round(dist/0.9144).toString() : ogg_dist(dist/0.9144)) + " " + plural_yd(dist/0.9144);
+				return (tts ? Math.round(dist/0.9144).toString() : ogg_dist(Math.round(dist/0.9144))) + " " + plural_yd(dist/0.9144);
 			} else if (dist < 100) {
 				return (tts ? (Math.round(dist/10.0/0.9144)*10).toString() : ogg_dist(Math.round(dist/10.0/0.9144)*10)) + " " + plural_yd(Math.round(dist/10.0/0.9144)*10);
 			} else if (dist < 1300) {
@@ -298,7 +298,7 @@ function distance(dist) {
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
 			} else {
-				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(dist/1609.3)) + " " + plural_mi(dist/1609.3);
+				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + plural_mi(dist/1609.3);
 			}
 			break;
 	}
