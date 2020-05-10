@@ -227,7 +227,7 @@ function distance(dist, grm_case) {
 			if (kms > 20 && kms % 10 == 1)
 				return (tts ? num_str(kms, "m", grm_case) : ogg_dist(Math.round(dist/1000.0))) + " " + dictionary["kilometer_"+grm_case];
 			if (kms > 20 && kms % 10 == 2)
-				return (tts ? num_str(kms, "m", grm_case) : oogg_dist(Math.round(dist/1000.0))) + " " + dictionary["kilometers_2-4"];
+				return (tts ? num_str(kms, "m", grm_case) : ogg_dist(Math.round(dist/1000.0))) + " " + dictionary["kilometers_2-4"];
 			if (kms > 20 && kms % 10 > 2 && kms % 10 < 5)
 				return (tts ? kms.toString() : ogg_dist(Math.round(dist/1000.0))) + " " + dictionary["kilometers_2-4"];
 			return (tts ? kms.toString() : ogg_dist(Math.round(dist/1000.0))) + " " + dictionary["kilometers"];
