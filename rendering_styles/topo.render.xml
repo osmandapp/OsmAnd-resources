@@ -19,6 +19,8 @@
 		category="details"/>
 	<renderingProperty attr="surfaceIntegrity" name="Road surface integrity" description="Surface integral rendering" type="boolean" possibleValues=""
 		category="details"/>
+	<renderingProperty attr="OSMMapperAssistant" name="OSM mapper assistant" description="Show fixme and other features to help OSM mappers"
+		type="boolean" possibleValues="" category="details"/>
 	<renderingProperty attr="streetLighting" name="Street lighting" description="Show street lighting"
 		type="boolean" possibleValues="" category="details"/>
 	<renderingProperty attr="hideUnderground" name="Hide underground objects" description="Hide underground objects"
@@ -1400,7 +1402,7 @@
 					<apply_if layer="1" order="89"/>
 					<apply_if additional="layer=2" order="120"/>
 					<apply_if additional="layer=3" order="148"/>
-	<!--				<apply_if OSMMapperAssistant="false" layer="-1" maxzoom="17" order="-1"/>-->
+					<apply_if OSMMapperAssistant="false" additional="tunnel=yes" maxzoom="17" order="-1"/>
 					<apply_if additional="tunnel=yes" maxzoom="16" order="-1"/>
 				</case>
 				<case tag="route_bicycle" value="" order="186"/>
@@ -3140,6 +3142,27 @@
 				<apply_if engine_v1="true" textDy="2"/>
 			</switch>
 		</switch>
+		<switch OSMMapperAssistant="true" minzoom="15" intersectionSizeFactor="0" intersectionMargin="0">
+			<switch tag="fixme_tag" value="yes" nameTag="fixme" textColor="#ffffff" textHaloColor="#ccf800e0" textWrapWidth="20" textOrder="1">
+				<case maxzoom="15" textSize="10" textDy="-40"/>
+				<case minzoom="16" textSize="11" textDy="-50"/>
+				<apply_if engine_v1="true">
+					<case maxzoom="15" textDy="-33"/>
+					<case minzoom="16" textDy="-50"/>
+				</apply_if>
+			</switch>
+			<switch>
+				<case tag="note_tag" value="yes" nameTag="note"/>
+				<apply textColor="#ffffff" textHaloColor="#cc347b4c" textOrder="33" textWrapWidth="20">
+					<apply_if minzoom="17" textSize="11" textDy="30"/>
+					<apply_if engine_v1="true" minzoom="17" textDy="24"/>
+				</apply>
+			</switch>
+			<case minzoom="17" tag="osm_note" value="yes" textColor="#ffffff" textHaloColor="#ff5757" textSize="11" textOrder="5" textWrapWidth="30">
+				<apply_if engine_v1="true" textDy="8"/>
+			</case>
+			<apply textBold="true" textHaloRadius="2"/>
+		</switch>
 		<switch textColor="#000000" textWrapWidth="20">
 			<case tag="osmand_legend" value="header" textOrder="1" nameTag="" textBold="true" textDy="-11" textHaloRadius="1" textHaloColor="$defaultTextHaloColorDay">
 				<case minzoom="16" maxzoom="16" textSize="18"/>
@@ -3157,6 +3180,21 @@
 			<case minzoom="10" tag="admin_level" value="4"/>
 			<apply textSize="10" textHaloRadius="2" textColor="#ffffff" textBold="true" textOnPath="true" textHaloColor="$boundaryColorInner"/>
 		</switch>
+		<switch OSMMapperAssistant="true" minzoom="17" nameTag="">
+			<case tag="amenity" value=""/>
+			<case tag="club" value=""/>
+			<case tag="craft" value=""/>
+			<case tag="emergency" value=""/>
+			<case tag="healthcare" value=""/>
+			<case tag="historic" value=""/>
+			<case tag="office" value=""/>
+			<case tag="man_made" value=""/>
+			<!-- <case tag="shop" value=""/>-->
+			<case tag="tourism" value=""/>
+			<apply textColor="#ffffff" textSize="11" textHaloRadius="2" textHaloColor="#886c003d" textWrapWidth="20" intersectionSizeFactor="0.7"/>
+			<apply_if engine_v1="true" textDy="7"/>
+		</switch>
+
 	</text>
 
 	<point>
@@ -3692,6 +3730,31 @@
 			</apply>
 			<apply_if lessDetailed="true" maxzoom="15" icon=""/>
 		</switch>
+		<switch OSMMapperAssistant="true" iconVisibleSize="0" intersectionSizeFactor="0" iconOrder="128">
+			<switch minzoom="12" tag="fixme_tag" value="yes">
+				<case maxzoom="12" icon="fixme_tag_lowzoom_yes"/>
+				<case maxzoom="15" icon="fixme_tag_lowzoom2_yes"/>
+				<case minzoom="16" icon="fixme_tag_yes" icon_shift_px="0.5" icon_shift_py="-0.5"/>
+			</switch>
+			<switch minzoom="12" tag="osm_note" value="yes">
+				<case maxzoom="12" icon="osm_note_dot"/>
+				<case maxzoom="17" icon="osm_note_dot_2"/>
+			</switch>
+			<case minzoom="16" tag="note_tag" value="yes" icon="note_tag_yes" icon_shift_px="-0.5" icon_shift_py="-0.5"/>
+			<!--<case minzoom="16" tag="description_tag" value="yes" icon="note_tag_yes"/>-->
+		</switch>
+		<switch OSMMapperAssistant="true" minzoom="16" iconVisibleSize="7" intersectionSizeFactor="0.5">
+			<case tag="amenity" value="" icon="stub_amenity" iconOrder="171"/>
+			<case tag="club" value="" icon="stub_club" iconOrder="163"/>
+			<case tag="craft" value="" icon="stub_craft" iconOrder="164"/>
+			<case tag="emergency" value="" icon="stub_emergency" iconOrder="131"/>
+			<case tag="healthcare" value="" icon="stub_healthcare" iconOrder="165"/>
+			<case tag="historic" value="" icon="stub_historic" iconOrder="150"/>
+			<case tag="office" value="" icon="stub_office" iconOrder="152"/>
+			<case tag="man_made" value="" icon="stub_man_made" iconOrder="162"/>
+			<case tag="shop" value="" icon="stub_shop" iconOrder="160"/>
+			<case tag="tourism" value="" icon="stub_tourism" iconOrder="153"/>
+		</switch>
 
 	</point>
 
@@ -3819,9 +3882,7 @@
 						<case tag="geological" value="moraine"/>
 						<apply shader="topo_scree" color_0="#ECECEC"/>
 					</switch>
-					<case minzoom="13" tag="natural" value="shingle" shader="shingle">
-						<apply_if nightMode="true" shader="" color="#33444444"/>
-					</case>
+					<case minzoom="13" tag="natural" value="shingle" shader="shingle"/>
 					<case minzoom="12" tag="natural" value="shoal" shader="shoal"/>
 					<case tag="natural" value="landslide" shader="topo_landslide" color_0="#86e9d0bf"/>
 					<case tag="geological" value="volcanic_lava_field" shader="topo_volcanic_lava_field" color="#faf9f6"/>
@@ -4209,6 +4270,18 @@
 				<case maxzoom="18" strokeWidth_2="34:34"/>
 				<case minzoom="19" strokeWidth_2="40:40"/>
 			</apply>
+		</switch>
+		<switch OSMMapperAssistant="true" minzoom="12">
+			<case tag="fixme_tag" value="yes"/>
+			<apply>
+				<case maxzoom="14" strokeWidth_2="2:2"/>
+				<case maxzoom="15" strokeWidth_2="3:3"/>
+				<case maxzoom="16" strokeWidth_2="4:4"/>
+				<case maxzoom="17" strokeWidth_2="5:5"/>
+				<case maxzoom="18" strokeWidth_2="6:6"/>
+				<case minzoom="19" strokeWidth_2="7:7"/>
+			</apply>
+			<apply color="$null" color_2="#77f800e0"/>
 		</switch>
 
 	</polygon>
@@ -5672,6 +5745,18 @@
 			<apply_if minzoom="14" maxzoom="14" strokeWidth="2.8"/>
 			<apply_if minzoom="15" maxzoom="16" strokeWidth="3.5"/>
 			<apply_if minzoom="17" strokeWidth="5"/>
+		</switch>
+		<switch OSMMapperAssistant="true" minzoom="12">
+			<case tag="fixme_tag" value="yes" color="#aaf800e0"/>
+			<case tag="note_tag" value="yes" color="$null"/>
+			<apply>
+				<case maxzoom="14" strokeWidth="4:4"/>
+				<case maxzoom="15" strokeWidth="6:6"/>
+				<case maxzoom="16" strokeWidth="8:8"/>
+				<case maxzoom="17" strokeWidth="10:10"/>
+				<case maxzoom="18" strokeWidth="12:12"/>
+				<case minzoom="19" strokeWidth="14:14"/>
+			</apply>
 		</switch>
 
 		<switch streetLighting="true" minzoom="11" cap="ROUND">
