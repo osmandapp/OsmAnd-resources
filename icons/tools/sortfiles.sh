@@ -886,6 +886,7 @@ icon_alias leisure_playground sport_colored_playground
 icon_alias leisure_sports_centre sport_leisure_centre2
 icon_alias leisure_water_park entertainment_water_slide
 icon_alias sauna sport_sauna
+icon_alias public_bath amenity_public_bath
 icon_alias fitness_station sport_fitness_station
 icon_alias tanning_salon sport_tanning_salon
 
