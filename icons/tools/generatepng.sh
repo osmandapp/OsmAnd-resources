@@ -149,12 +149,12 @@ generateBothMapPOIPng() {
   # generateBothMapPOIPng 'transport' '#ffffff' '#ff8f00'
   # exit 0;
 
-  genMapIconsNoScale 'shaders'
-  genMapIconsNoScale 'shields'
-  genMapIconsNoScale 'shields_big'
-  genMapIconsNoScale 'road_shields'
-  genMapIconsNoScale 'osmc_bg'
-  genMapIconsNoScale 'map-small'
+  # genMapIconsNoScale 'shaders'
+  # genMapIconsNoScale 'shields'
+  # genMapIconsNoScale 'shields_big'
+  # genMapIconsNoScale 'road_shields'
+  # genMapIconsNoScale 'osmc_bg'
+  # genMapIconsNoScale 'map-small'
 
   genMapIconsStdSize 'osmc_black' '#'
   genMapIconsStdSize 'osmc_blue' '#'
