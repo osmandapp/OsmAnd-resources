@@ -2463,3 +2463,4 @@ icon special_truck
 icon special_utv
 icon special_wagon
 icon special_custom_category
+icon special_parking_time_limited
