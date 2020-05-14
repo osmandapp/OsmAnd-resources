@@ -221,7 +221,7 @@ icon_alias emergency_infrastructure emergency_emergency_phone
 icon_alias amenity_fire_station emergency_firestation4
 icon_alias amenity_police amenity_police2
 icon_alias emergency_fire_hydrant emergency_colored_fire_hydrant
-icon_alias fire_hydrant_type_underground emergency_fire_hydrant_underground
+icon_alias fire_hydrant_type_underground emergency_colored_fire_hydrant_underground
 icon_alias fire_hydrant_type_pillar emergency_colored_fire_hydrant
 icon_alias suction_point emergency_suction_point
 icon_alias emergency_phone emergency_emergency_phone
@@ -1911,6 +1911,7 @@ icon_alias shop_wholesale shopping_wholesale
 icon_alias health_food shopping_health_food
 icon_alias pet_grooming shopping_pet_grooming
 icon_alias shop_security shopping_security
+icon_alias dive shopping_dive
 
 ## Office
 icon_alias estate_agent office_estate_agent
