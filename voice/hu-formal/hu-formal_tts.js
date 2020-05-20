@@ -96,7 +96,7 @@ function populateDictionary(tts) {
 	dictionary["railroad_crossing"] = tts ? "vasúti átjáró" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "forgalomlassító" : "traffic_calming.ogg";
 	dictionary["toll_booth"] = tts ? "fizetőkapu" : "toll_booth.ogg";
-	dictionary["stop"] = tts ? "Állj! Elsőbbségadás kötelező" : "stop.ogg";
+	dictionary["stop"] = tts ? "stop tábla" : "stop.ogg";
 	dictionary["pedestrian_crosswalk"] = tts ? "gyalogosátkelő" : "pedestrian_crosswalk.ogg";
 	dictionary["tunnel"] = tts ? "alagút" : "tunnel.ogg";
 
