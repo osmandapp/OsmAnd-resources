@@ -164,7 +164,7 @@ generateBothMapPOIPng() {
   genMapIconsStdSize 'osmc_white' '#'
   genMapIconsStdSize 'osmc_yellow' '#'
   genMapIconsStdSize 'osmc_other' '#'
-  genMapIconsStdSize 'functional-icons' '#ff8f00'
+  genMapIconsStdSize 'functional-icons' '#'
   genMapIconsStdSize 'functional-icons-x2' '#ff8f00' x2
 
   genMapIconsStdSize 'overlays' '#' x2
