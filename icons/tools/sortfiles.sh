@@ -2487,3 +2487,16 @@ icon special_letter_n
 icon special_letter_s
 icon special_letter_e
 icon special_letter_w
+icon special_symbol_remove
+icon special_symbol_check_mark
+icon special_microphone
+icon special_photo_camera
+icon special_video_camera
+icon special_sun
+icon special_sunset
+icon special_video
+icon special_audio
+icon special_image
+icon special_time_span
+icon special_time_start
+icon special_time_end
