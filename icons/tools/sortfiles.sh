@@ -2500,3 +2500,4 @@ icon special_image
 icon special_time_span
 icon special_time_start
 icon special_time_end
+icon special_information

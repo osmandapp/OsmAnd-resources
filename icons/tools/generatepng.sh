@@ -174,7 +174,7 @@ generateBothMapPOIPng() {
   genMapIconsStdSize 'topo_big' '#000000' x2
   genMapIconsStdSize 'topo_water'  '#0F5CF0'
   genMapIconsStdSize 'topo_emergency' '#DA0092'
-  genMapIconsStdSize 'special_poi' '#FFF5F1'
+  generateBothMapPOIPng 'special_poi' '#FFF5F1' '#ff8f00'
       
   genMapIconsNoScale 'seamark_shields'
   genMapIconsNoScale 'seamark_shields_x4'
