@@ -17,16 +17,16 @@ var dictionary = {};
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	dictionary["route_is1"] = tts ? "De berekende afstand is " : "route_is1.ogg";
+	dictionary["route_is1"] = tts ? "De berekende afstand is" : "route_is1.ogg";
 	dictionary["route_is2"] = tts ? "lang" : "route_is2.ogg";
 	dictionary["route_calculate"] = tts ? "Nieuwe afstand berekend" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? ", de nieuwe afstand is " : "distance.ogg";
+	dictionary["distance"] = tts ? ", de nieuwe afstand is" : "distance.ogg";
 	
 	// LEFT/RIGHT
-	dictionary["prepare"] = tts ? "Verder op " : "prepare.ogg";
+	dictionary["prepare"] = tts ? "Verder op" : "prepare.ogg";
 	// Verder op should officially be spelled as verderop but is not pronounced correctly
 	// by tts voices when spelled that way. Please leave it like this.
-	dictionary["after"] = tts ? "Na " : "after.ogg";
+	dictionary["after"] = tts ? "Na" : "after.ogg";
 	
 	dictionary["left"] = tts ? "links afslaan" : "left.ogg";
 	dictionary["left_sh"] = tts ? "scherpe bocht naar links" : "left_sh.ogg";
@@ -40,61 +40,61 @@ function populateDictionary(tts) {
 	dictionary["right_bear"] = tts ? "rechts aanhouden" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
 	
 	// U-TURNS
-	dictionary["prepare_make_uturn"] = tts ? "Keer om na " : "prepare_make_uturn.ogg";
-	dictionary["make_uturn1"] = tts ? "omkeren " : "make_uturn1.ogg";
+	dictionary["prepare_make_uturn"] = tts ? "Keer om na" : "prepare_make_uturn.ogg";
+	dictionary["make_uturn1"] = tts ? "omkeren" : "make_uturn1.ogg";
 	dictionary["make_uturn2"] = tts ? "keer nu om" : "make_uturn2.ogg";
 	dictionary["make_uturn_wp"] = tts ? "Indien mogelijk, nu omkeren" : "make_uturn_wp.ogg";
 	
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? "Neem de rotonde na " : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? "de rotonde oprijden en neem dan de " : "roundabout.ogg";
-	dictionary["then"] = tts ? "dan " : "then.ogg";
-	dictionary["and"] = tts ? " en " : "and.ogg";
-	dictionary["take"] = tts ? "Neem de " : "take.ogg";
+	dictionary["prepare_roundabout"] = tts ? "Neem de rotonde na" : "prepare_roundabout.ogg";
+	dictionary["roundabout"] = tts ? "de rotonde oprijden en neem dan de" : "roundabout.ogg";
+	dictionary["then"] = tts ? "dan" : "then.ogg";
+	dictionary["and"] = tts ? "en" : "and.ogg";
+	dictionary["take"] = tts ? "Neem de" : "take.ogg";
 	dictionary["exit"] = tts ? "afslag" : "exit.ogg";
 	
-	dictionary["1st"] = tts ? "eerste " : "1st.ogg";
-	dictionary["2nd"] = tts ? "tweede " : "2nd.ogg";
-	dictionary["3rd"] = tts ? "derde " : "3rd.ogg";
-	dictionary["4th"] = tts ? "vierde " : "4th.ogg";
-	dictionary["5th"] = tts ? "vijfde " : "5th.ogg";
-	dictionary["6th"] = tts ? "zesde " : "6th.ogg";
-	dictionary["7th"] = tts ? "zevende " : "7th.ogg";
-	dictionary["8th"] = tts ? "achtste " : "8th.ogg";
-	dictionary["9th"] = tts ? "negende  " : "9th.ogg";
-	dictionary["10th"] = tts ? "tiende " : "10th.ogg";
-	dictionary["11th"] = tts ? "elfde " : "11th.ogg";
-	dictionary["12th"] = tts ? "twaalfde " : "12th.ogg";
-	dictionary["13th"] = tts ? "dertiende " : "13th.ogg";
-	dictionary["14th"] = tts ? "viertiende " : "14th.ogg";
-	dictionary["15th"] = tts ? "vijftiende " : "15th.ogg";
-	dictionary["16th"] = tts ? "zestiende " : "16th.ogg";
-	dictionary["17th"] = tts ? "zeventiende " : "17th.ogg";
+	dictionary["1st"] = tts ? "eerste" : "1st.ogg";
+	dictionary["2nd"] = tts ? "tweede" : "2nd.ogg";
+	dictionary["3rd"] = tts ? "derde" : "3rd.ogg";
+	dictionary["4th"] = tts ? "vierde" : "4th.ogg";
+	dictionary["5th"] = tts ? "vijfde" : "5th.ogg";
+	dictionary["6th"] = tts ? "zesde" : "6th.ogg";
+	dictionary["7th"] = tts ? "zevende" : "7th.ogg";
+	dictionary["8th"] = tts ? "achtste" : "8th.ogg";
+	dictionary["9th"] = tts ? "negende" : "9th.ogg";
+	dictionary["10th"] = tts ? "tiende" : "10th.ogg";
+	dictionary["11th"] = tts ? "elfde" : "11th.ogg";
+	dictionary["12th"] = tts ? "twaalfde" : "12th.ogg";
+	dictionary["13th"] = tts ? "dertiende" : "13th.ogg";
+	dictionary["14th"] = tts ? "viertiende" : "14th.ogg";
+	dictionary["15th"] = tts ? "vijftiende" : "15th.ogg";
+	dictionary["16th"] = tts ? "zestiende" : "16th.ogg";
+	dictionary["17th"] = tts ? "zeventiende" : "17th.ogg";
 	
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Deze weg blijven volgen" : "go_ahead.ogg";
-	dictionary["follow1"] = tts ? "De weg  " : "follow1.ogg";
+	dictionary["follow1"] = tts ? "De weg" : "follow1.ogg";
 	dictionary["follow2"] = tts ? "volgen" : "follow2.ogg";
 	
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "dan heb je je bestemming " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "je hebt je Bestemming " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "en dan heb je je routepunt " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "je hebt je routepunt " : "reached_intermediate.ogg";
+	dictionary["and_arrive_destination"] = tts ? "dan heb je je bestemming" : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "je hebt je Bestemming" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "en dan heb je je routepunt" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "je hebt je routepunt" : "reached_intermediate.ogg";
 	dictionary["reached"] = tts ? "bereikt" : "reached.ogg";
 	
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "en dan heb je je GPX routepunt " : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "je hebt je GPX routepunt " : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "en dan heb je je favoriet " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "je hebt je favoriet " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "en dan heb je je POI " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "je hebt je POI " : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "en dan heb je je GPX routepunt" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "je hebt je GPX routepunt" : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "en dan heb je je favoriet" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "je hebt je favoriet" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "en dan heb je je POI" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "je hebt je POI" : "reached_poi.ogg";
 	
 	// ATTENTION
-	//dictionary["exceed_limit"] = tts ? "je overschrijdt de maximumsnelheid " : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "maximumsnelheid " : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "let op , " : "attention.ogg";
+	//dictionary["exceed_limit"] = tts ? "je overschrijdt de maximumsnelheid" : "exceed_limit.ogg";
+	dictionary["exceed_limit"] = tts ? "maximumsnelheid" : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "let op" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "snelheidscontrole" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "grenscontrole" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "spoorweg overgang" : "railroad_crossing.ogg";
@@ -108,20 +108,20 @@ function populateDictionary(tts) {
 	// OTHER PROMPTS
 	dictionary["location_lost"] = tts ? "G P S  signaal verloren" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "g p s signaal hersteld" : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "je bent afgeweken van de route vanaf " : "off_route.ogg";
+	dictionary["off_route"] = tts ? "je bent afgeweken van de route vanaf" : "off_route.ogg";
 	dictionary["back_on_route"] = tts ? "je bent weer op de route" : "back_on_route.ogg";
 	
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "naar " : "onto.ogg";
-	dictionary["toward"] = tts ? "richting  " : "toward.ogg";
+	dictionary["onto"] = tts ? "naar" : "onto.ogg";
+	dictionary["toward"] = tts ? "richting" : "toward.ogg";
 	
 	// DISTANCE UNIT SUPPORT
 	dictionary["meters"] = tts ? "meter" : "meters.ogg";
 	dictionary["around_1_kilometer"] = tts ? "ongeveer een kilometer" : "around_1_kilometer.ogg";
-	dictionary["around"] = tts ? "ongeveer " : "around.ogg";
+	dictionary["around"] = tts ? "ongeveer" : "around.ogg";
 	dictionary["kilometers"] = tts ? "kilometer" : "kilometers.ogg";
 	
-	dictionary["feet"] = tts ? "voet " : "feet.ogg";
+	dictionary["feet"] = tts ? "voet" : "feet.ogg";
 	dictionary["1_tenth_of_a_mile"] = tts ? "een tiende mijl" : "1_tenth_of_a_mile.ogg";
 	dictionary["tenths_of_a_mile"] = tts ? "tiende mijl" : "tenths_of_a_mile.ogg";
 	dictionary["around_1_mile"] = tts ? "ongeveer een mijl" : "around_1_mile.ogg";
@@ -130,9 +130,9 @@ function populateDictionary(tts) {
 	dictionary["yards"] = tts ? "yards" : "yards.ogg";
 	
 	// TIME SUPPORT
-	dictionary["time"] = tts ? ", tijd tot bestemming " : "time.ogg";
-	dictionary["1_hour"] = tts ? "een uur " : "1_hour.ogg";
-	dictionary["hours"] = tts ? "uur " : "hours.ogg";
+	dictionary["time"] = tts ? ", tijd tot bestemming" : "time.ogg";
+	dictionary["1_hour"] = tts ? "een uur" : "1_hour.ogg";
+	dictionary["hours"] = tts ? "uur" : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "minder dan een minuut" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "een minuut" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "minuten" : "minutes.ogg";
@@ -366,7 +366,7 @@ function  getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return dictionary["then"];
+	return (tts ? ", " : " ") + dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
@@ -576,7 +576,7 @@ function speed_alarm(maxSpeed, speed) {
 }
 
 function attention(type) {
-	return dictionary["attention"] + " " + getAttentionString(type);
+	return dictionary["attention"] + (tts ? ", " : " ") + getAttentionString(type);
 }
 
 function getAttentionString(type) {
