@@ -190,8 +190,6 @@ function num_str(number, gender /*of the object being counted*/, grm_case) {
 	return ((thousands+hundreds+tens) ? (thousands+hundreds+tens).toString() + " " : "") + dictionary[ones.toString()+"_"+gender+"_"+grm_case];
 }
 
-//// COMMAND BUILDING / WORD ORDER
-////////////////////////////////////////////////////////////////
 function setMetricConst(metrics) {
 	metricConst = metrics;
 }
