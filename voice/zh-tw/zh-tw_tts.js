@@ -20,7 +20,7 @@ function populateDictionary(tts) {
 	dictionary["route_is1"] = tts ? "行程" : "route_is1.ogg";
 	dictionary["route_is2"] = tts ? "遠" : "route_is2.ogg";
 	dictionary["route_calculate"] = tts ? "計算路線已重新計算" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? "，距離" : "distance.ogg";
+	dictionary["distance"] = tts ? "距離" : "distance.ogg";
 	
 	// LEFT/RIGHT
 	dictionary["after"] = tts ? "後" : "after.ogg";
@@ -76,8 +76,8 @@ function populateDictionary(tts) {
 	// ARRIVE
 	dictionary["and_arrive_destination"] = tts ? "然後可達目的地" : "and_arrive_destination.ogg";
 	dictionary["reached_destination"] = tts ? "抵達目的地" : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "並到達中繼點 " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "你已到達中繼點 " : "reached_intermediate.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "並到達中繼點" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "你已到達中繼點" : "reached_intermediate.ogg";
 	
 	// NEARBY POINTS
 	dictionary["and_arrive_waypoint"] = tts ? "並到達GPX航點" : "and_arrive_waypoint.ogg";
@@ -89,7 +89,7 @@ function populateDictionary(tts) {
 	
 	// ATTENTION
 	dictionary["exceed_limit"] = tts ? "速限" : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "注意，" : "attention.ogg";
+	dictionary["attention"] = tts ? "注意" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "測速照相" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "邊境管制" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "鐵路平交道" : "railroad_crossing.ogg";
@@ -113,7 +113,7 @@ function populateDictionary(tts) {
 	
 	// DISTANCE UNIT SUPPORT
 	dictionary["meters"] = tts ? "公尺" : "meters.ogg";
-	dictionary["around_1_kilometer"] = tts ? "約 1 公里 " : "around_1_kilometer.ogg";
+	dictionary["around_1_kilometer"] = tts ? "約 1 公里" : "around_1_kilometer.ogg";
 	dictionary["around"] = tts ? "約" : "around.ogg";
 	dictionary["kilometers"] = tts ? "公里" : "kilometers.ogg";
 	
@@ -247,7 +247,7 @@ function hours(minutes) {
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + " " + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
+	return dictionary["route_calculate"] + (tts ? ", " : " ") + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
 }
 
 function go_ahead(dist, streetName) {
@@ -570,7 +570,7 @@ function speed_alarm(maxSpeed, speed) {
 }
 
 function attention(type) {
-	return dictionary["attention"] + " " + getAttentionString(type);
+	return dictionary["attention"] + (tts ? ", " : " ") + getAttentionString(type);
 }
 
 function getAttentionString(type) {

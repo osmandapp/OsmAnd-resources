@@ -17,13 +17,13 @@ var tts;
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	dictionary["route_is"] = tts ? "Brauciens ir " : "route_is.ogg";
+	dictionary["route_is"] = tts ? "Brauciens ir" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Maršruts ir pārēķināts" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? ", attālums ir " : "distance.ogg";
+	dictionary["distance"] = tts ? "attālums ir" : "distance.ogg";
 
 	// LEFT/RIGHT
-	//dictionary["prepare"] = tts ? "gatavoties pa " : "prepare.ogg";
-	dictionary["after"] = tts ? "Pēc " : "after.ogg";
+	//dictionary["prepare"] = tts ? "gatavoties pa" : "prepare.ogg";
+	dictionary["after"] = tts ? "Pēc" : "after.ogg";
 	dictionary["in"] = tts ? " " : "in.ogg";
 
 	dictionary["left"] = tts ? "griezties pa kreisi" : "left.ogg";
@@ -35,63 +35,63 @@ function populateDictionary(tts) {
 	dictionary["left_keep"] = tts ? "turēties pa kreisi" : "left_keep.ogg";
 	dictionary["right_keep"] = tts ? "turēties pa labi" : "right_keep.ogg";
 	dictionary["left_bear"] = tts ? "turēties pa kreisi" : "left_bear.ogg";  // in English the same as left_keep, may be different in other languages
-	dictionary["right_bear"] = tts ? "turēties pa labi" : "right_bear.ogg";   // in English the same as right_keep, may be different in other languages
+	dictionary["right_bear"] = tts ? "turēties pa labi" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
 
 	// U-TURNS
-	//dictionary["prepare_make_uturn"] = tts ? "Gatavojaties apgriezties pēc " : "prepare_make_uturn.ogg";
+	//dictionary["prepare_make_uturn"] = tts ? "Gatavojaties apgriezties pēc" : "prepare_make_uturn.ogg";
 	dictionary["make_uturn"] = tts ? " apgriežaties" : "make_uturn.ogg";
 	dictionary["make_uturn_wp"] = tts ? "Apgriežaties pie pirmās iespējas" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? "Sagatvojaties lokveida kustībai pēc " : "prepare_roundabout.ogg";
+	dictionary["prepare_roundabout"] = tts ? "Sagatvojaties lokveida kustībai pēc" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? " iebrauciet lokveida krustojumā, un tad brauciet" : "roundabout.ogg";
 	dictionary["then"] = tts ? "tad " : "then.ogg";
-	dictionary["and"] = tts ? " un " : "and.ogg";
+	dictionary["and"] = tts ? "un" : "and.ogg";
 	dictionary["take"] = tts ? " " : "take.ogg";
-	dictionary["exit"] = tts ? "pagriezienā " : "exit.ogg";
+	dictionary["exit"] = tts ? "pagriezienā" : "exit.ogg";
 	dictionary["exit2"] = tts ? "izbrauciet" : "exit2.ogg";
 	dictionary["exit3"] = tts ? "izbrauktuvē" : "exit3.ogg";
 
-	dictionary["1st"] = tts ? "pirmajā " : "1st.ogg";
-	dictionary["2nd"] = tts ? "otrajā " : "2nd.ogg";
-	dictionary["3rd"] = tts ? "trešajā " : "3rd.ogg";
-	dictionary["4th"] = tts ? "ceturtajā " : "4th.ogg";
-	dictionary["5th"] = tts ? "piektajā " : "5th.ogg";
-	dictionary["6th"] = tts ? "sestajā " : "6th.ogg";
-	dictionary["7th"] = tts ? "septītajā " : "7th.ogg";
-	dictionary["8th"] = tts ? "astotajā " : "8th.ogg";
-	dictionary["9th"] = tts ? "devītajā " : "9th.ogg";
-	dictionary["10th"] = tts ? "desmitajā " : "10th.ogg";
-	dictionary["11th"] = tts ? "vienpadsmitajā " : "11th.ogg";
-	dictionary["12th"] = tts ? "divpadsmitajā " : "12th.ogg";
-	dictionary["13th"] = tts ? "trīspadsmitajā " : "13th.ogg";
-	dictionary["14th"] = tts ? "četrpadsmitajā " : "14th.ogg";
-	dictionary["15th"] = tts ? "piecpadsmitajā " : "15th.ogg";
-	dictionary["16th"] = tts ? "sešpadsmitajā " : "16th.ogg";
-	dictionary["17th"] = tts ? "septiņpadsmitajā " : "17th.ogg";
+	dictionary["1st"] = tts ? "pirmajā" : "1st.ogg";
+	dictionary["2nd"] = tts ? "otrajā" : "2nd.ogg";
+	dictionary["3rd"] = tts ? "trešajā" : "3rd.ogg";
+	dictionary["4th"] = tts ? "ceturtajā" : "4th.ogg";
+	dictionary["5th"] = tts ? "piektajā" : "5th.ogg";
+	dictionary["6th"] = tts ? "sestajā" : "6th.ogg";
+	dictionary["7th"] = tts ? "septītajā" : "7th.ogg";
+	dictionary["8th"] = tts ? "astotajā" : "8th.ogg";
+	dictionary["9th"] = tts ? "devītajā" : "9th.ogg";
+	dictionary["10th"] = tts ? "desmitajā" : "10th.ogg";
+	dictionary["11th"] = tts ? "vienpadsmitajā" : "11th.ogg";
+	dictionary["12th"] = tts ? "divpadsmitajā" : "12th.ogg";
+	dictionary["13th"] = tts ? "trīspadsmitajā" : "13th.ogg";
+	dictionary["14th"] = tts ? "četrpadsmitajā" : "14th.ogg";
+	dictionary["15th"] = tts ? "piecpadsmitajā" : "15th.ogg";
+	dictionary["16th"] = tts ? "sešpadsmitajā" : "16th.ogg";
+	dictionary["17th"] = tts ? "septiņpadsmitajā" : "17th.ogg";
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Dodaties taisni uz priekšu" : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "Brauciet pa ceļu " : "follow.ogg";
+	dictionary["follow"] = tts ? "Brauciet pa ceļu" : "follow.ogg";
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "un ierodaties galapunktā " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "jūs esiet nokļuvis galapunktā " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "un nonākt pie jūsu pieturu " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "jūs esat sasniedzis savu, izmantojot punktu " : "reached_intermediate.ogg";
+	dictionary["and_arrive_destination"] = tts ? "un ierodaties galapunktā" : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "jūs esiet nokļuvis galapunktā" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "un nonākt pie jūsu pieturu" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "jūs esat sasniedzis savu, izmantojot punktu" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "un nonākt pie jūsu pieturu GPX " : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "jūs esat sasniedzis savu, izmantojot punktu GPX " : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "and pass favorite " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "you are passing favorite " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "and pass POI " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "you are passing POI " : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "un nonākt pie jūsu pieturu GPX" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "jūs esat sasniedzis savu, izmantojot punktu GPX" : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "and pass favorite" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "you are passing favorite" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "and pass POI" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "you are passing POI" : "reached_poi.ogg";
 
 	// ATTENTION
-	//dictionary["exceed_limit"] = tts ? "Jums ir ātruma pārsniegšanu " : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "ātruma ierobežojums " : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "uzmanība, " : "attention.ogg";
+	//dictionary["exceed_limit"] = tts ? "Jums ir ātruma pārsniegšanu" : "exceed_limit.ogg";
+	dictionary["exceed_limit"] = tts ? "ātruma ierobežojums" : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "Uzmanība" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "ātruma kameru" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "robežkontrole" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "dzelzceļš šķērsojums" : "railroad_crossing.ogg";
@@ -104,14 +104,14 @@ function populateDictionary(tts) {
 	// OTHER PROMPTS
 	dictionary["location_lost"] = tts ? "pazudis g p s signāls" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "g p s signāls Atgūtā" : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "jūs esat novirzījušies no maršruta " : "off_route.ogg";
+	dictionary["off_route"] = tts ? "jūs esat novirzījušies no maršruta" : "off_route.ogg";
 	dictionary["back_on_route"] = tts ? "Jums ir atpakaļ maršrutā" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "uz " : "onto.ogg";
-	dictionary["on"] = tts ? "uz " : "on.ogg";
-	dictionary["to"] = tts ? "uz " : "to.ogg";
-	dictionary["toward"] = tts ? "pret " : "toward.ogg";
+	dictionary["onto"] = tts ? "uz" : "onto.ogg";
+	dictionary["on"] = tts ? "uz" : "on.ogg";
+	dictionary["to"] = tts ? "uz" : "to.ogg";
+	dictionary["toward"] = tts ? "pret" : "toward.ogg";
 
 	// DISTANCE UNIT SUPPORT
 	dictionary["meters_1"] = tts ? "meteriem" : "meters_1.ogg";
@@ -137,13 +137,14 @@ function populateDictionary(tts) {
 	dictionary["yards_2"] = tts ? "yards " : "yards_2.ogg";
 
 	// TIME SUPPORT
-	dictionary["time"] = tts ? ", laiks " : "time.ogg";
-	dictionary["1_hour"] = tts ? "vienu stundu " : "1_hour.ogg";
-	dictionary["hours"] = tts ? "laiks " : "hours.ogg";
+	dictionary["time"] = tts ? "laiks" : "time.ogg";
+	dictionary["1_hour"] = tts ? "vienu stundu" : "1_hour.ogg";
+	dictionary["hours"] = tts ? "laiks" : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "mazāk nekā vienu minūti" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "viena minūtes" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "minūtes" : "minutes.ogg";
 }
+
 
 //// COMMAND BUILDING / WORD ORDER
 ////////////////////////////////////////////////////////////////
@@ -157,7 +158,7 @@ function setMode(mode) {
 }
 
 function route_new_calc(dist, timeVal) {
-	return dictionary["route_is"] + " " + distance(dist, "2") + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : " ");
+	return dictionary["route_is"] + " " + distance(dist, "2") + (tts ? ", " : " ") + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : " ");
 }
 
 function distance(dist, declension) {
@@ -258,7 +259,7 @@ function hours(minutes) {
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + " " + dictionary["distance"] + " " + distance(dist, "2") + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
+	return dictionary["route_calculate"] + (tts ? ", " : " ") + dictionary["distance"] + " " + distance(dist, "2") + (tts ? ", " : " ") + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
 }
 
 function go_ahead(dist, streetName) {
@@ -371,7 +372,7 @@ function  getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return dictionary["then"];
+	return dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
@@ -560,7 +561,7 @@ function speed_alarm(maxSpeed, speed) {
 }
 
 function attention(type) {
-	return dictionary["attention"] + " " + getAttentionString(type);
+	return dictionary["attention"] + (tts ? ", " : " ") + getAttentionString(type);
 }
 
 function getAttentionString(type) {

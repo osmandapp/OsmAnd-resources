@@ -18,14 +18,14 @@ var tts;
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	dictionary["route_is"] = tts ? tts ? "目的地まで " : "route_is.ogg" : "route_is.ogg";
-	dictionary["route_calculate"] = tts ? "ルートを更新しました。" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? "距離は " : "distance.ogg";
+	dictionary["route_is"] = tts ? tts ? "目的地まで" : "route_is.ogg" : "route_is.ogg";
+	dictionary["route_calculate"] = tts ? "ルートを更新しました" : "route_calculate.ogg";
+	dictionary["distance"] = tts ? "距離は" : "distance.ogg";
 
 	// LEFT/RIGHT
 	//dictionary["prepare"] = "Prepare to "
-	dictionary["after"] = tts ? "先 " : "after.ogg";
-	dictionary["in"] = tts ? "先 " : "in.ogg";
+	dictionary["after"] = tts ? "先" : "after.ogg";
+	dictionary["in"] = tts ? "先" : "in.ogg";
 
 	dictionary["left"] = tts ? "左方向です。" : "left.ogg";
 	dictionary["left_sh"] = tts ? "手前左方向です。" : "left_sh.ogg";
@@ -44,13 +44,13 @@ function populateDictionary(tts) {
 
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "ロータリーがあります。" : "prepare_roundabout.ogg";
-	//dictionary["roundabout"] = tts ? "enter the roundabout, " : "roundabout.ogg";
-	dictionary["then"] = tts ? " その先 " : "then.ogg";
+	//dictionary["roundabout"] = tts ? "enter the roundabout" : "roundabout.ogg";
+	dictionary["then"] = tts ? "その先" : "then.ogg";
 	//dictionary["and"] = tts ? "その先" : "and.ogg";
-	dictionary["take"] = tts ? "ロータリの " : "take.ogg";
+	dictionary["take"] = tts ? "ロータリの" : "take.ogg";
 	dictionary["exit"] = tts ? "の出口です。" : "exit.ogg";
 
-	dictionary["1st"] = tts ? "いち番目 " : "1st.ogg";
+	dictionary["1st"] = tts ? "いち番目" : "1st.ogg";
 	dictionary["2nd"] = tts ? "に番目" : "2nd.ogg";
 	dictionary["3rd"] = tts ? "さん番目" : "3rd.ogg";
 	dictionary["4th"] = tts ? "よん番目" : "4th.ogg";
@@ -70,11 +70,11 @@ function populateDictionary(tts) {
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "道なりに" : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "道なりに " : "follow.ogg";  // "Follow the course of the road for" perceived as too chatty by many users
+	dictionary["follow"] = tts ? "道なりに" : "follow.ogg";  // "Follow the course of the road for" perceived as too chatty by many users
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "目的地です。 " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "目的地です。 " : "reached_destination.ogg";
+	dictionary["and_arrive_destination"] = tts ? "目的地です。" : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "目的地です。" : "reached_destination.ogg";
 	dictionary["and_arrive_intermediate"] = tts ? "途中の目的地です。" : "and_arrive_intermediate.ogg";
 	dictionary["reached_intermediate"] = tts ? "途中の目的地です。" : "reached_intermediate.ogg";
 
@@ -83,13 +83,13 @@ function populateDictionary(tts) {
 	dictionary["reached_waypoint"] = tts ? "ウェイポイントです。" : "reached_waypoint.ogg";
 	dictionary["and_arrive_favorite"] = tts ? "お気に入り場所です。 " : "and_arrive_favorite.ogg";
 	dictionary["reached_favorite"] = tts ? "お気に入り場所です。 " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "and pass POI " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "you are passing POI " : "reached_poi.ogg";
+	dictionary["and_arrive_poi"] = tts ? "and pass POI" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "you are passing POI" : "reached_poi.ogg";
 
 // ATTENTION
-//dictionary["exceed_limit"] = "you are exceeding the speed limit "
-	dictionary["exceed_limit"] = tts ? "最高速度 " : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "ご注意下さい " : "attention.ogg";
+//dictionary["exceed_limit"] = "you are exceeding the speed limit"
+	dictionary["exceed_limit"] = tts ? "最高速度" : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "ご注意下さい" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "スピードカメラ" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "税関" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "踏切" : "railroad_crossing.ogg";
@@ -106,10 +106,10 @@ function populateDictionary(tts) {
 	dictionary["back_on_route"] = tts ? "ルートに復帰しました。" : "back_on_route.ogg";
 
 // STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "に " : "onto.ogg";
-	dictionary["on"] = tts ? "に " : "on.ogg";    // is used if you turn together with your current street, i.e. street name does not change.
-	dictionary["to"] = tts ? "方面 " : "to.ogg";
-	dictionary["toward"] = tts ? "方面 " : "toward.ogg";
+	dictionary["onto"] = tts ? "に" : "onto.ogg";
+	dictionary["on"] = tts ? "に" : "on.ogg";    // is used if you turn together with your current street, i.e. street name does not change.
+	dictionary["to"] = tts ? "方面" : "to.ogg";
+	dictionary["toward"] = tts ? "方面" : "toward.ogg";
 
 // DISTANCE UNIT SUPPORT
 	dictionary["meters"] = tts ? "メートル" : "meters.ogg";
@@ -141,6 +141,7 @@ function populateDictionary(tts) {
     dictionary["10_minutes"] = tts ? "10分" : "juppun.ogg";
 	dictionary["minutes"] = tts ? "分" : "minutes.ogg";
 }
+
 
 //// COMMAND BUILDING / WORD ORDER
 ////////////////////////////////////////////////////////////////
@@ -275,7 +276,7 @@ function hours(minutes) {
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + " " + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + ". ";
+	return dictionary["route_calculate"] + (tts ? ", " : " ") + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + ". ";
 }
 
 function go_ahead(dist, streetName) {
@@ -311,7 +312,7 @@ function turn(turnType, dist, streetName) {
 	if (dist == -1) {
 		return getTurnType(turnType) + " " + turn_street(streetName);
 	} else {
-		return distance(dist) + dictionary["in"] + " " + getTurnType(turnType) + " " + turn_street(streetName); 
+		return distance(dist) + " " + dictionary["in"] + " " + getTurnType(turnType) + " " + turn_street(streetName); 
 	}
 	// turn(Turn, Dist, Street) -- ["in", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
 // turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
@@ -321,7 +322,7 @@ function take_exit(turnType, dist, exitString, exitInt, streetName) {
 	if (dist == -1) {
 		return getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
 	} else {
-		return distance(dist) + dictionary["in"] + " "
+		return distance(dist) + " " + dictionary["in"] + " "
 			+ getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
 	}
 }
@@ -388,7 +389,7 @@ function  getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return dictionary["then"];
+	return " " + dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
@@ -397,7 +398,7 @@ function roundabout(dist, angle, exit, streetName) {
 	if (dist == -1) {
 		return dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	} else {
-		return distance(dist) + dictionary["in"] +" " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
+		return distance(dist) + " " + dictionary["in"] +" " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	}
 
 }
@@ -412,14 +413,14 @@ function turn_street(streetName) {
 	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || !tts) {
 		return "";
 	} else if (streetName["toStreetName"] === "" && streetName["toRef"] === "") {
-		return streetName["toDest"] + dictionary["toward"];
+		return streetName["toDest"] + " " + dictionary["toward"];
 	} else if (streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"]) {
-		return assemble_street_name(streetName) + dictionary["on"];
+		return assemble_street_name(streetName) + " " + dictionary["on"];
 	} else if ((streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"]) 
 		|| (streetName["toStreetName"] === "" && streetName["toRef"] === streetName["fromRef"])) {
-		return assemble_street_name(streetName) + dictionary["on"];
+		return assemble_street_name(streetName) + " " + dictionary["on"];
 	} else if (!(streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"])) {
-		return assemble_street_name(streetName) + dictionary["onto"];
+		return assemble_street_name(streetName) + " " + dictionary["onto"];
 	}
 	return "";
 }
@@ -482,7 +483,7 @@ function make_ut(dist, streetName) {
 	if (dist == -1) {
 		return dictionary["make_uturn"] + " " + turn_street(streetName);
 	} else {
-		return distance(dist) + dictionary["in"] + " " + dictionary["make_uturn"] + " " + turn_street(streetName);
+		return distance(dist) + " " + dictionary["in"] + " " + dictionary["make_uturn"] + " " + turn_street(streetName);
 	}
 }
 
@@ -498,17 +499,17 @@ function bear_right(streetName) {
 
 function prepare_make_ut(dist, streetName) {
 	// prepare_make_ut(Dist, Street) -- ["after", D, "make_uturn" | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
-	return distance(dist) + dictionary["after"] + " " + dictionary["make_uturn"] + " " + turn_street(streetName);
+	return distance(dist) + " " + dictionary["after"] + " " + dictionary["make_uturn"] + " " + turn_street(streetName);
 }
 
 function prepare_turn(turnType, dist, streetName) {
 	// prepare_turn(Turn, Dist, Street) -- ["after", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
-	return distance(dist) + dictionary["after"] + " " + getTurnType(turnType) + " " + turn_street(streetName);
+	return distance(dist) + " " + dictionary["after"] + " " + getTurnType(turnType) + " " + turn_street(streetName);
 }
 
 function prepare_roundabout(dist, exit, streetName) {
 // prepare_roundabout(Dist, _Exit, _Street) -- ["after", D , "prepare_roundabout"] :- distance(Dist) -- D.
-	return distance(dist) + dictionary["after"] + " " + dictionary["prepare_roundabout"]; 
+	return distance(dist) + " " + dictionary["after"] + " " + dictionary["prepare_roundabout"]; 
 }
 
 // reached_destination(D) -- ["reached_destination"|Ds] :- name(D, Ds).

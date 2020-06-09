@@ -17,16 +17,16 @@ var tts;
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	dictionary["route_is1"] = tts ? "Su biàgiu est " : "route_is1.ogg";
+	dictionary["route_is1"] = tts ? "Su biàgiu est" : "route_is1.ogg";
 	dictionary["route_is2"] = tts ? "longu" : "route_is2.ogg";
 	dictionary["route_calculate"] = tts ? "Ricalculende s'àndala" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? "distàntzia " : "distance.ogg";
+	dictionary["distance"] = tts ? "distàntzia" : "distance.ogg";
 	
 	
 	// LEFT/RIGHT
-	//dictionary["prepare"] = tts ? "Preparadebos " : "prepare.ogg";
-	dictionary["after"] = tts ? "a pustis de " : "after.ogg";
-	dictionary["in"] = tts ? "a pustis de " : "in.ogg";
+	//dictionary["prepare"] = tts ? "Preparadebos" : "prepare.ogg";
+	dictionary["after"] = tts ? "a pustis de" : "after.ogg";
+	dictionary["in"] = tts ? "a pustis de" : "in.ogg";
 	
 	dictionary["left"] = tts ? "bortare a manca" : "left.ogg";
 	dictionary["left_sh"] = tts ? "bortare istrintu a manca" : "left_sh.ogg";
@@ -46,52 +46,52 @@ function populateDictionary(tts) {
 	
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "intrare in una rutunda" : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? "intrade in sa rutunda, " : "roundabout.ogg";
-	dictionary["then"] = tts ? ", a pustis " : "then.ogg";
-	dictionary["and"] = tts ? " e " : "and.ogg";
+	dictionary["roundabout"] = tts ? "intrade in sa rutunda" : "roundabout.ogg";
+	dictionary["then"] = tts ? "a pustis" : "then.ogg";
+	dictionary["and"] = tts ? "e" : "and.ogg";
 	dictionary["take"] = tts ? "pigade sa " : "take.ogg";
 	dictionary["exit"] = tts ? "essida" : "exit.ogg";
 	
-	dictionary["1st"] = tts ? "prima " : "1st.ogg";
-	dictionary["2nd"] = tts ? "segunda " : "2nd.ogg";
-	dictionary["3rd"] = tts ? "tertza " : "3rd.ogg";
-	dictionary["4th"] = tts ? "cuàrta " : "4th.ogg";
-	dictionary["5th"] = tts ? "cuìnta " : "5th.ogg";
-	dictionary["6th"] = tts ? "sesta " : "6th.ogg";
-	dictionary["7th"] = tts ? "sètima " : "7th.ogg";
-	dictionary["8th"] = tts ? "otàva " : "8th.ogg";
-	dictionary["9th"] = tts ? "nona " : "9th.ogg";
-	dictionary["10th"] = tts ? "dètzima " : "10th.ogg";
-	dictionary["11th"] = tts ? "undighèsima " : "11th.ogg";
-	dictionary["12th"] = tts ? "doighèsima " : "12th.ogg";
-	dictionary["13th"] = tts ? "treighèsima " : "13th.ogg";
-	dictionary["14th"] = tts ? "batordighèsima " : "14th.ogg";
-	dictionary["15th"] = tts ? "bindighèsima " : "15th.ogg";
-	dictionary["16th"] = tts ? "seighèsima " : "16th.ogg";
-	dictionary["17th"] = tts ? "deghesetèsima " : "17th.ogg";
+	dictionary["1st"] = tts ? "prima" : "1st.ogg";
+	dictionary["2nd"] = tts ? "segunda" : "2nd.ogg";
+	dictionary["3rd"] = tts ? "tertza" : "3rd.ogg";
+	dictionary["4th"] = tts ? "cuàrta" : "4th.ogg";
+	dictionary["5th"] = tts ? "cuìnta" : "5th.ogg";
+	dictionary["6th"] = tts ? "sesta" : "6th.ogg";
+	dictionary["7th"] = tts ? "sètima" : "7th.ogg";
+	dictionary["8th"] = tts ? "otàva" : "8th.ogg";
+	dictionary["9th"] = tts ? "nona" : "9th.ogg";
+	dictionary["10th"] = tts ? "dètzima" : "10th.ogg";
+	dictionary["11th"] = tts ? "undighèsima" : "11th.ogg";
+	dictionary["12th"] = tts ? "doighèsima" : "12th.ogg";
+	dictionary["13th"] = tts ? "treighèsima" : "13th.ogg";
+	dictionary["14th"] = tts ? "batordighèsima" : "14th.ogg";
+	dictionary["15th"] = tts ? "bindighèsima" : "15th.ogg";
+	dictionary["16th"] = tts ? "seighèsima" : "16th.ogg";
+	dictionary["17th"] = tts ? "deghesetèsima" : "17th.ogg";
 	
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Sighide deretu" : "go_ahead.ogg";
 	dictionary["follow"] = tts ? "Sighide su caminu pro" : "follow.ogg";
 	
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "e ais a arribare a destinatzione " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "arribados a destinatzione " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "e ais a arribare a su puntu mesanu " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "arribados a su puntu mesanu " : "reached_intermediate.ogg";
+	dictionary["and_arrive_destination"] = tts ? "e ais a arribare a destinatzione" : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "arribados a destinatzione" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "e ais a arribare a su puntu mesanu" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "arribados a su puntu mesanu" : "reached_intermediate.ogg";
 	
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "e ais a arribare a su puntu mesanu GPX " : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "arribados a su puntu mesanu GPX " : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "e ais a arribare a su preferidu " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "seis arribados a su preferidu " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "e ais a arribare a su puntu de interesse " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "seis arribados a su puntu de interesse " : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "e ais a arribare a su puntu mesanu GPX" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "arribados a su puntu mesanu GPX" : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "e ais a arribare a su preferidu" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "seis arribados a su preferidu" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "e ais a arribare a su puntu de interesse" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "seis arribados a su puntu de interesse" : "reached_poi.ogg";
 	
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "Lìmite de lestresa barigadu" : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "lìmite de lestresa " : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "dae cara, " : "attention.ogg";
+	dictionary["exceed_limit"] = tts ? "lìmite de lestresa" : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "dae cara" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "autovelox" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "dogana" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "coladòrgiu a livellu" : "railroad_crossing.ogg";
@@ -108,17 +108,17 @@ function populateDictionary(tts) {
 	dictionary["back_on_route"] = tts ? "seis torrados in s'àndala" : "back_on_route.ogg";
 	
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "in " : "onto.ogg";
-	dictionary["on"] = tts ? "in " : "on.ogg";
-	dictionary["to"] = tts ? "finas a " : "to.ogg";
-	dictionary["toward"] = tts ? "cara a " : "toward.ogg";
+	dictionary["onto"] = tts ? "in" : "onto.ogg";
+	dictionary["on"] = tts ? "in" : "on.ogg";
+	dictionary["to"] = tts ? "finas a" : "to.ogg";
+	dictionary["toward"] = tts ? "cara a" : "toward.ogg";
 	 
 	// DISTANCE UNIT SUPPORT
 	dictionary["meters_nominativ"] = tts ? "metros" : "meters_nominativ.ogg";
 	dictionary["meters_dativ"] = tts ? "metros" : "meters_dativ.ogg";
 	dictionary["around_1_kilometer_nominativ"] = tts ? "pagu prus o mancu unu chilòmetru" : "around_1_kilometer_nominativ.ogg";
 	dictionary["around_1_kilometer_dativ"] = tts ? "pagu prus o mancu unu chilòmetru" : "around_1_kilometer_dativ.ogg";
-	dictionary["around"] = tts ? "pagu prus o mancu " : "around.ogg";
+	dictionary["around"] = tts ? "pagu prus o mancu" : "around.ogg";
 	dictionary["kilometers_nominativ"] = tts ? "chilòmetros" : "kilometers_nominativ.ogg";
 	dictionary["kilometers_dativ"] = tts ? "chilòmetros" : "kilometers_dativ.ogg";
 	
@@ -137,9 +137,9 @@ function populateDictionary(tts) {
 	dictionary["yards_dativ"] = tts ? "iardas" : "yards_dativ.ogg";
 	
 	// TIME SUPPORT
-	dictionary["time"] = tts ? "tempus netzessàriu " : "time.ogg";
-	dictionary["1_hour"] = tts ? "un''ora " : "1_hour.ogg";
-	dictionary["hours"] = tts ? "oras " : "hours.ogg";
+	dictionary["time"] = tts ? "tempus netzessàriu" : "time.ogg";
+	dictionary["1_hour"] = tts ? "un''ora" : "1_hour.ogg";
+	dictionary["hours"] = tts ? "oras" : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "nemmancu unu minutu" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "unu minutu" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "minutos" : "minutes.ogg";
@@ -179,7 +179,7 @@ function isMasculine(streetName) {
 }
 
 function route_new_calc(dist, timeVal) {
-	return dictionary["route_is1"] + dictionary["route_is2"] + " " + distance(dist, "nominativ") + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : " ");
+	return dictionary["route_is1"] + " " + dictionary["route_is2"] + " " + distance(dist, "nominativ") + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : " ");
 }
 
 function distance(dist, declension) {
@@ -386,7 +386,7 @@ function  getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return dictionary["then"];
+	return (tts ? ", " : " ") + dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
@@ -395,7 +395,7 @@ function roundabout(dist, angle, exit, streetName) {
 	if (dist == -1) {
 		return dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	} else {
-		return dictionary["in"] + " " + distance(dist, "dativ") + " " + dictionary["roundabout"] + " " + dictionary["then"] + " " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
+		return dictionary["in"] + " " + distance(dist, "dativ") + " " + dictionary["roundabout"] + (tts ? ", " : " ") + dictionary["then"] + " " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	}
 
 }
@@ -593,7 +593,7 @@ function speed_alarm(maxSpeed, speed) {
 }
 
 function attention(type) {
-	return dictionary["attention"] + " " + getAttentionString(type);
+	return dictionary["attention"] + (tts ? ", " : " ") + getAttentionString(type);
 }
 
 function getAttentionString(type) {

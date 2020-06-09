@@ -18,81 +18,81 @@ var tts;
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
 	dictionary["route_is"] = tts ? "अंतर" : "route_is.ogg";
-	dictionary["route_is2"] = tts ? " है" : "route_is2.ogg";
-	dictionary["route_calculate"] = tts ? "मार्ग पुनर्गणना," : "route_calculate.ogg";
-	dictionary["distance"] = tts ? ", अंतर " : "distance.ogg";
+	dictionary["route_is2"] = tts ? "है" : "route_is2.ogg";
+	dictionary["route_calculate"] = tts ? "मार्ग पुनर्गणना" : "route_calculate.ogg";
+	dictionary["distance"] = tts ? "अंतर" : "distance.ogg";
 
 	// LEFT/RIGHT
-	//dictionary["prepare"] = tts ? " मुडने के लिये तयार रहे" : "prepare.ogg";
-	dictionary["after"] = tts ? " के बाद " : "after.ogg";
+	//dictionary["prepare"] = tts ? "मुडने के लिये तयार रहे" : "prepare.ogg";
+	dictionary["after"] = tts ? "के बाद" : "after.ogg";
 	dictionary["in"] = tts ? " में" : "in.ogg";
 
 	dictionary["mudiye"] = tts ? "मुडिये" : "mudiye.ogg";
-	dictionary["left"] = tts ? "बाये " : "left.ogg";
-	dictionary["left_sh"] = tts ? "तेजी से बाये " : "left_sh.ogg";
-	dictionary["left_sl"] = tts ? "हलके से बाये " : "left_sl.ogg";
-	dictionary["right"] = tts ? "दायने " : "right.ogg";
-	dictionary["right_sh"] = tts ? "तेजी से दायने " : "right_sh.ogg";
-	dictionary["right_sl"] = tts ? "हलके से दायने " : "right_sl.ogg";
-	dictionary["left_keep"] = tts ? "बाये रहे  " : "left_keep.ogg";
-	dictionary["right_keep"] = tts ? "दायने रहे " : "right_keep.ogg";
-	dictionary["left_bear"] = tts ? "बाये रहे  " : "left_bear.ogg";     // in English the same as left_keep, may be different in other languages
-	dictionary["right_bear"] = tts ? "दायने रहे " : "right_bear.ogg";    // in English the same as right_keep, may be different in other languages
+	dictionary["left"] = tts ? "बाये" : "left.ogg";
+	dictionary["left_sh"] = tts ? "तेजी से बाये" : "left_sh.ogg";
+	dictionary["left_sl"] = tts ? "हलके से बाये" : "left_sl.ogg";
+	dictionary["right"] = tts ? "दायने" : "right.ogg";
+	dictionary["right_sh"] = tts ? "तेजी से दायने" : "right_sh.ogg";
+	dictionary["right_sl"] = tts ? "हलके से दायने" : "right_sl.ogg";
+	dictionary["left_keep"] = tts ? "बाये रहे" : "left_keep.ogg";
+	dictionary["right_keep"] = tts ? "दायने रहे" : "right_keep.ogg";
+	dictionary["left_bear"] = tts ? "बाये रहे" : "left_bear.ogg";     // in English the same as left_keep, may be different in other languages
+	dictionary["right_bear"] = tts ? "दायने रहे" : "right_bear.ogg";    // in English the same as right_keep, may be different in other languages
 
 	// U-TURNS
-	dictionary["prepare_make_uturn"] = tts ? "के बाद वापस मुडने के लिये तयार रहे " : "prepare_make_uturn.ogg";
-	dictionary["make_uturn"] = tts ? "के बाद वापस मुडिये " : "make_uturn.ogg";
-	dictionary["make_uturn2"] = tts ? "वापस मुडिये " : "make_uturn2.ogg";
-	dictionary["make_uturn_wp"] = tts ? "जब संभव हो तब वापस मुडिये " : "make_uturn_wp.ogg";
+	dictionary["prepare_make_uturn"] = tts ? "के बाद वापस मुडने के लिये तयार रहे" : "prepare_make_uturn.ogg";
+	dictionary["make_uturn"] = tts ? "के बाद वापस मुडिये" : "make_uturn.ogg";
+	dictionary["make_uturn2"] = tts ? "वापस मुडिये" : "make_uturn2.ogg";
+	dictionary["make_uturn_wp"] = tts ? "जब संभव हो तब वापस मुडिये" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? "के बाद वापस मुडने के लिये तयार रहे " : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? "के बाद वापस मुडिये और बाहर जाने का " : "roundabout.ogg";
-	dictionary["then"] = tts ? "और फिर " : "then.ogg";
-	dictionary["and"] = tts ? " और " : "and.ogg";
-	dictionary["take"] = tts ? "बाहर जाने का " : "take.ogg";
+	dictionary["prepare_roundabout"] = tts ? "के बाद वापस मुडने के लिये तयार रहे" : "prepare_roundabout.ogg";
+	dictionary["roundabout"] = tts ? "के बाद वापस मुडिये और बाहर जाने का" : "roundabout.ogg";
+	dictionary["then"] = tts ? "और फिर" : "then.ogg";
+	dictionary["and"] = tts ? "और" : "and.ogg";
+	dictionary["take"] = tts ? "बाहर जाने का" : "take.ogg";
 	dictionary["exit"] = tts ? "मार्ग चुने" : "exit.ogg";
 
-	dictionary["1st"] = tts ? "पहला " : "1st.ogg";
-	dictionary["2nd"] = tts ? "दूसरा " : "2nd.ogg";
-	dictionary["3rd"] = tts ? "तीसरा " : "3rd.ogg";
-	dictionary["4th"] = tts ? "चौथा " : "4th.ogg";
-	dictionary["5th"] = tts ? "पांचवा " : "5th.ogg";
-	dictionary["6th"] = tts ? "छटवा " : "6th.ogg";
-	dictionary["7th"] = tts ? "सातवा " : "7th.ogg";
-	dictionary["8th"] = tts ? "आठवा " : "8th.ogg";
-	dictionary["9th"] = tts ? "नववा " : "9th.ogg";
-	dictionary["10th"] = tts ? "दसवा " : "10th.ogg";
-	dictionary["11th"] = tts ? "ग्यारहवा " : "11th.ogg";
-	dictionary["12th"] = tts ? "बारहवा " : "12th.ogg";
-	dictionary["13th"] = tts ? "तेरहवा " : "13th.ogg";
-	dictionary["14th"] = tts ? "चौदहवा " : "14th.ogg";
-	dictionary["15th"] = tts ? "पंधरहवा " : "15th.ogg";
-	dictionary["16th"] = tts ? "सोलहवा " : "16th.ogg";
-	dictionary["17th"] = tts ? "सतरहवा " : "17th.ogg";
+	dictionary["1st"] = tts ? "पहला" : "1st.ogg";
+	dictionary["2nd"] = tts ? "दूसरा" : "2nd.ogg";
+	dictionary["3rd"] = tts ? "तीसरा" : "3rd.ogg";
+	dictionary["4th"] = tts ? "चौथा" : "4th.ogg";
+	dictionary["5th"] = tts ? "पांचवा" : "5th.ogg";
+	dictionary["6th"] = tts ? "छटवा" : "6th.ogg";
+	dictionary["7th"] = tts ? "सातवा" : "7th.ogg";
+	dictionary["8th"] = tts ? "आठवा" : "8th.ogg";
+	dictionary["9th"] = tts ? "नववा" : "9th.ogg";
+	dictionary["10th"] = tts ? "दसवा" : "10th.ogg";
+	dictionary["11th"] = tts ? "ग्यारहवा" : "11th.ogg";
+	dictionary["12th"] = tts ? "बारहवा" : "12th.ogg";
+	dictionary["13th"] = tts ? "तेरहवा" : "13th.ogg";
+	dictionary["14th"] = tts ? "चौदहवा" : "14th.ogg";
+	dictionary["15th"] = tts ? "पंधरहवा" : "15th.ogg";
+	dictionary["16th"] = tts ? "सोलहवा" : "16th.ogg";
+	dictionary["17th"] = tts ? "सतरहवा" : "17th.ogg";
 
 	// STRAIGHT/FOLLOW
-	dictionary["go_ahead"] = tts ? " सीधे आगे जाये " : "go_ahead.ogg";
-	dictionary["follow"] = tts ? " तक रास्ते का पालन करे " : "follow.ogg";
+	dictionary["go_ahead"] = tts ? "सीधे आगे जाये" : "go_ahead.ogg";
+	dictionary["follow"] = tts ? "तक रास्ते का पालन करे" : "follow.ogg";
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "और अपनी मंजिल पर पहोचे " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "आप अपनी मंजिल पर पहोच चुके है " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "और आपके माध्यम बिंदु  " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "आप अपने माध्यम बिंदु पर पहुंच गया है " : "reached_intermediate.ogg";
+	dictionary["and_arrive_destination"] = tts ? "और अपनी मंजिल पर पहोचे" : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "आप अपनी मंजिल पर पहोच चुके है" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "और आपके माध्यम बिंदु" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "आप अपने माध्यम बिंदु पर पहुंच गया है" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "और आपके माध्यम बिंदु  " : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "आप अपने माध्यम बिंदु पर पहुंच गया है " : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "and pass favorite " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "you are passing favorite " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "and pass POI " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "you are passing POI " : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "और आपके माध्यम बिंदु" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "आप अपने माध्यम बिंदु पर पहुंच गया है" : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "and pass favorite" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "you are passing favorite" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "and pass POI" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "you are passing POI" : "reached_poi.ogg";
 
 	// ATTENTION
-	//dictionary["exceed_limit"] = tts ? "आप गति सीमा से अधिक कर रहे हैं " : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "गति सीमा " : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "ध्यान " : "attention.ogg";
+	//dictionary["exceed_limit"] = tts ? "आप गति सीमा से अधिक कर रहे हैं" : "exceed_limit.ogg";
+	dictionary["exceed_limit"] = tts ? "गति सीमा" : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "ध्यान" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "गति कैमरा" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "सीमा नियंत्रण" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "रेलमार्ग पारगमन" : "railroad_crossing.ogg";
@@ -105,19 +105,19 @@ function populateDictionary(tts) {
 	// OTHER PROMPTS
 	dictionary["location_lost"] = tts ? "जी पी एस सिग्नल नही" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "जीपीएस संकेत बहाल" : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "आप मार्ग से भटक गए हैं " : "off_route.ogg";
+	dictionary["off_route"] = tts ? "आप मार्ग से भटक गए हैं" : "off_route.ogg";
 	dictionary["back_on_route"] = tts ? "आप मार्ग पर वापस आ रहे हैं" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "पर " : "onto.ogg";
-	dictionary["on"] = tts ? "पर " : "on.ogg";
-	dictionary["to"] = tts ? "पर " : "to.ogg";
-	dictionary["toward"] = tts ? "toward " : "toward.ogg";
+	dictionary["onto"] = tts ? "पर" : "onto.ogg";
+	dictionary["on"] = tts ? "पर" : "on.ogg";
+	dictionary["to"] = tts ? "पर" : "to.ogg";
+	dictionary["toward"] = tts ? "toward" : "toward.ogg";
 
 	// DISTANCE UNIT SUPPORT
-	dictionary["meters"] = tts ? "मीटर " : "meters.ogg";
+	dictionary["meters"] = tts ? "मीटर" : "meters.ogg";
 	dictionary["around_1_kilometer"] = tts ? "साधारण 1 किलोमीटर" : "around_1_kilometer.ogg";
-	dictionary["around"] = tts ? "साधारण " : "around.ogg";
+	dictionary["around"] = tts ? "साधारण" : "around.ogg";
 	dictionary["kilometers"] = tts ? "किलोमीटर" : "kilometers.ogg";
 
 	dictionary["feet"] = tts ? "पैर" : "feet.ogg";
@@ -129,9 +129,9 @@ function populateDictionary(tts) {
 	dictionary["yards"] = tts ? "गज की दूरी पर" : "yards.ogg";
 
 	// TIME SUPPORT
-	dictionary["time"] = tts ? "समय की जरूरत " : "time.ogg";
-	dictionary["1_hour"] = tts ? "एक घंटे " : "1_hour.ogg";
-	dictionary["hours"] = tts ? "घंटे " : "hours.ogg";
+	dictionary["time"] = tts ? "समय की जरूरत" : "time.ogg";
+	dictionary["1_hour"] = tts ? "एक घंटे" : "1_hour.ogg";
+	dictionary["hours"] = tts ? "घंटे" : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "कम से कम एक मिनट" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "एक मिनट" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "मिनट" : "minutes.ogg";
@@ -249,7 +249,7 @@ function hours(minutes) {
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + " " + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
+	return dictionary["route_calculate"] + (tts ? ", " : " ") + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
 }
 
 function go_ahead(dist, streetName) {
@@ -362,7 +362,7 @@ function  getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return dictionary["then"];
+	return dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {

@@ -17,13 +17,13 @@ var tts;
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	dictionary["route_is"] = tts ? "Pot bo dolga " : "route_is.ogg";
+	dictionary["route_is"] = tts ? "Pot bo dolga" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Izračunana je nova pot" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? "razdalja " : "distance.ogg";
+	dictionary["distance"] = tts ? "razdalja" : "distance.ogg";
 
 	// LEFT/RIGHT
-	dictionary["after"] = tts ? "Čez " : "after.ogg";
-	dictionary["in"] = tts ? "na " : "in.ogg";
+	dictionary["after"] = tts ? "Čez" : "after.ogg";
+	dictionary["in"] = tts ? "na" : "in.ogg";
 
 	dictionary["left"] = tts ? "zavijte levo" : "left.ogg";
 	dictionary["left_sh"] = tts ? "zavijte ostro levo" : "left_sh.ogg";
@@ -41,53 +41,53 @@ function populateDictionary(tts) {
 	dictionary["make_uturn_wp"] = tts ? "Čim bo mogoče, obrnite nazaj" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? "Pripravite se na krožišče čez " : "prepare_roundabout.ogg";
+	dictionary["prepare_roundabout"] = tts ? "Pripravite se na krožišče čez" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "zapeljite v krožišče, nato pa uporabite" : "roundabout.ogg";
-	dictionary["then"] = tts ? ", nato " : "then.ogg";
-	dictionary["and"] = tts ? " in " : "and.ogg";
+	dictionary["then"] = tts ? "nato" : "then.ogg";
+	dictionary["and"] = tts ? "in" : "and.ogg";
 	dictionary["take"] = tts ? "Uporabite " : "take.ogg";
 	dictionary["exit"] = tts ? "izvoz" : "exit.ogg";
 
-	dictionary["1st"] = tts ? "prvi " : "1st.ogg";
-	dictionary["2nd"] = tts ? "drugi " : "2nd.ogg";
-	dictionary["3rd"] = tts ? "tretji " : "3rd.ogg";
-	dictionary["4th"] = tts ? "četrti " : "4th.ogg";
-	dictionary["5th"] = tts ? "peti " : "5th.ogg";
-	dictionary["6th"] = tts ? "šesti " : "6th.ogg";
-	dictionary["7th"] = tts ? "sedmi " : "7th.ogg";
-	dictionary["8th"] = tts ? "osmi " : "8th.ogg";
-	dictionary["9th"] = tts ? "deveti " : "9th.ogg";
-	dictionary["10th"] = tts ? "deseti " : "10th.ogg";
-	dictionary["11th"] = tts ? "enajsti " : "11th.ogg";
-	dictionary["12th"] = tts ? "dvanajsti " : "12th.ogg";
-	dictionary["13th"] = tts ? "trinajsti " : "13th.ogg";
-	dictionary["14th"] = tts ? "štirinajsti " : "14th.ogg";
-	dictionary["15th"] = tts ? "petnajsti " : "15th.ogg";
-	dictionary["16th"] = tts ? "šestnajsti " : "16th.ogg";
-	dictionary["17th"] = tts ? "sedemnajsti " : "17th.ogg";
+	dictionary["1st"] = tts ? "prvi" : "1st.ogg";
+	dictionary["2nd"] = tts ? "drugi" : "2nd.ogg";
+	dictionary["3rd"] = tts ? "tretji" : "3rd.ogg";
+	dictionary["4th"] = tts ? "četrti" : "4th.ogg";
+	dictionary["5th"] = tts ? "peti" : "5th.ogg";
+	dictionary["6th"] = tts ? "šesti" : "6th.ogg";
+	dictionary["7th"] = tts ? "sedmi" : "7th.ogg";
+	dictionary["8th"] = tts ? "osmi" : "8th.ogg";
+	dictionary["9th"] = tts ? "deveti" : "9th.ogg";
+	dictionary["10th"] = tts ? "deseti" : "10th.ogg";
+	dictionary["11th"] = tts ? "enajsti" : "11th.ogg";
+	dictionary["12th"] = tts ? "dvanajsti" : "12th.ogg";
+	dictionary["13th"] = tts ? "trinajsti" : "13th.ogg";
+	dictionary["14th"] = tts ? "štirinajsti" : "14th.ogg";
+	dictionary["15th"] = tts ? "petnajsti" : "15th.ogg";
+	dictionary["16th"] = tts ? "šestnajsti" : "16th.ogg";
+	dictionary["17th"] = tts ? "sedemnajsti" : "17th.ogg";
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Pojdite naravnost naprej" : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "Nadaljujte po cesti še " : "follow.ogg";
+	dictionary["follow"] = tts ? "Nadaljujte po cesti še" : "follow.ogg";
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "in prispete na cilj " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "prispeli ste na cilj " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "in prispete na vmesni cilj " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "Prispeli ste na vmesni cilj " : "reached_intermediate.ogg";
+	dictionary["and_arrive_destination"] = tts ? "in prispete na cilj" : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "prispeli ste na cilj" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "in prispete na vmesni cilj" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "Prispeli ste na vmesni cilj" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "in prispete na vmesni cilj GE PE X " : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "Prispeli ste na vmesni cilj GE PE X " : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "and pass favorite " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "you are passing favorite " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "and pass POI " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "you are passing POI " : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "in prispete na vmesni cilj GE PE X" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "Prispeli ste na vmesni cilj GE PE X" : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "and pass favorite" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "you are passing favorite" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "and pass POI" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "you are passing POI" : "reached_poi.ogg";
 
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "prekoračili ste dovoljeno hitrost " : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "omejitev hitrosti " : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "pozor, " : "attention.ogg";
+	dictionary["exceed_limit"] = tts ? "omejitev hitrosti" : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "Pozor" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "hitrost kamere" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "nadzor meje" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "železniški prehod" : "railroad_crossing.ogg";
@@ -100,21 +100,21 @@ function populateDictionary(tts) {
 	// OTHER PROMPTS
 	dictionary["location_lost"] = tts ? "Izgubljen signal GE PE ES" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "Ujet signal GE PE ES" : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "ste oddaljil od poti " : "off_route.ogg";
+	dictionary["off_route"] = tts ? "ste oddaljil od poti" : "off_route.ogg";
 	dictionary["back_on_route"] = tts ? "ste spet na poti" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "na  " : "onto.ogg";
-	dictionary["on"] = tts ? "na " : "on.ogg";
-	dictionary["to"] = tts ? "proti " : "to.ogg";
-	dictionary["toward"] = tts ? "proti " : "toward.ogg";
+	dictionary["onto"] = tts ? "na" : "onto.ogg";
+	dictionary["on"] = tts ? "na" : "on.ogg";
+	dictionary["to"] = tts ? "proti" : "to.ogg";
+	dictionary["toward"] = tts ? "proti" : "toward.ogg";
 
 	// DISTANCE UNIT SUPPORT
 	//// TODO: general slovenian 4 plural forms: 101&1001 kilometer, 102&1002 kilometra, 103&104 kilometre...
 	dictionary["meters"] = tts ? "metrov" : "meters.ogg";
 	dictionary["around_1_kilometer"] = tts ? "približno en kilometer" : "around_1_kilometer.ogg";
 	dictionary["around_2_kilometers"] = tts ? "približno 2 kilometra" : "around_2_kilometers.ogg";
-	dictionary["around"] = tts ? "približno " : "around.ogg";
+	dictionary["around"] = tts ? "približno" : "around.ogg";
 	dictionary["kilometers1"] = tts ? "kilometre" : "kilometers1.ogg";
 	dictionary["kilometers2"] = tts ? "kilometrov" : "kilometers2.ogg";
 
@@ -127,9 +127,9 @@ function populateDictionary(tts) {
 	dictionary["yards"] = tts ? "jardov" : "yards.ogg";
 
 	// TIME SUPPORT
-	dictionary["time"] = tts ? "potreben čas " : "time.ogg";
-	dictionary["1_hour"] = tts ? "eno uro " : "1_hour.ogg";
-	dictionary["hours"] = tts ? "ur " : "hours.ogg";
+	dictionary["time"] = tts ? "potreben čas" : "time.ogg";
+	dictionary["1_hour"] = tts ? "eno uro" : "1_hour.ogg";
+	dictionary["hours"] = tts ? "ur" : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "manj kot minuto" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "eno minuto" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "minut" : "minutes.ogg";
@@ -365,7 +365,7 @@ function  getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return dictionary["then"];
+	return (tts ? ", " : " ") + dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
@@ -575,7 +575,7 @@ function speed_alarm(maxSpeed, speed) {
 }
 
 function attention(type) {
-	return dictionary["attention"] + " " + getAttentionString(type);
+	return dictionary["attention"] + (tts ? ", " : " ") + getAttentionString(type);
 }
 
 function getAttentionString(type) {

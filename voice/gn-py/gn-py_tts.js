@@ -21,14 +21,14 @@ var tts;
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	dictionary["route_is"] = tts ? "pe tapé orekó " : "route_is.ogg";
-	dictionary["route_calculate"] = tts ? "tapé puiajú " : "route_calculate.ogg";
-	dictionary["distance"] = tts ? ", mombirí " : "distance.ogg";
+	dictionary["route_is"] = tts ? "pe tapé orekó" : "route_is.ogg";
+	dictionary["route_calculate"] = tts ? "tapé puiajú" : "route_calculate.ogg";
+	dictionary["distance"] = tts ? "mombirí" : "distance.ogg";
 	
 	// LEFT/RIGHT
 	dictionary["prepare"] = tts ? "eñemboapópuirá" : "prepare.ogg";
-	dictionary["after"] = tts ? "upé riré " : "after.ogg";
-	dictionary["in"] = tts ? "pe " : "in.ogg";
+	dictionary["after"] = tts ? "upé riré" : "after.ogg";
+	dictionary["in"] = tts ? "pe" : "in.ogg";
 	
 	dictionary["left"] = tts ? "eyeré asúpe" : "left.ogg";
 	dictionary["left_sh"] = tts ? "eyeré mbotui asúpe" : "left_sh.ogg";
@@ -49,50 +49,50 @@ function populateDictionary(tts) {
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "ehiké apua'ajápe" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "ehiké apua'ajápe" : "roundabout.ogg";
-	dictionary["then"] = tts ? ", ja upeí, " : "then.ogg";
-	dictionary["and"] = tts ? " ja " : "and.ogg";
-	dictionary["take"] = tts ? "peípéjé " : "take.ogg";
+	dictionary["then"] = tts ? "ja upeí" : "then.ogg";
+	dictionary["and"] = tts ? "ja" : "and.ogg";
+	dictionary["take"] = tts ? "peípéjé" : "take.ogg";
 	dictionary["exit"] = tts ? "ñesehára" : "exit.ogg";
 	
-	dictionary["1st"] = tts ? "peteí " : "1st.ogg";
-	dictionary["2nd"] = tts ? "mokoih " : "2nd.ogg";
-	dictionary["3rd"] = tts ? "mbohápúh " : "3rd.ogg";
-	dictionary["4th"] = tts ? "irundú " : "4th.ogg";
-	dictionary["5th"] = tts ? "pojá " : "5th.ogg";
-	dictionary["6th"] = tts ? "poteíjá " : "6th.ogg";
-	dictionary["7th"] = tts ? "pokoíjá " : "7th.ogg";
-	dictionary["8th"] = tts ? "poapuijá " : "8th.ogg";
-	dictionary["9th"] = tts ? "porunduijá " : "9th.ogg";
-	dictionary["10th"] = tts ? "pajá " : "10th.ogg";
-	dictionary["11th"] = tts ? "patejhá " : "11th.ogg";
-	dictionary["12th"] = tts ? "pakoíjhá " : "12th.ogg";
-	dictionary["13th"] = tts ? "paapuijhá " : "13th.ogg";
-	dictionary["14th"] = tts ? "parundépá " : "14th.ogg";
-	dictionary["15th"] = tts ? "papojá " : "15th.ogg";
-	dictionary["16th"] = tts ? "papoteijhá " : "16th.ogg";
-	dictionary["17th"] = tts ? "papokoí já " : "17th.ogg";
+	dictionary["1st"] = tts ? "peteí" : "1st.ogg";
+	dictionary["2nd"] = tts ? "mokoih" : "2nd.ogg";
+	dictionary["3rd"] = tts ? "mbohápúh" : "3rd.ogg";
+	dictionary["4th"] = tts ? "irundú" : "4th.ogg";
+	dictionary["5th"] = tts ? "pojá" : "5th.ogg";
+	dictionary["6th"] = tts ? "poteíjá" : "6th.ogg";
+	dictionary["7th"] = tts ? "pokoíjá" : "7th.ogg";
+	dictionary["8th"] = tts ? "poapuijá" : "8th.ogg";
+	dictionary["9th"] = tts ? "porunduijá" : "9th.ogg";
+	dictionary["10th"] = tts ? "pajá" : "10th.ogg";
+	dictionary["11th"] = tts ? "patejhá" : "11th.ogg";
+	dictionary["12th"] = tts ? "pakoíjhá" : "12th.ogg";
+	dictionary["13th"] = tts ? "paapuijhá" : "13th.ogg";
+	dictionary["14th"] = tts ? "parundépá" : "14th.ogg";
+	dictionary["15th"] = tts ? "papojá" : "15th.ogg";
+	dictionary["16th"] = tts ? "papoteijhá" : "16th.ogg";
+	dictionary["17th"] = tts ? "papokoí já" : "17th.ogg";
 	
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Ejó tenondé" : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "Ejó ko'arupí " : "follow.ogg";  // 'Follow the course of the road for' perceived as too chatty by many users
+	dictionary["follow"] = tts ? "Ejó ko'arupí" : "follow.ogg";  // 'Follow the course of the road for' perceived as too chatty by many users
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "já rheguajeta rheguajetajape  " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "reguajema " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "já reguajeta ku'ape reguajetajagu i " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "remuajé remua jeta jape " : "reached_intermediate.ogg";
+	dictionary["and_arrive_destination"] = tts ? "já rheguajeta rheguajetajape" : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "reguajema" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "já reguajeta ku'ape reguajetajagu i" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "remuajé remua jeta jape" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "Jarejasáta G P X mbuiteré " : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "rejasama G P X mbuiteré " : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "Jarejasáta parejá iuetéva " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "rejasama parejá iuetéva " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "jarejasáta P D I " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "rejasama ina P D I " : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "Jarejasáta G P X mbuiteré" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "rejasama G P X mbuiteré" : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "Jarejasáta parejá iuetéva" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "rejasama parejá iuetéva" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "jarejasáta P D I" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "rejasama ina P D I" : "reached_poi.ogg";
 
 	// ATTENTION
-	dictionary["exceed_limit"] = tts ? "Rejasá hina puia'ekué ikatúa " : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "cháke, " : "attention.ogg";
+	dictionary["exceed_limit"] = tts ? "Rejasá hina puia'ekué ikatúa" : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "Cháke" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "Puia'ekué mañajá" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "téta rembeúi mañajá" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "ojasá pe jejongavatá" : "railroad_crossing.ogg";
@@ -100,7 +100,7 @@ function populateDictionary(tts) {
 	dictionary["toll_booth"] = tts ? "oí ina embó jepui" : "toll_booth.ogg";
 	dictionary["stop"] = tts ? "Ta'angá epuytajaguá" : "stop.ogg";
 	dictionary["pedestrian_crosswalk"] = tts ? "oguatáva ybuirupí ojasá" : "pedestrian_crosswalk.ogg";
-	dictionary["tunnel"] = tts ? "Itakuá  rapé ye jasá jaguá" : "tunnel.ogg";
+	dictionary["tunnel"] = tts ? "Itakuá rapé ye jasá jaguá" : "tunnel.ogg";
 
 	// OTHER PROMPTS
 	dictionary["location_lost"] = tts ? "GPS teja auká okañé" : "location_lost.ogg";
@@ -109,15 +109,15 @@ function populateDictionary(tts) {
 	dictionary["back_on_route"] = tts ? "Reyú iyaú  n'dé rapé pe" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "opetajapé calle " : "onto.ogg";   // unused in Spanish
-	dictionary["on"] = tts ? "pe " : "on.ogg";        // duplicated with 'in.ogg' in Spanish
-	dictionary["to"] = tts ? "kotyo " : "to.ogg";     // duplicated with 'toward.ogg' in Spanish
-	dictionary["toward"] = tts ? "kotyo " : "toward.ogg"; // duplicated with 'to.ogg' in Spanish
+	dictionary["onto"] = tts ? "opetajapé calle" : "onto.ogg";   // unused in Spanish
+	dictionary["on"] = tts ? "pe" : "on.ogg";        // duplicated with 'in.ogg' in Spanish
+	dictionary["to"] = tts ? "kotyo" : "to.ogg";     // duplicated with 'toward.ogg' in Spanish
+	dictionary["toward"] = tts ? "kotyo" : "toward.ogg"; // duplicated with 'to.ogg' in Spanish
 
 	// DISTANCE UNIT SUPPORT
 	dictionary["meters"] = tts ? "metros" : "meters.ogg";
 	dictionary["around_1_kilometer"] = tts ? "peteí kilómetro potaité" : "around_1_kilometer.ogg";
-	dictionary["around"] = tts ? "aimeté " : "around.ogg";
+	dictionary["around"] = tts ? "aimeté" : "around.ogg";
 	dictionary["kilometers"] = tts ? "kilómetros" : "kilometers.ogg";
 	
 	dictionary["feet"] = tts ? "kilómetros" : "feet.ogg";
@@ -129,9 +129,9 @@ function populateDictionary(tts) {
 	dictionary["yards"] = tts ? "yardas" : "yards.ogg";
 	
 	// TIME SUPPORT
-	dictionary["time"] = tts ? "Ar'avo tekoteveva " : "time.ogg";
-	dictionary["1_hour"] = tts ? "peteí aravo   " : "1_hour.ogg";
-	dictionary["hours"] = tts ? "aravo " : "hours.ogg";
+	dictionary["time"] = tts ? "Ar'avo tekoteveva" : "time.ogg";
+	dictionary["1_hour"] = tts ? "peteí aravo" : "1_hour.ogg";
+	dictionary["hours"] = tts ? "aravo" : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "Aravo'i moyve" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "peteí aravo'í" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "aravo'í" : "minutes.ogg";
@@ -358,7 +358,7 @@ function  getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return dictionary["then"];
+	return (tts ? ", " : " ") + dictionary["then"] + "(tts ? ", " : " ");
 }
 
 function roundabout(dist, angle, exit, streetName) {
@@ -567,7 +567,7 @@ function speed_alarm(maxSpeed, speed) {
 }
 
 function attention(type) {
-	return dictionary["attention"] + " " + getAttentionString(type);
+	return dictionary["attention"] + (tts ? ", " : " ") + getAttentionString(type);
 }
 
 function getAttentionString(type) {
@@ -618,41 +618,41 @@ function ogg_dist(distance) {
 	} else if (distance == 20) {
 		return "20.ogg ";
 	} else if (distance < 30) {
-		return "20.ogg " + dictionary["and"] + " " + ogg_dist(distance - 20);
+		return "20.ogg " + " " + dictionary["and"] + " " + ogg_dist(distance - 20);
 	} else if (distance == 30) {
 		return "30.ogg ";
 	} else if (distance < 40) {
-		return "30.ogg " + dictionary["and"] + " " + ogg_dist(distance - 30);
+		return "30.ogg " + " " + dictionary["and"] + " " + ogg_dist(distance - 30);
 	} else if (distance == 40) {
 		return "40.ogg ";
 	} else if (distance < 50) {
-		return "40.ogg " + dictionary["and"] + " " + ogg_dist(distance - 40);
+		return "40.ogg " + " " + dictionary["and"] + " " + ogg_dist(distance - 40);
 	} else if (distance == 50) {
 		return "50.ogg ";
 	} else if (distance < 60) {
-		return "50.ogg " + dictionary["and"] + " " + ogg_dist(distance - 50);
+		return "50.ogg " + " " + dictionary["and"] + " " + ogg_dist(distance - 50);
 	} else if (distance == 60) {
 		return "60.ogg ";
 	} else if (distance < 70) {
-		return "60.ogg " + dictionary["and"] + " " + ogg_dist(distance - 60);
+		return "60.ogg " + " " + dictionary["and"] + " " + ogg_dist(distance - 60);
 	} else if (distance == 70) {
 		return "70.ogg ";
 	} else if (distance < 80) {
-		return "70.ogg " + dictionary["and"] + " " + ogg_dist(distance - 70);
+		return "70.ogg " + " " + dictionary["and"] + " " + ogg_dist(distance - 70);
 	} else if (distance == 80) {
 		return "80.ogg ";
 	} else if (distance < 90) {
-		return "80.ogg " + dictionary["and"] + " " + ogg_dist(distance - 80);
+		return "80.ogg " + " " + dictionary["and"] + " " + ogg_dist(distance - 80);
 	} else if (distance == 90) {
 		return "90.ogg ";
 	} else if (distance < 100) {
-		return "90.ogg " + dictionary["and"] + " " + ogg_dist(distance - 90);
+		return "90.ogg " + " " + dictionary["and"] + " " + ogg_dist(distance - 90);
 	} else if (distance < 200) {
 		return "100.ogg " + ogg_dist(distance - 100);
 	} else if (distance < 300) {
 		return "200.ogg " + ogg_dist(distance - 200);
 	} else if (distance < 400) {
-		return "300.ogg "+ ogg_dist(distance - 300);
+		return "300.ogg " + ogg_dist(distance - 300);
 	} else if (distance < 500) {
 		return "400.ogg " + ogg_dist(distance - 400);
 	} else if (distance < 600) {

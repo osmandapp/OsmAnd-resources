@@ -49,8 +49,8 @@ function populateDictionary(tts) {
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "Pripremite se za ulazak u kružni tok" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "uđite u kružni tok" : "roundabout.ogg";
-	dictionary["then"] = tts ? ", onda " : "then.ogg";
-	dictionary["and"] = tts ? " i " : "and.ogg";
+	dictionary["then"] = tts ? "onda" : "then.ogg";
+	dictionary["and"] = tts ? "i" : "and.ogg";
 	dictionary["and_alt"] = tts ? "te" : "and.ogg";
 	dictionary["take"] = tts ? "izađite na" : "take.ogg";
 	dictionary["exit"] = tts ? "izlaz" : "exit.ogg";
@@ -78,23 +78,23 @@ function populateDictionary(tts) {
 	dictionary["follow"] = tts ? "Nastavite" : "follow.ogg";
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "i stići ćete do odredišta " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "Stigli ste do svog odredišta " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "i stići ćete do međuodredišta " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "stigli ste do međuodredišta " : "reached_intermediate.ogg";
+	dictionary["and_arrive_destination"] = tts ? "i stići ćete do odredišta" : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "Stigli ste do svog odredišta" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "i stići ćete do međuodredišta" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "stigli ste do međuodredišta" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "i proći ćete ge pe iks međutačku " : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "prolazite ge pe iks međutačku " : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "i proći ćete spašenu tačku " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "prolazite spašenu tačku " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "i proći ćete tačku interesa " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "prolazite tačku interesa " : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "i proći ćete ge pe iks međutačku" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "prolazite ge pe iks međutačku" : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "i proći ćete spašenu tačku" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "prolazite spašenu tačku" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "i proći ćete tačku interesa" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "prolazite tačku interesa" : "reached_poi.ogg";
 
 	// ATTENTION
-	//dictionary["exceed_limit"] = tts ? "prekoračili ste dozvoljenu brzinu " : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "ograničenje brzine " : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "Pažnja, " : "attention.ogg";
+	//dictionary["exceed_limit"] = tts ? "prekoračili ste dozvoljenu brzinu" : "exceed_limit.ogg";
+	dictionary["exceed_limit"] = tts ? "ograničenje brzine" : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "Pažnja" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "nadzor brzine" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "granična kontrola" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "železnički prelaz" : "railroad_crossing.ogg";
@@ -176,6 +176,9 @@ function populateDictionary(tts) {
 	dictionary["2_f_acc"] = dictionary["2_f_gen"] = dictionary["2_f_nom"];
 }
 
+
+//// COMMAND BUILDING / WORD ORDER
+////////////////////////////////////////////////////////////////
 function num_str(number, gender /*of the object being counted*/, grm_case) {
 	//only needed for numbers ending in 1 and 2
 	
@@ -459,7 +462,7 @@ function getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return dictionary["then"];
+	return (tts ? ", " : " ") + dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
@@ -663,7 +666,7 @@ function speed_alarm(maxSpeed, speed) {
 }
 
 function attention(type) {
-	return dictionary["attention"] + " " + getAttentionString(type);
+	return dictionary["attention"] + (tts ? ", " : " ") + getAttentionString(type);
 }
 
 function getAttentionString(type) {

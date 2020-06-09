@@ -17,14 +17,14 @@ var tts;
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	dictionary["route_is"] = tts ? "Turen er " : "route_is.ogg";
+	dictionary["route_is"] = tts ? "Turen er" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Ruten beregnet på nytt" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? "avstand " : "distance.ogg";
+	dictionary["distance"] = tts ? "avstand" : "distance.ogg";
 
 	// LEFT/RIGHT
 	//dictionary["prepare"] = "Forbered å "
-	dictionary["after"] = tts ? "etter " : "after.ogg";
-	dictionary["in"] = tts ? "i " : "in.ogg";
+	dictionary["after"] = tts ? "etter" : "after.ogg";
+	dictionary["in"] = tts ? "i" : "in.ogg";
 
 	dictionary["left"] = tts ? "ta til venstre" : "left.ogg";
 	dictionary["left_sh"] = tts ? "ta skarpt til venstre" : "left_sh.ogg";
@@ -43,52 +43,52 @@ function populateDictionary(tts) {
 
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "kjør inn i en rundkjøring" : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? "kjør inn i rundkjøringen, " : "roundabout.ogg";
-	dictionary["then"] = tts ? " så " : "then.ogg";
-	dictionary["and"] = tts ? " og " : "and.ogg";
-	dictionary["take"] = tts ? "ta den " : "take.ogg";
+	dictionary["roundabout"] = tts ? "kjør inn i rundkjøringen" : "roundabout.ogg";
+	dictionary["then"] = tts ? "så" : "then.ogg";
+	dictionary["and"] = tts ? "og" : "and.ogg";
+	dictionary["take"] = tts ? "ta den" : "take.ogg";
 	dictionary["exit"] = tts ? "avkjøringen" : "exit.ogg";
 
-	dictionary["1st"] = tts ? "første " : "1st.ogg";
-	dictionary["2nd"] = tts ? "andre " : "2nd.ogg";
-	dictionary["3rd"] = tts ? "tredje " : "3rd.ogg";
-	dictionary["4th"] = tts ? "fjerde " : "4th.ogg";
-	dictionary["5th"] = tts ? "femte " : "5th.ogg";
-	dictionary["6th"] = tts ? "sjette " : "6th.ogg";
-	dictionary["7th"] = tts ? "syvende " : "7th.ogg";
-	dictionary["8th"] = tts ? "åttende " : "8th.ogg";
-	dictionary["9th"] = tts ? "niende " : "9th.ogg";
-	dictionary["10th"] = tts ? "tiende " : "10th.ogg";
-	dictionary["11th"] = tts ? "ellevte " : "11th.ogg";
-	dictionary["12th"] = tts ? "tolvte " : "12th.ogg";
-	dictionary["13th"] = tts ? "trettende " : "13th.ogg";
-	dictionary["14th"] = tts ? "fjortende " : "14th.ogg";
-	dictionary["15th"] = tts ? "femtende " : "15th.ogg";
-	dictionary["16th"] = tts ? "sekstende " : "16th.ogg";
-	dictionary["17th"] = tts ? "syttende " : "17th.ogg";
+	dictionary["1st"] = tts ? "første" : "1st.ogg";
+	dictionary["2nd"] = tts ? "andre" : "2nd.ogg";
+	dictionary["3rd"] = tts ? "tredje" : "3rd.ogg";
+	dictionary["4th"] = tts ? "fjerde" : "4th.ogg";
+	dictionary["5th"] = tts ? "femte" : "5th.ogg";
+	dictionary["6th"] = tts ? "sjette" : "6th.ogg";
+	dictionary["7th"] = tts ? "syvende" : "7th.ogg";
+	dictionary["8th"] = tts ? "åttende" : "8th.ogg";
+	dictionary["9th"] = tts ? "niende" : "9th.ogg";
+	dictionary["10th"] = tts ? "tiende" : "10th.ogg";
+	dictionary["11th"] = tts ? "ellevte" : "11th.ogg";
+	dictionary["12th"] = tts ? "tolvte" : "12th.ogg";
+	dictionary["13th"] = tts ? "trettende" : "13th.ogg";
+	dictionary["14th"] = tts ? "fjortende" : "14th.ogg";
+	dictionary["15th"] = tts ? "femtende" : "15th.ogg";
+	dictionary["16th"] = tts ? "sekstende" : "16th.ogg";
+	dictionary["17th"] = tts ? "syttende" : "17th.ogg";
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Fortsett rett fram" : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "Følg veien " : "follow.ogg";  // "Follow the course of the road for" perceived as too chatty by many users
+	dictionary["follow"] = tts ? "Følg veien" : "follow.ogg";  // "Follow the course of the road for" perceived as too chatty by many users
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "og så ankommer du reisemålet ditt " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "du har nådd reisemålet ditt " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "og så ankommer du det mellomliggende reisemålet " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "du har nådd det mellomliggende reisemålet " : "reached_intermediate.ogg";
+	dictionary["and_arrive_destination"] = tts ? "og så ankommer du reisemålet ditt" : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "du har nådd reisemålet ditt" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "og så ankommer du det mellomliggende reisemålet" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "du har nådd det mellomliggende reisemålet" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "og passerer GPX-rutepunkt " : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "du passerer GPX-rutepunkt " : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "og passerer favoritt " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "du passerer favoritt " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "og passerer interessepunkt " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "du passerer interessepunkt " : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "og passerer GPX-rutepunkt" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "du passerer GPX-rutepunkt" : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "og passerer favoritt" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "du passerer favoritt" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "og passerer interessepunkt" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "du passerer interessepunkt" : "reached_poi.ogg";
 
 // ATTENTION
-//dictionary["exceed_limit"] = "du overskrider fartsgrensen "
-	dictionary["exceed_limit"] = tts ? "fartsgrense " : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "obs, " : "attention.ogg";
+//dictionary["exceed_limit"] = "du overskrider fartsgrensen"
+	dictionary["exceed_limit"] = tts ? "fartsgrense" : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "obs" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "fotoboks" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "grensekontroll" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "jernbaneovergang" : "railroad_crossing.ogg";
@@ -105,15 +105,15 @@ function populateDictionary(tts) {
 	dictionary["back_on_route"] = tts ? "du er tilbake på ruten" : "back_on_route.ogg";
 
 // STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "på " : "onto.ogg";
-	dictionary["on"] = tts ? "på " : "on.ogg";    // is used if you turn together with your current street, i.e. street name does not change.
-	dictionary["to"] = tts ? "til " : "to.ogg";
-	dictionary["toward"] = tts ? "mot " : "toward.ogg";
+	dictionary["onto"] = tts ? "på" : "onto.ogg";
+	dictionary["on"] = tts ? "på" : "on.ogg";    // is used if you turn together with your current street, i.e. street name does not change.
+	dictionary["to"] = tts ? "til" : "to.ogg";
+	dictionary["toward"] = tts ? "mot" : "toward.ogg";
 
 // DISTANCE UNIT SUPPORT
 	dictionary["meters"] = tts ? "meter" : "meters.ogg";
 	dictionary["around_1_kilometer"] = tts ? "omtrent 1 kilometer" : "around_1_kilometer.ogg";
-	dictionary["around"] = tts ? "omtrent " : "around.ogg";
+	dictionary["around"] = tts ? "omtrent" : "around.ogg";
 	dictionary["kilometers"] = tts ? "kilometer" : "kilometers.ogg";
 
 	dictionary["feet"] = tts ? "fot" : "feet.ogg";
@@ -124,13 +124,14 @@ function populateDictionary(tts) {
 	dictionary["yards"] = tts ? "yards" : "yards.ogg";
 
 // TIME SUPPORT
-	dictionary["time"] = tts ? "tiden er " : "time.ogg";
-	dictionary["1_hour"] = tts ? "en time " : "1_hour.ogg";
-    dictionary["hours"] = tts ? "timer " : "hours.ogg";
+	dictionary["time"] = tts ? "tiden er" : "time.ogg";
+	dictionary["1_hour"] = tts ? "en time" : "1_hour.ogg";
+    dictionary["hours"] = tts ? "timer" : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "mindre enn et minutt" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "ett minutt" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "minutter" : "minutes.ogg";
 }
+
 
 //// COMMAND BUILDING / WORD ORDER
 ////////////////////////////////////////////////////////////////
@@ -357,7 +358,7 @@ function  getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return dictionary["then"];
+	return " " + dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
@@ -366,7 +367,7 @@ function roundabout(dist, angle, exit, streetName) {
 	if (dist == -1) {
 		return dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	} else {
-		return dictionary["in"] + " " + distance(dist) + " " + dictionary["roundabout"] + " " + dictionary["and"] + " " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
+		return dictionary["in"] + " " + distance(dist) + " " + dictionary["roundabout"] + (tts ? ", " : " ") + dictionary["and"] + " " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	}
 
 }
@@ -567,7 +568,7 @@ function speed_alarm(maxSpeed, speed) {
 }
 
 function attention(type) {
-	return dictionary["attention"] + " " + getAttentionString(type);
+	return dictionary["attention"] + (tts ? ", " : " ") + getAttentionString(type);
 }
 
 function getAttentionString(type) {

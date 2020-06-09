@@ -17,14 +17,14 @@ var tts;
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	dictionary["route_is"] = tts ? "مسافتِ مسیر " : "route_is.ogg";
+	dictionary["route_is"] = tts ? "مسافتِ مسیر" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "مسیرِ جدید محاسبه شد" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? "مسافت " : "distance.ogg";
+	dictionary["distance"] = tts ? "مسافت" : "distance.ogg";
 
 	// LEFT/RIGHT
-	//dictionary["prepare"] = tts ? "آماده باشید " : "prepare.ogg";
-	dictionary["after"] = tts ? "بعد از " : "after.ogg";
-	dictionary["in"] = tts ? "پس از " : "in.ogg";
+	//dictionary["prepare"] = tts ? "آماده باشید" : "prepare.ogg";
+	dictionary["after"] = tts ? "بعد از" : "after.ogg";
+	dictionary["in"] = tts ? "پس از" : "in.ogg";
 
 	dictionary["left"] = tts ? "به سمتِ چپ بپیچید" : "left.ogg";
 	dictionary["left_sh"] = tts ? "گردش به چپ کنید" : "left_sh.ogg";
@@ -42,53 +42,53 @@ function populateDictionary(tts) {
 	dictionary["make_uturn_wp"] = tts ? "در اولین زمانِ ممکن دور بزنید" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? "به میدانْ نزدیک میشوید " : "prepare_roundabout.ogg";
+	dictionary["prepare_roundabout"] = tts ? "به میدانْ نزدیک میشوید" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "واردِ میدان شوید" : "roundabout.ogg";
-	dictionary["then"] = tts ? "سپس " : "then.ogg";
-	dictionary["and"] = tts ? " و " : "and.ogg";
-	dictionary["take"] = tts ? "وارد شوید به " : "take.ogg";
+	dictionary["then"] = tts ? "سپس" : "then.ogg";
+	dictionary["and"] = tts ? "و " : "and.ogg";
+	dictionary["take"] = tts ? "وارد شوید به" : "take.ogg";
 	dictionary["exit"] = tts ? "خروجی" : "exit.ogg";
 
-	dictionary["1st"] = tts ? "اولین " : "1st.ogg";
-	dictionary["2nd"] = tts ? "دومین " : "2nd.ogg";
-	dictionary["3rd"] = tts ? "سومین " : "3rd.ogg";
-	dictionary["4th"] = tts ? "چهارمین " : "4th.ogg";
-	dictionary["5th"] = tts ? "پنجمین " : "5th.ogg";
-	dictionary["6th"] = tts ? "ششمین " : "6th.ogg";
-	dictionary["7th"] = tts ? "هفتمین " : "7th.ogg";
-	dictionary["8th"] = tts ? "هشتمین " : "8th.ogg";
-	dictionary["9th"] = tts ? "نهمین " : "9th.ogg";
-	dictionary["10th"] = tts ? "دهمین " : "10th.ogg";
-	dictionary["11th"] = tts ? "یازدهمین " : "11th.ogg";
-	dictionary["12th"] = tts ? "دوازدهمین " : "12th.ogg";
-	dictionary["13th"] = tts ? "سیزدهمین " : "13th.ogg";
-	dictionary["14th"] = tts ? "چهاردهمین " : "14th.ogg";
-	dictionary["15th"] = tts ? "پانزدهمین " : "15th.ogg";
-	dictionary["16th"] = tts ? "شانزدهمین " : "16th.ogg";
-	dictionary["17th"] = tts ? "هفدهمین " : "17th.ogg";
+	dictionary["1st"] = tts ? "اولین" : "1st.ogg";
+	dictionary["2nd"] = tts ? "دومین" : "2nd.ogg";
+	dictionary["3rd"] = tts ? "سومین" : "3rd.ogg";
+	dictionary["4th"] = tts ? "چهارمین" : "4th.ogg";
+	dictionary["5th"] = tts ? "پنجمین" : "5th.ogg";
+	dictionary["6th"] = tts ? "ششمین" : "6th.ogg";
+	dictionary["7th"] = tts ? "هفتمین" : "7th.ogg";
+	dictionary["8th"] = tts ? "هشتمین" : "8th.ogg";
+	dictionary["9th"] = tts ? "نهمین" : "9th.ogg";
+	dictionary["10th"] = tts ? "دهمین" : "10th.ogg";
+	dictionary["11th"] = tts ? "یازدهمین" : "11th.ogg";
+	dictionary["12th"] = tts ? "دوازدهمین" : "12th.ogg";
+	dictionary["13th"] = tts ? "سیزدهمین" : "13th.ogg";
+	dictionary["14th"] = tts ? "چهاردهمین" : "14th.ogg";
+	dictionary["15th"] = tts ? "پانزدهمین" : "15th.ogg";
+	dictionary["16th"] = tts ? "شانزدهمین" : "16th.ogg";
+	dictionary["17th"] = tts ? "هفدهمین" : "17th.ogg";
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "مستقیم حرکت کنید" : "go_ahead.ogg";
 	dictionary["follow"] = tts ? "مسیر را ادامه دهید برای" : "follow.ogg";
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "و به مقصدِ خود خواهید رسید " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "به مقصد رسیدید " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "و به مقصدِ بین راهی خود خواهید رسید " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "به ایستگاهِ بین راهیِ مشخص شده رسیدید " : "reached_intermediate.ogg";
+	dictionary["and_arrive_destination"] = tts ? "و به مقصدِ خود خواهید رسید" : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "به مقصد رسیدید" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "و به مقصدِ بین راهی خود خواهید رسید" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "به ایستگاهِ بین راهیِ مشخص شده رسیدید" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "و به نقطۀ GPX که تعیین کرده بودید خواهید رسید " : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "به نقطۀ GPX که تعیین کرده بودید رسیدید " : "reached_waypoint.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "و به نقطۀ GPX که تعیین کرده بودید خواهید رسید" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "به نقطۀ GPX که تعیین کرده بودید رسیدید" : "reached_waypoint.ogg";
 	dictionary["and_arrive_favorite"] = tts ? "و به نقطۀ برگزیده که تعیین کرده بودید خواهید رسید" : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "شما در حال عبور مورد علاقه " : "reached_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "شما در حال عبور مورد علاقه" : "reached_favorite.ogg";
 	dictionary["and_arrive_poi"] = tts ? "و به موقعیتی که تعیین کرده بودید خواهید رسید" : "and_arrive_poi.ogg";
 	dictionary["reached_poi"] = tts ? " به موقعیتی که تعیین کرده بودید رسیدید" : "reached_poi.ogg";
 
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "سرعتِ شما بیش از حدِ مجاز است" : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "محدودیت سرعت " : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "توجه, " : "attention.ogg";
+	dictionary["exceed_limit"] = tts ? "محدودیت سرعت" : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "توجه" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "دوربینِ کنترلِ سرعت" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "کنترلِ مرزی" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "تقاطع با راه آهن" : "railroad_crossing.ogg";
@@ -106,7 +106,7 @@ function populateDictionary(tts) {
 
 	// STREET NAME PREPOSITIONS
 	dictionary["onto"] = tts ? "به سَمْتِ" : "onto.ogg";
-	dictionary["on"] = tts ? "در " : "on.ogg";
+	dictionary["on"] = tts ? "در" : "on.ogg";
 	dictionary["to"] = tts ? "ِِبه" : "to.ogg";
 	dictionary["toward"] = tts ? "ِسَمْتِ" : "toward.ogg";
 
@@ -126,13 +126,16 @@ function populateDictionary(tts) {
 
 	// TIME SUPPORT
 	dictionary["time"] = tts ? "زمانْ" : "time.ogg";
-	dictionary["1_hour"] = tts ? "یک ساعت " : "1_hour.ogg";
-	dictionary["hours"] = tts ? "ساعت " : "hours.ogg";
+	dictionary["1_hour"] = tts ? "یک ساعت" : "1_hour.ogg";
+	dictionary["hours"] = tts ? "ساعت" : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "کمتر از یک دقیقه" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "یک دقیقه" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "دقیقه" : "minutes.ogg";
 }
 
+
+//// COMMAND BUILDING / WORD ORDER
+////////////////////////////////////////////////////////////////
 function setMetricConst(metrics) {
 	metricConst = metrics;
 }
@@ -356,7 +359,7 @@ function  getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return dictionary["then"];
+	return dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
@@ -566,7 +569,7 @@ function speed_alarm(maxSpeed, speed) {
 }
 
 function attention(type) {
-	return dictionary["attention"] + " " + getAttentionString(type);
+	return dictionary["attention"] + (tts ? ", " : " ") + getAttentionString(type);
 }
 
 function getAttentionString(type) {

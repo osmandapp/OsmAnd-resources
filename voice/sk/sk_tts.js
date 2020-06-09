@@ -17,13 +17,13 @@ var tts;
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	dictionary["route_is"] = tts ? "Cesta je dlhá " : "route_is.ogg";
+	dictionary["route_is"] = tts ? "Cesta je dlhá" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Cesta prepočítaná" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? "vzdialenosť " : "distance.ogg";
+	dictionary["distance"] = tts ? "vzdialenosť" : "distance.ogg";
 
 	// LEFT/RIGHT
-	dictionary["after"] = tts ? "Čoskoro o " : "after.ogg";
-	dictionary["in"] = tts ? "O " : "in.ogg";
+	dictionary["after"] = tts ? "Čoskoro o" : "after.ogg";
+	dictionary["in"] = tts ? "O" : "in.ogg";
 
 	dictionary["left"] = tts ? "zahnite doľava" : "left.ogg";
 	dictionary["left_sh"] = tts ? "zahnite prudko doľava" : "left_sh.ogg";
@@ -44,53 +44,53 @@ function populateDictionary(tts) {
 
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "vojdete do kruhového objazdu" : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? " vojdite do kruhového objazdu" : "roundabout.ogg";
-	dictionary["then"] = tts ? ", potom " : "then.ogg";
-	dictionary["and"] = tts ? " a " : "and.ogg";
-	dictionary["take1"] = tts ? "opustite ho cez " : "take1.ogg";
+	dictionary["roundabout"] = tts ? "vojdite do kruhového objazdu" : "roundabout.ogg";
+	dictionary["then"] = tts ? "potom" : "then.ogg";
+	dictionary["and"] = tts ? "a" : "and.ogg";
+	dictionary["take1"] = tts ? "opustite ho cez" : "take1.ogg";
 	dictionary["exit"] = tts ? "výjazd" : "exit.ogg";
-	dictionary["take2"] = tts ? "choďte cez " : "take2.ogg";
+	dictionary["take2"] = tts ? "choďte cez" : "take2.ogg";
 
-	dictionary["1st"] = tts ? "prvý " : "1st.ogg";
-	dictionary["2nd"] = tts ? "druhý " : "2nd.ogg";
-	dictionary["3rd"] = tts ? "tretí " : "3rd.ogg";
-	dictionary["4th"] = tts ? "štvrtý " : "4th.ogg";
-	dictionary["5th"] = tts ? "piaty " : "5th.ogg";
-	dictionary["6th"] = tts ? "šiesty " : "6th.ogg";
-	dictionary["7th"] = tts ? "siedmy " : "7th.ogg";
-	dictionary["8th"] = tts ? "ôsmy " : "8th.ogg";
-	dictionary["9th"] = tts ? "deviaty " : "9th.ogg";
-	dictionary["10th"] = tts ? "desiaty " : "10th.ogg";
-	dictionary["11th"] = tts ? "jedenásty " : "11th.ogg";
-	dictionary["12th"] = tts ? "dvanásty " : "12th.ogg";
-	dictionary["13th"] = tts ? "trinásty " : "13th.ogg";
-	dictionary["14th"] = tts ? "štrnásty " : "14th.ogg";
-	dictionary["15th"] = tts ? "pätnásty " : "15th.ogg";
-	dictionary["16th"] = tts ? "šestnásty " : "16th.ogg";
-	dictionary["17th"] = tts ? "sedemnásty " : "17th.ogg";
+	dictionary["1st"] = tts ? "prvý" : "1st.ogg";
+	dictionary["2nd"] = tts ? "druhý" : "2nd.ogg";
+	dictionary["3rd"] = tts ? "tretí" : "3rd.ogg";
+	dictionary["4th"] = tts ? "štvrtý" : "4th.ogg";
+	dictionary["5th"] = tts ? "piaty" : "5th.ogg";
+	dictionary["6th"] = tts ? "šiesty" : "6th.ogg";
+	dictionary["7th"] = tts ? "siedmy" : "7th.ogg";
+	dictionary["8th"] = tts ? "ôsmy" : "8th.ogg";
+	dictionary["9th"] = tts ? "deviaty" : "9th.ogg";
+	dictionary["10th"] = tts ? "desiaty" : "10th.ogg";
+	dictionary["11th"] = tts ? "jedenásty" : "11th.ogg";
+	dictionary["12th"] = tts ? "dvanásty" : "12th.ogg";
+	dictionary["13th"] = tts ? "trinásty" : "13th.ogg";
+	dictionary["14th"] = tts ? "štrnásty" : "14th.ogg";
+	dictionary["15th"] = tts ? "pätnásty" : "15th.ogg";
+	dictionary["16th"] = tts ? "šestnásty" : "16th.ogg";
+	dictionary["17th"] = tts ? "sedemnásty" : "17th.ogg";
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Pokračujte rovno" : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "Pokračujte " : "follow.ogg";
+	dictionary["follow"] = tts ? "Pokračujte" : "follow.ogg";
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "a dorazíte do cieľa " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "dorazili ste do cieľa " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "a prejdete Vaším prechodným bodom " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "dorazili ste k Vášmu prechodnému bodu " : "reached_intermediate.ogg";
+	dictionary["and_arrive_destination"] = tts ? "a dorazíte do cieľa" : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "dorazili ste do cieľa" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "a prejdete Vaším prechodným bodom" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "dorazili ste k Vášmu prechodnému bodu" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "a prejdete prechodným bodom GPX " : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "dorazili ste k prechodnému bodu GPX " : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "a prejdete obľúbeným bodom " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "dorazili ste k obľúbenému bodu " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "a prejdete bodom záujmu " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "dorazili ste k bodu záujmu " : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "a prejdete prechodným bodom GPX" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "dorazili ste k prechodnému bodu GPX" : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "a prejdete obľúbeným bodom" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "dorazili ste k obľúbenému bodu" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "a prejdete bodom záujmu" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "dorazili ste k bodu záujmu" : "reached_poi.ogg";
 
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "Prekročili ste maximálnu povolenú rýchlosť" : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "Povolená rýchlosť " : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "Pozor, " : "attention.ogg";
+	dictionary["exceed_limit"] = tts ? "Povolená rýchlosť" : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "Pozor" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "rýchlostný radar" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "hraničná kontrola" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "železničné priecestie" : "railroad_crossing.ogg";
@@ -103,17 +103,17 @@ function populateDictionary(tts) {
 	// OTHER PROMPTS
 	dictionary["location_lost"] = tts ? "Strata signálu GPS" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "Obnovenie signálu GPS" : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "Idete odchylne od trasy už " : "off_route.ogg";
+	dictionary["off_route"] = tts ? "Idete odchylne od trasy už" : "off_route.ogg";
 	dictionary["back_on_route"] = tts ? "Vrátili ste sa na trasu." : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? " na cestu " : "onto.ogg";
-	dictionary["on"] = tts ? " po " : "on.ogg";
-	dictionary["to"] = tts ? " k " : "to.ogg";
-	dictionary["toward"] = tts ? " smerom na " : "toward.ogg";
+	dictionary["onto"] = tts ? "na cestu" : "onto.ogg";
+	dictionary["on"] = tts ? "po" : "on.ogg";
+	dictionary["to"] = tts ? "k" : "to.ogg";
+	dictionary["toward"] = tts ? "smerom na" : "toward.ogg";
 
 	// DISTANCE UNIT SUPPORT
-	dictionary["around"] = tts ? "približne " : "around.ogg";
+	dictionary["around"] = tts ? "približne" : "around.ogg";
 	dictionary["meters"] = tts ? "metrov" : "meters.ogg";
 	dictionary["kilometer"] = tts ? "jeden kilometer" : "kilometer.ogg";
 	dictionary["kilometers2"] = tts ? "dva kilometre" : "kilometers2.ogg";
@@ -132,11 +132,11 @@ function populateDictionary(tts) {
 	dictionary["yards"] = tts ? "yardov" : "yards.ogg";
 
 	// TIME SUPPORT
-	dictionary["time"] = tts ? "doba potrebná " : "time.ogg";
-	dictionary["hours1"] = tts ? "jedna hodina " : "hours1.ogg";
-	dictionary["hours2"] = tts ? "dve hodiny " : "hours2.ogg";
-	dictionary["hours3_4"] = tts ? "hodiny " : "hours3_4.ogg";
-	dictionary["hours5"] = tts ? "hodín " : "hours5.ogg";
+	dictionary["time"] = tts ? "doba potrebná" : "time.ogg";
+	dictionary["hours1"] = tts ? "jedna hodina" : "hours1.ogg";
+	dictionary["hours2"] = tts ? "dve hodiny" : "hours2.ogg";
+	dictionary["hours3_4"] = tts ? "hodiny" : "hours3_4.ogg";
+	dictionary["hours5"] = tts ? "hodín" : "hours5.ogg";
 	dictionary["less_a_minute"] = tts ? "menej než minúta" : "less_a_minute.ogg";
 	dictionary["minutes1"] = tts ? "jedna minúta" : "minutes1.ogg";
 	dictionary["minutes2"] = tts ? "dve minúty" : "minutes2.ogg";
@@ -144,6 +144,9 @@ function populateDictionary(tts) {
 	dictionary["minutes5"] = tts ? "minút" : "minutes5.ogg";
 }
 
+
+//// COMMAND BUILDING / WORD ORDER
+////////////////////////////////////////////////////////////////
 function setMetricConst(metrics) {
 	metricConst = metrics;
 }
@@ -404,7 +407,7 @@ function getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return dictionary["then"];
+	return (tts ? ", " : " ") + dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
@@ -599,7 +602,7 @@ function speed_alarm(maxSpeed, speed) {
 }
 
 function attention(type) {
-	return dictionary["attention"] + " " + getAttentionString(type);
+	return dictionary["attention"] + (tts ? ", " : " ") + getAttentionString(type);
 }
 
 function getAttentionString(type) {

@@ -17,16 +17,16 @@ var dictionary = {};
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	dictionary["route_is"] = tts ? "루트 거리는 " : "route_is.ogg";
+	dictionary["route_is"] = tts ? "루트 거리는" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "새로운 경로를 찾았습니다." : "route_calculate.ogg";
-	dictionary["distance"] = tts ? "거리는 " : "distance.ogg";
-	dictionary["is"] = tts ? "입니다 " : "is.ogg";
+	dictionary["distance"] = tts ? "거리는" : "distance.ogg";
+	dictionary["is"] = tts ? "입니다" : "is.ogg";
 
 	// LEFT/RIGHT
-	//dictionary["prepare"] = tts ? "을 준비하세요 " : "prepare.ogg";
-	dictionary["after"] = tts ? "앞에서 " : "after.ogg";
-	dictionary["have"] = tts ? "하세요 " : "have.ogg";
-	dictionary["in"] = tts ? "에서 " : "in.ogg";
+	//dictionary["prepare"] = tts ? "을 준비하세요" : "prepare.ogg";
+	dictionary["after"] = tts ? "앞에서" : "after.ogg";
+	dictionary["have"] = tts ? "하세요" : "have.ogg";
+	dictionary["in"] = tts ? "에서" : "in.ogg";
 
 	dictionary["left"] = tts ? "좌회전" : "left.ogg";
 	dictionary["left_sh"] = tts ? "크게 좌회전" : "left_sh.ogg";
@@ -40,59 +40,59 @@ function populateDictionary(tts) {
 	dictionary["right_bear"] = tts ? "오른쪽에서 계속 가세요" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
 
 	// U-TURNS
-	//dictionary["prepare_make_uturn"] = tts ? " 앞에서 U턴을 준비하세요 " : "prepare_make_uturn.ogg";
-	dictionary["make_uturn1"] = tts ? " 앞에서 U턴하세요 " : "make_uturn1.ogg";
+	//dictionary["prepare_make_uturn"] = tts ? " 앞에서 U턴을 준비하세요" : "prepare_make_uturn.ogg";
+	dictionary["make_uturn1"] = tts ? " 앞에서 U턴하세요" : "make_uturn1.ogg";
 	dictionary["make_uturn2"] = tts ? "지금 U턴하세요" : "make_uturn2.ogg";
 	dictionary["make_uturn_wp"] = tts ? "가능한 경우에, U턴하세요" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? " 앞에서 로타리 진입을 준비하세요 " : "prepare_roundabout.ogg";
+	dictionary["prepare_roundabout"] = tts ? " 앞에서 로타리 진입을 준비하세요" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? " 앞에서 로타리에 진입하시고" : "roundabout.ogg";
-	dictionary["then"] = tts ? ", 다음은 " : "then.ogg";
-	dictionary["and"] = tts ? " 과 " : "and.ogg";
-	dictionary["take"] = tts ? " 출구로 나가세요 " : "take.ogg";
+	dictionary["then"] = tts ? "다음은" : "then.ogg";
+	dictionary["and"] = tts ? "과" : "and.ogg";
+	dictionary["take"] = tts ? "출구로 나가세요" : "take.ogg";
 	dictionary["exit"] = tts ? " " : "exit.ogg";
 
-	dictionary["1st"] = tts ? "첫번째 " : "1st.ogg";
-	dictionary["2nd"] = tts ? "두번째 " : "2nd.ogg";
-	dictionary["3rd"] = tts ? "세번째 " : "3rd.ogg";
-	dictionary["4th"] = tts ? "네번째 " : "4th.ogg";
-	dictionary["5th"] = tts ? "다섯번째 " : "5th.ogg";
-	dictionary["6th"] = tts ? "여섯번째 " : "6th.ogg";
-	dictionary["7th"] = tts ? "일곱번째 " : "7th.ogg";
-	dictionary["8th"] = tts ? "여덟번째 " : "8th.ogg";
-	dictionary["9th"] = tts ? "아홉번째 " : "9th.ogg";
-	dictionary["10th"] = tts ? "열번째 " : "10th.ogg";
-	dictionary["11th"] = tts ? "열한번째 " : "11th.ogg";
-	dictionary["12th"] = tts ? "열두번째 " : "12th.ogg";
-	dictionary["13th"] = tts ? "열세번째 " : "13th.ogg";
-	dictionary["14th"] = tts ? "열네번째 " : "14th.ogg";
-	dictionary["15th"] = tts ? "열다섯번째 " : "15th.ogg";
-	dictionary["16th"] = tts ? "열여섯번째 " : "16th.ogg";
-	dictionary["17th"] = tts ? "열일곱번째 " : "17th.ogg";
+	dictionary["1st"] = tts ? "첫번째" : "1st.ogg";
+	dictionary["2nd"] = tts ? "두번째" : "2nd.ogg";
+	dictionary["3rd"] = tts ? "세번째" : "3rd.ogg";
+	dictionary["4th"] = tts ? "네번째" : "4th.ogg";
+	dictionary["5th"] = tts ? "다섯번째" : "5th.ogg";
+	dictionary["6th"] = tts ? "여섯번째" : "6th.ogg";
+	dictionary["7th"] = tts ? "일곱번째" : "7th.ogg";
+	dictionary["8th"] = tts ? "여덟번째" : "8th.ogg";
+	dictionary["9th"] = tts ? "아홉번째" : "9th.ogg";
+	dictionary["10th"] = tts ? "열번째" : "10th.ogg";
+	dictionary["11th"] = tts ? "열한번째" : "11th.ogg";
+	dictionary["12th"] = tts ? "열두번째" : "12th.ogg";
+	dictionary["13th"] = tts ? "열세번째" : "13th.ogg";
+	dictionary["14th"] = tts ? "열네번째" : "14th.ogg";
+	dictionary["15th"] = tts ? "열다섯번째" : "15th.ogg";
+	dictionary["16th"] = tts ? "열여섯번째" : "16th.ogg";
+	dictionary["17th"] = tts ? "열일곱번째" : "17th.ogg";
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "직진을 계속하세요" : "go_ahead.ogg";
-	dictionary["follow"] = tts ? " 직진하세요 " : "follow.ogg";
+	dictionary["follow"] = tts ? "직진하세요" : "follow.ogg";
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? " 다음은 목적지에 도착합니다 " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "목적지에 도착하였습니다 " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "지점에 도착합니다 " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "지점에 도착했습니다 " : "reached_intermediate.ogg";
+	dictionary["and_arrive_destination"] = tts ? "다음은 목적지에 도착합니다" : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "목적지에 도착하였습니다" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "지점에 도착합니다" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "지점에 도착했습니다" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "다음은 지점을 통과 합니다 " : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "지점을 통과 중 입니다 " : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "and pass favorite " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "you are passing favorite " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "and pass POI " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "you are passing POI " : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "다음은 지점을 통과 합니다" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "지점을 통과 중 입니다" : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "and pass favorite" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "you are passing favorite" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "and pass POI" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "you are passing POI" : "reached_poi.ogg";
 
 	// ATTENTION
-	//dictionary["exceed_limit"] = tts ? "제한 속도를 초과하고 있습니다 " : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "속도 제한 " : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "과속을 주의 하세요, " : "attention.ogg";
+	//dictionary["exceed_limit"] = tts ? "제한 속도를 초과하고 있습니다" : "exceed_limit.ogg";
+	dictionary["exceed_limit"] = tts ? "속도 제한" : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "과속을 주의 하세요" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "속도 카메라" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "국경 통제" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "철도 횡단" : "railroad_crossing.ogg";
@@ -105,17 +105,17 @@ function populateDictionary(tts) {
 	// OTHER PROMPTS
 	dictionary["location_lost"] = tts ? "g p s 신호가 없습니다" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "g p s 신호가 복구 되었습니다" : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "경로에서 이탈했습니다 " : "off_route.ogg";
+	dictionary["off_route"] = tts ? "경로에서 이탈했습니다" : "off_route.ogg";
 	dictionary["back_on_route"] = tts ? "당신은 다시 경로 에 있습니다" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "에 " : "onto.ogg";
-	dictionary["on"] = tts ? "에 " : "on.ogg";
-	dictionary["to"] = tts ? "에 " : "to.ogg";
-	dictionary["toward"] = tts ? "...쪽으로 " : "toward.ogg";
+	dictionary["onto"] = tts ? "에" : "onto.ogg";
+	dictionary["on"] = tts ? "에" : "on.ogg";
+	dictionary["to"] = tts ? "에" : "to.ogg";
+	dictionary["toward"] = tts ? "...쪽으로" : "toward.ogg";
 
 	// DISTANCE UNIT SUPPORT
-	dictionary["meters"] = tts ? " 미터" : "meters.ogg";
+	dictionary["meters"] = tts ? "미터" : "meters.ogg";
 	dictionary["around_1_kilometer"] = tts ? "약, 1 킬로미터" : "around_1_kilometer.ogg";
 	dictionary["around"] = tts ? "약, " : "around.ogg";
 	dictionary["kilometers"] = tts ? " 킬로미터" : "kilometers.ogg";
@@ -129,14 +129,17 @@ function populateDictionary(tts) {
 	dictionary["yards"] = tts ? "미터" : "yards.ogg";
 
 	// TIME SUPPORT
-	dictionary["time"] = tts ? "시간은 " : "time.ogg";
-	dictionary["1_hour"] = tts ? "한 시간 " : "1_hour.ogg";
-	dictionary["hours"] = tts ? "시간 " : "hours.ogg";
+	dictionary["time"] = tts ? "시간은" : "time.ogg";
+	dictionary["1_hour"] = tts ? "한 시간" : "1_hour.ogg";
+	dictionary["hours"] = tts ? "시간" : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "이하의 분" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "일분" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "분" : "minutes.ogg";
 }
 
+
+//// COMMAND BUILDING / WORD ORDER
+////////////////////////////////////////////////////////////////
 function setMetricConst(metrics) {
 	metricConst = metrics;
 }
@@ -360,7 +363,7 @@ function  getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return dictionary["then"];
+	return (tts ? ", " : " ") + dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
@@ -555,7 +558,7 @@ function speed_alarm(maxSpeed, speed) {
 }
 
 function attention(type) {
-	return dictionary["attention"] + " " + getAttentionString(type);
+	return dictionary["attention"] + (tts ? ", " : " ") + getAttentionString(type);
 }
 
 function getAttentionString(type) {

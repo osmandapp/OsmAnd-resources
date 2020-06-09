@@ -17,13 +17,13 @@ var tts;
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	dictionary["route_is"] = tts ? "Resan är " : "route_is.ogg";
+	dictionary["route_is"] = tts ? "Resan är" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Ny väg beräknad" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? ", resan är " : "distance.ogg";
+	dictionary["distance"] = tts ? "resan är" : "distance.ogg";
 
 	// LEFT/RIGHT
-	dictionary["after"] = tts ? "Om " : "after.ogg";
-	dictionary["in"] = tts ? "Om " : "in.ogg";
+	dictionary["after"] = tts ? "Om" : "after.ogg";
+	dictionary["in"] = tts ? "Om" : "in.ogg";
 
 	dictionary["left"] = tts ? "sväng vänster" : "left.ogg";
 	dictionary["left_sh"] = tts ? "sväng skarpt vänster" : "left_sh.ogg";
@@ -37,45 +37,45 @@ function populateDictionary(tts) {
 	dictionary["right_bear"] = tts ? "håll åt höger" : "right_bear.ogg";   // in English the same as right_keep, may be different in other languages
 
 	// U-TURNS
-	//dictionary["prepare_make_uturn"] = tts ? "Förbered för en u-sväng om " : "prepare_make_uturn.ogg";
+	//dictionary["prepare_make_uturn"] = tts ? "Förbered för en u-sväng om" : "prepare_make_uturn.ogg";
 	dictionary["make_uturn"] = tts ? " gör en u-sväng" : "make_uturn.ogg";
 	dictionary["make_uturn_wp"] = tts ? "Gör en u-sväng så snart som möjligt" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "kommer det en rondell" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? " kör in i rondellen" : "roundabout.ogg";
-	dictionary["then"] = tts ? ", sedan " : "then.ogg";
-	dictionary["and"] = tts ? " och " : "and.ogg";
-	dictionary["take"] = tts ? "ta den " : "take.ogg";
+	dictionary["then"] = tts ? "sedan" : "then.ogg";
+	dictionary["and"] = tts ? "och" : "and.ogg";
+	dictionary["take"] = tts ? "ta den" : "take.ogg";
 	dictionary["exit"] = tts ? "utfarten" : "exit.ogg";
 
-	dictionary["1st"] = tts ? "första " : "1st.ogg";
-	dictionary["2nd"] = tts ? "andra " : "2nd.ogg";
-	dictionary["3rd"] = tts ? "tredje " : "3rd.ogg";
-	dictionary["4th"] = tts ? "fjärde " : "4th.ogg";
-	dictionary["5th"] = tts ? "femte " : "5th.ogg";
-	dictionary["6th"] = tts ? "sjätte " : "6th.ogg";
-	dictionary["7th"] = tts ? "sjunde " : "7th.ogg";
-	dictionary["8th"] = tts ? "åttonde " : "8th.ogg";
-	dictionary["9th"] = tts ? "nionde " : "9th.ogg";
-	dictionary["10th"] = tts ? "tionde " : "10th.ogg";
-	dictionary["11th"] = tts ? "elfte " : "11th.ogg";
-	dictionary["12th"] = tts ? "tolfte " : "12th.ogg";
-	dictionary["13th"] = tts ? "trettonde " : "13th.ogg";
-	dictionary["14th"] = tts ? "fjortonde " : "14th.ogg";
-	dictionary["15th"] = tts ? "femtonde " : "15th.ogg";
-	dictionary["16th"] = tts ? "sextonde " : "16th.ogg";
-	dictionary["17th"] = tts ? "sjuttonde " : "17th.ogg";
+	dictionary["1st"] = tts ? "första" : "1st.ogg";
+	dictionary["2nd"] = tts ? "andra" : "2nd.ogg";
+	dictionary["3rd"] = tts ? "tredje" : "3rd.ogg";
+	dictionary["4th"] = tts ? "fjärde" : "4th.ogg";
+	dictionary["5th"] = tts ? "femte" : "5th.ogg";
+	dictionary["6th"] = tts ? "sjätte" : "6th.ogg";
+	dictionary["7th"] = tts ? "sjunde" : "7th.ogg";
+	dictionary["8th"] = tts ? "åttonde" : "8th.ogg";
+	dictionary["9th"] = tts ? "nionde" : "9th.ogg";
+	dictionary["10th"] = tts ? "tionde" : "10th.ogg";
+	dictionary["11th"] = tts ? "elfte" : "11th.ogg";
+	dictionary["12th"] = tts ? "tolfte" : "12th.ogg";
+	dictionary["13th"] = tts ? "trettonde" : "13th.ogg";
+	dictionary["14th"] = tts ? "fjortonde" : "14th.ogg";
+	dictionary["15th"] = tts ? "femtonde" : "15th.ogg";
+	dictionary["16th"] = tts ? "sextonde" : "16th.ogg";
+	dictionary["17th"] = tts ? "sjuttonde" : "17th.ogg";
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Kör rakt fram" : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "Följ den här vägen " : "follow.ogg";
+	dictionary["follow"] = tts ? "Följ den här vägen" : "follow.ogg";
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "och du är framme " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "du är framme " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "och anländ till din via-punkt " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "du har nått din via-punkt " : "reached_intermediate.ogg";
+	dictionary["and_arrive_destination"] = tts ? "och du är framme" : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "du är framme" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "och anländ till din via-punkt" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "du har nått din via-punkt" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
 	dictionary["and_arrive_waypoint"] = tts ? "och passera din GPX-via-punkt" : "and_arrive_waypoint.ogg";
@@ -86,8 +86,8 @@ function populateDictionary(tts) {
 	dictionary["reached_poi"] = tts ? "du passerar intressepunkten" : "reached_poi.ogg";
 
 	// ATTENTION
-	//dictionary["exceed_limit"] = tts ? "du överskrider hastighetsgränsen " : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "hastighetsbegränsning " : "exceed_limit.ogg";
+	//dictionary["exceed_limit"] = tts ? "du överskrider hastighetsgränsen" : "exceed_limit.ogg";
+	dictionary["exceed_limit"] = tts ? "hastighetsbegränsning" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "observera" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "fartkamera" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "gränskontroll" : "border_control.ogg";
@@ -105,33 +105,33 @@ function populateDictionary(tts) {
 	dictionary["back_on_route"] = tts ? "du är tillbaka på rutten" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "på " : "onto.ogg";
-	dictionary["on"] = tts ? "på " : "on.ogg";
+	dictionary["onto"] = tts ? "på" : "onto.ogg";
+	dictionary["on"] = tts ? "på" : "on.ogg";
 	dictionary["to"] = tts ? "till" : "to.ogg";
-	dictionary["toward"] = tts ? "mot " : "toward.ogg";
+	dictionary["toward"] = tts ? "mot" : "toward.ogg";
 
 	// DISTANCE UNIT SUPPORT
 	dictionary["meters"] = tts ? "meter" : "meters.ogg";
 	dictionary["around_1_kilometer"] = tts ? "ungefär en kilometer" : "around_1_kilometer.ogg";
-	dictionary["around"] = tts ? "ungefär " : "around.ogg";
-	dictionary["kilometers"] = tts ? " kilometer" : "kilometers.ogg";
+	dictionary["around"] = tts ? "ungefär" : "around.ogg";
+	dictionary["kilometers"] = tts ? "kilometer" : "kilometers.ogg";
 
 	dictionary["feet"] = tts ? "fod" : "feet.ogg";
 	dictionary["1_tenth_of_a_mile"] = tts ? "en tiondel av en mil" : "1_tenth_of_a_mile.ogg";
 	dictionary["tenths_of_a_mile"] = tts ? "tiondelar av en mil" : "tenths_of_a_mile.ogg";
 	dictionary["around_1_mile"] = tts ? "cirka en mil" : "around_1_mile.ogg";
 	dictionary["miles"] = tts ? "miles" : "miles.ogg";
-
 	dictionary["yards"] = tts ? "yards" : "yards.ogg";
 
 	// TIME SUPPORT
-	dictionary["time"] = tts ? "lång som beräknas ta " : "time.ogg";
-	dictionary["1_hour"] = tts ? "en timme " : "1_hour.ogg";
-	dictionary["hours"] = tts ? "timmar " : "hours.ogg";
+	dictionary["time"] = tts ? "lång som beräknas ta" : "time.ogg";
+	dictionary["1_hour"] = tts ? "en timme" : "1_hour.ogg";
+	dictionary["hours"] = tts ? "timmar" : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "mindre än en minut" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "en minut" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "minuter" : "minutes.ogg";
 }
+
 
 //// COMMAND BUILDING / WORD ORDER
 ////////////////////////////////////////////////////////////////
@@ -245,7 +245,7 @@ function hours(minutes) {
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + " " + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
+	return dictionary["route_calculate"] + (tts ? ", " : " ") + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
 }
 
 function go_ahead(dist, streetName) {
@@ -358,7 +358,7 @@ function  getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return dictionary["then"];
+	return (tts ? ", " : " ") + dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {

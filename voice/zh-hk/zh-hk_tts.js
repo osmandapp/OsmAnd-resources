@@ -36,7 +36,7 @@ function populateDictionary(tts) {
 	dictionary["left_keep"] = tts ? "靠左" : "left_keep.ogg";
 	dictionary["right_keep"] = tts ? "靠右" : "right_keep.ogg";
 	dictionary["left_bear"] = tts ? "靠左" : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
-	dictionary["right_bear"] = tts ? "靠右" : "right_bear.ogg";   // in English the same as right_keep, may be different in other languages
+	dictionary["right_bear"] = tts ? "靠右" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
 
 	// U-TURNS
 	dictionary["prepare_make_uturn"] = tts ? "準備掉頭" : "prepare_make_uturn.ogg";
@@ -47,7 +47,7 @@ function populateDictionary(tts) {
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "後進入迴旋處" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "後進入迴旋處, 然後在" : "roundabout.ogg";
-	dictionary["then"] = tts ? ", 然後" : "then.ogg";
+	dictionary["then"] = tts ? "然後" : "then.ogg";
 	dictionary["and"] = tts ? "同" : "and.ogg";
 	dictionary["take"] = tts ? "在" : "take.ogg";
 	dictionary["exit"] = tts ? "出口離開" : "exit.ogg";
@@ -90,7 +90,7 @@ function populateDictionary(tts) {
 
 	// ATTENTION
 	dictionary["exceed_limit"] = tts ? "你已超速" : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "注意, " : "attention.ogg";
+	dictionary["attention"] = tts ? "注意" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "快相機" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "邊境管制" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "鐵路平交道" : "railroad_crossing.ogg";
@@ -133,6 +133,7 @@ function populateDictionary(tts) {
 	dictionary["1_minute"] = tts ? "一分鐘" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "分鐘" : "minutes.ogg";
 }
+
 
 //// COMMAND BUILDING / WORD ORDER
 ////////////////////////////////////////////////////////////////
@@ -360,7 +361,7 @@ function  getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return dictionary["then"];
+	return (tts ? ", " : " ") + dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
@@ -570,7 +571,7 @@ function speed_alarm(maxSpeed, speed) {
 }
 
 function attention(type) {
-	return dictionary["attention"] + " " + getAttentionString(type);
+	return dictionary["attention"] + (tts ? ", " : " ") + getAttentionString(type);
 }
 
 function getAttentionString(type) {

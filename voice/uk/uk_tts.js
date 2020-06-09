@@ -17,14 +17,14 @@ var dictionary = {};
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	dictionary["route_is"] = tts ? "Довжина маршруту, " : "route_is.ogg";
-	dictionary["route_calculate"] = tts ? "Перерахунок маршруту, " : "route_calculate.ogg";
-	dictionary["distance"] = tts ? "відстань - " : "distance.ogg";
+	dictionary["route_is"] = tts ? "Довжина маршруту" : "route_is.ogg";
+	dictionary["route_calculate"] = tts ? "Перерахунок маршруту" : "route_calculate.ogg";
+	dictionary["distance"] = tts ? "відстань" : "distance.ogg";
 
 	// LEFT/RIGHT
-	dictionary["after"] = tts ? "після " : "after.ogg";
+	dictionary["after"] = tts ? "після" : "after.ogg";
 	dictionary["in"] = tts ? "в" : "in.ogg";
-	dictionary["cherez"] = tts ? "через " : "cherez.ogg";
+	dictionary["cherez"] = tts ? "через" : "cherez.ogg";
 
 	dictionary["left"] = tts ? "поверніть ліворуч" : "left.ogg";
 	dictionary["left_sh"] = tts ? "різко поверніть ліворуч" : "left_sh.ogg";
@@ -43,51 +43,51 @@ function populateDictionary(tts) {
 
 	// ROUNDABOUTS
 	dictionary["roundabout"] = tts ? "кругове перехрестя" : "roundabout.ogg";
-	dictionary["then"] = tts ? "потім " : "then.ogg";
-	dictionary["and"] = tts ? " і " : "and.ogg";
+	dictionary["then"] = tts ? "потім" : "then.ogg";
+	dictionary["and"] = tts ? "і" : "and.ogg";
 	dictionary["take"] = tts ? "виберіть " : "take.ogg";
-	dictionary["exit"] = tts ? "з''їзд " : "exit.ogg";
+	dictionary["exit"] = tts ? "з''їзд" : "exit.ogg";
 
-	dictionary["1th"] = tts ? "перший " : "1th.ogg";
-	dictionary["2th"] = tts ? "другий " : "2th.ogg";
-	dictionary["3th"] = tts ? "третій " : "3th.ogg";
-	dictionary["4th"] = tts ? "четвертий " : "4th.ogg";
-	dictionary["5th"] = tts ? "п''ятий " : "5th.ogg";
-	dictionary["6th"] = tts ? "шостий " : "6th.ogg";
-	dictionary["7th"] = tts ? "сьомий " : "7th.ogg";
-	dictionary["8th"] = tts ? "восьмий " : "8th.ogg";
-	dictionary["9th"] = tts ? "дев_ятий " : "9th.ogg";
-	dictionary["10th"] = tts ? "десятий " : "10th.ogg";
-	dictionary["11th"] = tts ? "одинадцятий " : "11th.ogg";
-	dictionary["12th"] = tts ? "дванадцятий " : "12th.ogg";
-	dictionary["13th"] = tts ? "тринадцятий " : "13th.ogg";
-	dictionary["14th"] = tts ? "чотирнадцятий " : "14th.ogg";
-	dictionary["15th"] = tts ? "п''ятнадцятий " : "15th.ogg";
-	dictionary["16th"] = tts ? "шістнадцятий " : "16th.ogg";
-	dictionary["17th"] = tts ? "сімнадцятий " : "17th.ogg";
+	dictionary["1th"] = tts ? "перший" : "1th.ogg";
+	dictionary["2th"] = tts ? "другий" : "2th.ogg";
+	dictionary["3th"] = tts ? "третій" : "3th.ogg";
+	dictionary["4th"] = tts ? "четвертий" : "4th.ogg";
+	dictionary["5th"] = tts ? "п''ятий" : "5th.ogg";
+	dictionary["6th"] = tts ? "шостий" : "6th.ogg";
+	dictionary["7th"] = tts ? "сьомий" : "7th.ogg";
+	dictionary["8th"] = tts ? "восьмий" : "8th.ogg";
+	dictionary["9th"] = tts ? "дев_ятий" : "9th.ogg";
+	dictionary["10th"] = tts ? "десятий" : "10th.ogg";
+	dictionary["11th"] = tts ? "одинадцятий" : "11th.ogg";
+	dictionary["12th"] = tts ? "дванадцятий" : "12th.ogg";
+	dictionary["13th"] = tts ? "тринадцятий" : "13th.ogg";
+	dictionary["14th"] = tts ? "чотирнадцятий" : "14th.ogg";
+	dictionary["15th"] = tts ? "п''ятнадцятий" : "15th.ogg";
+	dictionary["16th"] = tts ? "шістнадцятий" : "16th.ogg";
+	dictionary["17th"] = tts ? "сімнадцятий" : "17th.ogg";
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Далі прямо" : "go_ahead.ogg";
-	dictionary["go_ahead_m"] = tts ? "Продовжуйте рух, " : "go_ahead_m.ogg";
+	dictionary["go_ahead_m"] = tts ? "Продовжуйте рух" : "go_ahead_m.ogg";
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "і ви прибудете до пункту призначення " : "and_arrive_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "і ви прибудете до проміжного пункту " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "ви прибули до проміжного пункту " : "reached_intermediate.ogg";
-	dictionary["reached_destination"] = tts ? "ви прибули до пункту призначення " : "reached_destination.ogg";
+	dictionary["and_arrive_destination"] = tts ? "і ви прибудете до пункту призначення" : "and_arrive_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "і ви прибудете до проміжного пункту" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "ви прибули до проміжного пункту" : "reached_intermediate.ogg";
+	dictionary["reached_destination"] = tts ? "ви прибули до пункту призначення" : "reached_destination.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "і ви прибудете до проміжної точки " : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "ви прибули до проміжної точки " : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "і ви прибудете до вибраної точки " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "ви прибули до вибраної точки " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? " і ви прибудете до точки POI " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "ви прибули до точки POI " : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "і ви прибудете до проміжної точки" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "ви прибули до проміжної точки" : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "і ви прибудете до вибраної точки" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "ви прибули до вибраної точки" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? " і ви прибудете до точки POI" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "ви прибули до точки POI" : "reached_poi.ogg";
 
 	// ATTENTION
-	//dictionary["exceed_limit"] = tts ? "Перевищення швидкості " : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "обмеження швидкості " : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "Увага, " : "attention.ogg";
+	//dictionary["exceed_limit"] = tts ? "Перевищення швидкості" : "exceed_limit.ogg";
+	dictionary["exceed_limit"] = tts ? "обмеження швидкості" : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "Увага" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "камера контролю швидкості" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "прикордонний контроль" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "залізничний переїзд" : "railroad_crossing.ogg";
@@ -100,14 +100,14 @@ function populateDictionary(tts) {
 	// OTHER PROMPTS
 	dictionary["location_lost"] = tts ? "втрачено сигнал GPS" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "Відновлено сигнал GPS" : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "Ви відхилились від маршруту на " : "off_route.ogg";
+	dictionary["off_route"] = tts ? "Ви відхилились від маршруту на" : "off_route.ogg";
 	dictionary["back_on_route"] = tts ? "Ви повернулись на маршрут." : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
-	dictionary["on"] = tts ? "по " : "on.ogg";
-	dictionary["onto"] = tts ? "на " : "onto.ogg";
-	dictionary["to"] = tts ? "до " : "to.ogg";
-	dictionary["toward"] = tts ? "до " : "toward.ogg";
+	dictionary["on"] = tts ? "по" : "on.ogg";
+	dictionary["onto"] = tts ? "на" : "onto.ogg";
+	dictionary["to"] = tts ? "до" : "to.ogg";
+	dictionary["toward"] = tts ? "до" : "toward.ogg";
 
 	// DISTANCE UNIT SUPPORT
 	dictionary["metr"] = tts ? "метр" : "metr.ogg";
@@ -117,7 +117,7 @@ function populateDictionary(tts) {
 	dictionary["kilometry"] = tts ? "кілометри, " : "kilometry.ogg";
 	dictionary["kilometriv"] = tts ? "кілометрів, " : "kilometriv.ogg";
 	dictionary["around_1_kilometer"] = tts ? "біля одного кілометру" : "around_1_kilometer.ogg";
-	dictionary["around"] = tts ? "приблизно " : "around.ogg";
+	dictionary["around"] = tts ? "приблизно" : "around.ogg";
 
 	// Imperial units.
 	dictionary["foot"] = tts ? "фут" : "foot.ogg";
@@ -138,15 +138,16 @@ function populateDictionary(tts) {
 	// TIME SUPPORT
 	dictionary["time"] = tts ? "час - " : "time.ogg";
 	dictionary["less_a_minute"] = tts ? "менше хвилини  " : "less_a_minute.ogg";
-	dictionary["hour"] = tts ? "год " : "hour.ogg";
-	dictionary["1_hour"] = tts ? "одна година " : "hour.ogg";
-	dictionary["hours_a"] = tts ? "год " : "hours_a.ogg";
-	dictionary["hours_ov"] = tts ? "год " : "hours_ov.ogg";
-	dictionary["1_minute"] = tts ? "одна хвилина " : "minute.ogg";
+	dictionary["hour"] = tts ? "год" : "hour.ogg";
+	dictionary["1_hour"] = tts ? "одна година" : "hour.ogg";
+	dictionary["hours_a"] = tts ? "год" : "hours_a.ogg";
+	dictionary["hours_ov"] = tts ? "год" : "hours_ov.ogg";
+	dictionary["1_minute"] = tts ? "одна хвилина" : "minute.ogg";
 	dictionary["minute"] = tts ? "хвилина" : "minute.ogg";
 	dictionary["minute_y"] = tts ? "хвилини" : "minute_y.ogg";
 	dictionary["minutes"] = tts ? "хвилин" : "minutes.ogg";
 }
+
 
 //// COMMAND BUILDING / WORD ORDER
 ////////////////////////////////////////////////////////////////
@@ -160,7 +161,7 @@ function setMode(mode) {
 }
 
 function route_new_calc(dist, timeVal) {
-	return dictionary["route_is"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : " ");
+	return dictionary["route_is"] + (tts ? ", " : " ") + distance(dist) + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : " ");
 }
 
 function plural_mt(dist) {
@@ -326,14 +327,14 @@ function plural_mn(time) {
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + " " + dictionary["distance"] + " " + distance(dist) + " " + dictionary["and"] + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
+	return dictionary["route_calculate"] + (tts ? ", " : " ") + dictionary["distance"] + (tts ? " - " : " ") + distance(dist) + " " + dictionary["and"] + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
 }
 
 function go_ahead(dist, streetName) {
 	if (dist == -1) {
 		return dictionary["go_ahead"];
 	} else {
-		return dictionary["go_ahead_m"] + " " + distance(dist) + " " + follow_street(streetName);
+		return dictionary["go_ahead_m"] + (tts ? ", " : " ") + distance(dist) + " " + follow_street(streetName);
 	}
 	
 // go_ahead(Dist, Street) -- ["follow", D | Sgen] :- distance(Dist) -- D, follow_street(Street, Sgen).
@@ -439,7 +440,7 @@ function  getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return dictionary["then"];
+	return dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
@@ -649,7 +650,7 @@ function speed_alarm(maxSpeed, speed) {
 }
 
 function attention(type) {
-	return dictionary["attention"] + " " + getAttentionString(type);
+	return dictionary["attention"] + (tts ? ", " : " ") + getAttentionString(type);
 }
 
 function getAttentionString(type) {

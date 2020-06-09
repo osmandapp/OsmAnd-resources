@@ -17,16 +17,16 @@ var dictionary = {};
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	dictionary["route_is"] = tts ? "Matkan pituus on " : "route_is.ogg";
+	dictionary["route_is"] = tts ? "Matkan pituus on" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Reitin uudelleenlaskenta" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? ", etäisyys " : "distance.ogg";
+	dictionary["distance"] = tts ? "etäisyys" : "distance.ogg";
 
 	// LEFT/RIGHT
 	//dictionary["prepare"] = tts ? "Valmistaudu " : "prepare.ogg";
 	dictionary["after"] = tts ? "" : "after.ogg";
 	dictionary["in"] = tts ? " " : "in.ogg";
-	dictionary["get"] = tts ? "päästä  " : "get.ogg";
-	dictionary["now"] = tts ? "nyt,  " : "now.ogg";
+	dictionary["get"] = tts ? "päästä" : "get.ogg";
+	dictionary["now"] = tts ? "nyt" : "now.ogg";
 
 	   // Vasempaan/vasemmalle and oikeaan/oikealle are interchangeable in normal speech but the Finnish military standard in directions is VASEMPAAN and OIKEALLE. We should also do this as it makes it much easier to distinguish in noise.
 	dictionary["left"] = tts ? "käänny vasempaan" : "left.ogg";
@@ -49,51 +49,51 @@ function populateDictionary(tts) {
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "Valmistaudu ajamaan liikenneympyrään" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "Aja liikenneympyrään" : "roundabout.ogg";
-	dictionary["then"] = tts ? "sitten " : "then.ogg";
-	dictionary["and"] = tts ? " ja " : "and.ogg";
-	dictionary["take"] = tts ? "päästä ja ota " : "take.ogg";
-	dictionary["exit"] = tts ? "liittymä " : "exit.ogg";
-	dictionary["take2"] = tts ? "Nyt, ota " : "take2.ogg";
+	dictionary["then"] = tts ? "sitten" : "then.ogg";
+	dictionary["and"] = tts ? "ja" : "and.ogg";
+	dictionary["take"] = tts ? "päästä ja ota" : "take.ogg";
+	dictionary["exit"] = tts ? "liittymä" : "exit.ogg";
+	dictionary["take2"] = tts ? "Nyt, ota" : "take2.ogg";
 
-	dictionary["1st"] = tts ? "ensimmäinen " : "1st.ogg";
-	dictionary["2nd"] = tts ? "toinen " : "2nd.ogg";
-	dictionary["3rd"] = tts ? "kolmas " : "3rd.ogg";
-	dictionary["4th"] = tts ? "neljäs " : "4th.ogg";
-	dictionary["5th"] = tts ? "viides " : "5th.ogg";
-	dictionary["6th"] = tts ? "kuudes " : "6th.ogg";
-	dictionary["7th"] = tts ? "seitsemäs " : "7th.ogg";
-	dictionary["8th"] = tts ? "kahdeksas " : "8th.ogg";
-	dictionary["9th"] = tts ? "yhdeksäs " : "9th.ogg";
-	dictionary["10th"] = tts ? "kymmenes " : "10th.ogg";
-	dictionary["11th"] = tts ? "yhdestoista " : "11th.ogg";
-	dictionary["12th"] = tts ? "kahdestoista " : "12th.ogg";
-	dictionary["13th"] = tts ? "kolmastoista " : "13th.ogg";
-	dictionary["14th"] = tts ? "neljästoista " : "14th.ogg";
-	dictionary["15th"] = tts ? "viidestoista " : "15th.ogg";
-	dictionary["16th"] = tts ? "kuudestoista " : "16th.ogg";
-	dictionary["17th"] = tts ? "seitsemästoista " : "17th.ogg";
+	dictionary["1st"] = tts ? "ensimmäinen" : "1st.ogg";
+	dictionary["2nd"] = tts ? "toinen" : "2nd.ogg";
+	dictionary["3rd"] = tts ? "kolmas" : "3rd.ogg";
+	dictionary["4th"] = tts ? "neljäs" : "4th.ogg";
+	dictionary["5th"] = tts ? "viides" : "5th.ogg";
+	dictionary["6th"] = tts ? "kuudes" : "6th.ogg";
+	dictionary["7th"] = tts ? "seitsemäs" : "7th.ogg";
+	dictionary["8th"] = tts ? "kahdeksas" : "8th.ogg";
+	dictionary["9th"] = tts ? "yhdeksäs" : "9th.ogg";
+	dictionary["10th"] = tts ? "kymmenes" : "10th.ogg";
+	dictionary["11th"] = tts ? "yhdestoista" : "11th.ogg";
+	dictionary["12th"] = tts ? "kahdestoista" : "12th.ogg";
+	dictionary["13th"] = tts ? "kolmastoista" : "13th.ogg";
+	dictionary["14th"] = tts ? "neljästoista" : "14th.ogg";
+	dictionary["15th"] = tts ? "viidestoista" : "15th.ogg";
+	dictionary["16th"] = tts ? "kuudestoista" : "16th.ogg";
+	dictionary["17th"] = tts ? "seitsemästoista" : "17th.ogg";
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Jatka suoraan" : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "Seuraa tietä " : "follow.ogg";
+	dictionary["follow"] = tts ? "Seuraa tietä" : "follow.ogg";
 
 	// ARRIVE
 	dictionary["and_arrive_destination"] = tts ? "ja olet perillä " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "olet perillä, " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "ja saavut välietappiin " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "olet välietapissa " : "reached_intermediate.ogg";
+	dictionary["reached_destination"] = tts ? "olet perillä" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "ja saavut välietappiin" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "olet välietapissa" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "ja ohitat reittipisteen " : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "ohitat reittipisteen " : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "ja ohitat suosikin " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "ohitat suosikin " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "ja ohitat POIn " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "ohitat POIn " : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "ja ohitat reittipisteen" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "ohitat reittipisteen" : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "ja ohitat suosikin" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "ohitat suosikin" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "ja ohitat POIn" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "ohitat POIn" : "reached_poi.ogg";
 
 	// ATTENTION
-	dictionary["exceed_limit"] = tts ? "nopeusrajoitus on " : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "huomio, " : "attention.ogg";
+	dictionary["exceed_limit"] = tts ? "nopeusrajoitus on" : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "Huomio" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "nopeuskamera" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "rajavalvonta" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "tasoristeys" : "railroad_crossing.ogg";
@@ -143,13 +143,14 @@ function populateDictionary(tts) {
 	dictionary["yards_metri"] = tts ? "jaardi" : "yards_metri.ogg";
 
 	// TIME SUPPORT
-	dictionary["time"] = tts ? ", aikaa " : "time.ogg";
-	dictionary["1_hour"] = tts ? "yksi tunti " : "1_hour.ogg";
-	dictionary["hours"] = tts ? "tuntia " : "hours.ogg";
+	dictionary["time"] = tts ? "aikaa" : "time.ogg";
+	dictionary["1_hour"] = tts ? "yksi tunti" : "1_hour.ogg";
+	dictionary["hours"] = tts ? "tuntia" : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "alle minuutti" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "minuutti" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "minuuttia" : "minutes.ogg";
 }
+
 
 //// COMMAND BUILDING / WORD ORDER
 ////////////////////////////////////////////////////////////////
@@ -164,7 +165,7 @@ function setMode(mode) {
 
 
 function route_new_calc(dist, timeVal) {
-	return dictionary["route_is"] + " " + distance(dist, "metri") + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : " ");
+	return dictionary["route_is"] + " " + distance(dist, "metri") + (tts ? ", " : " ") + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : " ");
 }
 
 // metri = metria
@@ -265,7 +266,7 @@ function hours(minutes) {
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + " " + dictionary["distance"] + " " + distance(dist, "metri") + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
+	return dictionary["route_calculate"] + (tts ? ", " : " ") + dictionary["distance"] + " " + distance(dist, "metri") + (tts ? ", " : " ") + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
 }
 
 function go_ahead(dist, streetName) {
@@ -299,7 +300,7 @@ function follow_street(streetName) {
 
 function turn(turnType, dist, streetName) {
 	if (dist == -1) {
-		return dictionary["now"] + " " + getTurnType(turnType) + " " + turn_street(streetName);
+		return dictionary["now"] + (tts ? ", " : " ") + getTurnType(turnType) + " " + turn_street(streetName);
 	} else {
 		return dictionary["in"] + " " + distance(dist, "metrin") + " " + dictionary["get"] + " " + getTurnType(turnType) + " " + turn_street(streetName); 
 	}
@@ -376,7 +377,7 @@ function  getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return dictionary["then"];
+	return dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
@@ -537,7 +538,7 @@ function and_arrive_poi(dest) {
 }
 
 function reached_destination(dest) {
-	return dictionary["reached_destination"] + " " + dest;
+	return dictionary["reached_destination"] + (tts ? ", " : " ") + dest;
 }
 
 function reached_waypoint(dest) {
@@ -587,7 +588,7 @@ function speed_alarm(maxSpeed, speed) {
 }
 
 function attention(type) {
-	return dictionary["attention"] + " " + getAttentionString(type);
+	return dictionary["attention"] + (tts ? ", " : " ") + getAttentionString(type);
 }
 
 function getAttentionString(type) {

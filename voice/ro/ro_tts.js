@@ -22,7 +22,7 @@ function populateDictionary(tts) {
 	// ROUTE CALCULATED
 	dictionary["route_is"] = tts ? "Lungimea traseului este de" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Traseu recalculat" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? ", distanța" : "distance.ogg";
+	dictionary["distance"] = tts ? "distanța" : "distance.ogg";
 
 	// LEFT/RIGHT
 	dictionary["after"] = tts ? "peste" : "after.ogg";
@@ -47,27 +47,27 @@ function populateDictionary(tts) {
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "pregătiți-vă să intrați în sensul giratoriu" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "veți intra în sensul giratoriu pe care-l veți părăsi pe la" : "roundabout.ogg";
-	dictionary["then"] = tts ? ", apoi " : "then.ogg";
-	dictionary["take"] = tts ? "luați-o pe " : "take.ogg";
+	dictionary["then"] = tts ? "apoi" : "then.ogg";
+	dictionary["take"] = tts ? "luați-o pe" : "take.ogg";
 	dictionary["exit"] = tts ? "ieșire" : "exit.ogg";
 
-	dictionary["1st"] = tts ? "prima " : "1st.ogg";
-	dictionary["2nd"] = tts ? "a doua " : "2nd.ogg";
-	dictionary["3rd"] = tts ? "a treia " : "3rd.ogg";
-	dictionary["4th"] = tts ? "a patra " : "4th.ogg";
-	dictionary["5th"] = tts ? "a cincea " : "5th.ogg";
-	dictionary["6th"] = tts ? "a șasea " : "6th.ogg";
-	dictionary["7th"] = tts ? "a șaptea " : "7th.ogg";
-	dictionary["8th"] = tts ? "a opta " : "8th.ogg";
-	dictionary["9th"] = tts ? "a noua " : "9th.ogg";
-	dictionary["10th"] = tts ? "a zecea " : "10th.ogg";
-	dictionary["11th"] = tts ? "a unsprezecea " : "11th.ogg";
-	dictionary["12th"] = tts ? "a douăsprezecea " : "12th.ogg";
-	dictionary["13th"] = tts ? "a treisprezecea " : "13th.ogg";
-	dictionary["14th"] = tts ? "a paisprezecea " : "14th.ogg";
-	dictionary["15th"] = tts ? "a cinsprezecea " : "15th.ogg";
-	dictionary["16th"] = tts ? "a șaisprezecea " : "16th.ogg";
-	dictionary["17th"] = tts ? "a șaptesprezecea " : "17th.ogg";
+	dictionary["1st"] = tts ? "prima" : "1st.ogg";
+	dictionary["2nd"] = tts ? "a doua" : "2nd.ogg";
+	dictionary["3rd"] = tts ? "a treia" : "3rd.ogg";
+	dictionary["4th"] = tts ? "a patra" : "4th.ogg";
+	dictionary["5th"] = tts ? "a cincea" : "5th.ogg";
+	dictionary["6th"] = tts ? "a șasea" : "6th.ogg";
+	dictionary["7th"] = tts ? "a șaptea" : "7th.ogg";
+	dictionary["8th"] = tts ? "a opta" : "8th.ogg";
+	dictionary["9th"] = tts ? "a noua" : "9th.ogg";
+	dictionary["10th"] = tts ? "a zecea" : "10th.ogg";
+	dictionary["11th"] = tts ? "a unsprezecea" : "11th.ogg";
+	dictionary["12th"] = tts ? "a douăsprezecea" : "12th.ogg";
+	dictionary["13th"] = tts ? "a treisprezecea" : "13th.ogg";
+	dictionary["14th"] = tts ? "a paisprezecea" : "14th.ogg";
+	dictionary["15th"] = tts ? "a cinsprezecea" : "15th.ogg";
+	dictionary["16th"] = tts ? "a șaisprezecea" : "16th.ogg";
+	dictionary["17th"] = tts ? "a șaptesprezecea" : "17th.ogg";
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Mergeți înainte" : "go_ahead.ogg";
@@ -90,7 +90,7 @@ function populateDictionary(tts) {
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "limita de viteză depăşită" : "exceed_limit.ogg";
 	dictionary["exceed_limit"] = tts ? "limita de viteză" : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "atenţie, " : "attention.ogg";
+	dictionary["attention"] = tts ? "Atenţie" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "radar" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "vamă" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "trecere la nivel" : "railroad_crossing.ogg";
@@ -145,6 +145,7 @@ function populateDictionary(tts) {
     dictionary["of"] = tts ? "de" : "of.ogg";
     dictionary["and"] = tts ? "și" : "and.ogg";
 }
+
 
 //// COMMAND BUILDING / WORD ORDER
 ////////////////////////////////////////////////////////////////
@@ -258,7 +259,7 @@ function hours(minutes) {
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + " " + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
+	return dictionary["route_calculate"] + (tts ? ", " : " ") + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
 }
 
 function go_ahead(dist, streetName) {
@@ -371,7 +372,7 @@ function  getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return dictionary["then"];
+	return (tts ? ", " : " ") + dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
@@ -632,7 +633,7 @@ function speed_alarm(maxSpeed, speed) {
 }
 
 function attention(type) {
-	return dictionary["attention"] + " " + getAttentionString(type);
+	return dictionary["attention"] + (tts ? ", " : " ") + getAttentionString(type);
 }
 
 function getAttentionString(type) {

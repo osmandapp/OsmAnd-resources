@@ -17,13 +17,13 @@ var tts;
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	dictionary["route_is"] = tts ? "Safani ni urefu wa " : "route_is.ogg";
+	dictionary["route_is"] = tts ? "Safani ni urefu wa" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "njia ya re-mahesabu" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? ". umbali " : "distance.ogg";
+	dictionary["distance"] = tts ? "umbali" : "distance.ogg";
 
 	// LEFT/RIGHT
-	dictionary["after"] = tts ? " baada ya " : "after.ogg";
-	dictionary["in"] = tts ? "katika " : "in.ogg";
+	dictionary["after"] = tts ? "baada ya" : "after.ogg";
+	dictionary["in"] = tts ? "katika" : "in.ogg";
 
 	dictionary["left"] = tts ? "geuka upande wa kushoto" : "left.ogg";
 	dictionary["left_sh"] = tts ? "geuka sana upande wa kushoto" : "left_sh.ogg";
@@ -37,59 +37,59 @@ function populateDictionary(tts) {
 	dictionary["right_bear"] = tts ? "kaa upande wa kulia" : "right_bear.ogg";   // in English the same as right_keep, may be different in other languages
 
 	// U-TURNS
-	dictionary["prepare_make_uturn"] = tts ? "Tayarisha kugeuka nyuma baada ya " : "prepare_make_uturn.ogg";
-	dictionary["make_uturn1"] = tts ? " geuka nyuma " : "make_uturn1.ogg";
+	dictionary["prepare_make_uturn"] = tts ? "Tayarisha kugeuka nyuma baada ya" : "prepare_make_uturn.ogg";
+	dictionary["make_uturn1"] = tts ? " geuka nyuma" : "make_uturn1.ogg";
 	dictionary["make_uturn2"] = tts ? "Tafandali geuka kwa u turn" : "make_uturn2.ogg";
 	dictionary["make_uturn_wp"] = tts ? "wakati inawezekana, tafadhali kufanya u-kugeuka" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? "Tayarisha kuingia mzunguko baada ya " : "prepare_roundabout.ogg";
+	dictionary["prepare_roundabout"] = tts ? "Tayarisha kuingia mzunguko baada ya" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? " ingia mzunguko, na uchukue upande wa" : "roundabout.ogg";
-	dictionary["then"] = tts ? ", kisha " : "then.ogg";
-	dictionary["and"] = tts ? " na " : "and.ogg";
-	dictionary["take"] = tts ? "chukua upande wa " : "take.ogg";
+	dictionary["then"] = tts ? "kisha" : "then.ogg";
+	dictionary["and"] = tts ? "na" : "and.ogg";
+	dictionary["take"] = tts ? "chukua upande wa" : "take.ogg";
 	dictionary["exit"] = tts ? "kutoka" : "exit.ogg";
 
-	dictionary["1st"] = tts ? "kwanza " : "1st.ogg";
-	dictionary["2nd"] = tts ? "pili " : "2nd.ogg";
-	dictionary["3rd"] = tts ? "tatu " : "3rd.ogg";
-	dictionary["4th"] = tts ? "nne " : "4th.ogg";
-	dictionary["5th"] = tts ? "tano " : "5th.ogg";
-	dictionary["6th"] = tts ? "sita " : "6th.ogg";
-	dictionary["7th"] = tts ? "saba " : "7th.ogg";
-	dictionary["8th"] = tts ? "nane " : "8th.ogg";
-	dictionary["9th"] = tts ? "tisa " : "9th.ogg";
-	dictionary["10th"] = tts ? "kumi " : "10th.ogg";
-	dictionary["11th"] = tts ? "kumi na moja " : "11th.ogg";
-	dictionary["12th"] = tts ? "kumi na mbili " : "12th.ogg";
-	dictionary["13th"] = tts ? "kumi na tatu " : "13th.ogg";
-	dictionary["14th"] = tts ? "kumi na nne " : "14th.ogg";
-	dictionary["15th"] = tts ? "kumi na tano " : "15th.ogg";
-	dictionary["16th"] = tts ? "kumi na sita " : "16th.ogg";
-	dictionary["17th"] = tts ? "kumi na saba " : "17th.ogg";
+	dictionary["1st"] = tts ? "kwanza" : "1st.ogg";
+	dictionary["2nd"] = tts ? "pili" : "2nd.ogg";
+	dictionary["3rd"] = tts ? "tatu" : "3rd.ogg";
+	dictionary["4th"] = tts ? "nne" : "4th.ogg";
+	dictionary["5th"] = tts ? "tano" : "5th.ogg";
+	dictionary["6th"] = tts ? "sita" : "6th.ogg";
+	dictionary["7th"] = tts ? "saba" : "7th.ogg";
+	dictionary["8th"] = tts ? "nane" : "8th.ogg";
+	dictionary["9th"] = tts ? "tisa" : "9th.ogg";
+	dictionary["10th"] = tts ? "kumi" : "10th.ogg";
+	dictionary["11th"] = tts ? "kumi na moja" : "11th.ogg";
+	dictionary["12th"] = tts ? "kumi na mbili" : "12th.ogg";
+	dictionary["13th"] = tts ? "kumi na tatu" : "13th.ogg";
+	dictionary["14th"] = tts ? "kumi na nne" : "14th.ogg";
+	dictionary["15th"] = tts ? "kumi na tano" : "15th.ogg";
+	dictionary["16th"] = tts ? "kumi na sita" : "16th.ogg";
+	dictionary["17th"] = tts ? "kumi na saba" : "17th.ogg";
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Endelea moja kwa moja mbele" : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "Endesha kwa " : "follow.ogg";
+	dictionary["follow"] = tts ? "Endesha kwa" : "follow.ogg";
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "na ufike kifiko " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "umefika " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "na kufika katika yako kupitia-uhakika " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "wewe na kufikiwa yako kupitia-uhakika " : "reached_intermediate.ogg";
+	dictionary["and_arrive_destination"] = tts ? "na ufike kifiko" : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "umefika" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "na kufika katika yako kupitia-uhakika" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "wewe na kufikiwa yako kupitia-uhakika" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "na kufika katika yako kupitia-uhakika GPX " : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "wewe na kufikiwa yako kupitia-uhakika GPX " : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "and pass favorite " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "you are passing favorite " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "and pass POI " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "you are passing POI " : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "na kufika katika yako kupitia-uhakika GPX" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "wewe na kufikiwa yako kupitia-uhakika GPX" : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "and pass favorite" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "you are passing favorite" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "and pass POI" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "you are passing POI" : "reached_poi.ogg";
 
 	// ATTENTION
-	//dictionary["exceed_limit"] = tts ? "wewe ni mno kikomo kasi " : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "kikomo kasi " : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "attention, " : "attention.ogg";
+	//dictionary["exceed_limit"] = tts ? "wewe ni mno kikomo kasi" : "exceed_limit.ogg";
+	dictionary["exceed_limit"] = tts ? "kikomo kasi" : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "attention" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "kamera kasi" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "mpaka kudhibiti" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "reli kuvuka" : "railroad_crossing.ogg";
@@ -102,21 +102,21 @@ function populateDictionary(tts) {
 	// OTHER PROMPTS
 	dictionary["location_lost"] = tts ? "g p s ishara waliopotea" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "g p s signal restored" : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "una jitenga na njia " : "off_route.ogg";
+	dictionary["off_route"] = tts ? "una jitenga na njia" : "off_route.ogg";
 	dictionary["back_on_route"] = tts ? "wewe ni nyuma juu ya njia" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "kwenye " : "onto.ogg";
-	dictionary["on"] = tts ? "kwenye " : "on.ogg";
-	dictionary["to"] = tts ? "kwenye " : "to.ogg";
-	dictionary["toward"] = tts ? "kuelekea " : "toward.ogg";
+	dictionary["onto"] = tts ? "kwenye" : "onto.ogg";
+	dictionary["on"] = tts ? "kwenye" : "on.ogg";
+	dictionary["to"] = tts ? "kwenye" : "to.ogg";
+	dictionary["toward"] = tts ? "kuelekea" : "toward.ogg";
 
 	// DISTANCE UNIT SUPPORT
 	dictionary["meters"] = tts ? "mita" : "meters.ogg";
 	dictionary["around_1_kilometer"] = tts ? "umbali wa kilomita moja" : "around_1_kilometer.ogg";
-	dictionary["around"] = tts ? "kuhusu " : "around.ogg";
-	dictionary["kilometers1"] = tts ? " kilomita" : "kilometers1.ogg";
-	dictionary["kilometers2"] = tts ? " kilometa" : "kilometers2.ogg";
+	dictionary["around"] = tts ? "kuhusu" : "around.ogg";
+	dictionary["kilometers1"] = tts ? "kilomita" : "kilometers1.ogg";
+	dictionary["kilometers2"] = tts ? "kilometa" : "kilometers2.ogg";
 
 	dictionary["feet"] = tts ? "futi" : "feet.ogg";
 	dictionary["1_tenth_of_a_mile"] = tts ? "moja ya kumi ya maili" : "1_tenth_of_a_mile.ogg";
@@ -127,12 +127,12 @@ function populateDictionary(tts) {
 	dictionary["yards"] = tts ? "yardi" : "yards.ogg";
 
 	// TIME SUPPORT
-	dictionary["time"] = tts ? "wakati zinahitajika " : "time.ogg";
-	dictionary["1_hour"] = tts ? "saa moja " : "1_hour.ogg";
-	dictionary["hours"] = tts ? "masaa " : "hours.ogg";
+	dictionary["time"] = tts ? "wakati zinahitajika" : "time.ogg";
+	dictionary["1_hour"] = tts ? "saa moja" : "1_hour.ogg";
+	dictionary["hours"] = tts ? "masaa" : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "chini ya dakika moja" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "dakika moja" : "1_minute.ogg";
-	dictionary["minutes"] = tts ? "dakika " : "minutes.ogg";
+	dictionary["minutes"] = tts ? "dakika" : "minutes.ogg";
 }
 
 
@@ -248,7 +248,7 @@ function hours(minutes) {
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + " " + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
+	return dictionary["route_calculate"] + (tts ? ". " : " ") + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
 }
 
 function go_ahead(dist, streetName) {
@@ -361,7 +361,7 @@ function  getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return dictionary["then"];
+	return (tts ? ", " : " ") + dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
@@ -571,7 +571,7 @@ function speed_alarm(maxSpeed, speed) {
 }
 
 function attention(type) {
-	return dictionary["attention"] + " " + getAttentionString(type);
+	return dictionary["attention"] + (tts ? ", " : " ") + getAttentionString(type);
 }
 
 function getAttentionString(type) {
