@@ -17,13 +17,13 @@ var tts;
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	dictionary["route_is"] = tts ? "Ruten er " : "route_is.ogg";
+	dictionary["route_is"] = tts ? "Ruten er" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Ruten genberegnes" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? "afstanden er " : "distance.ogg";
+	dictionary["distance"] = tts ? "afstanden er" : "distance.ogg";
 
 	// LEFT/RIGHT
-	dictionary["prepare"] = tts ? "Forbered at " : "prepare.ogg";
-	dictionary["after"] = tts ? "om " : "after.ogg";
+	dictionary["prepare"] = tts ? "Forbered at" : "prepare.ogg";
+	dictionary["after"] = tts ? "om" : "after.ogg";
 
 	dictionary["left"] = tts ? "drej til venstre" : "left.ogg";
 	dictionary["left_sh"] = tts ? "drej skarpt til venstre" : "left_sh.ogg";
@@ -42,52 +42,52 @@ function populateDictionary(tts) {
 
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "Forbered at køre ind i rundkørslen" : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? "kør ind i rundkørslen, " : "roundabout.ogg";
-	dictionary["then"] = tts ? "og derefter " : "then.ogg";
-	dictionary["and"] = tts ? " og " : "and.ogg";
-	dictionary["take"] = tts ? "tag den " : "take.ogg";
+	dictionary["roundabout"] = tts ? "kør ind i rundkørslen" : "roundabout.ogg";
+	dictionary["then"] = tts ? "og derefter" : "then.ogg";
+	dictionary["and"] = tts ? "og" : "and.ogg";
+	dictionary["take"] = tts ? "tag den" : "take.ogg";
 	dictionary["exit"] = tts ? "afkørsel" : "exit.ogg";
 
-	dictionary["1st"] = tts ? "første " : "1st.ogg";
-	dictionary["2nd"] = tts ? "anden " : "2nd.ogg";
-	dictionary["3rd"] = tts ? "tredje " : "3rd.ogg";
-	dictionary["4th"] = tts ? "fjerde " : "4th.ogg";
-	dictionary["5th"] = tts ? "femte " : "5th.ogg";
-	dictionary["6th"] = tts ? "sjette " : "6th.ogg";
-	dictionary["7th"] = tts ? "syvende " : "7th.ogg";
+	dictionary["1st"] = tts ? "første" : "1st.ogg";
+	dictionary["2nd"] = tts ? "anden" : "2nd.ogg";
+	dictionary["3rd"] = tts ? "tredje" : "3rd.ogg";
+	dictionary["4th"] = tts ? "fjerde" : "4th.ogg";
+	dictionary["5th"] = tts ? "femte" : "5th.ogg";
+	dictionary["6th"] = tts ? "sjette" : "6th.ogg";
+	dictionary["7th"] = tts ? "syvende" : "7th.ogg";
 	dictionary["8th"] = tts ? "ottende" : "8th.ogg";
-	dictionary["9th"] = tts ? "niende " : "9th.ogg";
-	dictionary["10th"] = tts ? "tiende " : "10th.ogg";
-	dictionary["11th"] = tts ? "ellevte " : "11th.ogg";
-	dictionary["12th"] = tts ? "tolvte " : "12th.ogg";
-	dictionary["13th"] = tts ? "trettende " : "13th.ogg";
-	dictionary["14th"] = tts ? "fjortende " : "14th.ogg";
-	dictionary["15th"] = tts ? "femtende " : "15th.ogg";
-	dictionary["16th"] = tts ? "sekstende " : "16th.ogg";
-	dictionary["17th"] = tts ? "syttende " : "17th.ogg";
+	dictionary["9th"] = tts ? "niende" : "9th.ogg";
+	dictionary["10th"] = tts ? "tiende" : "10th.ogg";
+	dictionary["11th"] = tts ? "ellevte" : "11th.ogg";
+	dictionary["12th"] = tts ? "tolvte" : "12th.ogg";
+	dictionary["13th"] = tts ? "trettende" : "13th.ogg";
+	dictionary["14th"] = tts ? "fjortende" : "14th.ogg";
+	dictionary["15th"] = tts ? "femtende" : "15th.ogg";
+	dictionary["16th"] = tts ? "sekstende" : "16th.ogg";
+	dictionary["17th"] = tts ? "syttende" : "17th.ogg";
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Fortsæt ligeud" : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "Følg vejen " : "follow.ogg";
+	dictionary["follow"] = tts ? "Følg vejen" : "follow.ogg";
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "og så ankommer du til destinationen " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "du har nået destinationen " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "og så ankommer du til rutepunktet " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "du har nået rutepunktet " : "reached_intermediate.ogg";
+	dictionary["and_arrive_destination"] = tts ? "og så ankommer du til destinationen" : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "du har nået destinationen" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "og så ankommer du til rutepunktet" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "du har nået rutepunktet" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "og så ankommer du til GPX rutepunktet " : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "du har nået dit GPX rutepunkt " : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "og så ankommer du til favoritpunktet " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "du har nået dit favorit rutepunkt " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "og så ankommer du til interessepunktet " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "du har nået interessepunktet " : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "og så ankommer du til GPX rutepunktet" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "du har nået dit GPX rutepunkt" : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "og så ankommer du til favoritpunktet" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "du har nået dit favorit rutepunkt" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "og så ankommer du til interessepunktet" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "du har nået interessepunktet" : "reached_poi.ogg";
 
 	// ATTENTION
-	//dictionary["exceed_limit"] = tts ? "Hastighedsgrænsen er overskredet " : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "Hastighedsgrænse " : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "Advarsel, " : "attention.ogg";
+	//dictionary["exceed_limit"] = tts ? "Hastighedsgrænsen er overskredet" : "exceed_limit.ogg";
+	dictionary["exceed_limit"] = tts ? "Hastighedsgrænse" : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "Advarsel" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "fartkamera" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "grænsekontrol" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "jernbaneoverskæring" : "railroad_crossing.ogg";
@@ -104,18 +104,18 @@ function populateDictionary(tts) {
 	dictionary["back_on_route"] = tts ? "du er vendt tilbage til ruten" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "ind på " : "onto.ogg";
-	dictionary["on"] = tts ? "på " : "on.ogg";
-	dictionary["to"] = tts ? "til " : "to.ogg";
-	dictionary["toward"] = tts ? "imod " : "toward.ogg";
+	dictionary["onto"] = tts ? "ind på" : "onto.ogg";
+	dictionary["on"] = tts ? "på" : "on.ogg";
+	dictionary["to"] = tts ? "til" : "to.ogg";
+	dictionary["toward"] = tts ? "imod" : "toward.ogg";
 
 	// DISTANCE UNIT SUPPORT
 	dictionary["meters"] = tts ? "meter" : "meters.ogg";
 	dictionary["around_1_kilometer"] = tts ? "omkring 1 kilometer" : "around_1_kilometer.ogg";
-	dictionary["around"] = tts ? "omkring " : "around.ogg";
+	dictionary["around"] = tts ? "omkring" : "around.ogg";
 	dictionary["kilometers"] = tts ? "kilometer" : "kilometers.ogg";
 
-	dictionary["feet"] = tts ? "fod " : "feet.ogg";
+	dictionary["feet"] = tts ? "fod" : "feet.ogg";
 	dictionary["1_tenth_of_a_mile"] = tts ? "en tiendedel af en mil" : "1_tenth_of_a_mile.ogg";
 	dictionary["tenths_of_a_mile"] = tts ? "tiendedele af en mil" : "tenths_of_a_mile.ogg";
 	dictionary["around_1_mile"] = tts ? "omkring 1 mil" : "around_1_mile.ogg";
@@ -124,14 +124,17 @@ function populateDictionary(tts) {
 	dictionary["yards"] = tts ? "yards" : "yards.ogg";
 
 	// TIME SUPPORT
-	dictionary["time"] = tts ? "tiden er " : "time.ogg";
-	dictionary["1_hour"] = tts ? "en time " : "1_hour.ogg";
-	dictionary["hours"] = tts ? "timer " : "hours.ogg";
+	dictionary["time"] = tts ? "tiden er" : "time.ogg";
+	dictionary["1_hour"] = tts ? "en time" : "1_hour.ogg";
+	dictionary["hours"] = tts ? "timer" : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "mindre end et minut" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "et minut" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "minutter" : "minutes.ogg";
 }
 
+
+//// COMMAND BUILDING / WORD ORDER
+////////////////////////////////////////////////////////////////
 function setMetricConst(metrics) {
 	metricConst = metrics;
 }
@@ -294,7 +297,7 @@ function take_exit_name(streetName) {
 	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "") || !tts) {
 		return "";
 	} else if (streetName["toDest"] != "") {
-		return (tts ? ", " : " ") + streetName["toStreetName"] + dictionary["toward"] + " " + streetName["toDest"];
+		return (tts ? ", " : " ") + streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	} else if (streetName["toStreetName"] != "") {
 		return (tts ? ", " : " ") + streetName["toStreetName"]
 	} else {
@@ -352,7 +355,7 @@ function  getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return dictionary["then"];
+	return dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
@@ -361,7 +364,7 @@ function roundabout(dist, angle, exit, streetName) {
 	if (dist == -1) {
 		return dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	} else {
-		return dictionary["after"] + " " + distance(dist) + " " + dictionary["roundabout"] + " " + dictionary["and"] + " " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
+		return dictionary["after"] + " " + distance(dist) + " " + dictionary["roundabout"] + (tts ? ", " : " ") + dictionary["and"] + " " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	}
 
 }
@@ -562,7 +565,7 @@ function speed_alarm(maxSpeed, speed) {
 }
 
 function attention(type) {
-	return dictionary["attention"] + " " + getAttentionString(type);
+	return dictionary["attention"] + (tts ? ", " : " ") + getAttentionString(type);
 }
 
 function getAttentionString(type) {

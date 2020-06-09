@@ -144,6 +144,8 @@ function populateDictionary(tts) {
 }
 
 
+//// COMMAND BUILDING / WORD ORDER
+////////////////////////////////////////////////////////////////
 function setMetricConst(metrics) {
 	metricConst = metrics;
 }

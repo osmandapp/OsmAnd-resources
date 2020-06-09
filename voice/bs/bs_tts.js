@@ -48,8 +48,8 @@ function populateDictionary(tts) {
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "Pripremite se za ulazak u kružni tok" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "uđite u kružni tok" : "roundabout.ogg";
-	dictionary["then"] = tts ? ", onda" : "then.ogg";
-	dictionary["and"] = tts ? " i" : "and.ogg";
+	dictionary["then"] = tts ? "onda" : "then.ogg";
+	dictionary["and"] = tts ? "i" : "and.ogg";
 	dictionary["and_alt"] = tts ? "te" : "and_alt.ogg"; //renamed, same filenames
 	dictionary["take"] = tts ? "izađite na" : "take.ogg";
 	dictionary["exit"] = tts ? "izlaz" : "exit.ogg";
@@ -175,6 +175,9 @@ function populateDictionary(tts) {
 	dictionary["2_f_acc"] = dictionary["2_f_gen"] = dictionary["2_f_nom"];
 }
 
+
+//// COMMAND BUILDING / WORD ORDER
+////////////////////////////////////////////////////////////////
 function num_str(number, gender /*of the object being counted*/, grm_case) {
 	//only needed for numbers ending in 1 and 2
 	
@@ -458,7 +461,7 @@ function getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return dictionary["then"];
+	return (tts ? ", " : " ") + dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {

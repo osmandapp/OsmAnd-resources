@@ -19,12 +19,12 @@ function populateDictionary(tts) {
 	// ROUTE CALCULATED
 	dictionary["route_is"] = tts ? "Το ταξίδι είναι " : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Επαναϋπολογισμός διαδρομής" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? ", απόσταση " : "distance.ogg";
+	dictionary["distance"] = tts ? "απόσταση" : "distance.ogg";
 
 	// LEFT/RIGHT
-	//dictionary["prepare"] = tts ? "Προετοιμαστείτε να " : "prepare.ogg";
-	dictionary["after"] = tts ? "μετά από " : "after.ogg";
-	dictionary["in"] = tts ? "σε " : "in.ogg";
+	//dictionary["prepare"] = tts ? "Προετοιμαστείτε να" : "prepare.ogg";
+	dictionary["after"] = tts ? "μετά από" : "after.ogg";
+	dictionary["in"] = tts ? "σε" : "in.ogg";
 
 	dictionary["left"] = tts ? "στρίψτε αριστερά" : "left.ogg";
 	dictionary["left_sh"] = tts ? "στρίψτε κλειστά αριστερά" : "left_sh.ogg";
@@ -44,51 +44,51 @@ function populateDictionary(tts) {
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "Προετοιμαστείτε να μπείτε σε κυκλικό κόμβο μετά από" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "μπείτε στον κυκλικό κόμβο, και βγείτε στην" : "roundabout.ogg";
-	dictionary["then"] = tts ? ", και " : "then.ogg";
-	dictionary["and"] = tts ? " και " : "and.ogg";
-	dictionary["take"] = tts ? "βγείτε στην " : "take.ogg";
+	dictionary["then"] = tts ? "και" : "then.ogg";
+	dictionary["and"] = tts ? "και" : "and.ogg";
+	dictionary["take"] = tts ? "βγείτε στην" : "take.ogg";
 	dictionary["exit"] = tts ? "έξοδο" : "exit.ogg";
 
-	dictionary["1st"] = tts ? "πρώτη " : "1st.ogg";
-	dictionary["2nd"] = tts ? "δεύτερη " : "2nd.ogg";
-	dictionary["3rd"] = tts ? "τρίτη " : "3rd.ogg";
-	dictionary["4th"] = tts ? "τέταρτη " : "4th.ogg";
-	dictionary["5th"] = tts ? "πέμπτη " : "5th.ogg";
-	dictionary["6th"] = tts ? "έκτη " : "6th.ogg";
-	dictionary["7th"] = tts ? "έβδομη " : "7th.ogg";
-	dictionary["8th"] = tts ? "όγδοη " : "8th.ogg";
-	dictionary["9th"] = tts ? "ένατη " : "9th.ogg";
-	dictionary["10th"] = tts ? "δέκατη " : "10th.ogg";
-	dictionary["11th"] = tts ? "ενδέκατη " : "11th.ogg";
-	dictionary["12th"] = tts ? "δωδέκατη " : "12th.ogg";
-	dictionary["13th"] = tts ? "δέκατη τρίτη " : "13th.ogg";
-	dictionary["14th"] = tts ? "δέκατη τέταρτη " : "14th.ogg";
-	dictionary["15th"] = tts ? "δέκατη πέμπτη " : "15th.ogg";
-	dictionary["16th"] = tts ? "δέκατη έκτη " : "16th.ogg";
-	dictionary["17th"] = tts ? "δέκατη έβδομη " : "17th.ogg";
+	dictionary["1st"] = tts ? "πρώτη" : "1st.ogg";
+	dictionary["2nd"] = tts ? "δεύτερη" : "2nd.ogg";
+	dictionary["3rd"] = tts ? "τρίτη" : "3rd.ogg";
+	dictionary["4th"] = tts ? "τέταρτη" : "4th.ogg";
+	dictionary["5th"] = tts ? "πέμπτη" : "5th.ogg";
+	dictionary["6th"] = tts ? "έκτη" : "6th.ogg";
+	dictionary["7th"] = tts ? "έβδομη" : "7th.ogg";
+	dictionary["8th"] = tts ? "όγδοη" : "8th.ogg";
+	dictionary["9th"] = tts ? "ένατη" : "9th.ogg";
+	dictionary["10th"] = tts ? "δέκατη" : "10th.ogg";
+	dictionary["11th"] = tts ? "ενδέκατη" : "11th.ogg";
+	dictionary["12th"] = tts ? "δωδέκατη" : "12th.ogg";
+	dictionary["13th"] = tts ? "δέκατη τρίτη" : "13th.ogg";
+	dictionary["14th"] = tts ? "δέκατη τέταρτη" : "14th.ogg";
+	dictionary["15th"] = tts ? "δέκατη πέμπτη" : "15th.ogg";
+	dictionary["16th"] = tts ? "δέκατη έκτη" : "16th.ogg";
+	dictionary["17th"] = tts ? "δέκατη έβδομη" : "17th.ogg";
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Προχωρείστε ευθεία" : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "Ακολουθήστε τον δρόμο για " : "follow.ogg";
+	dictionary["follow"] = tts ? "Ακολουθήστε τον δρόμο για" : "follow.ogg";
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "και φτάσατε στον προορισμό σας " : "and_arrive_destination.ogg";
-	dictionary["reached_destination.ogg"] = tts ? "φτάσατε στον προορισμό σας " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "και φτάσατε στο ενδιάμεσο σημείο " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "φτάσατε στο ενδιάμεσο σημείο " : "reached_intermediate.ogg";
+	dictionary["and_arrive_destination"] = tts ? "και φτάσατε στον προορισμό σας" : "and_arrive_destination.ogg";
+	dictionary["reached_destination.ogg"] = tts ? "φτάσατε στον προορισμό σας" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "και φτάσατε στο ενδιάμεσο σημείο" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "φτάσατε στο ενδιάμεσο σημείο" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "και φτάσατε στο σημείο GPX " : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "φτάσατε στο σημείο GPX " : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "and pass favorite " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "you are passing favorite " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "and pass POI " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "you are passing POI " : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "και φτάσατε στο σημείο GPX" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "φτάσατε στο σημείο GPX" : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "and pass favorite" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "you are passing favorite" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "and pass POI" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "you are passing POI" : "reached_poi.ogg";
 
 	// ATTENTION
-	//dictionary["exceed_limit"] = tts ? "έχετε υπερβεί το όριο ταχύτητας " : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "όριο ταχύτητας " : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "προσοχή , " : "attention.ogg";
+	//dictionary["exceed_limit"] = tts ? "έχετε υπερβεί το όριο ταχύτητας" : "exceed_limit.ogg";
+	dictionary["exceed_limit"] = tts ? "όριο ταχύτητας" : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "προσοχή" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "κάμερα ταχύτητας" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "τον έλεγχο των συνόρων" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "σιδηρόδρομος διάβαση" : "railroad_crossing.ogg";
@@ -101,19 +101,19 @@ function populateDictionary(tts) {
 	// OTHER PROMPTS
 	dictionary["location_lost"] = tts ? "Το σήμα gps χάθηκε" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "gps σήμα ανακτηθεί" : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "έχετε παρεκκλίνει από τη διαδρομή " : "off_route.ogg";
+	dictionary["off_route"] = tts ? "έχετε παρεκκλίνει από τη διαδρομή" : "off_route.ogg";
 	dictionary["back_on_route"] = tts ? "είστε πίσω στη διαδρομή" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "στην " : "onto.ogg";
-	dictionary["on"] = tts ? "στην " : "on.ogg";
-	dictionary["to"] = tts ? "στην " : "to.ogg";
-	dictionary["toward"] = tts ? "προς " : "toward.ogg";
+	dictionary["onto"] = tts ? "στην" : "onto.ogg";
+	dictionary["on"] = tts ? "στην" : "on.ogg";
+	dictionary["to"] = tts ? "στην" : "to.ogg";
+	dictionary["toward"] = tts ? "προς" : "toward.ogg";
 
 	// DISTANCE UNIT SUPPORT
 	dictionary["meters"] = tts ? "μέτρα" : "meters.ogg";
 	dictionary["around_1_kilometer"] = tts ? "περίπου ένα χιλιόμετρο" : "around_1_kilometer.ogg";
-	dictionary["around"] = tts ? "περίπου " : "around.ogg";
+	dictionary["around"] = tts ? "περίπου" : "around.ogg";
 	dictionary["kilometers"] = tts ? "χιλιόμετρα" : "kilometers.ogg";
 
 	dictionary["feet"] = tts ? "πόδια" : "feet.ogg";
@@ -125,9 +125,9 @@ function populateDictionary(tts) {
 	dictionary["yards"] = tts ? "γιάρδες" : "yards.ogg";
 
 	// TIME SUPPORT
-	dictionary["time"] = tts ? "χρόνος που απαιτείται " : "time.ogg";
-	dictionary["1_hour"] = tts ? "μία ώρα " : "1_hour.ogg";
-	dictionary["hours"] = tts ? "ώρες " : "hours.ogg";
+	dictionary["time"] = tts ? "χρόνος που απαιτείται" : "time.ogg";
+	dictionary["1_hour"] = tts ? "μία ώρα" : "1_hour.ogg";
+	dictionary["hours"] = tts ? "ώρες" : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "λιγότερο από ένα λεπτό" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "ένα λεπτό" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "λεπτά" : "minutes.ogg";
@@ -246,7 +246,7 @@ function hours(minutes) {
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + " " + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
+	return dictionary["route_calculate"] + (tts ? ", " : " ") + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
 }
 
 function go_ahead(dist, streetName) {
@@ -301,7 +301,7 @@ function take_exit_name(streetName) {
 	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "") || !tts) {
 		return "";
 	} else if (streetName["toDest"] != "") {
-		return (tts ? ", " : " ") + streetName["toStreetName"] + dictionary["toward"] + " " + streetName["toDest"];
+		return (tts ? ", " : " ") + streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	} else if (streetName["toStreetName"] != "") {
 		return (tts ? ", " : " ") + streetName["toStreetName"]
 	} else {
@@ -359,7 +359,7 @@ function  getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return dictionary["then"];
+	return (tts ? ", " : " ") + dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
@@ -569,7 +569,7 @@ function speed_alarm(maxSpeed, speed) {
 }
 
 function attention(type) {
-	return dictionary["attention"] + " " + getAttentionString(type);
+	return dictionary["attention"] + (tts ? ", " : " ") + getAttentionString(type);
 }
 
 function getAttentionString(type) {
