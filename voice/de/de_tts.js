@@ -137,7 +137,7 @@ function populateDictionary(tts) {
 	dictionary["yards_dativ"] = tts ? "Yards" : "yards_dativ.ogg";
 	
 	// TIME SUPPORT
-	dictionary["time"] = tts ? "Zeit": "time.ogg";
+	dictionary["time"] = tts ? "Zeit" : "time.ogg";
 	dictionary["1_hour"] = tts ? "eine Stunde" : "1_hour.ogg";
 	dictionary["hours"] = tts ? "Stunden" : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "unter einer Minute" : "less_a_minute.ogg";
