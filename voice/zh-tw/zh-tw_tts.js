@@ -19,7 +19,7 @@ function populateDictionary(tts) {
 	// ROUTE CALCULATED
 	dictionary["route_is1"] = tts ? "行程" : "route_is1.ogg";
 	dictionary["route_is2"] = tts ? "遠" : "route_is2.ogg";
-	dictionary["route_calculate"] = tts ? "計算路線已重新計算" : "route_calculate.ogg";
+	dictionary["route_calculate"] = tts ? "路線已重新計算" : "route_calculate.ogg";
 	dictionary["distance"] = tts ? "距離" : "distance.ogg";
 	
 	// LEFT/RIGHT
@@ -38,16 +38,16 @@ function populateDictionary(tts) {
 	dictionary["right_bear"] = tts ? "靠右" : "right_bear.ogg";   // in English the same as right_keep, may be different in other languages
 	
 	// U-TURNS
-	dictionary["prepare_make_uturn"] = tts ? "後迴轉" : "prepare_make_uturn.ogg";
+	dictionary["prepare_make_uturn"] = tts ? "迴轉" : "prepare_make_uturn.ogg";
 	dictionary["make_uturn1"] = tts ? "後請迴轉" : "make_uturn1.ogg";
 	dictionary["make_uturn2"] = tts ? "請迴轉" : "make_uturn2.ogg";
 	dictionary["make_uturn_wp"] = tts ? "可能的話，請迴轉" : "make_uturn_wp.ogg";
 	
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? "後進入圓環" : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? "後進入圓環，然後在" : "roundabout.ogg";
+	dictionary["prepare_roundabout"] = tts ? "進入圓環" : "prepare_roundabout.ogg";
+	dictionary["roundabout"] = tts ? "後進入圓環" : "roundabout.ogg";
 	dictionary["then"] = tts ? "，然後" : "then.ogg";
-	dictionary["and"] = tts ? "和" : "and.ogg";
+	dictionary["and"] = tts ? "並" : "and.ogg";
 	dictionary["take"] = tts ? "在" : "take.ogg";
 	dictionary["exit"] = tts ? "出口離開" : "exit.ogg";
 	
@@ -470,7 +470,7 @@ function bear_right(streetName) {
 
 function prepare_make_ut(dist, streetName) {
 	// prepare_make_ut(Dist, Street) -- ["after", D, "make_uturn" | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
-	return distance(dist) + " " + dictionary["after"] + " " + dictionary["make_uturn"] + " " + turn_street(streetName);
+	return distance(dist) + " " + dictionary["after"] + " " + dictionary["prepare_make_uturn"] + " " + turn_street(streetName);
 }
 
 function prepare_turn(turnType, dist, streetName) {
