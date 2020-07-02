@@ -1587,6 +1587,7 @@
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_motorway" name="Avoid motorways" description="Avoid motorways" type="boolean"/>
 		<parameter id="avoid_stairs" name="Avoid stairs" description="Avoid stairs" type="boolean"/>
+		<parameter id="avoid_unpaved" name="Avoid unpaved roads" description="Avoid unpaved roads" type="boolean"/>
 		<parameter id="allow_private" name="Allow private access" description="Allow access to private areas" type="boolean"/>
 		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean" default="true"/>
 
@@ -1734,6 +1735,23 @@
 			<select value="0.9" t="highway" v="tertiary_link"/>
 			<select value="1"   t="route"   v="ferry"/>
 			<select value="1.1" t="highway" v="residential"/>
+			<if param="avoid_unpaved">
+				<select value="0.4" t="tracktype" v="grade2"/>
+				<select value="0.1" t="tracktype" v="grade3"/>
+				<select value="0.1" t="tracktype" v="grade4"/>
+				<select value="0.1" t="tracktype" v="grade5"/>
+				<select value="0.1" t="surface" v="unpaved"/>
+				<select value="0.4" t="surface" v="compacted"/>
+				<select value="0.1" t="surface" v="dirt"/>
+				<select value="0.1" t="surface" v="earth"/>
+				<select value="0.1" t="surface" v="gravel"/>
+				<select value="0.4" t="surface" v="fine_gravel"/>
+				<select value="0.1" t="surface" v="grass"/>
+				<select value="0.1" t="surface" v="ground"/>
+				<select value="0.1" t="surface" v="mud"/>
+				<select value="0.1" t="surface" v="pebblestone"/>
+				<select value="0.1" t="surface" v="sand"/>
+			</if>
 			<select value="1.2" t="highway" v="steps"/>
 			<select value="1.2" t="highway" v="living_street"/>
 			<select value="1.2" t="highway" v="pedestrian"/>
