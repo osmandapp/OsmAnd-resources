@@ -70,7 +70,7 @@ function populateDictionary(tts) {
 	
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Weiter geradeaus" : "go_ahead.ogg";
-	dictionary["follow1"] = tts ? "Dem Strassenverlauf" : "follow1.ogg";
+	dictionary["follow1"] = tts ? "Dem Straßenverlauf" : "follow1.ogg";
 	dictionary["follow2"] = tts ? "folgen" : "follow2.ogg";
 	
 	// ARRIVE
@@ -98,7 +98,7 @@ function populateDictionary(tts) {
 	dictionary["traffic_calming"] = tts ? "Verkehrsberuhigung" : "traffic_calming.ogg";
 	dictionary["toll_booth"] = tts ? "Mautstelle" : "toll_booth.ogg";
 	dictionary["stop"] = tts ? "Stoppschild" : "stop.ogg";
-	dictionary["pedestrian_crosswalk"] = tts ? "Fusgängerübergang" : "pedestrian_crosswalk.ogg";
+	dictionary["pedestrian_crosswalk"] = tts ? "Fußgängerübergang" : "pedestrian_crosswalk.ogg";
 	dictionary["tunnel"] = tts ? "Tunnel" : "tunnel.ogg";
 	
 	// OTHER PROMPTS
