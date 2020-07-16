@@ -2447,6 +2447,8 @@ icon special_helicopter
 icon special_horse
 icon special_monowheel
 icon special_motorcycle
+icon special_motor_scooter
+icon special_enduro_motorcycle
 icon special_offroad
 icon special_openstreetmap
 icon special_personal_transporter
