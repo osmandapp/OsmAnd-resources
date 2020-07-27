@@ -38,7 +38,7 @@
 		<entity_convert pattern="tag_transform" from_tag="road_ref_*" to_tag1="road_ref_*" seq="1:10" apply_to="way"/>
 
 		This string expands relation with route=road to road_ref_1=,road_ref_2=..., road_network_1= etc.
-		<type tag="route" value="road" minzoom="12" namePrefix="road_" nameTags="ref,network,modifier,us_state_network" relation="true" relationGroup="true"/>
+		<type tag="route" value="road" minzoom="12" namePrefix="road_" nameTags="ref,network,modifier,us_state_network" relation="true" />
 
 	 -->
 	<!-- ORDER of entity_convert matters so it is better to group them sequentially -->
@@ -59,10 +59,15 @@
 <!--	<entity_convert pattern="tag_transform" from_tag="description" if_not_tag1="note" to_tag1="note" poi="no"/>-->
 	<entity_convert pattern="split" from_tag="note" to_tag1="note" to_tag2="note_tag" to_value2="yes" poi="no" to_tag3="osmand_change"/>
 	<entity_convert pattern="tag_transform" from_tag="note" if_tag1="osmand_change"/>
+
+	<type tag="int_ref" additional="text" minzoom="1" order="32"/>
+	<type tag="name" additional="text" minzoom="1" order="32"/>
+	<type tag="ref" additional="text" minzoom="1" order="32"/>
+
 	<type tag="fixme" additional="text" minzoom="12" order="128"/>
-	<type tag="fixme_tag" value="yes" minzoom="12" nameTags="fixme" notosm="true"/>
+	<type tag="fixme_tag" value="yes" minzoom="12" notosm="true"/>
 	<type tag="note" additional="text" minzoom="12" order="128"/>
-	<type tag="note_tag" value="yes" minzoom="12" nameTags="note" notosm="true"/>
+	<type tag="note_tag" value="yes" minzoom="12" notosm="true"/>
 	<type tag="depth" additional="text" minzoom="12"/>
 <!--	<entity_convert pattern="tag_transform" from_tag="comment" to_tag1="note"/>-->
 
@@ -584,8 +589,8 @@
 	<entity_convert pattern="tag_transform" from_tag="building" if_tag1="abandoned" if_value1="yes" to_tag1="abandoned:building" to_tag2="abandoned_poi" to_value2="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="aeroway" if_tag1="abandoned" if_value1="yes" to_tag1="abandoned:aeroway" to_tag2="abandoned_poi" to_value2="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="abandoned:aeroway" to_tag1="abandoned:aeroway" to_tag2="abandoned_poi" to_value2="yes" notosm="true"/>
-	<type tag="abandoned:aeroway" value="aerodrome" minzoom="11" nameTags="ref"/>
-	<type tag="abandoned:aeroway" value="runway" minzoom="11" nameTags="ref"/>
+	<type tag="abandoned:aeroway" value="aerodrome" minzoom="11" />
+	<type tag="abandoned:aeroway" value="runway" minzoom="11" />
 	<type tag="abandoned:railway" value="station" minzoom="11" order="90"/>
 	<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_tag1="abandoned" if_value1="yes" to_tag1="abandoned:railway" to_value1="station" to_tag2="abandoned_poi" to_value2="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="disused:railway" from_value="platform" to_tag1="public_transport" to_value1="platform" to_tag2="disused" to_value2="yes" routing="no"/>
@@ -698,8 +703,10 @@
 	<entity_convert pattern="tag_transform" from_tag="ele" if_not_less_tag1="ele" if_not_less_value1="7501" to_tag1="ele" to_tag2="ele_limit" to_value2="9000" notosm="true"/>
 
 	<category name="highway">
-		<type tag="route" value="road" minzoom="12" namePrefix="road_" nameTags="ref,network,modifier,us_state_network,us_county_network,name,ref:colour" relation="true" relationGroup="true" notosm="true"/>
-		<type tag="route_road" value="" nameTags="road_ref_1,road_ref_2,road_ref_3,road_ref_4,road_ref_5,road_ref_6,road_ref_7,road_ref_8,road_ref_9,road_ref_10,road_network_1,road_network_2,road_network_3,road_network_4,road_network_5,road_network_6,road_network_7,road_network_8,road_network_9,road_network_10,road_modifier_1,road_modifier_2,road_modifier_3,road_modifier_4,road_modifier_5,road_modifier_6,road_modifier_7,road_modifier_8,road_modifier_9,road_modifier_10,road_us_state_network_1,road_us_state_network_2,road_us_state_network_3,road_us_state_network_4,road_us_state_network_5,road_us_state_network_6,road_us_state_network_7,road_us_state_network_8,road_us_state_network_9,road_us_state_network_10,us_county_network_1,us_county_network_2,us_county_network_3,us_county_network_4,us_county_network_5,us_county_network_6,us_county_network_7,us_county_network_8,us_county_network_9,us_county_network_10,road_name_1,road_name_2,road_name_3,road_ref:colour_1,road_ref:colour_2,road_ref:colour_3" order="256" notosm="true"/>
+		<type tag="route" value="road" relationGroupNamePrefix="road_" 
+			relationGroupNameTags="ref,network,modifier,us_state_network,us_county_network,name,ref:colour" 
+			order="256" notosm="true" relation="true" />
+
 
 		<!-- USA road shields -->
 		<entity_convert pattern="tag_transform" from_tag="road_ref_*" if_region_name="$us" if_not_tag1="road_shield_shape_*" if_not_tag2="road_us_county_network_*" if_not_value2="yes" to_tag1="road_ref_*" to_tag2="road_shield_shape_*" to_value2="rounded_rectangle" to_tag3="road_shield_color_*" to_value3="white" seq="1:10" apply_to="way,relation" notosm="true"/>
@@ -1585,43 +1592,43 @@
 		<entity_convert pattern="tag_transform" from_tag="road_ref:colour_*" from_value="#81bf48" to_tag1="road_shield_color_*" to_value1="green" seq="1:3" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="road_ref:colour_*" from_value="#00ff00" to_tag1="road_shield_color_*" to_value1="green" seq="1:3" apply_to="way" notosm="true"/>
 
-		<type tag="highway" value="motorway" minzoom="6" nameTags="ref,int_ref"/>
-		<type tag="highway" value="motorway_link" minzoom="10" nameTags="ref,int_ref"/>
-		<type tag="highway" value="trunk" minzoom="6" nameTags="ref,int_ref"/>
-		<type tag="highway" value="trunk_link" minzoom="10" nameTags="ref,int_ref"/>
-		<type tag="highway" value="primary" minzoom="7" nameTags="ref,int_ref"/>
-		<type tag="highway" value="primary_link" minzoom="10" nameTags="ref,int_ref"/>
-		<type tag="highway" value="secondary" minzoom="9" nameTags="ref,int_ref"/>
-		<type tag="highway" value="secondary_link" minzoom="10" nameTags="ref,int_ref"/>
-		<type tag="highway" value="tertiary" minzoom="11" nameTags="ref,int_ref"/>
-		<type tag="highway" value="tertiary_link" minzoom="11" nameTags="ref,int_ref"/>
-		<type tag="highway" value="residential" minzoom="11" nameTags="ref,int_ref"/>
-		<type tag="highway" value="service" minzoom="11" nameTags="ref,int_ref"/>
+		<type tag="highway" value="motorway" minzoom="6" />
+		<type tag="highway" value="motorway_link" minzoom="10" />
+		<type tag="highway" value="trunk" minzoom="6" />
+		<type tag="highway" value="trunk_link" minzoom="10" />
+		<type tag="highway" value="primary" minzoom="7" />
+		<type tag="highway" value="primary_link" minzoom="10" />
+		<type tag="highway" value="secondary" minzoom="9" />
+		<type tag="highway" value="secondary_link" minzoom="10" />
+		<type tag="highway" value="tertiary" minzoom="11" />
+		<type tag="highway" value="tertiary_link" minzoom="11" />
+		<type tag="highway" value="residential" minzoom="11" />
+		<type tag="highway" value="service" minzoom="11" />
 
-		<type tag="highway" value="unclassified" minzoom="11" nameTags="ref"/>
-		<type tag="highway" value="road" minzoom="11" nameTags="ref"/>
-		<type tag="highway" value="track" minzoom="11" nameTags="ref"/>
+		<type tag="highway" value="unclassified" minzoom="11" />
+		<type tag="highway" value="road" minzoom="11" />
+		<type tag="highway" value="track" minzoom="11" />
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="byway" to_tag1="highway" to_value1="track"/>
-		<type tag="highway" value="path" minzoom="12" nameTags="ref"/>
-		<type tag="highway" value="living_street" minzoom="12" nameTags="ref"/>
+		<type tag="highway" value="path" minzoom="12" />
+		<type tag="highway" value="living_street" minzoom="12" />
 		<!-- According to https://wiki.openstreetmap.org/wiki/OSM_tags_for_routing/Access-Restrictions -->
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="living_street" if_region_name="austria,belarus,hungary,romania,slovakia" if_not_tag1="motor_vehicle" to_tag1="highway" to_value1="living_street" to_tag2="motor_vehicle" to_value2="destination"/>
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="living_street" if_region_name="brazil" if_not_tag1="hgv" to_tag1="highway" to_value1="living_street" to_tag2="hgv" to_value2="destination"/>
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="living_street" if_region_name="russia,ukraine" if_not_tag1="vehicle" to_tag1="highway" to_value1="living_street" to_tag2="vehicle" to_value2="destination"/>
 
-		<type tag="highway" value="pedestrian" minzoom="12" nameTags="ref,int_ref"/>
-		<type tag="highway" value="cycleway" minzoom="11" nameTags="ref,int_ref"/>
-		<type tag="highway" value="footway" minzoom="11" nameTags="ref"/>
-		<type tag="highway" value="steps" minzoom="14" nameTags="ref"/>
+		<type tag="highway" value="pedestrian" minzoom="12" />
+		<type tag="highway" value="cycleway" minzoom="11" />
+		<type tag="highway" value="footway" minzoom="11" />
+		<type tag="highway" value="steps" minzoom="14" />
 		<entity_convert pattern="tag_transform" from_tag="handrail:left" from_value="yes" to_tag1="handrail" to_value1="yes"/>
 		<entity_convert pattern="tag_transform" from_tag="handrail:right" from_value="yes" to_tag1="handrail" to_value1="yes"/>
 		<entity_convert pattern="tag_transform" from_tag="handrail:center" from_value="yes" to_tag1="handrail" to_value1="yes"/>
 		<entity_convert pattern="tag_transform" from_tag="handrail:both" from_value="yes" to_tag1="handrail" to_value1="yes"/>
 		<entity_convert pattern="tag_transform" from_tag="step.condition" to_tag1="step:condition" map="no"/>
-		<type tag="highway" value="bridleway" minzoom="11" nameTags="ref"/>
-		<type tag="highway" value="services" minzoom="12" nameTags="ref"/>
-		<type tag="highway" value="raceway" minzoom="12" nameTags="ref"/>
-		<type tag="highway" value="escape" minzoom="12" nameTags="ref"/>
+		<type tag="highway" value="bridleway" minzoom="11" />
+		<type tag="highway" value="services" minzoom="12" />
+		<type tag="highway" value="raceway" minzoom="12" />
+		<type tag="highway" value="escape" minzoom="12" />
 		<type tag="highway" value="traffic_mirror" minzoom="16"/>
 		<!-- <type id="" tag="highway" value="bus_guideway" minzoom="15" /> -->
 
@@ -1697,29 +1704,29 @@
 		<entity_convert pattern="tag_transform" from_tag="area:highway" from_value="tertiary_link" to_tag1="area:highway" to_value1="tertiary" routing="no"/>
 		<entity_convert pattern="tag_transform" from_tag="area:highway" from_value="unclassified_link" to_tag1="area:highway" to_value1="unclassified" routing="no"/>
 
-		<type tag="area:highway" value="motorway" minzoom="15" nameTags="ref" order="10"/>
-		<type tag="area:highway" value="trunk" minzoom="15" nameTags="ref" order="10"/>
-		<type tag="area:highway" value="primary" minzoom="15" nameTags="ref" order="10"/>
-		<type tag="area:highway" value="secondary" minzoom="15" nameTags="ref" order="10"/>
-		<type tag="area:highway" value="tertiary" minzoom="16" nameTags="ref" order="10"/>
-		<type tag="area:highway" value="unclassified" minzoom="16" nameTags="ref" order="10"/>
-		<type tag="area:highway" value="residential" minzoom="16" nameTags="ref" order="10"/>
-		<type tag="area:highway" value="service" minzoom="16" nameTags="ref" order="10"/>
-		<type tag="highway" value="rest_area" minzoom="16" nameTags="ref"/>
-		<type tag="area:highway" value="pedestrian" minzoom="16" nameTags="ref" order="10"/>
-		<type tag="area:highway" value="footway" minzoom="16" nameTags="ref" order="10"/>
-		<type tag="area:highway" value="cycleway" minzoom="16" nameTags="ref" order="10"/>
-		<type tag="area:highway" value="track" minzoom="16" nameTags="ref" order="10"/>
+		<type tag="highway" value="rest_area" minzoom="16" />
+		<type tag="area:highway" value="motorway" minzoom="15" order="10"/>
+		<type tag="area:highway" value="trunk" minzoom="15" order="10"/>
+		<type tag="area:highway" value="primary" minzoom="15" order="10"/>
+		<type tag="area:highway" value="secondary" minzoom="15" order="10"/>
+		<type tag="area:highway" value="tertiary" minzoom="16" order="10"/>
+		<type tag="area:highway" value="unclassified" minzoom="16" order="10"/>
+		<type tag="area:highway" value="residential" minzoom="16" order="10"/>
+		<type tag="area:highway" value="service" minzoom="16" order="10"/>
+		<type tag="area:highway" value="pedestrian" minzoom="16" order="10"/>
+		<type tag="area:highway" value="footway" minzoom="16" order="10"/>
+		<type tag="area:highway" value="cycleway" minzoom="16" order="10"/>
+		<type tag="area:highway" value="track" minzoom="16" order="10"/>
 
-		<type tag="ford" value="yes" nameTag="depth" minzoom="14"/>
+		<type tag="ford" value="yes"  minzoom="14"/>
 		<type tag="ford" value="stepping_stones" minzoom="14"/>
 <!--		<entity_convert pattern="tag_transform" from_tag="ford" from_value="yes" to_tag1="highway" to_value1="ford"/>
 		<entity_convert pattern="tag_transform" from_tag="ford" from_value="stepping_stones" to_tag1="highway" to_value1="ford"/>-->
 		<entity_convert pattern="tag_transform" from_tag="flood_prone" from_value="yes" to_tag1="ford" to_value1="yes" poi="no"/>
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="ford" to_tag1="ford" to_value1="yes"/>
 
-		<type tag="highway" value="construction" minzoom="14" nameTags="ref"/>
-		<type tag="highway" value="proposed" minzoom="14" nameTags="ref"/>
+		<type tag="highway" value="construction" minzoom="14" />
+		<type tag="highway" value="proposed" minzoom="14" />
 
 		<!-- POINT types -->
 		<type tag="highway" value="mini_roundabout" minzoom="16" />
@@ -1771,7 +1778,7 @@
 		<entity_convert pattern="tag_transform" from_tag="wheelchair" from_value="yes" if_tag1="amenity" if_value1="parking_space" to_tag1="disabled" to_value1="yes"/>
 
 		<type tag="noexit" value="yes" minzoom="16"/>
-		<type tag="highway" value="motorway_junction" minzoom="13" nameTags="ref"/>
+		<type tag="highway" value="motorway_junction" minzoom="13" />
 		<type tag="junction" value="yes" minzoom="13"/>
 		<entity_convert pattern="tag_transform" from_tag="junction" from_value="circular" to_tag1="junction" to_value1="roundabout" map="no" poi="no"/>
 		<entity_convert pattern="tag_transform" from_tag="junction" from_value="roundabout" to_tag1="oneway" to_value1="yes" poi="no" routing="no"/>
@@ -1780,26 +1787,28 @@
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="bus_stop" if_tag1="public_transport" if_value1="platform"/> <!-- Remove highway=bus_stop (obsolete tag) if used with p_t=platform -->
 		<type tag="highway" value="emergency_access_point" minzoom="16"/>
 		<type tag="highway" value="speed_camera" minzoom="15"/>
-		<type tag="highway" value="milestone" nameTags="distance" minzoom="15"/>
+		<type tag="highway" value="milestone"  minzoom="15"/>
 		<type tag="highway" value="street_lamp" minzoom="16" poi="false"/>
 		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="mast" if_tag1="tower:type" if_value1="lighting" to_tag1="highway" to_value1="street_lamp" poi="no"/>
-		<type tag="mountain_pass" value="yes" minzoom="12" nameTags="ele" order="50"/>
+		<type tag="mountain_pass" value="yes" minzoom="12" order="50"/>
 
 	</category>
 
 	<category name="routes">
+		<!-- Disable proposed routes-->
+		<entity_convert pattern="tag_transform" from_tag="route" if_tag1="state" if_value1="proposed" to_tag1="route" to_value1="proposed" apply_to="way,node,relation"/>
+
 		<type tag="route" value="ferry" minzoom="8" nameTags="ref" namePrefix="ferry_route_" relation="true"/>
 		<entity_convert pattern="tag_transform" from_tag="ferry_route" from_value="ferry" to_tag1="route" to_value1="ferry" apply_to="way,node,relation" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route" from_value="ferry" if_tag1="public_transport" if_value1="platform" apply_to="way,node"/>
 		<entity_convert pattern="tag_transform" from_tag="route" from_value="ferry" if_tag1="man_made" if_value1="pier" apply_to="way,node"/>
 
 		<!-- POI for hiking routes -->
-		<type tag="route_hiking_iwn_poi" value="yes" minzoom="13" relation="true" notosm="true"/>
-		<type tag="route_hiking_nwn_poi" value="yes" minzoom="13" relation="true" notosm="true"/>
-		<type tag="route_hiking_rwn_poi" value="yes" minzoom="13" relation="true" notosm="true"/>
-		<type tag="route_hiking_lwn_poi" value="yes" minzoom="13" relation="true" notosm="true"/>
-
-		<type tag="route_hiking_ref_poi" additional="text" relation="true" notosm="true"/>
+		<type tag="route_hiking_iwn_poi" additional="true" value="yes" minzoom="13" notosm="true" relation="true"/>
+		<type tag="route_hiking_nwn_poi" additional="true" value="yes" minzoom="13" notosm="true" relation="true"/>
+		<type tag="route_hiking_rwn_poi" additional="true" value="yes" minzoom="13" notosm="true" relation="true"/>
+		<type tag="route_hiking_lwn_poi" additional="true" value="yes" minzoom="13" notosm="true" relation="true"/>
+		<type tag="route_hiking_ref_poi" additional="text" notosm="true" relation="true"/>
 
 		<entity_convert pattern="tag_transform" from_tag="route_hiking" from_value="hiking" if_tag1="network_iwn" if_value1="iwn" if_not_tag1="state" if_not_value1="proposed" to_tag1="route_hiking_iwn_poi" to_value1="yes" apply_to="way" map="no" routing="no" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_hiking" from_value="hiking" if_tag1="network_nwn" if_value1="nwn" if_not_tag1="state" if_not_value1="proposed" to_tag1="route_hiking_nwn_poi" to_value1="yes" apply_to="way" map="no" routing="no" notosm="true"/>
@@ -1826,60 +1835,31 @@
 		<entity_convert pattern="tag_transform" from_tag="foot_route_name" to_tag1="hiking_route_name" apply_to="way" map="no" routing="no" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="walking_route_name" to_tag1="hiking_route_name" apply_to="way" map="no" routing="no" notosm="true"/>
 
+
+
 		<type tag="route_hiking" value="" nameTags="ref,name" namePrefix="hiking_route_" minzoom="11" relation="true" notosm="true"/> <!-- Internal tag! It is used to allow many routes on the same way -->
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="hiking" if_not_tag1="state" if_not_value1="proposed" to_tag1="route_hiking" to_value1="" apply_to="way,relation"/>
 		<type tag="route_foot" value="" nameTags="ref,name" namePrefix="foot_route_" minzoom="11" relation="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="foot" if_not_tag1="state" if_not_value1="proposed" to_tag1="route_foot" to_value1="" apply_to="way,relation"/>
 		<type tag="route_walking" value="" nameTags="ref,name" namePrefix="walking_route_" minzoom="11" relation="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="walking" if_not_tag1="state" if_not_value1="proposed" to_tag1="route_walking" to_value1="" apply_to="way,relation"/>
-
-		<type tag="route_horse" value="" nameTags="ref,name" namePrefix="horse_route_" minzoom="11" relation="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="horse" if_not_tag1="state" if_not_value1="proposed" to_tag1="route_horse" to_value1="" apply_to="way,relation"/>
-
+		<type tag="route" value="hourse" nameTags="ref,name" namePrefix="horse_route_" minzoom="11" relation="true" notosm="true"/>
+		
 		<!-- Public transport route names to POI -->
-		<type tag="route_bus_ref" value="" additional="text" relation="true" notosm="true"/>
-		<type tag="route_share_taxi_ref" value="" additional="text" relation="true" notosm="true"/>
-		<type tag="route_trolleybus_ref" value="" additional="text" relation="true" notosm="true"/>
-		<type tag="route_tram_ref" value="" additional="text" relation="true" notosm="true"/>
-		<type tag="route_train_ref" value="" additional="text" relation="true" notosm="true"/>
-		<type tag="route_railway_ref" value="" additional="text" relation="true" notosm="true"/>
-		<type tag="route_light_rail_ref" value="" additional="text" relation="true" notosm="true"/>
-		<type tag="route_monorail_ref" value="" additional="text" relation="true" notosm="true"/>
-		<type tag="route_funicular_ref" value="" additional="text" relation="true" notosm="true"/>
-		<type tag="route_ferry_ref" value="" additional="text" relation="true" notosm="true"/>
-		<type tag="route_horse_ref" value="" additional="text" relation="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="bus" to_tag1="route_bus_ref" to_tag2="ref" map="no"/>
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="share_taxi" to_tag1="route_share_taxi_ref" to_tag2="ref" map="no"/>
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="trolleybus" to_tag1="route_trolleybus_ref" to_tag2="ref" map="no"/>
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="tram" to_tag1="route_tram_ref" to_tag2="ref" map="no"/>
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="train" to_tag1="route_train_ref" to_tag2="ref" map="no"/>
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="railway" to_tag1="route_railway_ref" to_tag2="ref" map="no"/>
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="light_rail" to_tag1="route_light_rail_ref" to_tag2="ref" map="no"/>
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="monorail" to_tag1="route_monorail_ref" to_tag2="ref" map="no"/>
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="funicular" to_tag1="route_funicular_ref" to_tag2="ref" map="no"/>
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="ferry" to_tag1="route_ferry_ref" to_tag2="ref" map="no"/>
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="horse" to_tag1="route_horse_ref" to_tag2="ref" map="no"/>
 
-		<type tag="route_bus" value="" nameTags="ref" namePrefix="bus_" minzoom="11" relation="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="bus" if_not_tag1="state" if_not_value1="proposed" to_tag1="route_bus" to_value1="" apply_to="way,node,relation"/>
+		<type tag="route" value="bus" nameTags="ref" namePrefix="bus_" minzoom="11" relation="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_bus" if_tag1="public_transport" if_value1="platform" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_bus" if_tag1="highway" if_value1="bus_stop" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_bus" if_tag1="building" apply_to="way" notosm="true"/>
 
-		<type tag="route_share_taxi" value="" nameTags="ref" namePrefix="share_taxi_" minzoom="11" relation="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="share_taxi" if_not_tag1="state" if_not_value1="proposed" to_tag1="route_share_taxi" to_value1="" apply_to="way,node,relation"/>
+		<type tag="route" value="share_taxi" nameTags="ref" namePrefix="share_taxi_" minzoom="11" relation="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_share_taxi" if_tag1="public_transport" if_value1="platform" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_share_taxi" if_tag1="highway" if_value1="bus_stop" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_share_taxi" if_tag1="building" apply_to="way" notosm="true"/>
 
-		<type tag="route_trolleybus" value="" nameTags="ref" namePrefix="trolleybus_" minzoom="11" relation="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="trolleybus" if_not_tag1="state" if_not_value1="proposed" to_tag1="route_trolleybus" to_value1="" apply_to="way,node,relation"/>
+		<type tag="route" value="trolleybus" nameTags="ref" namePrefix="trolleybus_" minzoom="11" relation="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_trolleybus" if_tag1="public_transport" if_value1="platform" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_trolleybus" if_tag1="highway" if_value1="bus_stop" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_trolleybus" if_tag1="building" apply_to="way" notosm="true"/>
 
-		<type tag="route_tram" value="" nameTags="ref" namePrefix="tram_" minzoom="11" relation="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="tram" if_not_tag1="state" if_not_value1="proposed" to_tag1="route_tram" to_value1="" apply_to="way,node,relation"/>
+		<type tag="route" value="tram" nameTags="ref" namePrefix="tram_" minzoom="11" relation="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_tram" if_tag1="public_transport" if_value1="platform" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_tram" if_tag1="railway" if_value1="halt" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_tram" if_tag1="railway" if_value1="tram_stop" apply_to="way" notosm="true"/>
@@ -1887,43 +1867,41 @@
 		<entity_convert pattern="tag_transform" from_tag="route_tram" if_tag1="building" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_tram" if_tag1="railway" if_value1="proposed" apply_to="way" notosm="true"/> <!-- remove route if proposed -->
 
-		<type tag="route_train" value="" nameTags="ref" namePrefix="train_" minzoom="11" relation="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="train" if_not_tag1="state" if_not_value1="proposed" to_tag1="route_train" to_value1="" apply_to="way,node,relation"/>
+		<type tag="route" value="train" nameTags="ref" namePrefix="train_" minzoom="11" relation="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_train" if_tag1="public_transport" if_value1="platform" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_train" if_tag1="railway" if_value1="halt" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_train" if_tag1="railway" if_value1="platform" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_train" if_tag1="building" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_train" if_tag1="railway" if_value1="proposed" apply_to="way" notosm="true"/> <!-- remove route if proposed -->
 
-		<type tag="route_railway" value="" nameTags="ref" namePrefix="railway_" minzoom="11" relation="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="railway" if_not_tag1="state" if_not_value1="proposed" to_tag1="route_railway" to_value1="" apply_to="way,node,relation"/>
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="rail" if_not_tag1="state" if_not_value1="proposed" to_tag1="route_railway" to_value1="" apply_to="way,node,relation" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_railway" if_tag1="railway" if_value1="proposed" apply_to="way" notosm="true"/> <!-- remove route if proposed -->
 
-		<type tag="route_light_rail" value="" nameTags="ref" namePrefix="lightrail_" minzoom="11" relation="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="light_rail" if_not_tag1="state" if_not_value1="proposed" to_tag1="route_light_rail" to_value1="" apply_to="way,node,relation"/>
+		<entity_convert pattern="tag_transform" from_tag="route" from_value="rail" to_tag1="route" to_value1="railway" apply_to="way,node,relation" notosm="true"/>
+		<type tag="route" value="railway" nameTags="ref" namePrefix="railway_" minzoom="11" relation="true" notosm="true"/>
+
+		<type tag="route" value="light_rail" nameTags="ref" namePrefix="lightrail_" minzoom="11" relation="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_light_rail" if_tag1="public_transport" if_value1="platform" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_light_rail" if_tag1="railway" if_value1="halt" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_light_rail" if_tag1="railway" if_value1="platform" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_light_rail" if_tag1="building" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_light_rail" if_tag1="railway" if_value1="proposed" apply_to="way" notosm="true"/> <!-- remove route if proposed -->
 
-		<type tag="route_monorail" value="" nameTags="ref" namePrefix="monorail_" minzoom="11" relation="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="monorail" if_not_tag1="state" if_not_value1="proposed" to_tag1="route_monorail" to_value1="" apply_to="way,node,relation"/>
+		<type tag="route" value="monorail" nameTags="ref" namePrefix="monorail_" minzoom="11" relation="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_monorail" if_tag1="public_transport" if_value1="platform" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_monorail" if_tag1="railway" if_value1="halt" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_monorail" if_tag1="building" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_monorail" if_tag1="railway" if_value1="proposed" apply_to="way" notosm="true"/> <!-- remove route if proposed -->
 
-		<type tag="route_funicular" value="" nameTags="ref" namePrefix="funicular_" minzoom="11" relation="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="funicular" if_not_tag1="state" if_not_value1="proposed" to_tag1="route_funicular" to_value1="" apply_to="way,node,relation"/>
+		<type tag="route" value="funicular" nameTags="ref" namePrefix="funicular_" minzoom="11" relation="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_funicular" if_tag1="public_transport" if_value1="platform" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_funicular" if_tag1="railway" if_value1="halt" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_funicular" if_tag1="building" apply_to="way" notosm="true"/>
 
-		<type tag="route" value="subway" additional="true" minzoom="11" relation="true"/> <!-- used only to distinguish subway stations from regular railway stations -->
-		<type tag="route" value="piste" minzoom="11" additional="true" relation="true"/>
+		
+		<type tag="route" value="subway" nameTags="ref" namePrefix="subway_" additional="true" minzoom="11" relation="true"/>
+
 		<entity_convert pattern="tag_transform" from_tag="route" from_value="ski" to_tag1="route" to_value1="piste"/>
+		<type tag="route" value="piste" nameTags="ref" namePrefix="piste_" minzoom="11" additional="true" relation="true"/>
+
 
 		<type tag="network_iwn" minzoom="12" relation="true"/>
 		<entity_convert pattern="tag_transform" from_tag="network" if_not_tag1="network:type" if_not_value1="node_network" from_value="iwn" to_tag1="network_iwn"/>
@@ -1985,20 +1963,12 @@
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="ncn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network" to_value1="ncn" apply_to="relation"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="rcn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network" to_value1="rcn" apply_to="relation"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="lcn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network" to_value1="lcn" apply_to="relation"/>
-
 		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="bicycle" to_tag1="bicycle_ref" apply_to="relation"/>
-<!--		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="mtb" to_tag1="mtb_ref" apply_to="relation"/>--> <!-- For compatibility with <2.3 -->
-<!--		<entity_convert pattern="tag_transform" from_tag="name" if_tag1="route" if_value1="bicycle" to_tag1="bicycle_name" apply_to="relation"/>--> <!-- For compatibility with <2.3 -->
-<!--		<entity_convert pattern="tag_transform" from_tag="name" if_tag1="route" if_value1="mtb" to_tag1="mtb_name" apply_to="relation"/>-->
 
 		<type tag="network" value="rer" minzoom="11" additional="true" relation="true"/>
 
-<!--		<type tag="route" value="bicycle" minzoom="11" relation="true" nameTags="bicycle_name,mtb:name,bicycle_ref,icn_ref,lcn_ref,ncn_ref,rcn_ref"/>--> <!-- For compatibility with <2.3 -->
-<!--		<type tag="route" value="mtb" minzoom="11" relation="true" nameTags="mtb:name,mtb_ref,icn_ref,lcn_ref,ncn_ref,rcn_ref"/>--> <!-- For compatibility with <2.3 -->
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="bicycle" if_not_tag1="state" if_not_value1="proposed" to_tag1="route_bicycle" to_value1="" apply_to="way,relation"/>  <!-- to_tag2="route" to_value2="bicycle" is for compatibility with <2.3 -->
 		<entity_convert pattern="tag_transform" from_tag="name" if_tag1="route_bicycle" to_tag1="bicycle_name" apply_to="relation"/>
-<!--		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route_bicycle" to_tag1="bicycle_ref" apply_to="relation"/>-->
-		<type tag="route_bicycle" nameTags="bicycle_name,mtb:name,bicycle_ref,icn_ref,lcn_ref,ncn_ref,rcn_ref" minzoom="11" relation="true" notosm="true"/>
+		<type tag="route" value="bicycle" nameTags="bicycle_name,mtb:name,bicycle_ref,icn_ref,lcn_ref,ncn_ref,rcn_ref" minzoom="11" relation="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route" from_value="mtb" if_not_tag1="state" if_not_value1="proposed" to_tag1="route_mtb" to_value1="" apply_to="way,relation"/> <!-- to_tag2="route" to_value2="mtb" is for compatibility with <2.3 -->
 		<entity_convert pattern="tag_transform" from_tag="name" if_tag1="route" if_value1="mtb" if_not_tag1="mtb:name" to_tag1="mtb:name" apply_to="relation"/>
 		<type tag="route_mtb" nameTags="mtb:name,mtb_ref,icn_ref,lcn_ref,ncn_ref,rcn_ref" minzoom="11" relation="true" notosm="true"/>
@@ -2074,15 +2044,14 @@
 		<entity_convert pattern="tag_transform" from_tag="nwn_ref" to_tag1="nwn_ref_name" to_tag2="nwn_ref" to_value2="yes" map="false"/>
 		<entity_convert pattern="tag_transform" from_tag="rwn_ref" to_tag1="rwn_ref_name" to_tag2="rwn_ref" to_value2="yes" map="false"/>
 		<entity_convert pattern="tag_transform" from_tag="lwn_ref" to_tag1="lwn_ref_name" to_tag2="lwn_ref" to_value2="yes" map="false"/>
-		<type tag="iwn_ref" value="" nameTags="iwn_ref" minzoom="12" relation="false" order="20"/>
-		<type tag="nwn_ref" value="" nameTags="nwn_ref" minzoom="12" relation="false" order="20"/>
-		<type tag="rwn_ref" value="" nameTags="rwn_ref" minzoom="12" relation="false" order="20"/>
-		<type tag="lwn_ref" value="" nameTags="lwn_ref" minzoom="12" relation="false" order="20"/>
-
-		<type tag="icn_ref" value="" nameTags="icn_ref" minzoom="11" relation="false"/>
-		<type tag="ncn_ref" value="" nameTags="ncn_ref" minzoom="11" relation="false"/>
-		<type tag="rcn_ref" value="" nameTags="rcn_ref" minzoom="11" relation="false"/>
-		<type tag="lcn_ref" value="" nameTags="lcn_ref" minzoom="11" relation="false"/>
+		<type tag="iwn_ref" value="" minzoom="12" order="20"/>
+		<type tag="nwn_ref" value="" minzoom="12" order="20"/>
+		<type tag="rwn_ref" value="" minzoom="12" order="20"/>
+		<type tag="lwn_ref" value="" minzoom="12" order="20"/>
+		<type tag="icn_ref" value="" minzoom="11"/>
+		<type tag="ncn_ref" value="" minzoom="11"/>
+		<type tag="rcn_ref" value="" minzoom="11"/>
+		<type tag="lcn_ref" value="" minzoom="11"/>
 		<entity_convert pattern="tag_transform" from_tag="icn_ref" to_tag1="icn_ref_name" to_tag2="icn_ref" to_value2="yes" map="false" routing="no"/>
 		<entity_convert pattern="tag_transform" from_tag="ncn_ref" to_tag1="ncn_ref_name" to_tag2="ncn_ref" to_value2="yes" map="false" routing="no"/>
 		<entity_convert pattern="tag_transform" from_tag="rcn_ref" to_tag1="rcn_ref_name" to_tag2="rcn_ref" to_value2="yes" map="false" routing="no"/>
