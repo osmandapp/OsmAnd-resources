@@ -707,9 +707,39 @@
 	<entity_convert pattern="tag_transform" from_tag="ele" if_not_less_tag1="ele" if_not_less_value1="7501" to_tag1="ele" to_tag2="ele_limit" to_value2="9000" notosm="true"/>
 
 	<category name="highway">
-		<type tag="route" value="road" relationGroupNamePrefix="road_" 
+		<type tag="route" value="road" relationGroupNamePrefix="route_road_" 
 			relationGroupNameTags="ref,network,modifier,us_state_network,us_county_network,name,ref:colour" 
+			relationGroupAdditionalTags="shield_color,shield_shape,shield_shape_mod,shield_order,shield_text_color,shield_bg_color"
 			order="256" notosm="true" relation="true" />
+		<!-- 
+		ref
+		network
+		modifier
+		us_state_network
+		us_county_network
+		name
+		ref:colour
+
+		shield_color
+		shield_shape
+		shield_shape_mod
+		shield_order
+		shield_text_color
+		shield_bg_color
+		-->
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" to_tag1="route_road_*_ref" to_tag2="road_ref_*" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_network" to_tag1="route_road_*_network" to_tag2="road_network_*" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_modifier" to_tag1="route_road_*_modifier" to_tag2="road_modifier_*" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_us_state_network" to_tag1="route_road_*_us_state_network" to_tag2="road_us_state_network_*" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_us_county_network" to_tag1="route_road_*_us_county_network" to_tag2="road_us_county_network_*" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_name" to_tag1="route_road_*_name" to_tag2="road_name_*" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref:colour" to_tag1="route_road_*_ref:colour" to_tag2="road_ref:colour_*" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_shield_shape" to_tag1="route_road_*_shield_shape" to_tag2="road_shield_shape_*" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_shield_color" to_tag1="route_road_*_shield_color" to_tag2="road_shield_color_*" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_shield_shape_mod" to_tag1="route_road_*_shield_shape_mod" to_tag2="road_shield_shape_mod_*" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_shield_order" to_tag1="route_road_*_shield_order" to_tag2="road_shield_order_*" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_shield_text_color" to_tag1="route_road_*_shield_text_color" to_tag2="road_shield_text_color_*" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_shield_bg_color" to_tag1="route_road_*_shield_bg_color" to_tag2="road_shield_bg_color_*" seq="1:10" apply_to="way" notosm="true"/>
 
 
 		<!-- USA road shields -->
@@ -786,6 +816,7 @@
 		<entity_convert pattern="tag_transform" from_tag="road_ref_*" if_region_name="$us" if_starts_with_tag1="road_ref_*" if_starts_with_value1="dc" seq="1:10" apply_to="way,relation" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="road_ref_*" if_region_name="$us" if_starts_with_tag1="road_ref_*" if_starts_with_value1="sr" seq="1:10" apply_to="way,relation" notosm="true"/>
 
+		
 		<type tag="road_network" value="us:i" additional="true" notosm="true"/>
 		<type tag="road_network" value="us:us" additional="true" notosm="true"/>
 		<type tag="road_us_state_network" value="yes" additional="true" notosm="true"/>
