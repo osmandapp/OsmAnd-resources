@@ -4,8 +4,7 @@
 
 	<!--
 		<category ?name>
-		nameTags= can't be used with category -->
-	<!--
+		
 		<type 
 		tag="" value="" - necessary
 		minzoom="" - indexed for map section (min zoom)
@@ -38,7 +37,12 @@
 		<entity_convert pattern="tag_transform" from_tag="road_ref_*" to_tag1="road_ref_*" seq="1:10" apply_to="way"/>
 
 		This string expands relation with route=road to road_ref_1=,road_ref_2=..., road_network_1= etc.
-		<type tag="route" value="road" minzoom="12" namePrefix="road_" nameTags="ref,network,modifier,us_state_network" relation="true" />
+		Relation tags are:
+		- relationGroupSort (like "network=icn,ncn,rcn,lcn") - sorts relations to resolve conflicts for additional tags
+		- nameTags, namePrefix - propagate names from relation to way/node with prefix
+		- additionalTags - propagates unique value from relations to tag (uses group sort to resolve conflicts)
+		- relationGroupNameTags, relationGroupNamePrefix - create groups like road_ref_1, road_ref_2, 
+		- relationGroupAdditionalTags - propagates additional tags from relation to way/node
 
 	 -->
 	<!-- ORDER of entity_convert matters so it is better to group them sequentially -->
