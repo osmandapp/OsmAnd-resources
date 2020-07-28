@@ -1938,10 +1938,12 @@
 		<type tag="rcn_network" value="rcn" minzoom="11" relation="true" order="80" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="rcn" to_tag1="network" to_value1="rcn" to_tag2="rcn_network" to_value2="rcn"/>-->
 
-		<type tag="network" value="icn" minzoom="11" additional="true" relation="true"/>
-		<type tag="network" value="lcn" minzoom="11" additional="true" relation="true"/>
-		<type tag="network" value="ncn" minzoom="11" additional="true" relation="true"/>
-		<type tag="network" value="rcn" minzoom="11" additional="true" relation="true"/>
+		<type tag="network" value="icn" minzoom="11" additional="true" />
+		<type tag="network" value="lcn" minzoom="11" additional="true" />
+		<type tag="network" value="ncn" minzoom="11" additional="true" />
+		<type tag="network" value="rcn" minzoom="11" additional="true" />
+		<type tag="network" value="rer" minzoom="11" additional="true" />
+
 		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="network" if_value1="icn" to_tag1="icn_ref" apply_to="relation"/>
 		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="network" if_value1="lcn" to_tag1="lcn_ref" apply_to="relation"/>
 		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="network" if_value1="ncn" to_tag1="ncn_ref" apply_to="relation"/>
@@ -1955,51 +1957,59 @@
 		<entity_convert pattern="tag_transform" from_tag="icn" from_value="yes" if_not_tag1="route" if_not_value1="mtb" if_not_tag2="mtb:scale" to_tag1="route_bicycle" to_value1="" to_tag2="network" to_value2="icn"/>
 		<entity_convert pattern="tag_transform" from_tag="icn" from_value="yes" if_tag1="mtb:scale" if_not_tag1="route" if_not_value1="mtb" to_tag1="route_mtb" to_value1="" to_tag2="network" to_value2="icn"/>
 
-		<type tag="node_network" value="icn" minzoom="11" additional="true" relation="true"/>
-		<type tag="node_network" value="lcn" minzoom="11" additional="true" relation="true"/>
-		<type tag="node_network" value="ncn" minzoom="11" additional="true" relation="true"/>
-		<type tag="node_network" value="rcn" minzoom="11" additional="true" relation="true"/>
+		<type tag="node_network" value="icn" minzoom="11" additional="true"/>
+		<type tag="node_network" value="lcn" minzoom="11" additional="true"/>
+		<type tag="node_network" value="ncn" minzoom="11" additional="true"/>
+		<type tag="node_network" value="rcn" minzoom="11" additional="true"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="icn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network" to_value1="icn" apply_to="relation"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="ncn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network" to_value1="ncn" apply_to="relation"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="rcn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network" to_value1="rcn" apply_to="relation"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="lcn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network" to_value1="lcn" apply_to="relation"/>
 		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="bicycle" to_tag1="bicycle_ref" apply_to="relation"/>
 		<entity_convert pattern="tag_transform" from_tag="name" if_tag1="route" if_value1="bicycle" to_tag1="bicycle_name" apply_to="relation"/>
-		<type tag="network" value="rer" minzoom="11" additional="true" relation="true"/>
 		
-		<type tag="route" value="bicycle" nameTags="bicycle_name,mtb:name,bicycle_ref,icn_ref,lcn_ref,ncn_ref,rcn_ref" 
-					relationGroupNamePrefix="route_bicycle_" relationGroupNameTags="bicycle_name,mtb:name,bicycle_ref,icn_ref,lcn_ref,ncn_ref,rcn_ref"
-					minzoom="11" relation="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="mtb" if_not_tag1="state" if_not_value1="proposed" to_tag1="route_mtb" to_value1="" apply_to="way,relation"/> <!-- to_tag2="route" to_value2="mtb" is for compatibility with <2.3 -->
+		
+		<type tag="route" value="bicycle" relationGroupSort="network=icn,ncn,rcn,lcn"
+					additionalTags="node_network,network,mtb:type,mtb:scale,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
+					nameTags="bicycle_name,mtb:name,bicycle_ref,icn_ref,lcn_ref,ncn_ref,rcn_ref" 
+					relationGroupAdditionalTags="node_network,network,mtb:type,mtb:scale,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
+					relationGroupNameTags="bicycle_name,mtb:name,bicycle_ref,icn_ref,lcn_ref,ncn_ref,rcn_ref"
+					relationGroupNamePrefix="route_bicycle_" minzoom="11" relation="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="name" if_tag1="route" if_value1="mtb" if_not_tag1="mtb:name" to_tag1="mtb:name" apply_to="relation"/>
-		<type tag="route_mtb" nameTags="mtb:name,mtb_ref,icn_ref,lcn_ref,ncn_ref,rcn_ref" minzoom="11" relation="true" notosm="true"/>
-		<type tag="mtb:type" value="crosscountry" minzoom="11" additional="true" relation="true"/>
-		<type tag="mtb:type" value="allmountain" minzoom="11" additional="true" relation="true"/>
-		<type tag="mtb:type" value="freeride" minzoom="11" additional="true" relation="true"/>
-		<type tag="mtb:type" value="downhill" minzoom="11" additional="true" relation="true"/>
+		<type tag="route" value="mtb" relationGroupSort="network=icn,ncn,rcn,lcn"
+					additionalTags="node_network,network,mtb:type,mtb:scale,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
+					nameTags="bicycle_name,mtb:name,bicycle_ref,icn_ref,lcn_ref,ncn_ref,rcn_ref" 
+					relationGroupAdditionalTags="node_network,network,mtb:type,mtb:scale,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
+					relationGroupNameTags="bicycle_name,mtb:name,bicycle_ref,icn_ref,lcn_ref,ncn_ref,rcn_ref"
+					relationGroupNamePrefix="route_bicycle_" minzoom="11" relation="true" notosm="true"/>
+		
+		<type tag="mtb:type" value="crosscountry" minzoom="11" additional="true" />
+		<type tag="mtb:type" value="allmountain" minzoom="11" additional="true" />
+		<type tag="mtb:type" value="freeride" minzoom="11" additional="true" />
+		<type tag="mtb:type" value="downhill" minzoom="11" additional="true" />
 		<entity_convert pattern="tag_transform" from_tag="mtb:type" from_value="trail" to_tag1="mtb:type" to_value1="allmountain" apply_to="way,relation"/>
 		<entity_convert pattern="tag_transform" from_tag="mtb:type" from_value="trial" to_tag1="mtb:type" to_value1="allmountain" apply_to="way,relation"/>
-		<type tag="mtb:scale" value="0" minzoom="11" additional="true" relation="true"/>
-		<type tag="mtb:scale" value="1" minzoom="11" additional="true" relation="true"/>
-		<type tag="mtb:scale" value="2" minzoom="11" additional="true" relation="true"/>
-		<type tag="mtb:scale" value="3" minzoom="11" additional="true" relation="true"/>
-		<type tag="mtb:scale" value="4" minzoom="11" additional="true" relation="true"/>
-		<type tag="mtb:scale" value="5" minzoom="11" additional="true" relation="true"/>
-		<type tag="mtb:scale" value="6" minzoom="11" additional="true" relation="true"/>
-		<type tag="mtb:scale:imba" value="0" minzoom="11" additional="true" relation="true"/>
-		<type tag="mtb:scale:imba" value="1" minzoom="11" additional="true" relation="true"/>
-		<type tag="mtb:scale:imba" value="2" minzoom="11" additional="true" relation="true"/>
-		<type tag="mtb:scale:imba" value="3" minzoom="11" additional="true" relation="true"/>
-		<type tag="mtb:scale:imba" value="4" minzoom="11" additional="true" relation="true"/>
-		<type tag="mtb:scale:uphill" value="1" minzoom="11" additional="true" relation="true"/>
-		<type tag="mtb:scale:uphill" value="2" minzoom="11" additional="true" relation="true"/>
-		<type tag="mtb:scale:uphill" value="3" minzoom="11" additional="true" relation="true"/>
-		<type tag="mtb:scale:uphill" value="4" minzoom="11" additional="true" relation="true"/>
-		<type tag="mtb:scale:uphill" value="5" minzoom="11" additional="true" relation="true"/>
-		<type tag="class:bicycle:mtb" value="1" minzoom="11" additional="true" relation="true"/>
-		<type tag="class:bicycle:mtb" value="2" minzoom="11" additional="true" relation="true"/>
-		<type tag="class:bicycle:mtb" value="3" minzoom="11" additional="true" relation="true"/>
-		<type tag="class:bicycle:mtb" value="-1" minzoom="11" additional="true" relation="true"/>
+		<type tag="mtb:scale" value="0" minzoom="11" additional="true" />
+		<type tag="mtb:scale" value="1" minzoom="11" additional="true" />
+		<type tag="mtb:scale" value="2" minzoom="11" additional="true" />
+		<type tag="mtb:scale" value="3" minzoom="11" additional="true" />
+		<type tag="mtb:scale" value="4" minzoom="11" additional="true" />
+		<type tag="mtb:scale" value="5" minzoom="11" additional="true" />
+		<type tag="mtb:scale" value="6" minzoom="11" additional="true" />
+		<type tag="mtb:scale:imba" value="0" minzoom="11" additional="true" />
+		<type tag="mtb:scale:imba" value="1" minzoom="11" additional="true" />
+		<type tag="mtb:scale:imba" value="2" minzoom="11" additional="true" />
+		<type tag="mtb:scale:imba" value="3" minzoom="11" additional="true" />
+		<type tag="mtb:scale:imba" value="4" minzoom="11" additional="true" />
+		<type tag="mtb:scale:uphill" value="1" minzoom="11" additional="true" />
+		<type tag="mtb:scale:uphill" value="2" minzoom="11" additional="true" />
+		<type tag="mtb:scale:uphill" value="3" minzoom="11" additional="true" />
+		<type tag="mtb:scale:uphill" value="4" minzoom="11" additional="true" />
+		<type tag="mtb:scale:uphill" value="5" minzoom="11" additional="true" />
+		<type tag="class:bicycle:mtb" value="1" minzoom="11" additional="true" />
+		<type tag="class:bicycle:mtb" value="2" minzoom="11" additional="true" />
+		<type tag="class:bicycle:mtb" value="3" minzoom="11" additional="true" />
+		<type tag="class:bicycle:mtb" value="-1" minzoom="11" additional="true" />
 		<entity_convert pattern="tag_transform" from_tag="class:bicycle:mtb" from_value="-2" to_tag1="class:bicycle:mtb" to_value1="-1" apply_to="way,relation"/>
 		<entity_convert pattern="tag_transform" from_tag="class:bicycle:mtb" from_value="-3" to_tag1="class:bicycle:mtb" to_value1="-1" apply_to="way,relation"/>
 		<entity_convert pattern="tag_transform" from_tag="mtb:scale" if_not_tag1="route_mtb" to_tag1="mtb:scale" to_tag2="route_mtb" apply_to="way"/> <!-- to_tag3="route" to_value3="mtb" is for compatibility with <2.3 -->
