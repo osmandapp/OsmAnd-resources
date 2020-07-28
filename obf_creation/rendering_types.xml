@@ -1598,12 +1598,37 @@
 		<!-- Disable proposed routes-->
 		<entity_convert pattern="tag_transform" from_tag="route" if_tag1="state" if_value1="proposed" to_tag1="route" to_value1="proposed" apply_to="way,node,relation"/>
 
-		<type tag="route" value="ferry" minzoom="8" nameTags="ref" namePrefix="ferry_route_" relation="true"/>
-		<entity_convert pattern="tag_transform" from_tag="ferry_route" from_value="ferry" to_tag1="route" to_value1="ferry" apply_to="way,node,relation" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="ferry" if_tag1="public_transport" if_value1="platform" apply_to="way,node"/>
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="ferry" if_tag1="man_made" if_value1="pier" apply_to="way,node"/>
+		<!-- ROUTE SECTION: HIKING routes -->
 
-		<!-- POI for hiking routes -->
+		<!-- 1.1 Walking network type-->
+		<type tag="network_iwn" minzoom="12" relation="true"/>
+		<type tag="network_nwn" minzoom="12" relation="true"/>
+		<type tag="network_rwn" minzoom="12" relation="true"/>
+		<type tag="network_lwn" minzoom="12" relation="true"/>
+		<entity_convert pattern="tag_transform" from_tag="network" if_not_tag1="network:type" if_not_value1="node_network" from_value="iwn" to_tag1="network_iwn"/>
+		<entity_convert pattern="tag_transform" from_tag="network" if_not_tag1="network:type" if_not_value1="node_network" from_value="nwn" to_tag1="network_nwn"/>
+		<entity_convert pattern="tag_transform" from_tag="network" if_not_tag1="network:type" if_not_value1="node_network" from_value="rwn" to_tag1="network_rwn"/>
+		<entity_convert pattern="tag_transform" from_tag="network" if_not_tag1="network:type" if_not_value1="node_network" from_value="lwn" to_tag1="network_lwn"/>
+
+
+		<!-- 1.2 Walking node network-->
+		<type tag="node_network_iwn" value="iwn" minzoom="11" additional="true" relation="true"/>
+		<type tag="node_network_lwn" value="lwn" minzoom="11" additional="true" relation="true"/>
+		<type tag="node_network_nwn" value="nwn" minzoom="11" additional="true" relation="true"/>
+		<type tag="node_network_rwn" value="rwn" minzoom="11" additional="true" relation="true"/>
+		<entity_convert pattern="tag_transform" from_tag="network" from_value="iwn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network_iwn" apply_to="relation"/>
+		<entity_convert pattern="tag_transform" from_tag="network" from_value="nwn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network_nwn" apply_to="relation"/>
+		<entity_convert pattern="tag_transform" from_tag="network" from_value="rwn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network_rwn" apply_to="relation"/>
+		<entity_convert pattern="tag_transform" from_tag="network" from_value="lwn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network_lwn" apply_to="relation"/>
+		<!-- Fix for routes without route=hiking(or foot) but with network=*wn -->
+		<entity_convert pattern="tag_transform" from_tag="network" from_value="lwn" if_not_tag1="route" if_not_tag2="network:type" if_not_value2="node_network" to_tag1="network" to_value1="lwn" to_tag2="route_hiking" to_value2="" apply_to="way,relation"/>
+		<entity_convert pattern="tag_transform" from_tag="network" from_value="iwn" if_not_tag1="route" if_not_tag2="network:type" if_not_value2="node_network" to_tag1="network" to_value1="iwn" to_tag2="route_hiking" to_value2="" apply_to="way,relation"/>
+		<entity_convert pattern="tag_transform" from_tag="network" from_value="rwn" if_not_tag1="route" if_not_tag2="network:type" if_not_value2="node_network" to_tag1="network" to_value1="rwn" to_tag2="route_hiking" to_value2="" apply_to="way,relation"/>
+		<entity_convert pattern="tag_transform" from_tag="network" from_value="nwn" if_not_tag1="route" if_not_tag2="network:type" if_not_value2="node_network" to_tag1="network" to_value1="nwn" to_tag2="route_hiking" to_value2="" apply_to="way,relation"/>
+
+
+
+		<!-- 1.3 Walking poi node network-->
 		<type tag="route_hiking_iwn_poi" additional="true" value="yes" minzoom="13" notosm="true" relation="true"/>
 		<type tag="route_hiking_nwn_poi" additional="true" value="yes" minzoom="13" notosm="true" relation="true"/>
 		<type tag="route_hiking_rwn_poi" additional="true" value="yes" minzoom="13" notosm="true" relation="true"/>
@@ -1636,16 +1661,20 @@
 		<entity_convert pattern="tag_transform" from_tag="walking_route_name" to_tag1="hiking_route_name" apply_to="way" map="no" routing="no" notosm="true"/>
 
 
-
-		<type tag="route" value="hiking" 
+		<!-- 1.4 Walking routes -->
+		<type tag="route" value="hiking"  relationGroupSort="network=iwn,nwn,rwn,lwn"
 				additionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor" additionalPrefix="hiking_"
 				relationGroupAdditionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor" 
 				nameTags="ref,name" namePrefix="hiking_route_" minzoom="11" relation="true" notosm="true"/> <!-- Internal tag! It is used to allow many routes on the same way -->
 		<type tag="route" value="foot" nameTags="ref,name" namePrefix="foot_route_" minzoom="11" relation="true" notosm="true"/>
 		<type tag="route" value="walking" nameTags="ref,name" namePrefix="walking_route_" minzoom="11" relation="true" notosm="true"/>
 		<type tag="route" value="hourse" nameTags="ref,name" namePrefix="horse_route_" minzoom="11" relation="true" notosm="true"/>
+
 		
-		<!-- Public transport route names to POI -->
+		<!-- ROUTE SECTION: PUBLIC transport routes-->
+		<type tag="route" value="ferry" minzoom="8" nameTags="ref" namePrefix="ferry_route_" relation="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_ferry" if_tag1="public_transport" if_value1="platform" apply_to="way,node"/>
+		<entity_convert pattern="tag_transform" from_tag="route_ferry" if_tag1="man_made" if_value1="pier" apply_to="way,node"/>
 
 		<type tag="route" value="bus" nameTags="ref" namePrefix="bus_" minzoom="11" relation="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_bus" if_tag1="public_transport" if_value1="platform" apply_to="way" notosm="true"/>
@@ -1699,47 +1728,9 @@
 		<entity_convert pattern="tag_transform" from_tag="route_funicular" if_tag1="railway" if_value1="halt" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_funicular" if_tag1="building" apply_to="way" notosm="true"/>
 
-		
 		<type tag="route" value="subway" nameTags="ref" namePrefix="subway_" additional="true" minzoom="11" relation="true"/>
 
-		<entity_convert pattern="tag_transform" from_tag="route" from_value="ski" to_tag1="route" to_value1="piste"/>
-		<type tag="route" value="piste" nameTags="ref" namePrefix="piste_" minzoom="11" additional="true" relation="true"/>
-
-
-		<type tag="network_iwn" minzoom="12" relation="true"/>
-		<entity_convert pattern="tag_transform" from_tag="network" if_not_tag1="network:type" if_not_value1="node_network" from_value="iwn" to_tag1="network_iwn"/>
-		<type tag="network_nwn" minzoom="12" relation="true"/>
-		<entity_convert pattern="tag_transform" from_tag="network" if_not_tag1="network:type" if_not_value1="node_network" from_value="nwn" to_tag1="network_nwn"/>
-		<type tag="network_rwn" minzoom="12" relation="true"/>
-		<entity_convert pattern="tag_transform" from_tag="network" if_not_tag1="network:type" if_not_value1="node_network" from_value="rwn" to_tag1="network_rwn"/>
-		<type tag="network_lwn" minzoom="12" relation="true"/>
-		<entity_convert pattern="tag_transform" from_tag="network" if_not_tag1="network:type" if_not_value1="node_network" from_value="lwn" to_tag1="network_lwn"/>
-
-		<type tag="node_network_iwn" value="iwn" minzoom="11" additional="true" relation="true"/>
-		<type tag="node_network_lwn" value="lwn" minzoom="11" additional="true" relation="true"/>
-		<type tag="node_network_nwn" value="nwn" minzoom="11" additional="true" relation="true"/>
-		<type tag="node_network_rwn" value="rwn" minzoom="11" additional="true" relation="true"/>
-		<entity_convert pattern="tag_transform" from_tag="network" from_value="iwn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network_iwn" apply_to="relation"/>
-		<entity_convert pattern="tag_transform" from_tag="network" from_value="nwn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network_nwn" apply_to="relation"/>
-		<entity_convert pattern="tag_transform" from_tag="network" from_value="rwn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network_rwn" apply_to="relation"/>
-		<entity_convert pattern="tag_transform" from_tag="network" from_value="lwn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network_lwn" apply_to="relation"/>
-
-
-		<!-- Fix for routes without route=hiking(or foot) but with network=*wn -->
-		<entity_convert pattern="tag_transform" from_tag="network" from_value="lwn" if_not_tag1="route" if_not_tag2="network:type" if_not_value2="node_network" to_tag1="network" to_value1="lwn" o_tag2="route_hiking" to_value2="" apply_to="way,relation"/>
-		<entity_convert pattern="tag_transform" from_tag="network" from_value="iwn" if_not_tag1="route" if_not_tag2="network:type" if_not_value2="node_network" to_tag1="network" to_value1="iwn" to_tag2="route_hiking" to_value2="" apply_to="way,relation"/>
-		<entity_convert pattern="tag_transform" from_tag="network" from_value="rwn" if_not_tag1="route" if_not_tag2="network:type" if_not_value2="node_network" to_tag1="network" to_value1="rwn" to_tag2="route_hiking" to_value2="" apply_to="way,relation"/>
-		<entity_convert pattern="tag_transform" from_tag="network" from_value="nwn" if_not_tag1="route" if_not_tag2="network:type" if_not_value2="node_network" to_tag1="network" to_value1="nwn" to_tag2="route_hiking" to_value2="" apply_to="way,relation"/>
-
-		<!-- for compatibility -->
-<!--		<type tag="icn_network" value="icn" minzoom="11" relation="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="network" from_value="icn" to_tag1="network" to_value1="icn" to_tag2="icn_network" to_value2="icn"/>
-		<type tag="lcn_network" value="lcn" minzoom="11" relation="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="network" from_value="lcn" to_tag1="network" to_value1="lcn" to_tag2="lcn_network" to_value2="lcn"/>
-		<type tag="ncn_network" value="ncn" minzoom="11" relation="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="network" from_value="ncn" to_tag1="network" to_value1="ncn" to_tag2="ncn_network" to_value2="ncn"/>
-		<type tag="rcn_network" value="rcn" minzoom="11" relation="true" order="80" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="network" from_value="rcn" to_tag1="network" to_value1="rcn" to_tag2="rcn_network" to_value2="rcn"/>-->
+		<!-- ROUTE SECTION: cycling -->
 
 		<type tag="network" value="icn" minzoom="11" additional="true" />
 		<type tag="network" value="lcn" minzoom="11" additional="true" />
@@ -1882,6 +1873,10 @@
 	</category>
 
 	<category name="piste">
+		<!-- ROUTE SECTION: ski/ piste -->
+		<entity_convert pattern="tag_transform" from_tag="route" from_value="ski" to_tag1="route" to_value1="piste"/>
+		<type tag="route" value="piste" nameTags="ref" namePrefix="piste_" minzoom="11" additional="true" relation="true"/>
+
 		<entity_convert pattern="tag_transform" from_tag="name" if_tag1="piste:type" if_not_tag1="piste:name" to_tag1="piste:name" apply_to="way,relation"/>
 
 		<type tag="piste_nordic_red" minzoom="14" additional="text" order="90" relation="true" notosm="true"/>
