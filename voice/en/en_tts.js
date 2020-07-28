@@ -92,7 +92,7 @@ function populateDictionary(tts) {
 	dictionary["speed_camera"] = tts ? "speed cam" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "border control" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "railroad crossing" : "railroad_crossing.ogg";
-	dictionary["traffic_calming"] = tts ? "traffic calming" : "traffic_calming.ogg";
+	dictionary["traffic_calming"] = tts ? "speed bump" : "traffic_calming.ogg";
 	dictionary["toll_booth"] = tts ? "toll booth" : "toll_booth.ogg";
 	dictionary["stop"] = tts ? "stop sign" : "stop.ogg";
 	dictionary["pedestrian_crosswalk"] = tts ? "pedestrian crosswalk" : "pedestrian_crosswalk.ogg";
