@@ -1695,34 +1695,63 @@
 		<!-- ROUTE SECTION: HIKING routes -->
 
 		<!-- 1.1 Walking network type-->
-		<type tag="network_iwn" minzoom="12" relation="true"/>
-		<type tag="network_nwn" minzoom="12" relation="true"/>
-		<type tag="network_rwn" minzoom="12" relation="true"/>
-		<type tag="network_lwn" minzoom="12" relation="true"/>
+		<type tag="network" value="iwn" minzoom="11" additional="true" />
+		<type tag="network" value="lwn" minzoom="11" additional="true" />
+		<type tag="network" value="nwn" minzoom="11" additional="true" />
+		<type tag="network" value="rwn" minzoom="11" additional="true" />
+		<type tag="network" value="rer" minzoom="11" additional="true" />
+
+		<type tag="node_network" value="iwn" minzoom="11" additional="true"/>
+		<type tag="node_network" value="lwn" minzoom="11" additional="true"/>
+		<type tag="node_network" value="nwn" minzoom="11" additional="true"/>
+		<type tag="node_network" value="rwn" minzoom="11" additional="true"/>
+
+		<!-- Convert foot & walking into hiking for now-->
+		<entity_convert pattern="tag_transform" from_tag="route" from_value="foot" to_tag1="route" to_value1="hiking" apply_to="relation"/>
+		<entity_convert pattern="tag_transform" from_tag="route" from_value="walking" to_tag1="route" to_value1="hiking" apply_to="relation"/>
+		
+
+		
+
+		<!-- 3.8: START backward compatibility -->
+		<type tag="network_iwn" minzoom="12" />
+		<type tag="network_nwn" minzoom="12" />
+		<type tag="network_rwn" minzoom="12" />
+		<type tag="network_lwn" minzoom="12" />
+		<type tag="node_network_iwn" value="iwn" minzoom="11" additional="true" />
+		<type tag="node_network_lwn" value="lwn" minzoom="11" additional="true" />
+		<type tag="node_network_nwn" value="nwn" minzoom="11" additional="true" />
+		<type tag="node_network_rwn" value="rwn" minzoom="11" additional="true" />
+		<!-- Convert network=*wn to -> network_*wn=*wn (not node network) -->
 		<entity_convert pattern="tag_transform" from_tag="network" if_not_tag1="network:type" if_not_value1="node_network" from_value="iwn" to_tag1="network_iwn" to_tag2="network"/>
 		<entity_convert pattern="tag_transform" from_tag="network" if_not_tag1="network:type" if_not_value1="node_network" from_value="nwn" to_tag1="network_nwn" to_tag2="network"/>
 		<entity_convert pattern="tag_transform" from_tag="network" if_not_tag1="network:type" if_not_value1="node_network" from_value="rwn" to_tag1="network_rwn" to_tag2="network"/>
 		<entity_convert pattern="tag_transform" from_tag="network" if_not_tag1="network:type" if_not_value1="node_network" from_value="lwn" to_tag1="network_lwn" to_tag2="network"/>
-
-
-		<!-- 1.2 Walking node network-->
-		<type tag="node_network_iwn" value="iwn" minzoom="11" additional="true" relation="true"/>
-		<type tag="node_network_lwn" value="lwn" minzoom="11" additional="true" relation="true"/>
-		<type tag="node_network_nwn" value="nwn" minzoom="11" additional="true" relation="true"/>
-		<type tag="node_network_rwn" value="rwn" minzoom="11" additional="true" relation="true"/>
+		<!-- Convert network=*wn to -> node_network_*wn=*wn (only node network) -->
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="iwn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network_iwn" to_tag2="network" apply_to="relation"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="nwn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network_nwn" to_tag2="network" apply_to="relation"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="rwn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network_rwn" to_tag2="network" apply_to="relation"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="lwn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network_lwn" to_tag2="network" apply_to="relation"/>
-		<!-- Fix for routes without route=hiking(or foot) but with network=*wn -->
+		<!-- Fix for routes without route but with network=*wn : add route_ =hiking(or foot) -->
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="lwn" if_not_tag1="route" if_not_tag2="network:type" if_not_value2="node_network" to_tag1="network" to_value1="lwn" to_tag2="route_hiking" to_value2="" apply_to="way,relation"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="iwn" if_not_tag1="route" if_not_tag2="network:type" if_not_value2="node_network" to_tag1="network" to_value1="iwn" to_tag2="route_hiking" to_value2="" apply_to="way,relation"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="rwn" if_not_tag1="route" if_not_tag2="network:type" if_not_value2="node_network" to_tag1="network" to_value1="rwn" to_tag2="route_hiking" to_value2="" apply_to="way,relation"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="nwn" if_not_tag1="route" if_not_tag2="network:type" if_not_value2="node_network" to_tag1="network" to_value1="nwn" to_tag2="route_hiking" to_value2="" apply_to="way,relation"/>
+		<!-- 3.8: END Backward compatibility -->
+	
 
+		<type tag="route" value="hiking" relationGroupSort="network=iwn,nwn,rwn,lwn" 
+				nameTags="ref,name" namePrefix="hiking_route_"
+				additionalTags="node_network,network,osmc_foreground,osmc_foreground2,osmc_background,osmc_waycolor" additionalPrefix="hiking_"
+				relationGroupAdditionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor" 
+				minzoom="11" relation="true" notosm="true"/> 
+				
+		<type tag="route" value="horse" 
+				nameTags="ref,name" namePrefix="horse_route_"
+				additionalTags="node_network,network,osmc_foreground,osmc_foreground2,osmc_background,osmc_waycolor" 
+				minzoom="11" relation="true" notosm="true"/>
 
-
-		<!-- 1.3 Walking poi node network-->
+		<!-- 1.3 Walking network poi node network-->
 		<type tag="route_hiking_iwn_poi" additional="true" value="yes" minzoom="13" notosm="true" relation="true"/>
 		<type tag="route_hiking_nwn_poi" additional="true" value="yes" minzoom="13" notosm="true" relation="true"/>
 		<type tag="route_hiking_rwn_poi" additional="true" value="yes" minzoom="13" notosm="true" relation="true"/>
@@ -1754,15 +1783,6 @@
 		<entity_convert pattern="tag_transform" from_tag="foot_route_name" to_tag1="hiking_route_name" apply_to="way" map="no" routing="no" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="walking_route_name" to_tag1="hiking_route_name" apply_to="way" map="no" routing="no" notosm="true"/>
 
-
-		<!-- 1.4 Walking routes -->
-		<type tag="route" value="hiking"  relationGroupSort="network=iwn,nwn,rwn,lwn"
-				additionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor" additionalPrefix="hiking_"
-				relationGroupAdditionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor" 
-				nameTags="ref,name" namePrefix="hiking_route_" minzoom="11" relation="true" notosm="true"/> <!-- Internal tag! It is used to allow many routes on the same way -->
-		<type tag="route" value="foot" nameTags="ref,name" namePrefix="foot_route_" minzoom="11" relation="true" notosm="true"/>
-		<type tag="route" value="walking" nameTags="ref,name" namePrefix="walking_route_" minzoom="11" relation="true" notosm="true"/>
-		<type tag="route" value="horse" nameTags="ref,name" namePrefix="horse_route_" minzoom="11" relation="true" notosm="true"/>
 		
 		<!-- ROUTE SECTION: PUBLIC transport routes-->
 		<type tag="route" value="ferry" minzoom="8" nameTags="ref" namePrefix="ferry_route_" relation="true"/>
@@ -1852,22 +1872,19 @@
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="ncn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network" to_value1="ncn" apply_to="relation"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="rcn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network" to_value1="rcn" apply_to="relation"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="lcn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network" to_value1="lcn" apply_to="relation"/>
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="route" if_value1="bicycle" to_tag1="bicycle_ref" apply_to="relation"/>
-		<entity_convert pattern="tag_transform" from_tag="name" if_tag1="route" if_value1="bicycle" to_tag1="bicycle_name" apply_to="relation"/>
-		
 		
 		<type tag="route" value="bicycle" relationGroupSort="network=icn,ncn,rcn,lcn"
 					additionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,mtb:type,mtb:scale,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
-					nameTags="bicycle_name,mtb:name,bicycle_ref" 
+					nameTags="name,mtb:name,ref" namePrefix="bicycle"
 					relationGroupAdditionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
 					relationGroupNameTags="name,mtb:name,ref"
 					minzoom="11" relation="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="name" if_tag1="route" if_value1="mtb" if_not_tag1="mtb:name" to_tag1="mtb:name" apply_to="relation"/>
 		<type tag="route" value="mtb" relationGroupSort="network=icn,ncn,rcn,lcn"
 					additionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,mtb:type,mtb:scale,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
-					nameTags="name,mtb:name,ref" 
+					nameTags="name,mtb:name,ref" namePrefix="bicycle"
 					relationGroupAdditionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
-					relationGroupNameTags="bicycle_name,mtb:name,bicycle_ref"
+					relationGroupNameTags="name,mtb:name,ref"
 					relationGroupNamePrefix="route_" minzoom="11" relation="true" notosm="true"/>
 		
 		<type tag="mtb:type" value="crosscountry" minzoom="11" additional="true" />
@@ -2600,67 +2617,67 @@
 		<entity_convert pattern="tag_transform" from_tag="osmc_text_symbol" from_value="sg" if_tag1="osmc_textcolor" if_value1="yellow" to_tag1="osmc_foreground" to_value1="yellow_sg" notosm="true"/>
 
 		<!-- jel is a hungarian route symbol. It has priority over osmc:symbol -->
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="p+" to_tag1="hiking_osmc_foreground" to_value1="red_cross" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="s" to_tag1="hiking_osmc_foreground" to_value1="yellow_bar" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="k+" to_tag1="hiking_osmc_foreground" to_value1="blue_cross" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="z" to_tag1="hiking_osmc_foreground" to_value1="green_bar" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="p" to_tag1="hiking_osmc_foreground" to_value1="red_bar" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="z+" to_tag1="hiking_osmc_foreground" to_value1="green_cross" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="s+" to_tag1="hiking_osmc_foreground" to_value1="yellow_cross" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="k3" to_tag1="hiking_osmc_foreground" to_value1="blue_triangle" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="z3" to_tag1="hiking_osmc_foreground" to_value1="green_triangle" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="lm" to_tag1="hiking_osmc_foreground" to_value1="purple_m" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="p3" to_tag1="hiking_osmc_foreground" to_value1="red_triangle" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="km" to_tag1="hiking_osmc_foreground" to_value1="blue_m" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="kq" to_tag1="hiking_osmc_foreground" to_value1="blue_dot" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="pq" to_tag1="hiking_osmc_foreground" to_value1="red_dot" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="k4" to_tag1="hiking_osmc_foreground" to_value1="blue_rectangle" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="s3" to_tag1="hiking_osmc_foreground" to_value1="yellow_triangle" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="p4" to_tag1="hiking_osmc_foreground" to_value1="red_rectangle" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="pm" to_tag1="hiking_osmc_foreground" to_value1="red_m" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="z4" to_tag1="hiking_osmc_foreground" to_value1="green_rectangle" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="k" to_tag1="hiking_osmc_foreground" to_value1="blue_bar" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zq" to_tag1="hiking_osmc_foreground" to_value1="green_dot" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="sq" to_tag1="hiking_osmc_foreground" to_value1="yellow_dot" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="pl" to_tag1="hiking_osmc_foreground" to_value1="red_l" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="t" to_tag1="hiking_osmc_foreground" to_value1="black_t" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="kl" to_tag1="hiking_osmc_foreground" to_value1="blue_l" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="s4" to_tag1="hiking_osmc_foreground" to_value1="yellow_rectangle" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zl" to_tag1="hiking_osmc_foreground" to_value1="green_l" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zut" to_tag1="hiking_osmc_foreground" to_value1="green_z" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="kc" to_tag1="hiking_osmc_foreground" to_value1="blue_circle_arrow" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="pb" to_tag1="hiking_osmc_foreground" to_value1="red_arch" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="pc" to_tag1="hiking_osmc_foreground" to_value1="red_circle_arrow" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zt" to_tag1="hiking_osmc_foreground" to_value1="green_t" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="kb" to_tag1="hiking_osmc_foreground" to_value1="blue_arch" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zc" to_tag1="hiking_osmc_foreground" to_value1="green_circle_arrow" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="sl" to_tag1="hiking_osmc_foreground" to_value1="yellow_l" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="pt" to_tag1="hiking_osmc_foreground" to_value1="red_t" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="sm" to_tag1="hiking_osmc_foreground" to_value1="yellow_m" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="katl" to_tag1="hiking_osmc_foreground" to_value1="blue_slash" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="sc" to_tag1="hiking_osmc_foreground" to_value1="yellow_circle_arrow" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zb" to_tag1="hiking_osmc_foreground" to_value1="green_arch" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="kt" to_tag1="hiking_osmc_foreground" to_value1="blue_t" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="st" to_tag1="hiking_osmc_foreground" to_value1="yellow_t" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="smz" to_tag1="hiking_osmc_foreground" to_value1="yellow_mz" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="sb" to_tag1="hiking_osmc_foreground" to_value1="yellow_arch" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zm" to_tag1="hiking_osmc_foreground" to_value1="green_m" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="ll" to_tag1="hiking_osmc_foreground" to_value1="purple_l" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="sgy" to_tag1="hiking_osmc_foreground" to_value1="yellow_sg" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="but" to_tag1="hiking_osmc_foreground" to_value1="mine" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="stj" to_tag1="hiking_osmc_foreground" to_value1="shell_modern" to_tag2="hiking_osmc_background" to_value2="blue" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zatl" to_tag1="hiking_osmc_foreground" to_value1="green_slash" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="satl" to_tag1="hiking_osmc_foreground" to_value1="yellow_slash" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
-		<entity_convert pattern="tag_transform" from_tag="jel" from_value="patl" to_tag1="hiking_osmc_foreground" to_value1="red_slash" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="p+" to_tag1="osmc_foreground" to_value1="red_cross" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="s" to_tag1="osmc_foreground" to_value1="yellow_bar" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="k+" to_tag1="osmc_foreground" to_value1="blue_cross" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="z" to_tag1="osmc_foreground" to_value1="green_bar" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="p" to_tag1="osmc_foreground" to_value1="red_bar" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="z+" to_tag1="osmc_foreground" to_value1="green_cross" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="s+" to_tag1="osmc_foreground" to_value1="yellow_cross" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="k3" to_tag1="osmc_foreground" to_value1="blue_triangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="z3" to_tag1="osmc_foreground" to_value1="green_triangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="lm" to_tag1="osmc_foreground" to_value1="purple_m" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="p3" to_tag1="osmc_foreground" to_value1="red_triangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="km" to_tag1="osmc_foreground" to_value1="blue_m" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="kq" to_tag1="osmc_foreground" to_value1="blue_dot" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="pq" to_tag1="osmc_foreground" to_value1="red_dot" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="k4" to_tag1="osmc_foreground" to_value1="blue_rectangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="s3" to_tag1="osmc_foreground" to_value1="yellow_triangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="p4" to_tag1="osmc_foreground" to_value1="red_rectangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="pm" to_tag1="osmc_foreground" to_value1="red_m" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="z4" to_tag1="osmc_foreground" to_value1="green_rectangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="k"  to_tag1="osmc_foreground" to_value1="blue_bar" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zq" to_tag1="osmc_foreground" to_value1="green_dot" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="sq" to_tag1="osmc_foreground" to_value1="yellow_dot" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="pl" to_tag1="osmc_foreground" to_value1="red_l" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="t"  to_tag1="osmc_foreground" to_value1="black_t" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="kl" to_tag1="osmc_foreground" to_value1="blue_l" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="s4" to_tag1="osmc_foreground" to_value1="yellow_rectangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zl" to_tag1="osmc_foreground" to_value1="green_l" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zut" to_tag1="osmc_foreground" to_value1="green_z" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="kc" to_tag1="osmc_foreground" to_value1="blue_circle_arrow" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="pb" to_tag1="osmc_foreground" to_value1="red_arch" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="pc" to_tag1="osmc_foreground" to_value1="red_circle_arrow" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zt" to_tag1="osmc_foreground" to_value1="green_t" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="kb" to_tag1="osmc_foreground" to_value1="blue_arch" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zc" to_tag1="osmc_foreground" to_value1="green_circle_arrow" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="sl" to_tag1="osmc_foreground" to_value1="yellow_l" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="pt" to_tag1="osmc_foreground" to_value1="red_t" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="sm" to_tag1="osmc_foreground" to_value1="yellow_m" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="katl" to_tag1="osmc_foreground" to_value1="blue_slash" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="sc" to_tag1="osmc_foreground" to_value1="yellow_circle_arrow" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zb" to_tag1="osmc_foreground" to_value1="green_arch" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="kt" to_tag1="osmc_foreground" to_value1="blue_t" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="st" to_tag1="osmc_foreground" to_value1="yellow_t" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="smz" to_tag1="osmc_foreground" to_value1="yellow_mz" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="sb" to_tag1="osmc_foreground" to_value1="yellow_arch" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zm" to_tag1="osmc_foreground" to_value1="green_m" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="ll" to_tag1="osmc_foreground" to_value1="purple_l" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="sgy" to_tag1="osmc_foreground" to_value1="yellow_sg" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="but" to_tag1="osmc_foreground" to_value1="mine" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="stj" to_tag1="osmc_foreground" to_value1="shell_modern" to_tag2="osmc_background" to_value2="blue" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="zatl" to_tag1="osmc_foreground" to_value1="green_slash" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="satl" to_tag1="osmc_foreground" to_value1="yellow_slash" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="jel" from_value="patl" to_tag1="osmc_foreground" to_value1="red_slash" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
 
 		<!-- kct_ is a Czech route symbol. It has priority over osmc:symbol
 		From http://hiking.waymarkedtrails.org/en/help/rendering/hikinglocal:
 		"Routes with kct_red=major become national routes, other kct_*=major are classified as regional." -->
-		<entity_convert pattern="tag_transform" from_tag="kct_green" from_value="major" to_tag1="hiking_osmc_foreground" to_value1="green_bar" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="green" to_tag5="network_rwn" to_value5="rwn"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_green" from_value="learning" to_tag1="hiking_osmc_foreground" to_value1="green_backslash" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="green"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_green" from_value="peak" to_tag1="hiking_osmc_foreground" to_value1="green_triangle" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="green"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_green" from_value="local" to_tag1="hiking_osmc_foreground" to_value1="green_corner" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="green"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_green" from_value="interesting_object" to_tag1="hiking_osmc_foreground" to_value1="green_turned_t" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="green"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_green" from_value="major" to_tag1="osmc_foreground" to_value1="green_bar" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="green" to_tag5="network_rwn" to_value5="rwn"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_green" from_value="learning" to_tag1="osmc_foreground" to_value1="green_backslash" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="green"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_green" from_value="peak" to_tag1="osmc_foreground" to_value1="green_triangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="green"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_green" from_value="local" to_tag1="osmc_foreground" to_value1="green_corner" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="green"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_green" from_value="interesting_object" to_tag1="osmc_foreground" to_value1="green_turned_t" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="green"/>
 		<entity_convert pattern="tag_transform" from_tag="kct_green" from_value="bicycle" if_tag1="route" if_value1="bicycle" to_tag1="osmc_foreground" to_value1="green_bar" to_tag2="osmc_background" to_value2="yellow" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="green"/>
 		<entity_convert pattern="tag_transform" from_tag="kct_green" from_value="ruin" to_tag1="osmc_foreground" to_value1="green_l" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="green"/>
 		<entity_convert pattern="tag_transform" from_tag="kct_green" from_value="spring" to_tag1="osmc_foreground" to_value1="green_bowl" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="green"/>
@@ -2669,10 +2686,10 @@
 		<entity_convert pattern="tag_transform" from_tag="kct_green" from_value="wheelchair" to_tag1="osmc_foreground" to_value1="green_wheelchair" to_tag2="osmc_background" to_value2="orange" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="green"/>
 		<entity_convert pattern="tag_transform" from_tag="kct_green" from_value="yes" to_tag1="osmc_stub_name" to_value1="." to_tag2="osmc_waycolor" to_value2="green"/>
 
-		<entity_convert pattern="tag_transform" from_tag="kct_yellow" from_value="major" to_tag1="hiking_osmc_foreground" to_value1="yellow_bar" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="yellow" to_tag5="network_rwn" to_value5="rwn"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_yellow" from_value="peak" to_tag1="hiking_osmc_foreground" to_value1="yellow_triangle" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="yellow"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_yellow" from_value="local" to_tag1="hiking_osmc_foreground" to_value1="yellow_corner" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="yellow"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_yellow" from_value="interesting_object" to_tag1="hiking_osmc_foreground" to_value1="yellow_turned_t" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="yellow"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_yellow" from_value="major" to_tag1="osmc_foreground" to_value1="yellow_bar" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="yellow" to_tag5="network_rwn" to_value5="rwn"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_yellow" from_value="peak" to_tag1="osmc_foreground" to_value1="yellow_triangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="yellow"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_yellow" from_value="local" to_tag1="osmc_foreground" to_value1="yellow_corner" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="yellow"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_yellow" from_value="interesting_object" to_tag1="osmc_foreground" to_value1="yellow_turned_t" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="yellow"/>
 		<entity_convert pattern="tag_transform" from_tag="kct_yellow" from_value="horse" if_tag1="route" if_value1="horse" to_tag1="osmc_foreground" to_value1="yellow_dot" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="yellow"/>
 		<entity_convert pattern="tag_transform" from_tag="kct_yellow" from_value="ruin" to_tag1="osmc_foreground" to_value1="yellow_l" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="yellow"/>
 		<entity_convert pattern="tag_transform" from_tag="kct_yellow" from_value="diagonal" to_tag1="osmc_foreground" to_value1="yellow_backslash" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="yellow"/>
@@ -2681,58 +2698,33 @@
 		<entity_convert pattern="tag_transform" from_tag="kct_yellow" from_value="spring" to_tag1="osmc_foreground" to_value1="yellow_bowl" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="yellow"/>
 		<entity_convert pattern="tag_transform" from_tag="kct_yellow" from_value="yes" to_tag1="osmc_stub_name" to_value1="." to_tag2="osmc_waycolor" to_value2="yellow"/>
 
-		<entity_convert pattern="tag_transform" from_tag="kct_blue" from_value="major" to_tag1="hiking_osmc_foreground" to_value1="blue_bar" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="blue" to_tag5="network_rwn" to_value5="rwn"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_blue" from_value="peak" to_tag1="hiking_osmc_foreground" to_value1="blue_triangle" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="blue"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_blue" from_value="local" to_tag1="hiking_osmc_foreground" to_value1="blue_corner" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="blue"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_blue" from_value="major" to_tag1="osmc_foreground" to_value1="blue_bar" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="blue" to_tag5="network_rwn" to_value5="rwn"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_blue" from_value="peak" to_tag1="osmc_foreground" to_value1="blue_triangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="blue"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_blue" from_value="local" to_tag1="osmc_foreground" to_value1="blue_corner" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="blue"/>
 		<entity_convert pattern="tag_transform" from_tag="kct_blue" from_value="bicycle" if_tag1="route" if_value1="bicycle" to_tag1="osmc_foreground" to_value1="blue_bar" to_tag2="osmc_background" to_value2="yellow" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="blue"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_blue" from_value="interesting_object" to_tag1="hiking_osmc_foreground" to_value1="blue_turned_t" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="blue"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_blue" from_value="interesting_object" to_tag1="osmc_foreground" to_value1="blue_turned_t" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="blue"/>
 		<entity_convert pattern="tag_transform" from_tag="kct_blue" from_value="horse" if_tag1="route" if_value1="horse" to_tag1="osmc_foreground" to_value1="blue_dot" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="blue"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_blue" from_value="ruin" to_tag1="hiking_osmc_foreground" to_value1="blue_l" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="blue"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_blue" from_value="ruin" to_tag1="osmc_foreground" to_value1="blue_l" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="blue"/>
 		<entity_convert pattern="tag_transform" from_tag="kct_blue" from_value="ski" to_tag1="osmc_foreground" to_value1="blue_bar" to_tag2="osmc_background" to_value2="orange" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="blue"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_blue" from_value="spring" to_tag1="hiking_osmc_foreground" to_value1="blue_bowl" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="blue"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_blue" from_value="wheelchair" to_tag1="hiking_osmc_foreground" to_value1="blue_wheelchair" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="blue"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_blue" from_value="learning" to_tag1="hiking_osmc_foreground" to_value1="blue_backslash" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="blue"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_blue" from_value="yes" to_tag1="osmc_stub_name" to_value1="." to_tag2="hiking_osmc_waycolor" to_value2="blue"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_blue" from_value="spring" to_tag1="osmc_foreground" to_value1="blue_bowl" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="blue"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_blue" from_value="wheelchair" to_tag1="osmc_foreground" to_value1="blue_wheelchair" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="blue"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_blue" from_value="learning" to_tag1="osmc_foreground" to_value1="blue_backslash" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="blue"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_blue" from_value="yes" to_tag1="osmc_stub_name" to_value1="." to_tag2="osmc_waycolor" to_value2="blue"/>
 
-		<entity_convert pattern="tag_transform" from_tag="kct_red" from_value="major" to_tag1="hiking_osmc_foreground" to_value1="red_bar" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="red" to_tag5="network_nwn" to_value5="nwn"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_red" from_value="peak" to_tag1="hiking_osmc_foreground" to_value1="red_triangle" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="red"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_red" from_value="interesting_object" to_tag1="hiking_osmc_foreground" to_value1="red_turned_t" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="red"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_red" from_value="local" to_tag1="hiking_osmc_foreground" to_value1="red_corner" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="red"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_red" from_value="major" to_tag1="osmc_foreground" to_value1="red_bar" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="red" to_tag5="network_nwn" to_value5="nwn"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_red" from_value="peak" to_tag1="osmc_foreground" to_value1="red_triangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="red"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_red" from_value="interesting_object" to_tag1="osmc_foreground" to_value1="red_turned_t" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="red"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_red" from_value="local" to_tag1="osmc_foreground" to_value1="red_corner" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="red"/>
 		<entity_convert pattern="tag_transform" from_tag="kct_red" from_value="horse" if_tag1="route" if_value1="horse" to_tag1="osmc_foreground" to_value1="red_dot" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="red"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_red" from_value="ruin" to_tag1="hiking_osmc_foreground" to_value1="red_l" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="red"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_red" from_value="ruin" to_tag1="osmc_foreground" to_value1="red_l" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="red"/>
 		<entity_convert pattern="tag_transform" from_tag="kct_red" from_value="bicycle" if_tag1="route" if_value1="bicycle" to_tag1="osmc_foreground" to_value1="red_bar" to_tag2="osmc_background" to_value2="yellow" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="red"/>
 		<entity_convert pattern="tag_transform" from_tag="kct_red" from_value="ski" to_tag1="osmc_foreground" to_value1="red_bar" to_tag2="osmc_background" to_value2="orange" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="red"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_red" from_value="spring" to_tag1="hiking_osmc_foreground" to_value1="red_bowl" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="red"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_red" from_value="wheelchair" to_tag1="hiking_osmc_foreground" to_value1="red_wheelchair" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="red"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_red" from_value="learning" to_tag1="hiking_osmc_foreground" to_value1="red_backslash" to_tag2="hiking_osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="hiking_osmc_waycolor" to_value4="red"/>
-		<entity_convert pattern="tag_transform" from_tag="kct_red" from_value="yes" to_tag1="osmc_stub_name" to_value1="." to_tag2="hiking_osmc_waycolor" to_value2="red"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_red" from_value="spring" to_tag1="osmc_foreground" to_value1="red_bowl" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="red"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_red" from_value="wheelchair" to_tag1="osmc_foreground" to_value1="red_wheelchair" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="red"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_red" from_value="learning" to_tag1="osmc_foreground" to_value1="red_backslash" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="red"/>
+		<entity_convert pattern="tag_transform" from_tag="kct_red" from_value="yes" to_tag1="osmc_stub_name" to_value1="." to_tag2="osmc_waycolor" to_value2="red"/>
 
 		<!-- Convert some non-standard foregrounds to supported ones -->
-		<!-- Hiking -->
-		<entity_convert pattern="tag_transform" from_tag="hiking_osmc_foreground" from_value="×" to_tag1="hiking_osmc_foreground" to_value1="black_x" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_osmc_foreground" from_value="/\" to_tag1="hiking_osmc_foreground" to_value1="black_trangle" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_osmc_foreground" from_value="2yellow_triangle" to_tag1="hiking_osmc_foreground" to_value1="yellow_triangle" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_osmc_foreground" from_value="hiker" to_tag1="hiking_osmc_foreground" to_value1="black_hiker" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_osmc_foreground" from_value="red_round" to_tag1="hiking_osmc_foreground" to_value1="red_circle" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_osmc_foreground" from_value="red_square" to_tag1="hiking_osmc_foreground" to_value1="red_rectangle" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_osmc_foreground" from_value="wheelchair" to_tag1="hiking_osmc_foreground" to_value1="blue_wheelchair" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_osmc_foreground" from_value="white_arrow" to_tag1="hiking_osmc_foreground" to_value1="white_pointer" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_osmc_foreground" from_value="white_wolfshook" to_tag1="hiking_osmc_foreground" to_value1="wolfshook" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_osmc_foreground" from_value="yellow_point" to_tag1="hiking_osmc_foreground" to_value1="yellow_dot" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_osmc_foreground" from_value="red_diamond" if_tag1="hiking_osmc_foreground2" if_value1="green_grape" to_tag1="hiking_osmc_foreground" to_value1="red_diamond_green_grape" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_osmc_foreground" from_value="red_diamond" if_tag1="hiking_osmc_foreground2" if_value1="yellow_grape" to_tag1="hiking_osmc_foreground" to_value1="red_diamond_yellow_grape" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
-
-		<entity_convert pattern="tag_transform" from_tag="hiking_osmc_foreground" from_value="black" to_tag1="hiking_osmc_foreground" to_value1="black_dot" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_osmc_foreground" from_value="blue" to_tag1="hiking_osmc_foreground" to_value1="blue_dot" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_osmc_foreground" from_value="green" to_tag1="hiking_osmc_foreground" to_value1="green_dot" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_osmc_foreground" from_value="orange" to_tag1="hiking_osmc_foreground" to_value1="orange_dot" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_osmc_foreground" from_value="red" to_tag1="hiking_osmc_foreground" to_value1="red_dot" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_osmc_foreground" from_value="yellow" to_tag1="hiking_osmc_foreground" to_value1="yellow_dot" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_osmc_foreground" from_value="brown" to_tag1="hiking_osmc_foreground" to_value1="brown_dot" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_osmc_foreground" from_value="purple" to_tag1="hiking_osmc_foreground" to_value1="purple_dot" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_osmc_foreground" from_value="white" to_tag1="hiking_osmc_foreground" to_value1="white_dot" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
-
-		<!-- Other routes -->
 		<entity_convert pattern="tag_transform" from_tag="osmc_foreground" from_value="×" to_tag1="osmc_foreground" to_value1="black_x" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="osmc_foreground" from_value="/\" to_tag1="osmc_foreground" to_value1="black_trangle" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="osmc_foreground" from_value="2yellow_triangle" to_tag1="osmc_foreground" to_value1="yellow_triangle" to_tag3="osmc_stub_name" to_value3="." notosm="true"/>
