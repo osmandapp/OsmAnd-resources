@@ -1408,8 +1408,7 @@
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref:colour" from_value="#00ff00" to_tag1="route_road_*_shield_color" to_value1="green" seq="1:3" apply_to="way" notosm="true"/>
  
 		<!-- End road shields -->
-		<!-- START Backward compatibility prior 3.8 release -->
-
+		<!-- 3.8: START Backward compatibility -->
 		<type tag="road_ref_*" seq="1:10" additional="text" minzoom="1" order="64"/>
 		<type tag="road_name_*" seq="1:10" additional="text" minzoom="1" order="64"/>
 		<type tag="road_network_*" seq="1:10" additional="text" minzoom="1" order="64"/>
@@ -1476,9 +1475,7 @@
 		<type tag="road_shield_bg_color_*" seq="1:10" value="blue" additional="true" notosm="true"/>
 		<type tag="road_shield_bg_color_*" seq="1:10" value="green" additional="true" notosm="true"/>
 		<type tag="road_shield_bg_color_*" seq="1:10" value="brown" additional="true" notosm="true"/>
-
-
-		<!-- END Backward compatibility prior 3.8 release -->
+		<!-- 3.8: END Backward compatibility -->
 
 
 
@@ -1839,18 +1836,24 @@
 		<type tag="network" value="rcn" minzoom="11" additional="true" />
 		<type tag="network" value="rer" minzoom="11" additional="true" />
 
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="network" if_value1="icn" to_tag1="icn_ref" apply_to="relation"/>
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="network" if_value1="lcn" to_tag1="lcn_ref" apply_to="relation"/>
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="network" if_value1="ncn" to_tag1="ncn_ref" apply_to="relation"/>
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="network" if_value1="rcn" to_tag1="rcn_ref" apply_to="relation"/>
-		<entity_convert pattern="tag_transform" from_tag="lcn" from_value="yes" if_not_tag1="route" if_not_value1="mtb" if_not_tag2="mtb:scale" to_tag1="route_bicycle" to_value1="" to_tag2="network" to_value2="lcn"/>
-		<entity_convert pattern="tag_transform" from_tag="lcn" from_value="yes" if_tag1="mtb:scale" if_not_tag1="route" if_not_value1="mtb" to_tag1="route_mtb" to_value1="" to_tag2="network" to_value2="lcn"/>
-		<entity_convert pattern="tag_transform" from_tag="rcn" from_value="yes" if_not_tag1="route" if_not_value1="mtb" if_not_tag2="mtb:scale" to_tag1="route_bicycle" to_value1="" to_tag2="network" to_value2="rcn"/>
-		<entity_convert pattern="tag_transform" from_tag="rcn" from_value="yes" if_tag1="mtb:scale" if_not_tag1="route" if_not_value1="mtb" to_tag1="route_mtb" to_value1="" to_tag2="network" to_value2="rcn"/>
-		<entity_convert pattern="tag_transform" from_tag="ncn" from_value="yes" if_not_tag1="route" if_not_value1="mtb" if_not_tag2="mtb:scale" to_tag1="route_bicycle" to_value1="" to_tag2="network" to_value2="ncn"/>
-		<entity_convert pattern="tag_transform" from_tag="ncn" from_value="yes" if_tag1="mtb:scale" if_not_tag1="route" if_not_value1="mtb" to_tag1="route_mtb" to_value1="" to_tag2="network" to_value2="ncn"/>
-		<entity_convert pattern="tag_transform" from_tag="icn" from_value="yes" if_not_tag1="route" if_not_value1="mtb" if_not_tag2="mtb:scale" to_tag1="route_bicycle" to_value1="" to_tag2="network" to_value2="icn"/>
-		<entity_convert pattern="tag_transform" from_tag="icn" from_value="yes" if_tag1="mtb:scale" if_not_tag1="route" if_not_value1="mtb" to_tag1="route_mtb" to_value1="" to_tag2="network" to_value2="icn"/>
+		<!-- don't assign rcn_ref from network without checking node_network (it's used now only for node_network) -->
+		<!-- <entity_convert pattern="tag_transform" from_tag="ref" if_tag1="network" if_value1="icn" to_tag1="icn_ref" apply_to="relation"/>
+			<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="network" if_value1="lcn" to_tag1="lcn_ref" apply_to="relation"/>
+			<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="network" if_value1="ncn" to_tag1="ncn_ref" apply_to="relation"/>
+			<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="network" if_value1="rcn" to_tag1="rcn_ref" apply_to="relation"/>
+			-->
+		<!-- Convert from *cn-yes to (applies on ways, so we need to use prefix) -->
+		<!-- this is deprecated way cause it doesn't convert bicycle_ref, bicycle_name, route_bicycle_1_ref, route_bicycle_1_name..-->
+		<!-- 
+		<entity_convert pattern="tag_transform" from_tag="lcn" from_value="yes" if_not_tag1="route_bicycle" if_not_tag2="mtb:scale" to_tag1="route_bicycle" to_value1="" to_tag2="network" to_value2="lcn" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="lcn" from_value="yes" if_not_tag1="route_mtb" if_tag1="mtb:scale" to_tag1="route_mtb" to_value1="" to_tag2="network" to_value2="lcn" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="rcn" from_value="yes" if_not_tag1="route_bicycle" if_not_tag2="mtb:scale" to_tag1="route_bicycle" to_value1="" to_tag2="network" to_value2="rcn" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="rcn" from_value="yes" if_not_tag1="route_mtb" if_tag1="mtb:scale" to_tag1="route_mtb" to_value1="" to_tag2="network" to_value2="rcn" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="ncn" from_value="yes" if_not_tag1="route_bicycle" if_not_tag2="mtb:scale" to_tag1="route_bicycle" to_value1="" to_tag2="network" to_value2="ncn" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="ncn" from_value="yes" if_not_tag1="route_mtb" if_tag1="mtb:scale" to_tag1="route_mtb" to_value1="" to_tag2="network" to_value2="ncn" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="icn" from_value="yes" if_not_tag1="route_bicycle" if_not_tag2="mtb:scale" to_tag1="route_bicycle" to_value1="" to_tag2="network" to_value2="icn" apply_to="way"/>
+		<entity_convert pattern="tag_transform" from_tag="icn" from_value="yes" if_not_tag1="route_mtb" if_tag1="mtb:scale" to_tag1="route_mtb" to_value1="" to_tag2="network" to_value2="icn" apply_to="way"/>
+		-->
 
 		<type tag="node_network" value="icn" minzoom="11" additional="true"/>
 		<type tag="node_network" value="lcn" minzoom="11" additional="true"/>
@@ -1863,17 +1866,17 @@
 		
 		<type tag="route" value="bicycle" relationGroupSort="network=icn,ncn,rcn,lcn"
 					additionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,mtb:type,mtb:scale,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
-					nameTags="name,mtb:name,ref" namePrefix="bicycle"
+					nameTags="name,ref" namePrefix="bicycle_"
 					relationGroupAdditionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
 					relationGroupNameTags="name,mtb:name,ref"
 					minzoom="11" relation="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="name" if_tag1="route" if_value1="mtb" if_not_tag1="mtb:name" to_tag1="mtb:name" apply_to="relation"/>
 		<type tag="route" value="mtb" relationGroupSort="network=icn,ncn,rcn,lcn"
 					additionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,mtb:type,mtb:scale,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
-					nameTags="name,mtb:name,ref" namePrefix="bicycle"
+					nameTags="mtb:name,ref" namePrefix="bicycle_"
 					relationGroupAdditionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
 					relationGroupNameTags="name,mtb:name,ref"
-					relationGroupNamePrefix="route_" minzoom="11" relation="true" notosm="true"/>
+					minzoom="11" relation="true" notosm="true"/>
 		
 		<type tag="mtb:type" value="crosscountry" minzoom="11" additional="true" />
 		<type tag="mtb:type" value="allmountain" minzoom="11" additional="true" />
@@ -1951,7 +1954,7 @@
 
 	
 		<!-- These tags are used for nodes with multiple networks (rwn_ref + rcn_ref etc.) only -->
-		<!-- Backward compatibility 3.8 -->
+		<!-- 3.8 Start: Backward compatibility-->
 		<type tag="multiple_node_networks" value="true" minzoom="11" order="1"/> <!-- This tag is used for nodes with multiple networks (rwn_ref + rcn_ref etc.) only -->
 		<type tag="icn_ref_value" minzoom="11" additional="text"/> 
 		<type tag="rcn_ref_value" minzoom="11" additional="text"/>
@@ -1970,7 +1973,7 @@
 		<entity_convert pattern="tag_transform" from_tag="rwn_ref" to_tag1="rwn_ref" to_tag3="rwn_ref_value" to_tag2="multiple_node_networks" to_value2="true" />
 		<entity_convert pattern="tag_transform" from_tag="nwn_ref" to_tag1="nwn_ref" to_tag3="nwn_ref_value" to_tag2="multiple_node_networks" to_value2="true" />
 		<entity_convert pattern="tag_transform" from_tag="lwn_ref" to_tag1="lwn_ref" to_tag3="lwn_ref_value" to_tag2="multiple_node_networks" to_value2="true" />
-		<!-- Backward compatibility 3.8 -->
+		<!-- 3.8 End: Backward compatibility -->
 		
 
 		<!-- POI conversion -->
