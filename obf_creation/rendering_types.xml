@@ -1889,16 +1889,16 @@
 		
 		<type tag="route" value="bicycle" relationGroupSort="network=icn,ncn,rcn,lcn"
 					additionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,mtb:type,mtb:scale,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
-					nameTags="bicycle_name,mtb:name,bicycle_ref,icn_ref,lcn_ref,ncn_ref,rcn_ref" 
+					nameTags="bicycle_name,mtb:name,bicycle_ref" 
 					relationGroupAdditionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
-					relationGroupNameTags="name,mtb:name,ref,icn_ref,lcn_ref,ncn_ref,rcn_ref"
+					relationGroupNameTags="name,mtb:name,ref"
 					minzoom="11" relation="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="name" if_tag1="route" if_value1="mtb" if_not_tag1="mtb:name" to_tag1="mtb:name" apply_to="relation"/>
 		<type tag="route" value="mtb" relationGroupSort="network=icn,ncn,rcn,lcn"
 					additionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,mtb:type,mtb:scale,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
-					nameTags="name,mtb:name,ref,icn_ref,lcn_ref,ncn_ref,rcn_ref" 
+					nameTags="name,mtb:name,ref" 
 					relationGroupAdditionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
-					relationGroupNameTags="bicycle_name,mtb:name,bicycle_ref,icn_ref,lcn_ref,ncn_ref,rcn_ref"
+					relationGroupNameTags="bicycle_name,mtb:name,bicycle_ref"
 					relationGroupNamePrefix="route_" minzoom="11" relation="true" notosm="true"/>
 		
 		<type tag="mtb:type" value="crosscountry" minzoom="11" additional="true" />
@@ -1969,18 +1969,22 @@
 		<entity_convert pattern="tag_transform" from_tag="rwn_ref" if_tag1="multiple_node_networks" if_value1="true" to_tag1="rwn_ref_value"/>
 		<entity_convert pattern="tag_transform" from_tag="lwn_ref" if_tag1="multiple_node_networks" if_value1="true" to_tag1="lwn_ref_value"/>
 
+		
+		<type tag="iwn_ref" value="" minzoom="12" order="20" additional="text"/>
+		<type tag="nwn_ref" value="" minzoom="12" order="20" additional="text"/>
+		<type tag="rwn_ref" value="" minzoom="12" order="20" additional="text"/>
+		<type tag="lwn_ref" value="" minzoom="12" order="20" additional="text"/>
+		<type tag="icn_ref" value="" minzoom="11" additional="text"/>
+		<type tag="ncn_ref" value="" minzoom="11" additional="text"/>
+		<type tag="rcn_ref" value="" minzoom="11" additional="text"/>
+		<type tag="lcn_ref" value="" minzoom="11" additional="text"/>
+
+		<!-- POI conversion -->
 		<entity_convert pattern="tag_transform" from_tag="iwn_ref" to_tag1="iwn_ref_name" to_tag2="iwn_ref" to_value2="yes" map="false"/>
 		<entity_convert pattern="tag_transform" from_tag="nwn_ref" to_tag1="nwn_ref_name" to_tag2="nwn_ref" to_value2="yes" map="false"/>
 		<entity_convert pattern="tag_transform" from_tag="rwn_ref" to_tag1="rwn_ref_name" to_tag2="rwn_ref" to_value2="yes" map="false"/>
 		<entity_convert pattern="tag_transform" from_tag="lwn_ref" to_tag1="lwn_ref_name" to_tag2="lwn_ref" to_value2="yes" map="false"/>
-		<type tag="iwn_ref" value="" minzoom="12" order="20"/>
-		<type tag="nwn_ref" value="" minzoom="12" order="20"/>
-		<type tag="rwn_ref" value="" minzoom="12" order="20"/>
-		<type tag="lwn_ref" value="" minzoom="12" order="20"/>
-		<type tag="icn_ref" value="" minzoom="11"/>
-		<type tag="ncn_ref" value="" minzoom="11"/>
-		<type tag="rcn_ref" value="" minzoom="11"/>
-		<type tag="lcn_ref" value="" minzoom="11"/>
+
 		<entity_convert pattern="tag_transform" from_tag="icn_ref" to_tag1="icn_ref_name" to_tag2="icn_ref" to_value2="yes" map="false" routing="no"/>
 		<entity_convert pattern="tag_transform" from_tag="ncn_ref" to_tag1="ncn_ref_name" to_tag2="ncn_ref" to_value2="yes" map="false" routing="no"/>
 		<entity_convert pattern="tag_transform" from_tag="rcn_ref" to_tag1="rcn_ref_name" to_tag2="rcn_ref" to_value2="yes" map="false" routing="no"/>
@@ -5811,7 +5815,6 @@
 		<routing_type tag="route_road_*_shield_shape_mod" seq="1:10" mode="amend" base="true"/>
 		<routing_type tag="route_road_*_shield_order" seq="1:10" mode="amend" base="true"/>
 		<routing_type tag="route_road_*_shield_shape" seq="1:10" mode="amend" base="true"/>
-		<routing_type tag="route_road_*_shield_order" seq="1:10" mode="amend" base="true"/>
 
 		<!-- backward compatibility 3.8 -->
 		<routing_type tag="road_ref_*" seq="1:10" mode="text" base="true"/>
@@ -5829,8 +5832,6 @@
 		<routing_type tag="road_shield_shape_mod_*" seq="1:10" mode="amend" base="true"/>
 		<routing_type tag="road_shield_order_*" seq="1:10" mode="amend" base="true"/>
 		<routing_type tag="road_shield_shape_*" seq="1:10" mode="amend" base="true"/>
-		<routing_type tag="road_shield_order_*" seq="1:10" mode="amend" base="true"/>
-
 		<!-- end backward compatibility 3.8 -->
 
 
