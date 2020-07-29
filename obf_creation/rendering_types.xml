@@ -2000,21 +2000,30 @@
 	<category name="piste">
 		<!-- ROUTE SECTION: ski/ piste -->
 		<entity_convert pattern="tag_transform" from_tag="route" from_value="ski" to_tag1="route" to_value1="piste"/>
-		<type tag="route" value="piste" nameTags="ref" namePrefix="piste_" minzoom="11" additional="true" relation="true"/>
+		<type tag="route" value="piste" 
+			nameTags="piste:name,piste:ref"
+			relationGroupNameTags="piste:name,piste:ref"
+			additionalTags="piste:type,piste:difficulty,piste:grooming,piste:grooming,piste:abandoned,piste:oneway,piste_region" 
+			relationGroupAdditionalTags="piste:type,piste:difficulty,piste:grooming,piste:grooming,piste:abandoned,piste:oneway,piste_region" 
+			minzoom="11" relation="true"/>
 
-		<entity_convert pattern="tag_transform" from_tag="name" if_tag1="piste:type" if_not_tag1="piste:name" to_tag1="piste:name" apply_to="way,relation"/>
+		<entity_convert pattern="tag_transform" from_tag="name" if_tag1="piste:type" if_not_tag1="piste:name" to_tag1="piste:name" to_tag2="name" apply_to="way,relation"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="piste:type" if_not_tag1="piste:ref" to_tag1="piste:ref" to_tag2="ref" apply_to="way,relation"/>
+		<type tag="piste:ref" value="" additional="text" minzoom="12" order="20" />
+		<type tag="piste:name" value="" additional="text" minzoom="12" order="20" />
 
-		<type tag="piste_nordic_red" minzoom="14" additional="text" order="90" relation="true" notosm="true"/>
-		<type tag="piste_nordic_brown" minzoom="14" additional="text" order="90" relation="true" notosm="true"/>
-		<type tag="piste_nordic_orange" minzoom="14" additional="text" order="90" relation="true" notosm="true"/>
-		<type tag="piste_nordic_yellow" minzoom="14" additional="text" order="90" relation="true" notosm="true"/>
-		<type tag="piste_nordic_green" minzoom="14" additional="text" order="90" relation="true" notosm="true"/>
-		<type tag="piste_nordic_lightgreen" minzoom="14" additional="text" order="90" relation="true" notosm="true"/>
-		<type tag="piste_nordic_blue" minzoom="14" additional="text" order="90" relation="true" notosm="true"/>
-		<type tag="piste_nordic_lightblue" minzoom="14" additional="text" order="90" relation="true" notosm="true"/>
-		<type tag="piste_nordic_purple" minzoom="14" additional="text" order="90" relation="true" notosm="true"/>
-		<type tag="piste_nordic_gray" minzoom="14" additional="text" order="90" relation="true" notosm="true"/>
-		<type tag="piste_nordic_black" minzoom="14" additional="text" order="90" relation="true" notosm="true"/>
+
+		<type tag="piste_nordic_red" minzoom="14" additional="text" order="90" notosm="true"/>
+		<type tag="piste_nordic_brown" minzoom="14" additional="text" order="90" notosm="true"/>
+		<type tag="piste_nordic_orange" minzoom="14" additional="text" order="90" notosm="true"/>
+		<type tag="piste_nordic_yellow" minzoom="14" additional="text" order="90" notosm="true"/>
+		<type tag="piste_nordic_green" minzoom="14" additional="text" order="90" notosm="true"/>
+		<type tag="piste_nordic_lightgreen" minzoom="14" additional="text" order="90" notosm="true"/>
+		<type tag="piste_nordic_blue" minzoom="14" additional="text" order="90" notosm="true"/>
+		<type tag="piste_nordic_lightblue" minzoom="14" additional="text" order="90" notosm="true"/>
+		<type tag="piste_nordic_purple" minzoom="14" additional="text" order="90" notosm="true"/>
+		<type tag="piste_nordic_gray" minzoom="14" additional="text" order="90" notosm="true"/>
+		<type tag="piste_nordic_black" minzoom="14" additional="text" order="90" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="nordic" if_tag1="color_red" to_tag1="piste:type" to_value1="nordic" to_tag2="piste_nordic_red" to_value2="." apply_to="way,relation"/>
 		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="nordic" if_tag1="color_brown" to_tag1="piste:type" to_value1="nordic" to_tag2="piste_nordic_brown" to_value2="." apply_to="way,relation"/>
 		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="nordic" if_tag1="color_orange" to_tag1="piste:type" to_value1="nordic" to_tag2="piste_nordic_orange" to_value2="." apply_to="way,relation"/>
@@ -2028,37 +2037,39 @@
 		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="nordic" if_tag1="color_gray" to_tag1="piste:type" to_value1="nordic" to_tag2="piste_nordic_gray" to_value2="." apply_to="way,relation"/>
 		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="nordic" if_tag1="color_black" to_tag1="piste:type" to_value1="nordic" to_tag2="piste_nordic_black" to_value2="." apply_to="way,relation"/>
 
-		<type tag="piste:type" value="downhill" minzoom="9" nameTags="piste:name,piste:ref" relation="true"/>
+		<type tag="piste:type" value="downhill" minzoom="9"/>
 		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="downhill" to_tag1="piste:type" to_value1="downhill" to_tag2="piste:oneway" to_value2="yes"/>
-		<type tag="piste:type" value="nordic" minzoom="9" nameTags="piste:name,piste:ref" relation="true"/>
-		<type tag="piste:type" value="skitour" minzoom="9" nameTags="piste:name" relation="true"/>
+		<type tag="piste:type" value="nordic" minzoom="9" />
+		<type tag="piste:type" value="skitour" minzoom="9"/>
 		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="skitour" to_tag1="piste:type" to_value1="skitour" to_tag2="piste:grooming" to_value2="backcountry"/>
-		<type tag="piste:type" value="hike" minzoom="9" nameTags="piste:name" relation="true"/>
-		<type tag="piste:type" value="sleigh" minzoom="9" nameTags="piste:name,piste:ref" relation="true"/>
-		<type tag="piste:type" value="sled" minzoom="9" nameTags="piste:name,piste:ref" relation="true"/>
+		<type tag="piste:type" value="hike" minzoom="9" />
+		<type tag="piste:type" value="sleigh" minzoom="9"/>
+		<type tag="piste:type" value="sled" minzoom="9" />
 		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="sled" to_tag1="piste:type" to_value1="sled" to_tag2="piste:oneway" to_value2="yes"/>
-		<type tag="piste:type" value="snow_park" minzoom="9" nameTags="piste:name" relation="true"/>
-		<type tag="piste:type" value="playground" minzoom="9" nameTags="piste:name" relation="true"/>
-		<type tag="piste:type" value="ice_skate" minzoom="9" nameTags="piste:name" relation="true"/>
-		<type tag="piste:type" value="connection" minzoom="9" nameTags="piste:name,piste:ref" relation="true"/>
-		<type tag="piste:difficulty" value="novice" minzoom="9" additional="true" relation="true"/>
-		<type tag="piste:difficulty" value="easy" minzoom="9" additional="true" relation="true"/>
-		<type tag="piste:difficulty" value="intermediate" minzoom="9" additional="true" relation="true"/>
-		<type tag="piste:difficulty" value="advanced" minzoom="9" additional="true" relation="true"/>
-		<type tag="piste:difficulty" value="expert" minzoom="9" additional="true" relation="true"/>
-		<type tag="piste:difficulty" value="freeride" minzoom="9" additional="true" relation="true"/>
-		<type tag="piste:difficulty" value="extreme" minzoom="9" additional="true" relation="true"/>
+		<type tag="piste:type" value="snow_park" minzoom="9" />
+		<type tag="piste:type" value="playground" minzoom="9" />
+		<type tag="piste:type" value="ice_skate" minzoom="9" />
+		<type tag="piste:type" value="connection" minzoom="9" />
+		<type tag="piste:oneway" value="yes" minzoom="9" additional="true" />
+		<type tag="piste:oneway" value="no" minzoom="9" additional="true" />
+		<type tag="piste:difficulty" value="novice" minzoom="9" additional="true" />
+		<type tag="piste:difficulty" value="easy" minzoom="9" additional="true" />
+		<type tag="piste:difficulty" value="intermediate" minzoom="9" additional="true" />
+		<type tag="piste:difficulty" value="advanced" minzoom="9" additional="true" />
+		<type tag="piste:difficulty" value="expert" minzoom="9" additional="true" />
+		<type tag="piste:difficulty" value="freeride" minzoom="9" additional="true" />
+		<type tag="piste:difficulty" value="extreme" minzoom="9" additional="true" />
 		<entity_convert pattern="tag_transform" from_tag="piste:difficulty" if_not_tag1="piste:type" to_tag1="piste:difficulty" to_tag2="piste:type" to_value2="hike"/>
-		<type tag="piste:abandoned" value="yes" minzoom="11" additional="true" relation="true"/>
-		<type tag="piste:grooming" value="classic" minzoom="13" additional="true" relation="true"/>
-		<type tag="piste:grooming" value="classic+skating" minzoom="13" additional="true" relation="true"/>
+		<type tag="piste:abandoned" value="yes" minzoom="11" additional="true" />
+		<type tag="piste:grooming" value="classic" minzoom="13" additional="true" />
+		<type tag="piste:grooming" value="classic+skating" minzoom="13" additional="true" />
 		<entity_convert pattern="tag_transform" from_tag="piste:grooming" from_value="classic;skating" to_tag1="piste:grooming" to_value1="classic+skating"/>
 		<entity_convert pattern="tag_transform" from_tag="piste:grooming" from_value="no" to_tag1="piste:grooming" to_value1="backcountry"/>
-		<type tag="piste:grooming" value="classic+skating" minzoom="13" additional="true" relation="true"/>
-		<type tag="piste:grooming" value="backcountry" minzoom="13" additional="true" relation="true"/>
-		<type tag="piste:grooming" value="scooter" minzoom="13" additional="true" relation="true"/>
-		<type tag="piste:grooming" value="skating" minzoom="13" additional="true" relation="true"/>
-		<type tag="piste:grooming" value="mogul" minzoom="13" additional="true" relation="true"/>
+		<type tag="piste:grooming" value="classic+skating" minzoom="13" additional="true" />
+		<type tag="piste:grooming" value="backcountry" minzoom="13" additional="true" />
+		<type tag="piste:grooming" value="scooter" minzoom="13" additional="true" />
+		<type tag="piste:grooming" value="skating" minzoom="13" additional="true" />
+		<type tag="piste:grooming" value="mogul" minzoom="13" additional="true" />
 		<entity_convert pattern="tag_transform" from_tag="highway" if_tag1="ski" if_value1="designated" if_not_tag2="piste:type" to_tag1="highway" to_tag2="piste:type" to_value2="hike"/>
 		<entity_convert pattern="tag_transform" from_tag="highway" if_tag1="ski" if_value1="downhill" if_not_tag2="piste:type" to_tag1="highway" to_tag2="piste:type" to_value2="downhill"/>
 		<entity_convert pattern="tag_transform" from_tag="highway" if_tag1="ski" if_value1="nordic" if_not_tag2="piste:type" to_tag1="highway" to_tag2="piste:type" to_value2="nordic"/>
