@@ -1718,21 +1718,23 @@
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="lwn" if_tag1="network:type" if_value1="node_network" to_tag1="node_network" apply_to="relation"/>
 
 
+		<type tag="network_iwn" minzoom="12" additional="true" relation="true"/>
+		<type tag="network_nwn" minzoom="12" additional="true" relation="true"/>
+		<type tag="network_rwn" minzoom="12" additional="true" relation="true"/>
+		<type tag="network_lwn" minzoom="12" additional="true" relation="true"/>
+		<!-- Convert network=*wn to -> network_*wn=*wn (not node network) -->
+		<entity_convert pattern="tag_transform" from_tag="network" from_value="iwn" if_tag1="route" if_value1="hiking" to_tag1="network_iwn" to_tag2="network" apply_to="relation"/>
+		<entity_convert pattern="tag_transform" from_tag="network" from_value="nwn" if_tag1="route" if_value1="hiking" to_tag1="network_nwn" to_tag2="network" apply_to="relation"/>
+		<entity_convert pattern="tag_transform" from_tag="network" from_value="rwn" if_tag1="route" if_value1="hiking" to_tag1="network_rwn" to_tag2="network" apply_to="relation"/>
+		<entity_convert pattern="tag_transform" from_tag="network" from_value="lwn" if_tag1="route" if_value1="hiking" to_tag1="network_lwn" to_tag2="network" apply_to="relation"/>
+
+
 		<!-- 3.8: START backward compatibility -->
-		<type tag="network_iwn" minzoom="12" />
-		<type tag="network_nwn" minzoom="12" />
-		<type tag="network_rwn" minzoom="12" />
-		<type tag="network_lwn" minzoom="12" />
 		<type tag="node_network_iwn" value="iwn" minzoom="11" additional="true" />
 		<type tag="node_network_lwn" value="lwn" minzoom="11" additional="true" />
 		<type tag="node_network_nwn" value="nwn" minzoom="11" additional="true" />
 		<type tag="node_network_rwn" value="rwn" minzoom="11" additional="true" />		
-		<!-- Convert network=*wn to -> network_*wn=*wn (not node network) -->
-		<entity_convert pattern="tag_transform" from_tag="hiking_network" from_value="iwn" to_tag1="network_iwn" to_tag2="hiking_network"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_network" from_value="nwn" to_tag1="network_nwn" to_tag2="hiking_network"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_network" from_value="rwn" to_tag1="network_rwn" to_tag2="hiking_network"/>
-		<entity_convert pattern="tag_transform" from_tag="hiking_network" from_value="lwn" to_tag1="network_lwn" to_tag2="hiking_network"/>
-
+		
 		<entity_convert pattern="tag_transform" from_tag="hiking_node_network" from_value="iwn" to_tag1="node_network_iwn" to_tag2="hiking_node_network"/>
 		<entity_convert pattern="tag_transform" from_tag="hiking_node_network" from_value="nwn" to_tag1="node_network_nwn" to_tag2="hiking_node_network"/>
 		<entity_convert pattern="tag_transform" from_tag="hiking_node_network" from_value="rwn" to_tag1="node_network_rwn" to_tag2="hiking_node_network"/>
@@ -1742,7 +1744,8 @@
 
 		<type tag="route" value="hiking" relationGroupSort="network=iwn,nwn,rwn,lwn" 
 				nameTags="ref,name" namePrefix="hiking_route_"
-				additionalTags="node_network,network,osmc_foreground,osmc_foreground2,osmc_background,osmc_waycolor" additionalPrefix="hiking_"
+				additionalTags="node_network,network,osmc_foreground,osmc_foreground2,osmc_background,osmc_waycolor" 
+				additionalPrefix="hiking_"
 				relationGroupAdditionalTags="node_network,network,osmc_foreground,osmc_foreground2,osmc_background,osmc_waycolor" 
 				relationGroupNameTags="osmc_stub_name,ref,name"
 				minzoom="11" relation="true" notosm="true"/> 
