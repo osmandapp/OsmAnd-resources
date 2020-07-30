@@ -1051,8 +1051,6 @@
 				
 				<case tag="abandoned:railway" value="station"/>
 				<case tag="route_hiking" value="" order="-1"/>
-				<case tag="route_foot" value="" order="-1"/>
-				<case tag="route_walking" value="" order="-1"/>
 			</switch>
 
 
@@ -1437,11 +1435,7 @@
 					<apply_if contourDensity="low" additional="contourtype=20m" order="-1"/>
 				</case>
 				<case tag="lit" value="" order="12"/>
-				<switch hikingRoutesOSMC="walkingRoutesScopeOSMC" order="99">
-					<case tag="route_hiking" value=""/>
-					<case tag="route_foot" value=""/>
-					<case tag="route_walking" value=""/>
-				</switch>
+				<case hikingRoutesOSMC="walkingRoutesScopeOSMC" tag="route_hiking" value="" order="99"/>
 			</switch>
 			<switch>
 				<case tag="lcn_ref" value="" order="197"/>
@@ -1548,16 +1542,9 @@
 				<switch minzoom="12" textMinDistance="101" textOnPath="false" textOrder="43">
 					<switch minzoom="12" textOrder="44">
 						<case tag="route_hiking" value="" nameTag="hiking_osmc_text" nameTag2="hiking_route_ref" textSize="13"/>
-						<case tag="route_foot" value="" nameTag="hiking_osmc_text" nameTag2="foot_route_ref" textSize="13"/>
-						<case tag="route_walking" value="" nameTag="hiking_osmc_text" nameTag2="walking_route_ref" textSize="13"/>
 						<case tag="route_hiking" value="" nameTag="hiking_route_ref" textSize="13"/>
-						<case tag="route_foot" value="" nameTag="foot_route_ref" textSize="13"/>
-						<case tag="route_walking" value="" nameTag="walking_route_ref" textSize="13"/>
 						<case tag="route_horse" value="" nameTag="horse_route_ref" textSize="13"/>
 						<case tag="route_piste" value="" nameTag="" textSize="13"/>
-<!--						<case minzoom="17" tag="route_hiking" value="" nameTag="hiking_route_name" textOrder="10"/>
-						<case minzoom="17" tag="route_foot" value="" nameTag="foot_route_name" textOrder="10"/>
-						<case minzoom="17" tag="route_walking" value="" nameTag="walking_route_name" textOrder="10"/>-->
 						<case minzoom="13" tag="route_horse" value="" nameTag="horse_route_name" textOrder="8"/>
 						<apply>
 							<switch>
@@ -1606,16 +1593,8 @@
 				</switch>
 				<!-- Hiking routes -->
 				<switch minzoom="12" textMinDistance="101" textOnPath="false" textSize="12" textOrder="43">
-					<switch hikingRoutesOSMC="walkingRoutesOSMC">
-						<case minzoom="12" tag="route_hiking" value="" nameTag="osmc_stub_name"/>
-						<case minzoom="12" tag="route_foot" value="" nameTag="osmc_stub_name"/>
-						<case minzoom="12" tag="route_walking" value="" nameTag="osmc_stub_name"/>
-					</switch>
-					<switch hikingRoutesOSMC="walkingRoutesScopeOSMC">
-						<case minzoom="12" tag="route_hiking" value="" nameTag="osmc_stub_name"/>
-						<case minzoom="12" tag="route_foot" value="" nameTag="osmc_stub_name"/>
-						<case minzoom="12" tag="route_walking" value="" nameTag="osmc_stub_name"/>
-					</switch>
+					<case hikingRoutesOSMC="walkingRoutesOSMC" minzoom="12" tag="route_hiking" value="" nameTag="osmc_stub_name"/>
+					<case hikingRoutesOSMC="walkingRoutesScopeOSMC" minzoom="12" tag="route_hiking" value="" nameTag="osmc_stub_name"/>
 					<apply>
 						<switch>
 							<case additional="hiking_osmc_background=black" textShield="osmc_black_bg"/>
@@ -1916,7 +1895,7 @@
 				</switch>
 				<!-- Other routes -->
 				<switch minzoom="12" textMinDistance="101" textOnPath="false" textSize="12" textOrder="43">
-					<case showCycleRoutes="true" tag="route_bicycle" value=""/>
+					<case showCycleRoutes="true" tag="route_bicycle" value="" nameTag="osmc_stub_name"/>
 					<case minzoom="12" tag="piste:type" value="" additional="route=piste" nameTag="osmc_stub_name"/>
 					<case horseRoutes="true" minzoom="12" tag="route_horse" value="" nameTag="osmc_stub_name"/>
 					<apply>
@@ -2278,8 +2257,7 @@
 			</apply_if>
 		</switch>
 		<switch minzoom="15" nameTag="" textOnPath="true">
-			<case tag="highway" value="footway" textOrder="190" textColor="#000000">
-			</case>
+			<case tag="highway" value="footway" textOrder="190" textColor="#000000"/>
 			<case tag="area:highway" value="footway" textOrder="191" textColor="$pedestrianTextColor" textHaloColor="$pedestrianRoadColor"/>
 			<apply>
 				<case maxzoom="15" textSize="13"/>
@@ -3106,21 +3084,8 @@
 				<!-- routes -->
 				<case tag="route_bicycle" value="" nameTag="bicycle_ref" textOrder="43" textColor="$cycleRouteTextColor"/>
 				<!-- <case tag="route_bicycle" value="" nameTag="bicycle_name" textOrder="43" textColor="$cycleRouteTextColor"/>-->
-				<case tag="route_bicycle" value="" nameTag="mtb:name" textOrder="43" textColor="$cycleRouteTextColor"/>
-				<case tag="route_mtb" value="" nameTag="mtb_ref" nameTag2="mtb:name" textOrder="43" textColor="$mtbRouteTextColor"/>
-				<case tag="route_mtb" value="" nameTag="mtb:name" textOrder="43" textColor="$mtbRouteTextColor"/>
-				<apply_if legend="false">
-					<switch>
-						<case showCycleRoutes="true"/>
-						<case showCycleNodeNetworkRoutes="true"/>
-						<apply>
-							<case additional="network=lcn" nameTag="lcn_ref" textOnPath="false" textOrder="9"/>
-							<case additional="network=rcn" nameTag="rcn_ref" textOnPath="false" textOrder="8"/>
-							<case additional="network=ncn" nameTag="ncn_ref" textOnPath="false" textOrder="7"/>
-							<case additional="network=icn" nameTag="icn_ref" textOnPath="false" textOrder="7"/>
-						</apply>
-					</switch>
-				</apply_if>
+				<case tag="route_mtb" value="" nameTag="bicycle_ref" nameTag2="mtb:name" textOrder="43" textColor="$mtbRouteTextColor"/>
+				<case tag="route_mtb" value="" nameTag="bicycle_mtb:name" textOrder="43" textColor="$mtbRouteTextColor"/>
 				<apply>
 					<case maxzoom="12" textSize="14"/>
 					<case maxzoom="15" textSize="16"/>
@@ -5658,16 +5623,8 @@
 
 		<switch>
 			<switch>
-				<switch hikingRoutesOSMC="walkingRoutesOSMC" minzoom="12" color="$osmcDefaultColor">
-					<case tag="route_hiking" value=""/>
-					<case tag="route_foot" value=""/>
-					<case tag="route_walking" value=""/>
-				</switch>
-				<switch hikingRoutesOSMC="walkingRoutesOSMCNodes" minzoom="12">
-					<case tag="route_hiking" value=""/>
-					<case tag="route_foot" value=""/>
-					<case tag="route_walking" value=""/>
-				</switch>
+				<case tag="route_hiking" value="" hikingRoutesOSMC="walkingRoutesOSMC" minzoom="12" color="$osmcDefaultColor"/>
+				<case tag="route_hiking" value="" hikingRoutesOSMC="walkingRoutesOSMCNodes" minzoom="12"/>
 				<apply_if hikingRoutesOSMC="walkingRoutesOSMC">
 					<case additional="hiking_osmc_waycolor=black" color="$osmcBlackColor"/>
 					<case additional="hiking_osmc_waycolor=blue" color="$osmcBlueColor"/>
@@ -5746,8 +5703,6 @@
 		</switch>
 		<switch hikingRoutesOSMC="walkingRoutesScopeOSMC" color="#77ae27b3">
 			<case tag="route_hiking" value=""/>
-			<case tag="route_foot" value=""/>
-			<case tag="route_walking" value=""/>
 			<apply_if maxzoom="13" strokeWidth="1.5"/>
 			<apply_if minzoom="14" maxzoom="14" strokeWidth="2.8"/>
 			<apply_if minzoom="15" maxzoom="16" strokeWidth="3.5"/>
