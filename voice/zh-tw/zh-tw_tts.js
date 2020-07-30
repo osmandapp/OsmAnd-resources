@@ -93,7 +93,7 @@ function populateDictionary(tts) {
 	dictionary["speed_camera"] = tts ? "測速照相" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "邊境管制" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "鐵路平交道" : "railroad_crossing.ogg";
-	dictionary["traffic_calming"] = tts ? "交通寧靜區" : "traffic_calming.ogg";
+	dictionary["traffic_calming"] = tts ? "減速丘" : "traffic_calming.ogg";
 	dictionary["toll_booth"] = tts ? "收費站" : "toll_booth.ogg";
 	dictionary["stop"] = tts ? "停止標誌" : "stop.ogg";
 	dictionary["pedestrian_crosswalk"] = tts ? "人行穿越道" : "pedestrian_crosswalk.ogg";
