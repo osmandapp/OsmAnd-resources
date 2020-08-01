@@ -94,20 +94,20 @@ function populateDictionary(tts) {
 	//dictionary["exceed_limit"] = tts ? "لقد تجاوزت الحد الأقصى للسرعة " : "exceed_limit.ogg";
 	dictionary["exceed_limit"] = tts ? "الحدُّ الأقصى للسرعة" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "انتباه،" : "attention.ogg";
-	dictionary["speed_camera"] = tts ? "هُنَاكَ رادارٌ لِمُرَاقَبَةِ السُّرْعَة" : "speed_camera.ogg";
-	dictionary["border_control"] = tts ? "هُنَاكَ نُقْطَةٌ لِمُراقَبَةِ الحُدود" : "border_control.ogg";
-	dictionary["railroad_crossing"] = tts ? "نقطة لعبور القطارات" : "railroad_crossing.ogg";
-	dictionary["traffic_calming"] = tts ? "مُمَهِّلْ" : "traffic_calming.ogg";
-	dictionary["toll_booth"] = tts ? "رَسْمُ مُرورٍ لِلطُّرُقِ" : "toll_booth.ogg";
+	dictionary["speed_camera"] = tts ? "مُرَاقَبَةُ السُّرْعَة" : "speed_camera.ogg";
+	dictionary["border_control"] = tts ? "مُراقَبَةُ الحُدود" : "border_control.ogg";
+	dictionary["railroad_crossing"] = tts ? "تَقَاطُعُ الشِّكّةِ الحَدِيدِيَّة" : "railroad_crossing.ogg";
+	dictionary["traffic_calming"] = tts ? "تَهدِئةُ حَرَكةِ المُرُور" : "traffic_calming.ogg";
+	dictionary["toll_booth"] = tts ? "نُقْطةُ تَحْصِيلِ الرُّسُوم" : "toll_booth.ogg";
 	dictionary["stop"] = tts ? "لاَفِتَةُ تَوَقُّفْ" : "stop.ogg";
-	dictionary["pedestrian_crosswalk"] = tts ? "مَمَرٌّ لِلرَّاجِلِين" : "pedestrian_crosswalk.ogg";
+	dictionary["pedestrian_crosswalk"] = tts ? "مَعْبَر مُشاة" : "pedestrian_crosswalk.ogg";
 	dictionary["tunnel"] = tts ? "نفق" : "tunnel.ogg";
 
 	// OTHER PROMPTS
 	dictionary["location_lost"] = tts ? "إشارَةُ الجي بي أَس فُقِدَتْ" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "تَعافَتْ إشارَةُ الجي بي أَسْ" : "location_recovered.ogg";
 	dictionary["off_route"] = tts ? "لَقَدْ إِنْحَرَفْتَ عَنِ المَسَارِ بِـ" : "off_route.ogg";
-	dictionary["back_on_route"] = tts ? "لقد عُدْتَ إِلى الطريقِ من جديد" : "back_on_route.ogg";
+	dictionary["back_on_route"] = tts ? "لقد عُدْتَ إِلى الطريقِ" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
 	dictionary["onto"] = tts ? "على" : "onto.ogg";
