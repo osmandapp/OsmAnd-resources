@@ -3111,7 +3111,17 @@
 				</apply>
 				<apply textOnPath="true"/>
 			</switch>
-			<switch minzoom="11" legend="false" textBold="true" textHaloRadius="4">
+			<switch minzoom="11" legend="false" textBold="true">
+				<!-- old way to display -->
+				<case showCycleRoutes="true" tag="multiple_node_networks" value="true" nameTag="lcn_ref_value" textOrder="37"/>
+				<case showCycleNodeNetworkRoutes="true" tag="multiple_node_networks" value="true" nameTag="lcn_ref_value" textOrder="37"/>
+				<case showCycleRoutes="true" tag="multiple_node_networks" value="true" nameTag="rcn_ref_value" textOrder="38"/>
+				<case showCycleNodeNetworkRoutes="true" tag="multiple_node_networks" value="true" nameTag="rcn_ref_value" textOrder="38"/>
+				<case showCycleRoutes="true" tag="multiple_node_networks" value="true" nameTag="ncn_ref_value" textOrder="39"/>
+				<case showCycleNodeNetworkRoutes="true" tag="multiple_node_networks" value="true" nameTag="ncn_ref_value" textOrder="39"/>
+				<case showCycleRoutes="true" tag="multiple_node_networks" value="true" nameTag="icn_ref_value" textOrder="39"/>
+				<case showCycleNodeNetworkRoutes="true" tag="multiple_node_networks" value="true" nameTag="icn_ref_value" textOrder="39"/>
+
 				<case showCycleRoutes="true" tag="node_network_point" value="lcn" nameTag="lcn_ref" textOrder="37"/>
 				<case showCycleNodeNetworkRoutes="true" tag="node_network_point" value="lcn" nameTag="lcn_ref" textOrder="37"/>
 				<case showCycleRoutes="true" tag="node_network_point" value="multiple" nameTag="lcn_ref" textOrder="37"/>
@@ -3129,11 +3139,34 @@
 				<case showCycleRoutes="true" tag="node_network_point" value="multiple" nameTag="icn_ref" textOrder="39"/>
 				<case showCycleNodeNetworkRoutes="true" tag="node_network_point" value="multiple" nameTag="icn_ref" textOrder="39"/>
 
-				<apply_if minzoom="11" maxzoom="12" textSize="10"/>
-				<apply_if minzoom="13" maxzoom="13" textSize="12"/>
-				<apply_if minzoom="14" maxzoom="15" textSize="14"/>
-				<apply_if minzoom="16" maxzoom="17" textSize="17"/>
-				<apply_if minzoom="18" textSize="21"/>
+				<apply_if minzoom="11" maxzoom="12" textSize="10">
+					<apply_if textLength="3" textSize="8"/>
+				</apply_if>
+				<apply_if minzoom="13" maxzoom="13" textSize="12">
+					<apply_if textLength="3" textSize="10"/>
+				</apply_if>
+				<apply_if minzoom="14" maxzoom="15" textSize="14">
+					<apply_if textLength="3" textSize="11"/>
+				</apply_if>
+				<apply_if minzoom="16" maxzoom="17" textSize="17">
+					<apply_if textLength="3" textSize="15"/>
+				</apply_if>
+				<apply_if minzoom="18" textSize="21">
+					<apply_if textLength="3" textSize="18"/>
+				</apply_if>
+
+				<apply>
+					<switch>
+						<case textLength="1"/>
+						<case textLength="2"/>
+						<case textLength="3"/>
+						<apply_if minzoom="11" maxzoom="12" textShield="purple_circle_small_cycle_node_shield"/>
+						<apply_if minzoom="13" maxzoom="13" textShield="purple_circle_medium_cycle_node_shield"/>
+						<apply_if minzoom="14" maxzoom="15" textShield="purple_circle_large_cycle_node_shield"/>
+						<apply_if minzoom="16" maxzoom="17" textShield="purple_circle_xlarge_cycle_node_shield"/>
+						<apply_if minzoom="18" textShield="purple_circle_xxlarge_cycle_node_shield"/>
+					</switch>
+				</apply>
 				<apply_if textColor="$cycleRouteTextColor"/>
 				<apply_if engine_v1="true" textDy="2"/>
 			</switch>
