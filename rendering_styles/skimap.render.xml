@@ -815,8 +815,17 @@
 				</switch>
 				<case additional="piste:difficulty=extreme" textHaloColor="$pisteDifficultyExtremeColor"/>
 			</apply>
-			<apply_if pisteRoutes="true" additional="route=piste" textColor="#ffffff" textHaloColor="$pisteRouteColor" nameTag2="ref"/>
 			<apply_if legend="true" textOnPath="true"/>
+		</switch>
+
+		<switch pisteRoutes="true" seq="1:10">
+			<case tag="route_piste" value="" nameTag="route_piste_#SEQ_piste:name" nameTag2="route_piste_#SEQ_piste:ref" textSize="13"/>
+			<case tag="route_piste" value="" nameTag="route_piste_#SEQ_piste:ref" textSize="13"/>
+			<apply textColor="#ffffff" textHaloColor="$pisteRouteColor" textHaloRadius="1"/>
+		</switch>
+
+		<switch minzoom="12" textMinDistance="101" textOnPath="true" textSize="12" textColor="#00ffffff" textOrder="43" seq="1:10">
+			<case tag="route_piste" value="" nameTag="route_piste_#SEQ_osmc_stub_name" textShield="osmc_?route_piste_#SEQ_osmc_background?_bg" icon="osmc_?route_piste_#SEQ_osmc_foreground?"/>
 		</switch>
 
 		<switch minzoom="10" maxzoom="13">
@@ -988,15 +997,6 @@
 					<case maxzoom="16" strokeWidth="7:7"/>
 					<case minzoom="17" strokeWidth="10:10"/>
 				</apply>
-				<apply_if pisteRoutes="true" additional="route=piste">
-					<case maxzoom="10" strokeWidth__1="1:1" strokeWidth__2="3:3"/>
-					<case maxzoom="11" strokeWidth__1="2:2" strokeWidth__2="4:4"/>
-					<case maxzoom="13" strokeWidth__1="3:3" strokeWidth__2="6:6"/>
-					<case maxzoom="14" strokeWidth__1="4:4" strokeWidth__2="8:8"/>
-					<case maxzoom="15" strokeWidth__1="5:5" strokeWidth__2="9:9"/>
-					<case maxzoom="16" strokeWidth__1="7:7" strokeWidth__2="13:13"/>
-					<case minzoom="17" strokeWidth__1="10:10" strokeWidth__2="16:16"/>
-				</apply_if>
 			</switch>
 			<switch>
 				<switch>
@@ -1043,14 +1043,6 @@
 						<case minzoom="17" strokeWidth="4.5:4.5"/>
 					</apply>
 				</switch>
-				<apply_if pisteRoutes="true" additional="route=piste">
-					<case maxzoom="11" strokeWidth__1="1:1" strokeWidth__2="2:2"/>
-					<case maxzoom="12" strokeWidth__1="1:1" strokeWidth__2="2.5:2.5"/>
-					<case maxzoom="13" strokeWidth__1="1:1" strokeWidth__2="2.7:2.7"/>
-					<case maxzoom="14" strokeWidth__1="2.5:2.5" strokeWidth__2="5:5"/>
-					<case maxzoom="16" strokeWidth__1="3.5:3.5" strokeWidth__2="6.5:6.5"/>
-					<case minzoom="17" strokeWidth__1="4.5:4.5" strokeWidth__2="9:9"/>
-				</apply_if>
 			</switch>
 			<case tag="piste:type" value="snow_park"/>
 			<apply>
@@ -1083,10 +1075,6 @@
 				<case maxzoom="16" pathEffect="1_45"/>
 				<case minzoom="17" pathEffect="1_65"/>
 			</apply_if>
-			<apply color="$pisteDefaultColor" color__2="$pisteRouteColor" onewayArrowsColor="$pisteOnewayArrowsColor"/>
-			<apply color__1="#ffffff"> <!-- Piste route substrate -->
-				<apply_if nightMode="true" color__1="#000000"/>
-			</apply>
 			<apply>
 				<switch>
 					<case additional="piste:difficulty=novice" color="$pisteDifficultyNoviceColor" color_2="$pisteGroomingNoviceColor" color_3="$pisteGroomingNoviceColor"/>
@@ -1132,6 +1120,22 @@
 					</apply>
 				</switch>
 			</apply>
+		</switch>
+
+		<switch pisteRoutes="true">
+			<case tag="route_piste" value="" minzoom="11"/>
+				<apply>
+					<case maxzoom="11" strokeWidth="2:2"/>
+					<case maxzoom="12" strokeWidth="2.5:2.5"/>
+					<case maxzoom="13" strokeWidth="2.7:2.7"/>
+					<case maxzoom="14" strokeWidth="5:5"/>
+					<case maxzoom="16" strokeWidth="6.5:6.5"/>
+					<case minzoom="17" strokeWidth="9:9"/>
+				</apply>
+				<apply color="$pisteRouteColor" onewayArrowsColor="$pisteOnewayArrowsColor"/> <!--color="$pisteDefaultColor" -->
+			<!--<apply color__1="#ffffff">--> <!-- Piste route substrate -->
+<!--				<apply_if nightMode="true" color__1="#000000"/>
+			</apply>-->
 		</switch>
 
 
