@@ -397,6 +397,7 @@
 		<parameter id="height" name="Height" description="Maximum vehicle height to be permitted on the route" type="numeric" values="0,1.49,1.99,2.49,2.99,3.49,3.99,4.49,4.99,5.49,5.99,6.49,6.99,7.49" valueDescriptions="-,1.5m,2m,2.5m,3m,3.5m,4m,4.5m,5m,5.5m,6m,6.5m,7m,7.5m"/>
 		<parameter id="length" name="Length" description="Maximum vehicle length to be permitted on the route" type="numeric" values="0,4.99,5.99,6.49,6.99,7.99,8.99,9.49,9.99,10.99,11.99" valueDescriptions="-,5m,6m,6.5m,7m,8m,9m,9.5m,10m,11m,12m"/>
 		<parameter id="width" name="Width" description="Maximum vehicle width to be permitted on the route" type="numeric" values="0,1.49,1.99,2.29,2.49,2.99" valueDescriptions="-,1.5m,2m,2.3m,2.5m,3m"/>
+		<parameter id="use_ferry" name="Use more ferries" description="Use ferries if possible to cross water bodies" type="boolean" default="false"/>
 
 		<way attribute="access">
 			<select value="-1" t="osmand_change" v="delete"/>
@@ -581,7 +582,7 @@
 			<select value="230" t="highway" v="service"/>
 			<select value="200"/>
 			
-			<!--
+			
 			<select value="" t="highway" v="road"/>
 			<select value="" t="highway" v="residential"/>
 			<select value="" t="highway" v="track"/>
@@ -589,7 +590,10 @@
 			<select value="" t="highway" v="service"/>
 			
 			<select value="" t="highway" v="living_street"/>
-			<select value="" t="route" v="ferry"/>-->
+			<if param="use_ferry"> 
+				<select value="50" t="route" v="ferry"/> <!--for testing-->	
+			</if>
+			
 		</way>
 
 		<way attribute="speed" type="speed">
@@ -636,7 +640,10 @@
 
 			<select value="30" t="highway" v="service"/>
 			<select value="25" t="highway" v="living_street"/>
-			<select value="15" t="route" v="ferry"/>
+			
+			<if param="use_ferry">
+				<select value="40" t="route" v="ferry"/>	<!--for testing-->
+			</if>
 			<select value="60" t="route" v="shuttle_train"/>
 
 		</way>
@@ -749,6 +756,10 @@
 			<select value="0.5" t="highway" v="service"/>
 			<select value="0.5" t="highway" v="living_street"/>
 			<select value="1" t="route" v="ferry"/>
+			<if param="use_ferry">
+				<select value="1.2" t="route" v="ferry"/>   <!--for testing-->
+			</if>
+			
 			<select value="1" t="route" v="shuttle_train"/>
 
 			<select value="0.7"/>
@@ -913,7 +924,7 @@
 		<parameter id="allow_private" name="Allow private access" description="Allow access to private areas" type="boolean"/>
 		<parameter id="avoid_sett" name="Avoid sett and cobblestone" description="Tries to avoid streets and paths which are paved with sett and cobblestone." type="boolean" default="false"/>
 		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean" default="false"/>
-
+		<parameter id="use_ferry" name="Use more ferries" description="Use ferries if possible to cross water bodies" type="boolean" default="false"/>
 		<way attribute="access">
 			<select value="-1" t="osmand_change" v="delete"/>
 			<select value="-1" t="highway" v="proposed"/>
@@ -1034,7 +1045,10 @@
 
 		<way attribute="speed" type="speed">
 			<select value="1.3" t="highway" v="steps"/>
-			<select value="3" t="route"   v="ferry"/>
+			<select value="3" t="route" v="ferry"/>
+			<if param="use_ferry">
+				<select value="10" t="route" v="ferry"/>
+			</if>
 			<select value="6" t="bicycle" v="dismount"/>
 			<if param="driving_style_speed">
 				<select value="19" t="highway" v="motorway"/>
@@ -1222,7 +1236,9 @@
 			<select value="0.3" t="indoor" v="yes"/>
 			<select value="0.1" t="barrier" v="debris"/>
 			<select value="0.1" t="bicycle" v="use_sidepath"/>
-
+			<if param="use_ferry">
+				<select value="1.2" t="route" v="ferry"/>				
+			</if>
 			<if param="avoid_unpaved">
 				<select value="0.3" t="osmand_highway_integrity_brouting" v="3"/>
 				<select value="0.28" t="osmand_highway_integrity_brouting" v="4"/>
@@ -1513,7 +1529,6 @@
 			<select value="13" t="highway" v="traffic_signals"/>
 			<select value="55"  t="highway" v="steps"/>
 			<select value="15"  t="bicycle" v="dismount"/>
-			<select value="240" t="route" v="ferry"/>
 			<select value="200" t="ford" v="yes"/>
 
 			<!-- ignore bicycle=no on highway=crossing -->
@@ -1593,7 +1608,7 @@
 		<parameter id="avoid_unpaved" name="Avoid unpaved roads" description="Avoid unpaved roads" type="boolean"/>
 		<parameter id="allow_private" name="Allow private access" description="Allow access to private areas" type="boolean"/>
 		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean" default="true"/>
-
+		<parameter id="use_ferry" name="Use more ferries" description="Use ferries if possible to cross water bodies" type="boolean" default="false"/>
 		<way attribute="area">
 			<select value="1"  t="railway" v="platform"/>
 			<select value="1"  t="public_transport" v="platform"/>
@@ -1738,6 +1753,9 @@
 			<select value="0.9" t="highway" v="tertiary"/>
 			<select value="0.9" t="highway" v="tertiary_link"/>
 			<select value="1"   t="route"   v="ferry"/>
+			<if param="use_ferry">
+				<select value="1.3"   t="route"   v="ferry"/>
+			</if>
 			<select value="1.1" t="highway" v="residential"/>
 			<if param="avoid_unpaved">
 				<select value="0.4" t="tracktype" v="grade2"/>
@@ -2094,8 +2112,8 @@
 		</point>
 	</routingProfile>
 
-	<!-- max default speed is max speed for any transport, min speed is pedestrian speed -->
-	<routingProfile name="public_transport" minDefaultSpeed="4.0" maxDefaultSpeed="95.0" baseProfile="public_transport">
+	<!-- max default speed is max speed for any transort, min speed is pedestrian speed -->
+	<routingProfile name="public_transport" minDefaultSpeed="4.0" maxDefaultSpeed="80.0" baseProfile="public_transport">
 		<!-- maximum distance to walk to find start / end public transport stop -->
 		<attribute name="walkRadius" value = "1500" />
 		<!-- maximum distance to walk to find transport stop to change transport -->
