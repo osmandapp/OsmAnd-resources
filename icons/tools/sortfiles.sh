@@ -1140,7 +1140,7 @@ icon_alias cellar_entrance poi_cellar_entrance
 icon_alias topo_cellar_entrance topo_cellar_entrance
 
 icon_alias military poi_colored_military_bunker
-icon_alias poi_beehive poi_beehive
+icon_alias beehive poi_beehive
 
 
 ## Food and Drink
