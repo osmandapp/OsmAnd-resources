@@ -1913,6 +1913,7 @@ icon_alias health_food shopping_health_food
 icon_alias pet_grooming shopping_pet_grooming
 icon_alias shop_security shopping_security
 icon_alias dive shopping_dive
+icon_alias nuts shopping_nuts
 
 ## Office
 icon_alias estate_agent office_estate_agent
