@@ -86,6 +86,7 @@ function populateDictionary(tts) {
 	dictionary["reached_poi"] = tts ? "you are passing POI" : "reached_poi.ogg";
 
 	// ATTENTION
+//dictionary["exceed_limit"] = "you are exceeding the speed limit"
 	dictionary["exceed_limit"] = tts ? "hız limiti aşıldı" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "dikkat" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "hız kamerası" : "speed_camera.ogg";
@@ -496,7 +497,7 @@ function prepare_roundabout(dist, exit, streetName) {
 // off_route(Dist) -- ["off_route", D] :- distance(Dist) -- D.
 // back_on_route -- ["back_on_route"].
 function and_arrive_destination(dest) {
-	return dest + " " dictionary["and_arrive_destination"];
+	return dest + " " + dictionary["and_arrive_destination"];
 }
 
 function and_arrive_intermediate(dest) {
@@ -525,15 +526,15 @@ function reached_waypoint(dest) {
 }
 
 function reached_intermediate(dest) {
-	return dest + " " +dictionary["reached_intermediate"];
+	return dest + " " + dictionary["reached_intermediate"];
 }
 
 function reached_favorite(dest) {
-	return dest + " " dictionary["reached_favorite"];
+	return dest + " " + dictionary["reached_favorite"];
 }
 
 function reached_poi(dest) {
-	return dest + " " dictionary["reached_poi"];
+	return dest + " " + dictionary["reached_poi"];
 }
 
 function location_lost() {
