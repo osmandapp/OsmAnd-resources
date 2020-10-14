@@ -24,14 +24,14 @@ function populateDictionary(tts) {
 	// LEFT/RIGHT
 	//dictionary["prepare"] = "Prepare to "
 	dictionary["after"] = tts ? "sonra" : "after.ogg";
-	dictionary["in"] = tts ? "in" : "in.ogg";
+	dictionary["in"] = tts ? "içinde" : "in.ogg";
 
 	dictionary["left"] = tts ? "sola dön" : "left.ogg";
 	dictionary["left_sh"] = tts ? "sola keskin dönüş" : "left_sh.ogg";
-	dictionary["left_sl"] = tts ? "hafifçe sola" : "left_sl.ogg";
+	dictionary["left_sl"] = tts ? "hafif sola dön" : "left_sl.ogg";
 	dictionary["right"] = tts ? "sağa dön" : "right.ogg";
 	dictionary["right_sh"] = tts ? "sağa keskin dönüş" : "right_sh.ogg";
-	dictionary["right_sl"] = tts ? "hafifçe sağa" : "right_sl.ogg";
+	dictionary["right_sl"] = tts ? "hafif sağa dön" : "right_sl.ogg";
 	dictionary["left_keep"] = tts ? "soldan devam edin" : "left_keep.ogg";
 	dictionary["right_keep"] = tts ? "sağdan devam edin" : "right_keep.ogg";
 	dictionary["left_bear"] = tts ? "sola dön" : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
@@ -39,15 +39,15 @@ function populateDictionary(tts) {
 
 	// U-TURNS
 	dictionary["make_uturn"] = tts ? "U dönüşü yapın" : "make_uturn.ogg";
-	dictionary["make_uturn_wp"] = tts ? "Mümkün olduğunda u dönüşü yapın" : "make_uturn_wp.ogg";
+	dictionary["make_uturn_wp"] = tts ? "Mümkün olduğunda U dönüşü yapın" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "kavşağa girin" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "kavşağa girin" : "roundabout.ogg";
 	dictionary["then"] = tts ? "sonra" : "then.ogg";
-	dictionary["and"] = tts ? "and" : "and.ogg";
-	dictionary["take"] = tts ? "take the" : "take.ogg";
-	dictionary["exit"] = tts ? "çıkış" : "exit.ogg";
+	dictionary["and"] = tts ? "ve" : "and.ogg";
+	dictionary["take"] = tts ? "çıkıştan" : "take.ogg";
+	dictionary["exit"] = tts ? "çıkın" : "exit.ogg";
 
 	dictionary["1st"] = tts ? "birinci" : "1st.ogg";
 	dictionary["2nd"] = tts ? "ikinci" : "2nd.ogg";
@@ -69,13 +69,13 @@ function populateDictionary(tts) {
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Düz devam edin" : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "Devam et" : "follow.ogg";  // "Follow the course of the road for" perceived as too chatty by many users
+	dictionary["follow"] = tts ? "Devam edin" : "follow.ogg";  // "Follow the course of the road for" perceived as too chatty by many users
 
 	// ARRIVE
 	dictionary["and_arrive_destination"] = tts ? "sonra varacaksınız" : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "hedefinize ulaştınız" : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "sonra ara varış noktasına varacaksınız." : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "ara varış noktanıza ulaştınız" : "reached_intermediate.ogg";
+	dictionary["reached_destination"] = tts ? "hedefinize vardınız" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "sonra ara noktaya varacaksınız." : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "ara noktaya vardınız" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
 	dictionary["and_arrive_waypoint"] = tts ? "and pass GPX waypoint" : "and_arrive_waypoint.ogg";
@@ -85,7 +85,7 @@ function populateDictionary(tts) {
 	dictionary["and_arrive_poi"] = tts ? "and pass POI" : "and_arrive_poi.ogg";
 	dictionary["reached_poi"] = tts ? "you are passing POI" : "reached_poi.ogg";
 
-// ATTENTION
+	// ATTENTION
 //dictionary["exceed_limit"] = "you are exceeding the speed limit"
 	dictionary["exceed_limit"] = tts ? "hız limiti aşıldı" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "dikkat" : "attention.ogg";
@@ -98,19 +98,19 @@ function populateDictionary(tts) {
 	dictionary["pedestrian_crosswalk"] = tts ? "yaya geçidi" : "pedestrian_crosswalk.ogg";
 	dictionary["tunnel"] = tts ? "tünel" : "tunnel.ogg";
 
-// OTHER PROMPTS
+	// OTHER PROMPTS
 	dictionary["location_lost"] = tts ? "g p s sinyali kayboldu" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "g p s sinyali bulundu" : "location_recovered.ogg";
 	dictionary["off_route"] = tts ? "rotadan çıktınız" : "off_route.ogg";
 	dictionary["back_on_route"] = tts ? "rotaya geri döndünüz" : "back_on_route.ogg";
 
-// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "onto" : "onto.ogg";
+	// STREET NAME PREPOSITIONS
+	dictionary["onto"] = tts ? "üzerine" : "onto.ogg";
 	dictionary["on"] = tts ? "üzerinde" : "on.ogg";    // is used if you turn together with your current street, i.e. street name does not change.
 	dictionary["to"] = tts ? "doğru" : "to.ogg";
-	dictionary["toward"] = tts ? "toward" : "toward.ogg";
+	dictionary["toward"] = tts ? "yönüne" : "toward.ogg";
 
-// DISTANCE UNIT SUPPORT
+	// DISTANCE UNIT SUPPORT
 	dictionary["meters"] = tts ? "metre" : "meters.ogg";
 	dictionary["around_1_kilometer"] = tts ? "yaklaşık 1 kilometre" : "around_1_kilometer.ogg";
 	dictionary["around"] = tts ? "yaklaşık" : "around.ogg";
@@ -123,7 +123,7 @@ function populateDictionary(tts) {
 	dictionary["miles"] = tts ? "mil" : "miles.ogg";
 	dictionary["yards"] = tts ? "kilometre" : "yards.ogg";
 
-// TIME SUPPORT
+	// TIME SUPPORT
 	dictionary["time"] = tts ? "zaman" : "time.ogg";
 	dictionary["1_hour"] = tts ? "bir saat" : "1_hour.ogg";
     dictionary["hours"] = tts ? "saat" : "hours.ogg";
@@ -252,7 +252,7 @@ function go_ahead(dist, streetName) {
 	if (dist == -1) {
 		return dictionary["go_ahead"];
 	} else {
-		return dictionary["follow"] + " " + distance(dist) + " " + follow_street(streetName);
+		return distance(dist) + " " + dictionary["follow"] + " " + follow_street(streetName);
 	}
 	
 // go_ahead(Dist, Street) -- ["follow", D | Sgen] :- distance(Dist) -- D, follow_street(Street, Sgen).
@@ -497,44 +497,44 @@ function prepare_roundabout(dist, exit, streetName) {
 // off_route(Dist) -- ["off_route", D] :- distance(Dist) -- D.
 // back_on_route -- ["back_on_route"].
 function and_arrive_destination(dest) {
-	return dictionary["and_arrive_destination"] + " " + dest;
+	return dest + " " + dictionary["and_arrive_destination"];
 }
 
 function and_arrive_intermediate(dest) {
 	// and_arrive_intermediate(D) -- ["and_arrive_intermediate"|Ds] :- name(D, Ds).
-	return dictionary["and_arrive_intermediate"] + " " + dest;
+	return dest + " " + dictionary["and_arrive_intermediate"];
 }
 
 function and_arrive_waypoint(dest) {
-	return dictionary["and_arrive_waypoint"] + " " + dest;
+	return dest + " " + dictionary["and_arrive_waypoint"];
 }
 
 function and_arrive_favorite(dest) {
-	return dictionary["and_arrive_favorite"] + " " + dest;
+	return dest + " " + dictionary["and_arrive_favorite"];
 }
 
 function and_arrive_poi(dest) {
-	return dictionary["and_arrive_poi"] + " " + dest;
+	return dest + " " + dictionary["and_arrive_poi"];
 }
 
 function reached_destination(dest) {
-	return dictionary["reached_destination"] + " " + dest;
+	return dest + " " + dictionary["reached_destination"];
 }
 
 function reached_waypoint(dest) {
-	return dictionary["reached_waypoint"] + " " + dest;
+	return dest + " " + dictionary["reached_waypoint"];
 }
 
 function reached_intermediate(dest) {
-	return dictionary["reached_intermediate"] + " " + dest;
+	return dest + " " + dictionary["reached_intermediate"];
 }
 
 function reached_favorite(dest) {
-	return dictionary["reached_favorite"] + " " + dest;
+	return dest + " " + dictionary["reached_favorite"];
 }
 
 function reached_poi(dest) {
-	return dictionary["reached_poi"] + " " + dest;
+	return dest + " " + dictionary["reached_poi"];
 }
 
 function location_lost() {
