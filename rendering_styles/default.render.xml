@@ -3765,15 +3765,9 @@
 
 	<!-- PRIORITY Input to filter : tag, value, zoom [minzoom, maxzoom], textLength, ref, textOrder (default=100) -->
 	<text>
-		<switch minzoom="11">
-			<case tag="gpx" value="segment" nameTag="" textOnPath="true"/>
-			<case tag="gpx" value="segment" nameTag="ref" textOnPath="false"/>
-			<apply textSize="13" textColor="#0078ff" textHaloColor="#ccebf4ff" textHaloRadius="2" textWrapWidth="30" textOrder="42" textMinDistance="100" textBold="true"/>
-			<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#aa0800a0"/>
-		</switch>
-
-		<case minzoom="12" tag="gpx" value="segment" nameTag="osmc_stub_name">
-			<apply textShield="osmc_?osmc_background?_bg" icon="osmc_?osmc_foreground?" textMinDistance="5" textOnPath="false" textSize="12" textColor="#00ffffff" textOrder="2"/>
+		<case minzoom="12" tag="gpx" value="segment" nameTag="ref">
+			<!-- blue_hexagon_3_road_shield -->
+			<apply textShield="?gpx_bg?" icon="?gpx_icon?" textMinDistance="60" textOnPath="false" textSize="15" textColor="#ffffff" textOrder="2"/>
 		</case>
 
 		<switch>
@@ -11697,54 +11691,14 @@
 			<apply_if nightMode="true" color="#808080"/>
 		</case>
 
-    <!-- GPX tracks in obf -->
-		<switch minzoom="3" tag="gpx" value="segment">
-			<case maxzoom="11" strokeWidth="2.5:2.5">
-				<apply_if additional="thickness=bold" strokeWidth="3:3"/>
-				<apply_if additional="thickness=thin" strokeWidth="1.5:1.5"/>
-				<apply_if additional="pattern=dashed" pathEffect="7_6"/>
-			</case>
-			<case maxzoom="13" strokeWidth="3:3">
-				<apply_if additional="thickness=bold" strokeWidth="4:4"/>
-				<apply_if additional="thickness=thin" strokeWidth="2:2"/>
-				<apply_if additional="pattern=dashed" pathEffect="8_7"/>
-			</case>
-			<case maxzoom="15" strokeWidth="4:4">
-				<apply_if additional="thickness=bold" strokeWidth="5:5"/>
-				<apply_if additional="thickness=thin" strokeWidth="2.6:2.6"/>
-				<apply_if additional="pattern=dashed" pathEffect="9_8"/>
-			</case>
-			<case maxzoom="16" strokeWidth="5:5">
-				<apply_if additional="thickness=bold" strokeWidth="7:7"/>
-				<apply_if additional="thickness=thin" strokeWidth="2.9:2.9"/>
-				<apply_if additional="pattern=dashed" pathEffect="10_9"/>
-			</case>
-			<case maxzoom="17" strokeWidth="6:6">
-				<apply_if additional="thickness=bold" strokeWidth="8:8"/>
-				<apply_if additional="thickness=thin" strokeWidth="3.5:3.5"/>
-				<apply_if additional="pattern=dashed" pathEffect="12_11"/>
-			</case>
-			<case minzoom="18" strokeWidth="7:7">
-				<apply_if additional="thickness=bold" strokeWidth="10:10"/>
-				<apply_if additional="thickness=thin" strokeWidth="5:5"/>
-				<apply_if additional="pattern=dashed" pathEffect="14_12"/>
-			</case>
-			<apply color="#ff0000">
+		<!-- GPX tracks in obf -->
+		<switch minzoom="11" tag="gpx" value="segment">
+			<case maxzoom="13" strokeWidth="1:1"/>
+			<case maxzoom="14" strokeWidth="2:2"/>
+			<case maxzoom="17" strokeWidth="3:3"/>
+			<apply color="$redColor">
 				<switch>
 					<case additional="transparency=25">
-						<apply_if additional="osmc_waycolor=white" color="#40ffffff"/>
-						<apply_if additional="osmc_waycolor=red" color="#40ff0000"/>
-						<apply_if additional="osmc_waycolor=orange" color="#40ff7200"/>
-						<apply_if additional="osmc_waycolor=brown" color="#40ba7007"/>
-						<apply_if additional="osmc_waycolor=darkyellow" color="#40afb61c"/>
-						<apply_if additional="osmc_waycolor=yellow" color="#40edc300"/>
-						<apply_if additional="osmc_waycolor=lightgreen" color="#406cb52b"/>
-						<apply_if additional="osmc_waycolor=green" color="#4000842b"/>
-						<apply_if additional="osmc_waycolor=lightblue" color="#402ec6ff"/>
-						<apply_if additional="osmc_waycolor=blue" color="#404e4eff"/>
-						<apply_if additional="osmc_waycolor=purple" color="#40a71de1"/>
-						<apply_if additional="osmc_waycolor=gray" color="#40999999"/>
-						<apply_if additional="osmc_waycolor=black" color="#40000000"/>
 						<apply_if additional="color_white" color="#40ffffff"/>
 						<apply_if additional="color_red" color="#40ff0000"/>
 						<apply_if additional="color_orange" color="#40ff7200"/>
@@ -11760,19 +11714,6 @@
 						<apply_if additional="color_black" color="#40000000"/>
 					</case>
 					<case additional="transparency=50">
-						<apply_if additional="osmc_waycolor=white" color="$whiteColor"/>
-						<apply_if additional="osmc_waycolor=red" color="$redColor"/>
-						<apply_if additional="osmc_waycolor=orange" color="$orangeColor"/>
-						<apply_if additional="osmc_waycolor=brown" color="$brownColor"/>
-						<apply_if additional="osmc_waycolor=darkyellow" color="$darkyellowColor"/>
-						<apply_if additional="osmc_waycolor=yellow" color="$yellowColor"/>
-						<apply_if additional="osmc_waycolor=lightgreen" color="$lightgreenColor"/>
-						<apply_if additional="osmc_waycolor=green" color="$greenColor"/>
-						<apply_if additional="osmc_waycolor=lightblue" color="$lightblueColor"/>
-						<apply_if additional="osmc_waycolor=blue" color="$blueColor"/>
-						<apply_if additional="osmc_waycolor=purple" color="$purpleColor"/>
-						<apply_if additional="osmc_waycolor=gray" color="$grayColor"/>
-						<apply_if additional="osmc_waycolor=black" color="$blackColor"/>
 						<apply_if additional="color_white" color="$whiteColor"/>
 						<apply_if additional="color_red" color="$redColor"/>
 						<apply_if additional="color_orange" color="$orangeColor"/>
@@ -11788,19 +11729,6 @@
 						<apply_if additional="color_black" color="$blackColor"/>
 					</case>
 					<case additional="transparency=75">
-						<apply_if additional="osmc_waycolor=white" color="#beffffff"/>
-						<apply_if additional="osmc_waycolor=red" color="#beff0000"/>
-						<apply_if additional="osmc_waycolor=orange" color="#beff7200"/>
-						<apply_if additional="osmc_waycolor=brown" color="#beba7007"/>
-						<apply_if additional="osmc_waycolor=darkyellow" color="#beafb61c"/>
-						<apply_if additional="osmc_waycolor=yellow" color="#beedc300"/>
-						<apply_if additional="osmc_waycolor=lightgreen" color="#be6cb52b"/>
-						<apply_if additional="osmc_waycolor=green" color="#be00842b"/>
-						<apply_if additional="osmc_waycolor=lightblue" color="#be2ec6ff"/>
-						<apply_if additional="osmc_waycolor=blue" color="#be4e4eff"/>
-						<apply_if additional="osmc_waycolor=purple" color="#bea71de1"/>
-						<apply_if additional="osmc_waycolor=gray" color="#be999999"/>
-						<apply_if additional="osmc_waycolor=black" color="#be000000"/>
 						<apply_if additional="color_white" color="#beffffff"/>
 						<apply_if additional="color_red" color="#beff0000"/>
 						<apply_if additional="color_orange" color="#beff7200"/>
@@ -11816,19 +11744,6 @@
 						<apply_if additional="color_black" color="#be000000"/>
 					</case>
 					<case>
-						<apply_if additional="osmc_waycolor=white" color="#ffffff"/>
-						<apply_if additional="osmc_waycolor=red" color="#ff0000"/>
-						<apply_if additional="osmc_waycolor=orange" color="#ff7200"/>
-						<apply_if additional="osmc_waycolor=brown" color="#ba7007"/>
-						<apply_if additional="osmc_waycolor=darkyellow" color="#afb61c"/>
-						<apply_if additional="osmc_waycolor=yellow" color="#edc300"/>
-						<apply_if additional="osmc_waycolor=lightgreen" color="#6cb52b"/>
-						<apply_if additional="osmc_waycolor=green" color="#00842b"/>
-						<apply_if additional="osmc_waycolor=lightblue" color="#2ec6ff"/>
-						<apply_if additional="osmc_waycolor=blue" color="#4e4eff"/>
-						<apply_if additional="osmc_waycolor=purple" color="#a71de1"/>
-						<apply_if additional="osmc_waycolor=gray" color="#999999"/>
-						<apply_if additional="osmc_waycolor=black" color="#000000"/>
 						<apply_if additional="color_white" color="#ffffff"/>
 						<apply_if additional="color_red" color="#ff0000"/>
 						<apply_if additional="color_orange" color="#ff7200"/>
