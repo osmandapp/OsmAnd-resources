@@ -42,6 +42,8 @@
 	<renderingProperty attr="contourWidth" name="Contour lines width" description="Contour lines width" type="string" possibleValues="thin,medium,thick" defaultValueDescription="default"/>
 	<renderingProperty attr="contourDensity" name="Contour lines density" description="Contour lines density" type="string" possibleValues="low,medium_w,high" defaultValueDescription="default"/>
 
+	<renderingProperty attr="legend" name="Legend" type="boolean" possibleValues="" category="ui_hidden"/>
+
 	<renderingProperty attr="engine_v1" type="boolean"/>
 	<renderingAttribute name="defaultColor">
 		<!-- next line should should make background transparent for underlays to be visible, but this curretnly does not work as desired -->
@@ -1540,12 +1542,11 @@
 		</case>
 
 				<switch minzoom="12" textMinDistance="101" textOnPath="false" textOrder="43">
-					<switch minzoom="12" textOrder="44">
-						<case tag="route_hiking" value="" nameTag="hiking_osmc_text" nameTag2="hiking_route_ref" textSize="13"/>
+					<switch textOrder="44" seq="1:10">
+						<case tag="route_hiking" value="" nameTag="hiking_route_name" textOnPath="true" textSize="13"/>
 						<case tag="route_hiking" value="" nameTag="hiking_route_ref" textSize="13"/>
+						<case minzoom="13" tag="route_horse" value="" nameTag="horse_route_name" textOnPath="true" textOrder="8"/>
 						<case tag="route_horse" value="" nameTag="horse_route_ref" textSize="13"/>
-						<case tag="route_piste" value="" nameTag="" textSize="13"/>
-						<case minzoom="13" tag="route_horse" value="" nameTag="horse_route_name" textOrder="8"/>
 						<apply>
 							<switch>
 								<case hikingRoutesOSMC="walkingRoutesOSMC" textSize="11" textColor="#0078ff" textHaloColor="#ccebf4ff"/>
@@ -1557,6 +1558,23 @@
 						<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" disable="true"/>
 					</switch>
 					<switch minzoom="13">
+						<!-- old way to display -->
+						<case tag="multiple_node_networks" value="true" nameTag="iwn_ref">
+							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$iwnNodeTextColor"/>
+							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$iwnNodeTextColor"/>
+						</case>
+						<case tag="multiple_node_networks" value="true" nameTag="nwn_ref">
+							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$nwnNodeTextColor"/>
+							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$nwnNodeTextColor"/>
+						</case>
+						<case tag="multiple_node_networks" value="true" nameTag="rwn_ref">
+							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$rwnNodeTextColor"/>
+							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$rwnNodeTextColor"/>
+						</case>
+						<case tag="multiple_node_networks" value="true" nameTag="lwn_ref">
+							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$lwnNodeTextColor"/>
+							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$lwnNodeTextColor"/>
+						</case>
 						<case tag="node_network_point" value="iwn" nameTag="iwn_ref">
 							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$iwnNodeTextColor"/>
 							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$iwnNodeTextColor"/>
@@ -1607,6 +1625,7 @@
 					</switch>
 					<apply_if legend="true" textOnPath="true"/>
 				</switch>
+				<!-- OSMC symbols -->
 				<switch minzoom="12" textMinDistance="101" textOnPath="false" textSize="12" textColor="#00ffffff" textOrder="43" seq="1:10">
 					<switch>
 						<case hikingRoutesOSMC="walkingRoutesOSMC" tag="route_hiking" value="" nameTag="route_hiking_#SEQ_osmc_stub_name"/>
