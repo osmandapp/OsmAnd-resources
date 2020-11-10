@@ -247,7 +247,7 @@ icon_alias sanatorium health_sanatorium
 icon_alias health_amenity_type_first_aid_kit health_health_amenity_type_first_aid_kit
 icon_alias laboratory health_laboratory
 icon_alias blood_donation health_blood_donation
-icon_alias occupational_therapy health_occupational_therapy
+icon_alias occupational_therapist health_occupational_therapist
 
 ## Overlays
 icon_alias fixme_tag_yes overlays_fixme
