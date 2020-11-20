@@ -1014,7 +1014,7 @@ icon_alias amenity_bank money_bank2
 icon_alias amenity_bureau_de_change money_currency_exchange
 icon_alias bitcoin_yes money_bitcoin
 icon_alias money_lender money_money_lender
-icon_alias money_mobile_money_agent money_mobile_money_agent
+icon_alias mobile_money_agent money_mobile_money_agent
 
 icon_alias office amenity_public_building2
 icon_alias amenity_community_centre amenity_public_building
