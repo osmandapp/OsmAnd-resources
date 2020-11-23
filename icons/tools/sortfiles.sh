@@ -280,6 +280,7 @@ icon_alias crossing_uncontrolled_map functional-icons_highway_crossing_uncontrol
 icon_alias crossing_unmarked_map functional-icons_highway_crossing_unmarked
 icon_alias stop functional-icons_stop
 icon_alias give_way functional-icons_give_way
+icon_alias car_pooling transport_car_pooling
 
 icon_alias ford transport_colored_ford
 icon_alias topo_ford topo_topo_ford
