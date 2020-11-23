@@ -248,6 +248,7 @@ icon_alias health_amenity_type_first_aid_kit health_health_amenity_type_first_ai
 icon_alias laboratory health_laboratory
 icon_alias blood_donation health_blood_donation
 icon_alias occupational_therapist health_occupational_therapist
+icon_alias nurse health_nurse
 
 ## Overlays
 icon_alias fixme_tag_yes overlays_fixme
