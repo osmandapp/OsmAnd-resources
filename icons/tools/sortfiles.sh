@@ -233,8 +233,9 @@ icon_alias life_ring emergency_life_ring
 icon_alias rescue_box emergency_rescue_box
 icon_alias topo_rescue_box topo_emergency_rescue_box
 icon_alias mountain_rescue emergency_mountain_rescue
+icon_alias lifeguard_base emergency_lifeguard_base
 
-icon_alias healthcare health_pharmacy
+icon_alias healthcare health_healthcare
 icon_alias amenity_dentist health_dentist
 icon_alias amenity_doctors health_doctors3
 icon_alias amenity_hospital health_hospital2
@@ -1018,7 +1019,7 @@ icon_alias bitcoin_yes money_bitcoin
 icon_alias money_lender money_money_lender
 icon_alias mobile_money_agent money_mobile_money_agent
 
-icon_alias office amenity_public_building2
+icon_alias office office_office
 icon_alias amenity_community_centre amenity_public_building
 icon_alias amenity_courthouse amenity_court
 icon_alias amenity_embassy amenity_embassy
