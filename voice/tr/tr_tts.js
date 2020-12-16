@@ -18,11 +18,11 @@ var tts;
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
 	dictionary["route_is"] = tts ? tts ? "Yolculuk" : "route_is.ogg" : "route_is.ogg";
-	dictionary["route_calculate"] = tts ? " Yenilendi" : "route_calculate.ogg";
+	dictionary["route_calculate"] = tts ? "Yenilendi" : "route_calculate.ogg";
 	dictionary["distance"] = tts ? "mesafe" : "distance.ogg";
 
 	// LEFT/RIGHT
-	//dictionary["prepare"] = "Prepare to "
+	//dictionary["prepare"] = "Prepare to"
 	dictionary["after"] = tts ? "sonra" : "after.ogg";
 	dictionary["in"] = tts ? "içinde" : "in.ogg";
 
@@ -38,7 +38,7 @@ function populateDictionary(tts) {
 	dictionary["right_bear"] = tts ? "sağa dön" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
 
 	// U-TURNS
-	dictionary["make_uturn"] = tts ? " Geri dönün" : "make_uturn.ogg";
+	dictionary["make_uturn"] = tts ? "Geri dönün" : "make_uturn.ogg";
 	dictionary["make_uturn_wp"] = tts ? "İlk fırsatta geri dönün" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
@@ -68,8 +68,8 @@ function populateDictionary(tts) {
 	dictionary["17th"] = tts ? "onyedinci" : "17th.ogg";
 
 	// STRAIGHT/FOLLOW
-	dictionary["go_ahead"] = tts ? " Düz devam edin " : "go_ahead.ogg";
-	dictionary["follow"] = tts ? " Devam edin " : "follow.ogg";  // "Follow the course of the road for" perceived as too chatty by many users
+	dictionary["go_ahead"] = tts ? "Düz devam edin " : "go_ahead.ogg";
+	dictionary["follow"] = tts ? "Devam edin " : "follow.ogg";  // "Follow the course of the road for" perceived as too chatty by many users
 
 	// ARRIVE
 	dictionary["and_arrive_destination"] = tts ? "sonra ulaşacaksınız" : "and_arrive_destination.ogg";
@@ -78,12 +78,12 @@ function populateDictionary(tts) {
 	dictionary["reached_intermediate"] = tts ? "ara noktaya ulaştınız" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? " ve G P X noktasını yaklaştınız" : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? " G P X noktasını geçiyorsunuz" : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? " ve favorinize yaklaştınız" : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? " favorinize vardınız" : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? " ve P O I noktasına yaklaştınız" : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? " P O I noktasını geçiyorsunuz" : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "ve G P X noktasını yaklaştınız" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "G P X noktasını geçiyorsunuz" : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "ve favorinize yaklaştınız" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "favorinize vardınız" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "ve P O I noktasına yaklaştınız" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "P O I noktasını geçiyorsunuz" : "reached_poi.ogg";
 
 	// ATTENTION
 //dictionary["exceed_limit"] = "you are exceeding the speed limit"
@@ -105,10 +105,10 @@ function populateDictionary(tts) {
 	dictionary["back_on_route"] = tts ? "rotaya geri döndünüz" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? " yönüne " : "onto.ogg";
-	dictionary["on"] = tts ? " yönünde " : "on.ogg";    // is used if you turn together with your current street, i.e. street name does not change.
-	dictionary["to"] = tts ? " yönüne " : "to.ogg";
-	dictionary["toward"] = tts ? " yönüne " : "toward.ogg";
+	dictionary["onto"] = tts ? "yönüne " : "onto.ogg";
+	dictionary["on"] = tts ? "yönünde " : "on.ogg";    // is used if you turn together with your current street, i.e. street name does not change.
+	dictionary["to"] = tts ? "yönüne " : "to.ogg";
+	dictionary["toward"] = tts ? "yönüne " : "toward.ogg";
 
 	// DISTANCE UNIT SUPPORT
 	dictionary["meters"] = tts ? "metre" : "meters.ogg";
