@@ -2412,6 +2412,8 @@ icon_alias motorcar_no additional_motorcar_no
 icon_alias motorcycle_no additional_motorcycle_no
 icon_alias snowmobile_yes additional_snowmobile_yes
 icon_alias snowmobile_no additional_snowmobile_no
+icon_alias waste_transfer_station amenity_waste_transfer_station
+icon_alias lavoir amenity_lavoir
 
 #Additional category
 icon_alias payment_type additional_category_payment_type
