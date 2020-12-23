@@ -1114,6 +1114,11 @@
 			<apply_if nightMode="true" attrColorValue="#26ffffff"/>
 		</case>
 	</renderingAttribute>
+	<renderingAttribute name="elevatorColor">
+		<case attrColorValue="#0031A2">
+			<apply_if nightMode="true" attrColorValue="#6E89C9"/>
+		</case>
+	</renderingAttribute>
 	<renderingConstant name="footwayStrokeWidth" value="1"/>
 	<!-- NOTE: For full alignment with Touring view, we either need to make sure low zoom rules take no effect if germanRoadAtlas is selected, or define extra lowZoomColors (identical with high zoom colors) for germanRoadAtlas case -->
 	<renderingAttribute name="stepsRampColor">
@@ -2882,6 +2887,7 @@
 					<case tag="public_transport" value=""/>
 					<case tag="highway" value="crossing"/>
 					<case tag="highway" value="steps"/>
+					<case tag="highway" value="elevator"/>
 					<case tag="highway" value="via_ferrata"/>
 					<case tag="ford" value="yes"/>
 					<case tag="ford" value="stepping_stones"/>
@@ -3683,6 +3689,7 @@
 							<apply_if layer="-1" order="20"/>
 							<apply_if additional="layer=-2" order="19"/>
 						</case>
+						<case tag="highway" value="elevator" order="66"/>
 						<apply_if baseAppMode="car">
 							<case layer="0" maxzoom="18" order="-1"/>
 							<case layer="-1" maxzoom="18" order="-1"/>
@@ -3693,7 +3700,6 @@
 					<case tag="highway" value="via_ferrata">
 						<apply_if moreDetailed="false" maxzoom="15" order="-1"/>
 					</case>
-
 					<case tag="highway" value="raceway"/>
 					<case tag="abandoned:highway" value=""/>
 
@@ -6024,7 +6030,7 @@
 						<case minzoom="19" tag="entrance" value="" nameTag="ref" nameTag2="addr:flats"/>
 						<case minzoom="19" tag="entrance" value="" nameTag="addr:flats"/>
 						<case minzoom="19" tag="entrance" value="" nameTag="" nameTag2="ref"/>
-						<case tag="highway" value="elevator"/>
+						<case tag="highway" value="elevator" textOnPath="true"/>
 						<apply textSize="12" textColor="#555555" textWrapWidth="15"/>
 						<apply textOrder="161"/>
 					</switch>
@@ -10369,6 +10375,10 @@
 						<apply color_5="$footwayColor" pathEffect_5="1_2"/>
 						<apply_if baseAppMode="bicycle" color_5="$stepsRampColor"/>
 						<apply_if additional="conveying=yes" pathEffect_5="2_1"/>
+					</case>
+					
+					<case minzoom="16" tag="highway" value="elevator">
+						<apply color_5="$elevatorColor" strokeWidth_4="2:2" strokeWidth_5="2:2" pathEffect_5="2_1"/>
 					</case>
 
 					<case minzoom="$bridlewayMinZoom" tag="highway" value="bridleway">
