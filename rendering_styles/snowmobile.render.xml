@@ -427,9 +427,23 @@
 
 
 	<order>
-		<switch area="false" point="true" objectType="1" order="128">
+		<switch area="false" point="true" objectType="1" order="127">
+			<switch>
+				<case tag="amenity" value="shelter"/>
+				<case tag="amenity" value="fuel"/>
+				<case tag="amenity" value="parking"/>
+				<case tag="shop" value="convenience"/>
+				<case tag="shop" value="supermarket"/>
+				<case tag="shop" value="department_store"/>
+				<case tag="tourism" value="lean_to"/>
+				<case tag="tourism" value="picnic_site"/>
+				<case tag="tourism" value="wilderness_hut"/>
+				<apply_if additional="snowmobile=yes" order="127"/>
+				<apply_if additional="snowmobile=designated" order="127"/>
+			</switch>
 		</switch>
 		<switch cycle="true" point="false" objectType="3" order="5">
+			<case tag="osmand_highway" value="snowmobile_road" additional="snowmobile=no"/>
 		</switch>
 
 		<switch objectType="2" order="80">
@@ -470,6 +484,18 @@
 			<apply_if nightMode="true" color="#0d202d"/>
 		</case>
 
+		<case minzoom="10" tag="osmand_highway" value="snowmobile_road" additional="snowmobile=no" shader="hazard">
+			<apply_if maxzoom="16" shader="hazard"/>
+			<apply color="$null" color_2="#77D64343"/>
+			<apply_if maxzoom="12" strokeWidth_2="2" pathEffect_2="3_3"/>
+			<apply_if minzoom="13" strokeWidth_2="3" maxzoom="14" pathEffect_2="5_5"/>
+			<apply_if minzoom="15" strokeWidth_2="5" maxzoom="15" pathEffect_2="10_10"/>
+			<apply_if minzoom="16" strokeWidth_2="8" maxzoom="17" pathEffect_2="15_15"/>
+			<apply_if minzoom="18" strokeWidth_2="11" maxzoom="18" pathEffect_2="19_19"/>
+			<apply_if minzoom="19" strokeWidth_2="13" pathEffect_2="64_23_23_23"/>
+			<apply_if nightMode="true" shader="hazard_night"/>
+		</case>
+
 		<switch>
 			<case tag="place" value="island"/>
 			<case tag="natural" value="land"/>
@@ -487,6 +513,10 @@
 		<case minzoom="9" tag="osmand_highway" value="snowmobile_road">
 			<case additional="snowmobile=yes" color="#55000000"/>
 			<case additional="snowmobile=designated" color="#770D58FF"/>
+			<case additional="snowmobile=permissive" color="#77FF69D0">
+				<apply_if additional="toll=snowmobile" color="#99492AFF"/>
+			</case>
+			<case additional="snowmobile=private" color="#77FF1111"/>
 			<case additional="snowmobile=no" color="#77D64343">
 				<apply_if maxzoom="12" pathEffect="3_3"/>
 				<apply_if minzoom="13" maxzoom="14" pathEffect="5_5"/>
@@ -509,6 +539,24 @@
 			<apply_if minzoom="16" maxzoom="17" strokeWidth="16"/>
 			<apply_if minzoom="18" maxzoom="18" strokeWidth="23"/>
 			<apply_if minzoom="19" strokeWidth="27"/>
+			<apply_if additional="toll=snowmobile" color__1="#77FF0BC9">
+				<apply_if maxzoom="12" strokeWidth__1="9"/>
+				<apply_if minzoom="13" maxzoom="14" strokeWidth__1="12"/>
+				<apply_if minzoom="15" maxzoom="15" strokeWidth__1="15"/>
+				<apply_if minzoom="16" maxzoom="17" strokeWidth__1="25"/>
+				<apply_if minzoom="18" maxzoom="18" strokeWidth__1="35"/>
+				<apply_if minzoom="19" strokeWidth__1="45"/>
+			</apply_if>
 		</case>
+		<case minzoom="9" tag="piste:type" value="nordic" color="#F70B8B">
+			<apply_if maxzoom="12" strokeWidth="1" pathEffect="3_1"/>
+			<apply_if minzoom="13" maxzoom="14" strokeWidth="1.5" pathEffect="6_2"/>
+			<apply_if minzoom="15" maxzoom="15" strokeWidth="2.0" pathEffect="8_2"/>
+			<apply_if minzoom="16" maxzoom="17" strokeWidth="2.5" pathEffect="12_3"/>
+			<apply_if minzoom="18" maxzoom="18" strokeWidth="2.7" pathEffect="15_3"/>
+			<apply_if minzoom="19" strokeWidth="3" pathEffect="17_4"/>
+			<apply_if nightMode="true" color="#84185A"/>
+		</case>
+
 	</line>
 </renderingStyle>
