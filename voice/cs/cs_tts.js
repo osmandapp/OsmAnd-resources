@@ -360,7 +360,7 @@ function take_exit(turnType, dist, exitString, exitInt, streetName) {
 	if (dist == -1) {
 		return getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
 	} else {
-		return dictionary["after"] + " " + distance(dist) + " "
+		return dictionary["after"] + " " + distance(dist, "locative", false) + " "
 			+ getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
 	}
 }
@@ -427,7 +427,7 @@ function  getTurnType(turnType) {
 
 function then() {
 	// then -- ["then"].
-	return (tts ? ", " : " ") + dictionary["then"] + " ";
+	return " " + dictionary["and"] + " " + dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
