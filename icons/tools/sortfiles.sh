@@ -1147,6 +1147,7 @@ icon_alias topo_cellar_entrance topo_cellar_entrance
 
 icon_alias military poi_colored_military_bunker
 icon_alias beehive poi_beehive
+icon_alias wildlife_crossing poi_wildlife_crossing
 
 
 ## Food and Drink
@@ -2414,6 +2415,7 @@ icon_alias snowmobile_yes additional_snowmobile_yes
 icon_alias snowmobile_no additional_snowmobile_no
 icon_alias waste_transfer_station amenity_waste_transfer_station
 icon_alias lavoir amenity_lavoir
+icon_alias conference_centre amenity_conference_centre
 
 #Additional category
 icon_alias payment_type additional_category_payment_type
