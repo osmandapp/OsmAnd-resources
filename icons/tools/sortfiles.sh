@@ -1029,6 +1029,8 @@ icon_alias amenity_public_building amenity_public_building
 icon_alias amenity_social_centre amenity_public_building
 icon_alias amenity_townhall amenity_town_hall2
 icon_alias register_office amenity_register_office
+icon_alias geodesist office_geodesist
+
 
 icon_alias service amenity_service
 icon_alias landuse landuse_landuse
