@@ -1437,6 +1437,7 @@
 					<apply_if contourDensity="medium_w" additional="contourtype=50m" order="-1"/>
 					<apply_if contourDensity="low" additional="contourtype=10m" order="-1"/>
 					<apply_if contourDensity="low" additional="contourtype=20m" order="-1"/>
+					<apply_if contourDensity="low" additional="contourtype=40f" order="-1"/>
 				</case>
 				<case tag="lit" value="" order="12"/>
 				<case hikingRoutesOSMC="walkingRoutesScopeOSMC" tag="route_hiking" value="" order="99"/>
@@ -2064,7 +2065,7 @@
 			</switch>
 		</switch>
 
-		<switch tag="contour" value="elevation" textOnPath="false" textBold="true" textOrder="255" textHaloColor="#bbffffff" textHaloRadius="1" intersectionMargin="20">
+		<switch tag="contour" value="elevation" nameTag="elevation" textOnPath="false" textBold="true" textOrder="255" textHaloColor="#bbffffff" textHaloRadius="1" intersectionMargin="20">
 			<case minzoom="13" contourLines="11"/>
 			<case minzoom="13" contourLines="12"/>
 			<case minzoom="13" contourLines="13"/>
@@ -2074,8 +2075,17 @@
 			<case minzoom="16" contourLines="16"/>
 			<apply>
 				<case minzoom="14" additional="contourtype=20m" textColor="#666666" textSize="11" textMinDistance="170"/>
-				<case minzoom="15" additional="contourtype=10m" textColor="#777777" textSize="10" textMinDistance="160"/>
-				<case additional="contourtype=100m" textColor="#444444" textSize="11" textOrder="250" textMinDistance="250"/>
+				<switch minzoom="15">
+					<case additional="contourtype=10m"/>
+					<case additional="contourtype=40f"/>
+					<apply textColor="#777777" textSize="10" textMinDistance="160"/>
+				</switch>
+				<switch>
+					<case additional="contourtype=100m" textSize="11"/>
+					<case additional="contourtype=1000f" textSize="12"/>
+					<case additional="contourtype=200f" textSize="11"/>
+					<apply textColor="#444444" textOrder="250" textMinDistance="250"/>
+				</switch>
 				<case additional="contourtype=50m" textColor="#666666" textSize="11" textMinDistance="200" textOrder="254"/>
 			</apply>
 		</switch>
@@ -4822,6 +4832,7 @@
 				<switch>
 					<case minzoom="13" additional="contourtype=10m" color="$contourLineColor"/>
 					<case minzoom="12" additional="contourtype=20m" color="$contourLineColor"/>
+					<case minzoom="12" additional="contourtype=40f" color="$contourLineColor"/>
 					<apply>
 						<case contourWidth="thin" strokeWidth="0.5"/>
 						<case contourWidth="medium" strokeWidth="1"/>
@@ -4840,11 +4851,21 @@
 				</switch>
 				<switch minzoom="11">
 					<case additional="contourtype=100m" color="$contourLineColor100m"/>
+					<case additional="contourtype=200f" color="$contourLineColor100m"/>
 					<apply>
 						<case contourWidth="thin" strokeWidth="1"/>
 						<case contourWidth="medium" strokeWidth="1.3"/>
 						<case contourWidth="thick" strokeWidth="1.9"/>
 						<case strokeWidth="1"/>
+					</apply>
+				</switch>
+				<switch minzoom="11">
+					<case additional="contourtype=1000f" color="$contourLineColor100m"/>
+					<apply>
+						<case contourWidth="thin" strokeWidth="1.3"/>
+						<case contourWidth="medium" strokeWidth="1.5"/>
+						<case contourWidth="thick" strokeWidth="2.1"/>
+						<case strokeWidth="1.3"/>
 					</apply>
 				</switch>
 			</apply>
