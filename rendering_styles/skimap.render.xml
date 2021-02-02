@@ -306,6 +306,16 @@
 		<case nightMode="true" attrColorValue="#aa777777"/>
 		<case attrColorValue="#66525252"/>
 	</renderingAttribute>
+
+	<renderingAttribute name="pisteHikeDefaultColor">
+		<case nightMode="true" attrColorValue="#B94988"/>
+		<case attrColorValue="#F07BBD"/>
+	</renderingAttribute>
+	<renderingAttribute name="pisteHikeBackcountryDefaultColor">
+		<case nightMode="true" attrColorValue="#CFCFCF"/>
+		<case attrColorValue="#FFFFFF"/>
+	</renderingAttribute>
+
 	<renderingAttribute name="pisteAreaDefaultColor">
 		<case nightMode="true" attrColorValue="#cc727272"/>
 		<case attrColorValue="#449d9d9d"/>
@@ -775,23 +785,29 @@
 				<apply intersectsWith="piste_nordic"/>
 			</switch>
 			<switch>
-				<case tag="piste:type" value="downhill" nameTag="piste:name" nameTag2="piste:ref"/>
-				<case tag="piste:type" value="downhill" nameTag="piste:ref"/>
-				<case tag="piste:type" value="downhill" nameTag=""/>
-				<case tag="piste:type" value="skitour" nameTag="piste:name" nameTag2="piste:ref"/>
-				<case tag="piste:type" value="skitour" nameTag="piste:ref"/>
-				<case tag="piste:type" value="skitour" nameTag=""/>
-				<case tag="piste:type" value="hike" nameTag="piste:name" nameTag2="piste:ref"/>
-				<case tag="piste:type" value="hike" nameTag="piste:ref"/>
-				<case tag="piste:type" value="hike" nameTag=""/>
-				<case tag="piste:type" value="sled" nameTag="piste:name" nameTag2="piste:ref"/>
-				<case tag="piste:type" value="sled" nameTag="piste:ref"/>
-				<case tag="piste:type" value="sled" nameTag=""/>
-				<case tag="piste:type" value="sleigh" nameTag="piste:name" nameTag2="piste:ref"/>
-				<case tag="piste:type" value="sleigh" nameTag="piste:ref"/>
-				<case tag="piste:type" value="sleigh" nameTag=""/>
-				<case tag="piste:type" value="snow_park"/>
-				<apply textColor="$pisteTextColor" textHaloColor="$pisteDefaultColor" textHaloRadius="3" intersectionMargin="20"/>
+				<switch>
+					<case tag="piste:type" value="downhill" nameTag="piste:name" nameTag2="piste:ref"/>
+					<case tag="piste:type" value="downhill" nameTag="piste:ref"/>
+					<case tag="piste:type" value="downhill" nameTag=""/>
+					<case tag="piste:type" value="skitour" nameTag="piste:name" nameTag2="piste:ref"/>
+					<case tag="piste:type" value="skitour" nameTag="piste:ref"/>
+					<case tag="piste:type" value="skitour" nameTag=""/>
+					<case tag="piste:type" value="sled" nameTag="piste:name" nameTag2="piste:ref"/>
+					<case tag="piste:type" value="sled" nameTag="piste:ref"/>
+					<case tag="piste:type" value="sled" nameTag=""/>
+					<case tag="piste:type" value="sleigh" nameTag="piste:name" nameTag2="piste:ref"/>
+					<case tag="piste:type" value="sleigh" nameTag="piste:ref"/>
+					<case tag="piste:type" value="sleigh" nameTag=""/>
+					<case tag="piste:type" value="snow_park"/>
+					<apply textHaloColor="$pisteDefaultColor"/>
+				</switch>
+				<switch>
+					<case tag="piste:type" value="hike" nameTag="piste:name" nameTag2="piste:ref"/>
+					<case tag="piste:type" value="hike" nameTag="piste:ref"/>
+					<case tag="piste:type" value="hike" nameTag=""/>
+					<apply textHaloColor="$pisteHikeDefaultColor"/>
+				</switch>
+				<apply textColor="$pisteTextColor" textHaloRadius="3" intersectionMargin="20"/>
 			</switch>
 			<apply>
 				<case maxzoom="14" textSize="12"/>
@@ -981,73 +997,108 @@
 
 		<switch minzoom="9">
 			<switch>
-				<case tag="piste:type" value="downhill"/>
-				<case tag="piste:type" value="skitour">
-					<apply>
-						<case maxzoom="10" pathEffect="2_2"/>
-						<case maxzoom="11" pathEffect="4_4"/>
-						<case maxzoom="14" pathEffect="7_7"/>
-						<case maxzoom="16" pathEffect="10_10"/>
-						<case minzoom="17" pathEffect="13_13"/>
-					</apply>
-				</case>
-				<apply>
-					<case maxzoom="10" strokeWidth="1:1"/>
-					<case maxzoom="11" strokeWidth="2:2"/>
-					<case maxzoom="13" strokeWidth="3:3"/>
-					<case maxzoom="14" strokeWidth="4:4"/>
-					<case maxzoom="15" strokeWidth="5:5"/>
-					<case maxzoom="16" strokeWidth="7:7"/>
-					<case minzoom="17" strokeWidth="10:10"/>
-				</apply>
-			</switch>
-			<switch>
 				<switch>
-					<case tag="piste:type" value="nordic"/>
-					<case tag="piste:type" value="connection"/>
-					<case tag="piste:type" value="hike">
-						<apply>
-							<case maxzoom="12" pathEffect="4_1"/>
-							<case maxzoom="14" pathEffect="6_3"/>
-							<case maxzoom="16" pathEffect="9_4"/>
-							<case minzoom="17" pathEffect="12_5"/>
-						</apply>
-					</case>
+					<case tag="piste:type" value="downhill"/>
 					<apply>
-						<case maxzoom="13" strokeWidth="1.5:1.5"/>
-						<case maxzoom="14" strokeWidth="2:2"/>
-						<case maxzoom="16" strokeWidth="2:2"/>
-						<case minzoom="17" strokeWidth="2.5:2.5"/>
+						<case maxzoom="10" strokeWidth="1:1"/>
+						<case maxzoom="11" strokeWidth="2:2"/>
+						<case maxzoom="13" strokeWidth="3:3"/>
+						<case maxzoom="14" strokeWidth="4:4"/>
+						<case maxzoom="15" strokeWidth="5:5"/>
+						<case maxzoom="16" strokeWidth="7:7"/>
+						<case minzoom="17" strokeWidth="10:10"/>
 					</apply>
 				</switch>
 				<switch>
 					<switch>
-						<case tag="piste:type" value="sled"/>
-						<case tag="piste:type" value="sleigh"/>
+						<case tag="piste:type" value="nordic"/>
+						<case tag="piste:type" value="connection"/>
 						<apply>
-							<case maxzoom="12" pathEffect="14_1"/>
-							<case maxzoom="14" pathEffect="19_2"/>
-							<case maxzoom="16" pathEffect="22_3"/>
-							<case minzoom="17" pathEffect="30_4"/>
+							<case maxzoom="13" strokeWidth="1.5:1.5"/>
+							<case maxzoom="14" strokeWidth="2:2"/>
+							<case maxzoom="16" strokeWidth="2:2"/>
+							<case minzoom="17" strokeWidth="2.5:2.5"/>
 						</apply>
 					</switch>
-					<case tag="piste:type" value="snow_park">
+					<switch>
+						<switch>
+							<case tag="piste:type" value="sled"/>
+							<case tag="piste:type" value="sleigh"/>
+							<apply>
+								<case maxzoom="12" pathEffect="14_1"/>
+								<case maxzoom="14" pathEffect="19_2"/>
+								<case maxzoom="16" pathEffect="22_3"/>
+								<case minzoom="17" pathEffect="30_4"/>
+							</apply>
+						</switch>
+						<case tag="piste:type" value="snow_park">
+							<apply>
+								<case maxzoom="12" pathEffect="16_2_3_2"/>
+								<case maxzoom="14" pathEffect="22_4_5_4"/>
+								<case maxzoom="16" pathEffect="27_6_9_6"/>
+								<case minzoom="17" pathEffect="40_7_10_7"/>
+							</apply>
+						</case>
 						<apply>
-							<case maxzoom="12" pathEffect="16_2_3_2"/>
-							<case maxzoom="14" pathEffect="22_4_5_4"/>
-							<case maxzoom="16" pathEffect="27_6_9_6"/>
-							<case minzoom="17" pathEffect="40_7_10_7"/>
+							<case maxzoom="12" strokeWidth="1:1"/>
+							<case maxzoom="14" strokeWidth="2.5:2.5"/>
+							<case maxzoom="16" strokeWidth="3.5:3.5"/>
+							<case minzoom="17" strokeWidth="4.5:4.5"/>
 						</apply>
-					</case>
-					<apply>
-						<case maxzoom="12" strokeWidth="1:1"/>
-						<case maxzoom="14" strokeWidth="2.5:2.5"/>
-						<case maxzoom="16" strokeWidth="3.5:3.5"/>
-						<case minzoom="17" strokeWidth="4.5:4.5"/>
-					</apply>
+					</switch>
 				</switch>
+				<case tag="piste:type" value="snow_park"/>
+				<apply minzoom="14" pisteGrooming="true">
+					<switch>
+						<case additional="piste:grooming=classic"/>
+						<case additional="piste:grooming=mogul"/>
+						<switch>
+							<case additional="piste:grooming=skating" pathEffect_2="32_4" pathEffect_3="6_4_6_20" CAP_3="BUTT"/>
+							<case additional="piste:grooming=classic+skating" pathEffect_3="6_26" CAP_3="BUTT"/>
+							<apply>
+								<case maxzoom="14" strokeWidth_3="4:4"/>
+								<case minzoom="15" strokeWidth_3="5:5"/>
+							</apply>
+						</switch>
+						<case additional="piste:grooming=scooter" pathEffect_2="17_4"/>
+						<case additional="piste:grooming=backcountry" pathEffect_2="5_20"/>
+						<apply>
+							<case maxzoom="14" strokeWidth_2="1:1"/>
+							<case minzoom="15" strokeWidth_2="2:2"/>
+						</apply>
+					</switch>
+				</apply>
 			</switch>
-			<case tag="piste:type" value="snow_park"/>
+			<switch>
+				<case tag="piste:type" value="hike">
+					<apply color="$pisteHikeDefaultColor" color_2="$pisteHikeDefaultColor" cap_2="ROUND">
+						<case maxzoom="12" pathEffect_2="1_11" strokeWidth="1:1" strokeWidth_2="2:2"/>
+						<case maxzoom="14" pathEffect_2="1_14" strokeWidth="2:2" strokeWidth_2="4:4"/>
+						<case maxzoom="16" pathEffect_2="1_17" strokeWidth="2:2" strokeWidth_2="4:4"/>
+						<case minzoom="17" pathEffect_2="1_20" strokeWidth="3:3" strokeWidth_2="5:5"/>
+					</apply>
+				</case>
+				<apply pisteGrooming="true">
+					<switch>
+						<case additional="piste:grooming=backcountry"/>
+						<apply color_4="$pisteHikeBackcountryDefaultColor" cap_4="ROUND">
+							<case maxzoom="12" pathEffect_4="1_11" strokeWidth_4="1:1"/>
+							<case maxzoom="14" pathEffect_4="1_14" strokeWidth_4="2:2"/>
+							<case maxzoom="16" pathEffect_4="1_17" strokeWidth_4="2:2"/>
+							<case minzoom="17" pathEffect_4="1_20" strokeWidth_4="3:3"/>
+						</apply>
+					</switch>
+				</apply>
+			</switch>
+			<case tag="piste:type" value="skitour">
+				<apply color="$pisteDefaultColor" cap="ROUND">
+					<case maxzoom="11" pathEffect="1_8" strokeWidth="2:2"/>
+					<case maxzoom="12" pathEffect="1_9" strokeWidth="2.5:2.5"/>
+					<case maxzoom="14" pathEffect="1_12" strokeWidth="3:3"/>
+					<case maxzoom="16" pathEffect="1_17" strokeWidth="4:4"/>
+					<case minzoom="17" pathEffect="1_20" strokeWidth="6:6"/>
+				</apply>
+			</case>
 			<apply>
 				<case additional="piste:oneway=yes">
 					<case minzoom="14" maxzoom="14" pathIcon="arrow_triangle_black_small_nobg" pathIconStep="35">
@@ -1103,26 +1154,6 @@
 				<apply_if additional="color_gray" color="$grayColor" color_2="$grayColor" color_3="$grayColor"/>
 				<apply_if additional="color_black" color="$blackColor" color_2="$blackColor" color_3="$blackColor"/>
 			</apply_if>
-			<apply minzoom="14" pisteGrooming="true">
-				<switch>
-					<case additional="piste:grooming=classic"/>
-					<case additional="piste:grooming=mogul"/>
-					<switch>
-						<case additional="piste:grooming=skating" pathEffect_2="32_4" pathEffect_3="6_4_6_20" CAP_3="BUTT"/>
-						<case additional="piste:grooming=classic+skating" pathEffect_3="6_26" CAP_3="BUTT"/>
-						<apply>
-							<case maxzoom="14" strokeWidth_3="4:4"/>
-							<case minzoom="15" strokeWidth_3="5:5"/>
-						</apply>
-					</switch>
-					<case additional="piste:grooming=scooter" pathEffect_2="17_4"/>
-					<case additional="piste:grooming=backcountry" pathEffect_2="5_20"/>
-					<apply>
-						<case maxzoom="14" strokeWidth_2="1:1"/>
-						<case minzoom="15" strokeWidth_2="2:2"/>
-					</apply>
-				</switch>
-			</apply>
 		</switch>
 
 		<switch pisteRoutes="true">
