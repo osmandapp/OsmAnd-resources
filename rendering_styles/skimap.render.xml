@@ -732,6 +732,7 @@
 			<case tag="piste:type" value="skitour"/>
 			<case tag="piste:type" value="connection"/>
 			<case tag="piste:type" value="hike"/>
+			<case tag="piste:type" value="fatbike"/>
 			<case tag="piste:type" value="sled"/>
 			<case tag="piste:type" value="sleigh"/>
 			<case tag="leisure" value="ski_resort"/>
@@ -742,6 +743,7 @@
 			<case tag="piste:type" value="skitour"/>
 			<case tag="piste:type" value="connection"/>
 			<case tag="piste:type" value="hike"/>
+			<case tag="piste:type" value="fatbike"/>
 			<case tag="piste:type" value="sled"/>
 			<case tag="piste:type" value="sleigh"/>
 			<case tag="piste:type" value="snow_park"/>
@@ -749,14 +751,17 @@
 		</switch>
 
 		<switch objectType="2" order="80">
-			<case tag="piste:type" value="nordic" order="100"/>
-			<case tag="piste:type" value="downhill" order="100"/>
-			<case tag="piste:type" value="skitour" order="100"/>
-			<case tag="piste:type" value="connection" order="100"/>
-			<case tag="piste:type" value="hike" order="100"/>
-			<case tag="piste:type" value="sled" order="100"/>
-			<case tag="piste:type" value="sleigh" order="100"/>
-			<case tag="piste:type" value="snow_park" order="100"/>
+			<switch order="100">
+				<case tag="piste:type" value="nordic"/>
+				<case tag="piste:type" value="downhill"/>
+				<case tag="piste:type" value="skitour"/>
+				<case tag="piste:type" value="connection"/>
+				<case tag="piste:type" value="hike"/>
+				<case tag="piste:type" value="fatbike"/>
+				<case tag="piste:type" value="sled"/>
+				<case tag="piste:type" value="sleigh"/>
+				<case tag="piste:type" value="snow_park"/>
+			</switch>
 			<case tag="aerialway" value="" order="101"/>
 		</switch>
 	</order>
@@ -805,6 +810,9 @@
 					<case tag="piste:type" value="hike" nameTag="piste:name" nameTag2="piste:ref"/>
 					<case tag="piste:type" value="hike" nameTag="piste:ref"/>
 					<case tag="piste:type" value="hike" nameTag=""/>
+					<case tag="piste:type" value="fatbike" nameTag="piste:name" nameTag2="piste:ref"/>
+					<case tag="piste:type" value="fatbike" nameTag="piste:ref"/>
+					<case tag="piste:type" value="fatbike" nameTag=""/>
 					<apply textHaloColor="$pisteHikeDefaultColor"/>
 				</switch>
 				<apply textColor="$pisteTextColor" textHaloRadius="3" intersectionMargin="20"/>
@@ -1070,19 +1078,27 @@
 				</apply>
 			</switch>
 			<switch>
-				<case tag="piste:type" value="hike">
-					<apply color="$pisteHikeDefaultColor" color_2="$pisteHikeDefaultColor" cap_2="ROUND">
-						<case maxzoom="12" pathEffect_2="1_11" strokeWidth="1:1" strokeWidth_2="2:2"/>
-						<case maxzoom="14" pathEffect_2="1_14" strokeWidth="2:2" strokeWidth_2="4:4"/>
-						<case maxzoom="16" pathEffect_2="1_17" strokeWidth="2:2" strokeWidth_2="4:4"/>
-						<case minzoom="17" pathEffect_2="1_20" strokeWidth="3:3" strokeWidth_2="5:5"/>
-					</apply>
+				<case tag="piste:type" value="fatbike" color_5="$defaultColor">
+					<apply_if minzoom="17" pathEffect_5="1_20" strokeWidth_5="5:5"/>
+					<apply_if maxzoom="16" pathEffect_5="1_17" strokeWidth_5="4:4"/>
+					<apply_if maxzoom="14" pathEffect_5="1_14" strokeWidth_5="4:4"/>
+					<apply_if maxzoom="13" pathEffect_5="1_12" strokeWidth_5="3:3"/>
+					<apply_if maxzoom="12" pathEffect_5="1_11" strokeWidth_5="2:2"/>
 				</case>
+				<case tag="piste:type" value="hike"/>
+				<apply color="$pisteHikeDefaultColor" color_2="$pisteHikeDefaultColor" cap_2="ROUND">
+					<case maxzoom="12" pathEffect_2="1_11" strokeWidth="1:1" strokeWidth_2="2:2"/>
+					<case maxzoom="13" pathEffect_2="1_12" strokeWidth="1.5:1.5" strokeWidth_2="3:3"/>
+					<case maxzoom="14" pathEffect_2="1_14" strokeWidth="2:2" strokeWidth_2="4:4"/>
+					<case maxzoom="16" pathEffect_2="1_17" strokeWidth="2:2" strokeWidth_2="4:4"/>
+					<case minzoom="17" pathEffect_2="1_20" strokeWidth="3:3" strokeWidth_2="5:5"/>
+				</apply>
 				<apply pisteGrooming="true">
 					<switch>
 						<case additional="piste:grooming=backcountry"/>
 						<apply color_4="$pisteHikeBackcountryDefaultColor" cap_4="ROUND">
 							<case maxzoom="12" pathEffect_4="1_11" strokeWidth_4="1:1"/>
+							<case maxzoom="13" pathEffect_4="1_12" strokeWidth_4="1.5:1.5"/>
 							<case maxzoom="14" pathEffect_4="1_14" strokeWidth_4="2:2"/>
 							<case maxzoom="16" pathEffect_4="1_17" strokeWidth_4="2:2"/>
 							<case minzoom="17" pathEffect_4="1_20" strokeWidth_4="3:3"/>
