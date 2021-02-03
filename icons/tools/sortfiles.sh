@@ -2517,6 +2517,7 @@ icon special_time_span
 icon special_time_start
 icon special_time_end
 icon special_information
+icon special_walking
 icon_alias route_article_point special_route_article_point
 icon_alias route_article special_route_article
 icon_alias route_track special_route_track
