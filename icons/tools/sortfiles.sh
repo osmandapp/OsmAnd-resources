@@ -746,6 +746,8 @@ icon_alias gambling entertainment_gambling
 icon_alias adult_gaming_centre entertainment_gambling
 icon_alias amusement_arcade entertainment_amusement_arcade
 icon_alias hookah_lounge entertainment_hookah_lounge
+icon_alias amenity_nightclub tourist_night_club
+icon_alias mobile_library amenity_mobile_library
 
 ## Historic
 icon_alias historic tourist_archaeological2
