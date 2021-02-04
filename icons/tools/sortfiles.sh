@@ -1770,6 +1770,8 @@ icon_alias piste_nordic_red skimap_piste_nordic_red
 icon_alias piste_nordic_yellow skimap_piste_nordic_yellow
 icon_alias piste_skitour skimap_piste_skitour
 icon_alias piste_sled skimap_piste_sled
+icon_alias piste_intermediate_difficulty skimap_piste_intermediate_difficulty
+icon_alias piste_high_difficulty skimap_piste_high_difficulty
 
 
 ## Shops
