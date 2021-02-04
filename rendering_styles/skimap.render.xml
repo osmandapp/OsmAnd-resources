@@ -315,6 +315,10 @@
 		<case nightMode="true" attrColorValue="#CFCFCF"/>
 		<case attrColorValue="#FFFFFF"/>
 	</renderingAttribute>
+	<renderingAttribute name="pisteSkiJumpColor">
+		<case nightMode="true" attrColorValue="#0A5299"/>
+		<case attrColorValue="#094886"/>
+	</renderingAttribute>
 
 	<renderingAttribute name="pisteAreaDefaultColor">
 		<case nightMode="true" attrColorValue="#cc727272"/>
@@ -748,6 +752,8 @@
 			<case tag="piste:type" value="sleigh"/>
 			<case tag="piste:type" value="snow_park"/>
 			<case tag="leisure" value="ski_resort" order="10"/>
+			<case tag="piste:type" value="ski_jump"/>
+			<case tag="piste:type" value="ski_jump_landing"/>
 		</switch>
 
 		<switch objectType="2" order="80">
@@ -761,6 +767,7 @@
 				<case tag="piste:type" value="sled"/>
 				<case tag="piste:type" value="sleigh"/>
 				<case tag="piste:type" value="snow_park"/>
+				<case tag="piste:type" value="ski_jump"/>
 			</switch>
 			<case tag="aerialway" value="" order="101"/>
 		</switch>
@@ -820,6 +827,11 @@
 					<case tag="piste:type" value="fatbike" nameTag="piste:ref"/>
 					<case tag="piste:type" value="fatbike" nameTag=""/>
 					<apply textHaloColor="$pisteHikeDefaultColor"/>
+				</switch>
+				<switch>
+					<case tag="piste:type" value="ski_jump"/>
+					<case tag="piste:type" value="ski_jump_landing"/>
+					<apply textHaloColor="$pisteSkiJumpColor"/>
 				</switch>
 				<apply textColor="$pisteTextColor" textHaloRadius="3" intersectionMargin="20"/>
 			</switch>
@@ -996,6 +1008,12 @@
 			</apply>
 		</switch>
 
+		<switch minzoom="11">
+			<case tag="piste:type" value="ski_jump"/>
+			<case tag="piste:type" value="ski_jump_landing"/>
+			<apply color="$pisteSkiJumpColor"/>
+		</switch>
+
 		<switch minzoom="9">
 			<case tag="leisure" value="ski_resort"/>
 			<apply color="$null" color_2="#99464fff"/>
@@ -1027,6 +1045,7 @@
 					<switch>
 						<case tag="piste:type" value="nordic"/>
 						<case tag="piste:type" value="connection"/>
+						<case minzoom="11" tag="piste:type" value="ski_jump" color="$pisteSkiJumpColor"/>
 						<apply>
 							<case maxzoom="13" strokeWidth="1.5:1.5"/>
 							<case maxzoom="14" strokeWidth="2:2"/>

@@ -1772,6 +1772,7 @@ icon_alias piste_skitour skimap_piste_skitour
 icon_alias piste_sled skimap_piste_sled
 icon_alias piste_intermediate_difficulty skimap_piste_intermediate_difficulty
 icon_alias piste_high_difficulty skimap_piste_high_difficulty
+icon_alias piste_glide_yes skimap_piste_glide_yes
 
 
 ## Shops
