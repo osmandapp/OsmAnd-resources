@@ -1711,7 +1711,7 @@
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="bus_stop" if_tag1="public_transport" if_value1="platform"/> <!-- Remove highway=bus_stop (obsolete tag) if used with p_t=platform -->
 		<type tag="highway" value="emergency_access_point" minzoom="16"/>
 		<type tag="highway" value="speed_camera" minzoom="15"/>
-		<type tag="highway" value="milestone"  minzoom="15"/>
+		<type tag="highway" value="milestone" nameTags="distance" minzoom="15"/>
 		<type tag="highway" value="street_lamp" minzoom="16" poi="false"/>
 		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="mast" if_tag1="tower:type" if_value1="lighting" to_tag1="highway" to_value1="street_lamp" poi="no"/>
 		<type tag="mountain_pass" value="yes" minzoom="12" order="50"/>
@@ -2046,13 +2046,23 @@
 			relationGroupAdditionalTags="piste:type,piste:difficulty,piste:grooming,piste:abandoned,piste:oneway,piste_region,osmc_foreground,osmc_background" 
 			minzoom="11" relationGroup="true"/>
 
-		<entity_convert pattern="tag_transform" from_tag="name" if_tag1="piste:type" if_not_tag1="piste:name" to_tag1="piste:name" to_tag2="name" apply_to="way,relation"/>
-		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="piste:type" if_not_tag1="piste:ref" to_tag1="piste:ref" to_tag2="ref" apply_to="way,relation"/>
+		<entity_convert pattern="tag_transform" from_tag="name" if_tag1="piste:type" if_not_tag1="piste:name" to_tag1="piste:name" to_tag2="name" apply_to="way,relation" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="piste:type" if_not_tag1="piste:ref" to_tag1="piste:ref" to_tag2="ref" apply_to="way,relation" poi="no"/>
 		<type tag="piste:ref" value="" additional="text" minzoom="12" order="20" />
 		<type tag="piste:name" value="" additional="text" minzoom="12" order="20" />
 
+		<type tag="piste_high_difficulty" minzoom="11" additional="text" order="90" notosm="true"/>
+		<type tag="piste_intermediate_difficulty" minzoom="11" additional="text" order="90" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="nordic" if_tag1="piste:difficulty" if_value1="intermediate" to_tag1="piste:type" to_value1="nordic" to_tag2="piste_intermediate_difficulty" to_value2="." apply_to="way,relation"/>
+		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="nordic" if_tag1="piste:difficulty" if_value1="advanced" to_tag1="piste:type" to_value1="nordic" to_tag2="piste_high_difficulty" to_value2="." apply_to="way,relation"/>
+		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="nordic" if_tag1="piste:difficulty" if_value1="expert" to_tag1="piste:type" to_value1="nordic" to_tag2="piste_high_difficulty" to_value2="." apply_to="way,relation"/>
+		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="nordic" if_tag1="piste:difficulty" if_value1="freeride" to_tag1="piste:type" to_value1="nordic" to_tag2="piste_high_difficulty" to_value2="." apply_to="way,relation"/>
+		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="downhill" if_tag1="piste:difficulty" if_value1="freeride" to_tag1="piste:type" to_value1="downhill" to_tag2="piste_high_difficulty" to_value2="." apply_to="way,relation"/>
 
-		<type tag="piste_nordic_red" minzoom="14" additional="text" order="90" notosm="true"/>
+		<type tag="piste_gladed_yes" minzoom="11" additional="text" order="90" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="downhill" if_tag1="gladed" if_value1="yes" to_tag1="piste:type" to_value1="downhill" to_tag2="piste_gladed_yes" to_value2="." apply_to="way,relation"/>
+
+<!--		<type tag="piste_nordic_red" minzoom="14" additional="text" order="90" notosm="true"/>
 		<type tag="piste_nordic_brown" minzoom="14" additional="text" order="90" notosm="true"/>
 		<type tag="piste_nordic_orange" minzoom="14" additional="text" order="90" notosm="true"/>
 		<type tag="piste_nordic_yellow" minzoom="14" additional="text" order="90" notosm="true"/>
@@ -2075,6 +2085,7 @@
 		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="nordic" if_tag1="color_purple" to_tag1="piste:type" to_value1="nordic" to_tag2="piste_nordic_purple" to_value2="." apply_to="way,relation"/>
 		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="nordic" if_tag1="color_gray" to_tag1="piste:type" to_value1="nordic" to_tag2="piste_nordic_gray" to_value2="." apply_to="way,relation"/>
 		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="nordic" if_tag1="color_black" to_tag1="piste:type" to_value1="nordic" to_tag2="piste_nordic_black" to_value2="." apply_to="way,relation"/>
+		-->
 
 		<type tag="piste:type" value="downhill" minzoom="9"/>
 		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="downhill" to_tag1="piste:type" to_value1="downhill" to_tag2="piste:oneway" to_value2="yes"/>
@@ -2095,6 +2106,7 @@
 		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="nordic;sled" to_tag1="piste:type" to_value1="nordic"/>
 
 		<type tag="piste:type" value="hike" minzoom="9" />
+		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="snowshoe" if_not_tag1="piste:grooming" to_tag1="piste:type" to_value1="hike" to_tag2="piste:grooming" to_value2="backcountry"/>
 		<type tag="piste:type" value="sleigh" minzoom="9"/>
 		<type tag="piste:type" value="sled" minzoom="9" />
 		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="sled" to_tag1="piste:type" to_value1="sled" to_tag2="piste:oneway" to_value2="yes"/>
@@ -2103,6 +2115,8 @@
 		<type tag="piste:type" value="ice_skate" minzoom="9" />
 		<type tag="piste:type" value="connection" minzoom="9" />
 		<type tag="piste:type" value="fatbike" minzoom="9" />
+		<type tag="piste:type" value="ski_jump" minzoom="9" />
+		<type tag="piste:type" value="ski_jump_landing" minzoom="9" />
 		<type tag="piste:oneway" value="yes" minzoom="9" additional="true" />
 		<type tag="piste:oneway" value="no" minzoom="9" additional="true" />
 		<type tag="piste:difficulty" value="novice" minzoom="9" additional="true" />
@@ -5140,6 +5154,7 @@
 		<entity_convert pattern="tag_transform" from_tag="waste_basket" to_tag1="bin" map="no"/>
 		<type tag="amenity" value="waste_disposal" minzoom="15" />
 		<type tag="amenity" value="waste_transfer_station" minzoom="15" />
+		<type tag="amenity" value="mobile_library" minzoom="15" />
 		<type tag="amenity" value="shower" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="shower" from_value="yes" to_tag1="shower" to_value1="yes" to_tag2="shower_filter" to_value2="yes" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="shower" from_value="hot" to_tag1="shower" to_value1="hot" to_tag2="shower_filter" to_value2="yes" map="no"/>
@@ -6010,6 +6025,9 @@
 		<routing_type tag="construction" mode="amend"/>
 		<routing_type tag="crossing" mode="amend"/>
 		<routing_type tag="direction" mode="amend"/>
+		<routing_type tag="emergency" mode="amend"/>
+		<routing_type tag="emergency:oneway" mode="amend"/>
+		<routing_type tag="emergency:access" mode="amend"/>
 		<routing_type tag="enforcement" mode="amend"/>
 		<routing_type tag="ferry" mode="amend"/>
 		<routing_type tag="ford" mode="amend"/>

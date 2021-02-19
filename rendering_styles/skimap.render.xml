@@ -315,6 +315,10 @@
 		<case nightMode="true" attrColorValue="#CFCFCF"/>
 		<case attrColorValue="#FFFFFF"/>
 	</renderingAttribute>
+	<renderingAttribute name="pisteSkiJumpColor">
+		<case nightMode="true" attrColorValue="#0A5299"/>
+		<case attrColorValue="#094886"/>
+	</renderingAttribute>
 
 	<renderingAttribute name="pisteAreaDefaultColor">
 		<case nightMode="true" attrColorValue="#cc727272"/>
@@ -732,6 +736,7 @@
 			<case tag="piste:type" value="skitour"/>
 			<case tag="piste:type" value="connection"/>
 			<case tag="piste:type" value="hike"/>
+			<case tag="piste:type" value="fatbike"/>
 			<case tag="piste:type" value="sled"/>
 			<case tag="piste:type" value="sleigh"/>
 			<case tag="leisure" value="ski_resort"/>
@@ -742,21 +747,28 @@
 			<case tag="piste:type" value="skitour"/>
 			<case tag="piste:type" value="connection"/>
 			<case tag="piste:type" value="hike"/>
+			<case tag="piste:type" value="fatbike"/>
 			<case tag="piste:type" value="sled"/>
 			<case tag="piste:type" value="sleigh"/>
 			<case tag="piste:type" value="snow_park"/>
 			<case tag="leisure" value="ski_resort" order="10"/>
+			<case tag="piste:type" value="ski_jump"/>
+			<case tag="piste:type" value="ski_jump_landing"/>
 		</switch>
 
 		<switch objectType="2" order="80">
-			<case tag="piste:type" value="nordic" order="100"/>
-			<case tag="piste:type" value="downhill" order="100"/>
-			<case tag="piste:type" value="skitour" order="100"/>
-			<case tag="piste:type" value="connection" order="100"/>
-			<case tag="piste:type" value="hike" order="100"/>
-			<case tag="piste:type" value="sled" order="100"/>
-			<case tag="piste:type" value="sleigh" order="100"/>
-			<case tag="piste:type" value="snow_park" order="100"/>
+			<switch order="100">
+				<case tag="piste:type" value="nordic"/>
+				<case tag="piste:type" value="downhill"/>
+				<case tag="piste:type" value="skitour"/>
+				<case tag="piste:type" value="connection"/>
+				<case tag="piste:type" value="hike"/>
+				<case tag="piste:type" value="fatbike"/>
+				<case tag="piste:type" value="sled"/>
+				<case tag="piste:type" value="sleigh"/>
+				<case tag="piste:type" value="snow_park"/>
+				<case tag="piste:type" value="ski_jump"/>
+			</switch>
 			<case tag="aerialway" value="" order="101"/>
 		</switch>
 	</order>
@@ -765,7 +777,9 @@
 		<switch minzoom="14" textOrder="8" textOnPath="false">
 			<switch tag="piste:type" value="nordic" textColor="$pisteTextColor" textHaloColor="$pisteDefaultColor" textHaloRadius="3">
 				<switch minzoom="15">
-					<case nameTag="piste_nordic_red" icon="piste_nordic_red"/>
+					<case nameTag="piste_intermediate_difficulty" icon="piste_intermediate_difficulty"/>
+					<case nameTag="piste_high_difficulty" icon="piste_high_difficulty"/>
+<!--					<case nameTag="piste_nordic_red" icon="piste_nordic_red"/>
 					<case nameTag="piste_nordic_brown" icon="piste_nordic_brown"/>
 					<case nameTag="piste_nordic_orange" icon="piste_nordic_orange"/>
 					<case nameTag="piste_nordic_darkyellow" icon="piste_nordic_darkyellow"/>
@@ -776,7 +790,7 @@
 					<case nameTag="piste_nordic_blue" icon="piste_nordic_blue"/>
 					<case nameTag="piste_nordic_purple" icon="piste_nordic_purple"/>
 					<case nameTag="piste_nordic_gray" icon="piste_nordic_gray"/>
-					<case nameTag="piste_nordic_black" icon="piste_nordic_black"/>
+					<case nameTag="piste_nordic_black" icon="piste_nordic_black"/>-->
 					<apply textColor="#00ffffff" textHaloRadius="0" textOrder="9" intersectionSizeFactor="0.1"/>
 				</switch>
 				<case nameTag="piste:name" nameTag2="piste:ref"/>
@@ -784,6 +798,12 @@
 				<case nameTag=""/>
 				<apply intersectsWith="piste_nordic"/>
 			</switch>
+			<switch minzoom="15">
+				<case tag="piste:type" value="downhill" nameTag="piste_high_difficulty" icon="piste_high_difficulty"/>
+				<case tag="piste:type" value="downhill" nameTag="piste_gladed_yes" icon="piste_gladed_yes" textOrder="1"/>
+				<apply textColor="#00ffffff" textHaloRadius="0" textOrder="9" intersectionSizeFactor="0.1"/>
+			</switch>
+
 			<switch>
 				<switch>
 					<case tag="piste:type" value="downhill" nameTag="piste:name" nameTag2="piste:ref"/>
@@ -805,7 +825,15 @@
 					<case tag="piste:type" value="hike" nameTag="piste:name" nameTag2="piste:ref"/>
 					<case tag="piste:type" value="hike" nameTag="piste:ref"/>
 					<case tag="piste:type" value="hike" nameTag=""/>
+					<case tag="piste:type" value="fatbike" nameTag="piste:name" nameTag2="piste:ref"/>
+					<case tag="piste:type" value="fatbike" nameTag="piste:ref"/>
+					<case tag="piste:type" value="fatbike" nameTag=""/>
 					<apply textHaloColor="$pisteHikeDefaultColor"/>
+				</switch>
+				<switch>
+					<case tag="piste:type" value="ski_jump"/>
+					<case tag="piste:type" value="ski_jump_landing"/>
+					<apply textHaloColor="$pisteSkiJumpColor"/>
 				</switch>
 				<apply textColor="$pisteTextColor" textHaloRadius="3" intersectionMargin="20"/>
 			</switch>
@@ -885,6 +913,7 @@
 
 	<point>
 		<switch minzoom="12" tag="aerialway" value="station">
+			<case maxzoom="14" disable="true"/>
 			<case maxzoom="16" icon="railway_subway_station_small_black" shield="white_round_small_shield" iconVisibleSize="3" intersectionSizeFactor="0.3" iconOrder="2">
 				<apply_if nightMode="true" icon="railway_subway_station_small_white" shield="darkgray_round_small_shield"/>
 			</case>
@@ -982,6 +1011,12 @@
 			</apply>
 		</switch>
 
+		<switch minzoom="11">
+			<case tag="piste:type" value="ski_jump"/>
+			<case tag="piste:type" value="ski_jump_landing"/>
+			<apply color="$pisteSkiJumpColor"/>
+		</switch>
+
 		<switch minzoom="9">
 			<case tag="leisure" value="ski_resort"/>
 			<apply color="$null" color_2="#99464fff"/>
@@ -996,7 +1031,7 @@
 	<line>
 
 		<switch minzoom="9">
-			<switch>
+			<switch color="$pisteDefaultColor">
 				<switch>
 					<case tag="piste:type" value="downhill"/>
 					<apply>
@@ -1013,6 +1048,7 @@
 					<switch>
 						<case tag="piste:type" value="nordic"/>
 						<case tag="piste:type" value="connection"/>
+						<case minzoom="11" tag="piste:type" value="ski_jump" color="$pisteSkiJumpColor"/>
 						<apply>
 							<case maxzoom="13" strokeWidth="1.5:1.5"/>
 							<case maxzoom="14" strokeWidth="2:2"/>
@@ -1070,19 +1106,27 @@
 				</apply>
 			</switch>
 			<switch>
-				<case tag="piste:type" value="hike">
-					<apply color="$pisteHikeDefaultColor" color_2="$pisteHikeDefaultColor" cap_2="ROUND">
-						<case maxzoom="12" pathEffect_2="1_11" strokeWidth="1:1" strokeWidth_2="2:2"/>
-						<case maxzoom="14" pathEffect_2="1_14" strokeWidth="2:2" strokeWidth_2="4:4"/>
-						<case maxzoom="16" pathEffect_2="1_17" strokeWidth="2:2" strokeWidth_2="4:4"/>
-						<case minzoom="17" pathEffect_2="1_20" strokeWidth="3:3" strokeWidth_2="5:5"/>
-					</apply>
+				<case tag="piste:type" value="fatbike" color_5="$defaultColor">
+					<apply_if minzoom="17" pathEffect_5="1_20" strokeWidth_5="5:5"/>
+					<apply_if maxzoom="16" pathEffect_5="1_17" strokeWidth_5="4:4"/>
+					<apply_if maxzoom="14" pathEffect_5="1_14" strokeWidth_5="4:4"/>
+					<apply_if maxzoom="13" pathEffect_5="1_12" strokeWidth_5="3:3"/>
+					<apply_if maxzoom="12" pathEffect_5="1_11" strokeWidth_5="2:2"/>
 				</case>
+				<case tag="piste:type" value="hike"/>
+				<apply color="$pisteHikeDefaultColor" color_2="$pisteHikeDefaultColor" cap_2="ROUND">
+					<case maxzoom="12" pathEffect_2="1_11" strokeWidth="1:1" strokeWidth_2="2:2"/>
+					<case maxzoom="13" pathEffect_2="1_12" strokeWidth="1.5:1.5" strokeWidth_2="3:3"/>
+					<case maxzoom="14" pathEffect_2="1_14" strokeWidth="2:2" strokeWidth_2="4:4"/>
+					<case maxzoom="16" pathEffect_2="1_17" strokeWidth="2:2" strokeWidth_2="4:4"/>
+					<case minzoom="17" pathEffect_2="1_20" strokeWidth="3:3" strokeWidth_2="5:5"/>
+				</apply>
 				<apply pisteGrooming="true">
 					<switch>
 						<case additional="piste:grooming=backcountry"/>
 						<apply color_4="$pisteHikeBackcountryDefaultColor" cap_4="ROUND">
 							<case maxzoom="12" pathEffect_4="1_11" strokeWidth_4="1:1"/>
+							<case maxzoom="13" pathEffect_4="1_12" strokeWidth_4="1.5:1.5"/>
 							<case maxzoom="14" pathEffect_4="1_14" strokeWidth_4="2:2"/>
 							<case maxzoom="16" pathEffect_4="1_17" strokeWidth_4="2:2"/>
 							<case minzoom="17" pathEffect_4="1_20" strokeWidth_4="3:3"/>
