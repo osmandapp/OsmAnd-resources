@@ -541,7 +541,6 @@
 		<case attrColorValue="#fbfde6"/>
 	</renderingAttribute>
 
-
 	<renderingConstant name="wetlandColorNight" value="#1b3238"/>
 
 	<renderingAttribute name="contourLineColor">
@@ -664,11 +663,12 @@
 		<case attrColorValue="#a1eca6"/>
 	</renderingAttribute>
 	<renderingAttribute name="landuseIndustrialColor">
-		<case attrColorValue="#EDE8EB"/>
-	</renderingAttribute>
-	<renderingAttribute name="landuseIndustrialColor">
 		<case nightMode="true" attrColorValue="#281F25"/>
 		<case attrColorValue="#EDE8EB"/>
+	</renderingAttribute>
+	<renderingAttribute name="powerPolygonsColor">
+		<case nightMode="true" attrColorValue="#333333"/>
+		<case attrColorValue="#bbbbbb"/>
 	</renderingAttribute>
 	<renderingAttribute name="landuseRailwayColor">
 		<case nightMode="true" attrColorValue="#281F25"/>
@@ -677,6 +677,10 @@
 	<renderingAttribute name="landuseGaragesColor">
 		<case nightMode="true" attrColorValue="#281F25"/>
 		<case attrColorValue="#EDE8EB"/>
+	</renderingAttribute>
+	<renderingAttribute name="landuseConstructionColor">
+		<case nightMode="true" attrColorValue="#000000"/>
+		<case attrColorValue="#eaeae6"/>
 	</renderingAttribute>
 	<renderingAttribute name="spoilHeapColor">
 		<case attrColorValue="#66d9d5d2"/>
@@ -714,6 +718,10 @@
 	<renderingAttribute name="recreationGroundColor">
 		<case nightMode="true" attrColorValue="#353C32"/>
 		<case attrColorValue="#EBFFE4"/>
+	</renderingAttribute>
+	<renderingAttribute name="beachResortColor">
+		<case nightMode="true" attrColorValue="#575040"/>
+		<case attrColorValue="#e6d4a9"/>
 	</renderingAttribute>
 	<renderingAttribute name="grassColor">
 		<case nightMode="true" attrColorValue="#001F04"/>
@@ -3626,7 +3634,7 @@
 				</switch>
 				<case tag="building" value="construction" shader="topo_construction" color_0="#e7ebe7" color_2="#333333" pathEffect_2="8_4">
 					<apply_if minzoom="15" strokeWidth_2="1"/>
-					<apply_if nightMode="true" color_0="#333333"/>
+					<apply_if nightMode="true" color_0="#252525"/>
 				</case>
 				<case tag="building" value="pyramid" color="#be865d" color_2="#000000" strokeWidth_2="0.7"/>
 			</switch>
@@ -3640,7 +3648,7 @@
 							<apply_if additional="religion=muslim" shader="topo_cemetery_muslim"/>
 						</case>
 					</case>
-					<case minzoom="14" tag="landuse" value="construction" color="#89eadccf" shader="topo_construction" strokeWidth_2="1" color_2="#222222" pathEffect_2="2_4"/>
+					<case minzoom="14" tag="landuse" value="construction" color_0="$landuseConstructionColor" shader="topo_construction" strokeWidth_2="1" color_2="#222222" pathEffect_2="2_4"/>
 					<case minzoom="13" tag="landuse" value="landfill" color_0="$landfillColor" color="#landfillColor">
 						<apply_if minzoom="14" shader="topo_landfill"/>
 					</case>
@@ -3653,7 +3661,7 @@
 						<apply_if minzoom="15" additional="logging=selective_cutting" shader="topo_logging_selective_cutting_shader"/>
 					</case>
 
-					<case minzoom="11" tag="leisure" value="beach_resort" color="#e6d4a9" strokeWidth_2="1" color_2="#ad862b"/>
+					<case minzoom="11" tag="leisure" value="beach_resort" color="$beachResortColor" strokeWidth_2="1" color_2="#ad862b"/>
 					<case minzoom="11" tag="leisure" value="resort" color="#88A4E0A6" strokeWidth_2="1" color_2="#97CF99"/>
 
 					<case minzoom="11" tag="natural" value="beach" color_0="$beachColor" shader="topo_sand"/>
@@ -3861,9 +3869,9 @@
 						</apply>
 					</switch>
 					<switch minzoom="13">
-						<case tag="power" value="plant" color="#bbbbbb"/>
-						<case tag="power" value="generator" color="#bbbbbb"/>
-						<case tag="power" value="substation" color="#bbbbbb"/>
+						<case tag="power" value="plant" color="$powerPolygonsColor"/>
+						<case tag="power" value="generator" color="$powerPolygonsColor"/>
+						<case tag="power" value="substation" color="$powerPolygonsColor"/>
 					</switch>
 					<case minzoom="16" tag="man_made" value="reinforced_slope" color="#d6d6d6"/>
 
