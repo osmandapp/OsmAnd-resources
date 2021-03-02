@@ -50,21 +50,22 @@
 	<renderingConstant name="trackLowZoomStrokeWidth" value="1"/>-->
 
 	<renderingAttribute name="trackColor">
+		<case nightMode="true" attrColorValue="#DADADA"/>
 		<case attrColorValue="#000000"/>
 	</renderingAttribute>
 	<renderingConstant name="trackPathEffect" value="15_3"/>
 
 	<renderingAttribute name="trackSubstrateColor">
-		<case noPolygons="true">
-			<apply attrColorValue="#DDBB99"/> <!-- ZLZK track and path substrate color little more dark and not grey -->
-		</case>
-		<case attrColorValue="#cccccc"/>
+		<case noPolygons="true" attrColorValue="#eeeeee"/>
+		<case attrColorValue="#DDBB99"/> <!-- ZLZK track and path substrate color little more dark and not grey -->
 		<apply_if additional="winter_road=yes" attrColorValue="#aa458FFF"/>
+		<apply_if additional="ice_road=yes" attrColorValue="#aa458FFF"/>
 	</renderingAttribute>
 	<renderingConstant name="trackBridgeWidth" value="6:3.5"/>
 	<renderingConstant name="trackBridgeInnerWidth" value="4:3"/>
 	<renderingConstant name="trackTunnelPathEffect" value="3_3"/>
 	<renderingAttribute name="trackPathHighwayOnewayArrowsColor">
+		<case nightMode="true" attrColorValue="#ffffff"/>
 		<case attrColorValue="#000000"/>
 	</renderingAttribute>
 	<renderingConstant name="highwayOnewayIcon" value="arrow_triangle_black"/>
@@ -73,18 +74,23 @@
 	<renderingConstant name="highwayOnewayReverseIconBig" value="arrow_triangle_reverse_black_big"/>
 
 	<renderingAttribute name="footwayColor">
+		<case nightMode="true" attrColorValue="#B1B1FF"/>
 		<case attrColorValue="#00005B"/>
 	</renderingAttribute>
+
 	<renderingAttribute name="bridlewayColor">
+		<case nightMode="true" attrColorValue="#206100"/>
 		<case attrColorValue="#339900"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="pathColor">
+		<case nightMode="true" attrColorValue="#FFD6CF"/>
 		<case attrColorValue="#770000"/>
 	</renderingAttribute>
 <!--	<renderingConstant name="pathStrokeWidth" value="2"/>
 	<renderingConstant name="pathLowZoomStrokeWidth" value="0.5"/>-->
 	<renderingAttribute name="pathLowZoomColor">
+		<case nightMode="true" attrColorValue="#FFD6CF"/>
 		<case attrColorValue="#770000"/> <!-- ZLZK dark red path color -->
 	</renderingAttribute>
 	<renderingConstant name="pathPathEffect" value="4_2"/> <!-- ZLZK bigger path effect 3_3 -->
@@ -92,6 +98,11 @@
 	<renderingAttribute name="cyclewayColor">
 		<case attrColorValue="#222277"/> <!-- ZLZK cycleway is not water -->
 	</renderingAttribute>
+		<renderingAttribute name="cyclewayColor">
+		<case nightMode="true" attrColorValue="#D6D6FF"/>
+		<case attrColorValue="#222277"/> <!-- ZLZK cycleway is not water -->
+	</renderingAttribute>
+
 <!--	<renderingConstant name="cyclewayStrokeWidth" value="3"/>
 	<renderingConstant name="bridlewayStrokeWidth" value="3"/>
 	<renderingConstant name="footwayStrokeWidth" value="3"/>
@@ -109,49 +120,65 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="railwayRailColor">
-		<case maxzoom="15" attrColorValue="#b3b2b1"/>
-		<case minzoom="16" maxzoom="17" attrColorValue="#b3b2b1"/>
-		<case minzoom="18" attrColorValue="#b3b2b1"/>
+		<case nightMode="true" attrColorValue="#E5E4E4"/>
+		<case attrColorValue="#b3b2b1"/>
 	</renderingAttribute>
+
 	<renderingAttribute name="waterwayColor">
+		<case nightMode="true" attrColorValue="#C3E4FB"/>
 		<case attrColorValue="#4AADF3"/>
 	</renderingAttribute>
 	<renderingAttribute name="buildingColor">
-		<case minzoom="14" maxzoom="15" attrColorValue="#d6d3d0"/> <!-- ZLZK bulidings like default -->
-		<case minzoom="16" attrColorValue="#d6d3d0"/> <!-- ZLZK bulidings like default -->
+		<case minzoom="14" maxzoom="15" attrColorValue="#d6d3d0"> <!-- ZLZK bulidings like default -->
+			<apply_if nightMode="true" attrColorValue="#4E4D4C"/>
+		</case>
+		<case minzoom="16" attrColorValue="#d6d3d0"> <!-- ZLZK bulidings like default -->
+			<apply_if nightMode="true" attrColorValue="#4E4D4C"/>
+		</case>
 	</renderingAttribute>
+
 	<renderingAttribute name="woodColor">
-		<case attrColorValue="#aed1a0"/>
-	</renderingAttribute>
-	<renderingAttribute name="forestColor">
+		<case nightMode="true" attrColorValue="#1C3B0F"/>
 		<case attrColorValue="#aed1a0"/>
 	</renderingAttribute>
 	<renderingAttribute name="landuseAllotmentsColor">
+		<case nightMode="true" attrColorValue="#425427"/>
 		<case attrColorValue="#def1c0"/>
 	</renderingAttribute>
 	<renderingAttribute name="gardenColor">
+		<case nightMode="true" attrColorValue="#1F3012"/>
 		<case attrColorValue="#cef1c0"/>
 	</renderingAttribute>
-	<renderingAttribute name="landuseResidentialDefaultColor">
+	<renderingAttribute name="landuseResidentialColor">
 		<case attrColorValue="#e5e5e5"/>
+		<apply_if nightMode="true" attrColorValue="#292929"/>
+		<apply>
+			<switch minzoom="11" additional="residential=rural">
+				<case maxzoom="14" attrColorValue="#e5e5e5">
+					<apply_if nightMode="true" attrColorValue="#1A1A1A"/>
+				</case>
+				<case minzoom="15" attrColorValue="#e5e5e5">
+					<apply_if nightMode="true" attrColorValue="#292929"/>
+				</case>
+			</switch>
+			<switch minzoom="11" additional="residential=urban">
+				<case maxzoom="14" attrColorValue="#e5e5e5">
+					<apply_if nightMode="true" attrColorValue="#2D251D"/>
+				</case>
+				<case minzoom="15" attrColorValue="#e5e5e5">
+					<apply_if nightMode="true" attrColorValue="#251E18"/>
+				</case>
+			</switch>
+		</apply>
 	</renderingAttribute>
-	<renderingAttribute name="landuseResidentialRuralLowZoomColor">
-		<case attrColorValue="#e5e5e5"/>
-	</renderingAttribute>
-	<renderingAttribute name="landuseResidentialRuralColor">
-		<case attrColorValue="#e5e5e5"/>
-	</renderingAttribute>
-	<renderingAttribute name="landuseResidentialUrbanLowZoomColor">
-		<case attrColorValue="#e5e5e5"/>
-	</renderingAttribute>
-	<renderingAttribute name="landuseResidentialUrbanColor">
-		<case attrColorValue="#e5e5e5"/>
-	</renderingAttribute>
+
 	<renderingAttribute name="powerLineColor">
+		<case nightMode="true" attrColorValue="#eeeeee"/>
 		<case attrColorValue="#BBBBBB"/>
 	</renderingAttribute>
 	<renderingAttribute name="ridgeColor">
-		<case attrColorValue="#BBBBBB"/>
+		<case nightMode="true" attrColorValue="#DFDFDF"/>
+		<case attrColorValue="#603700"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="boundaryColorInner">

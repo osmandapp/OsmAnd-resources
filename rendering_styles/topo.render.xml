@@ -634,9 +634,6 @@
 		<case attrColorValue="#fbfde6"/>
 	</renderingAttribute>
 
-	<renderingAttribute name="forestColor">
-		<case attrColorValue="#9dd57c"/>
-	</renderingAttribute>
 	<renderingAttribute name="landuseLoggingColor">
 		<case nightMode="true" attrColorValue="#33332E"/>
 		<case attrColorValue="#fbfde6"/>
@@ -1119,9 +1116,11 @@
 		<case attrColorValue="#80ff0000"/>
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteTextColor">
+		<case nightMode="true" attrColorValue="#75C5FF"/>
 		<case attrColorValue="#0000ff"/>
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteTextHaloColor">
+		<case nightMode="true" attrColorValue="#660E151A"/>
 		<case attrColorValue="#eaffffff"/>
 	</renderingAttribute>
 	<renderingAttribute name="mtbRouteTextColor">
@@ -1975,8 +1974,12 @@
 						<case horseRoutes="true" tag="route_horse" value="" nameTag="horse_route_ref" textOnPath="true" textSize="13"/>
 						<apply>
 							<switch>
-								<case hikingRoutesOSMC="walkingRoutesOSMC" textSize="11" textColor="#0078ff" textHaloColor="#ccebf4ff"/>
-								<case hikingRoutesOSMC="walkingRoutesScopeOSMC" textSize="11" textColor="#0078ff" textHaloColor="#ccebf4ff"/>
+								<case hikingRoutesOSMC="walkingRoutesOSMC" textSize="11" textColor="#0078ff" textHaloColor="#ccebf4ff">
+									<apply_in nightMode="true" textColor="#ebf4ff" textHaloColor="#cc0078ff"/>
+								</case>
+								<case hikingRoutesOSMC="walkingRoutesScopeOSMC" textSize="11" textColor="#0078ff" textHaloColor="#ccebf4ff">
+									<apply_in nightMode="true" textColor="#ebf4ff" textHaloColor="#cc0078ff"/>
+								</case>
 								<case horseRoutes="true" textColor="#00745b" textSize="11" textHaloColor="#ccffffff"/>
 								<apply textMinDistance="100" textBold="true" textHaloRadius="2" textWrapWidth="30"/>
 							</switch>
@@ -2035,8 +2038,12 @@
 						</case>
 						<apply>
 							<switch>
-								<case hikingRoutesOSMC="walkingRoutesOSMC" textColor="#0078ff" textHaloColor="#ddebf4ff"/>
-								<case hikingRoutesOSMC="walkingRoutesScopeOSMC" textHaloColor="#ddebf4ff"/>
+								<case hikingRoutesOSMC="walkingRoutesOSMC" textColor="#0078ff" textHaloColor="#ddebf4ff">
+									<apply_in nightMode="true" textColor="#ebf4ff" textHaloColor="#cc0078ff"/>
+								</case>
+								<case hikingRoutesOSMC="walkingRoutesScopeOSMC" textHaloColor="#ddebf4ff">
+									<apply_in nightMode="true" textColor="#ebf4ff"/>
+								</case>
 								<case hikingRoutesOSMC="walkingRoutesOSMCNodes" textHaloColor="#ccffffff"/>
 								<apply_if maxzoom="13" textSize="13"/>
 								<apply_if minzoom="14" maxzoom="15" textSize="16"/>
@@ -3700,7 +3707,7 @@
 							<case additional="surface=sett"/>
 							<case additional="surface=cobblestone"/>
 							<case additional="surface=paving_stones"/>
-							<apply shader="paving_stones"/>
+							<apply nightMode="false" shader="paving_stones"/>
 						</switch>
 					</apply_if>
 					<apply_if minzoom="14">
@@ -3798,7 +3805,9 @@
 					</case>
 
 					<case minzoom="11" tag="leisure" value="beach_resort" color="$beachResortColor" strokeWidth_2="1" color_2="#ad862b"/>
-					<case minzoom="11" tag="leisure" value="resort" color="#88A4E0A6" strokeWidth_2="1" color_2="#97CF99"/>
+					<case minzoom="11" tag="leisure" value="resort" color="#88A4E0A6" strokeWidth_2="1" color_2="#97CF99">
+						<apply_if nightMode="true" color="#88216023"/>
+					</case>
 
 					<case minzoom="11" tag="natural" value="beach" color_0="$beachColor" shader="topo_sand"/>
 					<case minzoom="11" tag="natural" value="sand" color_0="$sandColor" shader="topo_sand"/>
@@ -4372,7 +4381,7 @@
 							</apply>
 
 							<!-- Bridges -->
-							<apply_if additional="bridge=yes" color_0="$mainHighwayBridgeShadowColor" shadowRadius="0" cap="SQUARE" cap_0="BUTT">
+							<apply_if additional="bridge=yes" color_0="$mainHighwayBridgeShadowColor" shadowRadius="0" cap="BUTT" cap_0="BUTT">
 								<case maxzoom="14" strokeWidth_0="5.9:5.9"/>
 								<case maxzoom="15" strokeWidth_0="7:7"/>
 								<case maxzoom="16" strokeWidth_0="9:9"/>
@@ -4422,7 +4431,7 @@
 								</switch>
 							</apply>
 							<!-- Bridges -->
-							<apply_if additional="bridge=yes" color_0="$mainHighwayBridgeShadowColor" shadowColor="#ff0000" cap="SQUARE" cap_0="BUTT">
+							<apply_if additional="bridge=yes" color_0="$mainHighwayBridgeShadowColor" shadowColor="#ff0000" cap="BUTT" cap_0="BUTT">
 								<switch>
 									<case maxzoom="14" strokeWidth_0="4.6:4.6"/>
 									<case maxzoom="15" strokeWidth_0="5.8:5.8"/>
@@ -4498,7 +4507,7 @@
 								</apply>
 							</case>
 							<!-- Bridges -->
-							<apply_if additional="bridge=yes" color_0="$mainHighwayBridgeShadowColor" shadowRadius="0" cap="SQUARE" cap_0="BUTT">
+							<apply_if additional="bridge=yes" color_0="$mainHighwayBridgeShadowColor" shadowRadius="0" cap="BUTT" cap_0="BUTT">
 								<case maxzoom="12" strokeWidth_0="3:3"/>
 								<case maxzoom="13" strokeWidth_0="3.5:3.5"/>
 								<case maxzoom="14" strokeWidth_0="4.7:4.7"/>
@@ -4555,7 +4564,7 @@
 								</switch>
 							</apply>
 							<!-- Bridges -->
-							<apply_if additional="bridge=yes" minzoom="12" color_0="$mainHighwayBridgeShadowColor" shadowRadius="0" cap="SQUARE" cap_0="BUTT">
+							<apply_if additional="bridge=yes" minzoom="12" color_0="$mainHighwayBridgeShadowColor" shadowRadius="0" cap="BUTT" cap_0="BUTT">
 								<case lessDetailed="false" maxzoom="12" strokeWidth_0="1.8:2.5"/>
 								<case maxzoom="13" strokeWidth_0="2.5:2.5"/>
 								<case maxzoom="14" strokeWidth_0="2.8:2.8"/>
