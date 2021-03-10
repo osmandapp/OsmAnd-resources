@@ -2480,6 +2480,26 @@
 			<apply_if nightMode="true" attrColorValue="#E5E5E5"/>
 		</case>
 	</renderingAttribute>
+
+	<renderingAttribute name="contour10mTextColor">
+		<case attrColorValue="#888888"/>
+	</renderingAttribute>
+	<renderingAttribute name="contour20mTextColor">
+		<case attrColorValue="#777777">
+			<apply_if nightMode="true" attrColorValue="#999999"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="contour50mTextColor">
+		<case attrColorValue="#777777">
+			<apply_if nightMode="true" attrColorValue="#AAAAAA"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="contour100mTextColor">
+		<case attrColorValue="#444444">
+			<apply_if nightMode="true" attrColorValue="#BBBBBB"/>
+		</case>
+	</renderingAttribute>
+
 	<renderingConstant name="placeTextHaloRadiusDay" value="1:1"/>
 
 	<renderingConstant name="placeTownMinZoom" value="8"/>
@@ -5049,26 +5069,26 @@
 				<case minzoom="15" contourLines="15"/>
 				<case minzoom="16" contourLines="16"/>
 				<apply>
-					<case minzoom="14" additional="contourtype=20m" textColor="#777777" textSize="10" textMinDistance="70">
-						<apply_if nightMode="true" textColor="#999999" textHaloRadius=":1" textHaloColor="#55777777"/>
+					<case minzoom="14" additional="contourtype=20m" textColor="$contour20mTextColor" textSize="10" textMinDistance="70">
+						<apply_if nightMode="true" textHaloRadius=":1" textHaloColor="#55777777"/>
 					</case>
 					<switch minzoom="15">
 						<case additional="contourtype=10m"/>
 						<case additional="contourtype=40f"/>
-						<apply textColor="#888888" textSize="9" textMinDistance="80"/>
-						<apply_if nightMode="true" textColor="#888888" textHaloRadius=":1" textHaloColor="#33777777"/>
+						<apply textColor="$contour10mTextColor" textSize="9" textMinDistance="80"/>
+						<apply_if nightMode="true" textHaloRadius=":1" textHaloColor="#33777777"/>
 					</switch>
 					<switch>
 						<case additional="contourtype=100m" textSize="12"/>
 						<case additional="contourtype=1000f" textSize="13"/>
 						<case additional="contourtype=200f" textSize="12"/>
-						<apply textColor="#444444" textMinDistance="40" textOrder="250"/>
-						<apply_if nightMode="true" textColor="#bbbbbb" textHaloRadius=":1" textHaloColor="#77777777"/>
+						<apply textColor="$contour100mTextColor" textMinDistance="40" textOrder="250"/>
+						<apply_if nightMode="true" textHaloRadius=":1" textHaloColor="#77777777"/>
 					</switch>
 					<switch>
 						<case additional="contourtype=50m"/>
-						<apply textColor="#777777" textSize="10" textMinDistance="60" textOrder="254"/>
-						<apply_if nightMode="true" textColor="#aaaaaa" textHaloRadius=":1" textHaloColor="#66777777"/>
+						<apply textColor="$contour50mTextColor" textSize="10" textMinDistance="60" textOrder="254"/>
+						<apply_if nightMode="true" textHaloRadius=":1" textHaloColor="#66777777"/>
 					</switch>
 				</apply>
 			</switch>
