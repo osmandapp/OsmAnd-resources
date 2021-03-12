@@ -437,7 +437,7 @@
 	</renderingAttribute>
 	<renderingAttribute name="serviceHighwayAreaColor">
 		<case surfaceIntegrity="true" minzoom="12" attrColorValue="$highwaySurfaceIntegrityColor"/>
-		<case nightMode="true" attrColorValue="#8C8C8C"/>
+		<case nightMode="true" attrColorValue="#696969"/>
 		<case attrColorValue="#ececec"/>
 	</renderingAttribute>
 	<renderingAttribute name="serviceHighwayAreaShadowColor">
@@ -722,29 +722,27 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="landuseResidentialColor">
-<!--		<case nightMode="true" attrColorValue="#77B0B0B0"/>-->
+		<case nightMode="true" attrColorValue="#292929"/>
 		<case attrColorValue="#BBBBBB"/>
-		<apply_if nightMode="true" attrColorValue="#292929"/>
-		<apply>
-			<switch minzoom="11" additional="residential=rural">
-				<case maxzoom="14" attrColorValue="#666666">
-					<apply_if nightMode="true" attrColorValue="#1A1A1A"/>
-				</case>
-				<case minzoom="15" attrColorValue="#ABABAB">
-					<apply_if nightMode="true" attrColorValue="#292929"/>
-				</case>
-			</switch>
-			<switch minzoom="11" additional="residential=urban">
-				<case maxzoom="14" attrColorValue="#FFA577">
-					<apply_if nightMode="true" attrColorValue="#2D251D"/>
-				</case>
-				<case minzoom="15" attrColorValue="#F2D3B6">
-					<apply_if nightMode="true" attrColorValue="#251E18"/>
-				</case>
-			</switch>
-		</apply>
 	</renderingAttribute>
 	
+	<renderingAttribute name="landuseResidentialRuralColor">
+		<case maxzoom="14" attrColorValue="#666666">
+			<apply_if nightMode="true" attrColorValue="#1A1A1A"/>
+		</case>
+		<case minzoom="15" attrColorValue="#ABABAB">
+			<apply_if nightMode="true" attrColorValue="#292929"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="landuseResidentialUrbanColor">
+		<case maxzoom="14" attrColorValue="#FFA577">
+			<apply_if nightMode="true" attrColorValue="#2D251D"/>
+		</case>
+		<case minzoom="15" attrColorValue="#F2D3B6">
+			<apply_if nightMode="true" attrColorValue="#251E18"/>
+		</case>
+	</renderingAttribute>
+
 	<renderingAttribute name="landuseVineyardColor">
 		<case nightMode="true" attrColorValue="#143714"/>
 		<case attrColorValue="#bbeca1"/>
@@ -3890,7 +3888,7 @@
 					<case minzoom="12" tag="natural" value="scrub">
 						<apply_if maxzoom="13" color="#b3e3b5"/>
 						<apply_if minzoom="14" color_0="#B3E3B5" shader="topo_scrub"/>
-						<apply_if nightMode="true" color_0="#1B251B" shader="topo_scrub_night"/>
+						<apply_if nightMode="true" color_0="#1B251B" color="#1B251B" shader="topo_scrub_night"/>
 					</case>
 					<case minzoom="10" tag="landuse" value="allotments" color_0="$landuseAllotmentsColor" color_2="#8fbda0" strokeWidth_2=":1">
 						<apply_if minzoom="14" shader="topo_allotments"/>
@@ -3922,7 +3920,10 @@
 						<apply_if minzoom="14" shader="topo_heath"/>
 						<apply_if nightMode="true" shader=""/>
 					</case>-->
-					<case minzoom="9" tag="landuse" value="residential" color="$landuseResidentialColor"/>
+					<case minzoom="9" tag="landuse" value="residential" color="$landuseResidentialColor">
+						<apply_if minzoom="11" additional="residential=rural" color="$landuseResidentialRuralColor"/>
+						<apply_if minzoom="11" additional="residential=urban" color="$landuseResidentialUrbanColor"/>
+					</case>
 					<case minzoom="11" tag="landuse" value="industrial" color="$landuseIndustrialColor"/>
 					<case minzoom="12" tag="landuse" value="railway" color="$landuseRailwayColor"/>
 					<case minzoom="14" tag="landuse" value="garages" color="$landuseGaragesColor"/>
