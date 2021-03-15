@@ -609,6 +609,22 @@
 		<case attrColorValue="#3f3f3f"/>
 	</renderingAttribute>
 
+	<renderingAttribute name="pisteNordicTextHaloColor">
+		<case additional="color_red" attrColorValue="$redColor"/>
+		<case additional="color_brown" attrColorValue="$brownColor"/>
+		<case additional="color_orange" attrColorValue="$orangeColor"/>
+		<case additional="color_darkyellow" attrColorValue="$darkyellowColor"/>
+		<case additional="color_yellow" attrColorValue="$yellowColor"/>
+		<case additional="color_lightgreen" attrColorValue="$lightgreenColor"/>
+		<case additional="color_green" attrColorValue="$greenColor"/>
+		<case additional="color_lightblue" attrColorValue="$lightblueColor"/>
+		<case additional="color_blue" attrColorValue="$blueColor"/>
+		<case additional="color_purple" attrColorValue="$purpleColor"/>
+		<case additional="color_gray" attrColorValue="$grayColor"/>
+		<case additional="color_black" attrColorValue="$blackColor"/>
+		<case attrColorValue="$pisteNordicColor"/>
+	</renderingAttribute>
+
 	<renderingAttribute name="woodColor">
 		<case nightMode="true" attrColorValue="#001122"/>
 		<case attrColorValue="#afdcc9"/>
@@ -775,67 +791,85 @@
 
 	<text>
 		<switch minzoom="14" textOrder="8" textOnPath="false">
-			<switch tag="piste:type" value="nordic" textColor="$pisteTextColor" textHaloColor="$pisteDefaultColor" textHaloRadius="3">
+			<switch>
+				<switch tag="piste:type" value="nordic" textColor="$pisteTextColor" textHaloColor="$pisteNordicTextHaloColor" textHaloRadius="3">
+					<switch minzoom="15">
+						<case nameTag="piste_intermediate_difficulty" icon="piste_intermediate_difficulty"/>
+						<case nameTag="piste_high_difficulty" icon="piste_high_difficulty"/>
+						<apply textColor="#00ffffff" textHaloRadius="0" textOrder="9" intersectionSizeFactor="0.1"/>
+					</switch>
+					<case nameTag="piste:name" nameTag2="piste:ref"/>
+					<case nameTag="piste:ref"/>
+					<case nameTag=""/>
+					<apply_if nightMode="true">
+						<switch>
+							<case additional="color_lightgreen"/>
+							<case additional="color_lightblue"/>
+							<case additional="color_gray"/>
+							<case additional="color_yellow"/>
+							<case additional="color_orange"/>
+							<apply textColor="$blackColor"/>
+						</switch>
+					</apply_if>
+					<apply intersectsWith="piste_nordic" textOnPath="true"/>
+				</switch>
+			</switch>
+			<switch>
 				<switch minzoom="15">
-					<case nameTag="piste_intermediate_difficulty" icon="piste_intermediate_difficulty"/>
-					<case nameTag="piste_high_difficulty" icon="piste_high_difficulty"/>
-<!--					<case nameTag="piste_nordic_red" icon="piste_nordic_red"/>
-					<case nameTag="piste_nordic_brown" icon="piste_nordic_brown"/>
-					<case nameTag="piste_nordic_orange" icon="piste_nordic_orange"/>
-					<case nameTag="piste_nordic_darkyellow" icon="piste_nordic_darkyellow"/>
-					<case nameTag="piste_nordic_yellow" icon="piste_nordic_yellow"/>
-					<case nameTag="piste_nordic_lightgreen" icon="piste_nordic_lightgreen"/>
-					<case nameTag="piste_nordic_green" icon="piste_nordic_green"/>
-					<case nameTag="piste_nordic_lightblue" icon="piste_nordic_lightblue"/>
-					<case nameTag="piste_nordic_blue" icon="piste_nordic_blue"/>
-					<case nameTag="piste_nordic_purple" icon="piste_nordic_purple"/>
-					<case nameTag="piste_nordic_gray" icon="piste_nordic_gray"/>
-					<case nameTag="piste_nordic_black" icon="piste_nordic_black"/>-->
+					<case tag="piste:type" value="downhill" nameTag="piste_high_difficulty" icon="piste_high_difficulty"/>
+					<case tag="piste:type" value="downhill" nameTag="piste_gladed_yes" icon="piste_gladed_yes" textOrder="1"/>
 					<apply textColor="#00ffffff" textHaloRadius="0" textOrder="9" intersectionSizeFactor="0.1"/>
 				</switch>
-				<case nameTag="piste:name" nameTag2="piste:ref"/>
-				<case nameTag="piste:ref"/>
-				<case nameTag=""/>
-				<apply intersectsWith="piste_nordic" textOnPath="true"/>
-			</switch>
-			<switch minzoom="15">
-				<case tag="piste:type" value="downhill" nameTag="piste_high_difficulty" icon="piste_high_difficulty"/>
-				<case tag="piste:type" value="downhill" nameTag="piste_gladed_yes" icon="piste_gladed_yes" textOrder="1"/>
-				<apply textColor="#00ffffff" textHaloRadius="0" textOrder="9" intersectionSizeFactor="0.1"/>
-			</switch>
 
-			<switch>
 				<switch>
-					<case tag="piste:type" value="downhill" nameTag="piste:name" nameTag2="piste:ref"/>
-					<case tag="piste:type" value="downhill" nameTag="piste:ref"/>
-					<case tag="piste:type" value="downhill" nameTag=""/>
-					<case tag="piste:type" value="skitour" nameTag="piste:name" nameTag2="piste:ref"/>
-					<case tag="piste:type" value="skitour" nameTag="piste:ref"/>
-					<case tag="piste:type" value="skitour" nameTag=""/>
-					<case tag="piste:type" value="sled" nameTag="piste:name" nameTag2="piste:ref"/>
-					<case tag="piste:type" value="sled" nameTag="piste:ref"/>
-					<case tag="piste:type" value="sled" nameTag=""/>
-					<case tag="piste:type" value="sleigh" nameTag="piste:name" nameTag2="piste:ref"/>
-					<case tag="piste:type" value="sleigh" nameTag="piste:ref"/>
-					<case tag="piste:type" value="sleigh" nameTag=""/>
-					<case tag="piste:type" value="snow_park"/>
-					<apply textHaloColor="$pisteDefaultColor"/>
+					<switch>
+						<case tag="piste:type" value="downhill" nameTag="piste:name" nameTag2="piste:ref"/>
+						<case tag="piste:type" value="downhill" nameTag="piste:ref"/>
+						<case tag="piste:type" value="downhill" nameTag=""/>
+						<case tag="piste:type" value="skitour" nameTag="piste:name" nameTag2="piste:ref"/>
+						<case tag="piste:type" value="skitour" nameTag="piste:ref"/>
+						<case tag="piste:type" value="skitour" nameTag=""/>
+						<case tag="piste:type" value="sled" nameTag="piste:name" nameTag2="piste:ref"/>
+						<case tag="piste:type" value="sled" nameTag="piste:ref"/>
+						<case tag="piste:type" value="sled" nameTag=""/>
+						<case tag="piste:type" value="sleigh" nameTag="piste:name" nameTag2="piste:ref"/>
+						<case tag="piste:type" value="sleigh" nameTag="piste:ref"/>
+						<case tag="piste:type" value="sleigh" nameTag=""/>
+						<case tag="piste:type" value="snow_park"/>
+						<apply textHaloColor="$pisteDefaultColor"/>
+					</switch>
+					<switch>
+						<case tag="piste:type" value="hike" nameTag="piste:name" nameTag2="piste:ref"/>
+						<case tag="piste:type" value="hike" nameTag="piste:ref"/>
+						<case tag="piste:type" value="hike" nameTag=""/>
+						<case tag="piste:type" value="fatbike" nameTag="piste:name" nameTag2="piste:ref"/>
+						<case tag="piste:type" value="fatbike" nameTag="piste:ref"/>
+						<case tag="piste:type" value="fatbike" nameTag=""/>
+						<apply textHaloColor="$pisteHikeDefaultColor"/>
+					</switch>
+					<switch>
+						<case tag="piste:type" value="ski_jump"/>
+						<case tag="piste:type" value="ski_jump_landing"/>
+						<apply textHaloColor="$pisteSkiJumpColor"/>
+					</switch>
+					<apply textOnPath="true" textColor="$pisteTextColor" textHaloRadius="3" intersectionMargin="20"/>
 				</switch>
-				<switch>
-					<case tag="piste:type" value="hike" nameTag="piste:name" nameTag2="piste:ref"/>
-					<case tag="piste:type" value="hike" nameTag="piste:ref"/>
-					<case tag="piste:type" value="hike" nameTag=""/>
-					<case tag="piste:type" value="fatbike" nameTag="piste:name" nameTag2="piste:ref"/>
-					<case tag="piste:type" value="fatbike" nameTag="piste:ref"/>
-					<case tag="piste:type" value="fatbike" nameTag=""/>
-					<apply textHaloColor="$pisteHikeDefaultColor"/>
-				</switch>
-				<switch>
-					<case tag="piste:type" value="ski_jump"/>
-					<case tag="piste:type" value="ski_jump_landing"/>
-					<apply textHaloColor="$pisteSkiJumpColor"/>
-				</switch>
-				<apply textOnPath="true" textColor="$pisteTextColor" textHaloRadius="3" intersectionMargin="20"/>
+				<apply>
+					<case additional="piste:difficulty=intermediate" textHaloColor="$pisteDifficultyIntermediateTextHaloColor"/>
+					<case additional="piste:difficulty=easy" textHaloColor="$pisteDifficultyEasyTextHaloColor"/>
+					<case additional="piste:difficulty=advanced" textHaloColor="$pisteDifficultyAdvancedColor"/>
+					<case additional="piste:difficulty=novice" textHaloColor="$pisteDifficultyNoviceTextHaloColor"/>
+					<switch>
+						<case additional="piste:difficulty=expert" textHaloColor="$pisteDifficultyExpertTextHaloColor" textColor="#333333">
+							<apply_if additional="piste_region=us_canada_au" textColor="#ffffff"/>
+							<apply_if additional="piste_region=japan" textColor="#ffffff"/>
+							<apply_if additional="piste_region=scandinavia" textColor="#ffffff"/>
+						</case>
+						<case additional="piste:difficulty=freeride" textHaloColor="$pisteDifficultyFreerideTextHaloColor" textColor="#333333"/>
+						<apply_if nightMode="true" textColor="#ffffff"/>
+					</switch>
+					<case additional="piste:difficulty=extreme" textHaloColor="$pisteDifficultyExtremeColor"/>
+				</apply>
 			</switch>
 			<apply>
 				<case maxzoom="14" textSize="12"/>
@@ -846,22 +880,6 @@
 			</apply>
 			<apply textBold="true" textWrapWidth="25"/>
 <!--			<apply_if engine_v1="true" textDy="4"/>-->
-			<apply>
-				<case additional="piste:difficulty=intermediate" textHaloColor="$pisteDifficultyIntermediateTextHaloColor"/>
-				<case additional="piste:difficulty=easy" textHaloColor="$pisteDifficultyEasyTextHaloColor"/>
-				<case additional="piste:difficulty=advanced" textHaloColor="$pisteDifficultyAdvancedColor"/>
-				<case additional="piste:difficulty=novice" textHaloColor="$pisteDifficultyNoviceTextHaloColor"/>
-				<switch>
-					<case additional="piste:difficulty=expert" textHaloColor="$pisteDifficultyExpertTextHaloColor" textColor="#333333">
-						<apply_if additional="piste_region=us_canada_au" textColor="#ffffff"/>
-						<apply_if additional="piste_region=japan" textColor="#ffffff"/>
-						<apply_if additional="piste_region=scandinavia" textColor="#ffffff"/>
-					</case>
-					<case additional="piste:difficulty=freeride" textHaloColor="$pisteDifficultyFreerideTextHaloColor" textColor="#333333"/>
-					<apply_if nightMode="true" textColor="#ffffff"/>
-				</switch>
-				<case additional="piste:difficulty=extreme" textHaloColor="$pisteDifficultyExtremeColor"/>
-			</apply>
 			<apply_if legend="true" textOnPath="true"/>
 		</switch>
 
@@ -1057,7 +1075,7 @@
 				</switch>
 				<switch>
 					<switch>
-						<case tag="piste:type" value="nordic"/>
+						<case tag="piste:type" value="nordic" color="$pisteNordicColor"/>
 						<case tag="piste:type" value="connection"/>
 						<case minzoom="11" tag="piste:type" value="ski_jump" color="$pisteSkiJumpColor"/>
 						<apply>
@@ -1194,20 +1212,6 @@
 					<case additional="piste:difficulty=extreme" color="$pisteDifficultyExtremeColor" color_2="$pisteGroomingExtremeColor" color_3="$pisteGroomingExtremeColor"/>
 				</switch>
 			</apply>
-			<apply_if tag="piste:type" value="nordic" color="$pisteNordicColor" color_2="$pisteNordicColor" color_3="$pisteNordicColor">
-				<apply_if additional="color_red" color="$redColor" color_2="$redColor" color_3="$redColor"/>
-				<apply_if additional="color_brown" color="$brownColor" color_2="$brownColor" color_3="$brownColor"/>
-				<apply_if additional="color_orange" color="$orangeColor" color_2="$orangeColor" color_3="$orangeColor"/>
-				<apply_if additional="color_darkyellow" color="$darkyellowColor" color_2="$darkyellowColor" color_3="$darkyellowColor"/>
-				<apply_if additional="color_yellow" color="$yellowColor" color_2="$yellowColor" color_3="$yellowColor"/>
-				<apply_if additional="color_lightgreen" color="$lightgreenColor" color_2="$lightgreenColor" color_3="$lightgreenColor"/>
-				<apply_if additional="color_green" color="$greenColor" color_2="$greenColor" color_3="$greenColor"/>
-				<apply_if additional="color_lightblue" color="$lightblueColor" color_2="$lightblueColor" color_3="$lightblueColor"/>
-				<apply_if additional="color_blue" color="$blueColor" color_2="$blueColor" color_3="$blueColor"/>
-				<apply_if additional="color_purple" color="$purpleColor" color_2="$purpleColor" color_3="$purpleColor"/>
-				<apply_if additional="color_gray" color="$grayColor" color_2="$grayColor" color_3="$grayColor"/>
-				<apply_if additional="color_black" color="$blackColor" color_2="$blackColor" color_3="$blackColor"/>
-			</apply_if>
 		</switch>
 
 		<switch pisteRoutes="true">
