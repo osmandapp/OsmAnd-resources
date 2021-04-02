@@ -1879,7 +1879,7 @@ icon_alias paint shopping_paint
 icon_alias radiotechnics shopping_radiotechnics
 icon_alias scuba_diving_shop shopping_scuba_diving_shop
 icon_alias stationery shopping_stationery
-icon_alias tableware shopping_tableware
+#icon_alias tableware shopping_tableware
 icon_alias trophy shopping_trophy
 icon_alias trade shopping_trade
 icon_alias vacuum_cleaner shopping_vacuum_cleaner
