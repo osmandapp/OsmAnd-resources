@@ -1974,6 +1974,9 @@ icon_alias stands entertainment_stands
 
 ## Club
 icon_alias club_sport club_sport
+icon_alias club_music club_music
+icon_alias club_scout club_scout
+icon_alias club_social club_social
 
 icon_alias hazard_yes functional-icons_hazard
 icon_alias hazard_nuclear_map functional-icons_hazard_nuclear
