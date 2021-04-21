@@ -869,10 +869,13 @@
 			<case tag="aeroway" value="" order="62"/>
 			<case tag="aeroway" value="runway"/>
 			<case tag="contour" value="elevation" order="15">
+				<apply_if contourDensity="medium_w" additional="contourtype=5m" order="-1"/>
 				<apply_if contourDensity="medium_w" additional="contourtype=10m" order="-1"/>
 				<apply_if contourDensity="medium_w" additional="contourtype=50m" order="-1"/>
+				<apply_if contourDensity="low" additional="contourtype=5m" order="-1"/>
 				<apply_if contourDensity="low" additional="contourtype=10m" order="-1"/>
 				<apply_if contourDensity="low" additional="contourtype=20m" order="-1"/>
+				<apply_if contourDensity="low" additional="contourtype=20f" order="-1"/>
 				<apply_if contourDensity="low" additional="contourtype=40f" order="-1"/>
 			</case>
 
@@ -4125,6 +4128,16 @@
 			<case minzoom="15" contourLines="15"/>
 			<case minzoom="16" contourLines="16"/>
 			<apply>
+				<switch>
+					<case minzoom="15" additional="contourtype=5m" color="$contourLineColor"/>
+					<case minzoom="13" additional="contourtype=20f" color="$contourLineColor"/>
+					<apply>
+						<case contourWidth="thin" strokeWidth="0.3"/>
+						<case contourWidth="medium" strokeWidth="0.6"/>
+						<case contourWidth="thick" strokeWidth="1.1"/>
+						<case strokeWidth="0.3"/>
+					</apply>
+				</switch>
 				<switch>
 					<case minzoom="13" additional="contourtype=10m" color="$contourLineColor"/>
 					<case minzoom="12" additional="contourtype=20m" color="$contourLineColor"/>
