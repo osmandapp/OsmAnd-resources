@@ -234,6 +234,7 @@ icon_alias rescue_box emergency_rescue_box
 icon_alias topo_rescue_box topo_emergency_rescue_box
 icon_alias mountain_rescue emergency_mountain_rescue
 icon_alias lifeguard_base emergency_lifeguard_base
+icon_alias health_post health_health_post
 
 icon_alias healthcare health_healthcare
 icon_alias amenity_dentist health_dentist
