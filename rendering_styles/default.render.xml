@@ -943,6 +943,26 @@
 		</case>
 	</renderingAttribute>
 
+
+	<renderingAttribute name="buswayRoadColor">
+		<case attrColorValue="#C7DCFF">
+			<apply_if additional="tunnel=yes" attrColorValue="#E9F2F2"/>
+			<apply_if additional="covered=yes" attrColorValue="#E9F2F2"/>
+			<apply_if additional="construction=yes" attrColorValue="#cccccc"/>
+			<apply_if nightMode="true" attrColorValue="#405F6B">
+				<apply_if additional="tunnel=yes" attrColorValue="#38575F"/>
+				<apply_if additional="covered=yes" attrColorValue="#38575F"/>
+			</apply_if>
+		</case>
+		<apply_if hideOverground="true" attrColorValue="$hideOvergroundHighwayColor"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="buswayRoadShadowColor">
+		<case attrColorValue="#30000000">
+			<apply_if nightMode="true" attrColorValue="#20000000"/>
+		</case>
+	</renderingAttribute>
+
 	<!-- NOTE: Road is usually public, while service road is not, that's why we should mabye use the residential and not service road color pattern here: -->
 	<renderingAttribute name="roadRoadColor">
 		<case attrColorValue="#ececec">
@@ -3450,6 +3470,13 @@
 						<apply_if layer="-1" order="56"/>
 						<apply_if additional="layer=-2" order="35"/>
 					</case>
+					<case tag="highway" value="busway" order="77">
+						<apply_if layer="1" order="100"/>
+						<apply_if additional="layer=2" order="130"/>
+						<apply_if additional="layer=3" order="158"/>
+						<apply_if layer="-1" order="55"/>
+						<apply_if additional="layer=-2" order="34"/>
+					</case>
 					<case tag="highway" value="living_street" order="77">
 						<apply_if layer="1" order="100"/>
 						<apply_if additional="layer=2" order="130"/>
@@ -3814,6 +3841,7 @@
 					<apply_if tag="highway" value="unclassified" order="57"/>
 					<apply_if tag="highway" value="residential" order="57"/>
 					<apply_if tag="highway" value="service" order="56"/>
+					<apply_if tag="highway" value="busway" order="56"/>
 					<apply_if tag="highway" value="living_street" order="56"/>
 				</apply_if>
 				<apply_if additional="indoor=yes" order="-1"/>
@@ -4608,6 +4636,7 @@
 									</switch>
 								</apply>
 							</case>
+							<case tag="highway" value="busway" textOrder="128"/>
 							<case minzoom="17" tag="area:highway" value="service" textBold="true" textItalic="true" textWrapWidth="25" textOrder="129"/>
 							<case tag="highway" value="living_street" textOrder="130"/>
 							<case tag="highway" value="escape" textOrder="130"/>
@@ -10222,6 +10251,15 @@
 								</apply_if>
 							</switch>
 						</apply>
+					</switch>
+					<switch>
+						<case tag="highway" value="busway"/>
+						<apply color="$buswayRoadColor" color__1="$buswayRoadColor"/>
+						<apply_if minzoom="14">
+							<case engine_v1="true" shadowRadius=":1"/>
+							<case shadowRadius="$highwayShadowRadius"/>
+						</apply_if>
+						<apply minzoom="15" shadowColor="$buswayRoadShadowColor"/>
 					</switch>
 					<switch>
 						<case tag="highway" value="pedestrian" color__1="$pedestrianRoadColor"/>
