@@ -443,6 +443,25 @@
 	<renderingAttribute name="serviceHighwayAreaShadowColor">
 		<case attrColorValue="#000000"/>
 	</renderingAttribute>
+
+	<renderingAttribute name="buswayRoadColor">
+		<case attrColorValue="#C7DCFF">
+			<apply_if additional="tunnel=yes" attrColorValue="#E9F2F2"/>
+			<apply_if additional="covered=yes" attrColorValue="#E9F2F2"/>
+			<apply_if additional="construction=yes" attrColorValue="#cccccc"/>
+			<apply_if nightMode="true" attrColorValue="#2C687F">
+				<apply_if additional="tunnel=yes" attrColorValue="#38575F"/>
+				<apply_if additional="covered=yes" attrColorValue="#38575F"/>
+			</apply_if>
+		</case>
+	</renderingAttribute>
+
+	<renderingAttribute name="buswayRoadShadowColor">
+		<case attrColorValue="#30000000">
+			<apply_if nightMode="true" attrColorValue="#20000000"/>
+		</case>
+	</renderingAttribute>
+
 	<renderingAttribute name="racewayColor">
 		<case attrColorValue="#ececec"/>
 	</renderingAttribute>
@@ -1724,6 +1743,13 @@
 						<apply_if layer="-1" order="56"/>
 						<apply_if additional="layer=-2" order="35"/>
 					</case>
+					<case tag="highway" value="busway" order="77">
+						<apply_if layer="1" order="100"/>
+						<apply_if additional="layer=2" order="130"/>
+						<apply_if additional="layer=3" order="158"/>
+						<apply_if layer="-1" order="55"/>
+						<apply_if additional="layer=-2" order="34"/>
+					</case>
 					<case tag="highway" value="living_street" order="77">
 						<apply_if layer="1" order="100"/>
 						<apply_if additional="layer=2" order="130"/>
@@ -1947,6 +1973,7 @@
 				<switch textColor="$serviceTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$serviceRoadColor">
 					<case tag="highway" value="service" textOrder="128"/>
 					<case minzoom="17" tag="area:highway" value="service" textWrapWidth="25" textOrder="129"/>
+					<case tag="highway" value="busway" textHaloColor="$buswayRoadColor" textOrder="128"/>
 					<case tag="highway" value="living_street" textOrder="130"/>
 					<case tag="highway" value="escape" textOrder="130"/>
 				</switch>
@@ -4629,6 +4656,11 @@
 								<apply_if surfaceIntegrity="true" color="$serviceRoadColor"/>
 							</switch>
 						</apply>
+					</switch>
+					<switch>
+						<case tag="highway" value="busway" color_0="$buswayRoadShadowColor"/>
+						<apply color="$buswayRoadColor" color__1="$buswayRoadColor"/>
+						<apply shadowRadius="$highwayShadowRadius" cap="ROUND"/>
 					</switch>
 					<switch minzoom="14" tag="highway" value="raceway" color_0="$serviceRoadShadowColor">
 						<case maxzoom="14" strokeWidth="1:1" shadowRadius="1"/>
