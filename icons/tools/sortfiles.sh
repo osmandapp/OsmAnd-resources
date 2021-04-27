@@ -1805,7 +1805,6 @@ icon_alias shop_department_store shopping_department_store
 icon_alias shop_doityourself shopping_diy
 icon_alias electronics shopping_electronics
 icon_alias hifi shopping_hifi
-icon_alias shop_fashion shopping_clothes
 icon_alias shop_fishing shopping_tackle
 icon_alias shop_florist shopping_florist
 icon_alias flooring shopping_flooring
@@ -1861,7 +1860,6 @@ icon_alias curtain shopping_curtain
 icon_alias fabric shopping_fabric
 icon_alias bedding shopping_bedding
 icon_alias erotic shopping_erotic
-icon_alias fashion shopping_fashion
 icon_alias frame shopping_frame
 icon_alias free_flying shopping_free_flying
 icon_alias furnace shopping_furnace
