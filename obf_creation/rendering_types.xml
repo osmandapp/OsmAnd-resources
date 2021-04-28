@@ -342,7 +342,7 @@
 	<entity_convert pattern="tag_transform" from_tag="bridge" from_value="simple_brunnel" if_not_tag1="man_made" to_tag1="man_made" to_value1="bridge" to_tag2="bridge" to_value2="yes" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge" from_value="low_water_crossing" if_not_tag1="man_made" to_tag1="man_made" to_value1="bridge" to_tag2="bridge" to_value2="yes" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge" from_value="covered" if_not_tag1="man_made" to_tag1="man_made" to_value1="bridge" to_tag2="bridge" to_value2="yes" to_tag3="covered" to_value3="yes" routing="no"/>
-	<entity_convert pattern="tag_transform" from_tag="bridge" from_value="pontoon" if_not_tag1="man_made" to_tag1="man_made" to_value1="bridge" to_tag2="bridge" to_value2="yes" routing="no"/>
+	<entity_convert pattern="tag_transform" from_tag="bridge" from_value="pontoon" if_not_tag1="man_made" to_tag1="man_made" to_value1="bridge" to_tag2="bridge" to_value2="yes" to_tag3="bridge:structure" to_value3="floating" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge" from_value="trestle" if_not_tag1="man_made" to_tag1="man_made" to_value1="bridge" to_tag2="bridge" to_value2="yes" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge" from_value="arch" if_not_tag1="man_made" to_tag1="man_made" to_value1="bridge" to_tag2="bridge" to_value2="yes" to_tag3="bridge:structure" to_value3="arch" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="yes" if_tag1="highway" if_not_tag1="layer" to_tag1="covered" to_value1="yes" routing="no"/>
@@ -656,10 +656,10 @@
 	<entity_convert pattern="tag_transform" from_tag="conveying" from_value="both" to_tag1="conveying" to_value1="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="conveying" from_value="up" to_tag1="conveying" to_value1="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="conveying" from_value="down" to_tag1="conveying" to_value1="yes"/>
-	<entity_convert pattern="tag_transform" from_tag="escalator" from_value="yes" to_tag1="conveying" to_value1="yes"/>
-	<entity_convert pattern="tag_transform" from_tag="escalator" from_value="parallel" to_tag1="conveying" to_value1="yes"/>
-	<entity_convert pattern="tag_transform" from_tag="escalator" from_value="up" to_tag1="conveying" to_value1="yes"/>
-	<entity_convert pattern="tag_transform" from_tag="escalator" from_value="only" to_tag1="conveying" to_value1="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="escalator" from_value="yes" to_tag1="conveying" to_value1="yes" to_tag2="highway" to_value2="steps"/>
+	<entity_convert pattern="tag_transform" from_tag="escalator" from_value="parallel" to_tag1="conveying" to_value1="yes" to_tag2="highway" to_value2="steps"/>
+	<entity_convert pattern="tag_transform" from_tag="escalator" from_value="up" to_tag1="conveying" to_value1="yes" to_tag2="highway" to_value2="steps"/>
+	<entity_convert pattern="tag_transform" from_tag="escalator" from_value="only" to_tag1="conveying" to_value1="yes" to_tag2="highway" to_value2="steps"/>
 
 	<type tag="status" value="active" minzoom="10" additional="true"/>
 
@@ -3681,6 +3681,7 @@
 		<type tag="man_made" value="watermill" minzoom="15" />
 		<type tag="man_made" value="water_tower" minzoom="15" />
 		<type tag="man_made" value="water_well" minzoom="10" />
+		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="well" to_tag1="man_made" to_value1="water_well"/>
 		<entity_convert pattern="tag_transform" from_tag="water_well" from_value="pump" to_tag1="pump" to_value1="yes" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="pump:status" from_value="out_of_order" to_tag1="pump:status" to_value1="broken" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="drinking_water" if_tag1="man_made" if_value1="water_well"/>
@@ -3758,7 +3759,6 @@
 
 	<category name="office">
 		<type tag="office" value="accountant" minzoom="15" />
-		<type tag="office" value="administrative" minzoom="15"/>
 		<type tag="office" value="advertising_agency" minzoom="15" />
 		<type tag="office" value="architect" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="architect_office" to_tag1="office" to_value1="architect"/>
@@ -4193,7 +4193,6 @@
 		<entity_convert pattern="tag_transform" from_tag="fire_hydrant:water_source" from_value="groundwater" to_tag1="water_source" to_value1="groundwater" map="no"/>
 		<type tag="emergency" value="fire_water_pond" minzoom="15" />
 		<type tag="emergency" value="suction_point" minzoom="15" />
-		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="emergency_phone" to_tag1="emergency" to_value1="phone"/>
 		<type tag="emergency" value="phone" minzoom="15"/>
 		<entity_convert pattern="tag_transform" from_tag="emergency" from_value="access_point" to_tag1="highway" to_value1="emergency_access_point"/>
 		<type tag="emergency" value="siren" minzoom="15" />
@@ -4890,8 +4889,7 @@
 		<entity_convert pattern="tag_transform" from_tag="fuel:alcohol" from_value="yes" to_tag1="fuel:ethanol" to_value1="yes"/>
 		<entity_convert pattern="tag_transform" from_tag="fuel" from_value="electric" to_tag1="fuel:electricity" to_value1="yes"/>
 		<type tag="amenity" value="charging_station" minzoom="13" />
-		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="ev_charging" to_tag1="amenity" to_value1="charging_station"/>
-
+	
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="charging_station" to_tag1="amenity" to_value1="charging_station" to_tag2="amenity_charging_station" to_value2="charging" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="fuel:electricity" from_value="yes" if_tag1="amenity" if_value1="fuel" to_tag1="fuel:electricity" to_value1="yes" to_tag2="amenity_charging_station" to_value2="charging" map="no"/>
 
@@ -5324,6 +5322,7 @@
 		<type tag="amenity" value="townhall" minzoom="15" />
 		<type tag="amenity" value="public_building" minzoom="15" />
 		<type tag="office" value="government" minzoom="15" />
+		<entity_convert pattern="tag_transform" from_tag="office" from_value="administrative" to_tag1="office" to_value1="government"/>
 		<type tag="population_rounded" value="1500000000" minzoom="3" additional="true" notosm="true"/>
 		<type tag="population_rounded" value="400000000" minzoom="3" additional="true" notosm="true"/>
 		<type tag="population_rounded" value="200000000" minzoom="3" additional="true" notosm="true"/>

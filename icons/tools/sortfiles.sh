@@ -1939,7 +1939,6 @@ icon_alias company office_company
 icon_alias advertising_agency office_advertising_agency
 icon_alias employment_agency office_employment_agency
 icon_alias lawyer office_lawyer
-icon_alias office_administrative office_administrative
 icon_alias ngo office_ngo
 icon_alias political_party office_political_party
 icon_alias office_telecommunication office_telecommunication
