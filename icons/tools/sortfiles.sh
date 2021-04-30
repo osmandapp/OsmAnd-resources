@@ -803,6 +803,7 @@ icon_alias charcoal_pile tourist_charcoal_pile
 icon_alias topo_charcoal_pile topo_charcoal_pile
 icon_alias historic_tank tourist_historic_tank
 icon_alias topo_tank topo_topo_historic_tank
+icon_alias pillory tourist_pillory
 
 
 ## Special POI icons
