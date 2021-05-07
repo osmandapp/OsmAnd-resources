@@ -674,7 +674,7 @@ icon_alias topo_motel topo_topo_motel
 icon_alias wilderness_hut accommodation_wilderness_hut
 icon_alias topo_wilderness_hut topo_topo_wilderness_hut
 icon_alias summer_camp accommodation_summer_camp
-
+icon_alias refugee_site accommodation_refugee_site
 
 ## Tourism
 icon_alias sightseeing tourist_castle2
