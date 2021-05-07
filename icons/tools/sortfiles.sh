@@ -978,6 +978,7 @@ icon_alias internet_cafe amenity_internet_cafe
 icon_alias feeding_place amenity_colored_feeding_place
 icon_alias animal_keeping amenity_animal_keeping
 icon_alias coworking_space amenity_coworking
+icon_alias trolley_bay poi_colored_trolley_bay
 
 icon_alias craft craft_tailor
 icon_alias craft_default craft_craft_default
