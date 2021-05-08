@@ -1152,6 +1152,7 @@ icon_alias pipeline_substation poi_colored_pipeline_substation
 icon_alias flare poi_colored_flare
 icon_alias cellar_entrance poi_cellar_entrance
 icon_alias topo_cellar_entrance topo_cellar_entrance
+icon_alias windsock poi_windsock
 
 icon_alias military poi_colored_military_bunker
 icon_alias beehive poi_beehive
