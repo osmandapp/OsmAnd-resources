@@ -136,7 +136,9 @@ icon_alias topo_tree_needleleaved functional-icons-x2_topo_tree_needleleaved
 icon_alias natural_tree_palm functional-icons_tree_palm
 icon_alias topo_tree_palm functional-icons-x2_topo_tree_palm
 icon_alias tree_dot functional-icons_tree
+icon_alias shrub_dot functional-icons_shrub
 icon_alias tree poi_colored_tree
+icon_alias shrub poi_colored_shrub
 icon_alias natural_volcano_active_big functional-icons_volcano_active_big
 icon_alias natural_volcano_active functional-icons_volcano_active
 icon_alias natural_volcano_big functional-icons_volcano_big
