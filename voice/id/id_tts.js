@@ -17,119 +17,119 @@ var tts;
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	dictionary["route_is"] = tts ? "The trip is" : "route_is.ogg";
-	dictionary["route_calculate"] = tts ? "Route recalculated" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? "distance" : "distance.ogg";
+	dictionary["route_is"] = tts ? "Rute ini" : "route_is.ogg";
+	dictionary["route_calculate"] = tts ? "Rute telah berubah" : "route_calculate.ogg";
+	dictionary["distance"] = tts ? "jarak" : "distance.ogg";
 
 	// LEFT/RIGHT
-	//dictionary["prepare"] = tts ? "Prepare to" : "prepare.ogg";
-	dictionary["after"] = tts ? "after" : "after.ogg";
-	dictionary["in"] = tts ? "in" : "in.ogg";
+	dictionary["prepare"] = tts ? "Bersiap untuk" : "prepare.ogg";
+	dictionary["after"] = tts ? "setelah" : "after.ogg";
+	dictionary["in"] = tts ? "dalam" : "in.ogg";
 
-	dictionary["left"] = tts ? "turn left" : "left.ogg";
-	dictionary["left_sh"] = tts ? "turn sharply left" : "left_sh.ogg";
-	dictionary["left_sl"] = tts ? "turn slightly left" : "left_sl.ogg";
-	dictionary["right"] = tts ? "turn right" : "right.ogg";
-	dictionary["right_sh"] = tts ? "turn sharply right" : "right_sh.ogg";
-	dictionary["right_sl"] = tts ? "turn slightly right" : "right_sl.ogg";
-	dictionary["left_keep"] = tts ? "keep left" : "left_keep.ogg";
-	dictionary["right_keep"] = tts ? "keep right" : "right_keep.ogg";
-	dictionary["left_bear"] = tts ? "keep left" : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
-	dictionary["right_bear"] = tts ? "keep right" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
+	dictionary["left"] = tts ? "belok kiri" : "left.ogg";
+	dictionary["left_sh"] = tts ? "belok tajam ke kiri" : "left_sh.ogg";
+	dictionary["left_sl"] = tts ? "belok sedikit ke kiri" : "left_sl.ogg";
+	dictionary["right"] = tts ? "belok kanan" : "right.ogg";
+	dictionary["right_sh"] = tts ? "belok tajam ke kanan" : "right_sh.ogg";
+	dictionary["right_sl"] = tts ? "belok sedikit ke kanan" : "right_sl.ogg";
+	dictionary["left_keep"] = tts ? "tetap di lajur kiri" : "left_keep.ogg";
+	dictionary["right_keep"] = tts ? "tetap di lajur kanan" : "right_keep.ogg";
+	dictionary["left_bear"] = tts ? "tetap di jalur kiri : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
+	dictionary["right_bear"] = tts ? "tetap di jalur kanan" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
 
 	// U-TURNS
-	dictionary["make_uturn"] = tts ? "make a U turn" : "make_uturn.ogg";
-	dictionary["make_uturn_wp"] = tts ? "When possible, please make a U turn" : "make_uturn_wp.ogg";
+	dictionary["make_uturn"] = tts ? "putar balik" : "make_uturn.ogg";
+	dictionary["make_uturn_wp"] = tts ? "Jika bisa, putar balik" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? "enter a roundabout" : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? "enter the roundabout" : "roundabout.ogg";
-	dictionary["then"] = tts ? "then" : "then.ogg";
-	dictionary["and"] = tts ? "and" : "and.ogg";
-	dictionary["take"] = tts ? "take the" : "take.ogg";
-	dictionary["exit"] = tts ? "exit" : "exit.ogg";
+	dictionary["prepare_roundabout"] = tts ? "saat masuk ke bundaran" : "prepare_roundabout.ogg";
+	dictionary["roundabout"] = tts ? "masuk ke bundaran" : "roundabout.ogg";
+	dictionary["then"] = tts ? "lalu" : "then.ogg";
+	dictionary["and"] = tts ? "dan" : "and.ogg";
+	dictionary["take"] = tts ? "ambil" : "take.ogg";
+	dictionary["exit"] = tts ? "jalur keluar" : "exit.ogg";
 
-	dictionary["1st"] = tts ? "first" : "1st.ogg";
-	dictionary["2nd"] = tts ? "second" : "2nd.ogg";
-	dictionary["3rd"] = tts ? "third" : "3rd.ogg";
-	dictionary["4th"] = tts ? "fourth" : "4th.ogg";
-	dictionary["5th"] = tts ? "fifth" : "5th.ogg";
-	dictionary["6th"] = tts ? "sixth" : "6th.ogg";
-	dictionary["7th"] = tts ? "seventh" : "7th.ogg";
-	dictionary["8th"] = tts ? "eighth" : "8th.ogg";
-	dictionary["9th"] = tts ? "nineth" : "9th.ogg";
-	dictionary["10th"] = tts ? "tenth" : "10th.ogg";
-	dictionary["11th"] = tts ? "eleventh" : "11th.ogg";
-	dictionary["12th"] = tts ? "twelfth" : "12th.ogg";
-	dictionary["13th"] = tts ? "thirteenth" : "13th.ogg";
-	dictionary["14th"] = tts ? "fourteenth" : "14th.ogg";
-	dictionary["15th"] = tts ? "fifteenth" : "15th.ogg";
-	dictionary["16th"] = tts ? "sixteenth" : "16th.ogg";
-	dictionary["17th"] = tts ? "seventeenth" : "17th.ogg";
+	dictionary["1st"] = tts ? "pertama" : "1st.ogg";
+	dictionary["2nd"] = tts ? "kedua" : "2nd.ogg";
+	dictionary["3rd"] = tts ? "ketiga" : "3rd.ogg";
+	dictionary["4th"] = tts ? "keempat" : "4th.ogg";
+	dictionary["5th"] = tts ? "ke lima" : "5th.ogg";
+	dictionary["6th"] = tts ? "ke enam" : "6th.ogg";
+	dictionary["7th"] = tts ? "ke tujuh" : "7th.ogg";
+	dictionary["8th"] = tts ? "ke delapan" : "8th.ogg";
+	dictionary["9th"] = tts ? "ke sembilan" : "9th.ogg";
+	dictionary["10th"] = tts ? "ke sepuluh" : "10th.ogg";
+	dictionary["11th"] = tts ? "ke sebelas" : "11th.ogg";
+	dictionary["12th"] = tts ? "ke dua belas" : "12th.ogg";
+	dictionary["13th"] = tts ? "ke tiga belas" : "13th.ogg";
+	dictionary["14th"] = tts ? "ke empat belas" : "14th.ogg";
+	dictionary["15th"] = tts ? "ke lima belas" : "15th.ogg";
+	dictionary["16th"] = tts ? "ke enam belas" : "16th.ogg";
+	dictionary["17th"] = tts ? "ke tujuh belas" : "17th.ogg";
 
 	// STRAIGHT/FOLLOW
-	dictionary["go_ahead"] = tts ? "Go straight ahead" : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "Continue for" : "follow.ogg";  // "Follow the course of the road for" perceived as too chatty by many users
+	dictionary["go_ahead"] = tts ? "Langsung lanjut" : "go_ahead.ogg";
+	dictionary["follow"] = tts ? "Lanjutkan" : "follow.ogg";  // "Follow the course of the road for" perceived as too chatty by many users
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "and arrive at your destination" : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "You have reached your destination" : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "and arrive at your intermediate destination" : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "You have reached your intermediate destination" : "reached_intermediate.ogg";
+	dictionary["and_arrive_destination"] = tts ? "dan tiba di tujuan" : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "Anda tiba di tujuan" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "dan tiba di persinggahan" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "Anda tiba di persinggahan" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "and pass GPX waypoint" : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "You are passing GPX waypoint" : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "and pass favorite" : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "You are passing favorite" : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "and pass POI" : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "You are passing POI" : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "dan lewati patok G P X" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "Anda lewat patok G P X" : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "dan lewati patok favorit" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "Anda lewat patok favorit" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "dan lewati tempat khusus" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "Anda lewat tempat khusus" : "reached_poi.ogg";
 
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "You are exceeding the speed limit" : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "speed limit" : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "Attention" : "attention.ogg";
-	dictionary["speed_camera"] = tts ? "speed cam" : "speed_camera.ogg";
-	dictionary["border_control"] = tts ? "border control" : "border_control.ogg";
-	dictionary["railroad_crossing"] = tts ? "railroad crossing" : "railroad_crossing.ogg";
-	dictionary["traffic_calming"] = tts ? "traffic calming" : "traffic_calming.ogg";
-	dictionary["toll_booth"] = tts ? "toll booth" : "toll_booth.ogg";
-	dictionary["stop"] = tts ? "stop sign" : "stop.ogg";
-	dictionary["pedestrian_crosswalk"] = tts ? "pedestrian crosswalk" : "pedestrian_crosswalk.ogg";
-	dictionary["tunnel"] = tts ? "tunnel" : "tunnel.ogg";
+	dictionary["exceed_limit"] = tts ? "batas kecepatan" : "exceed_limit.ogg";
+	dictionary["attention"] = tts ? "Awas" : "attention.ogg";
+	dictionary["speed_camera"] = tts ? "kamera pemantau kecepatan" : "speed_camera.ogg";
+	dictionary["border_control"] = tts ? "pos lintas batas" : "border_control.ogg";
+	dictionary["railroad_crossing"] = tts ? "persilangan kereta api" : "railroad_crossing.ogg";
+	dictionary["traffic_calming"] = tts ? "polisi tidur" : "traffic_calming.ogg";
+	dictionary["toll_booth"] = tts ? "gerbang tol" : "toll_booth.ogg";
+	dictionary["stop"] = tts ? "tanda berhenti" : "stop.ogg";
+	dictionary["pedestrian_crosswalk"] = tts ? "penyebrangan pejalan kaki" : "pedestrian_crosswalk.ogg";
+	dictionary["tunnel"] = tts ? "terowongan" : "tunnel.ogg";
 
 	// OTHER PROMPTS
-	dictionary["location_lost"] = tts ? "g p s signal lost" : "location_lost.ogg";
-	dictionary["location_recovered"] = tts ? "g p s signal recovered" : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "You have been off the route for" : "off_route.ogg";
-	dictionary["back_on_route"] = tts ? "You are back on the route" : "back_on_route.ogg";
+	dictionary["location_lost"] = tts ? "sinyal G P S putus" : "location_lost.ogg";
+	dictionary["location_recovered"] = tts ? "sinyal G P S tersambung " : "location_recovered.ogg";
+	dictionary["off_route"] = tts ? "Anda sudah bergeser dari jalur sebanyak" : "off_route.ogg";
+	dictionary["back_on_route"] = tts ? "Anda sudah kembali ke rute" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "onto" : "onto.ogg";
-	dictionary["on"] = tts ? "on" : "on.ogg";    // is used if you turn together with your current street, i.e. street name does not change.
-	dictionary["to"] = tts ? "to" : "to.ogg";
-	dictionary["toward"] = tts ? "toward" : "toward.ogg";
+	dictionary["onto"] = tts ? "ke" : "onto.ogg";
+	dictionary["on"] = tts ? "ke" : "on.ogg";    // is used if you turn together with your current street, i.e. street name does not change.
+	dictionary["to"] = tts ? "ke" : "to.ogg";
+	dictionary["toward"] = tts ? "melalui" : "toward.ogg";
 
 	// DISTANCE UNIT SUPPORT
-	dictionary["meters"] = tts ? "meters" : "meters.ogg";
-	dictionary["around_1_kilometer"] = tts ? "about 1 kilometer" : "around_1_kilometer.ogg";
-	dictionary["around"] = tts ? "about" : "around.ogg";
-	dictionary["kilometers"] = tts ? "kilometers" : "kilometers.ogg";
+	dictionary["meters"] = tts ? "meter" : "meters.ogg";
+	dictionary["around_1_kilometer"] = tts ? "sekitar 1 kilometer" : "around_1_kilometer.ogg";
+	dictionary["around"] = tts ? "sekitar" : "around.ogg";
+	dictionary["kilometers"] = tts ? "kilometer" : "kilometers.ogg";
 
-	dictionary["feet"] = tts ? "feet" : "feet.ogg";
-	dictionary["1_tenth_of_a_mile"] = tts ? "one tenth of a mile" : "1_tenth_of_a_mile.ogg";
-	dictionary["tenths_of_a_mile"] = tts ? "tenths of a mile" : "tenths_of_a_mile.ogg";
-	dictionary["around_1_mile"] = tts ? "about 1 mile" : "around_1_mile.ogg";
-	dictionary["miles"] = tts ? "miles" : "miles.ogg";
-	dictionary["yards"] = tts ? "yards" : "yards.ogg";
+	dictionary["feet"] = tts ? "kaki" : "feet.ogg";
+	dictionary["1_tenth_of_a_mile"] = tts ? "se persepuluh mil" : "1_tenth_of_a_mile.ogg";
+	dictionary["tenths_of_a_mile"] = tts ? "per sepuluh mil" : "tenths_of_a_mile.ogg";
+	dictionary["around_1_mile"] = tts ? "sekitar satu mil" : "around_1_mile.ogg";
+	dictionary["miles"] = tts ? "mil" : "miles.ogg";
+	dictionary["yards"] = tts ? "yar" : "yards.ogg";
 
 	// TIME SUPPORT
-	dictionary["time"] = tts ? "time is" : "time.ogg";
-	dictionary["1_hour"] = tts ? "one hour" : "1_hour.ogg";
-	dictionary["hours"] = tts ? "hours" : "hours.ogg";
-	dictionary["less_a_minute"] = tts ? "less than a minute" : "less_a_minute.ogg";
-	dictionary["1_minute"] = tts ? "one minute" : "1_minute.ogg";
-	dictionary["minutes"] = tts ? "minutes" : "minutes.ogg";
+	dictionary["time"] = tts ? "waktu sekarang menunjukkan" : "time.ogg";
+	dictionary["1_hour"] = tts ? "satu jam" : "1_hour.ogg";
+	dictionary["hours"] = tts ? "jam" : "hours.ogg";
+	dictionary["less_a_minute"] = tts ? "kurang dari satu menit" : "less_a_minute.ogg";
+	dictionary["1_minute"] = tts ? "satu menit" : "1_minute.ogg";
+	dictionary["minutes"] = tts ? "menit" : "minutes.ogg";
 }
 
 
