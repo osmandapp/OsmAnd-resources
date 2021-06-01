@@ -34,7 +34,7 @@ function populateDictionary(tts) {
 	dictionary["right_sl"] = tts ? "belok sedikit ke kanan" : "right_sl.ogg";
 	dictionary["left_keep"] = tts ? "tetap di lajur kiri" : "left_keep.ogg";
 	dictionary["right_keep"] = tts ? "tetap di lajur kanan" : "right_keep.ogg";
-	dictionary["left_bear"] = tts ? "tetap di jalur kiri : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
+	dictionary["left_bear"] = tts ? "tetap di jalur kiri" : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
 	dictionary["right_bear"] = tts ? "tetap di jalur kanan" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
 
 	// U-TURNS
