@@ -17,9 +17,10 @@ var tts;
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	dictionary["route_is"] = tts ? "Rute ini" : "route_is.ogg";
+	dictionary["route_is"] = tts ? "Rute ini sepanjang" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Rute telah berubah" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? "jarak" : "distance.ogg";
+	dictionary["distance"] = tts ? "jaraknya" : "distance.ogg";
+	dictionary["distance_change"] = tts ? "jaraknya menjadi" : "distance_change.ogg"; // specific indonesian.
 
 	// LEFT/RIGHT
 	dictionary["prepare"] = tts ? "Bersiap untuk" : "prepare.ogg";
@@ -42,7 +43,7 @@ function populateDictionary(tts) {
 	dictionary["make_uturn_wp"] = tts ? "Jika bisa, putar balik" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? "saat masuk ke bundaran" : "prepare_roundabout.ogg";
+	dictionary["prepare_roundabout"] = tts ? "masuki bundaran" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "masuk ke bundaran" : "roundabout.ogg";
 	dictionary["then"] = tts ? "lalu" : "then.ogg";
 	dictionary["and"] = tts ? "dan" : "and.ogg";
@@ -72,18 +73,18 @@ function populateDictionary(tts) {
 	dictionary["follow"] = tts ? "Lanjutkan" : "follow.ogg";  // "Follow the course of the road for" perceived as too chatty by many users
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "dan tiba di tujuan" : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "Anda tiba di tujuan" : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "dan tiba di persinggahan" : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "Anda tiba di persinggahan" : "reached_intermediate.ogg";
+	dictionary["and_arrive_destination"] = tts ? "dan tiba di tujuan, " : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "Anda tiba di tujuan, " : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "dan tiba di persinggahan, " : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "Anda tiba di persinggahan, " : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "dan lewati patok G P X" : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "Anda lewat patok G P X" : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "dan lewati patok favorit" : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "Anda lewat patok favorit" : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "dan lewati tempat khusus" : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "Anda lewat tempat khusus" : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "dan lewati patok G P X, " : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "Anda lewat patok G P X, " : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "dan lewati tempat favorit:" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "Anda lewat tempat favorit:" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "dan lewati objek yang menarik:" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "Anda lewat objek yang menarik:" : "reached_poi.ogg";
 
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "You are exceeding the speed limit" : "exceed_limit.ogg";
@@ -101,12 +102,12 @@ function populateDictionary(tts) {
 	// OTHER PROMPTS
 	dictionary["location_lost"] = tts ? "sinyal G P S putus" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "sinyal G P S tersambung " : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "Anda sudah bergeser dari jalur sebanyak" : "off_route.ogg";
+	dictionary["off_route"] = tts ? "Anda sudah bergeser dari jalur sejauh" : "off_route.ogg";
 	dictionary["back_on_route"] = tts ? "Anda sudah kembali ke rute" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
 	dictionary["onto"] = tts ? "ke" : "onto.ogg";
-	dictionary["on"] = tts ? "ke" : "on.ogg";    // is used if you turn together with your current street, i.e. street name does not change.
+	dictionary["on"] = tts ? "di" : "on.ogg";    // is used if you turn together with your current street, i.e. street name does not change.
 	dictionary["to"] = tts ? "ke" : "to.ogg";
 	dictionary["toward"] = tts ? "melalui" : "toward.ogg";
 
@@ -124,7 +125,7 @@ function populateDictionary(tts) {
 	dictionary["yards"] = tts ? "yar" : "yards.ogg";
 
 	// TIME SUPPORT
-	dictionary["time"] = tts ? "waktu sekarang menunjukkan" : "time.ogg";
+	dictionary["time"] = tts ? "dengan waktu tempuh" : "time.ogg";
 	dictionary["1_hour"] = tts ? "satu jam" : "1_hour.ogg";
 	dictionary["hours"] = tts ? "jam" : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "kurang dari satu menit" : "less_a_minute.ogg";
@@ -145,7 +146,7 @@ function setMode(mode) {
 }
 
 function route_new_calc(dist, timeVal) {
-	return dictionary["route_is"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : " ");
+	return dictionary["route_is"] + " " + distance(dist) + ", " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : " ");
 }
 
 function distance(dist) {
@@ -245,7 +246,7 @@ function hours(minutes) {
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + (tts ? ", " : " ") + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
+	return dictionary["route_calculate"] + (tts ? ", " : " ") + dictionary["distance_change"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
 }
 
 function go_ahead(dist, streetName) {
@@ -364,9 +365,9 @@ function roundabout(dist, angle, exit, streetName) {
 // roundabout(Dist, _Angle, Exit, Street) -- ["in", D, "roundabout", "and", "take", E, "exit" | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
 // roundabout(_Angle, Exit, Street) -- ["take", E, "exit" | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 	if (dist == -1) {
-		return dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
+		return dictionary["take"] + " " + dictionary["exit"] + " "  + nth(exit) + ", " + turn_street(streetName);
 	} else {
-		return dictionary["in"] + " " + distance(dist) + " " + dictionary["roundabout"] + (tts ? ", " : " ") + dictionary["and"] + " " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
+		return dictionary["in"] + " " + distance(dist) + ", " + dictionary["roundabout"] + (tts ? ". " : " ") + dictionary["and"] + " " + dictionary["take"] + " " + dictionary["exit"] + " " + nth(exit) + " " + turn_street(streetName);
 	}
 }
 
@@ -450,8 +451,9 @@ function make_ut(dist, streetName) {
 	if (dist == -1) {
 		return dictionary["make_uturn"] + " " + turn_street(streetName);
 	} else {
-		return dictionary["in"] + " " + distance(dist) + " " + dictionary["make_uturn"] + " " + turn_street(streetName);
+		return dictionary["in"] + " " + distance(dist) + ", " + dictionary["make_uturn"] + " " + turn_street(streetName);
 	}
+	
 }
 
 function bear_left(streetName) {
@@ -466,7 +468,7 @@ function bear_right(streetName) {
 
 function prepare_make_ut(dist, streetName) {
 // prepare_make_ut(Dist, Street) -- ["after", D, "make_uturn" | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
-	return dictionary["after"] + " " + distance(dist) + " " + dictionary["make_uturn"] + " " + turn_street(streetName);
+	return dictionary["after"] + " " + distance(dist) + ", " + dictionary["make_uturn"] + " " + turn_street(streetName);
 }
 
 function prepare_turn(turnType, dist, streetName) {
@@ -476,7 +478,7 @@ function prepare_turn(turnType, dist, streetName) {
 
 function prepare_roundabout(dist, exit, streetName) {
 // prepare_roundabout(Dist, _Exit, _Street) -- ["after", D , "prepare_roundabout"] :- distance(Dist) -- D.
-	return dictionary["after"] + " " + distance(dist) + " " + dictionary["prepare_roundabout"]; 
+	return dictionary["after"] + " " + distance(dist) + ", " + dictionary["prepare_roundabout"]; 
 }
 
 function and_arrive_destination(dest) {
