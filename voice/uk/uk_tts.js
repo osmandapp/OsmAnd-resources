@@ -281,7 +281,7 @@ function distance(dist) {
 			} else if (dist < 100) {
 				return (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10)) + " " + plural_mt(dist);
 			} else if (dist < 1300) {
-				var distance = Math.round(2*Dist/100.0)*50;
+				var distance = Math.round(2*dist/100.0)*50;
 				return (tts ? distance.toString() : ogg_dist(distance)) + " " + plural_mt(dist);
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];

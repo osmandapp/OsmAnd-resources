@@ -211,7 +211,7 @@ function distance(dist) {
 			if (dist < 100) {
 				return (tts ? Math.round(dist).toString() : ogg_dist(Math.round(dist))) + " " + dictionary["metrau"];
 			} else if (dist < 1300) {
-				var distance = Math.round(Dist/10.0)*10;
+				var distance = Math.round(dist/10.0)*10;
 				return (tts ? distance.toString() : ogg_dist(distance)) + " " + dictionary["metrau"];
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
