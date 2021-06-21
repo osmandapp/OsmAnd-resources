@@ -1063,6 +1063,7 @@ icon_alias man_made power_generator_wind2
 icon_alias transport_construction poi_colored_bridge
 icon_alias water_supply poi_colored_water_tower
 icon_alias power power_generator
+icon_alias power_portal poi_colored_power_portal
 icon_alias communication amenity_telephone
 icon_alias trash_disposal amenity_colored_waste_disposal
 icon_alias bridge poi_colored_bridge
