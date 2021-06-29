@@ -403,6 +403,9 @@
 
 	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="yes" if_tag1="railway" to_tag1="tunnel" to_value1="yes" to_tag2="tunnel_railway" to_value2="yes" map="no" routing="no"/>
 
+	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="covered" to_tag1="tunnel" to_value1="yes" map="no" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="tunnel" from_value="passage" to_tag1="tunnel" to_value1="yes" map="no" poi="no"/>
+
 	<!-- Add bridge_pedestrian=yes if bridge or man_made=bridge tag and pedestrian highways are present (POI)-->
 	<entity_convert pattern="tag_transform" from_tag="bridge" if_tag1="highway" if_value1="pedestrian" to_tag1="bridge" to_tag2="bridge_pedestrian" to_value2="yes" map="no" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="man_made" from_value="bridge" if_tag1="highway" if_value1="pedestrian" to_tag1="bridge" to_tag2="bridge_pedestrian" to_value2="yes" to_tag3="man_made" to_value3="bridge" map="no" routing="no"/>
@@ -551,21 +554,19 @@
 
 	
 <!--	<type tag="description_tag" value="yes" minzoom="12" nameTags="description" order="128"/>-->
-	<entity_convert pattern="tag_transform" from_tag="contact:phone" if_not_tag1="phone" to_tag1="phone" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="contact:website" if_not_tag1="website" to_tag1="website" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="contact:url" if_not_tag1="website" to_tag1="website" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="contact:mail" if_not_tag1="email" to_tag1="email" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="contact:email" if_not_tag1="email" to_tag1="email" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="contact:fax" if_not_tag1="fax" to_tag1="fax" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="contact:facebook" if_not_tag1="facebook" to_tag1="facebook" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="contact:twitter" if_not_tag1="twitter" to_tag1="twitter" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="contact:mobile" if_not_tag1="mobile" to_tag1="mobile" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="phone:mobile" if_not_tag1="mobile" to_tag1="mobile" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="contact:skype" if_not_tag1="skype" to_tag1="skype" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="contact:youtube" if_not_tag1="youtube" to_tag1="youtube" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="contact:instagram" if_not_tag1="instagram" to_tag1="instagram" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="contact:vk" if_not_tag1="vk" to_tag1="vk" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="contact:google_plus" if_not_tag1="google_plus" to_tag1="google_plus" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="contact:phone" to_tag1="contact:phone" to_tag2="phone" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="contact:website" to_tag1="contact:website" to_tag2="website" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="contact:email" to_tag1="contact:email" to_tag2="email" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="contact:fax" to_tag1="contact:fax" to_tag2="fax" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="contact:facebook" to_tag1="contact:facebook" to_tag2="facebook" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="contact:twitter" to_tag1="contact:twitter" to_tag2="twitter" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="contact:mobile" to_tag1="contact:mobile" to_tag2="mobile" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="phone:mobile" to_tag1="contact:phone" to_tag2="mobile" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="contact:skype" to_tag1="contact:skype" to_tag2="skype" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="contact:youtube" to_tag1="contact:youtube" to_tag2="youtube" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="contact:instagram" to_tag1="contact:instagram" to_tag2="instagram" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="contact:vk" to_tag1="contact:vk" to_tag2="vk" map="no"/>
+	<entity_convert pattern="tag_transform" from_tag="contact:google_plus" to_tag1="contact:google_plus" to_tag2="google_plus" map="no"/>
 
 	<type tag="operator" minzoom="15" additional="text" relation="true" poi="false"/>
 	<entity_convert pattern="tag_transform" from_tag="owner" from_value="UNKNOWN"/>
@@ -724,8 +725,12 @@
 	<category name="routes">
 		<type tag="route" value="segment" minzoom="3" nameTags="name,ref"/>
 		<type tag="route" value="point" minzoom="3" nameTags="name,ref"/>
-
-		<type tag="gpx_bg" additional="true"/>
+		<type tag="route_activity_type" additional="true" minzoom="3"/>
+		<type tag="gpx_bg" additional="true" minzoom="3"/>
+		<type tag="diff_ele_up" additional="true" minzoom="3"/>
+		<type tag="diff_ele_down" additional="true" minzoom="3"/>
+		<type tag="route_id" additional="text" minzoom="3"/>
+		
 <!--		<type tag="gpx_icon" additional="true"/>
 
 		<type tag="thickness" value="bold" minzoom="3" additional="true"/>
@@ -2264,18 +2269,30 @@
 		<type tag="building" value="house" minzoom="15"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="houseboat" to_tag1="building" to_value1="house"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="boathouse" to_tag1="building" to_value1="house"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="static_caravan" to_tag1="building" to_value1="house"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="summer_cottage" to_tag1="building" to_value1="house"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="bungalow" to_tag1="building" to_value1="house"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="rumah" to_tag1="building" to_value1="house"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="semi" to_tag1="building" to_value1="house"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="ger" to_tag1="building" to_value1="house"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="allotment_house" to_tag1="building" to_value1="house"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="trullo" to_tag1="building" to_value1="house"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="stilt_house" to_tag1="building" to_value1="house"/>
 		<type tag="building" value="cabin" minzoom="15"/>
 		<type tag="building" value="commercial" minzoom="15"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="commercial;residential" to_tag1="building" to_value1="commercial"/>
 		<type tag="building" value="industrial" minzoom="15"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="service" to_tag1="building" to_value1="industrial"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="transformer_tower" to_tag1="building" to_value1="industrial"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="grandstand" to_tag1="building" to_value1="industrial"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="dam" to_tag1="building" to_value1="industrial"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="fire_station" to_tag1="building" to_value1="industrial"/>
 		<type tag="building" value="retail" minzoom="15"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="store" to_tag1="building" to_value1="retail" poi="no"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="supermarket" to_tag1="building" to_value1="retail" poi="no"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="shop" to_tag1="building" to_value1="retail" poi="no"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="kiosk" to_tag1="building" to_value1="retail" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="pavilion" to_tag1="building" to_value1="retail" poi="no"/>
 		<type tag="building" value="warehouse" minzoom="15"/>
 		<type tag="building" value="place_of_worship" minzoom="15" order="75"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="cathedral" to_tag1="building" to_value1="place_of_worship"/>
@@ -2290,15 +2307,18 @@
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="wayside_chapel" to_tag1="building" to_value1="place_of_worship"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="shrine" to_tag1="building" to_value1="place_of_worship"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="font" to_tag1="building" to_value1="place_of_worship"/>
+		<entity_convert pattern="tag_transform" from_tag="historic" from_value="religious" to_tag1="building" to_value1="place_of_worship"/>
 		<type tag="building" value="basilica" minzoom="15"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="bell_tower" to_tag1="man_made" to_value1="tower" to_tag2="tower:type" to_value2="bell_tower"/>
 		<type tag="building" value="castle_tower" minzoom="15"/>
 		<type tag="building" value="civic" minzoom="15"/>
 		<type tag="building" value="hall" minzoom="15"/>
 		<type tag="building" value="administrative" minzoom="15"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="government" to_tag1="building" to_value1="administrative"/>
 		<type tag="building" value="detached" minzoom="15"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="semidetached_house" to_tag1="building" to_value1="detached"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="semi-detached" to_tag1="building" to_value1="detached"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="terrace" to_tag1="building" to_value1="residential"/>
 		<type tag="building" value="hospital" minzoom="15"/>
 		<type tag="building" value="school" minzoom="15"/>
 		<type tag="building" value="college" minzoom="15"/>
@@ -2307,12 +2327,17 @@
 		<type tag="building" value="transportation" minzoom="15"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="station" to_tag1="building" to_value1="transportation"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="train_station" to_tag1="building" to_value1="transportation"/>
+		<type tag="building" value="stadium" minzoom="15"/>
+		<type tag="building" value="sports_centre" minzoom="15"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="sports_hall" to_tag1="building" to_value1="sports_centre"/>
 		<type tag="building" value="public" minzoom="15"/>
 		<type tag="building" value="construction" minzoom="15"/>
 		<type tag="building" value="proposed" minzoom="15"/>
 		<entity_convert pattern="tag_transform" from_tag="proposed:building" to_tag1="building" to_value1="proposed"/>
 		<type tag="building" value="garage" minzoom="15"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="garages" to_tag1="building" to_value1="garage"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="carport" to_tag1="building" to_value1="garage"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="parking" to_tag1="building" to_value1="garage"/>
 		<type tag="building" value="greenhouse" minzoom="15"/>
 		<type tag="building" value="hangar" minzoom="15"/>
 		<type tag="building" value="hut" minzoom="15"/>
@@ -2321,6 +2346,9 @@
 		<type tag="building" value="shop" minzoom="15"/>
 		<type tag="building" value="farm" minzoom="15"/>
 		<type tag="building" value="farm_auxiliary" minzoom="15"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="sty" to_tag1="building" to_value1="farm_auxiliary"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="cowshed" to_tag1="building" to_value1="farm_auxiliary"/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="stable" to_tag1="building" to_value1="farm_auxiliary"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="agricultural" to_tag1="building" to_value1="farm"/>
 		<type tag="building" value="barn" minzoom="15"/>
 <!--		<type tag="building" value="office" minzoom="15"/> deprecated-->
@@ -3041,6 +3069,7 @@
 		<type tag="railway" value="miniature" minzoom="13"/>
 		<type tag="railway" value="station" minzoom="12" order="1" />
 		<type tag="railway" value="yard" minzoom="12" order="1"/>
+		<type tag="railway" value="traverser" minzoom="14"/>
 		<type tag="public_transport" value="stop_area" minzoom="13" nameTags="name" relation="true"/>
 		<type tag="railway" value="subway_entrance" minzoom="13" order="1" nameTags="name" />
 		<type tag="with_exits" value="yes" minzoom="13" additional="true" poi="false" notosm="true"/> <!-- osmand internal tag -->
@@ -3541,6 +3570,8 @@
 		<entity_convert pattern="tag_transform" from_tag="power" from_value="station" to_tag1="power" to_value1="substation"/>
 		<entity_convert pattern="tag_transform" from_tag="power" from_value="sub_station" to_tag1="power" to_value1="substation"/>
 		<type tag="power" value="transformer" minzoom="15"/>
+		<type tag="power" value="terminal" minzoom="15"/>
+		<type tag="power" value="portal" minzoom="15"/>
 		<type tag="generator:source" value="biomass" minzoom="12" additional="true"/>
 		<type tag="generator:source" value="coal" minzoom="12" additional="true"/>
 		<type tag="generator:source" value="gas" minzoom="12" additional="true"/>
@@ -3554,6 +3585,7 @@
 		<type tag="generator:source" value="geothermal" minzoom="12" additional="true"/>
 		<type tag="generator:source" value="oil" minzoom="12" additional="true"/>
 		<type tag="generator:source" value="diesel" minzoom="12" additional="true"/>
+		<type tag="plant:source" value="solar" minzoom="12" additional="true"/>
 		<entity_convert pattern="tag_transform" from_tag="power_source" from_value="wind" to_tag1="generator:source" to_value1="wind"/>
 		<entity_convert pattern="tag_transform" from_tag="power_source" from_value="hydro" to_tag1="generator:source" to_value1="hydro"/>
 		<entity_convert pattern="tag_transform" from_tag="power_source" from_value="gas" to_tag1="generator:source" to_value1="gas"/>
@@ -3574,7 +3606,7 @@
 		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="gas" to_tag1="generator:source" to_value1="gas"/>
 		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="coal" to_tag1="generator:source" to_value1="coal"/>
 		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="nuclear" to_tag1="generator:source" to_value1="nuclear"/>
-		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="solar" to_tag1="generator:source" to_value1="solar"/>
+<!--		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="solar" to_tag1="generator:source" to_value1="solar"/>-->
 		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="biomass" to_tag1="generator:source" to_value1="gas"/>
 		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="oil" to_tag1="generator:source" to_value1="oil"/>
 		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="geothermal" to_tag1="generator:source" to_value1="geothermal"/>

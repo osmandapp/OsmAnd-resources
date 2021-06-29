@@ -391,6 +391,7 @@
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_shuttle_train" name="Avoid Shuttle Trains" description="Avoid Shuttle Trains" type="boolean"/>
 		<parameter id="avoid_motorway" name="Avoid motorways" description="Avoid motorways" type="boolean"/>
+		<parameter id="avoid_tunnels" name="Avoid tunnels" description="Avoid tunnels" type="boolean"/>
 		<parameter id="avoid_borders" name="Avoid border crossing" description="Avoid crossing a border into another country" type="boolean"/>
 		<parameter id="avoid_ice_roads_fords" name="Avoid ice roads, fords" description="Avoid ice roads and fords" type="boolean"/>
 		<parameter id="allow_private" name="Allow private access" description="Allow access to private areas" type="boolean"/>
@@ -581,6 +582,10 @@
 				<select value="100" t="motorroad" v="yes"/>
 				<select value="90" t="highway" v="motorway_link"/>
 			</if>
+			<if param="avoid_tunnels">
+				<select value="200" t="tunnel" v="yes"/>
+				<select value="150" t="tunnel" v="avalanche_protector"/>
+			</if>
 
 			<select value="0" t="highway" v="motorway"/>
 			<select value="0" t="highway" v="motorway_link"/>
@@ -737,6 +742,9 @@
 				<select value="0.1" t="highway" v="motorway"/>
 				<select value="0.1" t="motorroad" v="yes"/>
 				<select value="0.1" t="highway" v="motorway_link"/>
+			</if>
+			<if param="avoid_tunnels">
+				<select value="0.02" t="tunnel" v="yes"/>
 			</if>
 
 			<select value="1.1" t="highway" v="motorway"/>
@@ -926,6 +934,7 @@
 		<parameter id="avoid_borders" name="Avoid border crossing" description="Avoid crossing a border into another country" type="boolean"/>
 		<parameter id="avoid_footways" name="Avoid footways" description="Avoid footways" type="boolean"/>
 		<parameter id="allow_motorway" name="Allow motorways" description="Allow motorways" type="boolean"/>
+		<parameter id="avoid_tunnels" name="Avoid tunnels" description="Avoid tunnels" type="boolean"/>
 		<parameter id="allow_private" name="Allow private access" description="Allow access to private areas" type="boolean"/>
 		<parameter id="avoid_sett" name="Avoid sett and cobblestone" description="Tries to avoid streets and paths which are paved with sett and cobblestone." type="boolean" default="false"/>
 		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean" default="false"/>
@@ -1388,7 +1397,6 @@
 			<select value="1.6" t="cycleway" v="opposite_track"/>
 			<select value="1.4" t="cycleway" v="shared"/>
 			<select value="1.4" t="cycleway" v="shared_lane"/>
-			<select value="0.3" t="footway" v="sidewalk"/>
 			<select value="1.0" t="segregated" v="yes"/>
 
 			<select value="1.0" t="highway" v="primary"/>
@@ -1431,6 +1439,7 @@
 			<select value="1.8" t="bicycle" v="official"/>
 			<select value="1.8" t="bicycle" v="designated"/>
 			<select value="1.3" t="bicycle" v="yes"/>
+			<select value="0.3" t="footway" v="sidewalk"/>
 			<!-- the value for bicycle=yes needs to be smaller than the
  			values for paved and asphalt. Reason: Often you have areas with
 			several paths that are tagged bicycle yes, but only some of these
@@ -1580,6 +1589,10 @@
 		</point>
 
 		<way attribute="penalty_transition">
+			<if param="avoid_tunnels">
+				<select value="200" t="tunnel" v="yes"/>
+				<select value="150" t="tunnel" v="avalanche_protector"/>
+			</if>
 			<!-- <if param="driving_style_balance">
 				<select value="1" t="highway" v="trunk"/>
 				<select value="2" t="highway" v="trunk_link"/>
@@ -1623,6 +1636,7 @@
 		<!-- NEW ROUTING API -->
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_motorway" name="Avoid motorways" description="Avoid motorways" type="boolean"/>
+		<parameter id="avoid_tunnels" name="Avoid tunnels" description="Avoid tunnels" type="boolean"/>
 		<parameter id="avoid_stairs" name="Avoid stairs" description="Avoid stairs" type="boolean"/>
 		<parameter id="avoid_unpaved" name="Avoid unpaved roads" description="Avoid unpaved roads" type="boolean"/>
 		<parameter id="allow_private" name="Allow private access" description="Allow access to private areas" type="boolean"/>
@@ -1763,6 +1777,10 @@
 			<select value="0.9" t="sidewalk" v="no"/>
 			<select value="0.1" t="foot" v="use_sidepath"/>
 
+			<if param="avoid_tunnels">
+				<select value="0.02" t="tunnel" v="yes"/>
+			</if>
+
 			<!-- object tags -->
 			<if param="prefer_hiking_routes">
 				<select value="10" t="route_hiking"/>
@@ -1840,6 +1858,10 @@
 		</point>
 
 		<way attribute="penalty_transition">
+			<if param="avoid_tunnels">
+				<select value="200" t="tunnel" v="yes"/>
+				<select value="150" t="tunnel" v="avalanche_protector"/>
+			</if>
 			<select value="0" t="route"   v="ferry"/>
 			<select value="0" t="highway" v="steps"/>
 			<select value="0" t="highway" v="elevator"/>

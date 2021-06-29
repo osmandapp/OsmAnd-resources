@@ -1472,6 +1472,9 @@
 				<case tag="aerialway" value="station" ignorePolygonAsPointArea="true"/>
 				<case tag="aerialway" value=""/>
 				<case tag="aeroway" value=""/>
+				<case tag="power" value="portal">
+					<apply_if lessDetailed="true" maxzoom="19" order="-1"/>
+				</case>
 				<case tag="region:type" value="mountain_area"/>
 				<case tag="natural" value="plateau"/>
 				<case tag="geological" value="outcrop"/>
@@ -1628,6 +1631,8 @@
 				<case tag="aeroway" value="helipad"/>
 				<case tag="railway" value="station" ignorePolygonArea="true"/>
 				<case tag="railway" value="yard" ignorePolygonArea="true"/>
+				<case tag="railway" value="traverser"/>
+				<case tag="railway" value="turntable"/>
 				<case tag="addr:housenumber" value="" ignorePolygonAsPointArea="true"/>
 				<case tag="fixme_tag" value="yes" order="11"/>
 				<case tag="note_tag" value="yes" order="10"/>
@@ -1646,6 +1651,7 @@
 				<case tag="admin_level" value="" order="62"/>
 				<case tag="power" value="line" order="96"/>
 				<case tag="power" value="minor_line" order="96"/>
+				<case tag="power" value="portal"/>
 				<switch>
 					<case tag="highway" value="motorway" order="84">
 						<apply_if layer="1" order="107"/>
@@ -2732,7 +2738,7 @@
 
 			<!-- Tourism and Entertainment -->
 			<switch textSize="12" nameTag="" textColor="$historicTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$historicTextHaloColor" textWrapWidth="20" textOrder="155">
-				<case minzoom="16" tag="amenity" value="place_of_worship" nameTag="" textOrder="134"/>
+				<case minzoom="16" tag="amenity" value="place_of_worship" nameTag="" textOrder="40"/>
 				<case minzoom="18" tag="tourism" value="artwork" nameTag="">
 					<apply_if additional="artwork_type=statue" icon="memorial_statue"/>
 				</case>
@@ -2789,7 +2795,7 @@
 					<case minzoom="16" tag="historic" value="archaeological_site"/>
 					<case minzoom="16" tag="historic" value="wreck"/>
 					<case minzoom="17" tag="historic" value="ship"/>
-					<case minzoom="15" tag="amenity" value="monastery"/>
+					<case minzoom="15" tag="amenity" value="monastery" textOrder="39"/>
 					<case minzoom="17" tag="historic" value="wayside_cross"/>
 					<case minzoom="17" tag="historic" value="wayside_shrine"/>
 					<case minzoom="16" tag="historic" value="mine"/>
@@ -3337,7 +3343,7 @@
 			<case additional="information=map" icon="information_map" shield="information_map_shield"/>
 			<case additional="information=terminal" icon="information_terminal" shield="information_terminal_shield"/>
 		</case>
-		<case minzoom="16" tag="amenity" value="monastery" icon="amenity_monastery" shield="white_round_shield" iconOrder="70"/>
+		<case minzoom="16" tag="amenity" value="monastery" icon="amenity_monastery" shield="white_round_shield" iconOrder="39"/>
 
 		<switch shield="white_round_shield">
 			<switch iconOrder="70">
@@ -3689,12 +3695,14 @@
 
 		<switch>
 			<case minzoom="15" tag="power" value="plant" icon="topo_power_plant" shield="topo_power_plant_shield"/>
-			<case minzoom="16" tag="power" value="generator" icon="power_generator" shield="power_generator_shield"/>
+			<case minzoom="16" tag="power" value="generator" icon="power_generator" shield="power_generator_shield">
+				<apply_if additional="plant:source=solar" icon="generator_source_solar" shield="generator_solar_shield"/>
+			</case>
 			<apply>
 				<case additional="generator:source=coal" icon="generator_source_coal" shield="generator_coal_shield"/>
 				<case additional="generator:source=gas" icon="generator_source_gas" shield="generator_gas_shield"/>
 				<case additional="generator:source=nuclear" icon="generator_source_nuclear" shield="generator_nuclear_shield"/>
-				<case additional="generator:source=solar" icon="generator_source_solar" shield="generator_solar_shield"/>
+				<case minzoom="17" additional="generator:source=solar" icon="generator_source_solar" shield="generator_solar_shield" iconOrder="101"/>
 				<case additional="generator:source=hydro" icon="generator_source_hydro" shield="generator_hydro_shield"/>
 				<case additional="generator:source=wind" icon="generator_source_wind" shield="generator_wind_shield"/>
 				<case additional="generator:source=geothermal" icon="generator_source_geothermal" shield="generator_geothermal_shield"/>
@@ -3703,6 +3711,7 @@
 			</apply>
 			<apply_if lessDetailed="true" maxzoom="15" icon=""/>
 		</switch>
+		<case minzoom="17" tag="power" value="portal" icon="power_portal" shield="power_portal_shield"/>
 		<switch OSMMapperAssistant="true" iconVisibleSize="0" intersectionSizeFactor="0" iconOrder="128">
 			<switch minzoom="12" tag="fixme_tag" value="yes">
 				<case maxzoom="12" icon="fixme_tag_lowzoom_yes"/>
@@ -4178,7 +4187,12 @@
 						</apply>
 						<apply_if nightMode="true" color="#002a2a"/>
 					</switch>
-
+				</switch>
+				<switch>
+					<case minzoom="16" tag="railway" value="traverser"/>
+					<case minzoom="16" tag="railway" value="turntable"/>
+					<apply strokeWidth_2="0.5" pathEffect_2="2_5" color_2="#999999" color="#33AAAAAA"/>
+					<apply_if nightMode="true" color="#33444444" color_2="#808080"/>
 				</switch>
 
 				<switch>
@@ -5188,6 +5202,7 @@
 				<case minzoom="15" strokeWidth="0.9"/>
 			</case>
 			<case minzoom="15" tag="power" value="minor_line" strokeWidth="0.3"/>
+			<case minzoom="18" tag="power" value="portal" strokeWidth="1"/>
 		</switch>
 		<case minzoom="16" tag="man_made" value="reinforced_slope" color="#d6d6d6">
 			<case maxzoom="17" strokeWidth="2:2"/>
