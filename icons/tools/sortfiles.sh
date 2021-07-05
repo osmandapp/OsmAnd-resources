@@ -1180,6 +1180,7 @@ icon_alias amenity_restaurant food_restaurant
 icon_alias man_made_water_well food_water_well
 icon_alias topo_water_well topo_water_water_well
 icon_alias water_point food_water_point
+icon_alias outdoor_seating food_outdoor_seating
 
 ## Seamarks
 icon_alias seamark icons8_sail_boat
