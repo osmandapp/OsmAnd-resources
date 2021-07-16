@@ -749,7 +749,6 @@ icon_alias love_hotel entertainment_love_hotel
 icon_alias gambling entertainment_gambling
 icon_alias adult_gaming_centre entertainment_gambling
 icon_alias amusement_arcade entertainment_amusement_arcade
-icon_alias hookah_lounge entertainment_hookah_lounge
 icon_alias amenity_nightclub tourist_night_club
 icon_alias mobile_library amenity_mobile_library
 icon_alias planetarium amenity_planetarium
@@ -1181,6 +1180,7 @@ icon_alias man_made_water_well food_water_well
 icon_alias topo_water_well topo_water_water_well
 icon_alias water_point food_water_point
 icon_alias outdoor_seating food_outdoor_seating
+icon_alias hookah_lounge food_hookah_lounge
 
 ## Seamarks
 icon_alias seamark icons8_sail_boat
