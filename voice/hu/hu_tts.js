@@ -115,10 +115,8 @@ function populateDictionary(tts) {
 	// DISTANCE UNIT SUPPORT
 	dictionary["meters_nom"] = tts ? "méter" : "meters_nom.ogg";
 	dictionary["meters_acc"] = tts ? "métert" : "meters_acc.ogg";
-	dictionary["1_kilometer_nom"] = tts ? "1 kilométer" : "1_kilometer_nom.ogg";
-	dictionary["1_kilometer_acc"] = tts ? "1 kilométert" : "1_kilometer_acc.ogg";
-	dictionary["1_5_kilometer_nom"] = tts ? "másfél kilométer" : "1_5_kilometer_nom.ogg";
-	dictionary["1_5_kilometer_acc"] = tts ? "másfél kilométert" : "1_5_kilometer_acc.ogg";
+	dictionary["around_1_kilometer_nom"] = tts ? "körülbelül 1 kilométer" : "1_kilometer_nom.ogg";
+	dictionary["around_1_kilometer_acc"] = tts ? "körülbelül 1 kilométert" : "1_kilometer_acc.ogg";
 	dictionary["around"] = tts ? "körülbelül" : "around.ogg";
 	dictionary["kilometers_nom"] = tts ? "kilométer" : "kilometers_nom.ogg";
 	dictionary["kilometers_acc"] = tts ? "kilométert" : "kilometers_acc.ogg";
@@ -173,7 +171,7 @@ function distance(dist, declension) {
 			} else if (dist < 1000) {
 				return (tts ? (Math.round(2*dist/100.0)*50).toString() : ogg_dist(Math.round(2*dist/100.0)*50)) + " " + dictionary["meters_" + declension];
 			} else if (dist < 1500) {
-				return dictionary["1_kilometer_" + declension];
+				return dictionary["around_1_kilometer_" + declension];
 			} else if (dist < 10000) {
 				return dictionary["around"] + " " + (tts ? Math.round(dist/1000.0).toString() : ogg_dist(Math.round(dist/1000.0))) + " " + dictionary["kilometers_" + declension];
 			} else {
