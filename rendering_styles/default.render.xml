@@ -1118,6 +1118,9 @@
 	</renderingAttribute>
 	<renderingConstant name="cyclewayStrokeWidth" value="0.9"/>
 	<renderingConstant name="cyclewayPathEffect" value="7_3"/>
+	<renderingAttribute name="rungsColor">
+		<case attrColorValue="#C70BFF"/>
+	</renderingAttribute>
 	<renderingAttribute name="footwayColor">
 		<switch>
 			<case baseAppMode="bicycle"/>
@@ -1134,6 +1137,9 @@
 		<case attrColorValue="#33000000">
 			<apply_if nightMode="true" attrColorValue="#26ffffff"/>
 		</case>
+		<apply_if additional="osmand_rungs=yes" attrColorValue="$rungsColor"/>
+		<apply_if additional="assisted_trail=yes" attrColorValue="$rungsColor"/>
+		<apply_if additional="osmand_safety_rope=yes" attrColorValue="$rungsColor"/>
 	</renderingAttribute>
 	<renderingAttribute name="elevatorColor">
 		<case attrColorValue="#0031A2">
@@ -1613,7 +1619,7 @@
 	</renderingAttribute>
 	<renderingAttribute name="viaFerrataScale3Color">
 		<case nightMode="true" attrColorValue="#88B40093"/>
-		<case attrColorValue="#88B40093"/>
+		<case attrColorValue="#70B40093"/>
 	</renderingAttribute>
 	<renderingAttribute name="viaFerrataScale3OnewayColor">
 		<case attrColorValue="#ffffff"/>
@@ -2945,6 +2951,8 @@
 					<case tag="ford" value="yes"/>
 					<case tag="ford" value="stepping_stones"/>
 					<case tag="flood_prone" value=""/>
+					<case tag="osmand_rungs" value="yes"/>
+					<case tag="ladder" value="yes"/>
 					<case tag="traffic_calming" value="">
 						<apply_if baseAppMode="pedestrian" order="-1"/>
 						<apply_if baseAppMode="default" maxzoom="17" order="-1"/>
@@ -3543,6 +3551,7 @@
 					<case tag="leisure" value="track" additional="area=false" order="175"/>
 					<case tag="aerialway" value="" order="175"/>
 					<case tag="aerialway" value="station" order="175"/>
+					<case tag="osmand_rungs" value="yes"/>
 					<case tag="power" value="line" order="175">
 						<apply_if moreDetailed="false" maxzoom="14" order="-1"/>
 					</case>
@@ -3781,6 +3790,7 @@
 							<apply_if layer="-1" order="20"/>
 							<apply_if additional="layer=-2" order="19"/>
 						</case>
+						<case tag="ladder" value="yes" order="63"/>
 						<case tag="highway" value="elevator" order="66"/>
 						<apply_if baseAppMode="car">
 							<case layer="0" maxzoom="18" order="-1"/>
@@ -7109,7 +7119,9 @@
 					</apply_if>
 				</case>
 				<case minzoom="18" tag="highway" value="steps" icon="highway_steps" shield="highway_steps_shield" iconVisibleSize="8"/>
+				<case minzoom="16" tag="ladder" value="yes" icon="ladder"/>
 				<case minzoom="16" tag="highway" value="via_ferrata" icon="via_ferrata_map" shield="via_ferrata_shield"/>
+				<case minzoom="16" tag="osmand_rungs_node" value="yes" icon="rungs_dot"/>
 				<switch shield="blue_round_shield">
 					<case minzoom="18" tag="highway" value="speed_camera" icon="highway_speed_camera" iconOrder="70"/>
 					<case minzoom="15" tag="highway" value="services" icon="highway_services" iconOrder="60"/>
@@ -10498,6 +10510,9 @@
 								<case additional="sac_scale=difficult_alpine_hiking" pathEffect_5="2_6"/>
 							</switch>
 						</apply>
+						<apply_if additional="osmand_rungs=yes" color_5="$rungsColor"/>
+						<apply_if additional="assisted_trail=yes" color_5="$rungsColor"/>
+						<apply_if additional="osmand_safety_rope=yes" color_5="$rungsColor"/>
 					</case>
 
 					<case minzoom="$cyclewayMinZoom" tag="highway" value="cycleway">
@@ -10557,7 +10572,9 @@
 						<apply_if baseAppMode="bicycle" color_5="$stepsRampColor"/>
 						<apply_if additional="conveying=yes" pathEffect_5="2_1"/>
 					</case>
-					
+
+					<case minzoom="16" tag="ladder" value="yes" strokeWidth_5="4:4" color_5="$rungsColor" pathEffect_5="1_2"/>
+
 					<case minzoom="16" tag="highway" value="elevator">
 						<apply color_5="$elevatorColor" strokeWidth_4="2:2" strokeWidth_5="2:2" pathEffect_5="2_1"/>
 					</case>
@@ -11000,6 +11017,9 @@
 				<apply_if additional="oneway=yes" pathIcon="oneway_blue_big" pathIconStep="70"/>
 				<apply_if additional="oneway=-1" pathIcon="oneway_reverse_blue_big" pathIconStep="70"/>
 			</apply_if>
+			<apply_if additional="osmand_rungs=yes" color_2="$rungsColor" color_3="$rungsColor"/>
+			<apply_if additional="assisted_trail=yes" color_2="$rungsColor" color_3="$rungsColor"/>
+			<apply_if additional="osmand_safety_rope=yes" color_2="$rungsColor" color_3="$rungsColor"/>
 		</case>
 
 		<switch engine_v1="false" minzoom="16" strokeWidth="0.5">
