@@ -97,6 +97,8 @@ icon_alias plant_nursery landuse_plant_nursery
 icon_alias greenhouse_horticulture landuse_greenhouse_horticulture
 icon_alias aquaculture landuse_aquaculture
 icon_alias dune landuse_colored_dune
+icon_alias plateau poi_plateau
+icon_alias arch poi_colored_arch
 
 icon_alias_no_mx stroke_black functional-icons_black_stroke
 icon_alias_no_mx stroke_darkgreen functional-icons_darkgreen_stroke
