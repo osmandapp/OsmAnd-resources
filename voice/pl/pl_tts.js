@@ -11,7 +11,6 @@
 
 var metricConst;
 var dictionary = {};
-// TODO set this as a boolena flag to determine if we need to return tts prompts or file names
 var tts;
 
 //// STRINGS
@@ -110,10 +109,13 @@ function populateDictionary(tts) {
 	dictionary["toward"] = tts ? "w kierunku" : "toward.ogg";
 	
 	// DISTANCE UNIT SUPPORT
-	dictionary["meters"] = tts ? "metrów" : "meters.ogg";
+	// Some TTS engines get declinations right if abbreviated distance and time units are used.
+	//dictionary["meters"] = tts ? "metrów" : "meters.ogg";
+	dictionary["meters"] = tts ? "m" : "meters.ogg";
 	dictionary["around_1_kilometer"] = tts ? "około jeden kilometr" : "around_1_kilometer.ogg";
 	dictionary["around"] = tts ? "około" : "around.ogg";
-	dictionary["kilometers"] = tts ? "kilometrów" : "kilometers.ogg";
+	//dictionary["kilometers"] = tts ? "kilometrów" : "kilometers.ogg";
+	dictionary["kilometers"] = tts ? "km" : "kilometers.ogg";
 	
 	dictionary["feet"] = tts ? "stóp" : "feet.ogg";
 	dictionary["1_tenth_of_a_mile"] = tts ? "jedną dziesiątą mili" : "1_tenth_of_a_mile.ogg";
@@ -126,10 +128,12 @@ function populateDictionary(tts) {
 	// TIME SUPPORT
 	dictionary["time"] = tts ? ", przewidywany czas to" : "time.ogg";
 	dictionary["1_hour"] = tts ? "jedna godzina" : "1_hour.ogg";
-	dictionary["hours"] = tts ? "godzin" : "hours.ogg";
+	//dictionary["hours"] = tts ? "godzin" : "hours.ogg";
+	dictionary["hours"] = tts ? "godz" : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "mniej niż minuta" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "jedna minuta" : "1_minute.ogg";
-	dictionary["minutes"] = tts ? "minut" : "minutes.ogg";
+	//dictionary["minutes"] = tts ? "minut" : "minutes.ogg";
+	dictionary["minutes"] = tts ? "min" : "minutes.ogg";
 }
 
 
