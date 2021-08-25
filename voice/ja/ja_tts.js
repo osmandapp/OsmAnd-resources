@@ -11,7 +11,6 @@
 
 var metricConst;
 var dictionary = {};
-// TODO set this as a boolena flag to determine if we need to return tts prompts or ogg file names
 var tts;
 
 //// STRINGS
