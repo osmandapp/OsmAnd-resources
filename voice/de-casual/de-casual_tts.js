@@ -8,7 +8,7 @@
 // (X) Distance unit support (meters / feet / yard)
 // (X) Special grammar: distance(nominative/dative), street(male/female/nothing)
 // (X) Support announcing highway exits
-// This version provides briefer and more casual wording than the existing 'regular' de_tts										 
+// This version provides briefer and more casual wording than the existing 'regular' de_tts, also mutes further-out ('prepare') prompts
 
 var dictionary = {};
 var metricConst;
@@ -515,8 +515,8 @@ function bear_right(streetName) {
 
 function prepare_make_ut(dist, streetName) {
 // prepare_make_ut(Dist, Street) -- ['prepare', 'after', D, 'make_uturn2' | Sgen] :- distance(Dist, dativ) -- D, turn_street(Street, Sgen).
-
-	return dictionary["after"] + " " + distance(dist, "dativ") + " " + dictionary["make_uturn2"] + " " + turn_street(streetName);
+	// return dictionary["prepare"] + " " + dictionary["after"] + " " + distance(dist, "dativ") + " " + dictionary["make_uturn2"] + " " + turn_street(streetName);
+	return dictionary["after"] + " " + distance(dist, "dativ") + " " + dictionary["make_uturn2"];
 }
 
 function prepare_turn(turnType, dist, streetName) {
