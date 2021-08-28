@@ -46,7 +46,7 @@ function populateDictionary(tts) {
 	
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "entrate in una rotonda" : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? "entrare nella rotonda" : "roundabout.ogg";
+	dictionary["roundabout"] = tts ? "entrate nella rotonda" : "roundabout.ogg";
 	dictionary["then"] = tts ? "poi" : "then.ogg";
 	dictionary["and"] = tts ? "e" : "and.ogg";
 	dictionary["take"] = tts ? "prendete la" : "take.ogg";
