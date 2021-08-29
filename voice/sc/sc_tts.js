@@ -305,13 +305,13 @@ function follow_street(streetName) {
 }
 
 function turn(turnType, dist, streetName) {
-	// turn(Turn, Dist, Street) -- ['after', D, M, ' '| Sgen] :- distance(Dist, dativ) -- D, turn(Turn, M), turn_street(Street, Sgen).
+// turn(Turn, Dist, Street) -- ['after', D, M, ' '| Sgen] :- distance(Dist, dativ) -- D, turn(Turn, M), turn_street(Street, Sgen).
 	if (dist == -1) {
 		return getTurnType(turnType) + " " + turn_street(streetName);
 	} else {
 		return dictionary["in"] + " " + distance(dist, "dativ") + " " + getTurnType(turnType) + " " + turn_street(streetName); 
 	}
-	// turn(Turn, Dist, Street) -- ["in", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
+// turn(Turn, Dist, Street) -- ["in", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
 // turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
 }
 
@@ -338,16 +338,16 @@ function take_exit_name(streetName) {
 
 function getExitNumber(exitString, exitInt) {
 	if (!tts && exitInt > 0 && exitInt < 18) {
-			return nth(exitInt) + " " + dictionary["exit"];
+		return nth(exitInt) + " " + dictionary["exit"];
 	} else if (tts) {
-			return  dictionary["exit"] + " " + exitString;
+		return  dictionary["exit"] + " " + exitString;
 	} else {
-			return dictionary["exit"];
+		return dictionary["exit"];
 	}
 }
 
 function  getTurnType(turnType) {
-	// turn("left", ).
+// turn("left", ).
 // turn("left_sh", ["left_sh"]).
 // turn("left_sl", ["left_sl"]).
 // turn("right", ["right"]).
@@ -385,12 +385,12 @@ function  getTurnType(turnType) {
 }
 
 function then() {
-	// then -- ["then"].
+// then -- ["then"].
 	return (tts ? ", " : " ") + dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
-	// roundabout(Dist, _Angle, Exit, Street) -- ["in", D, "roundabout", "and", "take", E, "exit" | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
+// roundabout(Dist, _Angle, Exit, Street) -- ["in", D, "roundabout", "and", "take", E, "exit" | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
 // roundabout(_Angle, Exit, Street) -- ["take", E, "exit" | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 	if (dist == -1) {
 		return dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
@@ -401,7 +401,7 @@ function roundabout(dist, angle, exit, streetName) {
 }
 
 function turn_street(streetName) {
-	// turn_street("", []).
+// turn_street("", []).
 // turn_street(voice(["","",""],_), []).
 // turn_street(voice(["", "", D], _), ["toward", D]) :- tts.
 // turn_street(Street, ["on", SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
@@ -495,13 +495,13 @@ function bear_right(streetName) {
 }
 
 function prepare_make_ut(dist, streetName) {
-	// prepare_make_ut(Dist, Street) -- ['prepare', 'after', D, 'make_uturn2' | Sgen] :- distance(Dist, dativ) -- D, turn_street(Street, Sgen).
+// prepare_make_ut(Dist, Street) -- ['prepare', 'after', D, 'make_uturn2' | Sgen] :- distance(Dist, dativ) -- D, turn_street(Street, Sgen).
 
 	return dictionary["after"] + " " + distance(dist, "dativ") + " " + dictionary["make_uturn1"] + " " + turn_street(streetName);
 }
 
 function prepare_turn(turnType, dist, streetName) {
-	// prepare_turn(Turn, Dist, Street) -- ['prepare', 'after', D, M | Sgen] :- distance(Dist, dativ) -- D, turn(Turn, M), turn_street(Street, Sgen).
+// prepare_turn(Turn, Dist, Street) -- ['prepare', 'after', D, M | Sgen] :- distance(Dist, dativ) -- D, turn(Turn, M), turn_street(Street, Sgen).
 	return dictionary["after"] + " " + distance(dist, "dativ") + " " + getTurnType(turnType) + " " + turn_street(streetName);
 }
 
@@ -530,7 +530,7 @@ function and_arrive_destination(dest) {
 }
 
 function and_arrive_intermediate(dest) {
-	// and_arrive_intermediate(D) -- ["and_arrive_intermediate"|Ds] :- name(D, Ds).
+// and_arrive_intermediate(D) -- ["and_arrive_intermediate"|Ds] :- name(D, Ds).
 	return dictionary["and_arrive_intermediate"] + " " + dest + " ";
 }
 

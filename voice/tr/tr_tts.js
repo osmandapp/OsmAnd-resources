@@ -283,7 +283,7 @@ function turn(turnType, dist, streetName) {
 	} else {
 		return distance(dist) + " " + dictionary["in"] + " " + turn_street(streetName)+ " " + getTurnType(turnType); 
 	}
-	// turn(Turn, Dist, Street) -- ["in", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
+// turn(Turn, Dist, Street) -- ["in", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
 // turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
 }
 
@@ -309,16 +309,16 @@ function take_exit_name(streetName) {
 
 function getExitNumber(exitString, exitInt) {
 	if (!tts && exitInt > 0 && exitInt < 18) {
-			return nth(exitInt) + " " + dictionary["exit"];
+		return nth(exitInt) + " " + dictionary["exit"];
 	} else if (tts) {
-			return  dictionary["exit"] + " " + exitString;
+		return  dictionary["exit"] + " " + exitString;
 	} else {
-			return dictionary["exit"];
+		return dictionary["exit"];
 	}
 }
 
 function  getTurnType(turnType) {
-	// turn("left", ).
+// turn("left", ).
 // turn("left_sh", ["left_sh"]).
 // turn("left_sl", ["left_sl"]).
 // turn("right", ["right"]).
@@ -356,12 +356,12 @@ function  getTurnType(turnType) {
 }
 
 function then() {
-	// then -- ["then"].
+// then -- ["then"].
 	return " " + dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
-	// roundabout(Dist, _Angle, Exit, Street) -- ["in", D, "roundabout", "and", "take", E, "exit" | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
+// roundabout(Dist, _Angle, Exit, Street) -- ["in", D, "roundabout", "and", "take", E, "exit" | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
 // roundabout(_Angle, Exit, Street) -- ["take", E, "exit" | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 	if (dist == -1) {
 		return nth(exit) + " " + dictionary["take"] + " " + turn_street(streetName) + " "  + dictionary["exit"];
@@ -372,7 +372,7 @@ function roundabout(dist, angle, exit, streetName) {
 }
 
 function turn_street(streetName) {
-	// turn_street("", []).
+// turn_street("", []).
 // turn_street(voice(["","",""],_), []).
 // turn_street(voice(["", "", D], _), ["toward", D]) :- tts.
 // turn_street(Street, ["on", SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
@@ -446,7 +446,7 @@ function nth(exit) {
 }
 
 function make_ut(dist, streetName) {
-	// make_ut(Dist, Street) --  ["in", D, "make_uturn" | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
+// make_ut(Dist, Street) --  ["in", D, "make_uturn" | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
 // make_ut(Street) -- ["make_uturn" | Sgen] :- turn_street(Street, Sgen).
 	if (dist == -1) {
 		return turn_street(streetName) + " " + dictionary["make_uturn"];
@@ -466,12 +466,12 @@ function bear_right(streetName) {
 }
 
 function prepare_make_ut(dist, streetName) {
-	// prepare_make_ut(Dist, Street) -- ["after", D, "make_uturn" | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
+// prepare_make_ut(Dist, Street) -- ["after", D, "make_uturn" | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
 	return distance(dist) + " " + dictionary["after"] + " " + turn_street(streetName) + " " + dictionary["make_uturn"];
 }
 
 function prepare_turn(turnType, dist, streetName) {
-	// prepare_turn(Turn, Dist, Street) -- ["after", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
+// prepare_turn(Turn, Dist, Street) -- ["after", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
 	return distance(dist) + " " + dictionary["after"] + " " + turn_street(streetName) + " " + getTurnType(turnType);
 }
 
@@ -500,7 +500,7 @@ function and_arrive_destination(dest) {
 }
 
 function and_arrive_intermediate(dest) {
-	// and_arrive_intermediate(D) -- ["and_arrive_intermediate"|Ds] :- name(D, Ds).
+// and_arrive_intermediate(D) -- ["and_arrive_intermediate"|Ds] :- name(D, Ds).
 	return dest + " " + dictionary["and_arrive_intermediate"];
 }
 
@@ -553,7 +553,7 @@ function back_on_route() {
 }
 
 function make_ut_wp() {
-	// make_ut_wp -- ["make_uturn_wp"].
+// make_ut_wp -- ["make_uturn_wp"].
 	return dictionary["make_uturn_wp"];
 }
 

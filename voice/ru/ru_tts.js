@@ -375,11 +375,11 @@ function take_exit_name(streetName) {
 
 function getExitNumber(exitString, exitInt) {
 	if (!tts && exitInt > 0 && exitInt < 18) {
-			return nth(exitInt) + " " + dictionary["exit"];
+		return nth(exitInt) + " " + dictionary["exit"];
 	} else if (tts) {
-			return  dictionary["exit"] + " " + exitString;
+		return  dictionary["exit"] + " " + exitString;
 	} else {
-			return dictionary["exit"];
+		return dictionary["exit"];
 	}
 }
 
