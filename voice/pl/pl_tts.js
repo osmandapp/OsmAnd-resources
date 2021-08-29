@@ -30,8 +30,8 @@ function populateDictionary(tts) {
 	dictionary["right"] = tts ? "skręć w prawo" : "right.ogg";
 	dictionary["right_sh"] = tts ? "skręć ostro w prawo" : "right_sh.ogg";
 	dictionary["right_sl"] = tts ? "skręć lekko w prawo" : "right_sl.ogg";
-	dictionary["left_keep"] = tts ? "trzymaj się lewej strony" : "left_keep.ogg";
-	dictionary["right_keep"] = tts ? "trzymaj się prawej strony" : "right_keep.ogg";
+	dictionary["left_keep"] = tts ? "zajmij lewy pas" : "left_keep.ogg";
+	dictionary["right_keep"] = tts ? "zajmij prawy pas" : "right_keep.ogg";
 	dictionary["left_bear"] = tts ? "trzymaj się lewej strony" : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
 	dictionary["right_bear"] = tts ? "trzymaj się prawej strony" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
 	
@@ -80,8 +80,8 @@ function populateDictionary(tts) {
 	dictionary["reached_waypoint"] = tts ? "mijasz punkt GPX" : "reached_waypoint.ogg";
 	dictionary["and_arrive_favorite"] = tts ? "następnie miniesz ulubiony punkt" : "and_arrive_favorite.ogg";
 	dictionary["reached_favorite"] = tts ? "mijasz ulubiony punkt" : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "następnie miniesz POI" : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "mijasz POI" : "reached_poi.ogg";
+	dictionary["and_arrive_poi"] = tts ? "następnie miniesz użyteczne miejsce" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "mijasz użyteczne miejsce" : "reached_poi.ogg";
 	
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "przekraczasz dozwoloną prędkość" : "exceed_limit.ogg";
@@ -249,7 +249,7 @@ function hours(minutes) {
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
+	return dictionary["route_calculate"] + (tts ? ", " : " ") + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
 }
 
 function go_ahead(dist, streetName) {
@@ -314,11 +314,14 @@ function take_exit_name(streetName) {
 
 function getExitNumber(exitString, exitInt) {
 	if (!tts && exitInt > 0 && exitInt < 18) {
-			return nth(exitInt) + " " + dictionary["exit"];
-	} else if (tts) {
-			return  dictionary["exit"] + " " + exitString;
+		return nth(exitInt) + " " + dictionary["exit"];
+	// Issue #7570:
+	//} else if (tts) {
+	//	return dictionary["exit"] + " " + exitString;
+	} else if (tts && exitInt > 0 && exitInt < 18) {
+		return nth(exitInt) + " " + dictionary["exit"];
 	} else {
-			return dictionary["exit"];
+		return dictionary["exit"];
 	}
 }
 
