@@ -34,7 +34,7 @@ function populateDictionary(tts) {
 	dictionary["right"] = tts ? "rechts afslaan" : "right.ogg";
 	dictionary["right_sh"] = tts ? "scherpe bocht naar rechts" : "right_sh.ogg";
 	dictionary["right_sl"] = tts ? "rechts afbuigen" : "right_sl.ogg";
-	// Note: turn("left_keep"/"right_keep",[]) is a turn type aiding lane selection, while bear_left()/bear_right() is triggered as brief "turn-after-next" preparation sounding always after a "..., then...". In some languages turn(l/r_keep) may not differ from bear_l/r:
+	// Note: "left_keep"/"right_keep" is a turn type aiding lane selection, while "left_bear"/"right_bear" is as brief "then..." preparation for the turn-after-next. In some languages l/r_keep may not differ from l/r_bear.
 	dictionary["left_keep"] = tts ? "links aanhouden" : "left_keep.ogg";
 	dictionary["right_keep"] = tts ? "rechts aanhouden" : "right_keep.ogg";
 	dictionary["left_bear"] = tts ? "links aanhouden" : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
