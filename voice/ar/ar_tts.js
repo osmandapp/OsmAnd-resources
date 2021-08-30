@@ -37,6 +37,7 @@ function populateDictionary(tts) {
 	dictionary["right"] = tts ? "اِنعطِفْ إلى اليمين" : "right.ogg";
 	dictionary["right_sh"] = tts ? "اِتجِهْ إلى اليمين بشكل حاد" : "right_sh.ogg";
 	dictionary["right_sl"] = tts ? "اِتجِهْ إلى اليمين قليلا" : "right_sl.ogg";
+	// Note: turn("left_keep"/"right_keep",[]) is a turn type aiding lane selection, while bear_left()/bear_right() is triggered as brief "turn-after-next" preparation sounding always after a "..., then...". In some languages turn(l/r_keep) may not differ from bear_l/r:
 	dictionary["left_keep"] = tts ? "اِلْزَمِ اليسار" : "left_keep.ogg";
 	dictionary["right_keep"] = tts ? "اِلْزَمِ اليمين" : "right_keep.ogg";
 	dictionary["left_bear"] = tts ? "اِلْزَمِ اليسار" : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
@@ -572,14 +573,6 @@ function go_ahead(dist, streetName) {
 	if (dist == -1)
 		return dictionary["go_ahead"];
 	return dictionary["follow"] + " " + distance(dist, "gen") + " " + follow_street(streetName);
-
-// go_ahead(Dist, Street) -- ["follow", D | Sgen] :- distance(Dist) -- D, follow_street(Street, Sgen).
-// follow_street("", []).
-// follow_street(voice(["","",""],_), []).
-// follow_street(voice(["", "", D], _), ["to", D]) :- tts.
-// follow_street(Street, ["on", SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
-// follow_street(Street, ["on", SName]) :- tts, Street = voice([R, "", _],[R, _, _]), assemble_street_name(Street, SName).
-// follow_street(Street, ["to", SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), assemble_street_name(Street, SName).
 }
 
 function follow_street(streetName) {
@@ -601,8 +594,6 @@ function turn(turnType, dist, streetName) {
 	if (dist == -1)
 		return getTurnType(turnType) + " " + turn_street(streetName);
 	return dictionary["in"] + " " + distance(dist, "gen") + " " + getTurnType(turnType) + " " + turn_street(streetName);
-// turn(Turn, Dist, Street) -- ["in", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
-// turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
 }
 
 function take_exit(turnType, dist, exitString, exitInt, streetName) {
@@ -637,15 +628,6 @@ function getExitNumber(exitString, exitInt) {
 }
 
 function  getTurnType(turnType) {
-// turn("left", ).
-// turn("left_sh", ["left_sh"]).
-// turn("left_sl", ["left_sl"]).
-// turn("right", ["right"]).
-// turn("right_sh", ["right_sh"]).
-// turn("right_sl", ["right_sl"]).
-// turn("left_keep", ["left_keep"]).
-// turn("right_keep", ["right_keep"]).
-// // Note: turn("left_keep"/"right_keep",[]) is a turn type aiding lane selection, while bear_left()/bear_right() is triggered as brief "turn-after-next" preparation sounding always after a "..., then...". In some languages turn(l/r_keep) may not differ from bear_l/r:
 	switch (turnType) {
 		case "left":
 			return dictionary["left"];
@@ -667,13 +649,10 @@ function  getTurnType(turnType) {
 }
 
 function then() {
-// then -- ["then"].
 	return dictionary["then"];
 }
 
 function roundabout(dist, angle, exit, streetName) {
-// roundabout(Dist, _Angle, Exit, Street) -- ["in", D, "roundabout", "and", "take", E, "exit" | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
-// roundabout(_Angle, Exit, Street) -- ["take", E, "exit" | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 	if (dist == -1)
 		return dictionary["take"] + " " + dictionary["exit"] + " " + nth(exit) + " " + turn_street(streetName);
 	return dictionary["in"] + " " + distance(dist, "gen") + " " + dictionary["roundabout"] + " " + dictionary["take"] + " " + dictionary["exit"] + " " + nth(exit) + " " + turn_street(streetName);
@@ -681,12 +660,6 @@ function roundabout(dist, angle, exit, streetName) {
 }
 
 function turn_street(streetName) {
-// turn_street("", []).
-// turn_street(voice(["","",""],_), []).
-// turn_street(voice(["", "", D], _), ["toward", D]) :- tts.
-// turn_street(Street, ["on", SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
-// turn_street(Street, ["on", SName]) :- tts, Street = voice([R, "", _],[R, _, _]), assemble_street_name(Street, SName).
-// turn_street(Street, ["onto", SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), assemble_street_name(Street, SName).
 	if (Object.keys(streetName).length == 0
 	 || (streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "")
 	 || !tts)
@@ -704,9 +677,6 @@ function turn_street(streetName) {
 }
 
 function assemble_street_name(streetName) {
-// assemble_street_name(voice([Ref, Name, ""], _), Concat) :- atom_concat(Ref, " ", C1), atom_concat(C1, Name, Concat).
-// assemble_street_name(voice(["", Name, Dest], _), [C1, "toward", Dest]) :- atom_concat(Name, " ", C1).
-// assemble_street_name(voice([Ref, _, Dest], _), [C1, "toward", Dest]) :- atom_concat(Ref, " ", C1).
 	if (streetName["toDest"] === "")
 		return streetName["toRef"] + " " + streetName["toStreetName"];
 	if (streetName["toRef"] === "")
@@ -756,15 +726,11 @@ function nth(exit) {
 }
 
 function make_ut(dist, streetName) {
-// make_ut(Dist, Street) --  ["in", D, "make_uturn" | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
-// make_ut(Street) -- ["make_uturn" | Sgen] :- turn_street(Street, Sgen).
 	if (dist == -1)
 		return dictionary["make_uturn"] + " " + turn_street(streetName);
 	return dictionary["in"] + " " + distance(dist, "gen") + " " + dictionary["make_uturn"] + " " + turn_street(streetName);
 }
 
-// bear_left(_Street) -- ["left_bear"].
-// bear_right(_Street) -- ["right_bear"].
 function bear_left(streetName) {
 	return dictionary["left_bear"];
 }
@@ -774,41 +740,22 @@ function bear_right(streetName) {
 }
 
 function prepare_make_ut(dist, streetName) {
-// prepare_make_ut(Dist, Street) -- ["after", D, "make_uturn" | Sgen] :- distance(Dist) -- D, turn_street(Street, Sgen).
 	return dictionary["after"] + " " + distance(dist, "gen") + " " + dictionary["make_uturn"] + " " + turn_street(streetName);
 }
 
 function prepare_turn(turnType, dist, streetName) {
-// prepare_turn(Turn, Dist, Street) -- ["after", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
 	return dictionary["after"] + " " + distance(dist, "gen") + " " + getTurnType(turnType) + " " + turn_street(streetName);
 }
 
 function prepare_roundabout(dist, exit, streetName) {
-// prepare_roundabout(Dist, _Exit, _Street) -- ["after", D , "prepare_roundabout"] :- distance(Dist) -- D.
 	return dictionary["after"] + " " + distance(dist, "gen") + " " + dictionary["prepare_roundabout"];
 }
 
-// reached_destination(D) -- ["reached_destination"|Ds] :- name(D, Ds).
-
-// reached_intermediate(D) -- ["reached_intermediate"|Ds] :- name(D, Ds).
-
-// and_arrive_waypoint(D) -- ["and_arrive_waypoint"|Ds] :- name(D, Ds).
-// reached_waypoint(D) -- ["reached_waypoint"|Ds] :- name(D, Ds).
-// and_arrive_favorite(D) -- ["and_arrive_favorite"|Ds] :- name(D, Ds).
-// reached_favorite(D) -- ["reached_favorite"|Ds] :- name(D, Ds).
-// and_arrive_poi(D) -- ["and_arrive_poi"|Ds] :- name(D, Ds).
-// reached_poi(D) -- ["reached_poi"|Ds] :- name(D, Ds).
-
-// location_lost -- ["location_lost"].
-// location_recovered -- ["location_recovered"].
-// off_route(Dist) -- ["off_route", D] :- distance(Dist) -- D.
-// back_on_route -- ["back_on_route"].
 function and_arrive_destination(dest) {
 	return dictionary["and_arrive_destination"] + " " + dest;
 }
 
 function and_arrive_intermediate(dest) {
-// and_arrive_intermediate(D) -- ["and_arrive_intermediate"|Ds] :- name(D, Ds).
 	return dictionary["and_arrive_intermediate"] + " " + dest;
 }
 
@@ -861,15 +808,10 @@ function back_on_route() {
 }
 
 function make_ut_wp() {
-// make_ut_wp -- ["make_uturn_wp"].
 	return dictionary["make_uturn_wp"];
 }
 
-
-// name(D, [D]) :- tts.
-// name(_D, []) :- not(tts).
-
-// // TRAFFIC WARNINGS
+// TRAFFIC WARNINGS
 function speed_alarm(maxSpeed, speed) {
 	return dictionary["exceed_limit"] + " " + num_str(maxSpeed, "m", "nom");
 }
@@ -904,81 +846,8 @@ function getAttentionString(type) {
 			return "";
 	}
 }
-// speed_alarm(MaxSpeed, _Speed) -- ["exceed_limit", I] :- pnumber(MaxSpeed, I).
-// attention(Type) -- ["attention", W] :- warning(Type, W).
-// warning("SPEED_CAMERA", "speed_camera").
-// warning("SPEED_LIMIT", "").
-// warning("BORDER_CONTROL", "border_control").
-// warning("RAILWAY", "railroad_crossing").
-// warning("TRAFFIC_CALMING", "traffic_calming").
-// warning("TOLL_BOOTH", "toll_booth").
-// warning("STOP", "stop").
-// warning("PEDESTRIAN", "pedestrian_crosswalk").
-// warning("MAXIMUM", "").
-// warning("TUNNEL", "tunnel").
-// warning(Type, "") :- not(Type = "SPEED_CAMERA"; Type = "SPEED_LIMIT"; Type = "BORDER_CONTROL"; Type = "RAILWAY"; Type = "TRAFFIC_CALMING"; Type = "TOLL_BOOTH"; Type = "STOP"; Type = "PEDESTRIAN"; Type = "MAXIMUM"; Type = "TUNNEL").
 
-
-
-
-// //// command main method
-// //// if you are familar with Prolog you can input specific to the whole mechanism,
-// //// by adding exception cases.
-
-// flatten(X, Y) :- flatten(X, [], Y), !.
-// flatten([], Acc, Acc).
-// flatten([X|Y], Acc, Res):- flatten(Y, Acc, R), flatten(X, R, Res).
-// flatten(X, Acc, [X|Acc]) :- version(J), J < 100, !.
-// flatten(X, Acc, [Y|Acc]) :- string(X, Y), !.
-// flatten(X, Acc, [X|Acc]).
-
-// resolve(X, Y) :- resolve_impl(X,Z), flatten(Z, Y).
-// resolve_impl([],[]).
-// resolve_impl([X|Rest], List) :- resolve_impl(Rest, Tail), ("--"(X, L) -> append(L, Tail, List); List = Tail).
-
-
-// // handling alternatives
-// [X|_Y] -- T :- (X -- T),!.
-// [_X|Y] -- T :- (Y -- T).
-
-
-// pnumber(X, Y) :- tts, !, num_atom(X, Y).
-// pnumber(X, Ogg) :- num_atom(X, A), atom_concat(A, "", Ogg).
-// // time measure
-
-
-// ////// distance measure
-// distance(Dist) -- D :- measure("km-m"), distance_km(Dist) -- D.
-// distance(Dist) -- D :- measure("mi-f"), distance_mi_f(Dist) -- D.
-// distance(Dist) -- D :- measure("mi-y"), distance_mi_y(Dist) -- D.
-// distance(Dist) -- D :- measure("mi-m"), distance_mi_m(Dist) -- D.
-
-// ////// distance measure km/m
-
-
-// ////// distance measure mi/f
-
-
-// ////// distance measure mi/y
-
-
-// ////// distance measure mi/m
-
-
-
-// interval(St, St, End, _Step) :- St =< End.
-// interval(T, St, End, Step) :- interval(Init, St, End, Step), T is Init + Step, (T =< End -> true; !, fail).
-
-// interval(X, St, End) :- interval(X, St, End, 1).
-
-// // string(Ogg, A) :- voice_generation, interval(X, 1, 19), atom_number(A, X), atom_concat(A, "", Ogg).
-// // string(Ogg, A) :- voice_generation, interval(X, 20, 95, 5), atom_number(A, X), atom_concat(A, "", Ogg).
-// // string(Ogg, A) :- voice_generation, interval(X, 100, 140, 10), atom_number(A, X), atom_concat(A, "", Ogg).
-// // string(Ogg, A) :- voice_generation, interval(X, 150, 950, 50), atom_number(A, X), atom_concat(A, "", Ogg).
-// // string(Ogg, A) :- voice_generation, interval(X, 1000, 9000, 1000), atom_number(A, X), atom_concat(A, "", Ogg).
-
-// // // dist(X, Y) :- tts, !, num_atom(X, Y).
-
+// DISTANCE MEASURE
 function ogg_dist(distance) {
 	if (distance == 0)
 		return "";
@@ -1022,25 +891,3 @@ function ogg_dist(distance) {
 		return "900.ogg " + ogg_dist(distance - 900);
 	return ogg_dist(distance/1000) + "1000.ogg " + ogg_dist(distance % 1000);
 }
-
-// // // dist(0, []) :- !.
-// // // dist(X, [Ogg]) :- X < 20, !, pnumber(X, Ogg).
-// // // dist(X, [Ogg]) :- X < 1000, 0 is X mod 50, !, num_atom(X, A), atom_concat(A, "", Ogg).
-// // // dist(D, ["20"|L]) :-  D < 30, Ts is D - 20, !, dist(Ts, L).
-// // // dist(D, ["30"|L]) :-  D < 40, Ts is D - 30, !, dist(Ts, L).
-// // // dist(D, ["40"|L]) :-  D < 50, Ts is D - 40, !, dist(Ts, L).
-// // // dist(D, ["50"|L]) :-  D < 60, Ts is D - 50, !, dist(Ts, L).
-// // // dist(D, ["60"|L]) :-  D < 70, Ts is D - 60, !, dist(Ts, L).
-// // // dist(D, ["70"|L]) :-  D < 80, Ts is D - 70, !, dist(Ts, L).
-// // // dist(D, ["80"|L]) :-  D < 90, Ts is D - 80, !, dist(Ts, L).
-// // // dist(D, ["90"|L]) :-  D < 100, Ts is D - 90, !, dist(Ts, L).
-// // // dist(D, ["100"|L]) :-  D < 200, Ts is D - 100, !, dist(Ts, L).
-// // // dist(D, ["200"|L]) :-  D < 300, Ts is D - 200, !, dist(Ts, L).
-// // // dist(D, ["300"|L]) :-  D < 400, Ts is D - 300, !, dist(Ts, L).
-// // // dist(D, ["400"|L]) :-  D < 500, Ts is D - 400, !, dist(Ts, L).
-// // // dist(D, ["500"|L]) :-  D < 600, Ts is D - 500, !, dist(Ts, L).
-// // // dist(D, ["600"|L]) :-  D < 700, Ts is D - 600, !, dist(Ts, L).
-// // // dist(D, ["700"|L]) :-  D < 800, Ts is D - 700, !, dist(Ts, L).
-// // // dist(D, ["800"|L]) :-  D < 900, Ts is D - 800, !, dist(Ts, L).
-// // // dist(D, ["900"|L]) :-  D < 1000, Ts is D - 900, !, dist(Ts, L).
-// // // dist(D, ["1000"|L]):- Ts is D - 1000, !, dist(Ts, L).
