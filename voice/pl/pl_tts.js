@@ -245,7 +245,7 @@ function hours(minutes) {
 		return dictionary["1_hour"];
 	} else {
 		var hours = Math.floor(minutes / 60);
-        return  (tts ? hours.toString() : ogg_dist(hours)) + " " + dictionary["hours"]; 
+		return (tts ? hours.toString() : ogg_dist(hours)) + " " + dictionary["hours"]; 
 	}
 }
 
@@ -316,7 +316,7 @@ function getExitNumber(exitString, exitInt) {
 	}
 }
 
-function  getTurnType(turnType) {
+function getTurnType(turnType) {
 	switch (turnType) {
 		case "left":
 			return dictionary["left"];
