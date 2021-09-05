@@ -304,13 +304,12 @@ function take_exit_name(streetName) {
 }
 
 function getExitNumber(exitString, exitInt) {
-	if (!tts && exitInt > 0 && exitInt < 18) {
+	// Issue #7570: Use first case also for tts for correct pl number declination
+	//if (!tts && exitInt > 0 && exitInt < 18) {
+	if (exitInt > 0 && exitInt < 18) {
 		return nth(exitInt) + " " + dictionary["exit"];
-	// Issue #7570:
-	//} else if (tts) {
-	//	return dictionary["exit"] + " " + exitString;
-	} else if (tts && exitInt > 0 && exitInt < 18) {
-		return nth(exitInt) + " " + dictionary["exit"];
+	} else if (tts) {
+		return dictionary["exit"] + " " + exitString;
 	} else {
 		return dictionary["exit"];
 	}
