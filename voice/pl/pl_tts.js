@@ -304,9 +304,10 @@ function take_exit_name(streetName) {
 }
 
 function getExitNumber(exitString, exitInt) {
-	// Issue #7570: Use first case also for tts for correct pl number declination
-	//if (!tts && exitInt > 0 && exitInt < 18) {
-	if (exitInt > 0 && exitInt < 18) {
+	if (!tts && exitInt > 0 && exitInt < 18) {
+		return nth(exitInt) + " " + dictionary["exit"];
+	// Issue #7570: Next case for correct tts number declination for numerical exits 1-17 
+	} else if (tts && exitInt > 0 && exitInt < 18 && exitInt.toString() === exitString) {
 		return nth(exitInt) + " " + dictionary["exit"];
 	} else if (tts) {
 		return dictionary["exit"] + " " + exitString;
