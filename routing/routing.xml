@@ -1884,6 +1884,292 @@
 		</way>
 	</routingProfile>
 
+	
+		
+		<routingProfile name="horsebackriding" baseProfile="horsebackriding" restrictionsAware="true" minSpeed="2" defaultSpeed="6" maxSpeed="30" sharpTurn="0" slightTurn="0" followSpeedLimitations="false" onewayAware="false">
+
+		<attribute name="heuristicCoefficient" value="1.2" />
+		<!-- NEW ROUTING API -->
+		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
+		
+		<!-- Bundes / Landesstraßen vermeiden  -/- Avoid Highway /Expressway -->
+		<parameter id="avoid_highway" name="Avoid highways" description="Avoid highways " type="boolean"/>
+		<parameter id="avoid_tunnels" name="Avoid tunnels" description="Avoid tunnels" type="boolean"/>
+		<parameter id="avoid_stairs" name="Avoid stairs" description="Avoid stairs" type="boolean"/>
+		
+		<parameter id="allow_private" name="Allow private access" description="Allow access to private areas" type="boolean"/>
+		<parameter id="allow_gate" name="Allow gate usage" description="Allow usage of gates" type="boolean"/>
+		
+		<!-- Nur ausdrücklich erlaubte Wege nutzen  -/- Only use expressly permitted ways -->
+		<parameter id="only_permitted_streets" name="Expressly permitted streets" description="Only use Streets which are expressly permitted" type="boolean"/>
+		<parameter id="only_permitted_ways" name="Expressly permitted ways" description="Only use ways (traks, paths aso.) which are expressly permitted" type="boolean"/>
+
+		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean" default="true"/>
+		<parameter id="prefer_horse_routes" name="Prefer horse routes" description="Prefer horse routes" type="boolean"/>
+
+		<way attribute="access">
+			<select value="-1" t="osmand_change" v="delete"/>
+			<select value="-1" t="highway" v="proposed"/>
+			<select value="-1" t="highway" v="construction"/>
+			<select value="-1" t="construction" v="yes"/>
+			<select value="-1" t="highway" v="motorway"/>
+			<select value="-1" t="highway" v="motorway_link"/>
+			<select value="-1" t="highway" v="trunk"/>
+			<select value="-1" t="highway" v="trunk_link"/>
+			<select value="-1" t="highway" v="elevator"/>
+			<select value="-1" t="highway" v="cycleway"/>
+			<select value="-1" t="railway" v="platform"/>
+			<select value="-1" t="public_transport" v="platform"/>
+			
+			<if param="avoid_highway">
+				<select value="-1" t="highway" v="primary"/>
+				<select value="-1" t="highway" v="primary_link"/>
+				<select value="-1" t="highway" v="secondary"/>
+				<select value="-1" t="highway" v="secondary_link"/>
+			</if>
+			
+			<if param="avoid_stairs">
+				<select value="-1" t="highway" v="steps"/>
+			</if>
+			
+			<if param="avoid_ferries">
+				<select value="-1" t="route" v="ferry"/>
+			</if>
+			
+			<select value="-1" t="horse_scale" v="impossible"/>
+			
+			<select value="-1" t="horse" v="no"/>
+			<select value="-1" t="horse" v="critical"/>
+			<select value="-1" t="horse" v="unsuitable"/>
+			<select value="1"  t="horse" v="yes"/>
+			<select value="1"  t="horse" v="permissive"/>
+			<select value="1"  t="horse" v="designated"/>
+			<select value="1"  t="horse" v="destination"/>
+			<select value="1"  t="horse" v="official"/>
+			<select value="1"  t="horse" v="use_sidepath"/>
+			
+			<if param="allow_private">
+				<select value="1"  t="horse" v="private"/>
+				<select value="1"  t="access" v="private"/>
+			</if>
+			<select value="-1"  t="horse" v="private"/>
+			<select value="-1" t="access" v="private"/>
+			<select value="-1" t="access" v="no"/>
+			<select value="1"  t="access" v="yes"/>
+			<select value="1"  t="access" v="permissive"/>
+			
+			<select value="1" t="highway" v="bridleway"/>
+			
+			<!-- If horse-access is not expressly defined as above: no access to other -->
+			<ifnot param="only_permitted_streets">	
+				<!-- If not: "avoid_highway" -->
+				<select value="1" t="highway" v="primary"/>
+				<select value="1" t="highway" v="primary_link"/>
+				<select value="1" t="highway" v="secondary"/>
+				<select value="1" t="highway" v="secondary_link"/>
+				<!-- Endif -->
+				
+				<select value="1" t="highway" v="tertiary"/>
+				<select value="1" t="highway" v="tertiary_link"/>
+				<select value="1" t="highway" v="residential"/>
+				<select value="1" t="highway" v="living_street"/>
+				<select value="1" t="highway" v="unclassified"/>
+				<select value="1" t="highway" v="road"/>
+				
+				<!-- If you dismount, you can use them: -->
+				<select value="1" t="highway" v="pedestrian"/>
+				<select value="1" t="highway" v="footway"/>
+				<select value="1" t="man_made" v="pier"/>
+				
+			</ifnot>
+			
+			<!-- If horse-access is not expressly defined as above: no access to other -->
+			<ifnot param="only_permitted_ways">	
+				<select value="1" t="highway" v="service"/>
+				<select value="1" t="highway" v="track"/>
+				<select value="1" t="highway" v="path"/>
+			</ifnot>
+			
+			<select value="1" t="highway" v="steps"/>
+			<select value="1" t="route" v="ferry"/>
+
+			<select value="-1"/>
+		</way>
+
+		<way attribute="oneway">
+			<select value="1" t="oneway:horse" v="yes"/>
+			<select value="0" t="oneway:horse" v="no"/>
+			<select value="-1" t="oneway:horse" v="-1"/>			
+			<select value="1" t="oneway:vehicle" v="yes"/>
+			<select value="0" t="oneway:vehicle" v="no"/>
+			<select value="-1" t="oneway:vehicle" v="-1"/>
+
+			<select value="1" t="oneway" v="yes"/>
+			<select value="1" t="oneway" v="1"/>
+			<select value="-1" t="oneway" v="-1"/>
+			<select value="1" t="roundabout" v="yes"/>
+			<select value="1" t="junction" v="roundabout"/>
+		</way>
+
+
+		<way attribute="speed" type="speed">
+			<!-- Speed is not that important -->
+			<!-- maybe: https://wiki.openstreetmap.org/wiki/Key:horse_scale 
+			<select value="6" t="horse_scale" v="common"/>
+			<select value="5" t="horse_scale" v="demanding"/>
+			<select value="4.5" t="horse_scale" v="difficult"/>
+			<select value="3" t="horse_scale" v="critical"/>
+			<select value="1.5" t="horse_scale" v="dangerous"/>
+			<select value="0" t="horse_scale" v="impossible"/>
+			<select value="6"/>
+			-->
+		</way>
+
+		<way attribute="obstacle_srtm_alt_speed">
+			<if param="height_obstacles">
+				<gt value1="-60" value2=":incline">
+					<select value="25"/>
+				</gt>
+				<gt value1="-45" value2=":incline">
+					<select value="15"/>
+				</gt>
+				<gt value1="-25" value2=":incline">
+					<select value="10"/>
+				</gt>
+				<gt value1="-15" value2=":incline">
+					<select value="5"/>
+				</gt>
+				<gt value1="-7.5" value2=":incline">
+					<select value="2.5"/>
+				</gt>
+				<gt value1="-3" value2=":incline">
+					<select value="1"/>
+				</gt>
+				<gt value1="3" value2=":incline">
+					<select value="1"/>
+				</gt>
+				<gt value1="7.5" value2=":incline">
+					<select value="5"/>
+				</gt>
+				<gt value1="15" value2=":incline">
+					<select value="10"/>
+				</gt>
+				<gt value1="25" value2=":incline">
+					<select value="15"/>
+				</gt>
+				<gt value1="45" value2=":incline">
+					<select value="30"/>
+				</gt>
+				<select value="40"/>
+			</if>
+		</way>
+
+		<way attribute="priority">
+			<!-- Additional tags -->
+			
+			<select value="0.05" t="access" v="private"/>
+			<select value="0.5" t="access" v="destination"/>
+			<select value="0.05" t="horse" v="private"/>
+			<select value="0.5" t="horse" v="destination"/>
+
+			<if param="prefer_horse_routes">
+				<select value="2.5" t="route_horse"/>
+				<select value="2.5" t="route" v="horse"/>
+			</if>
+
+			<select value="1.5" t="horse" v="designated"/>
+			<select value="1.5" t="horse" v="official"/>
+			
+			<if param="avoid_tunnels">
+				<select value="0.02" t="tunnel" v="yes"/>
+			</if>
+
+			<!-- object tags -->			
+			
+			<select value="0.3" t="highway" v="primary"/>
+			<select value="0.3" t="highway" v="primary_link"/>
+			<select value="0.5" t="highway" v="secondary"/>
+			<select value="0.5" t="highway" v="secondary_link"/>
+					
+			<select value="0.7" t="highway" v="tertiary"/>
+			<select value="0.7" t="highway" v="tertiary_link"/>
+			<select value="0.7" t="highway" v="unclassified"/>
+			
+			<select value="0.8" t="highway" v="footway"/>
+			<select value="0.8" t="highway" v="pedestrian"/>
+			<select value="0.8" t="man_made" v="pier"/>
+			
+			<select value="0.9" t="highway" v="residential"/>
+			<select value="0.9" t="highway" v="living_street"/>
+			<select value="0.9" t="highway" v="service"/>
+			
+			<select value="1.5" t="highway" v="bridleway"/>
+			
+			<select value="0.9" t="route"   v="ferry"/>
+			<select value="0.5" t="highway" v="steps"/>
+			
+			<select value="1"/>
+		</way>
+
+		<point attribute="obstacle_time">
+			<select value="5" t="highway" v="traffic_signals"/>
+			<select value="10" t="crossing" v="unmarked"/>
+			<select value="5"  t="crossing" v="uncontrolled"/>
+			<select value="30" t="crossing" v="traffic_signals"/>
+			<select value="5" t="highway" v="crossing"/>
+			<select value="5" t="ford" />
+			<select value="5" t="railway" v="crossing" />
+			<select value="5" t="railway" v="level_crossing"/>
+		</point>
+
+		<point attribute="obstacle">
+			<select value="-1" t="horse" v="no"/>
+			<select value="120"  t="horse" v="destination"/>
+			<select value="0"  t="horse" v="yes"/>
+			<select value="0"  t="horse" v="permissive"/>
+			<select value="0"  t="horse" v="designated"/>
+			<select value="0"  t="horse" v="official"/>
+
+			<select value="-1" t="access" v="no"/>
+			<if param="allow_private">
+				<select value="180"  t="access" v="private"/>
+				<select value="180"  t="horse" v="private"/>
+			</if>
+			<select value="-1"  t="horse" v="private"/>
+			<select value="-1"  t="access" v="private"/>
+			<select value="120"  t="access" v="destination"/>
+
+			<select value="0"  t="access" v="yes"/>
+			<select value="0"  t="access" v="permissive"/>
+			
+			<ifnot param="allow_gate">
+				<select value="-1"  t="barrier" v="gate"/>
+				<select value="-1"  t="barrier" v="lift_gate"/>
+			</ifnot>
+			
+			<select value="-1"  t="barrier" v="cycle_barrier"/>
+			<select value="-1"  t="barrier" v="swing_gate"/>
+			<select value="-1"  t="barrier" v="cattle_grid"/>
+			<select value="-1"  t="barrier" v="full-height_turnstile"/>
+			<select value="-1"  t="barrier" v="sliding_gate"/>
+			<select value="-1"  t="barrier" v="kissing_gate"/>
+			<select value="-1"  t="barrier" v="motorcycle_barrier"/>
+			<select value="-1"  t="barrier" v="turnstile"/>
+			<select value="15"  t="barrier" v="wicket_gate"/>
+			<select value="15"  t="barrier" v="log"/>
+			
+			<select value="15" t="barrier" v="bump_gate"/>
+			<select value="5"  t="barrier"/>
+		</point>
+
+		<way attribute="penalty_transition">
+			<if param="avoid_tunnels">
+				<select value="200" t="tunnel" v="yes"/>
+				<select value="150" t="tunnel" v="avalanche_protector"/>
+			</if>
+		</way>
+	</routingProfile>
+	
 	<routingProfile name="geocoding" baseProfile="car" restrictionsAware="true" minSpeed="10.0" defaultSpeed="10.0" maxSpeed="10.0">
 		<way attribute="access">
 			<select value="1" t="highway" v="motorway"/>
