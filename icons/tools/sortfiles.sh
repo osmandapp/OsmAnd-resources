@@ -1978,6 +1978,7 @@ icon_alias parish office_parish
 icon_alias publisher office_publisher
 icon_alias water_utility office_water_utility
 icon_alias energy_supplier office_energy_supplier
+icon_alias office_religion office_religion
 
 ## Entertainment
 icon_alias park entertainment_colored_park
