@@ -28,28 +28,29 @@ function populateDictionary(tts) {
 	dictionary["after"] = tts ? "fra" : "after.ogg";
 	dictionary["in"] = tts ? "fra" : "in.ogg";
 	
-	dictionary["left"] = tts ? "girare a sinistra" : "left.ogg";
-	dictionary["left_sh"] = tts ? "girare stretto a sinistra" : "left_sh.ogg";
-	dictionary["left_sl"] = tts ? "girare leggermente a sinistra" : "left_sl.ogg";
-	dictionary["right"] = tts ? "girare a destra" : "right.ogg";
-	dictionary["right_sh"] = tts ? "girare stretto a destra" : "right_sh.ogg";
-	dictionary["right_sl"] = tts ? "girare leggermente a destra" : "right_sl.ogg";
-	dictionary["left_keep"] = tts ? "tenersi sulla sinistra" : "left_keep.ogg";
-	dictionary["right_keep"] = tts ? "tenersi sulla destra" : "right_keep.ogg";
-	dictionary["left_bear"] = tts ? "tenersi sulla sinistra" : "left_bear.ogg";  // in English the same as left_keep, may be different in other languages
-	dictionary["right_bear"] = tts ? "tenersi sulla destra" : "right_bear.ogg";   // in English the same as right_keep, may be different in other languages
+	dictionary["left"] = tts ? "girate a sinistra" : "left.ogg";
+	dictionary["left_sh"] = tts ? "girate stretto a sinistra" : "left_sh.ogg";
+	dictionary["left_sl"] = tts ? "girate leggermente a sinistra" : "left_sl.ogg";
+	dictionary["right"] = tts ? "girate a destra" : "right.ogg";
+	dictionary["right_sh"] = tts ? "girate stretto a destra" : "right_sh.ogg";
+	dictionary["right_sl"] = tts ? "girate leggermente a destra" : "right_sl.ogg";
+	// Note: "left_keep"/"right_keep" is a turn type aiding lane selection, while "left_bear"/"right_bear" is as brief "then..." preparation for the turn-after-next. In some languages l/r_keep may not differ from l/r_bear.
+	dictionary["left_keep"] = tts ? "continuate tenendovi sulla sinistra" : "left_keep.ogg";
+	dictionary["right_keep"] = tts ? "continuate tenendovi sulla destra" : "right_keep.ogg";
+	dictionary["left_bear"] = tts ? "tenetevi sulla sinistra" : "left_bear.ogg";  // in English the same as left_keep, may be different in other languages
+	dictionary["right_bear"] = tts ? "tenetevi sulla destra" : "right_bear.ogg";   // in English the same as right_keep, may be different in other languages
 	
 	// U-TURNS
-	dictionary["make_uturn1"] = tts ? "torna indietro" : "make_uturn1.ogg";
+	dictionary["make_uturn1"] = tts ? "tornate indietro" : "make_uturn1.ogg";
 	dictionary["make_uturn2"] = tts ? "Si prega di tornare indietro" : "make_uturn2.ogg";
-	dictionary["make_uturn_wp"] = tts ? "Quando possibile, fare inversione a u" : "make_uturn_wp.ogg";
+	dictionary["make_uturn_wp"] = tts ? "Quando possibile, fate inversione a u" : "make_uturn_wp.ogg";
 	
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? "entrare in una rotonda" : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? "entrare nella rotonda" : "roundabout.ogg";
+	dictionary["prepare_roundabout"] = tts ? "entrate in una rotonda" : "prepare_roundabout.ogg";
+	dictionary["roundabout"] = tts ? "entrate nella rotonda" : "roundabout.ogg";
 	dictionary["then"] = tts ? "poi" : "then.ogg";
 	dictionary["and"] = tts ? "e" : "and.ogg";
-	dictionary["take"] = tts ? "prendere la" : "take.ogg";
+	dictionary["take"] = tts ? "prendete la" : "take.ogg";
 	dictionary["exit"] = tts ? "uscita" : "exit.ogg";
 	
 	dictionary["1st"] = tts ? "prima" : "1st.ogg";
@@ -71,11 +72,11 @@ function populateDictionary(tts) {
 	dictionary["17th"] = tts ? "diciassettesima" : "17th.ogg";
 	
 	// STRAIGHT/FOLLOW
-	dictionary["go_ahead"] = tts ? "Proseguire diritti" : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "Seguire la strada per" : "follow.ogg";
+	dictionary["go_ahead"] = tts ? "Proseguite dritto" : "go_ahead.ogg";
+	dictionary["follow"] = tts ? "Seguite la strada per" : "follow.ogg";
 	
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "e arriveremo a destinazione" : "and_arrive_destination.ogg";
+	dictionary["and_arrive_destination"] = tts ? "e sarete arrivati a destinazione" : "and_arrive_destination.ogg";
 	dictionary["reached_destination"] = tts ? "arrivati a destinazione" : "reached_destination.ogg";
 	dictionary["and_arrive_intermediate"] = tts ? "e arriveremo al punto intermedio" : "and_arrive_intermediate.ogg";
 	dictionary["reached_intermediate"] = tts ? "arrivati al punto intermedio" : "reached_intermediate.ogg";
@@ -83,9 +84,9 @@ function populateDictionary(tts) {
 	// NEARBY POINTS
 	dictionary["and_arrive_waypoint"] = tts ? "e arriveremo al vostro punto GPX intermedio" : "and_arrive_waypoint.ogg";
 	dictionary["reached_waypoint"] = tts ? "arrivati al vostro punto GPX intermedio" : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "e arriverai al preferito" : "and_arrive_favorite.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "e arriverete al preferito" : "and_arrive_favorite.ogg";
 	dictionary["reached_favorite"] = tts ? "preferito raggiunto" : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "e arriverai al P D I" : "and_arrive_poi.ogg";
+	dictionary["and_arrive_poi"] = tts ? "e arriverete al P D I" : "and_arrive_poi.ogg";
 	dictionary["reached_poi"] = tts ? "P D I raggiunto" : "reached_poi.ogg";
 	
 	// ATTENTION
@@ -102,10 +103,10 @@ function populateDictionary(tts) {
 	dictionary["tunnel"] = tts ? "galleria" : "tunnel.ogg";
 	
 	// OTHER PROMPTS
-	dictionary["location_lost"] = tts ? "Segnale g p s perso" : "location_lost.ogg";
+	dictionary["location_lost"] = tts ? "Segnale g p s interrotto" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "Segnale g p s ripristinato" : "location_recovered.ogg";
 	dictionary["off_route"] = tts ? "Avete deviato dal percorso" : "off_route.ogg";
-	dictionary["back_on_route"] = tts ? "si torna sulla rotta" : "back_on_route.ogg";
+	dictionary["back_on_route"] = tts ? "Siete tornati sul percorso" : "back_on_route.ogg";
 	
 	// STREET NAME PREPOSITIONS
 	dictionary["onto"] = tts ? "su" : "onto.ogg";
@@ -183,7 +184,6 @@ function route_new_calc(dist, timeVal) {
 }
 
 function distance(dist, declension) {
-
 	switch (metricConst) {
 		case "km-m":
 			if (dist < 17 ) {
@@ -284,7 +284,6 @@ function route_recalc(dist, seconds) {
 }
 
 function go_ahead(dist, streetName) {
-	// go_ahead(Dist, Street) -- ['follow1', D, 'follow2'| Sgen]:- distance(Dist, nominativ) -- D, follow_street(Street, Sgen).
 	if (dist == -1) {
 		return dictionary["go_ahead"];
 	} else {
@@ -305,14 +304,11 @@ function follow_street(streetName) {
 }
 
 function turn(turnType, dist, streetName) {
-	// turn(Turn, Dist, Street) -- ['after', D, M, ' '| Sgen] :- distance(Dist, dativ) -- D, turn(Turn, M), turn_street(Street, Sgen).
 	if (dist == -1) {
 		return getTurnType(turnType) + " " + turn_street(streetName);
 	} else {
 		return dictionary["in"] + " " + distance(dist, "dativ") + " " + getTurnType(turnType) + " " + turn_street(streetName); 
 	}
-	// turn(Turn, Dist, Street) -- ["in", D, M | Sgen] :- distance(Dist) -- D, turn(Turn, M), turn_street(Street, Sgen).
-// turn(Turn, Street) -- [M | Sgen] :- turn(Turn, M), turn_street(Street, Sgen).
 }
 
 function take_exit(turnType, dist, exitString, exitInt, streetName) {
@@ -338,24 +334,15 @@ function take_exit_name(streetName) {
 
 function getExitNumber(exitString, exitInt) {
 	if (!tts && exitInt > 0 && exitInt < 18) {
-			return nth(exitInt) + " " + dictionary["exit"];
+		return nth(exitInt) + " " + dictionary["exit"];
 	} else if (tts) {
-			return  dictionary["exit"] + " " + exitString;
+		return  dictionary["exit"] + " " + exitString;
 	} else {
-			return dictionary["exit"];
+		return dictionary["exit"];
 	}
 }
 
 function  getTurnType(turnType) {
-	// turn("left", ).
-// turn("left_sh", ["left_sh"]).
-// turn("left_sl", ["left_sl"]).
-// turn("right", ["right"]).
-// turn("right_sh", ["right_sh"]).
-// turn("right_sl", ["right_sl"]).
-// turn("left_keep", ["left_keep"]).
-// turn("right_keep", ["right_keep"]).
-// // Note: turn("left_keep"/"right_keep",[]) is a turn type aiding lane selection, while bear_left()/bear_right() is triggered as brief "turn-after-next" preparation sounding always after a "..., then...". In some languages turn(l/r_keep) may not differ from bear_l/r:
 	switch (turnType) {
 		case "left":
 			return dictionary["left"];
@@ -385,13 +372,10 @@ function  getTurnType(turnType) {
 }
 
 function then() {
-	// then -- ["then"].
 	return (tts ? ", " : " ") + dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
-	// roundabout(Dist, _Angle, Exit, Street) -- ["in", D, "roundabout", "and", "take", E, "exit" | Sgen] :- distance(Dist) -- D, nth(Exit, E), turn_street(Street, Sgen).
-// roundabout(_Angle, Exit, Street) -- ["take", E, "exit" | Sgen] :- nth(Exit, E), turn_street(Street, Sgen).
 	if (dist == -1) {
 		return dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	} else {
@@ -401,12 +385,6 @@ function roundabout(dist, angle, exit, streetName) {
 }
 
 function turn_street(streetName) {
-	// turn_street("", []).
-// turn_street(voice(["","",""],_), []).
-// turn_street(voice(["", "", D], _), ["toward", D]) :- tts.
-// turn_street(Street, ["on", SName]) :- tts, Street = voice([R, S, _],[R, S, _]), assemble_street_name(Street, SName).
-// turn_street(Street, ["on", SName]) :- tts, Street = voice([R, "", _],[R, _, _]), assemble_street_name(Street, SName).
-// turn_street(Street, ["onto", SName]) :- tts, not(Street = voice([R, S, _],[R, S, _])), assemble_street_name(Street, SName).
 	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || !tts) {
 		return "";
 	} else if (streetName["toStreetName"] === "" && streetName["toRef"] === "") {
@@ -423,9 +401,6 @@ function turn_street(streetName) {
 }
 
 function assemble_street_name(streetName) {
-// assemble_street_name(voice([Ref, Name, ""], _), Concat) :- atom_concat(Ref, " ", C1), atom_concat(C1, Name, Concat).
-// assemble_street_name(voice(["", Name, Dest], _), [C1, "toward", Dest]) :- atom_concat(Name, " ", C1).
-// assemble_street_name(voice([Ref, _, Dest], _), [C1, "toward", Dest]) :- atom_concat(Ref, " ", C1).
 	if (streetName["toDest"] === "") {
 		return streetName["toRef"] + " " + streetName["toStreetName"];
 	} else if (streetName["toRef"] === "") {
@@ -475,8 +450,6 @@ function nth(exit) {
 }
 
 function make_ut(dist, streetName) {
-// 	make_ut(Dist, Street) --  ['after', D, 'make_uturn1' | Sgen] :- distance(Dist, dativ) -- D, turn_street(Street, Sgen).
-// make_ut(Street) -- ['make_uturn2' | Sgen] :- turn_street(Street, Sgen).
 	if (dist == -1) {
 		return dictionary["make_uturn2"] + " " + turn_street(streetName);
 	} else {
@@ -484,8 +457,6 @@ function make_ut(dist, streetName) {
 	}
 }
 
-// bear_left(_Street) -- ["left_bear"].
-// bear_right(_Street) -- ["right_bear"].
 function bear_left(streetName) {
 	return dictionary["left_bear"];
 }
@@ -495,42 +466,22 @@ function bear_right(streetName) {
 }
 
 function prepare_make_ut(dist, streetName) {
-	// prepare_make_ut(Dist, Street) -- ['prepare', 'after', D, 'make_uturn2' | Sgen] :- distance(Dist, dativ) -- D, turn_street(Street, Sgen).
-
 	return dictionary["after"] + " " + distance(dist, "dativ") + " " + dictionary["make_uturn1"] + " " + turn_street(streetName);
 }
 
 function prepare_turn(turnType, dist, streetName) {
-	// prepare_turn(Turn, Dist, Street) -- ['prepare', 'after', D, M | Sgen] :- distance(Dist, dativ) -- D, turn(Turn, M), turn_street(Street, Sgen).
 	return dictionary["after"] + " " + distance(dist, "dativ") + " " + getTurnType(turnType) + " " + turn_street(streetName);
 }
 
 function prepare_roundabout(dist, exit, streetName) {
-// prepare_roundabout(Dist, _Exit, _Street) -- ["after", D , "prepare_roundabout"] :- distance(Dist) -- D.
 	return dictionary["after"] + " " + distance(dist, "dativ") + " " + dictionary["prepare_roundabout"]; 
 }
 
-// reached_destination(D) -- ["reached_destination"|Ds] :- name(D, Ds).
-
-// reached_intermediate(D) -- ["reached_intermediate"|Ds] :- name(D, Ds).
-
-// and_arrive_waypoint(D) -- ["and_arrive_waypoint"|Ds] :- name(D, Ds).
-// reached_waypoint(D) -- ["reached_waypoint"|Ds] :- name(D, Ds).
-// and_arrive_favorite(D) -- ["and_arrive_favorite"|Ds] :- name(D, Ds).
-// reached_favorite(D) -- ["reached_favorite"|Ds] :- name(D, Ds).
-// and_arrive_poi(D) -- ["and_arrive_poi"|Ds] :- name(D, Ds).
-// reached_poi(D) -- ["reached_poi"|Ds] :- name(D, Ds).
-
-// location_lost -- ["location_lost"].
-// location_recovered -- ["location_recovered"].
-// off_route(Dist) -- ["off_route", D] :- distance(Dist) -- D.
-// back_on_route -- ["back_on_route"].
 function and_arrive_destination(dest) {
 	return dictionary["and_arrive_destination"] + " " + dest;
 }
 
 function and_arrive_intermediate(dest) {
-	// and_arrive_intermediate(D) -- ["and_arrive_intermediate"|Ds] :- name(D, Ds).
 	return dictionary["and_arrive_intermediate"] + " " + dest + " ";
 }
 
@@ -586,8 +537,7 @@ function make_ut_wp() {
 	return dictionary["make_uturn_wp"];
 }
 
-
-// // TRAFFIC WARNINGS
+// TRAFFIC WARNINGS
 function speed_alarm(maxSpeed, speed) {
 	return dictionary["exceed_limit"] + " " + maxSpeed.toString();
 }
