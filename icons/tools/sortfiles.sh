@@ -1945,6 +1945,7 @@ icon_alias dive shopping_dive
 icon_alias nuts shopping_nuts
 icon_alias pest_control shopping_pest_control
 icon_alias groundskeeping shopping_groundskeeping
+icon_alias country_store shopping_country_store
 
 ## Office
 icon_alias estate_agent office_estate_agent
