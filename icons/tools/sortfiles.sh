@@ -1944,6 +1944,7 @@ icon_alias shop_security shopping_security
 icon_alias dive shopping_dive
 icon_alias nuts shopping_nuts
 icon_alias pest_control shopping_pest_control
+icon_alias groundskeeping shopping_groundskeeping
 
 ## Office
 icon_alias estate_agent office_estate_agent
