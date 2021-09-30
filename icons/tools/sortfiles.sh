@@ -1061,6 +1061,7 @@ icon_alias training_yoga education_training_yoga
 icon_alias music_school education_music_school
 icon_alias language_school education_language_school
 icon_alias childcare education_childcare
+icon_alias prep_school education_prep_school
 
 ## Man made
 icon_alias man_made power_generator_wind2
