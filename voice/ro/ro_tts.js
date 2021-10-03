@@ -574,6 +574,13 @@ function speed_alarm(maxSpeed, speed) {
 	return dictionary["exceed_limit"] + " " + maxSpeed.toString();
 }
 
+function speed_camera_alarm(dist, maxSpeed) {
+	return dictionary["attention"] +
+		(tts ? ", " : " ") + dictionary["speed_camera"] +
+		(tts ? ", " : " ") + dictionary["distance"] + " " + distance(dist) +
+		(tts ? ", " + dictionary["exceed_limit"] + " " + maxSpeed.toString() : "");
+}
+
 function attention(type) {
 	return dictionary["attention"] + (tts ? ", " : " ") + getAttentionString(type);
 }

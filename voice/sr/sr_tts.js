@@ -604,6 +604,10 @@ function speed_alarm(maxSpeed, speed) {
 	return dictionary["exceed_limit"] + " " + maxSpeed.toString();
 }
 
+function speed_camera_alarm(dist, maxSpeed) {
+	return attention("SPEED_CAMERA");
+}
+
 function attention(type) {
 	return dictionary["attention"] + (tts ? ", " : " ") + getAttentionString(type);
 }
