@@ -738,6 +738,8 @@ icon_alias gallery tourist_gallery
 icon_alias firepit tourist_colored_firepit
 icon_alias topo_firepit topo_topo_firepit
 icon_alias checkpoint_hiking tourist_checkpoint_hiking
+icon_alias geoglyph tourist_geoglyph
+icon_alias topo_geoglyph topo_topo_geoglyph
 
 ## Entertainment
 icon_alias entertainment tourist_cinema3
