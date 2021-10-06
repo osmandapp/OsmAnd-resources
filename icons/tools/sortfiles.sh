@@ -1171,7 +1171,7 @@ icon_alias ticket_validator poi_colored_ticket_validator
 icon_alias military poi_colored_military_bunker
 icon_alias beehive poi_beehive
 icon_alias wildlife_crossing poi_wildlife_crossing
-
+icon_alias satellite_dish poi_colored_satellite_dish
 
 ## Food and Drink
 icon_alias restaurants food_restaurant
