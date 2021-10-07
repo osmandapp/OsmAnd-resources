@@ -759,6 +759,7 @@ icon_alias amusement_arcade entertainment_amusement_arcade
 icon_alias amenity_nightclub tourist_night_club
 icon_alias mobile_library amenity_mobile_library
 icon_alias planetarium amenity_planetarium
+icon_alias conference_centre amenity_conference_centre
 
 ## Historic
 icon_alias historic tourist_archaeological2
@@ -1172,6 +1173,9 @@ icon_alias military poi_colored_military_bunker
 icon_alias beehive poi_beehive
 icon_alias wildlife_crossing poi_wildlife_crossing
 icon_alias satellite_dish poi_colored_satellite_dish
+icon_alias waste_transfer_station amenity_waste_transfer_station
+icon_alias lavoir amenity_lavoir
+icon_alias dovecote poi_dovecote
 
 ## Food and Drink
 icon_alias restaurants food_restaurant
@@ -2445,9 +2449,6 @@ icon_alias motorcar_no additional_motorcar_no
 icon_alias motorcycle_no additional_motorcycle_no
 icon_alias snowmobile_yes additional_snowmobile_yes
 icon_alias snowmobile_no additional_snowmobile_no
-icon_alias waste_transfer_station amenity_waste_transfer_station
-icon_alias lavoir amenity_lavoir
-icon_alias conference_centre amenity_conference_centre
 
 #Additional category
 icon_alias payment_type additional_category_payment_type
