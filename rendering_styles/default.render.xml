@@ -3182,6 +3182,7 @@
 					<case tag="public_transport" value="station"/>
 					<apply_if moreDetailed="false" layer="-1" order="-1"/>
 					<apply_if baseAppMode="car" maxzoom="18" layer="-1" order="-1"/>
+					<apply_if baseAppMode="public_transport" order="15"/>
 				</switch>
 				<case tag="historic" value="archaeological_site"/>
 				<case tag="historic" value="memorial"/>
@@ -5638,8 +5639,8 @@
 			</switch>
 
 			<!-- Railroad, public transport -->
-			<switch hidePOILabels="false" textColor="$railwayPOITextColorDay" textWrapWidth="25" textHaloRadius="$textHaloRadius" textBold="true" nameTag="">
-				<case minzoom="17" tag="public_transport" value="platform" additional="disused=yes" textColor="#999999" textSize="12" textOnPath="true">
+			<switch hidePOILabels="false" textColor="$railwayPOITextColorDay" textWrapWidth="25" textHaloRadius="$textHaloRadius" textBold="true">
+				<case minzoom="17" tag="public_transport" value="platform" additional="disused=yes" textColor="#999999" textSize="12" textOnPath="true" nameTag="">
 					<apply_if nightMode="true" textColor="#dddddd" textHaloColor="$publicTransportModeStopTextHaloColorNight"/>
 				</case>
 				<switch minzoom="15" maxzoom="15" textSize="12" textColor="$publicTransportModeStopTextColor" textHaloColor="$publicTransportModeStopTextHaloColor" textOrder="1">
@@ -5648,7 +5649,7 @@
 					<case tramTrainRoutes="true" tag="public_transport" value="platform" nameTag="" textOnPath="true"/>
 					<case publicTransportMode="true" tag="amenity" value="bus_station" nameTag=""/>
 					<case publicTransportMode="true" tag="highway" value="bus_stop" nameTag=""/>
-					<case tramTrainRoutes="true" tag="railway" value="tram_stop"/>
+					<case tramTrainRoutes="true" tag="railway" value="tram_stop" nameTag=""/>
 					<apply_if nightMode="true" textColor="$publicTransportModeStopTextColorNight" textHaloRadius="2" textHaloColor="$publicTransportModeStopTextHaloColorNight"/>
 				</switch>
 				<switch minzoom="16" textSize="13"> <!-- When public transport is selected -->
@@ -5664,11 +5665,33 @@
 					</apply>
 				</switch>
 				<switch minzoom="16"> <!-- When no public transport is selected -->
-					<case tag="public_transport" value="platform" nameTag="" nameTag2="local_ref" textOnPath="true" textOrder="71" intersectionMargin="15"/>
+					<switch>
+						<switch baseAppMode="public_transport" tag="public_transport" value="platform" textOrder="20">
+							<case nameTag="" nameTag2="ref"/>
+							<case nameTag="local_ref"/>
+							<case nameTag="ref"/>
+						</switch>
+						<switch minzoom="17" tag="public_transport" value="platform" textOrder="71">
+							<case nameTag="" nameTag2="local_ref"/>
+							<case nameTag="local_ref"/>
+						</switch>
+						<apply textOnPath="true" intersectionMargin="15"/>
+					</switch>
+
+					<!--<case tag="public_transport" value="platform" nameTag="" nameTag2="local_ref" textOnPath="true" textOrder="71" intersectionMargin="15"/>
+					<case tag="public_transport" value="platform" nameTag="" nameTag2="ref" textOnPath="true" textOrder="71" intersectionMargin="15"/>
+					<case baseAppMode="public_transport" minzoom="17" tag="public_transport" value="platform" nameTag="local_ref" textOnPath="true" textOrder="71" intersectionMargin="15"/>
+					<case baseAppMode="public_transport" minzoom="17" tag="public_transport" value="platform" nameTag="ref" textOnPath="true" textOrder="71" intersectionMargin="15"/>
 					<case minzoom="17" tag="public_transport" value="platform" nameTag="local_ref" textOnPath="true" textOrder="71" intersectionMargin="15"/>
+					<case minzoom="17" tag="public_transport" value="platform" nameTag="ref" textOnPath="true" textOrder="71" intersectionMargin="15"/>-->
 					<case tag="highway" value="bus_stop" nameTag="" textOrder="73"/>
 					<case tag="amenity" value="bus_station" textOrder="68"/>
-					<case tag="railway" value="tram_stop" textOrder="74"/>
+					<switch baseAppMode="public_transport" tag="railway" value="tram_stop" textOrder="20">
+						<case nameTag="" nameTag2="ref"/>
+						<case nameTag="local_ref"/>
+						<case nameTag="ref"/>
+					</switch>
+					<case tag="railway" value="tram_stop" nameTag="" textOrder="74"/>
 					<apply_if maxzoom="16" textSize="11"/>
 					<apply_if minzoom="17" textSize="13"/>
 					<apply_if nightMode="true" textColor="#d4d4ff" textHaloRadius="2" textHaloColor="#994563a7"/>
@@ -8997,6 +9020,9 @@
 				<case tag="public_transport" value="platform">
 					<apply_if additional="disused=yes">
 						<apply_if nightMode="true" color="#88666666"/>
+					</apply_if>
+					<apply_if baseAppMode="public_transport" strokeWidth_2="2" color_2="#666666">
+						<apply_if nightMode="true" color_2="#999999"/>
 					</apply_if>
 				</case>
 				<case tag="amenity" value="bus_station">
