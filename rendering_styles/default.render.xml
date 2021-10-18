@@ -5475,34 +5475,38 @@
 
 			<!-- Emergency and Health -->
 			<switch hidePOILabels="false" textSize="12" nameTag="" textColor="#da0092" textHaloRadius="$textHaloRadius" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="25" textOrder="131">
-				<case minzoom="17" tag="amenity" value="police" iconOrder="85"/>
-				<case minzoom="16" tag="amenity" value="fire_station" iconOrder="85"/>
-
-				<case minzoom="17" tag="amenity" value="pharmacy" textOrder="147"/>
-				<case minzoom="16" tag="amenity" value="hospital" textOrder="79"/>
-				<case minzoom="16" tag="amenity" value="clinic" textOrder="85"/>
-				<case minzoom="16" tag="amenity" value="veterinary" textOrder="147"/>
-				<case minzoom="16" tag="amenity" value="doctors" iconOrder="85"/>
-				<case minzoom="16" tag="amenity" value="dentist" textOrder="147"/>
-				<case minzoom="16" tag="amenity" value="nursing_home"/>
-				<case minzoom="17" tag="amenity" value="health_post"/>
-				<case minzoom="16" tag="emergency" value="ambulance_station"/>
-				<case minzoom="18" tag="emergency" value="phone"/>
-				<case minzoom="18" tag="emergency" value="defibrillator"/>
-				<case minzoom="19" tag="emergency" value="fire_hydrant"/>
-				<case minzoom="18" tag="emergency" value="rescue_box"/>
-				<case minzoom="17" tag="emergency" value="mountain_rescue"/>
-				<case minzoom="17" tag="emergency" value="lifeguard_base"/>
-				<case minzoom="16" tag="highway" value="emergency_access_point" textOrder="157"/>
-				<case minzoom="18" tag="emergency" value="siren"/>
-				<case minzoom="16" tag="amenity" value="social_facility"/>
-				<case minzoom="16" tag="healthcare" value="laboratory"/>
-				<case minzoom="16" tag="healthcare" value="blood_donation"/>
-				<case minzoom="16" tag="healthcare" value="nurse"/>
-				<case minzoom="16" tag="healthcare" value="occupational_therapist"/>
-				<case minzoom="16" tag="healthcare" value="physiotherapist"/>
-				<case minzoom="17" tag="healthcare" value=""/>
-				<apply_if nightMode="true" textColor="#ffd4f0" textHaloColor="#AA663956"/>
+				<switch>
+					<case minzoom="17" tag="amenity" value="police" iconOrder="85"/>
+					<case minzoom="16" tag="amenity" value="fire_station" iconOrder="85"/>
+					<case minzoom="16" tag="amenity" value="hospital" textOrder="79"/>
+					<case minzoom="16" tag="amenity" value="clinic" textOrder="85"/>
+					<case minzoom="16" tag="amenity" value="veterinary" textOrder="147"/>
+					<case minzoom="16" tag="amenity" value="doctors" iconOrder="85"/>
+					<case minzoom="16" tag="amenity" value="dentist" textOrder="147"/>
+					<case minzoom="16" tag="amenity" value="nursing_home"/>
+					<case minzoom="17" tag="amenity" value="health_post"/>
+					<case minzoom="16" tag="emergency" value="ambulance_station"/>
+					<case minzoom="18" tag="emergency" value="phone"/>
+					<case minzoom="18" tag="emergency" value="defibrillator"/>
+					<case minzoom="19" tag="emergency" value="fire_hydrant"/>
+					<case minzoom="18" tag="emergency" value="rescue_box"/>
+					<case minzoom="17" tag="emergency" value="mountain_rescue"/>
+					<case minzoom="17" tag="emergency" value="lifeguard_base"/>
+					<case minzoom="16" tag="highway" value="emergency_access_point" textOrder="157"/>
+					<case minzoom="18" tag="emergency" value="siren"/>
+					<case minzoom="16" tag="amenity" value="social_facility"/>
+					<case minzoom="16" tag="healthcare" value="laboratory"/>
+					<case minzoom="16" tag="healthcare" value="blood_donation"/>
+					<case minzoom="16" tag="healthcare" value="nurse"/>
+					<case minzoom="16" tag="healthcare" value="occupational_therapist"/>
+					<case minzoom="16" tag="healthcare" value="physiotherapist"/>
+					<case minzoom="17" tag="healthcare" value=""/>
+					<case minzoom="17" tag="amenity" value="pharmacy" additional="dispensing=no" textOrder="147"/>
+					<apply_if nightMode="true" textColor="#ffd4f0" textHaloColor="#AA663956"/>
+				</switch>
+				<case minzoom="17" tag="amenity" value="pharmacy" textOrder="147" textColor="$forestTextColorDay">
+					<apply_if nightMode="true" textColor="#9fe39f" textHaloColor="#aa444444"/>
+				</case>
 				<apply_if engine_v1="true" textDy="5"/>
 				<apply_if legend="true" textDy="0"/>
 			</switch>
@@ -7129,10 +7133,9 @@
 				</switch>
 				<case minzoom="16" tag="amenity" value="pharmacy" icon="amenity_pharmacy" iconVisibleSize="26" shield="green_round_shield" iconOrder="147">
 					<apply_if nightMode="true" shield="green_round_night_shield"/>
-					<case additional="dispensing=no">
-						<apply_if nightMode="false" shield="red_round_shield"/>
+					<apply_if additional="dispensing=no" shield="red_round_shield">
 						<apply_if nightMode="true" shield="red_round_night_shield"/>
-					</case>
+					</apply_if>
 				</case>
 				<switch minzoom="16">
 					<case tag="amenity" value="nursing_home"/>
