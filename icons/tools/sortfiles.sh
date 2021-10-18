@@ -740,6 +740,8 @@ icon_alias topo_firepit topo_topo_firepit
 icon_alias checkpoint_hiking tourist_checkpoint_hiking
 icon_alias geoglyph tourist_geoglyph
 icon_alias topo_geoglyph topo_topo_geoglyph
+icon_alias trailhead tourist_trailhead
+icon_alias topo_trailhead topo_topo_trailhead
 
 ## Entertainment
 icon_alias entertainment tourist_cinema3
