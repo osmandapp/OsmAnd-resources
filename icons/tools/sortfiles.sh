@@ -221,6 +221,7 @@ icon_alias barrier_small_brown_bold_1 functional-icons_point_brown_bold_1  #scal
 icon_alias barrier_small_brown_bold_2 functional-icons_point_brown_bold_2  #scale 0.25
 icon_alias rungs_dot functional-icons_point_purple_1
 icon_alias ladder functional-icons_ladder
+icon_alias rungs functional-icons_rungs
 
 ## Emergency + Health
 icon_alias emergency emergency_ambulance_station
