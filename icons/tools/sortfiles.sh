@@ -651,6 +651,7 @@ icon_alias barrier_colored_debris barrier_colored_debris
 icon_alias barrier_colored_horse_stile barrier_colored_horse_stile
 icon_alias barrier_colored_jersey_barrier barrier_colored_jersey_barrier
 icon_alias barrier_colored_log barrier_colored_log
+icon_alias barrier_hampshire_gate barrier_colored_hampshire_gate
 
 
 ## Accommodation
