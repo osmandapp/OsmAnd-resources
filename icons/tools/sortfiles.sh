@@ -994,6 +994,7 @@ icon_alias feeding_place amenity_colored_feeding_place
 icon_alias animal_keeping amenity_animal_keeping
 icon_alias coworking_space amenity_coworking
 icon_alias trolley_bay poi_colored_trolley_bay
+icon_alias research_institute amenity_research_institute
 
 icon_alias craft craft_tailor
 icon_alias craft_default craft_craft_default
