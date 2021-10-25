@@ -168,6 +168,8 @@ icon_alias fjord poi_colored_fjord
 icon_alias cliff poi_colored_cliff
 icon_alias hill poi_colored_hill
 icon_alias hill_night functional-icons_hill_night
+icon_alias fumarole poi_colored_fumarole
+icon_alias topo_fumarole topo_fumarole
 
 ## Location dots
 icon_alias administrative poi_colored_boundary_administrative
