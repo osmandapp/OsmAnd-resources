@@ -168,6 +168,8 @@ icon_alias fjord poi_colored_fjord
 icon_alias cliff poi_colored_cliff
 icon_alias hill poi_colored_hill
 icon_alias hill_night functional-icons_hill_night
+icon_alias fumarole poi_colored_fumarole
+icon_alias topo_fumarole topo_fumarole
 
 ## Location dots
 icon_alias administrative poi_colored_boundary_administrative
@@ -221,6 +223,7 @@ icon_alias barrier_small_brown_bold_1 functional-icons_point_brown_bold_1  #scal
 icon_alias barrier_small_brown_bold_2 functional-icons_point_brown_bold_2  #scale 0.25
 icon_alias rungs_dot functional-icons_point_purple_1
 icon_alias ladder functional-icons_ladder
+icon_alias rungs functional-icons_rungs
 
 ## Emergency + Health
 icon_alias emergency emergency_ambulance_station
@@ -651,6 +654,7 @@ icon_alias barrier_colored_debris barrier_colored_debris
 icon_alias barrier_colored_horse_stile barrier_colored_horse_stile
 icon_alias barrier_colored_jersey_barrier barrier_colored_jersey_barrier
 icon_alias barrier_colored_log barrier_colored_log
+icon_alias barrier_hampshire_gate barrier_colored_hampshire_gate
 
 
 ## Accommodation
@@ -738,6 +742,10 @@ icon_alias gallery tourist_gallery
 icon_alias firepit tourist_colored_firepit
 icon_alias topo_firepit topo_topo_firepit
 icon_alias checkpoint_hiking tourist_checkpoint_hiking
+icon_alias geoglyph tourist_geoglyph
+icon_alias topo_geoglyph topo_topo_geoglyph
+icon_alias trailhead tourist_trailhead
+icon_alias topo_trailhead topo_topo_trailhead
 
 ## Entertainment
 icon_alias entertainment tourist_cinema3
@@ -757,6 +765,7 @@ icon_alias amusement_arcade entertainment_amusement_arcade
 icon_alias amenity_nightclub tourist_night_club
 icon_alias mobile_library amenity_mobile_library
 icon_alias planetarium amenity_planetarium
+icon_alias conference_centre amenity_conference_centre
 
 ## Historic
 icon_alias historic tourist_archaeological2
@@ -907,6 +916,7 @@ icon_alias sauna sport_sauna
 icon_alias public_bath amenity_public_bath
 icon_alias fitness_station sport_fitness_station
 icon_alias tanning_salon sport_tanning_salon
+icon_alias sports_hall sport_sports_hall
 
 icon_alias geocache poi_colored_point_of_interest
 icon_alias geocache_not_found poi_colored_point_of_interest
@@ -987,6 +997,7 @@ icon_alias feeding_place amenity_colored_feeding_place
 icon_alias animal_keeping amenity_animal_keeping
 icon_alias coworking_space amenity_coworking
 icon_alias trolley_bay poi_colored_trolley_bay
+icon_alias research_institute amenity_research_institute
 
 icon_alias craft craft_tailor
 icon_alias craft_default craft_craft_default
@@ -1061,6 +1072,8 @@ icon_alias training_yoga education_training_yoga
 icon_alias music_school education_music_school
 icon_alias language_school education_language_school
 icon_alias childcare education_childcare
+icon_alias prep_school education_prep_school
+icon_alias driver_training education_driver_training
 
 ## Man made
 icon_alias man_made power_generator_wind2
@@ -1163,11 +1176,15 @@ icon_alias cellar_entrance poi_cellar_entrance
 icon_alias topo_cellar_entrance topo_cellar_entrance
 icon_alias windsock poi_windsock
 icon_alias grit_bin poi_colored_grit_bin
+icon_alias ticket_validator poi_colored_ticket_validator
 
 icon_alias military poi_colored_military_bunker
 icon_alias beehive poi_beehive
 icon_alias wildlife_crossing poi_wildlife_crossing
-
+icon_alias satellite_dish poi_colored_satellite_dish
+icon_alias waste_transfer_station amenity_waste_transfer_station
+icon_alias lavoir amenity_lavoir
+icon_alias dovecote poi_dovecote
 
 ## Food and Drink
 icon_alias restaurants food_restaurant
@@ -2441,9 +2458,6 @@ icon_alias motorcar_no additional_motorcar_no
 icon_alias motorcycle_no additional_motorcycle_no
 icon_alias snowmobile_yes additional_snowmobile_yes
 icon_alias snowmobile_no additional_snowmobile_no
-icon_alias waste_transfer_station amenity_waste_transfer_station
-icon_alias lavoir amenity_lavoir
-icon_alias conference_centre amenity_conference_centre
 
 #Additional category
 icon_alias payment_type additional_category_payment_type
