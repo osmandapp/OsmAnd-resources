@@ -1,70 +1,92 @@
 project(OsmAndCore_ResourcesBundle)
 
-set(OsmAndCore_ResourcesBundle_src "")
+if (CMAKE_HOST_WIN32 AND NOT CYGWIN)
+	add_custom_command(OUTPUT "resources-bundle.stub"
+		PRE_BUILD
+		COMMAND bash ARGS --login "${CMAKE_CURRENT_LIST_DIR}/list-resources.sh" "${CMAKE_CURRENT_LIST_DIR}" "${CMAKE_CURRENT_LIST_DIR}/resources-bundle.cmake"
+		BYPRODUCTS
+			"resources-bundle.lists-index"
+			"${CMAKE_CURRENT_LIST_DIR}/resources-bundle.cmake"
+		WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
+		COMMENT "Listing resources..."
+	)
+else()
+	add_custom_command(OUTPUT "resources-bundle.stub"
+		PRE_BUILD
+		COMMAND "${CMAKE_CURRENT_LIST_DIR}/list-resources.sh" "${CMAKE_CURRENT_LIST_DIR}" "${CMAKE_CURRENT_LIST_DIR}/resources-bundle.cmake"
+		BYPRODUCTS
+			"resources-bundle.lists-index"
+		WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
+		COMMENT "Listing resources..."
+	)
+endif()
 
-set(OsmAndCore_ResourcesCppIndex_src 
-	"${CMAKE_CURRENT_LIST_DIR}/embed-resources-cpp.index")
+add_custom_target(OsmAndCore_ResourcesBundle_generate
+	DEPENDS
+		"resources-bundle.stub"
+)
 
-if (EXISTS ${OsmAndCore_ResourcesCppIndex_src})
+add_library(OsmAndCore_ResourcesBundle OBJECT
+	"resources-bundle.h"
+	"resources-bundle.cpp"
+)
+target_include_directories(OsmAndCore_ResourcesBundle
+	PRIVATE
+		"${CMAKE_CURRENT_SOURCE_DIR}"
+)
+
+add_dependencies(OsmAndCore_ResourcesBundle
+	OsmAndCore_ResourcesBundle_generate
+)
+
+function(declare_resourcebundle)
+	target_compile_definitions(OsmAndCore_ResourcesBundle
+		PRIVATE
+			BUNDLE_RESOURCES_COUNT=${ARGV0}
+	)
+endfunction()
+
+function(add_resourcebundle_chunk)
 	if (CMAKE_HOST_WIN32 AND NOT CYGWIN)
-		file(STRINGS ${OsmAndCore_ResourcesCppIndex_src} OsmAndCore_ResourcesBundle_src)
-		set(listVar "")
-	   	foreach(f ${OsmAndCore_ResourcesBundle_src})
-	    	set(listVar ${listVar} "${CMAKE_CURRENT_BINARY_DIR}${f}")
-	   	endforeach(f)
-	   	set(OsmAndCore_ResourcesBundle_src ${listVar})
-		set_source_files_properties(${OsmAndCore_ResourcesBundle_src} PROPERTIES GENERATED TRUE)
-
-		add_custom_command(OUTPUT ${OsmAndCore_ResourcesBundle_src}
-			PRE_BUILD
-			COMMAND bash ARGS --login "${CMAKE_CURRENT_LIST_DIR}/embed-resources.sh" "${CMAKE_CURRENT_BINARY_DIR}"
+		add_custom_command(OUTPUT "${ARGV3}"
+			COMMAND bash ARGS --login "${CMAKE_CURRENT_LIST_DIR}/embed-resources-chunk.sh" "${ARGV1}" "${ARGV3}" "${ARGV4}"
+			DEPFILE "${ARGV2}"
 			DEPENDS
-				"${CMAKE_CURRENT_LIST_DIR}/embed-resources-cpp.index"
-				"${CMAKE_CURRENT_LIST_DIR}/embed-resources.index"
-				"${CMAKE_CURRENT_LIST_DIR}/embed-resources.sh"
-				"${CMAKE_CURRENT_LIST_DIR}/embed-resources.py"
+				"${ARGV1}"
 			WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
-			COMMENT "Embedding resources...")
+			COMMENT "Bundling resources (chunk #${ARGV0})..."
+		)
 	else()
-		file(STRINGS ${OsmAndCore_ResourcesCppIndex_src} OsmAndCore_ResourcesBundle_src)
-		set(listVar "")
-	   	foreach(f ${OsmAndCore_ResourcesBundle_src})
-	    	set(listVar ${listVar} "${CMAKE_CURRENT_BINARY_DIR}${f}")
-	   	endforeach(f)
-	   	set(OsmAndCore_ResourcesBundle_src ${listVar})
-	   	set_source_files_properties(${OsmAndCore_ResourcesBundle_src} PROPERTIES GENERATED TRUE)
-
-		add_custom_command(OUTPUT ${OsmAndCore_ResourcesBundle_src}
-			PRE_BUILD
-			COMMAND "${CMAKE_CURRENT_LIST_DIR}/embed-resources.sh" "${CMAKE_CURRENT_BINARY_DIR}"
+		add_custom_command(OUTPUT "${ARGV3}"
+			COMMAND "${CMAKE_CURRENT_LIST_DIR}/embed-resources-chunk.sh" "${ARGV1}" "${ARGV3}" "${ARGV4}"
+			DEPFILE "${ARGV2}"
 			DEPENDS
-				"${CMAKE_CURRENT_LIST_DIR}/embed-resources-cpp.index"
-				"${CMAKE_CURRENT_LIST_DIR}/embed-resources.index"
-				"${CMAKE_CURRENT_LIST_DIR}/embed-resources.sh"
-				"${CMAKE_CURRENT_LIST_DIR}/embed-resources.py"
+				"${ARGV1}"
 			WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
-			COMMENT "Embedding resources...")
+			COMMENT "Bundling resources (chunk #${ARGV0})...")
 	endif()
+	target_sources(OsmAndCore_ResourcesBundle
+		PRIVATE
+			"${ARGV3}"
+	)
+endfunction()
 
-	# this is the "object library" target: compiles the sources only once
-	add_library(objlib OBJECT ${OsmAndCore_ResourcesBundle_src})
+include("resources-bundle.cmake")
 
-	# shared libraries need PIC
-	set_property(TARGET objlib PROPERTY POSITION_INDEPENDENT_CODE 1)
+if (CMAKE_SHARED_LIBS_ALLOWED_ON_TARGET)
+	add_library(OsmAndCore_ResourcesBundle_shared SHARED
+		$<TARGET_OBJECTS:OsmAndCore_ResourcesBundle>
+	)
+endif()
 
-	if (CMAKE_SHARED_LIBS_ALLOWED_ON_TARGET)
-		add_library(OsmAndCore_ResourcesBundle_shared SHARED $<TARGET_OBJECTS:objlib>)
-		#add_library(OsmAndCore_ResourcesBundle_shared SHARED ${OsmAndCore_ResourcesBundle_src})
-	endif()
-
-	if (CMAKE_STATIC_LIBS_ALLOWED_ON_TARGET)
-		add_library(OsmAndCore_ResourcesBundle_static STATIC $<TARGET_OBJECTS:objlib>)
-		#add_library(OsmAndCore_ResourcesBundle_static STATIC ${OsmAndCore_ResourcesBundle_src})
-#		if (CMAKE_COMPILER_FAMILY STREQUAL "msvc")
-#			target_link_libraries(OsmAndCore_ResourcesBundle_static
-#				LINK_PUBLIC
-#					"-INCLUDE:___CoreResourcesEmbeddedBundle__FakeReferences"
-#			)
-#		endif()
-	endif()
+if (CMAKE_STATIC_LIBS_ALLOWED_ON_TARGET)
+	add_library(OsmAndCore_ResourcesBundle_static STATIC
+		$<TARGET_OBJECTS:OsmAndCore_ResourcesBundle>
+	)
+	# if (CMAKE_COMPILER_FAMILY STREQUAL "msvc")
+	# 	target_link_libraries(OsmAndCore_ResourcesBundle_static
+	# 		LINK_PUBLIC
+	# 			"-INCLUDE:___CoreResourcesEmbeddedBundle__FakeReferences"
+	# 	)
+	# endif()
 endif()
