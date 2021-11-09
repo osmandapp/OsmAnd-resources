@@ -32,4 +32,4 @@ if [ ! -f "$PYTHON3" ]; then
 	exit 1
 fi
 
-"$PYTHON3" "$SRCLOC/embed-resources.py" "$@"
+"$PYTHON3" "$SRCLOC/embed-resources-chunk.py" "$@"
