@@ -920,7 +920,7 @@ icon_alias tanning_salon sport_tanning_salon
 icon_alias sports_hall sport_sports_hall
 
 icon_alias geocache poi_colored_point_of_interest
-icon_alias geocache_not_found poi_colored_point_of_interest
+icon_alias geocache_not_found poi_colored_geocache_not_found
 icon_alias geocache_found poi_colored_point_of_interest
 
 
