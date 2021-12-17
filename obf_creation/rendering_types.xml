@@ -36,6 +36,13 @@
 		Next string expands to a set of strings with suffixes from 1 to 10:
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" to_tag1="route_road_*_ref" seq="1:10" apply_to="way"/>
 
+		Entity convert for combine tags.
+		Required from_tag and map="yes"
+		Without minimum one additional from_tag1 and to_tag1 convertation will not occurs
+		Additional tags for combine from_tag1, from_tag2, ... and to_tag1, to_tag2, ...
+		Example:
+		<entity_convert pattern="tag_combine" separator=" " from_tag="addr:housenumber" from_tag1="addr:unit" from_tag2="addr:flats" to_tag1="addr:housenumber" if_tag1="addr:unit" map="yes"/>
+
 		This string expands relation with route=road to road_ref_1=,road_ref_2=..., road_network_1= etc.
 		Relation tags are:
 		- relationGroupSort (like "network=icn,ncn,rcn,lcn") - sorts relations to resolve conflicts for additional tags
@@ -61,8 +68,9 @@
 	<entity_convert pattern="tag_transform" from_tag="area" from_value="no" to_tag1="area" to_value1="false"/>
 	<type tag="area" value="false" minzoom="13" additional="true" poi="false" notosm="true"/>
 
-	<entity_convert pattern="split" from_tag="natural" from_value="coastline" if_tag1="place" if_value1="island" to_tag1="natural" to_value1="coastline"/>
-<!--	<entity_convert pattern="tag_transform" from_tag="natural" from_value="coastline" if_tag1="place" if_value1="island"/>-->
+<!--	<entity_convert pattern="split" from_tag="natural" from_value="coastline" if_tag1="place" if_value1="island" to_tag1="natural" to_value1="coastline"/>-->
+	<entity_convert pattern="tag_transform" from_tag="natural" from_value="coastline" if_tag1="place" if_value1="island"/>
+	<entity_convert pattern="tag_transform" from_tag="natural" from_value="coastline" if_tag1="place" if_value1="islet"/>
 	<entity_convert pattern="split" from_tag="fixme" to_tag1="fixme" to_tag2="fixme_tag" to_value2="yes" to_tag3="osmand_change"/>
 	<entity_convert pattern="tag_transform" from_tag="fixme_tag" if_tag1="osmand_change" notosm="true"/>
 	<entity_convert pattern="tag_transform" from_tag="fixme" if_tag1="osmand_change"/>
@@ -73,7 +81,7 @@
 
 	<type tag="int_ref" additional="text" minzoom="1" order="32"/>
 	<type tag="name" additional="text" minzoom="1" order="32"/>
-	<type tag="ref" additional="text" minzoom="1" order="32"/>
+	<type tag="ref" additional="text" minzoom="1" order="70"/>
 	<type tag="local_ref" additional="text" minzoom="1" order="70"/>
 
 	<type tag="fixme" additional="text" minzoom="12" order="128"/>
@@ -789,8 +797,8 @@
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$us" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="cr" to_substr1="2" to_tag1="route_road_*_ref" seq="1:10" apply_to="way,relation" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$us" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="cr-" to_substr1="3" to_tag1="route_road_*_ref" seq="1:10" apply_to="way,relation" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$us" if_tag1="route_road_*_us_county_network" if_value1="yes" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_shape" to_value2="pentagon_up" to_tag3="route_road_*_shield_color" to_value3="blue" to_tag4="route_road_*_shield_text_color" to_value4="yellow" to_tag5="route_road_*_us_state_network" to_value5="no" seq="1:10" apply_to="way,relation" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_road_network" from_value="us:i:business:loop" if_region_name="$us" to_tag1="route_road_*_road_network" to_value1="us:i" to_tag2="route_road_*_modifier" to_value2="business" seq="1:10" apply_to="way,relation" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_road_network" from_value="us:i:business:spur" if_region_name="$us" to_tag1="route_road_*_road_network" to_value1="us:i" to_tag2="route_road_*_modifier" to_value2="business" seq="1:10" apply_to="way,relation" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_network" from_value="us:i:business:loop" if_region_name="$us" to_tag1="route_road_*_network" to_value1="us:i" to_tag2="route_road_*_modifier" to_value2="business" seq="1:10" apply_to="way,relation" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_network" from_value="us:i:business:spur" if_region_name="$us" to_tag1="route_road_*_network" to_value1="us:i" to_tag2="route_road_*_modifier" to_value2="business" seq="1:10" apply_to="way,relation" notosm="true"/>
 
 
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_us_state_network" if_region_name="$us" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="cr" seq="1:10" apply_to="way,relation" notosm="true"/>
@@ -943,10 +951,10 @@
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$gb,$isle-of-man,$jersey" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="a" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_order" to_value3="2" to_tag4="route_road_*_shield_text_color" to_value4="yellow" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$gb,$isle-of-man,$jersey" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="m" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" seq="1:10" apply_to="way" notosm="true"/>
 
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$ireland" if_tag1="route_road_*_road_network" if_value1="n" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_order" to_value3="2" to_tag4="route_road_*_shield_text_color" to_value4="yellow" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$ireland" if_tag1="route_road_*_road_network" if_value1="m" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$ireland" if_tag1="route_road_*_road_network" if_value1="r" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$ireland" if_tag1="route_road_*_road_network" if_value1="l" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$ireland" if_tag1="route_road_*_network" if_value1="n" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_order" to_value3="2" to_tag4="route_road_*_shield_text_color" to_value4="yellow" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$ireland" if_tag1="route_road_*_network" if_value1="m" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$ireland" if_tag1="route_road_*_network" if_value1="r" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$ireland" if_tag1="route_road_*_network" if_value1="l" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
 
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$france,$french-guiana" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="a" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$france,$french-guiana" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="n" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" seq="1:10" apply_to="way" notosm="true"/>
@@ -991,29 +999,28 @@
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$norway" if_tag1="highway" if_value1="motorway" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$norway" if_tag1="highway" if_value1="trunk" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
 
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$sweden" if_tag1="route_road_*_road_network" if_value1="#" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$sweden" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="e " to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$sweden" if_tag1="route_road_*_network" if_value1="#" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
 
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$finland" if_less_tag1="route_road_*_ref" if_less_value1="40" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$finland" if_less_tag1="route_road_*_ref" if_less_value1="100" if_not_less_tag1="route_road_*_ref" if_not_less_value1="39" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="yellow" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$finland" if_less_tag1="route_road_*_ref" if_less_value1="10000" if_not_less_tag1="route_road_*_ref" if_not_less_value1="999" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" seq="1:10" apply_to="way" notosm="true"/>
 
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$poland" if_tag1="route_road_*_road_network" if_value1="pl:motorways" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$poland" if_tag1="route_road_*_road_network" if_value1="pl:expressways" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$poland" if_tag1="route_road_*_road_network" if_value1="pl:regional" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="yellow" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$poland" if_tag1="route_road_*_road_network" if_value1="pl:national" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$poland" if_tag1="route_road_*_network" if_value1="pl:motorways" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$poland" if_tag1="route_road_*_network" if_value1="pl:expressways" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$poland" if_tag1="route_road_*_network" if_value1="pl:regional" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="yellow" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$poland" if_tag1="route_road_*_network" if_value1="pl:national" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$poland" if_tag1="highway" if_value1="primary" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$poland" if_tag1="highway" if_value1="secondary" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="yellow" seq="1:10" apply_to="way" notosm="true"/>
 
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$czech-republic,$slovakia" if_tag1="highway" if_value1="motorway" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$czech-republic" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="d" to_substr1="1" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$czech-republic" if_tag1="route_road_*_road_network" if_value1="cz:national" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$czech-republic" if_tag1="route_road_*_road_network" if_value1="cz:regional" if_not_tag1="highway" if_not_value1="tertiary" if_not_tag2="highway" if_not_value2="unclassified" if_not_tag3="highway" if_not_value3="residential" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$czech-republic" if_tag1="route_road_*_network" if_value1="cz:national" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$czech-republic" if_tag1="route_road_*_network" if_value1="cz:regional" if_not_tag1="highway" if_not_value1="tertiary" if_not_tag2="highway" if_not_value2="unclassified" if_not_tag3="highway" if_not_value3="residential" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" seq="1:10" apply_to="way" notosm="true"/>
 
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$czech-republic,$slovakia" if_tag1="highway" if_less_tag1="route_road_*_ref" if_less_value1="1000" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="2" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$czech-republic" if_tag1="route_road_*_ref" if_value1="mo" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
 
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$austria" if_tag1="route_road_*_road_network" if_value1="at:a-road" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$austria" if_tag1="route_road_*_network" if_value1="at:a-road" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$austria" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="a" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$austria" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="s" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$austria" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="b" to_substr1="1" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
@@ -1024,7 +1031,7 @@
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$luxembourg" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="n" to_substr1="1" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$luxembourg" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="cr" to_substr1="2" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="yellow" seq="1:10" apply_to="way" notosm="true"/>
 
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$switzerland" if_tag1="route_road_*_road_network" if_value1="motorway" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_shape" to_value3="hexagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$switzerland" if_tag1="route_road_*_network" if_value1="motorway" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_shape" to_value3="hexagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$switzerland" if_not_starts_with_value1="a" if_tag1="highway" if_value1="trunk" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$switzerland" if_tag1="highway" if_value1="motorway" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_shape" to_value3="hexagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$switzerland" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="a" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_shape" to_value3="hexagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
@@ -1052,8 +1059,8 @@
 
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$greece" if_tag1="highway" if_value1="motorway" if_not_starts_with_tag1="route_road_*_ref" if_not_starts_with_value1="e" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_order" to_value3="1" to_tag4="route_road_*_shield_shape" to_value4="hexagon" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$greece" if_tag1="highway" if_value1="motorway" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="e" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$greece" if_tag1="highway" if_value1="motorway" if_not_tag1="route_road_*_road_network" if_not_value1="e-road" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_order" to_value3="1" to_tag4="route_road_*_shield_shape" to_value4="hexagon" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$greece" if_not_tag1="highway" if_not_value1="motorway" if_not_tag2="route_road_*_road_network" if_not_value2="e-road" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$greece" if_tag1="highway" if_value1="motorway" if_not_tag1="route_road_*_network" if_not_value1="e-road" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_order" to_value3="1" to_tag4="route_road_*_shield_shape" to_value4="hexagon" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$greece" if_not_tag1="highway" if_not_value1="motorway" if_not_tag2="route_road_*_network" if_not_value2="e-road" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$greece" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="α" to_substr1="1" to_tag1="route_road_*_ref" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$greece" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="a" to_substr1="1" to_tag1="route_road_*_ref" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$greece" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="εο" to_substr1="2" to_tag1="route_road_*_ref" seq="1:10" apply_to="way" notosm="true"/>
@@ -1077,19 +1084,19 @@
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$lithuania" if_not_less_tag1="route_road_*_ref" if_not_less_value1="99" if_less_tag1="route_road_*_ref" if_less_value1="300" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="yellow" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$lithuania" if_not_less_tag1="route_road_*_ref" if_not_less_value1="999" if_less_tag1="route_road_*_ref" if_less_value1="6000" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
 
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$estonia" if_tag1="route_road_*_road_network" if_value1="ee:national" if_tag2="highway" if_value2="trunk" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$estonia" if_tag1="route_road_*_road_network" if_value1="ee:national" if_tag2="highway" if_value2="primary" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$estonia" if_tag1="route_road_*_road_network" if_value1="ee:national" if_not_tag1="highway" if_not_value1="trunk" if_not_tag2="highway" if_not_value2="primary" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="yellow" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$estonia" if_tag1="route_road_*_network" if_value1="ee:national" if_tag2="highway" if_value2="trunk" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$estonia" if_tag1="route_road_*_network" if_value1="ee:national" if_tag2="highway" if_value2="primary" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$estonia" if_tag1="route_road_*_network" if_value1="ee:national" if_not_tag1="highway" if_not_value1="trunk" if_not_tag2="highway" if_not_value2="primary" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="yellow" seq="1:10" apply_to="way" notosm="true"/>
 
 		<!-- Canada -->
 
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="quebec" if_tag1="route_road_*_road_network" if_value1="ca:qc:a" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="quebec" if_tag1="route_road_*_road_network" if_value1="ca:qc:r" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="2" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="quebec" if_tag1="route_road_*_network" if_value1="ca:qc:a" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="quebec" if_tag1="route_road_*_network" if_value1="ca:qc:r" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="2" seq="1:10" apply_to="way" notosm="true"/>
 
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="ontario" if_tag1="route_road_*_road_network" if_value1="ca_on_primary" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="ontario" if_tag1="route_road_*_road_network" if_value1="ca_on_primary_etr" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="ontario" if_tag1="route_road_*_road_network" if_value1="municipal_expressway" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="ontario" if_tag1="route_road_*_road_network" if_value1="ca_on_county" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="trapezoid_up" to_tag4="route_road_*_shield_order" to_value4="2" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="ontario" if_tag1="route_road_*_network" if_value1="ca_on_primary" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="ontario" if_tag1="route_road_*_network" if_value1="ca_on_primary_etr" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="ontario" if_tag1="route_road_*_network" if_value1="municipal_expressway" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="ontario" if_tag1="route_road_*_network" if_value1="ca_on_county" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="trapezoid_up" to_tag4="route_road_*_shield_order" to_value4="2" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="ontario" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="dvp_" seq="1:10" apply_to="way" notosm="true"/>
 
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="new-brunswick" if_less_tag1="route_road_*_ref" if_less_value1="100" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
@@ -1102,9 +1109,9 @@
 
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="prince-edward-island" if_less_tag1="route_road_*_ref" if_less_value1="26" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
 
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="manitoba" if_tag1="route_road_*_road_network" if_value1="ca:mb:pth" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="manitoba" if_tag1="route_road_*_road_network" if_value1="ca:mb:pr" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="black" to_tag3="route_road_*_shield_shape" to_value3="ellipse" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="manitoba" if_tag1="route_road_*_road_network" if_value1="ca:mb:winnipeg" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="trapezoid_down" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="manitoba" if_tag1="route_road_*_network" if_value1="ca:mb:pth" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="manitoba" if_tag1="route_road_*_network" if_value1="ca:mb:pr" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="black" to_tag3="route_road_*_shield_shape" to_value3="ellipse" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="manitoba" if_tag1="route_road_*_network" if_value1="ca:mb:winnipeg" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="trapezoid_down" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="manitoba" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="pth" seq="1:10" apply_to="way,relation" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="manitoba" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="pr" seq="1:10" apply_to="way,relation" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="manitoba" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="route" seq="1:10" apply_to="way,relation" notosm="true"/>
@@ -1117,9 +1124,10 @@
 
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="british-columbia" if_less_tag1="route_road_*_ref" if_less_value1="1000" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_text_color" to_value4="darkblue" to_tag5="route_road_*_shield_order" to_value5="1" seq="1:10" apply_to="way" notosm="true"/>
 
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="northwest-territories" if_tag1="route_road_*_road_network" if_value1="ca:nt" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="northwest-territories" if_tag1="route_road_*_network" if_value1="ca:nt" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
 
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$canada" if_tag1="route_road_*_road_network" if_value1="ca_transcanada" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_shape" to_value3="transcanada" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$canada" if_tag1="route_road_*_network" if_value1="ca:transcanada" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_shape" to_value3="transcanada" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$canada" if_tag1="route_road_*_network" if_value1="ca_transcanada" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_shape" to_value3="transcanada" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
 
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$belarus" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="m" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$belarus" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="м" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/> <!-- Cyrillic character -->
@@ -1148,11 +1156,11 @@
 
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$slovenia,$croatia,$macedonia" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="a" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_shape" to_value3="hexagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$slovenia" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="h" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$slovenia" if_starts_with_tag1="route_road_*_road_network" if_starts_with_value1="si:r" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="yellow" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$slovenia" if_starts_with_tag1="route_road_*_road_network" if_starts_with_value1="si:g" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="yellow" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$slovenia" if_starts_with_tag1="route_road_*_network" if_starts_with_value1="si:r" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="yellow" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$slovenia" if_starts_with_tag1="route_road_*_network" if_starts_with_value1="si:g" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="yellow" seq="1:10" apply_to="way" notosm="true"/>
 
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$croatia" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="d" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$croatia" if_tag1="route_road_*_road_network" if_value1="državne ceste" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$croatia" if_tag1="route_road_*_network" if_value1="državne ceste" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_order" to_value3="2" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$croatia" if_not_less_tag1="route_road_*_ref" if_not_less_value1="1000" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="yellow" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$croatia" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="ž" to_substr1="1" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="yellow" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$croatia" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="l" to_substr1="1" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="yellow" seq="1:10" apply_to="way" notosm="true"/>
@@ -1178,20 +1186,20 @@
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$cyprus" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="b" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" seq="1:10" to_tag3="route_road_*_shield_text_color" to_value3="yellow" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$cyprus" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="e" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" seq="1:10" to_tag3="route_road_*_shield_text_color" to_value3="yellow" apply_to="way" notosm="true"/>
 
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_tag1="route_road_*_road_network" if_value1="nh" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_text_color" to_value3="yellow" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_tag1="route_road_*_network" if_value1="nh" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_text_color" to_value3="yellow" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="nh" to_tag1="route_road_*_ref" to_substr1="2" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_tag1="route_road_*_road_network" if_value1="nr" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="2" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_tag1="route_road_*_road_network" if_value1="a" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag4="route_road_*_shield_text_color" to_value4="yellow" to_tag5="route_road_*_shield_order" to_value5="1" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_tag1="route_road_*_road_network" if_value1="m" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_text_color" to_value3="yellow" to_tag5="route_road_*_shield_order" to_value5="1" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_tag1="route_road_*_road_network" if_value1="alt_nr" to_tag1="route_road_*_shield_color" to_value1="white" to_tag2="route_road_*_shield_shape" to_value2="pentagon" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_tag1="route_road_*_road_network" if_value1="s" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_shape" to_value3="cshield" to_tag4="route_road_*_shield_order" to_value4="2" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_tag1="route_road_*_road_network" if_value1="s" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="s" to_substr1="1" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_shape" to_value3="cshield" to_tag4="route_road_*_shield_order" to_value4="2" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_tag1="route_road_*_road_network" if_value1="t" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="brown" to_tag3="route_road_*_shield_shape" to_value3="pentagon_up" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_tag1="route_road_*_road_network" if_value1="t" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="t" to_substr1="1" to_tag1="route_road_*_ref" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_tag1="route_road_*_network" if_value1="nr" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="2" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_tag1="route_road_*_network" if_value1="a" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag4="route_road_*_shield_text_color" to_value4="yellow" to_tag5="route_road_*_shield_order" to_value5="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_tag1="route_road_*_network" if_value1="m" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_text_color" to_value3="yellow" to_tag5="route_road_*_shield_order" to_value5="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_tag1="route_road_*_network" if_value1="alt_nr" to_tag1="route_road_*_shield_color" to_value1="white" to_tag2="route_road_*_shield_shape" to_value2="pentagon" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_tag1="route_road_*_network" if_value1="s" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_shape" to_value3="cshield" to_tag4="route_road_*_shield_order" to_value4="2" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_tag1="route_road_*_network" if_value1="s" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="s" to_substr1="1" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_shape" to_value3="cshield" to_tag4="route_road_*_shield_order" to_value4="2" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_tag1="route_road_*_network" if_value1="t" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="brown" to_tag3="route_road_*_shield_shape" to_value3="pentagon_up" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_tag1="route_road_*_network" if_value1="t" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="t" to_substr1="1" to_tag1="route_road_*_ref" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="b" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_text_color" to_value3="yellow" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="c" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_text_color" to_value3="yellow" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="mr" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="tall_hexagon" to_tag4="route_road_*_shield_text_color" to_value4="darkblue" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_tag1="route_road_*_road_network" if_value1="mr" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="tall_hexagon" to_tag4="route_road_*_shield_text_color" to_value4="darkblue" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_tag1="route_road_*_network" if_value1="mr" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="tall_hexagon" to_tag4="route_road_*_shield_text_color" to_value4="darkblue" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$australia-oceania" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="mr" to_tag1="route_road_*_ref" to_substr1="2" seq="1:10" apply_to="way" notosm="true"/>
 
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$georgia" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="ს" if_tag1="highway" if_value1="motorway" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
@@ -1249,8 +1257,8 @@
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$venezuela" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="t-05" to_substr1="3" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$venezuela" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="l-" to_substr1="2" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="rounded_rectangle" seq="1:10" apply_to="way" notosm="true"/>
 
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$colombia" if_tag1="route_road_*_road_network" if_value1="co:national" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="usshield" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$colombia" if_not_tag1="route_road_*_road_network" if_not_value1="co:national" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="cshield" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$colombia" if_tag1="route_road_*_network" if_value1="co:national" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="usshield" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$colombia" if_not_tag1="route_road_*_network" if_not_value1="co:national" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="cshield" seq="1:10" apply_to="way" notosm="true"/>
 
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$mexico" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="mex " to_substr1="4" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="usshield" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$mexico" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="mex" to_substr1="3" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="usshield" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
@@ -1283,7 +1291,7 @@
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$mexico" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="yuc " to_substr1="4" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="cshield" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$mexico" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="zac " to_substr1="4" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="cshield" seq="1:10" apply_to="way" notosm="true"/>
 
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$argentina" if_tag1="route_road_*_road_network" if_value1="ar:national" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$argentina" if_tag1="route_road_*_network" if_value1="ar:national" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$argentina" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="rn" to_substr1="2" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="pentagon" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$argentina" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="rp" to_substr1="2" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_order" to_value2="2" seq="1:10" apply_to="way" notosm="true"/>
 
@@ -1295,11 +1303,11 @@
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$bolivia" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="f" to_substr1="1" to_tag1="route_road_*_ref" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$bolivia" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="rn" to_substr1="2" to_tag1="route_road_*_ref" seq="1:10" apply_to="way" notosm="true"/>
 
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$chile" if_tag1="route_road_*_road_network" if_value1="#" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="usshield" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$chile" if_not_tag1="route_road_*_road_network" if_not_value1="#" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green"  seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$chile" if_tag1="route_road_*_network" if_value1="#" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="usshield" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$chile" if_not_tag1="route_road_*_network" if_not_value1="#" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green"  seq="1:10" apply_to="way" notosm="true"/>
 
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$peru" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="pe-" to_substr1="3" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="usshield" to_tag4="route_road_*_shield_shape_mod" to_value4="redtop" to_tag5="route_road_*_shield_order" to_value5="1" seq="1:10" apply_to="way" notosm="true"/>
-<!--		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$peru" if_not_tag1="route_road_*_road_network" if_not_value1="#" if_less_tag1="route_road_*_ref" if_less_value1="100" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="redtop_usshield" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>-->
+<!--		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$peru" if_not_tag1="route_road_*_network" if_not_value1="#" if_less_tag1="route_road_*_ref" if_less_value1="100" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="redtop_usshield" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>-->
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$peru" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="an-" to_substr1="3" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="cshield" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$peru" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="ap-" to_substr1="3" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="cshield" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$peru" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="ar-" to_substr1="3" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="cshield" seq="1:10" apply_to="way" notosm="true"/>
@@ -1372,8 +1380,8 @@
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$syria" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" seq="1:10" apply_to="way" notosm="true"/>
 
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$new-zealand" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="sh" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_shape" to_value3="cshield" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$new-zealand" if_tag1="route_road_*_road_network" if_value1="nz:sh" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_shape" to_value3="cshield" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$new-zealand" if_not_starts_with_tag1="route_road_*_ref" if_not_starts_with_value1="sh" if_not_tag1="route_road_*_road_network" if_not_value1="nz:sh" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="pentagon" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$new-zealand" if_tag1="route_road_*_network" if_value1="nz:sh" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="red" to_tag3="route_road_*_shield_shape" to_value3="cshield" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$new-zealand" if_not_starts_with_tag1="route_road_*_ref" if_not_starts_with_value1="sh" if_not_tag1="route_road_*_network" if_not_value1="nz:sh" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="pentagon" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$new-zealand" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="route" to_substr1="5" to_tag1="route_road_*_ref" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$new-zealand" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="sh" to_substr1="2" to_tag1="route_road_*_ref" seq="1:10" apply_to="way" notosm="true"/>
 
@@ -1420,11 +1428,11 @@
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$south-korea" if_tag1="highway" if_value1="secondary" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="yellow" seq="1:10" apply_to="way" notosm="true"/>
 
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$japan" if_tag1="highway" if_value1="motorway" if_not_starts_with_tag1="route_road_*_ref" if_not_starts_with_value1="ah" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_order" to_value3="1" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$japan" if_tag1="route_road_*_road_network" if_value1="首都高速道路" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_shape" to_value3="ushield" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$japan" if_tag1="route_road_*_network" if_value1="首都高速道路" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_shape" to_value3="ushield" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="kanto" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="c" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_shape" to_value3="ushield" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$japan" if_tag1="route_road_*_road_network" if_value1="jp:national" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_shape" to_value3="rounded_triangle" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$japan" if_tag1="route_road_*_network" if_value1="jp:national" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_shape" to_value3="rounded_triangle" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$japan" if_tag1="highway" if_value1="trunk" if_not_starts_with_tag1="route_road_*_ref" if_not_starts_with_value1="ah" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_shape" to_value3="rounded_triangle" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$japan" if_tag1="route_road_*_road_network" if_value1="jp:prefectural" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_shape" to_value3="lrhexagon" to_tag4="route_road_*_shield_order" to_value4="2" seq="1:10" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$japan" if_tag1="route_road_*_network" if_value1="jp:prefectural" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_shape" to_value3="lrhexagon" to_tag4="route_road_*_shield_order" to_value4="2" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$japan" if_tag1="highway" if_value1="primary" if_not_starts_with_tag1="route_road_*_ref" if_not_starts_with_value1="ah" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_shape" to_value3="lrhexagon" to_tag4="route_road_*_shield_order" to_value4="2" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$japan" if_tag1="highway" if_value1="secondary" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_shape" to_value3="lrhexagon" to_tag4="route_road_*_shield_order" to_value4="2" seq="1:10" apply_to="way" notosm="true"/>
 
@@ -1703,6 +1711,7 @@
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="traffic_signals" if_tag1="traffic_signals" if_value1="emergency" map="no" poi="no"/>
 		<type tag="highway" value="passing_place" minzoom="15" />
 		<type tag="highway" value="crossing" minzoom="15"/>
+		<type tag="highway" value="trailhead" minzoom="15"/>
 		<type tag="highway" value="elevator" minzoom="15"/>
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="elevator" to_tag1="elevator" to_value1="yes" map="no" routing="no"/>
 
@@ -1850,22 +1859,22 @@
 		<entity_convert pattern="tag_transform" from_tag="route_ferry" if_tag1="man_made" if_value1="pier" apply_to="way,node"/>
 
 		<type tag="route" value="bus" nameTags="ref" namePrefix="bus_" minzoom="11" relationGroup="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_bus" if_tag1="public_transport" if_value1="platform" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_bus" if_tag1="public_transport" if_value1="platform" to_tag1="bus" to_value1="yes" apply_to="way,node" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_bus" if_tag1="highway" if_value1="bus_stop" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_bus" if_tag1="building" apply_to="way" notosm="true"/>
 
 		<type tag="route" value="share_taxi" nameTags="ref" namePrefix="share_taxi_" minzoom="11" relationGroup="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_share_taxi" if_tag1="public_transport" if_value1="platform" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_share_taxi" if_tag1="public_transport" if_value1="platform" to_tag1="share_taxi" to_value1="yes" apply_to="way,node" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_share_taxi" if_tag1="highway" if_value1="bus_stop" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_share_taxi" if_tag1="building" apply_to="way" notosm="true"/>
 
 		<type tag="route" value="trolleybus" nameTags="ref" namePrefix="trolleybus_" minzoom="11" relationGroup="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_trolleybus" if_tag1="public_transport" if_value1="platform" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_trolleybus" if_tag1="public_transport" if_value1="platform" to_tag1="trolleybus" to_value1="yes" apply_to="way,node" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_trolleybus" if_tag1="highway" if_value1="bus_stop" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_trolleybus" if_tag1="building" apply_to="way" notosm="true"/>
 
 		<type tag="route" value="tram" nameTags="ref" namePrefix="tram_" minzoom="11" relationGroup="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_tram" if_tag1="public_transport" if_value1="platform" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_tram" if_tag1="public_transport" if_value1="platform" to_tag1="tram" to_value1="yes" apply_to="way,node" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_tram" if_tag1="railway" if_value1="halt" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_tram" if_tag1="railway" if_value1="tram_stop" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_tram" if_tag1="railway" if_value1="platform" apply_to="way" notosm="true"/>
@@ -1873,7 +1882,7 @@
 		<entity_convert pattern="tag_transform" from_tag="route_tram" if_tag1="railway" if_value1="proposed" apply_to="way" notosm="true"/> <!-- remove route if proposed -->
 
 		<type tag="route" value="train" nameTags="ref" namePrefix="train_" minzoom="11" relationGroup="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_train" if_tag1="public_transport" if_value1="platform" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_train" if_tag1="public_transport" if_value1="platform" to_tag1="train" to_value1="yes" apply_to="way,node" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_train" if_tag1="railway" if_value1="halt" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_train" if_tag1="railway" if_value1="platform" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_train" if_tag1="building" apply_to="way" notosm="true"/>
@@ -1884,20 +1893,20 @@
 		<type tag="route" value="railway" nameTags="ref" namePrefix="railway_" minzoom="11" relationGroup="true" notosm="true"/>
 
 		<type tag="route" value="light_rail" nameTags="ref" namePrefix="lightrail_" minzoom="11" relationGroup="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_light_rail" if_tag1="public_transport" if_value1="platform" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_light_rail" if_tag1="public_transport" if_value1="platform" to_tag1="light_rail" to_value1="yes" apply_to="way,node" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_light_rail" if_tag1="railway" if_value1="halt" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_light_rail" if_tag1="railway" if_value1="platform" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_light_rail" if_tag1="building" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_light_rail" if_tag1="railway" if_value1="proposed" apply_to="way" notosm="true"/> <!-- remove route if proposed -->
 
 		<type tag="route" value="monorail" nameTags="ref" namePrefix="monorail_" minzoom="11" relationGroup="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_monorail" if_tag1="public_transport" if_value1="platform" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_monorail" if_tag1="public_transport" if_value1="platform" to_tag1="monorail" to_value1="yes" apply_to="way,node" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_monorail" if_tag1="railway" if_value1="halt" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_monorail" if_tag1="building" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_monorail" if_tag1="railway" if_value1="proposed" apply_to="way" notosm="true"/> <!-- remove route if proposed -->
 
 		<type tag="route" value="funicular" nameTags="ref" namePrefix="funicular_" minzoom="11" relationGroup="true" notosm="true"/>
-		<entity_convert pattern="tag_transform" from_tag="route_funicular" if_tag1="public_transport" if_value1="platform" apply_to="way" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="route_funicular" if_tag1="public_transport" if_value1="platform" to_tag1="funicular" to_value1="yes" apply_to="way,node" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_funicular" if_tag1="railway" if_value1="halt" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_funicular" if_tag1="building" apply_to="way" notosm="true"/>
 
@@ -2926,31 +2935,288 @@
 
 	<category name="cycleway">
 		<type tag="cycleway" value="lane" minzoom="12"/>
-		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" to_tag1="cycleway" to_value1="lane"/>
-		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" to_tag1="cycleway" to_value1="lane"/>
+<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" to_tag1="cycleway" to_value1="lane"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" to_tag1="cycleway" to_value1="lane"/>-->
+		<type tag="osmand_cycleway_trunk_left" value="true" minzoom="12"/>
+		<type tag="osmand_cycleway_trunk_right" value="true" minzoom="12"/>
+		<type tag="osmand_cycleway_trunk_link_left" value="true" minzoom="12"/>
+		<type tag="osmand_cycleway_trunk_link_right" value="true" minzoom="12"/>
+		<type tag="osmand_cycleway_tertiary_left" value="true" minzoom="12"/>
+		<type tag="osmand_cycleway_tertiary_right" value="true" minzoom="12"/>
+		<type tag="osmand_cycleway_residential_left" value="true" minzoom="12"/>
+		<type tag="osmand_cycleway_residential_right" value="true" minzoom="12"/>
+		<type tag="osmand_cycleway_service_left" value="true" minzoom="12"/>
+		<type tag="osmand_cycleway_service_right" value="true" minzoom="12"/>
+		<type tag="osmand_cycleway_footway_left" value="true" minzoom="12"/>
+		<type tag="osmand_cycleway_footway_right" value="true" minzoom="12"/>
+		<type tag="osmand_cycleway" value="no" additional="true" minzoom="12"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" if_tag1="highway" if_value1="primary" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" if_tag1="highway" if_value1="primary" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" if_tag1="highway" if_value1="secondary" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" if_tag1="highway" if_value1="secondary" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" if_tag1="highway" if_value1="trunk_link" to_tag1="osmand_cycleway_trunk_link_left" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" if_tag1="highway" if_value1="trunk_link" to_tag1="osmand_cycleway_trunk_link_right" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" if_tag1="highway" if_value1="primary_link" to_tag1="osmand_cycleway_trunk_link_left" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" if_tag1="highway" if_value1="primary_link" to_tag1="osmand_cycleway_trunk_link_right" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" if_tag1="highway" if_value1="secondary_link" to_tag1="osmand_cycleway_trunk_link_left" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" if_tag1="highway" if_value1="secondary_link" to_tag1="osmand_cycleway_trunk_link_right" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" if_tag1="highway" if_value1="tertiary" to_tag1="osmand_cycleway_tertiary_left" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" if_tag1="highway" if_value1="tertiary" to_tag1="osmand_cycleway_tertiary_right" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" if_tag1="highway" if_value1="tertiary_link" to_tag1="osmand_cycleway_tertiary_left" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" if_tag1="highway" if_value1="tertiary_link" to_tag1="osmand_cycleway_tertiary_right" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" if_tag1="highway" if_value1="residential" to_tag1="osmand_cycleway_residential_left" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" if_tag1="highway" if_value1="residential" to_tag1="osmand_cycleway_residential_right" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" if_tag1="highway" if_value1="unclassified" to_tag1="osmand_cycleway_residential_left" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" if_tag1="highway" if_value1="unclassified" to_tag1="osmand_cycleway_residential_right" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" if_tag1="highway" if_value1="service" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" if_tag1="highway" if_value1="service" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" if_tag1="highway" if_value1="busway" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" if_tag1="highway" if_value1="busway" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" if_tag1="highway" if_value1="living_street" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" if_tag1="highway" if_value1="living_street" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" if_tag1="highway" if_value1="pedestrian" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" if_tag1="highway" if_value1="pedestrian" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" if_tag1="highway" if_value1="footway" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" if_tag1="highway" if_value1="footway" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" if_tag1="highway" if_value1="steps" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" if_tag1="highway" if_value1="steps" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" if_tag1="highway" if_value1="path" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" if_tag1="highway" if_value1="path" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" if_tag1="highway" if_value1="track" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" if_tag1="highway" if_value1="track" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="lane" to_tag3="osmand_cycleway" to_value3="no"/>
+
+		<entity_convert pattern="tag_transform" from_tag="cycleway" from_value="lane" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="osmand_cycleway_trunk_right" to_value2="true" to_tag3="cycleway" to_value3="lane" to_tag4="osmand_cycleway" to_value4="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway" from_value="lane" if_tag1="highway" if_value1="primary" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="osmand_cycleway_trunk_right" to_value2="true" to_tag3="cycleway" to_value3="lane" to_tag4="osmand_cycleway" to_value4="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway" from_value="lane" if_tag1="highway" if_value1="secondary" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="osmand_cycleway_trunk_right" to_value2="true" to_tag3="cycleway" to_value3="lane" to_tag4="osmand_cycleway" to_value4="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway" from_value="lane" if_tag1="highway" if_value1="trunk_link" to_tag1="osmand_cycleway_trunk_link_left" to_value1="true" to_tag2="osmand_cycleway_trunk_link_right" to_value2="true" to_tag3="cycleway" to_value3="lane" to_tag4="osmand_cycleway" to_value4="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway" from_value="lane" if_tag1="highway" if_value1="primary_link" to_tag1="osmand_cycleway_trunk_link_left" to_value1="true" to_tag2="osmand_cycleway_trunk_link_right" to_value2="true" to_tag3="cycleway" to_value3="lane" to_tag4="osmand_cycleway" to_value4="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway" from_value="lane" if_tag1="highway" if_value1="secondary_link" to_tag1="osmand_cycleway_trunk_link_left" to_value1="true" to_tag2="osmand_cycleway_trunk_link_right" to_value2="true" to_tag3="cycleway" to_value3="lane" to_tag4="osmand_cycleway" to_value4="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway" from_value="lane" if_tag1="highway" if_value1="tertiary" to_tag1="osmand_cycleway_tertiary_left" to_value1="true" to_tag2="osmand_cycleway_tertiary_right" to_value2="true" to_tag3="cycleway" to_value3="lane" to_tag4="osmand_cycleway" to_value4="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway" from_value="lane" if_tag1="highway" if_value1="tertiary_link" to_tag1="osmand_cycleway_tertiary_link_left" to_value1="true" to_tag2="osmand_cycleway_tertiary_link_right" to_value2="true" to_tag3="cycleway" to_value3="lane" to_tag4="osmand_cycleway" to_value4="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway" from_value="lane" if_tag1="highway" if_value1="residential" to_tag1="osmand_cycleway_residential_left" to_value1="true" to_tag2="osmand_cycleway_residential_right" to_value2="true" to_tag3="cycleway" to_value3="lane" to_tag4="osmand_cycleway" to_value4="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway" from_value="lane" if_tag1="highway" if_value1="unclassified" to_tag1="osmand_cycleway_residential_left" to_value1="true" to_tag2="osmand_cycleway_residential_right" to_value2="true" to_tag3="cycleway" to_value3="lane" to_tag4="osmand_cycleway" to_value4="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway" from_value="lane" if_tag1="highway" if_value1="service" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="osmand_cycleway_service_right" to_value2="true" to_tag3="cycleway" to_value3="lane" to_tag4="osmand_cycleway" to_value4="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway" from_value="lane" if_tag1="highway" if_value1="busway" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="osmand_cycleway_service_right" to_value2="true" to_tag3="cycleway" to_value3="lane" to_tag4="osmand_cycleway" to_value4="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway" from_value="lane" if_tag1="highway" if_value1="living_street" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="osmand_cycleway_service_right" to_value2="true" to_tag3="cycleway" to_value3="lane" to_tag4="osmand_cycleway" to_value4="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway" from_value="lane" if_tag1="highway" if_value1="pedestrian" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="osmand_cycleway_service_right" to_value2="true" to_tag3="cycleway" to_value3="lane" to_tag4="osmand_cycleway" to_value4="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway" from_value="lane" if_tag1="highway" if_value1="footway" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="osmand_cycleway_footway_right" to_value2="true" to_tag3="cycleway" to_value3="lane" to_tag4="osmand_cycleway" to_value4="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway" from_value="lane" if_tag1="highway" if_value1="steps" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="osmand_cycleway_footway_right" to_value2="true" to_tag3="cycleway" to_value3="lane" to_tag4="osmand_cycleway" to_value4="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway" from_value="lane" if_tag1="highway" if_value1="path" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="osmand_cycleway_footway_right" to_value2="true" to_tag3="cycleway" to_value3="lane" to_tag4="osmand_cycleway" to_value4="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway" from_value="lane" if_tag1="highway" if_value1="track" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="osmand_cycleway_footway_right" to_value2="true" to_tag3="cycleway" to_value3="lane" to_tag4="osmand_cycleway" to_value4="no"/>
+
 		<type tag="cycleway" value="opposite_lane" minzoom="12"/>
-		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" to_tag1="cycleway" to_value1="opposite_lane"/>
-		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" to_tag1="cycleway" to_value1="opposite_lane"/>
+<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" to_tag1="cycleway" to_value1="opposite_lane"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" to_tag1="cycleway" to_value1="opposite_lane"/>-->
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" if_tag1="highway" if_value1="primary" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" if_tag1="highway" if_value1="primary" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" if_tag1="highway" if_value1="secondary" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" if_tag1="highway" if_value1="secondary" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" if_tag1="highway" if_value1="trunk_link" to_tag1="osmand_cycleway_trunk_link_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" if_tag1="highway" if_value1="trunk_link" to_tag1="osmand_cycleway_trunk_link_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" if_tag1="highway" if_value1="primary_link" to_tag1="osmand_cycleway_trunk_link_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" if_tag1="highway" if_value1="primary_link" to_tag1="osmand_cycleway_trunk_link_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" if_tag1="highway" if_value1="secondary_link" to_tag1="osmand_cycleway_trunk_link_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" if_tag1="highway" if_value1="secondary_link" to_tag1="osmand_cycleway_trunk_link_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" if_tag1="highway" if_value1="tertiary" to_tag1="osmand_cycleway_tertiary_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" if_tag1="highway" if_value1="tertiary" to_tag1="osmand_cycleway_tertiary_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" if_tag1="highway" if_value1="tertiary_link" to_tag1="osmand_cycleway_tertiary_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" if_tag1="highway" if_value1="tertiary_link" to_tag1="osmand_cycleway_tertiary_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" if_tag1="highway" if_value1="residential" to_tag1="osmand_cycleway_residential_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" if_tag1="highway" if_value1="residential" to_tag1="osmand_cycleway_residential_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" if_tag1="highway" if_value1="unclassified" to_tag1="osmand_cycleway_residential_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" if_tag1="highway" if_value1="unclassified" to_tag1="osmand_cycleway_residential_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" if_tag1="highway" if_value1="service" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" if_tag1="highway" if_value1="service" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" if_tag1="highway" if_value1="busway" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" if_tag1="highway" if_value1="busway" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" if_tag1="highway" if_value1="living_street" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" if_tag1="highway" if_value1="living_street" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" if_tag1="highway" if_value1="pedestrian" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" if_tag1="highway" if_value1="pedestrian" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" if_tag1="highway" if_value1="footway" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" if_tag1="highway" if_value1="footway" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" if_tag1="highway" if_value1="steps" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" if_tag1="highway" if_value1="steps" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" if_tag1="highway" if_value1="path" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" if_tag1="highway" if_value1="path" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" if_tag1="highway" if_value1="track" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" if_tag1="highway" if_value1="track" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+
 		<type tag="cycleway" value="share_busway" minzoom="12"/>
-		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" to_tag1="cycleway" to_value1="share_busway"/>
-		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" to_tag1="cycleway" to_value1="share_busway"/>
+<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" to_tag1="cycleway" to_value1="share_busway"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" to_tag1="cycleway" to_value1="share_busway"/>-->
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" if_tag1="highway" if_value1="primary" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" if_tag1="highway" if_value1="primary" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" if_tag1="highway" if_value1="secondary" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" if_tag1="highway" if_value1="secondary" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" if_tag1="highway" if_value1="trunk_link" to_tag1="osmand_cycleway_trunk_link_left" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" if_tag1="highway" if_value1="trunk_link" to_tag1="osmand_cycleway_trunk_link_right" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" if_tag1="highway" if_value1="primary_link" to_tag1="osmand_cycleway_trunk_link_left" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" if_tag1="highway" if_value1="primary_link" to_tag1="osmand_cycleway_trunk_link_right" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" if_tag1="highway" if_value1="secondary_link" to_tag1="osmand_cycleway_trunk_link_left" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" if_tag1="highway" if_value1="secondary_link" to_tag1="osmand_cycleway_trunk_link_right" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" if_tag1="highway" if_value1="tertiary" to_tag1="osmand_cycleway_tertiary_left" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" if_tag1="highway" if_value1="tertiary" to_tag1="osmand_cycleway_tertiary_right" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" if_tag1="highway" if_value1="tertiary_link" to_tag1="osmand_cycleway_tertiary_left" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" if_tag1="highway" if_value1="tertiary_link" to_tag1="osmand_cycleway_tertiary_right" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" if_tag1="highway" if_value1="residential" to_tag1="osmand_cycleway_residential_left" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" if_tag1="highway" if_value1="residential" to_tag1="osmand_cycleway_residential_right" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" if_tag1="highway" if_value1="unclassified" to_tag1="osmand_cycleway_residential_left" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" if_tag1="highway" if_value1="unclassified" to_tag1="osmand_cycleway_residential_right" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" if_tag1="highway" if_value1="service" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" if_tag1="highway" if_value1="service" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" if_tag1="highway" if_value1="busway" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" if_tag1="highway" if_value1="busway" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" if_tag1="highway" if_value1="living_street" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" if_tag1="highway" if_value1="living_street" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" if_tag1="highway" if_value1="pedestrian" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" if_tag1="highway" if_value1="pedestrian" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" if_tag1="highway" if_value1="footway" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" if_tag1="highway" if_value1="footway" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" if_tag1="highway" if_value1="steps" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" if_tag1="highway" if_value1="steps" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" if_tag1="highway" if_value1="path" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" if_tag1="highway" if_value1="path" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" if_tag1="highway" if_value1="track" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" if_tag1="highway" if_value1="track" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
+
 		<type tag="cycleway" value="track" minzoom="12"/>
-		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" to_tag1="cycleway" to_value1="track"/>
-		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" to_tag1="cycleway" to_value1="track"/>
+<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" to_tag1="cycleway" to_value1="track"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" to_tag1="cycleway" to_value1="track"/>-->
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" if_tag1="highway" if_value1="primary" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" if_tag1="highway" if_value1="primary" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" if_tag1="highway" if_value1="secondary" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" if_tag1="highway" if_value1="secondary" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" if_tag1="highway" if_value1="trunk_link" to_tag1="osmand_cycleway_trunk_link_left" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" if_tag1="highway" if_value1="trunk_link" to_tag1="osmand_cycleway_trunk_link_right" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" if_tag1="highway" if_value1="primary_link" to_tag1="osmand_cycleway_trunk_link_left" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" if_tag1="highway" if_value1="primary_link" to_tag1="osmand_cycleway_trunk_link_right" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" if_tag1="highway" if_value1="secondary_link" to_tag1="osmand_cycleway_trunk_link_left" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" if_tag1="highway" if_value1="secondary_link" to_tag1="osmand_cycleway_trunk_link_right" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" if_tag1="highway" if_value1="tertiary" to_tag1="osmand_cycleway_tertiary_left" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" if_tag1="highway" if_value1="tertiary" to_tag1="osmand_cycleway_tertiary_right" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" if_tag1="highway" if_value1="tertiary_link" to_tag1="osmand_cycleway_tertiary_left" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" if_tag1="highway" if_value1="tertiary_link" to_tag1="osmand_cycleway_tertiary_right" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" if_tag1="highway" if_value1="residential" to_tag1="osmand_cycleway_residential_left" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" if_tag1="highway" if_value1="residential" to_tag1="osmand_cycleway_residential_right" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" if_tag1="highway" if_value1="unclassified" to_tag1="osmand_cycleway_residential_left" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" if_tag1="highway" if_value1="unclassified" to_tag1="osmand_cycleway_residential_right" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" if_tag1="highway" if_value1="service" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" if_tag1="highway" if_value1="service" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" if_tag1="highway" if_value1="busway" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" if_tag1="highway" if_value1="busway" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" if_tag1="highway" if_value1="living_street" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" if_tag1="highway" if_value1="living_street" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" if_tag1="highway" if_value1="pedestrian" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" if_tag1="highway" if_value1="pedestrian" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" if_tag1="highway" if_value1="footway" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" if_tag1="highway" if_value1="footway" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" if_tag1="highway" if_value1="steps" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" if_tag1="highway" if_value1="steps" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" if_tag1="highway" if_value1="path" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" if_tag1="highway" if_value1="path" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" if_tag1="highway" if_value1="track" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" if_tag1="highway" if_value1="track" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
+
 		<type tag="cycleway" value="opposite_track" minzoom="12"/>
-		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" to_tag1="cycleway" to_value1="opposite_track"/>
-		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" to_tag1="cycleway" to_value1="opposite_track"/>
+<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" to_tag1="cycleway" to_value1="opposite_track"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" to_tag1="cycleway" to_value1="opposite_track"/>-->
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" if_tag1="highway" if_value1="primary" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" if_tag1="highway" if_value1="primary" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" if_tag1="highway" if_value1="secondary" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" if_tag1="highway" if_value1="secondary" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" if_tag1="highway" if_value1="trunk_link" to_tag1="osmand_cycleway_trunk_link_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" if_tag1="highway" if_value1="trunk_link" to_tag1="osmand_cycleway_trunk_link_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" if_tag1="highway" if_value1="primary_link" to_tag1="osmand_cycleway_trunk_link_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" if_tag1="highway" if_value1="primary_link" to_tag1="osmand_cycleway_trunk_link_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" if_tag1="highway" if_value1="secondary_link" to_tag1="osmand_cycleway_trunk_link_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" if_tag1="highway" if_value1="secondary_link" to_tag1="osmand_cycleway_trunk_link_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" if_tag1="highway" if_value1="tertiary" to_tag1="osmand_cycleway_tertiary_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" if_tag1="highway" if_value1="tertiary" to_tag1="osmand_cycleway_tertiary_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" if_tag1="highway" if_value1="tertiary_link" to_tag1="osmand_cycleway_tertiary_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" if_tag1="highway" if_value1="tertiary_link" to_tag1="osmand_cycleway_tertiary_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" if_tag1="highway" if_value1="residential" to_tag1="osmand_cycleway_residential_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" if_tag1="highway" if_value1="residential" to_tag1="osmand_cycleway_residential_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" if_tag1="highway" if_value1="unclassified" to_tag1="osmand_cycleway_residential_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" if_tag1="highway" if_value1="unclassified" to_tag1="osmand_cycleway_residential_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" if_tag1="highway" if_value1="service" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" if_tag1="highway" if_value1="service" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" if_tag1="highway" if_value1="busway" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" if_tag1="highway" if_value1="busway" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" if_tag1="highway" if_value1="living_street" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" if_tag1="highway" if_value1="living_street" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" if_tag1="highway" if_value1="pedestrian" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" if_tag1="highway" if_value1="pedestrian" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" if_tag1="highway" if_value1="footway" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" if_tag1="highway" if_value1="footway" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" if_tag1="highway" if_value1="steps" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" if_tag1="highway" if_value1="steps" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" if_tag1="highway" if_value1="path" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" if_tag1="highway" if_value1="path" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" if_tag1="highway" if_value1="track" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" if_tag1="highway" if_value1="track" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
+
 		<type tag="cycleway" value="opposite" minzoom="12"/>
 		<entity_convert pattern="tag_transform" from_tag="oneway:bicycle" from_value="no" to_tag1="cycleway" to_value1="opposite"/>
-		<entity_convert pattern="tag_transform" from_tag="cycleway:right:oneway" from_value="yes" if_not_tag1="cycleway:left:oneway" if_not_value1="-1" to_tag1="oneway:bicycle" to_value1="yes" map="no" poi="no"/>
-		<entity_convert pattern="tag_transform" from_tag="cycleway:right:oneway" from_value="1" if_not_tag1="cycleway:left:oneway" if_not_value1="-1" to_tag1="oneway:bicycle" to_value1="yes" map="no" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right:oneway" from_value="yes" if_not_tag1="cycleway:left:oneway" if_not_value1="-1" if_not_tag2="sidewalk:left:bicycle" if_not_value2="yes" to_tag1="oneway:bicycle" to_value1="yes" map="no" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right:oneway" from_value="1" if_not_tag1="cycleway:left:oneway" if_not_value1="-1" if_not_tag2="sidewalk:left:bicycle" if_not_value2="yes" to_tag1="oneway:bicycle" to_value1="yes" map="no" poi="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cycleway:right:oneway" from_value="no" to_tag1="cycleway" to_value1="opposite" map="no" poi="no"/>
-		<entity_convert pattern="tag_transform" from_tag="cycleway:left:oneway" from_value="yes" if_not_tag1="cycleway:right:oneway" if_not_value1="-1" to_tag1="oneway:bicycle" to_value1="yes" map="no" poi="no"/>
-		<entity_convert pattern="tag_transform" from_tag="cycleway:left:oneway" from_value="1" if_not_tag1="cycleway:right:oneway" if_not_value1="-1" to_tag1="oneway:bicycle" to_value1="yes" map="no" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left:oneway" from_value="yes" if_not_tag1="cycleway:right:oneway" if_not_value1="-1" if_not_tag2="sidewalk:right:bicycle" if_not_value2="yes" to_tag1="oneway:bicycle" to_value1="yes" map="no" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left:oneway" from_value="1" if_not_tag1="cycleway:right:oneway" if_not_value1="-1" if_not_tag2="sidewalk:right:bicycle" if_not_value2="yes" to_tag1="oneway:bicycle" to_value1="yes" map="no" poi="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cycleway:left:oneway" from_value="no" to_tag1="cycleway" to_value1="opposite" map="no" poi="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cycleway:oneway" from_value="yes" map="no" poi="no"/>
 		<type tag="cycleway" value="shared" minzoom="12"/>
+
 		<type tag="cycleway" value="shared_lane" minzoom="12"/>
+<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" to_tag1="cycleway" to_value1="lane" routing="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="shared_lane" to_tag1="cycleway" to_value1="lane" routing="no"/>-->
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="shared_lane" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" if_tag1="highway" if_value1="primary" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="shared_lane" if_tag1="highway" if_value1="primary" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" if_tag1="highway" if_value1="secondary" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="shared_lane" if_tag1="highway" if_value1="secondary" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" if_tag1="highway" if_value1="trunk_link" to_tag1="osmand_cycleway_trunk_link_left" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="shared_lane" if_tag1="highway" if_value1="trunk_link" to_tag1="osmand_cycleway_trunk_link_right" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" if_tag1="highway" if_value1="primary_link" to_tag1="osmand_cycleway_trunk_link_left" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="shared_lane" if_tag1="highway" if_value1="primary_link" to_tag1="osmand_cycleway_trunk_link_right" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" if_tag1="highway" if_value1="secondary_link" to_tag1="osmand_cycleway_trunk_link_left" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="shared_lane" if_tag1="highway" if_value1="secondary_link" to_tag1="osmand_cycleway_trunk_link_right" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" if_tag1="highway" if_value1="tertiary" to_tag1="osmand_cycleway_tertiary_left" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="shared_lane" if_tag1="highway" if_value1="tertiary" to_tag1="osmand_cycleway_tertiary_right" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" if_tag1="highway" if_value1="tertiary_link" to_tag1="osmand_cycleway_tertiary_left" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="shared_lane" if_tag1="highway" if_value1="tertiary_link" to_tag1="osmand_cycleway_tertiary_right" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" if_tag1="highway" if_value1="residential" to_tag1="osmand_cycleway_residential_left" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="shared_lane" if_tag1="highway" if_value1="residential" to_tag1="osmand_cycleway_residential_right" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" if_tag1="highway" if_value1="unclassified" to_tag1="osmand_cycleway_residential_left" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="shared_lane" if_tag1="highway" if_value1="unclassified" to_tag1="osmand_cycleway_residential_right" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" if_tag1="highway" if_value1="service" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="shared_lane" if_tag1="highway" if_value1="service" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" if_tag1="highway" if_value1="busway" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="shared_lane" if_tag1="highway" if_value1="busway" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" if_tag1="highway" if_value1="living_street" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="shared_lane" if_tag1="highway" if_value1="living_street" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" if_tag1="highway" if_value1="pedestrian" to_tag1="osmand_cycleway_service_left" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="shared_lane" if_tag1="highway" if_value1="pedestrian" to_tag1="osmand_cycleway_service_right" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" if_tag1="highway" if_value1="footway" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="shared_lane" if_tag1="highway" if_value1="footway" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" if_tag1="highway" if_value1="steps" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="shared_lane" if_tag1="highway" if_value1="steps" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" if_tag1="highway" if_value1="path" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="shared_lane" if_tag1="highway" if_value1="path" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" if_tag1="highway" if_value1="track" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="shared_lane" if_tag1="highway" if_value1="track" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
+
 		<type tag="cycleway" value="both" minzoom="12"/>
 		<entity_convert pattern="tag_transform" from_tag="cycleway" if_tag1="cycleway:both" poi="no" routing="no"/>
 		<type tag="cycleway:both" value="lane" minzoom="12"/>
@@ -3020,6 +3286,7 @@
 		<type tag="barrier" value="yes" minzoom="14" order="120"/>
 		<type tag="barrier" value="lift_gate" minzoom="14"/>
 		<type tag="barrier" value="stile" minzoom="15" />
+		<type tag="barrier" value="hampshire_gate" minzoom="15"/>
 		<type tag="barrier" value="height_restrictor" minzoom="15" />
 		<type tag="barrier" value="horse_stile" minzoom="14" />
 		<type tag="barrier" value="kissing_gate" minzoom="15" />
@@ -3082,6 +3349,7 @@
 		<type tag="waterway" value="weir" minzoom="15"/>
 		<entity_convert pattern="tag_transform" from_tag="waterway" if_tag1="seasonal" if_value1="yes" to_tag1="waterway" to_tag2="intermittent" to_value2="yes" poi="no"/>
 		<type tag="waterway" value="fish_pass" minzoom="15"/>
+		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="waterway" to_tag1="waterway" to_value1="drain" routing="no"/>
 	</category>
 
 	<category name="railway">
@@ -3094,6 +3362,7 @@
 		<type tag="railway" value="funicular" minzoom="13" />
 		<type tag="railway" value="halt" minzoom="12" order="10"/>
 		<type tag="railway" value="level_crossing" minzoom="15" />
+		<type tag="railway" value="tram_level_crossing" minzoom="15" />
 		<type tag="railway" value="light_rail" minzoom="11"/>
 		<type tag="railway" value="monorail" minzoom="13" />
 		<type tag="railway" value="narrow_gauge" minzoom="13" />
@@ -3522,6 +3791,7 @@
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="station" to_value2="subway"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway" if_tag1="construction" if_value1="yes" to_tag1="railway" to_value1="construction"/>
 		<type tag="railway" value="tram" minzoom="13"/>
+		<type tag="embedded_rails" value="tram" minzoom="13"/>
 		<type tag="railway" value="tram_stop" minzoom="14" order="1"/>
 		<type tag="railway" value="turntable" minzoom="15" />
 		<type tag="service" value="spur" minzoom="7" additional="true" />
@@ -3530,10 +3800,10 @@
 	</category>
 
 	<category name="public_transport">
-		<type tag="public_transport" value="platform" minzoom="14" order="10" />
+		<type tag="public_transport" value="platform" minzoom="14" nameTags="ref,local_ref" order="10" />
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="platform" to_tag1="public_transport" to_value1="platform"/>
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="platform" to_tag1="public_transport" to_value1="platform"/>
-		<type tag="public_transport" value="station" minzoom="14" order="10" />
+		<type tag="public_transport" value="station" minzoom="14" />
 		<entity_convert pattern="tag_transform" from_tag="public_transport" from_value="station" if_tag1="railway" if_value1="station" poi="no" routing="no"/>
 		<type tag="public_transport" value="stop_position" minzoom="15"/>
 	</category>
@@ -3596,6 +3866,7 @@
 	<category name="power">
 		<type tag="power" value="tower" minzoom="11" />
 		<type tag="power" value="pole" minzoom="15" />
+		<type tag="man_made" value="utility_pole" minzoom="15" />
 		<type tag="power" value="line" minzoom="11" />
 		<type tag="power" value="minor_line" minzoom="15" />
 		<type tag="power" value="plant" minzoom="10"/>
@@ -3633,7 +3904,7 @@
 		<entity_convert pattern="tag_transform" from_tag="power:source" from_value="nuclear" to_tag1="generator:source" to_value1="nuclear"/>
 		<entity_convert pattern="tag_transform" from_tag="power:source" from_value="solar" to_tag1="generator:source" to_value1="solar"/>
 		<entity_convert pattern="tag_transform" from_tag="power:source" from_value="hydro" to_tag1="generator:source" to_value1="hydro"/>
-		<entity_convert pattern="tag_transform" from_tag="power:source" from_value="biomass" to_tag1="generator:source" to_value1="gas"/>
+		<entity_convert pattern="tag_transform" from_tag="power:source" from_value="biomass" to_tag1="generator:source" to_value1="gas" poi="no"/>
 		<entity_convert pattern="tag_transform" from_tag="power:source" from_value="oil" to_tag1="generator:source" to_value1="oil"/>
 		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="wind" to_tag1="generator:source" to_value1="wind"/>
 		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="hydro" to_tag1="generator:source" to_value1="hydro"/>
@@ -3641,7 +3912,7 @@
 		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="coal" to_tag1="generator:source" to_value1="coal"/>
 		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="nuclear" to_tag1="generator:source" to_value1="nuclear"/>
 <!--		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="solar" to_tag1="generator:source" to_value1="solar"/>-->
-		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="biomass" to_tag1="generator:source" to_value1="gas"/>
+		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="biomass" to_tag1="generator:source" to_value1="gas" poi="no"/>
 		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="oil" to_tag1="generator:source" to_value1="oil"/>
 		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="geothermal" to_tag1="generator:source" to_value1="geothermal"/>
 		<entity_convert pattern="tag_transform" from_tag="plant:output:electricity" to_tag1="generator:output:electricity" map="no"/>
@@ -3672,6 +3943,7 @@
 	<category name="man_made">
 <!--		<type tag="building" minzoom="15" nameTags="addr:housenumber,addr:housename,addr:flats" />
 		<type tag="addr:housenumber" minzoom="16" nameTags="addr:housenumber" />-->
+		<entity_convert pattern="tag_combine" separator=" " from_tag="addr:housenumber" from_tag1="addr:unit" to_tag1="addr:housenumber" map="yes"/>
 		<type tag="building" minzoom="15" nameTags="addr:housenumber,addr:housename,addr:flats" order="90"/>
 		<type tag="addr:housenumber" minzoom="16" nameTags="addr:housenumber" order="500" />
 		<type tag="addr:housename" minzoom="16" nameTags="addr:housename" order="500" />
@@ -3696,7 +3968,10 @@
 		<type tag="man_made" value="works" minzoom="15" />
 		<type tag="man_made" value="embankment" minzoom="15" />
 		<type tag="embankment" value="yes" minzoom="14" />
-
+		<type tag="cutting" value="yes" minzoom="14" />
+		<entity_convert pattern="tag_transform" from_tag="cutting" from_value="both" to_tag1="cutting" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="cutting" from_value="left" to_tag1="cutting" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="cutting" from_value="right" to_tag1="cutting" to_value1="yes"/>
 		<type tag="man_made" value="beacon" minzoom="15" />
 		<type tag="man_made" value="chimney" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="chimney" to_tag1="man_made" to_value1="chimney"/>
@@ -3741,6 +4016,7 @@
 		<entity_convert pattern="tag_transform" from_tag="tower:type" from_value="communication" to_tag1="tower:type" to_value1="communication" to_tag2="man_made" to_value2="tower" poi="no"/>
 		<type tag="man_made" value="mast" minzoom="10"/>
 		<entity_convert pattern="tag_transform" from_tag="tower:type" from_value="mast" if_not_tag1="man_made" if_not_value1="mast" to_tag1="man_made" to_value1="mast"/>
+		<type tag="man_made" value="satellite_dish" minzoom="14"/>
 		<type tag="man_made" value="flare" minzoom="13"/>
 		<type tag="man_made" value="telephone_exchange" minzoom="15" />
 		<type tag="man_made" value="watermill" minzoom="15" />
@@ -3781,6 +4057,7 @@
 		<entity_convert pattern="tag_transform" from_tag="street_cabinet" from_value="communications" to_tag1="street_cabinet" to_value1="telecom"/>
 		<entity_convert pattern="tag_transform" from_tag="street_cabinet" from_value="gas_management" to_tag1="street_cabinet" to_value1="gas"/>
 		<type tag="man_made" value="spoil_heap" minzoom="13" />
+		<type tag="man_made" value="geoglyph" minzoom="13" />
 	</category>
 
 
@@ -4114,6 +4391,7 @@
 		<type tag="shop" value="tea" minzoom="15" />
 		<type tag="shop" value="ticket" minzoom="15" />
 		<type tag="shop" value="tobacco" minzoom="15" />
+		<type tag="shop" value="tool_hire" minzoom="15" />
 		<type tag="shop" value="toys" minzoom="15" />
 		<type tag="shop" value="trade" minzoom="15" />
 		<type tag="shop" value="trophy" minzoom="15" />
@@ -4133,6 +4411,7 @@
 		<type tag="shop" value="wholesale" minzoom="15" />
 		<type tag="amenity" value="marketplace" minzoom="15" />
 		<type tag="amenity" value="conference_centre" minzoom="15"/>
+		<type tag="amenity" value="research_institute" minzoom="15"/>
 		<type tag="amenity" value="vending_machine" minzoom="15" />
 		<type tag="vending" value="excrement_bags" additional="true" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="vending" from_value="news_papers" to_tag1="shop" to_value1="newsagent"/>
@@ -4360,6 +4639,7 @@
 		<type tag="information" value="audioguide" additional="true" minzoom="13"/>
 		<type tag="information" value="board" additional="true" minzoom="13"/>
 		<type tag="information" value="guidepost" additional="true" minzoom="13"/>
+		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="information" if_tag1="information" if_value1="guidepost" map="no" poi="yes"/>
 		<type tag="information" value="map" additional="true" minzoom="13"/>
 		<type tag="information" value="terminal" additional="true" minzoom="13"/>
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="sign" to_tag1="tourism" to_value1="information"/>
@@ -4594,6 +4874,7 @@
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="holiday_park" to_tag1="landuse" to_value1="village_green"/>
 		<type tag="landuse" value="reservoir" minzoom="7"/>
 		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="water" to_tag1="landuse" to_value1="reservoir"/>
+		<entity_convert pattern="tag_transform" from_tag="natural" from_value="water" if_tag1="water" if_value1="pond" to_tag1="landuse" to_value1="reservoir"/>
 		<type tag="landuse" value="residential" minzoom="9" order="110"/>
 		<type tag="named" value="yes" minzoom="6" additional="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="residential" if_tag1="name" to_tag1="landuse" to_value1="residential" to_tag2="named" to_value2="yes"/>
@@ -4633,7 +4914,7 @@
 
 	<category name="natural">
 		<!-- coastline is polyline !!! -->
-		<type tag="natural" value="coastline" minzoom="1" />
+		<type tag="natural" value="coastline" minzoom="1"/>
 		<type tag="natural" value="bay" minzoom="4" />
 		<type tag="natural" value="beach" minzoom="11" />
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="beach" to_tag1="natural" to_value1="beach"/>
@@ -4683,10 +4964,11 @@
 		<entity_convert pattern="tag_transform" from_tag="volcano:type" from_value="dirt" to_tag1="volcano:type" to_value1="mud"/>
 		<entity_convert pattern="tag_transform" from_tag="volcano:type" from_value="dome" to_tag1="volcano:type" to_value1="lava_dome"/>
 		<type tag="natural" value="crater" minzoom="10" />
+		<type tag="natural" value="fumarole" minzoom="13" />
 		<type tag="natural" value="cave_entrance" minzoom="10" nameTags="ele" />
 		<type tag="natural" value="crevasse" minzoom="10" />
 		<type tag="glacial" value="crevasse_zone" minzoom="10" />
-		<type tag="natural" value="sand" minzoom="11" />
+		<type tag="natural" value="sand" minzoom="5" />
 		<type tag="natural" value="scree" minzoom="11" />
 		<type tag="natural" value="shingle" minzoom="11" />
 		<type tag="natural" value="sinkhole" minzoom="13" />
@@ -4756,8 +5038,10 @@
 		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="wood" to_tag1="natural" />
 		<type tag="contour" value="elevation" minzoom="11" notosm="true"/>
 		<type tag="contour" value="depth" minzoom="3" notosm="true"/>
+		<type tag="contour" value="temperature" minzoom="3" notosm="true"/>
 		<type tag="point" value="depth" minzoom="6" notosm="true"/>
 		<type tag="elevation" additional="text" minzoom="13" notosm="true"/>
+		<type tag="temperature" additional="text" minzoom="3" notosm="true"/>
 		<type tag="leisure" value="nature_reserve" minzoom="6" order="49"/>
 		<type tag="nr_high_density" value="yes" minzoom="3" additional="true"/>
 
@@ -4834,6 +5118,15 @@
 		<type tag="contourtype" value="40f" minzoom="10" additional="true" notosm="true"/>
 		<type tag="contourtype" value="200f" minzoom="4" additional="true" notosm="true"/>
 		<type tag="contourtype" value="1000f" minzoom="3" additional="true" notosm="true"/>
+		<type tag="contourtype" value="-30c" minzoom="3" additional="true" notosm="true"/>
+		<type tag="contourtype" value="-20c" minzoom="3" additional="true" notosm="true"/>
+		<type tag="contourtype" value="-10c" minzoom="3" additional="true" notosm="true"/>
+		<type tag="contourtype" value="0c" minzoom="3" additional="true" notosm="true"/>
+		<type tag="contourtype" value="10c" minzoom="3" additional="true" notosm="true"/>
+		<type tag="contourtype" value="20c" minzoom="3" additional="true" notosm="true"/>
+		<type tag="contourtype" value="30c" minzoom="3" additional="true" notosm="true"/>
+		<type tag="contourtype" value="40c" minzoom="3" additional="true" notosm="true"/>
+		<type tag="contourtype" value="50c" minzoom="3" additional="true" notosm="true"/>
 	</category>
 	<category name="geocache">
 		<type tag="geocache" value="found" minzoom="15" notosm="true"/>
@@ -4932,6 +5225,7 @@
 	<category name="education" order="40">
 		<type tag="amenity" value="college" minzoom="15" />
 		<type tag="amenity" value="driving_school" minzoom="15" />
+		<type tag="amenity" value="driver_training" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="training" from_value="driving" to_tag1="amenity" to_value1="driving_school"/>
 		<type tag="amenity" value="kindergarten" minzoom="15" />
 		<type tag="amenity" value="library" minzoom="15" />
@@ -5009,7 +5303,7 @@
 		<type tag="amenity" value="vehicle_inspection" minzoom="15" />
 		<type tag="amenity" value="vehicle_ramp" minzoom="15" />
 		<type tag="amenity" value="taxi" minzoom="15" />
-		<type tag="amenity" value="bus_station" minzoom="13" />
+		<type tag="amenity" value="bus_station" order="49" minzoom="13" />
 		<type tag="amenity" value="car_wash" minzoom="15" />
 		<type tag="amenity" value="grit_bin" minzoom="15"/>
 		<type tag="amenity" value="compressed_air" minzoom="15" />
@@ -5104,6 +5398,7 @@
 		<type tag="healthcare" value="blood_donation" minzoom="15" />
 		<type tag="amenity" value="pharmacy" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="healthcare" from_value="pharmacy" if_tag1="amenity" if_value1="pharmacy"/>
+		<type tag="dispensing" value="no" additional="true" minzoom="15" />
 		<type tag="amenity" value="hospital" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="healthcare" from_value="hospital" to_tag1="amenity"/>
 		<type tag="amenity" value="baby_hatch" minzoom="15" />
@@ -5226,6 +5521,7 @@
 		<type tag="amenity" value="planetarium" minzoom="15" />
 		<type tag="leisure" value="bandstand" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="stage" to_tag1="leisure" to_value1="bandstand"/>
+		<type tag="leisure" value="escape_game" minzoom="15" />
 	</category>
 
 	<category name="service">
@@ -5306,6 +5602,7 @@
 		<type tag="amenity" value="ranger_station" minzoom="15" />
 		<type tag="amenity" value="lavoir" minzoom="15" />
 		<type tag="amenity" value="trolley_bay" minzoom="15" />
+		<type tag="man_made" value="dovecote" minzoom="15" />
 	</category>
 
 	<category name="internet_access">
@@ -5519,6 +5816,7 @@
 	<!-- sport -->
 	<category name="sport">
 		<type tag="leisure" value="sports_centre" minzoom="13" order="71"/>
+		<type tag="leisure" value="sports_hall" minzoom="13" order="72"/>
 		<type tag="leisure" value="golf_course" minzoom="12" />
 		<type tag="leisure" value="stadium" minzoom="13" order="72" />
 		<type tag="leisure" value="ice_rink" minzoom="15" />
@@ -6185,6 +6483,7 @@
 		<routing_type tag="emergency:access" mode="amend"/>
 		<routing_type tag="enforcement" mode="amend"/>
 		<routing_type tag="ferry" mode="amend"/>
+		<routing_type tag="amenity" value="ferry_terminal" mode="amend"/>
 		<routing_type tag="ford" mode="amend"/>
 		<routing_type tag="foot" mode="amend"/>
 		<routing_type tag="goods" mode="amend"/>

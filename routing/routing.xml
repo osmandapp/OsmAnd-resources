@@ -481,6 +481,8 @@
 			<select value="1"  t="vehicle" v="destination"/>
 			<select value="1"  t="vehicle" v="customers"/>
 
+			<select value="-1" t="highway" v="cycleway"/>
+
 			<select value="-1" t="access" v="no"/>
 			<select value="-1" t="access" v="agricultural"/>
 			<select value="-1" t="access" v="forestry"/>
@@ -936,7 +938,7 @@
 		<parameter id="allow_motorway" name="Allow motorways" description="Allow motorways" type="boolean"/>
 		<parameter id="avoid_tunnels" name="Avoid tunnels" description="Avoid tunnels" type="boolean"/>
 		<parameter id="allow_private" name="Allow private access" description="Allow access to private areas" type="boolean"/>
-		<parameter id="avoid_sett" name="Avoid sett and cobblestone" description="Tries to avoid streets and paths which are paved with sett and cobblestone." type="boolean" default="false"/>
+		<parameter id="avoid_sett" name="Avoid sett and cobblestone" description="Streets and paths which are paved with sett and cobblestone are avoided quite strictly (they are already avoided in standard mode)." type="boolean" default="false"/>
 		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean" default="false"/>
 
 		<way attribute="access">
@@ -959,9 +961,12 @@
  			These have already been excluded above (which is the right choice). -->
 
 			</if>
-			<select value="-1" t="route" v="ferry">
-				<if param="avoid_ferries"/>
-			</select>
+
+			<if param="avoid_ferries">
+			    <select value="-1" t="route" v="ferry"/>
+			    <select value="-1" t="route" v="boat"/>
+			</if>
+
 			<select value="-1" t="highway" v="steps">
 				<if param="avoid_stairs"/>
 			</select>
@@ -1169,7 +1174,7 @@
 			<select value="15" t="highway" v="footway"/>
 			<select value="19" t="highway" v="road"/>
 			<select value="24" t="highway" v="living_street"/>
-			<select value="8" t="highway" v="pedestrian"/>
+			<select value="10" t="highway" v="pedestrian"/>
 
 			<select value="10"  t="highway" v="byway"/>
 			<select value="2" t="public_transport" v="platform"/>
@@ -1312,10 +1317,14 @@
 			</if>
 
 			<if param="avoid_sett">
-				<select value="0.01" t="surface" v="sett"/>
-				<select value="0.01" t="surface" v="cobblestone"/>
-				<select value="0.01" t="surface" v="unhewn_cobblestone"/>
+				<select value="0.2" t="surface" v="sett"/>
+				<select value="0.1" t="surface" v="cobblestone"/>
+				<select value="0.05" t="surface" v="unhewn_cobblestone"/>
 			</if>
+            <!-- Lines above: Even in the avoid_sett option, sett and cobblestone should not be downgraded to less than 20%.
+            The reason is that you can always dismount and push your bike. Or to put it the other way round:
+            If we downgrade sett to 1% (as it was before), then to avoid just 100 meters of sett, the routing would make a detour of 10 kilometers.
+            The 1% setting also led to long calculation times (especially if you started routing at a point entirely surrounded by cobblestone streets). -->
 			
 			<select value="1.0" t="bicycle" v="dismount"/>
 			<select value="1.0" t="cycleway" v="sidepath"/>
@@ -1391,6 +1400,11 @@
 			<select value="0.1" t="osmand_highway_integrity_brouting" v="9"/>
 			<select value="0.05" t="osmand_highway_integrity_brouting" v="10"/>
 			<select value="0.65" t="surface" v="cobblestone"/>
+            <select value="0.7" t="surface" v="sett"/>
+			<select value="0.5" t="surface" v="unhewn_cobblestone"/>
+             <!-- Three lines above: Added "sett" and "unhewn_cobblestone" which are also needed here.
+            the values for sett and cobblestone should not be too far apart, because "sett" is not used
+            too strictly in maps (often used for cobblestone that is only SLIGHTLY flattened-->
 
 			<select value="3.2" t="cycleway" v="lane"/>
 			<select value="3.2" t="cycleway:both" v="lane"/>
@@ -1525,6 +1539,7 @@
 			<select value="200" t="ford"/>
 			<select value="25" t="railway" v="crossing"/>
 			<select value="25" t="railway" v="level_crossing"/>
+			<select value="5" t="railway" v="tram_level_crossing"/>
 		</point>
 
 		<point attribute="obstacle">

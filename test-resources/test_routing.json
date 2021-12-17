@@ -106,14 +106,32 @@
     "testName": "9.Routing problem: bypassing destination then backtracking to get there https://github.com/osmandapp/Osmand/issues/2182",
     "params": {
       "vehicle": "car",
-      "short_way": "true",
       "planRoadDirection": "-1"
     },
     "startPoint": {
       "latitude": 45.89801665781154,
       "longitude": 35.43031065901761
     },
-    "transitPoint": {
+    "endPoint": {
+      "latitude": 45.88814493393098,
+      "longitude": 35.451634220686
+    },
+    "expectedResults": {
+      "368643371": "false",
+      "263913081": "true"
+    }
+  },
+  {
+    "testName": "9.2 Routing problem: bypassing destination then backtracking to get there https://github.com/osmandapp/Osmand/issues/2182",
+    "params": {
+      "vehicle": "car",
+      "planRoadDirection": "-1"
+    },
+    "startPoint": {
+      "latitude": 45.89801665781154,
+      "longitude": 35.43031065901761
+    },
+    "transitPoint1": {
       "latitude": 45.892986,
       "longitude": 35.449814
     },
@@ -122,7 +140,32 @@
       "longitude": 35.451634220686
     },
     "expectedResults": {
-      "368643371": "false"
+      "368643371": "false",
+      "263913081": "true"
+    }
+  },
+  {
+    "testName": "9.3 Routing problem: bypassing destination then backtracking to get there https://github.com/osmandapp/Osmand/issues/2182",
+    "params": {
+      "vehicle": "car",
+      "short_way": "true",
+      "planRoadDirection": "-1"
+    },
+    "startPoint": {
+      "latitude": 45.89801665781154,
+      "longitude": 35.43031065901761
+    },
+    "transitPoint1": {
+      "latitude": 45.892986,
+      "longitude": 35.449814
+    },
+    "endPoint": {
+      "latitude": 45.88814493393098,
+      "longitude": 35.451634220686
+    },
+    "expectedResults": {
+      "368643371": "false",
+      "263913081": "true"
     }
   },
   {
@@ -143,6 +186,24 @@
     },
     "expectedResults": {
       "53445": "true"
+    }
+  },
+  {
+    "testName": "10.1 Longer route preferred? https://github.com/osmandapp/Osmand/issues/1941",
+    "description": "short_way строит не самый короткий путь. Транзит через MEX 261 короче.",
+    "params": {
+      "vehicle": "car"
+    },
+    "startPoint": {
+      "latitude": 45.9011493841283,
+      "longitude": 35.493414759635954
+    },
+    "endPoint": {
+      "latitude": 45.88636204636078,
+      "longitude": 35.486109763383894
+    },
+    "expectedResults": {
+      "53445": "false"
     }
   },
   {
@@ -375,8 +436,7 @@
   {
     "testName": "26. Incorrect pedestrian routing #5097",
     "params": {
-      "vehicle": "pedestrian",
-      "wrongPlanRoadDirection": "-1"
+      "vehicle": "pedestrian"
     },
     "startPoint": {
       "latitude": 45.8159868,
@@ -596,7 +656,7 @@
       "longitude": 35.2303591
     },
     "expectedResults": {
-      "100": "visitedSegments"
+      "300": "visitedSegments"
     }
   },
   {
@@ -610,12 +670,69 @@
     },
     "endPoint": {
       "latitude": 45.7527007,
-      "longitude":  35.2696839
+      "longitude": 35.2696839
     },
     "expectedResults": {
       "319830370": true,
       "75485505": false,
       "319830368": true
+    }
+  },
+  {
+    "testName": "40. Bicycle routing: Large detour preferred over routing straight ahead https://github.com/osmandapp/OsmAnd/issues/12911",
+    "params": {
+      "vehicle": "bicycle"
+    },
+    "startPoint": {
+      "latitude": 45.73928,
+      "longitude": 35.30208
+    },
+    "endPoint": {
+      "latitude": 45.75563,
+      "longitude": 35.31551
+    },
+    "expectedResults": {
+      "683435799": true,
+      "312929362": false,
+      "27497823": false,
+      "4943400": true
+    }
+  },
+  {
+    "testName": "41. Another slightly odd route https://github.com/osmandapp/OsmAnd/issues/12238",
+    "params": {
+      "vehicle": "car",
+      "short_way": "true"
+    },
+    "startPoint": {
+      "latitude": 45.7013785,
+      "longitude": 35.3609371
+    },
+    "endPoint": {
+      "latitude": 45.7512835,
+      "longitude": 35.4049773
+    },
+    "expectedResults": {
+      "51684584": true,
+      "493251834": false,
+      "158899446": false
+    }
+  },
+  {
+    "testName": "42. Hanging routing",
+    "description": "test on hanging routing",
+    "params": {
+      "vehicle": "car",
+      "wrongPlanRoadDirection": "-1",
+      "heuristicCoefficient": "100"
+    },
+    "startPoint": {
+      "latitude": 45.755909,
+      "longitude": 35.4484863
+    },
+    "endPoint": {
+      "latitude": 45.7572269,
+      "longitude": 35.4502122
     }
   }
 ]

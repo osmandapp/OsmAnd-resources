@@ -509,7 +509,7 @@
 	<renderingConstant name="trackBridgeWidth" value="6:3.5"/>
 	<renderingConstant name="trackBridgeInnerWidth" value="4:3"/>
 	<renderingConstant name="trackTunnelPathEffect" value="3_3"/>
-	<renderingConstant name="trackPathEffect" value=""/>
+	<renderingConstant name="trackPathEffect" value="5_2_2_2"/>
 
 	<renderingAttribute name="trackPathHighwayOnewayArrowsColor">
 		<case nightMode="true" attrColorValue="#ffffff"/>
@@ -1574,6 +1574,7 @@
 				<case tag="waterway" value="dock"/>
 				<case tag="landuse" value="reservoir" order="9"/>
 				<case tag="waterway" value="riverbank" order="9"/>
+				<case tag="amenity" value="fountain" order="11"/>
 				<case tag="natural" value="wetland" order="8"/>
 				<case tag="natural" value="scrub" order="7"/>
 				<case tag="natural" value="wood" order="7"/>
@@ -2677,6 +2678,7 @@
 			</switch>
 			<switch>
 				<case minzoom="13" tag="natural" value="glacier" textOrder="81" textColor="$glacierTextColor" textHaloColor="$glacierTextHaloColor"/>
+				<case minzoom="16" textSize="11" tag="natural" value="fumarole"/>
 				<switch>
 					<case minzoom="14" tag="natural" value="scree" textOrder="82"/>
 					<case minzoom="16" tag="natural" value="shoal" textOrder="82"/>
@@ -2771,11 +2773,13 @@
 				<case minzoom="18" tag="tourism" value="artwork" nameTag="">
 					<apply_if additional="artwork_type=statue" icon="memorial_statue"/>
 				</case>
+				<case minzoom="16" tag="man_made" value="geoglyph" nameTag=""/>
 				<case minzoom="17" tag="tourism" value="picnic_site"/>
 				<case minzoom="17" tag="leisure" value="picnic_table"/>
 				<case minzoom="17" tag="leisure" value="firepit"/>
 				<case minzoom="17" tag="tourism" value="museum" textOrder="132"/>
 				<case minzoom="17" tag="tourism" value="information" nameTag="" textOrder="120"/>
+				<case minzoom="17" tag="highway" value="trailhead" nameTag=""/>
 				<case minzoom="17" tag="tourism" value="viewpoint"/>
 				<case minzoom="17" tag="tourism" value="theme_park" textOrder="153"/>
 				<case minzoom="17" tag="tourism" value="zoo" textOrder="152"/>
@@ -3007,6 +3011,7 @@
 				<case minzoom="17" tag="man_made" value="tower" nameTag=""/>
 				<case minzoom="17" tag="man_made" value="antenna" nameTag=""/>
 				<case minzoom="17" tag="man_made" value="mast" nameTag=""/>
+				<case minzoom="17" tag="man_made" value="satellite_dish" nameTag=""/>
 				<case minzoom="17" tag="man_made" value="flare" nameTag=""/>
 				<case minzoom="17" tag="man_made" value="monitoring_station"/>
 				<case minzoom="16" tag="man_made" value="petroleum_well"/>
@@ -3382,6 +3387,7 @@
 			<switch iconOrder="70">
 <!--				<case minzoom="18" tag="tourism" value="artwork" icon="tourism_artwork" iconOrder="69"/>
 				<case minzoom="16" tag="tourism" value="museum" icon="tourism_museum"/>-->
+				<case minzoom="16" tag="man_made" value="geoglyph" icon="topo_geoglyph"/>
 				<case minzoom="16" tag="historic" value="ship" icon="topo_ship"/>
 				<case minzoom="16" tag="historic" value="boundary_stone" icon="topo_boundary_stone"/>
 				<case minzoom="17" tag="historic" value="milestone" icon="topo_milestone"/>
@@ -3389,6 +3395,7 @@
 <!--				<case minzoom="15" tag="tourism" value="zoo" icon="zoo"/>-->
 				<case minzoom="16" tag="historic" value="aircraft" icon="topo_aircraft"/>
 				<case minzoom="16" tag="historic" value="tank" icon="topo_tank"/>
+				<case minzoom="16" tag="highway" value="trailhead" icon="topo_trailhead"/>
 			</switch>
 			<case minzoom="15" tag="attraction" value="big_wheel" icon="topo_big_wheel"/>
 
@@ -3411,6 +3418,7 @@
 			<case minzoom="16" tag="historic" value="archaeological_site" icon="topo_archaeological_site" iconVisibleSize="24" iconOrder="85"/>
 			<case minzoom="16" tag="geological" value="palaeontological_site" icon="topo_palaeontological_site" iconOrder="85"/>
 			<case minzoom="16" tag="geological" value="outcrop" icon="topo_outcrop" iconOrder="163"/>
+			<case minzoom="15" tag="natural" value="fumarole" icon="topo_fumarole"/>
 			<apply_if lessDetailed="true" maxzoom="15" icon=""/>
 		</switch>
 		<case minzoom="16" tag="historic" value="ruins" icon="topo_ruins" shield="topo_ruins_shield" iconOrder="158"/>
@@ -3480,7 +3488,12 @@
 		<case minzoom="15" tag="aerialway" value="pylon" icon="aerialway_pylon_small" iconVisibleSize="4">
 			<apply_if lessDetailed="true" maxzoom="15" icon=""/>
 		</case>
-		<case minzoom="16" tag="power" value="pole" icon="barrier_small_black_4"/>
+		<switch>
+			<case minzoom="16" tag="power" value="pole"/>
+			<case lessDetailed="false" minzoom="17" tag="man_made" value="utility_pole"/>
+			<apply icon="barrier_small_black_4"/>
+			<apply_if nightMode="true" icon="barrier_small_white_4"/>
+		</switch>
 		<switch>
 			<case minzoom="12" tag="railway" value="halt"/>
 			<case minzoom="15" tag="railway" value="tram_stop"/>
@@ -3545,6 +3558,7 @@
 						<case minzoom="14" tag="barrier" value="gate" icon="barrier_gate" shield="topo_barrier_gate_shield"/>
 						<case minzoom="14" tag="barrier" value="yes" icon="barrier_gate" shield="barrier_gate_shield"/>
 						<case minzoom="14" tag="barrier" value="lift_gate" icon="barrier_lift_gate" shield="topo_barrier_lift_gate_shield"/>
+						<case minzoom="14" tag="barrier" value="hampshire_gate" icon="barrier_hampshire_gate" shield="barrier_hampshire_gate_shield"/>
 						<case minzoom="14" tag="barrier" value="swing_gate" icon="barrier_swing_gate" shield="topo_barrier_swing_gate_shield"/>
 						<case minzoom="14" tag="barrier" value="bump_gate" icon="barrier_bump_gate" shield="barrier_bump_gate_shield"/>
 	<!--					<case minzoom="14" tag="barrier" value="bus_trap" icon="barrier_bus_trap" shield="barrier_bus_trap_shield"/>-->
@@ -3558,7 +3572,7 @@
 						<case minzoom="14" tag="barrier" value="toll_booth" icon="toll_booth" shield="barrier_toll_booth_shield"/>
 						<case minzoom="14" tag="military" value="checkpoint" icon="military_checkpoint" shield="military_checkpoint_shield"/>
 						<case minzoom="14" tag="barrier" value="border_control" icon="barrier_border_control" shield="gray_round_shield" iconOrder="40"/>
-	<!--					<case minzoom="14" tag="barrier" value="bollard" icon="barrier_bollard" shield="barrier_bollard_shield"/>-->
+						<case minzoom="14" tag="barrier" value="bollard" icon="barrier_bollard" shield="barrier_bollard_shield"/>
 						<case minzoom="14" tag="barrier" value="block" icon="barrier_block" shield="topo_barrier_block_shield"/>
 						<case minzoom="15" tag="barrier" value="jersey_barrier" icon="barrier_colored_jersey_barrier" shield="barrier_jersey_barrier_shield"/>
 						<apply_if minzoom="14" maxzoom="14" icon="barrier_small_black_bold_2" shield="" iconVisibleSize="0">
@@ -3658,7 +3672,7 @@
 		<case minzoom="18" tag="natural" value="shrub" iconOrder="129" icon="shrub_dot" intersectionMargin="5"/>
 
 		<case minzoom="16" tag="highway" value="via_ferrata" icon="via_ferrata_map" shield="via_ferrata_shield"/>
-		<case minzoom="16" tag="osmand_rungs_node" value="yes" icon="rungs_dot"/>
+		<case minzoom="16" tag="osmand_rungs_node" value="yes" icon="rungs" shield="rungs_shield"/>
 		<case minzoom="16" tag="ladder" value="yes" icon="ladder"/>
 
 		<case minzoom="17" tag="highway" value="traffic_signals" icon="highway_traffic_signals_map" shield="traffic_signals_shield"/>
@@ -3675,6 +3689,7 @@
 		<switch iconOrder="71">
 			<case minzoom="13" tag="building" value="tower" icon="topo_tower" shield="topo_tower_shield" iconVisibleSize="16"/>
 			<case minzoom="16" tag="man_made" value="antenna" icon="topo_mast" shield="topo_tower_shield"/>
+			<case minzoom="17" tag="man_made" value="satellite_dish" icon="satellite_dish" shield="satellite_dish_shield"/>
 			<case minzoom="15" tag="man_made" value="mast" icon="topo_mast" shield="topo_tower_shield"/>
 			<case minzoom="13" tag="man_made" value="tower" additional="tower:type=communication" icon="topo_communication_tower" shield="topo_communication_tower_shield"/>
 			<case minzoom="14" tag="man_made" value="tower" additional="tower:type=lighting" icon="lighting_tower" shield="tower_lighting_shield">
@@ -3693,7 +3708,7 @@
 		<case minzoom="14" tag="natural" value="cave_entrance" icon="topo_cave" shield="topo_cave_shield" iconOrder="85"/>
 		<case minzoom="16" tag="man_made" value="cellar_entrance" icon="topo_cellar_entrance" shield="topo_cellar_entrance_shield" iconOrder="85"/>
 		<case minzoom="17" tag="tourism" value="picnic_site" icon="topo_picnic_site" shield="topo_picnic_site_shield" iconOrder="85"/>
-		<case minzoom="17" tag="tourism" value="picnic_table" icon="topo_picnic_table" shield="topo_picnic_table_shield" iconOrder="85"/>
+		<case minzoom="17" tag="leisure" value="picnic_table" icon="topo_picnic_table" shield="topo_picnic_table_shield" iconOrder="85"/>
 		<case minzoom="17" tag="leisure" value="firepit" icon="topo_firepit" shield="topo_firepit_shield" iconOrder="86"/>
 		<switch minzoom="15">
 			<case tag="man_made" value="adit"/>
@@ -4071,6 +4086,7 @@
 						<case minzoom="16" tag="historic" value="tank"/>
 						<apply color="$attractionColor"/>
 					</switch>
+					<case minzoom="15" tag="man_made" value="geoglyph" color="$attractionColor"/>
 					<switch minzoom="14" pathEffect_2="10_3">
 						<case tag="historic" value="ruins" color="#20c4583a" color_2="#669a3300"/>
 						<case tag="historic" value="archaeological_site" color="#20a7783a" color_2="#aaa7783a"/>
@@ -4087,6 +4103,8 @@
 						<switch minzoom="6">
 							<case tag="leisure" value="nature_reserve"/>
 							<case tag="boundary" value="national_park"/>
+							<apply_if maxzoom="16" shader="nr3"/>
+							<apply_if maxzoom="16" nightMode="true" shader="nr3_night"/>
 							<apply_if maxzoom="13" strokeWidth_2="2:2"/>
 							<apply_if minzoom="14" strokeWidth_2="3.5:3.5"/>
 						</switch>
@@ -4895,11 +4913,11 @@
 							<apply_if minzoom="15" strokeWidth_4="2.6:2.6"/>
 							<apply color_4="$null" color_5="$trackColor" pathEffect_5="$trackPathEffect"/>
 							<apply_if surfaceIntegrity="false">
-								<!-- Dash pattern: solid(100%), long-dashed(77%), short-dashed(63%), dash-dotted(50%), dotted(50%), dotted2(40%), short-dashed-narrow-spaced(66%) for not-specified -->
+								<!-- Dash pattern: solid(100%), long-dashed(77%), medium-dashed(63%), short-dashed(50%), dotted(40%), dash-dotted(64%) for non-specified -->
 								<case additional="tracktype=grade1" pathEffect_5=""/>
 								<case additional="tracktype=grade2" pathEffect_5="10_3"/>
 								<case additional="tracktype=grade3" pathEffect_5="5_3"/>
-								<case additional="tracktype=grade4" pathEffect_5="4_3_2_3"/>
+								<case additional="tracktype=grade4" pathEffect_5="3_3"/>
 								<case additional="tracktype=grade5" pathEffect_5="2_3"/>
 								<apply_if minzoom="12" maxzoom="13" pathEffect_5=""/>
 							</apply_if>
@@ -5306,6 +5324,7 @@
 			<case tag="barrier" value="entrance"/>
 			<case tag="barrier" value="gate"/>
 			<case tag="barrier" value="lift_gate"/>
+			<case tag="barrier" value="hampshire_gate"/>
 			<case tag="barrier" value="stile"/>
 			<case tag="barrier" value="horse_stile"/>
 			<case tag="barrier" value="sliding_gate"/>
