@@ -3364,6 +3364,7 @@
 		<type tag="railway" value="funicular" minzoom="13" />
 		<type tag="railway" value="halt" minzoom="12" order="10"/>
 		<type tag="railway" value="level_crossing" minzoom="15" />
+		<type tag="railway" value="tram_level_crossing" minzoom="15" />
 		<type tag="railway" value="light_rail" minzoom="11"/>
 		<type tag="railway" value="monorail" minzoom="13" />
 		<type tag="railway" value="narrow_gauge" minzoom="13" />
@@ -3792,6 +3793,7 @@
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="station" to_value2="subway"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway" if_tag1="construction" if_value1="yes" to_tag1="railway" to_value1="construction"/>
 		<type tag="railway" value="tram" minzoom="13"/>
+		<type tag="embedded_rails" value="tram" minzoom="13"/>
 		<type tag="railway" value="tram_stop" minzoom="14" order="1"/>
 		<type tag="railway" value="turntable" minzoom="15" />
 		<type tag="service" value="spur" minzoom="7" additional="true" />
@@ -3803,7 +3805,7 @@
 		<type tag="public_transport" value="platform" minzoom="14" nameTags="ref,local_ref" order="10" />
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="platform" to_tag1="public_transport" to_value1="platform"/>
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="platform" to_tag1="public_transport" to_value1="platform"/>
-		<type tag="public_transport" value="station" minzoom="14" order="10" />
+		<type tag="public_transport" value="station" minzoom="14" />
 		<entity_convert pattern="tag_transform" from_tag="public_transport" from_value="station" if_tag1="railway" if_value1="station" poi="no" routing="no"/>
 		<type tag="public_transport" value="stop_position" minzoom="15"/>
 	</category>
@@ -3968,7 +3970,10 @@
 		<type tag="man_made" value="works" minzoom="15" />
 		<type tag="man_made" value="embankment" minzoom="15" />
 		<type tag="embankment" value="yes" minzoom="14" />
-
+		<type tag="cutting" value="yes" minzoom="14" />
+		<entity_convert pattern="tag_transform" from_tag="cutting" from_value="both" to_tag1="cutting" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="cutting" from_value="left" to_tag1="cutting" to_value1="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="cutting" from_value="right" to_tag1="cutting" to_value1="yes"/>
 		<type tag="man_made" value="beacon" minzoom="15" />
 		<type tag="man_made" value="chimney" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="chimney" to_tag1="man_made" to_value1="chimney"/>
@@ -4871,6 +4876,7 @@
 		<entity_convert pattern="tag_transform" from_tag="tourism" from_value="holiday_park" to_tag1="landuse" to_value1="village_green"/>
 		<type tag="landuse" value="reservoir" minzoom="7"/>
 		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="water" to_tag1="landuse" to_value1="reservoir"/>
+		<entity_convert pattern="tag_transform" from_tag="natural" from_value="water" if_tag1="water" if_value1="pond" to_tag1="landuse" to_value1="reservoir"/>
 		<type tag="landuse" value="residential" minzoom="9" order="110"/>
 		<type tag="named" value="yes" minzoom="6" additional="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="residential" if_tag1="name" to_tag1="landuse" to_value1="residential" to_tag2="named" to_value2="yes"/>
@@ -5299,7 +5305,7 @@
 		<type tag="amenity" value="vehicle_inspection" minzoom="15" />
 		<type tag="amenity" value="vehicle_ramp" minzoom="15" />
 		<type tag="amenity" value="taxi" minzoom="15" />
-		<type tag="amenity" value="bus_station" minzoom="13" />
+		<type tag="amenity" value="bus_station" order="49" minzoom="13" />
 		<type tag="amenity" value="car_wash" minzoom="15" />
 		<type tag="amenity" value="grit_bin" minzoom="15"/>
 		<type tag="amenity" value="compressed_air" minzoom="15" />
