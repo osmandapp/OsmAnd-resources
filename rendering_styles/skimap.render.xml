@@ -545,6 +545,11 @@
 			<apply_if nightMode="true" attrColorValue="#33EEFF"/>
 		</case>
 	</renderingAttribute>
+	<renderingAttribute name="pisteDownhillGroomingDefaultColor">
+		<case attrColorValue="#494949">
+			<apply_if nightMode="true" attrColorValue="#33EEFF"/>
+		</case>
+	</renderingAttribute>
 	<renderingAttribute name="pisteOnewayArrowsColor">
 		<case attrColorValue="#000000">
 			<apply_if nightMode="true" attrColorValue="#ffffff"/>
@@ -1076,7 +1081,7 @@
 						<case maxzoom="16" strokeWidth="7:7"/>
 						<case minzoom="17" strokeWidth="10:10"/>
 					</apply>
-					<apply_if minzoom="13" pisteGrooming="true">
+					<apply_if minzoom="13" pisteGrooming="true" color_4="$pisteDownhillGroomingDefaultColor">
 						<case additional="piste:grooming=classic"/>
 						<apply>
 							<case maxzoom="14" strokeWidth_2="1:1"/>
@@ -1095,7 +1100,7 @@
 							<case maxzoom="16" strokeWidth="2:2"/>
 							<case minzoom="17" strokeWidth="2.5:2.5"/>
 						</apply>
-						<apply_if minzoom="13" pisteGrooming="true">
+						<apply_if minzoom="13" pisteGrooming="true" color_3="$pisteNordicColor" color_4="$pisteNordicGroomingDefaultColor">
 							<case additional="piste:grooming=classic">
 								<apply_if maxzoom="13" strokeWidth__2="2:2"/>
 								<apply_if minzoom="14" maxzoom="14" strokeWidth__2="3:3"/>
@@ -1133,31 +1138,38 @@
 				</switch>
 				<apply minzoom="13" pisteGrooming="true">
 					<switch>
-						<case additional="piste:grooming=mogul"/>
 						<switch>
-							<case additional="piste:grooming=skating" pathEffect_2="32_4" pathEffect_3="6_4_6_20" CAP_3="BUTT">
-								<apply_if maxzoom="13" pathEffect_2="25_3" pathEffect_3="5_3_5_17"/>
-							</case>
-							<case additional="piste:grooming=classic+skating" pathEffect_3="6_26" CAP_3="BUTT">
-								<apply_if maxzoom="13" pathEffect_3="5_22"/>
+							<case additional="piste:grooming=mogul"/>
+							<switch>
+								<case additional="piste:grooming=skating" pathEffect_2="32_4" pathEffect_3="6_4_6_20" CAP_3="BUTT">
+									<apply_if maxzoom="13" pathEffect_2="25_3" pathEffect_3="5_3_5_17"/>
+								</case>
+								<case additional="piste:grooming=classic+skating" pathEffect_3="6_26" CAP_3="BUTT">
+									<apply_if maxzoom="13" pathEffect_3="5_22"/>
+								</case>
+								<apply>
+									<case maxzoom="13" strokeWidth_3="3:3"/>
+									<case maxzoom="14" strokeWidth_3="4:4"/>
+									<case minzoom="15" strokeWidth_3="5:5"/>
+								</apply>
+							</switch>
+							<case additional="piste:grooming=scooter" pathEffect_2="17_4">
+								<apply_if maxzoom="13" pathEffect_2="14_3"/>
 							</case>
 							<apply>
-								<case maxzoom="13" strokeWidth_3="3:3"/>
-								<case maxzoom="14" strokeWidth_3="4:4"/>
-								<case minzoom="15" strokeWidth_3="5:5"/>
+								<case maxzoom="13" strokeWidth_2="0.7:0.7"/>
+								<case maxzoom="14" strokeWidth_2="1:1"/>
+								<case minzoom="15" strokeWidth_2="2:2"/>
 							</apply>
 						</switch>
-						<case additional="piste:grooming=scooter" pathEffect_2="17_4">
-							<apply_if maxzoom="13" pathEffect_2="14_3"/>
+						<case additional="piste:grooming=backcountry" pathEffect_4="5_20">
+							<apply_if maxzoom="13" pathEffect_4="4_17"/>
+							<apply>
+								<case maxzoom="13" strokeWidth_4="0.7:0.7"/>
+								<case maxzoom="14" strokeWidth_4="1:1"/>
+								<case minzoom="15" strokeWidth_4="2:2"/>
+							</apply>
 						</case>
-						<case additional="piste:grooming=backcountry" pathEffect_2="5_20">
-							<apply_if maxzoom="13" pathEffect_2="4_17"/>
-						</case>
-						<apply>
-							<case maxzoom="13" strokeWidth_2="0.7:0.7"/>
-							<case maxzoom="14" strokeWidth_2="1:1"/>
-							<case minzoom="15" strokeWidth_2="2:2"/>
-						</apply>
 					</switch>
 				</apply>
 			</switch>
@@ -1231,13 +1243,13 @@
 			</apply_if>
 			<apply>
 				<switch>
-					<case additional="piste:difficulty=novice" color="$pisteDifficultyNoviceColor" color_2="$pisteGroomingNoviceColor" color_3="$pisteGroomingNoviceColor" color__2="$pisteGroomingNoviceColor"/>
-					<case additional="piste:difficulty=easy" color="$pisteDifficultyEasyColor" color_2="$pisteGroomingEasyColor" color_3="$pisteGroomingEasyColor" color__2="$pisteGroomingEasyColor"/>
-					<case additional="piste:difficulty=intermediate" color="$pisteDifficultyIntermediateColor" color_2="$pisteGroomingIntermediateColor" color_3="$pisteGroomingIntermediateColor" color__2="$pisteGroomingIntermediateColor"/>
-					<case additional="piste:difficulty=advanced" color="$pisteDifficultyAdvancedColor" color_2="$pisteGroomingAdvancedColor" color_3="$pisteGroomingAdvancedColor" color__2="$pisteGroomingAdvancedColor"/>
-					<case additional="piste:difficulty=expert" color="$pisteDifficultyExpertColor" color_2="$pisteGroomingExpertColor" color_3="$pisteGroomingExpertColor" color__2="$pisteGroomingExpertColor"/>
-					<case additional="piste:difficulty=freeride" color="$pisteDifficultyFreerideColor" color_2="$pisteGroomingFreerideColor" color_3="$pisteGroomingFreerideColor" color__2="$pisteGroomingFreerideColor"/>
-					<case additional="piste:difficulty=extreme" color="$pisteDifficultyExtremeColor" color_2="$pisteGroomingExtremeColor" color_3="$pisteGroomingExtremeColor" color__2="$pisteGroomingExtremeColor"/>
+					<case additional="piste:difficulty=novice" color="$pisteDifficultyNoviceColor" color_2="$pisteGroomingNoviceColor" color_3="$pisteGroomingNoviceColor" color__2="$pisteGroomingNoviceColor" color_4="$pisteGroomingNoviceColor"/>
+					<case additional="piste:difficulty=easy" color="$pisteDifficultyEasyColor" color_2="$pisteGroomingEasyColor" color_3="$pisteGroomingEasyColor" color__2="$pisteGroomingEasyColor" color_4="$pisteGroomingEasyColor"/>
+					<case additional="piste:difficulty=intermediate" color="$pisteDifficultyIntermediateColor" color_2="$pisteGroomingIntermediateColor" color_3="$pisteGroomingIntermediateColor" color__2="$pisteGroomingIntermediateColor" color_4="$pisteGroomingIntermediateColor"/>
+					<case additional="piste:difficulty=advanced" color="$pisteDifficultyAdvancedColor" color_2="$pisteGroomingAdvancedColor" color_3="$pisteGroomingAdvancedColor" color__2="$pisteGroomingAdvancedColor" color_4="$pisteGroomingAdvancedColor"/>
+					<case additional="piste:difficulty=expert" color="$pisteDifficultyExpertColor" color_2="$pisteGroomingExpertColor" color_3="$pisteGroomingExpertColor" color__2="$pisteGroomingExpertColor" color_4="$pisteGroomingExpertColor"/>
+					<case additional="piste:difficulty=freeride" color="$pisteDifficultyFreerideColor" color_2="$pisteGroomingFreerideColor" color_3="$pisteGroomingFreerideColor" color__2="$pisteGroomingFreerideColor" color_4="$pisteGroomingFreerideColor"/>
+					<case additional="piste:difficulty=extreme" color="$pisteDifficultyExtremeColor" color_2="$pisteGroomingExtremeColor" color_3="$pisteGroomingExtremeColor" color__2="$pisteGroomingExtremeColor" color_4="$pisteGroomingExtremeColor"/>
 				</switch>
 			</apply>
 		</switch>
