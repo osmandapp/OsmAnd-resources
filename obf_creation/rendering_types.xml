@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <osmand_types>
+    <!-- Version 1.1, 2021-12-22 adding tags for nautical rendering for seamarks in INT-1 section K Obstructions and J Seabed, Weed, Seagrass -->
+	
 	<!-- currently name tags are indexed with name and additional in nameTags separated by comma -->
 
 	<!--
@@ -32,7 +34,7 @@
 		if_not_contains_tag1="ref" if_not_contains_value1="n" - checks if value of tag does not contains substring
 		if_ends_with_tag1="ref" if_ends_with_value1="x" - checks if value of tag ends with substring
 		if_not_ends_with_tag1="ref" if_not_ends_with_value1="x" - checks if value of tag does not ends with substring
-		to_substr1="2" - returns substring from value of tag acquired using if_starts_with,if_not_starts_with,if_contains_with,if_not_contains_with,if_ends_with,if_not_ends_with. to_substr1="2" means "cut first 2 symbols"
+		to_substr1="2" - returns substring from value of tag acquired using if_starts_with,if_not_starts_with,if_contains_with,if_not_contains_with,if_ends_with,if_not_ends_with. to_substr1="2" means "cut first 2 symbols", note: the to_substr1 function does not work, when the cut is the same size or larger than the string of the original value
 		Next string expands to a set of strings with suffixes from 1 to 10:
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" to_tag1="route_road_*_ref" seq="1:10" apply_to="way"/>
 
@@ -6005,9 +6007,8 @@
 	<type tag="seamark:sequence" minzoom="11" additional="text" notosm="true"/>
 	<type tag="seamark:system" minzoom="11" additional="true" notosm="true"/>
 	<type tag="seamark:topmark" minzoom="11" additional="true" notosm="true"/>
-
 	<type tag="seamark:attached" minzoom="11" additional="true" notosm="true"/>
-
+	<type tag="seamark:surface" minzoom="11" additional="text" notosm="true"/>
 
 	<category name="seamarks_map">
 		<type tag="seamark:type" value="anchorage" minzoom="11" nameTags="seamark:name"/>
@@ -6078,7 +6079,6 @@
 		<type tag="seamark:type" value="restricted_area" minzoom="10" nameTags="seamark:name,seamark:restricted_area:information"/>
 		<type tag="seamark:type" value="rock" minzoom="10" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="sea_area" minzoom="10" nameTags="seamark:name,name"/>
-		<type tag="seamark:type" value="seabed_area" minzoom="10" nameTags="seamark:name,name"/>
 		<type tag="seamark:type" value="seaplane_landing_area" minzoom="10" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="separation_zone" minzoom="10" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="separation_line" minzoom="10" nameTags="seamark:name"/>
@@ -6215,8 +6215,7 @@
 		<type tag="seamark:marine_farm:category" minzoom="13" additional="true"/>
 		<type tag="seamark:precautionary_area:restriction" minzoom="10" additional="true"/>
 		<type tag="seamark:pylon:category" minzoom="13" additional="true"/>
-		<type tag="seamark:seabed_area:surface" minzoom="13" additional="true"/>
-		<entity_convert pattern="tag_transform" from_tag="seamark:seabed_area:surface" to_tag1="name" apply_to="node"/>
+
 		<entity_convert pattern="tag_transform" from_tag="seamark:signal_station_warning:category" from_value="depth" to_tag1="seamark:signal_station_warning:category_name" to_value1="Depth"/>
 		<entity_convert pattern="tag_transform" from_tag="seamark:signal_station_warning:category" from_value="tide_gauge" to_tag1="seamark:signal_station_warning:category_name" to_value1="Tide gauge"/>
 		<entity_convert pattern="tag_transform" from_tag="seamark:signal_station_warning:category" from_value="water_level_gauge" to_tag1="seamark:signal_station_warning:category_name" to_value1="Water level gauge"/>
@@ -6239,7 +6238,62 @@
 		<entity_convert pattern="tag_transform" from_tag="seamark:signal_station_traffic:category" from_value="port_control" to_tag1="seamark:signal_station_traffic:category_name" to_value1="Port control"/>
 		<type tag="seamark:rock:water_level" minzoom="13" additional="true"/>
 		<type tag="seamark:wreck:category" minzoom="13" additional="true"/>
-
+		
+		<!-- INT-1 J Section: Nature of the Seabed, https://wiki.openstreetmap.org/wiki/Seamarks/INT-1_Section_J  --> 
+		<!-- Tested 2021-12-18 together with version 1.1 of nautical.renderer.xml, e.g. http://osmand.net/go.html?lat=36.65161&lon=25.37019&z=16, feedback welcome: josail @ gmx.de -->
+		<type tag="seamark:seabed_area:surface" minzoom="13" additional="true"/>
+		<type tag="seabed_surface_1" minzoom="11" additional="text" notosm="true"/>
+		<type tag="seabed_surface_all" minzoom="11" additional="text" notosm="true"/>
+		<!-- TODO: INT-1 J12.2 2nd and 3rd surface type and qulifications are not yet transferred to "simple" letter display. Commands and syntax for achieving this remains unclear for me, help welcome. Current backup solution: Allow additional display of seamark "category" or "all" surface type and qualification tags as nameTag2. Selection via renderingProperties in nautical.render.xml
+		<type tag="seabed_surface_2" minzoom="11" additional="text" notosm="true"/>
+		<type tag="seabed_surface_3" minzoom="11" additional="text" notosm="true"/>
+		<type tag="seabed_quali_1" minzoom="11" additional="text" notosm="true"/>
+		<type tag="seabed_quali_2" minzoom="11" additional="text" notosm="true"/>
+		<type tag="seabed_quali_3" minzoom="11" additional="text" notosm="true"/> -->
+		<type tag="seabed_letters" minzoom="11" additional="text" notosm="true"/>
+		<type tag="seamark_category" minzoom="11" additional="text" notosm="true"/>
+		<type tag="seabed_taxon_all" minzoom="11" additional="text" notosm="true"/>
+		
+		<!-- INT-1 J1 to J12 Types of Seabed, OsmAnd nautical.render.xml renderingProperty options for seabedDetail as nameTag2: simple=1st surface type as letters according to INT-1 J1-J13, category=surface tag in seamark_category, all=surface qualification and type included in seabed_surface_all, seagrass and weed in seabed_taxon_all including category, genus and taxon, omit=no display-->	
+		<type tag="seamark:type" value="seabed_area" minzoom="11" 
+		      nameTags="seabed_surface_1,seamark_category,seabed_surface_all,seamark:seabed_area:surface"/> 
+		<!-- INT-1 J1-J11 assigning letters of 1st surface type -->
+		<entity_convert pattern="tag_transform" from_tag="seamark:seabed_area:surface" if_starts_with_tag1="seamark:seabed_area:surface" if_starts_with_value1="sand" to_tag1="seamark:seabed_area:surface" to_tag2="seabed_surface_1" to_value2="S" to_tag3="seabed_surface_all" to_tag4="seamark_category"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:seabed_area:surface" if_starts_with_tag1="seamark:seabed_area:surface" if_starts_with_value1="mud" to_tag1="seamark:seabed_area:surface" to_tag2="seabed_surface_1" to_value2="M" to_tag3="seabed_surface_all" to_tag4="seamark_category"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:seabed_area:surface" if_starts_with_tag1="seamark:seabed_area:surface" if_starts_with_value1="clay" to_tag1="seamark:seabed_area:surface" to_tag2="seabed_surface_1" to_value2="Cy" to_tag3="seabed_surface_all" to_tag4="seamark_category"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:seabed_area:surface" if_starts_with_tag1="seamark:seabed_area:surface" if_starts_with_value1="silt" to_tag1="seamark:seabed_area:surface" to_tag2="seabed_surface_1" to_value2="Si" to_tag3="seabed_surface_all" to_tag4="seamark_category"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:seabed_area:surface" if_starts_with_tag1="seamark:seabed_area:surface" if_starts_with_value1="Stones" to_tag1="seamark:seabed_area:surface" to_tag2="seabed_surface_1" to_value2="St" to_tag3="seabed_surface_all" to_tag4="seamark_category"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:seabed_area:surface" if_starts_with_tag1="seamark:seabed_area:surface" if_starts_with_value1="gravel" to_tag1="seamark:seabed_area:surface" to_tag2="seabed_surface_1" to_value2="G" to_tag3="seabed_surface_all" to_tag4="seamark_category"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:seabed_area:surface" if_starts_with_tag1="seamark:seabed_area:surface" if_starts_with_value1="pebbles" to_tag1="seamark:seabed_area:surface" to_tag2="seabed_surface_1" to_value2="P" to_tag3="seabed_surface_all" to_tag4="seamark_category"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:seabed_area:surface" if_starts_with_tag1="seamark:seabed_area:surface" if_starts_with_value1="cobbles" to_tag1="seamark:seabed_area:surface" to_tag2="seabed_surface_1" to_value2="Cb" to_tag3="seabed_surface_all" to_tag4="seamark_category"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:seabed_area:surface" if_starts_with_tag1="seamark:seabed_area:surface" if_starts_with_value1="rocky" to_tag1="seamark:seabed_area:surface" to_tag2="seabed_surface_1" to_value2="R" to_tag3="seabed_surface_all" to_tag4="seamark_category"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:seabed_area:surface" if_starts_with_tag1="seamark:seabed_area:surface" if_starts_with_value1="boulder" to_tag1="seamark:seabed_area:surface" to_tag2="seabed_surface_1" to_value2="Bo" to_tag3="seabed_surface_all" to_tag4="seamark_category"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:seabed_area:surface" if_starts_with_tag1="seamark:seabed_area:surface" if_starts_with_value1="coral" to_tag1="seamark:seabed_area:surface" to_tag2="seabed_surface_1" to_value2="Co" to_tag3="seabed_surface_all" to_tag4="seamark_category"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:seabed_area:surface" if_starts_with_tag1="seamark:seabed_area:surface" if_starts_with_value1="lava" to_tag1="seamark:seabed_area:surface" to_tag2="seabed_surface_1" to_value2="Lv" to_tag3="seabed_surface_all" to_tag4="seamark_category"/>
+		
+		<!-- INT-1 J12.2 backup for additional display of all qualifications and surface types in nameTag2 -->		
+		<entity_convert pattern="tag_combine" separator=";" from_tag="seamark:seabed_area:surface_qualification" from_tag1="seamark:seabed_area:surface" to_tag1="seabed_surface_all" map="yes"/> 
+			
+		<!-- INT-1 J13.1, J13.2 weed/kelp -->		
+		<type tag="seamark:type" value="weed" minzoom="11" 
+		      nameTags="seabed_letters,seamark_category,seabed_taxon_all,seamark:weed:category"/>
+		<type tag="seamark:weed:category" minzoom="11"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:weed:category" to_tag1="seamark:weed:category" to_tag2="seabed_letters" to_value2="Wd" to_tag3="seabed_taxon_all" to_tag4="seamark_category"/>
+		
+		<!-- INT-1 J13.3, J13.4 seagrass -->
+		<type tag="seamark:type" value="seagrass" minzoom="11" 
+		      nameTags="seabed_letters,seamark_category,seabed_taxon_all,seamark:seagrass:category"/> 
+		<type tag="seamark:seagrass:category" minzoom="11"/>
+		<entity_convert pattern="tag_transform" from_tag="seamark:seagrass:category" to_tag1="seamark:seagrass:category" to_tag2="seabed_letters" to_value2="Sg" to_tag3="seabed_taxon_all" to_tag4="seamark_category"/>
+		
+		<!-- INT-1 J13 compile seaweed or seagrass tags for additional display of all taxon information in nameTag2 -->		
+		<!-- TODO: add missing seagrass and weed where genus and taxon tags are missing -->
+		<entity_convert pattern="tag_combine" separator=";" from_tag="seamark:weed:category" from_tag1="genus" from_tag2="taxon" to_tag1="seabed_taxon_all" map="yes"/> 
+		<entity_convert pattern="tag_combine" separator=";" from_tag="seamark:seagrass:category" from_tag1="genus" from_tag2="taxon" to_tag1="seabed_taxon_all" map="yes"/> 
+		
+		<!-- INT-1 J14, J15 sand_waves, spring -->
+		<type tag="seamark:type" value="sand_waves" minzoom="11" /> 
+		<type tag="seamark:type" value="spring" minzoom="11" /> 
 	</category>
 
 	<category name="seamarks" nameTags="seamark:name,ref" >
@@ -6284,7 +6338,6 @@
 		<type tag="seamark" value="rock" minzoom="11" notosm="true"/>
 		<type tag="seamark" value="wreck" minzoom="11" notosm="true"/>
 	</category>
-
 
 	<category name="routing">
 		<!-- add more granular example like -->

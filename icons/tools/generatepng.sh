@@ -150,6 +150,7 @@ generateBothMapPOIPng() {
   # exit 0;
 
   # genMapIconsNoScale 'shaders'
+  # genMapIconsNoScale 'shaders_int1'
   # genMapIconsNoScale 'shields'
   # genMapIconsNoScale 'shields_big'
   # genMapIconsNoScale 'road_shields'
@@ -181,6 +182,7 @@ generateBothMapPOIPng() {
   # genMapIconsNoScale 'seamark_shields'
   # genMapIconsNoScale 'seamark_shields_x4'
   # genMapIconsStdSize 'seamark' '#' x2
+  # genMapIconsStdSize 'seamark_int1' '#' x2
   # genMapIconsStdSize 'seamark_small' '#' x2
   # genMapIconsStdSize 'seamark_big' '#' x4
 
