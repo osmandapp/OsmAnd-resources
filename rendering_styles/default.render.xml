@@ -1661,6 +1661,13 @@
 		<case nightMode="true" attrColorValue="#55803b80"/>
 		<case attrColorValue="#30800080"/>
 	</renderingAttribute>
+	<renderingAttribute name="boundaryAboriginalLandsColor">
+		<case attrColorValue="#44865F37"/>
+	</renderingAttribute>
+	<renderingAttribute name="boundaryBorderZoneColor">
+		<case nightMode="true" attrColorValue="#55803B43"/>
+		<case attrColorValue="#35BB0059"/>
+	</renderingAttribute>
 	<renderingConstant name="boundaryNationalParkColor" value="$null"/>
 	<renderingConstant name="boundaryNationalParkColor2" value="#500AED0A"/>
 
@@ -2726,6 +2733,23 @@
 	<renderingConstant name="craftTextColorDay" value="#273249"/>
 	<renderingConstant name="craftTextHaloColorDay" value="#aae4edff"/>
 
+	<renderingAttribute name="boundaryAboriginalLandsTextColor">
+		<case nightMode="true" attrColorValue="#BF9264"/>
+		<case attrColorValue="#A27343"/>
+	</renderingAttribute>
+	<renderingAttribute name="boundaryAboriginalLandsTextHaloColor">
+		<case nightMode="true" attrColorValue="#33BF9264"/>
+		<case attrColorValue="#99F3E8DC"/>
+	</renderingAttribute>
+	<renderingAttribute name="boundaryBorderZoneTextColor">
+		<case nightMode="true" attrColorValue="#C18C93"/>
+		<case attrColorValue="#83003F"/>
+	</renderingAttribute>
+	<renderingAttribute name="boundaryBorderZoneTextHaloColor">
+		<case nightMode="true" attrColorValue="#33805D62"/>
+		<case attrColorValue="#225E4327"/>
+	</renderingAttribute>
+
 	<renderingAttribute name="subwayTextDefaultColor">
 		<case nightMode="true" attrColorValue="#f7dede"/>
 		<case attrColorValue="#7b0000"/>
@@ -3297,6 +3321,8 @@
 					<apply_if moreDetailed="false" maxzoom="14" order="-1"/>
 				</case>
 				<case tag="boundary" value="low_emission_zone" order="255" />
+				<case tag="boundary" value="aboriginal_lands" order="9"/>
+				<case tag="boundary" value="border_zone" order="100"/>
 				<case tag="harbour" value="yes"/>
 				<case tag="waterway" value="dock"/>
 				<case tag="waterway" value="wadi"/>
@@ -5484,6 +5510,10 @@
 						<apply_if moreDetailed="false" maxzoom="15" disable="true"/>
 					</switch>
 					<apply_if nightMode="true" textColor="#9fe39f" textHaloColor="#aa444444"/>
+				</switch>
+				<switch textSize="12" textWrapWidth="20" textHaloRadius="$textHaloRadius" textItalic="true" nameTag="">
+					<case minzoom="8" tag="boundary" value="aboriginal_lands" textOrder="104" textColor="$boundaryAboriginalLandsTextColor" textHaloColor="$boundaryAboriginalLandsTextHaloColor"/>
+					<case minzoom="11" tag="boundary" value="border_zone" textOrder="105" textColor="$boundaryBorderZoneTextColor" textHaloColor="$boundaryBorderZoneTextHaloColor" textOnPath="true"/>
 				</switch>
 				<switch textSize="12" textColor="$tourismTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$tourismTextHaloColorDay" textWrapWidth="20">
 					<case minzoom="$naturalSandTextMinZoom" tag="natural" value="sand" textOrder="255"/>
@@ -9658,14 +9688,23 @@
 					<apply_if minzoom="14" strokeWidth_2="3.5:3.5"/>
 				</switch>
 				<switch>
-					<case showLez="true" minzoom="11" tag="boundary" value="low_emission_zone" color_2="#9900ae3d">
-						<apply_if maxzoom="16" shader="lez"/>
-					</case>
-					<case natureReserves="true" minzoom="8" tag="boundary" value="protected_area" color="$null" color_2="#4400ae3d"/>
+					<switch>
+						<case showLez="true" minzoom="11" tag="boundary" value="low_emission_zone" color_2="#9900ae3d">
+							<apply_if maxzoom="16" shader="lez"/>
+						</case>
+						<case natureReserves="true" minzoom="8" tag="boundary" value="protected_area" color="$null" color_2="#4400ae3d"/>
+						<apply>
+							<case maxzoom="11" pathEffect_2="6_3"/>
+							<case maxzoom="13" pathEffect_2="10_5"/>
+							<case minzoom="14" pathEffect_2="13_8"/>
+						</apply>
+					</switch>
+					<case minzoom="8" tag="boundary" value="aboriginal_lands" color="$null" color_2="$boundaryAboriginalLandsColor"/>
+					<case minzoom="10" tag="boundary" value="border_zone" color="$null" color_2="$boundaryBorderZoneColor"/>
 					<apply>
-						<case maxzoom="11" strokeWidth_2="1:1" pathEffect_2="6_3"/>
-						<case maxzoom="13" strokeWidth_2="2:2" pathEffect_2="10_5"/>
-						<case minzoom="14" strokeWidth_2="3.5:3.5" pathEffect_2="13_8"/>
+						<case maxzoom="11" strokeWidth_2="1:1"/>
+						<case maxzoom="13" strokeWidth_2="2:2"/>
+						<case minzoom="14" strokeWidth_2="3.5:3.5"/>
 					</apply>
 				</switch>
 				<switch minzoom="12">
@@ -12308,6 +12347,14 @@
 					<case minzoom="14" strokeWidth="3.5:3.5" pathEffect="13_8"/>
 				</apply>
 			</case>
+		</switch>
+		<switch>
+			<case minzoom="8" tag="boundary" value="aboriginal_lands" color="$boundaryAboriginalLandsColor"/>
+			<case minzoom="10" tag="boundary" value="border_zone" color="$boundaryBorderZoneColor"/>
+			<apply>
+				<case maxzoom="13" strokeWidth="2:2"/>
+				<case minzoom="14" strokeWidth="3.5:3.5"/>
+			</apply>
 		</switch>
 		<case showLez="true" minzoom="11" tag="boundary" value="low_emission_zone" color="#9900ae3d"/>
 		<!-- <case tag="indoor" value="wall" color="#777777" strokeWidth="2"/>
