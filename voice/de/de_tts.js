@@ -409,12 +409,25 @@ function turn_street(streetName) {
 }
 
 function assemble_street_name(streetName) {
+	var toRef = streetName["toRef"]
+	/* Major roads highway=(motorway|primary|secondary|tertiary) in Germany 
+	 * have ref tags containing a type letter (A|B|L|K) and number, 
+	 * e.g. "ref=K 673" for a tertiary road. But only refs for motorways and highway=primary are
+	 * publicly visible on signposts, so reading the ref value of secondary or tertiary roads out loud
+	 * does not benefit the driver, as the information can not be cross-referenced with the
+	 * visible signs.
+	 * So only reference the roads by their ref attribute, if no actual street name is available,
+	 * which mainly happens in rural regions outside of towns.
+	 */
+	if ((toRef.startsWith("L") || toRef.startsWith("K")) && streetName["toStreetName"] != "") {
+		toRef = ""
+	}
 	if (streetName["toDest"] === "") {
-		return streetName["toRef"] + " " + streetName["toStreetName"];
-	} else if (streetName["toRef"] === "") {
+		return toRef + " " + streetName["toStreetName"];
+	} else if (toRef === "") {
 		return streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
-	} else if (streetName["toRef"] != "") {
-		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
+	} else if (toRef != "") {
+		return toRef + " " + dictionary["toward"] + " " + streetName["toDest"];
 	}
 }
 
