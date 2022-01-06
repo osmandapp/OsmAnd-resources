@@ -952,6 +952,43 @@
 		<case attrColorValue="#000000"/>
 	</renderingAttribute>
 
+	<renderingAttribute name="contour10mTextColor">
+		<case contourColorScheme="white" attrColorValue="#F1F1F1"/>
+		<case contourColorScheme="yellow" attrColorValue="#F4E166"/>
+		<case contourColorScheme="green" attrColorValue="#00D400"/>
+		<case contourColorScheme="red" attrColorValue="#D40000"/>
+		<case attrColorValue="#777777">
+			<apply_if nightMode="true" attrColorValue="#999999"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="contour20mTextColor">
+		<case contourColorScheme="white" attrColorValue="#F1F1F1"/>
+		<case contourColorScheme="yellow" attrColorValue="#F4E166"/>
+		<case contourColorScheme="green" attrColorValue="#00D400"/>
+		<case contourColorScheme="red" attrColorValue="#D40000"/>
+		<case attrColorValue="#666666">
+			<apply_if nightMode="true" attrColorValue="#a3a3a3"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="contour50mTextColor">
+		<case contourColorScheme="white" attrColorValue="#ffffff"/>
+		<case contourColorScheme="yellow" attrColorValue="#FFF29E"/>
+		<case contourColorScheme="green" attrColorValue="#00ff00"/>
+		<case contourColorScheme="red" attrColorValue="#ff0000"/>
+		<case attrColorValue="#666666">
+			<apply_if nightMode="true" attrColorValue="#aaaaaa"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="contour100mTextColor">
+		<case contourColorScheme="white" attrColorValue="#ffffff"/>
+		<case contourColorScheme="yellow" attrColorValue="#FFF29E"/>
+		<case contourColorScheme="green" attrColorValue="#00ff00"/>
+		<case contourColorScheme="red" attrColorValue="#ff0000"/>
+		<case attrColorValue="#444444">
+			<apply_if nightMode="true" attrColorValue="#BBBBBB"/>
+		</case>
+	</renderingAttribute>
+
 	<renderingConstant name="buildingTextHaloRadiusDay" value="2"/>
 
 	<renderingAttribute name="buildingTextColor">
@@ -2587,25 +2624,19 @@
 			<case minzoom="15" contourLines="15"/>
 			<case minzoom="16" contourLines="16"/>
 			<apply>
-				<case minzoom="14" additional="contourtype=20m" textColor="#666666" textSize="11" textMinDistance="170">
-					<apply_if nightMode="true" textColor="#A3A3A3"/>
-				</case>
+				<case minzoom="14" additional="contourtype=20m" textColor="$contour20mTextColor" textSize="11" textMinDistance="170"/>
 				<switch minzoom="15">
 					<case additional="contourtype=10m"/>
 					<case additional="contourtype=40f"/>
-					<apply textColor="#777777" textSize="10" textMinDistance="160"/>
-					<apply_if nightMode="true" textColor="#999999"/>
+					<apply textColor="$contour10mTextColor" textSize="10" textMinDistance="160"/>
 				</switch>
 				<switch>
 					<case additional="contourtype=100m" textSize="11"/>
 					<case additional="contourtype=1000f" textSize="12"/>
 					<case additional="contourtype=200f" textSize="11"/>
-					<apply textColor="#444444" textOrder="250" textMinDistance="250"/>
-					<apply_if nightMode="true" textColor="#BBBBBB"/>
+					<apply textColor="$contour100mTextColor" textOrder="250" textMinDistance="250"/>
 				</switch>
-				<case additional="contourtype=50m" textColor="#666666" textSize="11" textMinDistance="200" textOrder="254">
-					<apply_if nightMode="true" textColor="#AAAAAA"/>
-				</case>
+				<case additional="contourtype=50m" textColor="$contour50mTextColor" textSize="11" textMinDistance="200" textOrder="254"/>
 				<apply_if nightMode="true" textHaloRadius=":1" textHaloColor="#aa333333"/>
 			</apply>
 		</switch>
