@@ -1523,26 +1523,6 @@
 					<apply textWrapWidth="19"/>
 					<apply_if engine_v1="false" textDy="7"/>
 				</switch>
-		
-				<!-- INT-1 J Section: Nature of the Seabed -->
-				<!-- INT-1 J1 to J12 Types of Seabed, OsmAnd nautical.render.xml renderingProperty options for seabedDetail as nameTag2: simple=1st surface type as letters according to INT-1 J1-J13, category=surface tag in seamark_category, all=surface qualification and type included in seabed_surface_all, seagrass and weed in seabed_taxon_all including category, genus and taxon, omit=no display -->
-				<!-- Tested 2021-12-18 together with version 1.1 of rendering_types.xml, e.g.  http://osmand.net/go.html?lat=36.65161&lon=25.37019&z=16, feedback welcome: josail @ gmx.de -->
-				<switch minzoom="14" textWrapWidth="20" textOrder="14" textDy="10" textColor="#0400ab" textHaloColor="#5576cbea" textHaloRadius="2">
-				    <case seabedDetail="simple" tag="seamark:type" value="seabed_area" nameTag="seabed_surface_1"/> 
-					<case seabedDetail="simple" tag="seamark:type" value="weed" nameTag="seabed_letters" icon="seamark_j132_weedkelp"> 
-						<apply_if nightMode="true" icon="seamark_j132_weedkelp" shield="seamark_j132_weedkelp_shield_night"/>
-					</case>	 
-					<case seabedDetail="simple" tag="seamark:type" value="seagrass" nameTag="seabed_letters" icon="seamark_j134_seagrass"> 
-						<apply_if nightMode="true" icon="seamark_j134_seagrass" shield="seamark_j134_seagrass_shield_night"/>
-					</case>	  
-					<!-- additional seabedDetail of seamark "category" or "all" surface type and qualification tags as nameTag2-->
-					<case seabedDetail="category" tag="seamark:type" value="seabed_area" nameTag="seabed_surface_1" nameTag2="seamark_category"/> 
-					<case seabedDetail="category" tag="seamark:type" value="weed" nameTag="seabed_letters" nameTag2="seamark_category" icon="seamark_j132_weedkelp"/> 
-					<case seabedDetail="category" tag="seamark:type" value="seagrass" nameTag="seabed_letters" nameTag2="seamark_category" icon="seamark_j134_seagrass"/> 
-					<case seabedDetail="all" tag="seamark:type" value="seabed_area" nameTag="seabed_surface_1" nameTag2="seabed_surface_all"/> 
-					<case seabedDetail="all" tag="seamark:type" value="weed" nameTag="seabed_letters" nameTag2="seabed_taxon_all"/>
-					<case seabedDetail="all" tag="seamark:type" value="seagrass" nameTag="seabed_letters" nameTag2="seabed_taxon_all"/> 
-				</switch>
 				
 				<switch> <!-- for big icons -->
 					<switch>
@@ -1689,10 +1669,40 @@
 			</switch>
 			<switch minzoom="15" textSize="10" textColor="#5a0461" textWrapWidth="7" textHaloColor="#33ffffff" textHaloRadius="1" textOrder="150">
 				<case tag="seamark:type" value="distance_mark" nameTag="seamark:distance_mark:distance" nameTag2="seamark:distance_mark:units"/>
-				<case minzoom="18" tag="seamark:type" value="seabed_area" nameTag="seamark:name" nameTag2="name"/>
-				<case minzoom="18" tag="seamark:type" value="seabed_area" nameTag="name" nameTag2="seamark:name"/>
 				<apply_if nightMode="true" textColor="#e4d0e3"/>
 			</switch>
+			
+			<!-- INT-1 J Section: Nature of the Seabed -->
+			<!-- INT-1 J1 to J12 Types of Seabed, OsmAnd nautical.render.xml renderingProperty options for seabedDetail as nameTag2: simple=1st surface type as letters according to INT-1 J1-J13, category=surface tag in seamark_category, all=surface qualification and type included in seabed_surface_all, seagrass and weed in seabed_taxon_all including category, genus and taxon, omit=no display -->
+			<!-- Tested 2021-12-18 together with version 1.1 of rendering_types.xml, e.g.  http://osmand.net/go.html?lat=36.65161&lon=25.37019&z=16, feedback welcome: josail @ gmx.de -->
+			<switch minzoom="14" textWrapWidth="20" textOrder="14" textDy="10" textColor="#0400ab" textHaloColor="$waterwayColor" textHaloRadius="2">
+				<switch seabedDetail="simple">
+					<case tag="seamark:type" value="seabed_area" nameTag="seabed_surface_1"/> 
+					<case tag="seamark:type" value="weed" nameTag="seabed_letters" icon="seamark_j132_weedkelp"> 
+						<apply_if nightMode="true" icon="seamark_j132_weedkelp" shield="seamark_j132_weedkelp_shield_night"/>
+					</case>	 
+					<case tag="seamark:type" value="seagrass" nameTag="seabed_letters" icon="seamark_j134_seagrass"> 
+						<apply_if nightMode="true" icon="seamark_j134_seagrass" shield="seamark_j134_seagrass_shield_night"/>
+					</case>
+				</switch>
+				<!-- additional seabedDetail of seamark "category" or "all" surface type and qualification tags as nameTag2-->
+				<switch seabedDetail="category">
+					<case tag="seamark:type" value="seabed_area" nameTag="seabed_surface_1" nameTag2="seamark_category"/> 
+					<case tag="seamark:type" value="weed" nameTag="seabed_letters" nameTag2="seamark_category" icon="seamark_j132_weedkelp"/> 
+					<case tag="seamark:type" value="seagrass" nameTag="seabed_letters" nameTag2="seamark_category" icon="seamark_j134_seagrass"/> 
+				</switch>
+				<switch seabedDetail="all">
+					<case tag="seamark:type" value="seabed_area" nameTag="seabed_surface_1" nameTag2="seabed_surface_all"/> 
+					<case tag="seamark:type" value="weed" nameTag="seabed_letters" nameTag2="seabed_taxon_all"/>
+					<case tag="seamark:type" value="seagrass" nameTag="seabed_letters" nameTag2="seabed_taxon_all"/>
+				</switch>
+				<switch minzoom="18"> <!-- in case SeabedDetail="omit" a simplified display at very high zoom level is maintained-->
+					<case tag="seamark:type" value="seabed_area" nameTag="seamark:name" nameTag2="name"/>
+					<case tag="seamark:type" value="seabed_area" nameTag="name" nameTag2="seamark:name"/>
+				</switch>
+				<apply_if nightMode="true" textColor="#e4d0e3"/>
+			</switch>
+			
 			<switch textSize="12" textColor="#ffffff" textHaloRadius="$textHaloRadiusDay" textHaloColor="#7b7463" textWrapWidth="20" textOnPath="true" textDy="0">
 				<case minzoom="17" tag="barrier" value="city_wall"/>
 				<case minzoom="17" tag="seamark:type" value="fortified_structure"/>
