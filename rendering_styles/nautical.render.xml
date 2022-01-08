@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <renderingStyle name="nautical" depends="" defaultColor="#fddb8f" version="1.1"> 
-<!-- Version 1.1, 2021-12-22 adding nautical rendering for seamarks in INT-1 section K Obstructions and J Seabed, Weed, Seagrass -->
+<!-- Version 1.1, 2022-01-07 adding nautical rendering for seamarks in INT-1 section K Obstructions and J Seabed, Weed, Seagrass -->
 
 <!--	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>-->
@@ -1523,7 +1523,38 @@
 					<apply textWrapWidth="19"/>
 					<apply_if engine_v1="false" textDy="7"/>
 				</switch>
-						
+			
+				<!-- INT-1 J Section: Nature of the Seabed -->
+				<!-- INT-1 J1 to J12 Types of Seabed, OsmAnd nautical.render.xml renderingProperty options for seabedDetail as nameTag2: simple=1st surface type as letters according to INT-1 J1-J13, category=surface tag in seamark_category, all=surface qualification and type included in seabed_surface_all, seagrass and weed in seabed_taxon_all including category, genus and taxon, omit=no display -->
+				<!-- Tested 2021-12-18 together with version 1.1 of rendering_types.xml, e.g.  http://osmand.net/go.html?lat=36.65161&lon=25.37019&z=16, feedback welcome: josail @ gmx.de -->
+				<switch minzoom="14" textWrapWidth="20" textOrder="14" textDy="10" textColor="#0400ab" textHaloColor="$waterwayColor" textHaloRadius="2">
+					<switch seabedDetail="simple">
+						<case tag="seamark:type" value="seabed_area" nameTag="seabed_surface_1"/> 
+						<case tag="seamark:type" value="weed" nameTag="seabed_letters" icon="seamark_j132_weedkelp"> 
+							<apply_if nightMode="true" icon="seamark_j132_weedkelp" shield="seamark_j132_weedkelp_shield_night"/>
+						</case>	 
+						<case tag="seamark:type" value="seagrass" nameTag="seabed_letters" icon="seamark_j134_seagrass"> 
+							<apply_if nightMode="true" icon="seamark_j134_seagrass" shield="seamark_j134_seagrass_shield_night"/>
+						</case>
+					</switch>
+					<!-- additional seabedDetail of seamark "category" or "all" surface type and qualification tags as nameTag2-->
+					<switch seabedDetail="category">
+						<case tag="seamark:type" value="seabed_area" nameTag="seabed_surface_1" nameTag2="seamark_category"/> 
+						<case tag="seamark:type" value="weed" nameTag="seabed_letters" nameTag2="seamark_category" icon="seamark_j132_weedkelp"/> 
+						<case tag="seamark:type" value="seagrass" nameTag="seabed_letters" nameTag2="seamark_category" icon="seamark_j134_seagrass"/> 
+					</switch>
+					<switch seabedDetail="all">
+						<case tag="seamark:type" value="seabed_area" nameTag="seabed_surface_1" nameTag2="seabed_surface_all"/> 
+						<case tag="seamark:type" value="weed" nameTag="seabed_letters" nameTag2="seabed_taxon_all"/>
+						<case tag="seamark:type" value="seagrass" nameTag="seabed_letters" nameTag2="seabed_taxon_all"/>
+					</switch>
+					<switch minzoom="18"> <!-- in case SeabedDetail="omit" a simplified display at very high zoom level is maintained-->
+						<case tag="seamark:type" value="seabed_area" nameTag="seamark:name" nameTag2="name"/>
+						<case tag="seamark:type" value="seabed_area" nameTag="name" nameTag2="seamark:name"/>
+					</switch>
+					<apply_if nightMode="true" textColor="#e4d0e3"/>
+				</switch>
+							
 				<switch> <!-- for big icons -->
 					<switch>
 						<case minzoom="11" tag="seamark:type" value="light_major" nameTag="name" nameTag2="seamark:light:character" textOrder="60"/>
@@ -1667,33 +1698,11 @@
 				<apply_if engine_v1="false" textDy="-22"/>
 <!--				<apply_if nightMode="true" textColor="#f3e1ff" textHaloColor="#5545a5e2"/>-->
 			</switch>
-			<switch minzoom="15" textSize="12" textColor="#5a0461" textWrapWidth="7" textHaloColor="#33ffffff" textHaloRadius="1" textOrder="150">
-				<case tag="seamark:type" value="distance_mark" nameTag="seamark:distance_mark:distance" nameTag2="seamark:distance_mark:units" textSize="10"/>
-				<switch minzoom="14" textWrapWidth="20" textOrder="14" textDy="10" textColor="#0400ab" textHaloColor="$waterwayColor" textHaloRadius="2">
-					<switch seabedDetail="simple">
-						<case tag="seamark:type" value="seabed_area" nameTag="seabed_surface_1"/>
-						<case tag="seamark:type" value="weed" nameTag="seabed_letters" icon="seamark_j132_weedkelp"/>
-						<case tag="seamark:type" value="seagrass" nameTag="seabed_letters" icon="seamark_j134_seagrass"/>
-					</switch>
-					<!-- additional seabedDetail of seamark "category" or "all" surface type and qualification tags as nameTag2-->
-					<switch seabedDetail="category">
-						<case tag="seamark:type" value="seabed_area" nameTag="seabed_surface_1" nameTag2="seamark_category"/>
-						<case tag="seamark:type" value="weed" nameTag="seabed_letters" nameTag2="seamark_category" icon="seamark_j132_weedkelp"/>
-						<case tag="seamark:type" value="seagrass" nameTag="seabed_letters" nameTag2="seamark_category" icon="seamark_j134_seagrass"/>
-					</switch>
-					<switch seabedDetail="all">
-						<case tag="seamark:type" value="seabed_area" nameTag="seabed_surface_1" nameTag2="seabed_surface_all"/>
-						<case tag="seamark:type" value="weed" nameTag="seabed_letters" nameTag2="seabed_taxon_all"/>
-						<case tag="seamark:type" value="seagrass" nameTag="seabed_letters" nameTag2="seabed_taxon_all"/>
-					</switch>
-					<case minzoom="18" tag="seamark:type" value="seabed_area" nameTag="seamark:name" nameTag2="name"/>
-					<case minzoom="18" tag="seamark:type" value="seabed_area" nameTag="name" nameTag2="seamark:name"/>
-				</switch>
-				<!-- INT-1 J Section: Nature of the Seabed -->
-				<!-- INT-1 J1 to J12 Types of Seabed, OsmAnd nautical.render.xml renderingProperty options for seabedDetail as nameTag2: simple=1st surface type as letters according to INT-1 J1-J13, category=surface tag in seamark_category, all=surface qualification and type included in seabed_surface_all, seagrass and weed in seabed_taxon_all including category, genus and taxon, omit=no display -->
-				<!-- Tested 2021-12-18 together with version 1.1 of rendering_types.xml, e.g.  http://osmand.net/go.html?lat=36.65161&lon=25.37019&z=16, feedback welcome: josail @ gmx.de -->
+			<switch minzoom="15" textSize="10" textColor="#5a0461" textWrapWidth="7" textHaloColor="#33ffffff" textHaloRadius="1" textOrder="150">
+				<case tag="seamark:type" value="distance_mark" nameTag="seamark:distance_mark:distance" nameTag2="seamark:distance_mark:units"/>
 				<apply_if nightMode="true" textColor="#e4d0e3"/>
 			</switch>
+
 			<switch textSize="12" textColor="#ffffff" textHaloRadius="$textHaloRadiusDay" textHaloColor="#7b7463" textWrapWidth="20" textOnPath="true" textDy="0">
 				<case minzoom="17" tag="barrier" value="city_wall"/>
 				<case minzoom="17" tag="seamark:type" value="fortified_structure"/>
@@ -2941,7 +2950,9 @@
 			</switch>
 
 			<case minzoom="13" tag="seamark:type" value="obstruction">
-				<case minzoom="15" additional="seamark:obstruction:category=foul_ground" icon="seamark_k311_foul_ground"/>
+				<case minzoom="15" additional="seamark:obstruction:category=foul_ground" icon="seamark_k311_foul_ground">
+					<apply_if nightMode="true" shield="seamark_k311_foul_ground_shield_night"/>
+				</case>
 				<!-- alternative to INT-1 K31.1 icon: upward anchor icon="seamark_obstruction_foul_ground"/> -->
 				<case additional="seamark:obstruction:category=fish_haven" icon="seamark_restricted_area_fish_sanctuary"/>
 				<case additional="seamark:obstruction:category=boom" icon="seamark_obstruction_boom"/>
@@ -3033,10 +3044,12 @@
 				<case tag="seamark:type" value="weed" icon="seamark_j132_weedkelp" iconOrder="5"/> 
 				<case tag="seamark:type" value="seagrass" icon="seamark_j134_seagrass" iconOrder="5"/> -->
 				<case tag="seamark:type" value="sand_waves" icon="seamark_j14_sand_waves" iconOrder="150">
-					<apply_if nightMode="true" icon="seamark_j14_sand_waves_night"/>
+					<apply_if nightMode="true" shield="seamark_j14_sand_waves_shield_night"/>
+				</case> 
+				<case minzoom="15" tag="seamark:type" value="spring" icon="seamark_j15_spring" iconOrder="5">
+					<apply_if nightMode="true" shield="seamark_j15_spring_shield_night"/>
 				</case>
-				<case minzoom="15" tag="seamark:type" value="spring" icon="seamark_j15_spring" iconOrder="5"/>
-				<apply_if seabedDetail="omit" icon=""/> <!-- no display of seabedDetail selected in renderingProperties-->
+				<apply_if seabedDetail="omit" icon="" shield=""/> <!-- no display of sebedDetail selected in renderingProperties-->
 			</switch>
 
 			<case minzoom="11" tag="natural" value="peak" iconOrder="115">
@@ -3315,51 +3328,58 @@
 			</apply>
 		</switch>
 		
-		<!-- INT-1 J Section: Nature of the Seabed, https://wiki.openstreetmap.org/wiki/Seamarks/INT-1_Section_J  -->
+		<!-- INT-1 J Section: Nature of the Seabed, https://wiki.openstreetmap.org/wiki/Seamarks/INT-1_Section_J  --> 
 		<switch minzoom="14">
-			<case tag="seamark:type" value="seabed_area" color="$null">
+		    <case tag="seamark:type" value="seabed_area" color="$null">
 				<!-- <apply_if additional="seamark:seabed_area:surface=sand" shader="seamark_j1_sand"/> omitted-->
 				<!-- <apply_if additional="seamark:seabed_area:surface=mud" shader="seamark_j2_mud"/> omitted-->
 				<!-- <apply_if additional="seamark:seabed_area:surface=clay" shader="seamark_j3_clay"/> omitted-->
 				<!-- <apply_if additional="seamark:seabed_area:surface=silt" shader="seamark_j4_silt"/> omitted-->
-				<apply_if additional="seamark:seabed_area:surface=stones" shader="j20_stonesgravel">
-					<apply_if nightMode="true" shader="j20_stonesgravel_night"/>
-				</apply_if>
-				<apply_if additional="seamark:seabed_area:surface=stones;gravel" shader="j20_stonesgravel">
-					<apply_if nightMode="true" shader="j20_stonesgravel_night"/>
-				</apply_if>
-				<apply_if additional="seamark:seabed_area:surface=gravel" shader="j20_stonesgravel">
-					<apply_if nightMode="true" shader="j20_stonesgravel_night"/>
-				</apply_if>
+				<apply_if additional="seamark:seabed_area:surface=stones" shader="seamark_j20_stonesgravel"/>
+				<apply_if additional="seamark:seabed_area:surface=stones;gravel" shader="seamark_j20_stonesgravel"/>
+				<apply_if additional="seamark:seabed_area:surface=gravel" shader="seamark_j20_stonesgravel"/>
 				<!-- <apply_if additional="seamark:seabed_area:surface=pebbles" shader="seamark_j7_pebbles"/> omitted-->
-				<apply_if additional="seamark:seabed_area:surface=cobbles" shader="j20_stonesgravel">
-					<apply_if nightMode="true" shader="j20_stonesgravel_night"/>
-				</apply_if>
-				<apply_if additional="seamark:seabed_area:surface=rocky" shader="j2122_rockycoral"/>
-				<apply_if additional="seamark:seabed_area:surface=boulder" shader="j2122_rockycoral"/>
-				<apply_if additional="seamark:seabed_area:surface=coral" shader="j2122_rockycoral"/>
+				<apply_if additional="seamark:seabed_area:surface=cobbles" shader="seamark_j20_stonesgravel"/>
+				<apply_if additional="seamark:seabed_area:surface=rocky" shader="seamark_j2122_rockycoral"/>
+				<apply_if additional="seamark:seabed_area:surface=boulder" shader="seamark_j2122_rockycoral"/>
+				<apply_if additional="seamark:seabed_area:surface=coral" shader="seamark_j2122_rockycoral"/>
 				<!-- <apply_if additional="seamark:seabed_area:surface=shells" shader="seamark_j11_shells"/> omitted-->
-				<apply_if additional="seamark:seabed_area:surface=lava" shader="j2122_rockycoral"/>
+				<apply_if additional="seamark:seabed_area:surface=lava" shader="seamark_j2122_rockycoral"/>
 				<!-- the following shaders do not follow INT-1 J Section Nature of the seabed and https://wiki.openstreetmap.org/wiki/Seamarks/INT-1_Section_J, delete or replace as needed -->
-				<apply_if additional="seamark:seabed_area:surface=sand" shader="sand_opaque">
-					<apply_if nightMode="true" shader=""/>
-				</apply_if>
-				<apply_if additional="seamark:seabed_area:surface=weed;sand" shader="weed_sand_opaque"> <!-- this tagging for weed is not consistent with wiki.openstreetmap for INT-1 J Section Nature of the seabed -->
-					<apply_if nightMode="true" shader=""/>
-				</apply_if>
-				<apply_if additional="seamark:seabed_area:surface=mud" shader="mud2_opaque">
-					<apply_if nightMode="true" shader=""/>
-				</apply_if>
+				<apply_if additional="seamark:seabed_area:surface=sand" shader="sand_opaque"/>
+				<apply_if additional="seamark:seabed_area:surface=weed;sand" shader="weed_sand_opaque"/> <!-- this tagging for weed is not consistent with wiki.openstreetmap for INT-1 J Section Nature of the seabed -->
+				<apply_if additional="seamark:seabed_area:surface=mud" shader="mud2_opaque"/>
+				<apply_if additional="seamark:seabed_area:surface=sand" nightMode="true" shader=""/> <!-- as originally, no application of the opaque shades in nightModed --> 
+				<apply_if additional="seamark:seabed_area:surface=weed;sand" nightMode="true" shader=""/>
+				<apply_if additional="seamark:seabed_area:surface=mud" nightMode="true" shader=""/>
 				<!-- <apply_if additional="seamark:seabed_area:surface=coral" shader="reef_coral"/> alternative shader for coral-->
 				<!-- <apply_if additional="seamark:seabed_area:surface=coral" shader="reef"/> alternative shader for coral-->
-			</case>
-			<case tag="seamark:type" value="weed" shader="j132_weedkelp"/>
-			<case tag="seamark:type" value="seagrass" shader="j134_seagrass"/>
-			<case tag="seamark:type" value="sand_waves" shader="j14_sand_waves">
-				<apply_if nightMode="true" shader="j14_sand_waves_night"/>
-			</case>
-			<apply_if seabedDetail="omit" shader="" color="#76cbea"/>
-		</switch>
+			</case>			
+			<case tag="seamark:type" value="weed" shader="seamark_j132_weedkelp_shader"/>
+			<case tag="seamark:type" value="seagrass" shader="seamark_j134_seagrass_shader"/>
+			<case tag="seamark:type" value="sand_waves" shader="seamark_j14_sand_waves_shader"/>
+			<apply_if seabedDetail="omit" shader="" color="#76cbea"/> 
+			<apply_if nightMode="true"> <!-- use light gray semi transparent halo _shield_night--> 
+				<!-- <apply_if additional="seamark:seabed_area:surface=sand" shield="seamark_j1_sand_shield_night"/> omitted-->
+				<!-- <apply_if additional="seamark:seabed_area:surface=mud" shield="seamark_j2_mud_shield_night"/> omitted-->
+				<!-- <apply_if additional="seamark:seabed_area:surface=clay" shield="seamark_j3_clay_shield_night"/> omitted-->
+				<!-- <apply_if additional="seamark:seabed_area:surface=silt" shield="seamark_j4_silt_shield_night"/> omitted-->
+				<apply_if additional="seamark:seabed_area:surface=stones" shader="seamark_j20_stonesgravel_shield_night"/>
+				<apply_if additional="seamark:seabed_area:surface=stones;gravel" shader="seamark_j20_stonesgravel_shield_night"/>
+				<apply_if additional="seamark:seabed_area:surface=gravel" shader="seamark_j20_stonesgravel_shield_night"/>
+				<!-- <apply_if additional="seamark:seabed_area:surface=pebbles" shader="seamark_j7_pebbles_shield_night"/> omitted-->
+				<apply_if additional="seamark:seabed_area:surface=cobbles" shader="seamark_j20_stonesgravel_shield_night"/>
+				<apply_if additional="seamark:seabed_area:surface=rocky" shader="seamark_j2122_rockycoral_shield_night"/>
+				<apply_if additional="seamark:seabed_area:surface=boulder" shader="seamark_j2122_rockycoral_shield_night"/>
+				<apply_if additional="seamark:seabed_area:surface=coral" shader="seamark_j2122_rockycoral_shield_night"/>
+				<!-- <apply_if additional="seamark:seabed_area:surface=shells" shader="seamark_j11_shells_shield_night"/> omitted-->
+				<apply_if additional="seamark:seabed_area:surface=lava" shader="seamark_j2122_rockycoral_shield_night"/>
+				<apply_if tag="seamark:type" value="weed" shader="seamark_j132_weedkelp_shader_shield_night"/>
+				<apply_if tag="seamark:type" value="seagrass" shader="seamark_j134_seagrass_shader_shield_night"/>
+				<apply_if tag="seamark:type" value="sand_waves" shader="seamark_j14_sand_waves_shader_shield_night"/>
+				<apply_if seabedDetail="omit" shader="" color="#55555555"/> <!--combination of nightMode=true and seabedDetail=omit-->
+			</apply_if>		
+        </switch>
 		
 		<switch minzoom="10">
 			<case tag="natural" value="wood"/>
@@ -3727,7 +3747,7 @@
 		</switch>
 		
 		<!-- INT-1 J21 J22 rock and coral line icons for edges -->
- 		<switch engine_v1="true" minzoom="14" strokeWidth="0.5">
+ 		<switch engine_v1="false" minzoom="14" strokeWidth="0.5">
 			<case tag="seamark:type" value="seabed_area" color="#555555" pathIcon="stroke_gray" pathIconStep="10"/>
 			<apply additional="seamark:seabed_area:surface=rocky" color="#555555" pathIcon="seamark_j21_rocky" pathIconStep="10"/>
 			<apply additional="seamark:seabed_area:surface=coral" color="#555555" pathIcon="seamark_j22_coral" pathIconStep="10"/>
