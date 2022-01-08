@@ -157,6 +157,7 @@ generateBothMapPOIPng() {
   # genMapIconsNoScale 'osmc_bg'
   # genMapIconsNoScale 'map-small'
   # genMapIconsNoScale 'cycle_node_shields'
+  # genMapIconsStdSize 'seamark_int1_shields'
 
   # genMapIconsStdSize 'osmc_black' '#'
   # genMapIconsStdSize 'osmc_blue' '#'
