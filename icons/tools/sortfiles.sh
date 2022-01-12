@@ -1982,6 +1982,7 @@ icon_alias pest_control shopping_pest_control
 icon_alias groundskeeping shopping_groundskeeping
 icon_alias country_store shopping_country_store
 icon_alias tool_hire shopping_tool_hire
+icon_alias collector shopping_collector
 
 ## Office
 icon_alias estate_agent office_estate_agent
