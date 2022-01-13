@@ -128,6 +128,7 @@ icon_alias natural_sinkhole poi_colored_sinkhole
 icon_alias natural_spring water_spring  #scale 0.375
 icon_alias topo_spring topo_water_spring  #scale 0.375
 icon_alias natural_stone poi_colored_stone  #scale 0.375
+icon_alias natural_blowhole water_blowhole
 icon_alias natural_tree_broadleaved functional-icons_tree_broadleaved
 icon_alias topo_tree_broadleaved functional-icons-x2_topo_tree_broadleaved
 icon_alias natural_tree_cypress functional-icons_tree_cypress
