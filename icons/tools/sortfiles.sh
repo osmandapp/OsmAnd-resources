@@ -264,6 +264,7 @@ icon_alias occupational_therapist health_occupational_therapist
 icon_alias nurse health_nurse
 icon_alias vaccination health_vaccination
 icon_alias physiotherapist health_physiotherapist
+icon_alias hospice health_hospice
 
 ## Overlays
 icon_alias fixme_tag_yes overlays_fixme
