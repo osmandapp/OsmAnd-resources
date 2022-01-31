@@ -1900,6 +1900,7 @@ icon_alias chocolate shopping_chocolate
 icon_alias coffee shopping_coffee
 icon_alias farm shopping_farm
 icon_alias tea shopping_tea
+icon_alias telecommunication shopping_telecommunication
 icon_alias pastry shopping_pastry
 icon_alias antiques shopping_antiques
 icon_alias bag shopping_bag
