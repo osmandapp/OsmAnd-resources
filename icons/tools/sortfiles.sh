@@ -1990,6 +1990,7 @@ icon_alias country_store shopping_country_store
 icon_alias tool_hire shopping_tool_hire
 icon_alias collector shopping_collector
 icon_alias skate shopping_skate
+icon_alias tiles shopping_tiles
 
 ## Office
 icon_alias estate_agent office_estate_agent
