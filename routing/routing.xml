@@ -1265,12 +1265,6 @@
 
 		<way attribute="priority">
 
-			<if param="avoid_footways">
-				<select value="1.8" t="bicycle" v="official"/>
-				<select value="1.8" t="bicycle" v="designated"/>
-				<select value="1.3" t="bicycle" v="yes"/>
-				<select value="0.1" t="highway" v="footway"/>
-			</if>
 			<select value="0.1" t="bicycle" v="private"/>
 			<select value="0.2" t="bicycle" v="destination"/>
 	  		<!--	<select value="0.05" t="access" v="private"/>-->
@@ -1432,12 +1426,14 @@
 				<select value="0.4" t="surface" v="paving_stones"/>
 			</if>
 
-			<select value="1.35" t="surface" v="asphalt"/>
-			<select value="1.35" t="surface" v="paved"/>
-			<select value="1.35" t="surface" v="concrete"/>
-			<select value="1.30" t="surface" v="paving_stones"/>
-			<select value="1.35" t="osmand_highway_integrity_brouting" v="0"/>
-			<select value="1.3" t="osmand_highway_integrity_brouting" v="1"/>
+			<ifnot param="avoid_footways">
+				<!-- used if avoid_footways=false and "highway"="*" and surface is asphalt, paved ...
+				when avoid_footways=true tag highway=footway more important than type of surface -->
+				<select value="1.35" t="surface" v="asphalt"/>
+				<select value="1.35" t="surface" v="paved"/>
+				<select value="1.35" t="surface" v="concrete"/>
+				<select value="1.30" t="surface" v="paving_stones"/>
+			</ifnot>
 
 			<if param="avoid_unpaved">
 				<select value="0.3" t="highway" v="footway"/>
@@ -1445,6 +1441,19 @@
 				<select value="0.2" t="highway" v="path"/>
 			</if>
 
+			<if param="avoid_footways">
+				<select value="1.8" t="bicycle" v="official"/>
+				<select value="1.8" t="bicycle" v="designated"/>
+				<select value="1.3" t="bicycle" v="yes"/>
+				<select value="0.1" t="highway" v="footway"/>
+			</if>
+
+			<select value="1.35" t="surface" v="asphalt"/>
+			<select value="1.35" t="surface" v="paved"/>
+			<select value="1.35" t="surface" v="concrete"/>
+			<select value="1.30" t="surface" v="paving_stones"/>
+			<select value="1.35" t="osmand_highway_integrity_brouting" v="0"/>
+			<select value="1.3" t="osmand_highway_integrity_brouting" v="1"/>
 
 			<select value="3" t="highway" v="cycleway"/>
 			<!-- I have downgraded cycleways here and upgraded their
