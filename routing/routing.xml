@@ -1663,6 +1663,9 @@
 		<parameter id="avoid_unpaved" name="Avoid unpaved roads" description="Avoid unpaved roads" type="boolean"/>
 		<parameter id="allow_private" name="Allow private access" description="Allow access to private areas" type="boolean"/>
 		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean" default="true"/>
+		<parameter id="relief_smoothness_factor_more_plains" group="relief_smoothness_factor" name="More plains" description="" type="boolean"/>
+		<parameter id="relief_smoothness_factor_plains" group="relief_smoothness_factor" name="Plains" description="" type="boolean" default="true"/>
+		<parameter id="relief_smoothness_factor_hills" group="relief_smoothness_factor" name="Hills" description="" type="boolean"/>
 		<parameter id="prefer_hiking_routes" name="Prefer hiking routes" description="Prefer hiking routes" type="boolean"/>
 		<parameter id="prefer_tactile_paving" name="Prefer tactile paving" description="Prefer tactile paving" type="boolean"/>
 
@@ -1770,6 +1773,39 @@
 				<gt value1="-3" value2=":incline">
 					<select value="1"/>
 				</gt>
+				<if param="relief_smoothness_factor_more_plains">
+					<gt value1="3" value2=":incline">
+						<select value="2"/>
+					</gt>
+					<gt value1="7" value2=":incline">
+						<select value="12"/>
+					</gt>
+					<gt value1="13" value2=":incline">
+						<select value="30"/>
+					</gt>
+					<gt value1="25" value2=":incline">
+						<select value="50"/>
+					</gt>
+					<select value="74"/>
+				</if>
+				<if param="relief_smoothness_factor_hills">
+					<gt value1="0" value2=":incline">
+						<select value="128"/>
+					</gt>
+					<gt value1="3" value2=":incline">
+						<select value="64"/>
+					</gt>
+					<gt value1="7" value2=":incline">
+						<select value="17"/>
+					</gt>
+					<gt value1="13" value2=":incline">
+						<select value="10"/>
+					</gt>
+					<gt value1="25" value2=":incline">
+						<select value="8"/>
+					</gt>
+					<select value="2"/>
+				</if>
 				<gt value1="3" value2=":incline">
 					<select value="1"/>
 				</gt>
@@ -2030,7 +2066,7 @@
 			<select value="1" t="oneway" v="1"/>
 			<select value="-1" t="oneway" v="-1"/>
             <!-- Following line because junction=circular is converted to roundabout, but is not necessarily oneway=yes -->
-            <select value="0" t="oneway" v="no"/>
+		<select value="0" t="oneway" v="no"/>
 			<select value="1" t="roundabout" v="yes"/>
 			<select value="1" t="junction" v="roundabout"/>
 		</way>
