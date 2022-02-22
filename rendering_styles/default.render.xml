@@ -2866,6 +2866,10 @@
 		<case nightMode="true" attrColorValue="#B45D5D"/>
 		<case attrColorValue="#feb3b3"/>
 	</renderingAttribute>
+	<renderingAttribute name="accessPermitColor">
+		<case nightMode="true" attrColorValue="#3C9D7A"/>
+		<case attrColorValue="#7FE7C1"/>
+	</renderingAttribute>
 	<renderingAttribute name="accessSkiNoColor">
 		<case nightMode="true" attrColorValue="$null"/>
 		<case attrColorValue="$null"/>
@@ -6880,6 +6884,7 @@
 					<case tag="military" value="checkpoint" icon="military_checkpoint" shield="military_checkpoint_shield"/>
 					<apply_if minzoom="17" showAccess="true" additional="access=private" icon_2="access_private_red_overlay"/>
 					<apply_if minzoom="17" showAccess="true" additional="access=no" icon_2="access_private_red_overlay"/>
+					<apply_if minzoom="17" showAccess="true" additional="access=permit" icon_2="access_permit_overlay"/>
 					<apply_if minzoom="17" showAccess="true" additional="vehicle=yes" icon_2=""/>
 					<apply_if minzoom="17" showAccess="true" additional="motor_vehicle=yes" icon_2=""/>
 				</switch>
@@ -6965,6 +6970,7 @@
 					<case tag="barrier" value="kissing_gate" icon="barrier_kissing_gate" shield="barrier_kissing_gate_shield"/>
 					<apply_if minzoom="18" showAccess="true" additional="access=private" icon_2="access_private_red_overlay"/>
 					<apply_if minzoom="18" showAccess="true" additional="access=no" icon_2="access_private_red_overlay"/>
+					<apply_if minzoom="18" showAccess="true" additional="access=permit" icon_2="access_permit_overlay"/>
 					<apply_if minzoom="18" showAccess="true" additional="bicycle=yes" icon_2=""/>
 				</switch>
 			</switch>
@@ -8507,6 +8513,7 @@
 						<case minzoom="18"/>
 						<apply_if additional="access=private" icon_2="access_private_red_overlay"/>
 						<apply_if additional="access=no" icon_2="access_private_red_overlay"/>
+						<apply_if additional="access=permit" icon_2="access_permit_overlay"/>
 						<apply_if baseAppMode="pedestrian" additional="foot=yes" icon_2=""/>
 					</switch>
 				</apply_if>
@@ -8524,6 +8531,7 @@
 					<apply_if minzoom="18" maxzoom="18" showAccess="true">
 						<apply_if additional="access=private" icon_2="access_private_red_overlay"/>
 						<apply_if additional="access=no" icon_2="access_private_red_overlay"/>
+						<apply_if additional="access=permit" icon_2="access_permit_overlay"/>
 					</apply_if>
 				</switch>
 				<switch tag="entrance" value="exit">
@@ -8557,6 +8565,7 @@
 				<apply_if minzoom="19" showAccess="true">
 					<apply_if additional="access=private" icon_2="access_private_red_overlay"/>
 					<apply_if additional="access=no" icon_2="access_private_red_overlay"/>
+					<apply_if additional="access=permit" icon_2="access_permit_overlay"/>
 				</apply_if>
 			</switch>
 
@@ -8988,6 +8997,7 @@
 				<switch>
 					<case additional="access=private" color_2="$accessPrivateColor"/>
 					<case additional="access=no" color_2="$accessPrivateColor"/>
+					<case additional="access=permit" color_2="$accessPermitColor"/>
 					<case additional="access=destination" color_2="$accessDestinationColor"/>
 					<case additional="access=permissive" color_2="$accessPermissiveColor"/>
 					<case additional="access=agricultural" color_2="$accessAgriculturalColor"/>
@@ -9312,9 +9322,10 @@
 				<case minzoom="12" tag="leisure" value="garden" color="$gardenColor"/>
 				<apply>
 					<switch minzoom="16" showAccess="true">
-						<case additional="access=private"/>
-						<case additional="access=no"/>
-						<apply color_2="$accessPrivateColor" strokeWidth_2="3" pathEffect_2="1_6" cap_2="ROUND"/>
+						<case additional="access=private" color_2="$accessPrivateColor"/>
+						<case additional="access=no" color_2="$accessPrivateColor"/>
+						<case additional="access=permit" color_2="$accessPermitColor"/>
+						<apply strokeWidth_2="3" pathEffect_2="1_6" cap_2="ROUND"/>
 					</switch>
 				</apply>
 			</switch>
@@ -9525,10 +9536,11 @@
 				<case tag="man_made" value="pier" color="$pierColor"/>
 				<apply minzoom="15">
 					<switch showAccess="true">
-						<case additional="access=no"/>
-						<case additional="access=private"/>
 						<case baseAppMode="bicycle" additional="bicycle=no"/>
-						<apply color_2="$accessPrivateColor" strokeWidth_2="3" pathEffect_2="1_7" cap_2="ROUND"/>
+						<case additional="access=private" color_2="$accessPrivateColor"/>
+						<case additional="access=no" color_2="$accessPrivateColor"/>
+						<case additional="access=permit" color_2="$accessPermitColor"/>
+						<apply strokeWidth_2="3" pathEffect_2="1_6" cap_2="ROUND"/>
 					</switch>
 				</apply>
 			</switch>
@@ -9838,6 +9850,7 @@
 						<switch>
 							<case additional="access=private" color_2="$accessPrivateColor" cap_2="ROUND"/>
 							<case additional="access=no" color_2="$accessPrivateColor" cap_2="ROUND"/>
+							<case additional="access=permit" color_2="$accessPermitColor" cap_2="ROUND"/>
 							<apply_if natureReserves="true" tag="leisure" value="nature_reserve" shader="nature_reserve_access_no"/>
 							<apply_if natureReserves="true" tag="boundary" value="protected_area" shader="protected_area_access_no"/>
 							<apply_if tag="landuse" value="quarry" shader="quarry3_access_no" color_0="#c4c2c1">
@@ -11002,6 +11015,7 @@
 					<switch minzoom="15">
 						<case additional="access=private" color_3="$accessPrivateColor"/>
 						<case additional="access=no" color_3="$accessPrivateColor"/>
+						<case additional="access=permit" color_3="$accessPermitColor"/>
 						<case additional="access=destination" color_3="$accessDestinationColor"/>
 						<case additional="access=permissive" color_3="$accessPermissiveColor"/>
 						<case additional="access=agricultural" color_3="$accessAgriculturalColor"/>
@@ -11923,10 +11937,11 @@
 
 		<case minzoom="13" tag="man_made" value="pier" color="$pierColor">
 			<switch minzoom="15" showAccess="true">
-				<case additional="access=no"/>
-				<case additional="access=private"/>
-				<case baseAppMode="bicycle" additional="bicycle=no"/>
-				<apply color_2="$accessPrivateColor" strokeWidth_2="3" pathEffect_2="1_7" cap_2="ROUND"/>
+				<case additional="access=no" color_2="$accessPrivateColor"/>
+				<case additional="access=private" color_2="$accessPrivateColor"/>
+				<case additional="access=permit" color_2="$accessPermitColor"/>
+				<case baseAppMode="bicycle" additional="bicycle=no" color_2="$accessPrivateColor"/>
+				<apply strokeWidth_2="3" pathEffect_2="1_7" cap_2="ROUND"/>
 			</switch>
 			<apply_if maxzoom="13" strokeWidth="0.6"/>
 			<apply_if minzoom="14" maxzoom="15" strokeWidth="1.5:1.5"/>
