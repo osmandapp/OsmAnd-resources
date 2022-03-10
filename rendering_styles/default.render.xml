@@ -135,17 +135,19 @@
 	<renderingProperty attr="hideOverground" name="Hide overground objects" description="Hide overground objects"
 		type="boolean" possibleValues="" category="hide"/>
 
-	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show long distance cycle routes in bicycle mode"
+	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show long distance cycle routes"
 		type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="showCycleNodeNetworkRoutes" name="Show node network cycle routes" description="Show node network cycle routes in bicycle mode"
+	<renderingProperty attr="showCycleNodeNetworkRoutes" name="Show node network cycle routes" description="Show node network cycle routes"
 		type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="showMtbRoutes" name="Show MTB routes" description="Show mountain bike routes (*cn_networks) in bicycle mode"
+	<renderingProperty attr="showMtbRoutes" name="Show MTB routes" description="Show mountain bike routes (*cn_networks)"
 		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="hikingRoutesOSMC" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces"
 		type="string" possibleValues="walkingRoutesOSMC,walkingRoutesScopeOSMC,walkingRoutesOSMCNodes" defaultValueDescription="disabled" category="routes"/>
 	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
 		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="horseRoutes" name="Horse routes" description="Horse routes"
+		type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="showFitnessTrails" name="Show fitness trails" description="Show fitness trails"
 		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="whiteWaterSports" name="Whitewater sports" description="Whitewater sports"
 		type="boolean" possibleValues="" category="routes"/>
@@ -1495,10 +1497,17 @@
 	<renderingAttribute name="hikingRoutesTextColor">
 		<case attrColorValue="#DD5407"/>
 	</renderingAttribute>
+	<renderingAttribute name="fitnessTrailTextColor">
+		<case nightMode="true" attrColorValue="#BFE3FA"/>
+		<case attrColorValue="#3C8DC2"/>
+	</renderingAttribute>
 
 	<renderingAttribute name="horseRouteDefaultColor">
 		<case engine_v1="true" attrColorValue="#8000ad88"/>
 		<case attrColorValue="#3500ad88"/>
+	</renderingAttribute>
+	<renderingAttribute name="fitnessTrailDefaultColor">
+		<case attrColorValue="#660074C1"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="whiteColor">
@@ -3763,6 +3772,7 @@
 					<switch hikingRoutesOSMC="walkingRoutesScopeOSMC" order="206">
 						<case tag="route_hiking" value=""/>
 					</switch>
+					<case tag="route_fitness_trail" value="" order="205"/>
 					<case tag="admin_level" value="" order="207">
 						<case baseAppMode="pedestrian"/>
 						<case baseAppMode="bicycle"/>
@@ -4009,6 +4019,8 @@
 						<case tag="route_hiking" value="" nameTag="hiking_route_ref" textSize="13"/>
 						<case horseRoutes="true" minzoom="13" tag="route_horse" value="" nameTag="horse_route_name" textOnPath="true" textOrder="8"/>
 						<case horseRoutes="true" tag="route_horse" value="" nameTag="horse_route_ref" textOnPath="true" textSize="13"/>
+						<case showFitnessTrails="true" minzoom="13" tag="route_fitness_trail" value="" nameTag="fitness_route_name" textOnPath="true" textOrder="8"/>
+						<case showFitnessTrails="true" tag="route_fitness_trail" value="" nameTag="fitness_route_ref" textOnPath="true" textSize="13"/>
 						<apply>
 							<switch>
 								<case hikingRoutesOSMC="walkingRoutesOSMC" textSize="11" textColor="$hikingRoutesTextColor" textHaloColor="#ccebf4ff">
@@ -4019,6 +4031,9 @@
 								</case>
 								<case horseRoutes="true" textColor="#00745b" textSize="11" textHaloColor="#ccffffff">
 									<apply_if nightMode="true" textHaloColor="#00745b"/>
+								</case>
+								<case showFitnessTrails="true" textColor="#0074C1" textSize="11" textHaloColor="#ccffffff">
+									<apply_if nightMode="true" textColor="#BFE3FA" textHaloColor="#99176287"/>
 								</case>
 								<apply textMinDistance="100" textBold="true" textHaloRadius="2" textWrapWidth="30"/>
 								<apply_if nightMode="true" textColor="#ffffff"/>
@@ -6553,77 +6568,83 @@
 
 			<!-- Sport + Leisure -->
 			<switch textSize="12" nameTag="" textColor="$sportTextColorDay" textWrapWidth="19" textHaloColor="$sportTextHaloColorDay" textHaloRadius="$textHaloRadius" textOrder="166">
-				<switch hidePOILabels="false">
-					<case minzoom="17" tag="sport" value="american_football"/>
-					<case minzoom="17" tag="sport" value="equestrian"/>
-					<case minzoom="17" tag="sport" value="climbing"/>
-					<case minzoom="17" tag="sport" value="climbing_adventure"/>
-					<case minzoom="17" tag="sport" value="cricket"/>
-					<case minzoom="17" tag="sport" value="soccer"/>
-					<case minzoom="17" tag="sport" value="ice_skating"/>
-					<case minzoom="17" tag="sport" value="roller_skating"/>
-					<case minzoom="17" tag="sport" value="archery"/>
-					<case minzoom="17" tag="sport" value="bandy"/>
-					<case minzoom="17" tag="sport" value="baseball"/>
-					<case minzoom="17" tag="sport" value="beachvolleyball"/>
-					<case minzoom="17" tag="sport" value="canoe"/>
-					<case minzoom="17" tag="sport" value="tennis"/>
-					<case minzoom="17" tag="sport" value="shooting"/>
-					<case minzoom="17" tag="sport" value="golf" textOrder="155"/>
-					<case minzoom="17" tag="sport" value="sailing"/>
-					<case minzoom="17" tag="sport" value="skiing"/>
-					<case minzoom="17" tag="sport" value="swimming"/>
-					<case minzoom="17" tag="sport" value="diving"/>
-					<case minzoom="17" tag="sport" value="scuba_diving"/>
-					<case minzoom="16" tag="amenity" value="dive_centre"/>
-					<case minzoom="17" tag="sport" value="billiard"/>
-					<case minzoom="17" tag="sport" value="gymnastics"/>
-					<case minzoom="17" tag="sport" value="motor"/>
-					<case minzoom="17" tag="sport" value="free_flying"/>
-					<case minzoom="17" tag="sport" value="bmx"/>
-					<case minzoom="17" tag="sport" value="skateboard"/>
-					<case minzoom="17" tag="sport" value="ice_hockey"/>
-					<case minzoom="17" tag="sport" value="field_hockey"/>
-					<case minzoom="17" tag="sport" value="9pin"/>
-					<case minzoom="17" tag="sport" value="10pin"/>
-					<case minzoom="17" tag="sport" value="cycling"/>
-					<case minzoom="17" tag="sport" value="rugby_union"/>
-					<case minzoom="17" tag="sport" value="rugby_league"/>
-					<case minzoom="17" tag="sport" value="table_tennis"/>
-					<case minzoom="17" tag="sport" value="base"/>
-					<case minzoom="17" tag="sport" value="athletics"/>
-					<case minzoom="17" tag="sport" value="surfing"/>
-					<case minzoom="17" tag="sport" value="handball"/>
-					<case minzoom="17" tag="sport" value="team_handball"/>
-					<case minzoom="17" tag="sport" value="volleyball"/>
-					<case minzoom="17" tag="sport" value="basketball"/>
-					<case minzoom="17" tag="sport" value="model_aerodrome"/>
-					<case minzoom="17" tag="sport" value="multi"/>
-					<case minzoom="17" tag="sport" value="judo"/>
-					<case minzoom="17" tag="sport" value="rc_car"/>
-					<case minzoom="17" tag="sport" value="ultralight_aviation"/>
+				<switch>
+					<switch hidePOILabels="false">
+						<case minzoom="17" tag="sport" value="american_football"/>
+						<case minzoom="17" tag="sport" value="equestrian"/>
+						<case minzoom="17" tag="sport" value="climbing"/>
+						<case minzoom="17" tag="sport" value="climbing_adventure"/>
+						<case minzoom="17" tag="sport" value="cricket"/>
+						<case minzoom="17" tag="sport" value="soccer"/>
+						<case minzoom="17" tag="sport" value="ice_skating"/>
+						<case minzoom="17" tag="sport" value="roller_skating"/>
+						<case minzoom="17" tag="sport" value="archery"/>
+						<case minzoom="17" tag="sport" value="bandy"/>
+						<case minzoom="17" tag="sport" value="baseball"/>
+						<case minzoom="17" tag="sport" value="beachvolleyball"/>
+						<case minzoom="17" tag="sport" value="canoe"/>
+						<case minzoom="17" tag="sport" value="tennis"/>
+						<case minzoom="17" tag="sport" value="shooting"/>
+						<case minzoom="17" tag="sport" value="golf" textOrder="155"/>
+						<case minzoom="17" tag="sport" value="sailing"/>
+						<case minzoom="17" tag="sport" value="skiing"/>
+						<case minzoom="17" tag="sport" value="swimming"/>
+						<case minzoom="17" tag="sport" value="diving"/>
+						<case minzoom="17" tag="sport" value="scuba_diving"/>
+						<case minzoom="16" tag="amenity" value="dive_centre"/>
+						<case minzoom="17" tag="sport" value="billiard"/>
+						<case minzoom="17" tag="sport" value="gymnastics"/>
+						<case minzoom="17" tag="sport" value="motor"/>
+						<case minzoom="17" tag="sport" value="free_flying"/>
+						<case minzoom="17" tag="sport" value="bmx"/>
+						<case minzoom="17" tag="sport" value="skateboard"/>
+						<case minzoom="17" tag="sport" value="ice_hockey"/>
+						<case minzoom="17" tag="sport" value="field_hockey"/>
+						<case minzoom="17" tag="sport" value="9pin"/>
+						<case minzoom="17" tag="sport" value="10pin"/>
+						<case minzoom="17" tag="sport" value="cycling"/>
+						<case minzoom="17" tag="sport" value="rugby_union"/>
+						<case minzoom="17" tag="sport" value="rugby_league"/>
+						<case minzoom="17" tag="sport" value="table_tennis"/>
+						<case minzoom="17" tag="sport" value="base"/>
+						<case minzoom="17" tag="sport" value="athletics"/>
+						<case minzoom="17" tag="sport" value="surfing"/>
+						<case minzoom="17" tag="sport" value="handball"/>
+						<case minzoom="17" tag="sport" value="team_handball"/>
+						<case minzoom="17" tag="sport" value="volleyball"/>
+						<case minzoom="17" tag="sport" value="basketball"/>
+						<case minzoom="17" tag="sport" value="model_aerodrome"/>
+						<case minzoom="17" tag="sport" value="multi"/>
+						<case minzoom="17" tag="sport" value="judo"/>
+						<case minzoom="17" tag="sport" value="rc_car"/>
+						<case minzoom="17" tag="sport" value="ultralight_aviation"/>
 
-					<case minzoom="15" tag="leisure" value="stadium" textOrder="155"/>
-					<case minzoom="17" tag="leisure" value="playground" textOrder="167"/>
-					<case minzoom="17" tag="leisure" value="fitness_station"/>
-					<case minzoom="16" tag="leisure" value="horse_riding"/>
-					<case minzoom="16" tag="leisure" value="water_park"/>
-					<case minzoom="17" tag="leisure" value="sauna" textOrder="167"/>
-					<case minzoom="17" tag="amenity" value="public_bath" textOrder="167"/>
-					<case minzoom="18" tag="leisure" value="tanning_salon"/>
-					<case minzoom="16" tag="leisure" value="sports_centre" textOrder="166"/>
-					<case minzoom="17" tag="leisure" value="fitness_centre" textOrder="166"/>
-					<case minzoom="16" tag="leisure" value="sports_hall" textOrder="167"/>
-					<case minzoom="16" tag="leisure" value="ice_rink"/>
-					<case minzoom="17" tag="leisure" value="fishing"/>
-					<case minzoom="17" tag="leisure" value="bird_hide"/>
-					<case minzoom="16" tag="leisure" value="miniature_golf"/>
-					<case minzoom="16" tag="leisure" value="bowling_alley"/>
-					<case minzoom="18" tag="leisure" value="bandstand" textOrder="254"/>
-					<apply_if engine_v1="true" textDy="9"/>
+						<case minzoom="15" tag="leisure" value="stadium" textOrder="155"/>
+						<case minzoom="17" tag="leisure" value="playground" textOrder="167"/>
+						<case minzoom="16" tag="leisure" value="horse_riding"/>
+						<case minzoom="16" tag="leisure" value="water_park"/>
+						<case minzoom="17" tag="leisure" value="sauna" textOrder="167"/>
+						<case minzoom="17" tag="amenity" value="public_bath" textOrder="167"/>
+						<case minzoom="18" tag="leisure" value="tanning_salon"/>
+						<case minzoom="16" tag="leisure" value="sports_centre" textOrder="166"/>
+						<case minzoom="17" tag="leisure" value="fitness_centre" textOrder="166"/>
+						<case minzoom="16" tag="leisure" value="sports_hall" textOrder="167"/>
+						<case minzoom="16" tag="leisure" value="ice_rink"/>
+						<case minzoom="17" tag="leisure" value="fishing"/>
+						<case minzoom="17" tag="leisure" value="bird_hide"/>
+						<case minzoom="16" tag="leisure" value="miniature_golf"/>
+						<case minzoom="16" tag="leisure" value="bowling_alley"/>
+						<case minzoom="18" tag="leisure" value="bandstand" textOrder="254"/>
+						<apply_if engine_v1="true" textDy="9"/>
+					</switch>
+					<case minzoom="16" tag="leisure" value="track" textOnPath="true"/>
+					<apply_if nightMode="true" textColor="#9effa9" textHaloColor="#99013b27"/>
 				</switch>
-				<case minzoom="16" tag="leisure" value="track" textOnPath="true"/>
-				<apply_if nightMode="true" textColor="#9effa9" textHaloColor="#99013b27"/>
+				<case minzoom="17" tag="leisure" value="fitness_station">
+					<apply_if showFitnessTrails="true" additional="route_fitness_trail=yes" textColor="$fitnessTrailTextColor">
+						<apply_if nightMode="true" textHaloColor="#dd176287"/>
+					</apply_if>
+				</case>
 				<apply_if legend="true" textDy="0"/>
 			</switch>
 
@@ -7793,11 +7814,16 @@
 					<case tag="leisure" value="sports_centre" icon="leisure_sports_centre"/>
 					<case tag="leisure" value="sports_hall" icon="sports_hall"/>
 					<case minzoom="17" tag="leisure" value="fitness_centre" icon="fitness_centre"/>
-					<case minzoom="17" tag="leisure" value="fitness_station" icon="fitness_station" iconVisibleSize="24" iconOrder="166"/>
 					<apply shield="green_round_shield" iconVisibleSize="32" iconOrder="166"/>
 					<apply_if nightMode="true" shield="green_round_night_shield"/>
 				</switch>
-
+				<switch minzoom="17">
+					<case tag="leisure" value="fitness_station" icon="fitness_station" iconVisibleSize="24"/>
+					<apply shield="green_round_shield" iconVisibleSize="32" iconOrder="166"/>
+					<apply_if showFitnessTrails="true" additional="route_fitness_trail=yes" shield="blue_round_shield"/>
+					<apply_if nightMode="true" shield="green_round_night_shield"/>
+					<apply_if nightMode="true" showFitnessTrails="true" additional="route_fitness_trail=yes" shield="blue_round_night_shield"/>
+				</switch>
 				<case minzoom="16" tag="geocache" value="found" icon="geocache_found"/>
 				<case minzoom="16" tag="geocache" value="" icon="geocache_not_found"/>
 
@@ -12300,6 +12326,13 @@
 			<apply_if minzoom="14" maxzoom="14" strokeWidth="2.8"/>
 			<apply_if minzoom="15" maxzoom="16" strokeWidth="3.5"/>
 			<apply_if minzoom="17" strokeWidth="5"/>
+		</switch>
+		<switch showFitnessTrails="true" color="$fitnessTrailDefaultColor">
+			<case tag="route_fitness_trail" value="" cap="ROUND"/>
+			<apply_if maxzoom="13" strokeWidth="3" pathEffect="6_4"/>
+			<apply_if minzoom="14" maxzoom="14" strokeWidth="4" pathEffect="7_5"/>
+			<apply_if minzoom="15" maxzoom="16" strokeWidth="5" pathEffect="8_6"/>
+			<apply_if minzoom="17" strokeWidth="7" pathEffect="9_7"/>
 		</switch>
 
 		<!--		<case tag="piste:type" value="" additional="route=piste" strokeWidth="3" color="#ae27b3"/>  This is not needed because we don't need to render piste routes in default style. But skimap.render.xml renders these routes. It allows to render osmc symbols. Only engine_v1 2017.05.30. -->
