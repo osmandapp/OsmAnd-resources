@@ -149,6 +149,8 @@
 		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="showFitnessTrails" name="Show fitness trails" description="Show fitness trails"
 		type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="showRunningRoutes" name="Show running routes" description="Show running routes"
+		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="whiteWaterSports" name="Whitewater sports" description="Whitewater sports"
 		type="boolean" possibleValues="" category="routes"/>
 
@@ -1508,6 +1510,9 @@
 	</renderingAttribute>
 	<renderingAttribute name="fitnessTrailDefaultColor">
 		<case attrColorValue="#660074C1"/>
+	</renderingAttribute>
+	<renderingAttribute name="runningRouteDefaultColor">
+		<case attrColorValue="#66AA72FB"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="whiteColor">
@@ -3773,6 +3778,7 @@
 						<case tag="route_hiking" value=""/>
 					</switch>
 					<case tag="route_fitness_trail" value="" order="205"/>
+					<case tag="route_running" value="" order="205"/>
 					<case tag="admin_level" value="" order="207">
 						<case baseAppMode="pedestrian"/>
 						<case baseAppMode="bicycle"/>
@@ -4021,6 +4027,8 @@
 						<case horseRoutes="true" tag="route_horse" value="" nameTag="horse_route_ref" textOnPath="true" textSize="13"/>
 						<case showFitnessTrails="true" minzoom="13" tag="route_fitness_trail" value="" nameTag="fitness_route_name" textOnPath="true" textOrder="8"/>
 						<case showFitnessTrails="true" tag="route_fitness_trail" value="" nameTag="fitness_route_ref" textOnPath="true" textSize="13"/>
+						<case showRunningRoutes="true" minzoom="13" tag="route_running" value="" nameTag="running_route_name" textOnPath="true" textOrder="8"/>
+						<case showRunningRoutes="true" tag="route_running" value="" nameTag="running_route_ref" textOnPath="true" textSize="13"/>
 						<apply>
 							<switch>
 								<case hikingRoutesOSMC="walkingRoutesOSMC" textSize="11" textColor="$hikingRoutesTextColor" textHaloColor="#ccebf4ff">
@@ -4032,8 +4040,11 @@
 								<case horseRoutes="true" textColor="#00745b" textSize="11" textHaloColor="#ccffffff">
 									<apply_if nightMode="true" textHaloColor="#00745b"/>
 								</case>
-								<case showFitnessTrails="true" textColor="#0074C1" textSize="11" textHaloColor="#ccffffff">
+								<case showFitnessTrails="true" tag="route_fitness_trail" value="" textColor="#0074C1" textSize="11" textHaloColor="#ccffffff">
 									<apply_if nightMode="true" textColor="#BFE3FA" textHaloColor="#99176287"/>
+								</case>
+								<case showRunningRoutes="true" tag="route_running" value="" textColor="#895CC9" textSize="11" textHaloColor="#ccffffff">
+									<apply_if nightMode="true" textHaloColor="#99895CC9"/>
 								</case>
 								<apply textMinDistance="100" textBold="true" textHaloRadius="2" textWrapWidth="30"/>
 								<apply_if nightMode="true" textColor="#ffffff"/>
@@ -4129,6 +4140,7 @@
 					<case showMtbRoutes="true" tag="route_mtb" value="" nameTag="route_mtb_#SEQ_osmc_stub_name" textShield="osmc_?route_mtb_#SEQ_osmc_background?_bg" icon="osmc_?route_mtb_#SEQ_osmc_foreground?"/>
 					<case horseRoutes="true" tag="route_horse" value="" nameTag="route_horse_#SEQ_osmc_stub_name" textShield="osmc_?route_horse_#SEQ_osmc_background?_bg" icon="osmc_?route_horse_#SEQ_osmc_foreground?"/>
 					<case tag="route_piste" value="" nameTag="route_piste_#SEQ_osmc_stub_name" textShield="osmc_?route_piste_#SEQ_osmc_background?_bg" icon="osmc_?route_piste_#SEQ_osmc_foreground?"/>
+					<case showRunningRoutes="true" tag="route_running" value="" nameTag="route_running_#SEQ_osmc_stub_name" textShield="osmc_?route_running_#SEQ_osmc_background?_bg" icon="osmc_?route_running_#SEQ_osmc_foreground?"/>
 				</switch>
 
 				<!-- Highway shields -->
@@ -12327,14 +12339,34 @@
 			<apply_if minzoom="15" maxzoom="16" strokeWidth="3.5"/>
 			<apply_if minzoom="17" strokeWidth="5"/>
 		</switch>
-		<switch showFitnessTrails="true" color="$fitnessTrailDefaultColor">
-			<case tag="route_fitness_trail" value="" cap="ROUND"/>
+		<switch>
+			<case showFitnessTrails="true" tag="route_fitness_trail" value="" color="$fitnessTrailDefaultColor"/>
+			<apply cap="ROUND"/>
 			<apply_if maxzoom="13" strokeWidth="3" pathEffect="6_4"/>
 			<apply_if minzoom="14" maxzoom="14" strokeWidth="4" pathEffect="7_5"/>
 			<apply_if minzoom="15" maxzoom="16" strokeWidth="5" pathEffect="8_6"/>
 			<apply_if minzoom="17" strokeWidth="7" pathEffect="9_7"/>
 		</switch>
-
+		<switch showRunningRoutes="true">
+			<case minzoom="12" tag="route_running" value="" color="$runningRouteDefaultColor"/>
+			<apply>
+				<switch seq="1:10">
+					<case additional="route_running_#SEQ_osmc_waycolor=black" color="$osmcBlackColor"/>
+					<case additional="route_running_#SEQ_osmc_waycolor=blue" color="$osmcBlueColor"/>
+					<case additional="route_running_#SEQ_osmc_waycolor=green" color="$osmcGreenColor"/>
+					<case additional="route_running_#SEQ_osmc_waycolor=orange" color="$osmcOrangeColor"/>
+					<case additional="route_running_#SEQ_osmc_waycolor=red" color="$osmcRedColor"/>
+					<case additional="route_running_#SEQ_osmc_waycolor=yellow" color="$osmcYellowColor"/>
+					<case additional="route_running_#SEQ_osmc_waycolor=brown" color="$osmcBrownColor"/>
+					<case additional="route_running_#SEQ_osmc_waycolor=purple" color="$osmcPurpleColor"/>
+				</switch>
+			</apply>
+			<apply cap="ROUND"/>
+			<apply_if maxzoom="13" strokeWidth="3" pathEffect="2_6"/>
+			<apply_if minzoom="14" maxzoom="14" strokeWidth="4" pathEffect="3_7"/>
+			<apply_if minzoom="15" maxzoom="16" strokeWidth="5" pathEffect="3_8"/>
+			<apply_if minzoom="17" strokeWidth="7" pathEffect="4_9"/>
+		</switch>
 		<!--		<case tag="piste:type" value="" additional="route=piste" strokeWidth="3" color="#ae27b3"/>  This is not needed because we don't need to render piste routes in default style. But skimap.render.xml renders these routes. It allows to render osmc symbols. Only engine_v1 2017.05.30. -->
 
 		<!-- <switch minzoom="16">
