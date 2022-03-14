@@ -1994,6 +1994,7 @@ icon_alias tiles shopping_tiles
 icon_alias hairdresser_supply shopping_hairdresser_supply
 icon_alias shop_fuel shopping_fuel
 icon_alias printer_ink shopping_printer_ink
+icon_alias water_sports shopping_water_sports
 
 ## Office
 icon_alias estate_agent office_estate_agent
