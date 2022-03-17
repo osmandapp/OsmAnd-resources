@@ -1997,6 +1997,7 @@ icon_alias printer_ink shopping_printer_ink
 icon_alias water_sports shopping_water_sports
 icon_alias rice shopping_rice
 icon_alias motorcycle_parts shopping_motorcycle_parts
+icon_alias wool shopping_wool
 
 ## Office
 icon_alias estate_agent office_estate_agent
