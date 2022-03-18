@@ -171,6 +171,7 @@ icon_alias hill poi_colored_hill
 icon_alias hill_night functional-icons_hill_night
 icon_alias fumarole poi_colored_fumarole
 icon_alias topo_fumarole topo_fumarole
+icon_alias birds_nest poi_colored_birds_nest
 
 ## Location dots
 icon_alias administrative poi_colored_boundary_administrative
