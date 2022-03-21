@@ -1193,6 +1193,7 @@ icon_alias satellite_dish poi_colored_satellite_dish
 icon_alias waste_transfer_station amenity_waste_transfer_station
 icon_alias lavoir amenity_lavoir
 icon_alias dovecote poi_dovecote
+icon_alias fish_pass poi_fish_pass
 
 ## Food and Drink
 icon_alias restaurants food_restaurant
