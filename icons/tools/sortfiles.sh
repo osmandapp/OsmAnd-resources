@@ -173,6 +173,8 @@ icon_alias fumarole poi_colored_fumarole
 icon_alias topo_fumarole topo_fumarole
 icon_alias birds_nest poi_colored_birds_nest
 icon_alias topo_birds_nest topo_birds_nest
+icon_alias termite_mound poi_termite_mound
+icon_alias topo_termite_mound topo_termite_mound
 
 ## Location dots
 icon_alias administrative poi_colored_boundary_administrative
