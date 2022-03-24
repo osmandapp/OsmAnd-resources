@@ -79,7 +79,15 @@
 		type="boolean" possibleValues="" category="transport"/>
 	<renderingProperty attr="showShareTaxiRoutes" name="Show share taxi routes" description="Show share taxi routes"
 		type="boolean" possibleValues="" category="transport"/>
-	<renderingProperty attr="tramTrainRoutes" name="Tram and trains" description="Tram and train routes"
+	<renderingProperty attr="showTramRoutes" name="Show tram routes" description="Show tram routes"
+		type="boolean" possibleValues="" category="transport"/>
+	<renderingProperty attr="showTrainRoutes" name="Show train routes" description="Show train routes"
+		type="boolean" possibleValues="" category="transport"/>
+	<renderingProperty attr="showLightRailRoutes" name="Show light rail routes" description="Show light rail routes"
+		type="boolean" possibleValues="" category="transport"/>
+	<renderingProperty attr="showMonorailRoutes" name="Show monorail routes" description="Show monorail routes"
+		type="boolean" possibleValues="" category="transport"/>
+	<renderingProperty attr="showFunicularRoutes" name="Show funicular routes" description="Show funicular routes"
 		type="boolean" possibleValues="" category="transport"/>
 	<renderingProperty attr="subwayMode" name="Subway mode" description="Subway rendering mode"
 		type="boolean" possibleValues="" category="transport"/>
@@ -4913,13 +4921,11 @@
 					<case showBusRoutes="true" tag="route_bus" value="" nameTag="bus_ref" textHaloColor="$routeBusColor"/>
 					<case showShareTaxiRoutes="true" tag="route_share_taxi" value="" nameTag="share_taxi_ref" textHaloColor="$routeShareTaxiColor"/>
 					<case showTrolleybusRoutes="true" tag="route_trolleybus" value="" nameTag="trolleybus_ref" textHaloColor="$routeTrolleybusColor"/>
-					<switch tramTrainRoutes="true">
-						<case tag="route_tram" value="" nameTag="tram_ref" textHaloColor="$routeTramColor"/>
-						<case tag="route_train" value="" nameTag="train_ref" textHaloColor="$routeTrainColor"/>
-						<case tag="route_light_rail" value="" nameTag="lightrail_ref" textHaloColor="$routeLightrailColor"/>
-						<case tag="route_monorail" value="" nameTag="monorail_ref" textHaloColor="$routeLightrailColor"/>
-						<case tag="route_funicular" value="" nameTag="funicular_ref" textHaloColor="$routeFunicularColor"/>
-					</switch>
+					<case showTramRoutes="true" tag="route_tram" value="" nameTag="tram_ref" textHaloColor="$routeTramColor"/>
+					<case showTrainRoutes="true" tag="route_train" value="" nameTag="train_ref" textHaloColor="$routeTrainColor"/>
+					<case showLightRailRoutes="true" tag="route_light_rail" value="" nameTag="lightrail_ref" textHaloColor="$routeLightrailColor"/>
+					<case showMonorailRoutes="true" tag="route_monorail" value="" nameTag="monorail_ref" textHaloColor="$routeLightrailColor"/>
+					<case showFunicularRoutes="true" tag="route_funicular" value="" nameTag="funicular_ref" textHaloColor="$routeFunicularColor"/>
 					<apply_if minzoom="13" maxzoom="14" textSize="6"/>
 					<apply_if minzoom="15" maxzoom="15" textSize="9"/>
 					<apply_if minzoom="16" maxzoom="16" textSize="10"/>
@@ -5798,10 +5804,10 @@
 						<case showShareTaxiRoutes="true" additional="share_taxi=yes" nameTag2="local_ref"/>
 						<case showShareTaxiRoutes="true" additional="share_taxi=yes"/>
 					</switch>
-					<case tramTrainRoutes="true" tag="public_transport" value="platform" additional="train=yes" nameTag="" textOnPath="true"/>
-					<case tramTrainRoutes="true" tag="public_transport" value="platform" additional="tram=yes" nameTag="" textOnPath="true"/>
+					<case showTramRoutes="true" tag="public_transport" value="platform" additional="tram=yes" nameTag="" textOnPath="true"/>
+					<case showTrainRoutes="true" tag="public_transport" value="platform" additional="train=yes" nameTag="" textOnPath="true"/>
 					<case showBusRoutes="true" tag="amenity" value="bus_station" nameTag=""/>
-					<case tramTrainRoutes="true" tag="railway" value="tram_stop" nameTag=""/>
+					<case showTramRoutes="true" tag="railway" value="tram_stop" nameTag=""/>
 					<apply_if nightMode="true" textColor="$publicTransportModeStopTextColorNight" textHaloRadius="2" textHaloColor="$publicTransportModeStopTextHaloColorNight"/>
 				</switch>
 				<switch minzoom="16" textSize="13"> <!-- When public transport is selected -->
@@ -5821,14 +5827,16 @@
 						<case showShareTaxiRoutes="true" additional="share_taxi=yes" nameTag2="local_ref"/>
 						<case showShareTaxiRoutes="true" additional="share_taxi=yes"/>
 					</switch>
-					<switch tramTrainRoutes="true" tag="public_transport" value="platform" textOnPath="true" textOrder="1">
-						<case additional="train=yes" nameTag="" nameTag2="local_ref"/>
-						<case additional="train=yes" nameTag="local_ref"/>
-						<case additional="tram=yes" nameTag="" nameTag2="local_ref"/>
-						<case additional="tram=yes" nameTag="local_ref"/>
+					<switch tag="public_transport" value="platform" textOnPath="true" textOrder="1">
+						<case showTramRoutes="true" additional="tram=yes" nameTag="" nameTag2="local_ref"/>
+						<case showTramRoutes="true" additional="tram=yes" nameTag="local_ref"/>
+						<case showTrainRoutes="true" additional="train=yes" nameTag="" nameTag2="local_ref"/>
+						<case showTrainRoutes="true" additional="train=yes" nameTag="local_ref"/>
+						<case showLightRailRoutes="true" additional="light_rail=yes" nameTag="" nameTag2="local_ref"/>
+						<case showLightRailRoutes="true" additional="light_rail=yes" nameTag="local_ref"/>
 					</switch>
 					<case showBusRoutes="true" tag="amenity" value="bus_station" textOrder="10"/>
-					<case tramTrainRoutes="true" tag="railway" value="tram_stop" textOrder="1"/>
+					<case showTramRoutes="true" tag="railway" value="tram_stop" textOrder="1"/>
 					<apply textColor="$publicTransportModeStopTextColor" textHaloColor="$publicTransportModeStopTextHaloColor">
 						<apply_if nightMode="true" textColor="$publicTransportModeStopTextColorNight" textHaloRadius="2" textHaloColor="$publicTransportModeStopTextHaloColorNight"/>
 					</apply>
@@ -5879,7 +5887,11 @@
 						<case showBusRoutes="true"/>
 						<case showTrolleybusRoutes="true"/>
 						<case showShareTaxiRoutes="true"/>
-						<case tramTrainRoutes="true"/>
+						<case showTramRoutes="true"/>
+						<case showTrainRoutes="true"/>
+						<case showLightRailRoutes="true"/>
+						<case showMonorailRoutes="true"/>
+						<case showFunicularRoutes="true"/>
 						<apply intersectsWith="transport"/>
 					</switch>
 				</apply>
@@ -8765,7 +8777,6 @@
 								<apply_if nightMode="true" icon="highway_bus_stop_round_small_night"/>
 							</apply>
 						</switch>
-						<case tramTrainRoutes="true" hideIcons="false" icon="highway_bus_stop_small"/>
 					</switch>
 				</apply>
 				<apply_if minzoom="15" maxzoom="16" iconVisibleSize="9" iconOrder="73">
@@ -8796,7 +8807,7 @@
 					</switch>
 				</apply_if>
 			</switch>
-			<switch tramTrainRoutes="true" iconOrder="55">
+			<switch showTramRoutes="true" iconOrder="55">
 				<case tag="railway" value="tram_stop"/>
 				<case tag="public_transport" value="stop_position" additional="tram=yes"/>
 				<case tag="public_transport" value="platform" additional="tram=yes"/>
@@ -8821,6 +8832,7 @@
 					<case minzoom="16" icon="halt" shield="blue_square_small_shield">
 						<apply_if nightMode="true" shield="blue_square_night_small_shield"/>
 					</case>
+					<apply_if showLightRailRoutes="true" additional="light_rail=yes" iconOrder="5"/>
 				</case>
 				<case minzoom="15" tag="railway" value="tram_stop">
 					<case maxzoom="16" icon="tram_stop_small" iconVisibleSize="10"/>
@@ -11778,11 +11790,11 @@
 				<case maxzoom="17" strokeWidth="4.2:4.2"/>
 				<case minzoom="18" strokeWidth="5:5"/>
 			</case>
-			<switch tramTrainRoutes="true">
-				<case tag="route_tram" value="" color="$routeTramColor"/>
-				<case tag="route_light_rail" value="" color="$routeLightrailColor"/>
-				<case tag="route_funicular" value="" color="$routeFunicularColor"/>
-				<case tag="route_monorail" value="" color="$routeLightrailColor" cap="ROUND">
+			<switch>
+				<case showTramRoutes="true" tag="route_tram" value="" color="$routeTramColor"/>
+				<case showLightRailRoutes="true" tag="route_light_rail" value="" color="$routeLightrailColor"/>
+				<case showFunicularRoutes="true" tag="route_funicular" value="" color="$routeFunicularColor"/>
+				<case showMonorailRoutes="true" tag="route_monorail" value="" color="$routeLightrailColor" cap="ROUND">
 					<apply_if minzoom="11" maxzoom="11" pathEffect="1_1"/>
 					<apply_if minzoom="12" maxzoom="12" pathEffect="1_3"/>
 					<apply_if minzoom="13" maxzoom="13" pathEffect="1_5"/>
@@ -11801,7 +11813,7 @@
 				<apply_if minzoom="17" maxzoom="17" strokeWidth="6.5:6.5"/>
 				<apply_if minzoom="18" strokeWidth="7.5:7.5"/>
 			</switch>
-			<case tramTrainRoutes="true" tag="route_train" value="" color="$routeTrainColor" color_2="#ffffff">
+			<case showTrainRoutes="true" tag="route_train" value="" color="$routeTrainColor" color_2="#ffffff">
 				<case minzoom="11" maxzoom="12" strokeWidth="2.5:2.5" strokeWidth_2="1.5:1.5" pathEffect_2="10_10"/>
 				<case maxzoom="13" strokeWidth="3.2:3.2" strokeWidth_2="2.2:2.2" pathEffect_2="13_13"/>
 				<case maxzoom="14" strokeWidth="3.7:3.7" strokeWidth_2="3:3" pathEffect_2="17_17"/>
