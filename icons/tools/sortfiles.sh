@@ -171,6 +171,10 @@ icon_alias hill poi_colored_hill
 icon_alias hill_night functional-icons_hill_night
 icon_alias fumarole poi_colored_fumarole
 icon_alias topo_fumarole topo_fumarole
+icon_alias birds_nest poi_colored_birds_nest
+icon_alias topo_birds_nest topo_birds_nest
+icon_alias termite_mound poi_termite_mound
+icon_alias topo_termite_mound topo_termite_mound
 
 ## Location dots
 icon_alias administrative poi_colored_boundary_administrative
@@ -1191,6 +1195,7 @@ icon_alias satellite_dish poi_colored_satellite_dish
 icon_alias waste_transfer_station amenity_waste_transfer_station
 icon_alias lavoir amenity_lavoir
 icon_alias dovecote poi_dovecote
+icon_alias fish_pass poi_fish_pass
 
 ## Food and Drink
 icon_alias restaurants food_restaurant
@@ -1991,6 +1996,13 @@ icon_alias tool_hire shopping_tool_hire
 icon_alias collector shopping_collector
 icon_alias skate shopping_skate
 icon_alias tiles shopping_tiles
+icon_alias hairdresser_supply shopping_hairdresser_supply
+icon_alias shop_fuel shopping_fuel
+icon_alias printer_ink shopping_printer_ink
+icon_alias water_sports shopping_water_sports
+icon_alias rice shopping_rice
+icon_alias motorcycle_parts shopping_motorcycle_parts
+icon_alias wool shopping_wool
 
 ## Office
 icon_alias estate_agent office_estate_agent

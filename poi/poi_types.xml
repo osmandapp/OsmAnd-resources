@@ -440,6 +440,11 @@
 	<poi_additional name="payment_yandexmoney_no" tag="payment:yandexmoney" value="no"/>
 	<poi_additional name="payment_troika_no" tag="payment:troika" value="no"/>
 	<poi_additional name="payment_contactless_no" tag="payment:contactless" value="no"/>
+	<poi_additional name="payment_american_express_contactless_no" tag="payment:american_express_contactless" value="no"/>
+	<poi_additional name="payment_girocard_contactless_no" tag="payment:girocard_contactless" value="no"/>
+	<poi_additional name="payment_maestro_contactless_no" tag="payment:maestro_contactless" value="no"/>
+	<poi_additional name="payment_mastercard_contactless_no" tag="payment:mastercard_contactless" value="no"/>
+	<poi_additional name="payment_visa_contactless_no" tag="payment:visa_contactless" value="no"/>
 	<poi_additional name="payment_calling_cards_no" tag="payment:calling_cards" value="no"/>
 	<poi_additional name="payment_reverse_charge_calls_no" tag="payment:reverse_charge_calls" value="no"/>
 	<poi_additional name="description_payment" tag="description:payment" type="text"/>
@@ -504,6 +509,11 @@
 		<poi_additional name="payment_yandexmoney_yes" tag="payment:yandexmoney" value="yes"/>
 		<poi_additional name="payment_troika_yes" tag="payment:troika" value="yes"/>
 		<poi_additional name="payment_contactless_yes" tag="payment:contactless" value="yes"/>
+		<poi_additional name="payment_american_express_contactless_yes" tag="payment:american_express_contactless" value="yes"/>
+		<poi_additional name="payment_girocard_contactless_yes" tag="payment:girocard_contactless" value="yes"/>
+		<poi_additional name="payment_maestro_contactless_yes" tag="payment:maestro_contactless" value="yes"/>
+		<poi_additional name="payment_mastercard_contactless_yes" tag="payment:mastercard_contactless" value="yes"/>
+		<poi_additional name="payment_visa_contactless_yes" tag="payment:visa_contactless" value="yes"/>
 		<poi_additional name="payment_calling_cards_yes" tag="payment:calling_cards" value="yes"/>
 		<poi_additional name="payment_reverse_charge_calls_yes" tag="payment:reverse_charge_calls" value="yes"/>
 	</poi_additional_category>
@@ -1521,6 +1531,7 @@
 			<poi_type name="frame" tag="shop" value="frame"/>
 			<poi_type name="free_flying" tag="shop" value="free_flying"/>
 <!--			<poi_type name="furnace" tag="shop" value="furnace"/>-->
+			<poi_type name="shop_fuel" tag="shop" value="fuel" icon="shop_fuel"/>
 			<poi_type name="furniture" tag="shop" value="furniture">
 				<poi_additional_category name="furniture_filter">
 					<poi_additional name="furniture_used" tag="furniture" value="used"/>
@@ -1613,9 +1624,11 @@
 			<poi_type name="photo" tag="shop" value="photo"/>
 			<poi_type name="photo_studio" tag="shop" value="photo_studio"/>
 			<poi_type name="pottery" tag="shop" value="pottery"/>
+			<poi_type name="printer_ink" tag="shop" value="printer_ink"/>
 			<poi_type name="pyrotechnics" tag="shop" value="pyrotechnics"/>
 			<poi_type name="radiotechnics" tag="shop" value="radiotechnics"/>
 			<poi_type name="religion" tag="shop" value="religion"/>
+			<poi_type name="rice" tag="shop" value="rice"/>
 			<poi_type name="scuba_diving_shop" tag="shop" value="scuba_diving"/>
 			<poi_type name="second_hand" tag="shop" value="second_hand"/>
 			<poi_type name="shop_security" tag="shop" value="security"/>
@@ -1651,6 +1664,7 @@
 			<poi_type name="video" tag="shop" value="video"/>
 			<poi_type name="watches" tag="shop" value="watches"/>
 			<poi_type name="shop_water" tag="shop" value="water"/>
+			<poi_type name="water_sports" tag="shop" value="water_sports"/>
 			<poi_type name="weapons" tag="shop" value="weapons"/>
 			<poi_type name="shop_wholesale" tag="shop" value="wholesale">
 				<poi_additional_category name="membership_filter">
@@ -1659,6 +1673,7 @@
 				</poi_additional_category>
 			</poi_type>
 			<poi_type name="window_blind" tag="shop" value="window_blind"/>
+			<poi_type name="wool" tag="shop" value="wool"/>
 		</poi_category>
 		<poi_category name="emergency" default_tag="emergency" top="true" excluded_poi_additional_category="wheelchair_accessibility,fee,payment_type,internet_access_type,opening_hours">
 			<poi_type name="police" tag="amenity" value="police" poi_additional_category="opening_hours"/>
@@ -2062,6 +2077,7 @@
 					</poi_additional_category>
 				</poi_type>
 				<poi_type name="motorcycle_repair" tag="shop" value="motorcycle_repair" excluded_poi_additional_category="wheelchair_accessibility,fee"/>
+				<poi_type name="motorcycle_parts" tag="shop" value="motorcycle_parts" excluded_poi_additional_category="wheelchair_accessibility,fee"/>
 				<poi_type name="vehicle_inspection" tag="amenity" value="vehicle_inspection" excluded_poi_additional_category="wheelchair_accessibility,fee,payment_type"/>
 				<poi_type name="car_wash" tag="amenity" value="car_wash">
 					<poi_additional_category name="brushless">
@@ -3691,6 +3707,8 @@
 				<poi_additional name="concentration_camp_nazism" tag="concentration_camp" value="nazism"/>
 				<poi_additional name="concentration_camp_gulag" tag="concentration_camp" value="gulag"/>
 			</poi_type>
+			<poi_type name="dovecote" tag="man_made" value="dovecote"/>
+			<poi_type name="fish_pass" tag="man_made" value="fish_pass"/>
 		</poi_category>
 		<poi_category name="entertainment" default_tag="amenity" top="true">
 			<poi_filter name="club">
@@ -4213,8 +4231,17 @@
 				</poi_additional_category>
 			</poi_type>
 			<poi_type name="tattoo" tag="shop" value="tattoo" excluded_poi_additional_category="payment_type,fee"/>
-			<poi_type name="dry_cleaning" tag="shop" value="dry_cleaning" excluded_poi_additional_category="payment_type,fee"/>
-			<poi_type name="laundry" tag="shop" value="laundry" excluded_poi_additional_category="payment_type,fee" poi_additional_category="self_service"/>
+			<poi_type name="dry_cleaning" tag="shop" value="dry_cleaning" poi_additional_category="laundry_service_filter,dry_cleaning_filter" excluded_poi_additional_category="payment_type,fee"/>
+			<poi_type name="laundry" tag="shop" value="laundry" excluded_poi_additional_category="payment_type,fee" poi_additional_category="self_service">
+				<poi_additional_category name="laundry_service_filter">
+					<poi_additional name="laundry_service_yes" tag="laundry_service" value="yes"/>
+					<poi_additional name="laundry_service_no" tag="laundry_service" value="no"/>
+				</poi_additional_category>
+				<poi_additional_category name="dry_cleaning_filter">
+					<poi_additional name="dry_cleaning_yes" tag="dry_cleaning" value="yes"/>
+					<poi_additional name="dry_cleaning_no" tag="dry_cleaning" value="no"/>
+				</poi_additional_category>
+			</poi_type>
 			<poi_type name="services" tag="highway" value="services" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility" poi_additional_category="toilets">
 				<poi_additional_category name="shower">
 					<poi_additional name="shower_filter_yes" tag="shower_filter" value="yes" no_edit="true" filter_only="true" top="true"/>
@@ -4597,6 +4624,8 @@
 				<poi_additional name="diameter_crown" tag="diameter_crown" type="text"/>
 			</poi_type>
 			<poi_type name="shrub" tag="natural" value="shrub"/>
+			<poi_type name="birds_nest" tag="natural" value="birds_nest"/>
+			<poi_type name="termite_mound" tag="natural" value="termite_mound"/>
 			<poi_type name="nature_reserve" tag="leisure" value="nature_reserve" no_edit="true"/>
 			<poi_type name="protected_area" tag="boundary" value="protected_area" no_edit="true">
 				<poi_additional name="protection_title" tag="protection_title" type="text"/>
