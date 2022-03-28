@@ -1989,6 +1989,7 @@
 		<parameter id="only_permitted_ways" name="Expressly permitted ways" description="Only use ways (tracks, paths aso.) which are expressly permitted" type="boolean"/>
 
 		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean" default="true"/>
+		<parameter id="carriage_restrictions" name="Carriage restrictions" description="Consider access permissions for horse-drawn vehicles" type="boolean"/>
 		<parameter id="prefer_horse_routes" name="Prefer horse routes" description="Prefer horse routes" type="boolean"/>
 
 		<way attribute="access">
@@ -2032,6 +2033,10 @@
 			<select value="1"  t="horse" v="official"/>
 			<select value="1"  t="horse" v="use_sidepath"/>
 			
+			<if param="carriage_restrictions">
+				<select value="-1" t="carriage" v="no"/>
+			</if>
+
 			<if param="allow_private">
 				<select value="1"  t="horse" v="private"/>
 				<select value="1"  t="access" v="private"/>
