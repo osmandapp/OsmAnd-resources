@@ -49,6 +49,7 @@ function populateDictionary(tts) {
 	dictionary["and"] = tts ? "and" : "and.ogg";
 	dictionary["take"] = tts ? "take the" : "take.ogg";
 	dictionary["exit"] = tts ? "exit" : "exit.ogg";
+	dictionary["until"] = tts ? "until" : "until.ogg";
 
 	dictionary["1st"] = tts ? "first" : "1st.ogg";
 	dictionary["2nd"] = tts ? "second" : "2nd.ogg";
@@ -440,7 +441,12 @@ function prepare_turn(turnType, dist, streetName) {
 }
 
 function prepare_roundabout(dist, exit, streetName) {
-	return dictionary["after"] + " " + distance(dist) + " " + dictionary["prepare_roundabout"]; 
+    if (exit != null) {
+        return dictionary["after"] + " " + distance(dist) + " " + dictionary["prepare_roundabout"] +
+            " " + dictionary["until"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
+    } else {
+        return dictionary["after"] + " " + distance(dist) + " " + dictionary["prepare_roundabout"];
+    }
 }
 
 function and_arrive_destination(dest) {
