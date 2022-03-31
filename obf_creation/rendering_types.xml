@@ -1810,7 +1810,7 @@
 		<type tag="node_network_iwn" value="iwn" minzoom="11" additional="true" />
 		<type tag="node_network_lwn" value="lwn" minzoom="11" additional="true" />
 		<type tag="node_network_nwn" value="nwn" minzoom="11" additional="true" />
-		<type tag="node_network_rwn" value="rwn" minzoom="11" additional="true" />		
+		<type tag="node_network_rwn" value="rwn" minzoom="11" additional="true" />
 		
 		<entity_convert pattern="tag_transform" from_tag="hiking_node_network" from_value="iwn" to_tag1="node_network_iwn" to_tag2="hiking_node_network"/>
 		<entity_convert pattern="tag_transform" from_tag="hiking_node_network" from_value="nwn" to_tag1="node_network_nwn" to_tag2="hiking_node_network"/>
@@ -2452,6 +2452,29 @@
 		<type tag="sac_scale" value="alpine_hiking" minzoom="12" additional="true"/>
 		<type tag="sac_scale" value="demanding_alpine_hiking" minzoom="12" additional="true"/>
 		<type tag="sac_scale" value="difficult_alpine_hiking" minzoom="12" additional="true"/>
+	</category>
+
+	<category name="horse_scale">
+		<type tag="horse_scale" value="common" minzoom="11"/>
+		<type tag="horse_scale" value="demanding" minzoom="11"/>
+		<type tag="horse_scale" value="difficult" minzoom="11"/>
+		<type tag="horse_scale" value="critical" minzoom="11"/>
+		<type tag="horse_scale" value="dangerous" minzoom="11"/>
+		<type tag="horse_scale" value="impossible" minzoom="11"/>
+		<!-- This is needed because horse_scale should be over route=horse and highway=*. So it should be not additional to highway -->
+		<type tag="horse_scale_highway" value="residential" minzoom="11" additional="true" notosm="true"/>
+		<type tag="horse_scale_highway" value="service" minzoom="11" additional="true" notosm="true"/>
+		<type tag="horse_scale_highway" value="track" minzoom="11" additional="true" notosm="true"/>
+		<type tag="horse_scale_highway" value="path" minzoom="11" additional="true" notosm="true"/>
+		<type tag="horse_scale_highway" value="footway" minzoom="11" additional="true" notosm="true"/>
+		<type tag="horse_scale_highway" value="bridleway" minzoom="11" additional="true" notosm="true"/>
+		<entity_convert pattern="tag_transform" from_tag="horse_scale" if_tag1="highway" if_value1="residential" to_tag1="horse_scale" to_tag2="horse_scale_highway" to_value2="residential" routing="no" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="horse_scale" if_tag1="highway" if_value1="service" to_tag1="horse_scale" to_tag2="horse_scale_highway" to_value2="service" routing="no" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="horse_scale" if_tag1="highway" if_value1="track" to_tag1="horse_scale" to_tag2="horse_scale_highway" to_value2="track" routing="no" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="horse_scale" if_tag1="highway" if_value1="path" to_tag1="horse_scale" to_tag2="horse_scale_highway" to_value2="path" routing="no" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="horse_scale" if_tag1="highway" if_value1="footway" to_tag1="horse_scale" to_tag2="horse_scale_highway" to_value2="footway" routing="no" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="horse_scale" if_tag1="highway" if_value1="bridleway" to_tag1="horse_scale" to_tag2="horse_scale_highway" to_value2="bridleway" routing="no" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="horse_scale" if_tag1="highway" if_value1="cycleway" routing="no" poi="no"/>
 	</category>
 
 	<category name="osmc">

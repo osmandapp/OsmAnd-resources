@@ -165,6 +165,8 @@
 		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="horseRoutes" name="Horse routes" description="Horse routes"
 		type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="horseScale" name="Difficulty of horse trails" description="Render paths according to difficulty of horse trails"
+		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="showFitnessTrails" name="Show fitness trails" description="Show fitness trails"
 		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="showRunningRoutes" name="Show running routes" description="Show running routes"
@@ -2277,6 +2279,8 @@
 		<case attrColorValue="#e8e8e8"/>
 	</renderingAttribute>
 
+
+
 	<renderingAttribute name="routeInfo_roadClass"> <!-- Used in route details info -->
 		<case tag="highway" value="motorway" attrColorValue="$motorwayRoadColor" attrStringValue="highway_class_motorway"/>
 		<case tag="highway" value="motorway_link" attrColorValue="$motorwayRoadColor" attrStringValue="highway_class_motorway"/>
@@ -2389,6 +2393,16 @@
 		<case attrColorValue="#995FBCFF"/>
 	</renderingAttribute>
 
+	<renderingAttribute name="horseScaleColorLow">
+		<case attrColorValue="#008FEB"/>
+	</renderingAttribute>
+	<renderingAttribute name="horseScaleColorMiddle">
+		<case attrColorValue="#008FEB"/>
+	</renderingAttribute>
+	<renderingAttribute name="horseScaleColorHigh">
+		<case attrColorValue="#E94D00"/>
+	</renderingAttribute>
+
 	<renderingAttribute name="routeInfo_winter_ice_road"> <!-- Used in route details info -->
 		<case additional="winter_road=yes" attrColorValue="$winterroadShadowColor" attrStringValue="winter_road"/>
 		<case additional="ice_road=yes" attrColorValue="$iceroadColor" attrStringValue="ice_road"/>
@@ -2400,6 +2414,14 @@
 		<case additional="tracktype=grade3" attrColorValue="$tracktypeGrade3Color" attrStringValue="tracktype_grade3"/>
 		<case additional="tracktype=grade4" attrColorValue="$tracktypeGrade4Color" attrStringValue="tracktype_grade4"/>
 		<case additional="tracktype=grade5" attrColorValue="$tracktypeGrade5Color" attrStringValue="tracktype_grade5"/>
+	</renderingAttribute>
+	<renderingAttribute name="routeInfo_horse_scale"> <!-- Used in route details info -->
+		<case tag="horse_scale" value="common" attrColorValue="$horseScaleColorLow" attrStringValue="horse_scale_common"/>
+		<case tag="horse_scale" value="demanding" attrColorValue="#007FD1" attrStringValue="horse_scale_demanding"/>
+		<case tag="horse_scale" value="difficult" attrColorValue="#0074BF" attrStringValue="horse_scale_difficult"/>
+		<case tag="horse_scale" value="critical" attrColorValue="#0065A6" attrStringValue="horse_scale_critical"/>
+		<case tag="horse_scale" value="dangerous" attrColorValue="#005A94" attrStringValue="horse_scale_dangerous"/>
+		<case tag="horse_scale" value="impossible" attrColorValue="$horseScaleColorHigh" attrStringValue="horse_scale_impossible"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="subwayLineDefaultColor">
@@ -3670,6 +3692,31 @@
 						<apply_if additional="layer=3" order="157"/>
 						<apply_if layer="-1" order="54"/>
 						<apply_if additional="layer=-2" order="33"/>
+					</case>
+					<case tag="horse_scale" value="" order="85">
+						<apply_if additional="horse_scale_highway=residential">
+							<apply_if maxzoom="12" moreDetailed="false" order="-1"/>
+						</apply_if>
+						<apply_if additional="horse_scale_highway=service">
+							<apply_if maxzoom="14" moreDetailed="false" order="-1"/>
+							<apply_if maxzoom="13" moreDetailed="true" order="-1"/>
+						</apply_if>
+						<apply_if additional="horse_scale_highway=track">
+							<apply_if maxzoom="13" moreDetailed="false" order="-1"/>
+							<apply_if maxzoom="11" moreDetailed="true" order="-1"/>
+						</apply_if>
+						<apply_if additional="horse_scale_highway=path">
+							<apply_if maxzoom="14" moreDetailed="false" order="-1"/>
+							<apply_if maxzoom="11" moreDetailed="true" order="-1"/>
+						</apply_if>
+						<apply_if additional="horse_scale_highway=footway">
+							<apply_if maxzoom="14" moreDetailed="false" order="-1"/>
+							<apply_if maxzoom="11" moreDetailed="true" order="-1"/>
+						</apply_if>
+						<apply_if additional="horse_scale_highway=bridleway">
+							<apply_if maxzoom="15" moreDetailed="false" order="-1"/>
+							<apply_if maxzoom="12" moreDetailed="true" order="-1"/>
+						</apply_if>
 					</case>
 					<apply_if maxzoom="13" additional="construction=yes" order="-1"/>
 				</switch>
@@ -12493,7 +12540,17 @@
 			<apply_if minzoom="15" maxzoom="16" strokeWidth="5" pathEffect="3_8"/>
 			<apply_if minzoom="17" strokeWidth="7" pathEffect="4_9"/>
 		</switch>
-		<!--		<case tag="piste:type" value="" additional="route=piste" strokeWidth="3" color="#ae27b3"/>  This is not needed because we don't need to render piste routes in default style. But skimap.render.xml renders these routes. It allows to render osmc symbols. Only engine_v1 2017.05.30. -->
+		
+		<switch horseScale="true" minzoom="12">
+			<case tag="horse_scale" value="common" pathEffect="2_38" color="$horseScaleColorLow"/>
+			<case tag="horse_scale" value="demanding" pathEffect="2_2_2_34" color="$horseScaleColorLow"/>
+			<case tag="horse_scale" value="difficult" pathEffect="2_2_2_2_2_30" color="$horseScaleColorMiddle"/>
+			<case tag="horse_scale" value="critical" pathEffect="2_2_2_2_2_2_2_26" color="$horseScaleColorMiddle"/>
+			<case tag="horse_scale" value="dangerous" pathEffect="2_2_2_2_2_2_2_2_2_22" color="$horseScaleColorMiddle"/>
+			<case tag="horse_scale" value="impossible" pathEffect="2_2_2_2_2_2_2_2_2_22" color="$horseScaleColorHigh"/>
+			<apply_if maxzoom="16" strokeWidth="2.5:2.5"/>
+			<apply_if minzoom="17" strokeWidth="4:4"/>
+		</switch>
 
 		<!-- <switch minzoom="16">
 			<case tag="hazard" value=""/>

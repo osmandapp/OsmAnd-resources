@@ -7,6 +7,8 @@
 	<renderingProperty attr="transportStops" name="Transport stops" description="Public transport stops" type="boolean" possibleValues="" category="transport"/>
 	<renderingProperty attr="contourLines" name="Show contour lines" description="Select minimum zoom level to display in map if available. Separate contour file may be needed." type="string" possibleValues="disabled,16,15,14,13,12,11" defaultValueDescription="default13" category="details"/>
 	<renderingProperty attr="horseRoutes" name="Horse routes" description="Horse routes" type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="horseScale" name="Difficulty of horse trails" description="Render paths according to difficulty of horse trails"
+		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="hikingRoutesOSMC" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces" type="string" possibleValues="walkingRoutesOSMC,walkingRoutesScopeOSMC,walkingRoutesOSMCNodes" defaultValueDescription="disabled" category="routes"/>
 	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show cycle routes (*cn_networks) in bicycle mode" type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="showCycleNodeNetworkRoutes" name="Show node network cycle routes" description="Show node network cycle routes in bicycle mode" type="boolean" possibleValues="" category="routes"/>
@@ -278,6 +280,23 @@
 		<case attrColorValue="#eeeeee"/>
 	</renderingAttribute>
 
+	<renderingAttribute name="horseScaleColorLow">
+		<case attrColorValue="#0026EB"/>
+	</renderingAttribute>
+	<renderingAttribute name="horseScaleColorMiddle">
+		<case attrColorValue="#0026EB"/>
+	</renderingAttribute>
+	<renderingAttribute name="horseScaleColorHigh">
+		<case attrColorValue="#E94D00"/>
+	</renderingAttribute>
+	<renderingAttribute name="routeInfo_horse_scale"> <!-- Used in route details info -->
+		<case tag="horse_scale" value="common" attrColorValue="$horseScaleColorLow" attrStringValue="horse_scale_common"/>
+		<case tag="horse_scale" value="demanding" attrColorValue="#007FD1" attrStringValue="horse_scale_demanding"/>
+		<case tag="horse_scale" value="difficult" attrColorValue="#0074BF" attrStringValue="horse_scale_difficult"/>
+		<case tag="horse_scale" value="critical" attrColorValue="#0065A6" attrStringValue="horse_scale_critical"/>
+		<case tag="horse_scale" value="dangerous" attrColorValue="#005A94" attrStringValue="horse_scale_dangerous"/>
+		<case tag="horse_scale" value="impossible" attrColorValue="$horseScaleColorHigh" attrStringValue="horse_scale_impossible"/>
+	</renderingAttribute>
 
 <!-- Motorway -->
 	<renderingAttribute name="motorwayRoadColor">
@@ -1888,6 +1907,28 @@
 						<apply_if baseAppMode="default" lessDetailed="true" maxzoom="15" order="-1"/>
 					</case>
 					<case tag="highway" value="raceway"/>
+					<case tag="horse_scale" value="" order="85">
+						<apply_if additional="horse_scale_highway=residential">
+							<apply_if maxzoom="12" moreDetailed="false" order="-1"/>
+						</apply_if>
+						<apply_if additional="horse_scale_highway=service">
+							<apply_if maxzoom="14" lessDetailed="true" order="-1"/>
+							<apply_if maxzoom="12" lessDetailed="false" order="-1"/>
+						</apply_if>
+						<apply_if additional="horse_scale_highway=track">
+							<apply_if maxzoom="13" lessDetailed="true" order="-1"/>
+						</apply_if>
+						<apply_if additional="horse_scale_highway=path">
+							<apply_if maxzoom="14" lessDetailed="true" order="-1"/>
+						</apply_if>
+						<apply_if additional="horse_scale_highway=footway">
+							<apply_if maxzoom="14" lessDetailed="true" order="-1"/>
+							<apply_if maxzoom="12" lessDetailed="false" order="-1"/>
+						</apply_if>
+						<apply_if additional="horse_scale_highway=bridleway">
+							<apply_if maxzoom="15" lessDetailed="true" order="-1"/>
+						</apply_if>
+					</case>
 					<apply_if maxzoom="13" additional="construction=yes" order="-1"/>
 				</switch>
 				<case tag="highway" value="bridleway" order="53"/>
@@ -6007,6 +6048,17 @@
 				<case maxzoom="18" strokeWidth="12:12"/>
 				<case minzoom="19" strokeWidth="14:14"/>
 			</apply>
+		</switch>
+
+		<switch horseScale="true" minzoom="12">
+			<case tag="horse_scale" value="common" pathEffect="2_38" color="$horseScaleColorLow"/>
+			<case tag="horse_scale" value="demanding" pathEffect="2_2_2_34" color="$horseScaleColorLow"/>
+			<case tag="horse_scale" value="difficult" pathEffect="2_2_2_2_2_30" color="$horseScaleColorMiddle"/>
+			<case tag="horse_scale" value="critical" pathEffect="2_2_2_2_2_2_2_26" color="$horseScaleColorMiddle"/>
+			<case tag="horse_scale" value="dangerous" pathEffect="2_2_2_2_2_2_2_2_2_22" color="$horseScaleColorMiddle"/>
+			<case tag="horse_scale" value="impossible" pathEffect="2_2_2_2_2_2_2_2_2_22" color="$horseScaleColorHigh"/>
+			<apply_if maxzoom="16" strokeWidth="3.5:3.5"/>
+			<apply_if minzoom="17" strokeWidth="5:5"/>
 		</switch>
 
 		<switch streetLighting="true" minzoom="11" cap="ROUND">
