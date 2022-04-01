@@ -159,14 +159,14 @@ generateBothMapPOIPng() {
   # genMapIconsNoScale 'cycle_node_shields'
   # genMapIconsStdSize 'seamark_int1_shields'
 
-  # genMapIconsStdSize 'osmc_black' '#'
-  # genMapIconsStdSize 'osmc_blue' '#'
-  # genMapIconsStdSize 'osmc_green' '#'
-  # genMapIconsStdSize 'osmc_orange' '#'
-  # genMapIconsStdSize 'osmc_red' '#'
-  # genMapIconsStdSize 'osmc_white' '#'
-  # genMapIconsStdSize 'osmc_yellow' '#'
-  # genMapIconsStdSize 'osmc_other' '#'
+  # genMapIconsNoScale 'osmc_black' '#'
+  # genMapIconsNoScale 'osmc_blue' '#'
+  # genMapIconsNoScale 'osmc_green' '#'
+  # genMapIconsNoScale 'osmc_orange' '#'
+  # genMapIconsNoScale 'osmc_red' '#'
+  # genMapIconsNoScale 'osmc_white' '#'
+  # genMapIconsNoScale 'osmc_yellow' '#'
+  # genMapIconsNoScale 'osmc_other' '#'
   # genMapIconsStdSize 'functional-icons' '#'
   # genMapIconsStdSize 'functional-icons-x2' '#ff8f00' x2
 
