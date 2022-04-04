@@ -2357,6 +2357,7 @@ icon_alias_no_mx osmc_yellow_hexagon osmc_yellow_hexagon
 icon_alias_no_mx osmc_yellow_mz osmc_yellow_mz
 icon_alias_no_mx osmc_yellow_sg osmc_yellow_sg
 icon_alias_no_mx osmc_yellow_shell osmc_yellow_shell
+icon_alias_no_mx osmc_hiker osmc_hiker
 
 # Additional
 icon_alias cuisine additional_cuisine
