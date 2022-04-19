@@ -1357,6 +1357,41 @@
 		<case engine_v1="true" attrColorValue="#750058a2"/>
 		<case attrColorValue="#280058a2"/>
 	</renderingAttribute>
+
+	<renderingAttribute name="osmcRedTextColor">
+		<case attrColorValue="#FF0000"/>
+	</renderingAttribute>
+	<renderingAttribute name="osmcBrownTextColor">
+		<case attrColorValue="#775200"/>
+	</renderingAttribute>
+	<renderingAttribute name="osmcOrangeTextColor">
+		<case attrColorValue="#EE9D00"/>
+	</renderingAttribute>
+	<renderingAttribute name="osmcDarkyellowTextColor">
+		<case attrColorValue="#8C9800"/>
+	</renderingAttribute>
+	<renderingAttribute name="osmcYellowTextColor">
+		<case attrColorValue="#F0E600"/>
+	</renderingAttribute>
+	<renderingAttribute name="osmcLightgreenTextColor">
+		<case attrColorValue="#C5FF7A"/>
+	</renderingAttribute>
+	<renderingAttribute name="osmcGreenTextColor">
+		<case attrColorValue="#00DE02"/>
+	</renderingAttribute>
+	<renderingAttribute name="osmcLightblueTextColor">
+		<case attrColorValue="#6FC8FA"/>
+	</renderingAttribute>
+	<renderingAttribute name="osmcBlueTextColor">
+		<case attrColorValue="#3B00FF"/>
+	</renderingAttribute>
+	<renderingAttribute name="osmcPurpleTextColor">
+		<case attrColorValue="#CC00FF"/>
+	</renderingAttribute>
+	<renderingAttribute name="osmcGrayTextColor">
+		<case attrColorValue="#B9B9B9"/>
+	</renderingAttribute>
+
 	<renderingAttribute name="iwnColor">
 		<case attrColorValue="#d94545"/>
 	</renderingAttribute>
@@ -2126,113 +2161,227 @@
 			</apply>
 		</case>
 
-				<switch minzoom="12" textMinDistance="101" textOnPath="false" textOrder="43">
-					<switch textOrder="44" seq="1:10">
-						<case tag="route_hiking" value="" nameTag="hiking_route_name" textOnPath="true" textSize="13"/>
-						<case tag="route_hiking" value="" nameTag="hiking_route_ref" textSize="13"/>
-						<case horseRoutes="true" minzoom="13" tag="route_horse" value="" nameTag="horse_route_name" textOnPath="true" textOrder="8"/>
-						<case horseRoutes="true" tag="route_horse" value="" nameTag="horse_route_ref" textOnPath="true" textSize="13"/>
-						<apply>
-							<switch>
-								<case hikingRoutesOSMC="walkingRoutesOSMC" textSize="11" textColor="$hikingRoutesTextColor" textHaloColor="#ccebf4ff">
-									<apply_if nightMode="true" textColor="#ebf4ff" textHaloColor="#cc0078ff"/>
-								</case>
-								<case hikingRoutesOSMC="walkingRoutesScopeOSMC" textSize="11" textColor="$hikingRoutesTextColor" textHaloColor="#ccebf4ff">
-									<apply_if nightMode="true" textColor="#ebf4ff" textHaloColor="#cc0078ff"/>
-								</case>
-								<case horseRoutes="true" textColor="#00745b" textSize="11" textHaloColor="#ccffffff"/>
-								<apply textMinDistance="100" textBold="true" textHaloRadius="2" textWrapWidth="30"/>
-							</switch>
-						</apply>
-						<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" disable="true"/>
-					</switch>
-					<switch minzoom="13">
-						<!-- old way to display -->
-						<case tag="multiple_node_networks" value="true" nameTag="iwn_ref">
-							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$iwnNodeTextColor"/>
-							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$iwnNodeTextColor"/>
-						</case>
-						<case tag="multiple_node_networks" value="true" nameTag="nwn_ref">
-							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$nwnNodeTextColor"/>
-							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$nwnNodeTextColor"/>
-						</case>
-						<case tag="multiple_node_networks" value="true" nameTag="rwn_ref">
-							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$rwnNodeTextColor"/>
-							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$rwnNodeTextColor"/>
-						</case>
-						<case tag="multiple_node_networks" value="true" nameTag="lwn_ref">
-							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$lwnNodeTextColor"/>
-							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$lwnNodeTextColor"/>
-						</case>
-						<case tag="node_network_point" value="iwn" nameTag="iwn_ref">
-							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$iwnNodeTextColor"/>
-							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$iwnNodeTextColor"/>
-						</case>
-						<case tag="node_network_point" value="nwn" nameTag="nwn_ref">
-							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$nwnNodeTextColor"/>
-							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$nwnNodeTextColor"/>
-						</case>
-						<case tag="node_network_point" value="rwn" nameTag="rwn_ref">
-							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$rwnNodeTextColor"/>
-							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$rwnNodeTextColor"/>
-						</case>
-						<case tag="node_network_point" value="lwn" nameTag="lwn_ref">
-							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$lwnNodeTextColor"/>
-							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$lwnNodeTextColor"/>
-						</case>
-						<case tag="node_network_point" value="multiple" nameTag="iwn_ref">
-							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$iwnNodeTextColor"/>
-							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$iwnNodeTextColor"/>
-						</case>
-						<case tag="node_network_point" value="multiple" nameTag="nwn_ref">
-							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$nwnNodeTextColor"/>
-							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$nwnNodeTextColor"/>
-						</case>
-						<case tag="node_network_point" value="multiple" nameTag="rwn_ref">
-							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$rwnNodeTextColor"/>
-							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$rwnNodeTextColor"/>
-						</case>
-						<case tag="node_network_point" value="multiple" nameTag="lwn_ref">
-							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$lwnNodeTextColor"/>
-							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$lwnNodeTextColor"/>
-						</case>
-						<apply>
-							<switch>
-								<case hikingRoutesOSMC="walkingRoutesOSMC" textColor="$hikingRoutesTextColor" textHaloColor="#ddebf4ff">
-									<apply_if nightMode="true" textColor="#ebf4ff" textHaloColor="#cc0078ff"/>
-								</case>
-								<case hikingRoutesOSMC="walkingRoutesScopeOSMC" textHaloColor="#ddebf4ff">
-									<apply_if nightMode="true" textColor="#ebf4ff"/>
-								</case>
-								<case hikingRoutesOSMC="walkingRoutesOSMCNodes" textHaloColor="#ccffffff"/>
-								<apply_if maxzoom="13" textSize="13"/>
-								<apply_if minzoom="14" maxzoom="15" textSize="16"/>
-								<apply_if minzoom="16" textSize="20"/>
-								<apply_if minzoom="19" nameTag2="walking_route_name"/>
-								<apply_if minzoom="19" nameTag2="foot_route_name"/>
-								<apply_if minzoom="19" nameTag2="hiking_route_name"/>
-								<apply textOrder="5" textMinDistance="100" textBold="true" textHaloRadius="4" textWrapWidth="30"/>
-								<apply_if showCycleRoutes="true" textOrder="45"/>
-								<apply_if showCycleNodeNetworkRoutes="true" textOrder="45"/>
-								<apply_if engine_v1="true" textDy="2"/>
-							</switch>
-						</apply>
-					</switch>
-					<apply_if legend="true" textOnPath="true"/>
-				</switch>
-				<!-- OSMC symbols -->
-				<switch minzoom="12" textMinDistance="101" textOnPath="false" textSize="12" textColor="#00ffffff" textOrder="43" seq="1:10">
+		<switch minzoom="12" textMinDistance="101" textOnPath="false" textOrder="43">
+			<switch textOrder="44" seq="1:10">
+				<case tag="route_hiking" value="" nameTag="hiking_route_name" textOnPath="true" textSize="13"/>
+				<case horseRoutes="true" minzoom="13" tag="route_horse" value="" nameTag="horse_route_name" textOnPath="true" textOrder="8"/>
+				<case horseRoutes="true" tag="route_horse" value="" nameTag="horse_route_ref" textOnPath="true" textSize="13"/>
+				<apply>
 					<switch>
-						<case hikingRoutesOSMC="walkingRoutesOSMC" tag="route_hiking" value="" nameTag="route_hiking_#SEQ_osmc_stub_name"/>
-						<case hikingRoutesOSMC="walkingRoutesScopeOSMC" tag="route_hiking" value="" nameTag="route_hiking_#SEQ_osmc_stub_name"/>
-						<apply textShield="osmc_?route_hiking_#SEQ_osmc_background?_bg" icon="osmc_?route_hiking_#SEQ_osmc_foreground?"/>
-<!--							<case additional="route_hiking_#SEQ_osmc_background" textShield="osmc_white_bg"/> -->
+						<case hikingRoutesOSMC="walkingRoutesOSMC" textSize="11" textColor="$hikingRoutesTextColor" textHaloColor="#ccebf4ff">
+							<apply_if nightMode="true" textColor="#ebf4ff" textHaloColor="#cc0078ff"/>
+						</case>
+						<case hikingRoutesOSMC="walkingRoutesScopeOSMC" textSize="11" textColor="$hikingRoutesTextColor" textHaloColor="#ccebf4ff">
+							<apply_if nightMode="true" textColor="#ebf4ff" textHaloColor="#cc0078ff"/>
+						</case>
+						<case horseRoutes="true" textColor="#00745b" textSize="11" textHaloColor="#ccffffff"/>
+						<apply textMinDistance="100" textBold="true" textHaloRadius="2" textWrapWidth="30"/>
 					</switch>
-					<case showCycleRoutes="true" tag="route_bicycle" value="" nameTag="route_bicycle_#SEQ_osmc_stub_name" textShield="osmc_?route_bicycle_#SEQ_osmc_background?_bg" icon="osmc_?route_bicycle_#SEQ_osmc_foreground?"/>
-					<case showMtbRoutes="true" tag="route_mtb" value="" nameTag="route_mtb_#SEQ_osmc_stub_name" textShield="osmc_?route_mtb_#SEQ_osmc_background?_bg" icon="osmc_?route_mtb_#SEQ_osmc_foreground?"/>
-					<case horseRoutes="true" tag="route_horse" value="" nameTag="route_horse_#SEQ_osmc_stub_name" textShield="osmc_?route_horse_#SEQ_osmc_background?_bg" icon="osmc_?route_horse_#SEQ_osmc_foreground?"/>
-				</switch>
-
+				</apply>
+				<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" disable="true"/>
+			</switch>
+			<switch minzoom="13">
+				<!-- old way to display -->
+				<case tag="multiple_node_networks" value="true" nameTag="iwn_ref">
+					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$iwnNodeTextColor"/>
+					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$iwnNodeTextColor"/>
+				</case>
+				<case tag="multiple_node_networks" value="true" nameTag="nwn_ref">
+					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$nwnNodeTextColor"/>
+					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$nwnNodeTextColor"/>
+				</case>
+				<case tag="multiple_node_networks" value="true" nameTag="rwn_ref">
+					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$rwnNodeTextColor"/>
+					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$rwnNodeTextColor"/>
+				</case>
+				<case tag="multiple_node_networks" value="true" nameTag="lwn_ref">
+					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$lwnNodeTextColor"/>
+					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$lwnNodeTextColor"/>
+				</case>
+				<case tag="node_network_point" value="iwn" nameTag="iwn_ref">
+					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$iwnNodeTextColor"/>
+					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$iwnNodeTextColor"/>
+				</case>
+				<case tag="node_network_point" value="nwn" nameTag="nwn_ref">
+					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$nwnNodeTextColor"/>
+					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$nwnNodeTextColor"/>
+				</case>
+				<case tag="node_network_point" value="rwn" nameTag="rwn_ref">
+					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$rwnNodeTextColor"/>
+					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$rwnNodeTextColor"/>
+				</case>
+				<case tag="node_network_point" value="lwn" nameTag="lwn_ref">
+					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$lwnNodeTextColor"/>
+					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$lwnNodeTextColor"/>
+				</case>
+				<case tag="node_network_point" value="multiple" nameTag="iwn_ref">
+					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$iwnNodeTextColor"/>
+					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$iwnNodeTextColor"/>
+				</case>
+				<case tag="node_network_point" value="multiple" nameTag="nwn_ref">
+					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$nwnNodeTextColor"/>
+					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$nwnNodeTextColor"/>
+				</case>
+				<case tag="node_network_point" value="multiple" nameTag="rwn_ref">
+					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$rwnNodeTextColor"/>
+					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$rwnNodeTextColor"/>
+				</case>
+				<case tag="node_network_point" value="multiple" nameTag="lwn_ref">
+					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$lwnNodeTextColor"/>
+					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$lwnNodeTextColor"/>
+				</case>
+				<apply>
+					<switch>
+						<case hikingRoutesOSMC="walkingRoutesOSMC" textColor="$hikingRoutesTextColor" textHaloColor="#ddebf4ff">
+							<apply_if nightMode="true" textColor="#ebf4ff" textHaloColor="#cc0078ff"/>
+						</case>
+						<case hikingRoutesOSMC="walkingRoutesScopeOSMC" textHaloColor="#ddebf4ff">
+							<apply_if nightMode="true" textColor="#ebf4ff"/>
+						</case>
+						<case hikingRoutesOSMC="walkingRoutesOSMCNodes" textHaloColor="#ccffffff"/>
+						<apply_if maxzoom="13" textSize="13"/>
+						<apply_if minzoom="14" maxzoom="15" textSize="16"/>
+						<apply_if minzoom="16" textSize="20"/>
+						<apply_if minzoom="19" nameTag2="walking_route_name"/>
+						<apply_if minzoom="19" nameTag2="foot_route_name"/>
+						<apply_if minzoom="19" nameTag2="hiking_route_name"/>
+						<apply textOrder="5" textMinDistance="100" textBold="true" textHaloRadius="4" textWrapWidth="30"/>
+						<apply_if showCycleRoutes="true" textOrder="45"/>
+						<apply_if showCycleNodeNetworkRoutes="true" textOrder="45"/>
+						<apply_if engine_v1="true" textDy="2"/>
+					</switch>
+				</apply>
+			</switch>
+			<apply_if legend="true" textOnPath="true"/>
+		</switch>
+		<!-- OSMC symbols -->
+		<switch minzoom="12" textMinDistance="101" textOnPath="false" textSize="12" textColor="#00ffffff" textOrder="43" seq="1:10">
+			<!-- Hiking -->
+			<switch>
+				<case hikingRoutesOSMC="walkingRoutesOSMC" tag="route_hiking" value="" nameTag="route_hiking_#SEQ_osmc_text"/>
+				<case hikingRoutesOSMC="walkingRoutesScopeOSMC" tag="route_hiking" value="" nameTag="route_hiking_#SEQ_osmc_text"/>
+				<apply textBold="true" textColor="#000000"/>
+				<apply_if textLength="2" textShield="osmc_white_bg_2"/>
+				<apply_if textLength="3" textShield="osmc_white_bg_3"/>
+				<apply_if textLength="4" textShield="osmc_white_bg_4"/>
+				<apply_if textLength="5" textShield="osmc_white_bg_4"/>
+				<apply_if textLength="6" textShield="osmc_white_bg_4"/>
+				<apply textShield="osmc_?route_hiking_#SEQ_osmc_background?_bg" icon="osmc_?route_hiking_#SEQ_osmc_foreground?"/>
+				<apply_if textLength="2" textShield="osmc_?route_hiking_#SEQ_osmc_background?_bg_2" icon="osmc_?route_hiking_#SEQ_osmc_foreground?"/>
+				<apply_if textLength="3" textShield="osmc_?route_hiking_#SEQ_osmc_background?_bg_3" icon="osmc_?route_hiking_#SEQ_osmc_foreground?"/>
+				<apply_if textLength="4" textShield="osmc_?route_hiking_#SEQ_osmc_background?_bg_4" icon="osmc_?route_hiking_#SEQ_osmc_foreground?"/>
+				<apply_if textLength="5" textShield="osmc_?route_hiking_#SEQ_osmc_background?_bg_4" icon="osmc_?route_hiking_#SEQ_osmc_foreground?"/>
+				<apply_if textLength="6" textShield="osmc_?route_hiking_#SEQ_osmc_background?_bg_4" icon="osmc_?route_hiking_#SEQ_osmc_foreground?"/>
+				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=red" textColor="$osmcRedTextColor"/>
+				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=brown" textColor="$osmcBrownTextColor"/>
+				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=orange" textColor="$osmcOrangeTextColor"/>
+				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=darkyellow" textColor="$osmcDarkyellowTextColor"/>
+				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=yellow" textColor="$osmcYellowTextColor"/>
+				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=lightgreen" textColor="$osmcLightgreenTextColor"/>
+				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=green" textColor="$osmcGreenTextColor"/>
+				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=lightblue" textColor="$osmcLightblueTextColor"/>
+				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=blue" textColor="$osmcBlueTextColor"/>
+				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=purple" textColor="$osmcPurpleTextColor"/>
+				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=gray" textColor="$osmcGrayTextColor"/>
+				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=black" textColor="#000000" textHaloRadius="1" textHaloColor="#30ffffff"/>
+				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
+			</switch>
+			<switch>
+				<case hikingRoutesOSMC="walkingRoutesOSMC" tag="route_hiking" value="" nameTag="route_hiking_#SEQ_osmc_stub_name_v2"/>
+				<case hikingRoutesOSMC="walkingRoutesScopeOSMC" tag="route_hiking" value="" nameTag="route_hiking_#SEQ_osmc_stub_name_v2"/>
+				<apply textShield="osmc_?route_hiking_#SEQ_osmc_background?_bg" icon="osmc_?route_hiking_#SEQ_osmc_foreground?"/>
+			</switch>
+			<!-- Bicycle -->
+			<switch>
+				<case showCycleRoutes="true" tag="route_bicycle" value="" nameTag="route_bicycle_#SEQ_osmc_text"/>
+				<apply textBold="true" textColor="#000000"/>
+				<apply_if textLength="2" textShield="osmc_white_bg_2"/>
+				<apply_if textLength="3" textShield="osmc_white_bg_3"/>
+				<apply_if textLength="4" textShield="osmc_white_bg_4"/>
+				<apply_if textLength="5" textShield="osmc_white_bg_4"/>
+				<apply_if textLength="6" textShield="osmc_white_bg_4"/>
+				<apply textShield="osmc_?route_bicycle_#SEQ_osmc_background?_bg" icon="osmc_?route_bicycle_#SEQ_osmc_foreground?"/>
+				<apply_if textLength="2" textShield="osmc_?route_bicycle_#SEQ_osmc_background?_bg_2" icon="osmc_?route_bicycle_#SEQ_osmc_foreground?"/>
+				<apply_if textLength="3" textShield="osmc_?route_bicycle_#SEQ_osmc_background?_bg_3" icon="osmc_?route_bicycle_#SEQ_osmc_foreground?"/>
+				<apply_if textLength="4" textShield="osmc_?route_bicycle_#SEQ_osmc_background?_bg_4" icon="osmc_?route_bicycle_#SEQ_osmc_foreground?"/>
+				<apply_if textLength="5" textShield="osmc_?route_bicycle_#SEQ_osmc_background?_bg_4" icon="osmc_?route_bicycle_#SEQ_osmc_foreground?"/>
+				<apply_if textLength="6" textShield="osmc_?route_bicycle_#SEQ_osmc_background?_bg_4" icon="osmc_?route_bicycle_#SEQ_osmc_foreground?"/>
+				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=red" textColor="$osmcRedTextColor"/>
+				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=brown" textColor="$osmcBrownTextColor"/>
+				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=orange" textColor="$osmcOrangeTextColor"/>
+				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=darkyellow" textColor="$osmcDarkyellowTextColor"/>
+				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=yellow" textColor="$osmcYellowTextColor"/>
+				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=lightgreen" textColor="$osmcLightgreenTextColor"/>
+				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=green" textColor="$osmcGreenTextColor"/>
+				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=lightblue" textColor="$osmcLightblueTextColor"/>
+				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=blue" textColor="$osmcBlueTextColor"/>
+				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=purple" textColor="$osmcPurpleTextColor"/>
+				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=gray" textColor="$osmcGrayTextColor"/>
+				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=black" textColor="#000000" textHaloRadius="1" textHaloColor="#30ffffff"/>
+				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
+			</switch>
+			<case showCycleRoutes="true" tag="route_bicycle" value="" nameTag="route_bicycle_#SEQ_osmc_stub_name_v2" textShield="osmc_?route_bicycle_#SEQ_osmc_background?_bg" icon="osmc_?route_bicycle_#SEQ_osmc_foreground?"/>
+			<!-- MTB -->
+			<switch>
+				<case showMtbRoutes="true" tag="route_mtb" value="" nameTag="route_mtb_#SEQ_osmc_text"/>
+				<apply textBold="true" textColor="#000000"/>
+				<apply_if textLength="2" textShield="osmc_white_bg_2"/>
+				<apply_if textLength="3" textShield="osmc_white_bg_3"/>
+				<apply_if textLength="4" textShield="osmc_white_bg_4"/>
+				<apply_if textLength="5" textShield="osmc_white_bg_4"/>
+				<apply_if textLength="6" textShield="osmc_white_bg_4"/>
+				<apply textShield="osmc_?route_mtb_#SEQ_osmc_background?_bg" icon="osmc_?route_mtb_#SEQ_osmc_foreground?"/>
+				<apply_if textLength="2" textShield="osmc_?route_mtb_#SEQ_osmc_background?_bg_2" icon="osmc_?route_mtb_#SEQ_osmc_foreground?"/>
+				<apply_if textLength="3" textShield="osmc_?route_mtb_#SEQ_osmc_background?_bg_3" icon="osmc_?route_mtb_#SEQ_osmc_foreground?"/>
+				<apply_if textLength="4" textShield="osmc_?route_mtb_#SEQ_osmc_background?_bg_4" icon="osmc_?route_mtb_#SEQ_osmc_foreground?"/>
+				<apply_if textLength="5" textShield="osmc_?route_mtb_#SEQ_osmc_background?_bg_4" icon="osmc_?route_mtb_#SEQ_osmc_foreground?"/>
+				<apply_if textLength="6" textShield="osmc_?route_mtb_#SEQ_osmc_background?_bg_4" icon="osmc_?route_mtb_#SEQ_osmc_foreground?"/>
+				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=red" textColor="$osmcRedTextColor"/>
+				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=brown" textColor="$osmcBrownTextColor"/>
+				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=orange" textColor="$osmcOrangeTextColor"/>
+				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=darkyellow" textColor="$osmcDarkyellowTextColor"/>
+				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=yellow" textColor="$osmcYellowTextColor"/>
+				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=lightgreen" textColor="$osmcLightgreenTextColor"/>
+				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=green" textColor="$osmcGreenTextColor"/>
+				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=lightblue" textColor="$osmcLightblueTextColor"/>
+				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=blue" textColor="$osmcBlueTextColor"/>
+				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=purple" textColor="$osmcPurpleTextColor"/>
+				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=gray" textColor="$osmcGrayTextColor"/>
+				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=black" textColor="#000000" textHaloRadius="1" textHaloColor="#30ffffff"/>
+				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
+			</switch>
+			<case showMtbRoutes="true" tag="route_mtb" value="" nameTag="route_mtb_#SEQ_osmc_stub_name_v2" textShield="osmc_?route_mtb_#SEQ_osmc_background?_bg" icon="osmc_?route_mtb_#SEQ_osmc_foreground?"/>
+			<!-- Horse -->
+			<switch>
+				<case horseRoutes="true" tag="route_horse" value="" nameTag="route_horse_#SEQ_osmc_text"/>
+				<apply textBold="true" textColor="#000000"/>
+				<apply_if textLength="2" textShield="osmc_white_bg_2"/>
+				<apply_if textLength="3" textShield="osmc_white_bg_3"/>
+				<apply_if textLength="4" textShield="osmc_white_bg_4"/>
+				<apply_if textLength="5" textShield="osmc_white_bg_4"/>
+				<apply_if textLength="6" textShield="osmc_white_bg_4"/>
+				<apply textShield="osmc_?route_horse_#SEQ_osmc_background?_bg" icon="osmc_?route_horse_#SEQ_osmc_foreground?"/>
+				<apply_if textLength="2" textShield="osmc_?route_horse_#SEQ_osmc_background?_bg_2" icon="osmc_?route_horse_#SEQ_osmc_foreground?"/>
+				<apply_if textLength="3" textShield="osmc_?route_horse_#SEQ_osmc_background?_bg_3" icon="osmc_?route_horse_#SEQ_osmc_foreground?"/>
+				<apply_if textLength="4" textShield="osmc_?route_horse_#SEQ_osmc_background?_bg_4" icon="osmc_?route_horse_#SEQ_osmc_foreground?"/>
+				<apply_if textLength="5" textShield="osmc_?route_horse_#SEQ_osmc_background?_bg_4" icon="osmc_?route_horse_#SEQ_osmc_foreground?"/>
+				<apply_if textLength="6" textShield="osmc_?route_horse_#SEQ_osmc_background?_bg_4" icon="osmc_?route_horse_#SEQ_osmc_foreground?"/>
+				<apply_if additional="route_horse_#SEQ_osmc_textcolor=red" textColor="$osmcRedTextColor"/>
+				<apply_if additional="route_horse_#SEQ_osmc_textcolor=brown" textColor="$osmcBrownTextColor"/>
+				<apply_if additional="route_horse_#SEQ_osmc_textcolor=orange" textColor="$osmcOrangeTextColor"/>
+				<apply_if additional="route_horse_#SEQ_osmc_textcolor=darkyellow" textColor="$osmcDarkyellowTextColor"/>
+				<apply_if additional="route_horse_#SEQ_osmc_textcolor=yellow" textColor="$osmcYellowTextColor"/>
+				<apply_if additional="route_horse_#SEQ_osmc_textcolor=lightgreen" textColor="$osmcLightgreenTextColor"/>
+				<apply_if additional="route_horse_#SEQ_osmc_textcolor=green" textColor="$osmcGreenTextColor"/>
+				<apply_if additional="route_horse_#SEQ_osmc_textcolor=lightblue" textColor="$osmcLightblueTextColor"/>
+				<apply_if additional="route_horse_#SEQ_osmc_textcolor=blue" textColor="$osmcBlueTextColor"/>
+				<apply_if additional="route_horse_#SEQ_osmc_textcolor=purple" textColor="$osmcPurpleTextColor"/>
+				<apply_if additional="route_horse_#SEQ_osmc_textcolor=gray" textColor="$osmcGrayTextColor"/>
+				<apply_if additional="route_horse_#SEQ_osmc_textcolor=black" textColor="#000000" textHaloRadius="1" textHaloColor="#30ffffff"/>
+				<apply_if additional="route_horse_#SEQ_osmc_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
+			</switch>
+			<case horseRoutes="true" tag="route_horse" value="" nameTag="route_horse_#SEQ_osmc_stub_name_v2" textShield="osmc_?route_horse_#SEQ_osmc_background?_bg" icon="osmc_?route_horse_#SEQ_osmc_foreground?"/>
+		</switch>
 		<switch minzoom="14" textColor="$railwayTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$defaultTextHaloColor" textOrder="251">
 			<case tag="railway" value="rail"/>
 			<case tag="railway" value="tram"/>

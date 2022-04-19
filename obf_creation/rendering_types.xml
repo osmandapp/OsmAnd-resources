@@ -1841,6 +1841,19 @@
 				relationGroupNameTags="osmc_stub_name,ref,name,osmc_text,osmc_textcolor,operator"
 				minzoom="11" relationGroup="true" notosm="true"/>
 
+		<entity_convert pattern="tag_transform" from_tag="route_hiking_*_osmc_background" from_value="blue_rectangle" to_tag1="route_hiking_*_osmc_background" to_value1="blue" seq="1:10" apply_to="way,relation"/>
+		<entity_convert pattern="tag_transform" from_tag="route_hiking_*_osmc_foreground" from_value="cyan_pointer" to_tag1="route_hiking_*_osmc_foreground" to_value1="blue_pointer" seq="1:10" apply_to="way,relation"/>
+		<entity_convert pattern="tag_transform" from_tag="route_hiking_*_osmc_foreground" from_value="black_tower" to_tag1="route_hiking_*_osmc_foreground" to_value1="tower" seq="1:10" apply_to="way,relation"/>
+
+		<entity_convert pattern="tag_transform" from_tag="route_hiking_*_osmc_stub_name" from_value="." if_not_tag1="route_hiking_*_osmc_text" to_tag1="route_hiking_*_osmc_stub_name" to_value1="." to_tag2="route_hiking_*_osmc_stub_name_v2" to_value2="." seq="1:10"/>
+		<entity_convert pattern="tag_transform" from_tag="route_bicycle_*_osmc_stub_name" from_value="." if_not_tag1="route_bicycle_*_osmc_text" to_tag1="route_bicycle_*_osmc_stub_name" to_value1="." to_tag2="route_bicycle_*_osmc_stub_name_v2" to_value2="." seq="1:10"/>
+		<entity_convert pattern="tag_transform" from_tag="route_mtb_*_osmc_stub_name" from_value="." if_not_tag1="route_mtb_*_osmc_text" to_tag1="route_mtb_*_osmc_stub_name" to_value1="." to_tag2="route_mtb_*_osmc_stub_name_v2" to_value2="." seq="1:10"/>
+		<entity_convert pattern="tag_transform" from_tag="route_horse_*_osmc_stub_name" from_value="." if_not_tag1="route_horse_*_osmc_text" to_tag1="route_horse_*_osmc_stub_name" to_value1="." to_tag2="route_horse_*_osmc_stub_name_v2" to_value2="." seq="1:10"/>
+		<entity_convert pattern="tag_transform" from_tag="route_piste_*_osmc_stub_name" from_value="." if_not_tag1="route_piste_*_osmc_text" to_tag1="route_piste_*_osmc_stub_name" to_value1="." to_tag2="route_piste_*_osmc_stub_name_v2" to_value2="." seq="1:10"/>
+		<entity_convert pattern="tag_transform" from_tag="route_running_*_osmc_stub_name" from_value="." if_not_tag1="route_running_*_osmc_text" to_tag1="route_running_*_osmc_stub_name" to_value1="." to_tag2="route_running_*_osmc_stub_name_v2" to_value2="." seq="1:10"/>
+
+		<entity_convert pattern="tag_transform" from_tag="route_hiking_*_osmc_foreground" if_not_tag1="route_hiking_*_osmc_background" to_tag1="route_hiking_*_osmc_foreground" to_tag2="route_hiking_*_osmc_background" to_value2="white" seq="1:10" apply_to="way,relation"/>
+
 		<!-- 1.3 Walking network poi node network-->
 		<type tag="route_hiking_iwn_poi" additional="true" value="yes" minzoom="13" notosm="true"/>
 		<type tag="route_hiking_nwn_poi" additional="true" value="yes" minzoom="13" notosm="true"/>
@@ -2496,7 +2509,9 @@
 		<type tag="osmc_background" value="green_frame" additional="true" notosm="true"/>
 		<type tag="osmc_background" value="green_round" additional="true" notosm="true"/>
 		<type tag="osmc_background" value="orange" additional="true" notosm="true"/>
+		<type tag="osmc_background" value="orange_frame" additional="true" notosm="true"/>
 		<type tag="osmc_background" value="purple" additional="true" notosm="true"/>
+		<type tag="osmc_background" value="purple_frame" additional="true" notosm="true"/>
 		<type tag="osmc_background" value="red" additional="true" notosm="true"/>
 		<type tag="osmc_background" value="red_circle" additional="true" notosm="true"/>
 		<type tag="osmc_background" value="red_frame" additional="true" notosm="true"/>
@@ -2510,7 +2525,7 @@
 		<type tag="osmc_foreground" additional="true" notosm="true"/>
 		<type tag="osmc_foreground2" additional="true" notosm="true"/>
 		<type tag="osmc_text" additional="text" notosm="true"/>
-		<type tag="osmc_text_symbol" additional="true" notosm="true"/> <!-- This tags equals to "text". Along with osmc_textcolor used for determining osmc_foreground (see below). It is needed because stacking of osmc_text from multiple routes laying over one way. -->
+		<type tag="osmc_text_symbol" additional="text" notosm="true"/>
 		<type tag="osmc_textcolor" additional="true" notosm="true"/>
 
 		<type tag="osmc_foreground" value="ammonit" additional="true" notosm="true"/>
@@ -2524,7 +2539,9 @@
 		<type tag="osmc_foreground" value="black_corner" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="black_cross" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="black_diamond" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="black_diamond_corner" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="black_diamond_line" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="black_diamond_right" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="black_dot" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="black_drop_line" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="black_fork" additional="true" notosm="true"/>
@@ -2539,6 +2556,7 @@
 		<type tag="osmc_foreground" value="black_rectangle" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="black_rectangle_line" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="black_red_diamond" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="black_right" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="black_slash" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="black_stripe" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="black_t" additional="true" notosm="true"/>
@@ -2558,7 +2576,9 @@
 		<type tag="osmc_foreground" value="blue_corner" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="blue_cross" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="blue_diamond" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="blue_diamond_corner" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="blue_diamond_line" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="blue_diamond_right" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="blue_dot" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="blue_drop_line" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="blue_fork" additional="true" notosm="true"/>
@@ -2572,6 +2592,7 @@
 		<type tag="osmc_foreground" value="blue_pointer_line" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="blue_rectangle" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="blue_rectangle_line" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="blue_right" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="blue_slash" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="blue_stripe" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="blue_t" additional="true" notosm="true"/>
@@ -2584,6 +2605,8 @@
 		<type tag="osmc_foreground" value="blue_x" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="brown_bar" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="brown_dot" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="brown_rectangle" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="brown_right" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="brown_x" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="green_arch" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="green_backslash" additional="true" notosm="true"/>
@@ -2595,7 +2618,9 @@
 		<type tag="osmc_foreground" value="green_corner" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="green_cross" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="green_diamond" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="green_diamond_corner" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="green_diamond_line" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="green_diamond_right" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="green_dot" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="green_drop_line" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="green_fork" additional="true" notosm="true"/>
@@ -2608,6 +2633,7 @@
 		<type tag="osmc_foreground" value="green_pointer_line" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="green_rectangle" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="green_rectangle_line" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="green_right" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="green_slash" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="green_stripe" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="green_t" additional="true" notosm="true"/>
@@ -2631,7 +2657,9 @@
 		<type tag="osmc_foreground" value="orange_corner" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="orange_cross" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="orange_diamond" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="orange_diamond_corner" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="orange_diamond_line" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="orange_diamond_right" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="orange_dot" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="orange_drop_line" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="orange_fork" additional="true" notosm="true"/>
@@ -2644,6 +2672,7 @@
 		<type tag="osmc_foreground" value="orange_pointer_line" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="orange_rectangle" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="orange_rectangle_line" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="orange_right" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="orange_slash" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="orange_stripe" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="orange_t" additional="true" notosm="true"/>
@@ -2672,10 +2701,13 @@
 		<type tag="osmc_foreground" value="red_corner" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="red_cross" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="red_diamond" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="red_diamond_corner" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="red_diamond_green_grape" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="red_diamond_line" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="red_diamond_right" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="red_diamond_yellow_grape" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="red_dot" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="red_drop" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="red_drop_line" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="red_fork" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="red_grape" additional="true" notosm="true"/>
@@ -2688,6 +2720,7 @@
 		<type tag="osmc_foreground" value="red_pointer_line" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="red_rectangle" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="red_rectangle_line" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="red_right" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="red_slash" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="red_stripe" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="red_t" additional="true" notosm="true"/>
@@ -2698,6 +2731,7 @@
 		<type tag="osmc_foreground" value="red_upper" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="red_wheelchair" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="red_x" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="shell" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="shell_modern" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="tower" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="white_arch" additional="true" notosm="true"/>
@@ -2711,7 +2745,9 @@
 		<type tag="osmc_foreground" value="white_corner" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="white_cross" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="white_diamond" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="white_diamond_corner" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="white_diamond_line" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="white_diamond_right" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="white_dot" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="white_drop_line" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="white_fork" additional="true" notosm="true"/>
@@ -2725,6 +2761,7 @@
 		<type tag="osmc_foreground" value="white_rectangle" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="white_rectangle_line" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="white_red_diamond" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="white_right" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="white_shell" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="white_slash" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="white_stripe" additional="true" notosm="true"/>
@@ -2747,7 +2784,9 @@
 		<type tag="osmc_foreground" value="yellow_corner" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="yellow_cross" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="yellow_diamond" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="yellow_diamond_corner" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="yellow_diamond_line" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="yellow_diamond_right" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="yellow_dot" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="yellow_drop_line" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="yellow_fork" additional="true" notosm="true"/>
@@ -2762,6 +2801,7 @@
 		<type tag="osmc_foreground" value="yellow_pointer_line" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="yellow_rectangle" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="yellow_rectangle_line" additional="true" notosm="true"/>
+		<type tag="osmc_foreground" value="yellow_right" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="yellow_sg" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="yellow_shell" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" value="yellow_slash" additional="true" notosm="true"/>
@@ -2775,6 +2815,15 @@
 		<type tag="osmc_foreground" value="yellow_x" additional="true" notosm="true"/>
 
 		<type tag="osmc_stub_name" additional="text" relation="true" notosm="true"/>
+		<type tag="osmc_stub_name_v2" additional="text" relation="true" notosm="true"/>
+
+		<type tag="route_hiking_*_osmc_stub_name_v2" additional="text" relation="true" notosm="true" seq="1:10"/>
+		<type tag="route_bicycle_*_osmc_stub_name_v2" additional="text" relation="true" notosm="true" seq="1:10"/>
+		<type tag="route_mtb_*_osmc_stub_name_v2" additional="text" relation="true" notosm="true" seq="1:10"/>
+		<type tag="route_horse_*_osmc_stub_name_v2" additional="text" relation="true" notosm="true" seq="1:10"/>
+		<type tag="route_piste_*_osmc_stub_name_v2" additional="text" relation="true" notosm="true" seq="1:10"/>
+		<type tag="route_running_*_osmc_stub_name_v2" additional="text" relation="true" notosm="true" seq="1:10"/>
+
 
 		<!-- Note that many osmc:symbol tags have different format in OSM:
 		blue:white::A:blue
