@@ -43,11 +43,6 @@ $COPY_CMD $CF ../png/hdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-hdpi/
 $COPY_CMD $CF ../png/xhdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-xhdpi/
 $COPY_CMD $CF ../png/xxhdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-xxhdpi/
 
-$COPY_CMD $CF ../no-svg/drawable-mdpi/* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-mdpi/
-$COPY_CMD $CF ../no-svg/drawable-hdpi/* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-hdpi/
-$COPY_CMD $CF ../no-svg/drawable-xhdpi/* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-xhdpi/
-$COPY_CMD $CF ../no-svg/drawable-xxhdpi/* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-xxhdpi/
-
 
 icon_alias grass landuse_grass
 icon_alias forest landuse_colored_forest               # Keep shaders with background color, cannot be replaced by icons!
