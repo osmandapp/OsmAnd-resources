@@ -904,6 +904,7 @@ icon_alias bandy sport_bandy
 icon_alias sport_multi sport_multi
 icon_alias dive_centre sport_dive_centre
 icon_alias ultralight_aviation sport_ultralight_aviation
+icon_alias golf_pin functional-icons-x2_golf_pin
 
 
 ## Leisure
