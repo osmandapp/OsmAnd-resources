@@ -21,6 +21,8 @@
 	<!-- recalculate smart using old route within N-meters (0 recalculate fresh, default 10km)  -->
 	<attribute name="recalculateDistanceHelp" value="10000" />
 
+	<attribute name="derivedProfiles" value="car,truck,motorcycle"/>
+
 	<!-- HELP INFORMATION ABOUT FILE -->
 	<!--
 	
@@ -403,6 +405,7 @@
 		<parameter id="avoid_borders" name="Avoid border crossing" description="Avoid crossing a border into another country" type="boolean"/>
 		<parameter id="avoid_ice_roads_fords" name="Avoid ice roads, fords" description="Avoid ice roads and fords" type="boolean"/>
 		<parameter id="allow_private" name="Allow private access" description="Allow access to private areas" type="boolean"/>
+		<parameter id="allow_private_for_truck" name="Allow private access" description="Allow access to private areas" type="boolean" profiles="truck"/>
 		<parameter id="weight" name="Weight" description="Maximum vehicle weight to be permitted on the route" type="numeric" values="0,1.49,2.99,3.49,4.99,7.49,9.99,11.99,14.99,19.99,29.99,39.99" valueDescriptions="-,1.5t,3t,3.5t,5t,7.5t,10t,12t,15t,20t,30t,40t"/>
 		<parameter id="height" name="Height" description="Maximum vehicle height to be permitted on the route" type="numeric" values="0,1.49,1.99,2.49,2.99,3.49,3.99,4.49,4.99,5.49,5.99,6.49,6.99,7.49" valueDescriptions="-,1.5m,2m,2.5m,3m,3.5m,4m,4.5m,5m,5.5m,6m,6.5m,7m,7.5m"/>
 		<parameter id="length" name="Length" description="Maximum vehicle length to be permitted on the route" type="numeric" values="0,4.99,5.99,6.49,6.99,7.99,8.99,9.49,9.99,10.99,11.99" valueDescriptions="-,5m,6m,6.5m,7m,8m,9m,9.5m,10m,11m,12m"/>
@@ -447,6 +450,17 @@
 			</if>
 
 			<select value="-1" t="highway" v="steps"/>
+
+			<if param="profile_truck">
+				<select value="-1" t="hgv" v="no"/>
+				<select value="-1" t="hgv_articulated" v="no"/>
+				<if param="allow_private_for_truck">
+					<select value="1" t="hgv" v="private"/>
+					<select value="1" t="hgv_articulated" v="private"/>
+				</if>
+				<select value="-1"  t="hgv" v="private"/>
+				<select value="-1"  t="hgv_articulated" v="private"/>
+			</if>
 
 			<select value="-1" t="motorcar" v="no"/>
 			<select value="-1" t="motorcar" v="agricultural"/>
