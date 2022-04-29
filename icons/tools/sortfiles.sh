@@ -2635,6 +2635,7 @@ icon_alias facebook additional_facebook
 icon_alias twitter additional_twitter
 icon_alias youtube additional_youtube
 icon_alias vk additional_vk
+icon_alias instagram additional_instagram
 icon_alias fee_yes additional_fee_yes
 icon_alias fee_no additional_fee_no
 icon_alias ele additional_ele
