@@ -2873,3 +2873,5 @@ icon_alias route_article_point special_route_article_point
 icon_alias route_article special_route_article
 icon_alias route_track special_route_track
 icon_alias routes special_routes 
+icon special_person
+icon special_people_group
