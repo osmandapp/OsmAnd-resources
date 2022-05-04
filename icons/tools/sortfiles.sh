@@ -2156,6 +2156,7 @@ icon_alias_no_mx osmc_black_x osmc_black_x
 icon_alias_no_mx osmc_black_x_2 osmc_black_x_2
 icon_alias_no_mx osmc_black_x_3 osmc_black_x_3
 icon_alias_no_mx osmc_black_x_4 osmc_black_x_4
+icon_alias_no_mx osmc_black_wheel osmc_black_wheel
 
 icon_alias_no_mx osmc_blue_arch osmc_blue_arch
 icon_alias_no_mx osmc_blue_backslash osmc_blue_backslash
@@ -2227,6 +2228,7 @@ icon_alias_no_mx osmc_blue_x osmc_blue_x
 icon_alias_no_mx osmc_blue_x_2 osmc_blue_x_2
 icon_alias_no_mx osmc_blue_x_3 osmc_blue_x_3
 icon_alias_no_mx osmc_blue_x_4 osmc_blue_x_4
+icon_alias_no_mx osmc_blue_wheel osmc_blue_wheel
 
 icon_alias_no_mx osmc_green_arch osmc_green_arch
 icon_alias_no_mx osmc_green_backslash osmc_green_backslash
@@ -2298,6 +2300,7 @@ icon_alias_no_mx osmc_green_x osmc_green_x
 icon_alias_no_mx osmc_green_x_2 osmc_green_x_2
 icon_alias_no_mx osmc_green_x_3 osmc_green_x_3
 icon_alias_no_mx osmc_green_x_4 osmc_green_x_4
+icon_alias_no_mx osmc_green_wheel osmc_green_wheel
 
 icon_alias_no_mx osmc_orange_arch osmc_orange_arch
 icon_alias_no_mx osmc_orange_backslash osmc_orange_backslash
@@ -2369,6 +2372,7 @@ icon_alias_no_mx osmc_orange_x osmc_orange_x
 icon_alias_no_mx osmc_orange_x_2 osmc_orange_x_2
 icon_alias_no_mx osmc_orange_x_3 osmc_orange_x_3
 icon_alias_no_mx osmc_orange_x_4 osmc_orange_x_4
+icon_alias_no_mx osmc_orange_wheel osmc_orange_wheel
 
 icon_alias_no_mx osmc_red_arch osmc_red_arch
 icon_alias_no_mx osmc_red_backslash osmc_red_backslash
@@ -2441,6 +2445,7 @@ icon_alias_no_mx osmc_red_x osmc_red_x
 icon_alias_no_mx osmc_red_x_2 osmc_red_x_2
 icon_alias_no_mx osmc_red_x_3 osmc_red_x_3
 icon_alias_no_mx osmc_red_x_4 osmc_red_x_4
+icon_alias_no_mx osmc_red_wheel osmc_red_wheel
 
 icon_alias_no_mx osmc_white_arch osmc_white_arch
 icon_alias_no_mx osmc_white_backslash osmc_white_backslash
@@ -2512,6 +2517,7 @@ icon_alias_no_mx osmc_white_x osmc_white_x
 icon_alias_no_mx osmc_white_x_2 osmc_white_x_2
 icon_alias_no_mx osmc_white_x_3 osmc_white_x_3
 icon_alias_no_mx osmc_white_x_4 osmc_white_x_4
+icon_alias_no_mx osmc_white_wheel osmc_white_wheel
 
 icon_alias_no_mx osmc_yellow_arch osmc_yellow_arch
 icon_alias_no_mx osmc_yellow_backslash osmc_yellow_backslash
@@ -2583,6 +2589,7 @@ icon_alias_no_mx osmc_yellow_x osmc_yellow_x
 icon_alias_no_mx osmc_yellow_x_2 osmc_yellow_x_2
 icon_alias_no_mx osmc_yellow_x_3 osmc_yellow_x_3
 icon_alias_no_mx osmc_yellow_x_4 osmc_yellow_x_4
+icon_alias_no_mx osmc_yellow_wheel
 
 icon_alias_no_mx osmc_ammonit osmc_ammonit
 icon_alias_no_mx osmc_black_horse osmc_black_horse
@@ -2606,6 +2613,7 @@ icon_alias_no_mx osmc_purple_m osmc_purple_m
 icon_alias_no_mx osmc_purple_pointer osmc_purple_pointer
 icon_alias_no_mx osmc_purple_rectangle osmc_purple_rectangle
 icon_alias_no_mx osmc_purple_stripe osmc_purple_stripe
+icon_alias_no_mx osmc_purple_circle osmc_purple_circle
 icon_alias_no_mx osmc_red_blue_diamond osmc_red_blue_diamond
 icon_alias_no_mx osmc_red_diamond_green_grape osmc_red_diamond_green_grape
 icon_alias_no_mx osmc_red_diamond_yellow_grape osmc_red_diamond_yellow_grape
@@ -2625,6 +2633,7 @@ icon_alias_no_mx osmc_yellow_mz osmc_yellow_mz
 icon_alias_no_mx osmc_yellow_sg osmc_yellow_sg
 icon_alias_no_mx osmc_yellow_shell osmc_yellow_shell
 icon_alias_no_mx osmc_hiker osmc_hiker
+icon_alias_no_mx osmc_gray_pointer osmc_gray_pointer
 icon_alias_no_mx osmc_gray_pointer osmc_gray_pointer
 
 # Additional
