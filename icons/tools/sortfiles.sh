@@ -43,7 +43,6 @@ $COPY_CMD $CF ../png/hdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-hdpi/
 $COPY_CMD $CF ../png/xhdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-xhdpi/
 $COPY_CMD $CF ../png/xxhdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-xxhdpi/
 
-
 icon_alias grass landuse_grass
 icon_alias forest landuse_colored_forest               # Keep shaders with background color, cannot be replaced by icons!
 icon_alias wood landuse_colored_forest
@@ -2882,5 +2881,5 @@ icon_alias route_article_point special_route_article_point
 icon_alias route_article special_route_article
 icon_alias route_track special_route_track
 icon_alias routes special_routes 
-icon special_person
-icon special_people_group
+icon_alias special_person special_person
+icon_alias special_people_group special_people_group
