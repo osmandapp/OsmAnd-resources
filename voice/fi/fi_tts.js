@@ -302,7 +302,7 @@ function take_exit(turnType, dist, exitString, exitInt, streetName) {
 	if (dist == -1) {
 		return getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
 	} else {
-		return dictionary["in"] + " " + distance(dist) + " "
+		return dictionary["in"] + " " + distance(dist, metrin) + " "
 			+ getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
 	}
 }
