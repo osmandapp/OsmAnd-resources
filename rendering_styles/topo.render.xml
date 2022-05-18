@@ -3314,9 +3314,19 @@
 				<apply_if nightMode="true" textColor="#bbbbbb" textHaloColor="$defaultTextHaloColor"/>
 				<apply_if engine_v1="true" textDy="10"/>
 			</switch>
-			<apply_if hideAccess="false" additional="access=private" textColor="$accessPrivateTextColor"/>
-			<apply_if hideAccess="false" additional="access=no" textColor="$accessPrivateTextColor"/>
-			<apply_if hideAccess="false" additional="access=permit" textColor="$accessPermitTextColor"/>
+			<apply_if hideAccess="false">
+				<apply_if additional="access=private" textColor="$accessPrivateTextColor"/>
+				<apply_if additional="access=no" textColor="$accessPrivateTextColor"/>
+				<apply_if additional="access=permit" textColor="$accessPermitTextColor"/>
+				<apply_if baseAppMode="car" additional="vehicle=yes" textColor="$manMadeTextColor"/>
+				<apply_if baseAppMode="car" additional="vehicle=designated" textColor="$manMadeTextColor"/>
+				<apply_if baseAppMode="car" additional="motor_vehicle=yes" textColor="$manMadeTextColor"/>
+				<apply_if baseAppMode="car" additional="motor_vehicle=designated" textColor="$manMadeTextColor"/>
+				<apply_if baseAppMode="pedestrian" additional="foot=yes" textColor="$manMadeTextColor"/>
+				<apply_if baseAppMode="pedestrian" additional="foot=designated" textColor="$manMadeTextColor"/>
+				<apply_if baseAppMode="bicycle" additional="bicycle=yes" textColor="$manMadeTextColor"/>
+				<apply_if baseAppMode="bicycle" additional="bicycle=designated" textColor="$manMadeTextColor"/>
+			</apply_if>
 		</switch>
 		<!-- Cycling: texts for the cycle networks -->
 		<switch textHaloColor="$cycleRouteTextHaloColor" textWrapWidth="30">
@@ -3852,9 +3862,19 @@
 						<apply_if minzoom="15" maxzoom="15" icon="barrier_small_red_bold_1"/>
 					</switch>
 				</apply_if>
-				<apply_if hideAccess="false" minzoom="16" additional="access=private" icon_2="access_private_red_overlay"/>
-				<apply_if hideAccess="false" minzoom="16" additional="access=no" icon_2="access_private_red_overlay"/>
-				<apply_if hideAccess="false" minzoom="16" additional="access=permit" icon_2="access_permit_overlay"/>
+				<apply_if hideAccess="false" minzoom="16">
+					<apply_if additional="access=private" icon_2="access_private_red_overlay"/>
+					<apply_if additional="access=no" icon_2="access_private_red_overlay"/>
+					<apply_if additional="access=permit" icon_2="access_permit_overlay"/>
+					<apply_if baseAppMode="car" additional="vehicle=yes" icon_2=""/>
+					<apply_if baseAppMode="car" additional="vehicle=designated" icon_2=""/>
+					<apply_if baseAppMode="car" additional="motor_vehicle=yes" icon_2=""/>
+					<apply_if baseAppMode="car" additional="motor_vehicle=designated" icon_2=""/>
+					<apply_if baseAppMode="pedestrian" additional="foot=yes" icon_2=""/>
+					<apply_if baseAppMode="pedestrian" additional="foot=designated" icon_2=""/>
+					<apply_if baseAppMode="bicycle" additional="bicycle=yes" icon_2=""/>
+					<apply_if baseAppMode="bicycle" additional="bicycle=designated" icon_2=""/>
+				</apply_if>
 			</switch>
 
 		</switch>
@@ -5603,6 +5623,14 @@
 			<apply color="$barrierLineColor"/>
 			<apply>
 				<switch>
+					<case baseAppMode="car" additional="vehicle=yes"/>
+					<case baseAppMode="car" additional="vehicle=designated"/>
+					<case baseAppMode="car" additional="motor_vehicle=yes"/>
+					<case baseAppMode="car" additional="motor_vehicle=designated"/>-
+					<case baseAppMode="pedestrian" additional="foot=yes"/>
+					<case baseAppMode="pedestrian" additional="foot=designated"/>
+					<case baseAppMode="bicycle" additional="bicycle=yes"/>
+					<case baseAppMode="bicycle" additional="bicycle=designated"/>
 					<case additional="access=private" color_2="$accessPrivateColor"/>
 					<case additional="access=no" color_2="$accessPrivateColor"/>
 					<case additional="access=permit" color_2="$accessPermitColor"/>
