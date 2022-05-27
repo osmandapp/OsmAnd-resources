@@ -1,0 +1,28 @@
+Some instruction for generating new OSMAND map icons from .svg files with the OsmAnd-resources\icons\tools
+
+1. place new .svg files in a resonably named svg source folder \icons\svg\source_folder_name\
+
+2. open \icons\tools\generatedpng.sh in editor and add or uncomment (delete initial # sign) a line pointing to the source_folder_name, 
+   e.g.: genMapIconsStdSize 'source_folder_name' '#' x2
+   
+3. place a copy of rsvg-convert.exe (https://github.com/miyako/console-rsvg-convert) into the C:\Windows\System32\ folder
+
+4. run generatedpng.sh in git bash
+
+5. new files are generated from the new .svg files: 
+   a working copy of the svg files in \icons\vd\svg\source_folder_name_file_name.svg
+   four different scales of png files in corresponding subfolder in \icons\png\...\source_folder_name_file_name.png
+   a xml version of the svg file in \icons\vd\map\source_folder_name_file_name.xml
+   
+6. open \icons\tools\sortfiles.sh in editor, save a new working copy with new filename and add in it required icon_alias command lines for all new files, 
+   e.g.: icon_alias target_name_in_app_render_xml original_source_folder_name_file_name
+   you can comment-out or erase all other and unrequired alias command lines in order to significantly speed up the very long copying process
+   
+7. in case the target filenames already exists, you need to delete the existing .png files manually in all four target folders (because overwriting of existing .png files is prevented in sortfiles.sh)
+   \rendering_styles\style-icons\map-icons-png\...\target_name_in_app_render_xml.png
+   
+8. rund sortfiles.sh in git bash (install bash beforehand, if not already available)
+
+9. if available, the following files are copied to \rendering_styles\style-icons\... folders
+   four different scales of png files in corresponding subfolder from \icons\png\...\source_folder_name_file_name.png  to \rendering_styles\style-icons\map-icons-png\...\mm_target_name_in_app_render_xml.png
+   a xml version of the svg file from \icons\vd\map\source_folder_name_file_name.xml to \rendering_styles\style-icons\map-icons-vector\h_target_name_in_app_render_xml.xml
