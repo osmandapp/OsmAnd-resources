@@ -150,87 +150,90 @@ generateBothMapPOIPng() {
   # exit 0;
 
   # genMapIconsNoScale 'shaders'
+  # genMapIconsNoScale 'shaders_int1'
   # genMapIconsNoScale 'shields'
   # genMapIconsNoScale 'shields_big'
   # genMapIconsNoScale 'road_shields'
   # genMapIconsNoScale 'osmc_bg'
   # genMapIconsNoScale 'map-small'
   # genMapIconsNoScale 'cycle_node_shields'
+  # genMapIconsStdSize 'seamark_int1_shields'
 
-  genMapIconsStdSize 'osmc_black' '#'
-  genMapIconsStdSize 'osmc_blue' '#'
-  genMapIconsStdSize 'osmc_green' '#'
-  genMapIconsStdSize 'osmc_orange' '#'
-  genMapIconsStdSize 'osmc_red' '#'
-  genMapIconsStdSize 'osmc_white' '#'
-  genMapIconsStdSize 'osmc_yellow' '#'
-  genMapIconsStdSize 'osmc_other' '#'
-  genMapIconsStdSize 'functional-icons' '#'
-  genMapIconsStdSize 'functional-icons-x2' '#ff8f00' x2
+  # genMapIconsNoScale 'osmc_black' '#'
+  # genMapIconsNoScale 'osmc_blue' '#'
+  # genMapIconsNoScale 'osmc_green' '#'
+  # genMapIconsNoScale 'osmc_orange' '#'
+  # genMapIconsNoScale 'osmc_red' '#'
+  # genMapIconsNoScale 'osmc_white' '#'
+  # genMapIconsNoScale 'osmc_yellow' '#'
+  # genMapIconsNoScale 'osmc_other' '#'
+  # genMapIconsStdSize 'functional-icons' '#'
+  # genMapIconsStdSize 'functional-icons-x2' '#ff8f00' x2
 
-  genMapIconsStdSize 'overlays' '#' x2
-  genMapIconsStdSize 'overlays_water' '#' x2
+  # genMapIconsStdSize 'overlays' '#' x2
+  # genMapIconsStdSize 'overlays_water' '#' x2
 
-  genMapIconsStdSize 'topo' '#000000'
-  genMapIconsStdSize 'topo_big' '#000000' x2
-  genMapIconsStdSize 'topo_water'  '#0F5CF0'
-  genMapIconsStdSize 'topo_emergency' '#DA0092'
-  genMapIconsStdSize 'topo_accomodation'  '#1F3087'
-  generateBothMapPOIPng 'special_poi' '#FFF5F1' '#ff8f00'
+  # genMapIconsStdSize 'topo' '#000000'
+  # genMapIconsStdSize 'topo_big' '#000000' x2
+  # genMapIconsStdSize 'topo_water'  '#0F5CF0'
+  # genMapIconsStdSize 'topo_emergency' '#DA0092'
+  # genMapIconsStdSize 'topo_accomodation'  '#1F3087'
+  # generateBothMapPOIPng 'special_poi' '#FFF5F1' '#ff8f00'
       
-  genMapIconsNoScale 'seamark_shields'
-  genMapIconsNoScale 'seamark_shields_x4'
-  genMapIconsStdSize 'seamark' '#' x2
-  genMapIconsStdSize 'seamark_small' '#' x2
-  genMapIconsStdSize 'seamark_big' '#' x4
+  # genMapIconsNoScale 'seamark_shields'
+  # genMapIconsNoScale 'seamark_shields_x4'
+  # genMapIconsStdSize 'seamark' '#' x2
+  # genMapIconsStdSize 'seamark_int1' '#' x2
+  # genMapIconsStdSize 'seamark_small' '#' x2
+  # genMapIconsStdSize 'seamark_big' '#' x4
 
-  generateBothMapPOIPng 'seamark_small_poi' '#777777' '#ff8f00'
-  generateBothMapPOIPng 'skimap' '#000000' '#ff8f00' x2
-  generateBothMapPOIPng 'subway' '#777777' '#ff8f00' x2 
+  # generateBothMapPOIPng 'seamark_small_poi' '#777777' '#ff8f00'
+  # generateBothMapPOIPng 'skimap' '#000000' '#ff8f00' x2
+  # generateBothMapPOIPng 'subway' '#777777' '#ff8f00' x2 
 
-  generateBothMapPOIPng 'water' '#ffffff' '#ff8f00'
-  generateBothMapPOIPng 'water_colored' '#0092DA' '#ff8f00'
+  # generateBothMapPOIPng 'water' '#ffffff' '#ff8f00'
+  # generateBothMapPOIPng 'water_colored' '#0092DA' '#ff8f00'
 
-  generateBothMapPOIPng 'emergency' '#ffffff' '#ff8f00'
-  generateBothMapPOIPng 'emergency_colored' '#DA0092' '#ff8f00'
-  generateBothMapPOIPng 'health' '#ffffff' '#ff8f00' #DA0092
+  # generateBothMapPOIPng 'emergency' '#ffffff' '#ff8f00'
+  # generateBothMapPOIPng 'emergency_colored' '#DA0092' '#ff8f00'
+  # generateBothMapPOIPng 'health' '#ffffff' '#ff8f00' #DA0092
 
-  generateBothMapPOIPng 'transport' '#ffffff' '#ff8f00'
-  generateBothMapPOIPng 'transport_colored' '#0092DA' '#ff8f00'
+  # generateBothMapPOIPng 'transport' '#ffffff' '#ff8f00'
+  # generateBothMapPOIPng 'transport_colored' '#0092DA' '#ff8f00'
 
-  generateBothMapPOIPng 'barrier' '#ffffff' '#ff8f00'
-  generateBothMapPOIPng 'barrier_colored' '#444444' '#ff8f00'
+  # generateBothMapPOIPng 'barrier' '#ffffff' '#ff8f00'
+  # generateBothMapPOIPng 'barrier_colored' '#444444' '#ff8f00'
 
-  generateBothMapPOIPng 'accommodation' '#ffffff' '#ff8f00'
+  # generateBothMapPOIPng 'accommodation' '#ffffff' '#ff8f00'
 
-  generateBothMapPOIPng 'tourist' '#ffffff' '#ff8f00'
-  generateBothMapPOIPng 'tourist_colored' '#593906' '#ff8f00'
+  # generateBothMapPOIPng 'tourist' '#ffffff' '#ff8f00'
+  # generateBothMapPOIPng 'tourist_colored' '#593906' '#ff8f00'
 
-  generateBothMapPOIPng 'sport' '#ffffff' '#ff8f00'
-  generateBothMapPOIPng 'sport_colored' '#39AC39' '#ff8f00'
+  # generateBothMapPOIPng 'sport' '#ffffff' '#ff8f00'
+  # generateBothMapPOIPng 'sport_colored' '#39AC39' '#ff8f00'
 
-  generateBothMapPOIPng 'amenity' '#ffffff' '#ff8f00'
-  generateBothMapPOIPng 'amenity_colored' '#555555' '#ff8f00'
-  generateBothMapPOIPng 'office' '#ffffff' '#ff8f00'
-  generateBothMapPOIPng 'craft' '#ffffff' '#ff8f00'
-  generateBothMapPOIPng 'place_of_worship' '#333333' '#ff8f00'
-  generateBothMapPOIPng 'money' '#ffffff' '#ff8f00'
-  generateBothMapPOIPng 'education' '#ffffff' '#ff8f00'
-  generateBothMapPOIPng 'poi' '#ffffff' '#ff8f00'
-  generateBothMapPOIPng 'poi_colored' '#3f3f3f' '#ff8f00'
-  generateBothMapPOIPng 'additional' '#3f3f3f' '#ff8f00'
-  generateBothMapPOIPng 'additional_category' '#3f3f3f' '#ff8f00'
-  generateBothMapPOIPng 'power' '#3f3f3f' '#ff8f00'
-  generateBothMapPOIPng 'club' '#ffffff' '#ff8f00' #555555
-  generateBothMapPOIPng 'food' '#ffffff' '#ff8f00' #8f6732
-  generateBothMapPOIPng 'shopping' '#ffffff' '#ff8f00' #a734c2
+  # generateBothMapPOIPng 'amenity' '#ffffff' '#ff8f00'
+  # generateBothMapPOIPng 'amenity_colored' '#555555' '#ff8f00'
+  # generateBothMapPOIPng 'office' '#ffffff' '#ff8f00'
+  # generateBothMapPOIPng 'craft' '#ffffff' '#ff8f00'
+  # generateBothMapPOIPng 'place_of_worship' '#333333' '#ff8f00'
+  # generateBothMapPOIPng 'money' '#ffffff' '#ff8f00'
+  # generateBothMapPOIPng 'education' '#ffffff' '#ff8f00'
+  # generateBothMapPOIPng 'poi' '#ffffff' '#ff8f00'
+  # generateBothMapPOIPng 'poi_colored' '#3f3f3f' '#ff8f00'
+  # generateBothMapPOIPng 'additional' '#3f3f3f' '#ff8f00'
+  # generateBothMapPOIPng 'additional_category' '#3f3f3f' '#ff8f00'
+  # generateBothMapPOIPng 'power' '#3f3f3f' '#ff8f00'
+  # generateBothMapPOIPng 'club' '#ffffff' '#ff8f00' #555555
+  # generateBothMapPOIPng 'food' '#ffffff' '#ff8f00' #8f6732
+  # generateBothMapPOIPng 'shopping' '#ffffff' '#ff8f00' #a734c2
 
-  generateBothMapPOIPng 'landuse' '#ffffff' '#ff8f00'
-  generateBothMapPOIPng 'landuse_colored' '#6dba00' '#ff8f00'
+  # generateBothMapPOIPng 'landuse' '#ffffff' '#ff8f00'
+  # generateBothMapPOIPng 'landuse_colored' '#6dba00' '#ff8f00'
 
-  generateBothMapPOIPng 'entertainment' '#ffffff' '#ff8f00'
-  generateBothMapPOIPng 'entertainment_colored' '#6dba00' '#ff8f00'
+  # generateBothMapPOIPng 'entertainment' '#ffffff' '#ff8f00'
+  # generateBothMapPOIPng 'entertainment_colored' '#6dba00' '#ff8f00'
 
-  generateBothMapPOIPng 'icons8' '#777777' '#ff8f00' '' neg
-  generateBothMapPOIPng 'xmas' '#aa2001' '#ff8f00'
-  generateBothMapPOIPng 'special' '#ffffff' '#ff8f00'
+  # generateBothMapPOIPng 'icons8' '#777777' '#ff8f00' '' neg
+  # generateBothMapPOIPng 'xmas' '#aa2001' '#ff8f00'
+  # generateBothMapPOIPng 'special' '#ffffff' '#ff8f00'

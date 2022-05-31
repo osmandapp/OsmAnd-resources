@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<renderingStyle name="nautical" depends="" defaultColor="#fddb8f" version="1">
+<renderingStyle name="nautical" depends="" defaultColor="#fddb8f" version="1.1"> 
+<!-- Version 1.1, 2022-01-07 adding nautical rendering for seamarks in INT-1 section K Obstructions and J Seabed, Weed, Seagrass -->
 
 <!--	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>-->
@@ -16,6 +17,7 @@
 	<renderingProperty attr="contourDensity" name="Contour lines density" description="Contour lines density" type="string" possibleValues="low,medium_w,high" defaultValueDescription="default"/>
 	<renderingProperty attr="depthContours" name="Depth contours" description="Show depth contours and points"
 		type="boolean" possibleValues="" category="details"/>
+	<renderingProperty attr="seabedDetail" name="Seabed detail" description="Additional text information on seabed surface_qualification, combined surface types, category and taxon of weed or seagrass" category="details" type="string" defaultValueDescription="simple" possibleValues="category,all,omit" /> <!-- used in INT-1 J Section: Nature of the Seabed --> 
 	<renderingProperty attr="currentTrackColor" name="Current GPX color" description="Color of the currently recording track"
 		type="string" possibleValues="red,orange,yellow,lightgreen,green,lightblue,blue,purple,translucent_red,translucent_orange,translucent_yellow,translucent_lightgreen,translucent_green,translucent_lightblue,translucent_blue,translucent_purple" defaultValueDescription="default"/>
 	<renderingProperty attr="currentTrackWidth" name="Current GPX width" description="Width of the currently recording track"
@@ -90,7 +92,7 @@
 	</renderingAttribute>
 
 	<renderingProperty attr="engine_v1" type="boolean"/>
-
+	
 	<renderingAttribute name="waterwayArrows">
 		<case attrIntValue="1"/>
 	</renderingAttribute>
@@ -417,6 +419,41 @@
 		<!--<case engine_v1="false" attrColorValue="#15ea7300"/>-->
 	</renderingAttribute>
 
+	<renderingAttribute name="contour10mTextColor">
+		<case contourColorScheme="white" attrColorValue="#F1F1F1"/>
+		<case contourColorScheme="yellow" attrColorValue="#F4E166"/>
+		<case contourColorScheme="green" attrColorValue="#00D400"/>
+		<case contourColorScheme="red" attrColorValue="#D40000"/>
+		<case attrColorValue="#888888"/>
+	</renderingAttribute>
+	<renderingAttribute name="contour20mTextColor">
+		<case contourColorScheme="white" attrColorValue="#F1F1F1"/>
+		<case contourColorScheme="yellow" attrColorValue="#F4E166"/>
+		<case contourColorScheme="green" attrColorValue="#00D400"/>
+		<case contourColorScheme="red" attrColorValue="#D40000"/>
+		<case attrColorValue="#777777">
+			<apply_if nightMode="true" attrColorValue="#999999"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="contour50mTextColor">
+		<case contourColorScheme="white" attrColorValue="#ffffff"/>
+		<case contourColorScheme="yellow" attrColorValue="#FFF29E"/>
+		<case contourColorScheme="green" attrColorValue="#00ff00"/>
+		<case contourColorScheme="red" attrColorValue="#ff0000"/>
+		<case attrColorValue="#777777">
+			<apply_if nightMode="true" attrColorValue="#AAAAAA"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="contour100mTextColor">
+		<case contourColorScheme="white" attrColorValue="#ffffff"/>
+		<case contourColorScheme="yellow" attrColorValue="#FFF29E"/>
+		<case contourColorScheme="green" attrColorValue="#00ff00"/>
+		<case contourColorScheme="red" attrColorValue="#ff0000"/>
+		<case attrColorValue="#444444">
+			<apply_if nightMode="true" attrColorValue="#BBBBBB"/>
+		</case>
+	</renderingAttribute>
+
 	<renderingAttribute name="contourLineDepthColor100m">
 		<case nightMode="true" attrColorValue="#361DC8"/>
 		<case attrColorValue="#66282F6A"/>
@@ -532,8 +569,7 @@
 		<case nightMode="true" attrColorValue="#555555"/>
 		<case attrColorValue="#888888"/>
 	</renderingAttribute>
-
-
+	
 	<order>
 	<!-- Point -->
 		<switch area="false" point="true" objectType="1" order="128">
@@ -566,10 +602,16 @@
 			<case tag="seamark:type" value="marine_farm"/>
 			<case tag="seamark:type" value="rapids"/>
 			<case tag="seamark:type" value="waterfall"/>
-			<case tag="seamark:type" value="seabed_area"/>
-			<case tag="seamark:type" value="obstruction"/>
+			<case tag="seamark:type" value="wreck"/>
+			<case tag="seamark:type" value="rock"/>
+			<case tag="seamark:type" value="obstruction" order="4"/>
 			<case tag="seamark" value=""/>
 			<case tag="seamark:type" value="fishing_facility"/>
+			<case tag="seamark:type" value="seabed_area" order="5"/>
+			<case tag="seamark:type" value="weed" order="5"/>
+			<case tag="seamark:type" value="seagrass" order="5"/>
+			<case tag="seamark:type" value="sand_waves"/>
+			<case tag="seamark:type" value="spring" order="5"/>
 		</switch>
 	<!-- Polygon -->
 		<switch area="true" point="false" addPoint="true" objectType="3" order="5">
@@ -620,12 +662,19 @@
 			<case tag="seamark:type" value="obstruction" order="6"/>
 			<case tag="seamark:type" value="harbour" ignorePolygonArea="true" ignorePolygonAsPointArea="true"/>
 			<case tag="leisure" value="marina" ignorePolygonArea="true" ignorePolygonAsPointArea="true"/>
+			<case tag="seamark:type" value="light_minor" ignorePolygonAsPointArea="true"/>
+			<case tag="seamark:type" value="seamark" ignorePolygonAsPointArea="true"/>
 			<case tag="seamark:type" value="hulk"/>
 			<case tag="seamark:type" value="inshore_traffic_zone"/>
 			<case tag="seamark:type" value="marine_farm"/>
 			<case tag="seamark:type" value="military_area"/>
 			<case tag="seamark:type" value="pipeline_area"/>
 			<case tag="seamark:type" value="seabed_area"/>
+			<case tag="seamark:seabed_area:surface" value=""/>
+			<case tag="seamark:type" value="weed"/>
+			<case tag="seamark:type" value="seagrass"/>
+			<case tag="seamark:type" value="sand_waves"/>
+			<case tag="seamark:type" value="spring"/>
 			<case tag="natural" value="cliff"/>
 			<case tag="natural" value="crater"/>
 			<case tag="natural" value="hot_spring"/>
@@ -695,6 +744,7 @@
 			<case tag="seamark:type" value="recommended_traffic_lane" order="81"/>
 			<case tag="seamark:type" value="navigation_line" order="81"/>
 			<case tag="seamark:type" value="obstruction"/>
+			<case tag="seamark:type" value="seabed_area"/>
 
 			<case tag="waterway" value="dam"/>
 			<case tag="waterway" value="weir" order="19"/>
@@ -801,12 +851,12 @@
 					<apply_if layer="-1" order="56"/>
 					<apply_if additional="layer=-2" order="35"/>
 				</case>
-				<case tag="highway" value="service" order="78">
-					<apply_if layer="1" order="101"/>
-					<apply_if additional="layer=2" order="131"/>
-					<apply_if additional="layer=3" order="159"/>
-					<apply_if layer="-1" order="56"/>
-					<apply_if additional="layer=-2" order="35"/>
+				<case tag="highway" value="service" order="77">
+					<apply_if layer="1" order="100"/>
+					<apply_if additional="layer=2" order="130"/>
+					<apply_if additional="layer=3" order="158"/>
+					<apply_if layer="-1" order="55"/>
+					<apply_if additional="layer=-2" order="34"/>
 				</case>
 				<case tag="highway" value="busway" order="77">
 					<apply_if layer="1" order="100"/>
@@ -875,6 +925,7 @@
 			<case tag="route" value="ferry" order="63"/>
 			<case tag="aeroway" value="" order="62"/>
 			<case tag="aeroway" value="runway"/>
+			<case tag="contour" value="depth"/>
 			<case tag="contour" value="elevation" order="15">
 				<apply_if contourDensity="medium_w" additional="contourtype=5m" order="-1"/>
 				<apply_if contourDensity="medium_w" additional="contourtype=10m" order="-1"/>
@@ -1362,26 +1413,26 @@
 				<case minzoom="15" contourLines="15"/>
 				<case minzoom="16" contourLines="16"/>
 				<apply>
-					<case minzoom="14" additional="contourtype=20m" textColor="#777777" textSize="10" textMinDistance="70">
-						<apply_if nightMode="true" textColor="#999999" textHaloRadius=":1" textHaloColor="#55777777"/>
+					<case minzoom="14" additional="contourtype=20m" textColor="$contour20mTextColor" textSize="10" textMinDistance="70">
+						<apply_if nightMode="true" textHaloRadius=":1" textHaloColor="#55777777"/>
 					</case>
 					<switch minzoom="15">
 						<case additional="contourtype=10m"/>
 						<case additional="contourtype=40f"/>
-						<apply textColor="#888888" textSize="9" textMinDistance="80"/>
-						<apply_if nightMode="true" textColor="#888888" textHaloRadius=":1" textHaloColor="#33777777"/>
+						<apply textColor="$contour10mTextColor" textSize="9" textMinDistance="80"/>
+						<apply_if nightMode="true" textHaloRadius=":1" textHaloColor="#33777777"/>
 					</switch>
 					<switch>
 						<case additional="contourtype=100m" textSize="12"/>
 						<case additional="contourtype=1000f" textSize="13"/>
 						<case additional="contourtype=200f" textSize="12"/>
-						<apply textColor="#444444" textMinDistance="40" textOrder="250"/>
-						<apply_if nightMode="true" textColor="#bbbbbb" textHaloRadius=":1" textHaloColor="#77777777"/>
+						<apply textColor="$contour100mTextColor" textMinDistance="40" textOrder="250"/>
+						<apply_if nightMode="true" textHaloRadius=":1" textHaloColor="#77777777"/>
 					</switch>
 					<switch>
 						<case additional="contourtype=50m"/>
-						<apply textColor="#777777" textSize="10" textMinDistance="60" textOrder="254"/>
-						<apply_if nightMode="true" textColor="#aaaaaa" textHaloRadius=":1" textHaloColor="#66777777"/>
+						<apply textColor="$contour50mTextColor" textSize="10" textMinDistance="60" textOrder="254"/>
+						<apply_if nightMode="true" textHaloRadius=":1" textHaloColor="#66777777"/>
 					</switch>
 				</apply>
 			</switch>
@@ -1400,7 +1451,7 @@
 				</case>
 			</switch>
 
-			<case depthContours="true" minzoom="6" tag="point" value="depth" textColor="$depthTextColor" textSize="10" textOrder="128">
+			<case depthContours="true" minzoom="6" tag="point" value="depth" textColor="$depthTextColor" textSize="10" textOrder="128" textOnPath="true">
 				<apply_if maxzoom="7" intersectionMargin="10">
 					<apply_if engine_v1="false" intersectionMargin="30"/>
 				</apply_if>
@@ -1435,7 +1486,7 @@
 			<switch textColor="$waterTextColorDay" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$waterTextHaloColorDay" textSize="12" textItalic="true">
 				<case minzoom="2" tag="place" value="ocean" textWrapWidth="20" textOrder="53"/>
 				<case minzoom="5" tag="place" value="sea" textWrapWidth="20" textOrder="83"/>
-				<case minzoom="6" tag="natural" value="water" textWrapWidth="17" textOrder="228" intersectionSizeFactor="1.4">
+				<case minzoom="6" tag="natural" value="water" textWrapWidth="17" textOrder="228" intersectionSizeFactor="1.4" nameTag="">
 					<case engine_v1="true" textDy="13"/>
 				</case>
 				<case minzoom="8" tag="seamark:type" value="sea_area" textWrapWidth="20" textOrder="228"/>
@@ -1447,6 +1498,7 @@
 				<case minzoom="13" tag="waterway" value="canal" textOnPath="true" textMinDistance="80" textOrder="235"/>
 				<case minzoom="15" tag="waterway" value="ditch" textOnPath="true" textOrder="260"/>
 				<case minzoom="15" tag="waterway" value="drain" textOnPath="true" textOrder="261"/>
+				<case minzoom="19" textSize="12" tag="waterway" value="fish_pass" textOnPath="true" textOrder="78" textDy="0"/>
 	<!--			<case minzoom="15" tag="waterway" value="lock_gate" textDy="7" textWrapWidth="30" textOrder="15"/>-->
 				<!-- not a conventional tag: case minzoom="15" textDy="7" textWrapWidth="30" tag="waterway" value="lock" textOrder="15"/ -->
 				<case minzoom="16" tag="natural" value="spring" textDy="7" textWrapWidth="20" textOrder="254"/>
@@ -1510,6 +1562,38 @@
 					<apply textWrapWidth="19"/>
 					<apply_if engine_v1="false" textDy="7"/>
 				</switch>
+			
+				<!-- INT-1 J Section: Nature of the Seabed -->
+				<!-- INT-1 J1 to J12 Types of Seabed, OsmAnd nautical.render.xml renderingProperty options for seabedDetail as nameTag2: simple=1st surface type as letters according to INT-1 J1-J13, category=surface tag in seamark_category, all=surface qualification and type included in seabed_surface_all, seagrass and weed in seabed_taxon_all including category, genus and taxon, omit=no display -->
+				<!-- Tested 2021-12-18 together with version 1.1 of rendering_types.xml, e.g.  http://osmand.net/go.html?lat=36.65161&lon=25.37019&z=16, feedback welcome: josail @ gmx.de -->
+				<switch minzoom="14" textWrapWidth="20" textOrder="14" textDy="10" textColor="#0400ab" textHaloColor="$waterwayColor" textHaloRadius="2">
+					<switch seabedDetail="simple">
+						<case tag="seamark:type" value="seabed_area" nameTag="seabed_surface_1"/>
+						<case tag="seamark:type" value="weed" nameTag="seabed_letters" icon="seamark_j132_weedkelp">
+							<apply_if nightMode="true" icon="seamark_j132_weedkelp" shield="seamark_j132_weedkelp_night"/>
+						</case>	 
+						<case tag="seamark:type" value="seagrass" nameTag="seabed_letters" icon="seamark_j134_seagrass">
+							<apply_if nightMode="true" icon="seamark_j134_seagrass" shield="seamark_j134_seagrass_night"/>
+						</case>
+					</switch>
+					<!-- additional seabedDetail of seamark "category" or "all" surface type and qualification tags as nameTag2-->
+					<switch seabedDetail="category">
+						<case tag="seamark:type" value="seabed_area" nameTag="seabed_surface_1" nameTag2="seamark_category"/>
+						<case tag="seamark:type" value="weed" nameTag="seabed_letters" nameTag2="seamark_category" icon="seamark_j132_weedkelp"/>
+						<case tag="seamark:type" value="seagrass" nameTag="seabed_letters" nameTag2="seamark_category" icon="seamark_j134_seagrass"/>
+					</switch>
+					<switch seabedDetail="all">
+						<case tag="seamark:type" value="seabed_area" nameTag="seabed_surface_1" nameTag2="seabed_surface_all"/>
+						<case tag="seamark:type" value="weed" nameTag="seabed_letters" nameTag2="seabed_taxon_all"/>
+						<case tag="seamark:type" value="seagrass" nameTag="seabed_letters" nameTag2="seabed_taxon_all"/>
+					</switch>
+					<switch minzoom="18"> <!-- in case SeabedDetail="omit" a simplified display at very high zoom level is maintained-->
+						<case tag="seamark:type" value="seabed_area" nameTag="seamark:name" nameTag2="name"/>
+						<case tag="seamark:type" value="seabed_area" nameTag="name" nameTag2="seamark:name"/>
+					</switch>
+					<apply_if nightMode="true" textColor="#e4d0e3"/>
+				</switch>
+
 				<switch> <!-- for big icons -->
 					<switch>
 						<case minzoom="11" tag="seamark:type" value="light_major" nameTag="name" nameTag2="seamark:light:character" textOrder="60"/>
@@ -1655,10 +1739,9 @@
 			</switch>
 			<switch minzoom="15" textSize="10" textColor="#5a0461" textWrapWidth="7" textHaloColor="#33ffffff" textHaloRadius="1" textOrder="150">
 				<case tag="seamark:type" value="distance_mark" nameTag="seamark:distance_mark:distance" nameTag2="seamark:distance_mark:units"/>
-				<case minzoom="18" tag="seamark:type" value="seabed_area" nameTag="seamark:name" nameTag2="name"/>
-				<case minzoom="18" tag="seamark:type" value="seabed_area" nameTag="name" nameTag2="seamark:name"/>
 				<apply_if nightMode="true" textColor="#e4d0e3"/>
 			</switch>
+
 			<switch textSize="12" textColor="#ffffff" textHaloRadius="$textHaloRadiusDay" textHaloColor="#7b7463" textWrapWidth="20" textOnPath="true" textDy="0">
 				<case minzoom="17" tag="barrier" value="city_wall"/>
 				<case minzoom="17" tag="seamark:type" value="fortified_structure"/>
@@ -2906,7 +2989,10 @@
 			</switch>
 
 			<case minzoom="13" tag="seamark:type" value="obstruction">
-				<case additional="seamark:obstruction:category=foul_ground" icon="seamark_obstruction_foul_ground"/>
+				<case minzoom="15" additional="seamark:obstruction:category=foul_ground" icon="seamark_k311_foul_ground">
+					<apply_if nightMode="true" shield="seamark_k311_foul_ground_shield_night"/>
+				</case>
+				<!-- alternative to INT-1 K31.1 icon: upward anchor icon="seamark_obstruction_foul_ground"/> -->
 				<case additional="seamark:obstruction:category=fish_haven" icon="seamark_restricted_area_fish_sanctuary"/>
 				<case additional="seamark:obstruction:category=boom" icon="seamark_obstruction_boom"/>
 				<case additional="seamark:obstruction:category=construction" icon="seamark_obstruction_construction"/>
@@ -2971,18 +3057,39 @@
 
 			<case minzoom="15" tag="seamark:type" value="turning_basin" icon="seamark_notice_information_turningarea" icon__1="seamark_notice_information_bg" shield="seamark_restriction_shield"/>
 
-			<case minzoom="15" tag="seamark:type" value="wreck" icon="seamark_wreck">
+			<!-- INT-1 K Section Rocks, Wrecks and Obstructions --> 
+			<!-- INT-1 K24, K25, K28, K29 Wrecks --> 
+			<!-- indication of dangerous navigational obstructions to start already at low zoom levels 13 -->
+			<case minzoom="13" tag="seamark:type" value="wreck" icon="seamark_wreck" iconVisibleSize="15">
 				<case additional="seamark:wreck:category=dangerous" shield="seamark_wreck_shield"/>
 				<case additional="seamark:wreck:category=mast_showing" shield="seamark_wreck_shield"/>
 				<case additional="seamark:wreck:category=hull_showing" icon="seamark_wreck_hull_showing" icon_shift_py="-0.8"/>
 			</case>
 
 			<case minzoom="16" tag="seamark:type" value="waterway_gauge" icon="seamark_waterway_gauge" icon_shift_py="-0.8"/>
-
-			<case minzoom="15" tag="seamark:type" value="rock" icon="seamark_rock_submerged" shield="seamark_rock_shield">
+			
+			<!-- INT-1 K11, K12, K13 Rocks --> 
+			<!-- indication of dangerous navigational obstructions to start already at low zoom levels 13 -->
+			<!-- <case minzoom="13" tag="seamark:type" value="rock" icon="seamark_rock_submerged" shield="seamark_rock_shield" iconOrder="150" iconVisibleSize="20" icon_shift_py="-1"> -->
+			<case minzoom="13" tag="seamark:type" value="rock" icon="seamark_rock_submerged" shield="seamark_rock_shield"  iconVisibleSize="15">
 				<case additional="seamark:rock:water_level=covers" icon="seamark_rock_covers"/>
 				<case additional="seamark:rock:water_level=awash" icon="seamark_rock_awash"/>
 			</case>
+   												
+			<!-- INT-1 J Section Nature of the Seabed -->
+			<!-- INT-1 J13, J14, J15 icons at single nodes-->
+ 			<switch minzoom="14" iconVisibleSize="1"> 
+  				<!-- weed and seagrass icons are renderd with display of the text, in order to avoid conflict with other important close by icons like rocks
+				<case tag="seamark:type" value="weed" icon="seamark_j132_weedkelp" iconOrder="5"/> 
+				<case tag="seamark:type" value="seagrass" icon="seamark_j134_seagrass" iconOrder="5"/> -->
+				<case tag="seamark:type" value="sand_waves" icon="seamark_j14_sand_waves" iconOrder="150">
+					<apply_if nightMode="true" shield="seamark_j14_sand_waves_night"/>
+				</case> 
+				<case minzoom="15" tag="seamark:type" value="spring" icon="seamark_j15_spring" iconOrder="5">
+					<apply_if nightMode="true" shield="seamark_j15_spring_shield_night"/>
+				</case>
+				<apply_if seabedDetail="omit" icon="" shield=""/> <!-- no display of sebedDetail selected in renderingProperties-->
+			</switch>
 
 			<case minzoom="11" tag="natural" value="peak" iconOrder="115">
 				<case maxzoom="11" icon="natural_peak" shield="peakvolcano_shield" iconVisibleSize="25" intersectionSizeFactor="2"/>
@@ -3259,14 +3366,60 @@
 				</switch>
 			</apply>
 		</switch>
-
-		<case minzoom="14" tag="seamark:type" value="seabed_area" color="$null">
-			<apply_if additional="seamark:seabed_area:surface=sand" shader="sand_opaque"/>
-			<apply_if additional="seamark:seabed_area:surface=mud" shader="mud2_opaque"/>
-			<apply_if additional="seamark:seabed_area:surface=weed;sand" shader="weed_sand_opaque"/>
-			<apply_if nightMode="true" shader=""/>
-		</case>
-
+		
+		<!-- INT-1 J Section: Nature of the Seabed, https://wiki.openstreetmap.org/wiki/Seamarks/INT-1_Section_J  -->
+		<switch minzoom="14">
+		    <case tag="seamark:type" value="seabed_area" color="$null">
+				<!-- <apply_if additional="seamark:seabed_area:surface=sand" shader="seamark_j1_sand"/> omitted-->
+				<!-- <apply_if additional="seamark:seabed_area:surface=mud" shader="seamark_j2_mud"/> omitted-->
+				<!-- <apply_if additional="seamark:seabed_area:surface=clay" shader="seamark_j3_clay"/> omitted-->
+				<!-- <apply_if additional="seamark:seabed_area:surface=silt" shader="seamark_j4_silt"/> omitted-->
+				<apply_if additional="seamark:seabed_area:surface=stones" shader="seamark_j20_stonesgravel"/>
+				<apply_if additional="seamark:seabed_area:surface=stones;gravel" shader="seamark_j20_stonesgravel"/>
+				<apply_if additional="seamark:seabed_area:surface=gravel" shader="seamark_j20_stonesgravel"/>
+				<!-- <apply_if additional="seamark:seabed_area:surface=pebbles" shader="seamark_j7_pebbles"/> omitted-->
+				<apply_if additional="seamark:seabed_area:surface=cobbles" shader="seamark_j20_stonesgravel"/>
+				<apply_if additional="seamark:seabed_area:surface=rocky" shader="seamark_j2122_rockycoral"/>
+				<apply_if additional="seamark:seabed_area:surface=boulder" shader="seamark_j2122_rockycoral"/>
+				<apply_if additional="seamark:seabed_area:surface=coral" shader="seamark_j2122_rockycoral"/>
+				<!-- <apply_if additional="seamark:seabed_area:surface=shells" shader="seamark_j11_shells"/> omitted-->
+				<apply_if additional="seamark:seabed_area:surface=lava" shader="seamark_j2122_rockycoral"/>
+				<!-- the following shaders do not follow INT-1 J Section Nature of the seabed and https://wiki.openstreetmap.org/wiki/Seamarks/INT-1_Section_J, delete or replace as needed -->
+				<apply_if additional="seamark:seabed_area:surface=sand" shader="sand_opaque"/>
+				<apply_if additional="seamark:seabed_area:surface=weed;sand" shader="weed_sand_opaque"/> <!-- this tagging for weed is not consistent with wiki.openstreetmap for INT-1 J Section Nature of the seabed -->
+				<apply_if additional="seamark:seabed_area:surface=mud" shader="mud2_opaque"/>
+				<apply_if additional="seamark:seabed_area:surface=sand" nightMode="true" shader=""/> <!-- as originally, no application of the opaque shades in nightModed -->
+				<apply_if additional="seamark:seabed_area:surface=weed;sand" nightMode="true" shader=""/>
+				<apply_if additional="seamark:seabed_area:surface=mud" nightMode="true" shader=""/>
+				<!-- <apply_if additional="seamark:seabed_area:surface=coral" shader="reef_coral"/> alternative shader for coral-->
+				<!-- <apply_if additional="seamark:seabed_area:surface=coral" shader="reef"/> alternative shader for coral-->
+			</case>			
+			<case tag="seamark:type" value="weed" shader="seamark_j132_weedkelp"/>
+			<case tag="seamark:type" value="seagrass" shader="seamark_j134_seagrass"/>
+			<case tag="seamark:type" value="sand_waves" shader="seamark_j14_sand_waves"/>
+			<apply_if seabedDetail="omit" shader="" color="#76cbea"/>
+			<apply_if nightMode="true"> <!-- use light gray semi transparent halo _shield_night-->
+				<!-- <apply_if additional="seamark:seabed_area:surface=sand" shield="seamark_j1_sand_shield_night"/> omitted-->
+				<!-- <apply_if additional="seamark:seabed_area:surface=mud" shield="seamark_j2_mud_shield_night"/> omitted-->
+				<!-- <apply_if additional="seamark:seabed_area:surface=clay" shield="seamark_j3_clay_shield_night"/> omitted-->
+				<!-- <apply_if additional="seamark:seabed_area:surface=silt" shield="seamark_j4_silt_shield_night"/> omitted-->
+				<apply_if additional="seamark:seabed_area:surface=stones" shader="seamark_j20_stonesgravel_night"/>
+				<apply_if additional="seamark:seabed_area:surface=stones;gravel" shader="seamark_j20_stonesgravel_night"/>
+				<apply_if additional="seamark:seabed_area:surface=gravel" shader="seamark_j20_stonesgravel_night"/>
+				<!-- <apply_if additional="seamark:seabed_area:surface=pebbles" shader="seamark_j7_pebbles_shield_night"/> omitted-->
+				<apply_if additional="seamark:seabed_area:surface=cobbles" shader="seamark_j20_stonesgravel_night"/>
+				<apply_if additional="seamark:seabed_area:surface=rocky" shader="seamark_j2122_rockycoral_night"/>
+				<apply_if additional="seamark:seabed_area:surface=boulder" shader="seamark_j2122_rockycoral_night"/>
+				<apply_if additional="seamark:seabed_area:surface=coral" shader="seamark_j2122_rockycoral_night"/>
+				<!-- <apply_if additional="seamark:seabed_area:surface=shells" shader="seamark_j11_shells_shield_night"/> omitted-->
+				<apply_if additional="seamark:seabed_area:surface=lava" shader="seamark_j2122_rockycoral_night"/>
+				<apply_if tag="seamark:type" value="weed" shader="seamark_j132_weedkelp_night"/>
+				<apply_if tag="seamark:type" value="seagrass" shader="seamark_j134_seagrass_night"/>
+				<apply_if tag="seamark:type" value="sand_waves" shader="seamark_j14_sand_waves_night"/>
+				<apply_if seabedDetail="omit" shader="" color="#55555555"/> <!--combination of nightMode=true and seabedDetail=omit-->
+			</apply_if>
+		</switch>
+		
 		<switch minzoom="10">
 			<case tag="natural" value="wood"/>
 			<case tag="landuse" value="forest"/>
@@ -3625,6 +3778,22 @@
 
 		<switch minzoom="16" strokeWidth="0.5">
 			<case tag="natural" value="cliff" color="#555555" color_2="#555555">
+				<apply_if nightMode="true" color="#888888" color_2="#888888"/>
+			</case>
+			<apply maxzoom="16" strokeWidth_2="2.5:2.5" pathEffect_2="1_7"/>
+			<apply minzoom="17" maxzoom="17" strokeWidth_2="4:4" pathEffect_2="1_9"/>
+			<apply minzoom="18" strokeWidth_2="5.5:5.5" pathEffect_2="1_13"/>
+		</switch>
+		
+		<!-- INT-1 J21 J22 rock and coral line icons for edges -->
+ 		<switch engine_v1="false" minzoom="14" strokeWidth="0.5">
+			<case tag="seamark:type" value="seabed_area" color="#555555" pathIcon="stroke_gray" pathIconStep="10"/>
+			<apply additional="seamark:seabed_area:surface=rocky" color="#555555" pathIcon="seamark_j21_rocky" pathIconStep="10"/>
+			<apply additional="seamark:seabed_area:surface=coral" color="#555555" pathIcon="seamark_j22_coral" pathIconStep="10"/>
+		</switch>
+	
+		<switch minzoom="14" strokeWidth="0.5">
+			<case tag="seamark:type" value="seabed_area" color="#555555" color_2="#555555">
 				<apply_if nightMode="true" color="#888888" color_2="#888888"/>
 			</case>
 			<apply maxzoom="16" strokeWidth_2="2.5:2.5" pathEffect_2="1_7"/>
@@ -4011,6 +4180,12 @@
 			<apply_if minzoom="16" maxzoom="16" strokeWidth="4" pathEffect="8_4"/>
 			<apply_if minzoom="17" strokeWidth="6" pathEffect="10_5"/>
 			<apply color="#EE003CB0"/>
+		</switch>
+
+		<switch minzoom="18">
+			<case tag="waterway" value="fish_pass" pathIcon="fish_pass_map" pathIconStep="70"/>
+			<apply_if color="#45B1E5" strokeWidth="1.1:1.1"/>
+			<apply_if nightMode="true" color="#1859A8"/>
 		</switch>
 
 		<switch>

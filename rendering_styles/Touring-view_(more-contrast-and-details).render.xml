@@ -1,7 +1,7 @@
 <renderingStyle name="Touring-view_(more-contrast-and-details).render" depends="default" defaultColor="#f1eae4" version="1">
 
 	<!--
-	TOURING VIEW Renderer by Hardy Mueller, 2012-10-28 (Advanced version of the previous All-Purpose Renderer)
+	TOURING VIEW Renderer by Dr. Hardy Mueller, 2012-10-28 (advanced version of the previous All-Purpose Renderer)
 		Differences of the "Touring View" vs. the "Default" Renderer:
 		In Touring View:
 		  * some road and track types already shown at lower zooms (essential for travel and orienteering)
@@ -17,7 +17,7 @@
 	-->
 
 	<!--
-	RENDERER CONCEPT: Concept of what is Rendered at what Zoom Level (Dr. Hardy Mueller, 2011-06-26)
+	RENDERER CONCEPT: Concept of what is rendered at what zoom Level (Dr. Hardy Mueller, 2011-06-26)
 
 		The map rendering is aligned to "the typical map use" per zoom level (scale), to always produce a complete and dependable map (for travel/orienteering) at the lowest possible zoom, as follows:
 
@@ -56,7 +56,7 @@
 	-->
 
 	<!--
-	ALPINE HIKING rendering Add-on by Christof Knuesel based on default renderer by Hardy Mueller
+	ALPINE HIKING based on tests by Christof Knuesel on 18.10.2012:
 		Purpose:
 		- Alpine Hiking option for mountain hiking with "Hike Bike Map (Hills Underlay)" as overlay map:
 		  With "Hike Bike Map (Hills Underlay)" it becomes hard to distinguish between black lines (path) and brown lines (track).
@@ -68,27 +68,25 @@
 		1) Alpine Hiking Mode (advanced settings / Alpine Hiking enabled)
 		- Paths are colored by sac_scale:
 			black dashed line: sac_scale not specified or sac_scale = hiking
-			red solid line: sac_scale = mountain_hiking
-			red dashed line: sac_scale = demanding_mountain_hiking
-			blue solid line: sac_scale = alpine_hiking
-			blue dashed line: sac_scale = demanding_alpine_hiking
-			blue dotted line: sac_scale = difficult_alpine_hiking
+			red solid line:    sac_scale = mountain_hiking
+			red dashed line:   sac_scale = demanding_mountain_hiking
+			blue solid line:   sac_scale = alpine_hiking
+			blue dashed line:  sac_scale = demanding_alpine_hiking
+			blue dotted line:  sac_scale = difficult_alpine_hiking
 		- Tracks (all tracktypes) are rendered as brown solid lines
 
 		2) Other Modes
 		- Tracks are rendered as thick brown lines:
-			solid line (tracktype = grade1)
-			long dashed line (tracktype = grade2)
-			short dashed line (tracktype = grade3, short dashed narrow-spaced: tracktype not specified)
-			dash-dotted line (tracktype = grade4)
-			dotted line (tracktype = grade5)
+			solid line:                             tracktype = grade1
+			long dashes        (dash/gap=10/3):     tracktype = grade2
+			medium dashes      (dash/gap=5/3):      tracktype = grade3
+			short dashes       (dash/gap=3/3):      tracktype = grade4
+			dotted line        (dash/gap=2/3):      tracktype = grade5
+			dash-dotted line   (dash+dot/gaps=7/4): tracktype not specified
 		- Paths are rendered as thin black lines:
-			long dashed line: sac_scale not specified or sac_scale = hiking
-			short dashed line: sac_scale = mountain_hiking 
-			dotted line: sac_scale = demanding_mountain_hiking and above
-
-		Christof Knuesel, 18.10.2012
-		email: dingsdale@gmx.de
+			long dashes:       sac_scale not specified or sac_scale = hiking
+			short dashes:      sac_scale = mountain_hiking 
+			dotted line:       sac_scale = demanding_mountain_hiking and above
 	-->
 
 	<!-- Draft descriptions to explain the Touring view map style:
@@ -945,7 +943,7 @@
 
 		<group>
 			<group>
-				<filter tag="highway" value="track"/>
+				<filter tag="highway" value="track" strokeWidth="1"/>
 				<!-- color_5 needed for tracks/paths etc. to make them visible over showSurfaces/showSurfaceGrade etc. -->
 				<groupFilter color_5="$trackColor" color="$null">
 					<!-- In ped mode with Alpine Hiking, make tracks solid to more clearly distinguish them from paths (forum feedback of 2012-12-06) -->
@@ -961,16 +959,16 @@
 						<filter minzoom="14" pathEffect_5="7.5_4.5"/>
 					</filter>
 					<filter additional="tracktype=grade4">
-						<filter minzoom="12" maxzoom="13" pathEffect_5="4_3_2_3"/>
-						<filter minzoom="14" pathEffect_5="6_4.5_3_4.5"/>
+						<filter minzoom="12" maxzoom="13" pathEffect_5="3_3"/>
+						<filter minzoom="14" pathEffect_5="4.5_4.5"/>
 					</filter>
 					<filter additional="tracktype=grade5">
 						<filter minzoom="12" maxzoom="13" pathEffect_5="2_3"/>
 						<filter minzoom="14" pathEffect_5="3_4.5"/>
 					</filter>
 					<filter>
-						<filter minzoom="12" maxzoom="13" pathEffect_5="4_2"/>
-						<filter minzoom="14" pathEffect_5="6_3"/>
+						<filter minzoom="12" maxzoom="13" pathEffect_5="5_2_2_2"/>
+						<filter minzoom="14" pathEffect_5="7.5_3_3_3"/>
 					</filter>
 					<groupFilter>
 						<filter baseAppMode="pedestrian">
@@ -993,7 +991,7 @@
 			</group>
 
 			<group>
-				<filter tag="highway" value="path"/>
+				<filter tag="highway" value="path" strokeWidth="1"/>
 				<groupFilter alpineHiking="false" color_5="$pathColorDay" color="$null">
 					<filter additional="sac_scale=hiking" pathEffect_5="10_3"/>
 					<filter additional="sac_scale=mountain_hiking" pathEffect_5="5_5"/>
@@ -1040,7 +1038,7 @@
 
 			<!-- Blocks footway/steps/bridleway/cycleway should be unchanged from default renderer -->
 			<group>
-				<filter tag="highway" value="footway">
+				<filter tag="highway" value="footway" strokeWidth="1">
 					<case additional="footway=crossing" strokeWidth="0.1"/>
 				</filter>
 				<groupFilter color_5="$footwayColorDay" pathEffect_5="4_2" color="$null">
@@ -1051,7 +1049,7 @@
 			</group>
 
 			<group>
-				<filter tag="highway" value="steps"/>
+				<filter tag="highway" value="steps" strokeWidth="1"/>
 				<groupFilter color_5="$footwayColorDay" pathEffect_5="1_2" color="$null">
 					<filter baseAppMode="pedestrian" minzoom="14" strokeWidth_5="4" pathEffect_5="2_2"/>
 					<filter minzoom="14" strokeWidth_5="4"/>
@@ -1059,7 +1057,7 @@
 			</group>
 
 			<group>
-				<filter tag="highway" value="bridleway"/>
+				<filter tag="highway" value="bridleway" strokeWidth="1"/>
 				<groupFilter color_5="$bridlewayColorDay" pathEffect_5="4_2" color="$null">
 					<filter baseAppMode="pedestrian" minzoom="14" strokeWidth_5="2"/>
 					<filter minzoom="12" maxzoom="12" strokeWidth_5="0.5"/>
@@ -1068,7 +1066,7 @@
 			</group>
 
 			<group>
-				<filter tag="highway" value="cycleway"/>
+				<filter tag="highway" value="cycleway" strokeWidth="1"/>
 				<groupFilter color_5="$cyclewayColorDay" pathEffect_5="4_2" color="$null">
 					<filter baseAppMode="bicycle" minzoom="14" strokeWidth_5="2"/>
 					<filter baseAppMode="pedestrian" minzoom="14" strokeWidth_5="2"/>

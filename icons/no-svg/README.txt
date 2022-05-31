@@ -1,1 +1,0 @@
-This folder contains icons that does not have SVG originals
