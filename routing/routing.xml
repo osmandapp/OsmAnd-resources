@@ -407,6 +407,7 @@
 		<parameter id="avoid_4wd_only" name="Avoid 4WD roads" description="Avoid roads only suitable for 4WD only vehicles" type="boolean"/>
 		<parameter id="allow_private" name="Allow private access" description="Allow access to private areas for cars" type="boolean" profiles="default,motorcycle"/>
 		<parameter id="allow_private_for_truck" name="Allow private access (truck)" description="Allow access to private areas for trucks" type="boolean" profiles="truck"/>
+		<parameter id="goods_restrictions" name="Goods vehicles restrictions" description="Consider access permissions for light goods vehicles (goods)" type="boolean"/>
 		<parameter id="hazmat_category" name="Hazmat category" description="Hazardous materials category / Consider hazmat access permissions" type="numeric" values="0,1,2,3,4" valueDescriptions="No restrictions,B,C,D,E" default="0" profiles="truck"/>
 		<parameter id="weight" name="Weight" description="Maximum vehicle weight to be permitted on the route" type="numeric" values="0,1.49,2.99,3.49,4.99,7.49,9.99,11.99,14.99,19.99,29.99,39.99" valueDescriptions="-,1.5t,3t,3.5t,5t,7.5t,10t,12t,15t,20t,30t,40t"/>
 		<parameter id="height" name="Height" description="Maximum vehicle height to be permitted on the route" type="numeric" values="0,1.49,1.99,2.49,2.99,3.49,3.99,4.49,4.99,5.49,5.99,6.49,6.99,7.49" valueDescriptions="-,1.5m,2m,2.5m,3m,3.5m,4m,4.5m,5m,5.5m,6m,6.5m,7m,7.5m"/>
@@ -432,6 +433,9 @@
 			<select value="-1" t="route" v="shuttle_train">
 				<if param="avoid_shuttle_train"/>
 			</select>
+			<if param="goods_restrictions">
+				<select value="-1" t="goods" v="no"/>
+			</if>
 			<if param="allow_4wd_only">
 				<select value="-1" t="4wd_only" v="yes"/>
 				<select value="-1" t="4wd_only" v="recommended"/>
