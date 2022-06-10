@@ -2056,6 +2056,9 @@ icon_alias club_shooting club_shooting
 icon_alias club_motorcycle club_motorcycle
 icon_alias club_game club_game
 icon_alias club_youth_movement club_youth_movement
+icon_alias club_amateur_radio club_amateur_radio
+icon_alias club_religion club_religion
+icon_alias club_tourism club_tourism
 
 icon_alias hazard_yes functional-icons_hazard
 icon_alias hazard_nuclear_map functional-icons_hazard_nuclear
