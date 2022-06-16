@@ -2063,6 +2063,8 @@ icon_alias club_dog club_dog
 icon_alias club_history club_history
 icon_alias club_nature club_nature
 icon_alias club_chess club_chess
+icon_alias club_cinema club_cinema
+icon_alias club_hunting club_hunting
 
 icon_alias hazard_yes functional-icons_hazard
 icon_alias hazard_nuclear_map functional-icons_hazard_nuclear
