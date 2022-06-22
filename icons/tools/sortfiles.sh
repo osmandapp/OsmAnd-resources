@@ -2069,6 +2069,7 @@ icon_alias club_aviation club_aviation
 icon_alias club_bicycle club_bicycle
 icon_alias club_doityourself club_doityourself
 icon_alias club_ethnic club_ethnic
+icon_alias club_computer club_computer
 
 icon_alias hazard_yes functional-icons_hazard
 icon_alias hazard_nuclear_map functional-icons_hazard_nuclear
