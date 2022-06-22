@@ -14,11 +14,13 @@ SIZES_NOMX4=(192 128 96 64)
 SIZES_POI=(72 48 36 24) 
 
 SVGFOLDER=${BASEFOLDER}/svg/
+OUTPUTSVGFOLDER=${BASEFOLDER}/svg-res/
 OUTPUTFOLDER=${BASEFOLDER}/png/
 VDFOLDER=${BASEFOLDER}/vd/
 VDFOLDERSVG=${BASEFOLDER}/vd/svg/
 
 mkdir -p ${OUTPUTFOLDER}
+mkdir -p ${OUTPUTSVGFOLDER}
 mkdir -p ${VDFOLDERSVG}
 mkdir -p ${VDFOLDER}
 mkdir -p ${VDFOLDER}/map
@@ -81,7 +83,9 @@ genMapIconsStdSize() {
   else
     SIZES=("${SIZES_NOMX[@]}")
   fi
-  
+
+  createSvgFolder ${1} ${3}
+
   echo "Generate $TYPE, sizes: ${SIZES[@]}, folders: ${FOLDERS[@]}, fill $FILL_COLOR, stroke $STROKE_COLOR, bg color $BG_COLOR "
   # delete previous input svg icons 
   rm -f ${VDFOLDERSVG}/* || true
@@ -107,6 +111,21 @@ genMapIconsStdSize() {
       done
   done
   ${BASEFOLDER}/tools/SVGtoXML/vd-tool/bin/vd-tool -c -in ${VDFOLDERSVG} -out ${VDFOLDEROUT} -widthDp ${SIZES[3]} -heightDp ${SIZES[3]}  
+}
+
+createSvgFolder() {
+  TYPE_SVG=$1
+  FOLDERS_SVG=("${FOLDERS_NOMX[@]}")
+
+  for FILE in ${SVGFOLDER}${TYPE_SVG}/*.svg; do
+      FILENAME_SVG=${FILE##/*/}
+      if [[ $FILENAME_SVG == _* ]]; then
+        continue;
+      fi
+      FILENAME_SVG=${TYPE_SVG}_${FILENAME_SVG%.*}
+      SVG=${OUTPUTSVGFOLDER}/${FILENAME_SVG}.svg
+      cp "$FILE" "$SVG"
+  done
 }
 
 recolour() {
