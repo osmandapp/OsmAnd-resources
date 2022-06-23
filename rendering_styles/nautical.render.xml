@@ -17,6 +17,7 @@
 	<renderingProperty attr="contourDensity" name="Contour lines density" description="Contour lines density" type="string" possibleValues="low,medium_w,high" defaultValueDescription="default"/>
 	<renderingProperty attr="depthContours" name="Depth contours" description="Show depth contours and points"
 		type="boolean" possibleValues="" category="details"/>
+	<renderingProperty attr="depthContourWidth" name="Depth contour lines width" description="Depth contour lines width" type="string" possibleValues="thin,medium,thick" defaultValueDescription="default"/>
 	<renderingProperty attr="seabedDetail" name="Seabed detail" description="Additional text information on seabed surface_qualification, combined surface types, category and taxon of weed or seagrass" category="details" type="string" defaultValue="" defaultValueDescription="simple" possibleValues="category,all,omit" /> <!-- used in INT-1 J Section: Nature of the Seabed -->  
 	<renderingProperty attr="currentTrackColor" name="Current GPX color" description="Color of the currently recording track"
 		type="string" possibleValues="red,orange,yellow,lightgreen,green,lightblue,blue,purple,translucent_red,translucent_orange,translucent_yellow,translucent_lightgreen,translucent_green,translucent_lightblue,translucent_blue,translucent_purple" defaultValueDescription="default"/>
@@ -4391,6 +4392,8 @@
 					<case additional="contourtype=50m" color="$contourLineDepthColor50m"/>
 					<case additional="contourtype=100m" color="$contourLineDepthColor100m"/>
 				</apply>
+				<apply_if depthContourWidth="thin" strokeWidth="0.6"/>
+				<apply_if depthContourWidth="thick" strokeWidth="1.5"/>
 			</case>
 			<apply_if minzoom="15" pathIcon="stroke_lightorange_left" pathIconStep="100"/>
 		</switch>
