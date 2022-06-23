@@ -17,7 +17,6 @@
 	<renderingProperty attr="contourDensity" name="Contour lines density" description="Contour lines density" type="string" possibleValues="low,medium_w,high" defaultValueDescription="default"/>
 	<renderingProperty attr="depthContours" name="Depth contours" description="Show depth contours and points"
 		type="boolean" possibleValues="" category="details"/>
-	<renderingProperty attr="depthContourWidth" name="Depth contour lines width" description="Depth contour lines width" type="string" possibleValues="thin,medium,thick" defaultValueDescription="default"/>
 	<renderingProperty attr="seabedDetail" name="Seabed detail" description="Additional text information on seabed surface_qualification, combined surface types, category and taxon of weed or seagrass" category="details" type="string" defaultValue="" defaultValueDescription="simple" possibleValues="category,all,omit" /> <!-- used in INT-1 J Section: Nature of the Seabed -->  
 	<renderingProperty attr="currentTrackColor" name="Current GPX color" description="Color of the currently recording track"
 		type="string" possibleValues="red,orange,yellow,lightgreen,green,lightblue,blue,purple,translucent_red,translucent_orange,translucent_yellow,translucent_lightgreen,translucent_green,translucent_lightblue,translucent_blue,translucent_purple" defaultValueDescription="default"/>
@@ -456,14 +455,62 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="contourLineDepthColor100m">
+		<case contourColorScheme="white" attrColorValue="#44ffffff"/>
+		<case contourColorScheme="yellow" attrColorValue="#44FFF29E"/>
+		<case contourColorScheme="green" attrColorValue="#4400ff00"/>
+		<case contourColorScheme="light_brown" attrColorValue="#2aea7300">
+			<apply_if noPolygons="true" attrColorValue="#35ea7300"/>
+			<apply_if nightMode="true" attrColorValue="#35ea7300"/>
+		</case>
+		<case contourColorScheme="brown" attrColorValue="#459C5615">
+			<apply_if noPolygons="true" attrColorValue="#66C39F7D"/>
+			<apply_if nightMode="true" attrColorValue="#66C39F7D"/>
+		</case>
+		<case contourColorScheme="dark_brown" attrColorValue="#55522D0B">
+			<apply_if noPolygons="true" attrColorValue="#8837250B"/>
+			<apply_if nightMode="true" attrColorValue="#88C39F7D"/>
+		</case>
+		<case contourColorScheme="red" attrColorValue="#44ff0000"/>
 		<case nightMode="true" attrColorValue="#361DC8"/>
 		<case attrColorValue="#66282F6A"/>
 	</renderingAttribute>
 	<renderingAttribute name="contourLineDepthColor50m">
+		<case contourColorScheme="white" attrColorValue="#44ffffff"/>
+		<case contourColorScheme="yellow" attrColorValue="#44FFF29E"/>
+		<case contourColorScheme="green" attrColorValue="#4400ff00"/>
+		<case contourColorScheme="light_brown" attrColorValue="#2aea7300">
+			<apply_if noPolygons="true" attrColorValue="#35ea7300"/>
+			<apply_if nightMode="true" attrColorValue="#35ea7300"/>
+		</case>
+		<case contourColorScheme="brown" attrColorValue="#459C5615">
+			<apply_if noPolygons="true" attrColorValue="#66C39F7D"/>
+			<apply_if nightMode="true" attrColorValue="#66C39F7D"/>
+		</case>
+		<case contourColorScheme="dark_brown" attrColorValue="#55522D0B">
+			<apply_if noPolygons="true" attrColorValue="#8837250B"/>
+			<apply_if nightMode="true" attrColorValue="#88C39F7D"/>
+		</case>
+		<case contourColorScheme="red" attrColorValue="#44ff0000"/>
 		<case nightMode="true" attrColorValue="#321BB9"/>
 		<case attrColorValue="#45374091"/>
 	</renderingAttribute>
 	<renderingAttribute name="contourLineDepthColor20m">
+		<case contourColorScheme="white" attrColorValue="#44ffffff"/>
+		<case contourColorScheme="yellow" attrColorValue="#44FFF29E"/>
+		<case contourColorScheme="green" attrColorValue="#4400ff00"/>
+		<case contourColorScheme="light_brown" attrColorValue="#2aff7c00">
+			<apply_if noPolygons="true" attrColorValue="#2aff7c00"/>
+			<apply_if nightMode="true" attrColorValue="#2aff7c00"/>
+		</case>
+		<case contourColorScheme="brown" attrColorValue="#35bd6819">
+			<apply_if noPolygons="true" attrColorValue="#44C39F7D"/>
+			<apply_if nightMode="true" attrColorValue="#44C39F7D"/>
+		</case>
+		<case contourColorScheme="dark_brown" attrColorValue="#22522D0B">
+			<apply_if noPolygons="true" attrColorValue="#4437250B"/>
+			<apply_if nightMode="true" attrColorValue="#44C39F7D"/>
+		</case>
+		<case contourColorScheme="red" attrColorValue="#44ff0000"/>
 		<case nightMode="true" attrColorValue="#281694"/>
 		<case attrColorValue="#334955C1"/>
 	</renderingAttribute>
@@ -4392,10 +4439,10 @@
 					<case additional="contourtype=50m" color="$contourLineDepthColor50m"/>
 					<case additional="contourtype=100m" color="$contourLineDepthColor100m"/>
 				</apply>
-				<apply_if depthContourWidth="thin" strokeWidth="0.6"/>
-				<apply_if depthContourWidth="thick" strokeWidth="1.5"/>
+				<apply_if contourWidth="thin" strokeWidth="0.6"/>
+				<apply_if contourWidth="thick" strokeWidth="1.5"/>
 			</case>
-			<apply_if minzoom="15" pathIcon="stroke_lightorange_left" pathIconStep="100"/>
+<!--			<apply_if minzoom="15" pathIcon="stroke_lightorange_left" pathIconStep="100"/>-->
 		</switch>
 
 		<!-- Admin levels (boundaries) -->
