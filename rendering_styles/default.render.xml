@@ -1202,6 +1202,11 @@
 			<apply_if nightMode="true" attrColorValue="#6E89C9"/>
 		</case>
 	</renderingAttribute>
+	<renderingAttribute name="goodsConveyorColor">
+		<case attrColorValue="#6D7DA1">
+			<apply_if nightMode="true" attrColorValue="#6D7DA1"/>
+		</case>
+	</renderingAttribute>
 	<renderingConstant name="footwayStrokeWidth" value="1"/>
 	<!-- NOTE: For full alignment with Touring view, we either need to make sure low zoom rules take no effect if germanRoadAtlas is selected, or define extra lowZoomColors (identical with high zoom colors) for germanRoadAtlas case -->
 	<renderingAttribute name="stepsRampColor">
@@ -4092,8 +4097,13 @@
 							<apply_if layer="-1" order="20"/>
 							<apply_if additional="layer=-2" order="19"/>
 						</case>
+						<case tag="man_made" value="goods_conveyor" order="69">
+							<apply_if moreDetailed="false" maxzoom="16" order="-1"/>
+						</case>
 						<case tag="ladder" value="yes" order="63"/>
-						<case tag="highway" value="elevator" order="66"/>
+						<case tag="highway" value="elevator" order="66">
+							<apply_if moreDetailed="false" maxzoom="16" order="-1"/>
+						</case>
 						<apply_if baseAppMode="car">
 							<case layer="0" maxzoom="18" order="-1"/>
 							<case layer="-1" maxzoom="18" order="-1"/>
@@ -6634,6 +6644,7 @@
 						<case minzoom="19" tag="entrance" value="" nameTag="addr:flats"/>
 						<case minzoom="19" tag="entrance" value="" nameTag="" nameTag2="ref"/>
 						<case tag="highway" value="elevator" textOnPath="true"/>
+						<case tag="man_made" value="goods_conveyor" textOnPath="true"/>
 						<apply textSize="12" textColor="#555555" textWrapWidth="15"/>
 						<apply textOrder="161"/>
 					</switch>
@@ -11238,6 +11249,9 @@
 
 					<case minzoom="16" tag="highway" value="elevator">
 						<apply color_5="$elevatorColor" strokeWidth_4="2:2" strokeWidth_5="2:2" pathEffect_5="2_1"/>
+					</case>
+					<case minzoom="16" tag="man_made" value="goods_conveyor">
+						<apply color_5="$goodsConveyorColor" strokeWidth_4="2:2" strokeWidth_5="2:2" pathEffect_5="2_1"/>
 					</case>
 
 					<case minzoom="$bridlewayMinZoom" tag="highway" value="bridleway">

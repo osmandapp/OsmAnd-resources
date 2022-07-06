@@ -573,6 +573,17 @@
 	</renderingAttribute>
 	<renderingConstant name="bridlewayStrokeWidth" value="1:1"/>
 
+	<renderingAttribute name="elevatorColor">
+		<case attrColorValue="#0031A2">
+			<apply_if nightMode="true" attrColorValue="#6E89C9"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="goodsConveyorColor">
+		<case attrColorValue="#6D7DA1">
+			<apply_if nightMode="true" attrColorValue="#6D7DA1"/>
+		</case>
+	</renderingAttribute>
+
 	<renderingAttribute name="highwayLowLevelBridgeColor1">
 		<case nightMode="true" attrColorValue="#dddddd"/>
 		<case attrColorValue="#000000"/>
@@ -1927,6 +1938,7 @@
 						<apply_if layer="-1" order="20"/>
 						<apply_if additional="layer=-2" order="19"/>
 					</case>
+					<case tag="man_made" value="goods_conveyor" order="69"/>
 					<case tag="abandoned:highway" value=""/>
 					<case tag="highway" value="via_ferrata"/>
 					<case tag="highway" value="cycleway" order="65">
@@ -2788,7 +2800,8 @@
 					<case tag="entrance" value="" nameTag="ref"/>
 					<case tag="entrance" value="" nameTag="addr:flats"/>
 					<case tag="entrance" value="" nameTag="" nameTag2="ref"/>
-					<case tag="highway" value="elevator"/>
+					<case tag="highway" value="elevator" textOnPath="true"/>
+					<case tag="man_made" value="goods_conveyor" textOnPath="true"/>
 					<apply textSize="12" textColor="#555555" textWrapWidth="15"/>
 					<apply_if engine_v1="true" textDy="3"/>
 				</switch>
@@ -5257,6 +5270,12 @@
 								<case minzoom="13" strokeWidth_4="1.2:1.2" strokeWidth_5="1"/>
 							</case>
 							<case minzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="$bridlewayStrokeWidth"/>
+						</case>
+						<case minzoom="16" tag="highway" value="elevator">
+							<apply color_5="$elevatorColor" strokeWidth_4="2:2" strokeWidth_5="2:2" pathEffect_5="2_1"/>
+						</case>
+						<case minzoom="16" tag="man_made" value="goods_conveyor">
+							<apply color_5="$goodsConveyorColor" strokeWidth_4="2:2" strokeWidth_5="2:2" pathEffect_5="2_1"/>
 						</case>
 						<switch minzoom="15">
 							<case tag="abandoned:highway" value="track"/>
