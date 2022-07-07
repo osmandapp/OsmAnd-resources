@@ -164,6 +164,8 @@
 		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="showMtbRoutes" name="Show MTB routes" description="Show mountain bike routes (*cn_networks)"
 		type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="showMtbScaleIMBATrails" name="Show MTB IMBA trails" description="Show specifically designed trails for mountainbiking"
+		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="hikingRoutesOSMC" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces"
 		type="string" possibleValues="walkingRoutesOSMC,walkingRoutesScopeOSMC,walkingRoutesOSMCNodes" defaultValueDescription="disabled" category="routes"/>
 	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
@@ -1451,8 +1453,8 @@
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteMtbScaleImba0Color">
-		<case attrColorValue="#00C750">
-			<apply_if nightMode="true" attrColorValue="#00A115"/>
+		<case attrColorValue="#ffffff">
+			<apply_if nightMode="true" attrColorValue="#AAAAAA"/>
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteMtbScale1Color">
@@ -1461,9 +1463,7 @@
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteMtbScaleImba1Color">
-		<case attrColorValue="#2C5DF2">
-			<apply_if nightMode="true" attrColorValue="#053FE7"/>
-		</case>
+		<case attrColorValue="#78B159"/>
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteMtbScale1UnrecommendedColor">
 		<case attrColorValue="#669c9aef">
@@ -1476,9 +1476,7 @@
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteMtbScaleImba2Color">
-		<case attrColorValue="#FF2121">
-			<apply_if nightMode="true" attrColorValue="#BF1717"/>
-		</case>
+		<case attrColorValue="#55ACEE"/>
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteMtbScale2UnrecommendedColor">
 		<case attrColorValue="#66f76d6b">
@@ -1491,9 +1489,7 @@
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteMtbScaleImba3Color">
-		<case attrColorValue="#5E5D58">
-			<apply_if nightMode="true" attrColorValue="#5B6365"/>
-		</case>
+		<case attrColorValue="#000000"/>
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteMtbScale3UnrecommendedColor">
 		<case attrColorValue="#558c8a84">
@@ -1506,9 +1502,7 @@
 		</case>
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteMtbScaleImba4Color">
-		<case attrColorValue="#5E5D58">
-			<apply_if nightMode="true" attrColorValue="#5B6365"/>
-		</case>
+		<case attrColorValue="#000000"/>
 	</renderingAttribute>
 	<renderingAttribute name="cycleRouteMtbScale4UnrecommendedColor">
 		<case attrColorValue="#558c8a84">
@@ -3923,7 +3917,7 @@
 					<case tag="route_trolleybus" value="" order="185"/>
 					<case tag="route_bicycle" value="" order="186"/>
 					<case tag="route_mtb" value="" order="187"/>
-
+					<case tag="osmand_mtb_scale_imba" value="trail" order="189"/>
 					<case tag="railway" value="station"/>
 
 					<case tag="amenity" value="ferry_terminal"/>
@@ -12493,28 +12487,6 @@
 				<apply_if minzoom="13" color="$cycleRouteColor"/>
 				<apply>
 					<switch>
-						<case additional="mtb:scale:imba=0" color="$cycleRouteMtbScaleImba0Color">
-							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale0UnrecommendedColor"/>
-						</case>
-						<case additional="mtb:scale:imba=1" color="$cycleRouteMtbScaleImba1Color">
-							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale1UnrecommendedColor"/>
-						</case>
-						<case additional="mtb:scale:imba=2" color="$cycleRouteMtbScaleImba2Color">
-							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale2UnrecommendedColor"/>
-						</case>
-						<case additional="mtb:scale:imba=3" color="$cycleRouteMtbScaleImba3Color">
-							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale3UnrecommendedColor"/>
-						</case>
-						<case additional="mtb:scale:imba=4" color="$cycleRouteMtbScaleImba4Color">
-							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale4UnrecommendedColor" color_2="$cycleRouteMtbScale4AdditionalUnrecommendedColor"/>
-						</case>
-						<apply shadowColor="#ffffff">
-							<apply_if nightMode="true" shadowColor="#000000"/>
-						</apply>
-						<apply_if maxzoom="12" shadowRadius="1"/>
-						<apply_if minzoom="13" shadowRadius="1:1"/>
-					</switch>
-					<switch>
 						<case additional="mtb:scale=0" color="$cycleRouteMtbScale0Color">
 							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale0UnrecommendedColor"/>
 						</case>
@@ -12617,6 +12589,42 @@
 					</apply>
 				</switch>
 			</apply_if>
+		</switch>
+
+		<switch showMtbScaleIMBATrails="true" minzoom="13" tag="osmand_mtb_scale_imba" value="trail" color="$null" strokeWidth="1">
+			<switch>
+				<case additional="mtb:scale:imba=0" color_3="$cycleRouteMtbScaleImba0Color" cap_2="ROUND" cap_3="ROUND"/>
+				<case additional="mtb:scale:imba=1" color_3="$cycleRouteMtbScaleImba1Color" cap_2="ROUND" cap_3="ROUND"/>
+				<case additional="mtb:scale:imba=2" color_3="$cycleRouteMtbScaleImba2Color" cap_2="SQUARE" cap_3="SQUARE"/>
+				<apply color_2="$black">
+					<apply_if nightMode="true" color_2="#CCCCCC"/>
+				</apply>
+				<apply_if maxzoom="14" pathEffect_2="1_10" pathEffect_3="1_10"/>
+				<apply_if minzoom="15" maxzoom="15" pathEffect_2="1_16" pathEffect_3="1_16"/>
+				<apply_if minzoom="16" maxzoom="16" pathEffect_2="1_25" pathEffect_3="1_25"/>
+				<apply_if minzoom="17" pathEffect_2="1_32" pathEffect_3="1_32"/>
+			</switch>
+			<switch>
+				<case additional="mtb:scale:imba=3" color_3="$cycleRouteMtbScaleImba3Color" cap_2="SQUARE" cap_3="SQUARE">
+					<apply_if maxzoom="15" pathEffect_2="1_10" pathEffect_3="1_10"/>
+					<apply_if minzoom="15" maxzoom="15" pathEffect_2="1_16" pathEffect_3="1_16"/>
+					<apply_if minzoom="16" maxzoom="16" pathEffect_2="1_25" pathEffect_3="1_25"/>
+					<apply_if minzoom="17" pathEffect_2="1_32" pathEffect_3="1_32"/>
+				</case>
+				<case additional="mtb:scale:imba=4" color_3="$cycleRouteMtbScaleImba4Color" cap_2="SQUARE" cap_3="SQUARE">
+					<apply_if maxzoom="15" pathEffect_2="1_5_1_13" pathEffect_3="1_5_1_13"/>
+					<apply_if minzoom="15" maxzoom="15" pathEffect_2="1_6_1_21" pathEffect_3="1_6_1_21"/>
+					<apply_if minzoom="16" maxzoom="16" pathEffect_2="1_8_1_29" pathEffect_3="1_8_1_29"/>
+					<apply_if minzoom="17" pathEffect_2="1_10_1_37" pathEffect_3="1_10_1_37"/>
+				</case>
+				<apply color_2="$white">
+					<apply_if nightMode="true" color_2="#AAAAAA"/>
+				</apply>
+			</switch>
+			<apply_if maxzoom="14" strokeWidth_2="4" strokeWidth_3="2"/>
+			<apply_if minzoom="15" maxzoom="15" strokeWidth_2="6" strokeWidth_3="4"/>
+			<apply_if minzoom="16" maxzoom="16" strokeWidth_2="7" strokeWidth_3="5"/>
+			<apply_if minzoom="17" strokeWidth_2="9" strokeWidth_3="7"/>
 		</switch>
 
 		<switch>
