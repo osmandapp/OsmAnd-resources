@@ -26,21 +26,21 @@ function populateDictionary(tts) {
 	dictionary["after"] = tts ? "sonra" : "after.ogg";
 	dictionary["in"] = tts ? "içinde" : "in.ogg";
 
-	dictionary["left"] = tts ? "sola dön" : "left.ogg";
+	dictionary["left"] = tts ? "sola dönün" : "left.ogg";
 	dictionary["left_sh"] = tts ? "sola keskin dönüş" : "left_sh.ogg";
-	dictionary["left_sl"] = tts ? "hafif sola dön" : "left_sl.ogg";
-	dictionary["right"] = tts ? "sağa dön" : "right.ogg";
+	dictionary["left_sl"] = tts ? "hafifçe sola dönün" : "left_sl.ogg";
+	dictionary["right"] = tts ? "sağa dönün" : "right.ogg";
 	dictionary["right_sh"] = tts ? "sağa keskin dönüş" : "right_sh.ogg";
-	dictionary["right_sl"] = tts ? "hafif sağa dön" : "right_sl.ogg";
+	dictionary["right_sl"] = tts ? "hafifçe sağa dönün" : "right_sl.ogg";
 	// Note: "left_keep"/"right_keep" is a turn type aiding lane selection, while "left_bear"/"right_bear" is as brief "then..." preparation for the turn-after-next. In some languages l/r_keep may not differ from l/r_bear.
 	dictionary["left_keep"] = tts ? "soldan devam edin" : "left_keep.ogg";
 	dictionary["right_keep"] = tts ? "sağdan devam edin" : "right_keep.ogg";
-	dictionary["left_bear"] = tts ? "sola dön" : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
-	dictionary["right_bear"] = tts ? "sağa dön" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
+	dictionary["left_bear"] = tts ? "sola dönün" : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
+	dictionary["right_bear"] = tts ? "sağa dönün" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
 
 	// U-TURNS
-	dictionary["make_uturn"] = tts ? "Geri dönün" : "make_uturn.ogg";
-	dictionary["make_uturn_wp"] = tts ? "İlk fırsatta geri dönün" : "make_uturn_wp.ogg";
+	dictionary["make_uturn"] = tts ? "U dönüşü yapın" : "make_uturn.ogg";
+	dictionary["make_uturn_wp"] = tts ? "Mümkün olunca lütfen U dönüşü yapın" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "kavşağa girin" : "prepare_roundabout.ogg";
@@ -73,13 +73,13 @@ function populateDictionary(tts) {
 	dictionary["follow"] = tts ? "Devam edin " : "follow.ogg";  // "Follow the course of the road for" perceived as too chatty by many users
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "sonra ulaşacaksınız" : "and_arrive_destination.ogg";
+	dictionary["and_arrive_destination"] = tts ? "ve ardından hedefinize ulaşacaksınız" : "and_arrive_destination.ogg";
 	dictionary["reached_destination"] = tts ? "hedefinize ulaştınız" : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "sonra ara noktaya ulaşacaksınız." : "and_arrive_intermediate.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "ve ardından ara noktaya ulaşacaksınız." : "and_arrive_intermediate.ogg";
 	dictionary["reached_intermediate"] = tts ? "ara noktaya ulaştınız" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "ve G P X noktasını yaklaştınız" : "and_arrive_waypoint.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "ve G P X noktasına yaklaştınız" : "and_arrive_waypoint.ogg";
 	dictionary["reached_waypoint"] = tts ? "G P X noktasını geçiyorsunuz" : "reached_waypoint.ogg";
 	dictionary["and_arrive_favorite"] = tts ? "ve favorinize yaklaştınız" : "and_arrive_favorite.ogg";
 	dictionary["reached_favorite"] = tts ? "favorinize vardınız" : "reached_favorite.ogg";
@@ -92,8 +92,8 @@ function populateDictionary(tts) {
 	dictionary["attention"] = tts ? "dikkat" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "hız kamerası" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "sınır kontrolü" : "border_control.ogg";
-	dictionary["railroad_crossing"] = tts ? "demiryolu hemzemini" : "railroad_crossing.ogg";
-	dictionary["traffic_calming"] = tts ? "hız kesici" : "traffic_calming.ogg";
+	dictionary["railroad_crossing"] = tts ? "demiryolu geçidi" : "railroad_crossing.ogg";
+	dictionary["traffic_calming"] = tts ? "kasis" : "traffic_calming.ogg";
 	dictionary["toll_booth"] = tts ? "gişe" : "toll_booth.ogg";
 	dictionary["stop"] = tts ? "dur tabelası" : "stop.ogg";
 	dictionary["pedestrian_crosswalk"] = tts ? "yaya geçidi" : "pedestrian_crosswalk.ogg";
@@ -117,15 +117,15 @@ function populateDictionary(tts) {
 	dictionary["around"] = tts ? " " : "around.ogg"; // Sürekli "Yaklaşık" demesi sinir bozucu
 	dictionary["kilometers"] = tts ? "kilometre" : "kilometers.ogg";
 
-	dictionary["feet"] = tts ? "adım" : "feet.ogg";
+	dictionary["feet"] = tts ? "fit" : "feet.ogg";
 	dictionary["1_tenth_of_a_mile"] = tts ? "milin onda biri" : "1_tenth_of_a_mile.ogg";
 	dictionary["tenths_of_a_mile"] = tts ? "milin onda biri" : "tenths_of_a_mile.ogg";
 	dictionary["around_1_mile"] = tts ? "bir mil" : "around_1_mile.ogg"; // Sürekli "Yaklaşık" demesi sinir bozucu
 	dictionary["miles"] = tts ? "mil" : "miles.ogg";
-	dictionary["yards"] = tts ? "kilometre" : "yards.ogg";
+	dictionary["yards"] = tts ? "yarda" : "yards.ogg";
 
 	// TIME SUPPORT
-	dictionary["time"] = tts ? "zaman" : "time.ogg";
+	dictionary["time"] = tts ? "süre" : "time.ogg";
 	dictionary["1_hour"] = tts ? "bir saat" : "1_hour.ogg";
     dictionary["hours"] = tts ? "saat" : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "bir dakikadan az" : "less_a_minute.ogg";
