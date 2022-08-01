@@ -3549,6 +3549,7 @@
 				<case tag="harbour" value="yes"/>
 				<case tag="waterway" value="dock"/>
 				<case tag="waterway" value="wadi"/>
+				<case tag="lock" value="yes"/>
 				<case tag="amenity" value="refugee_site"/>
 				<case tag="railway" value="traverser"/>
 				<case tag="railway" value="turntable"/>
@@ -5658,6 +5659,7 @@
 					<case minzoom="$wadiStreamTextMinZoom" tag="waterway" value="wadi" textOnPath="true" textOrder="213" nameTag=""/>
 					<case minzoom="11" tag="waterway" value="river" textOnPath="true" textMinDistance="80" textOrder="184" nameTag=""/>
 					<case minzoom="13" tag="waterway" value="canal" textOnPath="true" textMinDistance="80" textOrder="185"/>
+					<case minzoom="14" tag="lock" value="yes" textOnPath="true" textMinDistance="80" textOrder="184" nameTag="lock_name" nameTag2="lock_ref"/>
 					<case hidePOILabels="false" minzoom="17" tag="waterway" value="dock" textDy="7" textOrder="209"/>
 					<case minzoom="15" tag="waterway" value="ditch" textOnPath="true" textOrder="210"/>
 					<case minzoom="15" tag="waterway" value="drain" textOnPath="true" textOrder="211"/>
@@ -11924,7 +11926,9 @@
 				<apply_if minzoom="18" strokeWidth="2:2"/>
 			</switch>
 			<switch minzoom="6">
-				<case tag="waterway" value="river">
+				<switch>
+					<case tag="waterway" value="river"/>
+					<case tag="lock" value="yes" additional="osmand_lock_river=yes"/>
 					<apply minzoom="13" pathIcon="$waterwayDirectionIcon">
 						<case maxzoom="13" pathIconStep="130"/>
 						<case maxzoom="14" pathIconStep="140"/>
@@ -11932,13 +11936,15 @@
 						<apply_if additional="intermittent=yes" pathIconStep="190"/>
 						<apply_if nightMode="true" pathIcon="arrow_blue_big"/>
 					</apply>
-				</case>
-				<case tag="waterway" value="canal">
+				</switch>
+				<switch>
+					<case tag="waterway" value="canal"/>
+					<case tag="lock" value="yes" additional="osmand_lock_canal=yes"/>
 					<apply minzoom="15" pathIcon="$waterwayDirectionIcon" pathIconStep="150">
 						<apply_if additional="intermittent=yes" pathIconStep="190"/>
 						<apply_if nightMode="true" pathIcon="arrow_blue_big"/>
 					</apply>
-				</case>
+				</switch>
 				<apply>
 					<case maxzoom="9" strokeWidth="0.6"/>
 					<case maxzoom="12" strokeWidth="1:1"/>

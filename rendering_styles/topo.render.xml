@@ -2028,6 +2028,7 @@
 				<case tag="waterway" value="dam" order="19"/>
 				<case tag="waterway" value="weir" order="19"/>
 				<case tag="waterway" value="lock_gate" order="19"/>
+				<case tag="lock" value="yes"/>
 				<case tag="waterway" value="">
 					<apply_if layer="1" order="89"/>
 					<apply_if additional="layer=2" order="120"/>
@@ -2980,6 +2981,7 @@
 					<case minzoom="13" tag="waterway" value="wadi" textOnPath="true" textOrder="213"/>
 					<case minzoom="11" tag="waterway" value="river" textOnPath="true" textMinDistance="80" textOrder="184"/>
 					<case minzoom="13" tag="waterway" value="canal" textOnPath="true" textMinDistance="80" textOrder="185"/>
+					<case minzoom="14" tag="lock" value="yes" textOnPath="true" textMinDistance="80" textOrder="184" nameTag="lock_name" nameTag2="lock_ref"/>
 					<case minzoom="15" tag="waterway" value="ditch" textOnPath="true" textOrder="210"/>
 					<case minzoom="15" tag="waterway" value="drain" textOnPath="true" textOrder="211"/>
 
@@ -5713,7 +5715,7 @@
 		<switch>
 			<switch minzoom="13">
 				<case tag="waterway" value="stream"/>
-/				<case tag="waterway" value="wadi">
+				<case tag="waterway" value="wadi">
 					<case maxzoom="13" pathEffect="4.5_3"/>
 					<case maxzoom="14" pathEffect="6_4"/>
 					<case maxzoom="16" pathEffect="8_5"/>
@@ -5727,19 +5729,23 @@
 				<apply_if minzoom="18" strokeWidth="2:2"/>
 			</switch>
 			<switch minzoom="5">
-				<case tag="waterway" value="river">
+				<switch>
+					<case tag="waterway" value="river"/>
+					<case tag="lock" value="yes" additional="osmand_lock_river=yes"/>
 					<apply minzoom="13" pathIcon="$waterwayDirectionIcon">
 						<case maxzoom="13" pathIconStep="130"/>
 						<case maxzoom="14" pathIconStep="140"/>
 						<case minzoom="15" pathIconStep="150"/>
 						<apply_if additional="intermittent=yes" pathIconStep="190"/>
 					</apply>
-				</case>
-				<case tag="waterway" value="canal">
+				</switch>
+				<switch>
+					<case tag="waterway" value="canal"/>
+					<case tag="lock" value="yes" additional="osmand_lock_canal=yes"/>
 					<apply minzoom="15" pathIcon="$waterwayDirectionIcon" pathIconStep="150">
 						<apply_if additional="intermittent=yes" pathIconStep="190"/>
 					</apply>
-				</case>
+				</switch>
 				<apply_if minzoom="14" additional="bridge=yes" color__1="#000000">
 					<case maxzoom="14" strokeWidth__1="3.2:3.2"/>
 					<case maxzoom="16" strokeWidth__1="4.3:4.3"/>
