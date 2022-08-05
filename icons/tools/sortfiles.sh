@@ -414,6 +414,7 @@ icon_alias public_transport_stop_position transport_bus_stop2
 icon_alias highway_bus_stop transport_bus_stop
 icon_alias topo_bus_stop topo_topo_bus_stop
 icon_alias highway_bus_stop_small bus_stop_small
+icon_alias highway_bus_stop_small_night functional-icons_bus_stop_small_night
 icon_alias topo_bus_stop_small topo_topo_bus_stop_small
 icon_alias highway_bus_stop_round_small functional-icons_bus_stop_round_small
 icon_alias highway_bus_stop_round_big functional-icons_bus_stop_round_big
@@ -423,6 +424,7 @@ icon_alias bus_station_small functional-icons_bus_station_small
 icon_alias public_transport_platform transport_bus_stop
 icon_alias amenity_ferry_terminal transport_ferry_terminal
 icon_alias ferry_terminal_small ferry_terminal_small
+icon_alias ferry_terminal_small_night functional-icons_ferry_terminal_small_night
 icon_alias amenity_taxi transport_taxi_rank
 icon_alias highway_services transport_services
 icon_alias mountain_pass poi_mountain_pass
@@ -445,7 +447,9 @@ icon_alias lock_basin seamark_small_poi_lock_basin  #scale 0.25
 icon_alias waterway_dock transport_dock
 
 icon_alias halt_small functional-icons_halt_small  #scale 0.25
+icon_alias halt_small_night functional-icons_halt_small_night
 icon_alias halt_small_2 functional-icons_halt_small_2  #scale 0.25
+icon_alias halt_small_2_night functional-icons_halt_small_2_night
 icon_alias topo_railway_halt_small functional-icons_topo_railway_halt_small
 icon_alias halt transport_halt  #scale 0.25
 icon_alias level_crossing_map functional-icons_level_crossing  #scale 0.5
@@ -454,7 +458,9 @@ icon_alias railway_yard transport_railway_yard  #scale 0.25
 icon_alias railway_platform transport_train_station2
 icon_alias railway_station_disused functional-icons_train_station_disused
 icon_alias railway_station_small_disused railway_station_small_disused
+icon_alias railway_station_small_disused_night functional-icons_railway_station_small_disused_night
 icon_alias railway_station_small railway_station_small  #scale 0.375
+icon_alias railway_station_small_night functional-icons_railway_station_small_night
 icon_alias topo_railway_station_small functional-icons_topo_railway_station_small
 icon_alias railway_station_subway_map transport_station_subway
 icon_alias railway_station_subway_small functional-icons_railway_station_subway_small
@@ -466,6 +472,7 @@ icon_alias railway_tram_stop_round_small functional-icons_blue_stop_round_small
 icon_alias railway_tram_stop_round_small_night functional-icons_blue_stop_round_small_night
 icon_alias railway_tram_stop transport_tram_stop
 icon_alias tram_stop_small tram_stop_small
+icon_alias tram_stop_small_night functional-icons_tram_stop_small_night
 icon_alias subway_station transport_subway_station
 icon_alias funicular transport_funicular
 icon_alias escape_lane transport_escape_lane
@@ -594,6 +601,7 @@ icon_alias subway_shanghai subway_subway_shanghai
 icon_alias subway_guangzhou subway_subway_guangzhou
 
 icon_alias aerialway_station_small functional-icons_aerialway_station_small  #scale 0.25
+icon_alias aerialway_station_small_night functional-icons_aerialway_station_small_night
 icon_alias aerialway_station transport_aerialway_station  #scale 0.375
 icon_alias aerialway_cable_car transport_aerialway_cable_car
 icon_alias aerialway_chair_lift transport_aerialway_chair_lift
