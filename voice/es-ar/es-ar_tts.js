@@ -17,7 +17,7 @@ var tts;
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	dictionary["route_is"] = tts ? "La ruta tiene" : "route_is.ogg";
+	dictionary["route_is"] = tts ? "Ruta de" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Ruta recalculada" : "route_calculate.ogg";
 	dictionary["distance"] = tts ? "distancia" : "distance.ogg";
 
@@ -127,7 +127,7 @@ function populateDictionary(tts) {
 	dictionary["yards"] = tts ? "yardas" : "yards.ogg";
 
 	// TIME SUPPORT
-	dictionary["time"] = tts ? "tiempo necesario" : "time.ogg";
+	dictionary["time"] = tts ? "tiempo" : "time.ogg";
 	dictionary["1_hour"] = tts ? "una hora" : "1_hour.ogg";
 	dictionary["hours"] = tts ? "horas" : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "menos de un minuto" : "less_a_minute.ogg";
@@ -135,7 +135,7 @@ function populateDictionary(tts) {
 	dictionary["minutes"] = tts ? "minutos" : "minutes.ogg";
 
 	// SPECIAL NUMBERS
-	dictionary["20_and"] = tts ? "veinti" : "20_and.ogg";
+	//dictionary["20_and"] = tts ? "veinti" : "20_and.ogg"; //unused
 }
 
 
@@ -151,7 +151,8 @@ function setMode(mode) {
 }
 
 function route_new_calc(dist, timeVal) {
-	return dictionary["route_is"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : " ");
+  //return dictionary["route_is"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : " ");
+	return dictionary["route_is"] + " " + distance(dist) + (tts ? ", " : " ") + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : " ");
 }
 
 function distance(dist) {
@@ -251,7 +252,8 @@ function hours(minutes) {
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + (tts ? ", " : " ") + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
+	//	return dictionary["route_calculate"] + (tts ? ", " : " ") + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
+	return dictionary["route_calculate"] + (tts ? ": " : " ") + distance(dist) + ", " + time(seconds) + (tts ? ". " : " "); // short version
 }
 
 function go_ahead(dist, streetName) {
@@ -279,16 +281,16 @@ function turn(turnType, dist, streetName) {
 	if (dist == -1) {
 		return getTurnType(turnType) + " " + turn_street(streetName);
 	} else {
-		return dictionary["in"] + " " + distance(dist) + " " + getTurnType(turnType) + " " + turn_street(streetName); 
+		return dictionary["in"] + " " + distance(dist) + (tts ? ", " : " ") + getTurnType(turnType) + " " + turn_street(streetName); 
 	}
 }
 
 function take_exit(turnType, dist, exitString, exitInt, streetName) {
 	if (dist == -1) {
-		return getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
+		return getTurnType(turnType) + " " + dictionary["on"] + " " + getExitNumber(exitString, exitInt) + take_exit_name(streetName);
 	} else {
-		return dictionary["in"] + " " + distance(dist) + " "
-			+ getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
+		return dictionary["in"] + " " + distance(dist) + (tts ? ", " : " ")
+			+ getTurnType(turnType) + " " + dictionary["on"] + " " + getExitNumber(exitString, exitInt) + take_exit_name(streetName);
 	}
 }
 
@@ -298,7 +300,7 @@ function take_exit_name(streetName) {
 	} else if (streetName["toDest"] != "") {
 		return (tts ? ", " : " ") + streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	} else if (streetName["toStreetName"] != "") {
-		return (tts ? ", " : " ") + streetName["toStreetName"]
+		return (tts ? ", " : " ") + dictionary["toward"] + " " + streetName["toStreetName"];
 	} else {
 		return "";
 	}
@@ -308,13 +310,13 @@ function getExitNumber(exitString, exitInt) {
 	if (!tts && exitInt > 0 && exitInt < 18) {
 		return nth(exitInt) + " " + dictionary["exit"];
 	} else if (tts) {
-		return  dictionary["exit"] + " " + exitString;
+		return dictionary["exit"] + " " + exitString;
 	} else {
 		return dictionary["exit"];
 	}
 }
 
-function  getTurnType(turnType) {
+function getTurnType(turnType) {
 	switch (turnType) {
 		case "left":
 			return dictionary["left"];
@@ -344,20 +346,19 @@ function  getTurnType(turnType) {
 }
 
 function then() {
-	return (tts ? ", " : " ") + dictionary["then"] + " ";
+	return (tts ? ", " : " ") + dictionary["then"];
 }
 
 function roundabout(dist, angle, exit, streetName) {
 	if (dist == -1) {
 		return dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	} else {
-		return dictionary["on"] + " " + distance(dist) + " " + dictionary["roundabout"] + " " + dictionary["and"] + " " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
+		return dictionary["on"] + " " + distance(dist) + " " + dictionary["roundabout"] + (tts ? ", " : " ") + dictionary["and"] + " " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	}
-
 }
 
 function turn_street(streetName) {
-	if ((streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || Object.keys(streetName).length == 0 || !tts) {
+	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || !tts) {
 		return "";
 	} else if (streetName["toStreetName"] === "" && streetName["toRef"] === "") {
 		return dictionary["toward"] + " " + streetName["toDest"];
@@ -442,7 +443,7 @@ function prepare_make_ut(dist, streetName) {
 }
 
 function prepare_turn(turnType, dist, streetName) {
-	return dictionary["on"] + " " + distance(dist) + " " + getTurnType(turnType) + " " + turn_street(streetName);
+	return dictionary["on"] + " " + distance(dist) + (tts ? ", " : " ") + getTurnType(turnType) + " " + turn_street(streetName);
 }
 
 function prepare_roundabout(dist, exit, streetName) {
@@ -556,6 +557,7 @@ function getAttentionString(type) {
 	}
 }
 
+// DISTANCE MEASURE
 function ogg_dist(distance) {
 	if (distance == 0) {
 		return "";
@@ -563,38 +565,22 @@ function ogg_dist(distance) {
 		return Math.floor(distance).toString() + ".ogg ";
 	} else if (distance < 1000 && (distance % 50) == 0) {
 		return distance.toString() + ".ogg ";
-	} else if (distance == 20) {
-		return "20.ogg ";
 	} else if (distance < 30) {
-		return "20.ogg " + " " + dictionary["and"] + " " + ogg_dist(distance - 20);
-	} else if (distance == 30) {
-		return "30.ogg ";
+		return "20.ogg " + ogg_dist(distance - 20);
 	} else if (distance < 40) {
-		return "30.ogg " + " " + dictionary["and"] + " " + ogg_dist(distance - 30);
-	} else if (distance == 40) {
-		return "40.ogg ";
+		return "30.ogg " + ogg_dist(distance - 30);
 	} else if (distance < 50) {
-		return "40.ogg " + " " + dictionary["and"] + " " + ogg_dist(distance - 40);
-	} else if (distance == 50) {
-		return "50.ogg ";
+		return "40.ogg " + ogg_dist(distance - 40);
 	} else if (distance < 60) {
-		return "50.ogg " + " " + dictionary["and"] + " " + ogg_dist(distance - 50);
-	} else if (distance == 60) {
-		return "60.ogg ";
+		return "50.ogg " + ogg_dist(distance - 50);
 	} else if (distance < 70) {
-		return "60.ogg " + " " + dictionary["and"] + " " + ogg_dist(distance - 60);
-	} else if (distance == 70) {
-		return "70.ogg ";
+		return "60.ogg " + ogg_dist(distance - 60);
 	} else if (distance < 80) {
-		return "70.ogg " + " " + dictionary["and"] + " " + ogg_dist(distance - 70);
-	} else if (distance == 80) {
-		return "80.ogg ";
+		return "70.ogg "+ ogg_dist(distance - 70);
 	} else if (distance < 90) {
-		return "80.ogg " + " " + dictionary["and"] + " " + ogg_dist(distance - 80);
-	} else if (distance == 90) {
-		return "90.ogg ";
+		return "80.ogg " + ogg_dist(distance - 80);
 	} else if (distance < 100) {
-		return "90.ogg " + " " + dictionary["and"] + " " + ogg_dist(distance - 90);
+		return "90.ogg " + ogg_dist(distance - 90);
 	} else if (distance < 200) {
 		return "100.ogg " + ogg_dist(distance - 100);
 	} else if (distance < 300) {
