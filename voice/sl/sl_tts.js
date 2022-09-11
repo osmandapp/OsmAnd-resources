@@ -39,10 +39,10 @@ function populateDictionary(tts) {
 
 	// U-TURNS
 	dictionary["make_uturn"] = tts ? "obrnite nazaj" : "make_uturn.ogg";
-	dictionary["make_uturn_wp"] = tts ? "Čim bo mogoče, obrnite nazaj" : "make_uturn_wp.ogg";
+	dictionary["make_uturn_wp"] = tts ? "čimprej obrnite" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? "Pripravite se na krožišče čez" : "prepare_roundabout.ogg";
+	dictionary["prepare_roundabout"] = tts ? "Pripravite se na krožišče" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "zapeljite v krožišče, nato pa uporabite" : "roundabout.ogg";
 	dictionary["then"] = tts ? "nato" : "then.ogg";
 	dictionary["and"] = tts ? "in" : "and.ogg";
@@ -80,16 +80,16 @@ function populateDictionary(tts) {
 	// NEARBY POINTS
 	dictionary["and_arrive_waypoint"] = tts ? "in prispete na vmesni cilj GE PE X" : "and_arrive_waypoint.ogg";
 	dictionary["reached_waypoint"] = tts ? "Prispeli ste na vmesni cilj GE PE X" : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "and pass favorite" : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "you are passing favorite" : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "and pass POI" : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "you are passing POI" : "reached_poi.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "in prispete do priljubljene točke" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "Prispeli ste do priljubljene točke" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "in prispete do točke zanimanja" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "Prispeli ste do točke zanimanja" : "reached_poi.ogg";
 
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "prekoračili ste dovoljeno hitrost " : "exceed_limit.ogg";
 	dictionary["exceed_limit"] = tts ? "omejitev hitrosti" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "Pozor" : "attention.ogg";
-	dictionary["speed_camera"] = tts ? "hitrost kamere" : "speed_camera.ogg";
+	dictionary["speed_camera"] = tts ? "meritve hitrosti" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "nadzor meje" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "železniški prehod" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "umirjanje prometa" : "traffic_calming.ogg";
@@ -101,8 +101,8 @@ function populateDictionary(tts) {
 	// OTHER PROMPTS
 	dictionary["location_lost"] = tts ? "Izgubljen signal GE PE ES" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "Ujet signal GE PE ES" : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "ste oddaljil od poti" : "off_route.ogg";
-	dictionary["back_on_route"] = tts ? "ste spet na poti" : "back_on_route.ogg";
+	dictionary["off_route"] = tts ? "oddaljujete se od poti" : "off_route.ogg";
+	dictionary["back_on_route"] = tts ? "spet ste na poti" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
 	dictionary["onto"] = tts ? "na" : "onto.ogg";
