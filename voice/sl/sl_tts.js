@@ -562,31 +562,31 @@ function ogg_dist(distance) {
 	if (distance == 0) {
 		return "";
 	} else if (distance < 20) {
-		return Math.floor(distance).toString() + ".ogg ";
-	} else if (distance < 1000 && (distance % 50) == 0) {
+		return Math.round(distance).toString() + ".ogg ";
+	} else if (distance < 100 && ((distance % 10) == 0)) {
 		return distance.toString() + ".ogg ";
 	} else if (distance < 30) {
-		return "20.ogg " + ogg_dist(distance - 20);
+		return ogg_dist(distance - 20) + " and.ogg " + "20.ogg ";
 	} else if (distance < 40) {
-		return "30.ogg " + ogg_dist(distance - 30);
+		return ogg_dist(distance - 30) + " and.ogg " + "30.ogg ";
 	} else if (distance < 50) {
-		return "40.ogg " + ogg_dist(distance - 40);
+		return ogg_dist(distance - 40) + " and.ogg " + "40.ogg ";
 	} else if (distance < 60) {
-		return "50.ogg " + ogg_dist(distance - 50);
+		return ogg_dist(distance - 50) + " and.ogg " + "50.ogg ";
 	} else if (distance < 70) {
-		return "60.ogg " + ogg_dist(distance - 60);
+		return ogg_dist(distance - 60) + " and.ogg " + "60.ogg ";
 	} else if (distance < 80) {
-		return "70.ogg "+ ogg_dist(distance - 70);
+		return ogg_dist(distance - 70) + " and.ogg " + "70.ogg ";
 	} else if (distance < 90) {
-		return "80.ogg " + ogg_dist(distance - 80);
+		return ogg_dist(distance - 80) + " and.ogg " + "80.ogg ";
 	} else if (distance < 100) {
-		return "90.ogg " + ogg_dist(distance - 90);
+		return ogg_dist(distance - 90) + " and.ogg " + "90.ogg ";
 	} else if (distance < 200) {
 		return "100.ogg " + ogg_dist(distance - 100);
 	} else if (distance < 300) {
 		return "200.ogg " + ogg_dist(distance - 200);
 	} else if (distance < 400) {
-		return "300.ogg "+ ogg_dist(distance - 300);
+		return "300.ogg " + ogg_dist(distance - 300);
 	} else if (distance < 500) {
 		return "400.ogg " + ogg_dist(distance - 400);
 	} else if (distance < 600) {
