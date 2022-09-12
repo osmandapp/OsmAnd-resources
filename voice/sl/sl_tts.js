@@ -39,10 +39,10 @@ function populateDictionary(tts) {
 
 	// U-TURNS
 	dictionary["make_uturn"] = tts ? "obrnite nazaj" : "make_uturn.ogg";
-	dictionary["make_uturn_wp"] = tts ? "Čim bo mogoče, obrnite nazaj" : "make_uturn_wp.ogg";
+	dictionary["make_uturn_wp"] = tts ? "čimprej obrnite" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? "Pripravite se na krožišče čez" : "prepare_roundabout.ogg";
+	dictionary["prepare_roundabout"] = tts ? "Pripravite se na krožišče" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "zapeljite v krožišče, nato pa uporabite" : "roundabout.ogg";
 	dictionary["then"] = tts ? "nato" : "then.ogg";
 	dictionary["and"] = tts ? "in" : "and.ogg";
@@ -80,16 +80,16 @@ function populateDictionary(tts) {
 	// NEARBY POINTS
 	dictionary["and_arrive_waypoint"] = tts ? "in prispete na vmesni cilj GE PE X" : "and_arrive_waypoint.ogg";
 	dictionary["reached_waypoint"] = tts ? "Prispeli ste na vmesni cilj GE PE X" : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "and pass favorite" : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "you are passing favorite" : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "and pass POI" : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "you are passing POI" : "reached_poi.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "in prispete do priljubljene točke" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "Prispeli ste do priljubljene točke" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "in prispete do točke zanimanja" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "Prispeli ste do točke zanimanja" : "reached_poi.ogg";
 
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "prekoračili ste dovoljeno hitrost " : "exceed_limit.ogg";
 	dictionary["exceed_limit"] = tts ? "omejitev hitrosti" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "Pozor" : "attention.ogg";
-	dictionary["speed_camera"] = tts ? "hitrost kamere" : "speed_camera.ogg";
+	dictionary["speed_camera"] = tts ? "meritve hitrosti" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "nadzor meje" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "železniški prehod" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "umirjanje prometa" : "traffic_calming.ogg";
@@ -101,8 +101,8 @@ function populateDictionary(tts) {
 	// OTHER PROMPTS
 	dictionary["location_lost"] = tts ? "Izgubljen signal GE PE ES" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "Ujet signal GE PE ES" : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "ste oddaljil od poti" : "off_route.ogg";
-	dictionary["back_on_route"] = tts ? "ste spet na poti" : "back_on_route.ogg";
+	dictionary["off_route"] = tts ? "oddaljujete se od poti" : "off_route.ogg";
+	dictionary["back_on_route"] = tts ? "spet ste na poti" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
 	dictionary["onto"] = tts ? "na" : "onto.ogg";
@@ -562,31 +562,31 @@ function ogg_dist(distance) {
 	if (distance == 0) {
 		return "";
 	} else if (distance < 20) {
-		return Math.floor(distance).toString() + ".ogg ";
-	} else if (distance < 1000 && (distance % 50) == 0) {
+		return Math.round(distance).toString() + ".ogg ";
+	} else if (distance < 100 && ((distance % 10) == 0)) {
 		return distance.toString() + ".ogg ";
 	} else if (distance < 30) {
-		return "20.ogg " + ogg_dist(distance - 20);
+		return ogg_dist(distance - 20) + " and.ogg " + "20.ogg ";
 	} else if (distance < 40) {
-		return "30.ogg " + ogg_dist(distance - 30);
+		return ogg_dist(distance - 30) + " and.ogg " + "30.ogg ";
 	} else if (distance < 50) {
-		return "40.ogg " + ogg_dist(distance - 40);
+		return ogg_dist(distance - 40) + " and.ogg " + "40.ogg ";
 	} else if (distance < 60) {
-		return "50.ogg " + ogg_dist(distance - 50);
+		return ogg_dist(distance - 50) + " and.ogg " + "50.ogg ";
 	} else if (distance < 70) {
-		return "60.ogg " + ogg_dist(distance - 60);
+		return ogg_dist(distance - 60) + " and.ogg " + "60.ogg ";
 	} else if (distance < 80) {
-		return "70.ogg "+ ogg_dist(distance - 70);
+		return ogg_dist(distance - 70) + " and.ogg " + "70.ogg ";
 	} else if (distance < 90) {
-		return "80.ogg " + ogg_dist(distance - 80);
+		return ogg_dist(distance - 80) + " and.ogg " + "80.ogg ";
 	} else if (distance < 100) {
-		return "90.ogg " + ogg_dist(distance - 90);
+		return ogg_dist(distance - 90) + " and.ogg " + "90.ogg ";
 	} else if (distance < 200) {
 		return "100.ogg " + ogg_dist(distance - 100);
 	} else if (distance < 300) {
 		return "200.ogg " + ogg_dist(distance - 200);
 	} else if (distance < 400) {
-		return "300.ogg "+ ogg_dist(distance - 300);
+		return "300.ogg " + ogg_dist(distance - 300);
 	} else if (distance < 500) {
 		return "400.ogg " + ogg_dist(distance - 400);
 	} else if (distance < 600) {
