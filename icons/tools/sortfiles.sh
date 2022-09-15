@@ -925,6 +925,7 @@ icon_alias leisure_fishing sport_fishing  #used shop=fish turned by 45 degrees f
 icon_alias leisure_ice_rink sport_iceskating
 icon_alias leisure_miniature_golf sport_miniature_golf
 icon_alias leisure_playground sport_colored_playground
+icon_alias playground_swing sport_colored_swing
 icon_alias leisure_sports_centre sport_leisure_centre2
 icon_alias leisure_water_park entertainment_water_slide
 icon_alias sauna sport_sauna
