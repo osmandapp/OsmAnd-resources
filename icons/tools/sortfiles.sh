@@ -928,6 +928,7 @@ icon_alias leisure_playground sport_colored_playground
 icon_alias playground_swing sport_colored_swing
 icon_alias playground_slide sport_colored_slide
 icon_alias playground_structure sport_colored_structure
+icon_alias playground_sandpit sport_colored_sandpit
 icon_alias leisure_sports_centre sport_leisure_centre2
 icon_alias leisure_water_park entertainment_water_slide
 icon_alias sauna sport_sauna
