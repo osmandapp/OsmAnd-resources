@@ -64,9 +64,6 @@
 			<case currentTrackColor="translucent_lightblue" color="#aa00ffff"/>
 			<case currentTrackColor="translucent_blue" color="#aa4e4eff"/>
 			<case currentTrackColor="translucent_purple" color="#aaa71de1"/>
-			<case color="#ff0000">
-				<apply_if roadStyle="germanRoadAtlas" color="#aa0088"/> <!-- does not works -->
-			</case>
 			<apply cap="ROUND">
 				<case currentTrackWidth="thin">
 					<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
@@ -664,7 +661,7 @@
 			<case tag="seamark:type" value="spring" order="5"/>
 		</switch>
 	<!-- Polygon -->
-		<switch area="true" point="false" addPoint="true" objectType="3" order="5">
+		<switch area="true" point="false" objectType="3" order="5">
 			<switch>
 				<case tag="natural" value="coastline"/>
 				<case tag="natural" value="land"/>
@@ -684,8 +681,9 @@
 			<case tag="man_made" value="breakwater"/>
 			<case tag="man_made" value="groyne"/>
 			<case tag="man_made" value="bridge"/>
+			<apply_if engine_v1="true" addPoint="true"/>
 		</switch>
-		<switch cycle="true" point="false" addPoint="true" objectType="3" order="5">
+		<switch cycle="true" point="false" objectType="3" order="5">
 			<case tag="area:highway" value="primary"/>
 			<case tag="area:highway" value="secondary"/>
 			<case tag="area:highway" value="tertiary"/>
@@ -755,6 +753,7 @@
 			</switch>
 			<case tag="landuse" value="basin" additional="basin=detention" order="-1"/>
 			<case tag="" value="" order="5"/>
+			<apply_if engine_v1="true" addPoint="true"/>
 		</switch>
 	<!-- Line -->
 		<switch area="false" objectType="2" order="80">
@@ -3690,7 +3689,7 @@
 		<switch>
 			<case minzoom="9" tag="seamark:type" value="separation_line"/>
 			<case minzoom="9" tag="seamark:type" value="separation_lane"/>
-			<apply onewayArrowsColor="#648DD0">
+			<apply>
 				<case engine_v1="true" cap="ROUND" color="#339c00ff">
 					<case maxzoom="14" strokeWidth="2" pathEffect="1_10"/>
 					<case maxzoom="16" strokeWidth="3" pathEffect="1_20"/>
@@ -3707,6 +3706,7 @@
 					<apply strokeWidth="0.1" color="$null"/>
 				</case>
 			</apply>
+			<apply_if engine_v1="true" onewayArrowsColor="#648DD0"/>
 		</switch>
 		<switch>
 			<case minzoom="9" tag="seamark:type" value="separation_boundary" color="#339c00ff" cap="SQUARE">
@@ -4199,13 +4199,15 @@
 			</apply>
 			<apply_if whiteWaterSports="true">
 				<switch>
-					<case additional="whitewater:section_grade=0" color_2="$whitewaterSectionGrade0Color" onewayArrowsColor="#0080AB"/>
-					<case additional="whitewater:section_grade=1" color_2="$whitewaterSectionGrade1Color" onewayArrowsColor="#438600"/>
-					<case additional="whitewater:section_grade=2" color_2="$whitewaterSectionGrade2Color" onewayArrowsColor="#9D8C34"/>
-					<case additional="whitewater:section_grade=3" color_2="$whitewaterSectionGrade3Color" onewayArrowsColor="#9E6600"/>
-					<case additional="whitewater:section_grade=4" color_2="$whitewaterSectionGrade4Color" onewayArrowsColor="#800000"/>
-					<case additional="whitewater:section_grade=5" color_2="$whitewaterSectionGrade5Color" onewayArrowsColor="#611F81"/>
-					<case additional="whitewater:section_grade=6" color_2="$whitewaterSectionGrade6Color" onewayArrowsColor="#B2B2B2"/>
+					<apply_if  engine_v1="true">
+						<case additional="whitewater:section_grade=0" color_2="$whitewaterSectionGrade0Color" onewayArrowsColor="#0080AB"/>
+						<case additional="whitewater:section_grade=1" color_2="$whitewaterSectionGrade1Color" onewayArrowsColor="#438600"/>
+						<case additional="whitewater:section_grade=2" color_2="$whitewaterSectionGrade2Color" onewayArrowsColor="#9D8C34"/>
+						<case additional="whitewater:section_grade=3" color_2="$whitewaterSectionGrade3Color" onewayArrowsColor="#9E6600"/>
+						<case additional="whitewater:section_grade=4" color_2="$whitewaterSectionGrade4Color" onewayArrowsColor="#800000"/>
+						<case additional="whitewater:section_grade=5" color_2="$whitewaterSectionGrade5Color" onewayArrowsColor="#611F81"/>
+						<case additional="whitewater:section_grade=6" color_2="$whitewaterSectionGrade6Color" onewayArrowsColor="#B2B2B2"/>
+					</apply_if>
 					<apply_if maxzoom="13" strokeWidth_2="6"/>
 					<apply_if minzoom="14" maxzoom="15" strokeWidth_2="10"/>
 					<apply_if minzoom="16" maxzoom="17" strokeWidth_2="14"/>

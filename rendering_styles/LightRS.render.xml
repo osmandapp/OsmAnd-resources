@@ -27,6 +27,7 @@
 		type="string" possibleValues="default, car, bicycle, pedestrian, public_transport, boat, ski"/>
 	<renderingProperty attr="transportStops" name="Transport stops" description="Public transport stops"
 		type="boolean" possibleValues="" category="transport"/>
+	<renderingProperty attr="engine_v1" type="boolean"/>
 
 	<renderingAttribute name="defaultColor">
 		<case noPolygons="true" attrColorValue="#00ffffff"/>
@@ -55,9 +56,6 @@
 			<case currentTrackColor="translucent_lightblue" color="#aa00ffff"/>
 			<case currentTrackColor="translucent_blue" color="#aa4e4eff"/>
 			<case currentTrackColor="translucent_purple" color="#aaa71de1"/>
-			<case color="#ff0000">
-				<apply_if roadStyle="germanRoadAtlas" color="#aa0088"/> <!-- does not works -->
-			</case>
 			<apply cap="ROUND">
 				<case currentTrackWidth="thin">
 					<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
@@ -545,7 +543,7 @@
 		</switch>
 
 	<!-- Polygon -->
-		<switch objectType="3" area="true" point="false" addPoint="true" order="5">
+		<switch objectType="3" area="true" point="false" order="5">
 			<switch layer="-1" order="3">
 				<case tag="" value=""/>
 				<case tag="natural" value="coastline"/>
@@ -564,8 +562,9 @@
 				<apply_if additional="indoor=yes" order="-1"/>
 				<apply_if additional="covered=yes" order="-1"/>
 			</apply_if>
+			<apply_if engine_v1="true" addPoint="true"/>
 		</switch>
-		<switch objectType="3" cycle="true" point="false" addPoint="true" order="5">
+		<switch objectType="3" cycle="true" point="false" order="5">
 			<case tag="area:highway" value="primary"/>
 			<case tag="area:highway" value="secondary"/>
 			<case tag="area:highway" value="tertiary"/>
@@ -612,6 +611,7 @@
 				<apply_if additional="indoor=yes" order="-1"/>
 				<apply_if additional="covered=yes" order="-1"/>
 			</apply_if>
+			<apply_if engine_v1="true" addPoint="true"/>
 		</switch>
 
 	<!-- Line -->
@@ -2630,7 +2630,7 @@
 					<apply additional="oneway=-1" pathIcon="oneway_reverse_blue" pathIconStep="70"/>
 				</apply_if>
 			</switch>
-			<apply onewayArrowsColor="$mainHighwayOnewayArrowsColor"/>
+			<apply_if engine_v1="true" onewayArrowsColor="$mainHighwayOnewayArrowsColor"/>
 		</switch>
 
 		<switch>
@@ -2643,7 +2643,7 @@
 				<case maxzoom="17" strokeWidth="3" pathEffect="11_5.5"/>
 				<case minzoom="18" strokeWidth="5" pathEffect="15_7.5"/>
 			</case>
-			<apply onewayArrowsColor="$trackPathHighwayOnewayArrowsColor"/>
+			<apply_if engine_v1="true" onewayArrowsColor="$trackPathHighwayOnewayArrowsColor"/>
 			<apply_if hideWoodScrubs="false" color="$trackDayColor"/>
 			<apply_if nightMode="true" color="$trackNightColor" shadowRadius="0"/>
 			<apply_if additional="bridge=yes" minzoom="15" color__1="#333333" color_0="#ffffff">
@@ -2682,7 +2682,7 @@
 						<case minzoom="18" strokeWidth="17"/>
 					</apply_if>
 				</apply>
-				<apply onewayArrowsColor="$mainHighwayOnewayArrowsColor"/>
+				<apply_if engine_v1="true" onewayArrowsColor="$mainHighwayOnewayArrowsColor"/>
 				<apply_if additional="tunnel=yes" pathEffect="4_4" cap="BUTT"/>
 				<apply_if additional="bridge=yes" minzoom="14" color_0="$bridgeDayColor" cap="SQUARE" cap_0="BUTT">
 					<case maxzoom="14" strokeWidth_0="4:2"/>
@@ -2759,7 +2759,7 @@
 					</case>
 				</apply_if>
 				<apply color="$nonMotoVehicleRoadColor"/>
-				<apply onewayArrowsColor="$trackPathHighwayOnewayArrowsColor"/>
+				<apply_if engine_v1="true" onewayArrowsColor="$trackPathHighwayOnewayArrowsColor"/>
 				<apply_if hideAccess="false" additional="access=no" disable="true"/>
 				<apply_if hideAccess="false" additional="access=private" disable="true"/>
 			</switch>

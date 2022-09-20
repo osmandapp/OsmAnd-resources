@@ -77,8 +77,6 @@
 		<!-- next line ensures bridges stand out ok -->
 		<case minzoom="14" nightMode="false" attrIntValue="3" shadowColor="#969696"/>
 		<case minzoom="14" attrIntValue="3" shadowColor="#464646"/>
-		<case roadStyle="germanRoadAtlas" minzoom="6" maxzoom="13" attrIntValue="3"/>
-		<case roadStyle="americanRoadAtlas" minzoom="6" maxzoom="13" attrIntValue="3"/>
 		<case minzoom="8" maxzoom="13" attrIntValue="3" shadowColor="#969696"/>
 		<case attrIntValue="0"/>
 	</renderingAttribute>
@@ -102,9 +100,6 @@
 			<case currentTrackColor="translucent_lightblue" color="#aa00ffff"/>
 			<case currentTrackColor="translucent_blue" color="#aa4e4eff"/>
 			<case currentTrackColor="translucent_purple" color="#aaa71de1"/>
-			<case color="#ff0000">
-				<apply_if roadStyle="germanRoadAtlas" color="#aa0088"/> <!-- does not works -->
-			</case>
 			<apply cap="ROUND">
 				<case currentTrackWidth="thin">
 					<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
@@ -1633,7 +1628,7 @@
 
 
 		<!-- Polygon -->
-			<switch area="true" point="false" addPoint="true" objectType="3" order="5">
+			<switch area="true" point="false" objectType="3" order="5">
 				<case tag="place" value="island" order="1"/>
 				<case tag="place" value="islet" order="1"/>
 				<switch layer="-1" order="3">
@@ -1659,8 +1654,9 @@
 					<case tag="railway" value="yard" ignorePolygonArea="true"/>
 					<apply_if layer="-1" order="-1"/>
 				</switch>
+				<apply_if engine_v1="true" addPoint="true"/>
 			</switch>
-			<switch cycle="true" point="false" addPoint="true" objectType="3" order="5">
+			<switch cycle="true" point="false" objectType="3" order="5">
 				<switch>
 					<case tag="area:highway" value="motorway"/>
 					<case tag="area:highway" value="trunk"/>
@@ -1776,6 +1772,7 @@
 				<case tag="fixme_tag" value="yes" order="11"/>
 				<case tag="note_tag" value="yes" order="10"/>
 				<case tag="" value="" order="5"/>
+				<apply_if engine_v1="true" addPoint="true"/>
 			</switch>
 
 		<!-- Line -->
@@ -5538,8 +5535,10 @@
 					<case minzoom="18" strokeWidth="2:2" strokeWidth_2="3:3" pathEffect_2="1_37"/>
 				</apply_if>
 			</switch>
-			<apply onewayArrowsColor="#000000"/>
-			<apply_if nightMode="true" onewayArrowsColor="#cccccc"/>
+			<apply_if engine_v1="true">
+				<apply onewayArrowsColor="#000000"/>
+				<apply_if nightMode="true" onewayArrowsColor="#cccccc"/>
+			</apply_if>
 		</switch>
 
 		<switch>
@@ -5977,13 +5976,15 @@
 					<case additional="tunnel=yes" color="$white" color__1="#444444" pathEffect="6_4" pathEffect__1="6_4"/>
 				</switch>
 			</apply>
-			<apply_if additional="via_ferrata_scale=0" color__2="$viaFerrataScale0Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt" onewayArrowsColor="$viaFerrataScale0OnewayColor"/>
-			<apply_if additional="via_ferrata_scale=1" color__2="$viaFerrataScale1Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt" onewayArrowsColor="$viaFerrataScale1OnewayColor"/>
-			<apply_if additional="via_ferrata_scale=2" color__2="$viaFerrataScale2Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt" onewayArrowsColor="$viaFerrataScale2OnewayColor"/>
-			<apply_if additional="via_ferrata_scale=3" color__2="$viaFerrataScale3Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt" onewayArrowsColor="$viaFerrataScale3OnewayColor"/>
-			<apply_if additional="via_ferrata_scale=4" color__2="$viaFerrataScale4Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt" onewayArrowsColor="$viaFerrataScale4OnewayColor"/>
-			<apply_if additional="via_ferrata_scale=5" color__2="$viaFerrataScale5Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt" onewayArrowsColor="$viaFerrataScale5OnewayColor"/>
-			<apply_if additional="via_ferrata_scale=6" color__2="$viaFerrataScale6Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt" onewayArrowsColor="$viaFerrataScale6OnewayColor"/>
+			<apply_if engine_v1="true">
+				<apply_if additional="via_ferrata_scale=0" color__2="$viaFerrataScale0Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt" onewayArrowsColor="$viaFerrataScale0OnewayColor"/>
+				<apply_if additional="via_ferrata_scale=1" color__2="$viaFerrataScale1Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt" onewayArrowsColor="$viaFerrataScale1OnewayColor"/>
+				<apply_if additional="via_ferrata_scale=2" color__2="$viaFerrataScale2Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt" onewayArrowsColor="$viaFerrataScale2OnewayColor"/>
+				<apply_if additional="via_ferrata_scale=3" color__2="$viaFerrataScale3Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt" onewayArrowsColor="$viaFerrataScale3OnewayColor"/>
+				<apply_if additional="via_ferrata_scale=4" color__2="$viaFerrataScale4Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt" onewayArrowsColor="$viaFerrataScale4OnewayColor"/>
+				<apply_if additional="via_ferrata_scale=5" color__2="$viaFerrataScale5Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt" onewayArrowsColor="$viaFerrataScale5OnewayColor"/>
+				<apply_if additional="via_ferrata_scale=6" color__2="$viaFerrataScale6Color" color_2="$viaFerrataColorAlt" color_3="$viaFerrataColorAlt" onewayArrowsColor="$viaFerrataScale6OnewayColor"/>
+			</apply_if>
 			<apply_if maxzoom="15" strokeWidth_2="1" strokeWidth_3="1.5:1.5" strokeWidth="2:2" strokeWidth__1="2.5:2.5" strokeWidth__2="2.5:2.5"/>
 			<apply_if minzoom="16" strokeWidth_2="1:1" strokeWidth_3="3:3" strokeWidth="3.5:3.5" strokeWidth__1="4:4" strokeWidth__2="4:4" pathEffect_2="2_2" pathEffect_3="2_10"/>
 			<apply_if engine_v1="false" minzoom="15">
