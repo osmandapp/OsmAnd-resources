@@ -258,3 +258,5 @@ generateBothMapPOIPng() {
   # generateBothMapPOIPng 'icons8' '#777777' '#ff8f00' '' neg
   # generateBothMapPOIPng 'xmas' '#aa2001' '#ff8f00'
   # generateBothMapPOIPng 'special' '#ffffff' '#ff8f00'
+  # generateBothMapPOIPng 'logos' '#ffffff' '#ff8f00'
+

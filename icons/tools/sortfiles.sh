@@ -1227,7 +1227,7 @@ icon_alias outdoor_seating food_outdoor_seating
 icon_alias hookah_lounge food_hookah_lounge
 
 ## Seamarks
-icon_alias seamark icons8_sail_boat
+icon_alias seamark transport_sail_boat
 icon seamark_buoy_conical 
 icon seamark_buoy_barrel 
 icon seamark_buoy_can 
@@ -2101,14 +2101,14 @@ icon_alias hazard_minefield poi_hazard_minefield
 icon_alias hazard poi_hazard
 
 # icon_alias custom_id icons8 
-icon_alias user_defined icons8_user
-icon_alias user_defined_other icons8_user
-icon_alias osmwiki icons8_wikipedia
+icon_alias user_defined special_person
+icon_alias user_defined_other special_person
+icon_alias osmwiki logos_wikipedia
 icon_alias wiki_place poi_colored_wikipedia2
-icon_alias name_finder icons8_web_search
+icon_alias name_finder special_search
 icon_alias osmand_waypoint functional-icons_waypoint
 icon_alias osmand_fav functional-icons_fav
-icon_alias null icons8_worldwide_location
+icon_alias null special_worldwide_location
 
 icon_alias stub_amenity functional-icons_stub_amenity
 icon_alias stub_club functional-icons_stub_club
