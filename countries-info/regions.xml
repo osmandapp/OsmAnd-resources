@@ -20,7 +20,7 @@
 			in case FILENAME duplicates i.e. 'georgia', it will be accessible in 2 ways
 			$PARENT_FOLDER/$FILENAME - 'us/georgia' and 'asia/georgia'
 		-->
-		<!-- type, map, wiki, roads, srtm, hillshade
+		<!-- type, map, wiki, roads, srtm, hillshade, slope, heightmap
 			1. by default map=yes, srtm=yes, hillshade=yes (in case 'type' not specified)
 			2. in case wiki/roads not specified, wiki/roads same as maps
 			3. if map, wiki, roads, srtm, hillshade specified, it sets to value specified
@@ -650,7 +650,7 @@
 					<region map="no" wiki="no" name="yukon-koyukuk" translate="Yukon-Koyukuk;entity=relation"/>
 				</region>
 				<region name="arizona" poly_extract="us-west"/>
-				<region name="california" inner_download_prefix="us_california" poly_extract="us-west" join_map_files="yes">
+				<region name="california" inner_download_prefix="us_california" poly_extract="us-west" join_road_files="yes" join_map_files="yes">
 					<region type="map" name="bakersfield" translate="name:en=Bakersfield;entity=node"/>
 					<region type="map" name="chico" translate="name:en=Chico;entity=node"/>
 					<region type="map" name="fresno" translate="name=Fresno;entity=node"/>
@@ -709,7 +709,16 @@
 				<!-- us-south -->
 				<region name="alabama" poly_extract="us-south"/>
 				<region name="arkansas" poly_extract="us-south"/>
-				<region name="florida" translate="Florida;is_in:country_code=US;entity=node" poly_extract="us-south"/>
+				<region name="florida" translate="Florida;is_in:country_code=US;entity=node" join_map_files="yes" join_road_files="yes" poly_extract="us-south">
+					<region type="map" name="cape-coral" translate="name:en=Cape Coral and surroundings;entity=relation"/>
+					<region type="map" name="jacksonville" translate="name:en=Jacksonville and surroundings;entity=relation"/>
+					<region type="map" name="miami" translate="name:en=Miami and surroundings;entity=relation"/>
+					<region type="map" name="orlando" translate="name:en=Orlando and surroundings;entity=relation"/>
+					<region type="map" name="pensacola" translate="name:en=Pensacola and surroundings;entity=relation"/>
+					<region type="map" name="port-saint-lucie" translate="name:en=Port Saint Lucie and surroundings;entity=relation"/>
+					<region type="map" name="tallahassee" translate="name:en=Tallahassee and surroundings;entity=relation"/>
+					<region type="map" name="tampa" translate="name:en=Tampa and surroundings;entity=relation"/>
+				</region>
 				<region name="georgia" translate="name=Georgia;place=state;entity=node" boundary="us/georgia" poly_extract="us-south"/>
 				<region name="kentucky" poly_extract="us-south"/>
 				<region name="louisiana" poly_extract="us-south"/>
@@ -717,7 +726,7 @@
 				<region name="oklahoma" poly_extract="us-south"/>
 				<region name="south-carolina" translate="South Carolina;entity=node" poly_extract="us-south"/>
 				<region name="tennessee" poly_extract="us-south"/>
-				<region name="texas" poly_extract="us-south" inner_download_prefix="us_texas" join_map_files="yes">
+				<region name="texas" poly_extract="us-south" inner_download_prefix="us_texas" join_road_files="yes" join_map_files="yes">
 					<region type="map" name="amarillo"/>
 					<region type="map" name="austin"/>
 					<region type="map" name="dallas"/>
@@ -1578,19 +1587,19 @@
 				<region type="srtm" name="wadi-fira" translate="name:en=Wadi Fira Region;entity=node"/>
 			</region>
 			<region name="congo-brazzaville" translate="République du Congo;entity=node" lang="fr"/>
-			<region name="congo-democratic-republic" translate="République Démocratique du Congo;entity=node" srtm="no" inner_download_prefix="$name" lang="fr">
-				<region type="srtm" name="bandundu" translate="=Bandundu"/>
-				<region type="srtm" name="bas-congo" translate="=Kongo-Central"/>
-				<region type="srtm" name="equateur" translate="=Équateur"/>
-				<region type="srtm" name="kasai-occidental" translate="Kasaï;entity=relation"/>
-				<region type="srtm" name="kasai-oriental" translate="Kasai-Oriental;entity=node"/>
-				<region type="srtm" name="katanga" translate="=Katanga"/>
-				<region type="srtm" name="kinshasa-city" translate="Kinshasa;entity=relation"/>
- <!--				<region type="srtm" name="kivu" translate="no" boundary="no"/> divided into nord-kivu and sud-kivu -->
-				<region type="srtm" name="maniema" translate="Maniema;entity=relation"/> <!-- new -->
-				<region type="srtm" name="nord-kivu" translate="Nord-Kivu;entity=relation"/> <!-- new -->
-				<region type="srtm" name="orientale" translate="=Orientale Province"/>
-				<region type="srtm" name="sud-kivu" translate="Sud-Kivu;entity=relation"/> <!-- new -->
+			<region name="congo-democratic-republic" translate="République Démocratique du Congo;entity=node" srtm="no" inner_download_prefix="$name" join_map_files="yes" join_road_files="yes" lang="fr">
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="eastern-cape" translate="Eastern Cape;entity=node"/>
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="bandundu" translate="=Bandundu"/>
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="bas-congo" translate="=Kongo-Central"/>
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="equateur" translate="=Équateur"/>
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="kasai-occidental" translate="Kasaï;entity=relation"/>
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="kasai-oriental" translate="Kasai-Oriental;entity=node"/>
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="katanga" translate="=Katanga"/>
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="kinshasa-city" translate="Kinshasa;entity=relation"/>
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="maniema" translate="Maniema;entity=relation"/>
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="nord-kivu" translate="Nord-Kivu;entity=relation"/>
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="orientale" translate="=Orientale Province"/>
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="sud-kivu" translate="Sud-Kivu;entity=relation"/>
 			</region>
 			<region name="djibouti" translate="name:en=Djibouti;admin_level=2;entity=relation" lang="ar,fr,so"/>
 			<region name="egypt" inner_download_prefix="$name" lang="ar">
@@ -1710,17 +1719,17 @@
 			<region name="seychelles" lang="en,fr" left_hand_navigation="yes"/>
 			<region name="sierra-leone" translate="Sierra Leone;entity=relation" lang="en"/>
 			<region name="somalia" lang="so,ar"/>
-			<region name="south-africa" translate="South Africa;entity=node" srtm="no" inner_download_prefix="$name" lang="af,en,ts,tn" left_hand_navigation="yes">
-				<region type="srtm" name="eastern-cape" translate="Eastern Cape;entity=node"/>
-				<region type="srtm" name="gauteng"/>
-				<region type="srtm" name="kwazulu-natal" translate="KwaZulu-Natal;entity=node"/>
-				<region type="srtm" name="limpopo"/>
-				<region type="srtm" name="mpumalanga"/>
-				<region type="srtm" name="northern-cape" translate="Northern Cape;entity=node"/>
-				<region type="srtm" name="north-west" translate="North West;entity=node" boundary="south-africa/north-west"/>
-				<region type="srtm" name="orange-free-state" translate="Free State;entity=node"/>
-				<region type="srtm" name="prince-edward-islands" translate="name=Prince Edward Islands;entity=way"/>
-				<region type="srtm" name="western-cape" translate="Western Cape;entity=node"/>
+			<region name="south-africa" translate="South Africa;entity=node" srtm="no" inner_download_prefix="$name" lang="af,en,ts,tn" left_hand_navigation="yes" join_map_files="yes" join_road_files="yes">
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="eastern-cape" translate="Eastern Cape;entity=node"/>
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="gauteng"/>
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="kwazulu-natal" translate="KwaZulu-Natal;entity=node"/>
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="limpopo"/>
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="mpumalanga"/>
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="northern-cape" translate="Northern Cape;entity=node"/>
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="north-west" translate="North West;entity=node" boundary="south-africa/north-west"/>
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="orange-free-state" translate="Free State;entity=node"/>
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="prince-edward-islands" translate="name=Prince Edward Islands;entity=way"/>
+				<region srtm="yes" map="yes" wiki="no" hillshade="no" slope="no" heightmap="no" name="western-cape" translate="Western Cape;entity=node"/>
 			</region>
 			<region name="south-sudan" translate="South Sudan;entity=relation" inner_download_prefix="$name" lang="en">
 				<region type="srtm" name="central-equatoria" translate="Central Equatoria State;entity=node"/>
