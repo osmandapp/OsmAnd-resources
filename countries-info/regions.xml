@@ -41,10 +41,15 @@
 			2. If download_suffix is not specified it is taken from parent region or from parent parent region ...
 			2.1 If parent region has inner_download_suffix, then download_suffix=inner_download_suffix
 		-->
-		<region type="continent" name="europe"
-			translate="=Europe" inner_download_suffix="europe" boundary="no" poly_extract="europe">
+		<region type="continent" name="europe" translate="=Europe" inner_download_suffix="europe" boundary="no" poly_extract="planet">
 
-		<!-- north-europe -->
+			<region type="area-extract" name="north-europe" boundary="no" poly_extract="europe" download_suffix=""/>
+			<region type="area-extract" name="south-europe" boundary="no" poly_extract="europe" download_suffix=""/>
+			<region type="area-extract" name="west-europe" boundary="no" poly_extract="europe" download_suffix=""/>
+			<region type="area-extract" name="east-europe" boundary="no" poly_extract="europe" download_suffix=""/>
+			<region type="area-extract" name="great-britain" boundary="no" poly_extract="west-europe" download_suffix=""/>
+
+			<!-- north-europe -->
 			<region name="denmark" lang="da" poly_extract="north-europe" inner_download_prefix="$name" join_map_files="yes">
 				<region type="map" name="capital-region" translate="name:en=Capital Region of Denmark;entity=relation"/>
 				<region type="map" name="central-region" translate="name:en=Central Denmark Region;entity=relation"/>
@@ -106,7 +111,7 @@
 				<region map="yes" srtm="yes" hillshade="no" slope="no" heightmap="no" wiki="no" name="vastra-gotaland" translate="Västra Götalands län;entity=relation"/>
 			</region>
 
-		<!-- east-europe -->
+			<!-- east-europe -->
 			<region name="belarus" lang="be,ru" poly_extract="east-europe" inner_download_prefix="$name" join_map_files="yes" translate="name:en=Belarus;entity=relation">
 				<region type="map" name="brest" translate="name:en=Brest Region;entity=relation"/>
 				<region type="map" name="gomel" translate="name:en=Homyel region;entity=relation"/>
@@ -178,7 +183,7 @@
 				<region name="zhytomyr" hillshade="no" slope="no" heightmap="no" srtm="no" wiki="yes" translate="name:en=Zhytomyr Oblast;entity=relation"/>
 			</region>
 
-		<!-- south-europe -->
+			<!-- south-europe -->
 			<region name="albania" lang="sq" poly_extract="south-europe"/>
 			<region name="andorra" lang="ca" poly_extract="south-europe"/>
 			<region name="bosnia-herzegovina" translate="Bosnia and Herzegovina;entity=node" lang="bs,hr,sr" poly_extract="south-europe"/>
@@ -249,7 +254,7 @@
 				<region srtm="yes" hillshade="no" slope="no" heightmap="yes" wiki="no" name="southeastern-anatolia" translate="name:en=Southeastern Anatolia Region;entity=relation"/>
 			</region>
 
-		<!-- west-europe -->
+			<!-- west-europe -->
 			<region name="austria" inner_download_prefix="$name" lang="de" poly_extract="west-europe" join_map_files="yes">
 				<region type="map" name="burgenland"/>
 				<region type="map" name="carinthia"/>
@@ -264,7 +269,7 @@
 				<region type="map" name="flanders" translate="name:en=Flanders, Brussels-Capital;entity=relation"/>
 				<region type="map" name="wallonia" translate="name:en=Wallonia;entity=relation"/>
 			</region>
-			<region name="france" inner_download_prefix="$name" map="no" roads="no" lang="fr" poly_extract="france" join_road_files="no">
+			<region name="france" inner_download_prefix="$name" map="no" roads="no" lang="fr" poly_extract="europe" join_road_files="no">
 				<region name="corse" hillshade="no" slope="no" heightmap="no" translate="name:en=Corsica;entity=relation"/>
 				<region name="ile-de-france" hillshade="no" slope="no" heightmap="no"/>
 				<region name="pays-de-la-loire" translate="name:en=Pays de la Loire;entity=relation" hillshade="no" slope="no" heightmap="no"/>
@@ -346,7 +351,7 @@
 					<region type="map" name="tarn-et-garonne" translate="Tarn-et-Garonne;entity=relation"/>
 				</region>
 			</region>
-			<region name="germany" inner_download_prefix="$name" map="no" roads="yes" lang="de" poly_extract="germany">
+			<region name="germany" inner_download_prefix="$name" map="no" roads="yes" lang="de" poly_extract="europe">
 				<region name="baden-wuerttemberg" inner_download_prefix="germany_baden-wuerttemberg" translate="Baden-Württemberg;entity=node" hillshade="no" slope="no" heightmap="no" join_map_files="yes">
 					<region type="map" name="freiburg" translate="name=Regierungsbezirk Freiburg;entity=relation"/>
 					<region type="map" name="karlsruhe" translate="name=Regierungsbezirk Karlsruhe;entity=relation"/>
@@ -394,10 +399,10 @@
 				<region name="thueringen" translate="Thuringia;entity=node" hillshade="no" slope="no" heightmap="no"/>
 			</region>
 			<region name="gb" translate="United Kingdom;entity=relation" boundary="no" map="no" roads="yes" hillshade="no" slope="no" heightmap="no" inner_download_prefix="$name" lang="en" metric="miles" left_hand_navigation="yes">
-				<region name="scotland" hillshade="yes" slope="yes" heightmap="yes" poly_extract="west-europe" translate="name:en=Scotland;entity=relation"/>
-				<region name="wales" hillshade="yes" slope="yes" heightmap="yes" poly_extract="west-europe" translate="name:en=Wales;entity=relation"/>
-				<region name="northern_ireland" translate="Northern Ireland;entity=relation" hillshade="yes" slope="yes" heightmap="yes" poly_extract="west-europe"/>
-				<region name="england" map="no" roads="yes" wiki="yes" translate="England;entity=relation" inner_download_prefix="gb_england" hillshade="yes" slope="yes" heightmap="yes" poly_extract="west-europe" join_map_files="no" join_road_files="yes">
+				<region name="scotland" hillshade="yes" slope="yes" heightmap="yes" poly_extract="great-britain" translate="name:en=Scotland;entity=relation"/>
+				<region name="wales" hillshade="yes" slope="yes" heightmap="yes" poly_extract="great-britain" translate="name:en=Wales;entity=relation"/>
+				<region name="northern_ireland" translate="Northern Ireland;entity=relation" hillshade="yes" slope="yes" heightmap="yes" poly_extract="great-britain"/>
+				<region name="england" map="no" roads="yes" wiki="yes" translate="England;entity=relation" inner_download_prefix="gb_england" hillshade="yes" slope="yes" heightmap="yes" poly_extract="great-britain" join_map_files="no" join_road_files="yes">
 					<region name="east-midlands" translate="East Midlands;entity=relation" srtm="no" hillshade="no" slope="no" heightmap="no"/>
 					<region name="east-of-england" translate="East of England;entity=relation" srtm="no" hillshade="no" slope="no" heightmap="no"/>
 					<region name="north-east-england" translate="North East England;entity=relation" srtm="no" hillshade="no" slope="no" heightmap="no"/>
@@ -443,7 +448,7 @@
 			</region>
 		</region>
 
-		<region type="continent" name="centralamerica" translate="=Central America" inner_download_suffix="centralamerica" boundary="no" poly_extract="central-america">
+		<region type="continent" name="centralamerica" translate="=Central America" inner_download_suffix="centralamerica" boundary="no" poly_extract="planet">
 			<region name="anguilla" lang="en"/>
 			<region name="antigua-and-barbuda" translate="Antigua and Barbuda;entity=relation" lang="en" metric="km,miles" left_hand_navigation="yes"/>
 			<region name="aruba" translate="name:en=Aruba;entity=node" lang="nl"/>
@@ -480,9 +485,9 @@
 			<region name="virgin-islands-us" translate="United States Virgin Islands;entity=node" lang="en" metric="miles"/>
 		</region>
 
-		<region type="continent" name="northamerica" translate="=North America" inner_download_suffix="northamerica" boundary="no" poly_extract="north-america">
+		<region type="continent" name="northamerica" translate="=North America" inner_download_suffix="northamerica" boundary="no" poly_extract="planet">
 			<region name="bermuda" lang="en" translate="name:en=Bermuda;entity=relation"/>
-			<region name="canada" map="no" srtm="no" hillshade="no" slope="no" heightmap="no" inner_download_prefix="$name" lang="en,fr" road_signs="american" poly_extract="canada" roads="no" join_road_files="no">
+			<region name="canada" map="no" srtm="no" hillshade="no" slope="no" heightmap="no" inner_download_prefix="$name" lang="en,fr" road_signs="american" roads="no" join_road_files="no">
 				<region name="alberta"/>
 				<region name="british-columbia" translate="British Columbia;entity=node" srtm="no" hillshade="yes" slope="no" heightmap="yes" inner_download_prefix="canada_british-columbia" join_map_files="yes">
 					<region map="yes" srtm="yes" wiki="no" name="alberni-clayoquot" translate="Alberni-Clayoquot Regional District;entity=relation"/>
@@ -618,6 +623,11 @@
 			<region name="saint-pierre-and-miquelon" translate="name:en=Saint Pierre and Miquelon;entity=relation" lang="fr"/>
 			<region name="us" translate="United States of America;entity=node" map="no" roads="no" srtm="no" hillshade="no" slope="no" heightmap="no" inner_download_prefix="$name" lang="en" metric="miles" road_signs="american">
 
+				<region type="area-extract" name="us-northcentral" boundary="no" poly_extract="us_northamerica" download_prefix="" download_suffix=""/>
+				<region type="area-extract" name="us-northeast" boundary="no" poly_extract="us_northamerica" download_prefix="" download_suffix=""/>
+				<region type="area-extract" name="us-south" boundary="no" poly_extract="us_northamerica" download_prefix="" download_suffix=""/>
+				<region type="area-extract" name="us-west" boundary="no" poly_extract="us_northamerica" download_prefix="" download_suffix=""/>
+
 				<!-- us-west -->
 				<region name="alaska" srtm="no" hillshade="no" slope="no" heightmap="no" inner_download_prefix="us_alaska" poly_extract="us-west">
 					<region map="no" wiki="no" name="aleutians-east" translate="Aleutians East;entity=relation"/>
@@ -748,7 +758,7 @@
 			</region>
 		</region>
 
-		<region type="continent" name="australia-oceania" translate="Australia and Oceania;entity=relation" map="no" roads="no" boundary="no" inner_download_suffix="australia-oceania" poly_extract="australia-oceania-all" left_hand_navigation="yes">
+		<region type="continent" name="australia-oceania-all" translate="Australia and Oceania;entity=relation" map="no" roads="no" inner_download_suffix="australia-oceania" boundary="no" poly_extract="planet" left_hand_navigation="yes">
 			<region name="new-zealand" translate="New Zealand;entity=node" lang="en,mi"/>
 			<region name="papua-new-guinea" translate="Papua New Guinea;entity=node" lang="en,ho"/>
 
@@ -771,7 +781,7 @@
 			</region>
 		</region>
 
-		<region name="russia" boundary="no" map="no" roads="no" hillshade="no" slope="no" heightmap="no" srtm="no" inner_download_prefix="$name" download_suffix="asia" lang="ru" poly_extract="russia">
+		<region name="russia" map="no" roads="no" hillshade="no" slope="no" heightmap="no" srtm="no" inner_download_prefix="$name" download_suffix="asia" lang="ru" boundary="no" poly_extract="planet">
 			<region name="central-federal-district" translate="Центральный федеральный округ;entity=relation" hillshade="no" slope="no" heightmap="no" srtm="no" join_map_files="yes">
 				<region name="belgorod" translate="Белгородская область;entity=relation"/>
 				<region name="bryansk" translate="Брянская область;entity=relation"/>
@@ -1040,9 +1050,12 @@
 			</region>
 		</region>
 
-		<region type="continent" name="asia" translate="=Asia" inner_download_suffix="asia" boundary="no" poly_extract="asia">
+		<region type="continent" name="asia" translate="=Asia" inner_download_suffix="asia" boundary="no" poly_extract="planet">
 
-	<!-- east-asia -->
+			<region type="area-extract" name="east-asia" boundary="no" poly_extract="asia" download_suffix=""/>
+			<region type="area-extract" name="ocean-asia" boundary="no" poly_extract="asia" download_suffix=""/>
+
+			<!-- east-asia -->
 			<region name="afghanistan" srtm="no" inner_download_prefix="$name" lang="ps,fa" poly_extract="east-asia">
 				<region type="srtm" name="badakhshan" translate="name:en=Badakhshan Province;entity=relation"/>
 				<region type="srtm" name="badghis" translate="name:en=Badghis Province;entity=relation"/>
@@ -1232,7 +1245,7 @@
 			<region name="yemen" lang="ar" poly_extract="east-asia"/>
 
 
-	<!-- ocean-asia -->
+			<!-- ocean-asia -->
 			<region name="brunei" lang="ms,en" left_hand_navigation="yes" translate="name:en=Brunei;entity=relation" poly_extract="ocean-asia"/>
 			<region name="cambodia" lang="km" poly_extract="ocean-asia"/>
 			<region name="christmas-island" translate="name:en=Christmas Island;entity=relation" lang="en" poly_extract="ocean-asia"/>
@@ -1489,7 +1502,7 @@
 
 		</region>
 
-		<region type="continent" name="africa" translate="Africa;entity=node" map="no" roads="no" srtm="no" hillshade="no" slope="no" heightmap="no" wiki="no" download_suffix="africa" poly_extract="africa" boundary="no">
+		<region type="continent" name="africa" translate="Africa;entity=node" map="no" roads="no" srtm="no" hillshade="no" slope="no" heightmap="no" wiki="no" download_suffix="africa" poly_extract="planet" boundary="no">
 			<region name="algeria" srtm="no" hillshade="no" slope="no" heightmap="no" inner_download_prefix="$name" lang="ar,fr">
 				<region srtm="yes" map="no" wiki="no" hillshade="yes" slope="yes" heightmap="yes" name="adrar" translate="name:en=Adrar;ISO3166-2=DZ-01;entity=relation"/>
 				<region srtm="yes" map="no" wiki="no" hillshade="yes" slope="yes" heightmap="yes" name="ain-defla" translate="Aïn Defla;entity=relation"/>
@@ -1570,7 +1583,7 @@
 			<region name="chad" inner_download_prefix="$name" lang="ar,fr">
 				<region type="srtm" name="bahr-el-gazel" translate="name:en=Bahr el Gazel;entity=relation"/> <!-- new. included in Kanem but it is a separate region -->
 				<region type="srtm" name="batha" translate="Batha Region;entity=node"/>
-<!--				<region type="srtm" name="bet" translate="=Borkou-Ennedi-Tibesti" boundary="no"/>  Borkou-Ennedi-Tibesti is now borkou, ennedi, tibesti -->
+				<!--				<region type="srtm" name="bet" translate="=Borkou-Ennedi-Tibesti" boundary="no"/>  Borkou-Ennedi-Tibesti is now borkou, ennedi, tibesti -->
 				<region type="srtm" name="borkou" translate="name:en=Borkou Region;entity=node"/> <!-- new -->
 				<region type="srtm" name="chari-baguirmi" translate="Chari-Baguirmi Region;entity=node"/>
 				<region type="srtm" name="ennedi" translate="name:en=Ennedi-Ouest;entity=relation"/> <!-- new -->
@@ -1787,7 +1800,7 @@
 
 		</region>
 
-		<region type="continent" name="southamerica" translate="=South America" inner_download_suffix="southamerica" boundary="no" poly_extract="south-america">
+		<region type="continent" name="southamerica" translate="=South America" inner_download_suffix="southamerica" boundary="no" poly_extract="planet">
 			<region name="argentina" srtm="no" hillshade="no" slope="no" heightmap="no" inner_download_prefix="$name" lang="es" join_map_files="yes">
 				<region name="buenos-aires" translate="Buenos Aires;entity=relation"/>
 				<region type="hillshade" name="ciudad-de-buenos-aires" translate="name:en=Autonomous City of Buenos Aires;entity=relation"/>
@@ -1899,7 +1912,7 @@
 			<region name="venezuela" lang="es"/>
 		</region>
 
-		<region type="continent" name="antarctica" translate="name:en=Antarctica;entity=relation" boundary="no" poly_extract="antarctica">
+		<region type="continent" name="antarctica" translate="name:en=Antarctica;entity=relation" boundary="no" poly_extract="planet">
 			<region name="antarctica" translate="name:en=Antarctica;entity=relation" map="yes" lang="en" srtm="no" hillshade="no" slope="no" heightmap="no"/>
 		</region>
 
