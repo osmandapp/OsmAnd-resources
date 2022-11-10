@@ -16,6 +16,7 @@ if [ $# -eq 0 ]
     echo "     ./gen_voice.sh en English google en"
     echo "     ./gen_voice.sh en English google en 1.3 yes"
     echo "     ./gen_voice.sh sl Slovenian govorec sl"
+	echo "     ./gen_voice.sh de German "" de # generates from existing files config"
     echo ""
     echo " The script requires the sox and mpg123 packages to be installed."
     echo " Also a package for the prolog language, e.g. swi-prolog."
