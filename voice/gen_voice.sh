@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 
 if [ $# -eq 0 ]
   then
@@ -29,10 +29,9 @@ fi
 BOLD=$(tput bold)
 NORMAL=$(tput sgr0)
 
-CONFIG_FILE=$1/config.p
 TARGET_FILE=$4
 if [ -z $TARGET_FILE ]; then
-TARGET_FILE="$1"
+  TARGET_FILE="$1"
 fi
 
 ENGINE=$3
@@ -47,23 +46,19 @@ cd work
 # = 1.0 .. no change
 # > 1.0 .. faster
 
-TEMPO_FACTOR=$5
-if [ -z $TEMPO_FACTOR ]; then
-  TEMPO_FACTOR="1.0"
-fi
+TEMPO_FACTOR=${5:-"1.0"}
+NORMALISE=${6:-"yes"}
+REDUCE_SILENCE=${7:-"yes"}
 
-NORMALISE=$6
-if [ -z $NORMALISE ]; then
-  NORMALISE="yes"
-fi
 
-REDUCE_SILENCE=$7
+echo "Parameters: config dir: $1, language name: $2, engine: $3, file name: $4"
+echo "Parameters: REDUCE_SILENCE: $REDUCE_SILENCE, NORMALISE: $NORMALISE, TEMPO_FACTOR: $TEMPO_FACTOR "
 
-if [ $ENGINE = "google" ]; then
+if [ "$ENGINE" == "google" ]; then
 	echo "Generating voice files using Google online service..."
 	echo "TO DO SUPPORT JS generation from online services"
 	exit 1;
-elif [ $ENGINE = "govorec" ]; then
+elif [ "$ENGINE" == "govorec" ]; then
 	#  Use Slovenian TTS engine eGovorec: http://dis.ijs.si/e-govorec/
 	echo "Generating voice files using eGovorec online service..."
 	TEMPO_FACTOR=1.3
@@ -72,6 +67,8 @@ elif [ $ENGINE = "govorec" ]; then
 else 
 	cp ../$1/voice/*.ogg .
 	echo "Copying existing ogg files from ../$1/voice/..."
+	NORMALISE=''
+	REDUCE_SILENCE=''
 fi
 
 echo "Converting mp3 to wav..."
@@ -83,7 +80,7 @@ done
 ### for t in `ls *.wav` ; do oggenc $t ; done
 # function updateFile { Og=${1::-4} && sox $1 r${Og}.ogg reverse && sox r${Og}.ogg ${Og}.ogg silence 1 0.1 0.01% reverse && rm r${Og}.ogg; }
 # for t in `ls *.ogg` ; do Og=${t::-4} && sox $t r${Og}.ogg reverse && sox r${Og}.ogg ${Og}.ogg silence 1 0.1 0.01% reverse && rm r${Og}.ogg; done
-if [ ! -z "$REDUCE_SILENCE" ]; then
+if [ "$REDUCE_SILENCE" == "yes" ]; then
 	echo "Reducing the silence..."
 	# see http://sox.sourceforge.net/sox.html silence
 	for t in `ls *.wav *.ogg`; do
@@ -96,7 +93,7 @@ fi
 
 # change the tempo (speed without altering the pitch),
 # see http://sox.sourceforge.net/sox.html tempo
-if [ $TEMPO_FACTOR != "1.0" ]; then
+if [ "$TEMPO_FACTOR" != "1.0" ]; then
 	echo "Changing tempo by factor $TEMPO_FACTOR ..."
 	for Og in `ls *.ogg`; do
 		cp ${Og} TEMPslow_${Og}
@@ -116,9 +113,12 @@ if [ "$NORMALISE" == "yes" ]; then
 fi
 
 touch .nomedia
+FINAL_FILE=${TARGET_FILE}_0.voice.zip
+rm $FINAL_FILE || true
 echo "Packaging voice files..."
-echo "Voice Data $2 ($TARGET_FILE)" | zip ${TARGET_FILE}_0.voice.zip ${TARGET_FILE}.p -c
-zip ${TARGET_FILE}_0.voice.zip *.ogg .nomedia
+cp ../$1/${TARGET_FILE}_tts.js ${TARGET_FILE}_tts.js 
+echo "Voice Data $2 ($TARGET_FILE)" | zip $FINAL_FILE ${TARGET_FILE}_tts.js -c
+zip $FINAL_FILE *.ogg .nomedia
 
 if [ ! -z "$ENGINE" ]; then
   rm -f ../$1/voice/*.*
@@ -129,5 +129,5 @@ fi
 rm -f *.wav *.mp3
 
 echo ""
-echo "### You can find your zipped voice file ${TARGET_FILE}_0.voice.zip in the folder work ###"
+echo "### You can find your zipped voice file $FINAL_FILE in the folder work ###"
 echo ""
