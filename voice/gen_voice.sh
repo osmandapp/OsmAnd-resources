@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 
 if [ $# -eq 0 ]
   then
@@ -16,6 +16,7 @@ if [ $# -eq 0 ]
     echo "     ./gen_voice.sh en English google en"
     echo "     ./gen_voice.sh en English google en 1.3 yes"
     echo "     ./gen_voice.sh sl Slovenian govorec sl"
+	echo "     ./gen_voice.sh de German "" de # generates from existing files config"
     echo ""
     echo " The script requires the sox and mpg123 packages to be installed."
     echo " Also a package for the prolog language, e.g. swi-prolog."
@@ -28,77 +29,46 @@ fi
 BOLD=$(tput bold)
 NORMAL=$(tput sgr0)
 
-CONFIG_FILE=$1/config.p
 TARGET_FILE=$4
 if [ -z $TARGET_FILE ]; then
-TARGET_FILE="$1"
+  TARGET_FILE="$1"
 fi
 
 ENGINE=$3
-if [ -z $ENGINE ]; then
-ENGINE="google"
-fi
-
 echo "${BOLD}Generating voice Data for $2${NORMAL}"
 
-GOAL="gen('g_config.p','$ENGINE')"
-mkdir -p work
-echo "%%% !!! THIS IS GENERATED FILE !!! Modify ttsconfig.p" > $CONFIG_FILE
-
-[ ! -r $1/ttsconfig.p ] && echo "ttsconfig.p file is missing in language folder!" && exit 1
-sed "s/version(10[2-3])/version(0)/g" $1/ttsconfig.p >> $CONFIG_FILE
-
-cp $CONFIG_FILE work/_config.p
-sed "s/\"/'/g" $CONFIG_FILE > work/g_config.p
 cd work
 # clear previous files
 # rm -f *.wav *.mp3 $1.zip
 
-[ ! -r ../gen_config.p ] && echo "gen_config.p file is missing!" && exit 1
-
-#default factor for speeding up or slowing down the generated speech
+# default factor for speeding up or slowing down the generated speech
 # < 1.0 .. slower
 # = 1.0 .. no change
 # > 1.0 .. faster
 
-TEMPO_FACTOR=$5
-if [ -z $TEMPO_FACTOR ]; then
-TEMPO_FACTOR="1.0"
-fi
+TEMPO_FACTOR=${5:-"1.0"}
+NORMALISE=${6:-"yes"}
+REDUCE_SILENCE=${7:-"yes"}
 
-NORMALISE=$6
-if [ -z $NORMALISE ]; then
-NORMALISE="yes"
-fi
 
-echo "Interpreting the ttsconfig.p prolog file..."
-if [ $ENGINE = "google" ]; then
-	echo "google_gen." >> g_config.p
-	prolog -s ../gen_config.p -q -t "$GOAL" > google.$1.sh
-	chmod +x google.$1.sh
+echo "Parameters: config dir: $1, language name: $2, engine: $3, file name: $4"
+echo "Parameters: REDUCE_SILENCE: $REDUCE_SILENCE, NORMALISE: $NORMALISE, TEMPO_FACTOR: $TEMPO_FACTOR "
+
+if [ "$ENGINE" == "google" ]; then
 	echo "Generating voice files using Google online service..."
-	./google.$1.sh
-elif [ $ENGINE = "govorec" ]; then
+	echo "TO DO SUPPORT JS generation from online services"
+	exit 1;
+elif [ "$ENGINE" == "govorec" ]; then
 	#  Use Slovenian TTS engine eGovorec: http://dis.ijs.si/e-govorec/
-	echo "google_gen." >> g_config.p
-	prolog -s ../gen_config.p -q -t "$GOAL" > govorec.$1.sh
-	chmod +x govorec.$1.sh
 	echo "Generating voice files using eGovorec online service..."
-	./govorec.$1.sh
 	TEMPO_FACTOR=1.3
-elif [ $ENGINE = "ispeech_diff" ]; then
-	echo "google_gen." >> g_config.p
-	prolog -s ../gen_config.p -q -t "$GOAL" > ispeech_$1.sh
-elif [ $ENGINE = "ispeech" ]; then
-	echo "google_gen." >> g_config.p
-	prolog -s ../gen_config.p -q -t "$GOAL" > ispeech_$1.csv
-	cp ../$1/voice/* .
-	# copy back to track differences
-	mv ispeech_$1.csv  ../$1/
-else
-	echo "google_gen:-fail." >> g_config.p
-	prolog -s ../gen_config.p -q -t "$GOAL" > fest.$1
-	#festival -b fest.$1
+	echo "TO DO SUPPORT JS generation from online services"
+	exit 1;
+else 
+	cp ../$1/voice/*.ogg .
+	echo "Copying existing ogg files from ../$1/voice/..."
+	NORMALISE=''
+	REDUCE_SILENCE=''
 fi
 
 echo "Converting mp3 to wav..."
@@ -110,18 +80,20 @@ done
 ### for t in `ls *.wav` ; do oggenc $t ; done
 # function updateFile { Og=${1::-4} && sox $1 r${Og}.ogg reverse && sox r${Og}.ogg ${Og}.ogg silence 1 0.1 0.01% reverse && rm r${Og}.ogg; }
 # for t in `ls *.ogg` ; do Og=${t::-4} && sox $t r${Og}.ogg reverse && sox r${Og}.ogg ${Og}.ogg silence 1 0.1 0.01% reverse && rm r${Og}.ogg; done
-echo "Reducing the silence..."
-# see http://sox.sourceforge.net/sox.html silence
-for t in `ls *.wav *.ogg`; do
-	Og=${t%????}
-	sox $t TEMPreverse_${Og}.ogg reverse
-	sox TEMPreverse_${Og}.ogg ${Og}.ogg silence 1 0.1 0.01% reverse
-	rm TEMPreverse_${Og}.ogg
-done
+if [ "$REDUCE_SILENCE" == "yes" ]; then
+	echo "Reducing the silence..."
+	# see http://sox.sourceforge.net/sox.html silence
+	for t in `ls *.wav *.ogg`; do
+		Og=${t%????}
+		sox $t TEMPreverse_${Og}.ogg reverse
+		sox TEMPreverse_${Og}.ogg ${Og}.ogg silence 1 0.1 0.01% reverse
+		rm TEMPreverse_${Og}.ogg
+	done
+fi
 
 # change the tempo (speed without altering the pitch),
 # see http://sox.sourceforge.net/sox.html tempo
-if [ $TEMPO_FACTOR != "1.0" ]; then
+if [ "$TEMPO_FACTOR" != "1.0" ]; then
 	echo "Changing tempo by factor $TEMPO_FACTOR ..."
 	for Og in `ls *.ogg`; do
 		cp ${Og} TEMPslow_${Og}
@@ -131,7 +103,7 @@ if [ $TEMPO_FACTOR != "1.0" ]; then
 fi
 
 # normalise
-if [ $NORMALISE == "yes" ]; then
+if [ "$NORMALISE" == "yes" ]; then
 	echo "Normalising audio ..."
 	for Og in `ls *.ogg`; do
 		cp ${Og} TEMPslow_${Og}
@@ -141,16 +113,21 @@ if [ $NORMALISE == "yes" ]; then
 fi
 
 touch .nomedia
+FINAL_FILE=${TARGET_FILE}_0.voice.zip
+rm $FINAL_FILE || true
 echo "Packaging voice files..."
-echo "Voice Data $2 ($TARGET_FILE)" | zip ${TARGET_FILE}_0.voice.zip _config.p -c
-zip ${TARGET_FILE}_0.voice.zip *.ogg .nomedia
+cp ../$1/${TARGET_FILE}_tts.js ${TARGET_FILE}_tts.js 
+echo "Voice Data $2 ($TARGET_FILE)" | zip $FINAL_FILE ${TARGET_FILE}_tts.js -c
+zip $FINAL_FILE *.ogg .nomedia
 
-rm -f ../$1/voice/*.*
-mv *.ogg ../$1/voice/
-
+if [ ! -z "$ENGINE" ]; then
+  rm -f ../$1/voice/*.*
+  mv *.ogg ../$1/voice/
+else 
+  rm *.ogg
+fi
 rm -f *.wav *.mp3
-rm -f *.p
 
 echo ""
-echo "### You can find your zipped voice file ${TARGET_FILE}_0.voice.zip in the folder work ###"
+echo "### You can find your zipped voice file $FINAL_FILE in the folder work ###"
 echo ""
