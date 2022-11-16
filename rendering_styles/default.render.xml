@@ -164,6 +164,10 @@
 		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="showMtbRoutes" name="Show MTB routes" description="Show mountain bike routes (*cn_networks)"
 		type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="showMtbScale" name="Show MTB scale" description="Show trails according to MTB scale"
+		type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="showMtbScaleUphill" name="Show MTB scale uphill" description="Show trails according to MTB uphill scale"
+		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="showMtbScaleIMBATrails" name="Show MTB IMBA trails" description="Show specifically designed trails for mountainbiking"
 		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="hikingRoutesOSMC" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces"
@@ -12584,7 +12588,7 @@
 				<case maxzoom="17" strokeWidth="4:4" strokeWidth_2="4:4" strokeWidth__2="9:9" strokeWidth__1="9:9"/>
 				<case minzoom="18" strokeWidth="5:5" strokeWidth_2="5:5" strokeWidth__2="12:12" strokeWidth__1="12:12"/>
 				<apply_if minzoom="13" color="$cycleRouteColor"/>
-				<apply>
+				<apply_if showMtbScale="true">
 					<switch>
 						<case additional="mtb:scale=0" color="$cycleRouteMtbScale0Color">
 							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale0UnrecommendedColor"/>
@@ -12614,8 +12618,8 @@
 							<apply_if minzoom="15" pathEffect_2="0_26_14"/>
 						</case>
 					</switch>
-				</apply>
-				<apply>
+				</apply_if>
+				<apply_if showMtbScaleUphill="true">
 					<switch minzoom="13">
 						<case additional="mtb:scale:uphill=1">
 							<case maxzoom="14" pathEffect_3="1_27"/>
@@ -12642,7 +12646,7 @@
 							<apply_if minzoom="17" strokeWidth_3="3.5:3.5"/>
 						</apply>
 					</switch>
-				</apply>
+				</apply_if>
 				<apply>
 					<switch minzoom="13">
 						<case additional="class:bicycle:mtb=1"/>
