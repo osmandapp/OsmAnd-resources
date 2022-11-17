@@ -950,6 +950,7 @@ icon_alias public_bath amenity_public_bath
 icon_alias fitness_station sport_fitness_station
 icon_alias tanning_salon sport_tanning_salon
 icon_alias sports_hall sport_sports_hall
+icon_alias trampoline_park sport_trampoline_park
 
 icon_alias geocache poi_colored_point_of_interest
 icon_alias geocache_not_found poi_colored_geocache_not_found
