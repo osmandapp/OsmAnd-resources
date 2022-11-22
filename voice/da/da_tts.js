@@ -8,6 +8,7 @@
 // (X) Distance unit support (meters / feet / yard)
 // (N/A) Special grammar: (please specify which)
 // (X) Support announcing highway exits
+// 2022-11-22: Shortened the wording of 'prepare' prompts
 
 var metricConst;
 var dictionary = {};
@@ -309,7 +310,7 @@ function getExitNumber(exitString, exitInt) {
 	}
 }
 
-function  getTurnType(turnType) {
+function getTurnType(turnType) {
 	switch (turnType) {
 		case "left":
 			return dictionary["left"];
@@ -432,11 +433,13 @@ function bear_right(streetName) {
 }
 
 function prepare_make_ut(dist, streetName) {
-	return dictionary["prepare"] + " " + dictionary["make_uturn"] + " " + dictionary["after"] + " " + distance(dist) + " " + turn_street(streetName);
+	// return dictionary["prepare"] + " " + dictionary["make_uturn"] + " " + dictionary["after"] + " " + distance(dist) + " " + turn_street(streetName);
+	dictionary["make_uturn"] + " " + dictionary["after"] + " " + distance(dist);
 }
 
 function prepare_turn(turnType, dist, streetName) {
-	return dictionary["prepare"] + " " + getTurnType(turnType) + " " + dictionary["after"] + " " + distance(dist) + " " + turn_street(streetName);
+	// return dictionary["prepare"] + " " + getTurnType(turnType) + " " + dictionary["after"] + " " + distance(dist) + " " + turn_street(streetName);
+	return getTurnType(turnType) + " " + dictionary["after"] + " " + distance(dist);
 }
 
 function prepare_roundabout(dist, exit, streetName) {
