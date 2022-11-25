@@ -6,7 +6,8 @@
 // (X) Other prompts: gps lost, off route, back to route
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
-// (N/A) Special grammar: (please specify which)
+// (X) Special grammar: special treating of 2, 22, 32, etc. numbers in female form (minutes, hours)
+// (X) Special grammar: plural forms for minutes and hours word when numbers are in 2-4 range
 // (X) Support announcing highway exits
 
 var metricConst;
@@ -129,17 +130,58 @@ function populateDictionary(tts) {
 	// TIME SUPPORT
 	dictionary["time"] = tts ? ", przewidywany czas to" : "time.ogg";
 	dictionary["1_hour"] = tts ? "jedna godzina" : "1_hour.ogg";
-	//dictionary["hours"] = tts ? "godzin" : "hours.ogg";
-	dictionary["hours"] = tts ? "godz" : "hours.ogg";
+	dictionary["hours_2-4"] = tts ? "godziny" : "hours.ogg";
+	dictionary["hours"] = tts ? "godzin" : "hours.ogg";
+
 	dictionary["less_a_minute"] = tts ? "mniej niż minuta" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "jedna minuta" : "1_minute.ogg";
-	//dictionary["minutes"] = tts ? "minut" : "minutes.ogg";
-	dictionary["minutes"] = tts ? "min" : "minutes.ogg";
+	dictionary["minutes_2-4"] = tts ? "minuty" : "minutes.ogg";
+	dictionary["minutes"] = tts ? "minut" : "minutes.ogg";
+
+	dictionary["2_f"] = tts ? "dwie" : "2.ogg";
 }
 
 
 //// COMMAND BUILDING / WORD ORDER
 ////////////////////////////////////////////////////////////////
+/**
+*	special treating of 2, 22, 32, etc. numbers in female form
+*/
+function num_fe_str(number) {
+	var ones = number % 10;
+	if (ones !== 2) {
+		return number.toString();
+	}
+	var tens = number % 100 - ones;
+	if (tens === 10) {
+		return number.toString();
+	}
+	var numberWithoutOnes = Math.floor(number / 10) * 10;
+
+	var onesPhrase = dictionary[ones.toString() + "_f"] || ones.toString();
+	return (numberWithoutOnes ? numberWithoutOnes.toString() + " " : "") + onesPhrase;
+}
+
+function time_str(time, pluralTimeForm, pluralTimeFormBetweenTwoAndFour) {
+	var ones = time % 10;
+	var tens = time % 100 - ones;
+	if (tens === 10) {
+		return pluralTimeForm;
+	}
+	if (ones > 1 && ones < 5) {
+		return pluralTimeFormBetweenTwoAndFour;
+	}
+	return pluralTimeForm;
+}
+
+function hours_str(hours) {
+	return time_str(hours, dictionary["hours"], dictionary["hours_2-4"])
+}
+
+function minutes_str(minutes) {
+	return time_str(minutes, dictionary["minutes"], dictionary["minutes_2-4"])
+}
+
 function setMetricConst(metrics) {
 	metricConst = metrics;
 }
@@ -206,7 +248,7 @@ function distance(dist) {
 			} else if (dist < 100) {
 				return (tts ? (Math.round(dist/10.0/0.9144)*10).toString() : ogg_dist(Math.round(dist/10.0/0.9144)*10)) + " " + dictionary["yards"];
 			} else if (dist < 1300) {
-				return (tts ? (Math.round(2*dist/100.0/0.9144)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.9144)*50)) + " " + dictionary["yards"]; 
+				return (tts ? (Math.round(2*dist/100.0/0.9144)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.9144)*50)) + " " + dictionary["yards"];
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
 			} else if (dist < 16093) {
@@ -228,11 +270,11 @@ function time(seconds) {
 	} else if (minutes % 60 == 1 && tts) {
 		return hours(minutes) + " " + dictionary["1_minute"];
 	} else if (tts) {
-		return hours(minutes) + " " + (minutes % 60) + " " + dictionary["minutes"];
+		return hours(minutes) + ", " + num_fe_str(minutes % 60) + " " + minutes_str(minutes % 60);
 	} else if (!tts && seconds < 300) {
 		return ogg_dist(minutes) + dictionary["minutes"];
 	} else if (!tts && oggMinutes % 60 > 0) {
-		return hours(oggMinutes) + " " + ogg_dist(oggMinutes % 60) + dictionary["minutes"];
+		return hours(oggMinutes) + " " + ogg_dist(oggMinutes % 60) + minutes_str(minutes % 60);
 	} else if (!tts) {
 		return hours(oggMinutes);
 	}
@@ -245,7 +287,7 @@ function hours(minutes) {
 		return dictionary["1_hour"];
 	} else {
 		var hours = Math.floor(minutes / 60);
-		return (tts ? hours.toString() : ogg_dist(hours)) + " " + dictionary["hours"]; 
+		return (tts ? num_fe_str(hours, "f") : ogg_dist(hours)) + " " + hours_str(hours);
 	}
 }
 
