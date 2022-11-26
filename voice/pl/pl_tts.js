@@ -212,7 +212,7 @@ function distance(dist) {
 				return dictionary["around_1_kilometer"];
 			} else if (dist < 10000) {
 				var distInKm = Math.round(dist / 1000.0);
-				return dictionary["around"] + " " + (tts ? distInKm.toString() : ogg_dist(distInKm)) + " " + kilometers_str(distInKm);
+				return dictionary["around"] + ": " + (tts ? distInKm.toString() : ogg_dist(distInKm)) + " " + kilometers_str(distInKm);
 			} else {
 				var distInKm = Math.round(dist / 1000.0);
 				return (tts ? distInKm.toString() : ogg_dist(distInKm)) + " " + kilometers_str(distInKm);
