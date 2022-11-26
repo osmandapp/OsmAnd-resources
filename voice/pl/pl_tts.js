@@ -212,7 +212,7 @@ function distance(dist) {
 				return dictionary["around_1_kilometer"];
 			} else if (dist < 10000) {
 				var distInKm = Math.round(dist / 1000.0);
-				return dictionary["around"] + ": " + (tts ? distInKm.toString() : ogg_dist(distInKm)) + " " + kilometers_str(distInKm);
+				return dictionary["around"] + " : " + (tts ? distInKm.toString() : ogg_dist(distInKm)) + " " + kilometers_str(distInKm);
 			} else {
 				var distInKm = Math.round(dist / 1000.0);
 				return (tts ? distInKm.toString() : ogg_dist(distInKm)) + " " + kilometers_str(distInKm);
@@ -332,10 +332,10 @@ function turn(turnType, dist, streetName) {
 
 function take_exit(turnType, dist, exitString, exitInt, streetName) {
 	if (dist == -1) {
-		return getTurnType(turnType) + " " + dictionary["onto"] + ": " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
+		return getTurnType(turnType) + " " + dictionary["onto"] + " : " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
 	} else {
 		return dictionary["after"] + " " + distance(dist) + " "
-			+ getTurnType(turnType) + " " + dictionary["onto"] + ": " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
+			+ getTurnType(turnType) + " " + dictionary["onto"] + " : " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
 	}
 }
 
