@@ -116,9 +116,9 @@ function populateDictionary(tts) {
 	dictionary["meters"] = tts ? "m" : "meters.ogg";
 	dictionary["around_1_kilometer"] = tts ? "około jeden kilometr" : "around_1_kilometer.ogg";
 	dictionary["around"] = tts ? "około" : "around.ogg";
-	//dictionary["kilometers"] = tts ? "kilometrów" : "kilometers.ogg";
-	dictionary["kilometers"] = tts ? "km" : "kilometers.ogg";
-	
+	dictionary["kilometers"] = tts ? "kilometrów" : "kilometers.ogg";
+	dictionary["kilometers_2-4"] = tts ? "kilometry" : "kilometers.ogg";
+
 	dictionary["feet"] = tts ? "stóp" : "feet.ogg";
 	dictionary["1_tenth_of_a_mile"] = tts ? "jedną dziesiątą mili" : "1_tenth_of_a_mile.ogg";
 	dictionary["tenths_of_a_mile"] = tts ? "dziesiątych mili" : "tenths_of_a_mile.ogg";
@@ -162,9 +162,9 @@ function num_fe_str(number) {
 	return (numberWithoutOnes ? numberWithoutOnes.toString() + " " : "") + onesPhrase;
 }
 
-function time_str(time, pluralTimeForm, pluralTimeFormBetweenTwoAndFour) {
-	var ones = time % 10;
-	var tens = time % 100 - ones;
+function plural_str_form(value, pluralTimeForm, pluralTimeFormBetweenTwoAndFour) {
+	var ones = value % 10;
+	var tens = value % 100 - ones;
 	if (tens === 10) {
 		return pluralTimeForm;
 	}
@@ -175,11 +175,15 @@ function time_str(time, pluralTimeForm, pluralTimeFormBetweenTwoAndFour) {
 }
 
 function hours_str(hours) {
-	return time_str(hours, dictionary["hours"], dictionary["hours_2-4"])
+	return plural_str_form(hours, dictionary["hours"], dictionary["hours_2-4"])
 }
 
 function minutes_str(minutes) {
-	return time_str(minutes, dictionary["minutes"], dictionary["minutes_2-4"])
+	return plural_str_form(minutes, dictionary["minutes"], dictionary["minutes_2-4"])
+}
+
+function kilometers_str(kilometers) {
+	return plural_str_form(kilometers, dictionary["kilometers"], dictionary["kilometers_2-4"])
 }
 
 function setMetricConst(metrics) {
@@ -207,9 +211,11 @@ function distance(dist) {
 			} else if (dist < 1500) {
 				return dictionary["around_1_kilometer"];
 			} else if (dist < 10000) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1000.0).toString() : ogg_dist(Math.round(dist/1000.0))) + " " + dictionary["kilometers"];
+				var distInKm = Math.round(dist / 1000.0);
+				return dictionary["around"] + " " + (tts ? distInKm.toString() : ogg_dist(distInKm)) + " " + kilometers_str(distInKm);
 			} else {
-				return (tts ? Math.round(dist/1000.0).toString() : ogg_dist(Math.round(dist/1000.0))) + " " + dictionary["kilometers"];
+				var distInKm = Math.round(dist / 1000.0);
+				return (tts ? distInKm.toString() : ogg_dist(distInKm)) + " " + kilometers_str(distInKm);
 			}
 			break;
 		case "mi-f":
@@ -326,10 +332,10 @@ function turn(turnType, dist, streetName) {
 
 function take_exit(turnType, dist, exitString, exitInt, streetName) {
 	if (dist == -1) {
-		return getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
+		return getTurnType(turnType) + " " + dictionary["onto"] + ": " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
 	} else {
 		return dictionary["after"] + " " + distance(dist) + " "
-			+ getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
+			+ getTurnType(turnType) + " " + dictionary["onto"] + ": " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
 	}
 }
 
@@ -411,7 +417,7 @@ function turn_street(streetName) {
 		|| (streetName["toStreetName"] === "" && streetName["toRef"] === streetName["fromRef"])) {
 		return dictionary["on"] + " " + assemble_street_name(streetName);
 	} else if (!(streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"])) {
-		return dictionary["onto"] + " " + assemble_street_name(streetName);
+		return dictionary["onto"] + ": " + assemble_street_name(streetName);
 	}
 	return "";
 }
@@ -420,7 +426,7 @@ function assemble_street_name(streetName) {
 	if (streetName["toDest"] === "") {
 		return streetName["toRef"] + " " + streetName["toStreetName"];
 	} else if (streetName["toRef"] === "") {
-		return streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
+		return streetName["toStreetName"] + ": " + dictionary["toward"] + " " + streetName["toDest"];
 	} else if (streetName["toRef"] != "") {
 		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	}
