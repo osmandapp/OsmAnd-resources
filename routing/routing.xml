@@ -1092,9 +1092,6 @@
 				<select value="1" t="highway" v="motorway_link"/>
 				<select value="1" t="highway" v="trunk"/>
 				<select value="1" t="highway" v="trunk_link"/>
-			<!-- line above: I have deleted this line, it concerned motorroads.
- 			These have already been excluded above (which is the right choice). -->
-
 			</if>
 
 			<if param="avoid_ferries">
@@ -1115,7 +1112,6 @@
 			to make sure that motorways are excluded if they
 			are not explicitly allowed by the user.-->
 			<select value="-1" t="highway" v="elevator"/>
-
 			<select value="-1" t="bicycle" v="no"/>
 			<select value="1"  t="bicycle" v="yes"/>
 			<select value="1"  t="bicycle" v="permissive"/>
@@ -1125,20 +1121,17 @@
 			<select value="1"  t="bicycle" v="official"/>
 			<select value="-1"  t="bicycle" v="use_sidepath"/>
 			<select value="1"  t="bicycle" v="dismount"/>
-			<if param="driving_style_safety">
-				<select value="-1" t="highway" v="trunk"/>
-				<select value="-1" t="highway" v="trunk_link"/>
-			</if>
-			<select value="1" t="highway" v="trunk"/>
-			<select value="1" t="highway" v="trunk_link"/>
-			<!-- a user indicated a trunk road in England that was a
-			a necessary link. So only in safety style trunk is excluded now. -->
+
 			<select value="-1" t="sac_scale" v="demanding_mountain_hiking"/>
 			<select value="-1" t="sac_scale" v="alpine_hiking"/>
 			<select value="-1" t="sac_scale" v="demanding_alpine_hiking"/>
 			<select value="-1" t="sac_scale" v="difficult_alpine_hiking"/>
 			<select value="-1" t="mtb:scale" v="5"/>
 			<select value="-1" t="mtb:scale" v="6"/>
+			<if param="allow_private">
+				<select value="1" t="vehicle" v="private"/>
+			</if>
+			<select value="-1" t="vehicle" v="private"/>
 			<select value="-1" t="vehicle" v="agricultural"/>
 			<select value="-1" t="vehicle" v="forestry"/>
 			<select value="1"  t="vehicle" v="yes"/>
@@ -1148,7 +1141,7 @@
 			
 			<select value="-1" t="access" v="no"/>
 			<if param="allow_private">
-				<select value="1" t="access" v="private"/>
+				<select value="1" t="vehicle" v="private"/>
 			</if>
 			<select value="-1" t="access" v="private"/>
 			<select value="1" t="access" v="agricultural"/>
@@ -1162,6 +1155,14 @@
 			<select value="-1" t="vehicle" v="no"/>
 			<!--<select value="-1" t="crossing" v="no"/>--> <!-- See https://github.com/osmandapp/Osmand/issues/6678 -->
 
+			<if param="driving_style_safety">
+				<select value="-1" t="highway" v="trunk"/>
+				<select value="-1" t="highway" v="trunk_link"/>
+			</if>
+			<select value="1" t="highway" v="trunk"/>
+			<select value="1" t="highway" v="trunk_link"/>
+			<!-- a user indicated a trunk road in England that was a
+			a necessary link. So only in safety style trunk is excluded now. -->
 			<select value="1" t="highway" v="primary"/>
 			<select value="1" t="highway" v="primary_link"/>
 			<select value="1" t="highway" v="secondary"/>
