@@ -1206,6 +1206,14 @@
 		<case minzoom="12" attrColorValue="#500002B4"/>
 		<case attrColorValue="#300002B4"/>
 	</renderingAttribute>
+
+	<renderingAttribute name="boundaryAboriginalLandsColor">
+		<case attrColorValue="#44865F37"/>
+	</renderingAttribute>
+	<renderingAttribute name="boundaryBorderZoneColor">
+		<case nightMode="true" attrColorValue="#55803B43"/>
+		<case attrColorValue="#35BB0059"/>
+	</renderingAttribute>
 	<renderingConstant name="boundaryNationalParkColor" value="#a0800080"/>
 	<renderingConstant name="boundaryNationalParkColor2" value="#5009dd09"/>
 
@@ -1537,6 +1545,23 @@
 		<case attrColorValue="#388738"/>
 	</renderingAttribute>
 
+	<renderingAttribute name="boundaryAboriginalLandsTextColor">
+		<case nightMode="true" attrColorValue="#BF9264"/>
+		<case attrColorValue="#A27343"/>
+	</renderingAttribute>
+	<renderingAttribute name="boundaryAboriginalLandsTextHaloColor">
+		<case nightMode="true" attrColorValue="#33BF9264"/>
+		<case attrColorValue="#99F3E8DC"/>
+	</renderingAttribute>
+	<renderingAttribute name="boundaryBorderZoneTextColor">
+		<case nightMode="true" attrColorValue="#C18C93"/>
+		<case attrColorValue="#83003F"/>
+	</renderingAttribute>
+	<renderingAttribute name="boundaryBorderZoneTextHaloColor">
+		<case nightMode="true" attrColorValue="#33805D62"/>
+		<case attrColorValue="#225E4327"/>
+	</renderingAttribute>
+
 	<renderingAttribute name="naturalLanduseTextHaloColor">
 		<case nightMode="true" attrColorValue="#77444444"/>
 		<case attrColorValue="#ffffff"/>
@@ -1727,6 +1752,8 @@
 				<case tag="boundary" value="protected_area" order="9"/>
 				<case tag="boundary" value="national_park" order="9"/>
 				<case tag="boundary" value="forestry_compartment" order="9"/>
+				<case tag="boundary" value="aboriginal_lands" order="9"/>
+				<case tag="boundary" value="border_zone" order="100"/>
 				<case tag="building" value="no" order="-1"/>
 				<case tag="man_made" value="storage_tank"/>
 				<case tag="man_made" value="silo"/>
@@ -3134,6 +3161,8 @@
 						<case nameTag=""/>
 						<apply_if maxzoom="13" textSize="11"/>
 					</switch>
+					<case minzoom="8" tag="boundary" value="aboriginal_lands" textOrder="104" textColor="$boundaryAboriginalLandsTextColor" textHaloColor="$boundaryAboriginalLandsTextHaloColor"/>
+					<case minzoom="11" tag="boundary" value="border_zone" textOrder="105" textColor="$boundaryBorderZoneTextColor" textHaloColor="$boundaryBorderZoneTextHaloColor" textOnPath="true"/>
 					<case minzoom="18" tag="natural" value="tree" textSize="11" textOrder="252"/>
 					<case minzoom="19" tag="natural" value="shrub" textSize="11" textOrder="253"/>
 					<case minzoom="19" tag="natural" value="birds_nest" textSize="10" textDy="5"/>
@@ -4417,6 +4446,15 @@
 							<apply_if maxzoom="13" strokeWidth_2="2:2" pathEffect_2="10_5"/>
 							<apply_if minzoom="14" strokeWidth_2="3.5:3.5" pathEffect_2="13_8"/>
 						</switch>
+					</switch>
+					<switch>
+						<case minzoom="8" tag="boundary" value="aboriginal_lands" color="$null" color_2="$boundaryAboriginalLandsColor"/>
+						<case minzoom="10" tag="boundary" value="border_zone" color="$null" color_2="$boundaryBorderZoneColor"/>
+						<apply>
+							<case maxzoom="11" strokeWidth_2="1:1"/>
+							<case maxzoom="13" strokeWidth_2="2:2"/>
+							<case minzoom="14" strokeWidth_2="3.5:3.5"/>
+						</apply>
 					</switch>
 					<case minzoom="11" tag="landuse" value="quarry" color_2="#6F6357" strokeWidth_2="2" pathEffect_2="2_2">
 						<case additional="resource=peat" shader="topo_quarry_peat"/>
@@ -6375,6 +6413,14 @@
 				<case minzoom="10" strokeWidth="3:3"/>
 				<apply color="$boundaryNationalParkColor2" color_0="$boundaryNationalParkColor" strokeWidth_0="0.6" pathEffect="4_1" pathEffect_0="4_1"/>
 			</case>
+		</switch>
+		<switch>
+			<case minzoom="8" tag="boundary" value="aboriginal_lands" color="$boundaryAboriginalLandsColor"/>
+			<case minzoom="10" tag="boundary" value="border_zone" color="$boundaryBorderZoneColor"/>
+			<apply>
+				<case maxzoom="13" strokeWidth="2:2"/>
+				<case minzoom="14" strokeWidth="3.5:3.5"/>
+			</apply>
 		</switch>
 		<case tag="osmand_change" value="delete"/> <!-- OSMC will break if delete -->
 
