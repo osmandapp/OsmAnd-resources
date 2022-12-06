@@ -19,12 +19,12 @@ function populateDictionary(tts) {
 	// ROUTE CALCULATED
 	dictionary["route_is"] = tts ? "Turen er" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "Ruten beregnet på nytt" : "route_calculate.ogg";
-	dictionary["distance"] = tts ? "avstand" : "distance.ogg";
+	dictionary["distance"] = tts ? "distanse" : "distance.ogg";
 
 	// LEFT/RIGHT
 	//dictionary["prepare"] = "Forbered å "
 	dictionary["after"] = tts ? "etter" : "after.ogg";
-	dictionary["in"] = tts ? "i" : "in.ogg";
+	dictionary["in"] = tts ? "om" : "in.ogg";
 
 	dictionary["left"] = tts ? "ta til venstre" : "left.ogg";
 	dictionary["left_sh"] = tts ? "ta skarpt til venstre" : "left_sh.ogg";
@@ -45,7 +45,7 @@ function populateDictionary(tts) {
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "kjør inn i en rundkjøring" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "kjør inn i rundkjøringen" : "roundabout.ogg";
-	dictionary["then"] = tts ? "så" : "then.ogg";
+	dictionary["then"] = tts ? "deretter" : "then.ogg";
 	dictionary["and"] = tts ? "og" : "and.ogg";
 	dictionary["take"] = tts ? "ta den" : "take.ogg";
 	dictionary["exit"] = tts ? "avkjøringen" : "exit.ogg";
@@ -89,7 +89,7 @@ function populateDictionary(tts) {
 	// ATTENTION
 	//dictionary["exceed_limit"] = "du overskrider fartsgrensen"
 	dictionary["exceed_limit"] = tts ? "fartsgrense" : "exceed_limit.ogg";
-	dictionary["attention"] = tts ? "obs" : "attention.ogg";
+	dictionary["attention"] = tts ? "Oppmerksom på" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "fotoboks" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "grensekontroll" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "jernbaneovergang" : "railroad_crossing.ogg";
