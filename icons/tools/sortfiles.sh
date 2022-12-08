@@ -443,6 +443,7 @@ icon_alias leisure_marina transport_marina
 icon_alias leisure_marina_private transport_marina_private
 icon_alias leisure_slipway transport_slipway
 icon_alias man_made_lighthouse transport_lighthouse
+icon_alias topo_lighthouse topo_lighthouse
 icon_alias waterway_lock_gate_small functional-icons_lock_gate  #scale 0.5
 icon_alias lock_gate poi_colored_lock_gate  #scale 0.25
 icon_alias lock_basin seamark_small_poi_lock_basin  #scale 0.25

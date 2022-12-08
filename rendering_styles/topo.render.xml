@@ -1206,6 +1206,14 @@
 		<case minzoom="12" attrColorValue="#500002B4"/>
 		<case attrColorValue="#300002B4"/>
 	</renderingAttribute>
+
+	<renderingAttribute name="boundaryAboriginalLandsColor">
+		<case attrColorValue="#44865F37"/>
+	</renderingAttribute>
+	<renderingAttribute name="boundaryBorderZoneColor">
+		<case nightMode="true" attrColorValue="#55803B43"/>
+		<case attrColorValue="#35BB0059"/>
+	</renderingAttribute>
 	<renderingConstant name="boundaryNationalParkColor" value="#a0800080"/>
 	<renderingConstant name="boundaryNationalParkColor2" value="#5009dd09"/>
 
@@ -1537,6 +1545,23 @@
 		<case attrColorValue="#388738"/>
 	</renderingAttribute>
 
+	<renderingAttribute name="boundaryAboriginalLandsTextColor">
+		<case nightMode="true" attrColorValue="#BF9264"/>
+		<case attrColorValue="#A27343"/>
+	</renderingAttribute>
+	<renderingAttribute name="boundaryAboriginalLandsTextHaloColor">
+		<case nightMode="true" attrColorValue="#33BF9264"/>
+		<case attrColorValue="#99F3E8DC"/>
+	</renderingAttribute>
+	<renderingAttribute name="boundaryBorderZoneTextColor">
+		<case nightMode="true" attrColorValue="#C18C93"/>
+		<case attrColorValue="#83003F"/>
+	</renderingAttribute>
+	<renderingAttribute name="boundaryBorderZoneTextHaloColor">
+		<case nightMode="true" attrColorValue="#33805D62"/>
+		<case attrColorValue="#225E4327"/>
+	</renderingAttribute>
+
 	<renderingAttribute name="naturalLanduseTextHaloColor">
 		<case nightMode="true" attrColorValue="#77444444"/>
 		<case attrColorValue="#ffffff"/>
@@ -1727,6 +1752,8 @@
 				<case tag="boundary" value="protected_area" order="9"/>
 				<case tag="boundary" value="national_park" order="9"/>
 				<case tag="boundary" value="forestry_compartment" order="9"/>
+				<case tag="boundary" value="aboriginal_lands" order="9"/>
+				<case tag="boundary" value="border_zone" order="100"/>
 				<case tag="building" value="no" order="-1"/>
 				<case tag="man_made" value="storage_tank"/>
 				<case tag="man_made" value="silo"/>
@@ -1739,6 +1766,7 @@
 				<case tag="military" value="barracks"/>
 				<case tag="man_made" value="chimney"/>
 				<case tag="man_made" value="tower"/>
+				<case tag="man_made" value="lighthouse"/>
 				<case tag="man_made" value="monitoring_station"/>
 				<case tag="man_made" value="reinforced_slope"/>
 				<case tag="building" value="" order="10">
@@ -3134,6 +3162,8 @@
 						<case nameTag=""/>
 						<apply_if maxzoom="13" textSize="11"/>
 					</switch>
+					<case minzoom="8" tag="boundary" value="aboriginal_lands" textOrder="104" textColor="$boundaryAboriginalLandsTextColor" textHaloColor="$boundaryAboriginalLandsTextHaloColor"/>
+					<case minzoom="11" tag="boundary" value="border_zone" textOrder="105" textColor="$boundaryBorderZoneTextColor" textHaloColor="$boundaryBorderZoneTextHaloColor" textOnPath="true"/>
 					<case minzoom="18" tag="natural" value="tree" textSize="11" textOrder="252"/>
 					<case minzoom="19" tag="natural" value="shrub" textSize="11" textOrder="253"/>
 					<case minzoom="19" tag="natural" value="birds_nest" textSize="10" textDy="5"/>
@@ -3249,70 +3279,76 @@
 <!--				<apply_if engine_v1="true" textDy="9"/>-->
 				<apply_if lessDetailed="true" maxzoom="15" disable="true"/>
 			</switch>
-			<switch textSize="11" nameTag="" textColor="$manMadeTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$defaultTextHaloColor" textWrapWidth="25" textOrder="162">
-				<case minzoom="16" tag="aerialway" value="station" nameTag="" textOrder="101"/>
-				<case minzoom="18" tag="amenity" value="bench" textOrder="172"/>
-				<case minzoom="18" tag="amenity" value="lounger" textOrder="172"/>
-				<case minzoom="17" tag="man_made" value="windmill" textSize="12"/>
-				<case minzoom="17" tag="man_made" value="watermill" textSize="12"/>
-				<case minzoom="17" tag="man_made" value="tower" nameTag=""/>
-				<case minzoom="17" tag="man_made" value="antenna" nameTag=""/>
-				<case minzoom="17" tag="man_made" value="mast" nameTag=""/>
-				<case minzoom="17" tag="man_made" value="satellite_dish" nameTag=""/>
-				<case minzoom="17" tag="man_made" value="flare" nameTag=""/>
-				<case minzoom="17" tag="man_made" value="monitoring_station"/>
-				<case minzoom="16" tag="man_made" value="petroleum_well"/>
-				<case minzoom="18" tag="man_made" value="crane"/>
-				<case minzoom="18" tag="man_made" value="ventilation_shaft"/>
-				<case minzoom="18" tag="man_made" value="pumping_station"/>
-				<case minzoom="16" tag="man_made" value="adit"/>
-				<case minzoom="17" tag="man_made" value="cellar_entrance"/>
-				<case minzoom="17" tag="man_made" value="kiln"/>
-				<case minzoom="17" tag="man_made" value="water_tower"/>
-				<case minzoom="16" tag="man_made" value="mineshaft"/>
-				<case minzoom="18" tag="historic" value="charcoal_pile"/>
-				<case minzoom="16" tag="amenity" value="hunting_stand"/>
-				<case minzoom="17" tag="man_made" value="storage_tank"/>
-				<case minzoom="17" tag="man_made" value="silo"/>
-				<case minzoom="17" tag="man_made" value="bunker_silo"/>
-				<case minzoom="17" tag="man_made" value="reservoir_covered"/>
-				<case minzoom="15" tag="man_made" value="observatory"/>
-				<case minzoom="15" tag="man_made" value="telescope"/>
-				<case minzoom="17" tag="man_made" value="survey_point"/>
-				<case minzoom="17" tag="man_made" value="cairn"/>
-				<case minzoom="19" tag="man_made" value="street_cabinet"/>
-				<case minzoom="17" tag="man_made" value="cross"/>
-				<case minzoom="17" tag="aerialway" value="pylon"/>
-				<case minzoom="15" tag="harbour" value="yes" textSize="12"/>
-				<case minzoom="17" tag="military" value="checkpoint" nameTag="ref"/>
-				<case minzoom="17" tag="military" value="checkpoint" nameTag="" nameTag2="ref"/>
-				<case minzoom="17" tag="military" value="bunker"/>
-				<case minzoom="18" tag="emergency" value="rescue_box" textColor="#DA0092" textOrder="71"/>
-				<switch minzoom="18">
-					<case tag="barrier" value="gate"/>
-					<case tag="barrier" value="sliding_gate"/>
-					<case tag="barrier" value="lift_gate"/>
-					<case tag="barrier" value="hampshire_gate"/>
-					<case tag="barrier" value="swing_gate"/>
-					<case tag="barrier" value="chain"/>
-					<case tag="barrier" value="turnstile"/>
-					<case tag="barrier" value="full-height_turnstile"/>
-					<case tag="barrier" value="stile"/>
-					<case tag="barrier" value="sally_port"/>
-					<case tag="barrier" value="block"/>
-					<case tag="barrier" value="debris"/>
-					<case tag="barrier" value="log"/>
-					<case tag="barrier" value="jersey_barrier"/>
-					<case tag="barrier" value="horse_stile"/>
-					<case tag="barrier" value="kissing_gate"/>
-					<case tag="barrier" value="cycle_barrier"/>
-					<case tag="barrier" value="bus_trap"/>
-					<case tag="barrier" value="bump_gate"/>
-					<case tag="barrier" value="cattle_grid"/>
-					<case tag="barrier" value="toll_booth"/>
-					<case tag="barrier" value="bollard"/>
-					<case tag="barrier" value="border_control"/>
-					<case tag="barrier" value="motorcycle_barrier"/>
+			<switch textSize="11" textColor="$manMadeTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$defaultTextHaloColor" textWrapWidth="25" textOrder="162">
+				<switch nameTag="">
+					<case minzoom="16" tag="aerialway" value="station" textOrder="101"/>
+					<case minzoom="18" tag="amenity" value="bench" textOrder="172"/>
+					<case minzoom="18" tag="amenity" value="lounger" textOrder="172"/>
+					<case minzoom="17" tag="man_made" value="windmill" textSize="12"/>
+					<case minzoom="17" tag="man_made" value="watermill" textSize="12"/>
+					<case minzoom="17" tag="man_made" value="tower"/>
+					<case minzoom="17" tag="man_made" value="antenna"/>
+					<case minzoom="17" tag="man_made" value="mast"/>
+					<case minzoom="17" tag="man_made" value="satellite_dish"/>
+					<case minzoom="17" tag="man_made" value="flare"/>
+					<case minzoom="17" tag="man_made" value="monitoring_station"/>
+					<case minzoom="16" tag="man_made" value="lighthouse"/>
+					<case minzoom="16" tag="man_made" value="petroleum_well"/>
+					<case minzoom="18" tag="man_made" value="crane"/>
+					<case minzoom="18" tag="man_made" value="ventilation_shaft"/>
+					<case minzoom="18" tag="man_made" value="pumping_station"/>
+					<case minzoom="16" tag="man_made" value="adit"/>
+					<case minzoom="17" tag="man_made" value="cellar_entrance"/>
+					<case minzoom="17" tag="man_made" value="kiln"/>
+					<case minzoom="17" tag="man_made" value="water_tower"/>
+					<case minzoom="16" tag="man_made" value="mineshaft"/>
+					<case minzoom="18" tag="historic" value="charcoal_pile"/>
+					<case minzoom="16" tag="amenity" value="hunting_stand"/>
+					<case minzoom="17" tag="man_made" value="storage_tank"/>
+					<case minzoom="17" tag="man_made" value="silo"/>
+					<case minzoom="17" tag="man_made" value="bunker_silo"/>
+					<case minzoom="17" tag="man_made" value="reservoir_covered"/>
+					<case minzoom="15" tag="man_made" value="observatory"/>
+					<case minzoom="15" tag="man_made" value="telescope"/>
+					<case minzoom="17" tag="man_made" value="survey_point"/>
+					<case minzoom="17" tag="man_made" value="cairn"/>
+					<case minzoom="19" tag="man_made" value="street_cabinet"/>
+					<case minzoom="17" tag="man_made" value="cross"/>
+					<case minzoom="17" tag="man_made" value="lighthouse"/>
+					<case minzoom="17" tag="aerialway" value="pylon"/>
+					<case minzoom="15" tag="harbour" value="yes" textSize="12"/>
+					<case minzoom="17" tag="military" value="bunker"/>
+					<case minzoom="18" tag="emergency" value="rescue_box" textColor="#DA0092" textOrder="71"/>
+					<switch minzoom="18">
+						<case tag="barrier" value="gate"/>
+						<case tag="barrier" value="sliding_gate"/>
+						<case tag="barrier" value="lift_gate"/>
+						<case tag="barrier" value="hampshire_gate"/>
+						<case tag="barrier" value="swing_gate"/>
+						<case tag="barrier" value="chain"/>
+						<case tag="barrier" value="turnstile"/>
+						<case tag="barrier" value="full-height_turnstile"/>
+						<case tag="barrier" value="stile"/>
+						<case tag="barrier" value="sally_port"/>
+						<case tag="barrier" value="block"/>
+						<case tag="barrier" value="debris"/>
+						<case tag="barrier" value="log"/>
+						<case tag="barrier" value="jersey_barrier"/>
+						<case tag="barrier" value="horse_stile"/>
+						<case tag="barrier" value="kissing_gate"/>
+						<case tag="barrier" value="cycle_barrier"/>
+						<case tag="barrier" value="bus_trap"/>
+						<case tag="barrier" value="bump_gate"/>
+						<case tag="barrier" value="cattle_grid"/>
+						<case tag="barrier" value="toll_booth"/>
+						<case tag="barrier" value="bollard"/>
+						<case tag="barrier" value="border_control"/>
+						<case tag="barrier" value="motorcycle_barrier"/>
+					</switch>
+				</switch>
+				<switch>
+					<case minzoom="17" tag="military" value="checkpoint" nameTag="ref"/>
+					<case minzoom="17" tag="military" value="checkpoint" nameTag="" nameTag2="ref"/>
 				</switch>
 				<apply_if engine_v1="true" textDy="1"/>
 			</switch>
@@ -3711,6 +3747,7 @@
 			<case minzoom="18" tag="natural" value="birds_nest" icon="topo_birds_nest"/>
 			<case minzoom="18" tag="natural" value="termite_mound" icon="topo_termite_mound"/>
 			<case minzoom="18" tag="natural" value="anthill" icon="topo_anthill"/>
+			<case minzoom="15" tag="man_made" value="lighthouse" icon="topo_lighthouse"/>
 			<apply_if lessDetailed="true" maxzoom="15" icon=""/>
 		</switch>
 		<case minzoom="16" tag="historic" value="ruins" icon="topo_ruins" shield="topo_ruins_shield" iconOrder="158"/>
@@ -4417,6 +4454,15 @@
 							<apply_if maxzoom="13" strokeWidth_2="2:2" pathEffect_2="10_5"/>
 							<apply_if minzoom="14" strokeWidth_2="3.5:3.5" pathEffect_2="13_8"/>
 						</switch>
+					</switch>
+					<switch>
+						<case minzoom="8" tag="boundary" value="aboriginal_lands" color="$null" color_2="$boundaryAboriginalLandsColor"/>
+						<case minzoom="10" tag="boundary" value="border_zone" color="$null" color_2="$boundaryBorderZoneColor"/>
+						<apply>
+							<case maxzoom="11" strokeWidth_2="1:1"/>
+							<case maxzoom="13" strokeWidth_2="2:2"/>
+							<case minzoom="14" strokeWidth_2="3.5:3.5"/>
+						</apply>
 					</switch>
 					<case minzoom="11" tag="landuse" value="quarry" color_2="#6F6357" strokeWidth_2="2" pathEffect_2="2_2">
 						<case additional="resource=peat" shader="topo_quarry_peat"/>
@@ -6375,6 +6421,14 @@
 				<case minzoom="10" strokeWidth="3:3"/>
 				<apply color="$boundaryNationalParkColor2" color_0="$boundaryNationalParkColor" strokeWidth_0="0.6" pathEffect="4_1" pathEffect_0="4_1"/>
 			</case>
+		</switch>
+		<switch>
+			<case minzoom="8" tag="boundary" value="aboriginal_lands" color="$boundaryAboriginalLandsColor"/>
+			<case minzoom="10" tag="boundary" value="border_zone" color="$boundaryBorderZoneColor"/>
+			<apply>
+				<case maxzoom="13" strokeWidth="2:2"/>
+				<case minzoom="14" strokeWidth="3.5:3.5"/>
+			</apply>
 		</switch>
 		<case tag="osmand_change" value="delete"/> <!-- OSMC will break if delete -->
 
