@@ -11187,30 +11187,63 @@
 						</apply>
 					</case>
 
-					<case minzoom="$pathMinZoom" tag="highway" value="path">
-						<case baseAppMode="bicycle" minzoom="14" additional="bicycle=designated" color_5="$cyclewayColor" pathEffect_5="4_2" strokeWidth_5="1:1"/>
-						<case moreDetailed="true" maxzoom="14" color_5="$pathColor" pathEffect_5="$pathPathEffect">
-							<case maxzoom="12" strokeWidth_5="0.3" color_5="$pathLowZoomColor" pathEffect_5="$pathLowZoomPathEffect"/>
-							<case maxzoom="13" color_5="$pathLowZoomColor" pathEffect_5="$pathLowZoomPathEffect">
-								<case baseAppMode="pedestrian" strokeWidth_5="0.5"/>
-								<case strokeWidth_5="$pathLowZoomStrokeWidth"/>
+					<switch>
+						<case minzoom="$pathMinZoom" tag="highway" value="path">
+							<case baseAppMode="bicycle" minzoom="14" additional="bicycle=designated" color_5="$cyclewayColor" pathEffect_5="4_2" strokeWidth_5="1:1"/>
+							<case moreDetailed="true" maxzoom="14" color_5="$pathColor" pathEffect_5="$pathPathEffect">
+								<case maxzoom="12" strokeWidth_5="0.3" color_5="$pathLowZoomColor" pathEffect_5="$pathLowZoomPathEffect"/>
+								<case maxzoom="13" color_5="$pathLowZoomColor" pathEffect_5="$pathLowZoomPathEffect">
+									<case baseAppMode="pedestrian" strokeWidth_5="0.5"/>
+									<case strokeWidth_5="$pathLowZoomStrokeWidth"/>
+								</case>
+								<case maxzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="$pathStrokeWidth"/>
 							</case>
-							<case maxzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="$pathStrokeWidth"/>
+							<case baseAppMode="pedestrian" minzoom="15" color_5="$pathColor" strokeWidth_4="1.4:1.4" strokeWidth_5="$pathStrokeWidth" pathEffect_5="$pathPathEffect"/>
+							<case minzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="$pathStrokeWidth" color_5="$pathColor" pathEffect_5="$pathPathEffect">
+								<apply_if baseAppMode="bicycle" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
+								<apply_if showSurfaceGrade="true" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
+								<apply_if showSurfaces="true" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
+							</case>
+							<apply_if additional="winter_road=yes" minzoom="11" strokeWidth_4="2:2"/>
+							<apply_if additional="ice_road=yes" minzoom="11" strokeWidth_4="2:2"/>
+							<apply_if nightMode="true">
+								<apply_if minzoom="12" maxzoom="13" color_5="$pathLowZoomColor"/>
+							</apply_if>
+							<apply_if additional="osmand_rungs=yes" color_5="$rungsColor"/>
+							<apply_if additional="assisted_trail=yes" color_5="$rungsColor"/>
+							<apply_if additional="osmand_safety_rope=yes" color_5="$rungsColor"/>
 						</case>
-						<case baseAppMode="pedestrian" minzoom="15" color_5="$pathColor" strokeWidth_4="1.4:1.4" strokeWidth_5="$pathStrokeWidth" pathEffect_5="$pathPathEffect"/>
-						<case minzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="$pathStrokeWidth" color_5="$pathColor" pathEffect_5="$pathPathEffect">
-							<apply_if baseAppMode="bicycle" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
-							<apply_if showSurfaceGrade="true" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
-							<apply_if showSurfaces="true" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
+
+						<case minzoom="$footwayMinZoom" tag="highway" value="footway" color_5="$footwayColor">
+							<case baseAppMode="bicycle" minzoom="14" additional="bicycle=designated" color_5="$cyclewayColor" pathEffect_5="4_2" strokeWidth_5="1:1"/>
+							<switch maxzoom="15">
+								<case moreDetailed="true">
+									<case layer="1" strokeWidth_5="0.6"/>
+									<case additional="layer=2" strokeWidth_5="0.6"/>
+									<case additional="layer=3" strokeWidth_5="0.6"/>
+									<case maxzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="0.7" pathEffect_5="">
+										<apply_if baseAppMode="pedestrian" strokeWidth_5="0.9"/>
+									</case>
+									<case minzoom="15" maxzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="0.5:1" pathEffect_5="4_2">
+										<apply_if baseAppMode="pedestrian" strokeWidth_5="1:1"/>
+									</case>
+								</case>
+								<case baseAppMode="pedestrian">
+									<case minzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="0.9" pathEffect_5=""/>
+								</case>
+							</switch>
+							<case minzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="$footwayStrokeWidth" pathEffect_5="4_2">
+								<switch>
+									<case baseAppMode="bicycle"/>
+									<case baseAppMode="pedestrian"/>
+									<case showSurfaceGrade="true"/>
+									<case showSurfaces="true"/>
+									<apply strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
+								</switch>
+							</case>
 						</case>
-						<apply_if additional="winter_road=yes" minzoom="11" strokeWidth_4="2:2"/>
-						<apply_if additional="ice_road=yes" minzoom="11" strokeWidth_4="2:2"/>
-						<apply_if nightMode="true">
-							<apply_if minzoom="12" maxzoom="13" color_5="$pathLowZoomColor"/>
-						</apply_if>
 						<apply>
 							<switch alpineHiking="true">
-								<!-- <case additional="sac_scale=hiking" color_5="$sacScaleColorT1" pathEffect_5="10_3"/>-->
 								<case additional="sac_scale=mountain_hiking" color_5="$sacScaleColorT2" pathEffect_5=""/>
 								<case additional="sac_scale=demanding_mountain_hiking" color_5="$sacScaleColorT3" pathEffect_5="10_3"/>
 								<case additional="sac_scale=alpine_hiking" color_5="$sacScaleColorT4" pathEffect_5=""/>
@@ -11218,18 +11251,13 @@
 								<case additional="sac_scale=difficult_alpine_hiking" color_5="$sacScaleColorT6" pathEffect_5="3_3"/>
 							</switch>
 							<switch alpineHiking="false">
-								<!-- <filter additional="sac_scale=hiking" pathEffect_5="10_3"/>-->
-								<!-- <case additional="sac_scale=mountain_hiking" pathEffect_5="5_5"/>-->
 								<case additional="sac_scale=demanding_mountain_hiking" pathEffect_5="2_6"/>
 								<case additional="sac_scale=alpine_hiking" pathEffect_5="2_6"/>
 								<case additional="sac_scale=demanding_alpine_hiking" pathEffect_5="2_6"/>
 								<case additional="sac_scale=difficult_alpine_hiking" pathEffect_5="2_6"/>
 							</switch>
 						</apply>
-						<apply_if additional="osmand_rungs=yes" color_5="$rungsColor"/>
-						<apply_if additional="assisted_trail=yes" color_5="$rungsColor"/>
-						<apply_if additional="osmand_safety_rope=yes" color_5="$rungsColor"/>
-					</case>
+					</switch>
 
 					<case minzoom="$cyclewayMinZoom" tag="highway" value="cycleway">
 						<case baseAppMode="bicycle">
@@ -11243,35 +11271,6 @@
 							<apply_if minzoom="14" maxzoom="14" strokeWidth_4="1:1"/>
 							<apply_if minzoom="15" strokeWidth_4="1.2:1.2"/>
 						</apply_if>
-					</case>
-
-					<case minzoom="$footwayMinZoom" tag="highway" value="footway" color_5="$footwayColor">
-						<case baseAppMode="bicycle" minzoom="14" additional="bicycle=designated" color_5="$cyclewayColor" pathEffect_5="4_2" strokeWidth_5="1:1"/>
-						<switch maxzoom="15">
-							<case moreDetailed="true">
-								<case layer="1" strokeWidth_5="0.6"/>
-								<case additional="layer=2" strokeWidth_5="0.6"/>
-								<case additional="layer=3" strokeWidth_5="0.6"/>
-								<case maxzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="0.7" pathEffect_5="">
-									<apply_if baseAppMode="pedestrian" strokeWidth_5="0.9"/>
-								</case>
-								<case minzoom="15" maxzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="0.5:1" pathEffect_5="4_2">
-									<apply_if baseAppMode="pedestrian" strokeWidth_5="1:1"/>
-								</case>
-							</case>
-							<case baseAppMode="pedestrian">
-								<case minzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="0.9" pathEffect_5=""/>
-							</case>
-						</switch>
-						<case minzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="$footwayStrokeWidth" pathEffect_5="4_2">
-							<switch>
-								<case baseAppMode="bicycle"/>
-								<case baseAppMode="pedestrian"/>
-								<case showSurfaceGrade="true"/>
-								<case showSurfaces="true"/>
-								<apply strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
-							</switch>
-						</case>
 					</case>
 
 					<case minzoom="15" tag="highway" value="steps">
