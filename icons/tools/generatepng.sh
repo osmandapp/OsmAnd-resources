@@ -108,6 +108,7 @@ genMapIconsStdSize() {
         rsvg-convert -f png "$COLOURED_SVG" -w ${SZ} -h ${SZ}  -o ${RES_FILE} #> /dev/null 2>&1
         # RES_SVG_FILE=${OUTPUTFOLDER}${FOLDERS[j]}/${FILENAME}.svg
         # cp "$COLOURED_SVG" ${RES_SVG_FILE}
+        cp $VDFOLDERSVG$FILENAME.svg $OUTPUTSVGFOLDER$FILENAME.svg
       done
   done
   ${BASEFOLDER}/tools/SVGtoXML/vd-tool/bin/vd-tool -c -in ${VDFOLDERSVG} -out ${VDFOLDEROUT} -widthDp ${SIZES[3]} -heightDp ${SIZES[3]}  
@@ -217,7 +218,7 @@ generateBothMapPOIPng() {
 
   # generateBothMapPOIPng 'emergency' '#ffffff' '#ff8f00'
   # generateBothMapPOIPng 'emergency_colored' '#DA0092' '#ff8f00'
-  # generateBothMapPOIPng 'health' '#ffffff' '#ff8f00' #DA0092
+  # generateBothMapPOIPng 'health' '#ffffff' '#ff8f00' '#DA0092'
 
   # generateBothMapPOIPng 'transport' '#ffffff' '#ff8f00'
   # generateBothMapPOIPng 'transport_colored' '#0092DA' '#ff8f00'
@@ -245,9 +246,9 @@ generateBothMapPOIPng() {
   # generateBothMapPOIPng 'additional' '#3f3f3f' '#ff8f00'
   # generateBothMapPOIPng 'additional_category' '#3f3f3f' '#ff8f00'
   # generateBothMapPOIPng 'power' '#3f3f3f' '#ff8f00'
-  # generateBothMapPOIPng 'club' '#ffffff' '#ff8f00' #555555
-  # generateBothMapPOIPng 'food' '#ffffff' '#ff8f00' #8f6732
-  # generateBothMapPOIPng 'shopping' '#ffffff' '#ff8f00' #a734c2
+  # generateBothMapPOIPng 'club' '#ffffff' '#ff8f00' '#555555'
+  # generateBothMapPOIPng 'food' '#ffffff' '#ff8f00' '#8f6732'
+  # generateBothMapPOIPng 'shopping' '#ffffff' '#ff8f00' '#a734c2'
 
   # generateBothMapPOIPng 'landuse' '#ffffff' '#ff8f00'
   # generateBothMapPOIPng 'landuse_colored' '#6dba00' '#ff8f00'
