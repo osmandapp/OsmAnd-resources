@@ -43,7 +43,8 @@ function populateDictionary(tts) {
 	dictionary["make_uturn_wp"] = tts ? "Foretag en U vending når det bliver muligt" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? "Forbered at køre ind i rundkørslen" : "prepare_roundabout.ogg";
+	//dictionary["prepare_roundabout"] = tts ? "Forbered at køre ind i rundkørslen" : "prepare_roundabout.ogg";
+	dictionary["prepare_roundabout"] = tts ? "kør ind i rundkørslen" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "kør ind i rundkørslen" : "roundabout.ogg";
 	dictionary["then"] = tts ? "og derefter" : "then.ogg";
 	dictionary["and"] = tts ? "og" : "and.ogg";
