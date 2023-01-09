@@ -112,8 +112,7 @@ function populateDictionary(tts) {
 	
 	// DISTANCE UNIT SUPPORT
 	// Some TTS engines get declinations right if abbreviated distance and time units are used.
-	//dictionary["meters"] = tts ? "metrów" : "meters.ogg";
-	dictionary["meters"] = tts ? "m" : "meters.ogg";
+	dictionary["meters"] = tts ? "metrów" : "meters.ogg";
 	dictionary["around_1_kilometer"] = tts ? "około jeden kilometr" : "around_1_kilometer.ogg";
 	dictionary["around"] = tts ? "około" : "around.ogg";
 	dictionary["kilometers"] = tts ? "kilometrów" : "kilometers.ogg";
