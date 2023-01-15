@@ -2,44 +2,48 @@
 
 	<!--
 	TOURING VIEW Renderer by Dr. Hardy Mueller, 2012-10-28 (advanced version of the previous All-Purpose Renderer)
+
+		High-detail, high-contrast map for travelers and professional drivers. Provides at any given map zoom the maximum amount of travel details available, in particular depicts all roads, tracks, paths, and unambiguously distinguishes their types. Also features outdoor touring options like the original SAC Alpine hiking trail coding. (Depends on default.)
+
 		Differences of the "Touring View" vs. the "Default" Renderer:
 		In Touring View:
-		  * some road and track types already shown at lower zooms (essential for travel and orienteering)
-		  * the road colors allow unambiguous distinction between all highway/road/track types 
-		  * the road colors are more aligned with conventional road atlas
-		  * the road visibility is increased for better outdoor, driving, and navigation use
-		  * the route+gpx visibility increased
-		  * there are additional touring feature options
-                    - to display the SAC scale (for Alpine hiking)
-                    - display hiking route symbols (now moved as module to default renderer)
-                    - display bicycle networks (now moved as module to default renderer)
-		  * TODO: Area-sensitive rendering: Include _all_ roads in very low density areas (remote deserts, etc.)
+			* Some road and track types are already shown at lower zooms (essential for travel and orienteering)
+			* The road colors allow unambiguous distinction between all highway/road/track types 
+			* The road colors are closer aligned with professional drivers' road atlas schemes
+			* The road visibility is increased to ease outdoor, driving, and navigation use
+			* The route and gpx visibility is increased
+			* The area colors use more pastel (paler) coloring for standard big areal features, which improves contrast and leaves the intense colors to stand out more for things which actually need emphasizing.
+			* There are additional touring feature options like
+				- display the SAC Alpine hiking trail coding
+				- display hiking route symbols (this module has now moved to the default renderer)
+				- display bicycle networks (this module has now moved to the default renderer)
+				- detailed options to display contour lines (this module has now moved to the default renderer)
+			* TODO: Area-sensitive rendering: Include _all_ roads in very low density areas (remote deserts, etc.)
 	-->
 
 	<!--
-	RENDERER CONCEPT: Concept of what is rendered at what zoom Level (Dr. Hardy Mueller, 2011-06-26)
+	RENDERER CONCEPT: What is rendered at what zoom Level (Dr. Hardy Mueller, 2011-06-26)
 
-		The map rendering is aligned to "the typical map use" per zoom level (scale), to always produce a complete and dependable map (for travel/orienteering) at the lowest possible zoom, as follows:
+		The map rendering is aligned to a "typical map use" per zoom level (scale), to always produce a complete and dependable map for travel/orienteering at the lowest possible zoom, as follows:
 
-                 *****  *********************************  *****************
-		 Zoom
-		 Level  Typical Use                        Features Rendered
-                 *****  *********************************  *****************
-		 -  7   "Rough Region Level Overview"      Shows motorways, trunks, primary roads and city names
-		 - 11   "Country Road Atlas"               Secondary roads (already from zoom 9) and motorways/trunks/primaries from z7, secondaries from z9, tertiaries from z10. Show large scale landuse like forest and residential areas (already from zoom 10). Also all town names (already from zoom 9) and now all other locality names. Shows mountain peaks for orientation
-		 - 12   "Detailed Country Road Atlas"      Add all other public highways like road, unclassified, residential. Add tracks including track-type, and foot and bike paths. Also tag mountain peaks. Note that from this zoom level on ALL roads/tracks/paths are displayed, so it gives RELIABLE TRAVEL OVERVIEW!
-		 - 13   "Regional Driving. Good Overview"  Displays all driving as well as hiking connections. Show service, living street, pedestrian and footway highways. Include all area landuse.
+		*****   *********************************   *****************
+		Zoom
+		Level   Typical Use                         Features Rendered
+		*****   *********************************   *****************
+		 -  7   "Rough Region Level Overview"       Shows motorways, trunks, primary roads, and city names
+		 - 11   "Country Road Atlas"                Secondary roads (already from zoom 9), motorways/trunks/primaries (from z7), tertiaries (from z10). Show large scale landuse like forest and residential areas (from z10). Also all town names (from z9), and now all other locality names. Shows mountain peaks for orientation.
+		 - 12   "Detailed Country Road Atlas"       Add all other public highways like road, unclassified, residential. Add tracks including track-type, and foot and bike paths. Now tag mountain peaks. From this zoom level on ALL roads/tracks/paths are displayed, so it gives RELIABLE TRAVEL OVERVIEW.
+		 - 13   "Regional Driving and Overview"     Displays all driving as well as hiking connections. Show service, living street, pedestrian and footway highways. Includes all area landuse.
 		 - 14   "Local Driving", also "Hiking Map"
-		 - 15   "City Driving"                     Display all details of interest for this
-		 - 16   "Walking", "City Tour"             Outline and tag buildings
-		 - 17   "Immediate orientation"            Building details, street corner details like traffic_signals, post_box, remaining POIs
+		 - 15   "City Driving"                      Display all details of interest for city driving.
+		 - 16   "Walking", "City Tour"              Outline and tag buildings.
+		 - 17   "Immediate orientation"             Building details, street corner details like traffic_signals, post_box, remaining POIs.
 
-		- Remark: These were the original "static" zoom limits, before we expanded the rendering scheme below zoom 7 and created an algorithm to already "selectively" include significant map objects there at map creation time.
-		- roadColors="Road atlas style" scheme aligned with conventional road atlas, Saturation=50, Brightness=100, except trunk is considered special case of primary (same hue). For best visibility: routeColor="#960000FF, gpxColor="#B400FFFF".
+		- (These were the original "static" zoom limits, before we expanded the rendering scheme below zoom 7 and created an algorithm to already "selectively" include significant map objects there at map creation time.)
 	-->
 
 	<!--
-	NIGHT VIEW CONCEPT: Main colors for night renderer, by Hardy Mueller, 2011-07-04, reworked to more grey/green pattern 2013-11-30:
+	NIGHT VIEW CONCEPT: Main colors for night renderer, by Hardy Mueller, 2011-07-04, reworked to a more gray/green pattern 2013-11-30:
 		Areas (night view collapses areas to groups for more homogeneity):
 		- defaultColorNight:             002a2a (middle brightness between lighter open nature and darker forests)
 		- forestColorNight:              001122
@@ -49,14 +53,14 @@
 		- builtUpAreasColorNight:        3b3b3b
 		- buldingColorNight:             685454
 		Roads:
-		- road brightness levels aligned with road priority!
-		- 'white' roads: 9f9f9f to darken high density areas sufficiently
-		- leave other road colors like day, for easy recognition!
-		- applied some additional (80% brightness) road dimming for car profile night view (as roads are thicker)
+		- The road brightness levels are aligned with the road priority!
+		- The 'white' roads use 9f9f9f at night to darken high density areas sufficiently.
+		- All other night road colors are unchanged from 'day', for easy recognition!
+		- Some additional dimming (to 80% brightness) is applied for the car profile night view (as the roads are thicker).
 	-->
 
 	<!--
-	ALPINE HIKING based on tests by Christof Knuesel on 18.10.2012:
+	ALPINE HIKING based on tests by Christof Knuesel on 2012-10-18:
 		Purpose:
 		- Alpine Hiking option for mountain hiking with "Hike Bike Map (Hills Underlay)" as overlay map:
 		  With "Hike Bike Map (Hills Underlay)" it becomes hard to distinguish between black lines (path) and brown lines (track).
@@ -89,19 +93,19 @@
 			dotted line:       sac_scale = demanding_mountain_hiking and above
 	-->
 
-	<!-- Draft descriptions to explain the Touring view map style:
-		<string name="plugin_touringview_name">Touring map view</string>
-		<string name="plugin_touringview_descr">Activating this view changes OsmAnd\'s map style to \'Touring view\', this is a special high-detail view for travelers and professional drivers.
-			\n\nThis view provides, at any given map zoom, the maximum amount of travel details available in the map data (particularly roads, tracks, paths, and orientation marks).
-			\n\nIt also clearly depicts all types of roads unambiguously by color coding, which is useful when e.g. driving large vehicles.
-			\n\nAnd it provides special touring options like showing bicycle routes or Alpine mountain routes.
+	<!-- Description blueprint:
+		<string name="plugin_touringview_name">Touring view map style</string>
+		<string name="plugin_touringview_descr">Activating this view changes OsmAnd\'s map style to \'Touring view\', this is a general purpose high-detail, high contrast view for travelers and professional drivers.
+			\n\nIt provides at any given map zoom the maximum amount of travel details available, in particular depicts all roads, tracks, paths, and orientation marks. 
+			\n\nIt unambiguously distinguishes all road types by color coding, which is useful when e.g. driving large vehicles.
+			\n\nAlso features outdoor touring options like the original SAC Alpine hiking trail coding.
+			\n\nAll other features are handled as in the OsmAnd default map style.
 			\n\nA special map download is not needed, the view is created from our standard maps.
-			\n\nThis view can be reverted by either de-activating it again here, or by changing the \'Map style\' under \'Configure map\' as desired.
 		</string>
 	-->
 
 
-	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show cycle routes (*cn_networks)"
+	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show long distance cycle routes"
 		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="showMtbRoutes" name="Show MTB routes" description="Show mountain bike routes (*cn_networks)"
 		type="boolean" possibleValues="" category="routes"/>
@@ -116,17 +120,18 @@
 		type="string" possibleValues="translucent_cyan,red,translucent_red,orange,translucent_orange,yellow,translucent_yellow,lightgreen,translucent_lightgreen,green,translucent_green,lightblue,translucent_lightblue,blue,translucent_blue,purple,translucent_purple" defaultValueDescription="defaultTranslucentCyan"/>
 	<renderingProperty attr="currentTrackWidth" name="GPX width" description="Width of displayed GPX tracks"
 		type="string" possibleValues="fine,thin,medium,bold" defaultValueDescription="default"/>
+
+    <!-- The "Road atlas style" color options are aligned with some conventional road atlas schemes. -->
 	<renderingProperty attr="roadStyle" category="ui_hidden" type="string"/>
 
-	<!-- road casing contrast higher than in default -->
+	<!-- Road casing contrast higher than in default -->
 	<renderingAttribute name="shadowRendering">
-	<!-- 0 - no shadow, 1 - one step, 2 - blur shadow, 3 - solid shadow -->
-		<!-- next line ensures bridges stand out ok -->
+		<!-- This block seems broken, all occurrences of "shadowColor" below inserted on 2014-08-31 as temporary workaround -->
+		<!-- 0 - no shadow, 1 - one step, 2 - blur shadow, 3 - solid shadow -->
 		<case minzoom="14" nightMode="false" attrIntValue="3" shadowColor="#767676"/>
 		<case minzoom="14" attrIntValue="3" shadowColor="#464646"/>
 		<case minzoom="9" maxzoom="13" attrIntValue="3" shadowColor="#262626"/>
 		<case attrIntValue="0"/>
-	<!-- This block seems broken, all occurrences of "shadowColor" below inserted on 2014-08-31 as temporary workaround -->
 	</renderingAttribute>
 
 	<!-- routeColor contrast higher than in default -->
@@ -139,12 +144,6 @@
 
 	<!-- gpxColor contrast higher than in default -->
 	<renderingAttribute name="gpx">
-		<!--  This was the original block before introduction of renderingProperty currentTrackColor and currentTrackWidth:
-		<case strokeWidth="7:6" cap="BUTT" color="#B400FFFF">
-			<case nightMode="true" color="#B400FFFF"/>
-			<case additional="routePoints=true" color="#B400FFFF" pathEffect="6_5"/>
-		</case>
-		-->
 		<switch>
 			<case currentTrackColor="translucent_cyan" color="#B400FFFF"/>
 			<case currentTrackColor="red" color="#ff0000"/>
@@ -256,7 +255,8 @@
 		<case attrColorValue="#e8e8e8"/>
 	</renderingAttribute>
 
-	<renderingAttribute name="routeInfo_surface"> <!-- This attribute is needed because of motorcar=yes,foot=yes,bicycle=yes access types (see showAccess="true" section). After <case motorcar=yes> we need to restore surface color (because access and surface uses the same color_3 line layer). Downside: renderingAttribute can't be used inside another renderingAttribute. Upside: custom surface types can be added via dependent rendering style without too much copying of code. -->
+	<renderingAttribute name="routeInfo_surface">
+		<!-- This attribute is needed because of motorcar=yes,foot=yes,bicycle=yes access types (see showAccess="true" section). After <case motorcar=yes> we need to restore surface color (because access and surface uses the same color_3 line layer). Downside: renderingAttribute can't be used inside another renderingAttribute. Upside: custom surface types can be added via dependent rendering style without too much copying of code. -->
 		<case additional="surface=unpaved" attrColorValue="$surfaceUnpavedColor" attrStringValue="surface_unpaved"/>
 		<case additional="surface=sand" attrColorValue="$surfaceSandColor" attrStringValue="surface_sand"/>
 		<case additional="surface=grass" attrColorValue="$surfaceGrassColor" attrStringValue="surface_grass"/>
@@ -267,14 +267,12 @@
 		<case additional="surface=ice" attrColorValue="$surfaceIceColor" attrStringValue="surface_ice"/>
 		<case additional="surface=salt" attrColorValue="$surfaceSaltColor" attrStringValue="surface_salt"/>
 		<case additional="surface=snow" attrColorValue="$surfaceSnowColor" attrStringValue="surface_snow"/>
-
 		<case additional="surface=asphalt" attrColorValue="$surfaceAsphaltColor" attrStringValue="surface_asphalt"/>
 		<case additional="surface=paved" attrColorValue="$surfacePavedColor" attrStringValue="surface_paved"/>
 		<case additional="surface=concrete" attrColorValue="$surfaceConcreteColor" attrStringValue="surface_concrete"/>
 		<case additional="surface=sett" attrColorValue="$surfaceSettColor" attrStringValue="surface_sett"/>
 		<case additional="surface=cobblestone" attrColorValue="$surfaceCobblestoneColor" attrStringValue="surface_cobblestone"/>
 		<case additional="surface=paving_stones" attrColorValue="$surfacePavingStonesColor" attrStringValue="surface_paving_stones"/>
-
 		<case additional="surface=pebblestone" attrColorValue="$surfacePebblestoneColor" attrStringValue="surface_pebblestone"/>
 		<case additional="surface=stone" attrColorValue="$surfaceStoneColor" attrStringValue="surface_stone"/>
 		<case additional="surface=metal" attrColorValue="$surfaceMetalColor" attrStringValue="surface_metal"/>
@@ -282,8 +280,8 @@
 		<case additional="surface=gravel" attrColorValue="$surfaceGravelColor" attrStringValue="surface_gravel"/>
 		<case additional="surface=fine_gravel" attrColorValue="$surfaceFineGravelColor" attrStringValue="surface_fine_gravel"/>
 		<case additional="surface=compacted" attrColorValue="$surfaceCompactedColor" attrStringValue="surface_compacted"/>
-		<case additional="surface=undefined" attrColorValue="$surfaceUndefinedColor" attrStringValue="surface_undefined"/> <!-- Used in route details info -->
-
+		<case additional="surface=undefined" attrColorValue="$surfaceUndefinedColor" attrStringValue="surface_undefined"/>
+		<!-- Used in route details info -->
 		<case attrColorValue="$null"/>
 	</renderingAttribute>
 
@@ -296,7 +294,8 @@
 	<renderingConstant name="surfaceGradeVeryHorribleColor" value="#fe5050"/>
 	<renderingConstant name="surfaceGradeImpassableColor" value="#ff1111"/>
 
-	<renderingAttribute name="routeInfo_smoothness"> <!-- Used in route details info -->
+	<renderingAttribute name="routeInfo_smoothness">
+		<!-- Used in route details info -->
 		<case additional="smoothness=excellent" attrColorValue="$surfaceGradeExcellentColor" attrStringValue="smoothness_excellent"/>
 		<case additional="smoothness=good" attrColorValue="$surfaceGradeGoodColor" attrStringValue="smoothness_good"/>
 		<case additional="smoothness=intermediate" attrColorValue="$surfaceGradeIntermediateColor" attrStringValue="smoothness_intermediate"/>
@@ -308,33 +307,33 @@
 		<case additional="smoothness=undefined" attrColorValue="#e8e8e8" attrStringValue="smoothness_undefined"/>
 	</renderingAttribute>
 
-
-	<renderingAttribute name="polygonMinSizeToDisplay">
 	<!-- Minimum polygon size in pixels -->
 	<!-- Some impact on performance, up to 20% at some zoom levels between 10 and 36 -->
+	<renderingAttribute name="polygonMinSizeToDisplay">
 		<case moreDetailed="true" attrIntValue="10"/>
 		<case attrIntValue="36"/>
 	</renderingAttribute>
 
-	<renderingAttribute name="roadDensityZoomTile">
+	<!-- Internals how to render small lines and small polygons -->
 	<!-- 8 (=1 pixel tile) down to 0 (=large tile) -->
+	<renderingAttribute name="roadDensityZoomTile">
 		<case attrIntValue="3"/>
 	</renderingAttribute>
 
-	<renderingAttribute name="roadsDensityLimitPerTile">
 	<!-- Number of roads to display per tile - 24 default for bicycle and pedestrian, 12 otherwise -->
 	<!-- Minimal impact on performance, too small values like 12 lead to missing tracks hence map errors. 100 means basically unlimited. -->
+	<renderingAttribute name="roadsDensityLimitPerTile">
 		<case attrIntValue="100"/>
 	</renderingAttribute>
 
-	<!-- renderingConstant name="hmRendered" value="true"/-->
+	<!-- renderingConstant name="hmRendered" value="true"/ -->
 	<!-- hmRendered now outdated as all minzooms are defined directly. Switch was formerly used to maximize map details and include roads as early as possible for travel and orienteering -->
 
 
 	<!-- Touring View color pattern -->
 
 	<!-- Touring View road colors -->
-	<!-- road color contrast higher than in default, and all road types clearly distinguishable -->
+	<!-- Road color contrast higher than in default, and all road types clearly distinguishable -->
 	<renderingConstant name="motorwayRoadColor" value="#f7fe2e"/>
 	<renderingConstant name="motorwayRoadColor0" value="#fe2e2e"/>
 	<renderingConstant name="trunkRoadColor" value="#dcdcdc"/>
@@ -385,11 +384,6 @@
 
 	<renderingConstant name="accessPrivateColor" value="#feb3b3"/>
 
-<!--
-	<renderingConstant name="contourLineColor" value="#2Aff7c00"/>
-	<renderingConstant name="contourLineColor50m" value="#2Aea7300"/>
--->
-
 	<renderingConstant name="sacScaleColorT1" value="#000000"/>
 	<renderingConstant name="sacScaleColorT2" value="#ff0000"/>
 	<renderingConstant name="sacScaleColorT3" value="#ff0000"/>
@@ -404,11 +398,17 @@
 	<renderingConstant name="cycleRouteicnColor" value="#40ff0000"/>
 -->
 
+<!--
+	<renderingConstant name="contourLineColor" value="#2Aff7c00"/>
+	<renderingConstant name="contourLineColor50m" value="#2Aea7300"/>
+-->
+
 	<renderingConstant name="null" value="#00000000"/>
 
 	<!-- Area colors for touring relevant area features, this also ensures they are always displayed -->
+	<!-- Use more pastel (paler) coloring for standard big areal features, which leaves the intense colors to stand out more for things which actually need emphasizing.
 
-	<!-- constants for night colors, as they often collapse several different day features -->
+	<!-- Constants for night colors, they often collapse several different day features -->
 	<renderingConstant name="defaultColorNight" value="#002a2a"/>
 	<renderingConstant name="forestColorNight" value="#001122"/>
 	<renderingAttribute name="openNatureColorNight">
@@ -426,16 +426,14 @@
 		</case>
 	</renderingAttribute>
 
-	<!-- Wooded areas, forest -->
+	<!-- Wooded areas, forest, also scrub -->
 	<renderingAttribute name="woodColor">
 		<case nightMode="true" attrColorValue="$forestColorNight"/>
 		<case attrColorValue="#aed1a0"/>
-		<!-- also scrub -->
 	</renderingAttribute>
 	<renderingAttribute name="forestColor">
 		<case nightMode="true" attrColorValue="$forestColorNight"/>
 		<case attrColorValue="#aed1a0"/>
-		<!-- case attrColorValue="#9dd57c"/ was too intensive for a backgound, obscured visibility inside and the new shaders -->
 	</renderingAttribute>
 
 	<!-- Open nature (low vegetation) -->
@@ -483,7 +481,7 @@
 		<case nightMode="true" attrColorValue="$openNatureColorNight"/>
 		<case attrColorValue="#cfeca8"/>
 	</renderingAttribute>
-	<!-- from default for now: landuse=cemetery, natural=fell, natural=bare_rock(/scree/shingle), natural=beach, natural=sand, natural=wetland, natural=glacier -->
+	<!-- For others, use default renderer, e.g. for landuse=cemetery, natural=fell, natural=bare_rock(/scree/shingle), natural=beach, natural=sand, natural=wetland, natural=glacier, etc. -->
 
 	<!-- Water -->
 	<renderingAttribute name="waterColor">
@@ -628,31 +626,25 @@
 	<renderingAttribute name="tertiaryTextColor">
 		<case attrColorValue="$black"/>
 	</renderingAttribute>
-
 	<renderingAttribute name="residentialTextColor">
 		<case nightMode="true" attrColorValue="$white"/>
 		<case attrColorValue="$black"/>
 	</renderingAttribute>
-
 	<renderingAttribute name="residentialTextHaloColor">
 		<case attrColorValue="$residentialRoadColor"/>
 	</renderingAttribute>
-
 	<renderingAttribute name="pedestrianTextColor">
 		<case nightMode="true" attrColorValue="$white"/>
 		<case attrColorValue="$black"/>
 	</renderingAttribute>
-
 	<renderingAttribute name="serviceTextColor">
 		<case nightMode="true" attrColorValue="$white"/>
 		<case attrColorValue="$black"/>
 	</renderingAttribute>
-
 	<renderingAttribute name="serviceTextHaloColor">
 		<case nightMode="true" attrColorValue="#6f6f6f"/>
 		<case attrColorValue="#ececec"/>
 	</renderingAttribute>
-
 	<renderingAttribute name="serviceDrivewayTextHaloColor">
 		<case nightMode="true" attrColorValue="#6f6f6f"/>
 		<case attrColorValue="#ececec"/>
@@ -662,7 +654,6 @@
 		<case nightMode="true" attrColorValue="#8EAAEB"/>
 		<case attrColorValue="#2375aa"/>
 	</renderingAttribute>
-
 	<renderingAttribute name="waterTextHaloColor">
 		<case nightMode="true" attrColorValue="#9939528B"/>
 		<case attrColorValue="#99ddf1fd"/>
@@ -705,7 +696,7 @@
 
 
 	<line>
-		<!-- This section needed because Touring View defines customized road patterns and earlier minzooms -->
+		<!-- This section is needed because Touring View defines customized road patterns and earlier minzooms -->
 		<switch>
 			<switch>
 				<switch>
@@ -724,7 +715,8 @@
 						<case minzoom="7" maxzoom="7" strokeWidth="1.3" strokeWidth_0="4"/>
 						<case minzoom="8" maxzoom="8" strokeWidth="1.7" strokeWidth_0="5"/>
 						<case minzoom="9" maxzoom="9" strokeWidth="2" strokeWidth_0="6"/>
-						<case baseAppMode="car"> <!-- bigger strokewidth for better visibility of road type during navigation -->
+						<case baseAppMode="car">
+							<!-- Bigger strokewidth for better visibility of road type during navigation -->
 							<case minzoom="10" maxzoom="10" strokeWidth="2.7" strokeWidth_0="8"/>
 							<case minzoom="11" maxzoom="11" strokeWidth="3.3" strokeWidth_0="10"/>
 							<case minzoom="12" maxzoom="12" strokeWidth="4" strokeWidth_0="12"/>
@@ -740,7 +732,7 @@
 						<case minzoom="14" maxzoom="14" strokeWidth="4" strokeWidth_0="12"/>
 						<case minzoom="15" maxzoom="15" strokeWidth="5" strokeWidth_0="15"/>
 						<case minzoom="16" strokeWidth="6.7" strokeWidth_0="20"/>
-						<!-- Tunnels and Bridges -->
+						<!-- Tunnels and bridges -->
 						<apply_if layer="-1" minzoom="14" pathEffect="6_6" cap="BUTT" pathEffect_0="6_6" color__1="#000000" pathEffect__1="6_6">
 							<case baseAppMode="car">
 								<case minzoom="14" maxzoom="14" strokeWidth__1="18:4"/>
@@ -784,7 +776,7 @@
 						<case minzoom="14" maxzoom="14" strokeWidth="5" strokeWidth_0="10"/>
 						<case minzoom="15" maxzoom="15" strokeWidth="6" strokeWidth_0="12"/>
 						<case minzoom="16" strokeWidth="7" strokeWidth_0="14"/>
-						<!-- Tunnels and Bridges -->
+						<!-- Tunnels and bridges -->
 						<apply_if layer="-1" minzoom="14" pathEffect="4_4" cap="BUTT" pathEffect_0="4_4" color__1="#000000" pathEffect__1="4_4">
 							<case minzoom="14" maxzoom="14" strokeWidth__1="10:4"/>
 							<case minzoom="15" maxzoom="15" strokeWidth__1="12:4"/>
@@ -811,7 +803,8 @@
 						<case minzoom="5" maxzoom="6" strokeWidth="1"/>
 						<case minzoom="7" maxzoom="8" strokeWidth="2"/>
 						<case minzoom="9" maxzoom="9" strokeWidth="3" shadowColor="$shadowColorLowZoom"/>
-						<case baseAppMode="car"> <!-- bigger strokewidth for better visibility of road type during navigation -->
+						<case baseAppMode="car">
+							<!-- Bigger strokewidth for better visibility of road type during navigation -->
 							<case minzoom="10" maxzoom="10" strokeWidth="5" shadowColor="$shadowColorLowZoom"/>
 							<case minzoom="11" maxzoom="11" strokeWidth="6" shadowColor="$shadowColorLowZoom"/>
 							<case minzoom="12" maxzoom="12" strokeWidth="7" shadowColor="$shadowColorLowZoom"/>
@@ -829,7 +822,7 @@
 						<case minzoom="15" maxzoom="15" strokeWidth="12"/>
 						<case minzoom="16" maxzoom="16" strokeWidth="15"/>
 						<case minzoom="17" strokeWidth="20"/>
-						<!-- Tunnels and Bridges -->
+						<!-- Tunnels and bridges -->
 						<apply_if layer="-1" minzoom="14" pathEffect="4_4" color_0="#000000" pathEffect_0="4_4" shadowRadius=":0" cap="BUTT">
 							<case baseAppMode="car">
 								<case minzoom="14" maxzoom="14" strokeWidth_0="14:4"/>
@@ -870,7 +863,8 @@
 					<apply shadowRadius=":1.5" shadowColor="$shadowColorDay" cap="ROUND">
 						<case minzoom="8" maxzoom="8" strokeWidth="1"/>
 						<case minzoom="9" maxzoom="9" strokeWidth="2" shadowColor="$shadowColorLowZoom"/>
-						<case baseAppMode="car"> <!-- bigger strokewidth for better visibility of road type during navigation -->
+						<case baseAppMode="car">
+							<!-- Bigger strokewidth for better visibility of road type during navigation -->
 							<case minzoom="10" maxzoom="10" strokeWidth="4" shadowColor="$shadowColorLowZoom"/>
 							<case minzoom="11" maxzoom="11" strokeWidth="5" shadowColor="$shadowColorLowZoom"/>
 							<case minzoom="12" maxzoom="12" strokeWidth="6" shadowColor="$shadowColorLowZoom"/>
@@ -888,7 +882,7 @@
 						<case minzoom="15" maxzoom="15" strokeWidth="10"/>
 						<case minzoom="16" maxzoom="16" strokeWidth="14"/>
 						<case minzoom="17" strokeWidth="19"/>
-						<!-- Tunnels and Bridges -->
+						<!-- Tunnels and bridges -->
 						<apply_if layer="-1" minzoom="14" pathEffect="4_4" color_0="#000000" pathEffect_0="4_4" shadowRadius=":0" cap="BUTT">
 							<case baseAppMode="car">
 								<case minzoom="14" maxzoom="14" strokeWidth_0="12:4"/>
@@ -935,7 +929,8 @@
 						<case color="$tertiaryRoadColor"/>
 					</apply>
 					<apply shadowRadius=":1.5" shadowColor="$shadowColorDay" cap="ROUND">
-						<case baseAppMode="car"> <!-- bigger strokewidth for better visibility of road type during navigation -->
+						<case baseAppMode="car">
+							<!-- Bigger strokewidth for better visibility of road type during navigation -->
 							<case minzoom="10" maxzoom="10" strokeWidth="3" shadowColor="$shadowColorLowZoom"/>
 							<case minzoom="11" maxzoom="11" strokeWidth="4" shadowColor="$shadowColorLowZoom"/>
 							<case minzoom="12" maxzoom="12" strokeWidth="5" shadowColor="$shadowColorLowZoom"/>
@@ -953,7 +948,7 @@
 						<case minzoom="15" maxzoom="15" strokeWidth="8"/>
 						<case minzoom="16" maxzoom="16" strokeWidth="13"/>
 						<case minzoom="17" strokeWidth="18"/>
-						<!-- Tunnels and Bridges -->
+						<!-- Tunnels and bridges -->
 						<apply_if layer="-1" minzoom="14" pathEffect="4_4" color_0="#000000" pathEffect_0="4_4" shadowRadius=":0" cap="BUTT">
 							<case baseAppMode="car">
 								<case minzoom="14" maxzoom="14" strokeWidth_0="8:4"/>
@@ -984,7 +979,7 @@
 					</apply>
 				</switch>
 
-				<!-- Blocks roads/unclassified/residential and service/living-street/residential should be unchanged from default renderer -->
+				<!-- The block roads/unclassified/residential copied unchanged from default renderer -->
 				<switch>
 					<case tag="highway" value="road"/>
 					<case tag="highway" value="unclassified"/>
@@ -1014,7 +1009,7 @@
 						</case>
 						<apply_if nightMode="true" shadowColor="$shadowColorNight"/>
 
-					<!--    Use showAccess module from default renderer from now on:
+					<!-- Now use showAccess from default renderer
 						<apply_if minzoom="15" additional="access=no" color_3="$accessPrivateColor" strokeWidth_3="2:3" pathEffect_3="10_3"/> 
 						<apply_if minzoom="15" additional="access=private" color_3="$accessPrivateColor" strokeWidth_3="2:3" pathEffect_3="10_3"/>
 					-->
@@ -1022,6 +1017,7 @@
 					</apply>
 				</switch>
 
+				<!-- The block service/living-street/residential copied unchanged from default renderer -->
 				<switch>
 					<case tag="highway" value="service"/>
 					<case tag="highway" value="living_street"/>
@@ -1052,7 +1048,7 @@
 						</case>
 						<apply_if nightMode="true" shadowColor="$shadowColorNight"/>
 
-					<!--    Use showAccess module from default renderer from now on:
+					<!-- Now use showAccess from default renderer
 						<apply_if minzoom="15" additional="access=no" color_3="$accessPrivateColor" strokeWidth_3="1:2" pathEffect_3="10_3"/> 
 						<apply_if minzoom="15" additional="access=private" color_3="$accessPrivateColor" strokeWidth_3="1:2" pathEffect_3="10_3"/>
 					-->
@@ -1188,7 +1184,7 @@
 				</apply_if>
 			</switch>
 
-			<!-- Blocks footway/steps/bridleway/cycleway should be unchanged from default renderer -->
+			<!-- Blocks footway/steps/bridleway/cycleway copied unchanged from default renderer -->
 			<switch>
 				<case tag="highway" value="footway" strokeWidth="1">
 					<case additional="footway=crossing" strokeWidth="0.1"/>
@@ -1247,7 +1243,7 @@
 				<case additional="smoothness=impassable" color_2="$surfaceGradeImpassableColor"/>
 			</apply_if>
 
-		<!-- Alpine Hiking Mode: remove conflicting colors -->
+			<!-- Alpine Hiking Mode: remove conflicting colors -->
 			<apply_if alpineHiking="true">
 				<case tag="highway" value="cycleway" color_5="$pathColorDay" pathEffect_5="4_2" color="$null">
 					<case minzoom="12" maxzoom="12" strokeWidth_5="0.7"/>
@@ -1263,18 +1259,19 @@
 					<apply_if nightMode="true" color_5="$pathColorNight"/>
 				</case>
 			</apply_if>
-		<!-- End Alpine Hiking Mode: remove conflicting colors -->
 
 			<!-- Bridges -->
 			<apply_if layer="1">
 				<case nightMode="true" minzoom="14" color__1="#ffffff" strokeWidth__1="4:2.5" color_0="#9F9F9F" strokeWidth_0="4:1"/>
 				<case minzoom="14" color__1="#000000" strokeWidth__1="4:2.5" color_0="#ffffff" strokeWidth_0="4:1"/>
 			</apply_if>
-			<!-- Tunnels -->
+
+            <!-- Tunnels -->
 			<apply_if layer="-1">
 				<case nightMode="true" minzoom="14" color__1="#ffffff" strokeWidth__1="4:2.5" pathEffect__1="3_3" color_0="#9F9F9F" strokeWidth_0="4:1"/>
 				<case minzoom="14" color__1="#000000" strokeWidth__1="4:2.5" pathEffect__1="3_3" color_0="#ffffff" strokeWidth_0="4:1"/>
 			</apply_if>
+
 		</switch>
 
 		<case tag="highway" value="ford" minzoom="14" color="#000000" strokeWidth="2"/>
@@ -1282,7 +1279,7 @@
 		<case tag="highway" value="proposed" minzoom="12" maxzoom="13" color="$proposedRoadColor" strokeWidth="6" color_2="$proposedRoadColor2" strokeWidth_2="4" pathEffect_2="6_2"/>
 		<case tag="highway" value="proposed" minzoom="14" color="$proposedRoadColor" strokeWidth="8" color_2="$proposedRoadColor2" strokeWidth_2="6" pathEffect_2="9_3"/>
 
-		<!-- cycleway=* unchanged from default renderer -->
+		<!-- cycleway=* copied unchanged from default renderer -->
 		<switch>
 			<case tag="cycleway" value="lane"/>
 			<case tag="cycleway" value="track"/>
@@ -1290,8 +1287,8 @@
 			<apply_if baseAppMode="bicycle" minzoom="14" color="$cyclewayColorDay" strokeWidth="2" pathEffect="8_4"/>
 		</switch>
 
-		<!-- contour lines -->
-	<!--
+		<!-- Contour lines -->
+	<!-- This module has now moved to the default renderer
 		<switch>
 			<case contourLines="11" tag="contour" value="elevation" minzoom="11" color="$contourLineColor" strokeWidth="1"/>
 			<case contourLines="12" tag="contour" value="elevation" minzoom="12" color="$contourLineColor" strokeWidth="1"/>
