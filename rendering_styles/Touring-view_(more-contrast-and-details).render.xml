@@ -105,34 +105,32 @@
 	-->
 
 
-	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show long distance cycle routes"
-		type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="showMtbRoutes" name="Show MTB routes" description="Show mountain bike routes (*cn_networks)"
-		type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="hikingRoutesOSMC" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces"
-		type="string" possibleValues="walkingRoutesOSMC,walkingRoutesScopeOSMC" defaultValueDescription="disabled" category="routes"/>
-	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
-		type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="horseRoutes" name="Horse routes" description="Horse routes"
-		type="boolean" possibleValues="" category="routes"/>
-
 	<renderingProperty attr="currentTrackColor" name="GPX color" description="Color of displayed GPX tracks"
 		type="string" possibleValues="translucent_cyan,red,translucent_red,orange,translucent_orange,yellow,translucent_yellow,lightgreen,translucent_lightgreen,green,translucent_green,lightblue,translucent_lightblue,blue,translucent_blue,purple,translucent_purple" defaultValueDescription="defaultTranslucentCyan"/>
+
 	<renderingProperty attr="currentTrackWidth" name="GPX width" description="Width of displayed GPX tracks"
 		type="string" possibleValues="fine,thin,medium,bold" defaultValueDescription="default"/>
 
-    <!-- The "Road atlas style" color options are aligned with some conventional road atlas schemes. -->
-	<renderingProperty attr="roadStyle" category="ui_hidden" type="string"/>
+	<!-- Touring view outdoor activity route features -->
+	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
+		type="boolean" possibleValues="" category="routes"/>
 
-	<!-- Road casing contrast higher than in default -->
-	<renderingAttribute name="shadowRendering">
-		<!-- This block seems broken, all occurrences of "shadowColor" below inserted on 2014-08-31 as temporary workaround -->
-		<!-- 0 - no shadow, 1 - one step, 2 - blur shadow, 3 - solid shadow -->
-		<case minzoom="14" nightMode="false" attrIntValue="3" shadowColor="#767676"/>
-		<case minzoom="14" attrIntValue="3" shadowColor="#464646"/>
-		<case minzoom="9" maxzoom="13" attrIntValue="3" shadowColor="#262626"/>
-		<case attrIntValue="0"/>
-	</renderingAttribute>
+<!-- These route features have now moved to the default renderer
+	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show long distance cycle routes"
+		type="boolean" possibleValues="" category="routes"/>
+
+	<renderingProperty attr="showMtbRoutes" name="Show MTB routes" description="Show mountain bike routes (*cn_networks)"
+		type="boolean" possibleValues="" category="routes"/>
+
+	<renderingProperty attr="hikingRoutesOSMC" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces"
+		type="string" possibleValues="walkingRoutesOSMC,walkingRoutesScopeOSMC" defaultValueDescription="disabled" category="routes"/>
+
+	<renderingProperty attr="horseRoutes" name="Horse routes" description="Horse routes"
+		type="boolean" possibleValues="" category="routes"/> -->
+
+	<!-- The "Road atlas style" color options are aligned with some conventional road atlas schemes. -->
+	<!-- renderingProperty attr="roadStyle" category="ui_hidden" type="string"/>
+-->
 
 	<!-- routeColor contrast higher than in default -->
 	<renderingAttribute name="route">
@@ -174,6 +172,116 @@
 		</switch>
 	</renderingAttribute>
 
+	<!-- Minimum polygon size in pixels -->
+	<!-- Some impact on performance, up to 20% at some zoom levels between 10 and 36 -->
+	<renderingAttribute name="polygonMinSizeToDisplay">
+		<case moreDetailed="true" attrIntValue="10"/>
+		<case attrIntValue="36"/>
+	</renderingAttribute>
+
+	<!-- Internals how to render small lines and small polygons -->
+	<!-- 8 (=1 pixel tile) down to 0 (=large tile) -->
+	<renderingAttribute name="roadDensityZoomTile">
+		<case attrIntValue="3"/>
+	</renderingAttribute>
+
+	<!-- Number of roads to display per tile - 24 default for bicycle and pedestrian, 12 otherwise -->
+	<!-- Minimal impact on performance, too small values like 12 lead to missing tracks hence map errors. 100 means basically unlimited. -->
+	<renderingAttribute name="roadsDensityLimitPerTile">
+		<case attrIntValue="100"/>
+	</renderingAttribute>
+
+	<!-- renderingConstant name="hmRendered" value="true"/ -->
+	<!-- hmRendered now outdated as all minzooms are defined directly. Switch was formerly used to maximize map details and include roads as early as possible for travel and orienteering -->
+
+
+	<!-- Touring View color pattern -->
+
+	<!-- Touring View road colors -->
+	<!-- Road color contrast higher than in default, and all road types clearly distinguishable -->
+	<renderingConstant name="motorwayRoadColor" value="#f7fe2e"/>
+	<renderingConstant name="motorwayRoadColor0" value="#fe2e2e"/>
+	<renderingConstant name="trunkRoadColor" value="#dcdcdc"/>
+	<renderingConstant name="trunkRoadColor0" value="#fe2e2e"/>
+	<renderingConstant name="trunkRoadColorNight" value="#ffffff"/>
+	<renderingConstant name="trunkRoadColor0Night" value="#fe2e2e"/>
+	<renderingConstant name="primaryRoadColor" value="#ff80a0"/>
+	<renderingConstant name="secondaryRoadColor" value="#ffd080"/>
+	<renderingConstant name="tertiaryRoadColor" value="#ffff80"/>
+
+	<!-- Dimmed road colors for car mode at night (80% Brightness) -->
+	<renderingConstant name="motorwayRoadColorDimmed" value="#c6cc26"/>
+	<renderingConstant name="motorwayRoadColor0Dimmed" value="#cc2626"/>
+	<renderingConstant name="trunkRoadColorDimmed" value="#cccccc"/>
+	<renderingConstant name="trunkRoadColor0Dimmed" value="#cc2626"/>
+	<renderingConstant name="primaryRoadColorDimmed" value="#cc6882"/>
+	<renderingConstant name="secondaryRoadColorDimmed" value="#cca568"/>
+	<renderingConstant name="tertiaryRoadColorDimmed" value="#cccc68"/>
+
+	<renderingAttribute name="residentialRoadColor">
+		<case attrColorValue="#ffffff">
+			<apply_if nightMode="true" attrColorValue="#9f9f9f"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="serviceRoadColor">
+		<case attrColorValue="#ececec">
+			<apply_if nightMode="true" attrColorValue="#727272"/>
+		</case>
+	</renderingAttribute>
+
+	<renderingConstant name="trackColor" value="#996600"/>
+	<renderingConstant name="pathColorDay" value="#000000"/>
+	<renderingConstant name="pathColorNight" value="#787878"/>
+	<renderingConstant name="cyclewayColorDay" value="#0000ff"/>
+	<renderingConstant name="footwayColorDay" value="#fa5073"/>
+	<renderingConstant name="bridlewayColorDay" value="#339900"/>
+
+	<!-- Road casing contrast higher than in default -->
+	<renderingConstant name="shadowColorDay" value="#767676"/>
+	<renderingConstant name="shadowColorNight" value="#464646"/>
+	<renderingConstant name="shadowColorLowZoom" value="#262626"/>
+
+	<renderingConstant name="constructionRoadColor" value="#ff6600"/>
+	<renderingConstant name="constructionRoadColor2" value="#ffffff"/>
+	<renderingConstant name="proposedRoadColor" value="#ff6600"/>
+	<renderingConstant name="proposedRoadColor2" value="#9f9f9f"/>
+	<renderingConstant name="racewayColorDay" value="#ffc5cf"/>
+	<renderingConstant name="racewayColorNight" value="#cd9fa7"/>
+
+	<renderingConstant name="accessPrivateColor" value="#feb3b3"/>
+
+	<renderingConstant name="sacScaleColorT1" value="#000000"/>
+	<renderingConstant name="sacScaleColorT2" value="#ff0000"/>
+	<renderingConstant name="sacScaleColorT3" value="#ff0000"/>
+	<renderingConstant name="sacScaleColorT4" value="#0033ff"/>
+	<renderingConstant name="sacScaleColorT5" value="#0033ff"/>
+	<renderingConstant name="sacScaleColorT6" value="#0033ff"/>
+
+	<renderingConstant name="null" value="#00000000"/>
+
+<!--
+	<renderingConstant name="cycleRoutelcnColor" value="#400000ff"/>
+	<renderingConstant name="cycleRoutercnColor" value="#40ff00ff"/>
+	<renderingConstant name="cycleRoutencnColor" value="#40ff4000"/>
+	<renderingConstant name="cycleRouteicnColor" value="#40ff0000"/>
+-->
+
+<!--
+	<renderingConstant name="contourLineColor" value="#2Aff7c00"/>
+	<renderingConstant name="contourLineColor50m" value="#2Aea7300"/>
+-->
+
+	<!-- Surface grade colors copied unchanged from default renderer -->
+	<renderingConstant name="surfaceGradeExcellentColor" value="#00d8ff"/>
+	<renderingConstant name="surfaceGradeGoodColor" value="#7debff"/>
+	<renderingConstant name="surfaceGradeIntermediateColor" value="#b1f3ff"/>
+	<renderingConstant name="surfaceGradeBadColor" value="#febcbc"/>
+	<renderingConstant name="surfaceGradeVeryBadColor" value="#fea9a9"/>
+	<renderingConstant name="surfaceGradeHorribleColor" value="#ff7f7f"/>
+	<renderingConstant name="surfaceGradeVeryHorribleColor" value="#fe5050"/>
+	<renderingConstant name="surfaceGradeImpassableColor" value="#ff1111"/>
+	
+	<!-- Surface colors copied unchanged from default renderer -->
 	<renderingAttribute name="surfaceAsphaltColor">
 		<case nightMode="true" attrColorValue="#eae6f3"/>
 		<case attrColorValue="#6f687e"/>
@@ -255,8 +363,8 @@
 		<case attrColorValue="#e8e8e8"/>
 	</renderingAttribute>
 
+	<!-- This attribute is needed because of motorcar=yes,foot=yes,bicycle=yes access types (see showAccess="true" section). After <case motorcar=yes> we need to restore surface color (because access and surface uses the same color_3 line layer). Downside: renderingAttribute can't be used inside another renderingAttribute. Upside: custom surface types can be added via dependent rendering style without too much copying of code. -->
 	<renderingAttribute name="routeInfo_surface">
-		<!-- This attribute is needed because of motorcar=yes,foot=yes,bicycle=yes access types (see showAccess="true" section). After <case motorcar=yes> we need to restore surface color (because access and surface uses the same color_3 line layer). Downside: renderingAttribute can't be used inside another renderingAttribute. Upside: custom surface types can be added via dependent rendering style without too much copying of code. -->
 		<case additional="surface=unpaved" attrColorValue="$surfaceUnpavedColor" attrStringValue="surface_unpaved"/>
 		<case additional="surface=sand" attrColorValue="$surfaceSandColor" attrStringValue="surface_sand"/>
 		<case additional="surface=grass" attrColorValue="$surfaceGrassColor" attrStringValue="surface_grass"/>
@@ -281,129 +389,8 @@
 		<case additional="surface=fine_gravel" attrColorValue="$surfaceFineGravelColor" attrStringValue="surface_fine_gravel"/>
 		<case additional="surface=compacted" attrColorValue="$surfaceCompactedColor" attrStringValue="surface_compacted"/>
 		<case additional="surface=undefined" attrColorValue="$surfaceUndefinedColor" attrStringValue="surface_undefined"/>
-		<!-- Used in route details info -->
 		<case attrColorValue="$null"/>
 	</renderingAttribute>
-
-	<renderingConstant name="surfaceGradeExcellentColor" value="#00d8ff"/>
-	<renderingConstant name="surfaceGradeGoodColor" value="#7debff"/>
-	<renderingConstant name="surfaceGradeIntermediateColor" value="#b1f3ff"/>
-	<renderingConstant name="surfaceGradeBadColor" value="#febcbc"/>
-	<renderingConstant name="surfaceGradeVeryBadColor" value="#fea9a9"/>
-	<renderingConstant name="surfaceGradeHorribleColor" value="#ff7f7f"/>
-	<renderingConstant name="surfaceGradeVeryHorribleColor" value="#fe5050"/>
-	<renderingConstant name="surfaceGradeImpassableColor" value="#ff1111"/>
-
-	<renderingAttribute name="routeInfo_smoothness">
-		<!-- Used in route details info -->
-		<case additional="smoothness=excellent" attrColorValue="$surfaceGradeExcellentColor" attrStringValue="smoothness_excellent"/>
-		<case additional="smoothness=good" attrColorValue="$surfaceGradeGoodColor" attrStringValue="smoothness_good"/>
-		<case additional="smoothness=intermediate" attrColorValue="$surfaceGradeIntermediateColor" attrStringValue="smoothness_intermediate"/>
-		<case additional="smoothness=bad" attrColorValue="$surfaceGradeBadColor" attrStringValue="smoothness_bad"/>
-		<case additional="smoothness=very_bad" attrColorValue="$surfaceGradeVeryBadColor" attrStringValue="smoothness_very_bad"/>
-		<case additional="smoothness=horrible" attrColorValue="$surfaceGradeHorribleColor" attrStringValue="smoothness_horrible"/>
-		<case additional="smoothness=very_horrible" attrColorValue="$surfaceGradeVeryHorribleColor" attrStringValue="smoothness_very_horrible"/>
-		<case additional="smoothness=impassable" attrColorValue="$surfaceGradeImpassableColor" attrStringValue="smoothness_impassable"/>
-		<case additional="smoothness=undefined" attrColorValue="#e8e8e8" attrStringValue="smoothness_undefined"/>
-	</renderingAttribute>
-
-	<!-- Minimum polygon size in pixels -->
-	<!-- Some impact on performance, up to 20% at some zoom levels between 10 and 36 -->
-	<renderingAttribute name="polygonMinSizeToDisplay">
-		<case moreDetailed="true" attrIntValue="10"/>
-		<case attrIntValue="36"/>
-	</renderingAttribute>
-
-	<!-- Internals how to render small lines and small polygons -->
-	<!-- 8 (=1 pixel tile) down to 0 (=large tile) -->
-	<renderingAttribute name="roadDensityZoomTile">
-		<case attrIntValue="3"/>
-	</renderingAttribute>
-
-	<!-- Number of roads to display per tile - 24 default for bicycle and pedestrian, 12 otherwise -->
-	<!-- Minimal impact on performance, too small values like 12 lead to missing tracks hence map errors. 100 means basically unlimited. -->
-	<renderingAttribute name="roadsDensityLimitPerTile">
-		<case attrIntValue="100"/>
-	</renderingAttribute>
-
-	<!-- renderingConstant name="hmRendered" value="true"/ -->
-	<!-- hmRendered now outdated as all minzooms are defined directly. Switch was formerly used to maximize map details and include roads as early as possible for travel and orienteering -->
-
-
-	<!-- Touring View color pattern -->
-
-	<!-- Touring View road colors -->
-	<!-- Road color contrast higher than in default, and all road types clearly distinguishable -->
-	<renderingConstant name="motorwayRoadColor" value="#f7fe2e"/>
-	<renderingConstant name="motorwayRoadColor0" value="#fe2e2e"/>
-	<renderingConstant name="trunkRoadColor" value="#dcdcdc"/>
-	<renderingConstant name="trunkRoadColor0" value="#fe2e2e"/>
-	<renderingConstant name="trunkRoadColorNight" value="#ffffff"/>
-	<renderingConstant name="trunkRoadColor0Night" value="#fe2e2e"/>
-	<renderingConstant name="primaryRoadColor" value="#ff80a0"/>
-	<renderingConstant name="secondaryRoadColor" value="#ffd080"/>
-	<renderingConstant name="tertiaryRoadColor" value="#ffff80"/>
-
-	<!-- Dimmed road colors for car mode at night (80% Brightness) -->
-	<renderingConstant name="motorwayRoadColorDimmed" value="#c6cc26"/>
-	<renderingConstant name="motorwayRoadColor0Dimmed" value="#cc2626"/>
-	<renderingConstant name="trunkRoadColorDimmed" value="#cccccc"/>
-	<renderingConstant name="trunkRoadColor0Dimmed" value="#cc2626"/>
-	<renderingConstant name="primaryRoadColorDimmed" value="#cc6882"/>
-	<renderingConstant name="secondaryRoadColorDimmed" value="#cca568"/>
-	<renderingConstant name="tertiaryRoadColorDimmed" value="#cccc68"/>
-
-	<renderingAttribute name="residentialRoadColor">
-		<case attrColorValue="#ffffff">
-			<apply_if nightMode="true" attrColorValue="#9f9f9f"/>
-		</case>
-	</renderingAttribute>
-	<renderingAttribute name="serviceRoadColor">
-		<case attrColorValue="#ececec">
-			<apply_if nightMode="true" attrColorValue="#727272"/>
-		</case>
-	</renderingAttribute>
-
-	<renderingConstant name="trackColor" value="#996600"/>
-	<renderingConstant name="pathColorDay" value="#000000"/>
-	<renderingConstant name="pathColorNight" value="#787878"/>
-	<renderingConstant name="cyclewayColorDay" value="#0000ff"/>
-	<renderingConstant name="footwayColorDay" value="#fa5073"/>
-	<renderingConstant name="bridlewayColorDay" value="#339900"/>
-
-	<renderingConstant name="shadowColorDay" value="#767676"/>
-	<renderingConstant name="shadowColorNight" value="#464646"/>
-	<renderingConstant name="shadowColorLowZoom" value="#262626"/>
-
-	<renderingConstant name="constructionRoadColor" value="#ff6600"/>
-	<renderingConstant name="constructionRoadColor2" value="#ffffff"/>
-	<renderingConstant name="proposedRoadColor" value="#ff6600"/>
-	<renderingConstant name="proposedRoadColor2" value="#9f9f9f"/>
-	<renderingConstant name="racewayColorDay" value="#ffc5cf"/>
-	<renderingConstant name="racewayColorNight" value="#cd9fa7"/>
-
-	<renderingConstant name="accessPrivateColor" value="#feb3b3"/>
-
-	<renderingConstant name="sacScaleColorT1" value="#000000"/>
-	<renderingConstant name="sacScaleColorT2" value="#ff0000"/>
-	<renderingConstant name="sacScaleColorT3" value="#ff0000"/>
-	<renderingConstant name="sacScaleColorT4" value="#0033ff"/>
-	<renderingConstant name="sacScaleColorT5" value="#0033ff"/>
-	<renderingConstant name="sacScaleColorT6" value="#0033ff"/>
-
-<!--
-	<renderingConstant name="cycleRoutelcnColor" value="#400000ff"/>
-	<renderingConstant name="cycleRoutercnColor" value="#40ff00ff"/>
-	<renderingConstant name="cycleRoutencnColor" value="#40ff4000"/>
-	<renderingConstant name="cycleRouteicnColor" value="#40ff0000"/>
--->
-
-<!--
-	<renderingConstant name="contourLineColor" value="#2Aff7c00"/>
-	<renderingConstant name="contourLineColor50m" value="#2Aea7300"/>
--->
-
-	<renderingConstant name="null" value="#00000000"/>
 
 	<!-- Area colors for touring relevant area features, this also ensures they are always displayed -->
 	<!-- Use more pastel (paler) coloring for standard big areal features, which leaves the intense colors to stand out more for things which actually need emphasizing. -->
