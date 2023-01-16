@@ -9,6 +9,8 @@ cp -f ../../android/OsmAnd/res/values-b+hsb/phrases.xml phrases/hsb/
 cp -f ../../android/OsmAnd/res/values-b+kab/phrases.xml phrases/kab/
 cp -f ../../android/OsmAnd/res/values-be/phrases.xml phrases/be/
 cp -f ../../android/OsmAnd/res/values-bg/phrases.xml phrases/bg/
+cp -f ../../android/OsmAnd/res/values-bn/phrases.xml phrases/bn/
+cp -f ../../android/OsmAnd/res/values-br/phrases.xml phrases/br/
 
 cp -f ../../android/OsmAnd/res/values-ca/phrases.xml phrases/ca/
 cp -f ../../android/OsmAnd/res/values-cs/phrases.xml phrases/cs/
