@@ -170,6 +170,8 @@ icon_alias birds_nest poi_colored_birds_nest
 icon_alias topo_birds_nest topo_birds_nest
 icon_alias termite_mound poi_termite_mound
 icon_alias topo_termite_mound topo_termite_mound
+icon_alias anthill poi_anthill
+icon_alias topo_anthill topo_anthill
 
 ## Location dots
 icon_alias administrative poi_colored_boundary_administrative
@@ -693,6 +695,7 @@ icon_alias topo_lean_to topo_topo_lean_to
 icon_alias tourism_apartment accommodation_apartment
 icon_alias topo_apartment topo_topo_apartment
 icon_alias tourism_camp_site accommodation_camping
+icon_alias camp_pitch tourist_camp_pitch
 icon_alias topo_camp_site topo_topo_camp_site
 icon_alias tourism_caravan_site accommodation_caravan
 icon_alias topo_caravan_site topo_topo_caravan_site
