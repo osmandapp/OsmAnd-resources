@@ -47,8 +47,8 @@ function populateDictionary(tts) {
 	dictionary["roundabout"] = tts ? "kjør inn i rundkjøringen" : "roundabout.ogg";
 	dictionary["then"] = tts ? "deretter" : "then.ogg";
 	dictionary["and"] = tts ? "og" : "and.ogg";
-	dictionary["take"] = tts ? "ta den" : "take.ogg";
-	dictionary["exit"] = tts ? "avkjøringen" : "exit.ogg";
+	dictionary["take"] = tts ? "ta" : "take.ogg";
+	dictionary["exit"] = tts ? "avkjøring" : "exit.ogg";
 
 	dictionary["1st"] = tts ? "første" : "1st.ogg";
 	dictionary["2nd"] = tts ? "andre" : "2nd.ogg";
@@ -73,17 +73,17 @@ function populateDictionary(tts) {
 	dictionary["follow"] = tts ? "Følg veien" : "follow.ogg";  // "Follow the course of the road for" perceived as too chatty by many users
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "og så ankommer du reisemålet ditt" : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "du har nådd reisemålet ditt" : "reached_destination.ogg";
+	dictionary["and_arrive_destination"] = tts ? "og så ankommer du reisemålet" : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "du har nådd reisemålet" : "reached_destination.ogg";
 	dictionary["and_arrive_intermediate"] = tts ? "og så ankommer du det mellomliggende reisemålet" : "and_arrive_intermediate.ogg";
 	dictionary["reached_intermediate"] = tts ? "du har nådd det mellomliggende reisemålet" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "og passerer GPX-rutepunkt" : "and_arrive_waypoint.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "og du passerer GPX-rutepunkt" : "and_arrive_waypoint.ogg";
 	dictionary["reached_waypoint"] = tts ? "du passerer GPX-rutepunkt" : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "og passerer favoritt" : "and_arrive_favorite.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "og du passerer favoritt" : "and_arrive_favorite.ogg";
 	dictionary["reached_favorite"] = tts ? "du passerer favoritt" : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "og passerer interessepunkt" : "and_arrive_poi.ogg";
+	dictionary["and_arrive_poi"] = tts ? "og du passerer interessepunkt" : "and_arrive_poi.ogg";
 	dictionary["reached_poi"] = tts ? "du passerer interessepunkt" : "reached_poi.ogg";
 
 	// ATTENTION
@@ -92,21 +92,21 @@ function populateDictionary(tts) {
 	dictionary["attention"] = tts ? "Oppmerksom på" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "fotoboks" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "grensekontroll" : "border_control.ogg";
-	dictionary["railroad_crossing"] = tts ? "jernbaneovergang" : "railroad_crossing.ogg";
-	dictionary["traffic_calming"] = tts ? "trafikkhump" : "traffic_calming.ogg";
+	dictionary["railroad_crossing"] = tts ? "planovergang" : "railroad_crossing.ogg";
+	dictionary["traffic_calming"] = tts ? "fartsdemping" : "traffic_calming.ogg";
 	dictionary["toll_booth"] = tts ? "bomstasjon" : "toll_booth.ogg";
 	dictionary["stop"] = tts ? "stoppskilt" : "stop.ogg";
 	dictionary["pedestrian_crosswalk"] = tts ? "fotgjengerovergang" : "pedestrian_crosswalk.ogg";
 	dictionary["tunnel"] = tts ? "tunnel" : "tunnel.ogg";
 
 	// OTHER PROMPTS
-	dictionary["location_lost"] = tts ? "g p s signal mistet" : "location_lost.ogg";
+	dictionary["location_lost"] = tts ? "g p s signal tapt" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "g p s signal gjenfunnet" : "location_recovered.ogg";
 	dictionary["off_route"] = tts ? "du har vært utenfor ruten" : "off_route.ogg";
 	dictionary["back_on_route"] = tts ? "du er tilbake på ruten" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "på" : "onto.ogg";
+	dictionary["onto"] = tts ? "inn på" : "onto.ogg";
 	dictionary["on"] = tts ? "på" : "on.ogg";    // is used if you turn together with your current street, i.e. street name does not change.
 	dictionary["to"] = tts ? "til" : "to.ogg";
 	dictionary["toward"] = tts ? "mot" : "toward.ogg";
