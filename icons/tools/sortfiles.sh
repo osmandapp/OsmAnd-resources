@@ -778,6 +778,7 @@ icon_alias topo_geoglyph topo_topo_geoglyph
 icon_alias trailhead tourist_trailhead
 icon_alias trail_riding_station tourist_trail_riding_station
 icon_alias topo_trailhead topo_topo_trailhead
+icon_alias ranger_station amenity_ranger_station
 
 ## Entertainment
 icon_alias entertainment tourist_cinema3
@@ -1016,6 +1017,7 @@ icon_alias waste_basket2 amenity_colored_waste_basket
 icon_alias waste_disposal amenity_colored_waste_disposal
 icon_alias shower amenity_shower
 icon_alias bench amenity_colored_bench
+icon_alias lounger amenity_colored_lounger
 icon_alias dry_cleaning amenity_dry_cleaning
 icon_alias massage amenity_massage
 icon_alias funeral_directors amenity_funeral_directors
@@ -1218,6 +1220,7 @@ icon_alias street_cabinet poi_colored_street_cabinet
 icon_alias sanitary_dump_station poi_colored_sanitary_dump_station
 icon_alias spoil_heap poi_colored_spoil_heap
 icon_alias ventilation_shaft poi_colored_ventilation_shaft
+icon_alias weightbridge transport_weightbridge
 icon_alias pumping_station poi_colored_pumping_station
 icon_alias mdf poi_colored_mdf
 icon_alias topo_power_plant topo_topo_power_plant
