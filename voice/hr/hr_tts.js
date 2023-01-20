@@ -369,14 +369,14 @@ function go_ahead(dist, streetName) {
 }
 
 function follow_street(streetName) {
-	if ((streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || Object.keys(streetName).length == 0 || !tts)
+	if ((streetName["toDest"] == "" && streetName["toStreetName"] == "" && streetName["toRef"] == "") || Object.keys(streetName).length == 0 || !tts)
 		return "";
-	if (streetName["toStreetName"] === "" && streetName["toRef"] === "")
+	if (streetName["toStreetName"] == "" && streetName["toRef"] == "")
 		return dictionary["to"] + " " + streetName["toDest"];
-	if (streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"]
+	if (streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"]
 		|| (streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == ""))
 		return dictionary["on"] + " " + assemble_street_name(streetName);
-	if (!(streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"]))
+	if (!(streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"]))
 		return dictionary["to"] + " " + assemble_street_name(streetName);
 	return "";
 }
@@ -397,7 +397,7 @@ function take_exit(turnType, dist, exitString, exitInt, streetName) {
 }
 
 function take_exit_name(streetName) {
-	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "") || !tts) {
+	if (Object.keys(streetName).length == 0 || (streetName["toDest"] == "" && streetName["toStreetName"] == "") || !tts) {
 		return "";
 	} else if (streetName["toDest"] != "") {
 		return (tts ? ", " : " ") + streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
@@ -450,24 +450,24 @@ function roundabout(dist, angle, exit, streetName) {
 }
 
 function turn_street(streetName) {
-	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || !tts)
+	if (Object.keys(streetName).length == 0 || (streetName["toDest"] == "" && streetName["toStreetName"] == "" && streetName["toRef"] == "") || !tts)
 		return "";
-	if (streetName["toStreetName"] === "" && streetName["toRef"] === "")
+	if (streetName["toStreetName"] == "" && streetName["toRef"] == "")
 		return dictionary["toward"] + " " + streetName["toDest"];
-	if (streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"])
+	if (streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"])
 		return dictionary["on"] + " " + assemble_street_name(streetName);
-	if ((streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"]) 
-		|| (streetName["toStreetName"] === "" && streetName["toRef"] === streetName["fromRef"]))
+	if ((streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"]) 
+		|| (streetName["toStreetName"] == "" && streetName["toRef"] == streetName["fromRef"]))
 		return dictionary["on"] + " " + assemble_street_name(streetName);
-	if (!(streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"]))
+	if (!(streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"]))
 		return dictionary["onto"] + " " + assemble_street_name(streetName);
 	return "";
 }
 
 function assemble_street_name(streetName) {
-	if (streetName["toDest"] === "")
+	if (streetName["toDest"] == "")
 		return streetName["toRef"] + " " + streetName["toStreetName"];
-	if (streetName["toRef"] === "")
+	if (streetName["toRef"] == "")
 		return streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	if (streetName["toRef"] != "")
 		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
