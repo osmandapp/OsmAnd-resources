@@ -152,7 +152,7 @@ function num_fe_str(number) {
 		return number.toString();
 	}
 	var tens = number % 100 - ones;
-	if (tens === 10) {
+	if (tens == 10) {
 		return number.toString();
 	}
 	var numberWithoutOnes = Math.floor(number / 10) * 10;
@@ -164,7 +164,7 @@ function num_fe_str(number) {
 function plural_str_form(value, pluralTimeForm, pluralTimeFormBetweenTwoAndFour) {
 	var ones = value % 10;
 	var tens = value % 100 - ones;
-	if (tens === 10) {
+	if (tens == 10) {
 		return pluralTimeForm;
 	}
 	if (ones > 1 && ones < 5) {
@@ -309,14 +309,14 @@ function go_ahead(dist, streetName) {
 }
 
 function follow_street(streetName) {
-	if ((streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || Object.keys(streetName).length == 0 || !tts) {
+	if ((streetName["toDest"] == "" && streetName["toStreetName"] == "" && streetName["toRef"] == "") || Object.keys(streetName).length == 0 || !tts) {
 		return "";
-	} else if (streetName["toStreetName"] === "" && streetName["toRef"] === "") {
+	} else if (streetName["toStreetName"] == "" && streetName["toRef"] == "") {
 		return dictionary["to"] + " " + streetName["toDest"];
-	} else if (streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"] || 
+	} else if (streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"] || 
 			(streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == "")) {
 		return dictionary["on"] + " " + assemble_street_name(streetName);
-	} else if (!(streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"])) {
+	} else if (!(streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"])) {
 		return dictionary["to"] + " " + assemble_street_name(streetName);
 	}
 }
@@ -339,7 +339,7 @@ function take_exit(turnType, dist, exitString, exitInt, streetName) {
 }
 
 function take_exit_name(streetName) {
-	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "") || !tts) {
+	if (Object.keys(streetName).length == 0 || (streetName["toDest"] == "" && streetName["toStreetName"] == "") || !tts) {
 		return "";
 	} else if (streetName["toDest"] != "") {
 		return (tts ? ", " : " ") + streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
@@ -354,7 +354,7 @@ function getExitNumber(exitString, exitInt) {
 	if (!tts && exitInt > 0 && exitInt < 18) {
 		return nth(exitInt) + " " + dictionary["exit"];
 	// Issue #7570: Next case for correct tts number declination for numerical exits 1-17 
-	} else if (tts && exitInt > 0 && exitInt < 18 && exitInt.toString() === exitString) {
+	} else if (tts && exitInt > 0 && exitInt < 18 && exitInt.toString() == exitString) {
 		return nth(exitInt) + " " + dictionary["exit"];
 	} else if (tts) {
 		return dictionary["exit"] + " " + exitString;
@@ -406,25 +406,25 @@ function roundabout(dist, angle, exit, streetName) {
 }
 
 function turn_street(streetName) {
-	if ((streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || Object.keys(streetName).length == 0 || !tts) {
+	if ((streetName["toDest"] == "" && streetName["toStreetName"] == "" && streetName["toRef"] == "") || Object.keys(streetName).length == 0 || !tts) {
 		return "";
-	} else if (streetName["toStreetName"] === "" && streetName["toRef"] === "") {
+	} else if (streetName["toStreetName"] == "" && streetName["toRef"] == "") {
 		return dictionary["toward"] + " " + streetName["toDest"];
-	} else if (streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"]) {
+	} else if (streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"]) {
 		return dictionary["on"] + " " + assemble_street_name(streetName);
-	} else if ((streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"]) 
-		|| (streetName["toStreetName"] === "" && streetName["toRef"] === streetName["fromRef"])) {
+	} else if ((streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"]) 
+		|| (streetName["toStreetName"] == "" && streetName["toRef"] == streetName["fromRef"])) {
 		return dictionary["on"] + " " + assemble_street_name(streetName);
-	} else if (!(streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"])) {
+	} else if (!(streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"])) {
 		return dictionary["onto"] + ": " + assemble_street_name(streetName);
 	}
 	return "";
 }
 
 function assemble_street_name(streetName) {
-	if (streetName["toDest"] === "") {
+	if (streetName["toDest"] == "") {
 		return streetName["toRef"] + " " + streetName["toStreetName"];
-	} else if (streetName["toRef"] === "") {
+	} else if (streetName["toRef"] == "") {
 		return streetName["toStreetName"] + ": " + dictionary["toward"] + " " + streetName["toDest"];
 	} else if (streetName["toRef"] != "") {
 		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];

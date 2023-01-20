@@ -303,13 +303,13 @@ function go_ahead(dist, streetName) {
 }
 
 function follow_street(streetName) {
-	if ((streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || Object.keys(streetName).length == 0 || !tts) {
+	if ((streetName["toDest"] == "" && streetName["toStreetName"] == "" && streetName["toRef"] == "") || Object.keys(streetName).length == 0 || !tts) {
 		return "";
-	} else if (streetName["toStreetName"] === "" && streetName["toRef"] === "") {
+	} else if (streetName["toStreetName"] == "" && streetName["toRef"] == "") {
 		return dictionary["to"] + " " + streetName["toDest"];
-	} else if (streetName["toRef"] === streetName["fromRef"] && (streetName["toStreetName"] === streetName["fromStreetName"] || streetName["toStreetName"] === "")) {
+	} else if (streetName["toRef"] == streetName["fromRef"] && (streetName["toStreetName"] == streetName["fromStreetName"] || streetName["toStreetName"] == "")) {
 		return dictionary["on"] + " " + assemble_street_name(streetName);
-	} else if (!(streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"])) {
+	} else if (!(streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"])) {
 		var preposition = isFeminine(streetName) ? dictionary["zur"] : isMasculine(streetName) ? dictionary["zum"] : "";
 		return dictionary["to"] + " " + preposition + " " + assemble_street_name(streetName);
 	}
@@ -333,7 +333,7 @@ function take_exit(turnType, dist, exitString, exitInt, streetName) {
 }
 
 function take_exit_name(streetName) {
-	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "") || !tts) {
+	if (Object.keys(streetName).length == 0 || (streetName["toDest"] == "" && streetName["toStreetName"] == "") || !tts) {
 		return "";
 	} else if (streetName["toDest"] != "") {
 		return (tts ? ", " : " ") + streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
@@ -396,27 +396,27 @@ function roundabout(dist, angle, exit, streetName) {
 }
 
 function turn_street(streetName) {
-	if (Object.keys(streetName).length == 0 || (streetName["toDest"] === "" && streetName["toStreetName"] === "" && streetName["toRef"] === "") || !tts) {
+	if (Object.keys(streetName).length == 0 || (streetName["toDest"] == "" && streetName["toStreetName"] == "" && streetName["toRef"] == "") || !tts) {
 		return "";
 	} 
 	var article = isFeminine(streetName) ? dictionary["die"] : isMasculine(streetName) ? dictionary["den"] : "";
-	if (streetName["toStreetName"] === "" && streetName["toRef"] === "") {
+	if (streetName["toStreetName"] == "" && streetName["toRef"] == "") {
 		return dictionary["toward"] + " " + streetName["toDest"];
-	} else if (streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"]) {
+	} else if (streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"]) {
 		return dictionary["on"] + " " + article + " " + assemble_street_name(streetName);
-	} else if ((streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"]) 
-		|| (streetName["toStreetName"] === "" && streetName["toRef"] === streetName["fromRef"])) {
+	} else if ((streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"]) 
+		|| (streetName["toStreetName"] == "" && streetName["toRef"] == streetName["fromRef"])) {
 		return dictionary["on"] + " " + article + " " + assemble_street_name(streetName);
-	} else if (!(streetName["toRef"] === streetName["fromRef"] && streetName["toStreetName"] === streetName["fromStreetName"])) {
+	} else if (!(streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"])) {
 		return dictionary["onto"] + " " + article + " " + assemble_street_name(streetName);
 	}
 	return "";
 }
 
 function assemble_street_name(streetName) {
-	if (streetName["toDest"] === "") {
+	if (streetName["toDest"] == "") {
 		return streetName["toRef"] + " " + streetName["toStreetName"];
-	} else if (streetName["toRef"] === "") {
+	} else if (streetName["toRef"] == "") {
 		return streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	} else if (streetName["toRef"] != "") {
 		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
