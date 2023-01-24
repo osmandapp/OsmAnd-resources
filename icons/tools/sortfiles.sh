@@ -1234,7 +1234,7 @@ icon_alias grit_bin poi_colored_grit_bin
 icon_alias ticket_validator poi_colored_ticket_validator
 
 icon_alias military poi_colored_military_bunker
-icon_alias beehive poi_beehive
+icon_alias beehive poi_colored_beehive
 icon_alias wildlife_crossing poi_wildlife_crossing
 icon_alias satellite_dish poi_colored_satellite_dish
 icon_alias waste_transfer_station amenity_waste_transfer_station
