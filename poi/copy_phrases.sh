@@ -1,7 +1,9 @@
 cp -f ../../android/OsmAnd/res/values/phrases.xml phrases/en/
 
 
+cp -f ../../android/OsmAnd/res/values-an/phrases.xml phrases/an/
 cp -f ../../android/OsmAnd/res/values-ar/phrases.xml phrases/ar/
+cp -f ../../android/OsmAnd/res/values-ars/phrases.xml phrases/ars/
 cp -f ../../android/OsmAnd/res/values-ast/phrases.xml phrases/ast/
 cp -f ../../android/OsmAnd/res/values-az/phrases.xml phrases/az/
 
@@ -9,6 +11,8 @@ cp -f ../../android/OsmAnd/res/values-b+hsb/phrases.xml phrases/hsb/
 cp -f ../../android/OsmAnd/res/values-b+kab/phrases.xml phrases/kab/
 cp -f ../../android/OsmAnd/res/values-be/phrases.xml phrases/be/
 cp -f ../../android/OsmAnd/res/values-bg/phrases.xml phrases/bg/
+cp -f ../../android/OsmAnd/res/values-bn/phrases.xml phrases/bn/
+cp -f ../../android/OsmAnd/res/values-br/phrases.xml phrases/br/
 
 cp -f ../../android/OsmAnd/res/values-ca/phrases.xml phrases/ca/
 cp -f ../../android/OsmAnd/res/values-cs/phrases.xml phrases/cs/
@@ -19,7 +23,7 @@ cp -f ../../android/OsmAnd/res/values-de/phrases.xml phrases/de/
 
 cp -f ../../android/OsmAnd/res/values-el/phrases.xml phrases/el/
 cp -f ../../android/OsmAnd/res/values-en-rGB/phrases.xml phrases/en-GB/
-cp -f ../../android/OsmAnd/res/values-el/phrases.xml phrases/eo/
+cp -f ../../android/OsmAnd/res/values-eo/phrases.xml phrases/eo/
 cp -f ../../android/OsmAnd/res/values-es/phrases.xml phrases/es/
 cp -f ../../android/OsmAnd/res/values-es-rAR/phrases.xml phrases/es-AR/
 cp -f ../../android/OsmAnd/res/values-es-rUS/phrases.xml phrases/es-US/
@@ -33,9 +37,10 @@ cp -f ../../android/OsmAnd/res/values-fr/phrases.xml phrases/fr/
 cp -f ../../android/OsmAnd/res/values-gl/phrases.xml phrases/gl/
 
 cp -f ../../android/OsmAnd/res/values-iw/phrases.xml phrases/he/
+cp -f ../../android/OsmAnd/res/values-hr/phrases.xml phrases/hr/
 cp -f ../../android/OsmAnd/res/values-hu/phrases.xml phrases/hu/
 
-cp -f ../../android/OsmAnd/res/values-id/phrases.xml phrases/id/
+cp -f ../../android/OsmAnd/res/values-in/phrases.xml phrases/id/
 cp -f ../../android/OsmAnd/res/values-is/phrases.xml phrases/is/
 cp -f ../../android/OsmAnd/res/values-it/phrases.xml phrases/it/
 
@@ -49,6 +54,7 @@ cp -f ../../android/OsmAnd/res/values-ko/phrases.xml phrases/ko/
 cp -f ../../android/OsmAnd/res/values-lt/phrases.xml phrases/lt/
 cp -f ../../android/OsmAnd/res/values-lv/phrases.xml phrases/lv/
 
+cp -f ../../android/OsmAnd/res/values-mk/phrases.xml phrases/mk/
 cp -f ../../android/OsmAnd/res/values-ml/phrases.xml phrases/ml/
 cp -f ../../android/OsmAnd/res/values-mr/phrases.xml phrases/mr/
 cp -f ../../android/OsmAnd/res/values-my/phrases.xml phrases/my/
@@ -69,6 +75,7 @@ cp -f ../../android/OsmAnd/res/values-sc/phrases.xml phrases/sc/
 cp -f ../../android/OsmAnd/res/values-sk/phrases.xml phrases/sk/
 cp -f ../../android/OsmAnd/res/values-sl/phrases.xml phrases/sl/
 cp -f ../../android/OsmAnd/res/values-sr/phrases.xml phrases/sr/
+cp -f ../../android/OsmAnd/res/values-b+sr+Cyrl/phrases.xml phrases/sr-RS/
 cp -f ../../android/OsmAnd/res/values-b+sr+Latn/phrases.xml phrases/sr-Latn/
 cp -f ../../android/OsmAnd/res/values-sv/phrases.xml phrases/sv/
 cp -f ../../android/OsmAnd/res/values-sq/phrases.xml phrases/sq/
@@ -76,6 +83,7 @@ cp -f ../../android/OsmAnd/res/values-sq/phrases.xml phrases/sq/
 cp -f ../../android/OsmAnd/res/values-tr/phrases.xml phrases/tr/
 
 cp -f ../../android/OsmAnd/res/values-uk/phrases.xml phrases/uk/
+cp -f ../../android/OsmAnd/res/values-uz/phrases.xml phrases/uz-Cyrl/
 
 cp -f ../../android/OsmAnd/res/values-zh-rCN/phrases.xml phrases/zh-Hans/
 ## cp -f ../../android/OsmAnd/res/values-zh-rHK/phrases.xml phrases/zh/
