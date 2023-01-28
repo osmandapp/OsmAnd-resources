@@ -50,7 +50,8 @@ function populateDictionary(tts) {
 	dictionary["then"] = tts ? "majd" : "then.ogg";
 	dictionary["and"] = tts ? "és" : "and.ogg";
 	dictionary["take"] = tts ? "hajts ki" : "take.ogg";
-	dictionary["exit"] = tts ? "kijáraton" : "exit.ogg";
+	dictionary["exit1"] = tts ? "kijáraton" : "exit1.ogg";
+	dictionary["exit2"] = tts ? "kijárat:" : "exit2.ogg";
 	
 	dictionary["1st"] = tts ? "az első" : "1st.ogg";
 	dictionary["2nd"] = tts ? "a második" : "2nd.ogg";
@@ -292,10 +293,10 @@ function turn(turnType, dist, streetName) {
 
 function take_exit(turnType, dist, exitString, exitInt, streetName) {
 	if (dist == -1) {
-		return getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
+		return getTurnType(turnType) + (tts ? ", " : " ") + getExitNumber(exitString, exitInt) + take_exit_name(streetName)
 	} else {
-		return distance(dist, "nom") + " "
-			+ getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
+		return distance(dist, "nom") + " " + dictionary["after"] + " "
+			+ getTurnType(turnType) + (tts ? ", " : " ") + getExitNumber(exitString, exitInt) + take_exit_name(streetName)
 	}
 }
 
@@ -303,7 +304,7 @@ function take_exit_name(streetName) {
 	if (Object.keys(streetName).length == 0 || (streetName["toDest"] == "" && streetName["toStreetName"] == "") || !tts) {
 		return "";
 	} else if (streetName["toDest"] != "") {
-		return (tts ? ", " : " ") + streetName["toStreetName"] + (tts ? ", " : " ") + dictionary["toward"] + " " + streetName["toDest"];
+		return (tts ? ", " : " ") + streetName["toStreetName"] + (tts ? ", " : " ") + streetName["toDest"] + " " + dictionary["toward"];
 	} else if (streetName["toStreetName"] != "") {
 		return (tts ? ", " : " ") + streetName["toStreetName"]
 	} else {
@@ -313,11 +314,11 @@ function take_exit_name(streetName) {
 
 function getExitNumber(exitString, exitInt) {
 	if (!tts && exitInt > 0 && exitInt < 18) {
-		return nth(exitInt) + " " + dictionary["exit"];
+		return nth(exitInt) + " " + dictionary["exit2"];
 	} else if (tts) {
-		return  dictionary["exit"] + " " + exitString;
+		return dictionary["exit2"] + " " + exitString;
 	} else {
-		return dictionary["exit"];
+		return dictionary["exit2"];
 	}
 }
 
@@ -356,7 +357,7 @@ function then() {
 
 function roundabout(dist, angle, exit, streetName) {
 	if (dist == -1) {
-		return dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
+		return dictionary["take"] + " " + nth(exit) + " " + dictionary["exit1"] + (tts ? ", " : " ") + turn_street(streetName);
 	} else {
 		return distance(dist, "nom") + " " + dictionary["roundabout"] + " " + nth(exit) + " " + dictionary["roundabout2"] + " " + turn_street(streetName);
 	}
@@ -367,14 +368,14 @@ function turn_street(streetName) {
 	if ((streetName["toDest"] == "" && streetName["toStreetName"] == "" && streetName["toRef"] == "") || Object.keys(streetName).length == 0) {
 		return "";
 	} else if (streetName["toStreetName"] == "" && streetName["toRef"] == "") {
-		return streetName["toDest"] + (tts ? ", " : " ") + dictionary["toward"];
+		return streetName["toDest"] + " " + dictionary["toward"];
 	} else if (streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"]) {
 		return (tts ? ", " : " ") + dictionary["on"] + " " + assemble_street_name(streetName);
 	} else if ((streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"]) 
 		|| (streetName["toStreetName"] == "" && streetName["toRef"] == streetName["fromRef"])) {
 		return (tts ? ", " : " ") + dictionary["on"] + " " + assemble_street_name(streetName);
 	} else if (!(streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"])) {
-		return assemble_street_name(streetName) + " " + dictionary["onto"];
+		return assemble_street_name(streetName) + " " + dictionary["toward"];
 	}
 	return "";
 }
@@ -383,9 +384,9 @@ function assemble_street_name(streetName) {
 	if (streetName["toDest"] == "") {
 		return streetName["toRef"] + " " + streetName["toStreetName"];
 	} else if (streetName["toRef"] == "") {
-		return streetName["toStreetName"] + (tts ? ", " : " ") + dictionary["toward"] + " " + streetName["toDest"];
+		return streetName["toStreetName"] + (tts ? ", " : " ") + streetName["toDest"];
 	} else if (streetName["toRef"] != "") {
-		return streetName["toRef"] + " " + streetName["toDest"] + (tts ? ", " : " ") + dictionary["toward"];
+		return streetName["toRef"] + " " + streetName["toDest"];
 	}
 }
 
@@ -457,43 +458,43 @@ function prepare_roundabout(dist, exit, streetName) {
 }
 
 function and_arrive_destination(dest) {
-	return dictionary["and_arrive_destination"] + " " + dest;
+	return dictionary["and_arrive_destination"] + (tts ? ": " : " ") + dest;
 }
 
 function and_arrive_intermediate(dest) {
-	return dictionary["and_arrive_intermediate"] + " " + dest;
+	return dictionary["and_arrive_intermediate"] + (tts ? ": " : " ") + dest;
 }
 
 function and_arrive_waypoint(dest) {
-	return dictionary["and_arrive_waypoint"] + " " + dest;
+	return dictionary["and_arrive_waypoint"] + (tts ? ": " : " ") + dest;
 }
 
 function and_arrive_favorite(dest) {
-	return dictionary["and_arrive_favorite"] + " " + dest;
+	return dictionary["and_arrive_favorite"] + (tts ? ": " : " ") + dest;
 }
 
 function and_arrive_poi(dest) {
-	return dictionary["and_arrive_poi"] + " " + dest;
+	return dictionary["and_arrive_poi"] + (tts ? ": " : " ") + dest;
 }
 
 function reached_destination(dest) {
-	return dictionary["reached_destination"] + " " + dest;
+	return dictionary["reached_destination"] + (tts ? ": " : " ") + dest;
 }
 
 function reached_waypoint(dest) {
-	return dictionary["reached_waypoint"] + " " + dest;
+	return dictionary["reached_waypoint"] + (tts ? ": " : " ") + dest;
 }
 
 function reached_intermediate(dest) {
-	return dictionary["reached_intermediate"] + " " + dest;
+	return dictionary["reached_intermediate"] + (tts ? ": " : " ") + dest;
 }
 
 function reached_favorite(dest) {
-	return dictionary["reached_favorite"] + " " + dest;
+	return dictionary["reached_favorite"] + (tts ? ": " : " ") + dest;
 }
 
 function reached_poi(dest) {
-	return dictionary["reached_poi"] + " " + dest;
+	return dictionary["reached_poi"] + (tts ? ": " : " ") + dest;
 }
 
 function location_lost() {
