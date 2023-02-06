@@ -2902,5 +2902,118 @@
 			<select value="4"  t="route" v="walk"/>
 		</way>
 	</routingProfile>
+	<routingProfile name="moped" baseProfile="bicycle" restrictionsAware="true" minSpeed="5.0" defaultSpeed="30.0" maxSpeed="45.0" sharpTurn="6" slightTurn="6" onewayAware="true">
+    	<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
+        <parameter id="allow_private" name="Allow private access" description="Allow access to private areas" type="boolean"/>
+
+        <way attribute="access">
+            <select value="-1" t="osmand_change" v="delete"/>
+            <select value="-1" t="highway" v="proposed"/>
+            <select value="-1" t="highway" v="construction"/>
+            <select value="-1" t="construction" v="yes"/>
+
+            <if param="avoid_ferries">
+                <select value="-1" t="route" v="ferry"/>
+                <select value="-1" t="route" v="boat"/>
+            </if>
+
+            <!-- Tag: moped, values in order of usage according to taginfo -->
+            <select value="1" t="moped" v="designated"/>
+            <select value="1" t="moped" v="yes"/>
+            <select value="1" t="moped" v="permissive"/>
+            <select value="1" t="moped" v="destination"/>
+            <select value="1" t="moped" v="dismount"/>
+            <select value="-1" t="moped" v="no"/>
+            <select value="-1" t="moped" v="use_sidepath"/>
+
+            <!-- Don't allow mopeds on steps or elevators, unless excplicly tagged and caught by rules above -->
+            <select value="-1" t="highway" v="steps"/>
+            <select value="-1" t="highway" v="elevator"/>
+
+            <!-- Tag: access, values in order of usage according to taginfo -->
+            <ifnot param="allow_private">
+                <select value="-1" t="access" v="private"/>
+            </ifnot>
+            <select value="-1" t="access" v="no"/>
+
+            <!-- Assume mopeds are not allowed on motorways, trunks and motorroads -->
+            <select value="-1" t="highway" v="motorway"/>
+            <select value="-1" t="highway" v="motorway_link"/>
+            <select value="-1" t="highway" v="trunk"/>
+            <select value="-1" t="highway" v="trunk_link"/>
+            <select value="-1" t="motorroad" v="yes"/>
+
+            <!-- General rules -->
+            <select value="-1" t="vehicle" v="no"/>
+            <select value="-1" t="vehicle" v="agricultural"/>
+            <select value="-1" t="vehicle" v="forestry"/>
+            <select value="1" t="highway" v="primary"/>
+            <select value="1" t="highway" v="primary_link"/>
+            <select value="1" t="highway" v="secondary"/>
+            <select value="1" t="highway" v="secondary_link"/>
+            <select value="1" t="highway" v="tertiary"/>
+            <select value="1" t="highway" v="tertiary_link"/>
+            <select value="1" t="highway" v="road"/>
+            <select value="1" t="highway" v="residential"/>
+            <select value="1" t="highway" v="unclassified"/>
+            <select value="1" t="highway" v="service"/>
+            <select value="1" t="highway" v="track"/>
+            <select value="1" t="highway" v="path"/>
+            <select value="1" t="highway" v="footway"/>
+            <select value="1" t="highway" v="living_street"/>
+            <select value="1" t="highway" v="pedestrian"/>
+            <select value="1" t="highway" v="byway"/>
+            <select value="1" t="public_transport" v="platform"/>
+            <select value="1" t="man_made" v="pier"/>
+
+            <!-- Assume mopeds are allowed on cycleways, unless denied by rules above -->
+            <select value="1" t="highway" v="cycleway"/>
+
+            <ifnot param="avoid_ferries"><!-- ifnot is not strictly necessary, but it makes the intent more explicit -->
+                <select value="1" t="route" v="ferry"/>
+                <select value="1" t="route" v="boat"/>
+            </ifnot>
+
+            <!-- Default -->
+            <select value="-1"/>
+        </way>
+
+        <way attribute="speed" type="speed">
+			<select value="$maxspeed:moped" t="maxspeed:moped"/>
+			<select value="$maxspeed:practical" t="maxspeed:practical"/>
+            <select value="$maxspeed:advisory" t="maxspeed:advisory"/>
+            <select value="$maxspeed" t="maxspeed"/>
+
+			<select value="6" t="highway" v="footway"/>
+            <select value="6" t="moped" v="dismount"/>
+            <select value="6" t="bicycle" v="dismount"/><!-- Assume that if cyclist are required to dismount, moped drivers are too -->
+        </way>
+
+        <way attribute="oneway">
+            <select value="0" t="oneway:moped" v="no"/>
+            <select value="1" t="oneway:moped" v="yes"/>
+            <select value="-1" t="oneway:moped" v="-1"/>
+
+            <!-- Assume oneway is the same for bicycles and mopeds -->
+            <select value="0" t="oneway:bicycle" v="no"/>
+            <select value="1" t="oneway:bicycle" v="yes"/>
+            <select value="-1" t="oneway:bicycle" v="-1"/>
+
+			<select value="-1" t="moped:forward" v="no"/>
+            <select value="-1" t="moped:forward" v="use_sidepath"/>
+
+            <select value="1" t="oneway:vehicle" v="yes"/>
+            <select value="0" t="oneway:vehicle" v="no"/>
+            <select value="-1" t="oneway:vehicle" v="-1"/>
+
+            <select value="1" t="oneway" v="yes"/>
+            <select value="1" t="oneway" v="1"/>
+            <select value="-1" t="oneway" v="-1"/>
+            <!-- Following line because junction=circular is converted to roundabout, but is not necessarily oneway=yes -->
+            <select value="0" t="oneway" v="no"/>
+            <select value="1" t="roundabout" v="yes"/>
+            <select value="1" t="junction" v="roundabout"/>
+        </way>
+    </routingProfile>
 </osmand_routing_config>
 
