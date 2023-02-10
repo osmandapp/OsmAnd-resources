@@ -1,0 +1,76 @@
+<renderingStyle name="depthcontourlines" addon="yes" depends="" version="1">
+
+	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
+		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
+	<renderingProperty attr="baseAppMode" name="Default Rendering mode" description="Map optimization for respective User Profile based on base (parent) profile"
+		type="string" possibleValues="default, car, bicycle, pedestrian, public_transport, boat, ski"/>
+	<renderingProperty attr="depthContours" name="Depth contours" description="Show depth contours and points"
+		type="boolean" possibleValues="" category="details"/>
+	<renderingProperty attr="depthContourWidth" name="Depth contour lines width" description="Depth contour lines width" type="string" possibleValues="thin,medium,thick" defaultValueDescription="default"/>
+	<renderingProperty attr="depthContourColorScheme" name="Depth contour lines color scheme" description="Depth contour lines color scheme" type="string" possibleValues="white,yellow,green,light_brown,brown,dark_brown,red" defaultValueDescription="default"/>
+
+	<renderingAttribute name="depthTextColor">
+		<case nightMode="true" attrColorValue="#aaaaaaaa"/>
+		<case attrColorValue="#333333"/>
+	</renderingAttribute>
+
+	<renderingConstant name="null" value="#00000000"/>
+
+	<renderingProperty attr="engine_v1" type="boolean"/>
+
+	<order>
+		<!-- Line 11-100 -->
+		<switch area="false" objectType="2" order="80">
+			<case tag="contour" value="depth" order="15"/>
+		</switch>
+	</order>
+
+	<text>
+		<switch depthContours="true" minzoom="6" tag="contour" value="depth" textColor="$depthTextColor" textOnPath="true">
+			<case additional="contourtype=1000m" textSize="10" textMinDistance="600"/>
+			<case minzoom="7" additional="contourtype=200m" textSize="10" textMinDistance="600"/>
+			<case minzoom="11">
+				<apply>
+					<case additional="contourtype=100m" textSize="10"/>
+					<case additional="contourtype=50m" textSize="10"/>
+					<case additional="contourtype=20m" textSize="10"/>
+					<case additional="contourtype=10m" textSize="9"/>
+					<case additional="contourtype=5m" textSize="9"/>
+				</apply>
+			</case>
+		</switch>
+
+		<case depthContours="true" minzoom="6" tag="point" value="depth" textColor="$depthTextColor" textSize="10" textOrder="128" intersectionMargin="10">
+			<apply_if maxzoom="7" intersectionMargin="10">
+				<apply_if engine_v1="false" intersectionMargin="30"/>
+			</apply_if>
+			<apply_if minzoom="10" maxzoom="10" intersectionMargin="7"/>
+			<apply_if engine_v1="true" textDy="-11"/>
+		</case>
+	</text>
+
+	<point>
+	</point>
+
+	<polygon>
+	</polygon>
+
+	<line>
+		<switch depthContours="true" tag="contour" value="depth" strokeWidth="1">
+			<case minzoom="5" additional="contourtype=1000m" color="$contourLineDepthColor100m"/>
+			<case minzoom="7" additional="contourtype=200m" color="$contourLineDepthColor100m"/>
+			<case minzoom="11">
+				<apply>
+					<case additional="contourtype=5m" color="$contourLineDepthColor20m"/>
+					<case additional="contourtype=10m" color="$contourLineDepthColor20m"/>
+					<case additional="contourtype=20m" color="$contourLineDepthColor20m"/>
+					<case additional="contourtype=50m" color="$contourLineDepthColor50m"/>
+					<case additional="contourtype=100m" color="$contourLineDepthColor100m"/>
+				</apply>
+				<apply_if depthContourWidth="thin" strokeWidth="0.6"/>
+				<apply_if depthContourWidth="thick" strokeWidth="1.5"/>
+			</case>
+			<!-- <apply_if minzoom="15" pathIcon="stroke_lightorange_left" pathIconStep="100"/>-->
+		</switch>
+	</line>
+</renderingStyle>
