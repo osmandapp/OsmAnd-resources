@@ -108,12 +108,6 @@
 		type="boolean" possibleValues="" category="details"/>
 	<renderingProperty attr="streetLightingNight" name="Street lighting (night mode)" description="Show street lighting only at night"
 		type="boolean" possibleValues="" category="details"/>
-	<renderingProperty attr="OSMMapperAssistantFixme" name="Fixme tags" description="Show fixme tags"
-		type="boolean" possibleValues="" category="osm_assistant"/>
-	<renderingProperty attr="OSMMapperAssistantNote" name="Note tags" description="Show note tags"
-		type="boolean" possibleValues="" category="osm_assistant"/>
-	<renderingProperty attr="OSMMapperAssistantIconsLowZooms" name="Icons at low zooms" description="Schematic display of icons at low zooms"
-		type="boolean" possibleValues="" category="osm_assistant"/>
 	<renderingProperty attr="showWaterwayTunnels" name="Waterway tunnels" description="Don't hide waterway tunnels"
 		type="boolean" possibleValues="" category="details"/>
 	<renderingProperty attr="natureReserves" name="Nature reserves" description="Show nature reserve, protected areas and national parks"
@@ -2853,8 +2847,6 @@
 					<case tag="power" value=""/>
 					<case tag="entrance" value=""/>
 					<case tag="hazard" value=""/>
-					<case tag="fixme_tag" value="yes"/>
-					<case tag="note_tag" value="yes"/>
 					<case tag="abandoned:place" value=""/>
 					<switch>
 						<case tag="power" value="pole"/>
@@ -3150,8 +3142,6 @@
 				<case tag="addr:housenumber" value="" ignorePolygonAsPointArea="true"/>
 				<case tag="addr:interpolation" value=""/>
 				<case tag="hazard" value="" order="11"/>
-				<case tag="fixme_tag" value="yes" order="11"/>
-				<case tag="note_tag" value="yes" order="10"/>
 				<!-- <case tag="indoor" value="room"/>
 				<case tag="indoor" value="area" order="3"/>-->
 				<case tag="" value="" order="5"/>
@@ -3640,8 +3630,6 @@
 				<case tag="lit" value="" order="12">
 					<apply_if nightMode="false" streetLightingNight="true" order="-1"/>
 				</case>
-				<case tag="fixme_tag" value="yes" order="12"/>
-				<case tag="note_tag" value="yes" order="11"/>
 				<case hideUnderground="true" tag="lit_pedestrian_layer-1" value="" order="-1"/>
 				<case baseAppMode="car" tag="lit_pedestrian_layer-1" value="" order="-1"/>
 				<case tag="lit_pedestrian_layer-1" value="">
@@ -6073,31 +6061,6 @@
 				<apply_if nightMode="true" textColor="#ffe7e7" textHaloColor="#77b32c2c"/>
 			</case>
 
-			<switch minzoom="15" intersectionSizeFactor="0" intersectionMargin="0">
-				<switch OSMMapperAssistantFixme="true" tag="fixme_tag" value="yes" nameTag="fixme" textColor="#ffffff" textHaloColor="#ccf800e0" textWrapWidth="20" textOrder="1">
-					<case maxzoom="15" textSize="10" textDy="-40"/>
-					<case minzoom="16" textSize="11" textDy="-50"/>
-					<apply_if engine_v1="true">
-						<case maxzoom="15" textDy="-33"/>
-						<case minzoom="16" textDy="-50"/>
-					</apply_if>
-					<apply_if nightMode="true" textColor="#7f0a7e" textHaloColor="#ffdcff"/>
-				</switch>
-				<switch OSMMapperAssistantNote="true">
-					<case tag="note_tag" value="yes" nameTag="note"/>
-					<apply textColor="#ffffff" textHaloColor="#cc347b4c" textOrder="33" textWrapWidth="20">
-						<apply_if minzoom="16" textSize="11" textDy="30"/>
-						<apply_if engine_v1="true" minzoom="16" textDy="24"/>
-						<apply_if nightMode="true" textColor="#008b12" textHaloColor="#deffe3"/>
-					</apply>
-				</switch>
-				<case minzoom="17" OSMMapperAssistantNote="true" tag="osm_note" value="yes" textColor="#ffffff" textHaloColor="#ff5757" textSize="11" textOrder="5" textWrapWidth="30">
-					<apply_if engine_v1="true" textDy="8"/>
-					<apply_if nightMode="true" textColor="#ff5757" textHaloColor="#ffe9e9"/>
-				</case>
-				<apply textBold="true" textHaloRadius="2"/>
-			</switch>
-
 			<!-- type not supported -->
 			<!-- <filter minzoom="16" textSize="13" textWrapWidth="15" tag="landuse" type="point"/> -->
 
@@ -6120,21 +6083,6 @@
 				<apply_if nightMode="true" textColor="#dddddd" textHaloColor="#66000000"/>
 			</case>
 
-			<switch OSMMapperAssistantIconsLowZooms="true" minzoom="17" nameTag="">
-				<case tag="amenity" value=""/>
-				<case tag="club" value=""/>
-				<case tag="craft" value=""/>
-				<case tag="emergency" value=""/>
-				<case tag="healthcare" value=""/>
-				<case tag="historic" value=""/>
-				<case tag="office" value=""/>
-				<case tag="man_made" value=""/>
-				<!-- <case tag="shop" value=""/>-->
-				<case tag="tourism" value=""/>
-				<apply textColor="#ffffff" textSize="11" textHaloRadius="2" textHaloColor="#886c003d" textWrapWidth="20" intersectionSizeFactor="0.7"/>
-				<apply_if nightMode="true" textColor="#6c003d" textHaloColor="#ffffff"/>
-				<apply_if engine_v1="true" textDy="7"/>
-			</switch>
 			<apply_if additional="tourism=yes" nameTag="">
 				<apply intersectionMargin="15" textOrder="83" textSize="13" textColor="$tourismAttractionTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$tourismAttractionTextHaloColorDay" textWrapWidth="20" textBold="true"/>
 				<apply_if engine_v1="true" textDy="5"/>
@@ -8144,32 +8092,6 @@
 				<apply iconVisibleSize="0" iconOrder="128" intersectsWith="" intersectionSizeFactor="0"/>
 			</switch>
 
-			<switch iconVisibleSize="0" intersectionSizeFactor="0" iconOrder="128">
-				<switch OSMMapperAssistantFixme="true" minzoom="12" tag="fixme_tag" value="yes">
-					<case maxzoom="12" icon="fixme_tag_lowzoom_yes"/>
-					<case maxzoom="15" icon="fixme_tag_lowzoom2_yes"/>
-					<case minzoom="16" icon="fixme_tag_yes" icon_shift_px="0.5" icon_shift_py="-0.5"/>
-				</switch>
-				<switch OSMMapperAssistantNote="true" minzoom="12" tag="osm_note" value="yes">
-					<case maxzoom="12" icon="osm_note_dot"/>
-					<case maxzoom="17" icon="osm_note_dot_2"/>
-				</switch>
-				<case OSMMapperAssistantNote="true" minzoom="16" tag="note_tag" value="yes" icon="note_tag_yes" icon_shift_px="-0.5" icon_shift_py="-0.5"/>
-				<!--<case minzoom="16" tag="description_tag" value="yes" icon="note_tag_yes"/>-->
-			</switch>
-
-			<switch OSMMapperAssistantIconsLowZooms="true" minzoom="16" iconVisibleSize="7" intersectionSizeFactor="0.5">
-				<case tag="amenity" value="" icon="stub_amenity" iconOrder="171"/>
-				<case tag="club" value="" icon="stub_club" iconOrder="163"/>
-				<case tag="craft" value="" icon="stub_craft" iconOrder="164"/>
-				<case tag="emergency" value="" icon="stub_emergency" iconOrder="131"/>
-				<case tag="healthcare" value="" icon="stub_healthcare" iconOrder="165"/>
-				<case tag="historic" value="" icon="stub_historic" iconOrder="150"/>
-				<case tag="office" value="" icon="stub_office" iconOrder="152"/>
-				<case tag="man_made" value="" icon="stub_man_made" iconOrder="162"/>
-				<case tag="shop" value="" icon="stub_shop" iconOrder="160"/>
-				<case tag="tourism" value="" icon="stub_tourism" iconOrder="153"/>
-			</switch>
 
 			<case minzoom="17" tag="public_transport" value="platform" additional="disused=yes" icon="highway_bus_stop" shield="gray_square_shield">
 				<apply_if nightMode="true" shield="gray_square_night_shield"/>
@@ -9433,19 +9355,6 @@
 				<apply_if hideMilitaryAreas="true" shader=""/>
 			</case>
 			<case minzoom="11" maxzoom="14" tag="hazard" value="" shader="hazard"/>
-			<switch minzoom="12">
-				<case OSMMapperAssistantFixme="true" tag="fixme_tag" value="yes" color_2="#77f800e0"/>
-				<case OSMMapperAssistantNote="true" tag="note_tag" value="yes" color_2="#00CC24"/>
-				<apply>
-					<case maxzoom="14" strokeWidth_2="2:2"/>
-					<case maxzoom="15" strokeWidth_2="3:3"/>
-					<case maxzoom="16" strokeWidth_2="4:4"/>
-					<case maxzoom="17" strokeWidth_2="5:5"/>
-					<case maxzoom="18" strokeWidth_2="6:6"/>
-					<case minzoom="19" strokeWidth_2="7:7"/>
-				</apply>
-				<apply color="$null"/>
-			</switch>
 		</switch>
 		<switch streetLighting="true" minzoom="10" cap_2="ROUND">
 			<case tag="lit" value="yes" color="$null" color_2="$litYesColor"/>
@@ -11553,19 +11462,6 @@
 			<case tag="natural" value="couloir"/>
 			<case tag="region:type" value="mountain_area"/>
 			<apply strokeWidth="1" color="$null"/>
-		</switch>
-
-		<switch minzoom="12">
-			<case OSMMapperAssistantFixme="true" tag="fixme_tag" value="yes" color="#aaf800e0"/>
-			<case OSMMapperAssistantNote="true" tag="note_tag" value="yes" color="#00CC24"/>
-			<apply>
-				<case maxzoom="14" strokeWidth="4:4"/>
-				<case maxzoom="15" strokeWidth="6:6"/>
-				<case maxzoom="16" strokeWidth="8:8"/>
-				<case maxzoom="17" strokeWidth="10:10"/>
-				<case maxzoom="18" strokeWidth="12:12"/>
-				<case minzoom="19" strokeWidth="14:14"/>
-			</apply>
 		</switch>
 
 		<switch streetLighting="true" minzoom="10" cap="ROUND">
