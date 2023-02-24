@@ -47,6 +47,7 @@
 	<renderingConstant name="naturalPeakTextMinZoom" value="12" />
 	<renderingConstant name="naturalVolcanoTextMinZoom" value="11" />
 	<renderingConstant name="naturalHillTextMinZoom" value="15" />
+	<renderingConstant name="wetlandMinZoom" value="10"/>
 
 	<renderingConstant name="null" value="#00000000" />
 	<!-- Residential landuse-->
@@ -260,7 +261,6 @@
 		<case attrColorValue="$null" />
 	</renderingAttribute>
 
-
 	<!-- Greenfield -->
 	<renderingAttribute name="greenfieldColor">
 		<case attrColorValue="#9d9d6c" />
@@ -379,7 +379,7 @@
 	<renderingAttribute name="railwayRailColor">
 		<case nightMode="true" attrColorValue="#999999">
 			<apply_if additional="tunnel=yes" attrColorValue="$null" />
-	    </case>
+		</case>
 		<case attrColorValue="#717171">
 			<apply_if additional="tunnel=yes" attrColorValue="$null" />
 		</case>
@@ -1027,7 +1027,8 @@
 						<apply_if minzoom="12" textSize="20" />
 						<apply textHaloRadius="5" textOrder="130" textDy="0" />
 						<apply_if moreDetailed="true" textOrder="33" />
-						<apply_if maxzoom="10" moreDetailed="true" textOrder="6" /> <!-- Only if region:type is available at z10- -->
+						<apply_if maxzoom="10" moreDetailed="true" textOrder="6" />
+						<!-- Only if region:type is available at z10- -->
 					</switch>
 					<case minzoom="14" textSize="12" tag="waterway" value="drystream" textOnPath="true" textOrder="77" textDy="0" />
 					<switch textDy="14">
@@ -1121,6 +1122,38 @@
 				<case minzoom="13" maxzoom="14" shader="allotments_small" />
 				<case minzoom="15" shader="allotments_shader" />
 				<apply_if nightMode="true" shader="" color_0="$null" />
+			</case>
+
+			<!-- Wetland -->
+			<case minzoom="$wetlandMinZoom" tag="natural" value="wetland">
+				<case additional="wetland=tidalflat" shader="wetland" color_0="#B4C8CB">
+					<apply_if nightMode="true" shader="" color="#323b69"/>
+				</case>
+				<switch>
+					<case additional="wetland=bog" shader="wetland_bog"/>
+					<case additional="wetland=marsh" shader="wetland_marsh"/>
+					<case additional="wetland=swamp" shader="wetland_swamp"/>
+					<case additional="wetland=reedbed" shader="wetland_reedbed"/>
+					<case additional="wetland=mangrove" shader="wetland_mangrove"/>
+					<case additional="wetland=wet_meadow" shader="wetland_wet_meadow"/>
+					<case additional="wetland=string_bog" shader="wetland_string_bog"/>
+					<case additional="wetland=saltmarsh" shader="wetland_saltmarsh"/>
+					<case additional="wetland=fen" shader="wetland_fen"/>
+					<case additional="wetland=palsa_bog" shader="wetland_palsa_bog"/>
+					<case additional="wetland=mud" shader="wetland_tidalflat" color_0="#e4ddd1"/>
+					<case shader="wetland"/>
+					<apply_if nightMode="true" shader="" color="#1b3238" color_0="$null"/>
+				</switch>
+				<apply_if minzoom="15" additional="intermittent=yes" strokeWidth_2="1" color_2="#7479ec" pathEffect_2="12_5"/>
+			</case>
+
+			<!-- Beach, Sand -->
+			<case minzoom="11" tag="natural" value="beach" shader="beach2">
+				<apply_if nightMode="true" shader="beach2night"/>
+			</case>
+
+			<case minzoom="11" tag="natural" value="sand" shader="beach3">
+				<apply_if nightMode="true" shader="" color="#61552C" />
 			</case>
 
 			<!-- Дикий кустарник shader="scrub" -->

@@ -719,7 +719,7 @@ icon_alias sightseeing tourist_castle2
 icon_alias tourism tourist_museum
 icon_alias for_tourists tourist_view_point
 icon_alias attraction tourist_attraction
-icon_alias attraction_map functional-icons_attraction_map
+icon_alias attraction_map poi_attraction_map
 icon_alias attraction_amusement_ride tourist_amusement_ride
 icon_alias attraction_animal tourist_animal
 icon_alias attraction_big_wheel tourist_big_wheel
