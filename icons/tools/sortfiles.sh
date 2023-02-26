@@ -855,7 +855,7 @@ icon_alias topo_charcoal_pile topo_charcoal_pile
 icon_alias historic_tank tourist_historic_tank
 icon_alias topo_tank topo_topo_historic_tank
 icon_alias pillory tourist_pillory
-
+icon_alias spacecraft tourist_spacecraft
 
 ## Special POI icons
 icon_alias special_poi_big_ben special_poi_big_ben
