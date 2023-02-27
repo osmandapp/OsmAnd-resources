@@ -201,8 +201,11 @@
 	<type tag="bicycle" value="permissive" minzoom="13" additional="true" poi="false"/>
 	<type tag="bicycle" value="destination" minzoom="13" additional="true" poi="false"/>
 	<type tag="bicycle" value="designated" minzoom="12" additional="true" poi="false"/>
+	<entity_convert pattern="tag_transform" from_tag="foot" from_value="use_sidepath" to_tag1="foot" to_value1="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bicycle" from_value="official" to_tag1="bicycle" to_value1="designated" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bicycle" from_value="use_sidepath" to_tag1="bicycle" to_value1="no"/>
+	<entity_convert pattern="tag_transform" from_tag="horse" from_value="use_sidepath" to_tag1="horse" to_value1="no"/>
+	<entity_convert pattern="tag_transform" from_tag="moped" from_value="use_sidepath" to_tag1="moped" to_value1="no"/>
 	<type tag="fee" value="yes" minzoom="13" additional="true" poi="false"/>
 	<type tag="parking:fee_yes" value="yes" minzoom="13" additional="true" notosm="true"/>
 	<type tag="parking:fee_no" value="no" minzoom="13" additional="true" notosm="true"/>
@@ -577,6 +580,11 @@
 	<entity_convert pattern="tag_transform" from_tag="maxspeed:type" from_value="UZ:motorway" to_tag1="maxspeed" to_value1="110" map="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="maxspeed:type" from_value="UZ:rural" to_tag1="maxspeed" to_value1="100" map="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="maxspeed:type" from_value="UZ:urban" to_tag1="maxspeed" to_value1="70" map="no" poi="no"/>
+
+	<entity_convert pattern="tag_transform" from_tag="zone:traffic" from_value="NL:rural" to_tag1="maxspeed" to_value1="80" if_not_tag1="highway" if_not_value1="cycleway" map="no" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="zone:traffic" from_value="NL:urban" to_tag1="maxspeed" to_value1="50" if_not_tag1="highway" if_not_value1="cycleway" map="no" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="zone:traffic" from_value="NL:rural" to_tag1="maxspeed:moped" to_value1="40" if_tag1="highway" if_value1="cycleway" map="no" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="zone:traffic" from_value="NL:urban" to_tag1="maxspeed:moped" to_value1="30" if_tag1="highway" if_value1="cycleway" map="no" poi="no"/>
 
 	<entity_convert pattern="tag_transform" from_tag="seasonal" from_value="fall" to_tag1="seasonal" to_value1="autumn" map="no"/>
 	<entity_convert pattern="tag_transform" from_tag="seasonal" from_value="year_round" to_tag1="seasonal" to_value1="no" map="no"/>
@@ -7254,6 +7262,7 @@
 		<routing_type tag="maxspeed" mode="amend" base="true" type="speed"/>
 		<routing_type tag="maxspeed:practical" mode="amend" base="true"/>
 		<routing_type tag="maxspeed:advisory" mode="amend"/>
+		<routing_type tag="maxspeed:moped" mode="amend"/>
 
 		<routing_type tag="cycleway" mode="amend"/>
 		<routing_type tag="cycleway:left" value="lane" tag2="cycleway" value2="lane" mode="replace"/>
