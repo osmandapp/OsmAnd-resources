@@ -5,6 +5,7 @@ STYLE_ICONS_FOLDER=../../rendering_styles/style-icons
 COPY_CMD=cp
 icon_alias() {
 	$COPY_CMD $CF ../svg-res/${2}.svg $STYLE_ICONS_FOLDER/poi-icons-svg/mx_${1}.svg
+	$COPY_CMD $CF ../svg-web-res/${2}.svg $STYLE_ICONS_FOLDER/poi-icons-web-svg/mx_${1}.svg
 	# $1 icon target name in app
 	# $2 generated icon name from svg
  	# echo "${2}.png   style-icons/mm_${1}.png"
