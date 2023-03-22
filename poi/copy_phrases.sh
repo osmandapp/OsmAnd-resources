@@ -86,5 +86,5 @@ mkdir -p ./phrases/uk/ && cp -f ../../android/OsmAnd/res/values-uk/phrases.xml p
 mkdir -p ./phrases/uz-Cyrl/ && cp -f ../../android/OsmAnd/res/values-uz/phrases.xml phrases/uz-Cyrl/
 
 mkdir -p ./phrases/zh-Hans/ && cp -f ../../android/OsmAnd/res/values-zh-rCN/phrases.xml phrases/zh-Hans/
-mkdir -p ./phrases/zh/ && ## cp -f ../../android/OsmAnd/res/values-zh-rHK/phrases.xml phrases/zh/
+## mkdir -p ./phrases/zh/ && cp -f ../../android/OsmAnd/res/values-zh-rHK/phrases.xml phrases/zh/
 mkdir -p ./phrases/zh-Hant/ && cp -f ../../android/OsmAnd/res/values-zh-rTW/phrases.xml phrases/zh-Hant/
