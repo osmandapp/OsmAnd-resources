@@ -685,6 +685,7 @@ icon_alias barrier_hampshire_gate barrier_colored_hampshire_gate
 icon_alias barrier_coupure barrier_colored_coupure
 icon_alias barrier_planter barrier_colored_planter
 icon_alias barrier_spikes barrier_colored_spikes
+icon_alias barrier_sump_buster barrier_colored_sump_buster
 
 
 ## Accommodation
