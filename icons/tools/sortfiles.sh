@@ -683,6 +683,7 @@ icon_alias barrier_colored_jersey_barrier barrier_colored_jersey_barrier
 icon_alias barrier_colored_log barrier_colored_log
 icon_alias barrier_hampshire_gate barrier_colored_hampshire_gate
 icon_alias barrier_coupure barrier_colored_coupure
+icon_alias barrier_planter barrier_colored_planter
 
 
 ## Accommodation
