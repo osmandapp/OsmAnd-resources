@@ -687,6 +687,7 @@ icon_alias barrier_planter barrier_colored_planter
 icon_alias barrier_spikes barrier_colored_spikes
 icon_alias barrier_sump_buster barrier_colored_sump_buster
 icon_alias barrier_wedge barrier_colored_wedge
+icon_alias barrier_bar barrier_colored_bar
 
 
 ## Accommodation
