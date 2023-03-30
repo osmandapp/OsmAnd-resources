@@ -690,6 +690,7 @@ icon_alias barrier_wedge barrier_colored_wedge
 icon_alias barrier_bar barrier_colored_bar
 icon_alias barrier_tyres barrier_colored_tyres
 icon_alias barrier_barrier_board barrier_colored_barrier_board
+icon_alias barrier_tank_trap barrier_colored_tank_trap
 
 
 ## Accommodation
