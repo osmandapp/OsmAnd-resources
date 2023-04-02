@@ -9,7 +9,6 @@
 // (X) Special grammar: nth(nominative/instrumental), distance(accusative/locative/workaround), special plural 1 2 3_4
 // (X) Support announcing highway exits
 
-
 var metricConst;
 var dictionary = {};
 var tts;
