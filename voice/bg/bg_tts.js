@@ -1,4 +1,3 @@
-
 // IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 //
 // (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
@@ -8,6 +7,8 @@
 // (X) Street name and prepositions (onto / on / to) and street destination (toward) support
 // (X) Distance unit support (meters / feet / yard)
 // (N/A) Special grammar: (please specify which)
+// ( ) Support announcing highway exits
+
 
 var metricConst;
 var dictionary = {};
@@ -240,7 +241,7 @@ function hours(minutes) {
 		return dictionary["1_hour"];
 	} else {
 		var hours = Math.floor(minutes / 60);
-        return  (tts ? hours.toString() : ogg_dist(hours)) + " " + dictionary["hours"]; 
+        return (tts ? hours.toString() : ogg_dist(hours)) + " " + dictionary["hours"]; 
 	}
 }
 
@@ -277,7 +278,38 @@ function turn(turnType, dist, streetName) {
 	}
 }
 
-function  getTurnType(turnType) {
+//function take_exit(turnType, dist, exitString, exitInt, streetName) {
+//	if (dist == -1) {
+//		return getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName);
+//	} else {
+//		return dictionary["in"] + " " + distance(dist) + (tts ? ", " : " ")
+//			+ getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName);
+//	}
+//}
+
+//function take_exit_name(streetName) {
+//	if (Object.keys(streetName).length == 0 || (streetName["toDest"] == "" && streetName["toStreetName"] == "") || !tts) {
+//		return "";
+//	} else if (streetName["toDest"] != "") {
+//		return (tts ? ", " : " ") + streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
+//	} else if (streetName["toStreetName"] != "") {
+//		return (tts ? ", " : " ") + streetName["toStreetName"];
+//	} else {
+//		return "";
+//	}
+//}
+
+//function getExitNumber(exitString, exitInt) {
+//	if (!tts && exitInt > 0 && exitInt < 18) {
+//		return nth(exitInt) + " " + dictionary["exit"];
+//	} else if (tts) {
+//		return dictionary["exit"] + " " + exitString;
+//	} else {
+//		return dictionary["exit"];
+//	}
+//}
+
+function getTurnType(turnType) {
 	switch (turnType) {
 		case "left":
 			return dictionary["left"];
@@ -538,7 +570,7 @@ function ogg_dist(distance) {
 	} else if (distance < 70) {
 		return "60.ogg " + ogg_dist(distance - 60);
 	} else if (distance < 80) {
-		return "70.ogg "+ ogg_dist(distance - 70);
+		return "70.ogg " + ogg_dist(distance - 70);
 	} else if (distance < 90) {
 		return "80.ogg " + ogg_dist(distance - 80);
 	} else if (distance < 100) {
@@ -548,7 +580,7 @@ function ogg_dist(distance) {
 	} else if (distance < 300) {
 		return "200.ogg " + ogg_dist(distance - 200);
 	} else if (distance < 400) {
-		return "300.ogg "+ ogg_dist(distance - 300);
+		return "300.ogg " + ogg_dist(distance - 300);
 	} else if (distance < 500) {
 		return "400.ogg " + ogg_dist(distance - 400);
 	} else if (distance < 600) {
