@@ -383,17 +383,17 @@ function num_str(number, gender /*of the object being counted*/, grm_case) {
 		teens = tens + ones;
 
 	if (teens)
-		return   dictionary[thousands.toString()+"_"+grm_case]
+		return dictionary[thousands.toString()+"_"+grm_case]
 			   + ((thousands && hundreds) ? " " + dictionary["and"] + " " : "") + dictionary[hundreds.toString()+"_"+grm_case]
 			   + ((thousands || hundreds) ? " " + dictionary["and"] + " " : "") + dictionary[teens.toString()+"_"+gender+"_"+grm_case];
 
 	if (tens == 10)
-		return   dictionary[thousands.toString()+"_"+grm_case]
+		return dictionary[thousands.toString()+"_"+grm_case]
 			   + ((thousands && hundreds) ? " " + dictionary["and"] + " " : "") + dictionary[hundreds.toString()+"_"+grm_case]
 			   + (((thousands || hundreds) && ones) ? " " + dictionary["and"] + " " : "") + dictionary[ones.toString()+"_"+gender+"_"+grm_case]
 			   + (((thousands || hundreds || ones) && tens) ? " " + dictionary["and"] + " " : "") + dictionary[tens.toString()+"_"+gender+"_"+grm_case];
 
-	return   dictionary[thousands.toString()+"_"+grm_case]
+	return dictionary[thousands.toString()+"_"+grm_case]
 		   + ((thousands && hundreds) ? " " + dictionary["and"] + " " : "") + dictionary[hundreds.toString()+"_"+grm_case]
 		   + (((thousands || hundreds) && ones) ? " " + dictionary["and"] + " " : "") + dictionary[ones.toString()+"_"+gender+"_"+grm_case]
 		   + (((thousands || hundreds || ones) && tens) ? " " + dictionary["and"] + " " : "") + dictionary[tens.toString()+"_"+grm_case];
@@ -561,8 +561,8 @@ function hours(minutes, grm_case) {
 	if (minutes < 180)
 		return dictionary["2_hours"];
 	if (hrs < 11)
-       	return  (tts ? num_str(hrs, "f", grm_case) : ogg_dist(hrs)) + " " + dictionary["hours"];
-   	return  (tts ? num_str(hrs, "f", grm_case) : ogg_dist(hrs)) + " " + dictionary["hour"];
+       	return (tts ? num_str(hrs, "f", grm_case) : ogg_dist(hrs)) + " " + dictionary["hours"];
+   	return (tts ? num_str(hrs, "f", grm_case) : ogg_dist(hrs)) + " " + dictionary["hour"];
 }
 
 function route_recalc(dist, seconds) {
@@ -598,10 +598,10 @@ function turn(turnType, dist, streetName) {
 
 function take_exit(turnType, dist, exitString, exitInt, streetName) {
 	if (dist == -1) {
-		return getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
+		return getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName);
 	} else {
 		return dictionary["in"] + " " + distance(dist) + " "
-			+ getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName)
+			+ getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName);
 	}
 }
 
@@ -611,7 +611,7 @@ function take_exit_name(streetName) {
 	} else if (streetName["toDest"] != "") {
 		return (tts ? ", " : " ") + streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	} else if (streetName["toStreetName"] != "") {
-		return (tts ? ", " : " ") + streetName["toStreetName"]
+		return (tts ? ", " : " ") + streetName["toStreetName"];
 	} else {
 		return "";
 	}
@@ -621,13 +621,13 @@ function getExitNumber(exitString, exitInt) {
 	if (!tts && exitInt > 0 && exitInt < 18) {
 		return nth(exitInt) + " " + dictionary["exit"];
 	} else if (tts) {
-		return  dictionary["exit"] + " " + exitString;
+		return dictionary["exit"] + " " + exitString;
 	} else {
 		return dictionary["exit"];
 	}
 }
 
-function  getTurnType(turnType) {
+function getTurnType(turnType) {
 	switch (turnType) {
 		case "left":
 			return dictionary["left"];
@@ -866,7 +866,7 @@ function ogg_dist(distance) {
 	if (distance < 70)
 		return "60.ogg " + ogg_dist(distance - 60);
 	if (distance < 80)
-		return "70.ogg "+ ogg_dist(distance - 70);
+		return "70.ogg " + ogg_dist(distance - 70);
 	if (distance < 90)
 		return "80.ogg " + ogg_dist(distance - 80);
 	if (distance < 100)
@@ -876,7 +876,7 @@ function ogg_dist(distance) {
 	if (distance < 300)
 		return "200.ogg " + ogg_dist(distance - 200);
 	if (distance < 400)
-		return "300.ogg "+ ogg_dist(distance - 300);
+		return "300.ogg " + ogg_dist(distance - 300);
 	if (distance < 500)
 		return "400.ogg " + ogg_dist(distance - 400);
 	if (distance < 600)
