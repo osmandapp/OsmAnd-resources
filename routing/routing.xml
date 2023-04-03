@@ -567,6 +567,16 @@
 			<select value="-1" t="maxheight:backward">
 				<gt value1=":height" value2="$maxheight:backward" type="length"/>
 			</select>
+
+			<if param="profile_truck">
+				<select value="-1" t="maxweight:hgv">
+					<gt value1=":weight" value2="$maxweight" type="weight"/>
+				</select>
+				<select value="-1" t="maxaxleload">
+					<gt value1=":maxaxleload" value2="$maxaxleload" type="weight"/>
+				</select>
+			</if>
+
 			<gt value1=":hazmat_category" value2="4"> <!-- E -->
 				<select value="-1" t="hazmat" v="no"/>
 				<select value="1" t="hazmat:a" v="yes"/>
@@ -819,9 +829,9 @@
 			<select value="90" t="highway" v="trunk_link"/>
 
 			<if param="profile_truck">
-				<select value="$maxspeed:hgv" t="maxspeed:hgv"/>
-				<select value="$maxspeed:goods" t="maxspeed:goods"/>
-				<select value="$maxspeed:truck" t="maxspeed:truck"/>
+				<select value="$maxspeed" t="maxspeed:hgv"/>
+				<select value="$maxspeed" t="maxspeed:goods"/>
+				<select value="$maxspeed" t="maxspeed:truck"/>
 			</if>
 
 			<!-- shortway handled internally -->
@@ -897,7 +907,9 @@
 			<select t="access" v="destination" value="0.15"/>
 			<select t="access" v="delivery" value="0.15"/>
 			<select t="access" v="customers" value="0.15"/>
-		
+			<if param="profile_truck">
+				<select t="hgv" v="delivery" value="0.15"/>
+			</if>
 
 			<select value="0.2" t="tracktype" v="grade5" />
 			<select value="0.3" t="smoothness" v="very_bad"/>
