@@ -2171,6 +2171,7 @@ icon_alias stub_tourism functional-icons_stub_tourism
 
 #OSMC
 icon_alias_no_mx osmc_black_arch osmc_black_arch
+icon_alias_no_mx osmc_black_arrow osmc_black_arrow
 icon_alias_no_mx osmc_black_backslash osmc_black_backslash
 icon_alias_no_mx osmc_black_bar osmc_black_bar
 icon_alias_no_mx osmc_black_bar_2 osmc_black_bar_2
@@ -2249,6 +2250,7 @@ icon_alias_no_mx osmc_black_x_4 osmc_black_x_4
 icon_alias_no_mx osmc_black_wheel osmc_black_wheel
 
 icon_alias_no_mx osmc_blue_arch osmc_blue_arch
+icon_alias_no_mx osmc_blue_arrow osmc_blue_arrow
 icon_alias_no_mx osmc_blue_backslash osmc_blue_backslash
 icon_alias_no_mx osmc_blue_bar osmc_blue_bar
 icon_alias_no_mx osmc_blue_bar_2 osmc_blue_bar_2
@@ -2327,6 +2329,7 @@ icon_alias_no_mx osmc_blue_x_4 osmc_blue_x_4
 icon_alias_no_mx osmc_blue_wheel osmc_blue_wheel
 
 icon_alias_no_mx osmc_green_arch osmc_green_arch
+icon_alias_no_mx osmc_green_arrow osmc_green_arrow
 icon_alias_no_mx osmc_green_backslash osmc_green_backslash
 icon_alias_no_mx osmc_green_bar osmc_green_bar
 icon_alias_no_mx osmc_green_bar_2 osmc_green_bar_2
@@ -2405,6 +2408,7 @@ icon_alias_no_mx osmc_green_x_4 osmc_green_x_4
 icon_alias_no_mx osmc_green_wheel osmc_green_wheel
 
 icon_alias_no_mx osmc_orange_arch osmc_orange_arch
+icon_alias_no_mx osmc_orange_arrow osmc_orange_arrow
 icon_alias_no_mx osmc_orange_backslash osmc_orange_backslash
 icon_alias_no_mx osmc_orange_bar osmc_orange_bar
 icon_alias_no_mx osmc_orange_bar_2 osmc_orange_bar_2
@@ -2483,6 +2487,7 @@ icon_alias_no_mx osmc_orange_x_4 osmc_orange_x_4
 icon_alias_no_mx osmc_orange_wheel osmc_orange_wheel
 
 icon_alias_no_mx osmc_red_arch osmc_red_arch
+icon_alias_no_mx osmc_red_arrow osmc_red_arrow
 icon_alias_no_mx osmc_red_backslash osmc_red_backslash
 icon_alias_no_mx osmc_red_bar osmc_red_bar
 icon_alias_no_mx osmc_red_bar_2 osmc_red_bar_2
@@ -2562,6 +2567,7 @@ icon_alias_no_mx osmc_red_x_4 osmc_red_x_4
 icon_alias_no_mx osmc_red_wheel osmc_red_wheel
 
 icon_alias_no_mx osmc_white_arch osmc_white_arch
+icon_alias_no_mx osmc_white_arrow osmc_white_arrow
 icon_alias_no_mx osmc_white_backslash osmc_white_backslash
 icon_alias_no_mx osmc_white_bar osmc_white_bar
 icon_alias_no_mx osmc_white_bar_2 osmc_white_bar_2
@@ -2640,6 +2646,7 @@ icon_alias_no_mx osmc_white_x_4 osmc_white_x_4
 icon_alias_no_mx osmc_white_wheel osmc_white_wheel
 
 icon_alias_no_mx osmc_yellow_arch osmc_yellow_arch
+icon_alias_no_mx osmc_yellow_arrow osmc_yellow_arrow
 icon_alias_no_mx osmc_yellow_backslash osmc_yellow_backslash
 icon_alias_no_mx osmc_yellow_bar osmc_yellow_bar
 icon_alias_no_mx osmc_yellow_bar_2 osmc_yellow_bar_2
@@ -2718,6 +2725,7 @@ icon_alias_no_mx osmc_yellow_x_4 osmc_yellow_x_4
 icon_alias_no_mx osmc_yellow_wheel osmc_yellow_wheel
 
 icon_alias_no_mx osmc_brown_arch osmc_brown_arch
+icon_alias_no_mx osmc_brown_arrow osmc_brown_arrow
 icon_alias_no_mx osmc_brown_backslash osmc_brown_backslash
 icon_alias_no_mx osmc_brown_bar osmc_brown_bar
 icon_alias_no_mx osmc_brown_bar_2 osmc_brown_bar_2
