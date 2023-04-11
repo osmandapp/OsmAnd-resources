@@ -192,6 +192,7 @@ generateBothMapPOIPng() {
   # genMapIconsNoScale 'osmc_red' '#'
   # genMapIconsNoScale 'osmc_white' '#'
   # genMapIconsNoScale 'osmc_yellow' '#'
+  # genMapIconsNoScale 'osmc_brown' '#'
   # genMapIconsNoScale 'osmc_other' '#'
   # genMapIconsStdSize 'functional-icons' '#'
   # genMapIconsStdSize 'functional-icons-x2' '#ff8f00' x2
