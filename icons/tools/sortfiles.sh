@@ -2203,6 +2203,7 @@ icon_alias_no_mx osmc_black_fork osmc_black_fork
 icon_alias_no_mx osmc_black_hiker osmc_black_hiker
 icon_alias_no_mx osmc_black_house osmc_black_house
 icon_alias_no_mx osmc_black_l osmc_black_l
+icon_alias_no_mx osmc_black_left osmc_black_left
 icon_alias_no_mx osmc_black_m osmc_black_m
 icon_alias_no_mx osmc_black_lower osmc_black_lower
 icon_alias_no_mx osmc_black_lower_2 osmc_black_lower_2
@@ -2284,6 +2285,7 @@ icon_alias_no_mx osmc_blue_fork osmc_blue_fork
 icon_alias_no_mx osmc_blue_hiker osmc_blue_hiker
 icon_alias_no_mx osmc_blue_house osmc_blue_house
 icon_alias_no_mx osmc_blue_l osmc_blue_l
+icon_alias_no_mx osmc_blue_left osmc_blue_left
 icon_alias_no_mx osmc_blue_m osmc_blue_m
 icon_alias_no_mx osmc_blue_lower osmc_blue_lower
 icon_alias_no_mx osmc_blue_lower_2 osmc_blue_lower_2
@@ -2365,6 +2367,7 @@ icon_alias_no_mx osmc_green_fork osmc_green_fork
 icon_alias_no_mx osmc_green_hiker osmc_green_hiker
 icon_alias_no_mx osmc_green_house osmc_green_house
 icon_alias_no_mx osmc_green_l osmc_green_l
+icon_alias_no_mx osmc_green_left osmc_green_left
 icon_alias_no_mx osmc_green_m osmc_green_m
 icon_alias_no_mx osmc_green_lower osmc_green_lower
 icon_alias_no_mx osmc_green_lower_2 osmc_green_lower_2
@@ -2446,6 +2449,7 @@ icon_alias_no_mx osmc_orange_fork osmc_orange_fork
 icon_alias_no_mx osmc_orange_hiker osmc_orange_hiker
 icon_alias_no_mx osmc_orange_house osmc_orange_house
 icon_alias_no_mx osmc_orange_l osmc_orange_l
+icon_alias_no_mx osmc_orange_left osmc_orange_left
 icon_alias_no_mx osmc_orange_m osmc_orange_m
 icon_alias_no_mx osmc_orange_lower osmc_orange_lower
 icon_alias_no_mx osmc_orange_lower_2 osmc_orange_lower_2
@@ -2528,6 +2532,7 @@ icon_alias_no_mx osmc_red_fork osmc_red_fork
 icon_alias_no_mx osmc_red_hiker osmc_red_hiker
 icon_alias_no_mx osmc_red_house osmc_red_house
 icon_alias_no_mx osmc_red_l osmc_red_l
+icon_alias_no_mx osmc_red_left osmc_red_left
 icon_alias_no_mx osmc_red_m osmc_red_m
 icon_alias_no_mx osmc_red_lower osmc_red_lower
 icon_alias_no_mx osmc_red_lower_2 osmc_red_lower_2
@@ -2609,6 +2614,7 @@ icon_alias_no_mx osmc_white_fork osmc_white_fork
 icon_alias_no_mx osmc_white_hiker osmc_white_hiker
 icon_alias_no_mx osmc_white_house osmc_white_house
 icon_alias_no_mx osmc_white_l osmc_white_l
+icon_alias_no_mx osmc_white_left osmc_white_left
 icon_alias_no_mx osmc_white_m osmc_white_m
 icon_alias_no_mx osmc_white_lower osmc_white_lower
 icon_alias_no_mx osmc_white_lower_2 osmc_white_lower_2
@@ -2690,6 +2696,7 @@ icon_alias_no_mx osmc_yellow_fork osmc_yellow_fork
 icon_alias_no_mx osmc_yellow_hiker osmc_yellow_hiker
 icon_alias_no_mx osmc_yellow_house osmc_yellow_house
 icon_alias_no_mx osmc_yellow_l osmc_yellow_l
+icon_alias_no_mx osmc_yellow_left osmc_yellow_left
 icon_alias_no_mx osmc_yellow_m osmc_yellow_m
 icon_alias_no_mx osmc_yellow_lower osmc_yellow_lower
 icon_alias_no_mx osmc_yellow_lower_2 osmc_yellow_lower_2
@@ -2770,6 +2777,7 @@ icon_alias_no_mx osmc_brown_fork osmc_brown_fork
 icon_alias_no_mx osmc_brown_hiker osmc_brown_hiker
 icon_alias_no_mx osmc_brown_house osmc_brown_house
 icon_alias_no_mx osmc_brown_l osmc_brown_l
+icon_alias_no_mx osmc_brown_left osmc_brown_left
 icon_alias_no_mx osmc_brown_m osmc_brown_m
 icon_alias_no_mx osmc_brown_lower osmc_brown_lower
 icon_alias_no_mx osmc_brown_lower_2 osmc_brown_lower_2
