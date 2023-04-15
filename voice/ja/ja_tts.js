@@ -568,7 +568,7 @@ function make_ut_wp() {
 
 // TRAFFIC WARNINGS
 function speed_alarm(maxSpeed, speed) {
-	return dictionary["exceed_limit"] + " " + maxSpeed.toString() + + (tts ? "。" : " ");
+	return dictionary["exceed_limit"] + " " + maxSpeed.toString() + (tts ? "。" : " ");
 }
 
 function attention(type) {
