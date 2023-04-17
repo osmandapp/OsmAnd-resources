@@ -153,10 +153,6 @@ function populateDictionary(tts) {
 	dictionary["1_minute"] = tts ? "1分" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "分" : "minutes.ogg";
 
-	// PUNCTUATION
-	dictionary["comma"] = tts ? "、 " : "zzz_delay_0025msec.ogg";
-	dictionary["period"] = tts ? "。" : "zzz_delay_0050msec.ogg";
-
 	// 非公式日本語用独自追加
 	// zzz_atを使うと自然な日本語になるけれど、keep_left keep_rightだけおかしくなる／400m先で左寄りに進んで下さい×・400m左寄りに進んで下さい○
 	// とりあえず空白1秒おくことで両立できるようにしていた
@@ -183,7 +179,7 @@ function setMode(mode) {
 }
 
 function route_new_calc(dist, timeVal) {
-	return dictionary["route_is"] + " " + distance(dist) + dictionary["comma"] + dictionary["time"] + " " + time(timeVal) + dictionary["period"];
+	return dictionary["route_is"] + " " + distance(dist) + (tts ? "、 " : " ") + dictionary["time"] + " " + time(timeVal) + (tts ? "。" : " ");
 }
 
 function distance(dist) {
@@ -288,7 +284,7 @@ function hours(minutes) {
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + dictionary["comma"] + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? "。 " : " ");
+	return dictionary["route_calculate"] + (tts ? "、 " : " ") + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? "。 " : " ");
 }
 
 function go_ahead(dist, streetName) {
@@ -296,7 +292,7 @@ function go_ahead(dist, streetName) {
 		return dictionary["go_ahead"];
 	} else {
 		// 英文版 return dictionary["follow"] + " " + distance(dist) + " " + follow_street(streetName);
-		return distance(dist) + " " + dictionary["follow"] + " " + follow_street(streetName) + dictionary["period"];
+		return distance(dist) + " " + dictionary["follow"] + " " + follow_street(streetName) + (tts ? "。" : " ");
 	}
 }
 
@@ -317,10 +313,10 @@ function follow_street(streetName) {
 function turn(turnType, dist, streetName) {
 	// 非公式日本語版文脈調整02 次に入る道路名の発声
 	if (dist == -1) {
-		return getTurnType(turnType) + dictionary["comma"] + turn_street(streetName) + dictionary["period"];
+		return getTurnType(turnType) + (tts ? "、 " : " ") + turn_street(streetName) + (tts ? "。" : " ");
 	} else {
 		//return dictionary["in"] + " " + distance(dist) + " " + dictionary["zzz_delay_0050msec"] + " " + getTurnType(turnType) + " " + turn_street(streetName); 
-		return dictionary["in"] + " " + distance(dist) + dictionary["comma"] + getTurnType(turnType) + " " + turn_street(streetName) + dictionary["period"]; 
+		return dictionary["in"] + " " + distance(dist) + (tts ? "、 " : " ") + getTurnType(turnType) + " " + turn_street(streetName) + (tts ? "。" : " "); 
 	}
 }
 
@@ -328,13 +324,13 @@ function take_exit(turnType, dist, exitString, exitInt, streetName) {
 	// 前の方の + " " + dictionary["onto"]を最後部に入れ替え
 	// 一番最初の条件だけ + " " + dictionary["onto"](へ、入ります)を追加
 	if (dist == -1) {
-		return getTurnType(turnType) + dictionary["comma"] + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName) + dictionary["period"];
+		return getTurnType(turnType) + (tts ? "、 " : " ") + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName) + (tts ? "。" : " ");
 	// 非公式日本語独自追加(英語版自体が間違っている可能性もある)
 	} else if (streetName["toStreetName"] == "") {
-	return dictionary["in"] + " " + distance(dist) + dictionary["comma"] + getTurnType(turnType) + dictionary["comma"] + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName) + dictionary["period"];
+	return dictionary["in"] + " " + distance(dist) + (tts ? "、 " : " ") + getTurnType(turnType) + (tts ? "、 " : " ") + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName) + (tts ? "。" : " ");
 	// ここまでが追加分
 	} else {
-		return dictionary["in"] + " " + distance(dist) + dictionary["comma"] + getTurnType(turnType) + dictionary["comma"] + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName) + dictionary["period"];
+		return dictionary["in"] + " " + distance(dist) + (tts ? "、 " : " ") + getTurnType(turnType) + (tts ? "、 " : " ") + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName) + (tts ? "。" : " ");
 	}
 }
 
@@ -342,9 +338,9 @@ function take_exit_name(streetName) {
 	if (Object.keys(streetName).length == 0 || (streetName["toDest"] == "" && streetName["toStreetName"] == "") || !tts) {
 		return "";
 	} else if (streetName["toDest"] != "") {
-		return dictionary["comma"] + streetName["toDest"] + dictionary["toward"] + " " + streetName["toStreetName"];
+		return (tts ? "、 " : " ") + streetName["toDest"] + dictionary["toward"] + " " + streetName["toStreetName"];
 	} else if (streetName["toStreetName"] != "") {
-		return dictionary["comma"] + streetName["toStreetName"];
+		return (tts ? "、 " : " ") + streetName["toStreetName"];
 	} else {
 		return "";
 	}
@@ -391,18 +387,18 @@ function getTurnType(turnType) {
 }
 
 function then() {
-	// 非公式版 return dictionary["comma"] + dictionary["then"] + dictionary["comma"];
-	return dictionary["comma"] + dictionary["then"] + " ";
+	// 非公式版 return (tts ? "、 " : " ") + dictionary["then"] + (tts ? "、 " : " ");
+	return (tts ? "、 " : " ") + dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
 	// 新非公式日本語版ラウンドアバウト(環状交差点)用処理
 	// 単純に文法的に不要なdictionary["take"](take.ogg)を抜き、わずかな遅延を入れただけ
 	if (dist == -1) {
-		return nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName) + dictionary["period"];
+		return nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName) + (tts ? "。" : " ");
 	} else {
-		//return dictionary["in"] + " " + distance(dist) + " " + dictionary["zzz_delay_0050msec"] + " " + dictionary["roundabout"] + dictionary["comma"] + dictionary["and"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
-		return dictionary["in"] + " " + distance(dist) + dictionary["comma"] + dictionary["roundabout"] + dictionary["comma"] + dictionary["and"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName) + dictionary["period"];
+		//return dictionary["in"] + " " + distance(dist) + " " + dictionary["zzz_delay_0050msec"] + " " + dictionary["roundabout"] + (tts ? "、 " : " ") + dictionary["and"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
+		return dictionary["in"] + " " + distance(dist) + (tts ? "、 " : " ") + dictionary["roundabout"] + (tts ? "、 " : " ") + dictionary["and"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName) + (tts ? "。" : " ");
 	}
 }
 
@@ -481,10 +477,10 @@ function make_ut(dist, streetName) {
 	// この記述が以前から正しく動作しているかどうか不明。
 	// どんなUターンが必要な状況(道路の形など)で発声しているかのサンプルや詳細が分かれば、zzz_at.oggなどを使って適切な文法に直せる可能性がある。
 	if (dist == -1) {
-		return dictionary["make_uturn"] + " " + turn_street(streetName) + dictionary["period"];
+		return dictionary["make_uturn"] + " " + turn_street(streetName) + (tts ? "。" : " ");
 	} else {
 		//return dictionary["in"] + " " + distance(dist) + " " + dictionary["zzz_delay_0050msec"] + " " + dictionary["make_uturn"] + " " + turn_street(streetName);
-		return dictionary["in"] + " " + distance(dist) + dictionary["comma"] + dictionary["make_uturn"] + " " + turn_street(streetName) + dictionary["period"];
+		return dictionary["in"] + " " + distance(dist) + (tts ? "、 " : " ") + dictionary["make_uturn"] + " " + turn_street(streetName) + (tts ? "。" : " ");
 	}
 }
 
@@ -498,85 +494,85 @@ function bear_right(streetName) {
 
 function prepare_make_ut(dist, streetName) {
 	// 以下の3つは「～のち、××」を自然に読ませるため、dictionary["after"]の前の" "を抜いた
-	return distance(dist) + " " + dictionary["after"] + dictionary["comma"] + dictionary["make_uturn"] + " " + turn_street(streetName) + dictionary["period"];
+	return distance(dist) + " " + dictionary["after"] + (tts ? "、 " : " ") + dictionary["make_uturn"] + " " + turn_street(streetName) + (tts ? "。" : " ");
 }
 
 function prepare_turn(turnType, dist, streetName) {
-	return distance(dist) + " " + dictionary["after"] + dictionary["comma"] + getTurnType(turnType) + " " + turn_street(streetName) + dictionary["period"];
+	return distance(dist) + " " + dictionary["after"] + (tts ? "、 " : " ") + getTurnType(turnType) + " " + turn_street(streetName) + (tts ? "。" : " ");
 }
 
 function prepare_roundabout(dist, exit, streetName) {
-	return distance(dist) + " " + dictionary["after"] + dictionary["comma"] + dictionary["prepare_roundabout"] + dictionary["period"]; 
+	return distance(dist) + " " + dictionary["after"] + (tts ? "、 " : " ") + dictionary["prepare_roundabout"] + (tts ? "。" : " "); 
 }
 
 function and_arrive_destination(dest) {
 	// 以下10個は読み上げ前に" "でウェイトを挿入
-	return " " + dictionary["and_arrive_destination"] + " " + dest + dictionary["period"];
+	return " " + dictionary["and_arrive_destination"] + " " + dest + (tts ? "。" : " ");
 }
 
 function and_arrive_intermediate(dest) {
-	return " " + dictionary["and_arrive_intermediate"] + " " + dest + dictionary["period"];
+	return " " + dictionary["and_arrive_intermediate"] + " " + dest + (tts ? "。" : " ");
 }
 
 function and_arrive_waypoint(dest) {
-	return " " + dictionary["and_arrive_waypoint"] + " " + dest + dictionary["period"];
+	return " " + dictionary["and_arrive_waypoint"] + " " + dest + (tts ? "。" : " ");
 }
 
 function and_arrive_favorite(dest) {
-	return " " + dictionary["and_arrive_favorite"] + " " + dest + dictionary["period"];
+	return " " + dictionary["and_arrive_favorite"] + " " + dest + (tts ? "。" : " ");
 }
 
 function and_arrive_poi(dest) {
-	return " " + dictionary["and_arrive_poi"] + " " + dest + dictionary["period"];
+	return " " + dictionary["and_arrive_poi"] + " " + dest + (tts ? "。" : " ");
 }
 
 function reached_destination(dest) {
-	return " " + dictionary["reached_destination"] + " " + dest + dictionary["period"];
+	return " " + dictionary["reached_destination"] + " " + dest + (tts ? "。" : " ");
 }
 
 function reached_waypoint(dest) {
-	return " " + dictionary["reached_waypoint"] + " " + dest + dictionary["period"];
+	return " " + dictionary["reached_waypoint"] + " " + dest + (tts ? "。" : " ");
 }
 
 function reached_intermediate(dest) {
-	return " " + dictionary["reached_intermediate"] + " " + dest + dictionary["period"];
+	return " " + dictionary["reached_intermediate"] + " " + dest + (tts ? "。" : " ");
 }
 
 function reached_favorite(dest) {
-	return " " + dictionary["reached_favorite"] + " " + dest + dictionary["period"];
+	return " " + dictionary["reached_favorite"] + " " + dest + (tts ? "。" : " ");
 }
 
 function reached_poi(dest) {
-	return " " + dictionary["reached_poi"] + " " + dest + dictionary["period"];
+	return " " + dictionary["reached_poi"] + " " + dest + (tts ? "。" : " ");
 }
 
 function location_lost() {
-	return dictionary["location_lost"] + dictionary["period"];
+	return dictionary["location_lost"] + (tts ? "。" : " ");
 }
 
 function location_recovered() {
-	return dictionary["location_recovered"] + dictionary["period"];
+	return dictionary["location_recovered"] + (tts ? "。" : " ");
 }
 
 function off_route(dist) {
-	return distance(dist) + " " + dictionary["off_route"] + dictionary["period"];
+	return distance(dist) + " " + dictionary["off_route"] + (tts ? "。" : " ");
 }
 
 function back_on_route() {
-	return dictionary["back_on_route"] + dictionary["period"];
+	return dictionary["back_on_route"] + (tts ? "。" : " ");
 }
 
 function make_ut_wp() {
-	return dictionary["make_uturn_wp"] + dictionary["period"];
+	return dictionary["make_uturn_wp"] + (tts ? "。" : " ");
 }
 
 // TRAFFIC WARNINGS
 function speed_alarm(maxSpeed, speed) {
-	return dictionary["exceed_limit"] + " " + maxSpeed.toString() + dictionary["period"];
+	return dictionary["exceed_limit"] + " " + maxSpeed.toString() + (tts ? "。" : " ");
 }
 
 function attention(type) {
-	return dictionary["attention"] + dictionary["comma"] + getAttentionString(type) + dictionary["period"];
+	return dictionary["attention"] + (tts ? "、 " : " ") + getAttentionString(type) + (tts ? "。" : " ");
 }
 
 function getAttentionString(type) {
