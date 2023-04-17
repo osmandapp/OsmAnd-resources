@@ -154,8 +154,8 @@ function populateDictionary(tts) {
 	dictionary["minutes"] = tts ? "分" : "minutes.ogg";
 
 	// PUNCTUATION
-	dictionary["comma"] = tts ? "、 " : "zzz_delay_0025msec.ogg";
-	dictionary["period"] = tts ? "。" : "zzz_delay_0050msec.ogg";
+	dictionary["comma"] = tts ? "、 " : " " + "zzz_delay_0025msec.ogg" + " ";
+	dictionary["period"] = tts ? "。" : " " + "zzz_delay_0050msec.ogg" + " ";
 
 	// 非公式日本語用独自追加
 	// zzz_atを使うと自然な日本語になるけれど、keep_left keep_rightだけおかしくなる／400m先で左寄りに進んで下さい×・400m左寄りに進んで下さい○
