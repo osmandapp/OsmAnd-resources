@@ -378,7 +378,7 @@
 	 	</if>
 	-->
 
-	<routingProfile name="car" baseProfile="car" restrictionsAware="true" minSpeed="20.0" defaultSpeed="45.0" maxSpeed="130.0" sharpTurn="30" slightTurn="15" roundaboutTurn="5" onewayAware="true">
+	<routingProfile name="car" baseProfile="car" restrictionsAware="true" minSpeed="20.0" defaultSpeed="45.0" maxSpeed="130.0" sharpTurn="30" slightTurn="15" roundaboutTurn="8" onewayAware="true">
 	 	<!--<attribute name="heuristicCoefficient" value="1.5" />
 		-->
 		<attribute name="derivedProfiles" value="default,truck,motorcycle"/>
@@ -548,6 +548,9 @@
 			<select value="-1" t="maxweight">
 				<gt value1=":weight" value2="$maxweight" type="weight"/>
 			</select>
+			<select value="-1" t="maxweightrating">
+				<gt value1=":maxweightrating" value2="$maxweightrating" type="weight"/>
+			</select>
 			<select value="-1" t="maxheight">
 				<gt value1=":height" value2="$maxheight" type="length"/>
 			</select>
@@ -573,6 +576,9 @@
 			<if param="profile_truck">
 				<select value="-1" t="maxweight:hgv">
 					<gt value1=":weight" value2="$maxweight" type="weight"/>
+				</select>
+				<select value="-1" t="maxweightrating:hgv">
+					<gt value1=":maxweightrating" value2="$maxweightrating" type="weight"/>
 				</select>
 				<select value="-1" t="maxaxleload">
 					<gt value1=":maxaxleload" value2="$maxaxleload" type="weight"/>
@@ -830,9 +836,9 @@
 			<min value1="90" value2="$maxspeed" t="highway" v="trunk_link"/>
 
 			<if param="profile_truck">
-				<select value="$maxspeed" t="maxspeed:hgv"/>
-				<select value="$maxspeed" t="maxspeed:goods"/>
-				<select value="$maxspeed" t="maxspeed:truck"/>
+				<select value="$maxspeed:hgv" t="maxspeed:hgv"/>
+				<select value="$maxspeed:goods" t="maxspeed:goods"/>
+				<select value="$maxspeed:truck" t="maxspeed:truck"/>
 			</if>
 
 			<!-- shortway handled internally -->
