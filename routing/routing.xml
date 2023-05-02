@@ -543,11 +543,22 @@
 			<select value="1"  t="access" v="destination"/>
 			<select value="1"  t="access" v="customers"/>
 
+			<if param="profile_truck">
+				<select value="-1" t="maxweight:hgv">
+					<gt value1=":weight" value2="$maxweight" type="weight"/>
+				</select>
+				<select value="-1" t="maxweightrating:hgv">
+					<gt value1=":maxweightrating" value2="$maxweightrating" type="weight"/>
+				</select>
+			</if>
 			<select value="-1" t="maxweight">
 				<gt value1=":weight" value2="$maxweight" type="weight"/>
 			</select>
 			<select value="-1" t="maxweightrating">
 				<gt value1=":maxweightrating" value2="$maxweightrating" type="weight"/>
+			</select>
+			<select value="-1" t="maxaxleload">
+				<gt value1=":maxaxleload" value2="$maxaxleload" type="weight"/>
 			</select>
 			<select value="-1" t="maxheight">
 				<gt value1=":height" value2="$maxheight" type="length"/>
@@ -570,18 +581,6 @@
 			<select value="-1" t="maxheight:backward">
 				<gt value1=":height" value2="$maxheight:backward" type="length"/>
 			</select>
-
-			<if param="profile_truck">
-				<select value="-1" t="maxweight:hgv">
-					<gt value1=":weight" value2="$maxweight" type="weight"/>
-				</select>
-				<select value="-1" t="maxweightrating:hgv">
-					<gt value1=":maxweightrating" value2="$maxweightrating" type="weight"/>
-				</select>
-				<select value="-1" t="maxaxleload">
-					<gt value1=":maxaxleload" value2="$maxaxleload" type="weight"/>
-				</select>
-			</if>
 
 			<gt value1=":hazmat_category" value2="4"> <!-- E -->
 				<select value="-1" t="hazmat" v="no"/>
