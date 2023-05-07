@@ -48,7 +48,10 @@ function populateDictionary(tts) {
 	dictionary["then"] = tts ? "do" : "then.ogg";
 	dictionary["and"] = tts ? "kaj" : "and.ogg";
 	dictionary["take"] = tts ? "veturi per" : "take.ogg";
+	dictionary["the"] = tts ? "la" : "the.ogg";
 	dictionary["exit"] = tts ? "elveturejo" : "exit.ogg";
+	dictionary["exit_acc"] = tts ? "elveturejon" : "exit_acc.ogg"; //accusative case
+	dictionary["onto_exit"] = tts ? "sur la" : "onto_x.ogg"; // only used for exits, which can be conjugated
 
 	dictionary["1a"] = tts ? "unua" : "1a.ogg";
 	dictionary["2a"] = tts ? "dua" : "2a.ogg";
@@ -67,6 +70,24 @@ function populateDictionary(tts) {
 	dictionary["15a"] = tts ? "dek-kvina" : "15a.ogg";
 	dictionary["16a"] = tts ? "dek-sesa" : "16a.ogg";
 	dictionary["17a"] = tts ? "dek-sepa" : "17a.ogg";
+
+	dictionary["1an"] = tts ? "unuan" : "1an.ogg";
+	dictionary["2an"] = tts ? "duan" : "2an.ogg";
+	dictionary["3an"] = tts ? "trian" : "3an.ogg";
+	dictionary["4an"] = tts ? "kvaran" : "4an.ogg";
+	dictionary["5an"] = tts ? "kvinan" : "5an.ogg";
+	dictionary["6an"] = tts ? "sesan" : "6an.ogg";
+	dictionary["7an"] = tts ? "sepan" : "7an.ogg";
+	dictionary["8an"] = tts ? "okan" : "8an.ogg";
+	dictionary["9an"] = tts ? "naŭan" : "9an.ogg";
+	dictionary["10an"] = tts ? "dekan" : "10an.ogg";
+	dictionary["11an"] = tts ? "dek-unuan" : "11an.ogg";
+	dictionary["12an"] = tts ? "dek-duan" : "12an.ogg";
+	dictionary["13an"] = tts ? "dek-trian" : "13an.ogg";
+	dictionary["14an"] = tts ? "dek-kvaran" : "14an.ogg";
+	dictionary["15an"] = tts ? "dek-kvinan" : "15an.ogg";
+	dictionary["16an"] = tts ? "dek-sesan" : "16an.ogg";
+	dictionary["17an"] = tts ? "dek-sepan" : "17an.ogg";
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Daŭru iri antaŭen" : "go_ahead.ogg";
@@ -107,7 +128,7 @@ function populateDictionary(tts) {
 
 	// STREET NAME PREPOSITIONS
 	dictionary["on"] = tts ? "sur" : "on.ogg";
-	dictionary["onto"] = tts ? "sur la vojon" : "onto.ogg";
+	dictionary["onto"] = tts ? "sur la vojon" : "onto.ogg"; // literally "onto the way", used with street names which can't be conjugated
 	dictionary["to"] = tts ? "al la vojon" : "to.ogg";
 	dictionary["toward"] = tts ? "al" : "toward.ogg";
 
@@ -282,10 +303,10 @@ function turn(turnType, dist, streetName) {
 
 function take_exit(turnType, dist, exitString, exitInt, streetName) {
 	if (dist == -1) {
-		return getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName);
+		return getTurnType(turnType) + " " + dictionary["onto_exit"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName);
 	} else {
 		return dictionary["after"] + " " + distance(dist) + " "
-			+ getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName);
+			+ getTurnType(turnType) + " " + dictionary["onto_exit"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName);
 	}
 }
 
@@ -303,11 +324,11 @@ function take_exit_name(streetName) {
 
 function getExitNumber(exitString, exitInt) {
 	if (!tts && exitInt > 0 && exitInt < 18) {
-		return nth(exitInt) + " " + dictionary["exit"];
+		return dictionary["the"] + nth_acc(exitInt) + " " + dictionary["exit_acc"];
 	} else if (tts) {
-		return dictionary["exit"] + " " + exitString;
+		return dictionary["exit_acc"] + " " + exitString;
 	} else {
-		return dictionary["exit"];
+		return dictionary["exit_acc"];
 	}
 }
 
@@ -414,6 +435,45 @@ function nth(exit) {
 			return dictionary["16a"];
 		case (17):
 			return dictionary["17a"];
+	}
+}
+
+function nth_acc(exit) { //accusative case
+	switch (exit) {
+		case (1):
+			return dictionary["1an"];
+		case (2):
+			return dictionary["2an"];
+		case (3):
+			return dictionary["3an"];
+		case (4):
+			return dictionary["4an"];
+		case (5):
+			return dictionary["5an"];
+		case (6):
+			return dictionary["6an"];
+		case (7):
+			return dictionary["7an"];
+		case (8):
+			return dictionary["8an"];
+		case (9):
+			return dictionary["9an"];
+		case (10):
+			return dictionary["10an"];
+		case (11):
+			return dictionary["11an"];
+		case (12):
+			return dictionary["12an"];
+		case (13):
+			return dictionary["13an"];
+		case (14):
+			return dictionary["14an"];
+		case (15):
+			return dictionary["15an"];
+		case (16):
+			return dictionary["16an"];
+		case (17):
+			return dictionary["17an"];
 	}
 }
 
