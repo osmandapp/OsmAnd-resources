@@ -362,7 +362,7 @@ function getTurnType(turnType) {
 }
 
 function then() {
-	return dictionary["then"] + " ";
+	return (tts ? ", " : " ") + dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {
@@ -375,13 +375,14 @@ function roundabout(dist, angle, exit, streetName) {
 }
 
 function turn_street(streetName) {
-	if ((streetName["toDest"] == "" && streetName["toStreetName"] == "" && streetName["toRef"] == "") || Object.keys(streetName).length == 0 || !tts) {
+	if (Object.keys(streetName).length == 0 || (streetName["toDest"] == "" && streetName["toStreetName"] == "" && streetName["toRef"] == "") || !tts) {
 		return "";
 	} else if (streetName["toStreetName"] == "" && streetName["toRef"] == "") {
 		return dictionary["toward"] + " " + streetName["toDest"];
 	} else if (streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"]) {
 		return dictionary["on"] + " " + assemble_street_name(streetName);
-	} else if (streetName["toStreetName"] == "" && streetName["toRef"] == streetName["fromRef"]) {
+	} else if ((streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"]) 
+		|| (streetName["toStreetName"] == "" && streetName["toRef"] == streetName["fromRef"])) {
 		return dictionary["on"] + " " + assemble_street_name(streetName);
 	} else if (!(streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"])) {
 		return dictionary["onto"] + " " + assemble_street_name(streetName);
