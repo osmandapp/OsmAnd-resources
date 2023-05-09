@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <osmand_types>
-    <!-- Version 1.1, 2021-12-22 adding tags for nautical rendering for seamarks in INT-1 section K Obstructions and J Seabed, Weed, Seagrass -->
+    <!-- Version 1.3, 2023-05-03 adding tags for nautical rendering for seamarks in INT-1 P, R, S sections Lights, Fog Signals, Radar -->
 	
 	<!-- currently name tags are indexed with name and additional in nameTags separated by comma -->
 
@@ -4403,6 +4403,9 @@
 		<type tag="public_transport" value="stop_position" minzoom="15"/>
 	</category>
 
+	<type tag="man_made" value="offshore_platform" minzoom="10" nameTags="seamark:name,name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/> <!-- nameTags for INT-1 P Section Lights, in front of aeroway=helipad and power=substation for visibility in nautical.render.xml -->
+	<type tag="seamark:type" value="platform" minzoom="10" nameTags="seamark:name,name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/> <!-- nameTags for INT-1 P Section Lights, in front of aeroway=helipad and power=substation for visibility in nautical.render.xml -->
+
 	<category name="aeroway">
 		 <!-- artificial tags. Used because only (usually) large aerodromes are using these tags and they are nameTags -->
 		<entity_convert pattern="tag_transform" from_tag="iata" if_tag1="aeroway" if_value1="aerodrome" to_tag1="large_aerodrome" to_value1="yes" to_tag2="iata"/>
@@ -4427,7 +4430,7 @@
 		<entity_convert pattern="tag_transform" from_tag="aerodrome" from_value="airfield" to_tag1="aerodrome:type" to_value1="airfield"/>
 		<type tag="aerodrome:type" value="military" minzoom="6" additional="true" />
 		<type tag="aeroway" value="terminal" minzoom="14" order="60"/>
-		<type tag="aeroway" value="helipad" minzoom="10" />
+		<type tag="aeroway" value="helipad" minzoom="10"/>
 		<type tag="aeroway" value="runway" minzoom="11"/>
 		<type tag="aeroway" value="taxiway" minzoom="12" nameTags="ref"/>
 		<type tag="aeroway" value="apron" minzoom="12"/>
@@ -4588,7 +4591,7 @@
 		<type tag="amenity" value="weightbridge" minzoom="15" />
 		<type tag="man_made" value="ventilation_shaft" minzoom="15" />
 		<type tag="man_made" value="pumping_station" minzoom="15" />
-		<type tag="man_made" value="lighthouse" minzoom="15" />
+		<type tag="man_made" value="lighthouse" minzoom="10" nameTags="seamark:name,name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/> <!-- nameTags for INT-1 P Section Lights -->
 		<type tag="man_made" value="mineshaft" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="mine" to_tag1="man_made" to_value1="mineshaft"/>
 		<type tag="man_made" value="adit" minzoom="15" />
@@ -4608,7 +4611,7 @@
 		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="surveillance" if_tag1="healthcare" to_tag1="surveillance" to_value1="yes"/>
 		<type tag="man_made" value="standpipe" minzoom="15" />
 		<type tag="man_made" value="survey_point" minzoom="11" />
-		<type tag="man_made" value="tower" minzoom="10" order="60"/>
+		<type tag="man_made" value="tower" minzoom="10" order="60" nameTags="seamark:name,name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/> <!-- nameTags for INT-1 P Section Lights -->
 		<type tag="tower:type" value="communication" additional="true" minzoom="10" />
 		<type tag="tower:type" value="lighting" additional="true" minzoom="10" />
 		<type tag="tower:type" value="observation" additional="true" minzoom="10" />
@@ -4621,7 +4624,7 @@
 		<entity_convert pattern="tag_transform" from_tag="historic" from_value="tower" to_tag1="man_made" to_value1="tower" to_tag2="historic" to_value2="yes"/>
 		<type tag="man_made" value="antenna" minzoom="14"/>
 		<entity_convert pattern="tag_transform" from_tag="tower:type" from_value="communication" to_tag1="tower:type" to_value1="communication" to_tag2="man_made" to_value2="tower" poi="no"/>
-		<type tag="man_made" value="mast" minzoom="10"/>
+		<type tag="man_made" value="mast" minzoom="10" nameTags="seamark:name,name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/> <!-- nameTags for INT-1 P Section Lights -->
 		<entity_convert pattern="tag_transform" from_tag="tower:type" from_value="mast" if_not_tag1="man_made" if_not_value1="mast" to_tag1="man_made" to_value1="mast"/>
 		<type tag="man_made" value="satellite_dish" minzoom="14"/>
 		<type tag="man_made" value="flare" minzoom="13"/>
@@ -6747,7 +6750,8 @@
 		<!-- Here user defined categories could be added -->
 		<!-- <type tag="user_defined" value="wsl" minzoom="10" /> -->
 	</category>
-
+	
+	<!-- Seamarks -->
 	<!-- example of definition openseamaps needs to be enabled later -->
 	<!-- preprocess rules
 		1. seamark:type=VAR -> seamark:VAR=''
@@ -6759,14 +6763,16 @@
 				+ tag seamark:attached=$(seamark:type)
 		3. seamark:*:VAR -> seamark:VAR
 		   Example : seamark:buoy_lateral:category -> seamark:category (additional)
-	 -->	
-	 <!-- TODO define in additional file? -->
+	 -->
+	 
+	<!-- TODO define in additional file? -->
 	<type tag="seamark:category" minzoom="11" additional="true" notosm="true"/>
 	<type tag="seamark:character" minzoom="11" additional="text" notosm="true"/>
+	<type tag="seamark:group" minzoom="11" additional="text" notosm="true"/>																				 
 	<type tag="seamark:colour" minzoom="11" additional="true" notosm="true"/>
 	<type tag="seamark:height" minzoom="11" additional="text" notosm="true"/>
 	<type tag="seamark:clearance_height" minzoom="11" additional="text" notosm="true"/>
-<!--	<type tag="seamark:name" minzoom="11" additional="text"/>-->
+	<!-- <type tag="seamark:name" minzoom="11" additional="text"/> -->
 	<type tag="seamark:period" minzoom="11" additional="true" notosm="true"/>
 	<type tag="seamark:range" minzoom="11" additional="true" notosm="true"/>
 	<type tag="seamark:reference" minzoom="11" additional="text" notosm="true"/>
@@ -6776,6 +6782,51 @@
 	<type tag="seamark:topmark" minzoom="11" additional="true" notosm="true"/>
 	<type tag="seamark:attached" minzoom="11" additional="true" notosm="true"/>
 	<type tag="seamark:surface" minzoom="11" additional="text" notosm="true"/>
+	
+	<!-- INT-1 P, R, S Sections: Lights, Fog Signals, Radar. Composition of lightDetail for nameTag2, finally selected in nautical.render.xml renderingProperty attr="lightDetail" -->
+	<!-- seamark:name and seamark:light tags as nameTag2 (as far as possible today). The OSMAND display was validated at Texel, Den Helder, Helgoland, Elbe and Weser Approaches, Rotterdam, Cherbourg.
+	default: 		name (light:character.group.period[in seconds].fog_signal:category.group.period[in seconds].radar_transponder:category.group) 
+					e.g. T6-VH 1 (Fl.2+1.10)= Buoy T6-VH 1 with light flashes in groups of 2 and 1. This is repeated after 10 seconds.
+					name (light:character.period[in seconds]) or name (light:character.group), with only one number element. 
+	sectors: 		name (sector1start[bearing in degree]-end[bearing in degree]-colour-sector2 ... -sector3 ... -lightcategory)
+	sector1...5:	name (sector1character.group.colour.period[in seconds].start[bearing in degree].end[bearing in degree].category[dircetional,upper,etc.].exhibition[night,fog,etc.].visibilitydistance[in nautical miles])
+	Note1: In the default, a single number remains ambiguous, because the group brackets and the unit cannot be added to the nameTag2, so far. 
+	Note2: The group tag is/cannot? be attributed correctly, e.g. for seamarks cardinal south.
+	More specific formatting, inclusion of colours and combination of text elements in the nameTags in OSMAND will require amendments for parsing of commands from rendering_types.xml and rendering styles (nautical.render.xml) 
+	aiming at OSMAND text display according to IHO Chart INT-1 Section P: Lights and Section R Fog Signals, e.g. https://map.openseamap.org/?zoom=15&lon=4.79&lat=53.00 .
+	An appropriate graphical display of sector lights with coloured circle sections requires further development of code in OSMAND. Feedback welcome: josail @ gmx.de  -->
+	<type tag="seamark:light:add_sectors" minzoom="11" additional="text" notosm="true"/>
+	<type tag="seamark:light:1:add_sector" minzoom="11" additional="text" notosm="true"/>
+	<type tag="seamark:light:2:add_sector" minzoom="11" additional="text" notosm="true"/>
+	<type tag="seamark:light:3:add_sector" minzoom="11" additional="text" notosm="true"/>
+	<type tag="seamark:light:4:add_sector" minzoom="11" additional="text" notosm="true"/>
+	<type tag="seamark:light:5:add_sector" minzoom="11" additional="text" notosm="true"/>
+	<!-- fill missing tags for complete display of seamark:light:character in nautical.render.xml, which depends on existance of seamark:name -->
+	<entity_convert pattern="tag_transform" from_tag="name" if_tag1="seamark:type" if_not_tag2="seamark:name" to_tag1="name" to_tag2="seamark:name"/>
+	<entity_convert pattern="tag_transform" from_tag="seamark:type" if_not_tag1="name" if_not_tag2="seamark:name" to_tag1="seamark:type" to_tag2="seamark:name" to_value2="."/>
+	<entity_convert pattern="tag_transform" from_tag="seamark:light:1:character" to_tag1="seamark:light:character"/>
+	<entity_convert pattern="tag_transform" from_tag="seamark:light:1:group" to_tag1="seamark:light:group"/>
+	<entity_convert pattern="tag_transform" from_tag="seamark:light:1:period" to_tag1="seamark:light:period"/>
+	<!-- <apply_if lightDetail="" (default) nameTag2="seamark:light:character" (incl. light:group, light:period, fog_signal:category, fog_signal:group, fog_signal:period)/>, if-conditions assure nameTag2 display in case only seamark:light:character exists -->
+	<entity_convert pattern="tag_combine" separator="." from_tag="seamark:light:character" if_tag1="seamark:light:group" from_tag1="seamark:light:group" from_tag2="seamark:light:period" from_tag3="seamark:fog_signal:category" from_tag4="seamark:fog_signal:group" from_tag5="seamark:fog_signal:period" from_tag6="seamark:radar_transponder:category" from_tag7="seamark:radar_transponder:group" to_tag1="seamark:light:character"/>
+	<entity_convert pattern="tag_combine" separator="." from_tag="seamark:light:character" if_tag1="seamark:light:period" from_tag1="seamark:light:group" from_tag2="seamark:light:period" from_tag3="seamark:fog_signal:category" from_tag4="seamark:fog_signal:group" from_tag5="seamark:fog_signal:period" from_tag6="seamark:radar_transponder:category" from_tag7="seamark:radar_transponder:group" to_tag1="seamark:light:character"/>
+	<entity_convert pattern="tag_combine" separator="." from_tag="seamark:light:character" if_tag1="seamark:light:range" from_tag1="seamark:light:group" from_tag2="seamark:light:period" from_tag3="seamark:fog_signal:category" from_tag4="seamark:fog_signal:group" from_tag5="seamark:fog_signal:period" from_tag6="seamark:radar_transponder:category" from_tag7="seamark:radar_transponder:group" to_tag1="seamark:light:character"/>
+	<entity_convert pattern="tag_combine" separator="." from_tag="seamark:light:character" if_tag1="seamark:fog_signal:category" from_tag1="seamark:light:group" from_tag2="seamark:light:period" from_tag3="seamark:fog_signal:category" from_tag4="seamark:fog_signal:group" from_tag5="seamark:fog_signal:period" from_tag6="seamark:radar_transponder:category" from_tag7="seamark:radar_transponder:group" to_tag1="seamark:light:character"/>
+	<entity_convert pattern="tag_combine" separator="." from_tag="seamark:light:1:character" if_tag1="seamark:light:1:group" from_tag1="seamark:light:1:group" from_tag2="seamark:light:1:period" from_tag3="seamark:fog_signal:category" from_tag4="seamark:fog_signal:group" from_tag5="seamark:fog_signal:period" from_tag6="seamark:radar_transponder:category" from_tag7="seamark:radar_transponder:group" to_tag1="seamark:light:character"/>
+	<entity_convert pattern="tag_combine" separator="." from_tag="seamark:light:1:character" if_tag1="seamark:light:1:period" from_tag1="seamark:light:1:group" from_tag2="seamark:light:1:period" from_tag3="seamark:fog_signal:category" from_tag4="seamark:fog_signal:group" from_tag5="seamark:fog_signal:period" from_tag6="seamark:radar_transponder:category" from_tag7="seamark:radar_transponder:group" to_tag1="seamark:light:character"/>
+	<entity_convert pattern="tag_combine" separator="." from_tag="seamark:light:1:character" if_tag1="seamark:light:1:range" from_tag1="seamark:light:1:group" from_tag2="seamark:light:1:period" from_tag3="seamark:fog_signal:category" from_tag4="seamark:fog_signal:group" from_tag5="seamark:fog_signal:period" from_tag6="seamark:radar_transponder:category" from_tag7="seamark:radar_transponder:group" to_tag1="seamark:light:character"/>
+	<entity_convert pattern="tag_combine" separator="." from_tag="seamark:light:1:character" if_tag1="seamark:fog_signal:category" from_tag1="seamark:light:1:group" from_tag2="seamark:light:1:period" from_tag3="seamark:fog_signal:category" from_tag4="seamark:fog_signal:group" from_tag5="seamark:fog_signal:period" from_tag6="seamark:radar_transponder:category" from_tag7="seamark:radar_transponder:group" to_tag1="seamark:light:character"/>
+    <entity_convert pattern="tag_combine" separator="." from_tag="seamark:fog_signal:category" if_not_tag1="seamark:light:character" if_not_tag2="seamark:light:1:character" from_tag4="seamark:fog_signal:group" from_tag5="seamark:fog_signal:period" from_tag6="seamark:radar_transponder:category" from_tag7="seamark:radar_transponder:group" to_tag1="seamark:light:character"  additional="text"/>
+	<entity_convert pattern="tag_combine" separator="." from_tag="seamark:radar_transponder:category" if_not_tag1="seamark:light:character" if_not_tag2="seamark:light:1:character" if_not_tag3="seamark:fog_signal"from_tag7="seamark:radar_transponder:group" to_tag1="seamark:light:character" additional="text"/>
+	<!-- <apply_if lightDetail="sectors" nameTag2="seamark:light:add_sectors"/> -->
+	<entity_convert pattern="tag_combine" separator="-" from_tag="seamark:light:1:sector_start"	from_tag1="seamark:light:1:sector_end" from_tag2="seamark:light:1:colour" from_tag3="seamark:light:2:sector_start" from_tag4="seamark:light:2:sector_end" from_tag5="seamark:light:2:colour" from_tag6="seamark:light:3:sector_start" from_tag7="seamark:light:3:sector_end" from_tag8="seamark:light:3:colour" from_tag15="seamark:light:category" 
+					to_tag1="seamark:light:add_sectors"/>	
+	<!-- <apply_if lightDetail="sector1..5" nameTag2="seamark:light:1:add_sector"/> -->
+	<entity_convert pattern="tag_combine" separator="." from_tag="seamark:light:1:character" from_tag2="seamark:light:1:group" from_tag3="seamark:light:1:colour" from_tag4="seamark:light:1:period" from_tag5="seamark:light:1:sector_start" from_tag6="seamark:light:1:sector_end" from_tag7="seamark:light:1:category" from_tag8="seamark:light:1:exhibition" from_tag9="seamark:light:1:range" to_tag1="seamark:light:1:add_sector"/>			
+	<entity_convert pattern="tag_combine" separator="." from_tag="seamark:light:2:character" from_tag2="seamark:light:2:group" from_tag3="seamark:light:2:colour" from_tag4="seamark:light:2:period" from_tag5="seamark:light:2:sector_start" from_tag6="seamark:light:2:sector_end" from_tag7="seamark:light:2:category" from_tag8="seamark:light:2:exhibition" from_tag9="seamark:light:2:range" to_tag1="seamark:light:2:add_sector"/>			
+	<entity_convert pattern="tag_combine" separator="." from_tag="seamark:light:3:character" from_tag2="seamark:light:3:group" from_tag3="seamark:light:3:colour" from_tag4="seamark:light:3:period" from_tag5="seamark:light:3:sector_start" from_tag6="seamark:light:3:sector_end" from_tag7="seamark:light:3:category" from_tag8="seamark:light:3:exhibition" from_tag9="seamark:light:3:range" to_tag1="seamark:light:3:add_sector"/>
+	<entity_convert pattern="tag_combine" separator="." from_tag="seamark:light:4:character" from_tag2="seamark:light:4:group" from_tag3="seamark:light:4:colour" from_tag4="seamark:light:4:period" from_tag5="seamark:light:4:sector_start" from_tag6="seamark:light:4:sector_end" from_tag7="seamark:light:4:category" from_tag8="seamark:light:4:exhibition" from_tag9="seamark:light:4:range" to_tag1="seamark:light:4:add_sector"/>		
+	<entity_convert pattern="tag_combine" separator="." from_tag="seamark:light:5:character" from_tag2="seamark:light:5:group" from_tag3="seamark:light:5:colour" from_tag4="seamark:light:5:period" from_tag5="seamark:light:5:sector_start" from_tag6="seamark:light:5:sector_end" from_tag7="seamark:light:5:category" from_tag8="seamark:light:5:exhibition" from_tag9="seamark:light:5:range" to_tag1="seamark:light:5:add_sector"/>
 
 	<category name="seamarks_map">
 		<type tag="seamark:type" value="anchorage" minzoom="11" nameTags="seamark:name"/>
@@ -6783,17 +6834,18 @@
 		<type tag="seamark:type" value="berth" minzoom="11" nameTags="seamark:name,seamark:berth:information"/>
 		<type tag="seamark:type" value="bridge" minzoom="11" nameTags="seamark:name,seamark:bridge:clearance_height,seamark:bridge:clearance_height_closed,seamark:bridge:clearance_height_open"/>
 		<type tag="seamark:type" value="building" minzoom="15" nameTags="seamark:name"/>
-		<type tag="seamark:type" value="buoy_lateral" minzoom="11" nameTags="seamark:name,seamark:light:character"/>
-		<type tag="seamark:type" value="buoy_cardinal" minzoom="11" nameTags="seamark:name,seamark:light:character"/>
-		<type tag="seamark:type" value="buoy_isolated_danger" minzoom="11" nameTags="seamark:name,seamark:light:character"/>
-		<type tag="seamark:type" value="buoy_safe_water" minzoom="11" nameTags="seamark:name,seamark:light:character"/>
-		<type tag="seamark:type" value="buoy_special_purpose" minzoom="11" nameTags="seamark:name,seamark:light:character"/>
-		<type tag="seamark:type" value="buoy_installation" minzoom="11" nameTags="seamark:name,seamark:light:character"/>
-		<type tag="seamark:type" value="beacon_lateral" minzoom="11" nameTags="seamark:name,seamark:light:character"/>
-		<type tag="seamark:type" value="beacon_cardinal" minzoom="11" nameTags="seamark:name,seamark:light:character"/>
-		<type tag="seamark:type" value="beacon_isolated_danger" minzoom="11" nameTags="seamark:name,seamark:light:character"/>
-		<type tag="seamark:type" value="beacon_safe_water" minzoom="11" nameTags="seamark:name,seamark:light:character"/>
-		<type tag="seamark:type" value="beacon_special_purpose" minzoom="11" nameTags="seamark:name,seamark:light:character"/>
+		<!-- INT-1 P, Q, R, S Sections: Lights, Buoys and Becons, Fog Signals, Radar nameTags -->
+		<type tag="seamark:type" value="buoy_lateral" minzoom="11" nameTags="seamark:name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/>
+		<type tag="seamark:type" value="buoy_cardinal" minzoom="11" nameTags="seamark:name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/>
+		<type tag="seamark:type" value="buoy_isolated_danger" minzoom="11" nameTags="seamark:name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/>
+		<type tag="seamark:type" value="buoy_safe_water" minzoom="11" nameTags="seamark:name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/>
+		<type tag="seamark:type" value="buoy_special_purpose" minzoom="11" nameTags="seamark:name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/>
+		<type tag="seamark:type" value="buoy_installation" minzoom="11" nameTags="seamark:name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/>
+		<type tag="seamark:type" value="beacon_lateral" minzoom="11" nameTags="seamark:name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/>
+		<type tag="seamark:type" value="beacon_cardinal" minzoom="11" nameTags="seamark:name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/>
+		<type tag="seamark:type" value="beacon_isolated_danger" minzoom="11" nameTags="seamark:name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/>
+		<type tag="seamark:type" value="beacon_safe_water" minzoom="11" nameTags="seamark:name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/>
+		<type tag="seamark:type" value="beacon_special_purpose" minzoom="11" nameTags="seamark:name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/>
 		<type tag="seamark:type" value="cable_area" minzoom="10" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="cable_overhead" minzoom="12" nameTags="seamark:name,seamark:cable_overhead:vertical_clearance_safe"/>
 		<type tag="seamark:type" value="cable_submarine" minzoom="10" nameTags="seamark:name"/>
@@ -6805,17 +6857,17 @@
 		<type tag="seamark:type" value="gate" minzoom="10" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="fairway" minzoom="10" nameTags="seamark:name"/>
 		<entity_convert pattern="tag_transform" from_tag="waterway" from_value="fairway" to_tag1="seamark:type" to_value1="fairway" routing="no"/>
-		<type tag="seamark:type" value="fog_signal" minzoom="11" nameTags="seamark:name"/>
+		<type tag="seamark:type" value="fog_signal" minzoom="11" nameTags="seamark:name,seamark:light:character"/> <!-- INT-1 R Sections: Fog Signal nameTags integrated in seamark:light:character -->
 		<type tag="seamark:type" value="fishing_facility" minzoom="11" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="fortified_structure" minzoom="11" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="harbour" minzoom="9" nameTags="name,seamark:name"/>
 		<type tag="seamark:type" value="hulk" minzoom="13" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="inshore_traffic_zone" minzoom="10" nameTags="seamark:name"/>
-		<type tag="seamark:type" value="landmark" minzoom="10" nameTags="seamark:name"/>
-		<type tag="seamark:type" value="light_major" minzoom="10" nameTags="seamark:name,seamark:light:character"/>
-		<type tag="seamark:type" value="light_minor" minzoom="11" nameTags="seamark:name,seamark:light:character"/>
-		<type tag="seamark:type" value="light_float" minzoom="11" nameTags="seamark:name,seamark:light:character"/>
-		<type tag="seamark:type" value="light_vessel" minzoom="11" nameTags="seamark:name,seamark:light:character"/>
+		<type tag="seamark:type" value="landmark" minzoom="10" nameTags="seamark:name,name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/> <!-- INT-1 P Section: Lights, nameTags -->
+		<type tag="seamark:type" value="light_major" minzoom="10" nameTags="seamark:name,name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/> <!-- INT-1 P Section: Lights, nameTags -->
+		<type tag="seamark:type" value="light_minor" minzoom="11" nameTags="seamark:name,name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/> <!-- INT-1 P Section: Lights, nameTags -->
+		<type tag="seamark:type" value="light_float" minzoom="11" nameTags="seamark:name,name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/> <!-- INT-1 P Section: Lights, nameTags -->
+		<type tag="seamark:type" value="light_vessel" minzoom="11" nameTags="seamark:name,name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/> <!-- INT-1 P Section: Lights, nameTags -->
 		<type tag="seamark:type" value="lock_basin" minzoom="10" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="lock_basin_part" minzoom="10" nameTags="seamark:name"/>
 		<type tag="lock" value="yes" minzoom="11" nameTags="lock_name,lock_ref"/>
@@ -6840,13 +6892,13 @@
 		<type tag="seamark:type" value="pile" minzoom="11" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="pipeline_area" minzoom="11" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="pipeline_submarine" minzoom="11" nameTags="seamark:name"/>
-		<type tag="seamark:type" value="platform" minzoom="11" nameTags="seamark:name"/>
+		<!-- <type tag="seamark:type" value="platform" minzoom="11" nameTags="seamark:name,name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/> INT-1 P Section: Lights, nameTags, moved before aeroway=helipad and power=substation for visibility in nautical render -->
 		<type tag="seamark:type" value="precautionary_area" minzoom="10" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="production_area" minzoom="10" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="pylon" minzoom="10" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="radar_reflector" minzoom="15" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="radar_station" minzoom="11" nameTags="seamark:name"/>
-		<type tag="seamark:type" value="radar_transponder" minzoom="11" nameTags="seamark:name"/>
+		<type tag="seamark:type" value="radar_transponder" minzoom="11" nameTags="seamark:name,name,seamark:light:character"/> <!-- INT-1 S Section: Radar, nameTags integrated in seamark:light:character -->
 		<type tag="seamark:type" value="radio_station" minzoom="11" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="recommended_track" minzoom="10" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="recommended_traffic_lane" minzoom="10" nameTags="seamark:name"/>
@@ -6921,10 +6973,13 @@
 		<entity_convert pattern="tag_transform" from_tag="seamark:daymark:colour_pattern" to_tag1="seamark:topmark:colour_pattern"/>
 		<type tag="seamark:light_float:colour" minzoom="11" additional="true"/>
 		<type tag="seamark:light_float:colour_pattern" minzoom="11" additional="true"/>
+		
+		<!-- INT-1 P Section: Lights, colours-->
 		<type tag="seamark:light:colour" minzoom="11" additional="true"/>
 		<entity_convert pattern="tag_transform" from_tag="seamark:light:1:colour" to_tag1="seamark:light:colour"/>
 		<type tag="seamark:light:2:colour" minzoom="11" additional="true"/>
 		<type tag="seamark:light:3:colour" minzoom="11" additional="true"/>
+		
 		<type tag="seamark:fog_signal:category" minzoom="11" additional="true"/>
 		<type tag="seamark:platform:category" minzoom="11" additional="true"/>
 		<type tag="seamark:radar_reflector" minzoom="11" additional="true"/>
@@ -7069,7 +7124,7 @@
 		
 		<!-- INT-1 J14, J15 sand_waves, spring -->
 		<type tag="seamark:type" value="sand_waves" minzoom="11" /> 
-		<type tag="seamark:type" value="spring" minzoom="11" /> 
+		<type tag="seamark:type" value="spring" minzoom="11" />
 	</category>
 
 	<category name="seamarks" nameTags="seamark:name,ref" >
@@ -7382,7 +7437,7 @@
 		<routing_type tag="maxheight" mode="amend" base="true" type="length"/>
 		<routing_type tag="maxlength" mode="amend" base="true" type="length"/>
 		<routing_type tag="maxweight" mode="amend" base="true" type="weight"/>
-		<routing_type tag="maxweightrating" mode="amend" base="true" type="weight"/>
+		<routing_type tag="maxweightrating" mode="amend" base="true" type="weight"/>																	  
 		<routing_type tag="maxwidth" mode="amend" base="true" type="length"/>
 		<routing_type tag="maxaxleload" mode="amend" base="true" type="weight"/>
 		<routing_type tag="width" mode="amend" base="true" type="length"/>
