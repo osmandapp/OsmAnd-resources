@@ -116,7 +116,6 @@ function populateDictionary(tts) {
 	dictionary["railroad_crossing"] = tts ? "踏切があります" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "減速隊があります" : "traffic_calming.ogg"; // Googleテキスト読み上げエンジンは減速帯を『げんそくおび』と読むので。
 	dictionary["toll_booth"] = tts ? "料金所があります" : "toll_booth.ogg"; // Googleは『りょうきんじょ』N2TTSは『りょうきんしょ』だが、どちらの読みも正しいので漢字表記に戻した。
-	
 	dictionary["stop"] = tts ? "一時停止です" : "stop.ogg";
 	dictionary["pedestrian_crosswalk"] = tts ? "横断歩道があります" : "pedestrian_crosswalk.ogg";
 	dictionary["tunnel"] = tts ? "トンネルがあります" : "tunnel.ogg";
@@ -154,14 +153,12 @@ function populateDictionary(tts) {
 	dictionary["1_minute"] = tts ? "1分" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "分" : "minutes.ogg";
 
-
 	// 日本語用独自追加
 	dictionary["kmh"] = tts ? "キロです" : "kmh.ogg";
 	dictionary["mph"] = tts ? "マイルです" : "mph.ogg";
 	dictionary["courteous"] = tts ? "です" : "courteous.ogg";
 	// ogg専用
 	dictionary["gotoexit"] = tts ? "そこから出口へ向かいます" : "gotoexit.ogg";
-
 }
 
 
