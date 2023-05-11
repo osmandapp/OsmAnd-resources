@@ -63,12 +63,14 @@
 	<poi_additional name="content" tag="content" type="text" lang="true" no_edit="true"/>  <!-- This line should be outside categories to avoid searching via POI search -->
 	<poi_additional name="maxheight" tag="maxheight" type="text"/>
 	<poi_additional name="maxweight" tag="maxweight" type="text"/>
+	<poi_additional name="maxlength" tag="maxlength" type="text"/>
 	<poi_additional name="maxwidth" tag="maxwidth" type="text"/>
 	<poi_additional name="height" tag="height" type="text"/>
 	<poi_additional name="length" tag="length" type="text"/>
 	<poi_additional name="width" tag="width" type="text"/>
 	<poi_additional name="depth" tag="depth" type="text"/>
 	<poi_additional name="ele" tag="ele" type="text"/>
+	<poi_additional name="draft" tag="draft" type="text"/>
 <!--	<poi_additional name="min_height" tag="min_height"/>-->
 <!--	<poi_additional name="building_min_level" tag="building:min_level"/>
 	<poi_additional name="building_levels_aboveground" tag="building:levels:aboveground"/>-->
@@ -198,6 +200,22 @@
 	<poi_additional name="taxi_designated" tag="taxi" value="designated"/>
 	<poi_additional name="taxi_no" tag="taxi" value="no"/>
 
+	<poi_additional name="boat_private" tag="boat" value="private"/>
+	<poi_additional name="boat_designated" tag="boat" value="designated"/>
+	<poi_additional name="boat_destination" tag="boat" value="destination"/>
+	<poi_additional name="boat_permissive" tag="boat" value="permissive"/>
+	<poi_additional name="boat_unknown" tag="boat" value="unknown"/>
+	<poi_additional name="boat_yes" tag="boat" value="yes"/>
+	<poi_additional name="boat_no" tag="boat" value="no"/>
+
+	<poi_additional name="ship_private" tag="ship" value="private"/>
+	<poi_additional name="ship_designated" tag="ship" value="designated"/>
+	<poi_additional name="ship_destination" tag="ship" value="destination"/>
+	<poi_additional name="ship_permissive" tag="ship" value="permissive"/>
+	<poi_additional name="ship_delivery" tag="ship" value="delivery"/>
+	<poi_additional name="ship_yes" tag="ship" value="yes"/>
+	<poi_additional name="ship_no" tag="ship" value="no"/>
+
 	<poi_additional name="disabled_no" tag="disabled" value="no"/>
 
 	<poi_additional name="start_date" tag="start_date" type="text"/>
@@ -286,7 +304,6 @@
 	<poi_additional name="official_name" tag="official_name" type="text"/>
 	<poi_additional name="addr_housename" tag="addr:housename" type="text"/>
 	<poi_additional name="whitewater_rapid_name" tag="whitewater:rapid_name" type="text"/>
-
 	<poi_additional name="water_characteristic_mud" tag="water_characteristic" value="mud"/>
 
 	<poi_additional name="cuisine" tag="cuisine" type="text" order="110"/>
@@ -2528,13 +2545,32 @@
 				<poi_type name="wastewater_plant" tag="man_made" value="wastewater_plant"/>
 				<poi_type name="water_tower" tag="man_made" value="water_tower"/>
 				<poi_type name="lock_gate" tag="waterway" value="lock_gate" no_edit="true"/>
+				<poi_type name="lock" tag="lock" value="yes" poi_additional_category="cemt" no_edit="true" icon="lock_gate">
+					<poi_additional name="lock_name" lang="true" tag="lock_name" type="text"/>
+					<poi_additional name="lock_ref" tag="lock_ref" type="text"/>
+					<poi_additional name="lock_height" tag="lock:height" type="text"/>
+				</poi_type>
 				<poi_type name="waterway_turning_point" tag="waterway" value="turning_point"/>
 				<poi_type name="weir" tag="waterway" value="weir" no_edit="true"/>
 				<poi_type name="dam" tag="waterway" value="dam" no_edit="true"/>
 				<poi_type name="dyke" tag="man_made" value="dyke" no_edit="true"/>
 				<poi_type name="watermill" tag="man_made" value="watermill"/>
 				<poi_type name="reservoir" tag="landuse" value="reservoir" name_only="true" no_edit="true"/>
-				<poi_type name="canal" tag="waterway" value="canal" name_only="true" no_edit="true"/>
+				<poi_type name="canal" tag="waterway" value="canal" name_only="true" no_edit="true">
+					<poi_additional_category name="cemt">
+						<poi_additional name="cemt_0" tag="cemt" value="0"/>
+						<poi_additional name="cemt_i" tag="cemt" value="I"/>
+						<poi_additional name="cemt_ii" tag="cemt" value="II"/>
+						<poi_additional name="cemt_iii" tag="cemt" value="III"/>
+						<poi_additional name="cemt_iv" tag="cemt" value="IV"/>
+						<poi_additional name="cemt_va" tag="cemt" value="Va"/>
+						<poi_additional name="cemt_vb" tag="cemt" value="Vb"/>
+						<poi_additional name="cemt_via" tag="cemt" value="VIa"/>
+						<poi_additional name="cemt_vib" tag="cemt" value="VIb"/>
+						<poi_additional name="cemt_vic" tag="cemt" value="VIc"/>
+						<poi_additional name="cemt_vii" tag="cemt" value="VII"/>
+					</poi_additional_category>
+				</poi_type>
 				<poi_type name="breakwater" tag="man_made" value="breakwater" name_only="true" no_edit="true"/>
 				<poi_type name="groyne" tag="man_made" value="groyne" name_only="true" no_edit="true"/>
 				<poi_type name="drinking_water" tag="amenity" value="drinking_water" poi_additional_category="fee,pump,water_characteristic,operational_status,water_purification,water_supply_type,water_place_access" excluded_poi_additional_category="internet_access_type"/>
@@ -4816,7 +4852,7 @@
 			<poi_type name="hot_spring" tag="natural" value="hot_spring" poi_additional_category="fee,payment_type,wheelchair_accessibility,water_characteristic"/>
 			<poi_type name="geyser" tag="natural" value="geyser" poi_additional_category="fee,payment_type,wheelchair_accessibility"/>
 			<poi_type name="blowhole" tag="natural" value="blowhole"/>
-			<poi_type name="river" tag="waterway" value="river" name_only="true" no_edit="true"/>
+			<poi_type name="river" tag="waterway" value="river" name_only="true" poi_additional_category="cemt" no_edit="true"/>
 			<poi_type name="stream" tag="waterway" value="stream" name_only="true" no_edit="true"/>
 			<poi_type name="stone" tag="natural" value="stone"/>
 			<poi_type name="rock" tag="natural" value="rock" name_only="true" icon="natural_stone"/>
