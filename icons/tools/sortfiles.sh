@@ -461,6 +461,7 @@ icon_alias man_made_lighthouse transport_lighthouse
 icon_alias topo_lighthouse topo_lighthouse
 icon_alias waterway_lock_gate_small functional-icons_lock_gate  #scale 0.5
 icon_alias lock_gate poi_colored_lock_gate  #scale 0.25
+icon_alias lock poi_lock_gate
 icon_alias lock_basin seamark_small_poi_lock_basin  #scale 0.25
 icon_alias waterway_dock transport_dock
 

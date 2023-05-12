@@ -1483,7 +1483,7 @@
 				<case minzoom="13" tag="waterway" value="wadi" nameTag="" textOnPath="true" textOrder="263"/>
 				<case minzoom="11" tag="waterway" value="river" nameTag="" textOnPath="true" textMinDistance="80" textOrder="234"/>
 				<case minzoom="13" tag="waterway" value="canal" nameTag="" textOnPath="true" textMinDistance="80" textOrder="235"/>
-				<case minzoom="14" tag="lock" value="yes" textOnPath="true" textMinDistance="80" textOrder="184" nameTag="lock_name" nameTag2="lock_ref"/>
+<!--				<case minzoom="14" tag="lock" value="yes" textOnPath="true" textMinDistance="80" textOrder="184" nameTag="lock_name" nameTag2="lock_ref"/>-->
 				<case minzoom="15" tag="waterway" value="ditch" nameTag="" textOnPath="true" textOrder="260"/>
 				<case minzoom="15" tag="waterway" value="drain" nameTag="" textOnPath="true" textOrder="261"/>
 				<case minzoom="19" textSize="12" tag="waterway" value="fish_pass" nameTag="" textOnPath="true" textOrder="78" textDy="0"/>
@@ -1513,6 +1513,17 @@
 				<case minzoom="16" tag="landuse" value="salt_pond" nameTag="" textWrapWidth="20"/>
 				<case minzoom="13" tag="natural" value="glacier" nameTag="" textWrapWidth="20" textDy="-9"/>
 				<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="$waterTextColorNight" textHaloColor="#994563a7"/>
+			</switch>
+			<switch>
+				<case engine_v1="true" minzoom="16" tag="lock" value="yes" nameTag="osmand_lock_stub" textColor="#00ff0000" textSize="11" textShield="blue_round_shield" icon="lock_gate"/>
+				<switch>
+					<case engine_v1="false" minzoom="16" tag="lock" value="yes" nameTag="lock_name" nameTag2="lock_ref" textShield="blue_round_shield" icon="lock_gate" textDy="25"/>
+					<case minzoom="14" tag="lock" value="yes" textOnPath="true" textMinDistance="80" nameTag="lock_name" nameTag2="lock_ref"/>
+					<apply textColor="$waterTextColorDay" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$waterTextHaloColorDay" textSize="12" textItalic="true"/>
+					<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="$waterTextColorNight" textHaloColor="#994563a7"/>
+				</switch>
+				<apply textOrder="184"/>
+				<apply_if nightMode="true" shield="blue_round_night_shield"/>
 			</switch>
 
 			<!-- Seamarks -->

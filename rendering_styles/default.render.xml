@@ -4769,7 +4769,6 @@
 					<case minzoom="$wadiStreamTextMinZoom" tag="waterway" value="wadi" textOnPath="true" textOrder="213" nameTag=""/>
 					<case minzoom="11" tag="waterway" value="river" textOnPath="true" textMinDistance="80" textOrder="184" nameTag=""/>
 					<case minzoom="13" tag="waterway" value="canal" textOnPath="true" textMinDistance="80" textOrder="185" nameTag=""/>
-					<case minzoom="14" tag="lock" value="yes" textOnPath="true" textMinDistance="80" textOrder="184" nameTag="lock_name" nameTag2="lock_ref"/>
 					<case hidePOILabels="false" minzoom="17" tag="waterway" value="dock" textDy="7" textOrder="209" nameTag=""/>
 					<case minzoom="15" tag="waterway" value="ditch" textOnPath="true" textOrder="210" nameTag=""/>
 					<case minzoom="15" tag="waterway" value="drain" textOnPath="true" textOrder="211" nameTag=""/>
@@ -4797,6 +4796,16 @@
 					<case minzoom="17" tag="man_made" value="groyne" textWrapWidth="20" textOnPath="true" textOrder="255" nameTag=""/>
 					<case minzoom="17" tag="landuse" value="aquaculture" textOrder="239" nameTag=""/>
 					<apply_if engine_v1="false" textDy="0"/>
+				</switch>
+				<switch>
+					<case engine_v1="true" minzoom="16" tag="lock" value="yes" nameTag="osmand_lock_stub" textColor="#00ff0000" textSize="11" textShield="blue_round_shield" icon="lock"/>
+					<switch>
+						<case engine_v1="false" minzoom="16" tag="lock" value="yes" nameTag="lock_name" nameTag2="lock_ref" textShield="blue_round_shield" icon="lock" textDy="25"/>
+						<case minzoom="14" tag="lock" value="yes" textOnPath="true" textMinDistance="80" nameTag="lock_name" nameTag2="lock_ref"/>
+						<apply textColor="$waterTextColor" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$waterTextHaloColor" textSize="12" textItalic="true"/>
+					</switch>
+					<apply textOrder="184"/>
+					<apply_if nightMode="true" shield="blue_round_night_shield"/>
 				</switch>
 				<switch minzoom="17" textColor="#2579D0" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$defaultColor" textSize="12" textItalic="true">
 					<case tag="ford" value="yes" textDy="7" nameTag="" nameTag2="depth" textOrder="208"/>
