@@ -9566,15 +9566,19 @@
 			</apply_if>
 		</switch>
 
-		<case minzoom="15" tag="highway" value="footway" additional="footway=crossing" strokeWidth="0.1" color_5="$footwayColor"> <!-- this code is here because we do not want surfaces,surfaceGrade and access on crossings -->
-			<case maxzoom="16" strokeWidth_5="0.5"/>
-			<case maxzoom="17" strokeWidth_5="1"/>
-			<case minzoom="18" color="#ffffff" color__1="#77555555">
-				<case maxzoom="18" strokeWidth="4:4" pathEffect="2_2" strokeWidth__1="4:4"/>
-				<case minzoom="19" strokeWidth="6:6" pathEffect="3_3" strokeWidth__1="6:6"/>
+		<switch>
+			<case minzoom="15" tag="highway" value="footway" additional="footway=crossing" strokeWidth="0.1" color_5="$footwayColor"/> <!-- this code is here because we do not want surfaces,surfaceGrade and access on crossings -->
+			<case minzoom="15" tag="highway" value="path" additional="path=crossing" strokeWidth="0.1" color_5="$pathColor"/>
+ 			<case baseAppMode="bicycle" minzoom="15" tag="highway" value="cycleway" additional="cycleway=crossing" strokeWidth="0.1" color_5="$cyclewayColor"/>
+ 			<case baseAppMode="bicycle" minzoom="15" tag="highway" value="path" additional="cycleway=crossing" strokeWidth="0.1" color_5="$cyclewayColor"/>
+   			<apply_if maxzoom="16" strokeWidth_5="0.5"/>
+			<apply_if minzoom="17" maxzoom="17" strokeWidth_5="1"/>
+			<apply_if minzoom="18" color="#ffffff" color__1="#77555555">
+				<apply_if maxzoom="18" strokeWidth="4:4" pathEffect="2_2" strokeWidth__1="4:4"/>
+				<apply_if minzoom="19" strokeWidth="6:6" pathEffect="3_3" strokeWidth__1="6:6"/>
 				<apply_if nightMode="true" color="#aaaaaa" color__1="#33ffffff"/>
-			</case>
-		</case>
+			</apply_if>
+		</switch>
 
 		<switch>
 			<switch minzoom="14">
