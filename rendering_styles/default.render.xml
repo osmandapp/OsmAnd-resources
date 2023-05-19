@@ -141,6 +141,9 @@
 	<renderingProperty attr="hideMilitaryAreas" name="Hide military areas" description="Hide military areas"
 		type="boolean" possibleValues="" category="hide"/>
 
+	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale" 
+		type="boolean" possibleValues="" category="routes"/>
+
 	<renderingProperty attr="alpineHikingScale" name="Alpine hiking view" description="Render paths according to SAC/CAI scale"
 		type="string" possibleValues="sacScale,caiScale" defaultValueDescription="disabled" category="routes"/>
 
@@ -10241,32 +10244,34 @@
 							</case>
 						</case>
 						<apply>
-							<switch alpineHikingScale="sacScale">
-								<case additional="sac_scale=mountain_hiking" color_5="$sacScaleColorT2" pathEffect_5=""/>
-								<case additional="sac_scale=demanding_mountain_hiking" color_5="$sacScaleColorT3" pathEffect_5="10_3"/>
-								<case additional="sac_scale=alpine_hiking" color_5="$sacScaleColorT4" pathEffect_5=""/>
-								<case additional="sac_scale=demanding_alpine_hiking" color_5="$sacScaleColorT5" pathEffect_5="10_3"/>
-								<case additional="sac_scale=difficult_alpine_hiking" color_5="$sacScaleColorT6" pathEffect_5="3_3"/>
-							</switch>
-							<case additional="sac_scale=demanding_mountain_hiking" pathEffect_5="2_6"/>
-							<case additional="sac_scale=alpine_hiking" pathEffect_5="2_6"/>
-							<case additional="sac_scale=demanding_alpine_hiking" pathEffect_5="2_6"/>
-							<case additional="sac_scale=difficult_alpine_hiking" pathEffect_5="2_6"/>
-							<switch alpineHikingScale="caiScale">
-								<case additional="cai_scale=t" color_5="$caiScaleColor" pathEffect_5=""/>
-								<case additional="cai_scale=e" color_5="$caiScaleColor" pathEffect_5="13_2"/>
-								<case additional="cai_scale=ee" color_5="$caiScaleColor" pathEffect_5="6_2"/>
-								<switch>
-									<case additional="cai_scale=eea"/>
-									<case additional="cai_scale=eea:f"/>
-									<case additional="cai_scale=eea:pd"/>
-									<case additional="cai_scale=eea:d"/>
-									<case additional="cai_scale=eea:md"/>
-									<case additional="cai_scale=eea:e"/>
-									<case additional="cai_scale=eai"/>
-									<apply color_5="$caiScaleColor" pathEffect_5="2_2"/>
+							<case alpineHiking="true">
+								<switch alpineHikingScale="sacScale">
+									<case additional="sac_scale=mountain_hiking" color_5="$sacScaleColorT2" pathEffect_5=""/>
+									<case additional="sac_scale=demanding_mountain_hiking" color_5="$sacScaleColorT3" pathEffect_5="10_3"/>
+									<case additional="sac_scale=alpine_hiking" color_5="$sacScaleColorT4" pathEffect_5=""/>
+									<case additional="sac_scale=demanding_alpine_hiking" color_5="$sacScaleColorT5" pathEffect_5="10_3"/>
+									<case additional="sac_scale=difficult_alpine_hiking" color_5="$sacScaleColorT6" pathEffect_5="3_3"/>
 								</switch>
-							</switch>
+								<case additional="sac_scale=demanding_mountain_hiking" pathEffect_5="2_6"/>
+								<case additional="sac_scale=alpine_hiking" pathEffect_5="2_6"/>
+								<case additional="sac_scale=demanding_alpine_hiking" pathEffect_5="2_6"/>
+								<case additional="sac_scale=difficult_alpine_hiking" pathEffect_5="2_6"/>
+								<switch alpineHikingScale="caiScale">
+									<case additional="cai_scale=t" color_5="$caiScaleColor" pathEffect_5=""/>
+									<case additional="cai_scale=e" color_5="$caiScaleColor" pathEffect_5="13_2"/>
+									<case additional="cai_scale=ee" color_5="$caiScaleColor" pathEffect_5="6_2"/>
+									<switch>
+										<case additional="cai_scale=eea"/>
+										<case additional="cai_scale=eea:f"/>
+										<case additional="cai_scale=eea:pd"/>
+										<case additional="cai_scale=eea:d"/>
+										<case additional="cai_scale=eea:md"/>
+										<case additional="cai_scale=eea:e"/>
+										<case additional="cai_scale=eai"/>
+										<apply color_5="$caiScaleColor" pathEffect_5="2_2"/>
+									</switch>
+								</switch>
+							</case>
 						</apply>
 					</switch>
 
