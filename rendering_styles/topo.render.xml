@@ -5,9 +5,11 @@
 	<renderingProperty attr="baseAppMode" name="Default Rendering mode" description="Map optimization for respective User Profile based on base (parent) profile"
 		type="string" possibleValues="default, car, bicycle, pedestrian, public_transport, boat, ski"/>
 	<renderingProperty attr="transportStops" name="Transport stops" description="Public transport stops" type="boolean" possibleValues="" category="transport"/>
-<!--	<renderingProperty attr="contourLines" name="Show contour lines" description="Select minimum zoom level to display in map if available. Separate contour file may be needed." type="string" possibleValues="disabled,16,15,14,13,12,11" defaultValueDescription="default13" category="details"/>-->
-	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
-		type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale" type="boolean" possibleValues="" category="routes"/>
+	<!-- FIXME
+	<renderingProperty attr="alpineHikingScale" name="Alpine hiking view" description="Render paths according to SAC/CAI scale"
+		type="string" possibleValues="sacScale,caiScale" defaultValueDescription="disabled" category="routes"/>
+		-->
 	<renderingProperty attr="lessDetailed" name="Less detailed" description="Less details on map" type="boolean" possibleValues=""
 		category="details"/>
 	<renderingProperty attr="surfaceIntegrity" name="Road surface integrity" description="Surface integral rendering" type="boolean" possibleValues=""
@@ -34,8 +36,6 @@
 	<renderingProperty attr="currentTrackWidth" name="Current GPX width" description="Width of the currently recording track"
 		type="string" possibleValues="thin,medium,bold" defaultValueDescription="default"/>
 	<renderingProperty attr="contourColorScheme" name="Contour lines color scheme" description="Contour lines color scheme" type="string" possibleValues="white,yellow,green,light_brown,brown,dark_brown,red" defaultValueDescription="default"/>
-<!--	<renderingProperty attr="contourWidth" name="Contour lines width" description="Contour lines width" type="string" possibleValues="thin,medium,thick" defaultValueDescription="default"/>
-	<renderingProperty attr="contourDensity" name="Contour lines density" description="Contour lines density" type="string" possibleValues="low,medium_w,high" defaultValueDescription="default"/>-->
 
 	<renderingProperty attr="legend" name="Legend" type="boolean" possibleValues="" category="ui_hidden"/>
 
@@ -606,6 +606,10 @@
 	<renderingConstant name="sacScaleColorT4" value="#6000ff"/>
 	<renderingConstant name="sacScaleColorT5" value="#6000ff"/>
 	<renderingConstant name="sacScaleColorT6" value="#6000ff"/>
+
+	<renderingAttribute name="caiScaleColor">
+		<case attrColorValue="#e23cad"/>
+	</renderingAttribute>
 
 	<renderingConstant name="footwayStrokeWidth" value="0.7:0.7"/>
 	<renderingConstant name="footwayLowZoomStrokeWidth" value="0.5:0.5"/>
@@ -5002,19 +5006,34 @@
 							<apply color="$null" color_5="$abandonedHighwayTrackColor" strokeWidth_5="1" pathEffect_5="6_2"/>
 						</switch>
 					</switch>
-					<apply>
-						<switch alpineHiking="true" minzoom="12" cap_3="BUTT">
+					<apply_if minzoom="12">
+						<switch alpineHiking="true" alpineHikingScale="sacScale" cap_3="BUTT">
 							<case additional="sac_scale=mountain_hiking" color_3="$sacScaleColorT2" pathEffect_3=""/>
 							<case additional="sac_scale=demanding_mountain_hiking" color_3="$sacScaleColorT3" pathEffect_3="10_3"/>
 							<case additional="sac_scale=alpine_hiking" color_3="$sacScaleColorT4" pathEffect_3=""/>
 							<case additional="sac_scale=demanding_alpine_hiking" color_3="$sacScaleColorT5" pathEffect_3="10_3"/>
 							<case additional="sac_scale=difficult_alpine_hiking" color_3="$sacScaleColorT6" pathEffect_3="3_3"/>
-							<apply_if maxzoom="14" strokeWidth_3="2:2" strokeWidth_4="1"/>
-							<apply_if minzoom="15" maxzoom="17" strokeWidth_3="3:3" strokeWidth_4="1.5:1.5"/>
-							<apply_if minzoom="18" strokeWidth_3="4:4" strokeWidth_4="1.5:1.5"/>
-							<apply color_4="$trackSubstrateColor"/> <!-- Substrate -->
 						</switch>
-					</apply>
+						<switch alpineHiking="true" alpineHikingScale="caiScale" cap_3="BUTT">
+							<case additional="cai_scale=t" color_3="$caiScaleColor" pathEffect_3=""/>
+							<case additional="cai_scale=e" color_3="$caiScaleColor" pathEffect_3="13_2"/>
+							<case additional="cai_scale=ee" color_3="$caiScaleColor" pathEffect_3="6_2"/>
+							<switch>
+								<case additional="cai_scale=eea"/>
+								<case additional="cai_scale=eea:f"/>
+								<case additional="cai_scale=eea:pd"/>
+								<case additional="cai_scale=eea:d"/>
+								<case additional="cai_scale=eea:md"/>
+								<case additional="cai_scale=eea:e"/>
+								<case additional="cai_scale=eai"/>
+								<apply color_3="$caiScaleColor" pathEffect_3="2_2"/>
+							</switch>
+						</switch>
+						<apply_if maxzoom="14" strokeWidth_3="2:2" strokeWidth_4="1"/>
+						<apply_if minzoom="15" maxzoom="17" strokeWidth_3="3:3" strokeWidth_4="1.5:1.5"/>
+						<apply_if minzoom="18" strokeWidth_3="4:4" strokeWidth_4="1.5:1.5"/>
+						<apply color_4="$trackSubstrateColor"/> <!-- Substrate -->
+					</apply_if>
 					<apply_if additional="winter_road=yes">
 						<apply color_4="#55458FFF" strokeWidth_4="3:3"/>
 					</apply_if>

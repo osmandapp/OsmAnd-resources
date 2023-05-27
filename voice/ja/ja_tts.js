@@ -1,14 +1,18 @@
-// 日本語音声 ver 4.5.0-2 絶壁ヒナギク
+// 日本語音声 ver 4.5.0-4 絶壁ヒナギク
 // Basis contributed by Zeppeki Hinagiku, adjusted Hardy Mueller, 2023-04-01.
 //
 // 録音音声
 //    type-A ゆっくり(棒読みちゃん)
 //    type-B さとうささら(CeVIO Creative Studio FREE)
-//    type-C 弦巻マキ(VOICEROID+ 民安ともえ EX) Official
+//    type-C 弦巻マキ(VOICEROID+ 民安ともえ EX) 公式採用
 //    type-D 紲星あかり(VOICEROID2)
-// 文字コードはUTF-8で保存が基本。
+// 以下備忘録
+// 文字コードはUTF-8で保存。
 // 文法に関してはほぼ問題なし、相変わらずat(で、)を使う良い文脈が思いつかない。
-
+// 『+ " " +』を抜くと上手く再生されない事が(特にogg版で)あるので、不用意に抜いてはいけない。
+// 例えばdistance(dist) + " " + dictionary["in"]から+" "+を抜くと、oggで単位を発音しなくなる
+// 『+ " " +』は『(tts ? "。" : " ")』や『(tts ? "、" : " ")』で代替可能で、後者二つの句読点はポーズを入れたいときに使う。
+// 代わりに入れるなら抜いた事にはならない(確認済み)。
 // IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 //
 // (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
@@ -28,23 +32,21 @@ var tts;
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	// TTSエンジン側の仕様変更か文末の最後に『、』がある場合『てん』と読むようになってしまったので
-	// ウェイト目的ならば『、』を『。』に変更する方が良いかも(ただTTSエンジンの仕様によって異なるので過信は禁物)
+	// TTSエンジンなら『、』または『。』で適切なウエイトが入れられるが、体感では種類で長さは変わらない様な気がする。
 	dictionary["route_is"] = tts ? "ルートを設定しました" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "リルートします" : "route_calculate.ogg";
 	dictionary["distance"] = tts ? "距離" : "distance.ogg";
 
 	// LEFT/RIGHT
-	// 英語では「keep left」も「left keep」も同じだけれど他言語では違う場合もあるので定義用に、非公式日本語では分けていたので以前の訳を継続
 	//dictionary["prepare"] = tts ? "次の地点は" : "prepare.ogg";
 	dictionary["after"] = tts ? "のち" : "after.ogg";
-	dictionary["in"] = tts ? "そこから" : "in.ogg";
+	dictionary["in"] = tts ? "先で" : "in.ogg";
 
 	dictionary["left"] = tts ? "左方向です" : "left.ogg";
-	dictionary["left_sh"] = tts ? "左後方へ曲がってください" : "left_sh.ogg";
+	dictionary["left_sh"] = tts ? "左後ろ側へ曲がってください" : "left_sh.ogg";
 	dictionary["left_sl"] = tts ? "左へ進んで下さい" : "left_sl.ogg";
 	dictionary["right"] = tts ? "右方向です" : "right.ogg";
-	dictionary["right_sh"] = tts ? "右後方へ曲がってください" : "right_sh.ogg";
+	dictionary["right_sh"] = tts ? "右後ろ側へ曲がってください" : "right_sh.ogg";
 	dictionary["right_sl"] = tts ? "右へ進んで下さい" : "right_sl.ogg";
 	// Note: "left_keep"/"right_keep" is a turn type aiding lane selection, while "left_bear"/"right_bear" is as brief "then..." preparation for the turn-after-next. In some languages l/r_keep may not differ from l/r_bear.
 	dictionary["left_keep"] = tts ? "左よりに進んで下さい" : "left_keep.ogg";
@@ -58,30 +60,30 @@ function populateDictionary(tts) {
 
 	// ROUNDABOUTS
 	// take.oggは環状交差点の出口選択用(take the ??th exit),exitに「出口です」で日本語文法的に必要なかった
-	dictionary["prepare_roundabout"] = tts ? "環状交差点に入ります、交差点内は十分に徐行して下さい" : "prepare_roundabout.ogg";
+	dictionary["prepare_roundabout"] = tts ? "環状交差点に入ります。交差点内は十分に徐行して下さい" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "環状交差点に入って下さい" : "roundabout.ogg";
-	dictionary["then"] = tts ? "さらに" : "then.ogg";
+	dictionary["then"] = tts ? "更にそこから" : "then.ogg";
 	dictionary["and"] = tts ? "そのご" : "and.ogg";
 	dictionary["take"] = tts ? "選択してください" : "take.ogg";
-	dictionary["exit"] = tts ? "出口です" : "exit.ogg";
+	dictionary["exit"] = tts ? "出口は" : "exit.ogg";
 
-	dictionary["1st"] = tts ? "1番目の" : "1st.ogg";
-	dictionary["2nd"] = tts ? "2番目の" : "2nd.ogg";
-	dictionary["3rd"] = tts ? "3番目の" : "3rd.ogg";
-	dictionary["4th"] = tts ? "4番目の" : "4th.ogg";
-	dictionary["5th"] = tts ? "5番目の" : "5th.ogg";
-	dictionary["6th"] = tts ? "6番目の" : "6th.ogg";
-	dictionary["7th"] = tts ? "7番目の" : "7th.ogg";
-	dictionary["8th"] = tts ? "8番目の" : "8th.ogg";
-	dictionary["9th"] = tts ? "9番目の" : "9th.ogg";
-	dictionary["10th"] = tts ? "10番目の" : "10th.ogg";
-	dictionary["11th"] = tts ? "11番目の" : "11th.ogg";
-	dictionary["12th"] = tts ? "12番目の" : "12th.ogg";
-	dictionary["13th"] = tts ? "13番目の" : "13th.ogg";
-	dictionary["14th"] = tts ? "14番目の" : "14th.ogg";
-	dictionary["15th"] = tts ? "15番目の" : "15th.ogg";
-	dictionary["16th"] = tts ? "16番目の" : "16th.ogg";
-	dictionary["17th"] = tts ? "17番目の" : "17th.ogg";
+	dictionary["1st"] = tts ? "1番目です" : "1st.ogg";
+	dictionary["2nd"] = tts ? "2番目です" : "2nd.ogg";
+	dictionary["3rd"] = tts ? "3番目です" : "3rd.ogg";
+	dictionary["4th"] = tts ? "4番目です" : "4th.ogg";
+	dictionary["5th"] = tts ? "5番目です" : "5th.ogg";
+	dictionary["6th"] = tts ? "6番目です" : "6th.ogg";
+	dictionary["7th"] = tts ? "7番目です" : "7th.ogg";
+	dictionary["8th"] = tts ? "8番目です" : "8th.ogg";
+	dictionary["9th"] = tts ? "9番目です" : "9th.ogg";
+	dictionary["10th"] = tts ? "10番目です" : "10th.ogg";
+	dictionary["11th"] = tts ? "11番目です" : "11th.ogg";
+	dictionary["12th"] = tts ? "12番目です" : "12th.ogg";
+	dictionary["13th"] = tts ? "13番目です" : "13th.ogg";
+	dictionary["14th"] = tts ? "14番目です" : "14th.ogg";
+	dictionary["15th"] = tts ? "15番目です" : "15th.ogg";
+	dictionary["16th"] = tts ? "16番目です" : "16th.ogg";
+	dictionary["17th"] = tts ? "17番目です" : "17th.ogg";
 
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "まっすぐ進んで下さい" : "go_ahead.ogg";
@@ -102,21 +104,19 @@ function populateDictionary(tts) {
 	dictionary["reached_poi"] = tts ? "ポイを通過します" : "reached_poi.ogg";
 
 	// ATTENTION
-	//下の一行は旧仕様の名残、現在時速を発話する現在は使用せず。
-	//dictionary["exceed_limit"] = tts ? "制限速度を越えています" : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "制限速度は" : "exceed_limit.ogg";
+	dictionary["exceed_limit"] = tts ? "ここの制限速度は" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "ご注意下さい" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "スピードカメラがあります" : "speed_camera.ogg";
-	// border_controlを『出入国管理』に変更『国境検問所』あるいは『出入国管理施設』とも言うらしい
-	// 昔は『国境検問所』にしていた(oggは再録音が面倒なので昔の『国境検問所』まま)
+	// border_controlを『出入国管理』に変更『国境検問所』あるいは『出入国管理施設』とも言うらしい。
+	// 昔は『国境検問所』にしていたし、そっちの可能性も有るのでogg古い方も同梱。
 	// https://eow.alc.co.jp/search?q=border+control
 	// ちなみに『国境検問所』に戻し、N2TTSに『こっきょうけんもんじょ』と読ませるには
 	// 『国境 検問徐』と間に半角スペースを入れて『所』の代わりに『徐』という字にすると良い。
-	dictionary["border_control"] = tts ? "出入国管理があります" : "border_control.ogg"; //国境検問所の所をしょとN2TTSが読むため。半角スペースは国境をこっきょうと読ませるため
+	dictionary["border_control"] = tts ? "出入国管理があります" : "border_control.ogg"; //国境検問所の所をしょとN2TTSが読むため。半角スペースは国境をこっきょうと読ませるため。
 	dictionary["railroad_crossing"] = tts ? "踏切があります" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "減速隊があります" : "traffic_calming.ogg"; // Googleテキスト読み上げエンジンは減速帯を『げんそくおび』と読むので。
-	dictionary["toll_booth"] = tts ? "りょうきんじょがあります" : "toll_booth.ogg";
-	dictionary["stop"] = tts ? "一次停止です" : "stop.ogg"; // 発音に関してGoogleテキストはこれが一番近いが、N2 TTSはどうにもならない。
+	dictionary["toll_booth"] = tts ? "料金所があります" : "toll_booth.ogg"; // Googleは『りょうきんじょ』N2TTSは『りょうきんしょ』だが、どちらの読みも正しいので漢字表記に戻した。
+	dictionary["stop"] = tts ? "一時停止です" : "stop.ogg";
 	dictionary["pedestrian_crosswalk"] = tts ? "横断歩道があります" : "pedestrian_crosswalk.ogg";
 	dictionary["tunnel"] = tts ? "トンネルがあります" : "tunnel.ogg";
 
@@ -127,9 +127,9 @@ function populateDictionary(tts) {
 	dictionary["back_on_route"] = tts ? "ルートに戻りました" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "え、入ります。" : "onto.ogg";
+	dictionary["onto"] = tts ? "え、入ります。" : "onto.ogg"; //へ、入りますと書くと『he』と読むのパターンがあるので。
 	dictionary["on"] = tts ? "状です。" : "on.ogg"; // 『上』って書くと絶対『うえ』って読むパターンがあるので音読みで後半が上がる『状』を充てている。
-	dictionary["to"] = tts ? "へ、向かいます。" : "to.ogg";
+	dictionary["to"] = tts ? "え、向かいます。" : "to.ogg"; // 同上『he』
 	dictionary["toward"] = tts ? "方面です。" : "toward.ogg";
 
 	// DISTANCE UNIT SUPPORT
@@ -153,17 +153,12 @@ function populateDictionary(tts) {
 	dictionary["1_minute"] = tts ? "1分" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "分" : "minutes.ogg";
 
-	// 非公式日本語用独自追加
-	// zzz_atを使うと自然な日本語になるけれど、keep_left keep_rightだけおかしくなる／400m先で左寄りに進んで下さい×・400m左寄りに進んで下さい○
-	// とりあえず空白1秒おくことで両立できるようにしていた
-	// 他にN2 TTSでは『。』が適度なウェイトになるが、Google読み上げエンジンでは『。』がウェイトにならないので対処法思い浮かばず(古い経験則)
-	//dictionary["zzz_at"] = tts ? "を" : "zzz_at.ogg";
-	//dictionary["zzz_kmh"] = tts ? "キロです" : "zzz_kmh.ogg";
-	//dictionary["zzz_mph"] = tts ? "マイルです" : "zzz_mph.ogg";
-	//dictionary["zzz_delay_0025msec"] = tts ? "。" : "zzz_delay_0025msec.ogg";
-	//dictionary["zzz_delay_0050msec"] = tts ? "。" : "zzz_delay_0050msec.ogg";
-	// 更なるウェイトを追加するために導入してみたが、oggはともかくttsはN2 TTSは。の数でウェイトが伸びることはないし、Googleの方はウェイトにすらならない
-	//dictionary["zzz_exit"] = tts ? "出口は" : "zzz_exit.ogg";
+	// 日本語用独自追加
+	dictionary["kmh"] = tts ? "キロです" : "kmh.ogg";
+	dictionary["mph"] = tts ? "マイルです" : "mph.ogg";
+	dictionary["courteous"] = tts ? "です" : "courteous.ogg";
+	// ogg専用
+	dictionary["gotoexit"] = tts ? "そこから出口へ向かいます" : "gotoexit.ogg";
 }
 
 
@@ -179,80 +174,82 @@ function setMode(mode) {
 }
 
 function route_new_calc(dist, timeVal) {
-	return dictionary["route_is"] + " " + distance(dist) + (tts ? "、 " : " ") + dictionary["time"] + " " + time(timeVal) + (tts ? "。" : " ");
+	return dictionary["route_is"] + (tts ? "。" : " ") + distance(dist) + (tts ? "、" : " ") + dictionary["time"] + " " + time(timeVal);
 }
 
 function distance(dist) {
-	// 日本語だと数字と単位(m、km、ft、mile)を離すとtts読み上げがおかしくなるので単位前の" "を削除
+	// 日本語だと数字と単位(時間、分、メートル、キロメートル、マイル)の間にある『+ " " +』を抜くと、TTS読み上げが自然になるので削除した。
+	// 距離と時間と分の単位とdictionary["toward"]の読み上げ前の+ " " +は抜いてもOK。
 	switch (metricConst) {
 		case "km-m":
 			if (dist < 17 ) {
-				return (tts ? Math.round(dist).toString() : ogg_dist(Math.round(dist))) + " " + dictionary["meters"];
+				return (tts ? Math.round(dist).toString() : ogg_dist(Math.round(dist))) + dictionary["meters"];
 			} else if (dist < 100) {
-				return (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10)) + " " + dictionary["meters"];
+				return (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10)) + dictionary["meters"];
 			} else if (dist < 1000) {
-				return (tts ? (Math.round(2*dist/100.0)*50).toString() : ogg_dist(Math.round(2*dist/100.0)*50)) + " " + dictionary["meters"];
+				return (tts ? (Math.round(2*dist/100.0)*50).toString() : ogg_dist(Math.round(2*dist/100.0)*50)) + dictionary["meters"];
 			} else if (dist < 1500) {
 				return dictionary["around_1_kilometer"];
 			} else if (dist < 10000) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1000.0).toString() : ogg_dist(Math.round(dist/1000.0))) + " " + dictionary["kilometers"];
+				return dictionary["around"] + " " + (tts ? Math.round(dist/1000.0).toString() : ogg_dist(Math.round(dist/1000.0))) + dictionary["kilometers"];
 			} else {
-				return (tts ? Math.round(dist/1000.0).toString() : ogg_dist(Math.round(dist/1000.0))) + " " + dictionary["kilometers"];
+				return (tts ? Math.round(dist/1000.0).toString() : ogg_dist(Math.round(dist/1000.0))) + dictionary["kilometers"];
 			}
 			break;
 		case "mi-f":
 			if (dist < 160) {
-				return (tts ? (Math.round(2*dist/100.0/0.3048)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.3048)*50)) + " " + dictionary["feet"];
+				return (tts ? (Math.round(2*dist/100.0/0.3048)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.3048)*50)) + dictionary["feet"];
 			} else if (dist < 241) {
 				return dictionary["1_tenth_of_a_mile"] + " ";
 			} else if (dist < 1529) {
 	            // マイル呼称 英語版原文文法
-	            //return (tts ? Math.round(dist/161.0).toString() : ogg_dist(Math.round(dist/161.0))) + " " + dictionary["tenths_of_a_mile"];
+	            //return (tts ? Math.round(dist/161.0).toString() : ogg_dist(Math.round(dist/161.0))) + dictionary["tenths_of_a_mile"];
 	            // 下は日本語版「十分の～マイル」例「十分の三マイル」
-				return dictionary["tenths_of_a_mile"] + " " + (tts ? Math.round(dist/161.0).toString() : ogg_dist(Math.round(dist/161.0))) + " " + dictionary["miles"];
+				return dictionary["tenths_of_a_mile"] + " " + (tts ? Math.round(dist/161.0).toString() : ogg_dist(Math.round(dist/161.0))) + dictionary["miles"];
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
 			} else if (dist < 16093) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["miles"];
+				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + dictionary["miles"];
 			} else {
-				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["miles"];
+				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + dictionary["miles"];
 			}
 			break;
 		case "mi-m":
 			if (dist < 17) {
-				return (tts ? Math.round(dist).toString() : ogg_dist(Math.round(dist))) + " " + dictionary["meters"];
+				return (tts ? Math.round(dist).toString() : ogg_dist(Math.round(dist))) + dictionary["meters"];
 			} else if (dist < 100) {
-				return (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10)) + " " + dictionary["meters"];
+				return (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10)) + dictionary["meters"];
 			} else if (dist < 1300) {
-				return (tts ? (Math.round(2*dist/100.0)*50).toString() : ogg_dist(Math.round(2*dist/100.0)*50)) + " " + dictionary["meters"];
+				return (tts ? (Math.round(2*dist/100.0)*50).toString() : ogg_dist(Math.round(2*dist/100.0)*50)) + dictionary["meters"];
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
 			} else if (dist < 16093) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["miles"];
+				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + dictionary["miles"];
 			} else {
-				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["miles"];
+				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + dictionary["miles"];
 			}
 			break;
 		case "mi-y":
 			if (dist < 17) {
-				return (tts ? Math.round(dist/0.9144).toString() : ogg_dist(Math.round(dist/0.9144))) + " " + dictionary["yards"];
+				return (tts ? Math.round(dist/0.9144).toString() : ogg_dist(Math.round(dist/0.9144))) + dictionary["yards"];
 			} else if (dist < 100) {
-				return (tts ? (Math.round(dist/10.0/0.9144)*10).toString() : ogg_dist(Math.round(dist/10.0/0.9144)*10)) + " " + dictionary["yards"];
+				return (tts ? (Math.round(dist/10.0/0.9144)*10).toString() : ogg_dist(Math.round(dist/10.0/0.9144)*10)) + dictionary["yards"];
 			} else if (dist < 1300) {
-				return (tts ? (Math.round(2*dist/100.0/0.9144)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.9144)*50)) + " " + dictionary["yards"]; 
+				return (tts ? (Math.round(2*dist/100.0/0.9144)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.9144)*50)) + dictionary["yards"]; 
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
 			} else if (dist < 16093) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["miles"];
+				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + dictionary["miles"];
 			} else {
-				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["miles"];
+				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + dictionary["miles"];
 			}
 			break;
 	}
 }
 
 function time(seconds) {
-	// 読み上げ時単位が数字の直後に付いていれば『○○分』を『ふん』と『ぷん』を読み分けてくれるので" "を抜いた
+	// 読み上げ時単位が数字の直後に付いていれば『○○分』を『ふん』と『ぷん』を読み分けてくれるので+ " " +を『分』の発音の手前だけ抜く。
+	// 余計なところを抜くと、ogg版で数字を読み上げなくなるので注意。
 	var minutes = Math.round(seconds/60.0);
 	var oggMinutes = Math.round(((seconds/300.0) * 5));
 	if (seconds < 30) {
@@ -262,7 +259,7 @@ function time(seconds) {
 	} else if (minutes % 60 == 1 && tts) {
 		return hours(minutes) + " " + dictionary["1_minute"];
 	} else if (tts) {
-		return hours(minutes) + " " + (minutes % 60) + " " + dictionary["minutes"];
+		return hours(minutes) + " " + (minutes % 60) + dictionary["minutes"];
 	} else if (!tts && seconds < 300) {
 		return ogg_dist(minutes) + dictionary["minutes"];
 	} else if (!tts && oggMinutes % 60 > 0) {
@@ -279,25 +276,23 @@ function hours(minutes) {
 		return dictionary["1_hour"];
 	} else {
 		var hours = Math.floor(minutes / 60);
-		return (tts ? hours.toString() : ogg_dist(hours)) + " " + dictionary["hours"]; 
+		return (tts ? hours.toString() : ogg_dist(hours)) + dictionary["hours"]; 
 	}
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + (tts ? "、 " : " ") + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? "。 " : " ");
+	return dictionary["route_calculate"] + (tts ? "。" : " ") + dictionary["distance"] + " " + distance(dist) + (tts ? "、" : " ") + dictionary["time"] + " " + time(seconds);
 }
 
 function go_ahead(dist, streetName) {
 	if (dist == -1) {
 		return dictionary["go_ahead"];
 	} else {
-		// 英文版 return dictionary["follow"] + " " + distance(dist) + " " + follow_street(streetName);
-		return distance(dist) + " " + dictionary["follow"] + " " + follow_street(streetName) + (tts ? "。" : " ");
+		return distance(dist) + (tts ? "、" : " ") + dictionary["follow"] + (tts ? "。" : " ") + follow_street(streetName);
 	}
 }
 
 function follow_street(streetName) {
-	// 非公式日本語版文脈調整01 進行先と現在通行中道路名の発声
 	if ((streetName["toDest"] == "" && streetName["toStreetName"] == "" && streetName["toRef"] == "") || Object.keys(streetName).length == 0 || !tts) {
 		return "";
 	} else if (streetName["toStreetName"] == "" && streetName["toRef"] == "") {
@@ -311,26 +306,33 @@ function follow_street(streetName) {
 }
 
 function turn(turnType, dist, streetName) {
-	// 非公式日本語版文脈調整02 次に入る道路名の発声
 	if (dist == -1) {
-		return getTurnType(turnType) + (tts ? "、 " : " ") + turn_street(streetName) + (tts ? "。" : " ");
+		return getTurnType(turnType) + (tts ? "。" : " ") + turn_street(streetName);
 	} else {
-		//return dictionary["in"] + " " + distance(dist) + " " + dictionary["zzz_delay_0050msec"] + " " + getTurnType(turnType) + " " + turn_street(streetName); 
-		return dictionary["in"] + " " + distance(dist) + (tts ? "、 " : " ") + getTurnType(turnType) + " " + turn_street(streetName) + (tts ? "。" : " "); 
+		return distance(dist) + " " + dictionary["in"] + (tts ? "、" : " ") + getTurnType(turnType) + (tts ? "。" : " ") + turn_street(streetName); 
 	}
 }
 
 function take_exit(turnType, dist, exitString, exitInt, streetName) {
-	// 前の方の + " " + dictionary["onto"]を最後部に入れ替え
-	// 一番最初の条件だけ + " " + dictionary["onto"](へ、入ります)を追加
-	if (dist == -1) {
-		return getTurnType(turnType) + (tts ? "、 " : " ") + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName) + (tts ? "。" : " ");
-	// 非公式日本語独自追加(英語版自体が間違っている可能性もある)
-	} else if (streetName["toStreetName"] == "") {
-	return dictionary["in"] + " " + distance(dist) + (tts ? "、 " : " ") + getTurnType(turnType) + (tts ? "、 " : " ") + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName) + (tts ? "。" : " ");
-	// ここまでが追加分
+	// 日本語では前の方にある『+ " " + dictionary["onto"]』(～へ、入ります)を最後部に入れ替え
+	// さらにTTSと非TTSで条件分岐
+	if (tts && dist == -1 && streetName["toStreetName"] == "") {
+	// これから入る通りの名前が空ならばonto(～へ、入ります)は不要。
+		return getTurnType(turnType) + (tts ? "、" : " ") + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName);
+	} else if (tts && dist == -1) {
+		return getTurnType(turnType) + (tts ? "、" : " ") + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName) + " " + dictionary["onto"];
+	} else if (!tts && dist == -1) {
+		return getTurnType(turnType) + (tts ? "、" : " ") + getExitNumber(exitString, exitInt);
+	} else if (tts && streetName["toStreetName"] == "") {
+		return distance(dist) + " " + dictionary["in"] + (tts ? "、" : " ")
+			+ getTurnType(turnType) + (tts ? "、" : " ") + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName);
+	} else if (!tts) {
+		return distance(dist) + " " + dictionary["in"] + (tts ? "、" : " ")
+			+ getTurnType(turnType) + (tts ? "、" : " ") + getExitNumber(exitString, exitInt);
+	// ここまでが大幅変更分
 	} else {
-		return dictionary["in"] + " " + distance(dist) + (tts ? "、 " : " ") + getTurnType(turnType) + (tts ? "、 " : " ") + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName) + (tts ? "。" : " ");
+		return distance(dist) + " " + dictionary["in"] + (tts ? "、" : " ")
+			+ getTurnType(turnType) + (tts ? "、" : " ") + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName) + " " + dictionary["onto"];
 	}
 }
 
@@ -338,9 +340,9 @@ function take_exit_name(streetName) {
 	if (Object.keys(streetName).length == 0 || (streetName["toDest"] == "" && streetName["toStreetName"] == "") || !tts) {
 		return "";
 	} else if (streetName["toDest"] != "") {
-		return (tts ? "、 " : " ") + streetName["toDest"] + dictionary["toward"] + " " + streetName["toStreetName"];
+		return streetName["toDest"] + dictionary["toward"] + " " + streetName["toStreetName"];
 	} else if (streetName["toStreetName"] != "") {
-		return (tts ? "、 " : " ") + streetName["toStreetName"];
+		return streetName["toStreetName"];
 	} else {
 		return "";
 	}
@@ -348,12 +350,12 @@ function take_exit_name(streetName) {
 
 function getExitNumber(exitString, exitInt) {
 	if (!tts && exitInt > 0 && exitInt < 18) {
-			return nth(exitInt) + " " + dictionary["exit"];
-	} else if (tts) {
-			return dictionary["exit"] + " " + exitString;
+			return dictionary["exit"] + " " + nth(exitInt);
+	} else if (!tts) {
+	// 1～17番以外の数字または文字(上の条件に該当しない)で、かつoggの場合『そこから出口へ向かいます』とだけ発声。
+			return dictionary["gotoexit"];
 	} else {
-			//return dictionary["zzz_exit"];  //zzz_exit.ogg file is missing
-			return "";
+			return dictionary["exit"] + " " + exitString + " " + dictionary["courteous"] + (tts ? "。" : " ");
 	}
 }
 
@@ -387,28 +389,26 @@ function getTurnType(turnType) {
 }
 
 function then() {
-	// 非公式版 return (tts ? "、 " : " ") + dictionary["then"] + (tts ? "、 " : " ");
-	return (tts ? "、 " : " ") + dictionary["then"] + " ";
+	return dictionary["then"] + (tts ? "、" : " ");
 }
 
 function roundabout(dist, angle, exit, streetName) {
-	// 新非公式日本語版ラウンドアバウト(環状交差点)用処理
-	// 単純に文法的に不要なdictionary["take"](take.ogg)を抜き、わずかな遅延を入れただけ
+	// 文法的に不要なdictionary["take"](take.ogg)を抜き"、"や"。"で適切な遅延を入れて誤魔化す
 	if (dist == -1) {
-		return nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName) + (tts ? "。" : " ");
+		return dictionary["exit"] + " " + nth(exit) + (tts ? "。" : " ") + turn_street(streetName);
 	} else {
-		//return dictionary["in"] + " " + distance(dist) + " " + dictionary["zzz_delay_0050msec"] + " " + dictionary["roundabout"] + (tts ? "、 " : " ") + dictionary["and"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
-		return dictionary["in"] + " " + distance(dist) + (tts ? "、 " : " ") + dictionary["roundabout"] + (tts ? "、 " : " ") + dictionary["and"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName) + (tts ? "。" : " ");
+	//	return distance(dist) + " " + dictionary["in"] + (tts ? "、" : " ") + dictionary["roundabout"] + (tts ? "。" : " ") + dictionary["and"] + " " + nth(exit) + " " + dictionary["exit"] + (tts ? "。" : " ") + turn_street(streetName);
+		return distance(dist) + " " + dictionary["in"] + (tts ? "、" : " ") + dictionary["roundabout"] + (tts ? "。" : " ") + dictionary["and"] + (tts ? "、" : " ") + dictionary["exit"] + " " + nth(exit) + (tts ? "。" : " ") + turn_street(streetName);
 	}
 }
 
 function turn_street(streetName) {
-	// towardとontoを正しい順番で発話するにはここを直す必要がある
+	// 日本語でtoward(～方面です)とonto(～へ、入ります)を正しい順番で発話するにはここを直す必要がある
 	if (Object.keys(streetName).length == 0 || (streetName["toDest"] == "" && streetName["toStreetName"] == "" && streetName["toRef"] == "") || !tts) {
 		return "";
 	} else if (streetName["toStreetName"] == "" && streetName["toRef"] == "") {
 		// toStreetName(直後に入る通り)と、toRef(現在走行中の通り)が空(=="")の場合、toDest(目的地方面の通り)の後に「toward(方面です)」をstreetNameに代入する。
-		return streetName["toDest"] + " " + dictionary["toward"];
+		return streetName["toDest"] + dictionary["toward"];
 	} else if (streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"]) {
 		// 『fromRef(現在走行中の通り)とtoStreetName(直後に入る通り)』がtoRef(直後に入る道)とfromStreetName(今まで来た道)と変更がない場合streetNameに「on(上です)」を付与する。	} else if (streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"]) {
 		return assemble_street_name(streetName) + dictionary["on"];
@@ -474,13 +474,10 @@ function nth(exit) {
 }
 
 function make_ut(dist, streetName) {
-	// この記述が以前から正しく動作しているかどうか不明。
-	// どんなUターンが必要な状況(道路の形など)で発声しているかのサンプルや詳細が分かれば、zzz_at.oggなどを使って適切な文法に直せる可能性がある。
 	if (dist == -1) {
-		return dictionary["make_uturn"] + " " + turn_street(streetName) + (tts ? "。" : " ");
+		return dictionary["make_uturn"] + (tts ? "。" : " ") + turn_street(streetName) ;
 	} else {
-		//return dictionary["in"] + " " + distance(dist) + " " + dictionary["zzz_delay_0050msec"] + " " + dictionary["make_uturn"] + " " + turn_street(streetName);
-		return dictionary["in"] + " " + distance(dist) + (tts ? "、 " : " ") + dictionary["make_uturn"] + " " + turn_street(streetName) + (tts ? "。" : " ");
+		return distance(dist) + " " + dictionary["in"] + (tts ? "、" : " ") + dictionary["make_uturn"] + (tts ? "。" : " ") + turn_street(streetName);
 	}
 }
 
@@ -493,86 +490,116 @@ function bear_right(streetName) {
 }
 
 function prepare_make_ut(dist, streetName) {
-	// 以下の3つは「～のち、××」を自然に読ませるため、dictionary["after"]の前の" "を抜いた
-	return distance(dist) + " " + dictionary["after"] + (tts ? "、 " : " ") + dictionary["make_uturn"] + " " + turn_street(streetName) + (tts ? "。" : " ");
+	// 以下の3つは「～のち、××」を自然に読ませるため、dictionary["after"]の前の" "を抜いたが、抜くとダメかも？
+	return distance(dist) + " " + dictionary["after"] + (tts ? "、" : " ") + dictionary["make_uturn"] + (tts ? "。" : " ") + turn_street(streetName);
 }
 
 function prepare_turn(turnType, dist, streetName) {
-	return distance(dist) + " " + dictionary["after"] + (tts ? "、 " : " ") + getTurnType(turnType) + " " + turn_street(streetName) + (tts ? "。" : " ");
+	return distance(dist) + " " + dictionary["after"] + (tts ? "、" : " ") + getTurnType(turnType) + (tts ? "。" : " ") + turn_street(streetName);
 }
 
 function prepare_roundabout(dist, exit, streetName) {
-	return distance(dist) + " " + dictionary["after"] + (tts ? "、 " : " ") + dictionary["prepare_roundabout"] + (tts ? "。" : " "); 
+	return distance(dist) + " " + dictionary["after"] + (tts ? "、" : " ") + dictionary["prepare_roundabout"]; 
 }
 
 function and_arrive_destination(dest) {
-	// 以下10個は読み上げ前に" "でウェイトを挿入
-	return " " + dictionary["and_arrive_destination"] + " " + dest + (tts ? "。" : " ");
+	return dictionary["and_arrive_destination"] + (tts ? "。" : " ") + dest;
 }
 
 function and_arrive_intermediate(dest) {
-	return " " + dictionary["and_arrive_intermediate"] + " " + dest + (tts ? "。" : " ");
+	return dictionary["and_arrive_intermediate"] + (tts ? "。" : " ") + dest;
 }
 
 function and_arrive_waypoint(dest) {
-	return " " + dictionary["and_arrive_waypoint"] + " " + dest + (tts ? "。" : " ");
+	return dictionary["and_arrive_waypoint"] + (tts ? "。" : " ") + dest;
 }
 
 function and_arrive_favorite(dest) {
-	return " " + dictionary["and_arrive_favorite"] + " " + dest + (tts ? "。" : " ");
+	return dictionary["and_arrive_favorite"] + (tts ? "。" : " ") + dest;
 }
 
 function and_arrive_poi(dest) {
-	return " " + dictionary["and_arrive_poi"] + " " + dest + (tts ? "。" : " ");
+	return dictionary["and_arrive_poi"] + (tts ? "。" : " ") + dest;
 }
 
 function reached_destination(dest) {
-	return " " + dictionary["reached_destination"] + " " + dest + (tts ? "。" : " ");
+	return dictionary["reached_destination"] + (tts ? "。" : " ") + dest;
 }
 
 function reached_waypoint(dest) {
-	return " " + dictionary["reached_waypoint"] + " " + dest + (tts ? "。" : " ");
+	return dictionary["reached_waypoint"] + (tts ? "。" : " ") + dest;
 }
 
 function reached_intermediate(dest) {
-	return " " + dictionary["reached_intermediate"] + " " + dest + (tts ? "。" : " ");
+	return dictionary["reached_intermediate"] + (tts ? "。" : " ") + dest;
 }
 
 function reached_favorite(dest) {
-	return " " + dictionary["reached_favorite"] + " " + dest + (tts ? "。" : " ");
+	return dictionary["reached_favorite"] + (tts ? "。" : " ") + dest;
 }
 
 function reached_poi(dest) {
-	return " " + dictionary["reached_poi"] + " " + dest + (tts ? "。" : " ");
+	return dictionary["reached_poi"] + (tts ? "。" : " ") + dest;
 }
 
 function location_lost() {
-	return dictionary["location_lost"] + (tts ? "。" : " ");
+	return dictionary["location_lost"];
 }
 
 function location_recovered() {
-	return dictionary["location_recovered"] + (tts ? "。" : " ");
+	return dictionary["location_recovered"];
 }
 
 function off_route(dist) {
-	return distance(dist) + " " + dictionary["off_route"] + (tts ? "。" : " ");
+	return distance(dist) + (tts ? "、" : " ") + dictionary["off_route"];
 }
 
 function back_on_route() {
-	return dictionary["back_on_route"] + (tts ? "。" : " ");
+	return dictionary["back_on_route"];
 }
 
 function make_ut_wp() {
-	return dictionary["make_uturn_wp"] + (tts ? "。" : " ");
+	return dictionary["make_uturn_wp"];
 }
 
 // TRAFFIC WARNINGS
 function speed_alarm(maxSpeed, speed) {
-	return dictionary["exceed_limit"] + " " + maxSpeed.toString() + (tts ? "。" : " ");
+	if (tts) {
+// 日本語だと速度の後に単位が無いと変なので『丁寧語のですを付けて誤魔化す』or『単位をつける』の二択を選択可能。
+// 実質後者一択だが、折角作ったので英語＆標準準拠のヤツも入れておく
+// 「制限速度は50です」
+//		return dictionary["exceed_limit"] + (tts ? "、" : " ") + maxSpeed.toString() + " " + dictionary["courteous"];
+// ここまでが丁寧語
+// 以下はOsmAndの設定で速度単位を『キロメートル毎時』あるいは『その他(マイル毎時)』に設定した場合で分岐する処理
+// 「制限速度は50キロ(orマイル)です」
+		switch (metricConst) {
+			case "km-m":
+				return dictionary["exceed_limit"] + (tts ? "、" : " ") + maxSpeed.toString() + dictionary["kmh"];
+				break;
+			case "mi-f":
+				return dictionary["exceed_limit"] + (tts ? "、" : " ") + maxSpeed.toString() + dictionary["mph"];
+				break;
+			case "mi-m":
+				return dictionary["exceed_limit"] + (tts ? "、" : " ") + maxSpeed.toString() + dictionary["mph"];
+				break;
+			case "mi-y":
+				return dictionary["exceed_limit"] + (tts ? "、" : " ") + maxSpeed.toString() + dictionary["mph"];
+				break;
+			case "nm-m":
+				return dictionary["exceed_limit"] + (tts ? "、" : " ") + maxSpeed.toString() + dictionary["kmh"];
+				break;
+			case "nm-f":
+				return dictionary["exceed_limit"] + (tts ? "、" : " ") + maxSpeed.toString() + dictionary["mph"];
+				break;
+		}
+// ここまでが単位付き
+	} else {
+			return dictionary["exceed_limit"];
+	}
 }
 
 function attention(type) {
-	return dictionary["attention"] + (tts ? "、 " : " ") + getAttentionString(type) + (tts ? "。" : " ");
+	return dictionary["attention"] + (tts ? "、" : " ") + getAttentionString(type);
 }
 
 function getAttentionString(type) {
