@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <osmand_types>
-    <!-- Version 1.3, 2023-05-03 adding tags for nautical rendering for seamarks in INT-1 P, R, S sections Lights, Fog Signals, Radar -->
+    <!-- Version 1.3, 2023-05-27 adding tags for nautical rendering for seamarks in INT-1 P, R, S sections Lights, Fog Signals, Radar -->
 	
 	<!-- currently name tags are indexed with name and additional in nameTags separated by comma -->
 
@@ -6819,7 +6819,8 @@
 	<type tag="seamark:light:5:add_sector" minzoom="11" additional="text" notosm="true"/>
 	<!-- fill missing tags for complete display of seamark:light:character in nautical.render.xml, which depends on existance of seamark:name -->
 	<entity_convert pattern="tag_transform" from_tag="name" if_tag1="seamark:type" if_not_tag2="seamark:name" to_tag1="name" to_tag2="seamark:name"/>
-	<entity_convert pattern="tag_transform" from_tag="seamark:type" if_not_tag1="name" if_not_tag2="seamark:name" to_tag1="seamark:type" to_tag2="seamark:name" to_value2=""/>
+	<entity_convert pattern="tag_transform" from_tag="seamark:type" if_not_tag1="name" if_not_tag2="seamark:name"  if_tag3="seamark:light:character" to_tag1="seamark:type" to_tag2="seamark:name" to_value2="."/> <!-- fill empty name tags for complete display of lightDetail of seamark:lights -->
+	<entity_convert pattern="tag_transform" from_tag="seamark:type" if_not_tag1="name" if_not_tag2="seamark:name"  if_tag3="seamark:light:1:character" to_tag1="seamark:type" to_tag2="seamark:name" to_value2="."/> <!-- fill empty name tags for complete display of lightDetail of seamark:lights -->
 	<entity_convert pattern="tag_transform" from_tag="seamark:light:1:character" to_tag1="seamark:light:character"/>
 	<entity_convert pattern="tag_transform" from_tag="seamark:light:1:group" to_tag1="seamark:light:group"/>
 	<entity_convert pattern="tag_transform" from_tag="seamark:light:1:period" to_tag1="seamark:light:period"/>
