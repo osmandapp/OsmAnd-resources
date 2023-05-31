@@ -1,4 +1,4 @@
-// 日本語音声 ver 4.5.0-4 絶壁ヒナギク
+// 日本語音声 ver 4.5.0-5 絶壁ヒナギク
 // Basis contributed by Zeppeki Hinagiku, adjusted Hardy Mueller, 2023-04-01.
 //
 // 録音音声
@@ -8,7 +8,7 @@
 //    type-D 紲星あかり(VOICEROID2)
 // 以下備忘録
 // 文字コードはUTF-8で保存。
-// 文法に関してはほぼ問題なし、相変わらずat(で、)を使う良い文脈が思いつかない。
+// 文法に関してはほぼ問題なし
 // 『+ " " +』を抜くと上手く再生されない事が(特にogg版で)あるので、不用意に抜いてはいけない。
 // 例えばdistance(dist) + " " + dictionary["in"]から+" "+を抜くと、oggで単位を発音しなくなる
 // 『+ " " +』は『(tts ? "。" : " ")』や『(tts ? "、" : " ")』で代替可能で、後者二つの句読点はポーズを入れたいときに使う。
@@ -40,7 +40,7 @@ function populateDictionary(tts) {
 	// LEFT/RIGHT
 	//dictionary["prepare"] = tts ? "次の地点は" : "prepare.ogg";
 	dictionary["after"] = tts ? "のち" : "after.ogg";
-	dictionary["in"] = tts ? "先で" : "in.ogg";
+	dictionary["in"] = tts ? "先" : "in.ogg";
 
 	dictionary["left"] = tts ? "左方向です" : "left.ogg";
 	dictionary["left_sh"] = tts ? "左後ろ側へ曲がってください" : "left_sh.ogg";
