@@ -378,7 +378,7 @@
 	 	</if>
 	-->
 
-	<routingProfile name="car" baseProfile="car" restrictionsAware="true" minSpeed="20.0" defaultSpeed="45.0" maxSpeed="130.0" sharpTurn="30" slightTurn="15" roundaboutTurn="8" onewayAware="true">
+	<routingProfile name="car" baseProfile="car" restrictionsAware="true" minSpeed="20.0" defaultSpeed="45.0" maxSpeed="130.0" sharpTurn="30" slightTurn="15" roundaboutTurn="15" onewayAware="true">
 	 	<!--<attribute name="heuristicCoefficient" value="1.5" />
 		-->
 		<attribute name="derivedProfiles" value="default,truck,motorcycle"/>
@@ -545,11 +545,24 @@
 			<select value="1"  t="access" v="destination"/>
 			<select value="1"  t="access" v="customers"/>
 
-			<select value="-1" t="maxweight">
-				<gt value1=":weight" value2="$maxweight" type="weight"/>
-			</select>
-			<select value="-1" t="maxweightrating">
-				<gt value1=":maxweightrating" value2="$maxweightrating" type="weight"/>
+			<if param="profile_truck">
+				<select value="-1" t="maxweight:hgv">
+					<gt value1=":weight" value2="$maxweight" type="weight"/>
+				</select>
+				<select value="-1" t="maxweightrating:hgv">
+					<gt value1=":weightrating" value2="$maxweightrating:hgv" type="weight"/>
+				</select>
+			</if>
+			<ifnot param="profile_truck">
+				<select value="-1" t="maxweight">
+					<gt value1=":weight" value2="$maxweight" type="weight"/>
+				</select>
+				<select value="-1" t="maxweightrating">
+					<gt value1=":weightrating" value2="$maxweightrating" type="weight"/>
+				</select>
+			</ifnot>
+			<select value="-1" t="maxaxleload">
+				<gt value1=":maxaxleload" value2="$maxaxleload" type="weight"/>
 			</select>
 			<select value="-1" t="maxheight">
 				<gt value1=":height" value2="$maxheight" type="length"/>
@@ -572,18 +585,6 @@
 			<select value="-1" t="maxheight:backward">
 				<gt value1=":height" value2="$maxheight:backward" type="length"/>
 			</select>
-
-			<if param="profile_truck">
-				<select value="-1" t="maxweight:hgv">
-					<gt value1=":weight" value2="$maxweight" type="weight"/>
-				</select>
-				<select value="-1" t="maxweightrating:hgv">
-					<gt value1=":maxweightrating" value2="$maxweightrating" type="weight"/>
-				</select>
-				<select value="-1" t="maxaxleload">
-					<gt value1=":maxaxleload" value2="$maxaxleload" type="weight"/>
-				</select>
-			</if>
 
 			<gt value1=":hazmat_category" value2="4"> <!-- E -->
 				<select value="-1" t="hazmat" v="no"/>
@@ -1203,7 +1204,8 @@
 		<parameter id="avoid_tunnels" name="Avoid tunnels" description="Avoid tunnels" type="boolean"/>
 		<parameter id="avoid_fords" name="Avoid fords" description="Avoid fords" type="boolean"/>
 		<parameter id="allow_private" name="Allow private access" description="Allow access to private areas" type="boolean"/>
-		<parameter id="avoid_sett" name="Avoid sett and cobblestone" description="Streets and paths which are paved with sett and cobblestone are avoided quite strictly (they are already avoided in standard mode)." type="boolean" default="false"/>
+		<parameter id="avoid_sett" name="Avoid sett" description="Streets and paths which are paved with sett are avoided quite strictly (they are already avoided in standard mode)." type="boolean" default="false"/>
+		<parameter id="avoid_cobblestone" name="Avoid cobblestone" description="Streets and paths which are paved with cobblestone are avoided quite strictly (they are already avoided in standard mode)." type="boolean" default="false"/>
 		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean" default="false"/>
 
 		<way attribute="access">
@@ -1583,6 +1585,8 @@
 
 			<if param="avoid_sett">
 				<select value="0.2" t="surface" v="sett"/>
+			</if>
+			<if param="avoid_cobblestone">
 				<select value="0.1" t="surface" v="cobblestone"/>
 				<select value="0.05" t="surface" v="unhewn_cobblestone"/>
 			</if>

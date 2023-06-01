@@ -106,6 +106,10 @@ icon_alias_no_mx stroke_brown_right functional-icons_brown_right_stroke
 icon_alias_no_mx stroke_brown_left functional-icons_brown_left_stroke
 icon_alias_no_mx stroke_dark_brown_left functional-icons_dark_brown_left_stroke
 icon_alias_no_mx stroke_light_brown_left functional-icons_light_brown_left_stroke
+icon_alias_no_mx stroke_white_left functional-icons_white_left_stroke
+icon_alias_no_mx stroke_yellow_left functional-icons_yellow_left_stroke
+icon_alias_no_mx stroke_green_left functional-icons_green_left_stroke
+icon_alias_no_mx stroke_red_left functional-icons_red_left_stroke
 
 ## Natural
 icon_alias natural poi_colored_peak2
@@ -457,6 +461,7 @@ icon_alias man_made_lighthouse transport_lighthouse
 icon_alias topo_lighthouse topo_lighthouse
 icon_alias waterway_lock_gate_small functional-icons_lock_gate  #scale 0.5
 icon_alias lock_gate poi_colored_lock_gate  #scale 0.25
+icon_alias lock poi_lock_gate
 icon_alias lock_basin seamark_small_poi_lock_basin  #scale 0.25
 icon_alias waterway_dock transport_dock
 
