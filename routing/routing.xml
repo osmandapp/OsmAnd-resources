@@ -1958,6 +1958,7 @@
 		<parameter id="avoid_stairs" name="Avoid stairs" description="Avoid stairs" type="boolean"/>
 		<parameter id="avoid_unpaved" name="Avoid unpaved roads" description="Avoid unpaved roads" type="boolean"/>
 		<parameter id="allow_private" name="Allow private access" description="Allow access to private areas" type="boolean"/>
+		<parameter id="allow_via_ferrata" name="Allow via ferrata" description="Allow via ferrata paths" type="boolean"/>
 		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean" default="true"/>
 		<parameter id="relief_smoothness_factor_more_plains" group="relief_smoothness_factor" name="More plains" description="" type="boolean"/>
 		<parameter id="relief_smoothness_factor_plains" group="relief_smoothness_factor" name="Plains" description="" type="boolean" default="true"/>
@@ -1985,11 +1986,11 @@
 			</if>
 
 			<if param="avoid_stairs">
-			    <select value="-1" t="highway" v="steps"/>
+				<select value="-1" t="highway" v="steps"/>
 			</if>
 
 			<if param="avoid_ferries">
-    			<select value="-1" t="route" v="ferry"/>
+				<select value="-1" t="route" v="ferry"/>
 			</if>
 			<select value="-1" t="foot" v="no"/>
 			<select value="1"  t="foot" v="yes"/>
@@ -2006,6 +2007,10 @@
 			<select value="-1" t="access" v="private"/>
 			<select value="1"  t="access" v="yes"/>
 			<select value="1"  t="access" v="permissive"/>
+
+			<if param="allow_via_ferrata">
+				<select value="1" t="highway" v="via_ferrata"/>
+			</if>
 
 			<select value="1" t="highway" v="motorway"/>
 			<select value="1" t="highway" v="motorway_link"/>
