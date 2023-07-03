@@ -795,6 +795,7 @@ icon_alias trailhead tourist_trailhead
 icon_alias trail_riding_station tourist_trail_riding_station
 icon_alias topo_trailhead topo_topo_trailhead
 icon_alias ranger_station amenity_ranger_station
+icon_alias mountain tourist_mountain
 
 ## Entertainment
 icon_alias entertainment tourist_cinema3
