@@ -5677,8 +5677,8 @@
 				</switch>
 				<switch minzoom="17">
 					<case tag="building:part" value="" nameTag=""/>
-					<apply_if maxzoom="17" textSize="12" textMinDistance="40" intersectionMargin="20"/>
-					<apply_if minzoom="18" textSize="14"/>
+					<apply_if maxzoom="17" textSize="10" textMinDistance="40" intersectionMargin="20"/>
+					<apply_if minzoom="18" textSize="12"/>
 					<apply textColor="$buildingTextColor" textHaloColor="$buildingTextHaloColor" textWrapWidth="20" textOrder="137"/>
 				</switch>
 				<switch>
@@ -9370,9 +9370,37 @@
 				<case minzoom="19" strokeWidth_2="40:40"/>
 			</apply>
 		</switch>
-		<case moreDetailed="true" minzoom="17" tag="building:part" value="" color="$null" strokeWidth_2="0.5" color_2="#999999">
+		<switch coloredBuildings="true" minzoom="17">
+			<switch>
+				<case tag="building:part" value="garage"/>
+				<case tag="building:part" value="industrial"/>
+				<case tag="building:part" value="shed"/>
+				<apply color="$buildingIndustrialColor"/>
+			</switch>
+			<case tag="building:part" value="roof" color="$buildingRoofColor"/>
+			<case tag="building:part" value="office" color="$buildingOfficeColor"/>
+			<case tag="building:part" value="residential" color="$buildingResidentialColor"/>
+			<case tag="building:part" value="hospital" color="$buildingHospitalColor"/>
+			<case tag="building:part" value="construction" color="$buildingConstructionColor"/>
+			<switch>
+				<case tag="building:part" value="civic"/>
+				<case tag="building:part" value="school"/>
+				<case tag="building:part" value="kindergarten"/>
+				<case tag="building:part" value="university"/>
+				<apply color="$buildingEducationalColor"/>
+			</switch>
+			<switch>
+				<case tag="building:part" value="commercial"/>
+				<case tag="building:part" value="retail"/>
+				<apply color="$buildingCommercialColor"/>
+			</switch>
+			<case tag="building:part" value="church" color="$churchColor"/>
+			<apply strokeWidth_2="0.5" color_2="#999999"/>
 			<apply_if nightMode="true" color_2="#808080"/>
-		</case>
+			<case tag="building:part" value="" color="$null" strokeWidth_2="0.5" color_2="#999999">
+				<apply_if nightMode="true" color_2="#808080"/>
+			</case>
+		</switch>
 		<switch>
 			<case minzoom="16" tag="railway" value="traverser"/>
 			<case minzoom="16" tag="railway" value="turntable"/>
