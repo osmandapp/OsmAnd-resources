@@ -165,7 +165,7 @@ function route_new_calc(dist, timeVal) {
 }
 
 function plural_mt(dist) {
-	if (distance % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
+	if (dist % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
 		return dictionary["metr"];
 	} else if (dist % 10 < 5 && dist % 10 > 1 && (dist % 100 > 20 || dist % 100 < 10 )) {
 		return dictionary["metra"];
@@ -175,7 +175,7 @@ function plural_mt(dist) {
 }
 
 function plural_km(dist) {
-	if (distance % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
+	if (dist % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
 		return dictionary["kilometr"];
 	} else if (dist % 10 < 5 && dist % 10 > 1 && (dist % 100 > 20 || dist % 100 < 10 )) {
 		return dictionary["kilometra"];
@@ -185,7 +185,7 @@ function plural_km(dist) {
 }
 
 function plural_mi(dist) {
-	if (distance % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
+	if (dist % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
 		return dictionary["1mile"];
 	} else if (dist % 10 < 5 && dist % 10 > 1 && (dist % 100 > 20 || dist % 100 < 10 )) {
 		return dictionary["2mili"];
@@ -197,10 +197,13 @@ function plural_mi(dist) {
 function distance(dist) {
 	switch (metricConst) {
 		case "km-m":
-			if (dist < 100) {
+			if (dist < 20) {
 				return (tts ? Math.round(dist).toString() : ogg_dist(Math.round(dist))) + " " + plural_mt(dist);
+			} else if (dist < 100) { 
+				var distance = Math.round(dist/10.0)*10; //Приводим к шагу значений в 10 метров
+				return (tts ? distance.toString() : ogg_dist(distance)) + " " + plural_mt(distance);
 			} else if (dist < 750) {
-				var distance = Math.round(dist/10.0)*10;
+				var distance = Math.round(dist/50.0)*50;
 				return (tts ? distance.toString() : ogg_dist(distance)) + " " + plural_mt(distance);
 			} else if ((dist >= 750 && dist < 950) || (dist >= 1050 && dist < 1250)) {
 				return dictionary["around"] + " " + dictionary["1"] + " " + dictionary["kilometr"];
@@ -213,7 +216,8 @@ function distance(dist) {
 			} else if (dist >= 1750 && dist < 2000) {
 				return dictionary["around"] + " " + dictionary["2"] + " " + dictionary["kilometra"];
 			} else {
-				return (tts ? Math.round(dist/1000.0).toString() : ogg_dist(Math.round(dist/1000.0))) + " " + plural_km(dist/1000.0);
+				var dst = Math.round(dist/1000.0);
+				return (tts ? dst.toString() : ogg_dist(dst)) + " " + plural_km(dst);
 			}
 			break;
 		case "mi-f":
@@ -288,6 +292,8 @@ function time(seconds) {
 		return hours(minutes);
 	} else if (minutes % 60 == 1 && tts) {
 		return hours(minutes) + " " + dictionary["1na"] + " " + dictionary["minute"];
+	} else if (minutes % 60 == 2 && tts) {
+		return hours(minutes) + " " + dictionary["2ve"] + " " + dictionary["minute_i"];
 	} else if (tts) {
 		return hours(minutes) + " " + (minutes % 60).toString() + " " + plural_mn(minutes % 60);
 	} else if (!tts && seconds < 300) {
