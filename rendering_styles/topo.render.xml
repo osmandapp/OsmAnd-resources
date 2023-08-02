@@ -23,6 +23,8 @@
 	<renderingProperty attr="hideAccess" name="Hide access restrictions" description="Hide access type" type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideBuildings" name="Hide buildings" description="Hide buildings"
 		type="boolean" possibleValues="" category="hide"/>
+	<renderingProperty attr="hideHouseNumbers" name="Hide house numbers" description="Hide house numbers"
+		type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideWaterPolygons" name="Hide water" description="Hide water polygons"
 		type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="noPolygons" name="Hide polygons" description="Make all areal land features on map transparent"
@@ -2988,18 +2990,20 @@
 				<case tag="military" value="barracks" nameTag=""/>
 				<case tag="abandoned:building" value="" nameTag=""/>
 				<case tag="disused:building" value="" nameTag=""/>
-				<case tag="building" value="" nameTag="" nameTag2="addr:housenumber"/>
-				<case tag="building" value="" nameTag="addr:housename" nameTag2="addr:housenumber"/>
-				<case tag="building" value="" nameTag="addr:housenumber" />
+				<case hideHouseNumbers="true" hideBuildings="false" tag="building" value="" nameTag=""/>
+				<case hideHouseNumbers="true" tag="building" value="" nameTag="addr:housename"/>
+				<case hideHouseNumbers="false" tag="building" value="" nameTag="" nameTag2="addr:housenumber"/>
+				<case hideHouseNumbers="false" tag="building" value="" nameTag="addr:housename" nameTag2="addr:housenumber"/>
+				<case hideHouseNumbers="false" tag="building" value="" nameTag="addr:housenumber" />
 				<apply_if maxzoom="17" textSize="13" textMinDistance="40" intersectionMargin="20"/>
 				<apply_if minzoom="18" textSize="15"/>
 				<apply_if engine_v1="true" textDy="7"/>
 				<apply textColor="$buildingTextColor" textHaloColor="$buildingTextHaloColor" textWrapWidth="20" textOrder="135"/>
 			</switch>
 			<switch>
-				<case minzoom="17" tag="addr:housenumber" value="" nameTag="" nameTag2="addr:housenumber"/>
-				<case minzoom="17" tag="addr:housenumber" value="" nameTag="addr:housename" nameTag2="addr:housenumber"/>
-				<case minzoom="17" tag="addr:housenumber" value="" nameTag="addr:housenumber"/>
+				<case hideHouseNumbers="false" minzoom="17" tag="addr:housenumber" value="" nameTag="" nameTag2="addr:housenumber"/>
+				<case hideHouseNumbers="false" minzoom="17" tag="addr:housenumber" value="" nameTag="addr:housename" nameTag2="addr:housenumber"/>
+				<case hideHouseNumbers="false" minzoom="17" tag="addr:housenumber" value="" nameTag="addr:housenumber"/>
 				<apply_if engine_v1="false">
 					<case maxzoom="17" textSize="14" intersectionMargin="20"/>
 					<case minzoom="18" textSize="15" intersectionMargin="20"/>
