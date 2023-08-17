@@ -157,7 +157,7 @@ function route_new_calc(dist, timeVal) {
 }
 
 function plural_km(dist) {
-	if (distance % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
+	if (dist % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
 		return dictionary["kilometar"];
 	} else if (dist % 10 < 5 && dist % 10 > 1 && (dist % 100 > 20 || dist % 100 < 10 )) {
 		return dictionary["kilametry"];
@@ -167,7 +167,7 @@ function plural_km(dist) {
 }
 
 function plural_mi(dist) {
-	if (distance % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
+	if (dist % 10 == 1 && (dist % 100 > 20 || dist % 100 < 10)) {
 		return dictionary["milu"];
 	} else if (dist % 10 < 5 && dist % 10 > 1 && (dist % 100 > 20 || dist % 100 < 10 )) {
 		return dictionary["mili"];

@@ -83,22 +83,22 @@ function turn(turnType, dist, streetName) {
 	} else {
 		switch (metricConst) {
 			case "km-m":
-				if (dist <= turn_warning_meters) {
+				if (dist < turn_warning_meters) {
 					return getTurnType_short(turnType);
 				}
 				break;
 			case "mi-f":
-				if (dist <= turn_warning_feet) {
+				if (dist < turn_warning_feet) {
 					return getTurnType_short(turnType);
 				}
 				break;
 			case "mi-m":
-				if (dist <= turn_warning_meters) {
+				if (dist < turn_warning_meters) {
 					return getTurnType_short(turnType);
 				}
 				break;
 			case "mi-y":
-				if (dist <= turn_warning_yards) {
+				if (dist < turn_warning_yards) {
 					return getTurnType_short(turnType);
 				}
 				break;
@@ -112,22 +112,22 @@ function take_exit(turnType, dist, exitString, exitInt, streetName) {
 	} else {
 		switch (metricConst) {
 			case "km-m":
-				if (dist <= turn_warning_meters) {
+				if (dist < turn_warning_meters) {
 					return getTurnType_short(turnType);
 				}
 				break;
 			case "mi-f":
-				if (dist <= turn_warning_feet) {
+				if (dist < turn_warning_feet) {
 					return getTurnType_short(turnType);
 				}
 				break;
 			case "mi-m":
-				if (dist <= turn_warning_meters) {
+				if (dist < turn_warning_meters) {
 					return getTurnType_short(turnType);
 				}
 				break;
 			case "mi-y":
-				if (dist <= turn_warning_yards) {
+				if (dist < turn_warning_yards) {
 					return getTurnType_short(turnType);
 				}
 				break;

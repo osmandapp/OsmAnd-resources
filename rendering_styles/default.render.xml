@@ -141,9 +141,9 @@
 	<renderingProperty attr="hideMilitaryAreas" name="Hide military areas" description="Hide military areas"
 		type="boolean" possibleValues="" category="hide"/>
 
-	<renderingProperty attr="alpineHiking" name="Alpine hiking paths" description="Render paths according to SAC scale" 
+	<renderingProperty attr="alpineHiking" name="Alpine hiking scale" description="Render paths according to SAC scale" 
 		type="boolean" possibleValues="" category="other"/>
-	<renderingProperty attr="alpineHikingScaleScheme" name="Alpine hiking path scheme" description="Render paths according to SAC/CAI scale"
+	<renderingProperty attr="alpineHikingScaleScheme" name="Alpine hiking scale scheme" description="Render paths according to SAC/CAI scale"
 		type="string" possibleValues="sacScale,caiScale" defaultValueDescription="disabled" category="other"/>
 	<renderingProperty attr="roadStyle" name="Road style" description="Road style"
 		type="string" possibleValues="germanRoadAtlas,americanRoadAtlas,highContrastRoads,boldOutline" defaultValueDescription="default"/>
@@ -744,6 +744,11 @@
 		</case>
 		<apply_if hideOverground="true" attrColorValue="$hideOvergroundHighwayColor"/>
 	</renderingAttribute>
+	<renderingAttribute name="tertiaryRoadRouteDetailsColor">
+		<case attrColorValue="#FED086">
+			<apply_if nightMode="true" attrColorValue="#37555c"/>
+		</case>
+	</renderingAttribute>
 
 	<renderingAttribute name="tertiaryRoadLowZoomColor">
 		<case attrColorValue="$tertiaryRoadColor"/>
@@ -967,6 +972,11 @@
 	<!-- NOTE: Road is usually public, while service road is not, that's why we should mabye use the residential and not service road color pattern here: -->
 	<renderingAttribute name="roadRoadColor">
 		<case attrColorValue="#ececec">
+			<apply_if nightMode="true" attrColorValue="#555555"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="roadRoadColorRouteDetails">
+		<case attrColorValue="#dddddd">
 			<apply_if nightMode="true" attrColorValue="#555555"/>
 		</case>
 	</renderingAttribute>
@@ -1933,16 +1943,16 @@
 		<case tag="highway" value="trunk_link"  attrColorValue="$primaryRoadColor" attrStringValue="highway_class_state_road"/>
 		<case tag="highway" value="primary"  attrColorValue="$primaryRoadColor" attrStringValue="highway_class_state_road"/>
 		<case tag="highway" value="primary_link"  attrColorValue="$primaryRoadColor" attrStringValue="highway_class_state_road"/>
-		<case tag="highway" value="secondary" attrColorValue="$tertiaryRoadColor" attrStringValue="highway_class_road"/>
-		<case tag="highway" value="secondary_link" attrColorValue="$tertiaryRoadColor" attrStringValue="highway_class_road"/>
-		<case tag="highway" value="tertiary" attrColorValue="$tertiaryRoadColor" attrStringValue="highway_class_road"/>
-		<case tag="highway" value="tertiary_link" attrColorValue="$tertiaryRoadColor" attrStringValue="highway_class_road"/>
-		<case tag="highway" value="unclassified" attrColorValue="$tertiaryRoadColor" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="secondary" attrColorValue="$tertiaryRoadRouteDetailsColor" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="secondary_link" attrColorValue="$tertiaryRoadRouteDetailsColor" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="tertiary" attrColorValue="$tertiaryRoadRouteDetailsColor" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="tertiary_link" attrColorValue="$tertiaryRoadRouteDetailsColor" attrStringValue="highway_class_road"/>
+		<case tag="highway" value="unclassified" attrColorValue="$tertiaryRoadRouteDetailsColor" attrStringValue="highway_class_road"/>
 		<case tag="highway" value="residential" attrColorValue="#C1B9D1" attrStringValue="highway_class_street"/>
 		<case tag="highway" value="living_street" attrColorValue="#C1B9D1" attrStringValue="highway_class_street"/>
 		<case tag="highway" value="service" attrColorValue="#E3DAF6" attrStringValue="highway_class_service"/>
 		<case tag="highway" value="pedestrian" attrColorValue="$footwayColor" attrStringValue="highway_class_footway"/>
-		<case tag="highway" value="road" attrColorValue="$roadRoadColor" attrStringValue="highway_class_undefined"/>
+		<case tag="highway" value="road" attrColorValue="$roadRoadColorRouteDetails" attrStringValue="highway_class_undefined"/>
 		<case tag="highway" value="footway"  attrColorValue="$footwayColor" attrStringValue="highway_class_footway"/>
 		<case tag="highway" value="bridleway" attrColorValue="$bridlewayColor" attrStringValue="highway_class_bridleway"/>
 		<case tag="highway" value="steps" attrColorValue="$footwayColor" attrStringValue="highway_class_steps"/>
@@ -4434,7 +4444,7 @@
 			</switch>
 			
 			<switch minzoom="3" textColor="$placeCityVillageTextColor" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColor" textBold="true" textDy="-4">
-				<case minzoom="5" tag="place" value="city" nameTag="" intersectionMargin="15" textOrder="32">
+				<case minzoom="5" tag="place" value="city" nameTag="" intersectionMargin="15" textOrder="32" textPlacement="bottom|top">
 					<apply_if additional="capital=yes" textColor="$placeCityVillageTextColor"/>
 					<case maxzoom="5" textSize="13" textColor="$placeStateProvinceTextColor" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColor"/>
 					<case minzoom="6" maxzoom="7" textSize="14"/>
@@ -4502,7 +4512,7 @@
 				</case>
 
 				<switch>
-					<case minzoom="$placeTownMinZoom" tag="place" value="town" textSize="16" textOrder="36" nameTag="" intersectionMargin="15"/>
+					<case minzoom="$placeTownMinZoom" tag="place" value="town" textSize="16" textOrder="36" nameTag="" intersectionMargin="15" textPlacement="bottom|top"/>
 					<apply>
 						<case additional="population_rounded=1500000000" textOrder="7"/>
 						<case additional="population_rounded=400000000" textOrder="8"/>
@@ -4583,8 +4593,8 @@
 					<switch>
 						<case minzoom="$placeNeighbourhoodMinZoom" tag="place" value="neighbourhood" nameTag="" textItalic="true" textOrder="41"/>
 						<case minzoom="12" tag="place" value="borough" textItalic="true" nameTag="" textOrder="38"/>
-						<case minzoom="13" tag="place" value="quarter" textItalic="true" nameTag="" textOrder="37"/>
-						<case minzoom="14" tag="place" value="city_block" textItalic="true" nameTag="" textOrder="36"/>
+						<case minzoom="13" tag="place" value="quarter" textItalic="true" nameTag="" textOrder="137"/>
+						<case minzoom="14" tag="place" value="city_block" textItalic="true" nameTag="" textOrder="136"/>
 						<case minzoom="$placeHamletMinZoom" tag="place" value="hamlet" nameTag="" textOrder="42"/>
 						<case minzoom="$placeHamletMinZoom" tag="place" value="farm" nameTag="" textOrder="109"/>
 						<case minzoom="12" tag="place" value="plot" nameTag="" textOrder="108"/>
@@ -4641,8 +4651,7 @@
 
 			<switch minzoom="11">
 				<case tag="place" value="island" nameTag="">
-					<apply_if maxzoom="12" textOrder="24"/>
-					<apply_if minzoom="13" textOrder="37"/>
+					<apply_if minzoom="12" textOrder="37"/>
 				</case>
 				<case minzoom="13" tag="place" value="islet" nameTag=""/>
 				<apply textWrapWidth="20" textColor="$placeCityVillageTextColor" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColor" intersectionMargin="15" textItalic="true" nameTag="" textSize="14"/>
@@ -4816,6 +4825,7 @@
 					<apply_if nightMode="true" shield="blue_round_night_shield"/>
 				</switch>
 				<switch minzoom="17" textColor="#2579D0" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$defaultColor" textSize="12" textItalic="true">
+					<case tag="ford" value="yes" nameTag="osmand_ford_stub" textColor="#00ff0000" textHaloColor="#01000000" textSize="11" textShield="ford_shield" icon="ford"/>
 					<case tag="ford" value="yes" textDy="7" nameTag="" nameTag2="depth" textOrder="208"/>
 					<case tag="ford" value="yes" textDy="7" nameTag="depth" textOrder="208"/>
 					<case tag="ford" value="stepping_stones" textDy="7" textOrder="208"/>
@@ -5039,7 +5049,7 @@
 					<case minzoom="16" tag="aerialway" value="station" nameTag="" textOrder="101"/>
 					<case minzoom="16" tag="amenity" value="ferry_terminal" textOrder="105"/>
 					<case minzoom="16" tag="highway" value="rest_area" nameTag="" textOrder="101"/>
-					<case minzoom="18" tag="amenity" value="weightbridge"/>
+					<case minzoom="18" tag="amenity" value="weighbridge"/>
 				</switch>
 				<case minzoom="14" tag="mountain_pass" value="yes" nameTag="" nameTag2="rtsa_scale"/>
 				<case minzoom="14" tag="mountain_pass" value="yes" nameTag="ele"/>
@@ -6795,7 +6805,7 @@
 					<case minzoom="16" tag="amenity" value="car_rental" icon="amenity_car_rental"/>
 					<case minzoom="16" tag="amenity" value="car_pooling" icon="car_pooling"/>
 					<case minzoom="16" tag="amenity" value="car_sharing" icon="amenity_car_sharing"/>
-					<case minzoom="18" tag="amenity" value="weightbridge" icon="weightbridge"/>
+					<case minzoom="18" tag="amenity" value="weighbridge" icon="weighbridge"/>
 					<case minzoom="17" tag="amenity" value="bicycle_rental" icon="amenity_bicycle_rental"/>
 					<case minzoom="15" tag="leisure" value="marina" icon="leisure_marina">
 						<apply>
@@ -10674,7 +10684,7 @@
 				<apply_if minzoom="18" maxzoom="18" hmargin="-5.5"/>
 				<apply_if minzoom="19" hmargin="-7"/>
 			</case>
-			<apply strokeWidth="0.9" pathEffect="8_4"/>
+			<apply strokeWidth="1:1" pathEffect="8_4"/>
 			<apply color="$cyclewayColor"/>
 		</switch>
 		<case minzoom="15" tag="sidewalk" value="yes">

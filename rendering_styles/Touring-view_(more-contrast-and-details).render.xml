@@ -112,8 +112,10 @@
 		type="string" possibleValues="medium,fine,thin,bold" defaultValueDescription="defaultMedium"/>
 
 	<!-- Touring view outdoor activity route features -->
-	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
+	<renderingProperty attr="alpineHiking" name="Alpine hiking scale" description="Render paths according to SAC scale"
 		type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="alpineHikingScaleScheme" name="Alpine hiking scale scheme" description="Render paths according to SAC/CAI scale"
+		type="string" possibleValues="sacScale,caiScale" defaultValueDescription="disabled" category="other"/>
 
 <!-- These route features have now moved to the default renderer
 	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show long distance cycle routes"
@@ -268,6 +270,8 @@
 	<renderingConstant name="sacScaleColorT4" value="#0033ff"/>
 	<renderingConstant name="sacScaleColorT5" value="#0033ff"/>
 	<renderingConstant name="sacScaleColorT6" value="#0033ff"/>
+
+	<!-- renderingConstant name="caiScaleColor" value="#e23cad"/ --><!-- use equivalent SAC color pattern for now -->
 
 	<renderingConstant name="null" value="#00000000"/>
 
@@ -540,13 +544,6 @@
 		<case nightMode="true" attrColorValue="$buildingColorNight"/>
 		<case attrColorValue="#bca9a9"/>
 	</renderingAttribute>
-	<renderingAttribute name="stadiumColor">
-		<case nightMode="true" attrColorValue="$buildingColorNight"/>
-		<case attrColorValue="#bef7cc"/>
-	</renderingAttribute>
-	<renderingAttribute name="stadiumStrokeColor">
-		<case attrColorValue="$null"/>
-	</renderingAttribute>
 
 	<!-- Special interest areas which must remain distinguishable from open nature at night -->
 	<renderingAttribute name="sportsCentreColor">
@@ -554,6 +551,13 @@
 		<case attrColorValue="#33cc99"/>
 	</renderingAttribute>
 	<renderingAttribute name="sportsCentreStrokeColor">
+		<case attrColorValue="$null"/>
+	</renderingAttribute>
+	<renderingAttribute name="stadiumColor">
+		<case nightMode="true" attrColorValue="$shaderColorNight"/>
+		<case attrColorValue="#bef7cc"/>
+	</renderingAttribute>
+	<renderingAttribute name="stadiumStrokeColor">
 		<case attrColorValue="$null"/>
 	</renderingAttribute>
 	<renderingAttribute name="pitchColor">
@@ -1185,6 +1189,25 @@
 							<case minzoom="13" maxzoom="13" strokeWidth_5="1.8"/>
 							<case minzoom="14" strokeWidth_5="2.5"/>
 						</apply>
+
+						<!-- 2023-07 CAI scheme support. Falls back to SAC where not CAI tagged -->
+						<!--         For CAI rendering use the SAC rendering for the max equivalent grade as per https://wiki.openstreetmap.org/wiki/Proposal:Cai_scale -->
+						<apply_if alpineHikingScaleScheme="caiScale">
+							<case additional="cai_scale=t" color_5="$sacScaleColorT1" pathEffect_5=""/><!-- is less than SAC hiking -->
+							<case additional="cai_scale=e" color_5="$sacScaleColorT1" pathEffect_5="10_3"/><!-- is about SAC hiking -->
+							<case additional="cai_scale=ee" color_5="$sacScaleColorT3" pathEffect_5="10_3"/><!-- is max SAC demanding_mountain_hiking -->
+							<case additional="cai_scale=eai" color_5="$sacScaleColorT4" pathEffect_5=""/><!-- is max SAC alpine_hiking -->
+							<switch>
+								<case additional="cai_scale=eea"/>
+								<case additional="cai_scale=eea:f"/>
+								<case additional="cai_scale=eea:pd"/>
+								<case additional="cai_scale=eea:d"/>
+								<case additional="cai_scale=eea:md"/>
+								<case additional="cai_scale=eea:e"/>
+								<apply color_5="$sacScaleColorT6" pathEffect_5="3_3"/><!-- is max SAC difficult_alpine_hiking -->
+							</switch>
+						</apply_if>
+
 					</apply_if>
 				</switch>
 

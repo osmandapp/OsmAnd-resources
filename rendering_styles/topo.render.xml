@@ -5,9 +5,9 @@
 	<renderingProperty attr="baseAppMode" name="Default Rendering mode" description="Map optimization for respective User Profile based on base (parent) profile"
 		type="string" possibleValues="default, car, bicycle, pedestrian, public_transport, boat, ski"/>
 	<renderingProperty attr="transportStops" name="Transport stops" description="Public transport stops" type="boolean" possibleValues="" category="transport"/>
-	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale" type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="alpineHiking" name="Alpine hiking scale" description="Render paths according to SAC scale" type="boolean" possibleValues="" category="routes"/>
 	<!-- FIXME
-	<renderingProperty attr="alpineHikingScale" name="Alpine hiking view" description="Render paths according to SAC/CAI scale"
+	<renderingProperty attr="alpineHikingScale" name="Alpine hiking scale" description="Render paths according to SAC/CAI scale"
 		type="string" possibleValues="sacScale,caiScale" defaultValueDescription="disabled" category="routes"/>
 		-->
 	<renderingProperty attr="lessDetailed" name="Less detailed" description="Less details on map" type="boolean" possibleValues=""
@@ -22,6 +22,8 @@
 		type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideAccess" name="Hide access restrictions" description="Hide access type" type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideBuildings" name="Hide buildings" description="Hide buildings"
+		type="boolean" possibleValues="" category="hide"/>
+	<renderingProperty attr="hideHouseNumbers" name="Hide house numbers" description="Hide house numbers"
 		type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideWaterPolygons" name="Hide water" description="Hide water polygons"
 		type="boolean" possibleValues="" category="hide"/>
@@ -163,6 +165,10 @@
 	<renderingAttribute name="waterwayArrowsColor">
 		<case attrColorValue="#140657"/>
 	</renderingAttribute>
+
+	<renderingConstant name="roadShieldOrder1" value="47"/>
+	<renderingConstant name="roadShieldOrder2" value="48"/>
+	<renderingConstant name="roadShieldDefaultOrder" value="93"/>
 
 	<renderingConstant name="highwayOnewayIcon" value="arrow_triangle_black"/>
 	<renderingConstant name="highwayOnewayIconBig" value="arrow_triangle_black_big"/>
@@ -2051,6 +2057,472 @@
 
 	<text>
 
+		<!-- Highway shields -->
+		<switch seq="1:10">
+			<case minzoom="7" tag="highway" value="motorway" nameTag="route_road_#SEQ_ref"/>
+			<case minzoom="12" tag="highway" value="motorway_link" nameTag="route_road_#SEQ_ref"/>
+			<case minzoom="7" tag="highway" value="trunk" nameTag="route_road_#SEQ_ref"/>
+			<case minzoom="12" tag="highway" value="trunk_link" nameTag="route_road_#SEQ_ref"/>
+			<case minzoom="10" tag="highway" value="primary" nameTag="route_road_#SEQ_ref"/>
+			<case minzoom="12" tag="highway" value="secondary" nameTag="route_road_#SEQ_ref"/>
+			<case minzoom="14" tag="highway" value="tertiary" nameTag="route_road_#SEQ_ref"/>
+			<case minzoom="16" tag="highway" value="unclassified" nameTag="route_road_#SEQ_ref"/>
+			<case minzoom="16" tag="highway" value="residential" nameTag="route_road_#SEQ_ref"/>
+			<apply textMinDistance="130" textWrapWidth="10">
+				<apply textSize="13" textBold="true">
+					<switch>
+						<case additional="route_road_#SEQ_network=us:i" nameTag="route_road_#SEQ_ref">
+							<case additional="route_road_#SEQ_modifier=business">
+								<case textLength="1" icon="green_cshield_2_road_shield"/> <!-- these icons will be rendered on the top of the shields, but this simplifies code a lot -->
+								<case textLength="2" icon="green_cshield_2_road_shield"/>
+								<case textLength="3" icon="green_cshield_3_road_shield"/>
+							</case>
+							<case additional="route_road_#SEQ_modifier=spur" icon="us_spur_icon_shield"/>
+							<case additional="route_road_#SEQ_modifier=truck" icon="us_truck_icon_shield"/>
+							<case additional="route_road_#SEQ_modifier=alternate" icon="us_alt_icon_shield"/>
+						</case>
+						<apply textColor="#ffffff">
+							<case textLength="1" textShield="blue_usishield_2_road_shield"/>
+							<case textLength="2" textShield="blue_usishield_2_road_shield"/>
+							<case textLength="3" textShield="blue_usishield_3_road_shield"/>
+							<case textHaloColor="#003f87" textHaloRadius="5"/>
+						</apply>
+						<apply textOrder="$roadShieldOrder1"/>
+					</switch>
+					<switch>
+						<case additional="route_road_#SEQ_network=us:us" nameTag="route_road_#SEQ_ref">
+							<case additional="route_road_#SEQ_modifier=business" icon="us_business_icon_shield"/>
+							<case additional="route_road_#SEQ_modifier=spur" icon="us_spur_icon_shield"/>
+							<case additional="route_road_#SEQ_modifier=truck" icon="us_truck_icon_shield"/>
+							<case additional="route_road_#SEQ_modifier=alternate" icon="us_alt_icon_shield"/>
+							<case additional="route_road_#SEQ_modifier=bypass" icon="us_bypass_icon_shield"/>
+							<case additional="route_road_#SEQ_modifier=connector" icon="us_connector_icon_shield"/>
+						</case>
+						<apply>
+							<case textLength="1" textShield="white_usshield_2_road_shield"/>
+							<case textLength="2" textShield="white_usshield_2_road_shield"/>
+							<case textLength="3" textShield="white_usshield_3_road_shield"/>
+							<case textLength="4" textShield="white_usshield_4_road_shield"/>
+							<case textLength="5" textShield="white_usshield_5_road_shield"/>
+							<case textHaloColor="#ffffff" textHaloRadius="5"/>
+						</apply>
+						<apply textColor="#404040" textOrder="$roadShieldOrder2"/>
+					</switch>
+					<switch>
+						<case additional="route_road_#SEQ_us_state_network=yes" nameTag="route_road_#SEQ_ref">
+							<case additional="route_road_#SEQ_road_modifier=business" icon="us_state_business_icon_shield"/>
+							<case additional="route_road_#SEQ_road_modifier=spur" icon="us_state_spur_icon_shield"/>
+							<case additional="route_road_#SEQ_road_modifier=truck" icon="us_state_truck_icon_shield"/>
+							<case additional="route_road_#SEQ_road_modifier=alternate" icon="us_state_alt_icon_shield"/>
+							<case additional="route_road_#SEQ_road_modifier=bypass" icon="us_state_bypass_icon_shield"/>
+							<case additional="route_road_#SEQ_road_modifier=connector" icon="us_state_connector_icon_shield"/>
+						</case>
+						<apply textColor="#404040" textOrder="$roadShieldOrder2">
+							<case textLength="1" textShield="white_rounded_rectangle_1_road_shield"/>
+							<case textLength="2" textShield="white_rounded_rectangle_2_road_shield"/>
+							<case textLength="3" textShield="white_rounded_rectangle_3_road_shield"/>
+							<case textLength="4" textShield="white_rounded_rectangle_4_road_shield"/>
+							<case textLength="5" textShield="white_rounded_rectangle_5_road_shield"/>
+							<case textLength="6" textShield="white_rounded_rectangle_6_road_shield"/>
+							<case textLength="7" textShield="white_rounded_rectangle_7_road_shield"/>
+							<case textHaloColor="#ffffff" textHaloRadius="5"/>
+						</apply>
+						<apply_if additional="route_road_#SEQ_shield_shape=square">
+							<case textLength="1" textShield="white_square_1_road_shield"/>
+							<case textLength="2" textShield="white_square_2_road_shield"/>
+							<case textLength="3" textShield="white_square_3_road_shield"/>
+							<case textLength="4" textShield="white_square_4_road_shield"/>
+							<case textLength="5" textShield="white_square_5_road_shield"/>
+							<case textLength="6" textShield="white_square_6_road_shield"/>
+							<case textLength="7" textShield="white_square_7_road_shield"/>
+						</apply_if>
+					</switch>
+					<case additional="route_road_#SEQ_us_county_network=yes" nameTag="route_road_#SEQ_ref">
+						<apply_if additional="route_road_#SEQ_shield_shape=rounded_rectangle" textColor="#404040" textOrder="$roadShieldOrder2">
+							<case textLength="1" textShield="white_rounded_rectangle_1_road_shield"/>
+							<case textLength="2" textShield="white_rounded_rectangle_2_road_shield"/>
+							<case textLength="3" textShield="white_rounded_rectangle_3_road_shield"/>
+							<case textLength="4" textShield="white_rounded_rectangle_4_road_shield"/>
+							<case textLength="5" textShield="white_rounded_rectangle_5_road_shield"/>
+							<case textLength="6" textShield="white_rounded_rectangle_6_road_shield"/>
+							<case textLength="7" textShield="white_rounded_rectangle_7_road_shield"/>
+							<case textHaloColor="#ffffff" textHaloRadius="5"/>
+						</apply_if>
+					</case>
+					<switch textColor="#ffffff">
+						<case additional="route_road_#SEQ_shield_color=blue" nameTag="route_road_#SEQ_ref" textOrder="$roadShieldDefaultOrder">
+							<case textLength="1" textShield="blue_square_1_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="blue_hexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="blue_pentagon_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="blue_cshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=usishield" textShield="blue_usishield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=lrhexagon" textShield="blue_lrhexagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=usshield">
+									<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="blue_redtop_usshield_2_road_shield"/>
+								</case>
+								<case additional="route_road_#SEQ_shield_shape=ellipse" textShield="blue_ellipse_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_triangle" textShield="blue_rounded_triangle_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="blue_pentagon_up_2_road_shield"/>
+							</case>
+							<case textLength="2" textShield="blue_square_2_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="blue_hexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="blue_pentagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="blue_cshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=usishield" textShield="blue_usishield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=lrhexagon" textShield="blue_lrhexagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=usshield">
+									<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="blue_redtop_usshield_2_road_shield"/>
+								</case>
+								<case additional="route_road_#SEQ_shield_shape=ellipse" textShield="blue_ellipse_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_triangle" textShield="blue_rounded_triangle_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="blue_pentagon_up_2_road_shield"/>
+							</case>
+							<case textLength="3" textShield="blue_square_3_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="blue_hexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="blue_pentagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="blue_cshield_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=usishield" textShield="blue_usishield_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=lrhexagon" textShield="blue_lrhexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=usshield">
+									<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="blue_redtop_usshield_3_road_shield"/>
+								</case>
+								<case additional="route_road_#SEQ_shield_shape=ellipse" textShield="blue_ellipse_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_triangle" textShield="blue_rounded_triangle_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="blue_pentagon_up_3_road_shield"/>
+							</case>
+							<case textLength="4" textShield="blue_square_4_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="blue_hexagon_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="blue_pentagon_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=lrhexagon" textShield="blue_lrhexagon_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_triangle" textShield="blue_rounded_triangle_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="blue_pentagon_up_4_road_shield"/>
+							</case>
+							<case textLength="5" textShield="blue_square_5_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="blue_hexagon_5_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="blue_pentagon_5_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=lrhexagon" textShield="blue_lrhexagon_5_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_triangle" textShield="blue_rounded_triangle_5_road_shield"/>
+							</case>
+							<case textLength="6" textShield="blue_square_6_road_shield"/>
+							<case textLength="7" textShield="blue_square_7_road_shield"/>
+							<case textLength="8" textShield="blue_square_8_road_shield"/>
+							<case textLength="9" textShield="blue_square_9_road_shield"/>
+							<case textHaloColor="#327ae6" textHaloRadius="5"/>
+							<apply_if additional="route_road_#SEQ_shield_order=1" textOrder="$roadShieldOrder1"/>
+							<apply_if additional="route_road_#SEQ_shield_order=2" textOrder="$roadShieldOrder2"/>
+							<apply_if additional="route_road_#SEQ_shield_text_color=yellow" textColor="#ffc737"/>
+						</case>
+					</switch>
+					<switch textColor="#ffffff">
+						<case additional="route_road_#SEQ_shield_color=green" nameTag="route_road_#SEQ_ref" textOrder="$roadShieldDefaultOrder">
+							<case textLength="1" textShield="green_square_1_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="green_pentagon_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=octagon" textShield="green_octagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="green_hexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=transcanada" textShield="green_transcanada_2_road_shield" textColor="#00674e"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="green_cshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=ushield" textShield="green_ushield_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape_mod=orangetop" textShield="green_orangetop_square_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="green_redtop_square_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rhombus" textShield="green_rhombus_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="green_pentagon_up_2_road_shield"/>
+							</case>
+							<case textLength="2" textShield="green_square_2_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="green_pentagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=octagon" textShield="green_octagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="green_hexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=transcanada" textShield="green_transcanada_2_road_shield" textColor="#00674e"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="green_cshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=ushield" textShield="green_ushield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape_mod=orangetop" textShield="green_orangetop_square_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="green_redtop_square_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rhombus" textShield="green_rhombus_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="green_pentagon_up_2_road_shield"/>
+							</case>
+							<case textLength="3" textShield="green_square_3_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="green_pentagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=octagon" textShield="green_octagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="green_hexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=transcanada" textShield="green_transcanada_3_road_shield" textColor="#00674e"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="green_cshield_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=ushield" textShield="green_ushield_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape_mod=orangetop" textShield="green_orangetop_square_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="green_redtop_square_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rhombus" textShield="green_rhombus_3_road_shield"/>
+							</case>
+							<case textLength="4" textShield="green_square_4_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="green_pentagon_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=octagon" textShield="green_octagon_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="green_hexagon_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=ushield" textShield="green_ushield_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape_mod=orangetop" textShield="green_orangetop_square_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="green_redtop_square_4_road_shield"/>
+							</case>
+							<case textLength="5" textShield="green_square_5_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="green_pentagon_5_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="green_hexagon_5_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape_mod=orangetop" textShield="green_orangetop_square_5_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="green_redtop_square_5_road_shield"/>
+							</case>
+							<case textLength="6" textShield="green_square_6_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=octagon" textShield="green_octagon_6_road_shield"/>
+							</case>
+							<case textHaloColor="#52a02b" textHaloRadius="5"/>
+							<apply_if additional="route_road_#SEQ_shield_order=1" textOrder="$roadShieldOrder1"/>
+							<apply_if additional="route_road_#SEQ_shield_order=2" textOrder="$roadShieldOrder2"/>
+							<apply_if additional="route_road_#SEQ_shield_text_color=yellow" textColor="#ffc737"/>
+						</case>
+					</switch>
+					<switch textColor="#404040">
+						<case additional="route_road_#SEQ_shield_color=white" nameTag="route_road_#SEQ_ref" textOrder="$roadShieldDefaultOrder">
+							<case textLength="1" textShield="white_square_1_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=rounded_rectangle" textShield="white_rounded_rectangle_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="white_pentagon_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=trapezoid_up" textShield="white_trapezoid_up_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=trapezoid_down" textShield="white_trapezoid_down_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=usshield" textShield="white_usshield_2_road_shield">
+									<case additional="route_road_#SEQ_shield_shape_mod=greentop" textShield="white_greentop_usshield_2_road_shield"/>
+									<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="white_redtop_usshield_2_road_shield"/>
+								</case>
+								<case additional="route_road_#SEQ_shield_shape=tall_hexagon" textShield="white_tall_hexagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="white_pentagon_up_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="white_cshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=octagon" textShield="white_octagon_2_road_shield">
+									<case additional="route_road_#SEQ_shield_bg_color=blue" textShield="white_octagon_bgblue_2_road_shield"/>
+									<case additional="route_road_#SEQ_shield_bg_color=red" textShield="white_octagon_bgred_2_road_shield"/>
+								</case>
+								<case additional="route_road_#SEQ_shield_shape=sarabia" textShield="white_sarabia_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=redtop_korea_lrhexagon" textShield="white_redtop_korea_lrhexagon_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=korea_lrhexagon" textShield="white_korea_lrhexagon_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=plum_blossom" textShield="white_plum_blossom_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=lrhexagon" textShield="white_lrhexagon_1_road_shield"/>
+							</case>
+							<case textLength="2" textShield="white_square_2_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=rounded_rectangle" textShield="white_rounded_rectangle_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="white_pentagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=trapezoid_up" textShield="white_trapezoid_up_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=trapezoid_down" textShield="white_trapezoid_down_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=usshield" textShield="white_usshield_2_road_shield">
+									<case additional="route_road_#SEQ_shield_shape_mod=greentop" textShield="white_greentop_usshield_2_road_shield"/>
+									<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="white_redtop_usshield_2_road_shield"/>
+								</case>
+								<case additional="route_road_#SEQ_shield_shape=tall_hexagon" textShield="white_tall_hexagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="white_pentagon_up_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="white_cshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=octagon" textShield="white_octagon_2_road_shield">
+									<case additional="route_road_#SEQ_shield_bg_color=blue" textShield="white_octagon_bgblue_2_road_shield"/>
+									<case additional="route_road_#SEQ_shield_bg_color=red" textShield="white_octagon_bgred_2_road_shield"/>
+								</case>
+								<case additional="route_road_#SEQ_shield_shape=sarabia" textShield="white_sarabia_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=redtop_korea_lrhexagon" textShield="white_redtop_korea_lrhexagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=korea_lrhexagon" textShield="white_korea_lrhexagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=plum_blossom" textShield="white_plum_blossom_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=lrhexagon" textShield="white_lrhexagon_2_road_shield"/>
+							</case>
+							<case textLength="3" textShield="white_square_3_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pillow" textShield="white_pillow_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_rectangle" textShield="white_rounded_rectangle_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="white_pentagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=trapezoid_up" textShield="white_trapezoid_up_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=trapezoid_down" textShield="white_trapezoid_down_3_road_shield"/>
+								<case additional="road_shield_shape_1#SEQ=usshield" textShield="white_usshield_3_road_shield">
+									<case additional="route_road_#SEQ_shield_shape_mod=greentop" textShield="white_greentop_usshield_3_road_shield"/>
+									<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="white_redtop_usshield_3_road_shield"/>
+								</case>
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="white_pentagon_up_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="white_cshield_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=octagon" textShield="white_octagon_3_road_shield">
+									<case additional="route_road_#SEQ_shield_bg_color=green" textShield="white_octagon_bggreen_3_road_shield"/>
+								</case>
+								<case additional="route_road_#SEQ_shield_shape=sarabia" textShield="white_sarabia_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=korea_lrhexagon" textShield="white_korea_lrhexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=lrhexagon" textShield="white_lrhexagon_3_road_shield"/>
+							</case>
+							<case textLength="4" textShield="white_square_4_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pillow" textShield="white_pillow_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_rectangle" textShield="white_rounded_rectangle_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="white_pentagon_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=usshield" textShield="white_usshield_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="white_cshield_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=octagon" textShield="white_octagon_4_road_shield">
+									<case additional="route_road_#SEQ_shield_bg_color=brown" textShield="white_octagon_bgbrown_4_road_shield"/>
+								</case>
+								<case additional="route_road_#SEQ_shield_shape=lrhexagon" textShield="white_lrhexagon_4_road_shield"/>
+							</case>
+							<case textLength="5" textShield="white_square_5_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pillow" textShield="white_pillow_5_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_rectangle" textShield="white_rounded_rectangle_5_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="white_pentagon_5_road_shield"/>
+							</case>
+							<case textLength="6" textShield="white_square_6_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=rounded_rectangle" textShield="white_rounded_rectangle_6_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="white_pentagon_6_road_shield"/>
+							</case>
+							<case textLength="7" textShield="white_square_7_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=rounded_rectangle" textShield="white_rounded_rectangle_7_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="white_pentagon_7_road_shield"/>
+							</case>
+							<case textLength="8" textShield="white_square_8_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="white_pentagon_8_road_shield"/>
+							</case>
+							<case textLength="9" textShield="white_square_9_road_shield"/>
+							<case textHaloColor="#ffffff" textHaloRadius="5"/>
+							<apply_if additional="route_road_#SEQ_shield_order=1" textOrder="$roadShieldOrder1"/>
+							<apply_if additional="route_road_#SEQ_shield_order=2" textOrder="$roadShieldOrder2"/>
+							<apply_if additional="route_road_#SEQ_shield_text_color=darkblue" textColor="#003882"/>
+							<apply_if additional="route_road_#SEQ_shield_text_color=blue" textColor="#327ae6"/>
+							<apply_if additional="route_road_#SEQ_shield_text_color=red" textColor="#dd6a6a"/>
+							<apply_if additional="route_road_#SEQ_shield_text_color=green" textColor="#52a02b"/>
+							<apply_if additional="route_road_#SEQ_shield_text_color=brown" textColor="#7b4833"/>
+						</case>
+					</switch>
+					<switch textColor="#404040">
+						<case additional="route_road_#SEQ_shield_color=yellow" nameTag="route_road_#SEQ_ref" textOrder="$roadShieldDefaultOrder">
+							<case textLength="1" textShield="yellow_square_1_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="yellow_pentagon_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="yellow_cshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="yellow_hexagon_3_road_shield"/>
+							</case>
+							<case textLength="2" textShield="yellow_square_2_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="yellow_pentagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="yellow_cshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="yellow_hexagon_3_road_shield"/>
+							</case>
+							<case textLength="3" textShield="yellow_square_3_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="yellow_pentagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="yellow_hexagon_3_road_shield"/>
+							</case>
+							<case textLength="4" textShield="yellow_square_4_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="yellow_pentagon_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="yellow_hexagon_4_road_shield"/>
+							</case>
+							<case textLength="5" textShield="yellow_square_5_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="yellow_pentagon_5_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="yellow_hexagon_5_road_shield"/>
+							</case>
+							<case textLength="6" textShield="yellow_square_6_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="yellow_pentagon_6_road_shield"/>
+							</case>
+							<case textLength="7" textShield="yellow_square_7_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="yellow_pentagon_7_road_shield"/>
+							</case>
+							<case textLength="8" textShield="yellow_square_8_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="yellow_pentagon_8_road_shield"/>
+							</case>
+							<case textLength="9" textShield="yellow_square_9_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="yellow_pentagon_9_road_shield"/>
+							</case>
+							<case textHaloColor="#ffe237" textHaloRadius="5"/>
+							<apply_if additional="route_road_#SEQ_shield_order=1" textOrder="$roadShieldOrder1"/>
+							<apply_if additional="route_road_#SEQ_shield_order=2" textOrder="$roadShieldOrder2"/>
+						</case>
+					</switch>
+					<switch textColor="#ffffff">
+						<case additional="route_road_#SEQ_shield_color=red" nameTag="route_road_#SEQ_ref" textOrder="$roadShieldDefaultOrder">
+							<case textLength="1" textShield="red_square_1_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="red_hexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rshield" textShield="red_rshield_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="red_cshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_triangle" textShield="red_rounded_triangle_2_road_shield"/>
+							</case>
+							<case textLength="2" textShield="red_square_2_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="red_hexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rshield" textShield="red_rshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="red_cshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_triangle" textShield="red_rounded_triangle_2_road_shield"/>
+							</case>
+							<case textLength="3" textShield="red_square_3_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="red_hexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rshield" textShield="red_rshield_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_triangle" textShield="red_rounded_triangle_3_road_shield"/>
+							</case>
+							<case textLength="4" textShield="red_square_4_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="red_hexagon_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rshield" textShield="red_rshield_4_road_shield"/>
+							</case>
+							<case textLength="5" textShield="red_square_5_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="red_hexagon_5_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rshield" textShield="red_rshield_5_road_shield"/>
+							</case>
+							<case textLength="6" textShield="red_square_6_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=rshield" textShield="red_rshield_6_road_shield"/>
+							</case>
+							<case textHaloColor="#dd6a6a" textHaloRadius="5"/>
+							<apply_if additional="route_road_#SEQ_shield_order=1" textOrder="$roadShieldOrder1"/>
+							<apply_if additional="route_road_#SEQ_shield_order=2" textOrder="$roadShieldOrder2"/>
+							<apply_if additional="route_road_#SEQ_shield_text_color=black" textColor="#000000"/>
+						</case>
+					</switch>
+					<switch textColor="#ffffff">
+						<case additional="route_road_#SEQ_shield_color=brown" nameTag="route_road_#SEQ_ref" textOrder="$roadShieldDefaultOrder">
+							<case textLength="1" textShield="brown_square_1_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="brown_pentagon_up_2_road_shield"/>
+							</case>
+							<case textLength="2" textShield="brown_square_2_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="brown_pentagon_up_2_road_shield"/>
+							</case>
+							<case textLength="3" textShield="brown_square_3_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="brown_pentagon_up_3_road_shield"/>
+							</case>
+							<case textLength="4" textShield="brown_square_4_road_shield"/>
+							<case textLength="5" textShield="brown_square_5_road_shield"/>
+							<case textHaloColor="#7b4833" textHaloRadius="5"/>
+							<apply_if additional="route_road_#SEQ_shield_order=1" textOrder="$roadShieldOrder1"/>
+							<apply_if additional="route_road_#SEQ_shield_order=2" textOrder="$roadShieldOrder2"/>
+						</case>
+					</switch>
+					<switch textColor="#ffffff">
+						<case additional="route_road_#SEQ_shield_color=black" nameTag="route_road_#SEQ_ref" textOrder="$roadShieldDefaultOrder">
+							<case textLength="3" textShield="black_ellipse_3_road_shield"/>
+							<case textHaloColor="#262626" textHaloRadius="5"/>
+							<apply_if additional="route_road_#SEQ_shield_order=1" textOrder="$roadShieldOrder1"/>
+							<apply_if additional="route_road_#SEQ_shield_order=2" textOrder="$roadShieldOrder2"/>
+						</case>
+					</switch>
+					<switch textColor="#404040">
+						<case additional="route_road_#SEQ_shield_color=orange" nameTag="route_road_#SEQ_ref" textOrder="$roadShieldDefaultOrder">
+							<case textLength="1" textShield="orange_square_2_road_shield"/>
+							<case textLength="2" textShield="orange_square_2_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="orange_hexagon_3_road_shield"/>
+							</case>
+							<case textLength="3" textShield="orange_square_3_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="orange_hexagon_3_road_shield"/>
+							</case>
+							<case textLength="4" textShield="orange_square_4_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="orange_hexagon_4_road_shield"/>
+							</case>
+							<case textLength="5" textShield="orange_square_5_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="orange_hexagon_5_road_shield"/>
+							</case>
+							<case textHaloColor="#eea555" textHaloRadius="5"/>
+							<apply_if additional="route_road_#SEQ_shield_order=1" textOrder="$roadShieldOrder1"/>
+							<apply_if additional="route_road_#SEQ_shield_order=2" textOrder="$roadShieldOrder2"/>
+						</case>
+					</switch>
+
+					<switch seq="1:10"> <!-- If no road_shield_color_? is set or US conditions failed then use white square shield -->
+						<case nameTag="route_road_#SEQ_ref"/>
+						<apply textColor="#404040" textOrder="$roadShieldOrder2">
+							<case textLength="1" textShield="white_square_1_road_shield"/>
+							<case textLength="2" textShield="white_square_2_road_shield"/>
+							<case textLength="3" textShield="white_square_3_road_shield"/>
+							<case textLength="4" textShield="white_square_4_road_shield"/>
+							<case textLength="5" textShield="white_square_5_road_shield"/>
+							<case textLength="6" textShield="white_square_6_road_shield"/>
+							<case textLength="7" textShield="white_square_7_road_shield"/>
+							<case textLength="8" textShield="white_square_8_road_shield"/>
+							<case textLength="9" textShield="white_square_9_road_shield"/>
+							<case textHaloColor="#ffffff" textHaloRadius="5"/>
+						</apply>
+						<apply_if hideHouseNumbers="true" hideBuildings="true" textColor="#ff0000"/>
+					</switch>
+				</apply>
+			</apply>
+			<apply_if maxzoom="7" intersectionMargin="10"/>
+			<apply_if minzoom="8" maxzoom="9" intersectionMargin="15"/>
+			<apply_if minzoom="10" intersectionMargin="20"/>
+		</switch>
+
 		<switch minzoom="14" textHaloRadius="$textHaloRadius" textOnPath="true" nameTag="">
 			<case minzoom="16" tag="area:highway" value="motorway" textColor="$motorwayTextColor" textHaloColor="$motorwayRoadColor" textOrder="50" textWrapWidth="25"/>
 			<case tag="highway" value="motorway" textColor="$motorwayTextColor" textHaloColor="$motorwayRoadColor" textOrder="50"/>
@@ -2436,8 +2908,8 @@
 				<switch>
 					<case minzoom="$placeNeighbourhoodMinZoom" tag="place" value="neighbourhood" nameTag="" textOrder="39"/>
 					<case minzoom="12" tag="place" value="borough" textItalic="true" nameTag="" textOrder="38"/>
-					<case minzoom="13" tag="place" value="quarter" textItalic="true" nameTag="" textOrder="37"/>
-					<case minzoom="14" tag="place" value="city_block" textItalic="true" nameTag="" textOrder="36"/>
+					<case minzoom="13" tag="place" value="quarter" textItalic="true" nameTag="" textOrder="137"/>
+					<case minzoom="14" tag="place" value="city_block" textItalic="true" nameTag="" textOrder="136"/>
 					<case minzoom="$placeHamletMinZoom" tag="place" value="hamlet" nameTag="" textOrder="42"/>
 					<case minzoom="$placeHamletMinZoom" tag="place" value="farm" nameTag="" textOrder="109"/>
 					<case minzoom="12" tag="place" value="plot" nameTag="" textOrder="108"/>
@@ -2494,8 +2966,7 @@
 		</switch>
 		<switch minzoom="11" nameTag="">
 			<case tag="place" value="island">
-				<apply_if maxzoom="12" textOrder="24"/>
-				<apply_if minzoom="13" textOrder="37"/>
+				<apply_if minzoom="12" textOrder="37"/>
 			</case>
 			<case minzoom="13" tag="place" value="islet"/>
 			<apply textColor="$placeCityVillageTextColor" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColor" intersectionMargin="15" textItalic="true" nameTag="" textSize="14"/>
@@ -2519,18 +2990,20 @@
 				<case tag="military" value="barracks" nameTag=""/>
 				<case tag="abandoned:building" value="" nameTag=""/>
 				<case tag="disused:building" value="" nameTag=""/>
-				<case tag="building" value="" nameTag="" nameTag2="addr:housenumber"/>
-				<case tag="building" value="" nameTag="addr:housename" nameTag2="addr:housenumber"/>
-				<case tag="building" value="" nameTag="addr:housenumber" />
+				<case hideHouseNumbers="true" hideBuildings="false" tag="building" value="" nameTag=""/>
+				<case hideHouseNumbers="true" tag="building" value="" nameTag="addr:housename"/>
+				<case hideHouseNumbers="false" tag="building" value="" nameTag="" nameTag2="addr:housenumber"/>
+				<case hideHouseNumbers="false" tag="building" value="" nameTag="addr:housename" nameTag2="addr:housenumber"/>
+				<case hideHouseNumbers="false" tag="building" value="" nameTag="addr:housenumber" />
 				<apply_if maxzoom="17" textSize="13" textMinDistance="40" intersectionMargin="20"/>
 				<apply_if minzoom="18" textSize="15"/>
 				<apply_if engine_v1="true" textDy="7"/>
 				<apply textColor="$buildingTextColor" textHaloColor="$buildingTextHaloColor" textWrapWidth="20" textOrder="135"/>
 			</switch>
 			<switch>
-				<case minzoom="17" tag="addr:housenumber" value="" nameTag="" nameTag2="addr:housenumber"/>
-				<case minzoom="17" tag="addr:housenumber" value="" nameTag="addr:housename" nameTag2="addr:housenumber"/>
-				<case minzoom="17" tag="addr:housenumber" value="" nameTag="addr:housenumber"/>
+				<case hideHouseNumbers="false" minzoom="17" tag="addr:housenumber" value="" nameTag="" nameTag2="addr:housenumber"/>
+				<case hideHouseNumbers="false" minzoom="17" tag="addr:housenumber" value="" nameTag="addr:housename" nameTag2="addr:housenumber"/>
+				<case hideHouseNumbers="false" minzoom="17" tag="addr:housenumber" value="" nameTag="addr:housenumber"/>
 				<apply_if engine_v1="false">
 					<case maxzoom="17" textSize="14" intersectionMargin="20"/>
 					<case minzoom="18" textSize="15" intersectionMargin="20"/>
