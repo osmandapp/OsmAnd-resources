@@ -1273,6 +1273,7 @@
 				<switch textItalic="true">
 					<case minzoom="16" tag="natural" value="wood" textOrder="60"/>
 					<case minzoom="17" tag="natural" value="wetland" textOrder="70"/>
+					<case minzoom="17" tag="natural" value="shoal" textOrder="70"/>
 					<case minzoom="16" tag="landuse" value="forest" textOrder="60"/>
 					<case minzoom="12" tag="leisure" value="nature_reserve" textOrder="60"/>
 					<case minzoom="12" tag="boundary" value="national_park" textOrder="61" textOnPath="true"/>
@@ -3275,7 +3276,7 @@
 		
 		<!-- INT-1 J Section: Nature of the Seabed, https://wiki.openstreetmap.org/wiki/Seamarks/INT-1_Section_J  -->
 		<switch minzoom="14">
-		    <case tag="seamark:type" value="seabed_area" color="$null">
+			<case tag="seamark:type" value="seabed_area" color="$null">
 				<!-- <apply_if additional="seamark:seabed_area:surface=sand" shader="seamark_j1_sand"/> omitted-->
 				<!-- <apply_if additional="seamark:seabed_area:surface=mud" shader="seamark_j2_mud"/> omitted-->
 				<!-- <apply_if additional="seamark:seabed_area:surface=clay" shader="seamark_j3_clay"/> omitted-->
@@ -3299,10 +3300,19 @@
 				<apply_if additional="seamark:seabed_area:surface=mud" nightMode="true" shader=""/>
 				<!-- <apply_if additional="seamark:seabed_area:surface=coral" shader="reef_coral"/> alternative shader for coral-->
 				<!-- <apply_if additional="seamark:seabed_area:surface=coral" shader="reef"/> alternative shader for coral-->
-			</case>			
+			</case>
 			<case tag="seamark:type" value="weed" shader="seamark_j132_weedkelp"/>
 			<case tag="seamark:type" value="seagrass" shader="seamark_j134_seagrass"/>
 			<case tag="seamark:type" value="sand_waves" shader="seamark_j14_sand_waves"/>
+
+			<switch>
+				<case tag="natural" value="shoal"/>
+				<case tag="seamark:type" value="sea_area" assitional="seamark:sea_area:category=shoal" color_2="#99ff0000" pathEffect_2="2_3" strokeWidth_2="1">
+					<apply_if minzoom="13" strokeWidth_2="2"/>
+					<apply_if nightMode="true" color_2="#88ff0000"/>
+				</case>
+				<apply shader="shoal"/>
+			</switch>
 			<apply_if seabedDetail="omit" shader=""/>
 			<apply_if nightMode="true"> <!-- use light gray semi transparent halo _shield_night-->
 				<!-- <apply_if additional="seamark:seabed_area:surface=sand" shield="seamark_j1_sand_shield_night"/> omitted-->
