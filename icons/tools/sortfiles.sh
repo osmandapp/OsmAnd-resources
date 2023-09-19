@@ -496,6 +496,7 @@ icon_alias tram_stop_small_night functional-icons_tram_stop_small_night
 icon_alias subway_station transport_subway_station
 icon_alias funicular transport_funicular
 icon_alias escape_lane transport_escape_lane
+icon_alias emergency_bay transport_emergency_bay
 
 icon_alias subway_entrance_map subway_subway_entrance_map
 icon_alias subway_entrance poi_colored_subway_entrance
