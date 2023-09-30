@@ -5,18 +5,9 @@
 	<renderingProperty attr="baseAppMode" name="Default Rendering mode" description="Map optimization for respective User Profile based on base (parent) profile"
 		type="string" possibleValues="default, car, bicycle, pedestrian, public_transport, boat, ski"/>
 	<renderingProperty attr="transportStops" name="Transport stops" description="Public transport stops" type="boolean" possibleValues="" category="transport"/>
-<!--	<renderingProperty attr="contourLines" name="Show contour lines" description="Select minimum zoom level to display in map if available. Separate contour file may be needed." type="string" possibleValues="disabled,16,15,14,13,12,11" defaultValueDescription="default13" category="details"/>-->
-	<renderingProperty attr="horseRoutes" name="Horse routes" description="Horse routes" type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="hikingRoutesOSMC" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces" type="string" possibleValues="walkingRoutesOSMC,walkingRoutesScopeOSMC,walkingRoutesOSMCNodes" defaultValueDescription="disabled" category="routes"/>
-	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show cycle routes (*cn_networks) in bicycle mode" type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="showCycleNodeNetworkRoutes" name="Show node network cycle routes" description="Show node network cycle routes in bicycle mode" type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="showMtbRoutes" name="Show MTB routes" description="Show mountain bike routes (*cn_networks) in bicycle mode" type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="showMtbScale" name="Show MTB scale" description="Show trails according to MTB scale"
-		type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="showMtbScaleIMBATrails" name="Show MTB IMBA trails" description="Show specifically designed trails for mountainbiking"
-		type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
-		type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="alpineHiking" name="Alpine hiking scale" description="Render paths according to SAC scale" type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="alpineHikingScaleScheme" name="Alpine hiking scale scheme" description="Render paths according to SAC/CAI scale"
+		type="string" possibleValues="sacScale,caiScale" defaultValueDescription="disabled" category="other"/>
 	<renderingProperty attr="lessDetailed" name="Less detailed" description="Less details on map" type="boolean" possibleValues=""
 		category="details"/>
 	<renderingProperty attr="surfaceIntegrity" name="Road surface integrity" description="Surface integral rendering" type="boolean" possibleValues=""
@@ -25,12 +16,12 @@
 		type="boolean" possibleValues="" category="details"/>
 	<renderingProperty attr="streetLighting" name="Street lighting" description="Show street lighting"
 		type="boolean" possibleValues="" category="details"/>
-    <renderingProperty attr="horseScale" name="Difficulty of horse trails" description="Render paths according to difficulty of horse trails"
-		type="boolean" possibleValues="" category="details"/>
 	<renderingProperty attr="hideUnderground" name="Hide underground objects" description="Hide underground objects"
 		type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideAccess" name="Hide access restrictions" description="Hide access type" type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideBuildings" name="Hide buildings" description="Hide buildings"
+		type="boolean" possibleValues="" category="hide"/>
+	<renderingProperty attr="hideHouseNumbers" name="Hide house numbers" description="Hide house numbers"
 		type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="hideWaterPolygons" name="Hide water" description="Hide water polygons"
 		type="boolean" possibleValues="" category="hide"/>
@@ -45,8 +36,6 @@
 	<renderingProperty attr="currentTrackWidth" name="Current GPX width" description="Width of the currently recording track"
 		type="string" possibleValues="thin,medium,bold" defaultValueDescription="default"/>
 	<renderingProperty attr="contourColorScheme" name="Contour lines color scheme" description="Contour lines color scheme" type="string" possibleValues="white,yellow,green,light_brown,brown,dark_brown,red" defaultValueDescription="default"/>
-<!--	<renderingProperty attr="contourWidth" name="Contour lines width" description="Contour lines width" type="string" possibleValues="thin,medium,thick" defaultValueDescription="default"/>
-	<renderingProperty attr="contourDensity" name="Contour lines density" description="Contour lines density" type="string" possibleValues="low,medium_w,high" defaultValueDescription="default"/>-->
 
 	<renderingProperty attr="legend" name="Legend" type="boolean" possibleValues="" category="ui_hidden"/>
 
@@ -174,6 +163,10 @@
 	<renderingAttribute name="waterwayArrowsColor">
 		<case attrColorValue="#140657"/>
 	</renderingAttribute>
+
+	<renderingConstant name="roadShieldOrder1" value="47"/>
+	<renderingConstant name="roadShieldOrder2" value="48"/>
+	<renderingConstant name="roadShieldDefaultOrder" value="93"/>
 
 	<renderingConstant name="highwayOnewayIcon" value="arrow_triangle_black"/>
 	<renderingConstant name="highwayOnewayIconBig" value="arrow_triangle_black_big"/>
@@ -538,9 +531,15 @@
 	</renderingAttribute>
 	<renderingAttribute name="trackSubstrateColor">
 		<case noPolygons="true" attrColorValue="#eeeeee"/>
+		<case nightMode="true" attrColorValue="#222222"/>
 		<case attrColorValue="#cccccc"/>
 		<apply_if additional="winter_road=yes" attrColorValue="#aa458FFF"/>
 		<apply_if additional="ice_road=yes" attrColorValue="#aa458FFF"/>
+	</renderingAttribute>
+	<renderingAttribute name="trackSubstrateAlpineHikingColor">
+		<case noPolygons="true" attrColorValue="#222222"/>
+		<case nightMode="true" attrColorValue="#222222"/>
+		<case attrColorValue="#F6F5F4"/>
 	</renderingAttribute>
 	<renderingConstant name="trackStrokeWidth" value="1:1"/>
 	<renderingConstant name="trackLowZoomStrokeWidth" value="1:0.5"/>
@@ -565,7 +564,7 @@
 		<case nightMode="true" attrColorValue="#eeeeee"/>
 		<case attrColorValue="#000000"/>
 	</renderingAttribute>
-	<renderingConstant name="pathStrokeWidth" value="0.7:0.7"/>
+	<renderingConstant name="pathStrokeWidth" value="1:1"/>
 	<renderingConstant name="pathLowZoomStrokeWidth" value="0.5:0.5"/>
 	<renderingConstant name="pathPathEffect" value="2_2"/>
 	<renderingConstant name="pathLowZoomPathEffect" value=""/>
@@ -618,7 +617,11 @@
 	<renderingConstant name="sacScaleColorT5" value="#6000ff"/>
 	<renderingConstant name="sacScaleColorT6" value="#6000ff"/>
 
-	<renderingConstant name="footwayStrokeWidth" value="0.7:0.7"/>
+	<renderingAttribute name="caiScaleColor">
+		<case attrColorValue="#e23cad"/>
+	</renderingAttribute>
+
+	<renderingConstant name="footwayStrokeWidth" value="1:1"/>
 	<renderingConstant name="footwayLowZoomStrokeWidth" value="0.5:0.5"/>
 
 	<renderingAttribute name="primaryResidentialHighwayAreaColor">
@@ -1390,40 +1393,6 @@
 		<case attrColorValue="#280058a2"/>
 	</renderingAttribute>
 
-	<renderingAttribute name="osmcRedTextColor">
-		<case attrColorValue="#FF0000"/>
-	</renderingAttribute>
-	<renderingAttribute name="osmcBrownTextColor">
-		<case attrColorValue="#775200"/>
-	</renderingAttribute>
-	<renderingAttribute name="osmcOrangeTextColor">
-		<case attrColorValue="#EE9D00"/>
-	</renderingAttribute>
-	<renderingAttribute name="osmcDarkyellowTextColor">
-		<case attrColorValue="#8C9800"/>
-	</renderingAttribute>
-	<renderingAttribute name="osmcYellowTextColor">
-		<case attrColorValue="#F0E600"/>
-	</renderingAttribute>
-	<renderingAttribute name="osmcLightgreenTextColor">
-		<case attrColorValue="#C5FF7A"/>
-	</renderingAttribute>
-	<renderingAttribute name="osmcGreenTextColor">
-		<case attrColorValue="#00DE02"/>
-	</renderingAttribute>
-	<renderingAttribute name="osmcLightblueTextColor">
-		<case attrColorValue="#6FC8FA"/>
-	</renderingAttribute>
-	<renderingAttribute name="osmcBlueTextColor">
-		<case attrColorValue="#3B00FF"/>
-	</renderingAttribute>
-	<renderingAttribute name="osmcPurpleTextColor">
-		<case attrColorValue="#CC00FF"/>
-	</renderingAttribute>
-	<renderingAttribute name="osmcGrayTextColor">
-		<case attrColorValue="#B9B9B9"/>
-	</renderingAttribute>
-
 	<renderingAttribute name="iwnColor">
 		<case attrColorValue="#d94545"/>
 	</renderingAttribute>
@@ -1438,36 +1407,6 @@
 	</renderingAttribute>
 	<renderingAttribute name="lwnColor">
 		<case attrColorValue="#00D783"/>
-	</renderingAttribute>
-
-	<renderingAttribute name="iwnNodeTextColor">
-		<case attrColorValue="#d94545"/>
-	</renderingAttribute>
-	<renderingAttribute name="nwnNodeTextColor">
-		<case attrColorValue="#0000ff"/>
-	</renderingAttribute>
-	<renderingAttribute name="rwnNodeTextColor">
-		<case attrColorValue="#ff6600"/>
-	</renderingAttribute>
-	<renderingAttribute name="lwnNodeTextColor">
-		<case attrColorValue="#cf00d7"/>
-	</renderingAttribute>
-
-	<renderingAttribute name="hikingRoutesTextColor">
-		<case attrColorValue="#DD5407"/>
-	</renderingAttribute>
-
-	<renderingAttribute name="iwnNodeNetworkColor">
-		<case attrColorValue="#66d94545"/>
-	</renderingAttribute>
-	<renderingAttribute name="nwnNodeNetworkColor">
-		<case attrColorValue="#660000ff"/>
-	</renderingAttribute>
-	<renderingAttribute name="rwnNodeNetworkColor">
-		<case attrColorValue="#66ff6600"/>
-	</renderingAttribute>
-	<renderingAttribute name="lwnNodeNetworkColor">
-		<case attrColorValue="#66cf00d7"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="routeBusColor">
@@ -1487,11 +1426,6 @@
 	</renderingAttribute>
 	<renderingAttribute name="routeLightrailColor">
 		<case attrColorValue="#009100"/>
-	</renderingAttribute>
-
-	<renderingAttribute name="horseRouteDefaultColor">
-		<case engine_v1="true" attrColorValue="#8000ad88"/>
-		<case attrColorValue="#3500ad88"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="litYesColor">
@@ -1658,7 +1592,6 @@
 				<case tag="osmand_rungs" value="yes"/>
 				<case tag="ladder" value="yes"/>
 				<case tag="abandoned:railway" value="station"/>
-				<case tag="route_hiking" value="" order="-1"/>
 				<case tag="fixme_tag" value="yes"/>
 				<case tag="note_tag" value="yes"/>
 			</switch>
@@ -2074,13 +2007,6 @@
 				</case>
 				<case tag="osmand_rungs" value="yes"/>
 				<case tag="ladder" value="yes" order="63"/>
-				<case tag="route_bicycle" value="" order="186"/>
-				<case tag="route_mtb" value="" order="187"/>
-				<case tag="osmand_mtb_scale_imba" value="trail" order="189"/>
-				<case tag="network_iwn" value="" order="192"/>
-				<case tag="network_nwn" value="" order="193"/>
-				<case tag="network_rwn" value="" order="194"/>
-				<case tag="network_lwn" value="" order="195"/>
 				<switch baseAppMode="bicycle">
 					<case tag="cycleway" value=""/>
 					<case tag="cycleway:both" value=""/>
@@ -2110,9 +2036,6 @@
 					<apply_if contourDensity="low" additional="contourtype=40f" order="-1"/>
 				</case>-->
 				<case tag="lit" value="" order="12"/>
-				<case tag="route_hiking" value="">
-					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" order="99"/>
-				</case>
 			</switch>
 			<switch>
 				<case tag="lcn_ref" value="" order="197"/>
@@ -2137,6 +2060,472 @@
 	</order>
 
 	<text>
+
+		<!-- Highway shields -->
+		<switch seq="1:10">
+			<case minzoom="7" tag="highway" value="motorway" nameTag="route_road_#SEQ_ref"/>
+			<case minzoom="12" tag="highway" value="motorway_link" nameTag="route_road_#SEQ_ref"/>
+			<case minzoom="7" tag="highway" value="trunk" nameTag="route_road_#SEQ_ref"/>
+			<case minzoom="12" tag="highway" value="trunk_link" nameTag="route_road_#SEQ_ref"/>
+			<case minzoom="10" tag="highway" value="primary" nameTag="route_road_#SEQ_ref"/>
+			<case minzoom="12" tag="highway" value="secondary" nameTag="route_road_#SEQ_ref"/>
+			<case minzoom="14" tag="highway" value="tertiary" nameTag="route_road_#SEQ_ref"/>
+			<case minzoom="16" tag="highway" value="unclassified" nameTag="route_road_#SEQ_ref"/>
+			<case minzoom="16" tag="highway" value="residential" nameTag="route_road_#SEQ_ref"/>
+			<apply textMinDistance="130" textWrapWidth="10">
+				<apply textSize="13" textBold="true">
+					<switch>
+						<case additional="route_road_#SEQ_network=us:i" nameTag="route_road_#SEQ_ref">
+							<case additional="route_road_#SEQ_modifier=business">
+								<case textLength="1" icon="green_cshield_2_road_shield"/> <!-- these icons will be rendered on the top of the shields, but this simplifies code a lot -->
+								<case textLength="2" icon="green_cshield_2_road_shield"/>
+								<case textLength="3" icon="green_cshield_3_road_shield"/>
+							</case>
+							<case additional="route_road_#SEQ_modifier=spur" icon="us_spur_icon_shield"/>
+							<case additional="route_road_#SEQ_modifier=truck" icon="us_truck_icon_shield"/>
+							<case additional="route_road_#SEQ_modifier=alternate" icon="us_alt_icon_shield"/>
+						</case>
+						<apply textColor="#ffffff">
+							<case textLength="1" textShield="blue_usishield_2_road_shield"/>
+							<case textLength="2" textShield="blue_usishield_2_road_shield"/>
+							<case textLength="3" textShield="blue_usishield_3_road_shield"/>
+							<case textHaloColor="#003f87" textHaloRadius="5"/>
+						</apply>
+						<apply textOrder="$roadShieldOrder1"/>
+					</switch>
+					<switch>
+						<case additional="route_road_#SEQ_network=us:us" nameTag="route_road_#SEQ_ref">
+							<case additional="route_road_#SEQ_modifier=business" icon="us_business_icon_shield"/>
+							<case additional="route_road_#SEQ_modifier=spur" icon="us_spur_icon_shield"/>
+							<case additional="route_road_#SEQ_modifier=truck" icon="us_truck_icon_shield"/>
+							<case additional="route_road_#SEQ_modifier=alternate" icon="us_alt_icon_shield"/>
+							<case additional="route_road_#SEQ_modifier=bypass" icon="us_bypass_icon_shield"/>
+							<case additional="route_road_#SEQ_modifier=connector" icon="us_connector_icon_shield"/>
+						</case>
+						<apply>
+							<case textLength="1" textShield="white_usshield_2_road_shield"/>
+							<case textLength="2" textShield="white_usshield_2_road_shield"/>
+							<case textLength="3" textShield="white_usshield_3_road_shield"/>
+							<case textLength="4" textShield="white_usshield_4_road_shield"/>
+							<case textLength="5" textShield="white_usshield_5_road_shield"/>
+							<case textHaloColor="#ffffff" textHaloRadius="5"/>
+						</apply>
+						<apply textColor="#404040" textOrder="$roadShieldOrder2"/>
+					</switch>
+					<switch>
+						<case additional="route_road_#SEQ_us_state_network=yes" nameTag="route_road_#SEQ_ref">
+							<case additional="route_road_#SEQ_road_modifier=business" icon="us_state_business_icon_shield"/>
+							<case additional="route_road_#SEQ_road_modifier=spur" icon="us_state_spur_icon_shield"/>
+							<case additional="route_road_#SEQ_road_modifier=truck" icon="us_state_truck_icon_shield"/>
+							<case additional="route_road_#SEQ_road_modifier=alternate" icon="us_state_alt_icon_shield"/>
+							<case additional="route_road_#SEQ_road_modifier=bypass" icon="us_state_bypass_icon_shield"/>
+							<case additional="route_road_#SEQ_road_modifier=connector" icon="us_state_connector_icon_shield"/>
+						</case>
+						<apply textColor="#404040" textOrder="$roadShieldOrder2">
+							<case textLength="1" textShield="white_rounded_rectangle_1_road_shield"/>
+							<case textLength="2" textShield="white_rounded_rectangle_2_road_shield"/>
+							<case textLength="3" textShield="white_rounded_rectangle_3_road_shield"/>
+							<case textLength="4" textShield="white_rounded_rectangle_4_road_shield"/>
+							<case textLength="5" textShield="white_rounded_rectangle_5_road_shield"/>
+							<case textLength="6" textShield="white_rounded_rectangle_6_road_shield"/>
+							<case textLength="7" textShield="white_rounded_rectangle_7_road_shield"/>
+							<case textHaloColor="#ffffff" textHaloRadius="5"/>
+						</apply>
+						<apply_if additional="route_road_#SEQ_shield_shape=square">
+							<case textLength="1" textShield="white_square_1_road_shield"/>
+							<case textLength="2" textShield="white_square_2_road_shield"/>
+							<case textLength="3" textShield="white_square_3_road_shield"/>
+							<case textLength="4" textShield="white_square_4_road_shield"/>
+							<case textLength="5" textShield="white_square_5_road_shield"/>
+							<case textLength="6" textShield="white_square_6_road_shield"/>
+							<case textLength="7" textShield="white_square_7_road_shield"/>
+						</apply_if>
+					</switch>
+					<case additional="route_road_#SEQ_us_county_network=yes" nameTag="route_road_#SEQ_ref">
+						<apply_if additional="route_road_#SEQ_shield_shape=rounded_rectangle" textColor="#404040" textOrder="$roadShieldOrder2">
+							<case textLength="1" textShield="white_rounded_rectangle_1_road_shield"/>
+							<case textLength="2" textShield="white_rounded_rectangle_2_road_shield"/>
+							<case textLength="3" textShield="white_rounded_rectangle_3_road_shield"/>
+							<case textLength="4" textShield="white_rounded_rectangle_4_road_shield"/>
+							<case textLength="5" textShield="white_rounded_rectangle_5_road_shield"/>
+							<case textLength="6" textShield="white_rounded_rectangle_6_road_shield"/>
+							<case textLength="7" textShield="white_rounded_rectangle_7_road_shield"/>
+							<case textHaloColor="#ffffff" textHaloRadius="5"/>
+						</apply_if>
+					</case>
+					<switch textColor="#ffffff">
+						<case additional="route_road_#SEQ_shield_color=blue" nameTag="route_road_#SEQ_ref" textOrder="$roadShieldDefaultOrder">
+							<case textLength="1" textShield="blue_square_1_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="blue_hexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="blue_pentagon_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="blue_cshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=usishield" textShield="blue_usishield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=lrhexagon" textShield="blue_lrhexagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=usshield">
+									<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="blue_redtop_usshield_2_road_shield"/>
+								</case>
+								<case additional="route_road_#SEQ_shield_shape=ellipse" textShield="blue_ellipse_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_triangle" textShield="blue_rounded_triangle_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="blue_pentagon_up_2_road_shield"/>
+							</case>
+							<case textLength="2" textShield="blue_square_2_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="blue_hexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="blue_pentagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="blue_cshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=usishield" textShield="blue_usishield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=lrhexagon" textShield="blue_lrhexagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=usshield">
+									<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="blue_redtop_usshield_2_road_shield"/>
+								</case>
+								<case additional="route_road_#SEQ_shield_shape=ellipse" textShield="blue_ellipse_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_triangle" textShield="blue_rounded_triangle_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="blue_pentagon_up_2_road_shield"/>
+							</case>
+							<case textLength="3" textShield="blue_square_3_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="blue_hexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="blue_pentagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="blue_cshield_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=usishield" textShield="blue_usishield_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=lrhexagon" textShield="blue_lrhexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=usshield">
+									<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="blue_redtop_usshield_3_road_shield"/>
+								</case>
+								<case additional="route_road_#SEQ_shield_shape=ellipse" textShield="blue_ellipse_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_triangle" textShield="blue_rounded_triangle_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="blue_pentagon_up_3_road_shield"/>
+							</case>
+							<case textLength="4" textShield="blue_square_4_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="blue_hexagon_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="blue_pentagon_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=lrhexagon" textShield="blue_lrhexagon_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_triangle" textShield="blue_rounded_triangle_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="blue_pentagon_up_4_road_shield"/>
+							</case>
+							<case textLength="5" textShield="blue_square_5_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="blue_hexagon_5_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="blue_pentagon_5_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=lrhexagon" textShield="blue_lrhexagon_5_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_triangle" textShield="blue_rounded_triangle_5_road_shield"/>
+							</case>
+							<case textLength="6" textShield="blue_square_6_road_shield"/>
+							<case textLength="7" textShield="blue_square_7_road_shield"/>
+							<case textLength="8" textShield="blue_square_8_road_shield"/>
+							<case textLength="9" textShield="blue_square_9_road_shield"/>
+							<case textHaloColor="#327ae6" textHaloRadius="5"/>
+							<apply_if additional="route_road_#SEQ_shield_order=1" textOrder="$roadShieldOrder1"/>
+							<apply_if additional="route_road_#SEQ_shield_order=2" textOrder="$roadShieldOrder2"/>
+							<apply_if additional="route_road_#SEQ_shield_text_color=yellow" textColor="#ffc737"/>
+						</case>
+					</switch>
+					<switch textColor="#ffffff">
+						<case additional="route_road_#SEQ_shield_color=green" nameTag="route_road_#SEQ_ref" textOrder="$roadShieldDefaultOrder">
+							<case textLength="1" textShield="green_square_1_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="green_pentagon_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=octagon" textShield="green_octagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="green_hexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=transcanada" textShield="green_transcanada_2_road_shield" textColor="#00674e"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="green_cshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=ushield" textShield="green_ushield_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape_mod=orangetop" textShield="green_orangetop_square_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="green_redtop_square_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rhombus" textShield="green_rhombus_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="green_pentagon_up_2_road_shield"/>
+							</case>
+							<case textLength="2" textShield="green_square_2_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="green_pentagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=octagon" textShield="green_octagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="green_hexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=transcanada" textShield="green_transcanada_2_road_shield" textColor="#00674e"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="green_cshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=ushield" textShield="green_ushield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape_mod=orangetop" textShield="green_orangetop_square_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="green_redtop_square_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rhombus" textShield="green_rhombus_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="green_pentagon_up_2_road_shield"/>
+							</case>
+							<case textLength="3" textShield="green_square_3_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="green_pentagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=octagon" textShield="green_octagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="green_hexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=transcanada" textShield="green_transcanada_3_road_shield" textColor="#00674e"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="green_cshield_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=ushield" textShield="green_ushield_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape_mod=orangetop" textShield="green_orangetop_square_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="green_redtop_square_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rhombus" textShield="green_rhombus_3_road_shield"/>
+							</case>
+							<case textLength="4" textShield="green_square_4_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="green_pentagon_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=octagon" textShield="green_octagon_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="green_hexagon_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=ushield" textShield="green_ushield_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape_mod=orangetop" textShield="green_orangetop_square_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="green_redtop_square_4_road_shield"/>
+							</case>
+							<case textLength="5" textShield="green_square_5_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="green_pentagon_5_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="green_hexagon_5_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape_mod=orangetop" textShield="green_orangetop_square_5_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="green_redtop_square_5_road_shield"/>
+							</case>
+							<case textLength="6" textShield="green_square_6_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=octagon" textShield="green_octagon_6_road_shield"/>
+							</case>
+							<case textHaloColor="#52a02b" textHaloRadius="5"/>
+							<apply_if additional="route_road_#SEQ_shield_order=1" textOrder="$roadShieldOrder1"/>
+							<apply_if additional="route_road_#SEQ_shield_order=2" textOrder="$roadShieldOrder2"/>
+							<apply_if additional="route_road_#SEQ_shield_text_color=yellow" textColor="#ffc737"/>
+						</case>
+					</switch>
+					<switch textColor="#404040">
+						<case additional="route_road_#SEQ_shield_color=white" nameTag="route_road_#SEQ_ref" textOrder="$roadShieldDefaultOrder">
+							<case textLength="1" textShield="white_square_1_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=rounded_rectangle" textShield="white_rounded_rectangle_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="white_pentagon_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=trapezoid_up" textShield="white_trapezoid_up_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=trapezoid_down" textShield="white_trapezoid_down_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=usshield" textShield="white_usshield_2_road_shield">
+									<case additional="route_road_#SEQ_shield_shape_mod=greentop" textShield="white_greentop_usshield_2_road_shield"/>
+									<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="white_redtop_usshield_2_road_shield"/>
+								</case>
+								<case additional="route_road_#SEQ_shield_shape=tall_hexagon" textShield="white_tall_hexagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="white_pentagon_up_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="white_cshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=octagon" textShield="white_octagon_2_road_shield">
+									<case additional="route_road_#SEQ_shield_bg_color=blue" textShield="white_octagon_bgblue_2_road_shield"/>
+									<case additional="route_road_#SEQ_shield_bg_color=red" textShield="white_octagon_bgred_2_road_shield"/>
+								</case>
+								<case additional="route_road_#SEQ_shield_shape=sarabia" textShield="white_sarabia_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=redtop_korea_lrhexagon" textShield="white_redtop_korea_lrhexagon_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=korea_lrhexagon" textShield="white_korea_lrhexagon_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=plum_blossom" textShield="white_plum_blossom_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=lrhexagon" textShield="white_lrhexagon_1_road_shield"/>
+							</case>
+							<case textLength="2" textShield="white_square_2_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=rounded_rectangle" textShield="white_rounded_rectangle_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="white_pentagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=trapezoid_up" textShield="white_trapezoid_up_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=trapezoid_down" textShield="white_trapezoid_down_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=usshield" textShield="white_usshield_2_road_shield">
+									<case additional="route_road_#SEQ_shield_shape_mod=greentop" textShield="white_greentop_usshield_2_road_shield"/>
+									<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="white_redtop_usshield_2_road_shield"/>
+								</case>
+								<case additional="route_road_#SEQ_shield_shape=tall_hexagon" textShield="white_tall_hexagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="white_pentagon_up_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="white_cshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=octagon" textShield="white_octagon_2_road_shield">
+									<case additional="route_road_#SEQ_shield_bg_color=blue" textShield="white_octagon_bgblue_2_road_shield"/>
+									<case additional="route_road_#SEQ_shield_bg_color=red" textShield="white_octagon_bgred_2_road_shield"/>
+								</case>
+								<case additional="route_road_#SEQ_shield_shape=sarabia" textShield="white_sarabia_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=redtop_korea_lrhexagon" textShield="white_redtop_korea_lrhexagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=korea_lrhexagon" textShield="white_korea_lrhexagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=plum_blossom" textShield="white_plum_blossom_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=lrhexagon" textShield="white_lrhexagon_2_road_shield"/>
+							</case>
+							<case textLength="3" textShield="white_square_3_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pillow" textShield="white_pillow_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_rectangle" textShield="white_rounded_rectangle_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="white_pentagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=trapezoid_up" textShield="white_trapezoid_up_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=trapezoid_down" textShield="white_trapezoid_down_3_road_shield"/>
+								<case additional="road_shield_shape_1#SEQ=usshield" textShield="white_usshield_3_road_shield">
+									<case additional="route_road_#SEQ_shield_shape_mod=greentop" textShield="white_greentop_usshield_3_road_shield"/>
+									<case additional="route_road_#SEQ_shield_shape_mod=redtop" textShield="white_redtop_usshield_3_road_shield"/>
+								</case>
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="white_pentagon_up_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="white_cshield_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=octagon" textShield="white_octagon_3_road_shield">
+									<case additional="route_road_#SEQ_shield_bg_color=green" textShield="white_octagon_bggreen_3_road_shield"/>
+								</case>
+								<case additional="route_road_#SEQ_shield_shape=sarabia" textShield="white_sarabia_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=korea_lrhexagon" textShield="white_korea_lrhexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=lrhexagon" textShield="white_lrhexagon_3_road_shield"/>
+							</case>
+							<case textLength="4" textShield="white_square_4_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pillow" textShield="white_pillow_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_rectangle" textShield="white_rounded_rectangle_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="white_pentagon_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=usshield" textShield="white_usshield_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="white_cshield_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=octagon" textShield="white_octagon_4_road_shield">
+									<case additional="route_road_#SEQ_shield_bg_color=brown" textShield="white_octagon_bgbrown_4_road_shield"/>
+								</case>
+								<case additional="route_road_#SEQ_shield_shape=lrhexagon" textShield="white_lrhexagon_4_road_shield"/>
+							</case>
+							<case textLength="5" textShield="white_square_5_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pillow" textShield="white_pillow_5_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_rectangle" textShield="white_rounded_rectangle_5_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="white_pentagon_5_road_shield"/>
+							</case>
+							<case textLength="6" textShield="white_square_6_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=rounded_rectangle" textShield="white_rounded_rectangle_6_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="white_pentagon_6_road_shield"/>
+							</case>
+							<case textLength="7" textShield="white_square_7_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=rounded_rectangle" textShield="white_rounded_rectangle_7_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="white_pentagon_7_road_shield"/>
+							</case>
+							<case textLength="8" textShield="white_square_8_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="white_pentagon_8_road_shield"/>
+							</case>
+							<case textLength="9" textShield="white_square_9_road_shield"/>
+							<case textHaloColor="#ffffff" textHaloRadius="5"/>
+							<apply_if additional="route_road_#SEQ_shield_order=1" textOrder="$roadShieldOrder1"/>
+							<apply_if additional="route_road_#SEQ_shield_order=2" textOrder="$roadShieldOrder2"/>
+							<apply_if additional="route_road_#SEQ_shield_text_color=darkblue" textColor="#003882"/>
+							<apply_if additional="route_road_#SEQ_shield_text_color=blue" textColor="#327ae6"/>
+							<apply_if additional="route_road_#SEQ_shield_text_color=red" textColor="#dd6a6a"/>
+							<apply_if additional="route_road_#SEQ_shield_text_color=green" textColor="#52a02b"/>
+							<apply_if additional="route_road_#SEQ_shield_text_color=brown" textColor="#7b4833"/>
+						</case>
+					</switch>
+					<switch textColor="#404040">
+						<case additional="route_road_#SEQ_shield_color=yellow" nameTag="route_road_#SEQ_ref" textOrder="$roadShieldDefaultOrder">
+							<case textLength="1" textShield="yellow_square_1_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="yellow_pentagon_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="yellow_cshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="yellow_hexagon_3_road_shield"/>
+							</case>
+							<case textLength="2" textShield="yellow_square_2_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="yellow_pentagon_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="yellow_cshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="yellow_hexagon_3_road_shield"/>
+							</case>
+							<case textLength="3" textShield="yellow_square_3_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="yellow_pentagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="yellow_hexagon_3_road_shield"/>
+							</case>
+							<case textLength="4" textShield="yellow_square_4_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="yellow_pentagon_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="yellow_hexagon_4_road_shield"/>
+							</case>
+							<case textLength="5" textShield="yellow_square_5_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="yellow_pentagon_5_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="yellow_hexagon_5_road_shield"/>
+							</case>
+							<case textLength="6" textShield="yellow_square_6_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="yellow_pentagon_6_road_shield"/>
+							</case>
+							<case textLength="7" textShield="yellow_square_7_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="yellow_pentagon_7_road_shield"/>
+							</case>
+							<case textLength="8" textShield="yellow_square_8_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="yellow_pentagon_8_road_shield"/>
+							</case>
+							<case textLength="9" textShield="yellow_square_9_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon" textShield="yellow_pentagon_9_road_shield"/>
+							</case>
+							<case textHaloColor="#ffe237" textHaloRadius="5"/>
+							<apply_if additional="route_road_#SEQ_shield_order=1" textOrder="$roadShieldOrder1"/>
+							<apply_if additional="route_road_#SEQ_shield_order=2" textOrder="$roadShieldOrder2"/>
+						</case>
+					</switch>
+					<switch textColor="#ffffff">
+						<case additional="route_road_#SEQ_shield_color=red" nameTag="route_road_#SEQ_ref" textOrder="$roadShieldDefaultOrder">
+							<case textLength="1" textShield="red_square_1_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="red_hexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rshield" textShield="red_rshield_1_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="red_cshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_triangle" textShield="red_rounded_triangle_2_road_shield"/>
+							</case>
+							<case textLength="2" textShield="red_square_2_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="red_hexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rshield" textShield="red_rshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=cshield" textShield="red_cshield_2_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_triangle" textShield="red_rounded_triangle_2_road_shield"/>
+							</case>
+							<case textLength="3" textShield="red_square_3_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="red_hexagon_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rshield" textShield="red_rshield_3_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rounded_triangle" textShield="red_rounded_triangle_3_road_shield"/>
+							</case>
+							<case textLength="4" textShield="red_square_4_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="red_hexagon_4_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rshield" textShield="red_rshield_4_road_shield"/>
+							</case>
+							<case textLength="5" textShield="red_square_5_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="red_hexagon_5_road_shield"/>
+								<case additional="route_road_#SEQ_shield_shape=rshield" textShield="red_rshield_5_road_shield"/>
+							</case>
+							<case textLength="6" textShield="red_square_6_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=rshield" textShield="red_rshield_6_road_shield"/>
+							</case>
+							<case textHaloColor="#dd6a6a" textHaloRadius="5"/>
+							<apply_if additional="route_road_#SEQ_shield_order=1" textOrder="$roadShieldOrder1"/>
+							<apply_if additional="route_road_#SEQ_shield_order=2" textOrder="$roadShieldOrder2"/>
+							<apply_if additional="route_road_#SEQ_shield_text_color=black" textColor="#000000"/>
+						</case>
+					</switch>
+					<switch textColor="#ffffff">
+						<case additional="route_road_#SEQ_shield_color=brown" nameTag="route_road_#SEQ_ref" textOrder="$roadShieldDefaultOrder">
+							<case textLength="1" textShield="brown_square_1_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="brown_pentagon_up_2_road_shield"/>
+							</case>
+							<case textLength="2" textShield="brown_square_2_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="brown_pentagon_up_2_road_shield"/>
+							</case>
+							<case textLength="3" textShield="brown_square_3_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=pentagon_up" textShield="brown_pentagon_up_3_road_shield"/>
+							</case>
+							<case textLength="4" textShield="brown_square_4_road_shield"/>
+							<case textLength="5" textShield="brown_square_5_road_shield"/>
+							<case textHaloColor="#7b4833" textHaloRadius="5"/>
+							<apply_if additional="route_road_#SEQ_shield_order=1" textOrder="$roadShieldOrder1"/>
+							<apply_if additional="route_road_#SEQ_shield_order=2" textOrder="$roadShieldOrder2"/>
+						</case>
+					</switch>
+					<switch textColor="#ffffff">
+						<case additional="route_road_#SEQ_shield_color=black" nameTag="route_road_#SEQ_ref" textOrder="$roadShieldDefaultOrder">
+							<case textLength="3" textShield="black_ellipse_3_road_shield"/>
+							<case textHaloColor="#262626" textHaloRadius="5"/>
+							<apply_if additional="route_road_#SEQ_shield_order=1" textOrder="$roadShieldOrder1"/>
+							<apply_if additional="route_road_#SEQ_shield_order=2" textOrder="$roadShieldOrder2"/>
+						</case>
+					</switch>
+					<switch textColor="#404040">
+						<case additional="route_road_#SEQ_shield_color=orange" nameTag="route_road_#SEQ_ref" textOrder="$roadShieldDefaultOrder">
+							<case textLength="1" textShield="orange_square_2_road_shield"/>
+							<case textLength="2" textShield="orange_square_2_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="orange_hexagon_3_road_shield"/>
+							</case>
+							<case textLength="3" textShield="orange_square_3_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="orange_hexagon_3_road_shield"/>
+							</case>
+							<case textLength="4" textShield="orange_square_4_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="orange_hexagon_4_road_shield"/>
+							</case>
+							<case textLength="5" textShield="orange_square_5_road_shield">
+								<case additional="route_road_#SEQ_shield_shape=hexagon" textShield="orange_hexagon_5_road_shield"/>
+							</case>
+							<case textHaloColor="#eea555" textHaloRadius="5"/>
+							<apply_if additional="route_road_#SEQ_shield_order=1" textOrder="$roadShieldOrder1"/>
+							<apply_if additional="route_road_#SEQ_shield_order=2" textOrder="$roadShieldOrder2"/>
+						</case>
+					</switch>
+
+					<switch seq="1:10"> <!-- If no road_shield_color_? is set or US conditions failed then use white square shield -->
+						<case nameTag="route_road_#SEQ_ref"/>
+						<apply textColor="#404040" textOrder="$roadShieldOrder2">
+							<case textLength="1" textShield="white_square_1_road_shield"/>
+							<case textLength="2" textShield="white_square_2_road_shield"/>
+							<case textLength="3" textShield="white_square_3_road_shield"/>
+							<case textLength="4" textShield="white_square_4_road_shield"/>
+							<case textLength="5" textShield="white_square_5_road_shield"/>
+							<case textLength="6" textShield="white_square_6_road_shield"/>
+							<case textLength="7" textShield="white_square_7_road_shield"/>
+							<case textLength="8" textShield="white_square_8_road_shield"/>
+							<case textLength="9" textShield="white_square_9_road_shield"/>
+							<case textHaloColor="#ffffff" textHaloRadius="5"/>
+						</apply>
+						<apply_if hideHouseNumbers="true" hideBuildings="true" textColor="#ff0000"/>
+					</switch>
+				</apply>
+			</apply>
+			<apply_if maxzoom="7" intersectionMargin="10"/>
+			<apply_if minzoom="8" maxzoom="9" intersectionMargin="15"/>
+			<apply_if minzoom="10" intersectionMargin="20"/>
+		</switch>
 
 		<switch minzoom="14" textHaloRadius="$textHaloRadius" textOnPath="true" nameTag="">
 			<case minzoom="16" tag="area:highway" value="motorway" textColor="$motorwayTextColor" textHaloColor="$motorwayRoadColor" textOrder="50" textWrapWidth="25"/>
@@ -2219,207 +2608,6 @@
 			</apply>
 		</case>
 
-		<switch minzoom="12" textMinDistance="101" textOnPath="false" textOrder="43">
-			<switch textOrder="44" seq="1:10">
-				<case tag="route_hiking" value="" nameTag="hiking_route_name" textOnPath="true" textSize="13"/>
-				<case horseRoutes="true" minzoom="13" tag="route_horse" value="" nameTag="horse_route_name" textOnPath="true" textOrder="8"/>
-				<case horseRoutes="true" tag="route_horse" value="" nameTag="horse_route_ref" textOnPath="true" textSize="13"/>
-				<apply>
-					<switch>
-						<case hikingRoutesOSMC="walkingRoutesOSMC" textSize="11" textColor="$hikingRoutesTextColor" textHaloColor="#ccebf4ff">
-							<apply_if nightMode="true" textColor="#ebf4ff" textHaloColor="#cc0078ff"/>
-						</case>
-						<case hikingRoutesOSMC="walkingRoutesScopeOSMC" textSize="11" textColor="$hikingRoutesTextColor" textHaloColor="#ccebf4ff">
-							<apply_if nightMode="true" textColor="#ebf4ff" textHaloColor="#cc0078ff"/>
-						</case>
-						<case horseRoutes="true" textColor="#00745b" textSize="11" textHaloColor="#ccffffff"/>
-						<apply textMinDistance="100" textBold="true" textHaloRadius="2" textWrapWidth="30"/>
-					</switch>
-				</apply>
-				<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" disable="true"/>
-			</switch>
-			<switch minzoom="13">
-				<!-- old way to display -->
-				<case tag="multiple_node_networks" value="true" nameTag="iwn_ref">
-					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$iwnNodeTextColor"/>
-					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$iwnNodeTextColor"/>
-				</case>
-				<case tag="multiple_node_networks" value="true" nameTag="nwn_ref">
-					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$nwnNodeTextColor"/>
-					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$nwnNodeTextColor"/>
-				</case>
-				<case tag="multiple_node_networks" value="true" nameTag="rwn_ref">
-					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$rwnNodeTextColor"/>
-					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$rwnNodeTextColor"/>
-				</case>
-				<case tag="multiple_node_networks" value="true" nameTag="lwn_ref">
-					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$lwnNodeTextColor"/>
-					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$lwnNodeTextColor"/>
-				</case>
-				<case tag="node_network_point" value="iwn" nameTag="iwn_ref">
-					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$iwnNodeTextColor"/>
-					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$iwnNodeTextColor"/>
-				</case>
-				<case tag="node_network_point" value="nwn" nameTag="nwn_ref">
-					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$nwnNodeTextColor"/>
-					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$nwnNodeTextColor"/>
-				</case>
-				<case tag="node_network_point" value="rwn" nameTag="rwn_ref">
-					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$rwnNodeTextColor"/>
-					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$rwnNodeTextColor"/>
-				</case>
-				<case tag="node_network_point" value="lwn" nameTag="lwn_ref">
-					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$lwnNodeTextColor"/>
-					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$lwnNodeTextColor"/>
-				</case>
-				<case tag="node_network_point" value="multiple" nameTag="iwn_ref">
-					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$iwnNodeTextColor"/>
-					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$iwnNodeTextColor"/>
-				</case>
-				<case tag="node_network_point" value="multiple" nameTag="nwn_ref">
-					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$nwnNodeTextColor"/>
-					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$nwnNodeTextColor"/>
-				</case>
-				<case tag="node_network_point" value="multiple" nameTag="rwn_ref">
-					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$rwnNodeTextColor"/>
-					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$rwnNodeTextColor"/>
-				</case>
-				<case tag="node_network_point" value="multiple" nameTag="lwn_ref">
-					<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$lwnNodeTextColor"/>
-					<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$lwnNodeTextColor"/>
-				</case>
-				<apply>
-					<switch>
-						<case hikingRoutesOSMC="walkingRoutesOSMC" textColor="$hikingRoutesTextColor" textHaloColor="#ddebf4ff">
-							<apply_if nightMode="true" textColor="#ebf4ff" textHaloColor="#cc0078ff"/>
-						</case>
-						<case hikingRoutesOSMC="walkingRoutesScopeOSMC" textHaloColor="#ddebf4ff">
-							<apply_if nightMode="true" textColor="#ebf4ff"/>
-						</case>
-						<case hikingRoutesOSMC="walkingRoutesOSMCNodes" textHaloColor="#ccffffff"/>
-						<apply_if maxzoom="13" textSize="13"/>
-						<apply_if minzoom="14" maxzoom="15" textSize="16"/>
-						<apply_if minzoom="16" textSize="20"/>
-						<apply_if minzoom="19" nameTag2="walking_route_name"/>
-						<apply_if minzoom="19" nameTag2="foot_route_name"/>
-						<apply_if minzoom="19" nameTag2="hiking_route_name"/>
-						<apply textOrder="5" textMinDistance="100" textBold="true" textHaloRadius="4" textWrapWidth="30"/>
-						<apply_if showCycleRoutes="true" textOrder="45"/>
-						<apply_if showCycleNodeNetworkRoutes="true" textOrder="45"/>
-						<apply_if engine_v1="true" textDy="2"/>
-					</switch>
-				</apply>
-			</switch>
-			<apply_if legend="true" textOnPath="true"/>
-		</switch>
-		<!-- OSMC symbols -->
-		<switch minzoom="12" textMinDistance="101" textOnPath="false" textSize="12" textColor="#00ffffff" textOrder="43" seq="1:10">
-			<!-- Hiking -->
-			<switch>
-				<case hikingRoutesOSMC="walkingRoutesOSMC" tag="route_hiking" value="" nameTag="route_hiking_#SEQ_osmc_text"/>
-				<case hikingRoutesOSMC="walkingRoutesScopeOSMC" tag="route_hiking" value="" nameTag="route_hiking_#SEQ_osmc_text"/>
-				<apply textBold="true" textColor="#000000"/>
-				<apply_if textLength="2" textShield="osmc_white_bg_2"/>
-				<apply_if textLength="3" textShield="osmc_white_bg_3"/>
-				<apply_if textLength="4" textShield="osmc_white_bg_4"/>
-				<apply_if textLength="5" textShield="osmc_white_bg_4"/>
-				<apply_if textLength="6" textShield="osmc_white_bg_4"/>
-				<apply textShield="osmc_?route_hiking_#SEQ_osmc_background?_bg" icon="osmc_?route_hiking_#SEQ_osmc_foreground?"/>
-				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=red" textColor="$osmcRedTextColor"/>
-				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=brown" textColor="$osmcBrownTextColor"/>
-				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=orange" textColor="$osmcOrangeTextColor"/>
-				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=darkyellow" textColor="$osmcDarkyellowTextColor"/>
-				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=yellow" textColor="$osmcYellowTextColor"/>
-				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=lightgreen" textColor="$osmcLightgreenTextColor"/>
-				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=green" textColor="$osmcGreenTextColor"/>
-				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=lightblue" textColor="$osmcLightblueTextColor"/>
-				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=blue" textColor="$osmcBlueTextColor"/>
-				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=purple" textColor="$osmcPurpleTextColor"/>
-				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=gray" textColor="$osmcGrayTextColor"/>
-				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=black" textColor="#000000" textHaloRadius="1" textHaloColor="#30ffffff"/>
-				<apply_if additional="route_hiking_#SEQ_osmc_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
-			</switch>
-			<switch>
-				<case hikingRoutesOSMC="walkingRoutesOSMC" tag="route_hiking" value="" nameTag="route_hiking_#SEQ_osmc_stub_name_v2"/>
-				<case hikingRoutesOSMC="walkingRoutesScopeOSMC" tag="route_hiking" value="" nameTag="route_hiking_#SEQ_osmc_stub_name_v2"/>
-				<apply textShield="osmc_?route_hiking_#SEQ_osmc_background?_bg" icon="osmc_?route_hiking_#SEQ_osmc_foreground?"/>
-			</switch>
-			<!-- Bicycle -->
-			<switch>
-				<case showCycleRoutes="true" tag="route_bicycle" value="" nameTag="route_bicycle_#SEQ_osmc_text"/>
-				<apply textBold="true" textColor="#000000"/>
-				<apply_if textLength="2" textShield="osmc_white_bg_2"/>
-				<apply_if textLength="3" textShield="osmc_white_bg_3"/>
-				<apply_if textLength="4" textShield="osmc_white_bg_4"/>
-				<apply_if textLength="5" textShield="osmc_white_bg_4"/>
-				<apply_if textLength="6" textShield="osmc_white_bg_4"/>
-				<apply textShield="osmc_?route_bicycle_#SEQ_osmc_background?_bg" icon="osmc_?route_bicycle_#SEQ_osmc_foreground?"/>
-				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=red" textColor="$osmcRedTextColor"/>
-				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=brown" textColor="$osmcBrownTextColor"/>
-				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=orange" textColor="$osmcOrangeTextColor"/>
-				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=darkyellow" textColor="$osmcDarkyellowTextColor"/>
-				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=yellow" textColor="$osmcYellowTextColor"/>
-				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=lightgreen" textColor="$osmcLightgreenTextColor"/>
-				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=green" textColor="$osmcGreenTextColor"/>
-				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=lightblue" textColor="$osmcLightblueTextColor"/>
-				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=blue" textColor="$osmcBlueTextColor"/>
-				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=purple" textColor="$osmcPurpleTextColor"/>
-				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=gray" textColor="$osmcGrayTextColor"/>
-				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=black" textColor="#000000" textHaloRadius="1" textHaloColor="#30ffffff"/>
-				<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
-			</switch>
-			<case showCycleRoutes="true" tag="route_bicycle" value="" nameTag="route_bicycle_#SEQ_osmc_stub_name_v2" textShield="osmc_?route_bicycle_#SEQ_osmc_background?_bg" icon="osmc_?route_bicycle_#SEQ_osmc_foreground?"/>
-			<!-- MTB -->
-			<switch>
-				<case showMtbRoutes="true" tag="route_mtb" value="" nameTag="route_mtb_#SEQ_osmc_text"/>
-				<apply textBold="true" textColor="#000000"/>
-				<apply_if textLength="2" textShield="osmc_white_bg_2"/>
-				<apply_if textLength="3" textShield="osmc_white_bg_3"/>
-				<apply_if textLength="4" textShield="osmc_white_bg_4"/>
-				<apply_if textLength="5" textShield="osmc_white_bg_4"/>
-				<apply_if textLength="6" textShield="osmc_white_bg_4"/>
-				<apply textShield="osmc_?route_mtb_#SEQ_osmc_background?_bg" icon="osmc_?route_mtb_#SEQ_osmc_foreground?"/>
-				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=red" textColor="$osmcRedTextColor"/>
-				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=brown" textColor="$osmcBrownTextColor"/>
-				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=orange" textColor="$osmcOrangeTextColor"/>
-				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=darkyellow" textColor="$osmcDarkyellowTextColor"/>
-				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=yellow" textColor="$osmcYellowTextColor"/>
-				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=lightgreen" textColor="$osmcLightgreenTextColor"/>
-				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=green" textColor="$osmcGreenTextColor"/>
-				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=lightblue" textColor="$osmcLightblueTextColor"/>
-				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=blue" textColor="$osmcBlueTextColor"/>
-				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=purple" textColor="$osmcPurpleTextColor"/>
-				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=gray" textColor="$osmcGrayTextColor"/>
-				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=black" textColor="#000000" textHaloRadius="1" textHaloColor="#30ffffff"/>
-				<apply_if additional="route_mtb_#SEQ_osmc_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
-			</switch>
-			<case showMtbRoutes="true" tag="route_mtb" value="" nameTag="route_mtb_#SEQ_osmc_stub_name_v2" textShield="osmc_?route_mtb_#SEQ_osmc_background?_bg" icon="osmc_?route_mtb_#SEQ_osmc_foreground?"/>
-			<!-- Horse -->
-			<switch>
-				<case horseRoutes="true" tag="route_horse" value="" nameTag="route_horse_#SEQ_osmc_text"/>
-				<apply textBold="true" textColor="#000000"/>
-				<apply_if textLength="2" textShield="osmc_white_bg_2"/>
-				<apply_if textLength="3" textShield="osmc_white_bg_3"/>
-				<apply_if textLength="4" textShield="osmc_white_bg_4"/>
-				<apply_if textLength="5" textShield="osmc_white_bg_4"/>
-				<apply_if textLength="6" textShield="osmc_white_bg_4"/>
-				<apply textShield="osmc_?route_horse_#SEQ_osmc_background?_bg" icon="osmc_?route_horse_#SEQ_osmc_foreground?"/>
-				<apply_if additional="route_horse_#SEQ_osmc_textcolor=red" textColor="$osmcRedTextColor"/>
-				<apply_if additional="route_horse_#SEQ_osmc_textcolor=brown" textColor="$osmcBrownTextColor"/>
-				<apply_if additional="route_horse_#SEQ_osmc_textcolor=orange" textColor="$osmcOrangeTextColor"/>
-				<apply_if additional="route_horse_#SEQ_osmc_textcolor=darkyellow" textColor="$osmcDarkyellowTextColor"/>
-				<apply_if additional="route_horse_#SEQ_osmc_textcolor=yellow" textColor="$osmcYellowTextColor"/>
-				<apply_if additional="route_horse_#SEQ_osmc_textcolor=lightgreen" textColor="$osmcLightgreenTextColor"/>
-				<apply_if additional="route_horse_#SEQ_osmc_textcolor=green" textColor="$osmcGreenTextColor"/>
-				<apply_if additional="route_horse_#SEQ_osmc_textcolor=lightblue" textColor="$osmcLightblueTextColor"/>
-				<apply_if additional="route_horse_#SEQ_osmc_textcolor=blue" textColor="$osmcBlueTextColor"/>
-				<apply_if additional="route_horse_#SEQ_osmc_textcolor=purple" textColor="$osmcPurpleTextColor"/>
-				<apply_if additional="route_horse_#SEQ_osmc_textcolor=gray" textColor="$osmcGrayTextColor"/>
-				<apply_if additional="route_horse_#SEQ_osmc_textcolor=black" textColor="#000000" textHaloRadius="1" textHaloColor="#30ffffff"/>
-				<apply_if additional="route_horse_#SEQ_osmc_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
-			</switch>
-			<case horseRoutes="true" tag="route_horse" value="" nameTag="route_horse_#SEQ_osmc_stub_name_v2" textShield="osmc_?route_horse_#SEQ_osmc_background?_bg" icon="osmc_?route_horse_#SEQ_osmc_foreground?"/>
-		</switch>
 		<switch minzoom="14" nameTag="" textColor="$railwayTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$defaultTextHaloColor" textOrder="251">
 			<case tag="railway" value="rail"/>
 			<case tag="railway" value="tram"/>
@@ -2724,8 +2912,8 @@
 				<switch>
 					<case minzoom="$placeNeighbourhoodMinZoom" tag="place" value="neighbourhood" nameTag="" textOrder="39"/>
 					<case minzoom="12" tag="place" value="borough" textItalic="true" nameTag="" textOrder="38"/>
-					<case minzoom="13" tag="place" value="quarter" textItalic="true" nameTag="" textOrder="37"/>
-					<case minzoom="14" tag="place" value="city_block" textItalic="true" nameTag="" textOrder="36"/>
+					<case minzoom="13" tag="place" value="quarter" textItalic="true" nameTag="" textOrder="137"/>
+					<case minzoom="14" tag="place" value="city_block" textItalic="true" nameTag="" textOrder="136"/>
 					<case minzoom="$placeHamletMinZoom" tag="place" value="hamlet" nameTag="" textOrder="42"/>
 					<case minzoom="$placeHamletMinZoom" tag="place" value="farm" nameTag="" textOrder="109"/>
 					<case minzoom="12" tag="place" value="plot" nameTag="" textOrder="108"/>
@@ -2782,8 +2970,7 @@
 		</switch>
 		<switch minzoom="11" nameTag="">
 			<case tag="place" value="island">
-				<apply_if maxzoom="12" textOrder="24"/>
-				<apply_if minzoom="13" textOrder="37"/>
+				<apply_if minzoom="12" textOrder="37"/>
 			</case>
 			<case minzoom="13" tag="place" value="islet"/>
 			<apply textColor="$placeCityVillageTextColor" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColor" intersectionMargin="15" textItalic="true" nameTag="" textSize="14"/>
@@ -2807,18 +2994,20 @@
 				<case tag="military" value="barracks" nameTag=""/>
 				<case tag="abandoned:building" value="" nameTag=""/>
 				<case tag="disused:building" value="" nameTag=""/>
-				<case tag="building" value="" nameTag="" nameTag2="addr:housenumber"/>
-				<case tag="building" value="" nameTag="addr:housename" nameTag2="addr:housenumber"/>
-				<case tag="building" value="" nameTag="addr:housenumber" />
+				<case hideHouseNumbers="true" hideBuildings="false" tag="building" value="" nameTag=""/>
+				<case hideHouseNumbers="true" tag="building" value="" nameTag="addr:housename"/>
+				<case hideHouseNumbers="false" tag="building" value="" nameTag="" nameTag2="addr:housenumber"/>
+				<case hideHouseNumbers="false" tag="building" value="" nameTag="addr:housename" nameTag2="addr:housenumber"/>
+				<case hideHouseNumbers="false" tag="building" value="" nameTag="addr:housenumber" />
 				<apply_if maxzoom="17" textSize="13" textMinDistance="40" intersectionMargin="20"/>
 				<apply_if minzoom="18" textSize="15"/>
 				<apply_if engine_v1="true" textDy="7"/>
 				<apply textColor="$buildingTextColor" textHaloColor="$buildingTextHaloColor" textWrapWidth="20" textOrder="135"/>
 			</switch>
 			<switch>
-				<case minzoom="17" tag="addr:housenumber" value="" nameTag="" nameTag2="addr:housenumber"/>
-				<case minzoom="17" tag="addr:housenumber" value="" nameTag="addr:housename" nameTag2="addr:housenumber"/>
-				<case minzoom="17" tag="addr:housenumber" value="" nameTag="addr:housenumber"/>
+				<case hideHouseNumbers="false" minzoom="17" tag="addr:housenumber" value="" nameTag="" nameTag2="addr:housenumber"/>
+				<case hideHouseNumbers="false" minzoom="17" tag="addr:housenumber" value="" nameTag="addr:housename" nameTag2="addr:housenumber"/>
+				<case hideHouseNumbers="false" minzoom="17" tag="addr:housenumber" value="" nameTag="addr:housenumber"/>
 				<apply_if engine_v1="false">
 					<case maxzoom="17" textSize="14" intersectionMargin="20"/>
 					<case minzoom="18" textSize="15" intersectionMargin="20"/>
@@ -3334,14 +3523,24 @@
 						<case tag="barrier" value="debris"/>
 						<case tag="barrier" value="log"/>
 						<case tag="barrier" value="jersey_barrier"/>
+						<case tag="barrier" value="wicket_gate"/>
 						<case tag="barrier" value="horse_stile"/>
 						<case tag="barrier" value="kissing_gate"/>
 						<case tag="barrier" value="cycle_barrier"/>
 						<case tag="barrier" value="bus_trap"/>
+						<case tag="barrier" value="coupure"/>
+						<case tag="barrier" value="planter"/>
+						<case tag="barrier" value="spikes"/>
+						<case tag="barrier" value="wedge"/>
+						<case tag="barrier" value="sump_buster"/>
 						<case tag="barrier" value="bump_gate"/>
 						<case tag="barrier" value="cattle_grid"/>
 						<case tag="barrier" value="toll_booth"/>
 						<case tag="barrier" value="bollard"/>
+						<case tag="barrier" value="tyres"/>
+						<case tag="barrier" value="tank_trap"/>
+						<case tag="barrier" value="bar"/>
+						<case tag="barrier" value="barrier_board"/>
 						<case tag="barrier" value="border_control"/>
 						<case tag="barrier" value="motorcycle_barrier"/>
 					</switch>
@@ -3393,83 +3592,6 @@
 				<apply_if baseAppMode="bicycle" additional="bicycle=yes" textColor="$manMadeTextColor"/>
 				<apply_if baseAppMode="bicycle" additional="bicycle=designated" textColor="$manMadeTextColor"/>
 			</apply_if>
-		</switch>
-		<!-- Cycling: texts for the cycle networks -->
-		<switch textHaloColor="$cycleRouteTextHaloColor" textWrapWidth="30">
-			<switch minzoom="14" textHaloRadius="$textHaloRadius">
-				<!-- routes -->
-				<case tag="route_bicycle" value="" nameTag="bicycle_ref" textOrder="43" textColor="$cycleRouteTextColor"/>
-				<!-- <case tag="route_bicycle" value="" nameTag="bicycle_name" textOrder="43" textColor="$cycleRouteTextColor"/>-->
-				<case tag="route_mtb" value="" nameTag="bicycle_ref" nameTag2="mtb:name" textOrder="43" textColor="$mtbRouteTextColor"/>
-				<case tag="route_mtb" value="" nameTag="bicycle_mtb:name" textOrder="43" textColor="$mtbRouteTextColor"/>
-				<apply>
-					<case maxzoom="12" textSize="14"/>
-					<case maxzoom="15" textSize="16"/>
-					<case maxzoom="16" textSize="17"/>
-					<case maxzoom="17" textSize="18"/>
-					<case minzoom="18" textSize="21"/>
-				</apply>
-				<apply textOnPath="true"/>
-			</switch>
-			<switch minzoom="11" legend="false" textBold="true">
-				<!-- old way to display -->
-				<case showCycleRoutes="true" tag="multiple_node_networks" value="true" nameTag="lcn_ref_value" textOrder="37"/>
-				<case showCycleNodeNetworkRoutes="true" tag="multiple_node_networks" value="true" nameTag="lcn_ref_value" textOrder="37"/>
-				<case showCycleRoutes="true" tag="multiple_node_networks" value="true" nameTag="rcn_ref_value" textOrder="38"/>
-				<case showCycleNodeNetworkRoutes="true" tag="multiple_node_networks" value="true" nameTag="rcn_ref_value" textOrder="38"/>
-				<case showCycleRoutes="true" tag="multiple_node_networks" value="true" nameTag="ncn_ref_value" textOrder="39"/>
-				<case showCycleNodeNetworkRoutes="true" tag="multiple_node_networks" value="true" nameTag="ncn_ref_value" textOrder="39"/>
-				<case showCycleRoutes="true" tag="multiple_node_networks" value="true" nameTag="icn_ref_value" textOrder="39"/>
-				<case showCycleNodeNetworkRoutes="true" tag="multiple_node_networks" value="true" nameTag="icn_ref_value" textOrder="39"/>
-
-				<case showCycleRoutes="true" tag="node_network_point" value="lcn" nameTag="lcn_ref" textOrder="37"/>
-				<case showCycleNodeNetworkRoutes="true" tag="node_network_point" value="lcn" nameTag="lcn_ref" textOrder="37"/>
-				<case showCycleRoutes="true" tag="node_network_point" value="multiple" nameTag="lcn_ref" textOrder="37"/>
-				<case showCycleNodeNetworkRoutes="true" tag="node_network_point" value="multiple" nameTag="lcn_ref" textOrder="37"/>
-				<case showCycleRoutes="true" tag="node_network_point" value="rcn"  nameTag="rcn_ref" textOrder="38"/>
-				<case showCycleNodeNetworkRoutes="true" tag="node_network_point" value="rcn" nameTag="rcn_ref" textOrder="38"/>
-				<case showCycleRoutes="true" tag="node_network_point" value="multiple" nameTag="rcn_ref" textOrder="38"/>
-				<case showCycleNodeNetworkRoutes="true" tag="node_network_point" value="multiple" nameTag="rcn_ref" textOrder="38"/>
-				<case showCycleRoutes="true" tag="node_network_point" value="ncn"  nameTag="ncn_ref" textOrder="39"/>
-				<case showCycleNodeNetworkRoutes="true" tag="node_network_point" value="ncn" nameTag="ncn_ref" textOrder="39"/>
-				<case showCycleRoutes="true" tag="node_network_point" value="multiple" nameTag="ncn_ref" textOrder="39"/>
-				<case showCycleNodeNetworkRoutes="true" tag="node_network_point" value="multiple" nameTag="ncn_ref" textOrder="39"/>
-				<case showCycleRoutes="true" tag="node_network_point" value="icn" nameTag="icn_ref" textOrder="39"/>
-				<case showCycleNodeNetworkRoutes="true" tag="node_network_point" value="icn" nameTag="icn_ref" textOrder="39"/>
-				<case showCycleRoutes="true" tag="node_network_point" value="multiple" nameTag="icn_ref" textOrder="39"/>
-				<case showCycleNodeNetworkRoutes="true" tag="node_network_point" value="multiple" nameTag="icn_ref" textOrder="39"/>
-
-				<apply_if minzoom="11" maxzoom="12" textSize="10">
-					<apply_if textLength="3" textSize="8"/>
-				</apply_if>
-				<apply_if minzoom="13" maxzoom="13" textSize="12">
-					<apply_if textLength="3" textSize="10"/>
-				</apply_if>
-				<apply_if minzoom="14" maxzoom="15" textSize="14">
-					<apply_if textLength="3" textSize="11"/>
-				</apply_if>
-				<apply_if minzoom="16" maxzoom="17" textSize="17">
-					<apply_if textLength="3" textSize="15"/>
-				</apply_if>
-				<apply_if minzoom="18" textSize="21">
-					<apply_if textLength="3" textSize="18"/>
-				</apply_if>
-
-				<apply>
-					<switch>
-						<case textLength="1"/>
-						<case textLength="2"/>
-						<case textLength="3"/>
-						<apply_if minzoom="11" maxzoom="12" textShield="purple_circle_small_cycle_node_shield"/>
-						<apply_if minzoom="13" maxzoom="13" textShield="purple_circle_medium_cycle_node_shield"/>
-						<apply_if minzoom="14" maxzoom="15" textShield="purple_circle_large_cycle_node_shield"/>
-						<apply_if minzoom="16" maxzoom="17" textShield="purple_circle_xlarge_cycle_node_shield"/>
-						<apply_if minzoom="18" textShield="purple_circle_xxlarge_cycle_node_shield"/>
-					</switch>
-				</apply>
-				<apply_if textColor="$cycleRouteTextColor"/>
-				<apply_if engine_v1="true" textDy="2"/>
-			</switch>
 		</switch>
 		<switch OSMMapperAssistant="true" minzoom="15" intersectionSizeFactor="0" intersectionMargin="0">
 			<switch tag="fixme_tag" value="yes" nameTag="fixme" textColor="#ffffff" textHaloColor="#ccf800e0" textWrapWidth="20" textOrder="1">
@@ -3890,6 +4012,11 @@
 						<case minzoom="14" tag="barrier" value="swing_gate" icon="barrier_swing_gate" shield="topo_barrier_swing_gate_shield"/>
 						<case minzoom="14" tag="barrier" value="bump_gate" icon="barrier_bump_gate" shield="barrier_bump_gate_shield"/>
 						<case minzoom="14" tag="barrier" value="bus_trap" icon="barrier_bus_trap" shield="barrier_bus_trap_shield"/>
+						<case minzoom="14" tag="barrier" value="coupure" icon="barrier_coupure" shield="barrier_coupure_shield"/>
+						<case minzoom="14" tag="barrier" value="planter" icon="barrier_planter" shield="barrier_planter_shield"/>
+						<case minzoom="14" tag="barrier" value="spikes" icon="barrier_spikes" shield="barrier_spikes_shield"/>
+						<case minzoom="16" tag="barrier" value="wedge" icon="barrier_wedge" shield="barrier_wedge_shield"/>
+						<case minzoom="14" tag="barrier" value="sump_buster" icon="barrier_sump_buster" shield="barrier_sump_buster_shield"/>
 						<case minzoom="14" tag="barrier" value="chain" icon="barrier_chain" shield="barrier_chain_shield"/>
 	<!--					<case minzoom="14" tag="barrier" value="height_restrictor" icon="barrier_height_restrictor" shield="barrier_height_restrictor_shield"/>-->
 						<case minzoom="14" tag="barrier" value="cycle_barrier" icon="barrier_cycle_barrier" shield="barrier_cycle_barrier_shield"/>
@@ -3903,6 +4030,10 @@
 						<case minzoom="14" tag="barrier" value="bollard" icon="barrier_bollard" shield="barrier_bollard_shield"/>
 						<case minzoom="14" tag="barrier" value="block" icon="barrier_block" shield="topo_barrier_block_shield"/>
 						<case minzoom="15" tag="barrier" value="jersey_barrier" icon="barrier_colored_jersey_barrier" shield="barrier_jersey_barrier_shield"/>
+						<case minzoom="16" tag="barrier" value="wicket_gate" icon="barrier_entrance" shield="barrier_entrance_shield"/>
+						<case minzoom="15" tag="barrier" value="barrier_board" icon="barrier_barrier_board" shield="barrier_barrier_board_shield"/>
+						<case minzoom="15" tag="barrier" value="tyres" icon="barrier_tyres" shield="barrier_tyres_shield"/>
+						<case minzoom="15" tag="barrier" value="tank_trap" icon="barrier_tank_trap" shield="barrier_tank_trap_shield"/>
 						<apply_if minzoom="14" maxzoom="14" icon="barrier_small_black_bold_2" shield="" iconVisibleSize="0">
 						</apply_if>
 						<apply_if minzoom="15" maxzoom="15" icon="barrier_small_black_bold_1" shield="" iconVisibleSize="0">
@@ -3910,6 +4041,7 @@
 					</switch>
 					<switch>
 						<case minzoom="14" tag="barrier" value="debris" icon="barrier_colored_debris" shield="topo_barrier_debris_shield"/>
+						<case minzoom="14" tag="barrier" value="bar" icon="barrier_bar" shield="barrier_bar_shield"/>
 						<case minzoom="14" tag="barrier" value="log" icon="barrier_colored_log" shield="topo_barrier_log_shield"/>
 						<apply_if minzoom="14" maxzoom="14" icon="barrier_small_brown_bold_2" shield="" iconVisibleSize="0"/>
 						<apply_if minzoom="15" maxzoom="15" icon="barrier_small_brown_bold_1" shield="" iconVisibleSize="0"/>
@@ -4260,6 +4392,7 @@
 
 					<case minzoom="11" tag="natural" value="beach" color_0="$beachColor" shader="topo_sand"/>
 					<case minzoom="11" tag="natural" value="sand" color_0="$sandColor" shader="topo_sand"/>
+					<case minzoom="11" tag="natural" value="dune" color_0="$sandColor" shader="topo_dune"/>
 					<switch minzoom="13">
 					<!-- Special nature with shaders -->
 						<case tag="natural" value="scree"/>
@@ -5262,81 +5395,47 @@
 			<switch>
 				<switch>
 					<switch strokeWidth="0.1">
-						<case minzoom="12" tag="highway" value="track">
-							<case lessDetailed="false" maxzoom="13" strokeWidth_5="$trackLowZoomStrokeWidth" pathEffect_5=""/>
-							<case minzoom="14" strokeWidth_5="$trackStrokeWidth"/>
-							<apply_if lessDetailed="false" maxzoom="13" strokeWidth_4="2:2"/>
-							<apply_if minzoom="14" maxzoom="14" strokeWidth_4="2:2"/>
-							<apply_if minzoom="15" strokeWidth_4="2.6:2.6"/>
-							<apply color_4="$null" color_5="$trackColor" pathEffect_5="$trackPathEffect"/>
-							<apply_if surfaceIntegrity="false">
-								<!-- Dash pattern: solid(100%), long-dashed(77%), medium-dashed(63%), short-dashed(50%), dotted(40%), dash-dotted(64%) for non-specified -->
-								<case additional="tracktype=grade1" pathEffect_5=""/>
-								<case additional="tracktype=grade2" pathEffect_5="10_3"/>
-								<case additional="tracktype=grade3" pathEffect_5="5_3"/>
-								<case additional="tracktype=grade4" pathEffect_5="3_3"/>
-								<case additional="tracktype=grade5" pathEffect_5="2_3"/>
-								<apply_if minzoom="12" maxzoom="13" pathEffect_5=""/>
-							</apply_if>
-							<apply_if surfaceIntegrity="true">
-								<apply_if minzoom="12" pathEffect_5="8_3"/>
-								<apply_if additional="trail_visibility=bad" color_5="#888888"/>
-								<apply_if additional="trail_visibility=horrible" color_5="#888888"/>
-								<apply_if additional="trail_visibility=no" color_5="#888888"/>
-							</apply_if>
-						</case>
-						<case minzoom="12" tag="highway" value="path">
-							<case baseAppMode="bicycle" minzoom="14" additional="bicycle=designated" color_5="$cyclewayColor" pathEffect_5="4_2" strokeWidth_5="1:1"/>
-							<case lessDetailed="false" maxzoom="14" strokeWidth_4="1.4:1.4" color_5="$pathColor" pathEffect_5="$pathPathEffect">
-								<case maxzoom="12" strokeWidth_5="$pathLowZoomStrokeWidth" color_5="$pathLowZoomColor" pathEffect_5="$pathLowZoomPathEffect"/>
-								<case maxzoom="13" strokeWidth_5="$pathLowZoomStrokeWidth" color_5="$pathLowZoomColor" pathEffect_5="$pathLowZoomPathEffect"/>
-								<case strokeWidth_5="$pathStrokeWidth"/>
+						<switch>
+							<case minzoom="12" tag="highway" value="track">
+								<case lessDetailed="false" maxzoom="13" strokeWidth_5="$trackLowZoomStrokeWidth" pathEffect_5=""/>
+								<case minzoom="14" strokeWidth_5="$trackStrokeWidth"/>
+								<apply_if lessDetailed="false" maxzoom="13" strokeWidth_4="2:2"/>
+								<apply_if minzoom="14" maxzoom="14" strokeWidth_4="2:2"/>
+								<apply_if minzoom="15" strokeWidth_4="2.6:2.6"/>
+								<apply color_4="$null" color_5="$trackColor" pathEffect_5="$trackPathEffect"/>
+								<apply_if surfaceIntegrity="false">
+									<!-- Dash pattern: solid(100%), long-dashed(77%), medium-dashed(63%), short-dashed(50%), dotted(40%), dash-dotted(64%) for non-specified -->
+									<case additional="tracktype=grade1" pathEffect_5=""/>
+									<case additional="tracktype=grade2" pathEffect_5="10_3"/>
+									<case additional="tracktype=grade3" pathEffect_5="5_3"/>
+									<case additional="tracktype=grade4" pathEffect_5="3_3"/>
+									<case additional="tracktype=grade5" pathEffect_5="2_3"/>
+									<apply_if minzoom="12" maxzoom="13" pathEffect_5=""/>
+								</apply_if>
+								<apply_if surfaceIntegrity="true">
+									<apply_if minzoom="12" pathEffect_5="8_3"/>
+									<apply_if additional="trail_visibility=bad" color_5="#888888"/>
+									<apply_if additional="trail_visibility=horrible" color_5="#888888"/>
+									<apply_if additional="trail_visibility=no" color_5="#888888"/>
+								</apply_if>
 							</case>
-							<case minzoom="15" strokeWidth_5="$pathStrokeWidth" color_5="$pathColor" pathEffect_5="$pathPathEffect"/>
-							<apply_if minzoom="15" strokeWidth_4="1.6:1.6"/>
-							<apply_if surfaceIntegrity="true">
-								<apply_if minzoom="12" pathEffect_5="$pathPathEffectSurfaceIntegrity"/>
-								<apply_if additional="trail_visibility=bad" color_5="#888888"/>
-								<apply_if additional="trail_visibility=horrible" color_5="#888888"/>
-								<apply_if additional="trail_visibility=no" color_5="#888888"/>
-							</apply_if>
-							<apply_if additional="osmand_rungs=yes" color_5="$rungsColor" strokeWidth_5="1:1.5"/>
-							<apply_if additional="assisted_trail=yes" color_5="$rungsColor" strokeWidth_5="1:1.5"/>
-							<apply_if additional="osmand_safety_rope=yes" color_5="$rungsColor" strokeWidth_5="1:1.5"/>
-						</case>
-						<case minzoom="13" tag="highway" value="footway" color_5="$footwayColor">
-							<switch maxzoom="14">
-								<case lessDetailed="false">
-									<case layer="1" strokeWidth_5="0.6"/>
-									<case additional="layer=2" strokeWidth_5="0.6"/>
-									<case additional="layer=3" strokeWidth_5="0.6"/>
-									<case maxzoom="13" strokeWidth_4="1.4:1.4" strokeWidth_5="$footwayLowZoomStrokeWidth" pathEffect_5=""/>
-									<case minzoom="14" maxzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="$footwayLowZoomStrokeWidth" pathEffect_5="2_2"/>
+							<case minzoom="13" tag="highway" value="cycleway">
+								<case baseAppMode="bicycle">
+									<apply_if lessDetailed="false" maxzoom="13" strokeWidth_4="1:1" strokeWidth_5="0.7"/>
+									<apply_if minzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="1:1"/>
 								</case>
-							</switch>
-							<case minzoom="15" strokeWidth_4="1.6:1.6" strokeWidth_5="$footwayStrokeWidth" pathEffect_5="2_2"/>
-							<apply_if surfaceIntegrity="true">
-								<apply_if minzoom="12" pathEffect_5="10_3"/>
-								<apply_if additional="trail_visibility=bad" color_5="#888888"/>
-								<apply_if additional="trail_visibility=horrible" color_5="#888888"/>
-								<apply_if additional="trail_visibility=no" color_5="#888888"/>
-							</apply_if>
-						</case>
-						<case minzoom="13" tag="highway" value="cycleway">
-							<case baseAppMode="bicycle">
-								<apply_if lessDetailed="false" maxzoom="13" strokeWidth_4="1:1" strokeWidth_5="0.7"/>
-								<apply_if minzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="1:1"/>
+								<case minzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="$cyclewayStrokeWidth"/>
+								<apply color_5="$cyclewayColor"/>
 							</case>
-							<case minzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="$cyclewayStrokeWidth"/>
-							<apply color_5="$cyclewayColor"/>
-						</case>
-						<case minzoom="12" tag="highway" value="bridleway" color_5="$bridlewayColor" pathEffect_5="6_2">
-							<case lessDetailed="false" maxzoom="13">
-								<case maxzoom="12" strokeWidth_4="0.9" strokeWidth_5="0.8"/>
-								<case minzoom="13" strokeWidth_4="1.2:1.2" strokeWidth_5="1"/>
+							<case minzoom="12" tag="highway" value="bridleway" color_5="$bridlewayColor" pathEffect_5="6_2">
+								<case lessDetailed="false" maxzoom="13">
+									<case maxzoom="12" strokeWidth_4="0.9" strokeWidth_5="0.8"/>
+									<case minzoom="13" strokeWidth_4="1.2:1.2" strokeWidth_5="1"/>
+								</case>
+								<case minzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="$bridlewayStrokeWidth"/>
 							</case>
-							<case minzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="$bridlewayStrokeWidth"/>
-						</case>
+							<apply_if minzoom="12" color_4="$trackSubstrateColor"/> <!-- Substrate -->
+						</switch>
 						<case minzoom="16" tag="highway" value="elevator">
 							<apply color_5="$elevatorColor" strokeWidth_4="2:2" strokeWidth_5="2:2" pathEffect_5="2_1"/>
 						</case>
@@ -5349,20 +5448,86 @@
 							<case tag="abandoned:highway" value="footway"/>
 							<apply color="$null" color_5="$abandonedHighwayTrackColor" strokeWidth_5="1" pathEffect_5="6_2"/>
 						</switch>
-					</switch>
-					<apply>
-						<switch alpineHiking="true" minzoom="12" cap_3="BUTT">
-							<case additional="sac_scale=mountain_hiking" color_3="$sacScaleColorT2" pathEffect_3=""/>
-							<case additional="sac_scale=demanding_mountain_hiking" color_3="$sacScaleColorT3" pathEffect_3="10_3"/>
-							<case additional="sac_scale=alpine_hiking" color_3="$sacScaleColorT4" pathEffect_3=""/>
-							<case additional="sac_scale=demanding_alpine_hiking" color_3="$sacScaleColorT5" pathEffect_3="10_3"/>
-							<case additional="sac_scale=difficult_alpine_hiking" color_3="$sacScaleColorT6" pathEffect_3="3_3"/>
-							<apply_if maxzoom="14" strokeWidth_3="2:2" strokeWidth_4="1"/>
-							<apply_if minzoom="15" maxzoom="17" strokeWidth_3="3:3" strokeWidth_4="1.5:1.5"/>
-							<apply_if minzoom="18" strokeWidth_3="4:4" strokeWidth_4="1.5:1.5"/>
-							<apply color_4="$trackSubstrateColor"/> <!-- Substrate -->
+						<switch>
+							<case minzoom="12" tag="highway" value="path">
+								<case baseAppMode="bicycle" minzoom="14" additional="bicycle=designated" color_5="$cyclewayColor" pathEffect_5="4_2" strokeWidth_5="1:1"/>
+								<case lessDetailed="false" maxzoom="14" strokeWidth_4="1.4:1.4" color_5="$pathColor" pathEffect_5="$pathPathEffect">
+									<case maxzoom="12" strokeWidth_5="$pathLowZoomStrokeWidth" color_5="$pathLowZoomColor" pathEffect_5="$pathLowZoomPathEffect"/>
+									<case maxzoom="13" strokeWidth_5="$pathLowZoomStrokeWidth" color_5="$pathLowZoomColor" pathEffect_5="$pathLowZoomPathEffect"/>
+									<case strokeWidth_5="$pathStrokeWidth"/>
+								</case>
+								<case minzoom="15" strokeWidth_5="$pathStrokeWidth" color_5="$pathColor" pathEffect_5="$pathPathEffect"/>
+								<apply_if minzoom="15" strokeWidth_4="1.6:1.6"/>
+								<apply_if surfaceIntegrity="true">
+									<apply_if minzoom="12" pathEffect_5="$pathPathEffectSurfaceIntegrity"/>
+									<apply_if additional="trail_visibility=bad" color_5="#888888"/>
+									<apply_if additional="trail_visibility=horrible" color_5="#888888"/>
+									<apply_if additional="trail_visibility=no" color_5="#888888"/>
+								</apply_if>
+								<apply_if additional="osmand_rungs=yes" color_5="$rungsColor" strokeWidth_5="1:1.5"/>
+								<apply_if additional="assisted_trail=yes" color_5="$rungsColor" strokeWidth_5="1:1.5"/>
+								<apply_if additional="osmand_safety_rope=yes" color_5="$rungsColor" strokeWidth_5="1:1.5"/>
+							</case>
+							<case minzoom="13" tag="highway" value="footway" color_5="$footwayColor">
+								<switch maxzoom="14">
+									<case lessDetailed="false">
+										<case layer="1" strokeWidth_5="0.6"/>
+										<case additional="layer=2" strokeWidth_5="0.6"/>
+										<case additional="layer=3" strokeWidth_5="0.6"/>
+										<case maxzoom="13" strokeWidth_4="1.4:1.4" strokeWidth_5="$footwayLowZoomStrokeWidth" pathEffect_5=""/>
+										<case minzoom="14" maxzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="$footwayLowZoomStrokeWidth" pathEffect_5="2_2"/>
+									</case>
+								</switch>
+								<case minzoom="15" strokeWidth_4="1.6:1.6" strokeWidth_5="$footwayStrokeWidth" pathEffect_5="2_2"/>
+								<apply_if surfaceIntegrity="true">
+									<apply_if minzoom="12" pathEffect_5="10_3"/>
+									<apply_if additional="trail_visibility=bad" color_5="#888888"/>
+									<apply_if additional="trail_visibility=horrible" color_5="#888888"/>
+									<apply_if additional="trail_visibility=no" color_5="#888888"/>
+								</apply_if>
+							</case>
+							<apply_if minzoom="12">
+								<apply color_4="$trackSubstrateColor"/> <!-- Substrate -->
+								<apply_if alpineHiking="true">
+									<switch>
+										<switch alpineHikingScaleScheme="sacScale">
+											<case additional="sac_scale=mountain_hiking" color_5="$sacScaleColorT2" pathEffect_5=""/>
+											<case additional="sac_scale=demanding_mountain_hiking" color_5="$sacScaleColorT3" pathEffect_5="10_3"/>
+											<case additional="sac_scale=alpine_hiking" color_5="$sacScaleColorT4" pathEffect_5=""/>
+											<case additional="sac_scale=demanding_alpine_hiking" color_5="$sacScaleColorT5" pathEffect_5="10_3"/>
+											<case additional="sac_scale=difficult_alpine_hiking" color_5="$sacScaleColorT6" pathEffect_5="3_3"/>
+										</switch>
+										<switch alpineHikingScaleScheme="caiScale">
+											<case additional="cai_scale=t" color_5="$caiScaleColor" pathEffect_5=""/>
+											<case additional="cai_scale=e" color_5="$caiScaleColor" pathEffect_5="13_2"/>
+											<case additional="cai_scale=ee" color_5="$caiScaleColor" pathEffect_5="6_2"/>
+											<switch>
+												<case additional="cai_scale=eea"/>
+												<case additional="cai_scale=eea:f"/>
+												<case additional="cai_scale=eea:pd"/>
+												<case additional="cai_scale=eea:d"/>
+												<case additional="cai_scale=eea:md"/>
+												<case additional="cai_scale=eea:e"/>
+												<case additional="cai_scale=eai"/>
+												<apply color_5="$caiScaleColor" pathEffect_5="2_2"/>
+											</switch>
+										</switch>
+										<apply color_4="$trackSubstrateAlpineHikingColor"/>
+										<apply_if minzoom="12" maxzoom="13" strokeWidth_5="1:1"/>
+										<apply_if minzoom="14" strokeWidth_5="2"/>
+									</switch>
+									<case additional="sac_scale=demanding_mountain_hiking" pathEffect_5="2_6"/>
+									<case additional="sac_scale=alpine_hiking" pathEffect_5="2_6"/>
+									<case additional="sac_scale=demanding_alpine_hiking" pathEffect_5="2_6"/>
+									<case additional="sac_scale=difficult_alpine_hiking" pathEffect_5="2_6"/>
+								</apply_if>
+								<apply_if maxzoom="14" strokeWidth_3="2:2" strokeWidth_4="1"/>
+								<apply_if minzoom="15" maxzoom="17" strokeWidth_3="3:3" strokeWidth_4="1.5:1.5"/>
+								<apply_if minzoom="18" strokeWidth_3="4:4" strokeWidth_4="1.5:1.5"/>
+								<apply_if lessDetailed="true" maxzoom="13" disable="true"/>
+							</apply_if>
 						</switch>
-					</apply>
+					</switch>
 					<apply_if additional="winter_road=yes">
 						<apply color_4="#55458FFF" strokeWidth_4="3:3"/>
 					</apply_if>
@@ -5703,6 +5868,8 @@
 			<case tag="barrier" value="turnstile"/>
 			<case tag="barrier" value="full-height_turnstile"/>
 			<case tag="barrier" value="kent_carriage_gap"/>
+			<case tag="barrier" value="tyres"/>
+			<case tag="barrier" value="tank_trap"/>
 			<case tag="man_made" value="snow_fence"/>
 			<case tag="waterway" value="rapids" pathEffect="2_2"/>
 			<apply>
@@ -5867,71 +6034,6 @@
 			</apply_if>
 		</case>
 
-<!--		<switch tag="contour" value="elevation">
-			<case minzoom="11" contourLines="11"/>
-			<case minzoom="12" contourLines="12"/>
-			<case minzoom="13" contourLines="13"/>
-			<case minzoom="13" contourLines=""/>
-			<case minzoom="14" contourLines="14"/>
-			<case minzoom="15" contourLines="15"/>
-			<case minzoom="16" contourLines="16"/>
-			<apply>
-				<switch>
-					<case minzoom="15" additional="contourtype=5m" color="$contourLineColor"/>
-					<case minzoom="13" additional="contourtype=20f" color="$contourLineColor"/>
-					<apply>
-						<case contourWidth="thin" strokeWidth="0.3"/>
-						<case contourWidth="medium" strokeWidth="0.6"/>
-						<case contourWidth="thick" strokeWidth="1.1"/>
-						<case strokeWidth="0.3"/>
-					</apply>
-				</switch>
-				<switch>
-					<case minzoom="13" additional="contourtype=10m" color="$contourLineColor"/>
-					<case minzoom="12" additional="contourtype=20m" color="$contourLineColor"/>
-					<case minzoom="12" additional="contourtype=40f" color="$contourLineColor"/>
-					<apply>
-						<case contourWidth="thin" strokeWidth="0.5"/>
-						<case contourWidth="medium" strokeWidth="1"/>
-						<case contourWidth="thick" strokeWidth="1.5"/>
-						<case strokeWidth="0.5"/>
-					</apply>
-				</switch>
-				<switch minzoom="11">
-					<case additional="contourtype=50m" color="$contourLineColor50m"/>
-					<apply>
-						<case contourWidth="thin" strokeWidth="0.6"/>
-						<case contourWidth="medium" strokeWidth="0.9"/>
-						<case contourWidth="thick" strokeWidth="1.3"/>
-						<case strokeWidth="0.6"/>
-					</apply>
-				</switch>
-				<switch minzoom="11">
-					<case additional="contourtype=100m" color="$contourLineColor100m"/>
-					<case additional="contourtype=200f" color="$contourLineColor100m"/>
-					<apply>
-						<case contourWidth="thin" strokeWidth="1"/>
-						<case contourWidth="medium" strokeWidth="1.3"/>
-						<case contourWidth="thick" strokeWidth="1.9"/>
-						<case strokeWidth="1"/>
-					</apply>
-				</switch>
-				<switch minzoom="11">
-					<case additional="contourtype=1000f" color="$contourLineColor100m"/>
-					<apply>
-						<case contourWidth="thin" strokeWidth="1.3"/>
-						<case contourWidth="medium" strokeWidth="1.5"/>
-						<case contourWidth="thick" strokeWidth="2.1"/>
-						<case strokeWidth="1.3"/>
-					</apply>
-				</switch>
-			</apply>
-			<apply_if engine_v1="false" minzoom="15" pathIcon="stroke_brown_left" pathIconStep="100">
-				<apply_if contourColorScheme="light_brown" pathIcon="stroke_light_brown_left"/>
-				<apply_if contourColorScheme="dark_brown" pathIcon="stroke_dark_brown_left"/>
-			</apply_if>
-		</switch>-->
-
 		<switch engine_v1="false" strokeWidth="1">
 			 <case minzoom="14" tag="natural" value="cliff" color="#148c14" pathIcon="stroke_darkgreen" pathIconStep="10"/>
 			 <case minzoom="16" tag="natural" value="slope" color="#44bd6819" pathIcon="stroke_brown_right" pathIconStep="10">
@@ -6056,298 +6158,6 @@
 			<apply_if additional="osmand_safety_rope=yes" color_2="$rungsColor" color_3="$rungsColor"/>
 		</case>
 		<case minzoom="16" tag="ladder" value="yes" strokeWidth="4:4" color="$rungsColor" pathEffect="1_2"/>
-
-		<switch minzoom="11">
-			<switch>
-				<case showCycleRoutes="true" tag="route_bicycle" value=""/>
-				<case showCycleNodeNetworkRoutes="true" tag="route_bicycle" value=""/>
-				<apply>
-					<case maxzoom="11" strokeWidth="1:1"/>
-					<case maxzoom="12" strokeWidth="2:2"/>
-					<case maxzoom="13" strokeWidth="3:3"/>
-					<case maxzoom="14" strokeWidth="4:4"/>
-					<case maxzoom="15" strokeWidth="4:4"/>
-					<case maxzoom="16" strokeWidth="5:5"/>
-					<case maxzoom="17" strokeWidth="6:6"/>
-					<case minzoom="18" strokeWidth="7:7"/>
-				</apply>
-				<apply_if minzoom="13" color="$cycleRouteColor" cap="BUTT"/>
-			</switch>
-			<case showMtbRoutes="true" tag="route_mtb" value="" cap="ROUND">
-				<case maxzoom="11" strokeWidth="1:1" strokeWidth_2="1:1" strokeWidth__2="2:2"/>
-				<case maxzoom="12" strokeWidth="2:2" strokeWidth_2="2:2" strokeWidth__2="3:3"/>
-				<case maxzoom="13" strokeWidth="3:3" strokeWidth_2="3:3" strokeWidth__2="5:5"/>
-				<case maxzoom="14" strokeWidth="4:4" strokeWidth_2="4:4" strokeWidth__2="7:7"/>
-				<case maxzoom="16" strokeWidth="5:5" strokeWidth_2="5:5" strokeWidth__2="9:9"/>
-				<case maxzoom="17" strokeWidth="6:6" strokeWidth_2="6:6" strokeWidth__2="11:11" strokeWidth__1="11:11"/>
-				<case minzoom="18" strokeWidth="7:7" strokeWidth_2="7:7" strokeWidth__2="14:14" strokeWidth__1="14:14"/>
-				<apply_if minzoom="13" color="$cycleRouteColor"/>
-				<apply_if showMtbScale="true">
-					<switch>
-						<case additional="mtb:scale=0" color="$cycleRouteMtbScale0Color">
-							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale0UnrecommendedColor"/>
-						</case>
-						<case additional="mtb:scale=1" color="$cycleRouteMtbScale1Color">
-							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale1UnrecommendedColor"/>
-						</case>
-						<case additional="mtb:scale=2" color="$cycleRouteMtbScale2Color">
-							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale2UnrecommendedColor"/>
-						</case>
-						<case additional="mtb:scale=3" color="$cycleRouteMtbScale3Color">
-							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale3UnrecommendedColor"/>
-						</case>
-						<case additional="mtb:scale=4" color="$cycleRouteMtbScale4Color" color_2="$cycleRouteMtbScale4AdditionalColor">
-							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale4UnrecommendedColor" color_2="$cycleRouteMtbScale4AdditionalUnrecommendedColor"/>
-							<apply_if maxzoom="14" pathEffect_2="0_16_3_9"/>
-							<apply_if minzoom="15" pathEffect_2="0_28_4_8"/>
-						</case>
-						<case additional="mtb:scale=5" color="$cycleRouteMtbScale4Color" color_2="$cycleRouteMtbScale4AdditionalColor">
-							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale4UnrecommendedColor" color_2="$cycleRouteMtbScale4AdditionalUnrecommendedColor"/>
-							<apply_if maxzoom="14" pathEffect_2="0_16_3_3_3_3"/>
-							<apply_if minzoom="15" pathEffect_2="0_26_4_4_4_2"/>
-						</case>
-						<case additional="mtb:scale=6" color="$cycleRouteMtbScale4Color" color_2="$cycleRouteMtbScale4AdditionalColor">
-							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale4UnrecommendedColor" color_2="$cycleRouteMtbScale4AdditionalUnrecommendedColor"/>
-							<apply_if maxzoom="14" pathEffect_2="0_16_9_3"/>
-							<apply_if minzoom="15" pathEffect_2="0_26_14_5"/>
-						</case>
-					</switch>
-				</apply_if>
-				<apply>
-					<switch minzoom="13">
-						<case additional="mtb:scale:uphill=1">
-							<case maxzoom="14" pathEffect_3="1_27"/>
-							<case minzoom="15" pathEffect_3="2_38"/>
-						</case>
-						<case additional="mtb:scale:uphill=2">
-							<case maxzoom="14" pathEffect_3="1_2_1_24"/>
-							<case minzoom="15" pathEffect_3="2_2_2_34"/>
-						</case>
-						<case additional="mtb:scale:uphill=3">
-							<case maxzoom="14" pathEffect_3="1_2_1_2_1_21"/>
-							<case minzoom="15" pathEffect_3="2_2_2_2_2_30"/>
-						</case>
-						<case additional="mtb:scale:uphill=4">
-							<case maxzoom="14" pathEffect_3="1_2_1_2_1_2_1_18"/>
-							<case minzoom="15" pathEffect_3="2_2_2_2_2_2_2_26"/>
-						</case>
-						<case additional="mtb:scale:uphill=5">
-							<case maxzoom="14" pathEffect_3="1_2_1_2_1_2_1_2_1_15"/>
-							<case minzoom="15" pathEffect_3="2_2_2_2_2_2_2_2_2_22"/>
-						</case>
-						<apply color_3="#000000">
-							<apply_if maxzoom="13" strokeWidth_3="2.5:2.5"/>
-							<apply_if minzoom="14" maxzoom="16" strokeWidth_3="3:3"/>
-							<apply_if minzoom="17" strokeWidth_3="4.5:4.5"/>
-						</apply>
-					</switch>
-				</apply>
-				<apply>
-					<switch minzoom="13">
-						<case additional="class:bicycle:mtb=1"/>
-						<case additional="class:bicycle:mtb=2"/>
-						<case additional="class:bicycle:mtb=3"/>
-						<apply color__2="$classBicycleMtbColor"/>
-					</switch>
-				</apply>
-				<apply_if minzoom="15">
-					<apply_if additional="incline=up" pathIcon="arrow_red_down_big" pathIconStep="70"/>
-					<apply_if additional="incline=down" pathIcon="arrow_red_up_big" pathIconStep="70"/>
-				</apply_if>
-			</case>
-			<apply_if showCycleNodeNetworkRoutes="true">
-				<switch>
-					<case additional="node_network=lcn" color="$cycleRoutelcnColor"/>
-					<case additional="node_network=rcn" color="$cycleRoutercnColor"/>
-					<case additional="node_network=ncn" color="$cycleRoutencnColor"/>
-					<case additional="node_network=icn" color="$cycleRouteicnColor"/>
-					<apply>
-						<case maxzoom="11" strokeWidth="1:1" pathEffect="8_1"/>
-						<case maxzoom="12" strokeWidth="2:2" pathEffect="11_1"/>
-						<case maxzoom="13" strokeWidth="3:3" pathEffect="15_2"/>
-						<case maxzoom="14" strokeWidth="4:4" pathEffect="20_2"/>
-						<case maxzoom="15" strokeWidth="4:4" pathEffect="25_2"/>
-						<case maxzoom="16" strokeWidth="5:5" pathEffect="32_3"/>
-						<case maxzoom="17" strokeWidth="6:6" pathEffect="40_3"/>
-						<case minzoom="18" strokeWidth="7:7" pathEffect="50_3"/>
-					</apply>
-				</switch>
-			</apply_if>
-			<apply_if showCycleRoutes="true">
-				<switch>
-					<case additional="network=lcn" color="$cycleRoutelcnColor"/>
-					<case additional="network=rcn" color="$cycleRoutercnColor"/>
-					<case additional="network=ncn" color="$cycleRoutencnColor"/>
-					<case additional="network=icn" color="$cycleRouteicnColor"/>
-					<apply pathEffect="">
-						<case maxzoom="11" strokeWidth="1:1"/>
-						<case maxzoom="12" strokeWidth="2:2"/>
-						<case maxzoom="13" strokeWidth="3:3"/>
-						<case maxzoom="14" strokeWidth="4:4"/>
-						<case maxzoom="15" strokeWidth="4:4"/>
-						<case maxzoom="16" strokeWidth="5:5"/>
-						<case maxzoom="17" strokeWidth="6:6"/>
-						<case minzoom="18" strokeWidth="7:7"/>
-					</apply>
-				</switch>
-			</apply_if>
-		</switch>
-
-		<switch showMtbScaleIMBATrails="true" minzoom="13" tag="osmand_mtb_scale_imba" value="trail" color="$null" strokeWidth="1">
-			<switch>
-				<case additional="mtb:scale:imba=0" color_3="$cycleRouteMtbScaleImba0Color" cap_2="ROUND" cap_3="ROUND"/>
-				<case additional="mtb:scale:imba=1" color_3="$cycleRouteMtbScaleImba1Color" cap_2="ROUND" cap_3="ROUND"/>
-				<case additional="mtb:scale:imba=2" color_3="$cycleRouteMtbScaleImba2Color" cap_2="SQUARE" cap_3="SQUARE"/>
-				<apply color_2="$black">
-					<apply_if nightMode="true" color_2="#CCCCCC"/>
-				</apply>
-				<apply_if maxzoom="14" pathEffect_2="1_10" pathEffect_3="1_10"/>
-				<apply_if minzoom="15" maxzoom="15" pathEffect_2="1_16" pathEffect_3="1_16"/>
-				<apply_if minzoom="16" maxzoom="16" pathEffect_2="1_25" pathEffect_3="1_25"/>
-				<apply_if minzoom="17" pathEffect_2="1_32" pathEffect_3="1_32"/>
-			</switch>
-			<switch>
-				<case additional="mtb:scale:imba=3" color_3="$cycleRouteMtbScaleImba3Color" cap_2="SQUARE" cap_3="SQUARE">
-					<apply_if maxzoom="15" pathEffect_2="1_10" pathEffect_3="1_10"/>
-					<apply_if minzoom="15" maxzoom="15" pathEffect_2="1_16" pathEffect_3="1_16"/>
-					<apply_if minzoom="16" maxzoom="16" pathEffect_2="1_25" pathEffect_3="1_25"/>
-					<apply_if minzoom="17" pathEffect_2="1_32" pathEffect_3="1_32"/>
-				</case>
-				<case additional="mtb:scale:imba=4" color_3="$cycleRouteMtbScaleImba4Color" cap_2="SQUARE" cap_3="SQUARE">
-					<apply_if maxzoom="15" pathEffect_2="1_5_1_13" pathEffect_3="1_5_1_13"/>
-					<apply_if minzoom="15" maxzoom="15" pathEffect_2="1_6_1_21" pathEffect_3="1_6_1_21"/>
-					<apply_if minzoom="16" maxzoom="16" pathEffect_2="1_8_1_29" pathEffect_3="1_8_1_29"/>
-					<apply_if minzoom="17" pathEffect_2="1_10_1_37" pathEffect_3="1_10_1_37"/>
-				</case>
-				<apply color_2="$white">
-					<apply_if nightMode="true" color_2="#AAAAAA"/>
-				</apply>
-			</switch>
-			<apply_if maxzoom="14" strokeWidth_2="4" strokeWidth_3="2"/>
-			<apply_if minzoom="15" maxzoom="15" strokeWidth_2="6" strokeWidth_3="4"/>
-			<apply_if minzoom="16" maxzoom="16" strokeWidth_2="7" strokeWidth_3="5"/>
-			<apply_if minzoom="17" strokeWidth_2="9" strokeWidth_3="7"/>
-			<apply_if minzoom="15">
-				<apply_if additional="incline=up" pathIcon="arrow_red_down_big" pathIconStep="70"/>
-				<apply_if additional="incline=down" pathIcon="arrow_red_up_big" pathIconStep="70"/>
-			</apply_if>
-		</switch>
-
-		<switch>
-			<switch>
-				<case tag="route_hiking" value="" hikingRoutesOSMC="walkingRoutesOSMC" minzoom="12" color="$osmcDefaultColor"/>
-				<case tag="route_hiking" value="" hikingRoutesOSMC="walkingRoutesOSMCNodes" minzoom="12"/>
-				<apply_if hikingRoutesOSMC="walkingRoutesOSMC">
-					<switch seq="1:10">
-						<case additional="route_hiking_#SEQ_osmc_waycolor=black" color="$osmcBlackColor"/>
-						<case additional="route_hiking_#SEQ_osmc_waycolor=black" color="$osmcBlackColor"/>
-						<case additional="route_hiking_#SEQ_osmc_waycolor=blue" color="$osmcBlueColor"/>
-						<case additional="route_hiking_#SEQ_osmc_waycolor=green" color="$osmcGreenColor"/>
-						<case additional="route_hiking_#SEQ_osmc_waycolor=orange" color="$osmcOrangeColor"/>
-						<case additional="route_hiking_#SEQ_osmc_waycolor=red" color="$osmcRedColor"/>
-						<case additional="route_hiking_#SEQ_osmc_waycolor=yellow" color="$osmcYellowColor"/>
-						<case additional="route_hiking_#SEQ_osmc_waycolor=brown" color="$osmcBrownColor"/>
-						<case additional="route_hiking_#SEQ_osmc_waycolor=purple" color="$osmcPurpleColor"/>
-					</switch>
-				</apply_if>
-				<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" minzoom="12">
-					<case additional="node_network_iwn=iwn" color="$iwnNodeNetworkColor"/>
-					<case additional="node_network_nwn=nwn" color="$nwnNodeNetworkColor"/>
-					<case additional="node_network_rwn=rwn" color="$rwnNodeNetworkColor"/>
-					<case additional="node_network_lwn=lwn" color="$lwnNodeNetworkColor"/>
-					<apply>
-						<case minzoom="12" maxzoom="12" pathEffect="11_1"/>
-						<case maxzoom="13" pathEffect="15_2"/>
-						<case maxzoom="14" pathEffect="20_2"/>
-						<case maxzoom="15" pathEffect="25_2"/>
-						<case maxzoom="16" pathEffect="32_3"/>
-						<case maxzoom="17" pathEffect="40_3"/>
-						<case minzoom="18" pathEffect="50_3"/>
-					</apply>
-				</apply_if>
-			</switch>
-			<switch horseRoutes="true">
-				<case minzoom="12" tag="route_horse" value="" color="$horseRouteDefaultColor"/>
-				<apply>
-					<switch seq="1:10">
-						<case additional="route_horse_#SEQ_osmc_waycolor=black" color="$osmcBlackColor"/>
-						<case additional="route_horse_#SEQ_osmc_waycolor=blue" color="$osmcBlueColor"/>
-						<case additional="route_horse_#SEQ_osmc_waycolor=green" color="$osmcGreenColor"/>
-						<case additional="route_horse_#SEQ_osmc_waycolor=orange" color="$osmcOrangeColor"/>
-						<case additional="route_horse_#SEQ_osmc_waycolor=red" color="$osmcRedColor"/>
-						<case additional="route_horse_#SEQ_osmc_waycolor=yellow" color="$osmcYellowColor"/>
-						<case additional="route_horse_#SEQ_osmc_waycolor=brown" color="$osmcBrownColor"/>
-						<case additional="route_horse_#SEQ_osmc_waycolor=purple" color="$osmcPurpleColor"/>
-					</switch>
-				</apply>
-			</switch>
-			<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" color="$null"/>
-			<apply_if minzoom="12" maxzoom="12" strokeWidth="3.5:3.5"/>
-			<apply_if minzoom="13" maxzoom="13" strokeWidth="4.5:4.5"/>
-			<apply_if minzoom="14" maxzoom="14" strokeWidth="6:6"/>
-			<apply_if minzoom="15" maxzoom="15" strokeWidth="8:8"/>
-			<apply_if minzoom="16" maxzoom="16" strokeWidth="10:10"/>
-			<apply_if minzoom="17" maxzoom="17" strokeWidth="11:11"/>
-			<apply_if minzoom="18" strokeWidth="13:13"/>
-		</switch>
-		<switch hikingRoutesOSMC="walkingRoutesScopeOSMC" cap="ROUND">
-			<case minzoom="12" tag="network_iwn" value="" color="$iwnColor">
-				<apply_if maxzoom="12" strokeWidth="6"/>
-				<apply_if minzoom="13" maxzoom="13" strokeWidth="8"/>
-				<apply_if minzoom="14" maxzoom="14" strokeWidth="10"/>
-				<apply_if minzoom="15" maxzoom="16" strokeWidth="12"/>
-				<apply_if minzoom="17" strokeWidth="14"/>
-			</case>
-			<case minzoom="12" tag="network_nwn" value="" color="$nwnColor">
-				<apply_if maxzoom="12" strokeWidth="3"/>
-				<apply_if minzoom="13" maxzoom="13" strokeWidth="4"/>
-				<apply_if minzoom="14" maxzoom="14" strokeWidth="7"/>
-				<apply_if minzoom="15" maxzoom="16" strokeWidth="9"/>
-				<apply_if minzoom="17" strokeWidth="11"/>
-			</case>
-			<case minzoom="13" tag="network_rwn" value="" color="$rwnColor">
-				<apply_if maxzoom="13" strokeWidth="2"/>
-				<apply_if minzoom="14" maxzoom="14" strokeWidth="5"/>
-				<apply_if minzoom="15" maxzoom="16" strokeWidth="7"/>
-				<apply_if minzoom="17" strokeWidth="9"/>
-			</case>
-			<case minzoom="13" tag="network_lwn" value="" color="$lwnColor">
-				<apply_if maxzoom="13" strokeWidth="1.5"/>
-				<apply_if minzoom="14" maxzoom="14" strokeWidth="2.8"/>
-				<apply_if minzoom="15" maxzoom="16" strokeWidth="3.5"/>
-				<apply_if minzoom="17" strokeWidth="5"/>
-			</case>
-		</switch>
-		<switch hikingRoutesOSMC="walkingRoutesScopeOSMC" color="#77ae27b3">
-			<case tag="route_hiking" value=""/>
-			<apply_if maxzoom="13" strokeWidth="1.5"/>
-			<apply_if minzoom="14" maxzoom="14" strokeWidth="2.8"/>
-			<apply_if minzoom="15" maxzoom="16" strokeWidth="3.5"/>
-			<apply_if minzoom="17" strokeWidth="5"/>
-		</switch>
-		<switch OSMMapperAssistant="true" minzoom="12">
-			<case tag="fixme_tag" value="yes" color="#aaf800e0"/>
-			<case tag="note_tag" value="yes" color="#00CC24"/>
-			<apply>
-				<case maxzoom="14" strokeWidth="4:4"/>
-				<case maxzoom="15" strokeWidth="6:6"/>
-				<case maxzoom="16" strokeWidth="8:8"/>
-				<case maxzoom="17" strokeWidth="10:10"/>
-				<case maxzoom="18" strokeWidth="12:12"/>
-				<case minzoom="19" strokeWidth="14:14"/>
-			</apply>
-		</switch>
-
-		<switch horseScale="true" minzoom="12">
-			<case tag="horse_scale" value="common" pathEffect="2_38" color="$horseScaleColorLow"/>
-			<case tag="horse_scale" value="demanding" pathEffect="2_2_2_34" color="$horseScaleColorLow"/>
-			<case tag="horse_scale" value="difficult" pathEffect="2_2_2_2_2_30" color="$horseScaleColorMiddle"/>
-			<case tag="horse_scale" value="critical" pathEffect="2_2_2_2_2_2_2_26" color="$horseScaleColorMiddle"/>
-			<case tag="horse_scale" value="dangerous" pathEffect="2_2_2_2_2_2_2_2_2_22" color="$horseScaleColorMiddle"/>
-			<case tag="horse_scale" value="impossible" pathEffect="2_2_2_2_2_2_2_2_2_22" color="$horseScaleColorHigh"/>
-			<apply_if maxzoom="16" strokeWidth="3.5:3.5"/>
-			<apply_if minzoom="17" strokeWidth="5:5"/>
-		</switch>
 
 		<switch streetLighting="true" minzoom="11" cap="ROUND">
 			<switch>

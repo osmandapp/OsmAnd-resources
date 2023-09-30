@@ -1,4 +1,4 @@
-<renderingStyle name="contourlines" addon="yes" depends="" defaultColor="#ebe7e4" version="1">
+<renderingStyle name="contourlines" addon="yes" depends="" version="1">
 
 	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
@@ -9,10 +9,6 @@
 	<renderingProperty attr="contourColorScheme" name="Contour lines color scheme" description="Contour lines color scheme" type="string" possibleValues="white,yellow,green,light_brown,brown,dark_brown,red" defaultValueDescription="default"/>
 	<renderingProperty attr="contourWidth" name="Contour lines width" description="Contour lines width" type="string" possibleValues="thin,medium,thick" defaultValueDescription="default"/>
 	<renderingProperty attr="contourDensity" name="Contour lines density" description="Contour lines density" type="string" possibleValues="low,medium_w,high" defaultValueDescription="default"/>
-	<renderingProperty attr="depthContours" name="Depth contours" description="Show depth contours and points"
-		type="boolean" possibleValues="" category="details"/>
-	<renderingProperty attr="depthContourWidth" name="Depth contour lines width" description="Depth contour lines width" type="string" possibleValues="thin,medium,thick" defaultValueDescription="default"/>
-	<renderingProperty attr="depthContourColorScheme" name="Depth contour lines color scheme" description="Depth contour lines color scheme" type="string" possibleValues="white,yellow,green,light_brown,brown,dark_brown,red" defaultValueDescription="default"/>
 
 <!--	<renderingAttribute name="defaultColor">
 		<case noPolygons="true" attrColorValue="#00ebe7e4"/>
@@ -91,66 +87,6 @@
 		<!--<case engine_v1="false" attrColorValue="#15ea7300"/>-->
 	</renderingAttribute>
 
-	<renderingAttribute name="contourLineDepthColor100m">
-		<case depthContourColorScheme="white" attrColorValue="#44ffffff"/>
-		<case depthContourColorScheme="yellow" attrColorValue="#44FFF29E"/>
-		<case depthContourColorScheme="green" attrColorValue="#4400ff00"/>
-		<case depthContourColorScheme="light_brown" attrColorValue="#2aea7300">
-			<apply_if noPolygons="true" attrColorValue="#35ea7300"/>
-			<apply_if nightMode="true" attrColorValue="#35ea7300"/>
-		</case>
-		<case depthContourColorScheme="brown" attrColorValue="#459C5615">
-			<apply_if noPolygons="true" attrColorValue="#66C39F7D"/>
-			<apply_if nightMode="true" attrColorValue="#66C39F7D"/>
-		</case>
-		<case depthContourColorScheme="dark_brown" attrColorValue="#55522D0B">
-			<apply_if noPolygons="true" attrColorValue="#8837250B"/>
-			<apply_if nightMode="true" attrColorValue="#88C39F7D"/>
-		</case>
-		<case depthContourColorScheme="red" attrColorValue="#44ff0000"/>
-		<case nightMode="true" attrColorValue="#175295"/>
-		<case attrColorValue="#40282F6A"/>
-	</renderingAttribute>
-	<renderingAttribute name="contourLineDepthColor50m">
-		<case depthContourColorScheme="white" attrColorValue="#44ffffff"/>
-		<case depthContourColorScheme="yellow" attrColorValue="#44FFF29E"/>
-		<case depthContourColorScheme="green" attrColorValue="#4400ff00"/>
-		<case depthContourColorScheme="light_brown" attrColorValue="#2aea7300">
-			<apply_if noPolygons="true" attrColorValue="#35ea7300"/>
-			<apply_if nightMode="true" attrColorValue="#35ea7300"/>
-		</case>
-		<case depthContourColorScheme="brown" attrColorValue="#459C5615">
-			<apply_if noPolygons="true" attrColorValue="#66C39F7D"/>
-			<apply_if nightMode="true" attrColorValue="#66C39F7D"/>
-		</case>
-		<case depthContourColorScheme="dark_brown" attrColorValue="#55522D0B">
-			<apply_if noPolygons="true" attrColorValue="#8837250B"/>
-			<apply_if nightMode="true" attrColorValue="#88C39F7D"/>
-		</case>
-		<case depthContourColorScheme="red" attrColorValue="#44ff0000"/>
-		<case nightMode="true" attrColorValue="#144680"/>
-		<case attrColorValue="#30374091"/>
-	</renderingAttribute>
-	<renderingAttribute name="contourLineDepthColor20m">
-		<case depthContourColorScheme="white" attrColorValue="#44ffffff"/>
-		<case depthContourColorScheme="yellow" attrColorValue="#44FFF29E"/>
-		<case depthContourColorScheme="green" attrColorValue="#4400ff00"/>
-		<case depthContourColorScheme="light_brown" attrColorValue="#2aff7c00">
-			<apply_if noPolygons="true" attrColorValue="#2aff7c00"/>
-			<apply_if nightMode="true" attrColorValue="#2aff7c00"/>
-		</case>
-		<case depthContourColorScheme="brown" attrColorValue="#35bd6819">
-			<apply_if noPolygons="true" attrColorValue="#44C39F7D"/>
-			<apply_if nightMode="true" attrColorValue="#44C39F7D"/>
-		</case>
-		<case depthContourColorScheme="dark_brown" attrColorValue="#22522D0B">
-			<apply_if noPolygons="true" attrColorValue="#4437250B"/>
-			<apply_if nightMode="true" attrColorValue="#44C39F7D"/>
-		</case>
-		<case depthContourColorScheme="red" attrColorValue="#44ff0000"/>
-		<case nightMode="true" attrColorValue="#13447C"/>
-		<case attrColorValue="#244955C1"/>
-	</renderingAttribute>
 
 	<renderingAttribute name="contour10mTextColor">
 		<case contourColorScheme="white" attrColorValue="#F1F1F1"/>
@@ -187,11 +123,6 @@
 		</case>
 	</renderingAttribute>
 
-	<renderingAttribute name="depthTextColor">
-		<case nightMode="true" attrColorValue="#aaaaaaaa"/>
-		<case attrColorValue="#333333"/>
-	</renderingAttribute>
-
 	<renderingConstant name="null" value="#00000000"/>
 
 	<renderingProperty attr="engine_v1" type="boolean"/>
@@ -199,7 +130,6 @@
 	<order>
 		<!-- Line 11-100 -->
 		<switch area="false" objectType="2" order="80">
-			<case tag="contour" value="depth" order="15"/>
 			<case tag="contour" value="elevation" order="15">
 				<apply_if contourDensity="medium_w" additional="contourtype=5m" order="-1"/>
 				<apply_if contourDensity="medium_w" additional="contourtype=10m" order="-1"/>
@@ -246,27 +176,6 @@
 				</switch>
 			</apply>
 		</switch>
-		<switch depthContours="true" minzoom="6" tag="contour" value="depth" textColor="$depthTextColor" textOnPath="true">
-			<case additional="contourtype=1000m" textSize="10" textMinDistance="600"/>
-			<case minzoom="7" additional="contourtype=200m" textSize="10" textMinDistance="600"/>
-			<case minzoom="11">
-				<apply>
-					<case additional="contourtype=100m" textSize="10"/>
-					<case additional="contourtype=50m" textSize="10"/>
-					<case additional="contourtype=20m" textSize="10"/>
-					<case additional="contourtype=10m" textSize="9"/>
-					<case additional="contourtype=5m" textSize="9"/>
-				</apply>
-			</case>
-		</switch>
-
-		<case depthContours="true" minzoom="6" tag="point" value="depth" textColor="$depthTextColor" textSize="10" textOrder="128" intersectionMargin="10">
-			<apply_if maxzoom="7" intersectionMargin="10">
-				<apply_if engine_v1="false" intersectionMargin="30"/>
-			</apply_if>
-			<apply_if minzoom="10" maxzoom="10" intersectionMargin="7"/>
-			<apply_if engine_v1="true" textDy="-11"/>
-		</case>
 	</text>
 
 	<point>
@@ -330,24 +239,12 @@
 			<apply_if engine_v1="false" minzoom="15" pathIcon="stroke_brown_left" pathIconStep="100">
 				<apply_if contourColorScheme="light_brown" pathIcon="stroke_light_brown_left"/>
 				<apply_if contourColorScheme="dark_brown" pathIcon="stroke_dark_brown_left"/>
+				<apply_if contourColorScheme="red" pathIcon="stroke_red_left"/>
+				<apply_if contourColorScheme="green" pathIcon="stroke_green_left"/>
+				<apply_if contourColorScheme="yellow" pathIcon="stroke_yellow_left"/>
+				<apply_if contourColorScheme="white" pathIcon="stroke_white_left"/>
 			</apply_if>
 		</switch>
 
-		<switch depthContours="true" tag="contour" value="depth" strokeWidth="1">
-			<case minzoom="5" additional="contourtype=1000m" color="$contourLineDepthColor100m"/>
-			<case minzoom="7" additional="contourtype=200m" color="$contourLineDepthColor100m"/>
-			<case minzoom="11">
-				<apply>
-					<case additional="contourtype=5m" color="$contourLineDepthColor20m"/>
-					<case additional="contourtype=10m" color="$contourLineDepthColor20m"/>
-					<case additional="contourtype=20m" color="$contourLineDepthColor20m"/>
-					<case additional="contourtype=50m" color="$contourLineDepthColor50m"/>
-					<case additional="contourtype=100m" color="$contourLineDepthColor100m"/>
-				</apply>
-				<apply_if depthContourWidth="thin" strokeWidth="0.6"/>
-				<apply_if depthContourWidth="thick" strokeWidth="1.5"/>
-			</case>
-			<!-- <apply_if minzoom="15" pathIcon="stroke_lightorange_left" pathIconStep="100"/>-->
-		</switch>
 	</line>
 </renderingStyle>

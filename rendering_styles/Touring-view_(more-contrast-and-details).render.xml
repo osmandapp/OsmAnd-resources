@@ -109,11 +109,13 @@
 		type="string" possibleValues="translucent_cyan,red,translucent_red,orange,translucent_orange,yellow,translucent_yellow,lightgreen,translucent_lightgreen,green,translucent_green,lightblue,translucent_lightblue,blue,translucent_blue,purple,translucent_purple" defaultValueDescription="defaultTranslucentCyan"/>
 
 	<renderingProperty attr="currentTrackWidth" name="GPX width" description="Width of displayed GPX tracks"
-		type="string" possibleValues="fine,thin,medium,bold" defaultValueDescription="default"/>
+		type="string" possibleValues="medium,fine,thin,bold" defaultValueDescription="defaultMedium"/>
 
 	<!-- Touring view outdoor activity route features -->
-	<renderingProperty attr="alpineHiking" name="Alpine hiking view" description="Render paths according to SAC scale"
+	<renderingProperty attr="alpineHiking" name="Alpine hiking scale" description="Render paths according to SAC scale"
 		type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="alpineHikingScaleScheme" name="Alpine hiking scale scheme" description="Render paths according to SAC/CAI scale"
+		type="string" possibleValues="sacScale,caiScale" defaultValueDescription="disabled" category="other"/>
 
 <!-- These route features have now moved to the default renderer
 	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show long distance cycle routes"
@@ -268,6 +270,8 @@
 	<renderingConstant name="sacScaleColorT4" value="#0033ff"/>
 	<renderingConstant name="sacScaleColorT5" value="#0033ff"/>
 	<renderingConstant name="sacScaleColorT6" value="#0033ff"/>
+
+	<!-- renderingConstant name="caiScaleColor" value="#e23cad"/ --><!-- use equivalent SAC color pattern for now -->
 
 	<renderingConstant name="null" value="#00000000"/>
 
@@ -540,13 +544,6 @@
 		<case nightMode="true" attrColorValue="$buildingColorNight"/>
 		<case attrColorValue="#bca9a9"/>
 	</renderingAttribute>
-	<renderingAttribute name="stadiumColor">
-		<case nightMode="true" attrColorValue="$buildingColorNight"/>
-		<case attrColorValue="#bca9a9"/>
-	</renderingAttribute>
-	<renderingAttribute name="stadiumStrokeColor">
-		<case attrColorValue="$null"/>
-	</renderingAttribute>
 
 	<!-- Special interest areas which must remain distinguishable from open nature at night -->
 	<renderingAttribute name="sportsCentreColor">
@@ -556,9 +553,16 @@
 	<renderingAttribute name="sportsCentreStrokeColor">
 		<case attrColorValue="$null"/>
 	</renderingAttribute>
+	<renderingAttribute name="stadiumColor">
+		<case nightMode="true" attrColorValue="$shaderColorNight"/>
+		<case attrColorValue="#bef7cc"/>
+	</renderingAttribute>
+	<renderingAttribute name="stadiumStrokeColor">
+		<case attrColorValue="$null"/>
+	</renderingAttribute>
 	<renderingAttribute name="pitchColor">
 		<case nightMode="true" attrColorValue="$shaderColorNight"/>
-		<case attrColorValue="#cfeca8"/>
+		<case attrColorValue="#96d2be"/>
 	</renderingAttribute>
 	<renderingAttribute name="pitchColorStroke">
 		<case nightMode="true" attrColorValue="$null"/>
@@ -589,7 +593,7 @@
 	</renderingAttribute>
 	<renderingAttribute name="playgroundColor">
 		<case nightMode="true" attrColorValue="$shaderColorNight"/>
-		<case attrColorValue="#33cc99"/>
+		<case attrColorValue="#53dfa3"/>
 	</renderingAttribute>
 	<renderingAttribute name="themeparkColor">
 		<case nightMode="true" attrColorValue="$shaderColorNight"/>
@@ -917,6 +921,10 @@
 					<apply_if minzoom="17" maxzoom="17" strokeWidth_2="5:5" strokeWidth_3="5:5"/>
 					<apply_if minzoom="18" maxzoom="18" strokeWidth_2="6:6" strokeWidth_3="6:6"/>
 					<apply_if minzoom="19" strokeWidth_2="7:7" strokeWidth_3="7:7"/>
+					<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
+						<apply_if additional="oneway=yes" pathIcon="oneway_black_semitransparent_big" pathIconStep="70"/>
+						<apply_if additional="oneway=-1" pathIcon="oneway_reverse_black_semitransparent_big" pathIconStep="70"/>
+					</apply_if>
 				</switch>
 
 				<!-- tertiary to service -->
@@ -977,6 +985,12 @@
 							</apply_if>
 							<apply_if nightMode="true" shadowColor="$shadowColorNight"/>
 						</apply>
+						<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
+							<apply_if maxzoom="16" additional="oneway=yes" pathIcon="oneway_black_semitransparent" pathIconStep="70"/>
+							<apply_if minzoom="17" additional="oneway=yes" pathIcon="oneway_black_semitransparent_big" pathIconStep="70"/>
+							<apply_if maxzoom="16" additional="oneway=-1" pathIcon="oneway_reverse_black_semitransparent" pathIconStep="70"/>
+							<apply_if minzoom="17" additional="oneway=-1" pathIcon="oneway_reverse_black_semitransparent_big" pathIconStep="70"/>
+						</apply_if>
 					</switch>
 
 					<!-- The block roads/unclassified/residential copied unchanged from default renderer -->
@@ -1013,6 +1027,12 @@
 							<apply_if minzoom="15" additional="access=private" color_3="$accessPrivateColor" strokeWidth_3="2:3" pathEffect_3="10_3"/>
 						-->
 						</apply>
+						<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
+							<apply_if maxzoom="16" additional="oneway=yes" pathIcon="oneway_black_semitransparent" pathIconStep="70"/>
+							<apply_if minzoom="17" additional="oneway=yes" pathIcon="oneway_black_semitransparent_big" pathIconStep="70"/>
+							<apply_if maxzoom="16" additional="oneway=-1" pathIcon="oneway_reverse_black_semitransparent" pathIconStep="70"/>
+							<apply_if minzoom="17" additional="oneway=-1" pathIcon="oneway_reverse_black_semitransparent_big" pathIconStep="70"/>
+						</apply_if>
 					</switch>
 
 					<!-- The block service/living-street/residential copied unchanged from default renderer -->
@@ -1060,6 +1080,10 @@
 					<apply_if minzoom="17" maxzoom="17" strokeWidth_2="4:4" strokeWidth_3="4:4"/>
 					<apply_if minzoom="18" maxzoom="18" strokeWidth_2="4.7:4.7" strokeWidth_3="4.7:4.7"/>
 					<apply_if minzoom="19" strokeWidth_2="5.7:5.7" strokeWidth_3="5.7:5.7"/>
+					<apply_if engine_v1="false" minzoom="16"> <!-- for new OpenGL engine only -->
+						<apply_if additional="oneway=yes" pathIcon="oneway_black_semitransparent" pathIconStep="70"/>
+						<apply_if additional="oneway=-1" pathIcon="oneway_reverse_black_semitransparent" pathIconStep="70"/>
+					</apply_if>
 				</switch>
 				<apply_if minzoom="14" additional="construction=yes" cap="BUTT" shadowRadius="0" color="$constructionRoadColor" color_2="$constructionRoadColor2" strokeWidth_0="0" strokeWidth__1="0" pathEffect="$null" strokeWidth="8" strokeWidth_2="6" pathEffect_2="6_6"/>
 				<!-- showSurfaces -->
@@ -1165,6 +1189,25 @@
 							<case minzoom="13" maxzoom="13" strokeWidth_5="1.8"/>
 							<case minzoom="14" strokeWidth_5="2.5"/>
 						</apply>
+
+						<!-- 2023-07 CAI scheme support. Falls back to SAC where not CAI tagged -->
+						<!--         For CAI rendering use the SAC rendering for the max equivalent grade as per https://wiki.openstreetmap.org/wiki/Proposal:Cai_scale -->
+						<apply_if alpineHikingScaleScheme="caiScale">
+							<case additional="cai_scale=t" color_5="$sacScaleColorT1" pathEffect_5=""/><!-- is less than SAC hiking -->
+							<case additional="cai_scale=e" color_5="$sacScaleColorT1" pathEffect_5="10_3"/><!-- is about SAC hiking -->
+							<case additional="cai_scale=ee" color_5="$sacScaleColorT3" pathEffect_5="10_3"/><!-- is max SAC demanding_mountain_hiking -->
+							<case additional="cai_scale=eai" color_5="$sacScaleColorT4" pathEffect_5=""/><!-- is max SAC alpine_hiking -->
+							<switch>
+								<case additional="cai_scale=eea"/>
+								<case additional="cai_scale=eea:f"/>
+								<case additional="cai_scale=eea:pd"/>
+								<case additional="cai_scale=eea:d"/>
+								<case additional="cai_scale=eea:md"/>
+								<case additional="cai_scale=eea:e"/>
+								<apply color_5="$sacScaleColorT6" pathEffect_5="3_3"/><!-- is max SAC difficult_alpine_hiking -->
+							</switch>
+						</apply_if>
+
 					</apply_if>
 				</switch>
 
@@ -1243,6 +1286,10 @@
 				<apply_if layer="-1">
 					<case nightMode="true" minzoom="14" color__1="#ffffff" strokeWidth__1="4:2.5" pathEffect__1="3_3" color_0="#9F9F9F" strokeWidth_0="4:1"/>
 					<case minzoom="14" color__1="#000000" strokeWidth__1="4:2.5" pathEffect__1="3_3" color_0="#ffffff" strokeWidth_0="4:1"/>
+				</apply_if>
+				<apply_if engine_v1="false" minzoom="16"> <!-- for new OpenGL engine only -->
+					<apply_if additional="oneway=yes" pathIcon="oneway_gray_big" pathIconStep="70"/>
+					<apply_if additional="oneway=-1" pathIcon="oneway_reverse_gray_big" pathIconStep="70"/>
 				</apply_if>
 
 			</switch>

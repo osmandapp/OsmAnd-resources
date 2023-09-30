@@ -15,12 +15,14 @@ SIZES_POI=(72 48 36 24)
 
 SVGFOLDER=${BASEFOLDER}/svg/
 OUTPUTSVGFOLDER=${BASEFOLDER}/svg-res/
+OUTPUTSVGWEBFOLDER=${BASEFOLDER}/svg-web-res/
 OUTPUTFOLDER=${BASEFOLDER}/png/
 VDFOLDER=${BASEFOLDER}/vd/
 VDFOLDERSVG=${BASEFOLDER}/vd/svg/
 
 mkdir -p ${OUTPUTFOLDER}
 mkdir -p ${OUTPUTSVGFOLDER}
+mkdir -p ${OUTPUTSVGWEBFOLDER}
 mkdir -p ${VDFOLDERSVG}
 mkdir -p ${VDFOLDER}
 mkdir -p ${VDFOLDER}/map
@@ -126,6 +128,8 @@ createSvgFolder() {
       FILENAME_SVG=${TYPE_SVG}_${FILENAME_SVG%.*}
       SVG=${OUTPUTSVGFOLDER}/${FILENAME_SVG}.svg
       cp "$FILE" "$SVG"
+      SVGWEB=${OUTPUTSVGWEBFOLDER}/${FILENAME_SVG}.svg
+      cp "$FILE" "$SVGWEB"
   done
 }
 
@@ -188,6 +192,7 @@ generateBothMapPOIPng() {
   # genMapIconsNoScale 'osmc_red' '#'
   # genMapIconsNoScale 'osmc_white' '#'
   # genMapIconsNoScale 'osmc_yellow' '#'
+  # genMapIconsNoScale 'osmc_brown' '#'
   # genMapIconsNoScale 'osmc_other' '#'
   # genMapIconsStdSize 'functional-icons' '#'
   # genMapIconsStdSize 'functional-icons-x2' '#ff8f00' x2
