@@ -44,6 +44,29 @@
 		</case>
 	</renderingAttribute>
 
+	<renderingAttribute name="motorroadShadowColor">
+		<case attrColorValue="#5f5fff"/>
+	</renderingAttribute>
+	<renderingAttribute name="winterroadShadowColor">
+		<case attrColorValue="#995f5fff"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="serviceRoadShadowColor">
+		<case showAccess="true" additional="motorroad=yes" attrColorValue="$motorroadShadowColor"/>
+		<case additional="winter_road=yes" attrColorValue="$winterroadShadowColor"/>
+		<case additional="ice_road=yes" attrColorValue="$winterroadShadowColor"/>
+		<case roadStyle="boldOutline" attrColorValue="#222222">
+			<apply_if nightMode="true" attrColorValue="$null"/>
+		</case>
+		<case attrColorValue="#30000000">
+			<case streetLighting="true" minzoom="14">
+				<apply_if nightMode="false" streetLightingNight="false" attrColorValue="#444444"/>
+				<apply_if nightMode="true" attrColorValue="#ffffff"/>
+			</case>
+			<apply_if nightMode="true" attrColorValue="#20000000"/>
+		</case>
+	</renderingAttribute>
+
 	<renderingConstant name="naturalPeakTextMinZoom" value="12" />
 	<renderingConstant name="naturalVolcanoTextMinZoom" value="11" />
 	<renderingConstant name="naturalHillTextMinZoom" value="15" />
@@ -263,7 +286,7 @@
 
 	<!-- Greenfield -->
 	<renderingAttribute name="greenfieldColor">
-		<case attrColorValue="#9d9d6c" />
+		<case attrColorValue="#cccca5" />
 	</renderingAttribute>
 
 	<!-- Recreation Ground -->
@@ -552,7 +575,7 @@
 			<apply_if additional="tunnel=yes" attrColorValue="#F2F2F2" />
 			<apply_if additional="covered=yes" attrColorValue="#F2F2F2" />
 			<apply_if additional="construction=yes" attrColorValue="#cccccc" />
-			<apply_if nightMode="true" attrColorValue="#9f9f9f">
+			<apply_if nightMode="true" attrColorValue="#888888">
 				<apply_if additional="tunnel=yes" attrColorValue="#696969" />
 				<apply_if additional="covered=yes" attrColorValue="#696969" />
 			</apply_if>
@@ -1179,6 +1202,9 @@
 			<case minzoom="16" tag="barrier" value="hedge" color="#ADD19E" color_2="#ADD19E" strokeWidth_2="1">
 				<apply_if nightMode="true" color_2="#285926" />
 			</case>
+			<case minzoom="12" tag="amenity" value="social_facility" color="#FFFFE5">
+				<apply_if nightMode="true" color_2="#292903" />
+			</case>
 		</switch>
 	</polygon>
 
@@ -1186,6 +1212,38 @@
 		<case minzoom="16" tag="barrier" value="hedge" color="#ADD19E" strokeWidth="1.5:1.5">
 			<apply_if nightMode="true" color="#285926" />
 		</case>
-	</line>
 
+		<case minzoom="12" tag="highway" value="living_street">
+			<apply color="#EEEEEE" color__1="#EEEEEE" cap="ROUND"/>
+			<switch>
+				<case moreDetailed="true" maxzoom="12" strokeWidth="0.9"/>
+				<case minzoom="13" maxzoom="13" strokeWidth="1:1"/>
+				<case minzoom="14" maxzoom="14" strokeWidth="1.5:1.5"/>
+				<case minzoom="15" maxzoom="15" strokeWidth="2.5:2.5"/>
+				<case minzoom="16" maxzoom="16" strokeWidth="4.5:4.5"/>
+				<case minzoom="17" maxzoom="17" strokeWidth="6:6"/>
+				<case minzoom="18" maxzoom="18" strokeWidth="9:9"/>
+				<case minzoom="19" strokeWidth="10.5:10.5"/>
+			</switch>
+			<apply>
+				<case engine_v1="true" shadowRadius=":1">
+					<apply_if showAccess="true" additional="motorroad=yes" shadowRadius=":2"/>
+					<apply_if additional="winter_road=yes" shadowRadius="2"/>
+					<apply_if additional="ice_road=yes" shadowRadius="2"/>
+				</case>
+				<case engine_v1="false" shadowRadius="0.6:0.4">
+					<apply_if showAccess="true" additional="motorroad=yes" shadowRadius="1:1"/>
+					<apply_if additional="winter_road=yes" shadowRadius="1:1"/>
+					<apply_if additional="ice_road=yes" shadowRadius="1:1"/>
+				</case>
+			</apply>
+			<apply_if engine_v1="true" onewayArrowsColor="$serviceHighwayOnewayArrowsColor"/>
+			<apply_if minzoom="16">				<!-- for new OpenGL engine only -->
+				<apply_if maxzoom="16" additional="oneway=yes" pathIcon="oneway_black_semitransparent" pathIconStep="70"/>
+				<apply_if minzoom="17" additional="oneway=yes" pathIcon="oneway_black_semitransparent_big" pathIconStep="70"/>
+				<apply_if maxzoom="16" additional="oneway=-1" pathIcon="oneway_reverse_black_semitransparent" pathIconStep="70"/>
+				<apply_if minzoom="17" additional="oneway=-1" pathIcon="oneway_reverse_black_semitransparent_big" pathIconStep="70"/>
+			</apply_if>
+		</case>
+	</line>
 </renderingStyle>
