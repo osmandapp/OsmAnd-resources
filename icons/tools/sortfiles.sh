@@ -1036,6 +1036,7 @@ icon_alias waste_basket amenity_waste_bin
 icon_alias waste_basket2 amenity_colored_waste_basket
 icon_alias waste_disposal amenity_colored_waste_disposal
 icon_alias shower amenity_shower
+icon_alias dressing_room amenity_dressing_room
 icon_alias bench amenity_colored_bench
 icon_alias lounger amenity_colored_lounger
 icon_alias dry_cleaning amenity_dry_cleaning
