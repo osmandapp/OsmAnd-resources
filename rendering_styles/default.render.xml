@@ -2908,7 +2908,9 @@
 					<case tag="leisure" value="nature_reserve" order="100"/>
 					<apply_if maxzoom="12" additional="nr_high_density=yes" order="-1"/>
 				</switch>
-				<case tag="military" value="danger_area" order="8"/>
+				<case tag="military" value="danger_area" order="8">
+					<apply_if hideMilitaryAreas="true" order="-1"/>
+				</case>
 				<case tag="railway" value="" order="4"/>
 				<case tag="railway" value="station">
 					<apply_if maxzoom="12">
@@ -2981,8 +2983,12 @@
 				</switch>
 				<case tag="highway" value="services"/>
 				<case tag="highway" value="rest_area"/>
-				<case tag="landuse" value="military" order="8"/>
-				<case tag="military" value="danger_area" order="8"/>
+				<case tag="landuse" value="military" order="8">
+					<apply_if hideMilitaryAreas="true" order="-1"/>
+				</case>
+				<case tag="military" value="danger_area" order="8">
+					<apply_if hideMilitaryAreas="true" order="-1"/>
+				</case>
 				<!--<case tag="landuse" value="residential" order="10"/>-->
 				<case tag="landuse" value="cemetery" order="5"/>
 				<case tag="amenity" value="motorcycle_parking">
@@ -9355,7 +9361,6 @@
 				<case tag="landuse" value="military" shader="$landuseMilitaryShaderDay" color_0="$landuseMilitaryColor0" color_2="$landuseMilitaryStrokeColor">
 					<apply_if nightMode="true" shader="$landuseMilitaryShaderNight"/>
 				</case>
-				<apply_if hideMilitaryAreas="true" shader=""/>
 				<apply strokeWidth_2="1:1"/>
 			</switch>
 			<case legend="true" minzoom="18" tag="military" value="danger_area" shader="hazard" color_2="$landuseMilitaryStrokeColor" strokeWidth_2="1:1"/>
