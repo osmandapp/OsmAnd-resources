@@ -424,6 +424,7 @@ icon_alias amenity_motorcycle_parking_paid transport_parking_motorcycle_paid
 icon_alias parking_space transport_parking_space
 icon_alias amenity_parking_disabled transport_parking_disabled
 
+icon_alias osmand_access_private functional-icons_osmand_access_private
 
 icon_alias public_transport transport_bus_stop
 icon_alias amenity_bus_station transport_bus_station2
