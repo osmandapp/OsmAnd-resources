@@ -1308,119 +1308,131 @@
 
 			<!-- showAccess copied from default renderer to mitigate it not working with OpenGL engine. Use accessPrivateColor for any access restriction. -->
 			<apply>
-				<switch showAccess="true" minzoom="12" cap_3="ROUND">
-					<switch>
+				<switch cap_3="ROUND">
+					<switch minzoom="14" showToll="true">
 						<case baseAppMode="bicycle" additional="toll:bicycle=yes" color_3="$tollColor"/>
 						<case baseAppMode="bicycle" additional="toll:bicycle=no"/>
 						<case baseAppMode="car" additional="toll:motorcar=yes" color_3="$tollColor"/>
 						<case baseAppMode="car" additional="toll:motorcar=no"/>
 						<case additional="toll=yes" color_3="$tollColor"/>
-						<apply_if maxzoom="14" strokeWidth_3="2:2" pathEffect_3="1_7"/>
+						<apply_if strokeWidth_3="2:2" pathEffect_3="1_7"/>
+						<apply_if minzoom="14" maxzoom="14" strokeWidth_3="2:2" pathEffect_3="1_8"/>
+						<apply_if minzoom="15" maxzoom="15" strokeWidth_3="3:3"/>
+						<apply_if minzoom="16" maxzoom="16" strokeWidth_3="3.7:3.7"/>
+						<apply_if minzoom="17" maxzoom="17" strokeWidth_3="4.5:4.5"/>
+						<apply_if minzoom="18" maxzoom="18" strokeWidth_3="5:5"/>
+						<apply_if minzoom="19" strokeWidth_3="6.5:6.5"/>
 					</switch>
-					<switch baseAppMode="car" minzoom="15">
-						<switch>
-							<case additional="vehicle=private"/>
-							<case additional="vehicle=no"/>
-							<case additional="motor_vehicle=private"/>
-							<case additional="motor_vehicle=no"/>
-							<case additional="motorcar=private"/>
-							<case additional="motorcar=no"/>
-							<apply color_3="$accessPrivateColor" color_2="$null"/>
+					<switch minzoom="15" hideAccess="false">
+						<switch baseAppMode="car" minzoom="15">
+							<switch>
+								<case additional="vehicle=private"/>
+								<case additional="vehicle=no"/>
+								<case additional="motor_vehicle=private"/>
+								<case additional="motor_vehicle=no"/>
+								<case additional="motorcar=private"/>
+								<case additional="motorcar=no"/>
+								<apply color_3="$accessPrivateColor" color_2="$null"/>
+							</switch>
+							<switch>
+								<case additional="vehicle=destination"/>
+								<case additional="motor_vehicle=destination"/>
+								<case additional="motorcar=destination"/>
+								<apply color_3="$accessDestinationColor" color_2="$null"/>
+							</switch>
+							<switch>
+								<case additional="vehicle=permissive"/>
+								<case additional="motor_vehicle=permissive"/>
+								<case additional="motorcar=permissive"/>
+								<apply color_3="$accessPermissiveColor" color_2="$null"/>
+							</switch>
+							<switch>
+								<case additional="vehicle=agricultural"/>
+								<case additional="vehicle=agricultural;forestry"/>
+								<case additional="motor_vehicle=agricultural"/>
+								<case additional="motor_vehicle=agricultural;forestry"/>
+								<case additional="motorcar=agricultural"/>
+								<case additional="motorcar=agricultural;forestry"/>
+								<apply color_3="$accessPrivateColor" color_2="$null"/>
+							</switch>
+							<switch>
+								<case additional="vehicle=forestry"/>
+								<case additional="motor_vehicle=forestry"/>
+								<case additional="motorcar=forestry"/>
+								<apply color_3="$accessPrivateColor" color_2="$null"/>
+							</switch>
+							<switch>
+								<case additional="vehicle=customers"/>
+								<case additional="motor_vehicle=customers"/>
+								<case additional="motorcar=customers"/>
+								<apply color_3="$accessPrivateColor" color_2="$null"/>
+							</switch>
+							<switch>
+								<case additional="vehicle=delivery"/>
+								<case additional="motor_vehicle=delivery"/>
+								<case additional="motorcar=delivery"/>
+								<apply color_3="$accessPrivateColor" color_2="$null"/>
+							</switch>
+							<switch>
+								<case additional="vehicle=yes"/>
+								<case additional="motor_vehicle=yes"/>
+								<case additional="motorcar=yes"/>
+								<!--	We need to restore surface color when particular transport access is "yes". This can't be done another way because we can't go through 2 switches (showAccess and showSurfaces). Though not perfect solution.  -->
+								<apply_if showSurfaces="true" color_3="$routeInfo_surface" cap_3="SQUARE"/>
+							</switch>
 						</switch>
-						<switch>
-							<case additional="vehicle=destination"/>
-							<case additional="motor_vehicle=destination"/>
-							<case additional="motorcar=destination"/>
-							<apply color_3="$accessDestinationColor" color_2="$null"/>
+						<switch baseAppMode="pedestrian" minzoom="15">
+							<switch>
+								<case additional="foot=private" color_3="$accessPrivateColor"/>
+								<case additional="foot=no" color_3="$accessPrivateColor"/>
+								<case additional="foot=destination" color_3="$accessDestinationColor"/>
+								<case additional="foot=permissive" color_3="$accessPermissiveColor"/>
+								<case additional="foot=customers" color_3="$accessPrivateColor"/>
+								<apply color_2="$null"/>
+							</switch>
+							<case additional="foot=yes">
+								<apply_if showSurfaces="true" color_3="$routeInfo_surface" cap_3="SQUARE"/>
+							</case>
 						</switch>
-						<switch>
-							<case additional="vehicle=permissive"/>
-							<case additional="motor_vehicle=permissive"/>
-							<case additional="motorcar=permissive"/>
-							<apply color_3="$accessPermissiveColor" color_2="$null"/>
+						<switch baseAppMode="bicycle" minzoom="15">
+							<switch>
+								<case additional="bicycle=private" color_3="$accessPrivateColor"/>
+								<case additional="bicycle=no" color_3="$accessPrivateColor"/>
+								<case additional="bicycle=destination" color_3="$accessDestinationColor"/>
+								<case additional="bicycle=permissive" color_3="$accessPermissiveColor"/>
+								<case additional="motorroad=yes" color_3="$accessPrivateColor"/>
+								<apply color_2="$null"/>
+							</switch>
+							<case additional="bicycle=yes">
+								<apply_if showSurfaces="true" color_3="$routeInfo_surface" cap_3="SQUARE"/>
+							</case>
 						</switch>
-						<switch>
-							<case additional="vehicle=agricultural"/>
-							<case additional="vehicle=agricultural;forestry"/>
-							<case additional="motor_vehicle=agricultural"/>
-							<case additional="motor_vehicle=agricultural;forestry"/>
-							<case additional="motorcar=agricultural"/>
-							<case additional="motorcar=agricultural;forestry"/>
-							<apply color_3="$accessPrivateColor" color_2="$null"/>
-						</switch>
-						<switch>
-							<case additional="vehicle=forestry"/>
-							<case additional="motor_vehicle=forestry"/>
-							<case additional="motorcar=forestry"/>
-							<apply color_3="$accessPrivateColor" color_2="$null"/>
-						</switch>
-						<switch>
-							<case additional="vehicle=customers"/>
-							<case additional="motor_vehicle=customers"/>
-							<case additional="motorcar=customers"/>
-							<apply color_3="$accessPrivateColor" color_2="$null"/>
-						</switch>
-						<switch>
-							<case additional="vehicle=delivery"/>
-							<case additional="motor_vehicle=delivery"/>
-							<case additional="motorcar=delivery"/>
-							<apply color_3="$accessPrivateColor" color_2="$null"/>
-						</switch>
-						<switch>
-							<case additional="vehicle=yes"/>
-							<case additional="motor_vehicle=yes"/>
-							<case additional="motorcar=yes"/>
-							<!-- We need to restore surface color when particular transport access is "yes". This can't be done another way because we can't go through 2 switches (showAccess and showSurfaces). Though not perfect solution.  -->
-							<apply_if showSurfaces="true" color_3="$routeInfo_surface" cap_3="SQUARE"/>
-						</switch>
-					</switch>
-					<switch baseAppMode="pedestrian" minzoom="15">
-						<switch>
-							<case additional="foot=private" color_3="$accessPrivateColor"/>
-							<case additional="foot=no" color_3="$accessPrivateColor"/>
-							<case additional="foot=destination" color_3="$accessDestinationColor"/>
-							<case additional="foot=permissive" color_3="$accessPermissiveColor"/>
-							<case additional="foot=customers" color_3="$accessPrivateColor"/>
+						<switch minzoom="15">
+							<case additional="access=private" color_3="$accessPrivateColor"/>
+							<case additional="access=no" color_3="$accessPrivateColor"/>
+							<case additional="access=permit" color_3="$accessPrivateColor"/>
+							<case additional="access=destination" color_3="$accessDestinationColor"/>
+							<case additional="access=permissive" color_3="$accessPermissiveColor"/>
+							<case additional="access=agricultural" color_3="$accessPrivateColor"/>
+							<case additional="access=forestry" color_3="$accessPrivateColor"/>
+							<case additional="access=customers" color_3="$accessPrivateColor"/>
+							<case additional="access=delivery" color_3="$accessPrivateColor"/>
+							<case additional="access=emergency" color_3="$accessPrivateColor"/>
 							<apply color_2="$null"/>
 						</switch>
-						<case additional="foot=yes">
-							<apply_if showSurfaces="true" color_3="$routeInfo_surface" cap_3="SQUARE"/>
-						</case>
-					</switch>
-					<switch baseAppMode="bicycle" minzoom="15">
-						<switch>
-							<case additional="bicycle=private" color_3="$accessPrivateColor"/>
-							<case additional="bicycle=no" color_3="$accessPrivateColor"/>
-							<case additional="bicycle=destination" color_3="$accessDestinationColor"/>
-							<case additional="bicycle=permissive" color_3="$accessPermissiveColor"/>
-							<case additional="motorroad=yes" color_3="$accessPrivateColor"/>
-							<apply color_2="$null"/>
-						</switch>
-						<case additional="bicycle=yes">
-							<apply_if showSurfaces="true" color_3="$routeInfo_surface" cap_3="SQUARE"/>
-						</case>
-					</switch>
-					<switch minzoom="15">
-						<case additional="access=private" color_3="$accessPrivateColor"/>
-						<case additional="access=no" color_3="$accessPrivateColor"/>
-						<case additional="access=permit" color_3="$accessPrivateColor"/>
-
-						<case additional="access=destination" color_3="$accessDestinationColor"/>
-						<case additional="access=permissive" color_3="$accessPermissiveColor"/>
-						<case additional="access=agricultural" color_3="$accessPrivateColor"/>
-						<case additional="access=forestry" color_3="$accessPrivateColor"/>
-
-						<case additional="access=customers" color_3="$accessPrivateColor"/>
-						<case additional="access=delivery" color_3="$accessPrivateColor"/>
-						<case additional="access=emergency" color_3="$accessPrivateColor"/>
-						<case additional="ski=no" color_3="$accessPrivateColor"/>
-						<apply color_2="$null"/>
+						<apply_if moreDetailed="false" maxzoom="15" color_3="$null"/>
 					</switch>
 					<apply_if minzoom="15" maxzoom="15" pathEffect_3="1_8"/>
 					<apply_if minzoom="16" maxzoom="16" pathEffect_3="1_11"/>
 					<apply_if minzoom="17" maxzoom="17" pathEffect_3="1_13"/>
 					<apply_if minzoom="18" maxzoom="18" pathEffect_3="1_17"/>
 					<apply_if minzoom="19" pathEffect_3="1_20"/>
+					<apply_if hideOverground="true">
+						<apply_if layer="0" color_3="$null"/>
+						<apply_if layer="1" color_3="$null"/>
+						<apply_if layer="2" color_3="$null"/>
+						<apply_if layer="3" color_3="$null"/>
+					</apply_if>
 				</switch>
 				<case showSurfaces="true" minzoom="14" cap_3="SQUARE" color_3="$routeInfo_surface">
 					<apply_if moreDetailed="true" maxzoom="14" pathEffect_3="3_11"/>
