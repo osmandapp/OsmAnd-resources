@@ -2912,6 +2912,7 @@
 
 	<routingProfile name="moped" baseProfile="moped" restrictionsAware="true" minSpeed="5.0" defaultSpeed="25.0" maxSpeed="35.0" sharpTurn="6" slightTurn="6" onewayAware="true">
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
+		<parameter id="avoid_unpaved" name="Avoid unpaved roads" description="Avoid unpaved roads" type="boolean"/>
 		<parameter id="allow_private" name="Allow private access" description="Allow access to private areas" type="boolean"/>
 
 		<way attribute="access">
@@ -3001,6 +3002,25 @@
 		</way>
 
 		<way attribute="priority">
+			<if param="avoid_unpaved">
+				<select value="0.4" t="tracktype" v="grade2"/>
+				<select value="0.1" t="tracktype" v="grade3"/>
+				<select value="0.1" t="tracktype" v="grade4"/>
+				<select value="0.1" t="tracktype" v="grade5"/>
+				<select value="0.1" t="surface" v="unpaved"/>
+				<select value="0.4" t="surface" v="compacted"/>
+				<select value="0.1" t="surface" v="dirt"/>
+				<select value="0.1" t="surface" v="earth"/>
+				<select value="0.1" t="surface" v="gravel"/>
+				<select value="0.4" t="surface" v="fine_gravel"/>
+				<select value="0.1" t="surface" v="grass"/>
+				<select value="0.1" t="surface" v="ground"/>
+				<select value="0.1" t="surface" v="mud"/>
+				<select value="0.1" t="surface" v="pebblestone"/>
+				<select value="0.1" t="surface" v="sand"/>
+				<select value="0.3" t="highway" v="track"/>
+				<select value="0.1" t="highway" v="path"/>
+			</if>
 			<select value="1" t="smoothness" v="excellent"/>
 			<select value="1" t="smoothness" v="good"/>
 			<select value="0.5" t="smoothness" v="intermediate"/>
@@ -3093,6 +3113,9 @@
 			<select value="15" t="highway" v="crossing"/>
 			<select value="15" t="highway" v="stop"/>
 			<select value="10" t="highway" v="give_way"/>
+			<if param="avoid_unpaved">
+				<select value="200" t="ford"/>
+			</if>
 			<select value="25" t="ford"/>
 
 			<select value="25" t="railway" v="crossing"/>
