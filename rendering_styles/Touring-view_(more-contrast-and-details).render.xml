@@ -1027,6 +1027,7 @@
 							<apply_if minzoom="15" additional="access=private" color_3="$accessPrivateColor" strokeWidth_3="2:3" pathEffect_3="10_3"/>
 						-->
 						</apply>
+						<apply_if baseAppMode="pedestrian" shadowColor="$shadowColorLowZoom"/> <!-- Accentuate pedestrian ways better, Issue #18807 -->
 						<apply_if minzoom="16"> <!-- for new OpenGL engine only -->
 							<apply_if maxzoom="16" additional="oneway=yes" pathIcon="oneway_black_semitransparent" pathIconStep="70"/>
 							<apply_if minzoom="17" additional="oneway=yes" pathIcon="oneway_black_semitransparent_big" pathIconStep="70"/>
@@ -1073,6 +1074,7 @@
 						<!-- pedestrian roads are forbidden for cars and cyclists: show them like that in car and bicycle mode -->
 						<apply_if baseAppMode="car" tag="highway" value="pedestrian" color="$accessPrivateColor"/>
 						<!-- <apply_if baseAppMode="bicycle" tag="highway" value="pedestrian" color="$accessPrivateColor"/> -->
+						<apply_if baseAppMode="pedestrian" shadowColor="$shadowColorLowZoom"/> <!-- Accentuate pedestrian ways better, Issue #18807 -->
 					</switch>
 					<apply_if minzoom="14" maxzoom="14" strokeWidth_2="1.9:1.9" strokeWidth_3="1.9:1.9"/>
 					<apply_if minzoom="15" maxzoom="15" strokeWidth_2="2.5:2.5" strokeWidth_3="2.5:2.5"/>
@@ -1128,14 +1130,14 @@
 						</case>
 						<apply>
 							<case baseAppMode="pedestrian">
-								<case minzoom="12" maxzoom="12" strokeWidth_5="1.2"/>
-								<case minzoom="13" maxzoom="13" strokeWidth_5="1.8"/>
-								<case minzoom="14" strokeWidth_5="2.5"/>
+								<case minzoom="12" maxzoom="12" strokeWidth_5="1.4"/>
+								<case minzoom="13" maxzoom="13" strokeWidth_5="2"/>
+								<case minzoom="14" strokeWidth_5="3"/>
 							</case>
 							<case baseAppMode="bicycle">
-								<case minzoom="12" maxzoom="12" strokeWidth_5="1"/>
+								<case minzoom="12" maxzoom="12" strokeWidth_5="1.4"/>
 								<case minzoom="13" maxzoom="13" strokeWidth_5="2"/>
-								<case minzoom="14" strokeWidth_5="2.8"/>
+								<case minzoom="14" strokeWidth_5="3"/>
 							</case>
 							<case baseAppMode="car" minzoom="13" maxzoom="13" strokeWidth_5="0.7"/>
 							<case minzoom="12" maxzoom="12" strokeWidth_5="0.7"/>
@@ -1159,8 +1161,8 @@
 						<apply>
 							<case baseAppMode="pedestrian">
 								<case minzoom="12" maxzoom="12" strokeWidth_5="1.4"/>
-								<case minzoom="13" maxzoom="13" strokeWidth_5="1.8"/>
-								<case minzoom="14" strokeWidth_5="2.5"/>
+								<case minzoom="13" maxzoom="13" strokeWidth_5="2"/>
+								<case minzoom="14" strokeWidth_5="3"/>
 							</case>
 							<case baseAppMode="bicycle">
 								<case minzoom="13" maxzoom="13" strokeWidth_5="0.7"/>
@@ -1186,8 +1188,8 @@
 						</case>
 						<apply>
 							<case minzoom="12" maxzoom="12" strokeWidth_5="1.4"/>
-							<case minzoom="13" maxzoom="13" strokeWidth_5="1.8"/>
-							<case minzoom="14" strokeWidth_5="2.5"/>
+							<case minzoom="13" maxzoom="13" strokeWidth_5="2"/>
+							<case minzoom="14" strokeWidth_5="3"/>
 						</apply>
 
 						<!-- 2023-07 CAI scheme support. Falls back to SAC where not CAI tagged -->
@@ -1217,7 +1219,9 @@
 						<case additional="footway=crossing" strokeWidth="0.1"/>
 					</case>
 					<apply color_5="$footwayColorDay" pathEffect_5="4_2" color="$null">
-						<case baseAppMode="pedestrian" minzoom="14" strokeWidth_5="2"/>
+						<case baseAppMode="pedestrian" minzoom="12" maxzoom="12" strokeWidth_5="1.4"/>
+						<case baseAppMode="pedestrian" minzoom="13" maxzoom="13" strokeWidth_5="2"/>
+						<case baseAppMode="pedestrian" minzoom="14" strokeWidth_5="3"/>
 						<case minzoom="12" maxzoom="12" strokeWidth_5="0.5"/>
 						<case minzoom="13" strokeWidth_5="1"/>
 					</apply>
@@ -1226,6 +1230,8 @@
 				<switch>
 					<case tag="highway" value="steps" strokeWidth="1"/>
 					<apply color_5="$footwayColorDay" pathEffect_5="1_2" color="$null">
+						<case baseAppMode="pedestrian" minzoom="12" maxzoom="12" strokeWidth_5="1.4"/>
+						<case baseAppMode="pedestrian" minzoom="13" maxzoom="13" strokeWidth_5="3"/>
 						<case baseAppMode="pedestrian" minzoom="14" strokeWidth_5="4" pathEffect_5="2_2"/>
 						<case minzoom="14" strokeWidth_5="4"/>
 					</apply>
@@ -1234,7 +1240,9 @@
 				<switch>
 					<case tag="highway" value="bridleway" strokeWidth="1"/>
 					<apply color_5="$bridlewayColorDay" pathEffect_5="4_2" color="$null">
-						<case baseAppMode="pedestrian" minzoom="14" strokeWidth_5="2"/>
+						<case baseAppMode="pedestrian" minzoom="12" maxzoom="12" strokeWidth_5="1.4"/>
+						<case baseAppMode="pedestrian" minzoom="13" maxzoom="13" strokeWidth_5="2"/>
+						<case baseAppMode="pedestrian" minzoom="14" strokeWidth_5="3"/>
 						<case minzoom="12" maxzoom="12" strokeWidth_5="0.5"/>
 						<case minzoom="13" strokeWidth_5="1"/>
 					</apply>
@@ -1243,7 +1251,9 @@
 				<switch>
 					<case tag="highway" value="cycleway" strokeWidth="1"/>
 					<apply color_5="$cyclewayColor" pathEffect_5="4_2" color="$null">
-						<case baseAppMode="bicycle" minzoom="14" strokeWidth_5="2"/>
+						<case baseAppMode="bicycle" minzoom="12" maxzoom="12" strokeWidth_5="1.4"/>
+						<case baseAppMode="bicycle" minzoom="13" maxzoom="13" strokeWidth_5="2"/>
+						<case baseAppMode="bicycle" minzoom="14" strokeWidth_5="3"/>
 						<case baseAppMode="pedestrian" minzoom="14" strokeWidth_5="2"/>
 						<case minzoom="12" maxzoom="12" strokeWidth_5="0.5"/>
 						<case minzoom="13" strokeWidth_5="1"/>
@@ -1267,7 +1277,7 @@
 						<apply_if nightMode="true" color_5="$pathColorNight"/>
 					</case>
 					<case tag="highway" value="footway" color_5="$pathColorDay" pathEffect_5="5_5" color="$null">
-						<case minzoom="12" strokeWidth_5="1.2"/>
+						<case minzoom="12" strokeWidth_5="1.4"/>
 						<apply_if nightMode="true" color_5="$pathColorNight"/>
 					</case>
 					<case tag="highway" value="steps" color_5="$pathColorDay" pathEffect_5="2_2" color="$null">
