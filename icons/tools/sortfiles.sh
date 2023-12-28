@@ -1,5 +1,9 @@
 #!/bin/bash
 STYLE_ICONS_FOLDER=../../rendering_styles/style-icons
+MAP_SHADERS_SVG="$STYLE_ICONS_FOLDER/map-shaders-svg/"
+
+mkdir -p "$MAP_SHADERS_SVG"
+
 #COPY_CMD=rsync
 #CF=-a
 COPY_CMD=cp
@@ -39,6 +43,7 @@ icon() {
 # exit 0;
 
 ## Shaders ! # copy all shaders untouched
+$COPY_CMD $CF ../svg-res/h_*.svg $MAP_SHADERS_SVG
 $COPY_CMD $CF ../vd/map/h_*.xml $STYLE_ICONS_FOLDER/map-shaders-vector/
 $COPY_CMD $CF ../png/mdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-mdpi/
 $COPY_CMD $CF ../png/hdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-hdpi/

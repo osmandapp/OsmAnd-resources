@@ -51,6 +51,7 @@ genMapIconsNoScale() {
         continue;
       fi
       FILENAME=${FILENAME%.*}
+      cp ${FILE} ${OUTPUTSVGFOLDER}/${FILENAME}.svg
       cp ${FILE} ${VDFOLDERSVG}/${FILENAME}.svg
       rsvg-convert -f png ${FILE} -x $MDPI -y $MDPI -o ${OUTPUTFOLDER}mdpi/${FILENAME}.png
       rsvg-convert -f png ${FILE} -x $HDPI -y $HDPI -o ${OUTPUTFOLDER}hdpi/${FILENAME}.png
@@ -86,6 +87,12 @@ genMapIconsStdSize() {
     SIZES=("${SIZES_NOMX[@]}")
   fi
 
+  # regex to replace value of first width and height
+  DEFAULT_SIZE=${SIZES[-1]}
+  SED_REPLACE_WIDTH="0,/\swidth=\"[0-9]+\"/s/(\swidth=\")[0-9]+\"/\1${DEFAULT_SIZE}\"/"
+  SED_REPLACE_HEIGHT="0,/\sheight=\"[0-9]+\"/s/(\sheight=\")[0-9]+\"/\1${DEFAULT_SIZE}\"/"
+  SED_RESIZE_SVG="$SED_REPLACE_WIDTH;$SED_REPLACE_HEIGHT"
+
   createSvgFolder ${1} ${3}
 
   echo "Generate $TYPE, sizes: ${SIZES[@]}, folders: ${FOLDERS[@]}, fill $FILL_COLOR, stroke $STROKE_COLOR, bg color $BG_COLOR "
@@ -104,13 +111,16 @@ genMapIconsStdSize() {
       else
         cp "$FILE" "$COLOURED_SVG"
       fi
+
+      # Resize svg
+      sed -E $SED_RESIZE_SVG $VDFOLDERSVG$FILENAME.svg > $OUTPUTSVGFOLDER$FILENAME.svg
+
       for (( j = 0 ; j < ${#SIZES[@]}; j++ )) do
         SZ=${SIZES[j]}
         RES_FILE=${OUTPUTFOLDER}${FOLDERS[j]}/${FILENAME}.png
         rsvg-convert -f png "$COLOURED_SVG" -w ${SZ} -h ${SZ}  -o ${RES_FILE} #> /dev/null 2>&1
         # RES_SVG_FILE=${OUTPUTFOLDER}${FOLDERS[j]}/${FILENAME}.svg
         # cp "$COLOURED_SVG" ${RES_SVG_FILE}
-        cp $VDFOLDERSVG$FILENAME.svg $OUTPUTSVGFOLDER$FILENAME.svg
       done
   done
   ${BASEFOLDER}/tools/SVGtoXML/vd-tool/bin/vd-tool -c -in ${VDFOLDERSVG} -out ${VDFOLDEROUT} -widthDp ${SIZES[3]} -heightDp ${SIZES[3]}  
@@ -126,8 +136,6 @@ createSvgFolder() {
         continue;
       fi
       FILENAME_SVG=${TYPE_SVG}_${FILENAME_SVG%.*}
-      SVG=${OUTPUTSVGFOLDER}/${FILENAME_SVG}.svg
-      cp "$FILE" "$SVG"
       SVGWEB=${OUTPUTSVGWEBFOLDER}/${FILENAME_SVG}.svg
       cp "$FILE" "$SVGWEB"
   done
