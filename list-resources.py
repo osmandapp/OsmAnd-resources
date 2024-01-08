@@ -23,11 +23,29 @@ RESOURCES_BUNDLE_CONTENT_RULES = [
     # POI
     [r'poi/poi_types\.xml', 'poi/poi_types.xml'],
 
-    # Map icons
-    [r'rendering_styles/style-icons/map-icons-svg/mm_([^/]*?)\.svg', r'map/icons/\1.svg'],
-    [r'rendering_styles/style-icons/map-icons-svg/mx_([^/]*?)\.svg', r'map/icons/\1.svg'],
-    [r'rendering_styles/style-icons/map-shaders-svg/h_([^/]*?shield[^/]*?)\.svg', r'map/shields/\1.svg'],
-    [r'rendering_styles/style-icons/map-shaders-svg/h_([^/]*?)\.svg', r'map/shaders/\1.svg'],
+    # Map icons (Android mdpi == 1.0 ddf):
+    [r'rendering_styles/style-icons/map-icons-png/drawable-mdpi/mm_([^/]*?)\.png', r'[ddf=1.0]map/icons/\1.png'],
+    [r'rendering_styles/style-icons/map-icons-png/drawable-mdpi/mx_([^/]*?)\.png', r'[ddf=1.0]map/largeIcons/\1.png'],
+    [r'rendering_styles/style-icons/map-shaders-png/drawable-mdpi/h_([^/]*?shield[^/]*?)\.png', r'[ddf=1.0]map/shields/\1.png'],
+    [r'rendering_styles/style-icons/map-shaders-png/drawable-mdpi/h_([^/]*?)\.png', r'[ddf=1.0]map/shaders/\1.png'],
+
+    # Map icons (Android hdpi == 1.5 ddf):
+    [r'rendering_styles/style-icons/map-icons-png/drawable-hdpi/mm_([^/]*?)\.png', r'[ddf=1.5]map/icons/\1.png'],
+    [r'rendering_styles/style-icons/map-icons-png/drawable-hdpi/mx_([^/]*?)\.png', r'[ddf=1.5]map/largeIcons/\1.png'],
+    [r'rendering_styles/style-icons/map-shaders-png/drawable-hdpi/h_([^/]*?shield[^/]*?)\.png', r'[ddf=1.5]map/shields/\1.png'],
+    [r'rendering_styles/style-icons/map-shaders-png/drawable-hdpi/h_([^/]*?)\.png', r'[ddf=1.5]map/shaders/\1.png'],
+
+    # Map icons (Android xhdpi == 2.0 ddf):
+    [r'rendering_styles/style-icons/map-icons-png/drawable-xhdpi/mm_([^/]*?)\.png', r'[ddf=2.0]map/icons/\1.png'],
+    [r'rendering_styles/style-icons/map-icons-png/drawable-xhdpi/mx_([^/]*?)\.png', r'[ddf=2.0]map/largeIcons/\1.png'],
+    [r'rendering_styles/style-icons/map-shaders-png/drawable-xhdpi/h_([^/]*?shield[^/]*?)\.png', r'[ddf=2.0]map/shields/\1.png'],
+    [r'rendering_styles/style-icons/map-shaders-png/drawable-xhdpi/h_([^/]*?)\.png', r'[ddf=2.0]map/shaders/\1.png'],
+
+    # Map icons (Android xxhdpi == 3.0 ddf):
+    [r'rendering_styles/style-icons/map-icons-png/drawable-xxhdpi/mm_([^/]*?)\.png', r'[ddf=3.0]map/icons/\1.png'],
+    [r'rendering_styles/style-icons/map-icons-png/drawable-xxhdpi/mx_([^/]*?)\.png', r'[ddf=3.0]map/largeIcons/\1.png'],
+    [r'rendering_styles/style-icons/map-shaders-png/drawable-xxhdpi/h_([^/]*?shield[^/]*?)\.png', r'[ddf=3.0]map/shields/\1.png'],
+    [r'rendering_styles/style-icons/map-shaders-png/drawable-xxhdpi/h_([^/]*?)\.png', r'[ddf=3.0]map/shaders/\1.png'],
 
     # Misc map resources:
     [r'rendering_styles/stubs/([^/]*?)\.png', r'map/stubs/\1.png'],
