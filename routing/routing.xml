@@ -377,6 +377,8 @@
 	-->
 
 	<routingProfile name="car" baseProfile="car" restrictionsAware="true" minSpeed="20.0" defaultSpeed="45.0" maxSpeed="130.0" sharpTurn="30" slightTurn="15" roundaboutTurn="15" onewayAware="true">
+		<!-- Special penalty for reversed direction at route's startup (in seconds, default is 60) -->
+		<attribute name="penaltyForReverseDirection" value="300" /> <!-- car: ~ 5 minutes to find U-turn -->
 	 	<!--<attribute name="heuristicCoefficient" value="1.5" />
 		-->
 		<attribute name="derivedProfiles" value="default,truck,motorcycle"/>
@@ -388,8 +390,8 @@
 		<attribute name="maxStepApproximation" value= "3000"/>
 		<!-- Parameter to smoother the track itself (could be 0 if it's not recorded track) -->
 		<attribute name="smoothenPointsNoRoute" value = "5"/>
+
 		<!-- NEW ROUTING API -->
-		
 		<!-- <parameter id="prefer_motorway" name="Prefer motorways" description="Prefer motorways" type="boolean"/> -->
 		<!-- <parameter id="no_new_routing" name="Do not use v1.9 routing" description="Do not use v1.9 routing" type="boolean"/> -->
 		
@@ -1145,6 +1147,8 @@
 	</routingProfile>
 
 	<routingProfile name="bicycle" baseProfile="bicycle" restrictionsAware="true" minSpeed="5" defaultSpeed="10" maxSpeed="33" sharpTurn="6" slightTurn="6" followSpeedLimitations="false" onewayAware="true" heuristicCoefficient="1.4">
+		<attribute name="penaltyForReverseDirection" value="60" /> <!-- bike: ~ 1 minute to turn back -->
+
 		<!-- <attribute name="relaxNodesIfStartDistSmallCoeff" value="2.5"/>  -->
 		<!-- New ROUTING API -->
 
@@ -1909,6 +1913,7 @@
 	</routingProfile>
 
 	<routingProfile name="pedestrian" baseProfile="pedestrian" restrictionsAware="false" minSpeed="2" defaultSpeed="4" maxSpeed="10" sharpTurn="0" slightTurn="0" followSpeedLimitations="false" onewayAware="false">
+		<attribute name="penaltyForReverseDirection" value="10" /> <!-- foot: almost zero time to turn around -->
 
 		<attribute name="heuristicCoefficient" value="1.2" />
 		<!-- NEW ROUTING API -->
@@ -2209,8 +2214,6 @@
 		</way>
 	</routingProfile>
 
-	
-		
 	<routingProfile name="horsebackriding" baseProfile="horsebackriding" restrictionsAware="true" minSpeed="2" defaultSpeed="6" maxSpeed="30" sharpTurn="0" slightTurn="0" followSpeedLimitations="false" onewayAware="false">
 
 		<attribute name="heuristicCoefficient" value="1.2" />
@@ -2635,6 +2638,8 @@
 	</routingProfile>
 
 	<routingProfile name="ski" minSpeed="3.0" defaultSpeed="5.0" maxSpeed="150.0" onewayAware="true" baseProfile="ski">
+		<attribute name="penaltyForReverseDirection" value="900" /> <!-- ski: ~ 15 minutes to take a lift -->
+
 		<parameter id="piste_type_downhill" name="Alpine/downhill ski" description="Slopes for alpine or downhill skiing and access to ski lifts." type="boolean" default="true"/>
 		<parameter id="piste_type_nordic" name="Cross country/nordic ski" description="Trails for nordic or cross-country skiing." type="boolean" default="true"/>
 		<parameter id="piste_type_skitour" name="Ski touring" description="Routes for ski touring." type="boolean" default="true"/>
