@@ -377,6 +377,8 @@
 	-->
 
 	<routingProfile name="car" baseProfile="car" restrictionsAware="true" minSpeed="20.0" defaultSpeed="45.0" maxSpeed="130.0" sharpTurn="30" slightTurn="15" roundaboutTurn="15" onewayAware="true">
+		<!-- Special penalty for reversed direction at route's startup (in seconds, default is 60) -->
+		<attribute name="penaltyForReverseDirection" value="300" /> <!-- car: ~ 5 minutes to find U-turn -->
 	 	<!--<attribute name="heuristicCoefficient" value="1.5" />
 		-->
 		<attribute name="derivedProfiles" value="default,truck,motorcycle"/>
@@ -388,8 +390,8 @@
 		<attribute name="maxStepApproximation" value= "3000"/>
 		<!-- Parameter to smoother the track itself (could be 0 if it's not recorded track) -->
 		<attribute name="smoothenPointsNoRoute" value = "5"/>
+
 		<!-- NEW ROUTING API -->
-		
 		<!-- <parameter id="prefer_motorway" name="Prefer motorways" description="Prefer motorways" type="boolean"/> -->
 		<!-- <parameter id="no_new_routing" name="Do not use v1.9 routing" description="Do not use v1.9 routing" type="boolean"/> -->
 		
@@ -1145,6 +1147,8 @@
 	</routingProfile>
 
 	<routingProfile name="bicycle" baseProfile="bicycle" restrictionsAware="true" minSpeed="5" defaultSpeed="10" maxSpeed="33" sharpTurn="6" slightTurn="6" followSpeedLimitations="false" onewayAware="true" heuristicCoefficient="1.4">
+		<attribute name="penaltyForReverseDirection" value="60" /> <!-- bike: ~ 1 minute to turn back -->
+
 		<!-- <attribute name="relaxNodesIfStartDistSmallCoeff" value="2.5"/>  -->
 		<!-- New ROUTING API -->
 
@@ -1432,7 +1436,7 @@
 					<select value="-1" t="highway" v="path"/>
 					<select value="-1" t="highway" v="track"/>
 				</gt>
-				<gt value1="-25" value2=":incline">
+				<gt value1="-35" value2=":incline">
 					<select value="30" t="osmand_highway_integrity_brouting_low" v="yes"/>
 					<select value="30" t="highway" v="path"/>
 					<select value="25" t="highway" v="track"/>
@@ -1441,16 +1445,6 @@
 					<select value="7.7" t="osmand_highway_integrity_brouting_low" v="yes"/>
 					<select value="7.7" t="highway" v="path"/>
 					<select value="6.4" t="highway" v="track"/>
-				</gt>
-				<gt value1="-9" value2=":incline">
-					<select value="3.0" t="osmand_highway_integrity_brouting_low" v="yes"/>
-					<select value="3.0" t="highway" v="path"/>
-					<select value="2.5" t="highway" v="track"/>
-				</gt>
-				<gt value1="-3" value2=":incline">
-					<select value="1.8" t="osmand_highway_integrity_brouting_low" v="yes"/>
-					<select value="1.8" t="highway" v="path"/>
-					<select value="1.5" t="highway" v="track"/>
 				</gt>
 				<if param="relief_smoothness_factor_more_plains">
 					<gt value1="3" value2=":incline">
@@ -1483,7 +1477,7 @@
 					<gt value1="25" value2=":incline">
 						<select value="0.5"/>
 					</gt>
-					<select value="2"/>
+					<select value="0.3"/>
 				</if>
 				<gt value1="3" value2=":incline">
 					<select value="2"/>
@@ -1919,6 +1913,7 @@
 	</routingProfile>
 
 	<routingProfile name="pedestrian" baseProfile="pedestrian" restrictionsAware="false" minSpeed="2" defaultSpeed="4" maxSpeed="10" sharpTurn="0" slightTurn="0" followSpeedLimitations="false" onewayAware="false">
+		<attribute name="penaltyForReverseDirection" value="10" /> <!-- foot: almost zero time to turn around -->
 
 		<attribute name="heuristicCoefficient" value="1.2" />
 		<!-- NEW ROUTING API -->
@@ -2030,20 +2025,20 @@
 		<way attribute="obstacle_srtm_alt_speed">
 			<if param="height_obstacles">
 				<select value="0" t="highway" v="via_ferrata"/>
-				<gt value1="-60" value2=":incline">
-					<select value="35"/>
+				<gt value1="-100" value2=":incline">
+					<select value="40"/>
 				</gt>
-				<gt value1="-25" value2=":incline">
-					<select value="30"/>
+				<gt value1="-60" value2=":incline">
+					<select value="25"/>
+				</gt>
+				<gt value1="-35" value2=":incline">
+					<select value="17"/>
 				</gt>
 				<gt value1="-17" value2=":incline">
-					<select value="17"/>
+					<select value="10"/>
 				</gt>
 				<gt value1="-9" value2=":incline">
 					<select value="5"/>
-				</gt>
-				<gt value1="-3" value2=":incline">
-					<select value="1"/>
 				</gt>
 				<if param="relief_smoothness_factor_more_plains">
 					<gt value1="3" value2=":incline">
@@ -2061,22 +2056,22 @@
 					<select value="74"/>
 				</if>
 				<if param="relief_smoothness_factor_hills">
-					<gt value1="0" value2=":incline">
-						<select value="128"/>
+					<gt value1="1" value2=":incline">
+						<select value="61"/>
 					</gt>
 					<gt value1="3" value2=":incline">
-						<select value="64"/>
+						<select value="20"/>
 					</gt>
 					<gt value1="7" value2=":incline">
-						<select value="17"/>
+						<select value="7"/>
 					</gt>
 					<gt value1="13" value2=":incline">
-						<select value="10"/>
+						<select value="3"/>
 					</gt>
 					<gt value1="25" value2=":incline">
-						<select value="8"/>
+						<select value="0.5"/>
 					</gt>
-					<select value="2"/>
+					<select value="0.3"/>
 				</if>
 				<gt value1="3" value2=":incline">
 					<select value="1"/>
@@ -2219,8 +2214,6 @@
 		</way>
 	</routingProfile>
 
-	
-		
 	<routingProfile name="horsebackriding" baseProfile="horsebackriding" restrictionsAware="true" minSpeed="2" defaultSpeed="6" maxSpeed="30" sharpTurn="0" slightTurn="0" followSpeedLimitations="false" onewayAware="false">
 
 		<attribute name="heuristicCoefficient" value="1.2" />
@@ -2645,6 +2638,8 @@
 	</routingProfile>
 
 	<routingProfile name="ski" minSpeed="3.0" defaultSpeed="5.0" maxSpeed="150.0" onewayAware="true" baseProfile="ski">
+		<attribute name="penaltyForReverseDirection" value="900" /> <!-- ski: ~ 15 minutes to take a lift -->
+
 		<parameter id="piste_type_downhill" name="Alpine/downhill ski" description="Slopes for alpine or downhill skiing and access to ski lifts." type="boolean" default="true"/>
 		<parameter id="piste_type_nordic" name="Cross country/nordic ski" description="Trails for nordic or cross-country skiing." type="boolean" default="true"/>
 		<parameter id="piste_type_skitour" name="Ski touring" description="Routes for ski touring." type="boolean" default="true"/>

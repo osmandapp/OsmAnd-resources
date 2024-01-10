@@ -1,0 +1,143 @@
+<renderingStyle name="padus" addon="yes" depends="" defaultColor="#ebe7e4" version="1">
+
+	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
+		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
+	<renderingProperty attr="baseAppMode" name="Default Rendering mode" description="Map optimization for respective User Profile based on base (parent) profile"
+		type="string" possibleValues="default, car, bicycle, pedestrian, public_transport, boat, ski"/>
+<!--	<renderingProperty attr="padusDisplayMode" name="PADUS display mode" description="PAD-US display mode"
+		type="string" possibleValues="access,managerName" defaultValueDescription="default"/>-->
+
+	<renderingAttribute name="defaultColor">
+		<case noPolygons="true" attrColorValue="#00ebe7e4"/>
+		<case attrColorValue="#ebe7e4">
+			<apply_if nightMode="true" attrColorValue="#121926"/>
+		</case>
+	</renderingAttribute>
+
+	<renderingConstant name="null" value="#00000000"/>
+
+	<renderingProperty attr="engine_v1" type="boolean"/>
+
+	<order>
+		<switch area="true" point="false" objectType="3" order="5">
+			<case tag="padus" value="area" order="100"/>
+		</switch>
+		<switch cycle="true" point="false" objectType="3" order="5">
+			<case tag="padus" value="area" order="100"/>
+		</switch>
+	</order>
+
+	<text>
+		<switch minzoom="9" tag="padus" value="area" nameTag="padus_unit_name" textColor="#222222" textHaloColor="#77ffffff" textHaloRadius="1" textBold="true" textWrapWidth="27">
+			<case padusDisplayMode="managerName">
+				<case additional="padus_manager_name=dod" textColor="#8C1A2F"/>
+				<case additional="padus_manager_name=blm" textColor="#594A1D"/>
+				<case additional="padus_manager_name=nps" textColor="#456945"/>
+				<case additional="padus_manager_name=usfs" textColor="#5E821D"/>
+				<case additional="padus_manager_name=usace" textColor="#36788A"/>
+				<case additional="padus_manager_name=fws" textColor="#89454F"/>
+				<case additional="padus_manager_name=usbr" textColor="#0056D8"/>
+				<case additional="padus_manager_name=noaa" textColor="#0083D9"/>
+				<case additional="padus_manager_name=nrcs" textColor="#D13100"/>
+				<case additional="padus_manager_name=tva" textColor="#62914F"/>
+				<case additional="padus_manager_name=ars" textColor="#62914F"/>
+				<case additional="padus_manager_name=bpa" textColor="#62914F"/>
+				<case additional="padus_manager_name=doe" textColor="#62914F"/>
+				<case additional="padus_manager_name=othf" textColor="#62914F"/>
+				<case additional="padus_manager_name=ngo" textColor="#B01818"/>
+				<case additional="padus_manager_name=sdnr" textColor="#9D4D70"/>
+				<case additional="padus_manager_name=sdol" textColor="#9D4D70"/>
+				<case additional="padus_manager_name=slb" textColor="#9D4D70"/>
+				<case additional="padus_manager_name=oths" textColor="#745B91"/>
+				<case additional="padus_manager_name=sdc" textColor="#745B91"/>
+				<case additional="padus_manager_name=gu" textColor="#745B91"/>
+				<case additional="padus_manager_name=fws" textColor="#6A4EC9"/>
+				<case additional="padus_manager_name=sfw" textColor="#6A4EC9"/>
+				<case additional="padus_manager_name=spr" textColor="#5A73C9"/>
+				<case additional="padus_manager_name=cnty" textColor="#7D9C23"/>
+				<case additional="padus_manager_name=reg" textColor="#7D9C23"/>
+				<case additional="padus_manager_name=rwd" textColor="#7D9C23"/>
+				<case additional="padus_manager_name=city" textColor="#7E852F"/>
+				<case additional="padus_manager_name=pvt" textColor="#C2651A"/>
+				<case additional="padus_manager_name=jnt" textColor="#CB6C6A"/>
+				<case additional="padus_manager_name=unkl" textColor="#CB6C6A"/>
+				<case additional="padus_manager_name=unk" textColor="#CB6C6A"/>
+				<case additional="padus_manager_name=othr" textColor="#CB6C6A"/>
+				<case additional="padus_manager_name=trib"/>
+				<case textColor="#9C2396"/>
+				<case disable="true"/>
+			</case>
+			<case padusDisplayMode="access">
+				<case additional="padus_public_access=oa" textColor="#15937A"/>
+				<case additional="padus_public_access=ra" textColor="#F13C5E"/>
+				<case additional="padus_public_access=xa" textColor="#B4960E"/>
+				<case additional="padus_public_access=uk"/>
+				<case textColor="#9C2396"/>
+				<case disable="true"/>
+			</case>
+			<apply_if minzoom="12" textHaloRadius="2"/>
+			<apply_if maxzoom="11" textSize="10"/>
+			<apply_if minzoom="12" maxzoom="13" textSize="11"/>
+			<apply_if minzoom="14" textSize="12"/>
+<!--			<apply_if minzoom="16" textOnPath="true"/>-->
+		</switch>
+	</text>
+
+	<point>
+	</point>
+
+	<polygon>
+		<switch minzoom="7" tag="padus" value="area">
+			<case padusDisplayMode="managerName">
+				<case additional="padus_manager_name=dod" color="#33DA9F94" color_2="#8C1A2F"/> <!--Department of Defense (DOD)-->
+				<case additional="padus_manager_name=blm" color="#33DDB848" color_2="#766226"/> <!--Bureau of Land Management (BLM)-->
+				<case additional="padus_manager_name=nps" color="#3370A170" color_2="#456945"/> <!--National Park Service (NPS)-->
+				<case additional="padus_manager_name=usfs" color="#3389BD2A" color_2="#5E821D"/> <!--Forest Service (USFS)-->
+				<case additional="padus_manager_name=usace" color="#3363DDFF" color_2="#36788A"/> <!--Army Corps of Engineers (USACE)-->
+				<case additional="padus_manager_name=fws" color="#33AD5764" color_2="#89454F"/> <!--Fish and Wildlife Service (FWS)-->
+				<case additional="padus_manager_name=usbr" color="#33005CE6" color_2="#0056D8"/> <!--Bureau of Reclamation (BOR)-->
+				<case additional="padus_manager_name=noaa" color="#3336AFFF" color_2="#0083D9"/> <!--National Oceanic and Atmospheric Administration (NOAA)-->
+				<case additional="padus_manager_name=nrcs" color="#33FF4208" color_2="#D13100"/> <!--National Resource Conservation Service (NRCS)-->
+				<case additional="padus_manager_name=tva" color="#3386C66C" color_2="#62914F"/> <!--Other Federal (TVA, ARS, BPA, DOE, etc.)-->
+				<case additional="padus_manager_name=ars" color="#3386C66C" color_2="#62914F"/> <!--Other Federal (TVA, ARS, BPA, DOE, etc.)-->
+				<case additional="padus_manager_name=bpa" color="#3386C66C" color_2="#62914F"/> <!--Other Federal (TVA, ARS, BPA, DOE, etc.)-->
+				<case additional="padus_manager_name=doe" color="#3386C66C" color_2="#62914F"/> <!--Other Federal (TVA, ARS, BPA, DOE, etc.)-->
+				<case additional="padus_manager_name=othf" color="#3386C66C" color_2="#62914F"/> <!--Other Federal (TVA, ARS, BPA, DOE, etc.)-->
+				<case additional="padus_manager_name=ngo" color="#33E64747" color_2="#B01818"/> <!--Non-Governmental Organization-->
+				<case additional="padus_manager_name=sdnr" color="#33BF7C99" color_2="#9D4D70"/> <!--State Trust Land-->
+				<case additional="padus_manager_name=sdol" color="#33BF7C99" color_2="#9D4D70"/> <!--State Trust Land-->
+				<case additional="padus_manager_name=slb" color="#33BF7C99" color_2="#9D4D70"/> <!--State Trust Land-->
+				<case additional="padus_manager_name=oths" color="#33AB99BF" color_2="#745B91"/> <!--Other State (NHP,DOT,HS,etc.)-->
+				<case additional="padus_manager_name=sdc" color="#33AB99BF" color_2="#745B91"/> <!--Other State (NHP,DOT,HS,etc.)-->
+				<case additional="padus_manager_name=gu" color="#33AB99BF" color_2="#745B91"/> <!--Other State (NHP,DOT,HS,etc.)-->
+				<case additional="padus_manager_name=sfw" color="#33A392DE" color_2="#6A4EC9"/> <!--State Fish and Wildlife-->
+				<case additional="padus_manager_name=spr" color="#339BAADE" color_2="#5A73C9"/> <!--State Parks and Recreation-->
+				<case additional="padus_manager_name=cnty" color="#33B8D957" color_2="#7D9C23"/> <!--County, Regional Agency Land-->
+				<case additional="padus_manager_name=reg" color="#33B8D957" color_2="#7D9C23"/> <!--County, Regional Agency Land-->
+				<case additional="padus_manager_name=rwd" color="#33B8D957" color_2="#7D9C23"/> <!--County, Regional Agency Land-->
+				<case additional="padus_manager_name=city" color="#33BBC458" color_2="#7E852F"/> <!--City Land-->
+				<case additional="padus_manager_name=pvt" color="#33E68D45" color_2="#C2651A"/> <!--Private-->
+				<case additional="padus_manager_name=jnt" color="#33E3B0AF" color_2="#CB6C6A"/> <!--Joint, Other, Unknown-->
+				<case additional="padus_manager_name=unkl" color="#33E3B0AF" color_2="#CB6C6A"/> <!--Joint, Other, Unknown-->
+				<case additional="padus_manager_name=unk" color="#33E3B0AF" color_2="#CB6C6A"/> <!--Joint, Other, Unknown-->
+				<case additional="padus_manager_name=othr" color="#33E3B0AF" color_2="#CB6C6A"/> <!--Joint, Other, Unknown-->
+				<case additional="padus_manager_name=trib"/>
+				<case color="#9C2396"/>
+			</case>
+			<case padusDisplayMode="access">
+				<case additional="padus_public_access=oa" color="#3315937A" color_2="#15937A"/>
+				<case additional="padus_public_access=ra" color="#33F13C5E" color_2="#F13C5E"/>
+				<case additional="padus_public_access=xa" color="#33EFCC2D" color_2="#E3BD11"/>
+				<case additional="padus_public_access=uk" color="$null"/>
+				<case color="#9C2396"/>
+				<case disable="true"/>
+			</case>
+			<case color_2="#CCC0C8"/>
+			<apply_if minzoom="10" maxzoom="11" strokeWidth_2="1"/>
+			<apply_if minzoom="12" strokeWidth_2="2"/>
+		</switch>
+	</polygon>
+
+	<line>
+	</line>
+</renderingStyle>
