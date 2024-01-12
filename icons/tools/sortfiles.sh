@@ -912,6 +912,7 @@ icon_alias sport_cricket sport_cricket
 icon_alias sport_cycling sport_cycling
 icon_alias sport_diving sport_diving
 icon_alias sport_golf sport_golf
+icon_alias sport_disc_golf sport_disc_golf
 icon_alias sport_gymnastics sport_gymnasium
 icon_alias sport_handball sport_handball
 icon_alias ice_hockey sport_ice_hockey
