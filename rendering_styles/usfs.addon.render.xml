@@ -1,0 +1,70 @@
+<renderingStyle name="usfs" addon="yes" depends="" defaultColor="#ebe7e4" version="1">
+
+	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
+		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
+	<renderingProperty attr="baseAppMode" name="Default Rendering mode" description="Map optimization for respective User Profile based on base (parent) profile"
+		type="string" possibleValues="default, car, bicycle, pedestrian, public_transport, boat, ski"/>
+<!--	<renderingProperty attr="nfsTrails" name="NFS trails" description="NFS trails"
+		type="boolean" possibleValues="" category="routes"/>-->
+
+	<renderingAttribute name="defaultColor">
+		<case noPolygons="true" attrColorValue="#00ebe7e4"/>
+		<case attrColorValue="#ebe7e4">
+			<apply_if nightMode="true" attrColorValue="#121926"/>
+		</case>
+	</renderingAttribute>
+
+	<renderingConstant name="null" value="#00000000"/>
+
+	<renderingProperty attr="engine_v1" type="boolean"/>
+
+	<order>
+		<switch area="false" objectType="2" order="80">
+			<case tag="nfs" value="trail" order="120"/>
+		</switch>
+	</order>
+
+	<text>
+		<switch minzoom="12" nfsTrails="true" textColor="#C50028" textHaloColor="#aaffffff" textHaloRadius="2" textOnPath="true" textBold="true" textWrapWidth="27">
+			<case maxzoom="12" tag="nfs" value="trail" nameTag="nfs_trail_number"/>
+			<case minzoom="13" tag="nfs" value="trail" nameTag="nfs_trail_name" nameTag2="nfs_trail_number">
+				<case nameTag2="nfs_trail_number"/>
+			</case>
+			<apply_if maxzoom="15" textSize="13"/>
+			<apply_if minzoom="16" textSize="14"/>
+		</switch>
+	</text>
+
+	<point>
+	</point>
+
+	<polygon>
+	</polygon>
+
+	<line>
+		<switch minzoom="11" nfsTrails="true" tag="nfs" value="trail" color__2="#ffffff">
+			<switch>
+				<case additional="nfs_terra_base_symbology=tc4-5" color="#000000"/>
+				<apply_if maxzoom="12" strokeWidth="2" strokeWidth__2="4" pathEffect="4_4"/>
+				<apply_if minzoom="13" maxzoom="17" strokeWidth="3" strokeWidth__2="7" pathEffect="5_5"/>
+				<apply_if minzoom="18" strokeWidth="4" strokeWidth__2="10" pathEffect="6_6"/>
+			</switch>
+			<switch>
+				<case additional="nfs_terra_base_symbology=tc3" color="#000000">
+					<apply_if maxzoom="12" pathEffect="4_4"/>
+					<apply_if minzoom="13" maxzoom="17" pathEffect="5_5"/>
+					<apply_if minzoom="18" pathEffect="6_6"/>
+				</case>
+				<case additional="nfs_terra_base_symbology=tc1-2" color="#000000">
+					<apply_if maxzoom="12" pathEffect="2_2"/>
+					<apply_if minzoom="13" maxzoom="17" pathEffect="2_2"/>
+					<apply_if minzoom="18" pathEffect="3_3"/>
+				</case>
+				<apply_if maxzoom="12" strokeWidth="1.5" strokeWidth__2="3"/>
+				<apply_if minzoom="13" maxzoom="17" strokeWidth="2" strokeWidth__2="5"/>
+				<apply_if minzoom="18" strokeWidth="3" strokeWidth__2="7"/>
+			</switch>
+			<apply_if additional="nfs_national_trail_designation=3" color="#C50028"/>
+		</switch>
+	</line>
+</renderingStyle>
