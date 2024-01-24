@@ -2474,7 +2474,7 @@
 	</renderingAttribute>
 	<renderingAttribute name="boundaryBorderZoneTextHaloColor">
 		<case nightMode="true" attrColorValue="#33805D62"/>
-		<case attrColorValue="#225E4327"/>
+		<case attrColorValue="#88ECC1D0"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="subwayTextDefaultColor">
@@ -3161,6 +3161,13 @@
 				<apply_if engine_v1="true" addPoint="true"/>
 			</switch>
 
+			<switch point="false" objectType="2" order="81">
+				<case tag="osmand_nature_reserve" value="line"/>
+				<case tag="osmand_national_park" value="line"/>
+				<case tag="osmand_aboriginal_lands" value="line"/>
+				<case tag="osmand_border_zone" value="line"/>
+			</switch>
+
 			<!-- Line 11-100 -->
 			<switch area="false" objectType="2" order="80">
 				<!-- default line -->
@@ -3437,8 +3444,6 @@
 					<case tag="natural" value="crevasse">
 						<apply_if moreDetailed="false" maxzoom="16" order="-1"/>
 					</case>
-
-					<case tag="osmand_nature_reserve" value="line"/>
 					
 					<case tag="natural" value="arch"/>
 					<case tag="geological" value="outcrop"/>
@@ -4949,8 +4954,12 @@
 						<case minzoom="12" tag="natural" value="fell" textOrder="250"/>
 						<case minzoom="15" tag="leisure" value="dog_park" textOrder="250"/>
 						<case minzoom="9" tag="leisure" value="nature_reserve" textOrder="102"/>
-						<case minzoom="17" tag="osmand_nature_reserve" value="line" textOnPath="true"/>
-						<case minzoom="9" tag="boundary" value="national_park" textOrder="103" textOnPath="true"/>
+						<case minzoom="15" tag="osmand_nature_reserve" value="line" textOnPath="true" textMinDistance="100"/>
+						<case minzoom="12" tag="admin_level" value="2" textOnPath="true"/>
+						<case minzoom="12" tag="admin_level" value="4" textOnPath="true"/>
+						<case minzoom="12" tag="admin_level" value="6" textOnPath="true"/>
+						<case minzoom="9" tag="boundary" value="national_park" textOrder="103"/>
+						<case minzoom="15" tag="osmand_national_park" value="line" textOnPath="true" textMinDistance="100"/>
 						<case minzoom="8" tag="boundary" value="protected_area" textOrder="103"/>
 						<case minzoom="13" tag="boundary" value="forestry_compartment" nameTag="ref" textOrder="103"/>
 						<case minzoom="13" tag="boundary" value="forestry_compartment" textOrder="103"/>
@@ -4984,7 +4993,9 @@
 				</switch>
 				<switch textSize="12" textWrapWidth="20" textHaloRadius="$textHaloRadius" textItalic="true" nameTag="">
 					<case minzoom="8" tag="boundary" value="aboriginal_lands" textOrder="104" textColor="$boundaryAboriginalLandsTextColor" textHaloColor="$boundaryAboriginalLandsTextHaloColor"/>
-					<case minzoom="11" tag="boundary" value="border_zone" textOrder="105" textColor="$boundaryBorderZoneTextColor" textHaloColor="$boundaryBorderZoneTextHaloColor" textOnPath="true"/>
+					<case minzoom="15" tag="osmand_aboriginal_lands" value="line" textOrder="104" textColor="$boundaryAboriginalLandsTextColor" textHaloColor="$boundaryAboriginalLandsTextHaloColor" textOnPath="true" textMinDistance="100"/>
+					<case minzoom="11" tag="boundary" value="border_zone" textOrder="105" textColor="$boundaryBorderZoneTextColor" textHaloColor="$boundaryBorderZoneTextHaloColor"/>
+					<case minzoom="15" tag="osmand_border_zone" value="line" textColor="$boundaryBorderZoneTextColor" textHaloColor="$boundaryBorderZoneTextHaloColor" textOnPath="true" textMinDistance="100"/>
 				</switch>
 				<switch textSize="12" textColor="$tourismTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$tourismTextHaloColorDay" textWrapWidth="20" nameTag="">
 					<case minzoom="$naturalSandTextMinZoom" tag="natural" value="sand" textOrder="255"/>
@@ -11612,11 +11623,14 @@
 					<case minzoom="14" strokeWidth="3.5:3.5" pathEffect="13_8"/>
 				</apply>
 			</case>
-			<case tag="osmand_nature_reserve" value="line" strokeWidth="1" color="$null"/>
+			<case minzoom="13" tag="osmand_nature_reserve" value="line" strokeWidth="1" color="$null"/>
+			<case minzoom="13" tag="osmand_national_park" value="line" strokeWidth="1" color="$null"/>
 		</switch>
 		<switch>
 			<case minzoom="8" tag="boundary" value="aboriginal_lands" color="$boundaryAboriginalLandsColor"/>
 			<case minzoom="10" tag="boundary" value="border_zone" color="$boundaryBorderZoneColor"/>
+			<case minzoom="13" tag="osmand_aboriginal_lands" value="line" strokeWidth="1" color="$null"/>
+			<case minzoom="13" tag="osmand_border_zone" value="line" strokeWidth="1" color="$null"/>
 			<apply>
 				<case maxzoom="13" strokeWidth="2:2"/>
 				<case minzoom="14" strokeWidth="3.5:3.5"/>
