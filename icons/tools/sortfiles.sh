@@ -736,6 +736,7 @@ icon_alias wilderness_hut accommodation_wilderness_hut
 icon_alias topo_wilderness_hut topo_topo_wilderness_hut
 icon_alias summer_camp accommodation_summer_camp
 icon_alias refugee_site accommodation_refugee_site
+icon_alias group_camping tourist_group_camping
 
 ## Tourism
 icon_alias sightseeing tourist_castle2
@@ -772,6 +773,7 @@ icon_alias board_type_plants tourist_colored_board_type_plants
 icon_alias tourism_museum tourist_museum
 icon_alias tourism_picnic_site tourist_colored_picnic
 icon_alias topo_picnic_site topo_topo_picnic_site
+icon_alias picnicking tourist_picnicking
 icon_alias picnic_table tourist_colored_picnic_table
 icon_alias topo_picnic_table topo_topo_picnic_table
 icon_alias tourism_theme_park tourist_theme_park
@@ -803,6 +805,16 @@ icon_alias trail_riding_station tourist_trail_riding_station
 icon_alias topo_trailhead topo_topo_trailhead
 icon_alias ranger_station amenity_ranger_station
 icon_alias mountain tourist_mountain
+icon_alias cabin_rentals tourist_cabin_rentals
+icon_alias nfs_default_icon tourist_nfs_default_icon
+icon_alias dispersed_camping tourist_dispersed_camping
+icon_alias viewing_wildlife tourist_viewing_wildlife
+icon_alias group_picnicking tourist_group_picnicking
+icon_alias visitor_programs tourist_visitor_programs
+icon_alias interpretive_areas tourist_interpretive_areas
+icon_alias target_shooting tourist_target_shooting
+icon_alias mountain_biking tourist_mountain_biking
+icon_alias birdwatching tourist_birdwatching
 
 ## Entertainment
 icon_alias entertainment tourist_cinema3
