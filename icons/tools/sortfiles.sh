@@ -815,6 +815,11 @@ icon_alias interpretive_areas tourist_interpretive_areas
 icon_alias target_shooting tourist_target_shooting
 icon_alias mountain_biking tourist_mountain_biking
 icon_alias birdwatching tourist_birdwatching
+icon_alias horse_camping tourist_horse_camping
+icon_alias gold_panning tourist_gold_panning
+icon_alias ohv_camping tourist_ohv_camping
+icon_alias rockhounding tourist_rockhounding
+icon_alias viewing_plants tourist_viewing_plants
 
 ## Entertainment
 icon_alias entertainment tourist_cinema3
@@ -973,6 +978,7 @@ icon_alias sport_multi sport_multi
 icon_alias dive_centre sport_dive_centre
 icon_alias ultralight_aviation sport_ultralight_aviation
 icon_alias golf_pin functional-icons-x2_golf_pin
+icon_alias hang_gliding sport_hang_gliding
 
 
 ## Leisure
