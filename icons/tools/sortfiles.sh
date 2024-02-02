@@ -824,6 +824,7 @@ icon_alias tubing tourist_tubing
 icon_alias sledding_tubing tourist_sledding_tubing
 icon_alias tidepooling tourist_tidepooling
 icon_alias metal_detecting tourist_metal_detecting
+icon_alias dog_sledding tourist_dog_sledding
 
 ## Entertainment
 icon_alias entertainment tourist_cinema3
