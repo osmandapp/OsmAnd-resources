@@ -820,6 +820,10 @@ icon_alias gold_panning tourist_gold_panning
 icon_alias ohv_camping tourist_ohv_camping
 icon_alias rockhounding tourist_rockhounding
 icon_alias viewing_plants tourist_viewing_plants
+icon_alias tubing tourist_tubing
+icon_alias sledding_tubing tourist_sledding_tubing
+icon_alias tidepooling tourist_tidepooling
+icon_alias metal_detecting tourist_metal_detecting
 
 ## Entertainment
 icon_alias entertainment tourist_cinema3
@@ -979,6 +983,8 @@ icon_alias dive_centre sport_dive_centre
 icon_alias ultralight_aviation sport_ultralight_aviation
 icon_alias golf_pin functional-icons-x2_golf_pin
 icon_alias hang_gliding sport_hang_gliding
+icon_alias windsurfing sport_windsurfing
+icon_alias waterskiing sport_waterskiing
 
 
 ## Leisure
