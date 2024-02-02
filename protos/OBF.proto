@@ -713,7 +713,8 @@ message OsmAndHHRoutingIndex {
 	required int64 edition = 1; // usually timestamp creation checks consistency
 	required string profile = 2; // main profile car, pedestrian ... 
 	repeated string profileParams = 3; // later encoded as profileIds in points / segments
-	
+	optional StringTable tagValuesTable = 4;
+
 	required HHRoutePointsBox pointBoxes = 5;
 	repeated HHRouteBlockSegments pointSegments = 6;
 
@@ -738,9 +739,9 @@ message OsmAndHHRoutingIndex {
 		optional int32 clusterId = 7;
 		optional int32 dualPointId = 8;
 		optional int32 dualClusterId = 9;
-                repeated int32 profileIds = 10; // applied to specific profiles (if empty then applied to all profiles)
-                optional int32 partialInd = 11; // partialInd > 0, means that it's a partially written node without clusters
-
+		repeated int32 profileIds = 10; // applied to specific profiles (if empty then applied to all profiles)
+		optional int32 partialInd = 11; // partialInd > 0, means that it's a partially written node without clusters
+		repeated int32 tagValueIds = 12;
 	}
 
 	message HHRouteBlockSegments {
