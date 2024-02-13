@@ -22,7 +22,16 @@
 	<poi_additional name="lang_yes" tag="lang" lang="true" value="yes"/>
 	<poi_additional name="route_name" tag="route_name" type="text" lang="true" order="82"/>
 	<poi_additional name="route_id" tag="route_id" type="text" lang="true" order="82"/>
-	
+	<poi_additional name="from" tag="from" type="text" order="79"/>
+	<poi_additional name="to" tag="to" type="text" order="78"/>
+	<poi_additional name="via" tag="via" type="text" order="78"/>
+	<poi_additional name="cycle_network" tag="cycle_network" type="text" order="76"/>
+	<poi_additional name="ascent" tag="ascent" type="text" order="75"/>
+	<poi_additional name="descent" tag="descent" type="text" order="74"/>
+
+	<poi_additional name="roundtrip_yes" tag="roundtrip" value="yes"/>
+	<poi_additional name="roundtrip_no" tag="roundtrip" value="no"/>
+
 	<!-- should be not a text though it's not implemented without listing all possible values -->
 	<poi_additional name="gpx_icon" tag="gpx_icon" type="text"/>
 	<poi_additional name="gpx_bg" tag="gpx_bg"  type="text"/>
@@ -370,6 +379,23 @@
 	<poi_additional name="direction_entrance" tag="direction" value="entrance"/>
 	<poi_additional name="direction_exit" tag="direction" value="exit"/>
 	<poi_additional name="direction_all" tag="direction" value="all"/>
+	<poi_additional name="direction" tag="direction" type="text"/>
+
+	<poi_additional name="state_proposed" tag="state" value="proposed"/>
+	<poi_additional name="state_alternate" tag="state" value="alternate"/>
+	<poi_additional name="state_connection" tag="state" value="connection"/>
+	<poi_additional name="state_inuse" tag="state" value="inuse"/>
+	<poi_additional name="state_recommended" tag="state" value="recommended"/>
+	<poi_additional name="state_temporary" tag="state" value="temporary"/>
+	<poi_additional name="state_disused" tag="state" value="disused"/>
+	<poi_additional name="state_closed" tag="state" value="closed"/>
+	<poi_additional name="state_abandoned" tag="state" value="abandoned"/>
+	<poi_additional name="state_approved" tag="state" value="approved"/>
+	<poi_additional name="state_active" tag="state" value="active"/>
+	<poi_additional name="state_under_construction" tag="state" value="under_construction"/>
+	<poi_additional name="state_main" tag="state" value="main"/>
+	<poi_additional name="state_suspended" tag="state" value="suspended"/>
+	<poi_additional name="state_detour" tag="state" value="detour"/>
 
 	<poi_additional name="capacity" tag="capacity" type="text"/>
 	<poi_additional name="capacity_disabled_no" tag="capacity:disabled" value="no"/>
@@ -3452,7 +3478,9 @@
 			<poi_type name="equestrian" tag="sport" value="equestrian"/>
 			<poi_type name="fencing" tag="sport" value="fencing"/>
 			<poi_type name="field_hockey" tag="sport" value="field_hockey"/>
+			<poi_type name="hang_gliding" tag="sport" value="hang_gliding"/>
 			<poi_type name="golf" tag="sport" value="golf"/>
+			<poi_type name="disc_golf" tag="sport" value="disc_golf"/>
 			<poi_type name="gymnastics" tag="sport" value="gymnastics"/>
 			<poi_type name="handball" tag="sport" value="handball"/>
 			<poi_type name="horseshoes" tag="sport" value="horseshoes"/>
@@ -3528,7 +3556,6 @@
 			<poi_type name="badminton" tag="sport" value="badminton"/>
 			<poi_type name="jiu_jitsu" tag="sport" value="jiu-jitsu"/>
 			<poi_type name="judo" tag="sport" value="judo"/>
-			<poi_type name="disc_golf" tag="sport" value="disc_golf"/>
 			<poi_type name="futsal" tag="sport" value="futsal"/>
 			<poi_type name="rc_car" tag="sport" value="rc_car"/>
 			<poi_type name="sumo" tag="sport" value="sumo"/>
@@ -5019,6 +5046,8 @@
 			<poi_type name="anthill" tag="natural" value="anthill"/>
 			<poi_type name="termite_mound" tag="natural" value="termite_mound"/>
 			<poi_type name="nature_reserve" tag="leisure" value="nature_reserve" no_edit="true"/>
+			<poi_type name="aboriginal_lands" tag="boundary" value="aboriginal_lands" no_edit="true"/>
+			<poi_type name="border_zone" tag="boundary" value="border_zone" no_edit="true"/>
 			<poi_type name="protected_area" tag="boundary" value="protected_area" no_edit="true">
 				<poi_additional name="protection_title" tag="protection_title" type="text"/>
 				<poi_additional name="protection_object_historic" tag="protection_object" value="historic"/>
@@ -5349,6 +5378,128 @@
 			<poi_type name="hazard_flood" tag="hazard" value="flood"/>
 		</poi_category>
 
+<!--		<poi_category name="usmaps">
+			<poi_type name="padus_area" tag="padus" value="area">
+				<poi_additional name="padus_category_proclamation" tag="padus_category" value="proclamation"/>
+				<poi_additional name="padus_category_fee" tag="padus_category" value="fee"/>
+				<poi_additional name="padus_category_designation" tag="padus_category" value="designation"/>
+				<poi_additional name="padus_category_easement" tag="padus_category" value="easement"/>
+				<poi_additional name="padus_local_designation" tag="padus_local_designation" type="text"/>
+				<poi_additional name="padus_unit_name" tag="padus_unit_name" type="text"/>
+				<poi_additional name="padus_local_manager" tag="padus_local_manager" type="text"/>
+				<poi_additional name="padus_owner_fullname" tag="padus_owner_fullname" type="text"/>
+				<poi_additional name="padus_manager_type_fullname" tag="padus_manager_type_fullname" type="text"/>
+				<poi_additional name="padus_manager_fullname" tag="padus_manager_fullname" value="text"/>
+				<poi_additional name="padus_designation_type_fullname" tag="padus_designation_type_fullname" value="text"/>
+				<poi_additional name="padus_public_access_open" tag="padus_public_access" value="oa" additional="true"/>
+				<poi_additional name="padus_public_access_restricted" tag="padus_public_access" value="ra" additional="true"/>
+				<poi_additional name="padus_public_access_unknown" tag="padus_public_access" value="uk" additional="true"/>
+				<poi_additional name="padus_public_access_closed" tag="padus_public_access" value="xa" additional="true"/>
+				<poi_additional name="padus_gap_status_code" tag="padus_gap_status_code" type="text"/>
+			</poi_type>
+
+
+			<poi_type name="nfs_recreation_area" tag="nfs" value="recreation_area" icon="nfs_default_icon">
+				<poi_additional_category name="nfs_recreation_area_activity">
+					<poi_additional name="nfs_recreation_area_activity_backpacking" tag="nfs_recreation_area_activity_backpacking" value="yes" icon="special_trekking"/>
+					<poi_additional name="nfs_recreation_area_activity_beachcombing" tag="nfs_recreation_area_activity_beachcombing" value="yes" icon="osmc_white_shell"/>
+					<poi_additional name="nfs_recreation_area_activity_bicycling" tag="nfs_recreation_area_activity_bicycling" value="yes" icon="bicycle_transport"/>
+					<poi_additional name="nfs_recreation_area_activity_big_game_hunting" tag="nfs_recreation_area_activity_big_game_hunting" value="yes" icon="sport_shooting"/>
+					<poi_additional name="nfs_recreation_area_activity_boating_motorized" tag="nfs_recreation_area_activity_boating_motorized" value="yes" icon="special_sail_boat"/>
+					<poi_additional name="nfs_recreation_area_activity_boating_non_motorized" tag="nfs_recreation_area_activity_boating_non_motorized" value="yes" icon="special_kayak"/>
+					<poi_additional name="nfs_recreation_area_activity_cabin_rentals" tag="nfs_recreation_area_activity_cabin_rentals" value="yes" icon="cabin_rentals"/>
+					<poi_additional name="nfs_recreation_area_activity_campground_camping" tag="nfs_recreation_area_activity_campground_camping" value="yes" icon="tourism_camp_site"/>
+					<poi_additional name="nfs_recreation_area_activity_camping_and_cabins" tag="nfs_recreation_area_activity_camping_and_cabins" value="yes" icon="cabin_rentals"/>
+					<poi_additional name="nfs_recreation_area_activity_caving" tag="nfs_recreation_area_activity_caving" value="yes" icon="natural_cave_entrance"/>
+					<poi_additional name="nfs_recreation_area_activity_climbing" tag="nfs_recreation_area_activity_climbing" value="yes" icon="sport_climbing_adventure"/>
+					<poi_additional name="nfs_recreation_area_activity_day_hiking" tag="nfs_recreation_area_activity_day_hiking" value="yes" icon="osmc_white_hiker"/>
+					<poi_additional name="nfs_recreation_area_activity_disc_golf" tag="nfs_recreation_area_activity_disc_golf" value="yes" icon="sport_disc_golf"/>
+					<poi_additional name="nfs_recreation_area_activity_dispersed_camping" tag="nfs_recreation_area_activity_dispersed_camping" value="yes" icon="dispersed_camping"/>
+					<poi_additional name="nfs_recreation_area_activity_dog_sledding" tag="nfs_recreation_area_activity_dog_sledding" value="yes" icon="dog_sledding"/>
+					<poi_additional name="nfs_recreation_area_activity_estuary_fishing" tag="nfs_recreation_area_activity_estuary_fishing" value="yes" icon="shop_fishing"/>
+					<poi_additional name="nfs_recreation_area_activity_fishing" tag="nfs_recreation_area_activity_fishing" value="yes" icon="shop_fishing"/>
+					<poi_additional name="nfs_recreation_area_activity_fossil_collecting" tag="nfs_recreation_area_activity_fossil_collecting" value="yes" icon="palaeontological_site"/>
+					<poi_additional name="nfs_recreation_area_activity_game_bird_waterfowl" tag="nfs_recreation_area_activity_game_bird_waterfowl" value="yes" icon="sport_shooting"/>
+					<poi_additional name="nfs_recreation_area_activity_geocaching_and_letterboxing" tag="nfs_recreation_area_activity_geocaching_and_letterboxing" value="yes"/>
+					<poi_additional name="nfs_recreation_area_activity_gold_panning" tag="nfs_recreation_area_activity_gold_panning" value="yes" icon="gold_panning"/>
+					<poi_additional name="nfs_recreation_area_activity_group_camping" tag="nfs_recreation_area_activity_group_camping" value="yes" icon="group_camping"/>
+					<poi_additional name="nfs_recreation_area_activity_group_picnicking" tag="nfs_recreation_area_activity_group_picnicking" value="yes" icon="group_picnicking"/>
+					<poi_additional name="nfs_recreation_area_activity_hang_gliding" tag="nfs_recreation_area_activity_hang_gliding" value="yes" icon="hang_gliding"/>
+					<poi_additional name="nfs_recreation_area_activity_hiking" tag="nfs_recreation_area_activity_hiking" value="yes" icon="osmc_white_hiker"/>
+					<poi_additional name="nfs_recreation_area_activity_horse_camping" tag="nfs_recreation_area_activity_horse_camping" value="yes" icon="horse_camping"/>
+					<poi_additional name="nfs_recreation_area_activity_horse_riding" tag="nfs_recreation_area_activity_horse_riding" value="yes" icon="horse_riding"/>
+					<poi_additional name="nfs_recreation_area_activity_horse_riding_and_camping" tag="nfs_recreation_area_activity_horse_riding_and_camping" value="yes" icon="horse_riding"/>
+					<poi_additional name="nfs_recreation_area_activity_hunting" tag="nfs_recreation_area_activity_hunting" value="yes" icon="sport_shooting"/>
+					<poi_additional name="nfs_recreation_area_activity_ice_fishing" tag="nfs_recreation_area_activity_ice_fishing" value="yes" icon="shop_fishing"/>
+					<poi_additional name="nfs_recreation_area_activity_ice_skating" tag="nfs_recreation_area_activity_ice_skating" value="yes" icon="ice_skating"/>
+					<poi_additional name="nfs_recreation_area_activity_interpretive_areas" tag="nfs_recreation_area_activity_interpretive_areas" value="yes" icon="interpretive_areas"/>
+					<poi_additional name="nfs_recreation_area_activity_lake_and_pond_fishing" tag="nfs_recreation_area_activity_lake_and_pond_fishing" value="yes" icon="shop_fishing"/>
+					<poi_additional name="nfs_recreation_area_activity_metal_detecting" tag="nfs_recreation_area_activity_metal_detecting" value="yes" icon="metal_detecting"/>
+					<poi_additional name="nfs_recreation_area_activity_mountain_biking" tag="nfs_recreation_area_activity_mountain_biking" value="yes" icon="mountain_biking"/>
+					<poi_additional name="nfs_recreation_area_activity_mountain_climbing" tag="nfs_recreation_area_activity_mountain_climbing" value="yes" icon="sport_climbing"/>
+					<poi_additional name="nfs_recreation_area_activity_mushing_skijoring" tag="nfs_recreation_area_activity_mushing_skijoring" value="yes" icon="dog_sledding"/>
+					<poi_additional name="nfs_recreation_area_activity_nature_viewing" tag="nfs_recreation_area_activity_nature_viewing" value="yes" icon="viewing_wildlife"/>
+					<poi_additional name="nfs_recreation_area_activity_ohv_camping" tag="nfs_recreation_area_activity_ohv_camping" value="yes" icon="ohv_camping"/>
+					<poi_additional name="nfs_recreation_area_activity_ohv_open_area_riding" tag="nfs_recreation_area_activity_ohv_open_area_riding" value="yes" icon="special_utv"/>
+					<poi_additional name="nfs_recreation_area_activity_ohv_riding_and_camping" tag="nfs_recreation_area_activity_ohv_riding_and_camping" value="yes" icon="ohv_camping"/>
+					<poi_additional name="nfs_recreation_area_activity_ohv_road_riding" tag="nfs_recreation_area_activity_ohv_road_riding" value="yes" icon="special_utv"/>
+					<poi_additional name="nfs_recreation_area_activity_ohv_trail_riding" tag="nfs_recreation_area_activity_ohv_trail_riding" value="yes" icon="special_utv"/>
+					<poi_additional name="nfs_recreation_area_activity_other_activities" tag="nfs_recreation_area_activity_other_activities" value="yes" icon="nfs_default_icon"/>
+					<poi_additional name="nfs_recreation_area_activity_outdoor_learning" tag="nfs_recreation_area_activity_outdoor_learning" value="yes" icon="interpretive_areas"/>
+					<poi_additional name="nfs_recreation_area_activity_picnicking" tag="nfs_recreation_area_activity_picnicking" value="yes" icon="picnicking"/>
+					<poi_additional name="nfs_recreation_area_activity_river_and_stream_fishing" tag="nfs_recreation_area_activity_river_and_stream_fishing" value="yes" icon="shop_fishing"/>
+					<poi_additional name="nfs_recreation_area_activity_road_cycling" tag="nfs_recreation_area_activity_road_cycling" value="yes" icon="special_bicycle"/>
+					<poi_additional name="nfs_recreation_area_activity_rock_climbing" tag="nfs_recreation_area_activity_rock_climbing" value="yes" icon="sport_climbing_adventure"/>
+					<poi_additional name="nfs_recreation_area_activity_rockhounding" tag="nfs_recreation_area_activity_rockhounding" value="yes" icon="rockhounding"/>
+					<poi_additional name="nfs_recreation_area_activity_rocks_and_minerals" tag="nfs_recreation_area_activity_rocks_and_minerals" value="yes" icon="rockhounding"/>
+					<poi_additional name="nfs_recreation_area_activity_rv_camping" tag="nfs_recreation_area_activity_rv_camping" value="yes" icon="special_camper"/>
+					<poi_additional name="nfs_recreation_area_activity_salt_water_fishing" tag="nfs_recreation_area_activity_salt_water_fishing" value="yes" icon="shop_fishing"/>
+					<poi_additional name="nfs_recreation_area_activity_sand_play" tag="nfs_recreation_area_activity_sand_play" value="yes" icon="beach"/>
+					<poi_additional name="nfs_recreation_area_activity_scenic_driving" tag="nfs_recreation_area_activity_scenic_driving" value="yes" icon="shop_car"/>
+					<poi_additional name="nfs_recreation_area_activity_scuba_diving" tag="nfs_recreation_area_activity_scuba_diving" value="yes" icon="sport_scuba_diving"/>
+					<poi_additional name="nfs_recreation_area_activity_skiing_snowboarding" tag="nfs_recreation_area_activity_skiing_snowboarding" value="yes" icon="special_skiing"/>
+					<poi_additional name="nfs_recreation_area_activity_sledding_tubing" tag="nfs_recreation_area_activity_sledding_tubing" value="yes" icon="sledding_tubing"/>
+					<poi_additional name="nfs_recreation_area_activity_small_game_hunting" tag="nfs_recreation_area_activity_small_game_hunting" value="yes" icon="sport_shooting"/>
+					<poi_additional name="nfs_recreation_area_activity_snowmobiling" tag="nfs_recreation_area_activity_snowmobiling" value="yes" icon="special_snowmobile"/>
+					<poi_additional name="nfs_recreation_area_activity_surfing" tag="nfs_recreation_area_activity_surfing" value="yes" icon="sport_surfing"/>
+					<poi_additional name="nfs_recreation_area_activity_swimming" tag="nfs_recreation_area_activity_swimming" value="yes" icon="swimming_pool"/>
+					<poi_additional name="nfs_recreation_area_activity_target_shooting" tag="nfs_recreation_area_activity_target_shooting" value="yes" icon="target_shooting"/>
+					<poi_additional name="nfs_recreation_area_activity_tidepooling" tag="nfs_recreation_area_activity_tidepooling" value="yes" icon="tidepooling"/>
+					<poi_additional name="nfs_recreation_area_activity_trapping" tag="nfs_recreation_area_activity_trapping" value="yes" icon="target_shooting"/>
+					<poi_additional name="nfs_recreation_area_activity_tubing" tag="nfs_recreation_area_activity_tubing" value="yes" icon="tubing"/>
+					<poi_additional name="nfs_recreation_area_activity_viewing_plants" tag="nfs_recreation_area_activity_viewing_plants" value="yes" icon="viewing_plants"/>
+					<poi_additional name="nfs_recreation_area_activity_viewing_scenery" tag="nfs_recreation_area_activity_viewing_scenery" value="yes" icon="special_photo_camera"/>
+					<poi_additional name="nfs_recreation_area_activity_viewing_wildlife" tag="nfs_recreation_area_activity_viewing_wildlife" value="yes" icon="viewing_wildlife"/>
+					<poi_additional name="nfs_recreation_area_activity_visitor_centers" tag="nfs_recreation_area_activity_visitor_centers" value="yes" icon="estate_agent"/>
+					<poi_additional name="nfs_recreation_area_activity_visitor_programs" tag="nfs_recreation_area_activity_visitor_programs" value="yes" icon="visitor_programs"/>
+					<poi_additional name="nfs_recreation_area_activity_water_activities" tag="nfs_recreation_area_activity_water_activities" value="yes" icon="water"/>
+					<poi_additional name="nfs_recreation_area_activity_waterskiing" tag="nfs_recreation_area_activity_waterskiing" value="yes" icon="waterskiing"/>
+					<poi_additional name="nfs_recreation_area_activity_windsurfing" tag="nfs_recreation_area_activity_windsurfing" value="yes" icon="windsurfing"/>
+					<poi_additional name="nfs_recreation_area_activity_winter_sports" tag="nfs_recreation_area_activity_winter_sports" value="yes" icon="seasonal_winter"/>
+					<poi_additional name="nfs_recreation_area_activity_xc_skiing_snowshoeing" tag="nfs_recreation_area_activity_xc_skiing_snowshoeing" value="yes" icon="special_ski_touring"/>
+				</poi_additional_category>
+				<poi_additional_category name="nfs_recreation_area_open_status">
+					<poi_additional name="nfs_recreation_area_open_status_open" tag="nfs_recreation_area_open_status" value="open"/>
+					<poi_additional name="nfs_recreation_area_open_status_closed" tag="nfs_recreation_area_open_status" value="closed"/>
+					<poi_additional name="nfs_recreation_area_open_status_temporarily_closed" tag="nfs_recreation_area_open_status" value="temporarily_closed"/>
+					<poi_additional name="nfs_recreation_area_open_status_unreachable" tag="nfs_recreation_area_open_status" value="unreachable"/>
+				</poi_additional_category>
+				<poi_additional name="nfs_recreation_area_open_status_open_2" tag="nfs_recreation_area_open_status_2" value="open"/>
+				<poi_additional name="nfs_recreation_area_open_status_closed_2" tag="nfs_recreation_area_open_status_2" value="closed"/>
+				<poi_additional name="nfs_recreation_area_open_status_temporarily_closed_2" tag="nfs_recreation_area_open_status_2" value="temporarily_closed"/>
+				<poi_additional name="nfs_recreation_area_open_status_unreachable_2" tag="nfs_recreation_area_open_status_2" value="unreachable"/>
+				<poi_additional name="nfs_recreation_area_fee_description" tag="nfs_recreation_area_fee_description" type="text"/>
+				<poi_additional name="nfs_recreation_area_open_season_start" tag="nfs_recreation_area_open_season_start" type="text"/>
+				<poi_additional name="nfs_recreation_area_open_season_end" tag="nfs_recreation_area_open_season_end" type="text"/>
+				<poi_additional name="nfs_recreation_area_operational_hours" tag="nfs_recreation_area_operational_hours" type="text"/>
+				<poi_additional name="nfs_recreation_area_forest_name" tag="nfs_recreation_area_forest_name" type="text"/>
+				<poi_additional name="nfs_recreation_area_reservation_info" tag="nfs_recreation_area_reservation_info" type="text"/>
+				<poi_additional name="nfs_recreation_area_restrictions" tag="nfs_recreation_area_restrictions" type="text"/>
+				<poi_additional name="nfs_recreation_area_activity_description" tag="nfs_recreation_area_activity_description" type="text"/>
+				<poi_additional name="nfs_recreation_area_accessibility_info" tag="nfs_recreation_area_accessibility_info" type="text"/>
+			</poi_type>
+		</poi_category>-->
+
 		<poi_type name="bollard" tag="barrier" value="bollard" no_edit="true"/>
 		<poi_type name="cycle_barrier" tag="barrier" value="cycle_barrier" no_edit="true"/>
 		<poi_type name="motorcycle_barrier" tag="barrier" value="motorcycle_barrier" no_edit="true"/>
@@ -5393,21 +5544,6 @@
 		<poi_type name="toll_gantry" tag="highway" value="toll_gantry"/>
 		<poi_type name="railway_crossing" tag="railway" value="crossing" no_edit="true"/>
 		<poi_type name="street_lamp" tag="highway" value="street_lamp"/>
-
-		<poi_type name="osmand_access_no" tag="osmand_access" value="no" icon="osmand_access_private_poi" no_edit="true"/>
-		<poi_type name="osmand_access_private" tag="osmand_access" value="private" icon="osmand_access_private_poi" no_edit="true"/>
-		<poi_type name="osmand_vehicle_no" tag="osmand_vehicle" value="no" icon="osmand_access_private_poi" no_edit="true"/>
-		<poi_type name="osmand_vehicle_private" tag="osmand_vehicle" value="private" icon="osmand_access_private_poi" no_edit="true"/>
-		<poi_type name="osmand_motor_vehicle_no" tag="osmand_motor_vehicle" value="no" icon="osmand_access_private_poi" no_edit="true"/>
-		<poi_type name="osmand_motor_vehicle_private" tag="osmand_motor_vehicle" value="private" icon="osmand_access_private_poi" no_edit="true"/>
-		<poi_type name="osmand_motorcar_no" tag="osmand_motorcar" value="no" icon="osmand_access_private_poi" no_edit="true"/>
-		<poi_type name="osmand_motorcar_private" tag="osmand_motorcar" value="private" icon="osmand_access_private_poi" no_edit="true"/>
-		<poi_type name="osmand_motorcycle_no" tag="osmand_motorcycle" value="no" icon="osmand_access_private_poi" no_edit="true"/>
-		<poi_type name="osmand_motorcycle_private" tag="osmand_motorcycle" value="private" icon="osmand_access_private_poi" no_edit="true"/>
-		<poi_type name="osmand_foot_no" tag="osmand_foot" value="no" icon="osmand_access_private_poi" no_edit="true"/>
-		<poi_type name="osmand_foot_private" tag="osmand_foot" value="private" icon="osmand_access_private_poi" no_edit="true"/>
-		<poi_type name="osmand_bicycle_no" tag="osmand_bicycle" value="no" icon="osmand_access_private_poi" no_edit="true"/>
-		<poi_type name="osmand_bicycle_private" tag="osmand_bicycle" value="private" icon="osmand_access_private_poi" no_edit="true"/>
 
 <!--		<poi_type name="deadlock" tag="noexit" value="yes" no_edit="true"/>-->
 		<poi_type name="osm_note_yes" tag="osm_note" value="yes" no_edit="true"/>

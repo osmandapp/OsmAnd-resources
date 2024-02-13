@@ -377,19 +377,21 @@
 	-->
 
 	<routingProfile name="car" baseProfile="car" restrictionsAware="true" minSpeed="20.0" defaultSpeed="45.0" maxSpeed="130.0" sharpTurn="30" slightTurn="15" roundaboutTurn="15" onewayAware="true">
+		<!-- Special penalty for reversed direction at route's startup (in seconds, default is 60) -->
+		<attribute name="penaltyForReverseDirection" value="300" /> <!-- car: ~ 5 minutes to find U-turn -->
 	 	<!--<attribute name="heuristicCoefficient" value="1.5" />
 		-->
 		<attribute name="derivedProfiles" value="default,truck,motorcycle"/>
 		<!-- MAIN parameter to approximate (35m good for custom recorded tracks)-->
-		<attribute name="minPointApproximation" value = "5"/>
+		<attribute name="minPointApproximation" value = "25"/>
 		<!-- don't search subsegments shorter than specified distance (also used to step back for car turns) -->
 		<attribute name="minStepApproximation" value = "100"/>
 		<!-- This parameter could speed up or slow down evaluation (better to make bigger for long routes and smaller for short)-->
 		<attribute name="maxStepApproximation" value= "3000"/>
 		<!-- Parameter to smoother the track itself (could be 0 if it's not recorded track) -->
 		<attribute name="smoothenPointsNoRoute" value = "5"/>
+
 		<!-- NEW ROUTING API -->
-		
 		<!-- <parameter id="prefer_motorway" name="Prefer motorways" description="Prefer motorways" type="boolean"/> -->
 		<!-- <parameter id="no_new_routing" name="Do not use v1.9 routing" description="Do not use v1.9 routing" type="boolean"/> -->
 		
@@ -1101,10 +1103,6 @@
 			<select value="-1" t="barrier" v="debris"/>
 			<select value="-1" t="barrier" v="jersey_barrier"/>
 			<select value="-1" t="barrier" v="block"/>
-			<if param="allow_private">
-				<select value="300" t="barrier" v="gate"/>
-			</if>
-			<select value="-1" t="barrier" v="gate"/>
 			<select value="-1" t="barrier" v="turnstile"/>
 			<select value="-1" t="barrier" v="bus_trap"/>
 			<select value="-1" t="barrier" v="cycle_barrier"/>
@@ -1124,12 +1122,13 @@
 			<select value="5"   t="barrier" v="cattle_grid"/>
 			<select value="300" t="barrier" v="border_control"/>
 			<select value="300" t="barrier" v="bump_gate"/>
+			<select value="300" t="barrier" v="gate" /> <!-- could be on many ferries (make accessible) -->
 			<select value="1"   t="barrier" v="entrance"/>
 			<select value="100" t="barrier" v="sally_port"/>
 			<select value="1"   t="barrier" v="toll_booth"/>
 			<select value="1"   t="barrier" v="height_restrictor"/>
 			<select value="1"   t="barrier" v="coupure"/>
-            <!-- These 2 shouldn't be allowed per the wiki (access=no is assumed) but people often do not add the proper access tags. -->
+			<!-- These 2 shouldn't be allowed per the wiki (access=no is assumed) but people often do not add the proper access tags. -->
 			<select value="300" t="barrier" v="lift_gate"/>
 			<select value="300" t="barrier" v="swing_gate"/>
 			<!-- Without explicit access marking, barriers other than the listed values above are impassable to a car. -->
@@ -1145,6 +1144,8 @@
 	</routingProfile>
 
 	<routingProfile name="bicycle" baseProfile="bicycle" restrictionsAware="true" minSpeed="5" defaultSpeed="10" maxSpeed="33" sharpTurn="6" slightTurn="6" followSpeedLimitations="false" onewayAware="true" heuristicCoefficient="1.4">
+		<attribute name="penaltyForReverseDirection" value="60" /> <!-- bike: ~ 1 minute to turn back -->
+
 		<!-- <attribute name="relaxNodesIfStartDistSmallCoeff" value="2.5"/>  -->
 		<!-- New ROUTING API -->
 
@@ -1246,10 +1247,9 @@
 			<select value="1"  t="access" v="yes"/>
 			<select value="1"  t="access" v="permissive"/>
 			
+			<select value="-1" t="vehicle" v="no"/>
 			<select value="1" t="highway" v="cycleway"/>
 			<select value="1" t="route_bicycle"/>
-			<!-- Two lines above: These have to be before the vehicle=no command -->
-			<select value="-1" t="vehicle" v="no"/>
 			<!--<select value="-1" t="crossing" v="no"/>--> <!-- See https://github.com/osmandapp/Osmand/issues/6678 -->
 
 			<if param="driving_style_safety">
@@ -1361,7 +1361,8 @@
 				<select value="31" t="bicycle" v="designated"/>
 				<select value="31" t="cycleway:bicycle" v="designated"/>
 			</ifnot>
-			
+			<select value="21" t="bicycle" v="designated"/>
+
 			<!-- Lines above: This fixed value for bicycle=designated will not be applied in 
 			"avoid unpaved" mode. Reason: The kmh value that we set here is fixed, it can not
 			be downgraded later. Generally, it makes sense to set a fixed value here for
@@ -1431,7 +1432,7 @@
 					<select value="-1" t="highway" v="path"/>
 					<select value="-1" t="highway" v="track"/>
 				</gt>
-				<gt value1="-25" value2=":incline">
+				<gt value1="-35" value2=":incline">
 					<select value="30" t="osmand_highway_integrity_brouting_low" v="yes"/>
 					<select value="30" t="highway" v="path"/>
 					<select value="25" t="highway" v="track"/>
@@ -1440,16 +1441,6 @@
 					<select value="7.7" t="osmand_highway_integrity_brouting_low" v="yes"/>
 					<select value="7.7" t="highway" v="path"/>
 					<select value="6.4" t="highway" v="track"/>
-				</gt>
-				<gt value1="-9" value2=":incline">
-					<select value="3" t="osmand_highway_integrity_brouting_low" v="yes"/>
-					<select value="3" t="highway" v="path"/>
-					<select value="2.5" t="highway" v="track"/>
-				</gt>
-				<gt value1="-3" value2=":incline">
-					<select value="1.8" t="osmand_highway_integrity_brouting_low" v="yes"/>
-					<select value="1.8" t="highway" v="path"/>
-					<select value="1.5" t="highway" v="track"/>
 				</gt>
 				<if param="relief_smoothness_factor_more_plains">
 					<gt value1="3" value2=":incline">
@@ -1467,22 +1458,22 @@
 					<select value="74"/>
 				</if>
 				<if param="relief_smoothness_factor_hills">
-					<gt value1="0" value2=":incline">
-						<select value="128"/>
+					<gt value1="1" value2=":incline">
+						<select value="61"/>
 					</gt>
 					<gt value1="3" value2=":incline">
-						<select value="64"/>
+						<select value="19.7"/>
 					</gt>
 					<gt value1="7" value2=":incline">
-						<select value="17"/>
+						<select value="7.5"/>
 					</gt>
 					<gt value1="13" value2=":incline">
-						<select value="10"/>
+						<select value="3"/>
 					</gt>
 					<gt value1="25" value2=":incline">
-						<select value="8"/>
+						<select value="0.5"/>
 					</gt>
-					<select value="2"/>
+					<select value="0.3"/>
 				</if>
 				<gt value1="3" value2=":incline">
 					<select value="2"/>
@@ -1918,6 +1909,7 @@
 	</routingProfile>
 
 	<routingProfile name="pedestrian" baseProfile="pedestrian" restrictionsAware="false" minSpeed="2" defaultSpeed="4" maxSpeed="10" sharpTurn="0" slightTurn="0" followSpeedLimitations="false" onewayAware="false">
+		<attribute name="penaltyForReverseDirection" value="10" /> <!-- foot: almost zero time to turn around -->
 
 		<attribute name="heuristicCoefficient" value="1.2" />
 		<!-- NEW ROUTING API -->
@@ -2029,20 +2021,20 @@
 		<way attribute="obstacle_srtm_alt_speed">
 			<if param="height_obstacles">
 				<select value="0" t="highway" v="via_ferrata"/>
-				<gt value1="-60" value2=":incline">
-					<select value="35"/>
+				<gt value1="-100" value2=":incline">
+					<select value="40"/>
 				</gt>
-				<gt value1="-25" value2=":incline">
-					<select value="30"/>
+				<gt value1="-60" value2=":incline">
+					<select value="25"/>
+				</gt>
+				<gt value1="-35" value2=":incline">
+					<select value="17"/>
 				</gt>
 				<gt value1="-17" value2=":incline">
-					<select value="17"/>
+					<select value="10"/>
 				</gt>
 				<gt value1="-9" value2=":incline">
 					<select value="5"/>
-				</gt>
-				<gt value1="-3" value2=":incline">
-					<select value="1"/>
 				</gt>
 				<if param="relief_smoothness_factor_more_plains">
 					<gt value1="3" value2=":incline">
@@ -2060,22 +2052,22 @@
 					<select value="74"/>
 				</if>
 				<if param="relief_smoothness_factor_hills">
-					<gt value1="0" value2=":incline">
-						<select value="128"/>
+					<gt value1="1" value2=":incline">
+						<select value="61"/>
 					</gt>
 					<gt value1="3" value2=":incline">
-						<select value="64"/>
+						<select value="20"/>
 					</gt>
 					<gt value1="7" value2=":incline">
-						<select value="17"/>
+						<select value="7"/>
 					</gt>
 					<gt value1="13" value2=":incline">
-						<select value="10"/>
+						<select value="3"/>
 					</gt>
 					<gt value1="25" value2=":incline">
-						<select value="8"/>
+						<select value="0.5"/>
 					</gt>
-					<select value="2"/>
+					<select value="0.3"/>
 				</if>
 				<gt value1="3" value2=":incline">
 					<select value="1"/>
@@ -2218,8 +2210,6 @@
 		</way>
 	</routingProfile>
 
-	
-		
 	<routingProfile name="horsebackriding" baseProfile="horsebackriding" restrictionsAware="true" minSpeed="2" defaultSpeed="6" maxSpeed="30" sharpTurn="0" slightTurn="0" followSpeedLimitations="false" onewayAware="false">
 
 		<attribute name="heuristicCoefficient" value="1.2" />
@@ -2644,6 +2634,8 @@
 	</routingProfile>
 
 	<routingProfile name="ski" minSpeed="3.0" defaultSpeed="5.0" maxSpeed="150.0" onewayAware="true" baseProfile="ski">
+		<attribute name="penaltyForReverseDirection" value="900" /> <!-- ski: ~ 15 minutes to take a lift -->
+
 		<parameter id="piste_type_downhill" name="Alpine/downhill ski" description="Slopes for alpine or downhill skiing and access to ski lifts." type="boolean" default="true"/>
 		<parameter id="piste_type_nordic" name="Cross country/nordic ski" description="Trails for nordic or cross-country skiing." type="boolean" default="true"/>
 		<parameter id="piste_type_skitour" name="Ski touring" description="Routes for ski touring." type="boolean" default="true"/>
@@ -2822,9 +2814,9 @@
 	<!-- max default speed is max speed for any transport, min speed is pedestrian speed -->
 	<routingProfile name="public_transport" minDefaultSpeed="4.0" maxDefaultSpeed="95.0" baseProfile="public_transport">
 		<!-- maximum distance to walk to find start / end public transport stop -->
-		<attribute name="walkRadius" value = "1500" />
+		<attribute name="walkRadius" value = "3000" />
 		<!-- maximum distance to walk to find transport stop to change transport -->
-		<attribute name="walkChangeRadius" value = "300" />
+		<attribute name="walkChangeRadius" value = "500" />
 		<!-- Max route time is 1.5 hour for 30 km direct, then limit is set with (hardcoded) 30 km/h  -->
 		<attribute name="maxRouteTime" value = "5400" />
 		<attribute name="maxRouteDistance" value = "30000" />
@@ -2832,11 +2824,11 @@
 
 		<!-- find alternatives routes within N seconds delay to the fastest route, 15 minutes (16% 1hour) -->
 		<attribute name="delayForAlternativesRoutes" value = "900" />
-		<!-- default value for max number of changes -->
+		<!-- default value for max number of changes (deprecated as parameter used) -->
 		<attribute name="maxNumberOfChanges" value = "3" />
 	
 
-		<parameter id="max_num_changes" name="Number of changes" description="Specify max number of changes" type="numeric" values="0,1,2,3,4" valueDescriptions="0,1,2,3,4"/>
+		<parameter id="max_num_changes" name="Number of changes" description="Specify max number of changes" type="numeric" values="0,1,2,3,4" valueDescriptions="0,1,2,3,4" default="2"/>
 		<parameter id="avoid_train" name="Avoid trains" description="Avoid trains" type="boolean"/>
 		<parameter id="avoid_subway" name="Avoid subways" description="Avoid subways and monorails" type="boolean"/>
 		<parameter id="avoid_ferry" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
