@@ -851,6 +851,7 @@ icon_alias planetarium amenity_planetarium
 icon_alias conference_centre amenity_conference_centre
 icon_alias escape_game entertainment_escape_game
 icon_alias toy_library amenity_toy_library
+icon_alias photo_booth amenity_photo_booth
 
 ## Historic
 icon_alias historic tourist_archaeological2
