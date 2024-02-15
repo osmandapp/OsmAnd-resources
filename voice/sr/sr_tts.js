@@ -39,7 +39,7 @@ function populateDictionary(tts) {
 	dictionary["left_keep"] = tts ? "drži levu stranu" : "left_keep.ogg";
 	dictionary["right_keep"] = tts ? "drži desnu stranu" : "right_keep.ogg";
 	dictionary["left_bear"] = tts ? "se drži leve strane" : "left_bear.ogg";   // in English the same as left_keep, may be different in other languages
-	dictionary["right_bear"] = tts ? "se drži desne strane" : "right_bear.ogg";   // in English the same as right_keep, may be different in other languages
+	dictionary["right_bear"] = tts ? "se drži desne strane." : "right_bear.ogg";   // in English the same as right_keep, may be different in other languages
 
 	// U-TURNS
 	dictionary["make_uturn"] = tts ? "Okreni se nazad" : "make_uturn.ogg";
@@ -112,14 +112,14 @@ function populateDictionary(tts) {
 
 	// STREET NAME PREPOSITIONS
 	dictionary["onto"] = tts ? "u ulicu" : "onto.ogg";
-	dictionary["on"] = tts ? "na" : "on.ogg";
-	dictionary["to"] = tts ? "na" : "to.ogg";
+	dictionary["on"] = tts ? "ulicom" : "on.ogg";
+	dictionary["to"] = tts ? "u" : "to.ogg";
 	dictionary["toward"] = tts ? "pravac" : "toward.ogg";
 
 	// DISTANCE UNIT SUPPORT
 	dictionary["meter_nom"] = tts ? "metar" : "meter_nom.ogg";
 	dictionary["meter_gen"] = tts ? "metra" : "meter_gen.ogg";
-	dictionary["meter_acc"] = tts ? "metar" : "meter_acc.ogg";
+	dictionary["meter_acc"] = tts ? "metara" : "meter_acc.ogg";
 	dictionary["meters_2-4"] = tts ? "metra" : "meter_2-4.ogg";
 	dictionary["meters"] = tts ? "metara" : "meters.ogg";
 	dictionary["around_1_kilometer_nom"] = tts ? "oko jedan kilometar" : "around_1_kilometer.ogg";
@@ -128,7 +128,7 @@ function populateDictionary(tts) {
 	dictionary["around"] = tts ? "približno" : "around.ogg";
 	dictionary["kilometer_nom"] = tts ? "kilometar" : "kilometer_nom.ogg";
 	dictionary["kilometer_gen"] = tts ? "kilometra" : "kilometer_gen.ogg";
-	dictionary["kilometer_acc"] = tts ? "kilometar" : "kilometer_acc.ogg";
+	dictionary["kilometer_acc"] = tts ? "kilometara" : "kilometer_acc.ogg";
 	dictionary["kilometers_2-4"] = tts ? "kilometra" : "kilometers_2-4.ogg";
 	dictionary["kilometers"] = tts ? "kilometara" : "kilometers.ogg";
 
@@ -160,7 +160,7 @@ function populateDictionary(tts) {
 	dictionary["less_a_minute"] = tts ? "manje od jedne minute" : "less_a_minute.ogg";
 	dictionary["minute"] = tts ? "minuta" : "minute.ogg";
 	dictionary["1_minute"] = tts ? "jedna minuta" : "1_minute.ogg";
-	dictionary["minutes_2-4"] = tts ? "minute" : "minutes_2-4.ogg";
+	dictionary["minutes_2-4"] = tts ? "minuta" : "minutes_2-4.ogg";
 	dictionary["minutes"] = tts ? "minuta" : "minutes.ogg";
 
 	// NUMBERS
@@ -172,7 +172,7 @@ function populateDictionary(tts) {
 	dictionary["1_f_acc"] = tts ? "jednu" : "1_f_acc.ogg";
 	dictionary["2_m_nom"] = tts ? "dva" : "2_m_nom.ogg";
 	dictionary["2_m_acc"] = dictionary["2_m_gen"] = dictionary["2_m_nom"];
-	dictionary["2_f_nom"] = tts ? "dve" : "2_f_nom.ogg";
+	dictionary["2_f_nom"] = tts ? "dva" : "2_f_nom.ogg";
 	dictionary["2_f_acc"] = dictionary["2_f_gen"] = dictionary["2_f_nom"];
 }
 
