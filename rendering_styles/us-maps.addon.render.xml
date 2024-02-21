@@ -16,6 +16,36 @@
 		</case>
 	</renderingAttribute>
 
+	<renderingAttribute name="blm_public_motorized_roads_color">
+		<case nightMode="true" attrColorValue="#dddddd"/>
+		<case attrColorValue="#000000"/>
+	</renderingAttribute>
+	<renderingAttribute name="blm_limited_public_motorized_roads">
+		<case nightMode="true" attrColorValue="#EB674A"/>
+		<case attrColorValue="#B33114"/>
+	</renderingAttribute>
+	
+	<renderingAttribute name="blm_public_motorized_trails">
+		<case nightMode="true" attrColorValue="#FFA794"/>
+		<case attrColorValue="#E74927"/>
+	</renderingAttribute>
+	<renderingAttribute name="blm_limited_public_motorized_trails">
+		<case nightMode="true" attrColorValue="#FFA794"/>
+		<case attrColorValue="#E74927"/>
+	</renderingAttribute>
+	<renderingAttribute name="blm_public_nonmotorized_trails">
+		<case nightMode="true" attrColorValue="#E684FF"/>
+		<case attrColorValue="#CC00FF"/>
+	</renderingAttribute>
+	<renderingAttribute name="blm_public_nonmechanized_trails">
+		<case nightMode="true" attrColorValue="#E684FF"/>
+		<case attrColorValue="#CC00FF"/>
+	</renderingAttribute>
+	<renderingAttribute name="blm_public_not_assessed_trails">
+		<case nightMode="true" attrColorValue="#90B1FF"/>
+		<case attrColorValue="#0040D8"/>
+	</renderingAttribute>
+
 	<renderingConstant name="null" value="#00000000"/>
 
 	<renderingProperty attr="engine_v1" type="boolean"/>
@@ -40,6 +70,7 @@
 			<case maxzoom="12" tag="us_maps" value="road" nameTag="us_maps_road_id"/>
 			<case minzoom="13" tag="us_maps" value="trail" nameTag="" nameTag2="us_maps_trail_number"/>
 			<case minzoom="13" tag="us_maps" value="road" nameTag="" nameTag2="us_maps_road_id"/>
+			<apply_if additional="blm=yes" textColor="#956800"/>
 			<apply_if maxzoom="13" textSize="11"/>
 			<apply_if minzoom="14" maxzoom="15" textSize="12"/>
 			<apply_if minzoom="16" textSize="13"/>
@@ -206,15 +237,15 @@
 					<apply_if maxzoom="11" pathEffect="4_3"/>
 					<apply_if minzoom="12" strokeWidth="2" pathEffect="5_4"/>
 				</case>
-				<apply_if additional="us_maps_blm_file_name=public_motorized_roads" color="#000000"/>
-				<apply_if additional="us_maps_blm_file_name=limited_public_motorized_roads" color="#B33114"/>
+				<apply_if additional="us_maps_blm_file_name=public_motorized_roads" color="$blm_public_motorized_roads_color"/>
+				<apply_if additional="us_maps_blm_file_name=limited_public_motorized_roads" color="$blm_limited_public_motorized_roads"/>
 			</switch>
 			<switch minzoom="11" tag="us_maps" value="trail" additional="blm=yes" cap="BUTT">
-				<case additional="us_maps_blm_file_name=public_motorized_trails" color="#E74927"/>
-				<case additional="us_maps_blm_file_name=limited_public_motorized_trails" color="#E74927"/>
-				<case additional="us_maps_blm_file_name=public_nonmotorized_trails" color="#CC00FF"/>
-				<case additional="us_maps_blm_file_name=public_nonmechanized_trails" color="#CC00FF"/>
-				<case additional="us_maps_blm_file_name=public_not_assessed_trails" color="#0040D8"/>
+				<case additional="us_maps_blm_file_name=public_motorized_trails" color="$blm_public_motorized_trails"/>
+				<case additional="us_maps_blm_file_name=limited_public_motorized_trails" color="$blm_limited_public_motorized_trails"/>
+				<case additional="us_maps_blm_file_name=public_nonmotorized_trails" color="$blm_public_nonmotorized_trails"/>
+				<case additional="us_maps_blm_file_name=public_nonmechanized_trails" color="$blm_public_nonmechanized_trails"/>
+				<case additional="us_maps_blm_file_name=public_not_assessed_trails" color="$blm_public_not_assessed_trails"/>
 				<apply_if maxzoom="11" pathEffect="2_2"/>
 				<apply_if minzoom="12" strokeWidth="2" pathEffect="2_2"/>
 			</switch>
