@@ -1,11 +1,13 @@
-<renderingStyle name="usfs" addon="yes" depends="" defaultColor="#ebe7e4" version="1">
+<renderingStyle name="us-maps" addon="yes" depends="" defaultColor="#ebe7e4" version="1">
 
 	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
 	<renderingProperty attr="baseAppMode" name="Default Rendering mode" description="Map optimization for respective User Profile based on base (parent) profile"
 		type="string" possibleValues="default, car, bicycle, pedestrian, public_transport, boat, ski"/>
-<!--	<renderingProperty attr="nfsData" name="NFS trails and roads" description="NFS trails and roads"
-		type="boolean" possibleValues="" category="details"/>-->
+	<renderingProperty attr="hideNFSData" name="Hide NFS trails, roads, recreation POIs" description="Hide NFS trails, roads, recreation POIs"
+		type="boolean" possibleValues="" category="hide"/>
+	<renderingProperty attr="hideBLMData" name="Hide BLM trails, roads, recreation POIs" description="Hide BLM trails, roads, recreation POIs"
+		type="boolean" possibleValues="" category="hide"/>
 
 	<renderingAttribute name="defaultColor">
 		<case noPolygons="true" attrColorValue="#00ebe7e4"/>
@@ -29,12 +31,11 @@
 				<apply_if additional="us_maps_road_accessibility_status=no_access" maxzoom="13" order="-1"/>
 				<apply_if additional="us_maps_road_accessibility_status=admin" maxzoom="13" order="-1"/>
 			</case>
-
 		</switch>
 	</order>
 
 	<text>
-		<switch minzoom="12" nfsData="true" textColor="#C50028" textHaloColor="#aaffffff" textHaloRadius="2" textOnPath="true" textBold="true" textWrapWidth="27" textOrder="121">
+		<switch hideNFSData="false" minzoom="12" textColor="#C50028" textHaloColor="#aaffffff" textHaloRadius="2" textOnPath="true" textBold="true" textWrapWidth="27" textOrder="121">
 			<case maxzoom="12" tag="us_maps" value="trail" nameTag="us_maps_trail_number"/>
 			<case maxzoom="12" tag="us_maps" value="road" nameTag="us_maps_road_id"/>
 			<case minzoom="13" tag="us_maps" value="trail" nameTag="" nameTag2="us_maps_trail_number"/>
@@ -45,7 +46,7 @@
 			<apply_if maxzoom="14" additional="us_maps_road_accessibility_status=no_access" disable="true"/>
 			<apply_if maxzoom="14" additional="us_maps_road_accessibility_status=admin" disable="true"/>
 		</switch>
-		<case nfsData="true" minzoom="15" tag="us_maps" value="recreation_area" nameTag="" textHaloRadius="1" textHaloColor="#aaffffff" textColor="#8E2E2E" textDy="5" textPlacement="bottom|top">
+		<case hideNFSData="false" minzoom="15" tag="us_maps" value="recreation_area" nameTag="" textHaloRadius="1" textHaloColor="#aaffffff" textColor="#8E2E2E" textDy="5" textPlacement="bottom|top">
 			<apply_if maxzoom="15" textSize="12"/>
 			<apply_if minzoom="16" textSize="13"/>
 			<apply_if engine_v1="false" textWrapWidth="30"/>
@@ -53,7 +54,7 @@
 	</text>
 
 	<point>
-		<case nfsData="true" minzoom="11" tag="us_maps" value="recreation_area" iconOrder="40">
+		<case hideNFSData="false" minzoom="11" tag="us_maps" value="recreation_area" iconOrder="40">
 			<switch>
 				<case additional="us_maps_recreation_area_marker_activity=backpacking" icon="special_trekking"/>
 				<case additional="us_maps_recreation_area_marker_activity=beachcombing" icon="osmc_white_shell"/>
@@ -131,7 +132,7 @@
 	</polygon>
 
 	<line>
-		<switch nfsData="true">
+		<switch hideNFSData="false">
 			<switch minzoom="11" tag="us_maps" value="trail" additional="nfs=yes" color__2="#ffffff">
 				<switch>
 					<case additional="us_maps_terra_base_symbology=tc4-5" color="#000000"/>
@@ -198,5 +199,30 @@
 				</apply>
 			</switch>
 		</switch>
+		<switch hideBLMData="false">
+			<switch minzoom="11" tag="us_maps" value="road" additional="blm=yes" cap="BUTT">
+				<case additional="us_maps_road_asset_class=road"/>
+				<case additional="us_maps_road_asset_class=primitive_road">
+					<apply_if maxzoom="11" pathEffect="4_3"/>
+					<apply_if minzoom="12" strokeWidth="2" pathEffect="5_4"/>
+				</case>
+				<apply_if additional="us_maps_blm_file_name=public_motorized_roads" color="#000000"/>
+				<apply_if additional="us_maps_blm_file_name=limited_public_motorized_roads" color="#B33114"/>
+			</switch>
+			<switch minzoom="11" tag="us_maps" value="trail" additional="blm=yes" cap="BUTT">
+				<case additional="us_maps_blm_file_name=public_motorized_trails" color="#E74927"/>
+				<case additional="us_maps_blm_file_name=limited_public_motorized_trails" color="#E74927"/>
+				<case additional="us_maps_blm_file_name=public_nonmotorized_trails" color="#CC00FF"/>
+				<case additional="us_maps_blm_file_name=public_nonmechanized_trails" color="#CC00FF"/>
+				<case additional="us_maps_blm_file_name=public_not_assessed_trails" color="#0040D8"/>
+				<apply_if maxzoom="11" pathEffect="2_2"/>
+				<apply_if minzoom="12" strokeWidth="2" pathEffect="2_2"/>
+			</switch>
+			<apply_if maxzoom="11" strokeWidth="1.8"/>
+			<apply_if minzoom="12" strokeWidth="2"/>
+
+
+		</switch>
+
 	</line>
 </renderingStyle>
