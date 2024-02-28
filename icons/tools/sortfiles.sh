@@ -829,6 +829,9 @@ icon_alias sledding_tubing tourist_sledding_tubing
 icon_alias tidepooling tourist_tidepooling
 icon_alias metal_detecting tourist_metal_detecting
 icon_alias dog_sledding tourist_dog_sledding
+icon_alias ranger_station_office tourist_ranger_station_office
+icon_alias fire_lookout tourist_fire_lookout
+icon_alias natural_endangered_area tourist_natural_endangered_area
 
 ## Entertainment
 icon_alias entertainment tourist_cinema3
@@ -908,6 +911,7 @@ icon_alias historic_tank tourist_historic_tank
 icon_alias topo_tank topo_topo_historic_tank
 icon_alias pillory tourist_pillory
 icon_alias spacecraft tourist_spacecraft
+icon_alias point_of_interest poi_point_of_interest
 
 ## Special POI icons
 icon_alias special_poi_big_ben special_poi_big_ben
@@ -1276,6 +1280,7 @@ icon_alias monitoring_station poi_colored_monitoring_station
 icon_alias dolphin poi_colored_dolphin
 icon_alias street_cabinet poi_colored_street_cabinet
 icon_alias sanitary_dump_station poi_colored_sanitary_dump_station
+icon_alias sanitary_dump_station_white poi_sanitary_dump_station
 icon_alias spoil_heap poi_colored_spoil_heap
 icon_alias ventilation_shaft poi_colored_ventilation_shaft
 icon_alias weighbridge transport_weighbridge

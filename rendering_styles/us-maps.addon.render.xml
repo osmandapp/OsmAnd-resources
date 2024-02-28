@@ -4,10 +4,10 @@
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
 	<renderingProperty attr="baseAppMode" name="Default Rendering mode" description="Map optimization for respective User Profile based on base (parent) profile"
 		type="string" possibleValues="default, car, bicycle, pedestrian, public_transport, boat, ski"/>
-<!--	<renderingProperty attr="hideNFSData" name="Hide NFS trails, roads, recreation POIs" description="Hide NFS trails, roads, recreation POIs"
+-	<renderingProperty attr="hideNFSdata" name="Hide NFS trails, roads, recreation POIs" description="Hide NFS trails, roads, recreation POIs"
 		type="boolean" possibleValues="" category="hide"/>
-	<renderingProperty attr="hideBLMData" name="Hide BLM trails, roads, recreation POIs" description="Hide BLM trails, roads, recreation POIs"
-		type="boolean" possibleValues="" category="hide"/>-->
+	<renderingProperty attr="hideBLMdata" name="Hide BLM trails, roads, recreation POIs" description="Hide BLM trails, roads, recreation POIs"
+		type="boolean" possibleValues="" category="hide"/>
 
 	<renderingAttribute name="defaultColor">
 		<case noPolygons="true" attrColorValue="#00ebe7e4"/>
@@ -52,7 +52,10 @@
 
 	<order>
 		<switch area="false" point="true" objectType="1" order="128">
-			<case tag="us_maps" value="recreation_area"/>
+			<case tag="us_maps" value="recreation_area">
+				<apply_if hideNFSdata="true" additional="nfs=yes" order="-1"/>
+				<apply_if hideBLMdata="true" additional="blm=yes" order="-1"/>
+			</case>
 		</switch>
 
 		<switch area="false" objectType="2" order="80">
@@ -61,11 +64,13 @@
 				<apply_if additional="us_maps_road_accessibility_status=no_access" maxzoom="13" order="-1"/>
 				<apply_if additional="us_maps_road_accessibility_status=admin" maxzoom="13" order="-1"/>
 			</case>
+			<apply_if hideNFSdata="true" additional="nfs=yes" order="-1"/>
+			<apply_if hideBLMdata="true" additional="blm=yes" order="-1"/>
 		</switch>
 	</order>
 
 	<text>
-		<switch hideNFSData="false" minzoom="12" textColor="#C50028" textHaloColor="#aaffffff" textHaloRadius="2" textOnPath="true" textBold="true" textWrapWidth="27" textOrder="121">
+		<switch minzoom="12" textColor="#C50028" textHaloColor="#aaffffff" textHaloRadius="2" textOnPath="true" textBold="true" textWrapWidth="27" textOrder="121">
 			<case maxzoom="12" tag="us_maps" value="trail" nameTag="us_maps_trail_number"/>
 			<case maxzoom="12" tag="us_maps" value="road" nameTag="us_maps_road_id"/>
 			<case minzoom="13" tag="us_maps" value="trail" nameTag="" nameTag2="us_maps_trail_number"/>
@@ -77,15 +82,16 @@
 			<apply_if maxzoom="14" additional="us_maps_road_accessibility_status=no_access" disable="true"/>
 			<apply_if maxzoom="14" additional="us_maps_road_accessibility_status=admin" disable="true"/>
 		</switch>
-		<case hideNFSData="false" minzoom="15" tag="us_maps" value="recreation_area" nameTag="" textHaloRadius="1" textHaloColor="#aaffffff" textColor="#8E2E2E" textDy="5" textPlacement="bottom|top">
+		<case minzoom="15" tag="us_maps" value="recreation_area" nameTag="" textHaloRadius="1" textHaloColor="#aaffffff" textColor="#8E2E2E" textDy="5" textPlacement="bottom|top">
 			<apply_if maxzoom="15" textSize="12"/>
 			<apply_if minzoom="16" textSize="13"/>
 			<apply_if engine_v1="false" textWrapWidth="30"/>
+			<apply_if nightMode="true" textColor="#FDE3E3" textHaloColor="#44000000"/>
 		</case>
 	</text>
 
 	<point>
-		<case hideNFSData="false" minzoom="11" tag="us_maps" value="recreation_area" iconOrder="40">
+		<case minzoom="11" tag="us_maps" value="recreation_area" additional="nfs=yes" iconOrder="40">
 			<switch>
 				<case additional="us_maps_recreation_area_marker_activity=backpacking" icon="special_trekking"/>
 				<case additional="us_maps_recreation_area_marker_activity=beachcombing" icon="osmc_white_shell"/>
@@ -157,13 +163,63 @@
 			<apply_if additional="us_maps_recreation_area_open_status=temporarily_closed" icon_2="nfs_access_overlay_temporarily_closed"/>
 			<apply_if additional="us_maps_recreation_area_open_status=unreachable" icon_2="nfs_access_overlay_unreachable"/>
 		</case>
+		<case minzoom="11" tag="us_maps" value="recreation_area" additional="blm=yes" iconOrder="40">
+			<switch>
+				<case additional="us_maps_recreation_area_activity_campground_camping=yes" icon="tourism_camp_site">
+					<apply_if additional="impromptu=yes" icon="dispersed_camping"/>
+				</case>
+				<case additional="us_maps_recreation_area_facility_cabin=yes" icon="cabin"/>
+				<case additional="us_maps_recreation_area_facility_warming_hut=yes" icon="furnace"/>
+				<apply shield="osmc_red_bg"/>
+			</switch>
+			<switch>
+				<case additional="us_maps_recreation_area_activity_trailhead=yes" icon="trailhead" iconOrder="39"/>
+				<case additional="us_maps_recreation_area_facility_group_shelter=yes" icon="amenity_shelter"/>
+				<case additional="us_maps_recreation_area_activity_ohv_open_area_riding=yes" icon="special_utv"/>
+				<case additional="us_maps_recreation_area_activity_rock_climbing=yes" icon="sport_climbing_adventure"/>
+				<case additional="us_maps_recreation_area_activity_rockhounding=yes" icon="rockhounding"/>
+				<apply shield="osmc_brown_bg"/>
+			</switch>
+			<switch>
+				<case additional="us_maps_recreation_area_activity_interpretive_areas=yes" icon="interpretive_areas"/>
+				<case additional="us_maps_recreation_area_activity_picnicking=yes" icon="picnicking"/>
+				<case additional="us_maps_recreation_area_activity_day_use_site=yes" icon="rest_area"/>
+				<case additional="us_maps_recreation_area_facility_natural_endangered_area=yes" icon="natural_endangered_area"/>
+				<case additional="us_maps_recreation_area_activity_poi=yes" icon="point_of_interest"/>
+				<case additional="us_maps_recreation_area_activity_scenic_overlook=yes" icon="tourism_viewpoint"/>
+				<apply shield="osmc_green_bg"/>
+			</switch>
+			<switch>
+				<case minzoom="12" additional="drinking_water=yes" icon="amenity_drinking_water" iconOrder="41"/>
+				<apply shield="osmc_teal_bg"/>
+			</switch>
+			<switch>
+				<case additional="us_maps_recreation_area_facility_boat_ramp=yes" icon="leisure_slipway"/>
+				<case additional="us_maps_recreation_area_facility_boat_takeout=yes" icon="leisure_slipway"/>
+				<case additional="us_maps_recreation_area_facility_boat_launch=yes" icon="leisure_slipway"/>
+				<case minzoom="13" additional="us_maps_recreation_area_facility_rapid=yes" icon="rapid_white"/>
+				<apply shield="osmc_blue_bg"/>
+			</switch>
+			<switch>
+				<case additional="us_maps_recreation_area_facility_ranger_station_office=yes" icon="ranger_station_office"/>
+				<case additional="us_maps_recreation_area_activity_visitor_centers=yes" icon="estate_agent"/>
+				<case additional="us_maps_recreation_area_facility_parking=yes" icon="parking"/>
+				<case additional="us_maps_recreation_area_facility_lighthouse=yes" icon="man_made_lighthouse"/>
+				<case additional="us_maps_recreation_area_facility_airplane_landing_strip=yes" icon="aeroway_aerodrome"/>
+				<case minzoom="13" additional="us_maps_recreation_area_facility_fire_lookout=yes" icon="fire_lookout" iconOrder="41"/>
+				<case additional="us_maps_recreation_area_facility_rv_dump_station=yes" icon="sanitary_dump_station_white"/>
+				<case minzoom="13" additional="toilets=yes" icon="amenity_toilets" iconOrder="41"/>
+				<case minzoom="13" additional="us_maps_recreation_area_facility_kiosk=yes" icon="shop_kiosk" iconOrder="42"/>
+				<apply shield="osmc_black_bg"/>
+			</switch>
+		</case>
 	</point>
 
 	<polygon>
 	</polygon>
 
 	<line>
-		<switch hideNFSData="false">
+		<switch>
 			<switch minzoom="11" tag="us_maps" value="trail" additional="nfs=yes" color__2="#ffffff">
 				<switch>
 					<case additional="us_maps_terra_base_symbology=tc4-5" color="#000000"/>
@@ -211,7 +267,7 @@
 					<apply_if minzoom="13" maxzoom="13" pathEffect__2="10_4"/>
 					<apply_if minzoom="14" maxzoom="17" pathEffect__2="12_5"/>
 					<apply_if minzoom="18" pathEffect__2="16_7"/>
-					<apply_if nightMode="true" color="#dddddd"/>
+					<apply_if nightMode="true" color="#bbbbbb" color__2="#ffffff"/>
 				</case>
 				<apply_if maxzoom="11" strokeWidth="1.5" strokeWidth__2="3"/>
 				<apply_if minzoom="12" maxzoom="12" strokeWidth="2" strokeWidth__2="4"/>
@@ -230,7 +286,7 @@
 				</apply>
 			</switch>
 		</switch>
-		<switch hideBLMData="false">
+		<switch>
 			<switch minzoom="11" tag="us_maps" value="road" additional="blm=yes" cap="BUTT">
 				<case additional="us_maps_road_asset_class=road"/>
 				<case additional="us_maps_road_asset_class=primitive_road">
@@ -249,8 +305,11 @@
 				<apply_if maxzoom="11" pathEffect="2_2"/>
 				<apply_if minzoom="12" strokeWidth="2" pathEffect="2_2"/>
 			</switch>
-			<apply_if maxzoom="11" strokeWidth="1.8"/>
-			<apply_if minzoom="12" strokeWidth="2"/>
+			<apply color__1="#ffffff">
+				<apply_if nightMode="true" color__1="#777777"/>
+			</apply>
+			<apply_if maxzoom="11" strokeWidth="1.8" strokeWidth__1="2"/>
+			<apply_if minzoom="12" strokeWidth="2" strokeWidth__1="2.3"/>
 
 
 		</switch>
