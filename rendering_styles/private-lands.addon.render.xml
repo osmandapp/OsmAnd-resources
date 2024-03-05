@@ -1,0 +1,48 @@
+<renderingStyle name="private-lands" addon="yes" depends="" defaultColor="#ebe7e4" version="1">
+
+	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
+		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
+	<renderingProperty attr="baseAppMode" name="Default Rendering mode" description="Map optimization for respective User Profile based on base (parent) profile"
+		type="string" possibleValues="default, car, bicycle, pedestrian, public_transport, boat, ski"/>
+
+	<renderingAttribute name="defaultColor">
+		<case noPolygons="true" attrColorValue="#00ebe7e4"/>
+		<case attrColorValue="#ebe7e4">
+			<apply_if nightMode="true" attrColorValue="#121926"/>
+		</case>
+	</renderingAttribute>
+
+	<renderingConstant name="null" value="#00000000"/>
+
+	<renderingProperty attr="engine_v1" type="boolean"/>
+
+	<order>
+		<switch area="true" point="false" objectType="3" order="5">
+			<case tag="private_land" value="area" order="101"/>
+		</switch>
+		<switch cycle="true" point="false" objectType="3" order="5">
+			<case tag="private_land" value="area" order="101"/>
+		</switch>
+	</order>
+
+	<text>
+		<case minzoom="9" tag="private_land" value="area" nameTag="" textColor="#ED883B" textHaloColor="#aaffffff" textHaloRadius="1" textBold="true" textWrapWidth="27">
+			<apply_if minzoom="12" textHaloRadius="2"/>
+			<apply_if maxzoom="11" textSize="10"/>
+			<apply_if minzoom="12" maxzoom="13" textSize="11"/>
+			<apply_if minzoom="14" textSize="12"/>
+		</case>
+	</text>
+
+	<point>
+	</point>
+
+	<polygon>
+		<case minzoom="7" tag="private_land" value="area" color="$null" color_2="#ED883B" strokeWidth_2="1">
+			<apply_if minzoom="17" strokeWidth_2="2"/>
+		</case>
+	</polygon>
+
+	<line>
+	</line>
+</renderingStyle>
