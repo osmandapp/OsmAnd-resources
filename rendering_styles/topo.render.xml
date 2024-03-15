@@ -524,6 +524,16 @@
 		</case>
 	</renderingAttribute>
 
+	<renderingAttribute name="busGuidewayRoadColor">
+		<case attrColorValue="#83ABF9">
+			<apply_if nightMode="true" attrColorValue="#2953A4"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="railwayRailColor2">
+		<case nightMode="true" attrColorValue="#506c73"/>
+		<case attrColorValue="#ffffff"/>
+	</renderingAttribute>
+
 	<renderingAttribute name="racewayColor">
 		<case attrColorValue="#ececec"/>
 	</renderingAttribute>
@@ -1909,6 +1919,13 @@
 						<apply_if layer="-1" order="55"/>
 						<apply_if additional="layer=-2" order="34"/>
 					</case>
+					<case tag="highway" value="bus_guideway" order="68">
+						<apply_if layer="1" order="91"/>
+						<apply_if additional="layer=2" order="121"/>
+						<apply_if additional="layer=3" order="149"/>
+						<apply_if layer="-1" order="46"/>
+						<apply_if additional="layer=-2" order="22"/>
+					</case>
 					<case tag="highway" value="living_street" order="77">
 						<apply_if layer="1" order="100"/>
 						<apply_if additional="layer=2" order="130"/>
@@ -2649,6 +2666,17 @@
 				<case maxzoom="16" textSize="14"/>
 				<case maxzoom="17" textSize="16"/>
 				<case minzoom="18" textSize="18"/>
+			</apply>
+		</case>
+		<case minzoom="15" nameTag="" tag="highway" value="bus_guideway">
+			<apply textOnPath="true" textOrder="129">
+				<case maxzoom="15" textSize="12"/>
+				<case maxzoom="16" textSize="13"/>
+				<case maxzoom="17" textSize="13"/>
+				<case minzoom="18" textSize="16"/>
+			</apply>
+			<apply textColor="$busGuidewayRoadColor" textHaloColor="#ffffff" textHaloRadius="$textHaloRadius">
+				<apply_if nightMode="true" textColor="#aaaaaa" textHaloColor="$busGuidewayRoadColor"/>
 			</apply>
 		</case>
 
@@ -5429,6 +5457,19 @@
 			<apply_if minzoom="18" maxzoom="18" pathEffect_3="2_17"/>
 			<apply_if minzoom="19" pathEffect_3="2_20"/>
 
+		</switch>
+
+		<switch tag="highway" value="bus_guideway">
+			<case additional="tunnel=yes">
+				<apply_if minzoom="9" maxzoom="13" strokeWidth="1:1" pathEffect="5_2"/>
+				<apply_if minzoom="14" strokeWidth="1:2" color_2="$railwayRailColor2" strokeWidth_2="1:2" pathEffect_2="4_4"/>
+			</case>
+			<case additional="bridge=yes" minzoom="14" color="$busGuidewayRoadColor" strokeWidth="5" color_2="$railwayRailColor2" strokeWidth_2="4" color_3="$busGuidewayRoadColor" strokeWidth_3="0.8" pathEffect_3="12_8_1_0"/>
+			<case maxzoom="13" strokeWidth="1:2" color_2="$railwayRailColor2" strokeWidth_2="1" pathEffect_2="8_12"/>
+			<case minzoom="14" strokeWidth="1:2" color_2="$railwayRailColor2" strokeWidth_2="1" pathEffect_2="0_11_8_1"/>
+			<apply color="$busGuidewayRoadColor"/>
+			<apply_if nightMode="true" color_2="#000000"/>
+			<apply onewayArrowsColor="#01000000"/>
 		</switch>
 
 		<switch>
