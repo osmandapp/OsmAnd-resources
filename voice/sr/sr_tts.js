@@ -43,7 +43,7 @@ function populateDictionary(tts) {
 
 	// U-TURNS
 	dictionary["make_uturn"] = tts ? "Okreni se nazad" : "make_uturn.ogg";
-	dictionary["make_uturn_alt"] = tts ? "se okreni nazad" : "make_uturn.ogg";
+	dictionary["make_uturn_alt"] = tts ? "okreni se nazad" : "make_uturn.ogg";
 	dictionary["make_uturn_wp"] = tts ? "Kada bude moguće, okreni se nazad" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
@@ -119,16 +119,16 @@ function populateDictionary(tts) {
 	// DISTANCE UNIT SUPPORT
 	dictionary["meter_nom"] = tts ? "metar" : "meter_nom.ogg";
 	dictionary["meter_gen"] = tts ? "metra" : "meter_gen.ogg";
-	dictionary["meter_acc"] = tts ? "metara" : "meter_acc.ogg";
+	dictionary["meter_acc"] = tts ? "metra" : "meter_acc.ogg";
 	dictionary["meters_2-4"] = tts ? "metra" : "meter_2-4.ogg";
 	dictionary["meters"] = tts ? "metara" : "meters.ogg";
-	dictionary["around_1_kilometer_nom"] = tts ? "oko jedan kilometar" : "around_1_kilometer.ogg";
+	dictionary["around_1_kilometer_nom"] = tts ? "približno jedan kilometar" : "around_1_kilometer.ogg";
 	dictionary["around_1_kilometer_gen"] = tts ? "jednog kilometra" : "around_1_kilometer.ogg";
 	dictionary["around_1_kilometer_acc"] = dictionary["around_1_kilometer_nom"];
 	dictionary["around"] = tts ? "približno" : "around.ogg";
 	dictionary["kilometer_nom"] = tts ? "kilometar" : "kilometer_nom.ogg";
 	dictionary["kilometer_gen"] = tts ? "kilometra" : "kilometer_gen.ogg";
-	dictionary["kilometer_acc"] = tts ? "kilometara" : "kilometer_acc.ogg";
+	dictionary["kilometer_acc"] = tts ? "kilometra" : "kilometer_acc.ogg";
 	dictionary["kilometers_2-4"] = tts ? "kilometra" : "kilometers_2-4.ogg";
 	dictionary["kilometers"] = tts ? "kilometara" : "kilometers.ogg";
 
@@ -138,8 +138,8 @@ function populateDictionary(tts) {
 	dictionary["1_tenth_of_a_mile_acc"] = tts ? "jednu desetinu milje" : "1_tenth_of_a_mile.ogg";
 	dictionary["tenths_of_a_mile_2-4"] = tts ? "desetine milje" : "tenths_of_a_mile_2-4.ogg";
 	dictionary["tenths_of_a_mile"] = tts ? "desetina milje" : "tenths_of_a_mile.ogg";
-	dictionary["around_1_mile_nom"] = tts ? "jedna milja" : "around_1_mile.ogg";
-	dictionary["around_1_mile_gen"] = tts ? "oko jedne milje" : "around_1_mile.ogg";
+	dictionary["around_1_mile_nom"] = tts ? "približno jedna milja" : "around_1_mile.ogg";
+	dictionary["around_1_mile_gen"] = tts ? "približno jednu milju" : "around_1_mile.ogg";
 	dictionary["around_1_mile_acc"] = tts ? "jednu milju" : "around_1_mile.ogg";
 	dictionary["mile_nom"] = tts ? "milja" : "mile_nom.ogg";
 	dictionary["mile_gen"] = tts ? "milje" : "mile_gen.ogg";
@@ -149,7 +149,7 @@ function populateDictionary(tts) {
 	dictionary["yard_nom"] = tts ? "jard" : "yard.ogg";
 	dictionary["yard_gen"] = tts ? "jarda" : "yard.ogg";
 	dictionary["yard_acc"] = tts ? "jard" : "yard.ogg";
-	dictionary["yards"] = tts ? "jarda" : "yards.ogg";
+	dictionary["yards"] = tts ? "jardi" : "yards.ogg";
 
 	// TIME SUPPORT
 	dictionary["time"] = tts ? "vreme putovanja" : "time.ogg";
