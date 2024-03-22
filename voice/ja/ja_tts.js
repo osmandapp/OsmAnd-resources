@@ -598,6 +598,10 @@ function speed_alarm(maxSpeed, speed) {
 	}
 }
 
+function speed_camera_alarm(dist, maxSpeed) {
+	return attention("SPEED_CAMERA");
+}
+
 function attention(type) {
 	return dictionary["attention"] + (tts ? "、" : " ") + getAttentionString(type);
 }
