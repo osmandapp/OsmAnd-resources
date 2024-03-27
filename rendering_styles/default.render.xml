@@ -428,6 +428,8 @@
 	<!-- roadColors="Modified Mapnik" -->
 	<!-- Motorway  -->
 	<renderingAttribute name="motorwayRoadColor">
+		<case baseAppMode="bicycle" additional="cyclestreet=yes" attrColorValue="#0050FF"/>
+		<case baseAppMode="bicycle" additional="bicycle_road=yes" attrColorValue="#0050FF"/>
 		<case roadStyle="germanRoadAtlas" attrColorValue="#f7fe2e">
 			<apply_if additional="tunnel=yes" attrColorValue="#FBFF97"/>
 			<apply_if additional="covered=yes" attrColorValue="#FBFF97"/>
@@ -526,6 +528,8 @@
 
 	<!-- Trunk  -->
 	<renderingAttribute name="trunkRoadColor">
+		<case baseAppMode="bicycle" additional="cyclestreet=yes" attrColorValue="#0050FF"/>
+		<case baseAppMode="bicycle" additional="bicycle_road=yes" attrColorValue="#0050FF"/>
 		<case roadStyle="germanRoadAtlas" attrColorValue="#dcdcdc">
 			<apply_if additional="tunnel=yes" attrColorValue="#E3E3E3"/>
 			<apply_if additional="covered=yes" attrColorValue="#E3E3E3"/>
@@ -979,6 +983,8 @@
 
 	<!-- NOTE: Road is usually public, while service road is not, that's why we should mabye use the residential and not service road color pattern here: -->
 	<renderingAttribute name="roadRoadColor">
+		<case baseAppMode="bicycle" additional="cyclestreet=yes" attrColorValue="#0050FF"/>
+		<case baseAppMode="bicycle" additional="bicycle_road=yes" attrColorValue="#0050FF"/>
 		<case attrColorValue="#ececec">
 			<apply_if nightMode="true" attrColorValue="#555555"/>
 		</case>
@@ -990,6 +996,8 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="pedestrianRoadColor">
+		<case baseAppMode="bicycle" additional="cyclestreet=yes" attrColorValue="#0050FF"/>
+		<case baseAppMode="bicycle" additional="bicycle_road=yes" attrColorValue="#0050FF"/>
 		<case baseAppMode="car" attrColorValue="#f7d4d4">
 			<apply_if nightMode="true" attrColorValue="#412e2e"/>
 		</case>
@@ -4205,95 +4213,98 @@
 					<apply_if minzoom="10" intersectionMargin="20"/>
 				</switch>
 				<!-- Highway text -->
-				<switch textHaloRadius="$textHaloRadius" textOnPath="true" nameTag="">
-					<case minzoom="16" tag="area:highway" value="motorway" textColor="$motorwayTextColor" textHaloColor="$motorwayRoadColor" textBold="true" textItalic="true" textOrder="50" textWrapWidth="25"/>
-					<case tag="highway" value="motorway" textColor="$motorwayTextColor" textHaloColor="$motorwayRoadColor" textOrder="50">
-						<apply_if nightMode="true" textBold="true"/>
-					</case>
-					<case tag="highway" value="motorway_link" textColor="$motorwayTextColor" textHaloColor="$motorwayRoadColor" textOrder="51"/>
-					<case minzoom="16" tag="area:highway" value="trunk" textColor="$trunkTextColor" textHaloColor="$trunkRoadColor" textBold="true" textItalic="true" textOrder="53" textWrapWidth="25"/>
-					<case tag="highway" value="trunk" textColor="$trunkTextColor" textHaloColor="$trunkRoadColor" textOrder="53">
-						<apply_if nightMode="true" textBold="true"/>
-					</case>
-					<case tag="highway" value="trunk_link" textColor="$trunkTextColor" textHaloColor="$trunkRoadColor" textOrder="54"/>
-					<case tag="highway" value="primary" textColor="$primaryTextColor" textHaloColor="$primaryRoadColor" textOrder="56">
-						<apply_if nightMode="true" textBold="true"/>
-					</case>
-					<case minzoom="16" tag="area:highway" value="primary" textColor="$primaryTextColor" textHaloColor="$primaryRoadColor" textBold="true" textItalic="true" textOrder="57" textWrapWidth="25"/>
-					<case tag="highway" value="primary_link" textColor="$primaryTextColor" textHaloColor="$primaryRoadColor" textOrder="58"/>
-					<case tag="highway" value="secondary" textColor="$secondaryTextColor" textHaloColor="$secondaryRoadColor" textOrder="60">
-						<apply_if nightMode="true" textBold="true"/>
-					</case>
+				<switch>
+					<switch textHaloRadius="$textHaloRadius" textOnPath="true" nameTag="">
+						<case minzoom="16" tag="area:highway" value="motorway" textColor="$motorwayTextColor" textHaloColor="$motorwayRoadColor" textBold="true" textItalic="true" textOrder="50" textWrapWidth="25"/>
+						<case tag="highway" value="motorway" textColor="$motorwayTextColor" textHaloColor="$motorwayRoadColor" textOrder="50">
+							<apply_if nightMode="true" textBold="true"/>
+						</case>
+						<case tag="highway" value="motorway_link" textColor="$motorwayTextColor" textHaloColor="$motorwayRoadColor" textOrder="51"/>
+						<case minzoom="16" tag="area:highway" value="trunk" textColor="$trunkTextColor" textHaloColor="$trunkRoadColor" textBold="true" textItalic="true" textOrder="53" textWrapWidth="25"/>
+						<case tag="highway" value="trunk" textColor="$trunkTextColor" textHaloColor="$trunkRoadColor" textOrder="53">
+							<apply_if nightMode="true" textBold="true"/>
+						</case>
+						<case tag="highway" value="trunk_link" textColor="$trunkTextColor" textHaloColor="$trunkRoadColor" textOrder="54"/>
+						<case tag="highway" value="primary" textColor="$primaryTextColor" textHaloColor="$primaryRoadColor" textOrder="56">
+							<apply_if nightMode="true" textBold="true"/>
+						</case>
+						<case minzoom="16" tag="area:highway" value="primary" textColor="$primaryTextColor" textHaloColor="$primaryRoadColor" textBold="true" textItalic="true" textOrder="57" textWrapWidth="25"/>
+						<case tag="highway" value="primary_link" textColor="$primaryTextColor" textHaloColor="$primaryRoadColor" textOrder="58"/>
+						<case tag="highway" value="secondary" textColor="$secondaryTextColor" textHaloColor="$secondaryRoadColor" textOrder="60">
+							<apply_if nightMode="true" textBold="true"/>
+						</case>
 
-					<case minzoom="16" tag="area:highway" value="secondary" textColor="$secondaryTextColor" textHaloColor="$secondaryRoadColor" textBold="true" textItalic="true" textOrder="61" textWrapWidth="25"/>
-					<case tag="highway" value="secondary_link" textColor="$secondaryTextColor" textHaloColor="$secondaryRoadColor" textOrder="62"/>
-					<apply_if minzoom="13">
-						<case maxzoom="13" textSize="12"/>
-						<case maxzoom="14" textSize="13"/>
-						<case maxzoom="15" textSize="14"/>
-						<case maxzoom="16" textSize="15"/>
-						<case maxzoom="17" textSize="17"/>
-						<case minzoom="18" textSize="19"/>
-					</apply_if>
-				</switch>
-
-				<switch minzoom="14" textHaloRadius="$textHaloRadius" textColor="$tertiaryTextColor" textOnPath="true" textHaloColor="$tertiaryRoadColor" nameTag="">
-					<case tag="highway" value="tertiary" textOrder="94"/>
-					<case minzoom="16" tag="area:highway" value="tertiary" textBold="true" textItalic="true" textOrder="95" intersectsWith="any" textWrapWidth="25"/>
-					<case tag="highway" value="tertiary_link" textOrder="96"/>
-					<apply>
-						<case maxzoom="14" textSize="12"/>
-						<case maxzoom="15" textSize="13"/>
-						<case maxzoom="16" textSize="14"/>
-						<case maxzoom="17" textSize="16"/>
-						<case minzoom="18" textSize="18"/>
-					</apply>
-				</switch>
-
-				<switch minzoom="14" nameTag="">
-					<switch>
-						<switch textColor="$residentialTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$residentialRoadColor">
-							<case tag="highway" value="unclassified" textOrder="122"/>
-							<case minzoom="16" tag="area:highway" value="unclassified" textBold="true" textItalic="true" intersectsWith="any" textWrapWidth="25" textOrder="123"/>
-							<case tag="highway" value="residential" textOrder="124"/>
-							<case minzoom="16" tag="area:highway" value="residential" textBold="true" textItalic="true" textOrder="125" textWrapWidth="25" intersectsWith="any"/>
-							<case tag="man_made" value="bridge" textOrder="125"/>
-						</switch>
-						<switch textColor="$residentialTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$roadRoadColor">
-							<case tag="highway" value="road" textOrder="120"/>
-							<case minzoom="16" tag="area:highway" value="road" textBold="true" textItalic="true" textWrapWidth="25" textOrder="121"/>
-						</switch>
-						<switch textColor="$serviceTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$serviceTextHaloColor">
-							<case tag="highway" value="service" textOrder="128">
-								<apply>
-									<switch>
-										<case additional="service=driveway"/>
-										<case additional="service=parking_aisle"/>
-										<case additional="service=alley"/>
-										<apply textHaloColor="$serviceDrivewayTextHaloColor"/>
-									</switch>
-								</apply>
-							</case>
-							<case tag="highway" value="busway" textHaloColor="$buswayRoadColor" textOrder="128"/>
-							<case minzoom="17" tag="area:highway" value="service" textBold="true" textItalic="true" textWrapWidth="25" textOrder="129"/>
-							<case tag="highway" value="living_street" textOrder="130"/>
-							<case tag="highway" value="escape" textOrder="130"/>
-						</switch>
-						<!-- <case tag="highway" value="construction" textColor="$serviceTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="#99bdff" textOrder="223"/>-->
-						<case tag="highway" value="proposed" textColor="$serviceTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$serviceRoadColor" textOrder="253"/>
+						<case minzoom="16" tag="area:highway" value="secondary" textColor="$secondaryTextColor" textHaloColor="$secondaryRoadColor" textBold="true" textItalic="true" textOrder="61" textWrapWidth="25"/>
+						<case tag="highway" value="secondary_link" textColor="$secondaryTextColor" textHaloColor="$secondaryRoadColor" textOrder="62"/>
+						<apply_if minzoom="13">
+							<case maxzoom="13" textSize="12"/>
+							<case maxzoom="14" textSize="13"/>
+							<case maxzoom="15" textSize="14"/>
+							<case maxzoom="16" textSize="15"/>
+							<case maxzoom="17" textSize="17"/>
+							<case minzoom="18" textSize="19"/>
+						</apply_if>
 					</switch>
-					<switch textColor="$pedestrianTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$pedestrianRoadColor" intersectionMargin="20">
-						<case tag="highway" value="pedestrian" textOrder="126"/>
-						<case minzoom="16" tag="place" value="square" textBold="true" textItalic="true" textOrder="63" textWrapWidth="25" intersectsWith="any"/>
-						<case minzoom="16" tag="area:highway" value="pedestrian" textBold="true" textItalic="true" textOrder="64" textWrapWidth="25" intersectsWith="any"/>
+
+					<switch minzoom="14" textHaloRadius="$textHaloRadius" textColor="$tertiaryTextColor" textOnPath="true" textHaloColor="$tertiaryRoadColor" nameTag="">
+						<case tag="highway" value="tertiary" textOrder="94"/>
+						<case minzoom="16" tag="area:highway" value="tertiary" textBold="true" textItalic="true" textOrder="95" intersectsWith="any" textWrapWidth="25"/>
+						<case tag="highway" value="tertiary_link" textOrder="96"/>
+						<apply>
+							<case maxzoom="14" textSize="12"/>
+							<case maxzoom="15" textSize="13"/>
+							<case maxzoom="16" textSize="14"/>
+							<case maxzoom="17" textSize="16"/>
+							<case minzoom="18" textSize="18"/>
+						</apply>
 					</switch>
-					<apply textOnPath="true">
-						<case maxzoom="14" textSize="12"/>
-						<case maxzoom="15" textSize="13"/>
-						<case maxzoom="16" textSize="14"/>
-						<case maxzoom="17" textSize="16"/>
-						<case minzoom="18" textSize="18"/>
-					</apply>
+
+					<switch minzoom="14" nameTag="">
+						<switch>
+							<switch textColor="$residentialTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$residentialRoadColor">
+								<case tag="highway" value="unclassified" textOrder="122"/>
+								<case minzoom="16" tag="area:highway" value="unclassified" textBold="true" textItalic="true" intersectsWith="any" textWrapWidth="25" textOrder="123"/>
+								<case tag="highway" value="residential" textOrder="124"/>
+								<case minzoom="16" tag="area:highway" value="residential" textBold="true" textItalic="true" textOrder="125" textWrapWidth="25" intersectsWith="any"/>
+								<case tag="man_made" value="bridge" textOrder="125"/>
+							</switch>
+							<switch textColor="$residentialTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$roadRoadColor">
+								<case tag="highway" value="road" textOrder="120"/>
+								<case minzoom="16" tag="area:highway" value="road" textBold="true" textItalic="true" textWrapWidth="25" textOrder="121"/>
+							</switch>
+							<switch textColor="$serviceTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$serviceTextHaloColor">
+								<case tag="highway" value="service" textOrder="128">
+									<apply>
+										<switch>
+											<case additional="service=driveway"/>
+											<case additional="service=parking_aisle"/>
+											<case additional="service=alley"/>
+											<apply textHaloColor="$serviceDrivewayTextHaloColor"/>
+										</switch>
+									</apply>
+								</case>
+								<case tag="highway" value="busway" textHaloColor="$buswayRoadColor" textOrder="128"/>
+								<case minzoom="17" tag="area:highway" value="service" textBold="true" textItalic="true" textWrapWidth="25" textOrder="129"/>
+								<case tag="highway" value="living_street" textOrder="130"/>
+								<case tag="highway" value="escape" textOrder="130"/>
+							</switch>
+							<!-- <case tag="highway" value="construction" textColor="$serviceTextColor" textHaloRadius="$textHaloRadiusDay" textHaloColor="#99bdff" textOrder="223"/>-->
+							<case tag="highway" value="proposed" textColor="$serviceTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$serviceRoadColor" textOrder="253"/>
+						</switch>
+						<switch textColor="$pedestrianTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$pedestrianRoadColor" intersectionMargin="20">
+							<case tag="highway" value="pedestrian" textOrder="126"/>
+							<case minzoom="16" tag="place" value="square" textBold="true" textItalic="true" textOrder="63" textWrapWidth="25" intersectsWith="any"/>
+							<case minzoom="16" tag="area:highway" value="pedestrian" textBold="true" textItalic="true" textOrder="64" textWrapWidth="25" intersectsWith="any"/>
+						</switch>
+						<apply textOnPath="true">
+							<case maxzoom="14" textSize="12"/>
+							<case maxzoom="15" textSize="13"/>
+							<case maxzoom="16" textSize="14"/>
+							<case maxzoom="17" textSize="16"/>
+							<case minzoom="18" textSize="18"/>
+						</apply>
+					</switch>
+					<apply_if baseAppMode="bicycle" nightMode="false" additional="cyclestreet=yes" textColor="#ffffff"/>
 				</switch>
 
 				<case minzoom="15" nameTag="" tag="highway" value="bus_guideway">
