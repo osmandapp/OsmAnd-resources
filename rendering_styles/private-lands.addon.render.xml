@@ -4,6 +4,8 @@
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
 	<renderingProperty attr="baseAppMode" name="Default Rendering mode" description="Map optimization for respective User Profile based on base (parent) profile"
 		type="string" possibleValues="default, car, bicycle, pedestrian, public_transport, boat, ski"/>
+	<renderingProperty attr="hidePrivateLands" name="Hide private lands" description="Hide private lands"
+		type="boolean" possibleValues="" category="hide"/>
 
 	<renderingAttribute name="defaultColor">
 		<case noPolygons="true" attrColorValue="#00ebe7e4"/>
@@ -17,11 +19,13 @@
 	<renderingProperty attr="engine_v1" type="boolean"/>
 
 	<order>
-		<switch area="true" point="false" objectType="3" order="5">
-			<case tag="private_land" value="area" order="101"/>
-		</switch>
+<!--		<switch area="true" point="false" objectType="3" order="5">
+			<case tag="private_land" value="area" order="100"/>
+			<apply_if hidePrivateLands="true" order="-1"/>
+		</switch>-->
 		<switch cycle="true" point="false" objectType="3" order="5">
-			<case tag="private_land" value="area" order="101"/>
+			<case tag="private_land" value="area" order="100"/>
+			<apply_if hidePrivateLands="true" order="-1"/>
 		</switch>
 	</order>
 
