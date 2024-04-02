@@ -39,7 +39,7 @@ function populateDictionary(tts) {
 	dictionary["left_sh"] = tts ? "staigiai pasukite kairėn" : "left_sh.ogg";
 	dictionary["left_sl"] = tts ? "pasukite nežymiai kairėn" : "left_sl.ogg";
 	dictionary["right"] = tts ? "pasukite dešinėn" : "right.ogg";
-	dictionary["right_sh"] = tts ? "stagiai pasukite dešinėn" : "right_sh.ogg";
+	dictionary["right_sh"] = tts ? "staigiai pasukite dešinėn" : "right_sh.ogg";
 	dictionary["right_sl"] = tts ? "pasukite nežymiai dešinėn" : "right_sl.ogg";
 	// Note: "left_keep"/"right_keep" is a turn type aiding lane selection, while "left_bear"/"right_bear" is as brief "then..." preparation for the turn-after-next. In some languages l/r_keep may not differ from l/r_bear.
 	dictionary["left_keep"] = tts ? "laikykitės kairės" : "left_keep.ogg";
@@ -513,7 +513,7 @@ function then() {
 function roundabout(dist, angle, exit, streetName) {
 	if (dist == -1)
 		return dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
-	return dictionary["in"] + " " + distance(dist, "gen") + " " + dictionary["roundabout"] + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
+	return dictionary["in"] + " " + distance(dist, "gen") + " " + dictionary["roundabout"] + " " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 }
 
 function turn_street(streetName) {
