@@ -55,9 +55,9 @@ function populateDictionary(tts) {
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "pasieksite žiedinę sankryžą" : "prepare_roundabout.ogg";  // "after" + $distance + "prepare_roundabout" = "vėliau, už" + $atstumo + "pasieksite žiedinę sankryžą"
 	dictionary["roundabout"] = tts ? "žiedinė sankryža, joje" : "roundabout.ogg";  // "in" + $distance + "roundabout" + "take" + "nth" + "exit" ... = "už" + $atstumo + "žiedinė sankryža, joje" + "išsukite" + "n-tame" + "išvažiavime"
-	dictionary["then"] = tts ? " po to" : "then.ogg";
+	dictionary["then"] = tts ? "po to" : "then.ogg";
 	dictionary["and"] = tts ? "ir" : "and.ogg";  // "... and take 1st exit onto ... towards" = "ir po to išsukite pirmajame išvažiavime į ... link ..."
-	dictionary["take"] = tts ? " išsukite" : "take.ogg";  // "Take 2nd exit onto ..." = "išsukite antrajame išvažiavime į ..."
+	dictionary["take"] = tts ? "išsukite" : "take.ogg";  // "Take 2nd exit onto ..." = "išsukite antrajame išvažiavime į ..."
 	dictionary["exit"] = tts ? "išvažiavime" : "exit.ogg";
 
 	dictionary["1st"] = tts ? "pirmajame" : "1st.ogg";  // locative (inessive; vietininkas) grammatical case
@@ -90,15 +90,15 @@ function populateDictionary(tts) {
 
 	// NEARBY POINTS
 	dictionary["and_arrive_waypoint"] = tts ? "ir pasieksite gė pė iks kelio tašką" : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "keliaujate pro gė pė iks kelio tašką" : "reached_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "judate pro gė pė iks kelio tašką" : "reached_waypoint.ogg";
 	dictionary["and_arrive_favorite"] = tts ? "ir atvyksite į savo įsimintą vietą" : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "keliaujate pro savo įsimintą vietą" : "reached_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "judate pro savo įsimintą vietą" : "reached_favorite.ogg";
 	dictionary["and_arrive_poi"] = tts ? "ir atvyksite į lankytiną vietą" : "and_arrive_poi.ogg";
 	dictionary["reached_poi"] = tts ? "jūs esate lankytinoje vietoje" : "reached_poi.ogg";
 
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "Jūs viršijote leistiną greitį, kuris yra" : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "greitis ribojimas iki " : "exceed_limit.ogg";
+	dictionary["exceed_limit"] = tts ? "greitis ribojamas iki " : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "Dėmesio" : "attention.ogg";
 	dictionary["attention_alt"] = tts ? "Atsargiai" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "greičio matuoklis" : "speed_camera.ogg";
@@ -313,7 +313,7 @@ function distance(dist, grm_case) {
 				return dictionary["around"] + " " + (tts ? num_str(kms, "m", grm_case) : ogg_dist(Math.round(dist/1000.0))) + " " + dictionary["kilometers_2_"+grm_case];
 			if (kms > 20 && kms % 10 == 1)
 				return (tts ? num_str(kms, "m", grm_case) : ogg_dist(Math.round(dist/1000.0))) + " " + dictionary["kilometers_1_"+grm_case];
-			if (kms > 20 && kms % 10 > 1 && kms % 10 < 10)
+			if (kms > 20 && kms % 10 > 1)
 				return (tts ? num_str(kms, "m", grm_case) : ogg_dist(Math.round(dist/1000.0))) + " " + dictionary["kilometers_2_"+grm_case];
 			return (tts ? kms.toString() : ogg_dist(Math.round(dist/1000.0))) + " " + dictionary["kilometers_0_"+grm_case];
 		case "mi-f":
@@ -513,7 +513,7 @@ function then() {
 function roundabout(dist, angle, exit, streetName) {
 	if (dist == -1)
 		return dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
-	return dictionary["in"] + " " + distance(dist, "gen") + " " + dictionary["roundabout"] + (tts ? ", " : " ") + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
+	return dictionary["in"] + " " + distance(dist, "gen") + " " + dictionary["roundabout"] + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 }
 
 function turn_street(streetName) {
