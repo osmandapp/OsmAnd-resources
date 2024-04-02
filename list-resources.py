@@ -24,10 +24,8 @@ RESOURCES_BUNDLE_CONTENT_RULES = [
     [r'poi/poi_types\.xml', 'poi/poi_types.xml'],
 
     # Map icons
-    [r'rendering_styles/style-icons/map-icons-svg/mm_([^/]*?)\.svg', r'map/icons/\1.svg'],
-    [r'rendering_styles/style-icons/map-icons-svg/mx_([^/]*?)\.svg', r'map/icons/\1.svg'],
-    [r'rendering_styles/style-icons/map-shaders-svg/h_([^/]*?shield[^/]*?)\.svg', r'map/shields/\1.svg'],
-    [r'rendering_styles/style-icons/map-shaders-svg/h_([^/]*?)\.svg', r'map/shaders/\1.svg'],
+    [r'rendering_styles/style-icons/map-icons-svg/(c_)?mx_([^/]*?)\.svg', r'map/icons/\1\2.svg'],
+    [r'rendering_styles/style-icons/map-shaders-svg/(c_)?h_([^/]*?)\.svg', r'map/shaders_and_shields/\1\2.svg'],
 
     # Misc map resources:
     [r'rendering_styles/stubs/([^/]*?)\.png', r'map/stubs/\1.png'],
