@@ -51,7 +51,7 @@ function populateDictionary(tts) {
 
 	// U-TURNS
 	//dictionary["prepare_make_uturn"] = tts ? "po to reikės apsisukti" : "prepare_make_uturn.ogg";
-	dictionary["make_uturn"] = tts ? " apsisukite" : "make_uturn.ogg";
+	dictionary["make_uturn"] = tts ? "apsisukite" : "make_uturn.ogg";
 	dictionary["make_uturn_wp"] = tts ? "kai galėsite, apsisukite" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
@@ -119,7 +119,7 @@ function populateDictionary(tts) {
 	dictionary["back_on_route"] = tts ? "sugrįžote į kelią" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "į" : "onto.ogg"; // turn into differend street/road, change street/road name
+	dictionary["onto"] = tts ? "į" : "onto.ogg"; // turn into different street/road, change street/road name
 	dictionary["on"] = tts ? "per" : "on.ogg";  // is used if you turn together with your current street, i.e. street name does not change. E.g. "continue for $distance on $road"
 	dictionary["to"] = tts ? "iki" : "to.ogg";  // change street, go till crossroad with some road/street or destination, e.g. "continue for $distance to [crossroad with] $road"
 	dictionary["toward"] = tts ? "link" : "toward.ogg";  // take exit [number] onto [street] toward [city]
@@ -188,9 +188,9 @@ function populateDictionary(tts) {
 	dictionary["1_hour_gen"] = tts ? "vienos valandos" : "1_hour_gen.ogg";  // [po] vienos valandos
 	dictionary["1_hour_acc"] = tts ? "vieną valandą" : "1_hour_acc.ogg";  // [per] vieną valandą
 	dictionary["hours_1_nom"] = tts ? "valanda" : "hours_1_nom.ogg";  // n-dešimt viena valanda - 21h, 31h, ... 91h
-	dictionary["hours_1_gen"] = tts ? "valandos" : "hours_1_gen.ogg";  // [po] 21-os valandos
+	dictionary["hours_1_gen"] = tts ? "valandos" : "hours_1_gen.ogg";  // [po] 21-os valandos; writting is same as "hours_2_nom", but stress differ: valandOs
 	dictionary["hours_1_acc"] = tts ? "valandą" : "hours_1_acc.ogg";  // [per] 21-ą valandą
-	dictionary["hours_2_nom"] = tts ? "valandos" : "hours_2_nom.ogg";  // suitable for 2-9, 21-29, 32-39, ...h;
+	dictionary["hours_2_nom"] = tts ? "valandos" : "hours_2_nom.ogg";  // suitable for 2-9, 21-29, 32-39, ...h; writting is same as "hours_1_gen", but stress differ: vAlandos
 	dictionary["hours_2_gen"] = tts ? "valandų" : "hours_2_gen.ogg";  // suitable for 2-20, 22-30, 32-40 h
 	dictionary["hours_2_acc"] = tts ? "valandas" : "hours_2_acc.ogg";  // suitable for 2-9, 21-29, 32-39, ...h;
 	dictionary["hours_0_nom"] = dictionary["hours_2_gen"];
