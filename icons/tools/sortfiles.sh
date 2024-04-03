@@ -8,7 +8,11 @@ mkdir -p "$MAP_SHADERS_SVG"
 #CF=-a
 COPY_CMD=cp
 icon_alias() {
-	$COPY_CMD $CF ../svg-res/${2}.svg $STYLE_ICONS_FOLDER/map-icons-svg/mx_${1}.svg
+	if [[ -f "../svg-res/${2}.svg" ]]; then
+		$COPY_CMD $CF "../svg-res/${2}.svg" "${STYLE_ICONS_FOLDER}/map-icons-svg/mx_${1}.svg"
+	else
+		$COPY_CMD $CF "../svg-res/c_${2}.svg" "${STYLE_ICONS_FOLDER}/map-icons-svg/c_mx_${1}.svg"
+	fi
 	$COPY_CMD $CF ../svg-web-res/${2}.svg $STYLE_ICONS_FOLDER/poi-icons-svg/mx_${1}.svg
 	# $1 icon target name in app
 	# $2 generated icon name from svg
@@ -44,6 +48,7 @@ icon() {
 
 ## Shaders ! # copy all shaders untouched
 $COPY_CMD $CF ../svg-res/h_*.svg $MAP_SHADERS_SVG
+$COPY_CMD $CF ../svg-res/c_h_*.svg $MAP_SHADERS_SVG
 $COPY_CMD $CF ../vd/map/h_*.xml $STYLE_ICONS_FOLDER/map-shaders-vector/
 $COPY_CMD $CF ../png/mdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-mdpi/
 $COPY_CMD $CF ../png/hdpi/h_* $STYLE_ICONS_FOLDER/map-shaders-png/drawable-hdpi/
