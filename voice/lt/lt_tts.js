@@ -21,13 +21,15 @@ var tts;
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	//dictionary["route_is"] = tts ? "Kelionės ilgis yra" : "route_is.ogg";  // "Kelionės ilgis yra" or "nukeliausimas atstumas yra" would require nominative (vardininkas) grammatical case
+	//dictionary["route_is"] = tts ? "Kelionės ilgis yra" : "route_is.ogg";  // "Kelionės ilgis yra" or "nukeliautimas atstumas yra" would require nominative (vardininkas) grammatical case
+	dictionary["route_is"] = tts ? "Iki kelionės tikslo yra" : "route_is.ogg";  // this would require nominative (vardininkas) grammatical case
 	//dictionary["route_is"] = tts ? "Kelionė yra" : "route_is.ogg";  //  compatible with genitive (kilmininkas) grammatical case;
 	//dictionary["route_is"] = tts ? "Nukeliautumėte" : "route_is.ogg";  // this would require accusative (galininkas) grammatical case; Google TTS incorectly stress ...liaU... – correct is ...liAu...
-	dictionary["route_is"] = tts ? "Įveiktumėte" : "route_is.ogg";  // this would require accusative (galininkas) grammatical case
+	//dictionary["route_is"] = tts ? "Įveiktumėte" : "route_is.ogg";  // this would require accusative (galininkas) grammatical case
 	dictionary["route_calculate"] = tts ? "Kelionės planas atnaujintas" : "route_calculate.ogg";
 	//dictionary["distance"] = tts ? "Atstumas" : "distance.ogg";  // "atstumas" would require nominative (vardininkas) grammatical case
-	dictionary["distance"] = tts ? "Tikslas yra už" : "distance.ogg";  // compatible with genitive (kilmininkas) grammatical case
+	//dictionary["distance"] = tts ? "Tikslas yra už" : "distance.ogg";  // compatible with genitive (kilmininkas) grammatical case
+    dictionary["distance"] = tts ? "Įveiktumėte" : "distance.ogg";  // this would require accusative (galininkas) grammatical case
 
 	// LEFT/RIGHT
 	//dictionary["prepare"] = tts ? "ruoškitės, " : "prepare.ogg";
@@ -44,8 +46,8 @@ function populateDictionary(tts) {
 	// Note: "left_keep"/"right_keep" is a turn type aiding lane selection, while "left_bear"/"right_bear" is as brief "then..." preparation for the turn-after-next. In some languages l/r_keep may not differ from l/r_bear.
 	dictionary["left_keep"] = tts ? "laikykitės kairės" : "left_keep.ogg";
 	dictionary["right_keep"] = tts ? "laikykitės dešinės" : "right_keep.ogg";
-	dictionary["left_bear"] = tts ? "rikiuokitės kairėje juostoje" : "left_bear.ogg";  // in English the same as left_keep, may be different in other languages
-	dictionary["right_bear"] = tts ? "rikiuokitės dešinėje juostoje" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
+	dictionary["left_bear"] = tts ? "rikiuokitės kairėje" : "left_bear.ogg";  // in English the same as left_keep, may be different in other languages
+	dictionary["right_bear"] = tts ? "rikiuokitės dešinėje" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
 
 	// U-TURNS
 	//dictionary["prepare_make_uturn"] = tts ? "po to reikės apsisukti" : "prepare_make_uturn.ogg";
@@ -178,10 +180,10 @@ function populateDictionary(tts) {
 
 	// TIME SUPPORT
 	//dictionary["time"] = tts ? "trukmė" : "time.ogg";  // would require nominative (vardininkas) grammatical case
-	dictionary["time_alt"] = tts ? "atvyksite po" : "time_alt.ogg";  // to use with genitive (kilmininkas) grammatical case
 	//dictionary["time"] = tts ? "tikslą pasiektumėte po" : "time.ogg";  // to use with genitive (kilmininkas) grammatical case
 	//dictionary["time"] = tts ? "kelionė truks" : "time.ogg";  // would require accusative (galininkas) grammatical case
 	dictionary["time"] = tts ? "užtruktumėte" : "time.ogg";  // would require accusative (galininkas) grammatical case
+	dictionary["time_alt"] = tts ? "atvyktumėte po" : "time_alt.ogg";  // to use with genitive (kilmininkas) grammatical case
 	dictionary["1_hour_nom"] = tts ? "viena valanda" : "1_hour_nom.ogg";  // viena valanda - only 1h...
 	dictionary["1_hour_gen"] = tts ? "vienos valandos" : "1_hour_gen.ogg";  // [po] vienos valandos
 	dictionary["1_hour_acc"] = tts ? "vieną valandą" : "1_hour_acc.ogg";  // [per] vieną valandą
@@ -385,7 +387,7 @@ function setMode(mode) {
 }
 
 function route_new_calc(dist, timeVal) {
-	return dictionary["route_is"] + " " + distance(dist, "acc") + (tts ? ", " : " ") + dictionary["time"] + " " + time(timeVal, "acc") + (tts ? ". " : " ");
+	return dictionary["route_is"] + " " + distance(dist, "nom") + (tts ? ", " : " ") + dictionary["time"] + " " + time(timeVal, "acc") + (tts ? ". " : " ");
 }
 
 function distance(dist, grm_case) {
@@ -522,7 +524,7 @@ function hours(minutes, grm_case) {
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + (tts ? ". " : " ") + dictionary["distance"] + " " + distance(dist, "gen") + (tts ? ", " : " ") + dictionary["time_alt"] + " " + time(seconds, "gen") + (tts ? ". " : " ");
+	return dictionary["route_calculate"] + (tts ? ". " : " ") + dictionary["distance"] + " " + distance(dist, "acc") + (tts ? ", " : " ") + dictionary["time_alt"] + " " + time(seconds, "gen") + (tts ? ". " : " ");
 }
 
 function go_ahead(dist, streetName) {
