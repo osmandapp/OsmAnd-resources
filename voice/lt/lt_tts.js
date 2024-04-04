@@ -321,6 +321,12 @@ function populateDictionary(tts) {
 	dictionary["1000_2_nom"] = tts ? "tūkstančiai" : "1000_2_nom.ogg";
 	dictionary["1000_2_gen"] = tts ? "tūkstančių" : "1000_2_gen.ogg";
 	dictionary["1000_2_acc"] = tts ? "tūkstančius" : "1000_2_acc.ogg";
+
+	// ADITIONAL NON-STANDARD STRINGS for ROAD/STREET NAMES
+	dictionary["road_number_gen"] = tts ? "kelio numeriu" : "road_number_gen.ogg";
+	dictionary["road_number_acc"] = tts ? "kelią numeriu" : "road_number_acc.ogg";
+	dictionary["street_gen"] = tts ? "gatvės" : "street_gen.ogg";
+	dictionary["street_acc"] = tts ? "gatvę" : "street_acc.ogg";
 }
 
 
@@ -528,12 +534,12 @@ function follow_street(streetName) {
 	if ((streetName["toDest"] == "" && streetName["toStreetName"] == "" && streetName["toRef"] == "") || Object.keys(streetName).length == 0 || !tts)
 		return "";
 	if (streetName["toStreetName"] == "" && streetName["toRef"] == "")
-		return dictionary["to"] + " " + streetName["toDest"];
+		return dictionary["to"] + " " + modify_street_name(streetName["toDest"], "gen");
 	if (streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"]
 		|| (streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == ""))
-		return dictionary["on"] + " " + assemble_street_name(streetName);
+		return dictionary["on"] + " " + assemble_street_name(streetName, "acc");
 	if (!(streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"]))
-		return dictionary["to"] + " " + assemble_street_name(streetName);
+		return dictionary["to"] + " " + assemble_street_name(streetName, "gen");
 	return "";
 }
 
@@ -609,25 +615,46 @@ function turn_street(streetName) {
 	if (Object.keys(streetName).length == 0 || (streetName["toDest"] == "" && streetName["toStreetName"] == "" && streetName["toRef"] == "") || !tts)
 		return "";
 	if (streetName["toStreetName"] == "" && streetName["toRef"] == "")
-		return dictionary["toward"] + " " + streetName["toDest"];
+		return dictionary["toward"] + " " + modify_street_name(streetName["toDest"], "gen");
 	if (streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"])
-		return dictionary["on"] + " " + assemble_street_name(streetName);
+		return dictionary["on"] + " " + assemble_street_name(streetName, "acc");
 	if ((streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"])
 		|| (streetName["toStreetName"] == "" && streetName["toRef"] == streetName["fromRef"]))
-		return dictionary["on"] + " " + assemble_street_name(streetName);
+		return dictionary["on"] + " " + assemble_street_name(streetName, "acc");
 	if (!(streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"]))
-		return dictionary["onto"] + " " + assemble_street_name(streetName);
+		return dictionary["onto"] + " " + assemble_street_name(streetName, "acc");
 	return "";
 }
 
-function assemble_street_name(streetName) {
+function assemble_street_name(streetName, grm_case) {
 	if (streetName["toDest"] == "")
-		return streetName["toRef"] + " " + streetName["toStreetName"];
+		return modify_street_name(streetName["toRef"], grm_case)  + " " + modify_street_name(streetName["toStreetName"], grm_case);
 	if (streetName["toRef"] == "")
-		return streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
+		return modify_street_name(streetName["toStreetName"], grm_case) + " " + dictionary["toward"] + " " + modify_street_name(streetName["toDest"], "gen");
 	if (streetName["toRef"] != "")
-		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
+		return modify_street_name(streetName["toRef"], grm_case) + " " + dictionary["toward"] + " " + modify_street_name(streetName["toDest"], "gen");
 	return "";
+}
+
+function modify_street_name(street_name, grm_case) {
+	// If street name starts with single letter(s) - drop it because they sounds weird in TTS.
+	// Usually this is initials of person name, e.g. "M. K. Čiurlionio g."
+	while (street_name.length > 3 && /[A-Z]/.test(street_name.charAt(0)) && street_name.substring(1, 3) == ". " && street_name.endsWith(' g.'))
+		street_name = street_name.substring(3);
+	// " g." ending means "street" in Lithuanian - replace it with "gatvė"
+	if (street_name.endsWith(' g.'))
+		street_name = street_name.replace(new RegExp("g." + '$'), dictionary["street_"+grm_case]);
+
+	// Say "[turn] on/onto road number X" instead of plain number "[turn] on/onto X"
+	if (isNumeric(street_name))
+		street_name = dictionary["road_number_"+grm_case] + " " + street_name;
+	return street_name;
+}
+
+function isNumeric(str) {
+  if (typeof str != "string")
+	  return false;
+  return !isNaN(str) && !isNaN(parseFloat(str))
 }
 
 function nth(exit) {
@@ -759,7 +786,6 @@ function make_ut_wp() {
 function speed_alarm(maxSpeed, speed) {
 	return dictionary["exceed_limit"] + " " + num_str(maxSpeed, 'm', 'gen');
 }
-
 
 function attention(type) {
 	switch (type) {
