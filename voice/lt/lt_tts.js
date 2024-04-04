@@ -100,9 +100,10 @@ function populateDictionary(tts) {
 
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "Jūs viršijote leistiną greitį, kuris yra" : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "greitis ribojamas iki " : "exceed_limit.ogg";
+	//dictionary["exceed_limit"] = tts ? "leistinas greitis yra" : "exceed_limit.ogg";  // this would require nominative (vardininkas) grammatical case
+	dictionary["exceed_limit"] = tts ? "greitis ribojamas iki" : "exceed_limit.ogg"; // next number must be in genitive (kilmininkas) grammatical case
 	dictionary["attention"] = tts ? "Dėmesio" : "attention.ogg";
-	dictionary["attention_alt"] = tts ? "Atsargiai" : "attention.ogg";
+	dictionary["attention_alt"] = tts ? "Atsargiai" : "attention_alt.ogg";
 	dictionary["speed_camera"] = tts ? "greičio matuoklis" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "pasienio kontrolė" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "geležinkelio pervaža" : "railroad_crossing.ogg";
@@ -766,7 +767,7 @@ function make_ut_wp() {
 
 // TRAFFIC WARNINGS
 function speed_alarm(maxSpeed, speed) {
-	return dictionary["exceed_limit"] + " " + maxSpeed.toString();
+	return dictionary["exceed_limit"] + " " + num_str(maxSpeed, 'm', 'gen');
 }
 
 
