@@ -654,7 +654,7 @@ function modify_street_name(street_name, grm_case) {
 function isNumeric(str) {
   if (typeof str != "string")
 	  return false;
-  return !isNaN(str) && !isNaN(parseFloat(str))
+  return !isNaN(str) && !isNaN(parseFloat(str));
 }
 
 function nth(exit) {
