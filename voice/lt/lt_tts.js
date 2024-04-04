@@ -8,7 +8,7 @@
 // (X) Distance unit support (meters / feet / yard)
 // (X) Special grammar: special plural forms 1) "_1" – 1, 21, 31, ..., 91; 2) "_2-9" - 2-9, 22-29, 32-39, ... 92-99; 3) "_0,1_" - 0, 10-20, 30, ..., 90, 100, ...
 // (X) Special grammar: grammatical gender (e.g. feminine (moteriška) "2 miles" = "dvi mylios", masculine (vyriška) "2 km" = "du km")
-// (X) Special grammar: now use genitive (kilmininkas) with numbers, but better use grammatical case depending on context (e.g. nominative (vardininkas) "1 km" with distance = "atstumas yra vienas km", genitive (kilmininkas) with "in" = "už vieno km", accusative (galininkas) with "after" = "nuvažiavę vieną km"). For OGG voices to reduce number of files, you may want switch all grammatical cases into genitive (kilmininkas).
+// (X) Special grammar: now use genitive (kilmininkas) with numbers, but better use grammatical case depending on context (e.g. nominative (vardininkas) "1 km" with distance = "atstumas yra vienas km", genitive (kilmininkas) with "in" = "už vieno km", accusative (galininkas) with "after" = "įveikę vieną km"). For OGG voices to reduce number of files, you may want switch all grammatical cases into genitive (kilmininkas).
 // (X) Support announcing highway exits
 //
 // 2024 implemented by Mindaugas B.
@@ -34,7 +34,8 @@ function populateDictionary(tts) {
 	// LEFT/RIGHT
 	//dictionary["prepare"] = tts ? "ruoškitės, " : "prepare.ogg";
 	//dictionary["after"] = tts ? "vėliau, už " : "after.ogg";  // similar to "prepare", i.e. "after" is for longer distance than "in"; next number is in genitive (kilmininkas) grammatical case
-	dictionary["after"] = tts ? "nuvažiavę" : "after.ogg";  // this would require accusative (galininkas) grammatical case
+	//dictionary["after"] = tts ? "nuvažiavę" : "after.ogg";  // suitable for driving, but not for pedestrians; this would require accusative (galininkas) grammatical case
+	dictionary["after"] = tts ? "įveikę" : "after.ogg";  // suitable for both driving ans pedestrians; this would require accusative (galininkas) grammatical case
 	dictionary["in"] = tts ? "už" : "in.ogg"; // next number must be in genitive (kilmininkas) grammatical case
 
 	dictionary["left"] = tts ? "pasukite kairėn" : "left.ogg";
@@ -128,26 +129,26 @@ function populateDictionary(tts) {
 	// DISTANCE UNIT SUPPORT
 	dictionary["meters_1_nom"] = tts ? "metras" : "meters_1_nom.ogg";  // nominative (vardininkas) with "distance": atstumas yra [1, 21, ..., 91]-as metras
 	dictionary["meters_1_gen"] = tts ? "metro" : "meters_1_gen.ogg";   // genitive (kilmininkas) with "in": už [1, 21, ..., 91]-o metro
-	dictionary["meters_1_acc"] = tts ? "metrą" : "meters_1_acc.ogg";   // accusative (galininkas) with "after [driving]": nuvažiavę [1, 21, ..., 91]-ą metrą
+	dictionary["meters_1_acc"] = tts ? "metrą" : "meters_1_acc.ogg";   // accusative (galininkas) with "after [driving]": įveikę [1, 21, ..., 91]-ą metrą
 	dictionary["meters_2_nom"] = tts ? "metrai" : "meters_nom.ogg";  // nominative (vardininkas) with "distance": atstumas yra [2-9, 22-29, ..., 92-99] metrai
 	dictionary["meters_2_gen"] = tts ? "metrų" : "meters_2_gen.ogg";   // genitive (kilmininkas) with "in": už [2-9, 22-29, ..., 92-99]-ų metrų
-	dictionary["meters_2_acc"] = tts ? "metrus" : "meters_2_acc.ogg";   // accusative (galininkas) with "after [driving]": nuvažiavę [2-9, 22-29, ..., 92-99] metrus)
+	dictionary["meters_2_acc"] = tts ? "metrus" : "meters_2_acc.ogg";   // accusative (galininkas) with "after [driving]": įveikę [2-9, 22-29, ..., 92-99] metrus)
 	dictionary["meters_0_nom"] = dictionary["meters_2_gen"];  // nominative (vardininkas) with "distance": atstumas yra [10, 11, ..., 19, 20, 30, ..., 90] metrų
 	dictionary["meters_0_gen"] = dictionary["meters_2_gen"];   // genitive (kilmininkas) with "in": už [10, 11, ..., 19, 20, 30, ..., 90] metrų
-	dictionary["meters_0_acc"] = dictionary["meters_2_gen"];   // accusative (galininkas) with "after": nuvažiavę [10, 11, ..., 19, 20, 30, ..., 90] metrų
+	dictionary["meters_0_acc"] = dictionary["meters_2_gen"];   // accusative (galininkas) with "after": įveikę [10, 11, ..., 19, 20, 30, ..., 90] metrų
 	dictionary["around_1_kilometer_nom"] = tts ? "maždaug vienas kilometras" : "around_1_kilometer_nom.ogg";
 	dictionary["around_1_kilometer_gen"] = tts ? "maždaug vieno kilometro" : "around_1_kilometer_gen.ogg";
 	dictionary["around_1_kilometer_acc"] = tts ? "maždaug vieną kilometrą" : "around_1_kilometer_acc.ogg";
 	dictionary["around"] = tts ? "maždaug" : "around.ogg";
 	dictionary["kilometers_1_nom"] = tts ? "kilometras" : "kilometers_1_nom.ogg";  // nominative (vardininkas) with "distance": atstumas yra [1, 21, ..., 91]-as kilometras
 	dictionary["kilometers_1_gen"] = tts ? "kilometro" : "kilometers_1_gen.ogg";   // genitive (kilmininkas) with "in": už [1, 21, ..., 91]-o kilometro
-	dictionary["kilometers_1_acc"] = tts ? "kilometrą" : "kilometers_1_acc.ogg";   // accusative (galininkas) with "after [driving]": nuvažiavę [1, 21, ..., 91]-ą kilometrą
+	dictionary["kilometers_1_acc"] = tts ? "kilometrą" : "kilometers_1_acc.ogg";   // accusative (galininkas) with "after [driving]": įveikę [1, 21, ..., 91]-ą kilometrą
 	dictionary["kilometers_2_nom"] = tts ? "kilometrai" : "kilometers_nom.ogg";  // nominative (vardininkas) with "distance": atstumas yra [2-9, 22-29, ..., 92-99] kilometrai
 	dictionary["kilometers_2_gen"] = tts ? "kilometrų" : "kilometers_2_gen.ogg";   // genitive (kilmininkas) with "in": už [2-9, 22-29, ..., 92-99]-ų kilometrų
-	dictionary["kilometers_2_acc"] = tts ? "kilometrus" : "kilometers_2_acc.ogg";   // accusative (galininkas) with "after [driving]": nuvažiavę [2-9, 22-29, ..., 92-99] kilometrus)
+	dictionary["kilometers_2_acc"] = tts ? "kilometrus" : "kilometers_2_acc.ogg";   // accusative (galininkas) with "after [driving]": įveikę [2-9, 22-29, ..., 92-99] kilometrus)
 	dictionary["kilometers_0_nom"] = dictionary["kilometers_2_gen"];  // nominative (vardininkas) with "distance": atstumas yra [10, 11, ..., 19, 20, 30, ..., 90] kilometrų
 	dictionary["kilometers_0_gen"] = dictionary["kilometers_2_gen"];   // genitive (kilmininkas) with "in": už [10, 11, ..., 19, 20, 30, ..., 90] kilometrų
-	dictionary["kilometers_0_acc"] = dictionary["kilometers_2_gen"];   // accusative (galininkas) with "after": nuvažiavę [10, 11, ..., 19, 20, 30, ..., 90] kilometrų
+	dictionary["kilometers_0_acc"] = dictionary["kilometers_2_gen"];   // accusative (galininkas) with "after": įveikę [10, 11, ..., 19, 20, 30, ..., 90] kilometrų
 
 	dictionary["feet"] = tts ? "pėdų" : "feet.ogg";  // always rounded to 50
 	dictionary["1_tenth_of_a_mile_nom"] = tts ? "dešimtadalis mylios" : "1_tenth_of_a_mile_nom.ogg";
