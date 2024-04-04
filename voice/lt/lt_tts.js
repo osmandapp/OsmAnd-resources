@@ -294,9 +294,9 @@ function populateDictionary(tts) {
 	dictionary["17_nom"] = tts ? "septyniolika" : "17_nom.ogg";
 	dictionary["17_gen"] = tts ? "septyniolikos" : "17_gen.ogg";
 	dictionary["17_acc"] = tts ? "septynioliką" : "17_acc.ogg";
-	dictionary["17_nom"] = tts ? "septyniolika" : "17_nom.ogg";
-	dictionary["17_gen"] = tts ? "septyniolikos" : "17_gen.ogg";
-	dictionary["17_acc"] = tts ? "septynioliką" : "17_acc.ogg";
+	dictionary["18_nom"] = tts ? "aštuoniolika" : "18_nom.ogg";
+	dictionary["18_gen"] = tts ? "aštuoniolikos" : "18_gen.ogg";
+	dictionary["18_acc"] = tts ? "aštuonioliką" : "18_acc.ogg";
 	dictionary["19_nom"] = tts ? "devyniolika" : "19_nom.ogg";
 	dictionary["19_gen"] = tts ? "devyniolikos" : "19_gen.ogg";
 	dictionary["19_acc"] = tts ? "devynioliką" : "19_acc.ogg";
