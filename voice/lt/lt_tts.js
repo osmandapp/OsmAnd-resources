@@ -188,11 +188,11 @@ function populateDictionary(tts) {
 	dictionary["1_hour_gen"] = tts ? "vienos valandos" : "1_hour_gen.ogg";  // [po] vienos valandos
 	dictionary["1_hour_acc"] = tts ? "vieną valandą" : "1_hour_acc.ogg";  // [per] vieną valandą
 	dictionary["hours_1_nom"] = tts ? "valanda" : "hours_1_nom.ogg";  // n-dešimt viena valanda - 21h, 31h, ... 91h
-	dictionary["hours_1_gen"] = tts ? "valandos" : "hours_1_gen.ogg";  // [po] 21-os valandos; writting is same as "hours_2_nom", but stress differ: valandOs
+	dictionary["hours_1_gen"] = tts ? "valandos" : "hours_1_gen.ogg";  // [po] 21-os valandos; writing is same as "hours_2_nom", but stress differ: valandOs
 	dictionary["hours_1_acc"] = tts ? "valandą" : "hours_1_acc.ogg";  // [per] 21-ą valandą
-	dictionary["hours_2_nom"] = tts ? "valandos" : "hours_2_nom.ogg";  // suitable for 2-9, 21-29, 32-39, ...h; writting is same as "hours_1_gen", but stress differ: vAlandos
+	dictionary["hours_2_nom"] = tts ? "valandos" : "hours_2_nom.ogg";  // suitable for 2-9, 22-29, 32-39, ...h; writing is same as "hours_1_gen", but stress differ: vAlandos
 	dictionary["hours_2_gen"] = tts ? "valandų" : "hours_2_gen.ogg";  // suitable for 2-20, 22-30, 32-40 h
-	dictionary["hours_2_acc"] = tts ? "valandas" : "hours_2_acc.ogg";  // suitable for 2-9, 21-29, 32-39, ...h;
+	dictionary["hours_2_acc"] = tts ? "valandas" : "hours_2_acc.ogg";  // suitable for 2-9, 22-29, 32-39, ...h;
 	dictionary["hours_0_nom"] = dictionary["hours_2_gen"];
 	dictionary["hours_0_gen"] = dictionary["hours_2_gen"];  // suitable for 2-20, 22-30, 32-40 h
 	dictionary["hours_0_acc"] = dictionary["hours_2_gen"];
