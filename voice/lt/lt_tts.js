@@ -323,12 +323,22 @@ function populateDictionary(tts) {
 	dictionary["1000_2_acc"] = tts ? "tūkstančius" : "1000_2_acc.ogg";
 
 	// ADITIONAL NON-STANDARD STRINGS for ROAD/STREET NAMES
+	dictionary["street_gen"] = tts ? "gatvės" : "street_gen.ogg";
+	dictionary["street_acc"] = tts ? "gatvę" : "street_acc.ogg";
+	dictionary["alley_gen"] = tts ? "alėjos" : "alley_gen.ogg";
+	dictionary["alley_acc"] = tts ? "alėją" : "alley_acc.ogg";
+	dictionary["avenue_gen"] = tts ? "prospekto" : "avenue_gen.ogg";
+	dictionary["avenue_acc"] = tts ? "prospektą" : "avenue_acc.ogg";
+	dictionary["highroad_gen"] = tts ? "plento" : "highroad_gen.ogg";
+	dictionary["highroad_acc"] = tts ? "plentą" : "highroad_acc.ogg";
+	// dictionary["bypass_nom"] = tts ? "aplinkkelis" : "bypass_nom.ogg";
+	dictionary["bypass_gen"] = tts ? "aplinkkelio" : "bypass_gen.ogg";
+	dictionary["bypass_acc"] = tts ? "aplinkkelį" : "bypass_acc.ogg";
 	dictionary["road_gen"] = tts ? "kelio" : "road_gen.ogg";
 	dictionary["road_acc"] = tts ? "kelią" : "road_acc.ogg";
 	dictionary["road_number_gen"] = tts ? "kelio numeriu" : "road_number_gen.ogg";
 	dictionary["road_number_acc"] = tts ? "kelią numeriu" : "road_number_acc.ogg";
-	dictionary["street_gen"] = tts ? "gatvės" : "street_gen.ogg";
-	dictionary["street_acc"] = tts ? "gatvę" : "street_acc.ogg";
+
 }
 
 
@@ -564,7 +574,7 @@ function take_exit_name(streetName) {
 	if (Object.keys(streetName).length == 0 || (streetName["toDest"] == "" && streetName["toStreetName"] == "") || !tts) {
 		return "";
 	} else if (streetName["toDest"] != "") {
-		return (tts ? ", " : " ") + streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
+		return (tts ? ", " : " ") + streetName["toStreetName"] + " " + dictionary["toward"] + " " + modify_street_name(streetName["toDest"], "gen");
 	} else if (streetName["toStreetName"] != "") {
 		return (tts ? ", " : " ") + streetName["toStreetName"];
 	} else {
@@ -646,6 +656,21 @@ function modify_street_name(street_name, grm_case) {
 	// " g." ending means "street" in Lithuanian - replace it with "gatvė"
 	if (street_name.endsWith(' g.'))
 		street_name = street_name.replace(new RegExp("g." + '$'), dictionary["street_"+grm_case]);
+	// " al." ending means "alley" in Lithuanian - replace it with "alėja"
+	if (street_name.endsWith(' al.'))
+		street_name = street_name.replace(new RegExp("al." + '$'), dictionary["alley_"+grm_case]);
+	// " pr." ending means "avenue" in Lithuanian - replace it with "prospektas"
+	if (street_name.endsWith(' pr.'))
+		street_name = street_name.replace(new RegExp("pr." + '$'), dictionary["avenue_"+grm_case]);
+	// " pl." ending means "highroad" in Lithuanian - replace it with "plentas"
+	if (street_name.endsWith(' pl.'))
+		street_name = street_name.replace(new RegExp("pl." + '$'), dictionary["highroad_"+grm_case]);
+	// " aplink." ending means "bypass" in Lithuanian - replace it with "aplinkkelis"
+	if (street_name.endsWith(' aplink.'))
+		street_name = street_name.replace(new RegExp("aplink." + '$'), dictionary["bypass_"+grm_case]);
+	// " aplinkl." is used in openstreetmap for "aplinkelis" (one K), though this is incorrect - should be "aplinkkelis" (two K)
+	if (street_name.endsWith(' aplinkl.'))
+		street_name = street_name.replace(new RegExp("aplinkl." + '$'), dictionary["bypass_"+grm_case]);
 
 	// Say "[turn] on/onto road number X" instead of plain number "[turn] on/onto X"
 	if (isNumeric(street_name))
