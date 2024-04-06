@@ -413,7 +413,7 @@ function distance(dist, grm_case) {
 				return num_str(Math.round(dist), "m", grm_case) + " " + dictionary["meters_0_"+grm_case];
 			if (dist < 100)
 				return num_str(Math.round(dist/10.0)*10, "m", grm_case) + " " + dictionary["meters_0_"+grm_case];
-			if (dist < 1000)
+			if (dist < 950)
 				return num_str(Math.round(2*dist/100.0)*50, "m", grm_case) + " " + dictionary["meters_0_"+grm_case];
 			if (dist < 1500)
 				return dictionary["around_1_kilometer_"+grm_case];
