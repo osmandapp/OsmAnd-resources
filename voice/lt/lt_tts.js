@@ -57,7 +57,7 @@ function populateDictionary(tts) {
 
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "pasieksite žiedinę sankryžą" : "prepare_roundabout.ogg";  // "after" + $distance + "prepare_roundabout" = "vėliau, už" + $atstumo + "pasieksite žiedinę sankryžą"
-	dictionary["roundabout"] = tts ? "žiedinė sankryža, joje" : "roundabout.ogg";  // "in" + $distance + "roundabout" + "take" + "nth" + "exit" ... = "už" + $atstumo + "žiedinė sankryža, joje" + "išsukite" + "n-tame" + "išvažiavime"
+	dictionary["roundabout"] = tts ? "žiede" : "roundabout.ogg";  // "in" + $distance + "roundabout" + "take" + "nth" + "exit" ... = "už" + $atstumo + "žiedinė sankryža, joje" + "išsukite" + "n-tame" + "išvažiavime"
 	dictionary["then"] = tts ? "po to" : "then.ogg";
 	dictionary["and"] = tts ? "ir" : "and.ogg";  // "... and take 1st exit onto ... towards" = "ir po to išsukite pirmajame išvažiavime į ... link ..."
 	dictionary["take"] = tts ? "išsukite" : "take.ogg";  // "Take 2nd exit onto ..." = "išsukite antrajame išvažiavime į ..."
