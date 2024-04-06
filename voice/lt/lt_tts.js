@@ -40,15 +40,21 @@ function populateDictionary(tts) {
 
 	dictionary["left"] = tts ? "pasukite kairėn" : "left.ogg";
 	dictionary["left_sh"] = tts ? "staigiai pasukite kairėn" : "left_sh.ogg";
-	dictionary["left_sl"] = tts ? "pasukite nežymiai kairėn" : "left_sl.ogg";
+	//dictionary["left_sl"] = tts ? "pasukite nežymiai kairėn" : "left_sl.ogg";
+	dictionary["left_sl"] = tts ? "pasukite kairiau" : "left_sl.ogg";
 	dictionary["right"] = tts ? "pasukite dešinėn" : "right.ogg";
 	dictionary["right_sh"] = tts ? "staigiai pasukite dešinėn" : "right_sh.ogg";
-	dictionary["right_sl"] = tts ? "pasukite nežymiai dešinėn" : "right_sl.ogg";
+	//dictionary["right_sl"] = tts ? "pasukite nežymiai dešinėn" : "right_sl.ogg";
+	dictionary["right_sl"] = tts ? "pasukite dešiniau" : "right_sl.ogg";
 	// Note: "left_keep"/"right_keep" is a turn type aiding lane selection, while "left_bear"/"right_bear" is as brief "then..." preparation for the turn-after-next. In some languages l/r_keep may not differ from l/r_bear.
+	// Besides, both "left_keep"/"right_keep" and "left_bear"/"right_bear" maybe used to indicate side of final destination then it is close, e.g.
+    // "after + 500 m + left_keep + and_arrive_destination", "in + 150 m + [turn] left [,] + then + right_bear + and_arrive_destination"
+	// Also, "left_keep"/"right_keep" are turns when attached road doesn't have lanes or prev segment has more then 1 turn to the active lane
 	dictionary["left_keep"] = tts ? "laikykitės kairės" : "left_keep.ogg";
 	dictionary["right_keep"] = tts ? "laikykitės dešinės" : "right_keep.ogg";
-	dictionary["left_bear"] = tts ? "rikiuokitės kairėje" : "left_bear.ogg";  // in English the same as left_keep, may be different in other languages
-	dictionary["right_bear"] = tts ? "rikiuokitės dešinėje" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
+	// seems "bear" is used only as second close turn ogether with word "then", may not be related to lanes
+	dictionary["left_bear"] = tts ? "į kairę" : "left_bear.ogg";  // in English the same as left_keep, may be different in other languages
+	dictionary["right_bear"] = tts ? "į dešinę" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
 
 	// U-TURNS
 	//dictionary["prepare_make_uturn"] = tts ? "po to reikės apsisukti" : "prepare_make_uturn.ogg";
