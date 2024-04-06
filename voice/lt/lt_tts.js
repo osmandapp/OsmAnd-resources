@@ -323,6 +323,8 @@ function populateDictionary(tts) {
 	dictionary["1000_2_acc"] = tts ? "tūkstančius" : "1000_2_acc.ogg";
 
 	// ADITIONAL NON-STANDARD STRINGS for ROAD/STREET NAMES
+	dictionary["road_gen"] = tts ? "kelio" : "road_gen.ogg";
+	dictionary["road_acc"] = tts ? "kelią" : "road_acc.ogg";
 	dictionary["road_number_gen"] = tts ? "kelio numeriu" : "road_number_gen.ogg";
 	dictionary["road_number_acc"] = tts ? "kelią numeriu" : "road_number_acc.ogg";
 	dictionary["street_gen"] = tts ? "gatvės" : "street_gen.ogg";
@@ -648,6 +650,9 @@ function modify_street_name(street_name, grm_case) {
 	// Say "[turn] on/onto road number X" instead of plain number "[turn] on/onto X"
 	if (isNumeric(street_name))
 		street_name = dictionary["road_number_"+grm_case] + " " + street_name;
+    // Google TTS does not say road names (e.g. A1), so split name into letter and number
+	if (/[A-Z]/.test(street_name.charAt(0)) && isNumeric(street_name.substring(1)))
+		street_name = dictionary["road_"+grm_case] + " " + street_name.substring(0, 1) + " " + street_name.substring(1);
 	return street_name;
 }
 
