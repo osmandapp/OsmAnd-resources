@@ -53,8 +53,8 @@ function populateDictionary(tts) {
 	dictionary["left_keep"] = tts ? "laikykitės kairės" : "left_keep.ogg";
 	dictionary["right_keep"] = tts ? "laikykitės dešinės" : "right_keep.ogg";
 	// seems "bear" is used only as second close turn ogether with word "then", may not be related to lanes
-	dictionary["left_bear"] = tts ? "į kairę" : "left_bear.ogg";  // in English the same as left_keep, may be different in other languages
-	dictionary["right_bear"] = tts ? "į dešinę" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
+	dictionary["left_bear"] = tts ? "ruoškitės į kairę" : "left_bear.ogg";  // in English the same as left_keep, may be different in other languages
+	dictionary["right_bear"] = tts ? "ruoškitės į dešinę" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
 
 	// U-TURNS
 	//dictionary["prepare_make_uturn"] = tts ? "po to reikės apsisukti" : "prepare_make_uturn.ogg";
