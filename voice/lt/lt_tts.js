@@ -837,6 +837,13 @@ function speed_alarm(maxSpeed, speed) {
 	return dictionary["exceed_limit"] + " " + num_str(maxSpeed, 'm', 'gen');
 }
 
+function speed_camera_alarm(dist, maxSpeed) {
+	return dictionary["attention"] +
+		(tts ? ", " : " ") + dictionary["speed_camera"] +
+		(tts ? ", " : " ") + dictionary["in"] + " " + distance(dist, "gen") +
+		(tts ? ", " : " ") + dictionary["exceed_limit"] + " " + num_str(maxSpeed, 'm', 'gen');
+}
+
 function attention(type) {
 	switch (type) {
     	case "TRAFFIC_CALMING":
