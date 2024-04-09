@@ -659,6 +659,10 @@ function modify_street_name(street_name, grm_case) {
 	// Usually this is initials of person name, e.g. "M. K. Čiurlionio g."
 	while (street_name.length > 3 && /[A-Z]/.test(street_name.charAt(0)) && street_name.substring(1, 3) == ". " && street_name.endsWith(' g.'))
 		street_name = street_name.substring(3);
+    // remove initials in middle of street name, e.g. remove middle "S" from "S. Dariaus ir S. Girėno g."
+	let initial_in_middle = street_name.search(' ir [/A-Z/]. ');
+	if (initial_in_middle > 3 && street_name.endsWith(' g.'))
+		street_name = street_name.substring(0, initial_in_middle+3) + street_name.substring(initial_in_middle+6);
 	// " g." ending means "street" in Lithuanian - replace it with "gatvė"
 	if (street_name.endsWith(' g.'))
 		street_name = street_name.replace(new RegExp("g." + '$'), dictionary["street_"+grm_case]);
@@ -759,39 +763,39 @@ function prepare_roundabout(dist, exit, streetName) {
 }
 
 function and_arrive_destination(dest) {
-	return dictionary["and_arrive_destination"] + " " + dest;
+	return dictionary["and_arrive_destination"] + " " + modify_street_name(dest, 'acc');
 }
 
 function and_arrive_intermediate(dest) {
-	return dictionary["and_arrive_intermediate"] + " " + dest;
+	return dictionary["and_arrive_intermediate"] + " " + modify_street_name(dest, 'acc');
 }
 
 function and_arrive_waypoint(dest) {
-	return dictionary["and_arrive_waypoint"] + " " + dest;
+	return dictionary["and_arrive_waypoint"] + " " + modify_street_name(dest, 'acc');
 }
 
 function and_arrive_favorite(dest) {
-	return dictionary["and_arrive_favorite"] + " " + dest;
+	return dictionary["and_arrive_favorite"] + " " + modify_street_name(dest, 'acc');
 }
 
 function and_arrive_poi(dest) {
-	return dictionary["and_arrive_poi"] + " " + dest;
+	return dictionary["and_arrive_poi"] + " " + modify_street_name(dest, 'acc');
 }
 
 function reached_destination(dest) {
-	return dictionary["reached_destination"] + " " + dest;
+	return dictionary["reached_destination"] + " " + modify_street_name(dest, 'acc');
 }
 
 function reached_waypoint(dest) {
-	return dictionary["reached_waypoint"] + " " + dest;
+	return dictionary["reached_waypoint"] + " " + modify_street_name(dest, 'acc');
 }
 
 function reached_intermediate(dest) {
-	return dictionary["reached_intermediate"] + " " + dest;
+	return dictionary["reached_intermediate"] + " " + modify_street_name(dest, 'acc');
 }
 
 function reached_favorite(dest) {
-	return dictionary["reached_favorite"] + " " + dest;
+	return dictionary["reached_favorite"] + " " + modify_street_name(dest, 'acc');
 }
 
 function reached_poi(dest) {
