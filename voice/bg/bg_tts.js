@@ -1,3 +1,4 @@
+// Update contributed by Koceto1973, 2023-04-01.
 // IMPLEMENTED (X) or MISSING ( ) FEATURES, (N/A) if not needed in this language:
 //
 // (X) Basic navigation prompts: route (re)calculated (with distance and time support), turns, roundabouts, u-turns, straight/follow, arrival
@@ -17,37 +18,37 @@ var tts;
 ////////////////////////////////////////////////////////////////
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
-	dictionary["route_is"] = tts ? "Пътуването е " : "route_is.ogg" ;
-	dictionary["route_calculate"] = tts ? "Преизчислен маршрут" : "route_calculate.ogg";
+	dictionary["route_is"] = tts ? "маршрутът е" : "route_is.ogg" ;
+	dictionary["route_calculate"] = tts ? "пре изчислен маршрут" : "route_calculate.ogg";
 	dictionary["distance"] = tts ? "разстояние " : "distance.ogg";
 
 	// LEFT/RIGHT
 	//dictionary["prepare"] = "Prepare to "
 	dictionary["after"] = tts ? "след " : "after.ogg";
-	dictionary["in"] = tts ? "във " : "in.ogg";
+	dictionary["in"] = tts ? "до " : "in.ogg";
 
-	dictionary["left"] = tts ? "завий наляво" : "left.ogg";
-	dictionary["left_sh"] = tts ? "завийте рязко наляво" : "left_sh.ogg";
-	dictionary["left_sl"] = tts ? "завийте леко наляво" : "left_sl.ogg";
-	dictionary["right"] = tts ? "завий надясно" : "right.ogg";
-	dictionary["right_sh"] = tts ? "завийте рязко надясно" : "right_sh.ogg";
-	dictionary["right_sl"] = tts ? "завийте леко надясно" : "right_sl.ogg";
+	dictionary["left"] = tts ? "за вийте наляво" : "left.ogg";
+	dictionary["left_sh"] = tts ? "за вийте пълен ляв" : "left_sh.ogg";
+	dictionary["left_sl"] = tts ? "за вийте леко наляво" : "left_sl.ogg";
+	dictionary["right"] = tts ? "за вийте надясно" : "right.ogg";
+	dictionary["right_sh"] = tts ? "за вийте пълен десен" : "right_sh.ogg";
+	dictionary["right_sl"] = tts ? "за вийте леко надясно" : "right_sl.ogg";
 	// Note: "left_keep"/"right_keep" is a turn type aiding lane selection, while "left_bear"/"right_bear" is as brief "then..." preparation for the turn-after-next. In some languages l/r_keep may not differ from l/r_bear.
-	dictionary["left_keep"] = tts ? "дръж наляво" : "left_keep.ogg";
-	dictionary["right_keep"] = tts ? "дръж надясно" : "right_keep.ogg";
-	dictionary["left_bear"] = tts ? "дръж наляво" : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
-	dictionary["right_bear"] = tts ? "дръж надясно" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
+	dictionary["left_keep"] = tts ? "дръжте в ляво" : "left_keep.ogg";
+	dictionary["right_keep"] = tts ? "дръжте в дясно" : "right_keep.ogg";
+	dictionary["left_bear"] = tts ? "дръжте в ляво" : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
+	dictionary["right_bear"] = tts ? "дръжте в дясно" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
 
 	// U-TURNS
-	dictionary["make_uturn"] = tts ? "Направи обратен завой" : "make_uturn.ogg";
-	dictionary["make_uturn_wp"] = tts ? "Когато е възможно, моля направи обратен завой" : "make_uturn_wp.ogg";
+	dictionary["make_uturn"] = tts ? "пра вете обратен завой" : "make_uturn.ogg";
+	dictionary["make_uturn_wp"] = tts ? "пра вете обратен завой когато е възможно" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? "влезте в кръгово кръстовище" : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? "влезте в кръговото кръстовище, " : "roundabout.ogg";
-	dictionary["then"] = tts ? " след това " : "then.ogg";
+	dictionary["prepare_roundabout"] = tts ? "навлизате в кр ъгово кръстовище" : "prepare_roundabout.ogg";
+	dictionary["roundabout"] = tts ? "влезте в кр ъгово кръстовище, " : "roundabout.ogg";
+	dictionary["then"] = tts ? "след това" : "then.ogg";
 	dictionary["and"] = tts ? " и " : "and.ogg";
-	dictionary["take"] = tts ? "вземете " : "take.ogg";
+	dictionary["take"] = tts ? "пое мете по " : "take.ogg";
 	dictionary["exit"] = tts ? "изход" : "exit.ogg";
 
 	dictionary["1st"] = tts ? "първи " : "1st.ogg";
@@ -69,85 +70,93 @@ function populateDictionary(tts) {
 	dictionary["17th"] = tts ? "седемнадесети " : "17th.ogg";
 
 	// STRAIGHT/FOLLOW
-	dictionary["go_ahead"] = tts ? "Продължете направо напред " : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "Продължете за " : "follow.ogg";  // "Follow the course of the road for" perceived as too chatty by many users
+	dictionary["go_ahead"] = tts ? "продъл жете направо " : "go_ahead.ogg";
+	dictionary["follow"] = tts ? "продъл жете за " : "follow.ogg";  // "Follow the course of the road for" perceived as too chatty by many users
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "и да пристигнахте до вашата дестинация " : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "и пристигнахте вашата дестинация " : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "и пристигнахте до вашата междинна дестинация " : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "и пристигнахте до вашата междинна дестинация " : "reached_intermediate.ogg";
+	dictionary["and_arrive_destination"] = tts ? "и пристигате в дести нацията" : "and_arrive_destination.ogg";
+	dictionary["reached_destination"] = tts ? "достигнахте до дести нацията" : "reached_destination.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "и пристигате в междинна дестинация" : "and_arrive_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "достигнахте до междинна дестинация" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "и преминахте ДЖИ-ПИ-ХИКС точка " : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "преминавате ДЖИ-ПИ-ХИКС точка " : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "и преминавате любим " : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "премина любим " : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "и преминавате POI " : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "премина POI " : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "и пристигате в маршр утна точка" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "достигнахте до маршр утна точка" : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "и пристигате в предпочитание" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "достигнахте до предпочитание" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "и пристигате до точка от интерес" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "достигнахте точка от интерес" : "reached_poi.ogg";
 
 	// ATTENTION
 	//dictionary["exceed_limit"] = "you are exceeding the speed limit "
-	dictionary["exceed_limit"] = tts ? "надвишена скорост " : "exceed_limit.ogg";
+	dictionary["exceed_limit"] = tts ? "надвишавате ограничението за скорост от" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "внимание, " : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "радар за скорост" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "граничен контрол" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "пресичане на железопътна линия" : "railroad_crossing.ogg";
-	dictionary["traffic_calming"] = tts ? "успокояване на трафика" : "traffic_calming.ogg";
+	dictionary["traffic_calming"] = tts ? "забавяне на трафика" : "traffic_calming.ogg";
 	dictionary["toll_booth"] = tts ? "тол кабина" : "toll_booth.ogg";
-	dictionary["stop"] = tts ? "стоп" : "stop.ogg";
+	dictionary["stop"] = tts ? "знак стоп" : "stop.ogg";
 	dictionary["pedestrian_crosswalk"] = tts ? "пешеходна пътека" : "pedestrian_crosswalk.ogg";
 	dictionary["tunnel"] = tts ? "тунел" : "tunnel.ogg";
 
 	// OTHER PROMPTS
-	dictionary["location_lost"] = tts ? "изгубен ДЖИ–ПИ–ЕС сигнал " : "location_lost.ogg";
-	dictionary["location_recovered"] = tts ? "възстановен ДЖИ–ПИ–ЕС сигнал" : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "вие бяхте извън маршута за" : "off_route.ogg";
+	dictionary["location_lost"] = tts ? "изгубен сателитен сигнал" : "location_lost.ogg";
+	dictionary["location_recovered"] = tts ? "възстановен сателитен сигнал" : "location_recovered.ogg";
+	dictionary["off_route"] = tts ? "бяхте извън маршрута за" : "off_route.ogg";
 	dictionary["back_on_route"] = tts ? "отново сте по маршрута" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "върху " : "onto.ogg";
-	dictionary["on"] = tts ? "на " : "on.ogg";    // is used if you turn together with your current street, i.e. street name does not change.
+	dictionary["onto"] = tts ? "през " : "onto.ogg";
+	dictionary["on"] = tts ? "по " : "on.ogg";    // is used if you turn together with your current street, i.e. street name does not change.
 	dictionary["to"] = tts ? "към " : "to.ogg";
-	dictionary["toward"] = tts ? "предстоящ " : "toward.ogg";
+	dictionary["toward"] = tts ? "по посока на " : "toward.ogg";
 
 	// DISTANCE UNIT SUPPORT
 	dictionary["meters"] = tts ? "метрa" : "meters.ogg";
-	dictionary["around_1_kilometer"] = tts ? "около 1 километър" : "around_1_kilometer.ogg";
+	dictionary["around_1_kilometer"] = tts ? "около един кило метър" : "around_1_kilometer.ogg";
+	dictionary["around_2_kilometer"] = tts ? "около два кило метра" : "around_2_kilometer.ogg"; // add your two kilometers here!
 	dictionary["around"] = tts ? "около " : "around.ogg";
-	dictionary["kilometers"] = tts ? "километрa" : "kilometers.ogg";
+	dictionary["kilometers"] = tts ? "кило метрa" : "kilometers.ogg";
 
-	dictionary["feet"] = tts ? "крачки" : "feet.ogg";
-	dictionary["1_tenth_of_a_mile"] = tts ? "една десета миля" : "1_tenth_of_a_mile.ogg";
+	dictionary["feet"] = tts ? "фута" : "feet.ogg";
+	dictionary["1_tenth_of_a_mile"] = tts ? "една десета от миля" : "1_tenth_of_a_mile.ogg";
 	dictionary["tenths_of_a_mile"] = tts ? "десетки мили" : "tenths_of_a_mile.ogg";
-	dictionary["around_1_mile"] = tts ? "около миля" : "around_1_mile.ogg";
+	dictionary["around_1_mile"] = tts ? "около една миля" : "around_1_mile.ogg";
 	dictionary["miles"] = tts ? "мили" : "miles.ogg";
-	dictionary["yards"] = tts ? "ярди" : "yards.ogg";
+	dictionary["yards"] = tts ? "ярда" : "yards.ogg";
 
 	// TIME SUPPORT
 	dictionary["time"] = tts ? "времето е " : "time.ogg";
 	dictionary["1_hour"] = tts ? "един час " : "1_hour.ogg";
-    dictionary["hours"] = tts ? "часове " : "hours.ogg";
+	dictionary["2_hours"] = tts ? "два часа " : "2_hour.ogg"; // add your two hours here!
+  dictionary["hours"] = tts ? "часа " : "hours.ogg";
 	dictionary["less_a_minute"] = tts ? "по-малко от минута" : "less_a_minute.ogg";
 	dictionary["1_minute"] = tts ? "една минута" : "1_minute.ogg";
 	dictionary["minutes"] = tts ? "минути" : "minutes.ogg";
+  dictionary["and"] = tts ? " и " : " and "; // do your and.ogg here!
 }
 
 //// COMMAND BUILDING / WORD ORDER
 ////////////////////////////////////////////////////////////////
+
+// sets metricConst as km-m, mi-f, mi-m or mi-y
 function setMetricConst(metrics) {
 	metricConst = metrics;
 }
 
+// sets tts as mode
 function setMode(mode) {
 	tts = mode;
 	populateDictionary(mode);
 }
 
+// Маршрута е .... , времето е ...
 function route_new_calc(dist, timeVal) {
 	return dictionary["route_is"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : "");
 }
 
+// approx. distance
 function distance(dist) {
 	switch (metricConst) {
 		case "km-m":
@@ -159,6 +168,8 @@ function distance(dist) {
 				return (tts ? (Math.round(2*dist/100.0)*50).toString() : ogg_dist(Math.round(2*dist/100.0)*50)) + " " + dictionary["meters"];
 			} else if (dist < 1500) {
 				return dictionary["around_1_kilometer"];
+			} else if (dist < 2500) {
+				return dictionary["around_2_kilometer"];
 			} else if (dist < 10000) {
 				return dictionary["around"] + " " + (tts ? Math.round(dist/1000.0).toString() : ogg_dist(dist/1000.0)) + " " + dictionary["kilometers"];
 			} else {
@@ -213,6 +224,7 @@ function distance(dist) {
 	}
 }
 
+// time spell
 function time(seconds) {
 	var minutes = Math.round(seconds/60.0);
 	var oggMinutes = Math.round(((seconds/300.0) * 5));
@@ -221,9 +233,11 @@ function time(seconds) {
 	} else if (minutes % 60 == 0 && tts) {
 		return hours(minutes);
 	} else if (minutes % 60 == 1 && tts) {
-		return hours(minutes) + " " + dictionary["1_minute"];
+		return hours(minutes) + dictionary["and"] + dictionary["1_minute"];
 	} else if (tts) {
-		return hours(minutes) + " " + (minutes % 60) + " " + dictionary["minutes"];
+		return hours(minutes) != ""  ? 
+			hours(minutes) + dictionary["and"] + (minutes % 60) + dictionary["minutes"] : 
+			(minutes % 60) + dictionary["minutes"];
 	} else if (!tts && seconds < 300) {
 		return ogg_dist(minutes) + dictionary["minutes"];
 	} else if (!tts && oggMinutes % 60 > 0) {
@@ -233,6 +247,7 @@ function time(seconds) {
 	}
 }
 
+// time spell
 function hours(minutes) {
 	if (minutes < 60) {
 		return "";
@@ -240,14 +255,21 @@ function hours(minutes) {
 		return dictionary["1_hour"];
 	} else {
 		var hours = Math.floor(minutes / 60);
-        return (tts ? hours.toString() : ogg_dist(hours)) + " " + dictionary["hours"]; 
+				if ( hours == 2 )
+					return tts ? dictionary["2_hours"] : ogg_dist(hours) + " " + dictionary["hours"];
+				else 
+        	return (tts ? hours.toString() : ogg_dist(hours)) + " " + dictionary["hours"]; 
 	}
 }
 
+// Преизислен маршрут, разстояние ...., времето е ....
 function route_recalc(dist, seconds) {
 	return dictionary["route_calculate"] + " " + dictionary["distance"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : "");
 }
 
+// продължете направо
+// или
+// продължете за .... 
 function go_ahead(dist, streetName) {
 	if (dist == -1) {
 		return dictionary["go_ahead"];
@@ -308,35 +330,39 @@ function getExitNumber(exitString, exitInt) {
 	}
 }
 
+// за вийте ...
+// или
+// дръжте ...
 function getTurnType(turnType) {
 	switch (turnType) {
 		case "left":
-			return dictionary["left"];
+			return dictionary["left"]; // за вийте наляво
 			break;
 		case "left_sh":
-			return dictionary["left_sh"];
+			return dictionary["left_sh"]; // за вийте пълен ляв
 			break;
 		case "left_sl":
-			return dictionary["left_sl"];
+			return dictionary["left_sl"]; // за вийте леко наляво
 			break;
 		case "right":
-			return dictionary["right"];
+			return dictionary["right"]; // за вийте надясно
 			break;
 		case "right_sh":
-			return dictionary["right_sh"];
+			return dictionary["right_sh"]; // за вийте пълен десен
 			break;
 		case "right_sl":
-			return dictionary["right_sl"];
+			return dictionary["right_sl"]; // за вийте леко надясно
 			break;
 		case "left_keep":
-			return dictionary["left_keep"];
+			return dictionary["left_keep"]; // дръжте в ляво
 			break;
 		case "right_keep":
-			return dictionary["right_keep"];
+			return dictionary["right_keep"]; // дръжте в дясно
 			break;
 	}
 }
 
+// след това
 function then() {
 	return dictionary["then"];
 }
@@ -376,6 +402,7 @@ function assemble_street_name(streetName) {
 	}
 }
 
+// пореден изход
 function nth(exit) {
 	switch (exit) {
 		case (1):
@@ -423,95 +450,118 @@ function make_ut(dist, streetName) {
 	}
 }
 
+// дръжте в ляво
 function bear_left(streetName) {
 	return dictionary["left_bear"];
 }
 
+// дръжте в дясно
 function bear_right(streetName) {
 	return dictionary["right_bear"];
 }
 
+// след ... направете обратен завой 
 function prepare_make_ut(dist, streetName) {
 	return dictionary["after"] + " " + distance(dist) + " " + dictionary["make_uturn"] + " " + turn_street(streetName);
 }
 
+// след ... 
 function prepare_turn(turnType, dist, streetName) {
 	return dictionary["after"] + " " + distance(dist) + " " + getTurnType(turnType) + " " + turn_street(streetName);
 }
 
+// след ... навлизате в кръгово кръстовище
 function prepare_roundabout(dist, exit, streetName) {
 	return dictionary["after"] + " " + distance(dist) + " " + dictionary["prepare_roundabout"]; 
 }
 
+// пристигнахте в дестинация ...
 function and_arrive_destination(dest) {
 	return dictionary["and_arrive_destination"] + " " + dest;
 }
 
+// пристигнахте в междинна дестинация ...
 function and_arrive_intermediate(dest) {
 	return dictionary["and_arrive_intermediate"] + " " + dest;
 }
 
+// пристигнахте в маршрутна точка ...
 function and_arrive_waypoint(dest) {
 	return dictionary["and_arrive_waypoint"] + " " + dest;
 }
 
+// пристигнахте в предпочитание ...
 function and_arrive_favorite(dest) {
 	return dictionary["and_arrive_favorite"] + " " + dest;
 }
 
+// пристигнахте до точка от интерес ...
 function and_arrive_poi(dest) {
 	return dictionary["and_arrive_poi"] + " " + dest;
 }
 
+// достигнахте до дестинация ...
 function reached_destination(dest) {
 	return dictionary["reached_destination"] + " " + dest;
 }
 
+// достигнахте до маршрутна точка ....
 function reached_waypoint(dest) {
 	return dictionary["reached_waypoint"] + " " + dest;
 }
 
+// достигнахте до междинна дестинация ....
 function reached_intermediate(dest) {
 	return dictionary["reached_intermediate"] + " " + dest;
 }
 
+// достигнахте до предпочитание ...
 function reached_favorite(dest) {
 	return dictionary["reached_favorite"] + " " + dest;
 }
 
+// достигнахте точка от интерес ...
 function reached_poi(dest) {
 	return dictionary["reached_poi"] + " " + dest;
 }
 
+// изгубен сателитен сигнал
 function location_lost() {
 	return dictionary["location_lost"];
 }
 
+// възстановен сателитен сигнал
 function location_recovered() {
 	return dictionary["location_recovered"];
 }
 
+// бяхте извън маршута за ....
 function off_route(dist) {
 	return dictionary["off_route"] + " " + distance(dist);
 }
 
+// отново сте по маршрута
 function back_on_route() {
 	return dictionary["back_on_route"];
 }
 
+// направете обратен завой когато е възможно
 function make_ut_wp() {
 	return dictionary["make_uturn_wp"];
 }
 
 // TRAFFIC WARNINGS
+// надвишавате ограничението за скорост от ...
 function speed_alarm(maxSpeed, speed) {
 	return dictionary["exceed_limit"] + " " + maxSpeed.toString();
 }
 
+// внимание, нещо си ...
 function attention(type) {
 	return dictionary["attention"] + " " + getAttentionString(type);
 }
 
+// това за което внимаваме
 function getAttentionString(type) {
 	switch (type) {
 		case "SPEED_CAMERA":
