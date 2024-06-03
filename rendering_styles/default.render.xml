@@ -1527,12 +1527,23 @@
 
 	<renderingAttribute name="golfCourseColor">
 		<case nightMode="true" attrColorValue="$shaderColorNight"/>
-		<case moreDetailed="true" attrColorValue="#ADE5A1"/>
-		<case attrColorValue="$woodColor"/>
+		<case attrColorValue="#DEF6C0"/>
 	</renderingAttribute>
 	<renderingAttribute name="golfCourseStrokeColor">
 		<case nightMode="true" attrColorValue="#64795D"/>
 		<case attrColorValue="#BBE2AE"/>
+	</renderingAttribute>
+	<renderingAttribute name="golfGreenColor">
+		<case nightMode="true" attrColorValue="$shaderColorNight"/>
+		<case attrColorValue="#89E0BE"/>
+	</renderingAttribute>
+	<renderingAttribute name="golfBunkerColor">
+		<case nightMode="true" attrColorValue="$shaderColorNight"/>
+		<case attrColorValue="#F5E9C6"/>
+	</renderingAttribute>
+	<renderingAttribute name="golfFairwayColor">
+		<case nightMode="true" attrColorValue="$shaderColorNight"/>
+		<case attrColorValue="#CDEBB0"/>
 	</renderingAttribute>
 	<renderingAttribute name="leisureTrackColor">
 		<case nightMode="true" attrColorValue="$pedestrianRoadColor"/>
@@ -3139,6 +3150,9 @@
 				<case tag="whitewater" value="rapid"/>
 				<case tag="leisure" value="park"/>
 				<case tag="leisure" value="bird_hide" ignorePolygonAsPointArea="true"/>
+				<case tag="golf" value="green"/>
+				<case tag="golf" value="bunker"/>
+				<case tag="golf" value="fairway"/>
 				<case tag="landuse" value="residential" order="4"/>
 				<case tag="historic" value="quarry"/>
 				<case tag="landuse" value="quarry"/>
@@ -8914,8 +8928,12 @@
 					</switch>
 				</apply>
 			</switch>
-			<case minzoom="16" tag="golf" value="rough" shader="golf_rough"/>
-
+			<switch minzoom="15">
+				<case tag="golf" value="rough" shader="golf_rough"/>
+				<case tag="golf" value="green" color="$golfGreenColor"/>
+				<case tag="golf" value="bunker" color="$golfBunkerColor"/>
+				<case tag="golf" value="fairway" color="$golfFairwayColor"/>
+			</switch>
 			<case minzoom="$farmyardMinZoom" tag="landuse" value="farmyard" color="$farmyardColor"/>
 			<case minzoom="17" tag="landuse" value="flowerbed" color="$flowerbedColor"/>
 			<case minzoom="13" tag="landuse" value="animal_keeping" color="$farmyardColor"/>
