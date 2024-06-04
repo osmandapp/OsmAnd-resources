@@ -1543,7 +1543,7 @@
 	</renderingAttribute>
 	<renderingAttribute name="golfFairwayColor">
 		<case nightMode="true" attrColorValue="$shaderColorNight"/>
-		<case attrColorValue="#CDEBB0"/>
+		<case attrColorValue="#BEE599"/>
 	</renderingAttribute>
 	<renderingAttribute name="leisureTrackColor">
 		<case nightMode="true" attrColorValue="$pedestrianRoadColor"/>
@@ -2853,6 +2853,8 @@
 					<case tag="attraction" value="water_slide"/>
 					<case tag="attraction" value="train"/>
 					<case tag="attraction" value="roller_coaster"/>
+					<case tag="golf" value="pin"/>
+					<case tag="golf" value="tee"/>
 					<case tag="amenity" value="refugee_site"/>
 					<case tag="harbour" value="yes"/>
 					<case tag="sport" value=""/>
@@ -3153,6 +3155,7 @@
 				<case tag="golf" value="green"/>
 				<case tag="golf" value="bunker"/>
 				<case tag="golf" value="fairway"/>
+				<case tag="golf" value="tee"/>
 				<case tag="landuse" value="residential" order="4"/>
 				<case tag="historic" value="quarry"/>
 				<case tag="landuse" value="quarry"/>
@@ -5174,9 +5177,12 @@
 			<case minzoom="18" tag="man_made" value="pipeline" nameTag="" textSize="10" textColor="#333333" textHaloRadius="$textHaloRadius" textHaloColor="#ccffffff" textOnPath="true" textWrapWidth="30" textOrder="230">
 				<apply_if nightMode="true" textColor="#aaaaaa" textHaloColor="#66222222"/>
 			</case>
-			<case minzoom="16" tag="golf" value="hole" nameTag="" nameTag2="ref" textSize="10" textColor="#333333" textHaloRadius="$textHaloRadius" textHaloColor="#ccffffff" textOnPath="true" textWrapWidth="30" textOrder="230">
+			<switch minzoom="16" tag="golf" value="hole">
+				<case nameTag="" nameTag2="ref"/>
+				<case nameTag="ref"/>
+				<apply textSize="10" textColor="#333333" textHaloRadius="$textHaloRadius" textHaloColor="#ccffffff" textOnPath="true" textWrapWidth="30" textOrder="230"/>
 				<apply_if nightMode="true" textColor="#aaaaaa" textHaloColor="#66222222"/>
-			</case>
+			</switch>
 
 
 			<!-- Railroad, public transport -->
@@ -7266,6 +7272,7 @@
 					<apply_if nightMode="true" shield="green_round_night_shield"/>
 				</case>
 				<case minzoom="16" tag="golf" value="pin" icon="golf_pin" iconOrder="167" iconVisibleSize="10" intersectionSizeFactor="0.7"/>
+				<case minzoom="16" tag="golf" value="tee" icon="golf_tee" iconOrder="167"/>
 				<switch iconOrder="166" shield="green_round_shield" iconVisibleSize="40" intersectionSizeFactor="2.5">
 					<case minzoom="15" tag="leisure" value="stadium" icon="sport_stadium" iconOrder="155">
 						<apply_if moreDetailed="false" maxzoom="15" icon=""/>
@@ -8933,6 +8940,7 @@
 				<case tag="golf" value="green" color="$golfGreenColor"/>
 				<case tag="golf" value="bunker" color="$golfBunkerColor"/>
 				<case tag="golf" value="fairway" color="$golfFairwayColor"/>
+				<case tag="golf" value="tee" color="$golfFairwayColor"/>
 			</switch>
 			<case minzoom="$farmyardMinZoom" tag="landuse" value="farmyard" color="$farmyardColor"/>
 			<case minzoom="17" tag="landuse" value="flowerbed" color="$flowerbedColor"/>
