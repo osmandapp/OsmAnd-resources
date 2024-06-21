@@ -2701,6 +2701,7 @@
 					<case tag="public_transport" value="platform">
 						<apply_if additional="disused=yes" order="60"/>
 						<apply_if maxzoom="16" additional="disused=yes" order="-1"/>
+						<apply_if baseAppMode="car" moreDetailed="false" maxzoom="16" order="-1"/>
 					</case>
 					<case tag="public_transport" value="station"/>
 					<case tag="public_transport" value=""/>
@@ -2787,12 +2788,16 @@
 					<case tag="man_made" value="tower"/>
 					<case tag="man_made" value="monitoring_station"/>
 					<case tag="man_made" value=""/>
-					<case tag="power" value="tower">
-						<apply_if moreDetailed="false" maxzoom="14" order="-1"/>
-					</case>
-					<case tag="power" value="portal">
-						<apply_if moreDetailed="false" maxzoom="19" order="-1"/>
-					</case>
+					<switch>
+						<case tag="power" value="tower">
+							<apply_if moreDetailed="false" maxzoom="14" order="-1"/>
+						</case>
+						<case tag="power" value="portal">
+							<apply_if moreDetailed="false" maxzoom="19" order="-1"/>
+						</case>
+						<case tag="power" value=""/>
+						<apply_if baseAppMode="car" moreDetailed="false" maxzoom="17" order="-1"/>
+					</switch>
 					<case tag="natural" value="strait"/>
 					<case tag="natural" value="bay"/>
 					<case tag="natural" value="hot_spring"/>
@@ -2860,7 +2865,6 @@
 					<case tag="sport" value=""/>
 					<case tag="geocache" value=""/>
 					<case tag="office" value=""/>
-					<case tag="power" value=""/>
 					<case tag="entrance" value=""/>
 					<case tag="hazard" value=""/>
 					<case tag="abandoned:place" value=""/>
@@ -2871,6 +2875,7 @@
 					</switch>
 					<case tag="barrier" value="">
 						<apply_if baseAppMode="default" maxzoom="16" order="-1"/>
+						<apply_if baseAppMode="car" moreDetailed="false" maxzoom="16" order="-1"/>
 					</case>
 					<switch baseAppMode="pedestrian" tag="barrier" maxzoom="17" order="-1">
 						<case value="" minzoom="14" maxzoom="15"/>
@@ -3408,13 +3413,16 @@
 					<case tag="aerialway" value="" order="175"/>
 					<case tag="aerialway" value="station" order="175"/>
 					<case tag="osmand_rungs" value="yes"/>
-					<case tag="power" value="line" order="175">
-						<apply_if moreDetailed="false" maxzoom="14" order="-1"/>
-					</case>
-					<case tag="power" value="portal"/>
-					<case tag="power" value="minor_line" order="175">
-						<apply_if moreDetailed="false" maxzoom="16" order="-1"/>
-					</case>
+					<switch>
+						<case tag="power" value="line" order="175">
+							<apply_if moreDetailed="false" maxzoom="14" order="-1"/>
+						</case>
+						<case tag="power" value="portal"/>
+						<case tag="power" value="minor_line" order="175">
+							<apply_if moreDetailed="false" maxzoom="16" order="-1"/>
+						</case>
+						<apply_if baseAppMode="car" moreDetailed="false" maxzoom="17" order="-1"/>
+					</switch>
 					<switch order="86">
 						<case tag="railway" value="rail" additional="network=rer"/>
 						<!--<case tag="railway" value="rail" additional="route=subway"/>-->
@@ -5113,6 +5121,7 @@
 					<case minzoom="17" tag="amenity" value="pharmacy" additional="dispensing=no" textOrder="147"/>
 					<case minzoom="17" tag="amenity" value="avalanche_transceiver"/>
 					<apply_if nightMode="true" textColor="#ffd4f0" textHaloColor="#AA663956"/>
+					<apply_if baseAppMode="car" moreDetailed="false" maxzoom="16" disable="true"/>
 				</switch>
 				<case minzoom="17" tag="amenity" value="pharmacy" textOrder="147" textColor="$forestTextColorDay">
 					<apply_if nightMode="true" textColor="#9fe39f" textHaloColor="#aa444444"/>
@@ -5432,6 +5441,7 @@
 					</switch>
 					<case minzoom="16" tag="leisure" value="resort"/>
 					<apply_if nightMode="true" textHaloColor="#55234ca7"/>
+					<apply_if baseAppMode="car" moreDetailed="false" maxzoom="16" disable="true"/>
 				</switch>
 				<switch hidePOILabels="false" textOrder="142" nameTag2="ele">
 					<case minzoom="16" tag="tourism" value="chalet"/>
@@ -5442,6 +5452,7 @@
 					<apply_if minzoom="15" moreDetailed="true" textOrder="43"/>
 					<apply_if engine_v1="true" textDy="5"/>
 					<apply_if nightMode="true" textHaloColor="#55234ca7"/>
+					<apply_if baseAppMode="car" moreDetailed="false" maxzoom="16" disable="true"/>
 				</switch>
 				<apply_if legend="true" textDy="0"/>
 			</switch>
@@ -5480,7 +5491,7 @@
 				<case minzoom="17" tag="leisure" value="adult_gaming_centre" textOrder="156"/>
 				<case minzoom="16" tag="natural" value="beach"/>
 				<case minzoom="16" tag="leisure" value="beach_resort"/>
-				<case minzoom="16" tag="leisure" value="dance"/>
+				<case minzoom="17" tag="leisure" value="dance"/>
 				<case minzoom="17" tag="amenity" value="photo_booth"/>
 				<switch minzoom="18">
 					<case tag="attraction" value="amusement_ride"/>
@@ -5498,6 +5509,7 @@
 				<apply_if engine_v1="true" textDy="5"/>
 				<apply_if nightMode="true" textColor="#ffe7c2" textHaloColor="#AA4B3B21"/>
 				<apply_if legend="true" textDy="0"/>
+				<apply_if baseAppMode="car" moreDetailed="false" maxzoom="16" disable="true"/>
 			</switch>
 
 			<!-- Historic -->
@@ -5536,6 +5548,7 @@
 					<case minzoom="16" tag="geological" value="palaeontological_site" textOrder="163"/>
 					<case minzoom="15" tag="historic" value="quarry"/>
 					<apply_if engine_v1="true" textDy="5"/>
+					<apply_if baseAppMode="car" moreDetailed="false" maxzoom="16" disable="true"/>
 				</switch>
 				<switch minzoom="17">
 					<case tag="barrier" value="city_wall"/>
@@ -6160,6 +6173,7 @@
 						<case minzoom="17" tag="amenity" value="music_venue"/>
 						<case minzoom="17" tag="leisure" value="trampoline_park"/>
 						<apply_if engine_v1="true" textDy="9"/>
+						<apply_if baseAppMode="car" moreDetailed="false" maxzoom="16" disable="true"/>
 					</switch>
 					<case moreDetailed="true" minzoom="16" tag="leisure" value="track" textOnPath="true"/>
 					<apply_if nightMode="true" textColor="#9effa9" textHaloColor="#99013b27"/>
@@ -6199,9 +6213,10 @@
 				<apply_if maxzoom="16" textWrapWidth="16"/>
 				<apply_if nightMode="true" textHaloColor="#88641500"/>
 				<apply_if moreDetailed="false" maxzoom="15" disable="true"/>
+				<apply_if baseAppMode="car" moreDetailed="false" maxzoom="16" disable="true"/>
 			</apply_if>
 			<apply_if legend="true" minzoom="18" maxzoom="19" textSize="20"/>
-			<apply legend="true" textWrapWidth="36" intersectionMargin="0"/>
+			<apply_if legend="true" textWrapWidth="36" intersectionMargin="0"/>
 		</switch>
 		<switch textColor="#000000" textWrapWidth="20">
 			<case tag="osmand_legend" value="header" textOrder="1" nameTag="" textBold="true" textDy="-11" textHaloRadius="1" textHaloColor="$defaultTextHaloColorDay">
@@ -6230,6 +6245,7 @@
 			<case minzoom="14" tag="special_poi" value="" textSize="12" textOrder="44"/>
 			<apply_if engine_v1="true" textDy="9"/>
 			<apply_if nightMode="true" textHaloColor="#88641500"/>
+			<apply_if baseAppMode="car" moreDetailed="false" maxzoom="16" disable="true"/>
 		</switch>
 		
 
@@ -6770,57 +6786,60 @@
 				</case>
 
 				<!-- Emergency + Health  -->
-				<switch shield="red_round_shield" minzoom="16" iconVisibleSize="26">
-					<case tag="emergency" value="phone" icon="emergency_phone"/>
-					<case minzoom="18" tag="emergency" value="defibrillator" icon="defibrillator"/>
-					<case tag="amenity" value="police" icon="amenity_police" iconOrder="85"/>
-					<case tag="amenity" value="veterinary" icon="amenity_veterinary" iconOrder="147"/>
-					<case tag="amenity" value="doctors" icon="amenity_doctors" iconOrder="85"/>
-					<case tag="amenity" value="clinic" icon="clinic" iconOrder="85"/>
-					<case tag="amenity" value="dentist" icon="amenity_dentist" iconOrder="147"/>
-					<case tag="emergency" value="ambulance_station" icon="ambulance_station"/>
-					<case tag="highway" value="emergency_access_point" icon="emergency_access_point" iconOrder="127"/>
-					<case minzoom="15" tag="emergency" value="assembly_point" icon="assembly_point"/>
-					<case tag="amenity" value="social_facility" icon="social_facility"/>
-					<case tag="healthcare" value="laboratory" icon="laboratory"/>
-					<case tag="healthcare" value="blood_donation" icon="blood_donation"/>
-					<case tag="healthcare" value="nurse" icon="nurse"/>
-					<case tag="healthcare" value="occupational_therapist" icon="occupational_therapist"/>
-					<case tag="healthcare" value="physiotherapist" icon="physiotherapist"/>
-					<case tag="healthcare" value="hospice" icon="hospice"/>
-					<case minzoom="17" tag="emergency" value="rescue_box" icon="rescue_box"/>
-					<case tag="emergency" value="mountain_rescue" icon="mountain_rescue"/>
-					<case tag="emergency" value="lifeguard" icon="lifeguard_base">
-						<apply_if additional="lifeguard=tower" icon="lifeguard_tower"/>
-					</case>
-					<case minzoom="17" tag="amenity" value="avalanche_transceiver" icon="avalanche_transceiver">
-						<apply_if additional="avalanche_transceiver=training" icon="avalanche_transceiver_training"/>
-					</case>
-					<case tag="amenity" value="health_post" icon="health_post"/>
-					<case minzoom="18" tag="emergency" value="siren" icon="siren"/>
-					<case minzoom="17" tag="healthcare" value="" icon="healthcare"/>
-					<apply_if nightMode="true" shield="red_round_night_shield" iconVisibleSize="36"/>
-				</switch>
-				<case minzoom="16" tag="highway" value="emergency_bay" icon="emergency_bay" shield="blue_round_shield"/>
-				<case minzoom="16" tag="amenity" value="fire_station" icon="amenity_fire_station" iconVisibleSize="26" shield="red_round_shield" iconOrder="85">
-					<apply_if nightMode="true" shield="red_round_night_shield"/>
-				</case>
-				<switch minzoom="15">
-					<case tag="amenity" value="hospital" icon="amenity_hospital" iconVisibleSize="26" shield="red_round_shield" iconOrder="79"/>
-					<apply_if nightMode="true" shield="red_round_night_shield" iconVisibleSize="24"/>
-					<apply_if moreDetailed="false" maxzoom="15" icon=""/>
-				</switch>
-				<case minzoom="16" tag="amenity" value="pharmacy" icon="amenity_pharmacy" iconVisibleSize="20" shield="green_round_shield" iconOrder="147">
-					<apply_if nightMode="true" shield="green_round_night_shield"/>
-					<apply_if additional="dispensing=no" shield="red_round_shield">
+				<switch>
+					<switch shield="red_round_shield" minzoom="16" iconVisibleSize="26">
+						<case tag="emergency" value="phone" icon="emergency_phone"/>
+						<case minzoom="18" tag="emergency" value="defibrillator" icon="defibrillator"/>
+						<case tag="amenity" value="police" icon="amenity_police" iconOrder="85"/>
+						<case tag="amenity" value="veterinary" icon="amenity_veterinary" iconOrder="147"/>
+						<case tag="amenity" value="doctors" icon="amenity_doctors" iconOrder="85"/>
+						<case tag="amenity" value="clinic" icon="clinic" iconOrder="85"/>
+						<case tag="amenity" value="dentist" icon="amenity_dentist" iconOrder="147"/>
+						<case tag="emergency" value="ambulance_station" icon="ambulance_station"/>
+						<case tag="highway" value="emergency_access_point" icon="emergency_access_point" iconOrder="127"/>
+						<case minzoom="15" tag="emergency" value="assembly_point" icon="assembly_point"/>
+						<case tag="amenity" value="social_facility" icon="social_facility"/>
+						<case tag="healthcare" value="laboratory" icon="laboratory"/>
+						<case tag="healthcare" value="blood_donation" icon="blood_donation"/>
+						<case tag="healthcare" value="nurse" icon="nurse"/>
+						<case tag="healthcare" value="occupational_therapist" icon="occupational_therapist"/>
+						<case tag="healthcare" value="physiotherapist" icon="physiotherapist"/>
+						<case tag="healthcare" value="hospice" icon="hospice"/>
+						<case minzoom="17" tag="emergency" value="rescue_box" icon="rescue_box"/>
+						<case tag="emergency" value="mountain_rescue" icon="mountain_rescue"/>
+						<case tag="emergency" value="lifeguard" icon="lifeguard_base">
+							<apply_if additional="lifeguard=tower" icon="lifeguard_tower"/>
+						</case>
+						<case minzoom="17" tag="amenity" value="avalanche_transceiver" icon="avalanche_transceiver">
+							<apply_if additional="avalanche_transceiver=training" icon="avalanche_transceiver_training"/>
+						</case>
+						<case tag="amenity" value="health_post" icon="health_post"/>
+						<case minzoom="18" tag="emergency" value="siren" icon="siren"/>
+						<case minzoom="17" tag="healthcare" value="" icon="healthcare"/>
+						<apply_if nightMode="true" shield="red_round_night_shield" iconVisibleSize="36"/>
+					</switch>
+					<case minzoom="16" tag="highway" value="emergency_bay" icon="emergency_bay" shield="blue_round_shield"/>
+					<case minzoom="16" tag="amenity" value="fire_station" icon="amenity_fire_station" iconVisibleSize="26" shield="red_round_shield" iconOrder="85">
 						<apply_if nightMode="true" shield="red_round_night_shield"/>
-					</apply_if>
-				</case>
-				<switch minzoom="16">
-					<case tag="amenity" value="nursing_home"/>
-					<case tag="amenity" value="social_facility" additional="social_facility=assisted_living"/>
-					<apply icon="amenity_nursing_home" shield="red_round_shield"/>
-					<apply_if nightMode="true" shield="red_round_night_shield"/>
+					</case>
+					<switch minzoom="15">
+						<case tag="amenity" value="hospital" icon="amenity_hospital" iconVisibleSize="26" shield="red_round_shield" iconOrder="79"/>
+						<apply_if nightMode="true" shield="red_round_night_shield" iconVisibleSize="24"/>
+						<apply_if moreDetailed="false" maxzoom="15" icon=""/>
+					</switch>
+					<case minzoom="16" tag="amenity" value="pharmacy" icon="amenity_pharmacy" iconVisibleSize="20" shield="green_round_shield" iconOrder="147">
+						<apply_if nightMode="true" shield="green_round_night_shield"/>
+						<apply_if additional="dispensing=no" shield="red_round_shield">
+							<apply_if nightMode="true" shield="red_round_night_shield"/>
+						</apply_if>
+					</case>
+					<switch minzoom="16">
+						<case tag="amenity" value="nursing_home"/>
+						<case tag="amenity" value="social_facility" additional="social_facility=assisted_living"/>
+						<apply icon="amenity_nursing_home" shield="red_round_shield"/>
+						<apply_if nightMode="true" shield="red_round_night_shield"/>
+					</switch>
+					<apply_if baseAppMode="car" moreDetailed="false" maxzoom="16" icon=""/>
 				</switch>
 				<!-- Traffic + Transportation -->
 				<case minzoom="17" tag="highway" value="traffic_signals" icon="highway_traffic_signals_map" shield="traffic_signals_shield" iconOrder="50"/>
@@ -7139,6 +7158,7 @@
 					</switch>
 					<case minzoom="16" tag="amenity" value="refugee_site" icon="refugee_site"/>
 					<apply_if nightMode="true" shield="blue_round_night_shield" iconVisibleSize="45"/>
+					<apply_if baseAppMode="car" moreDetailed="false" maxzoom="16" icon=""/>
 				</switch>
 
 				<case minzoom="15" tag="tourism" value="camp_pitch" icon="camp_pitch" shield="blue_square_small_shield" iconOrder="142"/>
@@ -7245,6 +7265,7 @@
 						<apply_if nightMode="true" shield="brown_round_night_shield" iconVisibleSize="40"/>
 						<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 					</switch>
+					<apply_if baseAppMode="car" moreDetailed="false" maxzoom="16" icon=""/>
 				</switch>
 				<case minzoom="17" tag="historic" value="cannon" icon="historic_cannon" iconOrder="159"/>
 
@@ -7342,6 +7363,7 @@
 					<case minzoom="17" tag="amenity" value="music_venue" icon="music"/>
 					<case minzoom="16" tag="leisure" value="trampoline_park" icon="trampoline_park"/>
 					<apply_if nightMode="true" shield="green_round_night_shield" iconVisibleSize="55" intersectionSizeFactor="3.5"/>
+					<apply_if baseAppMode="car" moreDetailed="false" maxzoom="16" icon=""/>
 				</switch>
 
 				<switch minzoom="16">
@@ -7350,6 +7372,7 @@
 					<case minzoom="17" tag="leisure" value="fitness_centre" icon="fitness_centre"/>
 					<apply shield="green_round_shield" iconVisibleSize="20" iconOrder="134"/>
 					<apply_if nightMode="true" shield="green_round_night_shield"/>
+					<apply_if baseAppMode="car" moreDetailed="false" maxzoom="16" icon=""/>
 				</switch>
 				<switch minzoom="17">
 					<case tag="leisure" value="fitness_station" icon="fitness_station" iconVisibleSize="24"/>
@@ -7552,6 +7575,7 @@
 					<case minzoom="17" tag="man_made" value="dovecote" icon="dovecote"/>
 					<case minzoom="16" tag="amenity" value="photo_booth" icon="photo_booth"/>
 					<apply_if nightMode="true" shield="gray_round_night_shield"/>
+					<apply_if baseAppMode="car" moreDetailed="false" maxzoom="16" icon=""/>
 				</switch>
 
 				<switch iconOrder="133" shield="gray_round_shield" iconVisibleSize="32">
@@ -7570,6 +7594,7 @@
 					<case minzoom="17" tag="amenity" value="library" icon="amenity_library"/>
 					<case minzoom="16" tag="amenity" value="childcare" icon="childcare"/>
 					<apply_if nightMode="true" shield="gray_round_night_shield" iconVisibleSize="44"/>
+					<apply_if baseAppMode="car" moreDetailed="false" maxzoom="16" icon=""/>
 				</switch>
 
 				<case minzoom="17" tag="man_made" value="chimney" icon="man_made_chimney" shield="chimney_shield" iconOrder="100"/>
@@ -7703,6 +7728,7 @@
 						<apply_if minzoom="17" additional="drinking_water=yes" icon_2="drinking_water_yes_map"/>
 					</switch>
 					<apply_if nightMode="true" shield="orange_round_night_shield" iconVisibleSize="54"/>
+					<apply_if baseAppMode="car" moreDetailed="false" maxzoom="16" icon=""/>
 				</switch>
 
 				<!-- Shops -->
@@ -7879,6 +7905,7 @@
 					<case minzoom="17" tag="shop" value="" icon="shop_yes"/>
 					<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 					<apply_if nightMode="true" shield="purple_round_night_shield" iconVisibleSize="54"/>
+					<apply_if baseAppMode="car" moreDetailed="false" maxzoom="16" icon=""/>
 				</switch>
 
 				<switch shield="gray_round_shield" iconOrder="170">
