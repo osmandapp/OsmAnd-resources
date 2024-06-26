@@ -3298,6 +3298,7 @@ icon_alias_no_mx osmc_teal_x_4 osmc_teal_x_4
 
 icon_alias_no_mx osmc_ammonit osmc_ammonit
 icon_alias_no_mx osmc_black_horse osmc_black_horse
+icon_alias_no_mx osmc_black_runner osmc_black_runner
 icon_alias_no_mx osmc_blue_grape osmc_blue_grape
 icon_alias_no_mx osmc_blue_wheelchair osmc_blue_wheelchair
 icon_alias_no_mx osmc_brown_right osmc_brown_right
