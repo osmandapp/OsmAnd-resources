@@ -2207,23 +2207,23 @@
 
 		<type tag="route" value="hiking" relationGroupSort="network=iwn,nwn,rwn,lwn" 
 				nameTags="ref,name,osmc_text,osmc_textcolor,operator,symbol,survey:date,website,wikipedia,description,from,via,to,distance,direction,state,colour,ascent,descent,roundtrip,tourism,relation_id" namePrefix="hiking_route_"
-				additionalTags="node_network,network,historic,educational,signed_direction,osmc_foreground,osmc_foreground2,osmc_background,osmc_waycolor"
+				additionalTags="node_network,network,historic,educational,signed_direction,osmc_foreground,osmc_foreground2,osmc_background,osmc_waycolor,osmc_order"
 				additionalPrefix="hiking_"
-				relationGroupAdditionalTags="node_network,network,historic,educational,osmc_foreground,osmc_foreground2,osmc_background,osmc_waycolor"
+				relationGroupAdditionalTags="node_network,network,historic,educational,osmc_foreground,osmc_foreground2,osmc_background,osmc_waycolor,osmc_order"
 				relationGroupNameTags="osmc_stub_name,ref,name,osmc_text,osmc_textcolor,operator,symbol,sac_scale,cai_scale,survey:date,website,wikipedia,description,from,via,to,distance,state,colour,ascent,descent,roundtrip,tourism,relation_id"
 				minzoom="11" relationGroup="true" notosm="true"/>
 				
 		<type tag="route" value="horse" 
 				nameTags="ref,name,osmc_text,osmc_textcolor,operator,symbol,survey:date,website,wikipedia,description,from,via,to,distance,state,colour,ascent,descent,roundtrip,tourism,relation_id" namePrefix="horse_route_"
-				additionalTags="network,historic,educational,osmc_foreground,osmc_foreground2,osmc_background,osmc_waycolor" 
-				relationGroupAdditionalTags="network,historic,educational,signed_direction,osmc_foreground,osmc_background,osmc_foreground2,osmc_waycolor" 
+				additionalTags="network,historic,educational,osmc_foreground,osmc_foreground2,osmc_background,osmc_waycolor,osmc_order" 
+				relationGroupAdditionalTags="network,historic,educational,signed_direction,osmc_foreground,osmc_background,osmc_foreground2,osmc_waycolor,osmc_order" 
 				relationGroupNameTags="osmc_stub_name,ref,name,osmc_text,osmc_textcolor,operator,symbol,survey:date,website,wikipedia,description,from,via,to,distance,state,colour,ascent,descent,roundtrip,tourism,relation_id"
 				minzoom="11" relationGroup="true" notosm="true"/>
 
 		<type tag="route" value="running" 
 				nameTags="ref,name,osmc_text,osmc_textcolor,operator,description,from,via,to,distance,state,colour,ascent,descent,roundtrip" namePrefix="running_route_"
-				additionalTags="network,osmc_foreground,osmc_foreground2,osmc_background,osmc_waycolor" 
-				relationGroupAdditionalTags="network,osmc_foreground,osmc_background,osmc_foreground2,osmc_waycolor" 
+				additionalTags="network,osmc_foreground,osmc_foreground2,osmc_background,osmc_waycolor,osmc_order" 
+				relationGroupAdditionalTags="network,osmc_foreground,osmc_background,osmc_foreground2,osmc_waycolor,osmc_order" 
 				relationGroupNameTags="osmc_stub_name,ref,name,osmc_text,osmc_textcolor,operator,description,from,via,to,distance,state,colour,ascent,descent,roundtrip"
 				minzoom="11" relationGroup="true" notosm="true"/>
 
@@ -2260,7 +2260,11 @@
 
 		<type tag="route" value="fitness_trail" nameTags="name,ref" namePrefix="fitness_route_" relationGroupNameTags="name,ref" minzoom="11" relationGroup="true" notosm="true"/>
 		<type tag="route_fitness_trail" value="yes" additional="true" notosm="true" />
+		<type tag="route_fitness_trail_1_osmc_background" minzoom="11" additional="true"/>
+		<type tag="route_fitness_trail_1_osmc_foreground" minzoom="11" additional="true"/>
+		<type tag="route_fitness_trail_1_osmc_order" minzoom="11" additional="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_fitness_trail" if_tag1="leisure" to_tag1="route_fitness_trail" to_value1="yes" apply_to="node"/>
+		<entity_convert pattern="tag_transform" from_tag="route_fitness_trail" if_not_tag1="name" to_tag1="route_fitness_trail" to_tag2="route_fitness_trail_1_osmc_background" to_value2="white" to_tag3="route_fitness_trail_1_osmc_foreground" to_value3="black_runner" to_tag4="route_fitness_trail_1_osmc_order" to_value4="1" apply_to="way,relation"/>
 
 		<!-- ROUTE SECTION: PUBLIC transport routes-->
 		<type tag="route" value="ferry" minzoom="8" nameTags="ref" namePrefix="ferry_route_" relationGroup="true"/>
@@ -2367,16 +2371,16 @@
 		<entity_convert pattern="tag_transform" from_tag="mtb:name" if_not_tag1="route" to_tag1="mtb:name" to_tag2="route" to_value2="mtb" apply_to="way"/>
 
 		<type tag="route" value="bicycle" relationGroupSort="network=icn,ncn,rcn,lcn"
-					additionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,mtb:type,mtb:scale,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
+					additionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,osmc_order,mtb:type,mtb:scale,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
 					nameTags="name,ref,osmc_text,osmc_textcolor,operator,symbol,survey:date,website,wikipedia,description,from,via,to,distance,cycle_network,state,colour,ascent,descent,roundtrip,tourism,relation_id" namePrefix="bicycle_"
-					relationGroupAdditionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
+					relationGroupAdditionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,osmc_order,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
 					relationGroupNameTags="name,mtb:name,ref,osmc_text,osmc_textcolor,osmc_stub_name,operator,symbol,survey:date,website,wikipedia,description,from,via,to,distance,cycle_network,relation_id"
 					minzoom="11" relationGroup="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="name" if_tag1="route" if_value1="mtb" if_not_tag1="mtb:name" to_tag1="name" to_tag2="mtb:name" apply_to="relation"/>
 		<type tag="route" value="mtb" relationGroupSort="network=icn,ncn,rcn,lcn"
-					additionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,mtb:type,mtb:scale,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
+					additionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,osmc_order,mtb:type,mtb:scale,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
 					nameTags="mtb:name,ref,osmc_text,osmc_textcolor,operator,symbol,survey:date,website,wikipedia,description,from,via,to,distance,cycle_network,state,colour,ascent,descent,roundtrip,tourism,relation_id" namePrefix="bicycle_"
-					relationGroupAdditionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
+					relationGroupAdditionalTags="node_network,network,osmc_foreground,osmc_background,osmc_waycolor,osmc_order,mtb:scale:imba,mtb:scale:uphill,class:bicycle:mtb" 
 					relationGroupNameTags="name,mtb:name,ref,osmc_text,osmc_textcolor,osmc_stub_name,operator,symbol,survey:date,website,wikipedia,description,from,via,to,distance,cycle_network,relation_id"
 					minzoom="11" relationGroup="true" notosm="true"/>
 		
@@ -2518,8 +2522,8 @@
 		<type tag="route" value="piste" 
 			nameTags="piste:name,piste:ref,osmc_text,osmc_textcolor,description,from,to,distance,state,colour,ascent,descent,roundtrip,tourism"
 			relationGroupNameTags="piste:name,piste:ref,osmc_text,osmc_textcolor,osmc_stub_name,description,from,to,distance,state,colour,ascent,descent,roundtrip,tourism"
-			additionalTags="piste:type,piste:difficulty,piste:grooming,piste:abandoned,piste:oneway,piste_region,osmc_foreground,osmc_background" 
-			relationGroupAdditionalTags="piste:type,piste:difficulty,piste:grooming,piste:abandoned,piste:oneway,piste_region,osmc_foreground,osmc_background" 
+			additionalTags="piste:type,piste:difficulty,piste:grooming,piste:abandoned,piste:oneway,piste_region,osmc_foreground,osmc_background,osmc_order" 
+			relationGroupAdditionalTags="piste:type,piste:difficulty,piste:grooming,piste:abandoned,piste:oneway,piste_region,osmc_foreground,osmc_background,osmc_order" 
 			minzoom="11" relationGroup="true"/>
 
 		<entity_convert pattern="tag_transform" from_tag="name" if_tag1="piste:type" if_not_tag1="piste:name" to_tag1="piste:name" to_tag2="name" apply_to="way,relation" poi="no"/>
@@ -2988,6 +2992,7 @@
 		<type tag="osmc_background" additional="true" notosm="true"/>
 		<type tag="osmc_foreground" additional="true" notosm="true"/>
 		<type tag="osmc_foreground2" additional="true" notosm="true"/>
+		<type tag="osmc_order" additional="true" notosm="true"/>
 		<type tag="osmc_text" additional="text" notosm="true"/>
 		<type tag="osmc_text_symbol" additional="text" notosm="true"/>
 		<type tag="osmc_textcolor" additional="true" notosm="true"/>

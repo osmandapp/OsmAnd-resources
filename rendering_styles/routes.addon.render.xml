@@ -594,6 +594,7 @@
 						<case hikingRoutesOSMC="walkingRoutesOSMC" tag="route_hiking" value="" nameTag="route_hiking_#SEQ_osmc_stub_name_v2"/>
 						<case hikingRoutesOSMC="walkingRoutesScopeOSMC" tag="route_hiking" value="" nameTag="route_hiking_#SEQ_osmc_stub_name_v2"/>
 						<apply textShield="osmc_?route_hiking_#SEQ_osmc_background?_bg" icon="osmc_?route_hiking_#SEQ_osmc_foreground?" icon_2="osmc_?route_hiking_#SEQ_osmc_foreground2?"/>
+						<apply_if additional="route_hiking_#SEQ_osmc_order=1" textOrder="44"/> <!-- Lower priority for routes without name and ref -->
 					</switch>
 					<!-- Bicycle -->
 					<switch>
@@ -621,7 +622,9 @@
 						<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=black" textColor="#000000" textHaloRadius="1" textHaloColor="#30ffffff"/>
 						<apply_if additional="route_bicycle_#SEQ_osmc_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
 					</switch>
-					<case showCycleRoutes="true" tag="route_bicycle" value="" nameTag="route_bicycle_#SEQ_osmc_stub_name_v2" textShield="osmc_?route_bicycle_#SEQ_osmc_background?_bg" icon="osmc_?route_bicycle_#SEQ_osmc_foreground?"/>
+					<case showCycleRoutes="true" tag="route_bicycle" value="" nameTag="route_bicycle_#SEQ_osmc_stub_name_v2" textShield="osmc_?route_bicycle_#SEQ_osmc_background?_bg" icon="osmc_?route_bicycle_#SEQ_osmc_foreground?">
+						<apply_if additional="route_bicycle_#SEQ_osmc_order=1" textOrder="44"/>
+					</case>
 					<!-- MTB -->
 					<switch>
 						<case showMtbRoutes="true" tag="route_mtb" value="" nameTag="route_mtb_#SEQ_osmc_text"/>
@@ -648,7 +651,9 @@
 						<apply_if additional="route_mtb_#SEQ_osmc_textcolor=black" textColor="#000000" textHaloRadius="1" textHaloColor="#30ffffff"/>
 						<apply_if additional="route_mtb_#SEQ_osmc_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
 					</switch>
-					<case showMtbRoutes="true" tag="route_mtb" value="" nameTag="route_mtb_#SEQ_osmc_stub_name_v2" textShield="osmc_?route_mtb_#SEQ_osmc_background?_bg" icon="osmc_?route_mtb_#SEQ_osmc_foreground?"/>
+					<case showMtbRoutes="true" tag="route_mtb" value="" nameTag="route_mtb_#SEQ_osmc_stub_name_v2" textShield="osmc_?route_mtb_#SEQ_osmc_background?_bg" icon="osmc_?route_mtb_#SEQ_osmc_foreground?">
+						<apply_if additional="route_mtb_#SEQ_osmc_order=1" textOrder="44"/>
+					</case>
 					<!-- Horse -->
 					<switch>
 						<case horseRoutes="true" tag="route_horse" value="" nameTag="route_horse_#SEQ_osmc_text"/>
@@ -675,7 +680,9 @@
 						<apply_if additional="route_horse_#SEQ_osmc_textcolor=black" textColor="#000000" textHaloRadius="1" textHaloColor="#30ffffff"/>
 						<apply_if additional="route_horse_#SEQ_osmc_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
 					</switch>
-					<case horseRoutes="true" tag="route_horse" value="" nameTag="route_horse_#SEQ_osmc_stub_name_v2" textShield="osmc_?route_horse_#SEQ_osmc_background?_bg" icon="osmc_?route_horse_#SEQ_osmc_foreground?"/>
+					<case horseRoutes="true" tag="route_horse" value="" nameTag="route_horse_#SEQ_osmc_stub_name_v2" textShield="osmc_?route_horse_#SEQ_osmc_background?_bg" icon="osmc_?route_horse_#SEQ_osmc_foreground?">
+						<apply_if additional="route_bicycle_#SEQ_osmc_order=1" textOrder="44"/>
+					</case>
 					<!-- Piste -->
 					<switch>
 						<case tag="route_piste" value="" nameTag="route_piste_#SEQ_osmc_text"/>
@@ -729,7 +736,9 @@
 						<apply_if additional="route_running_#SEQ_osmc_textcolor=black" textColor="#000000" textHaloRadius="1" textHaloColor="#30ffffff"/>
 						<apply_if additional="route_running_#SEQ_osmc_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
 					</switch>
-					<case showRunningRoutes="true" tag="route_running" value="" nameTag="route_running_#SEQ_osmc_stub_name_v2" textShield="osmc_?route_running_#SEQ_osmc_background?_bg" icon="osmc_?route_running_#SEQ_osmc_foreground?"/>
+					<case showRunningRoutes="true" tag="route_running" value="" nameTag="route_running_#SEQ_osmc_stub_name_v2" textShield="osmc_?route_running_#SEQ_osmc_background?_bg" icon="osmc_?route_running_#SEQ_osmc_foreground?">
+						<apply_if additional="route_running_#SEQ_osmc_order=1" textOrder="44"/>
+					</case>
 				</switch>
 				
 			<switch showFitnessTrails="true" textSize="12" nameTag="" textColor="$sportTextColorDay" textWrapWidth="19" textHaloColor="$sportTextHaloColorDay" textHaloRadius="$textHaloRadius" textOrder="166">
@@ -737,6 +746,10 @@
 					<apply_if additional="route_fitness_trail=yes" textColor="$fitnessTrailTextColor">
 						<apply_if nightMode="true" textHaloColor="#dd176287"/>
 					</apply_if>
+				</case>
+				<case minzoom="15" tag="route_fitness_trail" value="" nameTag="osmc_stub_name" textColor="#00ffffff" textHaloColor="#00ffffff">
+					<apply_if additional="route_fitness_trail_1_osmc_background=white" textShield="osmc_white_bg"/>
+					<apply_if additional="route_fitness_trail_1_osmc_foreground=black_runner" icon="osmc_black_runner"/>
 				</case>
 			</switch>
 	</text>
