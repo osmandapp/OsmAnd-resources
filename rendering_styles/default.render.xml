@@ -146,7 +146,7 @@
 	<renderingProperty attr="alpineHikingScaleScheme" name="Alpine hiking scale scheme" description="Render paths according to SAC/CAI scale"
 		type="string" possibleValues="sacScale,caiScale" defaultValueDescription="disabled" category="other"/>
 	<renderingProperty attr="roadStyle" name="Road style" description="Road style"
-		type="string" possibleValues="germanRoadAtlas,americanRoadAtlas,highContrastRoads,boldOutline" defaultValueDescription="default"/>
+		type="string" possibleValues="germanRoadAtlas,americanRoadAtlas,highContrastRoads,boldOutline,pale" defaultValueDescription="default"/>
 
 	<renderingProperty attr="currentTrackColor" name="Current GPX color" description="Color of the currently recording track"
 		type="string" possibleValues="red,orange,lightblue,blue,purple,pink,translucent_red,translucent_orange,translucent_lightblue,translucent_blue,translucent_purple,translucent_pink" defaultValueDescription="default"/>
@@ -423,6 +423,14 @@
 		<case attrColorValue="#66aaaaaa"/>
 	</renderingAttribute>
 
+	<!-- Color definitions for the road-style "pale" -->
+	<renderingConstant name="roadStylePale_streetColor_day" value="#fefefe"/>
+	<renderingConstant name="roadStylePale_streetColor_night" value="#3b3b3b"/>
+	<renderingConstant name="roadStylePale_streetColorShadow_day" value="#bdbdbd"/>
+	<renderingConstant name="roadStylePale_streetColorShadow_night" value="#111111"/>
+	<renderingConstant name="roadStylePale_railwayColor_day" value="#a3a3a3"/>
+	<renderingConstant name="roadStylePale_railwayColor_night" value="#3b3b3b"/>
+
 	<!-- roadColors="Modified Mapnik" -->
 	<!-- Motorway  -->
 	<renderingAttribute name="motorwayRoadColor">
@@ -452,6 +460,9 @@
 				<apply_if additional="tunnel=yes" attrColorValue="#33336B"/>
 				<apply_if additional="covered=yes" attrColorValue="#33336B"/>
 			</apply_if>
+		</case>
+		<case roadStyle="pale" attrColorValue="$roadStylePale_streetColor_day">
+			<apply_if nightMode="true" attrColorValue="$roadStylePale_streetColor_night"/>
 		</case>
 		<case attrColorValue="#DF653C">
 			<apply_if additional="tunnel=yes" attrColorValue="#EEAF9A"/>
@@ -505,6 +516,9 @@
 			<apply_if baseAppMode="car" nightMode="true" attrColorValue="#cc2626"/>
 		</case>
 		<case roadStyle="americanRoadAtlas" attrColorValue="#3977ba"/>
+		<case roadStyle="pale" attrColorValue="$roadStylePale_streetColorShadow_day">
+			<apply_if nightMode="true" attrColorValue="$roadStylePale_streetColorShadow_night"/>
+		</case>
 		<case attrColorValue="#905d2e8c">
 			<case streetLighting="true">
 				<apply_if nightMode="false" streetLightingNight="false" attrColorValue="#555555"/>
@@ -553,6 +567,9 @@
 				<apply_if additional="covered=yes" attrColorValue="#5D2745"/>
 			</apply_if>
 		</case>
+		<case roadStyle="pale" attrColorValue="$roadStylePale_streetColor_day">
+			<apply_if nightMode="true" attrColorValue="$roadStylePale_streetColor_night"/>
+		</case>
 		<case attrColorValue="#f27349">
 			<apply_if additional="tunnel=yes" attrColorValue="#F9BAA5"/>
 			<apply_if additional="covered=yes" attrColorValue="#F9BAA5"/>
@@ -580,6 +597,9 @@
 		</case>
 		<case roadStyle="americanRoadAtlas" attrColorValue="#6f4726">
 			<apply_if nightMode="true" attrColorValue="#a72202"/>
+		</case>
+		<case roadStyle="pale" attrColorValue="$roadStylePale_streetColorShadow_day">
+			<apply_if nightMode="true" attrColorValue="$roadStylePale_streetColorShadow_night"/>
 		</case>
 		<case attrColorValue="#969696">
 			<case streetLighting="true">
@@ -625,6 +645,9 @@
 				<apply_if additional="covered=yes" attrColorValue="#7C1D2E"/>
 			</apply_if>
 		</case>
+		<case roadStyle="pale" attrColorValue="$roadStylePale_streetColor_day">
+			<apply_if nightMode="true" attrColorValue="$roadStylePale_streetColor_night"/>
+		</case>
 		<case attrColorValue="#ffa347">
 			<apply_if additional="tunnel=yes" attrColorValue="#FFCF9E"/>
 			<apply_if additional="covered=yes" attrColorValue="#FFCF9E"/>
@@ -652,6 +675,9 @@
 			<!-- NOTE: Touring view's <renderingConstant name="shadowColorLowZoom" value="#262626"/> still ignored here for now -->
 		</case>
 		<case roadStyle="americanRoadAtlas" attrColorValue="#693431"/>
+		<case roadStyle="pale" attrColorValue="$roadStylePale_streetColorShadow_day">
+			<apply_if nightMode="true" attrColorValue="$roadStylePale_streetColorShadow_night"/>
+		</case>
 		<case attrColorValue="#90805224">
 			<case streetLighting="true">
 				<apply_if nightMode="false" streetLightingNight="false" attrColorValue="#555555"/>
@@ -681,6 +707,9 @@
 				<apply_if additional="covered=yes" attrColorValue="#A5621F"/>
 			</apply_if>
 		</case>
+		<case roadStyle="pale" attrColorValue="$roadStylePale_streetColor_day">
+			<apply_if nightMode="true" attrColorValue="$roadStylePale_streetColor_night"/>
+		</case>
 		<case attrColorValue="#f5e85b">
 			<apply_if additional="tunnel=yes" attrColorValue="#FBF6B9"/>
 			<apply_if additional="covered=yes" attrColorValue="#FBF6B9"/>
@@ -706,6 +735,9 @@
 		<case roadStyle="germanRoadAtlas" attrColorValue="#767676">
 			<apply_if nightMode="true" attrColorValue="#464646"/>
 			<!-- NOTE: Touring view's <renderingConstant name="shadowColorLowZoom" value="#262626"/> still ignored here for now -->
+		</case>
+		<case roadStyle="pale" attrColorValue="$roadStylePale_streetColorShadow_day">
+			<apply_if nightMode="true" attrColorValue="$roadStylePale_streetColorShadow_night"/>
 		</case>
 		<case attrColorValue="#9080792f">
 			<apply_if nightMode="true" attrColorValue="$null"/>
@@ -736,6 +768,9 @@
 				<apply_if additional="tunnel=yes" attrColorValue="#958125"/>
 				<apply_if additional="covered=yes" attrColorValue="#958125"/>
 			</apply_if>
+		</case>
+		<case roadStyle="pale" attrColorValue="$roadStylePale_streetColor_day">
+			<apply_if nightMode="true" attrColorValue="$roadStylePale_streetColor_night"/>
 		</case>
 		<case attrColorValue="#ffffff">
 			<apply_if additional="tunnel=yes" attrColorValue="#F2F2F2"/>
@@ -768,6 +803,9 @@
 		<case roadStyle="germanRoadAtlas" attrColorValue="#767676">
 			<apply_if nightMode="true" attrColorValue="#464646"/>
 			<!-- NOTE: Touring view's <renderingConstant name="shadowColorLowZoom" value="#262626"/> ignored here for now -->
+		</case>
+		<case roadStyle="pale" attrColorValue="$roadStylePale_streetColorShadow_day">
+			<apply_if nightMode="true" attrColorValue="$roadStylePale_streetColorShadow_night"/>
 		</case>
 		<case attrColorValue="#30000000">
 			<apply_if nightMode="true" attrColorValue="#20000000"/>
@@ -808,6 +846,9 @@
 				<apply_if additional="covered=yes" attrColorValue="#8B7C39"/>
 			</apply_if>
 		</case>
+		<case roadStyle="pale" attrColorValue="$roadStylePale_streetColor_day">
+			<apply_if nightMode="true" attrColorValue="$roadStylePale_streetColor_night"/>
+		</case>
 		<case attrColorValue="#ffffff">
 			<apply_if additional="tunnel=yes" attrColorValue="#F2F2F2"/>
 			<apply_if additional="covered=yes" attrColorValue="#F2F2F2"/>
@@ -847,6 +888,9 @@
 		<case additional="ice_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case roadStyle="boldOutline" attrColorValue="#000000">
 			<apply_if nightMode="true" attrColorValue="$null"/>
+		</case>
+		<case roadStyle="pale" attrColorValue="$roadStylePale_streetColorShadow_day">
+			<apply_if nightMode="true" attrColorValue="$roadStylePale_streetColorShadow_night"/>
 		</case>
 		<case attrColorValue="#30000000">
 			<apply_if nightMode="true" attrColorValue="#20000000"/>
@@ -898,6 +942,9 @@
 				<apply_if additional="covered=yes" attrColorValue="#726D53"/>
 			</apply_if>
 		</case>
+		<case roadStyle="pale" attrColorValue="$roadStylePale_streetColor_day">
+			<apply_if nightMode="true" attrColorValue="$roadStylePale_streetColor_night"/>
+		</case>
 		<case attrColorValue="#ffffff">
 			<apply_if additional="tunnel=yes" attrColorValue="#F2F2F2"/>
 			<apply_if additional="covered=yes" attrColorValue="#F2F2F2"/>
@@ -916,6 +963,9 @@
 		<case additional="ice_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case roadStyle="boldOutline" attrColorValue="#222222">
 			<apply_if nightMode="true" attrColorValue="$null"/>
+		</case>
+		<case roadStyle="pale" attrColorValue="$roadStylePale_streetColorShadow_day">
+			<apply_if nightMode="true" attrColorValue="$roadStylePale_streetColorShadow_night"/>
 		</case>
 		<case attrColorValue="#30000000">
 			<case streetLighting="true" minzoom="14">
@@ -936,6 +986,9 @@
 				<apply_if additional="covered=yes" attrColorValue="#807A5E"/>
 			</apply_if>
 		</case>
+		<case roadStyle="pale" attrColorValue="$roadStylePale_streetColor_day">
+			<apply_if nightMode="true" attrColorValue="$roadStylePale_streetColor_night"/>
+		</case>
 		<case attrColorValue="#ffffff">
 			<apply_if moreDetailed="true" attrColorValue="#E8E8E8"/>
 			<apply_if additional="tunnel=yes" attrColorValue="#F2F2F2"/>
@@ -949,12 +1002,18 @@
 		<case roadStyle="boldOutline" attrColorValue="#000000">
 			<apply_if nightMode="true" attrColorValue="$null"/>
 		</case>
+		<case roadStyle="pale" attrColorValue="#roadStylePale_streetColorShadow_day">
+			<apply_if nightMode="true" attrColorValue="$roadStylePale_streetColorShadow_night"/>
+		</case>
 		<case attrColorValue="#30000000">
 			<apply_if nightMode="true" attrColorValue="#20000000"/>
 		</case>
 	</renderingAttribute>
 
 	<renderingAttribute name="buswayRoadColor">
+		<case roadStyle="pale" attrColorValue="$roadStylePale_streetColor_day">
+			<apply_if nightMode="true" attrColorValue="$roadStylePale_streetColor_night"/>
+		</case>
 		<case attrColorValue="#C7DCFF">
 			<apply_if additional="tunnel=yes" attrColorValue="#E9F2F2"/>
 			<apply_if additional="covered=yes" attrColorValue="#E9F2F2"/>
@@ -974,6 +1033,9 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="buswayRoadShadowColor">
+		<case roadStyle="pale" attrColorValue="$roadStylePale_streetColorShadow_day">
+			<apply_if nightMode="true" attrColorValue="$roadStylePale_streetColorShadow_night"/>
+		</case>
 		<case attrColorValue="#30000000">
 			<apply_if nightMode="true" attrColorValue="#20000000"/>
 		</case>
@@ -983,6 +1045,9 @@
 	<renderingAttribute name="roadRoadColor">
 		<case baseAppMode="bicycle" additional="cyclestreet=yes" attrColorValue="#0050FF"/>
 		<case baseAppMode="bicycle" additional="bicycle_road=yes" attrColorValue="#0050FF"/>
+        <case roadStyle="pale" attrColorValue="$roadStylePale_streetColor_day">
+            <apply_if nightMode="true" attrColorValue="$roadStylePale_streetColor_night"/>
+        </case>
 		<case attrColorValue="#ececec">
 			<apply_if nightMode="true" attrColorValue="#555555"/>
 		</case>
@@ -1009,6 +1074,9 @@
 				<apply_if additional="covered=yes" attrColorValue="#77715A"/>
 			</apply_if>
 		</case>
+		<case roadStyle="pale" attrColorValue="$roadStylePale_streetColor_day">
+			<apply_if nightMode="true" attrColorValue="$roadStylePale_streetColor_night"/>
+		</case>
 		<case attrColorValue="#f5f1ed">
 			<apply_if additional="tunnel=yes" attrColorValue="#F1EEEC"/>
 			<apply_if additional="covered=yes" attrColorValue="#F1EEEC"/>
@@ -1027,6 +1095,9 @@
 		</case>
 		<case roadStyle="boldOutline" attrColorValue="#000000">
 			<apply_if nightMode="true" attrColorValue="$null"/>
+		</case>
+		<case roadStyle="pale" attrColorValue="$roadStylePale_streetColorShadow_day">
+			<apply_if nightMode="true" attrColorValue="$roadStylePale_streetColorShadow_night"/>
 		</case>
 		<case attrColorValue="#30000000">
 			<apply_if nightMode="true" attrColorValue="#20000000"/>
@@ -2154,6 +2225,9 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="railwayRailColor">
+		<case roadStyle="pale" attrColorValue="$roadStylePale_railwayColor_day">
+			<apply_if nightMode="true" attrColorValue="$roadStylePale_railwayColor_night"/>
+		</case>
 		<case nightMode="true" attrColorValue="#35636F"/>
 		<case attrColorValue="#91908E"/>
 	</renderingAttribute>
@@ -11268,6 +11342,10 @@
 		</switch>
 
 		<case minzoom="7" tag="railway" value="rail">
+			<case roadStyle="pale" color="$railwayRailColor" strokeWidth="1:1">
+				<apply_if minzoom="13" color__1="$railwayRailColor" strokeWidth__1="3:3" pathEffect__1="1_20"/>
+				<apply_if additional="tunnel=yes" pathEffect="20_20" strokeWidth__1="0"/>
+			</case>
 			<case additional="tunnel=yes">
 				<apply_if minzoom="9" maxzoom="13" strokeWidth="1:1" pathEffect="5_2"/>
 				<apply_if minzoom="14" strokeWidth="1:2" color_2="$railwayRailColor2" strokeWidth_2="1:2" pathEffect_2="4_4"/>
