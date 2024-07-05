@@ -1203,6 +1203,11 @@
 			<apply_if noPolygons="true" shader="" color_0="$null" color="$null" />
 		</switch>
 		<switch noPolygons="false">
+			<switch moreDetailed="true">
+				<case minzoom="19" tag="amenity" value="parking_space" color="$null" color_2="#DED4D4" strokeWidth_2="0.75">
+					<apply_if nightMode="true" color_2="#33999999"/>
+				</case>
+			</switch>
 			<case minzoom="16" tag="barrier" value="hedge" color="#ADD19E" color_2="#ADD19E" strokeWidth_2="1">
 				<apply_if nightMode="true" color_2="#285926" />
 			</case>
@@ -1249,5 +1254,46 @@
 				<apply_if minzoom="17" additional="oneway=-1" pathIcon="oneway_reverse_black_semitransparent_big" pathIconStep="70"/>
 			</apply_if>
 		</case>
+		
+		<!-- Admin levels (boundaries) -->
+		<switch minzoom="2">
+			<!-- does admin_level=0 exist?? -->
+			<case tag="admin_level" value="0"/>
+			<case tag="admin_level" value="1"/>
+			<case tag="admin_level" value="2"/>
+			<apply color="$boundaryColorOuter" color_0="$boundaryColorInner">
+				<case maxzoom="2" strokeWidth="0.7"/>
+				<case maxzoom="3" strokeWidth="0.9" strokeWidth_0="0.8" pathEffect_0="24_3_6_3"/>
+				<case maxzoom="4" strokeWidth="1:1" strokeWidth_0="0.8" pathEffect_0="24_3_6_3"/>
+				<case maxzoom="5" strokeWidth="2:2" strokeWidth_0="1" pathEffect_0="24_3_6_3"/>
+				<case maxzoom="6" strokeWidth="3:3" strokeWidth_0="1" pathEffect_0="24_3_6_3"/>
+				<case maxzoom="8" strokeWidth="4:4" strokeWidth_0="1:1" pathEffect_0="24_3_6_3"/>
+				<case minzoom="9" strokeWidth="6:6" strokeWidth_0="1:1" pathEffect_0="24_3_6_3"/>
+			</apply>
+		</switch>
+
+		<switch minzoom="4">
+			<case tag="admin_level" value="3" pathEffect_0="16_4_2_4_2_4"/>
+			<case noAdminboundaries="false" tag="admin_level" value="4" pathEffect_0="16_4_2_4_2_4"/>
+			<apply color="$boundaryColorOuter" color_0="$boundaryColorInner">
+				<case engine_v1="true" maxzoom="5" strokeWidth="1" strokeWidth_0="0.4"/>
+				<case engine_v1="false" maxzoom="5" strokeWidth="0.7" strokeWidth_0="0.3"/>
+				<case maxzoom="6" strokeWidth="1:1" strokeWidth_0="0.5"/>
+				<case maxzoom="8" strokeWidth="1.3:1.3" strokeWidth_0="1"/>
+				<case minzoom="9" strokeWidth="2.5:2.5" strokeWidth_0="1"/>
+			</apply>
+		</switch>
+
+		<switch noAdminboundaries="false">
+			<switch>
+				<case tag="admin_level" value="5" minzoom="10" pathEffect_0="16_2_4_2" strokeWidth_0="2"/>
+				<case tag="admin_level" value="6" minzoom="10" pathEffect_0="16_2_4_2" strokeWidth_0="2"/>
+				<case tag="admin_level" value="7" minzoom="11" pathEffect_0="10_2_2_2_2_2_2_2" strokeWidth_0="1.8"/>
+				<case tag="admin_level" value="8" minzoom="12" pathEffect_0="10_2_2_2_2_2_2_2" strokeWidth_0="1.8"/>
+				<case tag="admin_level" value="9" minzoom="13" pathEffect_0="2_2_2_2_2_4" strokeWidth_0="1.4"/>
+				<case tag="admin_level" value="10" minzoom="13" pathEffect_0="2_2_2_4" strokeWidth_0="1.4"/>
+				<apply color="$null" color_0="$boundaryColorInner" strokeWidth="3:3"/>
+			</switch>
+		</switch>
 	</line>
 </renderingStyle>
