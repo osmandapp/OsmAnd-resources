@@ -42,14 +42,14 @@ function populateDictionary(tts) {
 	dictionary["right_bear"] = tts ? "se drži desne strane." : "right_bear.ogg";   // in English the same as right_keep, may be different in other languages
 
 	// U-TURNS
-	dictionary["make_uturn"] = tts ? "Okreni se nazad" : "make_uturn.ogg";
-	dictionary["make_uturn_alt"] = tts ? "okreni se nazad" : "make_uturn.ogg";
-	dictionary["make_uturn_wp"] = tts ? "Kada bude moguće, okreni se nazad" : "make_uturn_wp.ogg";
+	dictionary["make_uturn"] = tts ? "Uradi polukružno okretanje" : "make_uturn.ogg";
+	dictionary["make_uturn_alt"] = tts ? "Vrati se nazad" : "make_uturn.ogg";
+	dictionary["make_uturn_wp"] = tts ? "Kada bude moguće, uradi polukružno okretanje" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "Pripremi se za ulazak u kružni tok" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "uđi u kružni tok" : "roundabout.ogg";
-	dictionary["then"] = tts ? "onda" : "then.ogg";
+	dictionary["then"] = tts ? "zatim" : "then.ogg";
 	dictionary["and"] = tts ? "i" : "and.ogg";
 	dictionary["and_alt"] = tts ? "pa" : "and.ogg";
 	dictionary["take"] = tts ? "izađi na" : "take.ogg";
@@ -80,20 +80,20 @@ function populateDictionary(tts) {
 	// ARRIVE
 	dictionary["and_arrive_destination"] = tts ? "i stižeš do odredišta" : "and_arrive_destination.ogg";
 	dictionary["reached_destination"] = tts ? "Stigao si na odredište" : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "i stigao si na međuodredište" : "and_arrive_intermediate.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "i stižeš si na međuodredište" : "and_arrive_intermediate.ogg";
 	dictionary["reached_intermediate"] = tts ? "stigao si na međuodredište" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "i prolaziš međuodredište" : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "prolaziš međuodredište" : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "i prolaziš omiljeno mesto" : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "prolaziš omiljeno mesto" : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "i prolaziš tačku interesa" : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "prolaziš tačku interesa" : "reached_poi.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "i stižeš do međuodredišta" : "and_arrive_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "Stigao si na međuodredište" : "reached_waypoint.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "i stižeš do omiljenog mesta" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "Stigao si na omiljeno mesto" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "i stižeš do tačke interesa" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "Stigao si do tačke interesa" : "reached_poi.ogg";
 
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "prekoračio si dozvoljenu brzinu" : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "ograničenje brzine" : "exceed_limit.ogg";
+	dictionary["exceed_limit"] = tts ? "Dozvoljena brzina je" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "Pažnja" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "prekršajna kamera" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "carina" : "border_control.ogg";
