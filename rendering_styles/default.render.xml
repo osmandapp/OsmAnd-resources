@@ -3867,6 +3867,10 @@
 		</switch>
 	</order>
 
+	<poiGroups>
+		<poiGroup name="personal_transport" iconGroupOrder="1000" visibility="true" minZoom="16"/>
+		<poiGroup name="public_transport" iconGroupOrder="1100" visibility="true" minZoom="16"/>
+	</poiGroups>
 
 	<!-- PRIORITY Input to filter : tag, value, zoom [minzoom, maxzoom], textLength, ref, textOrder (default=100) -->
 	<text>
@@ -6530,12 +6534,12 @@
 					</switch>
 					<switch shield="gray_round_shield">
 						<case minzoom="15" tag="barrier" value="border_control" icon="barrier_border_control" iconOrder="140"/>
-						<case minzoom="16" tag="shop" value="car_repair" icon="shop_car_repair">
+						<case minzoom="16" tag="shop" value="car_repair" icon="shop_car_repair" poiGroup="personal_transport">
 							<case additional="service=tyres" icon="service_tyres"/>
 						</case>
 						<case minzoom="16" tag="shop" value="car_parts" icon="shop_car_parts"/>
 						<case minzoom="16" tag="shop" value="tyres" icon="tyres"/>
-						<case minzoom="16" tag="amenity" value="car_wash" icon="amenity_car_wash">
+						<case minzoom="16" tag="amenity" value="car_wash" icon="amenity_car_wash" poiGroup="personal_transport">
 							<case additional="self_service=yes" icon="car_wash_self_service"/>
 						</case>
 						<case minzoom="16" tag="amenity" value="vehicle_ramp" icon="amenity_vehicle_ramp"/>
@@ -8471,8 +8475,8 @@
 
 			<!-- Public transport mode icons -->
 			<switch>
-				<case tag="highway" value="bus_stop"/>
-				<case tag="public_transport" value="platform"/>
+				<case tag="highway" value="bus_stop" poiGroup="public_transport"/>
+				<case tag="public_transport" value="platform" poiGroup="public_transport"/>
 				<apply>
 					<switch minzoom="14" maxzoom="14" iconVisibleSize="7" iconOrder="55">
 						<switch>
@@ -8519,7 +8523,7 @@
 			</switch>
 
 			<switch hideIcons="false" iconOrder="83">
-				<case minzoom="13" tag="railway" value="halt">
+				<case minzoom="13" tag="railway" value="halt" poiGroup="public_transport">
 					<case maxzoom="14" icon="halt_small_2" iconVisibleSize="10">
 						<apply_if nightMode="true" icon="halt_small_2_night"/>
 					</case>
@@ -8531,7 +8535,7 @@
 					</case>
 					<apply_if showLightRailRoutes="true" additional="light_rail=yes" iconOrder="5"/>
 				</case>
-				<case minzoom="15" tag="railway" value="tram_stop">
+				<case minzoom="15" tag="railway" value="tram_stop" poiGroup="public_transport">
 					<case maxzoom="16" icon="tram_stop_small" iconVisibleSize="10">
 						<apply_if nightMode="true" icon="tram_stop_small_night"/>
 					</case>
