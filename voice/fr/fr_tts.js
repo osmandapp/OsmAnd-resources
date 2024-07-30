@@ -34,7 +34,7 @@ function populateDictionary(tts) {
 	dictionary["right_sl"] = tts ? "tournez légèrement à droite" : "right_sl.ogg";
 	// Note: "left_keep"/"right_keep" is a turn type aiding lane selection, while "left_bear"/"right_bear" is as brief "then..." preparation for the turn-after-next. In some languages l/r_keep may not differ from l/r_bear.
 	dictionary["left_keep"] = tts ? "restez dans la voie de gauche" : "left_keep.ogg";
-	dictionary["right_keep"] = tts ? "restez dans la voie de" : "right_keep.ogg";
+	dictionary["right_keep"] = tts ? "restez dans la voie de droite" : "right_keep.ogg";
 	dictionary["left_bear"] = tts ? "serrez à gauche" : "left_bear.ogg";   // in English the same as left_keep, may be different in other languages
 	dictionary["right_bear"] = tts ? "serrez à droite" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
 	
