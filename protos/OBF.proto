@@ -257,20 +257,13 @@ message CityBlockIndex {
 	optional fixed32 shiftToCityIndex = 4;
 	
 	// city boundary
-	//optional CityBoundaryIndex = 6;
+	//optional CityBoundaryIndex = 6; // deprecated
 
 	// buildings that doesn't belong to the street
 	repeated BuildingIndex buildings = 10;
 	
 	repeated StreetIndex streets = 12;
 }
-
-//message CityBoundaryIndex {
-	// 1 way is encoded as bytes (raw array of x, y delta-encoded as uint32)
-//	repeated bytes outerWays;
-	
-//	repeated bytes innerWays;
-//}
 
 message StreetIndex {
 	required string name = 1;
@@ -566,6 +559,17 @@ message OsmAndPoiSubtype {
 	repeated string subtypeValue = 8; 
 }
 
+message OsmAndPoiTagGroup {
+	required uint32 id = 1;
+	repeated string tagValues = 5; // array of [tag1, value1, tag2, value2, ...]
+}
+
+message OsmAndPoiTagGroups {
+
+	repeated uint32 ids = 2 [packed=true]; // to load indexes in memory at base search and later groups could be loaded
+	repeated OsmAndPoiTagGroup groups = 5;
+}
+
 
 
 message OsmAndPoiBox {
@@ -575,6 +579,10 @@ message OsmAndPoiBox {
 	required sint32 top = 3; // delta encoded (zoom)
 	
 	optional OsmAndPoiCategories categories = 4;
+
+	// encoded as fixed32 length delimited
+	// could be used for address data to store generic tag group at top most POI box)
+	optional OsmAndPoiTagGroups tagGroups = 8;
 	
 	// encoded as fixed32 length delimited
 	repeated OsmAndPoiBox subBoxes = 10;
@@ -610,6 +618,7 @@ message OsmAndPoiBoxDataAtom {
   optional string nameEn = 7;
   optional uint64 id = 8;  
 
+  repeated uint32 tagGroups = 9 [packed=true];
   // deprecated from v1.7
   optional string openingHours = 10;
   optional string site = 11;
