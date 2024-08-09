@@ -18,7 +18,7 @@ var dictionary = {};
 function populateDictionary(tts) {
 	// ROUTE CALCULATED
 	dictionary["route_is"] = tts ? "l'itinéraire fait" : "route_is.ogg";
-	dictionary["route_calculate"] = tts ? "recalcul de l'itinéraire" : "route_calculate.ogg";
+	dictionary["route_calculate"] = tts ? "itinéraire recalculé" : "route_calculate.ogg";    // If this is *after* the route has been calculated
 	dictionary["distance"] = tts ? "l'itinéraire fait" : "distance.ogg";
 	
 	// LEFT/RIGHT
@@ -33,19 +33,19 @@ function populateDictionary(tts) {
 	dictionary["right_sh"] = tts ? "tournez franchement à droite" : "right_sh.ogg";
 	dictionary["right_sl"] = tts ? "tournez légèrement à droite" : "right_sl.ogg";
 	// Note: "left_keep"/"right_keep" is a turn type aiding lane selection, while "left_bear"/"right_bear" is as brief "then..." preparation for the turn-after-next. In some languages l/r_keep may not differ from l/r_bear.
-	dictionary["left_keep"] = tts ? "serrez à gauche" : "left_keep.ogg";
-	dictionary["right_keep"] = tts ? "serrez à droite" : "right_keep.ogg";
+	dictionary["left_keep"] = tts ? "restez dans la voie de gauche" : "left_keep.ogg";
+	dictionary["right_keep"] = tts ? "restez dans la voie de droite" : "right_keep.ogg";
 	dictionary["left_bear"] = tts ? "serrez à gauche" : "left_bear.ogg";   // in English the same as left_keep, may be different in other languages
 	dictionary["right_bear"] = tts ? "serrez à droite" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
 	
 	// U-TURNS
 	dictionary["prepare_make_uturn"] = tts ? "préparez vous à faire demi-tour" : "prepare_make_uturn.ogg";
 	dictionary["make_uturn"] = tts ? " faites demi-tour" : "make_uturn.ogg";
-	dictionary["make_uturn_wp"] = tts ? "Dès que possible, faites demi-tour" : "make_uturn_wp.ogg";
+	dictionary["make_uturn_wp"] = tts ? "dès que possible, faites demi-tour" : "make_uturn_wp.ogg";
 	
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "entrez dans le rond-point" : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? " entrez dans le rond-point" : "roundabout.ogg";
+	dictionary["roundabout"] = tts ? "entrez dans le rond-point" : "roundabout.ogg";
 	dictionary["then"] = tts ? "puis" : "then.ogg";
 	dictionary["and"] = tts ? " et" : "and.ogg";
 	dictionary["take"] = tts ? "prenez la" : "take.ogg";
@@ -70,8 +70,8 @@ function populateDictionary(tts) {
 	dictionary["17th"] = tts ? "17ème" : "17th.ogg";
 	
 	// STRAIGHT/FOLLOW
-	dictionary["go_ahead"] = tts ? "Continuez tout droit" : "go_ahead.ogg";
-	dictionary["follow"] = tts ? "Continuez pendant" : "follow.ogg";
+	dictionary["go_ahead"] = tts ? "continuez tout droit" : "go_ahead.ogg";
+	dictionary["follow"] = tts ? "continuez pendant" : "follow.ogg";
 	
 	// ARRIVE
 	dictionary["and_arrive_destination"] = tts ? "et arrivez à destination" : "and_arrive_destination.ogg";
@@ -84,8 +84,8 @@ function populateDictionary(tts) {
 	dictionary["reached_waypoint"] = tts ? "vous êtes arrivé à l'étape G P X" : "reached_waypoint.ogg";
 	dictionary["and_arrive_favorite"] = tts ? "et arrivez à l'étape Favoris" : "and_arrive_favorite.ogg";
 	dictionary["reached_favorite"] = tts ? "vous êtes arrivé à l'étape Favoris" : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "et arrivez à l'étape P O I" : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "vous êtes arrivé à l'étape P O I" : "reached_poi.ogg";
+	dictionary["and_arrive_poi"] = tts ? "et arrivez à l'étape point d’intérêt" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "vous êtes arrivé à l'étape point d’intérêt" : "reached_poi.ogg";
 	
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "vous dépassez la limite de vitesse" : "exceed_limit.ogg";
@@ -101,8 +101,8 @@ function populateDictionary(tts) {
 	dictionary["tunnel"] = tts ? "tunnel" : "tunnel.ogg";
 	
 	// OTHER PROMPTS
-	dictionary["location_lost"] = tts ? "Signal satellite perdu" : "location_lost.ogg";
-	dictionary["location_recovered"] = tts ? "Signal satellite retrouvé" : "location_recovered.ogg";
+	dictionary["location_lost"] = tts ? "signal satellite perdu" : "location_lost.ogg";
+	dictionary["location_recovered"] = tts ? "signal satellite retrouvé" : "location_recovered.ogg";
 	dictionary["off_route"] = tts ? "vous avez dévié de l'itinéraire depuis" : "off_route.ogg";
 	dictionary["back_on_route"] = tts ? "vous êtes de retour sur l'itinéraire" : "back_on_route.ogg";
 	
