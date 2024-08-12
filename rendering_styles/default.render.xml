@@ -2731,6 +2731,9 @@
 
 	<renderingConstant name="null" value="#00000000"/>
 
+	<renderingAssociation name="poi_shops"/>
+	<renderingAssociation name="poi_transport_bicycle"/>
+	<renderingAssociation name="poi_transport_car"/>
 
 	<!--
 	RENDERER CONCEPT: Concept of what is Rendered at what Zoom Level (Dr. Hardy Mueller, 2011-06-26)
@@ -5288,19 +5291,19 @@
 					<case minzoom="17" tag="aeroway" value="fuel" nameTag="brand" textWrapWidth="20"/>
 					<case minzoom="17" tag="aeroway" value="fuel" nameTag="operator" textWrapWidth="20"/>
 					<case minzoom="17" tag="amenity" value="charging_station" textWrapWidth="20"/>
-					<case minzoom="17" tag="amenity" value="parking" nameTag="" textWrapWidth="20" textOrder="151">
+					<case minzoom="17" tag="amenity" value="parking" nameTag="" textWrapWidth="20" textOrder="151" association="$poi_transport_car">
 						<apply_if additional="access=customers" textOrder="181"/>
 						<apply_if additional="access=private" textOrder="182"/>
 					</case>
-					<case minzoom="18" tag="amenity" value="parking_entrance" textWrapWidth="20" iconOrder="152"/>
-					<case minzoom="18" tag="amenity" value="bicycle_parking" nameTag="" textWrapWidth="20" textOrder="152"/>
+					<case minzoom="18" tag="amenity" value="parking_entrance" textWrapWidth="20" iconOrder="152" association="$poi_transport_car"/>
+					<case minzoom="18" tag="amenity" value="bicycle_parking" nameTag="" textWrapWidth="20" textOrder="152" association="$poi_transport_bicycle"/>
 					<case minzoom="17" tag="amenity" value="motorcycle_parking" nameTag="" textWrapWidth="20" textOrder="152"/>
 					<case minzoom="17" tag="amenity" value="taxi" textWrapWidth="20"/>
 					<case minzoom="15" tag="man_made" value="lighthouse" textWrapWidth="20" textOrder="104"/>
-					<case minzoom="17" tag="amenity" value="car_pooling" nameTag="" textWrapWidth="20"/>
-					<case minzoom="17" tag="amenity" value="car_rental" nameTag="" textWrapWidth="20"/>
-					<case minzoom="17" tag="amenity" value="car_sharing" nameTag="" textWrapWidth="20"/>
-					<case minzoom="18" tag="amenity" value="bicycle_rental" textWrapWidth="20"/>
+					<case minzoom="17" tag="amenity" value="car_pooling" nameTag="" textWrapWidth="20" association="$poi_transport_car"/>
+					<case minzoom="17" tag="amenity" value="car_rental" nameTag="" textWrapWidth="20" association="$poi_transport_car"/>
+					<case minzoom="17" tag="amenity" value="car_sharing" nameTag="" textWrapWidth="20" association="$poi_transport_car"/>
+					<case minzoom="18" tag="amenity" value="bicycle_rental" textWrapWidth="20" association="$poi_transport_bicycle"/>
 					<case minzoom="17" tag="amenity" value="boat_sharing" textWrapWidth="20"/>
 					<case minzoom="17" tag="amenity" value="boat_rental" textWrapWidth="20"/>
 					<case minzoom="18" tag="amenity" value="boat_storage" textWrapWidth="20"/>
@@ -5757,10 +5760,10 @@
 				<case minzoom="18" tag="amenity" value="lounger" textOrder="172"/>
 				<case minzoom="17" tag="amenity" value="fountain"/>
 				<case minzoom="18" tag="amenity" value="telephone"/>
-				<case minzoom="17" tag="amenity" value="car_wash"/>
-				<case minzoom="18" tag="amenity" value="vehicle_ramp"/>
-				<case minzoom="17" tag="amenity" value="vehicle_inspection"/>
-				<case minzoom="18" tag="amenity" value="compressed_air"/>
+				<case minzoom="17" tag="amenity" value="car_wash" association="$poi_transport_car"/>
+				<case minzoom="18" tag="amenity" value="vehicle_ramp" association="$poi_transport_car"/>
+				<case minzoom="17" tag="amenity" value="vehicle_inspection" association="$poi_transport_car"/>
+				<case minzoom="18" tag="amenity" value="compressed_air" association="$poi_transport_car"/>
 				<case minzoom="18" tag="amenity" value="smoking_area" textSize="11"/>
 				<case minzoom="18" tag="amenity" value="toilets"/>
 				<case minzoom="18" tag="amenity" value="shower"/>
@@ -5782,7 +5785,7 @@
 				<case minzoom="17" tag="amenity" value="watering_place"/>
 				<case minzoom="17" tag="amenity" value="animal_shelter"/>
 				<case minzoom="17" tag="landuse" value="animal_keeping"/>
-				<case minzoom="17" tag="amenity" value="bicycle_repair_station"/>
+				<case minzoom="17" tag="amenity" value="bicycle_repair_station" association="$poi_transport_bicycle"/>
 				<case minzoom="18" tag="man_made" value="water_well" textOrder="171"/>
 				<case minzoom="17" tag="amenity" value="water_point" textOrder="171"/>
 				<case minzoom="17" tag="man_made" value="dovecote"/>
@@ -6046,7 +6049,7 @@
 				</switch>
 
 				<!-- Shops -->
-				<switch hidePOILabels="false" textSize="12" nameTag="" textColor="$shopsTextColorDay" textHaloColor="$shopsTextHaloColorDay" textHaloRadius="$textHaloRadius" textWrapWidth="15" textOrder="160">
+				<switch hidePOILabels="false" textSize="12" nameTag="" textColor="$shopsTextColorDay" textHaloColor="$shopsTextHaloColorDay" textHaloRadius="$textHaloRadius" textWrapWidth="15" textOrder="160" association="$poi_shops">
 					<case minzoom="17" tag="shop" value="agrarian"/>
 					<case minzoom="17" tag="shop" value="alcohol"/>
 					<case minzoom="17" tag="shop" value="antiques"/>
@@ -6068,8 +6071,8 @@
 					<case minzoom="17" tag="shop" value="candles"/>
 					<case minzoom="17" tag="shop" value="cannabis"/>
 					<case minzoom="17" tag="shop" value="car"/>
-					<case minzoom="17" tag="shop" value="car_repair"/>
-					<case minzoom="17" tag="shop" value="car_parts"/>
+					<case minzoom="17" tag="shop" value="car_repair" association="$poi_transport_car"/>
+					<case minzoom="17" tag="shop" value="car_parts" association="$poi_transport_car"/>
 					<case minzoom="17" tag="shop" value="carpet"/>
 					<case minzoom="17" tag="shop" value="clothes" textOrder="159"/>
 					<case minzoom="17" tag="shop" value="charity"/>
@@ -6509,7 +6512,7 @@
 							<apply_if nightMode="true" shield="blue_square_night_shield"/>
 						</apply>
 					</switch>
-					<switch tag="amenity" value="parking_entrance" iconVisibleSize="8">
+					<switch tag="amenity" value="parking_entrance" iconVisibleSize="8" association="$poi_transport_car">
 						<case minzoom="16" maxzoom="16" icon="barrier_small_black_3">
 							<apply_if nightMode="true" icon="barrier_small_white_3"/>
 						</case>
@@ -6522,24 +6525,24 @@
 						<case minzoom="15" tag="highway" value="rest_area" icon="rest_area"/>
 						<case minzoom="14" tag="amenity" value="fuel" icon="amenity_fuel"/>
 						<case minzoom="15" tag="amenity" value="charging_station" icon="charging_station"/>
-						<case minzoom="16" tag="amenity" value="car_pooling" icon="car_pooling"/>
-						<case minzoom="16" tag="amenity" value="car_rental" icon="amenity_car_rental"/>
-						<case minzoom="16" tag="amenity" value="car_sharing" icon="amenity_car_sharing"/>
+						<case minzoom="16" tag="amenity" value="car_pooling" icon="car_pooling" association="$poi_transport_car"/>
+						<case minzoom="16" tag="amenity" value="car_rental" icon="amenity_car_rental" association="$poi_transport_car"/>
+						<case minzoom="16" tag="amenity" value="car_sharing" icon="amenity_car_sharing" association="$poi_transport_car"/>
 						<case minzoom="15" tag="highway" value="speed_camera" icon="highway_speed_camera"/>
 						<apply_if nightMode="true" shield="blue_round_night_shield"/>
 					</switch>
 					<switch shield="gray_round_shield">
 						<case minzoom="15" tag="barrier" value="border_control" icon="barrier_border_control" iconOrder="140"/>
-						<case minzoom="16" tag="shop" value="car_repair" icon="shop_car_repair">
+						<case minzoom="16" tag="shop" value="car_repair" icon="shop_car_repair" association="$poi_shops,$poi_transport_car">
 							<case additional="service=tyres" icon="service_tyres"/>
 						</case>
-						<case minzoom="16" tag="shop" value="car_parts" icon="shop_car_parts"/>
-						<case minzoom="16" tag="shop" value="tyres" icon="tyres"/>
-						<case minzoom="16" tag="amenity" value="car_wash" icon="amenity_car_wash">
+						<case minzoom="16" tag="shop" value="car_parts" icon="shop_car_parts" association="$poi_shops,$poi_transport_car"/>
+						<case minzoom="16" tag="shop" value="tyres" icon="tyres" association="$poi_shops"/>
+						<case minzoom="16" tag="amenity" value="car_wash" icon="amenity_car_wash" association="$poi_transport_car">
 							<case additional="self_service=yes" icon="car_wash_self_service"/>
 						</case>
-						<case minzoom="16" tag="amenity" value="vehicle_ramp" icon="amenity_vehicle_ramp"/>
-						<case minzoom="16" tag="amenity" value="vehicle_inspection" icon="vehicle_inspection"/>
+						<case minzoom="16" tag="amenity" value="vehicle_ramp" icon="amenity_vehicle_ramp" association="$poi_transport_car"/>
+						<case minzoom="16" tag="amenity" value="vehicle_inspection" icon="vehicle_inspection" association="$poi_transport_car"/>
 						<apply_if nightMode="true" shield="gray_round_night_shield"/>
 					</switch>
 				</switch>
@@ -6612,7 +6615,7 @@
 							</case>
 						</apply_if>
 					</case>
-					<switch shield="blue_round_shield">
+					<switch shield="blue_round_shield" association="$poi_transport_bicycle">
 						<case minzoom="16" tag="amenity" value="bicycle_rental" icon="amenity_bicycle_rental"/>
 						<case minzoom="16" tag="amenity" value="bicycle_parking" icon="bicycle_parking" iconVisibleSize="32">
 							<case additional="bicycle_parking=stands" icon="bicycle_parking_stands"/>
@@ -6641,7 +6644,7 @@
 						<apply icon="tourism_picnic_site" shield="picnic_shield"/>
 						<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 					</switch>
-					<case maxzoom="18" tag="amenity" value="parking" icon="no_icon"/>
+					<case maxzoom="18" tag="amenity" value="parking" icon="no_icon" association="$poi_transport_car"/>
 					<case minzoom="18" tag="emergency" value="phone" icon="emergency_phone" shield="red_round_shield">
 						<apply_if nightMode="true" shield="red_round_night_shield"/>
 					</case>
@@ -7059,7 +7062,7 @@
 					<case minzoom="16" tag="aeroway" value="fuel" icon="aeroway_fuel"/>
 					<case minzoom="16" tag="amenity" value="charging_station" icon="charging_station" iconOrder="150"/>
 					<case minzoom="16" tag="amenity" value="taxi" icon="amenity_taxi" iconOrder="81"/>
-					<case minzoom="16" tag="amenity" value="parking" icon="amenity_parking" iconVisibleSize="38" iconOrder="151">
+					<case minzoom="16" tag="amenity" value="parking" icon="amenity_parking" iconVisibleSize="38" iconOrder="151" association="$poi_transport_car">
 						<case additional="parking=multi-storey" icon="parking_multi_storey">
 							<case additional="fee=yes" icon="amenity_parking_multi_storey_paid"/>
 						</case>
@@ -7073,7 +7076,7 @@
 						<apply_if minzoom="18" additional="access=private" icon="amenity_parking_private"/>
 						<apply_if minzoom="18" additional="access=no" icon="amenity_parking_private"/>
 					</case>
-					<case minzoom="16" tag="amenity" value="bicycle_parking" icon="bicycle_parking" iconVisibleSize="32" iconOrder="152">
+					<case minzoom="16" tag="amenity" value="bicycle_parking" icon="bicycle_parking" iconVisibleSize="32" iconOrder="152" association="$poi_transport_bicycle">
 						<case additional="bicycle_parking=stands" icon="bicycle_parking_stands"/>
 						<case additional="bicycle_parking=wall_loops" icon="bicycle_parking_wall_loops"/>
 						<case additional="bicycle_parking=rack" icon="bicycle_parking_rack"/>
@@ -7089,7 +7092,7 @@
 					<case minzoom="16" tag="amenity" value="motorcycle_parking" icon="amenity_motorcycle_parking" iconVisibleSize="32" iconOrder="152">
 						<case additional="fee=yes" icon="amenity_motorcycle_parking_paid"/>
 					</case>
-					<case minzoom="20" tag="amenity" value="parking_space" additional="disabled=yes" icon="amenity_parking_disabled" iconOrder="155"/>
+					<case minzoom="20" tag="amenity" value="parking_space" additional="disabled=yes" icon="amenity_parking_disabled" iconOrder="155" association="$poi_transport_car"/>
 					<apply_if nightMode="true" shield="blue_round_night_shield" iconVisibleSize="50"/>
 				</switch>
 
@@ -7106,13 +7109,13 @@
 						<apply_if nightMode="true" shield="blue_square_night_shield"/>
 					</apply>
 				</switch>
-				<case minzoom="18" tag="amenity" value="vehicle_inspection" icon="vehicle_inspection" shield="gray_round_shield">
+				<case minzoom="18" tag="amenity" value="vehicle_inspection" icon="vehicle_inspection" shield="gray_round_shield" association="$poi_transport_car">
 					<apply_if nightMode="true" shield="gray_round_night_shield"/>
 				</case>
 				<switch shield="blue_round_shield">
-					<case minzoom="16" tag="amenity" value="car_rental" icon="amenity_car_rental"/>
-					<case minzoom="16" tag="amenity" value="car_pooling" icon="car_pooling"/>
-					<case minzoom="16" tag="amenity" value="car_sharing" icon="amenity_car_sharing"/>
+					<case minzoom="16" tag="amenity" value="car_rental" icon="amenity_car_rental" association="$poi_transport_car"/>
+					<case minzoom="16" tag="amenity" value="car_pooling" icon="car_pooling" association="$poi_transport_car"/>
+					<case minzoom="16" tag="amenity" value="car_sharing" icon="amenity_car_sharing" association="$poi_transport_car"/>
 					<case minzoom="18" tag="amenity" value="weighbridge" icon="weighbridge"/>
 					<switch>
 						<case minzoom="17" tag="amenity" value="bicycle_rental" icon="amenity_bicycle_rental"/>
@@ -7615,8 +7618,8 @@
 						<case minzoom="17" tag="amenity" value="car_wash" icon="amenity_car_wash">
 							<case additional="self_service=yes" icon="car_wash_self_service"/>
 						</case>
-						<case minzoom="18" tag="amenity" value="compressed_air" icon="compressed_air"/>
-						<case minzoom="17" tag="amenity" value="vehicle_ramp" icon="amenity_vehicle_ramp"/>
+						<case minzoom="18" tag="amenity" value="compressed_air" icon="compressed_air" association="$poi_transport_car"/>
+						<case minzoom="17" tag="amenity" value="vehicle_ramp" icon="amenity_vehicle_ramp" association="$poi_transport_car"/>
 						<case minzoom="18" tag="aeroway" value="windsock" icon="windsock"/>
 						<case minzoom="17" tag="amenity" value="studio" icon="studio" iconOrder="156"/>
 						<case minzoom="17" tag="amenity" value="brothel" icon="brothel" iconOrder="156"/>
@@ -7626,7 +7629,7 @@
 						<case minzoom="17" tag="amenity" value="watering_place" icon="watering_place"/>
 						<case minzoom="17" tag="amenity" value="animal_shelter" icon="animal_shelter"/>
 						<case minzoom="16" tag="landuse" value="animal_keeping" icon="animal_keeping"/>
-						<case minzoom="17" tag="amenity" value="bicycle_repair_station" icon="bicycle_repair_station">
+						<case minzoom="17" tag="amenity" value="bicycle_repair_station" icon="bicycle_repair_station" association="$poi_transport_bicycle">
 							<apply_if baseAppMode="bicycle" iconOrder="60"/>
 						</case>
 						<case minzoom="18" tag="amenity" value="trolley_bay" icon="trolley_bay"/>
@@ -7919,14 +7922,14 @@
 					</switch>
 
 					<!-- Shops -->
-					<switch minzoom="17" iconOrder="161" iconVisibleSize="24">
+					<switch minzoom="17" iconOrder="161" iconVisibleSize="24" association="$poi_shops">
 						<case tag="amenity" value="vending_machine" additional="vending=excrement_bags" icon="vending_excrement_bags" shield="vending_excrement_bags_shield"/>
 						<case tag="amenity" value="vending_machine" icon="amenity_vending_machine" shield="purple_round_shield">
 							<apply_if nightMode="true" shield="purple_round_night_shield" iconVisibleSize="54"/>
 						</case>
 						<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 					</switch>
-					<switch shield="purple_round_shield" iconOrder="160" iconVisibleSize="24">
+					<switch shield="purple_round_shield" iconOrder="160" iconVisibleSize="24" association="$poi_shops">
 						<case minzoom="17" tag="shop" value="agrarian" icon="agrarian"/>
 						<case minzoom="17" tag="shop" value="alcohol" icon="shop_alcohol" iconVisibleSize="32"/>
 						<case minzoom="17" tag="shop" value="antiques" icon="antiques"/>
@@ -7948,10 +7951,10 @@
 						<case minzoom="17" tag="shop" value="candles" icon="candles"/>
 						<case minzoom="17" tag="shop" value="cannabis" icon="cannabis"/>
 						<case minzoom="16" tag="shop" value="car" icon="shop_car"/>
-						<case minzoom="16" tag="shop" value="car_repair" icon="shop_car_repair">
+						<case minzoom="16" tag="shop" value="car_repair" icon="shop_car_repair" association="$poi_transport_car">
 							<case additional="service=tyres" icon="service_tyres"/>
 						</case>
-						<case minzoom="16" tag="shop" value="car_parts" icon="shop_car_parts"/>
+						<case minzoom="16" tag="shop" value="car_parts" icon="shop_car_parts" association="$poi_transport_car"/>
 						<case minzoom="17" tag="shop" value="clothes" icon="shop_clothes" iconVisibleSize="32" iconOrder="159">
 							<case additional="clothes:children=yes" icon="clothes_children"/>
 						</case>
@@ -8398,7 +8401,7 @@
 				<switch tag="entrance" value="service">
 					<case minzoom="19" icon="entrance_service" shield="barrier_entrance_small_shield"/>
 				</switch>
-				<switch tag="amenity" value="parking_entrance">
+				<switch tag="amenity" value="parking_entrance" association="$poi_transport_car">
 					<case maxzoom="17" icon="barrier_small_black_3">
 						<apply_if nightMode="true" icon="barrier_small_white_3"/>
 					</case>
@@ -9203,7 +9206,7 @@
 			<case minzoom="11" tag="amenity" value="prison" shader="prison" color_2="#aaaaaa" strokeWidth_2="1:1">
 				<apply_if nightMode="true" shader="" color="$landusePrisonColorNight" color_2="#555555"/>
 			</case>
-			<case minzoom="15" tag="amenity" value="bicycle_parking" color="$bicycleParkingColor"/>
+			<case minzoom="15" tag="amenity" value="bicycle_parking" color="$bicycleParkingColor" association="$poi_transport_bicycle"/>
 			<case minzoom="19" tag="amenity" value="parking_space" color="$null" color_2="#ffffff" strokeWidth_2="1" pathEffect_2="5_5">
 				<apply_if nightMode="true" color_2="#33999999"/>
 			</case>
