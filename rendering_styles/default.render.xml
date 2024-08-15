@@ -12,7 +12,7 @@
 		<switch> element :
 			1. A <switch> (or <group>, logically the same) on the top level propagates all its attributes like e.g. strokeWidth to the <case> level (unless overwritten there)
 			2. If <switch> has <case> or <switch> children, it tests these in their order with (if...else), and returns "true" when/if the first test succeeds (all others are not executed any more). If one succeeds, also all <applies> are executed in their specified order.
-			3. If <switch> does not have <case> or <switch>, but only <apply> children, all of these are executed, and "true" is returned.
+			3. If <switch> does not have <case> or <switch>, but only <apply> children, then it should be replaced with <case> cause it doesn't make sense .
 			4. All highest (top level) occurrences of <case> elements must contain tag/value attributes! A nested sequence from the top level like <switch><switch><case tag="" value=""></switch></switch> is possible, though.
 
 		<case> element :
@@ -2731,6 +2731,21 @@
 
 	<renderingConstant name="null" value="#00000000"/>
 
+	<renderingAssociation name="poi_shops">
+<!--		<case textSize="0" icon="no_icon" shield="no_icon"/>-->
+	</renderingAssociation>
+
+	<renderingAssociation name="poi_transport_bicycle"/>
+	<renderingAssociation name="poi_transport_car"/>
+	<renderingAssociation name="poi_transport_public">
+<!--		<case textSize="0" icon="no_icon" shield="no_icon"/>-->
+	</renderingAssociation>
+	<renderingAssociation name="poi_transport_other">
+<!--		<case textSize="0" icon="no_icon" shield="no_icon"/>-->
+	</renderingAssociation>
+	<renderingAssociation name="poi_transport_filling_charging">
+<!--		<case textSize="0" icon="no_icon" shield="no_icon"/>-->
+	</renderingAssociation>
 
 	<!--
 	RENDERER CONCEPT: Concept of what is Rendered at what Zoom Level (Dr. Hardy Mueller, 2011-06-26)
@@ -3345,131 +3360,135 @@
 				<case tag="" value="" order="13"/>
 				<!-- Highways: 35-57, bridges 70-88 -->
 				<switch>
-					<case tag="highway" value="motorway" order="84">
-						<apply_if layer="1" order="107"/>
-						<apply_if additional="layer=2" order="137"/>
-						<apply_if additional="layer=3" order="165"/>
-						<apply_if layer="-1" order="62" orderByDensity="84"/>
-						<apply_if additional="layer=-2" order="41" orderByDensity="84"/>
-					</case>
-					<case tag="highway" value="motorway_link" order="72">
-						<apply_if layer="1" order="95"/>
-						<apply_if additional="layer=2" order="125"/>
-						<apply_if additional="layer=3" order="153"/>
-						<apply_if layer="-1" order="50" orderByDensity="72"/>
-						<apply_if additional="layer=-2" order="26" orderByDensity="72"/>
-					</case>
-					<case tag="highway" value="trunk" order="83">
-						<apply_if layer="1" order="106"/>
-						<apply_if additional="layer=2" order="136"/>
-						<apply_if additional="layer=3" order="164"/>
-						<apply_if layer="-1" order="61" orderByDensity="83"/>
-						<apply_if additional="layer=-2" order="40" orderByDensity="83"/>
-					</case>
-					<case tag="highway" value="trunk_link" order="71">
-						<apply_if layer="1" order="94"/>
-						<apply_if additional="layer=2" order="124"/>
-						<apply_if additional="layer=3" order="152"/>
-						<apply_if layer="-1" order="49" orderByDensity="71"/>
-						<apply_if additional="layer=-2" order="25" orderByDensity="71"/>
-					</case>
-					<case tag="highway" value="primary" order="82">
-						<apply_if layer="1" order="105"/>
-						<apply_if additional="layer=2" order="135"/>
-						<apply_if additional="layer=3" order="163"/>
-						<apply_if layer="-1" order="60"  orderByDensity="82"/>
-						<apply_if additional="layer=-2" order="39"  orderByDensity="82"/>
-					</case>
-					<case tag="highway" value="primary_link" order="70">
-						<apply_if layer="1" order="93"/>
-						<apply_if additional="layer=2" order="123"/>
-						<apply_if additional="layer=3" order="151"/>
-						<apply_if layer="-1" order="48"/>
-						<apply_if additional="layer=-2" order="24"/>
-					</case>
-					<case tag="highway" value="secondary" order="81">
-						<apply_if layer="1" order="104"/>
-						<apply_if additional="layer=2" order="134"/>
-						<apply_if additional="layer=3" order="162"/>
-						<apply_if layer="-1" order="59"/>
-						<apply_if additional="layer=-2" order="38"/>
-					</case>
-					<case tag="highway" value="secondary_link" order="69">
-						<apply_if layer="1" order="92"/>
-						<apply_if additional="layer=2" order="122"/>
-						<apply_if additional="layer=3" order="150"/>
-						<apply_if layer="-1" order="47"/>
-						<apply_if additional="layer=-2" order="23"/>
-					</case>
-					<case tag="highway" value="tertiary" order="80">
-						<apply_if layer="1" order="103"/>
-						<apply_if additional="layer=2" order="133"/>
-						<apply_if additional="layer=3" order="161"/>
-						<apply_if layer="-1" order="58"/>
-						<apply_if additional="layer=-2" order="37"/>
-					</case>
-					<case tag="highway" value="tertiary_link" order="68">
-						<apply_if layer="1" order="91"/>
-						<apply_if additional="layer=2" order="121"/>
-						<apply_if additional="layer=3" order="149"/>
-						<apply_if layer="-1" order="46"/>
-						<apply_if additional="layer=-2" order="22"/>
-					</case>
-					<case tag="highway" value="road" order="79">
-						<apply_if layer="1" order="102"/>
-						<apply_if additional="layer=2" order="132"/>
-						<apply_if additional="layer=3" order="160"/>
-						<apply_if layer="-1" order="57"/>
-						<apply_if additional="layer=-2" order="36"/>
-					</case>
-					<case tag="highway" value="unclassified" order="79">
-						<apply_if layer="1" order="102"/>
-						<apply_if additional="layer=2" order="132"/>
-						<apply_if additional="layer=3" order="160"/>
-						<apply_if layer="-1" order="57"/>
-						<apply_if additional="layer=-2" order="36"/>
-					</case>
-					<case tag="highway" value="residential" order="78">
-						<apply_if layer="1" order="101"/>
-						<apply_if additional="layer=2" order="131"/>
-						<apply_if additional="layer=3" order="159"/>
-						<apply_if layer="-1" order="56"/>
-						<apply_if additional="layer=-2" order="35"/>
-					</case>
-					<case tag="highway" value="service" order="67">
-						<apply_if layer="1" order="90"/>
-						<apply_if additional="layer=2" order="120"/>
-						<apply_if additional="layer=3" order="148"/>
-						<apply_if layer="-1" order="45"/>
-						<apply_if additional="layer=-2" order="21"/>
-					</case>
-					<case tag="highway" value="busway" order="67">
-						<apply_if layer="1" order="90"/>
-						<apply_if additional="layer=2" order="120"/>
-						<apply_if additional="layer=3" order="148"/>
-						<apply_if layer="-1" order="45"/>
-						<apply_if additional="layer=-2" order="21"/>
-					</case>
-					<case tag="highway" value="bus_guideway" order="68">
-						<apply_if layer="1" order="91"/>
-						<apply_if additional="layer=2" order="121"/>
-						<apply_if additional="layer=3" order="149"/>
-						<apply_if layer="-1" order="46"/>
-						<apply_if additional="layer=-2" order="22"/>
-						<apply_if hideOverground="true" minzoom="15">
-							<apply_if layer="0" order="-1"/>
-							<apply_if layer="1" order="-1"/>
-							<apply_if layer="2" order="-1"/>
-							<apply_if layer="3" order="-1"/>
-						</apply_if>
-					</case>
-					<case tag="highway" value="living_street" order="77">
-						<apply_if layer="1" order="100"/>
-						<apply_if additional="layer=2" order="130"/>
-						<apply_if additional="layer=3" order="158"/>
-						<apply_if layer="-1" order="55"/>
-						<apply_if additional="layer=-2" order="34"/>
-					</case>
+					<switch>
+						<case tag="highway" value="motorway" order="84">
+							<apply_if layer="1" order="107"/>
+							<apply_if additional="layer=2" order="137"/>
+							<apply_if additional="layer=3" order="165"/>
+							<apply_if layer="-1" order="62" orderByDensity="84"/>
+							<apply_if additional="layer=-2" order="41" orderByDensity="84"/>
+						</case>
+						<case tag="highway" value="motorway_link" order="72">
+							<apply_if layer="1" order="95"/>
+							<apply_if additional="layer=2" order="125"/>
+							<apply_if additional="layer=3" order="153"/>
+							<apply_if layer="-1" order="50" orderByDensity="72"/>
+							<apply_if additional="layer=-2" order="26" orderByDensity="72"/>
+						</case>
+						<case tag="highway" value="trunk" order="83">
+							<apply_if layer="1" order="106"/>
+							<apply_if additional="layer=2" order="136"/>
+							<apply_if additional="layer=3" order="164"/>
+							<apply_if layer="-1" order="61" orderByDensity="83"/>
+							<apply_if additional="layer=-2" order="40" orderByDensity="83"/>
+						</case>
+						<case tag="highway" value="trunk_link" order="71">
+							<apply_if layer="1" order="94"/>
+							<apply_if additional="layer=2" order="124"/>
+							<apply_if additional="layer=3" order="152"/>
+							<apply_if layer="-1" order="49" orderByDensity="71"/>
+							<apply_if additional="layer=-2" order="25" orderByDensity="71"/>
+						</case>
+						<case tag="highway" value="primary" order="82">
+							<apply_if layer="1" order="105"/>
+							<apply_if additional="layer=2" order="135"/>
+							<apply_if additional="layer=3" order="163"/>
+							<apply_if layer="-1" order="60"  orderByDensity="82"/>
+							<apply_if additional="layer=-2" order="39"  orderByDensity="82"/>
+						</case>
+						<case tag="highway" value="primary_link" order="70">
+							<apply_if layer="1" order="93"/>
+							<apply_if additional="layer=2" order="123"/>
+							<apply_if additional="layer=3" order="151"/>
+							<apply_if layer="-1" order="48"/>
+							<apply_if additional="layer=-2" order="24"/>
+						</case>
+						<case tag="highway" value="secondary" order="81">
+							<apply_if layer="1" order="104"/>
+							<apply_if additional="layer=2" order="134"/>
+							<apply_if additional="layer=3" order="162"/>
+							<apply_if layer="-1" order="59"/>
+							<apply_if additional="layer=-2" order="38"/>
+						</case>
+						<case tag="highway" value="secondary_link" order="69">
+							<apply_if layer="1" order="92"/>
+							<apply_if additional="layer=2" order="122"/>
+							<apply_if additional="layer=3" order="150"/>
+							<apply_if layer="-1" order="47"/>
+							<apply_if additional="layer=-2" order="23"/>
+						</case>
+						<case tag="highway" value="tertiary" order="80">
+							<apply_if layer="1" order="103"/>
+							<apply_if additional="layer=2" order="133"/>
+							<apply_if additional="layer=3" order="161"/>
+							<apply_if layer="-1" order="58"/>
+							<apply_if additional="layer=-2" order="37"/>
+						</case>
+						<case tag="highway" value="tertiary_link" order="68">
+							<apply_if layer="1" order="91"/>
+							<apply_if additional="layer=2" order="121"/>
+							<apply_if additional="layer=3" order="149"/>
+							<apply_if layer="-1" order="46"/>
+							<apply_if additional="layer=-2" order="22"/>
+						</case>
+						<case tag="highway" value="road" order="79">
+							<apply_if layer="1" order="102"/>
+							<apply_if additional="layer=2" order="132"/>
+							<apply_if additional="layer=3" order="160"/>
+							<apply_if layer="-1" order="57"/>
+							<apply_if additional="layer=-2" order="36"/>
+						</case>
+						<case tag="highway" value="unclassified" order="79">
+							<apply_if layer="1" order="102"/>
+							<apply_if additional="layer=2" order="132"/>
+							<apply_if additional="layer=3" order="160"/>
+							<apply_if layer="-1" order="57"/>
+							<apply_if additional="layer=-2" order="36"/>
+						</case>
+						<case tag="highway" value="residential" order="78">
+							<apply_if layer="1" order="101"/>
+							<apply_if additional="layer=2" order="131"/>
+							<apply_if additional="layer=3" order="159"/>
+							<apply_if layer="-1" order="56"/>
+							<apply_if additional="layer=-2" order="35"/>
+						</case>
+						<case tag="highway" value="service" order="67">
+							<apply_if layer="1" order="90"/>
+							<apply_if additional="layer=2" order="120"/>
+							<apply_if additional="layer=3" order="148"/>
+							<apply_if layer="-1" order="45"/>
+							<apply_if additional="layer=-2" order="21"/>
+						</case>
+						<case tag="highway" value="busway" order="67">
+							<apply_if layer="1" order="90"/>
+							<apply_if additional="layer=2" order="120"/>
+							<apply_if additional="layer=3" order="148"/>
+							<apply_if layer="-1" order="45"/>
+							<apply_if additional="layer=-2" order="21"/>
+						</case>
+						<case tag="highway" value="bus_guideway" order="68">
+							<apply_if layer="1" order="91"/>
+							<apply_if additional="layer=2" order="121"/>
+							<apply_if additional="layer=3" order="149"/>
+							<apply_if layer="-1" order="46"/>
+							<apply_if additional="layer=-2" order="22"/>
+							<apply_if hideOverground="true" minzoom="15">
+								<apply_if layer="0" order="-1"/>
+								<apply_if layer="1" order="-1"/>
+								<apply_if layer="2" order="-1"/>
+								<apply_if layer="3" order="-1"/>
+							</apply_if>
+						</case>
+						<case tag="highway" value="living_street" order="77">
+							<apply_if layer="1" order="100"/>
+							<apply_if additional="layer=2" order="130"/>
+							<apply_if additional="layer=3" order="158"/>
+							<apply_if layer="-1" order="55"/>
+							<apply_if additional="layer=-2" order="34"/>
+						</case>
+						<apply_if baseAppMode="pedestrian" layer="-1" order="-1"/>
+						<apply_if baseAppMode="bicycle" layer="-1" order="-1"/>
+					</switch>
 					<case tag="highway" value="escape" order="89">
 						<apply_if baseAppMode="car" order="168"/>
 					</case>
@@ -3667,8 +3686,8 @@
 						<apply_if showProposed="false" order="-1"/>
 					</case>
 
-					<case tag="ford" value="yes" order="74"/>
-					<case tag="ford" value="stepping_stones" order="74"/>
+					<case tag="ford" value="yes" order="85"/>
+					<case tag="ford" value="stepping_stones" order="85"/>
 
 					<case tag="highway" value="track" order="64">
 						<apply_if baseAppMode="pedestrian" order="85"/>
@@ -3842,7 +3861,7 @@
 			</switch>
 			<apply_if hideUnderground="true">
 				<apply_if layer="-1" order="-1">
-					<switch baseAppMode="car">
+					<switch baseAppMode="car"> <!-- Show tunnels in car mode even if hideUnderground="true" -->
 						<case tag="highway" value="motorway" order="62"/>
 						<case tag="highway" value="motorway_link" order="49"/>
 						<case tag="highway" value="trunk" order="61"/>
@@ -3867,10 +3886,6 @@
 		</switch>
 	</order>
 
-	<poiGroups>
-		<poiGroup name="personal_transport" iconGroupOrder="1000" visibility="true" minZoom="16"/>
-		<poiGroup name="public_transport" iconGroupOrder="1100" visibility="true" minZoom="16"/>
-	</poiGroups>
 
 	<!-- PRIORITY Input to filter : tag, value, zoom [minzoom, maxzoom], textLength, ref, textOrder (default=100) -->
 	<text>
@@ -5025,7 +5040,7 @@
 					<case minzoom="$wadiStreamTextMinZoom" tag="waterway" value="wadi" textOnPath="true" textOrder="213" nameTag=""/>
 					<case minzoom="11" tag="waterway" value="river" textOnPath="true" textMinDistance="80" textOrder="184" nameTag=""/>
 					<case minzoom="13" tag="waterway" value="canal" textOnPath="true" textMinDistance="80" textOrder="185" nameTag=""/>
-					<case hidePOILabels="false" minzoom="17" tag="waterway" value="dock" textDy="7" textOrder="209" nameTag=""/>
+					<case hidePOILabels="false" minzoom="17" tag="waterway" value="dock" textDy="7" textOrder="209" nameTag="" association="$poi_transport_other"/>
 					<case minzoom="15" tag="waterway" value="ditch" textOnPath="true" textOrder="210" nameTag=""/>
 					<case minzoom="15" tag="waterway" value="drain" textOnPath="true" textOrder="211" nameTag=""/>
 					<case minzoom="15" tag="waterway" value="lock_gate" textDy="7" textWrapWidth="30" textOrder="212" nameTag=""/>
@@ -5066,7 +5081,7 @@
 					<apply_if nightMode="true" shield="blue_round_night_shield"/>
 				</switch>
 				<switch minzoom="17" textColor="#2579D0" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$defaultColor" textSize="12" textItalic="true">
-					<case tag="ford" value="yes" nameTag="osmand_ford_stub" textColor="#00ff0000" textHaloColor="#01000000" textSize="11" textShield="ford_shield" icon="ford"/>
+					<case tag="ford" value="yes" nameTag="osmand_ford_stub" textColor="#00ff0000" textHaloColor="#01000000" textSize="11" textShield="ford_shield" icon="ford" textMinDistance="1"/>
 					<case tag="ford" value="yes" textDy="7" nameTag="" nameTag2="depth" textOrder="208"/>
 					<case tag="ford" value="yes" textDy="7" nameTag="depth" textOrder="208"/>
 					<case tag="ford" value="stepping_stones" textDy="7" textOrder="208"/>
@@ -5111,7 +5126,7 @@
 						<case hidePOILabels="false" minzoom="15" tag="power" value="generator" nameTag="">
 							<apply_if additional="generator:source=wind" nameTag2="height"/>
 						</case>
-						<case minzoom="16" tag="highway" value="services"/>
+						<case minzoom="16" tag="highway" value="services" association="$poi_transport_car"/>
 						<apply textColor="$landuseManmadeTextColor"/>
 					</switch>
 					<switch nameTag="">
@@ -5129,7 +5144,7 @@
 						<case minzoom="15" tag="man_made" value="wastewater_plant"/>
 						<case minzoom="18" tag="highway" value="toll_gantry"/>
 						<case legend="true" minzoom="18" tag="highway" value="traffic_mirror"/>
-						<case hidePOILabels="false" minzoom="19" tag="highway" value="traffic_mirror"/>
+						<case hidePOILabels="false" minzoom="19" tag="highway" value="traffic_mirror" association="$poi_transport_car"/>
 						<case minzoom="15" tag="landuse" value="greenfield" textHaloColor="$brownfieldTextHaloColor"/>
 						<case minzoom="15" tag="landuse" value="brownfield" textHaloColor="$brownfieldTextHaloColor"/>
 						<apply textColor="$landuseManmadeFadedTextColor"/>
@@ -5282,35 +5297,37 @@
 			<!-- Traffic, transportation and orientation -->
 			<switch textSize="12" nameTag="" textColor="#0066ff" textHaloRadius="$textHaloRadius" textHaloColor="$defaultTextHaloColorDay" textWrapWidth="25" textOrder="150">
 				<switch hidePOILabels="false">
-					<case minzoom="17" tag="amenity" value="fuel" nameTag="" textWrapWidth="20"/>
-					<case minzoom="17" tag="amenity" value="fuel" nameTag="brand" textWrapWidth="20"/>
-					<case minzoom="17" tag="amenity" value="fuel" nameTag="operator" textWrapWidth="20"/>
-					<case minzoom="17" tag="waterway" value="fuel" nameTag="" textWrapWidth="20"/>
-					<case minzoom="17" tag="waterway" value="fuel" nameTag="brand" textWrapWidth="20"/>
-					<case minzoom="17" tag="waterway" value="fuel" nameTag="operator" textWrapWidth="20"/>
-					<case minzoom="17" tag="aeroway" value="fuel" nameTag="" textWrapWidth="20"/>
-					<case minzoom="17" tag="aeroway" value="fuel" nameTag="brand" textWrapWidth="20"/>
-					<case minzoom="17" tag="aeroway" value="fuel" nameTag="operator" textWrapWidth="20"/>
-					<case minzoom="17" tag="amenity" value="charging_station" textWrapWidth="20"/>
-					<case minzoom="17" tag="amenity" value="parking" nameTag="" textWrapWidth="20" textOrder="151">
+					<switch association="$poi_transport_filling_charging">
+						<case minzoom="17" tag="amenity" value="fuel" nameTag="" textWrapWidth="20"/>
+						<case minzoom="17" tag="amenity" value="fuel" nameTag="brand" textWrapWidth="20"/>
+						<case minzoom="17" tag="amenity" value="fuel" nameTag="operator" textWrapWidth="20"/>
+						<case minzoom="17" tag="waterway" value="fuel" nameTag="" textWrapWidth="20"/>
+						<case minzoom="17" tag="waterway" value="fuel" nameTag="brand" textWrapWidth="20"/>
+						<case minzoom="17" tag="waterway" value="fuel" nameTag="operator" textWrapWidth="20"/>
+						<case minzoom="17" tag="aeroway" value="fuel" nameTag="" textWrapWidth="20"/>
+						<case minzoom="17" tag="aeroway" value="fuel" nameTag="brand" textWrapWidth="20"/>
+						<case minzoom="17" tag="aeroway" value="fuel" nameTag="operator" textWrapWidth="20"/>
+						<case minzoom="17" tag="amenity" value="charging_station" textWrapWidth="20"/>
+					</switch>
+					<case minzoom="17" tag="amenity" value="parking" nameTag="" textWrapWidth="20" textOrder="151" association="$poi_transport_car">
 						<apply_if additional="access=customers" textOrder="181"/>
 						<apply_if additional="access=private" textOrder="182"/>
 					</case>
-					<case minzoom="18" tag="amenity" value="parking_entrance" textWrapWidth="20" iconOrder="152"/>
-					<case minzoom="18" tag="amenity" value="bicycle_parking" nameTag="" textWrapWidth="20" textOrder="152"/>
-					<case minzoom="17" tag="amenity" value="motorcycle_parking" nameTag="" textWrapWidth="20" textOrder="152"/>
-					<case minzoom="17" tag="amenity" value="taxi" textWrapWidth="20"/>
-					<case minzoom="15" tag="man_made" value="lighthouse" textWrapWidth="20" textOrder="104"/>
-					<case minzoom="17" tag="amenity" value="car_pooling" nameTag="" textWrapWidth="20"/>
-					<case minzoom="17" tag="amenity" value="car_rental" nameTag="" textWrapWidth="20"/>
-					<case minzoom="17" tag="amenity" value="car_sharing" nameTag="" textWrapWidth="20"/>
-					<case minzoom="18" tag="amenity" value="bicycle_rental" textWrapWidth="20"/>
-					<case minzoom="17" tag="amenity" value="boat_sharing" textWrapWidth="20"/>
-					<case minzoom="17" tag="amenity" value="boat_rental" textWrapWidth="20"/>
-					<case minzoom="18" tag="amenity" value="boat_storage" textWrapWidth="20"/>
-					<case minzoom="16" tag="aerialway" value="station" nameTag="" textOrder="101"/>
-					<case minzoom="16" tag="amenity" value="ferry_terminal" textOrder="105"/>
-					<case minzoom="16" tag="highway" value="rest_area" nameTag="" textOrder="101"/>
+					<case minzoom="18" tag="amenity" value="parking_entrance" textWrapWidth="20" iconOrder="152" association="$poi_transport_car"/>
+					<case minzoom="18" tag="amenity" value="bicycle_parking" nameTag="" textWrapWidth="20" textOrder="152" association="$poi_transport_bicycle"/>
+					<case minzoom="17" tag="amenity" value="motorcycle_parking" nameTag="" textWrapWidth="20" textOrder="152" association="$poi_transport_other"/>
+					<case minzoom="17" tag="amenity" value="taxi" textWrapWidth="20" association="$poi_transport_public"/>
+					<case minzoom="15" tag="man_made" value="lighthouse" textWrapWidth="20" textOrder="104" association="$poi_transport_other"/>
+					<case minzoom="17" tag="amenity" value="car_pooling" nameTag="" textWrapWidth="20" association="$poi_transport_car"/>
+					<case minzoom="17" tag="amenity" value="car_rental" nameTag="" textWrapWidth="20" association="$poi_transport_car"/>
+					<case minzoom="17" tag="amenity" value="car_sharing" nameTag="" textWrapWidth="20" association="$poi_transport_car"/>
+					<case minzoom="18" tag="amenity" value="bicycle_rental" textWrapWidth="20" association="$poi_transport_bicycle"/>
+					<case minzoom="17" tag="amenity" value="boat_sharing" textWrapWidth="20" association="$poi_transport_other"/>
+					<case minzoom="17" tag="amenity" value="boat_rental" textWrapWidth="20" association="$poi_transport_other"/>
+					<case minzoom="18" tag="amenity" value="boat_storage" textWrapWidth="20" association="$poi_transport_other"/>
+					<case minzoom="16" tag="aerialway" value="station" nameTag="" textOrder="101" association="$poi_transport_other"/>
+					<case minzoom="16" tag="amenity" value="ferry_terminal" textOrder="105" association="$poi_transport_other"/>
+					<case minzoom="16" tag="highway" value="rest_area" nameTag="" textOrder="101" association="$poi_transport_car"/>
 					<case minzoom="18" tag="amenity" value="weighbridge"/>
 				</switch>
 				<case minzoom="14" tag="mountain_pass" value="yes" nameTag="" nameTag2="rtsa_scale"/>
@@ -5344,7 +5361,7 @@
 
 
 			<!-- Railroad, public transport -->
-			<switch hidePOILabels="false" textColor="$railwayPOITextColorDay" textWrapWidth="25" textHaloRadius="$textHaloRadius" textBold="true">
+			<switch hidePOILabels="false" textColor="$railwayPOITextColorDay" textWrapWidth="25" textHaloRadius="$textHaloRadius" textBold="true" association="$poi_transport_public">
 				<case minzoom="17" tag="public_transport" value="platform" additional="disused=yes" textColor="#999999" textSize="12" textOnPath="true" nameTag="">
 					<apply_if nightMode="true" textColor="#dddddd" textHaloColor="$publicTransportModeStopTextHaloColorNight"/>
 				</case>
@@ -5496,7 +5513,7 @@
 					<case additional="color_black" textHaloColor="#88000000"/>
 				</apply_if>
 			</switch>
-			<switch hidePOILabels="false" minzoom="14">
+			<switch hidePOILabels="false" minzoom="14" association="$poi_transport_public">
 				<case tag="railway" value="station" nameTag="" textOrder="70" textColor="$railwayPOITextColorDay"/>
 				<case minzoom="16" tag="railway" value="yard" nameTag="" textOrder="75" textColor="$railwayPOITextColorDay"/>
 				<case minzoom="16" tag="abandoned:railway" value="station" textOrder="227" textColor="#8a8a8a">
@@ -5515,7 +5532,7 @@
 				</apply_if>
 				<apply_if minzoom="15" engine_v1="true" textDy="4"/>
 			</switch>
-			<switch hidePOILabels="false">
+			<switch hidePOILabels="false" association="$poi_transport_public">
 				<case minzoom="16" tag="railway" value="subway_entrance" nameTag="" nameTag2="ref" textSize="12" textColor="$subwayEntranceTextColor" textHaloColor="#ffffff" textHaloRadius="$textHaloRadius" textBold="true" textWrapWidth="25" textOrder="75"/>
 				<apply_if minzoom="17" textSize="13"/>
 				<apply_if engine_v1="true" textDy="2"/>
@@ -5532,7 +5549,7 @@
 				</switch>
 				<case minzoom="14" tag="abandoned:aeroway" value="runway" nameTag2="ref" textColor="#333333" textOnPath="true" textMinDistance="50" textOrder="229"/>
 				<case minzoom="15" tag="aeroway" value="taxiway" nameTag="ref" textColor="#333333" textOnPath="true" textMinDistance="50" textOrder="231"/>
-				<switch hidePOILabels="false" minzoom="17" tag="aeroway" value="gate" textColor="#333366" textWrapWidth="10" textOrder="151">
+				<switch hidePOILabels="false" minzoom="17" tag="aeroway" value="gate" textColor="#333366" textWrapWidth="10" textOrder="151" association="$poi_transport_other">
 					<case nameTag="ref"/>
 					<case nameTag="" nameTag2="ref"/>
 					<apply_if engine_v1="true" textDy="7"/>
@@ -5540,7 +5557,7 @@
 				<apply textSize="12" textHaloRadius="$textHaloRadius" textHaloColor="#99dddddd"/>
 				<apply_if nightMode="true" textColor="#c7e4ff" textHaloColor="#99444444"/>
 			</switch>
-			<switch hidePOILabels="false" minzoom="11">
+			<switch hidePOILabels="false" minzoom="11" association="$poi_transport_other">
 				<case tag="aeroway" value="aerodrome" nameTag="" textOrder="65">
 				</case>
 				<case minzoom="16" tag="abandoned:aeroway" value="aerodrome" nameTag="" textOrder="228"/>
@@ -5557,7 +5574,7 @@
 					</switch>
 				</apply>
 			</switch>
-			<case hidePOILabels="false" minzoom="13" tag="aeroway" value="spaceport" nameTag="" textOrder="65">
+			<case hidePOILabels="false" minzoom="13" tag="aeroway" value="spaceport" nameTag="" textOrder="65" association="$poi_transport_other">
 				<apply textColor="#0748a8" textSize="12" textWrapWidth="25" textHaloRadius="$textHaloRadius" textHaloColor="#ddeeeeff" textOrder="45"/>
 				<apply_if nightMode="true" textColor="#c3dbff" textHaloColor="#99222222"/>
 				<apply_if engine_v1="true" textDy="7"/>
@@ -5565,7 +5582,7 @@
 			<switch nameTag="">
 				<case minzoom="15" tag="aeroway" value="terminal" textOrder="66"/>
 				<case minzoom="17" tag="aeroway" value="apron" textOrder="232"/>
-				<case minzoom="17" tag="aeroway" value="helipad" textOrder="149"/>
+				<case minzoom="17" tag="aeroway" value="helipad" textOrder="149" association="$poi_transport_other"/>
 				<apply textSize="12" textColor="#333333" textWrapWidth="25" textHaloRadius="$textHaloRadius" textHaloColor="$defaultTextHaloColorDay"/>
 				<apply_if engine_v1="true" textDy="9"/>
 				<apply_if nightMode="true" textColor="#c7e4ff" textHaloColor="#881f4568"/>
@@ -5761,10 +5778,10 @@
 				<case minzoom="18" tag="amenity" value="lounger" textOrder="172"/>
 				<case minzoom="17" tag="amenity" value="fountain"/>
 				<case minzoom="18" tag="amenity" value="telephone"/>
-				<case minzoom="17" tag="amenity" value="car_wash"/>
-				<case minzoom="18" tag="amenity" value="vehicle_ramp"/>
-				<case minzoom="17" tag="amenity" value="vehicle_inspection"/>
-				<case minzoom="18" tag="amenity" value="compressed_air"/>
+				<case minzoom="17" tag="amenity" value="car_wash" association="$poi_transport_car"/>
+				<case minzoom="18" tag="amenity" value="vehicle_ramp" association="$poi_transport_car"/>
+				<case minzoom="17" tag="amenity" value="vehicle_inspection" association="$poi_transport_car"/>
+				<case minzoom="18" tag="amenity" value="compressed_air" association="$poi_transport_car"/>
 				<case minzoom="18" tag="amenity" value="smoking_area" textSize="11"/>
 				<case minzoom="18" tag="amenity" value="toilets"/>
 				<case minzoom="18" tag="amenity" value="shower"/>
@@ -5786,7 +5803,7 @@
 				<case minzoom="17" tag="amenity" value="watering_place"/>
 				<case minzoom="17" tag="amenity" value="animal_shelter"/>
 				<case minzoom="17" tag="landuse" value="animal_keeping"/>
-				<case minzoom="17" tag="amenity" value="bicycle_repair_station"/>
+				<case minzoom="17" tag="amenity" value="bicycle_repair_station" association="$poi_transport_bicycle"/>
 				<case minzoom="18" tag="man_made" value="water_well" textOrder="171"/>
 				<case minzoom="17" tag="amenity" value="water_point" textOrder="171"/>
 				<case minzoom="17" tag="man_made" value="dovecote"/>
@@ -6050,7 +6067,7 @@
 				</switch>
 
 				<!-- Shops -->
-				<switch hidePOILabels="false" textSize="12" nameTag="" textColor="$shopsTextColorDay" textHaloColor="$shopsTextHaloColorDay" textHaloRadius="$textHaloRadius" textWrapWidth="15" textOrder="160">
+				<switch hidePOILabels="false" textSize="12" nameTag="" textColor="$shopsTextColorDay" textHaloColor="$shopsTextHaloColorDay" textHaloRadius="$textHaloRadius" textWrapWidth="15" textOrder="160" association="$poi_shops">
 					<case minzoom="17" tag="shop" value="agrarian"/>
 					<case minzoom="17" tag="shop" value="alcohol"/>
 					<case minzoom="17" tag="shop" value="antiques"/>
@@ -6072,8 +6089,8 @@
 					<case minzoom="17" tag="shop" value="candles"/>
 					<case minzoom="17" tag="shop" value="cannabis"/>
 					<case minzoom="17" tag="shop" value="car"/>
-					<case minzoom="17" tag="shop" value="car_repair"/>
-					<case minzoom="17" tag="shop" value="car_parts"/>
+					<case minzoom="17" tag="shop" value="car_repair" association="$poi_transport_car"/>
+					<case minzoom="17" tag="shop" value="car_parts" association="$poi_transport_car"/>
 					<case minzoom="17" tag="shop" value="carpet"/>
 					<case minzoom="17" tag="shop" value="clothes" textOrder="159"/>
 					<case minzoom="17" tag="shop" value="charity"/>
@@ -6513,7 +6530,7 @@
 							<apply_if nightMode="true" shield="blue_square_night_shield"/>
 						</apply>
 					</switch>
-					<switch tag="amenity" value="parking_entrance" iconVisibleSize="8">
+					<switch tag="amenity" value="parking_entrance" iconVisibleSize="8" association="$poi_transport_car">
 						<case minzoom="16" maxzoom="16" icon="barrier_small_black_3">
 							<apply_if nightMode="true" icon="barrier_small_white_3"/>
 						</case>
@@ -6522,28 +6539,28 @@
 						</case>
 					</switch>
 					<switch shield="blue_round_shield">
-						<case minzoom="14" tag="highway" value="services" icon="highway_services" iconOrder="60"/>
-						<case minzoom="15" tag="highway" value="rest_area" icon="rest_area"/>
-						<case minzoom="14" tag="amenity" value="fuel" icon="amenity_fuel"/>
-						<case minzoom="15" tag="amenity" value="charging_station" icon="charging_station"/>
-						<case minzoom="16" tag="amenity" value="car_pooling" icon="car_pooling"/>
-						<case minzoom="16" tag="amenity" value="car_rental" icon="amenity_car_rental"/>
-						<case minzoom="16" tag="amenity" value="car_sharing" icon="amenity_car_sharing"/>
-						<case minzoom="15" tag="highway" value="speed_camera" icon="highway_speed_camera"/>
+						<case minzoom="14" tag="highway" value="services" icon="highway_services" iconOrder="60" association="$poi_transport_car"/>
+						<case minzoom="15" tag="highway" value="rest_area" icon="rest_area" association="$poi_transport_car"/>
+						<case minzoom="14" tag="amenity" value="fuel" icon="amenity_fuel" association="$poi_transport_filling_charging"/>
+						<case minzoom="15" tag="amenity" value="charging_station" icon="charging_station" association="$poi_transport_filling_charging"/>
+						<case minzoom="16" tag="amenity" value="car_pooling" icon="car_pooling" association="$poi_transport_car"/>
+						<case minzoom="16" tag="amenity" value="car_rental" icon="amenity_car_rental" association="$poi_transport_car"/>
+						<case minzoom="16" tag="amenity" value="car_sharing" icon="amenity_car_sharing" association="$poi_transport_car"/>
+						<case minzoom="15" tag="highway" value="speed_camera" icon="highway_speed_camera" association="$poi_transport_car"/>
 						<apply_if nightMode="true" shield="blue_round_night_shield"/>
 					</switch>
 					<switch shield="gray_round_shield">
 						<case minzoom="15" tag="barrier" value="border_control" icon="barrier_border_control" iconOrder="140"/>
-						<case minzoom="16" tag="shop" value="car_repair" icon="shop_car_repair" poiGroup="personal_transport">
+						<case minzoom="16" tag="shop" value="car_repair" icon="shop_car_repair" association="$poi_shops"> <!--,$poi_transport_car-->
 							<case additional="service=tyres" icon="service_tyres"/>
 						</case>
-						<case minzoom="16" tag="shop" value="car_parts" icon="shop_car_parts"/>
-						<case minzoom="16" tag="shop" value="tyres" icon="tyres"/>
-						<case minzoom="16" tag="amenity" value="car_wash" icon="amenity_car_wash" poiGroup="personal_transport">
+						<case minzoom="16" tag="shop" value="car_parts" icon="shop_car_parts" association="$poi_shops"/> <!--,$poi_transport_car-->
+						<case minzoom="16" tag="shop" value="tyres" icon="tyres" association="$poi_shops"/>
+						<case minzoom="16" tag="amenity" value="car_wash" icon="amenity_car_wash" association="$poi_transport_car">
 							<case additional="self_service=yes" icon="car_wash_self_service"/>
 						</case>
-						<case minzoom="16" tag="amenity" value="vehicle_ramp" icon="amenity_vehicle_ramp"/>
-						<case minzoom="16" tag="amenity" value="vehicle_inspection" icon="vehicle_inspection"/>
+						<case minzoom="16" tag="amenity" value="vehicle_ramp" icon="amenity_vehicle_ramp" association="$poi_transport_car"/>
+						<case minzoom="16" tag="amenity" value="vehicle_inspection" icon="vehicle_inspection" association="$poi_transport_car"/>
 						<apply_if nightMode="true" shield="gray_round_night_shield"/>
 					</switch>
 				</switch>
@@ -6616,7 +6633,7 @@
 							</case>
 						</apply_if>
 					</case>
-					<switch shield="blue_round_shield">
+					<switch shield="blue_round_shield" association="$poi_transport_bicycle">
 						<case minzoom="16" tag="amenity" value="bicycle_rental" icon="amenity_bicycle_rental"/>
 						<case minzoom="16" tag="amenity" value="bicycle_parking" icon="bicycle_parking" iconVisibleSize="32">
 							<case additional="bicycle_parking=stands" icon="bicycle_parking_stands"/>
@@ -6645,7 +6662,7 @@
 						<apply icon="tourism_picnic_site" shield="picnic_shield"/>
 						<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 					</switch>
-					<case maxzoom="18" tag="amenity" value="parking" icon="no_icon"/>
+					<case maxzoom="18" tag="amenity" value="parking" icon="no_icon" association="$poi_transport_car"/>
 					<case minzoom="18" tag="emergency" value="phone" icon="emergency_phone" shield="red_round_shield">
 						<apply_if nightMode="true" shield="red_round_night_shield"/>
 					</case>
@@ -6682,7 +6699,7 @@
 
 			<!-- Pedestrian profile priority icons -->
 			<switch baseAppMode="pedestrian" hideIcons="false">
-				<switch minzoom="14" iconVisibleSize="14" iconOrder="69">
+				<switch minzoom="14" iconVisibleSize="14" iconOrder="69" association="$poi_transport_public">
 					<case tag="amenity" value="bus_station"/>
 					<apply_if maxzoom="15" icon="bus_station_small"/>
 					<apply_if minzoom="16" icon="amenity_bus_station" shield="blue_red_round_shield" iconVisibleSize="22">
@@ -6690,7 +6707,7 @@
 					</apply_if>
 				</switch>
 				<switch iconOrder="80">
-					<switch shield="blue_square_shield" iconOrder="82">
+					<switch shield="blue_square_shield" iconOrder="82" association="$poi_transport_public">
 						<case minzoom="17" tag="highway" value="bus_stop" icon="highway_bus_stop" iconVisibleSize="22"/>
 						<case minzoom="17" tag="public_transport" value="platform" additional="bus=yes" icon="highway_bus_stop" iconVisibleSize="22"/>
 						<case minzoom="17" tag="public_transport" value="platform" additional="trolleybus=yes" icon="highway_bus_stop" iconVisibleSize="22"/>
@@ -6704,7 +6721,7 @@
 						<case tag="ford" value="stepping_stones"/>
 						<apply icon="ford" shield="ford_shield"/>
 					</switch>
-					<case subwayMode="false" minzoom="12" maxzoom="14" tag="railway" value="station">
+					<case subwayMode="false" minzoom="12" maxzoom="14" tag="railway" value="station" association="$poi_transport_public">
 						<apply icon="railway_station_small">
 							<apply_if nightMode="true" icon="railway_station_small_night"/>
 						</apply>
@@ -6714,8 +6731,8 @@
 						<apply_if additional="station=subway" icon="railway_station_subway_small"/>
 
 					</case>
-					<case minzoom="12" maxzoom="14" tag="abandoned:railway" value="station" icon="railway_station_small_disused"/>
-					<switch tag="railway" value="halt">
+					<case minzoom="12" maxzoom="14" tag="abandoned:railway" value="station" icon="railway_station_small_disused" association="$poi_transport_public"/>
+					<switch tag="railway" value="halt" association="$poi_transport_public">
 						<case maxzoom="14" icon="halt_small_2" iconVisibleSize="10">
 							<apply_if nightMode="true" icon="halt_small_2_night"/>
 						</case>
@@ -6726,7 +6743,7 @@
 							<apply_if nightMode="true" shield="blue_square_night_small_shield"/>
 						</case>
 					</switch>
-					<case minzoom="15" tag="railway" value="level_crossing" icon="level_crossing_map">
+					<case minzoom="15" tag="railway" value="level_crossing" icon="level_crossing_map" association="$poi_transport_other">
 						<apply_if streetLighting="true">
 							<case additional="lit_additional=yes">
 								<apply_if nightMode="false" streetLightingNight="false" shield="street_lamp_lit_yes_shield"/>
@@ -6738,7 +6755,7 @@
 							</case>
 						</apply_if>
 					</case>
-					<switch minzoom="13" tag="aerialway" value="station">
+					<switch minzoom="13" tag="aerialway" value="station" association="$poi_transport_other">
 						<case maxzoom="14" icon="aerialway_station_small" iconVisibleSize="3">
 							<apply_if nightMode="true" icon="aerialway_station_small_night"/>
 						</case>
@@ -7056,14 +7073,14 @@
 				<case minzoom="16" tag="highway" value="via_ferrata" icon="via_ferrata_map" shield="via_ferrata_shield"/>
 				<case minzoom="16" tag="osmand_rungs_node" value="yes" icon="rungs" shield="rungs_shield"/>
 				<switch shield="blue_round_shield">
-					<case minzoom="18" tag="highway" value="speed_camera" icon="highway_speed_camera" iconOrder="70"/>
+					<case minzoom="18" tag="highway" value="speed_camera" icon="highway_speed_camera" iconOrder="70" association="$poi_transport_car"/>
 					<case minzoom="15" tag="highway" value="services" icon="highway_services" iconOrder="60"/>
-					<case minzoom="16" tag="amenity" value="fuel" icon="amenity_fuel" iconVisibleSize="22" iconOrder="150"/>
-					<case minzoom="16" tag="waterway" value="fuel" icon="waterway_fuel"/>
-					<case minzoom="16" tag="aeroway" value="fuel" icon="aeroway_fuel"/>
-					<case minzoom="16" tag="amenity" value="charging_station" icon="charging_station" iconOrder="150"/>
-					<case minzoom="16" tag="amenity" value="taxi" icon="amenity_taxi" iconOrder="81"/>
-					<case minzoom="16" tag="amenity" value="parking" icon="amenity_parking" iconVisibleSize="38" iconOrder="151">
+					<case minzoom="16" tag="amenity" value="fuel" icon="amenity_fuel" iconVisibleSize="22" iconOrder="150" association="$poi_transport_filling_charging"/>
+					<case minzoom="16" tag="waterway" value="fuel" icon="waterway_fuel" association="$poi_transport_filling_charging"/>
+					<case minzoom="16" tag="aeroway" value="fuel" icon="aeroway_fuel" association="$poi_transport_filling_charging"/>
+					<case minzoom="16" tag="amenity" value="charging_station" icon="charging_station" iconOrder="150" association="$poi_transport_filling_charging"/>
+					<case minzoom="16" tag="amenity" value="taxi" icon="amenity_taxi" iconOrder="81" association="$poi_transport_public"/>
+					<case minzoom="16" tag="amenity" value="parking" icon="amenity_parking" iconVisibleSize="38" iconOrder="151" association="$poi_transport_car">
 						<case additional="parking=multi-storey" icon="parking_multi_storey">
 							<case additional="fee=yes" icon="amenity_parking_multi_storey_paid"/>
 						</case>
@@ -7077,7 +7094,7 @@
 						<apply_if minzoom="18" additional="access=private" icon="amenity_parking_private"/>
 						<apply_if minzoom="18" additional="access=no" icon="amenity_parking_private"/>
 					</case>
-					<case minzoom="16" tag="amenity" value="bicycle_parking" icon="bicycle_parking" iconVisibleSize="32" iconOrder="152">
+					<case minzoom="16" tag="amenity" value="bicycle_parking" icon="bicycle_parking" iconVisibleSize="32" iconOrder="152" association="$poi_transport_bicycle">
 						<case additional="bicycle_parking=stands" icon="bicycle_parking_stands"/>
 						<case additional="bicycle_parking=wall_loops" icon="bicycle_parking_wall_loops"/>
 						<case additional="bicycle_parking=rack" icon="bicycle_parking_rack"/>
@@ -7090,10 +7107,10 @@
 						<case additional="bicycle_parking=tree" icon="bicycle_parking_tree"/>
 						<case additional="bicycle_parking=streetpod" icon="bicycle_parking_streetpod"/>
 					</case>
-					<case minzoom="16" tag="amenity" value="motorcycle_parking" icon="amenity_motorcycle_parking" iconVisibleSize="32" iconOrder="152">
+					<case minzoom="16" tag="amenity" value="motorcycle_parking" icon="amenity_motorcycle_parking" iconVisibleSize="32" iconOrder="152" association="$poi_transport_other">
 						<case additional="fee=yes" icon="amenity_motorcycle_parking_paid"/>
 					</case>
-					<case minzoom="20" tag="amenity" value="parking_space" additional="disabled=yes" icon="amenity_parking_disabled" iconOrder="155"/>
+					<case minzoom="20" tag="amenity" value="parking_space" additional="disabled=yes" icon="amenity_parking_disabled" iconOrder="155" association="$poi_transport_car"/>
 					<apply_if nightMode="true" shield="blue_round_night_shield" iconVisibleSize="50"/>
 				</switch>
 
@@ -7110,16 +7127,16 @@
 						<apply_if nightMode="true" shield="blue_square_night_shield"/>
 					</apply>
 				</switch>
-				<case minzoom="18" tag="amenity" value="vehicle_inspection" icon="vehicle_inspection" shield="gray_round_shield">
+				<case minzoom="18" tag="amenity" value="vehicle_inspection" icon="vehicle_inspection" shield="gray_round_shield" association="$poi_transport_car">
 					<apply_if nightMode="true" shield="gray_round_night_shield"/>
 				</case>
 				<switch shield="blue_round_shield">
-					<case minzoom="16" tag="amenity" value="car_rental" icon="amenity_car_rental"/>
-					<case minzoom="16" tag="amenity" value="car_pooling" icon="car_pooling"/>
-					<case minzoom="16" tag="amenity" value="car_sharing" icon="amenity_car_sharing"/>
+					<case minzoom="16" tag="amenity" value="car_rental" icon="amenity_car_rental" association="$poi_transport_car"/>
+					<case minzoom="16" tag="amenity" value="car_pooling" icon="car_pooling" association="$poi_transport_car"/>
+					<case minzoom="16" tag="amenity" value="car_sharing" icon="amenity_car_sharing" association="$poi_transport_car"/>
 					<case minzoom="18" tag="amenity" value="weighbridge" icon="weighbridge"/>
 					<switch>
-						<case minzoom="17" tag="amenity" value="bicycle_rental" icon="amenity_bicycle_rental"/>
+						<case minzoom="17" tag="amenity" value="bicycle_rental" icon="amenity_bicycle_rental" association="$poi_transport_bicycle"/>
 						<case minzoom="15" tag="leisure" value="marina" icon="leisure_marina">
 							<apply>
 								<switch>
@@ -7130,14 +7147,14 @@
 							</apply>
 							<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 						</case>
-						<case minzoom="16" tag="amenity" value="boat_sharing" icon="amenity_boat_sharing"/>
-						<case minzoom="17" tag="amenity" value="boat_storage" icon="boat_storage"/>
-						<case minzoom="16" tag="amenity" value="boat_rental" icon="boat_rental"/>
-						<case minzoom="15" tag="leisure" value="slipway" icon="leisure_slipway">
+						<case minzoom="16" tag="amenity" value="boat_sharing" icon="amenity_boat_sharing" association="$poi_transport_other"/>
+						<case minzoom="17" tag="amenity" value="boat_storage" icon="boat_storage" association="$poi_transport_other"/>
+						<case minzoom="16" tag="amenity" value="boat_rental" icon="boat_rental" association="$poi_transport_other"/>
+						<case minzoom="15" tag="leisure" value="slipway" icon="leisure_slipway" association="$poi_transport_other">
 							<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 						</case>
-						<case minzoom="17" tag="waterway" value="dock" icon="waterway_dock"/>
-						<case minzoom="15" tag="man_made" value="lighthouse" icon="man_made_lighthouse"/>
+						<case minzoom="17" tag="waterway" value="dock" icon="waterway_dock" association="$poi_transport_other"/>
+						<case minzoom="15" tag="man_made" value="lighthouse" icon="man_made_lighthouse" association="$poi_transport_other"/>
 						<apply_if baseAppMode="car" moreDetailed="false" maxzoom="17" icon=""/>
 					</switch>
 					<apply_if nightMode="true" shield="blue_round_night_shield"/>
@@ -7153,13 +7170,13 @@
 					<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 				</case>
 
-				<case minzoom="14" tag="amenity" value="bus_station" iconOrder="68">
+				<case minzoom="14" tag="amenity" value="bus_station" iconOrder="68" association="$poi_transport_public">
 					<apply_if maxzoom="14" icon="bus_station_small"/>
 					<apply_if minzoom="15" icon="amenity_bus_station" shield="blue_red_round_shield">
 						<apply_if nightMode="true" shield="blue_red_round_night_shield"/>
 					</apply_if>
 				</case>
-				<case minzoom="15" tag="public_transport" value="station" icon="amenity_bus_station" shield="blue_red_round_shield" iconVisibleSize="24" iconOrder="69">
+				<case minzoom="15" tag="public_transport" value="station" icon="amenity_bus_station" shield="blue_red_round_shield" iconVisibleSize="24" iconOrder="69" association="$poi_transport_public">
 					<apply_if nightMode="true" shield="blue_red_round_night_shield"/>
 				</case>
 
@@ -7180,7 +7197,7 @@
 					</case>
 				</switch>-->
 
-				<case minzoom="13" tag="amenity" value="ferry_terminal">
+				<case minzoom="13" tag="amenity" value="ferry_terminal" association="$poi_transport_other">
 					<apply_if maxzoom="14" icon="ferry_terminal_small" iconVisibleSize="10"/>
 						<apply_if nightMode="true" icon="ferry_terminal_small_night"/>
 					<apply_if minzoom="15" icon="amenity_ferry_terminal" shield="blue_round_shield" iconOrder="82">
@@ -7188,7 +7205,7 @@
 					</apply_if>
 				</case>
 
-				<case minzoom="13" tag="abandoned:railway" value="station">
+				<case minzoom="13" tag="abandoned:railway" value="station" association="$poi_transport_public">
 					<case maxzoom="15" icon="railway_station_small_disused">
 						<apply_if nightMode="true" icon="railway_station_small_disused_night"/>
 					</case>
@@ -7197,7 +7214,7 @@
 					</case>
 				</case>
 
-				<case minzoom="15" tag="railway" value="subway_entrance" icon="subway_entrance" iconVisibleSize="23" intersectionSizeFactor="0.7" iconOrder="75">
+				<case minzoom="15" tag="railway" value="subway_entrance" icon="subway_entrance" iconVisibleSize="23" intersectionSizeFactor="0.7" iconOrder="75" association="$poi_transport_public">
 					<case additional="subway_region=samara" icon="subway_samara"/>
 					<case additional="subway_region=moscow" icon="subway_moscow"/>
 					<case additional="subway_region=spb" icon="subway_spb"/>
@@ -7286,7 +7303,7 @@
 					</case>
 				</case>
 
-				<switch minzoom="10" tag="aeroway" value="aerodrome">
+				<switch minzoom="10" tag="aeroway" value="aerodrome" association="$poi_transport_other">
 					<case additional="abandoned=yes">
 						<case minzoom="14" icon="aeroway_aerodrome_abandoned" shield="aerodrome_shield" iconOrder="100"/>
 						<apply_if nightMode="true" shield=""/>
@@ -7302,18 +7319,18 @@
 						<apply_if nightMode="true" shield=""/>
 					</case>
 				</switch>
-				<case minzoom="14" tag="abandoned:aeroway" value="aerodrome">
+				<case minzoom="14" tag="abandoned:aeroway" value="aerodrome" association="$poi_transport_other">
 					<apply icon="aeroway_aerodrome_abandoned" shield="aerodrome_shield" iconOrder="100">
 						<apply_if nightMode="true" shield=""/>
 					</apply>
 				</case>
-				<case minzoom="12" tag="aeroway" value="spaceport" icon="spaceport" shield="blue_round_shield">
+				<case minzoom="12" tag="aeroway" value="spaceport" icon="spaceport" shield="blue_round_shield" association="$poi_transport_other">
 					<apply_if nightMode="true" shield="blue_round_night_shield"/>
 				</case>
-				<case minzoom="16" tag="aeroway" value="helipad" icon="aeroway_helipad" shield="blue_round_small_shield">
+				<case minzoom="16" tag="aeroway" value="helipad" icon="aeroway_helipad" shield="blue_round_small_shield" association="$poi_transport_other">
 					<apply_if nightMode="true" shield="blue_round_night_small_shield"/>
 				</case>
-				<case minzoom="17" tag="aeroway" value="gate" icon="aeroway_gate" iconVisibleSize="13" shield="aeroway_gate_shield">
+				<case minzoom="17" tag="aeroway" value="gate" icon="aeroway_gate" iconVisibleSize="13" shield="aeroway_gate_shield" association="$poi_transport_other">
 					<apply_if nightMode="true" shield=""/>
 				</case>
 
@@ -7619,8 +7636,8 @@
 						<case minzoom="17" tag="amenity" value="car_wash" icon="amenity_car_wash">
 							<case additional="self_service=yes" icon="car_wash_self_service"/>
 						</case>
-						<case minzoom="18" tag="amenity" value="compressed_air" icon="compressed_air"/>
-						<case minzoom="17" tag="amenity" value="vehicle_ramp" icon="amenity_vehicle_ramp"/>
+						<case minzoom="18" tag="amenity" value="compressed_air" icon="compressed_air" association="$poi_transport_car"/>
+						<case minzoom="17" tag="amenity" value="vehicle_ramp" icon="amenity_vehicle_ramp" association="$poi_transport_car"/>
 						<case minzoom="18" tag="aeroway" value="windsock" icon="windsock"/>
 						<case minzoom="17" tag="amenity" value="studio" icon="studio" iconOrder="156"/>
 						<case minzoom="17" tag="amenity" value="brothel" icon="brothel" iconOrder="156"/>
@@ -7630,7 +7647,7 @@
 						<case minzoom="17" tag="amenity" value="watering_place" icon="watering_place"/>
 						<case minzoom="17" tag="amenity" value="animal_shelter" icon="animal_shelter"/>
 						<case minzoom="16" tag="landuse" value="animal_keeping" icon="animal_keeping"/>
-						<case minzoom="17" tag="amenity" value="bicycle_repair_station" icon="bicycle_repair_station">
+						<case minzoom="17" tag="amenity" value="bicycle_repair_station" icon="bicycle_repair_station" association="$poi_transport_bicycle">
 							<apply_if baseAppMode="bicycle" iconOrder="60"/>
 						</case>
 						<case minzoom="18" tag="amenity" value="trolley_bay" icon="trolley_bay"/>
@@ -7800,7 +7817,7 @@
 					<case minzoom="17" tag="power" value="substation" icon="power_substation" shield="power_substation_shield"/>
 					<case minzoom="17" tag="power" value="transformer" icon="power_transformer" shield="transformer_shield"/>
 					<case minzoom="17" tag="power" value="terminal" icon="power_terminal" shield="power_terminal_shield"/>
-					<case minzoom="18" tag="highway" value="traffic_mirror" icon="traffic_mirror" shield="traffic_mirror_shield"/>
+					<case minzoom="18" tag="highway" value="traffic_mirror" icon="traffic_mirror" shield="traffic_mirror_shield" association="$poi_transport_car"/>
 					<case minzoom="15" tag="man_made" value="observatory" icon="man_made_observatory" shield="observatory_shield">
 						<apply_if additional="observatory:type=astronomical" icon="astronomical_observatory" shield="astronomical_observatory_shield"/>
 						<apply_if moreDetailed="false" maxzoom="15" icon=""/>
@@ -7923,14 +7940,14 @@
 					</switch>
 
 					<!-- Shops -->
-					<switch minzoom="17" iconOrder="161" iconVisibleSize="24">
+					<switch minzoom="17" iconOrder="161" iconVisibleSize="24" association="$poi_shops">
 						<case tag="amenity" value="vending_machine" additional="vending=excrement_bags" icon="vending_excrement_bags" shield="vending_excrement_bags_shield"/>
 						<case tag="amenity" value="vending_machine" icon="amenity_vending_machine" shield="purple_round_shield">
 							<apply_if nightMode="true" shield="purple_round_night_shield" iconVisibleSize="54"/>
 						</case>
 						<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 					</switch>
-					<switch shield="purple_round_shield" iconOrder="160" iconVisibleSize="24">
+					<switch shield="purple_round_shield" iconOrder="160" iconVisibleSize="24" association="$poi_shops">
 						<case minzoom="17" tag="shop" value="agrarian" icon="agrarian"/>
 						<case minzoom="17" tag="shop" value="alcohol" icon="shop_alcohol" iconVisibleSize="32"/>
 						<case minzoom="17" tag="shop" value="antiques" icon="antiques"/>
@@ -7952,10 +7969,10 @@
 						<case minzoom="17" tag="shop" value="candles" icon="candles"/>
 						<case minzoom="17" tag="shop" value="cannabis" icon="cannabis"/>
 						<case minzoom="16" tag="shop" value="car" icon="shop_car"/>
-						<case minzoom="16" tag="shop" value="car_repair" icon="shop_car_repair">
+						<case minzoom="16" tag="shop" value="car_repair" icon="shop_car_repair" association="$poi_transport_car">
 							<case additional="service=tyres" icon="service_tyres"/>
 						</case>
-						<case minzoom="16" tag="shop" value="car_parts" icon="shop_car_parts"/>
+						<case minzoom="16" tag="shop" value="car_parts" icon="shop_car_parts" association="$poi_transport_car"/>
 						<case minzoom="17" tag="shop" value="clothes" icon="shop_clothes" iconVisibleSize="32" iconOrder="159">
 							<case additional="clothes:children=yes" icon="clothes_children"/>
 						</case>
@@ -8402,7 +8419,7 @@
 				<switch tag="entrance" value="service">
 					<case minzoom="19" icon="entrance_service" shield="barrier_entrance_small_shield"/>
 				</switch>
-				<switch tag="amenity" value="parking_entrance">
+				<switch tag="amenity" value="parking_entrance" association="$poi_transport_car">
 					<case maxzoom="17" icon="barrier_small_black_3">
 						<apply_if nightMode="true" icon="barrier_small_white_3"/>
 					</case>
@@ -8469,14 +8486,14 @@
 			</switch>
 
 
-			<case minzoom="17" tag="public_transport" value="platform" additional="disused=yes" icon="highway_bus_stop" shield="gray_square_shield">
+			<case minzoom="17" tag="public_transport" value="platform" additional="disused=yes" icon="highway_bus_stop" shield="gray_square_shield" association="$poi_transport_public">
 				<apply_if nightMode="true" shield="gray_square_night_shield"/>
 			</case>
 
 			<!-- Public transport mode icons -->
-			<switch>
-				<case tag="highway" value="bus_stop" poiGroup="public_transport"/>
-				<case tag="public_transport" value="platform" poiGroup="public_transport"/>
+			<switch association="$poi_transport_public">
+				<case tag="highway" value="bus_stop"/>
+				<case tag="public_transport" value="platform"/>
 				<apply>
 					<switch minzoom="14" maxzoom="14" iconVisibleSize="7" iconOrder="55">
 						<switch>
@@ -8522,8 +8539,8 @@
 				</apply_if>
 			</switch>
 
-			<switch hideIcons="false" iconOrder="83">
-				<case minzoom="13" tag="railway" value="halt" poiGroup="public_transport">
+			<switch hideIcons="false" iconOrder="83" association="$poi_transport_public">
+				<case minzoom="13" tag="railway" value="halt">
 					<case maxzoom="14" icon="halt_small_2" iconVisibleSize="10">
 						<apply_if nightMode="true" icon="halt_small_2_night"/>
 					</case>
@@ -8535,7 +8552,7 @@
 					</case>
 					<apply_if showLightRailRoutes="true" additional="light_rail=yes" iconOrder="5"/>
 				</case>
-				<case minzoom="15" tag="railway" value="tram_stop" poiGroup="public_transport">
+				<case minzoom="15" tag="railway" value="tram_stop">
 					<case maxzoom="16" icon="tram_stop_small" iconVisibleSize="10">
 						<apply_if nightMode="true" icon="tram_stop_small_night"/>
 					</case>
@@ -8611,7 +8628,7 @@
 				</apply>
 				<apply_if nightMode="true" shield="darkgray_round_small_shield"/>
 			</switch>
-			<switch hideIcons="false" minzoom="12" tag="railway" value="station" iconOrder="70">
+			<switch hideIcons="false" minzoom="12" tag="railway" value="station" iconOrder="70" association="$poi_transport_public">
 				<!-- <case maxzoom="12" icon="railway_station_small_2" iconVisibleSize="10"/>-->
 				<case minzoom="13" maxzoom="14" icon="railway_station_small">
 					<apply_if nightMode="true" icon="railway_station_small_night"/>
@@ -9207,7 +9224,7 @@
 			<case minzoom="11" tag="amenity" value="prison" shader="prison" color_2="#aaaaaa" strokeWidth_2="1:1">
 				<apply_if nightMode="true" shader="" color="$landusePrisonColorNight" color_2="#555555"/>
 			</case>
-			<case minzoom="15" tag="amenity" value="bicycle_parking" color="$bicycleParkingColor"/>
+			<case minzoom="15" tag="amenity" value="bicycle_parking" color="$bicycleParkingColor" association="$poi_transport_bicycle"/>
 			<case minzoom="19" tag="amenity" value="parking_space" color="$null" color_2="#ffffff" strokeWidth_2="1" pathEffect_2="5_5">
 				<apply_if nightMode="true" color_2="#33999999"/>
 			</case>

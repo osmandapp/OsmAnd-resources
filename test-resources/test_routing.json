@@ -170,7 +170,8 @@
   },
   {
     "testName": "10.Longer route preferred? https://github.com/osmandapp/Osmand/issues/1941",
-    "description": "short_way строит не самый короткий путь. Транзит через MEX 261 короче.",
+    "description": "short_way строит не самый короткий путь. Транзит через MEX 261 короче. Тестируем короткий маршрут.",
+    "url": "https://test.osmand.net/map/navigate/?start=19.330748,-90.739367&end=18.278334,-91.095371&profile=car&params=car,short_way#10/18.8239/-90.7182",
     "params": {
       "vehicle": "car",
       "short_way": "true",
@@ -190,7 +191,10 @@
   },
   {
     "testName": "10.1 Longer route preferred? https://github.com/osmandapp/Osmand/issues/1941",
-    "description": "short_way строит не самый короткий путь. Транзит через MEX 261 короче.",
+    "description": "short_way строит не самый короткий путь. Транзит через MEX 261 короче. Тестируем оптимальный маршрут.",
+    "url": "https://test.osmand.net/map/navigate/?start=19.330748,-90.739367&end=18.278334,-91.095371&profile=car#10/18.8239/-90.7182",
+    "comment": "Ignored from 2024-08-03 because *today* MEX 261 is always preferred both on default and short_way modes according to the URL of the route",
+    "ignore": true,
     "params": {
       "vehicle": "car"
     },
@@ -1272,6 +1276,27 @@
     },
     "expectedResults": {
       "4692930": "3"
+    }
+  },
+  {
+    "testName": "70. Longer way is wrongly preferred because of zero penalty on sharp turn connected by highway _link",
+    "url": "https://test.osmand.net/map/navigate/?start=50.434797,30.504889&end=50.434659,30.505860&profile=car#19/50.43438/30.50639",
+    "comment": "OSM file is obtained with JOSM using navigation GPX file",
+    "ignore": false,
+    "params": {
+      "vehicle": "car",
+      "map": "Routing_test_70.obf"
+    },
+    "startPoint": {
+      "latitude": 50.434797,
+      "longitude": 30.504889
+    },
+    "endPoint": {
+      "latitude": 50.434659,
+      "longitude": 30.505860
+    },
+    "expectedResults": {
+      "745961034": false
     }
   }
 ]
