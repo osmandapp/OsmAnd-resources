@@ -86,14 +86,14 @@ function populateDictionary(tts) {
 	// NEARBY POINTS
 	dictionary["and_arrive_waypoint"] = tts ? "ja jõuate teetähiseni" : "and_arrive_waypoint.ogg";   // NB! Is "GPX" necessary here?
 	dictionary["reached_waypoint"] = tts ? "Teetähis" : "reached_waypoint.ogg";                   // NB! And here?
-	dictionary["and_arrive_favorite"] = tts ? "and pass favorite" : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "you are passing favorite" : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "and pass POI" : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "you are passing POI" : "reached_poi.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "ja jõuate oma lemmikuni" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "Jõudsite oma lemmikuni" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "ja jõuate huvipunktini" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "Jõudsite huvipunktini" : "reached_poi.ogg";
 
 	// ATTENTION
-	//dictionary["exceed_limit"] = tts ? "Ületate piir-kiirust." : "exceed_limit.ogg";
-	dictionary["exceed_limit"] = tts ? "piirkiirust" : "exceed_limit.ogg";
+	dictionary["exceed_limit"] = tts ? "Ületate piir-kiirust." : "exceed_limit.ogg";
+	//dictionary["exceed_limit"] = tts ? "piirkiirust" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "Tähelepanu" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "kiiruskaamera" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "piirikontrolli" : "border_control.ogg";
@@ -290,62 +290,62 @@ function distance(dist, declension) {
 	switch (metricConst) {
 		case "km-m":
 			if (dist < 17 ) {
-				return (tts ? Math.round(dist).toString() : ogg_dist(Math.round(dist))) + " " + decline_string("meters", declension);
+				return (tts ? Math.round(dist).toString() : ogg_dist(Math.round(dist))) + " " + dictionary[decline_string("meters", declension)];
 			} else if (dist < 100) {
-				return (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10)) + " " + decline_string("meters", declension);
+				return (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10)) + " " + dictionary[decline_string("meters", declension)];
 			} else if (dist < 1000) {
-				return (tts ? (Math.round(2*dist/100.0)*50).toString() : ogg_dist(Math.round(2*dist/100.0)*50)) + " " + decline_string("meters", declension);
+				return (tts ? (Math.round(2*dist/100.0)*50).toString() : ogg_dist(Math.round(2*dist/100.0)*50)) + " " + dictionary[decline_string("meters", declension)];
 			} else if (dist < 1500) {
 				return dictionary["around_1_kilometer_" + declension];
 			} else if (dist < 10000) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1000.0).toString() : ogg_dist(Math.round(dist/1000.0))) + " " + decline_string("kilometers", declension);
+				return dictionary["around"] + " " + (tts ? Math.round(dist/1000.0).toString() : ogg_dist(Math.round(dist/1000.0))) + " " + dictionary[decline_string("kilometers", declension)];
 			} else {
-				return (tts ? Math.round(dist/1000.0).toString() : ogg_dist(Math.round(dist/1000.0))) + " " + decline_string("kilometers", declension);
+				return (tts ? Math.round(dist/1000.0).toString() : ogg_dist(Math.round(dist/1000.0))) + " " + dictionary[decline_string("kilometers", declension)];
 			}
 			break;
 		case "mi-f":
 			if (dist < 160) {
-				return (tts ? (Math.round(2*dist/100.0/0.3048)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.3048)*50)) + " " + decline_string("feet", declension);
+				return (tts ? (Math.round(2*dist/100.0/0.3048)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.3048)*50)) + " " + dictionary[decline_string("feet", declension)];
 			} else if (dist < 241) {
-				return decline_string("1_tenth_of_a_mile", declension);
+				return dictionary[decline_string("1_tenth_of_a_mile", declension)];
 			} else if (dist < 1529) {
-				return (tts ? Math.round(dist/161.0).toString() : ogg_dist(Math.round(dist/161.0))) + " " + decline_string("tenths_of_a_mile", declension);
+				return (tts ? Math.round(dist/161.0).toString() : ogg_dist(Math.round(dist/161.0))) + " " + dictionary[decline_string("tenths_of_a_mile", declension)];
 			} else if (dist < 2414) {
-				return decline_string("around_1_mile", declension);
+				return dictionary[decline_string("around_1_mile", declension)];
 			} else if (dist < 16093) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + decline_string("miles", declension);
+				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary[decline_string("miles", declension)];
 			} else {
-				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + decline_string("miles", declension);
+				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary[decline_string("miles", declension)];
 			}
 			break;
 		case "mi-m":
 			if (dist < 17 ) {
-				return (tts ? Math.round(dist).toString() : ogg_dist(Math.round(dist))) + " " + decline_string("meters", declension);
+				return (tts ? Math.round(dist).toString() : ogg_dist(Math.round(dist))) + " " + dictionary[decline_string("meters", declension)];
 			} else if (dist < 100) {
-				return (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10)) + " " + decline_string("meters", declension);
+				return (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10)) + " " + dictionary[decline_string("meters", declension)];
 			} else if (dist < 1300) {
-				return (tts ? (Math.round(2*dist/100.0)*50).toString() : ogg_dist(Math.round(2*dist/100.0)*50)) + " " + decline_string("meters", declension); 
+				return (tts ? (Math.round(2*dist/100.0)*50).toString() : ogg_dist(Math.round(2*dist/100.0)*50)) + " " + dictionary[decline_string("meters", declension)]; 
 			} else if (dist < 2414) {
-				return decline_string("around_1_mile", declension);
+				return dictionary[decline_string("around_1_mile", declension)];
 			} else if (dist < 16093) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + decline_string("miles", declension);
+				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary[decline_string("miles", declension)];
 			} else {
-				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + decline_string("miles", declension);
+				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary[decline_string("miles", declension)];
 			}
 			break;
 		case "mi-y":
 			if (dist < 17) {
-				return (tts ? Math.round(dist/0.9144).toString() : ogg_dist(Math.round(dist/0.9144))) + " " + decline_string("yards", declension);
+				return (tts ? Math.round(dist/0.9144).toString() : ogg_dist(Math.round(dist/0.9144))) + " " + dictionary[decline_string("yards", declension)];
 			} else if (dist < 100) {
-				return (tts ? (Math.round(dist/10.0/0.9144)*10).toString() : ogg_dist(Math.round(dist/10.0/0.9144)*10)) + " " + decline_string("yards", declension);
+				return (tts ? (Math.round(dist/10.0/0.9144)*10).toString() : ogg_dist(Math.round(dist/10.0/0.9144)*10)) + " " + dictionary[decline_string("yards", declension)];
 			} else if (dist < 1300) {
-				return (tts ? (Math.round(2*dist/100.0/0.9144)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.9144)*50)) + " " + decline_string("yards", declension); 
+				return (tts ? (Math.round(2*dist/100.0/0.9144)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.9144)*50)) + " " + dictionary[decline_string("yards", declension)]; 
 			} else if (dist < 2414) {
-				return decline_string("around_1_mile", declension);
+				return dictionary[decline_string("around_1_mile", declension)];
 			} else if (dist < 16093) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + decline_string("miles", declension);
+				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary[decline_string("miles", declension)];
 			} else {
-				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + decline_string("miles", declension);
+				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary[decline_string("miles", declension)];
 			}
 			break;
 	}
@@ -402,12 +402,12 @@ function follow_street(streetName) {
 	if ((streetName["toDest"] == "" && streetName["toStreetName"] == "" && streetName["toRef"] == "") || Object.keys(streetName).length == 0 || !tts) {
 		return "";
 	} else if (streetName["toStreetName"] == "" && streetName["toRef"] == "") {
-		return dictionary["to"] + " " + streetName["toDest"];
+		return dictionary["on"] + " " + streetName["toDest"];
 	} else if (streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"] || 
 			(streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == "")) {
 		return dictionary["on"] + " " + assemble_street_name(streetName);
 	} else if (!(streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"])) {
-		return dictionary["to"] + " " + assemble_street_name(streetName);
+		return dictionary["on"] + " " + assemble_street_name(streetName);
 	}
 }
 
