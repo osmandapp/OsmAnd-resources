@@ -248,6 +248,23 @@ function decline_string(value, declension) {
 	}
 }
 
+function decline_string_val(value, declension) {
+	switch(declension) {
+		case "nom":
+			return dictionary[value];
+		case "gen":
+			return dictionary["of_" + value];
+		case "-le":
+			return dictionary["onto_" + value];
+		case "-l":
+			return dictionary["on_" + value];
+		case "-ni":
+			return dictionary["to_" + value];
+		case "inf":
+			return dictionary["inf_" + value];
+	}
+}
+
 function decline_street(street, declension) {
 	var type = getStreetType(street);
 	if (streetType == "tee") {
@@ -268,6 +285,36 @@ function decline_street(street, declension) {
 		return street + " " + decline_string("street", declension);
 	}
 }
+
+function decline_integer(integer, declension) {
+	let output = "";
+	for (var n=0;n<integer.length;n++) {
+		var chars_left = integer.length-n-1;
+		var current_char = integer.charAt(n);
+		if (current_char != "0") {
+			if (chars_left == 4) {
+				current_char=="1" ? output += decline_string_val(current_char+integer.charAt(n+1), declension) : output += decline_string_val(current_char, declension) + decline_string_val("10", declension);
+			} else if (chars_left == 3) {
+				integer.length > 4 && integer.charAt(n-1) != "1" ? output += " " + decline_string_val(current_char, declension) : output;
+				integer.length == 4 ? output += decline_string_val(current_char, declension) : output;
+				output += " " + decline_string_val("1000", declension);
+			} else if (chars_left == 2) {
+				integer.length > 3 && declension == "gen" ? output += " ja " : output;
+				output += decline_string_val(current_char, declension) + decline_string_val("100", declension);
+			} else if (chars_left == 1) {
+				integer.length > 2 ? output += " " : output;
+				current_char == "1" ? output += decline_string_val(current_char+integer.charAt(n+1), declension) : output += decline_string_val(current_char, declension) + decline_string_val("10", declension);
+			} else if (chars_left == 0) {
+				integer.length > 1 && integer.charAt(n-1) != "1" ? output += " " + decline_string_val(current_char, declension) : output;
+				integer.length == 1 ? output += decline_string_val(current_char, declension) : output;
+			}
+		}
+	}
+	return output;
+}
+setMode(true)
+setMetricConst("km-m")
+console.log(afterDist(1487))
 
 function ends_with_vowel(street) {
 	const set = new Set(['a', 'e', 'i', 'o', 'u', 'õ', 'ä', 'ö', 'ü', 'y']);
@@ -290,62 +337,62 @@ function distance(dist, declension) {
 	switch (metricConst) {
 		case "km-m":
 			if (dist < 17 ) {
-				return (tts ? Math.round(dist).toString() : ogg_dist(Math.round(dist))) + " " + dictionary[decline_string("meters", declension)];
+				return (tts ? decline_integer(Math.round(dist).toString(), declension) : ogg_dist(Math.round(dist))) + " " + decline_string_val("meters", declension);
 			} else if (dist < 100) {
-				return (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10)) + " " + dictionary[decline_string("meters", declension)];
+				return (tts ? decline_integer((Math.round(dist/10.0)*10).toString(), declension) : ogg_dist(Math.round(dist/10.0)*10)) + " " + decline_string_val("meters", declension);
 			} else if (dist < 1000) {
-				return (tts ? (Math.round(2*dist/100.0)*50).toString() : ogg_dist(Math.round(2*dist/100.0)*50)) + " " + dictionary[decline_string("meters", declension)];
+				return (tts ? decline_integer((Math.round(2*dist/100.0)*50).toString(), declension) : ogg_dist(Math.round(2*dist/100.0)*50)) + " " + decline_string_val("meters", declension);
 			} else if (dist < 1500) {
-				return dictionary["around_1_kilometer_" + declension];
+				return decline_string_val("around_1_kilometer", declension);
 			} else if (dist < 10000) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1000.0).toString() : ogg_dist(Math.round(dist/1000.0))) + " " + dictionary[decline_string("kilometers", declension)];
+				return dictionary["around"] + " " + (tts ? decline_integer(Math.round(dist/1000.0).toString(), declension) : ogg_dist(Math.round(dist/1000.0))) + " " + decline_string_val("kilometers", declension);
 			} else {
-				return (tts ? Math.round(dist/1000.0).toString() : ogg_dist(Math.round(dist/1000.0))) + " " + dictionary[decline_string("kilometers", declension)];
+				return (tts ? decline_integer(Math.round(dist/1000.0).toString(), declension) : ogg_dist(Math.round(dist/1000.0))) + " " + decline_string_val("kilometers", declension);
 			}
 			break;
 		case "mi-f":
 			if (dist < 160) {
-				return (tts ? (Math.round(2*dist/100.0/0.3048)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.3048)*50)) + " " + dictionary[decline_string("feet", declension)];
+				return (tts ? decline_integer((Math.round(2*dist/100.0/0.3048)*50).toString(), declension) : ogg_dist(Math.round(2*dist/100.0/0.3048)*50)) + " " + decline_string_val("feet", declension);
 			} else if (dist < 241) {
-				return dictionary[decline_string("1_tenth_of_a_mile", declension)];
+				return decline_string_val("1_tenth_of_a_mile", declension);
 			} else if (dist < 1529) {
-				return (tts ? Math.round(dist/161.0).toString() : ogg_dist(Math.round(dist/161.0))) + " " + dictionary[decline_string("tenths_of_a_mile", declension)];
+				return (tts ? decline_integer(Math.round(dist/161.0).toString(), declension) : ogg_dist(Math.round(dist/161.0))) + " " + decline_string_val("tenths_of_a_mile", declension);
 			} else if (dist < 2414) {
-				return dictionary[decline_string("around_1_mile", declension)];
+				return decline_string_val("around_1_mile", declension);
 			} else if (dist < 16093) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary[decline_string("miles", declension)];
+				return dictionary["around"] + " " + (tts ? decline_integer(Math.round(dist/1609.3).toString(), declension) : ogg_dist(Math.round(dist/1609.3))) + " " + decline_string_val("miles", declension);
 			} else {
-				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary[decline_string("miles", declension)];
+				return (tts ? decline_integer(Math.round(dist/1609.3).toString(), declension) : ogg_dist(Math.round(dist/1609.3))) + " " + decline_string_val("miles", declension);
 			}
 			break;
 		case "mi-m":
 			if (dist < 17 ) {
-				return (tts ? Math.round(dist).toString() : ogg_dist(Math.round(dist))) + " " + dictionary[decline_string("meters", declension)];
+				return (tts ? decline_integer(Math.round(dist).toString(), declension) : ogg_dist(Math.round(dist))) + " " + decline_string_val("meters", declension);
 			} else if (dist < 100) {
-				return (tts ? (Math.round(dist/10.0)*10).toString() : ogg_dist(Math.round(dist/10.0)*10)) + " " + dictionary[decline_string("meters", declension)];
+				return (tts ? decline_integer((Math.round(dist/10.0)*10).toString(), declension) : ogg_dist(Math.round(dist/10.0)*10)) + " " + decline_string_val("meters", declension);
 			} else if (dist < 1300) {
-				return (tts ? (Math.round(2*dist/100.0)*50).toString() : ogg_dist(Math.round(2*dist/100.0)*50)) + " " + dictionary[decline_string("meters", declension)]; 
+				return (tts ? decline_integer((Math.round(2*dist/100.0)*50).toString(), declension) : ogg_dist(Math.round(2*dist/100.0)*50)) + " " + decline_string_val("meters", declension); 
 			} else if (dist < 2414) {
-				return dictionary[decline_string("around_1_mile", declension)];
+				return decline_string_val("around_1_mile", declension);
 			} else if (dist < 16093) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary[decline_string("miles", declension)];
+				return dictionary["around"] + " " + (tts ? decline_integer(Math.round(dist/1609.3).toString(), declension) : ogg_dist(Math.round(dist/1609.3))) + " " + decline_string_val("miles", declension);
 			} else {
-				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary[decline_string("miles", declension)];
+				return (tts ? decline_integer(Math.round(dist/1609.3).toString(), declension) : ogg_dist(Math.round(dist/1609.3))) + " " + decline_string_val("miles", declension);
 			}
 			break;
 		case "mi-y":
 			if (dist < 17) {
-				return (tts ? Math.round(dist/0.9144).toString() : ogg_dist(Math.round(dist/0.9144))) + " " + dictionary[decline_string("yards", declension)];
+				return (tts ? decline_integer(Math.round(dist/0.9144).toString(), declension) : ogg_dist(Math.round(dist/0.9144))) + " " + decline_string_val("yards", declension);
 			} else if (dist < 100) {
-				return (tts ? (Math.round(dist/10.0/0.9144)*10).toString() : ogg_dist(Math.round(dist/10.0/0.9144)*10)) + " " + dictionary[decline_string("yards", declension)];
+				return (tts ? decline_integer((Math.round(dist/10.0/0.9144)*10).toString(), declension) : ogg_dist(Math.round(dist/10.0/0.9144)*10)) + " " + decline_string_val("yards", declension);
 			} else if (dist < 1300) {
-				return (tts ? (Math.round(2*dist/100.0/0.9144)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.9144)*50)) + " " + dictionary[decline_string("yards", declension)]; 
+				return (tts ? decline_integer((Math.round(2*dist/100.0/0.9144)*50).toString(), declension) : ogg_dist(Math.round(2*dist/100.0/0.9144)*50)) + " " + decline_string_val("yards", declension); 
 			} else if (dist < 2414) {
-				return dictionary[decline_string("around_1_mile", declension)];
+				return decline_string_val("around_1_mile", declension);
 			} else if (dist < 16093) {
-				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary[decline_string("miles", declension)];
+				return dictionary["around"] + " " + (tts ? decline_integer(Math.round(dist/1609.3).toString(), declension) : ogg_dist(Math.round(dist/1609.3))) + " " + decline_string_val("miles", declension);
 			} else {
-				return (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary[decline_string("miles", declension)];
+				return (tts ? decline_integer(Math.round(dist/1609.3).toString(), declension) : ogg_dist(Math.round(dist/1609.3))) + " " + decline_string_val("miles", declension);
 			}
 			break;
 	}
