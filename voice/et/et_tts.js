@@ -213,6 +213,30 @@ function populateDictionary(tts) {
 	dictionary["of_tens"] = tts ? "kümne" : "of_tens.ogg";
 	dictionary["of_100"] = tts ? "saja" : "of_100.ogg";
 	dictionary["of_1000"] = tts ? "tuhande" : "of_1000.ogg";
+	
+	// Numbers in the nominative case.
+	dictionary["1"] = tts ? "üks" : "1.ogg";
+	dictionary["2"] = tts ? "kaks" : "2.ogg";
+	dictionary["3"] = tts ? "kolm" : "3.ogg";
+	dictionary["4"] = tts ? "neli" : "4.ogg";
+	dictionary["5"] = tts ? "viis" : "5.ogg";
+	dictionary["6"] = tts ? "kuus" : "6.ogg";
+	dictionary["7"] = tts ? "seitse" : "7.ogg";
+	dictionary["8"] = tts ? "kaheksa" : "8.ogg";
+	dictionary["9"] = tts ? "üheksa" : "9.ogg";
+	dictionary["10"] = tts ? "kümme" : "10.ogg";
+	dictionary["11"] = tts ? "üksteist" : "11.ogg";
+	dictionary["12"] = tts ? "kaksteist" : "12.ogg";
+	dictionary["13"] = tts ? "kolmteist" : "13.ogg";
+	dictionary["14"] = tts ? "neliteist" : "14.ogg";
+	dictionary["15"] = tts ? "viisteist" : "15.ogg";
+	dictionary["16"] = tts ? "kuusteist" : "16.ogg";
+	dictionary["17"] = tts ? "seitseteist" : "17.ogg";
+	dictionary["18"] = tts ? "kaheksateist" : "18.ogg";
+	dictionary["19"] = tts ? "üheksateist" : "19.ogg";
+	dictionary["tens"] = tts ? "kümmend" : "tens.ogg";
+	dictionary["100"] = tts ? "sada" : "100.ogg";
+	dictionary["1000"] = tts ? "tuhat" : "1000.ogg";
 }
 
 
@@ -293,7 +317,7 @@ function decline_integer(integer, declension) {
 		var current_char = integer.charAt(n);
 		if (current_char != "0") {
 			if (chars_left == 4) {
-				current_char=="1" ? output += decline_string_val(current_char+integer.charAt(n+1), declension) : output += decline_string_val(current_char, declension) + decline_string_val("10", declension);
+				current_char=="1" ? output += decline_string_val(current_char+integer.charAt(n+1), declension) : output += decline_string_val(current_char, declension) + decline_string_val("tens", declension);
 			} else if (chars_left == 3) {
 				integer.length > 4 && integer.charAt(n-1) != "1" ? output += " " + decline_string_val(current_char, declension) : output;
 				integer.length == 4 ? output += decline_string_val(current_char, declension) : output;
@@ -303,7 +327,7 @@ function decline_integer(integer, declension) {
 				output += decline_string_val(current_char, declension) + decline_string_val("100", declension);
 			} else if (chars_left == 1) {
 				integer.length > 2 ? output += " " : output;
-				current_char == "1" ? output += decline_string_val(current_char+integer.charAt(n+1), declension) : output += decline_string_val(current_char, declension) + decline_string_val("10", declension);
+				current_char == "1" ? output += decline_string_val(current_char+integer.charAt(n+1), declension) : output += decline_string_val(current_char, declension) + decline_string_val("tens", declension);
 			} else if (chars_left == 0) {
 				integer.length > 1 && integer.charAt(n-1) != "1" ? output += " " + decline_string_val(current_char, declension) : output;
 				integer.length == 1 ? output += decline_string_val(current_char, declension) : output;
@@ -312,9 +336,6 @@ function decline_integer(integer, declension) {
 	}
 	return output;
 }
-setMode(true)
-setMetricConst("km-m")
-console.log(afterDist(1487))
 
 function ends_with_vowel(street) {
 	const set = new Set(['a', 'e', 'i', 'o', 'u', 'õ', 'ä', 'ö', 'ü', 'y']);
