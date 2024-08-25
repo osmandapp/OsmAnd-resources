@@ -311,7 +311,7 @@ function decline_street(street, declension) {
 }
 
 function decline_integer(integer, declension) {
-	let output = "";
+	var output = "";
 	for (var n=0;n<integer.length;n++) {
 		var chars_left = integer.length-n-1;
 		var current_char = integer.charAt(n);
