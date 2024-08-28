@@ -315,6 +315,9 @@
 	<renderingAttribute name="runningRouteDefaultColor">
 		<case attrColorValue="#66AA72FB"/>
 	</renderingAttribute>
+	<renderingAttribute name="redColor">
+		<case attrColorValue="#88ff0000"/>
+	</renderingAttribute>
 
 	<renderingConstant name="black" value="#000000"/>
 	<renderingConstant name="white" value="#ffffff"/>
@@ -331,6 +334,7 @@
 	<order>
 		<!-- Point 101-200 -->
 		<switch area="false" point="true" objectType="1" order="128">
+			<case tag="route" value="point"/> <!-- OBF-GPX point -->
 			<case tag="route_hiking" value="" order="-1"/>
 		</switch>
 
@@ -342,6 +346,7 @@
 
 		<!-- Line 11-100 -->
 		<switch area="false" objectType="2" order="80">
+			<case tag="route" value="segment" order="100"/> <!-- OBF-GPX track -->
 			<case tag="route_bicycle" value="" order="186"/>
 			<case tag="route_mtb" value="" order="187"/>
 			<case tag="osmand_mtb_scale_imba" value="trail" order="189"/>
@@ -372,6 +377,20 @@
 	</order>
 
 	<text>
+			<!-- OBF-GPX track name/ref/shield -->
+			<switch>
+				<case minzoom="12" tag="route" value="segment" nameTag="" textMinDistance="60" textOnPath="true" textSize="15" textColor="#0078ff" textHaloColor="#ccebf4ff" textHaloRadius="1" textOrder="2"/>
+				<case minzoom="12" tag="route" value="segment" nameTag="ref" textMinDistance="60" textOnPath="false" textSize="15" textColor="#404040" textOrder="2" textShield="?gpx_bg?" />
+			</switch>
+
+			<!-- OBF-GPX point name -->
+			<switch>
+				<case minzoom="9" tag="route" value="point" nameTag="" textWrapWidth="25" textHaloRadius="1" textColor="#0078ff" textHaloColor="#ccebf4ff" textOrder="1" textDy="2">
+					<case maxzoom="13" textSize="13"/>
+					<case minzoom="14" textSize="14"/>
+					<apply_if nightMode="true" textColor="#dddddd" textHaloColor="#66000000"/>
+				</case>
+			</switch>
 			<!-- Cycling: texts for the cycle networks -->
 			<switch textHaloColor="$cycleRouteTextHaloColor" textWrapWidth="30">
 				<switch minzoom="14" textHaloRadius="$textHaloRadius">
@@ -756,6 +775,35 @@
 	</text>
 
 	<point>
+		<!-- OBF-GPX point icon -->
+		<switch minzoom="3" tag="route" value="point" icon="osmand_fav" iconOrder="1">
+			<!--<case additional="gpx_bg=octagon">
+                there are not enough shield icons for the octagon shape
+            </case>-->
+
+			<case additional="gpx_bg=square">
+				<!-- <case additional="color_orange" shield="gray_orange_square_shield"/> --> <!-- orange = gray_orange -->
+				<!-- <case additional="color_yellow" shield="gray_square_shield"/> --> <!-- yellow = gray -->
+				<!-- <case additional="color_green" shield="gray_green_square_shield"/> --> <!-- green = gray_green -->
+				<!-- <case additional="color_lightblue" shield="gray_blue_square_shield"/> --> <!-- lightblue = gray_blue -->
+				<!-- <case additional="color_blue" shield="blue_square_shield"/> -->
+				<!-- <case additional="color_purple" shield="purple_square_shield"/> -->
+				<!-- <case additional="color_gray" shield="gray_square_shield"/> -->
+				<case shield="red_square_big_shield" /> <!-- avoid color mess, just use red for square-shape -->
+			</case>
+
+			<case additional="color_orange" shield="orange_round_shield"/>
+			<case additional="color_yellow" shield="gray_round_shield"/> <!-- yellow = gray -->
+			<case additional="color_green" shield="green_round_shield"/>
+			<case additional="color_lightblue" shield="gray_blue_round_shield"/> <!-- lightblue = gray_blue -->
+			<case additional="color_blue" shield="blue_round_shield"/>
+			<case additional="color_purple" shield="purple_round_shield"/>
+			<case additional="color_gray" shield="gray_round_shield"/>
+			<case shield="red_round_shield"/> <!-- default -->
+
+			<apply_if additional="gpx_icon" icon="?gpx_icon?" /> <!-- apply obf-gpx gpx_icon if defined -->
+		</switch>
+
 		<switch showFitnessTrails="true" minzoom="17">
 			<case tag="leisure" value="fitness_station" icon="fitness_station" iconVisibleSize="24"/>
 			<apply shield="green_round_shield" iconVisibleSize="32" iconOrder="166"/>
@@ -780,6 +828,44 @@
 	</polygon>
 
 	<line>
+		<!-- OBF-GPX track width/color -->
+		<switch minzoom="11" tag="route" value="segment" color="$redColor" cap="ROUND">
+			<case additional="width=thin">
+				<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
+				<apply_if minzoom="6" strokeWidth="2"/>
+			</case>
+			<case additional="width=medium">
+				<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
+				<apply_if minzoom="6" maxzoom="11" strokeWidth="3"/>
+				<apply_if minzoom="12" strokeWidth="5"/>
+			</case>
+			<case additional="width=bold">
+				<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
+				<apply_if minzoom="6" maxzoom="7" strokeWidth="3"/>
+				<apply_if minzoom="8" maxzoom="9" strokeWidth="5"/>
+				<apply_if minzoom="10" maxzoom="11" strokeWidth="7"/>
+				<apply_if minzoom="12" strokeWidth="11"/>
+			</case>
+			<!-- TODO custom width=N should be supported too -->
+			<case>
+				<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
+				<apply_if minzoom="6" strokeWidth="2"/>
+			</case>
+			<apply_if additional="color_white" color="#ffffff"/>
+			<apply_if additional="color_red" color="#ff0000"/>
+			<apply_if additional="color_orange" color="#ff7200"/>
+			<apply_if additional="color_brown" color="#ba7007"/>
+			<apply_if additional="color_darkyellow" color="#afb61c"/>
+			<apply_if additional="color_yellow" color="#edc300"/>
+			<apply_if additional="color_lightgreen" color="#6cb52b"/>
+			<apply_if additional="color_green" color="#00842b"/>
+			<apply_if additional="color_lightblue" color="#2ec6ff"/>
+			<apply_if additional="color_blue" color="#4e4eff"/>
+			<apply_if additional="color_purple" color="#a71de1"/>
+			<apply_if additional="color_gray" color="#999999"/>
+			<apply_if additional="color_black" color="#000000"/>
+		</switch>
+
 		<switch minzoom="11">
 			<switch>
 				<case showCycleRoutes="true" tag="route_bicycle" value=""/>
