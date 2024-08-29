@@ -66,10 +66,9 @@
 		  With "Hike Bike Map (Hills Underlay)" it becomes hard to distinguish between black lines (path) and brown lines (track).
 		  For this reason tracks are rendered with higher strokewidth than paths,
 		  respectively as solid lines (all tracktypes), while paths are rendered as dashed lines (Alpine Hiking Mode).
-		- Roads: German map style
 
 		Legend:
-		1) Alpine Hiking Mode (advanced settings / Alpine Hiking enabled)
+		1) Alpine Hiking Mode (SAC or CAI enabled)
 		- Paths are colored by sac_scale:
 			black dashed line: sac_scale not specified or sac_scale = hiking
 			red solid line:    sac_scale = mountain_hiking
@@ -78,7 +77,6 @@
 			blue dashed line:  sac_scale = demanding_alpine_hiking
 			blue dotted line:  sac_scale = difficult_alpine_hiking
 		- Tracks (all tracktypes) are rendered as brown solid lines
-
 		2) Other Modes
 		- Tracks are rendered as thick brown lines:
 			solid line:                             tracktype = grade1
@@ -675,7 +673,6 @@
 	<polygon>
 		<!-- Polygon highways -->
 		<switch>
-			<case tag="highway" value="road"/>
 			<case tag="highway" value="unclassified"/>
 			<case tag="highway" value="residential"/>
 			<apply color="$residentialRoadColor" color_2="$shadowColorDay" minzoom="12" strokeWidth_2=":1">
@@ -1020,7 +1017,6 @@
 
 					<!-- The block roads/unclassified/residential copied unchanged from default renderer -->
 					<switch>
-						<case tag="highway" value="road"/>
 						<case tag="highway" value="unclassified"/>
 						<case tag="highway" value="residential"/>
 						<apply color="$residentialRoadColor" shadowRadius=":1.5" shadowColor="$shadowColorDay" cap="ROUND">
@@ -1482,6 +1478,10 @@
 		</switch>
 
 		<case tag="highway" value="ford" minzoom="14" color="#000000" strokeWidth="2"/>
+
+		<!-- highway=road is used temporarily for unsurveyed roads -->
+		<case tag="highway" value="road" minzoom="12" maxzoom="13" color="$serviceRoadColor" strokeWidth="6" color_2="$proposedRoadColor2" strokeWidth_2="4" pathEffect_2="6_2"/>
+		<case tag="highway" value="road" minzoom="14" color="$serviceRoadColor" strokeWidth="8" color_2="$proposedRoadColor2" strokeWidth_2="6" pathEffect_2="9_3"/>
 
 		<case tag="highway" value="proposed" minzoom="12" maxzoom="13" color="$proposedRoadColor" strokeWidth="6" color_2="$proposedRoadColor2" strokeWidth_2="4" pathEffect_2="6_2"/>
 		<case tag="highway" value="proposed" minzoom="14" color="$proposedRoadColor" strokeWidth="8" color_2="$proposedRoadColor2" strokeWidth_2="6" pathEffect_2="9_3"/>
