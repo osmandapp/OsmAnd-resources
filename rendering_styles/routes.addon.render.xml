@@ -14,6 +14,8 @@
 		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="showMtbScaleIMBATrails" name="Show MTB IMBA trails" description="Show specifically designed trails for mountainbiking"
 		type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="showDirtbikeTrails" name="Show dirt bike trails" description="Show dirt bike trails"
+		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="hikingRoutesOSMC" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces"
 		type="string" possibleValues="walkingRoutesOSMC,walkingRoutesScopeOSMC,walkingRoutesOSMCNodes" defaultValueDescription="disabled" category="routes"/>
 	<renderingProperty attr="horseRoutes" name="Horse routes" description="Horse routes"
@@ -349,6 +351,7 @@
 			<case tag="route" value="segment" order="100"/> <!-- OBF-GPX track -->
 			<case tag="route_bicycle" value="" order="186"/>
 			<case tag="route_mtb" value="" order="187"/>
+			<case tag="route_dirtbike" value="" order="187"/>
 			<case tag="osmand_mtb_scale_imba" value="trail" order="189"/>
 			<switch>
 				<!-- old way to display-->
@@ -1000,6 +1003,29 @@
 					</apply>
 				</switch>
 			</apply_if>
+		</switch>
+
+		<switch showDirtBikeTrails="true" minzoom="13">
+			<case tag="route_dirtbike" value="" cap="ROUND" strokeWidth="6">
+				<apply_if additional="dirtbike:scale=0" color="#00ff00"/>
+				<apply_if additional="dirtbike:scale=1" color="#ff9933"/>
+				<apply_if additional="dirtbike:scale=2" color="#ff9933"/>
+				<apply_if additional="dirtbike:scale=3" color="#ff0000"/>
+				<apply_if additional="dirtbike:scale=4" color="#ff0000"/>
+				<apply_if additional="dirtbike:scale=5" color="#99000000">
+					<case nightMode="true" color="#cccccc"/>
+				</apply_if>
+				<apply_if additional="dirtbike:scale=6" color="#99000000">
+					<case nightMode="true" color="#cccccc"/>
+				</apply_if>
+				<apply_if minzoom="12" maxzoom="13" strokeWidth="6" pathEffect="1_20"/>
+				<apply_if minzoom="13" maxzoom="14" strokeWidth="7.5" pathEffect="1_25"/>
+				<apply_if minzoom="14" maxzoom="15" strokeWidth="9" pathEffect="1_30"/>
+				<apply_if minzoom="15" maxzoom="16" strokeWidth="10" pathEffect="1_40"/>
+				<apply_if minzoom="16" maxzoom="17" strokeWidth="11" pathEffect="1_50"/>
+				<apply_if minzoom="17" maxzoom="18" strokeWidth="12" pathEffect="1_60"/>
+				<apply_if minzoom="18" strokeWidth="13" pathEffect="1_70"/>
+			</case>
 		</switch>
 
 		<switch showMtbScaleIMBATrails="true" minzoom="13" tag="osmand_mtb_scale_imba" value="trail" color="$null" strokeWidth="1">
