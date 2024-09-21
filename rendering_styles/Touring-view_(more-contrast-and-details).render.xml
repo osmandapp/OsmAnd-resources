@@ -284,13 +284,6 @@
 	<renderingConstant name="null" value="#00000000"/>
 
 <!--
-	<renderingConstant name="cycleRoutelcnColor" value="#400000ff"/>
-	<renderingConstant name="cycleRoutercnColor" value="#40ff00ff"/>
-	<renderingConstant name="cycleRoutencnColor" value="#40ff4000"/>
-	<renderingConstant name="cycleRouteicnColor" value="#40ff0000"/>
--->
-
-<!--
 	<renderingConstant name="contourLineColor" value="#2Aff7c00"/>
 	<renderingConstant name="contourLineColor50m" value="#2Aea7300"/>
 -->
@@ -942,13 +935,17 @@
 							<apply_if nightMode="true" shadowColor="$shadowColorNight"/>
 						</apply>
 					</switch>
+
+					<!-- Assign strokeWidth for surface, smoothness and access -->
 					<apply_if minzoom="14" maxzoom="14" strokeWidth_2="2.5:2.5" strokeWidth_3="2.5:2.5"/>
 					<apply_if minzoom="15" maxzoom="15" strokeWidth_2="3:3" strokeWidth_3="3:3"/>
 					<apply_if minzoom="16" maxzoom="16" strokeWidth_2="4:4" strokeWidth_3="4:4"/>
 					<apply_if minzoom="17" maxzoom="17" strokeWidth_2="5:5" strokeWidth_3="5:5"/>
 					<apply_if minzoom="18" maxzoom="18" strokeWidth_2="6:6" strokeWidth_3="6:6"/>
 					<apply_if minzoom="19" strokeWidth_2="7:7" strokeWidth_3="7:7"/>
-					<apply_if engine_v1="false" minzoom="16"> <!-- for new OpenGL engine only -->
+
+					<!-- oneway, for OpenGL engine only -->
+					<apply_if engine_v1="false" minzoom="16">
 						<apply_if additional="oneway=yes" pathIcon="oneway_black_semitransparent_big" pathIconStep="70"/>
 						<apply_if additional="oneway=-1" pathIcon="oneway_reverse_black_semitransparent_big" pathIconStep="70"/>
 					</apply_if>
@@ -1017,7 +1014,9 @@
 							</apply_if>
 							<apply_if nightMode="true" shadowColor="$shadowColorNight"/>
 						</apply>
-						<apply_if engine_v1="false" minzoom="16"> <!-- for new OpenGL engine only -->
+
+						<!-- oneway, for OpenGL engine only -->
+						<apply_if engine_v1="false" minzoom="16">
 							<apply_if maxzoom="16" additional="oneway=yes" pathIcon="oneway_black_semitransparent" pathIconStep="70"/>
 							<apply_if minzoom="17" additional="oneway=yes" pathIcon="oneway_black_semitransparent_big" pathIconStep="70"/>
 							<apply_if maxzoom="16" additional="oneway=-1" pathIcon="oneway_reverse_black_semitransparent" pathIconStep="70"/>
@@ -1058,13 +1057,17 @@
 								</apply_if>
 							</case>
 							<apply_if nightMode="true" shadowColor="$shadowColorNight"/>
+
 						<!-- Now use showAccess from default renderer
 							<apply_if minzoom="15" additional="access=no" color_3="$accessPrivateColor" strokeWidth_3="2:3" pathEffect_3="10_3"/> 
 							<apply_if minzoom="15" additional="access=private" color_3="$accessPrivateColor" strokeWidth_3="2:3" pathEffect_3="10_3"/>
 						-->
 						</apply>
+
 						<apply_if baseAppMode="pedestrian" shadowColor="$shadowColorLowZoom"/> <!-- Accentuate pedestrian ways better, Issue #18807 -->
-						<apply_if engine_v1="false" minzoom="16"> <!-- for new OpenGL engine only -->
+
+						<!-- oneway, for OpenGL engine only -->
+						<apply_if engine_v1="false" minzoom="16">
 							<apply_if maxzoom="16" additional="oneway=yes" pathIcon="oneway_black_semitransparent" pathIconStep="70"/>
 							<apply_if minzoom="17" additional="oneway=yes" pathIcon="oneway_black_semitransparent_big" pathIconStep="70"/>
 							<apply_if maxzoom="16" additional="oneway=-1" pathIcon="oneway_reverse_black_semitransparent" pathIconStep="70"/>
@@ -1107,28 +1110,36 @@
 								</apply_if>
 							</case>
 							<apply_if nightMode="true" shadowColor="$shadowColorNight"/>
+
 						<!-- Now use showAccess from default renderer
 							<apply_if minzoom="15" additional="access=no" color_3="$accessPrivateColor" strokeWidth_3="1:2" pathEffect_3="10_3"/> 
 							<apply_if minzoom="15" additional="access=private" color_3="$accessPrivateColor" strokeWidth_3="1:2" pathEffect_3="10_3"/>
 						-->
 						</apply>
+
 						<!-- pedestrian roads are forbidden for cars and cyclists: show them like that in car and bicycle mode -->
 						<apply_if baseAppMode="car" tag="highway" value="pedestrian" color="$accessPrivateColor"/>
-						<!-- <apply_if baseAppMode="bicycle" tag="highway" value="pedestrian" color="$accessPrivateColor"/> -->
+
 						<apply_if baseAppMode="pedestrian" shadowColor="$shadowColorLowZoom"/> <!-- Accentuate pedestrian ways better, Issue #18807 -->
 					</switch>
+
+					<!-- Assign strokeWidth for surface, smoothness and access -->
 					<apply_if minzoom="14" maxzoom="14" strokeWidth_2="1.9:1.9" strokeWidth_3="1.9:1.9"/>
 					<apply_if minzoom="15" maxzoom="15" strokeWidth_2="2.5:2.5" strokeWidth_3="2.5:2.5"/>
 					<apply_if minzoom="16" maxzoom="16" strokeWidth_2="3:3" strokeWidth_3="3:3"/>
 					<apply_if minzoom="17" maxzoom="17" strokeWidth_2="4:4" strokeWidth_3="4:4"/>
 					<apply_if minzoom="18" maxzoom="18" strokeWidth_2="4.7:4.7" strokeWidth_3="4.7:4.7"/>
 					<apply_if minzoom="19" strokeWidth_2="5.7:5.7" strokeWidth_3="5.7:5.7"/>
-					<apply_if engine_v1="false" minzoom="16"> <!-- for new OpenGL engine only -->
+
+					<!-- oneway, for OpenGL engine only -->
+					<apply_if engine_v1="false" minzoom="16">
 						<apply_if additional="oneway=yes" pathIcon="oneway_black_semitransparent" pathIconStep="70"/>
 						<apply_if additional="oneway=-1" pathIcon="oneway_reverse_black_semitransparent" pathIconStep="70"/>
 					</apply_if>
 				</switch>
+
 				<apply_if minzoom="14" additional="construction=yes" cap="BUTT" shadowRadius="0" color="$constructionRoadColor" color_2="$constructionRoadColor2" strokeWidth_0="0" strokeWidth__1="0" pathEffect="$null" strokeWidth="8" strokeWidth_2="6" pathEffect_2="6_6"/>
+
 				<!-- showSurfaces -->
 				<apply_if showSurfaces="true" minzoom="14" cap_3="SQUARE" color_3="$routeInfo_surface" pathEffect_3="5_11">
 					<apply_if minzoom="15" maxzoom="15" pathEffect_3="5_13"/>
@@ -1255,7 +1266,7 @@
 					</apply_if>
 				</switch>
 
-				<!-- Blocks footway/steps/bridleway/cycleway copied unchanged from default renderer -->
+				<!-- Blocks footway/steps/cycleway/bridleway copied unchanged from default renderer -->
 				<switch>
 					<case tag="highway" value="footway" strokeWidth="1">
 						<case additional="footway=crossing" strokeWidth="0.1"/>
@@ -1281,17 +1292,6 @@
 				</switch>
 
 				<switch>
-					<case tag="highway" value="bridleway" strokeWidth="1"/>
-					<apply color_5="$bridlewayColor" pathEffect_5="4_2" color="$null">
-						<case baseAppMode="pedestrian" minzoom="12" maxzoom="12" strokeWidth_5="1.4"/>
-						<case baseAppMode="pedestrian" minzoom="13" maxzoom="13" strokeWidth_5="2"/>
-						<case baseAppMode="pedestrian" minzoom="14" strokeWidth_5="3"/>
-						<case minzoom="12" maxzoom="12" strokeWidth_5="0.5"/>
-						<case minzoom="13" strokeWidth_5="1"/>
-					</apply>
-				</switch>
-
-				<switch>
 					<case tag="highway" value="cycleway" strokeWidth="1"/>
 					<apply color_5="$cyclewayColor" pathEffect_5="4_2" color="$null">
 						<case baseAppMode="bicycle" minzoom="12" maxzoom="12" strokeWidth_5="1.4"/>
@@ -1308,12 +1308,25 @@
 					</apply_if>
 				</switch>
 
+				<switch>
+					<case tag="highway" value="bridleway" strokeWidth="1"/>
+					<apply color_5="$bridlewayColor" pathEffect_5="4_2" color="$null">
+						<case baseAppMode="pedestrian" minzoom="12" maxzoom="12" strokeWidth_5="1.4"/>
+						<case baseAppMode="pedestrian" minzoom="13" maxzoom="13" strokeWidth_5="2"/>
+						<case baseAppMode="pedestrian" minzoom="14" strokeWidth_5="3"/>
+						<case minzoom="12" maxzoom="12" strokeWidth_5="0.5"/>
+						<case minzoom="13" strokeWidth_5="1"/>
+					</apply>
+				</switch>
+
+				<!-- Assign strokeWidth for surface, smoothness and access -->
 				<apply_if minzoom="14" maxzoom="14" strokeWidth_2="3:3" strokeWidth_3="3:3" pathEffect_3="2_9"/>
 				<apply_if minzoom="15" maxzoom="15" strokeWidth_2="3:3" strokeWidth_3="3:3" pathEffect_3="2_10"/>
 				<apply_if minzoom="16" maxzoom="16" strokeWidth_2="3.7:3.7" strokeWidth_3="3.7:3.7" pathEffect_3="3_12"/>
 				<apply_if minzoom="17" maxzoom="17" strokeWidth_2="4.5:4.5" strokeWidth_3="4.5:4.5" pathEffect_3="4_17"/>
 				<apply_if minzoom="18" maxzoom="18" strokeWidth_2="5:5" strokeWidth_3="5:5" pathEffect_3="4_25"/>
 				<apply_if minzoom="19" strokeWidth_2="6.5:6.5" strokeWidth_3="6.5:6.5" pathEffect_3="5_30"/>
+
 				<!-- showSurfaces -->
 				<apply_if showSurfaces="true" color_3="$routeInfo_surface" cap_3="SQUARE"/>
 
@@ -1331,7 +1344,8 @@
 					<case minzoom="14" color_0="#ffffff" strokeWidth_0="4:1" color__1="#000000" strokeWidth__1="4:2.5"/>
 				</apply_if>
 
-				<apply_if engine_v1="false" minzoom="16"> <!-- for new OpenGL engine only -->
+				<!-- oneway, for OpenGL engine only -->
+				<apply_if engine_v1="false" minzoom="16">
 					<apply_if additional="oneway=yes" pathIcon="oneway_gray_big" pathIconStep="70"/>
 					<apply_if additional="oneway=-1" pathIcon="oneway_reverse_gray_big" pathIconStep="70"/>
 				</apply_if>
