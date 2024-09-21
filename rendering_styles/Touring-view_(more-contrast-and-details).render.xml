@@ -232,8 +232,13 @@
 	<renderingConstant name="trackColor" value="#996600"/>
 	<renderingConstant name="pathColor" value="#000000"/>
 	<renderingConstant name="pathColorNight" value="#787878"/>
+	<!--renderingConstant name="footwayColor" value="#fa5073"/--> <!-- Unify foot-path/footway to avoid complexity and disambuguity with SAC grades -->
+	<renderingAttribute name="footwayColor">
+		<case attrColorValue="#000000">
+			<apply_if nightMode="true" attrColorValue="#787878"/>
+		</case>
+	</renderingAttribute>
 	<renderingConstant name="cyclewayColor" value="#0000ff"/>
-	<renderingConstant name="footwayColor" value="#fa5073"/>
 	<renderingConstant name="bridlewayColor" value="#339900"/>
 
 	<!-- Road casing contrast higher than in default -->
@@ -1208,6 +1213,7 @@
 						<apply_if nightMode="true" color_5="$pathColorNight"/>
 						<apply_if baseAppMode="bicycle" additional="bicycle=designated" color_5="$cyclewayColor" strokeWidth_5="2" pathEffect_5="8_4"/>
 					</apply_if>
+
 					<apply_if alpineHiking="true" color="$null">
 						<case additional="sac_scale=hiking" color_5="$sacScaleColorT1" pathEffect_5="10_3"/>
 						<case additional="sac_scale=mountain_hiking" color_5="$sacScaleColorT2" pathEffect_5=""/>
@@ -1241,7 +1247,6 @@
 								<apply color_5="$sacScaleColorT6" pathEffect_5="3_3"/><!-- is max SAC difficult_alpine_hiking -->
 							</switch>
 						</apply_if>
-
 					</apply_if>
 				</switch>
 
@@ -1290,6 +1295,11 @@
 						<case minzoom="12" maxzoom="12" strokeWidth_5="0.5"/>
 						<case minzoom="13" strokeWidth_5="1"/>
 					</apply>
+					<!-- Alpine Hiking Mode: remove conflicting color -->
+					<apply_if alpineHiking="true">
+						<case nightMode="true" color_5="$pathColorNight" color="$null"/>
+						<case color_5="$pathColor" color="$null"/>
+					</apply_if>
 				</switch>
 
 				<apply_if minzoom="14" maxzoom="14" strokeWidth_2="3:3" strokeWidth_3="3:3" pathEffect_3="2_9"/>
@@ -1300,23 +1310,6 @@
 				<apply_if minzoom="19" strokeWidth_2="6.5:6.5" strokeWidth_3="6.5:6.5" pathEffect_3="5_30"/>
 				<!-- showSurfaces -->
 				<apply_if showSurfaces="true" color_3="$routeInfo_surface" cap_3="SQUARE"/>
-
-				<!-- Alpine Hiking Mode: remove conflicting colors -->
-				<apply_if alpineHiking="true">
-					<case tag="highway" value="cycleway" color_5="$pathColor" pathEffect_5="4_2" color="$null">
-						<case minzoom="12" maxzoom="12" strokeWidth_5="0.7"/>
-						<case minzoom="13" strokeWidth_5="1"/>
-						<apply_if nightMode="true" color_5="$pathColorNight"/>
-					</case>
-					<case tag="highway" value="footway" color_5="$pathColor" pathEffect_5="5_5" color="$null">
-						<case minzoom="12" strokeWidth_5="1.4"/>
-						<apply_if nightMode="true" color_5="$pathColorNight"/>
-					</case>
-					<case tag="highway" value="steps" color_5="$pathColor" pathEffect_5="2_2" color="$null">
-						<case minzoom="14" strokeWidth_5="4"/>
-						<apply_if nightMode="true" color_5="$pathColorNight"/>
-					</case>
-				</apply_if>
 
 				<!-- Tunnels and bridges -->
 				<apply>
