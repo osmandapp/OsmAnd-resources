@@ -230,14 +230,14 @@
 	</renderingAttribute>
 
 	<renderingConstant name="trackColor" value="#996600"/>
-	<renderingConstant name="pathColorDay" value="#000000"/>
+	<renderingConstant name="pathColor" value="#000000"/>
 	<renderingConstant name="pathColorNight" value="#787878"/>
 	<renderingConstant name="cyclewayColor" value="#0000ff"/>
-	<renderingConstant name="footwayColorDay" value="#fa5073"/>
-	<renderingConstant name="bridlewayColorDay" value="#339900"/>
+	<renderingConstant name="footwayColor" value="#fa5073"/>
+	<renderingConstant name="bridlewayColor" value="#339900"/>
 
 	<!-- Road casing contrast higher than in default -->
-	<renderingConstant name="shadowColorDay" value="#767676"/>
+	<renderingConstant name="shadowColor" value="#767676"/>
 	<renderingConstant name="shadowColorNight" value="#464646"/>
 	<renderingConstant name="shadowColorLowZoom" value="#262626"/>
 
@@ -245,14 +245,10 @@
 	<renderingConstant name="constructionRoadColor2" value="#ffffff"/>
 	<renderingConstant name="proposedRoadColor" value="#ff6600"/>
 	<renderingConstant name="proposedRoadColor2" value="#9f9f9f"/>
-	<renderingConstant name="racewayColorDay" value="#ffc5cf"/>
-	<renderingConstant name="racewayColorNight" value="#cd9fa7"/>
+	<renderingConstant name="racewayColor" value="#ffc5cf"/>
+	<!--renderingConstant name="racewayColorNight" value="#cd9fa7"/-->
 
 	<renderingConstant name="accessPrivateColor" value="#feb3b3"/>
-	<renderingAttribute name="tollColor">
-		<case nightMode="true" attrColorValue="#a63f80"/>
-		<case attrColorValue="#9E2D74"/>
-	</renderingAttribute>
 	<renderingAttribute name="accessPermissiveColor">
 		<case nightMode="true" attrColorValue="#69A65E"/>
 		<case attrColorValue="#9afb87"/>
@@ -260,6 +256,10 @@
 	<renderingAttribute name="accessDestinationColor">
 		<case nightMode="true" attrColorValue="#7CA1B9"/>
 		<case attrColorValue="#8db8d3"/>
+	</renderingAttribute>
+	<renderingAttribute name="tollColor">
+		<case nightMode="true" attrColorValue="#a63f80"/>
+		<case attrColorValue="#9E2D74"/>
 	</renderingAttribute>
 
 	<renderingConstant name="sacScaleColorT1" value="#000000"/>
@@ -675,7 +675,7 @@
 		<switch>
 			<case tag="highway" value="unclassified"/>
 			<case tag="highway" value="residential"/>
-			<apply color="$residentialRoadColor" color_2="$shadowColorDay" minzoom="12" strokeWidth_2=":1">
+			<apply color="$residentialRoadColor" color_2="$shadowColor" minzoom="12" strokeWidth_2=":1">
 				<case nightMode="true" color_2="$shadowColorNight"/>
 			</apply>
 		</switch>
@@ -685,7 +685,7 @@
 			<case tag="highway" value="pedestrian"/>
 			<case tag="highway" value="footway"/>
 			<apply>
-				<case minzoom="13" color="$serviceRoadColor" color_2="$shadowColorDay" strokeWidth_2=":1"/>
+				<case minzoom="13" color="$serviceRoadColor" color_2="$shadowColor" strokeWidth_2=":1"/>
 			</apply>
 			<apply_if nightMode="true" color_2="$shadowColorNight"/>
 		</switch>
@@ -809,7 +809,7 @@
 							<case baseAppMode="car" nightMode="true" color="$primaryRoadColorDimmed"/>
 							<case color="$primaryRoadColor"/>
 						</apply>
-						<apply shadowRadius=":1.5" shadowColor="$shadowColorDay" cap="ROUND">
+						<apply shadowRadius=":1.5" shadowColor="$shadowColor" cap="ROUND">
 							<case minzoom="5" maxzoom="6" strokeWidth="1"/>
 							<case minzoom="7" maxzoom="8" strokeWidth="2"/>
 							<case minzoom="9" maxzoom="9" strokeWidth="3" shadowColor="$shadowColorLowZoom"/>
@@ -875,7 +875,7 @@
 							<case baseAppMode="car" nightMode="true" color="$secondaryRoadColorDimmed"/>
 							<case color="$secondaryRoadColor"/>
 						</apply>
-						<apply shadowRadius=":1.5" shadowColor="$shadowColorDay" cap="ROUND">
+						<apply shadowRadius=":1.5" shadowColor="$shadowColor" cap="ROUND">
 							<case minzoom="8" maxzoom="8" strokeWidth="1"/>
 							<case minzoom="9" maxzoom="9" strokeWidth="2" shadowColor="$shadowColorLowZoom"/>
 							<case baseAppMode="car">
@@ -953,7 +953,7 @@
 							<case baseAppMode="car" nightMode="true" color="$tertiaryRoadColorDimmed"/>
 							<case color="$tertiaryRoadColor"/>
 						</apply>
-						<apply shadowRadius=":1.5" shadowColor="$shadowColorDay" cap="ROUND">
+						<apply shadowRadius=":1.5" shadowColor="$shadowColor" cap="ROUND">
 							<case baseAppMode="car">
 								<!-- Bigger strokewidth for better visibility of road type during navigation -->
 								<case minzoom="10" maxzoom="10" strokeWidth="3" shadowColor="$shadowColorLowZoom"/>
@@ -1019,7 +1019,7 @@
 					<switch>
 						<case tag="highway" value="unclassified"/>
 						<case tag="highway" value="residential"/>
-						<apply color="$residentialRoadColor" shadowRadius=":1.5" shadowColor="$shadowColorDay" cap="ROUND">
+						<apply color="$residentialRoadColor" shadowRadius=":1.5" shadowColor="$shadowColor" cap="ROUND">
 							<case minzoom="12" maxzoom="12" strokeWidth="2" shadowColor="$shadowColorLowZoom"/>
 							<case minzoom="13" maxzoom="13" strokeWidth="3" shadowColor="$shadowColorLowZoom"/>
 							<case color_0="#000000">
@@ -1069,7 +1069,7 @@
 						<case tag="highway" value="pedestrian"/>
 						<case tag="highway" value="services"/>
 						<case tag="highway" value="rest_area"/>
-						<apply color="$serviceRoadColor" shadowRadius=":1.5" shadowColor="$shadowColorDay" cap="ROUND">
+						<apply color="$serviceRoadColor" shadowRadius=":1.5" shadowColor="$shadowColor" cap="ROUND">
 							<case minzoom="13" maxzoom="13" strokeWidth="2" shadowColor="$shadowColorLowZoom"/>
 							<case color_0="#000000">
 								<case minzoom="14" maxzoom="14" strokeWidth="1:2"/>
@@ -1181,7 +1181,7 @@
 
 				<switch>
 					<case tag="highway" value="path" strokeWidth="1"/>
-					<apply_if alpineHiking="false" color_5="$pathColorDay" color="$null">
+					<apply_if alpineHiking="false" color_5="$pathColor" color="$null">
 						<case additional="sac_scale=hiking" pathEffect_5="10_3"/>
 						<case additional="sac_scale=mountain_hiking" pathEffect_5="5_5"/>
 						<case additional="sac_scale=demanding_mountain_hiking" pathEffect_5="2_6"/>
@@ -1215,7 +1215,7 @@
 						<case additional="sac_scale=alpine_hiking" color_5="$sacScaleColorT4" pathEffect_5=""/>
 						<case additional="sac_scale=demanding_alpine_hiking" color_5="$sacScaleColorT5" pathEffect_5="10_3"/>
 						<case additional="sac_scale=difficult_alpine_hiking" color_5="$sacScaleColorT6" pathEffect_5="3_3"/>
-						<case color_5="$pathColorDay" pathEffect_5="4_2">
+						<case color_5="$pathColor" pathEffect_5="4_2">
 							<case nightMode="true" color_5="$pathColorNight"/>
 						</case>
 						<apply>
@@ -1250,7 +1250,7 @@
 					<case tag="highway" value="footway" strokeWidth="1">
 						<case additional="footway=crossing" strokeWidth="0.1"/>
 					</case>
-					<apply color_5="$footwayColorDay" pathEffect_5="4_2" color="$null">
+					<apply color_5="$footwayColor" pathEffect_5="4_2" color="$null">
 						<case baseAppMode="pedestrian" minzoom="12" maxzoom="12" strokeWidth_5="1.4"/>
 						<case baseAppMode="pedestrian" minzoom="13" maxzoom="13" strokeWidth_5="2"/>
 						<case baseAppMode="pedestrian" minzoom="14" strokeWidth_5="3"/>
@@ -1261,7 +1261,7 @@
 
 				<switch>
 					<case tag="highway" value="steps" strokeWidth="1"/>
-					<apply color_5="$footwayColorDay" pathEffect_5="1_2" color="$null">
+					<apply color_5="$footwayColor" pathEffect_5="1_2" color="$null">
 						<case baseAppMode="pedestrian" minzoom="12" maxzoom="12" strokeWidth_5="1.4"/>
 						<case baseAppMode="pedestrian" minzoom="13" maxzoom="13" strokeWidth_5="3"/>
 						<case baseAppMode="pedestrian" minzoom="14" strokeWidth_5="4" pathEffect_5="2_2"/>
@@ -1271,7 +1271,7 @@
 
 				<switch>
 					<case tag="highway" value="bridleway" strokeWidth="1"/>
-					<apply color_5="$bridlewayColorDay" pathEffect_5="4_2" color="$null">
+					<apply color_5="$bridlewayColor" pathEffect_5="4_2" color="$null">
 						<case baseAppMode="pedestrian" minzoom="12" maxzoom="12" strokeWidth_5="1.4"/>
 						<case baseAppMode="pedestrian" minzoom="13" maxzoom="13" strokeWidth_5="2"/>
 						<case baseAppMode="pedestrian" minzoom="14" strokeWidth_5="3"/>
@@ -1303,16 +1303,16 @@
 
 				<!-- Alpine Hiking Mode: remove conflicting colors -->
 				<apply_if alpineHiking="true">
-					<case tag="highway" value="cycleway" color_5="$pathColorDay" pathEffect_5="4_2" color="$null">
+					<case tag="highway" value="cycleway" color_5="$pathColor" pathEffect_5="4_2" color="$null">
 						<case minzoom="12" maxzoom="12" strokeWidth_5="0.7"/>
 						<case minzoom="13" strokeWidth_5="1"/>
 						<apply_if nightMode="true" color_5="$pathColorNight"/>
 					</case>
-					<case tag="highway" value="footway" color_5="$pathColorDay" pathEffect_5="5_5" color="$null">
+					<case tag="highway" value="footway" color_5="$pathColor" pathEffect_5="5_5" color="$null">
 						<case minzoom="12" strokeWidth_5="1.4"/>
 						<apply_if nightMode="true" color_5="$pathColorNight"/>
 					</case>
-					<case tag="highway" value="steps" color_5="$pathColorDay" pathEffect_5="2_2" color="$null">
+					<case tag="highway" value="steps" color_5="$pathColor" pathEffect_5="2_2" color="$null">
 						<case minzoom="14" strokeWidth_5="4"/>
 						<apply_if nightMode="true" color_5="$pathColorNight"/>
 					</case>
