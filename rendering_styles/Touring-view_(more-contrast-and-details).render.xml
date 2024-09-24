@@ -232,16 +232,20 @@
 	<renderingConstant name="trackColor" value="#996600"/>
 	<renderingConstant name="pathColor" value="#000000"/>
 	<renderingConstant name="pathColorNight" value="#787878"/>
-	<!-- Path color used is by profile. Unify (foot-)path/footway. Also avoids SAC color conflicts. -->
+	<!-- Path color used is finally adjusted by profile (ped/bike use). footway and path in foot use have same color. Black for all foot avoids SAC color conflicts. -->
 	<renderingAttribute name="footwayColor">
 		<case attrColorValue="$pathColor">
 			<apply_if nightMode="true" attrColorValue="$pathColorNight"/>
 		</case>
 	</renderingAttribute>
-	<!--renderingConstant name="cyclewayColor" value="#0000ff"/-->
 	<renderingAttribute name="cyclewayColor">
 		<case attrColorValue="#0000FF">
 			<apply_if nightMode="true" attrColorValue="#3333FF"/>
+			<!-- Alpine Hiking Mode: Remove conflicting cycle color -->
+			<apply_if alpineHiking="true">
+				<case nightMode="true" attrColorValue="$pathColorNight" color="$null"/>
+				<case attrColorValue="$pathColor" color="$null"/>
+			</apply_if>
 		</case>
 	</renderingAttribute>
 	<renderingConstant name="bridlewayColor" value="#339900"/>
@@ -1301,11 +1305,6 @@
 						<case minzoom="12" maxzoom="12" strokeWidth_5="0.5"/>
 						<case minzoom="13" strokeWidth_5="1"/>
 					</apply>
-					<!-- Alpine Hiking Mode: remove conflicting color -->
-					<apply_if alpineHiking="true">
-						<case nightMode="true" color_5="$pathColorNight" color="$null"/>
-						<case color_5="$pathColor" color="$null"/>
-					</apply_if>
 				</switch>
 
 				<switch>
