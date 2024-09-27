@@ -58,7 +58,7 @@ genMapIconsNoScale() {
       else
         COLOR_OUTPUT_FILE=${FILENAME}.svg
       fi
-      rsvg-convert -f svg ${FILE} -w $SVG_SIZE -h $SVG_SIZE -o "${OUTPUT_SVG_FOLDER}/${COLOR_OUTPUT_FILE}"
+      cp ${FILE} "${OUTPUT_SVG_FOLDER}/${COLOR_OUTPUT_FILE}"
       cp ${FILE} ${VDFOLDERSVG}/${FILENAME}.svg
       rsvg-convert -f png ${FILE} -x $MDPI -y $MDPI -o ${OUTPUTFOLDER}mdpi/${FILENAME}.png
       rsvg-convert -f png ${FILE} -x $HDPI -y $HDPI -o ${OUTPUTFOLDER}hdpi/${FILENAME}.png
