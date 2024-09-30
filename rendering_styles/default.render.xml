@@ -2883,6 +2883,8 @@
 					<case tag="highway" value="passing_place">
 						<apply_if baseAppMode="pedestrian" order="-1"/>
 					</case>
+					<case showAccess="true" minzoom="15" tag="osmand_access" value=""/>
+
 					<switch tag="amenity">
 						<case value="restaurant"/>
 						<case value="cafe"/>
@@ -7857,6 +7859,30 @@
 					<apply_if baseAppMode="car" moreDetailed="false" maxzoom="17" icon=""/>
 				</switch>
 
+				<switch showAccess="true" minzoom="17">
+					<switch baseAppMode="car">
+						<case tag="osmand_vehicle" value="private"/>
+						<case tag="osmand_vehicle" value="no"/>
+						<case tag="osmand_motor_vehicle" value="private"/>
+						<case tag="osmand_motor_vehicle" value="no"/>
+						<case tag="osmand_motorcar" value="private"/>
+						<case tag="osmand_motorcar" value="no"/>
+						<apply icon="osmand_access_private" iconOrder="256" iconVisibleSize="32"/>
+					</switch>
+					<switch baseAppMode="pedestrian">
+						<case tag="osmand_foot" value="private"/>
+						<case tag="osmand_foot" value="no"/>
+						<apply icon="osmand_access_private" iconOrder="256" iconVisibleSize="32"/>
+					</switch>
+					<switch baseAppMode="bicycle">
+						<case tag="osmand_bicycle" value="private"/>
+						<case tag="osmand_bicycle" value="no"/>
+						<apply icon="osmand_access_private" iconOrder="256" iconVisibleSize="32"/>
+					</switch>
+					<case tag="osmand_access" value="no" icon="osmand_access_private" iconOrder="256" iconVisibleSize="32"/>
+					<case tag="osmand_access" value="private" icon="osmand_access_private" iconOrder="256" iconVisibleSize="32"/>
+				</switch>
+
 				<case minzoom="19" tag="amenity" value="grit_bin" icon="grit_bin" shield="grit_bin_shield" iconOrder="165"/>
 
 				<case minzoom="$petroleumWellIconMinZoom" tag="man_made" value="petroleum_well" icon="man_made_petroleum_well" shield="petroleum_well_shield"/>
@@ -8787,7 +8813,8 @@
 						<case maxzoom="18" strokeWidth_2="5:5" pathEffect_2="1_17"/>
 						<case minzoom="19" strokeWidth_2="6.5:6.5" pathEffect_2="1_21"/>
 					</apply>
-				</switch>
+					<apply_if moreDetailed="false" maxzoom="15" color_2="$null"/>
+    				</switch>
 			</apply_if>
 		</switch>
 
@@ -9117,6 +9144,7 @@
 						<case additional="access=no" color_2="$accessPrivateColor"/>
 						<case additional="access=permit" color_2="$accessPermitColor"/>
 						<apply strokeWidth_2="3" pathEffect_2="1_6" cap_2="ROUND"/>
+						<apply_if moreDetailed="false" maxzoom="15" color_2="$null"/>
 					</switch>
 				</apply>
 			</switch>
@@ -9334,6 +9362,7 @@
 						<case additional="access=no" color_2="$accessPrivateColor"/>
 						<case additional="access=permit" color_2="$accessPermitColor"/>
 						<apply strokeWidth_2="3" pathEffect_2="1_6" cap_2="ROUND"/>
+						<apply_if moreDetailed="false" maxzoom="15" color_2="$null"/>
 					</switch>
 				</apply>
 			</switch>
@@ -9654,6 +9683,7 @@
 						<apply_if minzoom="17" maxzoom="17" strokeWidth_2="9" pathEffect_2="1_13"/>
 						<apply_if minzoom="18" maxzoom="18" strokeWidth_2="12" pathEffect_2="1_17"/>
 						<apply_if minzoom="19" strokeWidth_2="13" pathEffect_2="1_20"/>
+						<apply_if moreDetailed="false" maxzoom="15" color_2="$null"/>
 					</switch>
 				</apply_if>
 			</switch>
@@ -10882,6 +10912,7 @@
 					<apply_if minzoom="17" maxzoom="17" pathEffect_3="1_13"/>
 					<apply_if minzoom="18" maxzoom="18" pathEffect_3="1_17"/>
 					<apply_if minzoom="19" pathEffect_3="1_20"/>
+					<apply_if moreDetailed="false" maxzoom="15" color_3="$null"/>
 				</switch>
 				<case showSurfaces="true" minzoom="14" cap_3="SQUARE" color_3="$routeInfo_surface">
 					<apply_if moreDetailed="true" maxzoom="14" pathEffect_3="3_11"/>
