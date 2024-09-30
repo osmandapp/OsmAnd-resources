@@ -196,8 +196,8 @@ generateBothMapPOIPng() {
 } 
 
   ### UNCOMMENT to generate only 1 category
-  #generateBothMapPOIPng 'barrier_colored' '#444444' '#ff8f00'
-  #exit 0;
+  # generateBothMapPOIPng 'activities' '#ffffff' '#ff8f00'
+  # exit 0;
 
   genMapIconsNoScale 'shaders' 'colored'
   genMapIconsNoScale 'shaders_int1' 'colored'
