@@ -292,4 +292,4 @@ generateBothMapPOIPng() {
   generateBothMapPOIPng 'xmas' '#aa2001' '#ff8f00'
   generateBothMapPOIPng 'special' '#ffffff' '#ff8f00'
   generateBothMapPOIPng 'logos' '#ffffff' '#ff8f00'
-
+  generateBothMapPOIPng 'activities' '#ffffff' '#ff8f00'
