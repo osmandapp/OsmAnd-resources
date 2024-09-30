@@ -418,6 +418,9 @@ icon_alias aeroway_fuel transport_aeroway_fuel
 icon_alias turning_circle transport_turning_circle
 icon_alias waterway_fuel transport_waterway_fuel
 
+icon_alias osmand_access_private functional-icons_osmand_access_private
+icon_alias osmand_access_private_poi poi_osmand_access_private_poi
+
 icon_alias parking transport_parking
 icon_alias amenity_parking transport_parking
 icon_alias amenity_parking_private transport_parking_private2
