@@ -136,63 +136,77 @@
 	<type tag="service" value="alley" minzoom="13" additional="true"/>
 
 	<type tag="osmand_access_main" value="tag" minzoom="13" order="150" notosm="true"/>
-	<type tag="osmand_access" value="private" minzoom="13" additional="true" order="150" notosm="true"/>
+	<type tag="osmand_access" minzoom="13" additional="true" order="150" notosm="true"/>
+	<type tag="osmand_vehicle" minzoom="13" additional="true" order="150" notosm="true"/>
+	<type tag="osmand_motor_vehicle" minzoom="13" additional="true" order="150" notosm="true"/>
+	<type tag="osmand_motorcar" minzoom="13" additional="true" order="150" notosm="true"/>
+	<type tag="osmand_foot" minzoom="13" additional="true" order="150" notosm="true"/>
+	<type tag="osmand_bicycle" minzoom="13" additional="true" order="150" notosm="true"/>
 
-	<type tag="access" value="no" minzoom="13" additional="true" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<!-- How this works:
+		1.Propagate access tags to nodes with prefix "osmand_" (<type tag="access" value="no" minzoom="13" additional="true" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path"/>)
+		2.Add main artificial access tag (<entity_convert pattern="tag_transform" from_tag="osmand_access" to_tag1="osmand_access" to_tag2="osmand_access_main" to_value2="tag"/>)
+		3.To ensure that access tags for POI are without "osmand_" prefix we remove this prefix for POI only (<entity_convert pattern="tag_transform" from_tag="osmand_access" to_tag1="access" map="no" poi="yes"/>)
+		  This avoids new redundant poi_types in poi_types.xml
+	-->
+	<type tag="access" value="no" minzoom="13" additional="true" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
 	<type tag="access" value="private" minzoom="13" additional="true" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="access" value="yes" minzoom="13" additional="true" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="vehicle" value="no" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="vehicle" value="private" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="vehicle" value="yes" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="vehicle" value="agricultural" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="vehicle" value="customers" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="vehicle" value="delivery" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="vehicle" value="destination" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="vehicle" value="permissive" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="vehicle" value="forestry" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="vehicle" value="designated" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="motor_vehicle" value="no" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="motor_vehicle" value="private" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="motor_vehicle" value="yes" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="motor_vehicle" value="destination" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="motor_vehicle" value="permissive" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="motor_vehicle" value="agricultural" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="motor_vehicle" value="forestry" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="motor_vehicle" value="delivery" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="motor_vehicle" value="designated" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="motorcar" value="no" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway"/>
-	<type tag="motorcar" value="private" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="motorcar" value="yes" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="motorcar" value="destination" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="motorcar" value="permissive" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="motorcar" value="agricultural" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="motorcar" value="forestry" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="motorcar" value="delivery" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="motorcar" value="customers" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="motorcar" value="designated" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="motorcycle" value="no" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="motorcycle" value="private" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="motorcycle" value="yes" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
-	<type tag="foot" value="no" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~cycleway,~crossing,~bus_stop"/>
-	<type tag="foot" value="private" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~cycleway,~crossing,~bus_stop"/>
-	<type tag="foot" value="yes" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~cycleway,~crossing,~bus_stop"/>
-	<type tag="foot" value="destination" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~cycleway,~crossing,~bus_stop"/>
-	<type tag="foot" value="permissive" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~cycleway,~crossing,~bus_stop"/>
-	<type tag="foot" value="customers" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~cycleway,~crossing,~bus_stop"/>
-	<type tag="foot" value="designated" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway" propagateIfValue1="~cycleway,~crossing,~bus_stop"/>
-	<type tag="bicycle" value="no" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway"/>
-	<type tag="bicycle" value="private" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway"/>
-	<type tag="bicycle" value="yes" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway"/>
-	<type tag="bicycle" value="permissive" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway"/>
-	<type tag="bicycle" value="destination" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway"/>
-	<type tag="bicycle" value="designated" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateIfTag1="highway"/>
+	<type tag="access" value="yes" minzoom="13" additional="true" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="vehicle" value="no" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="vehicle" value="private" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="vehicle" value="yes" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="vehicle" value="agricultural" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="vehicle" value="customers" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="vehicle" value="delivery" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="vehicle" value="destination" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="vehicle" value="permissive" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="vehicle" value="forestry" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="vehicle" value="designated" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motor_vehicle" value="no" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motor_vehicle" value="private" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motor_vehicle" value="yes" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motor_vehicle" value="destination" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motor_vehicle" value="permissive" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motor_vehicle" value="agricultural" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motor_vehicle" value="forestry" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motor_vehicle" value="delivery" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motor_vehicle" value="designated" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motorcar" value="no" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway"/>
+	<type tag="motorcar" value="private" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motorcar" value="yes" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motorcar" value="destination" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motorcar" value="permissive" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motorcar" value="agricultural" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motorcar" value="forestry" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motorcar" value="delivery" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motorcar" value="customers" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motorcar" value="designated" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="foot" value="no" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~cycleway,~crossing,~bus_stop"/>
+	<type tag="foot" value="private" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~cycleway,~crossing,~bus_stop"/>
+	<type tag="foot" value="yes" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~cycleway,~crossing,~bus_stop"/>
+	<type tag="foot" value="destination" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~cycleway,~crossing,~bus_stop"/>
+	<type tag="foot" value="permissive" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~cycleway,~crossing,~bus_stop"/>
+	<type tag="foot" value="customers" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~cycleway,~crossing,~bus_stop"/>
+	<type tag="foot" value="designated" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway" propagateIfValue1="~cycleway,~crossing,~bus_stop"/>
+	<type tag="bicycle" value="no" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway"/>
+	<type tag="bicycle" value="private" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway"/>
+	<type tag="bicycle" value="yes" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway"/>
+	<type tag="bicycle" value="permissive" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway"/>
+	<type tag="bicycle" value="destination" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway"/>
+	<type tag="bicycle" value="designated" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateIfTag1="highway"/>
 
 	<entity_convert pattern="tag_transform" from_tag="osmand_access" to_tag1="osmand_access" to_tag2="osmand_access_main" to_value2="tag"/>
-	<entity_convert pattern="tag_transform" from_tag="vehicle" to_tag1="vehicle" to_tag2="osmand_access_main" to_value2="tag"/>
-	<entity_convert pattern="tag_transform" from_tag="motor_vehicle" to_tag1="motor_vehicle" to_tag2="osmand_access_main" to_value2="tag"/>
-	<entity_convert pattern="tag_transform" from_tag="motorcar" to_tag1="motorcar" to_tag2="osmand_access_main" to_value2="tag"/>
-	<entity_convert pattern="tag_transform" from_tag="foot" to_tag1="foot" to_tag2="osmand_access_main" to_value2="tag"/>
-	<entity_convert pattern="tag_transform" from_tag="bicycle" to_tag1="bicycle" to_tag2="osmand_access_main" to_value2="tag"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_access" to_tag1="access" map="no" poi="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_vehicle" to_tag1="osmand_vehicle" to_tag2="osmand_access_main" to_value2="tag"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_vehicle" to_tag1="vehicle" map="no" poi="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_motor_vehicle" to_tag1="osmand_motor_vehicle" to_tag2="osmand_access_main" to_value2="tag"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_motor_vehicle" to_tag1="motor_vehicle" map="no" poi="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_motorcar" to_tag1="osmand_motorcar" to_tag2="osmand_access_main" to_value2="tag"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_motorcar" to_tag1="motorcar" map="no" poi="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_foot" to_tag1="osmand_foot" to_tag2="osmand_access_main" to_value2="tag"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_foot" to_tag1="foot" map="no" poi="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_bicycle" to_tag1="osmand_bicycle" to_tag2="osmand_access_main" to_value2="tag"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_bicycle" to_tag1="bicycle" map="no" poi="yes"/>
 
 	<entity_convert pattern="tag_transform" from_tag="access" from_value="false" to_tag1="access" to_value1="no" notosm="true"/>
 	<type tag="access" value="permit" minzoom="13" additional="true"/>
