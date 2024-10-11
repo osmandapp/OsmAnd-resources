@@ -698,9 +698,13 @@
 	<type tag="door" value="hinged" minzoom="12" order="100"/>
 
 	<type tag="osmand_foot_tunnel" value="yes" minzoom="15"/>
+	<type tag="osmand_bicycle_tunnel" value="yes" minzoom="15"/>
 
 	<type tag="bridge" value="yes" minzoom="12" additional="true" routing="no"/>
-	<type tag="tunnel" value="yes" minzoom="12" propagateToNodes="borderout" propagateIfTag1="foot" propagateIfValue1="no" propagateToNodesPrefix="osmand_foot_" additional="true" routing="no"/>
+	<type tag="tunnel" value="yes" minzoom="12" additional="true" routing="no">
+		<propagate propagateToNodes="borderout" propagateIfTag1="foot" propagateIfValue1="no" propagateIfTag2="foot" propagateIfValue2="private" propagateToNodesPrefix="osmand_foot_"/>
+		<propagate propagateToNodes="borderout" propagateIfTag1="bicycle" propagateIfValue1="no" propagateIfTag2="bicycle" propagateIfValue2="private" propagateToNodesPrefix="osmand_bicycle_"/>
+	</type>
 
 	<type tag="man_made" value="bridge" minzoom="12" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge:name" if_tag1="bridge" to_tag1="name" routing="no" poi="no" lang="true"/>
