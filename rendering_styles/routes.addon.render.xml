@@ -381,12 +381,17 @@
 
 	<text>
 			<!-- OBF-GPX track name/ref/shield -->
-			<switch minzoom="12" tag="route" value="segment" textSize="12" textMinDistance="60" textOrder="2">
+			<switch minzoom="12" tag="route" value="segment" textSize="11" textMinDistance="60" textOrder="2">
 				<case nameTag="" textOnPath="true" textColor="#0078ff" textHaloColor="#ccebf4ff" textHaloRadius="1"/>
 
-				<!-- OBF-GPX relation track shields -->
-				<case additional="gpx_icon" nameTag="ref" textShield="?gpx_bg?" icon="?gpx_icon?" icon_2="?gpx_icon_2?" textSize="7"/>
-				<case additional="gpx_bg" nameTag="ref" textShield="?gpx_bg?" icon="?gpx_icon?" icon_2="?gpx_icon_2?"/>
+				<!-- OBF-GPX relation track icons (use tiny text size for icon-captions which are not based on osmc_text) -->
+				<case additional="shield_fg" nameTag="shield_text" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
+				<case additional="shield_fg" nameTag="ref" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"
+					  textSize="7" textColor="#ffffff" textHaloRadius="1" textHaloColor="#777777"/>
+
+				<!-- OBF-GPX relation track shield (no icon specified) -->
+				<case additional="shield_bg" nameTag="shield_text" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
+				<case additional="shield_bg" nameTag="ref" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
 
 				<!-- OBF-GPX usual shields (based on textLength) -->
 				<case nameTag="ref" textOnPath="false" textColor="#404040" textShield="yellow_square_9_road_shield">
@@ -397,6 +402,23 @@
 					<apply_if textLength="5" textShield="yellow_square_7_road_shield"/>
 					<apply_if textLength="6" textShield="yellow_square_8_road_shield"/>
 				</case>
+
+				<!-- OBF-GPX shield_textcolor (osmc_textcolor) -->
+				<apply_if additional="shield_textcolor=red" textColor="$osmcRedTextColor"/>
+				<apply_if additional="shield_textcolor=brown" textColor="$osmcBrownTextColor"/>
+				<apply_if additional="shield_textcolor=orange" textColor="$osmcOrangeTextColor"/>
+				<apply_if additional="shield_textcolor=darkyellow" textColor="$osmcDarkyellowTextColor"/>
+				<apply_if additional="shield_textcolor=yellow" textColor="$osmcYellowTextColor"/>
+				<apply_if additional="shield_textcolor=lightgreen" textColor="$osmcLightgreenTextColor"/>
+				<apply_if additional="shield_textcolor=green" textColor="$osmcGreenTextColor"/>
+				<apply_if additional="shield_textcolor=lightblue" textColor="$osmcLightblueTextColor"/>
+				<apply_if additional="shield_textcolor=blue" textColor="$osmcBlueTextColor"/>
+				<apply_if additional="shield_textcolor=purple" textColor="$osmcPurpleTextColor"/>
+				<apply_if additional="shield_textcolor=pink" textColor="$osmcPinkTextColor"/>
+				<apply_if additional="shield_textcolor=teal" textColor="$osmcTealTextColor"/>
+				<apply_if additional="shield_textcolor=gray" textColor="$osmcGrayTextColor"/>
+				<apply_if additional="shield_textcolor=black" textColor="#000000" textHaloRadius="1" textHaloColor="#30ffffff"/>
+				<apply_if additional="shield_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
 			</switch>
 
 			<!-- OBF-GPX point name -->
