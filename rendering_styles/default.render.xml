@@ -3038,6 +3038,7 @@
 						<case baseAppMode="bicycle"/>
 						<case baseAppMode="pedestrian"/>
 					</switch>
+					<case tag="osmand_tunnel" value="yes"/>
 					<case tag="osmand" value="file_waypoint"/>
 					<case tag="route" value="point"/>
 					<case tag="osmand" value="fav"/>
@@ -3476,10 +3477,12 @@
 							<apply_if layer="-1" order="55"/>
 							<apply_if additional="layer=-2" order="34"/>
 						</case>
-						<apply_if baseAppMode="pedestrian" additional="foot=no" layer="-1" order="-1"/>
-						<apply_if baseAppMode="pedestrian" additional="foot=private" layer="-1" order="-1"/>
-						<apply_if baseAppMode="bicycle" additional="bicycle=no" layer="-1" order="-1"/>
-						<apply_if baseAppMode="bicycle" additional="bicycle=private" layer="-1" order="-1"/>
+						<apply_if additional="tunnel=yes">
+							<apply_if baseAppMode="pedestrian" additional="foot=no" order="-1"/>
+							<apply_if baseAppMode="pedestrian" additional="foot=private" order="-1"/>
+							<apply_if baseAppMode="bicycle" additional="bicycle=no" order="-1"/>
+							<apply_if baseAppMode="bicycle" additional="bicycle=private" order="-1"/>
+						</apply_if>
 					</switch>
 					<case tag="highway" value="escape" order="89">
 						<apply_if baseAppMode="car" order="168"/>
@@ -7283,6 +7286,9 @@
 				<case minzoom="17" tag="aeroway" value="gate" icon="aeroway_gate" iconVisibleSize="13" shield="aeroway_gate_shield" >
 					<apply_if nightMode="true" shield=""/>
 				</case>
+
+				<case baseAppMode="pedestrian" minzoom="15" tag="osmand_foot_tunnel" value="yes" icon="osmand_tunnel" shield="blue_round_small_shield"/>
+				<case baseAppMode="bicycle" minzoom="15" tag="osmand_bicycle_tunnel" value="yes" icon="osmand_tunnel" shield="blue_round_small_shield"/>
 
 
 				<!-- Accommodation -->

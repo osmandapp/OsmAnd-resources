@@ -19,7 +19,8 @@
 		?propagateToNodes - propagate this tag from way to their node, "all" (equals to "true", "yes"), "start", "center", "end", "border"
 		?propagateToNodesPrefix - add prefix to propagated tags
 		?propagateIfTag1 - propagate if way contains tag
-		?propagateIfValue1 - propagate if way contains propagateIfTag1 with value
+		?propagateIfTag1.. / Value... - propagate if way contains tag
+		?propagateNetworkIfTag1,2,... / Value1 - propagate border points only on 2 ways belongs to the same "network" (to exclude non-relevant border points)
 		/>
 		
 		Entity convert used to convert tags.
@@ -730,8 +731,15 @@
 	<type tag="indoor" value="wall" minzoom="12"/>
 	<type tag="door" value="hinged" minzoom="12" order="100"/>
 
+	<type tag="osmand_foot_tunnel" value="yes" minzoom="15"/>
+	<type tag="osmand_bicycle_tunnel" value="yes" minzoom="15"/>
+
 	<type tag="bridge" value="yes" minzoom="12" additional="true" routing="no"/>
-	<type tag="tunnel" value="yes" minzoom="12" additional="true" routing="no"/>
+	<type tag="tunnel" value="yes" minzoom="12" additional="true" routing="no">
+		<propagate propagateToNodes="borderout" propagateNetworkIfTag1="highway" propagateIfTag1="foot" propagateIfValue1="private,no" propagateToNodesPrefix="osmand_foot_"/>
+		<propagate propagateToNodes="borderout" propagateNetworkIfTag1="highway" propagateIfTag1="bicycle" propagateIfValue1="private,no" propagateToNodesPrefix="osmand_bicycle_"/>
+	</type>
+
 	<type tag="man_made" value="bridge" minzoom="12" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge:name" if_tag1="bridge" to_tag1="name" routing="no" poi="no" lang="true"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge_ref" to_tag1="bridge:ref"/>
