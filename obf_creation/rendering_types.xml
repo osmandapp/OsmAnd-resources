@@ -19,7 +19,8 @@
 		?propagateToNodes - propagate this tag from way to their node, "all" (equals to "true", "yes"), "start", "center", "end", "border"
 		?propagateToNodesPrefix - add prefix to propagated tags
 		?propagateIfTag1 - propagate if way contains tag
-		?propagateIfValue1 - propagate if way contains propagateIfTag1 with value
+		?propagateIfTag1.. / Value... - propagate if way contains tag
+		?propagateNetworkIfTag1,2,... / Value1 - propagate border points only on 2 ways belongs to the same "network" (to exclude non-relevant border points)
 		/>
 		
 		Entity convert used to convert tags.
@@ -134,11 +135,84 @@
 	<type tag="service" value="driveway" minzoom="13" additional="true"/>
 	<type tag="service" value="parking_aisle" minzoom="13" additional="true"/>
 	<type tag="service" value="alley" minzoom="13" additional="true"/>
-	<type tag="access" value="no" minzoom="13" additional="true"/>
+
+	<type tag="osmand_access_main" value="tag" minzoom="13" order="150" notosm="true"/>
+	<type tag="osmand_access" minzoom="13" additional="true" order="150" notosm="true"/>
+	<type tag="osmand_vehicle" minzoom="13" additional="true" order="150" notosm="true"/>
+	<type tag="osmand_motor_vehicle" minzoom="13" additional="true" order="150" notosm="true"/>
+	<type tag="osmand_motorcar" minzoom="13" additional="true" order="150" notosm="true"/>
+	<type tag="osmand_foot" minzoom="13" additional="true" order="150" notosm="true"/>
+	<type tag="osmand_bicycle" minzoom="13" additional="true" order="150" notosm="true"/>
+
+	<!-- How this works:
+		1.Propagate access tags to nodes with prefix "osmand_" (<type tag="access" value="no" minzoom="13" additional="true" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path"/>)
+		2.Add main artificial access tag (<entity_convert pattern="tag_transform" from_tag="osmand_access" to_tag1="osmand_access" to_tag2="osmand_access_main" to_value2="tag"/>)
+		3.To ensure that access tags for POI are without "osmand_" prefix we remove this prefix for POI only (<entity_convert pattern="tag_transform" from_tag="osmand_access" to_tag1="access" map="no" poi="yes"/>)
+		  This avoids new redundant poi_types in poi_types.xml
+	-->
+	<type tag="access" value="no" minzoom="13" additional="true">
+		<propagate propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	</type>
+	<type tag="access" value="private" minzoom="13" additional="true" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="access" value="yes" minzoom="13" additional="true" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="vehicle" value="no" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="vehicle" value="private" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="vehicle" value="yes" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="vehicle" value="agricultural" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="vehicle" value="customers" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="vehicle" value="delivery" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="vehicle" value="destination" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="vehicle" value="permissive" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="vehicle" value="forestry" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="vehicle" value="designated" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motor_vehicle" value="no" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motor_vehicle" value="private" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motor_vehicle" value="yes" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motor_vehicle" value="destination" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motor_vehicle" value="permissive" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motor_vehicle" value="agricultural" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motor_vehicle" value="forestry" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motor_vehicle" value="delivery" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motor_vehicle" value="designated" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motorcar" value="no" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway"/>
+	<type tag="motorcar" value="private" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motorcar" value="yes" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motorcar" value="destination" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motorcar" value="permissive" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motorcar" value="agricultural" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motorcar" value="forestry" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motorcar" value="delivery" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motorcar" value="customers" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="motorcar" value="designated" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~path,~footway,~cycleway,~bus_stop"/>
+	<type tag="foot" value="no" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~cycleway,~crossing,~bus_stop"/>
+	<type tag="foot" value="private" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~cycleway,~crossing,~bus_stop"/>
+	<type tag="foot" value="yes" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~cycleway,~crossing,~bus_stop"/>
+	<type tag="foot" value="destination" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~cycleway,~crossing,~bus_stop"/>
+	<type tag="foot" value="permissive" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~cycleway,~crossing,~bus_stop"/>
+	<type tag="foot" value="customers" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~cycleway,~crossing,~bus_stop"/>
+	<type tag="foot" value="designated" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="~cycleway,~crossing,~bus_stop"/>
+	<type tag="bicycle" value="no" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway"/>
+	<type tag="bicycle" value="private" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway"/>
+	<type tag="bicycle" value="yes" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway"/>
+	<type tag="bicycle" value="permissive" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway"/>
+	<type tag="bicycle" value="destination" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway"/>
+	<type tag="bicycle" value="designated" minzoom="13" additional="true" poi="false" propagateToNodes="borderin" propagateToNodesPrefix="osmand_" propagateNetworkIfTag1="highway"/>
+
+	<entity_convert pattern="tag_transform" from_tag="osmand_access" to_tag1="osmand_access" to_tag2="osmand_access_main" to_value2="tag"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_access" to_tag1="access" map="no" poi="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_vehicle" to_tag1="osmand_vehicle" to_tag2="osmand_access_main" to_value2="tag"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_vehicle" to_tag1="vehicle" map="no" poi="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_motor_vehicle" to_tag1="osmand_motor_vehicle" to_tag2="osmand_access_main" to_value2="tag"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_motor_vehicle" to_tag1="motor_vehicle" map="no" poi="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_motorcar" to_tag1="osmand_motorcar" to_tag2="osmand_access_main" to_value2="tag"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_motorcar" to_tag1="motorcar" map="no" poi="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_foot" to_tag1="osmand_foot" to_tag2="osmand_access_main" to_value2="tag"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_foot" to_tag1="foot" map="no" poi="yes"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_bicycle" to_tag1="osmand_bicycle" to_tag2="osmand_access_main" to_value2="tag"/>
+	<entity_convert pattern="tag_transform" from_tag="osmand_bicycle" to_tag1="bicycle" map="no" poi="yes"/>
+
 	<entity_convert pattern="tag_transform" from_tag="access" from_value="false" to_tag1="access" to_value1="no" notosm="true"/>
-	<type tag="access" value="private" minzoom="13" additional="true"/>
 	<type tag="access" value="permit" minzoom="13" additional="true"/>
-	<type tag="access" value="yes" minzoom="13" additional="true" poi="false"/>
 	<entity_convert pattern="tag_transform" from_tag="access" from_value="true" to_tag1="access" to_value1="yes"/>
 	<type tag="access" value="destination" minzoom="13" additional="true" poi="false"/>
 	<type tag="access" value="permissive" minzoom="13" additional="true"/>
@@ -148,45 +222,17 @@
 	<type tag="access" value="delivery" minzoom="13" additional="true"/>
 	<type tag="access" value="emergency" minzoom="13" additional="true"/>
 	<entity_convert pattern="tag_transform" from_tag="access" from_value="restricted" to_tag1="access" to_value1="private"/>
-	<type tag="vehicle" value="no" minzoom="13" additional="true" poi="false"/>
-	<type tag="vehicle" value="yes" minzoom="13" additional="true" poi="false"/>
-	<type tag="vehicle" value="destination" minzoom="13" additional="true" poi="false"/>
-	<type tag="vehicle" value="private" minzoom="13" additional="true" poi="false"/>
 	<entity_convert pattern="tag_transform" from_tag="vehicle" from_value="permit" to_tag1="vehicle" to_value1="private"/>
-	<type tag="vehicle" value="agricultural" minzoom="13" additional="true" poi="false"/>
-	<type tag="vehicle" value="forestry" minzoom="13" additional="true" poi="false"/>
-	<type tag="vehicle" value="permissive" minzoom="13" additional="true" poi="false"/>
 	<type tag="vehicle" value="agricultural;forestry" minzoom="13" additional="true" poi="false"/>
 	<entity_convert pattern="tag_transform" from_tag="vehicle" from_value="agricultural; forestry" to_tag1="vehicle" to_value1="agricultural;forestry"/>
 	<entity_convert pattern="tag_transform" from_tag="vehicle" from_value="forestry; agricultural" to_tag1="vehicle" to_value1="agricultural;forestry"/>
-	<type tag="vehicle" value="delivery" minzoom="13" additional="true" poi="false"/>
-	<type tag="vehicle" value="customers" minzoom="13" additional="true" poi="false"/>
-	<type tag="motor_vehicle" value="no" minzoom="13" additional="true" poi="false"/>
-	<type tag="motor_vehicle" value="yes" minzoom="13" additional="true" poi="false"/>
-	<type tag="motor_vehicle" value="private" minzoom="13" additional="true" poi="false"/>
 	<entity_convert pattern="tag_transform" from_tag="motor_vehicle" from_value="permit" to_tag1="motor_vehicle" to_value1="private"/>
-	<type tag="motor_vehicle" value="destination" minzoom="13" additional="true" poi="false"/>
-	<type tag="motor_vehicle" value="permissive" minzoom="13" additional="true" poi="false"/>
-	<type tag="motor_vehicle" value="agricultural" minzoom="13" additional="true" poi="false"/>
 	<type tag="motor_vehicle" value="agricultural;forestry" minzoom="13" additional="true" poi="false"/>
-	<type tag="motor_vehicle" value="forestry" minzoom="13" additional="true" poi="false"/>
-	<type tag="motor_vehicle" value="delivery" minzoom="13" additional="true" poi="false"/>
-	<type tag="motorcar" value="no" minzoom="13" additional="true" poi="false"/>
 	<entity_convert pattern="tag_transform" from_tag="motorcar" from_value="restricted" to_tag1="motorcar" to_value1="no"/>
-	<type tag="motorcar" value="yes" minzoom="13" additional="true" poi="false"/>
-	<type tag="motorcar" value="private" minzoom="13" additional="true" poi="false"/>
 	<entity_convert pattern="tag_transform" from_tag="motorcar" from_value="permit" to_tag1="motorcar" to_value1="private"/>
-	<type tag="motorcar" value="destination" minzoom="13" additional="true" poi="false"/>
-	<type tag="motorcar" value="permissive" minzoom="13" additional="true" poi="false"/>
-	<type tag="motorcar" value="agricultural" minzoom="13" additional="true" poi="false"/>
 	<type tag="motorcar" value="agricultural;forestry" minzoom="13" additional="true" poi="false"/>
 	<entity_convert pattern="tag_transform" from_tag="motorcar" from_value="agricultural; forestry" to_tag1="motorcar" to_value1="agricultural;forestry"/>
 	<entity_convert pattern="tag_transform" from_tag="motorcar" from_value="agricultural;forestry;destination" to_tag1="motorcar" to_value1="agricultural;forestry"/>
-	<type tag="motorcar" value="forestry" minzoom="13" additional="true" poi="false"/>
-	<type tag="motorcar" value="delivery" minzoom="13" additional="true" poi="false"/>
-	<type tag="motorcar" value="customers" minzoom="13" additional="true" poi="false"/>
-	<type tag="motorcycle" value="yes" minzoom="13" additional="true" poi="false"/>
-	<type tag="motorcycle" value="private" minzoom="13" additional="true" poi="false"/>
 	<entity_convert pattern="tag_transform" from_tag="motorcycle" from_value="permit" to_tag1="motorcycle" to_value1="private"/>
 	<type tag="motorcycle" value="destination" minzoom="13" additional="true" poi="false"/>
 	<type tag="motorcycle" value="permissive" minzoom="13" additional="true" poi="false"/>
@@ -197,24 +243,12 @@
 	<type tag="motorcycle" value="forestry" minzoom="13" additional="true" poi="false"/>
 	<type tag="motorcycle" value="delivery" minzoom="13" additional="true" poi="false"/>
 	<type tag="motorcycle" value="customers" minzoom="13" additional="true" poi="false"/>
-	<type tag="foot" value="no" minzoom="13" additional="true" poi="false"/>
-	<type tag="foot" value="private" minzoom="13" additional="true" poi="false"/>
 	<entity_convert pattern="tag_transform" from_tag="foot" from_value="permit" to_tag1="foot" to_value1="private"/>
-	<type tag="foot" value="yes" minzoom="13" additional="true" poi="false"/>
-	<type tag="foot" value="permissive" minzoom="13" additional="true" poi="false"/>
-	<type tag="foot" value="destination" minzoom="13" additional="true" poi="false"/>
 	<entity_convert pattern="tag_transform" from_tag="highway" from_value="path" if_tag1="foot" if_value1="designated" if_not_region_name="$france" to_tag1="highway" to_value1="footway"/>
-	<type tag="foot" value="customers" minzoom="13" additional="true" poi="false"/>
-	<type tag="bicycle" value="no" minzoom="13" additional="true" poi="false"/>
-	<type tag="bicycle" value="yes" minzoom="13" additional="true" poi="false"/>
-	<type tag="bicycle" value="private" minzoom="13" additional="true" poi="false"/>
 	<entity_convert pattern="tag_transform" from_tag="bicycle" from_value="permit" to_tag1="bicycle" to_value1="private"/>
-	<type tag="bicycle" value="permissive" minzoom="13" additional="true" poi="false"/>
-	<type tag="bicycle" value="destination" minzoom="13" additional="true" poi="false"/>
-	<type tag="bicycle" value="designated" minzoom="12" additional="true" poi="false"/>
 	<entity_convert pattern="tag_transform" from_tag="foot" from_value="use_sidepath" if_not_tag1="sidewalk:left" if_not_value1="yes" if_not_tag2="sidewalk:right" if_not_value2="yes" to_tag1="foot" to_value1="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bicycle" from_value="official" to_tag1="bicycle" to_value1="designated" routing="no"/>
-<!--	<entity_convert pattern="tag_transform" from_tag="bicycle" from_value="use_sidepath" to_tag1="bicycle" to_value1="no"/>-->
+	<!--	<entity_convert pattern="tag_transform" from_tag="bicycle" from_value="use_sidepath" to_tag1="bicycle" to_value1="no"/>-->
 	<entity_convert pattern="tag_transform" from_tag="horse" from_value="use_sidepath" to_tag1="horse" to_value1="no"/>
 	<entity_convert pattern="tag_transform" from_tag="moped" from_value="use_sidepath" to_tag1="moped" to_value1="no"/>
 	<type tag="fee" value="yes" minzoom="13" additional="true" poi="false"/>
@@ -340,7 +374,7 @@
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="BY:motorway" to_tag1="maxspeed" to_value1="120" map="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="BY:rural" to_tag1="maxspeed" to_value1="90" map="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="BY:urban" to_tag1="maxspeed" to_value1="60" map="no" poi="no"/>
-<!--	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="CA-AB:urban" to_tag1="maxspeed" to_value1="" map="no" poi="no"/> ?-->
+	<!--	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="CA-AB:urban" to_tag1="maxspeed" to_value1="" map="no" poi="no"/> ?-->
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="CA-BC:rural" to_tag1="maxspeed" to_value1="80" map="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="CA-BC:urban" to_tag1="maxspeed" to_value1="50" map="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="CA-MB:rural" to_tag1="maxspeed" to_value1="90" map="no" poi="no"/>
@@ -348,7 +382,7 @@
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="CA-ON:rural" to_tag1="maxspeed" to_value1="80" map="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="CA-ON:urban" to_tag1="maxspeed" to_value1="50" map="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="CA-QC:motorway" to_tag1="maxspeed" to_value1="100" map="no" poi="no"/>
-<!--	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="CA-QC:rural" to_tag1="maxspeed" to_value1="" map="no" poi="no"/> ?-->
+	<!--	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="CA-QC:rural" to_tag1="maxspeed" to_value1="" map="no" poi="no"/> ?-->
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="CA-QC:urban" to_tag1="maxspeed" to_value1="50" map="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="CA-SK:nsl" to_tag1="maxspeed" to_value1="80" map="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="CH:motorway" to_tag1="maxspeed" to_value1="120" map="no" poi="no"/>
@@ -381,7 +415,7 @@
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="FI:rural" to_tag1="maxspeed" to_value1="80" map="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="FI:trunk" to_tag1="maxspeed" to_value1="100" map="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="FI:urban" to_tag1="maxspeed" to_value1="50" map="no" poi="no"/>
-<!--	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="FR:motorway" to_tag1="maxspeed" to_value1="" map="no" poi="no"/> ?-->
+	<!--	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="FR:motorway" to_tag1="maxspeed" to_value1="" map="no" poi="no"/> ?-->
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="FR:rural" to_tag1="maxspeed" to_value1="80" map="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="FR:urban" to_tag1="maxspeed" to_value1="50" map="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="FR:zone30" to_tag1="maxspeed" to_value1="30" map="no" poi="no"/>
@@ -631,19 +665,19 @@
 	<type tag="maxweight" value="maxweight" minzoom="13" additional="text"/>
 	<type tag="maxaxleload" value="maxaxleload" minzoom="13" additional="text"/>
 
-	<type tag="layer" value="0" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateIfTag1="highway" propagateIfValue1="steps"/>
-	<type tag="layer" value="1" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateIfTag1="highway" propagateIfValue1="steps"/>
-	<type tag="layer" value="-1" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateIfTag1="highway" propagateIfValue1="steps"/>
-	<type tag="layer" value="2" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateIfTag1="highway" propagateIfValue1="steps"/>
-	<type tag="layer" value="-2" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateIfTag1="highway" propagateIfValue1="steps"/>
-	<type tag="layer" value="3" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateIfTag1="highway" propagateIfValue1="steps"/>
-	<type tag="layer" value="-3" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateIfTag1="highway" propagateIfValue1="steps"/> <!-- Used only for propagateToNodes -->
-	<type tag="layer" value="4" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateIfTag1="highway" propagateIfValue1="steps"/> <!-- Used only for propagateToNodes -->
-	<type tag="layer" value="-4" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateIfTag1="highway" propagateIfValue1="steps"/> <!-- Used only for propagateToNodes -->
-	<type tag="layer" value="5" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateIfTag1="highway" propagateIfValue1="steps"/> <!-- Used only for propagateToNodes -->
-	<type tag="layer" value="-5" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateIfTag1="highway" propagateIfValue1="steps"/> <!-- Used only for propagateToNodes -->
+	<type tag="layer" value="0" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/>
+	<type tag="layer" value="1" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/>
+	<type tag="layer" value="-1" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/>
+	<type tag="layer" value="2" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/>
+	<type tag="layer" value="-2" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/>
+	<type tag="layer" value="3" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/>
+	<type tag="layer" value="-3" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/> <!-- Used only for propagateToNodes -->
+	<type tag="layer" value="4" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/> <!-- Used only for propagateToNodes -->
+	<type tag="layer" value="-4" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/> <!-- Used only for propagateToNodes -->
+	<type tag="layer" value="5" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/> <!-- Used only for propagateToNodes -->
+	<type tag="layer" value="-5" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/> <!-- Used only for propagateToNodes -->
 	<entity_convert pattern="tag_transform" from_tag="layer" from_value="+1" to_tag1="layer" to_value1="1"/>
-<!--	<entity_convert pattern="tag_transform" from_tag="layer" from_value="2" to_tag1="layer" to_value1="1"/>
+	<!--	<entity_convert pattern="tag_transform" from_tag="layer" from_value="2" to_tag1="layer" to_value1="1"/>
 	<entity_convert pattern="tag_transform" from_tag="layer" from_value="+2" to_tag1="layer" to_value1="1"/>
 	<entity_convert pattern="tag_transform" from_tag="layer" from_value="-2" to_tag1="layer" to_value1="-1"/>
 	<entity_convert pattern="tag_transform" from_tag="layer" from_value="3" to_tag1="layer" to_value1="1"/>
@@ -655,7 +689,7 @@
 	<entity_convert pattern="tag_transform" from_tag="layer" from_value="5" to_tag1="layer" to_value1="3"/>
 	<entity_convert pattern="tag_transform" from_tag="layer" from_value="+5" to_tag1="layer" to_value1="3"/>
 	<entity_convert pattern="tag_transform" from_tag="layer" from_value="-5" to_tag1="layer" to_value1="-2"/>
-<!--	<entity_convert pattern="tag_transform" from_tag="covered" from_value="yes" to_tag1="layer" to_value1="-1" to_tag2="tunnel" to_value2="yes" poi="no"/>-->
+	<!--	<entity_convert pattern="tag_transform" from_tag="covered" from_value="yes" to_tag1="layer" to_value1="-1" to_tag2="tunnel" to_value2="yes" poi="no"/>-->
 	<type tag="covered" value="yes" minzoom="12" additional="true" poi="false"/>
 	<type tag="indoor" value="yes" minzoom="12" additional="true" poi="false"/>
 	<entity_convert pattern="tag_transform" from_tag="covered" from_value="colonnade" to_tag1="covered" to_value1="yes" poi="no"/>
@@ -697,8 +731,15 @@
 	<type tag="indoor" value="wall" minzoom="12"/>
 	<type tag="door" value="hinged" minzoom="12" order="100"/>
 
+	<type tag="osmand_foot_tunnel" value="yes" minzoom="15"/>
+	<type tag="osmand_bicycle_tunnel" value="yes" minzoom="15"/>
+
 	<type tag="bridge" value="yes" minzoom="12" additional="true" routing="no"/>
-	<type tag="tunnel" value="yes" minzoom="12" additional="true" routing="no"/>
+	<type tag="tunnel" value="yes" minzoom="12" additional="true" routing="no">
+		<propagate propagateToNodes="borderout" propagateNetworkIfTag1="highway" propagateIfTag1="foot" propagateIfValue1="private,no" propagateToNodesPrefix="osmand_foot_"/>
+		<propagate propagateToNodes="borderout" propagateNetworkIfTag1="highway" propagateIfTag1="bicycle" propagateIfValue1="private,no" propagateToNodesPrefix="osmand_bicycle_"/>
+	</type>
+
 	<type tag="man_made" value="bridge" minzoom="12" routing="no"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge:name" if_tag1="bridge" to_tag1="name" routing="no" poi="no" lang="true"/>
 	<entity_convert pattern="tag_transform" from_tag="bridge_ref" to_tag1="bridge:ref"/>
@@ -907,7 +948,7 @@
 	<!--	<type tag="osmand_ele_start" additional="true" order="80"/>
 	<type tag="osmand_ele_end" additional="true" order="80"/>-->
 
-	
+
 	<!--  not used
 	<type tag="wiki_id" additional="text" map="false" lang="true"/>
 	-->
@@ -938,8 +979,8 @@
 	<type tag="region_metric" additional="text"/>
 	<type tag="region_population" additional="text"/>
 
-	
-<!--	<type tag="description_tag" value="yes" minzoom="12" nameTags="description" order="128"/>-->
+
+	<!--	<type tag="description_tag" value="yes" minzoom="12" nameTags="description" order="128"/>-->
 	<entity_convert pattern="tag_transform" from_tag="contact:website" to_tag1="contact:website" to_tag2="website" map="no"/>
 	<entity_convert pattern="tag_transform" from_tag="website" if_not_tag1="contact:website" to_tag1="contact:website" to_tag2="website" map="no"/>
 	<entity_convert pattern="tag_transform" from_tag="contact:email" to_tag1="contact:email" to_tag2="email" map="no"/>
@@ -1062,7 +1103,7 @@
 	<entity_convert pattern="tag_transform" from_tag="drinkable" from_value="no" to_tag1="drinking_water"/>
 
 	<type tag="shelter" value="yes" minzoom="15" additional="true"/>
-<!--	<entity_convert pattern="tag_transform" from_tag="shelter" from_value="yes" to_tag1="shelter" to_value1="yes" to_tag2="shelter_tmp" to_value2="yes"/>
+	<!--	<entity_convert pattern="tag_transform" from_tag="shelter" from_value="yes" to_tag1="shelter" to_value1="yes" to_tag2="shelter_tmp" to_value2="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="shelter_tmp" from_value="yes" to_tag1="amenity" to_value1="shelter" map="no"/>-->
 	<type tag="shelter" value="no" minzoom="15" additional="true"/>
 	<entity_convert pattern="tag_transform" from_tag="shelter_type" from_value="hut" to_tag1="shelter_type" to_value1="basic_hut" map="no"/>
@@ -1143,8 +1184,8 @@
 		<type tag="relation_gpx" additional="true" minzoom="3"/>
 
 		<type tag="route_id" additional="text" minzoom="3"/>
-		
-<!--		<type tag="gpx_icon" additional="true"/>
+
+		<!--		<type tag="gpx_icon" additional="true"/>
 
 		<type tag="thickness" value="bold" minzoom="3" additional="true"/>
 		<type tag="thickness" value="medium" minzoom="3" additional="true"/>
@@ -1162,7 +1203,7 @@
 			relationGroupNameTags="ref,network,modifier,us_state_network,us_county_network,name,ref:colour" 
 			relationGroupAdditionalTags="shield_color,shield_shape,shield_shape_mod,shield_order,shield_text_color,shield_bg_color"
 			order="256" notosm="true" relationGroup="true" />
-		
+
 		<!-- USA road shields -->
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$us" if_not_region_name="$us_west-virginia" if_not_tag1="route_road_*_shield_shape" if_not_tag2="route_road_*_us_county_network" if_not_value2="yes" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_shape" to_value2="rounded_rectangle" to_tag3="route_road_*_shield_color" to_value3="white" seq="1:10" apply_to="way,relation" notosm="true"/>
 
@@ -1240,7 +1281,7 @@
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$us" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="dc" seq="1:10" apply_to="way,relation" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$us" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="sr" seq="1:10" apply_to="way,relation" notosm="true"/>
 
-		
+
 		<!-- These suffixed tags used when converting from relation -->
 		<type tag="route_road_*_ref" seq="1:10" additional="text" minzoom="1" order="64"/>
 		<type tag="route_road_*_name" seq="1:10" additional="text" minzoom="1" order="64"/>
@@ -1704,7 +1745,7 @@
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$chile" if_not_tag1="route_road_*_network" if_not_value1="#" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green"  seq="1:10" apply_to="way" notosm="true"/>
 
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$peru" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="pe-" to_substr1="3" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="usshield" to_tag4="route_road_*_shield_shape_mod" to_value4="redtop" to_tag5="route_road_*_shield_order" to_value5="1" seq="1:10" apply_to="way" notosm="true"/>
-<!--		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$peru" if_not_tag1="route_road_*_network" if_not_value1="#" if_less_tag1="route_road_*_ref" if_less_value1="100" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="redtop_usshield" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>-->
+		<!--		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$peru" if_not_tag1="route_road_*_network" if_not_value1="#" if_less_tag1="route_road_*_ref" if_less_value1="100" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="redtop_usshield" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>-->
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$peru" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="an-" to_substr1="3" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="cshield" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$peru" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="ap-" to_substr1="3" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="cshield" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$peru" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="ar-" to_substr1="3" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="cshield" seq="1:10" apply_to="way" notosm="true"/>
@@ -1731,7 +1772,7 @@
 
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="$ecuador" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="white" to_tag3="route_road_*_shield_shape" to_value3="cshield" seq="1:10" apply_to="way" notosm="true"/>
 
-<!--		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="ecuador" if_less_tag1="route_road_*_ref" if_less_value1="28" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_shape" to_value3="usishield" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
+		<!--		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="ecuador" if_less_tag1="route_road_*_ref" if_less_value1="28" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_shape" to_value3="usishield" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="ecuador" if_not_less_tag1="route_road_*_ref" if_not_less_value1="28" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="green" to_tag3="route_road_*_shield_shape" to_value3="cshield" seq="1:10" apply_to="way" verbose="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="ecuador" if_starts_with_tag1="route_road_*_ref" if_starts_with_value1="e" to_substr1="1" to_tag1="route_road_*_ref" seq="1:10" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref" if_region_name="ecuador" if_tag1="road_shield_color" if_value1="blue" to_tag1="route_road_*_ref" to_tag2="route_road_*_shield_color" to_value2="blue" to_tag3="route_road_*_shield_shape" to_value3="usishield" to_tag4="route_road_*_shield_order" to_value4="1" seq="1:10" apply_to="way" notosm="true"/>-->
@@ -1883,7 +1924,7 @@
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref:colour" from_value="green" to_tag1="route_road_*_shield_color" to_value1="green" seq="1:3" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref:colour" from_value="#81bf48" to_tag1="route_road_*_shield_color" to_value1="green" seq="1:3" apply_to="way" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="route_road_*_ref:colour" from_value="#00ff00" to_tag1="route_road_*_shield_color" to_value1="green" seq="1:3" apply_to="way" notosm="true"/>
- 
+
 		<!-- End road shields -->
 		<!-- 3.8: START Backward compatibility -->
 		<type tag="road_ref_*" seq="1:10" additional="text" minzoom="1" order="64"/>
@@ -2184,7 +2225,7 @@
 		<!-- Convert foot & walking into hiking for now-->
 		<entity_convert pattern="tag_transform" from_tag="route" from_value="foot" to_tag1="route" to_value1="hiking" apply_to="relation"/>
 		<entity_convert pattern="tag_transform" from_tag="route" from_value="walking" to_tag1="route" to_value1="hiking" apply_to="relation"/>
-		
+
 		<!-- Fix for routes without route but with network=*wn : add route_ =hiking(or foot) -->
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="lwn" if_not_tag1="route" if_not_tag2="network:type" if_not_value2="node_network" to_tag1="network" to_value1="lwn" to_tag2="route" to_value2="hiking" apply_to="relation"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="iwn" if_not_tag1="route" if_not_tag2="network:type" if_not_value2="node_network" to_tag1="network" to_value1="iwn" to_tag2="route" to_value2="hiking" apply_to="relation"/>
@@ -2488,7 +2529,7 @@
 		<type tag="rcn_ref" value="" additional="text" minzoom="11" />
 		<type tag="lcn_ref" value="" additional="text" minzoom="11" />
 
-	
+
 		<!-- These tags are used for nodes with multiple networks (rwn_ref + rcn_ref etc.) only -->
 		<!-- 3.8 Start: Backward compatibility-->
 		<type tag="multiple_node_networks" value="true" minzoom="11" order="5"/> <!-- This tag is used for nodes with multiple networks (rwn_ref + rcn_ref etc.) only -->
@@ -2510,7 +2551,7 @@
 		<entity_convert pattern="tag_transform" from_tag="nwn_ref" to_tag1="nwn_ref" to_tag3="nwn_ref_value" to_tag2="multiple_node_networks" to_value2="true" />
 		<entity_convert pattern="tag_transform" from_tag="lwn_ref" to_tag1="lwn_ref" to_tag3="lwn_ref_value" to_tag2="multiple_node_networks" to_value2="true" />
 		<!-- 3.8 End: Backward compatibility -->
-		
+
 
 		<!-- POI conversion -->
 		<entity_convert pattern="tag_transform" from_tag="iwn_ref" to_tag1="iwn_ref_name" to_tag2="iwn_ref" to_value2="yes" map="false"/>
@@ -2559,7 +2600,7 @@
 		<type tag="piste_gladed_yes" minzoom="11" additional="text" order="90" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="piste:type" from_value="downhill" if_tag1="gladed" if_value1="yes" to_tag1="piste:type" to_value1="downhill" to_tag2="piste_gladed_yes" to_value2="." apply_to="way,relation"/>
 
-<!--		<type tag="piste_nordic_red" minzoom="14" additional="text" order="90" notosm="true"/>
+		<!--		<type tag="piste_nordic_red" minzoom="14" additional="text" order="90" notosm="true"/>
 		<type tag="piste_nordic_brown" minzoom="14" additional="text" order="90" notosm="true"/>
 		<type tag="piste_nordic_orange" minzoom="14" additional="text" order="90" notosm="true"/>
 		<type tag="piste_nordic_yellow" minzoom="14" additional="text" order="90" notosm="true"/>
@@ -3034,11 +3075,11 @@
 		"A" here is processed as :foreground2: (:foreground: in second case) but meant :text:
 		This is correct according to wiki: blue:white:::M:blue
 		Correct parsing of these situations is done by MapRenderingTypesEncoder.java -->
-<!--		<entity_convert pattern="tag_transform" from_tag="osmc_text_symbol" from_value="mz" if_tag1="osmc_textcolor" if_value1="yellow" to_tag1="osmc_foreground" to_value1="yellow_mz" notosm="true"/>
+		<!--		<entity_convert pattern="tag_transform" from_tag="osmc_text_symbol" from_value="mz" if_tag1="osmc_textcolor" if_value1="yellow" to_tag1="osmc_foreground" to_value1="yellow_mz" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="osmc_text_symbol" from_value="sg" if_tag1="osmc_textcolor" if_value1="yellow" to_tag1="osmc_foreground" to_value1="yellow_sg" notosm="true"/>-->
 
 		<!-- jel is a hungarian route symbol. It has priority over osmc:symbol -->
-<!--		<entity_convert pattern="tag_transform" from_tag="jel" from_value="p+" to_tag1="osmc_foreground" to_value1="red_cross" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
+		<!--		<entity_convert pattern="tag_transform" from_tag="jel" from_value="p+" to_tag1="osmc_foreground" to_value1="red_cross" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
 		<entity_convert pattern="tag_transform" from_tag="jel" from_value="s" to_tag1="osmc_foreground" to_value1="yellow_bar" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
 		<entity_convert pattern="tag_transform" from_tag="jel" from_value="k+" to_tag1="osmc_foreground" to_value1="blue_cross" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
 		<entity_convert pattern="tag_transform" from_tag="jel" from_value="z" to_tag1="osmc_foreground" to_value1="green_bar" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="."/>
@@ -3094,7 +3135,7 @@
 		<!-- kct_ is a Czech route symbol. It has priority over osmc:symbol
 		From http://hiking.waymarkedtrails.org/en/help/rendering/hikinglocal:
 		"Routes with kct_red=major become national routes, other kct_*=major are classified as regional." -->
-<!--		<entity_convert pattern="tag_transform" from_tag="kct_green" from_value="major" to_tag1="osmc_foreground" to_value1="green_bar" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="green" to_tag5="network_rwn" to_value5="rwn"/>
+		<!--		<entity_convert pattern="tag_transform" from_tag="kct_green" from_value="major" to_tag1="osmc_foreground" to_value1="green_bar" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="green" to_tag5="network_rwn" to_value5="rwn"/>
 		<entity_convert pattern="tag_transform" from_tag="kct_green" from_value="learning" to_tag1="osmc_foreground" to_value1="green_backslash" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="green"/>
 		<entity_convert pattern="tag_transform" from_tag="kct_green" from_value="peak" to_tag1="osmc_foreground" to_value1="green_triangle" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="green"/>
 		<entity_convert pattern="tag_transform" from_tag="kct_green" from_value="local" to_tag1="osmc_foreground" to_value1="green_corner" to_tag2="osmc_background" to_value2="white" to_tag3="osmc_stub_name" to_value3="." to_tag4="osmc_waycolor" to_value4="green"/>
@@ -3222,7 +3263,7 @@
 
 	<category name="cycleway">
 		<type tag="cycleway" value="lane" minzoom="12"/>
-<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" to_tag1="cycleway" to_value1="lane"/>
+		<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" to_tag1="cycleway" to_value1="lane"/>
 		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" to_tag1="cycleway" to_value1="lane"/>-->
 		<type tag="osmand_cycleway_trunk_left" value="true" minzoom="12"/>
 		<type tag="osmand_cycleway_trunk_right" value="true" minzoom="12"/>
@@ -3294,7 +3335,7 @@
 		<entity_convert pattern="tag_transform" from_tag="cycleway" from_value="lane" if_tag1="highway" if_value1="track" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="osmand_cycleway_footway_right" to_value2="true" to_tag3="cycleway" to_value3="lane" to_tag4="osmand_cycleway" to_value4="no"/>
 
 		<type tag="cycleway" value="opposite_lane" minzoom="12"/>
-<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" to_tag1="cycleway" to_value1="opposite_lane"/>
+		<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" to_tag1="cycleway" to_value1="opposite_lane"/>
 		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" to_tag1="cycleway" to_value1="opposite_lane"/>-->
 		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_lane" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
@@ -3334,7 +3375,7 @@
 		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_lane" if_tag1="highway" if_value1="track" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_lane" to_tag3="osmand_cycleway" to_value3="no"/>
 
 		<type tag="cycleway" value="share_busway" minzoom="12"/>
-<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" to_tag1="cycleway" to_value1="share_busway"/>
+		<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" to_tag1="cycleway" to_value1="share_busway"/>
 		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" to_tag1="cycleway" to_value1="share_busway"/>-->
 		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="share_busway" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
@@ -3374,7 +3415,7 @@
 		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="share_busway" if_tag1="highway" if_value1="track" to_tag1="osmand_cycleway_footway_right" to_value1="true" to_tag2="cycleway" to_value2="share_busway" to_tag3="osmand_cycleway" to_value3="no"/>
 
 		<type tag="cycleway" value="track" minzoom="12"/>
-<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" to_tag1="cycleway" to_value1="track"/>
+		<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" to_tag1="cycleway" to_value1="track"/>
 		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" to_tag1="cycleway" to_value1="track"/>-->
 		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="track" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="track" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="track" to_tag3="osmand_cycleway" to_value3="no"/>
@@ -3433,7 +3474,7 @@
 		<entity_convert pattern="tag_transform" from_tag="cycleway" from_value="track" if_tag1="highway" if_value1="track" to_tag1="osmand_cycleway_footway_left" to_value1="true" to_tag2="osmand_cycleway_footway_right" to_value2="true" to_tag3="cycleway" to_value3="track" to_tag4="osmand_cycleway" to_value4="no"/>
 
 		<type tag="cycleway" value="opposite_track" minzoom="12"/>
-<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" to_tag1="cycleway" to_value1="opposite_track"/>
+		<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" to_tag1="cycleway" to_value1="opposite_track"/>
 		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" to_tag1="cycleway" to_value1="opposite_track"/>-->
 		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="opposite_track" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="opposite_track" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="opposite_track" to_tag3="osmand_cycleway" to_value3="no"/>
@@ -3474,17 +3515,17 @@
 
 		<type tag="cycleway" value="opposite" minzoom="12"/>
 		<entity_convert pattern="tag_transform" from_tag="oneway:bicycle" from_value="no" to_tag1="cycleway" to_value1="opposite"/>
-<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:right:oneway" from_value="yes" if_not_tag1="cycleway:left:oneway" if_not_value1="-1" if_not_tag2="sidewalk:left:bicycle" if_not_value2="yes" if_not_tag3="cycleway:left:lane" if_not_value3="" if_not_tag4="cycleway:left" if_not_value4="lane" if_not_tag5="cycleway:left" if_not_value5="track" to_tag1="oneway:bicycle" to_value1="yes" map="no" poi="no"/>
+		<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:right:oneway" from_value="yes" if_not_tag1="cycleway:left:oneway" if_not_value1="-1" if_not_tag2="sidewalk:left:bicycle" if_not_value2="yes" if_not_tag3="cycleway:left:lane" if_not_value3="" if_not_tag4="cycleway:left" if_not_value4="lane" if_not_tag5="cycleway:left" if_not_value5="track" to_tag1="oneway:bicycle" to_value1="yes" map="no" poi="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cycleway:right:oneway" from_value="1" if_not_tag1="cycleway:left:oneway" if_not_value1="-1" if_not_tag2="sidewalk:left:bicycle" if_not_value2="yes" if_not_tag3="cycleway:left:lane" if_not_value3="" if_not_tag4="cycleway:left" if_not_value4="lane" if_not_tag5="cycleway:left" if_not_value5="track" to_tag1="oneway:bicycle" to_value1="yes" map="no" poi="no"/>-->
 		<entity_convert pattern="tag_transform" from_tag="cycleway:right:oneway" from_value="no" to_tag1="cycleway" to_value1="opposite" map="no" poi="no"/>
-<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:left:oneway" from_value="yes" if_not_tag1="cycleway:right:oneway" if_not_value1="-1" if_not_tag2="sidewalk:right:bicycle" if_not_value2="yes" if_not_tag3="cycleway:right:lane" if_not_value3="" if_not_tag4="cycleway:right" if_not_value4="lane" if_not_tag5="cycleway:right" if_not_value5="track" to_tag1="oneway:bicycle" to_value1="yes" map="no" poi="no"/>
+		<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:left:oneway" from_value="yes" if_not_tag1="cycleway:right:oneway" if_not_value1="-1" if_not_tag2="sidewalk:right:bicycle" if_not_value2="yes" if_not_tag3="cycleway:right:lane" if_not_value3="" if_not_tag4="cycleway:right" if_not_value4="lane" if_not_tag5="cycleway:right" if_not_value5="track" to_tag1="oneway:bicycle" to_value1="yes" map="no" poi="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cycleway:left:oneway" from_value="1" if_not_tag1="cycleway:right:oneway" if_not_value1="-1" if_not_tag2="sidewalk:right:bicycle" if_not_value2="yes" if_not_tag3="cycleway:right:lane" if_not_value3="" if_not_tag4="cycleway:right" if_not_value4="lane" if_not_tag5="cycleway:right" if_not_value5="track" to_tag1="oneway:bicycle" to_value1="yes" map="no" poi="no"/>-->
 		<entity_convert pattern="tag_transform" from_tag="cycleway:left:oneway" from_value="no" to_tag1="cycleway" to_value1="opposite" map="no" poi="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cycleway:oneway" from_value="yes" map="no" poi="no"/>
 		<type tag="cycleway" value="shared" minzoom="12"/>
 
 		<type tag="cycleway" value="shared_lane" minzoom="12"/>
-<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" to_tag1="cycleway" to_value1="lane" routing="no"/>
+		<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" to_tag1="cycleway" to_value1="lane" routing="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="shared_lane" to_tag1="cycleway" to_value1="lane" routing="no"/>-->
 		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="shared_lane" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_left" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="shared_lane" if_tag1="highway" if_value1="trunk" to_tag1="osmand_cycleway_trunk_right" to_value1="true" to_tag2="cycleway" to_value2="shared_lane" to_tag3="osmand_cycleway" to_value3="no"/>
@@ -3780,7 +3821,7 @@
 		<type tag="subway_region" value="athens" additional="true" minzoom="12" notosm="true"/>
 		<type tag="subway_region" value="italy" additional="true" minzoom="12" notosm="true"/>
 		<type tag="subway_region" value="italy_catania" additional="true" minzoom="12" notosm="true"/>
-<!--		<type tag="subway_region" value="italy_brescia" additional="true" minzoom="12" notosm="true"/>-->
+		<!--		<type tag="subway_region" value="italy_brescia" additional="true" minzoom="12" notosm="true"/>-->
 		<type tag="subway_region" value="rotterdam" additional="true" minzoom="12" notosm="true"/>
 		<type tag="subway_region" value="amsterdam" additional="true" minzoom="12" notosm="true"/>
 		<type tag="subway_region" value="brussels" additional="true" minzoom="12" notosm="true"/>
@@ -3837,162 +3878,162 @@
 		<type tag="subway_region" value="guangzhou" additional="true" minzoom="12" notosm="true"/>
 
 		<!-- Russia -->
-			<!-- Samara -->
+		<!-- Samara -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="samara" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="samara"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="samara" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="samara"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="samara" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="samara"/>
-			<!-- Moscow -->
+		<!-- Moscow -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="moscow,moskovskaya" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="moscow"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="moscow,moskovskaya" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="moscow"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="moscow,moskovskaya" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="moscow"/>
-			<!-- Saint Petersburg -->
+		<!-- Saint Petersburg -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="leningradskaya,sankt-peterburg" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="spb"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="leningradskaya,sankt-peterburg" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="spb"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="leningradskaya,sankt-peterburg" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="spb"/>
-			<!-- Kazan -->
+		<!-- Kazan -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="tatarstan" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="kazan"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="tatarstan" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="kazan"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="tatarstan" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="kazan"/>
-			<!-- Nizhniy Novgorod -->
+		<!-- Nizhniy Novgorod -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="nizhegorod" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="nnovgorod"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="nizhegorod" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="nnovgorod"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="nizhegorod" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="nnovgorod"/>
-			<!-- Novosibirsk -->
+		<!-- Novosibirsk -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="novosibirsk" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="novosibirsk"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="novosibirsk" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="novosibirsk"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="novosibirsk" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="novosibirsk"/>
-			<!-- Yekaterinburg -->
+		<!-- Yekaterinburg -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="sverdlovsk" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="yekaterinburg"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="sverdlovsk" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="yekaterinburg"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="sverdlovsk" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="yekaterinburg"/>
 
 		<!-- Ex-USSR -->
-			<!-- Minsk -->
+		<!-- Minsk -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$belarus" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="minsk"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$belarus" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="minsk"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$belarus" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="minsk"/>
-			<!-- Kyiv -->
+		<!-- Kyiv -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_tag1="operator" if_value1="КП «Київський метрополітен»" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="kyiv"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_tag1="operator" if_value1="КП «Київський метрополітен»" to_tag1="railway" to_value1="station" to_tag2="route" to_value2="subway" to_tag3="subway_region" to_value3="kyiv"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_tag1="operator" if_value1="Київський метрополітен" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="kyiv"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_tag1="operator" if_value1="Київський метрополітен" to_tag1="railway" to_value1="station" to_tag2="route" to_value2="subway" to_tag3="subway_region" to_value3="kyiv"/>
-			<!-- Kharkiv -->
+		<!-- Kharkiv -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_tag1="operator" if_value1="КП «Харківський метрополітен»" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="kharkiv"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_tag1="operator" if_value1="КП «Харківський метрополітен»" to_tag1="railway" to_value1="station" to_tag2="route" to_value2="subway" to_tag3="subway_region" to_value3="kharkiv"/>
-			<!-- Baku -->
+		<!-- Baku -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$azerbaijan" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="baku"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$azerbaijan" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="baku"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$azerbaijan" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="baku"/>
-			<!-- Tbilisi -->
+		<!-- Tbilisi -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$georgia" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="tbilisi"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$georgia" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="tbilisi"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$georgia" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="tbilisi"/>
-			<!-- Yerevan -->
+		<!-- Yerevan -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$armenia" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="yerevan"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$armenia" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="yerevan"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$armenia" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="yerevan"/>
-			<!-- Tashkent -->
+		<!-- Tashkent -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$uzbekistan" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="tashkent"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$uzbekistan" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="tashkent"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$uzbekistan" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="tashkent"/>
-			<!-- Almaty -->
+		<!-- Almaty -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$kazakhstan" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="almaty"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$kazakhstan" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="almaty"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$kazakhstan" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="almaty"/>
 
 		<!-- Europe -->
-			<!-- Paris -->
+		<!-- Paris -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="ile-de-france" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="paris"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="ile-de-france" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="paris"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="ile-de-france" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="paris"/>
-			<!-- Lyon -->
+		<!-- Lyon -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="rhone-alpes" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="lyon"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="rhone-alpes" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="lyon"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="rhone-alpes" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="lyon"/>
-			<!-- Budapest -->
+		<!-- Budapest -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$hungary" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="budapest"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$hungary" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="budapest"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$hungary" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="budapest"/>
-			<!-- Germany -->
+		<!-- Germany -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$germany" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="germany"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$germany" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="germany"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$germany" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="germany"/>
-			<!-- Wien -->
+		<!-- Wien -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$austria" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="wien"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$austria" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="wien"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$austria" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="wien"/>
-			<!-- Madrid -->
+		<!-- Madrid -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="madrid" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="madrid"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="madrid" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="madrid"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="madrid" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="madrid"/>
-			<!-- London -->
+		<!-- London -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="greater-london" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="london"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="greater-london" if_tag1="network" if_value1="London Underground" to_tag1="railway" to_value1="station" to_tag2="route" to_value2="subway" to_tag3="subway_region" to_value3="london"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="greater-london" if_tag1="network" if_value1="National Rail;London Underground" to_tag1="railway" to_value1="station" to_tag2="route" to_value2="subway" to_tag3="subway_region" to_value3="london"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="greater-london" if_tag1="network:subway" if_value1="London Underground" to_tag1="railway" to_value1="station" to_tag2="route" to_value2="subway" to_tag3="subway_region" to_value3="london"/>
-			<!-- Barcelona -->
+		<!-- Barcelona -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="catalunya" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="barcelona"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="catalunya" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="barcelona"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="catalunya" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="barcelona"/>
-			<!-- Stockholm -->
+		<!-- Stockholm -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$sweden" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="stockholm"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$sweden" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="stockholm"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$sweden" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="stockholm"/>
-			<!-- Oslo -->
+		<!-- Oslo -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$norway" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="oslo"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$norway" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="oslo"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$norway" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="oslo"/>
-			<!-- Praha -->
+		<!-- Praha -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$czech-republic" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="praha"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$czech-republic" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="praha"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$czech-republic" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="praha"/>
-			<!-- Athens -->
+		<!-- Athens -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$greece" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="athens"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$greece" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="athens"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$greece" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="athens"/>
-			<!-- Italy -->
+		<!-- Italy -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="liguria,piemonte,lazio,campania" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="italy"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="liguria,piemonte,lazio,campania" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="italy"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="liguria,piemonte,lazio,campania" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="italy"/>
-			<!-- Italy (Catania) -->
+		<!-- Italy (Catania) -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="sicilia" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="italy_catania"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="sicilia" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="italy_catania"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="sicilia" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="italy_catania"/>
-			<!-- Italy (Milano) -->
+		<!-- Italy (Milano) -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="lombardia" if_tag1="station" if_value1="subway" if_tag2="operator" if_value2="ATM" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="italy"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="lombardia" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="ATM" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="italy"/>
-			<!-- Italy (Brescia) --> <!-- does not works because for some reason network tag can't be propagated to stations in Brescia -->
-<!--		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="lombardia" if_tag1="route" if_value1="subway" if_tag2="network" if_value2="Brescia Mobilità SpA" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="italy_brescia"/>-->
-			<!-- Rotterdam -->
+		<!-- Italy (Brescia) --> <!-- does not works because for some reason network tag can't be propagated to stations in Brescia -->
+		<!--		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="lombardia" if_tag1="route" if_value1="subway" if_tag2="network" if_value2="Brescia Mobilità SpA" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="italy_brescia"/>-->
+		<!-- Rotterdam -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="zuid-holland" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="rotterdam"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="zuid-holland" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="rotterdam"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="zuid-holland" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="rotterdam"/>
-			<!-- Amsterdam -->
+		<!-- Amsterdam -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="noord-holland" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="amsterdam"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="noord-holland" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="amsterdam"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="noord-holland" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="amsterdam"/>
-			<!-- Brussels --> <!-- do not convert railway_entrance here because belgium map contains them in other cities -->
+		<!-- Brussels --> <!-- do not convert railway_entrance here because belgium map contains them in other cities -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$belgium" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="brussels"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$belgium" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="brussels"/>
-			<!-- Bucharest -->
+		<!-- Bucharest -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$romania" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="bucharest"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$romania" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="bucharest"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$romania" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="bucharest"/>
-			<!-- Sofia -->
+		<!-- Sofia -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="bulgaria" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="sofia"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="bulgaria" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="sofia"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="bulgaria" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="sofia"/>
-			<!-- Warsaw -->
+		<!-- Warsaw -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="poland" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="Metro Warszawskie" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="warsaw"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="poland" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="warsaw"/>
-			<!-- Lisbon -->
+		<!-- Lisbon -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="portugal" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="Metropolitano de Lisboa" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="lisbon"/>
 
-			<!-- Istanbul -->
+		<!-- Istanbul -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="turkey" if_tag1="station" if_value1="subway" if_tag2="network" if_value2="İstanbul Metrosu" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="istanbul"/>
 
 		<!-- Asia -->
-			<!-- Tokyo --> <!-- in Kanto region there is Yokohama subway sustem, so we use tag "operator" to distingiush Tokyo subway from Yokohama -->
+		<!-- Tokyo --> <!-- in Kanto region there is Yokohama subway sustem, so we use tag "operator" to distingiush Tokyo subway from Yokohama -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kanto" if_tag1="operator" if_value1="東京地下鉄" if_tag2="route" if_value2="subway" to_tag1="railway" to_value1="station" to_tag3="subway_region" to_value3="tokyo"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kanto" if_tag1="operator" if_value1="東京都交通局" if_tag2="route" if_value2="subway" to_tag1="railway" to_value1="station" to_tag3="subway_region" to_value3="tokyo"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kanto" if_tag1="operator" if_value1="東京都交通局;東京地下鉄" if_tag2="route" if_value2="subway" to_tag1="railway" to_value1="station" to_tag3="subway_region" to_value3="tokyo"/>
@@ -4001,35 +4042,35 @@
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kanto" if_tag1="operator" if_value1="東京地下鉄;東京都交通局" if_tag2="route" if_value2="subway" to_tag1="railway" to_value1="station" to_tag3="subway_region" to_value3="tokyo"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kanto" if_tag1="operator" if_value1="東武鉄道;東京地下鉄" if_tag2="route" if_value2="subway" to_tag1="railway" to_value1="station" to_tag3="subway_region" to_value3="tokyo"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kanto" if_tag1="operator" if_value1="東京地下鉄;西武鉄道" if_tag2="route" if_value2="subway" to_tag1="railway" to_value1="station" to_tag3="subway_region" to_value3="tokyo"/>
-			<!-- Osaka -->
+		<!-- Osaka -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="kinki" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="osaka"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kinki" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="osaka"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kinki" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="osaka"/>
-			<!-- Nagoya -->
+		<!-- Nagoya -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="chubu" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="nagoya"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="chubu" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="nagoya"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="chubu" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="nagoya"/>
-			<!-- Yokohama -->
+		<!-- Yokohama -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kanto" if_tag1="operator" if_value1="横浜市交通局" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="yokohama"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kanto" if_tag1="operator" if_value1="横浜高速鉄道" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="yokohama_minatomirai"/>
-			<!-- Sapporo -->
-<!--		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="hokkaido" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="sapporo"/>-->
+		<!-- Sapporo -->
+		<!--		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="hokkaido" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="sapporo"/>-->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="hokkaido" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="sapporo"/>
-			<!-- Fukuoka -->
+		<!-- Fukuoka -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="kyushu" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="福岡市交通局" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="fukuoka"/>
 
-			<!-- Suzhou -->
+		<!-- Suzhou -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$china,$china_jiangsu" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="蘇州軌道交通" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="suzhou"/>
-			<!-- Shanghai -->
+		<!-- Shanghai -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$china,$china_shanghai" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="Shanghai Shentong Metro Group" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="shanghai"/>
-			<!-- Guangzhou -->
+		<!-- Guangzhou -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$china,$china_guangdong" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="Guangzhou Metro Corporation" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="guangzhou"/>
 
-			<!-- Singapore -->
+		<!-- Singapore -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$singapore" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="singapore"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$singapore" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="singapore"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$singapore" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="singapore"/>
-			<!-- Manila -->
+		<!-- Manila -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$philippines" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="manila"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$philippines" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="manila"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$philippines" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="manila"/>
@@ -4038,28 +4079,28 @@
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="light_rail" if_region_name="$philippines" if_tag1="operator" if_value1="Light Rail Manila Corporation" to_tag1="railway" to_value1="subway"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$philippines" if_tag1="operator" if_value1="Light Rail Transit Authority" to_tag1="railway" to_value1="station" to_tag2="station" to_value2="subway" to_tag3="subway_region" to_value3="manila"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$philippines" if_tag1="operator" if_value1="Light Rail Manila Corporation" to_tag1="railway" to_value1="station" to_tag2="station" to_value2="subway" to_tag3="subway_region" to_value3="manila"/>
-			<!-- Kolkata -->
+		<!-- Kolkata -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="west-bengal" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="kolkata"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="west-bengal" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="kolkata"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="west-bengal" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="kolkata"/>
-			<!-- Delhi -->
+		<!-- Delhi -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="delhi" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="delhi"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="delhi" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="delhi"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="delhi" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="delhi"/>
-			<!-- Tehran -->
+		<!-- Tehran -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="iran" if_tag1="operator" if_value1="Tehran Urban and Suburban Railway Company" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="tehran"/>
 		<entity_convert pattern="tag_transform" from_tag="route" from_value="subway" if_region_name="iran" if_tag1="operator" if_value1="Tehran Urban and Suburban Railway Company" to_tag1="route" to_value1="subway" to_tag2="subway_region" to_value2="tehran"/>
 		<entity_convert pattern="tag_transform" from_tag="station" from_value="subway" if_region_name="iran" if_tag1="operator" if_value1="Tehran Urban and Suburban Railway Company" to_tag1="station" to_value1="subway" to_tag2="subway_region" to_value2="tehran"/>
-			<!-- Bangkok -->
-<!--		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="thailand" ifto_tag1="route" to_value1="subway" to_tag2="subway_region" to_value2="bangkok"/>
+		<!-- Bangkok -->
+		<!--		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="thailand" ifto_tag1="route" to_value1="subway" to_tag2="subway_region" to_value2="bangkok"/>
 		<entity_convert pattern="tag_transform" from_tag="station" from_value="subway" if_region_name="thailand" to_tag1="station" to_value1="subway" to_tag2="subway_region" to_value2="bangkok"/>-->
-			<!-- Taipei -->
+		<!-- Taipei -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="taiwan" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="TRTC" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="taipei"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="taiwan" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="臺北大眾捷運股份有限公司" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="taipei"/>
-			<!-- Busan -->
+		<!-- Busan -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="south-korea" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="부산교통공사" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="busan"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="south-korea" if_tag1="operator" if_value1="부산교통공사" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="busan"/>
-			<!-- Seoul -->
+		<!-- Seoul -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="south-korea" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="Seoul Metro;Korea Railroad Corporation" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="seoul"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="south-korea" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="서울메트로" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="seoul"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="south-korea" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="Seoul Metropolitan Rapid Transit Corporation" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="seoul"/>
@@ -4067,91 +4108,91 @@
 
 
 		<!-- USA -->
-			<!-- New York -->
-<!--		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="new-york" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="newyork"/>-->
+		<!-- New York -->
+		<!--		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="new-york" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="newyork"/>-->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="new-york" if_tag1="station" if_value1="subway" if_not_tag1="operator" if_not_value1="Port Authority of New York and New Jersey" if_not_tag2="operator" if_not_value2="PATH" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="newyork"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="new-york" if_tag1="route" if_value1="subway" if_not_tag1="operator" if_not_value1="Port Authority of New York and New Jersey" if_not_tag2="operator" if_not_value2="PATH" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="newyork"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="new-york,new-jersey" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="Port Authority of New York and New Jersey" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="newyork_path"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="new-york,new-jersey" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="PATH" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="newyork_path"/>
-			<!-- Chicago -->
+		<!-- Chicago -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="illinois" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="chicago"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="illinois" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="chicago"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="illinois" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="chicago"/>
-			<!-- Boston -->
+		<!-- Boston -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="massachusetts" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="boston"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="massachusetts" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="boston"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="massachusetts" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="boston"/>
-			<!-- Washington -->
+		<!-- Washington -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="district-of-columbia" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="washington"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="district-of-columbia,virginia,maryland" if_tag1="operator" if_value1="Washington Metropolitan Area Transit Authority" to_tag1="railway" to_value1="station" to_tag2="route" to_value2="subway" to_tag3="station" to_value3="subway" to_tag4="subway_region" to_value4="washington"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="district-of-columbia,virginia,maryland" if_tag1="operator" if_value1="WMATA" to_tag1="railway" to_value1="station" to_tag2="route" to_value2="subway" to_tag3="station" to_value3="subway" to_tag4="subway_region" to_value4="washington"/>
-			<!-- Los Angeles -->
+		<!-- Los Angeles -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="california" if_tag1="operator" if_value1="Los Angeles County Metropolitan Transportation Authority" to_tag1="railway" to_value1="station" to_tag2="route" to_value2="subway" to_tag3="station" to_value3="subway" to_tag4="subway_region" to_value4="losangeles"/>
-			<!-- Philadelphia -->
+		<!-- Philadelphia -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="pennsylvania" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="SEPTA" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="philadelphia"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="pennsylvania,new-jersey" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="PATCO" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="philadelphia_patco"/>
-			<!-- San-Francisco -->
+		<!-- San-Francisco -->
 		<entity_convert pattern="tag_transform" from_tag="public_transport" from_value="stop_position" if_region_name="california" if_tag1="subway" if_value1="yes" to_tag1="railway" to_value1="station" to_tag2="station" to_value2="subway" to_tag3="subway_region" to_value3="san_francisco" poi="no"/>
-			<!-- Atlanta -->
+		<!-- Atlanta -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$us_georgia" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="atlanta"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$us_georgia" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="atlanta"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$us_georgia" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="atlanta"/>
 		<entity_convert pattern="tag_transform" from_tag="public_transport" from_value="stop_position" if_region_name="$us_georgia" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="station" to_value2="subway" to_tag3="subway_region" to_value3="atlanta" poi="no"/>
-			<!-- Baltimore -->
+		<!-- Baltimore -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="maryland" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="Maryland Transit Administration" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="baltimore"/>
-			<!-- Cleveland -->
+		<!-- Cleveland -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="ohio" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="RTA" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="cleveland"/>
-			<!-- Miami -->
+		<!-- Miami -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="florida" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="Miami-Dade Transit" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="miami"/>
-			<!-- Puerto-Rico -->
+		<!-- Puerto-Rico -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="puerto-rico" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="puerto_rico"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="puerto-rico" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="puerto_rico"/>
 
 		<!-- Canada -->
-			<!-- Montreal -->
+		<!-- Montreal -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="quebec" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="montreal"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="quebec" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="montreal"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="quebec" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="montreal"/>
-			<!-- Toronto -->
+		<!-- Toronto -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="ontario" if_tag1="operator" if_value1="Toronto Transit Commision" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="toronto"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="ontario" if_tag1="operator" if_value1="Toronto Transit Commission" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="toronto"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="ontario" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="toronto"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="ontario" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="toronto"/>
 
 		<!-- Africa -->
-			<!-- Cairo -->
+		<!-- Cairo -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$egypt" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="cairo"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$egypt" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="cairo"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$egypt" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="cairo"/>
 
 		<!-- South America -->
-			<!-- Rio de Janeiro -->
+		<!-- Rio de Janeiro -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$brazil" if_tag1="operator" if_value1="Metrô Rio" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="riodejaneiro"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$brazil" if_tag1="station" if_value1="subway" if_tag2="operator" if_value2="Metrô Rio" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="riodejaneiro"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$brazil" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="Metrô Rio" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="riodejaneiro"/>
-			<!-- San Paulo -->
+		<!-- San Paulo -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$brazil" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="Companhia do Metropolitano de São Paulo" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="sanpaulo"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$brazil" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="ViaQuatro" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="sanpaulo"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$brazil" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="Companhia do Metropolitano de São Paulo" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="sanpaulo"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$brazil" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="ViaQuatro" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="sanpaulo"/>
-			<!-- Buenos Aires -->
+		<!-- Buenos Aires -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$argentina" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="buenosaires"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$argentina" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="buenosaires"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$argentina" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="buenosaires"/>
-			<!-- Santiago -->
+		<!-- Santiago -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="chile" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="Metro de Santiago" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="santiago"/>
-			<!-- Valparaiso -->
+		<!-- Valparaiso -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="chile" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="Metro Valparaíso" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="valparaiso"/>
-			<!-- Caracas -->
+		<!-- Caracas -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="venezuela" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="Metro de Caracas C.A." to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="caracas"/>
-			<!-- Medellin -->
+		<!-- Medellin -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$colombia" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="ETMVA" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="medellin"/>
 
 		<!-- Central America -->
-			<!-- Mexico -->
+		<!-- Mexico -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$mexico" if_tag1="route" if_value1="subway" if_tag2="network" if_value2="STC Metro" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="mexico"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$mexico" if_tag2="network" if_value2="STC Metro" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="mexico"/>
-			<!-- Monterrey -->
+		<!-- Monterrey -->
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$mexico" if_tag1="route" if_value1="subway" if_tag2="operator" if_value2="Sistema de Transporte Colectivo Metrorrey" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="monterrey"/>
 
 
@@ -4184,7 +4225,7 @@
 	<type tag="seamark:type" value="platform" minzoom="10" nameTags="seamark:name,name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/> <!-- nameTags for INT-1 P Section Lights, in front of aeroway=helipad and power=substation for visibility in nautical.render.xml -->
 
 	<category name="aeroway">
-		 <!-- artificial tags. Used because only (usually) large aerodromes are using these tags and they are nameTags -->
+		<!-- artificial tags. Used because only (usually) large aerodromes are using these tags and they are nameTags -->
 		<entity_convert pattern="tag_transform" from_tag="iata" if_tag1="aeroway" if_value1="aerodrome" to_tag1="large_aerodrome" to_value1="yes" to_tag2="iata"/>
 		<entity_convert pattern="tag_transform" from_tag="icao" if_tag1="aeroway" if_value1="aerodrome" to_tag1="large_aerodrome" to_value1="yes" to_tag2="icao"/>
 		<entity_convert pattern="tag_transform" from_tag="faa" if_tag1="aeroway" if_value1="aerodrome" to_tag1="large_aerodrome" to_value1="yes" to_tag2="faa"/>
@@ -4286,7 +4327,7 @@
 		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="gas" to_tag1="generator:source" to_value1="gas"/>
 		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="coal" to_tag1="generator:source" to_value1="coal"/>
 		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="nuclear" to_tag1="generator:source" to_value1="nuclear"/>
-<!--		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="solar" to_tag1="generator:source" to_value1="solar"/>-->
+		<!--		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="solar" to_tag1="generator:source" to_value1="solar"/>-->
 		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="biomass" to_tag1="generator:source" to_value1="gas" poi="no"/>
 		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="oil" to_tag1="generator:source" to_value1="oil"/>
 		<entity_convert pattern="tag_transform" from_tag="plant:source" from_value="geothermal" to_tag1="generator:source" to_value1="geothermal"/>
@@ -4316,7 +4357,7 @@
 
 
 	<category name="man_made">
-<!--		<type tag="building" minzoom="15" nameTags="addr:housenumber,addr:housename,addr:flats" />
+		<!--		<type tag="building" minzoom="15" nameTags="addr:housenumber,addr:housename,addr:flats" />
 		<type tag="addr:housenumber" minzoom="16" nameTags="addr:housenumber" />-->
 		<entity_convert pattern="tag_transform" from_tag="addr:housenumber" if_tag1="amenity" apply_to="node" poi="no"/>
 		<entity_convert pattern="tag_transform" from_tag="addr:housenumber" if_tag1="shop" apply_to="node" poi="no"/>
@@ -4848,7 +4889,7 @@
 		<type tag="shop" value="water" minzoom="15" />
 		<type tag="shop" value="water_sports" minzoom="15" />
 		<type tag="shop" value="weapons" minzoom="15" />
-<!--		<type tag="shop" value="wine" minzoom="15" /> deprecated-->
+		<!--		<type tag="shop" value="wine" minzoom="15" /> deprecated-->
 		<entity_convert pattern="tag_transform" from_tag="shop" from_value="wine" if_not_tag1="drink:wine" to_tag1="shop" to_value1="alcohol" to_tag2="drink:wine" to_value2="yes"/>
 		<entity_convert pattern="tag_transform" from_tag="shop" from_value="wine" if_tag1="drink:wine" to_tag1="shop" to_value1="alcohol"/>
 		<type tag="shop" value="wholesale" minzoom="15" />
@@ -5140,7 +5181,7 @@
 		<entity_convert pattern="tag_transform" from_tag="direction" from_value="counterclockwise" to_tag1="direction" to_value1="anticlockwise"/>
 		<entity_convert pattern="tag_transform" from_tag="direction" from_value="0-360" to_tag1="direction" to_value1="all"/>
 
-<!--		<type tag="tourism" value="yes" minzoom="15"/>-->
+		<!--		<type tag="tourism" value="yes" minzoom="15"/>-->
 		<type tag="tourism" value="wine_cellar" minzoom="15" />
 		<type tag="tourism" value="winery" minzoom="15" />
 		<type tag="leisure" value="resort" minzoom="12" order="71"/>
@@ -5571,7 +5612,7 @@
 		<entity_convert pattern="tag_transform" from_tag="wood" from_value="mixed" to_tag1="leaf_type" to_value1="mixed"/>
 		<entity_convert pattern="tag_transform" from_tag="trees" from_value="mixed" to_tag1="leaf_type" to_value1="mixed"/>
 		<entity_convert pattern="tag_transform" from_tag="tree" from_value="palm" to_tag1="tree:type" to_value1="palm"/>
-<!--		<entity_convert pattern="tag_transform" from_tag="tree:type" from_value="palm" to_tag1="type" to_value1="palm"/>-->
+		<!--		<entity_convert pattern="tag_transform" from_tag="tree:type" from_value="palm" to_tag1="type" to_value1="palm"/>-->
 		<type tag="wood:damage" value="windfall" minzoom="14" additional="true"/>
 		<type tag="wood:damage" value="dead_wood" minzoom="14" additional="true"/>
 		<entity_convert pattern="tag_transform" from_tag="wood:damage" from_value="burnt" to_tag1="wood:damage" to_value1="dead_wood"/>
@@ -5632,7 +5673,7 @@
 		<type tag="amenity" value="bbq" minzoom="15" />
 		<type tag="amenity" value="public_bookcase" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="diet:vegetarian" from_value="limited" to_tag1="diet:vegetarian" to_value1="few" map="no"/>
-<!--		<entity_convert pattern="tag_transform" from_tag="diet:vegetarian" from_value="few" to_tag1="diet:vegetarian" to_value1="yes" map="no"/>-->
+		<!--		<entity_convert pattern="tag_transform" from_tag="diet:vegetarian" from_value="few" to_tag1="diet:vegetarian" to_value1="yes" map="no"/>-->
 		<entity_convert pattern="tag_transform" from_tag="diet" from_value="vegetarian" to_tag1="diet:vegetarian" to_value1="yes" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="diet" from_value="vegetarian, vegan" to_tag1="diet:vegetarian" to_value1="yes" to_tag2="diet:vegan" to_value2="yes" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="diet" from_value="halal" to_tag1="diet:halal" to_value1="yes" map="no"/>
@@ -5830,11 +5871,11 @@
 		<entity_convert pattern="tag_transform" from_tag="service" from_value="dealer;repair;parts;tyres;electrical" to_tag1="service:repair" to_value1="yes" to_tag2="service:dealer" to_value2="yes" to_tag3="service:tyres" to_value3="yes" to_tag4="service:parts" to_value4="yes" to_tag5="service:electrical" to_value5="yes" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="service" from_value="dealer;tyres;parts;repair" to_tag1="service:repair" to_value1="yes" to_tag2="service:dealer" to_value2="yes" to_tag3="service:tyres" to_value3="yes" to_tag4="service:parts" to_value4="yes" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="service" from_value="dealer;parts" to_tag1="service:parts" to_value1="yes" to_tag2="service:dealer" to_value2="yes" map="no"/>
-<!--		<type tag="iwn_ref" value="" minzoom="14" nameTags="iwn_ref" poi_prefix="walking_node_"/>
+		<!--		<type tag="iwn_ref" value="" minzoom="14" nameTags="iwn_ref" poi_prefix="walking_node_"/>
 		<type tag="nwn_ref" value="" minzoom="14" nameTags="nwn_ref" poi_prefix="walking_node_"/>
 		<type tag="rwn_ref" value="" minzoom="14" nameTags="rwn_ref" poi_prefix="walking_node_"/>
 		<type tag="lwn_ref" value="" minzoom="14" nameTags="lwn_ref" poi_prefix="walking_node_"/>-->
-<!--		<type tag="icn_ref" value="" minzoom="14" nameTags="icn_ref" poi_prefix="cycle_node_"/> does not works
+		<!--		<type tag="icn_ref" value="" minzoom="14" nameTags="icn_ref" poi_prefix="cycle_node_"/> does not works
 		<type tag="ncn_ref" value="" minzoom="14" nameTags="ncn_ref" poi_prefix="cycle_node_"/>
 		<type tag="rcn_ref" value="" minzoom="14" nameTags="rcn_ref" poi_prefix="cycle_node_"/>
 		<type tag="lcn_ref" value="" minzoom="14" nameTags="lcn_ref" poi_prefix="cycle_node_"/>-->
@@ -5853,7 +5894,7 @@
 		<type tag="amenity" value="bank" minzoom="15" />
 		<type tag="amenity" value="bureau_de_change" minzoom="15" />
 		<type tag="amenity" value="mobile_money_agent" minzoom="15" />
-<!--		<type tag="bitcoin" value="yes" minzoom="15" />
+		<!--		<type tag="bitcoin" value="yes" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="payment:bitcoin" to_tag1="bitcoin" to_value1="yes"/>-->
 	</category>
 
@@ -5862,7 +5903,7 @@
 		<type tag="healthcare" value="alternative" minzoom="15" />
 		<type tag="healthcare" value="audiologist" minzoom="15" />
 		<type tag="healthcare" value="blood_bank" minzoom="15" />
-<!--		<type tag="healthcare" value="centre" minzoom="15" />-->
+		<!--		<type tag="healthcare" value="centre" minzoom="15" />-->
 		<entity_convert pattern="tag_transform" from_tag="healthcare" from_value="midwife" to_tag1="office" to_value1="midwife"/>
 		<type tag="healthcare" value="nurse" minzoom="15" />
 		<type tag="healthcare" value="occupational_therapist" minzoom="15" />
@@ -5897,7 +5938,7 @@
 		<type tag="amenity" value="first_aid" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="firstaid" to_tag1="amenity" to_value1="first_aid"/>
 		<type tag="amenity" value="social_facility" minzoom="12" />
-<!--		<type tag="amenity" value="nursing_home" minzoom="15" />-->
+		<!--		<type tag="amenity" value="nursing_home" minzoom="15" />-->
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="nursing_home" to_tag1="amenity" to_value1="social_facility" to_tag2="social_facility" to_value2="group_home"/>
 		<type tag="social_facility" value="assisted_living" minzoom="15" additional="true" />
 		<entity_convert pattern="tag_transform" from_tag="social_facility" if_not_tag1="amenity" if_not_tag2="tourism" to_tag1="social_facility" to_tag2="amenity" to_value2="social_facility"/>
@@ -5905,7 +5946,7 @@
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="retirement_home" to_tag1="amenity" to_value1="social_facility" to_tag2="social_facility" to_value2="group_home" to_tag3="social_facility:for" to_value3="senior"/>
 		<entity_convert pattern="tag_transform" from_tag="social_facility:for" from_value="elderly" to_tag1="social_facility:for" to_value1="senior"/>
 
-<!--		<entity_convert pattern="tag_transform" from_tag="healthcare:speciality" to_tag_prefix1="health_specialty:" to_value1="yes"/>-->
+		<!--		<entity_convert pattern="tag_transform" from_tag="healthcare:speciality" to_tag_prefix1="health_specialty:" to_value1="yes"/>-->
 		<entity_convert pattern="tag_transform" from_tag="health_specialty:acupuncture" from_value="additional" to_tag1="healthcare:speciality" to_value1="acupuncture"/>
 		<entity_convert pattern="tag_transform" from_tag="health_specialty:acupuncture" from_value="trained" to_tag1="healthcare:speciality" to_value1="acupuncture"/>
 		<entity_convert pattern="tag_transform" from_tag="health_specialty:alternative_medicine" from_value="yes" to_tag1="healthcare" to_value1="alternative"/>
@@ -6169,7 +6210,7 @@
 		<type tag="place" value="region" minzoom="4" nameTags="ref,int_ref" point="true"/>
 		<type tag="place" value="sea" minzoom="3" point="true"/>
 		<type tag="place" value="county" minzoom="9"/>
-<!--		<type tag="osmand_place_basemap" value="city" minzoom="4" point="true"/>-->
+		<!--		<type tag="osmand_place_basemap" value="city" minzoom="4" point="true"/>-->
 		<type tag="place" value="city" minzoom="5" point="true" order="1"/>
 		<type tag="place" value="town" minzoom="6" point="true" order="1"/>
 		<type tag="osmand_admin_center" value="large" minzoom="5" additional="true" notosm="true"/>
@@ -6273,7 +6314,7 @@
 	<!-- administrative boundaries -->
 	<category>
 		<!-- register(st, "boundary", "administrative", ADMINISTRATIVE, 15, POLYLINE_TYPE); //$NON-NLS-1$ //$NON-NLS-2$ -->
-		 <!-- does admin_level=0 exist?? -->
+		<!-- does admin_level=0 exist?? -->
 		<type tag="admin_level" value="0" minzoom="2" />
 		<type tag="admin_level" value="1" minzoom="2" relation="true"/>
 		<type tag="admin_level" value="2" minzoom="2" relation="true"/>
@@ -6307,7 +6348,7 @@
 		<entity_convert pattern="tag_transform" from_tag="boundary" from_value="protected_area" if_region_name="$netherlands" to_tag1="boundary" to_value1="protected_area" to_tag2="nr_high_density" to_value2="yes" notosm="true"/>
 		<type tag="boundary" value="forestry_compartment" minzoom="10" relation="true"/>
 		<entity_convert pattern="tag_transform" from_tag="boundary" from_value="forest_compartment" to_tag1="boundary" to_value1="forestry_compartment"/>
-<!--		<entity_convert pattern="tag_transform" from_tag="boundary" from_value="protected_area" if_not_tag1="leisure" if_not_tag2="nature" if_not_less_tag1="protect_class" if_not_less_value1="5" poi="no"/>-->
+		<!--		<entity_convert pattern="tag_transform" from_tag="boundary" from_value="protected_area" if_not_tag1="leisure" if_not_tag2="nature" if_not_less_tag1="protect_class" if_not_less_value1="5" poi="no"/>-->
 		<entity_convert pattern="tag_transform" from_tag="boundary" from_value="protected_area" if_tag1="protect_class" if_value1="25" to_tag1="landuse" to_value1="military" poi="no"/>
 		<type tag="protect_class" minzoom="11" additional="true" poi="false"/>
 		<type tag="boundary" value="low_emission_zone" minzoom="6" relation="true" />
@@ -6567,7 +6608,7 @@
 		<!-- Here user defined categories could be added -->
 		<!-- <type tag="user_defined" value="wsl" minzoom="10" /> -->
 	</category>
-	
+
 	<!-- Seamarks -->
 	<!-- example of definition openseamaps needs to be enabled later -->
 	<!-- preprocess rules
@@ -6581,7 +6622,7 @@
 		3. seamark:*:VAR -> seamark:VAR
 		   Example : seamark:buoy_lateral:category -> seamark:category (additional)
 	 -->
-	 
+
 	<!-- TODO define in additional file? -->
 	<type tag="seamark:category" minzoom="11" additional="true" notosm="true"/>
 	<type tag="seamark:character" minzoom="11" additional="text" notosm="true"/>
@@ -6599,7 +6640,7 @@
 	<type tag="seamark:topmark" minzoom="11" additional="true" notosm="true"/>
 	<type tag="seamark:attached" minzoom="11" additional="true" notosm="true"/>
 	<type tag="seamark:surface" minzoom="11" additional="text" notosm="true"/>
-	
+
 	<!-- INT-1 P, R, S Sections: Lights, Fog Signals, Radar. Composition of lightDetail for nameTag2, finally selected in nautical.render.xml renderingProperty attr="lightDetail" -->
 	<!-- seamark:name and seamark:light tags as nameTag2 (as far as possible today). The OSMAND display was validated at Texel, Den Helder, Helgoland, Elbe and Weser Approaches, Rotterdam, Cherbourg.
 	default: 		name (light:character.group.period[in seconds].fog_signal:category.group.period[in seconds].radar_transponder:category.group) 
@@ -6634,7 +6675,7 @@
 	<entity_convert pattern="tag_combine" separator="." from_tag="seamark:light:1:character" if_tag1="seamark:light:1:period" from_tag1="seamark:light:1:group" from_tag2="seamark:light:1:period" to_tag1="seamark:light:character"/>
 	<entity_convert pattern="tag_combine" separator="." from_tag="seamark:light:1:character" if_tag1="seamark:light:1:range" from_tag1="seamark:light:1:group" from_tag2="seamark:light:1:period" to_tag1="seamark:light:character"/>
 	<entity_convert pattern="tag_combine" separator="." from_tag="seamark:light:1:character" if_tag1="seamark:fog_signal:category" from_tag1="seamark:light:1:group" from_tag2="seamark:light:1:period" to_tag1="seamark:light:character"/>
-<!--	<entity_convert pattern="tag_combine" separator="." from_tag="seamark:fog_signal:category" if_not_tag1="seamark:light:character" if_not_tag2="seamark:light:1:character" from_tag4="seamark:fog_signal:group" from_tag5="seamark:fog_signal:period" from_tag6="seamark:radar_transponder:category" from_tag7="seamark:radar_transponder:group" to_tag1="seamark:light:character"/>
+	<!--	<entity_convert pattern="tag_combine" separator="." from_tag="seamark:fog_signal:category" if_not_tag1="seamark:light:character" if_not_tag2="seamark:light:1:character" from_tag4="seamark:fog_signal:group" from_tag5="seamark:fog_signal:period" from_tag6="seamark:radar_transponder:category" from_tag7="seamark:radar_transponder:group" to_tag1="seamark:light:character"/>
 	<entity_convert pattern="tag_combine" separator="." from_tag="seamark:radar_transponder:category" if_not_tag1="seamark:light:character" if_not_tag2="seamark:light:1:character" if_not_tag3="seamark:fog_signal" from_tag7="seamark:radar_transponder:group" to_tag1="seamark:light:character"/>-->
 	<!-- <apply_if lightDetail="sectors" nameTag2="seamark:light:add_sectors"/> -->
 	<entity_convert pattern="tag_combine" separator="-" from_tag="seamark:light:1:sector_start" from_tag1="seamark:light:1:sector_end" from_tag2="seamark:light:1:colour" from_tag3="seamark:light:2:sector_start" from_tag4="seamark:light:2:sector_end" from_tag5="seamark:light:2:colour" from_tag6="seamark:light:3:sector_start" from_tag7="seamark:light:3:sector_end" from_tag8="seamark:light:3:colour" from_tag15="seamark:light:category" to_tag1="seamark:light:add_sectors"/>
@@ -6792,7 +6833,7 @@
 		<entity_convert pattern="tag_transform" from_tag="seamark:daymark:colour_pattern" to_tag1="seamark:topmark:colour_pattern"/>
 		<type tag="seamark:light_float:colour" minzoom="11" additional="true"/>
 		<type tag="seamark:light_float:colour_pattern" minzoom="11" additional="true"/>
-		
+
 		<!-- INT-1 P Section: Lights, colours-->
 		<type tag="seamark:light:colour" minzoom="11" additional="true"/>
 		<entity_convert pattern="tag_transform" from_tag="seamark:light:1:colour" to_tag1="seamark:light:colour"/>
@@ -6888,8 +6929,8 @@
 		<entity_convert pattern="tag_transform" from_tag="seamark:signal_station_traffic:category" from_value="port_control" to_tag1="seamark:signal_station_traffic:category_name" to_value1="Port control"/>
 		<type tag="seamark:rock:water_level" minzoom="13" additional="true"/>
 		<type tag="seamark:wreck:category" minzoom="13" additional="true"/>
-		
-		<!-- INT-1 J Section: Nature of the Seabed, https://wiki.openstreetmap.org/wiki/Seamarks/INT-1_Section_J  --> 
+
+		<!-- INT-1 J Section: Nature of the Seabed, https://wiki.openstreetmap.org/wiki/Seamarks/INT-1_Section_J  -->
 		<!-- Tested 2021-12-18 together with version 1.1 of nautical.renderer.xml, e.g. http://osmand.net/go.html?lat=36.65161&lon=25.37019&z=16, feedback welcome: josail @ gmx.de -->
 		<type tag="seamark:seabed_area:surface" minzoom="13" additional="true"/>
 		<type tag="seabed_surface_1" minzoom="11" additional="text" notosm="true"/>
@@ -6903,10 +6944,10 @@
 		<type tag="seabed_letters" minzoom="11" additional="text" notosm="true"/>
 		<type tag="seamark_category" minzoom="11" additional="text" notosm="true"/>
 		<type tag="seabed_taxon_all" minzoom="11" additional="text" notosm="true"/>
-		
+
 		<!-- INT-1 J1 to J12 Types of Seabed, OsmAnd nautical.render.xml renderingProperty options for seabedDetail as nameTag2: simple=1st surface type as letters according to INT-1 J1-J13, category=surface tag in seamark_category, all=surface qualification and type included in seabed_surface_all, seagrass and weed in seabed_taxon_all including category, genus and taxon, omit=no display-->	
 		<type tag="seamark:type" value="seabed_area" minzoom="11" 
-		      nameTags="seabed_surface_1,seamark_category,seabed_surface_all,seamark:seabed_area:surface"/> 
+		      nameTags="seabed_surface_1,seamark_category,seabed_surface_all,seamark:seabed_area:surface"/>
 		<!-- INT-1 J1-J11 assigning letters of 1st surface type -->
 		<entity_convert pattern="tag_transform" from_tag="seamark:seabed_area:surface" if_starts_with_tag1="seamark:seabed_area:surface" if_starts_with_value1="sand" to_tag1="seamark:seabed_area:surface" to_tag2="seabed_surface_1" to_value2="S" to_tag3="seabed_surface_all" to_tag4="seamark_category"/>
 		<entity_convert pattern="tag_transform" from_tag="seamark:seabed_area:surface" if_starts_with_tag1="seamark:seabed_area:surface" if_starts_with_value1="mud" to_tag1="seamark:seabed_area:surface" to_tag2="seabed_surface_1" to_value2="M" to_tag3="seabed_surface_all" to_tag4="seamark_category"/>
@@ -6924,24 +6965,24 @@
 
 		<!-- INT-1 J12.2 backup for additional display of all qualifications and surface types in nameTag2 -->
 		<entity_convert pattern="tag_combine" separator=";" from_tag="seamark:seabed_area:surface_qualification" from_tag1="seamark:seabed_area:surface" to_tag1="seabed_surface_all" map="yes"/>
-			
+
 		<!-- INT-1 J13.1, J13.2 weed/kelp -->		
 		<type tag="seamark:type" value="weed" minzoom="11" 
 		      nameTags="seabed_letters,seamark_category,seabed_taxon_all,seamark:weed:category"/>
 		<type tag="seamark:weed:category" minzoom="11"/>
 		<entity_convert pattern="tag_transform" from_tag="seamark:weed:category" to_tag1="seamark:weed:category" to_tag2="seabed_letters" to_value2="Wd" to_tag3="seabed_taxon_all" to_tag4="seamark_category"/>
-		
+
 		<!-- INT-1 J13.3, J13.4 seagrass -->
 		<type tag="seamark:type" value="seagrass" minzoom="11" 
 		      nameTags="seabed_letters,seamark_category,seabed_taxon_all,seamark:seagrass:category"/> 
 		<type tag="seamark:seagrass:category" minzoom="11"/>
 		<entity_convert pattern="tag_transform" from_tag="seamark:seagrass:category" to_tag1="seamark:seagrass:category" to_tag2="seabed_letters" to_value2="Sg" to_tag3="seabed_taxon_all" to_tag4="seamark_category"/>
-		
-		<!-- INT-1 J13 compile seaweed or seagrass tags for additional display of all taxon information in nameTag2 -->		
+
+		<!-- INT-1 J13 compile seaweed or seagrass tags for additional display of all taxon information in nameTag2 -->
 		<!-- TODO: add missing seagrass and weed where genus and taxon tags are missing -->
 		<entity_convert pattern="tag_combine" separator=";" from_tag="seamark:weed:category" from_tag1="genus" from_tag2="taxon" to_tag1="seabed_taxon_all" map="yes"/> 
-		<entity_convert pattern="tag_combine" separator=";" from_tag="seamark:seagrass:category" from_tag1="genus" from_tag2="taxon" to_tag1="seabed_taxon_all" map="yes"/> 
-		
+		<entity_convert pattern="tag_combine" separator=";" from_tag="seamark:seagrass:category" from_tag1="genus" from_tag2="taxon" to_tag1="seabed_taxon_all" map="yes"/>
+
 		<!-- INT-1 J14, J15 sand_waves, spring -->
 		<type tag="seamark:type" value="sand_waves" minzoom="11" /> 
 		<type tag="seamark:type" value="spring" minzoom="11" />
