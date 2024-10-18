@@ -267,6 +267,7 @@ icon_alias health_post health_health_post
 icon_alias avalanche_transceiver emergency_avalanche_transceiver
 icon_alias avalanche_transceiver_training emergency_avalanche_transceiver_training
 icon_alias siren emergency_siren
+icon_alias disaster_response emergency_disaster_response
 
 icon_alias healthcare health_healthcare
 icon_alias amenity_dentist health_dentist
