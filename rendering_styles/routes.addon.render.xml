@@ -381,16 +381,53 @@
 
 	<text>
 			<!-- OBF-GPX track name/ref/shield -->
-			<switch>
-				<case minzoom="12" tag="route" value="segment" nameTag="" textMinDistance="60" textOnPath="true" textSize="15" textColor="#0078ff" textHaloColor="#ccebf4ff" textHaloRadius="1" textOrder="2"/>
-				<case minzoom="12" tag="route" value="segment" nameTag="ref" textMinDistance="60" textOnPath="false" textSize="15" textColor="#404040" textOrder="2" textShield="?gpx_bg?" />
+			<switch minzoom="12" tag="route" value="segment" textSize="11" textMinDistance="60" textOrder="2">
+				<case nameTag="" textOnPath="true" textColor="#0078ff" textHaloColor="#ccebf4ff" textHaloRadius="1"/>
+
+				<!-- OBF-GPX relation track icons (use tiny text size for icon-captions which are not based on osmc_text) -->
+				<case additional="shield_fg" nameTag="shield_text" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
+				<case additional="shield_fg" nameTag="ref" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"
+					  textSize="7" textColor="#ffffff" textHaloRadius="1" textHaloColor="#777777"/>
+
+				<!-- OBF-GPX relation track shield (no icon specified) -->
+				<case additional="shield_bg" nameTag="shield_text" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
+				<case additional="shield_bg" nameTag="ref" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
+
+				<!-- OBF-GPX usual shields (based on textLength) -->
+				<case nameTag="ref" textOnPath="false" textColor="#404040" textShield="yellow_square_9_road_shield">
+					<apply_if textLength="1" textShield="yellow_hexagon_3_road_shield"/>
+					<apply_if textLength="2" textShield="yellow_hexagon_4_road_shield"/>
+					<apply_if textLength="3" textShield="yellow_hexagon_5_road_shield"/>
+					<apply_if textLength="4" textShield="yellow_square_6_road_shield"/>
+					<apply_if textLength="5" textShield="yellow_square_7_road_shield"/>
+					<apply_if textLength="6" textShield="yellow_square_8_road_shield"/>
+				</case>
+
+				<!-- OBF-GPX shield_textcolor (osmc_textcolor) -->
+				<apply_if additional="shield_textcolor=red" textColor="$osmcRedTextColor"/>
+				<apply_if additional="shield_textcolor=brown" textColor="$osmcBrownTextColor"/>
+				<apply_if additional="shield_textcolor=orange" textColor="$osmcOrangeTextColor"/>
+				<apply_if additional="shield_textcolor=darkyellow" textColor="$osmcDarkyellowTextColor"/>
+				<apply_if additional="shield_textcolor=yellow" textColor="$osmcYellowTextColor"/>
+				<apply_if additional="shield_textcolor=lightgreen" textColor="$osmcLightgreenTextColor"/>
+				<apply_if additional="shield_textcolor=green" textColor="$osmcGreenTextColor"/>
+				<apply_if additional="shield_textcolor=lightblue" textColor="$osmcLightblueTextColor"/>
+				<apply_if additional="shield_textcolor=blue" textColor="$osmcBlueTextColor"/>
+				<apply_if additional="shield_textcolor=purple" textColor="$osmcPurpleTextColor"/>
+				<apply_if additional="shield_textcolor=pink" textColor="$osmcPinkTextColor"/>
+				<apply_if additional="shield_textcolor=teal" textColor="$osmcTealTextColor"/>
+				<apply_if additional="shield_textcolor=gray" textColor="$osmcGrayTextColor"/>
+				<apply_if additional="shield_textcolor=black" textColor="#000000" textHaloRadius="1" textHaloColor="#30ffffff"/>
+				<apply_if additional="shield_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
 			</switch>
 
 			<!-- OBF-GPX point name -->
 			<switch>
-				<case minzoom="9" tag="route" value="point" nameTag="" textWrapWidth="25" textHaloRadius="1" textColor="#0078ff" textHaloColor="#ccebf4ff" textOrder="1" textDy="2">
-					<case maxzoom="13" textSize="13"/>
-					<case minzoom="14" textSize="14"/>
+				<case minzoom="11" tag="route" value="point" nameTag="" textWrapWidth="25" textHaloRadius="1" textColor="#0078ff" textHaloColor="#ccebf4ff" textOrder="1" textDy="2">
+					<case maxzoom="11" textSize="10"/>
+					<case maxzoom="12" textSize="11"/>
+					<case maxzoom="13" textSize="12"/>
+					<case minzoom="14" textSize="13"/>
 					<apply_if nightMode="true" textColor="#dddddd" textHaloColor="#66000000"/>
 				</case>
 			</switch>
@@ -781,7 +818,7 @@
 
 	<point>
 		<!-- OBF-GPX point icon -->
-		<switch minzoom="3" tag="route" value="point" icon="osmand_fav" iconOrder="1">
+		<switch minzoom="11" tag="route" value="point" icon="osmand_fav" iconOrder="1">
 			<!--<case additional="gpx_bg=octagon">
                 there are not enough shield icons for the octagon shape
             </case>-->
@@ -833,18 +870,43 @@
 	</polygon>
 
 	<line>
+		<!-- OBF-GPX relation track width/color -->
+		<switch minzoom="11" tag="route" value="segment" additional="relation_gpx=yes" color="$osmcDefaultColor" cap="ROUND">
+			<apply_if additional="color_white" color="#44ffffff"/>
+			<apply_if additional="color_gray" color="#44999999"/>
+			<apply_if additional="color_darkyellow" color="#44afb61c"/>
+			<apply_if additional="color_lightgreen" color="#446cb52b"/>
+			<apply_if additional="color_lightblue" color="#442ec6ff"/>
+			<apply_if additional="color_red" color="$osmcRedColor"/>
+			<apply_if additional="color_orange" color="$osmcOrangeColor"/>
+			<apply_if additional="color_brown" color="$osmcBrownColor"/>
+			<apply_if additional="color_yellow" color="$osmcYellowColor"/>
+			<apply_if additional="color_green" color="$osmcGreenColor"/>
+			<apply_if additional="color_blue" color="$osmcBlueColor"/>
+			<apply_if additional="color_purple" color="$osmcPurpleColor"/>
+			<apply_if additional="color_black" color="$osmcBlackColor"/>
+			<case maxzoom="11" strokeWidth="1"/>
+			<case maxzoom="12" strokeWidth="2"/>
+			<case maxzoom="13" strokeWidth="3"/>
+			<case maxzoom="14" strokeWidth="4"/>
+			<case maxzoom="15" strokeWidth="4"/>
+			<case maxzoom="16" strokeWidth="5"/>
+			<case maxzoom="17" strokeWidth="6"/>
+			<case minzoom="18" strokeWidth="7"/>
+		</switch>
+
 		<!-- OBF-GPX track width/color -->
 		<switch minzoom="11" tag="route" value="segment" color="$redColor" cap="ROUND">
-			<case additional="width=thin">
+			<case additional="gpx_width=thin">
 				<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
 				<apply_if minzoom="6" strokeWidth="2"/>
 			</case>
-			<case additional="width=medium">
+			<case additional="gpx_width=medium">
 				<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
 				<apply_if minzoom="6" maxzoom="11" strokeWidth="3"/>
 				<apply_if minzoom="12" strokeWidth="5"/>
 			</case>
-			<case additional="width=bold">
+			<case additional="gpx_width=bold">
 				<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
 				<apply_if minzoom="6" maxzoom="7" strokeWidth="3"/>
 				<apply_if minzoom="8" maxzoom="9" strokeWidth="5"/>
@@ -856,6 +918,7 @@
 				<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
 				<apply_if minzoom="6" strokeWidth="2"/>
 			</case>
+			<!-- OBF-GPX track colors -->
 			<apply_if additional="color_white" color="#ffffff"/>
 			<apply_if additional="color_red" color="#ff0000"/>
 			<apply_if additional="color_orange" color="#ff7200"/>
