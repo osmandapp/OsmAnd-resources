@@ -43,7 +43,7 @@ function populateDictionary(tts) {
 
 	// U-TURNS
 	dictionary["make_uturn"] = tts ? "Uradi polukružno okretanje" : "make_uturn.ogg";
-	dictionary["make_uturn_alt"] = tts ? "Vrati se nazad" : "make_uturn.ogg";
+	dictionary["make_uturn_alt"] = tts ? "Uradi polukružno okretanje" : "make_uturn.ogg";
 	dictionary["make_uturn_wp"] = tts ? "Kada bude moguće, uradi polukružno okretanje" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
