@@ -3648,3 +3648,12 @@ icon activities_utv
 icon activities_wagon
 icon activities_wheelchair
 icon activities_wheelchair_forward
+icon activities_scuba_diving
+icon activities_windsurfing
+icon activities_waterskiing
+icon activities_swimming_outdoor
+icon activities_surfing
+icon activities_running
+icon activities_horse_riding
+icon activities_diving
+icon activities_canoe
