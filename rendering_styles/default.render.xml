@@ -2738,6 +2738,7 @@
 	<renderingClass name=".road.alpinehiking" title="Alpine hiking" enable="true"/>
 	<renderingClass name=".road.alpinehiking.sac_scale" title="SAC scale" enable="true"/>
 	<renderingClass name=".road.alpinehiking.sac_scale.difficult_alpine_hiking" title="difficult_alpine_hiking" enable="true"/>
+	<renderingClass name=".road.alpinehiking.sac_scale.demanding_alpine_hiking" title="demanding_alpine_hiking" enable="true"/>
 	<renderingClass name=".road.alpinehiking.cai_scale" title="CAI scale" enable="true"/>
 
 	<renderingClass name=".shop.supermarket" title="Supermarket" enable="true"/>
@@ -7974,7 +7975,7 @@
 						</case>
 						<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 					</switch>
-					<switch shield="purple_round_shield" iconOrder="160" iconVisibleSize="24" >
+					<switch shield="purple_round_shield" iconOrder="160" iconVisibleSize="24" rClass=".shop.$shop">
 						<case minzoom="17" tag="shop" value="agrarian" icon="agrarian"/>
 						<case minzoom="17" tag="shop" value="alcohol" icon="shop_alcohol" iconVisibleSize="32"/>
 						<case minzoom="17" tag="shop" value="antiques" icon="antiques"/>
@@ -8140,7 +8141,6 @@
 						<case minzoom="17" tag="shop" value="" icon="shop_yes"/>
 						<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 						<apply_if nightMode="true" shield="purple_round_night_shield" iconVisibleSize="54"/>
-						<apply rClass=".shop.$shop"/>
 					</switch>
 					<apply_if baseAppMode="car" moreDetailed="false" maxzoom="17" icon=""/>
 				</switch>
@@ -10700,13 +10700,12 @@
 						</case>
 						<apply>
 							<case alpineHiking="true" rClass=".road.alpinehiking">
-								<switch alpineHikingScaleScheme="sacScale" rClass=".road.alpinehiking.sac_scale">
+								<switch alpineHikingScaleScheme="sacScale" rClass=".road.alpinehiking.sac_scale.$sac_scale">
 									<case additional="sac_scale=mountain_hiking" color_5="$sacScaleColorT2" pathEffect_5=""/>
 									<case additional="sac_scale=demanding_mountain_hiking" color_5="$sacScaleColorT3" pathEffect_5="10_3"/>
 									<case additional="sac_scale=alpine_hiking" color_5="$sacScaleColorT4" pathEffect_5=""/>
 									<case additional="sac_scale=demanding_alpine_hiking" color_5="$sacScaleColorT5" pathEffect_5="10_3"/>
-									<case additional="sac_scale=difficult_alpine_hiking" color_5="$sacScaleColorT6" pathEffect_5="3_3" rClass=".road.alpinehiking.sac_scale.difficult_alpine_hiking"/>
-									<apply rClass=".road.alpinehiking.sac_scale.$sac_scale"/>
+									<case additional="sac_scale=difficult_alpine_hiking" color_5="$sacScaleColorT6" pathEffect_5="3_3"/>
 								</switch>
 								<switch alpineHikingScaleScheme="caiScale" rClass=".road.alpinehiking.cai_scale">
 									<case additional="cai_scale=t" color_5="$caiScaleColor" pathEffect_5=""/>
