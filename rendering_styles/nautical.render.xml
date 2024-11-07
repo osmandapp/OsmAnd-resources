@@ -19,6 +19,7 @@
 	<renderingProperty attr="noPolygons" name="Hide polygons" description="Make all areal land features on map transparent"
 		type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="legend" name="Legend" type="boolean" possibleValues="" category="ui_hidden"/>
+	<renderingProperty attr="eleUnits" name="Elevation units" type="string" possibleValues="meters,feet" defaultValueDescription="default" category="ui_hidden"/>
 
 	<renderingAttribute name="gpxColor"> <!-- deprecated -->
 		<case attrColorValue="#b400ffff"/>
@@ -1318,19 +1319,61 @@
 
 			<switch textColor="#654321" textWrapWidth="25" textHaloColor="#aafddb8f" textHaloRadius="$textHaloRadiusDay" textItalic="true">
 				<switch>
-					<case minzoom="12" tag="natural" value="peak">
-						<case maxzoom="13" nameTag="ele" textSize="11" textOrder="60"/>
-						<case maxzoom="14" nameTag="" nameTag2="ele" textSize="12" textOrder="60"/>
-						<case maxzoom="16" nameTag="" nameTag2="ele" textSize="13" textOrder="65"/>
-						<case minzoom="17" nameTag="" nameTag2="ele" textSize="16" textOrder="65"/>
+					<case minzoom="12" tag="natural" value="peak" textOrder="80">
+						<case minzoom="13" maxzoom="13" textOrder="60">
+							<case eleUnits="feet">
+								<case nameTag="" nameTag2="ele_feet" textSize="11"/>
+								<case nameTag="ele_feet" textSize="12"/>
+							</case>
+							<case nameTag="" nameTag2="ele" textSize="11"/>
+							<case nameTag="ele" textSize="12"/>
+						</case>
+						<case minzoom="14" maxzoom="14" textOrder="60">
+							<case eleUnits="feet">
+								<case nameTag="" nameTag2="ele_feet" textSize="12"/>
+								<case nameTag="ele_feet" textSize="12"/>
+							</case>
+							<case nameTag="" nameTag2="ele" textSize="12"/>
+							<case nameTag="ele" textSize="12"/>
+						</case>
+						<case minzoom="15" maxzoom="16" textOrder="65">
+							<case eleUnits="feet">
+								<case nameTag="" nameTag2="ele_feet" textSize="13"/>
+								<case nameTag="ele_feet" textSize="13"/>
+							</case>
+							<case nameTag="" nameTag2="ele" textSize="13"/>
+							<case nameTag="ele" textSize="13"/>
+						</case>
+						<case minzoom="17" textOrder="65">
+							<case eleUnits="feet">
+								<case nameTag="" nameTag2="ele_feet" textSize="15"/>
+								<case nameTag="ele_feet" textSize="15"/>
+							</case>
+							<case nameTag="" nameTag2="ele" textSize="15"/>
+							<case nameTag="ele" textSize="15"/>
+						</case>
 					</case>
 					<case minzoom="14" textSize="12" tag="natural" value="ridge" nameTag="" textOnPath="true" textDy="0"/>
 					<case minzoom="13" textSize="14" tag="natural" value="crater" nameTag="" textColor="#4e0d0d" textDy="-4"/>
 					<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffcc9b" textHaloColor="#77464234"/>
 				</switch>
-				<case minzoom="11" tag="natural" value="volcano" nameTag="" nameTag2="ele" textOrder="53" textHaloColor="#99ffd6c0">
-					<case maxzoom="12" textSize="12"/>
-					<case minzoom="13" textSize="13"/>
+				<case minzoom="11" tag="natural" value="volcano" textOrder="53" textHaloColor="#99ffd6c0">
+					<case maxzoom="12">
+						<case eleUnits="feet">
+							<case nameTag="" nameTag2="ele_feet" textSize="12"/>
+							<case nameTag="ele_feet" textSize="12"/>
+						</case>
+						<case nameTag="" nameTag2="ele" textSize="12"/>
+						<case nameTag="ele" textSize="12"/>
+					</case>
+					<case minzoom="13">
+						<case eleUnits="feet">
+							<case nameTag="" nameTag2="ele_feet" textSize="13"/>
+							<case nameTag="ele_feet" textSize="13"/>
+						</case>
+						<case nameTag="" nameTag2="ele" textSize="13"/>
+						<case nameTag="ele" textSize="13"/>
+					</case>
 					<apply_if nightMode="true" textColor="#ffcc9b" textHaloColor="#77464234"/>
 				</case>
 				<apply_if engine_v1="false" textDy="0"/>
