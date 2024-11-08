@@ -22,6 +22,7 @@
 		type="string" possibleValues="default, car, bicycle, pedestrian, public_transport, boat, ski"/>
 	<renderingProperty attr="transportStops" name="Transport stops" description="Public transport stops"
 		type="boolean" possibleValues="" category="transport"/>
+	<renderingProperty attr="eleUnits" name="Elevation units" type="string" possibleValues="meters,feet" defaultValueDescription="default" category="ui_hidden"/>
 
 	<renderingAttribute name="defaultColor">
 		<case noPolygons="true" attrColorValue="#00ffffff"/>
@@ -997,15 +998,46 @@
 			</case>
 			
 			<switch textColor="#654321" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay">
-				<switch minzoom="12" tag="natural" value="peak" textItalic="true" textOrder="80">
-					<case maxzoom="13" nameTag="ele" textSize="11"/>
-					<case maxzoom="14" nameTag="" nameTag2="ele" textSize="12"/>
-					<case maxzoom="14" nameTag="ele" textSize="12"/>
-					<case maxzoom="16" nameTag="" nameTag2="ele" textSize="13"/>
-					<case maxzoom="16" nameTag="ele" textSize="13"/>
-					<case minzoom="17" nameTag="" nameTag2="ele" textSize="16"/>
-					<case minzoom="17" nameTag="ele" textSize="16"/>
-				</switch>
+				<case minzoom="12" tag="natural" value="peak" textOrder="80">
+					<case maxzoom="12" textSize="11" intersectionMargin="15">
+						<case eleUnits="feet" nameTag="ele_feet"/>
+						<case nameTag="ele"/>
+					</case>
+					<case minzoom="13" maxzoom="13">
+						<case eleUnits="feet">
+							<case nameTag="" nameTag2="ele_feet" textSize="11"/>
+							<case nameTag="ele_feet" textSize="12"/>
+						</case>
+						<case nameTag="" nameTag2="ele" textSize="11"/>
+						<case nameTag="ele" textSize="12"/>
+					</case>
+					<case minzoom="14" maxzoom="14">
+						<case eleUnits="feet">
+							<case nameTag="" nameTag2="ele_feet" textSize="12"/>
+							<case nameTag="ele_feet" textSize="12"/>
+						</case>
+						<case nameTag="" nameTag2="ele" textSize="12"/>
+						<case nameTag="ele" textSize="12"/>
+					</case>
+					<case minzoom="15" maxzoom="16">
+						<case eleUnits="feet">
+							<case nameTag="" nameTag2="ele_feet" textSize="13"/>
+							<case nameTag="ele_feet" textSize="13"/>
+						</case>
+						<case nameTag="" nameTag2="ele" textSize="13"/>
+						<case nameTag="ele" textSize="13"/>
+					</case>
+					<case minzoom="17">
+						<case eleUnits="feet">
+							<case nameTag="" nameTag2="ele_feet" textSize="15"/>
+							<case nameTag="ele_feet" textSize="15"/>
+						</case>
+						<case nameTag="" nameTag2="ele" textSize="15"/>
+						<case nameTag="ele" textSize="15"/>
+					</case>
+					<apply_if maxzoom="14" engine_v1="true" textDy="-2"/>
+					<apply_if minzoom="15" engine_v1="true" textDy="-1"/>
+				</case>
 				<case minzoom="16" tag="natural" value="cave_entrance" nameTag="" textSize="12" textOrder="236"/>
 				<case minzoom="13" tag="natural" value="volcano" nameTag="" textSize="14" textOrder="79"/>
 				<apply_if engine_v1="true" textDy="7"/>
