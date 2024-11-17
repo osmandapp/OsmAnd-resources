@@ -26,28 +26,28 @@ function populateDictionary(tts) {
 	dictionary["after"] = tts ? "después de" : "after.ogg";
 	dictionary["in"] = tts ? "en" : "in.ogg"; // duplicated with 'on.ogg' in Spanish
 
-	dictionary["left"] = tts ? "gira a la izquierda" : "left.ogg";
-	dictionary["left_sh"] = tts ? "gira cerrado a la izquierda" : "left_sh.ogg";
-	dictionary["left_sl"] = tts ? "gira leve a la izquierda" : "left_sl.ogg";
-	dictionary["right"] = tts ? "gira a la derecha" : "right.ogg";
-	dictionary["right_sh"] = tts ? "gira cerrado a la derecha" : "right_sh.ogg";
-	dictionary["right_sl"] = tts ? "gira leve a la derecha" : "right_sl.ogg";
+	dictionary["left"] = tts ? "girá a la izquierda" : "left.ogg";
+	dictionary["left_sh"] = tts ? "girá cerrado a la izquierda" : "left_sh.ogg";
+	dictionary["left_sl"] = tts ? "girá leve a la izquierda" : "left_sl.ogg";
+	dictionary["right"] = tts ? "girá a la derecha" : "right.ogg";
+	dictionary["right_sh"] = tts ? "girá cerrado a la derecha" : "right_sh.ogg";
+	dictionary["right_sl"] = tts ? "girá leve a la derecha" : "right_sl.ogg";
 	// Note: "left_keep"/"right_keep" is a turn type aiding lane selection, while "left_bear"/"right_bear" is as brief "then..." preparation for the turn-after-next. In some languages l/r_keep may not differ from l/r_bear.
-	dictionary["left_keep"] = tts ? "mantente a la izquierda" : "left_keep.ogg";
-	dictionary["right_keep"] = tts ? "mantente a la derecha" : "right_keep.ogg";
-	dictionary["left_bear"] = tts ? "mantente a la izquierda" : "left_bear.ogg";   // in English the same as left_keep, may be different in other languages
-	dictionary["right_bear"] = tts ? "mantente a la derecha" : "right_bear.ogg";    // in English the same as right_keep, may be different in other languages
+	dictionary["left_keep"] = tts ? "mantenete a la izquierda" : "left_keep.ogg";
+	dictionary["right_keep"] = tts ? "mantenete a la derecha" : "right_keep.ogg";
+	dictionary["left_bear"] = tts ? "mantenete a la izquierda" : "left_bear.ogg";   // in English the same as left_keep, may be different in other languages
+	dictionary["right_bear"] = tts ? "mantenete a la derecha" : "right_bear.ogg";    // in English the same as right_keep, may be different in other languages
 
 	// U-TURNS
 	dictionary["make_uturn"] = tts ? "Da la vuelta" : "make_uturn.ogg";
 	dictionary["make_uturn_wp"] = tts ? "Cuando puedas, da la vuelta" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? "entra en la rotonda" : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? "entra en la rotonda" : "roundabout.ogg";
+	dictionary["prepare_roundabout"] = tts ? "entrá en la rotonda" : "prepare_roundabout.ogg";
+	dictionary["roundabout"] = tts ? "entrá en la rotonda" : "roundabout.ogg";
 	dictionary["then"] = tts ? "luego" : "then.ogg";
 	dictionary["and"] = tts ? "y" : "and.ogg";
-	dictionary["take"] = tts ? "toma la" : "take.ogg";
+	dictionary["take"] = tts ? "tomá la" : "take.ogg";
 	dictionary["exit"] = tts ? "salida" : "exit.ogg";
 
 	dictionary["1st"] = tts ? "primera" : "1st.ogg";
@@ -69,23 +69,23 @@ function populateDictionary(tts) {
 	dictionary["17th"] = tts ? "decimoséptima" : "17th.ogg";
 
 	// STRAIGHT/FOLLOW
-	dictionary["go_ahead"] = tts ? "Continúa recto" : "go_ahead.ogg";
+	dictionary["go_ahead"] = tts ? "Seguí recto" : "go_ahead.ogg";
 	//dictionary["follow"] = tts ? "Sigue la vía durante" : "follow.ogg";
-	dictionary["follow"] = tts ? "Continúa por" : "follow.ogg";  // 'Follow the course of the road for' perceived as too chatty by many users
+	dictionary["follow"] = tts ? "Seguí por" : "follow.ogg";  // 'Follow the course of the road for' perceived as too chatty by many users
 
 	// ARRIVE
 	dictionary["and_arrive_destination"] = tts ? "y llegarás al destino" : "and_arrive_destination.ogg";
-	dictionary["reached_destination"] = tts ? "has llegado al destino" : "reached_destination.ogg";
+	dictionary["reached_destination"] = tts ? "llegaste al destino" : "reached_destination.ogg";
 	dictionary["and_arrive_intermediate"] = tts ? "y llegarás al punto intermedio" : "and_arrive_intermediate.ogg";
-	dictionary["reached_intermediate"] = tts ? "has llegado al punto intermedio" : "reached_intermediate.ogg";
+	dictionary["reached_intermediate"] = tts ? "llegaste al punto intermedio" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
 	dictionary["and_arrive_waypoint"] = tts ? "y llegarás al punto GPX intermedio" : "and_arrive_waypoint.ogg";
-	dictionary["reached_waypoint"] = tts ? "has llegado al punto GPX intermedio" : "reached_waypoint.ogg";
+	dictionary["reached_waypoint"] = tts ? "llegaste al punto GPX intermedio" : "reached_waypoint.ogg";
 	dictionary["and_arrive_favorite"] = tts ? "y llegarás al favorito" : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "has llegado al favorito" : "reached_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "llegaste al favorito" : "reached_favorite.ogg";
 	dictionary["and_arrive_poi"] = tts ? "y llegarás al PDI" : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "has llegado al PDI" : "reached_poi.ogg";
+	dictionary["reached_poi"] = tts ? "llegaste al PDI" : "reached_poi.ogg";
 
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "límite de velocidad excedido" : "exceed_limit.ogg";
@@ -103,11 +103,11 @@ function populateDictionary(tts) {
 	// OTHER PROMPTS
 	dictionary["location_lost"] = tts ? "señal GPS perdida" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "señal GPS encontrada" : "location_recovered.ogg";
-	dictionary["off_route"] = tts ? "te has desviado de la ruta" : "off_route.ogg";
-	dictionary["back_on_route"] = tts ? "has retomado la ruta" : "back_on_route.ogg";
+	dictionary["off_route"] = tts ? "te desviaste de la ruta" : "off_route.ogg";
+	dictionary["back_on_route"] = tts ? "retomaste la ruta" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
-	//dictionary["onto"] = tts ? "onto" : "onto.ogg";   // unused in Spanish
+	//dictionary["onto"] = tts ? "en dirección a" : "onto.ogg";   // unused in Spanish
 	dictionary["on"] = tts ? "en" : "on.ogg";        // duplicated with 'in.ogg' in Spanish
 	dictionary["to"] = tts ? "hacia" : "to.ogg";     // duplicated with 'toward.ogg' in Spanish
 	dictionary["toward"] = tts ? "hacia" : "toward.ogg"; // duplicated with 'to.ogg' in Spanish
@@ -123,7 +123,6 @@ function populateDictionary(tts) {
 	dictionary["tenths_of_a_mile"] = tts ? "décimas de milla" : "tenths_of_a_mile.ogg";
 	dictionary["around_1_mile"] = tts ? "alrededor de una milla" : "around_1_mile.ogg";
 	dictionary["miles"] = tts ? "millas" : "miles.ogg";
-
 	dictionary["yards"] = tts ? "yardas" : "yards.ogg";
 
 	// TIME SUPPORT
@@ -135,7 +134,7 @@ function populateDictionary(tts) {
 	dictionary["minutes"] = tts ? "minutos" : "minutes.ogg";
 
 	// SPECIAL NUMBERS
-	//dictionary["20_and"] = tts ? "veinti" : "20_and.ogg"; //unused
+	dictionary["20_and"] = tts ? "veinti" : "20_and.ogg"; //unused
 }
 
 
@@ -151,7 +150,6 @@ function setMode(mode) {
 }
 
 function route_new_calc(dist, timeVal) {
-  //return dictionary["route_is"] + " " + distance(dist) + " " + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : " ");
 	return dictionary["route_is"] + " " + distance(dist) + (tts ? ", " : " ") + dictionary["time"] + " " + time(timeVal) + (tts ? ". " : " ");
 }
 
