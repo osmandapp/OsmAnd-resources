@@ -33,10 +33,10 @@ function populateDictionary(tts) {
 	dictionary["right_sh"] = tts ? "girá cerrado a la derecha" : "right_sh.ogg";
 	dictionary["right_sl"] = tts ? "girá leve a la derecha" : "right_sl.ogg";
 	// Note: "left_keep"/"right_keep" is a turn type aiding lane selection, while "left_bear"/"right_bear" is as brief "then..." preparation for the turn-after-next. In some languages l/r_keep may not differ from l/r_bear.
-	dictionary["left_keep"] = tts ? "mantenete a la izquierda" : "left_keep.ogg";
-	dictionary["right_keep"] = tts ? "mantenete a la derecha" : "right_keep.ogg";
-	dictionary["left_bear"] = tts ? "mantenete a la izquierda" : "left_bear.ogg";   // in English the same as left_keep, may be different in other languages
-	dictionary["right_bear"] = tts ? "mantenete a la derecha" : "right_bear.ogg";    // in English the same as right_keep, may be different in other languages
+	dictionary["left_keep"] = tts ? "mantenete por la izquierda" : "left_keep.ogg";
+	dictionary["right_keep"] = tts ? "mantenete por la derecha" : "right_keep.ogg";
+	dictionary["left_bear"] = tts ? "mantenete por la izquierda" : "left_bear.ogg";   // in English the same as left_keep, may be different in other languages
+	dictionary["right_bear"] = tts ? "mantenete por la derecha" : "right_bear.ogg";    // in English the same as right_keep, may be different in other languages
 
 	// U-TURNS
 	dictionary["make_uturn"] = tts ? "Da la vuelta" : "make_uturn.ogg";
