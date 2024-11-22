@@ -3657,3 +3657,16 @@ icon activities_running
 icon activities_horse_riding
 icon activities_diving
 icon activities_canoe
+
+#Routes
+icon_alias routes_kayak activities_kayak
+icon_alias routes_horse activities_horse
+icon_alias routes_skiing activities_skiing
+icon_alias routes_bicycle activities_bicycle
+icon_alias routes_trekking activities_trekking
+icon_alias routes_pedestrian activities_pedestrian
+icon_alias routes_snowmobile activities_snowmobile
+icon_alias routes_mountain_bike activities_mountain_bike
+icon_alias routes_inline_skates activities_inline_skates
+icon_alias routes_running activities_running
+icon_alias routes_fitness sport_fitness_station
