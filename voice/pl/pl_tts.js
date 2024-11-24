@@ -312,7 +312,7 @@ function follow_street(streetName) {
 	if ((streetName["toDest"] == "" && streetName["toStreetName"] == "" && streetName["toRef"] == "") || Object.keys(streetName).length == 0 || !tts) {
 		return "";
 	} else if (streetName["toStreetName"] == "" && streetName["toRef"] == "") {
-		return dictionary["to"] + " " + streetName["toDest"];
+		return dictionary["to"] + " " + toDest(streetName);
 	} else if (streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"] || 
 			(streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == "")) {
 		return dictionary["on"] + " " + assemble_street_name(streetName);
@@ -342,7 +342,7 @@ function take_exit_name(streetName) {
 	if (Object.keys(streetName).length == 0 || (streetName["toDest"] == "" && streetName["toStreetName"] == "") || !tts) {
 		return "";
 	} else if (streetName["toDest"] != "") {
-		return (tts ? ", " : " ") + streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
+		return (tts ? ", " : " ") + streetName["toStreetName"] + " " + dictionary["toward"] + " " + toDest(streetName);
 	} else if (streetName["toStreetName"] != "") {
 		return (tts ? ", " : " ") + streetName["toStreetName"];
 	} else {
@@ -409,7 +409,7 @@ function turn_street(streetName) {
 	if ((streetName["toDest"] == "" && streetName["toStreetName"] == "" && streetName["toRef"] == "") || Object.keys(streetName).length == 0 || !tts) {
 		return "";
 	} else if (streetName["toStreetName"] == "" && streetName["toRef"] == "") {
-		return dictionary["toward"] + " " + streetName["toDest"];
+		return dictionary["toward"] + " " + toDest(streetName);
 	} else if (streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"]) {
 		return dictionary["on"] + " " + assemble_street_name(streetName);
 	} else if ((streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"]) 
@@ -423,11 +423,11 @@ function turn_street(streetName) {
 
 function assemble_street_name(streetName) {
 	if (streetName["toDest"] == "") {
-		return streetName["toRef"] + " " + streetName["toStreetName"];
+		return toRef(streetName) + " " + streetName["toStreetName"];
 	} else if (streetName["toRef"] == "") {
-		return streetName["toStreetName"] + ": " + dictionary["toward"] + " " + streetName["toDest"];
+		return streetName["toStreetName"] + ": " + dictionary["toward"] + " " + streetName["toDest"].replace(/\b\d+\b/g, function(match) { return "'" + match + "'";});
 	} else if (streetName["toRef"] != "") {
-		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
+		return toRef(streetName) + " " + dictionary["toward"] + " " + toDest(streetName);
 	}
 }
 
@@ -649,4 +649,66 @@ function ogg_dist(distance) {
 	} else {
 		return ogg_dist(distance/1000) + "1000.ogg " + ogg_dist(distance % 1000);
 	}
+}
+
+var numberRegex = /\b\d+\b/g
+
+function toRef(streetName) {
+	return numbersAsText(streetName["toRef"]);
+}
+
+function toDest(streetName) {
+	return numbersAsText(streetName["toDest"]);
+}
+
+function numbersAsText(destName) {
+	return destName.replace(numberRegex, function(match) { return numberToWords(match);});
+}
+
+var ones = [
+	"", "jeden", "dwa", "trzy", "cztery", "pięć", "sześć", "siedem", "osiem", "dziewięć",
+	"dziesięć", "jedenaście", "dwanaście", "trzynaście", "czternaście", "piętnaście", 
+	"szesnaście", "siedemnaście", "osiemnaście", "dziewiętnaście"
+];
+
+var tens = [
+	"", "", "dwadzieścia", "trzydzieści", "czterdzieści", "pięćdziesiąt", 
+	"sześćdziesiąt", "siedemdziesiąt", "osiemdziesiąt", "dziewięćdziesiąt"
+];
+
+var hundreds = [
+	"", "sto", "dwieście", "trzysta", "czterysta", "pięćset", 
+	"sześćset", "siedemset", "osiemset", "dziewięćset"
+];
+
+function numberToWords(input) {
+	var num = parseInt(input, 10);
+
+	if (isNaN(num)) {
+			return input;
+	}
+
+	if (num < 1 || num > 999) {
+			return input;
+	}
+
+	var result = "";
+
+	// Handle hundreds
+	if (Math.floor(num / 100) > 0) {
+			result += hundreds[Math.floor(num / 100)] + " ";
+	}
+
+	// Handle tens and ones
+	var remainder = num % 100;
+	if (remainder < 20) {
+			result += ones[remainder];
+	} else {
+			result += tens[Math.floor(remainder / 10)] + " ";
+			if (remainder % 10 !== 0) {
+					result += ones[remainder % 10];
+			}
+	}
+
+	return result.trim();
 }
