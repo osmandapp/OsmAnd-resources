@@ -20,7 +20,7 @@
 		?relation - propogate tag from relation objects to
 		?namePrefix - add prefix to all text tags
 		?order - order to store sequentially as tag in object (default 50)
-		?propagateToNodes - propagate this tag from way to their node, "all" (equals to "true", "yes"), "start", "center", "end", "border"
+		?propagateToNodes - propagate this tag from way to their node, "all" (equals to "true", "yes"), "start", "center", "end", "borderout", "borderin"
 		?propagateToNodesPrefix - add prefix to propagated tags
 		?propagateIfTag1 - propagate if way contains tag
 		?propagateIfTag1.. / Value... - propagate if way contains tag
@@ -666,17 +666,17 @@
 	<type tag="maxweight" value="maxweight" minzoom="13" additional="text"/>
 	<type tag="maxaxleload" value="maxaxleload" minzoom="13" additional="text"/>
 
-	<type tag="layer" value="0" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/>
-	<type tag="layer" value="1" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/>
-	<type tag="layer" value="-1" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/>
-	<type tag="layer" value="2" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/>
-	<type tag="layer" value="-2" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/>
-	<type tag="layer" value="3" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/>
-	<type tag="layer" value="-3" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/> <!-- Used only for propagateToNodes -->
-	<type tag="layer" value="4" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/> <!-- Used only for propagateToNodes -->
-	<type tag="layer" value="-4" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/> <!-- Used only for propagateToNodes -->
-	<type tag="layer" value="5" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/> <!-- Used only for propagateToNodes -->
-	<type tag="layer" value="-5" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps"/> <!-- Used only for propagateToNodes -->
+	<type tag="layer" value="0" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps" propagateNetworkIfTag2="amenity" propagateNetworkIfValue2="bench"/>
+	<type tag="layer" value="1" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps" propagateNetworkIfTag2="amenity" propagateNetworkIfValue2="bench"/>
+	<type tag="layer" value="-1" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps" propagateNetworkIfTag2="amenity" propagateNetworkIfValue2="bench"/>
+	<type tag="layer" value="2" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps" propagateNetworkIfTag2="amenity" propagateNetworkIfValue2="bench"/>
+	<type tag="layer" value="-2" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps" propagateNetworkIfTag2="amenity" propagateNetworkIfValue2="bench"/>
+	<type tag="layer" value="3" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps" propagateNetworkIfTag2="amenity" propagateNetworkIfValue2="bench"/>
+	<type tag="layer" value="-3" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps" propagateNetworkIfTag2="amenity" propagateNetworkIfValue2="bench"/> <!-- Used only for propagateToNodes -->
+	<type tag="layer" value="4" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps" propagateNetworkIfTag2="amenity" propagateNetworkIfValue2="bench"/> <!-- Used only for propagateToNodes -->
+	<type tag="layer" value="-4" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps" propagateNetworkIfTag2="amenity" propagateNetworkIfValue2="bench"/> <!-- Used only for propagateToNodes -->
+	<type tag="layer" value="5" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps" propagateNetworkIfTag2="amenity" propagateNetworkIfValue2="bench"/> <!-- Used only for propagateToNodes -->
+	<type tag="layer" value="-5" minzoom="10" additional="true" poi="false" propagateToNodes="center" propagateNetworkIfTag1="highway" propagateNetworkIfValue1="steps" propagateNetworkIfTag2="amenity" propagateNetworkIfValue2="bench"/> <!-- Used only for propagateToNodes -->
 	<entity_convert pattern="tag_transform" from_tag="layer" from_value="+1" to_tag1="layer" to_value1="1"/>
 	<!--	<entity_convert pattern="tag_transform" from_tag="layer" from_value="2" to_tag1="layer" to_value1="1"/>
 	<entity_convert pattern="tag_transform" from_tag="layer" from_value="+2" to_tag1="layer" to_value1="1"/>
@@ -941,6 +941,7 @@
 	<entity_convert pattern="tag_transform" from_tag="ramp:bicycle" from_value="yes" to_tag1="ramp:bicycle" to_value1="yes" to_tag2="ramp_all" to_value2="yes" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="ramp:stroller" from_value="yes" to_tag1="ramp:stroller" to_value1="yes" to_tag2="ramp_all" to_value2="yes" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="ramp:wheelchair" from_value="yes" to_tag1="ramp:wheelchair" to_value1="yes" to_tag2="ramp_all" to_value2="yes" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="name:signed" />
 
 	<type tag="name" additional="text" order="40"/>
 	<type tag="name:en" additional="text" order="45"/>
@@ -3667,14 +3668,16 @@
 		<type tag="barrier" value="castle_wall" minzoom="13" order="99"/>
 		<entity_convert pattern="tag_transform" from_tag="barrier" from_value="wall" if_tag1="wall" if_value1="castle_wall" to_tag1="barrier" to_value1="castle_wall" poi="no"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="castle_wall" to_tag1="barrier" to_value1="castle_wall" poi="no"/>
-		<type tag="barrier" value="bollard" minzoom="15" />
+		<type tag="osmand_barrier" value="bollard" minzoom="15" />
+		<type tag="barrier" value="bollard" minzoom="15" propagateToNodes="center" propagateToNodesPrefix="osmand_"/>
 		<entity_convert pattern="tag_transform" from_tag="bollard" from_value="foldable" to_tag1="bollard" to_value1="removable"/>
 		<type tag="barrier" value="cycle_barrier" minzoom="14" />
 		<type tag="barrier" value="motorcycle_barrier" minzoom="14" />
 		<type tag="barrier" value="block" minzoom="14" />
 		<type tag="barrier" value="debris" minzoom="14" />
 		<type tag="barrier" value="bar" minzoom="14"/>
-		<type tag="barrier" value="coupure" minzoom="14" />
+		<type tag="osmand_barrier" value="coupure" minzoom="15" />
+		<type tag="barrier" value="coupure" minzoom="14" propagateToNodes="center" propagateToNodesPrefix="osmand_"/>
 		<type tag="barrier" value="log" minzoom="14" />
 		<type tag="barrier" value="jersey_barrier" minzoom="15" />
 		<type tag="barrier" value="bus_trap" minzoom="15" />
@@ -3690,7 +3693,8 @@
 		<type tag="barrier" value="border_control" minzoom="11" />
 		<type tag="military" value="checkpoint" minzoom="11"/>
 		<type tag="barrier" value="full-height_turnstile" minzoom="15" />
-		<type tag="barrier" value="gate" minzoom="14"/>
+		<type tag="osmand_barrier" value="gate" minzoom="15" />
+		<type tag="barrier" value="gate" minzoom="14" propagateToNodes="center" propagateToNodesPrefix="osmand_"/>
 		<entity_convert pattern="tag_transform" from_tag="entrance" from_value="gate" to_tag1="barrier" to_value1="gate"/>
 		<type tag="barrier" value="bump_gate" minzoom="14"/>
 		<type tag="barrier" value="yes" minzoom="14" order="120"/>
@@ -3763,7 +3767,11 @@
 		<type tag="waterway" value="waterfall" minzoom="13" nameTags="height"/>
 		<type tag="osmand_remarkable_waterfall" value="yes" minzoom="13" additional="true" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="waterway" from_value="waterfall" if_not_less_tag1="height" if_not_less_value1="5" to_tag1="waterway" to_value1="waterfall" to_tag2="osmand_remarkable_waterfall" to_value2="yes" routing="no" poi="no"/>
-		<type tag="waterway" value="weir" minzoom="15" propagateToNodes="true" />
+		<type tag="osmand_waterway" value="weir" minzoom="13" notosm="true"/>
+		<type tag="waterway" value="weir" minzoom="15">
+			<propagate propagateToNodes="center" propagateToNodesPrefix="osmand_" />
+			<propagate propagateToNodes="true"/>
+		</type>
 		<entity_convert pattern="tag_transform" from_tag="waterway" if_tag1="seasonal" if_value1="yes" to_tag1="waterway" to_tag2="intermittent" to_value2="yes" poi="no"/>
 		<type tag="waterway" value="fish_pass" minzoom="15"/>
 		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="waterway" to_tag1="waterway" to_value1="drain" routing="no"/>
@@ -4512,7 +4520,8 @@
 		<type tag="leisure" value="marina" minzoom="10" order="89"/>
 		<type tag="harbour" value="yes" minzoom="8" order="91"/>
 		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="harbour" to_tag1="harbour" to_value1="yes"/>
-		<type tag="leisure" value="slipway" minzoom="15"/>
+		<type tag="osmand_leisure" value="slipway" minzoom="15"/>
+		<type tag="leisure" value="slipway" minzoom="15" propagateToNodes="center" propagateToNodesPrefix="osmand_"/>
 		<type tag="leisure" value="ski_resort" minzoom="9" />
 		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="winter_sports" to_tag1="leisure" to_value1="ski_resort"/>
 		<type tag="leisure" value="fishing" minzoom="14" />
@@ -6048,7 +6057,8 @@
 		<type tag="amenity" value="hunting_stand" minzoom="14" />
 		<type tag="amenity" value="feeding_place" minzoom="14" />
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="game_feeding" to_tag1="amenity" to_value1="feeding_place"/>
-		<type tag="amenity" value="bench" minzoom="15" />
+		<type tag="osmand_amenity" value="bench" minzoom="15"/>
+		<type tag="amenity" value="bench" minzoom="15" propagateToNodes="center" propagateToNodesPrefix="osmand_"/>
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="bench" if_tag1="historic" if_not_tag1="historic" if_not_value1="yes" to_tag1="bench" to_value1="yes"/>
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="bench" if_tag1="shop" to_tag1="bench" to_value1="yes"/>
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="bench" if_tag1="leisure" to_tag1="bench" to_value1="yes"/>
@@ -6361,6 +6371,7 @@
 		<entity_convert pattern="tag_transform" from_tag="boundary" from_value="protected_area" if_tag1="protect_class" if_value1="25" to_tag1="landuse" to_value1="military" poi="no"/>
 		<type tag="protect_class" minzoom="11" additional="true" poi="false"/>
 		<type tag="boundary" value="low_emission_zone" minzoom="6" relation="true" />
+		<type tag="osmand_poi_lat_lon" additional="text" minzoom="9" poi="false" map="true"/>
 	</category>
 
 	<category name="enforcement" relation="true">
@@ -6527,7 +6538,7 @@
 		<entity_convert pattern="tag_transform" from_tag="climbing" from_value="crag" if_not_tag1="sport" to_tag1="climbing_crag" to_value1="crag" to_tag2="sport" to_value2="climbing"/>
 		<entity_convert pattern="tag_transform" from_tag="climbing" from_value="crag" to_tag1="climbing_crag" to_value1="crag"/>
 
-		<entity_convert pattern="tag_transform" from_tag="climbing" from_value="boulder" if_not_tag1="natural" to_tag1="natural" to_value1="stone"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing" from_value="boulder" if_not_tag1="natural" if_not_tag2="leisure" to_tag1="climbing" to_value1="boulder" to_tag2="natural" to_value2="stone"/>
 
 		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="1" to_tag1="climbing:grade:uiaa" to_value1="1" to_tag2="osmand_climbing_grade" to_value2="novice" map="no" routing="no" poi="yes"/>
 		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="2" to_tag1="climbing:grade:uiaa" to_value1="2" to_tag2="osmand_climbing_grade" to_value2="novice" map="no" routing="no" poi="yes"/>
@@ -6737,15 +6748,11 @@
 		<type tag="seamark:type" value="light_vessel" minzoom="11" nameTags="seamark:name,name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/> <!-- INT-1 P Section: Lights, nameTags -->
 		<type tag="seamark:type" value="lock_basin" minzoom="10" nameTags="seamark:name"/>
 		<type tag="seamark:type" value="lock_basin_part" minzoom="10" nameTags="seamark:name"/>
-		<type tag="lock" value="yes" minzoom="11" nameTags="lock_name,lock_ref"/>
+		<type tag="osmand_lock" value="yes" minzoom="11"/>
+		<type tag="lock" value="yes" minzoom="11" nameTags="lock_name,lock_ref" propagateToNodes="center" propagateToNodesPrefix="osmand_"/>
 		<type tag="lock_name" additional="text" minzoom="11"/>
 		<type tag="lock_ref" additional="text" minzoom="11"/>
-		<type tag="osmand_lock_river" value="yes" minzoom="11" additional="true"/>
-		<type tag="osmand_lock_canal" value="yes" minzoom="11" additional="true"/>
-		<type tag="osmand_lock_stub" value="." minzoom="11" additional="text"/>
-		<entity_convert pattern="tag_transform" from_tag="waterway" from_value="river" if_tag1="lock" if_value1="yes" to_tag1="osmand_lock_river" to_value1="yes" to_tag2="osmand_lock_stub" to_value2="." apply_to="way,relation" poi="no" routing="no"/>
-		<entity_convert pattern="tag_transform" from_tag="waterway" from_value="canal" if_tag1="lock" if_value1="yes" to_tag1="osmand_lock_canal" to_value1="yes" to_tag2="osmand_lock_stub" to_value2="." apply_to="way,relation" poi="no" routing="no"/>
-		<entity_convert pattern="tag_transform" from_tag="lock" from_value="yes" if_tag1="waterway" to_tag1="lock" to_value1="yes" to_tag2="seamark" to_value2="lock_basin" to_tag3="osmand_lock_stub" to_value3="."/>
+		<entity_convert pattern="tag_transform" from_tag="lock" from_value="yes" if_tag1="waterway" to_tag1="lock" to_value1="yes" to_tag2="seamark" to_value2="lock_basin"/>  <!--to_tag3="osmand_lock_stub" to_value3="."-->
 		<entity_convert pattern="tag_transform" from_tag="seamark:type" from_value="lock_basin" to_tag1="seamark" to_value1="lock_basin"/>
 		<type tag="lock_name" minzoom="11" additional="text"/>
 		<type tag="lock_ref" minzoom="11" additional="text"/>

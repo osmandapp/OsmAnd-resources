@@ -3078,7 +3078,7 @@
 				</case>
 				<case tag="railway" value="yard"/>
 				<switch>
-					<case tag="public_transport" value="platform"/>
+					<case tag="public_transport" value="platform" order="11"/>
 					<case tag="public_transport" value="station"/>
 					<apply_if moreDetailed="false" layer="-1" order="-1"/>
 					<apply_if baseAppMode="car" maxzoom="18" layer="-1" order="-1"/>
@@ -3188,17 +3188,6 @@
 				<case tag="boundary" value="protected_area" order="9">
 					<apply_if moreDetailed="false" maxzoom="13" order="-1"/>
 					<apply_if maxzoom="12" additional="nr_high_density=yes" order="-1"/>
-					<apply_if additional="protect_class=7" order="-1"/>
-					<apply_if additional="protect_class=97" order="-1"/>
-					<apply_if additional="protect_class=98" order="-1"/>
-					<apply_if additional="protect_class=99" order="-1"/>
-					<apply_if additional="protect_class=14" order="-1"/>
-					<apply_if additional="protect_class=15" order="-1"/>
-					<apply_if additional="protect_class=19" order="-1"/>
-					<apply_if additional="protect_class=21" order="-1"/>
-					<apply_if additional="protect_class=22" order="-1"/>
-					<apply_if additional="protect_class=24" order="-1"/>
-					<apply_if additional="protect_class=27" order="-1"/>
 				</case>
 				<case tag="boundary" value="national_park" order="9"/>
 				<case tag="boundary" value="forestry_compartment" order="9">
@@ -5007,8 +4996,14 @@
 					<case minzoom="$waterwayStreamTextMinZoom" tag="waterway" value="stream" textOnPath="true" textOrder="206" nameTag=""/>
 					<case minzoom="19" textSize="12" tag="waterway" value="fish_pass" textOnPath="true" textOrder="78" textDy="0" nameTag=""/>
 					<case minzoom="$wadiStreamTextMinZoom" tag="waterway" value="wadi" textOnPath="true" textOrder="213" nameTag=""/>
-					<case minzoom="11" tag="waterway" value="river" textOnPath="true" textMinDistance="80" textOrder="184" nameTag=""/>
-					<case minzoom="13" tag="waterway" value="canal" textOnPath="true" textMinDistance="80" textOrder="185" nameTag=""/>
+					<case minzoom="11" tag="waterway" value="river" textOnPath="true" textMinDistance="80" textOrder="184">
+						<case nameTag="lock_name" nameTag2="lock_ref"/>
+						<case nameTag="" nameTag2="lock_name"/>
+					</case>
+					<case minzoom="13" tag="waterway" value="canal" textOnPath="true" textMinDistance="80" textOrder="185">
+						<case nameTag="lock_name" nameTag2="lock_ref"/>
+						<case nameTag="" nameTag2="lock_name"/>
+					</case>
 					<case hidePOILabels="false" minzoom="17" tag="waterway" value="dock" textDy="7" textOrder="209" nameTag="" />
 					<case minzoom="15" tag="waterway" value="ditch" textOnPath="true" textOrder="210" nameTag=""/>
 					<case minzoom="15" tag="waterway" value="drain" textOnPath="true" textOrder="211" nameTag=""/>
@@ -5037,18 +5032,7 @@
 					<case minzoom="17" tag="landuse" value="aquaculture" textOrder="239" nameTag=""/>
 					<apply_if engine_v1="false" textDy="0"/>
 				</switch>
-				<switch>
-					<case minzoom="16" tag="lock" value="yes" nameTag="osmand_lock_stub" textColor="#00ff0000" textSize="11" textShield="blue_round_shield" icon="lock"/>
-					<switch minzoom="16" tag="lock" value="yes">
-						<case engine_v1="false" nameTag="lock_name" nameTag2="lock_ref" textShield="blue_round_shield" icon="lock" textDy="25"/>
-						<case engine_v1="false" nameTag="" textShield="blue_round_shield" icon="lock" textDy="25"/>
-						<case nameTag="" nameTag2="lock_ref"/>
-						<case nameTag="lock_name"/>
-						<apply textColor="$waterTextColor" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$waterTextHaloColor" textSize="12" textItalic="true" textOnPath="true" textMinDistance="80"/>
-					</switch>
-					<apply textOrder="184"/>
-					<apply_if nightMode="true" shield="blue_round_night_shield"/>
-				</switch>
+				<case minzoom="16" tag="lock" value="yes" nameTag="lock_name" textColor="#00ff0000" textSize="11"/>
 				<switch minzoom="17" textColor="#2579D0" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$defaultColor" textSize="12" textItalic="true">
 					<case tag="ford" value="yes" nameTag="osmand_ford_stub" textColor="#00ff0000" textHaloColor="#01000000" textSize="11" textShield="ford_shield" icon="ford" textMinDistance="1"/>
 					<case tag="ford" value="yes" textDy="7" nameTag="" nameTag2="depth" textOrder="208"/>
@@ -6749,7 +6733,11 @@
 						</case>
 						<apply_if minzoom="16" additional="drinking_water=yes" icon_2="drinking_water_yes_map"/>
 					</switch>
-					<case minzoom="17" tag="amenity" value="bench" icon="bench" shield="bench_shield" iconOrder="70"/>
+					<switch minzoom="17">
+						<case tag="amenity" value="bench"/>
+						<case tag="osmand_amenity" value="bench"/>
+						<apply icon="bench" shield="bench_shield" iconOrder="70"/>
+					</switch>
 				</switch>
 				<switch iconOrder="85">
 					<switch>
@@ -6853,9 +6841,10 @@
 						<case icon="waterway_rapids" shield="rapids_shield"/>
 					</switch>
 					<apply_if baseAppMode="car" moreDetailed="false" maxzoom="17" icon=""/>
-
 				</switch>
 				<case whiteWaterSports="true" minzoom="14" tag="whitewater" value="hazard" icon="whitewater_hazard" iconOrder="12"/>
+				<case minzoom="17" tag="osmand_waterway" value="weir" icon="waterway_rapids" shield="rapids_shield"/>
+				<case minzoom="17" tag="osmand_lock" value="yes" icon="lock" shield="blue_round_shield"/>
 				<switch shield="blue_round_shield">
 					<case minzoom="16" tag="natural" value="hot_spring" icon="natural_hot_spring"/>
 					<case minzoom="16" tag="natural" value="geyser" icon="natural_geyser"/>
@@ -7104,9 +7093,11 @@
 						<case minzoom="16" tag="amenity" value="boat_sharing" icon="amenity_boat_sharing" />
 						<case minzoom="17" tag="amenity" value="boat_storage" icon="boat_storage" />
 						<case minzoom="16" tag="amenity" value="boat_rental" icon="boat_rental" />
-						<case minzoom="15" tag="leisure" value="slipway" icon="leisure_slipway" >
+						<switch minzoom="15" icon="leisure_slipway">
+							<case tag="leisure" value="slipway"/>
+							<case tag="osmand_leisure" value="slipway"/>
 							<apply_if moreDetailed="false" maxzoom="15" icon=""/>
-						</case>
+						</switch>
 						<case minzoom="17" tag="waterway" value="dock" icon="waterway_dock" />
 						<case minzoom="15" tag="man_made" value="lighthouse" icon="man_made_lighthouse" />
 						<apply_if baseAppMode="car" moreDetailed="false" maxzoom="17" icon=""/>
@@ -7552,7 +7543,11 @@
 				<case minzoom="20" tag="amenity" value="waste_basket" icon="waste_basket2" shield="waste_basket_shield"/>
 				<case minzoom="19" tag="amenity" value="waste_disposal" icon="waste_disposal" shield="waste_disposal_shield"/>
 				<switch>
-					<case minzoom="17" tag="amenity" value="bench" icon="bench" shield="bench_shield" iconOrder="172"/>
+					<switch minzoom="17">
+						<case tag="amenity" value="bench"/>
+						<case tag="osmand_amenity" value="bench"/>
+						<apply icon="bench" shield="bench_shield" iconOrder="172"/>
+					</switch>
 					<case minzoom="17" tag="amenity" value="lounger" icon="lounger" shield="lounger_shield" iconOrder="172"/>
 
 					<case minzoom="17" tag="amenity" value="recycling" iconVisibleSize="24">
@@ -8291,7 +8286,11 @@
 				<switch iconOrder="138">
 				<!-- Passable barriers -->
 					<switch>
-						<case minzoom="16" tag="barrier" value="gate" icon="barrier_gate" shield="barrier_gate_shield"/>
+						<switch minzoom="16">
+							<case tag="barrier" value="gate"/>
+							<case tag="osmand_barrier" value="gate"/>
+							<apply icon="barrier_gate" shield="barrier_gate_shield"/>
+						</switch>
 						<case minzoom="16" tag="barrier" value="yes" icon="barrier_gate" shield="barrier_gate_shield"/>
 						<case minzoom="16" tag="barrier" value="lift_gate" icon="barrier_lift_gate" shield="barrier_lift_gate_shield"/>
 						<case minzoom="16" tag="barrier" value="hampshire_gate" icon="barrier_hampshire_gate" shield="barrier_hampshire_gate_shield"/>
@@ -8316,7 +8315,11 @@
 						<case minzoom="16" tag="barrier" value="horse_stile" icon="barrier_colored_horse_stile" shield="barrier_horse_stile_shield"/>
 						<case minzoom="16" tag="barrier" value="entrance" icon="barrier_entrance" shield="barrier_entrance_shield"/>
 						<case minzoom="16" tag="barrier" value="wicket_gate" icon="barrier_entrance" shield="barrier_entrance_shield"/>
-						<case minzoom="16" tag="barrier" value="coupure" icon="barrier_coupure" shield="barrier_coupure_shield"/>
+						<switch minzoom="16">
+							<case tag="barrier" value="coupure"/>
+							<case tag="osmand_barrier" value="coupure"/>
+							<apply icon="barrier_coupure" shield="barrier_coupure_shield"/>
+						</switch>
 						<case minzoom="16" tag="barrier" value="tyres" icon="barrier_tyres" shield="barrier_tyres_shield"/>
 						<case minzoom="16" tag="barrier" value="tank_trap" icon="barrier_tank_trap" shield="barrier_tank_trap_shield"/>
 						<apply_if moreDetailed="true" minzoom="16" maxzoom="16" icon="barrier_small_black_2" shield="" iconVisibleSize="0">
@@ -8360,9 +8363,11 @@
 
 				<!-- Impassable barriers -->
 				<switch iconOrder="128">
-					<case tag="barrier" value="bollard">
+					<switch>
+						<case tag="barrier" value="bollard"/>
+						<case tag="osmand_barrier" value="bollard"/>
 						<apply_if minzoom="16" icon="barrier_bollard" shield="barrier_bollard_shield"/>
-					</case>
+					</switch>
 					<case tag="barrier" value="block">
 						<apply_if minzoom="16" icon="barrier_block" shield="barrier_block_shield"/>
 					</case>
@@ -11348,7 +11353,6 @@
 			<switch minzoom="6">
 				<switch>
 					<case tag="waterway" value="river"/>
-					<case tag="lock" value="yes" additional="osmand_lock_river=yes"/>
 					<apply minzoom="13" pathIcon="$waterwayDirectionIcon">
 						<case maxzoom="13" pathIconStep="130"/>
 						<case maxzoom="14" pathIconStep="140"/>
@@ -11359,7 +11363,6 @@
 				</switch>
 				<switch>
 					<case tag="waterway" value="canal"/>
-					<case tag="lock" value="yes" additional="osmand_lock_canal=yes"/>
 					<apply minzoom="15" pathIcon="$waterwayDirectionIcon" pathIconStep="150">
 						<apply_if additional="intermittent=yes" pathIconStep="190"/>
 						<apply_if nightMode="true" pathIcon="arrow_blue_big"/>
