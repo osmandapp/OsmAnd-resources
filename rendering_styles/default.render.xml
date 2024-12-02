@@ -166,6 +166,23 @@
 	-->
 	<renderingProperty attr="engine_v1" type="boolean"/>
 
+	<renderingClass name=".road" title="Road" enable="true">
+		<renderingClass name=".alpinehiking" title="Alpine hiking" enable="true">
+			<renderingClass name=".sac_scale" title="SAC scale" enable="true"/>
+			<renderingClass name=".cai_scale" title="CAI scale" enable="true"/>
+		</renderingClass>
+		<renderingClass name=".surface" title="Road surface" enable="true"/>
+		<renderingClass name=".surface_grade" title="Road surface grade" enable="true"/>
+		<renderingClass name=".access" title="Road access" enable="true">
+			<renderingClass name=".entrance_restrictions" title="Entrance/barrier restrictions" enable="true"/>
+			<renderingClass name=".vehicle" title="Vehicle restrictions" enable="true"/>
+			<renderingClass name=".motor_vehicle" title="Motor vehicle restrictions" enable="true"/>
+			<renderingClass name=".motorcar" title="Motorcar restrictions" enable="true"/>
+			<renderingClass name=".foot" title="Pedestrian restrictions" enable="true"/>
+			<renderingClass name=".bicycle" title="Bicycle restrictions" enable="true"/>
+		</renderingClass>
+	</renderingClass>
+
 	<renderingAttribute name="defaultColor">
 		<!-- next line should should make background transparent for underlays to be visible, but this curretnly does not work as desired -->
 		<!-- To change default color completely you should do that also for tag="place" value="island" and tag="natural" value="land" (search this file) -->
@@ -518,7 +535,7 @@
 		<!--		<case roadStyle="boldOutline" attrColorValue="#000000">
 			<apply_if nightMode="true" attrColorValue="$null"/>
 		</case>-->
-		<case showAccess="true" additional="motorroad=yes" attrColorValue="$motorroadShadowColor"/>
+		<case showAccess="true" additional="motorroad=yes" attrColorValue="$motorroadShadowColor" rClass=".road.access"/>
 		<case additional="winter_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case additional="ice_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case roadStyle="germanRoadAtlas" attrColorValue="#fe2e2e">
@@ -540,7 +557,7 @@
 	<renderingConstant name="motorwayShadowRadius" value="1.6"/>
 	<renderingConstant name="motorwayShadowRadius_v2" value="1:1"/>
 	<renderingAttribute name="highwayShadowRadius"> <!-- OpenGL engine only for now (bug in engine_v1 - does not works)-->
-		<case showAccess="true" additional="motorroad=yes" attrFloatValue="1:1"/>
+		<case showAccess="true" additional="motorroad=yes" attrFloatValue="1:1" rClass=".road.access"/>
 		<case additional="winter_road=yes" attrFloatValue="1:1"/>
 		<case additional="ice_road=yes" attrFloatValue="1:1"/>
 		<case attrFloatValue="0.6:0.4"/>
@@ -593,7 +610,7 @@
 		<case attrColorValue="$trunkRoadColor"/>
 	</renderingAttribute>
 	<renderingAttribute name="trunkRoadShadowColor">
-		<case showAccess="true" additional="motorroad=yes" attrColorValue="$motorroadShadowColor"/>
+		<case showAccess="true" additional="motorroad=yes" attrColorValue="$motorroadShadowColor" rClass=".road.access"/>
 		<case additional="winter_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case additional="ice_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case roadStyle="boldOutline" attrColorValue="#000000">
@@ -673,7 +690,7 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="primaryRoadShadowColor">
-		<case showAccess="true" additional="motorroad=yes" attrColorValue="$motorroadShadowColor"/>
+		<case showAccess="true" additional="motorroad=yes" attrColorValue="$motorroadShadowColor" rClass=".road.access"/>
 		<case additional="winter_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case additional="ice_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case roadStyle="boldOutline" attrColorValue="#000000">
@@ -735,7 +752,7 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="secondaryRoadShadowColor">
-		<case showAccess="true" additional="motorroad=yes" attrColorValue="$motorroadShadowColor"/>
+		<case showAccess="true" additional="motorroad=yes" attrColorValue="$motorroadShadowColor" rClass=".road.access"/>
 		<case additional="winter_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case additional="ice_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case roadStyle="boldOutline" attrColorValue="#000000">
@@ -803,7 +820,7 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="tertiaryRoadShadowColor">
-		<case showAccess="true" additional="motorroad=yes" attrColorValue="$motorroadShadowColor"/>
+		<case showAccess="true" additional="motorroad=yes" attrColorValue="$motorroadShadowColor" rClass=".road.access"/>
 		<case additional="winter_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case additional="ice_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case roadStyle="boldOutline" attrColorValue="#000000">
@@ -826,7 +843,7 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="tertiaryRoadLowZoomShadowColor">
-		<case showAccess="true" additional="motorroad=yes" attrColorValue="$motorroadShadowColor"/>
+		<case showAccess="true" additional="motorroad=yes" attrColorValue="$motorroadShadowColor" rClass=".road.access"/>
 		<case additional="winter_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case additional="ice_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case roadStyle="boldOutline" attrColorValue="#000000">
@@ -868,7 +885,7 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="residentialRoadLowZoom1ShadowColor">
-		<case showAccess="true" additional="motorroad=yes" attrColorValue="$motorroadShadowColor"/>
+		<case showAccess="true" additional="motorroad=yes" attrColorValue="$motorroadShadowColor" rClass=".road.access"/>
 		<case additional="winter_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case additional="ice_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case roadStyle="boldOutline" attrColorValue="#99666666">
@@ -880,7 +897,7 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="residentialRoadLowZoom2ShadowColor">
-		<case showAccess="true" additional="motorroad=yes" attrColorValue="$motorroadShadowColor"/>
+		<case showAccess="true" additional="motorroad=yes" attrColorValue="$motorroadShadowColor" rClass=".road.access"/>
 		<case additional="winter_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case additional="ice_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case roadStyle="boldOutline" attrColorValue="#444444">
@@ -892,7 +909,7 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="residentialRoadShadowColor">
-		<case showAccess="true" additional="motorroad=yes" attrColorValue="$motorroadShadowColor"/>
+		<case showAccess="true" additional="motorroad=yes" attrColorValue="$motorroadShadowColor" rClass=".road.access"/>
 		<case additional="winter_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case additional="ice_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case roadStyle="boldOutline" attrColorValue="#000000">
@@ -967,7 +984,7 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="serviceRoadShadowColor">
-		<case showAccess="true" additional="motorroad=yes" attrColorValue="$motorroadShadowColor"/>
+		<case showAccess="true" additional="motorroad=yes" attrColorValue="$motorroadShadowColor" rClass=".road.access"/>
 		<case additional="winter_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case additional="ice_road=yes" attrColorValue="$winterroadShadowColor"/>
 		<case roadStyle="boldOutline" attrColorValue="#222222">
@@ -2732,7 +2749,6 @@
 	<renderingConstant name="roadShieldDefaultOrder" value="93"/>
 
 	<renderingConstant name="null" value="#00000000"/>
-
 	
 	<!--
 	RENDERER CONCEPT: Concept of what is Rendered at what Zoom Level (Dr. Hardy Mueller, 2011-06-26)
@@ -2885,7 +2901,7 @@
 					<case tag="highway" value="passing_place">
 						<apply_if baseAppMode="pedestrian" order="-1"/>
 					</case>
-					<case showAccess="true" minzoom="15" tag="osmand_access" value=""/>
+					<case showAccess="true" minzoom="15" tag="osmand_access" value="" rClass=".road.access"/>
 
 					<switch tag="amenity">
 						<case value="restaurant"/>
@@ -5180,7 +5196,7 @@
 					<apply_if nightMode="true" textColor="#ffe7c2" textHaloColor="#88644e2c"/>
 				</switch>
 				<apply_if showAccess="true">
-					<switch>
+					<switch rClass=".road.access">
 						<case additional="access=no"/>
 						<case additional="access=private"/>
 						<apply textColor="#C96B6B"/>
@@ -6514,7 +6530,7 @@
 					<case tag="barrier" value="tyres" icon="barrier_tyres" shield="barrier_tyres_shield"/>
 					<case tag="barrier" value="toll_booth" icon="toll_booth" shield="barrier_toll_booth_shield"/>
 					<case tag="military" value="checkpoint" icon="military_checkpoint" shield="military_checkpoint_shield"/>
-					<apply_if showAccess="true">
+					<apply_if showAccess="true" rClass=".road.access.entrance_restrictions">
 						<apply_if additional="access=private" icon_2="access_private_red_overlay"/>
 						<apply_if additional="access=no" icon_2="access_private_red_overlay"/>
 						<apply_if additional="access=permit" icon_2="access_permit_overlay"/>
@@ -6613,10 +6629,10 @@
 					<case tag="barrier" value="kissing_gate" icon="barrier_kissing_gate" shield="barrier_kissing_gate_shield"/>
 					<case tag="barrier" value="barrier_board" icon="barrier_barrier_board" shield="barrier_barrier_board_shield"/>
 					<case tag="barrier" value="tyres" icon="barrier_tyres" shield="barrier_tyres_shield"/>
-					<apply_if minzoom="18" showAccess="true" additional="access=private" icon_2="access_private_red_overlay"/>
-					<apply_if minzoom="18" showAccess="true" additional="access=no" icon_2="access_private_red_overlay"/>
-					<apply_if minzoom="18" showAccess="true" additional="access=permit" icon_2="access_permit_overlay"/>
-					<apply_if minzoom="18" showAccess="true" additional="bicycle=yes" icon_2=""/>
+					<apply_if minzoom="18" showAccess="true" additional="access=private" icon_2="access_private_red_overlay" rClass=".road.access.entrance_restrictions"/>
+					<apply_if minzoom="18" showAccess="true" additional="access=no" icon_2="access_private_red_overlay" rClass=".road.access.entrance_restrictions"/>
+					<apply_if minzoom="18" showAccess="true" additional="access=permit" icon_2="access_permit_overlay" rClass=".road.access.entrance_restrictions"/>
+					<apply_if minzoom="18" showAccess="true" additional="bicycle=yes" icon_2="" rClass=".road.access.entrance_restrictions"/>
 				</switch>
 			</switch>
 
@@ -7068,7 +7084,7 @@
 						<case minzoom="17" tag="amenity" value="bicycle_rental" icon="amenity_bicycle_rental" />
 						<case minzoom="15" tag="leisure" value="marina" icon="leisure_marina">
 							<apply>
-								<switch>
+								<switch rClass=".road.access.$access">
 									<case additional="access=private"/>
 									<case additional="access=no"/>
 									<apply icon="leisure_marina_private"/>
@@ -7766,7 +7782,7 @@
 					<apply_if baseAppMode="car" moreDetailed="false" maxzoom="17" icon=""/>
 				</switch>
 
-				<switch showAccess="true" minzoom="17" tag="osmand_access_main" value="tag" iconOrder="135" iconVisibleSize="32">
+				<switch showAccess="true" minzoom="17" tag="osmand_access_main" value="tag" iconOrder="135" iconVisibleSize="32" rClass=".road.access">
 					<switch baseAppMode="car">
 						<case additional="osmand_motorcar=agricultural"/>
 						<case additional="osmand_motorcar=customers"/>
@@ -7864,7 +7880,7 @@
 						</case>
 						<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 					</switch>
-					<switch shield="purple_round_shield" iconOrder="160" iconVisibleSize="24" >
+					<switch shield="purple_round_shield" iconOrder="160" iconVisibleSize="24">
 						<case minzoom="17" tag="shop" value="agrarian" icon="agrarian"/>
 						<case minzoom="17" tag="shop" value="alcohol" icon="shop_alcohol" iconVisibleSize="32"/>
 						<case minzoom="17" tag="shop" value="antiques" icon="antiques"/>
@@ -8255,7 +8271,7 @@
 						</apply_if>
 					</case>
 					<apply_if showAccess="true">
-						<switch>
+						<switch rClass=".road.access">
 							<case baseAppMode="car" moreDetailed="true" minzoom="16" maxzoom="16"/>
 							<case moreDetailed="true" minzoom="16" maxzoom="16"/>
 							<case moreDetailed="false" minzoom="16" maxzoom="17"/>
@@ -8300,7 +8316,7 @@
 					</apply>
 				</switch>
 				<apply_if showAccess="true">
-					<switch>
+					<switch rClass=".road.access.entrance_restrictions">
 						<case baseAppMode="pedestrian" moreDetailed="true" minzoom="17"/>
 						<case baseAppMode="default" moreDetailed="true" minzoom="17"/>
 						<case minzoom="18"/>
@@ -8315,13 +8331,13 @@
 				<switch tag="entrance" value="main">
 					<case maxzoom="17" icon="barrier_small_black_3">
 						<apply_if nightMode="true" icon="barrier_small_white_3"/>
-						<apply_if showAccess="true">
+						<apply_if showAccess="true" rClass=".road.access.entrance_restrictions">
 							<apply_if additional="access=private" icon="barrier_small_red_3" iconVisibleSize="0" shield=""/>
 							<apply_if additional="access=no" icon="barrier_small_red_3" iconVisibleSize="0" shield=""/>
 						</apply_if>
 					</case>
 					<case minzoom="18" icon="entrance_main_map" shield="barrier_entrance_small_shield"/>
-					<apply_if minzoom="18" maxzoom="18" showAccess="true">
+					<apply_if minzoom="18" maxzoom="18" showAccess="true" rClass=".road.access.entrance_restrictions">
 						<apply_if additional="access=private" icon_2="access_private_red_overlay"/>
 						<apply_if additional="access=no" icon_2="access_private_red_overlay"/>
 						<apply_if additional="access=permit" icon_2="access_permit_overlay"/>
@@ -8336,7 +8352,7 @@
 				<switch tag="entrance" value="yes">
 					<case minzoom="18" maxzoom="18" icon="barrier_small_black_3">
 						<apply_if nightMode="true" icon="barrier_small_white_3"/>
-						<apply_if showAccess="true">
+						<apply_if showAccess="true" rClass=".road.access.entrance_restrictions">
 							<apply_if additional="access=private" icon="barrier_small_red_3" iconVisibleSize="0" shield=""/>
 							<apply_if additional="access=no" icon="barrier_small_red_3" iconVisibleSize="0" shield=""/>
 						</apply_if>
@@ -8355,7 +8371,7 @@
 					</case>
 				</switch>
 				<apply iconOrder="161"/>
-				<apply_if minzoom="19" showAccess="true">
+				<apply_if minzoom="19" showAccess="true" rClass=".road.access.entrance_restrictions">
 					<apply_if additional="access=private" icon_2="access_private_red_overlay"/>
 					<apply_if additional="access=no" icon_2="access_private_red_overlay"/>
 					<apply_if additional="access=permit" icon_2="access_permit_overlay"/>
@@ -8666,7 +8682,7 @@
 				</apply>
 			</switch>
 			<apply_if showAccess="true" minzoom="16">
-				<switch>
+				<switch rClass=".road.access.$access">
 					<case additional="access=private" color_2="$accessPrivateColor"/>
 					<case additional="access=no" color_2="$accessPrivateColor"/>
 					<case additional="access=permit" color_2="$accessPermitColor"/>
@@ -9009,7 +9025,7 @@
 				</case>
 				<case minzoom="12" tag="leisure" value="garden" color="$gardenColor"/>
 				<apply>
-					<switch minzoom="16" showAccess="true">
+					<switch minzoom="16" showAccess="true" rClass=".road.access.$access">
 						<case additional="access=private" color_2="$accessPrivateColor"/>
 						<case additional="access=no" color_2="$accessPrivateColor"/>
 						<case additional="access=permit" color_2="$accessPermitColor"/>
@@ -9083,7 +9099,7 @@
 					</switch>
 				</apply>
 				<apply showAccess="true">
-					<switch minzoom="16">
+					<switch minzoom="16" rClass=".road.access">
 						<case additional="access=private" color_2="$accessPrivateColor"/>
 						<case additional="access=permissive" color_2="$accessPermissiveColor">
 							<apply_if nightMode="true" color_2="$accessPermissiveColorNight2"/>
@@ -9225,7 +9241,7 @@
 			<switch minzoom="13">
 				<case tag="man_made" value="pier" color="$pierColor"/>
 				<apply minzoom="15">
-					<switch showAccess="true">
+					<switch showAccess="true" rClass=".road.access">
 						<case baseAppMode="bicycle" additional="bicycle=no"/>
 						<case additional="access=private" color_2="$accessPrivateColor"/>
 						<case additional="access=no" color_2="$accessPrivateColor"/>
@@ -9491,15 +9507,15 @@
 					<apply_if nightMode="true" shader="quarry3_abandoned_night" color_0="#585858"/>
 				</case>
 				<apply_if showAccess="true" minzoom="13">
-					<switch>
+					<switch rClass=".road.access">
 						<switch baseAppMode="car">
 							<switch>
-								<case additional="vehicle=private"/>
-								<case additional="vehicle=no"/>
-								<case additional="motor_vehicle=private"/>
-								<case additional="motor_vehicle=no"/>
-								<case additional="motorcar=private"/>
-								<case additional="motorcar=no"/>
+								<case additional="vehicle=private" rClass=".road.access.vehicle.private"/>
+								<case additional="vehicle=no" rClass=".road.access.vehicle.no"/>
+								<case additional="motor_vehicle=private" rClass=".road.access.motor_vehicle.private"/>
+								<case additional="motor_vehicle=no" rClass=".road.access.motor_vehicle.no"/>
+								<case additional="motorcar=private" rClass=".road.access.motorcar.private"/>
+								<case additional="motorcar=no" rClass=".road.access.motorcar.no"/>
 								<apply color_2="$accessPrivateColor" cap_2="ROUND"/>
 								<apply_if natureReserves="true" tag="leisure" value="nature_reserve" shader="nature_reserve_access_no"/>
 								<apply_if natureReserves="true" tag="boundary" value="protected_area" shader="protected_area_access_no"/>
@@ -9511,7 +9527,7 @@
 							<case additional="motor_vehicle=yes"/>
 							<case additional="motorcar=yes"/>
 						</switch>
-						<switch baseAppMode="pedestrian">
+						<switch baseAppMode="pedestrian" rClass=".road.access.foot.$foot">
 							<switch>
 								<case additional="foot=private" color_2="$accessPrivateColor" cap_2="ROUND"/>
 								<case additional="foot=no" color_2="$accessPrivateColor" cap_2="ROUND"/>
@@ -9523,7 +9539,7 @@
 							</switch>
 							<case additional="foot=yes"/>
 						</switch>
-						<switch baseAppMode="bicycle">
+						<switch baseAppMode="bicycle" rClass=".road.access.bicycle.$bicycle">
 							<switch>
 								<case additional="bicycle=private" color_2="$accessPrivateColor" cap_2="ROUND"/>
 								<case additional="bicycle=no" color_2="$accessPrivateColor" cap_2="ROUND"/>
@@ -9535,7 +9551,7 @@
 							</switch>
 							<case additional="bicycle=yes"/>
 						</switch>
-						<switch>
+						<switch rClass=".road.access.$access">
 							<case additional="access=private" color_2="$accessPrivateColor" cap_2="ROUND"/>
 							<case additional="access=no" color_2="$accessPrivateColor" cap_2="ROUND"/>
 							<case additional="access=permit" color_2="$accessPermitColor" cap_2="ROUND"/>
@@ -10441,8 +10457,8 @@
 						</switch>
 						<case minzoom="14" strokeWidth_4="1.2:1.2" strokeWidth_5="$trackStrokeWidth">
 							<case baseAppMode="bicycle" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
-							<case showSurfaces="true" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
-							<case showSurfaceGrade="true" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
+							<case showSurfaces="true" strokeWidth_5="$trackWithSurfaceStrokeWidth" rClass=".road.surface"/>
+							<case showSurfaceGrade="true" strokeWidth_5="$trackWithSurfaceStrokeWidth" rClass=".road.surface_grade"/>
 						</case>
 						<apply minzoom="15" strokeWidth_4="1.6:1.6"/>
 						<apply_if additional="winter_road=yes" minzoom="11" strokeWidth_4="2:2"/>
@@ -10473,8 +10489,8 @@
 							<case baseAppMode="pedestrian" minzoom="15" color_5="$pathColor" strokeWidth_4="1.4:1.4" strokeWidth_5="$pathStrokeWidth" pathEffect_5="$pathPathEffect"/>
 							<case minzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="$pathStrokeWidth" color_5="$pathColor" pathEffect_5="$pathPathEffect">
 								<apply_if baseAppMode="bicycle" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
-								<apply_if showSurfaceGrade="true" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
-								<apply_if showSurfaces="true" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
+								<apply_if showSurfaceGrade="true" strokeWidth_5="$trackWithSurfaceStrokeWidth" rClass=".road.surface_grade"/>
+								<apply_if showSurfaces="true" strokeWidth_5="$trackWithSurfaceStrokeWidth" rClass=".road.surface"/>
 							</case>
 							<apply_if additional="winter_road=yes" minzoom="11" strokeWidth_4="2:2"/>
 							<apply_if additional="ice_road=yes" minzoom="11" strokeWidth_4="2:2"/>
@@ -10508,22 +10524,22 @@
 								<switch>
 									<case baseAppMode="bicycle"/>
 									<case baseAppMode="pedestrian"/>
-									<case showSurfaceGrade="true"/>
-									<case showSurfaces="true"/>
+									<case showSurfaceGrade="true" rClass=".road.surface_grade"/>
+									<case showSurfaces="true" rClass=".road.surface"/>
 									<apply strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
 								</switch>
 							</case>
 						</case>
 						<apply>
-							<case alpineHiking="true" rClass="road.alpinehiking">
-								<switch alpineHikingScaleScheme="sacScale" rClass="road.alpinehiking.sac_scale">
+							<case alpineHiking="true" rClass=".road.alpinehiking">
+								<switch alpineHikingScaleScheme="sacScale" rClass=".road.alpinehiking.sac_scale.$sac_scale">
 									<case additional="sac_scale=mountain_hiking" color_5="$sacScaleColorT2" pathEffect_5=""/>
 									<case additional="sac_scale=demanding_mountain_hiking" color_5="$sacScaleColorT3" pathEffect_5="10_3"/>
 									<case additional="sac_scale=alpine_hiking" color_5="$sacScaleColorT4" pathEffect_5=""/>
 									<case additional="sac_scale=demanding_alpine_hiking" color_5="$sacScaleColorT5" pathEffect_5="10_3"/>
 									<case additional="sac_scale=difficult_alpine_hiking" color_5="$sacScaleColorT6" pathEffect_5="3_3"/>
 								</switch>
-								<switch alpineHikingScaleScheme="caiScale" rClass="road.alpinehiking.cai_scale">
+								<switch alpineHikingScaleScheme="caiScale" rClass=".road.alpinehiking.cai_scale.$cai_scale">
 									<case additional="cai_scale=t" color_5="$caiScaleColor" pathEffect_5=""/>
 									<case additional="cai_scale=e" color_5="$caiScaleColor" pathEffect_5="13_2"/>
 									<case additional="cai_scale=ee" color_5="$caiScaleColor" pathEffect_5="6_2"/>
@@ -10596,8 +10612,8 @@
 							<case minzoom="13" strokeWidth_4="1.2:1.2" strokeWidth_5="1"/>
 						</case>
 						<case minzoom="16" strokeWidth_4="1.4:1.4" strokeWidth_5="1">
-							<apply_if showSurfaceGrade="true" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
-							<apply_if showSurfaces="true" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
+							<apply_if showSurfaceGrade="true" strokeWidth_5="$trackWithSurfaceStrokeWidth" rClass=".road.surface_grade"/>
+							<apply_if showSurfaces="true" strokeWidth_5="$trackWithSurfaceStrokeWidth" rClass=".road.surface"/>
 <!--							<apply_if horseRoutes="true" strokeWidth_4="3:3" strokeWidth_5="1.5:1.5"/>-->
 						</case>
 						<apply color_5="$bridlewayColor" pathEffect_5="4_2"/>
@@ -10657,7 +10673,7 @@
 					<apply_if additional="oneway=-1" pathIcon="oneway_reverse_gray_big" pathIconStep="70"/>
 				</apply_if>
 			</switch>
-			<apply_if showSurfaceGrade="true" minzoom="14" cap_2="ROUND">
+			<apply_if showSurfaceGrade="true" minzoom="14" cap_2="ROUND" rClass=".road.surface_grade.$smoothness">
 				<case additional="smoothness=excellent" color_2="$surfaceGradeExcellentColor"/>
 				<case additional="smoothness=good" color_2="$surfaceGradeGoodColor"/>
 				<case additional="smoothness=intermediate" color_2="$surfaceGradeIntermediateColor"/>
@@ -10678,54 +10694,54 @@
 						<case additional="toll=yes" color_3="$tollColor"/>
 						<apply_if maxzoom="14" strokeWidth_3="2:2" pathEffect_3="1_7"/>
 					</switch>
-					<switch minzoom="15" showAccess="true">
+					<switch minzoom="15" showAccess="true" rClass=".road.access.$access">
 						<switch baseAppMode="car">
 							<switch>
-								<case additional="vehicle=private"/>
-								<case additional="vehicle=no"/>
-								<case additional="motor_vehicle=private"/>
-								<case additional="motor_vehicle=no"/>
-								<case additional="motorcar=private"/>
-								<case additional="motorcar=no"/>
+								<case additional="vehicle=private" rClass=".road.access.vehicle.private"/>
+								<case additional="vehicle=no" rClass=".road.access.vehicle.no"/>
+								<case additional="motor_vehicle=private" rClass=".road.access.motor_vehicle.private"/>
+								<case additional="motor_vehicle=no" rClass=".road.access.motor_vehicle.no"/>
+								<case additional="motorcar=private" rClass=".road.access.motorcar.private"/>
+								<case additional="motorcar=no" rClass=".road.access.motorcar.no"/>
 								<apply_if color_3="$accessPrivateColor" color_2="$null"/>
 							</switch>
 							<switch>
-								<case additional="vehicle=destination"/>
-								<case additional="motor_vehicle=destination"/>
-								<case additional="motorcar=destination"/>
+								<case additional="vehicle=destination" rClass=".road.access.vehicle.destination"/>
+								<case additional="motor_vehicle=destination" rClass=".road.access.motor_vehicle.destination"/>
+								<case additional="motorcar=destination" rClass=".road.access.motorcar.destination"/>
 								<apply color_3="$accessDestinationColor" color_2="$null"/>
 							</switch>
 							<switch>
-								<case additional="vehicle=permissive"/>
-								<case additional="motor_vehicle=permissive"/>
-								<case additional="motorcar=permissive"/>
+								<case additional="vehicle=permissive" rClass=".road.access.vehicle.permissive"/>
+								<case additional="motor_vehicle=permissive" rClass=".road.access.motor_vehicle.permissive"/>
+								<case additional="motorcar=permissive" rClass=".road.access.motorcar.permissive"/>
 								<apply color_3="$accessPermissiveColor" color_2="$null"/>
 							</switch>
 							<switch>
-								<case additional="vehicle=agricultural"/>
+								<case additional="vehicle=agricultural" rClass=".road.access.vehicle.agricultural"/>
 								<case additional="vehicle=agricultural;forestry"/>
-								<case additional="motor_vehicle=agricultural"/>
+								<case additional="motor_vehicle=agricultural" rClass=".road.access.motor_vehicle.agricultural"/>
 								<case additional="motor_vehicle=agricultural;forestry"/>
-								<case additional="motorcar=agricultural"/>
+								<case additional="motorcar=agricultural" rClass=".road.access.motorcar.agricultural"/>
 								<case additional="motorcar=agricultural;forestry"/>
 								<apply color_3="$accessAgriculturalColor" color_2="$null"/>
 							</switch>
 							<switch>
-								<case additional="vehicle=forestry"/>
-								<case additional="motor_vehicle=forestry"/>
-								<case additional="motorcar=forestry"/>
+								<case additional="vehicle=forestry" rClass=".road.access.vehicle.forestry"/>
+								<case additional="motor_vehicle=forestry" rClass=".road.access.motor_vehicle.forestry"/>
+								<case additional="motorcar=forestry" rClass=".road.access.motorcar.forestry"/>
 								<apply color_3="$accessForestryColor" color_2="$null"/>
 							</switch>
 							<switch>
-								<case additional="vehicle=customers"/>
-								<case additional="motor_vehicle=customers"/>
-								<case additional="motorcar=customers"/>
+								<case additional="vehicle=customers" rClass=".road.access.vehicle.customers"/>
+								<case additional="motor_vehicle=customers" rClass=".road.access.motor_vehicle.customers"/>
+								<case additional="motorcar=customers" rClass=".road.access.motorcar.customers"/>
 								<apply color_3="$accessCustomersColor" color_2="$null"/>
 							</switch>
 							<switch>
-								<case additional="vehicle=delivery"/>
-								<case additional="motor_vehicle=delivery"/>
-								<case additional="motorcar=delivery"/>
+								<case additional="vehicle=delivery" rClass=".road.access.vehicle.delivery"/>
+								<case additional="motor_vehicle=delivery" rClass=".road.access.motor_vehicle.delivery"/>
+								<case additional="motorcar=delivery" rClass=".road.access.motorcar.delivery"/>
 								<apply color_3="$accessDeliveryColor" color_2="$null"/>
 							</switch>
 							<switch>
@@ -10733,10 +10749,10 @@
 								<case additional="motor_vehicle=yes"/>
 								<case additional="motorcar=yes"/>
 								<!--	We need to restore surface color when particular transport access is "yes". This can't be done another way because we can't go through 2 switches (showAccess and showSurfaces). Though not perfect solution.  -->
-								<apply_if showSurfaces="true" color_3="$routeInfo_surface" cap_3="SQUARE"/>
+								<apply_if showSurfaces="true" color_3="$routeInfo_surface" cap_3="SQUARE" rClass=".road.surface.$surface"/>
 							</switch>
 						</switch>
-						<switch baseAppMode="pedestrian" minzoom="15">
+						<switch baseAppMode="pedestrian" minzoom="15" rClass=".road.access.foot.$foot">
 							<switch>
 								<case additional="foot=private" color_3="$accessPrivateColor"/>
 								<case additional="foot=no" color_3="$accessPrivateColor"/>
@@ -10746,10 +10762,10 @@
 								<apply color_2="$null"/>
 							</switch>
 							<case additional="foot=yes">
-								<apply_if showSurfaces="true" color_3="$routeInfo_surface" cap_3="SQUARE"/>
+								<apply_if showSurfaces="true" color_3="$routeInfo_surface" cap_3="SQUARE" rClass=".road.surface.$surface"/>
 							</case>
 						</switch>
-						<switch baseAppMode="bicycle" minzoom="15">
+						<switch baseAppMode="bicycle" minzoom="15" rClass=".road.access.bicycle.$bicycle">
 							<switch>
 								<case additional="bicycle=private" color_3="$accessPrivateColor"/>
 								<case additional="bicycle=no" color_3="$accessPrivateColor"/>
@@ -10759,7 +10775,7 @@
 								<apply color_2="$null"/>
 							</switch>
 							<case additional="bicycle=yes">
-								<apply_if showSurfaces="true" color_3="$routeInfo_surface" cap_3="SQUARE"/>
+								<apply_if showSurfaces="true" color_3="$routeInfo_surface" cap_3="SQUARE" rClass=".road.surface.$surface"/>
 							</case>
 						</switch>
 						<switch minzoom="15">
@@ -10783,7 +10799,7 @@
 					<apply_if minzoom="18" maxzoom="18" pathEffect_3="1_17"/>
 					<apply_if minzoom="19" pathEffect_3="1_20"/>
 				</switch>
-				<case showSurfaces="true" minzoom="14" cap_3="SQUARE" color_3="$routeInfo_surface">
+				<case showSurfaces="true" minzoom="14" cap_3="SQUARE" color_3="$routeInfo_surface" rClass=".road.surface.$surface">
 					<apply_if moreDetailed="true" maxzoom="14" pathEffect_3="3_11"/>
 					<apply_if minzoom="15" maxzoom="15" pathEffect_3="5_13"/>
 					<apply_if minzoom="16" maxzoom="16" pathEffect_3="5_15"/>
@@ -11593,7 +11609,7 @@
 		</switch>
 
 		<case minzoom="13" tag="man_made" value="pier" color="$pierColor">
-			<switch minzoom="15" showAccess="true">
+			<switch minzoom="15" showAccess="true" rClass=".road.access">
 				<case additional="access=no" color_2="$accessPrivateColor"/>
 				<case additional="access=private" color_2="$accessPrivateColor"/>
 				<case additional="access=permit" color_2="$accessPermitColor"/>
