@@ -867,54 +867,32 @@
 	</polygon>
 
 	<line>
-		<!-- OBF-GPX relation track width/color -->
-		<switch minzoom="11" tag="route" value="segment" additional="use_osmc_colors=yes" color="$osmcDefaultColor" cap="ROUND">
-			<apply_if additional="color_white" color="#44ffffff"/>
-			<apply_if additional="color_gray" color="#44999999"/>
-			<apply_if additional="color_darkyellow" color="#44afb61c"/>
-			<apply_if additional="color_lightgreen" color="#446cb52b"/>
-			<apply_if additional="color_lightblue" color="#442ec6ff"/>
-			<apply_if additional="color_red" color="$osmcRedColor"/>
-			<apply_if additional="color_orange" color="$osmcOrangeColor"/>
-			<apply_if additional="color_brown" color="$osmcBrownColor"/>
-			<apply_if additional="color_yellow" color="$osmcYellowColor"/>
-			<apply_if additional="color_green" color="$osmcGreenColor"/>
-			<apply_if additional="color_blue" color="$osmcBlueColor"/>
-			<apply_if additional="color_purple" color="$osmcPurpleColor"/>
-			<apply_if additional="color_black" color="$osmcBlackColor"/>
-			<case maxzoom="11" strokeWidth="1"/>
-			<case maxzoom="12" strokeWidth="2"/>
-			<case maxzoom="13" strokeWidth="3"/>
-			<case maxzoom="14" strokeWidth="4"/>
-			<case maxzoom="15" strokeWidth="4"/>
-			<case maxzoom="16" strokeWidth="5"/>
-			<case maxzoom="17" strokeWidth="6"/>
-			<case minzoom="18" strokeWidth="7"/>
-		</switch>
-
-		<!-- OBF-GPX track width/color -->
+		<!-- OBF-GPX track -->
 		<switch minzoom="11" tag="route" value="segment" color="$redColor" cap="ROUND">
-			<case additional="gpx_width=thin">
-				<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
-				<apply_if minzoom="6" strokeWidth="2"/>
-			</case>
-			<case additional="gpx_width=medium">
+			<!-- OBF-GPX track width -->
+			<case strokeWidth="2"/> <!-- gpx_width=thin is considered as default -->
+			<apply_if additional="gpx_width=medium">
 				<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
 				<apply_if minzoom="6" maxzoom="11" strokeWidth="3"/>
 				<apply_if minzoom="12" strokeWidth="5"/>
-			</case>
-			<case additional="gpx_width=bold">
+			</apply_if>
+			<apply_if additional="gpx_width=bold">
 				<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
 				<apply_if minzoom="6" maxzoom="7" strokeWidth="3"/>
 				<apply_if minzoom="8" maxzoom="9" strokeWidth="5"/>
 				<apply_if minzoom="10" maxzoom="11" strokeWidth="7"/>
 				<apply_if minzoom="12" strokeWidth="11"/>
-			</case>
-			<!-- TODO custom width=N should be supported too -->
-			<case>
-				<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
-				<apply_if minzoom="6" strokeWidth="2"/>
-			</case>
+			</apply_if>
+			<apply_if additional="flexible_line_width=yes">
+				<apply_if maxzoom="11" strokeWidth="1"/>
+				<apply_if minzoom="12" maxzoom="12" strokeWidth="2"/>
+				<apply_if minzoom="13" maxzoom="13" strokeWidth="3"/>
+				<apply_if minzoom="14" maxzoom="14" strokeWidth="4"/>
+				<apply_if minzoom="15" maxzoom="15" strokeWidth="5"/>
+				<apply_if minzoom="16" maxzoom="16" strokeWidth="6"/>
+				<apply_if minzoom="17" maxzoom="17" strokeWidth="7"/>
+				<apply_if minzoom="18" strokeWidth="8"/>
+			</apply_if>
 			<!-- OBF-GPX track colors -->
 			<apply_if additional="color_white" color="#ffffff"/>
 			<apply_if additional="color_red" color="#ff0000"/>
@@ -929,6 +907,21 @@
 			<apply_if additional="color_purple" color="#a71de1"/>
 			<apply_if additional="color_gray" color="#999999"/>
 			<apply_if additional="color_black" color="#000000"/>
+			<apply_if additional="translucent_line_colors=yes" color="$osmcDefaultColor">
+				<apply_if additional="color_white" color="#44ffffff"/>
+				<apply_if additional="color_gray" color="#44999999"/>
+				<apply_if additional="color_darkyellow" color="#44afb61c"/>
+				<apply_if additional="color_lightgreen" color="#446cb52b"/>
+				<apply_if additional="color_lightblue" color="#442ec6ff"/>
+				<apply_if additional="color_red" color="$osmcRedColor"/>
+				<apply_if additional="color_orange" color="$osmcOrangeColor"/>
+				<apply_if additional="color_brown" color="$osmcBrownColor"/>
+				<apply_if additional="color_yellow" color="$osmcYellowColor"/>
+				<apply_if additional="color_green" color="$osmcGreenColor"/>
+				<apply_if additional="color_blue" color="$osmcBlueColor"/>
+				<apply_if additional="color_purple" color="$osmcPurpleColor"/>
+				<apply_if additional="color_black" color="$osmcBlackColor"/>
+			</apply_if>
 		</switch>
 
 		<switch minzoom="11">
