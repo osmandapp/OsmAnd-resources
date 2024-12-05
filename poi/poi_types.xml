@@ -5330,20 +5330,20 @@
 			<poi_type name="route_article" tag="route_type" value="article"/>
 
 			<!-- OBF-GPX relation route types (convertFromOsmGPXTag) -->
-			<!-- Name acts as icon not as activity (refers to the icon) -->
-			<poi_type tag="route_type" value="water" name="activities_kayak"/>
-			<poi_type tag="route_type" value="riding" name="activities_horse"/>
-			<poi_type tag="route_type" value="winter" name="activities_skiing"/>
-			<poi_type tag="route_type" value="cycling" name="activities_bicycle"/>
-			<poi_type tag="route_type" value="hiking" name="activities_trekking"/>
-			<poi_type tag="route_type" value="walking" name="activities_pedestrian"/>
-			<poi_type tag="route_type" value="snowmobile" name="activities_snowmobile"/>
-			<poi_type tag="route_type" value="mountainbike" name="activities_mountain_bike"/>
-			<poi_type tag="route_type" value="inline_skates" name="activities_inline_skates"/>
-			<poi_type tag="route_type" value="running" name="activities_running"/> <!-- TODO copy icon from running -->
-			<poi_type tag="route_type" value="fitness" name="activities_fitness"/> <!-- TODO copy icon from fitness_station -->
+			<!-- most routes_ icons are aliased from activities_ icons -->
+			<poi_type tag="route_type" value="water" name="routes_kayak"/>
+			<poi_type tag="route_type" value="riding" name="routes_horse"/>
+			<poi_type tag="route_type" value="winter" name="routes_skiing"/>
+			<poi_type tag="route_type" value="cycling" name="routes_bicycle"/>
+			<poi_type tag="route_type" value="hiking" name="routes_trekking"/>
+			<poi_type tag="route_type" value="walking" name="routes_pedestrian"/>
+			<poi_type tag="route_type" value="snowmobile" name="routes_snowmobile"/>
+			<poi_type tag="route_type" value="mountainbike" name="routes_mountain_bike"/>
+			<poi_type tag="route_type" value="inline_skates" name="routes_inline_skates"/>
+			<poi_type tag="route_type" value="running" name="routes_running"/>
+			<poi_type tag="route_type" value="fitness" name="routes_fitness"/> <!-- aliased from fitness_station -->
 
-			<poi_type name="route_track" tag="route_type" value="track">
+			<poi_type tag="route_type" name="route_track" value="track">
 				<!-- OBF-GPX track: basic tags -->
 				<poi_additional name="user" tag="user" type="text"/>
 				<poi_additional name="date" tag="date" type="text"/>
@@ -5377,7 +5377,7 @@
 					<poi_additional name="route_activity_type_motorbike" tag="route_activity_type" value="motorbike"/>
 					<poi_additional name="route_activity_type_car" tag="route_activity_type" value="car"/>
 				</poi_additional_category>
-				<!-- OBF-GPX track: extensions tags (prefixed with gpx_) -->
+				<!-- OBF-GPX track: appearance extension tags (prefixed with gpx_) -->
 				<poi_additional name="gpx_show_arrows" tag="gpx_show_arrows" type="text"/>
 				<poi_additional name="gpx_show_start_finish" tag="gpx_show_start_finish" type="text"/>
 				<poi_additional name="gpx_split_interval" tag="gpx_split_interval" type="text"/>
@@ -5391,11 +5391,20 @@
 				<poi_additional name="gpx_coloring_type" tag="gpx_coloring_type" type="text"/>
 				<poi_additional name="gpx_color" tag="gpx_color" type="text"/>
 				<poi_additional name="gpx_width" tag="gpx_width" type="text"/>
+				<!-- OBF-GPX track: special extension tags -->
+				<poi_additional name="gpx_osmand:activity" tag="gpx_osmand:activity" type="text"/> <!-- osmand:activity placed in the metadata -->
 				<!-- OBF-GPX track: osmand:points_groups list by tags -->
 				<poi_additional name="points_groups_names" tag="points_groups_names" type="text"/>
 				<poi_additional name="points_groups_icons" tag="points_groups_icons" type="text"/>
 				<poi_additional name="points_groups_colors" tag="points_groups_colors" type="text"/>
 				<poi_additional name="points_groups_backgrounds" tag="points_groups_backgrounds" type="text"/>
+				<!-- OBF-GPX track: shield_* tags for GPX reconstruction -->
+				<poi_additional name="shield_bg" tag="shield_bg" type="text"/>
+				<poi_additional name="shield_fg" tag="shield_fg" type="text"/>
+				<poi_additional name="shield_fg_2" tag="shield_fg_2" type="text"/>
+				<poi_additional name="shield_text" tag="shield_text" type="text"/>
+				<poi_additional name="shield_textcolor" tag="shield_textcolor" type="text"/>
+				<poi_additional name="shield_waycolor" tag="shield_waycolor" type="text"/> <!-- special to restore as color -->
 			</poi_type>
 			<poi_type name="route_track_point" tag="route_type" value="track_point">
 				<!-- OBF-GPX point: icon extensions -->
@@ -5404,8 +5413,8 @@
 				<poi_additional name="points_groups_category" tag="points_groups_category" type="text"/> <!-- GPX <type> -->
 			</poi_type>
 			<poi_additional name="color" tag="colour" type="text"/> <!-- global for "routes" category -->
-			<!-- OBF-GPX track (relation id) / points (node id) -->
-			<poi_additional name="osm_id" tag="osm_id" type="text"/>
+			<poi_additional name="flexible_line_width" tag="flexible_line_width" type="text"/>
+			<poi_additional name="translucent_line_colors" tag="translucent_line_colors" type="text"/>
 		</poi_category>
 		<poi_category name="user_defined_other" default_tag="amenity" no_edit="true" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,internet_access_type,opening_hours">
 			<!-- Add additional combination for UK postcode POI files-->
