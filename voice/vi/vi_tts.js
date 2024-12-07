@@ -9,7 +9,7 @@
 // (N/A) Special grammar: (please specify which)
 // (X) Support announcing highway exits
 //
-// Initial version courtesy of a user contribution
+// Initial version courtesy of user Duc9101
 
 var metricConst;
 var dictionary = {};
