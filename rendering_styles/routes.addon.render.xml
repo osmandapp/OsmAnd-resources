@@ -336,7 +336,7 @@
 	<order>
 		<!-- Point 101-200 -->
 		<switch area="false" point="true" objectType="1" order="128">
-			<case tag="route" value="point"/> <!-- OBF-GPX point -->
+			<case tag="route" value="point"/> <!-- TravelGpx point -->
 			<case tag="route_hiking" value="" order="-1"/>
 		</switch>
 
@@ -348,7 +348,7 @@
 
 		<!-- Line 11-100 -->
 		<switch area="false" objectType="2" order="80">
-			<case tag="route" value="segment" order="100"/> <!-- OBF-GPX track -->
+			<case tag="route" value="segment" order="100"/> <!-- TravelGpx track -->
 			<case tag="route_bicycle" value="" order="186"/>
 			<case tag="route_mtb" value="" order="187"/>
 			<case tag="route_dirtbike" value="" order="187"/>
@@ -380,21 +380,21 @@
 	</order>
 
 	<text>
-			<!-- OBF-GPX track name/ref/shield -->
+			<!-- TravelGpx track name/ref/shield -->
 			<switch minzoom="12" tag="route" value="segment" textSize="11" textMinDistance="60" textOrder="2">
 				<case nameTag="" textOnPath="true" textColor="#0078ff" textHaloColor="#ccebf4ff" textHaloRadius="1"/>
 
-				<!-- OBF-GPX relation track icons (use tiny text size for icon-captions which are not based on shield_text) -->
+				<!-- TravelGpx relation track icons (use tiny text size for icon-captions which are not based on shield_text) -->
 				<case additional="shield_fg" nameTag="shield_text" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
 				<case additional="shield_fg" nameTag="ref" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?" textSize="7" textColor="#ffffff" textHaloRadius="1" textHaloColor="#777777"/>
 				<case additional="shield_fg" nameTag="shield_stub_name" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?" textSize="1"/>
 
-				<!-- OBF-GPX relation track shield (no icon specified) -->
+				<!-- TravelGpx relation track shield (no icon specified) -->
 				<case additional="shield_bg" nameTag="shield_text" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
 				<case additional="shield_bg" nameTag="ref" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
 				<case additional="shield_bg" nameTag="shield_stub_name" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?" textSize="1"/>
 
-				<!-- OBF-GPX usual shields (based on textLength) -->
+				<!-- TravelGpx usual shields (based on textLength) -->
 				<case nameTag="ref" textOnPath="false" textColor="#404040" textShield="yellow_square_9_road_shield">
 					<apply_if textLength="1" textShield="yellow_hexagon_3_road_shield"/>
 					<apply_if textLength="2" textShield="yellow_hexagon_4_road_shield"/>
@@ -404,7 +404,7 @@
 					<apply_if textLength="6" textShield="yellow_square_8_road_shield"/>
 				</case>
 
-				<!-- OBF-GPX shield_textcolor (osmc_textcolor) -->
+				<!-- TravelGpx shield_textcolor (osmc_textcolor) -->
 				<apply_if additional="shield_textcolor=red" textColor="$osmcRedTextColor"/>
 				<apply_if additional="shield_textcolor=brown" textColor="$osmcBrownTextColor"/>
 				<apply_if additional="shield_textcolor=orange" textColor="$osmcOrangeTextColor"/>
@@ -422,7 +422,7 @@
 				<apply_if additional="shield_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
 			</switch>
 
-			<!-- OBF-GPX point name -->
+			<!-- TravelGpx point name -->
 			<switch>
 				<case minzoom="11" tag="route" value="point" nameTag="" textWrapWidth="25" textHaloRadius="1" textColor="#0078ff" textHaloColor="#ccebf4ff" textOrder="1" textDy="2">
 					<case maxzoom="11" textSize="10"/>
@@ -815,7 +815,7 @@
 	</text>
 
 	<point>
-		<!-- OBF-GPX point icon -->
+		<!-- TravelGpx point icon -->
 		<switch minzoom="11" tag="route" value="point" icon="osmand_fav" iconOrder="1">
 			<!--<case additional="background=octagon">
                 there are not enough shield icons for the octagon shape
@@ -842,7 +842,7 @@
 			<case additional="color_gray" shield="gray_round_shield"/>
 			<case shield="red_round_shield"/> <!-- default -->
 
-			<apply_if additional="icon" icon="?icon?" /> <!-- apply OBF-GPX icon -->
+			<apply_if additional="icon" icon="?icon?" /> <!-- apply TravelGpx icon -->
 			<apply_if additional="gpx_icon" icon="?gpx_icon?" /> <!-- Wikivoyage only -->
 		</switch>
 
@@ -870,61 +870,68 @@
 	</polygon>
 
 	<line>
-		<!-- OBF-GPX track -->
+		<!-- TravelGpx track -->
 		<switch minzoom="11" tag="route" value="segment" color="$redColor" cap="ROUND">
-			<!-- OBF-GPX track width -->
+			<!-- TravelGpx track width -->
 			<case strokeWidth="2"/> <!-- width=thin is considered as default -->
-			<apply_if additional="width=medium">
-				<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
-				<apply_if minzoom="6" maxzoom="11" strokeWidth="3"/>
-				<apply_if minzoom="12" strokeWidth="5"/>
-			</apply_if>
-			<apply_if additional="width=bold">
-				<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
-				<apply_if minzoom="6" maxzoom="7" strokeWidth="3"/>
-				<apply_if minzoom="8" maxzoom="9" strokeWidth="5"/>
-				<apply_if minzoom="10" maxzoom="11" strokeWidth="7"/>
-				<apply_if minzoom="12" strokeWidth="11"/>
-			</apply_if>
-			<apply_if additional="width=roadstyle">
-				<apply_if maxzoom="11" strokeWidth="1"/>
-				<apply_if minzoom="12" maxzoom="12" strokeWidth="2"/>
-				<apply_if minzoom="13" maxzoom="13" strokeWidth="3"/>
-				<apply_if minzoom="14" maxzoom="14" strokeWidth="4"/>
-				<apply_if minzoom="15" maxzoom="15" strokeWidth="5"/>
-				<apply_if minzoom="16" maxzoom="16" strokeWidth="6"/>
-				<apply_if minzoom="17" maxzoom="17" strokeWidth="7"/>
-				<apply_if minzoom="18" strokeWidth="8"/>
-			</apply_if>
-			<!-- OBF-GPX track colors -->
-			<apply_if additional="color_white" color="#ffffff"/>
-			<apply_if additional="color_red" color="#ff0000"/>
-			<apply_if additional="color_orange" color="#ff7200"/>
-			<apply_if additional="color_brown" color="#ba7007"/>
-			<apply_if additional="color_darkyellow" color="#afb61c"/>
-			<apply_if additional="color_yellow" color="#edc300"/>
-			<apply_if additional="color_lightgreen" color="#6cb52b"/>
-			<apply_if additional="color_green" color="#00842b"/>
-			<apply_if additional="color_lightblue" color="#2ec6ff"/>
-			<apply_if additional="color_blue" color="#4e4eff"/>
-			<apply_if additional="color_purple" color="#a71de1"/>
-			<apply_if additional="color_gray" color="#999999"/>
-			<apply_if additional="color_black" color="#000000"/>
-			<apply_if additional="translucent_line_colors=yes" color="$osmcDefaultColor">
-				<apply_if additional="color_white" color="#44ffffff"/>
-				<apply_if additional="color_gray" color="#44999999"/>
-				<apply_if additional="color_darkyellow" color="#44afb61c"/>
-				<apply_if additional="color_lightgreen" color="#446cb52b"/>
-				<apply_if additional="color_lightblue" color="#442ec6ff"/>
-				<apply_if additional="color_red" color="$osmcRedColor"/>
-				<apply_if additional="color_orange" color="$osmcOrangeColor"/>
-				<apply_if additional="color_brown" color="$osmcBrownColor"/>
-				<apply_if additional="color_yellow" color="$osmcYellowColor"/>
-				<apply_if additional="color_green" color="$osmcGreenColor"/>
-				<apply_if additional="color_blue" color="$osmcBlueColor"/>
-				<apply_if additional="color_purple" color="$osmcPurpleColor"/>
-				<apply_if additional="color_black" color="$osmcBlackColor"/>
-			</apply_if>
+			<apply>
+				<apply_if additional="width=medium">
+					<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
+					<apply_if minzoom="6" maxzoom="11" strokeWidth="3"/>
+					<apply_if minzoom="12" strokeWidth="5"/>
+				</apply_if>
+				<apply_if additional="width=bold">
+					<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
+					<apply_if minzoom="6" maxzoom="7" strokeWidth="3"/>
+					<apply_if minzoom="8" maxzoom="9" strokeWidth="5"/>
+					<apply_if minzoom="10" maxzoom="11" strokeWidth="7"/>
+					<apply_if minzoom="12" strokeWidth="11"/>
+				</apply_if>
+				<apply_if additional="width=roadstyle">
+					<apply_if maxzoom="11" strokeWidth="1"/>
+					<apply_if minzoom="12" maxzoom="12" strokeWidth="2"/>
+					<apply_if minzoom="13" maxzoom="13" strokeWidth="3"/>
+					<apply_if minzoom="14" maxzoom="14" strokeWidth="4"/>
+					<apply_if minzoom="15" maxzoom="15" strokeWidth="5"/>
+					<apply_if minzoom="16" maxzoom="16" strokeWidth="6"/>
+					<apply_if minzoom="17" maxzoom="17" strokeWidth="7"/>
+					<apply_if minzoom="18" strokeWidth="8"/>
+				</apply_if>
+			</apply>
+
+			<!-- TravelGpx track colors -->
+			<apply>
+				<case additional="translucent_line_colors=yes" color="$osmcDefaultColor">
+					<apply_if additional="color_white" color="#44ffffff"/>
+					<apply_if additional="color_gray" color="#44999999"/>
+					<apply_if additional="color_darkyellow" color="#44afb61c"/>
+					<apply_if additional="color_lightgreen" color="#446cb52b"/>
+					<apply_if additional="color_lightblue" color="#442ec6ff"/>
+					<apply_if additional="color_red" color="$osmcRedColor"/>
+					<apply_if additional="color_orange" color="$osmcOrangeColor"/>
+					<apply_if additional="color_brown" color="$osmcBrownColor"/>
+					<apply_if additional="color_yellow" color="$osmcYellowColor"/>
+					<apply_if additional="color_green" color="$osmcGreenColor"/>
+					<apply_if additional="color_blue" color="$osmcBlueColor"/>
+					<apply_if additional="color_purple" color="$osmcPurpleColor"/>
+					<apply_if additional="color_black" color="$osmcBlackColor"/>
+				</case>
+				<case>
+					<apply_if additional="color_white" color="#ffffff"/>
+					<apply_if additional="color_red" color="#ff0000"/>
+					<apply_if additional="color_orange" color="#ff7200"/>
+					<apply_if additional="color_brown" color="#ba7007"/>
+					<apply_if additional="color_darkyellow" color="#afb61c"/>
+					<apply_if additional="color_yellow" color="#edc300"/>
+					<apply_if additional="color_lightgreen" color="#6cb52b"/>
+					<apply_if additional="color_green" color="#00842b"/>
+					<apply_if additional="color_lightblue" color="#2ec6ff"/>
+					<apply_if additional="color_blue" color="#4e4eff"/>
+					<apply_if additional="color_purple" color="#a71de1"/>
+					<apply_if additional="color_gray" color="#999999"/>
+					<apply_if additional="color_black" color="#000000"/>
+				</case>
+			</apply>
 		</switch>
 
 		<switch minzoom="11">
