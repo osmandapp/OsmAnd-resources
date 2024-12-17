@@ -3657,3 +3657,14 @@ icon activities_running
 icon activities_horse_riding
 icon activities_diving
 icon activities_canoe
+
+#Routes
+icon_alias routes_driving activities_car
+icon_alias routes_motorcycling activities_motorcycle
+icon_alias routes_foot activities_pedestrian
+icon_alias routes_winter_sport activities_skiing
+icon_alias routes_cycling activities_bicycle
+icon_alias routes_air_sports activities_light_aircraft
+icon_alias routes_water_sport activities_kayak
+icon_alias routes_other special_route_track
+icon_alias route_track_point special_marker

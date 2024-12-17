@@ -10,7 +10,11 @@
 		<type 
 		tag="" value="" - necessary
 		minzoom="" - indexed for map section (min zoom)
+
 		?additional="true/text" - attach tag/value to another map object
+			Note: additional="true" is supposed to use with tags that have a limited range of values (to avoid dictionary overflow)
+				Use additional="true" for: POI type, icon names, category names, text-colors (red,green,blue), etc.
+				Use additional="text" for: ids, latlon, hex-colors, elevation values, ref, name, description, etc.
 		?poi - register only for poi (deprecated)
 		?map - register only for map (deprecated)
 		?relation - propogate tag from relation objects to
@@ -1154,47 +1158,44 @@
 	
 
 	<category name="routes">
-		<type tag="route" value="segment" minzoom="3" nameTags="shield_text,ref,name"/>
-		<type tag="route" value="point" minzoom="3" nameTags="shield_text,ref,name"/>
+		<type tag="route" value="segment" minzoom="3" nameTags="ref,name,shield_text,shield_stub_name"/>
+		<type tag="route" value="point" minzoom="3" nameTags="ref,name"/>
+
+		<type tag="route_id" additional="text" minzoom="3"/>
+
 		<type tag="category" additional="true" minzoom="3"/>
 		<type tag="route_activity_type" additional="true" minzoom="3"/>
-		<type tag="diff_ele_up" additional="true" minzoom="3"/>
-		<type tag="diff_ele_down" additional="true" minzoom="3"/>
 
-		<type tag="min_ele__start" additional="true" minzoom="3"/>
-		<type tag="max_ele__start" additional="true" minzoom="3"/>
-		<type tag="avg_ele__start" additional="true" minzoom="3"/>
-		<type tag="end_ele__start" additional="true" minzoom="3"/>
+		<type tag="min_ele" additional="text" minzoom="3"/>
+		<type tag="avg_ele" additional="text" minzoom="3"/>
+		<type tag="max_ele" additional="text" minzoom="3"/>
+
 		<type tag="start_ele" additional="text" minzoom="3"/>
 		<type tag="ele_graph" additional="text" minzoom="3"/>
+
+		<type tag="diff_ele_up" additional="text" minzoom="3"/>
+		<type tag="diff_ele_down" additional="text" minzoom="3"/>
+
+		<!-- Unknown and actually unused tags: -->
+		<!-- <type tag="min_ele__start" additional="text" minzoom="3"/> -->
+		<!-- <type tag="max_ele__start" additional="text" minzoom="3"/> -->
+		<!-- <type tag="avg_ele__start" additional="text" minzoom="3"/> -->
+		<!-- <type tag="end_ele__start" additional="text" minzoom="3"/> -->
 
 		<type tag="shield_bg" additional="true" minzoom="3"/>
 		<type tag="shield_fg" additional="true" minzoom="3"/>
 		<type tag="shield_fg_2" additional="true" minzoom="3"/>
-		<type tag="shield_text" additional="true" minzoom="3"/>
-		<type tag="shield_textcolor" additional="true" minzoom="3"/>
+		<type tag="shield_text" additional="text" minzoom="3"/>
+		<type tag="shield_textcolor" additional="text" minzoom="3"/>
+		<type tag="shield_stub_name" additional="true" minzoom="3"/>
 
-		<type tag="gpx_bg" additional="true" minzoom="3"/>
-		<type tag="gpx_icon" additional="true" minzoom="3"/>
-		<type tag="gpx_icon_2" additional="true" minzoom="3"/>
-		<type tag="gpx_width" additional="true" minzoom="3"/>
+		<type tag="width" additional="true" minzoom="3"/>
 
-		<type tag="relation_gpx" additional="true" minzoom="3"/>
+		<type tag="icon" additional="true" minzoom="3"/>
+		<type tag="background" additional="true" minzoom="3"/>
+		<type tag="gpx_icon" additional="true" minzoom="3"/> <!-- Wikivoyage -->
 
-		<type tag="route_id" additional="text" minzoom="3"/>
-		<type tag="osm_id" additional="text" minzoom="3"/>
-
-		<!--		<type tag="gpx_icon" additional="true"/>
-
-		<type tag="thickness" value="bold" minzoom="3" additional="true"/>
-		<type tag="thickness" value="medium" minzoom="3" additional="true"/>
-		<type tag="thickness" value="thin" minzoom="3" additional="true"/>
-		<type tag="pattern" value="dashed" minzoom="3" additional="true"/>
-		<type tag="transparency" value="25" minzoom="3" additional="true"/>
-		<type tag="transparency" value="50" minzoom="3" additional="true"/>
-		<type tag="transparency" value="75" minzoom="3" additional="true"/>
-		<type tag="icon" minzoom="3" additional="true"/>-->
-
+		<type tag="translucent_line_colors" additional="true" minzoom="3"/>
 	</category>
 	
 	<category name="highway">

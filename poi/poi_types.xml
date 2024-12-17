@@ -33,8 +33,6 @@
 	<poi_additional name="roundtrip_yes" tag="roundtrip" value="yes"/>
 	<poi_additional name="roundtrip_no" tag="roundtrip" value="no"/>
 
-	<!-- <poi_additional name="color_int" tag="color_int" type="text" lang="true" order="82"/> -->
-
 	<poi_additional name="phone" tag="phone" type="text" order="82"/>
 	<poi_additional name="mobile" tag="contact:mobile" type="text" order="82"/>
 	<poi_additional name="website" tag="contact:website" type="text" order="85"/>
@@ -5314,7 +5312,8 @@
 		</poi_category>
 
 		<poi_category name="routes" top="true" no_edit="true" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,internet_access_type,opening_hours">
-			<!-- route / point -->
+			<!-- Wikivoyage articles / points -->
+			<poi_type name="route_article" tag="route_type" value="article"/>
 			<poi_type name="route_article_point" tag="route_type" value="article_point">
 				<poi_additional_category name="route_point_category">
 					<poi_additional name="category_sleep" tag="category" value="sleep"/>
@@ -5327,28 +5326,118 @@
 					<poi_additional name="category_other" tag="category" value="other"/>
 					<poi_additional name="category_marker" tag="category" value="marker"/>
 				</poi_additional_category>
+				<poi_additional name="gpx_icon" tag="gpx_icon" type="text"/> <!-- Wikivoyage -->
 			</poi_type>
-			<poi_type name="route_article" tag="route_type" value="article"/>
 
-			<!-- OBF-GPX relation route types (convertFromOsmGPXTag) -->
-			<!-- Name acts as icon not as activity (refers to the icon) -->
-			<poi_type tag="route_type" value="water" name="activities_kayak"/>
-			<poi_type tag="route_type" value="riding" name="activities_horse"/>
-			<poi_type tag="route_type" value="winter" name="activities_skiing"/>
-			<poi_type tag="route_type" value="cycling" name="activities_bicycle"/>
-			<poi_type tag="route_type" value="hiking" name="activities_trekking"/>
-			<poi_type tag="route_type" value="walking" name="activities_pedestrian"/>
-			<poi_type tag="route_type" value="snowmobile" name="activities_snowmobile"/>
-			<poi_type tag="route_type" value="mountainbike" name="activities_mountain_bike"/>
-			<poi_type tag="route_type" value="inline_skates" name="activities_inline_skates"/>
-			<poi_type tag="route_type" value="running" name="activities_running"/> <!-- TODO copy icon from running -->
-			<poi_type tag="route_type" value="fitness" name="activities_fitness"/> <!-- TODO copy icon from fitness_station -->
+			<!-- TravelGpx points -->
+			<poi_type name="route_track_point" tag="route_type" value="track_point">
+				<poi_additional name="icon" tag="icon" type="text"/>
+				<poi_additional name="background" tag="background" type="text"/>
+				<poi_additional name="wpt_extra_tags" tag="wpt_extra_tags" type="text"/>
+				<poi_additional name="points_groups_category" tag="points_groups_category" type="text"/> <!-- GPX <wpt> <type> -->
+			</poi_type>
 
-			<poi_type name="route_track" tag="route_type" value="track">
-				<!-- OBF-GPX track: basic tags -->
+
+			<!-- TravelGpx top level activities as POI subcategories under Routes. route_type is generated from activity tag -->
+			<poi_type tag="route_type" value="driving" name="routes_driving">
+				<poi_additional_category name="routes_driving">
+					<poi_additional tag="route_activity" value="car" name="route_activity_car"/>
+					<poi_additional tag="route_activity" value="off_road" name="route_activity_off_road"/>
+					<poi_additional tag="route_activity" value="all_terrain_vehicle" name="route_activity_all_terrain_vehicle"/>
+					<poi_additional tag="route_activity" value="truck_hgv" name="route_activity_truck_hgv"/>
+					<poi_additional tag="route_activity" value="karting" name="route_activity_karting"/>
+				</poi_additional_category>
+			</poi_type>
+			<poi_type tag="route_type" value="motorcycling" name="routes_motorcycling">
+				<poi_additional_category name="routes_motorcycling">
+					<poi_additional tag="route_activity" value="adventure_motorcycling" name="route_activity_adventure_motorcycling"/>
+					<poi_additional tag="route_activity" value="enduro_motorcycling" name="route_activity_enduro_motorcycling"/>
+					<poi_additional tag="route_activity" value="motocross" name="route_activity_motocross"/>
+					<poi_additional tag="route_activity" value="off_road_motorcycling_dirt_biking" name="route_activity_off_road_motorcycling_dirt_biking"/>
+					<poi_additional tag="route_activity" value="road_motorcycling" name="route_activity_road_motorcycling"/>
+					<poi_additional tag="route_activity" value="sport_motorcycling" name="route_activity_sport_motorcycling"/>
+					<poi_additional tag="route_activity" value="touring_motorcycling" name="route_activity_touring_motorcycling"/>
+					<poi_additional tag="route_activity" value="track_racing" name="route_activity_track_racing"/>
+					<poi_additional tag="route_activity" value="motor_scooter" name="route_activity_motor_scooter"/>
+				</poi_additional_category>
+			</poi_type>
+			<poi_type tag="route_type" value="foot" name="routes_foot">
+				<poi_additional_category name="routes_foot">
+					<poi_additional tag="route_activity" value="backpacking" name="route_activity_backpacking"/>
+					<poi_additional tag="route_activity" value="hiking" name="route_activity_hiking"/>
+					<poi_additional tag="route_activity" value="hill_climbing" name="route_activity_hill_climbing"/>
+					<poi_additional tag="route_activity" value="road_running" name="route_activity_road_running"/>
+					<poi_additional tag="route_activity" value="trail_running" name="route_activity_trail_running"/>
+					<poi_additional tag="route_activity" value="trekking" name="route_activity_trekking"/>
+					<poi_additional tag="route_activity" value="walking" name="route_activity_walking"/>
+				</poi_additional_category>
+			</poi_type>
+			<poi_type tag="route_type" value="winter_sport" name="routes_winter_sport">
+				<poi_additional_category name="routes_winter_sport">
+					<poi_additional tag="route_activity" value="cross_country_skiing" name="route_activity_cross_country_skiing"/>
+					<poi_additional tag="route_activity" value="ice_skating" name="route_activity_ice_skating"/>
+					<poi_additional tag="route_activity" value="ski_touring" name="route_activity_ski_touring"/>
+					<poi_additional tag="route_activity" value="skiing" name="route_activity_skiing"/>
+					<poi_additional tag="route_activity" value="snowboarding" name="route_activity_snowboarding"/>
+					<poi_additional tag="route_activity" value="snowmobiling" name="route_activity_snowmobiling"/>
+					<poi_additional tag="route_activity" value="snowshoeing" name="route_activity_snowshoeing"/>
+				</poi_additional_category>
+			</poi_type>
+			<poi_type tag="route_type" value="cycling" name="routes_cycling">
+				<poi_additional_category name="routes_cycling">
+					<poi_additional tag="route_activity" value="e_biking" name="route_activity_e_biking"/>
+					<poi_additional tag="route_activity" value="e_mountain_bike" name="route_activity_e_mountain_bike"/>
+					<poi_additional tag="route_activity" value="gravel_biking" name="route_activity_gravel_biking"/>
+					<poi_additional tag="route_activity" value="mountain_biking" name="route_activity_mountain_biking"/>
+					<poi_additional tag="route_activity" value="road_cycling" name="route_activity_road_cycling"/>
+					<poi_additional tag="route_activity" value="touring" name="route_activity_touring"/>
+				</poi_additional_category>
+			</poi_type>
+			<poi_type tag="route_type" value="air_sports" name="routes_air_sports">
+				<poi_additional_category name="routes_air_sports">
+					<poi_additional tag="route_activity" value="aviation" name="route_activity_aviation"/>
+					<poi_additional tag="route_activity" value="drone_flying" name="route_activity_drone_flying"/>
+					<poi_additional tag="route_activity" value="gliding_sailplane" name="route_activity_gliding_sailplane"/>
+					<poi_additional tag="route_activity" value="hang_gliding" name="route_activity_hang_gliding"/>
+					<poi_additional tag="route_activity" value="hot_air_ballooning" name="route_activity_hot_air_ballooning"/>
+					<poi_additional tag="route_activity" value="parachuting_skydiving" name="route_activity_parachuting_skydiving"/>
+					<poi_additional tag="route_activity" value="paragliding" name="route_activity_paragliding"/>
+					<poi_additional tag="route_activity" value="powered_paragliding_paramotoring" name="route_activity_powered_paragliding_paramotoring"/>
+					<poi_additional tag="route_activity" value="ultralight_aviation" name="route_activity_ultralight_aviation"/>
+				</poi_additional_category>
+			</poi_type>
+			<poi_type tag="route_type" value="water_sport" name="routes_water_sport">
+				<poi_additional_category name="routes_water_sport">
+					<poi_additional tag="route_activity" value="canoe" name="route_activity_canoe"/>
+					<poi_additional tag="route_activity" value="diving" name="route_activity_diving"/>
+					<poi_additional tag="route_activity" value="scuba_diving" name="route_activity_scuba_diving"/>
+					<poi_additional tag="route_activity" value="kayak" name="route_activity_kayak"/>
+					<poi_additional tag="route_activity" value="surfing" name="route_activity_surfing"/>
+					<poi_additional tag="route_activity" value="swimming_outdoor" name="route_activity_swimming_outdoor"/>
+					<poi_additional tag="route_activity" value="waterskiing" name="route_activity_waterskiing"/>
+					<poi_additional tag="route_activity" value="windsurfing" name="route_activity_windsurfing"/>
+					<poi_additional tag="route_activity" value="motorboat" name="route_activity_motorboat"/>
+					<poi_additional tag="route_activity" value="rafting" name="route_activity_rafting"/>
+				</poi_additional_category>
+			</poi_type>
+			<poi_type tag="route_type" value="other" name="routes_other">
+				<poi_additional_category name="routes_other">
+					<poi_additional tag="route_activity" value="horse_riding" name="route_activity_horse_riding"/>
+					<poi_additional tag="route_activity" value="mushrooms_picking" name="route_activity_mushrooms_picking"/>
+					<poi_additional tag="route_activity" value="harvesting" name="route_activity_harvesting"/>
+					<poi_additional tag="route_activity" value="tree_climbing" name="route_activity_tree_climbing"/>
+					<poi_additional tag="route_activity" value="caving" name="route_activity_caving"/>
+					<poi_additional tag="route_activity" value="train_riding" name="route_activity_train_riding"/>
+					<poi_additional tag="route_activity" value="golfing" name="route_activity_golfing"/>
+					<poi_additional tag="route_activity" value="fitness" name="route_activity_fitness"/>
+					<poi_additional tag="route_activity" value="inline_skates" name="route_activity_inline_skates"/>
+				</poi_additional_category>
+			</poi_type>
+			<!-- TravelGpx track POI additional tags non filterable -->
+			<!-- route_info_tags -->
+				<poi_additional name="filename" tag="filename" type="text"/>
 				<poi_additional name="user" tag="user" type="text"/>
 				<poi_additional name="date" tag="date" type="text"/>
-				<poi_additional name="tag_road_road" tag="tag_road" value="road"/>
 				<poi_additional name="distance" tag="distance" type="text"/>
 				<poi_additional name="time_span" tag="time_span" type="text"/>
 				<poi_additional name="time_span_no_gaps" tag="time_span_no_gaps" type="text"/>
@@ -5362,52 +5451,28 @@
 				<poi_additional name="avg_speed" tag="avg_speed" type="text"/>
 				<poi_additional name="max_speed" tag="max_speed" type="text"/>
 				<poi_additional name="min_speed" tag="min_speed" type="text"/>
-				<poi_additional name="route_radius" tag="route_radius" type="text"/>
-				<poi_additional_category name="route_activity_type">
-					<poi_additional name="route_activity_type_water" tag="route_activity_type" value="water"/>
-					<poi_additional name="route_activity_type_winter" tag="route_activity_type" value="winter"/>
-					<poi_additional name="route_activity_type_snowmobile" tag="route_activity_type" value="snowmobile"/>
-					<poi_additional name="route_activity_type_riding" tag="route_activity_type" value="riding"/>
-					<poi_additional name="route_activity_type_racing" tag="route_activity_type" value="racing"/>
-					<poi_additional name="route_activity_type_mountainbike" tag="route_activity_type" value="mountainbike"/>
-					<poi_additional name="route_activity_type_cycling" tag="route_activity_type" value="cycling"/>
-					<poi_additional name="route_activity_type_hiking" tag="route_activity_type" value="hiking"/>
-					<poi_additional name="route_activity_type_running" tag="route_activity_type" value="running"/>
-					<poi_additional name="route_activity_type_walking" tag="route_activity_type" value="walking"/>
-					<poi_additional name="route_activity_type_offroad" tag="route_activity_type" value="offroad"/>
-					<poi_additional name="route_activity_type_motorbike" tag="route_activity_type" value="motorbike"/>
-					<poi_additional name="route_activity_type_car" tag="route_activity_type" value="car"/>
-				</poi_additional_category>
-				<!-- OBF-GPX track: extensions tags (prefixed with gpx_) -->
-				<poi_additional name="gpx_show_arrows" tag="gpx_show_arrows" type="text"/>
-				<poi_additional name="gpx_show_start_finish" tag="gpx_show_start_finish" type="text"/>
-				<poi_additional name="gpx_split_interval" tag="gpx_split_interval" type="text"/>
-				<poi_additional name="gpx_split_type" tag="gpx_split_type" type="text"/>
-				<poi_additional name="gpx_line_3d_visualization_by_type" tag="gpx_line_3d_visualization_by_type" type="text"/>
-				<poi_additional name="gpx_line_3d_visualization_wall_color_type" tag="gpx_line_3d_visualization_wall_color_type" type="text"/>
-				<poi_additional name="gpx_line_3d_visualization_position_type" tag="gpx_line_3d_visualization_position_type" type="text"/>
-				<poi_additional name="gpx_vertical_exaggeration_scale" tag="gpx_vertical_exaggeration_scale" type="text"/>
-				<poi_additional name="gpx_elevation_meters" tag="gpx_elevation_meters" type="text"/>
-				<poi_additional name="gpx_color_palette" tag="gpx_color_palette" type="text"/>
-				<poi_additional name="gpx_coloring_type" tag="gpx_coloring_type" type="text"/>
-				<poi_additional name="gpx_color" tag="gpx_color" type="text"/>
-				<poi_additional name="gpx_width" tag="gpx_width" type="text"/>
-				<!-- OBF-GPX track: osmand:points_groups list by tags -->
+				<poi_additional name="route_bbox_radius" tag="route_bbox_radius" type="text"/>
+			<!-- shields -->
+				<poi_additional name="shield_bg" tag="shield_bg" type="text"/>
+				<poi_additional name="shield_fg" tag="shield_fg" type="text"/>
+				<poi_additional name="shield_fg_2" tag="shield_fg_2" type="text"/>
+				<poi_additional name="shield_text" tag="shield_text" type="text"/>
+				<poi_additional name="shield_textcolor" tag="shield_textcolor" type="text"/>
+				<poi_additional name="shield_waycolor" tag="shield_waycolor" type="text"/> <!-- special to restore as a color -->
+			<!-- track color -->
+				<poi_additional name="gpx_color" tag="gpx_color" type="text"/> 
+				<poi_additional name="translucent_line_colors" tag="translucent_line_colors" type="text"/>
+			<!-- waypoint group names-->
 				<poi_additional name="points_groups_names" tag="points_groups_names" type="text"/>
 				<poi_additional name="points_groups_icons" tag="points_groups_icons" type="text"/>
 				<poi_additional name="points_groups_colors" tag="points_groups_colors" type="text"/>
 				<poi_additional name="points_groups_backgrounds" tag="points_groups_backgrounds" type="text"/>
-			</poi_type>
-			<poi_type name="route_track_point" tag="route_type" value="track_point">
-				<!-- OBF-GPX point: icon extensions -->
-				<poi_additional name="gpx_bg" tag="gpx_bg" type="text"/>
-				<poi_additional name="gpx_icon" tag="gpx_icon" type="text"/>
-				<poi_additional name="points_groups_category" tag="points_groups_category" type="text"/> <!-- GPX <type> -->
-			</poi_type>
-			<poi_additional name="color" tag="colour" type="text"/> <!-- global for "routes" category -->
-			<!-- OBF-GPX track (relation id) / points (node id) -->
-			<poi_additional name="osm_id" tag="osm_id" type="text"/>
+			<!-- JSON with non-poi-additional original GPX tags -->
+			<!-- Note: not transformed with MapRenderingTypesEncoder -->
+				<poi_additional name="metadata_extra_tags" tag="metadata_extra_tags" type="text"/>
+				<poi_additional name="extensions_extra_tags" tag="extensions_extra_tags" type="text"/> <!-- see wpt_extra_tags for points -->
 		</poi_category>
+
 		<poi_category name="user_defined_other" default_tag="amenity" no_edit="true" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,internet_access_type,opening_hours">
 			<!-- Add additional combination for UK postcode POI files-->
 			<poi_type name="user_defined_other_postcode" tag="user_defined_other" value="postcode" no_edit="true"/>
