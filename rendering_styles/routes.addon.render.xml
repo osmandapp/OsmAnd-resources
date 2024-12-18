@@ -4,26 +4,28 @@
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
 	<renderingProperty attr="baseAppMode" name="Default Rendering mode" description="Map optimization for respective User Profile based on base (parent) profile"
 		type="string" possibleValues="default, car, bicycle, pedestrian, public_transport, boat, ski"/>
-	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show long distance cycle routes"
+	<renderingProperty attr="showCycleRoutes" name="Cycle routes" description="Show long distance cycle routes"
 		type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="showCycleNodeNetworkRoutes" name="Show node network cycle routes" description="Show node network cycle routes"
+	<renderingProperty attr="showCycleNodeNetworkRoutes" name="Node network cycle routes" description="Show node network cycle routes"
 		type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="showMtbRoutes" name="Show MTB routes" description="Show mountain bike routes (*cn_networks)"
+	<renderingProperty attr="showMtbRoutes" name="MTB routes" description="Show mountain bike routes (*cn_networks)"
 		type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="showMtbScale" name="Show MTB scale" description="Show trails according to MTB scale"
+	<renderingProperty attr="showMtbScale" name="MTB scale" description="Show trails according to MTB scale"
 		type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="showMtbScaleIMBATrails" name="Show MTB IMBA trails" description="Show specifically designed trails for mountainbiking"
+	<renderingProperty attr="showMtbScaleIMBATrails" name="MTB IMBA trails" description="Show specifically designed trails for mountainbiking"
 		type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="showDirtbikeTrails" name="Show dirt bike trails" description="Show dirt bike trails"
+	<renderingProperty attr="showDirtbikeTrails" name="Dirt bike trails" description="Show dirt bike trails"
+		type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="showClimbingRoutes" name="Climbing routes" description="Show climbing routes"
 		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="hikingRoutesOSMC" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces"
 		type="string" possibleValues="walkingRoutesOSMC,walkingRoutesScopeOSMC,walkingRoutesOSMCNodes" defaultValueDescription="disabled" category="routes"/>
 	<renderingProperty attr="horseRoutes" name="Horse routes" description="Horse routes"
 		type="boolean" possibleValues="" category="routes"/>
 
-	<renderingProperty attr="showFitnessTrails" name="Show fitness trails" description="Show fitness trails"
+	<renderingProperty attr="showFitnessTrails" name="Show fitness trails" description="Fitness trails"
 		type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="showRunningRoutes" name="Show running routes" description="Show running routes"
+	<renderingProperty attr="showRunningRoutes" name="Show running routes" description="Running routes"
 		type="boolean" possibleValues="" category="routes"/>
 
 	<renderingAttribute name="cycleRoutelcnColor">
@@ -321,6 +323,50 @@
 		<case attrColorValue="#88ff0000"/>
 	</renderingAttribute>
 
+
+	<renderingAttribute name="climbingRouteColor">
+		<case nightMode="true" attrColorValue="#B1002B"/>
+		<case attrColorValue="#B1002B"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="climbingGradeNoviceColor">
+		<case nightMode="true" attrColorValue="#88C6D794"/>
+		<case attrColorValue="#C6D794"/>
+	</renderingAttribute>
+	<renderingAttribute name="climbingGradeBeginnerColor">
+		<case nightMode="true" attrColorValue="#88E7C1C0"/>
+		<case attrColorValue="#E7C1C0"/>
+	</renderingAttribute>
+	<renderingAttribute name="climbingGradeIntermediateColor">
+		<case nightMode="true" attrColorValue="#88BAACCA"/>
+		<case attrColorValue="#BAACCA"/>
+	</renderingAttribute>
+	<renderingAttribute name="climbingGradeAdvancedColor">
+		<case nightMode="true" attrColorValue="#889FC42E"/>
+		<case attrColorValue="#9FC42E"/>
+	</renderingAttribute>
+	<renderingAttribute name="climbingGradeExpertColor">
+		<case nightMode="true" attrColorValue="#88F7BE8C"/>
+		<case attrColorValue="#F7BE8C"/>
+	</renderingAttribute>
+	<renderingAttribute name="climbingGradeSuperExpertColor">
+		<case nightMode="true" attrColorValue="#888CCFDE"/>
+		<case attrColorValue="#8CCFDE"/>
+	</renderingAttribute>
+	<renderingAttribute name="climbingGradeEliteColor">
+		<case nightMode="true" attrColorValue="#88FFDC59"/>
+		<case attrColorValue="#FFDC59"/>
+	</renderingAttribute>
+	<renderingAttribute name="climbingGradeSuperEliteColor">
+		<case nightMode="true" attrColorValue="#88F17916"/>
+		<case attrColorValue="#F17916"/>
+	</renderingAttribute>
+	<renderingAttribute name="climbingGradeAliensColor">
+		<case nightMode="true" attrColorValue="#88FF325D"/>
+		<case attrColorValue="#FF325D"/>
+	</renderingAttribute>
+
+
 	<renderingConstant name="black" value="#000000"/>
 	<renderingConstant name="white" value="#ffffff"/>
 
@@ -328,6 +374,7 @@
 
 	<renderingConstant name="sportTextColorDay" value="#004d33"/>
 	<renderingConstant name="sportTextHaloColorDay" value="#f1eae4"/>
+	<renderingConstant name="sportTextHaloColorNight" value="#88f1eae4"/>
 
 	<renderingConstant name="null" value="#00000000"/>
 
@@ -338,6 +385,9 @@
 		<switch area="false" point="true" objectType="1" order="128">
 			<case tag="route" value="point"/> <!-- TravelGpx point -->
 			<case tag="route_hiking" value="" order="-1"/>
+			<case tag="osmand_climbing" value="route"/>
+			<case tag="climbing" value="route"/>
+			<case tag="climbing" value="route_bottom"/>
 		</switch>
 
 		<!-- Polygon 1-10 -->
@@ -353,6 +403,7 @@
 			<case tag="route_mtb" value="" order="187"/>
 			<case tag="route_dirtbike" value="" order="187"/>
 			<case tag="osmand_mtb_scale_imba" value="trail" order="189"/>
+			<case tag="climbing" value="route"/>
 			<switch>
 				<!-- old way to display-->
 				<case tag="multiple_node_networks" value="true" order="197"/>
@@ -812,6 +863,12 @@
 					</apply_if>
 				</case>
 			</switch>
+			<switch showClimbingRoutes="true" minzoom="17" textSize="13" nameTag="" textColor="$sportTextColorDay" textHaloColor="$sportTextHaloColorDay" textHaloRadius="$textHaloRadius" textOrder="167">
+				<case tag="climbing" value="route" textOnPath="true" textBold="true"/>
+				<case tag="climbing" value="route_bottom"/>
+				<apply_if nightMode="true" textHaloColor="$sportTextHaloColorNight"/>
+			</switch>
+
 	</text>
 
 	<point>
@@ -863,6 +920,11 @@
 		<case tag="node_network_point" value="ncn"/>
 		<case tag="node_network_point" value="rcn"/>
 		<case tag="node_network_point" value="lcn"/>
+
+		<switch showClimbingRoutes="true">
+			<case minzoom="16" tag="osmand_climbing" value="route" icon="climbing_route" shield="green_round_shield"/>
+			<case minzoom="16" tag="climbing" value="route_bottom" icon="climbing_route_bottom" shield="green_round_shield"/>
+		</switch>
 
 	</point>
 
@@ -1296,6 +1358,20 @@
 			<apply_if maxzoom="16" strokeWidth="2.5:2.5"/>
 			<apply_if minzoom="17" strokeWidth="4:4"/>
 		</switch>
+
+		<case showClimbingRoutes="true" minzoom="14" tag="climbing" value="route" color="$climbingRouteColor">
+			<apply_if additional="osmand_climbing_grade=novice" color__2="$climbingGradeNoviceColor"/>
+			<apply_if additional="osmand_climbing_grade=beginner" color__2="$climbingGradeBeginnerColor"/>
+			<apply_if additional="osmand_climbing_grade=intermediate" color__2="$climbingGradeIntermediateColor"/>
+			<apply_if additional="osmand_climbing_grade=advanced" color__2="$climbingGradeAdvancedColor"/>
+			<apply_if additional="osmand_climbing_grade=expert" color__2="$climbingGradeExpertColor"/>
+			<apply_if additional="osmand_climbing_grade=super_expert" color__2="$climbingGradeSuperExpertColor"/>
+			<apply_if additional="osmand_climbing_grade=elite" color__2="$climbingGradeEliteColor"/>
+			<apply_if additional="osmand_climbing_grade=super_elite" color__2="$climbingGradeSuperEliteColor"/>
+			<apply_if additional="osmand_climbing_grade=aliens" color__2="$climbingGradeAliensColor"/>
+			<apply_if maxzoom="15" strokeWidth="1" strokeWidth__2="6" pathEffect="2_2"/>
+			<apply_if minzoom="16" strokeWidth="1:1" strokeWidth__2="8" pathEffect="2_2"/>
+		</case>
 
 	</line>
 </renderingStyle>
