@@ -4870,6 +4870,7 @@
 
 			<switch textColor="#654321" textDy="7" textWrapWidth="25" textHaloColor="#aaf1eae4" textHaloRadius="$textHaloRadius" textItalic="true">
 				<switch>
+					<case minzoom="7" tag="natural" value="peak" additional="osmand_prominent_peak=yes" nameTag="" textSize="11" intersectionMargin="5" textOrder="38" textDy="0"/>
 					<case minzoom="$naturalPeakTextMinZoom" tag="natural" value="peak" textOrder="80">
 						<case maxzoom="12" nameTag="ele" textSize="11" intersectionMargin="15"/>
 						<case minzoom="13" maxzoom="13" nameTag="" nameTag2="ele" textSize="11"/>
@@ -4947,11 +4948,16 @@
 					<apply_if nightMode="true" textColor="#ffcc9b" textHaloColor="#774d2803"/>
 					<apply_if legend="true" textDy="0"/>
 				</switch>
-				<case minzoom="$naturalVolcanoTextMinZoom" tag="natural" value="volcano" nameTag="" nameTag2="ele" textOrder="79" textHaloColor="#99ffd6c0">
-					<case maxzoom="12" textSize="12"/>
-					<case minzoom="13" textSize="13"/>
+				<switch tag="natural" value="volcano" textHaloColor="#99ffd6c0">
+					<case minzoom="7" additional="osmand_prominent_peak=yes" nameTag="">
+						<apply textSize="11" intersectionMargin="5" textOrder="37" textDy="0"/>
+					</case>
+					<case minzoom="$naturalVolcanoTextMinZoom" nameTag="" nameTag2="ele" textOrder="79">
+						<case maxzoom="12" textSize="12"/>
+						<case minzoom="13" textSize="13"/>
+					</case>
 					<apply_if nightMode="true" textColor="#ffcc9b" textHaloColor="#77772105"/>
-				</case>
+				</switch>
 				<apply_if engine_v1="false" textDy="0"/>
 				<apply_if additional="ele_limit=200" textOrder="83"/>
 				<apply_if additional="ele_limit=500" textOrder="82"/>
@@ -6751,6 +6757,8 @@
 			<!-- Icons that can be hidden using hideIcons option -->
 			<switch hideIcons="false">
 				<!-- Natural -->
+				<case minzoom="6" tag="natural" value="peak" additional="osmand_prominent_peak=yes" icon="natural_peak" shield="peakvolcano_shield" iconOrder="38" iconVisibleSize="7" intersectionSizeFactor="1"/>
+				<case minzoom="6" tag="natural" value="volcano" additional="osmand_prominent_peak=yes" icon="natural_volcano_map" shield="peakvolcano_shield" iconOrder="37" iconVisibleSize="7" intersectionSizeFactor="1"/>
 				<switch>
 					<case minzoom="$naturalPeakIconMinZoom" tag="natural" value="peak" iconOrder="65">
 						<case maxzoom="11" icon="natural_peak" shield="peakvolcano_shield" iconVisibleSize="25" intersectionSizeFactor="2">
