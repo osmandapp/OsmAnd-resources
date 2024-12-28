@@ -1059,20 +1059,10 @@
 		</case>
 	</renderingAttribute>
 
-	<!-- NOTE: Road is usually public, while service road is not, that's why we should mabye use the residential and not service road color pattern here: -->
+	<!-- NOTE: A `Road` represents a way of unknown classification and could be anything—from a motorway to a private driveway or even a public footpath. Ways tagged as `Road` need to be (re)surveyed. Additional tags should not affect rendering until the way is reclassified into a more specific category. -->
 	<renderingAttribute name="roadRoadColor">
-		<case baseAppMode="bicycle" additional="cyclestreet=yes" attrColorValue="#0050FF"/>
-		<case baseAppMode="bicycle" additional="bicycle_road=yes" attrColorValue="#0050FF"/>
-        <case roadStyle="pale" attrColorValue="$roadStylePale_streetColor_day">
-            <apply_if nightMode="true" attrColorValue="$roadStylePale_streetColor_night"/>
-        </case>
-		<case attrColorValue="#ececec">
-			<apply_if nightMode="true" attrColorValue="#555555"/>
-		</case>
-	</renderingAttribute>
-	<renderingAttribute name="roadRoadColorRouteDetails">
-		<case attrColorValue="#dddddd">
-			<apply_if nightMode="true" attrColorValue="#555555"/>
+		<case attrColorValue="#cdcdcd">
+			<apply_if nightMode="true" attrColorValue="#2e2e2e"/>
 		</case>
 	</renderingAttribute>
 
@@ -2090,7 +2080,7 @@
 		<case tag="highway" value="living_street" attrColorValue="#C1B9D1" attrStringValue="highway_class_street"/>
 		<case tag="highway" value="service" attrColorValue="#E3DAF6" attrStringValue="highway_class_service"/>
 		<case tag="highway" value="pedestrian" attrColorValue="$footwayColor" attrStringValue="highway_class_footway"/>
-		<case tag="highway" value="road" attrColorValue="$roadRoadColorRouteDetails" attrStringValue="highway_class_undefined"/>
+		<case tag="highway" value="road" attrColorValue="$roadRoadColor" attrStringValue="highway_class_undefined"/>
 		<case tag="highway" value="footway"  attrColorValue="$footwayColor" attrStringValue="highway_class_footway"/>
 		<case tag="highway" value="bridleway" attrColorValue="$bridlewayColor" attrStringValue="highway_class_bridleway"/>
 		<case tag="highway" value="steps" attrColorValue="$footwayColor" attrStringValue="highway_class_steps"/>
@@ -2478,6 +2468,7 @@
 	<renderingConstant name="tertiaryMinZoom" value="11"/>
 	<renderingConstant name="unclassifiedMinZoom" value="12"/>
 	<renderingConstant name="serviceMinZoom" value="13"/>
+	<renderingConstant name="roadMinZoom" value="14"/>
 	<renderingConstant name="trackMinZoom" value="12"/>
 	<renderingConstant name="pathMinZoom" value="12"/>
 	<renderingConstant name="footwayMinZoom" value="12"/>
@@ -10228,7 +10219,6 @@
 							<case tag="highway" value="residential"/>
 							<apply color="$residentialRoadColor" color__1="$residentialRoadColor"/>
 						</switch>
-						<case tag="highway" value="road" color="$roadRoadColor"/>
 						<apply cap="ROUND">
 							<case moreDetailed="true" maxzoom="12" strokeWidth="0.9" shadowColor="$residentialRoadLowZoom1ShadowColor"/>
 							<case minzoom="13" maxzoom="13" strokeWidth="1:1" shadowColor="$residentialRoadLowZoom2ShadowColor"/>
@@ -10403,6 +10393,20 @@
 						<case maxzoom="18" strokeWidth="5:5" strokeWidth_0="5:5" pathEffect="7_12" strokeWidth__1="5.7:6.7"/>
 						<case minzoom="19" strokeWidth="6:6" strokeWidth_0="6:6" pathEffect="7_12" strokeWidth__1="6.8:7.7"/>
 					</apply_if>
+				</switch>
+
+				<switch minzoom="$roadMinZoom">
+					<case tag="highway" value="road"/>
+					<apply color="$roadRoadColor" shadowRadius="0">
+						<switch>
+							<case minzoom="14" maxzoom="14" strokeWidth="0.75:0.75"/>
+							<case minzoom="15" maxzoom="15" strokeWidth="1.5:1.5"/>
+							<case minzoom="16" maxzoom="16" strokeWidth="2:2"/>
+							<case minzoom="17" maxzoom="17" strokeWidth="3:3"/>
+							<case minzoom="18" maxzoom="18" strokeWidth="4:4"/>
+							<case minzoom="19" strokeWidth="5:5"/>
+						</switch>
+					</apply>
 				</switch>
 
 				<switch minzoom="14">
