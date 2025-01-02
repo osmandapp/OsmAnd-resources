@@ -216,6 +216,12 @@
 		<case nightMode="true" attrColorValue="#6f4141"/>
 		<case attrColorValue="#aaaaaa"/>
 	</renderingAttribute>
+	<renderingConstant name="roadMinZoom" value="14"/>
+	<renderingAttribute name="roadRoadColor">
+		<case attrColorValue="#cdcdcd">
+			<apply_if nightMode="true" attrColorValue="#2e2e2e"/>
+		</case>
+	</renderingAttribute>
 
 	<renderingAttribute name="serviceRoadColor">
 		<case nightMode="true" attrColorValue="#663C3C">
@@ -528,7 +534,6 @@
 			<case tag="area:highway" value="tertiary"/>
 			<case tag="area:highway" value="pedestrian"/>
 			<case tag="area:highway" value="service"/>
-			<case tag="area:highway" value="road"/>
 			<case tag="area:highway" value="unclassified"/>
 			<case tag="area:highway" value="service"/>
 			<case tag="highway" value="rest_area"/>
@@ -920,8 +925,6 @@
 
 				<switch>
 					<switch minzoom="14" nameTag="">
-						<case tag="highway" value="road" textOrder="120"/>
-						<case minzoom="16" tag="area:highway" value="road" textWrapWidth="25" textOrder="121"/>
 						<case tag="highway" value="unclassified" textOrder="122"/>
 						<case minzoom="16" tag="area:highway" value="unclassified" textWrapWidth="25" textOrder="123"/>
 						<case tag="highway" value="residential" textOrder="124"/>
@@ -969,6 +972,7 @@
 						<case tag="railway" value="monorail" nameTag="" textOrder="251"/>
 						<case tag="railway" value="funicular" nameTag="" textOrder="251"/>
 					</switch>
+					<case tag="highway" value="road" textOrder="120"/>
 					<apply>
 						<case maxzoom="14" textSize="12"/>
 						<case maxzoom="15" textSize="13"/>
@@ -2129,7 +2133,6 @@
 			<apply_if nightMode="true" color="$primaryRoadAreaNightColor"/>
 		</switch>
 		<switch minzoom="16" color="#7d7d7d">
-			<case tag="area:highway" value="road"/>
 			<case tag="area:highway" value="unclassified"/>
 			<case tag="area:highway" value="residential"/>
 			<case tag="man_made" value="bridge"/>
@@ -2380,7 +2383,6 @@
 			</switch>
 
 			<switch>
-				<case tag="highway" value="road"/>
 				<case tag="highway" value="unclassified"/>
 				<case tag="highway" value="residential"/>
 				<case tag="highway" value="living_street"/>
@@ -2465,6 +2467,19 @@
 						<case maxzoom="17" strokeWidth="4:4"/>
 						<case minzoom="18" strokeWidth="5.5:5.5"/>
 						<apply maxzoom="14" color="$serviceRoadLowZoomColor"/>
+					</apply>
+				</switch>
+				<switch minzoom="$roadMinZoom">
+					<case tag="highway" value="road"/>
+					<apply color="$roadRoadColor" shadowRadius="0">
+						<switch>
+							<case minzoom="14" maxzoom="14" strokeWidth="0.6:0.6"/>
+							<case minzoom="15" maxzoom="15" strokeWidth="1.3:1.3"/>
+							<case minzoom="16" maxzoom="16" strokeWidth="1.7:1.7"/>
+							<case minzoom="17" maxzoom="17" strokeWidth="2.5:2.5"/>
+							<case minzoom="18" maxzoom="18" strokeWidth="3:3"/>
+							<case minzoom="19" strokeWidth="4:4"/>
+						</switch>
 					</apply>
 				</switch>
 				<apply_if additional="tunnel=yes" pathEffect="4_4" cap="BUTT"/>
