@@ -11,7 +11,7 @@ def remove_namespace(element):
         if elem.tag == 'svg' and 'xmlns' not in elem.attrib:
             elem.set('xmlns', "http://www.w3.org/2000/svg")
 
-def change_svg_dimensions_in_folder(folder_path, new_width="12", new_height="12"):
+def change_svg_dimensions_in_folder(folder_path, new_width="48", new_height="48"):
     # Walk through all subfolders and files in the root folder
     for root, _, files in os.walk(folder_path):
         for filename in files:
