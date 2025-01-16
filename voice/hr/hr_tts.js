@@ -134,9 +134,6 @@ function populateDictionary(tts) {
 	dictionary["kilometers"] = tts ? "kilometara" : "kilometers.ogg";
 
 	dictionary["feet"] = tts ? "stopa" : "feet.ogg";
-	dictionary["1_tenth_of_a_mile_nom"] = tts ? "jedna desetina milje" : "1_tenth_of_a_mile.ogg";
-	dictionary["1_tenth_of_a_mile_gen"] = tts ? "jedne desetine milje" : "1_tenth_of_a_mile.ogg";
-	dictionary["1_tenth_of_a_mile_acc"] = tts ? "jednu desetinu milje" : "1_tenth_of_a_mile.ogg";
 	dictionary["tenths_of_a_mile_2-4"] = tts ? "desetine milje" : "tenths_of_a_mile_2-4.ogg";
 	dictionary["tenths_of_a_mile"] = tts ? "desetina milje" : "tenths_of_a_mile.ogg";
 	dictionary["around_1_mile_nom"] = tts ? "približno jedna milja" : "around_1_mile.ogg";
@@ -234,15 +231,15 @@ function distance(dist, grm_case) {
 				return (tts ? kms.toString() : ogg_dist(Math.round(dist/1000.0))) + " " + dictionary["kilometers_2-4"];
 			return (tts ? kms.toString() : ogg_dist(Math.round(dist/1000.0))) + " " + dictionary["kilometers"];
 		case "mi-f":
-			if (dist < 160)
+			if (dist < 91)
 				return (tts ? (Math.round(2*dist/100.0/0.3048)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.3048)*50)) + " " + dictionary["feet"];
-			if (dist < 241)
-				return dictionary["1_tenth_of_a_mile_"+grm_case];
+			if (dist < 320)
+				return (tts ? (Math.round(dist/100.0/0.3048)*100).toString() : ogg_dist(Math.round(dist/100.0/0.3048)*100)) + " " + dictionary["feet"];
 			if (dist < 403)
 				return (tts ? num_str(2, "f", grm_case) : ogg_dist(dist/161.0)) + " " + dictionary["tenths_of_a_mile_2-4"];
 			if (dist < 725)
 				return (tts ? Math.round(dist/161.0).toString() : ogg_dist(Math.round(dist/161.0))) + " " + dictionary["tenths_of_a_mile_2-4"];
-			if (dist < 1529)
+			if (dist < 1367)
 				return (tts ? Math.round(dist/161.0).toString() : ogg_dist(Math.round(dist/161.0))) + " " + dictionary["tenths_of_a_mile"];
 			if (dist < 2414)
 				return dictionary["around_1_mile_"+grm_case];

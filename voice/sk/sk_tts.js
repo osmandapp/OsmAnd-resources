@@ -122,7 +122,6 @@ function populateDictionary(tts) {
 	dictionary["kilometers5"] = tts ? "kilometrov" : "kilometers5.ogg";
 
 	dictionary["feet"] = tts ? "stôp" : "feet.ogg";
-	dictionary["1_tenth_of_a_mile"] = tts ? "desatinu míle" : "1_tenth_of_a_mile.ogg";
 	dictionary["half_a_mile"] = tts ? "menej ako pol míle" : "half_a_mile.ogg";
 	dictionary["tenths_of_a_mile"] = tts ? "desatín míle" : "tenths_of_a_mile.ogg";
 	dictionary["mile"] = tts ? "jednu míľu" : "mile.ogg";
@@ -189,13 +188,13 @@ function distance(dist) {
 			}
 			break;
 		case "mi-f":
-			if (dist < 160) {
+			if (dist < 91) {
 				return (tts ? (Math.round(2*dist/100.0/0.3048)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.3048)*50)) + " " + dictionary["feet"];
-			} else if (dist < 241) {
-				return dictionary["1_tenth_of_a_mile"];
+			} else if (dist < 320) {
+				return (tts ? (Math.round(dist/100.0/0.3048)*100).toString() : ogg_dist(Math.round(dist/100.0/0.3048)*100)) + " " + dictionary["feet"];
 			} else if (dist < 805) {
 				return dictionary["half_a_mile"];
-			} else if (dist < 1529) {
+			} else if (dist < 1367) {
 				return (tts ? Math.round(dist/161.0).toString() : ogg_dist(Math.round(dist/161.0))) + " " + dictionary["tenths_of_a_mile"];
 			} else if (dist < 2414) {
 				return dictionary["mile"];

@@ -131,7 +131,7 @@ function populateDictionary(tts) {
 	dictionary["foot"] = tts ? "قدم" : "foot.ogg";
 	dictionary["2_feet"] = tts ? "قدَمَين" : "2_feet.ogg";
 	dictionary["feet"] = tts ? "أقدام" : "feet.ogg";
-	dictionary["1_tenth_of_a_mile"] = tts ? "عُشْر ميل" : "1_tenth_of_a_mile.ogg";
+	//dictionary["1_tenth_of_a_mile"] = tts ? "عُشْر ميل" : "1_tenth_of_a_mile.ogg";
 	dictionary["2_tenths_of_a_mile"] = tts ? "عُشْرَي ميل" : "2_tenths_of_a_mile.ogg";
 	dictionary["tenths_of_a_mile"] = tts ? "أعْشار ميل" : "tenths_of_a_mile.ogg";
 	dictionary["mile"] = tts ? "ميل" : "mile.ogg";
@@ -446,13 +446,13 @@ function distance(dist, grm_case) {
 		case "mi-f":
 			if (ft < 50)
 				return dictionary["less_than"] + " " + num_str(50, "m", "gen");
-			if (ft < 500)
-				return (tts ? num_str(ft, "m", grm_case) : ogg_dist(ft)) + " " + dictionary["foot"];
 			if (ft < 800)
-				return dictionary["1_tenth_of_a_mile"];
+				return (tts ? num_str(ft, "m", grm_case) : ogg_dist(ft)) + " " + dictionary["foot"];
+			//if (ft < 800)
+			//	return dictionary["1_tenth_of_a_mile"];
 			if (dist < 401)
 				return dictionary["2_tenths_of_a_mile"];
-			if (dist < 1529)
+			if (dist < 1367)
 				return (tts ? num_str(Math.round(dist/161.0), "m", grm_case) : ogg_dist(Math.round(dist/161.0))) + " " + dictionary["tenths_of_a_mile"];
 			if (dist < 2414)
 				return dictionary["around_1_mile"];
