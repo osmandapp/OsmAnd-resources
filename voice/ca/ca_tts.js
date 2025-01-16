@@ -119,7 +119,6 @@ function populateDictionary(tts) {
 	dictionary["kilometers"] = tts ? "quilòmetres" : "kilometers.ogg";
 	
 	dictionary["feet"] = tts ? "pies" : "feet.ogg";
-	dictionary["1_tenth_of_a_mile"] = tts ? "una dècima de milla" : "1_tenth_of_a_mile.ogg";
 	dictionary["tenths_of_a_mile"] = tts ? "dècimes de milla" : "tenths_of_a_mile.ogg";
 	dictionary["around_1_mile"] = tts ? "aproximadament una milla" : "around_1_mile.ogg";
 	dictionary["miles"] = tts ? "milles" : "miles.ogg";
@@ -171,11 +170,11 @@ function distance(dist) {
 			}
 			break;
 		case "mi-f":
-			if (dist < 160) {
-				return (tts ? Math.round((2*dist/100.0/0.3048)*50).toString() : ogg_dist((2*dist/100.0/0.3048)*5)) + " " + dictionary["feet"];
-			} else if (dist < 241) {
-				return dictionary["1_tenth_of_a_mile"];
-			} else if (dist < 1529) {
+			if (dist < 91) {
+				return (tts ? Math.round((2*dist/100.0/0.3048)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.3048)*50)) + " " + dictionary["feet"];
+			} else if (dist < 320) {
+				return (tts ? (Math.round(dist/100.0/0.3048)*100).toString() : ogg_dist(Math.round(dist/100.0/0.3048)*100)) + " " + dictionary["feet"];
+			} else if (dist < 1367) {
 				return (tts ? Math.round(dist/161.0).toString() : ogg_dist(Math.round(dist/161.0))) + " " + dictionary["tenths_of_a_mile"];
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];

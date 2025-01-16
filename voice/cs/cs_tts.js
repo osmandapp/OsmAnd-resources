@@ -152,13 +152,11 @@ function populateDictionary(tts) {
 	dictionary["around_workaround"] = tts ? "dál přibližně" : "around_workaround.ogg";
 	
 	dictionary["feet_accusative"] = tts ? "stop" : "feet_accusative.ogg";
-	dictionary["1_tenth_of_a_mile_accusative"] = tts ? "desetinu míle" : "1_tenth_of_a_mile_accusative.ogg";
 	dictionary["tenths_of_a_mile_accusative"] = tts ? "desetiny míle" : "tenths_of_a_mile_accusative.ogg";
 	dictionary["around_1_mile_accusative"] = tts ? "přibližně jednu míli" : "around_1_mile_accusative.ogg";
 	dictionary["miles_accusative"] = tts ? "mil" : "miles_accusative.ogg";
 	
 	dictionary["feet_locative"] = tts ? "stopách" : "feet_locative.ogg";
-	dictionary["1_tenth_of_a_mile_locative"] = tts ? "desetině míle" : "1_tenth_of_a_mile_locative.ogg";
 	dictionary["tenths_of_a_mile_locative"] = tts ? "desetinách míle" : "tenths_of_a_mile_locative.ogg";
 	dictionary["around_1_mile_locative"] = tts ? "přibližně jedné míli" : "around_1_mile_locative.ogg";
 	dictionary["miles_locative"] = tts ? "mílích" : "miles_locative.ogg";
@@ -218,11 +216,11 @@ function distance(dist, declension, isWorkaround) {
 			}
 			break;
 		case "mi-f":
-			if (dist < 160) {
+			if (dist < 91) {
 				return (tts ? (Math.round(2*dist/100.0/0.3048)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.3048)*50)) + " " + dictionary["feet_" + declension];
-			} else if (dist < 241) {
-				return dictionary["1_tenth_of_a_mile_" + declension];
-			} else if (dist < 1529) {
+			} else if (dist < 320) {
+				return (tts ? (Math.round(dist/100.0/0.3048)*100).toString() : ogg_dist(Math.round(dist/100.0/0.3048)*100)) + " " + dictionary["feet_" + declension];
+			} else if (dist < 1367) {
 				return (tts ? Math.round(dist/161.0).toString() : ogg_dist(Math.round(dist/161.0))) + " " + dictionary["tenths_of_a_mile_" + declension];
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile_" + declension];
