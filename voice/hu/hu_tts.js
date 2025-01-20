@@ -125,8 +125,6 @@ function populateDictionary(tts) {
 	
 	dictionary["feet_nom"] = tts ? "láb" : "feet_nom.ogg";
 	dictionary["feet_acc"] = tts ? "lábnyit" : "feet_acc.ogg";
-	dictionary["1_tenth_of_a_mile_nom"] = tts ? "egytized mérföld" : "1_tenth_of_a_mile_nom.ogg";
-	dictionary["1_tenth_of_a_mile_acc"] = tts ? "egytized mérföldet" : "1_tenth_of_a_mile_acc.ogg";
 	dictionary["tenths_of_a_mile_nom"] = tts ? "tized mérföld" : "tenths_of_a_mile_nom.ogg";
 	dictionary["tenths_of_a_mile_acc"] = tts ? "tized mérföldet" : "tenths_of_a_mile_acc.ogg";
 	dictionary["around_1_mile_nom"] = tts ? "körülbelül egy mérföld" : "around_1_mile_nom.ogg";
@@ -180,11 +178,11 @@ function distance(dist, declension) {
 			}
 			break;
 		case "mi-f":
-			if (dist < 160) {
+			if (dist < 91) {
 				return (tts ? (Math.round(2*dist/100.0/0.3048)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.3048)*50)) + " " + dictionary["feet_" + declension];
-			} else if (dist < 241) {
-				return dictionary["1_tenth_of_a_mile_" + declension];
-			} else if (dist < 1529) {
+			} else if (dist < 320) {
+				return (tts ? (Math.round(dist/100.0/0.3048)*100).toString() : ogg_dist(Math.round(dist/100.0/0.3048)*100)) + " " + dictionary["feet_" + declension];
+			} else if (dist < 1367) {
 				return (tts ? Math.round(dist/161.0).toString() : ogg_dist(Math.round(dist/161.0))) + " " + dictionary["tenths_of_a_mile_" + declension];
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile_" + declension];

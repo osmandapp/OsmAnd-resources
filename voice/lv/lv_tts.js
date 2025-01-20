@@ -125,8 +125,6 @@ function populateDictionary(tts) {
 
 	dictionary["feet_1"] = tts ? "pēdas" : "feet_1.ogg";
 	dictionary["feet_2"] = tts ? "pēdas" : "feet_2.ogg";
-	dictionary["1_tenth_of_a_mile_1"] = tts ? "desmitā jūdze" : "1_tenth_of_a_mile_1.ogg";
-	dictionary["1_tenth_of_a_mile_2"] = tts ? "desmitā jūdze" : "1_tenth_of_a_mile_2.ogg";
 	dictionary["tenths_of_a_mile_1"] = tts ? "desmitdaļas jūdze" : "tenths_of_a_mile_1.ogg";
 	dictionary["tenths_of_a_mile_2"] = tts ? "desmitdaļas jūdze" : "tenths_of_a_mile_2.ogg";
 	dictionary["around_1_mile_1"] = tts ? "apmēram vienu jūdzi" : "around_1_mile_1.ogg";
@@ -180,11 +178,11 @@ function distance(dist, declension) {
 			}
 			break;
 		case "mi-f":
-			if (dist < 160) {
+			if (dist < 91) {
 				return (tts ? (Math.round(2*dist/100.0/0.3048)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.3048)*50)) + " " + dictionary["feet_" + declension];
-			} else if (dist < 241) {
-				return dictionary["1_tenth_of_a_mile_" + declension];
-			} else if (dist < 1529) {
+			} else if (dist < 320) {
+				return (tts ? (Math.round(dist/100.0/0.3048)*100).toString() : ogg_dist(Math.round(dist/100.0/0.3048)*100)) + " " + dictionary["feet_" + declension];
+			} else if (dist < 1367) {
 				return (tts ? Math.round(dist/161.0).toString() : ogg_dist(Math.round(dist/161.0))) + " " + dictionary["tenths_of_a_mile_" + declension];
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile_" + declension];

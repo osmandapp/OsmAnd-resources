@@ -157,9 +157,6 @@ function populateDictionary(tts) {
 	dictionary["kilometers_0_acc"] = dictionary["kilometers_2_gen"];   // accusative (galininkas) with "after": įveikę [10, 11, ..., 19, 20, 30, ..., 90] kilometrų
 
 	dictionary["feet"] = tts ? "pėdų" : "feet.ogg";  // always rounded to 50
-	dictionary["1_tenth_of_a_mile_nom"] = tts ? "dešimtadalis mylios" : "1_tenth_of_a_mile_nom.ogg";
-	dictionary["1_tenth_of_a_mile_gen"] = tts ? "dešimtadalio mylios" : "1_tenth_of_a_mile_gen.ogg";
-	dictionary["1_tenth_of_a_mile_acc"] = tts ? "dešimtadalį mylios" : "1_tenth_of_a_mile_acc.ogg";
 	dictionary["tenths_of_a_mile_nom"] = tts ? "dešimtadaliai mylios" : "tenths_of_a_mile_nom.ogg";
 	dictionary["tenths_of_a_mile_gen"] = tts ? "dešimtadalių mylios" : "tenths_of_a_mile_gen.ogg";
 	dictionary["tenths_of_a_mile_acc"] = tts ? "dešimtadalius mylios" : "tenths_of_a_mile_acc.ogg";
@@ -445,11 +442,11 @@ function distance(dist, grm_case) {
 				return num_str(kms, "m", grm_case) + " " + dictionary["kilometers_2_"+grm_case];
 			return num_str(kms, "m", grm_case) + " " + dictionary["kilometers_0_"+grm_case];
 		case "mi-f":
-			if (dist < 160)  // feets rounded to 5O
+			if (dist < 91)  // feet rounded to 5O
 				return num_str(Math.round(2*dist/100.0/0.3048)*50, "f", grm_case) + " " + dictionary["feet"];
-			if (dist < 241)
-				return dictionary["1_tenth_of_a_mile_"+grm_case];
-			if (dist < 1529)  // 0.2-0.9 of a mile
+			if (dist < 320) // feet rounded to 10O
+				return num_str(Math.round(dist/100.0/0.3048)*100, "f", grm_case) + " " + dictionary["feet"];
+			if (dist < 1367)  // 0.2-0.8 miles
 				return num_str(Math.round(dist/161.0), "m", grm_case) + " " + dictionary["tenths_of_a_mile_"+grm_case];
 			if (dist < 2414)  // 1 mile
 				return dictionary["around_1_mile_"+grm_case];
