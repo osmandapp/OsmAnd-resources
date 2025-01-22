@@ -13,6 +13,7 @@ SIZES_NOMX2=(96 64 48 32)
 SIZES_NOMX4=(192 128 96 64) 
 SIZES_POI=(72 48 36 24) 
 SVG_SIZE=12
+SVG_SIZE_X2=24
 
 SVGFOLDER=${BASEFOLDER}/svg/
 OUTPUT_SVG_FOLDER=${BASEFOLDER}/svg-res
@@ -87,6 +88,7 @@ genMapIconsStdSize() {
     SIZES=("${SIZES_NOMX4[@]}")
   elif [ "$3" == 'x2' ]; then 
     SIZES=("${SIZES_NOMX2[@]}")
+    SVG_SIZE=${SVG_SIZE_X2}
   elif [ "$3" == 'poi' ]; then 
     SIZES=("${SIZES_POI[@]}")
     FOLDERS=("${FOLDERS_POI[@]}")
@@ -133,6 +135,7 @@ genMapIconsStdSize() {
       for (( j = 0 ; j < ${#SIZES[@]}; j++ )) do
         SZ=${SIZES[j]}
         RES_FILE=${OUTPUTFOLDER}${FOLDERS[j]}/${FILENAME}.png
+        echo "Create PNG $SZ x $SZ $RES_FILE "
         rsvg-convert -f png "$COLOURED_SVG" -w ${SZ} -h ${SZ}  -o ${RES_FILE} #> /dev/null 2>&1
         # RES_SVG_FILE=${OUTPUTFOLDER}${FOLDERS[j]}/${FILENAME}.svg
         # cp "$COLOURED_SVG" ${RES_SVG_FILE}
