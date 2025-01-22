@@ -2734,7 +2734,15 @@
 
 	<renderingConstant name="null" value="#00000000"/>
 
-	
+	<renderingAttribute name="pisteDefaultColor"> <!-- skimap.render.xml -->
+		<switch engine_v1="true">
+			<case nightMode="true" attrColorValue="#cc777777"/>
+			<case attrColorValue="#88525252"/>
+		</switch>
+		<case nightMode="true" attrColorValue="#aa777777"/>
+		<case attrColorValue="#66525252"/>
+	</renderingAttribute>
+
 	<!--
 	RENDERER CONCEPT: Concept of what is Rendered at what Zoom Level (Dr. Hardy Mueller, 2011-06-26)
 
@@ -4540,6 +4548,36 @@
 					<case maxzoom="16" textSize="14"/>
 					<case maxzoom="17" textSize="16"/>
 					<case minzoom="18" textSize="18"/>
+					<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#77777777"/>
+				</apply>
+			</switch>
+
+			<switch minzoom="14" textOnPath="false" textColor="$aerialwayTextColorDay"
+				textHaloColor="$aerialwayTextHaloColorDay" textHaloRadius="$textHaloRadius">
+				<case tag="piste:type" value="downhill" nameTag="piste:name" nameTag2="piste:ref"/>
+				<case tag="piste:type" value="downhill" nameTag="piste:ref"/>
+				<case tag="piste:type" value="downhill" nameTag=""/>
+				<case tag="piste:type" value="skitour" nameTag="piste:name" nameTag2="piste:ref"/>
+				<case tag="piste:type" value="skitour" nameTag="piste:ref"/>
+				<case tag="piste:type" value="skitour" nameTag=""/>
+				<case tag="piste:type" value="sled" nameTag="piste:name" nameTag2="piste:ref"/>
+				<case tag="piste:type" value="sled" nameTag="piste:ref"/>
+				<case tag="piste:type" value="sled" nameTag=""/>
+				<case tag="piste:type" value="sleigh" nameTag="piste:name" nameTag2="piste:ref"/>
+				<case tag="piste:type" value="sleigh" nameTag="piste:ref"/>
+				<case tag="piste:type" value="sleigh" nameTag=""/>
+				<case tag="piste:type" value="hike" nameTag="piste:name" nameTag2="piste:ref"/>
+				<case tag="piste:type" value="hike" nameTag="piste:ref"/>
+				<case tag="piste:type" value="hike" nameTag=""/>
+				<case tag="piste:type" value="fatbike" nameTag="piste:name" nameTag2="piste:ref"/>
+				<case tag="piste:type" value="fatbike" nameTag="piste:ref"/>
+				<case tag="piste:type" value="fatbike" nameTag=""/>
+				<apply textOnPath="true">
+					<case maxzoom="14" textSize="11"/>
+					<case maxzoom="15" textSize="12"/>
+					<case maxzoom="16" textSize="13"/>
+					<case maxzoom="17" textSize="15"/>
+					<case minzoom="18" textSize="17"/>
 					<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#77777777"/>
 				</apply>
 			</switch>
@@ -11510,6 +11548,23 @@
 			<apply_if baseAppMode="car" layer="-1" disable="true"/>
 		</switch>
 
+		<switch minzoom="13" color="$pisteDefaultColor">
+			<case tag="piste:type" value="connection"/>
+			<case tag="piste:type" value="downhill"/>
+			<case tag="piste:type" value="fatbike"/>
+			<case tag="piste:type" value="hike"/>
+			<case tag="piste:type" value="nordic"/>
+			<case tag="piste:type" value="ski_jump"/>
+			<case tag="piste:type" value="skitour"/>
+			<case tag="piste:type" value="sled"/>
+			<case tag="piste:type" value="sleigh"/>
+			<case tag="piste:type" value="snow_park"/>
+			<apply>
+				<case maxzoom="13" strokeWidth="1:1"/>
+				<case maxzoom="16" strokeWidth="2:2"/>
+				<case minzoom="17" strokeWidth="3:3"/>
+			</apply>
+		</switch>
 
 		<switch minzoom="13">
 			<switch>
