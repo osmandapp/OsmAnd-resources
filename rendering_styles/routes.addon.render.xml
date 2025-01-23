@@ -28,6 +28,21 @@
 	<renderingProperty attr="showRunningRoutes" name="Show running routes" description="Running routes"
 		type="boolean" possibleValues="" category="routes"/>
 
+	<renderingClass name=".route.dirtbike" title="Route dirtbike" enable="true"/>
+	<renderingClass name=".route.dirtbike.scale.0" title="Scale 0 " enable="true"/>
+	<renderingClass name=".route.dirtbike.scale.1" title="Scale 1" enable="true"/>
+	<renderingClass name=".route.dirtbike.scale.2" title="Scale 2" enable="true"/>
+	<renderingClass name=".route.dirtbike.scale.3" title="Scale 3" enable="true"/>
+	<renderingClass name=".route.dirtbike.scale.4" title="Scale 4" enable="true"/>
+	<renderingClass name=".route.dirtbike.scale.5" title="Scale 5" enable="true"/>
+	<renderingClass name=".route.dirtbike.scale.6" title="Scale 6" enable="true"/>
+	<renderingClass name=".route.bike.mtb_scale_imba" title="MTB IMBA trails" enable="true"/>
+	<renderingClass name=".route.bike.mtb_scale_imba.0" title="Scale 0" enable="true"/>
+	<renderingClass name=".route.bike.mtb_scale_imba.1" title="Scale 1" enable="true"/>
+	<renderingClass name=".route.bike.mtb_scale_imba.2" title="Scale 2" enable="true"/>
+	<renderingClass name=".route.bike.mtb_scale_imba.3" title="Scale 3" enable="true"/>
+	<renderingClass name=".route.bike.mtb_scale_imba.4" title="Scale 4" enable="true"/>
+
 	<renderingAttribute name="cycleRoutelcnColor">
 		<case engine_v1="false" attrColorValue="#450000ff"/>
 		<case attrColorValue="#600000ff">
@@ -1156,8 +1171,8 @@
 			</apply_if>
 		</switch>
 
-		<switch showDirtbikeTrails="true" minzoom="13">
-			<case tag="route_dirtbike" value="" cap="ROUND" strokeWidth="6">
+		<switch showDirtbikeTrails="true" minzoom="13" rClass=".route.dirtbike">
+			<case tag="route_dirtbike" value="" cap="ROUND" strokeWidth="6" rClass=".route.dirtbike.scale.$dirtbike:scale">
 				<apply_if additional="dirtbike:scale=0" color="#2AF62A"/>
 				<apply_if additional="dirtbike:scale=1" color="#008000"/>
 				<apply_if additional="dirtbike:scale=2" color="#ffa500"/>
@@ -1181,8 +1196,8 @@
 		</switch>
 
 		<switch showMtbScaleIMBATrails="true" minzoom="13" tag="osmand_mtb_scale_imba" value="trail" color="$null" strokeWidth="1"
-				rClass="road.mtb.imba,road.mtb.imba.$mtb:scale:imba$">
-			<switch>
+				rClass=".route.bike.mtb_scale_imba">
+			<switch rClass=".route.bike.mtb_scale_imba.$mtb:scale:imba">
 				<case additional="mtb:scale:imba=0" color_3="$cycleRouteMtbScaleImba0Color" cap_2="ROUND" cap_3="ROUND"/>
 				<case additional="mtb:scale:imba=1" color_3="$cycleRouteMtbScaleImba1Color" cap_2="ROUND" cap_3="ROUND"/>
 				<case additional="mtb:scale:imba=2" color_3="$cycleRouteMtbScaleImba2Color" cap_2="SQUARE" cap_3="SQUARE"/>
@@ -1194,7 +1209,7 @@
 				<apply_if minzoom="16" maxzoom="16" pathEffect_2="1_25" pathEffect_3="1_25"/>
 				<apply_if minzoom="17" pathEffect_2="1_32" pathEffect_3="1_32"/>
 			</switch>
-			<switch>
+			<switch rClass=".route.bike.mtb_scale_imba.$mtb:scale:imba">
 				<case additional="mtb:scale:imba=3" color_3="$cycleRouteMtbScaleImba3Color" cap_2="SQUARE" cap_3="SQUARE">
 					<apply_if maxzoom="15" pathEffect_2="1_10" pathEffect_3="1_10"/>
 					<apply_if minzoom="15" maxzoom="15" pathEffect_2="1_16" pathEffect_3="1_16"/>
