@@ -14,6 +14,7 @@ SIZES_NOMX4=(192 128 96 64)
 SIZES_POI=(72 48 36 24) 
 SVG_SIZE=12
 SVG_SIZE_X2=24
+SVG_SIZE_X4=48
 
 SVGFOLDER=${BASEFOLDER}/svg/
 OUTPUT_SVG_FOLDER=${BASEFOLDER}/svg-res
@@ -86,6 +87,7 @@ genMapIconsStdSize() {
   VDFOLDEROUT=${VDFOLDER}/map
   if [ "$3" == 'x4' ]; then 
     SIZES=("${SIZES_NOMX4[@]}")
+    SVG_SIZE=${SVG_SIZE_X4}
   elif [ "$3" == 'x2' ]; then 
     SIZES=("${SIZES_NOMX2[@]}")
     SVG_SIZE=${SVG_SIZE_X2}
