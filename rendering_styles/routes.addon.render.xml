@@ -388,12 +388,15 @@
 			<case tag="osmand_climbing" value="route"/>
 			<case tag="climbing" value="route"/>
 			<case tag="climbing" value="route_bottom"/>
+			<case tag="osmand_climbing" value="crag"/>
 		</switch>
 
 		<!-- Polygon 1-10 -->
 		<switch area="true" point="false" objectType="3" order="5">
 		</switch>
 		<switch cycle="true" point="false" objectType="3" order="5">
+			<case tag="osmand_climbing" value="area" order="120"/>
+			<case tag="osmand_climbing" value="crag" order="121"/>
 		</switch>
 
 		<!-- Line 11-100 -->
@@ -428,6 +431,7 @@
 			<case tag="route_fitness_trail" value="" order="205"/>
 			<case tag="route_running" value="" order="205"/>
 		</switch>
+
 	</order>
 
 	<text>
@@ -868,6 +872,16 @@
 				<case tag="climbing" value="route_bottom"/>
 				<apply_if nightMode="true" textHaloColor="$sportTextHaloColorNight"/>
 			</switch>
+			<switch showClimbingRoutes="true" textSize="13" nameTag="" textColor="$sportTextColorDay" textHaloColor="$sportTextHaloColorDay" textHaloRadius="$textHaloRadius">
+				<case minzoom="13" tag="osmand_climbing" value="area" textBold="true" textHaloColor="#99F4C124" textOrder="10">
+					<apply_if nightMode="true" textColor="#B0FFD5" textHaloColor="#bb8C6B07"/>
+				</case>
+				<case minzoom="13" tag="osmand_climbing" value="crag" textColor="#007B33" textBold="true" textHaloColor="#99CCE63F" textOrder="10">
+					<apply_if nightMode="true" textColor="#D3FFE5" textHaloColor="#996E7F11"/>
+				</case>
+				<case minzoom="17" tag="climbing" value="route" textOnPath="true" textBold="true" textOrder="30"/>
+				<case minzoom="17" tag="climbing" value="route_bottom" textOrder="30"/>
+			</switch>
 
 	</text>
 
@@ -922,13 +936,29 @@
 		<case tag="node_network_point" value="lcn"/>
 
 		<switch showClimbingRoutes="true">
-			<case minzoom="16" tag="osmand_climbing" value="route" icon="climbing_route" shield="green_round_shield"/>
-			<case minzoom="16" tag="climbing" value="route_bottom" icon="climbing_route_bottom" shield="green_round_shield"/>
+			<case minzoom="12" tag="osmand_climbing" value="area" icon="climbing_area" iconOrder="55"/>
+			<case minzoom="12" tag="osmand_climbing" value="crag" icon="climbing_crag" iconOrder="55"/>
+			<case minzoom="15" tag="climbing" value="crag" icon="climbing_crag" iconOrder="111"/>
+			<case minzoom="16" tag="osmand_climbing" value="route" icon="climbing_route"/>
+			<case minzoom="16" tag="climbing" value="route_bottom" icon="climbing_route_bottom"/>
+			<apply shield="green_round_shield"/>
 		</switch>
 
 	</point>
 
 	<polygon>
+		<switch showClimbingRoutes="true" minzoom="12" maxzoom="17">
+			<case tag="osmand_climbing" value="area">
+				<apply color_2="#99F4C124"/>
+				<apply_if nightMode="true" color_2="#77F4C124"/>
+			</case>
+			<case minzoom="13" tag="osmand_climbing" value="crag">
+				<apply color_2="#99CCE63F"/>
+				<apply_if nightMode="true" color_2="#77CCE63F"/>
+			</case>
+			<apply color="$null" strokeWidth_2="2:2"/>
+		</switch>
+
 	</polygon>
 
 	<line>
@@ -1373,6 +1403,12 @@
 			<apply_if maxzoom="15" strokeWidth="1" strokeWidth__2="6" pathEffect="2_2"/>
 			<apply_if minzoom="16" strokeWidth="1:1" strokeWidth__2="8" pathEffect="2_2"/>
 		</case>
-
+<!--		<switch showClimbingRoutes="true" minzoom="15">
+			<case tag="sport" value="climbing" additional="climbing_crag=crag"/>
+			<apply_if maxzoom="17" strokeWidth_2="3" pathEffect_2="5_2"/>
+			<apply_if minzoom="18" strokeWidth_2="4" pathEffect_2="6_3"/>
+			<apply color="$null" color_2="#66903A33"/>
+		</switch>
+-->
 	</line>
 </renderingStyle>
