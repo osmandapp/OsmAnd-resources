@@ -1012,6 +1012,8 @@ icon_alias waterskiing sport_waterskiing
 
 icon_alias climbing_route sport_climbing_route
 icon_alias climbing_route_bottom sport_climbing_route_bottom
+icon_alias climbing_area sport_climbing_area
+icon_alias climbing_crag sport_climbing_crag
 
 
 ## Leisure
