@@ -1019,19 +1019,30 @@
 		<switch>
 			<switch textColor="#795430" textDy="7" textWrapWidth="25" textHaloColor="#aaf1eae4" textHaloRadius="$textHaloRadius" textItalic="true">
 				<switch>
-					<switch minzoom="$naturalPeakTextMinZoom" tag="natural" value="peak" textOrder="80">
-						<case eleUnits="feet" nameTag="ele_feet"/>
-						<case eleUnits="feet" nameTag="" nameTag2="ele_feet"/>
-						<case eleUnits="meters" nameTag="ele" />
-						<case eleUnits="meters" nameTag="" nameTag2="ele"/>
-						<case eleUnits="" nameTag="ele" />
-						<case eleUnits="" nameTag="" nameTag2="ele"/>
-						<apply_if maxzoom="12" textSize="11" intersectionMargin="15"/>
-						<apply_if minzoom="13" maxzoom="14" textSize="12"/>
-						<apply_if minzoom="15" maxzoom="16" textSize="13"/>
-						<apply_if minzoom="17" textSize="15"/>
-						<apply_if maxzoom="14" engine_v1="true" textDy="-2"/>
-						<apply_if minzoom="15" engine_v1="true" textDy="-1"/>
+					<switch minzoom="7" tag="natural" additional="osmand_prominent_peak=yes" nameTag="">
+						<case value="peak"/>
+						<case value="volcano" textHaloColor="#99ffd6c0"/>
+						<apply textSize="11" intersectionMargin="5" textOrder="38" textDy="0"/>
+					</switch>
+					<switch>
+						<case minzoom="$naturalPeakTextMinZoom" tag="natural" value="peak" textOrder="80"/>
+						<case minzoom="12" tag="natural" value="volcano" textOrder="79"/>
+						<apply>
+							<switch>
+								<case eleUnits="feet" nameTag="ele_feet"/>
+								<case eleUnits="feet" nameTag="" nameTag2="ele_feet"/>
+								<case eleUnits="meters" nameTag="ele" />
+								<case eleUnits="meters" nameTag="" nameTag2="ele"/>
+								<case eleUnits="" nameTag="ele" />
+								<case eleUnits="" nameTag="" nameTag2="ele"/>
+								<apply_if maxzoom="12" textSize="11" intersectionMargin="15"/>
+								<apply_if minzoom="13" maxzoom="14" textSize="12"/>
+								<apply_if minzoom="15" maxzoom="16" textSize="13"/>
+								<apply_if minzoom="17" textSize="15"/>
+								<apply_if maxzoom="14" engine_v1="true" textDy="-2"/>
+								<apply_if minzoom="15" engine_v1="true" textDy="-1"/>
+							</switch>
+						</apply>
 					</switch>
 					<case minzoom="$naturalHillTextMinZoom" tag="natural" value="hill" textOrder="70">
 						<case eleUnits="feet" nameTag="ele_feet"/>
@@ -1103,21 +1114,6 @@
 					<apply_if nightMode="true" textColor="#ffcc9b" textHaloColor="#774d2803" />
 					<apply_if legend="true" textDy="0" />
 				</switch>
-				<case minzoom="$naturalVolcanoTextMinZoom" tag="natural" value="volcano" textOrder="79" textHaloColor="#99ffd6c0">
-					<case eleUnits="feet" nameTag="ele_feet"/>
-					<case eleUnits="feet" nameTag="" nameTag2="ele_feet"/>
-					<case eleUnits="meters" nameTag="ele" />
-					<case eleUnits="meters" nameTag="" nameTag2="ele"/>
-					<case eleUnits="" nameTag="ele" />
-					<case eleUnits="" nameTag="" nameTag2="ele"/>
-					<apply_if maxzoom="12" textSize="11" intersectionMargin="15"/>
-					<apply_if minzoom="13" maxzoom="14" textSize="12"/>
-					<apply_if minzoom="15" maxzoom="16" textSize="13"/>
-					<apply_if minzoom="17" textSize="15"/>
-					<apply_if maxzoom="14" engine_v1="true" textDy="-2"/>
-					<apply_if minzoom="15" engine_v1="true" textDy="-1"/>
-					<apply_if nightMode="true" textColor="#ffcc9b" textHaloColor="#77772105"/>
-				</case>
 				<apply_if engine_v1="false" textDy="0" />
 				<apply_if additional="ele_limit=200" textOrder="83" />
 				<apply_if additional="ele_limit=500" textOrder="82" />
