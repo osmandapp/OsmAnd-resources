@@ -37,6 +37,7 @@
 		type="string" possibleValues="thin,medium,bold" defaultValueDescription="default"/>
 
 	<renderingProperty attr="legend" name="Legend" type="boolean" possibleValues="" category="ui_hidden"/>
+	<renderingProperty attr="eleUnits" name="Elevation units" type="string" possibleValues="meters,feet" defaultValueDescription="default" category="ui_hidden"/>
 
 	<renderingProperty attr="engine_v1" type="boolean"/>
 	<renderingAttribute name="defaultColor">
@@ -1601,6 +1602,8 @@
 	<renderingConstant name="surfaceGradeHorribleRouteDetailsColor" value="#ff7f7f"/>
 	<renderingConstant name="surfaceGradeVeryHorribleRouteDetailsColor" value="#fe5050"/>
 	<renderingConstant name="surfaceGradeImpassableRouteDetailsColor" value="#ff1111"/>
+
+    <renderingConstant name="naturalPeakTextMinZoom" value="12"/>
 
 	<renderingAttribute name="routeInfo_smoothness">
 		<case additional="smoothness=excellent" attrColorValue="$surfaceGradeExcellentRouteDetailsColor" attrStringValue="smoothness_excellent"/>
@@ -3227,24 +3230,40 @@
 		<switch>
 			<switch textColor="$peakVolcanoTextColor" textWrapWidth="25" textHaloColor="$peakVolcanoTextHaloColor" textHaloRadius="$textHaloRadius" textItalic="true" textBold="true">
 				<switch>
-					<case minzoom="7" tag="natural" value="peak" additional="osmand_prominent_peak=yes" nameTag="" textSize="11" intersectionMargin="5" textOrder="38" textDy="0"/>
-					<case minzoom="12" tag="natural" value="peak" textOrder="80">
-						<case maxzoom="12" nameTag="ele" textSize="11" intersectionMargin="15"/>
-						<case minzoom="13" maxzoom="13" nameTag="" nameTag2="ele" textSize="12"/>
-						<case minzoom="13" maxzoom="13" nameTag="ele" textSize="12"/>
-						<case minzoom="14" maxzoom="14" nameTag="" nameTag2="ele" textSize="12"/>
-						<case minzoom="14" maxzoom="14" nameTag="ele" textSize="12"/>
-						<case minzoom="15" maxzoom="16" nameTag="" nameTag2="ele" textSize="13"/>
-						<case minzoom="15" maxzoom="16" nameTag="ele" textSize="13"/>
-						<case minzoom="17" nameTag="" nameTag2="ele" textSize="15"/>
-						<case minzoom="17" nameTag="ele" textSize="15"/>
+					<switch minzoom="7" tag="natural" additional="osmand_prominent_peak=yes" nameTag="">
+						<case value="peak"/>
+						<case value="volcano" textHaloColor="#99ffd6c0"/>
+						<apply textSize="11" intersectionMargin="5" textOrder="38" textDy="0"/>
+					</switch>
+					<switch>
+						<case minzoom="$naturalPeakTextMinZoom" tag="natural" value="peak" textOrder="80"/>
+						<case minzoom="12" tag="natural" value="volcano" textOrder="79"/>
+						<apply>
+							<switch>
+								<case eleUnits="feet" nameTag="ele_feet"/>
+								<case eleUnits="feet" nameTag="" nameTag2="ele_feet"/>
+								<case eleUnits="meters" nameTag="ele" />
+								<case eleUnits="meters" nameTag="" nameTag2="ele"/>
+								<case eleUnits="" nameTag="ele" />
+								<case eleUnits="" nameTag="" nameTag2="ele"/>
+								<apply_if maxzoom="12" textSize="11" intersectionMargin="15"/>
+								<apply_if minzoom="13" maxzoom="14" textSize="12"/>
+								<apply_if minzoom="15" maxzoom="16" textSize="13"/>
+								<apply_if minzoom="17" textSize="15"/>
+								<apply_if maxzoom="14" engine_v1="true" textDy="-2"/>
+								<apply_if minzoom="15" engine_v1="true" textDy="-1"/>
+							</switch>
+						</apply>
+					</switch>
+					<case minzoom="15" tag="natural" value="hill" textOrder="70">
+						<case eleUnits="feet" nameTag="ele_feet"/>
+						<case eleUnits="feet" nameTag="" nameTag2="ele_feet"/>
+						<case eleUnits="meters" nameTag="ele" />
+						<case eleUnits="meters" nameTag="" nameTag2="ele"/>
+						<case eleUnits="" nameTag="ele" />
+						<case eleUnits="" nameTag="" nameTag2="ele"/>
+						<apply textSize="11"/>
 					</case>
-					<case minzoom="7" tag="natural" value="volcano" additional="osmand_prominent_peak=yes" nameTag="" textSize="11" intersectionMargin="5" textOrder="38" textDy="0"/>
-					<case minzoom="11" tag="natural" value="volcano" nameTag="" nameTag2="ele" textOrder="79">
-						<case maxzoom="12" textSize="12"/>
-						<case minzoom="13" textSize="13"/>
-					</case>
-					<case minzoom="15" tag="natural" value="hill" nameTag="" nameTag2="ele" textOrder="70" textSize="11"/>
 					<case minzoom="16" textSize="12" tag="natural" value="cave_entrance" nameTag="" textOrder="236"/>
 					<case minzoom="6" textSize="12" tag="natural" value="ridge" nameTag="" textItalic="false" textOnPath="true" textOrder="43"/>
 					<switch minzoom="13" nameTag="">
@@ -3271,8 +3290,12 @@
 					<case minzoom="13" textSize="14" tag="natural" value="crater" nameTag="" textColor="$craterTextColor"/>
 					<case minzoom="14" textSize="14" tag="natural" value="crevasse" nameTag="" textColor="$craterTextColor" textBold="false"/>
 					<case minzoom="13" textSize="13" tag="glacial" value="crevasse_zone" nameTag="" textColor="$craterTextColor" textBold="false"/>
-					<case minzoom="14" textSize="12" tag="mountain_pass" value="yes" nameTag="" nameTag2="rtsa_scale" textBold="false"/>
-					<case minzoom="14" textSize="12" tag="mountain_pass" value="yes" nameTag="ele" textBold="false"/>
+					<switch minzoom="14" tag="mountain_pass" value="yes" textSize="12" textBold="false">
+						<case nameTag="" nameTag2="rtsa_scale"/>
+						<case eleUnits="" nameTag="ele"/>
+						<case eleUnits="feet" nameTag="ele_feet"/>
+						<case eleUnits="meters" nameTag="ele"/>
+					</switch>
 					<apply_if additional="ele_limit=200" textOrder="83"/>
 					<apply_if additional="ele_limit=500" textOrder="82"/>
 					<apply_if additional="ele_limit=1000" textOrder="81"/>
