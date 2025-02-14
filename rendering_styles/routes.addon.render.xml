@@ -32,30 +32,17 @@
 			<renderingClass name=".mtb_scale" title="MTB scale" enable="true"
 						inner-names="0,1,2,3,4,5" inner-title="Scale $class"
 						inner-legend-object="highway=track;mtb:scale=$class"/>
-<!--			</renderingClass>-->
 			<!-- works together with mtb_scale -->
 			<renderingClass name=".mtb_scale_uphill" title="MTB uphill scale" enable="true"
 						inner-names="1,2,3,4,5" inner-title="Scale $class"
 						inner-legend-object="highway=track;mtb:scale:uphill=$class"/>
-<!--			</renderingClass>-->
 			<renderingClass name=".mtb_scale_imba" title="MTB IMBA scale" enable="true"
 						inner-names="0,1,2,3,4" inner-title="Scale $class"
 						inner-legend-object="highway=track;mtb:scale:imba=$class"/>
-				<!-- <renderingClass name=".0" title="Scale 1" enable="true"/>
-				<renderingClass name=".1" title="Scale 1" enable="true"/>
-				<renderingClass name=".2" title="Scale 2" enable="true"/>
-				<renderingClass name=".3" title="Scale 3" enable="true"/>
-				<renderingClass name=".4" title="Scale 4" enable="true"/>
-			</renderingClass> -->
 			<!-- works together with mtb_scale -->
 			<renderingClass name=".class_bicycle_mtb" title="MTB class" enable="true"
 						inner-names="0,1,2,3" inner-title="Scale $class"
 						inner-legend-object="highway=track;class:bicycle:mtb=$class"/>
-<!--				<renderingClass name=".0" title="Scale 1" enable="true"/>
-				<renderingClass name=".1" title="Scale 1" enable="true"/>
-				<renderingClass name=".2" title="Scale 2" enable="true"/>
-				<renderingClass name=".3" title="Scale 3" enable="true"/>
-			</renderingClass>-->
 		</renderingClass>
 		<renderingClass name=".hiking" title="Hiking routes" enable="true">
 			<renderingClass name=".osmc" title="Highlight routes as shields by OSMC" enable="true"/>
@@ -1218,8 +1205,8 @@
 
 		<switch>
 			<switch>
-				<case tag="route_hiking" value="" hikingRoutesOSMC="walkingRoutesOSMC" minzoom="12" color="$osmcDefaultColor" />
-				<case tag="route_hiking" value="" hikingRoutesOSMC="walkingRoutesOSMCNodes" minzoom="12" />
+				<case tag="route_hiking" value="" hikingRoutesOSMC="walkingRoutesOSMC" minzoom="12" color="$osmcDefaultColor" rClass=".route.hiking.osmc" />
+				<case tag="route_hiking" value="" hikingRoutesOSMC="walkingRoutesOSMCNodes" minzoom="12" rClass=".route.hiking.node_network"/>
 				<apply_if hikingRoutesOSMC="walkingRoutesOSMC">
 					<switch seq="1:10">
 						<case additional="route_hiking_#SEQ_osmc_waycolor=black" color="$osmcBlackColor"/>
@@ -1278,35 +1265,35 @@
 			<apply_if minzoom="18" strokeWidth="13:13"/>
 		</switch>
 
-		<switch hikingRoutesOSMC="walkingRoutesScopeOSMC" cap="ROUND">
-			<case minzoom="12" tag="network_iwn" value="" color="$iwnColor">
+		<switch hikingRoutesOSMC="walkingRoutesScopeOSMC" cap="ROUND" rClass=".route.hiking.road_network">
+			<case minzoom="12" tag="network_iwn" value="" color="$iwnColor" rClass=".route.hiking.road_network.iwn">
 				<apply_if maxzoom="12" strokeWidth="6"/>
 				<apply_if minzoom="13" maxzoom="13" strokeWidth="8"/>
 				<apply_if minzoom="14" maxzoom="14" strokeWidth="10"/>
 				<apply_if minzoom="15" maxzoom="16" strokeWidth="12"/>
 				<apply_if minzoom="17" strokeWidth="14"/>
 			</case>
-			<case minzoom="12" tag="network_nwn" value="" color="$nwnColor">
+			<case minzoom="12" tag="network_nwn" value="" color="$nwnColor" rClass=".route.hiking.road_network.nwn">
 				<apply_if maxzoom="12" strokeWidth="3"/>
 				<apply_if minzoom="13" maxzoom="13" strokeWidth="4"/>
 				<apply_if minzoom="14" maxzoom="14" strokeWidth="7"/>
 				<apply_if minzoom="15" maxzoom="16" strokeWidth="9"/>
 				<apply_if minzoom="17" strokeWidth="11"/>
 			</case>
-			<case minzoom="13" tag="network_rwn" value="" color="$rwnColor">
+			<case minzoom="13" tag="network_rwn" value="" color="$rwnColor" rClass=".route.hiking.road_network.rwn">
 				<apply_if maxzoom="13" strokeWidth="3"/>
 				<apply_if minzoom="14" maxzoom="14" strokeWidth="5"/>
 				<apply_if minzoom="15" maxzoom="16" strokeWidth="7"/>
 				<apply_if minzoom="17" strokeWidth="9"/>
 			</case>
-			<case minzoom="13" tag="network_lwn" value="" color="$lwnColor">
+			<case minzoom="13" tag="network_lwn" value="" color="$lwnColor" rClass=".route.hiking.road_network.lwn">
 				<apply_if maxzoom="13" strokeWidth="1.5"/>
 				<apply_if minzoom="14" maxzoom="14" strokeWidth="2.8"/>
 				<apply_if minzoom="15" maxzoom="16" strokeWidth="3.5"/>
 				<apply_if minzoom="17" strokeWidth="5"/>
 			</case>
 		</switch>
-		<switch hikingRoutesOSMC="walkingRoutesScopeOSMC" color="#77ae27b3">
+		<switch hikingRoutesOSMC="walkingRoutesScopeOSMC" color="#77ae27b3" rClass=".route.hiking.road_network">
 			<case tag="route_hiking" value=""/>
 			<apply_if maxzoom="13" strokeWidth="1.5"/>
 			<apply_if minzoom="14" maxzoom="14" strokeWidth="2.8"/>
