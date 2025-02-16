@@ -8,8 +8,6 @@
 // ( ) Distance unit support (meters / feet / yard)
 // (N/A) Special grammar: (please specify which)
 // (X) Support announcing highway exits
-//
-// Initial version courtesy of user Duc9101
 
 var metricConst;
 var dictionary = {};
@@ -46,7 +44,7 @@ function populateDictionary(tts) {
 	dictionary["make_uturn_wp"] = tts ? "Khi có thể, hãy quay đầu xe" : "make_uturn_wp.ogg";
 
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? "Sẽ đến vòng xuyến" : "prepare_roundabout.ogg";
+	dictionary["prepare_roundabout"] = tts ? "bạn sẽ đến vòng xuyến" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "vào vòng xuyến" : "roundabout.ogg";
 	dictionary["then"] = tts ? "sau đó" : "then.ogg";
 	dictionary["and"] = tts ? "và" : "and.ogg";
@@ -76,17 +74,17 @@ function populateDictionary(tts) {
 	dictionary["follow"] = tts ? "Tiếp tục đi" : "follow.ogg";  // "Follow the course of the road for" perceived as too chatty by many users
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "và đến điểm đến của bạn" : "and_arrive_destination.ogg";
+	dictionary["and_arrive_destination"] = tts ? "và bạn sẽ đến điểm đến của mình" : "and_arrive_destination.ogg";
 	dictionary["reached_destination"] = tts ? "Bạn đã đến nơi" : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "và đến điểm đến trung gian của bạn" : "and_arrive_intermediate.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "và bạn sẽ đến điểm đến trung gian của mình" : "and_arrive_intermediate.ogg";
 	dictionary["reached_intermediate"] = tts ? "bạn đã đến điểm đến trung gian" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
-	dictionary["and_arrive_waypoint"] = tts ? "và đi qua điểm dừng chân" : "and_arrive_waypoint.ogg";
+	dictionary["and_arrive_waypoint"] = tts ? "và bạn sẽ đến điểm dừng chân của mình" : "and_arrive_waypoint.ogg";
 	dictionary["reached_waypoint"] = tts ? "bạn đang đi qua điểm dừng chân" : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "và đi qua điểm đến yêu thích" : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "bạn đang đi qua điểm đến yêu thích" : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "và đi qua điểm quan tâm" : "and_arrive_poi.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "và bạn sẽ đến điểm  yêu thích của mình" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "bạn đang đi qua điểm  yêu thích" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "và bạn sẽ đến điểm quan tâm" : "and_arrive_poi.ogg";
 	dictionary["reached_poi"] = tts ? "bạn đang đi qua điểm quan tâm" : "reached_poi.ogg";
 
 	// ATTENTION
