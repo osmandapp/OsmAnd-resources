@@ -28,6 +28,14 @@
 	<renderingProperty attr="showRunningRoutes" name="Show running routes" description="Running routes"
 		type="boolean" possibleValues="" category="routes"/>
 
+	<renderingClass name=".route" title="Route" enable="true">
+		<renderingClass name=".dirtbike" title="Route dirtbike" enable="true">
+			<renderingClass name=".scale" title="Route dirtbike scale" enable="true"
+						inner-names="1,2,3,4,5,?" inner-title="Scale $class"
+						inner-legend-object="highway=track;dirtbike:scale=$class"/>
+		</renderingClass>
+	</renderingClass>
+
 	<renderingAttribute name="cycleRoutelcnColor">
 		<case engine_v1="false" attrColorValue="#450000ff"/>
 		<case attrColorValue="#600000ff">
@@ -1187,8 +1195,8 @@
 			</apply_if>
 		</switch>
 
-		<switch showDirtbikeTrails="true" minzoom="13">
-			<case tag="route_dirtbike" value="" cap="ROUND" strokeWidth="6">
+		<switch showDirtbikeTrails="true" minzoom="13" rClass=".route.dirtbike">
+			<case tag="route_dirtbike" value="" cap="ROUND" strokeWidth="6" rClass=".route.dirtbike.$dirtbike:scale">
 				<apply_if additional="dirtbike:scale=0" color="#2AF62A"/>
 				<apply_if additional="dirtbike:scale=1" color="#008000"/>
 				<apply_if additional="dirtbike:scale=2" color="#ffa500"/>
