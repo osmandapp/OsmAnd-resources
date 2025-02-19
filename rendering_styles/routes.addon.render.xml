@@ -402,6 +402,7 @@
 		<!-- Line 11-100 -->
 		<switch area="false" objectType="2" order="80">
 			<case tag="route" value="segment" order="100"/> <!-- TravelGpx track -->
+			<case tag="route_type" value="" order="185"/>
 			<case tag="route_bicycle" value="" order="186"/>
 			<case tag="route_mtb" value="" order="187"/>
 			<case tag="route_dirtbike" value="" order="187"/>
@@ -745,7 +746,7 @@
 						<apply_if additional="route_bicycle_#SEQ_osmc_order=1" textOrder="44"/>
 					</case>
 					<!-- MTB -->
-					<switch>
+<!--					<switch>
 						<case showMtbRoutes="true" tag="route_mtb" value="" nameTag="route_mtb_#SEQ_osmc_text"/>
 						<apply textBold="true" textColor="#000000"/>
 						<apply_if textLength="2" textShield="osmc_white_bg_2"/>
@@ -772,7 +773,7 @@
 					</switch>
 					<case showMtbRoutes="true" tag="route_mtb" value="" nameTag="route_mtb_#SEQ_osmc_stub_name_v2" textShield="osmc_?route_mtb_#SEQ_osmc_background?_bg" icon="osmc_?route_mtb_#SEQ_osmc_foreground?">
 						<apply_if additional="route_mtb_#SEQ_osmc_order=1" textOrder="44"/>
-					</case>
+					</case>-->
 					<!-- Horse -->
 					<switch>
 						<case horseRoutes="true" tag="route_horse" value="" nameTag="route_horse_#SEQ_osmc_text"/>
@@ -1051,7 +1052,7 @@
 			</apply>
 		</switch>
 
-		<switch minzoom="11">
+<!--		<switch minzoom="11">
 			<switch>
 				<case showCycleRoutes="true" tag="route_bicycle" value=""/>
 				<case showCycleNodeNetworkRoutes="true" tag="route_bicycle" value=""/>
@@ -1185,7 +1186,21 @@
 					</apply>
 				</switch>
 			</apply_if>
-		</switch>
+		</switch>-->
+
+		<case showMtbRoutes="true" tag="route_type" value="cycling" additional="route_activity_type=mountain_biking">
+			<apply>
+				<case maxzoom="11" strokeWidth="2:2"/>
+				<case maxzoom="12" strokeWidth="2:2"/>
+				<case maxzoom="13" strokeWidth="3:3"/>
+				<case maxzoom="14" strokeWidth="4:4"/>
+				<case maxzoom="15" strokeWidth="4:4"/>
+				<case maxzoom="16" strokeWidth="5:5"/>
+				<case maxzoom="17" strokeWidth="6:6"/>
+				<case minzoom="18" strokeWidth="7:7"/>
+			</apply>
+			<apply_if minzoom="11" color="$cycleRouteColor" cap="BUTT"/>
+		</case>
 
 		<switch showDirtbikeTrails="true" minzoom="13">
 			<case tag="route_dirtbike" value="" cap="ROUND" strokeWidth="6">
