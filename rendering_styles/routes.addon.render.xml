@@ -478,6 +478,51 @@
 				<apply_if additional="shield_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
 			</switch>
 
+		<switch>
+			<case minzoom="12" showMtbRoutes="true" tag="route_type" value="cycling" additional="route_activity_type=mountain_biking"/>
+			<case minzoom="12" showCycleRoutes="true" tag="route_type" value="cycling" additional="route_activity_type=road_cycling"/>
+
+			<apply textSize="11" textMinDistance="60" textOrder="2">
+				<switch>
+					<case nameTag="" textOnPath="true" textColor="#0078ff" textHaloColor="#ccebf4ff" textHaloRadius="1"/>
+
+					<case additional="shield_fg" nameTag="shield_text" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
+					<case additional="shield_fg" nameTag="ref" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?" textSize="11" textColor="#ffffff" textHaloRadius="1" textHaloColor="#777777"/>
+					<case additional="shield_fg" nameTag="shield_stub_name" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?" textSize="1"/>
+
+					<case additional="shield_bg" nameTag="shield_text" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
+					<case additional="shield_bg" nameTag="ref" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
+					<case additional="shield_bg" nameTag="shield_stub_name" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?" textSize="1"/>
+
+					<case nameTag="ref" textOnPath="false" textColor="#404040" textShield="yellow_square_9_road_shield">
+						<apply_if textLength="1" textShield="yellow_hexagon_3_road_shield"/>
+						<apply_if textLength="2" textShield="yellow_hexagon_4_road_shield"/>
+						<apply_if textLength="3" textShield="yellow_hexagon_5_road_shield"/>
+						<apply_if textLength="4" textShield="yellow_square_6_road_shield"/>
+						<apply_if textLength="5" textShield="yellow_square_7_road_shield"/>
+						<apply_if textLength="6" textShield="yellow_square_8_road_shield"/>
+					</case>
+					<case disable="true"/>
+					<apply_if additional="shield_textcolor=red" textColor="$osmcRedTextColor"/>
+					<apply_if additional="shield_textcolor=brown" textColor="$osmcBrownTextColor"/>
+					<apply_if additional="shield_textcolor=orange" textColor="$osmcOrangeTextColor"/>
+					<apply_if additional="shield_textcolor=darkyellow" textColor="$osmcDarkyellowTextColor"/>
+					<apply_if additional="shield_textcolor=yellow" textColor="$osmcYellowTextColor"/>
+					<apply_if additional="shield_textcolor=lightgreen" textColor="$osmcLightgreenTextColor"/>
+					<apply_if additional="shield_textcolor=green" textColor="$osmcGreenTextColor"/>
+					<apply_if additional="shield_textcolor=lightblue" textColor="$osmcLightblueTextColor"/>
+					<apply_if additional="shield_textcolor=blue" textColor="$osmcBlueTextColor"/>
+					<apply_if additional="shield_textcolor=purple" textColor="$osmcPurpleTextColor"/>
+					<apply_if additional="shield_textcolor=pink" textColor="$osmcPinkTextColor"/>
+					<apply_if additional="shield_textcolor=teal" textColor="$osmcTealTextColor"/>
+					<apply_if additional="shield_textcolor=gray" textColor="$osmcGrayTextColor"/>
+					<apply_if additional="shield_textcolor=black" textColor="#000000" textHaloRadius="1" textHaloColor="#30ffffff"/>
+					<apply_if additional="shield_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
+
+				</switch>
+			</apply>
+		</switch>
+
 			<!-- TravelGpx point name -->
 			<switch>
 				<case minzoom="11" tag="route" value="point" nameTag="" textWrapWidth="25" textHaloRadius="1" textColor="#0078ff" textHaloColor="#ccebf4ff" textOrder="1" textDy="2">
@@ -746,7 +791,9 @@
 						<apply_if additional="route_bicycle_#SEQ_osmc_order=1" textOrder="44"/>
 					</case>
 					<!-- MTB -->
-<!--					<switch>
+<!--					<case showMtbRoutes="true" tag="route_type" nameTag="osmc_stub_name" icon="osmc_?route_mtb_#SEQ_osmc_foreground?" textShield="?shield_bg?"/>
+
+					<switch>
 						<case showMtbRoutes="true" tag="route_mtb" value="" nameTag="route_mtb_#SEQ_osmc_text"/>
 						<apply textBold="true" textColor="#000000"/>
 						<apply_if textLength="2" textShield="osmc_white_bg_2"/>
@@ -1188,7 +1235,9 @@
 			</apply_if>
 		</switch>-->
 
-		<case showMtbRoutes="true" tag="route_type" value="cycling" additional="route_activity_type=mountain_biking">
+		<switch minzoom="12">
+			<case showMtbRoutes="true" tag="route_type" value="cycling" additional="route_activity_type=mountain_biking" color="$cycleRouteMtbScale1Color"/>
+			<case showCycleRoutes="true" tag="route_type" value="cycling" additional="route_activity_type=road_cycling" color="$cycleRouteColor"/>
 			<apply>
 				<case maxzoom="11" strokeWidth="2:2"/>
 				<case maxzoom="12" strokeWidth="2:2"/>
@@ -1199,8 +1248,7 @@
 				<case maxzoom="17" strokeWidth="6:6"/>
 				<case minzoom="18" strokeWidth="7:7"/>
 			</apply>
-			<apply_if minzoom="11" color="$cycleRouteColor" cap="BUTT"/>
-		</case>
+		</switch>
 
 		<switch showDirtbikeTrails="true" minzoom="13">
 			<case tag="route_dirtbike" value="" cap="ROUND" strokeWidth="6">
