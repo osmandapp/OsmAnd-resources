@@ -77,7 +77,7 @@
 
 		<renderingClass name=".dirtbike" title="Route dirtbike" enable="true">
 			<renderingClass name=".scale" title="Route dirtbike scale" enable="true"
-						inner-names="1,2,3,4,5,?" inner-title="Scale $class"
+						inner-names="0,1,2,3,4,5,6,?" inner-title="Scale $class"
 						inner-legend-object="highway=track;dirtbike:scale=$class"/>
 		</renderingClass>
 		<renderingClass name=".horse" title="Horse routes" enable="true"/>
@@ -579,7 +579,7 @@
 						<case tag="node_network_point" value="icn" nameTag="icn_ref" textOrder="39"/>
 						<case tag="node_network_point" value="multiple" nameTag="icn_ref" textOrder="39"/>
 					</switch>
-					<switch showCycleNodeNetworkRoutes="true" rClass=".route.node_network">
+					<switch showCycleNodeNetworkRoutes="true" rClass=".route.bicycle.node_network">
 						<case tag="multiple_node_networks" value="true" nameTag="lcn_ref_value" textOrder="37"/>
 						<case tag="multiple_node_networks" value="true" nameTag="rcn_ref_value" textOrder="38"/>
 						<case tag="multiple_node_networks" value="true" nameTag="ncn_ref_value" textOrder="39"/>
@@ -779,7 +779,7 @@
 					</switch>
 					<!-- Bicycle -->
 					<switch>
-						<case showCycleRoutes="true" tag="route_bicycle" value="" nameTag="route_bicycle_#SEQ_osmc_text" rClass=".route.bicycle"/>
+						<case showCycleRoutes="true" tag="route_bicycle" value="" nameTag="route_bicycle_#SEQ_osmc_text" rClass=".route.bicycle.road_network"/>
 						<apply textBold="true" textColor="#000000"/>
 						<apply_if textLength="2" textShield="osmc_white_bg_2"/>
 						<apply_if textLength="3" textShield="osmc_white_bg_3"/>
@@ -808,7 +808,7 @@
 					</case>
 					<!-- MTB -->
 					<switch>
-						<case showMtbRoutes="true" tag="route_mtb" value="" nameTag="route_mtb_#SEQ_osmc_text"/>
+						<case showMtbRoutes="true" tag="route_mtb" value="" nameTag="route_mtb_#SEQ_osmc_text" rClass=".route.mtb"/>
 						<apply textBold="true" textColor="#000000"/>
 						<apply_if textLength="2" textShield="osmc_white_bg_2"/>
 						<apply_if textLength="3" textShield="osmc_white_bg_3"/>
@@ -1132,7 +1132,7 @@
 				</apply>
 				<apply_if minzoom="11" color="$cycleRouteColor" cap="BUTT"/>
 			</switch>
-			<case showMtbRoutes="true" tag="route_mtb" value="" cap="ROUND" rClass=".route.mtb">
+			<case showMtbRoutes="true" tag="route_mtb" value="" cap="ROUND">
 				<case maxzoom="11" strokeWidth="1:1" strokeWidth_2="1:1" strokeWidth__2="2:2"/>
 				<case maxzoom="12" strokeWidth="2:2" strokeWidth_2="2:2" strokeWidth__2="3:3"/>
 				<case maxzoom="13" strokeWidth="3:3" strokeWidth_2="3:3" strokeWidth__2="5:5"/>
@@ -1142,7 +1142,7 @@
 				<case minzoom="18" strokeWidth="7:7" strokeWidth_2="7:7" strokeWidth__2="14:14" strokeWidth__1="14:14"/>
 				<apply_if minzoom="13" color="$cycleRouteColor"/>
 				<apply_if showMtbScale="true">
-					<switch rClass=".route.mtb_scale.$mtb:scale">
+					<switch rClass=".route.mtb.mtb_scale.$mtb:scale">
 						<case additional="mtb:scale=0" color="$cycleRouteMtbScale0Color">
 							<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale0UnrecommendedColor"/>
 						</case>
@@ -1215,7 +1215,7 @@
 				</apply_if>
 			</case>
 			<apply_if showCycleNodeNetworkRoutes="true">
-				<switch rClass=".route.bike.node_network.$node_network">
+				<switch rClass=".route.bicycle.node_network.$node_network">
 					<case additional="node_network=lcn" color="$cycleRoutelcnColor"/>
 					<case additional="node_network=rcn" color="$cycleRoutercnColor"/>
 					<case additional="node_network=ncn" color="$cycleRoutencnColor"/>
@@ -1233,7 +1233,7 @@
 				</switch>
 			</apply_if>
 			<apply_if showCycleRoutes="true">
-				<switch rClass=".route.bike.bicycle.$network">
+				<switch rClass=".route.bicycle.road_network.$network">
 					<case additional="network=lcn" color="$cycleRoutelcnColor"/>
 					<case additional="network=rcn" color="$cycleRoutercnColor"/>
 					<case additional="network=ncn" color="$cycleRoutencnColor"/>
