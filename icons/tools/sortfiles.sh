@@ -1937,7 +1937,7 @@ icon skimap_overlay_novice
 icon skimap_gray_black_round_shield 
 icon skimap_white_black_round_shield 
 
-icon_alias piste skimap_piste
+icon_alias piste entertainment_piste
 icon_alias piste_downhill skimap_piste_downhill
 icon_alias piste_hike skimap_piste_hike
 icon_alias piste_nordic skimap_piste_nordic
