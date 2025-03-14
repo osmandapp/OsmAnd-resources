@@ -2874,7 +2874,7 @@
 		<type tag="building" value="warehouse" minzoom="15"/>
 		<type tag="building" value="place_of_worship" minzoom="15" order="75"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="cathedral" to_tag1="building" to_value1="place_of_worship" poi="no"/>
-		<entity_convert pattern="tag_transform" from_tag="building" from_value="chapel" to_tag1="building" to_value1="place_of_worship poi="no""/>
+		<entity_convert pattern="tag_transform" from_tag="building" from_value="chapel" to_tag1="building" to_value1="place_of_worship" poi="no"/>
 		<entity_convert pattern="tag_transform" from_tag="historic" from_value="chapel" to_tag1="building" to_value1="place_of_worship" poi="no"/>
 		<entity_convert pattern="tag_transform" from_tag="building" from_value="church" to_tag1="building" to_value1="place_of_worship" poi="no"/>
 		<entity_convert pattern="tag_transform" from_tag="historic" from_value="church" to_tag1="building" to_value1="place_of_worship" poi="no"/>
@@ -2970,7 +2970,7 @@
 		<entity_convert pattern="tag_transform" from_tag="building" if_tag1="office" poi="false" apply_to="node"/>
 
 		<!-- Prepare buildings for POI -->
-		<entity_convert pattern="tag_transform" from_tag="building" to_tag1="building:type" to_tag2="building" to_value2="yes" map="no"/>
+<!--		<entity_convert pattern="tag_transform" from_tag="building" to_tag1="building:type" to_tag2="building" to_value2="yes" map="no"/>-->
 		<entity_convert pattern="tag_transform" from_tag="building" if_not_tag1="name" if_not_tag2="old_name" if_not_tag3="alt_name" if_not_tag4="reg_name" if_not_tag5="int_name" if_not_tag6="loc_name" if_not_tag7="description" if_not_tag8="inscription" if_not_tag9="official_name" if_not_tag10="addr:housename" if_not_tag11="amenity" if_not_tag12="shop" map="no" routing="no"/>
 		<entity_convert pattern="tag_transform" from_tag="addr:housename" if_tag1="building" if_not_tag1="name" to_tag1="name" map="no" routing="no"/>
 
@@ -5241,9 +5241,20 @@
 		<entity_convert pattern="tag_transform" from_tag="denomination" from_value="shingon" to_tag1="denomination" to_value1="shingon_shu" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="religion" if_tag1="denomination" if_value1="jehovahs_witness" poi="no"/>
 
-		<entity_convert pattern="tag_transform" from_tag="religion" from_value="christian" if_tag1="building" if_value1="church" to_tag1="osmand_religious" to_value1="christian_church" map="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="religion" from_value="christian" if_tag1="building" if_value1="cathedral" to_tag1="osmand_religious" to_value1="christian_church" map="no" poi="yes"/>
-<!--		<entity_convert pattern="tag_transform" from_tag="religion" from_value="christian" to_tag1="osmand_religious" to_value1="christian_church" map="no" poi="yes"/> ???????????-->
+		<entity_convert pattern="tag_transform" from_tag="religion" from_value="christian" if_tag1="building" if_value1="church" to_tag1="osmand_religious" to_value1="christian_church" to_tag2="osmand_religious_christian_church" to_value2="church" map="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="religion" from_value="christian" if_contains_tag1="name" if_contains_value1="church" to_tag1="osmand_religious" to_value1="christian_church" to_tag2="osmand_religious_christian_church" to_value2="church" map="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="religion" from_value="christian" if_contains_tag1="name" if_contains_value1="церковь" to_tag1="osmand_religious" to_value1="christian_church" to_tag2="osmand_religious_christian_church" to_value2="church" map="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="religion" from_value="christian" if_tag1="building" if_value1="yes" to_tag1="osmand_religious" to_value1="christian_church" to_tag2="osmand_religious_christian_church" to_value2="other" map="no" poi="yes"/>
+
+		<entity_convert pattern="tag_transform" from_tag="religion" from_value="christian" if_tag1="building" if_value1="cathedral" to_tag1="osmand_religious" to_value1="christian_church" to_tag2="osmand_religious_christian_church" to_value2="cathedral" map="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="religion" from_value="christian" if_contains_tag1="name" if_contains_value1="cathedral" to_tag1="osmand_religious" to_value1="christian_church" to_tag2="osmand_religious_christian_church" to_value2="cathedral" map="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="religion" from_value="christian" if_contains_tag1="name" if_contains_value1="собор" to_tag1="osmand_religious" to_value1="christian_church" to_tag2="osmand_religious_christian_church" to_value2="cathedral" map="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="religion" from_value="christian" if_not_tag1="osmand_religious_christian_church" to_tag1="osmand_religious" to_value1="christian_church" to_tag2="osmand_religious_christian_church" to_value2="other" map="no" poi="yes"/>
+
+		<entity_convert pattern="tag_transform" from_tag="religion" from_value="christian" if_tag1="building" if_value1="chapel" to_tag1="osmand_religious" to_value1="christian_church" to_tag2="osmand_religious_christian_church" to_value2="chapel" map="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="religion" from_value="christian" if_contains_tag1="name" if_contains_value1="chapel" to_tag1="osmand_religious" to_value1="christian_church" to_tag2="osmand_religious_christian_church" to_value2="chapel" map="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="religion" from_value="christian" if_contains_tag1="name" if_contains_value1="часовн" to_tag1="osmand_religious" to_value1="christian_church" to_tag2="osmand_religious_christian_church" to_value2="chapel" map="no" poi="yes"/>
+
 		<entity_convert pattern="tag_transform" from_tag="religion" from_value="muslim" if_tag1="building" if_value1="mosque" to_tag1="osmand_religious" to_value1="mosque" map="no" poi="yes"/>
 
 	</category>
