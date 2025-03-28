@@ -201,7 +201,7 @@ generateBothMapPOIPng() {
 } 
 
   ### UNCOMMENT to generate only 1 category
-  # generateBothMapPOIPng 'activities' '#ffffff' '#ff8f00'
+  # genMapIconsNoScale 'ais' 'colored'
   # exit 0;
 
   genMapIconsNoScale 'shaders' 'colored'
@@ -298,3 +298,5 @@ generateBothMapPOIPng() {
   generateBothMapPOIPng 'special' '#ffffff' '#ff8f00'
   generateBothMapPOIPng 'logos' '#ffffff' '#ff8f00'
   generateBothMapPOIPng 'activities' '#ffffff' '#ff8f00'
+
+  genMapIconsNoScale 'ais' 'colored'

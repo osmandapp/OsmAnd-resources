@@ -3724,3 +3724,12 @@ icon_alias route_activity_type_train_riding activities_train
 icon_alias route_activity_type_fitness sport_fitness_station
 icon_alias route_activity_type_inline_skates activities_inline_skates
 
+# AIS plugin icons
+icon ais_aton_virt
+icon ais_aton
+icon ais_land
+icon ais_plane
+icon ais_sar
+icon ais_vessel_cross
+icon ais_vessel_red
+icon ais_vessel
