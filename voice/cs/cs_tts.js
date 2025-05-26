@@ -20,12 +20,12 @@ function populateDictionary(tts) {
 	dictionary["route_is"] = tts ? "cesta je dlouhá" : "route_is.ogg";
 	dictionary["route_calculate"] = tts ? "cesta přepočtena" : "route_calculate.ogg";
 	dictionary["distance"] = tts ? "cesta je dlouhá" : "distance.ogg";
-	
+
 	// LEFT/RIGHT
 	//dictionary["prepare"] = tts ? "budete odbočovat" : "prepare.ogg";
 	dictionary["after"] = tts ? "po" : "after.ogg";
 	dictionary["in"] = tts ? "po" : "in.ogg";
-	
+
 	dictionary["left"] = tts ? "odbočte doleva" : "left.ogg";
 	dictionary["left_sh"] = tts ? "odbočte ostře doleva" : "left_sh.ogg";
 	dictionary["left_sl"] = tts ? "odbočte mírně doleva" : "left_sl.ogg";
@@ -37,13 +37,22 @@ function populateDictionary(tts) {
 	dictionary["right_keep"] = tts ? "držte se vpravo" : "right_keep.ogg";
 	dictionary["left_bear"] = tts ? "se držte vlevo" : "left_bear.ogg";    // in English the same as left_keep, may be different in other languages
 	dictionary["right_bear"] = tts ? "se držte vpravo" : "right_bear.ogg";  // in English the same as right_keep, may be different in other languages
-	
+
+    dictionary["take_exit_left"] = tts ? "sjeďte doleva" : "left.ogg";
+    dictionary["take_exit_left_sh"] = tts ? "sjeďte ostře doleva" : "left_sh.ogg";
+    dictionary["take_exit_left_sl"] = tts ? "sjeďte mírně doleva" : "left_sl.ogg";
+    dictionary["take_exit_right"] = tts ? "sjeďte doprava" : "right.ogg";
+    dictionary["take_exit_right_sh"] = tts ? "sjeďte ostře doprava" : "right_sh.ogg";
+    dictionary["take_exit_right_sl"] = tts ? "sjeďte mírně doprava" : "right_sl.ogg";
+    dictionary["take_exit_left_keep"] = tts ? "sjeďte vlevo" : "left_keep.ogg";
+    dictionary["take_exit_right_keep"] = tts ? "sjeďte vpravo" : "right_keep.ogg";
+
 	// U-TURNS
 	//dictionary["prepare_make_uturn"] = tts ? "se budete otáčet zpět" : "prepare_make_uturn.ogg";
 	dictionary["make_uturn"] = tts ? "se otočte zpět" : "make_uturn.ogg";
 	dictionary["make_uturn2"] = tts ? "otočte se zpět" : "make_uturn2.ogg";
 	dictionary["make_uturn_wp"] = tts ? "otočte se, jakmile to bude možné" : "make_uturn_wp.ogg";
-	
+
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "přijedete na kruhový objezd" : "prepare_roundabout.ogg";
 	dictionary["roundabout"] = tts ? "vjeďte na kruhový objezd" : "roundabout.ogg";
@@ -53,7 +62,7 @@ function populateDictionary(tts) {
 	dictionary["take2"] = tts ? "vyjeďte" : "take2.ogg";
 	dictionary["exit"] = tts ? "výjezd" : "exit.ogg";
 	dictionary["exit2"] = tts ? "výjezdem" : "exit2.ogg";
-	
+
 	dictionary["1st"] = tts ? "první" : "1st.ogg";
 	dictionary["2nd"] = tts ? "druhý" : "2nd.ogg";
 	dictionary["3rd"] = tts ? "třetí" : "3rd.ogg";
@@ -71,7 +80,7 @@ function populateDictionary(tts) {
 	dictionary["15th"] = tts ? "patnáctý" : "15th.ogg";
 	dictionary["16th"] = tts ? "šestnáctý" : "16th.ogg";
 	dictionary["17th"] = tts ? "sedmnáctý" : "17th.ogg";
-	
+
 	dictionary["1st_inst"] = tts ? "prvním" : "1st_inst.ogg";
 	dictionary["2nd_inst"] = tts ? "druhým" : "2nd_inst.ogg";
 	dictionary["3rd_inst"] = tts ? "třetím" : "3rd_inst.ogg";
@@ -89,17 +98,17 @@ function populateDictionary(tts) {
 	dictionary["15th_inst"] = tts ? "patnáctým" : "15th_inst.ogg";
 	dictionary["16th_inst"] = tts ? "šestnáctým" : "16th_inst.ogg";
 	dictionary["17th_inst"] = tts ? "sedmnáctým" : "17th_inst.ogg";
-	
+
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "pokračujte rovně" : "go_ahead.ogg";
 	dictionary["follow"] = tts ? "pokračujte" : "go_ahead_m.ogg";
-	
+
 	// ARRIVE
 	dictionary["and_arrive_destination"] = tts ? "a dorazíte do cíle" : "and_arrive_destination.ogg";
 	dictionary["reached_destination"] = tts ? "dorazili jste do cíle" : "reached_destination.ogg";
 	dictionary["and_arrive_intermediate"] = tts ? "a dorazíte do mezicíle" : "and_arrive_intermediate.ogg";
 	dictionary["reached_intermediate"] = tts ? "dorazili jste do mezicíle" : "reached_intermediate.ogg";
-	
+
 	// NEARBY POINTS
 	dictionary["and_arrive_waypoint"] = tts ? "a projedete GPX mezicílem" : "and_arrive_waypoint.ogg";
 	dictionary["reached_waypoint"] = tts ? "projeli jste GPX mezicílem" : "reached_waypoint.ogg";
@@ -107,7 +116,7 @@ function populateDictionary(tts) {
 	dictionary["reached_favorite"] = tts ? "projeli jste oblíbeným bodem" : "reached_favorite.ogg";
 	dictionary["and_arrive_poi"] = tts ? "a projedete bodem zájmu" : "and_arrive_poi.ogg";
 	dictionary["reached_poi"] = tts ? "projeli jste bodem zájmu" : "reached_poi.ogg";
-	
+
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "překračujete povolenou rychlost" : "exceed_limit.ogg";
 	dictionary["exceed_limit"] = tts ? "rychlostní limit" : "exceed_limit.ogg";
@@ -121,20 +130,25 @@ function populateDictionary(tts) {
 	dictionary["stop"] = tts ? "stopka" : "stop.ogg";
 	dictionary["pedestrian_crosswalk"] = tts ? "přechod pro chodce" : "pedestrian_crosswalk.ogg";
 	dictionary["tunnel"] = tts ? "tunel" : "tunnel.ogg";
-	
+
 	// OTHER PROMPTS
 	dictionary["location_lost"] = tts ? "signál G.P.S. ztracen" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "signál G.P.S. obnoven" : "location_recovered.ogg";
 	dictionary["off_route"] = tts ? "nacházíte se" : "off_route.ogg";
 	dictionary["off_route2"] = tts ? " mimo trasu" : "off_route2.ogg";
 	dictionary["back_on_route"] = tts ? "vrátili jste se zpět na trasu" : "back_on_route.ogg";
-	
+
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "na:" : "onto.ogg";
-	dictionary["on"] = tts ? "na:" : "on.ogg";
-	dictionary["to"] = tts ? "na:" : "to.ogg";
+	dictionary["onto"] = tts ? "na" : "onto.ogg";
+	dictionary["on"] = tts ? "na" : "on.ogg";
+	dictionary["to"] = tts ? "do" : "to.ogg";
 	dictionary["toward"] = tts ? "ve směru:" : "toward.ogg";
-	
+    dictionary["roadNumberOn"] = tts ? "silnici" : "";
+    dictionary["roadNumberTo"] = tts ? "silnice" : "";
+    dictionary["roadNumber"] = tts ? "číslo" : "";
+    dictionary["streetOn"] = tts ? "ulici" : "";
+    dictionary["streetTo"] = tts ? "ulice" : "";
+
 	// DISTANCE UNIT SUPPORT
 	dictionary["meters_accusative"] = tts ? "metrů" : "meters_accusative.ogg";
 	dictionary["around_1_kilometer_accusative"] = tts ? "přibližně jeden kilometr" : "around_1_kilometer_accusative.ogg";
@@ -142,28 +156,28 @@ function populateDictionary(tts) {
 	dictionary["around"] = tts ? "přibližně" : "around.ogg";
 	dictionary["kilometers_accusative3_4"] = tts ? "kilometry" : "kilometers_accusative3_4.ogg";
 	dictionary["kilometers_accusative5"] = tts ? "kilometrů" : "kilometers_accusative5.ogg";
-	
+
 	dictionary["meters_locative"] = tts ? "metrech" : "meters_locative.ogg";
 	dictionary["around_1_kilometer_locative"] = tts ? "přibližně jednom kilometru" : "around_1_kilometer_locative.ogg";
 	dictionary["around_2_kilometers_locative"] = tts ? "přibližně dvou kilometrech" : "around_2_kilometers_locative.ogg";
 	dictionary["kilometers_locative"] = tts ? "kilometrech" : "kilometers_locative.ogg";
-	
+
 	dictionary["farther_workaround"] = tts ? "dál" : "farther_workaround.ogg";
 	dictionary["around_workaround"] = tts ? "dál přibližně" : "around_workaround.ogg";
-	
+
 	dictionary["feet_accusative"] = tts ? "stop" : "feet_accusative.ogg";
 	dictionary["tenths_of_a_mile_accusative"] = tts ? "desetiny míle" : "tenths_of_a_mile_accusative.ogg";
 	dictionary["around_1_mile_accusative"] = tts ? "přibližně jednu míli" : "around_1_mile_accusative.ogg";
 	dictionary["miles_accusative"] = tts ? "mil" : "miles_accusative.ogg";
-	
+
 	dictionary["feet_locative"] = tts ? "stopách" : "feet_locative.ogg";
 	dictionary["tenths_of_a_mile_locative"] = tts ? "desetinách míle" : "tenths_of_a_mile_locative.ogg";
 	dictionary["around_1_mile_locative"] = tts ? "přibližně jedné míli" : "around_1_mile_locative.ogg";
 	dictionary["miles_locative"] = tts ? "mílích" : "miles_locative.ogg";
-	
+
 	dictionary["yards_accusative"] = tts ? "jardů" : "yards_accusative.ogg";
 	dictionary["yards_locative"] = tts ? "jardech" : "yards_locative.ogg";
-	
+
 	// TIME SUPPORT
 	dictionary["time"] = tts ? "potřebná doba:" : "time.ogg";
 	dictionary["1_hour"] = tts ? "jedna hodina" : "1_hour.ogg";
@@ -238,7 +252,7 @@ function distance(dist, declension, isWorkaround) {
 			} else if (dist < 1000) {
 				return (isWorkaround ? dictionary["farther_workaround"] + " " : "") + (tts ? (Math.round(2*dist/100.0)*50).toString() : ogg_dist(Math.round(2*dist/100.0)*50)) + " " + dictionary["meters_" + declension];
 			} else if (dist < 1300) {
-				return (tts ? (Math.round(2*dist/100.0)*50).toString() : ogg_dist((2*dist/100.0)*50)) + " " + dictionary["meters_" + declension]; 
+				return (tts ? (Math.round(2*dist/100.0)*50).toString() : ogg_dist((2*dist/100.0)*50)) + " " + dictionary["meters_" + declension];
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile_" + declension];
 			} else if (dist < 16093) {
@@ -253,7 +267,7 @@ function distance(dist, declension, isWorkaround) {
 			} else if (dist < 100) {
 				return (tts ? (Math.round(dist/10.0/0.9144)*10).toString() : ogg_dist(Math.round(dist/10.0/0.9144)*10)) + " " + dictionary["yards_" + declension];
 			} else if (dist < 1300) {
-				return (tts ? (Math.round(2*dist/100.0/0.9144)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.9144)*50)) + " " + dictionary["yards_" + declension]; 
+				return (tts ? (Math.round(2*dist/100.0/0.9144)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.9144)*50)) + " " + dictionary["yards_" + declension];
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile_" + declension];
 			} else if (dist < 16093) {
@@ -304,7 +318,7 @@ function hours(minutes) {
 		return Math.floor(minutes/60).toString() + " " + dictionary["3_4_hours"];
 	} else {
 		var hours = minutes / 60;
-        return Math.floor(hours).toString() + (!tts ? ".ogg " : " ") + dictionary["hours"]; 
+        return Math.floor(hours).toString() + (!tts ? ".ogg " : " ") + dictionary["hours"];
 	}
 }
 
@@ -325,12 +339,12 @@ function follow_street(streetName) {
 	if ((streetName["toDest"] == "" && streetName["toStreetName"] == "" && streetName["toRef"] == "") || Object.keys(streetName).length == 0 || !tts) {
 		return "";
 	} else if (streetName["toStreetName"] == "" && streetName["toRef"] == "") {
-		return dictionary["to"] + " " + streetName["toDest"];
-	} else if (streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"] || 
+		return dictionary["on"] + " " + formated_to_dest(streetName);
+	} else if (streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"] ||
 			(streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == "")) {
-		return dictionary["on"] + " " + assemble_street_name(streetName);
+		return assemble_street_name(streetName, true);
 	} else if (!(streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"])) {
-		return dictionary["to"] + " " + assemble_street_name(streetName);
+		return assemble_street_name(streetName, true);
 	}
 }
 
@@ -338,16 +352,16 @@ function turn(turnType, dist, streetName) {
 	if (dist == -1) {
 		return getTurnType(turnType) + " " + turn_street(streetName);
 	} else {
-		return dictionary["after"] + " " + distance(dist, "locative", false) + " " + getTurnType(turnType) + " " + turn_street(streetName); 
+		return dictionary["after"] + " " + distance(dist, "locative", false) + " " + getTurnType(turnType) + " " + turn_street(streetName);
 	}
 }
 
 function take_exit(turnType, dist, exitString, exitInt, streetName) {
 	if (dist == -1) {
-		return getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName);
+		return getExitTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName);
 	} else {
 		return dictionary["after"] + " " + distance(dist, "locative", false) + " "
-			+ getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName);
+			+ getExitTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName);
 	}
 }
 
@@ -355,12 +369,78 @@ function take_exit_name(streetName) {
 	if (Object.keys(streetName).length == 0 || (streetName["toDest"] == "" && streetName["toStreetName"] == "") || !tts) {
 		return "";
 	} else if (streetName["toDest"] != "") {
-		return (tts ? ", " : " ") + streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
+		return (tts ? ", " : " ") + formated_to_street_name(streetName, false) + " " + dictionary["toward"] + " " + formated_to_dest(streetName);
 	} else if (streetName["toStreetName"] != "") {
-		return (tts ? ", " : " ") + streetName["toStreetName"];
+		return (tts ? ", " : " ") + formated_to_street_name(streetName, false);
 	} else {
 		return "";
 	}
+}
+
+function formated_to_ref(streetName, isTo) {
+    const refNumRaw = streetName["toRef"];
+    const refNum = refNumRaw.trim();
+    if (refNum == "") {
+        return "";
+    }
+    if (isValueNumber(refNum)) {
+        return (isTo ? dictionary["roadNumberTo"] : dictionary["roadNumberOn"]) + " " + dictionary["roadNumber"] + " " + refNum;
+    }
+    return refNum;
+}
+
+
+function formated_to_dest(streetName) {
+    const toDest = streetName["toDest"];
+    if (typeof toDest !== 'string') {
+        return toDest;
+    }
+    if (toDest == "") {
+        return "";
+    }
+    const segments = toDest.split(',');
+
+    const processedSegments = segments.map(segment => {
+        const clearSegment = segment.trim();
+        if (isValueNumber(clearSegment)) {
+            return dictionary["roadNumberTo"] + " " + dictionary["roadNumber"] + " " + clearSegment;
+        } else {
+            return clearSegment;
+        }
+    });
+
+    return processedSegments.join(',');
+}
+
+function isValueNumber(inputStringRaw) {
+    const inputString = inputStringRaw.trim();
+    const justDigitsRegex = /^\d+$/;
+    const problematicCharsRegex = /[.,:;()\[\]{}'"\/\\*#%&@<>~`\^$_\-–—|“„”‚‘‛«»‹›]+/g;
+    const textWithoutProblematicChars = inputString.replace(problematicCharsRegex, "");
+    return justDigitsRegex.test(textWithoutProblematicChars);
+}
+
+function formated_to_street_name(streetName, isTo) {
+    const raw_s = streetName["toStreetName"];
+
+    if (typeof raw_s !== 'string') {
+        return raw_s;
+    }
+
+    const s = raw_s.trim();
+
+    if (s == "") {
+        return "";
+    }
+
+    return (isTo ? dictionary["streetTo"] : dictionary["streetOn"]) + " " + applyPrepositionLowercaseIfApplicable(s);
+}
+
+function applyPrepositionLowercaseIfApplicable(text) {
+    if (text.length >= 2 && text[1] === ' ') {
+        return text[0].toLowerCase() + text.substring(1);
+    }
+    return text;
 }
 
 function getExitNumber(exitString, exitInt) {
@@ -371,6 +451,36 @@ function getExitNumber(exitString, exitInt) {
 	} else {
 		return dictionary["exit"];
 	}
+}
+
+
+function getExitTurnType(turnType) {
+    switch (turnType) {
+        case "left":
+            return dictionary["take_exit_left"];
+            break;
+        case "left_sh":
+            return dictionary["take_exit_left_sh"];
+            break;
+        case "left_sl":
+            return dictionary["take_exit_left_sl"];
+            break;
+        case "right":
+            return dictionary["take_exit_right"];
+            break;
+        case "right_sh":
+            return dictionary["take_exit_right_sh"];
+            break;
+        case "right_sl":
+            return dictionary["take_exit_right_sl"];
+            break;
+        case "left_keep":
+            return dictionary["take_exit_left_keep"];
+            break;
+        case "right_keep":
+            return dictionary["take_exit_right_keep"];
+            break;
+    }
 }
 
 function getTurnType(turnType) {
@@ -419,25 +529,26 @@ function turn_street(streetName) {
 	if (Object.keys(streetName).length == 0 || (streetName["toDest"] == "" && streetName["toStreetName"] == "" && streetName["toRef"] == "") || !tts) {
 		return "";
 	} else if (streetName["toStreetName"] == "" && streetName["toRef"] == "") {
-		return dictionary["toward"] + " " + streetName["toDest"];
+		return dictionary["toward"] + " " + formated_to_dest(streetName);
 	} else if (streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"]) {
-		return dictionary["on"] + " " + assemble_street_name(streetName);
-	} else if ((streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"]) 
+		return assemble_street_name(streetName, false);
+	} else if ((streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"])
 		|| (streetName["toStreetName"] == "" && streetName["toRef"] == streetName["fromRef"])) {
-		return dictionary["on"] + " " + assemble_street_name(streetName);
+		return assemble_street_name(streetName, false);
 	} else if (!(streetName["toRef"] == streetName["fromRef"] && streetName["toStreetName"] == streetName["fromStreetName"])) {
-		return dictionary["onto"] + " " + assemble_street_name(streetName);
+		return assemble_street_name(streetName, false);
 	}
 	return "";
 }
 
-function assemble_street_name(streetName) {
+function assemble_street_name(streetName, isFollow) {
 	if (streetName["toDest"] == "") {
-		return streetName["toRef"] + " " + streetName["toStreetName"];
+        const isToPrep = (isFollow || (streetName["toRef"] != ""));
+		return ( isToPrep ? dictionary["on"] : dictionary["to"]) + " " + formated_to_ref(streetName, !isToPrep) + " " + formated_to_street_name(streetName, !isToPrep);
 	} else if (streetName["toRef"] == "") {
-		return streetName["toStreetName"] + " " + dictionary["toward"] + " " + streetName["toDest"];
+		return ( isFollow ? dictionary["on"] : dictionary["to"]) + " " + formated_to_street_name(streetName, !isFollow) + " " + dictionary["toward"] + " " + formated_to_dest(streetName);
 	} else if (streetName["toRef"] != "") {
-		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
+		return dictionary["on"] + " " + formated_to_ref(streetName, false) + " " + dictionary["toward"] + " " + formated_to_dest(streetName);
 	}
 }
 
@@ -505,47 +616,47 @@ function prepare_turn(turnType, dist, streetName) {
 }
 
 function prepare_roundabout(dist, exit, streetName) {
-	return dictionary["after"] + " " + distance(dist, "locative", false) + " " + dictionary["prepare_roundabout"]; 
+	return dictionary["after"] + " " + distance(dist, "locative", false) + " " + dictionary["prepare_roundabout"];
 }
 
 function and_arrive_destination(dest) {
-	return dictionary["and_arrive_destination"] + " " + dest;
+	return dictionary["and_arrive_destination"] + " " + applyPrepositionLowercaseIfApplicable(dest);
 }
 
 function and_arrive_intermediate(dest) {
-	return dictionary["and_arrive_intermediate"] + " " + dest;
+	return dictionary["and_arrive_intermediate"] + " " + applyPrepositionLowercaseIfApplicable(dest);
 }
 
 function and_arrive_waypoint(dest) {
-	return dictionary["and_arrive_waypoint"] + " " + dest;
+	return dictionary["and_arrive_waypoint"] + " " + applyPrepositionLowercaseIfApplicable(dest);
 }
 
 function and_arrive_favorite(dest) {
-	return dictionary["and_arrive_favorite"] + " " + dest;
+	return dictionary["and_arrive_favorite"] + " " + applyPrepositionLowercaseIfApplicable(dest);
 }
 
 function and_arrive_poi(dest) {
-	return dictionary["and_arrive_poi"] + " " + dest;
+	return dictionary["and_arrive_poi"] + " " + applyPrepositionLowercaseIfApplicable(dest);
 }
 
 function reached_destination(dest) {
-	return dictionary["reached_destination"] + " " + dest;
+	return dictionary["reached_destination"] + " " + applyPrepositionLowercaseIfApplicable(dest);
 }
 
 function reached_waypoint(dest) {
-	return dictionary["reached_waypoint"] + " " + dest;
+	return dictionary["reached_waypoint"] + " " + applyPrepositionLowercaseIfApplicable(dest);
 }
 
 function reached_intermediate(dest) {
-	return dictionary["reached_intermediate"] + " " + dest;
+	return dictionary["reached_intermediate"] + " " + applyPrepositionLowercaseIfApplicable(dest);
 }
 
 function reached_favorite(dest) {
-	return dictionary["reached_favorite"] + " " + dest;
+	return dictionary["reached_favorite"] + " " + applyPrepositionLowercaseIfApplicable(dest);
 }
 
 function reached_poi(dest) {
-	return dictionary["reached_poi"] + " " + dest;
+	return dictionary["reached_poi"] + " " + applyPrepositionLowercaseIfApplicable(dest);
 }
 
 function location_lost() {
