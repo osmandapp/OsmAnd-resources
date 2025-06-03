@@ -383,10 +383,10 @@ function formated_to_ref(streetName, isTo) {
     if (refNum == "") {
         return "";
     }
-    if (isValueNumber(refNum)) {
-        return (isTo ? dictionary["roadNumberTo"] : dictionary["roadNumberOn"]) + " " + dictionary["roadNumber"] + " " + refNum;
+    if (isPlainRoadNumber(refNum)) {
+        return (isTo ? dictionary["roadNumberTo"] : dictionary["roadNumberOn"]) + " " + dictionary["roadNumber"] + " " + insertSpacesBetweenLettersAndDigitsIterative(refNum);
     }
-    return refNum;
+    return insertSpacesBetweenLettersAndDigitsIterative(refNum);
 }
 
 
@@ -402,25 +402,47 @@ function formated_to_dest(streetName) {
 
     const processedSegments = segments.map(segment => {
         const clearSegment = segment.trim();
-        if (isValueNumber(clearSegment)) {
-            return dictionary["roadNumberTo"] + " " + dictionary["roadNumber"] + " " + clearSegment;
+        if (isPlainRoadNumber(clearSegment)) {
+            return dictionary["roadNumberTo"] + " " + dictionary["roadNumber"] + " " + insertSpacesBetweenLettersAndDigitsIterative(clearSegment);
         } else {
-            return clearSegment;
+            return insertSpacesBetweenLettersAndDigitsIterative(clearSegment);
         }
     });
 
     return processedSegments.join(',');
 }
 
-function isValueNumber(inputStringRaw) {
+function isPlainRoadNumber(inputStringRaw) { // plain road number is 8, 32, 10156, 12B
     const inputString = inputStringRaw.trim();
-    const justDigitsRegex = /^\d+$/;
+    const startsWithDigitRegex = /^\d+.*/;
     const problematicCharsRegex = /[.,:;()\[\]{}'"\/\\*#%&@<>~`\^$_\-–—|“„”‚‘‛«»‹›]+/g;
     const textWithoutProblematicChars = inputString.replace(problematicCharsRegex, "");
-    return justDigitsRegex.test(textWithoutProblematicChars);
+    return startsWithDigitRegex.test(textWithoutProblematicChars);
+}
+
+function insertSpacesBetweenLettersAndDigitsIterative(str) {
+    if (typeof str !== 'string' || str === null || str.length === 0) {
+        return str;
+    }
+
+    var result = str[0];
+    const isDigit = char => /\d/.test(char);
+    const isLetter = char => !/\d/.test(char);
+
+    for (var i = 1; i < str.length; i++) {
+        var prevChar = str[i-1];
+        var currentChar = str[i];
+
+        if ((isLetter(prevChar) && isDigit(currentChar)) || (isDigit(prevChar) && isLetter(currentChar))) {
+            result += ' ';
+        }
+        result += currentChar;
+    }
+    return result;
 }
 
 function formated_to_street_name(streetName, isTo) {
+    const isNotSquare = !isSquare(streetName);
     const raw_s = streetName["toStreetName"];
 
     if (typeof raw_s !== 'string') {
@@ -433,7 +455,39 @@ function formated_to_street_name(streetName, isTo) {
         return "";
     }
 
-    return (isTo ? dictionary["streetTo"] : dictionary["streetOn"]) + " " + applyPrepositionLowercaseIfApplicable(s);
+    return (isNotSquare ? (isTo ? dictionary["streetTo"] : dictionary["streetOn"] + " ") : "") + applyPrepositionLowercaseIfApplicable(s);
+}
+
+function isSquare(streetName) {
+    const raw_s = streetName["toStreetName"];
+
+    if (typeof raw_s !== 'string') {
+        return false;
+    }
+
+    const s = raw_s.trim().toLowerCase();
+
+    if (s == "") {
+        return false;
+    }
+
+    const squareWords = [
+        "nám.", "náměstí", // Czech
+        "Pl.", "Platz", // German
+        "nám.", "námestie", // Slovak
+        "pl.", "plac", // Polish
+        "tér", // Hungarian
+        "trg" // Slovenian, Chorvatština
+    ];
+
+    for (var i = 0; i < squareWords.length; i++) {
+        var squareWord = squareWords[i];
+        if (s.includes(squareWord)) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 function applyPrepositionLowercaseIfApplicable(text) {
@@ -544,9 +598,9 @@ function turn_street(streetName) {
 function assemble_street_name(streetName, isFollow) {
 	if (streetName["toDest"] == "") {
         const isToPrep = (isFollow || (streetName["toRef"] != ""));
-		return ( isToPrep ? dictionary["on"] : dictionary["to"]) + " " + formated_to_ref(streetName, !isToPrep) + " " + formated_to_street_name(streetName, !isToPrep);
+		return ( (isToPrep || isSquare(streetName)) ? dictionary["on"] : dictionary["to"]) + " " + formated_to_ref(streetName, !isToPrep) + " " + formated_to_street_name(streetName, !isToPrep);
 	} else if (streetName["toRef"] == "") {
-		return ( isFollow ? dictionary["on"] : dictionary["to"]) + " " + formated_to_street_name(streetName, !isFollow) + " " + dictionary["toward"] + " " + formated_to_dest(streetName);
+		return ( (isFollow || isSquare(streetName)) ? dictionary["on"] : dictionary["to"]) + " " + formated_to_street_name(streetName, !isFollow) + " " + dictionary["toward"] + " " + formated_to_dest(streetName);
 	} else if (streetName["toRef"] != "") {
 		return dictionary["on"] + " " + formated_to_ref(streetName, false) + " " + dictionary["toward"] + " " + formated_to_dest(streetName);
 	}
@@ -771,3 +825,4 @@ function ogg_dist(distance) {
 		return ogg_dist(distance/1000) + "1000.ogg " + ogg_dist(distance % 1000);
 	}
 }
+
