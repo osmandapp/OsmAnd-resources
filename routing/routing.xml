@@ -348,7 +348,11 @@
 		+++++++++++++
 
 		osmand_highway_integrity_brouting represents how good a way is for a bicycle.
-		Mostly it merges smoothness, surface and tracktype into one value. It is calculated internally?
+		Mostly it merges smoothness, surface and tracktype into one value.
+		Calculated by transformIntegrityTags() and calculateIntegrity()
+		-1 - not applicable
+		0,1,2 - seems good for road bicycles
+		3-13 - better to avoid for road bicycles
 
 		### Alternative notation for <if><select /></if> and <gt><select /></gt>
 
@@ -1530,6 +1534,25 @@
 			<select value="0.1" t="barrier" v="debris"/>
 
 			<if param="avoid_unpaved">
+				<!-- prefer "surface" over osmand_highway_integrity_brouting -->
+				<!-- value as half as osmand_highway_integrity_brouting -->
+				<select value="0.15" t="surface" v="ground"/> <!-- 3 -->
+				<select value="0.15" t="surface" v="pebblestone"/> <!-- 3 -->
+				<select value="0.15" t="surface" v="cobblestone"/> <!-- 3 -->
+				<select value="0.15" t="surface" v="earth"/> <!-- 3 -->
+				<select value="0.14" t="surface" v="unpaved"/> <!-- 4 -->
+				<select value="0.14" t="surface" v="stone"/> <!-- 4 -->
+				<select value="0.14" t="surface" v="rock"/> <!-- 4 -->
+				<select value="0.14" t="surface" v="gravel"/> <!-- 4 -->
+				<select value="0.14" t="surface" v="grass"/> <!-- 4 -->
+				<select value="0.14" t="surface" v="dirt"/> <!-- 4 -->
+				<select value="0.14" t="surface" v="rocky"/> <!-- 4 -->
+				<select value="0.13" t="surface" v="sand"/> <!-- 5 -->
+				<select value="0.13" t="surface" v="ice"/> <!-- 5 -->
+				<select value="0.13" t="surface" v="salt"/> <!-- 5 -->
+				<select value="0.13" t="surface" v="snow"/> <!-- 5 -->
+				<select value="0.12" t="surface" v="mud"/> <!-- 6 -->
+
 				<select value="0.3" t="osmand_highway_integrity_brouting" v="3"/>
 				<select value="0.28" t="osmand_highway_integrity_brouting" v="4"/>
 				<select value="0.27" t="osmand_highway_integrity_brouting" v="5"/>
@@ -1538,22 +1561,10 @@
 				<select value="0.15" t="osmand_highway_integrity_brouting" v="8"/>
 				<select value="0.1" t="osmand_highway_integrity_brouting" v="9"/>
 				<select value="0.05" t="osmand_highway_integrity_brouting" v="10"/>
+				<select value="0.05" t="osmand_highway_integrity_brouting" v="11"/>
+				<select value="0.05" t="osmand_highway_integrity_brouting" v="12"/>
+				<select value="0.05" t="osmand_highway_integrity_brouting" v="13"/>
 
-				<!--select value="0.4" t="tracktype" v="grade2"/>
-				<select value="0.1" t="tracktype" v="grade3"/>
-				<select value="0.1" t="tracktype" v="grade4"/>
-				<select value="0.1" t="tracktype" v="grade5"/>
-				<select value="0.1" t="surface" v="unpaved"/>
-				<select value="0.4" t="surface" v="compacted"/>
-				<select value="0.1" t="surface" v="dirt"/>
-				<select value="0.1" t="surface" v="earth"/>
-				<select value="0.1" t="surface" v="gravel"/>
-				<select value="0.4" t="surface" v="fine_gravel"/>
-				<select value="0.1" t="surface" v="grass"/>
-				<select value="0.1" t="surface" v="ground"/>
-				<select value="0.1" t="surface" v="mud"/>
-				<select value="0.1" t="surface" v="pebblestone"/>
-				<select value="0.1" t="surface" v="sand"/>-->
 				<select value="0.1" t="mtb:scale" v="1"/>
 				<select value="0.1" t="mtb:scale" v="2"/>
 				<select value="0.1" t="class:bicycle:mtb" v="-1"/>
@@ -1656,6 +1667,9 @@
 			<select value="0.2" t="osmand_highway_integrity_brouting" v="8"/>
 			<select value="0.1" t="osmand_highway_integrity_brouting" v="9"/>
 			<select value="0.05" t="osmand_highway_integrity_brouting" v="10"/>
+			<select value="0.05" t="osmand_highway_integrity_brouting" v="11"/>
+			<select value="0.05" t="osmand_highway_integrity_brouting" v="12"/>
+			<select value="0.05" t="osmand_highway_integrity_brouting" v="13"/>
 			<select value="0.65" t="surface" v="cobblestone"/>
 			<select value="0.7" t="surface" v="sett"/>
 			<select value="0.5" t="surface" v="unhewn_cobblestone"/>
