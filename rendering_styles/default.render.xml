@@ -34,12 +34,24 @@
 				<case nameTag="addr:flats"/>
 				<apply textSize="13"/>
 			applies textSize when ref OR addr:flats are contained in the map data (obf)
+    
+            nameTag="" is used to display object name from name or name:* tags
+            which name or name:* tags is used depends on application language settings and system settings
+            for example next statments display river name and skip the rest of data
+            <case minzoom="11" tag="waterway" value="river" textOnPath="true" textMinDistance="80" textOrder="184" nameTag=""/>
+            or
+            <switch minzoom="11" tag="waterway" value="river" textOnPath="true" textMinDistance="80" textOrder="184">
+                <case nameTag=""/>
+            </switch>
 
 			nameTag2 explanation: nameTag2 is the usual string addition
 			engine_v1 (old):  nameTag + " " + nameTag2
 			OpenGL engine: nameTag + " (" + nameTag2 + ")"
+            for example <case nameTag="" nameTag2="lock_name"/> displays "Object name (Object lock name)" on map
 		
 		default iconOrder=90
+
+    ignoreClick (default=false) filters out "non-clickable" objects for App click-on-map (applicable to text/icons)
 
 		Explanation of strokeWidth="dp:dx": dp scales with the screen dpi, dx directly specifies physical pixels.
 			Scaling factors for dp:
@@ -60,7 +72,7 @@
 		<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile"
 			type="string" possibleValues=""/> <!-- linked to profiles -->
 		<renderingProperty attr="baseAppMode" name="Default Rendering mode" description="Map optimization for respective User Profile based on base (parent) profile"
-			type="string" possibleValues="default, car, bicycle, pedestrian, public_transport, boat, ski"/>
+			type="string" possibleValues="default,car,bicycle,pedestrian,public_transport,boat,ski"/>
 		<renderingProperty attr="transportStops" name="Transport stops" description="Public transport stops"
 			type="boolean" possibleValues="" category="transport"/>
 		<renderingProperty attr="showBusRoutes" name="Show bus routes" description="Show bus routes"
@@ -2418,7 +2430,6 @@
 		<renderingConstant name="placeIsolatedDwellingMinZoom" value="13"/>
 		<renderingConstant name="placeSuburbMinZoom" value="12"/>
 		<renderingConstant name="placeNeighbourhoodMinZoom" value="13"/>
-
 		<renderingConstant name="placeVillageIconMinZoom" value="11"/>
 		<renderingConstant name="placeVillageIconMaxZoom" value="12"/>
 		<renderingConstant name="placeHamletIconMinZoom" value="11"/>
@@ -2783,6 +2794,8 @@
 			<!-- point has order 128 -->
 				<case tag="railway" value="subway_entrance"/>
 				<switch>
+					<case tag="addr:housenumber" value="" maxzoom="15" order="-1" optimize="read"/>
+					<case tag="man_made" value="tower" maxzoom="12" order="-1" optimize="read"/>
 					<case tag="" value=""/>
 					<case tag="amenity" value="bench" order="200">
 						<apply_if baseAppMode="car" moreDetailed="false" maxzoom="17" order="-1"/>
@@ -2808,7 +2821,8 @@
 						<apply order="-1"/>
 						<apply_if additional="osmand_large_state=true" order="128"/>
 					</case>-->
-					<case tag="place" value=""/>
+					<case tag="place" value="locality" moreDetailed="false" maxzoom="15" order="-1"/>
+					<case tag="place" value="isolated_dwelling" moreDetailed="false" maxzoom="14" order="-1"/>
 					<case tag="public_transport" value="platform">
 						<apply_if additional="disused=yes" order="60"/>
 						<apply_if maxzoom="16" additional="disused=yes" order="-1"/>
@@ -3262,7 +3276,6 @@
 					</case>
 					<case tag="abandoned:building" value="no" order="-1"/>
 					<case tag="abandoned:building" value=""/>
-					<case tag="disused:building" value="no" order="-1"/>
 					<case tag="disused:building" value=""/>
 					<apply_if moreDetailed="false" minzoom="15" maxzoom="15" order="-1"/>
 				</switch>
@@ -3302,7 +3315,7 @@
 				</case>
 				<case tag="aeroway" value="spaceport" ignorePolygonArea="true" ignorePolygonAsPointArea="true"/>
 				<case tag="place" value="quarter"/>
-				<case tag="addr:housenumber" value="" ignorePolygonAsPointArea="true"/>
+				<case tag="addr:housenumber" value="" ignorePolygonAsPointArea="true" optimize="read"/>
 				<case tag="addr:interpolation" value=""/>
 				<case tag="hazard" value="" order="11"/>
 				<!-- <case tag="indoor" value="room"/>
@@ -3338,6 +3351,23 @@
 				<!-- Highways: 35-57, bridges 70-88 -->
 				<switch>
 					<switch>
+						<case tag="highway" value="unclassified" maxzoom="11" order="-1" optimize="read"/>
+						<case tag="highway" value="residential" maxzoom="11" order="-1" optimize="read"/>
+						<case tag="highway" value="service" maxzoom="12" order="-1" optimize="read"/>
+						<case tag="highway" value="track" maxzoom="11" order="-1" optimize="read"/>
+						<case tag="highway" value="footway" maxzoom="11" order="-1" optimize="read"/>
+						<case tag="highway" value="path" maxzoom="11" order="-1" optimize="read"/>
+						<case tag="highway" value="bridleway" maxzoom="12" order="-1" optimize="read"/>
+						<case tag="highway" value="cycleway" maxzoom="12" order="-1" optimize="read"/>
+						<case tag="railway" value="rail" maxzoom="10" order="-1" optimize="read"/>
+						<case tag="railway" value="light_rail" maxzoom="12" order="-1" optimize="read"/>
+
+						<case tag="power" value="line" maxzoom="13" order="-1" optimize="read"/>
+						<case tag="power" value="minor_line" maxzoom="14" order="-1" optimize="read"/>
+						<case tag="waterway" value="stream" maxzoom="12" order="-1" optimize="read"/>
+						<case tag="waterway" value="drain" maxzoom="12" order="-1" optimize="read"/>
+						<case tag="waterway" value="ditch" maxzoom="12" order="-1" optimize="read"/>
+
 						<case tag="highway" value="motorway" order="84">
 							<apply_if layer="1" order="107"/>
 							<apply_if additional="layer=2" order="137"/>
@@ -3813,7 +3843,7 @@
 					<case tag="natural" value="tree_row">
 						<apply_if baseAppMode="car" moreDetailed="false" maxzoom="17" order="-1"/>
 					</case>
-					<case tag="hazard" value="" order="12"/>
+					<case tag="hazard" value="" order="12" ignorePolygonAsPointArea="true" ignorePolygonArea="true"/>
 					<case tag="building:part" value=""/>
 					<apply_if hideOverground="true" minzoom="15">
 						<apply_if layer="0" order="-1"/>
@@ -5001,27 +5031,28 @@
 			<switch>
 				<!-- Water -->
 				<switch textColor="$waterTextColor" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$waterTextHaloColor" textSize="12" textItalic="true">
-					<case minzoom="2" tag="place" value="ocean" textWrapWidth="17" textOrder="3">
+					<case minzoom="2" tag="place" value="ocean" nameTag="" textWrapWidth="17" textOrder="3">
 						<apply_if minzoom="3" textWrapWidth="20"/>
 					</case>
-					<switch>
+					<switch nameTag="">
 						<case minzoom="5" tag="place" value="sea" textWrapWidth="20" textOrder="33"/>
-						<case minzoom="6" tag="natural" value="water" nameTag="" textWrapWidth="17" textOrder="178" intersectionSizeFactor="1.7"/>
+						<case minzoom="6" tag="natural" value="water" textWrapWidth="17" textOrder="178" intersectionSizeFactor="1.7"/>
 						<apply_if minzoom="6" textSize="13"/>
 					</switch>
 					<case minzoom="8" tag="natural" value="bay" textOnPath="true" textWrapWidth="17" textOrder="179" nameTag=""/>
 					<case minzoom="8" tag="natural" value="strait" textOnPath="true" textWrapWidth="25" textOrder="180" nameTag=""/>
 					<case minzoom="$waterwayStreamTextMinZoom" tag="waterway" value="stream" textOnPath="true" textOrder="206" nameTag=""/>
+					<case minzoom="13" tag="waterway" value="flowline" textOnPath="true" textOrder="206" nameTag=""/>
 					<case minzoom="19" textSize="12" tag="waterway" value="fish_pass" textOnPath="true" textOrder="78" textDy="0" nameTag=""/>
 					<case minzoom="$wadiStreamTextMinZoom" tag="waterway" value="wadi" textOnPath="true" textOrder="213" nameTag=""/>
-					<case minzoom="11" tag="waterway" value="river" textOnPath="true" textMinDistance="80" textOrder="184">
+					<switch minzoom="11" tag="waterway" value="river" textOnPath="true" textMinDistance="80" textOrder="184">
 						<case nameTag="lock_name" nameTag2="lock_ref"/>
 						<case nameTag="" nameTag2="lock_name"/>
-					</case>
-					<case minzoom="13" tag="waterway" value="canal" textOnPath="true" textMinDistance="80" textOrder="185">
+					</switch>
+					<switch minzoom="13" tag="waterway" value="canal" textOnPath="true" textMinDistance="80" textOrder="185">
 						<case nameTag="lock_name" nameTag2="lock_ref"/>
 						<case nameTag="" nameTag2="lock_name"/>
-					</case>
+					</switch>
 					<case hidePOILabels="false" minzoom="17" tag="waterway" value="dock" textDy="7" textOrder="209" nameTag="" />
 					<case minzoom="15" tag="waterway" value="ditch" textOnPath="true" textOrder="210" nameTag=""/>
 					<case minzoom="15" tag="waterway" value="drain" textOnPath="true" textOrder="211" nameTag=""/>
@@ -5826,6 +5857,29 @@
 				<case minzoom="18" tag="office" value="telecommunication" textOrder="159"/>
 				<case minzoom="17" tag="office" value="travel_agent"/>
 				<case minzoom="18" tag="shop" value="estate_agent"/>
+				<case minzoom="18" tag="office" value="financial_advisor"/>
+				<case minzoom="18" tag="office" value="security"/>
+				<case minzoom="18" tag="office" value="construction_company"/>
+				<case minzoom="18" tag="office" value="union"/>
+				<case minzoom="18" tag="office" value="charity"/>
+				<case minzoom="18" tag="office" value="courier"/>
+				<case minzoom="18" tag="office" value="moving_company"/>
+				<case minzoom="18" tag="office" value="surveyor"/>
+				<case minzoom="18" tag="office" value="graphic_design"/>
+				<case minzoom="18" tag="office" value="university"/>
+				<case minzoom="18" tag="office" value="transport"/>
+				<case minzoom="18" tag="office" value="harbour_master"/>
+				<case minzoom="18" tag="office" value="bail_bond_agent"/>
+				<case minzoom="18" tag="office" value="translator"/>
+				<case minzoom="18" tag="office" value="private_investigator"/>
+				<case minzoom="18" tag="office" value="visa"/>
+				<case minzoom="18" tag="office" value="interior_design"/>
+				<case minzoom="18" tag="office" value="chamber"/>
+				<case minzoom="18" tag="office" value="tutoring"/>
+				<case minzoom="18" tag="office" value="politician"/>
+				<case minzoom="18" tag="office" value="adoption_agency"/>
+				<case minzoom="18" tag="office" value="international_organization"/>
+				<case minzoom="18" tag="office" value="airline"/>
 				<case minzoom="18" tag="office" value=""/>
 				<apply_if engine_v1="true" textDy="5"/>
 				<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#aa555555"/>
@@ -6187,6 +6241,7 @@
 					<case minzoom="17" tag="shop" value="toys"/>
 					<case minzoom="17" tag="shop" value="tool_hire"/>
 					<case minzoom="17" tag="shop" value="trade"/>
+					<case minzoom="17" tag="shop" value="travel_agency"/>
 					<case minzoom="17" tag="shop" value="trophy"/>
 					<case minzoom="17" tag="shop" value="tyres"/>
 					<case minzoom="17" tag="shop" value="variety_store"/>
@@ -6342,9 +6397,17 @@
 				<apply_if baseAppMode="car" moreDetailed="false" maxzoom="17" disable="true"/>
 			</switch>
 
-			<case minzoom="16" tag="hazard" value="" nameTag="" textSize="12" textColor="#ff0000" textHaloColor="#ddffecec" textHaloRadius="1:1">
+			<switch minzoom="16" nameTag="">
+				<case tag="hazard" value="nuclear"/>
+				<case tag="hazard" value="erosion"/>
+				<case tag="hazard" value="avalanche"/>
+				<case tag="hazard" value="slippery_road"/>
+				<case tag="hazard" value="flood"/>
+				<case tag="hazard" value="minefield"/>
+				<case minzoom="17" tag="hazard" value=""/>
+				<apply textSize="12" textColor="#ff0000" textHaloColor="#ddffecec" textHaloRadius="1:1"/>
 				<apply_if nightMode="true" textColor="#ffe7e7" textHaloColor="#77b32c2c"/>
-			</case>
+			</switch>
 
 			<!-- type not supported -->
 			<!-- <filter minzoom="16" textSize="13" textWrapWidth="15" tag="landuse" type="point"/> -->
@@ -6909,7 +6972,6 @@
 						<case additional="leaf_type=needleleaved" icon="natural_tree_needleleaved"/>
 						<case additional="leaf_type=leafless" icon="natural_tree_leafless"/>
 						<case additional="tree:type=palm" icon="natural_tree_palm"/>
-						<case additional="tree:type=cypress" icon="natural_tree_cypress"/>
 						<case icon="natural_tree_broadleaved"/>
 						<apply iconVisibleSize="14" intersectionSizeFactor="0.9">
 							<apply_if moreDetailed="false" iconVisibleSize="17" intersectionSizeFactor="1.3"/>
@@ -7580,6 +7642,29 @@
 							<case minzoom="18" tag="office" value="telecommunication" icon="office_telecommunication" iconOrder="159"/>
 							<case minzoom="17" tag="office" value="travel_agent" icon="travel_agent"/>
 							<case minzoom="18" tag="shop" value="estate_agent" icon="estate_agent"/>
+							<case minzoom="18" tag="office" value="financial_advisor" icon="office"/>
+							<case minzoom="18" tag="office" value="security" icon="office"/>
+							<case minzoom="18" tag="office" value="construction_company" icon="office"/>
+							<case minzoom="18" tag="office" value="union" icon="office"/>
+							<case minzoom="18" tag="office" value="charity" icon="office"/>
+							<case minzoom="18" tag="office" value="courier" icon="office"/>
+							<case minzoom="18" tag="office" value="moving_company" icon="office"/>
+							<case minzoom="18" tag="office" value="surveyor" icon="office"/>
+							<case minzoom="18" tag="office" value="graphic_design" icon="office"/>
+							<case minzoom="18" tag="office" value="university" icon="office"/>
+							<case minzoom="18" tag="office" value="transport" icon="office"/>
+							<case minzoom="18" tag="office" value="harbour_master" icon="office"/>
+							<case minzoom="18" tag="office" value="bail_bond_agent" icon="office"/>
+							<case minzoom="18" tag="office" value="translator" icon="office"/>
+							<case minzoom="18" tag="office" value="private_investigator" icon="office"/>
+							<case minzoom="18" tag="office" value="visa" icon="office"/>
+							<case minzoom="18" tag="office" value="interior_design" icon="office"/>
+							<case minzoom="18" tag="office" value="chamber" icon="office"/>
+							<case minzoom="18" tag="office" value="tutoring" icon="office"/>
+							<case minzoom="18" tag="office" value="politician" icon="office"/>
+							<case minzoom="18" tag="office" value="adoption_agency" icon="office"/>
+							<case minzoom="18" tag="office" value="international_organization" icon="office"/>
+							<case minzoom="18" tag="office" value="airline" icon="office"/>
 							<case minzoom="18" tag="office" value="" icon="office"/>
 						</switch>
 						<case minzoom="17" tag="amenity" value="bbq" icon="barbecue" shield="gray_round_shield" iconOrder="100"/>
@@ -8051,6 +8136,7 @@
 						<case minzoom="17" tag="shop" value="tool_hire" icon="tool_hire"/>
 						<case minzoom="17" tag="shop" value="toys" icon="shop_toys"/>
 						<case minzoom="17" tag="shop" value="trade" icon="trade"/>
+						<case minzoom="17" tag="shop" value="travel_agency" icon="travel_agent"/>
 						<case minzoom="17" tag="shop" value="trophy" icon="trophy"/>
 						<case minzoom="17" tag="shop" value="tyres" icon="tyres"/>
 						<case minzoom="17" tag="shop" value="vacuum_cleaner" icon="vacuum_cleaner"/>
@@ -8328,8 +8414,8 @@
 					<case tag="barrier" value="jersey_barrier">
 						<apply_if minzoom="16" icon="barrier_colored_jersey_barrier" shield="barrier_jersey_barrier_shield"/>
 					</case>
-					<apply_if moreDetailed="true" minzoom="16" maxzoom="16" icon="barrier_small_red_2" iconVisibleSize="0" shield=""/>
-					<apply_if moreDetailed="false" minzoom="16" maxzoom="17" icon="barrier_small_red_2" iconVisibleSize="0" shield=""/>
+					<apply_if moreDetailed="true" minzoom="16" maxzoom="16" icon="barrier_small_red_2" iconVisibleSize="0" shield="" ignoreClick="true"/>
+					<apply_if moreDetailed="false" minzoom="16" maxzoom="17" icon="barrier_small_red_2" iconVisibleSize="0" shield="" ignoreClick="true"/>
 					<apply>
 						<switch> <!-- These barriers are passable by bicycle and pedestrian -->
 							<case baseAppMode="bicycle"/>
@@ -8351,7 +8437,7 @@
 			</switch>
 			<switch minzoom="17" iconVisibleSize="10" intersectionSizeFactor="0.8" intersectsWith="">
 				<switch tag="entrance" value="main">
-					<case maxzoom="17" icon="barrier_small_black_3">
+					<case maxzoom="17" icon="barrier_small_black_3" ignoreClick="true">
 						<apply_if nightMode="true" icon="barrier_small_white_3"/>
 						<apply_if showAccess="true">
 							<apply_if additional="access=private" icon="barrier_small_red_3" iconVisibleSize="0" shield=""/>
@@ -8446,8 +8532,8 @@
 				<case tag="hazard" value="slippery_road" icon="hazard_slippery_road_map"/>
 				<case tag="hazard" value="flood" icon="hazard_flood_map"/>
 				<case tag="hazard" value="minefield" icon="hazard_minefield_map"/>
-				<case tag="hazard" value="" icon="hazard_yes"/>
-				<apply iconVisibleSize="0" iconOrder="128" intersectsWith="" intersectionSizeFactor="0"/>
+				<case minzoom="17" tag="hazard" value="" icon="hazard_yes"/>
+				<apply iconVisibleSize="0" iconOrder="178" intersectsWith="" intersectionSizeFactor="0"/>
 			</switch>
 
 
@@ -9847,7 +9933,6 @@
 					<case baseAppMode="bicycle" additional="toll:bicycle=yes" color_3="$tollColor"/>
 					<case baseAppMode="bicycle" additional="toll:bicycle=no"/>
 					<case baseAppMode="car" additional="toll:motorcar=yes" color_3="$tollColor"/>
-					<case baseAppMode="car" additional="toll:motorcar=no"/>
 					<case additional="toll=yes" color_3="$tollColor"/>
 					<apply_if minzoom="10" maxzoom="12" strokeWidth_3="1.3:1.35" pathEffect_3="1_4"/>
 					<apply_if minzoom="13" maxzoom="13" strokeWidth_3="1.5:1.5" pathEffect_3="1_6"/>
@@ -10720,7 +10805,6 @@
 						<case baseAppMode="bicycle" additional="toll:bicycle=yes" color_3="$tollColor"/>
 						<case baseAppMode="bicycle" additional="toll:bicycle=no"/>
 						<case baseAppMode="car" additional="toll:motorcar=yes" color_3="$tollColor"/>
-						<case baseAppMode="car" additional="toll:motorcar=no"/>
 						<case additional="toll=yes" color_3="$tollColor"/>
 						<apply_if maxzoom="14" strokeWidth_3="2:2" pathEffect_3="1_7"/>
 					</switch>
@@ -11220,6 +11304,7 @@
 			<switch minzoom="6">
 				<switch>
 					<case tag="waterway" value="river"/>
+					<case tag="waterway" value="flowline"/>
 					<apply minzoom="13" pathIcon="$waterwayDirectionIcon">
 						<case maxzoom="13" pathIconStep="130"/>
 						<case maxzoom="14" pathIconStep="140"/>
