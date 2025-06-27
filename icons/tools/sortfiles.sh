@@ -417,6 +417,7 @@ icon_alias amenity_fuel_lpg transport_fuel_lpg
 icon_alias amenity_fuel transport_fuel
 icon_alias aeroway_fuel transport_aeroway_fuel
 icon_alias turning_circle transport_turning_circle
+icon_alias turning_circle_night transport_turning_circle_night
 icon_alias waterway_fuel transport_waterway_fuel
 
 icon_alias osmand_access_private functional-icons_osmand_access_private
