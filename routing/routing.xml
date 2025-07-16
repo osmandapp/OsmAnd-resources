@@ -1534,24 +1534,28 @@
 			<select value="0.1" t="barrier" v="debris"/>
 
 			<if param="avoid_unpaved">
-				<!-- prefer "surface" over osmand_highway_integrity_brouting -->
-				<!-- value as half as osmand_highway_integrity_brouting -->
-				<select value="0.15" t="surface" v="ground"/> <!-- 3 -->
-				<select value="0.15" t="surface" v="pebblestone"/> <!-- 3 -->
-				<select value="0.15" t="surface" v="cobblestone"/> <!-- 3 -->
-				<select value="0.15" t="surface" v="earth"/> <!-- 3 -->
-				<select value="0.14" t="surface" v="unpaved"/> <!-- 4 -->
-				<select value="0.14" t="surface" v="stone"/> <!-- 4 -->
-				<select value="0.14" t="surface" v="rock"/> <!-- 4 -->
-				<select value="0.14" t="surface" v="gravel"/> <!-- 4 -->
-				<select value="0.14" t="surface" v="grass"/> <!-- 4 -->
-				<select value="0.14" t="surface" v="dirt"/> <!-- 4 -->
-				<select value="0.14" t="surface" v="rocky"/> <!-- 4 -->
-				<select value="0.13" t="surface" v="sand"/> <!-- 5 -->
-				<select value="0.13" t="surface" v="ice"/> <!-- 5 -->
-				<select value="0.13" t="surface" v="salt"/> <!-- 5 -->
-				<select value="0.13" t="surface" v="snow"/> <!-- 5 -->
-				<select value="0.12" t="surface" v="mud"/> <!-- 6 -->
+				<!-- prefer osmand_highway_integrity_brouting in case of avoid_unpaved+avoid_footways -->
+				<ifnot param="avoid_footways">
+					<!-- surface-based value as half as osmand_highway_integrity_brouting -->
+					<select value="0.30" t="surface" v="fine_gravel"/> <!-- < 3 -->
+					<select value="0.30" t="surface" v="compacted"/> <!-- < 3 -->
+					<select value="0.15" t="surface" v="ground"/> <!-- 3 -->
+					<select value="0.15" t="surface" v="pebblestone"/> <!-- 3 -->
+					<select value="0.15" t="surface" v="cobblestone"/> <!-- 3 -->
+					<select value="0.15" t="surface" v="earth"/> <!-- 3 -->
+					<select value="0.14" t="surface" v="unpaved"/> <!-- 4 -->
+					<select value="0.14" t="surface" v="stone"/> <!-- 4 -->
+					<select value="0.14" t="surface" v="rock"/> <!-- 4 -->
+					<select value="0.14" t="surface" v="gravel"/> <!-- 4 -->
+					<select value="0.14" t="surface" v="grass"/> <!-- 4 -->
+					<select value="0.14" t="surface" v="dirt"/> <!-- 4 -->
+					<select value="0.14" t="surface" v="rocky"/> <!-- 4 -->
+					<select value="0.13" t="surface" v="sand"/> <!-- 5 -->
+					<select value="0.13" t="surface" v="ice"/> <!-- 5 -->
+					<select value="0.13" t="surface" v="salt"/> <!-- 5 -->
+					<select value="0.13" t="surface" v="snow"/> <!-- 5 -->
+					<select value="0.12" t="surface" v="mud"/> <!-- 6 -->
+				</ifnot>
 
 				<select value="0.3" t="osmand_highway_integrity_brouting" v="3"/>
 				<select value="0.28" t="osmand_highway_integrity_brouting" v="4"/>
