@@ -3,7 +3,7 @@
 
 	<renderingProperty attr="appMode" name="Rendering mode" description="Map optimization for respective User Profile" type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
 	<renderingProperty attr="baseAppMode" name="Default Rendering mode" description="Map optimization for respective User Profile based on base (parent) profile"
-		type="string" possibleValues="default, car, bicycle, pedestrian, public_transport, boat, ski"/>
+		type="string" possibleValues="default,car,bicycle,pedestrian,public_transport,boat,ski"/>
 	<renderingProperty attr="transportStops" name="Transport stops" description="Public transport stops" type="boolean" possibleValues="" category="transport"/>
 	<renderingProperty attr="alpineHiking" name="Alpine hiking scale" description="Render paths according to SAC scale" type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="alpineHikingScaleScheme" name="Alpine hiking scale scheme" description="Render paths according to SAC/CAI scale"
@@ -69,7 +69,7 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="measureDistanceLine">
-		<case color="#AA7A0079" strokeWidth="3" pathEffect="5_4"/>
+		<case color="#AAC300C2" strokeWidth="3" pathEffect="5_4"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="markerGuideline">
@@ -1841,17 +1841,6 @@
 				<case tag="leisure" value="nature_reserve" order="9"/>
 				<case tag="boundary" value="protected_area" order="9">
 					<apply_if maxzoom="12" additional="nr_high_density=yes" order="-1"/>
-					<apply_if additional="protect_class=7" order="-1"/>
-					<apply_if additional="protect_class=97" order="-1"/>
-					<apply_if additional="protect_class=98" order="-1"/>
-					<apply_if additional="protect_class=99" order="-1"/>
-					<apply_if additional="protect_class=14" order="-1"/>
-					<apply_if additional="protect_class=15" order="-1"/>
-					<apply_if additional="protect_class=19" order="-1"/>
-					<apply_if additional="protect_class=21" order="-1"/>
-					<apply_if additional="protect_class=22" order="-1"/>
-					<apply_if additional="protect_class=24" order="-1"/>
-					<apply_if additional="protect_class=27" order="-1"/>
 				</case>
 				<case tag="boundary" value="national_park" order="9"/>
 				<case tag="boundary" value="forestry_compartment" order="9"/>
@@ -1920,6 +1909,7 @@
 				<case tag="osmand_national_park" value="line"/>
 				<case tag="osmand_aboriginal_lands" value="line"/>
 				<case tag="osmand_border_zone" value="line"/>
+				<case tag="osmand_protected_area" value="line"/>
 			</switch>
 
 		<!-- Line -->
@@ -3384,6 +3374,7 @@
 					<case minzoom="8" tag="natural" value="bay" nameTag="" textOnPath="true" textWrapWidth="17" textOrder="179"/>
 					<case minzoom="8" tag="natural" value="strait" nameTag="" textOnPath="true" textWrapWidth="25" textOrder="180"/>
 					<case minzoom="13" tag="waterway" value="stream" nameTag="" textOnPath="true" textOrder="206"/>
+					<case minzoom="13" tag="waterway" value="flowline" nameTag="" textOnPath="true" textOrder="206"/>
 					<case minzoom="19" textSize="12" tag="waterway" value="fish_pass" nameTag="" textOnPath="true" textOrder="78" textDy="0"/>
 					<case minzoom="13" tag="waterway" value="wadi" nameTag="" textOnPath="true" textOrder="213"/>
 					<case minzoom="11" tag="waterway" value="river" nameTag="" textOnPath="true" textMinDistance="80" textOrder="184"/>
@@ -3529,6 +3520,7 @@
 					<case minzoom="9" tag="boundary" value="national_park" textOrder="103"/>
 					<case minzoom="15" tag="osmand_national_park" value="line" textOnPath="true" textMinDistance="100"/>
 					<case minzoom="8" maxzoom="17" tag="boundary" value="protected_area" textOrder="270"/>
+					<case minzoom="15" tag="osmand_protected_area" value="line" textOnPath="true" textMinDistance="100"/>
 					<switch minzoom="13" tag="boundary" value="forestry_compartment" textOrder="88" textDy="3">
 						<case nameTag="ref"/>
 						<case nameTag=""/>
@@ -4359,6 +4351,7 @@
 				<case additional="lit_additional=no" shield="street_lamp_lit_no_shield"/>
 			</apply_if>
 		</case>
+		<case minzoom="16" tag="highway" value="turning_circle" icon="turning_circle"/>
 
 		<switch iconOrder="71">
 			<case minzoom="13" tag="building" value="tower" icon="topo_tower" shield="topo_tower_shield" iconVisibleSize="16"/>
@@ -5527,7 +5520,6 @@
 						<case baseAppMode="bicycle" additional="toll:bicycle=yes" color_3="$tollColor"/>
 						<case baseAppMode="bicycle" additional="toll:bicycle=no"/>
 						<case baseAppMode="car" additional="toll:motorcar=yes" color_3="$tollColor"/>
-						<case baseAppMode="car" additional="toll:motorcar=no"/>
 						<case additional="toll=yes" color_3="$tollColor"/>
 						<apply_if maxzoom="14" strokeWidth_3="2:2" pathEffect_3="1_7"/>
 					</switch>-->
@@ -6180,6 +6172,7 @@
 			<switch minzoom="5">
 				<switch>
 					<case tag="waterway" value="river"/>
+					<case tag="waterway" value="flowline"/>
 					<case tag="lock" value="yes" additional="osmand_lock_river=yes"/>
 					<apply minzoom="13" pathIcon="$waterwayDirectionIcon">
 						<case maxzoom="13" pathIconStep="130"/>
@@ -6449,11 +6442,11 @@
 			</switch>
 		</switch>
 		<switch>
-			<case minzoom="7" tag="osmand_national_park" value="line"/>
-			<case minzoom="13" tag="osmand_nature_reserve" value="line"/>
+			<case minzoom="7" tag="osmand_national_park" value="line" color="$boundaryNationalParkColor2"/>
+			<case minzoom="13" tag="osmand_nature_reserve" value="line" color="$boundaryNationalParkColor2"/>
+			<case minzoom="14" tag="osmand_protected_area" value="line"/>
 			<apply_if maxzoom="9" strokeWidth="1.5:1.5"/>
 			<apply_if minzoom="10" strokeWidth="3:3"/>
-			<apply color="$boundaryNationalParkColor2"/>
 		</switch>
 		<switch>
 			<case minzoom="13" tag="osmand_aboriginal_lands" value="line" color="$boundaryAboriginalLandsColor"/>
