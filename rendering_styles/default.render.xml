@@ -3339,6 +3339,7 @@
 				<case tag="osmand_national_park" value="line"/>
 				<case tag="osmand_aboriginal_lands" value="line"/>
 				<case tag="osmand_border_zone" value="line"/>
+				<case tag="osmand_protected_area" value="line"/>
 			</switch>
 
 			<!-- Line 11-100 -->
@@ -5183,6 +5184,7 @@
 						<case minzoom="9" tag="boundary" value="national_park" textOrder="103"/>
 						<case minzoom="15" tag="osmand_national_park" value="line" textOnPath="true" textMinDistance="100"/>
 						<case minzoom="8" tag="boundary" value="protected_area" textOrder="103"/>
+						<case minzoom="15" tag="osmand_protected_area" value="line" textOnPath="true" textMinDistance="100"/>
 						<case minzoom="13" tag="boundary" value="forestry_compartment" nameTag="ref" textOrder="103"/>
 						<case minzoom="13" tag="boundary" value="forestry_compartment" textOrder="103"/>
 						<case hidePOILabels="false" minzoom="18" tag="natural" value="tree" textSize="11" textDy="5" textOrder="252"/>
@@ -11935,12 +11937,13 @@
 				<apply_if minzoom="10" strokeWidth="3:3"/>
 				<apply color="$boundaryNationalParkColor2"/>
 			</switch>
-			<case minzoom="8" tag="boundary" value="protected_area" color="#4400ae3d">
-				<apply>
-					<case maxzoom="13" strokeWidth="2:2" pathEffect="10_5"/>
-					<case minzoom="14" strokeWidth="3.5:3.5" pathEffect="13_8"/>
-				</apply>
-			</case>
+			<switch>
+				<case minzoom="8" tag="boundary" value="protected_area"/>
+				<case minzoom="14" tag="osmand_protected_area" value="line"/>
+				<apply color="#4400ae3d"/>
+				<apply_if maxzoom="13" strokeWidth="2:2" pathEffect="10_5"/>
+				<apply_if minzoom="14" strokeWidth="3.5:3.5" pathEffect="13_8"/>
+			</switch>
 		</switch>
 		<switch>
 			<case minzoom="13" tag="osmand_aboriginal_lands" value="line" color="$boundaryAboriginalLandsColor"/>
