@@ -46,7 +46,12 @@
 						inner-legend-object="highway=track;class:bicycle:mtb=$class"/>
 		</renderingClass>
 		<renderingClass name=".hiking" title="Hiking routes" enable="true">
-			<renderingClass name=".osmc" title="Highlight routes as shields by OSMC" enable="true"/>
+			<renderingClass name=".osmc" title="Hiking routes by OSMC" enable="true">
+				<renderingClass name=".iwn" title="International walking network" enable="true"/>
+				<renderingClass name=".nwn" title="National walking network" enable="true"/>
+				<renderingClass name=".rwn" title="Regional walking network" enable="true"/>
+				<renderingClass name=".lwn" title="Local walking network" enable="true"/>
+			</renderingClass>
 			<renderingClass name=".road_network" title="Hiking route network" enable="true">
 				<renderingClass name=".iwn" title="International walking network" enable="true"/>
 				<renderingClass name=".nwn" title="National walking network" enable="true"/>
@@ -642,10 +647,10 @@
 						</case>
 						<apply>
 							<switch>
-								<case hikingRoutesOSMC="walkingRoutesOSMC" textSize="11" textColor="$hikingRoutesTextColor" textHaloColor="#ccebf4ff" rClass=".route.hiking.osmc">
+								<case hikingRoutesOSMC="walkingRoutesOSMC" textSize="11" textColor="$hikingRoutesTextColor" textHaloColor="#ccebf4ff" rClass=".route.hiking.road_network">
 									<apply_if nightMode="true" textHaloColor="#aa0800a0"/>
 								</case>
-								<case hikingRoutesOSMC="walkingRoutesScopeOSMC" textSize="11" textColor="$hikingRoutesTextColor" textHaloColor="#ccebf4ff" rClass=".route.hiking.road_network">
+								<case hikingRoutesOSMC="walkingRoutesScopeOSMC" textSize="11" textColor="$hikingRoutesTextColor" textHaloColor="#ccebf4ff" rClass=".route.hiking.osmc">
 									<apply_if nightMode="true" textHaloColor="#aa0800a0"/>
 								</case>
 								<case horseRoutes="true" textColor="#00745b" textSize="11" textHaloColor="#ccffffff" rClass=".route.horse">
@@ -662,55 +667,38 @@
 								<apply_if nightMode="true" textColor="#ffffff"/>
 							</switch>
 						</apply>
-						<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" disable="true"/>
+						<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" disable="true" rClass=".route.hiking.node_network"/>
 					</switch>
 					<switch minzoom="14" rClass=".route.hiking.node_network">
-						<!-- old way to display -->
-						<case tag="multiple_node_networks" value="true" nameTag="iwn_ref">
+						<case tag="node_network_point" value="iwn" nameTag="iwn_ref" rClass=".route.hiking.node_network.iwn">
 							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$iwnNodeTextColor"/>
 							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$iwnNodeTextColor"/>
 						</case>
-						<case tag="multiple_node_networks" value="true" nameTag="nwn_ref">
+						<case tag="node_network_point" value="nwn" nameTag="nwn_ref" rClass=".route.hiking.node_network.nwn">
 							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$nwnNodeTextColor"/>
 							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$nwnNodeTextColor"/>
 						</case>
-						<case tag="multiple_node_networks" value="true" nameTag="rwn_ref">
+						<case tag="node_network_point" value="rwn" nameTag="rwn_ref" rClass=".route.hiking.node_network.rwn">
 							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$rwnNodeTextColor"/>
 							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$rwnNodeTextColor"/>
 						</case>
-						<case tag="multiple_node_networks" value="true" nameTag="lwn_ref">
+						<case tag="node_network_point" value="lwn" nameTag="lwn_ref" rClass=".route.hiking.node_network.lwn">
 							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$lwnNodeTextColor"/>
 							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$lwnNodeTextColor"/>
 						</case>
-						<case tag="node_network_point" value="iwn" nameTag="iwn_ref">
+						<case tag="node_network_point" value="multiple" nameTag="iwn_ref" rClass=".route.hiking.node_network.iwn">
 							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$iwnNodeTextColor"/>
 							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$iwnNodeTextColor"/>
 						</case>
-						<case tag="node_network_point" value="nwn" nameTag="nwn_ref">
+						<case tag="node_network_point" value="multiple" nameTag="nwn_ref" rClass=".route.hiking.node_network.nwn">
 							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$nwnNodeTextColor"/>
 							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$nwnNodeTextColor"/>
 						</case>
-						<case tag="node_network_point" value="rwn" nameTag="rwn_ref">
+						<case tag="node_network_point" value="multiple" nameTag="rwn_ref" rClass=".route.hiking.node_network.rwn">
 							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$rwnNodeTextColor"/>
 							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$rwnNodeTextColor"/>
 						</case>
-						<case tag="node_network_point" value="lwn" nameTag="lwn_ref">
-							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$lwnNodeTextColor"/>
-							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$lwnNodeTextColor"/>
-						</case>
-						<case tag="node_network_point" value="multiple" nameTag="iwn_ref">
-							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$iwnNodeTextColor"/>
-							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$iwnNodeTextColor"/>
-						</case>
-						<case tag="node_network_point" value="multiple" nameTag="nwn_ref">
-							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$nwnNodeTextColor"/>
-							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$nwnNodeTextColor"/>
-						</case>
-						<case tag="node_network_point" value="multiple" nameTag="rwn_ref">
-							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$rwnNodeTextColor"/>
-							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$rwnNodeTextColor"/>
-						</case>
-						<case tag="node_network_point" value="multiple" nameTag="lwn_ref">
+						<case tag="node_network_point" value="multiple" nameTag="lwn_ref" rClass=".route.hiking.node_network.lwn">
 							<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" textColor="$lwnNodeTextColor"/>
 							<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" textColor="$lwnNodeTextColor"/>
 						</case>
@@ -722,7 +710,7 @@
 								<case hikingRoutesOSMC="walkingRoutesScopeOSMC" textHaloColor="#ddebf4ff" rClass=".route.hiking.road_network">
 									<apply_if nightMode="true" textHaloColor="#55000000"/>
 								</case>
-								<case hikingRoutesOSMC="walkingRoutesOSMCNodes" textHaloColor="#ccffffff" rClass=".route.hiking.osmc">
+								<case hikingRoutesOSMC="walkingRoutesOSMCNodes" textHaloColor="#ccffffff" rClass=".route.hiking.node_network">
 									<apply_if nightMode="true" textHaloColor="#55000000"/>
 								</case>
 								<apply_if maxzoom="13" textSize="13"/>
@@ -1317,27 +1305,34 @@
 
 		<switch>
 			<switch rClass=".route.hiking">
+				<case tag="route_hiking" value="" additional="!route_hiking_1_network" color="#ff0000" strokeWidth="10"/>
 				<switch tag="route_hiking" value="" hikingRoutesOSMC="walkingRoutesOSMC" minzoom="12" rClass=".route.hiking.osmc">
 					<switch seq="1:10">
-						<case additional="route_hiking_#SEQ_osmc_waycolor=black" color="$osmcBlackColor"/>
-						<case additional="route_hiking_#SEQ_osmc_waycolor=blue" color="$osmcBlueColor"/>
-						<case additional="route_hiking_#SEQ_osmc_waycolor=green" color="$osmcGreenColor"/>
-						<case additional="route_hiking_#SEQ_osmc_waycolor=orange" color="$osmcOrangeColor"/>
-						<case additional="route_hiking_#SEQ_osmc_waycolor=red" color="$osmcRedColor"/>
-						<case additional="route_hiking_#SEQ_osmc_waycolor=yellow" color="$osmcYellowColor"/>
-						<case additional="route_hiking_#SEQ_osmc_waycolor=brown" color="$osmcBrownColor"/>
-						<case additional="route_hiking_#SEQ_osmc_waycolor=purple" color="$osmcPurpleColor"/>
-						<case additional="route_hiking_#SEQ_osmc_waycolor=pink" color="$osmcPinkColor"/>
-						<case additional="route_hiking_#SEQ_osmc_waycolor=teal" color="$osmcTealColor"/>
-						<case color="$osmcDefaultColor"/>
+						<case additional="route_hiking_#SEQ_network=iwn" rClass=".route.hiking.osmc.iwn"/>
+						<case additional="route_hiking_#SEQ_network=nwn" rClass=".route.hiking.osmc.nwn"/>
+						<case additional="route_hiking_#SEQ_network=rwn" rClass=".route.hiking.osmc.rwn"/>
+						<case additional="route_hiking_#SEQ_network=lwn" rClass=".route.hiking.osmc.lwn"/>
+						<case additional="!route_hiking_#SEQ_network"/>
+						<apply color="$osmcDefaultColor"/>
+						<apply_if additional="route_hiking_#SEQ_osmc_waycolor=black" color="$osmcBlackColor"/>
+						<apply_if additional="route_hiking_#SEQ_osmc_waycolor=blue" color="$osmcBlueColor"/>
+						<apply_if additional="route_hiking_#SEQ_osmc_waycolor=green" color="$osmcGreenColor"/>
+						<apply_if additional="route_hiking_#SEQ_osmc_waycolor=orange" color="$osmcOrangeColor"/>
+						<apply_if additional="route_hiking_#SEQ_osmc_waycolor=red" color="$osmcRedColor"/>
+						<apply_if additional="route_hiking_#SEQ_osmc_waycolor=yellow" color="$osmcYellowColor"/>
+						<apply_if additional="route_hiking_#SEQ_osmc_waycolor=brown" color="$osmcBrownColor"/>
+						<apply_if additional="route_hiking_#SEQ_osmc_waycolor=purple" color="$osmcPurpleColor"/>
+						<apply_if additional="route_hiking_#SEQ_osmc_waycolor=pink" color="$osmcPinkColor"/>
+						<apply_if additional="route_hiking_#SEQ_osmc_waycolor=teal" color="$osmcTealColor"/>
 						<apply_if minzoom="13" cap="ROUND"/>
 					</switch>
 				</switch>
-				<switch tag="route_hiking" value="" hikingRoutesOSMC="walkingRoutesOSMCNodes" minzoom="12" rClass=".route.hiking.node_network.$hiking_node_network">
-					<case additional="hiking_node_network=iwn" color="$iwnNodeNetworkColor"/>
-					<case additional="hiking_node_network=nwn" color="$nwnNodeNetworkColor"/>
-					<case additional="hiking_node_network=rwn" color="$rwnNodeNetworkColor"/>
-					<case additional="hiking_node_network=lwn" color="$lwnNodeNetworkColor"/>
+				<switch tag="route_hiking" value="" hikingRoutesOSMC="walkingRoutesOSMCNodes" minzoom="12" rClass=".route.hiking.node_network">
+					<case additional="hiking_node_network=iwn" color="$iwnNodeNetworkColor" rClass=".route.hiking.node_network.iwn"/>
+					<case additional="hiking_node_network=nwn" color="$nwnNodeNetworkColor" rClass=".route.hiking.node_network.nwn"/>
+					<case additional="hiking_node_network=rwn" color="$rwnNodeNetworkColor" rClass=".route.hiking.node_network.rwn"/>
+					<case additional="hiking_node_network=lwn" color="$lwnNodeNetworkColor" rClass=".route.hiking.node_network.lwn"/>
+					<case additional="!hiking_node_network"/>
 					<apply>
 						<case minzoom="12" maxzoom="12" pathEffect="11_1"/>
 						<case maxzoom="13" pathEffect="15_2"/>
