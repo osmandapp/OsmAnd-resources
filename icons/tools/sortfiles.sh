@@ -1011,6 +1011,7 @@ icon_alias golf_pin functional-icons-x2_golf_pin
 icon_alias hang_gliding sport_hang_gliding
 icon_alias windsurfing sport_windsurfing
 icon_alias waterskiing sport_waterskiing
+icon_alias dojo sport_dojo
 
 icon_alias climbing_route sport_climbing_route
 icon_alias climbing_route_bottom sport_climbing_route_bottom
