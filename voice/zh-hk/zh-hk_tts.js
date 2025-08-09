@@ -91,14 +91,14 @@ function populateDictionary(tts) {
 	dictionary["reached_poi"] = tts ? "你已抵達興趣點" : "reached_poi.ogg";
 
 	// ATTENTION
-	dictionary["exceed_limit"] = tts ? "道路限速" : "exceed_limit.ogg";
+	dictionary["exceed_limit"] = tts ? "車速限制" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "注意" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "快相機" : "speed_camera.ogg";
 	dictionary["border_control"] = tts ? "邊境管制" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "鐵路平交道" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "減速壆" : "traffic_calming.ogg";
 	dictionary["toll_booth"] = tts ? "收費亭" : "toll_booth.ogg";
-	dictionary["stop"] = tts ? "停止標誌" : "stop.ogg";
+	dictionary["stop"] = tts ? "停車標誌" : "stop.ogg";
 	dictionary["pedestrian_crosswalk"] = tts ? "行人過路處" : "pedestrian_crosswalk.ogg";
 	dictionary["tunnel"] = tts ? "隧道" : "tunnel.ogg";
 
