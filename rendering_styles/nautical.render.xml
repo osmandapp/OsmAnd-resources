@@ -20,6 +20,7 @@
 	<renderingProperty attr="noPolygons" name="Hide polygons" description="Make all areal land features on map transparent"
 		type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="legend" name="Legend" type="boolean" possibleValues="" category="ui_hidden"/>
+	<renderingProperty attr="eleUnits" name="Elevation units" type="string" possibleValues="meters,feet" defaultValueDescription="default" category="ui_hidden"/>
 
 	<!-- Marine style - lightsectors hide-options -->
 	<renderingProperty attr="hideLightSectors" name="Light Sectors" description="" type="boolean" possibleValues="" category="hide"/>
@@ -301,8 +302,13 @@
 		</case>
 	</renderingAttribute>
 
-	<renderingConstant name="roadRoadColor" value="#fddb8f"/>
-	<renderingConstant name="roadRoadColorNight" value="#464234"/>
+	<renderingAttribute name="roadRoadColor">
+		<case attrColorValue="#E9D3A3">
+			<apply_if nightMode="true" attrColorValue="#80795F"/>
+		</case>
+	</renderingAttribute>
+
+	<renderingConstant name="roadMinZoom" value="14"/>
 	<renderingConstant name="serviceDrivewayRoadColor" value="#fddb8f"/>
 	<renderingConstant name="serviceDrivewayRoadColorNight" value="#464234"/>
 	<renderingConstant name="pedestrianRoadModeColorDay" value="#fddb8f"/>
@@ -484,385 +490,384 @@
 	
 	<order>
 	<!-- Point -->
-		<switch area="false" point="true" objectType="1" order="128">
-			<case tag="" value=""/>
-			<case tag="natural" value=""/>
-			<case tag="waterway" value="waterfall"/>
-			<case tag="whitewater" value="rapid"/>
-			<case tag="whitewater" value="hazard"/>
-			<case tag="waterway" value="lock_gate"/>
-			<case tag="waterway" value=""/>
-			<case tag="natural" value="strait"/>
-			<case tag="natural" value="bay"/>
-			<case tag="natural" value="fjord"/>
-			<case tag="natural" value="hot_spring"/>
-			<case tag="natural" value="geyser"/>
-			<case tag="aeroway" value=""/>
-			<case tag="place" value=""/>
-			<case tag="railway" value="station"/>
-			<case tag="railway" value=""/>
-			<case tag="power" value=""/>
-			<case tag="osmand" value="file_waypoint"/>
-			<case tag="seamark:type" value="anchorage"/>
-			<case tag="seamark:type" value="anchor_berth"/>
-			<case tag="seamark:type" value="berth"/>
-			<case tag="seamark:type" value="gate"/>
-			<case tag="seamark:type" value="production_area"/>
-			<case tag="seamark:type" value="harbour"/>
-			<case tag="leisure" value="marina"/>
-			<case tag="seamark:type" value="hulk"/>
-			<case tag="seamark:type" value="marine_farm"/>
-			<case tag="seamark:type" value="rapids"/>
-			<case tag="seamark:type" value="waterfall"/>
-			<case tag="seamark:type" value="wreck"/>
-			<case tag="seamark:type" value="rock"/>
-			<case tag="seamark:type" value="obstruction" order="4"/>
-			<case tag="seamark" value=""/>
-			<case tag="seamark" value="light"/> <!-- for INT-1 P -->
-			<case tag="seamark:type" value="fishing_facility"/>
-			<case tag="seamark:type" value="seabed_area"/>
-			<case tag="seamark:type" value="weed"/>
-			<case tag="seamark:type" value="seagrass"/>
-			<case tag="seamark:type" value="sand_waves"/>
-			<case tag="seamark:type" value="spring"/>
-		</switch>
-	<!-- Polygon -->
-		<switch area="true" point="false" addPoint="true" objectType="3" order="5">
-			<switch>
-				<case tag="natural" value="coastline"/>
-				<case tag="natural" value="land"/>
-				<case tag="place" value="island"/>
-				<case tag="place" value="islet"/>
+		<switch>
+			<switch area="false" point="true" objectType="1" order="128">
 				<case tag="" value=""/>
-				<apply_if layer="-1" order="3"/>
-				<apply_if additional="layer=-2" order="3"/>
+				<case tag="natural" value=""/>
+				<case tag="waterway" value="waterfall"/>
+				<case tag="whitewater" value="rapid"/>
+				<case tag="whitewater" value="hazard"/>
+				<case tag="waterway" value="lock_gate"/>
+				<case tag="waterway" value=""/>
+				<case tag="natural" value="strait"/>
+				<case tag="natural" value="bay"/>
+				<case tag="natural" value="fjord"/>
+				<case tag="natural" value="hot_spring"/>
+				<case tag="natural" value="geyser"/>
+				<case tag="aeroway" value=""/>
+				<case tag="place" value=""/>
+				<case tag="railway" value="station"/>
+				<case tag="railway" value=""/>
+				<case tag="power" value=""/>
+				<case tag="osmand" value="file_waypoint"/>
+				<case tag="seamark:type" value="anchorage"/>
+				<case tag="seamark:type" value="anchor_berth"/>
+				<case tag="seamark:type" value="berth"/>
+				<case tag="seamark:type" value="gate"/>
+				<case tag="seamark:type" value="production_area"/>
+				<case tag="seamark:type" value="harbour"/>
+				<case tag="leisure" value="marina"/>
+				<case tag="seamark:type" value="hulk"/>
+				<case tag="seamark:type" value="marine_farm"/>
+				<case tag="seamark:type" value="waterfall"/>
+				<case tag="seamark:type" value="wreck"/>
+				<case tag="seamark:type" value="rock"/>
+				<case tag="seamark:type" value="obstruction" order="4"/>
+				<case tag="seamark" value=""/>
+				<case tag="seamark" value="light"/> <!-- for INT-1 P -->
+				<case tag="seamark:type" value="fishing_facility"/>
+				<case tag="seamark:type" value="seabed_area"/>
+				<case tag="seamark:type" value="weed"/>
+				<case tag="seamark:type" value="seagrass"/>
+				<case tag="seamark:type" value="sand_waves"/>
+				<case tag="seamark:type" value="spring"/>
 			</switch>
-			<case tag="military" value="danger_area" order="8"/>
-			<case tag="railway" value="" order="4"/>
-			<case tag="historic" value="ship"/>
-			<case tag="barrier" value="city_wall"/>
-			<case tag="seamark:type" value="fortified_structure"/>
-			<case tag="seamark:type" value="inshore_traffic_zone"/>
-			<case tag="seamark:type" value="military_area"/>
-			<case tag="seamark:type" value="cable_area"/>
-			<case tag="man_made" value="breakwater"/>
-			<case tag="man_made" value="groyne"/>
-			<case tag="man_made" value="bridge"/>
-		</switch>
-		<switch cycle="true" point="false" addPoint="true" objectType="3" order="5">
-			<case tag="area:highway" value="primary"/>
-			<case tag="area:highway" value="secondary"/>
-			<case tag="area:highway" value="tertiary"/>
-			<case tag="area:highway" value="pedestrian"/>
-			<case tag="area:highway" value="service"/>
-			<case tag="area:highway" value="road"/>
-			<case tag="area:highway" value="unclassified"/>
-			<case tag="area:highway" value="service"/>
-			<case tag="highway" value="rest_area"/>
-			<case tag="area:highway" value="residential"/>
-			<case tag="area:highway" value="footway"/>
-			<case tag="leisure" value="nature_reserve" order="9"/>
-			<case tag="landuse" value="military" order="8"/>
-			<case tag="military" value="danger_area" order="8"/>
-			<case tag="waterway" value="dock"/>
-			<case tag="waterway" value="wadi"/>
-			<case tag="seamark:type" value="anchorage"/>
-			<case tag="seamark:type" value="anchor_berth"/>
-			<case tag="seamark:type" value="berth"/>
-			<case tag="seamark:type" value="fairway"/>
-			<case tag="seamark:type" value="fishing_facility"/>
-			<case tag="seamark:type" value="production_area"/>
-			<case tag="seamark:type" value="restricted_area" order="6"/>
-			<case tag="seamark:type" value="obstruction" order="6"/>
-			<case tag="seamark:type" value="harbour" ignorePolygonArea="true" ignorePolygonAsPointArea="true"/>
-			<case tag="leisure" value="marina" ignorePolygonArea="true" ignorePolygonAsPointArea="true"/>
-			<case tag="seamark:type" value="light_minor" ignorePolygonAsPointArea="true"/>
-			<case tag="seamark:type" value="seamark" ignorePolygonAsPointArea="true"/>
-			<case tag="seamark:type" value="hulk"/>
-			<case tag="seamark:type" value="inshore_traffic_zone"/>
-			<case tag="seamark:type" value="marine_farm"/>
-			<case tag="seamark:type" value="military_area"/>
-			<case tag="seamark:type" value="pipeline_area"/>
-			<case tag="seamark:type" value="cable_area" order="8"/>
-			<case tag="seamark:type" value="seabed_area"/>
-			<case tag="seamark:seabed_area:surface" value=""/>
-			<case tag="seamark:type" value="weed"/>
-			<case tag="seamark:type" value="seagrass"/>
-			<case tag="seamark:type" value="sand_waves"/>
-			<case tag="seamark:type" value="spring"/>
-			<case tag="natural" value="cliff"/>
-			<case tag="natural" value="crater"/>
-			<case tag="natural" value="hot_spring"/>
-			<case tag="natural" value="geyser"/>
-			<case tag="natural" value="wetland"/>
-			<case tag="natural" value="bay"/>
-			<case tag="man_made" value="pier" order="10"/>
-			<case tag="man_made" value="bridge" order="10"/>
-			<case tag="building" value="no" order="-1"/>
-			<switch>
-				<case tag="military" value="bunker"/>
-				<case tag="military" value="barracks"/>
-				<case tag="man_made" value="chimney"/>
-				<case tag="building" value="" order="41"/>
-			</switch>
-			<case tag="waterway" value="dam" order="10"/>
-			<case tag="waterway" value="weir" order="10"/>
-<!--			<case tag="waterway" value="rapids"/>-->
-			<case tag="landuse" value="residential" order="4"/>
-			<switch order="5">
-				<case tag="natural" value="water"/>
-				<case tag="waterway" value="riverbank"/>
-				<case tag="aeroway" value="runway"/>
-				<case tag="aeroway" value="aerodrome"/>
-				<case tag="aeroway" value="apron"/>
-				<case tag="aeroway" value="terminal"/>
-				<case tag="aeroway" value="helipad"/>
-			</switch>
-			<case tag="landuse" value="basin" additional="basin=detention" order="-1"/>
-			<case tag="" value="" order="5"/>
-		</switch>
-	<!-- Line -->
-		<switch area="false" objectType="2" order="80">
-			<!-- default line -->
-			<case layer="-1" tag="" value="" order="11"/>
-			<case tag="" value="" order="12"/>
-			<case tag="power" value="line" order="96"/>
-			<case tag="power" value="minor_line" order="96"/>
-			<case tag="railway" value="" order="86">
-				<apply_if layer="-1" order="-1"/>
-				<apply_if additional="layer=-2" order="-1"/>
-				<apply_if layer="1" order="108"/>
-				<apply_if additional="layer=2" order="138"/>
-				<apply_if additional="layer=3" order="167"/>
-				<apply_if additional="service=spur" order="-1"/>
-			</case>
-			<case tag="amenity" value="ferry_terminal"/>
-
-			<case tag="natural" value="cliff"/>
-			<case tag="natural" value="crater"/>
-			<case tag="natural" value="strait"/>
-			<case tag="natural" value="bay"/>
-			<switch order="40">
-				<case tag="seamark:type" value="lock_basin"/>
-				<case tag="seamark:type" value="lock_basin_part"/>
-			</switch>
-			<case tag="barrier" value="city_wall"/>
-			<case tag="seamark:type" value="fortified_structure"/>
-			<case tag="seamark:type" value="fairway" order="6"/>
-			<case tag="seamark:type" value="fishing_facility"/>
-			<case tag="seamark:type" value="gate"/>
-			<case tag="seamark:type" value="inshore_traffic_zone"/>
-			<case tag="seamark:type" value="pipeline_area"/>
-			<case tag="seamark:type" value="rapids"/>
-			<case tag="seamark:type" value="waterfall"/>
-			<case tag="seamark:type" value="recommended_track" order="81"/>
-			<case tag="seamark:type" value="recommended_traffic_lane" order="81"/>
-			<case tag="seamark:type" value="navigation_line" order="81"/>
-			<case tag="seamark:type" value="separation_line"/>
-			<case tag="seamark:type" value="separation_lane"/>
-			<case tag="seamark:type" value="obstruction"/>
-			<case tag="seamark:type" value="seabed_area"/>
-
-			<case tag="waterway" value="dam"/>
-			<case tag="waterway" value="weir" order="19"/>
-			<case tag="waterway" value="lock_gate"/>
-			<case tag="waterway" value="wadi" order="35"/>
-			<case tag="waterway" value="waterfall" order="35"/>
-			<case tag="whitewater" value="rapid" order="35"/>
-			<case tag="waterway" value="" order="9">
-				<apply_if layer="1" order="68"/>
-			</case>
-			<case tag="admin_level" value="" order="62"/>
-			<case tag="administrative" value="" order="62"/>
-			<case tag="boundary" value="" order="62"/>
-			<!-- Highways: 35-57, bridges 70-88 -->
-			<switch>
-				<case tag="highway" value="motorway" order="84">
-					<apply_if layer="1" order="107"/>
-					<apply_if additional="layer=2" order="137"/>
-					<apply_if additional="layer=3" order="165"/>
-					<apply_if layer="-1" order="62"/>
-					<apply_if additional="layer=-2" order="41"/>
-				</case>
-				<case tag="highway" value="motorway_link" order="71">
-					<apply_if layer="1" order="94"/>
-					<apply_if additional="layer=2" order="124"/>
-					<apply_if additional="layer=3" order="152"/>
-					<apply_if layer="-1" order="49"/>
-					<apply_if additional="layer=-2" order="25"/>
-				</case>
-				<case tag="highway" value="trunk" order="83">
-					<apply_if layer="1" order="106"/>
-					<apply_if additional="layer=2" order="136"/>
-					<apply_if additional="layer=3" order="164"/>
-					<apply_if layer="-1" order="61"/>
-					<apply_if additional="layer=-2" order="40"/>
-				</case>
-				<case tag="highway" value="trunk_link" order="70">
-					<apply_if layer="1" order="93"/>
-					<apply_if additional="layer=2" order="123"/>
-					<apply_if additional="layer=3" order="151"/>
-					<apply_if layer="-1" order="48"/>
-					<apply_if additional="layer=-2" order="24"/>
-				</case>
-				<case tag="highway" value="primary" order="82">
-					<apply_if layer="1" order="105"/>
-					<apply_if additional="layer=2" order="135"/>
-					<apply_if additional="layer=3" order="163"/>
-					<apply_if layer="-1" order="60"/>
-					<apply_if additional="layer=-2" order="39"/>
-				</case>
-				<case tag="highway" value="primary_link" order="69">
-					<apply_if layer="1" order="92"/>
-					<apply_if additional="layer=2" order="122"/>
-					<apply_if additional="layer=3" order="150"/>
-					<apply_if layer="-1" order="47"/>
-					<apply_if additional="layer=-2" order="23"/>
-				</case>
-				<case tag="highway" value="secondary" order="81">
-					<apply_if layer="1" order="104"/>
-					<apply_if additional="layer=2" order="134"/>
-					<apply_if additional="layer=3" order="162"/>
-					<apply_if layer="-1" order="59"/>
-					<apply_if additional="layer=-2" order="38"/>
-				</case>
-				<case tag="highway" value="secondary_link" order="68">
-					<apply_if layer="1" order="91"/>
-					<apply_if additional="layer=2" order="121"/>
-					<apply_if additional="layer=3" order="149"/>
-					<apply_if layer="-1" order="46"/>
-					<apply_if additional="layer=-2" order="22"/>
-				</case>
-				<case tag="highway" value="tertiary" order="80">
-					<apply_if layer="1" order="103"/>
-					<apply_if additional="layer=2" order="133"/>
-					<apply_if additional="layer=3" order="161"/>
-					<apply_if layer="-1" order="58"/>
-					<apply_if additional="layer=-2" order="37"/>
-				</case>
-				<case tag="highway" value="tertiary_link" order="67">
-					<apply_if layer="1" order="90"/>
-					<apply_if additional="layer=2" order="120"/>
-					<apply_if additional="layer=3" order="148"/>
-					<apply_if layer="-1" order="45"/>
-					<apply_if additional="layer=-2" order="21"/>
-				</case>
-				<case tag="highway" value="road" order="79">
-					<apply_if layer="1" order="102"/>
-					<apply_if additional="layer=2" order="132"/>
-					<apply_if additional="layer=3" order="160"/>
-					<apply_if layer="-1" order="57"/>
-					<apply_if additional="layer=-2" order="36"/>
-				</case>
-				<case tag="highway" value="unclassified" order="79">
-					<apply_if layer="1" order="102"/>
-					<apply_if additional="layer=2" order="132"/>
-					<apply_if additional="layer=3" order="160"/>
-					<apply_if layer="-1" order="57"/>
-					<apply_if additional="layer=-2" order="36"/>
-				</case>
-				<case tag="highway" value="residential" order="78">
-				<apply_if layer="1" order="101"/>
-					<apply_if additional="layer=2" order="131"/>
-					<apply_if additional="layer=3" order="159"/>
-					<apply_if layer="-1" order="56"/>
-					<apply_if additional="layer=-2" order="35"/>
-				</case>
-				<case tag="highway" value="service" order="77">
-					<apply_if layer="1" order="100"/>
-					<apply_if additional="layer=2" order="130"/>
-					<apply_if additional="layer=3" order="158"/>
-					<apply_if layer="-1" order="55"/>
-					<apply_if additional="layer=-2" order="34"/>
-				</case>
-				<case tag="highway" value="busway" order="77">
-					<apply_if layer="1" order="100"/>
-					<apply_if additional="layer=2" order="130"/>
-					<apply_if additional="layer=3" order="158"/>
-					<apply_if layer="-1" order="55"/>
-					<apply_if additional="layer=-2" order="34"/>
-				</case>
-				<case tag="highway" value="living_street" order="77">
-					<apply_if layer="1" order="100"/>
-					<apply_if additional="layer=2" order="130"/>
-					<apply_if additional="layer=3" order="158"/>
-					<apply_if layer="-1" order="55"/>
-					<apply_if additional="layer=-2" order="34"/>
-				</case>
-				<case tag="highway" value="pedestrian" order="76">
-					<apply_if layer="1" order="99"/>
-					<apply_if additional="layer=2" order="129"/>
-					<apply_if additional="layer=3" order="157"/>
-					<apply_if layer="-1" order="54"/>
-					<apply_if additional="layer=-2" order="33"/>
-				</case>
-				<apply_if additional="construction=yes" order="-1"/>
-			</switch>
-			<case tag="highway" value="track" order="64">
-				<apply_if layer="1" order="89"/>
-				<apply_if additional="layer=2" order="119"/>
-				<apply_if additional="layer=3" order="147"/>
-				<apply_if layer="-1" order="20"/>
-				<apply_if additional="layer=-2" order="19"/>
-			</case>
-			<switch>
+		<!-- Polygon -->
+			<switch area="true" point="false" addPoint="true" objectType="3" order="5">
 				<switch>
-					<case tag="highway" value="path" order="37">
-						<apply_if layer="1" order="110"/>
-						<apply_if additional="layer=2" order="140"/>
-						<apply_if additional="layer=3" order="166"/>
-						<case maxzoom="16" order="-1"/>
-					</case>
-					<case tag="highway" value="footway" order="64">
-						<apply_if layer="1" order="110"/>
-						<apply_if additional="layer=2" order="140"/>
-						<apply_if additional="layer=3" order="166"/>
-						<case maxzoom="16" order="-1"/>
-					</case>
-					<case tag="highway" value="cycleway" order="65">
-						<apply_if layer="1" order="109"/>
-						<apply_if additional="layer=2" order="139"/>
-						<apply_if additional="layer=3" order="146"/>
-						<case maxzoom="16" order="-1"/>
-					</case>
-					<apply_if maxzoom="15" layer="1" order="58"/>
+					<case tag="natural" value="coastline"/>
+					<case tag="natural" value="land"/>
+					<case tag="place" value="island"/>
+					<case tag="place" value="islet"/>
+					<case tag="" value=""/>
+					<apply_if layer="-1" order="3"/>
+					<apply_if additional="layer=-2" order="3"/>
 				</switch>
-				<case tag="highway" value="steps" order="65">
-					<apply_if layer="1" order="111"/>
-					<apply_if additional="layer=2" order="140"/>
-					<apply_if additional="layer=3" order="166"/>
-					<apply_if layer="1" maxzoom="15" order="58"/>
-					<apply_if additional="layer=2" order="140"/>
-					<apply_if additional="layer=3" order="166"/>
-					<apply_if maxzoom="16" order="-1"/>
-				</case>
-				<apply_if layer="-1" order="-1"/>
-				<apply_if additional="layer=-2" order="-1"/>
+				<case tag="military" value="danger_area" order="8"/>
+				<case tag="railway" value="" order="4"/>
+				<case tag="historic" value="ship"/>
+				<case tag="barrier" value="city_wall"/>
+				<case tag="seamark:type" value="fortified_structure"/>
+				<case tag="seamark:type" value="inshore_traffic_zone"/>
+				<case tag="seamark:type" value="military_area"/>
+				<case tag="seamark:type" value="cable_area"/>
+				<case tag="man_made" value="breakwater"/>
+				<case tag="man_made" value="groyne"/>
+				<case tag="man_made" value="bridge"/>
 			</switch>
-			<case tag="route" value="ferry" order="63"/>
-			<case tag="aeroway" value="" order="62"/>
-			<case tag="aeroway" value="runway"/>
-			<case tag="contour" value="depth"/>
-			<case tag="contour" value="elevation" order="15">
-				<apply_if contourDensity="medium_w" additional="contourtype=5m" order="-1"/>
-				<apply_if contourDensity="medium_w" additional="contourtype=10m" order="-1"/>
-				<apply_if contourDensity="medium_w" additional="contourtype=50m" order="-1"/>
-				<apply_if contourDensity="low" additional="contourtype=5m" order="-1"/>
-				<apply_if contourDensity="low" additional="contourtype=10m" order="-1"/>
-				<apply_if contourDensity="low" additional="contourtype=20m" order="-1"/>
-				<apply_if contourDensity="low" additional="contourtype=20f" order="-1"/>
-				<apply_if contourDensity="low" additional="contourtype=40f" order="-1"/>
-			</case>
+			<switch cycle="true" point="false" addPoint="true" objectType="3" order="5">
+				<case tag="area:highway" value="primary"/>
+				<case tag="area:highway" value="secondary"/>
+				<case tag="area:highway" value="tertiary"/>
+				<case tag="area:highway" value="pedestrian"/>
+				<case tag="area:highway" value="service"/>
+				<case tag="area:highway" value="road"/>
+				<case tag="area:highway" value="unclassified"/>
+				<case tag="area:highway" value="service"/>
+				<case tag="highway" value="rest_area"/>
+				<case tag="area:highway" value="residential"/>
+				<case tag="area:highway" value="footway"/>
+				<case tag="leisure" value="nature_reserve" order="9"/>
+				<case tag="landuse" value="military" order="8"/>
+				<case tag="military" value="danger_area" order="8"/>
+				<case tag="waterway" value="dock"/>
+				<case tag="waterway" value="wadi"/>
+				<case tag="seamark:type" value="anchorage"/>
+				<case tag="seamark:type" value="anchor_berth"/>
+				<case tag="seamark:type" value="berth"/>
+				<case tag="seamark:type" value="fairway"/>
+				<case tag="seamark:type" value="fishing_facility"/>
+				<case tag="seamark:type" value="production_area"/>
+				<case tag="seamark:type" value="restricted_area" order="6"/>
+				<case tag="seamark:type" value="obstruction" order="6"/>
+				<case tag="seamark:type" value="harbour" ignorePolygonArea="true" ignorePolygonAsPointArea="true"/>
+				<case tag="leisure" value="marina" ignorePolygonArea="true" ignorePolygonAsPointArea="true"/>
+				<case tag="seamark:type" value="light_minor" ignorePolygonAsPointArea="true"/>
+				<case tag="seamark:type" value="seamark" ignorePolygonAsPointArea="true"/>
+				<case tag="seamark:type" value="hulk"/>
+				<case tag="seamark:type" value="inshore_traffic_zone"/>
+				<case tag="seamark:type" value="marine_farm"/>
+				<case tag="seamark:type" value="military_area"/>
+				<case tag="seamark:type" value="pipeline_area"/>
+				<case tag="seamark:type" value="cable_area" order="8"/>
+				<case tag="seamark:type" value="seabed_area"/>
+				<case tag="seamark:seabed_area:surface" value=""/>
+				<case tag="seamark:type" value="weed"/>
+				<case tag="seamark:type" value="seagrass"/>
+				<case tag="seamark:type" value="sand_waves"/>
+				<case tag="seamark:type" value="spring"/>
+				<case tag="natural" value="cliff"/>
+				<case tag="natural" value="crater"/>
+				<case tag="natural" value="hot_spring"/>
+				<case tag="natural" value="geyser"/>
+				<case tag="natural" value="wetland"/>
+				<case tag="natural" value="bay"/>
+				<case tag="man_made" value="pier" order="10"/>
+				<case tag="man_made" value="bridge" order="10"/>
+				<case tag="building" value="no" order="-1"/>
+				<switch>
+					<case tag="military" value="bunker"/>
+					<case tag="military" value="barracks"/>
+					<case tag="man_made" value="chimney"/>
+					<case tag="building" value="" order="41"/>
+				</switch>
+				<case tag="waterway" value="dam" order="10"/>
+				<case tag="waterway" value="weir" order="10"/>
+				<case tag="landuse" value="residential" order="4"/>
+				<switch order="5">
+					<case tag="natural" value="water"/>
+					<case tag="waterway" value="riverbank"/>
+					<case tag="aeroway" value="runway"/>
+					<case tag="aeroway" value="aerodrome"/>
+					<case tag="aeroway" value="apron"/>
+					<case tag="aeroway" value="terminal"/>
+					<case tag="aeroway" value="helipad"/>
+				</switch>
+				<case tag="landuse" value="basin" additional="basin=detention" order="-1"/>
+				<case tag="" value="" order="5"/>
+			</switch>
+		<!-- Line -->
+			<switch area="false" objectType="2" order="80">
+				<!-- default line -->
+				<case layer="-1" tag="" value="" order="11"/>
+				<case tag="" value="" order="12"/>
+				<case tag="power" value="line" order="96"/>
+				<case tag="power" value="minor_line" order="96"/>
+				<case tag="railway" value="" order="86">
+					<apply_if layer="-1" order="-1"/>
+					<apply_if additional="layer=-2" order="-1"/>
+					<apply_if layer="1" order="108"/>
+					<apply_if additional="layer=2" order="138"/>
+					<apply_if additional="layer=3" order="167"/>
+					<apply_if additional="service=spur" order="-1"/>
+				</case>
+				<case tag="amenity" value="ferry_terminal"/>
 
-			<case tag="barrier" value="" order="20"/>
-			<case tag="man_made" value="embankment" order="11"/>
-			<case tag="embankment" value="yes" order="11"/>
-			<case tag="osmand" value="file_trackline"/>
-			<case tag="osmand" value="file_routeline"/>
-			<!-- Marine style - tags -->
-			<case tag="lightsector" value="arc"/>
-			<case tag="lightsector" value="limit"/>
-			<case tag="lightsector" value="orientation"/>
+				<case tag="natural" value="cliff"/>
+				<case tag="natural" value="crater"/>
+				<case tag="natural" value="strait"/>
+				<case tag="natural" value="bay"/>
+				<switch order="40">
+					<case tag="seamark:type" value="lock_basin"/>
+				</switch>
+				<case tag="barrier" value="city_wall"/>
+				<case tag="seamark:type" value="fortified_structure"/>
+				<case tag="seamark:type" value="fairway" order="6"/>
+				<case tag="seamark:type" value="fishing_facility"/>
+				<case tag="seamark:type" value="gate"/>
+				<case tag="seamark:type" value="inshore_traffic_zone"/>
+				<case tag="seamark:type" value="pipeline_area"/>
+				<case tag="seamark:type" value="waterfall"/>
+				<case tag="seamark:type" value="recommended_track" order="81"/>
+				<case tag="seamark:type" value="recommended_traffic_lane" order="81"/>
+				<case tag="seamark:type" value="navigation_line" order="81"/>
+				<case tag="seamark:type" value="separation_line"/>
+				<case tag="seamark:type" value="separation_lane"/>
+				<case tag="seamark:type" value="obstruction"/>
+				<case tag="seamark:type" value="seabed_area"/>
+
+				<case tag="waterway" value="dam"/>
+				<case tag="waterway" value="weir" order="19"/>
+				<case tag="waterway" value="lock_gate"/>
+				<case tag="waterway" value="wadi" order="35"/>
+				<case tag="waterway" value="waterfall" order="35"/>
+				<case tag="whitewater" value="rapid" order="35"/>
+				<case tag="waterway" value="" order="9">
+					<apply_if layer="1" order="68"/>
+				</case>
+				<case tag="admin_level" value="" order="62"/>
+				<case tag="administrative" value="" order="62"/>
+				<case tag="boundary" value="" order="62"/>
+				<!-- Highways: 35-57, bridges 70-88 -->
+				<switch>
+					<case tag="highway" value="motorway" order="84">
+						<apply_if layer="1" order="107"/>
+						<apply_if additional="layer=2" order="137"/>
+						<apply_if additional="layer=3" order="165"/>
+						<apply_if layer="-1" order="62"/>
+						<apply_if additional="layer=-2" order="41"/>
+					</case>
+					<case tag="highway" value="motorway_link" order="71">
+						<apply_if layer="1" order="94"/>
+						<apply_if additional="layer=2" order="124"/>
+						<apply_if additional="layer=3" order="152"/>
+						<apply_if layer="-1" order="49"/>
+						<apply_if additional="layer=-2" order="25"/>
+					</case>
+					<case tag="highway" value="trunk" order="83">
+						<apply_if layer="1" order="106"/>
+						<apply_if additional="layer=2" order="136"/>
+						<apply_if additional="layer=3" order="164"/>
+						<apply_if layer="-1" order="61"/>
+						<apply_if additional="layer=-2" order="40"/>
+					</case>
+					<case tag="highway" value="trunk_link" order="70">
+						<apply_if layer="1" order="93"/>
+						<apply_if additional="layer=2" order="123"/>
+						<apply_if additional="layer=3" order="151"/>
+						<apply_if layer="-1" order="48"/>
+						<apply_if additional="layer=-2" order="24"/>
+					</case>
+					<case tag="highway" value="primary" order="82">
+						<apply_if layer="1" order="105"/>
+						<apply_if additional="layer=2" order="135"/>
+						<apply_if additional="layer=3" order="163"/>
+						<apply_if layer="-1" order="60"/>
+						<apply_if additional="layer=-2" order="39"/>
+					</case>
+					<case tag="highway" value="primary_link" order="69">
+						<apply_if layer="1" order="92"/>
+						<apply_if additional="layer=2" order="122"/>
+						<apply_if additional="layer=3" order="150"/>
+						<apply_if layer="-1" order="47"/>
+						<apply_if additional="layer=-2" order="23"/>
+					</case>
+					<case tag="highway" value="secondary" order="81">
+						<apply_if layer="1" order="104"/>
+						<apply_if additional="layer=2" order="134"/>
+						<apply_if additional="layer=3" order="162"/>
+						<apply_if layer="-1" order="59"/>
+						<apply_if additional="layer=-2" order="38"/>
+					</case>
+					<case tag="highway" value="secondary_link" order="68">
+						<apply_if layer="1" order="91"/>
+						<apply_if additional="layer=2" order="121"/>
+						<apply_if additional="layer=3" order="149"/>
+						<apply_if layer="-1" order="46"/>
+						<apply_if additional="layer=-2" order="22"/>
+					</case>
+					<case tag="highway" value="tertiary" order="80">
+						<apply_if layer="1" order="103"/>
+						<apply_if additional="layer=2" order="133"/>
+						<apply_if additional="layer=3" order="161"/>
+						<apply_if layer="-1" order="58"/>
+						<apply_if additional="layer=-2" order="37"/>
+					</case>
+					<case tag="highway" value="tertiary_link" order="67">
+						<apply_if layer="1" order="90"/>
+						<apply_if additional="layer=2" order="120"/>
+						<apply_if additional="layer=3" order="148"/>
+						<apply_if layer="-1" order="45"/>
+						<apply_if additional="layer=-2" order="21"/>
+					</case>
+					<case tag="highway" value="road" order="79">
+						<apply_if layer="1" order="102"/>
+						<apply_if additional="layer=2" order="132"/>
+						<apply_if additional="layer=3" order="160"/>
+						<apply_if layer="-1" order="57"/>
+						<apply_if additional="layer=-2" order="36"/>
+					</case>
+					<case tag="highway" value="unclassified" order="79">
+						<apply_if layer="1" order="102"/>
+						<apply_if additional="layer=2" order="132"/>
+						<apply_if additional="layer=3" order="160"/>
+						<apply_if layer="-1" order="57"/>
+						<apply_if additional="layer=-2" order="36"/>
+					</case>
+					<case tag="highway" value="residential" order="78">
+					<apply_if layer="1" order="101"/>
+						<apply_if additional="layer=2" order="131"/>
+						<apply_if additional="layer=3" order="159"/>
+						<apply_if layer="-1" order="56"/>
+						<apply_if additional="layer=-2" order="35"/>
+					</case>
+					<case tag="highway" value="service" order="77">
+						<apply_if layer="1" order="100"/>
+						<apply_if additional="layer=2" order="130"/>
+						<apply_if additional="layer=3" order="158"/>
+						<apply_if layer="-1" order="55"/>
+						<apply_if additional="layer=-2" order="34"/>
+					</case>
+					<case tag="highway" value="busway" order="77">
+						<apply_if layer="1" order="100"/>
+						<apply_if additional="layer=2" order="130"/>
+						<apply_if additional="layer=3" order="158"/>
+						<apply_if layer="-1" order="55"/>
+						<apply_if additional="layer=-2" order="34"/>
+					</case>
+					<case tag="highway" value="living_street" order="77">
+						<apply_if layer="1" order="100"/>
+						<apply_if additional="layer=2" order="130"/>
+						<apply_if additional="layer=3" order="158"/>
+						<apply_if layer="-1" order="55"/>
+						<apply_if additional="layer=-2" order="34"/>
+					</case>
+					<case tag="highway" value="pedestrian" order="76">
+						<apply_if layer="1" order="99"/>
+						<apply_if additional="layer=2" order="129"/>
+						<apply_if additional="layer=3" order="157"/>
+						<apply_if layer="-1" order="54"/>
+						<apply_if additional="layer=-2" order="33"/>
+					</case>
+					<apply_if additional="construction=yes" order="-1"/>
+				</switch>
+				<case tag="highway" value="track" order="64">
+					<apply_if layer="1" order="89"/>
+					<apply_if additional="layer=2" order="119"/>
+					<apply_if additional="layer=3" order="147"/>
+					<apply_if layer="-1" order="20"/>
+					<apply_if additional="layer=-2" order="19"/>
+				</case>
+				<switch>
+					<switch>
+						<case tag="highway" value="path" order="37">
+							<apply_if layer="1" order="110"/>
+							<apply_if additional="layer=2" order="140"/>
+							<apply_if additional="layer=3" order="166"/>
+							<case maxzoom="16" order="-1"/>
+						</case>
+						<case tag="highway" value="footway" order="64">
+							<apply_if layer="1" order="110"/>
+							<apply_if additional="layer=2" order="140"/>
+							<apply_if additional="layer=3" order="166"/>
+							<case maxzoom="16" order="-1"/>
+						</case>
+						<case tag="highway" value="cycleway" order="65">
+							<apply_if layer="1" order="109"/>
+							<apply_if additional="layer=2" order="139"/>
+							<apply_if additional="layer=3" order="146"/>
+							<case maxzoom="16" order="-1"/>
+						</case>
+						<apply_if maxzoom="15" layer="1" order="58"/>
+					</switch>
+					<case tag="highway" value="steps" order="65">
+						<apply_if layer="1" order="111"/>
+						<apply_if additional="layer=2" order="140"/>
+						<apply_if additional="layer=3" order="166"/>
+						<apply_if layer="1" maxzoom="15" order="58"/>
+						<apply_if additional="layer=2" order="140"/>
+						<apply_if additional="layer=3" order="166"/>
+						<apply_if maxzoom="16" order="-1"/>
+					</case>
+					<apply_if layer="-1" order="-1"/>
+					<apply_if additional="layer=-2" order="-1"/>
+				</switch>
+				<case tag="route" value="ferry" order="63"/>
+				<case tag="aeroway" value="" order="62"/>
+				<case tag="aeroway" value="runway"/>
+				<case tag="contour" value="depth"/>
+				<case tag="contour" value="elevation" order="15">
+					<apply_if contourDensity="medium_w" additional="contourtype=5m" order="-1"/>
+					<apply_if contourDensity="medium_w" additional="contourtype=10m" order="-1"/>
+					<apply_if contourDensity="medium_w" additional="contourtype=50m" order="-1"/>
+					<apply_if contourDensity="low" additional="contourtype=5m" order="-1"/>
+					<apply_if contourDensity="low" additional="contourtype=10m" order="-1"/>
+					<apply_if contourDensity="low" additional="contourtype=20m" order="-1"/>
+					<apply_if contourDensity="low" additional="contourtype=20f" order="-1"/>
+					<apply_if contourDensity="low" additional="contourtype=40f" order="-1"/>
+				</case>
+
+				<case tag="barrier" value="" order="20"/>
+				<case tag="man_made" value="embankment" order="11"/>
+				<case tag="embankment" value="yes" order="11"/>
+				<case tag="osmand" value="file_trackline"/>
+				<case tag="osmand" value="file_routeline"/>
+        <!-- Marine style - tags -->
+			  <case tag="lightsector" value="arc"/>
+			  <case tag="lightsector" value="limit"/>
+			  <case tag="lightsector" value="orientation"/>
+			</switch>
+			<apply_if additional="proposed=yes" order="-1"/>
 		</switch>
 	</order>
 
@@ -1288,7 +1293,6 @@
 				<apply_if nightMode="true" textColor="$defaultTextColorNight" textHaloColor="#77464234"/>
 			</switch>
 			<switch minzoom="16" nameTag="">
-				<case tag="seamark:type" value="rapids"/>
 				<case tag="whitewater" value="put_in" textDy="-4"/>
 				<case tag="whitewater" value="egress" textDy="-4"/>
 				<case tag="whitewater" value="put_in;egress" textDy="-4"/>
@@ -1327,21 +1331,35 @@
 
 			<switch textColor="#654321" textWrapWidth="25" textHaloColor="#aafddb8f" textHaloRadius="$textHaloRadiusDay" textItalic="true">
 				<switch>
-					<case minzoom="12" tag="natural" value="peak">
-						<case maxzoom="13" nameTag="ele" textSize="11" textOrder="60"/>
-						<case maxzoom="14" nameTag="" nameTag2="ele" textSize="12" textOrder="60"/>
-						<case maxzoom="16" nameTag="" nameTag2="ele" textSize="13" textOrder="65"/>
-						<case minzoom="17" nameTag="" nameTag2="ele" textSize="16" textOrder="65"/>
-					</case>
+					<switch minzoom="10" tag="natural" additional="osmand_prominent_peak=yes" nameTag="">
+						<case value="peak"/>
+						<case value="volcano" textHaloColor="#99ffd6c0"/>
+						<apply textSize="11" intersectionMargin="5" textOrder="38" textDy="0"/>
+					</switch>
+					<switch>
+						<case minzoom="12" tag="natural" value="peak" textOrder="80"/>
+						<case minzoom="12" tag="natural" value="volcano" textOrder="79"/>
+						<apply>
+							<switch>
+								<case eleUnits="feet" nameTag="ele_feet"/>
+								<case eleUnits="feet" nameTag="" nameTag2="ele_feet"/>
+								<case eleUnits="meters" nameTag="ele" />
+								<case eleUnits="meters" nameTag="" nameTag2="ele"/>
+								<case eleUnits="" nameTag="ele" />
+								<case eleUnits="" nameTag="" nameTag2="ele"/>
+								<apply_if maxzoom="12" textSize="11" intersectionMargin="15"/>
+								<apply_if minzoom="13" maxzoom="14" textSize="12"/>
+								<apply_if minzoom="15" maxzoom="16" textSize="13"/>
+								<apply_if minzoom="17" textSize="15"/>
+								<apply_if maxzoom="14" engine_v1="true" textDy="-2"/>
+								<apply_if minzoom="15" engine_v1="true" textDy="-1"/>
+							</switch>
+						</apply>
+					</switch>
 					<case minzoom="14" textSize="12" tag="natural" value="ridge" nameTag="" textOnPath="true" textDy="0"/>
 					<case minzoom="13" textSize="14" tag="natural" value="crater" nameTag="" textColor="#4e0d0d" textDy="-4"/>
 					<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffcc9b" textHaloColor="#77464234"/>
 				</switch>
-				<case minzoom="11" tag="natural" value="volcano" nameTag="" nameTag2="ele" textOrder="53" textHaloColor="#99ffd6c0">
-					<case maxzoom="12" textSize="12"/>
-					<case minzoom="13" textSize="13"/>
-					<apply_if nightMode="true" textColor="#ffcc9b" textHaloColor="#77464234"/>
-				</case>
 				<apply_if engine_v1="false" textDy="0"/>
 			</switch>
 			<case minzoom="9" tag="natural" value="cape" nameTag="" textSize="12" textColor="#510060" textHaloColor="#55fbe2ff" textWrapWidth="25" textHaloRadius="$textHaloRadiusDay" textItalic="true" textOrder="140">
@@ -1359,6 +1377,7 @@
 				<case minzoom="8" tag="natural" value="bay" nameTag="" textOnPath="true" textWrapWidth="17" textOrder="229"/>
 				<case minzoom="8" tag="natural" value="strait" nameTag="" textOnPath="true" textWrapWidth="25" textOrder="230"/>
 				<case minzoom="13" tag="waterway" value="stream" nameTag="" textOnPath="true" textOrder="256"/>
+				<case minzoom="13" tag="waterway" value="flowline" nameTag="" textOnPath="true" textOrder="256"/>
 				<case minzoom="13" tag="waterway" value="wadi" nameTag="" textOnPath="true" textOrder="263"/>
 				<case minzoom="11" tag="waterway" value="river" nameTag="" textOnPath="true" textMinDistance="80" textOrder="234"/>
 				<case minzoom="13" tag="waterway" value="canal" nameTag="" textOnPath="true" textMinDistance="80" textOrder="235"/>
@@ -1378,12 +1397,7 @@
 					<case tag="seamark:type" value="waterfall" nameTag2="height"/>
 					<apply textWrapWidth="20" textOnPath="true" textOrder="255"/>
 				</switch>
-				<switch minzoom="17" nameTag="">
-					<case tag="waterway" value="rapids"/>
-					<case tag="seamark:waterway" value="rapids"/>
-					<apply textSize="11" textOnPath="true"/>
-<!--					<apply_if engine_v1="true" textDy="6"/>-->
-				</switch>
+				<case minzoom="17" tag="seamark:waterway" value="rapids" nameTag="" textSize="11" textOnPath="true"/>
 
 				<case minzoom="13" tag="landuse" value="water" nameTag="" textWrapWidth="20"/>
 				<case minzoom="13" tag="landuse" value="reservoir" nameTag="" textWrapWidth="20"/>
@@ -1447,7 +1461,6 @@
 					<case minzoom="18" tag="seamark:type" value="pile" nameTag="seamark:name"/>
 					<switch minzoom="16" textOnPath="true" textOrder="130">
 						<case tag="seamark:type" value="lock_basin"/>
-						<case tag="seamark:type" value="lock_basin_part"/>
 						<case minzoom="17" tag="seamark:type" value="gate"/>
 					</switch>
 					<apply textWrapWidth="19"/>
@@ -3426,7 +3439,6 @@
 			<case tag="area:highway" value="primary"/>
 			<case tag="area:highway" value="secondary"/>
 			<case tag="area:highway" value="tertiary"/>
-			<case tag="area:highway" value="road"/>
 			<case tag="area:highway" value="unclassified"/>
 			<case tag="area:highway" value="residential"/>
 			<case tag="man_made" value="bridge"/>
@@ -3675,7 +3687,6 @@
 
 		<switch minzoom="14">
 			<case tag="seamark:type" value="lock_basin"/>
-			<case tag="seamark:type" value="lock_basin_part"/>
 			<apply>
 				<case maxzoom="14" strokeWidth="4:4" shadowRadius="1:1"/>
 				<case maxzoom="15" strokeWidth="5:5" shadowRadius="1.5:1.5"/>
@@ -3960,11 +3971,6 @@
 					<apply_if nightMode="true" color="$residentialRoadColorNight"/>
 				</apply>
 			</switch>
-			<case tag="highway" value="road">
-				<apply color="$roadRoadColor">
-					<apply_if nightMode="true" color="$roadRoadColorNight"/>
-				</apply>
-			</case>
 			<apply shadowRadius=":1" cap="ROUND" color_0="#000000">
 				<switch>
 					<case maxzoom="14" strokeWidth="2:2"/>
@@ -3985,6 +3991,20 @@
 					<case minzoom="19" strokeWidth_0="12:15"/>
 					<apply_if nightMode="true" color_0="$bridgeColorNight"/>
 				</apply_if>
+			</apply>
+		</switch>
+
+		<switch minzoom="$roadMinZoom">
+			<case tag="highway" value="road"/>
+			<apply color="$roadRoadColor" shadowRadius="0">
+				<switch>
+					<case minzoom="14" maxzoom="14" strokeWidth="0.6:0.6"/>
+					<case minzoom="15" maxzoom="15" strokeWidth="1.3:1.3"/>
+					<case minzoom="16" maxzoom="16" strokeWidth="1.7:1.7"/>
+					<case minzoom="17" maxzoom="17" strokeWidth="2.5:2.5"/>
+					<case minzoom="18" maxzoom="18" strokeWidth="3:3"/>
+					<case minzoom="19" strokeWidth="4:4"/>
+				</switch>
 			</apply>
 		</switch>
 
@@ -4082,6 +4102,7 @@
 			<switch minzoom="5">
 				<switch>
 					<case tag="waterway" value="river"/>
+					<case tag="waterway" value="flowline"/>
 					<case tag="lock" value="yes" additional="osmand_lock_river=yes"/>
 					<apply minzoom="6" pathIcon="arrow_blue_big">
 						<case maxzoom="11" pathIconStep="70"/>
@@ -4238,7 +4259,6 @@
 			<case tag="seamark:type" value="gate"/>
 			<case tag="waterway" value="lock_gate"/>
 			<case minzoom="15" tag="whitewater" value="rapid" pathEffect="1_12" cap="ROUND"/>
-			<case minzoom="15" tag="seamark:type" value="rapids" pathEffect="1_12" cap="ROUND"/>
 			<apply color="#555555">
 				<case maxzoom="15" strokeWidth="1:1"/>
 				<case maxzoom="17" strokeWidth="2:2"/>
@@ -4249,7 +4269,6 @@
 
 		<switch minzoom="13">
 			<case tag="seamark:type" value="wall"/>
-			<case tag="seamark:type" value="dyke"/>
 			<case tag="seamark:type" value="oil_barrier"/>
 			<case tag="man_made" value="groyne"/>
 			<case tag="man_made" value="breakwater"/>

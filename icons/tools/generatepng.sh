@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 pushd . > /dev/null
 cd `dirname $BASH_SOURCE` > /dev/null
@@ -12,6 +12,9 @@ SIZES_NOMX=(36 24 18 12)
 SIZES_NOMX2=(96 64 48 32) 
 SIZES_NOMX4=(192 128 96 64) 
 SIZES_POI=(72 48 36 24) 
+SVG_SIZE=12
+SVG_SIZE_X2=32
+SVG_SIZE_X4=64
 
 SVGFOLDER=${BASEFOLDER}/svg/
 OUTPUT_SVG_FOLDER=${BASEFOLDER}/svg-res
@@ -53,10 +56,11 @@ genMapIconsNoScale() {
       FILENAME=${FILENAME%.*}
 
       if [[ "${COLORED}" = 'colored' ]]; then
-        cp "${FILE}" "${OUTPUT_SVG_FOLDER}/c_${FILENAME}.svg"
+        COLOR_OUTPUT_FILE=c_${FILENAME}.svg
       else
-        cp "${FILE}" "${OUTPUT_SVG_FOLDER}/${FILENAME}.svg"
+        COLOR_OUTPUT_FILE=${FILENAME}.svg
       fi
+      cp ${FILE} "${OUTPUT_SVG_FOLDER}/${COLOR_OUTPUT_FILE}"
       cp ${FILE} ${VDFOLDERSVG}/${FILENAME}.svg
       rsvg-convert -f png ${FILE} -x $MDPI -y $MDPI -o ${OUTPUTFOLDER}mdpi/${FILENAME}.png
       rsvg-convert -f png ${FILE} -x $HDPI -y $HDPI -o ${OUTPUTFOLDER}hdpi/${FILENAME}.png
@@ -83,8 +87,10 @@ genMapIconsStdSize() {
   VDFOLDEROUT=${VDFOLDER}/map
   if [ "$3" == 'x4' ]; then 
     SIZES=("${SIZES_NOMX4[@]}")
+    SVG_SIZE=${SVG_SIZE_X4}
   elif [ "$3" == 'x2' ]; then 
     SIZES=("${SIZES_NOMX2[@]}")
+    SVG_SIZE=${SVG_SIZE_X2}
   elif [ "$3" == 'poi' ]; then 
     SIZES=("${SIZES_POI[@]}")
     FOLDERS=("${FOLDERS_POI[@]}")
@@ -94,10 +100,11 @@ genMapIconsStdSize() {
   fi
 
   # regex to replace value of first width and height
-  DEFAULT_SIZE=${SIZES[-1]}
-  SED_REPLACE_WIDTH="0,/\swidth=\"[0-9]+\"/s/(\swidth=\")[0-9]+\"/\1${DEFAULT_SIZE}\"/"
-  SED_REPLACE_HEIGHT="0,/\sheight=\"[0-9]+\"/s/(\sheight=\")[0-9]+\"/\1${DEFAULT_SIZE}\"/"
-  SED_RESIZE_SVG="$SED_REPLACE_WIDTH;$SED_REPLACE_HEIGHT"
+  #echo "${SIZES[0]}"
+  #DEFAULT_SIZE=12 #${SIZES[-1]}
+  #SED_REPLACE_WIDTH="0,/\swidth=\"[0-9]+\"/s/(\swidth=\")[0-9]+\"/\1${DEFAULT_SIZE}\"/"
+  #SED_REPLACE_HEIGHT="0,/\sheight=\"[0-9]+\"/s/(\sheight=\")[0-9]+\"/\1${DEFAULT_SIZE}\"/"
+ # SED_RESIZE_SVG="$SED_REPLACE_WIDTH;$SED_REPLACE_HEIGHT"
 
   createSvgFolder ${1} ${3}
 
@@ -124,11 +131,13 @@ genMapIconsStdSize() {
       else
         OUTPUT_SVG_PATH="${OUTPUT_SVG_FOLDER}/${FILENAME}.svg"
       fi
-      sed -E "${SED_RESIZE_SVG}" "${VDFOLDERSVG}${FILENAME}.svg" > "${OUTPUT_SVG_PATH}"
-
+      echo "Resize $COLOURED_SVG - $SVG_SIZE $OUTPUT_SVG_PATH "
+      rsvg-convert -f svg ${COLOURED_SVG} -w $SVG_SIZE -h $SVG_SIZE -o "$OUTPUT_SVG_PATH"
+      
       for (( j = 0 ; j < ${#SIZES[@]}; j++ )) do
         SZ=${SIZES[j]}
         RES_FILE=${OUTPUTFOLDER}${FOLDERS[j]}/${FILENAME}.png
+        echo "Create PNG $SZ x $SZ $RES_FILE "
         rsvg-convert -f png "$COLOURED_SVG" -w ${SZ} -h ${SZ}  -o ${RES_FILE} #> /dev/null 2>&1
         # RES_SVG_FILE=${OUTPUTFOLDER}${FOLDERS[j]}/${FILENAME}.svg
         # cp "$COLOURED_SVG" ${RES_SVG_FILE}
@@ -192,7 +201,7 @@ generateBothMapPOIPng() {
 } 
 
   ### UNCOMMENT to generate only 1 category
-  # generateBothMapPOIPng 'transport' '#ffffff' '#ff8f00'
+  # genMapIconsNoScale 'ais' 'colored'
   # exit 0;
 
   genMapIconsNoScale 'shaders' 'colored'
@@ -288,4 +297,6 @@ generateBothMapPOIPng() {
   generateBothMapPOIPng 'xmas' '#aa2001' '#ff8f00'
   generateBothMapPOIPng 'special' '#ffffff' '#ff8f00'
   generateBothMapPOIPng 'logos' '#ffffff' '#ff8f00'
+  generateBothMapPOIPng 'activities' '#ffffff' '#ff8f00'
 
+  genMapIconsNoScale 'ais' 'colored'

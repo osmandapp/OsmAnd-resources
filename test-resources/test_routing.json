@@ -170,7 +170,8 @@
   },
   {
     "testName": "10.Longer route preferred? https://github.com/osmandapp/Osmand/issues/1941",
-    "description": "short_way строит не самый короткий путь. Транзит через MEX 261 короче.",
+    "description": "short_way строит не самый короткий путь. Транзит через MEX 261 короче. Тестируем короткий маршрут.",
+    "url": "https://test.osmand.net/map/navigate/?start=19.330748,-90.739367&end=18.278334,-91.095371&profile=car&params=car,short_way#10/18.8239/-90.7182",
     "params": {
       "vehicle": "car",
       "short_way": "true",
@@ -190,7 +191,10 @@
   },
   {
     "testName": "10.1 Longer route preferred? https://github.com/osmandapp/Osmand/issues/1941",
-    "description": "short_way строит не самый короткий путь. Транзит через MEX 261 короче.",
+    "description": "short_way строит не самый короткий путь. Транзит через MEX 261 короче. Тестируем оптимальный маршрут.",
+    "url": "https://test.osmand.net/map/navigate/?start=19.330748,-90.739367&end=18.278334,-91.095371&profile=car#10/18.8239/-90.7182",
+    "comment": "Ignored from 2024-08-03 because *today* MEX 261 is always preferred both on default and short_way modes according to the URL of the route",
+    "ignore": true,
     "params": {
       "vehicle": "car"
     },
@@ -845,10 +849,10 @@
     }
   },
   {
-    "testName": "49. Routing by loop crash fix. https://github.com/osmandapp/OsmAnd/issues/14113" ,
+    "testName": "49. Routing by loop crash fix. https://github.com/osmandapp/OsmAnd/issues/14113",
     "params": {
       "vehicle": "car",
-      "maxRouteLength" : 36
+      "deprecated-maxRouteLength" : 36
     },
     "startPoint": {
       "latitude": 45.7097646,
@@ -859,7 +863,12 @@
       "longitude": 35.467082
     },
     "expectedResults": {
-      "511520760": true
+      "511520760:1": true,
+      "511520760:2": true,
+      "511520760:10": true,
+      "511520760:11": true,
+      "511520760:3": false,
+      "511520760:9": false
     }
   },
   {
@@ -980,8 +989,8 @@
       "vehicle": "car"
     },
     "startPoint": {
-      "latitude": 45.6945884,
-      "longitude": 35.331707
+      "latitude": 45.694557,
+      "longitude": 35.331783
     },
     "endPoint": {
       "latitude": 45.6943066,
@@ -1130,11 +1139,12 @@
 },
   {
     "testName": "63. Reason circular road is treated as roundabout. https://github.com/osmandapp/OsmAnd/issues/18093",
+    "url": "https://test.osmand.net/map/navigate/?start=51.556292,39.489428&end=51.555255,39.489878&profile=car#18/51.55552/39.49305",
     "ignore": false,
     "params": {
       "vehicle": "car",
-      "maxRouteLength": 250,
-      "map": "Routing_test_63.obf"
+      "map": "Routing_test_63.obf",
+      "deprecated-maxRouteLength": 250
     },
     "startPoint": {
       "latitude": 51.55598488117,
@@ -1145,7 +1155,13 @@
       "longitude": 39.48962335292
     },
     "expectedResults": {
-      "508244839": true
+      "508244837": true,
+      "508244839:1": true,
+      "508244839:2": true,
+      "508244839:3": false,
+      "508244839:4": false,
+      "508244839:5": false,
+      "508244839:0": false
     }
   },
   {
@@ -1207,6 +1223,325 @@
       "524150338": true,
       "16233798": false,
       "463476707": false
+    }
+  },
+  {
+    "testName": "67. https://github.com/osmandapp/OsmAnd/issues/20089",
+    "ignore": true,
+    "params": {
+      "vehicle": "bicycle",
+      "map": "Routing_test_67.obf"
+    },
+    "startPoint": {
+      "latitude": 48.3706879,
+      "longitude": 10.9009248
+    },
+    "endPoint": {
+      "latitude": 48.3698024,
+      "longitude": 10.8929931
+    },
+    "expectedResults": {
+      "28898536": false,
+      "23487067": false,
+      "23487607": true
+    }
+  },
+  {
+    "testName": "68. vehicle:conditional=no https://github.com/osmandapp/OsmAnd/issues/19773 (1)",
+    "params": {
+      "vehicle": "car",
+      "map": "Routing_test_68_69.obf",
+      "routeCalculationTime": 1722369401016,
+      "comment": "OSM by JOSM (100m around navigation gpx); time ~ Tue Jul 30 09:57:07 PM CEST 2024"
+    },
+    "startPoint": {
+      "latitude": 50.731998,
+      "longitude": 7.086225
+    },
+    "endPoint": {
+      "latitude": 50.730948,
+      "longitude": 7.086589
+    },
+    "expectedResults": {
+      "4692930:1": true
+    }
+  },
+  {
+    "testName": "69. vehicle:conditional=no https://github.com/osmandapp/OsmAnd/issues/19773 (2)",
+    "params": {
+      "vehicle": "car",
+      "map": "Routing_test_68_69.obf",
+      "routeCalculationTime": 1722369401016,
+      "comment": "OSM by JOSM (100m around navigation gpx); time ~ Tue Jul 30 09:57:07 PM CEST 2024"
+    },
+    "startPoint": {
+      "latitude": 50.731998,
+      "longitude": 7.086225
+    },
+    "endPoint": {
+      "latitude": 50.730945,
+      "longitude": 7.086723
+    },
+    "expectedResults": {
+      "4692930:3": true
+    }
+  },
+  {
+    "testName": "70. Longer way is wrongly preferred because of zero penalty on sharp turn connected by highway _link",
+    "url": "https://test.osmand.net/map/navigate/?start=50.434797,30.504889&end=50.434659,30.505860&profile=car#19/50.43438/30.50639",
+    "comment": "OSM file is obtained with JOSM using navigation GPX file",
+    "ignore": false,
+    "params": {
+      "vehicle": "car",
+      "map": "Routing_test_70.obf"
+    },
+    "startPoint": {
+      "latitude": 50.434797,
+      "longitude": 30.504889
+    },
+    "endPoint": {
+      "latitude": 50.434659,
+      "longitude": 30.505860
+    },
+    "expectedResults": {
+      "745961034": false
+    }
+  },
+  {
+    "testName": "71. vehicle:conditional=no https://github.com/osmandapp/OsmAnd/issues/19773 (3)",
+    "params": {
+      "vehicle": "car",
+      "map": "Routing_test_68_69.obf",
+      "routeCalculationTime": 1722369401016,
+      "comment": "OSM by JOSM (100m around navigation gpx); time ~ Tue Jul 30 09:57:07 PM CEST 2024"
+    },
+    "endPoint": {
+      "latitude": 50.731998,
+      "longitude": 7.086225
+    },
+    "startPoint": {
+      "latitude": 50.730948,
+      "longitude": 7.086589
+    },
+    "expectedResults": {
+      "4692930:1": true
+    }
+  },
+  {
+    "testName": "72. vehicle:conditional=no https://github.com/osmandapp/OsmAnd/issues/19773 (4)",
+    "params": {
+      "vehicle": "car",
+      "map": "Routing_test_68_69.obf",
+      "routeCalculationTime": 1722369401016,
+      "comment": "OSM by JOSM (100m around navigation gpx); time ~ Tue Jul 30 09:57:07 PM CEST 2024"
+    },
+    "endPoint": {
+      "latitude": 50.731998,
+      "longitude": 7.086225
+    },
+    "startPoint": {
+      "latitude": 50.730945,
+      "longitude": 7.086723
+    },
+    "expectedResults": {
+      "4692930:3": true
+    }
+  },
+  {
+    "testName": "73. traffic_signals@short_way https://github.com/osmandapp/OsmAnd/issues/21424",
+    "url": "https://test.osmand.net/map/navigate/?start=45.290935,-75.693934&end=45.292460,-75.694111&profile=car&params=car,short_way#18/45.29168/-75.69099",
+    "params": {
+      "vehicle": "car",
+      "short_way": "true",
+      "map": "Routing_test_73.obf"
+    },
+    "startPoint": {
+      "latitude": 45.290935,
+      "longitude": -75.693934
+    },
+    "endPoint": {
+      "latitude": 45.292460,
+      "longitude": -75.694111
+    },
+    "expectedResults": {
+      "1267029185": true,
+      "1267029183": false,
+      "1267029184": false
+    }
+  },
+  {
+    "testName": "74. HH-routing via roadblock (maps @ December 2024) https://github.com/osmandapp/OsmAnd/issues/21574",
+    "url": "https://test.osmand.net/map/navigate/?start=51.306549,12.427621&end=51.307243,12.427388&profile=car#17/51.30749/12.42472",
+    "params": {
+      "hh": "true",
+      "vehicle": "car",
+      "map": "Routing_test_74_hh_via_block.obf"
+    },
+    "startPoint": {
+      "latitude": 51.306549,
+      "longitude": 12.427621
+    },
+    "endPoint": {
+      "latitude": 51.307243,
+      "longitude": 12.427388
+    },
+    "expectedResults": {
+      "4566990:1": false,
+      "4566990:2": false,
+      "4566990:3": false,
+      "4566990:4": false,
+      "1280976788": true,
+      "672562815": true
+    }
+  },
+  {
+    "testName": "75. Routing: support restriction=no_entry https://github.com/osmandapp/OsmAnd/issues/13049 (no_exit)",
+    "params": {
+      "vehicle": "car",
+      "map": "Routing_test_75.obf"
+    },
+    "startPoint": {
+      "latitude": 52.070053,
+      "longitude": 8.757867
+    },
+    "endPoint": {
+      "latitude": 52.069893,
+      "longitude": 8.757886
+    },
+    "expectedResults": {
+      "582998525": false
+    }
+  },
+  {
+    "testName": "76. Routing: support restriction=no_entry https://github.com/osmandapp/OsmAnd/issues/13049 (no_entry)",
+    "params": {
+      "vehicle": "car",
+      "map": "Routing_test_76.obf"
+    },
+    "startPoint": {
+      "latitude": 52.068794,
+      "longitude": 8.764887
+    },
+    "endPoint": {
+      "latitude": 52.069275,
+      "longitude": 8.767094
+    },
+    "expectedResults": {
+      "4453334": false
+    }
+  },
+  {
+    "testName": "77. Routing: Should avoid ways tagged side_road https://github.com/osmandapp/OsmAnd/issues/22834",
+    "params": {
+      "vehicle": "car",
+      "map": "Routing_test_77.obf"
+    },
+    "startPoint": {
+      "latitude": 52.0957189,
+      "longitude": 5.206712
+    },
+    "endPoint": {
+      "latitude": 52.0939123,
+      "longitude": 5.1622335
+    },
+    "expectedResults": {
+      "7006920": false
+    }
+  },
+  {
+    "testName": "78. Shortest Walking route not found https://github.com/osmandapp/OsmAnd/issues/22687",
+    "url": "https://test.osmand.net/map/navigate/?start=47.759850,11.559550&end=47.760560,11.560880&profile=pedestrian#19/47.76007/11.56157",
+    "params": {
+      "vehicle": "pedestrian",
+      "map": "Routing_test_78.obf"
+    },
+    "startPoint": {
+      "latitude": 47.759850,
+      "longitude": 11.559550
+    },
+    "endPoint": {
+      "latitude": 47.760560,
+      "longitude": 11.560880
+    },
+    "expectedResults": {
+      "33912132": false,
+      "1221853379": true
+    }
+  },
+  {
+    "testName": "79. Bicycle routing ignores 'avoid unpaved' https://github.com/osmandapp/OsmAnd/issues/22295",
+    "url": "https://test.osmand.net/map/navigate/?start=52.753662,13.518557&end=52.758022,13.473827&profile=bicycle&params=bicycle,avoid_unpaved#15/52.7503/13.4985",
+    "params": {
+      "vehicle": "bicycle",
+      "avoid_unpaved": "true",
+      "map": "Routing_test_79.obf"
+    },
+    "startPoint": {
+      "latitude": 52.753662,
+      "longitude": 13.518557
+    },
+    "endPoint": {
+      "latitude": 52.758022,
+      "longitude": 13.473827
+    },
+    "expectedResults": {
+      "975423351": false,
+      "27924631": true
+    }
+  },
+  {
+    "testName": "80. One-way road proposed in the wrong direction for bicycle routing https://github.com/osmandapp/OsmAnd/issues/21541",
+    "url": "https://test.osmand.net/map/navigate/?start=50.634615,5.567960&end=50.635778,5.568826&profile=bicycle#18/50.63485/5.57160",
+    "params": {
+      "vehicle": "bicycle",
+      "map": "Routing_test_80.obf"
+    },
+    "startPoint": {
+      "latitude": 50.634615,
+      "longitude": 5.567960
+    },
+    "endPoint": {
+      "latitude": 50.635778,
+      "longitude": 5.568826
+    },
+    "expectedResults": {
+      "623796429": true
+    }
+  },
+  {
+    "testName": "81. OsmAnd avoids the closest ferry but takes a different ferry with a significant detour https://github.com/osmandapp/OsmAnd/issues/22306",
+    "params": {
+      "vehicle": "car",
+      "map": "Routing_test_81.obf"
+    },
+    "startPoint": {
+      "latitude": 47.80775,
+      "longitude": -122.51680
+    },
+    "endPoint": {
+      "latitude": 47.81425,
+      "longitude": -122.37649
+    },
+    "expectedResults": {
+      "198986193": true
+    }
+  },
+  {
+    "testName": "82. Wrong Routing due to border control with motorcar=yes - no penalty https://github.com/osmandapp/OsmAnd/issues/23011",
+    "params": {
+      "vehicle": "car",
+      "map": "Routing_test_82.obf"
+    },
+    "startPoint": {
+      "latitude": 47.66302,
+      "longitude": 9.16150
+    },
+    "endPoint": {
+      "latitude": 47.65479,
+      "longitude": 9.15842
+    },
+    "expectedResults": {
+      "277760691": true
     }
   }
 ]

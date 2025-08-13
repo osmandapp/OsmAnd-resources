@@ -1,0 +1,34 @@
+name: Build OSF file
+on:
+  pull_request:
+    paths: ['rendering_styles/*.render.xml']
+
+jobs:
+  build_osf:
+    name: Build OSF file
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare repo
+        uses: actions/checkout@v4
+        with:
+            sparse-checkout: 'rendering_styles'
+            # This should be enough to figure out which rendering files changed in the PR without fetching the full history
+            fetch-depth: 2
+
+      - name: Install system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install jq moreutils
+
+      - name: Build OSF file
+        # Generate a list of modified files (excluding d[eleted] files), and generate an osf containing only those files
+        # Since the default checkout is a merge-PR-into-base commit, the ^1 commit is the base commit (which we have available with fetch-depth: 2).
+        # See https://github.com/actions/checkout/issues/520#issuecomment-1167205721
+        run: |
+          git diff --name-only --diff-filter=d HEAD^1 HEAD | grep '.xml$' | xargs -d'\n' ./rendering_styles/build_osf.sh output.osf
+
+      - name: Upload built artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Rendering styles (OSF file)
+          path: output.osf
