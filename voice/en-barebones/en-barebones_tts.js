@@ -74,9 +74,9 @@ function populateDictionary(tts) {
 	dictionary["follow"] = tts ? "Continue" : "follow.ogg";  // "Follow the course of the road for" perceived as too chatty by many users
 
 	// ARRIVE
-	dictionary["and_arrive_destination"] = tts ? "arrive destination" : "and_arrive_destination.ogg";
+	dictionary["and_arrive_destination"] = tts ? "arrive at destination" : "and_arrive_destination.ogg";
 	dictionary["reached_destination"] = tts ? "reached destination" : "reached_destination.ogg";
-	dictionary["and_arrive_intermediate"] = tts ? "arrive intermediate" : "and_arrive_intermediate.ogg";
+	dictionary["and_arrive_intermediate"] = tts ? "arrive at intermediate" : "and_arrive_intermediate.ogg";
 	dictionary["reached_intermediate"] = tts ? "reached intermediate" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
