@@ -501,6 +501,7 @@
 
 	<text>
 			<!-- TravelGpx track name/ref/shield -->
+			<!-- Note: route=segment is used for GPX-in-OBF only, not for OSM routes -->
 			<switch minzoom="12" tag="route" value="segment" textSize="11" textMinDistance="60" textOrder="2">
 				<case nameTag="" textOnPath="true" textColor="#0078ff" textHaloColor="#ccebf4ff" textHaloRadius="1"/>
 
@@ -715,22 +716,23 @@
 					<switch>
 						<case nameTag="" textOnPath="true" textHaloRadius="1"/>
 
+						<!-- TravelGpx OSM routes shields with foreground (no refs) -->
 						<case additional="shield_fg" nameTag="shield_text" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
-						<case additional="shield_fg" nameTag="ref" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?" textSize="11" textColor="#ffffff" textHaloRadius="1" textHaloColor="#777777"/>
 						<case additional="shield_fg" nameTag="shield_stub_name" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?" textColor="#00ffffff"/>
 
+						<!-- TravelGpx OSM routes shields without foreground (no refs) -->
 						<case additional="shield_bg" nameTag="shield_text" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
-						<case additional="shield_bg" nameTag="ref" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
 						<case additional="shield_bg" nameTag="shield_stub_name" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?" textColor="#00ffffff"/>
 
-						<case nameTag="ref" textOnPath="false" textColor="#404040" textShield="osmc_white_bg">
+						<!-- TravelGpx OSM ref shields (based on textLength) -->
+						<case nameTag="ref" textOnPath="false" textSize="7" textColor="#404040" textShield="osmc_white_4_bg">
+							<apply_if textLength="1" textShield="osmc_white_bg"/>
 							<apply_if textLength="2" textShield="osmc_white_2_bg"/>
 							<apply_if textLength="3" textShield="osmc_white_3_bg"/>
-							<apply_if textLength="4" textShield="osmc_white_4_bg"/>
-							<apply_if textLength="5" textShield="osmc_white_4_bg"/>
-							<apply_if textLength="6" textShield="osmc_white_4_bg"/>
 						</case>
+
 						<case disable="true"/>
+
 						<apply_if additional="shield_textcolor=red" textColor="$osmcRedTextColor"/>
 						<apply_if additional="shield_textcolor=brown" textColor="$osmcBrownTextColor"/>
 						<apply_if additional="shield_textcolor=orange" textColor="$osmcOrangeTextColor"/>
@@ -746,6 +748,7 @@
 						<apply_if additional="shield_textcolor=gray" textColor="$osmcGrayTextColor"/>
 						<apply_if additional="shield_textcolor=black" textColor="#000000" textHaloRadius="1" textHaloColor="#30ffffff"/>
 						<apply_if additional="shield_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
+
 						<apply_if maxzoom="12" textSize="13"/>
 						<apply_if minzoom="13" maxzoom="15" textSize="14"/>
 						<apply_if minzoom="16" maxzoom="16" textSize="15"/>
