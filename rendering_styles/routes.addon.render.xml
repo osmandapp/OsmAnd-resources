@@ -692,13 +692,14 @@
 		</switch>
 		<!-- OSMC symbols -->
 		<switch textMinDistance="60" textOrder="43">
-			<case minzoom="12" showMtbRoutes="true" tag="route_type" value="cycling" additional="route_activity_type=mountain_biking" textColor="$mtbRouteTextColor"/>
-			<case minzoom="12" showCycleRoutes="true" tag="route_type" value="cycling" additional="route_activity_type=road_cycling" textColor="$cycleRouteTextColor"/>
+			<case minzoom="12" showMtbRoutes="true" tag="route_type" value="cycling" additional="route_activity_type=mountain_biking" textBold="true" textColor="$mtbRouteTextColor"/>
+			<case minzoom="12" showCycleRoutes="true" tag="route_type" value="cycling" additional="route_activity_type=road_cycling" textBold="true" textColor="$cycleRouteTextColor"/>
 			<case minzoom="12" tag="route_type" value="foot" additional="route_activity_type=hiking" textBold="true" textColor="$hikingRoutesTextColor" textHaloColor="#ccebf4ff">
 				<apply_if hikingRoutesOSMC="walkingRoutesOSMC" rClass=".route.hiking.osmc">
 					<apply_if nightMode="true" textHaloColor="#aa0800a0"/>
 				</apply_if>
 				<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" rClass=".route.hiking.road_network"/>
+				<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" additional="!node_network" disable="true"/>
 			</case>
 			<case minzoom="12" hikingRoutesOSMC="walkingRoutesScopeOSMC" tag="route_type" value="foot" additional="route_activity_type=hiking" textBold="true" textColor="$hikingRoutesTextColor" textHaloColor="#ccebf4ff" rClass=".route.hiking.road_network"/>
 			<case minzoom="12" horseRoutes="true" tag="route_type" value="other" additional="route_activity_type=horse_riding" textBold="true" textColor="#00745b" textHaloColor="#ccffffff" textOrder="44" rClass=".route.horse">
@@ -715,45 +716,45 @@
 			<apply>
 				<switch>
 					<case nameTag="" textOnPath="true" textHaloRadius="1"/>
+					<switch>
+						<!-- TravelGpx OSM routes shields with foreground (no refs) -->
+						<case additional="shield_fg" nameTag="shield_text" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
+						<case additional="shield_fg" nameTag="shield_stub_name" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?" textColor="#00ffffff"/>
 
-					<!-- TravelGpx OSM routes shields with foreground (no refs) -->
-					<case additional="shield_fg" nameTag="shield_text" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
-					<case additional="shield_fg" nameTag="shield_stub_name" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?" textColor="#00ffffff"/>
+						<!-- TravelGpx OSM routes shields without foreground (no refs) -->
+						<case additional="shield_bg" nameTag="shield_text" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
+						<case additional="shield_bg" nameTag="shield_stub_name" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?" textColor="#00ffffff"/>
 
-					<!-- TravelGpx OSM routes shields without foreground (no refs) -->
-					<case additional="shield_bg" nameTag="shield_text" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
-					<case additional="shield_bg" nameTag="shield_stub_name" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?" textColor="#00ffffff"/>
+						<!-- TravelGpx OSM ref shields (based on textLength) -->
+						<case nameTag="ref" textOnPath="false" textSize="7" textColor="#404040" textShield="osmc_white_4_bg">
+							<apply_if textLength="1" textShield="osmc_white_bg"/>
+							<apply_if textLength="2" textShield="osmc_white_2_bg"/>
+							<apply_if textLength="3" textShield="osmc_white_3_bg"/>
+						</case>
 
-					<!-- TravelGpx OSM ref shields (based on textLength) -->
-					<case nameTag="ref" textOnPath="false" textSize="7" textColor="#404040" textShield="osmc_white_4_bg">
-						<apply_if textLength="1" textShield="osmc_white_bg"/>
-						<apply_if textLength="2" textShield="osmc_white_2_bg"/>
-						<apply_if textLength="3" textShield="osmc_white_3_bg"/>
-					</case>
+						<case disable="true"/>
 
-					<case disable="true"/>
-
-					<apply_if additional="shield_textcolor=red" textColor="$osmcRedTextColor"/>
-					<apply_if additional="shield_textcolor=brown" textColor="$osmcBrownTextColor"/>
-					<apply_if additional="shield_textcolor=orange" textColor="$osmcOrangeTextColor"/>
-					<apply_if additional="shield_textcolor=darkyellow" textColor="$osmcDarkyellowTextColor"/>
-					<apply_if additional="shield_textcolor=yellow" textColor="$osmcYellowTextColor"/>
-					<apply_if additional="shield_textcolor=lightgreen" textColor="$osmcLightgreenTextColor"/>
-					<apply_if additional="shield_textcolor=green" textColor="$osmcGreenTextColor"/>
-					<apply_if additional="shield_textcolor=lightblue" textColor="$osmcLightblueTextColor"/>
-					<apply_if additional="shield_textcolor=blue" textColor="$osmcBlueTextColor"/>
-					<apply_if additional="shield_textcolor=purple" textColor="$osmcPurpleTextColor"/>
-					<apply_if additional="shield_textcolor=pink" textColor="$osmcPinkTextColor"/>
-					<apply_if additional="shield_textcolor=teal" textColor="$osmcTealTextColor"/>
-					<apply_if additional="shield_textcolor=gray" textColor="$osmcGrayTextColor"/>
-					<apply_if additional="shield_textcolor=black" textColor="#000000" textHaloRadius="1" textHaloColor="#30ffffff"/>
-					<apply_if additional="shield_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
-
-					<apply_if maxzoom="12" textSize="13"/>
-					<apply_if minzoom="13" maxzoom="15" textSize="14"/>
-					<apply_if minzoom="16" maxzoom="16" textSize="15"/>
-					<apply_if minzoom="17" maxzoom="17" textSize="17"/>
-					<apply_if minzoom="18" textSize="19"/>
+						<apply_if additional="shield_textcolor=red" textColor="$osmcRedTextColor"/>
+						<apply_if additional="shield_textcolor=brown" textColor="$osmcBrownTextColor"/>
+						<apply_if additional="shield_textcolor=orange" textColor="$osmcOrangeTextColor"/>
+						<apply_if additional="shield_textcolor=darkyellow" textColor="$osmcDarkyellowTextColor"/>
+						<apply_if additional="shield_textcolor=yellow" textColor="$osmcYellowTextColor"/>
+						<apply_if additional="shield_textcolor=lightgreen" textColor="$osmcLightgreenTextColor"/>
+						<apply_if additional="shield_textcolor=green" textColor="$osmcGreenTextColor"/>
+						<apply_if additional="shield_textcolor=lightblue" textColor="$osmcLightblueTextColor"/>
+						<apply_if additional="shield_textcolor=blue" textColor="$osmcBlueTextColor"/>
+						<apply_if additional="shield_textcolor=purple" textColor="$osmcPurpleTextColor"/>
+						<apply_if additional="shield_textcolor=pink" textColor="$osmcPinkTextColor"/>
+						<apply_if additional="shield_textcolor=teal" textColor="$osmcTealTextColor"/>
+						<apply_if additional="shield_textcolor=gray" textColor="$osmcGrayTextColor"/>
+						<apply_if additional="shield_textcolor=black" textColor="#000000" textHaloRadius="1" textHaloColor="#30ffffff"/>
+						<apply_if additional="shield_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
+					</switch>
+					<apply_if maxzoom="12" textSize="12"/>
+					<apply_if minzoom="13" maxzoom="15" textSize="13"/>
+					<apply_if minzoom="16" maxzoom="16" textSize="14"/>
+					<apply_if minzoom="17" maxzoom="17" textSize="16"/>
+					<apply_if minzoom="18" textSize="17"/>
 				</switch>
 			</apply>
 		</switch>
@@ -961,8 +962,9 @@
 						<case additional="network=rcn" color="$cycleRoutercnColor" rClass=".route.bicycle.road_network.rcn"/>
 						<case additional="network=lcn" color="$cycleRoutelcnColor" rClass=".route.bicycle.road_network.lcn"/>
 						<case additional="!network"/>
+						<apply_if additional="node_network" color="$cycleRouteColor"/>
 					</case>
-					<case minzoom="12" showCycleNodeNetworkRoutes="true" rClass=".route.bicycle.node_network.$node_network">
+					<case minzoom="12" showCycleNodeNetworkRoutes="true" rClass=".route.bicycle.node_network.$node_network" cap="BUTT">
 						<case additional="node_network=lcn" color="$cycleRoutelcnColor"/>
 						<case additional="node_network=rcn" color="$cycleRoutercnColor"/>
 						<case additional="node_network=ncn" color="$cycleRoutencnColor"/>
