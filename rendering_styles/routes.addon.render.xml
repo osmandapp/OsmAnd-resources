@@ -482,6 +482,7 @@
 				<apply_if additional="route_activity_type=mountain_biking" order="187"/>
 				<apply_if additional="route_activity_type=road_cycling" order="186"/>
 			</case>
+			<case tag="route_type_way" value="cycling" order="190"/>
 			<case tag="route_type" value="foot">
 				<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" order="206">
 					<apply_if additional="network=iwn" order="192"/>
@@ -692,7 +693,12 @@
 		</switch>
 		<!-- OSMC symbols -->
 		<switch textMinDistance="60" textOrder="43">
-			<case minzoom="12" showMtbRoutes="true" tag="route_type" value="cycling" additional="route_activity_type=mountain_biking" textBold="true" textColor="$mtbRouteTextColor"/>
+			<case minzoom="12" showMtbRoutes="true" tag="route_type" value="cycling" additional="route_activity_type=mountain_biking" textBold="true" textColor="$mtbRouteTextColor">
+				<apply_if nightMode="true" textHaloColor="#99000000"/>
+			</case>
+			<case minzoom="12" showMtbRoutes="true" tag="route_type_way" value="cycling" textBold="true" textColor="$mtbRouteTextColor">
+				<apply_if nightMode="true" textHaloColor="#99000000"/>
+			</case>
 			<case minzoom="12" showCycleRoutes="true" tag="route_type" value="cycling" additional="route_activity_type=road_cycling" textBold="true" textColor="$cycleRouteTextColor"/>
 			<case minzoom="12" tag="route_type" value="foot" additional="route_activity_type=hiking" textBold="true" textColor="$hikingRoutesTextColor" textHaloColor="#ccebf4ff">
 				<apply_if hikingRoutesOSMC="walkingRoutesOSMC" rClass=".route.hiking.osmc">
@@ -983,80 +989,7 @@
 					<apply_if minzoom="18" strokeWidth="7:7"/>
 				</case>
 			</switch>
-
-			<switch showMtbRoutes="true" additional="route_activity_type=mountain_biking" cap="ROUND" rClass=".route.mtb">
-				<case showMtbScale="true" rClass=".route.mtb.mtb_scale.$mtb:scale">
-					<case additional="mtb:scale=0" color="$cycleRouteMtbScale0Color">
-						<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale0UnrecommendedColor"/>
-					</case>
-					<case additional="mtb:scale=1" color="$cycleRouteMtbScale1Color">
-						<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale1UnrecommendedColor"/>
-					</case>
-					<case additional="mtb:scale=2" color="$cycleRouteMtbScale2Color">
-						<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale2UnrecommendedColor"/>
-					</case>
-					<case additional="mtb:scale=3" color="$cycleRouteMtbScale3Color">
-						<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale3UnrecommendedColor"/>
-					</case>
-					<case additional="mtb:scale=4" color="$cycleRouteMtbScale4Color" color_2="$cycleRouteMtbScale4AdditionalColor">
-						<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale4UnrecommendedColor" color_2="$cycleRouteMtbScale4AdditionalUnrecommendedColor"/>
-						<apply_if maxzoom="14" pathEffect_2="0_16_3_9"/>
-						<apply_if minzoom="15" pathEffect_2="0_28_4_8"/>
-					</case>
-					<case additional="mtb:scale=5" color="$cycleRouteMtbScale4Color" color_2="$cycleRouteMtbScale4AdditionalColor">
-						<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale4UnrecommendedColor" color_2="$cycleRouteMtbScale4AdditionalUnrecommendedColor"/>
-						<apply_if maxzoom="14" pathEffect_2="0_16_3_3_3_3"/>
-						<apply_if minzoom="15" pathEffect_2="0_26_4_4_4_2"/>
-					</case>
-					<case additional="mtb:scale=6" color="$cycleRouteMtbScale4Color" color_2="$cycleRouteMtbScale4AdditionalColor">
-						<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale4UnrecommendedColor" color_2="$cycleRouteMtbScale4AdditionalUnrecommendedColor"/>
-						<apply_if maxzoom="14" pathEffect_2="0_16_9_3"/>
-						<apply_if minzoom="15" pathEffect_2="0_26_14_5"/>
-					</case>
-					<case minzoom="13" additional="!mtb:scale" color="$cycleRouteColor"/>
-				</case>
-				<case color="$cycleRouteColor"/>
-				<apply>
-					<switch minzoom="13" rClass=".route.mtb.mtb_scale_uphill.$mtb:scale:uphill">
-						<case additional="mtb:scale:uphill=1">
-							<case maxzoom="14" pathEffect_3="1_27"/>
-							<case minzoom="15" pathEffect_3="2_38"/>
-						</case>
-						<case additional="mtb:scale:uphill=2">
-							<case maxzoom="14" pathEffect_3="1_2_1_24"/>
-							<case minzoom="15" pathEffect_3="2_2_2_34"/>
-						</case>
-						<case additional="mtb:scale:uphill=3">
-							<case maxzoom="14" pathEffect_3="1_2_1_2_1_21"/>
-							<case minzoom="15" pathEffect_3="2_2_2_2_2_30"/>
-						</case>
-						<case additional="mtb:scale:uphill=4">
-							<case maxzoom="14" pathEffect_3="1_2_1_2_1_2_1_18"/>
-							<case minzoom="15" pathEffect_3="2_2_2_2_2_2_2_26"/>
-						</case>
-						<case additional="mtb:scale:uphill=5">
-							<case maxzoom="14" pathEffect_3="1_2_1_2_1_2_1_2_1_15"/>
-							<case minzoom="15" pathEffect_3="2_2_2_2_2_2_2_2_2_22"/>
-						</case>
-						<apply color_3="#000000">
-							<apply_if maxzoom="13" strokeWidth_3="2.5:2.5"/>
-							<apply_if minzoom="14" maxzoom="16" strokeWidth_3="3:3"/>
-							<apply_if minzoom="17" strokeWidth_3="4.5:4.5"/>
-						</apply>
-					</switch>
-				</apply>
-				<apply_if minzoom="13">
-					<switch>
-						<case additional="class:bicycle:mtb=1"/>
-						<case additional="class:bicycle:mtb=2"/>
-						<case additional="class:bicycle:mtb=3"/>
-						<apply color__2="$classBicycleMtbColor"/>
-					</switch>
-				</apply_if>
-				<apply_if minzoom="15">
-					<apply_if additional="incline=up" pathIcon="arrow_red_down_big" pathIconStep="70"/>
-					<apply_if additional="incline=down" pathIcon="arrow_red_up_big" pathIconStep="70"/>
-				</apply_if>
+			<case showMtbRoutes="true" additional="route_activity_type=mountain_biking" color="$cycleRouteColor" cap="ROUND" rClass=".route.mtb">
 				<apply_if maxzoom="11" strokeWidth="1:1" strokeWidth_2="1:1" strokeWidth__2="2:2"/>
 				<apply_if minzoom="11" maxzoom="12" strokeWidth="2:2" strokeWidth_2="2:2" strokeWidth__2="3:3"/>
 				<apply_if minzoom="13" maxzoom="13" strokeWidth="3:3" strokeWidth_2="3:3" strokeWidth__2="5:5"/>
@@ -1064,31 +997,89 @@
 				<apply_if minzoom="16" maxzoom="16" strokeWidth="5:5" strokeWidth_2="5:5" strokeWidth__2="9:9"/>
 				<apply_if minzoom="17" maxzoom="17" strokeWidth="6:6" strokeWidth_2="6:6" strokeWidth__2="11:11" strokeWidth__1="11:11"/>
 				<apply_if minzoom="18" strokeWidth="7:7" strokeWidth_2="7:7" strokeWidth__2="14:14" strokeWidth__1="14:14"/>
-			</switch>
+			</case>
+
 		</switch>
 
-		<switch showDirtbikeTrails="true" minzoom="13" rClass=".route.dirtbike">
-			<case tag="route_dirtbike" value="" cap="ROUND" strokeWidth="6" rClass=".route.dirtbike.scale.$dirtbike:scale">
-				<apply_if additional="dirtbike:scale=0" color="#2AF62A"/>
-				<apply_if additional="dirtbike:scale=1" color="#008000"/>
-				<apply_if additional="dirtbike:scale=2" color="#ffa500"/>
-				<apply_if additional="dirtbike:scale=3" color="#ff0000"/>
-				<apply_if additional="dirtbike:scale=4" color="#800080"/>
-				<apply_if additional="dirtbike:scale=5" color="#800000"/>
-				<!--<apply_if additional="dirtbike:scale=6" color="#99000000">
-					<case nightMode="true" color="#666666"/>
-				</apply_if>-->
-				<apply_if additional="dirtbike:scale=?" color="#c0c0c0">
-					<case nightMode="true" color="#dddfdfdf"/>
-				</apply_if>
-				<apply_if minzoom="12" maxzoom="13" strokeWidth="6" pathEffect="1_20"/>
-				<apply_if minzoom="13" maxzoom="14" strokeWidth="7.5" pathEffect="1_25"/>
-				<apply_if minzoom="14" maxzoom="15" strokeWidth="9" pathEffect="1_30"/>
-				<apply_if minzoom="15" maxzoom="16" strokeWidth="10" pathEffect="1_40"/>
-				<apply_if minzoom="16" maxzoom="17" strokeWidth="11" pathEffect="1_50"/>
-				<apply_if minzoom="17" maxzoom="18" strokeWidth="12" pathEffect="1_60"/>
-				<apply_if minzoom="18" strokeWidth="13" pathEffect="1_70"/>
+		<switch showMtbRoutes="true" tag="route_type_way" value="cycling" cap="ROUND" rClass=".route.mtb">
+			<case showMtbScale="true" rClass=".route.mtb.mtb_scale.$mtb:scale">
+				<case additional="mtb:scale=0" color="$cycleRouteMtbScale0Color">
+					<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale0UnrecommendedColor"/>
+				</case>
+				<case additional="mtb:scale=1" color="$cycleRouteMtbScale1Color">
+					<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale1UnrecommendedColor"/>
+				</case>
+				<case additional="mtb:scale=2" color="$cycleRouteMtbScale2Color">
+					<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale2UnrecommendedColor"/>
+				</case>
+				<case additional="mtb:scale=3" color="$cycleRouteMtbScale3Color">
+					<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale3UnrecommendedColor"/>
+				</case>
+				<case additional="mtb:scale=4" color="$cycleRouteMtbScale4Color" color_2="$cycleRouteMtbScale4AdditionalColor">
+					<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale4UnrecommendedColor" color_2="$cycleRouteMtbScale4AdditionalUnrecommendedColor"/>
+					<apply_if maxzoom="14" pathEffect_2="0_16_3_9"/>
+					<apply_if minzoom="15" pathEffect_2="0_28_4_8"/>
+				</case>
+				<case additional="mtb:scale=5" color="$cycleRouteMtbScale4Color" color_2="$cycleRouteMtbScale4AdditionalColor">
+					<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale4UnrecommendedColor" color_2="$cycleRouteMtbScale4AdditionalUnrecommendedColor"/>
+					<apply_if maxzoom="14" pathEffect_2="0_16_3_3_3_3"/>
+					<apply_if minzoom="15" pathEffect_2="0_26_4_4_4_2"/>
+				</case>
+				<case additional="mtb:scale=6" color="$cycleRouteMtbScale4Color" color_2="$cycleRouteMtbScale4AdditionalColor">
+					<apply_if additional="class:bicycle:mtb=-1" color="$cycleRouteMtbScale4UnrecommendedColor" color_2="$cycleRouteMtbScale4AdditionalUnrecommendedColor"/>
+					<apply_if maxzoom="14" pathEffect_2="0_16_9_3"/>
+					<apply_if minzoom="15" pathEffect_2="0_26_14_5"/>
+				</case>
+				<case minzoom="13" additional="!mtb:scale" color="$cycleRouteColor"/>
 			</case>
+			<apply>
+				<switch minzoom="13" rClass=".route.mtb.mtb_scale_uphill.$mtb:scale:uphill">
+					<case additional="mtb:scale:uphill=1">
+						<case maxzoom="14" pathEffect_3="1_27"/>
+						<case minzoom="15" pathEffect_3="2_38"/>
+					</case>
+					<case additional="mtb:scale:uphill=2">
+						<case maxzoom="14" pathEffect_3="1_2_1_24"/>
+						<case minzoom="15" pathEffect_3="2_2_2_34"/>
+					</case>
+					<case additional="mtb:scale:uphill=3">
+						<case maxzoom="14" pathEffect_3="1_2_1_2_1_21"/>
+						<case minzoom="15" pathEffect_3="2_2_2_2_2_30"/>
+					</case>
+					<case additional="mtb:scale:uphill=4">
+						<case maxzoom="14" pathEffect_3="1_2_1_2_1_2_1_18"/>
+						<case minzoom="15" pathEffect_3="2_2_2_2_2_2_2_26"/>
+					</case>
+					<case additional="mtb:scale:uphill=5">
+						<case maxzoom="14" pathEffect_3="1_2_1_2_1_2_1_2_1_15"/>
+						<case minzoom="15" pathEffect_3="2_2_2_2_2_2_2_2_2_22"/>
+					</case>
+					<apply color_3="#000000">
+						<apply_if maxzoom="13" strokeWidth_3="2.5:2.5"/>
+						<apply_if minzoom="14" maxzoom="16" strokeWidth_3="3:3"/>
+						<apply_if minzoom="17" strokeWidth_3="4.5:4.5"/>
+					</apply>
+				</switch>
+			</apply>
+			<apply_if minzoom="13">
+				<switch>
+					<case additional="class:bicycle:mtb=1"/>
+					<case additional="class:bicycle:mtb=2"/>
+					<case additional="class:bicycle:mtb=3"/>
+					<apply color__2="$classBicycleMtbColor"/>
+				</switch>
+			</apply_if>
+			<apply_if minzoom="15">
+				<apply_if additional="incline=up" pathIcon="arrow_red_down_big" pathIconStep="70"/>
+				<apply_if additional="incline=down" pathIcon="arrow_red_up_big" pathIconStep="70"/>
+			</apply_if>
+			<apply_if maxzoom="11" strokeWidth="1:1" strokeWidth_2="1:1" strokeWidth__2="2:2"/>
+			<apply_if minzoom="11" maxzoom="12" strokeWidth="2:2" strokeWidth_2="2:2" strokeWidth__2="3:3"/>
+			<apply_if minzoom="13" maxzoom="13" strokeWidth="3:3" strokeWidth_2="3:3" strokeWidth__2="5:5"/>
+			<apply_if minzoom="14" maxzoom="15" strokeWidth="4:4" strokeWidth_2="4:4" strokeWidth__2="7:7"/>
+			<apply_if minzoom="16" maxzoom="16" strokeWidth="5:5" strokeWidth_2="5:5" strokeWidth__2="9:9"/>
+			<apply_if minzoom="17" maxzoom="17" strokeWidth="6:6" strokeWidth_2="6:6" strokeWidth__2="11:11" strokeWidth__1="11:11"/>
+			<apply_if minzoom="18" strokeWidth="7:7" strokeWidth_2="7:7" strokeWidth__2="14:14" strokeWidth__1="14:14"/>
 		</switch>
 
 		<switch showMtbScaleIMBATrails="true" minzoom="13" tag="osmand_mtb_scale_imba" value="trail" color="$null" strokeWidth="1"
@@ -1130,6 +1121,30 @@
 				<apply_if additional="incline=up" pathIcon="arrow_red_down_big" pathIconStep="70"/>
 				<apply_if additional="incline=down" pathIcon="arrow_red_up_big" pathIconStep="70"/>
 			</apply_if>
+		</switch>
+
+		<switch showDirtbikeTrails="true" minzoom="13" rClass=".route.dirtbike">
+			<case tag="route_dirtbike" value="" cap="ROUND" strokeWidth="6" rClass=".route.dirtbike.scale.$dirtbike:scale">
+				<apply_if additional="dirtbike:scale=0" color="#2AF62A"/>
+				<apply_if additional="dirtbike:scale=1" color="#008000"/>
+				<apply_if additional="dirtbike:scale=2" color="#ffa500"/>
+				<apply_if additional="dirtbike:scale=3" color="#ff0000"/>
+				<apply_if additional="dirtbike:scale=4" color="#800080"/>
+				<apply_if additional="dirtbike:scale=5" color="#800000"/>
+				<!--<apply_if additional="dirtbike:scale=6" color="#99000000">
+					<case nightMode="true" color="#666666"/>
+				</apply_if>-->
+				<apply_if additional="dirtbike:scale=?" color="#c0c0c0">
+					<case nightMode="true" color="#dddfdfdf"/>
+				</apply_if>
+				<apply_if minzoom="12" maxzoom="13" strokeWidth="6" pathEffect="1_20"/>
+				<apply_if minzoom="13" maxzoom="14" strokeWidth="7.5" pathEffect="1_25"/>
+				<apply_if minzoom="14" maxzoom="15" strokeWidth="9" pathEffect="1_30"/>
+				<apply_if minzoom="15" maxzoom="16" strokeWidth="10" pathEffect="1_40"/>
+				<apply_if minzoom="16" maxzoom="17" strokeWidth="11" pathEffect="1_50"/>
+				<apply_if minzoom="17" maxzoom="18" strokeWidth="12" pathEffect="1_60"/>
+				<apply_if minzoom="18" strokeWidth="13" pathEffect="1_70"/>
+			</case>
 		</switch>
 
 		<switch minzoom="12" tag="route_type" value="foot" cap="ROUND">
