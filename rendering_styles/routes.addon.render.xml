@@ -700,15 +700,14 @@
 				<apply_if nightMode="true" textHaloColor="#99000000"/>
 			</case>
 			<case minzoom="12" showCycleRoutes="true" tag="route_type" value="cycling" additional="route_activity_type=road_cycling" textBold="true" textColor="$cycleRouteTextColor"/>
-			<case minzoom="12" tag="route_type" value="foot" additional="route_activity_type=hiking" textBold="true" textColor="$hikingRoutesTextColor" textHaloColor="#ccebf4ff">
-				<apply_if hikingRoutesOSMC="walkingRoutesOSMC" rClass=".route.hiking.osmc">
+			<switch minzoom="12" tag="route_type" value="foot">
+				<case hikingRoutesOSMC="walkingRoutesOSMC" rClass=".route.hiking.osmc">
 					<apply_if nightMode="true" textHaloColor="#aa0800a0"/>
-				</apply_if>
-				<apply_if hikingRoutesOSMC="walkingRoutesScopeOSMC" rClass=".route.hiking.road_network"/>
-				<apply_if hikingRoutesOSMC="walkingRoutesOSMCNodes" additional="!node_network" disable="true"/>
-			</case>
-			<case minzoom="12" hikingRoutesOSMC="walkingRoutesScopeOSMC" tag="route_type" value="foot" additional="route_activity_type=hiking" textBold="true" textColor="$hikingRoutesTextColor" textHaloColor="#ccebf4ff" rClass=".route.hiking.road_network"/>
-			<case minzoom="12" hikingRoutesOSMC="walkingRoutesScopeOSMC" tag="route_type" value="foot" additional="route_activity_type=walking" textBold="true" textColor="$hikingRoutesTextColor" textHaloColor="#ccebf4ff" rClass=".route.hiking.road_network"/>
+				</case>
+				<case hikingRoutesOSMC="walkingRoutesScopeOSMC" rClass=".route.hiking.road_network"/>
+				<case hikingRoutesOSMC="walkingRoutesOSMCNodes" additional="!node_network" disable="true"/>
+				<apply textBold="true" textColor="$hikingRoutesTextColor" textHaloColor="#ccebf4ff"/>
+			</switch>
 			<case minzoom="12" horseRoutes="true" tag="route_type" value="other" additional="route_activity_type=horse_riding" textBold="true" textColor="#00745b" textHaloColor="#ccffffff" textOrder="44" rClass=".route.horse">
 				<apply_if nightMode="true" textHaloColor="#00745b"/>
 			</case>
@@ -754,7 +753,7 @@
 						<apply_if additional="shield_textcolor=pink" textColor="$osmcPinkTextColor"/>
 						<apply_if additional="shield_textcolor=teal" textColor="$osmcTealTextColor"/>
 						<apply_if additional="shield_textcolor=gray" textColor="$osmcGrayTextColor"/>
-						<apply_if additional="shield_textcolor=black" textColor="#000000" textHaloRadius="1" textHaloColor="#30ffffff"/>
+						<apply_if additional="shield_textcolor=black" textColor="#000000" textHaloRadius="1" textHaloColor="#90ffffff"/>
 						<apply_if additional="shield_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
 					</switch>
 				</switch>
