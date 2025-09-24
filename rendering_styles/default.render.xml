@@ -1847,6 +1847,10 @@
 		<renderingAttribute name="bicycleParkingColor">
 			<case attrColorValue="$defaultColor"/>
 		</renderingAttribute>
+		<renderingAttribute name="bicycleParkingStrokeColor">
+			<case nightMode="true" attrColorValue="#52533D"/>
+			<case attrColorValue="#CCCCB9"/>
+		</renderingAttribute>
 
 		<renderingAttribute name="landuseConstructionColor">
 			<case nightMode="true" attrColorValue="$null"/>
@@ -3564,6 +3568,7 @@
 						<case tag="public_transport" value="" order="63"/>
 					</switch>
 					<case tag="public_transport" value="" order="85"/>
+					<case tag="amenity" value="bicycle_parking"/>
 					<!-- Over buildings -->
 					<case tag="leisure" value="track" additional="area=false" order="175"/>
 					<case tag="aerialway" value="" order="175"/>
@@ -9188,7 +9193,9 @@
 			<case minzoom="11" tag="amenity" value="prison" shader="prison" color_2="#aaaaaa" strokeWidth_2="1:1">
 				<apply_if nightMode="true" shader="" color="$landusePrisonColorNight" color_2="#555555"/>
 			</case>
-			<case minzoom="15" tag="amenity" value="bicycle_parking" color="$bicycleParkingColor" />
+			<case minzoom="15" tag="amenity" value="bicycle_parking" color="$bicycleParkingColor">
+				<apply_if minzoom="19" strokeWidth_2="2" color_2="$bicycleParkingStrokeColor"/>
+			</case>
 			<case minzoom="19" tag="amenity" value="parking_space" color="$null" color_2="#ffffff" strokeWidth_2="1" pathEffect_2="5_5">
 				<apply_if nightMode="true" color_2="#33999999"/>
 			</case>
@@ -11097,6 +11104,7 @@
 			</apply_if>
 		</case>
 
+		<case minzoom="19" tag="amenity" value="bicycle_parking" strokeWidth="2" color="$bicycleParkingStrokeColor"/>
 
 		<!-- Barriers -->
 		<switch minzoom="15">
