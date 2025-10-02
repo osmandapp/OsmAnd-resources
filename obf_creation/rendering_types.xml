@@ -25,6 +25,7 @@
 		?propagateIfTag1 - propagate if way contains tag
 		?propagateIfTag1.. / Value... - propagate if way contains tag
 		?propagateNetworkIfTag1,2,... / Value1 - propagate border points only on 2 ways belongs to the same "network" (to exclude non-relevant border points)
+		?propagateAlsoTags="layer,level,name,ref"
 		/>
 		
 		Entity convert used to convert tags.
@@ -102,7 +103,8 @@
 	<type tag="fixme_tag" value="yes" minzoom="12" notosm="true" order="128"/>
 	<type tag="note" additional="text" minzoom="12" order="128"/>
 	<type tag="note_tag" value="yes" minzoom="12" notosm="true" order="128"/>
-	<type tag="depth" additional="text" minzoom="12" order="128"/>
+	<type tag="depth" additional="text" minzoom="10" order="128"/>
+	<type tag="depth:exposition" additional="true" minzoom="10"/>
 <!--	<entity_convert pattern="tag_transform" from_tag="comment" to_tag1="note"/>-->
 	
 	<type tag="survey" value="ground" minzoom="13" additional="true" notosm="true" />
@@ -442,6 +444,11 @@
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="PH:express" to_tag1="maxspeed" to_value1="100" map="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="PH:rural" to_tag1="maxspeed" to_value1="80" map="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="PH:urban" to_tag1="maxspeed" to_value1="30" map="no" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="PL:living_street" to_tag1="maxspeed" to_value1="20" map="no" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="PL:urban" to_tag1="maxspeed" to_value1="50" map="no" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="PL:rural" to_tag1="maxspeed" to_value1="90" map="no" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="PL:expressway" to_tag1="maxspeed" to_value1="100" map="no" poi="no"/>
+	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="PL:motorway" to_tag1="maxspeed" to_value1="140" map="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="PT:motorway" to_tag1="maxspeed" to_value1="120" map="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="PT:rural" to_tag1="maxspeed" to_value1="90" map="no" poi="no"/>
 	<entity_convert pattern="tag_transform" from_tag="maxspeed" from_value="PT:trunk" to_tag1="maxspeed" to_value1="100" map="no" poi="no"/>
@@ -842,35 +849,55 @@
 
 	<type tag="salt" value="yes" minzoom="11" additional="true"/>
 
-	<type tag="hazard" value="yes" minzoom="15" order="1"/>
-	<type tag="hazard" value="erosion" minzoom="15" order="1"/>
-	<type tag="hazard" value="falling_rocks" minzoom="15" order="1"/>
-	<type tag="hazard" value="slippery_road" minzoom="15" order="1"/>
-	<type tag="hazard" value="nuclear" minzoom="15" order="1"/>
-	<type tag="hazard" value="flood" minzoom="15" order="1"/>
-	<type tag="hazard" value="avalanche" minzoom="15" order="1"/>
-	<type tag="hazard" value="minefield" minzoom="15" order="1"/>
-	<type tag="hazard" value="other" minzoom="15" order="1"/>
-	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="erosion" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="other" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="hazard_type" from_value="landslide" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="landslide" notosm="true" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="landslide" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="landslide" notosm="true" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="rock_slide" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="falling_rocks" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="rockfall" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="falling_rocks" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="falling_rocks" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="falling_rocks" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="nuclear" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="nuclear" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="slippery_road" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="slippery_road" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="flood" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="flood" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="hazard_type" from_value="flood" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="flood" notosm="true" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="avalanche" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="avalanche" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="hazard_type" from_value="avalanche" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="avalanche" notosm="true" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="radiation" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="nuclear" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="minefield" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="minefield" map="no"/>
-	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="contamination" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="contamination" map="no"/>
+	<type tag="osmand_hazard" value="yes" minzoom="15"/>
+	<type tag="osmand_hazard" value="erosion" minzoom="15"/>
+	<type tag="osmand_hazard" value="falling_rocks" minzoom="15"/>
+	<type tag="osmand_hazard" value="slippery_road" minzoom="15"/>
+	<type tag="osmand_hazard" value="nuclear" minzoom="15"/>
+	<type tag="osmand_hazard" value="flood" minzoom="15"/>
+	<type tag="osmand_hazard" value="avalanche" minzoom="15"/>
+	<type tag="osmand_hazard" value="minefield" minzoom="15"/>
+	<type tag="hazard" value="yes" minzoom="15" order="1" propagateToNodes="center" propagateToNodesPrefix="osmand_" propagateAlsoTags="layer,level"/>
+	<type tag="hazard" value="erosion" minzoom="15" order="1" propagateToNodes="center" propagateToNodesPrefix="osmand_" propagateAlsoTags="layer,level"/>
+	<type tag="hazard" value="falling_rocks" minzoom="15" order="1" propagateToNodes="center" propagateToNodesPrefix="osmand_" propagateAlsoTags="layer,level"/>
+	<type tag="hazard" value="slippery_road" minzoom="15" order="1" propagateToNodes="center" propagateToNodesPrefix="osmand_" propagateAlsoTags="layer,level"/>
+	<type tag="hazard" value="nuclear" minzoom="15" order="1" propagateToNodes="center" propagateToNodesPrefix="osmand_" propagateAlsoTags="layer,level"/>
+	<type tag="hazard" value="flood" minzoom="15" order="1" propagateToNodes="center" propagateToNodesPrefix="osmand_" propagateAlsoTags="layer,level"/>
+	<type tag="hazard" value="avalanche" minzoom="15" order="1" propagateToNodes="center" propagateToNodesPrefix="osmand_" propagateAlsoTags="layer,level"/>
+	<type tag="hazard" value="minefield" minzoom="15" order="1" propagateToNodes="center" propagateToNodesPrefix="osmand_" propagateAlsoTags="layer,level"/>
 
-	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="hole" to_tag1="hazard" to_value1="yes" to_tag2="hazard" to_value2="other" to_tag3="hazard_additional" to_value3="other"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="erosion" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="other"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard_type" from_value="landslide" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="landslide" notosm="true"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="landslide" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="landslide" notosm="true"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="rock_slide" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="falling_rocks"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="rockfall" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="falling_rocks"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="falling_rocks" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="falling_rocks"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="nuclear" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="nuclear"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="slippery_road" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="slippery_road"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="flood" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="flood"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard_type" from_value="flood" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="flood" notosm="true"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="avalanche" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="avalanche"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard_type" from_value="avalanche" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="avalanche" notosm="true"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="radiation" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="nuclear"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="minefield" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="minefield"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="contamination" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="contamination"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="hole" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="hole"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="curve" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="curve"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="curves" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="curves"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="pedestrians" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="pedestrians"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="children" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="children"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="animal_crossing" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="animal_crossing"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="dangerous_junction" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="dangerous_junction"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="school_zone" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="school_zone"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="cyclists" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="cyclists"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="shooting_range" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="shooting_range"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="queues_likely" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="queues_likely"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="side_winds" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="side_winds"/>
+	<entity_convert pattern="tag_transform" from_tag="hazard" from_value="ice" to_tag1="hazard" to_value1="yes" to_tag2="hazard_additional" to_value2="ice"/>
+
 
 	<type tag="light_source" minzoom="12" poi="false" order="100"/>
-	<type tag="lit" value="yes" minzoom="10" order="100" map="no"/>
+	<type tag="lit" value="yes" minzoom="10" order="100"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="automatic" to_tag1="lit" to_value1="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="24/7" to_tag1="lit" to_value1="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="yes, Automatic, 24/7" to_tag1="lit" to_value1="yes"/>
@@ -878,10 +905,10 @@
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="1" to_tag1="lit" to_value1="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="yes/automatic/24/7" to_tag1="lit" to_value1="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="piste:lit" from_value="yes" to_tag1="lit" to_value1="yes"/>
-	<type tag="lit" value="no" minzoom="10" order="100" map="no"/>
+	<type tag="lit" value="no" minzoom="10" order="100"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="disused" to_tag1="lit" to_value1="no"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="construction" to_tag1="lit" to_value1="no"/>
-	<type tag="lit" value="interval" minzoom="10" poi="false" order="100" map="no"/>
+	<type tag="lit" value="interval" minzoom="10" poi="false" order="100"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="sunset-00:00,05:00-sunrise UTC" to_tag1="lit" to_value1="interval"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="sunset-sunrise" to_tag1="lit" to_value1="interval"/>
 	<entity_convert pattern="tag_transform" from_tag="lit" from_value="limited" to_tag1="lit" to_value1="interval"/>
@@ -2209,6 +2236,9 @@
 		<!-- Disable proposed routes-->
 		<entity_convert pattern="tag_transform" from_tag="route" if_tag1="state" if_value1="proposed" to_tag1="route" to_value1="proposed" apply_to="relation"/>
 		<entity_convert pattern="tag_transform" from_tag="route" if_tag1="abandoned" if_value1="yes" apply_to="relation"/>
+
+		<!-- Disable routes without type=route tag -->
+		<entity_convert pattern="tag_transform" from_tag="route" if_not_tag1="type" if_not_value1="route" to_tag1="route" to_value1="no_type_route" apply_to="relation"/>
 
 		<!-- ROUTE SECTION: HIKING routes -->
 
@@ -4770,7 +4800,7 @@
 		<type tag="shop" value="games" minzoom="15" />
 		<type tag="shop" value="garden_centre" minzoom="15" />
 		<type tag="shop" value="garden_furniture" minzoom="15" />
-		<type tag="shop" value="gas" minzoom="15" />
+		<type tag="shop" value="gas" minzoom="15"/>
 		<type tag="shop" value="general" minzoom="15" />
 		<type tag="shop" value="yes" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="shop" from_value="yes" if_tag1="amenity" to_tag1="shop_additional" to_value1="yes"/>
@@ -5460,6 +5490,15 @@
 		<entity_convert pattern="tag_transform" from_tag="nuclear_explosion:type" from_value="atmospheric, high altitude (between 30 km and 80 km), rocket or missile" to_tag1="nuclear_explosion:type" to_value1="atmospheric, rocket or missile" map="no"/>
 	</category>
 
+	<category name="lightsector">
+		<type tag="lightsector" value="limit" minzoom="10" notosm="true"/>
+		<type tag="lightsector" value="orientation" minzoom="10" notosm="true"/>
+		<type tag="lightsector" value="arc" minzoom="10" notosm="true"/>
+		<type tag="lightsector" value="source" additional="true" minzoom="8" notosm="true"/>
+		<type tag="lightsector:low" additional="true" minzoom="10" notosm="true"/>
+		<type tag="colour" additional="true" minzoom="10" notosm="true"/>
+	</category>
+
 
 	<category name="natural">
 		<!-- coastline is polyline !!! -->
@@ -5586,6 +5625,7 @@
 		<type tag="wetland" value="mud" minzoom="12" additional="true"/>
 		<type tag="natural" value="wood" minzoom="6" order="61"/>
 		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="wood" to_tag1="natural" />
+		
 		<type tag="contour" value="elevation" minzoom="11" notosm="true"/>
 		<type tag="contour" value="depth" minzoom="3" notosm="true"/>
 		<type tag="contour" value="temperature" minzoom="3" notosm="true"/>
@@ -5667,6 +5707,7 @@
 		<type tag="contourtype" value="40c" minzoom="3" additional="true" notosm="true"/>
 		<type tag="contourtype" value="50c" minzoom="3" additional="true" notosm="true"/>
 	</category>
+	
 	<category name="geocache">
 		<type tag="geocache" value="found" minzoom="15" notosm="true"/>
 		<type tag="geocache" value="not found" minzoom="15" notosm="true"/>
@@ -5780,7 +5821,8 @@
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="parking" if_tag1="access" if_value1="private" map="no" routing="no"/>
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="parking" if_tag1="access" if_value1="no" map="no" routing="no"/>
 		<type tag="amenity" value="parking_entrance" minzoom="16" />
-		<type tag="amenity" value="bicycle_parking" minzoom="15" order="49" />
+		<type tag="osmand_amenity" value="bicycle_parking" minzoom="15" order="49"/>
+		<type tag="amenity" value="bicycle_parking" minzoom="15" order="49" propagateToNodes="center" propagateToNodesPrefix="osmand_" propagateAlsoTags="layer,level,name,ref"/>
 		<type tag="amenity" value="motorcycle_parking" minzoom="15" order="49" />
 		<type tag="amenity" value="ferry_terminal" minzoom="12" />
 		<entity_convert pattern="tag_transform" from_tag="cargo" from_value="passengers" to_tag1="cargo:passengers" to_value1="yes" map="no"/>
@@ -5793,11 +5835,11 @@
 		<entity_convert pattern="tag_transform" from_tag="cargo" from_value="passengers;bicycle;vehicle" to_tag1="cargo:passengers" to_value1="yes" to_tag2="cargo:bicycle" to_value2="yes" to_tag3="cargo:vehicle" to_value3="yes" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="cargo" from_value="passengers;bicycle;cargo" to_tag1="cargo:passengers" to_value1="yes" to_tag2="cargo:bicycle" to_value2="yes" to_tag3="cargo:container" to_value3="yes" map="no"/>
 
-		<type tag="amenity" value="fuel" minzoom="13" nameTags="name,brand,operator"/>
+		<type tag="amenity" value="fuel" minzoom="13" nameTags="name,brand,operator" order="45"/>
 		<entity_convert pattern="tag_transform" from_tag="brand" if_tag1="amenity" if_value1="fuel" if_not_tag1="name" to_tag1="name" to_tag2="brand"/>
 		<entity_convert pattern="tag_transform" from_tag="fuel:alcohol" from_value="yes" to_tag1="fuel:ethanol" to_value1="yes"/>
 		<entity_convert pattern="tag_transform" from_tag="fuel" from_value="electric" to_tag1="fuel:electricity" to_value1="yes"/>
-		<type tag="amenity" value="charging_station" minzoom="13" />
+		<type tag="amenity" value="charging_station" minzoom="13" order="45"/>
 	
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="charging_station" to_tag1="amenity" to_value1="charging_station" to_tag2="amenity_charging_station" to_value2="charging" map="no" notosm="true"/>
 		<entity_convert pattern="tag_transform" from_tag="fuel:electricity" from_value="yes" if_tag1="amenity" if_value1="fuel" to_tag1="fuel:electricity" to_value1="yes" to_tag2="amenity_charging_station" to_value2="charging" map="no" notosm="true"/>
@@ -6176,6 +6218,11 @@
 	<type tag="canoe" value="egress" minzoom="11"/>
 	<type tag="canoe" value="put_in;egress" minzoom="11"/>
 	<type tag="canoe" value="portage" minzoom="11"/>
+	<entity_convert pattern="tag_transform" from_tag="whitewater" from_value="put_in" to_tag1="canoe" to_value1="put_in"/>
+	<entity_convert pattern="tag_transform" from_tag="whitewater" from_value="egress" to_tag1="canoe" to_value1="egress"/>
+	<entity_convert pattern="tag_transform" from_tag="whitewater" from_value="put_in;egress" to_tag1="canoe" to_value1="put_in;egress"/>
+	<entity_convert pattern="tag_transform" from_tag="whitewater" from_value="portage_way" to_tag1="canoe" to_value1="portage"/>
+
 	<type tag="portage" value="yes" minzoom="14"/>
 	<type tag="portage" value="designated" minzoom="14"/>
 	<type tag="portage" value="permissive" minzoom="14"/>
@@ -6395,7 +6442,7 @@
 		<type tag="sport" value="hang_gliding" minzoom="15" />
 		<type tag="sport" value="golf" minzoom="15" />
 		<type tag="sport" value="disc_golf" minzoom="15" />
-		<type tag="sport" value="dojo" minzoom="15" />
+		<type tag="amenity" value="dojo" minzoom="15" />
 		<type tag="sport" value="gymnastics" minzoom="15" />
 		<type tag="sport" value="handball" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="sport" from_value="team_handball" to_tag1="sport" to_value1="handball"/>
@@ -6676,6 +6723,7 @@
 	<type tag="seamark:height" minzoom="11" additional="text" notosm="true"/>
 	<type tag="seamark:clearance_height" minzoom="11" additional="text" notosm="true"/>
 	<!-- <type tag="seamark:name" minzoom="11" additional="text"/> -->
+	<type tag="seamark:lnam" minzoom="10" additional="true" notosm="true"/>
 	<type tag="seamark:period" minzoom="11" additional="true" notosm="true"/>
 	<type tag="seamark:range" minzoom="11" additional="true" notosm="true"/>
 	<type tag="seamark:reference" minzoom="11" additional="text" notosm="true"/>

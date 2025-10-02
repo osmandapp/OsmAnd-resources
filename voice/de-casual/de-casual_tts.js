@@ -478,7 +478,7 @@ function bear_right(streetName) {
 
 function prepare_make_ut(dist, streetName) {
 	// return dictionary["prepare"] + " " + dictionary["after"] + " " + distance(dist, "dativ") + " " + dictionary["make_uturn2"] + " " + turn_street(streetName);
-	return dictionary["after"] + " " + distance(dist, "dativ") + " " + dictionary["make_uturn2"];
+	return " ";
 }
 
 function prepare_turn(turnType, dist, streetName) {

@@ -1847,6 +1847,10 @@
 		<renderingAttribute name="bicycleParkingColor">
 			<case attrColorValue="$defaultColor"/>
 		</renderingAttribute>
+		<renderingAttribute name="bicycleParkingStrokeColor">
+			<case nightMode="true" attrColorValue="#52533D"/>
+			<case attrColorValue="#CCCCB9"/>
+		</renderingAttribute>
 
 		<renderingAttribute name="landuseConstructionColor">
 			<case nightMode="true" attrColorValue="$null"/>
@@ -2793,7 +2797,7 @@
 			<!-- point has order 128 -->
 				<case tag="railway" value="subway_entrance"/>
 				<switch>
-					<case tag="addr:housenumber" value="" maxzoom="15" order="-1" optimize="read"/>
+					<case moreDetailed="false" tag="addr:housenumber" value="" maxzoom="15" order="-1" optimize="read"/>
 					<case tag="man_made" value="tower" maxzoom="12" order="-1" optimize="read"/>
 					<case tag="" value=""/>
 					<case tag="amenity" value="bench" order="200">
@@ -3564,6 +3568,7 @@
 						<case tag="public_transport" value="" order="63"/>
 					</switch>
 					<case tag="public_transport" value="" order="85"/>
+					<case tag="amenity" value="bicycle_parking"/>
 					<!-- Over buildings -->
 					<case tag="leisure" value="track" additional="area=false" order="175"/>
 					<case tag="aerialway" value="" order="175"/>
@@ -4609,7 +4614,7 @@
 				<apply_if nightMode="true" textColor="#ffb9fe" textHaloColor="#77333333"/>
 			</switch>
 			<!-- continent not really useful here: filter minzoom="2" maxzoom="2" textSize="14" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="continent"/ -->
-			<case minzoom="1" maxzoom="2" tag="place" value="continent" textSize="13" textColor="$placeCountryTextColor" textHaloColor="$placeCountryTextHaloColor" textHaloRadius="3" textBold="true" textWrapWidth="15" textOrder="1"/>
+			<case minzoom="1" maxzoom="2" tag="place" value="continent" nameTag="" textSize="13" textColor="$placeCountryTextColor" textHaloColor="$placeCountryTextHaloColor" textHaloRadius="3" textBold="true" textWrapWidth="15" textOrder="1"/>
 			<!-- Country names -->
 			<!-- most countries are not tagged with ref: filter minzoom="2" maxzoom="2" textSize="14" textColor="#9d6c9d" textWrapWidth="20" tag="place" value="country" nameTag="ref"/ -->
 			<case minzoom="3" tag="place" value="country" nameTag="" textColor="$placeCountryTextColor" textHaloColor="$placeCountryTextHaloColor" textHaloRadius="3" textWrapWidth="15" textOrder="5">
@@ -5302,6 +5307,7 @@
 					</case>
 					<case minzoom="18" tag="amenity" value="parking_entrance" textWrapWidth="20" iconOrder="152" />
 					<case minzoom="18" tag="amenity" value="bicycle_parking" nameTag="" textWrapWidth="20" textOrder="152" />
+					<case minzoom="18" tag="osmand_amenity" value="bicycle_parking" nameTag="" textWrapWidth="20" textOrder="152" />
 					<case minzoom="17" tag="amenity" value="motorcycle_parking" nameTag="" textWrapWidth="20" textOrder="152" />
 					<case minzoom="17" tag="amenity" value="taxi" textWrapWidth="20" />
 					<case minzoom="15" tag="man_made" value="lighthouse" textWrapWidth="20" textOrder="104" />
@@ -6302,7 +6308,7 @@
 							<case minzoom="17" tag="sport" value="shooting"/>
 							<case minzoom="17" tag="sport" value="golf" textOrder="155"/>
 							<case minzoom="17" tag="sport" value="disc_golf"/>
-							<case minzoom="17" tag="sport" value="dojo"/>
+							<case minzoom="17" tag="amenity" value="dojo"/>
 							<case minzoom="17" tag="sport" value="sailing"/>
 							<case minzoom="17" tag="sport" value="skiing"/>
 							<case minzoom="17" tag="sport" value="swimming"/>
@@ -6643,21 +6649,23 @@
 							</case>
 						</apply_if>
 					</case>
-					<switch shield="blue_round_shield" >
-						<case minzoom="16" tag="amenity" value="bicycle_rental" icon="amenity_bicycle_rental"/>
-						<case minzoom="16" tag="amenity" value="bicycle_parking" icon="bicycle_parking" iconVisibleSize="32">
-							<case additional="bicycle_parking=stands" icon="bicycle_parking_stands"/>
-							<case additional="bicycle_parking=wall_loops" icon="bicycle_parking_wall_loops"/>
-							<case additional="bicycle_parking=rack" icon="bicycle_parking_rack"/>
-							<case additional="bicycle_parking=anchors" icon="bicycle_parking_anchors"/>
-							<case additional="bicycle_parking=building" icon="bicycle_parking_building"/>
-							<case additional="bicycle_parking=shed" icon="bicycle_parking_building"/>
-							<case additional="bicycle_parking=bollard" icon="bicycle_parking_bollard"/>
-							<case additional="bicycle_parking=informal" icon="bicycle_parking_informal"/>
-							<case additional="bicycle_parking=lockers" icon="bicycle_parking_lockers"/>
-							<case additional="bicycle_parking=tree" icon="bicycle_parking_tree"/>
-							<case additional="bicycle_parking=streetpod" icon="bicycle_parking_streetpod"/>
-						</case>
+					<switch shield="blue_round_shield" minzoom="16">
+						<case tag="amenity" value="bicycle_rental" icon="amenity_bicycle_rental"/>
+						<switch iconVisibleSize="32">
+							<case tag="osmand_amenity" value="bicycle_parking" icon="bicycle_parking"/>
+							<case tag="amenity" value="bicycle_parking" icon="bicycle_parking"/>
+							<apply_if additional="bicycle_parking=stands" icon="bicycle_parking_stands"/>
+							<apply_if additional="bicycle_parking=wall_loops" icon="bicycle_parking_wall_loops"/>
+							<apply_if additional="bicycle_parking=rack" icon="bicycle_parking_rack"/>
+							<apply_if additional="bicycle_parking=anchors" icon="bicycle_parking_anchors"/>
+							<apply_if additional="bicycle_parking=building" icon="bicycle_parking_building"/>
+							<apply_if additional="bicycle_parking=shed" icon="bicycle_parking_building"/>
+							<apply_if additional="bicycle_parking=bollard" icon="bicycle_parking_bollard"/>
+							<apply_if additional="bicycle_parking=informal" icon="bicycle_parking_informal"/>
+							<apply_if additional="bicycle_parking=lockers" icon="bicycle_parking_lockers"/>
+							<apply_if additional="bicycle_parking=tree" icon="bicycle_parking_tree"/>
+							<apply_if additional="bicycle_parking=streetpod" icon="bicycle_parking_streetpod"/>
+						</switch>
 						<apply_if nightMode="true" shield="blue_round_night_shield"/>
 					</switch>
 					<switch shield="gray_round_shield">
@@ -7114,19 +7122,21 @@
 						<apply_if minzoom="18" additional="access=private" icon="amenity_parking_private"/>
 						<apply_if minzoom="18" additional="access=no" icon="amenity_parking_private"/>
 					</case>
-					<case minzoom="16" tag="amenity" value="bicycle_parking" icon="bicycle_parking" iconVisibleSize="32" iconOrder="152" >
-						<case additional="bicycle_parking=stands" icon="bicycle_parking_stands"/>
-						<case additional="bicycle_parking=wall_loops" icon="bicycle_parking_wall_loops"/>
-						<case additional="bicycle_parking=rack" icon="bicycle_parking_rack"/>
-						<case additional="bicycle_parking=anchors" icon="bicycle_parking_anchors"/>
-						<case additional="bicycle_parking=building" icon="bicycle_parking_building"/>
-						<case additional="bicycle_parking=shed" icon="bicycle_parking_building"/>
-						<case additional="bicycle_parking=bollard" icon="bicycle_parking_bollard"/>
-						<case additional="bicycle_parking=informal" icon="bicycle_parking_informal"/>
-						<case additional="bicycle_parking=lockers" icon="bicycle_parking_lockers"/>
-						<case additional="bicycle_parking=tree" icon="bicycle_parking_tree"/>
-						<case additional="bicycle_parking=streetpod" icon="bicycle_parking_streetpod"/>
-					</case>
+					<switch minzoom="16" iconVisibleSize="32" iconOrder="152">
+						<case tag="osmand_amenity" value="bicycle_parking" icon="bicycle_parking"/>
+						<case tag="amenity" value="bicycle_parking" icon="bicycle_parking"/>
+						<apply_if additional="bicycle_parking=stands" icon="bicycle_parking_stands"/>
+						<apply_if additional="bicycle_parking=wall_loops" icon="bicycle_parking_wall_loops"/>
+						<apply_if additional="bicycle_parking=rack" icon="bicycle_parking_rack"/>
+						<apply_if additional="bicycle_parking=anchors" icon="bicycle_parking_anchors"/>
+						<apply_if additional="bicycle_parking=building" icon="bicycle_parking_building"/>
+						<apply_if additional="bicycle_parking=shed" icon="bicycle_parking_building"/>
+						<apply_if additional="bicycle_parking=bollard" icon="bicycle_parking_bollard"/>
+						<apply_if additional="bicycle_parking=informal" icon="bicycle_parking_informal"/>
+						<apply_if additional="bicycle_parking=lockers" icon="bicycle_parking_lockers"/>
+						<apply_if additional="bicycle_parking=tree" icon="bicycle_parking_tree"/>
+						<apply_if additional="bicycle_parking=streetpod" icon="bicycle_parking_streetpod"/>
+					</switch>
 					<case minzoom="16" tag="amenity" value="motorcycle_parking" icon="amenity_motorcycle_parking" iconVisibleSize="32" iconOrder="152" >
 						<case additional="fee=yes" icon="amenity_motorcycle_parking_paid"/>
 					</case>
@@ -7459,7 +7469,7 @@
 					<case minzoom="16" tag="sport" value="shooting" icon="sport_shooting"/>
 					<case minzoom="15" tag="sport" value="golf" icon="sport_golf" iconOrder="155"/>
 					<case minzoom="15" tag="sport" value="disc_golf" icon="sport_disc_golf"/>
-					<case minzoom="16" tag="sport" value="dojo" icon="dojo"/>
+					<case minzoom="16" tag="amenity" value="dojo" icon="dojo"/>
 					<case minzoom="16" tag="sport" value="swimming" icon="sport_swimming"/>
 					<case minzoom="16" tag="sport" value="ice_skating" icon="leisure_ice_rink"/>
 					<case minzoom="16" tag="sport" value="sailing" icon="sport_sailing"/>
@@ -8518,12 +8528,19 @@
 			</switch>
 
 			<switch minzoom="16">
+				<case tag="osmand_hazard" value="nuclear" icon="hazard_nuclear_map"/>
 				<case tag="hazard" value="nuclear" icon="hazard_nuclear_map"/>
+				<case tag="osmand_hazard" value="erosion" icon="hazard_erosion_map"/>
 				<case tag="hazard" value="erosion" icon="hazard_erosion_map"/>
+				<case tag="osmand_hazard" value="avalanche" icon="hazard_avalanche_map"/>
 				<case tag="hazard" value="avalanche" icon="hazard_avalanche_map"/>
+				<case tag="osmand_hazard" value="slippery_road" icon="hazard_slippery_road_map"/>
 				<case tag="hazard" value="slippery_road" icon="hazard_slippery_road_map"/>
+				<case tag="osmand_hazard" value="flood" icon="hazard_flood_map"/>
 				<case tag="hazard" value="flood" icon="hazard_flood_map"/>
+				<case tag="osmand_hazard" value="minefield" icon="hazard_minefield_map"/>
 				<case tag="hazard" value="minefield" icon="hazard_minefield_map"/>
+				<case minzoom="17" tag="osmand_hazard" value="" icon="hazard_yes"/>
 				<case minzoom="17" tag="hazard" value="" icon="hazard_yes"/>
 				<apply iconVisibleSize="0" iconOrder="178" intersectsWith="" intersectionSizeFactor="0"/>
 			</switch>
@@ -8973,11 +8990,11 @@
 					<apply color_2="#7479ec" strokeWidth_2="1.3:0"/>
 				</switch>
 				<case minzoom="10" tag="waterway" value="dock" color_2="#aa8387d5" strokeWidth_2="3"/>
-				<apply color="$waterColor">
-					<apply_if nightMode="true" color_2="$waterStrokeColorNight"/>
-				</apply>
+				<apply color="$waterColor" color_0="$waterColor"/>
 			</switch>
-			<apply_if additional="intermittent=yes" strokeWidth_2="1:0" color_2="#7479ec" pathEffect_2="7_5"/>
+			<apply_if additional="intermittent=yes" shader="water_intermittent">
+				<apply_if nightMode="true" shader="water_intermittent_night"/>
+			</apply_if>
 		</switch>
 
 	    <!-- for 'no polygons' -->
@@ -9183,7 +9200,9 @@
 			<case minzoom="11" tag="amenity" value="prison" shader="prison" color_2="#aaaaaa" strokeWidth_2="1:1">
 				<apply_if nightMode="true" shader="" color="$landusePrisonColorNight" color_2="#555555"/>
 			</case>
-			<case minzoom="15" tag="amenity" value="bicycle_parking" color="$bicycleParkingColor" />
+			<case minzoom="15" tag="amenity" value="bicycle_parking" color="$bicycleParkingColor">
+				<apply_if minzoom="19" strokeWidth_2="2" color_2="$bicycleParkingStrokeColor"/>
+			</case>
 			<case minzoom="19" tag="amenity" value="parking_space" color="$null" color_2="#ffffff" strokeWidth_2="1" pathEffect_2="5_5">
 				<apply_if nightMode="true" color_2="#33999999"/>
 			</case>
@@ -11092,6 +11111,7 @@
 			</apply_if>
 		</case>
 
+		<case minzoom="19" tag="amenity" value="bicycle_parking" strokeWidth="2" color="$bicycleParkingStrokeColor"/>
 
 		<!-- Barriers -->
 		<switch minzoom="15">
