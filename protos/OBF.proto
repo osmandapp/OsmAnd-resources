@@ -186,6 +186,7 @@ message OsmAndAddressIndex {
 			CitiesOrTowns = 1;
 			Postcodes = 2;
 			Villages = 3;
+			// BoundaryType = 0; // added as 0 to not cause crashes < 5.2
 		}
 		required CitiesType type = 2;
 
@@ -235,7 +236,9 @@ message AddressNameIndexDataAtom {
 
 message CityIndex {
 	// should be written the first (for city), for postcode is optional
-	optional uint32 city_type = 1; // 0-5 enum CityType
+	// 0. City, 1. Town, 2. Village, 3. Hamlet, 4. Suburb, 5. Boundary (5.2) 6. Postcode (5.3)...
+	optional uint32 city_type = 1; // 0-7... enum CityType
+
 	
 	required string name = 2;
 	optional string name_en = 3;
@@ -249,6 +252,9 @@ message CityIndex {
 	
 	// shift from start CityIndex (without length) to cityBlockIndex
 	optional fixed32 shiftToCityBlockIndex = 10;
+
+	// 5.2: 4 first ints is bbox -  of x31-left, y31-top, x31-right, y31-bottom
+	required uint32 boundary = 12;
 }
 
 message CityBlockIndex {
