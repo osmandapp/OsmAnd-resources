@@ -22,6 +22,8 @@
 		type="string" possibleValues="walkingRoutesOSMC,walkingRoutesScopeOSMC,walkingRoutesOSMCNodes" defaultValueDescription="disabled" category="routes"/>
 	<renderingProperty attr="horseRoutes" name="Horse routes" description="Horse routes"
 		type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="whiteWaterSports" name="Whitewater sports" description="Whitewater sports"
+		type="boolean" possibleValues="" category="routes"/>
 
 	<renderingProperty attr="showFitnessTrails" name="Show fitness trails" description="Fitness trails"
 		type="boolean" possibleValues="" category="routes"/>
@@ -85,6 +87,9 @@
 		<renderingClass name=".running" title="Running routes" enable="true"/>
 		<renderingClass name=".fitness_trail" title="Fitness trails" enable="true"/>
 		<renderingClass name=".piste" title="Piste trails" enable="true"/>
+		<renderingClass name=".water_sport" title="Water routes" enable="true">
+			<renderingClass name=".canoe" title="Canoe routes" enable="true"/>
+		</renderingClass>
 	</renderingClass>
 
 
@@ -379,6 +384,17 @@
 	<renderingAttribute name="runningRouteDefaultColor">
 		<case attrColorValue="#66AA72FB"/>
 	</renderingAttribute>
+	<renderingAttribute name="canoeRouteTextColor">
+		<case attrColorValue="#666666">
+			<apply_if nightMode="true" attrColorValue="#cccccc"/>
+		</case>
+	</renderingAttribute>
+	<renderingAttribute name="canoeRouteTextHaloColor">
+		<case attrColorValue="#ddffffff">
+			<apply_if nightMode="true" attrColorValue="#dd111111"/>
+		</case>
+	</renderingAttribute>
+
 	<renderingAttribute name="redColor">
 		<case attrColorValue="#88ff0000"/>
 	</renderingAttribute>
@@ -693,13 +709,13 @@
 		</switch>
 		<!-- OSMC symbols -->
 		<switch textMinDistance="60" textOrder="43">
-			<case minzoom="12" showMtbRoutes="true" tag="route_type" value="cycling" additional="route_activity_type=mountain_biking" textBold="true" textColor="$mtbRouteTextColor">
+			<case minzoom="12" showMtbRoutes="true" tag="route_type" value="cycling" additional="route_activity_type=mountain_biking" textBold="true" textColor="$mtbRouteTextColor" rClass=".route.mtb">
 				<apply_if nightMode="true" textHaloColor="#99000000"/>
 			</case>
-			<case minzoom="12" showMtbRoutes="true" tag="route_type_way" value="cycling" textBold="true" textColor="$mtbRouteTextColor">
+			<case minzoom="12" showMtbRoutes="true" tag="route_type_way" value="cycling" textBold="true" textColor="$mtbRouteTextColor" rClass=".route.mtb">
 				<apply_if nightMode="true" textHaloColor="#99000000"/>
 			</case>
-			<case minzoom="12" showCycleRoutes="true" tag="route_type" value="cycling" additional="route_activity_type=road_cycling" textBold="true" textColor="$cycleRouteTextColor"/>
+			<case minzoom="12" showCycleRoutes="true" tag="route_type" value="cycling" additional="route_activity_type=road_cycling" textBold="true" textColor="$cycleRouteTextColor" rClass=".route.bicycle"/>
 			<switch tag="route_type" value="foot">
 				<case minzoom="12" hikingRoutesOSMC="walkingRoutesOSMC" rClass=".route.hiking.osmc">
 					<apply_if nightMode="true" textHaloColor="#aa0800a0"/>
@@ -714,9 +730,10 @@
 			<case minzoom="13" showFitnessTrails="true" tag="route_type" value="other" additional="route_activity_type=fitness" textColor="#0074C1" textHaloColor="#ccffffff" textOrder="44" rClass=".route.fitness_trail">
 				<apply_if nightMode="true" textColor="#BFE3FA" textHaloColor="#99176287"/>
 			</case>
-			<case minzoom="13" showRunningRoutes="true" tag="route_type" value="foot" additional="route_activity_type=road_running" textOnPath="true" textColor="#7D2193" textOrder="8" rClass=".route.running">
+			<case minzoom="13" showRunningRoutes="true" tag="route_type" value="foot" additional="route_activity_type=road_running" textColor="#7D2193" textOrder="8" rClass=".route.running">
 				<apply_if nightMode="true" textColor="#EAC5F2" textHaloColor="#55999999"/>
 			</case>
+			<case minzoom="12" whiteWaterSports="true" tag="route_type" value="water_sport" additional="route_activity_type=canoe" textBold="true" textColor="$canoeRouteTextColor" textHaloColor="$canoeRouteTextHaloColor" rClass=".route.water_sport.canoe"/>
 
 			<apply>
 				<switch>
@@ -759,7 +776,18 @@
 				</switch>
 			</apply>
 		</switch>
-			
+
+		<case minzoom="12" showDirtbikeTrails="true" tag="route_dirtbike" value="" rClass=".route.dirtbike">
+			<apply textOnPath="false" textColor="#01000000" textHaloColor="#01000000" textOrder="43">
+				<switch>
+					<case additional="shield_fg" nameTag="shield_stub_name" textShield="?shield_bg?" icon="?shield_fg?"/>
+					<case additional="shield_bg" nameTag="shield_stub_name" textShield="?shield_bg?" icon="?shield_fg?"/>
+					<case disable="true"/>
+					<apply textSize="12"/>
+				</switch>
+			</apply>
+		</case>
+
 		<switch showClimbingRoutes="true" minzoom="17" textSize="13" nameTag="" textColor="$sportTextColorDay" textHaloColor="$sportTextHaloColorDay" textHaloRadius="$textHaloRadius" textOrder="167">
 			<case tag="climbing" value="route" textOnPath="true" textBold="true"/>
 			<case tag="climbing" value="route_bottom"/>
@@ -1253,27 +1281,32 @@
 			</case>
 		</switch>
 
-		<case horseRoutes="true" minzoom="12" tag="route_type" value="other" additional="route_activity_type=horse_riding" rClass=".route.horse">
-			<case additional="track_color=black" color="$osmcBlackColor"/>
-			<case additional="track_color=blue" color="$osmcBlueColor"/>
-			<case additional="track_color=green" color="$osmcGreenColor"/>
-			<case additional="track_color=orange" color="$osmcOrangeColor"/>
-			<case additional="track_color=red" color="$osmcRedColor"/>
-			<case additional="track_color=yellow" color="$osmcYellowColor"/>
-			<case additional="track_color=brown" color="$osmcBrownColor"/>
-			<case additional="track_color=purple" color="$osmcPurpleColor"/>
-			<case additional="track_color=pink" color="$osmcPinkColor"/>
-			<case additional="track_color=teal" color="$osmcTealColor"/>
-			<apply color="$horseRouteDefaultColor"/>
-			<apply_if minzoom="13" cap="ROUND"/>
-			<apply_if minzoom="12" maxzoom="12" strokeWidth="3.5:3.5"/>
-			<apply_if minzoom="13" maxzoom="13" strokeWidth="4.5:4.5"/>
-			<apply_if minzoom="14" maxzoom="14" strokeWidth="6:6"/>
-			<apply_if minzoom="15" maxzoom="15" strokeWidth="8:8"/>
-			<apply_if minzoom="16" maxzoom="16" strokeWidth="10:10"/>
-			<apply_if minzoom="17" maxzoom="17" strokeWidth="11:11"/>
-			<apply_if minzoom="18" strokeWidth="13:13"/>
-		</case>
+		<switch>
+			<case horseRoutes="true" minzoom="12" tag="route_type" value="other" additional="route_activity_type=horse_riding" rClass=".route.horse" color="$horseRouteDefaultColor"/>
+			<switch rClass=".route.water_sport">
+				<case whiteWaterSports="true" minzoom="12" tag="route_type" value="water_sport" additional="route_activity_type=canoe" rClass=".route.water_sport.canoe" color="$osmcBlueColor"/>
+			</switch>
+			<apply cap="ROUND">
+				<case additional="track_color=black" color="$osmcBlackColor"/>
+				<case additional="track_color=blue" color="$osmcBlueColor"/>
+				<case additional="track_color=green" color="$osmcGreenColor"/>
+				<case additional="track_color=orange" color="$osmcOrangeColor"/>
+				<case additional="track_color=red" color="$osmcRedColor"/>
+				<case additional="track_color=yellow" color="$osmcYellowColor"/>
+				<case additional="track_color=brown" color="$osmcBrownColor"/>
+				<case additional="track_color=purple" color="$osmcPurpleColor"/>
+				<case additional="track_color=pink" color="$osmcPinkColor"/>
+				<case additional="track_color=teal" color="$osmcTealColor"/>
+				<apply_if minzoom="13" cap="ROUND"/>
+				<apply_if minzoom="12" maxzoom="12" strokeWidth="3.5:3.5"/>
+				<apply_if minzoom="13" maxzoom="13" strokeWidth="4.5:4.5"/>
+				<apply_if minzoom="14" maxzoom="14" strokeWidth="6:6"/>
+				<apply_if minzoom="15" maxzoom="15" strokeWidth="8:8"/>
+				<apply_if minzoom="16" maxzoom="16" strokeWidth="10:10"/>
+				<apply_if minzoom="17" maxzoom="17" strokeWidth="11:11"/>
+				<apply_if minzoom="18" strokeWidth="13:13"/>
+			</apply>
+		</switch>
 
 		<case showFitnessTrails="true" tag="route_type" value="other" additional="route_activity_type=fitness" color="$fitnessTrailDefaultColor" cap="ROUND" rClass=".route.fitness_trail">
 			<apply_if maxzoom="13" strokeWidth="3" pathEffect="6_4"/>
