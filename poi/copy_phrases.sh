@@ -17,6 +17,7 @@ mkdir -p ./phrases/br/ && cp -f ../../android/OsmAnd/res/values-br/phrases.xml p
 mkdir -p ./phrases/ca/ && cp -f ../../android/OsmAnd/res/values-ca/phrases.xml phrases/ca/
 mkdir -p ./phrases/cs/ && cp -f ../../android/OsmAnd/res/values-cs/phrases.xml phrases/cs/
 mkdir -p ./phrases/cy/ && cp -f ../../android/OsmAnd/res/values-cy/phrases.xml phrases/cy/
+mkdir -p ./phrases/crh/ && cp -f ../../android/OsmAnd/res/values-crh/phrases.xml phrases/crh/
 
 mkdir -p ./phrases/da/ && cp -f ../../android/OsmAnd/res/values-da/phrases.xml phrases/da/
 mkdir -p ./phrases/de/ && cp -f ../../android/OsmAnd/res/values-de/phrases.xml phrases/de/
