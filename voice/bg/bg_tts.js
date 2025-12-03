@@ -107,7 +107,7 @@ function populateDictionary(tts) {
 	dictionary["back_on_route"] = tts ? "отново сте по маршрута" : "back_on_route.ogg";
 
 	// STREET NAME PREPOSITIONS
-	dictionary["onto"] = tts ? "през " : "onto.ogg";
+	dictionary["onto"] = tts ? "по " : "on.ogg";
 	dictionary["on"] = tts ? "по " : "on.ogg";    // is used if you turn together with your current street, i.e. street name does not change.
 	dictionary["to"] = tts ? "към " : "to.ogg";
 	dictionary["toward"] = tts ? "по посока на " : "toward.ogg";
