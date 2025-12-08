@@ -8,6 +8,11 @@
 	<poi_additional name="tunnel_name" lang="true" tag="tunnel:name" type="text"/>
 	<poi_additional name="bridge_name" lang="true" tag="bridge:name" type="text"/>
 	<poi_additional name="name_etymology" tag="name:etymology" type="text"/>
+
+	<!-- test how much data will increase -->
+	<poi_additional name="addr_street" tag="addr:street" type="text" hidden="true"/>
+	<poi_additional name="addr_housenumber" tag="addr:housenumber" type="text" hidden="true"/>
+	
 	<!--
 	<poi_additional name="wikivoyage_title" lang="true" tag="title" type="text"/>
 	-->
@@ -327,7 +332,7 @@
 	<poi_additional name="short_name" tag="short_name" type="text"/>
 	<poi_additional name="official_name" tag="official_name" type="text"/>
 	<poi_additional name="addr_housename" tag="addr:housename" type="text"/>
-	<poi_additional name="whitewater_rapid_name" tag="whitewater:rapid_name" type="text"/>
+	<poi_additional name="rapids_name" tag="rapids:name" type="text"/>
 	<poi_additional name="water_characteristic_mud" tag="water_characteristic" value="mud"/>
 
 	<poi_additional name="cuisine" tag="cuisine" type="text" order="110"/>
@@ -570,8 +575,13 @@
 		<poi_additional name="payment_visa_contactless_yes" tag="payment:visa_contactless" value="yes"/>
 		<poi_additional name="payment_calling_cards_yes" tag="payment:calling_cards" value="yes"/>
 		<poi_additional name="payment_reverse_charge_calls_yes" tag="payment:reverse_charge_calls" value="yes"/>
-        <poi_additional name="payment_parco_yes" tag="payment:parco" value="yes"/>
-        <poi_additional name="payment_parkster_yes" tag="payment:parkster" value="yes"/>
+		<poi_additional name="payment_parco_yes" tag="payment:parco" value="yes"/>
+		<poi_additional name="payment_parkster_yes" tag="payment:parkster" value="yes"/>
+	</poi_additional_category>
+	<poi_additional_category name="post_office_type">
+		<poi_additional name="post_office_bureau" tag="post_office" value="bureau"/>
+		<poi_additional name="post_office_post_annex" tag="post_office" value="post_annex"/>
+		<poi_additional name="post_office_post_partner" tag="post_office" value="post_partner"/>
 	</poi_additional_category>
 
 	<poi_additional name="internet_access_fee_yes" tag="internet_access:fee" value="yes"/>
@@ -1547,7 +1557,7 @@
 			<poi_type name="garden_centre" tag="shop" value="garden_centre"/>
 			<poi_type name="garden_furniture" tag="shop" value="garden_furniture"/>
 			<poi_type name="groundskeeping" tag="shop" value="groundskeeping"/>
-			<poi_type name="gas" tag="shop" value="gas"/>
+			<poi_type name="gas" tag="shop" value="gas" order="99"/>
 			<poi_type name="shop_general" tag="shop" value="general" icon="shop_yes"/>
 			<poi_type name="shop_yes" tag="shop" value="yes"/>
 			<poi_type name="gift" tag="shop" value="gift"/>
@@ -2152,7 +2162,7 @@
 			<poi_filter name="personal_transport" top="true">
 				<poi_type name="car_repair" tag="shop" value="car_repair" excluded_poi_additional_category="fee">
 					<poi_additional_category name="service_car" icon="service">
-						<poi_additional name="service_vehicle_tyres_yes" tag="service:vehicle:tyres" value="yes"/>
+						<poi_additional name="service_vehicle_tyres_yes" tag="service:vehicle:tyres" value="yes" top="true"/>
 						<poi_additional name="service_vehicle_car_repair_yes" tag="service:vehicle:car_repair" value="yes"/>
 						<poi_additional name="service_vehicle_oil_change_yes" tag="service:vehicle:oil_change" value="yes"/>
 						<poi_additional name="service_vehicle_used_car_sales_yes" tag="service:vehicle:used_car_sales" value="yes"/>
@@ -2420,10 +2430,8 @@
 				<poi_type name="enforcement_toll" tag="enforcement" value="toll" relation="true" no_edit="true" icon="toll_booth"/>
 			</poi_filter>
 			<poi_type name="speed_camera" tag="highway" value="speed_camera" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,internet_access_type,opening_hours"/>
-			<!--			<poi_type name="turning_circle" tag="highway" value="turning_circle" name_only="true"/>-->
 			<poi_type name="motorway_junction" tag="highway" value="motorway_junction" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,internet_access_type,opening_hours"/>
 			<poi_type name="junction" tag="junction" value="yes" no_edit="true" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,internet_access_type,opening_hours"/>
-			<!--			<poi_type name="passing_place" tag="highway" value="passing_place" no_edit="true" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility"/>-->
 			<poi_type name="rest_area" tag="highway" value="rest_area" excluded_poi_additional_category="wheelchair_accessibility,fee,payment_type,internet_access_type,opening_hours"/>
 			<poi_type name="escape_lane" tag="highway" value="escape" no_edit="true" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,internet_access_type,opening_hours"/>
 			<poi_type name="emergency_bay" tag="highway" value="emergency_bay" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,internet_access_type,opening_hours"/>
@@ -2848,7 +2856,7 @@
 			<poi_type name="prep_school" tag="amenity" value="prep_school" excluded_poi_additional_category="internet_access_type"/>
 			<poi_type name="music_school" tag="amenity" value="music_school" excluded_poi_additional_category="internet_access_type"/>
 			<poi_type name="language_school" tag="amenity" value="language_school" excluded_poi_additional_category="internet_access_type"/>
-			<poi_type name="training" tag="amenity" value="training" excluded_poi_additional_category="internet_access_type">
+			<poi_type name="training" tag="amenity" value="training" excluded_poi_additional_category="internet_access_type" order="100">
 				<poi_additional name="training_language" tag="training" value="language"/>
 				<poi_additional name="training_music" tag="training" value="music"/>
 				<poi_additional name="training_dance" tag="training" value="dance"/>
@@ -3027,7 +3035,6 @@
 			<poi_type name="baby_hatch" tag="amenity" value="baby_hatch" excluded_poi_additional_category="wheelchair_accessibility"/>
 			<poi_type name="veterinary" tag="amenity" value="veterinary"/>
 			<poi_reference name="ambulance_station"/>
-			<!--			<poi_type name="sanatorium" tag="amenity" value="sanatorium"/>-->
 			<poi_type name="healthcare_alternative" tag="healthcare" value="alternative">
 				<poi_additional_category name="healthcare_alternative_types">
 					<poi_additional name="healthcare_speciality_acupuncture" tag="healthcare:speciality" value="acupuncture"/>
@@ -3066,6 +3073,13 @@
 			<poi_type name="hospice" tag="healthcare" value="hospice" poi_additional_category="healthcare_speciality"/>
 			<poi_type name="laboratory" tag="healthcare" value="laboratory" poi_additional_category="healthcare_speciality,healthcare_speciality_laboratory"/>
 			<poi_type name="blood_donation" tag="healthcare" value="blood_donation" poi_additional_category="healthcare_speciality"/>
+			<poi_type name="sample_collection" tag="healthcare" value="sample_collection" poi_additional_category="healthcare_speciality">
+				<poi_additional_category name="sample_collection_filter">
+					<poi_additional name="sample_collection_yes" tag="sample_collection" value="yes"/>
+					<poi_additional name="sample_collection_covid19" tag="sample_collection" value="covid19"/>
+					<poi_additional name="sample_collection_blood" tag="sample_collection" value="blood"/>
+				</poi_additional_category>
+			</poi_type>
 			<poi_type name="health_amenity_type_first_aid_kit" tag="health_amenity:type" value="first_aid_kit" excluded_poi_additional_category="wheelchair_accessibility,opening_hours"/>
 			<poi_type name="health_amenity_type_scales" tag="health_amenity:type" value="scales" excluded_poi_additional_category="wheelchair_accessibility,opening_hours"/>
 			<poi_type name="health_facility_type_office" tag="health_facility:type" value="office">
@@ -3587,6 +3601,7 @@
 				<poi_type name="historic_cannon" tag="historic" value="cannon" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,internet_access_type,opening_hours"/>
 				<poi_type name="historic_quarry" tag="historic" value="quarry" excluded_poi_additional_category="internet_access_type,wheelchair_accessibility"/>
 				<poi_type name="historic_aircraft" tag="historic" value="aircraft" excluded_poi_additional_category="payment_type,fee,internet_access_type"/>
+				<poi_type name="historic_spacecraft" tag="historic" value="spacecraft" icon="spacecraft" excluded_poi_additional_category="payment_type,fee,internet_access_type"/>
 				<poi_type name="historic_tank" tag="historic" value="tank" excluded_poi_additional_category="payment_type,fee,internet_access_type"/>
 				<poi_type name="historic_gallows" tag="historic" value="gallows" excluded_poi_additional_category="payment_type,fee,internet_access_type,wheelchair_accessibility,opening_hours"/>
 				<poi_type name="geoglyph" tag="man_made" value="geoglyph" excluded_poi_additional_category="internet_access_type"/>
@@ -3729,7 +3744,6 @@
 			<poi_type name="latter_day_saints_church" tag="building" value="latter_day_saints_church" icon="building_type_church" no_edit="true"/>
 			<poi_type name="evangelical_lutheran_church" tag="building" value="evangelical_lutheran_church" icon="building_type_church" no_edit="true"/>
 			<poi_type name="mennonite_church" tag="building" value="mennonite_church" icon="building_type_church" no_edit="true"/>
-			<poi_type name="landmark_church" tag="building" value="landmark_church" icon="building_type_church" no_edit="true"/>
 			<poi_type name="adventist_church" tag="building" value="adventist_church" icon="building_type_church" no_edit="true"/>
 			<poi_type name="uniting_church" tag="building" value="uniting_church" icon="building_type_church" no_edit="true"/>
 			<poi_type name="apostolic_church" tag="building" value="apostolic_church" icon="building_type_church" no_edit="true"/>
@@ -3742,6 +3756,7 @@
 			<poi_type name="southern_baptist_church" tag="building" value="southern_baptist_church" icon="building_type_church" no_edit="true"/>
 			<poi_type name="congregational_church" tag="building" value="congregational_church" icon="building_type_church" no_edit="true"/>
 			<poi_type name="spiritist_church" tag="building" value="spiritist_church" icon="building_type_church" no_edit="true"/>
+			<poi_type name="christian_church" tag="building" value="christian_church" icon="building_type_church" no_edit="true"/>
 
 			<poi_type name="place_of_worship" tag="amenity" value="place_of_worship" excluded_poi_additional_category="internet_access_type,payment_type,fee">
 				<poi_additional_category name="religion_type" icon="religion_christian">
@@ -3825,6 +3840,76 @@
 					<poi_additional name="denomination_shingon_shu" tag="denomination" value="shingon_shu"/>
 					<poi_additional name="denomination_maronite" tag="denomination" value="maronite"/>
 					<poi_additional name="denomination_mahayana" tag="denomination" value="mahayana"/>
+					<poi_additional name="denomination_ukrainian_greek_catholic" tag="denomination" value="ukrainian_greek_catholic"/>
+					<poi_additional name="denomination_ukrainian_orthodox" tag="denomination" value="ukrainian_orthodox"/>
+					<poi_additional name="denomination_neo_pentecostal" tag="denomination" value="neo-pentecostal"/>
+					<poi_additional name="denomination_evangelical_lutheran" tag="denomination" value="evangelical_lutheran"/>
+					<poi_additional name="denomination_anabaptist" tag="denomination" value="anabaptist"/>
+					<poi_additional name="denomination_thai_mahanikaya" tag="denomination" value="thai_mahanikaya"/>
+					<poi_additional name="denomination_thai_thammayut" tag="denomination" value="thai_thammayut"/>
+					<poi_additional name="denomination_african_methodist_episcopal" tag="denomination" value="african_methodist_episcopal"/>
+					<poi_additional name="denomination_soto" tag="denomination" value="soto"/>
+					<poi_additional name="denomination_macedonian_orthodox" tag="denomination" value="macedonian_orthodox"/>
+					<poi_additional name="denomination_southern_baptist" tag="denomination" value="southern_baptist"/>
+					<poi_additional name="denomination_jodo_shinshu" tag="denomination" value="jodo_shinshu"/>
+					<poi_additional name="denomination_african_methodist_episcopal_zion" tag="denomination" value="african_methodist_episcopal_zion"/>
+					<poi_additional name="denomination_christ_scientist" tag="denomination" value="christ_scientist"/>
+					<poi_additional name="denomination_nichiren" tag="denomination" value="nichiren"/>
+					<poi_additional name="denomination_church_of_god" tag="denomination" value="church_of_god"/>
+					<poi_additional name="denomination_brethren" tag="denomination" value="brethren"/>
+					<poi_additional name="denomination_free_evangelical" tag="denomination" value="free_evangelical"/>
+					<poi_additional name="denomination_ahmadiyya" tag="denomination" value="ahmadiyya"/>
+					<poi_additional name="denomination_alevi" tag="denomination" value="alevi"/>
+					<poi_additional name="denomination_bektashi" tag="denomination" value="bektashi"/>
+					<poi_additional name="denomination_ibadi" tag="denomination" value="ibadi"/>
+					<poi_additional name="denomination_ismaili" tag="denomination" value="ismaili"/>
+					<poi_additional name="denomination_sufi" tag="denomination" value="sufi"/>
+					<poi_additional name="denomination_jodo_shu" tag="denomination" value="jodo_shu"/>
+					<poi_additional name="denomination_rinzai" tag="denomination" value="rinzai"/>
+					<poi_additional name="denomination_shaivism" tag="denomination" value="shaivism"/>
+					<poi_additional name="denomination_old_catholic" tag="denomination" value="old_catholic"/>
+					<poi_additional name="denomination_pkn" tag="denomination" value="pkn"/>
+					<poi_additional name="denomination_zen" tag="denomination" value="zen"/>
+					<poi_additional name="denomination_vaishnavism" tag="denomination" value="vaishnavism"/>
+					<poi_additional name="denomination_hare_krishna" tag="denomination" value="hare_krishna"/>
+					<poi_additional name="denomination_foursquare" tag="denomination" value="foursquare"/>
+					<poi_additional name="denomination_conservative" tag="denomination" value="conservative"/>
+					<poi_additional name="denomination_ashkenazi" tag="denomination" value="ashkenazi"/>
+					<poi_additional name="denomination_hasidic" tag="denomination" value="hasidic"/>
+					<poi_additional name="denomination_lubavitch" tag="denomination" value="lubavitch"/>
+					<poi_additional name="denomination_theravada" tag="denomination" value="theravada"/>
+					<poi_additional name="denomination_tiantai" tag="denomination" value="tiantai"/>
+					<poi_additional name="denomination_scottish_episcopal" tag="denomination" value="scottish_episcopal"/>
+					<poi_additional name="denomination_polish_catholic" tag="denomination" value="polish_catholic"/>
+					<poi_additional name="denomination_moravian" tag="denomination" value="moravian"/>
+					<poi_additional name="denomination_disciples_of_christ" tag="denomination" value="disciples_of_christ"/>
+					<poi_additional name="denomination_charismatic" tag="denomination" value="charismatic"/>
+					<poi_additional name="denomination_ecumenical" tag="denomination" value="ecumenical"/>
+					<poi_additional name="denomination_fsspx" tag="denomination" value="fsspx"/>
+					<poi_additional name="denomination_syriac_orthodox" tag="denomination" value="syriac_orthodox"/>
+					<poi_additional name="denomination_laestadian" tag="denomination" value="laestadian"/>
+					<poi_additional name="denomination_philippine_independent" tag="denomination" value="philippine_independent"/>
+					<poi_additional name="denomination_exclusive_brethren" tag="denomination" value="exclusive_brethren"/>
+					<poi_additional name="denomination_church_of_god_in_christ" tag="denomination" value="church_of_god_in_christ"/>
+					<poi_additional name="denomination_czechoslovak_hussite" tag="denomination" value="czechoslovak_hussite"/>
+					<poi_additional name="denomination_la_luz_del_mundo" tag="denomination" value="la_luz_del_mundo"/>
+					<poi_additional name="denomination_christadelphian" tag="denomination" value="christadelphian"/>
+					<poi_additional name="denomination_eritrean_orthodox" tag="denomination" value="eritrean_orthodox"/>
+					<poi_additional name="denomination_antiochian_orthodox" tag="denomination" value="antiochian_orthodox"/>
+					<poi_additional name="denomination_mariavite" tag="denomination" value="mariavite"/>
+					<poi_additional name="denomination_mission_covenant_church_of_sweden" tag="denomination" value="mission_covenant_church_of_sweden"/>
+					<poi_additional name="denomination_gelug" tag="denomination" value="gelug"/>
+					<poi_additional name="denomination_vajrayana" tag="denomination" value="vajrayana"/>
+					<poi_additional name="denomination_slavic" tag="denomination" value="slavic"/>
+					<poi_additional name="denomination_celtic" tag="denomination" value="celtic"/>
+					<poi_additional name="denomination_marthoma" tag="denomination" value="marthoma"/>
+					<poi_additional name="denomination_free_methodist" tag="denomination" value="free_methodist"/>
+					<poi_additional name="denomination_churches_of_christ" tag="denomination" value="churches_of_christ"/>
+					<poi_additional name="denomination_kardecista" tag="denomination" value="kardecista"/>
+					<poi_additional name="denomination_free_church_of_scotland" tag="denomination" value="free_church_of_scotland"/>
+					<poi_additional name="denomination_catholic_apostolic" tag="denomination" value="catholic_apostolic"/>
+					<poi_additional name="denomination_sephardi" tag="denomination" value="sephardi"/>
+					<poi_additional name="denomination_welsh_independent" tag="denomination" value="welsh_independent"/>
 				</poi_additional_category>
 			</poi_type>
 			<poi_type name="hanami" tag="tourism" value="hanami" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,internet_access_type,opening_hours"/>
@@ -4244,7 +4329,7 @@
 					<poi_additional_category name="dish" icon="cuisine">
 						<poi_additional name="cuisine_pizza" tag="cuisine" value="pizza" top="true"/>
 						<poi_additional name="cuisine_burger" tag="cuisine" value="burger" top="true"/>
-						<poi_additional name="cuisine_coffee" tag="cuisine" value="coffee_shop" top="true"/>
+						<poi_additional name="cuisine_coffee_shop" tag="cuisine" value="coffee_shop" top="true"/>
 						<poi_additional name="cuisine_sandwich" tag="cuisine" value="sandwich" top="true"/>
 						<poi_additional name="cuisine_kebab" tag="cuisine" value="kebab" top="true"/>
 						<poi_additional name="cuisine_chicken" tag="cuisine" value="chicken" top="true"/>
@@ -4547,11 +4632,6 @@
 			<poi_reference name="driving_school"/>
 			<poi_type name="post_office" tag="amenity" value="post_office" excluded_poi_additional_category="fee" poi_additional_category="cash_withdrawal_bank_card">
 				<poi_additional name="ref_post" tag="ref_post" type="text"/>
-				<poi_additional_category name="post_office_type">
-					<poi_additional name="post_office_bureau" tag="post_office" value="bureau"/>
-					<poi_additional name="post_office_post_annex" tag="post_office" value="post_annex"/>
-					<poi_additional name="post_office_post_partner" tag="post_office" value="post_partner"/>
-				</poi_additional_category>
 				<poi_additional name="post_office_service_provider" tag="post_office:service_provider" type="text"/>
 				<poi_additional name="post_office_service_brand" tag="post_office:brand" type="text"/>
 				<poi_additional name="post_office_collection_times" tag="post_office:collection_times" type="text"/>
@@ -4884,7 +4964,7 @@
 		</poi_category>
 		<poi_category name="finance" default_tag="amenity" top="true" excluded_poi_additional_category="fee">
 			<poi_type name="bank" tag="amenity" value="bank" poi_additional_category="drive_through"/>
-			<poi_type name="atm" tag="amenity_atm" value="atm" poi_additional_category="drive_through,cash_withdrawal_bank_card" edit_tag="amenity" edit_value="atm" alt_edit_tag="atm" alt_edit_value="yes">
+			<poi_type name="atm" tag="amenity_atm" value="atm" poi_additional_category="drive_through,cash_withdrawal_bank_card" edit_tag="amenity" edit_value="atm" alt_edit_tag="atm" alt_edit_value="yes" order="99">
 				<poi_additional_category name="cash_in">
 					<poi_additional name="cash_in_yes" tag="cash_in" value="yes"/>
 					<poi_additional name="cash_in_no" tag="cash_in" value="no"/>
@@ -4894,7 +4974,7 @@
 			<poi_type name="payment_terminal" tag="amenity" value="payment_terminal"/>
 			<poi_type name="payment_centre" tag="amenity" value="payment_centre"/>
 			<poi_type name="money_lender" tag="shop" value="money_lender"/>
-			<poi_type name="money_transfer" tag="shop" value="money_transfer"/>
+			<poi_type name="money_transfer" tag="amenity" value="money_transfer"/>
 			<poi_type name="bureau_de_change" tag="amenity" value="bureau_de_change"/>
 			<poi_type name="mobile_money_agent" tag="amenity" value="mobile_money_agent"/>
 			<poi_type name="ticket_validator" tag="amenity" value="ticket_validator"/>
@@ -4964,7 +5044,11 @@
 				<poi_additional name="sinkhole_pit" tag="sinkhole" value="pit"/>
 			</poi_type>
 			<poi_type name="waterfall" tag="waterway" value="waterfall" poi_additional_category="fee,payment_type,wheelchair_accessibility"/>
-			<poi_type name="rapids" tag="whitewater" value="rapid" no_edit="true"/>
+			<poi_type name="rapids" tag="waterway" value="rapids" no_edit="true"/>
+			<poi_type name="canoe_put_in" tag="canoe" value="put_in" icon="put_in"/>
+			<poi_type name="canoe_egress" tag="canoe" value="egress" icon="egress"/>
+			<!-- <poi_type name="canoe_put_in_egress" tag="canoe" value="put_in;egress" icon="put_in_egress"/> Broken combination is not allowed -->
+			<poi_type name="whitewater_hazard" tag="whitewater" value="hazard"/>
 			<poi_type name="spring" tag="natural" value="spring" poi_additional_category="operational_status,water_supply_type">
 				<poi_additional_category name="drinking_water" icon="drinking_water_yes">
 					<poi_additional name="drinking_water_yes" tag="drinking_water" value="yes" top="true"/>
@@ -5068,19 +5152,33 @@
 			<poi_type name="dune" tag="natural" value="dune"/>
 			<poi_reference name="island"/>
 			<poi_reference name="islet"/>
-			<poi_type name="hazard_yes" tag="hazard" value="yes" icon="hazard_yes">
-				<poi_additional name="hazard_additional_erosion" tag="hazard_additional" value="erosion" icon="hazard_erosion" edit_tag="hazard" edit_value="erosion"/>
-				<poi_additional name="hazard_additional_falling_rocks" tag="hazard_additional" value="falling_rocks" icon="hazard_erosion" edit_tag="hazard" edit_value="falling_rocks"/>
-				<poi_additional name="hazard_additional_nuclear" tag="hazard_additional" value="nuclear" icon="hazard_nuclear" edit_tag="hazard" edit_value="nuclear"/>
-				<poi_additional name="hazard_additional_flood" tag="hazard_additional" value="flood" icon="hazard_flood" edit_tag="hazard" edit_value="flood"/>
-				<poi_additional name="hazard_additional_avalanche" tag="hazard_additional" value="avalanche" icon="hazard_avalanche" edit_tag="hazard" edit_value="avalanche"/>
-				<poi_additional name="hazard_additional_minefield" tag="hazard_additional" value="minefield" icon="hazard_minefield" edit_tag="hazard" edit_value="minefield"/>
-				<poi_additional name="hazard_additional_contamination" tag="hazard_additional" value="contamination" edit_tag="hazard" edit_value="contamination"/>
-				<poi_additional name="hazard_additional_landslide" tag="hazard_additional" value="landslide" icon="hazard_erosion" edit_tag="hazard" edit_value="landslide"/>
-				<poi_additional name="hazard_additional_slippery_road" tag="hazard_additional" value="slippery_road" icon="hazard_slippery_road" edit_tag="hazard" edit_value="slippery_road"/>
-				<poi_additional name="hazard_additional_other" tag="hazard_additional" value="other" notosm="true"/>
-			</poi_type>
 		</poi_category>
+
+		<poi_category name="hazard" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,internet_access_type,opening_hours">
+			<poi_type name="hazard_erosion" tag="hazard" value="erosion" icon="hazard_erosion"/>
+			<poi_type name="hazard_falling_rocks" tag="hazard" value="falling_rocks" icon="hazard_erosion"/>
+			<poi_type name="hazard_nuclear" tag="hazard" value="nuclear" icon="hazard_nuclear"/>
+			<poi_type name="hazard_flood" tag="hazard" value="flood" icon="hazard_flood"/>
+			<poi_type name="hazard_avalanche" tag="hazard" value="avalanche" icon="hazard_avalanche"/>
+			<poi_type name="hazard_minefield" tag="hazard" value="minefield" icon="hazard_minefield"/>
+			<poi_type name="hazard_contamination" tag="hazard" value="contamination"/>
+			<poi_type name="hazard_landslide" tag="hazard" value="landslide" icon="hazard_erosion"/>
+			<poi_type name="hazard_slippery_road" tag="hazard" value="slippery_road" icon="hazard_slippery_road"/>
+			<poi_type name="hazard_hole" tag="hazard" value="hole"/>
+			<poi_type name="hazard_curve" tag="hazard" value="curve"/>
+			<poi_type name="hazard_curves" tag="hazard" value="curves"/>
+			<poi_type name="hazard_pedestrians" tag="hazard" value="pedestrians"/>
+			<poi_type name="hazard_children" tag="hazard" value="children"/>
+			<poi_type name="hazard_animal_crossing" tag="hazard" value="animal_crossing"/>
+			<poi_type name="hazard_dangerous_junction" tag="hazard" value="dangerous_junction"/>
+			<poi_type name="hazard_school_zone" tag="hazard" value="school_zone"/>
+			<poi_type name="hazard_cyclists" tag="hazard" value="cyclists"/>
+			<poi_type name="hazard_shooting_range" tag="hazard" value="shooting_range"/>
+			<poi_type name="hazard_queues_likely" tag="hazard" value="queues_likely"/>
+			<poi_type name="hazard_side_winds" tag="hazard" value="side_winds"/>
+			<poi_type name="hazard_ice" tag="hazard" value="ice"/>
+		</poi_category>
+
 		<!--		<poi_additional name="seamark:category" tag="seamark:category"/>-->
 		<poi_category name="seamark" top="true" no_edit="true" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,internet_access_type,opening_hours">
 			<poi_type name="anchorage" tag="seamark" value="anchorage"/>
@@ -5480,18 +5578,21 @@
 			<poi_additional name="time_span_no_gaps" tag="time_span_no_gaps" type="text" no_edit="true"/>
 			<poi_additional name="time_moving" tag="time_moving" type="text" no_edit="true"/>
 			<poi_additional name="time_moving_no_gaps" tag="time_moving_no_gaps" type="text" no_edit="true"/>
-			<poi_additional name="avg_ele" tag="avg_ele" type="text" no_edit="true"/>
-			<poi_additional name="min_ele" tag="min_ele" type="text" no_edit="true"/>
-			<poi_additional name="max_ele" tag="max_ele" type="text" no_edit="true"/>
-			<poi_additional name="diff_ele_up" tag="diff_ele_up" type="text" no_edit="true"/>
-			<poi_additional name="diff_ele_down" tag="diff_ele_down" type="text" no_edit="true"/>
-			<poi_additional name="avg_speed" tag="avg_speed" type="text" no_edit="true"/>
-			<poi_additional name="max_speed" tag="max_speed" type="text" no_edit="true"/>
-			<poi_additional name="min_speed" tag="min_speed" type="text" no_edit="true"/>
+			<poi_additional name="avg_ele" tag="avg_ele" type="text" no_edit="true" hidden="true"/>
+			<poi_additional name="min_ele" tag="min_ele" type="text" no_edit="true" hidden="true"/>
+			<poi_additional name="max_ele" tag="max_ele" type="text" no_edit="true" hidden="true"/>
+			<poi_additional name="diff_ele_up" tag="diff_ele_up" type="text" no_edit="true" hidden="true"/>
+			<poi_additional name="diff_ele_down" tag="diff_ele_down" type="text" no_edit="true" hidden="true"/>
+			<poi_additional name="avg_speed" tag="avg_speed" type="text" no_edit="true" hidden="true"/>
+			<poi_additional name="max_speed" tag="max_speed" type="text" no_edit="true" hidden="true"/>
+			<poi_additional name="min_speed" tag="min_speed" type="text" no_edit="true" hidden="true"/>
 			<poi_additional name="route_members_ids" tag="route_members_ids" type="text" no_edit="true" hidden="true"/>
 			<poi_additional name="route_bbox_radius" tag="route_bbox_radius" type="text" no_edit="true" hidden="true"/>
 			<poi_additional name="route_segment_index" tag="route_segment_index" type="text" no_edit="true" hidden="true"/>
 			<poi_additional name="route_shortlink_tiles" tag="route_shortlink_tiles" type="text" no_edit="true" hidden="true"/>
+			<poi_additional name="route_type_way" tag="route_type_way" type="text" no_edit="true" hidden="true"/>
+			<poi_additional name="article_title" tag="article_title" type="text" no_edit="true" hidden="true"/>
+			<poi_additional name="article_lang" tag="article_lang" type="text" no_edit="true" hidden="true"/>
 			<!-- shields -->
 			<poi_additional name="shield_bg" tag="shield_bg" type="text" no_edit="true" hidden="true"/>
 			<poi_additional name="shield_fg" tag="shield_fg" type="text" no_edit="true" hidden="true"/>
@@ -5499,6 +5600,7 @@
 			<poi_additional name="shield_text" tag="shield_text" type="text" no_edit="true" hidden="true"/>
 			<poi_additional name="shield_textcolor" tag="shield_textcolor" type="text" no_edit="true" hidden="true"/>
 			<poi_additional name="shield_waycolor" tag="shield_waycolor" type="text" no_edit="true" hidden="true"/> <!-- special to restore as a color -->
+			<poi_additional name="shield_stub_name" tag="shield_stub_name" type="text" no_edit="true" hidden="true"/>
 			<!-- track color -->
 			<poi_additional name="track_color" tag="track_color" type="text" no_edit="true"/>
 			<poi_additional name="translucent_line_colors" tag="translucent_line_colors" type="text" no_edit="true" hidden="true"/>
@@ -5560,6 +5662,9 @@
 		<poi_type name="barrier_entrance" tag="barrier" value="entrance" no_edit="true"/>
 		<poi_type name="barrier_coupure" tag="barrier" value="coupure" no_edit="true"/>
 		<poi_type name="barrier_planter" tag="barrier" value="planter" no_edit="true"/>
+		<poi_type name="barrier_chain" tag="barrier" value="chain" no_edit="true"/>
+		<poi_type name="barrier_log" tag="barrier" value="log" icon="barrier_colored_log" no_edit="true"/>
+		<poi_type name="barrier_sliding_gate" tag="barrier" value="sliding_gate" icon="barrier_gate" no_edit="true"/>
 		<poi_type name="spikes" tag="barrier" value="spikes" no_edit="true"/>
 		<poi_type name="wedge" tag="barrier" value="wedge" no_edit="true"/>
 		<poi_type name="tank_trap" tag="barrier" value="tank_trap" no_edit="true"/>
@@ -5574,12 +5679,13 @@
 		<poi_type name="power_pole" tag="power" value="pole"/>
 		<poi_type name="flagpole" tag="man_made" value="flagpole"/>
 		<poi_type name="mini_roundabout" tag="highway" value="mini_roundabout" no_edit="true"/>
+		<poi_type name="turning_circle" tag="highway" value="turning_circle" icon="turning_circle_2"/>
 		<poi_type name="toll_gantry" tag="highway" value="toll_gantry"/>
 		<poi_type name="railway_crossing" tag="railway" value="crossing" no_edit="true"/>
 		<poi_type name="street_lamp" tag="highway" value="street_lamp"/>
-		<poi_type name="christian_church" tag="building" value="christian_church" icon="building_type_church" no_edit="true"/>
 
-		<!--		<poi_type name="deadlock" tag="noexit" value="yes" no_edit="true"/>-->
+		<poi_type name="deadlock" tag="noexit" value="yes" no_edit="true"/>
+		<poi_type name="passing_place" tag="highway" value="passing_place" icon="highway_passing_place" no_edit="true"/>
 		<poi_type name="osm_note_yes" tag="osm_note" value="yes" no_edit="true"/>
 		<poi_type name="osmand_foot_prohibited_tunnel" tag="osmand_foot_prohibited_tunnel" value="yes" icon="osmand_tunnel" no_edit="true"/>
 		<poi_type name="osmand_bicycle_prohibited_tunnel" tag="osmand_bicycle_prohibited_tunnel" value="yes" icon="osmand_tunnel" no_edit="true"/>

@@ -346,7 +346,7 @@ function getTurnType(turnType) {
 }
 
 function then() {
-	return (tts ? ", " : " ") + dictionary["then"] + "(tts ? ", " : " ");
+	return (tts ? ", " : " ") + dictionary["then"] + " ";
 }
 
 function roundabout(dist, angle, exit, streetName) {

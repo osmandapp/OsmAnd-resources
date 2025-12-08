@@ -1746,6 +1746,7 @@
 					<apply_if layer="-1" order="-1"/>
 				</switch>
 				
+				<case tag="highway" value="passing_place"/>
 				<case tag="osmand_rungs" value="yes"/>
 				<case tag="ladder" value="yes"/>
 				<case tag="abandoned:railway" value="station"/>
@@ -1909,6 +1910,7 @@
 				<case tag="osmand_national_park" value="line"/>
 				<case tag="osmand_aboriginal_lands" value="line"/>
 				<case tag="osmand_border_zone" value="line"/>
+				<case tag="osmand_protected_area" value="line"/>
 			</switch>
 
 		<!-- Line -->
@@ -3519,6 +3521,7 @@
 					<case minzoom="9" tag="boundary" value="national_park" textOrder="103"/>
 					<case minzoom="15" tag="osmand_national_park" value="line" textOnPath="true" textMinDistance="100"/>
 					<case minzoom="8" maxzoom="17" tag="boundary" value="protected_area" textOrder="270"/>
+					<case minzoom="15" tag="osmand_protected_area" value="line" textOnPath="true" textMinDistance="100"/>
 					<switch minzoom="13" tag="boundary" value="forestry_compartment" textOrder="88" textDy="3">
 						<case nameTag="ref"/>
 						<case nameTag=""/>
@@ -4029,7 +4032,7 @@
 			<switch iconOrder="158">
 				<case minzoom="16" tag="historic" value="tomb" icon="topo_tomb" iconOrder="85"/>
 				<case minzoom="16" tag="historic" value="wreck" icon="topo_wreck"/>
-				<case minzoom="16" tag="historic" value="wayside_shrine" icon="topo__wayside_shrine"/>
+				<case minzoom="16" tag="historic" value="wayside_shrine" icon="topo_wayside_shrine"/>
 			</switch>
 			<case minzoom="15" tag="historic" value="castle" icon="topo_castle" iconOrder="157"/>
 			<switch minzoom="15">
@@ -4349,7 +4352,9 @@
 				<case additional="lit_additional=no" shield="street_lamp_lit_no_shield"/>
 			</apply_if>
 		</case>
-
+		<case minzoom="16" tag="highway" value="turning_circle" icon="turning_circle"/>
+		<case minzoom="17" tag="highway" value="passing_place" icon="highway_passing_place"/>
+		
 		<switch iconOrder="71">
 			<case minzoom="13" tag="building" value="tower" icon="topo_tower" shield="topo_tower_shield" iconVisibleSize="16"/>
 			<case minzoom="16" tag="man_made" value="antenna" icon="topo_mast" shield="topo_tower_shield"/>
@@ -4957,8 +4962,10 @@
 						<apply color_2="#7479ec" strokeWidth_2="1.3:0"/>
 					</switch>
 					<case minzoom="10" tag="waterway" value="dock" color_2="#aa8387d5" strokeWidth_2="3"/>
-					<apply color="$waterColor"/>
-					<apply_if additional="intermittent=yes" strokeWidth_2="1:0" color_2="#7479ec" pathEffect_2="7_5"/>
+					<apply color="$waterColor" color_0="$waterColor"/>
+					<apply_if additional="intermittent=yes" shader="water_intermittent" color_2="$null">
+						<apply_if nightMode="true" shader="water_intermittent_night"/>
+					</apply_if>
 				</switch>
 				<apply>
 					<switch hideAccess="false" minzoom="13">
@@ -6439,11 +6446,11 @@
 			</switch>
 		</switch>
 		<switch>
-			<case minzoom="7" tag="osmand_national_park" value="line"/>
-			<case minzoom="13" tag="osmand_nature_reserve" value="line"/>
+			<case minzoom="7" tag="osmand_national_park" value="line" color="$boundaryNationalParkColor2"/>
+			<case minzoom="13" tag="osmand_nature_reserve" value="line" color="$boundaryNationalParkColor2"/>
+			<case minzoom="14" tag="osmand_protected_area" value="line"/>
 			<apply_if maxzoom="9" strokeWidth="1.5:1.5"/>
 			<apply_if minzoom="10" strokeWidth="3:3"/>
-			<apply color="$boundaryNationalParkColor2"/>
 		</switch>
 		<switch>
 			<case minzoom="13" tag="osmand_aboriginal_lands" value="line" color="$boundaryAboriginalLandsColor"/>

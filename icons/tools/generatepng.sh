@@ -79,6 +79,7 @@ genMapIconsStdSize() {
   FILL_COLOR='none'
   STROKE_COLOR='none'
   BG_COLOR="$PCOLOR"
+  local SVG_SIZE_LOCAL=$SVG_SIZE
   if [[ ! -z "${NEG_PARAM}" ]]; then
     FILL_COLOR="$PCOLOR"
     STROKE_COLOR="$PCOLOR"
@@ -87,10 +88,10 @@ genMapIconsStdSize() {
   VDFOLDEROUT=${VDFOLDER}/map
   if [ "$3" == 'x4' ]; then 
     SIZES=("${SIZES_NOMX4[@]}")
-    SVG_SIZE=${SVG_SIZE_X4}
+    SVG_SIZE_LOCAL=${SVG_SIZE_X4}
   elif [ "$3" == 'x2' ]; then 
     SIZES=("${SIZES_NOMX2[@]}")
-    SVG_SIZE=${SVG_SIZE_X2}
+    SVG_SIZE_LOCAL=${SVG_SIZE_X2}
   elif [ "$3" == 'poi' ]; then 
     SIZES=("${SIZES_POI[@]}")
     FOLDERS=("${FOLDERS_POI[@]}")
@@ -131,8 +132,8 @@ genMapIconsStdSize() {
       else
         OUTPUT_SVG_PATH="${OUTPUT_SVG_FOLDER}/${FILENAME}.svg"
       fi
-      echo "Resize $COLOURED_SVG - $SVG_SIZE $OUTPUT_SVG_PATH "
-      rsvg-convert -f svg ${COLOURED_SVG} -w $SVG_SIZE -h $SVG_SIZE -o "$OUTPUT_SVG_PATH"
+      echo "Resize $COLOURED_SVG - $SVG_SIZE_LOCAL $OUTPUT_SVG_PATH "
+      rsvg-convert -f svg ${COLOURED_SVG} -w $SVG_SIZE_LOCAL -h $SVG_SIZE_LOCAL -o "$OUTPUT_SVG_PATH"
       
       for (( j = 0 ; j < ${#SIZES[@]}; j++ )) do
         SZ=${SIZES[j]}
@@ -228,6 +229,7 @@ generateBothMapPOIPng() {
   genMapIconsNoScale 'osmc_other' 'colored'
   genMapIconsStdSize 'functional-icons' '#' x1 'colored'
   genMapIconsStdSize 'functional-icons-x2' '#ff8f00' x2 'colored'
+  genMapIconsStdSize 'hazard' '#' x1 'colored'
 
   genMapIconsStdSize 'overlays' '#' x2 'colored'
   genMapIconsStdSize 'overlays_water' '#' x2 'colored'
@@ -238,7 +240,7 @@ generateBothMapPOIPng() {
   genMapIconsStdSize 'topo_emergency' '#DA0092'
   genMapIconsStdSize 'topo_accomodation'  '#1F3087'
   generateBothMapPOIPng 'special_poi' '#FFF5F1' '#ff8f00'
-      
+
   genMapIconsNoScale 'seamark_shields' 'colored'
   genMapIconsNoScale 'seamark_shields_x4' 'colored'
   genMapIconsStdSize 'seamark' '#' x2 'colored'
