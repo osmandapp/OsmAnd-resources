@@ -578,6 +578,7 @@ icon_alias subway_nnovgorod subway_subway_nnovgorod
 icon_alias subway_novosibirsk subway_subway_novosibirsk
 icon_alias subway_yekaterinburg subway_subway_yekaterinburg
 icon_alias subway_germany subway_subway_germany
+icon_alias s_bahn subway_s_bahn
 icon_alias subway_wien subway_subway_wien
 icon_alias subway_madrid subway_subway_madrid
 icon_alias subway_paris subway_subway_paris

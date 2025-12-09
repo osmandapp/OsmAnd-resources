@@ -3300,6 +3300,8 @@
 		<type tag="cycleway" value="lane" minzoom="12"/>
 		<!--		<entity_convert pattern="tag_transform" from_tag="cycleway:left" from_value="lane" to_tag1="cycleway" to_value1="lane"/>
 		<entity_convert pattern="tag_transform" from_tag="cycleway:right" from_value="lane" to_tag1="cycleway" to_value1="lane"/>-->
+		<entity_convert pattern="tag_transform" from_tag="cycleway:left:width" to_tag1="cycleway:width" map="no" routing="yes" poi="no"/>
+		<entity_convert pattern="tag_transform" from_tag="cycleway:right:width" to_tag1="cycleway:width" map="no" routing="yes" poi="no"/>
 		<type tag="osmand_cycleway_trunk_left" value="true" minzoom="12" notosm="true"/>
 		<type tag="osmand_cycleway_trunk_right" value="true" minzoom="12" notosm="true"/>
 		<type tag="osmand_cycleway_trunk_link_left" value="true" minzoom="12" notosm="true"/>
@@ -3848,6 +3850,8 @@
 		<type tag="subway_region" value="kyiv" additional="true" minzoom="12" notosm="true"/>
 		<type tag="subway_region" value="kharkiv" additional="true" minzoom="12" notosm="true"/>
 		<type tag="subway_region" value="germany" additional="true" minzoom="12" notosm="true"/>
+		<type tag="u-bahn" value="yes" additional="true" minzoom="12" notosm="true"/>
+		<type tag="s-bahn" value="yes" additional="true" minzoom="12" notosm="true"/>
 		<type tag="subway_region" value="wien" additional="true" minzoom="12" notosm="true"/>
 		<type tag="subway_region" value="paris" additional="true" minzoom="12" notosm="true"/>
 		<type tag="subway_region" value="madrid" additional="true" minzoom="12" notosm="true"/>
@@ -3994,6 +3998,8 @@
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$hungary" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="budapest"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$hungary" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="budapest"/>
 		<!-- Germany -->
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$germany" if_starts_with_tag1="operator" if_starts_with_value1="DB Netz AG;DB Station" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="germany" to_tag3="s-bahn" to_value3="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$germany" if_starts_with_tag1="operator" if_starts_with_value1="Berliner Verkehrsbetriebe" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="germany" to_tag3="u-bahn" to_value3="yes"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="subway_entrance" if_region_name="$germany" to_tag1="railway" to_value1="subway_entrance" to_tag2="subway_region" to_value2="germany"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$germany" if_tag1="station" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="germany"/>
 		<entity_convert pattern="tag_transform" from_tag="railway" from_value="station" if_region_name="$germany" if_tag1="route" if_value1="subway" to_tag1="railway" to_value1="station" to_tag2="subway_region" to_value2="germany"/>
@@ -6079,6 +6085,7 @@
 		<type tag="leisure" value="sauna" minzoom="15" />
 		<type tag="amenity" value="public_bath" minzoom="15" />
 		<type tag="amenity" value="brothel" minzoom="15" />
+		<type tag="amenity" value="love_hotel" minzoom="15" />
 		<type tag="amenity" value="hunting_stand" minzoom="14" />
 		<type tag="amenity" value="feeding_place" minzoom="14" />
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="game_feeding" to_tag1="amenity" to_value1="feeding_place"/>
@@ -6106,8 +6113,6 @@
 		<type tag="amenity" value="post_box" minzoom="15" />
 		<type tag="amenity" value="post_office" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="ref" if_tag1="amenity" if_value1="post_office" to_tag1="ref_post" map="no"/>
-		<entity_convert pattern="tag_transform" from_tag="post_office" from_value="post_partner" if_not_tag1="amenity" to_tag1="post_office" to_value1="post_partner" to_tag2="amenity" to_value2="post_office" map="no"/>
-		<entity_convert pattern="tag_transform" from_tag="post_office" from_value="post_annex" if_not_tag1="amenity" to_tag1="post_office" to_value1="post_annex" to_tag2="amenity" to_value2="post_office" map="no"/>
 		<type tag="amenity" value="letter_box" minzoom="15" nameTags="post:housenumber,post:flats"/>
 		<type tag="amenity" value="crematorium" minzoom="15" />
 		<type tag="amenity" value="mortuary" minzoom="15" order="100"/>
@@ -7418,6 +7423,7 @@
 		<routing_type tag="cycleway:right" value="track" tag2="cycleway" value2="track" mode="replace"/>
 		<routing_type tag="cycleway:left" value="opposite_track" tag2="cycleway" value2="opposite_track" mode="replace"/>
 		<routing_type tag="cycleway:right" value="opposite_track" tag2="cycleway" value2="opposite_track" mode="replace"/>
+		<routing_type tag="cycleway:width" mode="amend"/>
 
 		<routing_type tag="network" value="lcn" mode="register" base="true" />
 		<routing_type tag="network" value="rcn" mode="register" base="true" />

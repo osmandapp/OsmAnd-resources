@@ -1227,6 +1227,7 @@
 		<parameter id="avoid_sett" name="Avoid sett" description="Streets and paths which are paved with sett are avoided quite strictly (they are already avoided in standard mode)." type="boolean" default="false"/>
 		<parameter id="avoid_cobblestone" name="Avoid cobblestone" description="Streets and paths which are paved with cobblestone are avoided quite strictly (they are already avoided in standard mode)." type="boolean" default="false"/>
 		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean" default="false"/>
+		<parameter id="width" name="Width" description="Minimum bicycle width allowed on the route" type="numeric" values="0,0.59,0.69,0.79,0.89,0.99,1.09,1.19,1.29,1.49,1.99" valueDescriptions="-,60cm,70cm,80cm,90cm,1m,1.1m,1.2m,1.3m,1.5m,2m"/>
 
 		<way attribute="access">
 			<select value="-1" t="osmand_change" v="delete"/>
@@ -1306,9 +1307,17 @@
 			<select value="1"  t="access" v="permissive"/>
 			
 			<select value="-1" t="vehicle" v="no"/>
+			<select value="-1" t="width">
+				<gt value1=":width" value2="$width" type="length"/>
+			</select>
+			<select value="-1" t="cycleway:width">
+				<gt value1=":width" value2="$cycleway:width" type="length"/>
+			</select>
+
 			<select value="1" t="highway" v="cycleway"/>
 			<select value="1" t="route_bicycle"/>
 			<!--<select value="-1" t="crossing" v="no"/>--> <!-- See https://github.com/osmandapp/Osmand/issues/6678 -->
+
 
 			<if param="driving_style_safety">
 				<select value="-1" t="highway" v="trunk"/>
