@@ -1227,6 +1227,7 @@
 		<parameter id="avoid_sett" name="Avoid sett" description="Streets and paths which are paved with sett are avoided quite strictly (they are already avoided in standard mode)." type="boolean" default="false"/>
 		<parameter id="avoid_cobblestone" name="Avoid cobblestone" description="Streets and paths which are paved with cobblestone are avoided quite strictly (they are already avoided in standard mode)." type="boolean" default="false"/>
 		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean" default="false"/>
+		<parameter id="width" name="Width" description="Minimum bicycle width allowed on the route" type="numeric" values="0,0.59,0.69,0.79,0.89,0.99,1.09,1.19,1.29,1.49,1.99" valueDescriptions="-,60cm,70cm,80cm,90cm,1m,1.1m,1.2m,1.3m,1.5m,2m"/>
 
 		<way attribute="access">
 			<select value="-1" t="osmand_change" v="delete"/>
@@ -1306,9 +1307,17 @@
 			<select value="1"  t="access" v="permissive"/>
 			
 			<select value="-1" t="vehicle" v="no"/>
+			<select value="-1" t="width">
+				<gt value1=":width" value2="$width" type="length"/>
+			</select>
+			<select value="-1" t="cycleway:width">
+				<gt value1=":width" value2="$cycleway:width" type="length"/>
+			</select>
+
 			<select value="1" t="highway" v="cycleway"/>
 			<select value="1" t="route_bicycle"/>
 			<!--<select value="-1" t="crossing" v="no"/>--> <!-- See https://github.com/osmandapp/Osmand/issues/6678 -->
+
 
 			<if param="driving_style_safety">
 				<select value="-1" t="highway" v="trunk"/>
@@ -2938,18 +2947,17 @@
 		<attribute name="combineAltRoutesDiffStops" value = "120" /> <!-- 120 meters - same stop -->
 		<attribute name="combineAltRoutesSumDiffStops" value = "300" /> <!-- 300 meters sum for all stops -->
 
-		<!-- default value for max number of changes (deprecated as parameter used) -->
-		<attribute name="maxNumberOfChanges" value = "1" />
-	
+		<!-- default value for max number of changes (replaced with max_num_changes) -->
+		<attribute name="maxNumberOfChanges" value = "2" />
+		<parameter id="max_num_changes" name="Max number of transport changes" description="Specify the upper limit for transport changes" type="numeric" values="0,1,2,3,4" valueDescriptions="0,1,2,3,4" default="2"/>
+		<!-- <parameter id="pt_limit" name="Display N best routes" description="Specify the number of best routes to display" type="numeric" values="0,5,10,15,100" valueDescriptions="-,5,10,15,100" default="10"/> -->
 
-		<parameter id="max_num_changes" name="Number of changes" description="Specify max number of changes" type="numeric" values="0,1,2,3,4" valueDescriptions="0,1,2,3,4" default="2"/>
 		<parameter id="avoid_train" name="Avoid trains" description="Avoid trains" type="boolean"/>
 		<parameter id="avoid_subway" name="Avoid subways" description="Avoid subways and monorails" type="boolean"/>
 		<parameter id="avoid_ferry" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_tram" name="Avoid trams" description="Avoid trams" type="boolean"/>
 		<parameter id="avoid_bus" name="Avoid buses" description="Avoid buses, trolleybuses" type="boolean"/>
 		<parameter id="avoid_share_taxi" name="Avoid share taxis" description="Avoid share taxis" type="boolean"/>
-
 
 		<point attribute="obstacle">
 			<!-- old scheme < 5.2-->
