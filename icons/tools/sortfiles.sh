@@ -942,7 +942,7 @@ icon_alias special_poi_taj_mahal special_poi_taj_mahal
 icon_alias special_poi_us_capitol special_poi_us_capitol
 
 ## Sport
-icon_alias sport sport_swimming_outdoor
+icon_alias sport sport_sport
 icon_alias leisure_stadium sport_stadium
 icon_alias sport_10pin sport_bowling
 icon_alias sport_9pin sport_bowling
