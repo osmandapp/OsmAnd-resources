@@ -3029,6 +3029,7 @@
 					<case tag="office" value=""/>
 					<case tag="entrance" value=""/>
 					<case tag="hazard_map" value="yes"/>
+					<case tag="hazard" value=""/>
 					<case tag="abandoned:place" value=""/>
 					<switch>
 						<case tag="power" value="pole"/>
@@ -3873,6 +3874,7 @@
 						<apply_if baseAppMode="car" moreDetailed="false" maxzoom="17" order="-1"/>
 					</case>
 					<case tag="hazard_map" value="yes" order="12" ignorePolygonAsPointArea="true" ignorePolygonArea="true"/>
+					<case tag="hazard" value="" order="12" ignorePolygonAsPointArea="true" ignorePolygonArea="true"/>
 					<case tag="building:part" value=""/>
 					<apply_if hideOverground="true" minzoom="15">
 						<apply_if layer="0" order="-1"/>
@@ -6448,10 +6450,12 @@
 				<apply_if baseAppMode="car" moreDetailed="false" maxzoom="17" disable="true"/>
 			</switch>
 
-			<case minzoom="17" tag="hazard_map" value="yes" nameTag="">
+			<switch>
+				<case minzoom="17" tag="hazard_map" value="yes" nameTag=""/>
+				<case minzoom="18" tag="hazard" value="" nameTag=""/>
 				<apply textSize="12" textColor="#ff0000" textHaloColor="#ddffecec" textHaloRadius="1:1"/>
 				<apply_if nightMode="true" textColor="#ffe7e7" textHaloColor="#77b32c2c"/>
-			</case>
+			</switch>
 
 			<case minzoom="11" tag="osmand" value="file_waypoint"> <!-- for new OpenGL engine -->
 				<case additional="file_has_waypoints=true" textWrapWidth="25" textHaloRadius="1" textColor="#000000" textHaloColor="#aaffffff" textOrder="1">
@@ -8583,6 +8587,7 @@
 			<switch minzoom="17">
 				<case tag="osmand_hazard_map" value="yes"/>
 				<case tag="hazard_map" value="yes"/>
+				<case minzoom="18" tag="hazard" value=""/> <!-- All unsupported values -->
 				<apply icon="hazard_yes" shield="yellow_triangle_shield" iconOrder="178"/>
 				<apply_if additional="hazard=nuclear" icon="hazard_nuclear_map"/>
 				<apply_if additional="hazard=erosion" icon="hazard_erosion_map"/>
