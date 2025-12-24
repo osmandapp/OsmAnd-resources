@@ -8,6 +8,8 @@
 	<renderingProperty attr="alpineHiking" name="Alpine hiking scale" description="Render paths according to SAC scale" type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="alpineHikingScaleScheme" name="Alpine hiking scale scheme" description="Render paths according to SAC/CAI scale"
 		type="string" possibleValues="sacScale,caiScale" defaultValueDescription="disabled" category="other"/>
+	<renderingProperty attr="whiteWaterSports" name="Whitewater sports" description="Whitewater sports"
+			type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="lessDetailed" name="Less detailed" description="Less details on map" type="boolean" possibleValues=""
 		category="details"/>
 	<renderingProperty attr="surfaceIntegrity" name="Road surface integrity" description="Surface integral rendering" type="boolean" possibleValues=""
@@ -1300,6 +1302,28 @@
 		<case attrColorValue="#ffffff"/>
 	</renderingAttribute>
 
+	<renderingAttribute name="whitewaterSectionGrade0Color">
+		<case attrColorValue="#EE00A3FF"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade1Color">
+		<case attrColorValue="#EE7FFF00"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade2Color">
+		<case attrColorValue="#EEFFE455"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade3Color">
+		<case attrColorValue="#EEFFA500"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade4Color">
+		<case attrColorValue="#EEFF0000"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade5Color">
+		<case attrColorValue="#EEBF3EFF"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade6Color">
+		<case attrColorValue="#EE494949"/>
+	</renderingAttribute>
+
 	<renderingAttribute name="osmcBlackColor">
 		<case engine_v1="true" attrColorValue="#75000000"/>
 		<case attrColorValue="#44000000"/>
@@ -2200,6 +2224,7 @@
 				<case tag="public_transport" value="platform"/>
 				<case tag="boundary" value="" order="207"/>
 				<case tag="lit" value="" order="12"/>
+				<case tag="waterway" value="rapids"/>
 			</switch>
 			<switch>
 				<case tag="lcn_ref" value="" order="197"/>
@@ -3156,7 +3181,6 @@
 			<case tag="junction" value="yes" nameTag="" textOrder="140"/>
 			<case tag="highway" value="traffic_signals" nameTag="" textOrder="141"/>
 			<case tag="natural" value="sinkhole" nameTag=""/>
-			<case tag="waterway" value="rapids" nameTag="" textOnPath="true"/>
 			<apply textSize="12" textDy="7" textColor="#222222" textHaloRadius="$textHaloRadius" textHaloColor="$defaultTextHaloColor" textWrapWidth="16" textMinDistance="10"/>
 			<apply_if nightMode="true" textColor="#cccccc"/>
 		</switch>
@@ -6086,7 +6110,6 @@
 			<case tag="barrier" value="tyres"/>
 			<case tag="barrier" value="tank_trap"/>
 			<case tag="man_made" value="snow_fence"/>
-			<case tag="waterway" value="rapids" pathEffect="2_2"/>
 			<apply>
 				<case lessDetailed="false" maxzoom="15" strokeWidth="0.7"/>
 				<case minzoom="16" strokeWidth="1"/>
@@ -6228,6 +6251,21 @@
 				<case minzoom="18" pathEffect="12_7"/>
 			</apply_if>
 			<apply_if engine_v1="true" onewayArrowsColor="$waterwayArrowsColor"/>
+			<apply_if whiteWaterSports="true">
+				<switch>
+					<case additional="rapids=0" color_2="$whitewaterSectionGrade0Color" onewayArrowsColor="#0080AB"/>
+					<case additional="rapids=1" color_2="$whitewaterSectionGrade1Color" onewayArrowsColor="#438600"/>
+					<case additional="rapids=2" color_2="$whitewaterSectionGrade2Color" onewayArrowsColor="#9D8C34"/>
+					<case additional="rapids=3" color_2="$whitewaterSectionGrade3Color" onewayArrowsColor="#9E6600"/>
+					<case additional="rapids=4" color_2="$whitewaterSectionGrade4Color" onewayArrowsColor="#800000"/>
+					<case additional="rapids=5" color_2="$whitewaterSectionGrade5Color" onewayArrowsColor="#611F81"/>
+					<case additional="rapids=6" color_2="$whitewaterSectionGrade6Color" onewayArrowsColor="#B2B2B2"/>
+					<apply_if maxzoom="13" strokeWidth_2="6"/>
+					<apply_if minzoom="14" maxzoom="15" strokeWidth_2="10"/>
+					<apply_if minzoom="16" maxzoom="17" strokeWidth_2="14"/>
+					<apply_if minzoom="18" strokeWidth_2="18"/>
+				</switch>
+			</apply_if>
 			<!-- Waterway color -->
 			<apply color="$waterwayColor"/>
 			<apply_if additional="tunnel=yes" minzoom="17" color="$waterwayTunnelColor" pathEffect="4_2"/>
