@@ -399,6 +399,7 @@ function assemble_street_name(streetName) {
 	} else if (streetName["toRef"] != "") {
 		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	}
+	return "";
 }
 
 // пореден изход

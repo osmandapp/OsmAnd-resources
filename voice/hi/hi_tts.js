@@ -85,10 +85,10 @@ function populateDictionary(tts) {
 	// NEARBY POINTS
 	dictionary["and_arrive_waypoint"] = tts ? "और आपके माध्यम बिंदु" : "and_arrive_waypoint.ogg";
 	dictionary["reached_waypoint"] = tts ? "आप अपने माध्यम बिंदु पर पहुंच गया है" : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "and pass favorite" : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "you are passing favorite" : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "and pass POI" : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "you are passing POI" : "reached_poi.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "और पसंदीदा पास करें" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "आप पसंदीदा पास कर रहे हैं" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "और POI पास करें" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "आप POI से गुज़र रहे हैं" : "reached_poi.ogg";
 
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "आप गति सीमा से अधिक कर रहे हैं" : "exceed_limit.ogg";
@@ -379,6 +379,7 @@ function assemble_street_name(streetName) {
 	} else if (streetName["toRef"] != "") {
 		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	}
+	return "";
 }
 
 function nth(exit) {

@@ -179,7 +179,7 @@ function distance(dist) {
 			} else if (dist < 16093) {
 				return dictionary["around"] + " " + " " + dictionary["miles"] (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3)));
 			} else {
-				
+				return dictionary["miles"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3)));
 			}
 			break;
 		case "mi-m":
@@ -376,6 +376,7 @@ function assemble_street_name(streetName) {
 	} else if (streetName["toRef"] != "") {
 		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	}
+	return "";
 }
 
 function nth(exit) {

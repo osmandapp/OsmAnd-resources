@@ -74,17 +74,17 @@ function populateDictionary(tts) {
 
 	// ARRIVE
 	dictionary["and_arrive_destination"] = tts ? "και φτάσατε στον προορισμό σας" : "and_arrive_destination.ogg";
-	dictionary["reached_destination.ogg"] = tts ? "φτάσατε στον προορισμό σας" : "reached_destination.ogg";
+	dictionary["reached_destination"] = tts ? "φτάσατε στον προορισμό σας" : "reached_destination.ogg";
 	dictionary["and_arrive_intermediate"] = tts ? "και φτάσατε στο ενδιάμεσο σημείο" : "and_arrive_intermediate.ogg";
 	dictionary["reached_intermediate"] = tts ? "φτάσατε στο ενδιάμεσο σημείο" : "reached_intermediate.ogg";
 
 	// NEARBY POINTS
 	dictionary["and_arrive_waypoint"] = tts ? "και φτάσατε στο σημείο GPX" : "and_arrive_waypoint.ogg";
 	dictionary["reached_waypoint"] = tts ? "φτάσατε στο σημείο GPX" : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "and pass favorite" : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "you are passing favorite" : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "and pass POI" : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "you are passing POI" : "reached_poi.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "και να περάσει το αγαπημένο" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "περνάς το αγαπημένο" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "και να περάσεις POI" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "περνάτε ένα POI" : "reached_poi.ogg";
 
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "έχετε υπερβεί το όριο ταχύτητας" : "exceed_limit.ogg";
@@ -375,6 +375,7 @@ function assemble_street_name(streetName) {
 	} else if (streetName["toRef"] != "") {
 		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	}
+	return "";
 }
 
 function nth(exit) {

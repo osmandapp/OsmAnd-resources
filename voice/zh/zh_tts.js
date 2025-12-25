@@ -119,7 +119,7 @@ function populateDictionary(tts) {
 	dictionary["around"] = tts ? "约" : "around.ogg";
 	dictionary["kilometers"] = tts ? "公里" : "kilometers.ogg";
 	
-	dictionary["feet"] = tts ? "英里" : "feet.ogg";
+	dictionary["feet"] = tts ? "英尺" : "feet.ogg";
 	dictionary["tenths_of_a_mile"] = tts ? "零点一英里" : "tenths_of_a_mile.ogg";
 	dictionary["around_1_mile"] = tts ? "大约一英里" : "around_1_mile.ogg";
 	dictionary["miles"] = tts ? "英里" : "miles.ogg";
@@ -376,6 +376,7 @@ function assemble_street_name(streetName) {
 	} else if (streetName["toRef"] != "") {
 		return streetName["toRef"] + dictionary["toward"] + streetName["toDest"];
 	}
+	return "";
 }
 
 function nth(exit) {

@@ -216,7 +216,8 @@ function time(seconds) {
         return hours(minutes);
     } else if (minutes % 60 == 1 && tts) {
         return hours(minutes) + " " + dictionary["1"] + " " + dictionary["minute"];
-    } else if (minutes % 60 == 2 && tts) {return hours(minutes) + " " + dictionary["2"] + " " + dictionary["minutes"];
+    } else if (minutes % 60 == 2 && tts) {
+	return hours(minutes) + " " + dictionary["2"] + " " + dictionary["minutes"];
     } else if (tts) {
         return hours(minutes) + " " + (minutes % 60).toString() + " " + dictionary["minutes"];
     } else { // No tts
@@ -369,6 +370,7 @@ function assemble_street_name(streetName) {
     } else if (streetName["toRef"]!= "") {
         return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
     }
+    return "";
 }
 
 function nth(exit) {

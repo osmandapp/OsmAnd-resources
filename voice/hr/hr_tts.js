@@ -253,7 +253,7 @@ function distance(dist, grm_case) {
 				return (tts ? num_str(miles, "f", grm_case) : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["mile_"+grm_case];
 			if (miles > 20 && miles % 10 == 2)
 				return (tts ? num_str(miles, "f", grm_case) : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["miles_2-4"];
-			if (miles > 20 && miles % 10 > 2 && kms % 10 < 5)
+			if (miles > 20 && miles % 10 > 2 && miles % 10 < 5)
 				return (tts ? miles.toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["miles_2-4"];
 			return (tts ? miles.toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["miles"];
 		case "mi-m":
@@ -281,7 +281,7 @@ function distance(dist, grm_case) {
 				return (tts ? num_str(miles, "f", grm_case) : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["mile_"+grm_case];
 			if (miles > 20 && miles % 10 == 2)
 				return (tts ? num_str(miles, "f", grm_case) : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["miles_2-4"];
-			if (miles > 20 && miles % 10 > 2 && kms % 10 < 5)
+			if (miles > 20 && miles % 10 > 2 && miles % 10 < 5)
 				return (tts ? miles.toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["miles_2-4"];
 			return (tts ? miles.toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["miles"];
 		case "mi-y":
@@ -307,7 +307,7 @@ function distance(dist, grm_case) {
 				return (tts ? num_str(miles, "f", grm_case) : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["mile_"+grm_case];
 			if (miles > 20 && miles % 10 == 2)
 				return (tts ? num_str(miles, "f", grm_case) : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["miles_2-4"];
-			if (miles > 20 && miles % 10 > 2 && kms % 10 < 5)
+			if (miles > 20 && miles % 10 > 2 && miles % 10 < 5)
 				return (tts ? miles.toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["miles_2-4"];
 			return (tts ? miles.toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["miles"];
 	}
@@ -388,7 +388,7 @@ function take_exit(turnType, dist, exitString, exitInt, streetName) {
 	if (dist == -1) {
 		return getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName);
 	} else {
-		return dictionary["in"] + " " + distance(dist) + " "
+		return dictionary["in"] + " " + distance(dist, "acc") + " "
 			+ getTurnType(turnType) + " " + dictionary["onto"] + " " + getExitNumber(exitString, exitInt) + " " + take_exit_name(streetName);
 	}
 }

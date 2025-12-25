@@ -56,7 +56,7 @@ function populateDictionary(tts) {
 	dictionary["3rd"] = tts ? "3ème" : "3rd.ogg";
 	dictionary["4th"] = tts ? "4ème" : "4th.ogg";
 	dictionary["5th"] = tts ? "5ème" : "5th.ogg";
-	dictionary["6th"] = tts ? "5ème" : "6th.ogg";
+	dictionary["6th"] = tts ? "6ème" : "6th.ogg";
 	dictionary["7th"] = tts ? "7ème" : "7th.ogg";
 	dictionary["8th"] = tts ? "8ème" : "8th.ogg";
 	dictionary["9th"] = tts ? "9ème" : "9th.ogg";
@@ -314,28 +314,22 @@ function getTurnType(turnType) {
 	switch (turnType) {
 		case "left":
 			return dictionary["left"];
-			break;
 		case "left_sh":
 			return dictionary["left_sh"];
-			break;
 		case "left_sl":
 			return dictionary["left_sl"];
-			break;
 		case "right":
 			return dictionary["right"];
-			break;
 		case "right_sh":
 			return dictionary["right_sh"];
-			break;
 		case "right_sl":
 			return dictionary["right_sl"];
-			break;
 		case "left_keep":
 			return dictionary["left_keep"];
-			break;
 		case "right_keep":
 			return dictionary["right_keep"];
-			break;
+		default:
+			return "";
 	}
 }
 
@@ -376,6 +370,7 @@ function assemble_street_name(streetName) {
 	} else if (streetName["toRef"] != "") {
 		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	}
+	return "";
 }
 
 function nth(exit) {
@@ -414,6 +409,8 @@ function nth(exit) {
 			return dictionary["16th"];
 		case (17):
 			return dictionary["17th"];
+		default:
+			return "";
 	}
 }
 
@@ -518,37 +515,26 @@ function getAttentionString(type) {
 	switch (type) {
 		case "SPEED_CAMERA":
 			return dictionary["speed_camera"];
-			break;
 		case "SPEED_LIMIT":
 			return "";
-			break
 		case "BORDER_CONTROL":
 			return dictionary["border_control"];
-			break;
 		case "RAILWAY":
 			return dictionary["railroad_crossing"];
-			break;
 		case "TRAFFIC_CALMING":
 			return dictionary["traffic_calming"];
-			break;
 		case "TOLL_BOOTH":
 			return dictionary["toll_booth"];
-			break;
 		case "STOP":
 			return dictionary["stop"];
-			break;
 		case "PEDESTRIAN":
 			return dictionary["pedestrian_crosswalk"];
-			break;
 		case "MAXIMUM":
 			return "";
-			break;
 		case "TUNNEL":
 			return dictionary["tunnel"];
-			break;
 		default:
 			return "";
-			break;
 	}
 }
 
