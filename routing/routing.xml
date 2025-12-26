@@ -321,22 +321,29 @@
 		<parameter id="avoid_sett"
 			name="Avoid streets with sett"
 			description="Prefers asphalt, paving stones and concrete surfaces. Ideal if driving with a cycling cart"
-			type="boolean"/> 
+			type="boolean"/>
 		
 		</routingProfile>
 		
-		### Using numeric parameters in the routing engine   
+		### Using numeric parameters in the routing engine
 
-		Numeric values can be used to compare to other values. For this, a `gt` (greater-then-or-equal) tag is used.
-		The `gt`-tag acts just like an if-test. 
-		It will also include the specified number: `<ge value1=":a" value2="3">` means `if parameter a is 3 or higher` ( >= )
+		Numeric values can be used to compare to other values.
+
+		<gt> greater-than
+		<ge> greater-than-or-equals
+		<lt> less-than
+		<le> less-than-or-equals
+		<eq> equals
+
+		For example, a `gt` tag is used.
+		The `gt`-tag acts just like an if-test.
+		It will also include the specified number: `<gt value1=":a" value2="3">` means `if parameter "a" is higher than 3`
 
 		For example, if the height of your car is set, you'll want to compare it with the `maxheight`-tag given to some ways. This is done with a `gt` tag:
 
-	
-		<ge value1=":height" value2="$maxweight" type="height">
+		<gt value1=":height" value2="$maxweight" type="height">
 			<select value="-1" t="maxweight" />
-		</ge>
+		</gt>
 
 		To call a value, use either ':' or '$' as prefix. Use ':' for the parameters that you defined
 		 and '$' for tags loaded from the obf-file (the file containing the data from OSM).
