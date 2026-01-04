@@ -21,7 +21,8 @@ def ensure_directory(directory):
 
 def init_db(db_path):
     """Initialize the SQLite database with required tables."""
-    os.remove(db_path)
+    if os.path.exists(db_path):
+        os.remove(db_path)
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     
