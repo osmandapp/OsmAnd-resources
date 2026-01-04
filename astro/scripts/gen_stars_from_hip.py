@@ -7,8 +7,10 @@ import pandas as pd
 import numpy as np
 
 # --- Configuration ---
-HIP_CATALOG_URL = "https://github.com/skyfielders/python-skyfield/raw/refs/heads/master/ci/hip_main.dat.gz"
-HIP_FILENAME = "hip_main.dat.gz"
+# HIP_CATALOG_URL = "https://github.com/skyfielders/python-skyfield/raw/refs/heads/master/ci/hip_main.dat.gz"
+# HIP_FILENAME = "hip_main.dat.gz"
+HIP_CATALOG_URL = "https://codeberg.org/astronexus/hyg/media/branch/main/data/hyg/CURRENT/hyg_v42.csv.gz"
+HIP_FILENAME = "hyg_v42.csv.gz"
 CONST_FILENAME = "../constellations.json"
 MAPPING_FILENAME = "../hipCatalogWikidata.json.gz"
 OUTPUT_FILENAME = "stars.json"
@@ -89,16 +91,13 @@ def process_hip_catalog(constellation_stars, mapping):
     print("Processing Hipparcos catalog...")
     
     try:
-        # Read using pandas
-        # pandas infers gzip compression from extension
+        # CHANGE: Read as CSV. HYG has headers, so we don't need 'names' or 'header=None'
+        # We use 'usecols' to grab exactly what we need.
         df = pd.read_csv(
             HIP_FILENAME, 
-            sep='|', 
-            header=None, 
-            comment='#', 
-            usecols=[1, 5, 8, 9], 
-            names=['HIP', 'Vmag', 'RAdeg', 'DEdeg'],
-            dtype={'HIP': 'Int64', 'Vmag': 'float64', 'RAdeg': 'float64', 'DEdeg': 'float64'},
+            compression='gzip',
+            usecols=['hip', 'mag', 'ra', 'dec'], 
+            dtype={'hip': 'Int64', 'mag': 'float64', 'ra': 'float64', 'dec': 'float64'},
             skipinitialspace=True,
             on_bad_lines='skip'
         )
@@ -107,7 +106,7 @@ def process_hip_catalog(constellation_stars, mapping):
         return []
 
     # Drop rows where HIP is missing
-    df = df.dropna(subset=['HIP'])
+    df = df.dropna(subset=['hip'])
     
     output_stars = []
     
@@ -115,8 +114,8 @@ def process_hip_catalog(constellation_stars, mapping):
     count_bright = 0
     
     for _, row in df.iterrows():
-        hip_id = int(row['HIP'])
-        mag = row['Vmag']
+        hip_id = int(row['hip'])
+        mag = row['mag']
         
         # Filter Logic
         in_constellation = hip_id in constellation_stars
@@ -136,12 +135,12 @@ def process_hip_catalog(constellation_stars, mapping):
                 elif is_bright: count_bright += 1
                 
                 # Convert RA from degrees (0-360) to hours (0-24)
-                ra_hours = row['RAdeg'] / 15.0
+                ra_hours = row['ra']
                 
                 star_entry = {
                     "name": name,
                     "ra": round(ra_hours, 6),       # Rounded to 6 decimal places
-                    "dec": round(row['DEdeg'], 6),  # Rounded to 6 decimal places
+                    "dec": round(row['dec'], 6),  # Rounded to 6 decimal places
                     "mag": mag if pd.notna(mag) else None,
                     "hip": hip_id,
                     "wid": star_info.get('wid', None)
