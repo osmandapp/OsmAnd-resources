@@ -122,7 +122,7 @@ def process_hip_catalog(constellation_stars, mapping):
         in_constellation = hip_id in constellation_stars
         
         is_bright = False
-        if pd.notna(mag) and mag <= 2.0:
+        if pd.notna(mag) and mag <= 4.5:
             is_bright = True
             
         if in_constellation or is_bright:
