@@ -6,7 +6,7 @@ import time
 # --- Configuration ---
 # List of input files to process. 
 # The script will use the filename (without extension) as the key in the final JSON.
-INPUT_FILES = ['galaxies.json', 'black_holes.json', 'constellations.json']  
+INPUT_FILES = ['galaxies.json', 'black_holes.json', 'constellations.json', 'stars.json']  
 INPUT_DIR = '../'
 OUTPUT_FILENAME = '../gen/stars-db.json'
 WIKIDATA_DIR = '../wikidata'
