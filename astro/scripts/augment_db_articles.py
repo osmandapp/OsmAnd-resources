@@ -34,7 +34,7 @@ def download_wikipedia_data(wid, title):
     
     if not os.path.exists(json_path):
         url_summary = f"https://en.wikipedia.org/api/rest_v1/page/summary/{title}"
-        print(f"Downloading Summary for {wid} ({title})...")
+        print(f"Downloading Summary for {wid} ({title})...", flush=True)
         try:
             resp = requests.get(url_summary, headers=HEADERS)
             if resp.status_code == 200:
