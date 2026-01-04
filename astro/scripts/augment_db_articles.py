@@ -41,9 +41,8 @@ def get_valid_wiki_articles(item):
 def download_wikipedia_data(wid, lang, title):
     """Downloads summary JSON and Mobile HTML for a specific language."""
     
-    # Files are now namespaced by language: Q123.en.json, Q123.de.json
-    json_filename = f"{wid}.{lang}.json"
-    html_filename = f"{wid}.{lang}.mob.html"
+    json_filename = f"{wid}.{lang}wiki.json"
+    html_filename = f"{wid}.{lang}wiki.mob.html"
     
     json_path = os.path.join(WIKIPEDIA_DIR, json_filename)
     html_path = os.path.join(WIKIPEDIA_DIR, html_filename)
@@ -108,8 +107,8 @@ def create_augmented_db():
 
 def process_files_into_db(conn, wid, lang, title):
     """Reads downloaded files and inserts them into the DB."""
-    json_path = os.path.join(WIKIPEDIA_DIR, f"{wid}.{lang}.json")
-    html_path = os.path.join(WIKIPEDIA_DIR, f"{wid}.{lang}.mob.html")
+    json_path = os.path.join(WIKIPEDIA_DIR, f"{wid}.{lang}wiki.json")
+    html_path = os.path.join(WIKIPEDIA_DIR, f"{wid}.{lang}wiki.mob.html")
     
     summary_json_str = None
     mobile_html_str = None
