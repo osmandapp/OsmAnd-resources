@@ -2,13 +2,13 @@ import json
 import os
 import requests
 import time
+import sqlite3
 
 # --- Configuration ---
-# List of input files to process. 
-# The script will use the filename (without extension) as the key in the final JSON.
-INPUT_FILES = ['galaxies.json', 'black_holes.json', 'constellations.json', 'stars.json']  
+INPUT_FILES = ['galaxies.json', 'black_holes.json', 'constellations.json', 'stars.json'] 
 INPUT_DIR = '../'
-OUTPUT_FILENAME = '../gen/stars-db.json'
+OUTPUT_JSON = '../gen/stars-db.json'
+OUTPUT_DB = '../gen/stars.db'
 WIKIDATA_DIR = '../wikidata'
 
 HEADERS = {
@@ -19,12 +19,48 @@ def ensure_directory(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-def download_wikidata_entity(qid):
-    """Downloads the JSON for a specific QID if it doesn't exist."""
-    file_path = os.path.join(WIKIDATA_DIR, f"{qid}.json")
+def init_db(db_path):
+    """Initialize the SQLite database with required tables."""
+    os.remove(db_path)
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
     
+    # 1. Objects Table
+    # Constraint: Primary Key is (name, wikidata)
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS Objects (
+            wikidata TEXT,
+            name TEXT,
+            type TEXT,
+            ra REAL,
+            dec REAL,
+            mag REAL,
+            hip TEXT,
+            PRIMARY KEY (name, wikidata, type)
+        )
+    ''')
+
+    # 2. Names Table
+    # Constraint: No ID, No Foreign Keys, Primary Key is (wikidata, type)
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS Names (
+            wikidata TEXT,
+            name TEXT,
+            type TEXT,
+            PRIMARY KEY (wikidata, type)
+        )
+    ''')
+    
+    # Clear existing data to avoid duplicates on re-run
+    cursor.execute("DELETE FROM Objects")
+    cursor.execute("DELETE FROM Names")
+    
+    conn.commit()
+    return conn
+
+def download_wikidata_entity(qid):
+    file_path = os.path.join(WIKIDATA_DIR, f"{qid}.json")
     if os.path.exists(file_path):
-        # print(f"Skipping {qid} (already exists)") # Uncomment to reduce noise
         return
 
     url = f"https://www.wikidata.org/wiki/Special:EntityData/{qid}.json"
@@ -33,19 +69,14 @@ def download_wikidata_entity(qid):
     try:
         response = requests.get(url, headers=HEADERS)
         response.raise_for_status()
-        
         with open(file_path, 'w', encoding='utf-8') as f:
             f.write(response.text)
-            
-        time.sleep(1.0) # Polite delay
-        
+        time.sleep(1.0) 
     except Exception as e:
         print(f"Error downloading {qid}: {e}")
 
 def process_entity_data(qid):
-    """Reads the local JSON file and extracts labels and sitelinks."""
     file_path = os.path.join(WIKIDATA_DIR, f"{qid}.json")
-    
     if not os.path.exists(file_path):
         return {}, {}
 
@@ -59,7 +90,7 @@ def process_entity_data(qid):
         labels_raw = entity.get('labels', {})
         labels_map = {lang: item['value'] for lang, item in labels_raw.items()}
 
-        # 2. Extract Sitelinks (Wikipedia article names)
+        # 2. Extract Sitelinks
         sitelinks_raw = entity.get('sitelinks', {})
         wikipedia_map = {site: item['title'] for site, item in sitelinks_raw.items()}
 
@@ -69,20 +100,57 @@ def process_entity_data(qid):
         print(f"Error processing data for {qid}: {e}")
         return {}, {}
 
+def save_to_sqlite(conn, group_key, item):
+    cursor = conn.cursor()
+    
+    wid = item.get('wid')
+    if not wid:
+        return # Skip items without wikidata ID
+
+    # --- Insert into Objects ---
+    # Will FAIL if (name, wikidata) already exists
+    cursor.execute('''
+        INSERT INTO Objects (wikidata, name, type, ra, dec, mag, hip)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    ''', (
+        wid,
+        item.get('name'),
+        group_key,          # The "type" (e.g., 'galaxies')
+        item.get('ra'),
+        item.get('dec'),
+        item.get('mag'),
+        item.get('hip')     # Will be None (NULL) if not present
+    ))
+
+    # --- Insert into Names ---
+    # Will FAIL if (wikidata, type) already exists
+    
+    # 1. Insert i18n names (Labels)
+    if 'i18n_names' in item:
+        for lang, name in item['i18n_names'].items():
+            cursor.execute('INSERT OR IGNORE INTO Names (wikidata, name, type) VALUES (?, ?, ?)', 
+                          (wid, name, f"{lang}_i18n"))
+            
+    # 2. Insert Wikipedia articles (Sitelinks)
+    if 'wikipedia_articles' in item:
+        for site, title in item['wikipedia_articles'].items():
+            cursor.execute('INSERT OR IGNORE INTO Names (wikidata, name, type) VALUES (?, ?, ?)', 
+                           (wid, title, site))
+
 def main():
     ensure_directory(WIKIDATA_DIR)
     
-    # Ensure output directory exists
-    output_dir = os.path.dirname(OUTPUT_FILENAME)
+    output_dir = os.path.dirname(OUTPUT_JSON)
     if output_dir:
         ensure_directory(output_dir)
 
-    # This dictionary will hold the grouped results
-    # Example: { "galaxies": [...], "black_holes": [...] }
+    # Initialize Database
+    print(f"Initializing database: {OUTPUT_DB}")
+    conn = init_db(OUTPUT_DB)
+    
     final_db = {}
 
     for filename in INPUT_FILES:
-        # Determine the key name (e.g., "galaxies" from "galaxies.json")
         group_key = os.path.splitext(filename)[0]
         file_path = os.path.join(INPUT_DIR, filename)
 
@@ -96,7 +164,7 @@ def main():
             with open(file_path, 'r', encoding='utf-8') as f:
                 items = json.load(f)
         except json.JSONDecodeError as e:
-            print(f"Error decoding JSON from {file_path}: {e}")
+            print(f"Error decoding JSON: {e}")
             continue
 
         enriched_items = []
@@ -104,30 +172,33 @@ def main():
         for item in items:
             qid = item.get('wid')
             
-            # If no Wiki ID, just keep the item as is
             if not qid:
                 enriched_items.append(item)
                 continue
 
-            # Step 1: Download
+            # Download & Process
             download_wikidata_entity(qid)
-
-            # Step 2: Parse
             labels, wiki_articles = process_entity_data(qid)
 
-            # Step 3: Enrich
             new_item = item.copy()
             new_item['i18n_names'] = labels
             new_item['wikipedia_articles'] = wiki_articles
             
             enriched_items.append(new_item)
+
+            # Save to SQLite immediately
+            save_to_sqlite(conn, group_key, new_item)
         
-        # Add the list of enriched items to the main dictionary under the group key
         final_db[group_key] = enriched_items
 
-    # Step 4: Save final combined result
-    print(f"Saving combined database to {OUTPUT_FILENAME}...")
-    with open(OUTPUT_FILENAME, 'w', encoding='utf-8') as f:
+    # Commit DB changes and close
+    conn.commit()
+    conn.close()
+    print(f"Database saved to {OUTPUT_DB}")
+
+    # Save JSON
+    print(f"Saving JSON to {OUTPUT_JSON}...")
+    with open(OUTPUT_JSON, 'w', encoding='utf-8') as f:
         json.dump(final_db, f, indent=4, ensure_ascii=False)
     
     print("Done!")
