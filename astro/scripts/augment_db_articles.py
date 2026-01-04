@@ -19,56 +19,68 @@ def ensure_directory(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-def get_enwiki_title(item):
-    """Extracts the English Wikipedia title from the item dictionary."""
-    # Based on create_db.py structure, 'wikipedia_articles' maps site code -> title
+def get_valid_wiki_articles(item):
+    """
+    Extracts valid Wikipedia articles based on criteria:
+    - Ends with 'wiki'
+    - Language code is 2 characters (total length 6, e.g., 'enwiki')
+    - Excludes 'commonswiki'
+    """
     articles = item.get('wikipedia_articles', {})
-    return articles.get('enwiki')
+    valid_list = []
+    
+    for site_code, title in articles.items():
+        # Filter: Length must be 6 (2 chars + 'wiki') AND ends with 'wiki'
+        # This automatically excludes 'commonswiki' (len 11) and 'simplewiki' (len 10)
+        if len(site_code) == 6 and site_code.endswith('wiki') and site_code != 'commonswiki':
+            lang = site_code[:-4] # Extract 'en' from 'enwiki'
+            valid_list.append((lang, title))
+            
+    return valid_list
 
-def download_wikipedia_data(wid, title):
-    """Downloads summary JSON and Mobile HTML if not present."""
+def download_wikipedia_data(wid, lang, title):
+    """Downloads summary JSON and Mobile HTML for a specific language."""
     
-    # 1. Summary JSON (API: page/summary)
-    json_filename = f"{wid}.enwiki.json"
+    # Files are now namespaced by language: Q123.en.json, Q123.de.json
+    json_filename = f"{wid}.{lang}.json"
+    html_filename = f"{wid}.{lang}.mob.html"
+    
     json_path = os.path.join(WIKIPEDIA_DIR, json_filename)
+    html_path = os.path.join(WIKIPEDIA_DIR, html_filename)
     
+    # 1. Summary JSON
     if not os.path.exists(json_path):
-        url_summary = f"https://en.wikipedia.org/api/rest_v1/page/summary/{title}"
-        print(f"Downloading Summary for {wid} ({title})...", flush=True)
+        # Dynamic URL based on language
+        url_summary = f"https://{lang}.wikipedia.org/api/rest_v1/page/summary/{title}"
+        print(f"[{lang}] Downloading Summary for {wid} ({title})...", flush=True)
         try:
             resp = requests.get(url_summary, headers=HEADERS)
             if resp.status_code == 200:
                 with open(json_path, 'w', encoding='utf-8') as f:
                     f.write(resp.text)
-                time.sleep(0.5) # Rate limiting
-            else:
-                print(f"Failed to fetch summary for {title}: {resp.status_code}")
+                time.sleep(0.3) 
+            elif resp.status_code == 404:
+                print(f"[{lang}] Not Found: {title}")
         except Exception as e:
-            print(f"Error fetching summary for {title}: {e}")
+            print(f"[{lang}] Error fetching summary: {e}")
 
-    # 2. Mobile HTML (API: page/mobile-html)
-    html_filename = f"{wid}.enwiki.mob.html"
-    html_path = os.path.join(WIKIPEDIA_DIR, html_filename)
-    
+    # 2. Mobile HTML
     if not os.path.exists(html_path):
-        url_html = f"https://en.wikipedia.org/api/rest_v1/page/mobile-html/{title}"
-        print(f"Downloading Mobile HTML for {wid} ({title})...")
+        url_html = f"https://{lang}.wikipedia.org/api/rest_v1/page/mobile-html/{title}"
+        print(f"[{lang}] Downloading HTML for {wid} ({title})...", flush=True)
         try:
             resp = requests.get(url_html, headers=HEADERS)
             if resp.status_code == 200:
                 with open(html_path, 'w', encoding='utf-8') as f:
                     f.write(resp.text)
-                time.sleep(0.5)
-            else:
-                print(f"Failed to fetch HTML for {title}: {resp.status_code}")
+                time.sleep(0.3)
         except Exception as e:
-            print(f"Error fetching HTML for {title}: {e}")
+            print(f"[{lang}] Error fetching HTML: {e}")
 
 def create_augmented_db():
-    """Copies the original DB and adds new tables."""
-    print(f"Creating {OUTPUT_DB_SQLITE} from {INPUT_DB_SQLITE}...")
+    """Copies the original DB and adds the multi-language table."""
+    print(f"Creating {OUTPUT_DB_SQLITE} from {INPUT_DB_SQLITE}...", flush=True)
     
-    # Copy the file
     if os.path.exists(INPUT_DB_SQLITE):
         shutil.copy2(INPUT_DB_SQLITE, OUTPUT_DB_SQLITE)
     else:
@@ -78,31 +90,32 @@ def create_augmented_db():
     conn = sqlite3.connect(OUTPUT_DB_SQLITE)
     cursor = conn.cursor()
 
-    # Create new table to store the rich content
+    # Updated Schema: Composite Primary Key (wikidata, lang)
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS Wikipedia_Pages (
-            wikidata TEXT PRIMARY KEY,
+            wikidata TEXT,
+            lang TEXT,
             title TEXT,
             extract TEXT,
             thumbnail_url TEXT,
             summary_json TEXT,
-            mobile_html TEXT
+            mobile_html TEXT,
+            PRIMARY KEY (wikidata, lang)
         )
     ''')
     conn.commit()
     return conn
 
-def process_files_into_db(conn, wid, title):
+def process_files_into_db(conn, wid, lang, title):
     """Reads downloaded files and inserts them into the DB."""
-    json_path = os.path.join(WIKIPEDIA_DIR, f"{wid}.enwiki.json")
-    html_path = os.path.join(WIKIPEDIA_DIR, f"{wid}.enwiki.mob.html")
+    json_path = os.path.join(WIKIPEDIA_DIR, f"{wid}.{lang}.json")
+    html_path = os.path.join(WIKIPEDIA_DIR, f"{wid}.{lang}.mob.html")
     
     summary_json_str = None
     mobile_html_str = None
     extract_text = None
     thumbnail_url = None
 
-    # Process JSON file
     if os.path.exists(json_path):
         with open(json_path, 'r', encoding='utf-8') as f:
             summary_json_str = f.read()
@@ -113,57 +126,62 @@ def process_files_into_db(conn, wid, title):
             except:
                 pass
 
-    # Process HTML file
     if os.path.exists(html_path):
         with open(html_path, 'r', encoding='utf-8') as f:
             mobile_html_str = f.read()
 
-    # Insert if we have data
     if summary_json_str or mobile_html_str:
         cursor = conn.cursor()
         cursor.execute('''
             INSERT OR REPLACE INTO Wikipedia_Pages 
-            (wikidata, title, extract, thumbnail_url, summary_json, mobile_html)
-            VALUES (?, ?, ?, ?, ?, ?)
-        ''', (wid, title, extract_text, thumbnail_url, summary_json_str, mobile_html_str))
+            (wikidata, lang, title, extract, thumbnail_url, summary_json, mobile_html)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        ''', (wid, lang, title, extract_text, thumbnail_url, summary_json_str, mobile_html_str))
 
 def main():
     ensure_directory(WIKIPEDIA_DIR)
     
-    # 1. Load the JSON DB to get list of articles
     if not os.path.exists(INPUT_DB_JSON):
         print(f"Error: {INPUT_DB_JSON} not found.")
         return
 
-    print(f"Loading {INPUT_DB_JSON}...")
+    print(f"Loading {INPUT_DB_JSON}...", flush=True)
     with open(INPUT_DB_JSON, 'r', encoding='utf-8') as f:
         db_data = json.load(f)
 
-    # 2. Iterate and Download
-    items_to_process = [] # list of (wid, title)
+    # 1. Iterate and Download
+    tasks = [] # List of (wid, lang, title)
 
     for group, items in db_data.items():
-        print(f"Scanning group: {group}")
+        print(f"Scanning group: {group}", flush=True)
         for item in items:
             wid = item.get('wid')
-            title = get_enwiki_title(item)
+            if not wid: 
+                continue
+                
+            # Get valid articles (e.g., [('en', 'Aldebaran'), ('de', 'Aldebaran')])
+            valid_articles = get_valid_wiki_articles(item)
             
-            if wid and title:
-                items_to_process.append((wid, title))
-                download_wikipedia_data(wid, title)
+            for lang, title in valid_articles:
+                tasks.append((wid, lang, title))
+                download_wikipedia_data(wid, lang, title)
     
-    # 3. Create DB Copy and Augment
+    # 2. Create DB and Populate
     conn = create_augmented_db()
     if not conn:
         return
 
-    print("Populating augmented database...")
-    for wid, title in items_to_process:
-        process_files_into_db(conn, wid, title)
+    print("Populating augmented database...", flush=True)
+    count = 0
+    for wid, lang, title in tasks:
+        process_files_into_db(conn, wid, lang, title)
+        count += 1
+        if count % 100 == 0:
+            print(f"Processed {count} entries...", flush=True)
     
     conn.commit()
     conn.close()
-    print(f"Done! New database saved to {OUTPUT_DB_SQLITE}")
+    print(f"Done! New database saved to {OUTPUT_DB_SQLITE}", flush=True)
 
 if __name__ == "__main__":
     main()
