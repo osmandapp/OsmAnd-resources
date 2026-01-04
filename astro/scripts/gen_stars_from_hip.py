@@ -122,7 +122,7 @@ def process_hip_catalog(constellation_stars, mapping):
         in_constellation = hip_id in constellation_stars
         
         is_bright = False
-        if pd.notna(mag) and mag <= 3.0:
+        if pd.notna(mag) and mag <= 2.0:
             is_bright = True
             
         if in_constellation or is_bright:
@@ -133,22 +133,22 @@ def process_hip_catalog(constellation_stars, mapping):
             # EXCLUDE if name is null
             if name:
                 if in_constellation: count_const += 1
-                if is_bright: count_bright += 1
+                elif is_bright: count_bright += 1
                 
                 # Convert RA from degrees (0-360) to hours (0-24)
                 ra_hours = row['RAdeg'] / 15.0
                 
                 star_entry = {
                     "name": name,
-                    "ra": ra_hours,
-                    "dec": row['DEdeg'],
+                    "ra": round(ra_hours, 6),       # Rounded to 6 decimal places
+                    "dec": round(row['DEdeg'], 6),  # Rounded to 6 decimal places
                     "mag": mag if pd.notna(mag) else None,
                     "hip": hip_id,
                     "wid": star_info.get('wid', None)
                 }
                 output_stars.append(star_entry)
 
-    print(f"Found {len(output_stars)} named stars matching criteria.")
+    print(f"Found {len(output_stars)} named stars matching criteria ({count_const} constellations, {count_bright} bright).")
     
     # Sort by Name (Case insensitive)
     output_stars.sort(key=lambda x: (str(x['name']).lower(), x['hip']))
