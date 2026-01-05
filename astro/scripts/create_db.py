@@ -36,6 +36,7 @@ def init_db(db_path):
             type TEXT,
             ra REAL,
             dec REAL,
+            lines TEXT,
             mag REAL,
             hip TEXT,
             PRIMARY KEY (name, wikidata, type)
@@ -112,14 +113,15 @@ def save_to_sqlite(conn, group_key, item):
     # --- Insert into Objects ---
     # Will FAIL if (name, wikidata) already exists
     cursor.execute('''
-        INSERT INTO Objects (wikidata, name, type, ra, dec, mag, hip)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO Objects (wikidata, name, type, ra, dec, lines, mag, hip)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     ''', (
         wid,
         item.get('name'),
         group_key,          # The "type" (e.g., 'galaxies')
         item.get('ra'),
         item.get('dec'),
+        item.get('lines'),
         item.get('mag'),
         item.get('hip')     # Will be None (NULL) if not present
     ))

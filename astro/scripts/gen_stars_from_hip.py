@@ -13,6 +13,7 @@ HIP_CATALOG_URL = "https://codeberg.org/astronexus/hyg/media/branch/main/data/hy
 HIP_FILENAME = "hyg_v42.csv.gz"
 CONST_FILENAME = "../constellations.json"
 MAPPING_FILENAME = "../hipCatalogWikidata.json.gz"
+MAPPING_FILENAME2 = "../hipCatalogWikidata2.json"
 OUTPUT_FILENAME = "gen/stars.json"
 
 # --- Functions ---
@@ -51,18 +52,19 @@ def load_constellation_stars(filename):
                 hip_ids.add(hip_id)
     return hip_ids
 
-def load_wikidata_mapping(filename):
+def load_wikidata_mapping(mapping, filename):
     """Loads the HIP->Wikidata mapping from a gzipped JSON file."""
     if not os.path.exists(filename):
         print(f"Error: {filename} not found.")
         return {}
-        
-    mapping = {}
     print(f"Loading mapping from {filename}...")
     try:
-        with gzip.open(filename, 'rt', encoding='utf-8') as f:
+        if filename.endswith('.gz'):
+            opener = gzip.open(filename, 'rt', encoding='utf-8')
+        else:
+            opener = open(filename, 'r', encoding='utf-8')
+        with opener as f:
             data = json.load(f)
-            
         for entry in data:
             # entry example: {"item":"...","itemLabel":"...","hipID":"HIP 84345", ...}
             hip_str = entry.get('hipID', '')
@@ -127,7 +129,7 @@ def process_hip_catalog(constellation_stars, mapping):
         if in_constellation or is_bright:
             # Get info from mapping
             star_info = mapping.get(hip_id, {})
-            name = star_info.get('name', None)
+            name = star_info.get('name', f"000_MISSING_{hip_id}___")
             
             # EXCLUDE if name is null
             if name:
@@ -163,7 +165,9 @@ def main():
     if not constellation_stars:
         print("Warning: No stars found in constellations file or file missing.")
         
-    mapping = load_wikidata_mapping(MAPPING_FILENAME)
+    mapping = {}
+    mapping = load_wikidata_mapping(mapping, MAPPING_FILENAME)
+    mapping = load_wikidata_mapping(mapping, MAPPING_FILENAME2)
     if not mapping:
         print("Warning: Mapping file empty or missing.")
 
