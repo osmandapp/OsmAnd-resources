@@ -137,9 +137,10 @@ def save_to_sqlite(conn, group_key, item):
     # Will FAIL if (wikidata, type) already exists
     
     # 1. Insert i18n names (Labels)
+    allLangs = group_key != 'stars' or (mag is not None and mag <= MAGNITUDE_ONLY_EN)
     if 'i18n_names' in item:
         for lang, name in item['i18n_names'].items():
-            if lang == 'en' or (mag is not None  and mag <= MAGNITUDE_ONLY_EN):
+            if lang == 'en' or allLangs:
                 cursor.execute('INSERT OR IGNORE INTO Names (wikidata, name, type) VALUES (?, ?, ?)', 
                           (wid, name, f"{lang}"))
             
@@ -147,7 +148,7 @@ def save_to_sqlite(conn, group_key, item):
     if 'wikipedia_articles' in item:
         for site, title in item['wikipedia_articles'].items():
             if len(site) == 6 and site.endswith('wiki'):
-                if lang == 'en' or (mag is not None  and mag <= MAGNITUDE_ONLY_EN):
+                if lang == 'enwiki' or allLangs:
                     cursor.execute('INSERT OR IGNORE INTO Names (wikidata, name, type) VALUES (?, ?, ?)', 
                                (wid, title, site))
 
