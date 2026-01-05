@@ -136,7 +136,7 @@ def process_files_into_db(conn, wid, lang, title):
     if summary_json_str or mobile_html_str:
         cursor = conn.cursor()
         cursor.execute('''
-            INSERT OR REPLACE INTO Wikipedia_Pages 
+            INSERT OR REPLACE INTO Wikipedia
             (wikidata, lang, title, extract, thumbnail_url, summary_json, mobile_html)
             VALUES (?, ?, ?, ?, ?, ?, ?)
         ''', (wid, lang, title, extract_text, thumbnail_url, summary_json_str, compressed_html))
