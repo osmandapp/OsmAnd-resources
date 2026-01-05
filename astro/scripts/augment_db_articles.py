@@ -12,7 +12,7 @@ INPUT_DB_SQLITE = '../gen/stars.db'
 OUTPUT_DB_SQLITE = '../gen/stars-articles.db'
 WIKIPEDIA_DIR = '../wikipedia'
 SKIP_DOWNLOAD = os.environ.get('SKIP_DOWNLOAD', 'false').lower() in ('true', '1', 'yes')
-MAGNITUDE_ONLY_EN = 5.0
+MAGNITUDE_ONLY_EN = 3.0
 
 HEADERS = {
     'User-Agent': 'GalaxyDataFetcher/1.0 (my_email@example.com)'
