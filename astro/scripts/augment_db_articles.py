@@ -133,7 +133,7 @@ def process_files_into_db(conn, wid, lang, title):
             # Convert string to bytes and then compress
             compressed_html = gzip.compress(raw_html_str.encode('utf-8'))
 
-    if summary_json_str or mobile_html_str:
+    if summary_json_str or compressed_html:
         cursor = conn.cursor()
         cursor.execute('''
             INSERT OR REPLACE INTO Wikipedia
