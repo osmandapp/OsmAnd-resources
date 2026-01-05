@@ -6,7 +6,7 @@ import requests
 import pandas as pd
 import numpy as np
 
-MAX_MAGNITUDE = 4.5
+MAX_MAGNITUDE = 6.0
 
 # --- Configuration ---
 # HIP_CATALOG_URL = "https://github.com/skyfielders/python-skyfield/raw/refs/heads/master/ci/hip_main.dat.gz"

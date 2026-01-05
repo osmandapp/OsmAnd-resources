@@ -10,6 +10,7 @@ INPUT_DB_JSON = '../gen/stars-db.json'
 INPUT_DB_SQLITE = '../gen/stars.db'
 OUTPUT_DB_SQLITE = '../gen/stars-articles.db'
 WIKIPEDIA_DIR = '../wikipedia'
+SKIP_DOWNLOAD = os.environ.get('SKIP_DOWNLOAD', 'false').lower() in ('true', '1', 'yes')
 
 HEADERS = {
     'User-Agent': 'GalaxyDataFetcher/1.0 (my_email@example.com)'
@@ -156,8 +157,10 @@ def main():
         for item in items:
             wid = item.get('wid')
             if not wid: 
+                print("  Skipping item {item} without WID.", flush=True)
                 continue
-                
+            if SKIP_DOWNLOAD:
+                continue
             # Get valid articles (e.g., [('en', 'Aldebaran'), ('de', 'Aldebaran')])
             valid_articles = get_valid_wiki_articles(item)
             
