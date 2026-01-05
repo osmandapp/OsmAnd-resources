@@ -12,6 +12,7 @@ INPUT_DB_SQLITE = '../gen/stars.db'
 OUTPUT_DB_SQLITE = '../gen/stars-articles.db'
 WIKIPEDIA_DIR = '../wikipedia'
 SKIP_DOWNLOAD = os.environ.get('SKIP_DOWNLOAD', 'false').lower() in ('true', '1', 'yes')
+MAGNITUDE_ONLY_EN = 5.0
 
 HEADERS = {
     'User-Agent': 'GalaxyDataFetcher/1.0 (my_email@example.com)'
@@ -21,7 +22,7 @@ def ensure_directory(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-def get_valid_wiki_articles(item):
+def get_valid_wiki_articles(group, item):
     """
     Extracts valid Wikipedia articles based on criteria:
     - Ends with 'wiki'
@@ -30,11 +31,14 @@ def get_valid_wiki_articles(item):
     """
     articles = item.get('wikipedia_articles', {})
     valid_list = []
+    mag = item.get('mag')
+    # allLangs = group != 'stars' or (mag is not None and mag <= MAGNITUDE_ONLY_EN)
+    allLangs =  (mag is not None and mag <= MAGNITUDE_ONLY_EN)
     
     for site_code, title in articles.items():
         # Filter: Length must be 6 (2 chars + 'wiki') AND ends with 'wiki'
         # This automatically excludes 'commonswiki' (len 11) and 'simplewiki' (len 10)
-        if len(site_code) == 6 and site_code.endswith('wiki') and site_code != 'commonswiki':
+        if site_code == 'enwiki' or (allLangs and len(site_code) == 6 and site_code.endswith('wiki')):
             lang = site_code[:-4] # Extract 'en' from 'enwiki'
             valid_list.append((lang, title))
             
@@ -163,7 +167,7 @@ def main():
                 print("  Skipping item {item} without WID.", flush=True)
                 continue
             # Get valid articles (e.g., [('en', 'Aldebaran'), ('de', 'Aldebaran')])
-            valid_articles = get_valid_wiki_articles(item)
+            valid_articles = get_valid_wiki_articles(group, item)
             
             for lang, title in valid_articles:
                 tasks.append((wid, lang, title))
