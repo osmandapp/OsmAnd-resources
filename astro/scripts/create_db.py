@@ -66,7 +66,7 @@ def download_wikidata_entity(qid):
         return
 
     url = f"https://www.wikidata.org/wiki/Special:EntityData/{qid}.json"
-    print(f"Downloading {qid} from {url}...")
+    print(f"Downloading {qid} from {url}...", flush=True)
     
     try:
         response = requests.get(url, headers=HEADERS)
@@ -156,7 +156,7 @@ def main():
         group_key = os.path.splitext(filename)[0]
         file_path = os.path.join(INPUT_DIR, filename)
 
-        print(f"--- Processing group: '{group_key}' from {file_path} ---")
+        print(f"--- Processing group: '{group_key}' from {file_path} ---", flush=True)
 
         if not os.path.exists(file_path):
             print(f"Warning: File {file_path} not found. Skipping.")
@@ -199,11 +199,11 @@ def main():
     print(f"Database saved to {OUTPUT_DB}")
 
     # Save JSON
-    print(f"Saving JSON to {OUTPUT_JSON}...")
+    print(f"Saving JSON to {OUTPUT_JSON}...", flush=True)
     with open(OUTPUT_JSON, 'w', encoding='utf-8') as f:
         json.dump(final_db, f, indent=4, ensure_ascii=False)
     
-    print("Done!")
+    print("Done!", flush=True)
 
 if __name__ == "__main__":
     main()
