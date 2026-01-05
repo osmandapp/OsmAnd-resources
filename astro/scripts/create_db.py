@@ -12,7 +12,8 @@ OUTPUT_JSON = '../gen/stars-db.json'
 OUTPUT_DB = '../gen/stars.db'
 WIKIDATA_DIR = '../wikidata'
 SKIP_DOWNLOAD = os.environ.get('SKIP_DOWNLOAD', 'false').lower() in ('true', '1', 'yes')
-
+# SKIP_DOWNLOAD = True
+MAGNITUDE_ONLY_EN = 3.0
 HEADERS = {
     'User-Agent': 'GalaxyDataFetcher/1.0 (my_email@example.com)' 
 }
@@ -117,6 +118,7 @@ def save_to_sqlite(conn, group_key, item):
 
     # --- Insert into Objects ---
     # Will FAIL if (name, wikidata) already exists
+    mag = item.get('mag')
     cursor.execute('''
         INSERT INTO Objects (wikidata, name, type, ra, dec, lines, mag, hip)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
@@ -127,7 +129,7 @@ def save_to_sqlite(conn, group_key, item):
         item.get('ra'),
         item.get('dec'),
         item.get('lines') is not None and json.dumps(item.get('lines')) or None,
-        item.get('mag'),
+        mag,
         item.get('hip')     # Will be None (NULL) if not present
     ))
 
@@ -137,15 +139,17 @@ def save_to_sqlite(conn, group_key, item):
     # 1. Insert i18n names (Labels)
     if 'i18n_names' in item:
         for lang, name in item['i18n_names'].items():
-            cursor.execute('INSERT OR IGNORE INTO Names (wikidata, name, type) VALUES (?, ?, ?)', 
+            if lang == 'en' or (mag is not None  and mag <= MAGNITUDE_ONLY_EN):
+                cursor.execute('INSERT OR IGNORE INTO Names (wikidata, name, type) VALUES (?, ?, ?)', 
                           (wid, name, f"{lang}"))
             
     # 2. Insert Wikipedia articles (Sitelinks)
     if 'wikipedia_articles' in item:
         for site, title in item['wikipedia_articles'].items():
             if len(site) == 6 and site.endswith('wiki'):
-                cursor.execute('INSERT OR IGNORE INTO Names (wikidata, name, type) VALUES (?, ?, ?)', 
-                           (wid, title, site))
+                if lang == 'en' or (mag is not None  and mag <= MAGNITUDE_ONLY_EN):
+                    cursor.execute('INSERT OR IGNORE INTO Names (wikidata, name, type) VALUES (?, ?, ?)', 
+                               (wid, title, site))
 
 def main():
     ensure_directory(WIKIDATA_DIR)
