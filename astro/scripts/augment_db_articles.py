@@ -128,7 +128,7 @@ def process_files_into_db(conn, wid, lang, title):
                 pass
 
     if os.path.exists(html_path):
-        with open(html_path, 'r', encoding='utf-8') as f:
+        with open(html_path, 'rb', encoding='utf-8') as f:
             raw_html_bytes = f.read()
             # Compress the HTML bytes
             compressed_html = gzip.compress(raw_html_bytes)
