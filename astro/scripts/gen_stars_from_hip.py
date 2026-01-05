@@ -13,7 +13,7 @@ HIP_CATALOG_URL = "https://codeberg.org/astronexus/hyg/media/branch/main/data/hy
 HIP_FILENAME = "hyg_v42.csv.gz"
 CONST_FILENAME = "../constellations.json"
 MAPPING_FILENAME = "../hipCatalogWikidata.json.gz"
-OUTPUT_FILENAME = "stars.json"
+OUTPUT_FILENAME = "gen/stars.json"
 
 # --- Functions ---
 

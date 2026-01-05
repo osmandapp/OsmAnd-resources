@@ -5,7 +5,8 @@ import time
 import sqlite3
 
 # --- Configuration ---
-INPUT_FILES = ['galaxies.json', 'black_holes.json', 'constellations.json', 'stars.json'] 
+INPUT_FILES = ['galaxies.json', 'black_holes.json', 'constellations.json', 'stars.json',
+               'open_clusters.json', 'globular_clusters.json', 'nebulae.json', 'galaxy_clusters.json'] 
 INPUT_DIR = '../'
 OUTPUT_JSON = '../gen/stars-db.json'
 OUTPUT_DB = '../gen/stars.db'
@@ -72,7 +73,7 @@ def download_wikidata_entity(qid):
         response.raise_for_status()
         with open(file_path, 'w', encoding='utf-8') as f:
             f.write(response.text)
-        time.sleep(1.0) 
+        time.sleep(0.5) 
     except Exception as e:
         print(f"Error downloading {qid}: {e}")
 
