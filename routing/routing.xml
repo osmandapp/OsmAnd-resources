@@ -224,28 +224,28 @@
 		 For more info about this, see the section about parameters.
 
 		E.g.:
-  		<gt value1="-60" value2=":incline">
+  		<ge value1="-60" value2=":incline">
   			<select value="35"/>
-  		</gt>
-  		<gt value1="-17" value2=":incline">
+  		</ge>
+  		<ge value1="-17" value2=":incline">
   			<select value="10"/>
-  		</gt>
-  		<gt value1="-3" value2=":incline">
+  		</ge>
+  		<ge value1="-3" value2=":incline">
   			<select value="1"/>
-  		</gt>
-  		<gt value1="3" value2=":incline">
+  		</ge>
+  		<ge value1="3" value2=":incline">
   			<select value="0"/>
-  		</gt>
+  		</ge>
 
-  		<gt value1="13" value2=":incline">
+  		<ge value1="13" value2=":incline">
   			<select value="8"/>
-  		</gt>
-  		<gt value1="17" value2=":incline">
+  		</ge>
+  		<ge value1="17" value2=":incline">
   			<select value="1"/>
-  		</gt>
-  		<gt value1="25" value2=":incline">
+  		</ge>
+  		<ge value1="25" value2=":incline">
   			<select value="10"/>
-  		</gt>
+  		</ge>
   		<select value="15"/>
 
 		has the following meaning:
@@ -321,19 +321,26 @@
 		<parameter id="avoid_sett"
 			name="Avoid streets with sett"
 			description="Prefers asphalt, paving stones and concrete surfaces. Ideal if driving with a cycling cart"
-			type="boolean"/> 
+			type="boolean"/>
 		
 		</routingProfile>
 		
-		### Using numeric parameters in the routing engine   
+		### Using numeric parameters in the routing engine
 
-		Numeric values can be used to compare to other values. For this, a `gt` (greater-then-or-equal) tag is used.
-		The `gt`-tag acts just like an if-test. 
-		It will also include the specified number: `<gt value1=":a" value2="3">` means `if parameter a is 3 or higher` ( >= )
+		Numeric values can be used to compare to other values.
+
+		<gt> greater-than
+		<ge> greater-or-equals
+		<lt> less-than
+		<le> less-or-equals
+		<eq> equals
+
+		For example, a `gt` tag is used.
+		The `gt`-tag acts just like an if-test.
+		It will also include the specified number: `<gt value1=":a" value2="3">` means `if parameter "a" is higher than 3`
 
 		For example, if the height of your car is set, you'll want to compare it with the `maxheight`-tag given to some ways. This is done with a `gt` tag:
 
-	
 		<gt value1=":height" value2="$maxweight" type="height">
 			<select value="-1" t="maxweight" />
 		</gt>
@@ -354,7 +361,7 @@
 		0,1,2 - seems good for road bicycles
 		3-13 - better to avoid for road bicycles
 
-		### Alternative notation for <if><select /></if> and <gt><select /></gt>
+		### Alternative notation for <if><select /></if> and <ge><select /></ge>
 
 		A different but equivalent format for if- and gt-tags exists: the <if> can be placed inside a <select>
 		However, it is considered bad style (so don't use it).
@@ -430,12 +437,12 @@
 		<parameter id="hazmat_category_usa_7" name="HazMat 7. Radioactive substances" description="HazMat 7. Radioactive substances" type="boolean" profiles="truck"/>
 		<parameter id="hazmat_category_usa_8" name="HazMat 8. Corrosive substances" description="HazMat 8. Corrosive substances" type="boolean" profiles="truck"/>
 		<parameter id="hazmat_category_usa_9" name="HazMat 9. Miscellaneous" description="HazMat 9. Miscellaneous" type="boolean" profiles="truck"/>
-		<parameter id="weight" name="Weight" description="Maximum vehicle weight to be permitted on the route" type="numeric" values="0,1.49,2.99,3.49,4.99,7.49,9.99,11.99,14.99,19.99,29.99,39.99" valueDescriptions="-,1.5t,3t,3.5t,5t,7.5t,10t,12t,15t,20t,30t,40t"/>
-		<parameter id="height" name="Height" description="Maximum vehicle height to be permitted on the route" type="numeric" values="0,1.49,1.99,2.49,2.99,3.49,3.99,4.49,4.99,5.49,5.99,6.49,6.99,7.49" valueDescriptions="-,1.5m,2m,2.5m,3m,3.5m,4m,4.5m,5m,5.5m,6m,6.5m,7m,7.5m"/>
-		<parameter id="length" name="Length" description="Maximum vehicle length to be permitted on the route" type="numeric" values="0,4.99,5.99,6.49,6.99,7.99,8.99,9.49,9.99,10.99,11.99" valueDescriptions="-,5m,6m,6.5m,7m,8m,9m,9.5m,10m,11m,12m"/>
-		<parameter id="width" name="Width" description="Maximum vehicle width to be permitted on the route" type="numeric" values="0,1.49,1.99,2.29,2.49,2.99" valueDescriptions="-,1.5m,2m,2.3m,2.5m,3m"/>
-		<parameter id="maxaxleload" name="Max axle load" description="Maximum legal load weight limit per axle" type="numeric" values="0,1.49,2.99,3.49,4.99,7.49,9.99,11.99,14.99,19.99,29.99,39.99" valueDescriptions="-,1.5t,3t,3.5t,5t,7.5t,10t,12t,15t,20t,30t,40t" profiles="truck"/>
-		<parameter id="weightrating" name="Max weight at full load" description="Maximum permitted weight of the vehicle at full load" type="numeric" values="0,1.49,2.99,3.49,4.99,7.49,9.99,11.99,14.99,19.99,29.99,39.99" valueDescriptions="-,1.5t,3t,3.5t,5t,7.5t,10t,12t,15t,20t,30t,40t" profiles="truck"/>
+		<parameter id="weight" name="Weight" description="Maximum vehicle weight to be permitted on the route" type="numeric" values="0,1.5,3,3.5,5,7.5,10,12,15,20,30,40" valueDescriptions="-,1.5t,3t,3.5t,5t,7.5t,10t,12t,15t,20t,30t,40t"/>
+		<parameter id="height" name="Height" description="Maximum vehicle height to be permitted on the route" type="numeric" values="0,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5" valueDescriptions="-,1.5m,2m,2.5m,3m,3.5m,4m,4.5m,5m,5.5m,6m,6.5m,7m,7.5m"/>
+		<parameter id="length" name="Length" description="Maximum vehicle length to be permitted on the route" type="numeric" values="0,5,6,6.5,7,8,9,9.5,10,11,12" valueDescriptions="-,5m,6m,6.5m,7m,8m,9m,9.5m,10m,11m,12m"/>
+		<parameter id="width" name="Width" description="Maximum vehicle width to be permitted on the route" type="numeric" values="0,1.5,2,2.3,2.5,3" valueDescriptions="-,1.5m,2m,2.3m,2.5m,3m"/>
+		<parameter id="maxaxleload" name="Max axle load" description="Maximum legal load weight limit per axle" type="numeric" values="0,1.5,3,3.5,5,7.5,10,12,15,20,30,40" valueDescriptions="-,1.5t,3t,3.5t,5t,7.5t,10t,12t,15t,20t,30t,40t" profiles="truck"/>
+		<parameter id="weightrating" name="Max weight at full load" description="Maximum permitted weight of the vehicle at full load" type="numeric" values="0,1.5,3,3.5,5,7.5,10,12,15,20,30,40" valueDescriptions="-,1.5t,3t,3.5t,5t,7.5t,10t,12t,15t,20t,30t,40t" profiles="truck"/>
 		<parameter id="motor_type" name="Motor type" description="For CO2 computation" type="numeric" values="0,1,2,3,4,5,6" valueDescriptions="-,Petrol,Diesel,Lpg,Gas,Electric,Hybrid"/>
 
 		<way attribute="access">
@@ -616,7 +623,7 @@
 				<gt value1=":height" value2="$maxheight:backward" type="length"/>
 			</select>
 
-			<gt value1=":hazmat_category" value2="4"> <!-- E -->
+			<ge value1=":hazmat_category" value2="4"> <!-- E -->
 				<select value="-1" t="hazmat" v="no"/>
 				<select value="1" t="hazmat:a" v="yes"/>
 				<select value="-1" t="hazmat:a" v="no"/>
@@ -628,8 +635,8 @@
 				<select value="-1" t="hazmat:d" v="no"/>
 				<select value="1" t="hazmat:e" v="yes"/>
 				<select value="-1" t="hazmat:e" v="no"/>
-			</gt>
-			<gt value1=":hazmat_category" value2="3"> <!-- D -->
+			</ge>
+			<ge value1=":hazmat_category" value2="3"> <!-- D -->
 				<select value="-1" t="hazmat" v="no"/>
 				<select value="1" t="hazmat:a" v="yes"/>
 				<select value="-1" t="hazmat:a" v="no"/>
@@ -639,8 +646,8 @@
 				<select value="-1" t="hazmat:c" v="no"/>
 				<select value="1" t="hazmat:d" v="yes"/>
 				<select value="-1" t="hazmat:d" v="no"/>
-			</gt>
-			<gt value1=":hazmat_category" value2="2"> <!-- C -->
+			</ge>
+			<ge value1=":hazmat_category" value2="2"> <!-- C -->
 				<select value="-1" t="hazmat" v="no"/>
 				<select value="1" t="hazmat:a" v="yes"/>
 				<select value="-1" t="hazmat:a" v="no"/>
@@ -648,18 +655,18 @@
 				<select value="-1" t="hazmat:b" v="no"/>
 				<select value="1" t="hazmat:c" v="yes"/>
 				<select value="-1" t="hazmat:c" v="no"/>
-			</gt>
-			<gt value1=":hazmat_category" value2="1"> <!-- B -->
+			</ge>
+			<ge value1=":hazmat_category" value2="1"> <!-- B -->
 				<select value="-1" t="hazmat" v="no"/>
 				<select value="1" t="hazmat:a" v="yes"/>
 				<select value="-1" t="hazmat:a" v="no"/>
 				<select value="1" t="hazmat:b" v="yes"/>
 				<select value="-1" t="hazmat:b" v="no"/>
-			</gt>
-			<gt value1=":hazmat_category" value2="0"> <!-- A -->
+			</ge>
+			<ge value1=":hazmat_category" value2="0"> <!-- A -->
 				<select value="1" t="hazmat:a" v="yes"/>
 				<select value="-1" t="hazmat:a" v="no"/>
-			</gt>
+			</ge>
 
 			<!--hazmat category usa-->
 			<if param="hazmat_category_usa_1">
@@ -1022,9 +1029,9 @@
 
 		<way attribute="obstacle_srtm_alt_speed">
 			<if param="short_way">
-				<gt value1="20" value2=":incline">
+				<ge value1="20" value2=":incline">
 					<select value="1"/>
-				</gt>
+				</ge>
 			</if>
 		</way>
 
@@ -1235,7 +1242,7 @@
 		<parameter id="avoid_sett" name="Avoid sett" description="Streets and paths which are paved with sett are avoided quite strictly (they are already avoided in standard mode)." type="boolean" default="false"/>
 		<parameter id="avoid_cobblestone" name="Avoid cobblestone" description="Streets and paths which are paved with cobblestone are avoided quite strictly (they are already avoided in standard mode)." type="boolean" default="false"/>
 		<parameter id="height_obstacles" name="Use elevation data" description="Use terrain elevation data provided by SRTM, ASTER and EU-DEM" type="boolean" default="false"/>
-		<parameter id="width" name="Width" description="Minimum bicycle width allowed on the route" type="numeric" values="0,0.59,0.69,0.79,0.89,0.99,1.09,1.19,1.29,1.49,1.99" valueDescriptions="-,60cm,70cm,80cm,90cm,1m,1.1m,1.2m,1.3m,1.5m,2m"/>
+		<parameter id="width" name="Width" description="Minimum bicycle width allowed on the route" type="numeric" values="0,0.6,0.7,0.8,0.9,1,1.1,1.2,1.3,1.5,2" valueDescriptions="-,0.6m,0.7m,0.8m,0.9m,1m,1.1m,1.2m,1.3m,1.5m,2m"/>
 
 		<way attribute="access">
 			<select value="-1" t="osmand_change" v="delete"/>
@@ -1504,66 +1511,66 @@
 
 		<way attribute="obstacle_srtm_alt_speed">
 			<if param="height_obstacles">
-				<gt value1="-100" value2=":incline">
+				<ge value1="-100" value2=":incline">
 					<select value="-1" t="osmand_highway_integrity_brouting_low" v="yes"/>
 					<select value="-1" t="highway" v="path"/>
 					<select value="-1" t="highway" v="track"/>
-				</gt>
-				<gt value1="-35" value2=":incline">
+				</ge>
+				<ge value1="-35" value2=":incline">
 					<select value="30" t="osmand_highway_integrity_brouting_low" v="yes"/>
 					<select value="30" t="highway" v="path"/>
 					<select value="25" t="highway" v="track"/>
-				</gt>
-				<gt value1="-17" value2=":incline">
+				</ge>
+				<ge value1="-17" value2=":incline">
 					<select value="7.7" t="osmand_highway_integrity_brouting_low" v="yes"/>
 					<select value="7.7" t="highway" v="path"/>
 					<select value="6.4" t="highway" v="track"/>
-				</gt>
+				</ge>
 				<if param="relief_smoothness_factor_more_plains">
-					<gt value1="3" value2=":incline">
+					<ge value1="3" value2=":incline">
 						<select value="2"/>
-					</gt>
-					<gt value1="7" value2=":incline">
+					</ge>
+					<ge value1="7" value2=":incline">
 						<select value="12"/>
-					</gt>
-					<gt value1="13" value2=":incline">
+					</ge>
+					<ge value1="13" value2=":incline">
 						<select value="30"/>
-					</gt>
-					<gt value1="25" value2=":incline">
+					</ge>
+					<ge value1="25" value2=":incline">
 						<select value="50"/>
-					</gt>
+					</ge>
 					<select value="74"/>
 				</if>
 				<if param="relief_smoothness_factor_hills">
-					<gt value1="1" value2=":incline">
+					<ge value1="1" value2=":incline">
 						<select value="61"/>
-					</gt>
-					<gt value1="3" value2=":incline">
+					</ge>
+					<ge value1="3" value2=":incline">
 						<select value="19.7"/>
-					</gt>
-					<gt value1="7" value2=":incline">
+					</ge>
+					<ge value1="7" value2=":incline">
 						<select value="7.5"/>
-					</gt>
-					<gt value1="13" value2=":incline">
+					</ge>
+					<ge value1="13" value2=":incline">
 						<select value="3"/>
-					</gt>
-					<gt value1="25" value2=":incline">
+					</ge>
+					<ge value1="25" value2=":incline">
 						<select value="0.5"/>
-					</gt>
+					</ge>
 					<select value="0.3"/>
 				</if>
-				<gt value1="3" value2=":incline">
+				<ge value1="3" value2=":incline">
 					<select value="2"/>
-				</gt>
-				<gt value1="7" value2=":incline">
+				</ge>
+				<ge value1="7" value2=":incline">
 					<select value="8"/>
-				</gt>
-				<gt value1="13" value2=":incline">
+				</ge>
+				<ge value1="13" value2=":incline">
 					<select value="16"/>
-				</gt>
-				<gt value1="25" value2=":incline">
+				</ge>
+				<ge value1="25" value2=":incline">
 					<select value="32"/>
-				</gt>
+				</ge>
 				<select value="48"/>
 			</if>
 		</way>
@@ -2129,66 +2136,66 @@
 		<way attribute="obstacle_srtm_alt_speed">
 			<if param="height_obstacles">
 				<select value="0" t="highway" v="via_ferrata"/>
-				<gt value1="-100" value2=":incline">
+				<ge value1="-100" value2=":incline">
 					<select value="40"/>
-				</gt>
-				<gt value1="-60" value2=":incline">
+				</ge>
+				<ge value1="-60" value2=":incline">
 					<select value="25"/>
-				</gt>
-				<gt value1="-35" value2=":incline">
+				</ge>
+				<ge value1="-35" value2=":incline">
 					<select value="17"/>
-				</gt>
-				<gt value1="-17" value2=":incline">
+				</ge>
+				<ge value1="-17" value2=":incline">
 					<select value="10"/>
-				</gt>
-				<gt value1="-9" value2=":incline">
+				</ge>
+				<ge value1="-9" value2=":incline">
 					<select value="5"/>
-				</gt>
+				</ge>
 				<if param="relief_smoothness_factor_more_plains">
-					<gt value1="3" value2=":incline">
+					<ge value1="3" value2=":incline">
 						<select value="2"/>
-					</gt>
-					<gt value1="7" value2=":incline">
+					</ge>
+					<ge value1="7" value2=":incline">
 						<select value="12"/>
-					</gt>
-					<gt value1="13" value2=":incline">
+					</ge>
+					<ge value1="13" value2=":incline">
 						<select value="30"/>
-					</gt>
-					<gt value1="25" value2=":incline">
+					</ge>
+					<ge value1="25" value2=":incline">
 						<select value="50"/>
-					</gt>
+					</ge>
 					<select value="74"/>
 				</if>
 				<if param="relief_smoothness_factor_hills">
-					<gt value1="1" value2=":incline">
+					<ge value1="1" value2=":incline">
 						<select value="61"/>
-					</gt>
-					<gt value1="3" value2=":incline">
+					</ge>
+					<ge value1="3" value2=":incline">
 						<select value="20"/>
-					</gt>
-					<gt value1="7" value2=":incline">
+					</ge>
+					<ge value1="7" value2=":incline">
 						<select value="7"/>
-					</gt>
-					<gt value1="13" value2=":incline">
+					</ge>
+					<ge value1="13" value2=":incline">
 						<select value="3"/>
-					</gt>
-					<gt value1="25" value2=":incline">
+					</ge>
+					<ge value1="25" value2=":incline">
 						<select value="0.5"/>
-					</gt>
+					</ge>
 					<select value="0.3"/>
 				</if>
-				<gt value1="3" value2=":incline">
+				<ge value1="3" value2=":incline">
 					<select value="1"/>
-				</gt>
-				<gt value1="7" value2=":incline">
+				</ge>
+				<ge value1="7" value2=":incline">
 					<select value="4"/>
-				</gt>
-				<gt value1="13" value2=":incline">
+				</ge>
+				<ge value1="13" value2=":incline">
 					<select value="8"/>
-				</gt>
-				<gt value1="25" value2=":incline">
+				</ge>
+				<ge value1="25" value2=":incline">
 					<select value="10"/>
-				</gt>
+				</ge>
 				<select value="15"/>
 			</if>
 		</way>
@@ -2470,39 +2477,39 @@
 
 		<way attribute="obstacle_srtm_alt_speed">
 			<if param="height_obstacles">
-				<gt value1="-60" value2=":incline">
+				<ge value1="-60" value2=":incline">
 					<select value="25"/>
-				</gt>
-				<gt value1="-45" value2=":incline">
+				</ge>
+				<ge value1="-45" value2=":incline">
 					<select value="15"/>
-				</gt>
-				<gt value1="-25" value2=":incline">
+				</ge>
+				<ge value1="-25" value2=":incline">
 					<select value="10"/>
-				</gt>
-				<gt value1="-15" value2=":incline">
+				</ge>
+				<ge value1="-15" value2=":incline">
 					<select value="5"/>
-				</gt>
-				<gt value1="-7.5" value2=":incline">
+				</ge>
+				<ge value1="-7.5" value2=":incline">
 					<select value="2.5"/>
-				</gt>
-				<gt value1="-3" value2=":incline">
+				</ge>
+				<ge value1="-3" value2=":incline">
 					<select value="1"/>
-				</gt>
-				<gt value1="3" value2=":incline">
+				</ge>
+				<ge value1="3" value2=":incline">
 					<select value="1"/>
-				</gt>
-				<gt value1="7.5" value2=":incline">
+				</ge>
+				<ge value1="7.5" value2=":incline">
 					<select value="5"/>
-				</gt>
-				<gt value1="15" value2=":incline">
+				</ge>
+				<ge value1="15" value2=":incline">
 					<select value="10"/>
-				</gt>
-				<gt value1="25" value2=":incline">
+				</ge>
+				<ge value1="25" value2=":incline">
 					<select value="15"/>
-				</gt>
-				<gt value1="45" value2=":incline">
+				</ge>
+				<ge value1="45" value2=":incline">
 					<select value="30"/>
-				</gt>
+				</ge>
 				<select value="40"/>
 			</if>
 		</way>
@@ -2642,8 +2649,8 @@
 	</routingProfile>
 
 	<routingProfile name="boat" restrictionsAware="true" minSpeed="3.0" defaultSpeed="5.0" maxSpeed="66.7" onewayAware="true" baseProfile="boat">
-		<parameter id="height" name="Height" description="Maximum vehicle height to be permitted on the route" type="numeric" values="0,1.49,1.99,2.49,2.99,3.49,3.99,4.49,4.99,5.49,5.99,6.49,6.99,7.49,7.99,8.49,8.99,9.49,9.99,10.99,11.99,12.99,13.99,14.99,15.99,16.99,17.99,18.99,19.99,20.99,21.99,22.99,23.99,24.99,25.99,26.99,27.99,28.99,29.99" valueDescriptions="-,1.5m,2m,2.5m,3m,3.5m,4m,4.5m,5m,5.5m,6m,6.5m,7m,7.5m,8m,8.5m,9m,9.5m,10m,11m,12m,13m,14m,15m,16m,17m,18m,19m,20m,21m,22m,23m,24m,25m,26m,27m,28m,29m,30m"/>
-		<parameter id="width" name="Width" description="Maximum vehicle width to be permitted on the route" type="numeric" values="0,1.49,1.99,2.49,2.99,3.49,3.99,4.49,4.99,5.49,5.99,6.49,6.99,7.49,7.99,8.49,8.99,9.49,9.99,10.99,11.99,12.99,13.99,14.99" valueDescriptions="-,1.5m,2m,2.5m,3m,3.5m,4m,4.5m,5m,5.5m,6m,6.5m,7m,7.5m,8m,8.5m,9m,9.5m,10m,11m,12m,13m,14m,15m"/>
+		<parameter id="height" name="Height" description="Maximum vehicle height to be permitted on the route" type="numeric" values="0,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30" valueDescriptions="-,1.5m,2m,2.5m,3m,3.5m,4m,4.5m,5m,5.5m,6m,6.5m,7m,7.5m,8m,8.5m,9m,9.5m,10m,11m,12m,13m,14m,15m,16m,17m,18m,19m,20m,21m,22m,23m,24m,25m,26m,27m,28m,29m,30m"/>
+		<parameter id="width" name="Width" description="Maximum vehicle width to be permitted on the route" type="numeric" values="0,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,11,12,13,14,15" valueDescriptions="-,1.5m,2m,2.5m,3m,3.5m,4m,4.5m,5m,5.5m,6m,6.5m,7m,7.5m,8m,8.5m,9m,9.5m,10m,11m,12m,13m,14m,15m"/>
 		<parameter id="allow_streams" name="Allow streams" description="Allow streams and drains" type="boolean"/>
 		<parameter id="allow_intermittent" name="Allow intermittent" description="Allow intermittent water ways" type="boolean"/>
 		<parameter id="allow_ferries" name="Allow ferries" description="Allow ferries" type="boolean"/>
@@ -2793,9 +2800,9 @@
 				<select value="-1" t="piste:difficulty" v="expert"/>
 			</ifnot>
 
-			<gt value1="0" value2=":freeride_policy">
+			<ge value1="0" value2=":freeride_policy">
 				<select value="-1" t="piste:difficulty" v="freeride"/>
-			</gt>
+			</ge>
 
 			<if param="piste_type_downhill">
 				<!-- Allow any aerialway -->
@@ -2867,51 +2874,51 @@
 			<select value="1" t="piste:type" v="connection"/>
 			<select value="1" t="aerialway"/>
 
-			<gt value1=":freeride_policy" value2="3">
+			<ge value1=":freeride_policy" value2="3">
 				<select t="piste:difficulty" v="freeride" value="2"/> <!-- High priority -->
-			</gt>
+			</ge>
 
-			<gt value1=":freeride_policy" value2="2">
+			<ge value1=":freeride_policy" value2="2">
 				<select t="piste:difficulty" v="freeride" value="1"/> <!-- No special priority -->
-			</gt>
+			</ge>
 
-			<gt value1=":freeride_policy" value2="1">
+			<ge value1=":freeride_policy" value2="1">
 				<select t="piste:difficulty" v="freeride" value="0.5"/> <!-- Only if necessary -->
-			</gt>
+			</ge>
 
 			<select t="piste:difficulty" v="novice" value="0.5"/>  <!-- Never prefer novice routes - there are novices on them! -->
 
-			<gt value1=":difficulty_preference" value2="4">
+			<ge value1=":difficulty_preference" value2="4">
 				<!-- Prefer expert -->
 				<select t="piste:difficulty" v="expert" value="1.8"/>
 				<select t="piste:difficulty" v="advanced" value="1.5"/>
 				<select t="piste:difficulty" v="intermediate" value="1.2"/>
 				<select t="piste:difficulty" v="beginner" value="1"/>
-			</gt>
+			</ge>
 
-			<gt value1=":difficulty_preference" value2="3">
+			<ge value1=":difficulty_preference" value2="3">
 				<!-- Prefer advanced -->
 				<select t="piste:difficulty" v="expert" value="1.2"/>
 				<select t="piste:difficulty" v="advanced" value="1.8"/>
 				<select t="piste:difficulty" v="intermediate" value="1.5"/>
 				<select t="piste:difficulty" v="beginner" value="1.2"/>
-			</gt>
+			</ge>
 
-			<gt value1=":difficulty_preference" value2="2">
+			<ge value1=":difficulty_preference" value2="2">
 				<!-- Prefer intermediate -->
 				<select t="piste:difficulty" v="expert" value="1"/>
 				<select t="piste:difficulty" v="advanced" value="1.2"/>
 				<select t="piste:difficulty" v="intermediate" value="1.8"/>
 				<select t="piste:difficulty" v="beginner" value="1.5"/>
-			</gt>
+			</ge>
 
-			<gt value1=":difficulty_preference" value2="1">
+			<ge value1=":difficulty_preference" value2="1">
 				<!-- Prefer beginner -->
 				<select t="piste:difficulty" v="expert" value="0.5"/>
 				<select t="piste:difficulty" v="advanced" value="1"/>
 				<select t="piste:difficulty" v="intermediate" value="1.2"/>
 				<select t="piste:difficulty" v="beginner" value="1.8"/>
-			</gt>
+			</ge>
 
 			<!-- :difficulty_preference == 0 means no special preference-->
 
