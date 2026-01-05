@@ -32,8 +32,8 @@ def get_valid_wiki_articles(group, item):
     articles = item.get('wikipedia_articles', {})
     valid_list = []
     mag = item.get('mag')
-    # allLangs = group != 'stars' or (mag is not None and mag <= MAGNITUDE_ONLY_EN)
-    allLangs =  (mag is not None and mag <= MAGNITUDE_ONLY_EN)
+    allLangs = group != 'stars' or (mag is not None and mag <= MAGNITUDE_ONLY_EN)
+    # allLangs =  (mag is not None and mag <= MAGNITUDE_ONLY_EN)
     
     for site_code, title in articles.items():
         # Filter: Length must be 6 (2 chars + 'wiki') AND ends with 'wiki'
@@ -56,7 +56,7 @@ def download_wikipedia_data(wid, lang, title):
     # 1. Summary JSON
     if not os.path.exists(json_path):
         # Dynamic URL based on language
-        url_summary = f"https://{lang}.wikipedia.org/api/rest_v1/page/summary/{title}"
+        url_summary = f"https://{lang}.wikipedia.org/api/rest_v1/page/summary/{title.replace('/', '%2F')}"
         print(f"[{lang}] Downloading Summary for {wid} ({title})...", flush=True)
         try:
             resp = requests.get(url_summary, headers=HEADERS)
@@ -71,7 +71,7 @@ def download_wikipedia_data(wid, lang, title):
 
     # 2. Mobile HTML
     if not os.path.exists(html_path):
-        url_html = f"https://{lang}.wikipedia.org/api/rest_v1/page/mobile-html/{title}"
+        url_html = f"https://{lang}.wikipedia.org/api/rest_v1/page/mobile-html/{title.replace('/', '%2F')}"
         print(f"[{lang}] Downloading HTML for {wid} ({title})...", flush=True)
         try:
             resp = requests.get(url_html, headers=HEADERS)
