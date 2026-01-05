@@ -1,5 +1,7 @@
 All jsons are manually crafted except stars.json which is generated from HIP database and HIP-Wikidata mapping.
 
+Later fetch_deep_sky.py is used and manually compared with existing files
+
 File stars.json 
 Hip wikidata mapping is from SPARQL query:
 SELECT DISTINCT ?item ?itemLabel ?hipID ?constellationLabel ?mag WHERE {
