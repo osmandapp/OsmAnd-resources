@@ -1,6 +1,7 @@
 import json
 import os
 import shutil
+import gzip
 import sqlite3
 import requests
 import time
@@ -92,14 +93,14 @@ def create_augmented_db():
 
     # Updated Schema: Composite Primary Key (wikidata, lang)
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS Wikipedia_Pages (
+        CREATE TABLE IF NOT EXISTS Wikipedia (
             wikidata TEXT,
             lang TEXT,
             title TEXT,
             extract TEXT,
             thumbnail_url TEXT,
             summary_json TEXT,
-            mobile_html TEXT,
+            mobile_html BLOB,
             PRIMARY KEY (wikidata, lang)
         )
     ''')
@@ -112,7 +113,7 @@ def process_files_into_db(conn, wid, lang, title):
     html_path = os.path.join(WIKIPEDIA_DIR, f"{wid}.{lang}wiki.mob.html")
     
     summary_json_str = None
-    mobile_html_str = None
+    compressed_html = None
     extract_text = None
     thumbnail_url = None
 
@@ -128,7 +129,9 @@ def process_files_into_db(conn, wid, lang, title):
 
     if os.path.exists(html_path):
         with open(html_path, 'r', encoding='utf-8') as f:
-            mobile_html_str = f.read()
+            raw_html_bytes = f.read()
+            # Compress the HTML bytes
+            compressed_html = gzip.compress(raw_html_bytes)
 
     if summary_json_str or mobile_html_str:
         cursor = conn.cursor()
@@ -136,7 +139,7 @@ def process_files_into_db(conn, wid, lang, title):
             INSERT OR REPLACE INTO Wikipedia_Pages 
             (wikidata, lang, title, extract, thumbnail_url, summary_json, mobile_html)
             VALUES (?, ?, ?, ?, ?, ?, ?)
-        ''', (wid, lang, title, extract_text, thumbnail_url, summary_json_str, mobile_html_str))
+        ''', (wid, lang, title, extract_text, thumbnail_url, summary_json_str, compressed_html))
 
 def main():
     ensure_directory(WIKIPEDIA_DIR)
@@ -159,14 +162,13 @@ def main():
             if not wid: 
                 print("  Skipping item {item} without WID.", flush=True)
                 continue
-            if SKIP_DOWNLOAD:
-                continue
             # Get valid articles (e.g., [('en', 'Aldebaran'), ('de', 'Aldebaran')])
             valid_articles = get_valid_wiki_articles(item)
             
             for lang, title in valid_articles:
                 tasks.append((wid, lang, title))
-                download_wikipedia_data(wid, lang, title)
+                if not SKIP_DOWNLOAD:
+                    download_wikipedia_data(wid, lang, title)
     
     # 2. Create DB and Populate
     conn = create_augmented_db()
