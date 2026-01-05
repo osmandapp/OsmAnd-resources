@@ -6,6 +6,8 @@ import requests
 import pandas as pd
 import numpy as np
 
+MAX_MAGNITUDE = 4.5
+
 # --- Configuration ---
 # HIP_CATALOG_URL = "https://github.com/skyfielders/python-skyfield/raw/refs/heads/master/ci/hip_main.dat.gz"
 # HIP_FILENAME = "hip_main.dat.gz"
@@ -15,6 +17,7 @@ CONST_FILENAME = "../constellations.json"
 MAPPING_FILENAME = "../hipCatalogWikidata.json.gz"
 MAPPING_FILENAME2 = "../hipCatalogWikidata2.json"
 OUTPUT_FILENAME = "gen/stars.json"
+
 
 # --- Functions ---
 
@@ -123,7 +126,7 @@ def process_hip_catalog(constellation_stars, mapping):
         in_constellation = hip_id in constellation_stars
         
         is_bright = False
-        if pd.notna(mag) and mag <= 4.5:
+        if pd.notna(mag) and mag <= MAX_MAGNITUDE:
             is_bright = True
             
         if in_constellation or is_bright:
