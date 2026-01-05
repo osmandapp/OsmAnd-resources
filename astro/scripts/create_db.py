@@ -38,7 +38,7 @@ def init_db(db_path):
             dec REAL,
             lines TEXT,
             mag REAL,
-            hip TEXT,
+            hip INTEGER,
             PRIMARY KEY (name, wikidata, type)
         )
     ''')
@@ -51,9 +51,13 @@ def init_db(db_path):
             name TEXT,
             type TEXT,
             PRIMARY KEY (wikidata, type)
-        )
+        ) WITHOUT ROWID
     ''')
     
+    cursor.execute('CREATE INDEX IF NOT EXISTS idx_objects_hip ON Objects (hip)')
+    cursor.execute('CREATE INDEX IF NOT EXISTS idx_objects_wikidata ON Objects (wikidata)')
+    cursor.execute('CREATE INDEX IF NOT EXISTS idx_objects_name_nocase ON Objects (name COLLATE NOCASE)')
+    cursor.execute('CREATE INDEX IF NOT EXISTS idx_names_name_nocase ON Names (name COLLATE NOCASE)')
     # Clear existing data to avoid duplicates on re-run
     cursor.execute("DELETE FROM Objects")
     cursor.execute("DELETE FROM Names")
@@ -121,7 +125,7 @@ def save_to_sqlite(conn, group_key, item):
         group_key,          # The "type" (e.g., 'galaxies')
         item.get('ra'),
         item.get('dec'),
-        item.get('lines'),
+        item.get('lines') is not None and json.dumps(item.get('lines')) or None,
         item.get('mag'),
         item.get('hip')     # Will be None (NULL) if not present
     ))
@@ -133,12 +137,13 @@ def save_to_sqlite(conn, group_key, item):
     if 'i18n_names' in item:
         for lang, name in item['i18n_names'].items():
             cursor.execute('INSERT OR IGNORE INTO Names (wikidata, name, type) VALUES (?, ?, ?)', 
-                          (wid, name, f"{lang}_i18n"))
+                          (wid, name, f"{lang}"))
             
     # 2. Insert Wikipedia articles (Sitelinks)
     if 'wikipedia_articles' in item:
         for site, title in item['wikipedia_articles'].items():
-            cursor.execute('INSERT OR IGNORE INTO Names (wikidata, name, type) VALUES (?, ?, ?)', 
+            if len(site) == 6 and site.endswith('wiki'):
+                cursor.execute('INSERT OR IGNORE INTO Names (wikidata, name, type) VALUES (?, ?, ?)', 
                            (wid, title, site))
 
 def main():
@@ -197,6 +202,10 @@ def main():
 
     # Commit DB changes and close
     conn.commit()
+    conn.isolation_level = None
+    
+    conn.cursor().execute("PRAGMA page_size = 1024")
+    conn.cursor().execute("VACUUM")
     conn.close()
     print(f"Database saved to {OUTPUT_DB}")
 
