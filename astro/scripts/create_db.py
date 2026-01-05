@@ -11,6 +11,7 @@ INPUT_DIR = '../'
 OUTPUT_JSON = '../gen/stars-db.json'
 OUTPUT_DB = '../gen/stars.db'
 WIKIDATA_DIR = '../wikidata'
+SKIP_DOWNLOAD = os.environ.get('SKIP_DOWNLOAD', 'false').lower() in ('true', '1', 'yes')
 
 HEADERS = {
     'User-Agent': 'GalaxyDataFetcher/1.0 (my_email@example.com)' 
@@ -186,7 +187,8 @@ def main():
                 continue
 
             # Download & Process
-            download_wikidata_entity(qid)
+            if not SKIP_DOWNLOAD:
+                download_wikidata_entity(qid)
             labels, wiki_articles = process_entity_data(qid)
 
             new_item = item.copy()
