@@ -128,10 +128,10 @@ def process_files_into_db(conn, wid, lang, title):
                 pass
 
     if os.path.exists(html_path):
-        with open(html_path, 'rb', encoding='utf-8') as f:
-            raw_html_bytes = f.read()
-            # Compress the HTML bytes
-            compressed_html = gzip.compress(raw_html_bytes)
+        with open(html_path, 'r', encoding='utf-8') as f:
+            raw_html_str = f.read()
+            # Convert string to bytes and then compress
+            compressed_html = gzip.compress(raw_html_str.encode('utf-8'))
 
     if summary_json_str or mobile_html_str:
         cursor = conn.cursor()
