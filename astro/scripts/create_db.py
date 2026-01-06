@@ -18,6 +18,16 @@ SKIP_DOWNLOAD = os.environ.get('SKIP_DOWNLOAD', 'false').lower() in ('true', '1'
 MAGNITUDE_ONLY_EN = 3.0
 HEADERS = {'User-Agent': 'GalaxyDataFetcher/1.0'} 
 
+KEEP_CATALOGS = {
+    'Q14530': 'Messier',
+    'Q857461': 'Caldwell',
+    'Q2661779': 'Collinder', 
+    'Q55712879': 'Supernova Catalog',
+    'Q3247327': 'Barnard',
+    'Q91442269': 'Trumpler catalogue',
+    'Q4999741': 'Burnham',
+}
+
 CATALOG_CACHE = {}
 
 CONSTANTS = {
@@ -54,6 +64,15 @@ PROP_DISTANCE = 'P2583'
 PROP_MASS = 'P2067'
 PROP_CATALOG = 'P528'
 PROP_CATALOG_REF = 'P972'
+
+QUERY_CATALOG_IDS = '''
+        CREATE TABLE IF NOT EXISTS CatalogIds (
+            wikidataid TEXT,
+            catalogWid TEXT,
+            catalogId TEXT,
+            PRIMARY KEY (wikidataid, catalogWid)
+        ) WITHOUT ROWID
+'''
 
 def ensure_directory(directory):
     if not os.path.exists(directory): os.makedirs(directory)
@@ -99,14 +118,7 @@ def init_db(db_path):
         ) WITHOUT ROWID
     ''')
 
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS CatalogIds (
-            wikidataid TEXT,
-            catalogWid TEXT,
-            catalogId TEXT,
-            PRIMARY KEY (wikidataid, catalogWid)
-        ) WITHOUT ROWID
-    ''')
+    cursor.execute(QUERY_CATALOG_IDS)
     
     # Indexes
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_objects_wikidata ON Objects (wikidata)')
@@ -332,8 +344,20 @@ def main():
     shutil.copyfile(OUTPUT_DB, OUTPUT_MINI_DB)
     conn = sqlite3.connect(OUTPUT_MINI_DB)
     cursor = conn.cursor()
-    cursor.execute(f"DROP TABLE IF EXISTS CatalogIds")
-    cursor.execute(f"DROP TABLE IF EXISTS Catalogs")
+    
+    
+    cursor.execute("ALTER TABLE CatalogIds RENAME TO OCatalogIds")
+    cursor.execute(QUERY_CATALOG_IDS)
+    ## Q14530	Messier object
+    
+    placeholders = ','.join([f"'{x}'" for x in list(KEEP_CATALOGS.keys())])
+    cursor.execute(f"""INSERT INTO CatalogIds (wikidataid, catalogWid, catalogId)
+            SELECT wikidataid, catalogWid, catalogId FROM OCatalogIds
+            WHERE catalogWid IN ({placeholders})""")
+    cursor.execute(f"DROP TABLE IF EXISTS OCatalogIds")
+    cursor.execute('CREATE INDEX IF NOT EXISTS idx_ids_catalog_nocase ON CatalogIds (catalogId COLLATE NOCASE)')
+    # cursor.execute(f"DROP TABLE IF EXISTS Catalogs")
+    conn.commit()
     conn.execute("VACUUM")
     conn.execute("PRAGMA journal_mode = DELETE")
     conn.execute("PRAGMA page_size = 4096")
