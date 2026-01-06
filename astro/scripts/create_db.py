@@ -37,12 +37,12 @@ CONVERSIONS_DISTANCE = {
 }
 
 CONVERSIONS_MASS = {
-    'Q171497': 1.0,                    # Solar Mass -> Solar Mass
-    'Q11570':  CONSTANTS['KG_TO_SOLAR'], # Kilogram -> Solar Mass
+    'Q180892': 1.0,                    # Solar Mass -> Solar Mass
+    'Q11570':  CONSTANTS['KG_TO_SOLAR'], # Kilogram -> Solar Mass    
 }
 
 CONVERSIONS_RADIUS = {
-    'Q48113': 1.0,                     # Solar Radius -> Solar Radius
+    'Q48440': 1.0,                     # Solar Radius -> Solar Radius
     'Q11573': CONSTANTS['M_TO_SOLAR_R'], # Metre -> Solar Radius
     'Q828224': CONSTANTS['KM_TO_SOLAR_R'], # Kilometre -> Solar Radius
     'Q1811': (CONSTANTS['AU_TO_PC'] / CONSTANTS['M_TO_PC']) * CONSTANTS['M_TO_SOLAR_R'] # AU -> Solar Radius (Rare but possible)
