@@ -207,7 +207,8 @@ def extract_catalogs(entity):
                     CATALOG_CACHE[cat_qid] = cat_name
                 
                 results.append({'code': code, 'cat_qid': cat_qid, 'cat_name': cat_name})
-        except Exception:
+        except Exception as e:
+            print(e)
             continue
     return results
 
@@ -252,23 +253,11 @@ def main():
         
         for item in items:
             qid = item.get('wid')
-            
-            # 1. Fallback: Name from catalog URL
-            if not item.get('name') and item.get('catalog'):
-                 if 'wikidata.org' in str(item['catalog']):
-                     match = re.search(r'(Q\d+)', item['catalog'])
-                     if match:
-                         cat_qid = match.group(1)
-                         download_wikidata_entity(cat_qid)
-                         fetched_name = get_label(cat_qid)
-                         if fetched_name:
-                             item['name'] = fetched_name
-
             if not qid:
                 enriched_items.append(item)
                 continue
 
-            # 2. Process
+            # Process
             download_wikidata_entity(qid)
             labels, wiki, physics, catalogs_list = process_entity_data(qid)
             
@@ -283,7 +272,7 @@ def main():
             new_item['catalogs'] = cat_dict
             enriched_items.append(new_item)
 
-            # 3. DB Save
+            # DB Save
             cursor = conn.cursor()
             cursor.execute('''
                 INSERT INTO Objects (wikidata, name, type, ra, dec, lines, mag, centerwid, radius, distance, mass, hip)
