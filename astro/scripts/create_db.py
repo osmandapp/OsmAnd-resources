@@ -3,7 +3,7 @@ import os
 import requests
 import time
 import sqlite3
-import re
+import shutil
 
 # --- Configuration ---
 INPUT_FILES = ['solar_system.json', 'galaxies.json', 'black_holes.json', 'constellations.json', 'stars.json',
@@ -11,6 +11,7 @@ INPUT_FILES = ['solar_system.json', 'galaxies.json', 'black_holes.json', 'conste
 INPUT_DIR = '../'
 OUTPUT_JSON = '../gen/stars-db.json'
 OUTPUT_DB = '../gen/stars.db'
+OUTPUT_MINI_DB = '../gen/stars_mini.db'
 WIKIDATA_DIR = '../wikidata'
 
 SKIP_DOWNLOAD = os.environ.get('SKIP_DOWNLOAD', 'false').lower() in ('true', '1', 'yes')
@@ -111,9 +112,8 @@ def init_db(db_path):
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_objects_wikidata ON Objects (wikidata)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_objects_name_nocase ON Objects (name COLLATE NOCASE)')
     
-    # OPTIMIZATION: Add index on Names(name) only if you search directly against this table.
-    # The PK handles lookup by ID. This index handles lookup by Name string.
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_names_name_nocase ON Names (name COLLATE NOCASE)')
+    cursor.execute('CREATE INDEX IF NOT EXISTS idx_ids_catalog_nocase ON CatalogIds (catalogId COLLATE NOCASE)')
     
     conn.commit()
     return conn
@@ -288,6 +288,8 @@ def main():
             for cat in catalogs_list:
                 cursor.execute('INSERT OR IGNORE INTO Catalogs (catalogWid, catalogName) VALUES (?, ?)',
                                (cat['cat_qid'], cat['cat_name']))
+                cursor.execute('INSERT OR REPLACE INTO CatalogIds (wikidataid, catalogWid, catalogId) VALUES (?, ?, ?)',
+                               (qid, cat['cat_qid'], cat['code']))
                 # CatalogIds Logic here if needed...
 
             # Goal: Insert unique names only.
@@ -325,6 +327,17 @@ def main():
     conn.isolation_level = None
     conn.cursor().execute("PRAGMA page_size = 4096") # Larger page size can help slightly with blobs/text
     conn.cursor().execute("VACUUM")
+    conn.close()
+    
+    shutil.copyfile(OUTPUT_DB, OUTPUT_MINI_DB)
+    conn = sqlite3.connect(OUTPUT_MINI_DB)
+    cursor = conn.cursor()
+    cursor.execute(f"DROP TABLE IF EXISTS CatalogIds")
+    cursor.execute(f"DROP TABLE IF EXISTS Catalogs")
+    conn.execute("VACUUM")
+    conn.execute("PRAGMA journal_mode = DELETE")
+    conn.execute("PRAGMA page_size = 4096")
+    conn.commit()
     conn.close()
     
     print(f"Saving JSON to {OUTPUT_JSON}...")
