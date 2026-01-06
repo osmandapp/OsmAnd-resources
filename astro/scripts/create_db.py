@@ -5,7 +5,7 @@ import time
 import sqlite3
 
 # --- Configuration ---
-INPUT_FILES = ['galaxies.json', 'black_holes.json', 'constellations.json', 'stars.json',
+INPUT_FILES = ['solar_system.json', 'galaxies.json', 'black_holes.json', 'constellations.json', 'stars.json',
                'open_clusters.json', 'globular_clusters.json', 'nebulae.json', 'galaxy_clusters.json'] 
 INPUT_DIR = '../'
 OUTPUT_JSON = '../gen/stars-db.json'
@@ -39,6 +39,7 @@ def init_db(db_path):
             ra REAL,
             dec REAL,
             lines TEXT,
+            centerwid TEXT,
             mag REAL,
             hip INTEGER,
             PRIMARY KEY (name, wikidata, type)
@@ -120,8 +121,8 @@ def save_to_sqlite(conn, group_key, item):
     # Will FAIL if (name, wikidata) already exists
     mag = item.get('mag')
     cursor.execute('''
-        INSERT INTO Objects (wikidata, name, type, ra, dec, lines, mag, hip)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO Objects (wikidata, name, type, ra, dec, lines, mag, centerwid, hip)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     ''', (
         wid,
         item.get('name'),
@@ -130,6 +131,7 @@ def save_to_sqlite(conn, group_key, item):
         item.get('dec'),
         item.get('lines') is not None and json.dumps(item.get('lines')) or None,
         mag,
+        item.get('centerwid'),
         item.get('hip')     # Will be None (NULL) if not present
     ))
 
