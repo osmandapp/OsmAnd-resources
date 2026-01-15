@@ -87,6 +87,7 @@ def init_db(db_path):
             wikidata TEXT,
             name TEXT,
             type TEXT,
+            subtype TEXT,
             ra REAL,
             dec REAL,
             lines TEXT,
@@ -287,10 +288,10 @@ def main():
             # DB Save
             cursor = conn.cursor()
             cursor.execute('''
-                INSERT INTO Objects (wikidata, name, type, ra, dec, lines, mag, centerwid, radius, distance, mass, hip)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                INSERT INTO Objects (wikidata, name, type, subtype,  ra, dec, lines, mag, centerwid, radius, distance, mass, hip)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ''', (
-                qid, item.get('name'), group_key, item.get('ra'), item.get('dec'),
+                qid, item.get('name'), group_key, item.get('type'), item.get('ra'), item.get('dec'),
                 item.get('lines') and json.dumps(item.get('lines')),
                 item.get('mag'), item.get('centerwid'),
                 physics['radius'], physics['distance'], physics['mass'],
