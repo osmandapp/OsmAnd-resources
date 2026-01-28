@@ -58,7 +58,7 @@ function populateDictionary(tts) {
 	dictionary["6th"] = tts ? "sixth" : "6th.ogg";
 	dictionary["7th"] = tts ? "seventh" : "7th.ogg";
 	dictionary["8th"] = tts ? "eighth" : "8th.ogg";
-	dictionary["9th"] = tts ? "nineth" : "9th.ogg";
+	dictionary["9th"] = tts ? "ninth" : "9th.ogg";
 	dictionary["10th"] = tts ? "tenth" : "10th.ogg";
 	dictionary["11th"] = tts ? "eleventh" : "11th.ogg";
 	dictionary["12th"] = tts ? "twelfth" : "12th.ogg";
@@ -373,6 +373,7 @@ function assemble_street_name(streetName) {
 	} else if (streetName["toRef"] != "") {
 		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	}
+	return "";
 }
 
 function nth(exit) {

@@ -44,7 +44,7 @@ function populateDictionary(tts) {
 	
 	// ROUNDABOUTS
 	dictionary["prepare_roundabout"] = tts ? "entra na rotonda" : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? "na rotonda" : "roundabout.ogg";
+	dictionary["roundabout"] = tts ? "entra na rotonda" : "roundabout.ogg";
 	dictionary["then"] = tts ? ", despois" : "then.ogg";
 	dictionary["and"] = tts ? "e" : "and.ogg";
 	dictionary["take"] = tts ? "toma a" : "take.ogg";
@@ -376,6 +376,7 @@ function assemble_street_name(streetName) {
 	} else if (streetName["toRef"] != "") {
 		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	}
+	return "";
 }
 
 function nth(exit) {

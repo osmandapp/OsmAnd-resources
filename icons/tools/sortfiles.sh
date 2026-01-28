@@ -333,7 +333,8 @@ icon_alias mini_roundabout_lhn transport_colored_miniroundabout_clockwise
 icon_alias highway_noexit functional-icons_noexit
 icon_alias deadlock poi_colored_noexit
 icon_alias toll_gantry transport_colored_toll_gantry
-icon_alias highway_passing_place functional-icons_passing_place
+icon_alias highway_passing_place transport_passing_place
+icon_alias topo_passing_place topo_passing_place
 icon_alias highway_speed_camera transport_speedcamera
 icon_alias maxspeed transport_maxspeed
 icon_alias mindistance transport_mindistance
@@ -951,7 +952,8 @@ icon_alias sport_athletics sport_athletics
 icon_alias sport_baseball sport_baseball2
 icon_alias sport_base sport_basejumping
 icon_alias sport_basketball sport_basketball
-icon_alias sport_billiard sport_snooker
+icon_alias sport_billiard sport_billiards
+icon_alias sport_snooker sport_snooker
 icon_alias sport_bmx sport_bmx
 icon_alias sport_canoe sport_canoe
 icon_alias sport_climbing sport_hillclimbing
@@ -1012,7 +1014,11 @@ icon_alias golf_pin functional-icons-x2_golf_pin
 icon_alias hang_gliding sport_hang_gliding
 icon_alias windsurfing sport_windsurfing
 icon_alias waterskiing sport_waterskiing
-icon_alias dojo sport_dojo
+icon_alias shuffleboard sport_shuffleboard
+icon_alias yoga sport_yoga
+icon_alias roller_skating sport_roller_skating
+icon_alias fencing sport_fencing
+icon_alias horseshoes sport_horseshoes
 
 icon_alias climbing_route sport_climbing_route
 icon_alias climbing_route_bottom sport_climbing_route_bottom

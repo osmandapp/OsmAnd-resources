@@ -48,7 +48,8 @@ function populateDictionary(tts) {
 	dictionary["then"] = tts ? "потым" : "then.ogg";
 	dictionary["take"] = tts ? "выбирайце" : "take.ogg";
 	dictionary["exit"] = tts ? "выезд." : "exit.ogg";
-	
+	dictionary["and"] = tts ? "і" : "and.ogg";
+
 	dictionary["1st"] = tts ? "першы" : "1st.ogg";
 	dictionary["2nd"] = tts ? "другі" : "2nd.ogg";
 	dictionary["3rd"] = tts ? "трэці" : "3rd.ogg";
@@ -69,7 +70,8 @@ function populateDictionary(tts) {
 	
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "Рухайцеся наўпрост" : "go_ahead.ogg";
-	
+	dictionary["follow"] = tts ? "Рухайцеся да" : "follow.ogg";
+
 	// ARRIVE
 	dictionary["and_arrive_destination"] = tts ? "і вы дабраліся" : "and_arrive_destination.ogg";
 	dictionary["and_arrive_intermediate"] = tts ? "і вы ў выбраным Вамі пункце" : "and_arrive_intermediate.ogg";
@@ -272,6 +274,7 @@ function time(seconds) {
 	} else if (!tts) {
 		return hours(oggMinutes);
 	}
+	return "";
 }
 
 function hours(minutes) {
@@ -406,6 +409,7 @@ function assemble_street_name(streetName) {
 	} else if (streetName["toRef"] != "") {
 		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	}
+	return "";
 }
 
 function nth(exit) {

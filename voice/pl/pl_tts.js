@@ -291,12 +291,12 @@ function hours(minutes) {
 		return dictionary["1_hour"];
 	} else {
 		var hours = Math.floor(minutes / 60);
-		return (tts ? num_fe_str(hours, "f") : ogg_dist(hours)) + " " + hours_str(hours);
+		return (tts ? num_fe_str(hours) : ogg_dist(hours)) + " " + hours_str(hours);
 	}
 }
 
 function route_recalc(dist, seconds) {
-	return dictionary["route_calculate"] + (tts ? ", " : " ") + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
+	return dictionary["route_calculate"] + (tts ? ", " : " ") + dictionary["distance"] + distance(dist) + " " + dictionary["time"] + " " + time(seconds) + (tts ? ". " : " ");
 }
 
 function go_ahead(dist, streetName) {
@@ -428,6 +428,7 @@ function assemble_street_name(streetName) {
 	} else if (streetName["toRef"] != "") {
 		return toRef(streetName) + " " + dictionary["toward"] + " " + toDest(streetName);
 	}
+	return "";
 }
 
 function nth(exit) {

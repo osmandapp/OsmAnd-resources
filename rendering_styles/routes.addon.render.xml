@@ -400,6 +400,34 @@
 	</renderingAttribute>
 
 
+	<renderingAttribute name="whitewaterSectionGrade0Color">
+		<case attrColorValue="#EE00A3FF"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade1Color">
+		<case attrColorValue="#EE7FFF00"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade2Color">
+		<case attrColorValue="#EEFFE455"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade3Color">
+		<case attrColorValue="#EEFFA500"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade4Color">
+		<case attrColorValue="#EEFF0000"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade5Color">
+		<case attrColorValue="#EEBF3EFF"/>
+	</renderingAttribute>
+	<renderingAttribute name="whitewaterSectionGrade6Color">
+		<case attrColorValue="#EE494949"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="whitewaterTextColor">
+		<case nightMode="true" attrColorValue="#F0F7FF"/>
+		<case attrColorValue="#313E4D"/>
+	</renderingAttribute>
+
+
 	<renderingAttribute name="climbingRouteColor">
 		<case nightMode="true" attrColorValue="#B1002B"/>
 		<case attrColorValue="#B1002B"/>
@@ -463,6 +491,8 @@
 			<case tag="osmand_climbing" value="route"/>
 			<case tag="climbing" value="route"/>
 			<case tag="climbing" value="route_bottom"/>
+			<case tag="waterway" value="rapids"/>
+			<case tag="whitewater" value="hazard"/>
 			<case tag="osmand_climbing" value="crag"/>
 		</switch>
 
@@ -512,6 +542,12 @@
 				<apply_if additional="route_activity_type=horse_riding" order="204"/>
 				<apply_if additional="route_activity_type=fitness" order="205"/>
 			</case>
+			<case tag="waterway" value="rapids"/>
+			<case tag="canoe" value="portage" order="110"/>
+			<case tag="portage" value="yes" order="110"/>
+			<case tag="portage" value="designated" order="110"/>
+			<case tag="portage" value="permissive" order="110"/>
+			<case tag="portage" value="permit" order="110"/>
 		</switch>
 
 	</order>
@@ -810,6 +846,30 @@
 				</apply_if>
 			</case>
 		</switch>
+		<switch>
+			<case minzoom="16" tag="waterway" value="rapids" nameTag="rapids:name" textOnPath="true"/>
+			<case minzoom="16" tag="waterway" value="rapids" nameTag="" nameTag2="rapids:name" textOnPath="true">
+				<apply_if legend="true" textDy="0"/>
+			</case>
+			<apply textSize="12" textColor="$whitewaterTextColor"/>
+			<apply_if whiteWaterSports="true" textOrder="10"/>
+		</switch>
+
+		<switch minzoom="15" whiteWaterSports="true" nameTag="">
+			<case tag="canoe" value="put_in" textDy="-4"/>
+			<case tag="canoe" value="egress" textDy="-4"/>
+			<case tag="canoe" value="put_in;egress" textDy="-4"/>
+			<switch minzoom="15">
+				<case tag="canoe" value="portage"/>
+				<case tag="portage" value="yes"/>
+				<case tag="portage" value="designated"/>
+				<case tag="portage" value="permissive"/>
+				<case tag="portage" value="permit"/>
+				<apply textBold="true" textOnPath="true" textDy="0" textHaloRadius="1" textHaloColor="$defaultColor"/>
+			</switch>
+			<case minzoom="16" tag="whitewater" value="hazard" textOrder="12" textDy="0"/>
+			<apply textSize="12" textOrder="10" textColor="$whitewaterTextColor"/>
+		</switch>
 
 	</text>
 
@@ -874,6 +934,24 @@
 			<case minzoom="16" tag="sport" value="climbing" icon="sport_climbing" iconOrder="64"/>
 			<apply shield="green_round_shield"/>
 	    		<apply_if nightMode="true" shield="green_round_night_shield"/>
+		</switch>
+		<switch minzoom="16" tag="waterway" value="rapids">
+			<case whiteWaterSports="true" icon="waterway_rapids" shield="rapids_shield" iconOrder="10">
+				<apply_if additional="rapids=0" icon="rapid_white" shield="whitewater_rapid_grade0_shield"/>
+				<apply_if additional="rapids=1" icon="rapid_white" shield="whitewater_rapid_grade1_shield"/>
+				<apply_if additional="rapids=2" icon="rapid_white" shield="whitewater_rapid_grade2_shield"/>
+				<apply_if additional="rapids=3" icon="rapid_white" shield="whitewater_rapid_grade3_shield"/>
+				<apply_if additional="rapids=4" icon="rapid_white" shield="whitewater_rapid_grade4_shield"/>
+				<apply_if additional="rapids=5" icon="rapid_white" shield="whitewater_rapid_grade5_shield"/>
+				<apply_if additional="rapids=6" icon="rapid_white" shield="whitewater_rapid_grade6_shield"/>
+			</case>
+			<case icon="waterway_rapids" shield="rapids_shield"/>
+		</switch>
+		<switch whiteWaterSports="true" minzoom="14">
+			<case tag="whitewater" value="hazard" icon="whitewater_hazard" iconOrder="12"/>
+			<case tag="canoe" value="put_in" icon="put_in" iconOrder="20"/>
+			<case tag="canoe" value="egress" icon="egress" iconOrder="20"/>
+			<case tag="canoe" value="put_in;egress" icon="put_in_egress" iconOrder="20"/>
 		</switch>
 
 	</point>
@@ -1339,6 +1417,35 @@
 			<apply_if maxzoom="15" strokeWidth="1" strokeWidth__2="6" pathEffect="2_2"/>
 			<apply_if minzoom="16" strokeWidth="1:1" strokeWidth__2="8" pathEffect="2_2"/>
 		</case>
+		<switch minzoom="14" whiteWaterSports="true">
+			<case tag="canoe" value="portage"/>
+			<case tag="portage" value="yes"/>
+			<case tag="portage" value="designated"/>
+			<case tag="portage" value="permissive"/>
+			<case tag="portage" value="permit"/>
+			<apply_if maxzoom="15" strokeWidth="3" pathEffect="6_3"/>
+			<apply_if minzoom="16" maxzoom="16" strokeWidth="4" pathEffect="8_4"/>
+			<apply_if minzoom="17" strokeWidth="6" pathEffect="10_5"/>
+			<apply color="#EE003CB0"/>
+		</switch>
+
+		<switch whiteWaterSports="true" tag="waterway" value="rapids" pathEffect="2_2">
+			<switch color="#333333">
+				<case additional="rapids=0" color__2="$whitewaterSectionGrade0Color" onewayArrowsColor="#0080AB"/>
+				<case additional="rapids=1" color__2="$whitewaterSectionGrade1Color" onewayArrowsColor="#438600"/>
+				<case additional="rapids=2" color__2="$whitewaterSectionGrade2Color" onewayArrowsColor="#9D8C34"/>
+				<case additional="rapids=3" color__2="$whitewaterSectionGrade3Color" onewayArrowsColor="#9E6600"/>
+				<case additional="rapids=4" color__2="$whitewaterSectionGrade4Color" onewayArrowsColor="#800000"/>
+				<case additional="rapids=5" color__2="$whitewaterSectionGrade5Color" onewayArrowsColor="#611F81"/>
+				<case additional="rapids=6" color__2="$whitewaterSectionGrade6Color" onewayArrowsColor="#B2B2B2"/>
+				<apply_if maxzoom="13" strokeWidth__2="6"/>
+				<apply_if minzoom="14" maxzoom="15" strokeWidth__2="10"/>
+				<apply_if minzoom="16" maxzoom="17" strokeWidth__2="14"/>
+				<apply_if minzoom="18" strokeWidth__2="18"/>
+				<apply_if minzoom="16" strokeWidth="0.6"/>
+			</switch>
+		</switch>
+
 <!--		<switch showClimbingRoutes="true" minzoom="15">
 			<case tag="sport" value="climbing" additional="climbing_crag=crag"/>
 			<apply_if maxzoom="17" strokeWidth_2="3" pathEffect_2="5_2"/>

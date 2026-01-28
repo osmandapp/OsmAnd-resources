@@ -123,7 +123,7 @@ function populateDictionary(tts) {
 	// Imperial units.
 	dictionary["foot"] = tts ? "фут" : "foot.ogg";
 	dictionary["footy"] = tts ? "фути" : "footy.ogg";
-	dictionary["footiv"] = tts ? "футів" : "footov.ogg";
+	dictionary["footov"] = tts ? "футів" : "footov.ogg";
 
 	dictionary["yard"] = tts ? "ярд" : "yard.ogg";
 	dictionary["yardy"] = tts ? "ярди" : "yardy.ogg";
@@ -200,7 +200,7 @@ function plural_ft(dist) {
 	} else if (dist % 10 < 5 && dist % 10 > 1 && (dist % 100 > 20 || dist % 100 < 10 )) {
 		return dictionary["footy"];
 	} else {
-		return dictionary["footiv"];
+		return dictionary["footov"];
 	}
 }
 
@@ -453,6 +453,7 @@ function assemble_street_name(streetName) {
 	} else if (streetName["toRef"] != "") {
 		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	}
+	return "";
 }
 
 function nth(exit) {

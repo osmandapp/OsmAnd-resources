@@ -103,7 +103,7 @@ function populateDictionary(tts) {
 	dictionary["tunnel"] = tts ? "alagút" : "tunnel.ogg";
 
 	// OTHER PROMPTS
-	dictionary["location_lost"] = tts ? "nem található dzsípíesz jel" : "location_lost.ogg";
+	dictionary["location_lost"] = tts ? "nem található g p s jel" : "location_lost.ogg";
 	dictionary["location_recovered"] = tts ? "pozíció meghatározva" : "location_recovered.ogg";
 	dictionary["off_route"] = tts ? "Letért a tervezett útvonalról" : "off_route.ogg";
 	dictionary["back_on_route"] = tts ? "Újra a tervezett útvonalon van" : "back_on_route.ogg";
@@ -386,6 +386,7 @@ function assemble_street_name(streetName) {
 	} else if (streetName["toRef"] != "") {
 		return streetName["toRef"] + " " + streetName["toDest"];
 	}
+	return "";
 }
 
 function nth(exit) {

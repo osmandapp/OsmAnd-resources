@@ -462,31 +462,6 @@
 		<case nightMode="true" attrColorValue="#111111"/>
 		<case attrColorValue="#EE494949"/>
 	</renderingAttribute>
-
-	<renderingAttribute name="whitewaterRapidGrade0Color">
-		<case attrColorValue="#0078BA"/>
-	</renderingAttribute>
-	<renderingAttribute name="whitewaterRapidGrade1Color">
-		<case attrColorValue="#53A600"/>
-	</renderingAttribute>
-	<renderingAttribute name="whitewaterRapidGrade2Color">
-		<case nightMode="true" attrColorValue="#B5A23D"/>
-		<case attrColorValue="#D2BC47"/>
-	</renderingAttribute>
-	<renderingAttribute name="whitewaterRapidGrade3Color">
-		<case nightMode="true" attrColorValue="#B47400"/>
-		<case attrColorValue="#CF8500"/>
-	</renderingAttribute>
-	<renderingAttribute name="whitewaterRapidGrade4Color">
-		<case attrColorValue="#B10000"/>
-	</renderingAttribute>
-	<renderingAttribute name="whitewaterRapidGrade5Color">
-		<case attrColorValue="#822AAD"/>
-	</renderingAttribute>
-	<renderingAttribute name="whitewaterRapidGrade6Color">
-		<case nightMode="true" attrColorValue="#555555"/>
-		<case attrColorValue="#888888"/>
-	</renderingAttribute>
 	
 	<order>
 	<!-- Point -->
@@ -496,7 +471,6 @@
 				<case tag="natural" value=""/>
 				<case tag="waterway" value="waterfall"/>
 				<case tag="whitewater" value="rapid"/>
-				<case tag="whitewater" value="hazard"/>
 				<case tag="waterway" value="lock_gate"/>
 				<case tag="waterway" value=""/>
 				<case tag="natural" value="strait"/>
@@ -928,39 +902,30 @@
 				</apply_if>
 			</case>
 
-			<switch minzoom="5" textSize="13" textColor="#9d6c9d" textWrapWidth="20" textHaloRadius="$textHaloRadiusDay" textHaloColor="#88ffffff">
-				<switch engine_v1="true">
-					<case maxzoom="10" tag="place" value="state">
-						<case maxzoom="5" nameTag="" textOrder="24"/>
-						<case maxzoom="5" nameTag="ref" textOrder="24"/>
-						<case minzoom="6" nameTag="" textOrder="33"/>
-					</case>
-					<case tag="place" value="region">
-						<case maxzoom="5" nameTag="ref" textOrder="25"/>
-						<case minzoom="6" nameTag="" textOrder="33"/>
-					</case>
-					<case tag="place" value="province">
-						<case maxzoom="5" nameTag="ref" textOrder="25"/>
-						<case minzoom="6" nameTag="" textOrder="33"/>
-					</case>
-				</switch>
+			<switch minzoom="3" textSize="13" textColor="#635700" textWrapWidth="20" textHaloRadius="$textHaloRadiusDay">
 				<switch maxzoom="10" tag="place" value="state">
-					<case maxzoom="5" nameTag="" textOrder="24"/>
-					<case maxzoom="5" nameTag="ref" textOrder="24"/>
+					<case minzoom="3" maxzoom="4" nameTag="ref" additional="osmand_large_state=true" textOrder="9">
+						<apply_if maxzoom="3" textSize="10"/>
+					</case>
+					<switch minzoom="5" maxzoom="5">
+						<case nameTag="ref" textOrder="19">
+							<apply_if additional="osmand_large_state=true" disable="true"/>
+						</case>
+						<case nameTag="" additional="osmand_large_state=true" textOrder="7"/>
+					</switch>
 					<case minzoom="6" nameTag="" textOrder="33"/>
 				</switch>
 				<switch tag="place" value="region">
-					<case maxzoom="5" nameTag="ref" textOrder="25"/>
 					<case minzoom="6" nameTag="" textOrder="33"/>
 				</switch>
 				<switch tag="place" value="province">
-					<case maxzoom="5" nameTag="ref" textOrder="25"/>
 					<case minzoom="6" nameTag="" textOrder="33"/>
 				</switch>
+				<case minzoom="9" maxzoom="12" tag="place" value="county" nameTag="" textSize="13" textItalic="true" textOrder="63"/>
 				<apply textItalic="true" textWrapWidth="15"/>
-				<apply_if textColor="#635700" textHaloRadius="$textHaloRadiusDay" textHaloColor="$defaultTextHaloColorDay">
+				<apply textHaloColor="$defaultTextHaloColorDay">
 					<apply_if nightMode="true" textColor="#fffccc" textHaloColor="#77777545"/>
-				</apply_if>
+				</apply>
 			</switch>
 
 
@@ -1002,29 +967,11 @@
 						<case additional="population_rounded=200" textOrder="42"/>
 						<case additional="population_rounded=100" textOrder="43"/>
 					</apply>
-					<apply_if additional="capital=yes" textOrder="15">
+					<apply_if additional="capital=yes" textOrder="11">
 						<switch>
-							<case maxzoom="5" textSize="13" textOrder="25" textDy="0"/>
+							<case maxzoom="5" textSize="13" textDy="0"/>
 							<case maxzoom="7" textSize="20"/>
 							<case minzoom="8" textSize="22"/>
-							<apply>
-								<case additional="population_rounded=20000000" textOrder="13"/>
-								<case additional="population_rounded=15000000" textOrder="13"/>
-								<case additional="population_rounded=12000000" textOrder="14"/>
-								<case additional="population_rounded=9000000" textOrder="14"/>
-								<case additional="population_rounded=7000000" textOrder="15"/>
-								<case additional="population_rounded=5000000" textOrder="15"/>
-								<case additional="population_rounded=3000000" textOrder="16"/>
-								<case additional="population_rounded=2000000" textOrder="16"/>
-								<case additional="population_rounded=1000000" textOrder="17"/>
-								<case additional="population_rounded=700000" textOrder="18"/>
-								<case additional="population_rounded=400000" textOrder="19"/>
-								<case additional="population_rounded=200000" textOrder="20"/>
-								<case additional="population_rounded=100000" textOrder="21"/>
-								<case additional="population_rounded=70000" textOrder="21"/>
-								<case additional="population_rounded=40000" textOrder="21"/>
-								<case additional="population_rounded=20000" textOrder="21"/>
-							</apply>
 						</switch>
 					</apply_if>
 				</case>
@@ -1292,18 +1239,6 @@
 				</case>
 				<apply_if nightMode="true" textColor="$defaultTextColorNight" textHaloColor="#77464234"/>
 			</switch>
-			<switch minzoom="16" nameTag="">
-				<case tag="whitewater" value="put_in" textDy="-4"/>
-				<case tag="whitewater" value="egress" textDy="-4"/>
-				<case tag="whitewater" value="put_in;egress" textDy="-4"/>
-				<case tag="whitewater" value="rapid" nameTag="whitewater:rapid_name" textOnPath="true"/>
-				<case tag="whitewater" value="rapid" nameTag="" nameTag2="whitewater:rapid_name" textOnPath="true"/>
-				<case minzoom="15" tag="whitewater" value="portage_way" textBold="true" textOnPath="true" textDy="0" textHaloColor="$defaultColor"/>
-				<apply textSize="12" textColor="#0400ab" textHaloColor="$defaultColor" textHaloRadius="1"/>
-				<apply_if nightMode="true" textColor="$defaultTextColorNight"/>
-				<apply_if whiteWaterSports="true" textOrder="10"/>
-			</switch>
-			<case whiteWaterSports="true" minzoom="16" textSize="12" tag="whitewater" value="hazard" textOrder="12"/>
 
 			<switch nameTag="">
 				<case minzoom="15" tag="landuse" value="military"/>
@@ -3015,25 +2950,6 @@
 
 			<case minzoom="15" tag="seamark:type" value="rapids" icon="waterway_rapids" shield="rapids_shield"/>
 
-			<switch minzoom="16" tag="whitewater" value="rapid">
-				<case whiteWaterSports="true" icon="rapid_white" iconOrder="10">
-					<apply_if additional="whitewater:rapid_grade=0" shield="whitewater_rapid_grade0_shield"/>
-					<apply_if additional="whitewater:rapid_grade=1" shield="whitewater_rapid_grade1_shield"/>
-					<apply_if additional="whitewater:rapid_grade=2" shield="whitewater_rapid_grade2_shield"/>
-					<apply_if additional="whitewater:rapid_grade=3" shield="whitewater_rapid_grade3_shield"/>
-					<apply_if additional="whitewater:rapid_grade=4" shield="whitewater_rapid_grade4_shield"/>
-					<apply_if additional="whitewater:rapid_grade=5" shield="whitewater_rapid_grade5_shield"/>
-					<apply_if additional="whitewater:rapid_grade=6" shield="whitewater_rapid_grade6_shield"/>
-				</case>
-				<case icon="waterway_rapids" shield="rapids_shield"/>
-			</switch>
-			<case whiteWaterSports="true" minzoom="14" tag="whitewater" value="hazard" icon="whitewater_hazard" iconOrder="12"/>
-			<switch whiteWaterSports="true" minzoom="14" iconOrder="20">
-				<case tag="whitewater" value="put_in" icon="put_in"/>
-				<case tag="whitewater" value="egress" icon="egress"/>
-				<case tag="whitewater" value="put_in;egress" icon="put_in_egress"/>
-			</switch>
-
 			<case minzoom="14" tag="waterway" value="waterfall" icon="seamark_waterfall" shield="seamark_waterfall_shield" iconVisibleSize="25" intersectionSizeFactor="0.7"/>
 
 			<case minzoom="15" tag="seamark:type" value="rescue_station" icon="seamark_rescue_station"/>
@@ -3168,32 +3084,14 @@
 							<case additional="population_rounded=100" iconOrder="43"/>
 						</switch>
 					</apply>
-					<apply_if additional="capital=yes" iconVisibleSize="1" iconOrder="15">
+					<apply_if additional="capital=yes" iconVisibleSize="1" iconOrder="11">
 						<switch>
-							<case minzoom="5" maxzoom="5" icon="place_capital_dot_small" iconOrder="25">
+							<case minzoom="5" maxzoom="5" icon="place_capital_dot_small">
 								<apply_if nightMode="true" icon="place_capital_dot_small_night"/>
 							</case>
 							<case minzoom="6" maxzoom="16" icon="place_capital_dot">
 								<apply_if nightMode="true" icon="place_capital_dot_night"/>
 							</case>
-							<apply>
-								<case additional="population_rounded=20000000" iconOrder="15"/>
-								<case additional="population_rounded=15000000" iconOrder="15"/>
-								<case additional="population_rounded=12000000" iconOrder="16"/>
-								<case additional="population_rounded=9000000" iconOrder="16"/>
-								<case additional="population_rounded=7000000" iconOrder="17"/>
-								<case additional="population_rounded=5000000" iconOrder="17"/>
-								<case additional="population_rounded=3000000" iconOrder="18"/>
-								<case additional="population_rounded=2000000" iconOrder="18"/>
-								<case additional="population_rounded=1000000" iconOrder="19"/>
-								<case additional="population_rounded=700000" iconOrder="20"/>
-								<case additional="population_rounded=400000" iconOrder="21"/>
-								<case additional="population_rounded=200000" iconOrder="22"/>
-								<case additional="population_rounded=100000" iconOrder="23"/>
-								<case additional="population_rounded=70000" iconOrder="23"/>
-								<case additional="population_rounded=40000" iconOrder="23"/>
-								<case additional="population_rounded=20000" iconOrder="23"/>
-							</apply>
 						</switch>
 					</apply_if>
 				</switch>
@@ -4170,35 +4068,19 @@
 			</apply>
 			<apply_if whiteWaterSports="true">
 				<switch>
-					<case additional="whitewater:section_grade=0" color_2="$whitewaterSectionGrade0Color" onewayArrowsColor="#0080AB"/>
-					<case additional="whitewater:section_grade=1" color_2="$whitewaterSectionGrade1Color" onewayArrowsColor="#438600"/>
-					<case additional="whitewater:section_grade=2" color_2="$whitewaterSectionGrade2Color" onewayArrowsColor="#9D8C34"/>
-					<case additional="whitewater:section_grade=3" color_2="$whitewaterSectionGrade3Color" onewayArrowsColor="#9E6600"/>
-					<case additional="whitewater:section_grade=4" color_2="$whitewaterSectionGrade4Color" onewayArrowsColor="#800000"/>
-					<case additional="whitewater:section_grade=5" color_2="$whitewaterSectionGrade5Color" onewayArrowsColor="#611F81"/>
-					<case additional="whitewater:section_grade=6" color_2="$whitewaterSectionGrade6Color" onewayArrowsColor="#B2B2B2"/>
+					<case additional="rapids=0" color_2="$whitewaterSectionGrade0Color" onewayArrowsColor="#0080AB"/>
+					<case additional="rapids=1" color_2="$whitewaterSectionGrade1Color" onewayArrowsColor="#438600"/>
+					<case additional="rapids=2" color_2="$whitewaterSectionGrade2Color" onewayArrowsColor="#9D8C34"/>
+					<case additional="rapids=3" color_2="$whitewaterSectionGrade3Color" onewayArrowsColor="#9E6600"/>
+					<case additional="rapids=4" color_2="$whitewaterSectionGrade4Color" onewayArrowsColor="#800000"/>
+					<case additional="rapids=5" color_2="$whitewaterSectionGrade5Color" onewayArrowsColor="#611F81"/>
+					<case additional="rapids=6" color_2="$whitewaterSectionGrade6Color" onewayArrowsColor="#B2B2B2"/>
 					<apply_if maxzoom="13" strokeWidth_2="6"/>
 					<apply_if minzoom="14" maxzoom="15" strokeWidth_2="10"/>
 					<apply_if minzoom="16" maxzoom="17" strokeWidth_2="14"/>
 					<apply_if minzoom="18" strokeWidth_2="18"/>
 				</switch>
 			</apply_if>
-			<apply_if whiteWaterSports="true">
-				<switch>
-					<case additional="whitewater:rapid_grade=0" color_3="$whitewaterRapidGrade0Color"/>
-					<case additional="whitewater:rapid_grade=1" color_3="$whitewaterRapidGrade1Color"/>
-					<case additional="whitewater:rapid_grade=2" color_3="$whitewaterRapidGrade2Color"/>
-					<case additional="whitewater:rapid_grade=3" color_3="$whitewaterRapidGrade3Color"/>
-					<case additional="whitewater:rapid_grade=4" color_3="$whitewaterRapidGrade4Color"/>
-					<case additional="whitewater:rapid_grade=5" color_3="$whitewaterRapidGrade5Color"/>
-					<case additional="whitewater:rapid_grade=6" color_3="$whitewaterRapidGrade6Color"/>
-					<apply_if maxzoom="13" strokeWidth_3="6" pathEffect_3="1_9"/>
-					<apply_if minzoom="14" maxzoom="15" strokeWidth_3="10" pathEffect_3="1_15"/>
-					<apply_if minzoom="16" maxzoom="17" strokeWidth_3="14" pathEffect_3="1_22"/>
-					<apply_if minzoom="18" strokeWidth_3="18" pathEffect_3="1_30"/>
-					<apply cap_3="ROUND"/>
-				</switch>
-			 </apply_if>
 
 			<apply>
 				<switch>
@@ -4211,14 +4093,6 @@
 					<apply_if minzoom="18" pathEffect_3="1_24"/>
 				</switch>
 			</apply>
-		</switch>
-
-		<switch minzoom="14" whiteWaterSports="true">
-			<case tag="whitewater" value="portage_way"/>
-			<apply_if maxzoom="15" strokeWidth="3" pathEffect="6_3"/>
-			<apply_if minzoom="16" maxzoom="16" strokeWidth="4" pathEffect="8_4"/>
-			<apply_if minzoom="17" strokeWidth="6" pathEffect="10_5"/>
-			<apply color="#EE003CB0"/>
 		</switch>
 
 		<switch minzoom="18">

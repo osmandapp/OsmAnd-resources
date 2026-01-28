@@ -289,7 +289,7 @@ function decline_string_val(value, declension) {
 
 function decline_street(street, declension) {
 	var type = getStreetType(street);
-	if (streetType == "tee") {
+	if (type == "tee") {
 		return street + " " + decline_string("road", declension);
 	} else if (type == "maantee") {
 		return street + " " + decline_string("main_road", declension);
@@ -585,6 +585,7 @@ function assemble_street_name(streetName) {
 	} else if (streetName["toRef"] != "") {
 		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	}
+	return "";
 }
 
 function nth(exit) {
@@ -803,6 +804,6 @@ function ogg_dist(distance, declension) {
 	} else if (distance < 1000) {
 		return decline_string("900.ogg", declension) + " " + ogg_dist(distance - 900);
 	} else {
-		return ogg_dist(distance/1000) + decline_string("1000.ogg") + " " + ogg_dist(distance % 1000);
+		return ogg_dist(distance/1000) + decline_string("1000.ogg", declension) + " " + ogg_dist(distance % 1000);
 	}
 }

@@ -121,7 +121,7 @@ function populateDictionary(tts) {
 	dictionary["around"] = tts ? "aimeté" : "around.ogg";
 	dictionary["kilometers"] = tts ? "kilómetros" : "kilometers.ogg";
 	
-	dictionary["feet"] = tts ? "kilómetros" : "feet.ogg";
+	dictionary["feet"] = tts ? "py" : "feet.ogg";
 	dictionary["tenths_of_a_mile"] = tts ? "millas povoqué" : "tenths_of_a_mile.ogg";
 	dictionary["around_1_mile"] = tts ? "Milla rembe'uyre" : "around_1_mile.ogg";
 	dictionary["miles"] = tts ? "millas" : "miles.ogg";
@@ -382,6 +382,7 @@ function assemble_street_name(streetName) {
 	} else if (streetName["toRef"] != "") {
 		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	}
+	return "";
 }
 
 function nth(exit) {

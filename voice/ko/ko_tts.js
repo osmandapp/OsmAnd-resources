@@ -85,10 +85,10 @@ function populateDictionary(tts) {
 	// NEARBY POINTS
 	dictionary["and_arrive_waypoint"] = tts ? "다음은 지점을 통과 합니다" : "and_arrive_waypoint.ogg";
 	dictionary["reached_waypoint"] = tts ? "지점을 통과 중 입니다" : "reached_waypoint.ogg";
-	dictionary["and_arrive_favorite"] = tts ? "and pass favorite" : "and_arrive_favorite.ogg";
-	dictionary["reached_favorite"] = tts ? "you are passing favorite" : "reached_favorite.ogg";
-	dictionary["and_arrive_poi"] = tts ? "and pass POI" : "and_arrive_poi.ogg";
-	dictionary["reached_poi"] = tts ? "you are passing POI" : "reached_poi.ogg";
+	dictionary["and_arrive_favorite"] = tts ? "다음은 즐겨찾기 지점을 통과합니다" : "and_arrive_favorite.ogg";
+	dictionary["reached_favorite"] = tts ? "즐겨찾기 지점을 통과 중입니다" : "reached_favorite.ogg";
+	dictionary["and_arrive_poi"] = tts ? "다음은 관심 지점을 통과합니다" : "and_arrive_poi.ogg";
+	dictionary["reached_poi"] = tts ? "관심 지점을 통과 중입니다" : "reached_poi.ogg";
 
 	// ATTENTION
 	//dictionary["exceed_limit"] = tts ? "제한 속도를 초과하고 있습니다" : "exceed_limit.ogg";
@@ -379,6 +379,7 @@ function assemble_street_name(streetName) {
 	} else if (streetName["toRef"] != "") {
 		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	}
+	return "";
 }
 
 function nth(exit) {

@@ -512,28 +512,22 @@ function getExitTurnType(turnType) {
     switch (turnType) {
         case "left":
             return dictionary["take_exit_left"];
-            break;
         case "left_sh":
             return dictionary["take_exit_left_sh"];
-            break;
         case "left_sl":
             return dictionary["take_exit_left_sl"];
-            break;
         case "right":
             return dictionary["take_exit_right"];
-            break;
         case "right_sh":
             return dictionary["take_exit_right_sh"];
-            break;
         case "right_sl":
             return dictionary["take_exit_right_sl"];
-            break;
         case "left_keep":
             return dictionary["take_exit_left_keep"];
-            break;
         case "right_keep":
             return dictionary["take_exit_right_keep"];
-            break;
+        default:
+            return "";
     }
 }
 
@@ -541,28 +535,23 @@ function getTurnType(turnType) {
 	switch (turnType) {
 		case "left":
 			return dictionary["left"];
-			break;
 		case "left_sh":
 			return dictionary["left_sh"];
-			break;
 		case "left_sl":
 			return dictionary["left_sl"];
-			break;
 		case "right":
 			return dictionary["right"];
-			break;
 		case "right_sh":
 			return dictionary["right_sh"];
-			break;
 		case "right_sl":
 			return dictionary["right_sl"];
-			break;
 		case "left_keep":
 			return dictionary["left_keep"];
-			break;
 		case "right_keep":
 			return dictionary["right_keep"];
-			break;
+		default:
+			return "";
+
 	}
 }
 
@@ -604,6 +593,7 @@ function assemble_street_name(streetName, isFollow) {
 	} else if (streetName["toRef"] != "") {
 		return dictionary["on"] + " " + formated_to_ref(streetName, false) + " " + dictionary["toward"] + " " + formated_to_dest(streetName);
 	}
+	return "";
 }
 
 function nth(exit, declension) {
@@ -642,6 +632,8 @@ function nth(exit, declension) {
 			return dictionary["16th" + declension];
 		case (17):
 			return dictionary["17th" + declension];
+		default:
+			return "";
 	}
 }
 
@@ -746,37 +738,26 @@ function getAttentionString(type) {
 	switch (type) {
 		case "SPEED_CAMERA":
 			return dictionary["speed_camera"];
-			break;
 		case "SPEED_LIMIT":
 			return "";
-			break
 		case "BORDER_CONTROL":
 			return dictionary["border_control"];
-			break;
 		case "RAILWAY":
 			return dictionary["railroad_crossing"];
-			break;
 		case "TRAFFIC_CALMING":
 			return dictionary["traffic_calming"];
-			break;
 		case "TOLL_BOOTH":
 			return dictionary["toll_booth"];
-			break;
 		case "STOP":
 			return dictionary["stop"];
-			break;
 		case "PEDESTRIAN":
 			return dictionary["pedestrian_crosswalk"];
-			break;
 		case "MAXIMUM":
 			return "";
-			break;
 		case "TUNNEL":
 			return dictionary["tunnel"];
-			break;
 		default:
 			return "";
-			break;
 	}
 }
 

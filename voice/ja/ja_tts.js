@@ -431,6 +431,7 @@ function assemble_street_name(streetName) {
 	} else if (streetName["toRef"] != "") {
 		return streetName["toDest"] + dictionary["toward"] + streetName["toRef"];
 	}
+	return "";
 }
 
 function nth(exit) {

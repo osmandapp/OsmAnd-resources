@@ -96,7 +96,7 @@ function populateDictionary(tts) {
 	dictionary["railroad_crossing"] = tts ? "paso a nivel" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "reductor de velocidad" : "traffic_calming.ogg";
 	dictionary["toll_booth"] = tts ? "cabina de peaje" : "toll_booth.ogg";
-	dictionary["stop"] = tts ? "señal de ESTOP" : "stop.ogg";
+	dictionary["stop"] = tts ? "señal de STOP" : "stop.ogg";
 	dictionary["pedestrian_crosswalk"] = tts ? "paso de peatones" : "pedestrian_crosswalk.ogg";
 	dictionary["tunnel"] = tts ? "túnel" : "tunnel.ogg";
 
@@ -378,6 +378,7 @@ function assemble_street_name(streetName) {
 	} else if (streetName["toRef"] != "") {
 		return streetName["toRef"] + " " + dictionary["toward"] + " " + streetName["toDest"];
 	}
+	return "";
 }
 
 function nth(exit) {

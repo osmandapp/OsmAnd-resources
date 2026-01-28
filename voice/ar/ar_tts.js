@@ -722,6 +722,7 @@ function nth(exit) {
 			return dictionary["16th"];
 		case (17):
 			return dictionary["17th"];
+		return "";
 	}
 }
 
