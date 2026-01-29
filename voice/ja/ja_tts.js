@@ -114,7 +114,7 @@ function populateDictionary(tts) {
 	// 『国境 検問徐』と間に半角スペースを入れて『所』の代わりに『徐』という字にすると良い。
 	dictionary["border_control"] = tts ? "出入国管理があります" : "border_control.ogg"; //国境検問所の所をしょとN2TTSが読むため。半角スペースは国境をこっきょうと読ませるため。
 	dictionary["railroad_crossing"] = tts ? "踏切があります" : "railroad_crossing.ogg";
-	dictionary["traffic_calming"] = tts ? "減速隊があります" : "traffic_calming.ogg"; // Googleテキスト読み上げエンジンは減速帯を『げんそくおび』と読むので。
+	dictionary["traffic_calming"] = tts ? "減速帯があります" : "traffic_calming.ogg";
 	dictionary["toll_booth"] = tts ? "料金所があります" : "toll_booth.ogg"; // Googleは『りょうきんじょ』N2TTSは『りょうきんしょ』だが、どちらの読みも正しいので漢字表記に戻した。
 	dictionary["stop"] = tts ? "一時停止です" : "stop.ogg";
 	dictionary["pedestrian_crosswalk"] = tts ? "横断歩道があります" : "pedestrian_crosswalk.ogg";
