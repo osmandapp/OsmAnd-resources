@@ -419,6 +419,8 @@
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_shuttle_train" name="Avoid Shuttle Trains" description="Avoid Shuttle Trains" type="boolean"/>
 		<parameter id="avoid_motorway" name="Avoid motorways" description="Avoid motorways" type="boolean"/>
+		<parameter id="avoid_multilane" name="Avoid multi-lane roads" description="Avoid roads with multiple lanes in the same direction" type="boolean"/>
+		<parameter id="avoid_oneway" name="Avoid one-way roads" description="Avoid roads that are one-way" type="boolean"/>
 		<parameter id="avoid_tunnels" name="Avoid tunnels" description="Avoid tunnels" type="boolean"/>
 		<parameter id="avoid_borders" name="Avoid border crossing" description="Avoid crossing a border into another country" type="boolean"/>
 		<parameter id="avoid_ice_roads_fords" name="Avoid ice roads, fords" description="Avoid ice roads and fords" type="boolean"/>
@@ -981,6 +983,35 @@
 			<if param="avoid_motorway">
 				<select value="0.05" t="highway" v="motorway"/>
 				<select value="0.05" t="highway" v="motorway_link"/>
+			</if>
+
+			<if param="avoid_oneway">
+				<select value="0.1" t="oneway" v="yes"/>
+				<select value="0.1" t="oneway" v="1"/>
+			</if>
+
+			<if param="avoid_multilane">
+				<!-- lanes = 2 AND oneway -->
+				<if t="lanes" v="2">
+					<ifnot param="avoid_oneway">
+						<select value="0.1" t="oneway" v="yes"/>
+						<select value="0.1" t="oneway" v="1"/>
+					</ifnot>
+				</if>
+
+				<!-- lanes >= 3 -->
+				<select value="0.1" t="lanes" v="3"/>
+				<select value="0.1" t="lanes" v="4"/>
+				<select value="0.1" t="lanes" v="5"/>
+				<select value="0.1" t="lanes" v="6"/>
+				<select value="0.1" t="lanes" v="7"/>
+				<select value="0.1" t="lanes" v="8"/>
+				<select value="0.1" t="lanes" v="9"/>
+				<select value="0.1" t="lanes" v="10"/>
+				<select value="0.1" t="lanes" v="11"/>
+				<select value="0.1" t="lanes" v="12"/>
+				<select value="0.1" t="lanes" v="13"/>
+				<select value="0.1" t="lanes" v="14"/>
 			</if>
 
 			<if param="avoid_tunnels">
