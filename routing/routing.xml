@@ -419,6 +419,7 @@
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_shuttle_train" name="Avoid Shuttle Trains" description="Avoid Shuttle Trains" type="boolean"/>
 		<parameter id="avoid_motorway" name="Avoid motorways" description="Avoid motorways" type="boolean"/>
+		<parameter id="avoid_dual_carriageways" name="Avoid dual carriageways" type="boolean" profiles="default,motorcycle"/>
 		<parameter id="avoid_tunnels" name="Avoid tunnels" description="Avoid tunnels" type="boolean"/>
 		<parameter id="avoid_borders" name="Avoid border crossing" description="Avoid crossing a border into another country" type="boolean"/>
 		<parameter id="avoid_ice_roads_fords" name="Avoid ice roads, fords" description="Avoid ice roads and fords" type="boolean"/>
@@ -930,6 +931,33 @@
 			<select value="0.15" t="smoothness" v="horrible"/>
 			<select value="0.1" t="smoothness" v="very_horrible"/>
 			<select value="0.05" t="smoothness" v="impassable"/>
+
+			<if param="avoid_dual_carriageways">
+				<ifnot param="avoid_motorway">
+					<select value="0.1">
+						<ifnot t="junction"/>
+						<if t="highway" v="motorway"/>
+					</select>
+					<select value="0.1">
+						<ifnot t="junction"/>
+						<if t="highway" v="motorway_link"/>
+					</select>
+				</ifnot>
+                <select value="0.25">
+                    <ifnot t="junction"/>
+                    <ifnot t="tunnel" v="yes"/>
+                    <ifnot t="bridge" v="yes"/>
+                    <if t="highway" v="trunk"/>
+                    <if t="oneway" v="yes"/>
+                </select>
+                <select value="0.25">
+                    <ifnot t="junction"/>
+                    <ifnot t="tunnel" v="yes"/>
+                    <ifnot t="bridge" v="yes"/>
+                    <if t="highway" v="trunk_link"/>
+                    <if t="oneway" v="yes"/>
+                </select>
+            </if>
 
 			<if param="prefer_unpaved">
 				<if param="avoid_motorway">
