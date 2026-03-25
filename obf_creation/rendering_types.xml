@@ -2246,10 +2246,11 @@
 		<type tag="node_network" value="nwn" minzoom="11" additional="true" notosm="true"/>
 		<type tag="node_network" value="rwn" minzoom="11" additional="true" notosm="true"/>
 
-		<!-- Convert foot & walking into hiking for now-->
+		<!-- Convert foot & walking & worship into hiking for now -->
 		<entity_convert pattern="tag_transform" from_tag="route" from_value="foot" to_tag1="route" to_value1="hiking" apply_to="relation"/>
 		<entity_convert pattern="tag_transform" from_tag="route" from_value="walking" to_tag1="route" to_value1="hiking" apply_to="relation"/>
-
+        <entity_convert pattern="tag_transform" from_tag="route" from_value="worship" to_tag1="route" to_value1="hiking" apply_to="relation"/>
+        
 		<!-- Fix for routes without route but with network=*wn : add route_ =hiking(or foot) -->
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="lwn" if_not_tag1="route" if_not_tag2="network:type" if_not_value2="node_network" to_tag1="network" to_value1="lwn" to_tag2="route" to_value2="hiking" apply_to="relation"/>
 		<entity_convert pattern="tag_transform" from_tag="network" from_value="iwn" if_not_tag1="route" if_not_tag2="network:type" if_not_value2="node_network" to_tag1="network" to_value1="iwn" to_tag2="route" to_value2="hiking" apply_to="relation"/>
