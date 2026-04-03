@@ -538,6 +538,8 @@ message OsmAndPoiNameIndex {
 
 	repeated OsmAndPoiNameIndexData data = 5;
 	message OsmAndPoiNameIndexData {
+        // suffixes could be terminal or not
+        repeated string suffixesDictionary = 2; // suffixes releated to 1 prefix
 		// can contain multiple data offsets
 		repeated OsmAndPoiNameIndexDataAtom atoms = 3;
 	}
@@ -548,8 +550,9 @@ message OsmAndPoiNameIndexDataAtom {
 	optional uint32 zoom = 2;
 	optional uint32 x = 3;
 	optional uint32 y = 4;
-    
-	repeated bytes bloomIndex = 5; // 1st byte is version or algorithm, multiple filters could be applied
+
+    repeated uint32 suffixesBitset = 6; // bits are ordered suffixesDictionary
+	//repeated bytes bloomIndex = 5; // 1st byte is version or algorithm, multiple filters could be applied
     
 	// shift to OsmAndPoiBoxData message from OsmAndPoiIndex.start
 	// message is started when body is started
