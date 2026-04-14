@@ -449,6 +449,12 @@
 		<case attrColorValue="#300002B4"/>
 	</renderingAttribute>
 
+	<renderingAttribute name="placeCityVillageTextColor">
+		<case attrColorValue="#000000">
+			<apply_if nightMode="true" attrColorValue="#E5E5E5"/>
+		</case>
+	</renderingAttribute>
+
 	<renderingAttribute name="placeCountryTextColor">
 		<case attrColorValue="#8e3a7e">
 			<apply_if nightMode="true" attrColorValue="#d99b42"/>
@@ -1273,12 +1279,6 @@
 					<apply_if minzoom="16" textSize="15"/>
 					<apply_if minzoom="17" textSize="16"/>
 				</switch>
-				<switch minzoom="11" nameTag="">
-					<case tag="place" value="island"/>
-					<case minzoom="13" tag="place" value="islet"/>
-					<apply textItalic="true" textSize="14" textOrder="113"/>
-					<apply_if minzoom="16" textSize="16"/>
-				</switch>
 				<apply_if nightMode="true" textColor="#ffffff" textHaloRadius="$textHaloRadiusNight" textHaloColor="#77777777"/>
 				<apply_if engine_v1="false" textDy="-5"/>
 				<apply>
@@ -1313,6 +1313,33 @@
 					<case additional="population_rounded=100" textOrder="43"/>
 				</apply>
 			</switch>
+			<switch minzoom="5" tag="place" value="island" nameTag="">
+				<switch maxzoom="10" additional="osmand_prominent_island=yes" textOrder="77">
+					<case minzoom="5" additional="area_rounded=2048000" textSize="11"/>
+					<case minzoom="5" additional="area_rounded=1024000" textSize="11"/>
+					<case minzoom="5" additional="area_rounded=512000" textSize="11"/>
+					<case minzoom="5" additional="area_rounded=256000" textSize="11"/>
+					<case minzoom="5" additional="area_rounded=128000" textSize="11"/>
+					<case minzoom="5" additional="area_rounded=64000" textSize="11"/>
+					<case minzoom="5" additional="area_rounded=32000" textSize="11"/>
+					<case minzoom="5" additional="area_rounded=16000" textSize="11"/>
+					<case minzoom="6" additional="area_rounded=8000" textSize="12"/>
+					<case minzoom="7" additional="area_rounded=4000" textSize="12"/>
+					<case minzoom="8" additional="area_rounded=2000" textSize="13"/>
+					<case minzoom="9" additional="area_rounded=1000" textSize="13"/>
+					<case minzoom="9" additional="area_rounded=500" textSize="13"/>
+					<case minzoom="10" additional="area_rounded=200" textSize="13"/>
+					<case minzoom="10" additional="area_rounded=100" textSize="13"/>
+				</switch>
+				<case minzoom="11" textSize="14" textOrder="37" intersectionMargin="15"/>
+				<apply textColor="$placeCityVillageTextColor" textWrapWidth="20" textHaloColor="#ffffff" textItalic="true"/>
+				<apply_if nightMode="true" textHaloColor="#77777777"/>
+			</switch>
+
+			<case minzoom="13" tag="place" value="islet" nameTag="">
+				<apply textWrapWidth="20" textColor="$placeCityVillageTextColor" textHaloColor="#ffffff" intersectionMargin="15" textItalic="true" textSize="14"/>
+				<apply_if nightMode="true" textHaloColor="#77777777"/>
+			</case>
 
 			<switch textSize="12" textColor="#0066ff" textWrapWidth="20" textHaloRadius="$textHaloRadiusDay" textOrder="150" nameTag="">
 				<case minzoom="17" tag="amenity" value="fuel"/>
