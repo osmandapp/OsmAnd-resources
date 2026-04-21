@@ -2951,7 +2951,6 @@
 		<attribute name="maxRouteDistance" value = "30000" />
 		<attribute name="maxRouteIncreaseSpeed" value = "30" />
 
-
 		<!-- find alternatives routes within N seconds delay to the fastest route, 15 minutes (16% 1hour) -->
 		<attribute name="delayForAlternativesRoutes" value = "2400" /> <!--  DEPRECATED-->
 		<attribute name="increaseForAlternativesRoutes" value = "2" />
@@ -2961,6 +2960,11 @@
 		<!-- Combine alternative routes -->
 		<attribute name="combineAltRoutesDiffStops" value = "120" /> <!-- 120 meters - same stop -->
 		<attribute name="combineAltRoutesSumDiffStops" value = "300" /> <!-- 300 meters sum for all stops -->
+
+		<!-- Nonlinearly increase speed based on segment distance -->
+		<!-- Should make more realistic travelTime (see bus/bus-max) -->
+		<attribute name="minSegmentDistToIncreaseSpeed" value = "1000" />
+		<attribute name="upperSegmentDistToIncreaseSpeed" value = "30000" />
 
 		<!-- default value for max number of changes (replaced with max_num_changes) -->
 		<attribute name="maxNumberOfChanges" value = "2" />
@@ -3028,6 +3032,7 @@
 			    <select value="0" t="route" v="bus"/>
 			</if>
 			<select value="40"  t="route" v="bus"/>
+			<select value="80"  t="route" v="bus-max"/>
 
 			<if param="avoid_bus">
 			    <select value="0" t="route" v="trolleybus"/>
