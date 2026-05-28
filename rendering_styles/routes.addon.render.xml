@@ -44,7 +44,7 @@
 						inner-legend-object="highway=track;mtb:scale:imba=$class"/>
 		</renderingClass>
 		<renderingClass name=".hiking" title="Hiking routes" enable="true">
-			<renderingClass name=".routes" title="Hiking routes" enable="false">
+			<renderingClass name=".routes" title="Hiking routes" enable="true">
 				<renderingClass name=".iwn" title="International walking network" enable="true"/>
 				<renderingClass name=".nwn" title="National walking network" enable="true"/>
 				<renderingClass name=".rwn" title="Regional walking network" enable="true"/>
@@ -55,21 +55,22 @@
 			<renderingClass name=".node_network_segments" title="Hiking network (segments)" enable="true"/>
 			<renderingClass name=".color" title="Color" enable="true">
 				<renderingClass name=".classification" title="Classification" enable="true"/>
-				<renderingClass name=".route_marker" title="Route marker" enable="true"/>
+				<renderingClass name=".route_marker" title="Route marker" enable="true"/> <!-- not implemented for node_network_segments / node_network_nodes! -->
 			</renderingClass>
 		</renderingClass>
 		<renderingClass name=".bicycle" title="Cycle routes" enable="true">
-			<renderingClass name=".road_network" title="Bicycle networks" enable="true">
+			<renderingClass name=".road_network" title="Cycling networks" enable="true">
 				<renderingClass name=".icn" title="International cycling network" enable="true"/>
 				<renderingClass name=".ncn" title="National cycling network" enable="true"/>
 				<renderingClass name=".rcn" title="Regional cycling network" enable="true"/>
 				<renderingClass name=".lcn" title="Local cycling network" enable="true"/>
+				<renderingClass name=".unclassified" title="Unclassified" enable="true"/>
 			</renderingClass>
-			<renderingClass name=".node_network" title="Node network cycle routes" enable="true">
-				<renderingClass name=".icn" title="International cycling network" enable="true"/>
-				<renderingClass name=".ncn" title="National cycling network" enable="true"/>
-				<renderingClass name=".rcn" title="Regional cycling network" enable="true"/>
-				<renderingClass name=".lcn" title="Local cycling network" enable="true"/>
+			<renderingClass name=".node_network_nodes" title="Cycling network (nodes)" enable="true"/>
+			<renderingClass name=".node_network_segments" title="Cycling network (segments)" enable="true"/>
+			<renderingClass name=".color" title="Color" enable="true">
+				<renderingClass name=".classification" title="Classification" enable="true"/>
+				<renderingClass name=".route_marker" title="Route marker" enable="true"/> <!-- not implemented for node_network_segments! -->
 			</renderingClass>
 		</renderingClass>
 
@@ -328,16 +329,16 @@
 	</renderingAttribute>
 
 	<renderingAttribute name="iwnClassificationColor">
-		<case attrColorValue="#F84646"/>
+		<case attrColorValue="#BBF84646"/>
 	</renderingAttribute>
 	<renderingAttribute name="nwnClassificationColor">
-		<case attrColorValue="#573EE2"/>
+		<case attrColorValue="#BB573EE2"/>
 	</renderingAttribute>
 	<renderingAttribute name="rwnClassificationColor">
-		<case attrColorValue="#E26F3E"/>
+		<case attrColorValue="#BBE26F3E"/>
 	</renderingAttribute>
 	<renderingAttribute name="lwnClassificationColor">
-		<case attrColorValue="#5FE23E"/>
+		<case attrColorValue="#BB5FE23E"/>
 	</renderingAttribute>
 
 
@@ -635,29 +636,30 @@
 			<!--</switch>-->
 			<switch minzoom="11" legend="false" textBold="true">
 				<!-- old way to display -->
-				<switch showCycleRoutes="true" rClass=".route.bicycle.road_network">
-					<case tag="node_network_point" value="lcn" nameTag="lcn_ref" textOrder="37" rClass=".route.bicycle.road_network.lcn"/>
-					<case tag="node_network_point" value="multiple" nameTag="lcn_ref" textOrder="37" rClass=".route.bicycle.road_network.lcn"/>
-					<case tag="node_network_point" value="rcn"  nameTag="rcn_ref" textOrder="38" rClass=".route.bicycle.road_network.rcn"/>
-					<case tag="node_network_point" value="multiple" nameTag="rcn_ref" textOrder="38" rClass=".route.bicycle.road_network.rcn"/>
-					<case tag="node_network_point" value="ncn"  nameTag="ncn_ref" textOrder="39" rClass=".route.bicycle.road_network.ncn"/>
-					<case tag="node_network_point" value="multiple" nameTag="ncn_ref" textOrder="39" rClass=".route.bicycle.road_network.ncn"/>
-					<case tag="node_network_point" value="icn" nameTag="icn_ref" textOrder="39" rClass=".route.bicycle.road_network.icn"/>
-					<case tag="node_network_point" value="multiple" nameTag="icn_ref" textOrder="39" rClass=".route.bicycle.road_network.icn"/>
+
+				<switch showCycleNodeNetworkRoutes="true" rClass=".route.bicycle.node_network_nodes">
+					<case tag="node_network_point" value="lcn" nameTag="lcn_ref" textOrder="37"/>
+					<case tag="node_network_point" value="multiple" nameTag="lcn_ref" textOrder="37"/>
+					<case tag="node_network_point" value="rcn"  nameTag="rcn_ref" textOrder="38"/>
+					<case tag="node_network_point" value="multiple" nameTag="rcn_ref" textOrder="38"/>
+					<case tag="node_network_point" value="ncn"  nameTag="ncn_ref" textOrder="39"/>
+					<case tag="node_network_point" value="multiple" textOrder="39"/>
+					<case tag="node_network_point" value="icn" nameTag="icn_ref" textOrder="39"/>
+					<case tag="node_network_point" value="multiple" nameTag="icn_ref" textOrder="39"/>
 				</switch>
-				<switch showCycleNodeNetworkRoutes="true" rClass=".route.bicycle.node_network">
-					<case tag="multiple_node_networks" value="true" nameTag="lcn_ref_value" textOrder="37" rClass=".route.bicycle.node_network.lcn"/>
-					<case tag="multiple_node_networks" value="true" nameTag="rcn_ref_value" textOrder="38" rClass=".route.bicycle.node_network.rcn"/>
-					<case tag="multiple_node_networks" value="true" nameTag="ncn_ref_value" textOrder="39" rClass=".route.bicycle.node_network.ncn"/>
-					<case tag="multiple_node_networks" value="true" nameTag="icn_ref_value" textOrder="39" rClass=".route.bicycle.node_network.icn"/>
-					<case tag="node_network_point" value="lcn" nameTag="lcn_ref" textOrder="37" rClass=".route.bicycle.node_network.lcn"/>
-					<case tag="node_network_point" value="multiple" nameTag="lcn_ref" textOrder="37" rClass=".route.bicycle.node_network.lcn"/>
-					<case tag="node_network_point" value="rcn" nameTag="rcn_ref" textOrder="38" rClass=".route.bicycle.node_network.rcn"/>
-					<case tag="node_network_point" value="multiple" nameTag="rcn_ref" textOrder="38" rClass=".route.bicycle.node_network.rcn"/>
-					<case tag="node_network_point" value="ncn" nameTag="ncn_ref" textOrder="39" rClass=".route.bicycle.node_network.ncn"/>
-					<case tag="node_network_point" value="multiple" nameTag="ncn_ref" textOrder="39" rClass=".route.bicycle.node_network.ncn"/>
-					<case tag="node_network_point" value="icn" nameTag="icn_ref" textOrder="39" rClass=".route.bicycle.node_network.icn"/>
-					<case tag="node_network_point" value="multiple" nameTag="icn_ref" textOrder="39" rClass=".route.bicycle.node_network.icn"/>
+				<switch showCycleNodeNetworkRoutes="true" rClass=".route.bicycle.node_network_nodes">
+					<case tag="multiple_node_networks" value="true" nameTag="lcn_ref_value" textOrder="37"/>
+					<case tag="multiple_node_networks" value="true" nameTag="rcn_ref_value" textOrder="38"/>
+					<case tag="multiple_node_networks" value="true" nameTag="ncn_ref_value" textOrder="39"/>
+					<case tag="multiple_node_networks" value="true" nameTag="icn_ref_value" textOrder="39"/>
+					<case tag="node_network_point" value="lcn" nameTag="lcn_ref" textOrder="37"/>
+					<case tag="node_network_point" value="multiple" nameTag="lcn_ref" textOrder="37"/>
+					<case tag="node_network_point" value="rcn" nameTag="rcn_ref" textOrder="38"/>
+					<case tag="node_network_point" value="multiple" nameTag="rcn_ref" textOrder="38"/>
+					<case tag="node_network_point" value="ncn" nameTag="ncn_ref" textOrder="39"/>
+					<case tag="node_network_point" value="multiple" nameTag="ncn_ref" textOrder="39"/>
+					<case tag="node_network_point" value="icn" nameTag="icn_ref" textOrder="39"/>
+					<case tag="node_network_point" value="multiple" nameTag="icn_ref" textOrder="39"/>
 				</switch>
 
 				<apply_if minzoom="11" maxzoom="12" textSize="10">
@@ -729,9 +731,9 @@
 				</case>
 				<apply>
 					<switch>
-						<case hikingRoutesOSMC="walkingRoutesOSMC" textColor="$hikingRoutesTextColor" textHaloColor="#ddebf4ff" rClass=".route.hiking.routes">
+<!--						<case hikingRoutesOSMC="walkingRoutesOSMC" textColor="$hikingRoutesTextColor" textHaloColor="#ddebf4ff" rClass=".route.hiking.routes">
 							<apply_if nightMode="true" textColor="#EBEBFF" textHaloColor="#550000ff"/>
-						</case>
+						</case>-->
 						<case hikingRoutesOSMC="walkingRoutesScopeOSMC" textHaloColor="#ddebf4ff">
 							<apply_if nightMode="true" textHaloColor="#55000000"/>
 						</case>
@@ -761,7 +763,17 @@
 			<case minzoom="12" showMtbRoutes="true" tag="route_type_way" value="cycling" textBold="true" textColor="$mtbRouteTextColor" rClass=".route.mtb">
 				<apply_if nightMode="true" textHaloColor="#99000000"/>
 			</case>
-			<case minzoom="12" showCycleRoutes="true" tag="route_type" value="cycling" additional="route_activity_type=road_cycling" textBold="true" textColor="$cycleRouteTextColor" textHaloColor="$cycleRouteTextHaloColor" rClass=".route.bicycle"/>
+			<switch minzoom="12" showCycleRoutes="true" tag="route_type" value="cycling" additional="route_activity_type=road_cycling" rClass=".route.bicycle">
+				<case additional="network=icn" rClass=".route.bicycle.road_network.icn"/>
+				<case additional="network=ncn" rClass=".route.bicycle.road_network.ncn"/>
+				<case additional="network=rcn" rClass=".route.bicycle.road_network.rcn"/>
+				<case additional="network=lcn" rClass=".route.bicycle.road_network.lcn"/>
+				<case additional="!network" rClass=".route.bicycle.road_network.unclassified"/>
+				<apply_if additional="node_network" disable="true"/>
+<!--				<case showCycleNodeNetworkRoutes="true" additional="!node_network" disable="true"/>-->
+				<apply textBold="true" textColor="$cycleRouteTextColor" textHaloColor="$cycleRouteTextHaloColor"/>
+			</switch>
+
 			<switch tag="route_type" value="foot">
 				<switch minzoom="12" hikingRoutesOSMC="walkingRoutesOSMC" rClass=".route.hiking.routes">
 					<case additional="network=iwn" rClass=".route.hiking.routes.iwn"/>
@@ -935,12 +947,6 @@
 			<case tag="node_network_point" value="rwn"/>
 			<case tag="node_network_point" value="lwn"/>
 		</switch>
-		<switch rClass=".route.bicycle.node_network_nodes">
-			<case tag="node_network_point" value="icn"/>
-			<case tag="node_network_point" value="ncn"/>
-			<case tag="node_network_point" value="rcn"/>
-			<case tag="node_network_point" value="lcn"/>
-		</switch>
 		<switch showClimbingRoutes="true" iconVisibleSize="14" intersectionSizeFactor="0.8">
 			<case minzoom="12" tag="osmand_climbing" value="area" icon="climbing_area" iconOrder="55"/>
 			<case minzoom="12" tag="osmand_climbing" value="crag" icon="climbing_crag" iconOrder="55"/>
@@ -1079,28 +1085,47 @@
 		<switch minzoom="11" tag="route_type" value="cycling" cap="ROUND" rClass=".route.bicycle">
 			<switch additional="route_activity_type=road_cycling">
 				<case>
-					<case minzoom="12" showCycleRoutes="true" color="$cycleRouteColor" rClass=".route.bicycle.road_network">
-						<case additional="network=icn" color="$cycleRouteicnColor" rClass=".route.bicycle.road_network.icn"/>
-						<case additional="network=ncn" color="$cycleRoutencnColor" rClass=".route.bicycle.road_network.ncn"/>
-						<case additional="network=rcn" color="$cycleRoutercnColor" rClass=".route.bicycle.road_network.rcn"/>
-						<case additional="network=lcn" color="$cycleRoutelcnColor" rClass=".route.bicycle.road_network.lcn"/>
-						<case additional="!network"/>
-						<apply_if additional="node_network" color="$cycleRouteColor"/>
-					</case>
-					<case minzoom="12" showCycleNodeNetworkRoutes="true" rClass=".route.bicycle.node_network.$node_network" cap="BUTT">
-						<case additional="node_network=lcn" color="$cycleRoutelcnColor"/>
-						<case additional="node_network=rcn" color="$cycleRoutercnColor"/>
-						<case additional="node_network=ncn" color="$cycleRoutencnColor"/>
-						<case additional="node_network=icn" color="$cycleRouteicnColor"/>
-						<apply_if maxzoom="11" pathEffect="8_1"/>
-						<apply_if minzoom="12" maxzoom="12" pathEffect="11_1"/>
-						<apply_if minzoom="13" maxzoom="13" pathEffect="15_2"/>
-						<apply_if minzoom="14" maxzoom="14" pathEffect="20_2"/>
-						<apply_if minzoom="15" maxzoom="15" pathEffect="25_2"/>
-						<apply_if minzoom="16" maxzoom="16" pathEffect="32_3"/>
-						<apply_if minzoom="17" maxzoom="17" pathEffect="40_3"/>
-						<apply_if minzoom="18" pathEffect="50_3"/>
-					</case>
+					<switch minzoom="12">
+						<case showCycleRoutes="true" additional="!node_network" rClass=".route.bicycle.road_network">
+							<case additional="network=icn" rClass=".route.bicycle.road_network.icn">
+								<apply color="$cycleRouteicnColor" rClass=".route.bicycle.color.classification"/>
+							</case>
+							<case additional="network=ncn" rClass=".route.bicycle.road_network.ncn">
+								<apply color="$cycleRoutencnColor" rClass=".route.bicycle.color.classification"/>
+							</case>
+							<case additional="network=rcn" rClass=".route.bicycle.road_network.rcn">
+								<apply color="$cycleRoutercnColor" rClass=".route.bicycle.color.classification"/>
+							</case>
+							<case additional="network=lcn" rClass=".route.bicycle.road_network.lcn">
+								<apply color="$cycleRoutelcnColor" rClass=".route.bicycle.color.classification"/>
+							</case>
+							<case additional="!network" color="$cycleRouteColor" rClass=".route.bicycle.road_network.unclassified"/>
+							<case additional="track_color=black" color="$osmcBlackColor" rClass=".route.bicycle.color.route_marker"/>
+							<case additional="track_color=blue" color="$osmcBlueColor" rClass=".route.bicycle.color.route_marker"/>
+							<case additional="track_color=green" color="$osmcGreenColor" rClass=".route.bicycle.color.route_marker"/>
+							<case additional="track_color=orange" color="$osmcOrangeColor" rClass=".route.bicycle.color.route_marker"/>
+							<case additional="track_color=red" color="$osmcRedColor" rClass=".route.bicycle.color.route_marker"/>
+							<case additional="track_color=yellow" color="$osmcYellowColor" rClass=".route.bicycle.color.route_marker"/>
+							<case additional="track_color=brown" color="$osmcBrownColor" rClass=".route.bicycle.color.route_marker"/>
+							<case additional="track_color=purple" color="$osmcPurpleColor" rClass=".route.bicycle.color.route_marker"/>
+							<case additional="track_color=pink" color="$osmcPinkColor" rClass=".route.bicycle.color.route_marker"/>
+							<case additional="track_color=teal" color="$osmcTealColor" rClass=".route.bicycle.color.route_marker"/>
+						</case>
+						<case showCycleNodeNetworkRoutes="true" rClass=".route.bicycle.node_network_segments" cap="BUTT">
+							<case additional="node_network=icn" color="$cycleRouteicnColor" rClass=".route.bicycle.color.classification"/>
+							<case additional="node_network=ncn" color="$cycleRoutencnColor" rClass=".route.bicycle.color.classification"/>
+							<case additional="node_network=rcn" color="$cycleRoutercnColor" rClass=".route.bicycle.color.classification"/>
+							<case additional="node_network=lcn" color="$cycleRoutelcnColor" rClass=".route.bicycle.color.classification"/>
+							<apply_if maxzoom="11" pathEffect="8_1"/>
+							<apply_if minzoom="12" maxzoom="12" pathEffect="11_1"/>
+							<apply_if minzoom="13" maxzoom="13" pathEffect="15_2"/>
+							<apply_if minzoom="14" maxzoom="14" pathEffect="20_2"/>
+							<apply_if minzoom="15" maxzoom="15" pathEffect="25_2"/>
+							<apply_if minzoom="16" maxzoom="16" pathEffect="32_3"/>
+							<apply_if minzoom="17" maxzoom="17" pathEffect="40_3"/>
+							<apply_if minzoom="18" pathEffect="50_3"/>
+						</case>
+					</switch>
 					<apply_if maxzoom="11" strokeWidth="2:2"/>
 					<apply_if minzoom="12" maxzoom="12" strokeWidth="2:2"/>
 					<apply_if minzoom="13" maxzoom="13" strokeWidth="3:3"/>
@@ -1275,7 +1300,7 @@
 				<case additional="route_activity_type=walking" rClass=".route.hiking"/>
 				<apply>
 					<switch minzoom="12">
-						<switch hikingRoutesOSMC="walkingRoutesOSMC" rClass=".route.hiking.routes">
+						<switch hikingRoutesOSMC="walkingRoutesOSMC" additional="!node_network" rClass=".route.hiking.routes">
 							<case additional="network=iwn" rClass=".route.hiking.routes.iwn"/>
 							<case additional="network=nwn" rClass=".route.hiking.routes.nwn"/>
 							<case additional="network=rwn" rClass=".route.hiking.routes.rwn"/>
@@ -1298,18 +1323,10 @@
 							<apply_if additional="network=lwn" color="$lwnClassificationColor" rClass=".route.hiking.color.classification"/>
 						</switch>
 						<switch hikingRoutesOSMC="walkingRoutesOSMCNodes" cap="BUTT" rClass=".route.hiking.node_network_segments">
-							<case additional="node_network=iwn">
-								<apply color="$iwnNodeNetworkColor" rClass=".route.hiking.color.classification"/>
-							</case>
-							<case additional="node_network=nwn" color="$nwnNodeNetworkColor">
-								<apply color="$nwnNodeNetworkColor" rClass=".route.hiking.color.classification"/>
-							</case>
-							<case additional="node_network=rwn" color="$rwnNodeNetworkColor">
-								<apply color="$rwnNodeNetworkColor" rClass=".route.hiking.color.classification"/>
-							</case>
-							<case additional="node_network=lwn" color="$lwnNodeNetworkColor">
-								<apply color="$lwnNodeNetworkColor" rClass=".route.hiking.color.classification"/>
-							</case>
+							<case additional="node_network=iwn" color="$iwnNodeNetworkColor" rClass=".route.hiking.color.classification"/>
+							<case additional="node_network=nwn" color="$nwnNodeNetworkColor" rClass=".route.hiking.color.classification"/>
+							<case additional="node_network=rwn" color="$rwnNodeNetworkColor" rClass=".route.hiking.color.classification"/>
+							<case additional="node_network=lwn" color="$lwnNodeNetworkColor" rClass=".route.hiking.color.classification"/>
 							<case additional="!node_network"/>
 							<apply_if maxzoom="12" pathEffect="11_1"/>
 							<apply_if minzoom="13" maxzoom="13" pathEffect="15_2"/>
