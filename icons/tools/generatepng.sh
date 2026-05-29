@@ -250,7 +250,7 @@ generateBothMapPOIPng() {
 
   generateBothMapPOIPng 'seamark_small_poi' '#777777' '#ff8f00' 'x1' 'colored'
   generateBothMapPOIPng 'skimap' '#000000' '#ff8f00' x2 'colored'
-  generateBothMapPOIPng 'subway' '#777777' '#ff8f00' x2 'colored'
+  generateBothMapPOIPng 'subway' '#' '#' x2 'colored'
 
   generateBothMapPOIPng 'water' '#ffffff' '#ff8f00'
   generateBothMapPOIPng 'water_colored' '#0092DA' '#ff8f00'
