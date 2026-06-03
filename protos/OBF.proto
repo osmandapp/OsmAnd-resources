@@ -558,7 +558,9 @@ message OsmAndPoiNameIndexDataAtom {
 message OsmAndCategoryTable {
 	// general id of poi type is calculated  ((subcategory_order << 7) | category_order)
 	required string category = 1;
+	optional uint32 frequency = 2;
 	repeated string subcategories = 3;
+	repeated uint32 subcatfreq = 4; // optional
 }
 
 message OsmAndSubtypesTable {
@@ -574,7 +576,9 @@ message OsmAndPoiSubtype {
 	optional string tagname = 2; // same to name if not present
 	required bool isText = 3;
 	optional uint32 frequency = 5;
+	
 	optional uint32 subtypeValuesSize = 6;
+	repeated uint32 subtypeValuesFreq = 7; // optional
 	repeated string subtypeValue = 8; 
 }
 
@@ -613,9 +617,9 @@ message OsmAndPoiBox {
 
 message OsmAndPoiCategories {
 	// sorted categories
-	repeated uint32 categories = 3;
+	repeated uint32 categories = 3; // related to OsmAndCategoryTable (poi_type+poi_subtype)
 
-	repeated uint32 subcategories = 5;
+	repeated uint32 subcategories = 5; // related to OsmAndSubtypesTable (poi_additional)
 }
 
 message OsmAndPoiBoxData {
