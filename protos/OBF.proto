@@ -212,6 +212,8 @@ message OsmAndAddressNameIndexData {
 	message AddressNameIndexData {
 			// suffixes could be terminal or not - non-terminal starts with \u00..
 			repeated string suffixesDictionary = 2; // suffixes releated to 1 prefix
+			// extra suffixes from common words
+			repeated string suffixesCommonDictionary = 3;
 			// shift is measured from start (before length)
 			repeated AddressNameIndexDataAtom atom = 4;
 	}
@@ -225,7 +227,15 @@ message AddressNameIndexDataAtom {
 	 // 1 - city, 2 - postcode, 3 - village,  4 - street
 	 required uint32 type = 3; 
 	 
+	 // replaced with suffixesBitsetIndex - to delete
 	 repeated uint32 suffixesBitset = 4; // bits are ordered as suffixesDictionary
+	 
+	 // indexes of suffixes suffixesDictionary
+	 repeated uint32 suffixesBitsetIndex = 8;
+
+	 // Extra suffix from common words - mostly integer 
+	 // 1. % 2 = 0, pure integer common, 2. % 2 == 1: index in common words
+	 repeated uint32 suffixesCommonWords = 9;
 
 	 // start mixed 
 	 // shift from start AddressNameIndexData (!) to ...Index
@@ -534,8 +544,12 @@ message OsmAndPoiNameIndex {
 
 	repeated OsmAndPoiNameIndexData data = 5;
 	message OsmAndPoiNameIndexData {
-        // suffixes could be terminal or not - non-terminal starts with \u00..
-        repeated string suffixesDictionary = 2; // suffixes releated to 1 prefix
+		// suffixes could be terminal or not - non-terminal starts with \u00..
+		repeated string suffixesDictionary = 2; // suffixes releated to 1 prefix
+
+		// extra suffixes from common words
+		repeated string suffixesCommonDictionary = 4;
+
 		// can contain multiple data offsets
 		repeated OsmAndPoiNameIndexDataAtom atoms = 3;
 	}
@@ -547,7 +561,16 @@ message OsmAndPoiNameIndexDataAtom {
 	optional uint32 x = 3;
 	optional uint32 y = 4;
 
-    repeated uint32 suffixesBitset = 6; // bits are ordered as suffixesDictionary
+	// to delete - replaced with suffixesBitIndex
+	repeated uint32 suffixesBitset = 6; // bits are ordered as suffixesDictionary
+
+	// use interleaveBits, deinterleaveY, deinterleaveX to encode / decode pair
+	// pair<int, int> - <x = suffixInd, y = poiIndInBlock>
+	repeated uint32 suffixesBitIndex = 7;
+
+	// Extra suffix from common words - mostly integer 
+	// 1. % 2 = 0, pure integer common, 2. % 2 == 1: index in common words
+	repeated uint32 suffixesCommonWords = 8;
     
 	// shift to OsmAndPoiBoxData message from OsmAndPoiIndex.start
 	// message is started when body is started
