@@ -210,10 +210,10 @@ message OsmAndAddressNameIndexData {
 
 	repeated AddressNameIndexData atom = 7;
 	message AddressNameIndexData {
-			// suffixes could be terminal or not - non-terminal starts with \u00..
+			// suffixes could be terminal or not or extra suffix (street)
+			// NEW: suffixes could be separted space (~ max suffixesDictionary - 128, extra goes to atom)
 			repeated string suffixesDictionary = 2; // suffixes releated to 1 prefix
-			// extra suffixes from common words
-			repeated string suffixesCommonDictionary = 3;
+
 			// shift is measured from start (before length)
 			repeated AddressNameIndexDataAtom atom = 4;
 	}
@@ -231,11 +231,10 @@ message AddressNameIndexDataAtom {
 	 repeated uint32 suffixesBitset = 4; // bits are ordered as suffixesDictionary
 	 
 	 // indexes of suffixes suffixesDictionary
+	 // 1. % 2 = 1, pure integer common, 2. % 2 == 0: index in common words
 	 repeated uint32 suffixesBitsetIndex = 8;
-
-	 // Extra suffix from common words - mostly integer 
-	 // 1. % 2 = 0, pure integer common, 2. % 2 == 1: index in common words
-	 repeated uint32 suffixesCommonWords = 9;
+	 // everything doesn't fit dictionary separted by ' ' 
+	 optional string extraSuffix = 9;
 
 	 // start mixed 
 	 // shift from start AddressNameIndexData (!) to ...Index
@@ -564,13 +563,16 @@ message OsmAndPoiNameIndexDataAtom {
 	// to delete - replaced with suffixesBitIndex
 	repeated uint32 suffixesBitset = 6; // bits are ordered as suffixesDictionary
 
-	// use interleaveBits, deinterleaveY, deinterleaveX to encode / decode pair
-	// pair<int, int> - <x = suffixInd, y = poiIndInBlock>
-	repeated uint32 suffixesBitIndex = 7;
+	 // indexes of suffixes suffixesDictionary	 
+	 // 1. % 2 = 1, pure integer common, 2. % 2 == 0: index in common words
+	 repeated uint32 suffixesBitsetIndex = 5;
+	 // everything doesn't fit dictionary separted by ' ' 
+	 optional string extraSuffix = 7;
 
-	// Extra suffix from common words - mostly integer 
-	// 1. % 2 = 0, pure integer common, 2. % 2 == 1: index in common words
-	repeated uint32 suffixesCommonWords = 8;
+	 // poiIndInBlock applied to all suffixes (duplicate objects) 
+	 // stats: now 0.05% only objects with 2+ suffixes bit set (no need to merge different objects in 1 atom)
+	 repeated uint32 poiIndInBlock = 9;
+
     
 	// shift to OsmAndPoiBoxData message from OsmAndPoiIndex.start
 	// message is started when body is started
