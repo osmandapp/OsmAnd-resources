@@ -278,6 +278,7 @@ generateBothMapPOIPng() {
   generateBothMapPOIPng 'office' '#ffffff' '#ff8f00'
   generateBothMapPOIPng 'craft' '#ffffff' '#ff8f00'
   generateBothMapPOIPng 'place_of_worship' '#333333' '#ff8f00'
+  generateBothMapPOIPng 'place_of_worship_night' '#999999' '#ff8f00'
   generateBothMapPOIPng 'money' '#ffffff' '#ff8f00'
   generateBothMapPOIPng 'education' '#ffffff' '#ff8f00'
   generateBothMapPOIPng 'poi' '#ffffff' '#ff8f00'
