@@ -200,7 +200,17 @@ message OsmAndAddressIndex {
 	// encoded as fixed32 length delimited
 	optional OsmAndAddressNameIndexData nameIndex = 7;
 
-	
+}
+
+message NameIndexedStats {
+    // if indexed < frequency (there are common words)
+	required uint32 frequency = 1;
+	required uint32 indexed = 2;
+
+	// only common suffixes:  indexed < frequency
+	repeated string commonSuffixes = 5;
+	repeated uint32 suffixFreq = 6;
+	repeated uint32 suffixIndexed = 7;
 }
 
 message OsmAndAddressNameIndexData {
@@ -210,6 +220,8 @@ message OsmAndAddressNameIndexData {
 
 	repeated AddressNameIndexData atom = 7;
 	message AddressNameIndexData {
+			optional NameIndexedStats stats = 1; 
+
 			// suffixes could be terminal or not or extra suffix (street)
 			// NEW: suffixes could be separted space (~ max suffixesDictionary - 128, extra goes to atom)
 			repeated string suffixesDictionary = 2; // suffixes releated to 1 prefix
@@ -217,6 +229,8 @@ message OsmAndAddressNameIndexData {
 			// shift is measured from start (before length)
 			repeated AddressNameIndexDataAtom atom = 4;
 	}
+
+	
 }
 
 
@@ -543,6 +557,7 @@ message OsmAndPoiNameIndex {
 
 	repeated OsmAndPoiNameIndexData data = 5;
 	message OsmAndPoiNameIndexData {
+		optional NameIndexedStats stats = 1; 
 		// suffixes could be terminal or not - non-terminal starts with \u00..
 		repeated string suffixesDictionary = 2; // suffixes releated to 1 prefix
 
