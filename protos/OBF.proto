@@ -202,17 +202,14 @@ message OsmAndAddressIndex {
 
 }
 
-message NameIndexedStats {
-    // if indexed < frequency (there are common words)
-	required uint32 frequency = 1;
-	required uint32 indexed = 2;
-	optional uint32 enclosing = 3; // enclosing objects: for now represents number of streets inside boundary
+message CommonIndexedStats {
+    
+	repeated string value = 4; // delta common + frequent indexed strings (possibly sorted)
+	
+	// if nonindexed = 0: word is very likely frequent for this map
+	repeated uint32 matched = 5; // same order of values 
 
-	// common (not only?) suffixes:  indexed < frequency
-	repeated string strSuffixes = 5;
-	repeated uint32 suffixFreq = 6;
-	repeated uint32 suffixIndexed = 7;
-	repeated uint32 suffixEnclosing = 8;
+	repeated uint32 nonindexed = 6; // count for word for non-indexed (frequent == 0), indexed = matched - nonindexed
 }
 
 message OsmAndAddressNameIndexData {
@@ -220,19 +217,24 @@ message OsmAndAddressNameIndexData {
 	// encoded as fixed32 length delimited
 	required IndexedStringTable table = 4;
 
+	optional CommonIndexedStats commonStats = 6; 
+	
 	repeated AddressNameIndexData atom = 7;
 	message AddressNameIndexData {
-			optional NameIndexedStats stats = 1; 
-
-			// suffixes could be terminal or not or extra suffix (street)
-			// NEW: suffixes could be separted space (~ max suffixesDictionary - 128, extra goes to atom)
+			// suffixesDictionary and suffixesCommonDictionary combined into 1 array
+			
+			// suffixes could be terminal (ends " ") OR non-terminal OR extra word (starts with " ")
+			// suffix " street" - acts like additional word or extra specifier
+			// desirable length ~128, anything extra suffix goes to extraSuffix in atom
 			repeated string suffixesDictionary = 2; // suffixes releated to 1 prefix
+			
+			// "street" is in CommonIndexedStats, so it is encoded more efficiently
+			repeated uint32 suffixesCommonDictionary = 3; 
 
 			// shift is measured from start (before length)
 			repeated AddressNameIndexDataAtom atom = 4;
 	}
 
-	
 }
 
 
@@ -240,17 +242,26 @@ message OsmAndAddressNameIndexData {
 message AddressNameIndexDataAtom {
 	 optional string name = 1;
 	 optional string nameEn = 2;
-	 // 1 - city, 2 - postcode, 3 - village,  4 - street
+	 // 0 - boundary, 1 - city, 2 - postcode, 3 - village, 4 - street
 	 required uint32 type = 3; 
 	 
-	 // replaced with suffixesBitsetIndex - to delete
-	 repeated uint32 suffixesBitset = 4; // bits are ordered as suffixesDictionary
+	 // DEPRECATED replaced with suffixesBitsetIndex - to delete
+	 repeated uint32 suffixesBitset = 4; 
 	 
 	 // indexes of suffixes suffixesDictionary
-	 // 1. % 2 = 1, pure integer common, 2. % 2 == 0: index in common words
+	 // 1. % 2 = 1, pure integer common, 2. % 2 == 0: index in united suffixesDictionary
 	 repeated uint32 suffixesBitsetIndex = 8;
+
 	 // everything doesn't fit dictionary separted by ' ' 
 	 optional string extraSuffix = 9;
+
+	 // as we add all common & frequent, we need only number of non common words left
+	 // if not specified assume 0 
+	 optional uint32 nonCommonWords = 10;
+
+	 // If applicable (city, boundary ) - bboxes of object. Zoom + array of [4 first uints]
+	 // [zoom - default = 15 - 1km],[xzoom-left],[xzoom-right-delta],[y-top],[y-bottom-delta],...
+	 optional bytes bbox = 12;
 
 	 // enclosing objects: for now represents number of streets inside boundary
 	 optional uint32 enclosingObjects = 16;
@@ -560,11 +571,15 @@ message OsmAndPoiNameIndex {
 	// encoded as fixed32 length delimited
 	required IndexedStringTable table = 3;
 
+	optional CommonIndexedStats commonStats = 4; 
+
 	repeated OsmAndPoiNameIndexData data = 5;
 	message OsmAndPoiNameIndexData {
-		optional NameIndexedStats stats = 1; 
-		// suffixes could be terminal or not - non-terminal starts with \u00..
+		// SEE COMMENTS - AddressNameIndexData.
+		// United suffixes dictionary: suffixesDictionary + suffixesCommonDictionary
 		repeated string suffixesDictionary = 2; // suffixes releated to 1 prefix
+
+		repeated uint32 suffixesCommonDictionary = 4;
 
 		// can contain multiple data offsets
 		repeated OsmAndPoiNameIndexDataAtom atoms = 3;
@@ -577,14 +592,19 @@ message OsmAndPoiNameIndexDataAtom {
 	optional uint32 x = 3;
 	optional uint32 y = 4;
 
-	// to delete - replaced with suffixesBitIndex
-	repeated uint32 suffixesBitset = 6; // bits are ordered as suffixesDictionary
+	// DEPRECATED to delete - replaced with suffixesBitIndex
+	repeated uint32 suffixesBitset = 6;
 
 	 // indexes of suffixes suffixesDictionary	 
-	 // 1. % 2 = 1, pure integer common, 2. % 2 == 0: index in common words
+	 // 1. % 2 = 1, pure integer common, 2. % 2 == 0: index in united suffixesDictionary words
 	 repeated uint32 suffixesBitsetIndex = 5;
+
 	 // everything doesn't fit dictionary separted by ' ' 
 	 optional string extraSuffix = 7;
+
+	 // as we add all common & frequent, we need only number of non common words left
+	 // if not specified assume 0 
+	 optional uint32 nonCommonWords = 8;
 
 	 // poiIndInBlock applied to all suffixes (duplicate objects) 
 	 // stats: now 0.05% only objects with 2+ suffixes bit set (no need to merge different objects in 1 atom)
