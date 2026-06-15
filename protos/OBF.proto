@@ -251,16 +251,16 @@ message AddressNameIndexDataAtom {
 	 repeated uint32 suffixesBitset = 4; 
 	 
 	 // indexes of suffixes suffixesDictionary
-	 // 1. % 2 = 1, pure integer common, 2. % 2 == 0: index in united suffixesDictionary
+	 // 0. 0 - delimeter between name words 1. % 2 = 1, pure integer 2. % 2 == 0 (2, 4...): index in united suffixesDictionary words
 	 repeated uint32 suffixesBitsetIndex = 8;
 
 	 // everything doesn't fit dictionary separted by ' ' 
-	 optional string extraSuffix = 9;
+	 repeated string extraSuffix = 9;
 
 	 // as we add all common & frequent, we need only number of non common words left
 	 // if not specified assume 0 
-	 optional uint32 nonCommonWords = 10;
-
+	 repeated uint32 otherWordsCount = 10;
+	 
 	 // If applicable (city, boundary ) - bboxes of object. Zoom + array of [4 first uints]
 	 // [zoom - default = 15 - 1km],[xzoom-left],[xzoom-right-delta],[y-top],[y-bottom-delta],...
 	 // delta encoded with xy16 
@@ -599,17 +599,16 @@ message OsmAndPoiNameIndexDataAtom {
 	repeated uint32 suffixesBitset = 6;
 
 	 // indexes of suffixes suffixesDictionary	 
-	 // 1. % 2 = 1, pure integer common, 2. % 2 == 0: index in united suffixesDictionary words
+	 // 0. 0 - delimeter between name words 1. % 2 = 1, pure integer 2. % 2 == 0 (2, 4...): index in united suffixesDictionary words
 	 repeated uint32 suffixesBitsetIndex = 5;
 
-	 // everything doesn't fit dictionary separted by ' ' 
-	 optional string extraSuffix = 7;
+	 // everything doesn't fit dictionary separted by ' ' applied for each name combination
+	 repeated string extraSuffix = 7;
 
-	 // as we add all common & frequent, we need only number of non common words left
-	 // if not specified assume 0 
-	 optional uint32 nonCommonWords = 8;
+	 // as we add all common & frequent, we need only number of non common words left (default 0)
+	 repeated uint32 otherWordsCount = 8;
 
-	 // poiIndInBlock applied to all suffixes (duplicate objects) 
+	 // poiIndInBlock applied to all suffixes (array will be only for full duplicate objects) 
 	 // stats: now 0.05% only objects with 2+ suffixes bit set (no need to merge different objects in 1 atom)
 	 repeated uint32 poiIndInBlock = 9;
 
