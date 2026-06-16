@@ -1120,7 +1120,7 @@ icon_alias bench amenity_colored_bench
 icon_alias lounger amenity_colored_lounger
 icon_alias dry_cleaning amenity_dry_cleaning
 icon_alias shop_massage amenity_massage
-icon_alias funeral_directors amenity_funeral_directors
+icon_alias shop_funeral_directors amenity_funeral_directors
 icon_alias internet_access_wlan amenity_internet_access_wlan
 icon_alias internet_access_wired amenity_internet_access_wired
 #! icon_alias amenity_grave_yard place_of_worship_christian3  #already defined as icon in the shader section
