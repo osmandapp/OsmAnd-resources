@@ -1119,7 +1119,7 @@ icon_alias dressing_room amenity_dressing_room
 icon_alias bench amenity_colored_bench
 icon_alias lounger amenity_colored_lounger
 icon_alias dry_cleaning amenity_dry_cleaning
-icon_alias massage amenity_massage
+icon_alias shop_massage amenity_massage
 icon_alias funeral_directors amenity_funeral_directors
 icon_alias internet_access_wlan amenity_internet_access_wlan
 icon_alias internet_access_wired amenity_internet_access_wired
@@ -1195,7 +1195,7 @@ icon_alias money_transfer money_money_transfer
 icon_alias amenity_bank money_bank2
 icon_alias amenity_bureau_de_change money_currency_exchange
 icon_alias bitcoin_yes money_bitcoin
-icon_alias money_lender money_money_lender
+icon_alias shop_money_lender money_money_lender
 icon_alias mobile_money_agent money_mobile_money_agent
 
 icon_alias office office_office
@@ -1985,8 +1985,8 @@ icon_alias shop_car_aid shopping_car
 icon_alias shop_food_shop shopping_convenience
 icon_alias shop_shop shopping_department_store
 icon_alias shop_food shopping_convenience
-icon_alias shop_amenity_marketplace shopping_marketplace
-icon_alias shop_amenity_vending_machine shopping_vending_machine
+icon_alias amenity_marketplace shopping_marketplace
+icon_alias amenity_vending_machine shopping_vending_machine
 icon_alias shop_alcohol shopping_alcohol
 icon_alias shop_baby_goods shopping_baby
 icon_alias shop_bakery shopping_bakery
@@ -2081,7 +2081,7 @@ icon_alias shop_music shopping_music
 icon_alias shop_newsagent shopping_newsagent
 icon_alias shop_paint shopping_paint
 icon_alias shop_radiotechnics shopping_radiotechnics
-icon_alias shop_scuba_diving_shop shopping_scuba_diving_shop
+icon_alias shop_scuba_diving shopping_scuba_diving_shop
 icon_alias shop_stationery shopping_stationery
 #icon_alias tableware shopping_tableware
 icon_alias shop_trophy shopping_trophy
@@ -2146,9 +2146,10 @@ icon_alias shop_water_sports shopping_water_sports
 icon_alias shop_rice shopping_rice
 icon_alias shop_motorcycle_parts shopping_motorcycle_parts
 icon_alias shop_wool shopping_wool
+icon_alias shop_water food_water_point
 
 ## Office
-icon_alias estate_agent office_estate_agent
+icon_alias shop_estate_agent office_estate_agent
 icon_alias insurance office_insurance
 icon_alias research office_research
 icon_alias travel_agent office_travel_agent
