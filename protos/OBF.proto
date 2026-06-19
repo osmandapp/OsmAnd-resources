@@ -240,15 +240,9 @@ message OsmAndAddressNameIndexData {
 
 
 message AddressNameIndexDataAtom {
-	 // DEPRECATED and deleted
-	 // optional string name = 1;
-	 // optional string nameEn = 2;
-
+	 
 	 // 0 - boundary, 1 - city, 2 - postcode, 3 - village, 4 - street
 	 required uint32 type = 3; 
-	 
-	 // DEPRECATED replaced with suffixesBitsetIndex - to delete
-	 repeated uint32 suffixesBitset = 4; 
 	 
 	 // indexes of suffixes suffixesDictionary
 	 // 0. 0 - delimeter between name words 1. % 2 = 1, pure integer 2. % 2 == 0 (2, 4...): index in united suffixesDictionary words
@@ -309,9 +303,7 @@ message CityBlockIndex {
 	// shift from start cityBlockIndex to CityIndex 
 	optional fixed32 shiftToCityIndex = 4;
 	
-	// city boundary
-	//optional CityBoundaryIndex = 6; // deprecated
-
+	
 	// buildings that doesn't belong to the street
 	repeated BuildingIndex buildings = 10;
 	
@@ -398,9 +390,7 @@ message TransportRoute {
 	optional uint32 color = 9; // reference in string table
 	
 	repeated TransportRouteStop directStops = 15;
-	// deprecated (not used any more)
-	repeated TransportRouteStop reverseStops = 16;
-
+	
 	// array of delta x,y sint32 (CodedIinputStream) >> 5 (precision 31 >> 5)
 	// first x,y - 31 coordinates (>>5), next points is delta to previous
 	// point, line or outer polygon coordinates
@@ -595,22 +585,22 @@ message OsmAndPoiNameIndexDataAtom {
 	optional uint32 x = 3;
 	optional uint32 y = 4;
 
-	// DEPRECATED to delete - replaced with suffixesBitIndex
-	repeated uint32 suffixesBitset = 6;
+	// indexes of suffixes suffixesDictionary	 
+	// 0. 0 - delimeter between name words 1. % 2 = 1, pure integer 2. % 2 == 0 (2, 4...): index in united suffixesDictionary words
+	repeated uint32 suffixesBitsetIndex = 5;
 
-	 // indexes of suffixes suffixesDictionary	 
-	 // 0. 0 - delimeter between name words 1. % 2 = 1, pure integer 2. % 2 == 0 (2, 4...): index in united suffixesDictionary words
-	 repeated uint32 suffixesBitsetIndex = 5;
+	// everything doesn't fit dictionary separted by ' ' applied for each name combination
+	repeated string extraSuffix = 7;
 
-	 // everything doesn't fit dictionary separted by ' ' applied for each name combination
-	 repeated string extraSuffix = 7;
+	// as we add all common & frequent, we need only number of non common words left (default 0)
+	repeated uint32 otherWordsCount = 8;
 
-	 // as we add all common & frequent, we need only number of non common words left (default 0)
-	 repeated uint32 otherWordsCount = 8;
+	// poiIndInBlock applied to all suffixes (array will be only for full duplicate objects) 
+	// stats: now 0.05% only objects with 2+ suffixes bit set (no need to merge different objects in 1 atom)
+	repeated uint32 poiIndInBlock = 9;
 
-	 // poiIndInBlock applied to all suffixes (array will be only for full duplicate objects) 
-	 // stats: now 0.05% only objects with 2+ suffixes bit set (no need to merge different objects in 1 atom)
-	 repeated uint32 poiIndInBlock = 9;
+    // search in large parks, neighboorhoud same as in boundaryes
+	optional bytes bbox = 10;
 
     
 	// shift to OsmAndPoiBoxData message from OsmAndPoiIndex.start
@@ -705,12 +695,6 @@ message OsmAndPoiBoxDataAtom {
   optional string nameEn = 7;
   optional uint64 id = 8;  
   
-  // deprecated from v1.7
-  optional string openingHours = 10;
-  optional string site = 11;
-  optional string phone = 12;
-  optional string note = 13;
-
   repeated uint32 textCategories = 14; // v1.7
   repeated string textValues = 15;
   optional int32 precisionXY = 16; // precision in 1-xy-xy-xy binary format
