@@ -166,14 +166,19 @@ function distance(dist) {
 			}
 			break;
 		case "mi-f":
+			// feet rounded to 50
 			if (dist < 91) {
 				return (tts ? (Math.round(2*dist/100.0/0.3048)*50).toString() : ogg_dist(Math.round(2*dist/100.0/0.3048)*50)) + " " + dictionary["feet"];
+			// feet rounded to 100
 			} else if (dist < 320) {
 				return (tts ? (Math.round(dist/100.0/0.3048)*100).toString() : ogg_dist(Math.round(dist/100.0/0.3048)*100)) + " " + dictionary["feet"];
+			// 0.2-0.8 miles
 			} else if (dist < 1367) {
 				return (tts ? Math.round(dist/161.0).toString() : ogg_dist(Math.round(dist/161.0))) + " " + dictionary["tenths_of_a_mile"];
+			// 1 mile
 			} else if (dist < 2414) {
 				return dictionary["around_1_mile"];
+			// <10 miles
 			} else if (dist < 16093) {
 				return dictionary["around"] + " " + (tts ? Math.round(dist/1609.3).toString() : ogg_dist(Math.round(dist/1609.3))) + " " + dictionary["miles"];
 			} else {
@@ -312,28 +317,22 @@ function getTurnType(turnType) {
 	switch (turnType) {
 		case "left":
 			return dictionary["left"];
-			break;
 		case "left_sh":
 			return dictionary["left_sh"];
-			break;
 		case "left_sl":
 			return dictionary["left_sl"];
-			break;
 		case "right":
 			return dictionary["right"];
-			break;
 		case "right_sh":
 			return dictionary["right_sh"];
-			break;
 		case "right_sl":
 			return dictionary["right_sl"];
-			break;
 		case "left_keep":
 			return dictionary["left_keep"];
-			break;
 		case "right_keep":
 			return dictionary["right_keep"];
-			break;
+		default:
+			return "";
 	}
 }
 
@@ -412,6 +411,8 @@ function nth(exit) {
 			return dictionary["16th"];
 		case (17):
 			return dictionary["17th"];
+		default:
+			return "";
 	}
 }
 
@@ -516,37 +517,26 @@ function getAttentionString(type) {
 	switch (type) {
 		case "SPEED_CAMERA":
 			return dictionary["speed_camera"];
-			break;
 		case "SPEED_LIMIT":
 			return "";
-			break
 		case "BORDER_CONTROL":
 			return dictionary["border_control"];
-			break;
 		case "RAILWAY":
 			return dictionary["railroad_crossing"];
-			break;
 		case "TRAFFIC_CALMING":
 			return dictionary["traffic_calming"];
-			break;
 		case "TOLL_BOOTH":
 			return dictionary["toll_booth"];
-			break;
 		case "STOP":
 			return dictionary["stop"];
-			break;
 		case "PEDESTRIAN":
 			return dictionary["pedestrian_crosswalk"];
-			break;
 		case "MAXIMUM":
 			return "";
-			break;
 		case "TUNNEL":
 			return dictionary["tunnel"];
-			break;
 		default:
 			return "";
-			break;
 	}
 }
 
