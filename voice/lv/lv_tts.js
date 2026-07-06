@@ -94,7 +94,7 @@ function populateDictionary(tts) {
 	dictionary["exceed_limit"] = tts ? "ātruma ierobežojums" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "Uzmanība" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "ātruma kameru" : "speed_camera.ogg";
-	dictionary["enforcement_traffic_signals"] = tts ? "sarkanās gaismas kamera" : "enforcement_traffic_signals.ogg";
+	dictionary["red_light_camera"] = tts ? "sarkanās gaismas kamera" : "red_light_camera.ogg";
 	dictionary["border_control"] = tts ? "robežkontrole" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "dzelzceļš šķērsojums" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "satiksmes intensitātes" : "traffic_calming.ogg";
@@ -558,8 +558,8 @@ function getAttentionString(type) {
 		case "TUNNEL":
 			return dictionary["tunnel"];
 			break;
-		case "ENFORCEMENT_TRAFFIC_SIGNALS":
-			return dictionary["enforcement_traffic_signals"];
+		case "RED_LIGHT_CAMERA":
+			return dictionary["red_light_camera"];
 		default:
 			return "";
 			break;

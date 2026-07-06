@@ -122,7 +122,7 @@ function populateDictionary(tts) {
 	dictionary["exceed_limit"] = tts ? "rychlostní limit" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "Pozor" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "měření rychlosti" : "speed_camera.ogg";
-	dictionary["enforcement_traffic_signals"] = tts ? "kamera na červenou" : "enforcement_traffic_signals.ogg";
+	dictionary["red_light_camera"] = tts ? "kamera na červenou" : "red_light_camera.ogg";
 	dictionary["border_control"] = tts ? "hraniční kontrola" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "železniční přejezd" : "railroad_crossing.ogg";
 	//není jen zpomalovač, ale i šikana a ochranný ostrůvek; viz issue #5605
@@ -757,8 +757,8 @@ function getAttentionString(type) {
 			return "";
 		case "TUNNEL":
 			return dictionary["tunnel"];
-		case "ENFORCEMENT_TRAFFIC_SIGNALS":
-			return dictionary["enforcement_traffic_signals"];
+		case "RED_LIGHT_CAMERA":
+			return dictionary["red_light_camera"];
 		default:
 			return "";
 	}

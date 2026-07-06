@@ -94,7 +94,7 @@ function populateDictionary(tts) {
 	dictionary["exceed_limit"] = tts ? "sebességkorlátozás" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "Figyelem" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "traffipax" : "speed_camera.ogg";
-	dictionary["enforcement_traffic_signals"] = tts ? "piros lámpa kamera" : "enforcement_traffic_signals.ogg";
+	dictionary["red_light_camera"] = tts ? "piros lámpa kamera" : "red_light_camera.ogg";
 	dictionary["border_control"] = tts ? "határátkelőhely" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "vasúti átjáró" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "forgalomlassító" : "traffic_calming.ogg";
@@ -558,8 +558,8 @@ function getAttentionString(type) {
 		case "TUNNEL":
 			return dictionary["tunnel"];
 			break;
-		case "ENFORCEMENT_TRAFFIC_SIGNALS":
-			return dictionary["enforcement_traffic_signals"];
+		case "RED_LIGHT_CAMERA":
+			return dictionary["red_light_camera"];
 		default:
 			return "";
 			break;

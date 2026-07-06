@@ -94,7 +94,7 @@ function populateDictionary(tts) {
 	dictionary["exceed_limit"] = tts ? "வேக வரம்பு" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "கவனம்" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "speed கேமரா" : "speed_camera.ogg";
-	dictionary["enforcement_traffic_signals"] = tts ? "சிவப்பு விளக்கு கேமரா" : "enforcement_traffic_signals.ogg";
+	dictionary["red_light_camera"] = tts ? "சிவப்பு விளக்கு கேமரா" : "red_light_camera.ogg";
 	dictionary["border_control"] = tts ? "சோதனைச் சாவடி" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "ரயில்வே க்ராசிங்" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "வேகத்தடை" : "traffic_calming.ogg";
@@ -559,8 +559,8 @@ function getAttentionString(type) {
 		case "TUNNEL":
 			return dictionary["tunnel"];
 			break;
-		case "ENFORCEMENT_TRAFFIC_SIGNALS":
-			return dictionary["enforcement_traffic_signals"];
+		case "RED_LIGHT_CAMERA":
+			return dictionary["red_light_camera"];
 		default:
 			return "";
 			break;

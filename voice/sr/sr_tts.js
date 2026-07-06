@@ -96,7 +96,7 @@ function populateDictionary(tts) {
 	dictionary["exceed_limit"] = tts ? "Dozvoljena brzina je" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "Pažnja" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "prekršajna kamera" : "speed_camera.ogg";
-	dictionary["enforcement_traffic_signals"] = tts ? "kamera za crveno svetlo" : "enforcement_traffic_signals.ogg";
+	dictionary["red_light_camera"] = tts ? "kamera za crveno svetlo" : "red_light_camera.ogg";
 	dictionary["border_control"] = tts ? "carina" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "pružni prelaz" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "ležeći policajac" : "traffic_calming.ogg";
@@ -627,8 +627,8 @@ function getAttentionString(type) {
 			return "";
 		case "TUNNEL":
 			return dictionary["tunnel"];
-		case "ENFORCEMENT_TRAFFIC_SIGNALS":
-			return dictionary["enforcement_traffic_signals"];
+		case "RED_LIGHT_CAMERA":
+			return dictionary["red_light_camera"];
 		default:
 			return "";
 	}
