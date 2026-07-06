@@ -90,7 +90,7 @@ function populateDictionary(tts) {
 	dictionary["exceed_limit"] = tts ? "обмеження швидкості" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "Увага" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "камера контролю швидкості" : "speed_camera.ogg";
-	dictionary["enforcement_traffic_signals"] = tts ? "Камера автофіксації проїзду на червоне світло" : "enforcement_traffic_signals.ogg";
+	dictionary["enforcement_traffic_signals"] = tts ? "камера фіксації проїзду на червоне світло" : "enforcement_traffic_signals.ogg";
 	dictionary["border_control"] = tts ? "прикордонний контроль" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "залізничний переїзд" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "заспокоювач трафіку" : "traffic_calming.ogg";

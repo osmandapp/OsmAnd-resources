@@ -92,7 +92,7 @@ function populateDictionary(tts) {
 	dictionary["exceed_limit"] = tts ? "limite de vitesse" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "attention" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "radar de vitesse" : "speed_camera.ogg";
-	dictionary["enforcement_traffic_signals"] = tts ? "Contrôle automatisé du franchissement de feux rouges" : "enforcement_traffic_signals.ogg";
+	dictionary["enforcement_traffic_signals"] = tts ? "radar de feu rouge" : "enforcement_traffic_signals.ogg";
 	dictionary["border_control"] = tts ? "douane" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "passage à niveau" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "ralentisseur" : "traffic_calming.ogg";
