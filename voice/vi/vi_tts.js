@@ -92,6 +92,7 @@ function populateDictionary(tts) {
 	dictionary["exceed_limit2"] = tts ? "tốc độ tối đa là" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "Chú ý" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "ca-me-ra bắn tốc độ" : "speed_camera.ogg";
+	dictionary["enforcement_traffic_signals"] = tts ? "camera vượt đèn đỏ" : "enforcement_traffic_signals.ogg";
 	dictionary["border_control"] = tts ? "trạm kiểm soát biên giới" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "nơi giao cắt với đường sắt" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "gờ giảm tốc" : "traffic_calming.ogg";
@@ -488,6 +489,8 @@ function getAttentionString(type) {
 		case "TUNNEL":
 			return dictionary["tunnel"];
 			break;
+		case "ENFORCEMENT_TRAFFIC_SIGNALS":
+			return dictionary["enforcement_traffic_signals"];
 		default:
 			return "";
 			break;

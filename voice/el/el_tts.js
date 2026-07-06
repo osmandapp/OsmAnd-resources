@@ -91,6 +91,7 @@ function populateDictionary(tts) {
 	dictionary["exceed_limit"] = tts ? "όριο ταχύτητας" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "προσοχή" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "κάμερα ταχύτητας" : "speed_camera.ogg";
+	dictionary["enforcement_traffic_signals"] = tts ? "κάμερα κόκκινου σηματοδότη" : "enforcement_traffic_signals.ogg";
 	dictionary["border_control"] = tts ? "τον έλεγχο των συνόρων" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "σιδηρόδρομος διάβαση" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "ήπιας κυκλοφορίας" : "traffic_calming.ogg";
@@ -546,6 +547,8 @@ function getAttentionString(type) {
 		case "TUNNEL":
 			return dictionary["tunnel"];
 			break;
+		case "ENFORCEMENT_TRAFFIC_SIGNALS":
+			return dictionary["enforcement_traffic_signals"];
 		default:
 			return "";
 			break;

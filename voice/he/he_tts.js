@@ -89,6 +89,7 @@ function populateDictionary(tts) {
     dictionary["exceed_limit"] = tts? "הגבלת מהירות": "exceed_limit.ogg";
     dictionary["attention"] = tts? "שים לב": "attention.ogg";
     dictionary["speed_camera"] = tts? "מצלמה": "speed_camera.ogg";
+    dictionary["enforcement_traffic_signals"] = tts ? "מצלמת רמזור אדום" : "enforcement_traffic_signals.ogg";
     dictionary["border_control"] = tts? "מעבר גבול": "border_control.ogg";
     dictionary["railroad_crossing"] = tts? "מסילת רכבת": "railroad_crossing.ogg";
     dictionary["traffic_calming"] = tts? "האטת תנועה": "traffic_calming.ogg";
@@ -541,6 +542,8 @@ function getAttentionString(type) {
         case "TUNNEL":
             return dictionary["tunnel"];
             break;
+        case "ENFORCEMENT_TRAFFIC_SIGNALS":
+            return dictionary["enforcement_traffic_signals"];
         default:
             return "";
             break;
