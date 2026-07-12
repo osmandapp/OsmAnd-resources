@@ -221,6 +221,8 @@ message OsmAndAddressNameIndexData {
 	
 	repeated AddressNameIndexData atom = 7;
 	message AddressNameIndexData {
+			optional uint32 atomsCount = 7; // first but not in order of values
+			
 			// suffixesDictionary and suffixesCommonDictionary combined into 1 array
 			
 			// suffixes could be terminal (ends " ") OR non-terminal OR extra word (starts with " ")
@@ -550,6 +552,10 @@ message OsmAndPoiIndex {
 	optional OsmAndPoiNameIndex nameIndex = 4;
 
 	optional OsmAndSubtypesTable subtypesTable = 5;
+
+	// poi name index structure to get quick access by poi types, subtypes for rare objects
+	// string table stores sub / categories key names (before boxes)
+	optional OsmAndPoiNameIndex catIndex = 7; 
 	
 	// encoded as fixed32 length delimited
 	repeated OsmAndPoiBox boxes = 6; // children 
@@ -568,6 +574,7 @@ message OsmAndPoiNameIndex {
 
 	repeated OsmAndPoiNameIndexData data = 5;
 	message OsmAndPoiNameIndexData {
+		optional uint32 atomsCount = 7; // first but not in order of values
 		// SEE COMMENTS - AddressNameIndexData.
 		// United suffixes dictionary: suffixesDictionary + suffixesCommonDictionary
 		repeated string suffixesDictionary = 2; // suffixes releated to 1 prefix
@@ -603,11 +610,20 @@ message OsmAndPoiNameIndexDataAtom {
 	// not used now as x, y, zoom could be used as single tile
 	optional bytes bbox = 10;
 
+	// see poi category table : general id of poi type (subcategory_order << 7) | category_order)
+	repeated uint32 poiCategories = 11; // same length as poiIndInBlock
+	
+	// elo rating bucket = (elo - 1000) / 50; - to keep 1 byte 
+	repeated uint32 eloRating = 12; 
     
 	// shift to OsmAndPoiBoxData message from OsmAndPoiIndex.start
 	// message is started when body is started
 	optional fixed32 shiftTo = 14;
-    
+
+	// simple implementation geo index to (germany top POI 50K-500K, tiles z12 - 16K, z8 - 72)
+	optional fixed32 shiftToNextZ8Tile = 20;
+	optional fixed32 shiftToNextZ10Tile = 21;
+	optional fixed32 shiftToNextZ12Tile = 22;
 }
 
 message OsmAndCategoryTable {
