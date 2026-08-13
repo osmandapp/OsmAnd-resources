@@ -650,6 +650,25 @@
       }
     },
     {
+      "id": "area-platform",
+      "type": "fill",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 13,
+      "filter": [
+        "all",
+        ["==", ["get", "public_transport"], "platform"],
+        ["==", ["geometry-type"], "Polygon"],
+        [
+          "any",
+          ["!", ["has", "layer"]],
+          [">=", ["to-number", ["get", "layer"]], 0]
+        ]
+      ],
+      "layout": {"visibility": "visible"},
+      "paint": {"fill-color": "rgba(190, 190, 190, 1)"}
+    },
+    {
       "id": "area-buildings",
       "type": "fill",
       "source": "osm",
@@ -698,20 +717,6 @@
         "fill-pattern": "military_transp",
         "fill-outline-color": "rgba(166, 103, 103, 0.59)"
       }
-    },
-    {
-      "id": "area-platform",
-      "type": "fill",
-      "source": "osm",
-      "source-layer": "osmand",
-      "minzoom": 13,
-      "filter": [
-        "all",
-        ["==", "public_transport", "platform"],
-        ["==", "$type", "Polygon"]
-      ],
-      "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "rgba(190, 190, 190, 1)"}
     },
     {
       "id": "highwaytunnel-footway-covered-casing",
@@ -1220,7 +1225,7 @@
       "type": "line",
       "source": "osm",
       "source-layer": "osmand",
-      "minzoom": 14,
+      "minzoom": 13,
       "filter": [
         "all",
         ["in", ["get", "highway"], ["literal", ["service"]]],
@@ -1242,7 +1247,7 @@
       "type": "line",
       "source": "osm",
       "source-layer": "osmand",
-      "minzoom": 14,
+      "minzoom": 13,
       "filter": [
         "all",
         ["in", ["get", "highway"], ["literal", ["service"]]],
@@ -1350,7 +1355,7 @@
       "type": "line",
       "source": "osm",
       "source-layer": "osmand",
-      "minzoom": 15,
+      "minzoom": 14,
       "filter": [
         "all",
         ["==", ["get", "highway"], "service"],
@@ -1376,7 +1381,7 @@
       "type": "line",
       "source": "osm",
       "source-layer": "osmand",
-      "minzoom": 14,
+      "minzoom": 13,
       "filter": [
         "all",
         ["==", ["get", "highway"], "service"],
@@ -1727,7 +1732,7 @@
       "minzoom": 12,
       "filter": [
         "all",
-        ["in", ["get", "highway"], ["literal", ["path"]]],
+        ["==", ["get", "highway"], "path"],
         ["!", ["has", "tunnel"]],
         ["!", ["has", "bridge"]],
         ["!=", ["get", "construction"], "yes"],
@@ -1737,7 +1742,33 @@
       "paint": {
         "line-color": "rgba(121, 121, 118, 1)",
         "line-width": ["interpolate", ["linear"], ["zoom"], 12, 1, 18, 2],
-        "line-dasharray": [2, 2]
+        "line-dasharray": [
+          "step",
+          ["zoom"],
+          [
+            "match",
+            ["get", "trail_visibility"],
+            "bad",
+            ["literal", [1, 3]],
+            "horrible",
+            ["literal", [1, 4]],
+            "no",
+            ["literal", [1, 6]],
+            ["literal", [2, 2]]
+          ],
+          15,
+          [
+            "match",
+            ["get", "trail_visibility"],
+            "bad",
+            ["literal", [1, 5]],
+            "horrible",
+            ["literal", [1, 7]],
+            "no",
+            ["literal", [1, 10]],
+            ["literal", [2, 2]]
+          ]
+        ]
       }
     },
     {
@@ -1847,7 +1878,7 @@
       "type": "line",
       "source": "osm",
       "source-layer": "osmand",
-      "minzoom": 15,
+      "minzoom": 14,
       "filter": [
         "all",
         ["==", ["get", "highway"], "service"],
@@ -1932,7 +1963,7 @@
       "type": "line",
       "source": "osm",
       "source-layer": "osmand",
-      "minzoom": 14,
+      "minzoom": 13,
       "filter": [
         "all",
         ["==", ["get", "highway"], "service"],
@@ -2475,7 +2506,7 @@
       "type": "line",
       "source": "osm",
       "source-layer": "osmand",
-      "minzoom": 14,
+      "minzoom": 13,
       "filter": [
         "all",
         ["in", ["get", "highway"], ["literal", ["service"]]],
@@ -2494,7 +2525,7 @@
       "type": "line",
       "source": "osm",
       "source-layer": "osmand",
-      "minzoom": 14,
+      "minzoom": 13,
       "filter": [
         "all",
         ["in", ["get", "highway"], ["literal", ["service"]]],
@@ -3531,7 +3562,67 @@
         "icon-size": 0.5,
         "icon-allow-overlap": false,
         "icon-ignore-placement": false,
-        "text-field": "{name}",
+        "text-field": [
+          "step",
+          ["zoom"],
+          [
+            "case",
+            ["==", ["get", "amenity"], "parking_entrance"],
+            [
+              "case",
+              ["has", "ref"],
+              ["get", "ref"],
+              ["has", "addr:housenumber"],
+              ["get", "addr:housenumber"],
+              ""
+            ],
+            ""
+          ],
+          17,
+          [
+            "case",
+            [
+              "any",
+              ["==", ["get", "entrance"], "main"],
+              ["==", ["get", "entrance"], "exit"],
+              ["==", ["get", "amenity"], "parking_entrance"]
+            ],
+            [
+              "case",
+              ["has", "ref"],
+              ["get", "ref"],
+              ["has", "addr:housenumber"],
+              ["get", "addr:housenumber"],
+              ""
+            ],
+            ""
+          ],
+          18,
+          [
+            "case",
+            [
+              "any",
+              ["==", ["get", "entrance"], "main"],
+              ["==", ["get", "entrance"], "exit"],
+              ["==", ["get", "entrance"], "yes"],
+              ["==", ["get", "entrance"], "service"],
+              ["==", ["get", "amenity"], "parking_entrance"]
+            ],
+            [
+              "case",
+              ["all", ["has", "ref"], ["has", "addr:flats"]],
+              ["concat", ["get", "ref"], " (", ["get", "addr:flats"], ")"],
+              ["has", "addr:flats"],
+              ["get", "addr:flats"],
+              ["has", "ref"],
+              ["get", "ref"],
+              ["has", "addr:housenumber"],
+              ["get", "addr:housenumber"],
+              ""
+            ],
+            ""
+          ]
+        ],
         "text-font": ["Noto Sans Regular"],
         "text-size": 10,
         "text-anchor": "top",
@@ -3539,23 +3630,65 @@
         "text-max-width": 8,
         "visibility": "visible",
         "icon-image": [
-          "case",
-          ["==", ["get", "entrance"], "main"],
-          "entrance_main_map",
-          ["==", ["get", "entrance"], "yes"],
-          "entrance_yes",
-          ["==", ["get", "entrance"], "service"],
-          "entrance_service",
-          ["==", ["get", "entrance"], "exit"],
-          "entrance_exit_map",
-          ["==", ["get", "amenity"], "parking_entrance"],
-          "amenity_parking_entrance",
-          "entrance_yes"
+          "step",
+          ["zoom"],
+          [
+            "case",
+            ["==", ["get", "entrance"], "main"],
+            "entrance_main_map",
+            ["==", ["get", "entrance"], "exit"],
+            "entrance_exit_map",
+            ["==", ["get", "amenity"], "parking_entrance"],
+            "amenity_parking_entrance",
+            ""
+          ],
+          18,
+          [
+            "case",
+            ["==", ["get", "entrance"], "main"],
+            "entrance_main_map",
+            ["==", ["get", "entrance"], "exit"],
+            "entrance_exit_map",
+            ["==", ["get", "entrance"], "yes"],
+            "entrance_yes",
+            ["==", ["get", "entrance"], "service"],
+            "entrance_service",
+            ["==", ["get", "amenity"], "parking_entrance"],
+            "amenity_parking_entrance",
+            ""
+          ]
         ],
         "text-offset": [0, 0.6]
       },
       "paint": {
         "text-color": "rgba(82, 82, 82, 1)",
+        "text-halo-color": "rgba(239, 239, 239, 1)",
+        "text-halo-width": 1.5
+      }
+    },
+    {
+      "id": "poi-steps-point",
+      "type": "symbol",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 16,
+      "filter": ["all", ["==", "osmand_highway", "steps"]],
+      "layout": {
+        "icon-size": 0.5,
+        "icon-allow-overlap": false,
+        "icon-ignore-placement": false,
+        "text-field": "{name}",
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 10.5,
+        "text-anchor": "top",
+        "text-offset": [0, 1.2],
+        "text-optional": true,
+        "text-max-width": 8,
+        "visibility": "visible",
+        "icon-image": "osmand_steps"
+      },
+      "paint": {
+        "text-color": "rgba(74, 138, 255, 1)",
         "text-halo-color": "rgba(239, 239, 239, 1)",
         "text-halo-width": 1.5
       }
@@ -7117,8 +7250,17 @@
       "minzoom": 16,
       "filter": [
         "all",
-        ["==", "public_transport", "platform"],
-        ["in", "$type", "Point", "Polygon"]
+        ["==", ["get", "public_transport"], "platform"],
+        [
+          "any",
+          ["==", ["geometry-type"], "Point"],
+          ["==", ["geometry-type"], "Polygon"]
+        ],
+        [
+          "any",
+          ["!", ["has", "layer"]],
+          [">=", ["to-number", ["get", "layer"]], 0]
+        ]
       ],
       "layout": {
         "icon-size": 0.5,
