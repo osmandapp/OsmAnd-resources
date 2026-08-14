@@ -478,6 +478,51 @@
       }
     },
     {
+      "id": "line-cutline-bg",
+      "type": "line",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 13,
+      "filter": ["all", ["==", "man_made", "cutline"]],
+      "layout": {"visibility": "visible"},
+      "paint": {
+        "line-color": "rgba(214, 241, 212, 1)",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 13, 3, 15, 4, 18, 5]
+      }
+    },
+    {
+      "id": "line-cutline",
+      "type": "line",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 13,
+      "filter": ["all", ["==", "man_made", "cutline"]],
+      "layout": {"visibility": "visible"},
+      "paint": {
+        "line-color": "rgba(187, 187, 187, 1)",
+        "line-width": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          13,
+          1,
+          15,
+          1.5,
+          18,
+          2
+        ],
+        "line-dasharray": [
+          "step",
+          ["zoom"],
+          ["literal", [8, 2]],
+          15,
+          ["literal", [10, 3]],
+          17,
+          ["literal", [14, 5]]
+        ]
+      }
+    },
+    {
       "id": "line-ridge",
       "type": "line",
       "source": "osm",
@@ -501,12 +546,36 @@
       }
     },
     {
+      "id": "line-barrier-city-wall",
+      "type": "line",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 14,
+      "filter": [
+        "all",
+        ["in", ["get", "barrier"], ["literal", ["city_wall", "castle_wall"]]]
+      ],
+      "layout": {"visibility": "visible"},
+      "paint": {
+        "line-color": "rgba(120, 120, 120, 1)",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 14, 3, 18, 12]
+      }
+    },
+    {
       "id": "line-barrier",
       "type": "line",
       "source": "osm",
       "source-layer": "osmand",
       "minzoom": 15,
-      "filter": ["all", ["!=", ["get", "barrier"], "no"], ["has", "barrier"]],
+      "filter": [
+        "all",
+        ["has", "barrier"],
+        ["!=", ["get", "barrier"], "no"],
+        [
+          "!",
+          ["in", ["get", "barrier"], ["literal", ["city_wall", "castle_wall"]]]
+        ]
+      ],
       "layout": {"visibility": "visible"},
       "paint": {"line-color": "rgba(93, 93, 93, 1)", "line-width": 0.5}
     },
@@ -550,6 +619,34 @@
       }
     },
     {
+      "id": "waterway-river-intermittent",
+      "type": "line",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 10,
+      "filter": [
+        "all",
+        ["==", ["get", "waterway"], "river"],
+        ["!", ["has", "tunnel"]],
+        ["!", ["in", ["get", "layer"], ["literal", [-1, -2, -3, "-4-", 5]]]],
+        ["==", ["get", "intermittent"], "yes"]
+      ],
+      "layout": {"visibility": "visible"},
+      "paint": {
+        "line-color": "#80c0ff",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 9, 1, 18, 3],
+        "line-dasharray": [
+          "step",
+          ["zoom"],
+          ["literal", [2, 2]],
+          10,
+          ["literal", [3, 3]],
+          17,
+          ["literal", [5, 5]]
+        ]
+      }
+    },
+    {
       "id": "waterway-river",
       "type": "line",
       "source": "osm",
@@ -559,11 +656,39 @@
         "all",
         ["==", ["get", "waterway"], "river"],
         ["!", ["has", "tunnel"]],
-        ["!", ["in", ["get", "layer"], ["literal", [-1, -2, -3, "-4-", 5]]]]
+        ["!", ["in", ["get", "layer"], ["literal", [-1, -2, -3, "-4-", 5]]]],
+        ["!=", ["get", "intermittent"], "yes"]
       ],
       "paint": {
         "line-color": "#80c0ff",
         "line-width": ["interpolate", ["linear"], ["zoom"], 9, 1, 18, 3]
+      }
+    },
+    {
+      "id": "waterway-stream-intermittent",
+      "type": "line",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 13,
+      "filter": [
+        "all",
+        ["in", ["get", "waterway"], ["literal", ["stream", "ditch"]]],
+        ["!", ["has", "tunnel"]],
+        ["!", ["in", ["get", "layer"], ["literal", [-1, -2, -3, "-4-", 5]]]],
+        ["==", ["get", "intermittent"], "yes"]
+      ],
+      "paint": {
+        "line-color": "#80c0ff",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 11, 1, 15, 2],
+        "line-dasharray": [
+          "step",
+          ["zoom"],
+          ["literal", [2, 2]],
+          13,
+          ["literal", [4, 4]],
+          17,
+          ["literal", [6, 6]]
+        ]
       }
     },
     {
@@ -576,9 +701,40 @@
         "all",
         ["in", ["get", "waterway"], ["literal", ["stream", "ditch"]]],
         ["!", ["has", "tunnel"]],
-        ["!", ["in", ["get", "layer"], ["literal", [-1, -2, -3, "-4-", 5]]]]
+        ["!", ["in", ["get", "layer"], ["literal", [-1, -2, -3, "-4-", 5]]]],
+        ["!=", ["get", "intermittent"], "yes"]
       ],
-      "paint": {"line-color": "#80c0ff", "line-width": 1}
+      "paint": {
+        "line-color": "#80c0ff",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 11, 1, 15, 2]
+      }
+    },
+    {
+      "id": "waterway-drain-intermittent",
+      "type": "line",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 14,
+      "filter": [
+        "all",
+        ["in", ["get", "waterway"], ["literal", ["ditch", "drain"]]],
+        ["!", ["has", "tunnel"]],
+        ["!", ["in", ["get", "layer"], ["literal", [-1, -2, -3, "-4-", 5]]]],
+        ["==", ["get", "intermittent"], "yes"]
+      ],
+      "paint": {
+        "line-color": "#80c0ff",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 11, 1, 15, 2],
+        "line-dasharray": [
+          "step",
+          ["zoom"],
+          ["literal", [2, 2]],
+          14,
+          ["literal", [4, 4]],
+          17,
+          ["literal", [6, 6]]
+        ]
+      }
     },
     {
       "id": "waterway-drain",
@@ -590,9 +746,13 @@
         "all",
         ["in", ["get", "waterway"], ["literal", ["ditch", "drain"]]],
         ["!", ["has", "tunnel"]],
-        ["!", ["in", ["get", "layer"], ["literal", [-1, -2, -3, "-4-", 5]]]]
+        ["!", ["in", ["get", "layer"], ["literal", [-1, -2, -3, "-4-", 5]]]],
+        ["!=", ["get", "intermittent"], "yes"]
       ],
-      "paint": {"line-color": "#80c0ff", "line-width": 1}
+      "paint": {
+        "line-color": "#80c0ff",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 11, 1, 15, 2]
+      }
     },
     {
       "id": "waterway-canal",
@@ -2612,7 +2772,7 @@
       },
       "paint": {
         "line-color": "#000",
-        "line-width": ["interpolate", ["linear"], ["zoom"], 11, 2, 18, 12.5],
+        "line-width": ["interpolate", ["linear"], ["zoom"], 11, 2, 18, 11],
         "line-opacity": 0.9
       }
     },
@@ -7520,16 +7680,13 @@
       }
     },
     {
-      "id": "place-hamlet",
+      "id": "place-locality",
       "type": "symbol",
       "source": "osm",
       "source-layer": "osmand",
-      "minzoom": 11,
-      "maxzoom": 16,
-      "filter": [
-        "all",
-        ["in", ["get", "place"], ["literal", ["village", "hamlet"]]]
-      ],
+      "minzoom": 14,
+      "maxzoom": 24,
+      "filter": ["all", ["in", ["get", "place"], ["literal", ["locality"]]]],
       "layout": {
         "text-field": "{name}",
         "text-font": ["Noto Sans Regular"],
@@ -7538,7 +7695,31 @@
         "visibility": "visible"
       },
       "paint": {
-        "text-color": "#444",
+        "text-color": "rgba(0, 0, 0, 1)",
+        "text-halo-color": "rgba(192, 192, 192, 1)",
+        "text-halo-width": 1.5,
+        "icon-color": "rgba(0, 0, 0, 1)",
+        "icon-halo-color": "rgba(255, 255, 255, 1)",
+        "icon-halo-width": 1
+      }
+    },
+    {
+      "id": "place-hamlet",
+      "type": "symbol",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 11,
+      "maxzoom": 17,
+      "filter": ["all", ["in", ["get", "place"], ["literal", ["hamlet"]]]],
+      "layout": {
+        "text-field": "{name}",
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 11,
+        "text-max-width": 8,
+        "visibility": "visible"
+      },
+      "paint": {
+        "text-color": "rgba(26, 26, 26, 1)",
         "text-halo-color": "#fff",
         "text-halo-width": 1.5
       }
@@ -7726,7 +7907,7 @@
       "source": "osm",
       "source-layer": "osmand",
       "minzoom": 10,
-      "maxzoom": 16,
+      "maxzoom": 17,
       "filter": ["all", ["in", ["get", "place"], ["literal", ["village"]]]],
       "layout": {
         "text-field": "{name}",
@@ -7742,7 +7923,7 @@
         ]
       },
       "paint": {
-        "text-color": "#444",
+        "text-color": "rgba(0, 0, 0, 1)",
         "text-halo-color": "#fff",
         "text-halo-width": 1.5
       }
