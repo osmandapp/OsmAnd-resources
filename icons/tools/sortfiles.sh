@@ -3449,6 +3449,7 @@ icon_alias female_yes additional_female_yes
 icon_alias female_no additional_female_no
 icon_alias wheelchair_yes additional_wheelchair
 icon_alias wheelchair_designated additional_wheelchair
+icon_alias wheelchair_limited additional_wheelchair
 icon_alias wheelchair_no additional_wheelchair_no
 icon_alias bench_yes additional_bench_yes
 icon_alias bench_no additional_bench_no
