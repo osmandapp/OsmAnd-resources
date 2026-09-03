@@ -6328,6 +6328,24 @@
 	<entity_convert pattern="tag_transform" from_tag="whitewater" from_value="put_in;egress" to_tag1="canoe" to_value1="put_in;egress"/>
 	<entity_convert pattern="tag_transform" from_tag="whitewater" from_value="portage_way" to_tag1="canoe" to_value1="portage"/>
 
+	<!-- waterway=access_point is the modern (and now most common) tagging for a paddlecraft put in / take out point:
+	     https://wiki.openstreetmap.org/wiki/Tag:waterway%3Daccess_point
+	     canoe=put_in / egress / put_in;egress refine it and are handled by the types above, canoe=no means "not for paddlecraft".
+	     Everything else (no canoe=* at all, canoe=yes/designated/permissive/...) is a generic access point usable both ways. -->
+	<entity_convert pattern="tag_transform" poi="no" from_tag="waterway" from_value="access_point"
+			if_not_tag1="canoe" if_not_value1="no"
+			if_not_tag2="canoe" if_not_value2="put_in"
+			if_not_tag3="canoe" if_not_value3="egress"
+			if_not_tag4="canoe" if_not_value4="put_in;egress"
+			to_tag1="canoe" to_value1="put_in;egress"/>
+	<!-- canoe=put_in;egress has no poi_type (";" combination is not allowed there), so index such points as canoe=put_in for POI search -->
+	<entity_convert pattern="tag_transform" map="no" routing="no" from_tag="waterway" from_value="access_point"
+			if_not_tag1="canoe" if_not_value1="no"
+			if_not_tag2="canoe" if_not_value2="put_in"
+			if_not_tag3="canoe" if_not_value3="egress"
+			if_not_tag4="canoe" if_not_value4="put_in;egress"
+			to_tag1="canoe" to_value1="put_in"/>
+
 	<type tag="portage" value="yes" minzoom="14"/>
 	<type tag="portage" value="designated" minzoom="14"/>
 	<type tag="portage" value="permissive" minzoom="14"/>
