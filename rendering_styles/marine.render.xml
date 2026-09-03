@@ -1555,8 +1555,8 @@
 				<case minzoom="17" tag="man_made" value="breakwater" nameTag="" textWrapWidth="20" textOnPath="true" textOrder="255"/>
 				<case minzoom="17" tag="man_made" value="groyne" nameTag="" textWrapWidth="20" textOnPath="true" textOrder="255"/>
 				<switch minzoom="15">
-					<case tag="waterway" value="waterfall" nameTag2="height"/>
-					<case tag="seamark:type" value="waterfall" nameTag2="height"/>
+					<case tag="waterway" value="waterfall" nameTag="" nameTag2="height"/>
+					<case tag="seamark:type" value="waterfall" nameTag="seamark:name" nameTag2="height"/>
 					<apply textWrapWidth="20" textOnPath="true" textOrder="255"/>
 				</switch>
 				<case minzoom="17" tag="seamark:waterway" value="rapids" nameTag="" textSize="11" textOnPath="true"/>
@@ -1596,13 +1596,17 @@
 				An appropriate graphical display of sector lights with coloured circle sections requires further development of code in OSMAND. Feedback welcome: josail @ gmx.de -->
 
 				<switch minzoom="12" additional="depth:exposition=shoaler" textColor="$depthTextColor" textSize="14" textBold="true" textOrder="128" intersectionMargin="10" textDy="-12" nameTag2="depth">
-					<case tag="seamark:type" value="rock"/>
-					<case tag="seamark:type" value="wreck" textDy="-10"/>
+					<case tag="seamark:type" value="rock" nameTag="seamark:name"/>
+					<case tag="seamark:type" value="rock" nameTag="depth"/>
+					<case tag="seamark:type" value="wreck" nameTag="seamark:name" textDy="-10"/>
+					<case tag="seamark:type" value="wreck" nameTag="depth" textDy="-10"/>
 					<apply_if additional="seamark:lnam" textOrder="20"/>
 				</switch>
 				<switch minzoom="13" textColor="$depthTextColor" textSize="14" textItalic="true" textOrder="128" intersectionMargin="10" textDy="-12" nameTag2="depth">
-					<case tag="seamark:type" value="rock"/>
-					<case tag="seamark:type" value="wreck" textDy="-10"/>
+					<case tag="seamark:type" value="rock" nameTag="seamark:name"/>
+					<case tag="seamark:type" value="rock" nameTag="depth"/>
+					<case tag="seamark:type" value="wreck" nameTag="seamark:name" textDy="-10"/>
+					<case tag="seamark:type" value="wreck" nameTag="depth" textDy="-10"/>
 					<apply_if additional="seamark:lnam" textOrder="25"/>
 				</switch>
 				<switch nameTag="seamark:name" nameTag2="seamark:light:character">
@@ -1645,10 +1649,10 @@
 				<switch> <!-- for big icons -->
 					<switch>
 						<!--            <apply textColor="#292929" textWrapWidth="22" textHaloColor="#ddffffff" textHaloRadius="2"/>-->
-						<case minzoom="10" tag="seamark:type" value="light_major" additional="lightsector=source" textOrder="1" textHaloRadius="3">
+						<case minzoom="10" tag="seamark:type" value="light_major" nameTag="seamark:name" additional="lightsector=source" textOrder="1" textHaloRadius="3">
 							<apply_if minzoom="11" nameTag2="seamark:light:character"/>
 						</case>
-						<case minzoom="11" tag="seamark:type" value="light_minor" additional="lightsector=source" textOrder="2" textHaloRadius="3">
+						<case minzoom="11" tag="seamark:type" value="light_minor" nameTag="seamark:name" additional="lightsector=source" textOrder="2" textHaloRadius="3">
 							<apply_if minzoom="12" nameTag2="seamark:light:character"/>
 						</case>
 						<switch minzoom="12" textOnPath="true">
@@ -1658,25 +1662,25 @@
 						</switch>
 					</switch>
 					<switch>
-						<case minzoom="11" tag="seamark:type" value="light_major" nameTag2="seamark:light:character" textOrder="50"/>
-						<case minzoom="12" tag="seamark:type" value="light_minor" nameTag2="seamark:light:character" textOrder="55"/>
-						<case minzoom="11" tag="seamark:type" value="landmark" nameTag2="seamark:light:character" textOrder="60"/>
-						<case minzoom="12" tag="man_made" value="mast" nameTag2="seamark:light:character" textOrder="66"/>
-						<case minzoom="12" tag="man_made" value="tower" nameTag2="seamark:light:character" textOrder="67"/>
-						<case minzoom="11" tag="man_made" value="offshore_platform" nameTag2="seamark:light:character" textOrder="69"/>
-						<case minzoom="11" tag="seamark:type" value="platform" nameTag2="seamark:light:character" textOrder="69"/>
-						<case minzoom="11" tag="man_made" value="lighthouse" nameTag2="seamark:light:character" textOrder="70"/>
+						<case minzoom="11" tag="seamark:type" value="light_major" nameTag="seamark:name" nameTag2="seamark:light:character" textOrder="50"/>
+						<case minzoom="12" tag="seamark:type" value="light_minor" nameTag="seamark:name" nameTag2="seamark:light:character" textOrder="55"/>
+						<case minzoom="11" tag="seamark:type" value="landmark" nameTag="seamark:name" nameTag2="seamark:light:character" textOrder="60"/>
+						<case minzoom="12" tag="man_made" value="mast" nameTag="seamark:name" nameTag2="seamark:light:character" textOrder="66"/>
+						<case minzoom="12" tag="man_made" value="tower" nameTag="seamark:name" nameTag2="seamark:light:character" textOrder="67"/>
+						<case minzoom="11" tag="man_made" value="offshore_platform" nameTag="seamark:name" nameTag2="seamark:light:character" textOrder="69"/>
+						<case minzoom="11" tag="seamark:type" value="platform" nameTag="seamark:name" nameTag2="seamark:light:character" textOrder="69"/>
+						<case minzoom="11" tag="man_made" value="lighthouse" nameTag="seamark:name" nameTag2="seamark:light:character" textOrder="70"/>
 						<apply_if engine_v1="false" textDy="-10"/>
 					</switch>
 						<apply_if lightDetail="small" textSize="9" textColor="#bf0400ab"/> <!-- small and translucent dark blue for reduced visual impact -->
 						<apply_if lightDetail="name_only" nameTag2="$null"/>
 						<apply_if lightDetail="omit" disable="true"/>
-					<case minzoom="12" tag="seamark:type" value="fog_signal" textOrder="70"/>
-					<case minzoom="12" tag="seamark:type" value="radar_transponder" textOrder="71"/> <!-- INT-1 S Section Radar, Ramark, Racon -->
-					<case minzoom="12" tag="seamark:type" value="radio_station" textOrder="71"/>
+					<case minzoom="12" tag="seamark:type" value="fog_signal" nameTag="seamark:name" textOrder="70"/>
+					<case minzoom="12" tag="seamark:type" value="radar_transponder" nameTag="seamark:name" textOrder="71"/> <!-- INT-1 S Section Radar, Ramark, Racon -->
+					<case minzoom="12" tag="seamark:type" value="radio_station" nameTag="seamark:name" textOrder="71"/>
 					<apply_if lightDetail="" additional="seamark:radio_station:category" value="ais" nameTag2="seamark:radio_station:category"/> <!-- INT-1 S Section Radar, AIS -->
 					<apply_if lightDetail="" additional="seamark:radio_station:category" value="v-ais" nameTag2="seamark:radio_station:category"/> <!-- INT-1 S Section Radar, V-AIS -->
-					<case minzoom="12" tag="seamark:type" value="radar_station" textOrder="71"/>
+					<case minzoom="12" tag="seamark:type" value="radar_station" nameTag="seamark:name" textOrder="71"/>
 					<case minzoom="17" tag="seamark:type" value="signal_station_traffic" nameTag="seamark:name" nameTag2="seamark:signal_station_traffic:category_name" textOrder="71"/>
 					<case minzoom="17" tag="seamark:type" value="signal_station_traffic" nameTag="seamark:signal_station_traffic:category_name" textOrder="71"/>
 					<case minzoom="17" tag="seamark:type" value="signal_station_warning" nameTag="seamark:name" nameTag2="seamark:signal_station_warning:category_name" textOrder="71"/>
@@ -1732,16 +1736,16 @@
 				</switch>
 
 				<switch textBold="true">
-					<case minzoom="15" tag="leisure" value="marina" textOrder="6" textHaloColor="#88d4ecff"/>
+					<case minzoom="15" tag="leisure" value="marina" nameTag="" textOrder="6" textHaloColor="#88d4ecff"/>
 					<switch minzoom="10" tag="seamark:type" value="harbour" textOrder="52" textHaloColor="#88d4ecff">
 						<case nameTag="seamark:name"/>
 						<case nameTag=""/>
 						<apply_if minzoom="11" textOrder="5"/>
 					</switch>
-					<case minzoom="12" tag="waterway" value="dock" textOrder="59"/>
-					<case minzoom="16" tag="seamark:type" value="building" textOrder="63" textBold="false"/>
-					<case minzoom="16" tag="seamark:type" value="rescue_station" textOrder="63" textBold="false"/>
-					<case minzoom="16" tag="seamark:type" value="hulk" textOrder="64" textBold="false"/>
+					<case minzoom="12" tag="waterway" value="dock" nameTag="" textOrder="59"/>
+					<case minzoom="16" tag="seamark:type" value="building" nameTag="seamark:name" textOrder="63" textBold="false"/>
+					<case minzoom="16" tag="seamark:type" value="rescue_station" nameTag="seamark:name" textOrder="63" textBold="false"/>
+					<case minzoom="16" tag="seamark:type" value="hulk" nameTag="seamark:name" textOrder="64" textBold="false"/>
 <!--					<apply_if engine_v1="true" textDy="15"/>-->
 				</switch>
 				<apply>
@@ -1763,14 +1767,14 @@
 
 			<switch>
 				<switch textColor="#222222" textWrapWidth="19" textHaloColor="#aaffffff" textHaloRadius="2" textOnPath="true" textBold="true">
-					<case minzoom="13" tag="seamark:type" value="recommended_track" nameTag2="seamark:recommended_track:orientation"/>
-					<case minzoom="13" tag="seamark:type" value="recommended_traffic_lane" nameTag2="seamark:recommended_track:orientation"/>
-					<case minzoom="13" tag="seamark:type" value="navigation_line" nameTag2="seamark:navigation_line:orientation"/>
-					<case minzoom="8" tag="route" value="ferry" nameTag2="ref"/>
+					<case minzoom="13" tag="seamark:type" value="recommended_track" nameTag="seamark:name" nameTag2="seamark:recommended_track:orientation"/>
+					<case minzoom="13" tag="seamark:type" value="recommended_traffic_lane" nameTag="seamark:name" nameTag2="seamark:recommended_track:orientation"/>
+					<case minzoom="13" tag="seamark:type" value="navigation_line" nameTag="seamark:name" nameTag2="seamark:navigation_line:orientation"/>
+					<case minzoom="8" tag="route" value="ferry" nameTag="" nameTag2="ref"/>
 					<case minzoom="15" tag="seamark:type" value="dam" nameTag="seamark:name"/>
 					<case minzoom="15" tag="seamark:type" value="dam" nameTag=""/>
-					<case minzoom="15" tag="waterway" value="dam"/>
-					<case minzoom="16" tag="waterway" value="weir"/>
+					<case minzoom="15" tag="waterway" value="dam" nameTag=""/>
+					<case minzoom="16" tag="waterway" value="weir" nameTag=""/>
 					<apply_if nightMode="true" textColor="#dddddd" textHaloColor="#99333333"/>
 				</switch>
 				<switch minzoom="15" textColor="#444444" textWrapWidth="19" textHaloColor="#77ffffff" textHaloRadius="2" textOnPath="true">
@@ -1786,16 +1790,17 @@
 				<switch minzoom="11" textColor="#0400ab" textWrapWidth="19" textHaloColor="#88ffffff" textHaloRadius="2">
 					<case minzoom="11" tag="seamark:type" value="landmark" textOrder="59" nameTag="seamark:name"/>
 					<case minzoom="11" tag="seamark:type" value="landmark" textOrder="59" nameTag=""/>
-					<case minzoom="17" tag="seamark:type" value="pylon" textOrder="59"/>
-					<case minzoom="13" tag="seamark:type" value="production_area" textOrder="59"/>
-					<case minzoom="16" tag="seamark:type" value="marine_farm" textOrder="59"/>
+					<case minzoom="17" tag="seamark:type" value="pylon" nameTag="seamark:name" textOrder="59"/>
+					<case minzoom="13" tag="seamark:type" value="production_area" nameTag="seamark:name" textOrder="59"/>
+					<case minzoom="16" tag="seamark:type" value="marine_farm" nameTag="seamark:name" textOrder="59"/>
 <!--					<apply_if engine_v1="true" textDy="8"/>-->
 					<apply_if nightMode="true" textColor="#eaf6ff" textHaloColor="#5545a5e2"/>
 				</switch>
 				<switch textColor="#8c0000" textWrapWidth="19" textHaloColor="#99ffc9c9" textHaloRadius="2" textOrder="61">
 					<case minzoom="13" tag="seamark:type" value="restricted_area" nameTag="seamark:name" nameTag2="seamark:restricted_area:information"/>
 					<case minzoom="13" tag="seamark:type" value="restricted_area" nameTag="seamark:restricted_area:information" nameTag2="seamark:name"/>
-					<case minzoom="15" tag="seamark:type" value="obstruction" nameTag2="depth" textDy="-13"/>
+					<case minzoom="15" tag="seamark:type" value="obstruction" nameTag="seamark:name" nameTag2="depth" textDy="-13"/>
+					<case minzoom="15" tag="seamark:type" value="obstruction" nameTag="depth" textDy="-13"/>
 					<case minzoom="13" tag="seamark:type" value="cable_area" nameTag="seamark:name"/>
 					<case minzoom="13" tag="seamark:type" value="precautionary_area" nameTag="seamark:name"/>
 					<case minzoom="15" tag="seamark:type" value="seaplane_landing_area" nameTag="seamark:name"/>
@@ -1811,20 +1816,20 @@
 			</switch>
 			<switch>
 				<switch>
-					<case minzoom="11" tag="seamark:type" value="separation_zone" textBold="true"/>
-					<case minzoom="14" tag="seamark:type" value="separation_roundabout" textBold="true"/>
-					<case minzoom="14" tag="seamark:type" value="separation_crossing" textBold="true"/>
-					<case minzoom="14" tag="seamark:type" value="turning_basin" textBold="true" textDy="10"/>
-					<case minzoom="11" tag="seamark:type" value="fairway" textOnPath="true"/>
-					<case minzoom="11" tag="waterway" value="fairway" textOnPath="true"/>
-					<case minzoom="11" tag="waterway" value="flowline" textOnPath="true"/>
-					<case minzoom="12" tag="seamark:type" value="anchorage" textDy="10" textBold="true"/>
-					<case minzoom="14" tag="seamark:type" value="anchor_berth" textDy="10"/>
-					<case minzoom="17" tag="seamark:type" value="small_craft_facility" textDy="-15">
+					<case minzoom="11" tag="seamark:type" value="separation_zone" nameTag="seamark:name" textBold="true"/>
+					<case minzoom="14" tag="seamark:type" value="separation_roundabout" nameTag="seamark:name" textBold="true"/>
+					<case minzoom="14" tag="seamark:type" value="separation_crossing" nameTag="seamark:name" textBold="true"/>
+					<case minzoom="14" tag="seamark:type" value="turning_basin" nameTag="seamark:name" textBold="true" textDy="10"/>
+					<case minzoom="11" tag="seamark:type" value="fairway" nameTag="seamark:name" textOnPath="true"/>
+					<case minzoom="11" tag="waterway" value="fairway" nameTag="" textOnPath="true"/>
+					<case minzoom="11" tag="waterway" value="flowline" nameTag="" textOnPath="true"/>
+					<case minzoom="12" tag="seamark:type" value="anchorage" nameTag="seamark:name" textDy="10" textBold="true"/>
+					<case minzoom="14" tag="seamark:type" value="anchor_berth" nameTag="seamark:name" textDy="10"/>
+					<case minzoom="17" tag="seamark:type" value="small_craft_facility" nameTag="seamark:name" textDy="-15">
 						<case additional="seamark:small_craft_facility:category=slipway" textOnPath="true"/>
 					</case>
-					<case minzoom="17" tag="leisure" value="slipway" textDy="-15" textOnPath="true"/>
-					<case minzoom="17" tag="seamark:type" value="fishing_facility" textDy="10"/>
+					<case minzoom="17" tag="leisure" value="slipway" nameTag="" textDy="-15" textOnPath="true"/>
+					<case minzoom="17" tag="seamark:type" value="fishing_facility" nameTag="seamark:name" textDy="10"/>
 					<switch minzoom="16" tag="seamark:type" value="berth" textDy="10">
 						<case nameTag="seamark:name" nameTag2="seamark:berth:information"/>
 						<case nameTag="" nameTag2="seamark:berth:information"/>
@@ -1832,7 +1837,7 @@
 <!--					<apply_if engine_v1="false" textDy="-7"/>-->
 				</switch>
 				<switch>
-					<case minzoom="16" tag="seamark:type" value="pilot_boarding"/>
+					<case minzoom="16" tag="seamark:type" value="pilot_boarding" nameTag="seamark:name"/>
 				</switch>
 				<apply textColor="#471c62" textWrapWidth="26" textHaloColor="#aae8d5ee" textHaloRadius="2">
 					<case maxzoom="12" textSize="12"/>
@@ -1843,7 +1848,7 @@
 			</switch>
 			<switch>
 				<switch>
-					<case minzoom="16" tag="seamark:type" value="pilot_boarding"/>
+					<case minzoom="16" tag="seamark:type" value="pilot_boarding" nameTag="seamark:name"/>
 					<switch minzoom="16" tag="seamark:type" value="bridge" textOrder="55" intersectionSizeFactor="0.5">
 						<case additional="seamark:bridge:category=opening" nameTag="seamark:bridge:clearance_height_closed"/>
 						<case additional="seamark:bridge:category=lifting" nameTag="seamark:bridge:clearance_height_closed" nameTag2="seamark:bridge:clearance_height_open"/>
@@ -1861,8 +1866,8 @@
 			</switch>
 
 			<switch textSize="12" textColor="#ffffff" textHaloRadius="$textHaloRadiusDay" textHaloColor="#7b7463" textWrapWidth="20" textOnPath="true" textDy="0">
-				<case minzoom="17" tag="barrier" value="city_wall"/>
-				<case minzoom="17" tag="seamark:type" value="fortified_structure"/>
+				<case minzoom="17" tag="barrier" value="city_wall" nameTag=""/>
+				<case minzoom="17" tag="seamark:type" value="fortified_structure" nameTag="seamark:name"/>
 				<apply_if nightMode="true" textHaloRadius="$textHaloRadiusNight" textColor="#ffe7c2" textHaloColor="#88644e2c"/>
 			</switch>
 			<apply_if legend="true" minzoom="18" maxzoom="18" textSize="16"/>
