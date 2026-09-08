@@ -7935,9 +7935,15 @@
 					</case>
 					<apply_if baseAppMode="car" moreDetailed="false" maxzoom="17" icon=""/>
 				</switch>
-				<switch tag="amenity" value="place_of_worship" icon="amenity_place_of_worship" iconVisibleSize="11" intersectionSizeFactor="0.8">
+				<!-- Places of worship are ranked by prominence (travel_elo_rounded, the bucketed wiki/travel elo
+				     rating): a top rated one appears one zoom earlier and keeps the high icon order, so it wins
+				     every collision. iconMinDistance thins out the rest in dense historical centres, while a lone
+				     village church is always drawn. https://github.com/osmandapp/OsmAnd/issues/24901 -->
+				<switch tag="amenity" value="place_of_worship" icon="amenity_place_of_worship" iconVisibleSize="11" intersectionSizeFactor="0.8" iconMinDistance="48">
 					<case minzoom="14" moreDetailed="true" iconOrder="43" iconVisibleSize="9" intersectionSizeFactor="0.7"/>
-					<case minzoom="15" moreDetailed="false" additional="wiki=yes" iconOrder="43" iconVisibleSize="9" intersectionSizeFactor="0.7"/>
+					<case minzoom="15" moreDetailed="false" additional="travel_elo_rounded=4000" iconOrder="43" iconVisibleSize="9" intersectionSizeFactor="0.7"/>
+					<!-- fallback for maps generated before travel_elo_rounded existed -->
+					<case minzoom="15" maxzoom="15" moreDetailed="false" additional="wiki=yes" iconOrder="43" iconVisibleSize="9" intersectionSizeFactor="0.7"/>
 					<case minzoom="16" iconOrder="132"/>
 					<apply_if nightMode="true" icon="amenity_place_of_worship_night"/>
 					<apply>
