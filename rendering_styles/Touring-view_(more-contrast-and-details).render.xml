@@ -272,15 +272,16 @@
 		<case attrColorValue="#9E2D74"/>
 	</renderingAttribute>
 
-	<renderingConstant name="sacScaleColorT1" value="#000000"/>
-	<renderingConstant name="sacScaleColorT2" value="#ff0000"/>
-	<renderingConstant name="sacScaleColorT3" value="#ff0000"/>
-	<renderingConstant name="sacScaleColorT4" value="#0033ff"/>
-	<renderingConstant name="sacScaleColorT5" value="#0033ff"/>
-	<renderingConstant name="sacScaleColorT6" value="#0033ff"/>
+	<!-- SAC colors inspired by European ski-piste ratings: beginner=green, easy=blue, intermediate=red, difficult=black -->
+	<renderingConstant name="sacScaleColorT1" value="#00b300"/>
+	<renderingConstant name="sacScaleColorT2" value="#0033ff"/>
+	<renderingConstant name="sacScaleColorT3" value="#e60000"/>
+	<renderingConstant name="sacScaleColorT4" value="#800000"/>
+	<renderingConstant name="sacScaleColorT5" value="#404040"/>
+	<renderingConstant name="sacScaleColorT6" value="#000000"/>
 	<renderingConstant name="climbingAccessColor" value="#FF8C00"/>
 
-	<!-- renderingConstant name="caiScaleColor" value="#e23cad"/ --><!-- use equivalent SAC color pattern for now -->
+	<!-- renderingConstant name="caiScaleColor" value="#e23cad"/ --><!-- use roughly equivalent SAC color -->
 
 	<renderingConstant name="null" value="#00000000"/>
 
@@ -1299,12 +1300,12 @@
 						<case additional="footway=crossing" strokeWidth="0.1"/>
 					</case>
 					<apply color="$null">
-						<case additional="sac_scale=hiking" color_5="$sacScaleColorT1" pathEffect_5="10_3"/>
+						<case additional="sac_scale=hiking" color_5="$sacScaleColorT1" pathEffect_5=""/>
 						<case additional="sac_scale=mountain_hiking" color_5="$sacScaleColorT2" pathEffect_5=""/>
-						<case additional="sac_scale=demanding_mountain_hiking" color_5="$sacScaleColorT3" pathEffect_5="10_3"/>
+						<case additional="sac_scale=demanding_mountain_hiking" color_5="$sacScaleColorT3" pathEffect_5=""/>
 						<case additional="sac_scale=alpine_hiking" color_5="$sacScaleColorT4" pathEffect_5=""/>
-						<case additional="sac_scale=demanding_alpine_hiking" color_5="$sacScaleColorT5" pathEffect_5="10_3"/>
-						<case additional="sac_scale=difficult_alpine_hiking" color_5="$sacScaleColorT6" pathEffect_5="3_3"/>
+						<case additional="sac_scale=demanding_alpine_hiking" color_5="$sacScaleColorT5" pathEffect_5=""/>
+						<case additional="sac_scale=difficult_alpine_hiking" color_5="$sacScaleColorT6" pathEffect_5=""/>
 						<!-- No SAC tag -->
 						<case color_5="$pathColor" pathEffect_5="4_2">
 							<case nightMode="true" color_5="$pathColorNight"/>
@@ -1319,8 +1320,8 @@
 						<!--         For CAI rendering use the SAC rendering for the max equivalent grade as per https://wiki.openstreetmap.org/wiki/Proposal:Cai_scale -->
 						<apply_if alpineHikingScaleScheme="caiScale">
 							<case additional="cai_scale=t" color_5="$sacScaleColorT1" pathEffect_5=""/><!-- is less than SAC hiking -->
-							<case additional="cai_scale=e" color_5="$sacScaleColorT1" pathEffect_5="10_3"/><!-- is about SAC hiking -->
-							<case additional="cai_scale=ee" color_5="$sacScaleColorT3" pathEffect_5="10_3"/><!-- is max SAC demanding_mountain_hiking -->
+							<case additional="cai_scale=e" color_5="$sacScaleColorT1" pathEffect_5=""/><!-- is about SAC hiking -->
+							<case additional="cai_scale=ee" color_5="$sacScaleColorT3" pathEffect_5=""/><!-- is max SAC demanding_mountain_hiking -->
 							<case additional="cai_scale=eai" color_5="$sacScaleColorT4" pathEffect_5=""/><!-- is max SAC alpine_hiking -->
 							<switch>
 								<case additional="cai_scale=eea"/>
@@ -1329,7 +1330,7 @@
 								<case additional="cai_scale=eea:d"/>
 								<case additional="cai_scale=eea:md"/>
 								<case additional="cai_scale=eea:e"/>
-								<apply color_5="$sacScaleColorT6" pathEffect_5="3_3"/><!-- is max SAC difficult_alpine_hiking -->
+								<apply color_5="$sacScaleColorT6" pathEffect_5=""/><!-- is max SAC difficult_alpine_hiking -->
 							</switch>
 						</apply_if>
 					</apply>
