@@ -60,35 +60,31 @@
 	-->
 
 	<!--
-	ALPINE HIKING based on tests by Christof Knuesel on 2012-10-18:
-		Purpose:
-		- Alpine Hiking option for mountain hiking with "Hike Bike Map (Hills Underlay)" as overlay map:
-		  With "Hike Bike Map (Hills Underlay)" it becomes hard to distinguish between black lines (path) and brown lines (track).
-		  For this reason tracks are rendered with higher strokewidth than paths,
-		  respectively as solid lines (all tracktypes), while paths are rendered as dashed lines (Alpine Hiking Mode).
-
+	ALPINE HIKING optimized, based on tests by Christof Knuesel on 2012-10-18, revised new color scheme Hardy 2026-09-14:
 		Legend:
-		1) Alpine Hiking Mode (SAC or CAI enabled)
-		- Paths are colored by sac_scale:
-			black dashed line: sac_scale not specified or sac_scale = hiking
-			red solid line:    sac_scale = mountain_hiking
-			red dashed line:   sac_scale = demanding_mountain_hiking
-			blue solid line:   sac_scale = alpine_hiking
-			blue dashed line:  sac_scale = demanding_alpine_hiking
-			blue dotted line:  sac_scale = difficult_alpine_hiking
+		(1) Modes without SAC or CAI difficulty grade enabled:
+		- Tracks are brown lines, dashed by grade:
+			solid line:                                       tracktype = grade1
+			long dashes                : (dash/gap=10/3):     tracktype = grade2
+			medium dashes              : (dash/gap=5/3):      tracktype = grade3
+			short dashes               : (dash/gap=3/3):      tracktype = grade4
+			dotted line                : (dash/gap=2/3):      tracktype = grade5
+			dash-dotted line           : (dash+dot/gaps=7/4): tracktype not specified
+		- Paths are black lines, dashes indicate SAC grade presence:
+			standard path dash         : sac_scale not specified
+			long dashes                : sac_scale = hiking
+			short dashes               : sac_scale = mountain_hiking 
+			dotted line                : sac_scale = demanding_mountain_hiking and above
+		(2) Alpine Hiking Mode - Hiking trail SAC or CAI difficulty grade enabled)
 		- Tracks (all tracktypes) are rendered as brown solid lines
-		2) Other Modes
-		- Tracks are rendered as thick brown lines:
-			solid line:                             tracktype = grade1
-			long dashes        (dash/gap=10/3):     tracktype = grade2
-			medium dashes      (dash/gap=5/3):      tracktype = grade3
-			short dashes       (dash/gap=3/3):      tracktype = grade4
-			dotted line        (dash/gap=2/3):      tracktype = grade5
-			dash-dotted line   (dash+dot/gaps=7/4): tracktype not specified
-		- Paths are rendered as thin black lines:
-			long dashes:       sac_scale not specified or sac_scale = hiking
-			short dashes:      sac_scale = mountain_hiking 
-			dotted line:       sac_scale = demanding_mountain_hiking and above
+		- Paths and footways are colored by sac_scale:
+			standard black dashed path : sac_scale not specified 
+			green                      : sac_scale = hiking
+			blue                       : sac_scale = mountain_hiking
+			red                        : sac_scale = demanding_mountain_hiking
+			dark red (maroon)          : sac_scale = alpine_hiking
+			gray                       : sac_scale = demanding_alpine_hiking
+			black                      : sac_scale = difficult_alpine_hiking
 	-->
 
 	<!-- Description blueprint:
@@ -239,8 +235,8 @@
 			<apply_if nightMode="true" attrColorValue="#3333FF"/>
 			<!-- Alpine Hiking Mode: Remove conflicting cycle color -->
 			<apply_if alpineHiking="true">
-				<case nightMode="true" attrColorValue="$pathColorNight" color="$null"/>
-				<case attrColorValue="$pathColor" color="$null"/>
+				<case nightMode="true" attrColorValue="$pathColorNight"/>
+				<case attrColorValue="$pathColor"/>
 			</apply_if>
 		</case>
 	</renderingAttribute>
@@ -281,7 +277,7 @@
 	<renderingConstant name="sacScaleColorT6" value="#000000"/>
 	<renderingConstant name="climbingAccessColor" value="#FF8C00"/>
 
-	<!-- renderingConstant name="caiScaleColor" value="#e23cad"/ --><!-- use roughly equivalent SAC color -->
+	<!-- renderingConstant name="caiScaleColor" value="#e23cad"/ --><!-- no separate color ladder, use equivalent SAC color -->
 
 	<renderingConstant name="null" value="#00000000"/>
 
@@ -1304,8 +1300,12 @@
 						<case additional="sac_scale=mountain_hiking" color_5="$sacScaleColorT2" pathEffect_5=""/>
 						<case additional="sac_scale=demanding_mountain_hiking" color_5="$sacScaleColorT3" pathEffect_5=""/>
 						<case additional="sac_scale=alpine_hiking" color_5="$sacScaleColorT4" pathEffect_5=""/>
-						<case additional="sac_scale=demanding_alpine_hiking" color_5="$sacScaleColorT5" pathEffect_5=""/>
-						<case additional="sac_scale=difficult_alpine_hiking" color_5="$sacScaleColorT6" pathEffect_5=""/>
+						<case additional="sac_scale=demanding_alpine_hiking" color_5="$sacScaleColorT5" pathEffect_5="">
+							<apply_if nightMode="true" color_5="#808080"/>
+						</case>
+						<case additional="sac_scale=difficult_alpine_hiking" color_5="$sacScaleColorT6" pathEffect_5="">
+							<apply_if nightMode="true" color_5="#d0d0d0"/>
+						</case>
 						<!-- No SAC tag -->
 						<case color_5="$pathColor" pathEffect_5="4_2">
 							<case nightMode="true" color_5="$pathColorNight"/>
