@@ -842,6 +842,27 @@
 	<entity_convert pattern="tag_transform" from_tag="stream" from_value="intermittent" to_tag1="intermittent" to_value1="yes"/>
 	<entity_convert pattern="tag_transform" from_tag="stream" from_value="ephemeral" to_tag1="intermittent" to_value1="yes"/>
 
+    <!-- Add intermittent=no for natural=spring with three state value (yes/no/null) -->
+	<type tag="intermittent" value="no" minzoom="9" additional="true"/>
+
+	<!-- seasonal to intermittent for natural=spring -->
+	<entity_convert pattern="tag_transform" from_tag="natural" from_value="spring"
+		if_tag1="seasonal" if_value1="yes"
+    	to_tag1="natural" to_value1="spring" to_tag2="intermittent" to_value2="yes" poi="no"/>
+
+	<entity_convert pattern="tag_transform" from_tag="natural" from_value="spring"
+    	if_tag1="seasonal" if_value1="wet_season"
+    	to_tag1="natural" to_value1="spring" to_tag2="intermittent" to_value2="yes" poi="no"/>
+
+	<entity_convert pattern="tag_transform" from_tag="natural" from_value="spring"
+	    if_tag1="seasonal" if_value1="no"
+	    to_tag1="natural" to_value1="spring" to_tag2="intermittent" to_value2="no" poi="no"/>
+
+	<!-- refitted to covered for natural=spring -->
+	<entity_convert pattern="tag_transform" from_tag="natural" from_value="spring"
+	    if_tag1="refitted" if_value1="yes"
+	    to_tag1="natural" to_value1="spring" to_tag2="covered" to_value2="yes" poi="no"/>
+    
 	<type tag="salt" value="yes" minzoom="11" additional="true"/>
 
 	<type tag="hazard_map" value="yes" minzoom="15" order="100" propagateToNodes="center" propagateToNodesPrefix="osmand_" propagateAlsoTags="layer,level,hazard,hazard_type"/>
