@@ -79,12 +79,12 @@
 		- Tracks (all tracktypes) are rendered as brown solid lines
 		- Paths and footways are colored by sac_scale:
 			standard black dashed path : sac_scale not specified 
-			green                      : sac_scale = hiking
+			green                      : sac_scale = hiking                       OR cai_scales=t, e
 			blue                       : sac_scale = mountain_hiking
-			red                        : sac_scale = demanding_mountain_hiking
-			dark red (maroon)          : sac_scale = alpine_hiking
+			red                        : sac_scale = demanding_mountain_hiking    OR cai_scale=ee
+			dark red (maroon)          : sac_scale = alpine_hiking, cai_scale=eai
 			gray                       : sac_scale = demanding_alpine_hiking
-			black                      : sac_scale = difficult_alpine_hiking
+			black                      : sac_scale = difficult_alpine_hiking      OR cai_scales=eea, eea:f, eea:pd, eea:d, eea:md, eea:e
 			In addition:
 			bad/horrible/no trail_visibility : long dashes, medium dashes, short dashes
 	-->
@@ -1297,15 +1297,15 @@
 					<case tag="highway" value="footway" alpineHiking="true" strokeWidth="1">
 						<case additional="footway=crossing" strokeWidth="0.1"/>
 					</case>
-					<apply color="$null">
-						<case additional="sac_scale=hiking" color_5="$sacScaleColorT1" pathEffect_5=""/>
-						<case additional="sac_scale=mountain_hiking" color_5="$sacScaleColorT2" pathEffect_5=""/>
-						<case additional="sac_scale=demanding_mountain_hiking" color_5="$sacScaleColorT3" pathEffect_5=""/>
-						<case additional="sac_scale=alpine_hiking" color_5="$sacScaleColorT4" pathEffect_5=""/>
-						<case additional="sac_scale=demanding_alpine_hiking" color_5="$sacScaleColorT5" pathEffect_5="">
+					<apply color="$null" pathEffect_5="">
+						<case additional="sac_scale=hiking" color_5="$sacScaleColorT1"/>
+						<case additional="sac_scale=mountain_hiking" color_5="$sacScaleColorT2"/>
+						<case additional="sac_scale=demanding_mountain_hiking" color_5="$sacScaleColorT3"/>
+						<case additional="sac_scale=alpine_hiking" color_5="$sacScaleColorT4"/>
+						<case additional="sac_scale=demanding_alpine_hiking" color_5="$sacScaleColorT5">
 							<apply_if nightMode="true" color_5="#808080"/>
 						</case>
-						<case additional="sac_scale=difficult_alpine_hiking" color_5="$sacScaleColorT6" pathEffect_5="">
+						<case additional="sac_scale=difficult_alpine_hiking" color_5="$sacScaleColorT6">
 							<apply_if nightMode="true" color_5="#d0d0d0"/>
 						</case>
 						<!-- No SAC tag -->
@@ -1321,10 +1321,10 @@
 						<!-- 2023-07 CAI scheme support. Falls back to SAC where not CAI tagged -->
 						<!--         For CAI rendering use the SAC rendering for the max equivalent grade as per https://wiki.openstreetmap.org/wiki/Proposal:Cai_scale -->
 						<apply_if alpineHikingScaleScheme="caiScale">
-							<case additional="cai_scale=t" color_5="$sacScaleColorT1" pathEffect_5=""/><!-- is less than SAC hiking -->
-							<case additional="cai_scale=e" color_5="$sacScaleColorT1" pathEffect_5=""/><!-- is about SAC hiking -->
-							<case additional="cai_scale=ee" color_5="$sacScaleColorT3" pathEffect_5=""/><!-- is max SAC demanding_mountain_hiking -->
-							<case additional="cai_scale=eai" color_5="$sacScaleColorT4" pathEffect_5=""/><!-- is max SAC alpine_hiking -->
+							<case additional="cai_scale=t" color_5="$sacScaleColorT1"/><!-- is less than SAC hiking -->
+							<case additional="cai_scale=e" color_5="$sacScaleColorT1"/><!-- is about SAC hiking -->
+							<case additional="cai_scale=ee" color_5="$sacScaleColorT3"/><!-- is max SAC demanding_mountain_hiking -->
+							<case additional="cai_scale=eai" color_5="$sacScaleColorT4"/><!-- is max SAC alpine_hiking -->
 							<switch>
 								<case additional="cai_scale=eea"/>
 								<case additional="cai_scale=eea:f"/>
@@ -1332,7 +1332,9 @@
 								<case additional="cai_scale=eea:d"/>
 								<case additional="cai_scale=eea:md"/>
 								<case additional="cai_scale=eea:e"/>
-								<apply color_5="$sacScaleColorT6" pathEffect_5=""/><!-- is max SAC difficult_alpine_hiking -->
+								<apply color_5="$sacScaleColorT6"><!-- is max SAC difficult_alpine_hiking -->
+									<apply_if nightMode="true" color_5="#808080"/>
+								</apply>
 							</switch>
 						</apply_if>
 					</apply>
