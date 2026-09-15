@@ -1216,11 +1216,16 @@
 					</apply>
 				</switch>
 
-				<!-- The blocks path and footway support SAC/CAI rendering -->
-				<!-- Alpine Hiking OFF: path appearance -->
+				<!-- The blocks path and footway support SAC/CAI rendering and profile-aware appearance of bicycle-designation  -->
+				<!-- Alpine Hiking OFF: path and footway appearance -->
 				<switch>
-					<case tag="highway" value="path" alpineHiking="false" strokeWidth="1"/>
-					<apply color_5="$pathColor" color="$null">
+					<case tag="highway" value="path" alpineHiking="false" color_5="$pathColor" strokeWidth="1">
+						<case nightMode="true" color_5="$pathColorNight"/>
+					</case>
+					<case tag="highway" value="footway" alpineHiking="false" color_5="$footwayColor" strokeWidth="1">
+						<case additional="footway=crossing" strokeWidth="0.1"/>
+					</case>
+					<apply color="$null">
 						<case additional="sac_scale=hiking" pathEffect_5=""/>
 						<case additional="sac_scale=mountain_hiking" pathEffect_5="10_3"/>
 						<case additional="sac_scale=demanding_mountain_hiking" pathEffect_5="5_3"/>
@@ -1244,10 +1249,9 @@
 							<case minzoom="12" maxzoom="12" strokeWidth_5="0.7"/>
 							<case minzoom="13" strokeWidth_5="1"/>
 						</apply>
-						<apply_if nightMode="true" color_5="$pathColorNight"/>
 
 						<!-- Bicycle-designated paths (Issue #24915) -->
-						<!-- (1) Path has no designation -> black (already achieved above) -->
+						<!-- (1) Path/footway has no designation -> black/red (already achieved above) -->
 
 						<!-- (2) Bicycle profile + bicycle=designated -> blue (with emphasis) -->
 						<apply_if baseAppMode="bicycle" additional="bicycle=designated" minzoom="12" color_5="$cyclewayColor" strokeWidth_5="2" pathEffect_5="8_4"/>
@@ -1258,40 +1262,29 @@
 						<apply_if baseAppMode="default" additional="bicycle=designated" minzoom="12" color_5="$cyclewayColor"/>
 						<apply_if baseAppMode="public_transport" additional="bicycle=designated" minzoom="12" color_5="$cyclewayColor"/>
 
-						<!-- (4) Non-bicycle profile + foot=designated -> black (override even if bicycle=designated) -->
-						<apply_if baseAppMode="pedestrian" additional="foot=designated" minzoom="12">
+						<!-- (4) Non-bicycle profile + foot=designated -> Restore native color, overriding bicycle=designated -->
+						<!-- pedestrian -->
+						<apply_if baseAppMode="pedestrian" additional="foot=designated" tag="highway" value="path" minzoom="12">
 							<case nightMode="true" color_5="$pathColorNight"/>
 							<case color_5="$pathColor"/>
 						</apply_if>
-						<apply_if baseAppMode="default" additional="foot=designated" minzoom="12">
+						<apply_if baseAppMode="pedestrian" additional="foot=designated" tag="highway" value="footway" minzoom="12" color_5="$footwayColor"/>
+						<!-- default -->
+						<apply_if baseAppMode="default" additional="foot=designated" tag="highway" value="path" minzoom="12">
 							<case nightMode="true" color_5="$pathColorNight"/>
 							<case color_5="$pathColor"/>
 						</apply_if>
-						<apply_if baseAppMode="public_transport" additional="foot=designated" minzoom="12">
+						<apply_if baseAppMode="default" additional="foot=designated" tag="highway" value="footway" minzoom="12" color_5="$footwayColor"/>
+						<!-- public transport -->
+						<apply_if baseAppMode="public_transport" additional="foot=designated" tag="highway" value="path" minzoom="12">
 							<case nightMode="true" color_5="$pathColorNight"/>
 							<case color_5="$pathColor"/>
 						</apply_if>
+						<apply_if baseAppMode="public_transport" additional="foot=designated" tag="highway" value="footway" minzoom="12" color_5="$footwayColor"/>
 					</apply>
 				</switch>
 
-				<!-- Alpine Hiking OFF: footway appearance -->
-				<switch>
-					<case tag="highway" value="footway" alpineHiking="false" strokeWidth="1">
-						<case additional="footway=crossing" strokeWidth="0.1"/>
-					</case>
-					<apply color_5="$footwayColor" pathEffect_5="4_2" color="$null">
-						<case baseAppMode="pedestrian" minzoom="12" maxzoom="12" strokeWidth_5="1.4"/>
-						<case baseAppMode="pedestrian" minzoom="13" maxzoom="13" strokeWidth_5="2"/>
-						<case baseAppMode="pedestrian" minzoom="14" strokeWidth_5="3"/>
-						<case minzoom="12" maxzoom="12" strokeWidth_5="0.7"/>
-						<case minzoom="13" strokeWidth_5="1"/>
-					</apply>
-
-					<apply_if baseAppMode="bicycle" additional="bicycle=designated" minzoom="12" color_5="$cyclewayColor" strokeWidth_5="2" pathEffect_5="8_4"/>
-
-				</switch>
-
-				<!-- Alpine Hiking ON: shared(!) by path and footway -->
+				<!-- Alpine Hiking ON: Shared(!) path and footway appearance -->
 				<switch>
 					<case tag="highway" value="path" alpineHiking="true" strokeWidth="1"/>
 					<case tag="highway" value="footway" alpineHiking="true" strokeWidth="1">
