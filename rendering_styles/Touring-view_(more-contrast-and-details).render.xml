@@ -59,37 +59,43 @@
 		- Some additional dimming (to 80% brightness) is applied for the car profile night view (as the roads are thicker).
 	-->
 
-	<!--
-	ALPINE HIKING based on tests by Christof Knuesel on 2012-10-18:
-		Purpose:
-		- Alpine Hiking option for mountain hiking with "Hike Bike Map (Hills Underlay)" as overlay map:
-		  With "Hike Bike Map (Hills Underlay)" it becomes hard to distinguish between black lines (path) and brown lines (track).
-		  For this reason tracks are rendered with higher strokewidth than paths,
-		  respectively as solid lines (all tracktypes), while paths are rendered as dashed lines (Alpine Hiking Mode).
-
-		Legend:
-		1) Alpine Hiking Mode (SAC or CAI enabled)
-		- Paths are colored by sac_scale:
-			black dashed line: sac_scale not specified or sac_scale = hiking
-			red solid line:    sac_scale = mountain_hiking
-			red dashed line:   sac_scale = demanding_mountain_hiking
-			blue solid line:   sac_scale = alpine_hiking
-			blue dashed line:  sac_scale = demanding_alpine_hiking
-			blue dotted line:  sac_scale = difficult_alpine_hiking
-		- Tracks (all tracktypes) are rendered as brown solid lines
-		2) Other Modes
-		- Tracks are rendered as thick brown lines:
-			solid line:                             tracktype = grade1
-			long dashes        (dash/gap=10/3):     tracktype = grade2
-			medium dashes      (dash/gap=5/3):      tracktype = grade3
-			short dashes       (dash/gap=3/3):      tracktype = grade4
-			dotted line        (dash/gap=2/3):      tracktype = grade5
-			dash-dotted line   (dash+dot/gaps=7/4): tracktype not specified
-		- Paths are rendered as thin black lines:
-			long dashes:       sac_scale not specified or sac_scale = hiking
-			short dashes:      sac_scale = mountain_hiking 
-			dotted line:       sac_scale = demanding_mountain_hiking and above
+	<!-- DASH PATTERN fill rate associates viability (worse means relative line interruptions increase):
+	    Standard dash scale with decreasing path fill rate:
+		- solid (100%) -> long dashes 10_3 (77%) -> medium dashes 5_3 (63%) -> short dashes 3_3 (50%) -> dotted 2_3 (40%)
+		- standard dashes for path/footway etc.                       4_2 (50%)
+		- standard dashes for higher speeds like cycleway, bridleway  8_4 (50%)
 	-->
+
+	<!--
+	ALPINE HIKING optimized, based on tests by Christof Knuesel on 2012-10-18, revised new color scheme Hardy 2026-09-14:
+		Legend:
+		(1) Modes without SAC or CAI difficulty grade enabled:
+		- Tracks are brown lines, dashed by grade:
+			dash-dotted   (dash+dot/gaps=5+2/2+2) : tracktype not specified
+			solid line                    : tracktype = grade1
+			long dashes   (dash/gap=10/3) : tracktype = grade2
+			medium dashes (dash/gap=5/3)  : tracktype = grade3
+			short dashes  (dash/gap=3/3)  : tracktype = grade4
+			dotted line   (dash/gap=2/3)  : tracktype = grade5
+		- Paths black, footways red. Even with trail difficulty setting off, alert about SAC T3 and above by sparser dashes:
+			standard path dash (4_2)      : sac_scale not specified, hiking, mountain_hiking
+			short dashes (3_3)            : sac_scale = demanding_mountain_hiking
+			dotted line (2_3)             : sac_scale = alpine_hiking, demanding_alpine_hiking, difficult_alpine_hiking
+		(2) Alpine Hiking Mode - Hiking trail SAC or CAI difficulty grade enabled:
+		- Tracks (all tracktypes) are rendered as brown solid lines
+		- Paths and footways are colored by sac_scale:
+			standard black (4_2) path     : sac_scale not specified 
+			green                         : sac_scale = hiking                       OR cai_scales=t, e
+			blue                          : sac_scale = mountain_hiking
+			red                           : sac_scale = demanding_mountain_hiking    OR cai_scale=ee
+			dark red (maroon)             : sac_scale = alpine_hiking, cai_scale=eai
+			gray                          : sac_scale = demanding_alpine_hiking
+			black                         : sac_scale = difficult_alpine_hiking      OR cai_scales=eea, eea:f, eea:pd, eea:d, eea:md, eea:e
+			In addition:
+			intermediate/bad/horrible/no trail_visibility : long dashes (10_3), medium dashes (5_3), short dashes (3_3), dotted (2_3)
+		Note: CAI usually applies to the entire relation (https://wiki.openstreetmap.org/wiki/Item:Q2388), SAC is more locally valid for ways.
+	-->
+
 
 	<!-- Description blueprint:
 		<string name="plugin_touringview_name">Touring view map style</string>
@@ -128,7 +134,7 @@
 	<renderingProperty attr="horseRoutes" name="Horse routes" description="Horse routes"
 		type="boolean" possibleValues="" category="routes"/>
 -->
-    
+
 	<!-- The "Road atlas style" color options align with some conventional road atlas schemes. This was moved to default render, not any more supported in Touring view -->
 	<renderingProperty attr="roadStyle" category="ui_hidden" type="string"/>
 
@@ -233,24 +239,14 @@
 	<!-- Path color used is finally adjusted by profile (ped/bike use) -->
 	<renderingConstant name="pathColor" value="#000000"/>
 	<renderingConstant name="pathColorNight" value="#787878"/>
-	<!-- Could reduce color clutter by footway and path in foot use both using pathColor. If not, SAC conflict removal needs activating: -->
-	<renderingAttribute name="footwayColor">
-		<case attrColorValue="#FA5073">
-			<!-- apply_if nightMode="true" attrColorValue="$pathColorNight"/-->
-			<!-- Alpine Hiking Mode: Remove conflicting footway color -->
-			<apply_if alpineHiking="true">
-				<case nightMode="true" attrColorValue="$pathColorNight" color="$null"/>
-				<case attrColorValue="$pathColor" color="$null"/>
-			</apply_if>
-		</case>
-	</renderingAttribute>
+	<renderingConstant name="footwayColor" value="#FA5073"/>
 	<renderingAttribute name="cyclewayColor">
 		<case attrColorValue="#0000FF">
 			<apply_if nightMode="true" attrColorValue="#3333FF"/>
 			<!-- Alpine Hiking Mode: Remove conflicting cycle color -->
 			<apply_if alpineHiking="true">
-				<case nightMode="true" attrColorValue="$pathColorNight" color="$null"/>
-				<case attrColorValue="$pathColor" color="$null"/>
+				<case nightMode="true" attrColorValue="$pathColorNight"/>
+				<case attrColorValue="$pathColor"/>
 			</apply_if>
 		</case>
 	</renderingAttribute>
@@ -282,14 +278,15 @@
 		<case attrColorValue="#9E2D74"/>
 	</renderingAttribute>
 
-	<renderingConstant name="sacScaleColorT1" value="#000000"/>
-	<renderingConstant name="sacScaleColorT2" value="#ff0000"/>
-	<renderingConstant name="sacScaleColorT3" value="#ff0000"/>
-	<renderingConstant name="sacScaleColorT4" value="#0033ff"/>
-	<renderingConstant name="sacScaleColorT5" value="#0033ff"/>
-	<renderingConstant name="sacScaleColorT6" value="#0033ff"/>
-
-	<!-- renderingConstant name="caiScaleColor" value="#e23cad"/ --><!-- use equivalent SAC color pattern for now -->
+	<!-- SAC colors inspired by European ski-piste ratings: beginner=green, easy=blue, intermediate=red, difficult=black -->
+	<renderingConstant name="sacScaleColorT1" value="#00b300"/>
+	<renderingConstant name="sacScaleColorT2" value="#0033ff"/>
+	<renderingConstant name="sacScaleColorT3" value="#e60000"/>
+	<renderingConstant name="sacScaleColorT4" value="#800000"/>
+	<renderingConstant name="sacScaleColorT5" value="#404040"/>
+	<renderingConstant name="sacScaleColorT6" value="#000000"/>
+	<!-- CAI scale uses the roughly equivalent SAC color -->
+	<renderingConstant name="climbingAccessColor" value="#FF8C00"/>
 
 	<renderingConstant name="null" value="#00000000"/>
 
@@ -1226,15 +1223,21 @@
 					</apply>
 				</switch>
 
+				<!-- The blocks path and footway support SAC/CAI rendering and profile-aware appearance of bicycle-designation  -->
+				<!-- Alpine Hiking OFF: path and footway appearance -->
 				<switch>
-					<case tag="highway" value="path" strokeWidth="1"/>
-					<apply_if alpineHiking="false" color_5="$pathColor" color="$null">
-						<case additional="sac_scale=hiking" pathEffect_5="10_3"/>
-						<case additional="sac_scale=mountain_hiking" pathEffect_5="5_5"/>
-						<case additional="sac_scale=demanding_mountain_hiking" pathEffect_5="2_6"/>
-						<case additional="sac_scale=alpine_hiking" pathEffect_5="2_6"/>
-						<case additional="sac_scale=demanding_alpine_hiking" pathEffect_5="2_6"/>
-						<case additional="sac_scale=difficult_alpine_hiking" pathEffect_5="2_6"/>
+					<case tag="highway" value="path" alpineHiking="false" color_5="$pathColor" strokeWidth="1">
+						<case nightMode="true" color_5="$pathColorNight"/>
+					</case>
+					<case tag="highway" value="footway" alpineHiking="false" color_5="$footwayColor" strokeWidth="1">
+						<case additional="footway=crossing" strokeWidth="0.1"/>
+					</case>
+					<apply color="$null">
+						<!-- Even with trail difficulty setting off, alert about SAC T3 and above by sparser dashes -->
+						<case additional="sac_scale=demanding_mountain_hiking" pathEffect_5="3_3"/>
+						<case additional="sac_scale=alpine_hiking" pathEffect_5="2_3"/>
+						<case additional="sac_scale=demanding_alpine_hiking" pathEffect_5="2_3"/>
+						<case additional="sac_scale=difficult_alpine_hiking" pathEffect_5="2_3"/>
 						<case pathEffect_5="4_2"/>
 						<apply>
 							<case baseAppMode="pedestrian">
@@ -1252,11 +1255,10 @@
 							<case minzoom="12" maxzoom="12" strokeWidth_5="0.7"/>
 							<case minzoom="13" strokeWidth_5="1"/>
 						</apply>
-						<apply_if nightMode="true" color_5="$pathColorNight"/>
-						
-						<!-- Bicycle-designated paths (Issue #24915) -->
-						<!-- (1) Path has no designation -> black (already achieved above) -->
-						
+
+						<!-- Overrides for bicycle-designated paths (Issue #24915) -->
+						<!-- (1) Path/footway has no designation -> black/red (already achieved above) -->
+
 						<!-- (2) Bicycle profile + bicycle=designated -> blue (with emphasis) -->
 						<apply_if baseAppMode="bicycle" additional="bicycle=designated" minzoom="12" color_5="$cyclewayColor" strokeWidth_5="2" pathEffect_5="8_4"/>
 
@@ -1266,72 +1268,91 @@
 						<apply_if baseAppMode="default" additional="bicycle=designated" minzoom="12" color_5="$cyclewayColor"/>
 						<apply_if baseAppMode="public_transport" additional="bicycle=designated" minzoom="12" color_5="$cyclewayColor"/>
 
-						<!-- (4) Non-bicycle profile + foot=designated -> black (override even if bicycle=designated) -->
-						<apply_if baseAppMode="pedestrian" additional="foot=designated" minzoom="12">
+						<!-- (4) Non-bicycle profile + foot=designated -> Restore native color, overriding bicycle=designated -->
+						<!-- pedestrian -->
+						<apply_if baseAppMode="pedestrian" additional="foot=designated" tag="highway" value="path" minzoom="12">
 							<case nightMode="true" color_5="$pathColorNight"/>
 							<case color_5="$pathColor"/>
 						</apply_if>
-						<apply_if baseAppMode="default" additional="foot=designated" minzoom="12">
+						<apply_if baseAppMode="pedestrian" additional="foot=designated" tag="highway" value="footway" minzoom="12" color_5="$footwayColor"/>
+						<!-- default -->
+						<apply_if baseAppMode="default" additional="foot=designated" tag="highway" value="path" minzoom="12">
 							<case nightMode="true" color_5="$pathColorNight"/>
 							<case color_5="$pathColor"/>
 						</apply_if>
-						<apply_if baseAppMode="public_transport" additional="foot=designated" minzoom="12">
+						<apply_if baseAppMode="default" additional="foot=designated" tag="highway" value="footway" minzoom="12" color_5="$footwayColor"/>
+						<!-- public transport -->
+						<apply_if baseAppMode="public_transport" additional="foot=designated" tag="highway" value="path" minzoom="12">
 							<case nightMode="true" color_5="$pathColorNight"/>
 							<case color_5="$pathColor"/>
 						</apply_if>
-					</apply_if>
+						<apply_if baseAppMode="public_transport" additional="foot=designated" tag="highway" value="footway" minzoom="12" color_5="$footwayColor"/>
+					</apply>
+				</switch>
 
-					<apply_if alpineHiking="true" color="$null">
-						<case additional="sac_scale=hiking" color_5="$sacScaleColorT1" pathEffect_5="10_3"/>
-						<case additional="sac_scale=mountain_hiking" color_5="$sacScaleColorT2" pathEffect_5=""/>
-						<case additional="sac_scale=demanding_mountain_hiking" color_5="$sacScaleColorT3" pathEffect_5="10_3"/>
-						<case additional="sac_scale=alpine_hiking" color_5="$sacScaleColorT4" pathEffect_5=""/>
-						<case additional="sac_scale=demanding_alpine_hiking" color_5="$sacScaleColorT5" pathEffect_5="10_3"/>
-						<case additional="sac_scale=difficult_alpine_hiking" color_5="$sacScaleColorT6" pathEffect_5="3_3"/>
+				<!-- Alpine Hiking ON: Path and footway appearance is shared -->
+				<switch>
+					<case tag="highway" value="path" alpineHiking="true" strokeWidth="1"/>
+					<case tag="highway" value="footway" alpineHiking="true" strokeWidth="1">
+						<case additional="footway=crossing" strokeWidth="0.1"/>
+					</case>
+					<apply color="$null" pathEffect_5="">
+						<case additional="sac_scale=hiking" color_5="$sacScaleColorT1"/>
+						<case additional="sac_scale=mountain_hiking" color_5="$sacScaleColorT2"/>
+						<case additional="sac_scale=demanding_mountain_hiking" color_5="$sacScaleColorT3"/>
+						<case additional="sac_scale=alpine_hiking" color_5="$sacScaleColorT4"/>
+						<case additional="sac_scale=demanding_alpine_hiking" color_5="$sacScaleColorT5">
+							<apply_if nightMode="true" color_5="#808080"/>
+						</case>
+						<case additional="sac_scale=difficult_alpine_hiking" color_5="$sacScaleColorT6">
+							<apply_if nightMode="true" color_5="#d0d0d0"/>
+						</case>
+
+						<!-- No recognized SAC value -->
 						<case color_5="$pathColor" pathEffect_5="4_2">
 							<case nightMode="true" color_5="$pathColorNight"/>
 						</case>
+
+						<!-- Width -->
 						<apply>
 							<case minzoom="12" maxzoom="12" strokeWidth_5="1.4"/>
 							<case minzoom="13" maxzoom="13" strokeWidth_5="2"/>
 							<case minzoom="14" strokeWidth_5="3"/>
 						</apply>
 
-						<!-- 2023-07 CAI scheme support. Falls back to SAC where not CAI tagged -->
-						<!--         For CAI rendering use the SAC rendering for the max equivalent grade as per https://wiki.openstreetmap.org/wiki/Proposal:Cai_scale -->
+						<!-- 2023-07 CAI scheme support (applies mostly to the entire relation!). Falls back to SAC where no CAI tagging -->
+						<!--         For CAI rendering use the highest equivalent SAC grade as per https://wiki.openstreetmap.org/wiki/Proposal:Cai_scale -->
 						<apply_if alpineHikingScaleScheme="caiScale">
-							<case additional="cai_scale=t" color_5="$sacScaleColorT1" pathEffect_5=""/><!-- is less than SAC hiking -->
-							<case additional="cai_scale=e" color_5="$sacScaleColorT1" pathEffect_5="10_3"/><!-- is about SAC hiking -->
-							<case additional="cai_scale=ee" color_5="$sacScaleColorT3" pathEffect_5="10_3"/><!-- is max SAC demanding_mountain_hiking -->
-							<case additional="cai_scale=eai" color_5="$sacScaleColorT4" pathEffect_5=""/><!-- is max SAC alpine_hiking -->
-							<switch>
+							<case additional="cai_scale=t" color_5="$sacScaleColorT1"/><!-- is less than SAC hiking -->
+							<case additional="cai_scale=e" color_5="$sacScaleColorT1"/><!-- is about SAC hiking -->
+							<case additional="cai_scale=ee" color_5="$sacScaleColorT3"/><!-- is up to SAC demanding_mountain_hiking -->
+							<case additional="cai_scale=eai" color_5="$sacScaleColorT4"/><!-- is up to SAC alpine_hiking -->
+							<switch><!-- is up to SAC difficult_alpine_hiking -->
 								<case additional="cai_scale=eea"/>
 								<case additional="cai_scale=eea:f"/>
 								<case additional="cai_scale=eea:pd"/>
 								<case additional="cai_scale=eea:d"/>
 								<case additional="cai_scale=eea:md"/>
 								<case additional="cai_scale=eea:e"/>
-								<apply color_5="$sacScaleColorT6" pathEffect_5="3_3"/><!-- is max SAC difficult_alpine_hiking -->
+								<apply color_5="$sacScaleColorT6">
+									<apply_if nightMode="true" color_5="#808080"/>
+								</apply>
 							</switch>
 						</apply_if>
-					</apply_if>
-				</switch>
-
-				<!-- Blocks footway/steps/cycleway/bridleway copied unchanged from default renderer -->
-				<switch>
-					<case tag="highway" value="footway" strokeWidth="1">
-						<case additional="footway=crossing" strokeWidth="0.1"/>
-					</case>
-					<apply color_5="$footwayColor" pathEffect_5="4_2" color="$null">
-						<case baseAppMode="pedestrian" minzoom="12" maxzoom="12" strokeWidth_5="1.4"/>
-						<case baseAppMode="pedestrian" minzoom="13" maxzoom="13" strokeWidth_5="2"/>
-						<case baseAppMode="pedestrian" minzoom="14" strokeWidth_5="3"/>
-						<case minzoom="12" maxzoom="12" strokeWidth_5="0.5"/>
-						<case minzoom="13" strokeWidth_5="1"/>
 					</apply>
-					<apply_if baseAppMode="bicycle" additional="bicycle=designated" minzoom="12" color_5="$cyclewayColor" strokeWidth_5="2" pathEffect_5="8_4"/>
+
+					<!-- Climbing-access override -->
+					<apply_if additional="path=climbing_access" color_5="$climbingAccessColor"/>
+
+					<!-- Indicate intermediate/bad/horrible/no trail_visibility -->
+					<apply_if additional="trail_visibility=intermediate" pathEffect_5="10_3"/>
+					<apply_if additional="trail_visibility=bad" pathEffect_5="5_3"/>
+					<apply_if additional="trail_visibility=horrible" pathEffect_5="3_3"/>
+					<apply_if additional="trail_visibility=no" pathEffect_5="2_3"/>
+
 				</switch>
 
+				<!-- The blocks steps/cycleway/bridleway copied unchanged from default renderer -->
 				<switch>
 					<case tag="highway" value="steps" strokeWidth="1"/>
 					<apply color_5="$footwayColor" pathEffect_5="1_2" color="$null">
@@ -1349,18 +1370,18 @@
 						<case baseAppMode="bicycle" minzoom="13" maxzoom="13" strokeWidth_5="2"/>
 						<case baseAppMode="bicycle" minzoom="14" strokeWidth_5="3"/>
 						<case baseAppMode="pedestrian" minzoom="14" strokeWidth_5="2"/>
-						<case minzoom="12" maxzoom="12" strokeWidth_5="0.5"/>
+						<case minzoom="12" maxzoom="12" strokeWidth_5="0.7"/>
 						<case minzoom="13" strokeWidth_5="1"/>
 					</apply>
 				</switch>
 
 				<switch>
 					<case tag="highway" value="bridleway" strokeWidth="1"/>
-					<apply color_5="$bridlewayColor" pathEffect_5="4_2" color="$null">
+					<apply color_5="$bridlewayColor" pathEffect_5="8_4" color="$null">
 						<case baseAppMode="pedestrian" minzoom="12" maxzoom="12" strokeWidth_5="1.4"/>
 						<case baseAppMode="pedestrian" minzoom="13" maxzoom="13" strokeWidth_5="2"/>
 						<case baseAppMode="pedestrian" minzoom="14" strokeWidth_5="3"/>
-						<case minzoom="12" maxzoom="12" strokeWidth_5="0.5"/>
+						<case minzoom="12" maxzoom="12" strokeWidth_5="0.7"/>
 						<case minzoom="13" strokeWidth_5="1"/>
 					</apply>
 				</switch>
@@ -1427,7 +1448,7 @@
 						<apply_if minzoom="19" strokeWidth_3="6.5:6.5"/>
 					</switch>
 
-                    <switch minzoom="15" showAccess="true">
+					<switch minzoom="15" showAccess="true">
 						<switch baseAppMode="car" minzoom="15">
 							<switch>
 								<case additional="vehicle=private"/>
