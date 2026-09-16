@@ -288,6 +288,38 @@
 		<case safetyContour="10m" attrStringValue="contourtype=10m"/>
 		<case attrStringValue="contourtype=x"/>
 	</renderingAttribute>
+
+	<!-- depth areas shallower than the safety contour are hatched -->
+	<renderingAttribute name="safetyAreaType0">
+		<case safetyContour="0m" attrStringValue="areatype=-1"/>
+		<case safetyContour="1m" attrStringValue="areatype=-1"/>
+		<case safetyContour="2m" attrStringValue="areatype=-1"/>
+		<case safetyContour="3m" attrStringValue="areatype=-1"/>
+		<case safetyContour="4m" attrStringValue="areatype=-1"/>
+		<case safetyContour="5m" attrStringValue="areatype=-1"/>
+		<case safetyContour="10m" attrStringValue="areatype=-1"/>
+		<case attrStringValue="areatype=x"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="safetyAreaType2">
+		<case safetyContour="2m" attrStringValue="areatype=0"/>
+		<case safetyContour="3m" attrStringValue="areatype=0"/>
+		<case safetyContour="4m" attrStringValue="areatype=0"/>
+		<case safetyContour="5m" attrStringValue="areatype=0"/>
+		<case safetyContour="10m" attrStringValue="areatype=0"/>
+		<case attrStringValue="areatype=x"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="safetyAreaType5">
+		<case safetyContour="5m" attrStringValue="areatype=2"/>
+		<case safetyContour="10m" attrStringValue="areatype=2"/>
+		<case attrStringValue="areatype=x"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="safetyAreaType10">
+		<case safetyContour="10m" attrStringValue="areatype=5"/>
+		<case attrStringValue="areatype=x"/>
+	</renderingAttribute>
 	<!-- depthcontourslines -->
 
 	<renderingAttribute name="boundaryColorInner">
@@ -608,7 +640,7 @@
 			<case tag="contour" value="depth" order="15"/>
 		</switch>
 		<switch point="false" addPoint="true" objectType="3">
-			<case tag="contourarea" value="depth" order="4"/>
+			<case tag="contourarea" value="depth" order="8"/>
 		</switch>
 		<!-- depthcontourslines -->
 	<!-- Point -->
@@ -3442,14 +3474,18 @@
 				<case additional="areatype=5" color="#04060A"/>
 				<case additional="areatype=10" color="#000000"/>
 			</case>
-			<case additional="areatype=-1" color="#CADBC1"/>
-			<case additional="areatype=0" color="#AFCCE3"/>
-			<case additional="areatype=2" color="#CADEEF"/>
-			<case additional="areatype=5" color="#F1F6FC"/>
-			<case additional="areatype=10" color="#FFFFFF"/>
+			<!-- shallower is darker; deeper than 10 m keeps the sea colour -->
+			<case additional="areatype=-1" color="#D4E8C6"/>
+			<case additional="areatype=0" color="#5FBDEB"/>
+			<case additional="areatype=2" color="#7DCDF3"/>
+			<case additional="areatype=5" color="#93DAF9"/>
 			<apply>
 				<switch shader="hazard">
 					<apply_if nightMode="true" shader="hazard_night"/>
+					<case additional="$safetyAreaType0"/>
+					<case additional="$safetyAreaType2"/>
+					<case additional="$safetyAreaType5"/>
+					<case additional="$safetyAreaType10"/>
 				</switch>
 			</apply>
 		</switch>

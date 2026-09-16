@@ -7,6 +7,7 @@
 	<renderingProperty attr="depthContours" name="Depth contours" description="Show depth contours and points"
 		type="boolean" possibleValues="" category="details"/>
 	<renderingProperty attr="depthContourWidth" name="Depth contour lines width" description="Depth contour lines width" type="string" possibleValues="thin,medium,thick" defaultValueDescription="default"/>
+	<renderingProperty attr="hideAreas" name="Depth Areas" description="" type="boolean" possibleValues="" category="hide"/>
 	<renderingProperty attr="depthContourColorScheme" name="Depth contour lines color scheme" description="Depth contour lines color scheme" type="string" possibleValues="white,yellow,green,light_brown,brown,dark_brown,red" defaultValueDescription="default"/>
 
 	<renderingAttribute name="contourLineDepthColor100m">
@@ -90,6 +91,9 @@
 		<switch area="false" objectType="2" order="80">
 			<case tag="contour" value="depth" order="15"/>
 		</switch>
+		<switch point="false" addPoint="true" objectType="3">
+			<case tag="contourarea" value="depth" order="8"/>
+		</switch>
 	</order>
 
 	<text>
@@ -122,6 +126,19 @@
 	</point>
 
 	<polygon>
+		<!-- depth areas: shallower is darker, deeper than 10 m keeps the water colour -->
+		<switch minzoom="10" depthContours="true" hideAreas="false" tag="contourarea" value="depth">
+			<case nightMode="true">
+				<case additional="areatype=-1" color="#141C0E"/>
+				<case additional="areatype=0" color="#142330"/>
+				<case additional="areatype=2" color="#0C1721"/>
+				<case additional="areatype=5" color="#04060A"/>
+			</case>
+			<case additional="areatype=-1" color="#D4E8C6"/>
+			<case additional="areatype=0" color="#5FBDEB"/>
+			<case additional="areatype=2" color="#7DCDF3"/>
+			<case additional="areatype=5" color="#93DAF9"/>
+		</switch>
 	</polygon>
 
 	<line>
