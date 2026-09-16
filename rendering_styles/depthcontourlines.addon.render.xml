@@ -27,7 +27,7 @@
 		</case>
 		<case depthContourColorScheme="red" attrColorValue="#44ff0000"/>
 		<case nightMode="true" attrColorValue="#175295"/>
-		<case attrColorValue="#40282F6A"/>
+		<case attrColorValue="#E6142850"/>
 	</renderingAttribute>
 	<renderingAttribute name="contourLineDepthColor50m">
 		<case depthContourColorScheme="white" attrColorValue="#44ffffff"/>
@@ -47,7 +47,7 @@
 		</case>
 		<case depthContourColorScheme="red" attrColorValue="#44ff0000"/>
 		<case nightMode="true" attrColorValue="#144680"/>
-		<case attrColorValue="#30374091"/>
+		<case attrColorValue="#DD1B3560"/>
 	</renderingAttribute>
 	<renderingAttribute name="contourLineDepthColor20m">
 		<case depthContourColorScheme="white" attrColorValue="#44ffffff"/>
@@ -67,7 +67,7 @@
 		</case>
 		<case depthContourColorScheme="red" attrColorValue="#44ff0000"/>
 		<case nightMode="true" attrColorValue="#13447C"/>
-		<case attrColorValue="#244955C1"/>
+		<case attrColorValue="#CC21406E"/>
 	</renderingAttribute>
 
 	<renderingAttribute name="depthTextColor">
@@ -97,6 +97,8 @@
 					<case additional="contourtype=20m" textSize="10"/>
 					<case additional="contourtype=10m" textSize="9"/>
 					<case additional="contourtype=5m" textSize="9"/>
+					<case minzoom="14" additional="contourtype=2m" textSize="8"/>
+					<case minzoom="14" textSize="8"/>
 				</apply>
 			</case>
 		</switch>
@@ -118,16 +120,20 @@
 
 	<line>
 		<switch depthContours="true" tag="contour" value="depth" strokeWidth="1">
-			<case minzoom="5" additional="contourtype=1000m" color="$contourLineDepthColor100m"/>
-			<case minzoom="7" additional="contourtype=200m" color="$contourLineDepthColor100m"/>
+			<case minzoom="5" additional="contourtype=1000m" color="$contourLineDepthColor100m" strokeWidth="1.3"/>
+			<case minzoom="7" additional="contourtype=200m" color="$contourLineDepthColor100m" strokeWidth="1.3"/>
 			<case minzoom="11">
 				<apply>
-					<case additional="contourtype=5m" color="$contourLineDepthColor20m"/>
-					<case additional="contourtype=10m" color="$contourLineDepthColor20m"/>
-					<case additional="contourtype=20m" color="$contourLineDepthColor20m"/>
-					<case additional="contourtype=50m" color="$contourLineDepthColor50m"/>
-					<case additional="contourtype=100m" color="$contourLineDepthColor100m"/>
+					<case additional="contourtype=5m" color="$contourLineDepthColor20m" strokeWidth="1.1"/>
+					<case additional="contourtype=10m" color="$contourLineDepthColor20m" strokeWidth="1.2"/>
+					<case additional="contourtype=20m" color="$contourLineDepthColor50m" strokeWidth="1.3"/>
+					<case additional="contourtype=50m" color="$contourLineDepthColor50m" strokeWidth="1.3"/>
+					<case additional="contourtype=100m" color="$contourLineDepthColor100m" strokeWidth="1.4"/>
+					<case minzoom="13" additional="contourtype=2m" color="$contourLineDepthColor20m" strokeWidth="1.1" pathEffect="6_3"/>
+					<!-- 2 m and the levels without a contourtype (15, 25 m...) -->
+					<case minzoom="13" color="$contourLineDepthColor20m" strokeWidth="1.1" pathEffect="6_3"/>
 				</apply>
+				<apply_if minzoom="14" strokeWidth="1.5"/>
 				<apply_if depthContourWidth="thin" strokeWidth="0.6"/>
 				<apply_if depthContourWidth="thick" strokeWidth="1.5"/>
 			</case>
