@@ -81,7 +81,7 @@
 			standard path dash (4_2)      : sac_scale not specified, hiking, mountain_hiking
 			short dashes (3_3)            : sac_scale = demanding_mountain_hiking
 			dotted line (2_3)             : sac_scale = alpine_hiking, demanding_alpine_hiking, difficult_alpine_hiking
-		(2) Alpine Hiking Mode - Hiking trail SAC or CAI difficulty grade enabled)
+		(2) Alpine Hiking Mode - Hiking trail SAC or CAI difficulty grade enabled:
 		- Tracks (all tracktypes) are rendered as brown solid lines
 		- Paths and footways are colored by sac_scale:
 			standard black (4_2) path     : sac_scale not specified 
@@ -93,7 +93,9 @@
 			black                         : sac_scale = difficult_alpine_hiking      OR cai_scales=eea, eea:f, eea:pd, eea:d, eea:md, eea:e
 			In addition:
 			intermediate/bad/horrible/no trail_visibility : long dashes (10_3), medium dashes (5_3), short dashes (3_3), dotted (2_3)
+		Note: CAI usually applies to the entire relation (https://wiki.openstreetmap.org/wiki/Item:Q2388), SAC is more locally valid for ways.
 	-->
+
 
 	<!-- Description blueprint:
 		<string name="plugin_touringview_name">Touring view map style</string>
@@ -283,9 +285,8 @@
 	<renderingConstant name="sacScaleColorT4" value="#800000"/>
 	<renderingConstant name="sacScaleColorT5" value="#404040"/>
 	<renderingConstant name="sacScaleColorT6" value="#000000"/>
+	<!-- CAI scale uses the roughly equivalent SAC color -->
 	<renderingConstant name="climbingAccessColor" value="#FF8C00"/>
-
-	<!-- renderingConstant name="caiScaleColor" value="#e23cad"/ --><!-- no separate color ladder, use equivalent SAC color -->
 
 	<renderingConstant name="null" value="#00000000"/>
 
@@ -1255,7 +1256,7 @@
 							<case minzoom="13" strokeWidth_5="1"/>
 						</apply>
 
-						<!-- Bicycle-designated paths (Issue #24915) -->
+						<!-- Overrides for bicycle-designated paths (Issue #24915) -->
 						<!-- (1) Path/footway has no designation -> black/red (already achieved above) -->
 
 						<!-- (2) Bicycle profile + bicycle=designated -> blue (with emphasis) -->
@@ -1289,7 +1290,7 @@
 					</apply>
 				</switch>
 
-				<!-- Alpine Hiking ON: Shared(!) path and footway appearance -->
+				<!-- Alpine Hiking ON: Path and footway appearance is shared -->
 				<switch>
 					<case tag="highway" value="path" alpineHiking="true" strokeWidth="1"/>
 					<case tag="highway" value="footway" alpineHiking="true" strokeWidth="1">
@@ -1319,21 +1320,21 @@
 							<case minzoom="14" strokeWidth_5="3"/>
 						</apply>
 
-						<!-- 2023-07 CAI scheme support. Falls back to SAC where not CAI tagged -->
-						<!--         For CAI rendering use the SAC rendering for the max equivalent grade as per https://wiki.openstreetmap.org/wiki/Proposal:Cai_scale -->
+						<!-- 2023-07 CAI scheme support (applies mostly to the entire relation!). Falls back to SAC where no CAI tagging -->
+						<!--         For CAI rendering use the highest equivalent SAC grade as per https://wiki.openstreetmap.org/wiki/Proposal:Cai_scale -->
 						<apply_if alpineHikingScaleScheme="caiScale">
 							<case additional="cai_scale=t" color_5="$sacScaleColorT1"/><!-- is less than SAC hiking -->
 							<case additional="cai_scale=e" color_5="$sacScaleColorT1"/><!-- is about SAC hiking -->
-							<case additional="cai_scale=ee" color_5="$sacScaleColorT3"/><!-- is max SAC demanding_mountain_hiking -->
-							<case additional="cai_scale=eai" color_5="$sacScaleColorT4"/><!-- is max SAC alpine_hiking -->
-							<switch>
+							<case additional="cai_scale=ee" color_5="$sacScaleColorT3"/><!-- is up to SAC demanding_mountain_hiking -->
+							<case additional="cai_scale=eai" color_5="$sacScaleColorT4"/><!-- is up to SAC alpine_hiking -->
+							<switch><!-- is up to SAC difficult_alpine_hiking -->
 								<case additional="cai_scale=eea"/>
 								<case additional="cai_scale=eea:f"/>
 								<case additional="cai_scale=eea:pd"/>
 								<case additional="cai_scale=eea:d"/>
 								<case additional="cai_scale=eea:md"/>
 								<case additional="cai_scale=eea:e"/>
-								<apply color_5="$sacScaleColorT6"><!-- is max SAC difficult_alpine_hiking -->
+								<apply color_5="$sacScaleColorT6">
 									<apply_if nightMode="true" color_5="#808080"/>
 								</apply>
 							</switch>
@@ -1343,7 +1344,7 @@
 					<!-- Climbing-access override -->
 					<apply_if additional="path=climbing_access" color_5="$climbingAccessColor"/>
 
-					<!-- Indicate bad/horriblee/no trail_visibility -->
+					<!-- Indicate intermediate/bad/horrible/no trail_visibility -->
 					<apply_if additional="trail_visibility=intermediate" pathEffect_5="10_3"/>
 					<apply_if additional="trail_visibility=bad" pathEffect_5="5_3"/>
 					<apply_if additional="trail_visibility=horrible" pathEffect_5="3_3"/>
