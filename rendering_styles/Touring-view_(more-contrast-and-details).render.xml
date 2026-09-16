@@ -59,34 +59,40 @@
 		- Some additional dimming (to 80% brightness) is applied for the car profile night view (as the roads are thicker).
 	-->
 
+	<!-- DASH PATTERN fill rate associates viability (worse means relative line interruptions increase):
+	    Standard dash scale with decreasing path fill rate:
+		- solid (100%) -> long dashes 10_3 (77%) -> medium dashes 5_3 (63%) -> short dashes 3_3 (50%) -> dotted 2_3 (40%)
+		- standard dashes for path/footway etc.                       4_2 (50%)
+		- standard dashes for higher speeds like cycleway, bridleway  8_4 (50%)
+	-->
+
 	<!--
 	ALPINE HIKING optimized, based on tests by Christof Knuesel on 2012-10-18, revised new color scheme Hardy 2026-09-14:
 		Legend:
 		(1) Modes without SAC or CAI difficulty grade enabled:
 		- Tracks are brown lines, dashed by grade:
-			solid line:                                       tracktype = grade1
-			long dashes                : (dash/gap=10/3):     tracktype = grade2
-			medium dashes              : (dash/gap=5/3):      tracktype = grade3
-			short dashes               : (dash/gap=3/3):      tracktype = grade4
-			dotted line                : (dash/gap=2/3):      tracktype = grade5
-			dash-dotted line           : (dash+dot/gaps=7/4): tracktype not specified
+			dash-dotted   (dash+dot/gaps=5+2/2+2) : tracktype not specified
+			solid line                    : tracktype = grade1
+			long dashes   (dash/gap=10/3) : tracktype = grade2
+			medium dashes (dash/gap=5/3)  : tracktype = grade3
+			short dashes  (dash/gap=3/3)  : tracktype = grade4
+			dotted line   (dash/gap=2/3)  : tracktype = grade5
 		- Paths black, footways red. Even with trail difficulty setting off, alert about SAC T3 and above by sparser dashes:
-			standard path dash (4_2)   : sac_scale not specified, hiking, mountain_hiking
-			medium dashes (5_3)        : sac_scale = demanding_mountain_hiking
-			short dashes (3_3)         : sac_scale = alpine_hiking 
-			dotted line (2_3)          : sac_scale = demanding_alpine_hiking, difficult_alpine_hiking
+			standard path dash (4_2)      : sac_scale not specified, hiking, mountain_hiking
+			short dashes (3_3)            : sac_scale = demanding_mountain_hiking
+			dotted line (2_3)             : sac_scale = alpine_hiking, demanding_alpine_hiking, difficult_alpine_hiking
 		(2) Alpine Hiking Mode - Hiking trail SAC or CAI difficulty grade enabled)
 		- Tracks (all tracktypes) are rendered as brown solid lines
 		- Paths and footways are colored by sac_scale:
-			standard black dashed path : sac_scale not specified 
-			green                      : sac_scale = hiking                       OR cai_scales=t, e
-			blue                       : sac_scale = mountain_hiking
-			red                        : sac_scale = demanding_mountain_hiking    OR cai_scale=ee
-			dark red (maroon)          : sac_scale = alpine_hiking, cai_scale=eai
-			gray                       : sac_scale = demanding_alpine_hiking
-			black                      : sac_scale = difficult_alpine_hiking      OR cai_scales=eea, eea:f, eea:pd, eea:d, eea:md, eea:e
+			standard black (4_2) path     : sac_scale not specified 
+			green                         : sac_scale = hiking                       OR cai_scales=t, e
+			blue                          : sac_scale = mountain_hiking
+			red                           : sac_scale = demanding_mountain_hiking    OR cai_scale=ee
+			dark red (maroon)             : sac_scale = alpine_hiking, cai_scale=eai
+			gray                          : sac_scale = demanding_alpine_hiking
+			black                         : sac_scale = difficult_alpine_hiking      OR cai_scales=eea, eea:f, eea:pd, eea:d, eea:md, eea:e
 			In addition:
-			intermediate/bad/horrible/no trail_visibility : long dashes, medium dashes, short dashes, dotted
+			intermediate/bad/horrible/no trail_visibility : long dashes (10_3), medium dashes (5_3), short dashes (3_3), dotted (2_3)
 	-->
 
 	<!-- Description blueprint:
@@ -126,7 +132,7 @@
 	<renderingProperty attr="horseRoutes" name="Horse routes" description="Horse routes"
 		type="boolean" possibleValues="" category="routes"/>
 -->
-    
+
 	<!-- The "Road atlas style" color options align with some conventional road atlas schemes. This was moved to default render, not any more supported in Touring view -->
 	<renderingProperty attr="roadStyle" category="ui_hidden" type="string"/>
 
@@ -1226,9 +1232,9 @@
 						<case additional="footway=crossing" strokeWidth="0.1"/>
 					</case>
 					<apply color="$null">
-                        <!-- Even with trail difficulty setting off, alert about SAC T3 and above by sparser dashes -->
-						<case additional="sac_scale=demanding_mountain_hiking" pathEffect_5="5_3"/>
-						<case additional="sac_scale=alpine_hiking" pathEffect_5="3_3"/>
+						<!-- Even with trail difficulty setting off, alert about SAC T3 and above by sparser dashes -->
+						<case additional="sac_scale=demanding_mountain_hiking" pathEffect_5="3_3"/>
+						<case additional="sac_scale=alpine_hiking" pathEffect_5="2_3"/>
 						<case additional="sac_scale=demanding_alpine_hiking" pathEffect_5="2_3"/>
 						<case additional="sac_scale=difficult_alpine_hiking" pathEffect_5="2_3"/>
 						<case pathEffect_5="4_2"/>
@@ -1300,10 +1306,13 @@
 						<case additional="sac_scale=difficult_alpine_hiking" color_5="$sacScaleColorT6">
 							<apply_if nightMode="true" color_5="#d0d0d0"/>
 						</case>
-						<!-- No SAC tag -->
+
+						<!-- No recognized SAC value -->
 						<case color_5="$pathColor" pathEffect_5="4_2">
 							<case nightMode="true" color_5="$pathColorNight"/>
 						</case>
+
+						<!-- Width -->
 						<apply>
 							<case minzoom="12" maxzoom="12" strokeWidth_5="1.4"/>
 							<case minzoom="13" maxzoom="13" strokeWidth_5="2"/>
@@ -1367,7 +1376,7 @@
 
 				<switch>
 					<case tag="highway" value="bridleway" strokeWidth="1"/>
-					<apply color_5="$bridlewayColor" pathEffect_5="4_2" color="$null">
+					<apply color_5="$bridlewayColor" pathEffect_5="8_4" color="$null">
 						<case baseAppMode="pedestrian" minzoom="12" maxzoom="12" strokeWidth_5="1.4"/>
 						<case baseAppMode="pedestrian" minzoom="13" maxzoom="13" strokeWidth_5="2"/>
 						<case baseAppMode="pedestrian" minzoom="14" strokeWidth_5="3"/>
@@ -1438,7 +1447,7 @@
 						<apply_if minzoom="19" strokeWidth_3="6.5:6.5"/>
 					</switch>
 
-                    <switch minzoom="15" showAccess="true">
+					<switch minzoom="15" showAccess="true">
 						<switch baseAppMode="car" minzoom="15">
 							<switch>
 								<case additional="vehicle=private"/>
