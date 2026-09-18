@@ -1,20 +1,24 @@
 <renderingStyle name="Touring-view_(more-contrast-and-details).render" depends="default" defaultColor="#f1eae4" version="1">
 
 	<!--
-	TOURING VIEW Renderer by Dr. Hardy Mueller, 2012-10-28 (advanced version of the previous All-Purpose Renderer)
+	TOURING VIEW Renderer by Dr. Hardy Mueller, est. 2012-10-28
 
-		High-detail, high-contrast map for travelers and professional drivers. Provides at any given map zoom the maximum amount of travel details available, in particular depicts all roads, tracks, paths, and unambiguously distinguishes their types. Also features outdoor touring options like the original SAC Alpine hiking trail coding. (Depends on default.)
+		- High-detail, high-contrast map style for travelers, professional drivers, and outdoor/backcountry activities.
+        - Provides at any given map zoom the maximum amount of travel details available, in particular shows all roads, tracks, paths, and unambiguously distinguishes their types.
+        - Features outdoor touring options like trail difficulty grades (e.g. SAC/CAI Alpine scales) and trail visibility indication.
+        - Falls back to OsmAnd's default map style for all features not explicitly modified.
 
 		Differences of the "Touring View" vs. the "Default" Renderer:
 		In Touring View:
 			* Some road and track types are already shown at lower zooms (essential for travel and orienteering)
 			* The road colors allow unambiguous distinction between all highway/road/track types 
-			* The road colors are closer aligned with professional drivers' road atlas schemes
+			* The road colors are closer aligned with some professional drivers' road atlas schemes
 			* The road visibility is increased to ease outdoor, driving, and navigation use
 			* The route and gpx visibility is increased
-			* The area colors use more pastel (paler) coloring for standard big areal features, which improves contrast and leaves the intense colors to stand out more for things which actually need emphasizing.
+			* The area colors use more pastel (paler) coloring for standard big areal features, which improves contrast and leaves the use of intense colors for what needs to stand out/emphasizing
 			* There are additional touring feature options like
-				- display the SAC Alpine hiking trail coding
+				- display the SAC/CAI Alpine hiking trail coding
+                - support trail visibility indication
 				- display hiking route symbols (this module has now moved to the default renderer)
 				- display bicycle networks (this module has now moved to the default renderer)
 				- detailed options to display contour lines (this module has now moved to the default renderer)
@@ -39,13 +43,13 @@
 		 - 16   "Walking", "City Tour"              Outline and tag buildings.
 		 - 17   "Immediate orientation"             Building details, street corner details like traffic_signals, post_box, remaining POIs.
 
-		- (These were the original "static" zoom limits, before we expanded the rendering scheme below zoom 7 and created an algorithm to already "selectively" include significant map objects there at map creation time.)
+		 - (These were the original "static" zoom limits, before we expanded the rendering scheme below zoom 7 and created an algorithm to already "selectively" include significant map objects there at map creation time.)
 	-->
 
 	<!--
-	NIGHT VIEW CONCEPT: Main colors for night renderer, by Hardy Mueller, 2011-07-04, reworked to a more gray/green pattern 2013-11-30:
+	NIGHT VIEW CONCEPT: Gray/green pattern for night renderer, 2011-07-04 and 2013-11-30. Main colors:
 		Areas (night view collapses areas to groups for more homogeneity):
-		- defaultColorNight:             002a2a (middle brightness between lighter open nature and darker forests)
+		- defaultColorNight:             002a2a (medium brightness between lighter open nature and darker forests)
 		- forestColorNight:              001122
 		- openNatureColorNight:          004333 (i.e. non-forest/low vegetation)
 		- shaderColorNight:              334433 (replaces vegetation shaders, and special interest areas like parks, sports areas, etc.)
@@ -59,17 +63,17 @@
 		- Some additional dimming (to 80% brightness) is applied for the car profile night view (as the roads are thicker).
 	-->
 
-	<!-- DASH PATTERN fill rate associates viability (worse means relative line interruptions increase):
-	    Standard dash scale with decreasing path fill rate:
+	<!--
+    DASH PATTERN/LADDER: Line fill ratio 'dash/(dash+gap)' increases with viability (track grade, trail visibility):
 		- solid (100%) -> long dashes 10_3 (77%) -> medium dashes 5_3 (63%) -> short dashes 3_3 (50%) -> dotted 2_3 (40%)
 		- standard dashes for path/footway etc.                       4_2 (50%)
 		- standard dashes for higher speeds like cycleway, bridleway  8_4 (50%)
 	-->
 
 	<!--
-	ALPINE HIKING optimized, based on tests by Christof Knuesel on 2012-10-18, revised new color scheme Hardy 2026-09-14:
+	ALPINE HIKING features (based on tests by Christof Knuesel on 2012-10-18, revised new color scheme Hardy 2026-09-14):
 		Legend:
-		(1) Modes without SAC or CAI difficulty grade enabled:
+		(1) Standard Mode: Hiking trail difficulty, SAC scale and CAI scale disabled:
 		- Tracks are brown lines, dashed by grade:
 			dash-dotted   (dash+dot/gaps=5+2/2+2) : tracktype not specified
 			solid line                    : tracktype = grade1
@@ -77,32 +81,32 @@
 			medium dashes (dash/gap=5/3)  : tracktype = grade3
 			short dashes  (dash/gap=3/3)  : tracktype = grade4
 			dotted line   (dash/gap=2/3)  : tracktype = grade5
-		- Paths black, footways red. Even with trail difficulty setting off, alert about SAC T3 and above by sparser dashes:
-			standard path dash (4_2)      : sac_scale not specified, hiking, mountain_hiking
+		- Paths are black, footways red. Even with the trail difficulty setting disabled, alert users to SAC T3+ trails through sparser dash patterns.
+            standard path dash (4_2)      : sac_scale not specified, hiking, mountain_hiking
 			short dashes (3_3)            : sac_scale = demanding_mountain_hiking
 			dotted line (2_3)             : sac_scale = alpine_hiking, demanding_alpine_hiking, difficult_alpine_hiking
-		(2) Alpine Hiking Mode - Hiking trail SAC or CAI difficulty grade enabled:
-		- Tracks (all tracktypes) are rendered as brown solid lines
-		- Paths and footways are colored by sac_scale:
-			standard black (4_2) path     : sac_scale not specified 
+		(2) Alpine Hiking Mode: Hiking trail difficulty enabled with SAC or CAI scale:
+		- Tracks (all tracktypes) are rendered as brown solid lines (viability always assumed superior to any trail)
+		- Paths and footways are colored by sac_scale (or overridden by cai_scale, if selected):
+			standard black (4_2) path     : no sac_scale specified 
 			green                         : sac_scale = hiking                       OR cai_scales=t, e
 			blue                          : sac_scale = mountain_hiking
 			red                           : sac_scale = demanding_mountain_hiking    OR cai_scale=ee
 			dark red (maroon)             : sac_scale = alpine_hiking, cai_scale=eai
 			gray                          : sac_scale = demanding_alpine_hiking
 			black                         : sac_scale = difficult_alpine_hiking      OR cai_scales=eea, eea:f, eea:pd, eea:d, eea:md, eea:e
-			In addition:
-			intermediate/bad/horrible/no trail_visibility : long dashes (10_3), medium dashes (5_3), short dashes (3_3), dotted (2_3)
-		Note: CAI usually applies to the entire relation (https://wiki.openstreetmap.org/wiki/Item:Q2388), SAC is more locally valid for ways.
+		  Note: CAI usually applies to the entire relation (https://wiki.openstreetmap.org/wiki/Item:Q2388), SAC is more locally valid (for ways).
+			In addition, trail_visibility:
+			long (10_3) / medium (5_3) / short dashes (3_3) / dotted (2_3) : intermediate / bad / horrible / no trail_visibility
 	-->
 
 
 	<!-- Description blueprint:
 		<string name="plugin_touringview_name">Touring view map style</string>
-		<string name="plugin_touringview_descr">Activating this view changes OsmAnd\'s map style to \'Touring view\', this is a general purpose high-detail, high contrast view for travelers and professional drivers.
-			\n\nIt provides at any given map zoom the maximum amount of travel details available, in particular depicts all roads, tracks, paths, and orientation marks. 
+		<string name="plugin_touringview_descr">\'Touring view\' is a general purpose high-detail, high contrast map style for travelers, professional drivers, and outdoor/backcountry activities.
+			\n\nIt provides at any given map zoom the maximum amount of travel details available, in particular shows all roads, tracks, paths, and orientation marks. 
 			\n\nIt unambiguously distinguishes all road types by color coding, which is useful when e.g. driving large vehicles.
-			\n\nAlso features outdoor touring options like the original SAC Alpine hiking trail coding.
+			\n\nIt features touring options like the display of Alpine SAC and CAI difficulty grades, trail visibility and track type tagging.
 			\n\nAll other features are handled as in the OsmAnd default map style.
 			\n\nA special map download is not needed, the view is created from our standard maps.
 		</string>
@@ -1588,7 +1592,7 @@
 		</switch>
 
 		<!-- Contour lines -->
-	<!-- This module has now moved to the default renderer
+	<!-- contourLines handling now moved to the default renderer
 		<switch>
 			<case contourLines="11" tag="contour" value="elevation" minzoom="11" color="$contourLineColor" strokeWidth="1"/>
 			<case contourLines="12" tag="contour" value="elevation" minzoom="12" color="$contourLineColor" strokeWidth="1"/>
