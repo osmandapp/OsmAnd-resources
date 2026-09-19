@@ -1243,8 +1243,11 @@
 						<case additional="sac_scale=demanding_alpine_hiking" pathEffect_5="2_3"/>
 						<case additional="sac_scale=difficult_alpine_hiking" pathEffect_5="2_3"/>
 						<case pathEffect_5="4_2"/>
-						<apply>
+
+						<!-- Width -->
+						<apply>	
 							<case baseAppMode="pedestrian">
+								<!-- pedestrian emphasis -->
 								<case minzoom="12" maxzoom="12" strokeWidth_5="1.4"/>
 								<case minzoom="13" maxzoom="13" strokeWidth_5="2"/>
 								<case minzoom="14" strokeWidth_5="3"/>
@@ -1261,7 +1264,7 @@
 						</apply>
 
 						<!-- Overrides for bicycle-designated paths (Issue #24915) -->
-						<!-- (1) Path/footway has no designation -> black/red (already achieved above) -->
+						<!-- (1) If path/footway has no designation -> black/red native color stays -->
 
 						<!-- (2) Bicycle profile + bicycle=designated -> blue (with emphasis) -->
 						<apply_if baseAppMode="bicycle" additional="bicycle=designated" minzoom="12" color_5="$cyclewayColor" strokeWidth_5="2" pathEffect_5="8_4"/>
@@ -1272,13 +1275,20 @@
 						<apply_if baseAppMode="default" additional="bicycle=designated" minzoom="12" color_5="$cyclewayColor"/>
 						<apply_if baseAppMode="public_transport" additional="bicycle=designated" minzoom="12" color_5="$cyclewayColor"/>
 
-						<!-- (4) Non-bicycle profile + foot=designated -> Restore native color, overriding bicycle=designated -->
+						<!-- (4) Non-bicycle profile + foot=designated -> Restore native color, overriding (3) -->
 						<!-- pedestrian -->
 						<apply_if baseAppMode="pedestrian" additional="foot=designated" tag="highway" value="path" minzoom="12">
-							<case nightMode="true" color_5="$pathColorNight"/>
-							<case color_5="$pathColor"/>
+							<!-- Restore pedestrian emphasis -->
+							<case minzoom="12" maxzoom="12" color_5="$pathColor" strokeWidth_5="1.4"/>
+							<case minzoom="13" maxzoom="13"	color_5="$pathColor" strokeWidth_5="2"/>
+							<case minzoom="14" color_5="$pathColor" strokeWidth_5="3"/>
+							<apply_if nightMode="true" color_5="$pathColorNight"/>
 						</apply_if>
-						<apply_if baseAppMode="pedestrian" additional="foot=designated" tag="highway" value="footway" minzoom="12" color_5="$footwayColor"/>
+						<apply_if baseAppMode="pedestrian" additional="foot=designated" tag="highway" value="footway" minzoom="12">
+							<case minzoom="12" maxzoom="12" color_5="$footwayColor" strokeWidth_5="1.4"/>
+							<case minzoom="13" maxzoom="13"	color_5="$footwayColor" strokeWidth_5="2"/>
+							<case minzoom="14" color_5="$footwayColor" strokeWidth_5="3"/>
+						</apply_if>
 						<!-- default -->
 						<apply_if baseAppMode="default" additional="foot=designated" tag="highway" value="path" minzoom="12">
 							<case nightMode="true" color_5="$pathColorNight"/>
