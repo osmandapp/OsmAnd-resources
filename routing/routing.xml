@@ -3074,6 +3074,8 @@
 	<routingProfile name="moped" baseProfile="moped" restrictionsAware="true" minSpeed="5.0" defaultSpeed="25.0" maxSpeed="35.0" sharpTurn="6" slightTurn="6" onewayAware="true">
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_unpaved" name="Avoid unpaved roads" description="Avoid unpaved roads" type="boolean"/>
+		<parameter id="avoid_sett" name="Avoid sett" description="Streets paved with sett are avoided" type="boolean" default="false"/>
+		<parameter id="avoid_cobblestone" name="Avoid cobblestone" description="Streets paved with cobblestone are avoided" type="boolean" default="false"/>
 		<parameter id="allow_private" name="Allow private access" description="Allow access to private areas" type="boolean"/>
 
 		<!-- Turn penalties for short_way=yes -->
@@ -3190,6 +3192,13 @@
 				<select value="0.1" t="surface" v="sand"/>
 				<select value="0.3" t="highway" v="track"/>
 				<select value="0.1" t="highway" v="path"/>
+			</if>
+			<if param="avoid_sett">
+				<select value="0.2" t="surface" v="sett"/>
+			</if>
+			<if param="avoid_cobblestone">
+				<select value="0.1" t="surface" v="cobblestone"/>
+				<select value="0.05" t="surface" v="unhewn_cobblestone"/>
 			</if>
 			<select value="1" t="smoothness" v="excellent"/>
 			<select value="1" t="smoothness" v="good"/>
