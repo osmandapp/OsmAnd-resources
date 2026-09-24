@@ -782,6 +782,24 @@
 		</way>
 
 		<way attribute="penalty_transition">
+			<!-- delivery-only ways: fixed cost per entry/exit, so they are used to reach a destination, not as a shortcut -->
+			<ifnot param="allow_private">
+				<select value="2100" t="motorcar" v="delivery"/>
+				<select value="2100" t="motor_vehicle" v="delivery"/>
+				<select value="2100" t="vehicle" v="delivery"/>
+				<select value="2100" t="access" v="delivery"/>
+				<select value="2100" t="motorcar" v="private;delivery"/>
+				<select value="2100" t="motor_vehicle" v="private;delivery"/>
+				<select value="2100" t="vehicle" v="private;delivery"/>
+				<select value="2100" t="access" v="private;delivery"/>
+				<select value="2100" t="motorcar" v="delivery;private"/>
+				<select value="2100" t="motor_vehicle" v="delivery;private"/>
+				<select value="2100" t="vehicle" v="delivery;private"/>
+				<select value="2100" t="access" v="delivery;private"/>
+				<if param="profile_truck">
+					<select value="2100" t="hgv" v="delivery"/>
+				</if>
+			</ifnot>
 			<!-- cost in time when you change the route from motorway to primary or from primary
 				 to living_street, but not other way around. Calculated as difference between values -->
 			<!-- 
@@ -988,8 +1006,8 @@
 				<select value="0.8" t="highway" v="living_street"/>
 			</if>
 			<if param="avoid_motorway">
-				<select value="0.05" t="highway" v="motorway"/>
-				<select value="0.05" t="highway" v="motorway_link"/>
+				<select value="0.1" t="highway" v="motorway"/>
+				<select value="0.1" t="highway" v="motorway_link"/>
 			</if>
 
 			<if param="avoid_tunnels">
