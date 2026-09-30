@@ -91,6 +91,7 @@ function populateDictionary(tts) {
 	dictionary["exceed_limit"] = tts ? "Amodo! Seica tes prisa. O límite é de" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "atención" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "radar de velocidade" : "speed_camera.ogg";
+	dictionary["red_light_camera"] = tts ? "cámara de semáforo vermello" : "red_light_camera.ogg";
 	dictionary["border_control"] = tts ? "control fronteirizo" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "paso a nivel" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "badén" : "traffic_calming.ogg";
@@ -547,6 +548,8 @@ function getAttentionString(type) {
 		case "TUNNEL":
 			return dictionary["tunnel"];
 			break;
+		case "RED_LIGHT_CAMERA":
+			return dictionary["red_light_camera"];
 		default:
 			return "";
 			break;

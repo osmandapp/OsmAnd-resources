@@ -112,6 +112,7 @@ function populateDictionary(tts) {
 	dictionary["attention"] = tts ? "Dėmesio" : "attention.ogg";
 	dictionary["attention_alt"] = tts ? "Atsargiai" : "attention_alt.ogg";
 	dictionary["speed_camera"] = tts ? "greičio matuoklis" : "speed_camera.ogg";
+	dictionary["red_light_camera"] = tts ? "raudono šviesoforo kamera" : "red_light_camera.ogg";
 	dictionary["border_control"] = tts ? "pasienio kontrolė" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "geležinkelio pervaža" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "gulintis policininkas" : "traffic_calming.ogg";
@@ -876,6 +877,8 @@ function getAttentionString(type) {
 			return "";
 		case "TUNNEL":
 			return dictionary["tunnel"];
+		case "RED_LIGHT_CAMERA":
+			return dictionary["red_light_camera"];
 		default:
 			return "";
 	}

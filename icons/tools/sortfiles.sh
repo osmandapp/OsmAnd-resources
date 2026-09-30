@@ -3626,6 +3626,7 @@ icon special_point_start_finish
 icon special_point_start
 icon special_point_finish osmc_brown_hiker
 icon_alias_no_mx osmc_brown
+icon special_street
 
 #Activities
 icon activities_aircraft

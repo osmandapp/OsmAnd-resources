@@ -51,23 +51,23 @@ function populateDictionary(tts) {
 	dictionary["take"] = tts ? "prenez la" : "take.ogg";
 	dictionary["exit"] = tts ? "sortie" : "exit.ogg";
 	
-	dictionary["1st"] = tts ? "1ère" : "1st.ogg";
-	dictionary["2nd"] = tts ? "2ème" : "2nd.ogg";
-	dictionary["3rd"] = tts ? "3ème" : "3rd.ogg";
-	dictionary["4th"] = tts ? "4ème" : "4th.ogg";
-	dictionary["5th"] = tts ? "5ème" : "5th.ogg";
-	dictionary["6th"] = tts ? "6ème" : "6th.ogg";
-	dictionary["7th"] = tts ? "7ème" : "7th.ogg";
-	dictionary["8th"] = tts ? "8ème" : "8th.ogg";
-	dictionary["9th"] = tts ? "9ème" : "9th.ogg";
-	dictionary["10th"] = tts ? "10ème" : "10th.ogg";
-	dictionary["11th"] = tts ? "11ème" : "11th.ogg";
-	dictionary["12th"] = tts ? "12ème" : "12th.ogg";
-	dictionary["13th"] = tts ? "13ème" : "13th.ogg";
-	dictionary["14th"] = tts ? "14ème" : "14th.ogg";
-	dictionary["15th"] = tts ? "15ème" : "15th.ogg";
-	dictionary["16th"] = tts ? "16ème" : "16th.ogg";
-	dictionary["17th"] = tts ? "17ème" : "17th.ogg";
+	dictionary["1st"] = tts ? "première" : "1st.ogg";
+	dictionary["2nd"] = tts ? "deuxième" : "2nd.ogg";
+	dictionary["3rd"] = tts ? "troisième" : "3rd.ogg";
+	dictionary["4th"] = tts ? "quatrième" : "4th.ogg";
+	dictionary["5th"] = tts ? "cinquième" : "5th.ogg";
+	dictionary["6th"] = tts ? "sixième" : "6th.ogg";
+	dictionary["7th"] = tts ? "septième" : "7th.ogg";
+	dictionary["8th"] = tts ? "huitième" : "8th.ogg";
+	dictionary["9th"] = tts ? "neuvième" : "9th.ogg";
+	dictionary["10th"] = tts ? "dixième" : "10th.ogg";
+	dictionary["11th"] = tts ? "onzième" : "11th.ogg";
+	dictionary["12th"] = tts ? "douzième" : "12th.ogg";
+	dictionary["13th"] = tts ? "treizième" : "13th.ogg";
+	dictionary["14th"] = tts ? "quatorzième" : "14th.ogg";
+	dictionary["15th"] = tts ? "quinzième" : "15th.ogg";
+	dictionary["16th"] = tts ? "seizième" : "16th.ogg";
+	dictionary["17th"] = tts ? "dix-septième" : "17th.ogg";
 	
 	// STRAIGHT/FOLLOW
 	dictionary["go_ahead"] = tts ? "continuez tout droit" : "go_ahead.ogg";
@@ -92,6 +92,7 @@ function populateDictionary(tts) {
 	dictionary["exceed_limit"] = tts ? "limite de vitesse" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "attention" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "radar de vitesse" : "speed_camera.ogg";
+	dictionary["red_light_camera"] = tts ? "radar de feu rouge" : "red_light_camera.ogg";
 	dictionary["border_control"] = tts ? "douane" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "passage à niveau" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "ralentisseur" : "traffic_calming.ogg";
@@ -533,6 +534,8 @@ function getAttentionString(type) {
 			return "";
 		case "TUNNEL":
 			return dictionary["tunnel"];
+		case "RED_LIGHT_CAMERA":
+			return dictionary["red_light_camera"];			
 		default:
 			return "";
 	}
