@@ -250,7 +250,7 @@ generateBothMapPOIPng() {
 
   generateBothMapPOIPng 'seamark_small_poi' '#777777' '#ff8f00' 'x1' 'colored'
   generateBothMapPOIPng 'skimap' '#000000' '#ff8f00' x2 'colored'
-  generateBothMapPOIPng 'subway' '#777777' '#ff8f00' x2 'colored'
+  generateBothMapPOIPng 'subway' '#' '#' x2 'colored'
 
   generateBothMapPOIPng 'water' '#ffffff' '#ff8f00'
   generateBothMapPOIPng 'water_colored' '#0092DA' '#ff8f00'
@@ -278,6 +278,7 @@ generateBothMapPOIPng() {
   generateBothMapPOIPng 'office' '#ffffff' '#ff8f00'
   generateBothMapPOIPng 'craft' '#ffffff' '#ff8f00'
   generateBothMapPOIPng 'place_of_worship' '#333333' '#ff8f00'
+  generateBothMapPOIPng 'place_of_worship_night' '#999999' '#ff8f00'
   generateBothMapPOIPng 'money' '#ffffff' '#ff8f00'
   generateBothMapPOIPng 'education' '#ffffff' '#ff8f00'
   generateBothMapPOIPng 'poi' '#ffffff' '#ff8f00'

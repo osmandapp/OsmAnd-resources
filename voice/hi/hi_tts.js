@@ -95,6 +95,7 @@ function populateDictionary(tts) {
 	dictionary["exceed_limit"] = tts ? "गति सीमा" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "ध्यान" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "गति कैमरा" : "speed_camera.ogg";
+	dictionary["red_light_camera"] = tts ? "लाल बत्ती कैमरा" : "red_light_camera.ogg";
 	dictionary["border_control"] = tts ? "सीमा नियंत्रण" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "रेलमार्ग पारगमन" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "ट्रैफिक नियंत्रण करना" : "traffic_calming.ogg";
@@ -550,6 +551,8 @@ function getAttentionString(type) {
 		case "TUNNEL":
 			return dictionary["tunnel"];
 			break;
+		case "RED_LIGHT_CAMERA":
+			return dictionary["red_light_camera"];
 		default:
 			return "";
 			break;

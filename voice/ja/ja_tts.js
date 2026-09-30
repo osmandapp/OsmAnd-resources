@@ -107,6 +107,7 @@ function populateDictionary(tts) {
 	dictionary["exceed_limit"] = tts ? "ここの制限速度は" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "ご注意下さい" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "スピードカメラがあります" : "speed_camera.ogg";
+	dictionary["red_light_camera"] = tts ? "信号無視監視機があります" : "red_light_camera.ogg";
 	// border_controlを『出入国管理』に変更『国境検問所』あるいは『出入国管理施設』とも言うらしい。
 	// 昔は『国境検問所』にしていたし、そっちの可能性も有るのでogg古い方も同梱。
 	// https://eow.alc.co.jp/search?q=border+control
@@ -634,6 +635,8 @@ function getAttentionString(type) {
 		case "TUNNEL":
 			return dictionary["tunnel"];
 			break;
+		case "RED_LIGHT_CAMERA":
+			return dictionary["red_light_camera"];			
 		default:
 			return "";
 			break;

@@ -93,6 +93,7 @@ function populateDictionary(tts) {
 	dictionary["exceed_limit"] = tts ? "您已超速，限速" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "注意" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "限速拍照" : "speed_camera.ogg";
+	dictionary["red_light_camera"] = tts ? "闯红灯摄像头" : "red_light_camera.ogg";
 	dictionary["border_control"] = tts ? "边境管制" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "铁路道口" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "减速带" : "traffic_calming.ogg";
@@ -547,6 +548,8 @@ function getAttentionString(type) {
 		case "TUNNEL":
 			return dictionary["tunnel"];
 			break;
+		case "RED_LIGHT_CAMERA":
+			return dictionary["red_light_camera"];
 		default:
 			return "";
 			break;
