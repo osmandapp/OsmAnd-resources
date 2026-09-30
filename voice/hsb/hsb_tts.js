@@ -122,7 +122,7 @@ function populateDictionary(tts) {
     dictionary["tunnel"] = tts ? "tunel" : "tunnel.ogg"; //????????
 
     // OTHER PROMPTS
-    dictionary["location_lost"] = tts ? "nimaće GPS GPS signal je preč" : "location_lost.ogg";
+    dictionary["location_lost"] = tts ? "nimaće GPS signal je preč" : "location_lost.ogg";
     dictionary["location_recovered"] = tts ? "GPS tu zaso je" : "location_recovered.ogg";
     dictionary["off_route"] = tts ? "jědźeće hinak" : "off_route.ogg";
     dictionary["off_route2"] = tts ? " mimo trasu" : "off_route2.ogg"; //???????
