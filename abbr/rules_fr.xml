@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rules version="1">
-    <index>
+<rules version="3">
+        <query>
         <!-- "St-Denis", "Ste-Foy": Saint and Sainte, never a street; common words of names as well -->
-        <search key="st" value="Saint"/>
-        <search key="ste" value="Sainte"/>
-    </index>
-    <query>
+        <rule from="st" to="Saint" common="true"/>
+        <rule from="ste" to="Sainte" common="true"/>
+
         <!-- query.db: the street type users shorten ("48 av. Gambetta", "rte de Certines"); OSM names are full. -->
-        <variant object="street" source="(?iu)^Av\.?$" target="Avenue"/>
-        <variant object="street" source="(?iu)^Bd\.?$" target="Boulevard"/>
-        <variant object="street" source="(?iu)^Chem\.?$" target="Chemin"/>
-        <variant object="street" source="(?iu)^Rte\.?$" target="Route"/>
-        <variant object="street" source="(?iu)^Pl\.?$" target="Place"/>
+        <rule object="street" from="(?iu)^Av\.?$" to="Avenue"/>
+        <rule object="street" from="(?iu)^Bd\.?$" to="Boulevard"/>
+        <rule object="street" from="(?iu)^Chem\.?$" to="Chemin"/>
+        <rule object="street" from="(?iu)^Rte\.?$" to="Route"/>
+        <rule object="street" from="(?iu)^Pl\.?$" to="Place"/>
 
         <!-- house number suffixes: "12 bis", "12ter" -->
-        <building key="bis" value="Bis"/>
-        <building key="ter" value="Ter"/>
-        <building key="quater" value="Quater"/>
+        <rule object="building" from="bis"/>
+        <rule object="building" from="ter"/>
+        <rule object="building" from="quater"/>
 
-        <conjunction key="de"/>
-        <conjunction key="du"/>
-        <conjunction key="la"/>
-        <conjunction key="le"/>
-        <conjunction key="et"/>
+        <rule from="de" to=""/>
+        <rule from="du" to=""/>
+        <rule from="la" to=""/>
+        <rule from="le" to=""/>
+        <rule from="et" to=""/>
     </query>
 </rules>

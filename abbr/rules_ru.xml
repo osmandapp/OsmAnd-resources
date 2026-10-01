@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rules version="1">
-    <index/>
-    <query>
-        <search key="о" value="Остров"/>
-        <search key="остров" value="о."/>
+<rules version="3">
+        <query>
+        <rule from="о" to="Остров"/>
+        <rule from="остров" to="о."/>
 
         <!-- query.db: "Ленинградская ул. 53", "Невский пр., 56", "пер. Кронштадский", "Кемеровская обл.";
              OSM names keep the full word ("Ленинградская улица", "Кемеровская область"). "пр." is also "проезд". -->
-        <variant object="street" source="(?iu)^Ул\.?$" target="Улица"/>
-        <variant object="street" source="(?iu)^Пер\.?$" target="Переулок"/>
-        <variant object="street" source="(?iu)^Просп\.?$" target="Проспект"/>
-        <search key="пр" value="Проспект Проезд"/>
-        <variant object="boundary" source="(?iu)^Обл\.?$" target="Область"/>
+        <rule object="street" from="(?iu)^Ул\.?$" to="Улица"/>
+        <rule object="street" from="(?iu)^Пер\.?$" to="Переулок"/>
+        <rule object="street" from="(?iu)^Просп\.?$" to="Проспект"/>
+        <rule from="пр" to="Проспект"/>
+        <rule from="пр" to="Проезд"/>
+        <rule object="boundary" from="(?iu)^Обл\.?$" to="Область"/>
 
         <!-- "д. 223", "кв. 8", "корп. 2": house and flat qualifiers, a number part, not a name synonym. -->
-        <building key="д" value="Дом"/>
-        <building key="кв" value="Квартира"/>
-        <building key="корп" value="Корпус"/>
+        <rule object="building" from="д"/>
+        <rule object="building" from="кв"/>
+        <rule object="building" from="корп"/>
 
-        <conjunction key="и"/>
+        <rule from="и" to=""/>
     </query>
 </rules>

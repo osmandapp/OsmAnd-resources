@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rules version="1">
-    <!-- Load this base, then rules_<language>.xml and rules_<language>_<COUNTRY>.xml (SearchLocales: the locale
-         of the map data, "en_US" for a US map, "de_CH" for name:de of a Swiss map).
-         Put a rule at the most general level where it holds; a lower level replaces matching tag/key or variant
-         object/source within the same section, and enabled="false" removes an inherited rule for its locale.
+<rules version="3">
+    <!-- Every rule is a <rule>. Load this base, then rules_<language>.xml and rules_<language>_<COUNTRY>.xml
+         (SearchLocales: the locale of the map data, "en_US" for a US map, "de_CH" for name:de of a Swiss map).
          This base holds only rules that are true in every language: today there are none, words and their
          abbreviations belong to a language file. A map without a locale ("" - World basemap, an unknown map)
          gets no word rules at all.
-         A pair of forms is matched on one side only: query when one word expands to one word, index otherwise.
-         object is the owner of the name: street, locality, boundary, postcode, poi.
-         source is a Java regexp and target a Matcher replacement ($1, etc.).
-         mode="All" replaces all matches; omitted mode requires exactly one.
-         Query variant targets must normalize to one word; phrase expansions belong in index.
-         direction and index/search expand names; query/search expands search tokens.
-         building recognizes house qualifiers; conjunction marks service words. -->
-    <index/>
-    <query/>
+
+         Where a rule stands tells where it works:
+           <index>  the OBF writer adds the form to the names of objects, once, with the locale of the map and of
+                    the name tag (name:de on an Italian map is de_IT). The result is stored in the OBF.
+           <query>  the search applies the rule to a query word, with the locale of every OBF it reads.
+           <rules>  (a rule outside <index> and <query>) both sides; the rule is a pair of plain words.
+         A pair of forms is matched on one side only: query when one word expands to one word (or to alternative
+         words), index when the form is a phrase, a glued or tokenizer-lost form.
+
+         Attributes:
+           from     a plain word (matched as the whole word, ignoring case) or a Java regexp.
+           to       the replacement ($1, etc. for a regexp). Several rules with one from are alternatives: the query
+                    word matches any of them. In <query> and <rules> it is one word. An empty to in <query> makes
+                    the word ignorable: a conjunction or an article, it is not an unmatched word of a name.
+           object   the owner of the name: street, locality, boundary, postcode, poi, "a,b" for several, "*" (the
+                    default) for any; "building" in <query> marks the word as a part of a house number (no to).
+           mode     All replaces all matches; the default requires exactly one. A regexp only.
+           replace  only outside <index> and <query>: the stored name is rewritten (the default keeps the name and
+                    adds the form to the index). The query word keeps its own form and gets the new one.
+           common   a plain word from and its to are common words: they do not count as unmatched words of a name.
+                    Not in <index>.
+           enabled  "false" removes the rule that the upper layers define with this object, from and to.
+         The key of a rule is object, from and to. A rule of a lower layer with the key of an upper rule replaces
+         it, whatever the place of both; two rules with one key in one file are an error. To change the to of an
+         inherited rule, disable it and add the new one. -->
 </rules>
