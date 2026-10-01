@@ -352,7 +352,7 @@ function roundabout(dist, angle, exit, streetName) {
 	if (dist == -1 && streetName) {
 		return dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"] + " " + turn_street(streetName);
 	} else {
-		return dictionary["in"] + " " + distance(dist) + " " + dictionary["after"] + " " + dictionary["roundabout"] + " " + dictionary["and"] + " " + dictionary["take"] + " " + nth(exit) + " " + turn_street(streetName) ) + " " + dictionary["exit"] ;
+		return dictionary["in"] + " " + distance(dist) + " " + dictionary["after"] + " " + dictionary["roundabout"] + " " + dictionary["and"] + " " + dictionary["take"] + " " + nth(exit) + " " + turn_street(streetName) + " " + dictionary["exit"] ;
     }
 
 }
