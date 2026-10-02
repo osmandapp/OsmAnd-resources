@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules version="3">
+        <query>
+        <rule from="о" to="Остров"/>
+        <rule from="остров" to="о."/>
+
+        <!-- query.db: "Ленинградская ул. 53", "Невский пр., 56", "пер. Кронштадский", "Кемеровская обл.";
+             OSM names keep the full word ("Ленинградская улица", "Кемеровская область"). "пр." is also "проезд". -->
+        <rule object="street" from="(?iu)^Ул\.?$" to="Улица"/>
+        <rule object="street" from="(?iu)^Пер\.?$" to="Переулок"/>
+        <rule object="street" from="(?iu)^Просп\.?$" to="Проспект"/>
+        <rule from="пр" to="Проспект"/>
+        <rule from="пр" to="Проезд"/>
+        <rule object="boundary" from="(?iu)^Обл\.?$" to="Область"/>
+
+        <!-- "д. 223", "кв. 8", "корп. 2": house and flat qualifiers, a number part, not a name synonym. -->
+        <rule object="building" from="д"/>
+        <rule object="building" from="кв"/>
+        <rule object="building" from="корп"/>
+
+        <rule from="и" to=""/>
+    </query>
+</rules>

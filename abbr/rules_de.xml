@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules version="3">
+    <index>
+        <!-- A3: joined street type without a final dot; leave standalone Straße/Platz untouched. -->
+        <rule object="street" mode="All" from="(?iu)\b([\p{L}\p{M}]{2,})straße\b" to="$1str"/>
+        <rule object="street" mode="All" from="(?iu)\b([\p{L}\p{M}]{2,})platz\b" to="$1pl"/>
+    </index>
+    <query>
+        <!-- Titles of names: "St. Johannis" is Sankt, never a street; "Dr.-Weber-Straße" is Doktor. Both forms are
+             common words that do not count as unmatched words of a name. -->
+        <rule from="st" to="Sankt" common="true"/>
+        <rule from="dr" to="Doktor" common="true"/>
+        <!-- query.db: a standalone "Str." after an adjective or a hyphen ("Kölner Str. 80", "Leopold-Kell-Str. 20");
+             the joined "Hauptstr." is the index rule A3. -->
+        <rule object="street" from="(?iu)^Str\.?$" to="Straße"/>
+
+        <rule from="der" to=""/>
+        <rule from="den" to=""/>
+        <rule from="die" to=""/>
+        <rule from="das" to=""/>
+        <rule from="und" to=""/>
+    </query>
+</rules>
