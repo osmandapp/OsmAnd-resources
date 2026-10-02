@@ -3315,6 +3315,7 @@
 				<case tag="golf" value="fairway"/>
 				<case tag="golf" value="tee"/>
 				<case tag="landuse" value="residential" order="4"/>
+				<case tag="landuse" value="construction" order="4"/>
 				<case tag="historic" value="quarry"/>
 				<case tag="landuse" value="quarry"/>
 				<switch order="5">
@@ -3728,7 +3729,7 @@
 						<apply_if layer="1" order="89"/>
 						<apply_if additional="layer=2" order="119"/>
 						<apply_if additional="layer=3" order="147"/>
-						<apply_if layer="-1" order="20"/>
+						<apply_if layer="-1" order="43"/>
 						<apply_if additional="layer=-2" order="19"/>
 					</case>
 					<case tag="highway" value="cycleway" order="65">
@@ -3799,11 +3800,11 @@
 							<apply_if baseAppMode="bicycle" layer="1" maxzoom="15" order="110"/>
 							<apply_if baseAppMode="bicycle" additional="layer=2" maxzoom="15" order="140"/>
 							<apply_if baseAppMode="bicycle" additional="layer=3" maxzoom="15" order="166"/>
-							<apply_if layer="-1" order="20"/>
+							<apply_if layer="-1" order="43"/>
 							<apply_if additional="layer=-2" order="19"/>
 						</switch>
 						<case tag="highway" value="steps" order="65">
-							<apply_if minzoom="14" baseAppMode="pedestrian" order="61"/>
+							<apply_if minzoom="14" baseAppMode="pedestrian" order="64"/>
 							<apply_if baseAppMode="default" moreDetailed="false">
 								<apply_if minzoom="15" maxzoom="15" order="-1"/>
 								<apply_if additional="conveying=yes" layer="-1" maxzoom="16" order="-1"/>
@@ -3814,7 +3815,7 @@
 							</apply_if>
 							<apply_if additional="layer=2" order="140"/>
 							<apply_if additional="layer=3" order="166"/>
-							<apply_if layer="-1" order="20"/>
+							<apply_if layer="-1" order="43"/>
 							<apply_if additional="layer=-2" order="19"/>
 						</case>
 						<case tag="man_made" value="goods_conveyor" order="69">
@@ -3831,9 +3832,6 @@
 						</apply_if>
 					</switch>
 
-					<case tag="highway" value="via_ferrata">
-						<apply_if moreDetailed="false" maxzoom="15" order="-1"/>
-					</case>
 					<case tag="highway" value="raceway"/>
 					<case tag="abandoned:highway" value=""/>
 
@@ -3850,7 +3848,9 @@
 
 					<case baseAppMode="car" maxzoom="18" tag="barrier" value="hedge" order="-1"/>
 
-					<case tag="barrier" value="" order="20">
+					<case tag="barrier" value="" order="63">
+						<apply_if layer="-1" order="20"/>
+						<apply_if additional="layer=-2" order="19"/>
 						<apply_if baseAppMode="car" layer="-1" order="-1"/>
 					</case>
 					<case tag="amenity" value="bench"/>
@@ -4923,26 +4923,30 @@
 				</apply>
 			</switch>
 
-			<switch minzoom="5" tag="place" value="island" nameTag="">
-				<switch maxzoom="10" additional="osmand_prominent_island=yes" textOrder="77">
-					<case minzoom="5" additional="area_rounded=2048000" textSize="11"/>
-					<case minzoom="5" additional="area_rounded=1024000" textSize="11"/>
-					<case minzoom="5" additional="area_rounded=512000" textSize="11"/>
-					<case minzoom="5" additional="area_rounded=256000" textSize="11"/>
-					<case minzoom="5" additional="area_rounded=128000" textSize="11"/>
-					<case minzoom="5" additional="area_rounded=64000" textSize="11"/>
-					<case minzoom="5" additional="area_rounded=32000" textSize="11"/>
-					<case minzoom="5" additional="area_rounded=16000" textSize="11"/>
-					<case minzoom="6" additional="area_rounded=8000" textSize="12"/>
-					<case minzoom="7" additional="area_rounded=4000" textSize="12"/>
-					<case minzoom="8" additional="area_rounded=2000" textSize="13"/>
-					<case minzoom="9" additional="area_rounded=1000" textSize="13"/>
-					<case minzoom="9" additional="area_rounded=500" textSize="13"/>
-					<case minzoom="10" additional="area_rounded=200" textSize="13"/>
-					<case minzoom="10" additional="area_rounded=100" textSize="13"/>
-				</switch>
-				<case minzoom="11" textSize="14" textOrder="37" intersectionMargin="15"/>
-				<apply textColor="$placeCityVillageTextColor" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColor" textItalic="true"/>
+			<switch minzoom="5" nameTag="">
+				<case tag="place" value="island"/>
+				<case tag="place" value="atoll"/>
+				<apply>
+					<switch maxzoom="10" additional="osmand_prominent_island=yes" textOrder="77">
+						<case minzoom="5" additional="area_rounded=2048000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=1024000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=512000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=256000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=128000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=64000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=32000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=16000" textSize="11"/>
+						<case minzoom="6" additional="area_rounded=8000" textSize="12"/>
+						<case minzoom="7" additional="area_rounded=4000" textSize="12"/>
+						<case minzoom="8" additional="area_rounded=2000" textSize="13"/>
+						<case minzoom="9" additional="area_rounded=1000" textSize="13"/>
+						<case minzoom="9" additional="area_rounded=500" textSize="13"/>
+						<case minzoom="10" additional="area_rounded=200" textSize="13"/>
+						<case minzoom="10" additional="area_rounded=100" textSize="13"/>
+					</switch>
+					<case minzoom="11" textSize="14" textOrder="37" intersectionMargin="15"/>
+					<apply textColor="$placeCityVillageTextColor" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColor" textItalic="true"/>
+				</apply>
 			</switch>
 
 			<case minzoom="13" tag="place" value="islet" nameTag="">
@@ -5292,6 +5296,7 @@
 					<case minzoom="18" tag="emergency" value="phone"/>
 					<case minzoom="18" tag="emergency" value="defibrillator"/>
 					<case minzoom="16" tag="emergency" value="disaster_response"/>
+					<case minzoom="16" tag="emergency" value="disaster_help_point"/>
 					<case minzoom="19" tag="emergency" value="fire_hydrant"/>
 					<case minzoom="18" tag="emergency" value="rescue_box"/>
 					<case minzoom="17" tag="emergency" value="mountain_rescue"/>
@@ -7110,6 +7115,7 @@
 						<apply_if nightMode="true" shield="red_round_night_shield"/>
 					</case>
 					<case minzoom="16" tag="emergency" value="disaster_response" icon="disaster_response" shield="red_round_shield"/>
+					<case minzoom="16" tag="emergency" value="disaster_help_point" icon="disaster_help_point" shield="red_round_shield"/>
 					<switch minzoom="15">
 						<case tag="amenity" value="hospital" icon="amenity_hospital" iconVisibleSize="26" shield="red_round_shield" iconOrder="79"/>
 						<apply_if nightMode="true" shield="red_round_night_shield" iconVisibleSize="24"/>
@@ -7937,7 +7943,9 @@
 				</switch>
 				<switch tag="amenity" value="place_of_worship" icon="amenity_place_of_worship" iconVisibleSize="11" intersectionSizeFactor="0.8">
 					<case minzoom="14" moreDetailed="true" iconOrder="43" iconVisibleSize="9" intersectionSizeFactor="0.7"/>
-					<case minzoom="15" moreDetailed="false" additional="wiki=yes" iconOrder="43" iconVisibleSize="9" intersectionSizeFactor="0.7"/>
+					<case minzoom="15" moreDetailed="false" additional="travel_elo_rounded=3000" iconOrder="43" iconVisibleSize="9" intersectionSizeFactor="0.7"/>
+					<case minzoom="15" moreDetailed="false" additional="travel_elo_rounded=3500" iconOrder="43" iconVisibleSize="9" intersectionSizeFactor="0.7"/>
+					<case minzoom="15" moreDetailed="false" additional="travel_elo_rounded=4000" iconOrder="43" iconVisibleSize="9" intersectionSizeFactor="0.7"/>
 					<case minzoom="16" iconOrder="132"/>
 					<apply_if nightMode="true" icon="amenity_place_of_worship_night"/>
 					<apply>
@@ -8833,13 +8841,14 @@
 					</case>-->
 				</case>
 				<!-- <apply iconOrder="19"/>-->
-				<case minzoom="16" tag="railway" value="yard" icon="railway_yard" shield="blue_round_shield" iconVisibleSize="14">
-					<apply_if nightMode="true" shield="blue_round_night_shield"/>
-				</case>
 			</switch>
 
 			<apply_if legend="true" iconVisibleSize="0"/>
 		</switch>
+
+		<case hideIcons="false" minzoom="16" tag="railway" value="yard" icon="railway_yard" shield="blue_round_shield" iconVisibleSize="14">
+			<apply_if nightMode="true" shield="blue_round_night_shield"/>
+		</case>
 
 		<case tag="osmand_change" value="delete"/> <!-- OSM Live will break if delete -->
 	</point>
@@ -9454,6 +9463,7 @@
 				<case minzoom="13" tag="leisure" value="sports_centre" color="$sportsCentreColor"/>
 				<apply strokeWidth_2="1"/>
 			</switch>
+			<case tag="power" value="plant" additional="generator:source=wind"/>
 			<switch minzoom="13">
 				<case tag="power" value="plant"/>
 				<case tag="power" value="generator"/>
@@ -11300,7 +11310,7 @@
 			</apply>
 		</case>
 
-		<case minzoom="14" tag="highway" value="via_ferrata" color="$null" strokeWidth="0.1" color_2="$viaFerrataColor" color_3="$viaFerrataColor" pathEffect_2="1_1" pathEffect_3="1_5">
+		<case minzoom="12" tag="highway" value="via_ferrata" color="$null" strokeWidth="0.1" color_2="$viaFerrataColor" color_3="$viaFerrataColor" pathEffect_2="1_1" pathEffect_3="1_5">
 			<apply>
 				<switch>
 					<case additional="bridge=yes" color="$white" color__1="$black"/>
