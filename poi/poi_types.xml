@@ -22,6 +22,8 @@
 	<poi_additional name="is_aggr_part" lang="true" tag="is_aggr_part" type="text" no_edit="true" hidden="true"/>
 	<poi_additional name="content_json" lang="true" tag="content_json" type="text" no_edit="true" hidden="true"/>
 	<poi_additional name="opening_hours" tag="opening_hours" type="text" order="86"/>
+	<poi_additional name="check_date" tag="check_date" type="text"/>
+	<poi_additional name="check_date_opening_hours" tag="check_date:opening_hours" type="text" hidden="true"/>
 	<poi_additional name="collection_times" tag="collection_times" type="text" order="87"/>
 	<poi_additional name="description" tag="description" type="text" lang="true" order="80"/>
 	<poi_additional name="inscription" tag="inscription" type="text" lang="true" order="81"/>
@@ -337,6 +339,7 @@
 	<poi_additional name="water_characteristic_mud" tag="water_characteristic" value="mud"/>
 
 	<poi_additional name="cuisine" tag="cuisine" type="text" order="110"/>
+	<poi_additional name="theme" tag="theme" type="text" order="110"/>
 	<poi_additional name="food_no" tag="food" value="no"/>
 	<poi_additional name="fireplace_no" tag="fireplace" value="no"/>
 	<poi_additional name="covered_no" tag="covered" value="no"/>
@@ -521,6 +524,13 @@
 		<poi_additional name="payment_notes_yes" tag="payment:notes" value="yes"/>
 		<poi_additional name="payment_electronic_purses_yes" tag="payment:electronic_purses" value="yes"/>
 		<poi_additional name="payment_cash_yes" tag="payment:cash" value="yes" top="true"/>
+		<poi_additional name="payment_cash_xlt_bule_yes" tag="payment:cash:XLT-BULE" value="yes"/>
+		<poi_additional name="payment_cash_xlt_eusk_yes" tag="payment:cash:XLT-EUSK" value="yes"/>
+		<poi_additional name="payment_cash_xlt_flor_yes" tag="payment:cash:XLT-FLOR" value="yes"/>
+		<poi_additional name="payment_cash_xlt_pive_yes" tag="payment:cash:XLT-PIVE" value="yes"/>
+		<poi_additional name="payment_cash_xlt_roue_yes" tag="payment:cash:XLT-ROUE" value="yes"/>
+		<poi_additional name="payment_cash_xlt_valh_yes" tag="payment:cash:XLT-VALH" value="yes"/>
+		<poi_additional name="payment_cash_xlt_zinn_yes" tag="payment:cash:XLT-ZINN" value="yes"/>
 		<poi_additional name="payment_debit_cards_yes" tag="payment:debit_cards" value="yes" top="true"/>
 		<poi_additional name="payment_bitcoin_yes" tag="payment:bitcoin" value="yes"/>
 		<poi_additional name="payment_visa_yes" tag="payment:visa" value="yes" top="true"/>
@@ -569,6 +579,9 @@
 		<poi_additional name="payment_yandexmoney_yes" tag="payment:yandexmoney" value="yes"/>
 		<poi_additional name="payment_troika_yes" tag="payment:troika" value="yes"/>
 		<poi_additional name="payment_contactless_yes" tag="payment:contactless" value="yes"/>
+		<poi_additional name="payment_contactless_xlt_bule_yes" tag="payment:contactless:XLT-BULE" value="yes"/>
+		<poi_additional name="payment_contactless_xlt_eusk_yes" tag="payment:contactless:XLT-EUSK" value="yes"/>
+		<poi_additional name="payment_contactless_xlt_flor_yes" tag="payment:contactless:XLT-FLOR" value="yes"/>
 		<poi_additional name="payment_american_express_contactless_yes" tag="payment:american_express_contactless" value="yes"/>
 		<poi_additional name="payment_girocard_contactless_yes" tag="payment:girocard_contactless" value="yes"/>
 		<poi_additional name="payment_maestro_contactless_yes" tag="payment:maestro_contactless" value="yes"/>
@@ -1664,6 +1677,7 @@
 			<poi_type name="fire_station" tag="amenity" value="fire_station"/>
 			<poi_type name="ambulance_station" tag="emergency" value="ambulance_station" poi_additional_category="opening_hours"/>
 			<poi_type name="disaster_response" tag="emergency" value="disaster_response" poi_additional_category="opening_hours"/>
+			<poi_type name="disaster_help_point" tag="emergency" value="disaster_help_point"/>
 			<poi_type name="rescue_station" tag="amenity" value="rescue_station" poi_additional_category="opening_hours"/>
 			<poi_type name="mountain_rescue" tag="emergency" value="mountain_rescue" poi_additional_category="opening_hours"/>
 			<poi_type name="lifeguard" tag="emergency" value="lifeguard" poi_additional_category="opening_hours">
@@ -2291,6 +2305,7 @@
 				</poi_type>
 				<poi_type name="public_transport_stop_position" tag="public_transport" value="stop_position" no_indx="true" no_edit="true" excluded_poi_additional_category="payment_type,fee,internet_access_type,opening_hours"/>
 				<poi_type name="bus_stop" tag="highway" value="bus_stop" no_indx="true" excluded_poi_additional_category="payment_type,fee,opening_hours" poi_additional_category="bench,covered,tactile_paving"/>
+				<poi_type name="hitchhiking_stop" tag="highway" value="hitchhiking" no_indx="true" excluded_poi_additional_category="payment_type,fee,opening_hours" poi_additional_category="bench,covered"/>
 				<poi_type name="tram_stop" tag="railway" value="tram_stop" no_indx="true" excluded_poi_additional_category="payment_type,fee,opening_hours" poi_additional_category="bench,covered,tactile_paving"/>
 				<poi_type name="public_transport_station" tag="public_transport" value="station"/>
 				<poi_type name="bus_station" tag="amenity" value="bus_station"/>
@@ -4117,7 +4132,7 @@
 		</poi_category>
 		<poi_category name="entertainment" default_tag="amenity" top="true">
 			<poi_filter name="club">
-				<poi_type name="nightclub" tag="amenity" value="nightclub" poi_additional_category="smoking,live_music,cafe_filter,air_conditioning"/>
+				<poi_type name="nightclub" tag="amenity" value="nightclub" poi_additional_category="theme,smoking,live_music,cafe_filter,air_conditioning"/>
 				<poi_type name="stripclub" tag="amenity" value="stripclub" poi_additional_category="smoking"/>
 				<poi_type name="club_art" tag="club" value="art"/>
 				<poi_type name="club_amateur_radio" tag="club" value="amateur_radio"/>
@@ -4504,6 +4519,33 @@
 						<poi_additional name="cuisine_canteen" tag="cuisine" value="canteen"/>
 						<poi_additional name="cuisine_brasserie" tag="cuisine" value="brasserie"/>
 					</poi_additional_category>
+					<poi_additional_category name="theme_filter" icon="special_star">
+						<poi_additional name="theme_irish" tag="theme" value="irish" top="true"/>
+						<poi_additional name="theme_cat" tag="theme" value="cat" top="true"/>
+						<poi_additional name="theme_maid" tag="theme" value="maid"/>
+						<poi_additional name="theme_tiki" tag="theme" value="tiki"/>
+						<poi_additional name="theme_shakespeare" tag="theme" value="shakespeare"/>
+						<poi_additional name="theme_rainforest" tag="theme" value="rainforest"/>
+						<poi_additional name="theme_bicycle" tag="theme" value="bicycle"/>
+						<poi_additional name="theme_dog" tag="theme" value="dog"/>
+						<poi_additional name="theme_train" tag="theme" value="train"/>
+						<poi_additional name="theme_nature" tag="theme" value="nature"/>
+						<poi_additional name="theme_ship" tag="theme" value="ship"/>
+						<poi_additional name="theme_animal" tag="theme" value="animal"/>
+						<poi_additional name="theme_pirate" tag="theme" value="pirate"/>
+						<poi_additional name="theme_medieval" tag="theme" value="medieval"/>
+						<poi_additional name="theme_jazz" tag="theme" value="jazz"/>
+						<poi_additional name="theme_historic" tag="theme" value="historic"/>
+						<poi_additional name="theme_english" tag="theme" value="english"/>
+						<poi_additional name="theme_football" tag="theme" value="football"/>
+						<poi_additional name="theme_aviation" tag="theme" value="aviation"/>
+						<poi_additional name="theme_board_game" tag="theme" value="board_game"/>
+						<poi_additional name="theme_music" tag="theme" value="music"/>
+						<poi_additional name="theme_adventure" tag="theme" value="adventure"/>
+						<poi_additional name="theme_western" tag="theme" value="western"/>
+						<poi_additional name="theme_steampunk" tag="theme" value="steampunk"/>
+						<poi_additional name="theme_horror" tag="theme" value="horror"/>
+					</poi_additional_category>
 					<poi_additional_category name="outdoor_seating">
 						<poi_additional name="outdoor_seating_filter_yes" tag="outdoor_seating_filter" value="yes" no_edit="true" filter_only="true"/>
 					</poi_additional_category>
@@ -4524,7 +4566,7 @@
 					</poi_additional_category>
 
 				</poi_type>
-				<poi_type name="restaurant" tag="amenity" value="restaurant" poi_additional_category="microbrewery,takeaway,outdoor_seating,smoking,dish,cuisine,organic,drinking_water_refill,changing_table_filter,reservation,live_music,cafe_filter,air_conditioning">
+				<poi_type name="restaurant" tag="amenity" value="restaurant" poi_additional_category="theme,microbrewery,takeaway,outdoor_seating,smoking,dish,cuisine,organic,drinking_water_refill,changing_table_filter,reservation,live_music,cafe_filter,air_conditioning">
 					<poi_additional_category name="delivery">
 						<poi_additional name="delivery_filter_yes" tag="delivery_filter" value="yes" no_edit="true" filter_only="true"/>
 					</poi_additional_category>
@@ -4544,7 +4586,8 @@
 				</poi_type>
 				<poi_type name="food_court" tag="amenity" value="food_court" poi_additional_filter="air_conditioning"/>
 			</poi_filter>
-			<poi_type name="fast_food" tag="amenity" value="fast_food" poi_additional_category="delivery,outdoor_seating,drive_in,smoking,diet,dish,cuisine,organic,drinking_water_refill,changing_table_filter,self_checkout,cafe_filter,air_conditioning">
+			<poi_reference name="bakery"/>
+			<poi_type name="fast_food" tag="amenity" value="fast_food" poi_additional_category="theme,delivery,outdoor_seating,drive_in,smoking,diet,dish,cuisine,organic,drinking_water_refill,changing_table_filter,self_checkout,cafe_filter,air_conditioning">
 				<poi_additional_category name="drive_through">
 					<poi_additional name="drive_through_yes" tag="drive_through" value="yes"/>
 				</poi_additional_category>
@@ -4559,8 +4602,8 @@
 			</poi_type>
 			<poi_type name="outdoor_seating_poi" tag="leisure" value="outdoor_seating" poi_additional_category="heating_filter"/>
 			<poi_type name="hookah_lounge" tag="amenity" value="hookah_lounge"/>
-			<poi_type name="biergarten" tag="amenity_biergarten" value="biergarten" edit_tag="amenity" edit_value="biergarten" poi_additional_category="outdoor_seating,dish,cuisine,drinking_water_refill,air_conditioning"/>
-			<poi_type name="bar" tag="amenity" value="bar" poi_additional_category="outdoor_seating,smoking,dish,cuisine,ice_cream_filter,air_conditioning,post_office_type">
+			<poi_type name="biergarten" tag="amenity_biergarten" value="biergarten" edit_tag="amenity" edit_value="biergarten" poi_additional_category="theme,outdoor_seating,dish,cuisine,drinking_water_refill,air_conditioning"/>
+			<poi_type name="bar" tag="amenity" value="bar" poi_additional_category="theme,outdoor_seating,smoking,dish,cuisine,ice_cream_filter,air_conditioning,post_office_type">
 				<poi_additional_category name="cocktails">
 					<poi_additional name="cocktails_yes" tag="cocktails" value="yes"/>
 				</poi_additional_category>
@@ -4568,7 +4611,7 @@
 					<poi_additional name="live_music_yes" tag="live_music" value="yes" icon="music"/>
 				</poi_additional_category>
 			</poi_type>
-			<poi_type name="pub" tag="amenity" value="pub" poi_additional_category="takeaway,outdoor_seating,smoking,dish,cuisine,drinking_water_refill,ice_cream_filter,live_music,cafe_filter,air_conditioning,post_office_type">
+			<poi_type name="pub" tag="amenity" value="pub" poi_additional_category="theme,takeaway,outdoor_seating,smoking,dish,cuisine,drinking_water_refill,ice_cream_filter,live_music,cafe_filter,air_conditioning,post_office_type">
 				<poi_additional_category name="microbrewery" icon="craft_brewery">
 					<poi_additional name="microbrewery_yes" tag="microbrewery" value="yes"/>
 				</poi_additional_category>
@@ -4671,6 +4714,7 @@
 				<poi_additional name="post_flats" tag="post:flats" type="text"/>
 			</poi_type>
 			<poi_type name="parcel_locker" tag="amenity" value="parcel_locker" excluded_poi_additional_category="drive_through,internet_access_type"/>
+			<poi_type name="luggage_locker" tag="amenity" value="luggage_locker" excluded_poi_additional_category="drive_through,internet_access_type"/>
 			<poi_type name="beauty" tag="shop" value="beauty" excluded_poi_additional_category="payment_type,fee">
 				<poi_additional_category name="beauty_salon_service" icon="beauty_salon_nails">
 					<poi_additional name="beauty_salon_nails" tag="beauty" value="nails" top="true"/>

@@ -237,7 +237,13 @@
 	<entity_convert pattern="tag_transform" from_tag="motorcar" from_value="agricultural; forestry" to_tag1="motorcar" to_value1="agricultural;forestry"/>
 	<entity_convert pattern="tag_transform" from_tag="motorcar" from_value="agricultural;forestry;destination" to_tag1="motorcar" to_value1="agricultural;forestry"/>
 	<entity_convert pattern="tag_transform" from_tag="motorcycle" from_value="permit" to_tag1="motorcycle" to_value1="private"/>
-	<type tag="motorcycle" value="destination" minzoom="13" additional="true" poi="false"/>
+    <type tag="motorcycle" value="no" minzoom="13" additional="true" poi="false"/>
+    <type tag="motorcycle" value="private" minzoom="13" additional="true" poi="false"/>
+    <type tag="motorcycle" value="yes" minzoom="13" additional="true" poi="false"/>
+    <type tag="motorcycle" value="unknown" minzoom="13" additional="true" poi="false"/>
+    <type tag="motorcycle" value="discouraged" minzoom="13" additional="true" poi="false"/>
+    <type tag="motorcycle" value="designated" minzoom="13" additional="true" poi="false"/>
+    <type tag="motorcycle" value="destination" minzoom="13" additional="true" poi="false"/>
 	<type tag="motorcycle" value="permissive" minzoom="13" additional="true" poi="false"/>
 	<type tag="motorcycle" value="agricultural" minzoom="13" additional="true" poi="false"/>
 	<type tag="motorcycle" value="agricultural;forestry" minzoom="13" additional="true" poi="false"/>
@@ -2213,6 +2219,7 @@
 
 		<type tag="highway" value="bus_stop" minzoom="14"/>
 		<entity_convert pattern="tag_transform" from_tag="highway" from_value="bus_stop" if_tag1="public_transport" if_value1="platform"/> <!-- Remove highway=bus_stop (obsolete tag) if used with p_t=platform -->
+		<type tag="highway" value="hitchhiking" minzoom="14"/>
 		<type tag="highway" value="emergency_access_point" minzoom="16"/>
 		<type tag="highway" value="speed_camera" minzoom="15"/>
 		<type tag="highway" value="milestone" nameTags="distance" minzoom="15"/>
@@ -5119,6 +5126,7 @@
 		<type tag="emergency" value="ambulance_station" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="amenity" from_value="ambulance_station" to_tag1="emergency" to_value1="ambulance_station"/>
 		<type tag="emergency" value="disaster_response" minzoom="15" />
+		<type tag="emergency" value="disaster_help_point" minzoom="15" />
 		<type tag="amenity" value="police" minzoom="15" />
 		<entity_convert pattern="tag_transform" from_tag="emergency" from_value="police" to_tag1="amenity"/>
 		<type tag="emergency" value="fire_extinguisher" minzoom="17" />
@@ -5507,7 +5515,7 @@
 		<entity_convert pattern="tag_transform" from_tag="industrial" from_value="salt_pond" to_tag1="landuse" to_value1="salt_pond"/>
 		<entity_convert pattern="tag_transform" from_tag="industrial" from_value="natural_gas" to_tag1="industrial" to_value1="gas" map="no"/>
 		<type tag="landuse" value="landfill" minzoom="11" />
-		<entity_convert pattern="tag_transform" from_tag="landfill:waste" if_not_tag1="landuse" if_not_value1="landfill" to_tag1="landfill:waste" to_tag2="landuse" to_value2="landfill"/>
+		<entity_convert pattern="tag_transform" from_tag="landfill:waste" if_not_tag1="landuse" if_not_value1="landfill" if_not_tag2="disused:landuse" to_tag1="landfill:waste" to_tag2="landuse" to_value2="landfill"/>
 		<entity_convert pattern="tag_transform" from_tag="landuse" from_value="landfill" if_tag1="man_made" if_value1="spoil_heap"/>
 		<type tag="landuse" value="meadow" minzoom="11" order="60"/>
 		<entity_convert pattern="tag_transform" from_tag="crop" from_value="native_pasture" to_tag1="landuse" to_value1="meadow"/>
@@ -6394,7 +6402,8 @@
 		<type tag="area_rounded" minzoom="5" additional="true" notosm="true"/>
 		<type tag="osmand_prominent_island" value="yes" minzoom="5" additional="true" notosm="true"/>
 		<type tag="place" value="islet" minzoom="10" order="100"/>
-		<entity_convert pattern="tag_transform" from_tag="place" from_value="atoll" to_tag1="place" to_value1="island" poi="no" routing="no"/>
+		<!-- not an island: the atoll area takes in the lagoon, so it only gets a name -->
+		<type tag="place" value="atoll" minzoom="5" order="50"/>
 		<type tag="osmand_large_state" value="true" minzoom="3" additional="true" notosm="true"/>
 		<type tag="osmand_region" value="yes" minzoom="5" notosm="true"/>
 		<type tag="osmand_region" value="boundary" minzoom="5" notosm="true"/>

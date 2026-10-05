@@ -3315,6 +3315,7 @@
 				<case tag="golf" value="fairway"/>
 				<case tag="golf" value="tee"/>
 				<case tag="landuse" value="residential" order="4"/>
+				<case tag="landuse" value="construction" order="4"/>
 				<case tag="historic" value="quarry"/>
 				<case tag="landuse" value="quarry"/>
 				<switch order="5">
@@ -4922,26 +4923,30 @@
 				</apply>
 			</switch>
 
-			<switch minzoom="5" tag="place" value="island" nameTag="">
-				<switch maxzoom="10" additional="osmand_prominent_island=yes" textOrder="77">
-					<case minzoom="5" additional="area_rounded=2048000" textSize="11"/>
-					<case minzoom="5" additional="area_rounded=1024000" textSize="11"/>
-					<case minzoom="5" additional="area_rounded=512000" textSize="11"/>
-					<case minzoom="5" additional="area_rounded=256000" textSize="11"/>
-					<case minzoom="5" additional="area_rounded=128000" textSize="11"/>
-					<case minzoom="5" additional="area_rounded=64000" textSize="11"/>
-					<case minzoom="5" additional="area_rounded=32000" textSize="11"/>
-					<case minzoom="5" additional="area_rounded=16000" textSize="11"/>
-					<case minzoom="6" additional="area_rounded=8000" textSize="12"/>
-					<case minzoom="7" additional="area_rounded=4000" textSize="12"/>
-					<case minzoom="8" additional="area_rounded=2000" textSize="13"/>
-					<case minzoom="9" additional="area_rounded=1000" textSize="13"/>
-					<case minzoom="9" additional="area_rounded=500" textSize="13"/>
-					<case minzoom="10" additional="area_rounded=200" textSize="13"/>
-					<case minzoom="10" additional="area_rounded=100" textSize="13"/>
-				</switch>
-				<case minzoom="11" textSize="14" textOrder="37" intersectionMargin="15"/>
-				<apply textColor="$placeCityVillageTextColor" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColor" textItalic="true"/>
+			<switch minzoom="5" nameTag="">
+				<case tag="place" value="island"/>
+				<case tag="place" value="atoll"/>
+				<apply>
+					<switch maxzoom="10" additional="osmand_prominent_island=yes" textOrder="77">
+						<case minzoom="5" additional="area_rounded=2048000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=1024000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=512000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=256000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=128000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=64000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=32000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=16000" textSize="11"/>
+						<case minzoom="6" additional="area_rounded=8000" textSize="12"/>
+						<case minzoom="7" additional="area_rounded=4000" textSize="12"/>
+						<case minzoom="8" additional="area_rounded=2000" textSize="13"/>
+						<case minzoom="9" additional="area_rounded=1000" textSize="13"/>
+						<case minzoom="9" additional="area_rounded=500" textSize="13"/>
+						<case minzoom="10" additional="area_rounded=200" textSize="13"/>
+						<case minzoom="10" additional="area_rounded=100" textSize="13"/>
+					</switch>
+					<case minzoom="11" textSize="14" textOrder="37" intersectionMargin="15"/>
+					<apply textColor="$placeCityVillageTextColor" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColor" textItalic="true"/>
+				</apply>
 			</switch>
 
 			<case minzoom="13" tag="place" value="islet" nameTag="">
@@ -4990,6 +4995,13 @@
 						<apply textSize="11"/>
 					</case>
 					<case minzoom="16" textSize="12" tag="natural" value="cliff" nameTag="" textOnPath="true" textHaloRadius="3" textDy="0" textOrder="43"/>
+					<switch tag="natural" value="ridge" nameTag="" textOnPath="true" textHaloRadius="3" textDy="0" textOrder="43">
+						<case minzoom="17" textSize="20"/>
+						<case minzoom="16" textSize="18"/>
+						<case minzoom="15" textSize="16"/>
+						<case minzoom="14" textSize="14"/>
+						<case minzoom="13" textSize="13"/>
+					</switch>
 					<switch tag="natural" value="valley" nameTag="" textOnPath="true" textColor="#356B25" textHaloRadius="3" textDy="0" textOrder="43">
 						<case minzoom="17" textSize="20" />
 						<case minzoom="16" textSize="18" />
@@ -5291,6 +5303,7 @@
 					<case minzoom="18" tag="emergency" value="phone"/>
 					<case minzoom="18" tag="emergency" value="defibrillator"/>
 					<case minzoom="16" tag="emergency" value="disaster_response"/>
+					<case minzoom="16" tag="emergency" value="disaster_help_point"/>
 					<case minzoom="19" tag="emergency" value="fire_hydrant"/>
 					<case minzoom="18" tag="emergency" value="rescue_box"/>
 					<case minzoom="17" tag="emergency" value="mountain_rescue"/>
@@ -7109,6 +7122,7 @@
 						<apply_if nightMode="true" shield="red_round_night_shield"/>
 					</case>
 					<case minzoom="16" tag="emergency" value="disaster_response" icon="disaster_response" shield="red_round_shield"/>
+					<case minzoom="16" tag="emergency" value="disaster_help_point" icon="disaster_help_point" shield="red_round_shield"/>
 					<switch minzoom="15">
 						<case tag="amenity" value="hospital" icon="amenity_hospital" iconVisibleSize="26" shield="red_round_shield" iconOrder="79"/>
 						<apply_if nightMode="true" shield="red_round_night_shield" iconVisibleSize="24"/>
@@ -7936,6 +7950,8 @@
 				</switch>
 				<switch tag="amenity" value="place_of_worship" icon="amenity_place_of_worship" iconVisibleSize="11" intersectionSizeFactor="0.8">
 					<case minzoom="14" moreDetailed="true" iconOrder="43" iconVisibleSize="9" intersectionSizeFactor="0.7"/>
+					<case minzoom="15" moreDetailed="false" additional="travel_elo_rounded=3000" iconOrder="43" iconVisibleSize="9" intersectionSizeFactor="0.7"/>
+					<case minzoom="15" moreDetailed="false" additional="travel_elo_rounded=3500" iconOrder="43" iconVisibleSize="9" intersectionSizeFactor="0.7"/>
 					<case minzoom="15" moreDetailed="false" additional="travel_elo_rounded=4000" iconOrder="43" iconVisibleSize="9" intersectionSizeFactor="0.7"/>
 					<case minzoom="16" iconOrder="132"/>
 					<apply_if nightMode="true" icon="amenity_place_of_worship_night"/>
@@ -8832,13 +8848,14 @@
 					</case>-->
 				</case>
 				<!-- <apply iconOrder="19"/>-->
-				<case minzoom="16" tag="railway" value="yard" icon="railway_yard" shield="blue_round_shield" iconVisibleSize="14">
-					<apply_if nightMode="true" shield="blue_round_night_shield"/>
-				</case>
 			</switch>
 
 			<apply_if legend="true" iconVisibleSize="0"/>
 		</switch>
+
+		<case hideIcons="false" minzoom="16" tag="railway" value="yard" icon="railway_yard" shield="blue_round_shield" iconVisibleSize="14">
+			<apply_if nightMode="true" shield="blue_round_night_shield"/>
+		</case>
 
 		<case tag="osmand_change" value="delete"/> <!-- OSM Live will break if delete -->
 	</point>
@@ -9453,6 +9470,7 @@
 				<case minzoom="13" tag="leisure" value="sports_centre" color="$sportsCentreColor"/>
 				<apply strokeWidth_2="1"/>
 			</switch>
+			<case tag="power" value="plant" additional="generator:source=wind"/>
 			<switch minzoom="13">
 				<case tag="power" value="plant"/>
 				<case tag="power" value="generator"/>

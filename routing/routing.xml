@@ -1220,6 +1220,7 @@
 			<select value="283" t="barrier" v="border_control"/>
 			<select value="300" t="barrier" v="bump_gate"/>
 			<select value="300" t="barrier" v="gate" /> <!-- could be on many ferries (make accessible) -->
+			<select value="300" t="barrier" v="hampshire_gate"/>
 			<select value="1"   t="barrier" v="entrance"/>
 			<select value="100" t="barrier" v="sally_port"/>
 			<select value="1"   t="barrier" v="toll_booth"/>
@@ -1228,6 +1229,8 @@
 			<!-- These 2 shouldn't be allowed per the wiki (access=no is assumed) but people often do not add the proper access tags. -->
 			<select value="300" t="barrier" v="lift_gate"/>
 			<select value="300" t="barrier" v="swing_gate"/>
+			<select value="300" t="barrier" v="sliding_beam"/>
+			<select value="300" t="barrier" v="sliding_gate"/>
 			<!-- Without explicit access marking, barriers other than the listed values above are impassable to a car. -->
 			<select value="10" t="traffic_calming"/>
 			<select value="5"  t="highway" v="give_way"/>
@@ -2114,7 +2117,6 @@
 			<select value="-1" t="access" v="no"/>
 			<if param="allow_private">
 				<select value="1"  t="access" v="private"/>
-				<select value="1"  t="locked" v="yes"/>
 			</if>
 			<select value="-1" t="access" v="private"/>
 			<select value="1"  t="access" v="yes"/>
@@ -2328,16 +2330,20 @@
 			<select value="-1" t="access" v="no"/>
 			<if param="allow_private">
 				<select value="180"  t="access" v="private"/>
-				<select value="180"  t="locked" v="yes"/>
 			</if>
 			<select value="-1"  t="access" v="private"/>
-			<select value="500"  t="locked" v="yes"/>
 			<select value="120"  t="access" v="destination"/>
 
 			<select value="0"  t="access" v="yes"/>
 			<select value="0"  t="access" v="permissive"/>
 			<select value="300" t="amenity" v="ferry_terminal"/>
 
+			<ifnot param="allow_private">
+				<select value="-1" t="locked" v="yes"/>
+			</ifnot>
+			<if param="allow_private">
+				<select value="180" t="locked" v="yes"/>
+			</if>
 		</point>
 
 		<way attribute="penalty_transition">

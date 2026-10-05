@@ -268,6 +268,7 @@ icon_alias avalanche_transceiver emergency_avalanche_transceiver
 icon_alias avalanche_transceiver_training emergency_avalanche_transceiver_training
 icon_alias siren emergency_siren
 icon_alias disaster_response emergency_disaster_response
+icon_alias disaster_help_point emergency_disaster_help_point
 
 icon_alias healthcare health_healthcare
 icon_alias amenity_dentist health_dentist
@@ -3449,6 +3450,7 @@ icon_alias female_yes additional_female_yes
 icon_alias female_no additional_female_no
 icon_alias wheelchair_yes additional_wheelchair
 icon_alias wheelchair_designated additional_wheelchair
+icon_alias wheelchair_limited additional_wheelchair
 icon_alias wheelchair_no additional_wheelchair_no
 icon_alias bench_yes additional_bench_yes
 icon_alias bench_no additional_bench_no
