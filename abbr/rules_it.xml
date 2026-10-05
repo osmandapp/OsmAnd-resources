@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rules version="3">
+<rules version="4">
     <index>
         <!-- RF1: the road number belongs to the same name as the full phrase. -->
         <rule object="street" from="(?iu)\bStrada\s+Statale\b" to="SS"/>
@@ -13,14 +13,14 @@
     <query>
         <!-- SA1, query.db: "P.za S. Giovanni Paolo II", "Cappella di S. Andrea"; OSM names spell the saint in full.
              Candidate for measuring on full OBF: "s" is one letter, AbbreviationMetrics decides whether it stays. -->
-        <rule from="s" to="San"/>
-        <rule from="s" to="Santo"/>
-        <rule from="s" to="Santa"/>
-
+        <rule from="s">
+            <to object="street,locality,poi">San</to>
+            <to object="street,locality,poi">Santo</to>
+            <to object="street,locality,poi">Santa</to>
+        </rule>
         <!-- house number suffixes: "12 bis", "12/ter" -->
-        <rule object="building" from="bis"/>
-        <rule object="building" from="ter"/>
-
+        <rule from="bis" object="building"/>
+        <rule from="ter" object="building"/>
         <rule from="il" to=""/>
         <rule from="la" to=""/>
     </query>

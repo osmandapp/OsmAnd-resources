@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rules version="3">
-        <query>
-        <rule from="о" to="Остров"/>
-        <rule from="остров" to="о."/>
-
+<rules version="4">
+    <query>
+        <!-- "о. Кижи": an island; "остров" gets "о" as its reverse form. -->
+        <rule from="о" to="Остров" object="locality,poi"/>
         <!-- query.db: "Ленинградская ул. 53", "Невский пр., 56", "пер. Кронштадский", "Кемеровская обл.";
-             OSM names keep the full word ("Ленинградская улица", "Кемеровская область"). "пр." is also "проезд". -->
-        <rule object="street" from="(?iu)^Ул\.?$" to="Улица"/>
-        <rule object="street" from="(?iu)^Пер\.?$" to="Переулок"/>
-        <rule object="street" from="(?iu)^Просп\.?$" to="Проспект"/>
-        <rule from="пр" to="Проспект"/>
-        <rule from="пр" to="Проезд"/>
-        <rule object="boundary" from="(?iu)^Обл\.?$" to="Область"/>
-
-        <!-- "д. 223", "кв. 8", "корп. 2": house and flat qualifiers, a number part, not a name synonym. -->
-        <rule object="building" from="д"/>
-        <rule object="building" from="кв"/>
-        <rule object="building" from="корп"/>
-
+             OSM names keep the full word ("Ленинградская улица", "Кемеровская область"). -->
+        <rule from="ул" to="Улица" object="street"/>
+        <rule from="пер" to="Переулок" object="street"/>
+        <rule from="просп" to="Проспект" object="street"/>
+        <!-- two meanings: "Невский пр." and "пр. Энтузиастов" (проезд) -->
+        <rule from="пр"><to object="street">Проспект</to><to object="street">Проезд</to></rule>
+        <rule from="обл" to="Область" object="boundary"/>
+        <!-- "д. 223", "кв. 8", "корп. 2": house and flat qualifiers, a number part, not a name synonym.
+             "д." is also "деревня" in names ("подъезд к д. Ивановка"): not measured yet. -->
+        <rule from="д" object="building"/>
+        <rule from="кв" object="building"/>
+        <rule from="корп" object="building"/>
         <rule from="и" to=""/>
     </query>
 </rules>
