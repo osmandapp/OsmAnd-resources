@@ -782,6 +782,24 @@
 		</way>
 
 		<way attribute="penalty_transition">
+			<!-- delivery-only ways: fixed cost per entry/exit, so they are used to reach a destination, not as a shortcut -->
+			<ifnot param="allow_private">
+				<select value="2100" t="motorcar" v="delivery"/>
+				<select value="2100" t="motor_vehicle" v="delivery"/>
+				<select value="2100" t="vehicle" v="delivery"/>
+				<select value="2100" t="access" v="delivery"/>
+				<select value="2100" t="motorcar" v="private;delivery"/>
+				<select value="2100" t="motor_vehicle" v="private;delivery"/>
+				<select value="2100" t="vehicle" v="private;delivery"/>
+				<select value="2100" t="access" v="private;delivery"/>
+				<select value="2100" t="motorcar" v="delivery;private"/>
+				<select value="2100" t="motor_vehicle" v="delivery;private"/>
+				<select value="2100" t="vehicle" v="delivery;private"/>
+				<select value="2100" t="access" v="delivery;private"/>
+				<if param="profile_truck">
+					<select value="2100" t="hgv" v="delivery"/>
+				</if>
+			</ifnot>
 			<!-- cost in time when you change the route from motorway to primary or from primary
 				 to living_street, but not other way around. Calculated as difference between values -->
 			<!-- 
@@ -988,8 +1006,8 @@
 				<select value="0.8" t="highway" v="living_street"/>
 			</if>
 			<if param="avoid_motorway">
-				<select value="0.05" t="highway" v="motorway"/>
-				<select value="0.05" t="highway" v="motorway_link"/>
+				<select value="0.1" t="highway" v="motorway"/>
+				<select value="0.1" t="highway" v="motorway_link"/>
 			</if>
 
 			<if param="avoid_tunnels">
@@ -1202,6 +1220,7 @@
 			<select value="283" t="barrier" v="border_control"/>
 			<select value="300" t="barrier" v="bump_gate"/>
 			<select value="300" t="barrier" v="gate" /> <!-- could be on many ferries (make accessible) -->
+			<select value="300" t="barrier" v="hampshire_gate"/>
 			<select value="1"   t="barrier" v="entrance"/>
 			<select value="100" t="barrier" v="sally_port"/>
 			<select value="1"   t="barrier" v="toll_booth"/>
@@ -1210,6 +1229,8 @@
 			<!-- These 2 shouldn't be allowed per the wiki (access=no is assumed) but people often do not add the proper access tags. -->
 			<select value="300" t="barrier" v="lift_gate"/>
 			<select value="300" t="barrier" v="swing_gate"/>
+			<select value="300" t="barrier" v="sliding_beam"/>
+			<select value="300" t="barrier" v="sliding_gate"/>
 			<!-- Without explicit access marking, barriers other than the listed values above are impassable to a car. -->
 			<select value="10" t="traffic_calming"/>
 			<select value="5"  t="highway" v="give_way"/>
@@ -2096,7 +2117,6 @@
 			<select value="-1" t="access" v="no"/>
 			<if param="allow_private">
 				<select value="1"  t="access" v="private"/>
-				<select value="1"  t="locked" v="yes"/>
 			</if>
 			<select value="-1" t="access" v="private"/>
 			<select value="1"  t="access" v="yes"/>
@@ -2310,16 +2330,20 @@
 			<select value="-1" t="access" v="no"/>
 			<if param="allow_private">
 				<select value="180"  t="access" v="private"/>
-				<select value="180"  t="locked" v="yes"/>
 			</if>
 			<select value="-1"  t="access" v="private"/>
-			<select value="500"  t="locked" v="yes"/>
 			<select value="120"  t="access" v="destination"/>
 
 			<select value="0"  t="access" v="yes"/>
 			<select value="0"  t="access" v="permissive"/>
 			<select value="300" t="amenity" v="ferry_terminal"/>
 
+			<ifnot param="allow_private">
+				<select value="-1" t="locked" v="yes"/>
+			</ifnot>
+			<if param="allow_private">
+				<select value="180" t="locked" v="yes"/>
+			</if>
 		</point>
 
 		<way attribute="penalty_transition">
@@ -3074,6 +3098,8 @@
 	<routingProfile name="moped" baseProfile="moped" restrictionsAware="true" minSpeed="5.0" defaultSpeed="25.0" maxSpeed="35.0" sharpTurn="6" slightTurn="6" onewayAware="true">
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_unpaved" name="Avoid unpaved roads" description="Avoid unpaved roads" type="boolean"/>
+		<parameter id="avoid_sett" name="Avoid sett" description="Streets paved with sett are avoided" type="boolean" default="false"/>
+		<parameter id="avoid_cobblestone" name="Avoid cobblestone" description="Streets paved with cobblestone are avoided" type="boolean" default="false"/>
 		<parameter id="allow_private" name="Allow private access" description="Allow access to private areas" type="boolean"/>
 
 		<!-- Turn penalties for short_way=yes -->
@@ -3190,6 +3216,13 @@
 				<select value="0.1" t="surface" v="sand"/>
 				<select value="0.3" t="highway" v="track"/>
 				<select value="0.1" t="highway" v="path"/>
+			</if>
+			<if param="avoid_sett">
+				<select value="0.2" t="surface" v="sett"/>
+			</if>
+			<if param="avoid_cobblestone">
+				<select value="0.1" t="surface" v="cobblestone"/>
+				<select value="0.05" t="surface" v="unhewn_cobblestone"/>
 			</if>
 			<select value="1" t="smoothness" v="excellent"/>
 			<select value="1" t="smoothness" v="good"/>

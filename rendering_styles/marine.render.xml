@@ -268,6 +268,8 @@
 		<case depthColorScheme="ECDIS" attrColorValue="#7D888B">
 			<case nightMode="true" attrColorValue="#292E2E"/>
 		</case>
+		<case maxzoom="12" attrColorValue="#5c545C62"/>
+		<case maxzoom="13" attrColorValue="#99545C62"/>
 		<case attrColorValue="#cc545C62"/>
 	</renderingAttribute>
 
@@ -285,6 +287,38 @@
 		<case safetyContour="5m" attrStringValue="contourtype=5m"/>
 		<case safetyContour="10m" attrStringValue="contourtype=10m"/>
 		<case attrStringValue="contourtype=x"/>
+	</renderingAttribute>
+
+	<!-- depth areas shallower than the safety contour are hatched -->
+	<renderingAttribute name="safetyAreaType0">
+		<case safetyContour="0m" attrStringValue="areatype=-1"/>
+		<case safetyContour="1m" attrStringValue="areatype=-1"/>
+		<case safetyContour="2m" attrStringValue="areatype=-1"/>
+		<case safetyContour="3m" attrStringValue="areatype=-1"/>
+		<case safetyContour="4m" attrStringValue="areatype=-1"/>
+		<case safetyContour="5m" attrStringValue="areatype=-1"/>
+		<case safetyContour="10m" attrStringValue="areatype=-1"/>
+		<case attrStringValue="areatype=x"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="safetyAreaType2">
+		<case safetyContour="2m" attrStringValue="areatype=0"/>
+		<case safetyContour="3m" attrStringValue="areatype=0"/>
+		<case safetyContour="4m" attrStringValue="areatype=0"/>
+		<case safetyContour="5m" attrStringValue="areatype=0"/>
+		<case safetyContour="10m" attrStringValue="areatype=0"/>
+		<case attrStringValue="areatype=x"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="safetyAreaType5">
+		<case safetyContour="5m" attrStringValue="areatype=2"/>
+		<case safetyContour="10m" attrStringValue="areatype=2"/>
+		<case attrStringValue="areatype=x"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="safetyAreaType10">
+		<case safetyContour="10m" attrStringValue="areatype=5"/>
+		<case attrStringValue="areatype=x"/>
 	</renderingAttribute>
 	<!-- depthcontourslines -->
 
@@ -606,6 +640,7 @@
 			<case tag="contour" value="depth" order="15"/>
 		</switch>
 		<switch point="false" addPoint="true" objectType="3">
+			<!-- depth fill above the sea and natural=water (3), below wetland, anchorage and the other areas (5) -->
 			<case tag="contourarea" value="depth" order="4"/>
 		</switch>
 		<!-- depthcontourslines -->
@@ -1268,27 +1303,31 @@
 					<case additional="population_rounded=100" textOrder="43"/>
 				</apply>
 			</switch>
-			<switch minzoom="5" tag="place" value="island" nameTag="">
-				<switch maxzoom="10" additional="osmand_prominent_island=yes" textOrder="77">
-					<case minzoom="5" additional="area_rounded=2048000" textSize="11"/>
-					<case minzoom="5" additional="area_rounded=1024000" textSize="11"/>
-					<case minzoom="5" additional="area_rounded=512000" textSize="11"/>
-					<case minzoom="5" additional="area_rounded=256000" textSize="11"/>
-					<case minzoom="5" additional="area_rounded=128000" textSize="11"/>
-					<case minzoom="5" additional="area_rounded=64000" textSize="11"/>
-					<case minzoom="5" additional="area_rounded=32000" textSize="11"/>
-					<case minzoom="5" additional="area_rounded=16000" textSize="11"/>
-					<case minzoom="6" additional="area_rounded=8000" textSize="12"/>
-					<case minzoom="7" additional="area_rounded=4000" textSize="12"/>
-					<case minzoom="8" additional="area_rounded=2000" textSize="13"/>
-					<case minzoom="9" additional="area_rounded=1000" textSize="13"/>
-					<case minzoom="9" additional="area_rounded=500" textSize="13"/>
-					<case minzoom="10" additional="area_rounded=200" textSize="13"/>
-					<case minzoom="10" additional="area_rounded=100" textSize="13"/>
-				</switch>
-				<case minzoom="11" textSize="14" textOrder="37" intersectionMargin="15"/>
-				<apply textColor="#000000" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay" textItalic="true"/>
-				<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#77777777"/>
+			<switch minzoom="5" nameTag="">
+				<case tag="place" value="island"/>
+				<case tag="place" value="atoll"/>
+				<apply>
+					<switch maxzoom="10" additional="osmand_prominent_island=yes" textOrder="77">
+						<case minzoom="5" additional="area_rounded=2048000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=1024000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=512000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=256000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=128000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=64000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=32000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=16000" textSize="11"/>
+						<case minzoom="6" additional="area_rounded=8000" textSize="12"/>
+						<case minzoom="7" additional="area_rounded=4000" textSize="12"/>
+						<case minzoom="8" additional="area_rounded=2000" textSize="13"/>
+						<case minzoom="9" additional="area_rounded=1000" textSize="13"/>
+						<case minzoom="9" additional="area_rounded=500" textSize="13"/>
+						<case minzoom="10" additional="area_rounded=200" textSize="13"/>
+						<case minzoom="10" additional="area_rounded=100" textSize="13"/>
+					</switch>
+					<case minzoom="11" textSize="14" textOrder="37" intersectionMargin="15"/>
+					<apply textColor="#000000" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeTextHaloColorDay" textItalic="true"/>
+					<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#77777777"/>
+				</apply>
 			</switch>
 
 			<case minzoom="13" tag="place" value="islet" nameTag="">
@@ -2053,6 +2092,14 @@
 							<case additional="seamark:buoy_special_purpose:shape=spar" icon="seamark_buoy_white_spar"/>
 							<case additional="seamark:buoy_special_purpose:shape=spherical" icon="seamark_buoy_white_spherical"/>
 							<case additional="seamark:buoy_special_purpose:shape=super-buoy" icon="seamark_buoy_white_super_buoy"/>
+						</case>
+						<case additional="seamark:buoy_special_purpose:colour=red" icon="seamark_buoy_red_pillar">
+							<case additional="seamark:buoy_special_purpose:shape=conical" icon="seamark_buoy_red_conical"/>
+							<case additional="seamark:buoy_special_purpose:shape=barrel" icon="seamark_buoy_red_barrel"/>
+							<case additional="seamark:buoy_special_purpose:shape=can" icon="seamark_buoy_red_can"/>
+							<case additional="seamark:buoy_special_purpose:shape=pillar" icon="seamark_buoy_red_pillar"/>
+							<case additional="seamark:buoy_special_purpose:shape=spar" icon="seamark_buoy_red_spar"/>
+							<case additional="seamark:buoy_special_purpose:shape=spherical" icon="seamark_buoy_red_spherical"/>
 						</case>
 						<case additional="seamark:buoy_special_purpose:colour=white;yellow" icon="seamark_buoy_yellow_spherical">
 							<case additional="seamark:buoy_special_purpose:colour_pattern=cross">
@@ -3440,14 +3487,18 @@
 				<case additional="areatype=5" color="#04060A"/>
 				<case additional="areatype=10" color="#000000"/>
 			</case>
-			<case additional="areatype=-1" color="#CADBC1"/>
-			<case additional="areatype=0" color="#AFCCE3"/>
-			<case additional="areatype=2" color="#CADEEF"/>
-			<case additional="areatype=5" color="#F1F6FC"/>
-			<case additional="areatype=10" color="#FFFFFF"/>
+			<!-- shallower is darker; deeper than 10 m keeps the sea colour -->
+			<case additional="areatype=-1" color="#D4E8C6"/>
+			<case additional="areatype=0" color="#5FBDEB"/>
+			<case additional="areatype=2" color="#7DCDF3"/>
+			<case additional="areatype=5" color="#93DAF9"/>
 			<apply>
 				<switch shader="hazard">
 					<apply_if nightMode="true" shader="hazard_night"/>
+					<case additional="$safetyAreaType0"/>
+					<case additional="$safetyAreaType2"/>
+					<case additional="$safetyAreaType5"/>
+					<case additional="$safetyAreaType10"/>
 				</switch>
 			</apply>
 		</switch>
@@ -3836,7 +3887,11 @@
 			<case minzoom="8" additional="contourtype=10m" color="$color2"/>
 			<case minzoom="10" additional="contourtype=20m" color="$color2" hideMinorContours="false"/>
 			<case minzoom="9" additional="contourtype=50m" color="$color2" hideMinorContours="false"/>
-			<case minzoom="14" color="$color2" hideMinorContours="false"/>
+			<case minzoom="7" additional="contourtype=100m" color="$color2"/>
+			<case minzoom="6" additional="contourtype=200m" color="$color2"/>
+			<case minzoom="6" additional="contourtype=1000m" color="$color2"/>
+			<!-- 15, 25 m... of depth maps without a contourtype of their own -->
+			<case minzoom="12" color="$color2" hideMinorContours="false"/>
 
 			<apply_if depthContoursDashed="true">
 				<apply additional="contourtype=1m" pathEffect="15_3_2_3"/>
