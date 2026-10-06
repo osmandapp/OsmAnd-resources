@@ -1,31 +1,306 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rules version="4">
-    <!-- Load this base, then rules_<language>.xml and rules_<language>_<COUNTRY>.xml (SearchLocales: the locale of
-         the map data, "en_US" for a US map, "de_CH" for name:de of a Swiss map). This base holds only rules that are
-         true in every language: today there are none, words and their abbreviations belong to a language file. A map
-         without a locale ("" - World basemap, an unknown map) gets no word rules at all.
+<rules version="5">
+    <!-- Search rules v5, specification: rules-spec.md. Layers: this base, then rules_<language>.xml and
+         rules_<language>_<COUNTRY>.xml of the locale of the data (map and name tag, never the user interface).
 
          A stored name keeps the words of OSM: no rule rewrites it.
-           <index>  the OBF writer adds an alternative name to the names of objects, once, with the locale of the map
-                    and of the name tag (name:de on an Italian map is de_IT). Only what a query word cannot produce:
-                    a phrase, a glued or a tokenizer-lost form. The rule is a regexp with one form, the attribute to:
-                      <rule object="street" mode="All" from="(?iu)\b([\p{L}\p{M}]{2,})straße\b" to="$1str"/>
-                    object (on <rule>): the owner of the name - street, locality, boundary, postcode, poi, "a,b" for
-                    several, "*" (the default) for any. mode: All replaces all matches, the default requires one.
-           <query>  the search gives a query word its forms, with the locale of every OBF it reads. The rule of a plain
-                    word with one meaning has the attributes to and object:
-                      <rule from="pl" to="Place" object="street"/>
-                    a word with several meanings lists them as <to> elements, the first is the main one:
-                      <rule from="st"><to object="street">Street</to><to>Saint</to></rule>
-                    A form is one word; object is the owner of the names it applies to ("*" by default). Every
-                    form gets a reverse form of the same owner ("street" -> "st", "saint" -> "st"); a reverse form is
-                    one step and never takes the forms of the word it leads to, so "saint" does not become "street".
-                    A one-letter word needs an object for its forms. object="building" without to marks the word as a
-                    part of a house number; to="" makes the word ignorable (a conjunction, an article).
-           <common> words that do not count as unmatched words of a name, separated by spaces.
-         A pair belongs to one side: a word of an index form is no word of <query>.
+           <locales>  only here: map name prefix -> rules locale, statistics group of common_words_groups.tsv,
+                      transliteration of names.
+           <index>    applied by the OBF writer:
+                        <class0>/<class1>/<class2>  words that are always a key / service words / frequent words of
+                                                    the locale, over the classes of common_words_groups.tsv;
+                        <unglue glue="." minPart="2"/>  splits glued words into an alternative name;
+                        <rule object="street" from="regexp" to="form"/>  adds an alternative name: a phrase, a glued
+                                                    or a tokenizer-lost form; keys="always" makes its new words keys.
+                      A word of an alternative name is a key by its own class, whatever happened to the words it
+                      replaces.
+           <query>    applied by the search with the locale of every OBF it reads:
+                        <rule from="pl" to="Place" object="street"/>, <rule from="st"><to object="street">Street</to>
+                        <to>Saint</to></rule>: forms of a query word, each with a generated reverse form;
+                        object="building" without to: a part of a house number;
+                        to="": an ignorable word of every owner (an optional query token, never a penalty);
+                        <skipPenalty object="street">de la</skipPenalty>: words of names that do not penalize an
+                        object of the owners when the query does not have them.
 
-         The key of a query rule is its word (from, ignoring case), of an index rule object and from. A rule of a lower
-         layer with the key of an upper rule replaces it whole; enabled="false" removes it; two rules with one key in
-         one file are an error. <common enabled="false"> removes words of the upper layers. -->
+         Keys: a query rule - its word; an index rule - object and from; <unglue> - glue; a class word and a
+         <skipPenalty> word (with object) - the word. A lower layer replaces an upper rule of its key whole,
+         enabled="false" removes it, two rules with one key in one file are an error. -->
+    <locales>
+        <!-- statistics groups of common_words_groups.tsv: by the language of the locale, exceptions by locale -->
+        <group id="fr" languages="fr"/>  <!-- French -->
+        <group id="en" languages="en"/>  <!-- English -->
+        <group id="de" languages="de"/>  <!-- German -->
+        <group id="nl" languages="nl"/>  <!-- Dutch -->
+        <group id="es" languages="es ca"/>  <!-- Spanish -->
+        <group id="pt" languages="pt"/>  <!-- Portuguese -->
+        <group id="it" languages="it"/>  <!-- Italian -->
+        <group id="esl" languages="ru uk be kk ky tg tk uz mn"/>  <!-- East Slavic and Central Asia -->
+        <group id="wsl" languages="pl cs sk"/>  <!-- West Slavic -->
+        <group id="ssl" languages="sr hr bs sl mk bg sq"/>  <!-- South Slavic -->
+        <group id="ro" languages="ro"/>  <!-- Romanian -->
+        <group id="hu" languages="hu"/>  <!-- Hungarian -->
+        <group id="el" languages="el"/>  <!-- Greek -->
+        <group id="bal" languages="lt lv"/>  <!-- Baltic -->
+        <group id="nor" languages="nb sv da is fo kl"/>  <!-- Scandinavian -->
+        <group id="fi" languages="fi et"/>  <!-- Finnish and Estonian -->
+        <group id="tr" languages="tr az"/>  <!-- Turkish -->
+        <group id="ar" languages="ar so"/>  <!-- Arabic -->
+        <group id="mag" locales="ar_DZ ar_MA ar_TN ar_EH"/>  <!-- Maghreb, Arabic and French -->
+        <group id="fa" languages="fa"/>  <!-- Persian -->
+        <group id="he" languages="he"/>  <!-- Hebrew -->
+        <group id="cjk" languages="zh ja"/>  <!-- Chinese and Japanese -->
+        <group id="ko" languages="ko"/>  <!-- Korean -->
+        <group id="vi" languages="vi"/>  <!-- Vietnamese -->
+        <group id="ms" languages="id ms"/>  <!-- Malay and Indonesian -->
+        <group id="th" languages="th"/>  <!-- Thai -->
+        <group id="ind" languages="lo km my"/>  <!-- Indochina -->
+        <group id="sas" languages="ur bn ne si dz dv"/>  <!-- South Asia -->
+        <group id="cau" languages="ka hy"/>  <!-- Caucasus -->
+        <group id="oth" languages="am ti"/>  <!-- Others -->
+        <!-- map: the longest prefix of the map name (lower case) gives the rules locale and the group -->
+
+        <map locale="fr_FR" prefixes="france"/>
+        <map locale="fr_BE" prefixes="belgium_wallonia"/>
+        <map locale="fr_LU" prefixes="luxembourg"/>
+        <map locale="fr_MC" prefixes="monaco"/>
+        <map locale="fr_CA" prefixes="canada_quebec"/>
+        <map locale="fr_CH" prefixes="switzerland_lake-geneva"/>
+        <map locale="fr_RE" prefixes="reunion"/>
+        <map locale="fr_GP" prefixes="guadeloupe"/>
+        <map locale="fr_MQ" prefixes="martinique"/>
+        <map locale="fr_YT" prefixes="mayotte"/>
+        <map locale="fr_GF" prefixes="french-guiana"/>
+        <map locale="fr_BL" prefixes="saint-barthelemy"/>
+        <map locale="fr_MF" prefixes="saint-martin"/>
+        <map locale="fr_PM" prefixes="saint-pierre-and-miquelon"/>
+        <map locale="fr_TF" prefixes="french-southern-and-antarctic-lands"/>
+        <map locale="fr_HT" prefixes="haiti"/>
+        <map locale="fr_SN" prefixes="senegal"/>
+        <map locale="fr_CI" prefixes="ivory-coast"/>
+        <map locale="fr_ML" prefixes="mali"/>
+        <map locale="fr_BF" prefixes="burkina-faso"/>
+        <map locale="fr_NE" prefixes="niger"/>
+        <map locale="fr_GN" prefixes="guinea"/>
+        <map locale="fr_BJ" prefixes="benin"/>
+        <map locale="fr_TG" prefixes="togo"/>
+        <map locale="fr_CM" prefixes="cameroon"/>
+        <map locale="fr_GA" prefixes="gabon"/>
+        <map locale="fr_CG" prefixes="congo-brazzaville"/>
+        <map locale="fr_CD" prefixes="congo-democratic-republic"/>
+        <map locale="fr_CF" prefixes="central-african-republic"/>
+        <map locale="fr_TD" prefixes="chad"/>
+        <map locale="fr_MG" prefixes="madagascar"/>
+        <map locale="fr_KM" prefixes="comoros"/>
+        <map locale="fr_DJ" prefixes="djibouti"/>
+        <map locale="fr_BI" prefixes="burundi"/>
+        <map locale="fr_RW" prefixes="rwanda"/>
+        <map locale="fr_SC" prefixes="seychelles"/>
+        <map locale="fr_MU" prefixes="mauritius"/>
+
+        <map locale="en_US" prefixes="us"/>
+        <map locale="en_GB" prefixes="gb"/>
+        <map locale="en_IE" prefixes="ireland"/>
+        <map locale="en_IM" prefixes="isle-of-man"/>
+        <map locale="en" prefixes="channel-islands oceania carribean-archipelago-all"/>
+        <map locale="en_AU" prefixes="australia-oceania"/>
+        <map locale="en_NZ" prefixes="new-zealand"/>
+        <map locale="en_CA" prefixes="canada"/>
+        <map locale="en_IN" prefixes="india"/>
+        <map locale="en_ZA" prefixes="south-africa"/>
+        <map locale="en_NG" prefixes="nigeria"/>
+        <map locale="en_GH" prefixes="ghana"/>
+        <map locale="en_KE" prefixes="kenya"/>
+        <map locale="en_UG" prefixes="uganda"/>
+        <map locale="en_TZ" prefixes="tanzania"/>
+        <map locale="en_ZM" prefixes="zambia"/>
+        <map locale="en_ZW" prefixes="zimbabwe"/>
+        <map locale="en_MW" prefixes="malawi"/>
+        <map locale="en_BW" prefixes="botswana"/>
+        <map locale="en_NA" prefixes="namibia"/>
+        <map locale="en_LS" prefixes="lesotho"/>
+        <map locale="en_SZ" prefixes="swaziland"/>
+        <map locale="en_LR" prefixes="liberia"/>
+        <map locale="en_SL" prefixes="sierra-leone"/>
+        <map locale="en_GM" prefixes="gambia"/>
+        <map locale="en_JM" prefixes="jamaica"/>
+        <map locale="en_BS" prefixes="bahamas"/>
+        <map locale="en_BB" prefixes="barbados"/>
+        <map locale="en_TT" prefixes="trinidad-and-tobago"/>
+        <map locale="en_BZ" prefixes="belize"/>
+        <map locale="en_GY" prefixes="guyana"/>
+        <map locale="en_BM" prefixes="bermuda"/>
+        <map locale="en_KY" prefixes="cayman-islands"/>
+        <map locale="en_VI" prefixes="virgin-islands-us"/>
+        <map locale="en_VG" prefixes="virgin-islands-british"/>
+        <map locale="en_TC" prefixes="turks-and-caicos-islands"/>
+        <map locale="en_AI" prefixes="anguilla"/>
+        <map locale="en_AG" prefixes="antigua-and-barbuda"/>
+        <map locale="en_DM" prefixes="dominica"/>
+        <map locale="en_GD" prefixes="grenada"/>
+        <map locale="en_KN" prefixes="saint-kitts-and-nevis"/>
+        <map locale="en_LC" prefixes="saint-lucia"/>
+        <map locale="en_VC" prefixes="saint-vincent-and-the-grenadines"/>
+        <map locale="en_MS" prefixes="montserrat"/>
+        <map locale="en_FK" prefixes="falkland-islands"/>
+        <map locale="en_SH" prefixes="saint-helena-ascension-and-tristan-da-cunha"/>
+        <map locale="en_IO" prefixes="british-indian-ocean-territory"/>
+        <map locale="en_GS" prefixes="south-georgia-and-south-sandwich-islands"/>
+        <map locale="en_MT" prefixes="malta"/>
+        <map locale="en_SG" prefixes="singapore"/>
+        <map locale="en_PH" prefixes="philippines"/>
+        <map locale="en_PG" prefixes="papua-new-guinea"/>
+        <map locale="en_CX" prefixes="christmas-island"/>
+        <map locale="en_SS" prefixes="south-sudan"/>
+
+        <map locale="de_DE" prefixes="germany"/>
+        <map locale="de_AT" prefixes="austria"/>
+        <map locale="de_LI" prefixes="liechtenstein"/>
+        <map locale="de_CH" prefixes="switzerland"/>
+
+        <map locale="nl_NL" prefixes="netherlands"/>
+        <map locale="nl_BE" prefixes="belgium_flanders"/>
+        <map locale="nl" prefixes="netherlands-antilles"/>
+        <map locale="nl_AW" prefixes="aruba"/>
+        <map locale="nl_SR" prefixes="suriname"/>
+
+        <map locale="es_ES" prefixes="spain"/>
+        <map locale="ca_AD" prefixes="andorra"/>
+        <map locale="es_MX" prefixes="mexico"/>
+        <map locale="es_PE" prefixes="peru"/>
+        <map locale="es_AR" prefixes="argentina"/>
+        <map locale="es_CL" prefixes="chile"/>
+        <map locale="es_CO" prefixes="colombia"/>
+        <map locale="es_VE" prefixes="venezuela"/>
+        <map locale="es_EC" prefixes="ecuador"/>
+        <map locale="es_BO" prefixes="bolivia"/>
+        <map locale="es_PY" prefixes="paraguay"/>
+        <map locale="es_UY" prefixes="uruguay"/>
+        <map locale="es_CU" prefixes="cuba"/>
+        <map locale="es_DO" prefixes="dominican-republic"/>
+        <map locale="es_PR" prefixes="puerto-rico"/>
+        <map locale="es_GT" prefixes="guatemala"/>
+        <map locale="es_HN" prefixes="honduras"/>
+        <map locale="es_SV" prefixes="el-salvador"/>
+        <map locale="es_NI" prefixes="nicaragua"/>
+        <map locale="es_CR" prefixes="costa-rica"/>
+        <map locale="es_PA" prefixes="panama"/>
+        <map locale="es_GQ" prefixes="equatorial-guinea"/>
+
+        <map locale="pt_PT" prefixes="portugal azores madeira"/>
+        <map locale="pt_BR" prefixes="brazil"/>
+        <map locale="pt_AO" prefixes="angola"/>
+        <map locale="pt_MZ" prefixes="mozambique"/>
+        <map locale="pt_CV" prefixes="cape-verde"/>
+        <map locale="pt_GW" prefixes="guinea-bissau"/>
+        <map locale="pt_ST" prefixes="sao-tome-and-principe"/>
+        <map locale="pt_TL" prefixes="east-timor"/>
+
+        <map locale="it_IT" prefixes="italy"/>
+        <map locale="it_SM" prefixes="san-marino"/>
+        <map locale="it_CH" prefixes="switzerland_ticino"/>
+
+        <map locale="uk_UA" prefixes="ukraine"/>
+        <map locale="be_BY" prefixes="belarus"/>
+        <map locale="ru_RU" prefixes="russia"/>
+        <map locale="ru_MD" prefixes="transnistria"/>
+        <map locale="kk_KZ" prefixes="kazakhstan"/>
+        <map locale="ky_KG" prefixes="kyrgyzstan"/>
+        <map locale="tg_TJ" prefixes="tajikistan"/>
+        <map locale="tk_TM" prefixes="turkmenistan"/>
+        <map locale="uz_UZ" prefixes="uzbekistan"/>
+        <map locale="mn_MN" prefixes="mongolia"/>
+
+        <map locale="pl_PL" prefixes="poland"/>
+        <map locale="cs_CZ" prefixes="czech-republic"/>
+        <map locale="sk_SK" prefixes="slovakia"/>
+
+        <map locale="sr_RS" prefixes="serbia"/>
+        <map locale="hr_HR" prefixes="croatia"/>
+        <map locale="bs_BA" prefixes="bosnia-herzegovina"/>
+        <map locale="sr_ME" prefixes="montenegro"/>
+        <map locale="sl_SI" prefixes="slovenia"/>
+        <map locale="mk_MK" prefixes="macedonia"/>
+        <map locale="bg_BG" prefixes="bulgaria"/>
+        <map locale="sq_XK" prefixes="kosovo"/>
+        <map locale="sq_AL" prefixes="albania"/>
+
+        <map locale="ro_RO" prefixes="romania"/>
+        <map locale="ro_MD" prefixes="moldova"/>
+        <map locale="hu_HU" prefixes="hungary"/>
+        <map locale="el_GR" prefixes="greece"/>
+        <map locale="el_CY" prefixes="cyprus"/>
+        <map locale="lt_LT" prefixes="lithuania"/>
+        <map locale="lv_LV" prefixes="latvia"/>
+
+        <map locale="nb_NO" prefixes="norway"/>
+        <map locale="sv_SE" prefixes="sweden"/>
+        <map locale="da_DK" prefixes="denmark"/>
+        <map locale="is_IS" prefixes="iceland"/>
+        <map locale="fo_FO" prefixes="faroe-islands"/>
+        <map locale="kl_GL" prefixes="greenland"/>
+        <map locale="sv_AX" prefixes="finland_aland"/>
+        <map locale="fi_FI" prefixes="finland"/>
+        <map locale="et_EE" prefixes="estonia"/>
+        <map locale="tr_TR" prefixes="turkey"/>
+        <map locale="az_AZ" prefixes="azerbaijan"/>
+
+        <map locale="ar_JO" prefixes="jordan"/>
+        <map locale="ar_EG" prefixes="egypt"/>
+        <map locale="ar_SA" prefixes="saudi-arabia"/>
+        <map locale="ar_IQ" prefixes="iraq"/>
+        <map locale="ar_SY" prefixes="syria"/>
+        <map locale="ar_LB" prefixes="lebanon"/>
+        <map locale="ar_PS" prefixes="palestine"/>
+        <map locale="ar_YE" prefixes="yemen"/>
+        <map locale="ar_OM" prefixes="oman"/>
+        <map locale="ar_AE" prefixes="united-arab-emirates"/>
+        <map locale="ar_QA" prefixes="qatar"/>
+        <map locale="ar_BH" prefixes="bahrain"/>
+        <map locale="ar_KW" prefixes="kuwait"/>
+        <map locale="ar_LY" prefixes="libya"/>
+        <map locale="ar_SD" prefixes="sudan"/>
+        <map locale="ar_MR" prefixes="mauritania"/>
+        <map locale="so_SO" prefixes="somalia"/>
+        <map locale="ar_DZ" prefixes="algeria"/>
+        <map locale="ar_MA" prefixes="morocco"/>
+        <map locale="ar_TN" prefixes="tunisia"/>
+        <map locale="ar_EH" prefixes="western-sahara"/>
+        <map locale="fa_IR" prefixes="iran"/>
+        <map locale="fa_AF" prefixes="afghanistan"/>
+        <map locale="he_IL" prefixes="israel"/>
+
+        <map locale="zh_CN" prefixes="china" translit="zh"/>
+        <map locale="ja_JP" prefixes="japan" translit="ja"/>
+        <map locale="zh_TW" prefixes="taiwan"/>
+        <map locale="zh_HK" prefixes="hong-kong"/>
+        <map locale="zh_MO" prefixes="macao"/>
+        <map locale="ko_KR" prefixes="south-korea"/>
+        <map locale="ko_KP" prefixes="north-korea"/>
+        <map locale="vi_VN" prefixes="vietnam"/>
+        <map locale="id_ID" prefixes="indonesia"/>
+        <map locale="ms_MY" prefixes="malaysia"/>
+        <map locale="ms_BN" prefixes="brunei"/>
+        <map locale="th_TH" prefixes="thailand"/>
+        <map locale="lo_LA" prefixes="laos"/>
+        <map locale="km_KH" prefixes="cambodia"/>
+        <map locale="my_MM" prefixes="myanmar"/>
+        <map locale="ur_PK" prefixes="pakistan"/>
+        <map locale="bn_BD" prefixes="bangladesh"/>
+        <map locale="ne_NP" prefixes="nepal"/>
+        <map locale="si_LK" prefixes="sri-lanka"/>
+        <map locale="dz_BT" prefixes="bhutan"/>
+        <map locale="dv_MV" prefixes="maldives"/>
+        <map locale="ka_GE" prefixes="georgia"/>
+        <map locale="hy_AM" prefixes="armenia"/>
+        <map locale="am_ET" prefixes="ethiopia"/>
+        <map locale="ti_ER" prefixes="eritrea"/>
+
+        <map locale="" group="oth" prefixes="spratly-islands antarctica"/>
+    </locales>
+
+    <index>
+        <!-- "L'Atelier d'Anaïs" -> "Atelier Anaïs", "Mak.by" -> "Mak by": an apostrophe glues only Latin words -->
+        <unglue glue="." minPart="2"/>
+        <unglue glue="'" script="Latin" minPart="2"/>
+    </index>
 </rules>
