@@ -2,16 +2,20 @@
 <rules version="5">
     <!-- Titles of names: "St. Johannis" is Sankt, never a street; "Dr.-Weber-Straße" is Doktor. -->
     <index>
-        <!-- A3: joined street type without a final dot; leave standalone Straße/Platz untouched. -->
+        <!-- Pairs that were not in master: alternative names both ways. -->
+        <rule mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])st(?![\p{L}\p{M}\p{N}])\.?" to="Sankt"/>
+        <rule mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])sankt(?![\p{L}\p{M}\p{N}])" to="st"/>
+        <rule mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])dr(?![\p{L}\p{M}\p{N}])\.?" to="Doktor"/>
+        <rule mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])doktor(?![\p{L}\p{M}\p{N}])" to="dr"/>
+        <!-- query.db: a standalone "Str." after an adjective or a hyphen ("Kölner Str. 80", "Leopold-Kell-Str. 20");
+             the joined "Hauptstr." is A3. -->
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])str(?![\p{L}\p{M}\p{N}])\.?" to="Straße"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])straße(?![\p{L}\p{M}\p{N}])" to="str"/>
+        <!-- A3: joined street type without a final dot; a standalone Straße is the pair str above. -->
         <rule object="street" mode="All" from="(?iu)\b([\p{L}\p{M}]{2,})straße\b" to="$1str"/>
         <rule object="street" mode="All" from="(?iu)\b([\p{L}\p{M}]{2,})platz\b" to="$1pl"/>
     </index>
     <query>
-        <rule from="st" to="Sankt"/>
-        <rule from="dr" to="Doktor"/>
-        <!-- query.db: a standalone "Str." after an adjective or a hyphen ("Kölner Str. 80", "Leopold-Kell-Str. 20");
-             the joined "Hauptstr." is the index rule A3. -->
-        <rule from="str" to="Straße" object="street"/>
         <rule from="der" to=""/>
         <rule from="den" to=""/>
         <rule from="die" to=""/>

@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rules version="5">
     <!-- Title of names: "Estrada Dr. João Abel de Freitas", "Rua Doutor Almeida". -->
-    <query>
-        <rule from="dr" to="Doutor"/>
+    <index>
+        <!-- Pairs that were not in master: alternative names both ways. -->
+        <rule mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])dr(?![\p{L}\p{M}\p{N}])\.?" to="Doutor"/>
+        <rule mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])doutor(?![\p{L}\p{M}\p{N}])" to="dr"/>
         <!-- query.db: the street type users shorten ("Av. dos Aliados", "R. Lázaro da Costa"); OSM names are full. -->
-        <rule from="av" to="Avenida" object="street"/>
-        <rule from="r" to="Rua" object="street"/>
-        <rule from="estr" to="Estrada" object="street"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])av(?![\p{L}\p{M}\p{N}])\.?" to="Avenida"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])avenida(?![\p{L}\p{M}\p{N}])" to="av"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])r(?![\p{L}\p{M}\p{N}])\.?" to="Rua"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])rua(?![\p{L}\p{M}\p{N}])" to="r"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])estr(?![\p{L}\p{M}\p{N}])\.?" to="Estrada"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])estrada(?![\p{L}\p{M}\p{N}])" to="estr"/>
+    </index>
+    <query>
         <rule from="de" to=""/>
         <skipPenalty>dr doutor</skipPenalty>
     </query>

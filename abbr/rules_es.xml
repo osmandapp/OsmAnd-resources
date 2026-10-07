@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rules version="5">
     <!-- Titles of names: "Calle Dr. Mata", "Av. Gral. Güemes". -->
-    <query>
-        <rule from="dr" to="Doctor"/>
-        <rule from="gral" to="General"/>
-        <rule from="sta" to="Santa"/>
-        <rule from="sto" to="Santo"/>
+    <index>
+        <!-- Pairs that were not in master: alternative names both ways. An index rule is keyed by object and from:
+             the second reverse form of a word ("Avenida" -> "avda") has its word in a group (?:…), a from of its own. -->
+        <rule mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])dr(?![\p{L}\p{M}\p{N}])\.?" to="Doctor"/>
+        <rule mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])doctor(?![\p{L}\p{M}\p{N}])" to="dr"/>
+        <rule mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])gral(?![\p{L}\p{M}\p{N}])\.?" to="General"/>
+        <rule mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])general(?![\p{L}\p{M}\p{N}])" to="gral"/>
+        <rule mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])sta(?![\p{L}\p{M}\p{N}])\.?" to="Santa"/>
+        <rule mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])santa(?![\p{L}\p{M}\p{N}])" to="sta"/>
+        <rule mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])sto(?![\p{L}\p{M}\p{N}])\.?" to="Santo"/>
+        <rule mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])santo(?![\p{L}\p{M}\p{N}])" to="sto"/>
         <!-- query.db: the street type users shorten ("av. de la Playa", "c/ Bilbao", "ctra. Alcocer"); OSM names are full. -->
-        <rule from="av" to="Avenida" object="street"/>
-        <rule from="avda" to="Avenida" object="street"/>
-        <rule from="c" to="Calle" object="street"/>
-        <rule from="ctra" to="Carretera" object="street"/>
-        <rule from="carr" to="Carretera" object="street"/>
-        <rule from="urb" to="Urbanización" object="street"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])av(?![\p{L}\p{M}\p{N}])\.?" to="Avenida"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])avda(?![\p{L}\p{M}\p{N}])\.?" to="Avenida"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])avenida(?![\p{L}\p{M}\p{N}])" to="av"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])(?:avenida)(?![\p{L}\p{M}\p{N}])" to="avda"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])c(?![\p{L}\p{M}\p{N}])\.?" to="Calle"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])calle(?![\p{L}\p{M}\p{N}])" to="c"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])ctra(?![\p{L}\p{M}\p{N}])\.?" to="Carretera"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])carr(?![\p{L}\p{M}\p{N}])\.?" to="Carretera"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])carretera(?![\p{L}\p{M}\p{N}])" to="ctra"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])(?:carretera)(?![\p{L}\p{M}\p{N}])" to="carr"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])urb(?![\p{L}\p{M}\p{N}])\.?" to="Urbanización"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])urbanización(?![\p{L}\p{M}\p{N}])" to="urb"/>
+    </index>
+    <query>
         <!-- house number suffix: "12 bis" -->
         <rule from="bis" object="building"/>
         <rule from="de" to=""/>

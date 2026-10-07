@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rules version="5">
     <!-- "St-Denis", "Ste-Foy": Saint and Sainte, never a street. -->
-    <query>
-        <rule from="st" to="Saint"/>
-        <rule from="ste" to="Sainte"/>
+    <index>
+        <!-- Pairs that were not in master: alternative names both ways. -->
+        <rule mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])st(?![\p{L}\p{M}\p{N}])\.?" to="Saint"/>
+        <rule mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])saint(?![\p{L}\p{M}\p{N}])" to="st"/>
+        <rule mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])ste(?![\p{L}\p{M}\p{N}])\.?" to="Sainte"/>
+        <rule mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])sainte(?![\p{L}\p{M}\p{N}])" to="ste"/>
         <!-- query.db: the street type users shorten ("48 av. Gambetta", "rte de Certines"); OSM names are full. -->
-        <rule from="av" to="Avenue" object="street"/>
-        <rule from="bd" to="Boulevard" object="street"/>
-        <rule from="chem" to="Chemin" object="street"/>
-        <rule from="rte" to="Route" object="street"/>
-        <rule from="pl" to="Place" object="street"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])av(?![\p{L}\p{M}\p{N}])\.?" to="Avenue"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])avenue(?![\p{L}\p{M}\p{N}])" to="av"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])bd(?![\p{L}\p{M}\p{N}])\.?" to="Boulevard"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])boulevard(?![\p{L}\p{M}\p{N}])" to="bd"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])chem(?![\p{L}\p{M}\p{N}])\.?" to="Chemin"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])chemin(?![\p{L}\p{M}\p{N}])" to="chem"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])rte(?![\p{L}\p{M}\p{N}])\.?" to="Route"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])route(?![\p{L}\p{M}\p{N}])" to="rte"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])pl(?![\p{L}\p{M}\p{N}])\.?" to="Place"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])place(?![\p{L}\p{M}\p{N}])" to="pl"/>
+    </index>
+    <query>
         <!-- house number suffixes: "12 bis", "12ter" -->
         <rule from="bis" object="building"/>
         <rule from="ter" object="building"/>

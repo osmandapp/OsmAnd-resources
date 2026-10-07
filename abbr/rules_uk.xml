@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rules version="5">
+    <!-- query.db: "вул. Хоткевича, 144", "пров. Харківський 11", "Івано-Франківська обл."; OSM names keep the
+         full word. Users on Ukrainian maps also type the Russian "ул." (as often as "вул."): the name is Ukrainian
+         ("вулиця"), its name:ru is Russian ("улица"). -->
+    <index>
+        <!-- Pairs that were not in master: alternative names both ways. -->
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])просп(?![\p{L}\p{M}\p{N}])\.?" to="Проспект"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])проспект(?![\p{L}\p{M}\p{N}])" to="просп"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])пров(?![\p{L}\p{M}\p{N}])\.?" to="Провулок"/>
+        <rule object="street" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])провулок(?![\p{L}\p{M}\p{N}])" to="пров"/>
+        <rule object="boundary" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])обл(?![\p{L}\p{M}\p{N}])\.?" to="Область"/>
+        <rule object="boundary" mode="All" from="(?iu)(?&lt;![\p{L}\p{M}\p{N}])область(?![\p{L}\p{M}\p{N}])" to="обл"/>
+    </index>
     <query>
-        <!-- query.db: "вул. Хоткевича, 144", "пров. Харківський 11", "Івано-Франківська обл."; OSM names keep the
-             full word. Users on Ukrainian maps also type the Russian "ул." (as often as "вул."): the name is Ukrainian
-             ("вулиця"), its name:ru is Russian ("улица"). -->
+        <!-- "Вулиця" is also a form of "ул": an index pair to it would match one name twice. -->
         <rule from="вул" to="Вулиця"/>
+        <!-- two meanings: the Ukrainian and the Russian name of the street -->
         <rule from="ул"><to>Вулиця</to><to>Улица</to></rule>
-        <rule from="просп" to="Проспект" object="street"/>
-        <rule from="пров" to="Провулок" object="street"/>
-        <rule from="обл" to="Область" object="boundary"/>
         <rule from="кв" object="building"/>
     </query>
 </rules>
