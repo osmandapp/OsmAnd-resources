@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules version="5">
+    <!-- Directions, street types and titles of names. OSM names keep their abbreviations ("E Main St"): the query
+         word gets the full form, the full word gets the abbreviation as its reverse form. -->
+    <query>
+        <!-- a one-letter direction belongs to a street name; "E Street NW" is a letter -->
+        <rule from="e" to="East" object="street"/>
+        <rule from="w" to="West" object="street"/>
+        <rule from="s" to="South" object="street"/>
+        <rule from="n" to="North" object="street"/>
+        <rule from="sw" to="Southwest"/>
+        <rule from="se" to="Southeast"/>
+        <rule from="nw" to="Northwest"/>
+        <rule from="ne" to="Northeast"/>
+
+        <rule from="ln" to="Lane"/>
+        <!-- two meanings: the street type and the title ("Dr Martin Luther King Jr Blvd") -->
+        <rule from="dr">
+            <to object="street">Drive</to>
+            <to>Doctor</to>
+        </rule>
+        <rule from="rd" to="Road"/>
+        <rule from="av" to="Avenue"/>
+        <rule from="ave" to="Avenue"/>
+        <!-- two meanings: the street type and the title ("St Albert Way", "St Mary's Church") -->
+        <rule from="st">
+            <to object="street">Street</to>
+            <to>Saint</to>
+        </rule>
+        <rule from="hwy" to="Highway"/>
+        <rule from="blvd" to="Boulevard"/>
+
+        <rule from="1st" to="First"/>
+        <rule from="2nd" to="Second"/>
+        <rule from="3rd" to="Third"/>
+        <rule from="4th" to="Fourth"/>
+        <rule from="5th" to="Fifth"/>
+        <rule from="6th" to="Sixth"/>
+        <rule from="7th" to="Seventh"/>
+
+        <!-- A1: the short form matches only a street/locality. -->
+        <rule from="pl" to="Place" object="street"/>
+        <rule from="pkwy" to="Parkway" object="street"/>
+        <rule from="ct" to="Court" object="street"/>
+        <rule from="cir" to="Circle" object="street"/>
+        <rule from="ter" to="Terrace" object="street"/>
+        <rule from="mt" to="Mount" object="locality"/>
+        <rule from="ft" to="Fort" object="locality"/>
+
+        <!-- A unit or floor qualifier is recognized as a number part, not a free name synonym. -->
+        <rule from="bldg" object="building"/>
+        <rule from="ste" object="building"/>
+        <rule from="unt" object="building"/>
+        <rule from="apt" object="building"/>
+        <rule from="fl" object="building"/>
+        <rule from="flr" object="building"/>
+        <rule from="bsmt" object="building"/>
+
+        <rule from="the" to=""/>
+        <rule from="of" to=""/>
+        <rule from="and" to=""/>
+        <skipPenalty>e east w west s south n north sw southwest se southeast nw northwest ne northeast ln lane dr drive doctor
+        rd road av avenue st street saint hwy highway blvd boulevard</skipPenalty>
+    </query>
+</rules>
