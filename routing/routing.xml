@@ -863,7 +863,11 @@
 		</way>
 
 		<way attribute="speed" type="speed">
-			<!-- maxspeed doesn't affect on motorway_link and trunk_link -->
+			<!-- links: maxspeed counts from 50, lower values (curve advisories, #12066) are ignored -->
+			<ge value1="$maxspeed" value2="50">
+				<select value="$maxspeed" t="highway" v="motorway_link"/>
+				<select value="$maxspeed" t="highway" v="trunk_link"/>
+			</ge>
 			<select value="100" t="highway" v="motorway_link"/>
 			<select value="90" t="highway" v="trunk_link"/>
 
