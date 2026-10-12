@@ -1904,9 +1904,9 @@
     }
   },
   {
-    "testName": "101. Camera of two enforcement relations (one per direction) is warned once, at the from node of the westbound relation https://github.com/osmandapp/OsmAnd/issues/25531",
+    "testName": "101. Speed camera of two opposite enforcement relations with a shared \"to\" is warned once, at the \"from\" of the westbound relation https://github.com/osmandapp/OsmAnd/issues/25531",
     "params": {
-      "map": "Routing_test_101_speed_camera_two_directions.obf",
+      "map": "Routing_test_101_speed_camera_shared_to.obf",
       "vehicle": "car",
       "speedCameras": "55.78674,23.94923"
     },
@@ -1923,9 +1923,9 @@
     }
   },
   {
-    "testName": "102. Camera of two enforcement relations (one per direction) is warned once, at the from node of the eastbound relation https://github.com/osmandapp/OsmAnd/issues/25531",
+    "testName": "102. Speed camera of two opposite enforcement relations with a shared \"to\" is warned once, at the \"from\" of the eastbound relation https://github.com/osmandapp/OsmAnd/issues/25531",
     "params": {
-      "map": "Routing_test_101_speed_camera_two_directions.obf",
+      "map": "Routing_test_101_speed_camera_shared_to.obf",
       "vehicle": "car",
       "speedCameras": "55.78269,23.93977"
     },
@@ -1942,136 +1942,174 @@
     }
   },
   {
-    "testName": "103. Enforcement relation without a device is warned at its from node in the from-to direction https://github.com/osmandapp/OsmAnd/issues/25531",
+    "testName": "103. Speed camera device on the road is warned only at the \"from\" of the eastbound relation, not again at the device https://www.openstreetmap.org/relation/13196436",
     "params": {
-      "map": "Routing_test_103_speed_camera_without_device.obf",
+      "map": "Routing_test_103_speed_camera_device_on_road.obf",
       "vehicle": "car",
-      "speedCameras": "50.10205,14.53308"
+      "speedCameras": "46.40426,0.71007"
     },
     "startPoint": {
-      "latitude": 50.10235,
-      "longitude": 14.53301
+      "latitude": 46.4042,
+      "longitude": 0.70686
     },
     "endPoint": {
-      "latitude": 50.09952,
-      "longitude": 14.5311
+      "latitude": 46.40358,
+      "longitude": 0.71662
     },
     "expectedResults": {
-      "27073444": true
+      "112392908": true
     }
   },
   {
-    "testName": "104. Two one-direction cameras (northbound enforcement relations) are warned northbound https://github.com/osmandapp/OsmAnd/issues/14461",
+    "testName": "104. Speed camera device on the road is warned only at the \"from\" of the westbound relation, not again at the device https://www.openstreetmap.org/relation/1614577",
     "params": {
-      "map": "Routing_test_104_speed_camera_one_direction.obf",
+      "map": "Routing_test_103_speed_camera_device_on_road.obf",
       "vehicle": "car",
-      "speedCameras": "59.98655,15.02031;59.98960,15.01878"
+      "speedCameras": "46.40370,0.71487"
     },
     "startPoint": {
-      "latitude": 59.986,
-      "longitude": 15.02057
+      "latitude": 46.40358,
+      "longitude": 0.71662
     },
     "endPoint": {
-      "latitude": 59.99166,
-      "longitude": 15.01769
+      "latitude": 46.4042,
+      "longitude": 0.70686
     },
     "expectedResults": {
-      "479951760": true
+      "112392908": true
     }
   },
   {
-    "testName": "105. Two one-direction cameras (northbound enforcement relations) are not warned southbound https://github.com/osmandapp/OsmAnd/issues/14461",
+    "testName": "105. Enforcement relation with \"from\" only (no \"to\") is warned at its \"from\" in one direction https://www.openstreetmap.org/relation/103384",
     "params": {
-      "map": "Routing_test_104_speed_camera_one_direction.obf",
+      "map": "Routing_test_105_speed_camera_from_only.obf",
       "vehicle": "car",
-      "speedCameras": ""
+      "speedCameras": "59.91263,10.47045"
     },
     "startPoint": {
-      "latitude": 59.99166,
-      "longitude": 15.01769
+      "latitude": 59.91388,
+      "longitude": 10.46909
     },
     "endPoint": {
-      "latitude": 59.986,
-      "longitude": 15.02057
+      "latitude": 59.91183,
+      "longitude": 10.4712
     },
     "expectedResults": {
-      "479951760": true
+      "27022194": true
     }
   },
   {
-    "testName": "106. Camera of an enforcement relation with from and to on one way is warned in the from-to direction https://www.openstreetmap.org/relation/12255951",
+    "testName": "106. Enforcement relation with \"from\" only (no \"to\") is warned at its \"from\" in the other direction too https://www.openstreetmap.org/relation/103384",
     "params": {
-      "map": "Routing_test_106_speed_camera_from_to_on_one_way.obf",
+      "map": "Routing_test_105_speed_camera_from_only.obf",
       "vehicle": "car",
-      "speedCameras": "59.58485,16.99664"
+      "speedCameras": "59.91263,10.47045"
     },
     "startPoint": {
-      "latitude": 59.5853804,
-      "longitude": 16.9967079
+      "latitude": 59.91183,
+      "longitude": 10.4712
     },
     "endPoint": {
-      "latitude": 59.5828952,
-      "longitude": 16.9974781
+      "latitude": 59.91388,
+      "longitude": 10.46909
     },
     "expectedResults": {
-      "111744254": true
+      "27022194": true
     }
   },
   {
-    "testName": "107. Camera of an enforcement relation with from and to on one way is not warned in the opposite direction https://www.openstreetmap.org/relation/12255951",
+    "testName": "107. Speed camera node without an enforcement relation is warned as before https://www.openstreetmap.org/node/338052260",
     "params": {
-      "map": "Routing_test_106_speed_camera_from_to_on_one_way.obf",
+      "map": "Routing_test_107_speed_camera_single_node.obf",
       "vehicle": "car",
-      "speedCameras": ""
+      "speedCameras": "52.90624,-1.43078"
     },
     "startPoint": {
-      "latitude": 59.5828952,
-      "longitude": 16.9974781
+      "latitude": 52.90924,
+      "longitude": -1.43017
     },
     "endPoint": {
-      "latitude": 59.5853804,
-      "longitude": 16.9967079
+      "latitude": 52.90201,
+      "longitude": -1.42803
     },
     "expectedResults": {
-      "111744254": true
+      "4076362": true
     }
   },
   {
-    "testName": "108. Camera of a road split at its from node is warned in the from-to direction https://www.openstreetmap.org/relation/105227",
+    "testName": "108. Shared \"from\" of two opposite enforcement relations is warned in one direction https://www.openstreetmap.org/relation/1101529",
     "params": {
-      "map": "Routing_test_108_speed_camera_road_split_at_from.obf",
+      "map": "Routing_test_108_speed_camera_shared_from.obf",
       "vehicle": "car",
-      "speedCameras": "62.58602,27.04840"
+      "speedCameras": "60.78203,26.82353"
     },
     "startPoint": {
-      "latitude": 62.5854063,
-      "longitude": 27.0458491
+      "latitude": 60.78909,
+      "longitude": 26.81374
     },
     "endPoint": {
-      "latitude": 62.5866793,
-      "longitude": 27.0511842
+      "latitude": 60.77826,
+      "longitude": 26.82698
     },
     "expectedResults": {
-      "358564754": true
+      "152296773": true
     }
   },
   {
-    "testName": "109. Camera of a road split at its from node is not warned in the opposite direction https://www.openstreetmap.org/relation/105227",
+    "testName": "109. Shared \"from\" of two opposite enforcement relations is warned in the other direction too https://www.openstreetmap.org/relation/1101532",
     "params": {
-      "map": "Routing_test_108_speed_camera_road_split_at_from.obf",
+      "map": "Routing_test_108_speed_camera_shared_from.obf",
       "vehicle": "car",
-      "speedCameras": ""
+      "speedCameras": "60.78203,26.82353"
     },
     "startPoint": {
-      "latitude": 62.5866793,
-      "longitude": 27.0511842
+      "latitude": 60.77826,
+      "longitude": 26.82698
     },
     "endPoint": {
-      "latitude": 62.5854063,
-      "longitude": 27.0458491
+      "latitude": 60.78909,
+      "longitude": 26.81374
     },
     "expectedResults": {
-      "358564754": true
+      "152296773": true
+    }
+  },
+  {
+    "testName": "110. Enforcement relation with \"from\" equal to \"to\" is warned in one direction https://www.openstreetmap.org/relation/392090",
+    "params": {
+      "map": "Routing_test_110_speed_camera_from_equals_to.obf",
+      "vehicle": "car",
+      "speedCameras": "51.46403,7.82566"
+    },
+    "startPoint": {
+      "latitude": 51.46295,
+      "longitude": 7.82214
+    },
+    "endPoint": {
+      "latitude": 51.46482,
+      "longitude": 7.82707
+    },
+    "expectedResults": {
+      "28869210": true
+    }
+  },
+  {
+    "testName": "111. Enforcement relation with \"from\" equal to \"to\" is warned in the other direction too https://www.openstreetmap.org/relation/392090",
+    "params": {
+      "map": "Routing_test_110_speed_camera_from_equals_to.obf",
+      "vehicle": "car",
+      "speedCameras": "51.46403,7.82566"
+    },
+    "startPoint": {
+      "latitude": 51.46482,
+      "longitude": 7.82707
+    },
+    "endPoint": {
+      "latitude": 51.46295,
+      "longitude": 7.82214
+    },
+    "expectedResults": {
+      "28869210": true
     }
   }
 ]
