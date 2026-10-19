@@ -1644,6 +1644,12 @@
 					<case tag="seamark:type" value="wreck" nameTag="seamark:name" textDy="-10"/>
 					<apply_if additional="seamark:lnam" textOrder="25"/>
 				</switch>
+				<!-- unnamed rock / wreck: no seamark:name caption, so the switch above never matches; draw the depth caption alone. Named objects are unaffected because the depth caption is skipped once appended via nameTag2. -->
+				<switch minzoom="13" textColor="$depthTextColor" textSize="14" textItalic="true" textOrder="128" intersectionMargin="10" textDy="-12" nameTag2="depth">
+					<case tag="seamark:type" value="rock" nameTag="depth"/>
+					<case tag="seamark:type" value="wreck" nameTag="depth" textDy="-10"/>
+					<apply_if additional="seamark:lnam" textOrder="25"/>
+				</switch>
 				<switch nameTag="seamark:name" nameTag2="seamark:light:character">
 					<!-- empty nameTag="seamark:name" is filled with "." in rendering_types.xml in order to assure nameTag2 display. Check e.g. on buoy cardinal west: https://map.openseamap.org/?zoom=16&lon=8.170&lat=53.780 -->
 					<switch textItalic="true">
