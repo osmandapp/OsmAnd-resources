@@ -106,7 +106,7 @@ function populateDictionary(tts) {
 
     // STREET NAME PREPOSITIONS
     dictionary["on"] = tts? "על": "on.ogg";
-    dictionary["onto"] = tts? "ל": "onto.ogg";
+    dictionary["onto"] = tts? "אל": "onto.ogg";
     dictionary["to"] = tts? "עד": "to.ogg";
     dictionary["toward"] = tts? "לכיוון": "toward.ogg";
 
@@ -343,7 +343,7 @@ function roundabout(dist, angle, exit, streetName) {
     if (dist == -1) {
         return dictionary["take"] + " " + nth(exit) + " " + turn_street(streetName);
     } else {
-        return dictionary["after"] + " " + distance(dist) + " " + dictionary["roundabout"] + (tts? ", ": " ") + dictionary["and"] + " " + dictionary["take"] + " " + nth(exit) + " " + turn_street(streetName);
+        return dictionary["after"] + " " + distance(dist) + " " + dictionary["roundabout"] + (tts? ", ": " ") + dictionary["and"] + (tts? "": " ") + dictionary["take"] + " " + nth(exit) + " " + turn_street(streetName);
     }
 
 }
@@ -438,7 +438,7 @@ function prepare_turn(turnType, dist, streetName) {
 }
 
 function prepare_roundabout(dist, exit, streetName) {
-    return dictionary["prepare_roundabout"] + " " + dictionary["after"] + " " + distance(dist) + " " + dictionary["and"] + " " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"];
+    return dictionary["prepare_roundabout"] + " " + dictionary["after"] + " " + distance(dist) + " " + dictionary["and"] + (tts? "": " ") + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"];
 }
 
 function and_arrive_destination(dest) {
