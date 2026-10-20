@@ -865,6 +865,10 @@
 		<way attribute="speed" type="speed">
 			<!-- maxspeed doesn't affect on motorway_link and trunk_link -->
 			<select value="100" t="highway" v="motorway_link"/>
+			<!-- except urban trunk_link: otherwise it is faster than the parallel trunk with the same maxspeed -->
+			<ge value1="50" value2="$maxspeed" type="speed">
+				<select value="$maxspeed" t="highway" v="trunk_link"/>
+			</ge>
 			<select value="90" t="highway" v="trunk_link"/>
 
 			<if param="profile_truck">
