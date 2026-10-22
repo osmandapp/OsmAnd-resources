@@ -24,6 +24,7 @@ function populateDictionary(tts) {
 	
 	// LEFT/RIGHT
 	dictionary["after"] = tts ? "后" : "after.ogg";
+	// Note: "in" in Chinese doesn't infer the meaning of "after" like English
 	dictionary["in"] = tts ? "在" : "in.ogg";
 	
 	dictionary["left"] = tts ? "左转" : "left.ogg";
@@ -277,7 +278,7 @@ function turn(turnType, dist, streetName) {
 	if (dist == -1) {
 		return getTurnType(turnType) + turn_street(streetName);
 	} else {
-		return dictionary["in"] + distance(dist) + getTurnType(turnType) + turn_street(streetName); 
+		return distance(dist) + dictionary["after"] + getTurnType(turnType) + turn_street(streetName); 
 	}
 }
 
@@ -285,7 +286,7 @@ function take_exit(turnType, dist, exitString, exitInt, streetName) {
 	if (dist == -1) {
 		return getTurnType(turnType) + dictionary["onto"] + getExitNumber(exitString, exitInt) + take_exit_name(streetName);
 	} else {
-		return dictionary["in"] + distance(dist) 
+		return distance(dist) + dictionary["after"] 
 			+ getTurnType(turnType) + dictionary["onto"] + getExitNumber(exitString, exitInt) + take_exit_name(streetName);
 	}
 }
@@ -423,7 +424,7 @@ function make_ut(dist, streetName) {
 	if (dist == -1) {
 		return dictionary["make_uturn2"] + turn_street(streetName);
 	} else {
-		return dictionary["in"] + distance(dist) + dictionary["make_uturn1"] + turn_street(streetName);
+		return distance(dist) + dictionary["make_uturn1"] + turn_street(streetName);
 	}
 }
 
@@ -436,15 +437,15 @@ function bear_right(streetName) {
 }
 
 function prepare_make_ut(dist, streetName) {
-	return dictionary["after"] + distance(dist) + dictionary["make_uturn"] + turn_street(streetName);
+	return distance(dist) + dictionary["make_uturn1"] + turn_street(streetName);
 }
 
 function prepare_turn(turnType, dist, streetName) {
-	return dictionary["after"] + distance(dist) + getTurnType(turnType) + turn_street(streetName);
+	return distance(dist) + dictionary["after"] + getTurnType(turnType) + turn_street(streetName);
 }
 
 function prepare_roundabout(dist, exit, streetName) {
-	return dictionary["after"] + distance(dist) + dictionary["prepare_roundabout"]; 
+	return distance(dist) + dictionary["prepare_roundabout"]; 
 }
 
 function and_arrive_destination(dest) {
