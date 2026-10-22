@@ -24,7 +24,7 @@ function populateDictionary(tts) {
 	
 	// LEFT/RIGHT
 	dictionary["after"] = tts ? "后" : "after.ogg";
-	// Note: "in" in Chinese doesn't infer the meaning of "after" like English
+	// Note: "in" in Chinese doesn't imply the meaning of "after" like English
 	dictionary["in"] = tts ? "在" : "in.ogg";
 	
 	dictionary["left"] = tts ? "左转" : "left.ogg";
@@ -46,8 +46,8 @@ function populateDictionary(tts) {
 	dictionary["make_uturn_wp"] = tts ? "請找机会掉头" : "make_uturn_wp.ogg";
 	
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? " 后进入环岛" : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? " 后进入环岛, 然后在" : "roundabout.ogg";
+	dictionary["prepare_roundabout"] = tts ? "进入环岛" : "prepare_roundabout.ogg";
+	dictionary["roundabout"] = tts ? "后进入环岛, 然后" : "roundabout.ogg";
 	dictionary["then"] = tts ? "然后" : "then.ogg";
 	dictionary["and"] = tts ? "和" : "and.ogg";
 	dictionary["take"] = tts ? "在" : "take.ogg";
@@ -350,7 +350,7 @@ function roundabout(dist, angle, exit, streetName) {
 	if (dist == -1) {
 		return dictionary["take"] + nth(exit) + dictionary["exit"] + turn_street(streetName);
 	} else {
-		return dictionary["in"] + distance(dist) + dictionary["roundabout"] + dictionary["and"] + dictionary["take"] + nth(exit) + dictionary["exit"] + turn_street(streetName);
+		return dictionary["in"] + distance(dist) + dictionary["roundabout"] + dictionary["take"] + nth(exit) + dictionary["exit"] + turn_street(streetName);
 	}
 }
 
@@ -445,7 +445,7 @@ function prepare_turn(turnType, dist, streetName) {
 }
 
 function prepare_roundabout(dist, exit, streetName) {
-	return distance(dist) + dictionary["prepare_roundabout"]; 
+	return distance(dist) + dictionary["after"] + dictionary["prepare_roundabout"]; 
 }
 
 function and_arrive_destination(dest) {
