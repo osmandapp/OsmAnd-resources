@@ -24,6 +24,7 @@ function populateDictionary(tts) {
 	
 	// LEFT/RIGHT
 	dictionary["after"] = tts ? "后" : "after.ogg";
+	// Note: "in" in Chinese doesn't imply the meaning of "after" like English
 	dictionary["in"] = tts ? "在" : "in.ogg";
 	
 	dictionary["left"] = tts ? "左转" : "left.ogg";
@@ -45,8 +46,8 @@ function populateDictionary(tts) {
 	dictionary["make_uturn_wp"] = tts ? "請找机会掉头" : "make_uturn_wp.ogg";
 	
 	// ROUNDABOUTS
-	dictionary["prepare_roundabout"] = tts ? " 后进入环岛" : "prepare_roundabout.ogg";
-	dictionary["roundabout"] = tts ? " 后进入环岛, 然后在" : "roundabout.ogg";
+	dictionary["prepare_roundabout"] = tts ? "进入环岛" : "prepare_roundabout.ogg";
+	dictionary["roundabout"] = tts ? "后进入环岛, 然后" : "roundabout.ogg";
 	dictionary["then"] = tts ? "然后" : "then.ogg";
 	dictionary["and"] = tts ? "和" : "and.ogg";
 	dictionary["take"] = tts ? "在" : "take.ogg";
@@ -277,7 +278,7 @@ function turn(turnType, dist, streetName) {
 	if (dist == -1) {
 		return getTurnType(turnType) + turn_street(streetName);
 	} else {
-		return dictionary["in"] + distance(dist) + getTurnType(turnType) + turn_street(streetName); 
+		return distance(dist) + dictionary["after"] + getTurnType(turnType) + turn_street(streetName); 
 	}
 }
 
@@ -285,7 +286,7 @@ function take_exit(turnType, dist, exitString, exitInt, streetName) {
 	if (dist == -1) {
 		return getTurnType(turnType) + dictionary["onto"] + getExitNumber(exitString, exitInt) + take_exit_name(streetName);
 	} else {
-		return dictionary["in"] + distance(dist) 
+		return distance(dist) + dictionary["after"] 
 			+ getTurnType(turnType) + dictionary["onto"] + getExitNumber(exitString, exitInt) + take_exit_name(streetName);
 	}
 }
@@ -349,7 +350,7 @@ function roundabout(dist, angle, exit, streetName) {
 	if (dist == -1) {
 		return dictionary["take"] + nth(exit) + dictionary["exit"] + turn_street(streetName);
 	} else {
-		return dictionary["in"] + distance(dist) + dictionary["roundabout"] + dictionary["and"] + dictionary["take"] + nth(exit) + dictionary["exit"] + turn_street(streetName);
+		return dictionary["in"] + distance(dist) + dictionary["roundabout"] + dictionary["take"] + nth(exit) + dictionary["exit"] + turn_street(streetName);
 	}
 }
 
@@ -423,7 +424,7 @@ function make_ut(dist, streetName) {
 	if (dist == -1) {
 		return dictionary["make_uturn2"] + turn_street(streetName);
 	} else {
-		return dictionary["in"] + distance(dist) + dictionary["make_uturn1"] + turn_street(streetName);
+		return distance(dist) + dictionary["make_uturn1"] + turn_street(streetName);
 	}
 }
 
@@ -436,15 +437,15 @@ function bear_right(streetName) {
 }
 
 function prepare_make_ut(dist, streetName) {
-	return dictionary["after"] + distance(dist) + dictionary["make_uturn"] + turn_street(streetName);
+	return distance(dist) + dictionary["make_uturn1"] + turn_street(streetName);
 }
 
 function prepare_turn(turnType, dist, streetName) {
-	return dictionary["after"] + distance(dist) + getTurnType(turnType) + turn_street(streetName);
+	return distance(dist) + dictionary["after"] + getTurnType(turnType) + turn_street(streetName);
 }
 
 function prepare_roundabout(dist, exit, streetName) {
-	return dictionary["after"] + distance(dist) + dictionary["prepare_roundabout"]; 
+	return distance(dist) + dictionary["after"] + dictionary["prepare_roundabout"]; 
 }
 
 function and_arrive_destination(dest) {
