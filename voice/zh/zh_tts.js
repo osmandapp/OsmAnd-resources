@@ -497,7 +497,8 @@ function location_recovered() {
 }
 
 function off_route(dist) {
-	return dictionary["off_route"] + distance(dist);
+	// The space matter to make the number correctly read.
+	return dictionary["off_route"] + " " + distance(dist);
 }
 
 function back_on_route() {
