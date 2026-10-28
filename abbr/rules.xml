@@ -1,30 +1,146 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rules version="5">
-    <!-- Search rules v5, specification: rules-spec.md. Layers: this base, then rules_<language>.xml and
-         rules_<language>_<COUNTRY>.xml of the locale of the data (map and name tag, never the user interface).
+    <!--
+    ================================================================================================================
+    SEARCH RULES v5 (code: net.osmand.search.rules)
+    ================================================================================================================
 
-         A stored name keeps the words of OSM: no rule rewrites it.
-           <locales>  only here: map name prefix -> rules locale, statistics group of common_words_groups.tsv,
-                      transliteration of names.
-           <index>    applied by the OBF writer:
-                        <class0>/<class1>/<class2>  words that are always a key / service words / frequent words of
-                                                    the locale, over the classes of common_words_groups.tsv;
-                        <unglue glue="." minPart="2"/>  splits glued words into an alternative name;
-                        <rule object="street" from="regexp" to="form"/>  adds an alternative name: a phrase, a glued
-                                                    or a tokenizer-lost form; keys="always" makes its new words keys.
-                      A word of an alternative name is a key by its own class, whatever happened to the words it
-                      replaces.
-           <query>    applied by the search with the locale of every OBF it reads:
-                        <rule from="pl" to="Place" object="street"/>, <rule from="st"><to object="street">Street</to>
-                        <to>Saint</to></rule>: forms of a query word, each with a generated reverse form;
-                        object="building" without to: a part of a house number;
-                        to="": an ignorable word of every owner (an optional query token, never a penalty);
-                        <skipPenalty object="street">de la</skipPenalty>: words of names that do not penalize an
-                        object of the owners when the query does not have them.
+    1. FILES, LAYERS, KEYS
+       rules.xml (this base) -> rules_<language>.xml -> rules_<language>_<COUNTRY>.xml, from general to specific.
+       The locale is the locale of the DATA, never of the user interface:
+         - a map: the longest prefix of its file name in <locales> ("canada" -> en_CA, "canada_quebec" -> fr_CA);
+         - a name tag of another language (OBF writer only): name:de on an Italian map -> de_IT.
+       Every rule has a key. A lower layer with the key of an upper rule replaces that rule WHOLE (all attributes and
+       forms: copy them all when only one attribute has to change), enabled="false" removes it, two rules with one
+       key in one file are an error. Keys:
+         <query><rule>     the word of from
+         <index><rule>     object + from
+         <unglue>          glue
+         <class0/1/2>      the word
+         <skipPenalty>     the word + object
+       A stored name keeps the words of OSM: no rule rewrites it. <index> and <poi> ADD names or tags to the OBF,
+       <query> adds forms to the words of a query.
 
-         Keys: a query rule - its word; an index rule - object and from; <unglue> - glue; a class word and a
-         <skipPenalty> word (with object) - the word. A lower layer replaces an upper rule of its key whole,
-         enabled="false" removes it, two rules with one key in one file are an error. -->
+    2. WHO APPLIES WHAT
+
+       section    applied by   when                     locale                               data source
+       <locales>  both         loading                  only in rules.xml                    map file name
+       <index>    OBF writer   name index generation    <unglue>: of the map,                names of objects
+                                                        <rule>: of the name tag
+       <poi>      OBF writer   POI generation           of the map                           POI names, OSM tags
+       <query>    search       every query              of every OBF being read              words of the query
+
+       A change of <index> or <poi> needs a new OBF; a change of <query> works with the OBFs already downloaded.
+
+       Owners (attribute object: a comma list; "*" or no object is every owner):
+         street     a street and a building (an address carries the name of its street)
+         poi        a POI: its name and its ref
+         locality   a city, town, village, hamlet, suburb
+         boundary   an administrative boundary
+         postcode   a postcode
+         building   only in <query>: a part of a house number, see 4.2
+
+    3. <index>: ALTERNATIVE NAMES AND WORD CLASSES (OBF writer)
+
+       Data source: name (locale of the map), name:<lang> and the other names of an object (alt_name, old_name...,
+       locale of their language), the English or transliterated name of a POI ("en"). For each of them the writer
+       may add an alternative name: its new words become keys of the name index, marked as a rule spelling; the
+       search finds the object by them and shows the stored name.
+
+       3.1 <unglue glue="." script="Latin" minPart="2"/>
+           Splits words glued by one character: "Mak.by" -> "Mak by", "L'Atelier d'Anaïs" -> "Atelier Anaïs".
+           Locale: of the map, for every name of the object. Only words without digits ("1.5" stays), only words
+           of the script when script is set; a part shorter than minPart (default 2) is dropped ("d'", "L'").
+           Use it for a punctuation glue that users type split. A number glued to a word of the QUERY ("56ave") is
+           numPrefix of <query>, see 5.
+
+       3.2 <rule object="street" from="(?iu)regexp" to="form" mode="Single|All" keys="stats|always"/>
+           A Java regexp over the whole name of an owner, to is the replacement ($1 for groups): "Hauptstraße" ->
+           "Hauptstr", "Strada Statale 42" -> "SS42". mode="Single" (default) applies only when the regexp matches
+           once, "All" replaces every match; keys="always" makes the new words keys whatever their statistics.
+           Locale: of the name tag, one form only. Use it for a glued, phrase or tokenizer-lost spelling that a
+           one-word query form cannot give. An abbreviation of one word belongs to <query>: no new OBF is needed.
+
+       3.3 <class0>, <class1>, <class2>
+           Words that are always a key / service words / frequent words of the locale, over the classes of
+           common_words_groups.tsv. A word of an alternative name is a key by its own class.
+
+    4. <query>: FORMS OF A QUERY WORD (search)
+
+       Data source: the words of the query, one token each. A form is one word (the first word of to).
+
+       4.1 Locale: the search reads several OBFs at once and each OBF has its locale. A token gets the forms of
+           every locale lazily and matches the names of a map only with the forms of that map: "Pl" is "Place" on
+           an English map and stays "Pl" on a German one. The language of the user does not matter.
+
+       4.2 Syntax:
+           <rule from="pl" to="Place" object="street"/>      one meaning
+           <rule from="st">                                   several meanings, the first one is the main one
+               <to object="street">Street</to>
+               <to>Saint</to>
+           </rule>
+           <rule from="apt" object="building"/>               no to: a part of a house number ("apt", "bis")
+           <rule from="the" to=""/>                           an ignorable word: an optional token, never a
+                                                              penalty, for every owner
+           <skipPenalty object="street">de la</skipPenalty>   words of NAMES that do not penalize an object of the
+                                                              owners when the query does not have them
+
+       4.3 Filter by object: a form with an object matches only names of its owners (2), checked when a name is
+           compared: "pl" -> "Place" finds the street "Place Vendôme", never a POI named "Place". A form without
+           object matches every owner. Reading the keys of the name index uses every form (a key has no owner), the
+           owner is checked on the name afterwards.
+
+       4.4 Direct and reverse form: every form gets a generated reverse form (to -> from) of the same object.
+             direct  (from -> to): the query has the abbreviation, the name the full word: "st" finds "Main Street";
+             reverse (to -> from): the query has the full word, the name keeps the abbreviation of OSM:
+                                   "street" finds "E Main St", "avenue" finds "56 Ave NW".
+           A reverse form is ONE step: "saint" leads to "st", never to the other forms of "st" ("Saint Louis" does
+           not become "Louis Street"). A house-number part and an ignorable word have no reverse form.
+
+    5. numPrefix: A NUMBER GLUED TO A WORD OF THE QUERY (<query><rule ... numPrefix="true"/>)
+
+       What: a query word of ASCII digits followed by a word is read as two tokens, "56ave" -> "56" + "ave"
+       (#26691: Canada Post writes "10720 56 AVE NW", users type "10720 56ave"). The tokens get their forms as
+       usual (4), the number may be the number of the street or a house number.
+       The word after the digits is matched WHOLE: the from of the rule, one of its forms ("56avenue") or a reverse
+       form of a form ("56av" through "avenue"). "56aven" is not split, an incomplete last word "56ave." is.
+       No regexp: the digits are skipped and the rest is looked up in a set.
+       Locale: the split is made when a locale of ANY loaded map has the rule (the tokens are shared by all maps),
+       the maps of other locales just get no forms for the split tokens.
+       Criteria, all of them:
+         a. the split is unambiguous for the names of the locale: put the flag into the layer of the country whose
+            addresses keep the number apart (rules_en_CA.xml: "56 Avenue NW"), not into rules_en.xml (US names are
+            "56th Avenue"); a lower layer without the attribute does not split;
+         b. an English ordinal is never split, whatever the rule: the suffix of its number keeps the word ("1st",
+            "21st", "31st", "2nd", "3rd", "43rd", "11th"), so "st" and "rd" may have the flag: "56st" is split,
+            "21st Avenue" keeps matching;
+         c. the word and every form have two letters at least and the word has letters only ("12e", "5b" are house
+            numbers); a house-number part (object="building") and an ignorable word (to="") cannot have it
+            (checked by SearchModRulesValidator);
+         d. the object does not limit the split (the owner is unknown before matching): "56st" also gets the form
+            "56 Saint", so choose words whose other meanings after a number are harmless.
+
+    6. <poi>: POI NAMES AND TAGS (OBF writer, locale of the map)
+
+       6.1 <abbr short="RCMP" full="Royal Canadian Mounted Police"/>
+           Data source: the NAME of a POI. A name with one form gets the other one as an alternative name, both
+           ways, whole words, any case, the abbreviation with its dot: "RCMP Detachment" is found by "Royal Canadian
+           Mounted Police" and the other way round. POIs only: a street abbreviation is a rule of <query>.
+           Use it for a well-known abbreviation of a POI name, usually a phrase that one-word query forms cannot give.
+
+       6.2 <service word="DMV" tags="office=government + government=transportation | amenity=..." name="regexp"/>
+           Data source: the OSM TAGS of a POI (sets split by |, the tags of one set joined by +) and, when name is
+           set, a regexp over its name. A matching POI gets the tag service_abbreviation=<word> (top_index of
+           poi_types.xml): the query "DMV" finds the offices of the service even when their names lack the word.
+           Use it for a national service or network known by its abbreviation; the file of the country is the
+           country of the service (rules_en_US.xml: DMV, rules_en_CA.xml: RCMP).
+
+       <abbr> or <service>: <abbr> works on the words of a name and finds only POIs whose names already have one of
+       the two forms; <service> works on the tags and finds the POIs of the service whatever their names, by the word.
+
+       6.3 <brand value="Aster" tags="amenity=pharmacy"/>: read by the brand analyzer, indexed even below its limits.
+    ================================================================================================================
+    -->
     <locales>
         <!-- statistics groups of common_words_groups.tsv: by the language of the locale, exceptions by locale -->
         <group id="fr" languages="fr"/>  <!-- French -->

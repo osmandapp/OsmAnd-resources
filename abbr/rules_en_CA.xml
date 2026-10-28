@@ -3,6 +3,30 @@
     <!-- search-word-rules v5. abbr: a POI name with one form gets the other as an alternative name, both
          ways; service: a national service, the map writer gives its places a searchable tag (top_index);
          brand: indexed even below the brand-analyzer limits -->
+    <!-- A street number glued to the street type, "10720 56ave" of "10720 56 Ave NW" (Canada Post): numPrefix reads
+         "56ave" as "56 ave". The rules of rules_en.xml with the attribute: a lower layer replaces a rule whole. -->
+    <query>
+        <rule from="ln" to="Lane" numPrefix="true"/>
+        <rule from="dr" numPrefix="true">
+            <to object="street">Drive</to>
+            <to>Doctor</to>
+        </rule>
+        <rule from="rd" to="Road" numPrefix="true"/>
+        <rule from="av" to="Avenue" numPrefix="true"/>
+        <rule from="ave" to="Avenue" numPrefix="true"/>
+        <rule from="st" numPrefix="true">
+            <to object="street">Street</to>
+            <to>Saint</to>
+        </rule>
+        <rule from="hwy" to="Highway" numPrefix="true"/>
+        <rule from="blvd" to="Boulevard" numPrefix="true"/>
+        <rule from="pl" to="Place" object="street" numPrefix="true"/>
+        <rule from="pkwy" to="Parkway" object="street" numPrefix="true"/>
+        <rule from="expy" to="Expressway" object="street" numPrefix="true"/>
+        <rule from="ct" to="Court" object="street" numPrefix="true"/>
+        <rule from="cir" to="Circle" object="street" numPrefix="true"/>
+        <rule from="ter" to="Terrace" object="street" numPrefix="true"/>
+    </query>
     <poi>
         <service word="CLSC" tags="amenity=clinic" name="\bCLSC\b|\bCentre\ local\ de\ services\ communautaires\b"/>
         <service word="RCMP" tags="amenity=police" name="\bRCMP\b|\bRoyal\ Canadian\ Mounted\ Police\b"/>
