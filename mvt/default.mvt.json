@@ -9,6 +9,13 @@
       "minzoom": 0,
       "maxzoom": 15,
       "buffer": 128
+    },
+    "contours": {
+      "type": "vector",
+      "tiles": ["https://test.osmand.net/vector/contours/{z}/{x}/{y}.mvt"],
+      "minzoom": 11,
+      "maxzoom": 15,
+      "buffer": 128
     }
   },
   "sprite": "https://test.osmand.net/map/mvt/sprites/sprite",
@@ -1171,6 +1178,105 @@
       "paint": {
         "fill-pattern": "military_transp",
         "fill-outline-color": "rgba(166, 103, 103, 0.59)"
+      }
+    },
+    {
+      "id": "contour-line-5m",
+      "type": "line",
+      "source": "contours",
+      "source-layer": "osmand",
+      "minzoom": 14,
+      "filter": [
+        "all",
+        ["==", ["get", "contour"], "elevation"],
+        ["in", ["get", "contourtype"], ["literal", ["5m", "20f"]]]
+      ],
+      "layout": {"visibility": "none"},
+      "paint": {"line-color": "rgba(255, 124, 0, 0.16)", "line-width": 0.6}
+    },
+    {
+      "id": "contour-line-10m",
+      "type": "line",
+      "source": "contours",
+      "source-layer": "osmand",
+      "minzoom": 12,
+      "filter": [
+        "all",
+        ["==", ["get", "contour"], "elevation"],
+        ["in", ["get", "contourtype"], ["literal", ["10m", "20m", "40f"]]]
+      ],
+      "layout": {"visibility": "none"},
+      "paint": {"line-color": "rgba(255, 124, 0, 0.16)", "line-width": 1}
+    },
+    {
+      "id": "contour-line-50m",
+      "type": "line",
+      "source": "contours",
+      "source-layer": "osmand",
+      "minzoom": 12,
+      "filter": [
+        "all",
+        ["==", ["get", "contour"], "elevation"],
+        ["==", ["get", "contourtype"], "50m"]
+      ],
+      "layout": {"visibility": "none"},
+      "paint": {"line-color": "rgba(234, 115, 0, 0.16)", "line-width": 1}
+    },
+    {
+      "id": "contour-line-100m",
+      "type": "line",
+      "source": "contours",
+      "source-layer": "osmand",
+      "minzoom": 12,
+      "filter": [
+        "all",
+        ["==", ["get", "contour"], "elevation"],
+        ["in", ["get", "contourtype"], ["literal", ["100m", "200f"]]]
+      ],
+      "layout": {"visibility": "none"},
+      "paint": {"line-color": "rgba(234, 115, 0, 0.16)", "line-width": 1.5}
+    },
+    {
+      "id": "contour-line-1000f",
+      "type": "line",
+      "source": "contours",
+      "source-layer": "osmand",
+      "minzoom": 12,
+      "filter": [
+        "all",
+        ["==", ["get", "contour"], "elevation"],
+        ["==", ["get", "contourtype"], "1000f"]
+      ],
+      "layout": {"visibility": "none"},
+      "paint": {"line-color": "rgba(234, 115, 0, 0.16)", "line-width": 2}
+    },
+    {
+      "id": "contour-line-ticks",
+      "type": "symbol",
+      "source": "contours",
+      "source-layer": "osmand",
+      "minzoom": 14,
+      "filter": [
+        "all",
+        ["==", ["get", "contour"], "elevation"],
+        [
+          "in",
+          ["get", "contourtype"],
+          [
+            "literal",
+            ["5m", "10m", "20m", "50m", "100m", "20f", "40f", "200f", "1000f"]
+          ]
+        ]
+      ],
+      "layout": {
+        "icon-image": "stroke_brown_left",
+        "symbol-placement": "line",
+        "symbol-spacing": 100,
+        "icon-rotation-alignment": "map",
+        "icon-rotate": 90,
+        "icon-allow-overlap": true,
+        "icon-ignore-placement": true,
+        "visibility": "none"
       }
     },
     {
@@ -4501,6 +4607,111 @@
         "line-width": ["interpolate", ["linear"], ["zoom"], 13, 1, 16, 1.5],
         "line-dasharray": [1, 8]
       }
+    },
+    {
+      "id": "contour-label-10m",
+      "type": "symbol",
+      "source": "contours",
+      "source-layer": "osmand",
+      "minzoom": 14,
+      "filter": [
+        "all",
+        ["==", ["get", "contour"], "elevation"],
+        ["in", ["get", "contourtype"], ["literal", ["10m", "40f"]]],
+        ["has", "elevation"]
+      ],
+      "layout": {
+        "text-field": ["get", "elevation"],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 9,
+        "symbol-placement": "line",
+        "visibility": "none"
+      },
+      "paint": {"text-color": "#888888"}
+    },
+    {
+      "id": "contour-label-20m",
+      "type": "symbol",
+      "source": "contours",
+      "source-layer": "osmand",
+      "minzoom": 13,
+      "filter": [
+        "all",
+        ["==", ["get", "contour"], "elevation"],
+        ["==", ["get", "contourtype"], "20m"],
+        ["has", "elevation"]
+      ],
+      "layout": {
+        "text-field": ["get", "elevation"],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 10,
+        "symbol-placement": "line",
+        "visibility": "none"
+      },
+      "paint": {"text-color": "#777777"}
+    },
+    {
+      "id": "contour-label-50m",
+      "type": "symbol",
+      "source": "contours",
+      "source-layer": "osmand",
+      "minzoom": 13,
+      "filter": [
+        "all",
+        ["==", ["get", "contour"], "elevation"],
+        ["==", ["get", "contourtype"], "50m"],
+        ["has", "elevation"]
+      ],
+      "layout": {
+        "text-field": ["get", "elevation"],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 10,
+        "symbol-placement": "line",
+        "visibility": "none"
+      },
+      "paint": {"text-color": "#777777"}
+    },
+    {
+      "id": "contour-label-100m",
+      "type": "symbol",
+      "source": "contours",
+      "source-layer": "osmand",
+      "minzoom": 13,
+      "filter": [
+        "all",
+        ["==", ["get", "contour"], "elevation"],
+        ["in", ["get", "contourtype"], ["literal", ["100m", "200f"]]],
+        ["has", "elevation"]
+      ],
+      "layout": {
+        "text-field": ["get", "elevation"],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 12,
+        "symbol-placement": "line",
+        "visibility": "none"
+      },
+      "paint": {"text-color": "#444444"}
+    },
+    {
+      "id": "contour-label-1000f",
+      "type": "symbol",
+      "source": "contours",
+      "source-layer": "osmand",
+      "minzoom": 13,
+      "filter": [
+        "all",
+        ["==", ["get", "contour"], "elevation"],
+        ["==", ["get", "contourtype"], "1000f"],
+        ["has", "elevation"]
+      ],
+      "layout": {
+        "text-field": ["get", "elevation"],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 13,
+        "symbol-placement": "line",
+        "visibility": "none"
+      },
+      "paint": {"text-color": "#444444"}
     },
     {
       "id": "waterwaylabel-river",
