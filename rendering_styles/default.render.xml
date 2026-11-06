@@ -124,6 +124,8 @@
 
 		<renderingProperty attr="whiteWaterSports" name="Whitewater sports" description="Whitewater sports"
 			type="boolean" possibleValues="" category="routes"/>
+		<renderingProperty attr="showClimbingRoutes" name="Climbing routes" description="Show climbing routes"
+			type="boolean" possibleValues="" category="routes"/>
 
 		<renderingProperty attr="noAdminboundaries" name="Hide boundaries" description="Suppress display of admin levels 5-9"
 			type="boolean" possibleValues="" category="hide"/>
@@ -1329,6 +1331,7 @@
 		<renderingConstant name="sacScaleColorT4" value="#6000ff"/>
 		<renderingConstant name="sacScaleColorT5" value="#6000ff"/>
 		<renderingConstant name="sacScaleColorT6" value="#6000ff"/>
+		<renderingConstant name="climbingAccessColor" value="#FF8C00"/>
 
 		<renderingAttribute name="caiScaleColor">
 			<case attrColorValue="#e23cad"/>
@@ -1421,6 +1424,12 @@
 		</renderingAttribute>
 		<renderingAttribute name="whitewaterSectionGrade6Color">
 			<case attrColorValue="#EE494949"/>
+		</renderingAttribute>
+		<renderingAttribute name="whitewaterSectionGradeXColor">
+			<case attrColorValue="#d05F0000"/>
+		</renderingAttribute>
+		<renderingAttribute name="whitewaterSectionGradeYesColor">
+			<case attrColorValue="#EE2BF5D9"/>
 		</renderingAttribute>
 
 		<renderingAttribute name="viaFerrataColor">
@@ -2104,6 +2113,8 @@
 			<case additional="surface=grass_paver" attrColorValue="$surfaceGrassPaverColor" attrStringValue="surface_grass_paver"/>
 			<case additional="surface=ground" attrColorValue="$surfaceGroundColor" attrStringValue="surface_ground"/>
 			<case additional="surface=dirt" attrColorValue="$surfaceDirtColor" attrStringValue="surface_dirt"/>
+			<case additional="surface=clay" attrColorValue="$surfaceDirtColor" attrStringValue="surface_clay"/>
+			<case additional="surface=laterite" attrColorValue="$surfaceDirtColor" attrStringValue="surface_laterite"/>
 			<case additional="surface=mud" attrColorValue="$surfaceMudColor" attrStringValue="surface_mud"/>
 			<case additional="surface=ice" attrColorValue="$surfaceIceColor" attrStringValue="surface_ice"/>
 			<case additional="surface=salt" attrColorValue="$surfaceSaltColor" attrStringValue="surface_salt"/>
@@ -3058,7 +3069,7 @@
 					<switch baseAppMode="bicycle" tag="barrier" order="-1">
 						<case value="height_restrictor"/>
 					</switch>
-					<switch maxzoom="16" order="-1" tag="highway" value="motorway_junction">
+					<switch maxzoom="15" order="-1" tag="highway" value="motorway_junction">
 						<case baseAppMode="default"/>
 						<case baseAppMode="bicycle"/>
 						<case baseAppMode="pedestrian"/>
@@ -3306,6 +3317,7 @@
 				<case tag="golf" value="fairway"/>
 				<case tag="golf" value="tee"/>
 				<case tag="landuse" value="residential" order="4"/>
+				<case tag="landuse" value="construction" order="4"/>
 				<case tag="historic" value="quarry"/>
 				<case tag="landuse" value="quarry"/>
 				<switch order="5">
@@ -3719,7 +3731,7 @@
 						<apply_if layer="1" order="89"/>
 						<apply_if additional="layer=2" order="119"/>
 						<apply_if additional="layer=3" order="147"/>
-						<apply_if layer="-1" order="20"/>
+						<apply_if layer="-1" order="43"/>
 						<apply_if additional="layer=-2" order="19"/>
 					</case>
 					<case tag="highway" value="cycleway" order="65">
@@ -3790,11 +3802,11 @@
 							<apply_if baseAppMode="bicycle" layer="1" maxzoom="15" order="110"/>
 							<apply_if baseAppMode="bicycle" additional="layer=2" maxzoom="15" order="140"/>
 							<apply_if baseAppMode="bicycle" additional="layer=3" maxzoom="15" order="166"/>
-							<apply_if layer="-1" order="20"/>
+							<apply_if layer="-1" order="43"/>
 							<apply_if additional="layer=-2" order="19"/>
 						</switch>
 						<case tag="highway" value="steps" order="65">
-							<apply_if minzoom="14" baseAppMode="pedestrian" order="61"/>
+							<apply_if minzoom="14" baseAppMode="pedestrian" order="64"/>
 							<apply_if baseAppMode="default" moreDetailed="false">
 								<apply_if minzoom="15" maxzoom="15" order="-1"/>
 								<apply_if additional="conveying=yes" layer="-1" maxzoom="16" order="-1"/>
@@ -3805,7 +3817,7 @@
 							</apply_if>
 							<apply_if additional="layer=2" order="140"/>
 							<apply_if additional="layer=3" order="166"/>
-							<apply_if layer="-1" order="20"/>
+							<apply_if layer="-1" order="43"/>
 							<apply_if additional="layer=-2" order="19"/>
 						</case>
 						<case tag="man_made" value="goods_conveyor" order="69">
@@ -3822,9 +3834,6 @@
 						</apply_if>
 					</switch>
 
-					<case tag="highway" value="via_ferrata">
-						<apply_if moreDetailed="false" maxzoom="15" order="-1"/>
-					</case>
 					<case tag="highway" value="raceway"/>
 					<case tag="abandoned:highway" value=""/>
 
@@ -3841,7 +3850,9 @@
 
 					<case baseAppMode="car" maxzoom="18" tag="barrier" value="hedge" order="-1"/>
 
-					<case tag="barrier" value="" order="20">
+					<case tag="barrier" value="" order="63">
+						<apply_if layer="-1" order="20"/>
+						<apply_if additional="layer=-2" order="19"/>
 						<apply_if baseAppMode="car" layer="-1" order="-1"/>
 					</case>
 					<case tag="amenity" value="bench"/>
@@ -4914,13 +4925,35 @@
 				</apply>
 			</switch>
 
-			<switch minzoom="11">
-				<case tag="place" value="island" nameTag="">
-					<apply_if minzoom="12" textOrder="37"/>
-				</case>
-				<case minzoom="13" tag="place" value="islet" nameTag=""/>
-				<apply textWrapWidth="20" textColor="$placeCityVillageTextColor" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColor" intersectionMargin="15" textItalic="true" nameTag="" textSize="14"/>
+			<switch minzoom="5" nameTag="">
+				<case tag="place" value="island"/>
+				<case tag="place" value="atoll"/>
+				<apply>
+					<switch maxzoom="10" additional="osmand_prominent_island=yes" textOrder="77">
+						<case minzoom="5" additional="area_rounded=2048000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=1024000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=512000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=256000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=128000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=64000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=32000" textSize="11"/>
+						<case minzoom="5" additional="area_rounded=16000" textSize="11"/>
+						<case minzoom="6" additional="area_rounded=8000" textSize="12"/>
+						<case minzoom="7" additional="area_rounded=4000" textSize="12"/>
+						<case minzoom="8" additional="area_rounded=2000" textSize="13"/>
+						<case minzoom="9" additional="area_rounded=1000" textSize="13"/>
+						<case minzoom="9" additional="area_rounded=500" textSize="13"/>
+						<case minzoom="10" additional="area_rounded=200" textSize="13"/>
+						<case minzoom="10" additional="area_rounded=100" textSize="13"/>
+					</switch>
+					<case minzoom="11" textSize="14" textOrder="37" intersectionMargin="15"/>
+					<apply textColor="$placeCityVillageTextColor" textWrapWidth="20" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColor" textItalic="true"/>
+				</apply>
 			</switch>
+
+			<case minzoom="13" tag="place" value="islet" nameTag="">
+				<apply textWrapWidth="20" textColor="$placeCityVillageTextColor" textHaloRadius="$placeTextHaloRadiusDay" textHaloColor="$placeCityVillageTextHaloColor" intersectionMargin="15" textItalic="true" textSize="14"/>
+			</case>
 
 			<!-- Natural -->
 			<case minzoom="12" tag="leisure" value="park" nameTag="" textSize="12" textWrapWidth="15" textHaloRadius="$textHaloRadius" textHaloColor="#aaffffff" textColor="$parkTextColorDay" textItalic="true" textOrder="103">
@@ -4929,12 +4962,12 @@
 
 			<switch textColor="#654321" textDy="7" textWrapWidth="25" textHaloColor="#aaf1eae4" textHaloRadius="$textHaloRadius" textItalic="true">
 				<switch>
-					<switch minzoom="7" tag="natural" additional="osmand_prominent_peak=yes" nameTag="">
+					<switch hidePOILabels="false" minzoom="7" tag="natural" additional="osmand_prominent_peak=yes" nameTag="">
 						<case value="peak"/>
 						<case value="volcano" textHaloColor="#99ffd6c0"/>
 						<apply textSize="11" intersectionMargin="5" textOrder="38" textDy="0"/>
 					</switch>
-					<switch>
+					<switch hidePOILabels="false">
 						<case minzoom="$naturalPeakTextMinZoom" tag="natural" value="peak" textOrder="80"/>
 						<case minzoom="12" tag="natural" value="volcano" textOrder="79"/>
 						<apply>
@@ -4954,7 +4987,7 @@
 							</switch>
 						</apply>
 					</switch>
-					<case minzoom="$naturalHillTextMinZoom" tag="natural" value="hill" textOrder="70">
+					<case hidePOILabels="false" minzoom="$naturalHillTextMinZoom" tag="natural" value="hill" textOrder="70">
 						<case eleUnits="feet" nameTag="ele_feet"/>
 						<case eleUnits="feet" nameTag="" nameTag2="ele_feet"/>
 						<case eleUnits="meters" nameTag="ele" />
@@ -4964,6 +4997,13 @@
 						<apply textSize="11"/>
 					</case>
 					<case minzoom="16" textSize="12" tag="natural" value="cliff" nameTag="" textOnPath="true" textHaloRadius="3" textDy="0" textOrder="43"/>
+					<switch tag="natural" value="ridge" nameTag="" textOnPath="true" textHaloRadius="3" textDy="0" textOrder="43">
+						<case minzoom="17" textSize="20"/>
+						<case minzoom="16" textSize="18"/>
+						<case minzoom="15" textSize="16"/>
+						<case minzoom="14" textSize="14"/>
+						<case minzoom="13" textSize="13"/>
+					</switch>
 					<switch tag="natural" value="valley" nameTag="" textOnPath="true" textColor="#356B25" textHaloRadius="3" textDy="0" textOrder="43">
 						<case minzoom="17" textSize="20" />
 						<case minzoom="16" textSize="18" />
@@ -4986,9 +5026,9 @@
 						<apply_if maxzoom="10" moreDetailed="true" textOrder="6"/> <!-- Only if region:type is available at z10- -->
 					</switch>
 					<case minzoom="14" textSize="12" tag="waterway" value="drystream" nameTag="" textOnPath="true" textOrder="77" textDy="0"/>
-					<case minzoom="15" textSize="12" tag="natural" value="saddle" nameTag="" nameTag2="rtsa_scale"/>
+					<case hidePOILabels="false" minzoom="15" textSize="12" tag="natural" value="saddle" nameTag="" nameTag2="rtsa_scale"/>
 					<case minzoom="13" textSize="14" tag="natural" value="crater" nameTag="" textColor="#4e0d0d"/>
-					<case minzoom="16" textSize="11" tag="natural" value="fumarole" nameTag="" textColor="#4e0d0d"/>
+					<case hidePOILabels="false" minzoom="16" textSize="11" tag="natural" value="fumarole" nameTag="" textColor="#4e0d0d"/>
 					<case minzoom="14" textSize="14" tag="natural" value="crevasse" nameTag="" textColor="#4e0d0d">
 						<apply_if legend="true" textOnPath="true"/>
 					</case>
@@ -4997,7 +5037,7 @@
 						<case hidePOILabels="false" minzoom="16" textSize="14" tag="natural" value="sinkhole" nameTag="" textColor="#4e0d0d"/>
 						<apply_if baseAppMode="car" moreDetailed="false" maxzoom="17" disable="true"/>
 					</switch>
-					<case minzoom="16" textSize="11" tag="natural" value="arch" nameTag="" textOnPath="true"/>
+					<case hidePOILabels="false" minzoom="16" textSize="11" tag="natural" value="arch" nameTag="" textOnPath="true"/>
 					<apply_if nightMode="true" textColor="#ffcc9b" textHaloColor="#774d2803"/>
 					<apply_if legend="true" textDy="0"/>
 				</switch>
@@ -5038,7 +5078,6 @@
 					<case minzoom="8" tag="natural" value="bay" textOnPath="true" textWrapWidth="17" textOrder="179" nameTag=""/>
 					<case minzoom="8" tag="natural" value="strait" textOnPath="true" textWrapWidth="25" textOrder="180" nameTag=""/>
 					<case minzoom="$waterwayStreamTextMinZoom" tag="waterway" value="stream" textOnPath="true" textOrder="206" nameTag=""/>
-					<case minzoom="13" tag="waterway" value="flowline" textOnPath="true" textOrder="206" nameTag=""/>
 					<case minzoom="19" textSize="12" tag="waterway" value="fish_pass" textOnPath="true" textOrder="78" textDy="0" nameTag=""/>
 					<case minzoom="$wadiStreamTextMinZoom" tag="waterway" value="wadi" textOnPath="true" textOrder="213" nameTag=""/>
 					<switch minzoom="11" tag="waterway" value="river" textOnPath="true" textMinDistance="80" textOrder="184">
@@ -5077,16 +5116,16 @@
 					<case minzoom="17" tag="landuse" value="aquaculture" textOrder="239" nameTag=""/>
 					<apply_if engine_v1="false" textDy="0"/>
 				</switch>
-				<case minzoom="16" tag="lock" value="yes" nameTag="lock_name" textColor="#00ff0000" textSize="11"/>
-				<switch minzoom="17" textColor="#2579D0" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$defaultColor" textSize="12" textItalic="true">
+				<case minzoom="16" hidePOILabels="false" tag="lock" value="yes" nameTag="lock_name" textColor="#00ff0000" textSize="11"/>
+				<switch minzoom="17" hidePOILabels="false" textColor="#2579D0" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$defaultColor" textSize="12" textItalic="true">
 					<case tag="ford" value="yes" nameTag="osmand_ford_stub" textColor="#00ff0000" textHaloColor="#01000000" textSize="11" textShield="ford_shield" icon="ford" textMinDistance="1"/>
 					<case tag="ford" value="yes" textDy="7" nameTag="" nameTag2="depth" textOrder="208"/>
 					<case tag="ford" value="yes" textDy="7" nameTag="depth" textOrder="208"/>
 					<case tag="ford" value="stepping_stones" textDy="7" textOrder="208"/>
-					<case tag="highway" value="emergency_bay" nameTag="osmand_emergency_bay_stub" textColor="#00ff0000" textHaloColor="#01000000" textSize="11" textShield="blue_round_shield" icon="emergency_bay"/>
-					<case tag="highway" value="emergency_bay" nameTag="" textColor="#00ff0000" textHaloColor="#01000000" textSize="11"/>
 					<apply_if engine_v1="false" textDy="0"/>
 				</switch>
+				<case hideIcons="false" tag="highway" value="emergency_bay" nameTag="osmand_emergency_bay_stub" textColor="#00ff0000" textHaloColor="#01000000" textSize="11" textShield="blue_round_shield" icon="emergency_bay"/>
+				<case hidePOILabels="false" tag="highway" value="emergency_bay" nameTag="" textColor="#00ff0000" textHaloColor="#01000000" textSize="11"/>
 				<case minzoom="13" tag="natural" value="glacier" nameTag="" textColor="$glacierTextColor" textHaloRadius="$waterTextHaloRadiusDay" textHaloColor="$glacierTextHaloColor" textSize="12" textItalic="true" textWrapWidth="20" textOrder="81"/>
 				<!-- landuse -->
 				<switch nameTag="">
@@ -5203,9 +5242,9 @@
 						<case hidePOILabels="false" minzoom="18" tag="natural" value="tree" textSize="11" textDy="5" textOrder="252"/>
 						<case hidePOILabels="false" minzoom="19" tag="natural" value="shrub" textSize="11" textDy="5" textOrder="252"/>
 						<case hidePOILabels="false" minzoom="18" tag="natural" value="stone" textSize="11" textDy="4"/>
-						<case minzoom="19" tag="natural" value="birds_nest" textSize="10" textDy="5"/>
-						<case minzoom="19" tag="natural" value="termite_mound" textSize="10" textDy="5"/>
-						<case minzoom="19" tag="natural" value="anthill" textSize="10" textDy="5"/>
+						<case hidePOILabels="false" minzoom="19" tag="natural" value="birds_nest" textSize="10" textDy="5"/>
+						<case hidePOILabels="false" minzoom="19" tag="natural" value="termite_mound" textSize="10" textDy="5"/>
+						<case hidePOILabels="false" minzoom="19" tag="natural" value="anthill" textSize="10" textDy="5"/>
 						<case minzoom="17" tag="natural" value="rock" textSize="11" textDy="4"/>
 						<case minzoom="16" tag="natural" value="bare_rock" textSize="11" textDy="4"/>
 						<case minzoom="16" tag="natural" value="scree" textSize="11" textDy="4"/>
@@ -5266,12 +5305,13 @@
 					<case minzoom="18" tag="emergency" value="phone"/>
 					<case minzoom="18" tag="emergency" value="defibrillator"/>
 					<case minzoom="16" tag="emergency" value="disaster_response"/>
+					<case minzoom="16" tag="emergency" value="disaster_help_point"/>
 					<case minzoom="19" tag="emergency" value="fire_hydrant"/>
 					<case minzoom="18" tag="emergency" value="rescue_box"/>
 					<case minzoom="17" tag="emergency" value="mountain_rescue"/>
 					<case minzoom="17" tag="emergency" value="lifeguard"/>
 					<case minzoom="16" tag="highway" value="emergency_access_point" textOrder="127"/>
-					<case minzoom="15" tag="emergency" value="assembly_point"/>
+					<case minzoom="17" tag="emergency" value="assembly_point"/>
 					<case minzoom="18" tag="emergency" value="siren"/>
 					<case minzoom="16" tag="amenity" value="social_facility"/>
 					<case minzoom="16" tag="healthcare" value="laboratory"/>
@@ -5330,13 +5370,13 @@
 					<case minzoom="16" tag="amenity" value="ferry_terminal" textOrder="105" />
 					<case minzoom="16" tag="highway" value="rest_area" nameTag="" textOrder="101" />
 					<case minzoom="18" tag="amenity" value="weighbridge"/>
+					<case minzoom="14" tag="mountain_pass" value="yes">
+						<case nameTag="" nameTag2="rtsa_scale"/>
+						<case eleUnits="" nameTag="ele"/>
+						<case eleUnits="feet" nameTag="ele_feet"/>
+						<case eleUnits="meters" nameTag="ele"/>
+					</case>
 				</switch>
-				<case minzoom="14" tag="mountain_pass" value="yes">
-					<case nameTag="" nameTag2="rtsa_scale"/>
-					<case eleUnits="" nameTag="ele"/>
-					<case eleUnits="feet" nameTag="ele_feet"/>
-					<case eleUnits="meters" nameTag="ele"/>
-				</case>
 				<apply_if nightMode="true" textColor="#b9d5ff" textHaloColor="#88355777"/>
 				<apply_if engine_v1="true" textDy="5"/>
 			</switch>
@@ -5445,6 +5485,7 @@
 					<case minzoom="17" tag="public_transport" value="platform" nameTag="local_ref" textOnPath="true" textOrder="71" intersectionMargin="15"/>
 					<case minzoom="17" tag="public_transport" value="platform" nameTag="ref" textOnPath="true" textOrder="71" intersectionMargin="15"/>-->
 					<case tag="highway" value="bus_stop" nameTag="" textOrder="73"/>
+					<case minzoom="17" tag="highway" value="hitchhiking" nameTag="" textOrder="73"/>
 					<case tag="amenity" value="bus_station" nameTag="" textOrder="68"/>
 					<switch baseAppMode="public_transport" tag="railway" value="tram_stop" textOrder="20">
 						<case nameTag="" nameTag2="ref"/>
@@ -6059,7 +6100,7 @@
 						<case minzoom="19" tag="entrance" value="" nameTag="ref" nameTag2="addr:flats"/>
 						<case minzoom="19" tag="entrance" value="" nameTag="addr:flats"/>
 						<case minzoom="19" tag="entrance" value="" nameTag="" nameTag2="ref"/>
-						<case tag="highway" value="elevator" textOnPath="true"/>
+						<case hidePOILabels="false" tag="highway" value="elevator" textOnPath="true"/>
 						<case tag="man_made" value="goods_conveyor" textOnPath="true"/>
 						<apply textSize="12" textColor="#555555" textWrapWidth="15"/>
 						<apply textOrder="161"/>
@@ -6368,7 +6409,7 @@
 							<case minzoom="17" tag="sport" value="tennis"/>
 							<case minzoom="17" tag="sport" value="shooting"/>
 							<case minzoom="17" tag="sport" value="golf" textOrder="155"/>
-							<case minzoom="17" tag="sport" value="disc_golf"/>
+							<case minzoom="17" tag="leisure" value="disc_golf_course"/>
 							<case minzoom="17" tag="amenity" value="dojo"/>
 							<case minzoom="17" tag="sport" value="sailing"/>
 							<case minzoom="17" tag="sport" value="skiing"/>
@@ -6497,7 +6538,7 @@
 			<apply_if nightMode="true" textColor="#ffffff" textHaloColor="#77777777"/>
 		</switch>
 
-		<switch nameTag="" textColor="$tourismAttractionTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$tourismAttractionTextHaloColorDay" textWrapWidth="16" textBold="true" intersectionMargin="25">
+		<switch hidePOILabels="false" nameTag="" textColor="$tourismAttractionTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$tourismAttractionTextHaloColorDay" textWrapWidth="16" textBold="true" intersectionMargin="25">
 			<switch>
 				<case minzoom="16" tag="historic" value="city_gate" textSize="12" textOrder="85"/>
 				<case minzoom="15" tag="tourism" value="attraction" textSize="13" textOrder="150">
@@ -6621,12 +6662,12 @@
 					</switch>
 					<switch shield="gray_round_shield">
 						<case minzoom="15" tag="barrier" value="border_control" icon="barrier_border_control" iconOrder="140"/>
-						<case minzoom="16" tag="shop" value="car_repair" icon="shop_car_repair" > <!--,$poi_transport_car-->
+						<case minzoom="16" tag="shop" value="car_repair" icon="shop_car_repair">
 							<case additional="service=tyres" icon="service_tyres"/>
 						</case>
-						<case minzoom="16" tag="shop" value="car_parts" icon="shop_car_parts" /> <!--,$poi_transport_car-->
-						<case minzoom="16" tag="shop" value="tyres" icon="tyres" />
-						<case minzoom="16" tag="amenity" value="car_wash" icon="amenity_car_wash" >
+						<case minzoom="16" tag="shop" value="car_parts" icon="shop_car_parts"/>
+						<case minzoom="16" tag="shop" value="tyres" icon="tyres"/>
+						<case minzoom="16" tag="amenity" value="car_wash" icon="amenity_car_wash">
 							<case additional="self_service=yes" icon="car_wash_self_service"/>
 						</case>
 						<case minzoom="16" tag="amenity" value="vehicle_ramp" icon="amenity_vehicle_ramp" />
@@ -7058,7 +7099,7 @@
 						<case tag="amenity" value="dentist" icon="amenity_dentist" iconOrder="147"/>
 						<case tag="emergency" value="ambulance_station" icon="ambulance_station"/>
 						<case minzoom="18" tag="highway" value="emergency_access_point" icon="emergency_access_point" iconOrder="167" iconVisibleSize="64"/>
-						<case minzoom="15" tag="emergency" value="assembly_point" icon="assembly_point"/>
+						<case minzoom="17" tag="emergency" value="assembly_point" icon="assembly_point"/>
 						<case tag="amenity" value="social_facility" icon="social_facility"/>
 						<case tag="healthcare" value="laboratory" icon="laboratory"/>
 						<case tag="healthcare" value="blood_donation" icon="blood_donation"/>
@@ -7079,11 +7120,12 @@
 						<case minzoom="17" tag="healthcare" value="" icon="healthcare"/>
 						<apply_if nightMode="true" shield="red_round_night_shield" iconVisibleSize="36"/>
 					</switch>
-					<case minzoom="16" tag="highway" value="emergency_bay" icon="emergency_bay" shield="blue_round_shield"/>
+					<case hideIcons="false" minzoom="16" tag="highway" value="emergency_bay" icon="emergency_bay" shield="blue_round_shield"/>
 					<case minzoom="16" tag="amenity" value="fire_station" icon="amenity_fire_station" iconVisibleSize="26" shield="red_round_shield" iconOrder="85">
 						<apply_if nightMode="true" shield="red_round_night_shield"/>
 					</case>
 					<case minzoom="16" tag="emergency" value="disaster_response" icon="disaster_response" shield="red_round_shield"/>
+					<case minzoom="16" tag="emergency" value="disaster_help_point" icon="disaster_help_point" shield="red_round_shield"/>
 					<switch minzoom="15">
 						<case tag="amenity" value="hospital" icon="amenity_hospital" iconVisibleSize="26" shield="red_round_shield" iconOrder="79"/>
 						<apply_if nightMode="true" shield="red_round_night_shield" iconVisibleSize="24"/>
@@ -7511,7 +7553,7 @@
 					<case minzoom="16" tag="sport" value="tennis" icon="sport_tennis"/>
 					<case minzoom="16" tag="sport" value="shooting" icon="sport_shooting"/>
 					<case minzoom="15" tag="sport" value="golf" icon="sport_golf" iconOrder="155"/>
-					<case minzoom="15" tag="sport" value="disc_golf" icon="sport_disc_golf"/>
+					<case minzoom="15" tag="leisure" value="disc_golf_course" icon="sport_disc_golf"/>
 					<case minzoom="16" tag="amenity" value="dojo" icon="dojo"/>
 					<case minzoom="16" tag="sport" value="swimming" icon="sport_swimming"/>
 					<case minzoom="16" tag="sport" value="ice_skating" icon="leisure_ice_rink"/>
@@ -7663,9 +7705,6 @@
 						<apply_if minzoom="17" additional="drinking_water=yes" icon_2="drinking_water_yes_map"/>
 						<apply_if nightMode="true" icon="amenity_fountain" shield=""/>
 					</case>
-					<case minzoom="17" tag="amenity" value="post_office" icon="amenity_post_office" shield="gray_round_shield" iconVisibleSize="24">
-						<apply_if nightMode="true" shield="gray_round_night_shield"/>
-					</case>
 					<switch shield="gray_round_shield" iconOrder="171" iconVisibleSize="24">
 						<switch>
 							<case minzoom="$waterWellIconMinZoom" tag="man_made" value="water_well" icon="man_made_water_well"/>
@@ -7675,7 +7714,7 @@
 						<case minzoom="18" tag="amenity" value="telephone" icon="amenity_telephone"/>
 						<case minzoom="17" tag="amenity" value="post_box" icon="amenity_post_box"/>
 						<case minzoom="18" tag="amenity" value="letter_box" icon="letter_box"/>
-						<case minzoom="17" tag="amenity" value="post_office" icon="amenity_post_office"/>
+						<case minzoom="17" tag="amenity" value="post_office" icon="amenity_post_office" iconVisibleSize="24"/>
 						<case minzoom="17" tag="amenity" value="parcel_locker" icon="parcel_locker"/>
 						<case minzoom="17" tag="amenity" value="prison" icon="amenity_prison"/>
 						<case minzoom="17" tag="amenity" value="toilets" icon="amenity_toilets" iconOrder="90">
@@ -7683,7 +7722,7 @@
 						</case>
 						<case minzoom="17" tag="amenity" value="shower" icon="shower" iconOrder="90"/>
 						<case minzoom="17" tag="amenity" value="dressing_room" icon="dressing_room" iconOrder="90"/>
-						<case minzoom="17" tag="shop" value="massage" icon="massage" iconVisibleSize="32" iconOrder="159"/>
+						<case minzoom="17" tag="shop" value="massage" icon="shop_massage" iconVisibleSize="32" iconOrder="159"/>
 						<case minzoom="17" tag="amenity" value="car_wash" icon="amenity_car_wash">
 							<case additional="self_service=yes" icon="car_wash_self_service"/>
 						</case>
@@ -7737,7 +7776,7 @@
 							<case minzoom="18" tag="office" value="tax_advisor" icon="tax_advisor"/>
 							<case minzoom="18" tag="office" value="telecommunication" icon="office_telecommunication" iconOrder="159"/>
 							<case minzoom="17" tag="office" value="travel_agent" icon="travel_agent"/>
-							<case minzoom="18" tag="shop" value="estate_agent" icon="estate_agent"/>
+							<case minzoom="18" tag="shop" value="estate_agent" icon="shop_estate_agent"/>
 							<case minzoom="18" tag="office" value="financial_advisor" icon="office"/>
 							<case minzoom="18" tag="office" value="security" icon="office"/>
 							<case minzoom="18" tag="office" value="construction_company" icon="office"/>
@@ -7806,7 +7845,7 @@
 						<case minzoom="17" tag="amenity" value="payment_terminal" icon="payment_terminal"/>
 						<case minzoom="17" tag="amenity" value="payment_centre" icon="payment_centre"/>
 						<case minzoom="17" tag="amenity" value="money_transfer" icon="money_transfer"/>
-						<case minzoom="17" tag="shop" value="money_lender" icon="money_lender"/>
+						<case minzoom="17" tag="shop" value="money_lender" icon="shop_money_lender"/>
 						<case minzoom="17" tag="amenity" value="bank" icon="amenity_bank"/>
 						<case minzoom="17" tag="amenity" value="bureau_de_change" icon="amenity_bureau_de_change"/>
 						<case minzoom="17" tag="amenity" value="mobile_money_agent" icon="mobile_money_agent"/>
@@ -7914,22 +7953,40 @@
 				</switch>
 				<switch tag="amenity" value="place_of_worship" icon="amenity_place_of_worship" iconVisibleSize="11" intersectionSizeFactor="0.8">
 					<case minzoom="14" moreDetailed="true" iconOrder="43" iconVisibleSize="9" intersectionSizeFactor="0.7"/>
-					<case minzoom="15" moreDetailed="false" additional="wiki=yes" iconOrder="43" iconVisibleSize="9" intersectionSizeFactor="0.7"/>
+					<case minzoom="15" moreDetailed="false" additional="travel_elo_rounded=3000" iconOrder="43" iconVisibleSize="9" intersectionSizeFactor="0.7"/>
+					<case minzoom="15" moreDetailed="false" additional="travel_elo_rounded=3500" iconOrder="43" iconVisibleSize="9" intersectionSizeFactor="0.7"/>
+					<case minzoom="15" moreDetailed="false" additional="travel_elo_rounded=4000" iconOrder="43" iconVisibleSize="9" intersectionSizeFactor="0.7"/>
 					<case minzoom="16" iconOrder="132"/>
+					<apply_if nightMode="true" icon="amenity_place_of_worship_night"/>
 					<apply>
-						<case additional="religion=christian" icon="religion_christian"/>
-						<case additional="religion=jewish" icon="religion_jewish"/>
-						<case additional="religion=muslim" icon="religion_muslim"/>
-						<case additional="religion=sikh" icon="religion_sikh"/>
-						<case additional="religion=buddhist" icon="religion_buddhist"/>
-						<case additional="religion=hindu" icon="religion_hindu"/>
-						<case additional="religion=shinto" icon="religion_shinto"/>
-						<case additional="religion=taoist" icon="religion_taoist"/>
+						<case additional="religion=christian" icon="religion_christian">
+							<apply_if nightMode="true" icon="religion_christian_night"/>
+						</case>
+						<case additional="religion=jewish" icon="religion_jewish">
+							<apply_if nightMode="true" icon="religion_jewish_night"/>
+						</case>
+						<case additional="religion=muslim" icon="religion_muslim">
+							<apply_if nightMode="true" icon="religion_muslim_night"/>
+						</case>
+						<case additional="religion=sikh" icon="religion_sikh">
+							<apply_if nightMode="true" icon="religion_sikh_night"/>
+						</case>
+						<case additional="religion=buddhist" icon="religion_buddhist">
+							<apply_if nightMode="true" icon="religion_buddhist_night"/>
+						</case>
+						<case additional="religion=hindu" icon="religion_hindu">
+							<apply_if nightMode="true" icon="religion_hindu_night"/>
+						</case>
+						<case additional="religion=shinto" icon="religion_shinto">
+							<apply_if nightMode="true" icon="religion_shinto_night"/>
+						</case>
+						<case additional="religion=taoist" icon="religion_taoist">
+							<apply_if nightMode="true" icon="religion_taoist_night"/>
+						</case>
 					</apply>
-					<apply_if nightMode="true" shield="lightgray_round_night_shield" iconVisibleSize="30"/>
 				</switch>
 				<case minzoom="15" tag="amenity" value="monastery" icon="amenity_monastery" iconVisibleSize="22" iconOrder="70">
-					<apply_if nightMode="true" shield="lightgray_round_night_shield"/>
+					<apply_if nightMode="true" icon="amenity_monastery_night" />
 					<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 				</case>
 
@@ -8065,7 +8122,7 @@
 						<case minzoom="16" tag="amenity" value="pub" icon="amenity_pub" iconVisibleSize="32"/>
 						<case minzoom="16" tag="amenity" value="bar" icon="amenity_bar" iconVisibleSize="32"/>
 						<case minzoom="16" tag="amenity" value="biergarten" icon="amenity_biergarten"/>
-						<case minzoom="16" tag="amenity" value="ice_cream" icon="ice_cream"/>
+						<case minzoom="16" tag="amenity" value="ice_cream" icon="shop_ice_cream"/>
 						<case minzoom="17" tag="leisure" value="outdoor_seating" icon="outdoor_seating" iconOrder="250"/>
 						<case minzoom="17" tag="amenity" value="hookah_lounge" icon="hookah_lounge"/>
 						<switch iconOrder="171">
@@ -8084,26 +8141,26 @@
 						<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 					</switch>
 					<switch shield="purple_round_shield" iconOrder="160" iconVisibleSize="24" >
-						<case minzoom="17" tag="shop" value="agrarian" icon="agrarian"/>
+						<case minzoom="17" tag="shop" value="agrarian" icon="shop_agrarian"/>
 						<case minzoom="17" tag="shop" value="alcohol" icon="shop_alcohol" iconVisibleSize="32"/>
-						<case minzoom="17" tag="shop" value="antiques" icon="antiques"/>
-						<case minzoom="17" tag="shop" value="appliance" icon="appliance"/>
-						<case minzoom="17" tag="shop" value="art" icon="art"/>
+						<case minzoom="17" tag="shop" value="antiques" icon="shop_antiques"/>
+						<case minzoom="17" tag="shop" value="appliance" icon="shop_appliance"/>
+						<case minzoom="17" tag="shop" value="art" icon="shop_art"/>
 						<case minzoom="17" tag="shop" value="baby_goods" icon="shop_baby_goods"/>
-						<case minzoom="17" tag="shop" value="bag" icon="bag"/>
+						<case minzoom="17" tag="shop" value="bag" icon="shop_bag"/>
 						<case minzoom="17" tag="shop" value="bakery" icon="shop_bakery" iconVisibleSize="32"/>
-						<case minzoom="17" tag="shop" value="bathroom_furnishing" icon="bathroom_furnishing"/>
-						<case minzoom="17" tag="shop" value="bed" icon="bed"/>
-						<case minzoom="17" tag="shop" value="beauty" icon="beauty"/>
-						<case minzoom="17" tag="shop" value="beverages" icon="beverages" iconVisibleSize="32"/>
+						<case minzoom="17" tag="shop" value="bathroom_furnishing" icon="shop_bathroom_furnishing"/>
+						<case minzoom="17" tag="shop" value="bed" icon="shop_bed"/>
+						<case minzoom="17" tag="shop" value="beauty" icon="shop_beauty"/>
+						<case minzoom="17" tag="shop" value="beverages" icon="shop_beverages" iconVisibleSize="32"/>
 						<case minzoom="17" tag="shop" value="bicycle" icon="shop_bicycle"/>
 						<case minzoom="17" tag="shop" value="boat" icon="shop_boat"/>
 						<case minzoom="17" tag="shop" value="books" icon="shop_books" iconOrder="99"/>
-						<case minzoom="17" tag="shop" value="boutique" icon="boutique" iconVisibleSize="32" iconOrder="158"/>
+						<case minzoom="17" tag="shop" value="boutique" icon="shop_boutique" iconVisibleSize="32" iconOrder="158"/>
 						<case minzoom="17" tag="shop" value="butcher" icon="shop_butcher" iconVisibleSize="32"/>
-						<case minzoom="17" tag="shop" value="camera" icon="photo"/>
-						<case minzoom="17" tag="shop" value="candles" icon="candles"/>
-						<case minzoom="17" tag="shop" value="cannabis" icon="cannabis"/>
+						<case minzoom="17" tag="shop" value="camera" icon="shop_photo"/>
+						<case minzoom="17" tag="shop" value="candles" icon="shop_candles"/>
+						<case minzoom="17" tag="shop" value="cannabis" icon="shop_cannabis"/>
 						<case minzoom="16" tag="shop" value="car" icon="shop_car"/>
 						<case minzoom="16" tag="shop" value="car_repair" icon="shop_car_repair" >
 							<case additional="service=tyres" icon="service_tyres"/>
@@ -8112,148 +8169,147 @@
 						<case minzoom="17" tag="shop" value="clothes" icon="shop_clothes" iconVisibleSize="32" iconOrder="159">
 							<case additional="clothes:children=yes" icon="clothes_children"/>
 						</case>
-						<case minzoom="17" tag="shop" value="chemist" icon="chemist"/>
-						<case minzoom="17" tag="shop" value="cosmetics" icon="cosmetics"/>
-						<case minzoom="17" tag="shop" value="carpet" icon="carpet"/>
-						<case minzoom="17" tag="shop" value="chocolate" icon="chocolate"/>
-						<case minzoom="17" tag="shop" value="coffee" icon="coffee"/>
-						<case minzoom="17" tag="shop" value="collector" icon="collector"/>
+						<case minzoom="17" tag="shop" value="chemist" icon="shop_chemist"/>
+						<case minzoom="17" tag="shop" value="cosmetics" icon="shop_cosmetics"/>
+						<case minzoom="17" tag="shop" value="carpet" icon="shop_carpet"/>
+						<case minzoom="17" tag="shop" value="chocolate" icon="shop_chocolate"/>
+						<case minzoom="17" tag="shop" value="coffee" icon="shop_coffee"/>
+						<case minzoom="17" tag="shop" value="collector" icon="shop_collector"/>
 						<case minzoom="17" tag="shop" value="computer" icon="shop_computer"/>
 						<case minzoom="17" tag="shop" value="confectionery" icon="shop_confectionery"/>
 						<case minzoom="16" tag="shop" value="convenience" icon="shop_convenience" iconVisibleSize="22" iconOrder="157"/>
 						<case minzoom="17" tag="shop" value="copyshop" icon="shop_copyshop"/>
-						<case minzoom="17" tag="shop" value="country_store" icon="country_store"/>
-						<case minzoom="17" tag="shop" value="charity" icon="charity"/>
-						<case minzoom="17" tag="shop" value="cheese" icon="cheese"/>
+						<case minzoom="17" tag="shop" value="country_store" icon="shop_country_store"/>
+						<case minzoom="17" tag="shop" value="charity" icon="shop_charity"/>
+						<case minzoom="17" tag="shop" value="cheese" icon="shop_cheese"/>
 						<case minzoom="17" tag="shop" value="craft" icon="shop_craft"/>
-						<case minzoom="17" tag="shop" value="curtain" icon="curtain"/>
+						<case minzoom="17" tag="shop" value="curtain" icon="shop_curtain"/>
 						<case minzoom="17" tag="shop" value="dairy" icon="shop_dairy"/>
-						<case minzoom="17" tag="shop" value="deli" icon="deli"/>
+						<case minzoom="17" tag="shop" value="deli" icon="shop_deli"/>
 						<case minzoom="15" tag="shop" value="department_store" icon="shop_department_store" iconVisibleSize="32" iconOrder="156"/>
-						<case minzoom="17" tag="shop" value="dive" icon="dive"/>
+						<case minzoom="17" tag="shop" value="dive" icon="shop_dive"/>
 						<case minzoom="17" tag="shop" value="doityourself" icon="shop_doityourself" iconVisibleSize="32"/>
-						<case minzoom="17" tag="shop" value="doors" icon="doors"/>
-						<case minzoom="17" tag="shop" value="dry_cleaning" icon="dry_cleaning"/>
-						<case minzoom="17" tag="shop" value="e-cigarette" icon="e_cigarette"/>
-						<case minzoom="17" tag="shop" value="electrical" icon="electrical"/>
-						<case minzoom="17" tag="shop" value="electronics" icon="electronics" iconVisibleSize="32"/>
-						<case minzoom="17" tag="shop" value="energy" icon="energy"/>
-						<case minzoom="17" tag="shop" value="erotic" icon="erotic"/>
-						<case minzoom="17" tag="shop" value="fabric" icon="fabric"/>
-						<case minzoom="17" tag="shop" value="farm" icon="farm"/>
+						<case minzoom="17" tag="shop" value="doors" icon="shop_doors"/>
+						<case minzoom="17" tag="shop" value="dry_cleaning" icon="shop_dry_cleaning"/>
+						<case minzoom="17" tag="shop" value="e-cigarette" icon="shop_e_cigarette"/>
+						<case minzoom="17" tag="shop" value="electrical" icon="shop_electrical"/>
+						<case minzoom="17" tag="shop" value="electronics" icon="shop_electronics" iconVisibleSize="32"/>
+						<case minzoom="17" tag="shop" value="energy" icon="shop_energy"/>
+						<case minzoom="17" tag="shop" value="erotic" icon="shop_erotic"/>
+						<case minzoom="17" tag="shop" value="fabric" icon="shop_fabric"/>
+						<case minzoom="17" tag="shop" value="farm" icon="shop_farm"/>
 						<case minzoom="17" tag="shop" value="fireplace" icon="shop_fireplace"/>
 						<case minzoom="17" tag="shop" value="fishing" icon="shop_fishing"/>
 						<case minzoom="17" tag="shop" value="florist" icon="shop_florist" iconVisibleSize="32"/>
-						<case minzoom="17" tag="shop" value="flooring" icon="flooring"/>
-						<case minzoom="17" tag="shop" value="frame" icon="frame"/>
-						<case minzoom="17" tag="shop" value="free_flying" icon="free_flying"/>
-						<case minzoom="17" tag="shop" value="frozen_food" icon="frozen_food"/>
+						<case minzoom="17" tag="shop" value="flooring" icon="shop_flooring"/>
+						<case minzoom="17" tag="shop" value="frame" icon="shop_frame"/>
+						<case minzoom="17" tag="shop" value="free_flying" icon="shop_free_flying"/>
+						<case minzoom="17" tag="shop" value="frozen_food" icon="shop_frozen_food"/>
 						<case minzoom="17" tag="shop" value="fuel" icon="shop_fuel"/>
-						<case minzoom="17" tag="shop" value="funeral_directors" icon="funeral_directors"/>
-						<case minzoom="17" tag="shop" value="furnace" icon="furnace"/>
+						<case minzoom="17" tag="shop" value="funeral_directors" icon="shop_funeral_directors"/>
+						<case minzoom="17" tag="shop" value="furnace" icon="shop_furnace"/>
 						<case minzoom="17" tag="shop" value="furniture" icon="shop_furniture"/>
 						<case minzoom="17" tag="shop" value="garden_centre" icon="shop_garden_centre" iconVisibleSize="32"/>
-						<case minzoom="17" tag="shop" value="games" icon="games"/>
-						<case minzoom="17" tag="shop" value="gas" icon="gas"/>
+						<case minzoom="17" tag="shop" value="games" icon="shop_games"/>
+						<case minzoom="17" tag="shop" value="gas" icon="shop_gas"/>
 						<case minzoom="17" tag="shop" value="general" icon="shop_yes" iconOrder="200"/>
 						<case minzoom="17" tag="shop" value="gift" icon="shop_gift" iconVisibleSize="32"/>
-						<case minzoom="17" tag="shop" value="glaziery" icon="glaziery"/>
+						<case minzoom="17" tag="shop" value="glaziery" icon="shop_glaziery"/>
 						<case minzoom="17" tag="shop" value="greengrocer" icon="shop_greengrocer" iconVisibleSize="32"/>
-						<case minzoom="17" tag="shop" value="groundskeeping" icon="groundskeeping"/>
+						<case minzoom="17" tag="shop" value="groundskeeping" icon="shop_groundskeeping"/>
 						<case minzoom="17" tag="shop" value="hairdresser" icon="shop_hairdresser" iconVisibleSize="32" iconOrder="159"/>
-						<case minzoom="17" tag="shop" value="hairdresser_supply" icon="hairdresser_supply"/>
+						<case minzoom="17" tag="shop" value="hairdresser_supply" icon="shop_hairdresser_supply"/>
 						<case minzoom="17" tag="shop" value="hardware" icon="shop_hardware" iconVisibleSize="32"/>
-						<case minzoom="17" tag="shop" value="health_food" icon="health_food" iconVisibleSize="32"/>
+						<case minzoom="17" tag="shop" value="health_food" icon="shop_health_food" iconVisibleSize="32"/>
 						<case minzoom="17" tag="shop" value="hearing_aids" icon="shop_hearing_aids" iconVisibleSize="32"/>
-						<case minzoom="17" tag="shop" value="herbalist" icon="herbalist"/>
-						<case minzoom="17" tag="shop" value="hifi" icon="hifi" iconVisibleSize="32"/>
-						<case minzoom="17" tag="shop" value="honey" icon="honey"/>
-						<case minzoom="17" tag="shop" value="houseware" icon="houseware"/>
-						<case minzoom="17" tag="shop" value="hunting" icon="hunting"/>
-						<case minzoom="17" tag="shop" value="interior_decoration" icon="interior_decoration"/>
+						<case minzoom="17" tag="shop" value="herbalist" icon="shop_herbalist"/>
+						<case minzoom="17" tag="shop" value="hifi" icon="shop_hifi" iconVisibleSize="32"/>
+						<case minzoom="17" tag="shop" value="honey" icon="shop_honey"/>
+						<case minzoom="17" tag="shop" value="houseware" icon="shop_houseware"/>
+						<case minzoom="17" tag="shop" value="hunting" icon="shop_hunting"/>
+						<case minzoom="17" tag="shop" value="interior_decoration" icon="shop_interior_decoration"/>
 						<case minzoom="17" tag="shop" value="jewelry" icon="shop_jewelry" iconVisibleSize="32"/>
 						<case minzoom="17" tag="shop" value="kiosk" icon="shop_kiosk" iconVisibleSize="32"/>
-						<case minzoom="17" tag="shop" value="kitchen" icon="kitchen"/>
+						<case minzoom="17" tag="shop" value="kitchen" icon="shop_kitchen"/>
 						<case minzoom="17" tag="shop" value="laundry" icon="shop_laundry"/>
-						<case minzoom="17" tag="shop" value="leather" icon="leather"/>
-						<case minzoom="17" tag="shop" value="lighting" icon="lighting"/>
-						<case minzoom="17" tag="shop" value="locksmith" icon="locksmith"/>
-						<case minzoom="17" tag="shop" value="lottery" icon="lottery"/>
+						<case minzoom="17" tag="shop" value="leather" icon="shop_leather"/>
+						<case minzoom="17" tag="shop" value="lighting" icon="shop_lighting"/>
+						<case minzoom="17" tag="shop" value="locksmith" icon="shop_locksmith"/>
+						<case minzoom="17" tag="shop" value="lottery" icon="shop_lottery"/>
 						<case minzoom="15" tag="shop" value="mall" icon="shop_mall" iconVisibleSize="22" iconOrder="132"/>
 						<case minzoom="15" tag="amenity" value="marketplace" icon="amenity_marketplace" iconVisibleSize="32" iconOrder="155"/>
-						<case minzoom="17" tag="shop" value="medical_supply" icon="medical_supply"/>
+						<case minzoom="17" tag="shop" value="medical_supply" icon="shop_medical_supply"/>
 						<case minzoom="17" tag="shop" value="mobile_phone" icon="shop_mobile_phone" iconVisibleSize="32"/>
-						<case minzoom="17" tag="shop" value="model" icon="model"/>
+						<case minzoom="17" tag="shop" value="model" icon="shop_model"/>
 						<case minzoom="17" tag="shop" value="motorcycle" icon="shop_motorcycle"/>
-						<case minzoom="17" tag="shop" value="motorcycle_parts" icon="motorcycle_parts"/>
-						<case minzoom="17" tag="shop" value="motorcycle_repair" icon="motorcycle_repair"/>
-						<case minzoom="17" tag="shop" value="music" icon="music"/>
+						<case minzoom="17" tag="shop" value="motorcycle_parts" icon="shop_motorcycle_parts"/>
+						<case minzoom="17" tag="shop" value="motorcycle_repair" icon="shop_motorcycle_repair"/>
+						<case minzoom="17" tag="shop" value="music" icon="shop_music"/>
 						<case minzoom="17" tag="shop" value="musical_instrument" icon="shop_musical_instrument"/>
-						<case minzoom="17" tag="shop" value="newsagent" icon="newsagent"/>
-						<case minzoom="17" tag="shop" value="nutrition_supplements" icon="nutrition_supplements"/>
-						<case minzoom="17" tag="shop" value="nuts" icon="nuts"/>
+						<case minzoom="17" tag="shop" value="newsagent" icon="shop_newsagent"/>
+						<case minzoom="17" tag="shop" value="nutrition_supplements" icon="shop_nutrition_supplements"/>
+						<case minzoom="17" tag="shop" value="nuts" icon="shop_nuts"/>
 						<case minzoom="17" tag="shop" value="optician" icon="shop_optician" iconOrder="159"/>
-						<case minzoom="17" tag="shop" value="outdoor" icon="outdoor"/>
-						<case minzoom="17" tag="shop" value="outpost" icon="outpost"/>
-						<case minzoom="17" tag="shop" value="paint" icon="paint"/>
-						<case minzoom="17" tag="shop" value="party" icon="party"/>
-						<case minzoom="17" tag="shop" value="pastry" icon="pastry"/>
-						<case minzoom="17" tag="shop" value="pawnbroker" icon="pawnbroker"/>
-						<case minzoom="17" tag="shop" value="perfumery" icon="perfumery"/>
-						<case minzoom="17" tag="shop" value="pest_control" icon="pest_control"/>
+						<case minzoom="17" tag="shop" value="outdoor" icon="shop_outdoor"/>
+						<case minzoom="17" tag="shop" value="outpost" icon="shop_outpost"/>
+						<case minzoom="17" tag="shop" value="paint" icon="shop_paint"/>
+						<case minzoom="17" tag="shop" value="party" icon="shop_party"/>
+						<case minzoom="17" tag="shop" value="pastry" icon="shop_pastry"/>
+						<case minzoom="17" tag="shop" value="pawnbroker" icon="shop_pawnbroker"/>
+						<case minzoom="17" tag="shop" value="perfumery" icon="shop_perfumery"/>
+						<case minzoom="17" tag="shop" value="pest_control" icon="shop_pest_control"/>
 						<case minzoom="17" tag="shop" value="pet" icon="shop_pet"/>
-						<case minzoom="17" tag="shop" value="pet_grooming" icon="pet_grooming"/>
-						<case minzoom="17" tag="shop" value="photo" icon="photo"/>
-						<case minzoom="17" tag="shop" value="photo_studio" icon="photo_studio"/>
-						<case minzoom="17" tag="shop" value="pottery" icon="pottery"/>
-						<case minzoom="17" tag="shop" value="printer_ink" icon="printer_ink"/>
-						<case minzoom="17" tag="shop" value="pyrotechnics" icon="pyrotechnics"/>
-						<case minzoom="17" tag="shop" value="radiotechnics" icon="radiotechnics"/>
-						<case minzoom="17" tag="shop" value="religion" icon="religion"/>
-						<case minzoom="17" tag="shop" value="rice" icon="rice"/>
+						<case minzoom="17" tag="shop" value="pet_grooming" icon="shop_pet_grooming"/>
+						<case minzoom="17" tag="shop" value="photo" icon="shop_photo"/>
+						<case minzoom="17" tag="shop" value="photo_studio" icon="shop_photo_studio"/>
+						<case minzoom="17" tag="shop" value="pottery" icon="shop_pottery"/>
+						<case minzoom="17" tag="shop" value="printer_ink" icon="shop_printer_ink"/>
+						<case minzoom="17" tag="shop" value="pyrotechnics" icon="shop_pyrotechnics"/>
+						<case minzoom="17" tag="shop" value="radiotechnics" icon="shop_radiotechnics"/>
+						<case minzoom="17" tag="shop" value="religion" icon="shop_religion"/>
+						<case minzoom="17" tag="shop" value="rice" icon="shop_rice"/>
 						<case minzoom="17" tag="shop" value="seafood" icon="shop_seafood"/>
 						<case minzoom="17" tag="shop" value="security" icon="shop_security"/>
-						<case minzoom="17" tag="shop" value="second_hand" icon="second_hand"/>
-						<case minzoom="17" tag="shop" value="sewing" icon="sewing"/>
-						<case minzoom="17" tag="shop" value="scuba_diving" icon="scuba_diving_shop"/>
+						<case minzoom="17" tag="shop" value="second_hand" icon="shop_second_hand"/>
+						<case minzoom="17" tag="shop" value="sewing" icon="shop_sewing"/>
+						<case minzoom="17" tag="shop" value="scuba_diving" icon="shop_scuba_diving"/>
 						<case minzoom="17" tag="shop" value="shoes" icon="shop_shoes" iconVisibleSize="32" iconOrder="158"/>
-						<case minzoom="17" tag="shop" value="shoe_repair" icon="shoe_repair"/>
-						<case minzoom="17" tag="shop" value="skate" icon="skate"/>
+						<case minzoom="17" tag="shop" value="shoe_repair" icon="shop_shoe_repair"/>
+						<case minzoom="17" tag="shop" value="skate" icon="shop_skate"/>
 						<case minzoom="17" tag="shop" value="sports" icon="shop_sports"/>
-						<case minzoom="17" tag="shop" value="stationery" icon="stationery"/>
+						<case minzoom="17" tag="shop" value="stationery" icon="shop_stationery"/>
 						<case minzoom="15" tag="shop" value="supermarket" icon="shop_supermarket" iconVisibleSize="22" iconOrder="140"/>
-						<case minzoom="17" tag="shop" value="spices" icon="spices"/>
-						<case minzoom="17" tag="shop" value="tattoo" icon="tattoo"/>
-						<case minzoom="17" tag="shop" value="tea" icon="tea"/>
-						<case minzoom="17" tag="shop" value="telecommunication" icon="telecommunication"/>
+						<case minzoom="17" tag="shop" value="spices" icon="shop_spices"/>
+						<case minzoom="17" tag="shop" value="tattoo" icon="shop_tattoo"/>
+						<case minzoom="17" tag="shop" value="tea" icon="shop_tea"/>
+						<case minzoom="17" tag="shop" value="telecommunication" icon="shop_telecommunication"/>
 						<case minzoom="17" tag="shop" value="ticket" icon="shop_ticket"/>
-						<case minzoom="17" tag="shop" value="tiles" icon="tiles"/>
+						<case minzoom="17" tag="shop" value="tiles" icon="shop_tiles"/>
 						<case minzoom="17" tag="shop" value="tobacco" icon="shop_tobacco"/>
-						<case minzoom="17" tag="shop" value="tool_hire" icon="tool_hire"/>
+						<case minzoom="17" tag="shop" value="tool_hire" icon="shop_tool_hire"/>
 						<case minzoom="17" tag="shop" value="toys" icon="shop_toys"/>
-						<case minzoom="17" tag="shop" value="trade" icon="trade"/>
-						<case minzoom="17" tag="shop" value="travel_agency" icon="travel_agent"/>
-						<case minzoom="17" tag="shop" value="trophy" icon="trophy"/>
-						<case minzoom="17" tag="shop" value="tyres" icon="tyres"/>
-						<case minzoom="17" tag="shop" value="vacuum_cleaner" icon="vacuum_cleaner"/>
-						<case minzoom="17" tag="shop" value="variety_store" icon="variety_store"/>
+						<case minzoom="17" tag="shop" value="trade" icon="shop_trade"/>
+						<case minzoom="17" tag="shop" value="travel_agency" icon="shop_travel_agent"/>
+						<case minzoom="17" tag="shop" value="trophy" icon="shop_trophy"/>
+						<case minzoom="17" tag="shop" value="tyres" icon="shop_tyres"/>
+						<case minzoom="17" tag="shop" value="vacuum_cleaner" icon="shop_vacuum_cleaner"/>
+						<case minzoom="17" tag="shop" value="variety_store" icon="shop_variety_store"/>
 						<case minzoom="17" tag="shop" value="video" icon="shop_video"/>
-						<case minzoom="17" tag="shop" value="video_games" icon="video_games"/>
-						<case minzoom="17" tag="shop" value="watches" icon="watches"/>
-						<case minzoom="17" tag="shop" value="water" icon="water_point"/>
-						<case minzoom="17" tag="shop" value="water_sports" icon="water_sports"/>
-						<case minzoom="17" tag="shop" value="weapons" icon="weapons"/>
-						<case minzoom="17" tag="shop" value="window_blind" icon="window_blind"/>
+						<case minzoom="17" tag="shop" value="video_games" icon="shop_video_games"/>
+						<case minzoom="17" tag="shop" value="watches" icon="shop_watches"/>
+						<case minzoom="17" tag="shop" value="water" icon="shop_water"/>
+						<case minzoom="17" tag="shop" value="water_sports" icon="shop_water_sports"/>
+						<case minzoom="17" tag="shop" value="weapons" icon="shop_weapons"/>
+						<case minzoom="17" tag="shop" value="window_blind" icon="shop_window_blind"/>
 						<case minzoom="17" tag="shop" value="wholesale" icon="shop_wholesale"/>
-						<case minzoom="17" tag="shop" value="wool" icon="wool"/>
-						<!-- <case minzoom="17" tag="shop" value="wine" icon="wine" iconVisibleSize="32"/>-->
+						<case minzoom="17" tag="shop" value="wool" icon="shop_wool"/>
+						<!-- <case minzoom="17" tag="shop" value="wine" icon="shop_wine" iconVisibleSize="32"/>-->
 						<case minzoom="17" tag="shop" value="" icon="shop_yes" iconOrder="200"/>
 						<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 						<apply_if nightMode="true" shield="purple_round_night_shield" iconVisibleSize="54"/>
 					</switch>
 					<apply_if baseAppMode="car" moreDetailed="false" maxzoom="17" icon=""/>
 				</switch>
-
 				<switch shield="gray_round_shield" iconOrder="170">
 					<case minzoom="18" tag="craft" value="agricultural_engines" icon="craft_agricultural_engines"/>
 					<case minzoom="18" tag="craft" value="beekeeper" icon="craft_beekeeper"/>
@@ -8388,7 +8444,7 @@
 			<case minzoom="16" tag="junction" value="yes" icon=""/>
 
 			<!-- Barriers -->
-			<switch>
+			<switch hideIcons="false">
 				<switch iconOrder="138">
 				<!-- Passable barriers -->
 					<switch>
@@ -8548,7 +8604,7 @@
 				<switch tag="entrance" value="service">
 					<case minzoom="19" icon="entrance_service" shield="barrier_entrance_main_shield"/>
 				</switch>
-				<switch tag="amenity" value="parking_entrance" >
+				<switch hideIcons="false" tag="amenity" value="parking_entrance" >
 					<case maxzoom="17" icon="barrier_small_black_3">
 						<apply_if nightMode="true" icon="barrier_small_white_3"/>
 					</case>
@@ -8565,18 +8621,18 @@
 				<apply_if baseAppMode="car" moreDetailed="false" maxzoom="17" icon=""/>
 			</switch>
 
-			<case minzoom="18" tag="highway" value="elevator" icon="elevator" shield="elevator_shield"/>
-			<case minzoom="$powerTowerIconMinZoom" tag="power" value="tower">
+			<case hideIcons="false" minzoom="18" tag="highway" value="elevator" icon="elevator" shield="elevator_shield"/>
+			<case hideIcons="false" minzoom="$powerTowerIconMinZoom" tag="power" value="tower">
 				<case maxzoom="14" icon="power_tower_small2" iconVisibleSize="3"/>
 				<case maxzoom="15" icon="power_tower_small" iconVisibleSize="3"/>
 				<case maxzoom="17" icon="power_tower_square" iconVisibleSize="7"/>
 				<case minzoom="18" icon="power_tower" shield="power_tower_big_shield"/>
 			</case>
-			<case minzoom="17" tag="power" value="portal" icon="power_portal" shield="power_portal_shield"/>
+			<case hideIcons="false" minzoom="17" tag="power" value="portal" icon="power_portal" shield="power_portal_shield"/>
 			<case minzoom="15" tag="aerialway" value="pylon" icon="aerialway_pylon_small" iconVisibleSize="4">
 				<apply_if moreDetailed="false" maxzoom="15" icon=""/>
 			</case>
-			<switch>
+			<switch hideIcons="false">
 				<case minzoom="16" tag="power" value="pole"/>
 				<case moreDetailed="true" minzoom="17" tag="man_made" value="utility_pole"/>
 				<apply icon="barrier_small_black_4"/>
@@ -8603,7 +8659,7 @@
 				<apply_if maxzoom="16" icon=""/>
 			</switch>
 
-			<switch minzoom="17">
+			<switch minzoom="17" hideIcons="false">
 				<case tag="osmand_hazard_map" value="yes"/>
 				<case tag="hazard_map" value="yes"/>
 				<case minzoom="18" tag="hazard" value=""/> <!-- All unsupported values -->
@@ -8668,6 +8724,13 @@
 							<apply_if moreDetailed="true" additional="shelter=yes" shield="blue_square_shelter_yes_night_shield" intersectionSizeFactor="0.9"/>
 						</apply_if>
 					</switch>
+				</apply_if>
+			</switch>
+
+			<switch hideIcons="false" iconOrder="82">
+				<case tag="highway" value="hitchhiking"/>
+				<apply_if minzoom="17" icon="highway_hitchhiking" shield="blue_square_shield" iconVisibleSize="22" iconOrder="82" intersectionMargin="3">
+					<apply_if nightMode="true" shield="blue_square_night_shield"/>
 				</apply_if>
 			</switch>
 
@@ -8796,12 +8859,13 @@
 				</case>
 				<!-- <apply iconOrder="19"/>-->
 			</switch>
-			<case minzoom="16" tag="railway" value="yard" icon="railway_yard" shield="blue_round_shield" iconVisibleSize="14">
-				<apply_if nightMode="true" shield="blue_round_night_shield"/>
-			</case>
 
 			<apply_if legend="true" iconVisibleSize="0"/>
 		</switch>
+
+		<case hideIcons="false" minzoom="16" tag="railway" value="yard" icon="railway_yard" shield="blue_round_shield" iconVisibleSize="14">
+			<apply_if nightMode="true" shield="blue_round_night_shield"/>
+		</case>
 
 		<case tag="osmand_change" value="delete"/> <!-- OSM Live will break if delete -->
 	</point>
@@ -9416,6 +9480,7 @@
 				<case minzoom="13" tag="leisure" value="sports_centre" color="$sportsCentreColor"/>
 				<apply strokeWidth_2="1"/>
 			</switch>
+			<case tag="power" value="plant" additional="generator:source=wind"/>
 			<switch minzoom="13">
 				<case tag="power" value="plant"/>
 				<case tag="power" value="generator"/>
@@ -10677,7 +10742,6 @@
 
 					<switch>
 						<case minzoom="$pathMinZoom" tag="highway" value="path">
-							<case baseAppMode="bicycle" minzoom="14" additional="bicycle=designated" color_5="$cyclewayColor" pathEffect_5="4_2" strokeWidth_5="1:1"/>
 							<case moreDetailed="true" maxzoom="14" color_5="$pathColor" pathEffect_5="$pathPathEffect">
 								<case maxzoom="12" strokeWidth_5="0.3" color_5="$pathLowZoomColor" pathEffect_5="$pathLowZoomPathEffect"/>
 								<case maxzoom="13" color_5="$pathLowZoomColor" pathEffect_5="$pathLowZoomPathEffect">
@@ -10686,12 +10750,15 @@
 								</case>
 								<case maxzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="$pathStrokeWidth"/>
 							</case>
-							<case baseAppMode="pedestrian" minzoom="15" color_5="$pathColor" strokeWidth_4="1.4:1.4" strokeWidth_5="$pathStrokeWidth" pathEffect_5="$pathPathEffect"/>
+<!--							<case baseAppMode="pedestrian" minzoom="15" color_5="$pathColor" strokeWidth_4="1.4:1.4" strokeWidth_5="$pathStrokeWidth" pathEffect_5="$pathPathEffect"/>-->
 							<case minzoom="15" strokeWidth_4="1.4:1.4" strokeWidth_5="$pathStrokeWidth" color_5="$pathColor" pathEffect_5="$pathPathEffect">
 								<apply_if baseAppMode="bicycle" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
 								<apply_if showSurfaceGrade="true" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
 								<apply_if showSurfaces="true" strokeWidth_5="$trackWithSurfaceStrokeWidth"/>
 							</case>
+							<apply minzoom="14" additional="bicycle=designated" color_5="$cyclewayColor" pathEffect_5="4_2" strokeWidth_5="1:1">
+								<apply_if baseAppMode="pedestrian" additional="foot=designated" color_5="$pathColor" pathEffect_5="$pathPathEffect" strokeWidth_5="$pathStrokeWidth"/>
+							</apply>
 							<apply_if additional="winter_road=yes" minzoom="11" strokeWidth_4="2:2"/>
 							<apply_if additional="ice_road=yes" minzoom="11" strokeWidth_4="2:2"/>
 							<apply_if nightMode="true">
@@ -10758,6 +10825,7 @@
 								</switch>
 							</case>
     						</apply_if>
+						<apply_if showClimbingRoutes="true" additional="path=climbing_access" color_5="$climbingAccessColor" pathEffect_5="6_3"/>
 					</switch>
 
 					<case minzoom="$cyclewayMinZoom" tag="highway" value="cycleway">
@@ -10766,7 +10834,9 @@
 							<apply minzoom="14" strokeWidth_4="1.4:1.4" strokeWidth_5="1:1" pathEffect_5="$cyclewayPathEffect"/>
 						</case>
 						<case minzoom="14" strokeWidth_4="1.3:1.3" strokeWidth_5="$cyclewayStrokeWidth" pathEffect_5="$cyclewayPathEffect"/>
-						<apply color_5="$cyclewayColor"/>
+						<apply color_5="$cyclewayColor">
+							<apply_if baseAppMode="pedestrian" additional="foot=designated" color_5="$footwayColor" pathEffect_5="4_2" strokeWidth_5="$footwayStrokeWidth"/>
+						</apply>
 						<apply_if nightMode="true" color="#77002a2a">
 							<apply_if minzoom="13" maxzoom="13" strokeWidth_4="0.6"/>
 							<apply_if minzoom="14" maxzoom="14" strokeWidth_4="1:1"/>
@@ -11257,7 +11327,7 @@
 			</apply>
 		</case>
 
-		<case minzoom="14" tag="highway" value="via_ferrata" color="$null" strokeWidth="0.1" color_2="$viaFerrataColor" color_3="$viaFerrataColor" pathEffect_2="1_1" pathEffect_3="1_5">
+		<case minzoom="12" tag="highway" value="via_ferrata" color="$null" strokeWidth="0.1" color_2="$viaFerrataColor" color_3="$viaFerrataColor" pathEffect_2="1_1" pathEffect_3="1_5">
 			<apply>
 				<switch>
 					<case additional="bridge=yes" color="$white" color__1="$black"/>
@@ -11386,7 +11456,6 @@
 			<switch minzoom="6">
 				<switch>
 					<case tag="waterway" value="river"/>
-					<case tag="waterway" value="flowline"/>
 					<apply minzoom="13" pathIcon="$waterwayDirectionIcon">
 						<case maxzoom="13" pathIconStep="130"/>
 						<case maxzoom="14" pathIconStep="140"/>
@@ -11466,10 +11535,15 @@
 					<case additional="rapids=4" color_2="$whitewaterSectionGrade4Color" onewayArrowsColor="#800000"/>
 					<case additional="rapids=5" color_2="$whitewaterSectionGrade5Color" onewayArrowsColor="#611F81"/>
 					<case additional="rapids=6" color_2="$whitewaterSectionGrade6Color" onewayArrowsColor="#B2B2B2"/>
+					<case additional="rapids=x" color_2="$whitewaterSectionGradeXColor" onewayArrowsColor="#B2B2B2"/>
+					<case additional="rapids=yes" color_2="$whitewaterSectionGradeYesColor" onewayArrowsColor="#438600"/>
 					<apply_if maxzoom="13" strokeWidth_2="6"/>
 					<apply_if minzoom="14" maxzoom="15" strokeWidth_2="10"/>
 					<apply_if minzoom="16" maxzoom="17" strokeWidth_2="14"/>
 					<apply_if minzoom="18" strokeWidth_2="18"/>
+					<apply_if pathIcon="oneway_black_semitransparent_big" pathIconStep="70">
+						<apply_if roadStyle="pale" pathIcon="oneway_gray_big"/>
+					</apply_if>
 				</switch>
 			</apply_if>
 		</switch>

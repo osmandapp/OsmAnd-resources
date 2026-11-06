@@ -107,6 +107,7 @@ function populateDictionary(tts) {
 	dictionary["exceed_limit"] = tts ? "ここの制限速度は" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "ご注意下さい" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "スピードカメラがあります" : "speed_camera.ogg";
+	dictionary["red_light_camera"] = tts ? "信号無視監視機があります" : "red_light_camera.ogg";
 	// border_controlを『出入国管理』に変更『国境検問所』あるいは『出入国管理施設』とも言うらしい。
 	// 昔は『国境検問所』にしていたし、そっちの可能性も有るのでogg古い方も同梱。
 	// https://eow.alc.co.jp/search?q=border+control
@@ -114,7 +115,7 @@ function populateDictionary(tts) {
 	// 『国境 検問徐』と間に半角スペースを入れて『所』の代わりに『徐』という字にすると良い。
 	dictionary["border_control"] = tts ? "出入国管理があります" : "border_control.ogg"; //国境検問所の所をしょとN2TTSが読むため。半角スペースは国境をこっきょうと読ませるため。
 	dictionary["railroad_crossing"] = tts ? "踏切があります" : "railroad_crossing.ogg";
-	dictionary["traffic_calming"] = tts ? "減速隊があります" : "traffic_calming.ogg"; // Googleテキスト読み上げエンジンは減速帯を『げんそくおび』と読むので。
+	dictionary["traffic_calming"] = tts ? "減速帯があります" : "traffic_calming.ogg";
 	dictionary["toll_booth"] = tts ? "料金所があります" : "toll_booth.ogg"; // Googleは『りょうきんじょ』N2TTSは『りょうきんしょ』だが、どちらの読みも正しいので漢字表記に戻した。
 	dictionary["stop"] = tts ? "一時停止です" : "stop.ogg";
 	dictionary["pedestrian_crosswalk"] = tts ? "横断歩道があります" : "pedestrian_crosswalk.ogg";
@@ -634,6 +635,8 @@ function getAttentionString(type) {
 		case "TUNNEL":
 			return dictionary["tunnel"];
 			break;
+		case "RED_LIGHT_CAMERA":
+			return dictionary["red_light_camera"];			
 		default:
 			return "";
 			break;

@@ -92,6 +92,7 @@ function populateDictionary(tts) {
 	dictionary["exceed_limit"] = tts ? "kikomo kasi" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "attention" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "kamera kasi" : "speed_camera.ogg";
+	dictionary["red_light_camera"] = tts ? "kamera ya taa nyekundu" : "red_light_camera.ogg";
 	dictionary["border_control"] = tts ? "mpaka kudhibiti" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "reli kuvuka" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "kutuliza trafiki" : "traffic_calming.ogg";
@@ -547,6 +548,8 @@ function getAttentionString(type) {
 		case "TUNNEL":
 			return dictionary["tunnel"];
 			break;
+		case "RED_LIGHT_CAMERA":
+			return dictionary["red_light_camera"];
 		default:
 			return "";
 			break;

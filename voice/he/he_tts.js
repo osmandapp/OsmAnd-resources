@@ -89,6 +89,7 @@ function populateDictionary(tts) {
     dictionary["exceed_limit"] = tts? "הגבלת מהירות": "exceed_limit.ogg";
     dictionary["attention"] = tts? "שים לב": "attention.ogg";
     dictionary["speed_camera"] = tts? "מצלמה": "speed_camera.ogg";
+    dictionary["red_light_camera"] = tts ? "מצלמת רמזור אדום" : "red_light_camera.ogg";
     dictionary["border_control"] = tts? "מעבר גבול": "border_control.ogg";
     dictionary["railroad_crossing"] = tts? "מסילת רכבת": "railroad_crossing.ogg";
     dictionary["traffic_calming"] = tts? "האטת תנועה": "traffic_calming.ogg";
@@ -105,7 +106,7 @@ function populateDictionary(tts) {
 
     // STREET NAME PREPOSITIONS
     dictionary["on"] = tts? "על": "on.ogg";
-    dictionary["onto"] = tts? "ל": "onto.ogg";
+    dictionary["onto"] = tts? "אל": "onto.ogg";
     dictionary["to"] = tts? "עד": "to.ogg";
     dictionary["toward"] = tts? "לכיוון": "toward.ogg";
 
@@ -342,7 +343,7 @@ function roundabout(dist, angle, exit, streetName) {
     if (dist == -1) {
         return dictionary["take"] + " " + nth(exit) + " " + turn_street(streetName);
     } else {
-        return dictionary["after"] + " " + distance(dist) + " " + dictionary["roundabout"] + (tts? ", ": " ") + dictionary["and"] + " " + dictionary["take"] + " " + nth(exit) + " " + turn_street(streetName);
+        return dictionary["after"] + " " + distance(dist) + " " + dictionary["roundabout"] + (tts? ", ": " ") + dictionary["and"] + (tts? "": " ") + dictionary["take"] + " " + nth(exit) + " " + turn_street(streetName);
     }
 
 }
@@ -437,7 +438,7 @@ function prepare_turn(turnType, dist, streetName) {
 }
 
 function prepare_roundabout(dist, exit, streetName) {
-    return dictionary["prepare_roundabout"] + " " + dictionary["after"] + " " + distance(dist) + " " + dictionary["and"] + " " + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"];
+    return dictionary["prepare_roundabout"] + " " + dictionary["after"] + " " + distance(dist) + " " + dictionary["and"] + (tts? "": " ") + dictionary["take"] + " " + nth(exit) + " " + dictionary["exit"];
 }
 
 function and_arrive_destination(dest) {
@@ -541,6 +542,8 @@ function getAttentionString(type) {
         case "TUNNEL":
             return dictionary["tunnel"];
             break;
+        case "RED_LIGHT_CAMERA":
+            return dictionary["red_light_camera"];
         default:
             return "";
             break;

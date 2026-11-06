@@ -200,7 +200,16 @@ message OsmAndAddressIndex {
 	// encoded as fixed32 length delimited
 	optional OsmAndAddressNameIndexData nameIndex = 7;
 
+}
+
+message CommonIndexedStats {
+    
+	repeated string value = 4; // delta common + frequent indexed strings (possibly sorted)
 	
+	// if nonindexed = 0: word is very likely frequent for this map
+	repeated uint32 matched = 5; // same order of values 
+
+	repeated uint32 nonindexed = 6; // count for word for non-indexed (frequent == 0), indexed = matched - nonindexed
 }
 
 message OsmAndAddressNameIndexData {
@@ -208,20 +217,53 @@ message OsmAndAddressNameIndexData {
 	// encoded as fixed32 length delimited
 	required IndexedStringTable table = 4;
 
+	optional CommonIndexedStats commonStats = 6; 
+	
 	repeated AddressNameIndexData atom = 7;
-		message AddressNameIndexData {
+	message AddressNameIndexData {
+			optional uint32 atomsLength = 7; // first but not in order of values
+			
+			// suffixesDictionary and suffixesCommonDictionary combined into 1 array
+			
+			// suffixes could be terminal (ends " ") OR non-terminal OR extra word (starts with " ")
+			// suffix " street" - acts like additional word or extra specifier
+			// desirable length ~128, anything extra suffix goes to extraSuffix in atom
+			repeated string suffixesDictionary = 2; // suffixes releated to 1 prefix
+			
+			// "street" is in CommonIndexedStats, so it is encoded more efficiently
+			repeated uint32 suffixesCommonDictionary = 3; 
+
 			// shift is measured from start (before length)
 			repeated AddressNameIndexDataAtom atom = 4;
 	}
+
 }
 
 
 
 message AddressNameIndexDataAtom {
-	 optional string name = 1;
-	 optional string nameEn = 2;
-	 // 1 - city, 2 - postcode, 3 - village,  4 - street
+	 
+	 // 0 - boundary, 1 - city, 2 - postcode, 3 - village, 4 - street
 	 required uint32 type = 3; 
+	 
+	 // indexes of suffixes suffixesDictionary
+	 // 0. 0 - delimeter between name words 1. % 2 = 1, pure integer 2. % 2 == 0 (2, 4...): index in united suffixesDictionary words
+	 repeated uint32 suffixesBitsetIndex = 8;
+
+	 // everything doesn't fit dictionary separted by ' ' 
+	 repeated string extraSuffix = 9;
+
+	 // as we add all common & frequent, we need only number of non common words left
+	 // if not specified assume 0 
+	 repeated uint32 otherWordsCount = 10;
+	 
+	 // If applicable (city, boundary ) - bboxes of object. Zoom + array of [4 first uints]
+	 // [zoom - default = 15 - 1km],[xzoom-left],[xzoom-right-delta],[y-top],[y-bottom-delta],...
+	 // delta encoded with xy16 
+	 optional bytes bbox = 12;
+
+	 // enclosing objects: for now represents number of streets inside boundary
+	 optional uint32 enclosingObjects = 16;
 
 	 // start mixed 
 	 // shift from start AddressNameIndexData (!) to ...Index
@@ -263,9 +305,7 @@ message CityBlockIndex {
 	// shift from start cityBlockIndex to CityIndex 
 	optional fixed32 shiftToCityIndex = 4;
 	
-	// city boundary
-	//optional CityBoundaryIndex = 6; // deprecated
-
+	
 	// buildings that doesn't belong to the street
 	repeated BuildingIndex buildings = 10;
 	
@@ -352,9 +392,7 @@ message TransportRoute {
 	optional uint32 color = 9; // reference in string table
 	
 	repeated TransportRouteStop directStops = 15;
-	// deprecated (not used any more)
-	repeated TransportRouteStop reverseStops = 16;
-
+	
 	// array of delta x,y sint32 (CodedIinputStream) >> 5 (precision 31 >> 5)
 	// first x,y - 31 coordinates (>>5), next points is delta to previous
 	// point, line or outer polygon coordinates
@@ -514,6 +552,10 @@ message OsmAndPoiIndex {
 	optional OsmAndPoiNameIndex nameIndex = 4;
 
 	optional OsmAndSubtypesTable subtypesTable = 5;
+
+	// poi name index structure to get quick access by poi types, subtypes for rare objects
+	// string table stores sub / categories key names (before boxes)
+	// optional OsmAndPoiNameIndex catIndex = 7; // postponed
 	
 	// encoded as fixed32 length delimited
 	repeated OsmAndPoiBox boxes = 6; // children 
@@ -528,8 +570,17 @@ message OsmAndPoiNameIndex {
 	// encoded as fixed32 length delimited
 	required IndexedStringTable table = 3;
 
+	optional CommonIndexedStats commonStats = 4; 
+
 	repeated OsmAndPoiNameIndexData data = 5;
 	message OsmAndPoiNameIndexData {
+		optional uint32 atomsLength = 7; // first but not in order of values
+		// SEE COMMENTS - AddressNameIndexData.
+		// United suffixes dictionary: suffixesDictionary + suffixesCommonDictionary
+		repeated string suffixesDictionary = 2; // suffixes releated to 1 prefix
+
+		repeated uint32 suffixesCommonDictionary = 1;
+
 		// can contain multiple data offsets
 		repeated OsmAndPoiNameIndexDataAtom atoms = 3;
 	}
@@ -540,15 +591,50 @@ message OsmAndPoiNameIndexDataAtom {
 	optional uint32 zoom = 2;
 	optional uint32 x = 3;
 	optional uint32 y = 4;
+
+	// indexes of suffixes suffixesDictionary	 
+	// 0. 0 - delimeter between name words 1. % 2 = 1, pure integer 2. % 2 == 0 (2, 4...): index in united suffixesDictionary words
+	repeated uint32 suffixesBitsetIndex = 5;
+
+	// everything doesn't fit dictionary separted by ' ' applied for each name combination
+	repeated string extraSuffix = 7;
+
+	// as we add all common & frequent, we need only number of non common words left (default 0)
+	repeated uint32 otherWordsCount = 8;
+
+	// poiIndInBlock applied to all suffixes (array will be only for full duplicate objects) 
+	// stats: now 0.05% only objects with 2+ suffixes bit set (no need to merge different objects in 1 atom)
+	repeated uint32 poiIndInBlock = 9;
+
+    // search in large parks, neighboorhoud same as in boundaries
+	// not used now as x, y, zoom could be used as single tile
+	optional bytes bbox = 10;
+
+	// see poi category table : general id of poi type (subcategory_order << 7) | category_order)
+	repeated uint32 poiCategories = 11; // same length as poiIndInBlock
+	
+	// elo rating bucket = (elo - 1000) / 50; - to keep 1 byte 
+	repeated uint32 eloRating = 12; 
+    
 	// shift to OsmAndPoiBoxData message from OsmAndPoiIndex.start
 	// message is started when body is started
 	optional fixed32 shiftTo = 14;
+
+	// simple implementation geo index to (germany top POI 50K-500K, tiles z12 - 16K, z8 - 72)
+	// not yet implemented it will require threshold on atom count 10 ? 
+	optional fixed32 shiftToNextZ8Tile = 20;
+	optional fixed32 shiftToNextZ10Tile = 21;
+	optional fixed32 shiftToNextZ12Tile = 22;
 }
 
 message OsmAndCategoryTable {
 	// general id of poi type is calculated  ((subcategory_order << 7) | category_order)
 	required string category = 1;
+	optional uint32 frequency = 2;
 	repeated string subcategories = 3;
+	repeated uint32 subcatfreq = 4; // optional
+
+	repeated string subcatWikidataIds = 7;
 }
 
 message OsmAndSubtypesTable {
@@ -563,9 +649,14 @@ message OsmAndPoiSubtype {
 	required string name = 1;
 	optional string tagname = 2; // same to name if not present
 	required bool isText = 3;
+	optional string wikidataId = 4;
 	optional uint32 frequency = 5;
+	
 	optional uint32 subtypeValuesSize = 6;
+	repeated uint32 subtypeValuesFreq = 7; // optional
 	repeated string subtypeValue = 8; 
+
+	repeated string subcatWikidataIds = 12;
 }
 
 message OsmAndPoiTagGroup {
@@ -603,9 +694,9 @@ message OsmAndPoiBox {
 
 message OsmAndPoiCategories {
 	// sorted categories
-	repeated uint32 categories = 3;
+	repeated uint32 categories = 3; // related to OsmAndCategoryTable (poi_type+poi_subtype)
 
-	repeated uint32 subcategories = 5;
+	repeated uint32 subcategories = 5; // related to OsmAndSubtypesTable (poi_additional)
 }
 
 message OsmAndPoiBoxData {
@@ -622,17 +713,11 @@ message OsmAndPoiBoxDataAtom {
 
   repeated uint32 categories = 4;
   repeated uint32 subcategories = 5; // v1.7
-
+		
   optional string name = 6;
   optional string nameEn = 7;
   optional uint64 id = 8;  
   
-  // deprecated from v1.7
-  optional string openingHours = 10;
-  optional string site = 11;
-  optional string phone = 12;
-  optional string note = 13;
-
   repeated uint32 textCategories = 14; // v1.7
   repeated string textValues = 15;
   optional int32 precisionXY = 16; // precision in 1-xy-xy-xy binary format

@@ -95,6 +95,7 @@ function populateDictionary(tts) {
 	dictionary["exceed_limit"] = tts ? "Ületate piirkiirust" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "Tähelepanu" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "kiiruskaamera" : "speed_camera.ogg";
+	dictionary["red_light_camera"] = tts ? "punase tule kaamera" : "red_light_camera.ogg";
 	dictionary["border_control"] = tts ? "piirikontroll" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "raudteeülesõit" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "kiirustõke" : "traffic_calming.ogg";
@@ -756,6 +757,8 @@ function getAttentionString(type) {
 		case "TUNNEL":
 			return dictionary["tunnel"];
 			break;
+		case "RED_LIGHT_CAMERA":
+			return dictionary["red_light_camera"];
 		default:
 			return "";
 			break;

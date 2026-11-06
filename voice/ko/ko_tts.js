@@ -95,6 +95,7 @@ function populateDictionary(tts) {
 	dictionary["exceed_limit"] = tts ? "속도 제한" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "과속을 주의 하세요" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "속도 카메라" : "speed_camera.ogg";
+	dictionary["red_light_camera"] = tts ? "신호 위반 카메라" : "red_light_camera.ogg";
 	dictionary["border_control"] = tts ? "국경 통제" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "철도 횡단" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "교통 진정" : "traffic_calming.ogg";
@@ -550,6 +551,8 @@ function getAttentionString(type) {
 		case "TUNNEL":
 			return dictionary["tunnel"];
 			break;
+		case "RED_LIGHT_CAMERA":
+			return dictionary["red_light_camera"];
 		default:
 			return "";
 			break;

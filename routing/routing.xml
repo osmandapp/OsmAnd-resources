@@ -405,7 +405,7 @@
 		<!-- Turn penalties for short_way=yes -->
 		<attribute name="shortWaySharpTurn" value = "10"/>
 		<attribute name="shortWaySlightTurn" value = "5"/>
-		<attribute name="shortWayRoundAboutTurn" value = "5"/>
+		<attribute name="shortWayRoundaboutTurn" value = "5"/>
 
 		<!-- NEW ROUTING API -->
 		<!-- <parameter id="prefer_motorway" name="Prefer motorways" description="Prefer motorways" type="boolean"/> -->
@@ -444,7 +444,7 @@
 		<parameter id="width" name="Width" description="Maximum vehicle width to be permitted on the route" type="numeric" values="0,1.5,2,2.3,2.5,3" valueDescriptions="-,1.5m,2m,2.3m,2.5m,3m"/>
 		<parameter id="maxaxleload" name="Max axle load" description="Maximum legal load weight limit per axle" type="numeric" values="0,1.5,3,3.5,5,7.5,10,12,15,20,30,40" valueDescriptions="-,1.5t,3t,3.5t,5t,7.5t,10t,12t,15t,20t,30t,40t" profiles="truck"/>
 		<parameter id="weightrating" name="Max weight at full load" description="Maximum permitted weight of the vehicle at full load" type="numeric" values="0,1.5,3,3.5,5,7.5,10,12,15,20,30,40" valueDescriptions="-,1.5t,3t,3.5t,5t,7.5t,10t,12t,15t,20t,30t,40t" profiles="truck"/>
-		<parameter id="motor_type" name="Motor type" description="For CO2 computation" type="numeric" values="0,1,2,3,4,5,6" valueDescriptions="-,Petrol,Diesel,Lpg,Gas,Electric,Hybrid"/>
+		<parameter id="motor_type" name="Motor type" description="For CO2 computation" type="numeric" values="0,1,2,3,4,5,6,7" valueDescriptions="-,Petrol,Diesel,Lpg,Gas,Electric,Hybrid,Ethanol"/>
 
 		<way attribute="access">
 			<select value="-1" t="osmand_change" v="delete"/>
@@ -671,6 +671,7 @@
 
 			<!--hazmat category usa-->
 			<if param="hazmat_category_usa_1">
+				<select value="-1" t="hazmat" v="no"/>
 				<select value="-1" t="hazmat:1" v="no"/>
 				<select value="-1" t="hazmat:1.1" v="no"/>
 				<select value="-1" t="hazmat:1.2" v="no"/>
@@ -681,6 +682,7 @@
 			</if>
 
 			<if param="hazmat_category_usa_2">
+				<select value="-1" t="hazmat" v="no"/>
 				<select value="-1" t="hazmat:2" v="no"/>
 				<select value="-1" t="hazmat:2.1" v="no"/>
 				<select value="-1" t="hazmat:2.2" v="no"/>
@@ -688,10 +690,12 @@
 			</if>
 
 			<if param="hazmat_category_usa_3">
+				<select value="-1" t="hazmat" v="no"/>
 				<select value="-1" t="hazmat:3" v="no"/>
 			</if>
 
 			<if param="hazmat_category_usa_4">
+				<select value="-1" t="hazmat" v="no"/>
 				<select value="-1" t="hazmat:4" v="no"/>
 				<select value="-1" t="hazmat:4.1" v="no"/>
 				<select value="-1" t="hazmat:4.2" v="no"/>
@@ -699,26 +703,31 @@
 			</if>
 
 			<if param="hazmat_category_usa_5">
+				<select value="-1" t="hazmat" v="no"/>
 				<select value="-1" t="hazmat:5" v="no"/>
 				<select value="-1" t="hazmat:5.1" v="no"/>
 				<select value="-1" t="hazmat:5.2" v="no"/>
 			</if>
 
 			<if param="hazmat_category_usa_6">
+				<select value="-1" t="hazmat" v="no"/>
 				<select value="-1" t="hazmat:6" v="no"/>
 				<select value="-1" t="hazmat:6.1" v="no"/>
 				<select value="-1" t="hazmat:6.2" v="no"/>
 			</if>
 
 			<if param="hazmat_category_usa_7">
+				<select value="-1" t="hazmat" v="no"/>
 				<select value="-1" t="hazmat:7" v="no"/>
 			</if>
 
 			<if param="hazmat_category_usa_8">
+				<select value="-1" t="hazmat" v="no"/>
 				<select value="-1" t="hazmat:8" v="no"/>
 			</if>
 
 			<if param="hazmat_category_usa_9">
+				<select value="-1" t="hazmat" v="no"/>
 				<select value="-1" t="hazmat:9" v="no"/>
 			</if>
 
@@ -774,6 +783,24 @@
 		</way>
 
 		<way attribute="penalty_transition">
+			<!-- delivery-only ways: fixed cost per entry/exit, so they are used to reach a destination, not as a shortcut -->
+			<ifnot param="allow_private">
+				<select value="2100" t="motorcar" v="delivery"/>
+				<select value="2100" t="motor_vehicle" v="delivery"/>
+				<select value="2100" t="vehicle" v="delivery"/>
+				<select value="2100" t="access" v="delivery"/>
+				<select value="2100" t="motorcar" v="private;delivery"/>
+				<select value="2100" t="motor_vehicle" v="private;delivery"/>
+				<select value="2100" t="vehicle" v="private;delivery"/>
+				<select value="2100" t="access" v="private;delivery"/>
+				<select value="2100" t="motorcar" v="delivery;private"/>
+				<select value="2100" t="motor_vehicle" v="delivery;private"/>
+				<select value="2100" t="vehicle" v="delivery;private"/>
+				<select value="2100" t="access" v="delivery;private"/>
+				<if param="profile_truck">
+					<select value="2100" t="hgv" v="delivery"/>
+				</if>
+			</ifnot>
 			<!-- cost in time when you change the route from motorway to primary or from primary
 				 to living_street, but not other way around. Calculated as difference between values -->
 			<!-- 
@@ -1007,8 +1034,8 @@
 				<select value="0.8" t="highway" v="living_street"/>
 			</if>
 			<if param="avoid_motorway">
-				<select value="0.05" t="highway" v="motorway"/>
-				<select value="0.05" t="highway" v="motorway_link"/>
+				<select value="0.1" t="highway" v="motorway"/>
+				<select value="0.1" t="highway" v="motorway_link"/>
 			</if>
 
 			<if param="avoid_tunnels">
@@ -1020,6 +1047,11 @@
 
 			<select value="0.5" t="surface" v="gravel"/>
 			<select value="0.5" t="surface" v="unpaved"/>
+
+			<!-- dedicated motorcycle lane, not an ordinary service road -->
+			<if param="profile_motorcycle">
+				<select value="1" t="motorcycle" v="designated"/>
+			</if>
 
 			<select value="1.1" t="highway" v="motorway"/>
 			<!-- make links slightly smaller, so in large parallel intersections, ways will be preferred over links -->
@@ -1213,9 +1245,10 @@
 				<select value="0" t="highway" v="give_way"/>
 			</if>
 			<select value="5"   t="barrier" v="cattle_grid"/>
-			<select value="298" t="barrier" v="border_control"/>
+			<select value="283" t="barrier" v="border_control"/>
 			<select value="300" t="barrier" v="bump_gate"/>
 			<select value="300" t="barrier" v="gate" /> <!-- could be on many ferries (make accessible) -->
+			<select value="300" t="barrier" v="hampshire_gate"/>
 			<select value="1"   t="barrier" v="entrance"/>
 			<select value="100" t="barrier" v="sally_port"/>
 			<select value="1"   t="barrier" v="toll_booth"/>
@@ -1224,6 +1257,8 @@
 			<!-- These 2 shouldn't be allowed per the wiki (access=no is assumed) but people often do not add the proper access tags. -->
 			<select value="300" t="barrier" v="lift_gate"/>
 			<select value="300" t="barrier" v="swing_gate"/>
+			<select value="300" t="barrier" v="sliding_beam"/>
+			<select value="300" t="barrier" v="sliding_gate"/>
 			<!-- Without explicit access marking, barriers other than the listed values above are impassable to a car. -->
 			<select value="10" t="traffic_calming"/>
 			<select value="5"  t="highway" v="give_way"/>
@@ -1608,7 +1643,9 @@
 			<select value="0.1" t="bicycle" v="private"/>
 			<select value="0.2" t="bicycle" v="destination"/>
 			<select value="0.5" t="bicycle" v="use_sidepath"/>
+			<select value="0.1" t="steps_ramp" v="no"/> <!-- Internal tag -->
 			<select value="0.3" t="highway" v="steps"/>
+
 	  		<!--	<select value="0.05" t="access" v="private"/>-->
 			<select value="0.3" t="indoor" v="yes"/>
 			<select value="0.1" t="barrier" v="debris"/>
@@ -1864,6 +1901,8 @@
 			<select value="0.65" t="surface" v="grass"/>
 			<select value="0.75" t="surface" v="ground"/>
 			<select value="0.5" t="surface" v="mud"/>
+			<select value="0.55" t="surface" v="laterite"/>
+			<select value="0.60" t="surface" v="clay"/>
 			<select value="0.5" t="smoothness" v="very_bad"/>
 			<select value="1.2" t="route_bicycle"/> 
 			<!-- If a part of a bicycle route has a surface tag, it will have
@@ -1922,6 +1961,7 @@
 			<select value="25" t="railway" v="crossing"/>
 			<select value="25" t="railway" v="level_crossing"/>
 			<select value="5"  t="railway" v="tram_level_crossing"/>
+
 		</point>
 
 		<point attribute="obstacle">
@@ -2326,6 +2366,12 @@
 			<select value="0"  t="access" v="permissive"/>
 			<select value="300" t="amenity" v="ferry_terminal"/>
 
+			<ifnot param="allow_private">
+				<select value="-1" t="locked" v="yes"/>
+			</ifnot>
+			<if param="allow_private">
+				<select value="180" t="locked" v="yes"/>
+			</if>
 		</point>
 
 		<way attribute="penalty_transition">
@@ -2676,7 +2722,7 @@
 		</way>
 	</routingProfile>
 
-	<routingProfile name="boat" restrictionsAware="true" minSpeed="3.0" defaultSpeed="5.0" maxSpeed="66.7" onewayAware="true" baseProfile="boat">
+	<routingProfile name="boat" restrictionsAware="true" minSpeed="3.0" defaultSpeed="11.0" maxSpeed="66.7" onewayAware="true" baseProfile="boat">
 		<parameter id="height" name="Height" description="Maximum vehicle height to be permitted on the route" type="numeric" values="0,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30" valueDescriptions="-,1.5m,2m,2.5m,3m,3.5m,4m,4.5m,5m,5.5m,6m,6.5m,7m,7.5m,8m,8.5m,9m,9.5m,10m,11m,12m,13m,14m,15m,16m,17m,18m,19m,20m,21m,22m,23m,24m,25m,26m,27m,28m,29m,30m"/>
 		<parameter id="width" name="Width" description="Maximum vehicle width to be permitted on the route" type="numeric" values="0,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,11,12,13,14,15" valueDescriptions="-,1.5m,2m,2.5m,3m,3.5m,4m,4.5m,5m,5.5m,6m,6.5m,7m,7.5m,8m,8.5m,9m,9.5m,10m,11m,12m,13m,14m,15m"/>
 		<parameter id="allow_streams" name="Allow streams" description="Allow streams and drains" type="boolean"/>
@@ -3080,6 +3126,8 @@
 	<routingProfile name="moped" baseProfile="moped" restrictionsAware="true" minSpeed="5.0" defaultSpeed="25.0" maxSpeed="35.0" sharpTurn="6" slightTurn="6" onewayAware="true">
 		<parameter id="avoid_ferries" name="Avoid ferries" description="Avoid ferries" type="boolean"/>
 		<parameter id="avoid_unpaved" name="Avoid unpaved roads" description="Avoid unpaved roads" type="boolean"/>
+		<parameter id="avoid_sett" name="Avoid sett" description="Streets paved with sett are avoided" type="boolean" default="false"/>
+		<parameter id="avoid_cobblestone" name="Avoid cobblestone" description="Streets paved with cobblestone are avoided" type="boolean" default="false"/>
 		<parameter id="allow_private" name="Allow private access" description="Allow access to private areas" type="boolean"/>
 
 		<!-- Turn penalties for short_way=yes -->
@@ -3105,6 +3153,8 @@
 			<select value="1" t="moped" v="destination"/>
 			<select value="1" t="moped" v="dismount"/>
 			<select value="-1" t="moped" v="no"/>
+			<select value="1" t="moped:forward" v="designated"/>
+			<select value="1" t="moped:backward" v="designated"/>
 			<!-- <select value="-1" t="moped" v="use_sidepath"/> Already done by an entity_convert when creating the map files -->
 
 			<!-- Don't allow mopeds on steps or elevators, unless excplicly tagged and caught by rules above -->
@@ -3195,6 +3245,13 @@
 				<select value="0.3" t="highway" v="track"/>
 				<select value="0.1" t="highway" v="path"/>
 			</if>
+			<if param="avoid_sett">
+				<select value="0.05" t="surface" v="sett"/>
+			</if>
+			<if param="avoid_cobblestone">
+				<select value="0.05" t="surface" v="cobblestone"/>
+				<select value="0.02" t="surface" v="unhewn_cobblestone"/>
+			</if>
 			<select value="1" t="smoothness" v="excellent"/>
 			<select value="1" t="smoothness" v="good"/>
 			<select value="0.5" t="smoothness" v="intermediate"/>
@@ -3246,11 +3303,8 @@
 			<select value="1" t="oneway:moped" v="yes"/>
 			<select value="-1" t="oneway:moped" v="-1"/>
 
-			<!-- Assume oneway is the same for bicycles and mopeds -->
-			<select value="0" t="oneway:bicycle" v="no"/>
-			<select value="1" t="oneway:bicycle" v="yes"/>
-			<select value="-1" t="oneway:bicycle" v="-1"/>
-
+			<!-- Don't apply oneway:bicycle to mopeds: oneway:bicycle=no/-1 is a bicycle exemption
+			     from the motor-vehicle oneway and does not allow mopeds to ride against oneway -->
 			<select value="-1" t="moped:forward" v="no"/>
 			<select value="-1" t="moped:forward" v="use_sidepath"/>
 

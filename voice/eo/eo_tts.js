@@ -112,6 +112,7 @@ function populateDictionary(tts) {
 	dictionary["exceed_limit"] = tts ? "rapidlimo" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "Atentu" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "rapid-kontrolilo" : "speed_camera.ogg";
+	dictionary["red_light_camera"] = tts ? "ruĝluma kamera" : "red_light_camera.ogg";
 	dictionary["border_control"] = tts ? "landlima trairejo" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "fervoja transirejo" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "trafik-trankviligilo" : "traffic_calming.ogg";
@@ -607,6 +608,8 @@ function getAttentionString(type) {
 		case "TUNNEL":
 			return dictionary["tunnel"];
 			break;
+		case "RED_LIGHT_CAMERA":
+			return dictionary["red_light_camera"];
 		default:
 			return "";
 			break;

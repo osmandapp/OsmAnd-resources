@@ -95,6 +95,7 @@ function populateDictionary(tts) {
 	dictionary["exceed_limit"] = tts ? "Rejasá hina puia'ekué ikatúa" : "exceed_limit.ogg";
 	dictionary["attention"] = tts ? "Cháke" : "attention.ogg";
 	dictionary["speed_camera"] = tts ? "Puia'ekué mañajá" : "speed_camera.ogg";
+	dictionary["red_light_camera"] = tts ? "semáforo pytã mañajá" : "red_light_camera.ogg";
 	dictionary["border_control"] = tts ? "téta rembeúi mañajá" : "border_control.ogg";
 	dictionary["railroad_crossing"] = tts ? "ojasá pe jejongavatá" : "railroad_crossing.ogg";
 	dictionary["traffic_calming"] = tts ? "oí peteí lomo burro mba'é" : "traffic_calming.ogg";
@@ -553,6 +554,8 @@ function getAttentionString(type) {
 		case "TUNNEL":
 			return dictionary["tunnel"];
 			break;
+		case "RED_LIGHT_CAMERA":
+			return dictionary["red_light_camera"];
 		default:
 			return "";
 			break;
