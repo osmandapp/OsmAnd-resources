@@ -423,6 +423,7 @@
 		<parameter id="avoid_borders" name="Avoid border crossing" description="Avoid crossing a border into another country" type="boolean"/>
 		<parameter id="avoid_ice_roads_fords" name="Avoid ice roads, fords" description="Avoid ice roads and fords" type="boolean"/>
 		<parameter id="avoid_4wd_only" name="Avoid 4WD roads" description="Avoid roads only suitable for 4WD only vehicles" type="boolean"/>
+        <parameter id="avoid_unclassified" name="Avoid unclassified roads" description="Avoid unclassified roads" type="boolean"/>
 		<parameter id="allow_private" name="Allow private access" description="Allow access to private areas for cars" type="boolean" profiles="default,motorcycle"/>
 		<parameter id="allow_private_for_truck" name="Allow private access (truck)" description="Allow access to private areas for trucks" type="boolean" profiles="truck"/>
 		<parameter id="goods_restrictions" name="Goods vehicles restrictions" description="Consider access permissions for light goods vehicles (goods)" type="boolean" profiles="default"/>
@@ -982,7 +983,9 @@
 				<select value="0.05" t="highway" v="motorway"/>
 				<select value="0.05" t="highway" v="motorway_link"/>
 			</if>
-
+            <if param="avoid_unclassified">
+                <select value="0.1" t="highway" v="unclassified"/>
+            </if>
 			<if param="avoid_tunnels">
 				<select value="0.02" t="tunnel" v="yes"/>
 			</if>
