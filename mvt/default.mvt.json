@@ -133,6 +133,16 @@
       "paint": {"fill-pattern": "sand_shader"}
     },
     {
+      "id": "area-desert",
+      "type": "fill",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 6,
+      "filter": ["all", ["==", ["get", "natural"], "desert"]],
+      "layout": {"visibility": "visible"},
+      "paint": {"fill-color": "#fff7bf"}
+    },
+    {
       "id": "area-quarry-abandoned",
       "type": "fill",
       "source": "osm",
@@ -204,135 +214,6 @@
       "note": "https://www.openstreetmap.org/relation/6200028 (place natural=water after landuse=residential)"
     },
     {
-      "id": "area-water",
-      "type": "fill",
-      "source": "osm",
-      "source-layer": "osmand",
-      "filter": [
-        "any",
-        ["==", ["get", "natural"], "water"],
-        ["==", ["get", "landuse"], "reservoir"],
-        ["==", ["get", "landuse"], "basin"],
-        ["==", ["get", "landuse"], "water"],
-        ["==", ["get", "waterway"], "riverbank"]
-      ],
-      "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "#80c0ff"},
-      "note": "https://www.openstreetmap.org/relation/6200028 (place natural=water after landuse=residential)"
-    },
-    {
-      "id": "area-waterway-dam",
-      "type": "fill",
-      "source": "osm",
-      "source-layer": "osmand",
-      "minzoom": 13,
-      "filter": [
-        "all",
-        ["==", ["get", "waterway"], "dam"],
-        ["==", ["geometry-type"], "Polygon"]
-      ],
-      "layout": {"visibility": "visible"},
-      "paint": {
-        "fill-color": "rgba(85, 85, 85, 0.2)",
-        "fill-outline-color": "#555555"
-      }
-    },
-    {
-      "id": "area-meadow",
-      "type": "fill",
-      "source": "osm",
-      "source-layer": "osmand",
-      "filter": [
-        "all",
-        ["in", ["get", "landuse"], ["literal", ["meadow", "grass", "pasture"]]]
-      ],
-      "paint": {"fill-color": "#c8e0b0"}
-    },
-    {
-      "id": "area-scrub",
-      "type": "fill",
-      "source": "osm",
-      "source-layer": "osmand",
-      "filter": ["all", ["==", ["get", "natural"], "scrub"]],
-      "paint": {
-        "fill-color": "#b0d090",
-        "fill-antialias": false,
-        "fill-translate-anchor": "map"
-      }
-    },
-    {
-      "id": "area-wood",
-      "type": "fill",
-      "source": "osm",
-      "source-layer": "osmand",
-      "filter": [
-        "any",
-        ["==", ["get", "natural"], "wood"],
-        ["==", ["get", "landuse"], "forest"]
-      ],
-      "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "#8cc96e"}
-    },
-    {
-      "id": "area-grassland",
-      "type": "fill",
-      "source": "osm",
-      "source-layer": "osmand",
-      "minzoom": 10,
-      "filter": ["all", ["==", ["get", "natural"], "grassland"]],
-      "paint": {"fill-color": "#c8e0b0"}
-    },
-    {
-      "id": "area-heath",
-      "type": "fill",
-      "source": "osm",
-      "source-layer": "osmand",
-      "minzoom": 13,
-      "filter": ["all", ["==", ["get", "natural"], "heath"]],
-      "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "#d7ebba"}
-    },
-    {
-      "id": "area-village_green",
-      "type": "fill",
-      "source": "osm",
-      "source-layer": "osmand",
-      "minzoom": 13,
-      "filter": ["all", ["==", ["get", "landuse"], "village_green"]],
-      "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "#cfeca8"}
-    },
-    {
-      "id": "area-greenfield",
-      "type": "fill",
-      "source": "osm",
-      "source-layer": "osmand",
-      "minzoom": 11,
-      "filter": ["all", ["==", ["get", "landuse"], "greenfield"]],
-      "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "rgba(200, 220, 180, 0.15)"}
-    },
-    {
-      "id": "area-recreation_ground",
-      "type": "fill",
-      "source": "osm",
-      "source-layer": "osmand",
-      "minzoom": 12,
-      "filter": ["all", ["==", ["get", "landuse"], "recreation_ground"]],
-      "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "rgba(182, 253, 182, 0.56)"}
-    },
-    {
-      "id": "area-common",
-      "type": "fill",
-      "source": "osm",
-      "source-layer": "osmand",
-      "minzoom": 12,
-      "filter": ["all", ["==", ["get", "leisure"], "common"]],
-      "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "#c0e5a1"}
-    },
-    {
       "id": "area-wetland",
       "type": "fill",
       "source": "osm",
@@ -373,6 +254,154 @@
       }
     },
     {
+      "id": "area-meadow",
+      "type": "fill",
+      "source": "osm",
+      "source-layer": "osmand",
+      "filter": [
+        "all",
+        ["in", ["get", "landuse"], ["literal", ["meadow", "grass", "pasture"]]]
+      ],
+      "paint": {"fill-color": "#c8e0b0"}
+    },
+    {
+      "id": "area-grassland",
+      "type": "fill",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 10,
+      "filter": ["all", ["==", ["get", "natural"], "grassland"]],
+      "paint": {"fill-color": "#c8e0b0"}
+    },
+    {
+      "id": "area-greenfield",
+      "type": "fill",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 11,
+      "filter": ["all", ["==", ["get", "landuse"], "greenfield"]],
+      "layout": {"visibility": "visible"},
+      "paint": {"fill-color": "rgba(200, 220, 180, 0.15)"}
+    },
+    {
+      "id": "area-heath",
+      "type": "fill",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 13,
+      "filter": ["all", ["==", ["get", "natural"], "heath"]],
+      "layout": {"visibility": "visible"},
+      "paint": {"fill-color": "#d7ebba"}
+    },
+    {
+      "id": "area-park",
+      "type": "fill",
+      "source": "osm",
+      "source-layer": "osmand",
+      "filter": ["all", ["==", ["get", "leisure"], "park"]],
+      "layout": {"visibility": "visible"},
+      "paint": {"fill-color": "rgba(116, 255, 103, 0.25)"}
+    },
+    {
+      "id": "area-greenery",
+      "type": "fill",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 11,
+      "filter": ["all", ["==", ["get", "landuse"], "greenery"]],
+      "layout": {"visibility": "visible"},
+      "paint": {"fill-color": "#c8e0b0"}
+    },
+    {
+      "id": "area-recreation_ground",
+      "type": "fill",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 12,
+      "filter": ["all", ["==", ["get", "landuse"], "recreation_ground"]],
+      "layout": {"visibility": "visible"},
+      "paint": {"fill-color": "rgba(182, 253, 182, 0.56)"}
+    },
+    {
+      "id": "area-village_green",
+      "type": "fill",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 13,
+      "filter": ["all", ["==", ["get", "landuse"], "village_green"]],
+      "layout": {"visibility": "visible"},
+      "paint": {"fill-color": "#cfeca8"}
+    },
+    {
+      "id": "area-water",
+      "type": "fill",
+      "source": "osm",
+      "source-layer": "osmand",
+      "filter": [
+        "any",
+        ["==", ["get", "natural"], "water"],
+        ["==", ["get", "landuse"], "reservoir"],
+        ["==", ["get", "landuse"], "basin"],
+        ["==", ["get", "landuse"], "water"],
+        ["==", ["get", "waterway"], "riverbank"]
+      ],
+      "layout": {"visibility": "visible"},
+      "paint": {"fill-color": "#80c0ff"},
+      "note": "https://www.openstreetmap.org/relation/6200028 (place natural=water after landuse=residential)"
+    },
+    {
+      "id": "area-waterway-dam",
+      "type": "fill",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 13,
+      "filter": [
+        "all",
+        ["==", ["get", "waterway"], "dam"],
+        ["==", ["geometry-type"], "Polygon"]
+      ],
+      "layout": {"visibility": "visible"},
+      "paint": {
+        "fill-color": "rgba(85, 85, 85, 0.2)",
+        "fill-outline-color": "#555555"
+      }
+    },
+    {
+      "id": "area-scrub",
+      "type": "fill",
+      "source": "osm",
+      "source-layer": "osmand",
+      "filter": ["all", ["==", ["get", "natural"], "scrub"]],
+      "paint": {
+        "fill-color": "#b0d090",
+        "fill-antialias": false,
+        "fill-translate-anchor": "map"
+      }
+    },
+    {
+      "id": "area-wood",
+      "type": "fill",
+      "source": "osm",
+      "source-layer": "osmand",
+      "filter": [
+        "any",
+        ["==", ["get", "natural"], "wood"],
+        ["==", ["get", "landuse"], "forest"]
+      ],
+      "layout": {"visibility": "visible"},
+      "paint": {"fill-color": "#8cc96e"}
+    },
+    {
+      "id": "area-common",
+      "type": "fill",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 12,
+      "filter": ["all", ["==", ["get", "leisure"], "common"]],
+      "layout": {"visibility": "visible"},
+      "paint": {"fill-color": "#c0e5a1"}
+    },
+    {
       "id": "area-cemetery",
       "type": "fill",
       "source": "osm",
@@ -385,15 +414,6 @@
       }
     },
     {
-      "id": "area-park",
-      "type": "fill",
-      "source": "osm",
-      "source-layer": "osmand",
-      "filter": ["all", ["==", ["get", "leisure"], "park"]],
-      "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "rgba(116, 255, 103, 0.25)"}
-    },
-    {
       "id": "area-garden",
       "type": "fill",
       "source": "osm",
@@ -401,16 +421,6 @@
       "filter": ["all", ["==", "leisure", "garden"]],
       "layout": {"visibility": "visible"},
       "paint": {"fill-color": "#8cc96e"}
-    },
-    {
-      "id": "area-desert",
-      "type": "fill",
-      "source": "osm",
-      "source-layer": "osmand",
-      "minzoom": 6,
-      "filter": ["all", ["==", ["get", "natural"], "desert"]],
-      "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "#fff7bf"}
     },
     {
       "id": "area-lava",
@@ -421,16 +431,6 @@
       "filter": ["all", ["==", ["get", "natural"], "lava"]],
       "layout": {"visibility": "visible"},
       "paint": {"fill-color": "#ffe7ff"}
-    },
-    {
-      "id": "area-greenery",
-      "type": "fill",
-      "source": "osm",
-      "source-layer": "osmand",
-      "minzoom": 11,
-      "filter": ["all", ["==", ["get", "landuse"], "greenery"]],
-      "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "#c8e0b0"}
     },
     {
       "id": "area-brownfield",
