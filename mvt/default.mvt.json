@@ -1131,6 +1131,22 @@
       "paint": {"fill-color": "rgba(190, 190, 190, 1)"}
     },
     {
+      "id": "area-hospital",
+      "type": "fill",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 16,
+      "filter": [
+        "all",
+        ["in", ["get", "amenity"], ["literal", ["hospital", "clinic"]]]
+      ],
+      "layout": {"visibility": "visible"},
+      "paint": {
+        "fill-color": "#F0E8D8",
+        "fill-outline-color": "#b38c88"
+      }
+    },
+    {
       "id": "area-buildings",
       "type": "fill",
       "source": "osm",
@@ -6360,6 +6376,348 @@
         "text-color": "rgba(74, 138, 255, 1)",
         "text-halo-color": "rgba(239, 239, 239, 1)",
         "text-halo-width": 1.5
+      }
+    },
+    {
+      "id": "poi-hospital",
+      "type": "symbol",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 16,
+      "filter": [
+        "all",
+        ["==", ["get", "amenity"], "hospital"]
+      ],
+      "layout": {
+        "icon-size": 0.5,
+        "icon-allow-overlap": false,
+        "icon-ignore-placement": false,
+        "text-field": ["step", ["zoom"], "", 15.1, ["get", "name"]],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 10.5,
+        "text-anchor": "top",
+        "text-offset": [0, 1],
+        "text-optional": true,
+        "text-max-width": 8,
+        "visibility": "visible",
+        "icon-image": "amenity_hospital",
+        "icon-padding": [10, 10, 10, 10]
+      },
+      "paint": {
+        "text-color": "#da0092",
+        "text-halo-color": "#f1eae4",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "poi-emergency",
+      "type": "symbol",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 17,
+      "filter": [
+        "any",
+        ["==", ["get", "emergency"], "ambulance_station"],
+        ["==", ["get", "emergency"], "disaster_help_point"],
+        ["==", ["get", "emergency"], "disaster_response"],
+        ["==", ["get", "emergency"], "lifeguard"],
+        ["==", ["get", "emergency"], "mountain_rescue"],
+        ["==", ["get", "emergency"], "phone"],
+        ["==", ["get", "amenity"], "police"],
+        ["==", ["get", "amenity"], "fire_station"]
+      ],
+      "layout": {
+        "icon-size": 0.5,
+        "icon-allow-overlap": false,
+        "icon-ignore-placement": false,
+        "text-field": ["step", ["zoom"], "", 15.1, ["get", "name"]],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 10.5,
+        "text-anchor": "top",
+        "text-offset": [0, 1],
+        "text-optional": true,
+        "text-max-width": 8,
+        "visibility": "visible",
+        "icon-image": [
+          "case",
+          ["all", ["==", ["get", "emergency"], "lifeguard"], ["==", ["get", "lifeguard"], "tower"]],
+          "lifeguard_tower",
+          ["==", ["get", "emergency"], "ambulance_station"],
+          "ambulance_station",
+          ["==", ["get", "emergency"], "disaster_help_point"],
+          "disaster_help_point",
+          ["==", ["get", "emergency"], "disaster_response"],
+          "disaster_response",
+          ["==", ["get", "emergency"], "lifeguard"],
+          "lifeguard_base",
+          ["==", ["get", "emergency"], "mountain_rescue"],
+          "mountain_rescue",
+          ["==", ["get", "emergency"], "phone"],
+          "emergency_phone",
+          ["==", ["get", "amenity"], "police"],
+          "amenity_police",
+          ["==", ["get", "amenity"], "fire_station"],
+          "amenity_fire_station",
+          "poi"
+        ],
+        "icon-padding": [10, 10, 10, 10]
+      },
+      "paint": {
+        "text-color": "#da0092",
+        "text-halo-color": "#f1eae4",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "poi-emergency-extra",
+      "type": "symbol",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 18,
+      "filter": [
+        "any",
+        ["==", ["get", "emergency"], "assembly_point"],
+        ["==", ["get", "emergency"], "rescue_box"],
+        ["==", ["get", "amenity"], "avalanche_transceiver"]
+      ],
+      "layout": {
+        "icon-size": 0.5,
+        "icon-allow-overlap": false,
+        "icon-ignore-placement": false,
+        "text-field": ["step", ["zoom"], "", 15.1, ["get", "name"]],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 10.5,
+        "text-anchor": "top",
+        "text-offset": [0, 1],
+        "text-optional": true,
+        "text-max-width": 8,
+        "visibility": "visible",
+        "icon-image": [
+          "case",
+          [
+            "all",
+            ["==", ["get", "amenity"], "avalanche_transceiver"],
+            ["==", ["get", "avalanche_transceiver"], "training"]
+          ],
+          "avalanche_transceiver_training",
+          ["==", ["get", "emergency"], "assembly_point"],
+          "assembly_point",
+          ["==", ["get", "emergency"], "rescue_box"],
+          "rescue_box",
+          ["==", ["get", "amenity"], "avalanche_transceiver"],
+          "avalanche_transceiver",
+          "poi"
+        ],
+        "icon-padding": [10, 10, 10, 10]
+      },
+      "paint": {
+        "text-color": "#da0092",
+        "text-halo-color": "#f1eae4",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "poi-emergency-detail",
+      "type": "symbol",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 19,
+      "filter": [
+        "any",
+        ["==", ["get", "emergency"], "defibrillator"],
+        ["==", ["get", "emergency"], "siren"],
+        ["==", ["get", "highway"], "emergency_access_point"]
+      ],
+      "layout": {
+        "icon-size": 0.5,
+        "icon-allow-overlap": false,
+        "icon-ignore-placement": false,
+        "text-field": ["step", ["zoom"], "", 15.1, ["get", "name"]],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 10.5,
+        "text-anchor": "top",
+        "text-offset": [0, 1],
+        "text-optional": true,
+        "text-max-width": 8,
+        "visibility": "visible",
+        "icon-image": [
+          "case",
+          ["==", ["get", "emergency"], "defibrillator"],
+          "defibrillator",
+          ["==", ["get", "emergency"], "siren"],
+          "siren",
+          ["==", ["get", "highway"], "emergency_access_point"],
+          "emergency_access_point",
+          "poi"
+        ],
+        "icon-padding": [10, 10, 10, 10]
+      },
+      "paint": {
+        "text-color": "#da0092",
+        "text-halo-color": "#f1eae4",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "poi-health",
+      "type": "symbol",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 17,
+      "filter": [
+        "any",
+        ["==", ["get", "amenity"], "clinic"],
+        ["==", ["get", "amenity"], "doctors"],
+        ["==", ["get", "amenity"], "dentist"],
+        ["==", ["get", "amenity"], "pharmacy"],
+        ["==", ["get", "amenity"], "nursing_home"],
+        ["==", ["get", "amenity"], "health_post"],
+        ["==", ["get", "amenity"], "veterinary"],
+        ["==", ["get", "healthcare"], "blood_donation"],
+        ["==", ["get", "healthcare"], "hospice"],
+        ["==", ["get", "healthcare"], "laboratory"],
+        ["==", ["get", "healthcare"], "nurse"],
+        ["==", ["get", "healthcare"], "occupational_therapist"],
+        ["==", ["get", "healthcare"], "physiotherapist"]
+      ],
+      "layout": {
+        "icon-size": 0.5,
+        "icon-allow-overlap": false,
+        "icon-ignore-placement": false,
+        "text-field": ["step", ["zoom"], "", 15.1, ["get", "name"]],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 10.5,
+        "text-anchor": "top",
+        "text-offset": [0, 1],
+        "text-optional": true,
+        "text-max-width": 8,
+        "visibility": "visible",
+        "icon-image": [
+          "case",
+          ["==", ["get", "amenity"], "clinic"],
+          "clinic",
+          ["==", ["get", "amenity"], "doctors"],
+          "amenity_doctors",
+          ["==", ["get", "amenity"], "dentist"],
+          "amenity_dentist",
+          ["all", ["==", ["get", "amenity"], "pharmacy"], ["==", ["get", "dispensing"], "no"]],
+          "amenity_pharmacy_red",
+          ["==", ["get", "amenity"], "pharmacy"],
+          "amenity_pharmacy",
+          ["==", ["get", "amenity"], "nursing_home"],
+          "amenity_nursing_home",
+          ["==", ["get", "amenity"], "health_post"],
+          "health_post",
+          ["==", ["get", "amenity"], "veterinary"],
+          "amenity_veterinary",
+          ["==", ["get", "healthcare"], "blood_donation"],
+          "blood_donation",
+          ["==", ["get", "healthcare"], "hospice"],
+          "hospice",
+          ["==", ["get", "healthcare"], "laboratory"],
+          "laboratory",
+          ["==", ["get", "healthcare"], "nurse"],
+          "nurse",
+          ["==", ["get", "healthcare"], "occupational_therapist"],
+          "occupational_therapist",
+          ["==", ["get", "healthcare"], "physiotherapist"],
+          "physiotherapist",
+          "poi"
+        ],
+        "icon-padding": [10, 10, 10, 10]
+      },
+      "paint": {
+        "text-color": [
+          "case",
+          ["==", ["get", "amenity"], "pharmacy"],
+          ["case", ["==", ["get", "dispensing"], "no"], "#da0092", "#388738"],
+          "#da0092"
+        ],
+        "text-halo-color": "#f1eae4",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "poi-health-other",
+      "type": "symbol",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 18,
+      "filter": [
+        "all",
+        ["has", "healthcare"],
+        ["!=", ["get", "healthcare"], ""],
+        [
+          "!",
+          [
+            "in",
+            ["get", "amenity"],
+            [
+              "literal",
+              [
+                "hospital",
+                "clinic",
+                "doctors",
+                "dentist",
+                "pharmacy",
+                "nursing_home",
+                "health_post",
+                "veterinary"
+              ]
+            ]
+          ]
+        ]
+      ],
+      "layout": {
+        "icon-size": 0.5,
+        "icon-allow-overlap": false,
+        "icon-ignore-placement": false,
+        "text-field": ["step", ["zoom"], "", 15.1, ["get", "name"]],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 10.5,
+        "text-anchor": "top",
+        "text-offset": [0, 1],
+        "text-optional": true,
+        "text-max-width": 8,
+        "visibility": "visible",
+        "icon-image": "healthcare",
+        "icon-padding": [10, 10, 10, 10]
+      },
+      "paint": {
+        "text-color": "#da0092",
+        "text-halo-color": "#f1eae4",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "poi-fire-hydrant",
+      "type": "symbol",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 20,
+      "filter": [
+        "all",
+        ["==", ["get", "emergency"], "fire_hydrant"]
+      ],
+      "layout": {
+        "icon-size": 0.5,
+        "icon-allow-overlap": false,
+        "icon-ignore-placement": false,
+        "text-field": ["step", ["zoom"], "", 15.1, ["get", "name"]],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 10.5,
+        "text-anchor": "top",
+        "text-offset": [0, 1],
+        "text-optional": true,
+        "text-max-width": 8,
+        "visibility": "visible",
+        "icon-image": "emergency_fire_hydrant",
+        "icon-padding": [10, 10, 10, 10]
+      },
+      "paint": {
+        "text-color": "#da0092",
+        "text-halo-color": "#f1eae4",
+        "text-halo-width": 1
       }
     },
     {
