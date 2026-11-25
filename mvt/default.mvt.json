@@ -6410,19 +6410,60 @@
       }
     },
     {
-      "id": "poi-emergency",
+      "id": "poi-marketplace",
+      "type": "symbol",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 16,
+      "filter": [
+        "all",
+        ["==", ["get", "amenity"], "marketplace"]
+      ],
+      "layout": {
+        "icon-size": 0.5,
+        "icon-allow-overlap": false,
+        "icon-ignore-placement": false,
+        "text-field": ["step", ["zoom"], "", 15.1, ["get", "name"]],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 10.5,
+        "text-anchor": "top",
+        "text-offset": [0, 1],
+        "text-optional": true,
+        "text-max-width": 8,
+        "visibility": "visible",
+        "icon-image": "amenity_marketplace",
+        "icon-padding": [10, 10, 10, 10]
+      },
+      "paint": {
+        "text-color": "#680067",
+        "text-halo-color": "#f1eae4",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "poi-health-emergency",
       "type": "symbol",
       "source": "osm",
       "source-layer": "osmand",
       "minzoom": 17,
       "filter": [
         "any",
+        ["==", ["get", "amenity"], "clinic"],
+        ["==", ["get", "amenity"], "doctors"],
+        ["==", ["get", "amenity"], "dentist"],
+        ["==", ["get", "amenity"], "pharmacy"],
+        ["==", ["get", "amenity"], "nursing_home"],
+        ["==", ["get", "amenity"], "health_post"],
+        ["==", ["get", "amenity"], "veterinary"],
+        ["all", ["has", "healthcare"], ["!=", ["get", "healthcare"], ""]],
         ["==", ["get", "emergency"], "ambulance_station"],
+        ["==", ["get", "emergency"], "assembly_point"],
         ["==", ["get", "emergency"], "disaster_help_point"],
         ["==", ["get", "emergency"], "disaster_response"],
         ["==", ["get", "emergency"], "lifeguard"],
         ["==", ["get", "emergency"], "mountain_rescue"],
         ["==", ["get", "emergency"], "phone"],
+        ["==", ["get", "emergency"], "rescue_box"],
         ["==", ["get", "amenity"], "police"],
         ["==", ["get", "amenity"], "fire_station"]
       ],
@@ -6440,10 +6481,40 @@
         "visibility": "visible",
         "icon-image": [
           "case",
+          ["all", ["==", ["get", "amenity"], "pharmacy"], ["==", ["get", "dispensing"], "no"]],
+          "amenity_pharmacy_red",
+          ["==", ["get", "amenity"], "clinic"],
+          "clinic",
+          ["==", ["get", "amenity"], "doctors"],
+          "amenity_doctors",
+          ["==", ["get", "amenity"], "dentist"],
+          "amenity_dentist",
+          ["==", ["get", "amenity"], "pharmacy"],
+          "amenity_pharmacy",
+          ["==", ["get", "amenity"], "nursing_home"],
+          "amenity_nursing_home",
+          ["==", ["get", "amenity"], "health_post"],
+          "health_post",
+          ["==", ["get", "amenity"], "veterinary"],
+          "amenity_veterinary",
+          ["==", ["get", "healthcare"], "blood_donation"],
+          "blood_donation",
+          ["==", ["get", "healthcare"], "hospice"],
+          "hospice",
+          ["==", ["get", "healthcare"], "laboratory"],
+          "laboratory",
+          ["==", ["get", "healthcare"], "nurse"],
+          "nurse",
+          ["==", ["get", "healthcare"], "occupational_therapist"],
+          "occupational_therapist",
+          ["==", ["get", "healthcare"], "physiotherapist"],
+          "physiotherapist",
           ["all", ["==", ["get", "emergency"], "lifeguard"], ["==", ["get", "lifeguard"], "tower"]],
           "lifeguard_tower",
           ["==", ["get", "emergency"], "ambulance_station"],
           "ambulance_station",
+          ["==", ["get", "emergency"], "assembly_point"],
+          "assembly_point",
           ["==", ["get", "emergency"], "disaster_help_point"],
           "disaster_help_point",
           ["==", ["get", "emergency"], "disaster_response"],
@@ -6454,31 +6525,41 @@
           "mountain_rescue",
           ["==", ["get", "emergency"], "phone"],
           "emergency_phone",
+          ["==", ["get", "emergency"], "rescue_box"],
+          "rescue_box",
           ["==", ["get", "amenity"], "police"],
           "amenity_police",
           ["==", ["get", "amenity"], "fire_station"],
           "amenity_fire_station",
-          "poi"
+          "healthcare"
         ],
         "icon-padding": [10, 10, 10, 10]
       },
       "paint": {
-        "text-color": "#da0092",
+        "text-color": [
+          "case",
+          ["==", ["get", "amenity"], "pharmacy"],
+          ["case", ["==", ["get", "dispensing"], "no"], "#da0092", "#388738"],
+          "#da0092"
+        ],
         "text-halo-color": "#f1eae4",
         "text-halo-width": 1
       }
     },
     {
-      "id": "poi-emergency-extra",
+      "id": "poi-urban",
       "type": "symbol",
       "source": "osm",
       "source-layer": "osmand",
-      "minzoom": 18,
+      "minzoom": 17,
       "filter": [
         "any",
-        ["==", ["get", "emergency"], "assembly_point"],
-        ["==", ["get", "emergency"], "rescue_box"],
-        ["==", ["get", "amenity"], "avalanche_transceiver"]
+        ["==", ["get", "amenity"], "drinking_water"],
+        ["==", ["get", "amenity"], "taxi"],
+        ["==", ["get", "amenity"], "bicycle_rental"],
+        ["==", ["get", "amenity"], "social_facility"],
+        ["==", ["get", "amenity"], "vending_machine"],
+        ["==", ["get", "amenity"], "bbq"]
       ],
       "layout": {
         "icon-size": 0.5,
@@ -6494,24 +6575,82 @@
         "visibility": "visible",
         "icon-image": [
           "case",
+          ["==", ["get", "amenity"], "drinking_water"],
+          "amenity_drinking_water",
+          ["==", ["get", "amenity"], "taxi"],
+          "amenity_taxi",
+          ["==", ["get", "amenity"], "bicycle_rental"],
+          "amenity_bicycle_rental",
+          ["==", ["get", "amenity"], "social_facility"],
+          "social_facility",
           [
             "all",
-            ["==", ["get", "amenity"], "avalanche_transceiver"],
-            ["==", ["get", "avalanche_transceiver"], "training"]
+            ["==", ["get", "amenity"], "vending_machine"],
+            ["==", ["get", "vending"], "excrement_bags"]
           ],
-          "avalanche_transceiver_training",
-          ["==", ["get", "emergency"], "assembly_point"],
-          "assembly_point",
-          ["==", ["get", "emergency"], "rescue_box"],
-          "rescue_box",
-          ["==", ["get", "amenity"], "avalanche_transceiver"],
-          "avalanche_transceiver",
+          "vending_excrement_bags",
+          ["==", ["get", "amenity"], "vending_machine"],
+          "amenity_vending_machine",
+          ["==", ["get", "amenity"], "bbq"],
+          "barbecue",
           "poi"
         ],
         "icon-padding": [10, 10, 10, 10]
       },
       "paint": {
-        "text-color": "#da0092",
+        "text-color": [
+          "case",
+          ["==", ["get", "amenity"], "vending_machine"],
+          "#680067",
+          ["==", ["get", "amenity"], "drinking_water"],
+          "#844f10",
+          ["==", ["get", "amenity"], "taxi"],
+          "#0066ff",
+          ["==", ["get", "amenity"], "bicycle_rental"],
+          "#0066ff",
+          ["==", ["get", "amenity"], "social_facility"],
+          "#da0092",
+          "#444444"
+        ],
+        "text-halo-color": "#f1eae4",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "poi-waste",
+      "type": "symbol",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 18,
+      "filter": [
+        "any",
+        ["==", ["get", "amenity"], "waste_basket"],
+        ["==", ["get", "amenity"], "waste_disposal"]
+      ],
+      "layout": {
+        "icon-size": 0.5,
+        "icon-allow-overlap": false,
+        "icon-ignore-placement": false,
+        "text-field": ["step", ["zoom"], "", 15.1, ["get", "name"]],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 10.5,
+        "text-anchor": "top",
+        "text-offset": [0, 1],
+        "text-optional": true,
+        "text-max-width": 8,
+        "visibility": "visible",
+        "icon-image": [
+          "case",
+          ["==", ["get", "amenity"], "waste_basket"],
+          "waste_basket2",
+          ["==", ["get", "amenity"], "waste_disposal"],
+          "waste_disposal",
+          "poi"
+        ],
+        "icon-padding": [10, 10, 10, 10]
+      },
+      "paint": {
+        "text-color": "#444444",
         "text-halo-color": "#f1eae4",
         "text-halo-width": 1
       }
@@ -6526,7 +6665,8 @@
         "any",
         ["==", ["get", "emergency"], "defibrillator"],
         ["==", ["get", "emergency"], "siren"],
-        ["==", ["get", "highway"], "emergency_access_point"]
+        ["==", ["get", "highway"], "emergency_access_point"],
+        ["==", ["get", "emergency"], "fire_hydrant"]
       ],
       "layout": {
         "icon-size": 0.5,
@@ -6548,6 +6688,8 @@
           "siren",
           ["==", ["get", "highway"], "emergency_access_point"],
           "emergency_access_point",
+          ["==", ["get", "emergency"], "fire_hydrant"],
+          "emergency_fire_hydrant",
           "poi"
         ],
         "icon-padding": [10, 10, 10, 10]
@@ -6559,26 +6701,17 @@
       }
     },
     {
-      "id": "poi-health",
+      "id": "poi-urban-detail",
       "type": "symbol",
       "source": "osm",
       "source-layer": "osmand",
-      "minzoom": 17,
+      "minzoom": 19,
       "filter": [
         "any",
-        ["==", ["get", "amenity"], "clinic"],
-        ["==", ["get", "amenity"], "doctors"],
-        ["==", ["get", "amenity"], "dentist"],
-        ["==", ["get", "amenity"], "pharmacy"],
-        ["==", ["get", "amenity"], "nursing_home"],
-        ["==", ["get", "amenity"], "health_post"],
-        ["==", ["get", "amenity"], "veterinary"],
-        ["==", ["get", "healthcare"], "blood_donation"],
-        ["==", ["get", "healthcare"], "hospice"],
-        ["==", ["get", "healthcare"], "laboratory"],
-        ["==", ["get", "healthcare"], "nurse"],
-        ["==", ["get", "healthcare"], "occupational_therapist"],
-        ["==", ["get", "healthcare"], "physiotherapist"]
+        ["==", ["get", "amenity"], "public_bookcase"],
+        ["==", ["get", "amenity"], "weighbridge"],
+        ["==", ["get", "amenity"], "grit_bin"],
+        ["all", ["==", ["get", "amenity"], "parking_space"], ["==", ["get", "disabled"], "yes"]]
       ],
       "layout": {
         "icon-size": 0.5,
@@ -6594,128 +6727,20 @@
         "visibility": "visible",
         "icon-image": [
           "case",
-          ["==", ["get", "amenity"], "clinic"],
-          "clinic",
-          ["==", ["get", "amenity"], "doctors"],
-          "amenity_doctors",
-          ["==", ["get", "amenity"], "dentist"],
-          "amenity_dentist",
-          ["all", ["==", ["get", "amenity"], "pharmacy"], ["==", ["get", "dispensing"], "no"]],
-          "amenity_pharmacy_red",
-          ["==", ["get", "amenity"], "pharmacy"],
-          "amenity_pharmacy",
-          ["==", ["get", "amenity"], "nursing_home"],
-          "amenity_nursing_home",
-          ["==", ["get", "amenity"], "health_post"],
-          "health_post",
-          ["==", ["get", "amenity"], "veterinary"],
-          "amenity_veterinary",
-          ["==", ["get", "healthcare"], "blood_donation"],
-          "blood_donation",
-          ["==", ["get", "healthcare"], "hospice"],
-          "hospice",
-          ["==", ["get", "healthcare"], "laboratory"],
-          "laboratory",
-          ["==", ["get", "healthcare"], "nurse"],
-          "nurse",
-          ["==", ["get", "healthcare"], "occupational_therapist"],
-          "occupational_therapist",
-          ["==", ["get", "healthcare"], "physiotherapist"],
-          "physiotherapist",
+          ["==", ["get", "amenity"], "public_bookcase"],
+          "public_bookcase",
+          ["==", ["get", "amenity"], "weighbridge"],
+          "weighbridge",
+          ["==", ["get", "amenity"], "grit_bin"],
+          "grit_bin",
+          ["all", ["==", ["get", "amenity"], "parking_space"], ["==", ["get", "disabled"], "yes"]],
+          "amenity_parking_disabled",
           "poi"
         ],
         "icon-padding": [10, 10, 10, 10]
       },
       "paint": {
-        "text-color": [
-          "case",
-          ["==", ["get", "amenity"], "pharmacy"],
-          ["case", ["==", ["get", "dispensing"], "no"], "#da0092", "#388738"],
-          "#da0092"
-        ],
-        "text-halo-color": "#f1eae4",
-        "text-halo-width": 1
-      }
-    },
-    {
-      "id": "poi-health-other",
-      "type": "symbol",
-      "source": "osm",
-      "source-layer": "osmand",
-      "minzoom": 18,
-      "filter": [
-        "all",
-        ["has", "healthcare"],
-        ["!=", ["get", "healthcare"], ""],
-        [
-          "!",
-          [
-            "in",
-            ["get", "amenity"],
-            [
-              "literal",
-              [
-                "hospital",
-                "clinic",
-                "doctors",
-                "dentist",
-                "pharmacy",
-                "nursing_home",
-                "health_post",
-                "veterinary"
-              ]
-            ]
-          ]
-        ]
-      ],
-      "layout": {
-        "icon-size": 0.5,
-        "icon-allow-overlap": false,
-        "icon-ignore-placement": false,
-        "text-field": ["step", ["zoom"], "", 15.1, ["get", "name"]],
-        "text-font": ["Noto Sans Regular"],
-        "text-size": 10.5,
-        "text-anchor": "top",
-        "text-offset": [0, 1],
-        "text-optional": true,
-        "text-max-width": 8,
-        "visibility": "visible",
-        "icon-image": "healthcare",
-        "icon-padding": [10, 10, 10, 10]
-      },
-      "paint": {
-        "text-color": "#da0092",
-        "text-halo-color": "#f1eae4",
-        "text-halo-width": 1
-      }
-    },
-    {
-      "id": "poi-fire-hydrant",
-      "type": "symbol",
-      "source": "osm",
-      "source-layer": "osmand",
-      "minzoom": 20,
-      "filter": [
-        "all",
-        ["==", ["get", "emergency"], "fire_hydrant"]
-      ],
-      "layout": {
-        "icon-size": 0.5,
-        "icon-allow-overlap": false,
-        "icon-ignore-placement": false,
-        "text-field": ["step", ["zoom"], "", 15.1, ["get", "name"]],
-        "text-font": ["Noto Sans Regular"],
-        "text-size": 10.5,
-        "text-anchor": "top",
-        "text-offset": [0, 1],
-        "text-optional": true,
-        "text-max-width": 8,
-        "visibility": "visible",
-        "icon-image": "emergency_fire_hydrant",
-        "icon-padding": [10, 10, 10, 10]
-      },
-      "paint": {
-        "text-color": "#da0092",
+        "text-color": ["case", ["==", ["get", "amenity"], "weighbridge"], "#0066ff", "#444444"],
         "text-halo-color": "#f1eae4",
         "text-halo-width": 1
       }
