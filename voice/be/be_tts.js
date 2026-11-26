@@ -190,7 +190,7 @@ function distance(dist) {
 				var distance = Math.round(dist/10.0)*10;
 				return (tts ? distance.toString() : ogg_dist(distance)) + " " + dictionary["metrau"];
 			} else if (dist < 1500) {
-				return dictionary["around"] + " 1 " + dictionary["kilometr"];
+				return dictionary["around_1_kilometer"];
 			} else {
 				return (tts ? Math.round(dist/1000.0).toString() : ogg_dist(Math.round(dist/1000.0))) + " " + plural_km(dist/1000.0);
 			}
