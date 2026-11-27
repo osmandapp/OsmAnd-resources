@@ -6750,7 +6750,7 @@
       "type": "symbol",
       "source": "osm",
       "source-layer": "osmand",
-      "minzoom": 16,
+      "minzoom": 17,
       "filter": [
         "all",
         ["==", ["geometry-type"], "Point"],
@@ -9448,6 +9448,246 @@
         "text-color": "rgba(74, 138, 255, 1)",
         "text-halo-color": "rgba(239, 239, 239, 1)",
         "text-halo-width": 1.5
+      }
+    },
+    {
+      "id": "poi-man-made",
+      "type": "symbol",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 16,
+      "filter": [
+        "all",
+        ["==", ["geometry-type"], "Point"],
+        [
+          "in",
+          ["get", "man_made"],
+          [
+            "literal",
+            [
+              "tower",
+              "mast",
+              "monitoring_station",
+              "survey_point",
+              "water_tower",
+              "windmill",
+              "watermill",
+              "petroleum_well",
+              "adit",
+              "cairn",
+              "cross",
+              "kiln",
+              "mineshaft",
+              "observatory",
+              "telescope",
+              "flare"
+            ]
+          ]
+        ]
+      ],
+      "layout": {
+        "icon-size": 0.5,
+        "icon-allow-overlap": false,
+        "icon-ignore-placement": false,
+        "text-field": ["step", ["zoom"], "", 16.1, ["get", "name"]],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 10.5,
+        "text-anchor": "top",
+        "text-offset": [0, 1],
+        "text-optional": true,
+        "text-max-width": 8,
+        "visibility": "visible",
+        "icon-image": [
+          "case",
+          ["all", ["==", ["get", "man_made"], "tower"], ["==", ["get", "tower:type"], "communication"]],
+          "communication_tower",
+          ["all", ["==", ["get", "man_made"], "tower"], ["==", ["get", "tower:type"], "cooling"]],
+          "cooling_tower",
+          ["all", ["==", ["get", "man_made"], "tower"], ["==", ["get", "tower:type"], "bell_tower"]],
+          "bell_tower",
+          ["all", ["==", ["get", "man_made"], "tower"], ["==", ["get", "tower:type"], "lighting"]],
+          "lighting_tower",
+          ["all", ["==", ["get", "man_made"], "tower"], ["==", ["get", "tower:type"], "observation"]],
+          "observation_tower",
+          ["==", ["get", "man_made"], "tower"],
+          "man_made_tower",
+          ["==", ["get", "man_made"], "mast"],
+          "man_made_mast",
+          ["==", ["get", "man_made"], "monitoring_station"],
+          "radar",
+          ["==", ["get", "man_made"], "survey_point"],
+          "man_made_survey_point",
+          ["==", ["get", "man_made"], "water_tower"],
+          "man_made_water_tower",
+          ["==", ["get", "man_made"], "windmill"],
+          "man_made_windmill",
+          ["==", ["get", "man_made"], "watermill"],
+          "watermill",
+          ["==", ["get", "man_made"], "petroleum_well"],
+          "man_made_petroleum_well",
+          ["==", ["get", "man_made"], "adit"],
+          "man_made_adit",
+          ["==", ["get", "man_made"], "cairn"],
+          "cairn",
+          ["==", ["get", "man_made"], "cross"],
+          "cross",
+          ["==", ["get", "man_made"], "kiln"],
+          "kiln",
+          ["==", ["get", "man_made"], "mineshaft"],
+          "man_made_mineshaft",
+          ["all", ["==", ["get", "man_made"], "observatory"], ["==", ["get", "observatory:type"], "astronomical"]],
+          "astronomical_observatory",
+          ["==", ["get", "man_made"], "observatory"],
+          "man_made_observatory",
+          ["all", ["==", ["get", "man_made"], "telescope"], ["==", ["get", "telescope:type"], "optical"]],
+          "telescope_type_optical",
+          ["==", ["get", "man_made"], "telescope"],
+          "telescope",
+          ["==", ["get", "man_made"], "flare"],
+          "flare",
+          "man_made_tower"
+        ],
+        "icon-padding": [10, 10, 10, 10]
+      },
+      "paint": {
+        "text-color": "#444444",
+        "text-halo-color": "#f1eae4",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "poi-man-made-detail",
+      "type": "symbol",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 17,
+      "filter": [
+        "all",
+        ["==", ["geometry-type"], "Point"],
+        [
+          "in",
+          ["get", "man_made"],
+          ["literal", ["chimney", "beehive", "antenna", "satellite_dish", "cellar_entrance", "pumping_station"]]
+        ]
+      ],
+      "layout": {
+        "icon-size": 0.5,
+        "icon-allow-overlap": false,
+        "icon-ignore-placement": false,
+        "text-field": ["step", ["zoom"], "", 15.1, ["get", "name"]],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 10.5,
+        "text-anchor": "top",
+        "text-offset": [0, 1],
+        "text-optional": true,
+        "text-max-width": 8,
+        "visibility": "visible",
+        "icon-image": [
+          "case",
+          ["==", ["get", "man_made"], "chimney"],
+          "man_made_chimney",
+          ["==", ["get", "man_made"], "beehive"],
+          "beehive",
+          ["==", ["get", "man_made"], "antenna"],
+          "man_made_antenna",
+          ["==", ["get", "man_made"], "satellite_dish"],
+          "satellite_dish",
+          ["==", ["get", "man_made"], "cellar_entrance"],
+          "cellar_entrance",
+          ["==", ["get", "man_made"], "pumping_station"],
+          "pumping_station",
+          "man_made_tower"
+        ],
+        "icon-padding": [10, 10, 10, 10]
+      },
+      "paint": {
+        "text-color": "#444444",
+        "text-halo-color": "#f1eae4",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "poi-man-made-minor",
+      "type": "symbol",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 17,
+      "filter": [
+        "all",
+        ["==", ["geometry-type"], "Point"],
+        [
+          "in",
+          ["get", "man_made"],
+          ["literal", ["water_tap", "water_works"]]
+        ]
+      ],
+      "layout": {
+        "icon-size": 0.5,
+        "icon-allow-overlap": false,
+        "icon-ignore-placement": false,
+        "text-field": ["step", ["zoom"], "", 15.1, ["get", "name"]],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 10.5,
+        "text-anchor": "top",
+        "text-offset": [0, 1],
+        "text-optional": true,
+        "text-max-width": 8,
+        "visibility": "visible",
+        "icon-image": [
+          "case",
+          ["==", ["get", "man_made"], "water_works"],
+          "water_works",
+          ["==", ["get", "man_made"], "water_tap"],
+          "water_tap",
+          "water_tap"
+        ],
+        "icon-padding": [10, 10, 10, 10]
+      },
+      "paint": {
+        "text-color": "#444444",
+        "text-halo-color": "#f1eae4",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "poi-man-made-minor-detail",
+      "type": "symbol",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 18,
+      "filter": [
+        "all",
+        ["==", ["geometry-type"], "Point"],
+        ["in", ["get", "man_made"], ["literal", ["street_cabinet", "crane", "ventilation_shaft"]]]
+      ],
+      "layout": {
+        "icon-size": 0.5,
+        "icon-allow-overlap": false,
+        "icon-ignore-placement": false,
+        "text-field": ["step", ["zoom"], "", 15.1, ["get", "name"]],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 10.5,
+        "text-anchor": "top",
+        "text-offset": [0, 1],
+        "text-optional": true,
+        "text-max-width": 8,
+        "visibility": "visible",
+        "icon-image": [
+          "case",
+          ["==", ["get", "man_made"], "street_cabinet"],
+          "street_cabinet",
+          ["==", ["get", "man_made"], "crane"],
+          "crane",
+          ["==", ["get", "man_made"], "ventilation_shaft"],
+          "ventilation_shaft",
+          "street_cabinet"
+        ],
+        "icon-padding": [10, 10, 10, 10]
+      },
+      "paint": {
+        "text-color": "#444444",
+        "text-halo-color": "#f1eae4",
+        "text-halo-width": 1
       }
     },
     {
