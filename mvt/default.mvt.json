@@ -825,6 +825,42 @@
       }
     },
     {
+      "id": "line-tree-row",
+      "type": "line",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 15,
+      "filter": ["all", ["==", ["get", "natural"], "tree_row"]],
+      "layout": {"visibility": "visible", "line-cap": "round"},
+      "paint": {
+        "line-color": "#87cc70",
+        "line-width": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          15,
+          1.3,
+          16,
+          1.7,
+          17,
+          2.2,
+          18,
+          2.8
+        ],
+        "line-dasharray": [
+          "step",
+          ["zoom"],
+          ["literal", [1, 6]],
+          16,
+          ["literal", [1, 8]],
+          17,
+          ["literal", [1, 10]],
+          18,
+          ["literal", [1, 15]]
+        ]
+      }
+    },
+    {
       "id": "line-ridge",
       "type": "line",
       "source": "osm",
@@ -8736,6 +8772,213 @@
         "text-halo-color": "rgba(255, 255, 255, 0.61)",
         "text-halo-width": 1,
         "text-color": "rgba(108, 46, 0, 1)"
+      }
+    },
+    {
+      "id": "poi-natural",
+      "type": "symbol",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 15,
+      "filter": [
+        "all",
+        ["==", ["geometry-type"], "Point"],
+        ["in", ["get", "natural"], ["literal", ["cave_entrance", "fumarole", "sinkhole"]]]
+      ],
+      "layout": {
+        "icon-size": 0.5,
+        "icon-allow-overlap": false,
+        "icon-ignore-placement": false,
+        "text-field": ["step", ["zoom"], "", 15.1, ["get", "name"]],
+        "text-font": ["Noto Sans Italic"],
+        "text-size": 11,
+        "text-anchor": "top",
+        "text-offset": [0, 0.7],
+        "text-optional": true,
+        "text-max-width": 8,
+        "visibility": "visible",
+        "icon-image": [
+          "case",
+          ["==", ["get", "natural"], "cave_entrance"],
+          "natural_cave_entrance",
+          ["==", ["get", "natural"], "fumarole"],
+          "fumarole",
+          ["==", ["get", "natural"], "sinkhole"],
+          "natural_sinkhole",
+          "natural_cave_entrance"
+        ],
+        "icon-padding": [10, 10, 10, 10]
+      },
+      "paint": {
+        "text-color": [
+          "case",
+          ["==", ["get", "natural"], "fumarole"],
+          "#4e0d0d",
+          ["==", ["get", "natural"], "sinkhole"],
+          "#4e0d0d",
+          "#654321"
+        ],
+        "text-halo-color": "#aaf1eae4",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "poi-natural-detail",
+      "type": "symbol",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 15,
+      "filter": [
+        "all",
+        ["==", ["geometry-type"], "Point"],
+        ["in", ["get", "natural"], ["literal", ["hot_spring", "geyser", "blowhole", "arch"]]]
+      ],
+      "layout": {
+        "icon-size": 0.5,
+        "icon-allow-overlap": false,
+        "icon-ignore-placement": false,
+        "text-field": ["step", ["zoom"], "", 15.1, ["get", "name"]],
+        "text-font": ["Noto Sans Italic"],
+        "text-size": 11,
+        "text-anchor": "top",
+        "text-offset": [0, 0.7],
+        "text-optional": true,
+        "text-max-width": 8,
+        "visibility": "visible",
+        "icon-image": [
+          "case",
+          ["==", ["get", "natural"], "hot_spring"],
+          "natural_hot_spring",
+          ["==", ["get", "natural"], "geyser"],
+          "natural_geyser",
+          ["==", ["get", "natural"], "blowhole"],
+          "natural_blowhole",
+          ["==", ["get", "natural"], "arch"],
+          "arch",
+          "natural_hot_spring"
+        ],
+        "icon-padding": [10, 10, 10, 10]
+      },
+      "paint": {
+        "text-color": "#654321",
+        "text-halo-color": "#aaf1eae4",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "poi-natural-stone",
+      "type": "symbol",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 16,
+      "filter": [
+        "all",
+        ["==", ["geometry-type"], "Point"],
+        ["in", ["get", "natural"], ["literal", ["stone", "rock"]]]
+      ],
+      "layout": {
+        "icon-size": 0.5,
+        "icon-allow-overlap": false,
+        "icon-ignore-placement": false,
+        "text-field": ["step", ["zoom"], "", 15.1, ["get", "name"]],
+        "text-font": ["Noto Sans Italic"],
+        "text-size": 11,
+        "text-anchor": "top",
+        "text-offset": [0, 0.7],
+        "text-optional": true,
+        "text-max-width": 8,
+        "visibility": "visible",
+        "icon-image": "natural_stone",
+        "icon-padding": [10, 10, 10, 10]
+      },
+      "paint": {
+        "text-color": "#444444",
+        "text-halo-color": "#f1eae4",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "poi-natural-minor",
+      "type": "symbol",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 18,
+      "filter": [
+        "all",
+        ["==", ["geometry-type"], "Point"],
+        ["==", ["get", "natural"], "tree"]
+      ],
+      "layout": {
+        "icon-size": 0.5,
+        "icon-allow-overlap": false,
+        "icon-ignore-placement": false,
+        "text-field": ["step", ["zoom"], "", 15.1, ["get", "name"]],
+        "text-font": ["Noto Sans Italic"],
+        "text-size": 11,
+        "text-anchor": "top",
+        "text-offset": [0, 0.7],
+        "text-optional": true,
+        "text-max-width": 8,
+        "visibility": "visible",
+        "icon-image": [
+          "case",
+          ["==", ["get", "leaf_type"], "needleleaved"],
+          "natural_tree_needleleaved",
+          ["==", ["get", "leaf_type"], "leafless"],
+          "natural_tree_leafless",
+          ["==", ["get", "tree:type"], "palm"],
+          "natural_tree_palm",
+          "natural_tree_broadleaved"
+        ],
+        "icon-padding": [10, 10, 10, 10]
+      },
+      "paint": {
+        "text-color": "#388738",
+        "text-halo-color": "#ccffffff",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "poi-natural-minor-detail",
+      "type": "symbol",
+      "source": "osm",
+      "source-layer": "osmand",
+      "minzoom": 17,
+      "filter": [
+        "all",
+        ["==", ["geometry-type"], "Point"],
+        ["in", ["get", "natural"], ["literal", ["shrub", "anthill", "termite_mound", "birds_nest"]]]
+      ],
+      "layout": {
+        "icon-size": 0.5,
+        "icon-allow-overlap": false,
+        "icon-ignore-placement": false,
+        "text-field": ["step", ["zoom"], "", 15.1, ["get", "name"]],
+        "text-font": ["Noto Sans Italic"],
+        "text-size": 11,
+        "text-anchor": "top",
+        "text-offset": [0, 0.7],
+        "text-optional": true,
+        "text-max-width": 8,
+        "visibility": "visible",
+        "icon-image": [
+          "case",
+          ["==", ["get", "natural"], "shrub"],
+          "shrub_dot",
+          ["==", ["get", "natural"], "anthill"],
+          "anthill",
+          ["==", ["get", "natural"], "termite_mound"],
+          "termite_mound",
+          ["==", ["get", "natural"], "birds_nest"],
+          "birds_nest",
+          "shrub_dot"
+        ],
+        "icon-padding": [10, 10, 10, 10]
+      },
+      "paint": {
+        "text-color": "#388738",
+        "text-halo-color": "#ccffffff",
+        "text-halo-width": 1
       }
     },
     {
